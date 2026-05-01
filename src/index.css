@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-sin: #e879a0;
+    --color-cos: #38bdf8;
+    --color-tan: #34d399;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+  }
+
+  * {
+    @apply transition-colors duration-150;
+  }
+}
+
+/* KaTeX override for dark mode */
+.dark .katex {
+  color: inherit;
+}
+
+/* Smooth toggle transitions */
+.trig-label {
+  transition: opacity 0.25s ease;
+}

@@ -1,0 +1,33 @@
+import { ComponentType } from 'react'
+import UnitCircle from './unit-circle'
+import SpeedMaths from './speed-maths'
+
+export interface Tool {
+  id: string
+  name: string
+  description: string
+  route: string
+  component: ComponentType
+  icon: string
+}
+
+// Central registry — add new tools here only.
+// Sidebar and Home page render automatically from this list.
+export const tools: Tool[] = [
+  {
+    id: 'unit-circle',
+    name: 'Unit Circle',
+    description: 'Memorize and practice the 16 key angles with their exact sin, cos, and tan values.',
+    route: '/unit-circle',
+    component: UnitCircle,
+    icon: '◎',
+  },
+  {
+    id: 'speed-maths',
+    name: 'Speed Maths',
+    description: 'Race the clock: solve as many arithmetic problems as you can before time runs out.',
+    route: '/speed-maths',
+    component: SpeedMaths,
+    icon: '⚡',
+  },
+]
