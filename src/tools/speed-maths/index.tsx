@@ -225,8 +225,14 @@ function GameScreen({ cfg, onDone }: { cfg: Config; onDone: (r: GameResult) => v
   const [flash,     setFlash]     = useState<Flash>(null)
   const [correct,   setCorrect]   = useState(0)
   const [wrong,     setWrong]     = useState(0)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const doneRef  = useRef(false)
+  const inputRef    = useRef<HTMLInputElement>(null)
+  const doneRef     = useRef(false)
+  const correctRef  = useRef(0)
+  const wrongRef    = useRef(0)
+
+  // Keep refs in sync so the timer effect can read current values
+  useEffect(() => { correctRef.current = correct }, [correct])
+  useEffect(() => { wrongRef.current   = wrong    }, [wrong])
 
   // Timer
   useEffect(() => {
@@ -246,8 +252,7 @@ function GameScreen({ cfg, onDone }: { cfg: Config; onDone: (r: GameResult) => v
   useEffect(() => {
     if (timeLeft === 0 && !doneRef.current) {
       doneRef.current = true
-      // Read the latest correct/wrong via callback form
-      setCorrect(c => { setWrong(w => { onDone({ correct: c, wrong: w, duration: cfg.duration }); return w }); return c })
+      onDone({ correct: correctRef.current, wrong: wrongRef.current, duration: cfg.duration })
     }
   }, [timeLeft, cfg.duration, onDone])
 

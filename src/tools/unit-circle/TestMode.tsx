@@ -2,16 +2,26 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { angles, shiftedAngleTex } from './data'
 import Katex from '../../components/Katex'
 
-type TrigFn = 'sin' | 'cos' | 'tan'
+type TrigFn   = 'sin' | 'cos' | 'tan' | 'cosec' | 'sec' | 'cot'
 type AngleRange = 'pos' | 'neg' | 'both'
+type FnMode   = 'methods' | 'specialist'
 
-// ── Unified answer grid ─────────────────────────────────────────────────────
-// Row 1: -1, 0, 1, undefined  (4 cols)
-// Row 2: -½, -√2/2, -√3/2    (3 cols) — sin/cos negatives
-// Row 3:  ½,  √2/2,  √3/2    (3 cols) — sin/cos positives
-// Row 4: -√3/3, -1, -√3      (3 cols) — tan negatives
-// Row 5:  √3/3,  1,  √3      (3 cols) — tan positives
-const ROWS: Array<Array<{ label: string; tex: string }>> = [
+// LaTeX command for each function (cosec → \csc is the standard LaTeX name)
+const FN_TEX: Record<TrigFn, string> = {
+  sin: '\\sin', cos: '\\cos', tan: '\\tan',
+  cosec: '\\csc', sec: '\\sec', cot: '\\cot',
+}
+
+// ── Answer grid ─────────────────────────────────────────────────────────────
+// Row 1: -1, 0, 1, undefined
+// Row 2: -½, -√2/2, -√3/2        (sin/cos negatives)
+// Row 3:  ½,  √2/2,  √3/2        (sin/cos positives)
+// Row 4: -√3/3, -1, -√3          (tan/cot negatives)
+// Row 5:  √3/3,  1,  √3          (tan/cot positives)
+// Row 6: -2√3/3, -√2, -2         (cosec/sec negatives — specialist only)
+// Row 7:  2√3/3,  √2,  2         (cosec/sec positives — specialist only)
+
+const METHODS_ROWS: Array<Array<{ label: string; tex: string }>> = [
   [
     { label: '–1',    tex: '-1' },
     { label: '0',     tex: '0' },
@@ -40,7 +50,20 @@ const ROWS: Array<Array<{ label: string; tex: string }>> = [
   ],
 ]
 
-// ── Question generation ─────────────────────────────────────────────────────
+const SPECIALIST_EXTRA_ROWS: Array<Array<{ label: string; tex: string }>> = [
+  [
+    { label: '–2√3/3', tex: '-\\dfrac{2\\sqrt{3}}{3}' },
+    { label: '–√2',    tex: '-\\sqrt{2}' },
+    { label: '–2',     tex: '-2' },
+  ],
+  [
+    { label: '2√3/3',  tex: '\\dfrac{2\\sqrt{3}}{3}' },
+    { label: '√2',     tex: '\\sqrt{2}' },
+    { label: '2',      tex: '2' },
+  ],
+]
+
+// ── Question generation ──────────────────────────────────────────────────────
 
 interface Question {
   angleTex: string
@@ -49,10 +72,13 @@ interface Question {
   correctTex: string
 }
 
-function generateQuestion(range: AngleRange = 'pos'): Question {
-  const a  = angles[Math.floor(Math.random() * angles.length)]
-  const fns: TrigFn[] = ['sin', 'cos', 'tan']
-  const fn = fns[Math.floor(Math.random() * 3)]
+function generateQuestion(range: AngleRange, fnMode: FnMode): Question {
+  const a   = angles[Math.floor(Math.random() * angles.length)]
+  const fns: TrigFn[] = fnMode === 'specialist'
+    ? ['sin', 'cos', 'tan', 'cosec', 'sec', 'cot']
+    : ['sin', 'cos', 'tan']
+  const fn  = fns[Math.floor(Math.random() * fns.length)]
+  const k   = [-2, -1, 0, 1][Math.floor(Math.random() * 4)]
 
   let angleTex: string
   if (a.piN === 0) {
@@ -66,10 +92,16 @@ function generateQuestion(range: AngleRange = 'pos'): Question {
       ? shiftedAngleTex(a.piN, a.piD, 0)
       : shiftedAngleTex(a.piN, a.piD, -1)
   }
+  // k only used for methods mode to vary the displayed angle beyond ±2π
+  void k
+
   const [correctLabel, correctTex] =
-    fn === 'sin' ? [a.sinLabel, a.sinTex]
-    : fn === 'cos' ? [a.cosLabel, a.cosTex]
-    : [a.tanLabel, a.tanTex]
+    fn === 'sin'   ? [a.sinLabel,   a.sinTex]
+    : fn === 'cos' ? [a.cosLabel,   a.cosTex]
+    : fn === 'tan' ? [a.tanLabel,   a.tanTex]
+    : fn === 'cosec' ? [a.cosecLabel, a.cosecTex]
+    : fn === 'sec'   ? [a.secLabel,   a.secTex]
+    : [a.cotLabel, a.cotTex]
 
   return { angleTex, fn, correctLabel, correctTex }
 }
@@ -78,13 +110,14 @@ function formatTime(s: number) {
   return `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`
 }
 
-// ── Component ───────────────────────────────────────────────────────────────
+// ── Component ────────────────────────────────────────────────────────────────
 
 type FlashState = 'correct' | 'wrong' | null
 
 export default function TestMode() {
+  const [fnMode,        setFnMode]        = useState<FnMode>('methods')
   const [range,         setRange]         = useState<AngleRange>('pos')
-  const [question,      setQuestion]      = useState<Question>(() => generateQuestion('pos'))
+  const [question,      setQuestion]      = useState<Question>(() => generateQuestion('pos', 'methods'))
   const [correct,       setCorrect]       = useState(0)
   const [wrong,         setWrong]         = useState(0)
   const [elapsed,       setElapsed]       = useState(0)
@@ -102,12 +135,12 @@ export default function TestMode() {
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [timerRunning])
 
-  const next = useCallback((r: AngleRange = range) => {
+  const next = useCallback((r: AngleRange = range, m: FnMode = fnMode) => {
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(r))
-  }, [range])
+    setQuestion(generateQuestion(r, m))
+  }, [range, fnMode])
 
   const handleAnswer = useCallback((label: string) => {
     if (flash) return
@@ -129,8 +162,16 @@ export default function TestMode() {
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(r))
-  }, [])
+    setQuestion(generateQuestion(r, fnMode))
+  }, [fnMode])
+
+  const handleModeChange = useCallback((m: FnMode) => {
+    setFnMode(m)
+    setFlash(null)
+    setSelectedLabel(null)
+    setTimerRunning(true)
+    setQuestion(generateQuestion(range, m))
+  }, [range])
 
   const reset = useCallback(() => {
     setCorrect(0)
@@ -139,10 +180,14 @@ export default function TestMode() {
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(range))
-  }, [range])
+    setQuestion(generateQuestion(range, fnMode))
+  }, [range, fnMode])
 
   const accuracy = correct + wrong === 0 ? '—' : `${Math.round(correct / (correct + wrong) * 100)}%`
+  const rows = fnMode === 'specialist'
+    ? [...METHODS_ROWS, ...SPECIALIST_EXTRA_ROWS]
+    : METHODS_ROWS
+  const allLabels = rows.flat()
 
   return (
     <div className="flex flex-col gap-5">
@@ -168,25 +213,55 @@ export default function TestMode() {
         </button>
       </div>
 
-      {/* Angle Range selector */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">
-          Angle Range
-        </p>
-        <div className="flex gap-1">
-          {(['pos', 'neg', 'both'] as AngleRange[]).map(opt => (
+      {/* Controls row */}
+      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4 flex flex-wrap gap-6">
+        {/* Function set */}
+        <div>
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Function Set</p>
+          <div className="flex gap-1">
             <button
-              key={opt}
-              onClick={() => handleRangeChange(opt)}
+              onClick={() => handleModeChange('methods')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                range === opt
+                fnMode === 'methods'
                   ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
             >
-              {opt === 'pos' ? '[0, 2π]' : opt === 'neg' ? '[−2π, 0]' : '[−2π, 2π]'}
+              Methods
+              <span className="ml-1.5 text-gray-400 dark:text-gray-500 font-normal">sin, cos, tan</span>
             </button>
-          ))}
+            <button
+              onClick={() => handleModeChange('specialist')}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                fnMode === 'specialist'
+                  ? 'bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              }`}
+            >
+              Specialist
+              <span className="ml-1.5 text-gray-400 dark:text-gray-500 font-normal">+ cosec, sec, cot</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Angle range */}
+        <div>
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Angle Range</p>
+          <div className="flex gap-1">
+            {(['pos', 'neg', 'both'] as AngleRange[]).map(opt => (
+              <button
+                key={opt}
+                onClick={() => handleRangeChange(opt)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  range === opt
+                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
+              >
+                {opt === 'pos' ? '[0, 2π]' : opt === 'neg' ? '[−2π, 0]' : '[−2π, 2π]'}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -198,9 +273,8 @@ export default function TestMode() {
       }`}>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">What is</p>
 
-        {/* Use \sin, \cos, \tan for upright (non-italic) operators */}
         <div className="text-2xl">
-          <Katex tex={`\\${question.fn}\\!\\left(${question.angleTex}\\right)`} />
+          <Katex tex={`${FN_TEX[question.fn]}\\!\\left(${question.angleTex}\\right)`} />
         </div>
 
         {flash === 'correct' && (
@@ -210,7 +284,7 @@ export default function TestMode() {
         {flash === 'wrong' && (
           <div className="mt-4 text-center">
             <p className="text-sm text-rose-600 dark:text-rose-400 mb-1">
-              You chose: <Katex tex={ROWS.flat().find(a => a.label === selectedLabel)?.tex ?? ''} className="font-medium" />
+              You chose: <Katex tex={allLabels.find(a => a.label === selectedLabel)?.tex ?? ''} className="font-medium" />
             </p>
             <p className="text-sm text-emerald-600 dark:text-emerald-400">
               Correct: <Katex tex={question.correctTex} className="font-semibold" />
@@ -218,10 +292,9 @@ export default function TestMode() {
           </div>
         )}
 
-        {/* Next button — bottom-right, only on wrong */}
         {flash === 'wrong' && (
           <button
-            onClick={next}
+            onClick={() => next()}
             className="absolute bottom-4 right-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
           >
             Next →
@@ -229,9 +302,9 @@ export default function TestMode() {
         )}
       </div>
 
-      {/* Answer grid — 5 rows of varying width */}
+      {/* Answer grid */}
       <div className="flex flex-col gap-2">
-        {ROWS.map((row, rowIdx) => (
+        {rows.map((row, rowIdx) => (
           <div key={rowIdx} className="flex gap-2">
             {row.map(({ label, tex }) => {
               const isCorrect  = label === question.correctLabel
