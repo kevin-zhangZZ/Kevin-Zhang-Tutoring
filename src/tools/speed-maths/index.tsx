@@ -1,15 +1,16 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { ref, push, query, orderByChild, limitToLast, onValue } from 'firebase/database'
 import { db } from '../../lib/firebase'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type Op     = 'add' | 'sub' | 'mul' | 'div'
-type Screen = 'name' | 'settings' | 'game' | 'results'
-type Flash  = 'correct' | 'wrong' | null
+type Op         = 'add' | 'sub' | 'mul' | 'div'
+type Difficulty = 'easy' | 'medium' | 'hard'
+type Screen     = 'name' | 'settings' | 'game' | 'results'
+type Flash      = 'correct' | 'wrong' | null
 
+// All 4 ops are always enabled — Config only holds numeric ranges + duration.
 interface Config {
-  ops: Set<Op>
   addMin1: number; addMax1: number
   addMin2: number; addMax2: number
   mulMin1: number; mulMax1: number
@@ -17,46 +18,94 @@ interface Config {
   duration: number
 }
 
-interface Question {
-  text: string
-  answer: number
-}
+interface Question { text: string; answer: number }
 
 interface GameResult {
-  correct: number
-  wrong: number
-  duration: number
-  ops: string       // formatted label stored in Firebase
+  correct:    number
+  wrong:      number
+  duration:   number
+  difficulty: Difficulty
 }
 
 interface LeaderboardEntry {
-  id?: string
-  name: string
-  score: number     // raw correct count
-  ppm: number       // correct per minute (sort key)
-  duration: number  // seconds played
-  ops: string       // e.g. "+/−/×/÷"
-  timestamp: number
+  id?:        string
+  name:       string
+  score:      number
+  ppm:        number       // correct/min — sort key
+  duration:   number
+  difficulty: Difficulty
+  timestamp:  number
 }
 
-// ── Constants ─────────────────────────────────────────────────────────────────
+// ── Presets ───────────────────────────────────────────────────────────────────
 
-const NAME_KEY = 'sm-player-name'
+type RangeConfig = Omit<Config, 'duration'>
+
+const RANGE_CONFIGS: Record<Difficulty, RangeConfig> = {
+  easy: {
+    addMin1: 2,   addMax1: 100,
+    addMin2: 2,   addMax2: 100,
+    mulMin1: 2,   mulMax1: 12,
+    mulMin2: 2,   mulMax2: 100,
+  },
+  medium: {
+    addMin1: 50,  addMax1: 150,
+    addMin2: 50,  addMax2: 150,
+    mulMin1: 7,   mulMax1: 15,
+    mulMin2: 12,  mulMax2: 100,
+  },
+  hard: {
+    addMin1: 50,  addMax1: 250,
+    addMin2: 50,  addMax2: 250,
+    mulMin1: 12,  mulMax1: 25,
+    mulMin2: 12,  mulMax2: 100,
+  },
+}
+
+// Readable description shown on the difficulty cards
+const DIFF_META: Record<Difficulty, {
+  label: string
+  addDesc: string
+  mulDesc: string
+  active: string
+  idle: string
+}> = {
+  easy: {
+    label:   'Easy',
+    addDesc: '+/−  2 – 100',
+    mulDesc: '×/÷  2–12  ×  2–100',
+    active:  'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200',
+    idle:    'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
+  },
+  medium: {
+    label:   'Medium',
+    addDesc: '+/−  50 – 150',
+    mulDesc: '×/÷  7–15  ×  12–100',
+    active:  'border-blue-400 bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200',
+    idle:    'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
+  },
+  hard: {
+    label:   'Hard',
+    addDesc: '+/−  50 – 250',
+    mulDesc: '×/÷  12–25  ×  12–100',
+    active:  'border-rose-400 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-200',
+    idle:    'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
+  },
+}
+
 const DURATIONS = [30, 60, 90, 120, 180, 300]
+const NAME_KEY  = 'sm-player-name'
 
-const OP_SYMBOLS: Record<Op, string> = {
-  add: '+', sub: '−', mul: '×', div: '÷',
-}
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// ── Question generation ───────────────────────────────────────────────────────
 
 function randInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+const ALL_OPS: Op[] = ['add', 'sub', 'mul', 'div']
+
 function genQuestion(cfg: Config): Question {
-  const ops = [...cfg.ops]
-  const op  = ops[Math.floor(Math.random() * ops.length)] as Op
+  const op = ALL_OPS[Math.floor(Math.random() * 4)]
   if (op === 'add') {
     const a = randInt(cfg.addMin1, cfg.addMax1), b = randInt(cfg.addMin2, cfg.addMax2)
     return { text: `${a} + ${b}`, answer: a + b }
@@ -70,148 +119,60 @@ function genQuestion(cfg: Config): Question {
     const a = randInt(cfg.mulMin1, cfg.mulMax1), b = randInt(cfg.mulMin2, cfg.mulMax2)
     return { text: `${a} × ${b}`, answer: a * b }
   }
+  // div
   const a = randInt(cfg.mulMin1, cfg.mulMax1), b = randInt(cfg.mulMin2, cfg.mulMax2)
   return { text: `${a * b} ÷ ${a}`, answer: b }
 }
 
-function formatOps(ops: Set<Op>): string {
-  return (['add', 'sub', 'mul', 'div'] as Op[])
-    .filter(o => ops.has(o))
-    .map(o => OP_SYMBOLS[o])
-    .join('/')
-}
+function fmtDuration(s: number) { return s < 60 ? `${s}s` : `${s / 60}m` }
 
-function fmtDuration(s: number): string {
-  return s < 60 ? `${s}s` : `${s / 60}m`
-}
-
-// ── Firebase leaderboard ──────────────────────────────────────────────────────
+// ── Firebase ──────────────────────────────────────────────────────────────────
 
 async function submitScore(entry: Omit<LeaderboardEntry, 'id'>): Promise<void> {
   if (!db) return
-  try {
-    await push(ref(db, 'leaderboard'), entry)
-  } catch (e) {
-    console.warn('Failed to submit score:', e)
-  }
+  try { await push(ref(db, `leaderboard/${entry.difficulty}`), entry) }
+  catch (e) { console.warn('Failed to submit score:', e) }
 }
 
-function useLeaderboard(): { entries: LeaderboardEntry[]; loading: boolean } {
+function useLeaderboard(difficulty: Difficulty) {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
+    setEntries([])
     if (!db) { setLoading(false); return }
-    const q = query(ref(db, 'leaderboard'), orderByChild('ppm'), limitToLast(10))
+    const q = query(
+      ref(db, `leaderboard/${difficulty}`),
+      orderByChild('ppm'),
+      limitToLast(10),
+    )
     const unsub = onValue(
       q,
       snap => {
         const rows: LeaderboardEntry[] = []
-        snap.forEach(child => {
-          rows.push({ id: child.key ?? '', ...child.val() as LeaderboardEntry })
-        })
-        // reverse so highest ppm is first
-        setEntries(rows.reverse())
+        snap.forEach(c => rows.push({ id: c.key ?? '', ...c.val() as LeaderboardEntry }))
+        setEntries(rows.reverse())   // highest ppm first
         setLoading(false)
       },
       () => setLoading(false),
     )
     return () => unsub()
-  }, [])
+  }, [difficulty])
 
   return { entries, loading }
 }
 
-// ── NumInput ──────────────────────────────────────────────────────────────────
-
-interface NumInputProps {
-  value: number
-  onChange: (v: number) => void
-  min?: number
-  max?: number
-}
-function NumInput({ value, onChange, min = 1, max = 9999 }: NumInputProps) {
-  const [raw, setRaw] = useState(String(value))
-  useEffect(() => { setRaw(String(value)) }, [value])
-  return (
-    <input
-      type="number"
-      value={raw}
-      min={min}
-      max={max}
-      onChange={e => {
-        const s = e.target.value
-        setRaw(s)
-        const v = parseInt(s)
-        if (!isNaN(v) && v >= min && v <= max) onChange(v)
-      }}
-      onBlur={() => {
-        const v = parseInt(raw)
-        if (isNaN(v) || v < min || v > max) setRaw(String(value))
-      }}
-      className="w-16 text-center text-sm font-mono bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1.5 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-    />
-  )
-}
-
-// ── Difficulty presets ────────────────────────────────────────────────────────
-
-type Difficulty = 'easy' | 'medium' | 'hard'
-
-const PRESETS: Record<Difficulty, Config> = {
-  easy: {
-    ops:     new Set(['add', 'sub'] as Op[]),
-    addMin1: 1,  addMax1: 20,
-    addMin2: 1,  addMax2: 20,
-    mulMin1: 2,  mulMax1: 5,
-    mulMin2: 2,  mulMax2: 5,
-    duration: 60,
-  },
-  medium: {
-    ops:     new Set(['add', 'sub', 'mul', 'div'] as Op[]),
-    addMin1: 2,  addMax1: 50,
-    addMin2: 2,  addMax2: 50,
-    mulMin1: 2,  mulMax1: 12,
-    mulMin2: 2,  mulMax2: 10,
-    duration: 60,
-  },
-  hard: {
-    ops:     new Set(['add', 'sub', 'mul', 'div'] as Op[]),
-    addMin1: 10, addMax1: 999,
-    addMin2: 10, addMax2: 999,
-    mulMin1: 3,  mulMax1: 15,
-    mulMin2: 3,  mulMax2: 15,
-    duration: 60,
-  },
-}
-
-function cfgMatchesPreset(cfg: Config, preset: Config): boolean {
-  if (cfg.duration !== preset.duration) return false
-  if (cfg.ops.size !== preset.ops.size) return false
-  for (const op of preset.ops) if (!cfg.ops.has(op)) return false
-  for (const op of cfg.ops) if (!preset.ops.has(op)) return false
-  const keys: (keyof Config)[] = ['addMin1','addMax1','addMin2','addMax2','mulMin1','mulMax1','mulMin2','mulMax2']
-  return keys.every(k => cfg[k] === preset[k])
-}
-
-const OP_META: Record<Op, { label: string; color: string }> = {
-  add: { label: 'Addition',       color: 'blue'   },
-  sub: { label: 'Subtraction',    color: 'violet' },
-  mul: { label: 'Multiplication', color: 'orange' },
-  div: { label: 'Division',       color: 'rose'   },
-}
-
 // ── Leaderboard component ─────────────────────────────────────────────────────
 
-function Leaderboard({ playerName }: { playerName: string }) {
-  const { entries, loading } = useLeaderboard()
+function Leaderboard({ difficulty, playerName }: { difficulty: Difficulty; playerName: string }) {
+  const { entries, loading } = useLeaderboard(difficulty)
+  const m = DIFF_META[difficulty]
 
   if (!db) {
     return (
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">
-          🏆 Leaderboard
-        </p>
+        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">🏆 Leaderboard</p>
         <p className="text-xs text-gray-400 dark:text-gray-500">
           Configure Firebase in <code className="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">src/lib/firebase.ts</code> to enable the leaderboard.
         </p>
@@ -222,16 +183,16 @@ function Leaderboard({ playerName }: { playerName: string }) {
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
       <div className="px-5 py-3.5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
-          🏆 Leaderboard — Top 10
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+          🏆 {m.label} — Top 10
         </p>
         <p className="text-xs text-gray-400 dark:text-gray-500">Ranked by /min</p>
       </div>
 
       {loading ? (
-        <div className="px-5 py-6 space-y-2">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-7 bg-gray-100 dark:bg-gray-800 rounded animate-pulse" />
+        <div className="px-5 py-5 space-y-2">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-7 rounded bg-gray-100 dark:bg-gray-800 animate-pulse" />
           ))}
         </div>
       ) : entries.length === 0 ? (
@@ -240,10 +201,8 @@ function Leaderboard({ playerName }: { playerName: string }) {
         </p>
       ) : (
         <div>
-          {/* Header row */}
-          <div className="grid grid-cols-[2rem_1fr_3.5rem_3.5rem_3.5rem] gap-x-3 px-4 py-2 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider border-b border-gray-100 dark:border-gray-800">
-            <span>#</span>
-            <span>Name</span>
+          <div className="grid grid-cols-[2rem_1fr_3.5rem_3.5rem_3rem] gap-x-3 px-4 py-2 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider border-b border-gray-100 dark:border-gray-800">
+            <span>#</span><span>Name</span>
             <span className="text-right">/min</span>
             <span className="text-right">Score</span>
             <span className="text-right">Time</span>
@@ -253,27 +212,21 @@ function Leaderboard({ playerName }: { playerName: string }) {
             return (
               <div
                 key={e.id ?? i}
-                className={`grid grid-cols-[2rem_1fr_3.5rem_3.5rem_3.5rem] gap-x-3 px-4 py-2.5 text-sm items-center ${
+                className={`grid grid-cols-[2rem_1fr_3.5rem_3.5rem_3rem] gap-x-3 px-4 py-2.5 text-sm items-center ${
                   i < entries.length - 1 ? 'border-b border-gray-50 dark:border-gray-800/60' : ''
                 } ${isMe ? 'bg-blue-50 dark:bg-blue-950/30' : ''}`}
               >
                 <span className={`font-semibold tabular-nums ${
                   i === 0 ? 'text-amber-500' : i === 1 ? 'text-gray-400' : i === 2 ? 'text-orange-400' : 'text-gray-400 dark:text-gray-500'
-                }`}>
-                  {i + 1}
-                </span>
+                }`}>{i + 1}</span>
                 <span className={`font-medium truncate ${isMe ? 'text-blue-700 dark:text-blue-300' : 'text-gray-800 dark:text-gray-200'}`}>
                   {e.name}{isMe && <span className="ml-1.5 text-xs font-normal opacity-60">you</span>}
                 </span>
                 <span className="text-right font-mono font-semibold tabular-nums text-violet-600 dark:text-violet-400">
                   {e.ppm.toFixed(1)}
                 </span>
-                <span className="text-right font-mono tabular-nums text-gray-600 dark:text-gray-400">
-                  {e.score}
-                </span>
-                <span className="text-right text-xs text-gray-400 dark:text-gray-500">
-                  {fmtDuration(e.duration)}
-                </span>
+                <span className="text-right font-mono tabular-nums text-gray-600 dark:text-gray-400">{e.score}</span>
+                <span className="text-right text-xs text-gray-400 dark:text-gray-500">{fmtDuration(e.duration)}</span>
               </div>
             )
           })}
@@ -288,14 +241,11 @@ function Leaderboard({ playerName }: { playerName: string }) {
 function NameScreen({ initial, onDone }: { initial: string; onDone: (name: string) => void }) {
   const [name, setName] = useState(initial)
   const inputRef = useRef<HTMLInputElement>(null)
-
   useEffect(() => { inputRef.current?.focus() }, [])
 
   const submit = () => {
-    const trimmed = name.trim()
-    if (!trimmed) return
-    localStorage.setItem(NAME_KEY, trimmed)
-    onDone(trimmed)
+    const t = name.trim(); if (!t) return
+    localStorage.setItem(NAME_KEY, t); onDone(t)
   }
 
   return (
@@ -303,10 +253,9 @@ function NameScreen({ initial, onDone }: { initial: string; onDone: (name: strin
       <div className="text-center">
         <p className="text-2xl font-bold text-gray-900 dark:text-white mb-1">What's your name?</p>
         <p className="text-sm text-gray-400 dark:text-gray-500">
-          {db ? 'Your name will appear on the leaderboard.' : 'Used to track your personal scores.'}
+          {db ? 'Your name will appear on the leaderboard.' : 'Used to track your scores.'}
         </p>
       </div>
-
       <input
         ref={inputRef}
         type="text"
@@ -314,14 +263,11 @@ function NameScreen({ initial, onDone }: { initial: string; onDone: (name: strin
         onChange={e => setName(e.target.value.slice(0, 20))}
         onKeyDown={e => e.key === 'Enter' && submit()}
         placeholder="Enter your name…"
-        maxLength={20}
         className="w-full text-center text-xl font-semibold bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none transition-colors"
       />
-
       <button
-        onClick={submit}
-        disabled={!name.trim()}
-        className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-40 text-white font-semibold rounded-xl transition-colors text-sm"
+        onClick={submit} disabled={!name.trim()}
+        className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-semibold rounded-xl transition-colors text-sm"
       >
         Let's go →
       </button>
@@ -336,40 +282,21 @@ function SettingsScreen({
   onStart,
   onChangeName,
 }: {
-  playerName: string
-  onStart: (cfg: Config) => void
+  playerName:   string
+  onStart:      (cfg: Config, difficulty: Difficulty) => void
   onChangeName: () => void
 }) {
-  const [cfg, setCfg] = useState<Config>(PRESETS.medium)
+  const [difficulty, setDifficulty] = useState<Difficulty>('easy')
+  const [duration,   setDuration]   = useState(120)
 
-  const toggleOp = (op: Op) =>
-    setCfg(c => {
-      const next = new Set(c.ops)
-      if (next.has(op) && next.size === 1) return c
-      next.has(op) ? next.delete(op) : next.add(op)
-      return { ...c, ops: next }
-    })
-
-  const set = <K extends keyof Config>(k: K, v: Config[K]) =>
-    setCfg(c => ({ ...c, [k]: v }))
-
-  const activeDifficulty = useMemo<Difficulty | null>(() => {
-    for (const [d, p] of Object.entries(PRESETS) as [Difficulty, Config][]) {
-      if (cfgMatchesPreset(cfg, p)) return d
-    }
-    return null
-  }, [cfg])
-
-  const DIFF_STYLE: Record<Difficulty, { active: string; idle: string; label: string; sub: string }> = {
-    easy:   { active: 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700', idle: 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800', label: 'Easy',   sub: '+/− up to 20' },
-    medium: { active: 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-700',                   idle: 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800', label: 'Medium', sub: 'All ops, ×tables' },
-    hard:   { active: 'bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-700',                   idle: 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800', label: 'Hard',   sub: 'Large numbers' },
+  const handleStart = () => {
+    onStart({ ...RANGE_CONFIGS[difficulty], duration }, difficulty)
   }
 
   return (
     <div className="flex flex-col gap-6">
 
-      {/* Player identity */}
+      {/* Player chip */}
       <div className="flex items-center justify-between bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-3">
         <div className="flex items-center gap-2.5">
           <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-bold flex items-center justify-center flex-shrink-0">
@@ -385,82 +312,20 @@ function SettingsScreen({
         </button>
       </div>
 
-      {/* Difficulty presets */}
+      {/* Difficulty cards */}
       <div className="grid grid-cols-3 gap-3">
         {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => {
-          const s = DIFF_STYLE[d]
-          const isActive = activeDifficulty === d
+          const m = DIFF_META[d]
+          const active = difficulty === d
           return (
             <button
               key={d}
-              onClick={() => setCfg({ ...PRESETS[d], ops: new Set(PRESETS[d].ops) })}
-              className={`rounded-xl border px-3 py-3 text-left transition-colors ${isActive ? s.active : s.idle}`}
+              onClick={() => setDifficulty(d)}
+              className={`rounded-xl border-2 px-3 py-3.5 text-left transition-colors ${active ? m.active : m.idle}`}
             >
-              <p className="text-sm font-semibold">{s.label}</p>
-              <p className="text-xs mt-0.5 opacity-70">{s.sub}</p>
+              <p className="text-sm font-bold mb-2">{m.label}</p>
+              <p className="text-xs leading-relaxed opacity-80 font-mono whitespace-pre-line">{m.addDesc}{'\n'}{m.mulDesc}</p>
             </button>
-          )
-        })}
-      </div>
-
-      {/* Operations */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
-        {(['add', 'sub', 'mul', 'div'] as Op[]).map((op, i) => {
-          const on = cfg.ops.has(op)
-          const { label, color } = OP_META[op]
-          const colorMap: Record<string, string> = {
-            blue:   'bg-blue-500',
-            violet: 'bg-violet-500',
-            orange: 'bg-orange-500',
-            rose:   'bg-rose-500',
-          }
-          return (
-            <div key={op} className={`flex flex-col gap-3 px-5 py-4 ${i === 0 ? 'rounded-t-xl' : ''} ${i === 3 ? 'rounded-b-xl' : ''}`}>
-              <div className="flex items-center gap-3">
-                <button
-                  role="switch" aria-checked={on}
-                  onClick={() => toggleOp(op)}
-                  className={`relative flex-shrink-0 w-9 h-5 rounded-full transition-colors duration-200 focus:outline-none ${on ? colorMap[color] : 'bg-gray-200 dark:bg-gray-700'}`}
-                >
-                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 ${on ? 'translate-x-4' : ''}`} />
-                </button>
-                <span className={`text-sm font-semibold transition-colors ${on ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600'}`}>
-                  {label}
-                </span>
-              </div>
-              {on && op === 'add' && (
-                <div className="ml-12 flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span>Range:</span><span>(</span>
-                  <NumInput value={cfg.addMin1} onChange={v => set('addMin1', v)} />
-                  <span>to</span>
-                  <NumInput value={cfg.addMax1} onChange={v => set('addMax1', v)} />
-                  <span>)</span><span className="font-bold text-gray-400">+</span><span>(</span>
-                  <NumInput value={cfg.addMin2} onChange={v => set('addMin2', v)} />
-                  <span>to</span>
-                  <NumInput value={cfg.addMax2} onChange={v => set('addMax2', v)} />
-                  <span>)</span>
-                </div>
-              )}
-              {on && op === 'sub' && (
-                <p className="ml-12 text-xs text-gray-400 dark:text-gray-500">Uses addition range (larger − smaller, always positive).</p>
-              )}
-              {on && op === 'mul' && (
-                <div className="ml-12 flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span>Range:</span><span>(</span>
-                  <NumInput value={cfg.mulMin1} onChange={v => set('mulMin1', v)} />
-                  <span>to</span>
-                  <NumInput value={cfg.mulMax1} onChange={v => set('mulMax1', v)} />
-                  <span>)</span><span className="font-bold text-gray-400">×</span><span>(</span>
-                  <NumInput value={cfg.mulMin2} onChange={v => set('mulMin2', v)} />
-                  <span>to</span>
-                  <NumInput value={cfg.mulMax2} onChange={v => set('mulMax2', v)} />
-                  <span>)</span>
-                </div>
-              )}
-              {on && op === 'div' && (
-                <p className="ml-12 text-xs text-gray-400 dark:text-gray-500">Uses multiplication range (always divides evenly).</p>
-              )}
-            </div>
           )
         })}
       </div>
@@ -471,10 +336,9 @@ function SettingsScreen({
         <div className="flex flex-wrap gap-1.5">
           {DURATIONS.map(d => (
             <button
-              key={d}
-              onClick={() => set('duration', d)}
+              key={d} onClick={() => setDuration(d)}
               className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                cfg.duration === d
+                duration === d
                   ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
@@ -487,21 +351,25 @@ function SettingsScreen({
 
       {/* Start */}
       <button
-        onClick={() => onStart(cfg)}
+        onClick={handleStart}
         className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold rounded-xl transition-colors text-sm"
       >
         Start
       </button>
 
       {/* Leaderboard */}
-      <Leaderboard playerName={playerName} />
+      <Leaderboard difficulty={difficulty} playerName={playerName} />
     </div>
   )
 }
 
 // ── Game screen ───────────────────────────────────────────────────────────────
 
-function GameScreen({ cfg, onDone }: { cfg: Config; onDone: (r: GameResult) => void }) {
+function GameScreen({ cfg, difficulty, onDone }: {
+  cfg:        Config
+  difficulty: Difficulty
+  onDone:     (r: GameResult) => void
+}) {
   const [timeLeft, setTimeLeft] = useState(cfg.duration)
   const [question, setQuestion] = useState<Question>(() => genQuestion(cfg))
   const [input,    setInput]    = useState('')
@@ -526,14 +394,9 @@ function GameScreen({ cfg, onDone }: { cfg: Config; onDone: (r: GameResult) => v
   useEffect(() => {
     if (timeLeft === 0 && !doneRef.current) {
       doneRef.current = true
-      onDone({
-        correct:  correctRef.current,
-        wrong:    wrongRef.current,
-        duration: cfg.duration,
-        ops:      formatOps(cfg.ops),
-      })
+      onDone({ correct: correctRef.current, wrong: wrongRef.current, duration: cfg.duration, difficulty })
     }
-  }, [timeLeft, cfg.duration, cfg.ops, onDone])
+  }, [timeLeft, cfg.duration, difficulty, onDone])
 
   const nextQuestion = useCallback(() => {
     setInput(''); setFlash(null)
@@ -543,8 +406,7 @@ function GameScreen({ cfg, onDone }: { cfg: Config; onDone: (r: GameResult) => v
 
   const handleInput = useCallback((val: string) => {
     setInput(val)
-    const parsed = parseInt(val)
-    if (isNaN(parsed)) return
+    const parsed = parseInt(val); if (isNaN(parsed)) return
     if (parsed === question.answer) {
       setCorrect(c => c + 1); setFlash('correct')
       setTimeout(nextQuestion, 300)
@@ -609,43 +471,36 @@ function GameScreen({ cfg, onDone }: { cfg: Config; onDone: (r: GameResult) => v
 
 // ── Results screen ────────────────────────────────────────────────────────────
 
-function ResultsScreen({
-  result,
-  playerName,
-  onRestart,
-}: {
-  result: GameResult
+function ResultsScreen({ result, playerName, onRestart }: {
+  result:     GameResult
   playerName: string
-  onRestart: () => void
+  onRestart:  () => void
 }) {
   const total    = result.correct + result.wrong
   const accuracy = total === 0 ? 0 : Math.round(result.correct / total * 100)
   const ppm      = result.correct / result.duration * 60
 
   const [submitState, setSubmitState] = useState<'idle' | 'done' | 'error'>('idle')
-  const [rank, setRank] = useState<number | null>(null)
+  const [rank,        setRank]        = useState<number | null>(null)
 
   useEffect(() => {
     if (!db) { setSubmitState('idle'); return }
-
     const entry: Omit<LeaderboardEntry, 'id'> = {
-      name:      playerName,
-      score:     result.correct,
-      ppm:       parseFloat(ppm.toFixed(2)),
-      duration:  result.duration,
-      ops:       result.ops,
-      timestamp: Date.now(),
+      name:       playerName,
+      score:      result.correct,
+      ppm:        parseFloat(ppm.toFixed(2)),
+      duration:   result.duration,
+      difficulty: result.difficulty,
+      timestamp:  Date.now(),
     }
-
     submitScore(entry)
       .then(() => {
         setSubmitState('done')
-        // Check rank: read top 10 once to find position
-        const q = query(ref(db!, 'leaderboard'), orderByChild('ppm'), limitToLast(10))
+        const q = query(ref(db!, `leaderboard/${result.difficulty}`), orderByChild('ppm'), limitToLast(10))
         onValue(q, snap => {
-          const rows: number[] = []
-          snap.forEach(child => { rows.push(child.val().ppm as number) })
-          const sorted = rows.sort((a, b) => b - a)
+          const ppms: number[] = []
+          snap.forEach(c => ppms.push(c.val().ppm as number))
+          const sorted = ppms.sort((a, b) => b - a)
           const pos = sorted.findIndex(p => p <= entry.ppm) + 1
           if (pos > 0 && pos <= 10) setRank(pos)
         }, { onlyOnce: true })
@@ -653,27 +508,27 @@ function ResultsScreen({
       .catch(() => setSubmitState('error'))
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  const diffLabel = DIFF_META[result.difficulty].label
+
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="w-full bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-6 py-8 text-center">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Time's up!</p>
+        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">
+          Time's up · {diffLabel}
+        </p>
         <p className="text-6xl font-bold text-gray-900 dark:text-white mb-1">{result.correct}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400">correct answers</p>
-
-        {/* Leaderboard submission feedback */}
         {db && (
           <div className="mt-4">
-            {submitState === 'idle' && (
-              <p className="text-xs text-gray-400 dark:text-gray-500">Submitting score…</p>
-            )}
+            {submitState === 'idle' && <p className="text-xs text-gray-400">Submitting score…</p>}
             {submitState === 'done' && rank !== null && (
-              <p className="text-sm font-semibold text-amber-500">🏆 You ranked #{rank} on the leaderboard!</p>
+              <p className="text-sm font-semibold text-amber-500">🏆 #{rank} on the {diffLabel} leaderboard!</p>
             )}
             {submitState === 'done' && rank === null && (
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">✓ Score submitted</p>
+              <p className="text-xs text-emerald-600 dark:text-emerald-400">✓ Score submitted to {diffLabel} leaderboard</p>
             )}
             {submitState === 'error' && (
-              <p className="text-xs text-rose-500">Could not submit score — check your connection.</p>
+              <p className="text-xs text-rose-500">Could not submit — check your connection.</p>
             )}
           </div>
         )}
@@ -681,9 +536,9 @@ function ResultsScreen({
 
       <div className="w-full grid grid-cols-3 gap-3">
         {[
-          { label: 'Wrong',    value: result.wrong.toString(),      color: 'text-rose-500 dark:text-rose-400' },
-          { label: 'Accuracy', value: `${accuracy}%`,               color: 'text-blue-600 dark:text-blue-400' },
-          { label: 'Per min',  value: ppm.toFixed(1),               color: 'text-violet-600 dark:text-violet-400' },
+          { label: 'Wrong',    value: result.wrong.toString(), color: 'text-rose-500 dark:text-rose-400' },
+          { label: 'Accuracy', value: `${accuracy}%`,          color: 'text-blue-600 dark:text-blue-400' },
+          { label: 'Per min',  value: ppm.toFixed(1),          color: 'text-violet-600 dark:text-violet-400' },
         ].map(({ label, value, color }) => (
           <div key={label} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-4 py-4 text-center">
             <p className={`text-2xl font-bold ${color}`}>{value}</p>
@@ -705,48 +560,41 @@ function ResultsScreen({
 // ── Root component ────────────────────────────────────────────────────────────
 
 export default function SpeedMaths() {
-  const [playerName, setPlayerName] = useState<string>(
+  const [playerName, setPlayerName] = useState(
     () => localStorage.getItem(NAME_KEY) ?? ''
   )
-  const [screen, setScreen] = useState<Screen>(
+  const [screen,     setScreen]     = useState<Screen>(
     () => localStorage.getItem(NAME_KEY) ? 'settings' : 'name'
   )
-  const [cfg,    setCfg]    = useState<Config | null>(null)
-  const [result, setResult] = useState<GameResult | null>(null)
+  const [cfg,        setCfg]        = useState<Config | null>(null)
+  const [difficulty, setDifficulty] = useState<Difficulty>('easy')
+  const [result,     setResult]     = useState<GameResult | null>(null)
 
   const handleName = useCallback((name: string) => {
-    setPlayerName(name)
-    setScreen('settings')
+    setPlayerName(name); setScreen('settings')
   }, [])
 
-  const handleStart = useCallback((c: Config) => {
-    setCfg(c); setResult(null); setScreen('game')
+  const handleStart = useCallback((c: Config, d: Difficulty) => {
+    setCfg(c); setDifficulty(d); setResult(null); setScreen('game')
   }, [])
 
   const handleDone = useCallback((r: GameResult) => {
     setResult(r); setScreen('results')
   }, [])
 
-  const handleRestart = useCallback(() => {
-    setResult(null); setScreen('settings')
-  }, [])
-
-  const handleChangeName = useCallback(() => {
-    setScreen('name')
-  }, [])
+  const handleRestart  = useCallback(() => { setResult(null); setScreen('settings') }, [])
+  const handleChangeName = useCallback(() => setScreen('name'), [])
 
   return (
     <div className="max-w-lg mx-auto px-6 py-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Speed Maths</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Solve as many arithmetic problems as you can before time runs out.
-        </p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">Solve as many arithmetic problems as you can before time runs out.</p>
       </div>
 
       {screen === 'name'     && <NameScreen     initial={playerName} onDone={handleName} />}
       {screen === 'settings' && <SettingsScreen playerName={playerName} onStart={handleStart} onChangeName={handleChangeName} />}
-      {screen === 'game'     && cfg    && <GameScreen    key={Date.now()} cfg={cfg} onDone={handleDone} />}
+      {screen === 'game'     && cfg && <GameScreen key={Date.now()} cfg={cfg} difficulty={difficulty} onDone={handleDone} />}
       {screen === 'results'  && result && <ResultsScreen result={result} playerName={playerName} onRestart={handleRestart} />}
     </div>
   )
