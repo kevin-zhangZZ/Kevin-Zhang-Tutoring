@@ -16,7 +16,7 @@ function makeRng(s: string): () => number {
 }
 
 // ── Types ──────────────────────────────────────────────────────────────────────
-type Depth = 'light' | 'medium' | 'heavy'
+type Depth = 'concise' | 'detailed'
 type DiceMode = 'die1' | 'dice2' | 'coin'
 type SimId = 'intro' | 'buffon' | 'dartboard' | 'dice' | 'walk' | 'reflection'
 interface CP { n: number; estimate: number }
@@ -56,14 +56,14 @@ function StatsPanel({ n, estimate, trueValue, label }: {
 function DepthToggle({ depth, setDepth }: { depth: Depth; setDepth: (d: Depth) => void }) {
   return (
     <div className="fixed top-4 right-4 z-50 flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm bg-white dark:bg-gray-900">
-      {(['light', 'medium', 'heavy'] as Depth[]).map(l => (
-        <button key={l} onClick={() => setDepth(l)}
-          className={`px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${
-            depth === l
+      {([['concise', 'Concise'], ['detailed', 'Detailed']] as [Depth, string][]).map(([val, lbl]) => (
+        <button key={val} onClick={() => setDepth(val)}
+          className={`px-3 py-1.5 text-xs font-semibold transition-colors ${
+            depth === val
               ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
               : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
           }`}
-        >{l}</button>
+        >{lbl}</button>
       ))}
     </div>
   )
@@ -159,29 +159,30 @@ function rrect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h
   ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath()
 }
 
-function drawDie(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, v: number, hi: boolean, dk: boolean) {
-  rrect(ctx, x, y, w, h, Math.min(w, h) * 0.18)
+function drawDie(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, v: number, hi: boolean, dk: boolean) {
+  rrect(ctx, x, y, s, s, s * 0.18)
   ctx.fillStyle = hi ? (dk ? '#1e3a5f' : '#dbeafe') : (dk ? '#374151' : '#fff')
   ctx.strokeStyle = hi ? (dk ? '#60a5fa' : '#2563eb') : (dk ? '#6b7280' : '#e5e7eb')
   ctx.lineWidth = hi ? 2 : 1; ctx.fill(); ctx.stroke()
-  const dr = Math.min(w, h) * 0.1
+  const dr = s * 0.1
   ctx.fillStyle = dk ? '#e5e7eb' : '#111827'
   for (const [fx, fy] of (DIE_DOTS[v] ?? [])) {
-    ctx.beginPath(); ctx.arc(x + fx * w, y + fy * h, dr, 0, Math.PI * 2); ctx.fill()
+    ctx.beginPath(); ctx.arc(x + fx * s, y + fy * s, dr, 0, Math.PI * 2); ctx.fill()
   }
 }
 
-function drawCoin(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, heads: boolean, dk: boolean) {
-  const cx = x + w / 2, cy = y + h / 2, r = Math.min(w, h) / 2 - 2
+function drawCoin(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, heads: boolean, dk: boolean) {
+  const cx = x + s / 2, cy = y + s / 2, r = s / 2 - 2
   ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2)
   ctx.fillStyle = heads ? (dk ? '#b45309' : '#fef08a') : (dk ? '#4b5563' : '#f3f4f6')
   ctx.fill(); ctx.strokeStyle = dk ? '#6b7280' : '#d1d5db'; ctx.lineWidth = 1; ctx.stroke()
   ctx.fillStyle = dk ? '#f9fafb' : '#374151'
-  const fs = Math.max(8, Math.floor(Math.min(w, h) * 0.42))
+  const fs = Math.max(8, Math.floor(s * 0.42))
   ctx.font = `bold ${fs}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
   ctx.fillText(heads ? 'H' : 'T', cx, cy)
 }
 
+// Each die is drawn as a square of side `s`, centered in its cell.
 function drawDiceDiagram(canvas: HTMLCanvasElement, outcomes: DiceOutcome[]) {
   const dk = getDark()
   const ctx = canvas.getContext('2d')!
@@ -197,20 +198,39 @@ function drawDiceDiagram(canvas: HTMLCanvasElement, outcomes: DiceOutcome[]) {
   const isDice2 = outcomes[0].type === 'dice2'
   const cols = n === 1 ? 1 : isDice2 ? Math.min(5, n) : Math.min(10, n)
   const rows = Math.ceil(n / cols)
-  const cw = Math.floor(W / cols), ch = Math.floor(H / rows)
-  const pd = Math.max(2, Math.floor(Math.min(cw, ch) * 0.08))
+  const cellW = W / cols
+  const cellH = H / rows
+  const pd = 3
+
   outcomes.forEach((o, i) => {
-    const c = i % cols, r = Math.floor(i / cols)
-    const x = c * cw, y = r * ch
+    const col = i % cols
+    const row = Math.floor(i / cols)
+    const cellX = col * cellW
+    const cellY = row * cellH
+
     if (o.type === 'die1') {
-      drawDie(ctx, x + pd, y + pd, cw - pd * 2, ch - pd * 2, o.v, o.v === 6, dk)
+      // Square die centered in its cell
+      const s = Math.min(cellW, cellH) - pd * 2
+      const x = cellX + (cellW - s) / 2
+      const y = cellY + (cellH - s) / 2
+      drawDie(ctx, x, y, s, o.v, o.v === 6, dk)
     } else if (o.type === 'dice2') {
-      const half = Math.floor((cw - pd * 3) / 2)
+      // Two square dice side by side, centered
+      const maxFromW = (cellW - pd * 3) / 2
+      const maxFromH = cellH - pd * 2
+      const s = Math.min(maxFromW, maxFromH)
+      const totalW = s * 2 + pd
+      const x = cellX + (cellW - totalW) / 2
+      const y = cellY + (cellH - s) / 2
       const hi = o.d1 + o.d2 === 7
-      drawDie(ctx, x + pd, y + pd, half, ch - pd * 2, o.d1, hi, dk)
-      drawDie(ctx, x + pd * 2 + half, y + pd, half, ch - pd * 2, o.d2, hi, dk)
+      drawDie(ctx, x, y, s, o.d1, hi, dk)
+      drawDie(ctx, x + s + pd, y, s, o.d2, hi, dk)
     } else {
-      drawCoin(ctx, x + pd, y + pd, cw - pd * 2, ch - pd * 2, o.h, dk)
+      // Square coin centered in its cell
+      const s = Math.min(cellW, cellH) - pd * 2
+      const x = cellX + (cellW - s) / 2
+      const y = cellY + (cellH - s) / 2
+      drawCoin(ctx, x, y, s, o.h, dk)
     }
   })
 }
@@ -287,7 +307,6 @@ function BuffonNeedle({ depth }: { depth: Depth }) {
     sc.getContext('2d')!.drawImage(oc, 0, 0)
   }, [])
 
-  // mount
   useEffect(() => { initOff(spacing); composite() }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const resetSim = useCallback((l = needleL, sp = spacing, seed = seedStr) => {
@@ -310,7 +329,6 @@ function BuffonNeedle({ depth }: { depth: Depth }) {
       const hx = (L / 2) * Math.cos(theta)
       const cx = rng() * 300
       const y1 = cy - hy, y2 = cy + hy
-      // crosses when endpoints span a line boundary (lines at multiples of d)
       const cross = Math.floor(y1 / d) !== Math.floor(y2 / d)
       if (cross) local++
       ctx.strokeStyle = cross ? '#f43f5e' : '#60a5fa'; ctx.lineWidth = 1
@@ -335,13 +353,49 @@ function BuffonNeedle({ depth }: { depth: Depth }) {
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
         Drop needles randomly onto a ruled page. The crossing rate estimates π.
       </p>
-      {depth !== 'light' && (
-        <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm text-gray-700 dark:text-gray-300">
-          <p className="mb-1">Needle length <em>L</em>, line spacing <em>d</em> (with L ≤ d): <Katex tex="P(\text{cross}) = \dfrac{2L}{\pi d}" /></p>
-          <p>Rearranging: <Katex tex="\pi \approx \dfrac{2Ln}{d \cdot \text{crossings}}" /></p>
-          {depth === 'heavy' && <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Derived by integrating over needle positions and angles — the perpendicular distance from the centre to the nearest line is uniform on [0, d/2].</p>}
+
+      {depth === 'detailed' && (
+        <div className="mb-5 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800 text-sm text-gray-700 dark:text-gray-300 space-y-3">
+          <p className="font-semibold text-gray-900 dark:text-white">Derivation</p>
+
+          <div>
+            <p className="font-medium mb-1">1. Random variables</p>
+            <p>A needle of length <em>L</em> falls on a page with parallel lines spaced <em>d</em> apart (L ≤ d). Two independent uniform random variables describe the drop:</p>
+            <ul className="list-disc list-inside mt-1 space-y-0.5 text-xs text-gray-600 dark:text-gray-400">
+              <li><em>y</em> = distance from the needle's centre to the nearest line below — by symmetry, <Katex tex="y \sim \mathrm{Uniform}\!\left[0,\,\tfrac{d}{2}\right]" /></li>
+              <li><em>θ</em> = acute angle between the needle and the lines — <Katex tex="\theta \sim \mathrm{Uniform}[0,\,\pi]" /></li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">2. Crossing condition</p>
+            <p>The needle crosses a line exactly when the perpendicular half-projection exceeds <em>y</em>:</p>
+            <Katex display tex="\text{crosses} \iff y \le \tfrac{L}{2}\sin\theta" className="my-2" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">3. Compute the probability</p>
+            <p>Integrate over all angles, using the joint density <Katex tex="\tfrac{1}{\pi} \cdot \tfrac{2}{d}" />:</p>
+            <Katex display tex="P(\text{cross}) = \int_0^{\pi} P\!\left(y \le \tfrac{L}{2}\sin\theta\right) \frac{d\theta}{\pi} = \int_0^{\pi} \frac{\tfrac{L}{2}\sin\theta}{\tfrac{d}{2}} \cdot \frac{d\theta}{\pi} = \frac{L}{\pi d}\int_0^{\pi}\sin\theta\,d\theta" className="my-2" />
+            <p>Evaluating the integral <Katex tex="\displaystyle\int_0^{\pi}\sin\theta\,d\theta = \bigl[-\cos\theta\bigr]_0^{\pi} = 2" />:</p>
+            <Katex display tex="P(\text{cross}) = \frac{L}{\pi d} \cdot 2 = \frac{2L}{\pi d}" className="my-2" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">4. Rearrange for π</p>
+            <p>After <em>n</em> drops with <em>c</em> crossings, the relative frequency estimates <Katex tex="\frac{2L}{\pi d}" />:</p>
+            <Katex display tex="\frac{c}{n} \approx \frac{2L}{\pi d} \implies \boxed{\pi \approx \frac{2Ln}{dc}}" className="my-2" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">5. Accuracy</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              The estimator converges slowly — roughly 1/√n rate. To gain one decimal place of accuracy you need 100× more needles. Buffon himself reportedly dropped 2,048 needles and obtained π ≈ 3.1415 (remarkably accurate for 1777).
+            </p>
+          </div>
         </div>
       )}
+
       <Params>
         <div>
           <PLabel>Needle L = {needleL}px</PLabel>
@@ -361,10 +415,12 @@ function BuffonNeedle({ depth }: { depth: Depth }) {
         </div>
         {needleL > spacing && <p className="text-xs text-amber-600 dark:text-amber-400 self-end">⚠ Valid only when L ≤ d</p>}
       </Params>
+
       <div className="flex flex-wrap gap-2 mb-4">
-        {([1, 10, 100] as const).map(b => <button key={b} onClick={() => runBatch(b)} className={CTRL}>+{b}</button>)}
+        {([1, 10, 100, 1000] as const).map(b => <button key={b} onClick={() => runBatch(b)} className={CTRL}>+{b}</button>)}
         <button onClick={() => resetSim()} className={RST}>Reset</button>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Needle drops</p>
@@ -452,12 +508,38 @@ function Dartboard({ depth }: { depth: Depth }) {
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
         Throw random darts at a unit square. The fraction inside the quarter circle estimates π/4.
       </p>
-      {depth !== 'light' && (
-        <div className="mb-4 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-sm text-gray-700 dark:text-gray-300">
-          <p>Quarter-circle area = <Katex tex="\tfrac{\pi}{4}" />, square area = <Katex tex="1" />. Ratio gives <Katex tex="\pi \approx 4 \times \dfrac{\text{inside}}{n}" />.</p>
-          {depth === 'heavy' && <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">We use a quarter circle (not full circle) because it fits exactly inside the unit square, making uniform sampling trivial.</p>}
+
+      {depth === 'detailed' && (
+        <div className="mb-5 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800 text-sm text-gray-700 dark:text-gray-300 space-y-3">
+          <p className="font-semibold text-gray-900 dark:text-white">Derivation</p>
+
+          <div>
+            <p className="font-medium mb-1">1. Setup</p>
+            <p>Throw darts uniformly at random into the unit square <Katex tex="[0,1]^2" />. Count how many land inside the quarter-circle <Katex tex="x^2 + y^2 \le 1" /> (with <Katex tex="x, y \ge 0" />).</p>
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">2. Area argument</p>
+            <p>Since darts are uniform, the probability of landing inside any region equals the ratio of its area to the square's area:</p>
+            <Katex display tex="P(\text{inside}) = \frac{\text{Area of quarter circle}}{\text{Area of square}} = \frac{\pi r^2 / 4}{1} = \frac{\pi}{4} \quad (r=1)" className="my-2" />
+            <p className="text-xs text-gray-500 dark:text-gray-400">Why a quarter-circle? It fits exactly inside the unit square, making uniform sampling trivial — just two independent Uniform[0,1] draws.</p>
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">3. Indicator variable and estimator</p>
+            <p>Let <Katex tex="X_i = 1" /> if dart <em>i</em> lands inside, <Katex tex="X_i = 0" /> otherwise. Then <Katex tex="E[X_i] = \pi/4" />, so by the <strong>Law of Large Numbers</strong>:</p>
+            <Katex display tex="\frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{n\to\infty} \frac{\pi}{4} \implies \boxed{\pi \approx \frac{4 \times \text{inside}}{n}}" className="my-2" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">4. Error analysis</p>
+            <p>Each <Katex tex="X_i" /> is Bernoulli with <Katex tex="p = \pi/4 \approx 0.785" />. The estimator's standard error is:</p>
+            <Katex display tex="\mathrm{SE} = \frac{4\sqrt{p(1-p)}}{\sqrt{n}} = \frac{4\sqrt{0.785 \times 0.215}}{\sqrt{n}} \approx \frac{1.65}{\sqrt{n}}" className="my-2" />
+            <p className="text-xs text-gray-500 dark:text-gray-400">For <em>n</em> = 10,000: SE ≈ 0.017. For <em>n</em> = 1,000,000: SE ≈ 0.0017. Each extra decimal place costs 100× more samples.</p>
+          </div>
         </div>
       )}
+
       <Params>
         <div>
           <PLabel>Point size = {ptSize}px</PLabel>
@@ -469,10 +551,12 @@ function Dartboard({ depth }: { depth: Depth }) {
             className="w-28 px-2 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-white" />
         </div>
       </Params>
+
       <div className="flex flex-wrap gap-2 mb-4">
         {([1, 10, 100] as const).map(b => <button key={b} onClick={() => runBatch(b)} className={CTRL}>+{b}</button>)}
         <button onClick={() => resetSim()} className={RST}>Reset</button>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Dart throws</p>
@@ -532,12 +616,12 @@ function DiceCoins({ depth }: { depth: Depth }) {
   }
 
   const resetSim = useCallback(() => {
-    const k = mode === 'die1' ? 6 : mode === 'dice2' ? 11 : 2
+    const k = numBuckets()
     nRef.current = 0; targetRef.current = 0
     countsRef.current = Array(k).fill(0)
     setN(0); setEstimate(0); setCounts(Array(k).fill(0)); setLastOutcomes([])
     rngRef.current = makeRng(seedStr)
-  }, [mode, seedStr])
+  }, [mode, seedStr]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => { resetSim() }, [mode]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -590,6 +674,7 @@ function DiceCoins({ depth }: { depth: Depth }) {
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
         Roll dice or flip coins — watch relative frequencies converge to theoretical probabilities.
       </p>
+
       <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 w-fit mb-4">
         {([['die1', '1d6'], ['dice2', '2d6'], ['coin', 'Coin']] as [DiceMode, string][]).map(([k, lbl]) => (
           <button key={k} onClick={() => setMode(k)}
@@ -600,13 +685,78 @@ function DiceCoins({ depth }: { depth: Depth }) {
             }`}>{lbl}</button>
         ))}
       </div>
-      {depth !== 'light' && (
-        <div className="mb-4 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-sm text-gray-700 dark:text-gray-300">
-          {mode === 'die1' && <p>Fair die: <Katex tex="P(6) = \tfrac{1}{6} \approx 0.1\overline{6}" /></p>}
-          {mode === 'dice2' && <p>Two dice: <Katex tex="P(\text{sum}=7) = \tfrac{6}{36} = \tfrac{1}{6}" /> — the most likely sum. Highlighted pairs sum to 7.</p>}
-          {mode === 'coin' && <p>Biased coin: adjust <em>p</em> below. <Katex tex="P(\text{heads}) = p" />. Heads shown in gold.</p>}
+
+      {depth === 'detailed' && (
+        <div className="mb-5 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-100 dark:border-purple-800 text-sm text-gray-700 dark:text-gray-300 space-y-3">
+          <p className="font-semibold text-gray-900 dark:text-white">Theory &amp; the Law of Large Numbers</p>
+
+          {mode === 'die1' && (
+            <>
+              <div>
+                <p className="font-medium mb-1">Theoretical probability</p>
+                <p>A fair die has 6 equally likely outcomes. By symmetry:</p>
+                <Katex display tex="P(6) = \frac{1}{6} \approx 0.1\overline{6}" className="my-2" />
+              </div>
+              <div>
+                <p className="font-medium mb-1">Law of Large Numbers</p>
+                <p>Let <Katex tex="X_i = 1" /> if roll <em>i</em> shows a 6, else 0. Then <Katex tex="E[X_i] = 1/6" /> and the LLN guarantees:</p>
+                <Katex display tex="\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{p} \frac{1}{6} \quad \text{as } n \to \infty" className="my-2" />
+                <p className="text-xs text-gray-500 dark:text-gray-400">The bar chart above shows all six face frequencies. By symmetry all six bars converge to the same dashed line at 1/6.</p>
+              </div>
+            </>
+          )}
+
+          {mode === 'dice2' && (
+            <>
+              <div>
+                <p className="font-medium mb-1">Sample space</p>
+                <p>Two dice give <Katex tex="6 \times 6 = 36" /> equally likely outcomes. The number of ways to achieve each sum:</p>
+                <div className="overflow-x-auto mt-2">
+                  <table className="text-xs border-collapse">
+                    <thead>
+                      <tr>
+                        {[2,3,4,5,6,7,8,9,10,11,12].map(s => (
+                          <th key={s} className={`px-2 py-1 border border-purple-200 dark:border-purple-700 font-semibold ${s===7?'text-purple-700 dark:text-purple-300':''}`}>{s}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {[1,2,3,4,5,6,5,4,3,2,1].map((w,i) => (
+                          <td key={i} className={`px-2 py-1 border border-purple-200 dark:border-purple-700 text-center ${i===5?'font-bold text-purple-700 dark:text-purple-300':''}`}>{w}/36</td>
+                        ))}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div>
+                <p className="font-medium mb-1">P(sum = 7)</p>
+                <p>The six outcomes giving sum = 7 are: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). So:</p>
+                <Katex display tex="P(\text{sum}=7) = \frac{6}{36} = \frac{1}{6} \approx 0.1\overline{6}" className="my-2" />
+                <p className="text-xs text-gray-500 dark:text-gray-400">Sum = 7 is the most likely outcome. Notice the triangular distribution — sums near 7 have the most combinations. The distribution is symmetric: <Katex tex="P(k) = P(14-k)" />.</p>
+              </div>
+            </>
+          )}
+
+          {mode === 'coin' && (
+            <>
+              <div>
+                <p className="font-medium mb-1">Bernoulli trials</p>
+                <p>Each flip is a <strong>Bernoulli trial</strong> with <Katex tex="P(\text{H}) = p" /> (adjustable below). After <em>n</em> flips with <em>h</em> heads:</p>
+                <Katex display tex="\hat{p} = \frac{h}{n} \xrightarrow{n\to\infty} p" className="my-2" />
+              </div>
+              <div>
+                <p className="font-medium mb-1">How quickly does it converge?</p>
+                <p>The standard error of <Katex tex="\hat{p}" /> is <Katex tex="\sqrt{p(1-p)/n}" />. For <em>p</em> = 0.5 (maximum variance):</p>
+                <Katex display tex="\mathrm{SE} = \frac{0.5}{\sqrt{n}}" className="my-2" />
+                <p className="text-xs text-gray-500 dark:text-gray-400">After 100 flips: SE = 0.05. After 10,000 flips: SE = 0.005. The gold bars in the chart show the true probability; watch the blue bars converge to them.</p>
+              </div>
+            </>
+          )}
         </div>
       )}
+
       <Params>
         {mode === 'coin' && (
           <div>
@@ -621,10 +771,12 @@ function DiceCoins({ depth }: { depth: Depth }) {
             className="w-28 px-2 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-white" />
         </div>
       </Params>
+
       <div className="flex flex-wrap gap-2 mb-4">
         {([1, 10, 100] as const).map(b => <button key={b} onClick={() => runBatch(b)} className={CTRL}>+{b}</button>)}
         <button onClick={resetSim} className={RST}>Reset</button>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">
@@ -648,6 +800,8 @@ function DiceCoins({ depth }: { depth: Depth }) {
 // ══════════════════════════════════════════════════════════════════════════════
 // Sim D — Random Walk
 // ══════════════════════════════════════════════════════════════════════════════
+const WALK_TRACE_CAP = 1000
+
 function drawWalks(canvas: HTMLCanvasElement, traces: number[][], N: number) {
   const dk = getDark()
   const ctx = canvas.getContext('2d')!
@@ -718,7 +872,10 @@ function RandomWalk({ depth }: { depth: Depth }) {
     const newW = walksRef.current
     const est = newW === 0 ? 0 : sumAbsRef.current / newW
     setWalks(newW); setEstimate(est)
-    setTraces(prev => [...prev, ...newTraces])
+    setTraces(prev => {
+      const combined = [...prev, ...newTraces]
+      return combined.length > WALK_TRACE_CAP ? combined.slice(-WALK_TRACE_CAP) : combined
+    })
     setConvergence(p => [...p, { n: newW, estimate: est }])
   }, [walkN])
 
@@ -734,12 +891,54 @@ function RandomWalk({ depth }: { depth: Depth }) {
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
         Each step is ±1 with equal probability. Estimate the expected absolute displacement after <em>N</em> steps.
       </p>
-      {depth !== 'light' && (
-        <div className="mb-4 p-3 bg-rose-50 dark:bg-rose-900/20 rounded-lg text-sm text-gray-700 dark:text-gray-300">
-          <Katex display tex="E(|S_N|) \approx \sqrt{\dfrac{2N}{\pi}}" className="block my-2" />
-          {depth === 'heavy' && <p className="text-xs text-gray-500 dark:text-gray-400">Asymptotic result via CLT — accurate for large N. For small N, expect meaningful deviation.</p>}
+
+      {depth === 'detailed' && (
+        <div className="mb-5 p-4 bg-rose-50 dark:bg-rose-900/20 rounded-xl border border-rose-100 dark:border-rose-800 text-sm text-gray-700 dark:text-gray-300 space-y-3">
+          <p className="font-semibold text-gray-900 dark:text-white">Derivation via the Central Limit Theorem</p>
+
+          <div>
+            <p className="font-medium mb-1">1. Setup</p>
+            <p>At each step, move <Katex tex="+1" /> or <Katex tex="-1" /> with equal probability. Let <Katex tex="X_i \in \{+1, -1\}" /> with <Katex tex="P(X_i = +1) = P(X_i = -1) = \tfrac{1}{2}" />. The position after <em>n</em> steps is:</p>
+            <Katex display tex="S_n = X_1 + X_2 + \cdots + X_n" className="my-2" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">2. Mean and variance of each step</p>
+            <Katex display tex="E[X_i] = (+1)\cdot\tfrac{1}{2} + (-1)\cdot\tfrac{1}{2} = 0" className="my-1" />
+            <Katex display tex="\mathrm{Var}(X_i) = E[X_i^2] - (E[X_i])^2 = 1 - 0 = 1" className="my-1" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">3. Properties of Sₙ</p>
+            <p>Since the steps are independent and identically distributed:</p>
+            <Katex display tex="E[S_n] = \sum_{i=1}^n E[X_i] = 0 \qquad \mathrm{Var}(S_n) = \sum_{i=1}^n \mathrm{Var}(X_i) = n" className="my-2" />
+            <p className="text-xs text-gray-500 dark:text-gray-400">The expected position is always 0 (symmetric around the origin), but the <em>spread</em> grows as √n.</p>
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">4. Central Limit Theorem</p>
+            <p>For large <em>n</em>, the CLT gives:</p>
+            <Katex display tex="\frac{S_n}{\sqrt{n}} \xrightarrow{d} Z \sim \mathcal{N}(0, 1)" className="my-2" />
+            <p>So <Katex tex="S_n \approx \sqrt{n}\,Z" /> and therefore <Katex tex="|S_n| \approx \sqrt{n}\,|Z|" />, where <Katex tex="|Z|" /> follows a <strong>half-normal distribution</strong>.</p>
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">5. Expected absolute displacement</p>
+            <p>The expected value of a half-normal <Katex tex="|Z|" /> (with <Katex tex="Z \sim \mathcal{N}(0,1)" />) is a standard result:</p>
+            <Katex display tex="E[|Z|] = \sqrt{\frac{2}{\pi}}" className="my-2" />
+            <p>Therefore:</p>
+            <Katex display tex="E[|S_n|] \approx \sqrt{n} \cdot \sqrt{\frac{2}{\pi}} = \boxed{\sqrt{\frac{2n}{\pi}}}" className="my-2" />
+          </div>
+
+          <div>
+            <p className="font-medium mb-1">6. Numerical example</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              For <em>n</em> = 100 steps: <Katex tex="E[|S_{100}|] \approx \sqrt{200/\pi} \approx 7.98" />. A walker taking 100 steps is typically about 8 steps from the start — not 100. The slow √n growth is why "random walks don't go anywhere fast."
+            </p>
+          </div>
         </div>
       )}
+
       <Params>
         <div>
           <PLabel>Walk length N = {walkN}</PLabel>
@@ -752,14 +951,16 @@ function RandomWalk({ depth }: { depth: Depth }) {
             className="w-28 px-2 py-1 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-white" />
         </div>
       </Params>
+
       <div className="flex flex-wrap gap-2 mb-4">
         {([1, 10, 100] as const).map(b => <button key={b} onClick={() => runBatch(b)} className={CTRL}>+{b}</button>)}
         <button onClick={() => resetSim()} className={RST}>Reset</button>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">
-            Walk traces ({walks} total)
+            Walk traces ({walks} total{walks > WALK_TRACE_CAP ? `, showing last ${WALK_TRACE_CAP}` : ''})
           </p>
           <canvas ref={walkCanvas} width={300} height={300} className="w-full rounded-lg border border-gray-200 dark:border-gray-700" />
         </div>
@@ -777,7 +978,7 @@ function RandomWalk({ depth }: { depth: Depth }) {
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// Reflection (heavy only)
+// Reflection (detailed only)
 // ══════════════════════════════════════════════════════════════════════════════
 const CQ = [
   { q: 'Why does the estimate become more accurate as n grows? Which theorem justifies this?', a: 'The Law of Large Numbers: as n → ∞ the sample mean converges to the true expected value. Random fluctuations cancel out and the average stabilises near the true value.' },
@@ -816,26 +1017,26 @@ function ReflectionSection() {
 // ══════════════════════════════════════════════════════════════════════════════
 // Main page
 // ══════════════════════════════════════════════════════════════════════════════
-const NAV: { id: SimId; label: string; heavy?: true }[] = [
-  { id: 'intro',      label: '⬩ Introduction' },
+const NAV: { id: SimId; label: string; detailed?: true }[] = [
+  { id: 'intro',      label: 'Introduction' },
   { id: 'buffon',     label: "A — Buffon's Needle" },
   { id: 'dartboard',  label: 'B — Dartboard' },
   { id: 'dice',       label: 'C — Dice & Coins' },
   { id: 'walk',       label: 'D — Random Walk' },
-  { id: 'reflection', label: '✦ Reflection', heavy: true },
+  { id: 'reflection', label: '✦ Reflection', detailed: true },
 ]
 
 export default function MonteCarlo() {
   const [depth, setDepth] = useState<Depth>(() => {
     const s = localStorage.getItem('mc-depth')
-    return (s === 'light' || s === 'medium' || s === 'heavy') ? s : 'medium'
+    return (s === 'concise' || s === 'detailed') ? s : 'concise'
   })
   const [active, setActive] = useState<SimId>('intro')
 
   useEffect(() => { localStorage.setItem('mc-depth', depth) }, [depth])
-  useEffect(() => { if (depth !== 'heavy' && active === 'reflection') setActive('intro') }, [depth, active])
+  useEffect(() => { if (depth !== 'detailed' && active === 'reflection') setActive('intro') }, [depth, active])
 
-  const navItems = NAV.filter(n => !n.heavy || depth === 'heavy')
+  const navItems = NAV.filter(n => !n.detailed || depth === 'detailed')
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
@@ -897,7 +1098,7 @@ export default function MonteCarlo() {
                 Monte Carlo is <em>relative frequency at scale</em>. As you run more trials, the relative frequency
                 approaches the theoretical probability — exactly what the Law of Large Numbers guarantees.
               </p>
-              {depth !== 'light' && (
+              {depth === 'detailed' && (
                 <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm text-gray-700 dark:text-gray-300">
                   <strong>Law of Large Numbers: </strong>
                   As the number of trials <em>n</em> → ∞, the sample mean converges to the true expected value.
@@ -920,7 +1121,7 @@ export default function MonteCarlo() {
           <div className={active === 'dartboard' ? '' : 'hidden'}><Dartboard    depth={depth} /></div>
           <div className={active === 'dice'      ? '' : 'hidden'}><DiceCoins    depth={depth} /></div>
           <div className={active === 'walk'      ? '' : 'hidden'}><RandomWalk   depth={depth} /></div>
-          {depth === 'heavy' && <div className={active === 'reflection' ? '' : 'hidden'}><ReflectionSection /></div>}
+          {depth === 'detailed' && <div className={active === 'reflection' ? '' : 'hidden'}><ReflectionSection /></div>}
         </div>
       </div>
     </div>
