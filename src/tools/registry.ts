@@ -1,6 +1,7 @@
 import { ComponentType } from 'react'
 import UnitCircle from './unit-circle'
 import SpeedMaths from './speed-maths'
+import MonteCarlo from './monte-carlo'
 
 export interface Tool {
   id: string
@@ -29,5 +30,13 @@ export const tools: Tool[] = [
     route: '/speed-maths',
     component: SpeedMaths,
     icon: '⚡',
+  },
+  {
+    id: 'monte-carlo',
+    name: 'Monte Carlo',
+    description: 'Use random sampling to estimate π, probabilities, and expected values — and watch the Law of Large Numbers in action.',
+    route: '/monte-carlo',
+    component: MonteCarlo,
+    icon: '🎲',
   },
 ]
