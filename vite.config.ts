@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 // Example: repo at github.com/you/my-site → base: '/my-site/'
 export default defineConfig({
   plugins: [react()],
-  base: '/math-tools/',
+  base: '/Kevin-Zhang-Tutoring/',
 })
