@@ -82,7 +82,7 @@ export default function Sidebar({ dark, onToggleDark, onClose }: SidebarProps) {
               }`
             }
           >
-            <span className="text-base leading-none">{tool.icon}</span>
+            <span className="w-[15px] flex-shrink-0 inline-flex items-center justify-center text-sm leading-none">{tool.icon}</span>
             {tool.name}
           </NavLink>
         ))}

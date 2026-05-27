@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -63,15 +63,26 @@ interface NumInputProps {
   max?: number
 }
 function NumInput({ value, onChange, min = 1, max = 9999 }: NumInputProps) {
+  // Track raw string so the field can be fully cleared while typing
+  const [raw, setRaw] = useState(String(value))
+  useEffect(() => { setRaw(String(value)) }, [value])
+
   return (
     <input
       type="number"
-      value={value}
+      value={raw}
       min={min}
       max={max}
       onChange={e => {
-        const v = parseInt(e.target.value)
+        const s = e.target.value
+        setRaw(s)
+        const v = parseInt(s)
         if (!isNaN(v) && v >= min && v <= max) onChange(v)
+      }}
+      onBlur={() => {
+        // Snap back to last valid value if field was left blank/invalid
+        const v = parseInt(raw)
+        if (isNaN(v) || v < min || v > max) setRaw(String(value))
       }}
       className="w-16 text-center text-sm font-mono bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-2 py-1.5 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
     />
@@ -85,15 +96,48 @@ const OP_META: Record<Op, { label: string; color: string }> = {
   div: { label: 'Division',       color: 'rose'   },
 }
 
-function SettingsScreen({ onStart }: { onStart: (cfg: Config) => void }) {
-  const [cfg, setCfg] = useState<Config>({
-    ops: new Set(['add', 'sub', 'mul', 'div']),
-    addMin1: 2,  addMax1: 100,
-    addMin2: 2,  addMax2: 100,
+// ── Difficulty presets ───────────────────────────────────────────────────────
+
+type Difficulty = 'easy' | 'medium' | 'hard'
+
+const PRESETS: Record<Difficulty, Config> = {
+  easy: {
+    ops:     new Set(['add', 'sub'] as Op[]),
+    addMin1: 1,  addMax1: 20,
+    addMin2: 1,  addMax2: 20,
+    mulMin1: 2,  mulMax1: 5,
+    mulMin2: 2,  mulMax2: 5,
+    duration: 60,
+  },
+  medium: {
+    ops:     new Set(['add', 'sub', 'mul', 'div'] as Op[]),
+    addMin1: 2,  addMax1: 50,
+    addMin2: 2,  addMax2: 50,
     mulMin1: 2,  mulMax1: 12,
-    mulMin2: 2,  mulMax2: 100,
-    duration: 120,
-  })
+    mulMin2: 2,  mulMax2: 10,
+    duration: 60,
+  },
+  hard: {
+    ops:     new Set(['add', 'sub', 'mul', 'div'] as Op[]),
+    addMin1: 10, addMax1: 999,
+    addMin2: 10, addMax2: 999,
+    mulMin1: 3,  mulMax1: 15,
+    mulMin2: 3,  mulMax2: 15,
+    duration: 60,
+  },
+}
+
+function cfgMatchesPreset(cfg: Config, preset: Config): boolean {
+  if (cfg.duration !== preset.duration) return false
+  if (cfg.ops.size !== preset.ops.size) return false
+  for (const op of preset.ops) if (!cfg.ops.has(op)) return false
+  for (const op of cfg.ops) if (!preset.ops.has(op)) return false
+  const keys: (keyof Config)[] = ['addMin1','addMax1','addMin2','addMax2','mulMin1','mulMax1','mulMin2','mulMax2']
+  return keys.every(k => cfg[k] === preset[k])
+}
+
+function SettingsScreen({ onStart }: { onStart: (cfg: Config) => void }) {
+  const [cfg, setCfg] = useState<Config>(PRESETS.medium)
 
   const toggleOp = (op: Op) => {
     setCfg(c => {
@@ -107,8 +151,40 @@ function SettingsScreen({ onStart }: { onStart: (cfg: Config) => void }) {
   const set = <K extends keyof Config>(k: K, v: Config[K]) =>
     setCfg(c => ({ ...c, [k]: v }))
 
+  const activeDifficulty = useMemo<Difficulty | null>(() => {
+    for (const [d, p] of Object.entries(PRESETS) as [Difficulty, Config][]) {
+      if (cfgMatchesPreset(cfg, p)) return d
+    }
+    return null
+  }, [cfg])
+
+  const DIFF_STYLE: Record<Difficulty, { active: string; idle: string; label: string; sub: string }> = {
+    easy:   { active: 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700', idle: 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800', label: 'Easy',   sub: '+/− up to 20' },
+    medium: { active: 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-700',                   idle: 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800', label: 'Medium', sub: 'All ops, ×table' },
+    hard:   { active: 'bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-700',                   idle: 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800', label: 'Hard',   sub: 'Large numbers' },
+  }
+
   return (
     <div className="flex flex-col gap-6">
+
+      {/* Difficulty presets */}
+      <div className="grid grid-cols-3 gap-3">
+        {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => {
+          const s = DIFF_STYLE[d]
+          const isActive = activeDifficulty === d
+          return (
+            <button
+              key={d}
+              onClick={() => setCfg({ ...PRESETS[d], ops: new Set(PRESETS[d].ops) })}
+              className={`rounded-xl border px-3 py-3 text-left transition-colors ${isActive ? s.active : s.idle}`}
+            >
+              <p className="text-sm font-semibold">{s.label}</p>
+              <p className="text-xs mt-0.5 opacity-70">{s.sub}</p>
+            </button>
+          )
+        })}
+      </div>
+
       {/* Operations */}
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
         {(['add', 'sub', 'mul', 'div'] as Op[]).map((op, i) => {
