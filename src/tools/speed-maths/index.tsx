@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { ref, push, query, orderByChild, limitToLast, onValue } from 'firebase/database'
-import { db } from '../../lib/firebase'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type Op         = 'add' | 'sub' | 'mul' | 'div'
 type Difficulty = 'easy' | 'medium' | 'hard'
-type Screen     = 'name' | 'settings' | 'game' | 'results'
+type Screen     = 'settings' | 'game' | 'results'
 type Flash      = 'correct' | 'wrong' | null
 
 // All 4 ops are always enabled — Config only holds numeric ranges + duration.
@@ -25,16 +23,6 @@ interface GameResult {
   wrong:      number
   duration:   number
   difficulty: Difficulty
-}
-
-interface LeaderboardEntry {
-  id?:        string
-  name:       string
-  score:      number
-  ppm:        number       // correct/min — sort key
-  duration:   number
-  difficulty: Difficulty
-  timestamp:  number
 }
 
 // ── Presets ───────────────────────────────────────────────────────────────────
@@ -62,39 +50,83 @@ const RANGE_CONFIGS: Record<Difficulty, RangeConfig> = {
   },
 }
 
-// Readable description shown on the difficulty cards
-const DIFF_META: Record<Difficulty, {
-  label: string
-  addDesc: string
-  mulDesc: string
-  active: string
-  idle: string
-}> = {
+const DIFF_META: Record<Difficulty, { label: string; active: string; idle: string }> = {
   easy: {
-    label:   'Easy',
-    addDesc: '+/−  2 – 100',
-    mulDesc: '×/÷  2–12  ×  2–100',
-    active:  'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200',
-    idle:    'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
+    label:  'Easy',
+    active: 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200',
+    idle:   'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
   },
   medium: {
-    label:   'Medium',
-    addDesc: '+/−  50 – 150',
-    mulDesc: '×/÷  7–15  ×  12–100',
-    active:  'border-blue-400 bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200',
-    idle:    'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
+    label:  'Medium',
+    active: 'border-blue-400 bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-200',
+    idle:   'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
   },
   hard: {
-    label:   'Hard',
-    addDesc: '+/−  50 – 250',
-    mulDesc: '×/÷  12–25  ×  12–100',
-    active:  'border-rose-400 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-200',
-    idle:    'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
+    label:  'Hard',
+    active: 'border-rose-400 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-200',
+    idle:   'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/60',
   },
 }
 
+// ── Range display variants ────────────────────────────────────────────────────
+
+// Design 1 — Spec card: labelled table rows inside a subtle card
+function RangeDisplayA({ d }: { d: Difficulty }) {
+  const r = RANGE_CONFIGS[d]
+  return (
+    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 overflow-hidden">
+      {[
+        { sym: '+  /  −', range: `${r.addMin1} – ${r.addMax1}` },
+        { sym: '×  /  ÷', range: `${r.mulMin1}–${r.mulMax1}   ×   ${r.mulMin2}–${r.mulMax2}` },
+      ].map((row, i) => (
+        <div key={row.sym} className={`flex items-center gap-5 px-5 py-3 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}>
+          <span className="w-16 text-xs font-bold text-gray-400 dark:text-gray-500 tracking-widest">{row.sym}</span>
+          <span className="font-mono text-sm text-gray-700 dark:text-gray-300">{row.range}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Design 2 — Inline caption: no box, just quiet text directly below the buttons
+function RangeDisplayB({ d }: { d: Difficulty }) {
+  const r = RANGE_CONFIGS[d]
+  return (
+    <div className="flex flex-col gap-1.5 px-1">
+      <div className="flex items-baseline gap-3 text-sm">
+        <span className="w-8 font-semibold text-gray-400 dark:text-gray-500 text-xs tracking-wide">+/−</span>
+        <span className="font-mono text-gray-600 dark:text-gray-400">{r.addMin1} – {r.addMax1}</span>
+      </div>
+      <div className="flex items-baseline gap-3 text-sm">
+        <span className="w-8 font-semibold text-gray-400 dark:text-gray-500 text-xs tracking-wide">×/÷</span>
+        <span className="font-mono text-gray-600 dark:text-gray-400">{r.mulMin1}–{r.mulMax1} &nbsp;×&nbsp; {r.mulMin2}–{r.mulMax2}</span>
+      </div>
+    </div>
+  )
+}
+
+// Design 3 — Chip row: each operation as its own pill badge
+function RangeDisplayC({ d }: { d: Difficulty }) {
+  const r = RANGE_CONFIGS[d]
+  const chips = [
+    { op: '+', range: `${r.addMin1} – ${r.addMax1}` },
+    { op: '−', range: `${r.addMin1} – ${r.addMax1}` },
+    { op: '×', range: `${r.mulMin1}–${r.mulMax1} × ${r.mulMin2}–${r.mulMax2}` },
+    { op: '÷', range: `${r.mulMin1}–${r.mulMax1} × ${r.mulMin2}–${r.mulMax2}` },
+  ]
+  return (
+    <div className="flex flex-wrap gap-2">
+      {chips.map(c => (
+        <div key={c.op} className="flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2">
+          <span className="text-sm font-bold text-gray-500 dark:text-gray-400 w-3.5 text-center">{c.op}</span>
+          <span className="font-mono text-xs text-gray-600 dark:text-gray-400">{c.range}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const DURATIONS = [30, 60, 90, 120, 180, 300]
-const NAME_KEY  = 'sm-player-name'
 
 // ── Question generation ───────────────────────────────────────────────────────
 
@@ -124,170 +156,16 @@ function genQuestion(cfg: Config): Question {
   return { text: `${a * b} ÷ ${a}`, answer: b }
 }
 
-function fmtDuration(s: number) { return s < 60 ? `${s}s` : `${s / 60}m` }
-
-// ── Firebase ──────────────────────────────────────────────────────────────────
-
-async function submitScore(entry: Omit<LeaderboardEntry, 'id'>): Promise<void> {
-  if (!db) return
-  try { await push(ref(db, `leaderboard/${entry.difficulty}`), entry) }
-  catch (e) { console.warn('Failed to submit score:', e) }
-}
-
-function useLeaderboard(difficulty: Difficulty) {
-  const [entries, setEntries] = useState<LeaderboardEntry[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    setLoading(true)
-    setEntries([])
-    if (!db) { setLoading(false); return }
-    const q = query(
-      ref(db, `leaderboard/${difficulty}`),
-      orderByChild('ppm'),
-      limitToLast(10),
-    )
-    const unsub = onValue(
-      q,
-      snap => {
-        const rows: LeaderboardEntry[] = []
-        snap.forEach(c => rows.push({ id: c.key ?? '', ...c.val() as LeaderboardEntry }))
-        setEntries(rows.reverse())   // highest ppm first
-        setLoading(false)
-      },
-      () => setLoading(false),
-    )
-    return () => unsub()
-  }, [difficulty])
-
-  return { entries, loading }
-}
-
-// ── Leaderboard component ─────────────────────────────────────────────────────
-
-function Leaderboard({ difficulty, playerName }: { difficulty: Difficulty; playerName: string }) {
-  const { entries, loading } = useLeaderboard(difficulty)
-  const m = DIFF_META[difficulty]
-
-  if (!db) {
-    return (
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">🏆 Leaderboard</p>
-        <p className="text-xs text-gray-400 dark:text-gray-500">
-          Configure Firebase in <code className="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">src/lib/firebase.ts</code> to enable the leaderboard.
-        </p>
-      </div>
-    )
-  }
-
-  return (
-    <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-      <div className="px-5 py-3.5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
-        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-          🏆 {m.label} — Top 10
-        </p>
-        <p className="text-xs text-gray-400 dark:text-gray-500">Ranked by /min</p>
-      </div>
-
-      {loading ? (
-        <div className="px-5 py-5 space-y-2">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-7 rounded bg-gray-100 dark:bg-gray-800 animate-pulse" />
-          ))}
-        </div>
-      ) : entries.length === 0 ? (
-        <p className="px-5 py-6 text-sm text-center text-gray-400 dark:text-gray-500">
-          No scores yet — be the first!
-        </p>
-      ) : (
-        <div>
-          <div className="grid grid-cols-[2rem_1fr_3.5rem_3.5rem_3rem] gap-x-3 px-4 py-2 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider border-b border-gray-100 dark:border-gray-800">
-            <span>#</span><span>Name</span>
-            <span className="text-right">/min</span>
-            <span className="text-right">Score</span>
-            <span className="text-right">Time</span>
-          </div>
-          {entries.map((e, i) => {
-            const isMe = e.name.toLowerCase() === playerName.toLowerCase()
-            return (
-              <div
-                key={e.id ?? i}
-                className={`grid grid-cols-[2rem_1fr_3.5rem_3.5rem_3rem] gap-x-3 px-4 py-2.5 text-sm items-center ${
-                  i < entries.length - 1 ? 'border-b border-gray-50 dark:border-gray-800/60' : ''
-                } ${isMe ? 'bg-blue-50 dark:bg-blue-950/30' : ''}`}
-              >
-                <span className={`font-semibold tabular-nums ${
-                  i === 0 ? 'text-amber-500' : i === 1 ? 'text-gray-400' : i === 2 ? 'text-orange-400' : 'text-gray-400 dark:text-gray-500'
-                }`}>{i + 1}</span>
-                <span className={`font-medium truncate ${isMe ? 'text-blue-700 dark:text-blue-300' : 'text-gray-800 dark:text-gray-200'}`}>
-                  {e.name}{isMe && <span className="ml-1.5 text-xs font-normal opacity-60">you</span>}
-                </span>
-                <span className="text-right font-mono font-semibold tabular-nums text-violet-600 dark:text-violet-400">
-                  {e.ppm.toFixed(1)}
-                </span>
-                <span className="text-right font-mono tabular-nums text-gray-600 dark:text-gray-400">{e.score}</span>
-                <span className="text-right text-xs text-gray-400 dark:text-gray-500">{fmtDuration(e.duration)}</span>
-              </div>
-            )
-          })}
-        </div>
-      )}
-    </div>
-  )
-}
-
-// ── Name screen ───────────────────────────────────────────────────────────────
-
-function NameScreen({ initial, onDone }: { initial: string; onDone: (name: string) => void }) {
-  const [name, setName] = useState(initial)
-  const inputRef = useRef<HTMLInputElement>(null)
-  useEffect(() => { inputRef.current?.focus() }, [])
-
-  const submit = () => {
-    const t = name.trim(); if (!t) return
-    localStorage.setItem(NAME_KEY, t); onDone(t)
-  }
-
-  return (
-    <div className="flex flex-col items-center gap-6 py-8">
-      <div className="text-center">
-        <p className="text-2xl font-bold text-gray-900 dark:text-white mb-1">What's your name?</p>
-        <p className="text-sm text-gray-400 dark:text-gray-500">
-          {db ? 'Your name will appear on the leaderboard.' : 'Used to track your scores.'}
-        </p>
-      </div>
-      <input
-        ref={inputRef}
-        type="text"
-        value={name}
-        onChange={e => setName(e.target.value.slice(0, 20))}
-        onKeyDown={e => e.key === 'Enter' && submit()}
-        placeholder="Enter your name…"
-        className="w-full text-center text-xl font-semibold bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 focus:border-blue-500 dark:focus:border-blue-500 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none transition-colors"
-      />
-      <button
-        onClick={submit} disabled={!name.trim()}
-        className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-semibold rounded-xl transition-colors text-sm"
-      >
-        Let's go →
-      </button>
-    </div>
-  )
-}
-
 // ── Settings screen ───────────────────────────────────────────────────────────
 
 function SettingsScreen({
-  playerName,
   onStart,
-  onChangeName,
 }: {
-  playerName:   string
-  onStart:      (cfg: Config, difficulty: Difficulty) => void
-  onChangeName: () => void
+  onStart: (cfg: Config, difficulty: Difficulty) => void
 }) {
-  const [difficulty, setDifficulty] = useState<Difficulty>('easy')
-  const [duration,   setDuration]   = useState(120)
+  const [difficulty,    setDifficulty]    = useState<Difficulty>('easy')
+  const [duration,      setDuration]      = useState(120)
+  const [designVariant, setDesignVariant] = useState<1 | 2 | 3>(1)
 
   const handleStart = () => {
     onStart({ ...RANGE_CONFIGS[difficulty], duration }, difficulty)
@@ -296,38 +174,48 @@ function SettingsScreen({
   return (
     <div className="flex flex-col gap-6">
 
-      {/* Player chip */}
-      <div className="flex items-center justify-between bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-3">
-        <div className="flex items-center gap-2.5">
-          <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-bold flex items-center justify-center flex-shrink-0">
-            {playerName.charAt(0).toUpperCase()}
-          </span>
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{playerName}</span>
-        </div>
-        <button
-          onClick={onChangeName}
-          className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-        >
-          Change name
-        </button>
+      {/* ── Temporary design switcher (remove before deploy) ── */}
+      <div className="flex items-center gap-3 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2">
+        <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">Range display:</span>
+        {([1, 2, 3] as const).map(n => (
+          <button
+            key={n}
+            onClick={() => setDesignVariant(n)}
+            className={`px-2.5 py-0.5 rounded text-xs font-semibold transition-colors ${
+              designVariant === n
+                ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'
+                : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
+            }`}
+          >
+            {n}
+          </button>
+        ))}
       </div>
 
       {/* Difficulty cards */}
-      <div className="grid grid-cols-3 gap-3">
-        {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => {
-          const m = DIFF_META[d]
-          const active = difficulty === d
-          return (
-            <button
-              key={d}
-              onClick={() => setDifficulty(d)}
-              className={`rounded-xl border-2 px-3 py-3.5 text-left transition-colors ${active ? m.active : m.idle}`}
-            >
-              <p className="text-sm font-bold mb-2">{m.label}</p>
-              <p className="text-xs leading-relaxed opacity-80 font-mono whitespace-pre-line">{m.addDesc}{'\n'}{m.mulDesc}</p>
-            </button>
-          )
-        })}
+      <div className="flex flex-col gap-3">
+        <div className="grid grid-cols-3 gap-3">
+          {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => {
+            const m = DIFF_META[d]
+            const active = difficulty === d
+            return (
+              <button
+                key={d}
+                onClick={() => setDifficulty(d)}
+                className={`rounded-xl border-2 px-3 py-4 text-center transition-colors ${active ? m.active : m.idle}`}
+              >
+                <p className="text-sm font-bold">{m.label}</p>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Range info — displayed separately, below the cards */}
+        <div>
+          {designVariant === 1 && <RangeDisplayA d={difficulty} />}
+          {designVariant === 2 && <RangeDisplayB d={difficulty} />}
+          {designVariant === 3 && <RangeDisplayC d={difficulty} />}
+        </div>
       </div>
 
       {/* Duration */}
@@ -356,9 +244,6 @@ function SettingsScreen({
       >
         Start
       </button>
-
-      {/* Leaderboard */}
-      <Leaderboard difficulty={difficulty} playerName={playerName} />
     </div>
   )
 }
@@ -471,42 +356,13 @@ function GameScreen({ cfg, difficulty, onDone }: {
 
 // ── Results screen ────────────────────────────────────────────────────────────
 
-function ResultsScreen({ result, playerName, onRestart }: {
-  result:     GameResult
-  playerName: string
-  onRestart:  () => void
+function ResultsScreen({ result, onRestart }: {
+  result:    GameResult
+  onRestart: () => void
 }) {
   const total    = result.correct + result.wrong
   const accuracy = total === 0 ? 0 : Math.round(result.correct / total * 100)
   const ppm      = result.correct / result.duration * 60
-
-  const [submitState, setSubmitState] = useState<'idle' | 'done' | 'error'>('idle')
-  const [rank,        setRank]        = useState<number | null>(null)
-
-  useEffect(() => {
-    if (!db) { setSubmitState('idle'); return }
-    const entry: Omit<LeaderboardEntry, 'id'> = {
-      name:       playerName,
-      score:      result.correct,
-      ppm:        parseFloat(ppm.toFixed(2)),
-      duration:   result.duration,
-      difficulty: result.difficulty,
-      timestamp:  Date.now(),
-    }
-    submitScore(entry)
-      .then(() => {
-        setSubmitState('done')
-        const q = query(ref(db!, `leaderboard/${result.difficulty}`), orderByChild('ppm'), limitToLast(10))
-        onValue(q, snap => {
-          const ppms: number[] = []
-          snap.forEach(c => ppms.push(c.val().ppm as number))
-          const sorted = ppms.sort((a, b) => b - a)
-          const pos = sorted.findIndex(p => p <= entry.ppm) + 1
-          if (pos > 0 && pos <= 10) setRank(pos)
-        }, { onlyOnce: true })
-      })
-      .catch(() => setSubmitState('error'))
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const diffLabel = DIFF_META[result.difficulty].label
 
@@ -518,20 +374,6 @@ function ResultsScreen({ result, playerName, onRestart }: {
         </p>
         <p className="text-6xl font-bold text-gray-900 dark:text-white mb-1">{result.correct}</p>
         <p className="text-sm text-gray-500 dark:text-gray-400">correct answers</p>
-        {db && (
-          <div className="mt-4">
-            {submitState === 'idle' && <p className="text-xs text-gray-400">Submitting score…</p>}
-            {submitState === 'done' && rank !== null && (
-              <p className="text-sm font-semibold text-amber-500">🏆 #{rank} on the {diffLabel} leaderboard!</p>
-            )}
-            {submitState === 'done' && rank === null && (
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">✓ Score submitted to {diffLabel} leaderboard</p>
-            )}
-            {submitState === 'error' && (
-              <p className="text-xs text-rose-500">Could not submit — check your connection.</p>
-            )}
-          </div>
-        )}
       </div>
 
       <div className="w-full grid grid-cols-3 gap-3">
@@ -560,19 +402,10 @@ function ResultsScreen({ result, playerName, onRestart }: {
 // ── Root component ────────────────────────────────────────────────────────────
 
 export default function SpeedMaths() {
-  const [playerName, setPlayerName] = useState(
-    () => localStorage.getItem(NAME_KEY) ?? ''
-  )
-  const [screen,     setScreen]     = useState<Screen>(
-    () => localStorage.getItem(NAME_KEY) ? 'settings' : 'name'
-  )
+  const [screen,     setScreen]     = useState<Screen>('settings')
   const [cfg,        setCfg]        = useState<Config | null>(null)
   const [difficulty, setDifficulty] = useState<Difficulty>('easy')
   const [result,     setResult]     = useState<GameResult | null>(null)
-
-  const handleName = useCallback((name: string) => {
-    setPlayerName(name); setScreen('settings')
-  }, [])
 
   const handleStart = useCallback((c: Config, d: Difficulty) => {
     setCfg(c); setDifficulty(d); setResult(null); setScreen('game')
@@ -582,8 +415,7 @@ export default function SpeedMaths() {
     setResult(r); setScreen('results')
   }, [])
 
-  const handleRestart  = useCallback(() => { setResult(null); setScreen('settings') }, [])
-  const handleChangeName = useCallback(() => setScreen('name'), [])
+  const handleRestart = useCallback(() => { setResult(null); setScreen('settings') }, [])
 
   return (
     <div className="max-w-lg mx-auto px-6 py-8">
@@ -592,10 +424,9 @@ export default function SpeedMaths() {
         <p className="text-sm text-gray-500 dark:text-gray-400">Solve as many arithmetic problems as you can before time runs out.</p>
       </div>
 
-      {screen === 'name'     && <NameScreen     initial={playerName} onDone={handleName} />}
-      {screen === 'settings' && <SettingsScreen playerName={playerName} onStart={handleStart} onChangeName={handleChangeName} />}
+      {screen === 'settings' && <SettingsScreen onStart={handleStart} />}
       {screen === 'game'     && cfg && <GameScreen key={Date.now()} cfg={cfg} difficulty={difficulty} onDone={handleDone} />}
-      {screen === 'results'  && result && <ResultsScreen result={result} playerName={playerName} onRestart={handleRestart} />}
+      {screen === 'results'  && result && <ResultsScreen result={result} onRestart={handleRestart} />}
     </div>
   )
 }

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { angles, shiftedAngleTex } from './data'
+import { angles, shiftedAngleTex, shiftedAngleDegTex, RANGE_LABEL, type AngleUnit } from './data'
 import Katex from '../../components/Katex'
 
 type TrigFn   = 'sin' | 'cos' | 'tan' | 'cosec' | 'sec' | 'cot'
 type AngleRange = 'pos' | 'neg' | 'both'
 type FnMode   = 'methods' | 'specialist'
+type Unit     = AngleUnit
 
 // LaTeX command for each function (cosec → \csc is the standard LaTeX name)
 const FN_TEX: Record<TrigFn, string> = {
@@ -72,7 +73,7 @@ interface Question {
   correctTex: string
 }
 
-function generateQuestion(range: AngleRange, fnMode: FnMode): Question {
+function generateQuestion(range: AngleRange, fnMode: FnMode, unit: Unit): Question {
   const a   = angles[Math.floor(Math.random() * angles.length)]
   const fns: TrigFn[] = fnMode === 'specialist'
     ? ['sin', 'cos', 'tan', 'cosec', 'sec', 'cot']
@@ -80,17 +81,19 @@ function generateQuestion(range: AngleRange, fnMode: FnMode): Question {
   const fn  = fns[Math.floor(Math.random() * fns.length)]
   const k   = [-2, -1, 0, 1][Math.floor(Math.random() * 4)]
 
+  const shift = unit === 'rad'
+    ? (kk: number) => shiftedAngleTex(a.piN, a.piD, kk)
+    : (kk: number) => shiftedAngleDegTex(a.deg, kk)
+
   let angleTex: string
   if (a.piN === 0) {
     angleTex = '0'
   } else if (range === 'pos') {
-    angleTex = shiftedAngleTex(a.piN, a.piD, 0)
+    angleTex = shift(0)
   } else if (range === 'neg') {
-    angleTex = shiftedAngleTex(a.piN, a.piD, -1)
+    angleTex = shift(-1)
   } else {
-    angleTex = Math.random() < 0.5
-      ? shiftedAngleTex(a.piN, a.piD, 0)
-      : shiftedAngleTex(a.piN, a.piD, -1)
+    angleTex = Math.random() < 0.5 ? shift(0) : shift(-1)
   }
   // k only used for methods mode to vary the displayed angle beyond ±2π
   void k
@@ -117,7 +120,8 @@ type FlashState = 'correct' | 'wrong' | null
 export default function TestMode() {
   const [fnMode,        setFnMode]        = useState<FnMode>('methods')
   const [range,         setRange]         = useState<AngleRange>('pos')
-  const [question,      setQuestion]      = useState<Question>(() => generateQuestion('pos', 'methods'))
+  const [unit,          setUnit]          = useState<Unit>('rad')
+  const [question,      setQuestion]      = useState<Question>(() => generateQuestion('pos', 'methods', 'rad'))
   const [correct,       setCorrect]       = useState(0)
   const [wrong,         setWrong]         = useState(0)
   const [elapsed,       setElapsed]       = useState(0)
@@ -135,12 +139,12 @@ export default function TestMode() {
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [timerRunning])
 
-  const next = useCallback((r: AngleRange = range, m: FnMode = fnMode) => {
+  const next = useCallback((r: AngleRange = range, m: FnMode = fnMode, u: Unit = unit) => {
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(r, m))
-  }, [range, fnMode])
+    setQuestion(generateQuestion(r, m, u))
+  }, [range, fnMode, unit])
 
   const handleAnswer = useCallback((label: string) => {
     if (flash) return
@@ -162,16 +166,24 @@ export default function TestMode() {
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(r, fnMode))
-  }, [fnMode])
+    setQuestion(generateQuestion(r, fnMode, unit))
+  }, [fnMode, unit])
 
   const handleModeChange = useCallback((m: FnMode) => {
     setFnMode(m)
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(range, m))
-  }, [range])
+    setQuestion(generateQuestion(range, m, unit))
+  }, [range, unit])
+
+  const handleUnitChange = useCallback((u: Unit) => {
+    setUnit(u)
+    setFlash(null)
+    setSelectedLabel(null)
+    setTimerRunning(true)
+    setQuestion(generateQuestion(range, fnMode, u))
+  }, [range, fnMode])
 
   const reset = useCallback(() => {
     setCorrect(0)
@@ -180,8 +192,8 @@ export default function TestMode() {
     setFlash(null)
     setSelectedLabel(null)
     setTimerRunning(true)
-    setQuestion(generateQuestion(range, fnMode))
-  }, [range, fnMode])
+    setQuestion(generateQuestion(range, fnMode, unit))
+  }, [range, fnMode, unit])
 
   const accuracy = correct + wrong === 0 ? '—' : `${Math.round(correct / (correct + wrong) * 100)}%`
   const rows = fnMode === 'specialist'
@@ -244,6 +256,26 @@ export default function TestMode() {
           </div>
         </div>
 
+        {/* Angle unit */}
+        <div>
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Angle Unit</p>
+          <div className="flex gap-1">
+            {(['rad', 'deg'] as Unit[]).map(u => (
+              <button
+                key={u}
+                onClick={() => handleUnitChange(u)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  unit === u
+                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
+              >
+                {u === 'rad' ? 'Radians' : 'Degrees'}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Angle range */}
         <div>
           <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Angle Range</p>
@@ -258,7 +290,7 @@ export default function TestMode() {
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
-                {opt === 'pos' ? '[0, 2π]' : opt === 'neg' ? '[−2π, 0]' : '[−2π, 2π]'}
+                {RANGE_LABEL[unit][opt]}
               </button>
             ))}
           </div>

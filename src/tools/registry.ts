@@ -2,6 +2,7 @@ import { ComponentType } from 'react'
 import UnitCircle from './unit-circle'
 import SpeedMaths from './speed-maths'
 import MonteCarlo from './monte-carlo'
+import ExamSkipGuide from './exam-skip-guide'
 
 export interface Tool {
   id: string
@@ -38,5 +39,13 @@ export const tools: Tool[] = [
     route: '/monte-carlo',
     component: MonteCarlo,
     icon: '🎲',
+  },
+  {
+    id: 'exam-skip-guide',
+    name: 'Past Exam Skip Guide',
+    description: 'Which 2014–2022 Methods, Specialist, and Chemistry exam questions to skip now that the study design has changed.',
+    route: '/exam-skip-guide',
+    component: ExamSkipGuide,
+    icon: '📋',
   },
 ]

@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { angles, shiftedAngleTex } from './data'
+import { angles, shiftedAngleTex, shiftedAngleDegTex, RANGE_LABEL, type AngleUnit } from './data'
 import Katex from '../../components/Katex'
 
 type Domain = 'pos' | 'neg' | 'both'
+type Unit = AngleUnit
 type FlashState = 'correct' | 'wrong' | null
 
 const CX = 280, CY = 280, R = 210, VB = 560
@@ -21,22 +22,24 @@ interface LocateQuestion {
   angleTex: string   // LaTeX string to display
 }
 
-function genQuestion(domain: Domain): LocateQuestion {
+function genQuestion(domain: Domain, unit: Unit): LocateQuestion {
   const idx = Math.floor(Math.random() * angles.length)
   const a   = angles[idx]
+
+  const shift = unit === 'rad'
+    ? (k: number) => shiftedAngleTex(a.piN, a.piD, k)
+    : (k: number) => shiftedAngleDegTex(a.deg, k)
 
   let angleTex: string
   if (a.piN === 0) {
     angleTex = '0'
   } else if (domain === 'pos') {
-    angleTex = shiftedAngleTex(a.piN, a.piD, 0)
+    angleTex = shift(0)
   } else if (domain === 'neg') {
-    angleTex = shiftedAngleTex(a.piN, a.piD, -1)
+    angleTex = shift(-1)
   } else {
     // both: randomly pick positive or negative display
-    angleTex = Math.random() < 0.5
-      ? shiftedAngleTex(a.piN, a.piD, 0)
-      : shiftedAngleTex(a.piN, a.piD, -1)
+    angleTex = Math.random() < 0.5 ? shift(0) : shift(-1)
   }
 
   return { angleIdx: idx, angleTex }
@@ -50,7 +53,8 @@ function formatTime(s: number) {
 
 export default function LocateMode() {
   const [domain,       setDomain]       = useState<Domain>('pos')
-  const [question,     setQuestion]     = useState<LocateQuestion>(() => genQuestion('pos'))
+  const [unit,         setUnit]         = useState<Unit>('rad')
+  const [question,     setQuestion]     = useState<LocateQuestion>(() => genQuestion('pos', 'rad'))
   const [correct,      setCorrect]      = useState(0)
   const [wrong,        setWrong]        = useState(0)
   const [elapsed,      setElapsed]      = useState(0)
@@ -68,12 +72,12 @@ export default function LocateMode() {
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [timerRunning])
 
-  const next = useCallback((dom: Domain = domain) => {
+  const next = useCallback((dom: Domain = domain, u: Unit = unit) => {
     setFlash(null)
     setClickedIdx(null)
     setTimerRunning(true)
-    setQuestion(genQuestion(dom))
-  }, [domain])
+    setQuestion(genQuestion(dom, u))
+  }, [domain, unit])
 
   const handleDotClick = useCallback((idx: number) => {
     if (flash) return
@@ -94,8 +98,16 @@ export default function LocateMode() {
     setFlash(null)
     setClickedIdx(null)
     setTimerRunning(true)
-    setQuestion(genQuestion(d))
-  }, [])
+    setQuestion(genQuestion(d, unit))
+  }, [unit])
+
+  const handleUnitChange = useCallback((u: Unit) => {
+    setUnit(u)
+    setFlash(null)
+    setClickedIdx(null)
+    setTimerRunning(true)
+    setQuestion(genQuestion(domain, u))
+  }, [domain])
 
   const reset = useCallback(() => {
     setCorrect(0)
@@ -104,8 +116,8 @@ export default function LocateMode() {
     setFlash(null)
     setClickedIdx(null)
     setTimerRunning(true)
-    setQuestion(genQuestion(domain))
-  }, [domain])
+    setQuestion(genQuestion(domain, unit))
+  }, [domain, unit])
 
   const accuracy = correct + wrong === 0 ? '—' : `${Math.round(correct / (correct + wrong) * 100)}%`
 
@@ -133,25 +145,47 @@ export default function LocateMode() {
         </button>
       </div>
 
-      {/* Domain selector */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">
-          Angle Range
-        </p>
-        <div className="flex gap-1">
-          {(['pos', 'neg', 'both'] as Domain[]).map(d => (
-            <button
-              key={d}
-              onClick={() => handleDomainChange(d)}
-              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                domain === d
-                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-            >
-              {d === 'pos' ? '[0, 2π]' : d === 'neg' ? '[−2π, 0]' : '[−2π, 2π]'}
-            </button>
-          ))}
+      {/* Unit + domain selector */}
+      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4 flex flex-col gap-4">
+        <div>
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">
+            Angle Unit
+          </p>
+          <div className="flex gap-1">
+            {(['rad', 'deg'] as Unit[]).map(u => (
+              <button
+                key={u}
+                onClick={() => handleUnitChange(u)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  unit === u
+                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
+              >
+                {u === 'rad' ? 'Radians' : 'Degrees'}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">
+            Angle Range
+          </p>
+          <div className="flex gap-1">
+            {(['pos', 'neg', 'both'] as Domain[]).map(d => (
+              <button
+                key={d}
+                onClick={() => handleDomainChange(d)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  domain === d
+                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
+              >
+                {RANGE_LABEL[unit][d]}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

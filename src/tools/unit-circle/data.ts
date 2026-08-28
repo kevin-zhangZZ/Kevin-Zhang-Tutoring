@@ -177,6 +177,22 @@ export function shiftedAngleTex(piN: number, piD: number, k: number): string {
   return `${sign}\\dfrac{${absN}\\pi}{${piD}}`
 }
 
+// Generates the LaTeX string for a base angle (in degrees) shifted by 360k degrees.
+export function shiftedAngleDegTex(deg: number, k: number): string {
+  const shifted = deg + 360 * k
+  if (shifted === 0) return '0'
+  return `${shifted}^\\circ`
+}
+
+// Shared between Locate Test and Values Test: radians vs degrees, and how the
+// angle-range toggle should label itself for each unit.
+export type AngleUnit = 'rad' | 'deg'
+
+export const RANGE_LABEL: Record<AngleUnit, Record<'pos' | 'neg' | 'both', string>> = {
+  rad: { pos: '[0, 2π]', neg: '[−2π, 0]', both: '[−2π, 2π]' },
+  deg: { pos: '[0°, 360°]', neg: '[−360°, 0°]', both: '[−360°, 360°]' },
+}
+
 // All unique exact values for sin/cos answers (sorted: neg → 0 → pos)
 export const sinCosAnswers: Array<{ label: string; tex: string }> = [
   { label: '–1',    tex: '-1' },
