@@ -15,6 +15,12 @@
 // of "transformation", or a plain-English probability question that itute solves with a
 // transition matrix). Two rows below (2014 Q4fg, 2015 Q18) and one correction (2019 Q9) came
 // from that pass specifically.
+//
+// 2014–2017 rows for both Methods and Specialist were revised again from the tutor's own
+// question-by-question exam review (Aug 2026), which also identified several "still doable"
+// workarounds — cases where a question looks like it needs removed content (a matrix, a
+// force/motion setup) but can actually be solved by translating it into non-matrix or
+// non-mechanics terms. Those workarounds are kept as a note on the relevant row.
 
 export interface AuditRow {
   year: number
@@ -39,13 +45,16 @@ export const audits: SubjectAudit[] = [
   {
     id: 'methods',
     rows: [
-      { year: 2014, exam: 'Exam 2', question: 'Q10', topic: 'Functional equation', note: 'MCQ — "which function satisfies f(f(x)) = x for every real x?"' },
-      { year: 2014, exam: 'Exam 2', question: 'Q12', topic: 'Matrix transformation', note: 'MCQ — T: R² → R² given as a matrix' },
-      { year: 2014, exam: 'Exam 2', question: 'Section 2 Q4(f)–(g)', topic: 'Transition matrix (Markov chain)', note: 'Smooth/rough pot probability over several stages — itute solves it with a transition matrix raised to a power; found via the itute cross-check, not obvious from the VCAA question text alone' },
-      { year: 2015, exam: 'Exam 2', question: 'Q18', topic: 'Functional equation', note: 'MCQ — "which function satisfies f(x+y) − f(x−y) = 4f(x)f(y)?"; found via itute cross-check' },
-      { year: 2016, exam: 'Exam 2', question: 'Q20', topic: 'Matrix transformation', note: 'MCQ' },
-      { year: 2016, exam: 'Exam 2', question: 'Section B Q1(e)', topic: 'Matrix transformation' },
-      { year: 2017, exam: 'Exam 2', question: 'Section B Q4', topic: 'Matrix transformation', note: 'Multi-part question built around one matrix T (parts a–g)' },
+      { year: 2014, exam: 'Exam 2', question: 'MCQ 7', topic: 'Modulus graph' },
+      { year: 2014, exam: 'Exam 2', question: 'MCQ 12', topic: 'Matrix transformation' },
+      { year: 2014, exam: 'Exam 2', question: 'MCQ 19', topic: 'Approximation of area using rectangles' },
+      { year: 2014, exam: 'Exam 2', question: 'SAQ4g', topic: 'Transition matrix (Markov chain)', note: 'Technically doable with a full 16-branch tree diagram — feasible but impractical. (SAQ4f is a similar transition-matrix question but only needs a 4-branch tree, so it’s worth attempting; note that 4f and 4g are both not binomial, since the trials aren’t independent of each other.)' },
+      { year: 2015, exam: 'Exam 2', question: 'MCQ 18', topic: 'Modulus function' },
+      { year: 2015, exam: 'Exam 2', question: 'MCQ 22', topic: 'Modulus function' },
+      { year: 2016, exam: 'Exam 2', question: 'MCQ 20', topic: 'Matrix transformation', note: 'Doable if you read the matrix as: dilation by factor 3 from the x-axis, reflection in the y-axis, then translation 5 units up.' },
+      { year: 2016, exam: 'Exam 2', question: 'SAQ1e', topic: 'Matrix transformation', note: 'Doable if you read a as the dilation factor from the x-axis (negative if there’s also a reflection in the y-axis) and b as the vertical translation (positive = up, negative = down).' },
+      { year: 2017, exam: 'Exam 2', question: 'MCQ 10', topic: 'Matrix transformation', note: 'Doable if you read the matrix as: dilation by factor 2 from the y-axis, then dilation by factor 1/3 from the x-axis.' },
+      { year: 2017, exam: 'Exam 2', question: 'SAQ4a', topic: 'Matrix transformation', note: 'Doable if you read c as the horizontal translation (positive = right, negative = left) and d as the vertical translation (positive = up, negative = down).' },
       { year: 2018, exam: 'Exam 2', question: 'Q20', topic: 'Matrix transformation', note: 'MCQ' },
       { year: 2019, exam: 'Exam 1', question: 'Q2(c)', topic: 'Matrix transformation' },
       { year: 2019, exam: 'Exam 2', question: 'Q9', topic: 'Matrix transformation', note: 'MCQ — question says "transformed by", not "transformation", which is why the first pass missed it' },
@@ -67,17 +76,29 @@ export const audits: SubjectAudit[] = [
   {
     id: 'specialist',
     rows: [
-      { year: 2014, exam: 'Exam 1', question: 'Q8', topic: 'Mechanics', note: 'Mass held in equilibrium by two strings' },
-      { year: 2014, exam: 'Exam 2', question: 'Q18–Q20', topic: 'Mechanics', note: 'Three consecutive MCQs — equilibrium, net force, pulley system' },
-      { year: 2014, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics', note: 'Block connected by rope over a pulley' },
-      { year: 2015, exam: 'Exam 1', question: 'Q2', topic: 'Mechanics', note: 'Reaction force of a lift floor on a parcel' },
-      { year: 2015, exam: 'Exam 2', question: 'Q16, Q19, Q21', topic: 'Mechanics', note: 'MCQs — suspended mass, pulley, rough plane' },
-      { year: 2015, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics', note: 'Force required to prevent a trailer moving' },
-      { year: 2016, exam: 'Exam 1', question: 'Q1, Q8', topic: 'Mechanics' },
-      { year: 2016, exam: 'Exam 2', question: 'Q13–Q15', topic: 'Mechanics', note: 'MCQs — forces in newtons, string tensions' },
-      { year: 2016, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics / projectile', note: 'References force over a flight duration' },
-      { year: 2017, exam: 'Exam 1', question: 'Q9', topic: 'Mechanics' },
-      { year: 2017, exam: 'Exam 2', question: 'Q14', topic: 'Mechanics', note: 'Pulley system in equilibrium' },
+      { year: 2014, exam: 'Exam 1', question: 'Entire Q8', topic: 'Dynamics and force analysis' },
+      { year: 2014, exam: 'Exam 2', question: 'MCQ 18', topic: 'Dynamics and force analysis' },
+      { year: 2014, exam: 'Exam 2', question: 'MCQ 19', topic: 'Dynamics and force analysis' },
+      { year: 2014, exam: 'Exam 2', question: 'MCQ 20', topic: 'Dynamics and force analysis' },
+      { year: 2014, exam: 'Exam 2', question: 'Entire SAQ5', topic: 'Dynamics and force analysis' },
+      { year: 2015, exam: 'Exam 1', question: 'Entire Q2', topic: 'Dynamics and force analysis' },
+      { year: 2015, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis' },
+      { year: 2015, exam: 'Exam 2', question: 'MCQ 19', topic: 'Dynamics and force analysis' },
+      { year: 2015, exam: 'Exam 2', question: 'MCQ 21', topic: 'Dynamics and force analysis' },
+      { year: 2015, exam: 'Exam 2', question: 'SAQ5a,b,c', topic: 'Dynamics and force analysis', note: 'SAQ5d is still doable — just use the differential equation given right before part (d).\nAlso: MCQ15 in this exam is still doable, since it has nothing to do with actual forces content.' },
+      { year: 2016, exam: 'Exam 1', question: 'Entire Q1', topic: 'Dynamics and force analysis' },
+      { year: 2016, exam: 'Exam 2', question: 'MCQ 13', topic: 'Dynamics and force analysis' },
+      { year: 2016, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis' },
+      { year: 2016, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', note: 'Doable if you substitute F = 3a into each option and treat it as converting v = f(x) into a = g(x).' },
+      { year: 2016, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis', note: 'Doable as a challenge — analyse the vertical and horizontal components separately: use the vertical motion (gravity only) to find the time to return to the ground, then substitute into the horizontal motion to find the distance travelled.' },
+      { year: 2016, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis' },
+      { year: 2016, exam: 'Exam 2', question: 'SAQ1dii', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
+      { year: 2016, exam: 'Exam 2', question: 'SAQ5a', topic: 'Dynamics and force analysis', note: 'The rest of SAQ5 is doable using the differential equation given in part (a).' },
+      { year: 2017, exam: 'Exam 1', question: 'Entire Q9', topic: 'Dynamics and force analysis' },
+      { year: 2017, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis' },
+      { year: 2017, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis' },
+      { year: 2017, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis' },
+      { year: 2017, exam: 'Exam 2', question: 'SAQ3e', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
       { year: 2018, exam: 'Exam 1', question: 'Q1', topic: 'Mechanics', note: 'Two masses connected over a pulley on an inclined plane' },
       { year: 2018, exam: 'Exam 1', question: 'Q6', topic: 'Mechanics (force/mass DE)', note: 'Particle moves under a force F, position vector given — force/mass differential equation style' },
       { year: 2018, exam: 'Exam 2', question: 'Q15, Q16', topic: 'Mechanics', note: 'MCQs — constant force on a particle; forces in equilibrium' },

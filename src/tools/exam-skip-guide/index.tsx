@@ -96,23 +96,15 @@ export default function ExamSkipGuide() {
 
       {/* Question-by-question audit — timeline */}
       <div className="mb-14">
-        <div className="flex items-baseline justify-between mb-1">
-          <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white">
-            Question-by-question audit
-          </h2>
-          <span className="text-xs text-gray-400 dark:text-gray-500">DRAFT — needs manual check</span>
-        </div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
-          Downloaded every official VCAA exam PDF for these years and searched the text for language
-          distinctive of each removed topic, then confirmed each hit in context. This is a text-search-and-verify
-          pass, not proof every question in every paper was individually read — re-check against the actual
-          papers before relying on it with students.
-        </p>
+        <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mb-8">
+          Question-by-question audit
+        </h2>
 
         {years.length > 0 ? (
           <div>
             {years.map((year, yi) => {
               const rows = audit.rows.filter(r => r.year === year)
+              const exams = Array.from(new Set(rows.map(r => r.exam)))
               const isLast = yi === years.length - 1
               return (
                 <div key={year} className="flex gap-5">
@@ -128,17 +120,33 @@ export default function ExamSkipGuide() {
                     <div className="font-display text-[15px] font-semibold text-gray-900 dark:text-white mb-2.5 pt-3">
                       {year}
                     </div>
-                    <div className="flex flex-col gap-2.5">
-                      {rows.map((row, i) => (
-                        <div key={i} className="flex gap-2.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 mt-[7px]" />
-                          <div className="min-w-0">
-                            <div className="text-xs font-mono text-gray-500 dark:text-gray-400">
-                              {row.exam} &middot; {row.question}
-                            </div>
-                            <div className="text-sm text-gray-800 dark:text-gray-200">
-                              {row.topic}
-                            </div>
+                    <div className="flex flex-col gap-5">
+                      {exams.map(exam => (
+                        <div key={exam}>
+                          <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">
+                            {exam}
+                          </div>
+                          <div className="flex flex-col gap-2.5">
+                            {rows.filter(r => r.exam === exam).map((row, i) => (
+                              <div key={i} className="flex gap-2.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 mt-[7px]" />
+                                <div className="min-w-0">
+                                  <div className="text-xs font-mono font-bold text-gray-700 dark:text-gray-300">
+                                    {row.question}
+                                  </div>
+                                  <div className="text-sm text-gray-800 dark:text-gray-200">
+                                    {row.topic}
+                                  </div>
+                                  {row.note && (
+                                    <div className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mt-1 space-y-1">
+                                      {row.note.split('\n').map((line, li) => (
+                                        <p key={li} className="m-0">{line}</p>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}

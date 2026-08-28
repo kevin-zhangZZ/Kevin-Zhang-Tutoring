@@ -3,6 +3,7 @@ import UnitCircle from './unit-circle'
 import SpeedMaths from './speed-maths'
 import MonteCarlo from './monte-carlo'
 import ExamSkipGuide from './exam-skip-guide'
+import ContactMe from './contact-me'
 
 export interface Tool {
   id: string
@@ -47,5 +48,13 @@ export const tools: Tool[] = [
     route: '/exam-skip-guide',
     component: ExamSkipGuide,
     icon: '📋',
+  },
+  {
+    id: 'contact-me',
+    name: 'Contact Me',
+    description: 'Get in touch by email, or scan to add me on WeChat.',
+    route: '/contact-me',
+    component: ContactMe,
+    icon: '✉️',
   },
 ]
