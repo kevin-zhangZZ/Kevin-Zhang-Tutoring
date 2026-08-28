@@ -50,13 +50,6 @@ export const guides: SubjectGuide[] = [
         where: 'Exam 2, often a multi-part calculus question',
       },
       {
-        title: 'Functional relations / functional equations',
-        confidence: 'skip',
-        detail:
-          'Stand-alone questions built around an abstract functional relation (e.g. showing a function satisfies f(x+y) = f(x)f(y) and using that to prove a property) were removed.',
-        where: 'Exam 1 or 2, Algebra section',
-      },
-      {
         title: 'Transition matrices (Markov chains)',
         confidence: 'skip',
         detail:
