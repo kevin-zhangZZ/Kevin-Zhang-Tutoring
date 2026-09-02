@@ -1,26 +1,15 @@
-// Question-by-question audit of 2014–2022 VCAA past exams.
+// Question-by-question audit of VCAA past exams.
 //
-// Methodology: downloaded every official VCAA exam PDF for 2014–2022 (Methods exam 1 & 2,
-// Specialist exam 1 & 2, Chemistry) directly from vcaa.vic.edu.au, extracted the text, and
-// searched it for language distinctive of each removed topic (e.g. "T: R2 -> R2" for matrix
-// transformations, "tension"/"equilibrium"/"pulley" for mechanics). Every row below was then
-// read in context to confirm the question actually is what the search suggests — this is a
-// text-search-and-verify pass, not a claim that every single question in every paper was
-// individually read. Treat it as a draft: re-check questions against the actual papers before
-// relying on it with students.
+// Every row below comes from the tutor's own question-by-question exam review (Aug 2026):
+// Methods and Specialist 2014–2017, and Chemistry 2016–2018. It also identified several
+// "still doable" workarounds — cases where a question looks like it needs removed content
+// (a matrix, a force/motion setup, an old technique/instrument) but can actually be solved by
+// translating it into non-matrix, non-mechanics, or otherwise current-syllabus terms. Those
+// workarounds are kept as a note on the relevant row.
 //
-// Methods was additionally cross-checked against itute.com's worked solutions for all 18
-// papers (2014–2022, exam 1 & 2) — reading the actual working, not just the question text,
-// surfaces matrix use the VCAA question wording alone doesn't (e.g. "transformed by" instead
-// of "transformation", or a plain-English probability question that itute solves with a
-// transition matrix). Two rows below (2014 Q4fg, 2015 Q18) and one correction (2019 Q9) came
-// from that pass specifically.
-//
-// 2014–2017 rows for both Methods and Specialist were revised again from the tutor's own
-// question-by-question exam review (Aug 2026), which also identified several "still doable"
-// workarounds — cases where a question looks like it needs removed content (a matrix, a
-// force/motion setup) but can actually be solved by translating it into non-matrix or
-// non-mechanics terms. Those workarounds are kept as a note on the relevant row.
+// Years not listed here haven't been reviewed yet — that's not a claim they're clean, just
+// that nobody has been through them question-by-question. Extend this file's `rows` (and, if
+// a whole new topic needs explaining, `data.ts`'s `items`) as more years get reviewed.
 
 export interface AuditRow {
   year: number
@@ -55,12 +44,6 @@ export const audits: SubjectAudit[] = [
       { year: 2016, exam: 'Exam 2', question: 'SAQ1e', topic: 'Matrix transformation', note: 'Doable if you read a as the dilation factor from the x-axis (negative if there’s also a reflection in the y-axis) and b as the vertical translation (positive = up, negative = down).' },
       { year: 2017, exam: 'Exam 2', question: 'MCQ 10', topic: 'Matrix transformation', note: 'Doable if you read the matrix as: dilation by factor 2 from the y-axis, then dilation by factor 1/3 from the x-axis.' },
       { year: 2017, exam: 'Exam 2', question: 'SAQ4a', topic: 'Matrix transformation', note: 'Doable if you read c as the horizontal translation (positive = right, negative = left) and d as the vertical translation (positive = up, negative = down).' },
-      { year: 2018, exam: 'Exam 2', question: 'Q20', topic: 'Matrix transformation', note: 'MCQ' },
-      { year: 2019, exam: 'Exam 1', question: 'Q2(c)', topic: 'Matrix transformation' },
-      { year: 2019, exam: 'Exam 2', question: 'Q9', topic: 'Matrix transformation', note: 'MCQ — question says "transformed by", not "transformation", which is why the first pass missed it' },
-      { year: 2019, exam: 'Exam 2', question: 'Section B Q3', topic: 'Matrix transformation', note: 'Later part of the question, after the calculus parts' },
-      { year: 2020, exam: 'Exam 2', question: 'Section B Q5(h)', topic: 'Matrix transformation' },
-      { year: 2022, exam: 'Exam 2', question: 'Section B Q2(e)', topic: 'Matrix transformation' },
     ],
     notFound: [
       {
@@ -99,22 +82,6 @@ export const audits: SubjectAudit[] = [
       { year: 2017, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis' },
       { year: 2017, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis' },
       { year: 2017, exam: 'Exam 2', question: 'SAQ3e', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
-      { year: 2018, exam: 'Exam 1', question: 'Q1', topic: 'Mechanics', note: 'Two masses connected over a pulley on an inclined plane' },
-      { year: 2018, exam: 'Exam 1', question: 'Q6', topic: 'Mechanics (force/mass DE)', note: 'Particle moves under a force F, position vector given — force/mass differential equation style' },
-      { year: 2018, exam: 'Exam 2', question: 'Q15, Q16', topic: 'Mechanics', note: 'MCQs — constant force on a particle; forces in equilibrium' },
-      { year: 2018, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics', note: 'Resistance force proportional to speed' },
-      { year: 2019, exam: 'Exam 1', question: 'Q9', topic: 'Mechanics', note: 'Mass hanging in equilibrium from a string' },
-      { year: 2019, exam: 'Exam 2', question: 'Q13, Q14, Q17', topic: 'Mechanics', note: 'MCQs — forces and acceleration, connected masses, coplanar forces in equilibrium' },
-      { year: 2019, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics', note: 'Masses connected by string over pulley on inclined plane — normal reaction, tension' },
-      { year: 2020, exam: 'Exam 1', question: 'Q1', topic: 'Mechanics', note: 'Normal reaction force on a mass' },
-      { year: 2020, exam: 'Exam 2', question: 'Q15, Q18', topic: 'Mechanics', note: 'MCQs — force components; string tension/equilibrium' },
-      { year: 2020, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics', note: 'Pulley system with opposing forces' },
-      { year: 2021, exam: 'Exam 1', question: 'Q1', topic: 'Mechanics' },
-      { year: 2021, exam: 'Exam 2', question: 'Q14, Q15', topic: 'Mechanics', note: 'MCQs — net force on a body; forces in equilibrium' },
-      { year: 2021, exam: 'Exam 2', question: 'Section B Q5', topic: 'Mechanics', note: 'Masses connected over frictionless pulleys' },
-      { year: 2022, exam: 'Exam 1', question: 'Q5', topic: 'Mechanics', note: 'Braking force on a body in motion' },
-      { year: 2022, exam: 'Exam 2', question: 'Q16, Q17', topic: 'Mechanics', note: 'MCQs — coplanar forces in equilibrium; momentum' },
-      { year: 2022, exam: 'Exam 2', question: 'Q20', topic: 'Mechanics', note: 'Pulley and mass system' },
     ],
     notFound: [
       {
@@ -129,7 +96,33 @@ export const audits: SubjectAudit[] = [
   },
   {
     id: 'chemistry',
-    rows: [],
+    rows: [
+      { year: 2016, exam: 'Exam', question: 'MCQ 1', topic: 'AAS, UV-Vis and GC' },
+      { year: 2016, exam: 'Exam', question: 'MCQ 5', topic: 'DNA complementary base pairing' },
+      { year: 2016, exam: 'Exam', question: 'MCQ 20', topic: 'Percentage ionisation of weak acids' },
+      { year: 2016, exam: 'Exam', question: 'MCQ 21', topic: 'Acidity constant (Ka)' },
+      { year: 2016, exam: 'Exam', question: 'Entire SAQ1', topic: 'Gas chromatography (GC)', note: 'No longer examined, but the theory is essentially the same as HPLC, which still is — doable if you treat this as an HPLC chromatogram.' },
+      { year: 2016, exam: 'Exam', question: 'SAQ3b', topic: 'Mono-/polyunsaturation of fatty acids' },
+      { year: 2016, exam: 'Exam', question: 'SAQ4d', topic: 'Condensation polymerisation' },
+      { year: 2016, exam: 'Exam', question: 'Entire SAQ6', topic: 'AAS (atomic absorption spectroscopy)', note: 'Technically doable, since it doesn’t directly examine AAS content — treat the calibration curve as you would for HPLC, and "absorbance" on the vertical axis as you would "peak area". For part (c), the first three exam-report options are also no longer on the study design, but you should still identify volumetric analysis (titration) as a possible technique.' },
+      { year: 2016, exam: 'Exam', question: 'SAQ7b', topic: 'Synthesis of aspirin', note: 'Used to require memorising a specific pathway — no longer required.' },
+      { year: 2017, exam: 'Exam', question: 'MCQ 8', topic: 'Coenzymes', note: 'Coenzymes and the shape-changing nature of enzymes aren’t examined anymore, but both options A and B are still true — option A (the lock-and-key model and inactive enantiomers) is what matters for the current study design.' },
+      { year: 2017, exam: 'Exam', question: 'MCQ 9', topic: 'Energy content of foods', note: 'Doable — food energy only comes from macronutrients (protein, fats, carbohydrates) using the Databook values; ignore dietary fibre and sodium, they don’t provide energy.' },
+      { year: 2017, exam: 'Exam', question: 'MCQ 12', topic: 'Oxidative rancidity' },
+      { year: 2017, exam: 'Exam', question: 'MCQ 16', topic: 'Vitamins' },
+      { year: 2017, exam: 'Exam', question: 'MCQ 25', topic: 'Glycaemic index (GI)' },
+      { year: 2017, exam: 'Exam', question: 'SAQ2', topic: 'Biodiesel energy content', note: 'Fully doable — the question supplies biodiesel’s energy content on page 18 because the old Databook didn’t include it (the current one does). A value given in the question always takes precedence over the Databook anyway.' },
+      { year: 2017, exam: 'Exam', question: 'SAQ3c', topic: 'Essential amino acids' },
+      { year: 2017, exam: 'Exam', question: 'SAQ7c', topic: 'Coenzymes' },
+      { year: 2018, exam: 'Exam', question: 'MCQ 2', topic: 'Aspartame (artificial sweeteners)' },
+      { year: 2018, exam: 'Exam', question: 'MCQ 5', topic: 'Coal seam gas (CSG)' },
+      { year: 2018, exam: 'Exam', question: 'MCQ 7', topic: 'Vitamins' },
+      { year: 2018, exam: 'Exam', question: 'MCQ 8', topic: 'Omega-3 fatty acids' },
+      { year: 2018, exam: 'Exam', question: 'MCQ 26', topic: 'Starch indicator' },
+      { year: 2018, exam: 'Exam', question: 'SAQ4b', topic: 'Coenzymes' },
+      { year: 2018, exam: 'Exam', question: 'SAQ4d', topic: 'Antioxidants' },
+      { year: 2018, exam: 'Exam', question: 'Entire SAQ10', topic: 'Metabolism of fats' },
+    ],
     notFound: [
       {
         topic: 'Alkynes',
