@@ -32,22 +32,21 @@ export const guides: SubjectGuide[] = [
     name: 'Mathematical Methods',
     currentSD: '2023–2027 study design',
     oldSD: '2016–2022 study design (papers 2014–2022)',
-    intro:
-      'Methods U3&4 didn’t change hugely, but a few whole question-types disappeared. Everything else below is fair game for practice.',
+    intro: '',
     items: [
       {
         title: 'Matrix transformations of graphs',
         confidence: 'skip',
         detail:
-          'Using a 2×2 matrix to describe a dilation/reflection/translation applied to a function’s graph was removed from Methods entirely (matrices for transformations are gone from the course).',
+          'Using a 2×2 matrix to describe a dilation/reflection/translation applied to a function’s graph was removed from Methods entirely (matrices for transformations are gone from the course). Several of these are still doable if you translate the matrix into plain-English transformations first — see the notes in the audit below.',
         where: 'Exam 1 or 2, usually a Functions/Algebra question',
       },
       {
-        title: 'Straight-line motion (kinematics)',
+        title: 'Modulus function/graph questions',
         confidence: 'skip',
         detail:
-          'Calculus-based rectilinear motion questions — given x(t), find v(t) and a(t), total distance travelled using |v(t)|, time of max speed, etc. — were removed from both Units 1&2 and Units 3&4.',
-        where: 'Exam 2, often a multi-part calculus question',
+          'Standalone questions built around the graph or algebra of an absolute-value (modulus) function — sketching |f(x)|, solving modulus equations, etc. — showed up repeatedly in 2014–2015 papers but don’t match how the current study design treats this content.',
+        where: 'Exam 2, Functions/Algebra section',
       },
       {
         title: 'Transition matrices (Markov chains)',
@@ -57,16 +56,11 @@ export const guides: SubjectGuide[] = [
         where: 'Exam 2, Probability section — usually the last part of a longer question',
       },
       {
-        title: '"Maximum rate of increase/decrease" questions',
-        confidence: 'note',
-        detail:
-          'The explicit "maximum rate of increase or decrease" phrasing was removed. Points of inflection are still examinable, but the second derivative is no longer required to justify them — so an old question that leans on second-derivative sign analysis for this may not match how it’d be asked now.',
-      },
-      {
         title: 'Area approximation using rectangles',
-        confidence: 'note',
+        confidence: 'skip',
         detail:
-          'Old papers approximate area under a curve with left/right-endpoint rectangles (Riemann sums). The current study design uses the trapezium rule instead — same underlying idea, different technique, so these questions are still useful for the concept but not for practicing the exact method now expected.',
+          'Old papers approximate area under a curve with left/right-endpoint rectangles (Riemann sums); the current study design uses the trapezium rule instead. Same underlying idea, different technique — worth understanding the concept, but don’t practice the exact rectangle method expected of you now.',
+        where: 'Exam 2, Calculus section',
       },
     ],
     sources: [
@@ -100,24 +94,11 @@ export const guides: SubjectGuide[] = [
         where: 'Exam 2 — almost always one of the longer extended-response questions',
       },
       {
-        title: 'Projectile motion / circular motion via vectors',
+        title: 'Arc length from a Cartesian curve',
         confidence: 'skip',
         detail:
-          'The vector-calculus treatment of projectile motion and circular motion (position/velocity/acceleration vectors as functions of time applied to a projectile or a particle moving in a circle) was explicitly removed, on top of the general Mechanics removal.',
-        where: 'Exam 2, Vectors section',
-      },
-      {
-        title: 'Force/mass-based differential equations',
-        confidence: 'skip',
-        detail:
-          'Differential equation questions that model a physical system via F = ma (e.g. resisted motion, a particle falling under gravity and drag) are gone, since they depended on Mechanics content that no longer exists.',
+          'Finding the arc length of a curve given in Cartesian form y = f(x), rather than as a vector/parametric curve, is no longer required — this specific technique was dropped even though arc length via vector functions is still examinable.',
         where: 'Exam 2, Calculus section',
-      },
-      {
-        title: 'Circle theorems / geometric proof (Units 1&2 carryover)',
-        confidence: 'note',
-        detail:
-          'Congruence, similarity, constructions and circle theorems were dropped, but this was Units 1&2 content — it never showed up in the U3&4 Exam 1/2 papers you’d be practicing from, so it doesn’t change what to skip in past exams.',
       },
     ],
     sources: [
@@ -148,6 +129,34 @@ export const guides: SubjectGuide[] = [
         confidence: 'skip',
         detail:
           'Alkynes were dropped from the list of organic compound classes course-wide — checked the current study design text directly and the word "alkyne" doesn’t appear anywhere in it, in Units 1&2 or 3&4. Skip any question specifically about alkyne structure, naming or reactions.',
+      },
+      {
+        title: 'Old instrumental-analysis techniques (AAS, GC)',
+        confidence: 'skip',
+        detail:
+          'Atomic absorption spectroscopy (AAS) and gas chromatography (GC) turn up as their own named techniques in 2016 questions but don’t appear this way in the current study design — best guess is this content got folded into (or replaced by) the current HPLC/UV-Vis-centred treatment of instrumental analysis, rather than removed outright. Several of these old questions are still doable if you translate them into HPLC terms — see the notes in the audit below.',
+        where: '2016 exam — MCQ and short-answer questions on AAS/GC',
+      },
+      {
+        title: 'Old-style nutrition & biomolecule content',
+        confidence: 'skip',
+        detail:
+          'A cluster of 2017–2018 questions on food energy content, fatty acid saturation, oxidative rancidity, vitamins, glycaemic index, essential amino acids, coenzymes, antioxidants and fat metabolism — best guess is this reflects an older, more detailed "nutrition" emphasis in Unit 4 that’s since been trimmed or reorganised. A few of these are still fully doable (energy calculations, biodiesel) — see the notes in the audit below for which.',
+        where: '2017–2018 exams — mostly MCQs, plus a couple of short-answer questions',
+      },
+      {
+        title: 'Synthesis of aspirin (specific pathway)',
+        confidence: 'skip',
+        detail:
+          'Used to require memorising a specific synthesis pathway for aspirin — no longer required by the current study design.',
+        where: '2016 exam, short-answer question',
+      },
+      {
+        title: 'Other one-off flagged questions',
+        confidence: 'skip',
+        detail:
+          'A handful of questions with no obvious shared theme, individually flagged as no longer matching the current course: DNA complementary base pairing, percentage ionisation of weak acids, acidity constants (Ka), condensation polymerisation, aspartame (artificial sweeteners), coal seam gas, and starch indicator.',
+        where: '2016 and 2018 exams',
       },
       {
         title: 'Acid–base titration to find an organic compound’s concentration',

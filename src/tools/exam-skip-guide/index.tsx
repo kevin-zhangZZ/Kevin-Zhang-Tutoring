@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { guides, CONFIDENCE_LABEL, type Confidence } from './data'
-import { audits } from './audit'
+import { audits, type AuditRow } from './audit'
 import { SkipIcon, NoteIcon, NewIcon } from './icons'
 
 const CONFIDENCE_ICON: Record<Confidence, (props: { className?: string }) => JSX.Element> = {
@@ -28,6 +28,12 @@ export default function ExamSkipGuide() {
   const guide = guides.find(g => g.id === subjectId)!
   const audit = audits.find(a => a.id === subjectId)!
   const years = Array.from(new Set(audit.rows.map(r => r.year))).sort((a, b) => a - b)
+
+  // Chemistry has one exam, so group its audit rows by question type instead of by exam.
+  const groupLabel = (row: AuditRow) =>
+    audit.id === 'chemistry'
+      ? (row.question.toUpperCase().includes('MCQ') ? 'Multiple Choice' : 'Short Answer')
+      : row.exam
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
@@ -57,11 +63,13 @@ export default function ExamSkipGuide() {
       </p>
 
       {/* Study design context */}
-      <div className="flex flex-wrap gap-x-8 gap-y-2 text-xs text-gray-500 dark:text-gray-400 mb-3">
+      <div className={`flex flex-wrap gap-x-8 gap-y-2 text-xs text-gray-500 dark:text-gray-400 ${guide.intro ? 'mb-3' : 'mb-10'}`}>
         <span><span className="font-semibold text-gray-700 dark:text-gray-300">Current</span>&ensp;{guide.currentSD}</span>
         <span><span className="font-semibold text-gray-700 dark:text-gray-300">2014&ndash;2022 papers used</span>&ensp;{guide.oldSD}</span>
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-2xl">{guide.intro}</p>
+      {guide.intro && (
+        <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-2xl">{guide.intro}</p>
+      )}
 
       {/* Topic cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
@@ -104,7 +112,7 @@ export default function ExamSkipGuide() {
           <div>
             {years.map((year, yi) => {
               const rows = audit.rows.filter(r => r.year === year)
-              const exams = Array.from(new Set(rows.map(r => r.exam)))
+              const groups = Array.from(new Set(rows.map(groupLabel)))
               const isLast = yi === years.length - 1
               return (
                 <div key={year} className="flex gap-5">
@@ -121,13 +129,13 @@ export default function ExamSkipGuide() {
                       {year}
                     </div>
                     <div className="flex flex-col gap-5">
-                      {exams.map(exam => (
-                        <div key={exam}>
+                      {groups.map(group => (
+                        <div key={group}>
                           <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">
-                            {exam}
+                            {group}
                           </div>
                           <div className="flex flex-col gap-2.5">
-                            {rows.filter(r => r.exam === exam).map((row, i) => (
+                            {rows.filter(r => groupLabel(r) === group).map((row, i) => (
                               <div key={i} className="flex gap-2.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 mt-[7px]" />
                                 <div className="min-w-0">

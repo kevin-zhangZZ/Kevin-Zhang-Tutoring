@@ -78,6 +78,8 @@ export default function Sidebar({ dark, onToggleDark, onClose }: SidebarProps) {
               `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive
                   ? 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
+                  : tool.id === 'contact-me'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/40 text-gray-600 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-emerald-950/70 hover:text-gray-900 dark:hover:text-white'
                   : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
               }`
             }
