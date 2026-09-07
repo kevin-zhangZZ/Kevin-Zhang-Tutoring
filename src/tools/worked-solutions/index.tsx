@@ -52,8 +52,8 @@ export default function WorkedSolutions() {
       <div className="flex gap-7 items-start flex-col lg:flex-row">
         {/* List panel */}
         <div className="w-full lg:w-[336px] flex-none bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 flex flex-col">
-          <div className="text-[11px] font-bold tracking-wider uppercase text-gray-400 dark:text-gray-500 mt-1.5 mb-2 ml-2">
-            {SUBJECT_NAME[subject].toUpperCase()} — {subjectQuestions.length} QUESTION{subjectQuestions.length === 1 ? '' : 'S'}
+          <div className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mt-1.5 mb-2 ml-2">
+            {SUBJECT_NAME[subject]} — {subjectQuestions.length} Question{subjectQuestions.length === 1 ? '' : 's'}
           </div>
 
           {years.length === 0 && (
@@ -92,7 +92,7 @@ export default function WorkedSolutions() {
                       if (typeQuestions.length === 0) return null
                       return (
                         <div key={type} className="flex flex-col gap-1">
-                          <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 px-3">
+                          <div className="text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 px-3">
                             {QUESTION_TYPE_LABEL[type]}
                           </div>
                           {typeQuestions.map(q => (
