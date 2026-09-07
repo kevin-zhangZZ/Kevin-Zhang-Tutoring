@@ -1,7 +1,6 @@
 import { ComponentType } from 'react'
 import UnitCircle from './unit-circle'
 import SpeedMaths from './speed-maths'
-import MonteCarlo from './monte-carlo'
 import ExamSkipGuide from './exam-skip-guide'
 import WorkedSolutions from './worked-solutions'
 import ContactMe from './contact-me'
@@ -34,14 +33,8 @@ export const tools: Tool[] = [
     component: SpeedMaths,
     icon: '⚡',
   },
-  {
-    id: 'monte-carlo',
-    name: 'Monte Carlo',
-    description: 'Use random sampling to estimate π, probabilities, and expected values — and watch the Law of Large Numbers in action.',
-    route: '/monte-carlo',
-    component: MonteCarlo,
-    icon: '🎲',
-  },
+  // Monte Carlo hidden from nav/routing for now — code kept at ./monte-carlo, unregister
+  // above and re-add this block to bring it back.
   {
     id: 'exam-skip-guide',
     name: 'Past Exam Skip Guide',
