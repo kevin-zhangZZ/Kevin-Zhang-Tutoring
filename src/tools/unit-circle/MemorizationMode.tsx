@@ -96,20 +96,20 @@ export default function MemorizationMode() {
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-2.5">
-              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider">Show Values</p>
+            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2.5">Show Values</p>
+            <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2.5">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5">
+                <Toggle checked={showSin} onChange={setShowSin} label="sin" accentColor={SIN_COLOR} />
+                <Toggle checked={showCos} onChange={setShowCos} label="cos" accentColor={COS_COLOR} />
+                <Toggle checked={showTan} onChange={setShowTan} label="tan" accentColor={TAN_COLOR} />
+                <Toggle checked={showDeg} onChange={setShowDeg} label="degrees" />
+              </div>
               <button
                 onClick={() => { setShowSin(false); setShowCos(false); setShowTan(false); setShowDeg(false) }}
                 className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
               >
                 Hide all
               </button>
-            </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-2.5">
-              <Toggle checked={showSin} onChange={setShowSin} label="sin" accentColor={SIN_COLOR} />
-              <Toggle checked={showCos} onChange={setShowCos} label="cos" accentColor={COS_COLOR} />
-              <Toggle checked={showTan} onChange={setShowTan} label="tan" accentColor={TAN_COLOR} />
-              <Toggle checked={showDeg} onChange={setShowDeg} label="degrees" />
             </div>
           </div>
         </div>
