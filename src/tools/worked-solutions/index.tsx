@@ -83,9 +83,6 @@ export default function WorkedSolutions() {
                     </svg>
                     <span className="font-display text-sm font-bold text-gray-900 dark:text-white">{year}</span>
                   </span>
-                  <span className="text-[10.5px] font-medium text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">
-                    {yearQuestions.length} q
-                  </span>
                 </button>
 
                 {isOpen && (
