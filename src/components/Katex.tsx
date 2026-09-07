@@ -20,5 +20,7 @@ export default function Katex({ tex, display = false, className = '' }: KatexPro
     }
   }, [tex, display])
 
-  return <span ref={ref} className={className} />
+  // Display-mode equations can render wider than their container (long vector/fraction
+  // chains); scroll them horizontally instead of silently clipping.
+  return <span ref={ref} className={display ? `block max-w-full overflow-x-auto ${className}` : className} />
 }

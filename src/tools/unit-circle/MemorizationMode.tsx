@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { angles } from './data'
+import { angles, shiftedAngleTex } from './data'
 import Katex from '../../components/Katex'
 
 type AngleRange = 'pos' | 'neg' | 'both'
@@ -14,7 +14,7 @@ const R  = 220          // circle radius
 const LABEL_R    = 254  // angle name label radius
 // 45°-family angles (π/4, 3π/4, 5π/4, 7π/4) are between two 15°-gap neighbours,
 // so we push their trig-value block further out to prevent overlap.
-const TRIG_R_STD = 305  // trig values radius — standard
+const TRIG_R_STD = 340  // trig values radius — standard
 const TRIG_R_45  = 395  // trig values radius — 45° family (pushed out)
 
 const SIN_COLOR = '#e879a0'
@@ -66,8 +66,8 @@ function Toggle({ checked, onChange, label, accentColor }: ToggleProps) {
 
 export default function MemorizationMode() {
   const [range,   setRange]   = useState<AngleRange>('pos')
-  const [showSin, setShowSin] = useState(true)
-  const [showCos, setShowCos] = useState(true)
+  const [showSin, setShowSin] = useState(false)
+  const [showCos, setShowCos] = useState(false)
   const [showTan, setShowTan] = useState(false)
   const [showDeg, setShowDeg] = useState(false)
 
@@ -79,7 +79,7 @@ export default function MemorizationMode() {
       <div className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-5">
         <div className="flex flex-wrap gap-6 items-start">
           <div>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Angle Range</p>
+            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2.5">Angle Range</p>
             <div className="flex gap-1">
               {(['pos', 'neg', 'both'] as AngleRange[]).map(opt => (
                 <button key={opt} onClick={() => setRange(opt)}
@@ -96,12 +96,20 @@ export default function MemorizationMode() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Show Values</p>
-            <div className="flex flex-wrap gap-x-5 gap-y-2.5">
-              <Toggle checked={showSin} onChange={setShowSin} label="sin" accentColor={SIN_COLOR} />
-              <Toggle checked={showCos} onChange={setShowCos} label="cos" accentColor={COS_COLOR} />
-              <Toggle checked={showTan} onChange={setShowTan} label="tan" accentColor={TAN_COLOR} />
-              <Toggle checked={showDeg} onChange={setShowDeg} label="degrees" />
+            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2.5">Show Values</p>
+            <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2.5">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5">
+                <Toggle checked={showSin} onChange={setShowSin} label="sin" accentColor={SIN_COLOR} />
+                <Toggle checked={showCos} onChange={setShowCos} label="cos" accentColor={COS_COLOR} />
+                <Toggle checked={showTan} onChange={setShowTan} label="tan" accentColor={TAN_COLOR} />
+                <Toggle checked={showDeg} onChange={setShowDeg} label="degrees" />
+              </div>
+              <button
+                onClick={() => { setShowSin(false); setShowCos(false); setShowTan(false); setShowDeg(false) }}
+                className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              >
+                Hide all
+              </button>
             </div>
           </div>
         </div>
@@ -109,8 +117,9 @@ export default function MemorizationMode() {
 
       {/* Circle — SVG for geometry, HTML divs for labels */}
       <div className="w-full max-w-3xl">
-        {/* Outer padding lets edge labels breathe */}
-        <div className="px-14 py-12">
+        {/* Outer padding lets edge labels breathe — tighter on mobile so the
+            circle itself gets more of the narrow viewport. */}
+        <div className="px-4 py-6 sm:px-14 sm:py-12">
           <div className="relative" style={{ aspectRatio: '1', overflow: 'visible' }}>
 
             {/* ── SVG layer (circle, axes, dots) ── */}
@@ -177,23 +186,30 @@ export default function MemorizationMode() {
                 <div key={i}>
                   {/* Angle / degree label */}
                   <div
-                    className="absolute pointer-events-none select-none text-center leading-tight"
+                    className="absolute pointer-events-none select-none text-center leading-tight text-[10px] sm:text-[13px]"
                     style={{
                       left: pct(alx), top: pct(aly),
                       transform: 'translate(-50%, -50%)',
-                      fontSize: '13px',
                     }}
                   >
                     {range !== 'neg' && (
-                      <div className="text-gray-800 dark:text-gray-200">{a.radLabel}</div>
+                      <div className="text-gray-800 dark:text-gray-200" style={{ marginBottom: range === 'both' ? '6px' : undefined }}>
+                        <Katex tex={shiftedAngleTex(a.piN, a.piD, 0)} />
+                        {/* The 0 point is also the end of a full turn — label it 2π too. */}
+                        {a.piN === 0 && (
+                          <div className="text-gray-500 dark:text-gray-400 text-[9px] sm:text-[12px]">
+                            <Katex tex="2\pi" />
+                          </div>
+                        )}
+                      </div>
                     )}
                     {range !== 'pos' && (
-                      <div className="text-gray-500 dark:text-gray-400" style={{ fontSize: '12px' }}>
-                        {a.negRadLabel}
+                      <div className="text-gray-500 dark:text-gray-400 text-[9px] sm:text-[12px]">
+                        <Katex tex={shiftedAngleTex(a.piN, a.piD, -1)} />
                       </div>
                     )}
                     {showDeg && (
-                      <div className="text-gray-400 dark:text-gray-500" style={{ fontSize: '11px' }}>
+                      <div className="text-gray-400 dark:text-gray-500 text-[8.5px] sm:text-[11px]">
                         {a.degLabel}
                       </div>
                     )}
@@ -202,11 +218,10 @@ export default function MemorizationMode() {
                   {/* Trig values block */}
                   {hasTrig && (
                     <div
-                      className="absolute pointer-events-none select-none text-center"
+                      className="absolute pointer-events-none select-none text-center text-[10px] sm:text-[13px]"
                       style={{
                         left: pct(tlx), top: pct(tly),
                         transform: 'translate(-50%, -50%)',
-                        fontSize: '13px',
                         lineHeight: '1',
                       }}
                     >

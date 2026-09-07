@@ -68,10 +68,11 @@ const DIFF_META: Record<Difficulty, { label: string; active: string; idle: strin
   },
 }
 
-// ── Range display variants ────────────────────────────────────────────────────
+// ── Range display ─────────────────────────────────────────────────────────────
 
-// Design 1 — Spec card: labelled table rows inside a subtle card
-function RangeDisplayA({ d }: { d: Difficulty }) {
+// Labelled table rows inside a subtle card, showing the number ranges for the
+// selected difficulty's +/− and ×/÷ questions.
+function RangeDisplay({ d }: { d: Difficulty }) {
   const r = RANGE_CONFIGS[d]
   return (
     <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 overflow-hidden">
@@ -82,44 +83,6 @@ function RangeDisplayA({ d }: { d: Difficulty }) {
         <div key={row.sym} className={`flex items-center gap-5 px-5 py-3 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}>
           <span className="w-16 text-xs font-bold text-gray-400 dark:text-gray-500 tracking-widest">{row.sym}</span>
           <span className="font-mono text-sm text-gray-700 dark:text-gray-300">{row.range}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// Design 2 — Inline caption: no box, just quiet text directly below the buttons
-function RangeDisplayB({ d }: { d: Difficulty }) {
-  const r = RANGE_CONFIGS[d]
-  return (
-    <div className="flex flex-col gap-1.5 px-1">
-      <div className="flex items-baseline gap-3 text-sm">
-        <span className="w-8 font-semibold text-gray-400 dark:text-gray-500 text-xs tracking-wide">+/−</span>
-        <span className="font-mono text-gray-600 dark:text-gray-400">{r.addMin1} – {r.addMax1}</span>
-      </div>
-      <div className="flex items-baseline gap-3 text-sm">
-        <span className="w-8 font-semibold text-gray-400 dark:text-gray-500 text-xs tracking-wide">×/÷</span>
-        <span className="font-mono text-gray-600 dark:text-gray-400">{r.mulMin1}–{r.mulMax1} &nbsp;×&nbsp; {r.mulMin2}–{r.mulMax2}</span>
-      </div>
-    </div>
-  )
-}
-
-// Design 3 — Chip row: each operation as its own pill badge
-function RangeDisplayC({ d }: { d: Difficulty }) {
-  const r = RANGE_CONFIGS[d]
-  const chips = [
-    { op: '+', range: `${r.addMin1} – ${r.addMax1}` },
-    { op: '−', range: `${r.addMin1} – ${r.addMax1}` },
-    { op: '×', range: `${r.mulMin1}–${r.mulMax1} × ${r.mulMin2}–${r.mulMax2}` },
-    { op: '÷', range: `${r.mulMin1}–${r.mulMax1} × ${r.mulMin2}–${r.mulMax2}` },
-  ]
-  return (
-    <div className="flex flex-wrap gap-2">
-      {chips.map(c => (
-        <div key={c.op} className="flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2">
-          <span className="text-sm font-bold text-gray-500 dark:text-gray-400 w-3.5 text-center">{c.op}</span>
-          <span className="font-mono text-xs text-gray-600 dark:text-gray-400">{c.range}</span>
         </div>
       ))}
     </div>
@@ -163,9 +126,8 @@ function SettingsScreen({
 }: {
   onStart: (cfg: Config, difficulty: Difficulty) => void
 }) {
-  const [difficulty,    setDifficulty]    = useState<Difficulty>('easy')
-  const [duration,      setDuration]      = useState(120)
-  const [designVariant, setDesignVariant] = useState<1 | 2 | 3>(1)
+  const [difficulty, setDifficulty] = useState<Difficulty>('easy')
+  const [duration,   setDuration]   = useState(120)
 
   const handleStart = () => {
     onStart({ ...RANGE_CONFIGS[difficulty], duration }, difficulty)
@@ -173,24 +135,6 @@ function SettingsScreen({
 
   return (
     <div className="flex flex-col gap-6">
-
-      {/* ── Temporary design switcher (remove before deploy) ── */}
-      <div className="flex items-center gap-3 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2">
-        <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">Range display:</span>
-        {([1, 2, 3] as const).map(n => (
-          <button
-            key={n}
-            onClick={() => setDesignVariant(n)}
-            className={`px-2.5 py-0.5 rounded text-xs font-semibold transition-colors ${
-              designVariant === n
-                ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'
-                : 'text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'
-            }`}
-          >
-            {n}
-          </button>
-        ))}
-      </div>
 
       {/* Difficulty cards */}
       <div className="flex flex-col gap-3">
@@ -212,9 +156,7 @@ function SettingsScreen({
 
         {/* Range info — displayed separately, below the cards */}
         <div>
-          {designVariant === 1 && <RangeDisplayA d={difficulty} />}
-          {designVariant === 2 && <RangeDisplayB d={difficulty} />}
-          {designVariant === 3 && <RangeDisplayC d={difficulty} />}
+          <RangeDisplay d={difficulty} />
         </div>
       </div>
 
