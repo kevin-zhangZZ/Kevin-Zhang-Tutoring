@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { angles } from './data'
+import { angles, shiftedAngleTex } from './data'
 import Katex from '../../components/Katex'
 
 type AngleRange = 'pos' | 'neg' | 'both'
@@ -66,8 +66,8 @@ function Toggle({ checked, onChange, label, accentColor }: ToggleProps) {
 
 export default function MemorizationMode() {
   const [range,   setRange]   = useState<AngleRange>('pos')
-  const [showSin, setShowSin] = useState(true)
-  const [showCos, setShowCos] = useState(true)
+  const [showSin, setShowSin] = useState(false)
+  const [showCos, setShowCos] = useState(false)
   const [showTan, setShowTan] = useState(false)
   const [showDeg, setShowDeg] = useState(false)
 
@@ -96,7 +96,15 @@ export default function MemorizationMode() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Show Values</p>
+            <div className="flex items-center justify-between mb-2.5">
+              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Show Values</p>
+              <button
+                onClick={() => { setShowSin(false); setShowCos(false); setShowTan(false); setShowDeg(false) }}
+                className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              >
+                Hide all
+              </button>
+            </div>
             <div className="flex flex-wrap gap-x-5 gap-y-2.5">
               <Toggle checked={showSin} onChange={setShowSin} label="sin" accentColor={SIN_COLOR} />
               <Toggle checked={showCos} onChange={setShowCos} label="cos" accentColor={COS_COLOR} />
@@ -185,11 +193,13 @@ export default function MemorizationMode() {
                     }}
                   >
                     {range !== 'neg' && (
-                      <div className="text-gray-800 dark:text-gray-200">{a.radLabel}</div>
+                      <div className="text-gray-800 dark:text-gray-200">
+                        <Katex tex={shiftedAngleTex(a.piN, a.piD, 0)} />
+                      </div>
                     )}
                     {range !== 'pos' && (
                       <div className="text-gray-500 dark:text-gray-400" style={{ fontSize: '12px' }}>
-                        {a.negRadLabel}
+                        <Katex tex={shiftedAngleTex(a.piN, a.piD, -1)} />
                       </div>
                     )}
                     {showDeg && (
