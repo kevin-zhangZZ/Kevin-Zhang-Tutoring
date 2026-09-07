@@ -1,4 +1,4 @@
-// 2015 Specialist Mathematics — Exam 2, MCQ 6.
+// 2016 Specialist Mathematics — Exam 2, MCQ 6.
 // Complex numbers: which statement about the Argand-diagram parallelogram is not true?
 
 import { useState, ReactNode } from 'react'
