@@ -3,6 +3,7 @@ import UnitCircle from './unit-circle'
 import SpeedMaths from './speed-maths'
 import MonteCarlo from './monte-carlo'
 import ExamSkipGuide from './exam-skip-guide'
+import WorkedSolutions from './worked-solutions'
 import ContactMe from './contact-me'
 
 export interface Tool {
@@ -48,6 +49,14 @@ export const tools: Tool[] = [
     route: '/exam-skip-guide',
     component: ExamSkipGuide,
     icon: '📋',
+  },
+  {
+    id: 'worked-solutions',
+    name: 'Worked Solutions & Videos',
+    description: 'Full written steps and video walkthroughs for the hardest Methods, Specialist, and Chemistry past-exam questions, grouped by year.',
+    route: '/worked-solutions',
+    component: WorkedSolutions,
+    icon: '🎬',
   },
   {
     id: 'contact-me',
