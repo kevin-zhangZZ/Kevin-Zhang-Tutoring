@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import Sidebar from './Sidebar'
+import { useState, useEffect } from 'react'
+import Sidebar, { NavLinks } from './Sidebar'
 
 interface LayoutProps {
   dark: boolean
@@ -8,44 +8,39 @@ interface LayoutProps {
 }
 
 export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [collapsed, setCollapsed] = useState<boolean>(() => localStorage.getItem('sidebarCollapsed') === 'true')
+
+  useEffect(() => {
+    localStorage.setItem('sidebarCollapsed', String(collapsed))
+  }, [collapsed])
 
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Desktop sidebar */}
+      {/* Desktop sidebar — collapsible to an icon-only rail */}
       <div className="hidden md:flex">
-        <Sidebar dark={dark} onToggleDark={onToggleDark} />
+        <Sidebar dark={dark} onToggleDark={onToggleDark} collapsed={collapsed} onToggleCollapse={() => setCollapsed(c => !c)} />
       </div>
-
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div className="fixed inset-0 z-40 flex md:hidden">
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm"
-            onClick={() => setSidebarOpen(false)}
-          />
-          <div className="relative z-50 flex">
-            <Sidebar
-              dark={dark}
-              onToggleDark={onToggleDark}
-              onClose={() => setSidebarOpen(false)}
-            />
-          </div>
-        </div>
-      )}
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Mobile top bar */}
-        <header className="flex md:hidden items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+        <header className="flex-shrink-0 flex md:hidden items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <button
-            onClick={() => setSidebarOpen(true)}
-            aria-label="Open sidebar"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
             className="p-1.5 rounded-md text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
+            {menuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+              </svg>
+            )}
           </button>
           <span className="font-semibold text-sm text-gray-900 dark:text-white">Math Practice</span>
           <button
@@ -64,6 +59,16 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
             )}
           </button>
         </header>
+
+        {/* Mobile nav — a dropdown banner that expands below the top bar, pushing
+            content down (not an overlay), and collapses back on link tap. */}
+        {menuOpen && (
+          <nav className="flex-shrink-0 md:hidden border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 max-h-[70vh] overflow-y-auto">
+            <div className="py-2 px-3">
+              <NavLinks onNavigate={() => setMenuOpen(false)} />
+            </div>
+          </nav>
+        )}
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto">
