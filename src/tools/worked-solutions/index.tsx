@@ -26,7 +26,7 @@ export default function WorkedSolutions() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10">
+    <div className="px-6 py-10">
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
