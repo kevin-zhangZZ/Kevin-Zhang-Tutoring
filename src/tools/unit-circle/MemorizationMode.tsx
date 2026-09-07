@@ -79,7 +79,7 @@ export default function MemorizationMode() {
       <div className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-5">
         <div className="flex flex-wrap gap-6 items-start">
           <div>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2.5">Angle Range</p>
+            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2.5">Angle range</p>
             <div className="flex gap-1">
               {(['pos', 'neg', 'both'] as AngleRange[]).map(opt => (
                 <button key={opt} onClick={() => setRange(opt)}
@@ -97,7 +97,7 @@ export default function MemorizationMode() {
 
           <div>
             <div className="flex items-center justify-between mb-2.5">
-              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Show Values</p>
+              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider">Show values</p>
               <button
                 onClick={() => { setShowSin(false); setShowCos(false); setShowTan(false); setShowDeg(false) }}
                 className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
