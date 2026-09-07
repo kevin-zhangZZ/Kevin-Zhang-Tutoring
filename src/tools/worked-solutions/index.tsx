@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, type SubjectId, type QuestionMeta } from './data'
+import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, QUESTION_TYPE_LABEL, type SubjectId, type QuestionMeta, type QuestionType } from './data'
 import { QUESTION_DETAILS } from './details'
 import ComingSoon from './ComingSoon'
 
@@ -87,10 +87,21 @@ export default function WorkedSolutions() {
                 </button>
 
                 {isOpen && (
-                  <div className="flex flex-col gap-1 pt-0.5 pb-2 pl-6">
-                    {yearQuestions.map(q => (
-                      <QuestionRow key={q.id} question={q} selected={q.id === selectedId} onSelect={() => setSelectedId(q.id)} />
-                    ))}
+                  <div className="flex flex-col gap-3 pt-0.5 pb-2 pl-6">
+                    {(['mc', 'sa'] as QuestionType[]).map(type => {
+                      const typeQuestions = yearQuestions.filter(q => q.type === type)
+                      if (typeQuestions.length === 0) return null
+                      return (
+                        <div key={type} className="flex flex-col gap-1">
+                          <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 px-3">
+                            {QUESTION_TYPE_LABEL[type]}
+                          </div>
+                          {typeQuestions.map(q => (
+                            <QuestionRow key={q.id} question={q} selected={q.id === selectedId} onSelect={() => setSelectedId(q.id)} />
+                          ))}
+                        </div>
+                      )
+                    })}
                   </div>
                 )}
               </div>

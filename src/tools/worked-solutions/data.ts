@@ -12,6 +12,8 @@ export interface SubjectInfo {
   label: string
 }
 
+export type QuestionType = 'mc' | 'sa'
+
 export interface QuestionMeta {
   id: string
   subject: SubjectId
@@ -19,8 +21,15 @@ export interface QuestionMeta {
   exam: string
   code: string
   topic: string
+  /** Multiple choice vs short answer/extended response — used to section the list by type. */
+  type: QuestionType
   /** True once a written worked solution exists for this question (see `details.tsx`). */
   hasDetail: boolean
+}
+
+export const QUESTION_TYPE_LABEL: Record<QuestionType, string> = {
+  mc: 'Multiple Choice',
+  sa: 'Short Answer',
 }
 
 export const SUBJECTS: SubjectInfo[] = [
@@ -55,12 +64,12 @@ export const SUBJECT_COLOR: Record<SubjectId, { text: string; bg: string; border
 }
 
 export const QUESTIONS: QuestionMeta[] = [
-  { id: 'spec-mcq6', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — Argand diagram parallelogram', hasDetail: true },
-  { id: 'spec-q2-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Complex numbers — line and circle loci in the Argand plane', hasDetail: true },
-  { id: 'spec-saq3', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'SAQ 3(a–e)', topic: 'Differential equations — rates of mixing (two-tank problem)', hasDetail: true },
-  { id: 'spec-q4-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — relative position, collision, and minimum distance', hasDetail: true },
-  { id: 'meth-saq4', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'SAQ 4(a–b)', topic: 'Calculus — optimisation with a log function', hasDetail: false },
-  { id: 'meth-q9', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q9', topic: 'Circular functions — trig identities', hasDetail: false },
-  { id: 'chem-titration', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'Section B Q5(a–c)', topic: 'Volumetric analysis — titration calculations', hasDetail: false },
-  { id: 'chem-redox', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 12', topic: 'Redox reactions — half-equations', hasDetail: false },
+  { id: 'spec-mcq6', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — Argand diagram parallelogram', type: 'mc', hasDetail: true },
+  { id: 'spec-q2-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Complex numbers — line and circle loci in the Argand plane', type: 'sa', hasDetail: true },
+  { id: 'spec-saq3', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'SAQ 3(a–e)', topic: 'Differential equations — rates of mixing (two-tank problem)', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — relative position, collision, and minimum distance', type: 'sa', hasDetail: true },
+  { id: 'meth-saq4', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'SAQ 4(a–b)', topic: 'Calculus — optimisation with a log function', type: 'sa', hasDetail: false },
+  { id: 'meth-q9', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q9', topic: 'Circular functions — trig identities', type: 'sa', hasDetail: false },
+  { id: 'chem-titration', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'Section B Q5(a–c)', topic: 'Volumetric analysis — titration calculations', type: 'sa', hasDetail: false },
+  { id: 'chem-redox', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 12', topic: 'Redox reactions — half-equations', type: 'mc', hasDetail: false },
 ]
