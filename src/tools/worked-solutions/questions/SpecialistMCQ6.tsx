@@ -2,6 +2,7 @@
 // Complex numbers: which statement about the Argand-diagram parallelogram is not true?
 
 import { useState, ReactNode } from 'react'
+import Katex from '../../../components/Katex'
 
 type Tab = 'solution' | 'video'
 
@@ -11,9 +12,16 @@ export default function SpecialistMCQ6() {
   return (
     <div>
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 mb-6">
-        The points corresponding to the four complex numbers z<sub>1</sub> = 2&nbsp;cis(π/3), z<sub>2</sub> = cis(3π/4),
-        z<sub>3</sub> = 2&nbsp;cis(−2π/3), z<sub>4</sub> = cis(−π/4) are the vertices of a parallelogram in the complex
-        plane. Which one of the following statements is <strong className="text-gray-900 dark:text-white">not</strong> true?
+        <p className="mb-2">The points corresponding to the four complex numbers</p>
+        <Katex
+          display
+          tex="z_1 = 2\,\mathrm{cis}\!\left(\dfrac{\pi}{3}\right), \quad z_2 = \mathrm{cis}\!\left(\dfrac{3\pi}{4}\right), \quad z_3 = 2\,\mathrm{cis}\!\left(-\dfrac{2\pi}{3}\right), \quad z_4 = \mathrm{cis}\!\left(-\dfrac{\pi}{4}\right)"
+          className="my-2"
+        />
+        <p>
+          are the vertices of a parallelogram in the complex plane. Which one of the following statements is{' '}
+          <strong className="text-gray-900 dark:text-white">not</strong> true?
+        </p>
       </div>
 
       <div className="flex gap-6 mb-6 flex-col sm:flex-row">
@@ -21,16 +29,22 @@ export default function SpecialistMCQ6() {
           <ArgandDiagram />
         </div>
         <div className="flex-1 flex flex-col gap-2">
-          <Option letter="A" correct text="The acute angle between the diagonals of the parallelogram is 5π/12." />
-          <Option letter="B" correct text="The diagonals of the parallelogram have lengths 2 and 4." />
-          <Option
-            letter="C"
-            correct={false}
-            text="If z1, z2, z3 and z4 are four solutions of a polynomial equation, then the polynomial equation must have the form zⁿ + a = 0."
-            flag="Not true — this is the answer"
-          />
-          <Option letter="D" correct text="z1 + z2 = −z3 − z4" />
-          <Option letter="E" correct text="1 ≤ |z| ≤ 2 for all four of z1, z2, z3, z4." />
+          <Option letter="A" correct>
+            The acute angle between the diagonals of the parallelogram is <Katex tex="\tfrac{5\pi}{12}" />.
+          </Option>
+          <Option letter="B" correct>
+            The diagonals of the parallelogram have lengths 2 and 4.
+          </Option>
+          <Option letter="C" correct={false} flag="Not true — this is the answer">
+            If <Katex tex="z_1, z_2, z_3" /> and <Katex tex="z_4" /> are four solutions of a polynomial equation, then
+            the polynomial equation must have the form <Katex tex="z^n + a = 0" />.
+          </Option>
+          <Option letter="D" correct>
+            <Katex tex="z_1 + z_2 = -z_3 - z_4" />
+          </Option>
+          <Option letter="E" correct>
+            <Katex tex="1 \le |z| \le 2" /> for all four of <Katex tex="z_1, z_2, z_3, z_4" />.
+          </Option>
         </div>
       </div>
 
@@ -40,23 +54,32 @@ export default function SpecialistMCQ6() {
       </div>
 
       {tab === 'solution' ? (
-        <ol className="flex flex-col gap-3.5 list-none p-0 m-0">
+        <ol className="flex flex-col gap-4 list-none p-0 m-0">
           <Step n={1}>
-            The diagonals run z2→z4 and z1→z3. <b>arg(z1) − arg(z2) = π/3 − 3π/4 = −5π/12</b>, so the acute angle
-            between them is 5π/12 — <b>A is true</b>.
+            The diagonals run <Katex tex="z_2 \to z_4" /> and <Katex tex="z_1 \to z_3" />:
+            <Katex
+              display
+              tex="\arg(z_1) - \arg(z_2) = \frac{\pi}{3} - \frac{3\pi}{4} = -\frac{5\pi}{12}"
+              className="my-2"
+            />
+            so the acute angle between them is <Katex tex="\tfrac{5\pi}{12}" /> — <b>A is true</b>.
           </Step>
           <Step n={2}>
-            |z1| = |z3| = 2 and |z2| = |z4| = 1, so the diagonals have lengths 2|z1| = 4 and 2|z2| = 2 — <b>B is true</b>.
+            <Katex tex="|z_1| = |z_3| = 2" /> and <Katex tex="|z_2| = |z_4| = 1" />, so the diagonals have lengths{' '}
+            <Katex tex="2|z_1| = 4" /> and <Katex tex="2|z_2| = 2" /> — <b>B is true</b>.
           </Step>
           <Step n={3}>
-            z3 = −z1 and z4 = −z2 (same modulus, angle shifted by π), so z1 + z2 = −z3 − z4 holds for <i>any</i>{' '}
-            parallelogram like this — <b>D is true</b>, sub in and check.
+            <Katex tex="z_3 = -z_1" /> and <Katex tex="z_4 = -z_2" /> (same modulus, angle shifted by <Katex tex="\pi" />
+            ), so <Katex tex="z_1 + z_2 = -z_3 - z_4" /> holds for <i>any</i> parallelogram like this — <b>D is true</b>,
+            sub in and check.
           </Step>
           <Step n={4}>
-            |z1| = |z3| = 2 and |z2| = |z4| = 1, so 1 ≤ |z| ≤ 2 for all four — <b>E is true</b>.
+            <Katex tex="|z_1| = |z_3| = 2" /> and <Katex tex="|z_2| = |z_4| = 1" />, so <Katex tex="1 \le |z| \le 2" />{' '}
+            for all four — <b>E is true</b>.
           </Step>
-          <Step n={5}>
-            For roots of zⁿ + a = 0, every root must share the <i>same</i> modulus |a|^(1/n) — but here |z1| = 2 ≠ 1 = |z2|.{' '}
+          <Step n={5} final>
+            For roots of <Katex tex="z^n + a = 0" />, every root must share the <i>same</i> modulus{' '}
+            <Katex tex="|a|^{1/n}" /> — but here <Katex tex="|z_1| = 2 \ne 1 = |z_2|" />.{' '}
             <b>C is not true — that's the answer.</b>
           </Step>
         </ol>
@@ -69,7 +92,7 @@ export default function SpecialistMCQ6() {
   )
 }
 
-function Option({ letter, text, correct, flag }: { letter: string; text: string; correct: boolean; flag?: string }) {
+function Option({ letter, children, correct, flag }: { letter: string; children: ReactNode; correct: boolean; flag?: string }) {
   return (
     <div
       className={`flex gap-2.5 items-start px-3 py-2.5 rounded-xl border ${
@@ -88,7 +111,7 @@ function Option({ letter, text, correct, flag }: { letter: string; text: string;
         {letter}
       </span>
       <div>
-        <span className="text-[13.5px] text-gray-700 dark:text-gray-300 leading-snug">{text}</span>
+        <span className="text-[13.5px] text-gray-700 dark:text-gray-300 leading-snug">{children}</span>
         {flag && <div className="text-[11px] font-semibold text-rose-700 dark:text-rose-400 mt-1">{flag}</div>}
       </div>
     </div>
@@ -110,13 +133,17 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
   )
 }
 
-function Step({ n, children }: { n: number; children: ReactNode }) {
+function Step({ n, final, children }: { n: number; final?: boolean; children: ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="flex-none w-[22px] h-[22px] rounded-full bg-sky-500 text-white font-display text-xs font-bold flex items-center justify-center mt-0.5">
+      <span
+        className={`flex-none w-[22px] h-[22px] rounded-full text-white font-display text-xs font-bold flex items-center justify-center mt-0.5 ${
+          final ? 'bg-emerald-500' : 'bg-sky-500'
+        }`}
+      >
         {n}
       </span>
-      <span className="text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300">{children}</span>
+      <div className="text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300 flex-1 min-w-0">{children}</div>
     </li>
   )
 }
@@ -136,10 +163,10 @@ function ArgandDiagram() {
       <circle cx={88.18} cy={88.18} r={4.5} fill="#f97316" />
       <circle cx={75} cy={197.94} r={4.5} fill="#f97316" />
       <circle cx={151.82} cy={151.82} r={4.5} fill="#f97316" />
-      <text x={170} y={38} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z1</text>
-      <text x={56} y={84} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z2</text>
-      <text x={48} y={207} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z3</text>
-      <text x={157} y={165} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z4</text>
+      <text x={170} y={38} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₁</text>
+      <text x={56} y={84} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₂</text>
+      <text x={48} y={207} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₃</text>
+      <text x={157} y={165} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₄</text>
       <path d="M 133 106 A 17 17 0 0 1 123 129" fill="none" stroke="#ef4444" strokeWidth={1.5} />
       <text x={136} y={110} fontSize={10} className="fill-rose-600 dark:fill-rose-400">5π/12</text>
     </svg>
