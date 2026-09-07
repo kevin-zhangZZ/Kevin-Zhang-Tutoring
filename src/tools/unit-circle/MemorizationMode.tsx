@@ -195,6 +195,12 @@ export default function MemorizationMode() {
                     {range !== 'neg' && (
                       <div className="text-gray-800 dark:text-gray-200" style={{ marginBottom: range === 'both' ? '6px' : undefined }}>
                         <Katex tex={shiftedAngleTex(a.piN, a.piD, 0)} />
+                        {/* The 0 point is also the end of a full turn — label it 2π too. */}
+                        {a.piN === 0 && (
+                          <div className="text-gray-500 dark:text-gray-400" style={{ fontSize: '12px' }}>
+                            <Katex tex="2\pi" />
+                          </div>
+                        )}
                       </div>
                     )}
                     {range !== 'pos' && (
