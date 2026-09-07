@@ -193,7 +193,7 @@ export default function MemorizationMode() {
                     }}
                   >
                     {range !== 'neg' && (
-                      <div className="text-gray-800 dark:text-gray-200">
+                      <div className="text-gray-800 dark:text-gray-200" style={{ marginBottom: range === 'both' ? '6px' : undefined }}>
                         <Katex tex={shiftedAngleTex(a.piN, a.piD, 0)} />
                       </div>
                     )}
