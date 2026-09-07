@@ -29,20 +29,20 @@ export default function SpecialistMCQ6() {
           <ArgandDiagram />
         </div>
         <div className="flex-1 flex flex-col gap-2">
-          <Option letter="A" correct>
+          <Option letter="A">
             The acute angle between the diagonals of the parallelogram is <Katex tex="\tfrac{5\pi}{12}" />.
           </Option>
-          <Option letter="B" correct>
+          <Option letter="B">
             The diagonals of the parallelogram have lengths 2 and 4.
           </Option>
-          <Option letter="C" correct={false} flag="Not true — this is the answer">
+          <Option letter="C" isAnswer>
             If <Katex tex="z_1, z_2, z_3" /> and <Katex tex="z_4" /> are four solutions of a polynomial equation, then
             the polynomial equation must have the form <Katex tex="z^n + a = 0" />.
           </Option>
-          <Option letter="D" correct>
+          <Option letter="D">
             <Katex tex="z_1 + z_2 = -z_3 - z_4" />
           </Option>
-          <Option letter="E" correct>
+          <Option letter="E">
             <Katex tex="1 \le |z| \le 2" /> for all four of <Katex tex="z_1, z_2, z_3, z_4" />.
           </Option>
         </div>
@@ -92,27 +92,29 @@ export default function SpecialistMCQ6() {
   )
 }
 
-function Option({ letter, children, correct, flag }: { letter: string; children: ReactNode; correct: boolean; flag?: string }) {
+// Green marks the correct MCQ answer, not "this statement is true" — for a "which is NOT
+// true" question that's the false statement, so don't flip this to mean mathematical truth.
+function Option({ letter, children, isAnswer }: { letter: string; children: ReactNode; isAnswer?: boolean }) {
   return (
     <div
       className={`flex gap-2.5 items-start px-3 py-2.5 rounded-xl border ${
-        correct
+        isAnswer
           ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900'
-          : 'bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900'
+          : 'bg-gray-50 dark:bg-gray-800/40 border-gray-200 dark:border-gray-800'
       }`}
     >
       <span
         className={`flex-none w-5 h-5 rounded-full flex items-center justify-center font-display text-[11.5px] font-bold mt-0.5 ${
-          correct
+          isAnswer
             ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300'
-            : 'bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300'
+            : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
         }`}
       >
         {letter}
       </span>
       <div>
         <span className="text-[13.5px] text-gray-700 dark:text-gray-300 leading-snug">{children}</span>
-        {flag && <div className="text-[11px] font-semibold text-rose-700 dark:text-rose-400 mt-1">{flag}</div>}
+        {isAnswer && <div className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 mt-1">Not true — this is the answer</div>}
       </div>
     </div>
   )
