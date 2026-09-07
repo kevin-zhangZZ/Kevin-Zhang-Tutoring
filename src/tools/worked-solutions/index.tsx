@@ -3,32 +3,32 @@ import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, QUESTION_TYPE_LABEL, 
 import { QUESTION_DETAILS } from './details'
 import ComingSoon from './ComingSoon'
 
-function firstOf(subject: SubjectId): QuestionMeta {
-  return QUESTIONS.find(q => q.subject === subject)!
+function firstOf(subject: SubjectId): QuestionMeta | undefined {
+  return QUESTIONS.find(q => q.subject === subject)
 }
 
 export default function WorkedSolutions() {
   const [subject, setSubject] = useState<SubjectId>('specialist')
-  const [selectedId, setSelectedId] = useState<string>(firstOf('specialist').id)
-  const [openYear, setOpenYear] = useState<number | null>(firstOf('specialist').year)
+  const [selectedId, setSelectedId] = useState<string | null>(firstOf('specialist')?.id ?? null)
+  const [openYear, setOpenYear] = useState<number | null>(firstOf('specialist')?.year ?? null)
 
   const subjectQuestions = QUESTIONS.filter(q => q.subject === subject)
   const years = Array.from(new Set(subjectQuestions.map(q => q.year))).sort((a, b) => a - b)
-  const selected = QUESTIONS.find(q => q.id === selectedId) ?? subjectQuestions[0]
-  const Detail = selected.hasDetail ? QUESTION_DETAILS[selected.id] : undefined
-  const selectedColor = SUBJECT_COLOR[selected.subject]
+  const selected = QUESTIONS.find(q => q.id === selectedId) ?? subjectQuestions[0] ?? null
+  const Detail = selected?.hasDetail ? QUESTION_DETAILS[selected.id] : undefined
+  const selectedColor = selected ? SUBJECT_COLOR[selected.subject] : null
 
   function handleSubjectChange(next: SubjectId) {
     const first = firstOf(next)
     setSubject(next)
-    setSelectedId(first.id)
-    setOpenYear(first.year)
+    setSelectedId(first?.id ?? null)
+    setOpenYear(first?.year ?? null)
   }
 
   return (
     <div className="px-6 py-10">
       {/* Header */}
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-2">
+      <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
           Worked Solutions &amp; Videos
         </h1>
@@ -48,10 +48,6 @@ export default function WorkedSolutions() {
           ))}
         </div>
       </div>
-      <p className="text-[15px] text-gray-600 dark:text-gray-300 leading-relaxed mb-8 max-w-2xl">
-        Full written steps — and a video walkthrough where one's ready — for the past-exam questions that trip
-        students up most. Open a year to see its questions, then pick one.
-      </p>
 
       <div className="flex gap-7 items-start flex-col lg:flex-row">
         {/* List panel */}
@@ -59,6 +55,12 @@ export default function WorkedSolutions() {
           <div className="text-[11px] font-bold tracking-wider uppercase text-gray-400 dark:text-gray-500 mt-1.5 mb-2 ml-2">
             {SUBJECT_NAME[subject].toUpperCase()} — {subjectQuestions.length} QUESTION{subjectQuestions.length === 1 ? '' : 'S'}
           </div>
+
+          {years.length === 0 && (
+            <p className="text-[13px] text-gray-400 dark:text-gray-500 px-2 py-2">
+              No {SUBJECT_NAME[subject]} questions yet — check back soon.
+            </p>
+          )}
 
           {years.map(year => {
             const isOpen = openYear === year
@@ -111,13 +113,21 @@ export default function WorkedSolutions() {
 
         {/* Detail panel */}
         <div className="flex-1 min-w-0 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8">
-          <span className={`font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg ${selectedColor.bg} ${selectedColor.text}`}>
-            {selected.year} · {selected.exam} · {selected.code}
-          </span>
-          <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
-            {selected.topic}
-          </h2>
-          {Detail ? <Detail key={selected.id} /> : <ComingSoon topic={selected.topic} />}
+          {selected && selectedColor ? (
+            <>
+              <span className={`font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg ${selectedColor.bg} ${selectedColor.text}`}>
+                {selected.year} · {selected.exam} · {selected.code}
+              </span>
+              <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
+                {selected.topic}
+              </h2>
+              {Detail ? <Detail key={selected.id} /> : <ComingSoon topic={selected.topic} />}
+            </>
+          ) : (
+            <p className="text-[13.5px] text-gray-400 dark:text-gray-500 text-center py-10">
+              No {SUBJECT_NAME[subject]} questions yet — check back soon.
+            </p>
+          )}
         </div>
       </div>
     </div>
