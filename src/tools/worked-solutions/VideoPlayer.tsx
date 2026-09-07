@@ -36,7 +36,7 @@ export default function VideoPlayer({ src, label }: { src: string; label: string
   }
 
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-col gap-2.5 max-w-xl mx-auto">
       <video
         ref={videoRef}
         controls
@@ -44,7 +44,7 @@ export default function VideoPlayer({ src, label }: { src: string; label: string
         onContextMenu={e => e.preventDefault()}
         preload="metadata"
         playsInline
-        className="w-full max-w-xl rounded-xl bg-black"
+        className="w-full rounded-xl bg-black"
         onError={() => setFailed(true)}
       >
         <source src={src} type="video/mp4" />

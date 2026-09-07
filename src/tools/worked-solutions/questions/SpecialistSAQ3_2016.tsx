@@ -12,15 +12,16 @@ import { PartCard, Step } from '../QuestionParts'
 // Parts a-d point at `*-h264.mp4` — re-encoded locally from the tutor's original HEVC (h.265)
 // recordings (`ffmpeg -c:v libx264 -crf 20 -c:a aac -movflags +faststart`), since HEVC isn't
 // decodable by most desktop browsers, including stock Chrome on Windows (the file loads fine
-// but plays back as a black frame with no sound). Originals are kept alongside in Dropbox.
+// but plays back as a black frame with no sound). Part e's original was already H.264/AAC —
+// just muxed as .mkv, which the browser's native <video> element won't reliably open — so
+// that one was only remuxed into an .mp4 container (`ffmpeg -c copy`, instant, no
+// re-encoding, identical quality). Originals are kept alongside in Dropbox.
 const VIDEO = {
   a: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/AJ3S_a1D0X0pluAFSVBermo/SAQ3a-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
   b: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ANTJtcJqXZ0_hFJrJ2SGLOs/SAQ3b-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
   c: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ANvMSeh8zPfysFrcGcQ-haM/SAQ3c-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
   d: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ANRTMZqrSSj-8C7XCT3IbR8/SAQ3d-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
-  // .mkv isn't reliably playable via the browser's native <video> element, so this one
-  // links out to Dropbox instead of embedding.
-  e: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/AP_Z5rNBne17FsKM3EepZn8/SAQ3e.mkv?rlkey=5hew4el0gbyauzhc3y9aqdda2&dl=0',
+  e: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ADbe9Ndd7W_QuzOCq-K07do/SAQ3e-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
 }
 
 export default function SpecialistSAQ3_2016() {
@@ -145,7 +146,6 @@ export default function SpecialistSAQ3_2016() {
         letter="e"
         marks={2}
         videoSrc={VIDEO.e}
-        videoIsExternal
         statement="Find when the concentration of salt in the second tank reaches 0.095 kg/L. Give your answer in minutes, correct to two decimal places."
       >
         <Step n={1}>
