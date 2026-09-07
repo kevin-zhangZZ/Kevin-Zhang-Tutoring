@@ -199,14 +199,16 @@ export default function LocateMode() {
         <div className="text-2xl">
           <Katex tex={question.angleTex} />
         </div>
-        {flash === 'correct' && (
-          <p className="mt-3 text-sm font-semibold text-emerald-600 dark:text-emerald-400">Correct!</p>
-        )}
-        {flash === 'wrong' && (
-          <p className="mt-3 text-sm text-rose-600 dark:text-rose-400">
+        {/* Feedback area — both messages always occupy the same space (stacked via grid)
+            so the card's height stays constant whether or not feedback is showing. */}
+        <div className="mt-3 grid text-center">
+          <p className={`col-start-1 row-start-1 text-sm font-semibold text-emerald-600 dark:text-emerald-400 ${flash === 'correct' ? '' : 'invisible'}`}>
+            Correct!
+          </p>
+          <p className={`col-start-1 row-start-1 text-sm text-rose-600 dark:text-rose-400 ${flash === 'wrong' ? '' : 'invisible'}`}>
             Incorrect — the correct point is shown in green.
           </p>
-        )}
+        </div>
 
         {/* Next button — bottom-right, only on wrong */}
         {flash === 'wrong' && (
