@@ -86,18 +86,26 @@ export default function WorkedSolutions() {
                 </button>
 
                 {isOpen && (
-                  <div className="flex flex-col gap-3 pt-0.5 pb-2 pl-6">
-                    {(['mc', 'sa'] as QuestionType[]).map(type => {
-                      const typeQuestions = yearQuestions.filter(q => q.type === type)
-                      if (typeQuestions.length === 0) return null
+                  <div className="flex flex-col gap-4 pt-0.5 pb-2 pl-6">
+                    {Array.from(new Set(yearQuestions.map(q => q.exam))).map(exam => {
+                      const examQuestions = yearQuestions.filter(q => q.exam === exam)
                       return (
-                        <div key={type} className="flex flex-col gap-1">
-                          <div className="text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 px-3">
-                            {QUESTION_TYPE_LABEL[type]}
-                          </div>
-                          {typeQuestions.map(q => (
-                            <QuestionRow key={q.id} question={q} selected={q.id === selectedId} onSelect={() => setSelectedId(q.id)} />
-                          ))}
+                        <div key={exam} className="flex flex-col gap-3">
+                          <div className="text-xs font-bold text-gray-600 dark:text-gray-400 px-3">{exam}</div>
+                          {(['mc', 'sa'] as QuestionType[]).map(type => {
+                            const typeQuestions = examQuestions.filter(q => q.type === type)
+                            if (typeQuestions.length === 0) return null
+                            return (
+                              <div key={type} className="flex flex-col gap-1">
+                                <div className="text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 px-3">
+                                  {QUESTION_TYPE_LABEL[type]}
+                                </div>
+                                {typeQuestions.map(q => (
+                                  <QuestionRow key={q.id} question={q} selected={q.id === selectedId} onSelect={() => setSelectedId(q.id)} />
+                                ))}
+                              </div>
+                            )
+                          })}
                         </div>
                       )
                     })}
@@ -148,10 +156,7 @@ function QuestionRow({
         selected ? `${c.bg} ${c.border}` : 'bg-transparent border-transparent hover:bg-gray-50 dark:hover:bg-gray-800/60'
       }`}
     >
-      <span className="flex items-center gap-2">
-        <span className={`font-display text-[11px] font-bold px-1.5 py-0.5 rounded-md ${c.bg} ${c.text}`}>{question.code}</span>
-        <span className="text-[11px] text-gray-400 dark:text-gray-500">{question.exam}</span>
-      </span>
+      <span className={`font-display text-[11px] font-bold px-1.5 py-0.5 rounded-md w-fit ${c.bg} ${c.text}`}>{question.code}</span>
       <span className="text-[13px] text-gray-700 dark:text-gray-300 leading-snug">{question.topic}</span>
       <span className="text-[10.5px] font-medium text-gray-400 dark:text-gray-500">
         {question.hasDetail ? 'Written solution ready' : 'Coming soon'}
