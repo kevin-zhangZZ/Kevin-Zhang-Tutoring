@@ -32,16 +32,16 @@ const ROWS: WorkingRow[] = [
     reason: <>Test which options give an integer <Katex tex="n" /> — only these values of <Katex tex="a" /> can produce an asymptote exactly at <Katex tex="x=3\pi" />.</>,
   },
   {
-    working: <Katex display tex="a=\tfrac12 \;\implies\; \frac{2n+1}{6}=\tfrac12 \;\implies\; n=1 \quad\checkmark \text{ (integer)}" />,
-    reason: <>Options A <Katex tex="(\tfrac16)" />, B <Katex tex="(\tfrac13)" />, D <Katex tex="(1)" /> and E <Katex tex="(2)" /> all give non-integer <Katex tex="n" /> here — only <Katex tex="a=\tfrac12" /> works.</>,
+    working: <Katex display tex="a=\tfrac16 \Rightarrow n=0 \ \checkmark \qquad a=\tfrac12 \Rightarrow n=1 \ \checkmark \qquad a=\tfrac13,\,1,\,2 \Rightarrow n=\tfrac12,\,\tfrac52,\,\tfrac{11}{2} \ \times" />,
+    reason: <>Only options A <Katex tex="(\tfrac16)" /> and C <Katex tex="(\tfrac12)" /> give an integer <Katex tex="n" />, so only those two can have an asymptote at <Katex tex="x=3\pi" /> at all. The intercept condition decides between them.</>,
   },
   {
-    working: <Katex display tex="a=\tfrac12 \;\implies\; \text{asymptotes in } (0,3\pi]\text{ at } x=\pi,\,3\pi \qquad \text{intercepts at } x=\frac{n\pi}{1/2}=2n\pi" />,
-    reason: <>With <Katex tex="n=0" /> in the asymptote formula, the first asymptote is at <Katex tex="x=\pi" />, then <Katex tex="x=3\pi" /> matches the given one. Now check the intercept count.</>,
+    working: <Katex display tex="a=\tfrac16: \ x\text{-intercepts at } x=6n\pi \;\implies\; 0<6n\pi<3\pi \iff 0<n<\tfrac12 \;\implies\; \text{no integer } n" />,
+    reason: <>Option A gives <em>zero</em> <Katex tex="x" />-intercepts in <Katex tex="(0,3\pi)" /> (the first one after <Katex tex="x=0" /> is way out at <Katex tex="6\pi" />), so it fails the "exactly one" requirement.</>,
   },
   {
-    working: <Katex display tex="0<2n\pi<3\pi \;\implies\; 0<n<1.5 \;\implies\; n=1 \text{ only} \;\implies\; x=2\pi" />,
-    reason: <>Exactly one integer <Katex tex="n" /> satisfies this, giving exactly one <Katex tex="x" />-intercept in <Katex tex="(0,3\pi)" /> — matching the condition given.</>,
+    working: <Katex display tex="a=\tfrac12: \ x\text{-intercepts at } x=2n\pi \;\implies\; 0<2n\pi<3\pi \iff 0<n<\tfrac32 \;\implies\; n=1 \text{ only},\ x=2\pi" />,
+    reason: <>Exactly one <Katex tex="x" />-intercept in <Katex tex="(0,3\pi)" />, at <Katex tex="x=2\pi" /> — matching the condition given. (Its asymptotes there are <Katex tex="x=\pi" /> and <Katex tex="x=3\pi" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{a=\tfrac12}" />,

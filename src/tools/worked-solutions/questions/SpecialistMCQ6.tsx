@@ -16,56 +16,38 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
+    working: <Katex display tex="z_3 = 2\,\mathrm{cis}\!\left(\tfrac{\pi}{3}+\pi\right) = -z_1, \qquad z_4 = \mathrm{cis}\!\left(\tfrac{3\pi}{4}+\pi\right) = -z_2" />,
+    reason: (
+      <>
+        Each point is the opposite of another: same modulus, argument shifted by <Katex tex="\pi" />. So the
+        parallelogram is centred at the origin and its diagonals are the segments <Katex tex="z_1z_3" /> and{' '}
+        <Katex tex="z_2z_4" />, both passing through <Katex tex="O" />.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="|z_1| = |z_3| = 2, \qquad |z_2| = |z_4| = 1" />,
+    reason: <>Every modulus lies between 1 and 2, so <b>E</b> is true.</>,
+  },
+  {
+    working: <Katex display tex="|z_1z_3| = 2|z_1| = 4, \qquad |z_2z_4| = 2|z_2| = 2" />,
+    reason: <>Each diagonal is twice the corresponding modulus, giving lengths 4 and 2 — <b>B</b> is true.</>,
+  },
+  {
     working: <Katex display tex="\arg(z_1) - \arg(z_2) = \frac{\pi}{3} - \frac{3\pi}{4} = -\frac{5\pi}{12}" />,
-    reason: (
-      <>
-        <Katex tex="z_1 \leftrightarrow z_3" /> and <Katex tex="z_2 \leftrightarrow z_4" /> are the diagonals, so
-        this is the angle between them — magnitude <Katex tex="\tfrac{5\pi}{12}" /> matches <b>A</b>.
-      </>
-    ),
+    reason: <>The diagonals lie along the directions of <Katex tex="z_1" /> and <Katex tex="z_2" />, so the acute angle between them is <Katex tex="\tfrac{5\pi}{12}" /> — <b>A</b> is true.</>,
   },
   {
-    working: <Katex display tex="|z_1| = |z_3| = 2, \quad |z_2| = |z_4| = 1" />,
+    working: <Katex display tex="z_1+z_2+z_3+z_4 = z_1+z_2+(-z_1)+(-z_2) = 0" />,
+    reason: <>The opposite pairs cancel, so <b>D</b> is true.</>,
   },
   {
-    working: <Katex display tex="2|z_1| = 4, \quad 2|z_2| = 2" />,
-    reason: (
-      <>
-        Diagonal lengths are twice these moduli — matches <b>B</b> (2 and 4).
-      </>
-    ),
+    working: <Katex display tex="|z_1z_2z_3z_4| = |z_1||z_2||z_3||z_4| = 2\times1\times2\times1 = 4 \ne 0" />,
+    reason: <>The modulus of a product is the product of the moduli. None of the four is zero, so their product cannot be zero.</>,
   },
   {
-    working: <Katex display tex="z_3 = -z_1, \quad z_4 = -z_2" />,
-    reason: 'Opposite points: same modulus, angle shifted by π.',
-  },
-  {
-    working: <Katex display tex="-z_3-z_4 = -(-z_1)-(-z_2) = z_1+z_2" />,
-    reason: (
-      <>
-        So <Katex tex="z_1+z_2=-z_3-z_4" /> always holds — <b>D</b> is true, sub in and check.
-      </>
-    ),
-  },
-  {
-    working: <Katex display tex="1 \le |z| \le 2" />,
-    reason: (
-      <>
-        From <Katex tex="|z_1|=|z_3|=2" /> and <Katex tex="|z_2|=|z_4|=1" /> — matches <b>E</b>.
-      </>
-    ),
-  },
-  {
-    working: <Katex display tex="z^n+a=0 \implies |z|^n=|{-a}| \implies |z|=|a|^{1/n}" />,
-    reason: 'Every root of this form must share one modulus.',
-  },
-  {
-    working: <Katex display tex="|z_1| = 2 \ne 1 = |z_2|" />,
-    reason: (
-      <>
-        But they don't — <b>C is not true, that's the answer.</b>
-      </>
-    ),
+    working: <Katex display tex="\boxed{z_1z_2z_3z_4 \ne 0}" />,
+    reason: <><b>C is not true — that's the answer.</b> (A product of complex numbers is zero only if one of the factors is zero, and here every modulus is 1 or 2.)</>,
   },
 ]
 
@@ -99,11 +81,10 @@ export default function SpecialistMCQ6() {
             The diagonals of the parallelogram have lengths 2 and 4.
           </Option>
           <Option letter="C" isAnswer>
-            If <Katex tex="z_1, z_2, z_3" /> and <Katex tex="z_4" /> are four solutions of a polynomial equation, then
-            the polynomial equation must have the form <Katex tex="z^n + a = 0" />.
+            <Katex tex="z_1z_2z_3z_4 = 0" />
           </Option>
           <Option letter="D">
-            <Katex tex="z_1 + z_2 = -z_3 - z_4" />
+            <Katex tex="z_1 + z_2 + z_3 + z_4 = 0" />
           </Option>
           <Option letter="E">
             <Katex tex="1 \le |z| \le 2" /> for all four of <Katex tex="z_1, z_2, z_3, z_4" />.

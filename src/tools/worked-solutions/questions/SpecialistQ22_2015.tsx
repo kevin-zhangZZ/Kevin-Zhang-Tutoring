@@ -8,9 +8,9 @@ import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
-  percentages: { A: 7, B: 3, C: 8, D: 42, E: 11 },
+  percentages: { A: 5, B: 23, C: 18, D: 42, E: 11 },
   answer: 'D',
-  noAnswer: 1,
+  noAnswer: 2,
   comment: (
     <>
       <Katex

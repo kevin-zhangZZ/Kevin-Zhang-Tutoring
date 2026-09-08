@@ -64,28 +64,27 @@ export default function MethodsQ4_2014Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 4 (part f)</p>
         <p>
-          A craftsman makes ceramic plant pots. Each pot comes out of the kiln either smooth or rough. The
-          first pot made each week is always smooth. For every pot after the first, whether it is smooth or
-          rough depends on the previous pot:
+          In another section of the nursery, a craftsman makes plant pots. The pots are classified as smooth
+          or rough.
         </p>
-        <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li>If a pot is smooth, the probability that the next pot is also smooth is <Katex tex="0.7" />.</li>
-          <li>
-            If a pot is rough, the probability that the next pot is rough is <Katex tex="p" />, where{' '}
-            <Katex tex="0<p<1" />.
-          </li>
-        </ul>
         <p className="mt-2">
-          Let <Katex tex="S_n" /> be the event that the <Katex tex="n" />th pot made in a week is smooth, and{' '}
-          <Katex tex="R_n" /> the event that it is rough.
+          The craftsman finishes each pot before starting on the next. Over a period of time, it is found that
+          if one plant pot is smooth, the probability that the next one is smooth is <Katex tex="0.7" />, while
+          if one plant pot is rough, the probability that the next one is rough is <Katex tex="p" />, where{' '}
+          <Katex tex="0<p<1" />. The value of <Katex tex="p" /> stays fixed for a week at a time, but can vary
+          from week to week. The first pot made each week is always a smooth pot.
+        </p>
+        <p className="mt-2 text-[13px] text-gray-500 dark:text-gray-400">
+          In the working below, <Katex tex="S_n" /> denotes the event that the <Katex tex="n" />th pot made in
+          a week is smooth, and <Katex tex="R_n" /> that it is rough.
         </p>
       </div>
 
-      <PartCard letter="f.i" marks={2} statement={<>Show that the probability that the third pot made in a week is smooth is <Katex tex="0.79-0.3p" />.</>} examinerReport={EXAMINER_FI}>
+      <PartCard letter="f.i" marks={2} statement={<>Find, in terms of <Katex tex="p" />, the probability that the third pot made in a given week is smooth.</>} examinerReport={EXAMINER_FI}>
         <WorkingTable rows={rowsFi} />
       </PartCard>
 
-      <PartCard letter="f.ii" marks={2} statement={<>Given that the probability that the third pot made in a week is smooth is <Katex tex="0.61" />, find the value of <Katex tex="p" />.</>} examinerReport={EXAMINER_FII}>
+      <PartCard letter="f.ii" marks={2} statement={<>In one particular week, the probability that the third pot made is smooth is <Katex tex="0.61" />. Calculate the value of <Katex tex="p" /> in this week.</>} examinerReport={EXAMINER_FII}>
         <WorkingTable rows={rowsFii} />
       </PartCard>
     </div>

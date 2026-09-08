@@ -234,52 +234,63 @@ export default function MethodsQ3_2014Exam2() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2</p>
+        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (13 marks)</p>
         <p>
-          Tasmania Jones is exploring an ice cave and finds a large cylindrical block of ice, with a 1 m tall
-          statue embedded with its base at the centre of one of the cylinder's circular faces. The cylinder of
-          ice has diameter <Katex tex="d" /> metres and height <Katex tex="h" /> metres, and initially has
-          volume 216 m³.
+          On 1 January 2010, Tasmania Jones was walking through an ice-covered region of Greenland when he
+          found a large ice cylinder that was made a thousand years ago by the Vikings. A statue was inside
+          the ice cylinder. The statue was 1 m tall and its base was at the centre of the base of the cylinder.
+        </p>
+        <p className="mt-2">
+          The cylinder had a height of <Katex tex="h" /> metres and a diameter of <Katex tex="d" /> metres.
+          Tasmania Jones found that the volume of the cylinder was 216 m³. At that time, 1 January 2010, the
+          cylinder had not changed in a thousand years. It was exactly as it was when the Vikings made it.
         </p>
         <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 mt-3 w-fit">
           <IceCylinderDiagram />
         </div>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Show that <Katex tex="h = \dfrac{864}{\pi d^2}" />.</>} examinerReport={EXAMINER_A}>
+      <PartCard letter="a" marks={2} statement={<>Write an expression for <Katex tex="h" /> in terms of <Katex tex="d" />.</>} examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Hence show that the surface area of the ice block, excluding its base, is given by <Katex tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}" />.</>} examinerReport={EXAMINER_B}>
+      <PartCard letter="b" marks={1} statement={<>Show that the surface area of the cylinder excluding the base, <Katex tex="S" /> square metres, is given by the rule <Katex tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}" />.</>} examinerReport={EXAMINER_B}>
         <WorkingTable rows={rowsB} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement="Find the value of d, correct to two decimal places, that minimises this surface area, and find the minimum surface area, correct to two decimal places." examinerReport={EXAMINER_C}>
+      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+        Tasmania found that the Vikings made the cylinder so that <Katex tex="S" /> is a minimum.
+      </div>
+
+      <PartCard letter="c" marks={2} statement={<>Find the value of <Katex tex="d" /> for which <Katex tex="S" /> is a minimum and find this minimum value of <Katex tex="S" />.</>} examinerReport={EXAMINER_C}>
         <WorkingTable rows={rowsC} />
       </PartCard>
 
-      <PartCard letter="d" marks={1} statement={<>Find the value of <Katex tex="h" /> for which the surface area is a minimum, giving your answer correct to two decimal places.</>} examinerReport={EXAMINER_D}>
+      <PartCard letter="d" marks={1} statement={<>Find the value of <Katex tex="h" /> when <Katex tex="S" /> is a minimum.</>} examinerReport={EXAMINER_D}>
         <WorkingTable rows={rowsD} />
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
-        The ice block, with the statue embedded, begins to melt. As it does, it maintains the same
-        proportions found in part (d) — that is, its diameter is always twice its height, <Katex tex="d=2h" />.
+        On 1 January 2010, Tasmania believed that due to recent temperature changes in Greenland, the ice of
+        the cylinder had just started melting. Therefore, he decided to return on 1 January each year to
+        measure the ice cylinder. He observes that the volume of the ice cylinder decreases by a constant rate
+        of 10 m³ per year. Assume that the cylindrical shape is retained and <Katex tex="d=2h" /> at the
+        beginning and as the cylinder melts.
       </div>
 
-      <PartCard letter="e" marks={1} statement="Show that the volume of the ice block can be written as V = πh³." examinerReport={EXAMINER_E}>
+      <PartCard letter="e" marks={1} statement={<>Write down an expression for <Katex tex="V" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_E}>
         <WorkingTable rows={rowsE} />
       </PartCard>
 
-      <PartCard letter="f" marks={3} statement={<>Given the ice is melting at a constant rate of 10 m³ per year, find <Katex tex="\dfrac{dh}{dt}" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_F}>
+      <PartCard letter="f" marks={3} statement={<>Find <Katex tex="\dfrac{dh}{dt}" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_F}>
         <WorkingTable rows={rowsF} />
       </PartCard>
 
-      <PartCard letter="g" marks={1} statement="Find the rate at which h is decreasing at the instant the top of the statue is just exposed, correct to two decimal places." examinerReport={EXAMINER_G}>
+      <PartCard letter="g" marks={1} statement="Find the rate at which the height of the cylinder will be decreasing when the top of the statue is just exposed." examinerReport={EXAMINER_G}>
         <WorkingTable rows={rowsG} />
       </PartCard>
 
-      <PartCard letter="h" marks={2} statement="If the ice block started melting on 1 January 2010, find the year in which the top of the statue is just exposed." examinerReport={EXAMINER_H}>
+      <PartCard letter="h" marks={2} statement="Find the year in which the top of the statue will just be exposed. (Assume that the melting started on 1 January 2010.)" examinerReport={EXAMINER_H}>
         <WorkingTable rows={rowsH} />
       </PartCard>
     </div>

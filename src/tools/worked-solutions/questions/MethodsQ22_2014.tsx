@@ -47,22 +47,22 @@ export default function MethodsQ22_2014() {
       question={
         <>
           <p>
-            John and Rebecca are playing a game of darts. For each throw, the probability that John hits the
-            target is <Katex tex="\tfrac14" /> and the probability that Rebecca hits the target is{' '}
-            <Katex tex="\tfrac12" />. John has four throws at the target and Rebecca has two throws at the
-            target. All throws are independent of each other.
+            John and Rebecca are playing darts. The result of each of their throws is independent of the
+            result of any other throw. The probability that John hits the bullseye with a single throw is{' '}
+            <Katex tex="\tfrac14" />. The probability that Rebecca hits the bullseye with a single throw is{' '}
+            <Katex tex="\tfrac12" />. John has four throws and Rebecca has two throws.
           </p>
           <p className="mt-2">
-            The ratio of the probability of Rebecca hitting the target at least once to the probability of
-            John hitting the target at least once is
+            The ratio of the probability of Rebecca hitting the bullseye at least once to the probability of
+            John hitting the bullseye at least once is
           </p>
         </>
       }
       options={[
-        { letter: 'A', content: <Katex tex="1:2" /> },
-        { letter: 'B', content: <Katex tex="2:1" /> },
-        { letter: 'C', content: <Katex tex="3:4" /> },
-        { letter: 'D', content: <Katex tex="175:192" /> },
+        { letter: 'A', content: <Katex tex="1:1" /> },
+        { letter: 'B', content: <Katex tex="32:27" /> },
+        { letter: 'C', content: <Katex tex="64:85" /> },
+        { letter: 'D', content: <Katex tex="2:1" /> },
         { letter: 'E', content: <Katex tex="192:175" />, isAnswer: true },
       ]}
       rows={ROWS}

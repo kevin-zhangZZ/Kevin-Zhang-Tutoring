@@ -29,17 +29,39 @@ const ROWS: WorkingRow[] = [
       <>
         <Katex tex="b" /> and <Katex tex="d" /> are simple roots (the curve crosses the axis there);{' '}
         <Katex tex="c" /> is a turning point sitting ON the axis, so it's a repeated root — it needs a
-        squared factor.
+        squared factor. That's degree <Katex tex="1+2+1=4" />, a quartic.
       </>
     ),
+  },
+  {
+    working: <Katex display tex="\text{option D} = 2(x-b)(x-c)(x-d) \ \text{— degree 3, and it } \textit{crosses} \text{ at } c \ \times" />,
+    reason: <>D has no squared factor, so it's a cubic that cuts straight through the axis at <Katex tex="c" /> instead of touching it. Eliminated.</>,
+  },
+  {
+    working: <Katex display tex="x\to\pm\infty \implies y\to-\infty \;\implies\; k<0 \;\implies\; k=-2, \ \text{not } +2" />,
+    reason: <>Both tails of the graph point downwards, which for a quartic means a negative leading coefficient. That eliminates option B <Katex tex="(+2)" />.</>,
+  },
+  {
+    working: <Katex display tex="\text{root at } x=b \iff \text{factor } (x-b), \quad \text{whatever the sign of } b" />,
+    reason: (
+      <>
+        This is the step most students got wrong. <Katex tex="b" /> is negative <em>as a number</em>, but the
+        factor for a root at <Katex tex="x=b" /> is always <Katex tex="(x-b)" />. Option A's{' '}
+        <Katex tex="(x+b)" /> has its root where <Katex tex="x+b=0" />, i.e. at <Katex tex="x=-b" /> — a{' '}
+        <em>positive</em> number, which is the wrong side of the origin.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\text{option E} = -2(x-b)(x+c)^2(x+d) \ \text{— roots at } b,\,-c,\,-d \ \times" />,
+    reason: <>Same trap on the other two factors: E puts the repeated root at <Katex tex="-c" /> and the last root at <Katex tex="-d" />, neither of which matches the graph. Eliminated.</>,
   },
   {
     working: <Katex display tex="\boxed{y=-2(x-b)(x-c)^2(x-d)}" />,
     reason: (
       <>
-        Matches option <b>C</b> — the only option with roots at exactly <Katex tex="x=b" /> and{' '}
-        <Katex tex="x=d" /> (not <Katex tex="-b" />, <Katex tex="-c" />, <Katex tex="-d" />) and a squared
-        factor at <Katex tex="c" />.
+        Option <b>C</b> is the only one with a negative leading coefficient, simple roots at exactly{' '}
+        <Katex tex="x=b" /> and <Katex tex="x=d" />, and a squared factor at <Katex tex="x=c" />.
       </>
     ),
   },
