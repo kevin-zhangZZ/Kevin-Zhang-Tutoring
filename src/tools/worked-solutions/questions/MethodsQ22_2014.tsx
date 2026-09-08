@@ -5,7 +5,18 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 17, B: 15, C: 15, D: 15, E: 37 },
+  answer: 'E',
+  noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="\Pr(R\ge1):\Pr(J\ge1) \;=\; 1-\Pr(R=0):1-\Pr(J=0) \;=\; 1-\left(\tfrac12\right)^2 : 1-\left(\tfrac34\right)^4 \;=\; 192:175" />
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -55,6 +66,7 @@ export default function MethodsQ22_2014() {
         { letter: 'E', content: <Katex tex="192:175" />, isAnswer: true },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

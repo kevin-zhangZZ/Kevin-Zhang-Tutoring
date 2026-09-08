@@ -1,10 +1,99 @@
-// 2014 Mathematical Methods — Exam 2, Question 3 (Section B).
+// 2014 Mathematical Methods — Exam 2, Question 2 (Section 2).
 // Tasmania Jones carves a statue from a cylinder of ice — volume, surface area minimisation,
 // then a melting-rate related-rates problem. Question text transcribed from the original
 // paper; worked solutions below are original. No video walkthrough yet.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
+import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const EXAMINER_A: SAExaminerStats = {
+  marks: [15, 10, 75],
+  average: 1.6,
+  comment: (
+    <>
+      This question was quite well answered. Some students used the formula for the volume of a cone
+      instead of a cylinder. Some used poor notation, omitting brackets and writing{' '}
+      <Katex tex="\tfrac{d^2}{2}=\tfrac{d^2}{4}" />. Many left their answer in the form{' '}
+      <Katex tex="h=\dfrac{216}{\pi(d/2)^2}" />, which was accepted; however, it is preferable to write in
+      simplified form.
+    </>
+  ),
+}
+
+const EXAMINER_B: SAExaminerStats = {
+  marks: [43, 57],
+  average: 0.6,
+  comment:
+    "This was a 'show that' question and some students showed sufficient working. Some included the area of the base of the cylinder. Others did not include the area of the top of the cylinder and only considered the curved surface area.",
+}
+
+const EXAMINER_C: SAExaminerStats = {
+  marks: [25, 25, 50],
+  average: 1.3,
+  comment: (
+    <>
+      Some students answered only part of the question, finding the correct value for <Katex tex="d" /> but
+      not attempting to find <Katex tex="S" />. Exact answers were required. Answers such as{' '}
+      <Katex tex="d=8.19\ldots" /> and <Katex tex="S=158.17\ldots" /> were often given.
+    </>
+  ),
+}
+
+const EXAMINER_D: SAExaminerStats = {
+  marks: [58, 42],
+  average: 0.4,
+  comment: (
+    <>
+      Some students did not square <Katex tex="\tfrac{12}{\sqrt[3]{\pi}}" />, using{' '}
+      <Katex tex="h=\dfrac{864}{\pi(12/\sqrt[3]{\pi})}" /> to get <Katex tex="\dfrac{72}{\pi^{2/3}}" />. An
+      exact answer was required, not a decimal expression such as 4.09, as was given by some students. Some
+      substituted <Katex tex="d=\tfrac{12}{\sqrt[3]{\pi}}" /> into <Katex tex="S=\tfrac{\pi d^2}{4}+\tfrac{864}{d}" />.
+    </>
+  ),
+}
+
+const EXAMINER_E: SAExaminerStats = {
+  marks: [41, 59],
+  average: 0.6,
+  comment: (
+    <>
+      Some students used an incorrect formula, such as <Katex tex="V=\pi(2h)^2h=4\pi h^3" /> or{' '}
+      <Katex tex="V=2\pi rh=2\pi h^2" />.
+    </>
+  ),
+}
+
+const EXAMINER_F: SAExaminerStats = {
+  marks: [27, 12, 38, 22],
+  average: 1.6,
+  comment: (
+    <>
+      Many students were able to set up the related rates equation and find <Katex tex="\tfrac{dV}{dh}" />.
+      Some students did not find the reciprocal before substituting into <Katex tex="\tfrac{dh}{dV}" />. Many
+      used <Katex tex="\tfrac{dV}{dt}=10\ \text{m}^3/\text{year}" />.
+    </>
+  ),
+}
+
+const EXAMINER_G: SAExaminerStats = {
+  marks: [60, 40],
+  average: 0.4,
+  comment: 'Students who answered part (f) correctly tended to also answer this question correctly. An exact answer was required. Some students gave incorrect units.',
+}
+
+const EXAMINER_H: SAExaminerStats = {
+  marks: [86, 4, 9],
+  average: 0.3,
+  comment: (
+    <>
+      This question was not answered well. A number of different approaches could have been used. Some
+      students gave 2032 as their final answer. Some did not subtract <Katex tex="\pi" /> from 216 and used{' '}
+      <Katex tex="t=\tfrac{216}{10}" />. Incorrect terminals were often used or, if evaluating{' '}
+      <Katex tex="t=\displaystyle\int\!\left(-\tfrac{3\pi h^2}{10}\right)dh" />, a constant of integration was
+      often missing. Some used <Katex tex="t=\displaystyle\int\!\left(-\tfrac{10}{3\pi h^2}\right)dh" />.
+    </>
+  ),
+}
 
 export default function MethodsQ3_2014Exam2() {
   const rowsA: WorkingRow[] = [
@@ -145,7 +234,7 @@ export default function MethodsQ3_2014Exam2() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 3</p>
+        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2</p>
         <p>
           Tasmania Jones is exploring an ice cave and finds a large cylindrical block of ice, with a 1 m tall
           statue embedded with its base at the centre of one of the cylinder's circular faces. The cylinder of
@@ -157,19 +246,19 @@ export default function MethodsQ3_2014Exam2() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Show that <Katex tex="h = \dfrac{864}{\pi d^2}" />.</>}>
+      <PartCard letter="a" marks={2} statement={<>Show that <Katex tex="h = \dfrac{864}{\pi d^2}" />.</>} examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Hence show that the surface area of the ice block, excluding its base, is given by <Katex tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}" />.</>}>
+      <PartCard letter="b" marks={1} statement={<>Hence show that the surface area of the ice block, excluding its base, is given by <Katex tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}" />.</>} examinerReport={EXAMINER_B}>
         <WorkingTable rows={rowsB} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement="Find the value of d, correct to two decimal places, that minimises this surface area, and find the minimum surface area, correct to two decimal places.">
+      <PartCard letter="c" marks={2} statement="Find the value of d, correct to two decimal places, that minimises this surface area, and find the minimum surface area, correct to two decimal places." examinerReport={EXAMINER_C}>
         <WorkingTable rows={rowsC} />
       </PartCard>
 
-      <PartCard letter="d" marks={1} statement={<>Find the value of <Katex tex="h" /> for which the surface area is a minimum, giving your answer correct to two decimal places.</>}>
+      <PartCard letter="d" marks={1} statement={<>Find the value of <Katex tex="h" /> for which the surface area is a minimum, giving your answer correct to two decimal places.</>} examinerReport={EXAMINER_D}>
         <WorkingTable rows={rowsD} />
       </PartCard>
 
@@ -178,19 +267,19 @@ export default function MethodsQ3_2014Exam2() {
         proportions found in part (d) — that is, its diameter is always twice its height, <Katex tex="d=2h" />.
       </div>
 
-      <PartCard letter="e" marks={1} statement="Show that the volume of the ice block can be written as V = πh³.">
+      <PartCard letter="e" marks={1} statement="Show that the volume of the ice block can be written as V = πh³." examinerReport={EXAMINER_E}>
         <WorkingTable rows={rowsE} />
       </PartCard>
 
-      <PartCard letter="f" marks={2} statement={<>Given the ice is melting at a constant rate of 10 m³ per year, find <Katex tex="\dfrac{dh}{dt}" /> in terms of <Katex tex="h" />.</>}>
+      <PartCard letter="f" marks={3} statement={<>Given the ice is melting at a constant rate of 10 m³ per year, find <Katex tex="\dfrac{dh}{dt}" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_F}>
         <WorkingTable rows={rowsF} />
       </PartCard>
 
-      <PartCard letter="g" marks={1} statement="Find the rate at which h is decreasing at the instant the top of the statue is just exposed, correct to two decimal places.">
+      <PartCard letter="g" marks={1} statement="Find the rate at which h is decreasing at the instant the top of the statue is just exposed, correct to two decimal places." examinerReport={EXAMINER_G}>
         <WorkingTable rows={rowsG} />
       </PartCard>
 
-      <PartCard letter="h" marks={2} statement="If the ice block started melting on 1 January 2010, find the year in which the top of the statue is just exposed.">
+      <PartCard letter="h" marks={2} statement="If the ice block started melting on 1 January 2010, find the year in which the top of the statue is just exposed." examinerReport={EXAMINER_H}>
         <WorkingTable rows={rowsH} />
       </PartCard>
     </div>

@@ -5,7 +5,16 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 11, B: 8, C: 21, D: 16, E: 43 },
+  answer: 'E',
+  noAnswer: 1,
+  comment: (
+    <>A sketch of each shows that option E is the line <Katex tex="x=1" />.</>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -52,6 +61,7 @@ export default function SpecialistQ6_2015() {
         { letter: 'E', content: <Katex tex="z+\bar z = 2" />, isAnswer: true },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

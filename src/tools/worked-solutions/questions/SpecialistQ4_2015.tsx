@@ -5,7 +5,14 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 7, B: 20, C: 11, D: 43, E: 18 },
+  answer: 'D',
+  noAnswer: 1,
+  comment: 'Options D and E had the correct asymptotes, but (5, 5) satisfied only option D.',
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -60,6 +67,7 @@ export default function SpecialistQ4_2015() {
         { letter: 'E', content: <Katex tex="\dfrac{(x-2)^2}{9} - \dfrac{(y-1)^2}{4} = 3" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

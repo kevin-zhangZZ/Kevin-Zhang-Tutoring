@@ -4,7 +4,13 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 8, B: 11, C: 13, D: 60, E: 7 },
+  answer: 'D',
+  noAnswer: 0,
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -49,6 +55,7 @@ export default function MethodsQ17_2015() {
         { letter: 'E', content: <Katex tex="(-\infty,4)" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

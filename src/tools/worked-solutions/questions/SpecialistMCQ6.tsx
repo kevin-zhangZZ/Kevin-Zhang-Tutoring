@@ -3,9 +3,16 @@
 
 import { useState, ReactNode } from 'react'
 import Katex from '../../../components/Katex'
-import { WorkingTable, type WorkingRow } from '../QuestionParts'
+import { WorkingTable, ExaminerReport, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
 
-type Tab = 'solution' | 'video'
+type Tab = 'solution' | 'report' | 'video'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 7, B: 13, C: 57, D: 15, E: 8 },
+  answer: 'C',
+  noAnswer: 1,
+  comment: <Katex tex="|z_1z_2z_3z_4| = 2\times1\times2\times1 \ne 0" />,
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -106,11 +113,14 @@ export default function SpecialistMCQ6() {
 
       <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1 w-fit mb-5">
         <TabButton active={tab === 'solution'} onClick={() => setTab('solution')}>Worked Solution</TabButton>
+        <TabButton active={tab === 'report'} onClick={() => setTab('report')}>Examiner's Report</TabButton>
         <TabButton active={tab === 'video'} onClick={() => setTab('video')}>Video Walkthrough</TabButton>
       </div>
 
       {tab === 'solution' ? (
         <WorkingTable rows={ROWS} />
+      ) : tab === 'report' ? (
+        <ExaminerReport stats={EXAMINER} />
       ) : (
         <div className="border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 rounded-2xl px-7 py-9 text-center text-[13.5px] leading-relaxed text-gray-400 dark:text-gray-500">
           Video walkthrough coming soon.

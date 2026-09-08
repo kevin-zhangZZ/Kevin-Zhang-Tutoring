@@ -5,7 +5,21 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 24, B: 7, C: 7, D: 32, E: 29 },
+  answer: 'A',
+  noAnswer: 0,
+  comment: (
+    <>
+      <Katex tex="y_1=\sqrt{8x^3+1}" />, <Katex tex="y_2=\sqrt{8(x/2)^3+1}=\sqrt{x^3+1}" />. The graph of{' '}
+      <Katex tex="y_1" /> has been dilated by a factor of 2 from the <Katex tex="y" />-axis to get the graph
+      of <Katex tex="y_2" />. This can be shown by sketching the graphs of both functions. For example, the
+      point with coordinates <Katex tex="(1,3)" /> is transformed to <Katex tex="(2,3)" />.
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -43,6 +57,7 @@ export default function MethodsQ11_2015() {
         { letter: 'E', content: <>dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis</> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

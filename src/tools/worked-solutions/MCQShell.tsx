@@ -1,9 +1,9 @@
 // Shared shell for a standalone multiple-choice question: statement, optional diagram,
-// options, and a Worked Solution / Video Walkthrough tab pair — the single-question
-// equivalent of PartCard, used by the various MCQ files under ./questions.
+// options, and a Worked Solution / Examiner's Report / Video Walkthrough tab set — the
+// single-question equivalent of PartCard, used by the various MCQ files under ./questions.
 
 import { useState, ReactNode } from 'react'
-import { WorkingTable, type WorkingRow } from './QuestionParts'
+import { WorkingTable, ExaminerReport, type WorkingRow, type MCQExaminerStats } from './QuestionParts'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 
 export interface MCQOptionData {
@@ -17,6 +17,7 @@ export function MCQShell({
   diagram,
   options,
   rows,
+  examinerReport,
   videoSrc,
   videoIsExternal,
 }: {
@@ -24,10 +25,11 @@ export function MCQShell({
   diagram?: ReactNode
   options: MCQOptionData[]
   rows: WorkingRow[]
+  examinerReport?: MCQExaminerStats
   videoSrc?: string
   videoIsExternal?: boolean
 }) {
-  const [tab, setTab] = useState<'solution' | 'video'>('solution')
+  const [tab, setTab] = useState<'solution' | 'report' | 'video'>('solution')
 
   return (
     <div>
@@ -50,24 +52,31 @@ export function MCQShell({
         </div>
       </div>
 
-      <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1 w-fit mb-5">
+      <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1 w-fit mb-5 flex-wrap">
         <TabButton active={tab === 'solution'} onClick={() => setTab('solution')}>Worked Solution</TabButton>
+        {examinerReport && (
+          <TabButton active={tab === 'report'} onClick={() => setTab('report')}>Examiner's Report</TabButton>
+        )}
         <TabButton active={tab === 'video'} onClick={() => setTab('video')}>Video Walkthrough</TabButton>
       </div>
 
       {tab === 'solution' ? (
         <WorkingTable rows={rows} />
-      ) : videoSrc ? (
-        videoIsExternal ? (
-          <DropboxLink src={videoSrc} label="this question" />
+      ) : tab === 'report' && examinerReport ? (
+        <ExaminerReport stats={examinerReport} />
+      ) : tab === 'video' ? (
+        videoSrc ? (
+          videoIsExternal ? (
+            <DropboxLink src={videoSrc} label="this question" />
+          ) : (
+            <VideoPlayer src={videoSrc} label="this question" />
+          )
         ) : (
-          <VideoPlayer src={videoSrc} label="this question" />
+          <div className="border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 rounded-2xl px-7 py-9 text-center text-[13.5px] leading-relaxed text-gray-400 dark:text-gray-500">
+            Video walkthrough coming soon.
+          </div>
         )
-      ) : (
-        <div className="border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 rounded-2xl px-7 py-9 text-center text-[13.5px] leading-relaxed text-gray-400 dark:text-gray-500">
-          Video walkthrough coming soon.
-        </div>
-      )}
+      ) : null}
     </div>
   )
 }

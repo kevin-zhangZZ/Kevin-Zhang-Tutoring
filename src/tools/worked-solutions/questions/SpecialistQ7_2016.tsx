@@ -5,7 +5,19 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 37, B: 8, C: 17, D: 16, E: 21 },
+  answer: 'A',
+  noAnswer: 1,
+  comment: (
+    <Katex
+      display
+      tex="\frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{\cos(2t)}{\cos(t)+\sin(t)} = \frac{\cos^2(t)-\sin^2(t)}{\cos(t)+\sin(t)} = \cos(t)-\sin(t)"
+    />
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -46,6 +58,7 @@ export default function SpecialistQ7_2016() {
         { letter: 'E', content: <Katex tex="\dfrac{\cos(2t)}{\cos(t)-\sin(t)}" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

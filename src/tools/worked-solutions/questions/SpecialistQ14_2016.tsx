@@ -5,7 +5,14 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 6, B: 41, C: 10, D: 7, E: 36 },
+  answer: 'B',
+  noAnswer: 1,
+  comment: 'Draw a diagram showing forces. The ratio of force magnitudes is not the ratio of string lengths.',
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -60,6 +67,7 @@ export default function SpecialistQ14_2016() {
         { letter: 'E', content: <Katex tex="\dfrac{4}{3}" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

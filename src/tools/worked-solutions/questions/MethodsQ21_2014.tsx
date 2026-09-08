@@ -4,7 +4,19 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 12, B: 18, C: 27, D: 28, E: 15 },
+  answer: 'D',
+  noAnswer: 1,
+  comment: (
+    <>
+      Area of a trapezium <Katex tex="=\dfrac{h(a+b)}{2} = \dfrac{p\sin(x)\bigl(p+p+2\cos(x)\bigr)}{2}" />.
+      Maximum area is when <Katex tex="x=\dfrac{\pi}{3}" />.
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -75,6 +87,7 @@ export default function MethodsQ21_2014() {
         { letter: 'E', content: <Katex tex="\dfrac{5\pi}{12}" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

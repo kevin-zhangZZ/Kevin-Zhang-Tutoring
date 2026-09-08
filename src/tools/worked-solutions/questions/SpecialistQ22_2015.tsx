@@ -5,7 +5,22 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 7, B: 3, C: 8, D: 42, E: 11 },
+  answer: 'D',
+  noAnswer: 1,
+  comment: (
+    <>
+      <Katex
+        display
+        tex="\frac{dt}{dv} = \frac{-1}{9.8+0.1v^2}, \qquad t=-\frac{10}{\sqrt{98}}\tan^{-1}\!\left(\frac{v}{\sqrt{98}}\right)+c"
+      />
+      <Katex display tex="t=0,\,v=0 \;\implies\; c=\frac{10}{\sqrt{98}}\times\frac{\pi}{3} \ \text{— the required time, option D}" />
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -63,6 +78,7 @@ export default function SpecialistQ22_2015() {
         { letter: 'E', content: <Katex tex="10\log_e(4)" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

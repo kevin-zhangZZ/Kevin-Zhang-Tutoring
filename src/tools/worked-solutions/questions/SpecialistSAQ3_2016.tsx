@@ -3,7 +3,57 @@
 // Question text transcribed from the original paper; worked solutions below are original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
+import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const EXAMINER_A: SAExaminerStats = {
+  marks: [29, 16, 13, 42],
+  average: 1.7,
+  comment:
+    'A range of errors prevented students from achieving full marks for this question. There were many instances where students did not separate variables correctly. Some students did not write down or evaluate the constant. Errors with constants were common among students who added a constant to both sides of the expression before attempting to find its value. A small number of students used definite integrals from 0 to t and 20 to x on the sides.',
+}
+
+const EXAMINER_B: SAExaminerStats = {
+  marks: [66, 34],
+  average: 0.4,
+  comment: (
+    <>
+      Many students did not demonstrate an understanding of what was required by this question. Students
+      frequently found an expression for <Katex tex="\dfrac{dy}{dt}" /> rather than the concentration at
+      time <Katex tex="t" />.
+    </>
+  ),
+}
+
+const EXAMINER_C: SAExaminerStats = {
+  marks: [51, 9, 40],
+  average: 0.9,
+  comment: (
+    <>
+      This 'show that' question required students to obtain the expression{' '}
+      <Katex tex="\dfrac{dy}{dt}=\dfrac13-\dfrac{y}{10+t}" /> by logical steps. Some students incorrectly
+      started with the given expression with no explanation of its origin. Students frequently did not seem
+      to realise that work done for part (b) was useful here.
+    </>
+  ),
+}
+
+const EXAMINER_D: SAExaminerStats = {
+  marks: [41, 20, 22, 17],
+  average: 1.2,
+  comment:
+    'Most students were able to find a correct expression for the derivative. It was not always clear how expressions for the left side simplified to the right side. Verification that the given solution satisfied the initial conditions was often absent.',
+}
+
+const EXAMINER_E: SAExaminerStats = {
+  marks: [69, 8, 23],
+  average: 0.6,
+  comment: (
+    <>
+      Many students did not attempt this question. It was common to see <Katex tex="\dfrac{dy}{dt}=0.095" />{' '}
+      rather than using the concentration in the equation.
+    </>
+  ),
+}
 
 // Dropbox share links for the tutor's video walkthrough of each part, converted to `raw=1`
 // so the browser can stream them directly (Dropbox re-signs the redirect on every request,
@@ -130,7 +180,7 @@ export default function SpecialistSAQ3_2016() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={3} videoSrc={VIDEO.a} statement="Solve this differential equation to find x in terms of t.">
+      <PartCard letter="a" marks={3} videoSrc={VIDEO.a} statement="Solve this differential equation to find x in terms of t." examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
       </PartCard>
 
@@ -148,6 +198,7 @@ export default function SpecialistSAQ3_2016() {
         marks={1}
         videoSrc={VIDEO.b}
         statement="If y kilograms is the amount of salt in the tank after t minutes, write down an expression for the concentration, in kg/L, of salt in the second tank at time t."
+        examinerReport={EXAMINER_B}
       >
         <WorkingTable rows={rowsB} />
       </PartCard>
@@ -162,6 +213,7 @@ export default function SpecialistSAQ3_2016() {
             <Katex tex="\dfrac{dy}{dt} + \dfrac{y}{10+t} = \dfrac{1}{3}" />.
           </>
         }
+        examinerReport={EXAMINER_C}
       >
         <WorkingTable rows={rowsC} />
       </PartCard>
@@ -177,6 +229,7 @@ export default function SpecialistSAQ3_2016() {
             that the given solution for <Katex tex="y" /> also satisfies the initial condition.
           </>
         }
+        examinerReport={EXAMINER_D}
       >
         <WorkingTable rows={rowsD} />
       </PartCard>
@@ -186,6 +239,7 @@ export default function SpecialistSAQ3_2016() {
         marks={2}
         videoSrc={VIDEO.e}
         statement="Find when the concentration of salt in the second tank reaches 0.095 kg/L. Give your answer in minutes, correct to two decimal places."
+        examinerReport={EXAMINER_E}
       >
         <WorkingTable rows={rowsE} />
       </PartCard>

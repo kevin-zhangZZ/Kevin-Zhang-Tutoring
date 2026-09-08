@@ -5,7 +5,24 @@
 // No video walkthrough yet.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
+import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const EXAMINER_FI: SAExaminerStats = {
+  marks: [43, 7, 50],
+  average: 1.1,
+  comment: (
+    <>
+      Students who used a tree diagram often gave the correct answer. Matrix formulations with the rows or
+      columns of the transition matrix swapped were common incorrect approaches. Brackets were sometimes
+      omitted, giving the incorrect answer <Katex tex="0.7\times0.7+0.3\times1-p=0.79-p" />.
+    </>
+  ),
+}
+
+const EXAMINER_FII: SAExaminerStats = {
+  marks: [34, 18, 48],
+  average: 1.2,
+}
 
 export default function MethodsQ4_2014Exam2() {
   const rowsFi: WorkingRow[] = [
@@ -64,11 +81,11 @@ export default function MethodsQ4_2014Exam2() {
         </p>
       </div>
 
-      <PartCard letter="f.i" marks={2} statement={<>Show that the probability that the third pot made in a week is smooth is <Katex tex="0.79-0.3p" />.</>}>
+      <PartCard letter="f.i" marks={2} statement={<>Show that the probability that the third pot made in a week is smooth is <Katex tex="0.79-0.3p" />.</>} examinerReport={EXAMINER_FI}>
         <WorkingTable rows={rowsFi} />
       </PartCard>
 
-      <PartCard letter="f.ii" marks={2} statement={<>Given that the probability that the third pot made in a week is smooth is <Katex tex="0.61" />, find the value of <Katex tex="p" />.</>}>
+      <PartCard letter="f.ii" marks={2} statement={<>Given that the probability that the third pot made in a week is smooth is <Katex tex="0.61" />, find the value of <Katex tex="p" />.</>} examinerReport={EXAMINER_FII}>
         <WorkingTable rows={rowsFii} />
       </PartCard>
     </div>

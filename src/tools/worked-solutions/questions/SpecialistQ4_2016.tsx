@@ -4,7 +4,47 @@
 // No video walkthrough yet — the tutor will record and add these later.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
+import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const EXAMINER_A: SAExaminerStats = {
+  marks: [23, 18, 58],
+  average: 1.4,
+  comment: (
+    <>
+      <Katex tex="5(1-t)=4(t-2), \ t=\tfrac{13}{9}" />; <Katex tex="3(1+t)=5t-2, \ t=\tfrac{5}{2}" /> — different
+      times, so particles do not collide. A variety of correct approaches were used by students but the
+      approach above led to success most frequently. Many students did not find both times correctly due to
+      simple algebraic errors.
+    </>
+  ),
+}
+
+const EXAMINER_B: SAExaminerStats = {
+  marks: [25, 19, 19, 36],
+  average: 1.7,
+  comment:
+    'The majority of students found correct Cartesian expressions for the paths. Many students did not take note of when the vector functions applied and consequently plotted the paths over incorrect domains. The instruction to show the direction of motion was usually followed.',
+}
+
+const EXAMINER_C: SAExaminerStats = {
+  marks: [69, 7, 24],
+  average: 0.6,
+  comment:
+    'Students who found velocity vectors before finding the angle between them using a scalar product were more successful than those who used the gradients from the Cartesian expressions. Some students found the angle between position vectors at chosen times, which indicated that a greater appreciation of the meaning of position and velocity vectors is required. Occasionally students gave the acute angle between the paths.',
+}
+
+const EXAMINER_DI: SAExaminerStats = {
+  marks: [64, 9, 27],
+  average: 0.7,
+  comment:
+    'Students who found a displacement vector frequently went on to find the correct time. Some students used an expression for the difference between position vector magnitudes. Students are reminded that the instruction to give the answer correct to three decimal places must be followed to gain full marks. A rational answer did not suffice here.',
+}
+
+const EXAMINER_DII: SAExaminerStats = {
+  marks: [71, 29],
+  average: 0.3,
+  comment: 'Many students who did not attempt part (d)(i) did not attempt this part.',
+}
 
 export default function SpecialistQ4_2016() {
   const rowsA: WorkingRow[] = [
@@ -69,7 +109,7 @@ export default function SpecialistQ4_2016() {
     },
   ]
 
-  const rowsD: WorkingRow[] = [
+  const rowsDi: WorkingRow[] = [
     {
       working: (
         <Katex
@@ -91,9 +131,12 @@ export default function SpecialistQ4_2016() {
     {
       working: <Katex display tex="\boxed{t \approx 1.494 \text{ hours}}" />,
     },
+  ]
+
+  const rowsDii: WorkingRow[] = [
     {
       working: <Katex display tex="\boxed{D_{\min} = \sqrt{4.2471} \approx 2.06 \text{ km}}" />,
-      reason: <>Substitute <Katex tex="t" /> back; the minimum value of <Katex tex="D(t)^2 \approx 4.2471" />.</>,
+      reason: <>Substitute <Katex tex="t\approx1.494" /> back; the minimum value of <Katex tex="D(t)^2 \approx 4.2471" />.</>,
     },
   ]
 
@@ -110,20 +153,24 @@ export default function SpecialistQ4_2016() {
         <p>where displacements are measured in kilometres.</p>
       </div>
 
-      <PartCard letter="a" marks={2} statement="Show that the two ships will not collide, clearly stating your reason.">
+      <PartCard letter="a" marks={2} statement="Show that the two ships will not collide, clearly stating your reason." examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
       </PartCard>
 
-      <PartCard letter="b" marks={3} statement="Sketch and label the path of each ship on the axes below. Show the direction of motion of each ship with an arrow.">
+      <PartCard letter="b" marks={3} statement="Sketch and label the path of each ship on the axes below. Show the direction of motion of each ship with an arrow." examinerReport={EXAMINER_B}>
         <WorkingTable rows={rowsB} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement="Find the obtuse angle between the paths of the two ships. Give your answer in degrees, correct to one decimal place.">
+      <PartCard letter="c" marks={2} statement="Find the obtuse angle between the paths of the two ships. Give your answer in degrees, correct to one decimal place." examinerReport={EXAMINER_C}>
         <WorkingTable rows={rowsC} />
       </PartCard>
 
-      <PartCard letter="d" marks={3} statement={<>Find the value of <Katex tex="t" />, correct to three decimal places, when the ships are closest, and the minimum distance between them in kilometres, correct to two decimal places.</>}>
-        <WorkingTable rows={rowsD} />
+      <PartCard letter="d.i" marks={2} statement={<>Find the value of <Katex tex="t" />, correct to three decimal places, when the ships are closest.</>} examinerReport={EXAMINER_DI}>
+        <WorkingTable rows={rowsDi} />
+      </PartCard>
+
+      <PartCard letter="d.ii" marks={1} statement="Find the minimum distance between the ships, in kilometres, correct to two decimal places." examinerReport={EXAMINER_DII}>
+        <WorkingTable rows={rowsDii} />
       </PartCard>
     </div>
   )

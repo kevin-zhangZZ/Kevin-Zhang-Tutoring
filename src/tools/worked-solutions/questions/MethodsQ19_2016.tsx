@@ -5,7 +5,22 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 16, B: 25, C: 22, D: 20, E: 15 },
+  answer: 'E',
+  noAnswer: 1,
+  comment: (
+    <>
+      From <Katex tex="a+4b+0.2=1" />, <Katex tex="a+4b=0.8" />. Then{' '}
+      <Katex tex="\mathrm{E}(X)=-a+5b^2+0.8" />; substituting <Katex tex="0.8-4b" /> for <Katex tex="a" /> gives{' '}
+      <Katex tex="\mathrm{E}(X)=5b^2+4b" /> for <Katex tex="0\le b\le 0.2" />, whose maximum occurs when{' '}
+      <Katex tex="a" /> is zero, i.e. <Katex tex="4b+0.2=1" />, <Katex tex="b=0.2" />. The smallest value for{' '}
+      <Katex tex="\mathrm{E}(X)" /> is 0 and the largest value is 1.
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -84,6 +99,7 @@ export default function MethodsQ19_2016() {
         { letter: 'E', content: <>0 and 1</>, isAnswer: true },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

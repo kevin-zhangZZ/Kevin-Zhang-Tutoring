@@ -4,7 +4,47 @@
 // No video walkthrough yet — the tutor will record and add these later.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
+import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const EXAMINER_A: SAExaminerStats = {
+  marks: [14, 14, 72],
+  average: 1.6,
+  comment:
+    'The majority of correct answers resulted from substituting z = x + yi into the expression provided. Very few students used a perpendicular bisector approach at this stage. The most common error was a negative gradient.',
+}
+
+const EXAMINER_B: SAExaminerStats = {
+  marks: [17, 18, 66],
+  average: 1.5,
+  comment: 'Most students were able to find Cartesian expressions for the circle and the line and then apply substitution or use technology to find the required points.',
+}
+
+const EXAMINER_C: SAExaminerStats = {
+  marks: [11, 12, 77],
+  average: 1.7,
+  comment:
+    'This question was generally well answered. The circle was sketched correctly in almost all cases. However, the line was not always placed with sufficient accuracy. Some students who were unable to find the correct equation in part (a) were able to use a perpendicular bisector approach to draw a correct line.',
+}
+
+const EXAMINER_D: SAExaminerStats = {
+  marks: [48, 13, 39],
+  average: 0.9,
+  comment:
+    'Students found this question more difficult than previous parts of Question 2. A correct answer was most easily found by adding a right-angled triangle to three-quarters of a circle. Subtracting the minor segment area from the circle area was a common approach. Some students correctly used a segment area formula and a larger number set up elaborate definite integrals to find the area, occasionally successfully, but this was not an efficient approach. Sign and factorisation errors meant that some students moved from a correct approach and evaluation to an incorrect final answer.',
+}
+
+const EXAMINER_E: SAExaminerStats = {
+  marks: [66, 34],
+  average: 0.4,
+  comment: 'Many students were not able to sketch the required ray. Some students sketched a line but did not restrict their ray appropriately, either including or extending past the origin.',
+}
+
+const EXAMINER_F: SAExaminerStats = {
+  marks: [85, 9, 7],
+  average: 0.3,
+  comment:
+    'Students found this question demanding, with few students giving a fully correct answer. Many students did not respond to this question. Common incorrect answers contained multiples of π or included the endpoint α = −1. Some students did not note that the principal value of the argument was used in the question. Of the correct answers, a variety of correct notations were presented.',
+}
 
 export default function SpecialistQ2_2016() {
   const rowsA: WorkingRow[] = [
@@ -149,7 +189,7 @@ export default function SpecialistQ2_2016() {
         <Katex display tex="|z-1| = |z+2-3i|, \quad z \in \mathbb{C}." className="my-2" />
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the equation of this line in the form <Katex tex="y = mx + c" />.</>}>
+      <PartCard letter="a" marks={2} statement={<>Find the equation of this line in the form <Katex tex="y = mx + c" />.</>} examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
       </PartCard>
 
@@ -157,11 +197,12 @@ export default function SpecialistQ2_2016() {
         letter="b"
         marks={2}
         statement={<>Find the points of intersection of the line <Katex tex="|z-1|=|z+2-3i|" /> with the circle <Katex tex="|z-1|=3" />.</>}
+        examinerReport={EXAMINER_B}
       >
         <WorkingTable rows={rowsB} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Sketch both the line <Katex tex="|z-1|=|z+2-3i|" /> and the circle <Katex tex="|z-1|=3" /> on the Argand diagram.</>}>
+      <PartCard letter="c" marks={2} statement={<>Sketch both the line <Katex tex="|z-1|=|z+2-3i|" /> and the circle <Katex tex="|z-1|=3" /> on the Argand diagram.</>} examinerReport={EXAMINER_C}>
         <WorkingTable rows={rowsC} />
       </PartCard>
 
@@ -169,11 +210,12 @@ export default function SpecialistQ2_2016() {
         letter="d"
         marks={2}
         statement={<>The line <Katex tex="|z-1|=|z+2-3i|" /> cuts the circle <Katex tex="|z-1|=3" /> into two segments. Find the area of the major segment.</>}
+        examinerReport={EXAMINER_D}
       >
         <WorkingTable rows={rowsD} />
       </PartCard>
 
-      <PartCard letter="e" marks={1} statement={<>Sketch the ray given by <Katex tex="\mathrm{Arg}(z) = -\dfrac{3\pi}{4}" /> on the Argand diagram in part c.</>}>
+      <PartCard letter="e" marks={1} statement={<>Sketch the ray given by <Katex tex="\mathrm{Arg}(z) = -\dfrac{3\pi}{4}" /> on the Argand diagram in part c.</>} examinerReport={EXAMINER_E}>
         <WorkingTable rows={rowsE} />
       </PartCard>
 
@@ -181,6 +223,7 @@ export default function SpecialistQ2_2016() {
         letter="f"
         marks={2}
         statement={<>Write down the range of values of <Katex tex="\alpha, \ \alpha \in \mathbb{R}" />, for which a ray with equation <Katex tex="\mathrm{Arg}(z) = \alpha\pi" /> intersects the line <Katex tex="|z-1|=|z+2-3i|" />.</>}
+        examinerReport={EXAMINER_F}
       >
         <WorkingTable rows={rowsF} />
       </PartCard>

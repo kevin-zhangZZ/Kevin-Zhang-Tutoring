@@ -4,7 +4,21 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 24, B: 19, C: 26, D: 22, E: 8 },
+  answer: 'D',
+  noAnswer: 2,
+  comment: (
+    <>
+      <Katex tex="f'(x)=\int(bx^n)\,dx=\dfrac{bx^{n+1}}{n+1}+c" />, and <Katex tex="f'(x)=amx^{m-1}" />.
+      Hence <Katex tex="n+1=m-1" />, <Katex tex="n=m-2" />, <Katex tex="\dfrac{b}{n+1}=am" />,{' '}
+      <Katex tex="\dfrac{b}{a}=m(n+1)=m(m-1)" />. Hence <Katex tex="\dfrac{b}{a}" /> is an integer as{' '}
+      <Katex tex="m" /> is an integer; for example, if <Katex tex="m=3" />, <Katex tex="\dfrac{b}{a}=3\times2=6" />.
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -62,6 +76,7 @@ export default function MethodsQ16_2015() {
         { letter: 'E', content: <Katex tex="n-m=2" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

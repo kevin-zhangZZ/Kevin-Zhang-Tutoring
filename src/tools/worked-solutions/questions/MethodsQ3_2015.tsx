@@ -4,7 +4,22 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 61, B: 14, C: 20, D: 2, E: 4 },
+  answer: 'C',
+  noAnswer: 0,
+  comment: (
+    <>
+      The rule for the graph is in the form <Katex tex="f(x)=a(x-b)(x-c)^2(x-d)" />, where <Katex tex="a" />{' '}
+      is negative and could be <Katex tex="-2" />: <Katex tex="f(x)=-2(x-b)(x-c)^2(x-d)" />. <Katex tex="b" />{' '}
+      is negative; for example if <Katex tex="b=-2" />, the factor is <Katex tex="(x-(-2))=(x+2)" />. Most
+      students chose option A, <Katex tex="y=-2(x+b)(x-c)^2(x-d)" />, but the factor <Katex tex="(x+b)" /> is
+      incorrect.
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -48,6 +63,7 @@ export default function MethodsQ3_2015() {
         { letter: 'E', content: <Katex tex="y=-2(x-b)(x+c)^2(x+d)" /> },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }

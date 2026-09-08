@@ -5,7 +5,21 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow } from '../QuestionParts'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 11, B: 23, C: 30, D: 18, E: 17 },
+  answer: 'E',
+  noAnswer: 1,
+  comment: (
+    <>
+      Reflect the graph of <Katex tex="f" /> in the <Katex tex="y" />-axis:{' '}
+      <Katex tex="\int_0^3 f(x)\,dx = \int_{-3}^0 f(-x)\,dx = 5" />. Then dilate the graph by a factor of 3
+      from the <Katex tex="x" />-axis: <Katex tex="3\int_{-3}^0 f(-x)\,dx = 15" />. Then translate the graph
+      5 units up: <Katex tex="3\int_{-3}^0 f(-x)\,dx + 3\times5 = 30" />.
+    </>
+  ),
+}
 
 const ROWS: WorkingRow[] = [
   {
@@ -70,6 +84,7 @@ export default function MethodsQ20_2016() {
         { letter: 'E', content: '30', isAnswer: true },
       ]}
       rows={ROWS}
+      examinerReport={EXAMINER}
     />
   )
 }
