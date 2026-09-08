@@ -187,14 +187,24 @@ export interface WorkingRow {
   reason?: ReactNode
 }
 
+// The Working/Reasoning split only works as two side-by-side columns once there's genuinely
+// enough width for both — squeeze it (a narrow browser window, a collapsed-but-still-present
+// sidebar, a high page zoom) and a two-column split forces every equation into a sliver too
+// narrow for even simple expressions, which is exactly the horizontal-scrollbar problem this
+// is trying to avoid. `@container` here means the breakpoint below responds to this table's
+// own rendered width, not the viewport's — the correct thing to key off, since the same
+// viewport width can leave this table anywhere from full-bleed to squeezed depending on
+// whether the tool sidebar and the app's own nav rail are open. Below that width, Working and
+// Reasoning stack (in DOM order, so Working still comes first) and each gets the full card
+// width instead of half of it.
 export function WorkingTable({ rows }: { rows: WorkingRow[] }) {
   return (
     <div>
       <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
         Worked Solution
       </p>
-      <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-        <div className="grid grid-cols-2 bg-gray-50 dark:bg-gray-800/60">
+      <div className="@container rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+        <div className="hidden @2xl:grid @2xl:grid-cols-2 bg-gray-50 dark:bg-gray-800/60">
           <div className="px-4 py-2 border-r border-gray-200 dark:border-gray-800 text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500">
             Working
           </div>
@@ -205,14 +215,19 @@ export function WorkingTable({ rows }: { rows: WorkingRow[] }) {
         {rows.map((row, i) => (
           <div
             key={i}
-            className={`grid grid-cols-2 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}
+            className={`grid grid-cols-1 @2xl:grid-cols-2 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}
           >
-            <div className="px-4 py-3 border-r border-gray-100 dark:border-gray-800 self-center space-y-1.5 text-[13.5px] text-gray-800 dark:text-gray-100">
+            <div className="px-4 py-3 @2xl:border-r border-gray-100 dark:border-gray-800 self-center space-y-1.5 text-[13.5px] text-gray-800 dark:text-gray-100">
               {row.working}
             </div>
-            <div className="px-4 py-3 self-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400">
-              {row.reason}
-            </div>
+            {row.reason && (
+              <div className="px-4 pb-3 pt-1 @2xl:pt-3 @2xl:self-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400 border-t @2xl:border-t-0 border-dashed border-gray-100 dark:border-gray-800">
+                <p className="@2xl:hidden text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-1 mt-2">
+                  Reasoning
+                </p>
+                {row.reason}
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -19,7 +19,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Multiply top and bottom by the conjugate <Katex tex="a-bi" /> to rationalise.</>,
   },
   {
-    working: <Katex display tex="z+\frac{1}{z} = \left(a+\frac{a}{a^2+b^2}\right) + i\left(b-\frac{b}{a^2+b^2}\right)" />,
+    working: (
+      <>
+        <Katex display tex="z+\frac{1}{z} = \left(a+\frac{a}{a^2+b^2}\right)" />
+        <Katex display tex="{}+ i\left(b-\frac{b}{a^2+b^2}\right)" />
+      </>
+    ),
     reason: 'Add real and imaginary parts separately.',
   },
   {
@@ -30,7 +35,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="b\left(1-\frac{1}{a^2+b^2}\right)=0" />,
   },
   {
-    working: <Katex display tex="b\ne 0 \;\implies\; 1-\frac{1}{a^2+b^2}=0 \;\implies\; a^2+b^2=1" />,
+    working: (
+      <>
+        <Katex display tex="b\ne 0" />
+        <Katex display tex="\implies\; 1-\frac{1}{a^2+b^2}=0" />
+        <Katex display tex="\implies\; a^2+b^2=1" />
+      </>
+    ),
     reason: <>Given <Katex tex="b\in\mathbb{R}\setminus\{0\}" />, so the other factor must vanish instead.</>,
   },
   {

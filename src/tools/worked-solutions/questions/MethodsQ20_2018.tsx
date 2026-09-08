@@ -24,7 +24,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="T\!\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}a&0\\0&b\end{pmatrix}\!\begin{pmatrix}x\\y\end{pmatrix} \;\implies\; x'=ax,\ y'=by" />,
+    working: (
+      <>
+        <Katex display tex="T\!\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}a&0\\0&b\end{pmatrix}\!\begin{pmatrix}x\\y\end{pmatrix}" />
+        <Katex display tex="\implies\; x'=ax,\ y'=by" />
+      </>
+    ),
     reason: <>Try a general diagonal (scaling) transformation and find what <Katex tex="a" /> and <Katex tex="b" /> must be.</>,
   },
   {
@@ -32,19 +37,40 @@ const ROWS: WorkingRow[] = [
     reason: <>A point <Katex tex="(x,f(x))" /> maps to <Katex tex="(ax,\,bf(x))" />; writing <Katex tex="x=x'/a" /> gives the new curve <Katex tex="g" /> in terms of <Katex tex="f" />.</>,
   },
   {
-    working: <Katex display tex="\int_{-\infty}^{\infty} g(x')\,dx' = |a|\,b\int_{-\infty}^{\infty} f(u)\,du = |a|\,b \;\overset{!}{=}\; 1 \;\implies\; b=\frac{1}{|a|}" />,
+    working: (
+      <>
+        <Katex display tex="\int_{-\infty}^{\infty} g(x')\,dx' = |a|\,b\int_{-\infty}^{\infty} f(u)\,du" />
+        <Katex display tex="= |a|\,b \;\overset{!}{=}\; 1" />
+        <Katex display tex="\implies\; b=\frac{1}{|a|}" />
+      </>
+    ),
     reason: <>For <Katex tex="g" /> to remain a valid probability density (area 1, non-negative), substituting <Katex tex="u=x'/a" /> forces <Katex tex="|a|\,b=1" />; <Katex tex="b" /> itself must be positive.</>,
   },
   {
-    working: <Katex display tex="g'(x') = \frac{b}{a}f'\!\left(\frac{x'}{a}\right) \;\implies\; g'(0) = \frac{b}{a}f'(0) = \frac{4}{a|a|}" />,
+    working: (
+      <>
+        <Katex display tex="g'(x') = \frac{b}{a}f'\!\left(\frac{x'}{a}\right)" />
+        <Katex display tex="\implies\; g'(0) = \frac{b}{a}f'(0) = \frac{4}{a|a|}" />
+      </>
+    ),
     reason: <>Chain rule, then evaluate at <Katex tex="x'=0" /> (median maps to median, since the transform fixes the origin) using <Katex tex="f'(0)=4" /> and <Katex tex="b=1/|a|" />.</>,
   },
   {
-    working: <Katex display tex="\frac{4}{a|a|} = -1 \;\implies\; a|a|=-4" />,
+    working: (
+      <>
+        <Katex display tex="\frac{4}{a|a|} = -1" />
+        <Katex display tex="\implies\; a|a|=-4" />
+      </>
+    ),
     reason: <>Set equal to the given <Katex tex="g'(0)=-1" />. The right side is negative, so <Katex tex="a" /> must be negative (a reflection is needed).</>,
   },
   {
-    working: <Katex display tex="a=-k\ (k>0) \;\implies\; -k^2=-4 \;\implies\; k=2 \;\implies\; a=-2,\ b=\tfrac12" />,
+    working: (
+      <>
+        <Katex display tex="a=-k\ (k>0) \;\implies\; -k^2=-4" />
+        <Katex display tex="\implies\; k=2 \;\implies\; a=-2,\ b=\tfrac12" />
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{T\!\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}-2&0\\0&\tfrac12\end{pmatrix}\!\begin{pmatrix}x\\y\end{pmatrix}}" />,

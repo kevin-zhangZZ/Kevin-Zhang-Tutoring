@@ -21,7 +21,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{a}=(2,0), \ \underset{\sim}{b}=(3,0): \quad |\underset{\sim}{a}+\underset{\sim}{b}|=5=|\underset{\sim}{a}|+|\underset{\sim}{b}|" />,
+    working: (
+      <>
+        <Katex display tex="\underset{\sim}{a}=(2,0), \ \underset{\sim}{b}=(3,0):" />
+        <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|=5=|\underset{\sim}{a}|+|\underset{\sim}{b}|" />
+      </>
+    ),
     reason: <>A quick example where equality holds — <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> point the <em>same</em> way. Here <Katex tex="|\underset{\sim}{a}|=2\ne3=|\underset{\sim}{b}|" />, <Katex tex="\underset{\sim}{a}\ne\underset{\sim}{b}" />, <Katex tex="\underset{\sim}{a}\ne-\underset{\sim}{b}" />, and they're not perpendicular — this already rules out B, C, D, E as <em>necessary</em> conditions.</>,
   },
   {
@@ -32,15 +37,30 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\bigl(|\underset{\sim}{a}|+|\underset{\sim}{b}|\bigr)^2 = |\underset{\sim}{a}|^2+2|\underset{\sim}{a}||\underset{\sim}{b}|+|\underset{\sim}{b}|^2" />,
   },
   {
-    working: <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|=|\underset{\sim}{a}|+|\underset{\sim}{b}| \;\implies\; \underset{\sim}{a}\!\cdot\!\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|" />,
+    working: (
+      <>
+        <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|=|\underset{\sim}{a}|+|\underset{\sim}{b}|" />
+        <Katex display tex="\implies\; \underset{\sim}{a}\!\cdot\!\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|" />
+      </>
+    ),
     reason: 'Equate the two expansions above (squaring is valid since both sides are non-negative) and cancel matching terms.',
   },
   {
-    working: <Katex display tex="\underset{\sim}{a}\!\cdot\!\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta \;\implies\; \cos\theta=1 \;\implies\; \theta=0" />,
+    working: (
+      <>
+        <Katex display tex="\underset{\sim}{a}\!\cdot\!\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />
+        <Katex display tex="\implies\; \cos\theta=1 \;\implies\; \theta=0" />
+      </>
+    ),
     reason: <>Since <Katex tex="\underset{\sim}{a},\underset{\sim}{b}\ne\underset{\sim}{0}" />, dividing through by <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|" /> is valid — the angle between them must be exactly <Katex tex="0" />.</>,
   },
   {
-    working: <Katex display tex="\theta=0 \;\implies\; \underset{\sim}{a} \text{ and } \underset{\sim}{b} \text{ point in the same direction}" />,
+    working: (
+      <>
+        <Katex display tex="\theta=0 \;\implies\; \underset{\sim}{a} \text{ and } \underset{\sim}{b}" />
+        <Katex display tex="\text{point in the same direction}" />
+      </>
+    ),
     reason: <>This is stronger than option A's "parallel" (which would also cover pointing in opposite directions), but same-direction always <em>implies</em> parallel — so parallel is a necessary (if not sufficient on its own) consequence.</>,
   },
   {

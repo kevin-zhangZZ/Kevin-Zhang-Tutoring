@@ -49,7 +49,13 @@ const EXAMINER_DII: SAExaminerStats = {
 export default function SpecialistQ4_2016() {
   const rowsA: WorkingRow[] = [
     {
-      working: <Katex display tex="5(1-t) = 4(t-2) \;\implies\; 5-5t=4t-8 \;\implies\; t = \tfrac{13}{9}" />,
+      working: (
+        <>
+          <Katex display tex="5(1-t) = 4(t-2)" />
+          <Katex display tex="5-5t=4t-8" />
+          <Katex display tex="t = \tfrac{13}{9}" />
+        </>
+      ),
       reason: (
         <>
           Ships collide only if both components of <Katex tex="\underset{\sim}{r}_A" /> and{' '}
@@ -59,15 +65,21 @@ export default function SpecialistQ4_2016() {
       ),
     },
     {
-      working: <Katex display tex="3(1+t) = 5t-2 \;\implies\; 3+3t=5t-2 \;\implies\; t = \tfrac{5}{2}" />,
+      working: (
+        <>
+          <Katex display tex="3(1+t) = 5t-2" />
+          <Katex display tex="3+3t=5t-2" />
+          <Katex display tex="t = \tfrac{5}{2}" />
+        </>
+      ),
       reason: <>Set the <Katex tex="j" />-components equal.</>,
     },
     {
-      working: <Katex display tex="\boxed{\text{No common solution for } t \implies \text{the ships do not collide.}}" />,
+      working: <Katex display tex="\boxed{\text{No common solution for } t}" />,
       reason: (
         <>
           <Katex tex="\tfrac{13}{9} \ne \tfrac{5}{2}" /> — the paths cross, but the ships are never at that
-          crossing point at the same time.
+          crossing point at the same time, so the ships do not collide.
         </>
       ),
     },
@@ -75,7 +87,12 @@ export default function SpecialistQ4_2016() {
 
   const rowsB: WorkingRow[] = [
     {
-      working: <Katex display tex="\text{Ship } A: \ y = 6 - \tfrac{3}{5}x \qquad \text{Ship } B: \ y = 1.25x + 8" />,
+      working: (
+        <>
+          <Katex display tex="\text{Ship } A: \ y = 6 - \tfrac{3}{5}x" />
+          <Katex display tex="\text{Ship } B: \ y = 1.25x + 8" />
+        </>
+      ),
       reason: <>Eliminating <Katex tex="t" /> from each vector gives the Cartesian line each ship travels along.</>,
     },
     {
@@ -96,10 +113,11 @@ export default function SpecialistQ4_2016() {
   const rowsC: WorkingRow[] = [
     {
       working: (
-        <Katex
-          display
-          tex="\cos\theta = \frac{\underset{\sim}{d}_A \cdot \underset{\sim}{d}_B}{|\underset{\sim}{d}_A||\underset{\sim}{d}_B|} = \frac{(-5)(4)+(3)(5)}{\sqrt{34}\sqrt{41}} = \frac{-5}{\sqrt{1394}}"
-        />
+        <>
+          <Katex display tex="\cos\theta = \frac{\underset{\sim}{d}_A \cdot \underset{\sim}{d}_B}{|\underset{\sim}{d}_A||\underset{\sim}{d}_B|}" />
+          <Katex display tex="= \frac{(-5)(4)+(3)(5)}{\sqrt{34}\sqrt{41}}" />
+          <Katex display tex="= \frac{-5}{\sqrt{1394}}" />
+        </>
       ),
       reason: <>Using direction vectors <Katex tex="\underset{\sim}{d}_A=(-5,3)" /> and <Katex tex="\underset{\sim}{d}_B=(4,5)" />.</>,
     },
@@ -112,18 +130,22 @@ export default function SpecialistQ4_2016() {
   const rowsDi: WorkingRow[] = [
     {
       working: (
-        <Katex
-          display
-          tex="\underset{\sim}{r}_A - \underset{\sim}{r}_B = \bigl[5(1-t)-4(t-2)\bigr]\underset{\sim}{i} + \bigl[3(1+t)-(5t-2)\bigr]\underset{\sim}{j} = (13-9t)\underset{\sim}{i} + (5-2t)\underset{\sim}{j}"
-        />
+        <>
+          <Katex display tex="\underset{\sim}{r}_A - \underset{\sim}{r}_B" />
+          <Katex display tex="= \bigl[5(1-t)-4(t-2)\bigr]\underset{\sim}{i}" />
+          <Katex display tex="{}+ \bigl[3(1+t)-(5t-2)\bigr]\underset{\sim}{j}" />
+          <Katex display tex="= (13-9t)\underset{\sim}{i} + (5-2t)\underset{\sim}{j}" />
+        </>
       ),
       reason: <>Displacement from <Katex tex="B" /> to <Katex tex="A" />.</>,
     },
     {
       working: (
         <>
-          <Katex display tex="D(t)^2=(13-9t)^2+(5-2t)^2 = 85t^2-254t+194" />
-          <Katex display tex="D'(t)^2 = 170t - 254 = 0 \;\implies\; t = \frac{254}{170} = \frac{127}{85}" />
+          <Katex display tex="D(t)^2=(13-9t)^2+(5-2t)^2" />
+          <Katex display tex="= 85t^2-254t+194" />
+          <Katex display tex="D'(t)^2 = 170t - 254 = 0" />
+          <Katex display tex="t = \frac{254}{170} = \frac{127}{85}" />
         </>
       ),
       reason: 'Minimise the square of the distance.',
