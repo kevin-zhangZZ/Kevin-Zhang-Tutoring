@@ -1,5 +1,5 @@
 // Shared building blocks for a multi-part written solution: one card per exam part
-// (statement + marks + worked-solution steps + video slot) and a numbered step.
+// (statement + marks + a working/reasoning table + video slot).
 
 import { ReactNode } from 'react'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
@@ -22,7 +22,7 @@ export function PartCard({
 }) {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
-      <div className="flex items-start justify-between gap-3 mb-3">
+      <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex items-start gap-3">
           <span className="flex-none w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 font-display text-sm font-bold flex items-center justify-center">
             {letter}
@@ -34,40 +34,66 @@ export function PartCard({
         </span>
       </div>
 
-      <div className="pl-10">
-        <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
-          Worked solution
-        </p>
-        <ol className="flex flex-col gap-3 list-none p-0 m-0 mb-5">{children}</ol>
+      <div className="sm:pl-10 flex flex-col gap-5">
+        {children}
 
-        <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
-          Video walkthrough
-        </p>
-        {videoSrc ? (
-          videoIsExternal ? (
-            <DropboxLink src={videoSrc} label={`part (${letter})`} />
+        <div>
+          <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+            Video Walkthrough
+          </p>
+          {videoSrc ? (
+            videoIsExternal ? (
+              <DropboxLink src={videoSrc} label={`part (${letter})`} />
+            ) : (
+              <VideoPlayer src={videoSrc} label={`part (${letter})`} />
+            )
           ) : (
-            <VideoPlayer src={videoSrc} label={`part (${letter})`} />
-          )
-        ) : (
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 italic">Coming soon.</p>
-        )}
+            <p className="text-[13px] text-gray-400 dark:text-gray-500 italic">Coming soon.</p>
+          )}
+        </div>
       </div>
     </div>
   )
 }
 
-export function Step({ n, final, children }: { n: number; final?: boolean; children: ReactNode }) {
+// One row of the working/reasoning table. `working` is what a student would actually write
+// on the exam page (equations, substitutions, the final boxed answer); `reason` is the
+// explanatory "why" for that line — omit it for a row that's just algebraic manipulation
+// with nothing new to explain, and the cell renders empty.
+export interface WorkingRow {
+  working: ReactNode
+  reason?: ReactNode
+}
+
+export function WorkingTable({ rows }: { rows: WorkingRow[] }) {
   return (
-    <li className="flex gap-3">
-      <span
-        className={`flex-none w-[22px] h-[22px] rounded-full text-white font-display text-xs font-bold flex items-center justify-center mt-0.5 ${
-          final ? 'bg-emerald-500' : 'bg-sky-500'
-        }`}
-      >
-        {n}
-      </span>
-      <div className="text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300 flex-1 min-w-0">{children}</div>
-    </li>
+    <div>
+      <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+        Worked Solution
+      </p>
+      <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+        <div className="grid grid-cols-2 bg-gray-50 dark:bg-gray-800/60">
+          <div className="px-4 py-2 border-r border-gray-200 dark:border-gray-800 text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500">
+            Working
+          </div>
+          <div className="px-4 py-2 text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500">
+            Reasoning
+          </div>
+        </div>
+        {rows.map((row, i) => (
+          <div
+            key={i}
+            className={`grid grid-cols-2 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}
+          >
+            <div className="px-4 py-3 border-r border-gray-100 dark:border-gray-800 flex flex-col justify-center gap-1.5 text-[13.5px] text-gray-800 dark:text-gray-100">
+              {row.working}
+            </div>
+            <div className="px-4 py-3 flex flex-col justify-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400">
+              {row.reason}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

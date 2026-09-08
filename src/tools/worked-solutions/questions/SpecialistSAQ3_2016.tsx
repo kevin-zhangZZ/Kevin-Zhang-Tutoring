@@ -3,7 +3,7 @@
 // Question text transcribed from the original paper; worked solutions below are original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, Step } from '../QuestionParts'
+import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
 
 // Dropbox share links for the tutor's video walkthrough of each part, converted to `raw=1`
 // so the browser can stream them directly (Dropbox re-signs the redirect on every request,
@@ -25,6 +25,93 @@ const VIDEO = {
 }
 
 export default function SpecialistSAQ3_2016() {
+  const rowsA: WorkingRow[] = [
+    {
+      working: <Katex display tex="\frac{dx}{x} = -\frac{dt}{20+t}" />,
+      reason: 'Separate the variables.',
+    },
+    {
+      working: <Katex display tex="\ln|x| = -\ln(20+t) + c \quad\implies\quad x = \frac{A}{20+t}" />,
+      reason: 'Integrate both sides.',
+    },
+    {
+      working: <Katex display tex="20 = \frac{A}{20} \implies A = 400" />,
+      reason: <>Apply the initial condition — at <Katex tex="t=0" />, <Katex tex="x=20" />.</>,
+    },
+    {
+      working: <Katex display tex="\boxed{x = \dfrac{400}{20+t}}" />,
+    },
+  ]
+
+  const rowsB: WorkingRow[] = [
+    {
+      working: <Katex display tex="\text{volume}(t) = 100 + 10t = 10(10+t)\ \text{L}" />,
+      reason: 'Tank 2 gains 20 L/min and loses 10 L/min, so its volume grows at 10 L/min.',
+    },
+    {
+      working: <Katex display tex="\boxed{\text{concentration} = \dfrac{y}{10(10+t)}\ \text{kg/L}}" />,
+      reason: 'Concentration is salt divided by volume.',
+    },
+  ]
+
+  const rowsC: WorkingRow[] = [
+    {
+      working: <Katex display tex="\text{rate in} = \frac{1}{60}\times 20 = \frac{1}{3}\ \text{kg/min}" />,
+      reason: 'Salt flows in at the fixed inflow concentration times the inflow rate.',
+    },
+    {
+      working: <Katex display tex="\text{rate out} = \frac{y}{10(10+t)}\times 10 = \frac{y}{10+t}" />,
+      reason: "Salt flows out at the tank's own concentration (part b) times the outflow rate.",
+    },
+    {
+      working: <Katex display tex="\boxed{\dfrac{dy}{dt} + \dfrac{y}{10+t} = \dfrac{1}{3}}" />,
+      reason: <><Katex tex="\dfrac{dy}{dt}" /> is rate in minus rate out.</>,
+    },
+  ]
+
+  const rowsD: WorkingRow[] = [
+    {
+      working: (
+        <Katex display tex="\frac{dy}{dt} = \frac{(2t+20)\cdot 6(10+t) - (t^2+20t+900)\cdot 6}{[6(10+t)]^2} = \frac{t^2+20t-700}{6(10+t)^2}" />
+      ),
+      reason: <>Differentiate with the quotient rule, <Katex tex="N = t^2+20t+900" />, <Katex tex="D = 6(10+t)" />.</>,
+    },
+    {
+      working: (
+        <Katex
+          display
+          tex="\frac{dy}{dt} + \frac{y}{10+t} = \frac{t^2+20t-700}{6(10+t)^2} + \frac{t^2+20t+900}{6(10+t)^2} = \frac{2(t+10)^2}{6(10+t)^2} = \frac{1}{3}"
+        />
+      ),
+      reason: "Matches the right side of part (c)'s equation — verified.",
+    },
+    {
+      working: <Katex display tex="y(0) = \frac{900}{6(10)} = \frac{900}{60} = 15 \quad\checkmark" />,
+      reason: 'Initial condition — the second tank starts with 15 kg.',
+    },
+  ]
+
+  const rowsE: WorkingRow[] = [
+    {
+      working: (
+        <Katex display tex="\text{concentration}(t) = \frac{y}{10(10+t)} = \frac{t^2+20t+900}{60(10+t)^2}" />
+      ),
+      reason: <>Using <Katex tex="y" /> from part (d).</>,
+    },
+    {
+      working: <Katex display tex="\frac{u^2+800}{60u^2} = 0.095 \implies u^2+800 = 5.7u^2 \implies u^2 = \frac{800}{4.7}" />,
+      reason: (
+        <>
+          Substitute <Katex tex="u = 10+t" />, so <Katex tex="t^2+20t+900 = (t+10)^2+800 = u^2+800" />, and set the
+          concentration to 0.095.
+        </>
+      ),
+    },
+    {
+      working: <Katex display tex="u = \sqrt{\tfrac{800}{4.7}} \approx 13.0466 \quad\implies\quad t = u - 10 \approx \boxed{3.05\ \text{minutes}}" />,
+    },
+  ]
+
   return (
     <div className="flex flex-col gap-8">
       <div>
@@ -44,21 +131,7 @@ export default function SpecialistSAQ3_2016() {
       </div>
 
       <PartCard letter="a" marks={3} videoSrc={VIDEO.a} statement="Solve this differential equation to find x in terms of t.">
-        <Step n={1}>
-          Separate the variables:
-          <Katex display tex="\frac{dx}{x} = -\frac{dt}{20+t}" className="my-2" />
-        </Step>
-        <Step n={2}>
-          Integrate both sides:
-          <Katex display tex="\ln|x| = -\ln(20+t) + c \quad\implies\quad x = \frac{A}{20+t}" className="my-2" />
-        </Step>
-        <Step n={3}>
-          Apply the initial condition — at <Katex tex="t=0" />, <Katex tex="x=20" />:
-          <Katex display tex="20 = \frac{A}{20} \implies A = 400" className="my-2" />
-        </Step>
-        <Step n={4} final>
-          <Katex display tex="\boxed{x = \dfrac{400}{20+t}}" className="my-2" />
-        </Step>
+        <WorkingTable rows={rowsA} />
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -76,14 +149,7 @@ export default function SpecialistSAQ3_2016() {
         videoSrc={VIDEO.b}
         statement="If y kilograms is the amount of salt in the tank after t minutes, write down an expression for the concentration, in kg/L, of salt in the second tank at time t."
       >
-        <Step n={1}>
-          Tank 2 gains 20&nbsp;L/min and loses 10&nbsp;L/min, so its volume grows at 10&nbsp;L/min:
-          <Katex display tex="\text{volume}(t) = 100 + 10t = 10(10+t)\ \text{L}" className="my-2" />
-        </Step>
-        <Step n={2} final>
-          Concentration is salt divided by volume:
-          <Katex display tex="\boxed{\text{concentration} = \dfrac{y}{10(10+t)}\ \text{kg/L}}" className="my-2" />
-        </Step>
+        <WorkingTable rows={rowsB} />
       </PartCard>
 
       <PartCard
@@ -97,18 +163,7 @@ export default function SpecialistSAQ3_2016() {
           </>
         }
       >
-        <Step n={1}>
-          Salt flows in at the fixed inflow concentration times the inflow rate:
-          <Katex display tex="\text{rate in} = \frac{1}{60}\times 20 = \frac{1}{3}\ \text{kg/min}" className="my-2" />
-        </Step>
-        <Step n={2}>
-          Salt flows out at the tank's own concentration (from part b) times the outflow rate:
-          <Katex display tex="\text{rate out} = \frac{y}{10(10+t)}\times 10 = \frac{y}{10+t}" className="my-2" />
-        </Step>
-        <Step n={3} final>
-          <Katex tex="\dfrac{dy}{dt}" /> is rate in minus rate out:
-          <Katex display tex="\frac{dy}{dt} = \frac{1}{3} - \frac{y}{10+t} \quad\implies\quad \boxed{\dfrac{dy}{dt} + \dfrac{y}{10+t} = \dfrac{1}{3}}" className="my-2" />
-        </Step>
+        <WorkingTable rows={rowsC} />
       </PartCard>
 
       <PartCard
@@ -123,23 +178,7 @@ export default function SpecialistSAQ3_2016() {
           </>
         }
       >
-        <Step n={1}>
-          Differentiate with the quotient rule, <Katex tex="N = t^2+20t+900" />, <Katex tex="D = 6(10+t)" />:
-          <Katex display tex="\frac{dy}{dt} = \frac{(2t+20)\cdot 6(10+t) - (t^2+20t+900)\cdot 6}{[6(10+t)]^2} = \frac{t^2+20t-700}{6(10+t)^2}" className="my-2" />
-        </Step>
-        <Step n={2}>
-          Add <Katex tex="\dfrac{y}{10+t}" /> and simplify:
-          <Katex
-            display
-            tex="\frac{dy}{dt} + \frac{y}{10+t} = \frac{t^2+20t-700}{6(10+t)^2} + \frac{t^2+20t+900}{6(10+t)^2} = \frac{2(t+10)^2}{6(10+t)^2} = \frac{1}{3}"
-            className="my-2"
-          />
-          which matches the right side of part c's equation — verified.
-        </Step>
-        <Step n={3} final>
-          Initial condition — the second tank starts with 15&nbsp;kg, i.e. <Katex tex="y(0)=15" />:
-          <Katex display tex="y(0) = \frac{900}{6(10)} = \frac{900}{60} = 15 \quad\checkmark" className="my-2" />
-        </Step>
+        <WorkingTable rows={rowsD} />
       </PartCard>
 
       <PartCard
@@ -148,24 +187,8 @@ export default function SpecialistSAQ3_2016() {
         videoSrc={VIDEO.e}
         statement="Find when the concentration of salt in the second tank reaches 0.095 kg/L. Give your answer in minutes, correct to two decimal places."
       >
-        <Step n={1}>
-          Using <Katex tex="y" /> from part d, the concentration is:
-          <Katex
-            display
-            tex="\text{concentration}(t) = \frac{y}{10(10+t)} = \frac{t^2+20t+900}{60(10+t)^2}"
-            className="my-2"
-          />
-        </Step>
-        <Step n={2}>
-          Substitute <Katex tex="u = 10+t" />, so <Katex tex="t^2+20t+900 = (t+10)^2+800 = u^2+800" />, and set
-          the concentration to 0.095:
-          <Katex display tex="\frac{u^2+800}{60u^2} = 0.095 \implies u^2+800 = 5.7u^2 \implies u^2 = \frac{800}{4.7}" className="my-2" />
-        </Step>
-        <Step n={3} final>
-          <Katex display tex="u = \sqrt{\tfrac{800}{4.7}} \approx 13.0466 \quad\implies\quad t = u - 10 \approx \boxed{3.05\ \text{minutes}}" className="my-2" />
-        </Step>
+        <WorkingTable rows={rowsE} />
       </PartCard>
     </div>
   )
 }
-

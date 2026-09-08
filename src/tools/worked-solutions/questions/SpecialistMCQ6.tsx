@@ -3,8 +3,64 @@
 
 import { useState, ReactNode } from 'react'
 import Katex from '../../../components/Katex'
+import { WorkingTable, type WorkingRow } from '../QuestionParts'
 
 type Tab = 'solution' | 'video'
+
+const ROWS: WorkingRow[] = [
+  {
+    working: <Katex display tex="\arg(z_1) - \arg(z_2) = \frac{\pi}{3} - \frac{3\pi}{4} = -\frac{5\pi}{12}" />,
+    reason: (
+      <>
+        <Katex tex="z_1 \leftrightarrow z_3" /> and <Katex tex="z_2 \leftrightarrow z_4" /> are the diagonals, so
+        this is the angle between them — magnitude <Katex tex="\tfrac{5\pi}{12}" /> matches <b>A</b>.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="|z_1| = |z_3| = 2, \quad |z_2| = |z_4| = 1" />,
+  },
+  {
+    working: <Katex display tex="2|z_1| = 4, \quad 2|z_2| = 2" />,
+    reason: (
+      <>
+        Diagonal lengths are twice these moduli — matches <b>B</b> (2 and 4).
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="z_3 = -z_1, \quad z_4 = -z_2" />,
+    reason: 'Opposite points: same modulus, angle shifted by π.',
+  },
+  {
+    working: <Katex display tex="-z_3-z_4 = -(-z_1)-(-z_2) = z_1+z_2" />,
+    reason: (
+      <>
+        So <Katex tex="z_1+z_2=-z_3-z_4" /> always holds — <b>D</b> is true, sub in and check.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="1 \le |z| \le 2" />,
+    reason: (
+      <>
+        From <Katex tex="|z_1|=|z_3|=2" /> and <Katex tex="|z_2|=|z_4|=1" /> — matches <b>E</b>.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="z^n+a=0 \implies |z|^n=|{-a}| \implies |z|=|a|^{1/n}" />,
+    reason: 'Every root of this form must share one modulus.',
+  },
+  {
+    working: <Katex display tex="|z_1| = 2 \ne 1 = |z_2|" />,
+    reason: (
+      <>
+        But they don't — <b>C is not true, that's the answer.</b>
+      </>
+    ),
+  },
+]
 
 export default function SpecialistMCQ6() {
   const [tab, setTab] = useState<Tab>('solution')
@@ -49,40 +105,12 @@ export default function SpecialistMCQ6() {
       </div>
 
       <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1 w-fit mb-5">
-        <TabButton active={tab === 'solution'} onClick={() => setTab('solution')}>Worked solution</TabButton>
-        <TabButton active={tab === 'video'} onClick={() => setTab('video')}>Video walkthrough</TabButton>
+        <TabButton active={tab === 'solution'} onClick={() => setTab('solution')}>Worked Solution</TabButton>
+        <TabButton active={tab === 'video'} onClick={() => setTab('video')}>Video Walkthrough</TabButton>
       </div>
 
       {tab === 'solution' ? (
-        <ol className="flex flex-col gap-4 list-none p-0 m-0">
-          <Step n={1}>
-            The diagonals run <Katex tex="z_2 \to z_4" /> and <Katex tex="z_1 \to z_3" />:
-            <Katex
-              display
-              tex="\arg(z_1) - \arg(z_2) = \frac{\pi}{3} - \frac{3\pi}{4} = -\frac{5\pi}{12}"
-              className="my-2"
-            />
-            so the acute angle between them is <Katex tex="\tfrac{5\pi}{12}" /> — <b>A is true</b>.
-          </Step>
-          <Step n={2}>
-            <Katex tex="|z_1| = |z_3| = 2" /> and <Katex tex="|z_2| = |z_4| = 1" />, so the diagonals have lengths{' '}
-            <Katex tex="2|z_1| = 4" /> and <Katex tex="2|z_2| = 2" /> — <b>B is true</b>.
-          </Step>
-          <Step n={3}>
-            <Katex tex="z_3 = -z_1" /> and <Katex tex="z_4 = -z_2" /> (same modulus, angle shifted by <Katex tex="\pi" />
-            ), so <Katex tex="z_1 + z_2 = -z_3 - z_4" /> holds for <i>any</i> parallelogram like this — <b>D is true</b>,
-            sub in and check.
-          </Step>
-          <Step n={4}>
-            <Katex tex="|z_1| = |z_3| = 2" /> and <Katex tex="|z_2| = |z_4| = 1" />, so <Katex tex="1 \le |z| \le 2" />{' '}
-            for all four — <b>E is true</b>.
-          </Step>
-          <Step n={5} final>
-            For roots of <Katex tex="z^n + a = 0" />, every root must share the <i>same</i> modulus{' '}
-            <Katex tex="|a|^{1/n}" /> — but here <Katex tex="|z_1| = 2 \ne 1 = |z_2|" />.{' '}
-            <b>C is not true — that's the answer.</b>
-          </Step>
-        </ol>
+        <WorkingTable rows={ROWS} />
       ) : (
         <div className="border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 rounded-2xl px-7 py-9 text-center text-[13.5px] leading-relaxed text-gray-400 dark:text-gray-500">
           Video walkthrough coming soon.
@@ -92,8 +120,6 @@ export default function SpecialistMCQ6() {
   )
 }
 
-// Green marks the correct MCQ answer, not "this statement is true" — for a "which is NOT
-// true" question that's the false statement, so don't flip this to mean mathematical truth.
 function Option({ letter, children, isAnswer }: { letter: string; children: ReactNode; isAnswer?: boolean }) {
   return (
     <div
@@ -132,21 +158,6 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
     >
       {children}
     </button>
-  )
-}
-
-function Step({ n, final, children }: { n: number; final?: boolean; children: ReactNode }) {
-  return (
-    <li className="flex gap-3">
-      <span
-        className={`flex-none w-[22px] h-[22px] rounded-full text-white font-display text-xs font-bold flex items-center justify-center mt-0.5 ${
-          final ? 'bg-emerald-500' : 'bg-sky-500'
-        }`}
-      >
-        {n}
-      </span>
-      <div className="text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300 flex-1 min-w-0">{children}</div>
-    </li>
   )
 }
 
