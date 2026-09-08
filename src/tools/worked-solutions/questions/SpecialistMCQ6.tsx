@@ -4,8 +4,15 @@
 import { useState, ReactNode } from 'react'
 import Katex from '../../../components/Katex'
 import { WorkingTable, ExaminerReport, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import VideoPlayer from '../VideoPlayer'
 
 type Tab = 'solution' | 'report' | 'video'
+
+// Dropbox share link for the tutor's video walkthrough, converted to `raw=1` so the browser
+// can stream it directly. Already H.264/AAC in an .mp4 container — only remuxed with
+// `-movflags +faststart` for a quicker start, no re-encoding needed.
+const VIDEO_SRC =
+  'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/AA-FsX8SsvcjJVpt9VxnwZw/MCQ6-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 13, C: 57, D: 15, E: 8 },
@@ -103,9 +110,7 @@ export default function SpecialistMCQ6() {
       ) : tab === 'report' ? (
         <ExaminerReport stats={EXAMINER} />
       ) : (
-        <div className="border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 rounded-2xl px-7 py-9 text-center text-[13.5px] leading-relaxed text-gray-400 dark:text-gray-500">
-          Video walkthrough coming soon.
-        </div>
+        <VideoPlayer src={VIDEO_SRC} label="this question" />
       )}
     </div>
   )

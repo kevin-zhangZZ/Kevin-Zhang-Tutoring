@@ -1,10 +1,20 @@
 // 2016 Specialist Mathematics — Exam 2, Question 2 (11 marks).
 // A line and circle in the complex plane, their intersection, a segment area, and a ray range.
 // Question text transcribed from the original paper; worked solutions below are original.
-// No video walkthrough yet — the tutor will record and add these later.
+// Parts a-c have no video walkthrough yet; the tutor will record and add these later.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+// Dropbox share links for the tutor's video walkthrough of parts d-f, converted to `raw=1`
+// so the browser can stream them directly. All three were already H.264/AAC — just muxed
+// in the wrong container (.mkv) — so each was only losslessly remuxed to .mp4
+// (`ffmpeg -c copy -movflags +faststart`), no re-encoding needed.
+const VIDEO = {
+  d: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ACtQLUkoCg7q5YQ1PNUCmoE/SAQ2d-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
+  e: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/AKrLvS3mRUhWEZOwwAqcPIc/SAQ2e-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
+  f: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/AE84SJGpymQCVbJgNkNlpZc/SAQ2f-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
+}
 
 const EXAMINER_A: SAExaminerStats = {
   marks: [14, 14, 72],
@@ -211,11 +221,12 @@ export default function SpecialistQ2_2016() {
         marks={2}
         statement={<>The line <Katex tex="|z-1|=|z+2-3i|" /> cuts the circle <Katex tex="|z-1|=3" /> into two segments. Find the area of the major segment.</>}
         examinerReport={EXAMINER_D}
+        videoSrc={VIDEO.d}
       >
         <WorkingTable rows={rowsD} />
       </PartCard>
 
-      <PartCard letter="e" marks={1} statement={<>Sketch the ray given by <Katex tex="\mathrm{Arg}(z) = -\dfrac{3\pi}{4}" /> on the Argand diagram in part c.</>} examinerReport={EXAMINER_E}>
+      <PartCard letter="e" marks={1} statement={<>Sketch the ray given by <Katex tex="\mathrm{Arg}(z) = -\dfrac{3\pi}{4}" /> on the Argand diagram in part c.</>} examinerReport={EXAMINER_E} videoSrc={VIDEO.e}>
         <WorkingTable rows={rowsE} />
       </PartCard>
 
@@ -224,6 +235,7 @@ export default function SpecialistQ2_2016() {
         marks={2}
         statement={<>Write down the range of values of <Katex tex="\alpha, \ \alpha \in \mathbb{R}" />, for which a ray with equation <Katex tex="\mathrm{Arg}(z) = \alpha\pi" /> intersects the line <Katex tex="|z-1|=|z+2-3i|" />.</>}
         examinerReport={EXAMINER_F}
+        videoSrc={VIDEO.f}
       >
         <WorkingTable rows={rowsF} />
       </PartCard>
