@@ -18,8 +18,6 @@ import MethodsQ19_2016 from './questions/MethodsQ19_2016'
 import MethodsQ20_2016 from './questions/MethodsQ20_2016'
 import MethodsQ11_2015 from './questions/MethodsQ11_2015'
 import SpecialistQ7_2016 from './questions/SpecialistQ7_2016'
-import SpecialistQ14_2016 from './questions/SpecialistQ14_2016'
-import SpecialistQ22_2015 from './questions/SpecialistQ22_2015'
 import SpecialistQ4_2015 from './questions/SpecialistQ4_2015'
 import SpecialistQ6_2015 from './questions/SpecialistQ6_2015'
 import MethodsQ18_2018 from './questions/MethodsQ18_2018'
@@ -30,7 +28,6 @@ import MethodsQ7_2017 from './questions/MethodsQ7_2017'
 import SpecialistQ10_2017 from './questions/SpecialistQ10_2017'
 import SpecialistQ12_2018 from './questions/SpecialistQ12_2018'
 import SpecialistQ2_2017 from './questions/SpecialistQ2_2017'
-import SpecialistQ17_2017 from './questions/SpecialistQ17_2017'
 import SpecialistQ5_2018 from './questions/SpecialistQ5_2018'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
@@ -53,8 +50,6 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q20-2016': MethodsQ20_2016,
   'meth-q11-2015': MethodsQ11_2015,
   'spec-q7-2016': SpecialistQ7_2016,
-  'spec-q14-2016': SpecialistQ14_2016,
-  'spec-q22-2015': SpecialistQ22_2015,
   'spec-q4-2015': SpecialistQ4_2015,
   'spec-q6-2015': SpecialistQ6_2015,
 
@@ -67,6 +62,5 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q10-2017': SpecialistQ10_2017,
   'spec-q12-2018': SpecialistQ12_2018,
   'spec-q2-2017': SpecialistQ2_2017,
-  'spec-q17-2017': SpecialistQ17_2017,
   'spec-q5-2018': SpecialistQ5_2018,
 }
