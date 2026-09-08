@@ -207,10 +207,10 @@ export function WorkingTable({ rows }: { rows: WorkingRow[] }) {
             key={i}
             className={`grid grid-cols-2 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}
           >
-            <div className="px-4 py-3 border-r border-gray-100 dark:border-gray-800 flex flex-col justify-center gap-1.5 text-[13.5px] text-gray-800 dark:text-gray-100">
+            <div className="px-4 py-3 border-r border-gray-100 dark:border-gray-800 self-center space-y-1.5 text-[13.5px] text-gray-800 dark:text-gray-100">
               {row.working}
             </div>
-            <div className="px-4 py-3 flex flex-col justify-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400">
+            <div className="px-4 py-3 self-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400">
               {row.reason}
             </div>
           </div>

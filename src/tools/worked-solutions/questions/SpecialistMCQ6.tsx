@@ -173,9 +173,30 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
 
 // Argand diagram: z1 = 2cis(60°), z2 = cis(135°), z3 = 2cis(-120°), z4 = cis(-45°) —
 // plotted on unit-radius-1 and radius-2 circles, diagonals z1–z3 and z2–z4 drawn in orange.
+// Auxiliary diameters at every multiple of 30° and 45° (i.e. through π/6, π/4, π/3, ...) other
+// than the horizontal/vertical ones already drawn as the main axes — light grey, behind
+// everything else, purely to help read off the angles used in the options.
+const AUX_ANGLES_DEG = [30, 45, 60, 120, 135, 150]
+
 function ArgandDiagram() {
   return (
     <svg viewBox="0 0 240 240" width={204} height={204}>
+      {AUX_ANGLES_DEG.map(deg => {
+        const rad = (deg * Math.PI) / 180
+        const dx = 112 * Math.cos(rad)
+        const dy = 112 * Math.sin(rad)
+        return (
+          <line
+            key={deg}
+            x1={120 + dx}
+            y1={120 - dy}
+            x2={120 - dx}
+            y2={120 + dy}
+            className="stroke-gray-200 dark:stroke-gray-700"
+            strokeWidth={1}
+          />
+        )
+      })}
       <line x1={8} y1={120} x2={232} y2={120} stroke="#7dd3fc" strokeWidth={1.5} />
       <line x1={120} y1={8} x2={120} y2={232} stroke="#7dd3fc" strokeWidth={1.5} />
       <circle cx={120} cy={120} r={45} fill="none" stroke="#7dd3fc" strokeWidth={1.5} />

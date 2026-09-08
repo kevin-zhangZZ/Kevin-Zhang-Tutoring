@@ -5,6 +5,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import { functionToPath } from '../graphUtils'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 61, B: 14, C: 20, D: 2, E: 4 },
@@ -68,28 +69,37 @@ export default function MethodsQ3_2015() {
   )
 }
 
-// Schematic quartic: crosses at b (negative), touches (repeated root) at c, crosses at d,
-// with a small hump between c and d — matching the shape given in the original question.
+// Real quartic y = k(x-b)(x-c)²(x-d) with concrete stand-in values for b, c, d, k that
+// reproduce the shape given in the original question (crosses at b and d, touches at c) —
+// sampled via functionToPath rather than hand-drawn, so the touch at c is a true smooth
+// tangency (zero slope) instead of an approximated kink.
+const QB = -2
+const QC = 1
+const QD = 3
+const QK = -0.15
+const quartic = (x: number) => QK * (x - QB) * (x - QC) ** 2 * (x - QD)
+
+const X_MIN = -2.6
+const X_MAX = 3.6
+const toSvgX = (x: number) => 30 + ((x - X_MIN) * 340) / (X_MAX - X_MIN)
+const toSvgY = (y: number) => 100 - 20 * y
+const AXIS_Y = toSvgY(0)
+
 function QuarticGraph() {
   return (
     <svg viewBox="0 0 400 260" width={340} height={221}>
-      <line x1={20} y1={180} x2={380} y2={180} stroke="#9ca3af" strokeWidth={1.5} />
-      <line x1={100} y1={20} x2={100} y2={230} stroke="#9ca3af" strokeWidth={1.5} />
-      <path
-        d="M 20 230 C 35 195, 40 182, 45 178 C 60 130, 75 55, 105 50 C 135 45, 155 110, 182 180 C 200 178, 215 145, 235 140 C 255 136, 280 150, 300 165 C 310 172, 315 176, 320 180 C 335 195, 355 225, 375 258"
-        fill="none"
-        stroke="#0ea5e9"
-        strokeWidth={2.5}
-      />
-      <circle cx={45} cy={178} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <circle cx={182} cy={180} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <circle cx={320} cy={180} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <text x={38} y={200} fontSize={13} className="fill-gray-700 dark:fill-gray-300">b</text>
-      <text x={177} y={200} fontSize={13} className="fill-gray-700 dark:fill-gray-300">c</text>
-      <text x={315} y={200} fontSize={13} className="fill-gray-700 dark:fill-gray-300">d</text>
-      <text x={108} y={195} fontSize={13} className="fill-gray-700 dark:fill-gray-300">O</text>
-      <text x={385} y={184} fontSize={13} className="fill-gray-700 dark:fill-gray-300">x</text>
-      <text x={95} y={30} fontSize={13} className="fill-gray-700 dark:fill-gray-300">y</text>
+      <line x1={20} y1={AXIS_Y} x2={380} y2={AXIS_Y} stroke="#9ca3af" strokeWidth={1.5} />
+      <line x1={toSvgX(0)} y1={20} x2={toSvgX(0)} y2={240} stroke="#9ca3af" strokeWidth={1.5} />
+      <path d={functionToPath(quartic, X_MIN, X_MAX, toSvgX, toSvgY)} fill="none" stroke="#0ea5e9" strokeWidth={2.5} />
+      <circle cx={toSvgX(QB)} cy={AXIS_Y} r={4} fill="#111827" className="dark:fill-gray-200" />
+      <circle cx={toSvgX(QC)} cy={AXIS_Y} r={4} fill="#111827" className="dark:fill-gray-200" />
+      <circle cx={toSvgX(QD)} cy={AXIS_Y} r={4} fill="#111827" className="dark:fill-gray-200" />
+      <text x={toSvgX(QB) - 5} y={AXIS_Y + 20} fontSize={13} className="fill-gray-700 dark:fill-gray-300">b</text>
+      <text x={toSvgX(QC) - 5} y={AXIS_Y + 20} fontSize={13} className="fill-gray-700 dark:fill-gray-300">c</text>
+      <text x={toSvgX(QD) - 5} y={AXIS_Y + 20} fontSize={13} className="fill-gray-700 dark:fill-gray-300">d</text>
+      <text x={toSvgX(0) + 8} y={AXIS_Y + 15} fontSize={13} className="fill-gray-700 dark:fill-gray-300">O</text>
+      <text x={385} y={AXIS_Y + 4} fontSize={13} className="fill-gray-700 dark:fill-gray-300">x</text>
+      <text x={toSvgX(0) - 13} y={30} fontSize={13} className="fill-gray-700 dark:fill-gray-300">y</text>
     </svg>
   )
 }
