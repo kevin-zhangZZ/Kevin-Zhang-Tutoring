@@ -94,7 +94,12 @@ export default function SpecialistSAQ3_2016() {
       reason: <>Exponentiate both sides, with <Katex tex="A = e^c" />.</>,
     },
     {
-      working: <Katex display tex="20 = \frac{A}{20} \implies A = 400" />,
+      working: (
+        <>
+          <Katex display tex="20 = \frac{A}{20}" />
+          <Katex display tex="\implies\; A = 400" />
+        </>
+      ),
       reason: <>Apply the initial condition — at <Katex tex="t=0" />, <Katex tex="x=20" />.</>,
     },
     {
@@ -161,7 +166,13 @@ export default function SpecialistSAQ3_2016() {
       reason: <>Using <Katex tex="y" /> from part (d).</>,
     },
     {
-      working: <Katex display tex="\frac{u^2+800}{60u^2} = 0.095 \implies u^2+800 = 5.7u^2 \implies u^2 = \frac{800}{4.7}" />,
+      working: (
+        <>
+          <Katex display tex="\frac{u^2+800}{60u^2} = 0.095" />
+          <Katex display tex="\implies\; u^2+800 = 5.7u^2" />
+          <Katex display tex="\implies\; u^2 = \frac{800}{4.7}" />
+        </>
+      ),
       reason: (
         <>
           Substitute <Katex tex="u = 10+t" />, so <Katex tex="t^2+20t+900 = (t+10)^2+800 = u^2+800" />, and set the
@@ -170,7 +181,12 @@ export default function SpecialistSAQ3_2016() {
       ),
     },
     {
-      working: <Katex display tex="u = \sqrt{\tfrac{800}{4.7}} \approx 13.0466 \quad\implies\quad t = u - 10 \approx \boxed{3.05\ \text{minutes}}" />,
+      working: (
+        <>
+          <Katex display tex="u = \sqrt{\tfrac{800}{4.7}} \approx 13.0466" />
+          <Katex display tex="\implies\; t = u - 10 \approx \boxed{3.05\ \text{minutes}}" />
+        </>
+      ),
     },
   ]
 

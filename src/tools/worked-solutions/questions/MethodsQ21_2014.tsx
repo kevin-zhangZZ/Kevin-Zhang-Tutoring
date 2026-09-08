@@ -46,11 +46,21 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A'(x) = p^2(\cos x + \cos 2x) = 0" />,
   },
   {
-    working: <Katex display tex="2\cos^2x + \cos x - 1 = 0 \;\implies\; (2\cos x - 1)(\cos x+1)=0" />,
+    working: (
+      <>
+        <Katex display tex="2\cos^2x + \cos x - 1 = 0" />
+        <Katex display tex="\implies\; (2\cos x - 1)(\cos x+1)=0" />
+      </>
+    ),
     reason: <>Write <Katex tex="\cos 2x = 2\cos^2x-1" /> and factorise.</>,
   },
   {
-    working: <Katex display tex="\cos x = \tfrac12 \;\implies\; x=\tfrac{\pi}{3} \qquad (\cos x=-1 \text{ rejected, not acute})" />,
+    working: (
+      <>
+        <Katex display tex="\cos x = \tfrac12" />
+        <Katex display tex="\implies\; x=\tfrac{\pi}{3} \qquad (\cos x=-1 \text{ rejected, not acute})" />
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{x = \dfrac{\pi}{3}}" />,

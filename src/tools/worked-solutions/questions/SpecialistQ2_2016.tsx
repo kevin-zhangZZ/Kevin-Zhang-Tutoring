@@ -62,14 +62,19 @@ export default function SpecialistQ2_2016() {
       working: <Katex display tex="(x-1)^2+y^2 = (x+2)^2+(y-3)^2" />,
       reason: (
         <>
-          Let <Katex tex="z=x+iy" />. <Katex tex="|z-1|" /> is the distance to <Katex tex="(1,0)" />,{' '}
+          Let <Katex tex="z=x+yi" />. <Katex tex="|z-1|" /> is the distance to <Katex tex="(1,0)" />,{' '}
           <Katex tex="|z+2-3i|" /> the distance to <Katex tex="(-2,3)" /> — the line is the set of points
           equidistant from both, i.e. the perpendicular bisector. Square both distances and equate.
         </>
       ),
     },
     {
-      working: <Katex display tex="x^2-2x+1+y^2 = x^2+4x+4+y^2-6y+9 \;\implies\; -6x+6y-12=0" />,
+      working: (
+        <>
+          <Katex display tex="x^2-2x+1+y^2 = x^2+4x+4+y^2-6y+9" />
+          <Katex display tex="\implies\; -6x+6y-12=0" />
+        </>
+      ),
     },
     {
       working: <Katex display tex="\boxed{y = x + 2}" />,
@@ -87,13 +92,30 @@ export default function SpecialistQ2_2016() {
       ),
     },
     {
-      working: <Katex display tex="2x^2+2x-4=0 \;\implies\; x^2+x-2=0" />,
+      working: (
+        <>
+          <Katex display tex="2x^2+2x-4=0" />
+          <Katex display tex="\implies\; x^2+x-2=0" />
+        </>
+      ),
     },
     {
-      working: <Katex display tex="(x+2)(x-1)=0 \;\implies\; x=-2 \text{ or } x=1" />,
+      working: (
+        <>
+          <Katex display tex="(x+2)(x-1)=0" />
+          <Katex display tex="\implies\; x=-2 \text{ or } x=1" />
+        </>
+      ),
     },
     {
-      working: <Katex display tex="x=-2 \Rightarrow y=0, \qquad x=1 \Rightarrow y=3" />,
+      working: (
+        <>
+          <Katex display tex="x=-2" />
+          <Katex display tex="\Rightarrow y=0" />
+          <Katex display tex="x=1" />
+          <Katex display tex="\Rightarrow y=3" />
+        </>
+      ),
       reason: <>Substitute back into <Katex tex="y=x+2" />.</>,
     },
     {
@@ -119,7 +141,12 @@ export default function SpecialistQ2_2016() {
 
   const rowsD: WorkingRow[] = [
     {
-      working: <Katex display tex="\cos\theta = \frac{(-3)(0)+(0)(3)}{3\times 3} = 0 \;\implies\; \theta = \frac{\pi}{2}" />,
+      working: (
+        <>
+          <Katex display tex="\cos\theta = \frac{(-3)(0)+(0)(3)}{3\times 3} = 0" />
+          <Katex display tex="\implies\; \theta = \frac{\pi}{2}" />
+        </>
+      ),
       reason: (
         <>
           Chord joins <Katex tex="(-2,0)" /> and <Katex tex="(1,3)" />; from centre <Katex tex="(1,0)" /> the
@@ -180,7 +207,12 @@ export default function SpecialistQ2_2016() {
       ),
     },
     {
-      working: <Katex display tex="t\sin\theta = t\cos\theta + 2 \;\implies\; t = \frac{2}{\sin\theta - \cos\theta}" />,
+      working: (
+        <>
+          <Katex display tex="t\sin\theta = t\cos\theta + 2" />
+          <Katex display tex="\implies\; t = \frac{2}{\sin\theta - \cos\theta}" />
+        </>
+      ),
       reason: (
         <>
           Write the ray as <Katex tex="(t\cos\theta, t\sin\theta)" /> for <Katex tex="t \ge 0" />, where{' '}
@@ -189,7 +221,12 @@ export default function SpecialistQ2_2016() {
       ),
     },
     {
-      working: <Katex display tex="\sin\theta > \cos\theta \iff \sqrt{2}\sin\!\left(\theta - \tfrac{\pi}{4}\right) > 0" />,
+      working: (
+        <>
+          <Katex display tex="\sin\theta > \cos\theta" />
+          <Katex display tex="\iff\; \sqrt{2}\sin\!\left(\theta - \tfrac{\pi}{4}\right) > 0" />
+        </>
+      ),
       reason: (
         <>
           Need <Katex tex="t>0" />. The boundary directions — where the ray is exactly parallel to the line — are{' '}

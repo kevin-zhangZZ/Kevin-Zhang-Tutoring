@@ -51,9 +51,12 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="a=\tfrac16 \Rightarrow n=0 \ \checkmark" />
-        <Katex display tex="a=\tfrac12 \Rightarrow n=1 \ \checkmark" />
-        <Katex display tex="a=\tfrac13,\,1,\,2 \Rightarrow n=\tfrac12,\,\tfrac52,\,\tfrac{11}{2} \ \times" />
+        <Katex display tex="a=\tfrac16" />
+        <Katex display tex="\Rightarrow n=0 \ \checkmark" />
+        <Katex display tex="a=\tfrac12" />
+        <Katex display tex="\Rightarrow n=1 \ \checkmark" />
+        <Katex display tex="a=\tfrac13,\,1,\,2" />
+        <Katex display tex="\Rightarrow n=\tfrac12,\,\tfrac52,\,\tfrac{11}{2} \ \times" />
       </>
     ),
     reason: <>Only options A <Katex tex="(\tfrac16)" /> and C <Katex tex="(\tfrac12)" /> give an integer <Katex tex="n" />, so only those two can have an asymptote at <Katex tex="x=3\pi" /> at all. The intercept condition decides between them.</>,

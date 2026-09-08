@@ -42,7 +42,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="am(m-1)\,x^{m-2} = bx^n" />,
   },
   {
-    working: <Katex display tex="m-2=n \;\implies\; m=n+2" />,
+    working: (
+      <>
+        <Katex display tex="m-2=n" />
+        <Katex display tex="\implies\; m=n+2" />
+      </>
+    ),
     reason: 'Match the powers of x on each side.',
   },
   {

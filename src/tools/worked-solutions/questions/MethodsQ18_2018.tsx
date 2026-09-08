@@ -52,7 +52,8 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="x>1 \;\implies\; x^{s-r}>1" />
+        <Katex display tex="x>1" />
+        <Katex display tex="\implies\; x^{s-r}>1" />
         <Katex display tex="\implies\; sx^{s-r}>s>r" />
         <Katex display tex="\implies\; sx^{s-r}-r>0" />
       </>

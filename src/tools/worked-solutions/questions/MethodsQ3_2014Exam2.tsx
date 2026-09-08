@@ -127,7 +127,12 @@ export default function MethodsQ3_2014Exam2() {
       working: <Katex display tex="\frac{dS}{dd} = \frac{\pi d}{2} - \frac{864}{d^2} = 0" />,
     },
     {
-      working: <Katex display tex="\frac{\pi d^3}{2} = 864 \;\implies\; d^3 = \frac{1728}{\pi}" />,
+      working: (
+        <>
+          <Katex display tex="\frac{\pi d^3}{2} = 864" />
+          <Katex display tex="\implies\; d^3 = \frac{1728}{\pi}" />
+        </>
+      ),
     },
     {
       working: <Katex display tex="\boxed{d = \sqrt[3]{\dfrac{1728}{\pi}} = \dfrac{12}{\sqrt[3]{\pi}} \approx 8.19 \text{ m}}" />,
@@ -149,7 +154,12 @@ export default function MethodsQ3_2014Exam2() {
 
   const rowsD: WorkingRow[] = [
     {
-      working: <Katex display tex="\frac{\pi d^3}{2}=864 \;\implies\; d^3 = \frac{1728}{\pi}, \qquad h = \frac{864}{\pi d^2}" />,
+      working: (
+        <>
+          <Katex display tex="\frac{\pi d^3}{2}=864" />
+          <Katex display tex="\implies\; d^3 = \frac{1728}{\pi}, \qquad h = \frac{864}{\pi d^2}" />
+        </>
+      ),
       reason: 'Combine the optimal-d condition from part (c) with the h–d relation from part (a).',
     },
     {
@@ -164,7 +174,12 @@ export default function MethodsQ3_2014Exam2() {
 
   const rowsE: WorkingRow[] = [
     {
-      working: <Katex display tex="d = 2h \;\implies\; r = \frac{d}{2} = h" />,
+      working: (
+        <>
+          <Katex display tex="d = 2h" />
+          <Katex display tex="\implies\; r = \frac{d}{2} = h" />
+        </>
+      ),
       reason: <>The problem now assumes the ice keeps the <Katex tex="d=2h" /> proportions found in part (d) as it melts.</>,
     },
     {
@@ -191,7 +206,12 @@ export default function MethodsQ3_2014Exam2() {
 
   const rowsG: WorkingRow[] = [
     {
-      working: <Katex display tex="\text{Statue height} = 1\text{ m, based at the centre of the ice's base} \;\implies\; h=1" />,
+      working: (
+        <>
+          <Katex display tex="\text{Statue height} = 1\text{ m, based at the centre of the ice's base}" />
+          <Katex display tex="\implies\; h=1" />
+        </>
+      ),
       reason: 'The top of the statue is "just exposed" exactly when the melting ice surface has dropped to the height of the statue.',
     },
     {
@@ -205,15 +225,31 @@ export default function MethodsQ3_2014Exam2() {
 
   const rowsH: WorkingRow[] = [
     {
-      working: <Katex display tex="\frac{dV}{dt}=-10 \text{ (constant)} \;\implies\; V(t) = 216-10t" />,
+      working: (
+        <>
+          <Katex display tex="\frac{dV}{dt}=-10 \text{ (constant)}" />
+          <Katex display tex="\implies\; V(t) = 216-10t" />
+        </>
+      ),
       reason: <>Since the volume decreases at a constant rate from its initial value <Katex tex="V(0)=216" /> — no need to integrate <Katex tex="\tfrac{dh}{dt}" /> separately.</>,
     },
     {
-      working: <Katex display tex="V=\pi h^3 \;\implies\; h^3 = \frac{216-10t}{\pi}" />,
+      working: (
+        <>
+          <Katex display tex="V=\pi h^3" />
+          <Katex display tex="\implies\; h^3 = \frac{216-10t}{\pi}" />
+        </>
+      ),
       reason: <>From part (e), valid throughout while <Katex tex="d=2h" /> holds.</>,
     },
     {
-      working: <Katex display tex="h=1 \;\implies\; 1 = \frac{216-10t}{\pi} \;\implies\; 216-10t=\pi" />,
+      working: (
+        <>
+          <Katex display tex="h=1" />
+          <Katex display tex="\implies\; 1 = \frac{216-10t}{\pi}" />
+          <Katex display tex="\implies\; 216-10t=\pi" />
+        </>
+      ),
       reason: 'Set h = 1, the condition from part (g).',
     },
     {

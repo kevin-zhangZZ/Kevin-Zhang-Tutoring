@@ -24,7 +24,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="a+b+b+2b+0.2 = 1 \;\implies\; a+4b = 0.8" />,
+    working: (
+      <>
+        <Katex display tex="a+b+b+2b+0.2 = 1" />
+        <Katex display tex="\implies\; a+4b = 0.8" />
+      </>
+    ),
     reason: 'All probabilities in the table must sum to 1.',
   },
   {
@@ -37,11 +42,22 @@ const ROWS: WorkingRow[] = [
     reason: <>Substitute each <Katex tex="x" /> value and its probability into <Katex tex="\mathrm{E}(X)=\sum x\Pr(X=x)" />.</>,
   },
   {
-    working: <Katex display tex="a = 0.8-4b \;\implies\; \mathrm{E}(X) = -(0.8-4b)+5b^2+0.8 = 5b^2+4b" />,
+    working: (
+      <>
+        <Katex display tex="a = 0.8-4b" />
+        <Katex display tex="\implies\; \mathrm{E}(X) = -(0.8-4b)+5b^2+0.8 = 5b^2+4b" />
+      </>
+    ),
     reason: 'Eliminate a using the constraint from the first line, leaving E(X) as a function of b alone.',
   },
   {
-    working: <Katex display tex="a\ge 0 \;\implies\; 0.8-4b\ge 0 \;\implies\; b\le 0.2, \qquad b\ge 0" />,
+    working: (
+      <>
+        <Katex display tex="a\ge 0" />
+        <Katex display tex="\implies\; 0.8-4b\ge 0" />
+        <Katex display tex="\implies\; b\le 0.2, \qquad b\ge 0" />
+      </>
+    ),
     reason: <>Both <Katex tex="a" /> and <Katex tex="b" /> are probabilities, so both must be <Katex tex="\ge 0" />. This pins down the domain of <Katex tex="b" />.</>,
   },
   {

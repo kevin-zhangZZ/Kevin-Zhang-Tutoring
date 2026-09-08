@@ -38,11 +38,23 @@ const ROWS: WorkingRow[] = [
     reason: <>D has no squared factor, so it's a cubic that cuts straight through the axis at <Katex tex="c" /> instead of touching it. Eliminated.</>,
   },
   {
-    working: <Katex display tex="x\to\pm\infty \implies y\to-\infty \;\implies\; k<0 \;\implies\; k=-2, \ \text{not } +2" />,
+    working: (
+      <>
+        <Katex display tex="x\to\pm\infty" />
+        <Katex display tex="\implies\; y\to-\infty" />
+        <Katex display tex="\implies\; k<0" />
+        <Katex display tex="\implies\; k=-2, \ \text{not } +2" />
+      </>
+    ),
     reason: <>Both tails of the graph point downwards, which for a quartic means a negative leading coefficient. That eliminates option B <Katex tex="(+2)" />.</>,
   },
   {
-    working: <Katex display tex="\text{root at } x=b \iff \text{factor } (x-b), \quad \text{whatever the sign of } b" />,
+    working: (
+      <>
+        <Katex display tex="\text{root at } x=b" />
+        <Katex display tex="\iff\; \text{factor } (x-b), \quad \text{whatever the sign of } b" />
+      </>
+    ),
     reason: (
       <>
         This is the step most students got wrong. <Katex tex="b" /> is negative <em>as a number</em>, but the

@@ -22,7 +22,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="(p-1)x^2+4x=5-p \;\implies\; (p-1)x^2+4x+(p-5)=0" />,
+    working: (
+      <>
+        <Katex display tex="(p-1)x^2+4x=5-p" />
+        <Katex display tex="\implies\; (p-1)x^2+4x+(p-5)=0" />
+      </>
+    ),
     reason: 'Rearrange into standard quadratic form ax² + bx + c = 0.',
   },
   {
@@ -36,7 +41,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="(p-1)(p-5) = p^2-6p+5" />,
   },
   {
-    working: <Katex display tex="16-4(p^2-6p+5) < 0 \;\implies\; 16-4p^2+24p-20<0 \;\implies\; -4p^2+24p-4<0" />,
+    working: (
+      <>
+        <Katex display tex="16-4(p^2-6p+5) < 0" />
+        <Katex display tex="\implies\; 16-4p^2+24p-20<0" />
+        <Katex display tex="\implies\; -4p^2+24p-4<0" />
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{p^2-6p+1>0}" />,

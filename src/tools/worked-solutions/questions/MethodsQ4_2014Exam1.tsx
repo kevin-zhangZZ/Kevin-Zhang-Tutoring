@@ -11,7 +11,12 @@ import { functionToPath } from '../graphUtils'
 export default function MethodsQ4_2014Exam1() {
   const rowsA: WorkingRow[] = [
     {
-      working: <Katex display tex="2\sin x = \tfrac12\sin 2x = \sin x\cos x \;\implies\; \sin x(2-\cos x)=0" />,
+      working: (
+        <>
+          <Katex display tex="2\sin x = \tfrac12\sin 2x = \sin x\cos x" />
+          <Katex display tex="\implies\; \sin x(2-\cos x)=0" />
+        </>
+      ),
       reason: (
         <>
           Find where <Katex tex="f" /> and <Katex tex="g" /> meet. Since <Katex tex="\cos x \le 1 < 2" />, the
@@ -91,7 +96,13 @@ export default function MethodsQ4_2014Exam1() {
       working: <Katex display tex="\int_0^\pi q(x)\,dx = \int_0^\pi \tfrac1n\sin(nx)\,dx = \frac{1}{n^2}\bigl[1-(-1)^n\bigr]" />,
     },
     {
-      working: <Katex display tex="n \text{ even} \;\implies\; (-1)^n=1 \;\implies\; \int_0^\pi q(x)\,dx = 0" />,
+      working: (
+        <>
+          <Katex display tex="n \text{ even}" />
+          <Katex display tex="\implies\; (-1)^n=1" />
+          <Katex display tex="\implies\; \int_0^\pi q(x)\,dx = 0" />
+        </>
+      ),
       reason: 'For even n, q completes a whole number of full periods on (0,π), so its net signed area there is 0.',
     },
     {
@@ -109,7 +120,13 @@ export default function MethodsQ4_2014Exam1() {
 
   const rowsDii: WorkingRow[] = [
     {
-      working: <Katex display tex="n \text{ odd} \;\implies\; (-1)^n=-1 \;\implies\; \int_0^\pi q(x)\,dx = \frac{2}{n^2}" />,
+      working: (
+        <>
+          <Katex display tex="n \text{ odd}" />
+          <Katex display tex="\implies\; (-1)^n=-1" />
+          <Katex display tex="\implies\; \int_0^\pi q(x)\,dx = \frac{2}{n^2}" />
+        </>
+      ),
       reason: 'Reuse the general result from part (d)(i) with n odd instead.',
     },
     {

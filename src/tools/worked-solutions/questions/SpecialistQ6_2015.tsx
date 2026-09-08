@@ -18,7 +18,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="z = 1+2i \;\implies\; \bar z = 1-2i" />,
+    working: (
+      <>
+        <Katex display tex="z = 1+2i" />
+        <Katex display tex="\implies\; \bar z = 1-2i" />
+      </>
+    ),
     reason: <>Write down the point being tested, <Katex tex="z=1+2i" />, and its conjugate — both are needed to check the options.</>,
   },
   {

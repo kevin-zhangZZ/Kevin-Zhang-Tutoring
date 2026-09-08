@@ -21,10 +21,10 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: (
-      <Katex
-        display
-        tex="\frac{(y-1)^2}{A} - \frac{(x-2)^2}{B} = 1 \ \implies\ \text{asymptote slopes} = \pm\sqrt{\frac{A}{B}}"
-      />
+      <>
+        <Katex display tex="\frac{(y-1)^2}{A} - \frac{(x-2)^2}{B} = 1" />
+        <Katex display tex="\implies\; \text{asymptote slopes} = \pm\sqrt{\frac{A}{B}}" />
+      </>
     ),
     reason: <>For this orientation (branches opening up/down), the asymptotes are <Katex tex="y-1=\pm\sqrt{A/B}\,(x-2)" />. Need <Katex tex="\sqrt{A/B}=\tfrac23" />, i.e. <Katex tex="A:B = 4:9" /> — check every option's denominators against this ratio.</>,
   },

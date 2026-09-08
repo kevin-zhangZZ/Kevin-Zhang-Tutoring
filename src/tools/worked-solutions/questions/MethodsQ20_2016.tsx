@@ -31,7 +31,13 @@ const ROWS: WorkingRow[] = [
     reason: <>A point <Katex tex="(x,f(x))" /> on the graph of <Katex tex="f" /> maps to <Katex tex="(x',y')" /> on the graph of <Katex tex="g" />.</>,
   },
   {
-    working: <Katex display tex="x=-x' \;\implies\; g(x') = 3f(-x')+5, \quad \text{i.e.} \quad g(x)=3f(-x)+5" />,
+    working: (
+      <>
+        <Katex display tex="x=-x'" />
+        <Katex display tex="\implies\; g(x') = 3f(-x')+5" />
+        <Katex display tex="\text{i.e.} \quad g(x)=3f(-x)+5" />
+      </>
+    ),
     reason: <>Substitute <Katex tex="x=-x'" /> to write <Katex tex="g" /> as a function of <Katex tex="x'" />, then rename <Katex tex="x'\to x" />.</>,
   },
   {
@@ -44,7 +50,13 @@ const ROWS: WorkingRow[] = [
     reason: <>Split the integral; the constant term integrates to <Katex tex="5\times(\text{width } 3)" />.</>,
   },
   {
-    working: <Katex display tex="u=-x \;\implies\; \int_{-3}^{0} f(-x)\,dx = \int_{3}^{0} f(u)(-du) = \int_0^3 f(u)\,du = 5" />,
+    working: (
+      <>
+        <Katex display tex="u=-x" />
+        <Katex display tex="\implies\; \int_{-3}^{0} f(-x)\,dx = \int_{3}^{0} f(u)(-du)" />
+        <Katex display tex="= \int_0^3 f(u)\,du = 5" />
+      </>
+    ),
     reason: <>Substitute <Katex tex="u=-x" />; the limits flip and the two sign flips cancel. Uses the given value <Katex tex="\int_0^3 f(x)\,dx=5" />.</>,
   },
   {

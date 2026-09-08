@@ -28,7 +28,12 @@ const ROWS: WorkingRow[] = [
     reason: 'Add real and imaginary parts separately.',
   },
   {
-    working: <Katex display tex="z+\frac1z \in \mathbb{R} \;\implies\; b-\frac{b}{a^2+b^2}=0" />,
+    working: (
+      <>
+        <Katex display tex="z+\frac1z \in \mathbb{R}" />
+        <Katex display tex="\implies\; b-\frac{b}{a^2+b^2}=0" />
+      </>
+    ),
     reason: 'The imaginary part of a real number must be exactly zero.',
   },
   {

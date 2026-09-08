@@ -49,7 +49,8 @@ const ROWS: WorkingRow[] = [
     working: (
       <>
         <Katex display tex="\underset{\sim}{a}\!\cdot\!\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />
-        <Katex display tex="\implies\; \cos\theta=1 \;\implies\; \theta=0" />
+        <Katex display tex="\implies\; \cos\theta=1" />
+        <Katex display tex="\implies\; \theta=0" />
       </>
     ),
     reason: <>Since <Katex tex="\underset{\sim}{a},\underset{\sim}{b}\ne\underset{\sim}{0}" />, dividing through by <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|" /> is valid — the angle between them must be exactly <Katex tex="0" />.</>,
@@ -57,7 +58,8 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\theta=0 \;\implies\; \underset{\sim}{a} \text{ and } \underset{\sim}{b}" />
+        <Katex display tex="\theta=0" />
+        <Katex display tex="\implies\; \underset{\sim}{a} \text{ and } \underset{\sim}{b}" />
         <Katex display tex="\text{point in the same direction}" />
       </>
     ),

@@ -67,8 +67,10 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="a=-k\ (k>0) \;\implies\; -k^2=-4" />
-        <Katex display tex="\implies\; k=2 \;\implies\; a=-2,\ b=\tfrac12" />
+        <Katex display tex="a=-k\ (k>0)" />
+        <Katex display tex="\implies\; -k^2=-4" />
+        <Katex display tex="\implies\; k=2" />
+        <Katex display tex="\implies\; a=-2,\ b=\tfrac12" />
       </>
     ),
   },

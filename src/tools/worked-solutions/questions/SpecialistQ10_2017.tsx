@@ -20,11 +20,22 @@ const ROWS: WorkingRow[] = [
     reason: <>Dividing by an always-negative <Katex tex="g(x)" /> flips the sign of the numerator — so <Katex tex="\operatorname{sign}\bigl(f''(x)\bigr) = -\operatorname{sign}(x-b)" /> everywhere <Katex tex="x\ne -a" /> (since <Katex tex="(x+a)^2\ge 0" /> never affects the sign).</>,
   },
   {
-    working: <Katex display tex="\text{at } x=-a: \ f''(-a)=0, \text{ but } (x+a)^2 \ge 0 \text{ on both sides} \;\implies\; \text{no sign change}" />,
+    working: (
+      <>
+        <Katex display tex="\text{at } x=-a: \ f''(-a)=0, \text{ but } (x+a)^2 \ge 0 \text{ on both sides}" />
+        <Katex display tex="\implies\; \text{no sign change}" />
+      </>
+    ),
     reason: <>A squared factor touches zero without crossing it, so <Katex tex="f''" /> doesn't actually change sign at <Katex tex="x=-a" /> — <b>not</b> an inflection point of <Katex tex="f" /> itself.</>,
   },
   {
-    working: <Katex display tex="\text{at } x=b: \ (x-b) \text{ goes } -\!\to+ \;\implies\; f''(x) \text{ goes } +\!\to- \;\implies\; \text{inflection point of } f \text{ at } b" />,
+    working: (
+      <>
+        <Katex display tex="\text{at } x=b: \ (x-b) \text{ goes } -\!\to+" />
+        <Katex display tex="\implies\; f''(x) \text{ goes } +\!\to-" />
+        <Katex display tex="\implies\; \text{inflection point of } f \text{ at } b" />
+      </>
+    ),
     reason: <>This is the only place <Katex tex="f''" /> genuinely changes sign, so <Katex tex="f" /> itself has exactly one inflection point, at <Katex tex="x=b" />, where <Katex tex="f(b)=-1" />.</>,
   },
   {
@@ -32,7 +43,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Both given function values at the two candidate points are negative, so near each of them <Katex tex="|f(x)|=-f(x)" />.</>,
   },
   {
-    working: <Katex display tex="|f(x)|=-f(x) \text{ near } x=-a \text{ and } x=b \;\implies\; \bigl(|f|\bigr)''=-f''" />,
+    working: (
+      <>
+        <Katex display tex="|f(x)|=-f(x) \text{ near } x=-a \text{ and } x=b" />
+        <Katex display tex="\implies\; \bigl(|f|\bigr)''=-f''" />
+      </>
+    ),
     reason: <>Negating a function negates its second derivative too, so <Katex tex="-f''" /> changes sign at exactly the same places <Katex tex="f''" /> does — no new inflection points are created by taking the absolute value here (since <Katex tex="f" /> doesn't cross zero near <Katex tex="-a" /> or <Katex tex="b" />).</>,
   },
   {
