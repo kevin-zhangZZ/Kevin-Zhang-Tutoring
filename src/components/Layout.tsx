@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Sidebar, { NavLinks } from './Sidebar'
 
 interface LayoutProps {
@@ -7,13 +7,28 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
+// Shown once the page's own scroll container (see `main` below — this app scrolls inside
+// it, not the window) has been scrolled down past this many pixels.
+const BACK_TO_TOP_THRESHOLD = 400
+
 export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [collapsed, setCollapsed] = useState<boolean>(() => localStorage.getItem('sidebarCollapsed') === 'true')
+  const [showBackToTop, setShowBackToTop] = useState(false)
+  const mainRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     localStorage.setItem('sidebarCollapsed', String(collapsed))
   }, [collapsed])
+
+  useEffect(() => {
+    const el = mainRef.current
+    if (!el) return
+    const onScroll = () => setShowBackToTop(el.scrollTop > BACK_TO_TOP_THRESHOLD)
+    onScroll()
+    el.addEventListener('scroll', onScroll, { passive: true })
+    return () => el.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -71,8 +86,21 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
         )}
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto">
+        <main ref={mainRef} className="flex-1 overflow-y-auto">
           {children}
+
+          <button
+            onClick={() => mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
+            title="Back to top"
+            className={`fixed bottom-6 right-6 z-20 w-11 h-11 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 shadow-lg hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 ${
+              showBackToTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+            }`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+          </button>
         </main>
       </div>
     </div>

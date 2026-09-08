@@ -197,8 +197,11 @@ function ArgandDiagram() {
       <text x={56} y={84} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₂</text>
       <text x={48} y={207} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₃</text>
       <text x={157} y={165} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₄</text>
-      <path d="M 133 106 A 17 17 0 0 1 123 129" fill="none" stroke="#ef4444" strokeWidth={1.5} />
-      <text x={136} y={110} fontSize={10} className="fill-rose-600 dark:fill-rose-400">5π/12</text>
+      {/* Angle between rays Oz1 (60°) and Oz2 (135°) — the acute 5π/12 gap between them
+          sweeps across the top of the origin, not down toward z4 (that wedge is the
+          obtuse 7π/12 supplement instead). */}
+      <path d="M 128.5 105.28 A 17 17 0 0 0 107.98 107.98" fill="none" stroke="#ef4444" strokeWidth={1.5} />
+      <text x={100} y={90} fontSize={10} className="fill-rose-600 dark:fill-rose-400">5π/12</text>
     </svg>
   )
 }
