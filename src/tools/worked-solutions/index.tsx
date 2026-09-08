@@ -120,8 +120,15 @@ export default function WorkedSolutions() {
         <div className="flex-1 min-w-0 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8">
           {selected && selectedColor ? (
             <>
-              <span className={`font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg ${selectedColor.bg} ${selectedColor.text}`}>
-                {selected.year} · {selected.exam} · {selected.code}
+              <span className="flex items-center gap-2 flex-wrap">
+                <span className={`font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg ${selectedColor.bg} ${selectedColor.text}`}>
+                  {selected.year} · {selected.exam} · {selected.code}
+                </span>
+                {selected.percentCorrect !== undefined && (
+                  <span className="font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400">
+                    Only {selected.percentCorrect}% of VCE students got this right
+                  </span>
+                )}
               </span>
               <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
                 {selected.topic}
@@ -156,7 +163,17 @@ function QuestionRow({
         selected ? `${c.bg} ${c.border}` : 'bg-transparent border-transparent hover:bg-gray-50 dark:hover:bg-gray-800/60'
       }`}
     >
-      <span className={`font-display text-[11px] font-bold px-1.5 py-0.5 rounded-md w-fit ${c.bg} ${c.text}`}>{question.code}</span>
+      <span className="flex items-center gap-1.5 flex-wrap">
+        <span className={`font-display text-[11px] font-bold px-1.5 py-0.5 rounded-md w-fit ${c.bg} ${c.text}`}>{question.code}</span>
+        {question.percentCorrect !== undefined && (
+          <span
+            className="font-display text-[10px] font-bold px-1.5 py-0.5 rounded-md w-fit bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400"
+            title="Percentage of VCE students who answered this correctly, per the VCAA examination report"
+          >
+            {question.percentCorrect}% correct
+          </span>
+        )}
+      </span>
       <span className="text-[13px] text-gray-700 dark:text-gray-300 leading-snug">{question.topic}</span>
       <span className="text-[10.5px] font-medium text-gray-400 dark:text-gray-500">
         {question.hasDetail ? 'Written solution ready' : 'Coming soon'}
