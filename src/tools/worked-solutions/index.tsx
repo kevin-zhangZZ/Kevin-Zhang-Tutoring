@@ -50,8 +50,10 @@ export default function WorkedSolutions() {
       </div>
 
       <div className="flex gap-7 items-start flex-col lg:flex-row">
-        {/* List panel */}
-        <div className="w-full lg:w-[336px] flex-none bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 flex flex-col">
+        {/* List panel — sticky on large screens, so it stays in view while the (often much
+            taller) detail panel scrolls; capped to the viewport height with its own scroll
+            so a long, fully-expanded question list can't run off-screen. */}
+        <div className="w-full lg:w-[336px] flex-none bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 flex flex-col lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
           <div className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mt-1.5 mb-2 ml-2">
             {SUBJECT_NAME[subject]} — {subjectQuestions.length} Question{subjectQuestions.length === 1 ? '' : 's'}
           </div>

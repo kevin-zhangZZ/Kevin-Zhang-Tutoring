@@ -6,6 +6,14 @@ import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
+// Dropbox share link for the tutor's video walkthrough, converted to `raw=1` so the browser
+// can stream it directly. Already H.264/AAC — just remuxed (`ffmpeg -c copy -movflags
+// +faststart`) from the tutor's original .mov, no re-encoding needed. The source is a
+// portrait phone recording with QuickTime rotation metadata, which the remux preserves and
+// browsers render correctly.
+const VIDEO_SRC =
+  'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AJB8aa5AHQq059A3FOOtIEc/MM%202015/MCQ16-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1'
+
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 24, B: 19, C: 26, D: 22, E: 8 },
   answer: 'D',
@@ -77,6 +85,7 @@ export default function MethodsQ16_2015() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      videoSrc={VIDEO_SRC}
     />
   )
 }
