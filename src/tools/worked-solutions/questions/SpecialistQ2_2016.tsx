@@ -142,7 +142,7 @@ export default function SpecialistQ2_2016() {
       reason: <>Segment area <Katex tex="=\tfrac{1}{2}r^2(\theta-\sin\theta)" />, with <Katex tex="r=3" />.</>,
     },
     {
-      working: <Katex display tex="\boxed{\text{Area} = \dfrac{27\pi}{4} + \dfrac{9}{2} \approx 25.71 \text{ square units}}" />,
+      working: <Katex display tex="\boxed{\text{Area} = \dfrac{27\pi}{4} + \dfrac{9}{2} \text{ square units}}" />,
     },
   ]
 
@@ -163,6 +163,22 @@ export default function SpecialistQ2_2016() {
   ]
 
   const rowsF: WorkingRow[] = [
+    {
+      working: (
+        <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
+          <RayRangeDiagram />
+        </div>
+      ),
+      reason: (
+        <>
+          The line through the origin parallel to <Katex tex="y=x+2" /> (dashed) splits the plane in two. A ray
+          from the origin only reaches <Katex tex="y=x+2" /> at some <Katex tex="t>0" /> if it points into the{' '}
+          <em>same</em> half as that line (shaded) — the example ray shown does. Pointing along the dashed line
+          itself (<Katex tex="\theta=\tfrac{\pi}{4}" /> or <Katex tex="\theta=-\tfrac{3\pi}{4}" />, open circles)
+          never meets it, since the ray stays exactly parallel.
+        </>
+      ),
+    },
     {
       working: <Katex display tex="t\sin\theta = t\cos\theta + 2 \;\implies\; t = \frac{2}{\sin\theta - \cos\theta}" />,
       reason: (
@@ -268,10 +284,56 @@ function LineCircleDiagram({ showRay = false }: { showRay?: boolean }) {
 
       {showRay && <line x1={150} y1={150} x2={0} y2={300} stroke="#dc2626" strokeWidth={2} />}
       {showRay && (
+        <circle cx={150} cy={150} r={4.5} fill="white" className="dark:fill-gray-900" stroke="#dc2626" strokeWidth={2} />
+      )}
+      {showRay && (
         <text x={30} y={230} fontSize={11} className="fill-rose-600 dark:fill-rose-400">
           Arg(z) = −3π/4
         </text>
       )}
+    </svg>
+  )
+}
+
+// Argand diagram for part (f): the line y=x+2 (solid orange) together with the parallel line
+// through the origin, y=x (dashed) — the boundary directions θ=π/4 and θ=−3π/4 where a ray
+// from the origin runs exactly parallel and never reaches y=x+2. The shaded half-plane is
+// where a ray must point to hit y=x+2 at some t>0; a single example ray (green) illustrates
+// this, with an open circle at the origin (its argument is undefined there, as in part e) and
+// a filled dot marking where it actually meets the line.
+function RayRangeDiagram() {
+  return (
+    <svg viewBox="0 0 300 300" width={260} height={260}>
+      {[-4, -3, -2, -1, 0, 1, 2, 3, 4].map(n => (
+        <g key={n}>
+          <line x1={150 + n * 30} y1={0} x2={150 + n * 30} y2={300} stroke="#e5e7eb" strokeWidth={1} />
+          <line x1={0} y1={150 - n * 30} x2={300} y2={150 - n * 30} stroke="#e5e7eb" strokeWidth={1} />
+        </g>
+      ))}
+      <line x1={0} y1={150} x2={300} y2={150} stroke="#9ca3af" strokeWidth={1.5} />
+      <line x1={150} y1={0} x2={150} y2={300} stroke="#9ca3af" strokeWidth={1.5} />
+
+      {/* Shaded half-plane y > x — the directions a ray from the origin must point into. */}
+      <path d="M 0 300 L 0 0 L 300 0 Z" fill="#38bdf8" fillOpacity={0.14} />
+
+      {/* Boundary line through the origin, parallel to y = x + 2. */}
+      <line x1={0} y1={300} x2={300} y2={0} stroke="#9ca3af" strokeWidth={2} strokeDasharray="6 5" />
+
+      {/* The actual line y = x + 2. */}
+      <line x1={0} y1={240} x2={240} y2={0} stroke="#fb923c" strokeWidth={2} />
+      <text x={186} y={56} fontSize={11} className="fill-gray-700 dark:fill-gray-300">y = x + 2</text>
+
+      {/* Open circles marking the excluded boundary angles θ = π/4 and θ = −3π/4. */}
+      <circle cx={225} cy={75} r={4} fill="white" className="dark:fill-gray-900" stroke="#6b7280" strokeWidth={1.75} />
+      <text x={231} y={72} fontSize={11} className="fill-gray-500 dark:fill-gray-400">θ = π/4</text>
+      <circle cx={75} cy={225} r={4} fill="white" className="dark:fill-gray-900" stroke="#6b7280" strokeWidth={1.75} />
+      <text x={20} y={244} fontSize={11} className="fill-gray-500 dark:fill-gray-400">θ = −3π/4</text>
+
+      {/* Example valid ray at θ = 2π/3, into the shaded half — meets y = x + 2 at t ≈ 1.46. */}
+      <line x1={150} y1={150} x2={117} y2={93} stroke="#22c55e" strokeWidth={2} />
+      <circle cx={150} cy={150} r={4.5} fill="white" className="dark:fill-gray-900" stroke="#22c55e" strokeWidth={2} />
+      <circle cx={128} cy={112} r={3.5} fill="#22c55e" />
+      <text x={100} y={90} fontSize={11} className="fill-emerald-600 dark:fill-emerald-400">example ray</text>
     </svg>
   )
 }

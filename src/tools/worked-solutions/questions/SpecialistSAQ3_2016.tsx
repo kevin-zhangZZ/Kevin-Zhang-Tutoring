@@ -81,8 +81,17 @@ export default function SpecialistSAQ3_2016() {
       reason: 'Separate the variables.',
     },
     {
-      working: <Katex display tex="\ln|x| = -\ln(20+t) + c \quad\implies\quad x = \frac{A}{20+t}" />,
+      working: <Katex display tex="\ln|x| = -\ln|20+t| + c" />,
       reason: 'Integrate both sides.',
+    },
+    {
+      working: <Katex display tex="x \ge 0 \ (\text{a mass}), \quad 20+t > 0 \text{ for } t \ge 0" />,
+      reason: <>Both quantities are already non-negative on the domain of interest, so <Katex tex="|x|=x" /> and{' '}
+        <Katex tex="|20+t|=20+t" /> — the modulus signs can be dropped.</>,
+    },
+    {
+      working: <Katex display tex="x = \frac{A}{20+t}" />,
+      reason: <>Exponentiate both sides, with <Katex tex="A = e^c" />.</>,
     },
     {
       working: <Katex display tex="20 = \frac{A}{20} \implies A = 400" />,
@@ -122,7 +131,10 @@ export default function SpecialistSAQ3_2016() {
   const rowsD: WorkingRow[] = [
     {
       working: (
-        <Katex display tex="\frac{dy}{dt} = \frac{(2t+20)\cdot 6(10+t) - (t^2+20t+900)\cdot 6}{[6(10+t)]^2} = \frac{t^2+20t-700}{6(10+t)^2}" />
+        <Katex
+          display
+          tex="\begin{aligned} \frac{dy}{dt} &= \frac{(2t+20)\cdot 6(10+t) - (t^2+20t+900)\cdot 6}{[6(10+t)]^2} \\ &= \frac{t^2+20t-700}{6(10+t)^2} \end{aligned}"
+        />
       ),
       reason: <>Differentiate with the quotient rule, <Katex tex="N = t^2+20t+900" />, <Katex tex="D = 6(10+t)" />.</>,
     },
@@ -130,7 +142,7 @@ export default function SpecialistSAQ3_2016() {
       working: (
         <Katex
           display
-          tex="\frac{dy}{dt} + \frac{y}{10+t} = \frac{t^2+20t-700}{6(10+t)^2} + \frac{t^2+20t+900}{6(10+t)^2} = \frac{2(t+10)^2}{6(10+t)^2} = \frac{1}{3}"
+          tex="\begin{aligned} \frac{dy}{dt} + \frac{y}{10+t} &= \frac{t^2+20t-700}{6(10+t)^2} + \frac{t^2+20t+900}{6(10+t)^2} \\ &= \frac{2(t+10)^2}{6(10+t)^2} \\ &= \frac{1}{3} \end{aligned}"
         />
       ),
       reason: "Matches the right side of part (c)'s equation — verified.",

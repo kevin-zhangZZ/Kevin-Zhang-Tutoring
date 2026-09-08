@@ -31,3 +31,35 @@
 .trig-label {
   transition: opacity 0.25s ease;
 }
+
+/* A quiet, borderless scrollbar for panels that scroll internally (e.g. the worked-solutions
+   question list) — a thin colored thumb on a transparent track, so it doesn't compete with
+   the content for attention the way a default OS scrollbar does. */
+.scrollbar-quiet {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.gray.300') transparent;
+}
+.dark .scrollbar-quiet {
+  scrollbar-color: theme('colors.gray.700') transparent;
+}
+.scrollbar-quiet::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-quiet::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-quiet::-webkit-scrollbar-thumb {
+  background-color: theme('colors.gray.300');
+  border: none;
+  border-radius: 9999px;
+}
+.dark .scrollbar-quiet::-webkit-scrollbar-thumb {
+  background-color: theme('colors.gray.700');
+}
+.scrollbar-quiet::-webkit-scrollbar-thumb:hover {
+  background-color: theme('colors.gray.400');
+}
+.dark .scrollbar-quiet::-webkit-scrollbar-thumb:hover {
+  background-color: theme('colors.gray.600');
+}
