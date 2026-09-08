@@ -129,6 +129,14 @@ export default function WorkedSolutions() {
                     Only {selected.percentCorrect}% of VCE students got this right
                   </span>
                 )}
+                {selected.hasVideo && (
+                  <span className="flex items-center gap-1.5 font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400">
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                      <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+                    </svg>
+                    Video
+                  </span>
+                )}
               </span>
               <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
                 {selected.topic}
@@ -171,6 +179,17 @@ function QuestionRow({
             title="Percentage of VCE students who answered this correctly, per the VCAA examination report"
           >
             {question.percentCorrect}% correct
+          </span>
+        )}
+        {question.hasVideo && (
+          <span
+            className="flex items-center gap-1 font-display text-[10px] font-bold px-1.5 py-0.5 rounded-md w-fit bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400"
+            title="Includes a recorded video walkthrough"
+          >
+            <svg viewBox="0 0 20 20" fill="currentColor" className="w-2.5 h-2.5">
+              <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+            </svg>
+            Video
           </span>
         )}
       </span>
