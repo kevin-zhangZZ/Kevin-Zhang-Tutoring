@@ -97,4 +97,18 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q22-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 22', topic: 'Mechanics — time to maximum height with air resistance', type: 'mc', hasDetail: true, percentCorrect: 42 },
   { id: 'spec-q4-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 4', topic: 'Coordinate geometry — hyperbola from its asymptotes', type: 'mc', hasDetail: true, percentCorrect: 43 },
   { id: 'spec-q6-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — matching a relation to a point', type: 'mc', hasDetail: true, percentCorrect: 43 },
+
+  // The 5 hardest Methods MCQs from 2017-2018 Exam 2 Section A, by VCAA-reported % correct.
+  { id: 'meth-q18-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 18', topic: 'Calculus — comparing derivatives of two power functions', type: 'mc', hasDetail: true, percentCorrect: 14 },
+  { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — a matrix mapping one pdf to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
+  { id: 'meth-q17-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — area under an even function as one integral', type: 'mc', hasDetail: true, percentCorrect: 21 },
+  { id: 'meth-q11-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 11', topic: 'Graphs — pinning down tan(ax) from its asymptote', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'meth-q7-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 7', topic: 'Quadratics — discriminant condition for no real roots', type: 'mc', hasDetail: true, percentCorrect: 32 },
+
+  // The 5 hardest Specialist MCQs from 2017-2018 Exam 2 Section A (2017 Q2 and Q17 tied at 37%).
+  { id: 'spec-q10-2017', subject: 'specialist', year: 2017, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — inflection points of |f(x)|', type: 'mc', hasDetail: true, percentCorrect: 6 },
+  { id: 'spec-q12-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 12', topic: 'Vectors — the equality case of the triangle inequality', type: 'mc', hasDetail: true, percentCorrect: 36 },
+  { id: 'spec-q2-2017', subject: 'specialist', year: 2017, exam: 'Exam 2', code: 'MCQ 2', topic: 'Trigonometry — a cosec inequality', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'spec-q17-2017', subject: 'specialist', year: 2017, exam: 'Exam 2', code: 'MCQ 17', topic: 'Mechanics — resultant of two forces', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'spec-q5-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — z + 1/z real implies |z| = 1', type: 'mc', hasDetail: true, percentCorrect: 41 },
 ]
