@@ -3,9 +3,10 @@
 // underneath (some browsers can silently fail to decode a video track — no `error`
 // event fires — so the fallback can't only appear on error).
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2]
+const DEFAULT_SPEED = 1.25
 
 export function DropboxLink({ src, label }: { src: string; label: string }) {
   return (
@@ -26,13 +27,25 @@ export function DropboxLink({ src, label }: { src: string; label: string }) {
 export default function VideoPlayer({ src, label }: { src: string; label: string }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [failed, setFailed] = useState(false)
-  const [speed, setSpeed] = useState(1)
+  const [speed, setSpeed] = useState(DEFAULT_SPEED)
+
+  // `playbackRate` is a DOM property, not a JSX attribute — set it (and `defaultPlaybackRate`,
+  // so a rewind-to-start or loop keeps the same rate) directly once the element exists.
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = DEFAULT_SPEED
+      videoRef.current.defaultPlaybackRate = DEFAULT_SPEED
+    }
+  }, [])
 
   if (failed) return <DropboxLink src={src} label={label} />
 
   function setRate(rate: number) {
     setSpeed(rate)
-    if (videoRef.current) videoRef.current.playbackRate = rate
+    if (videoRef.current) {
+      videoRef.current.playbackRate = rate
+      videoRef.current.defaultPlaybackRate = rate
+    }
   }
 
   return (
