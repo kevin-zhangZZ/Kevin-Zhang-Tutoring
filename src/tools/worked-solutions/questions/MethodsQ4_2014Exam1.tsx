@@ -6,6 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow } from '../QuestionParts'
+import { functionToPath } from '../graphUtils'
 
 export default function MethodsQ4_2014Exam1() {
   const rowsA: WorkingRow[] = [
@@ -180,7 +181,12 @@ export default function MethodsQ4_2014Exam1() {
 }
 
 // f=2sin(x) (blue), g=(1/2)sin(2x) (purple), and — when showH — h=(1/3)sin(3x) (orange) on [0,2π].
-// viewBox mapping: x_svg = 40 + 13.333·(x in units of π/4 steps... ), y_svg = 100 − value×35.
+// Curves are real sampled sine functions (via functionToPath), not hand-drawn waypoints,
+// so they come out smooth and mathematically accurate rather than faceted/approximate.
+const TWO_PI = 2 * Math.PI
+const toSvgX = (x: number) => 40 + (x / TWO_PI) * 320
+const toSvgY = (y: number) => 100 - y * 35
+
 function SinLogoGraph({ showH = false }: { showH?: boolean }) {
   return (
     <svg viewBox="0 0 400 200" width={340} height={170}>
@@ -192,18 +198,18 @@ function SinLogoGraph({ showH = false }: { showH?: boolean }) {
       <text x={352} y={112} fontSize={10} className="fill-gray-500 dark:fill-gray-400">2π</text>
 
       {/* f(x) = 2 sin x */}
-      <polyline
-        points="40,100 80,50.5 120,30 160,50.5 200,100 240,149.5 280,170 320,149.5 360,100"
+      <path
+        d={functionToPath(x => 2 * Math.sin(x), 0, TWO_PI, toSvgX, toSvgY)}
         fill="none" stroke="#0ea5e9" strokeWidth={2.2}
       />
       {/* g(x) = 1/2 sin 2x */}
-      <polyline
-        points="40,100 60,91.25 80,73.75 100,56.25 120,47.5 140,56.25 160,73.75 180,91.25 200,100 220,108.75 240,126.25 260,143.75 280,152.5 300,143.75 320,126.25 340,108.75 360,100"
+      <path
+        d={functionToPath(x => 0.5 * Math.sin(2 * x), 0, TWO_PI, toSvgX, toSvgY)}
         fill="none" stroke="#a855f7" strokeWidth={2}
       />
       {showH && (
-        <polyline
-          points="40,100 66.67,88.33 93.33,100 120,111.67 146.67,100 173.33,88.33 200,100 226.67,111.67 253.33,100 280,88.33 306.67,100 333.33,111.67 360,100"
+        <path
+          d={functionToPath(x => (1 / 3) * Math.sin(3 * x), 0, TWO_PI, toSvgX, toSvgY)}
           fill="none" stroke="#f97316" strokeWidth={2}
         />
       )}
