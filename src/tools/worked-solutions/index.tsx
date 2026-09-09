@@ -2,10 +2,7 @@ import { useState } from 'react'
 import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, QUESTION_TYPE_LABEL, type SubjectId, type QuestionMeta, type QuestionType } from './data'
 import { QUESTION_DETAILS } from './details'
 import ComingSoon from './ComingSoon'
-
-function firstOf(subject: SubjectId): QuestionMeta | undefined {
-  return QUESTIONS.find(q => q.subject === subject)
-}
+import { examSourceFor } from './examSources'
 
 // `topic` is stored as "<category> — <description>" (e.g. "Complex numbers — Argand diagram
 // parallelogram"). The sidebar shows the two halves as a topic/subtopic pair; the detail panel
@@ -45,26 +42,51 @@ function mainCode(code: string): string {
   return code.replace(/\(.*\)\s*$/, '').trim()
 }
 
-export default function WorkedSolutions() {
-  const [subject, setSubject] = useState<SubjectId>('specialist')
-  const [selectedId, setSelectedId] = useState<string | null>(firstOf('specialist')?.id ?? null)
-  const [openYear, setOpenYear] = useState<number | null>(firstOf('specialist')?.year ?? null)
+// Every year 2015-2025 has a sourced exam paper + report (see examSources.ts) even for years
+// with no worked-solution questions transcribed yet, so the year rail spans that whole range
+// rather than only the years that happen to have questions.
+const SOURCED_YEARS = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2015 + i)
 
-  const subjectQuestions = QUESTIONS.filter(q => q.subject === subject)
-  const years = Array.from(new Set(subjectQuestions.map(q => q.year))).sort((a, b) => a - b)
-  const selected = QUESTIONS.find(q => q.id === selectedId) ?? subjectQuestions[0] ?? null
+// Exam labels to fall back to for a year with no questions at all, so its Paper/Report links
+// still have somewhere to attach — Methods/Specialist always sit two exams, Chemistry one.
+const DEFAULT_EXAMS: Record<SubjectId, string[]> = {
+  methods: ['Exam 1', 'Exam 2'],
+  specialist: ['Exam 1', 'Exam 2'],
+  chemistry: ['Exam'],
+}
+
+export default function WorkedSolutions() {
+  // Nothing is pre-selected on first load — the visitor picks a subject, then a year, then a
+  // question, each step revealing the next rather than dropping them straight into MCQ 6.
+  const [subject, setSubject] = useState<SubjectId | null>(null)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [openYear, setOpenYear] = useState<number | null>(null)
+
+  const subjectQuestions = subject ? QUESTIONS.filter(q => q.subject === subject) : []
+  const questionYears = subjectQuestions.map(q => q.year)
+  const years = subject
+    ? Array.from(new Set([...questionYears, ...SOURCED_YEARS])).sort((a, b) => a - b)
+    : []
+  const selected = selectedId ? QUESTIONS.find(q => q.id === selectedId) ?? null : null
   const Detail = selected?.hasDetail ? QUESTION_DETAILS[selected.id] : undefined
   const selectedColor = selected ? SUBJECT_COLOR[selected.subject] : null
 
   function handleSubjectChange(next: SubjectId) {
-    const first = firstOf(next)
     setSubject(next)
-    setSelectedId(first?.id ?? null)
-    setOpenYear(first?.year ?? null)
+    setSelectedId(null)
+    setOpenYear(null)
   }
 
   const yearQuestions = subjectQuestions.filter(q => q.year === openYear)
-  const exams = Array.from(new Set(yearQuestions.map(q => q.exam)))
+  const yearHasQuestions = yearQuestions.length > 0
+  const exams =
+    openYear === null
+      ? []
+      : yearHasQuestions
+        ? Array.from(new Set(yearQuestions.map(q => q.exam)))
+        : subject
+          ? DEFAULT_EXAMS[subject]
+          : []
 
   return (
     <div className="px-6 py-10">
@@ -96,12 +118,12 @@ export default function WorkedSolutions() {
             so a long, fully-expanded question list can't run off-screen. */}
         <div className="w-full lg:w-[336px] flex-none bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 flex flex-col lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto scrollbar-quiet">
           <div className="font-display text-[13px] font-bold text-gray-900 dark:text-white mt-1 mb-2 ml-1.5">
-            {SUBJECT_NAME[subject]}
+            {subject ? SUBJECT_NAME[subject] : 'Choose a subject'}
           </div>
 
-          {years.length === 0 && (
+          {subject === null && (
             <p className="text-[13px] text-gray-400 dark:text-gray-500 px-2 py-2">
-              No {SUBJECT_NAME[subject]} questions yet — check back soon.
+              Pick Methods, Specialist, or Chemistry above to get started.
             </p>
           )}
 
@@ -127,6 +149,11 @@ export default function WorkedSolutions() {
 
               {/* Selected year's questions, grouped by exam then by type */}
               <div className="flex-1 min-w-0 border-l border-gray-100 dark:border-gray-800 pl-2.5 flex flex-col">
+                {openYear === null && (
+                  <p className="text-[12.5px] text-gray-400 dark:text-gray-500 px-1 py-1.5">
+                    Select a year.
+                  </p>
+                )}
                 {exams.map((exam, examIndex) => {
                   const examQuestions = yearQuestions.filter(q => q.exam === exam)
                   // Skip the "Multiple Choice"/"Short Answer" band entirely when an exam only
@@ -134,9 +161,32 @@ export default function WorkedSolutions() {
                   // short-answer-only) — the label adds nothing when there's no other type to
                   // distinguish it from.
                   const examHasBothTypes = new Set(examQuestions.map(q => q.type)).size > 1
+                  const source = subject ? examSourceFor(subject, openYear!, exam) : undefined
                   return (
                     <div key={exam} className={`flex flex-col gap-1.5 ${examIndex === 0 ? '' : 'mt-2'}`}>
-                      <div className="text-[11px] font-bold text-gray-900 dark:text-white px-1">{exam}</div>
+                      <div className="flex items-baseline justify-between gap-2 px-1">
+                        <span className="text-[11px] font-bold text-gray-900 dark:text-white">{exam}</span>
+                        {source && (
+                          <span className="flex gap-2.5">
+                            <a
+                              href={source.paper}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
+                            >
+                              Paper
+                            </a>
+                            <a
+                              href={source.report}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
+                            >
+                              Report
+                            </a>
+                          </span>
+                        )}
+                      </div>
                       {(['mc', 'sa'] as QuestionType[]).map(type => {
                         const typeQuestions = examQuestions
                           .filter(q => q.type === type)
@@ -165,44 +215,44 @@ export default function WorkedSolutions() {
                     </div>
                   )
                 })}
+                {openYear !== null && !yearHasQuestions && (
+                  <p className="text-[12px] text-gray-400 dark:text-gray-500 px-1 pt-2 leading-relaxed">
+                    No worked solutions for {openYear} yet — but the original paper and report are linked above.
+                  </p>
+                )}
               </div>
             </div>
           )}
         </div>
 
-        {/* Detail panel */}
-        <div className="flex-1 min-w-0 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8">
-          {selected && selectedColor ? (
-            <>
-              <span className="flex items-center gap-2 flex-wrap">
-                <span className={`font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg ${selectedColor.bg} ${selectedColor.text}`}>
-                  {selected.year} · {selected.exam} · {selected.code}
-                </span>
-                {selected.percentCorrect !== undefined && (
-                  <span className="font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                    {selected.percentCorrect}% accuracy
-                  </span>
-                )}
-                {selected.hasVideo && (
-                  <span className="flex items-center gap-1.5 font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400">
-                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
-                      <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
-                    </svg>
-                    Video
-                  </span>
-                )}
+        {/* Detail panel — not rendered at all until a question is actually selected, rather
+            than showing an empty/placeholder card. */}
+        {selected && selectedColor && (
+          <div className="flex-1 min-w-0 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8">
+            <span className="flex items-center gap-2 flex-wrap">
+              <span className={`font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg ${selectedColor.bg} ${selectedColor.text}`}>
+                {selected.year} · {selected.exam} · {selected.code}
               </span>
-              <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
-                {selected.topic}
-              </h2>
-              {Detail ? <Detail key={selected.id} /> : <ComingSoon topic={selected.topic} />}
-            </>
-          ) : (
-            <p className="text-[13.5px] text-gray-400 dark:text-gray-500 text-center py-10">
-              No {SUBJECT_NAME[subject]} questions yet — check back soon.
-            </p>
-          )}
-        </div>
+              {selected.percentCorrect !== undefined && (
+                <span className="font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                  {selected.percentCorrect}% accuracy
+                </span>
+              )}
+              {selected.hasVideo && (
+                <span className="flex items-center gap-1.5 font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400">
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                    <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+                  </svg>
+                  Video
+                </span>
+              )}
+            </span>
+            <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
+              {selected.topic}
+            </h2>
+            {Detail ? <Detail key={selected.id} /> : <ComingSoon topic={selected.topic} />}
+          </div>
+        )}
       </div>
     </div>
   )
