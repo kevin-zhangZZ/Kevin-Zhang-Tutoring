@@ -148,4 +148,37 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q4-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 4', topic: 'Trigonometry — cosec(-x) from cos(x) and cot(x)', type: 'mc', hasDetail: true, percentCorrect: 49 },
   { id: 'spec-q20-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — comparing two independent normal variables', type: 'mc', hasDetail: true, percentCorrect: 56 },
   { id: 'spec-q19-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 19', topic: 'Statistics — a probability about a sample mean', type: 'mc', hasDetail: true, percentCorrect: 57 },
+
+  // The 6 hardest Chemistry MCQs from 2015 Exam Section A, by VCAA-reported % correct. VCAA's
+  // own report names these as the year's hardest, in this order (Q29 hardest of all).
+  { id: 'chem-q29-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 29', topic: 'Electrochemistry — cathode reaction and electrode polarity in electrorefining', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'chem-q15-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 15', topic: 'Organic chemistry — comparing C-H bond counts across four 24-carbon compounds', type: 'mc', hasDetail: true, percentCorrect: 40 },
+  { id: 'chem-q8-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 8', topic: 'Analytical chemistry — polarity and attraction in HPLC', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'chem-q28-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 28', topic: 'Electrochemistry — which impurities end up as sludge when refining copper', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'chem-q4-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 4', topic: 'Stoichiometry — gas volume via the ideal gas law, then a mole ratio', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'chem-q22-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 22', topic: 'Acids and bases — pH of a barium hydroxide solution', type: 'mc', hasDetail: true, percentCorrect: 49 },
+
+  // The 6 hardest Chemistry MCQs from 2016 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q27-2016', subject: 'chemistry', year: 2016, exam: 'Exam', code: 'MCQ 27', topic: 'Rates of reaction — one change that explains both a faster rate and more product', type: 'mc', hasDetail: true, percentCorrect: 21 },
+  { id: 'chem-q20-2016', subject: 'chemistry', year: 2016, exam: 'Exam', code: 'MCQ 20', topic: 'Acids and bases — pH and percentage ionisation on dilution', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q25-2016', subject: 'chemistry', year: 2016, exam: 'Exam', code: 'MCQ 25', topic: 'Redox — which hypothesis cannot explain an unexpected non-reaction', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'chem-q24-2016', subject: 'chemistry', year: 2016, exam: 'Exam', code: 'MCQ 24', topic: 'Thermochemistry — energy released per gram, methanol vs. octane', type: 'mc', hasDetail: true, percentCorrect: 40 },
+  { id: 'chem-q26-2016', subject: 'chemistry', year: 2016, exam: 'Exam', code: 'MCQ 26', topic: 'Stoichiometry — gas pressure produced in a sealed vessel', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'chem-q29-2016', subject: 'chemistry', year: 2016, exam: 'Exam', code: 'MCQ 29', topic: 'Electrochemistry — cathode reaction and pH change at a standard hydrogen electrode', type: 'mc', hasDetail: true, percentCorrect: 47 },
+
+  // The 6 hardest Chemistry MCQs from 2017 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q9-2017', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'MCQ 9', topic: 'Food chemistry — percentage energy from protein in a serving', type: 'mc', hasDetail: true, percentCorrect: 36 },
+  { id: 'chem-q26-2017', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'MCQ 26', topic: 'Gas laws — temperature change to keep pressure constant after adding gas', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'chem-q14-2017', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'MCQ 14', topic: 'Fuels — comparing environmental impact per 100 km across vehicles', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'chem-q3-2017', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'MCQ 3', topic: 'Organic chemistry — recognising a genuine hydrolysis reaction', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'chem-q22-2017', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'MCQ 22', topic: 'Analytical chemistry — mass of caffeine via HPLC, with a dilution correction', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'chem-q23-2017', subject: 'chemistry', year: 2017, exam: 'Exam', code: 'MCQ 23', topic: 'Experimental design — precision, accuracy, validity and uncertainty', type: 'mc', hasDetail: true, percentCorrect: 49 },
+
+  // The 6 hardest Chemistry MCQs from 2018 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q26-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 26', topic: 'Analytical chemistry — titration design for two weak acids, only one redox-active', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q2-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 2', topic: "Food chemistry — what's actually true about aspartame", type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'chem-q12-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 12', topic: 'Electrochemistry — why fuel-cell electrodes are porous', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'chem-q17-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 17', topic: 'Analytical chemistry — concentration of oxalic acid from a permanganate titration', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'chem-q25-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 25', topic: 'Thermochemistry — mass of fuel needed for a given energy release, in tonnes', type: 'mc', hasDetail: true, percentCorrect: 57 },
+  { id: 'chem-q27-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 27', topic: 'Equilibrium — Kc for a reversed and doubled reaction', type: 'mc', hasDetail: true, percentCorrect: 59 },
 ]

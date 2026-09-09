@@ -58,6 +58,30 @@ import MethodsQ13_2017 from './questions/MethodsQ13_2017'
 import MethodsQ4_2018 from './questions/MethodsQ4_2018'
 import MethodsQ15_2018 from './questions/MethodsQ15_2018'
 import MethodsQ16_2018 from './questions/MethodsQ16_2018'
+import ChemistryQ29_2015 from './questions/ChemistryQ29_2015'
+import ChemistryQ15_2015 from './questions/ChemistryQ15_2015'
+import ChemistryQ8_2015 from './questions/ChemistryQ8_2015'
+import ChemistryQ28_2015 from './questions/ChemistryQ28_2015'
+import ChemistryQ4_2015 from './questions/ChemistryQ4_2015'
+import ChemistryQ22_2015 from './questions/ChemistryQ22_2015'
+import ChemistryQ27_2016 from './questions/ChemistryQ27_2016'
+import ChemistryQ20_2016 from './questions/ChemistryQ20_2016'
+import ChemistryQ25_2016 from './questions/ChemistryQ25_2016'
+import ChemistryQ24_2016 from './questions/ChemistryQ24_2016'
+import ChemistryQ26_2016 from './questions/ChemistryQ26_2016'
+import ChemistryQ29_2016 from './questions/ChemistryQ29_2016'
+import ChemistryQ9_2017 from './questions/ChemistryQ9_2017'
+import ChemistryQ26_2017 from './questions/ChemistryQ26_2017'
+import ChemistryQ14_2017 from './questions/ChemistryQ14_2017'
+import ChemistryQ3_2017 from './questions/ChemistryQ3_2017'
+import ChemistryQ22_2017 from './questions/ChemistryQ22_2017'
+import ChemistryQ23_2017 from './questions/ChemistryQ23_2017'
+import ChemistryQ26_2018 from './questions/ChemistryQ26_2018'
+import ChemistryQ2_2018 from './questions/ChemistryQ2_2018'
+import ChemistryQ12_2018 from './questions/ChemistryQ12_2018'
+import ChemistryQ17_2018 from './questions/ChemistryQ17_2018'
+import ChemistryQ25_2018 from './questions/ChemistryQ25_2018'
+import ChemistryQ27_2018 from './questions/ChemistryQ27_2018'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-mcq6': SpecialistMCQ6,
@@ -110,6 +134,30 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q4-2018': MethodsQ4_2018,
   'meth-q15-2018': MethodsQ15_2018,
   'meth-q16-2018': MethodsQ16_2018,
+  'chem-q29-2015': ChemistryQ29_2015,
+  'chem-q15-2015': ChemistryQ15_2015,
+  'chem-q8-2015': ChemistryQ8_2015,
+  'chem-q28-2015': ChemistryQ28_2015,
+  'chem-q4-2015': ChemistryQ4_2015,
+  'chem-q22-2015': ChemistryQ22_2015,
+  'chem-q27-2016': ChemistryQ27_2016,
+  'chem-q20-2016': ChemistryQ20_2016,
+  'chem-q25-2016': ChemistryQ25_2016,
+  'chem-q24-2016': ChemistryQ24_2016,
+  'chem-q26-2016': ChemistryQ26_2016,
+  'chem-q29-2016': ChemistryQ29_2016,
+  'chem-q9-2017': ChemistryQ9_2017,
+  'chem-q26-2017': ChemistryQ26_2017,
+  'chem-q14-2017': ChemistryQ14_2017,
+  'chem-q3-2017': ChemistryQ3_2017,
+  'chem-q22-2017': ChemistryQ22_2017,
+  'chem-q23-2017': ChemistryQ23_2017,
+  'chem-q26-2018': ChemistryQ26_2018,
+  'chem-q2-2018': ChemistryQ2_2018,
+  'chem-q12-2018': ChemistryQ12_2018,
+  'chem-q17-2018': ChemistryQ17_2018,
+  'chem-q25-2018': ChemistryQ25_2018,
+  'chem-q27-2018': ChemistryQ27_2018,
 
   // Hardest-5 MCQs per subject, 2017-2018 Exam 2 (see data.ts percentCorrect)
   'meth-q18-2018': MethodsQ18_2018,
