@@ -76,20 +76,27 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-saq3', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Differential equations — rates of mixing (two-tank problem)', type: 'sa', hasDetail: true, hasVideo: true },
   { id: 'spec-q4-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — relative position, collision, and minimum distance', type: 'sa', hasDetail: true },
 
-  { id: 'meth-q3-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — identifying a quartic rule from its graph', type: 'mc', hasDetail: true, percentCorrect: 20 },
-  { id: 'meth-q16-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — antiderivatives of power functions', type: 'mc', hasDetail: true, percentCorrect: 22, hasVideo: true },
-  { id: 'meth-q17-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — turning points and number of x-intercepts', type: 'mc', hasDetail: true },
   { id: 'meth-q4-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q4(a–d)', topic: 'Calculus — area between sine graphs', type: 'sa', hasDetail: true },
   { id: 'meth-q21-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 21', topic: 'Calculus — maximising the area of a trapezium', type: 'mc', hasDetail: true },
   { id: 'meth-q22-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 22', topic: 'Probability — independent events and ratios', type: 'mc', hasDetail: true },
   { id: 'meth-q3-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Calculus — optimisation and related rates (melting ice cylinder)', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q4(f)', topic: 'Probability — conditional probability and Markov-style recursion', type: 'sa', hasDetail: true },
 
-  // The 5 hardest Methods MCQs from 2014-2016 Exam 2 Section A, by VCAA-reported % correct.
-  // (meth-q3-2015 and meth-q16-2015 above are already 2 of these 5 — see percentCorrect on each.)
+  // The 6 hardest Methods MCQs from 2015 Exam 2 Section A, by VCAA-reported % correct.
+  { id: 'meth-q3-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — identifying a quartic rule from its graph', type: 'mc', hasDetail: true, percentCorrect: 20 },
+  { id: 'meth-q16-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — antiderivatives of power functions', type: 'mc', hasDetail: true, percentCorrect: 22, hasVideo: true },
+  { id: 'meth-q11-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 11', topic: 'Transformations — identifying a single dilation', type: 'mc', hasDetail: true, percentCorrect: 24 },
+  { id: 'meth-q9-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 9', topic: 'Probability — E(X) for a uniform distribution', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'meth-q21-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 21', topic: 'Graphs — a line and a parabola with no intersection', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'meth-q17-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — turning points and number of x-intercepts', type: 'mc', hasDetail: true, percentCorrect: 60 },
+
+  // The 6 hardest Methods MCQs from 2016 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q19-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — bounding E(X) for a discrete distribution', type: 'mc', hasDetail: true, percentCorrect: 15 },
   { id: 'meth-q20-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — relating definite integrals under a mapping', type: 'mc', hasDetail: true, percentCorrect: 17 },
-  { id: 'meth-q11-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 11', topic: 'Transformations — identifying a single dilation', type: 'mc', hasDetail: true, percentCorrect: 24 },
+  { id: 'meth-q14-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 14', topic: 'Calculus — maximum area of a rectangle under a parabola', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'meth-q9-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — deriving ∫xe^(kx)dx from a given derivative', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'meth-q11-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 11', topic: 'Algebra — testing candidate rules against a functional equation', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'meth-q10-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — tangent parallel to a chord of intercepts', type: 'mc', hasDetail: true, percentCorrect: 52 },
 
   // The 6 hardest Specialist MCQs from 2015 Exam 2 Section A, by VCAA-reported % correct.
   // Mechanics questions (no longer on the VCE study design) are excluded from these picks —
@@ -109,12 +116,21 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q18-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'MCQ 18', topic: 'Statistics — mean and sd of a sum of independent variables', type: 'mc', hasDetail: true, percentCorrect: 61 },
   { id: 'spec-q10-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'MCQ 10', topic: 'Differential equations — tracing a solution through a direction field', type: 'mc', hasDetail: true, percentCorrect: 65 },
 
-  // The 5 hardest Methods MCQs from 2017-2018 Exam 2 Section A, by VCAA-reported % correct.
+  // The 6 hardest Methods MCQs from 2017 Exam 2 Section A, by VCAA-reported % correct.
+  { id: 'meth-q17-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — area under an even function as one integral', type: 'mc', hasDetail: true, percentCorrect: 21 },
+  { id: 'meth-q7-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 7', topic: 'Quadratics — discriminant condition for no real roots', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'meth-q18-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — smallest n so that binomial mean equals sd', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'meth-q16-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 16', topic: 'Probability — a binomial probability from a given one', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'meth-q12-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 12', topic: 'Trigonometry — sum of solutions on an interval', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'meth-q13-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 13', topic: 'Algebra — the identity that fails for h(x) = 1/(x-1)', type: 'mc', hasDetail: true, percentCorrect: 46 },
+
+  // The 6 hardest Methods MCQs from 2018 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q18-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 18', topic: 'Calculus — comparing derivatives of two power functions', type: 'mc', hasDetail: true, percentCorrect: 14 },
   { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — a matrix mapping one pdf to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
-  { id: 'meth-q17-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — area under an even function as one integral', type: 'mc', hasDetail: true, percentCorrect: 21 },
   { id: 'meth-q11-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 11', topic: 'Graphs — pinning down tan(ax) from its asymptote', type: 'mc', hasDetail: true, percentCorrect: 26 },
-  { id: 'meth-q7-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 7', topic: 'Quadratics — discriminant condition for no real roots', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'meth-q4-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 4', topic: 'Transformations — tracking a point through a dilation and shift', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'meth-q15-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 15', topic: 'Probability — the equation defining a median', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'meth-q16-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — rectangle approximation vs. exact area', type: 'mc', hasDetail: true, percentCorrect: 49 },
 
   // The 6 hardest Specialist MCQs from 2017 Exam 2 Section A, by VCAA-reported % correct.
   // spec-q17-2017 (Mechanics) was removed — no longer on the VCE study design.

@@ -45,6 +45,19 @@ import SpecialistQ3_2018 from './questions/SpecialistQ3_2018'
 import SpecialistQ4_2018 from './questions/SpecialistQ4_2018'
 import SpecialistQ20_2018 from './questions/SpecialistQ20_2018'
 import SpecialistQ19_2018 from './questions/SpecialistQ19_2018'
+import MethodsQ9_2015 from './questions/MethodsQ9_2015'
+import MethodsQ21_2015 from './questions/MethodsQ21_2015'
+import MethodsQ14_2016 from './questions/MethodsQ14_2016'
+import MethodsQ9_2016 from './questions/MethodsQ9_2016'
+import MethodsQ11_2016 from './questions/MethodsQ11_2016'
+import MethodsQ10_2016 from './questions/MethodsQ10_2016'
+import MethodsQ18_2017 from './questions/MethodsQ18_2017'
+import MethodsQ16_2017 from './questions/MethodsQ16_2017'
+import MethodsQ12_2017 from './questions/MethodsQ12_2017'
+import MethodsQ13_2017 from './questions/MethodsQ13_2017'
+import MethodsQ4_2018 from './questions/MethodsQ4_2018'
+import MethodsQ15_2018 from './questions/MethodsQ15_2018'
+import MethodsQ16_2018 from './questions/MethodsQ16_2018'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-mcq6': SpecialistMCQ6,
@@ -84,6 +97,19 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q4-2018': SpecialistQ4_2018,
   'spec-q20-2018': SpecialistQ20_2018,
   'spec-q19-2018': SpecialistQ19_2018,
+  'meth-q9-2015': MethodsQ9_2015,
+  'meth-q21-2015': MethodsQ21_2015,
+  'meth-q14-2016': MethodsQ14_2016,
+  'meth-q9-2016': MethodsQ9_2016,
+  'meth-q11-2016': MethodsQ11_2016,
+  'meth-q10-2016': MethodsQ10_2016,
+  'meth-q18-2017': MethodsQ18_2017,
+  'meth-q16-2017': MethodsQ16_2017,
+  'meth-q12-2017': MethodsQ12_2017,
+  'meth-q13-2017': MethodsQ13_2017,
+  'meth-q4-2018': MethodsQ4_2018,
+  'meth-q15-2018': MethodsQ15_2018,
+  'meth-q16-2018': MethodsQ16_2018,
 
   // Hardest-5 MCQs per subject, 2017-2018 Exam 2 (see data.ts percentCorrect)
   'meth-q18-2018': MethodsQ18_2018,
