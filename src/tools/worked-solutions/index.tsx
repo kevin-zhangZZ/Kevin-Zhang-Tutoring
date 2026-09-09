@@ -78,15 +78,10 @@ export default function WorkedSolutions() {
   }
 
   const yearQuestions = subjectQuestions.filter(q => q.year === openYear)
-  const yearHasQuestions = yearQuestions.length > 0
-  const exams =
-    openYear === null
-      ? []
-      : yearHasQuestions
-        ? Array.from(new Set(yearQuestions.map(q => q.exam)))
-        : subject
-          ? DEFAULT_EXAMS[subject]
-          : []
+  // Always show every exam a year could have (Exam 1 + Exam 2 for Methods/Specialist, Exam
+  // for Chemistry) rather than only the ones with transcribed questions — so e.g. a year with
+  // only Exam 2 questions still shows the Exam 1 label with its Paper/Report links.
+  const exams = openYear === null ? [] : subject ? DEFAULT_EXAMS[subject] : []
 
   return (
     <div className="px-6 py-10">
@@ -187,39 +182,40 @@ export default function WorkedSolutions() {
                           </span>
                         )}
                       </div>
-                      {(['mc', 'sa'] as QuestionType[]).map(type => {
-                        const typeQuestions = examQuestions
-                          .filter(q => q.type === type)
-                          .sort((a, b) => questionNumber(a.code) - questionNumber(b.code))
-                        if (typeQuestions.length === 0) return null
-                        return (
-                          <div key={type} className="flex flex-col gap-0.5">
-                            {examHasBothTypes && (
-                              <div className="flex items-center bg-slate-200 dark:bg-slate-800/40 rounded-lg px-2.5 py-1.5 my-0.5">
-                                <span className="font-display text-[10.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
-                                  {QUESTION_TYPE_LABEL[type]}
-                                </span>
-                              </div>
-                            )}
-                            {typeQuestions.map(q => (
-                              <QuestionRow
-                                key={q.id}
-                                question={q}
-                                selected={q.id === selectedId}
-                                onSelect={() => setSelectedId(q.id)}
-                              />
-                            ))}
-                          </div>
-                        )
-                      })}
+                      {examQuestions.length === 0 ? (
+                        <p className="text-[11.5px] text-gray-400 dark:text-gray-500 px-1">
+                          No worked solutions here yet.
+                        </p>
+                      ) : (
+                        (['mc', 'sa'] as QuestionType[]).map(type => {
+                          const typeQuestions = examQuestions
+                            .filter(q => q.type === type)
+                            .sort((a, b) => questionNumber(a.code) - questionNumber(b.code))
+                          if (typeQuestions.length === 0) return null
+                          return (
+                            <div key={type} className="flex flex-col gap-0.5">
+                              {examHasBothTypes && (
+                                <div className="flex items-center bg-slate-200 dark:bg-slate-800/40 rounded-lg px-2.5 py-1.5 my-0.5">
+                                  <span className="font-display text-[10.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
+                                    {QUESTION_TYPE_LABEL[type]}
+                                  </span>
+                                </div>
+                              )}
+                              {typeQuestions.map(q => (
+                                <QuestionRow
+                                  key={q.id}
+                                  question={q}
+                                  selected={q.id === selectedId}
+                                  onSelect={() => setSelectedId(q.id)}
+                                />
+                              ))}
+                            </div>
+                          )
+                        })
+                      )}
                     </div>
                   )
                 })}
-                {openYear !== null && !yearHasQuestions && (
-                  <p className="text-[12px] text-gray-400 dark:text-gray-500 px-1 pt-2 leading-relaxed">
-                    No worked solutions for {openYear} yet — but the original paper and report are linked above.
-                  </p>
-                )}
               </div>
             </div>
           )}
