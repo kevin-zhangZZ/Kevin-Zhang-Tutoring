@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="a=p-1, \quad b=4, \quad c=p-5" />,
   },
   {
-    working: <Katex display tex="\Delta = b^2-4ac = 16-4(p-1)(p-5)" />,
+    working: <Katex display tex="\begin{aligned} \Delta &= b^2-4ac \\ &= 16-4(p-1)(p-5) \end{aligned}" />,
     reason: 'No real roots requires a negative discriminant (this also needs a ≠ 0, i.e. p ≠ 1, which is automatically excluded once the inequality below is solved).',
   },
   {

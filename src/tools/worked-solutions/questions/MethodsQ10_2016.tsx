@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Find the intercepts — the positive <Katex tex="x" />-intercept is <Katex tex="(\sqrt5,0)" />, and the <Katex tex="y" />-intercept is <Katex tex="(0,-5)" />.</>,
   },
   {
-    working: <Katex display tex="\text{gradient of chord} = \frac{-5-0}{0-\sqrt5} = \sqrt5" />,
+    working: <Katex display tex="\begin{aligned} \text{gradient of chord} &= \frac{-5-0}{0-\sqrt5} \\ &= \sqrt5 \end{aligned}" />,
     reason: 'The line connecting the two intercepts.',
   },
   {

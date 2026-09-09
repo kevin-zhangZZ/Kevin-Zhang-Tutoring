@@ -17,7 +17,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\overrightarrow{BA} = \underset{\sim}{a}-\underset{\sim}{b} = (2\underset{\sim}{i}+\underset{\sim}{j})-(3\underset{\sim}{i}-\underset{\sim}{j}+\underset{\sim}{k})" />
+        <Katex display tex="\begin{aligned} \overrightarrow{BA} &= \underset{\sim}{a}-\underset{\sim}{b} \\ &= (2\underset{\sim}{i}+\underset{\sim}{j})-(3\underset{\sim}{i}-\underset{\sim}{j}+\underset{\sim}{k}) \end{aligned}" />
         <Katex display tex="= -\underset{\sim}{i}+2\underset{\sim}{j}-\underset{\sim}{k}" />
       </>
     ),
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\overrightarrow{BC} = \underset{\sim}{c}-\underset{\sim}{b} = -3\underset{\sim}{j}+\underset{\sim}{k}-(3\underset{\sim}{i}-\underset{\sim}{j}+\underset{\sim}{k})" />
+        <Katex display tex="\begin{aligned} \overrightarrow{BC} &= \underset{\sim}{c}-\underset{\sim}{b} \\ &= -3\underset{\sim}{j}+\underset{\sim}{k}-(3\underset{\sim}{i}-\underset{\sim}{j}+\underset{\sim}{k}) \end{aligned}" />
         <Katex display tex="= -3\underset{\sim}{i}-2\underset{\sim}{j}" />
       </>
     ),
@@ -34,13 +34,13 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="|\overrightarrow{BA}| = \sqrt{(-1)^2+2^2+(-1)^2} = \sqrt6" />
-        <Katex display tex="|\overrightarrow{BC}| = \sqrt{(-3)^2+(-2)^2+0^2} = \sqrt{13}" />
+        <Katex display tex="\begin{aligned} |\overrightarrow{BA}| &= \sqrt{(-1)^2+2^2+(-1)^2} \\ &= \sqrt6 \end{aligned}" />
+        <Katex display tex="\begin{aligned} |\overrightarrow{BC}| &= \sqrt{(-3)^2+(-2)^2+0^2} \\ &= \sqrt{13} \end{aligned}" />
       </>
     ),
   },
   {
-    working: <Katex display tex="\overrightarrow{BA}\cdot\overrightarrow{BC} = (-1)(-3)+(2)(-2)+(-1)(0) = 3-4+0 = -1" />,
+    working: <Katex display tex="\begin{aligned} \overrightarrow{BA}\cdot\overrightarrow{BC} &= (-1)(-3)+(2)(-2)+(-1)(0) \\ &= 3-4+0 \\ &= -1 \end{aligned}" />,
   },
   {
     working: <Katex display tex="\cos(\angle ABC) = \frac{\overrightarrow{BA}\cdot\overrightarrow{BC}}{|\overrightarrow{BA}||\overrightarrow{BC}|}" />,

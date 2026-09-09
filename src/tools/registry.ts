@@ -45,7 +45,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'worked-solutions',
-    name: 'Worked Solutions & Videos',
+    name: 'VCAA Exam Explanations',
     description: 'Full written steps and video walkthroughs for the hardest Methods, Specialist, and Chemistry past-exam questions, grouped by year.',
     route: '/worked-solutions',
     component: WorkedSolutions,

@@ -1,13 +1,16 @@
 // 2016 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 65% correct.
-// Trace a solution curve of dy/dx = -x - y through a hand-drawn direction field.
-// Question text transcribed from the original paper; the direction field is redrawn here by
-// computing the exact slope -x-y at every grid point (rather than copying the original
-// drawing), and the exact solution curve through (0,-1) is solved and overlaid.
+// Trace a solution curve of dy/dx = -x - y through a given direction field.
+// Question text transcribed from the original paper; the direction field shown in the
+// question itself is the actual VCAA diagram (cropped from the official exam PDF), not a
+// redrawing. The *second* copy of the field, in the worked solution below, is a separate
+// original diagram — computing the exact slope -x-y at every grid point and overlaying the
+// exact solved curve — used to explain the answer, not to reproduce the given figure.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import directionFieldSrc from './spec-2016-mcq10-direction-field.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 6, B: 65, C: 14, D: 11, E: 4 },
@@ -33,7 +36,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <>
         <Katex display tex="\frac{d}{dx}\bigl(ye^x\bigr) = -xe^x" />
-        <Katex display tex="\implies\; ye^x = \int -xe^x\,dx = (1-x)e^x + C" />
+        <Katex display tex="\begin{aligned} \implies\; ye^x &= \int -xe^x\,dx \\ &= (1-x)e^x + C \end{aligned}" />
       </>
     ),
     reason: <>Integrate by parts: <Katex tex="\int -xe^x\,dx = -xe^x+\int e^x\,dx = (1-x)e^x+C" />.</>,
@@ -45,7 +48,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="(0,-1): \ -1 = 1-0+Ce^0 = 1+C" />
+        <Katex display tex="\begin{aligned} (0,-1): \ -1 &= 1-0+Ce^0 \\ &= 1+C \end{aligned}" />
         <Katex display tex="\implies\; C=-2" />
       </>
     ),
@@ -79,8 +82,8 @@ export default function SpecialistQ10_2016() {
     <MCQShell
       question={
         <>
-          <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit mb-3">
-            <DirectionFieldDiagram />
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit mb-3">
+            <img src={directionFieldSrc} alt="Direction field for dy/dx + x + y = 0, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
           </div>
           <p className="mb-2">
             The direction field for the differential equation <Katex tex="\dfrac{dy}{dx}+x+y=0" /> is shown

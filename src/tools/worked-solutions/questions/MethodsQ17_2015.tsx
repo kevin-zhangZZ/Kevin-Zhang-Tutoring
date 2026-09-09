@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f'(x) = 3x^2-6x = 3x(x-2)" />,
+    working: <Katex display tex="\begin{aligned} f'(x) &= 3x^2-6x \\ &= 3x(x-2) \end{aligned}" />,
     reason: <>Stationary points at <Katex tex="x=0" /> (local max) and <Katex tex="x=2" /> (local min).</>,
   },
   {

@@ -109,7 +109,7 @@ export default function SpecialistSAQ3_2016() {
 
   const rowsB: WorkingRow[] = [
     {
-      working: <Katex display tex="\text{volume}(t) = 100 + 10t = 10(10+t)\ \text{L}" />,
+      working: <Katex display tex="\begin{aligned} \text{volume}(t) &= 100 + 10t \\ &= 10(10+t)\ \text{L} \end{aligned}" />,
       reason: 'Tank 2 gains 20 L/min and loses 10 L/min, so its volume grows at 10 L/min.',
     },
     {
@@ -120,11 +120,11 @@ export default function SpecialistSAQ3_2016() {
 
   const rowsC: WorkingRow[] = [
     {
-      working: <Katex display tex="\text{rate in} = \frac{1}{60}\times 20 = \frac{1}{3}\ \text{kg/min}" />,
+      working: <Katex display tex="\begin{aligned} \text{rate in} &= \frac{1}{60}\times 20 \\ &= \frac{1}{3}\ \text{kg/min} \end{aligned}" />,
       reason: 'Salt flows in at the fixed inflow concentration times the inflow rate.',
     },
     {
-      working: <Katex display tex="\text{rate out} = \frac{y}{10(10+t)}\times 10 = \frac{y}{10+t}" />,
+      working: <Katex display tex="\begin{aligned} \text{rate out} &= \frac{y}{10(10+t)}\times 10 \\ &= \frac{y}{10+t} \end{aligned}" />,
       reason: "Salt flows out at the tank's own concentration (part b) times the outflow rate.",
     },
     {
@@ -153,7 +153,7 @@ export default function SpecialistSAQ3_2016() {
       reason: "Matches the right side of part (c)'s equation — verified.",
     },
     {
-      working: <Katex display tex="y(0) = \frac{900}{6(10)} = \frac{900}{60} = 15 \quad\checkmark" />,
+      working: <Katex display tex="\begin{aligned} y(0) &= \frac{900}{6(10)} \\ &= \frac{900}{60} \\ &= 15 \quad\checkmark \end{aligned}" />,
       reason: 'Initial condition — the second tank starts with 15 kg.',
     },
   ]
@@ -161,7 +161,7 @@ export default function SpecialistSAQ3_2016() {
   const rowsE: WorkingRow[] = [
     {
       working: (
-        <Katex display tex="\text{concentration}(t) = \frac{y}{10(10+t)} = \frac{t^2+20t+900}{60(10+t)^2}" />
+        <Katex display tex="\begin{aligned} \text{concentration}(t) &= \frac{y}{10(10+t)} \\ &= \frac{t^2+20t+900}{60(10+t)^2} \end{aligned}" />
       ),
       reason: <>Using <Katex tex="y" /> from part (d).</>,
     },

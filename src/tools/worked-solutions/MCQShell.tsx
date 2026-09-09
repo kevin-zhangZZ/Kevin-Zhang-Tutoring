@@ -57,7 +57,7 @@ export function MCQShell({
         {examinerReport && (
           <TabButton active={tab === 'report'} onClick={() => setTab('report')}>Examiner's Report</TabButton>
         )}
-        <TabButton active={tab === 'video'} onClick={() => setTab('video')}>Video Walkthrough</TabButton>
+        <TabButton active={tab === 'video'} onClick={() => setTab('video')} accent={!!videoSrc} soon={!videoSrc}>Video Walkthrough</TabButton>
       </div>
 
       {tab === 'solution' ? (
@@ -99,25 +99,51 @@ function MCQOption({ letter, children, isAnswer }: { letter: string; children: R
       >
         {letter}
       </span>
-      <div>
-        <span className="text-[13.5px] text-gray-700 dark:text-gray-300 leading-snug">{children}</span>
-        {isAnswer && <div className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 mt-1">This is the answer</div>}
-      </div>
+      <span className="text-[13.5px] text-gray-700 dark:text-gray-300 leading-snug">{children}</span>
     </div>
   )
 }
 
-function TabButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: ReactNode }) {
+// `accent` marks the Video Walkthrough tab when a video actually exists for this question —
+// gives it a play icon and violet coloring (in both active and inactive states). `soon` marks
+// it when no video exists yet — the tab is disabled (non-clickable) rather than leading to a
+// "coming soon" placeholder, dimmed, and labelled "(Soon)".
+function TabButton({
+  active,
+  onClick,
+  children,
+  accent,
+  soon,
+}: {
+  active: boolean
+  onClick: () => void
+  children: ReactNode
+  accent?: boolean
+  soon?: boolean
+}) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-1.5 rounded-full text-[13.5px] font-medium transition-colors ${
-        active
-          ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-          : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+      disabled={soon}
+      className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[13.5px] font-medium transition-colors ${
+        active ? 'bg-white dark:bg-gray-900 shadow-sm' : ''
+      } ${soon ? 'cursor-not-allowed' : ''} ${
+        accent
+          ? 'text-violet-600 dark:text-violet-400'
+          : active
+            ? 'text-gray-900 dark:text-white'
+            : soon
+              ? 'text-gray-400/70 dark:text-gray-500/70'
+              : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
       }`}
     >
+      {accent && (
+        <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 flex-none">
+          <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+        </svg>
+      )}
       {children}
+      {soon && <span className="text-[11px]">&nbsp;(Soon)</span>}
     </button>
   )
 }

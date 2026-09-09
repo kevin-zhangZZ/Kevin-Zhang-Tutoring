@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <Katex
       display
-      tex="\frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{\cos(2t)}{\cos(t)+\sin(t)} = \frac{\cos^2(t)-\sin^2(t)}{\cos(t)+\sin(t)} = \cos(t)-\sin(t)"
+      tex="\begin{aligned} \frac{dy}{dx} &= \frac{dy/dt}{dx/dt} \\ &= \frac{\cos(2t)}{\cos(t)+\sin(t)} \\ &= \frac{\cos^2(t)-\sin^2(t)}{\cos(t)+\sin(t)} \\ &= \cos(t)-\sin(t) \end{aligned}"
     />
   ),
 }
@@ -25,11 +25,11 @@ const ROWS: WorkingRow[] = [
     reason: <>Differentiate <Katex tex="x=\sin(t)-\cos(t)" /> and <Katex tex="y=\tfrac12\sin(2t)" /> with respect to <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{\cos(2t)}{\cos(t)+\sin(t)}" />,
+    working: <Katex display tex="\begin{aligned} \frac{dy}{dx} &= \frac{dy/dt}{dx/dt} \\ &= \frac{\cos(2t)}{\cos(t)+\sin(t)} \end{aligned}" />,
     reason: 'Chain rule for a parametric curve.',
   },
   {
-    working: <Katex display tex="\cos(2t) = \cos^2(t)-\sin^2(t) = \bigl(\cos(t)-\sin(t)\bigr)\bigl(\cos(t)+\sin(t)\bigr)" />,
+    working: <Katex display tex="\begin{aligned} \cos(2t) &= \cos^2(t)-\sin^2(t) \\ &= \bigl(\cos(t)-\sin(t)\bigr)\bigl(\cos(t)+\sin(t)\bigr) \end{aligned}" />,
     reason: <>Factor the double-angle identity as a difference of two squares, since the denominator is exactly one of the factors.</>,
   },
   {

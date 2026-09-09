@@ -1,12 +1,20 @@
 // 2017 Mathematical Methods — Exam 2, MCQ 17. VCAA examination report: 21% correct —
 // the third-hardest MCQ in the 2017-2018 Methods Exam 2 papers.
 // Express the total area under an even function's graph, over 4 x-intercepts, as a single
-// integral expression. Question text/diagram transcribed from the original paper; solution
-// is original.
+// integral expression. Question text transcribed from the original paper; the diagram is the
+// actual VCAA figure (cropped from the official exam PDF), not a redrawing. Solution is
+// original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import evenFunctionSrc from './meth-2017-mcq17-even-function.png'
+
+const DIAGRAM = (
+  <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+    <img src={evenFunctionSrc} alt="Graph of an even function f with x-intercepts at a, b, c, d, symmetric about the y-axis, from the original 2017 VCAA exam paper" className="w-full max-w-[340px]" />
+  </div>
+)
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 3, B: 37, C: 21, D: 21, E: 17 },
@@ -24,11 +32,7 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <EvenFunctionGraph />
-      </div>
-    ),
+    working: DIAGRAM,
     reason: <>Since <Katex tex="f" /> is even, its graph is symmetric about the <Katex tex="y" />-axis, so <Katex tex="a=-d" /> and <Katex tex="b=-c" />.</>,
   },
   {
@@ -43,7 +47,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{Area} = 2\int_a^b f(x)\,dx - \int_b^c f(x)\,dx" />,
   },
   {
-    working: <Katex display tex="\int_b^c f(x)\,dx = 2\int_b^{0} f(x)\,dx = 2\int_b^{b+c} f(x)\,dx" />,
+    working: <Katex display tex="\begin{aligned} \int_b^c f(x)\,dx &= 2\int_b^{0} f(x)\,dx \\ &= 2\int_b^{b+c} f(x)\,dx \end{aligned}" />,
     reason: <>Since <Katex tex="b+c=0" /> (the interval <Katex tex="[b,c]" /> is symmetric about the origin) and <Katex tex="f" /> is even, the standard "double the half" trick applies.</>,
   },
   {
@@ -60,9 +64,7 @@ export default function MethodsQ17_2017() {
           <p className="mb-3">
             The graph of a function <Katex tex="f" />, where <Katex tex="f(-x)=f(x)" />, is shown below.
           </p>
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3">
-            <EvenFunctionGraph />
-          </div>
+          {DIAGRAM}
           <p className="mt-3">
             The graph has <Katex tex="x" />-intercepts at <Katex tex="(a,0), (b,0), (c,0)" /> and{' '}
             <Katex tex="(d,0)" /> only.
@@ -80,32 +82,5 @@ export default function MethodsQ17_2017() {
       rows={ROWS}
       examinerReport={EXAMINER}
     />
-  )
-}
-
-// Schematic even function: a hump above the axis on (a,b), a dip below on (b,c), and a
-// mirrored hump above on (c,d) — matching the shape given in the original question.
-function EvenFunctionGraph() {
-  return (
-    <svg viewBox="0 0 400 220" width={340} height={187}>
-      <line x1={20} y1={130} x2={380} y2={130} stroke="#9ca3af" strokeWidth={1.5} />
-      <line x1={200} y1={20} x2={200} y2={200} stroke="#9ca3af" strokeWidth={1.5} />
-      <path
-        d="M 60 200 C 75 140, 90 60, 120 60 C 145 60, 150 100, 165 130 C 180 155, 185 195, 200 195 C 215 195, 220 155, 235 130 C 250 100, 255 60, 280 60 C 310 60, 325 140, 340 200"
-        fill="none"
-        stroke="#0ea5e9"
-        strokeWidth={2.5}
-      />
-      <circle cx={98} cy={130} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <circle cx={165} cy={130} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <circle cx={235} cy={130} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <circle cx={302} cy={130} r={4} fill="#111827" className="dark:fill-gray-200" />
-      <text x={90} y={150} fontSize={13} className="fill-gray-700 dark:fill-gray-300">a</text>
-      <text x={158} y={150} fontSize={13} className="fill-gray-700 dark:fill-gray-300">b</text>
-      <text x={228} y={150} fontSize={13} className="fill-gray-700 dark:fill-gray-300">c</text>
-      <text x={295} y={150} fontSize={13} className="fill-gray-700 dark:fill-gray-300">d</text>
-      <text x={385} y={134} fontSize={13} className="fill-gray-700 dark:fill-gray-300">x</text>
-      <text x={205} y={26} fontSize={13} className="fill-gray-700 dark:fill-gray-300">y</text>
-    </svg>
   )
 }

@@ -16,18 +16,21 @@ const CONFIDENCE_TEXT: Record<Confidence, string> = {
   new: 'text-blue-700 dark:text-blue-400',
 }
 
-// Timeline dot color per tier (decorative, so a bit brighter than the text color is fine).
-const CONFIDENCE_DOT: Record<Confidence, string> = {
-  skip: 'bg-red-500',
-  note: 'bg-amber-500',
-  new: 'bg-blue-500',
-}
-
 export default function ExamSkipGuide() {
   const [subjectId, setSubjectId] = useState(guides[0].id)
+  const [openTitles, setOpenTitles] = useState<Set<string>>(new Set())
   const guide = guides.find(g => g.id === subjectId)!
   const audit = audits.find(a => a.id === subjectId)!
   const years = Array.from(new Set(audit.rows.map(r => r.year))).sort((a, b) => a - b)
+
+  function toggleItem(title: string) {
+    setOpenTitles(prev => {
+      const next = new Set(prev)
+      if (next.has(title)) next.delete(title)
+      else next.add(title)
+      return next
+    })
+  }
 
   // Chemistry has one exam, so group its audit rows by question type instead of by exam.
   const groupLabel = (row: AuditRow) =>
@@ -46,7 +49,7 @@ export default function ExamSkipGuide() {
           {guides.map(g => (
             <button
               key={g.id}
-              onClick={() => setSubjectId(g.id)}
+              onClick={() => { setSubjectId(g.id); setOpenTitles(new Set()) }}
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
                 subjectId === g.id
                   ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
@@ -71,31 +74,53 @@ export default function ExamSkipGuide() {
         <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-2xl">{guide.intro}</p>
       )}
 
-      {/* Topic cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14">
-        {guide.items.map(item => {
+      {/* Topic list — collapsed to a title row by default; click to expand the full write-up
+          in place, so the list stays scannable even as more topics get added. */}
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 mb-14 overflow-hidden">
+        {guide.items.map((item, i) => {
           const Icon = CONFIDENCE_ICON[item.confidence]
+          const isOpen = openTitles.has(item.title)
           return (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5"
-            >
-              <div className={`mb-3.5 ${CONFIDENCE_TEXT[item.confidence]}`}>
-                <Icon />
-              </div>
-              <div className={`text-[10.5px] font-bold uppercase tracking-wider mb-1.5 ${CONFIDENCE_TEXT[item.confidence]}`}>
-                {CONFIDENCE_LABEL[item.confidence]}
-              </div>
-              <h3 className="text-[15px] font-semibold text-gray-900 dark:text-white mb-1.5 leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed">
-                {item.detail}
-              </p>
-              {item.where && (
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5 pt-2.5 border-t border-gray-100 dark:border-gray-800">
-                  Typically appeared in &mdash; {item.where}
-                </p>
+            <div key={item.title} className={i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}>
+              <button
+                onClick={() => toggleItem(item.title)}
+                aria-expanded={isOpen}
+                className="w-full flex items-center gap-3 px-4 py-3.5 text-left hover:bg-gray-50 dark:hover:bg-gray-800/60"
+              >
+                <span className={`flex-none ${CONFIDENCE_TEXT[item.confidence]}`}>
+                  <Icon className="w-[17px] h-[17px]" />
+                </span>
+                <span className="flex-1 min-w-0 text-[14px] font-semibold text-gray-900 dark:text-white leading-snug">
+                  {item.title}
+                </span>
+                <span className={`flex-none text-[10px] font-bold uppercase tracking-wider ${CONFIDENCE_TEXT[item.confidence]}`}>
+                  {CONFIDENCE_LABEL[item.confidence].split(' — ')[0]}
+                </span>
+                <svg
+                  className={`flex-none w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? 'rotate-90' : ''}`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                >
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
+              {isOpen && (
+                <div className="px-4 pb-4 pl-[42px]">
+                  <p className={`text-[10.5px] font-bold uppercase tracking-wider mb-2 ${CONFIDENCE_TEXT[item.confidence]}`}>
+                    {CONFIDENCE_LABEL[item.confidence]}
+                  </p>
+                  <p className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {item.detail}
+                  </p>
+                  {item.where && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2.5 pt-2.5 border-t border-gray-100 dark:border-gray-800">
+                      Typically appeared in &mdash; {item.where}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           )

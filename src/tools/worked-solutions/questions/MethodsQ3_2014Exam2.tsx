@@ -98,7 +98,7 @@ const EXAMINER_H: SAExaminerStats = {
 export default function MethodsQ3_2014Exam2() {
   const rowsA: WorkingRow[] = [
     {
-      working: <Katex display tex="V = \pi r^2 h = \pi\left(\frac{d}{2}\right)^2 h = 216" />,
+      working: <Katex display tex="\begin{aligned} V &= \pi r^2 h \\ &= \pi\left(\frac{d}{2}\right)^2 h \\ &= 216 \end{aligned}" />,
       reason: <>Cylinder volume, with radius written as <Katex tex="\tfrac{d}{2}" /> since the diameter <Katex tex="d" /> is the given variable.</>,
     },
     {
@@ -109,11 +109,11 @@ export default function MethodsQ3_2014Exam2() {
 
   const rowsB: WorkingRow[] = [
     {
-      working: <Katex display tex="S = \pi d h + \pi\left(\frac{d}{2}\right)^2 = \pi dh + \frac{\pi d^2}{4}" />,
+      working: <Katex display tex="\begin{aligned} S &= \pi d h + \pi\left(\frac{d}{2}\right)^2 \\ &= \pi dh + \frac{\pi d^2}{4} \end{aligned}" />,
       reason: <>Excluding the base: lateral (curved) surface <Katex tex="\pi dh" /> plus the flat top, a circle of radius <Katex tex="\tfrac{d}{2}" />.</>,
     },
     {
-      working: <Katex display tex="S = \pi d\left(\frac{864}{\pi d^2}\right) + \frac{\pi d^2}{4} = \frac{864}{d}+\frac{\pi d^2}{4}" />,
+      working: <Katex display tex="\begin{aligned} S &= \pi d\left(\frac{864}{\pi d^2}\right) + \frac{\pi d^2}{4} \\ &= \frac{864}{d}+\frac{\pi d^2}{4} \end{aligned}" />,
       reason: <>Substitute <Katex tex="h" /> from part (a) to write <Katex tex="S" /> in terms of <Katex tex="d" /> alone.</>,
     },
     {
@@ -124,7 +124,7 @@ export default function MethodsQ3_2014Exam2() {
 
   const rowsC: WorkingRow[] = [
     {
-      working: <Katex display tex="\frac{dS}{dd} = \frac{\pi d}{2} - \frac{864}{d^2} = 0" />,
+      working: <Katex display tex="\begin{aligned} \frac{dS}{dd} &= \frac{\pi d}{2} - \frac{864}{d^2} \\ &= 0 \end{aligned}" />,
     },
     {
       working: (
@@ -143,7 +143,7 @@ export default function MethodsQ3_2014Exam2() {
       ),
     },
     {
-      working: <Katex display tex="S_{\min} = \frac{864}{d}+\frac{864}{2d} = \frac{1296}{d}" />,
+      working: <Katex display tex="\begin{aligned} S_{\min} &= \frac{864}{d}+\frac{864}{2d} \\ &= \frac{1296}{d} \end{aligned}" />,
       reason: <>Using <Katex tex="\tfrac{\pi d^2}{4}=\tfrac{\pi d^3}{4d}=\tfrac{864}{2d}" /> (from <Katex tex="\tfrac{\pi d^3}{2}=864" />) to rewrite the first term of <Katex tex="S" /> without <Katex tex="\pi" />.</>,
     },
     {
@@ -163,7 +163,7 @@ export default function MethodsQ3_2014Exam2() {
       reason: 'Combine the optimal-d condition from part (c) with the h–d relation from part (a).',
     },
     {
-      working: <Katex display tex="h = \frac{864}{\pi d^2} = \frac{d^3/2}{d^2} = \frac{d}{2}" />,
+      working: <Katex display tex="\begin{aligned} h &= \frac{864}{\pi d^2} \\ &= \frac{d^3/2}{d^2} \\ &= \frac{d}{2} \end{aligned}" />,
       reason: <>Since <Katex tex="864 = \tfrac{\pi d^3}{2}" />, substitute directly: <Katex tex="\tfrac{864}{\pi d^2} = \tfrac{\pi d^3/2}{\pi d^2}" />.</>,
     },
     {
@@ -177,13 +177,13 @@ export default function MethodsQ3_2014Exam2() {
       working: (
         <>
           <Katex display tex="d = 2h" />
-          <Katex display tex="\implies\; r = \frac{d}{2} = h" />
+          <Katex display tex="\begin{aligned} \implies\; r &= \frac{d}{2} \\ &= h \end{aligned}" />
         </>
       ),
       reason: <>The problem now assumes the ice keeps the <Katex tex="d=2h" /> proportions found in part (d) as it melts.</>,
     },
     {
-      working: <Katex display tex="V = \pi r^2 h = \pi h^2\cdot h" />,
+      working: <Katex display tex="\begin{aligned} V &= \pi r^2 h \\ &= \pi h^2\cdot h \end{aligned}" />,
     },
     {
       working: <Katex display tex="\boxed{V = \pi h^3}" />,

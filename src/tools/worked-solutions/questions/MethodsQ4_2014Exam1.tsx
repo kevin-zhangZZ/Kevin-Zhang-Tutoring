@@ -13,7 +13,7 @@ export default function MethodsQ4_2014Exam1() {
     {
       working: (
         <>
-          <Katex display tex="2\sin x = \tfrac12\sin 2x = \sin x\cos x" />
+          <Katex display tex="\begin{aligned} 2\sin x &= \tfrac12\sin 2x \\ &= \sin x\cos x \end{aligned}" />
           <Katex display tex="\implies\; \sin x(2-\cos x)=0" />
         </>
       ),
@@ -32,16 +32,16 @@ export default function MethodsQ4_2014Exam1() {
       working: (
         <Katex
           display
-          tex="\int_0^{\pi}\!\Bigl(2\sin x-\tfrac12\sin 2x\Bigr)dx = \Bigl[-2\cos x+\tfrac14\cos 2x\Bigr]_0^{\pi} = 4"
+          tex="\begin{aligned} \int_0^{\pi}\!\Bigl(2\sin x-\tfrac12\sin 2x\Bigr)dx &= \Bigl[-2\cos x+\tfrac14\cos 2x\Bigr]_0^{\pi} \\ &= 4 \end{aligned}"
         />
       ),
       reason: <><Katex tex="f\ge g" /> on <Katex tex="(0,\pi)" />, giving one shaded region of area 4; by symmetry the region on <Katex tex="(\pi,2\pi)" /> also has area 4.</>,
     },
     {
-      working: <Katex display tex="\text{Total shaded area} = 4+4=8" />,
+      working: <Katex display tex="\begin{aligned} \text{Total shaded area} &= 4+4 \\ &= 8 \end{aligned}" />,
     },
     {
-      working: <Katex display tex="a\int_0^\pi \sin x\,dx = a[-\cos x]_0^\pi = 2a" />,
+      working: <Katex display tex="\begin{aligned} a\int_0^\pi \sin x\,dx &= a[-\cos x]_0^\pi \\ &= 2a \end{aligned}" />,
       reason: <>The total area is given in the form <Katex tex="a\displaystyle\int_0^\pi \sin x\,dx" />.</>,
     },
     {
@@ -89,11 +89,11 @@ export default function MethodsQ4_2014Exam1() {
 
   const rowsDi: WorkingRow[] = [
     {
-      working: <Katex display tex="\int_0^{\pi} k(x)\,dx = \int_0^\pi m\sin x\,dx = 2m" />,
+      working: <Katex display tex="\begin{aligned} \int_0^{\pi} k(x)\,dx &= \int_0^\pi m\sin x\,dx \\ &= 2m \end{aligned}" />,
       reason: <>Same meeting-point argument as part (a) applies for any positive integer <Katex tex="n" />: <Katex tex="k" /> and <Katex tex="q" /> only meet where <Katex tex="\sin x=0" />, i.e. at <Katex tex="x=0,\pi,2\pi" />.</>,
     },
     {
-      working: <Katex display tex="\int_0^\pi q(x)\,dx = \int_0^\pi \tfrac1n\sin(nx)\,dx = \frac{1}{n^2}\bigl[1-(-1)^n\bigr]" />,
+      working: <Katex display tex="\begin{aligned} \int_0^\pi q(x)\,dx &= \int_0^\pi \tfrac1n\sin(nx)\,dx \\ &= \frac{1}{n^2}\bigl[1-(-1)^n\bigr] \end{aligned}" />,
     },
     {
       working: (
@@ -106,10 +106,10 @@ export default function MethodsQ4_2014Exam1() {
       reason: 'For even n, q completes a whole number of full periods on (0,π), so its net signed area there is 0.',
     },
     {
-      working: <Katex display tex="\text{Region on }(0,\pi) = 2m-0=2m" />,
+      working: <Katex display tex="\begin{aligned} \text{Region on }(0,\pi) &= 2m-0 \\ &= 2m \end{aligned}" />,
     },
     {
-      working: <Katex display tex="\text{Total area} = 2(2m) = 4m" />,
+      working: <Katex display tex="\begin{aligned} \text{Total area} &= 2(2m) \\ &= 4m \end{aligned}" />,
       reason: <>By the same symmetry as part (a), the region on <Katex tex="(\pi,2\pi)" /> repeats the region on <Katex tex="(0,\pi)" />.</>,
     },
     {
@@ -133,7 +133,7 @@ export default function MethodsQ4_2014Exam1() {
       working: <Katex display tex="\text{Region on }(0,\pi) = 2m - \frac{2}{n^2}" />,
     },
     {
-      working: <Katex display tex="\text{Total area} = 2\left(2m-\frac{2}{n^2}\right) = 4m - \frac{4}{n^2}" />,
+      working: <Katex display tex="\begin{aligned} \text{Total area} &= 2\left(2m-\frac{2}{n^2}\right) \\ &= 4m - \frac{4}{n^2} \end{aligned}" />,
     },
     {
       working: <Katex display tex="\boxed{\text{Total Area} = 4m - \dfrac{4}{n^2} \quad (a=4,\ b=-4)}" />,

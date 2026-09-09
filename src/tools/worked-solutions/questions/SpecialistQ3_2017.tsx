@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="z = \frac{-3i\pm\sqrt{(3i)^2-4(1)(-2)}}{2} = \frac{-3i\pm\sqrt{-9+8}}{2}" />
+        <Katex display tex="\begin{aligned} z &= \frac{-3i\pm\sqrt{(3i)^2-4(1)(-2)}}{2} \\ &= \frac{-3i\pm\sqrt{-9+8}}{2} \end{aligned}" />
         <Katex display tex="= \frac{-3i\pm i}{2}" />
       </>
     ),

@@ -19,11 +19,11 @@ const ROWS: WorkingRow[] = [
     reason: <>Both <Katex tex="a,b>0" /> are given as positive — the negative sign sits explicitly on <Katex tex="\cos(x)" />.</>,
   },
   {
-    working: <Katex display tex="\sin(x) = \frac{\cos(x)}{b} = \frac{-a}{b}" />,
+    working: <Katex display tex="\begin{aligned} \sin(x) &= \frac{\cos(x)}{b} \\ &= \frac{-a}{b} \end{aligned}" />,
     reason: <>Rearrange the definition of <Katex tex="\cot(x)" /> to isolate <Katex tex="\sin(x)" />.</>,
   },
   {
-    working: <Katex display tex="\mathrm{cosec}(x) = \frac{1}{\sin(x)} = \frac{1}{-a/b} = -\frac{b}{a}" />,
+    working: <Katex display tex="\begin{aligned} \mathrm{cosec}(x) &= \frac{1}{\sin(x)} \\ &= \frac{1}{-a/b} \\ &= -\frac{b}{a} \end{aligned}" />,
   },
   {
     working: <Katex display tex="\mathrm{cosec}(-x) = -\mathrm{cosec}(x)" />,

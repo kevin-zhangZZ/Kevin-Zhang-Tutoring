@@ -21,11 +21,11 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{Try } f(x) = \frac1x:" />,
   },
   {
-    working: <Katex display tex="f(x)-f(y) = \frac1x-\frac1y = \frac{y-x}{xy}" />,
+    working: <Katex display tex="\begin{aligned} f(x)-f(y) &= \frac1x-\frac1y \\ &= \frac{y-x}{xy} \end{aligned}" />,
     reason: 'The left-hand side of the condition, for this candidate rule.',
   },
   {
-    working: <Katex display tex="(y-x)f(xy) = (y-x)\cdot\frac{1}{xy} = \frac{y-x}{xy}" />,
+    working: <Katex display tex="\begin{aligned} (y-x)f(xy) &= (y-x)\cdot\frac{1}{xy} \\ &= \frac{y-x}{xy} \end{aligned}" />,
     reason: 'The right-hand side — using the same rule, evaluated at the product xy.',
   },
   {

@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\mathrm{E}(X) = (-1)a + (0)b + (b)(b) + (2b)(2b) + (4)(0.2) = -a+5b^2+0.8"
+        tex="\begin{aligned} \mathrm{E}(X) &= (-1)a + (0)b + (b)(b) + (2b)(2b) + (4)(0.2) \\ &= -a+5b^2+0.8 \end{aligned}"
       />
     ),
     reason: <>Substitute each <Katex tex="x" /> value and its probability into <Katex tex="\mathrm{E}(X)=\sum x\Pr(X=x)" />.</>,
@@ -45,7 +45,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <>
         <Katex display tex="a = 0.8-4b" />
-        <Katex display tex="\implies\; \mathrm{E}(X) = -(0.8-4b)+5b^2+0.8 = 5b^2+4b" />
+        <Katex display tex="\begin{aligned} \implies\; \mathrm{E}(X) &= -(0.8-4b)+5b^2+0.8 \\ &= 5b^2+4b \end{aligned}" />
       </>
     ),
     reason: 'Eliminate a using the constraint from the first line, leaving E(X) as a function of b alone.',

@@ -1,10 +1,12 @@
 // 2014 Mathematical Methods — Exam 2, MCQ 21.
 // Isosceles trapezium with three equal sides p; find the angle that maximises its area.
-// Question text/diagram transcribed from the original paper; solution is original.
+// Question text transcribed from the original paper; the diagram is the actual VCAA figure
+// (cropped from the official exam PDF), not a redrawing. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import trapeziumSrc from './meth-2014-mcq21-trapezium.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 18, C: 27, D: 28, E: 15 },
@@ -33,7 +35,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="A(x) = \tfrac{1}{2}(AB+DC)(\text{height}) = \tfrac12\bigl(p+p(1+2\cos x)\bigr)(p\sin x) = p^2\sin x(1+\cos x)"
+        tex="\begin{aligned} A(x) &= \tfrac{1}{2}(AB+DC)(\text{height}) \\ &= \tfrac12\bigl(p+p(1+2\cos x)\bigr)(p\sin x) \\ &= p^2\sin x(1+\cos x) \end{aligned}"
       />
     ),
     reason: 'Trapezium area = ½ × (sum of parallel sides) × height.',
@@ -43,7 +45,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Expand, using <Katex tex="\sin x\cos x = \tfrac12\sin 2x" />.</>,
   },
   {
-    working: <Katex display tex="A'(x) = p^2(\cos x + \cos 2x) = 0" />,
+    working: <Katex display tex="\begin{aligned} A'(x) &= p^2(\cos x + \cos 2x) \\ &= 0 \end{aligned}" />,
   },
   {
     working: (
@@ -83,8 +85,8 @@ export default function MethodsQ21_2014() {
             and <Katex tex="DA" /> are of equal length, <Katex tex="p" />. The size of the acute angle{' '}
             <Katex tex="BCD" /> is <Katex tex="x" /> radians.
           </p>
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 flex justify-center">
-            <TrapeziumDiagram />
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 flex justify-center">
+            <img src={trapeziumSrc} alt="Isosceles trapezium ABCD with sides AB, BC, DA of equal length p and acute angle BCD of x radians, from the original 2014 VCAA exam paper" className="w-full max-w-[300px]" />
           </div>
           <p className="mt-3">The area of the trapezium is a maximum when the value of <Katex tex="x" /> is</p>
         </>
@@ -99,21 +101,5 @@ export default function MethodsQ21_2014() {
       rows={ROWS}
       examinerReport={EXAMINER}
     />
-  )
-}
-
-function TrapeziumDiagram() {
-  return (
-    <svg viewBox="0 0 320 160" width={300} height={150}>
-      <polygon points="70,30 250,30 210,110 110,110" fill="none" stroke="#0ea5e9" strokeWidth={2} />
-      <text x={58} y={26} fontSize={13} className="fill-gray-700 dark:fill-gray-300">D</text>
-      <text x={256} y={26} fontSize={13} className="fill-gray-700 dark:fill-gray-300">C</text>
-      <text x={100} y={128} fontSize={13} className="fill-gray-700 dark:fill-gray-300">A</text>
-      <text x={205} y={128} fontSize={13} className="fill-gray-700 dark:fill-gray-300">B</text>
-      <text x={155} y={122} fontSize={12} className="fill-gray-500 dark:fill-gray-400">p</text>
-      <text x={85} y={72} fontSize={12} className="fill-gray-500 dark:fill-gray-400">p</text>
-      <text x={222} y={72} fontSize={12} className="fill-gray-500 dark:fill-gray-400">p</text>
-      <text x={222} y={40} fontSize={12} className="fill-rose-600 dark:fill-rose-400">x</text>
-    </svg>
   )
 }

@@ -44,7 +44,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\int_{-3}^{0} g(x)\,dx = \int_{-3}^{0}\bigl[3f(-x)+5\bigr]dx = 3\int_{-3}^{0} f(-x)\,dx + 5(3)"
+        tex="\begin{aligned} \int_{-3}^{0} g(x)\,dx &= \int_{-3}^{0}\bigl[3f(-x)+5\bigr]dx \\ &= 3\int_{-3}^{0} f(-x)\,dx + 5(3) \end{aligned}"
       />
     ),
     reason: <>Split the integral; the constant term integrates to <Katex tex="5\times(\text{width } 3)" />.</>,
@@ -60,7 +60,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Substitute <Katex tex="u=-x" />; the limits flip and the two sign flips cancel. Uses the given value <Katex tex="\int_0^3 f(x)\,dx=5" />.</>,
   },
   {
-    working: <Katex display tex="\int_{-3}^{0} g(x)\,dx = 3(5)+15 = 30" />,
+    working: <Katex display tex="\begin{aligned} \int_{-3}^{0} g(x)\,dx &= 3(5)+15 \\ &= 30 \end{aligned}" />,
   },
   {
     working: <Katex display tex="\boxed{\int_{-3}^{0} g(x)\,dx = 30}" />,

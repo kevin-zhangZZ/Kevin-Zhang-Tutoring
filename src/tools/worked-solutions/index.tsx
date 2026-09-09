@@ -7,6 +7,44 @@ function firstOf(subject: SubjectId): QuestionMeta | undefined {
   return QUESTIONS.find(q => q.subject === subject)
 }
 
+// `topic` is stored as "<category> — <description>" (e.g. "Complex numbers — Argand diagram
+// parallelogram"). The sidebar shows the two halves as a topic/subtopic pair; the detail panel
+// still uses the full original string, so this split only ever happens at render time.
+function splitTopic(topic: string): [category: string, detail: string] {
+  const parts = topic.split('—')
+  if (parts.length < 2) return [topic.trim(), '']
+  return [parts[0].trim(), parts.slice(1).join('—').trim()]
+}
+
+function toTitleCase(s: string): string {
+  return s.replace(/\S+/g, word => word.charAt(0).toUpperCase() + word.slice(1))
+}
+
+// Sentence case for subtopics: just capitalise the first letter and leave the rest of the
+// string as written, since proper nouns (Argand, Euler's, ...) are already capitalised
+// correctly in the source data. "pH ..." is special-cased since it's a chemistry notation,
+// not a word that starts a sentence.
+function toSentenceCase(s: string): string {
+  if (/^pH\b/.test(s)) return s
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+// The sidebar uses one fixed accent colour regardless of subject (the app's other subject-
+// colour coding, e.g. the detail panel's badge, is unaffected).
+const SIDEBAR_ACCENT = SUBJECT_COLOR.specialist
+
+// Sidebar rows are sorted by ascending question number rather than data-entry order.
+function questionNumber(code: string): number {
+  const match = code.match(/\d+/)
+  return match ? parseInt(match[0], 10) : 0
+}
+
+// The sidebar shows just the question number (e.g. "Q2"), dropping the specific sub-part
+// range (e.g. "(a–f)") — the full code with its sub-parts still appears in the detail panel.
+function mainCode(code: string): string {
+  return code.replace(/\(.*\)\s*$/, '').trim()
+}
+
 export default function WorkedSolutions() {
   const [subject, setSubject] = useState<SubjectId>('specialist')
   const [selectedId, setSelectedId] = useState<string | null>(firstOf('specialist')?.id ?? null)
@@ -25,12 +63,15 @@ export default function WorkedSolutions() {
     setOpenYear(first?.year ?? null)
   }
 
+  const yearQuestions = subjectQuestions.filter(q => q.year === openYear)
+  const exams = Array.from(new Set(yearQuestions.map(q => q.exam)))
+
   return (
     <div className="px-6 py-10">
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
-          Worked Solutions &amp; Videos
+          VCAA Exam Explanations
         </h1>
         <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1 flex-wrap">
           {SUBJECTS.map(s => (
@@ -54,8 +95,8 @@ export default function WorkedSolutions() {
             taller) detail panel scrolls; capped to the viewport height with its own scroll
             so a long, fully-expanded question list can't run off-screen. */}
         <div className="w-full lg:w-[336px] flex-none bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 flex flex-col lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto scrollbar-quiet">
-          <div className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mt-1.5 mb-2 ml-2">
-            {SUBJECT_NAME[subject]} — {subjectQuestions.length} Question{subjectQuestions.length === 1 ? '' : 's'}
+          <div className="font-display text-[13px] font-bold text-gray-900 dark:text-white mt-1 mb-2 ml-1.5">
+            {SUBJECT_NAME[subject]}
           </div>
 
           {years.length === 0 && (
@@ -64,58 +105,69 @@ export default function WorkedSolutions() {
             </p>
           )}
 
-          {years.map(year => {
-            const isOpen = openYear === year
-            const yearQuestions = subjectQuestions.filter(q => q.year === year)
-            return (
-              <div key={year} className={`rounded-2xl mb-0.5 ${isOpen ? 'bg-gray-50 dark:bg-gray-800/50' : ''}`}>
-                <button
-                  onClick={() => setOpenYear(isOpen ? null : year)}
-                  className="w-full flex items-center justify-between px-2.5 py-2.5 rounded-xl"
-                >
-                  <span className="flex items-center gap-2">
-                    <svg
-                      className={`w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
+          {years.length > 0 && (
+            <div className="flex gap-2">
+              {/* Year rail */}
+              <div className="flex-none flex flex-col gap-0.5 pt-0.5">
+                {years.map(year => {
+                  const isOpen = openYear === year
+                  return (
+                    <button
+                      key={year}
+                      onClick={() => setOpenYear(year)}
+                      className={`w-10 font-display text-[11.5px] font-bold py-1.5 rounded-lg transition-colors ${
+                        isOpen ? `${SIDEBAR_ACCENT.bg} ${SIDEBAR_ACCENT.text}` : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                      }`}
                     >
-                      <path d="M6 9l6 6 6-6" />
-                    </svg>
-                    <span className="font-display text-sm font-bold text-gray-900 dark:text-white">{year}</span>
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div className="flex flex-col gap-4 pt-0.5 pb-2 pl-6">
-                    {Array.from(new Set(yearQuestions.map(q => q.exam))).map(exam => {
-                      const examQuestions = yearQuestions.filter(q => q.exam === exam)
-                      return (
-                        <div key={exam} className="flex flex-col gap-3">
-                          <div className="text-xs font-bold text-gray-600 dark:text-gray-400 px-3">{exam}</div>
-                          {(['mc', 'sa'] as QuestionType[]).map(type => {
-                            const typeQuestions = examQuestions.filter(q => q.type === type)
-                            if (typeQuestions.length === 0) return null
-                            return (
-                              <div key={type} className="flex flex-col gap-1">
-                                <div className="text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 px-3">
-                                  {QUESTION_TYPE_LABEL[type]}
-                                </div>
-                                {typeQuestions.map(q => (
-                                  <QuestionRow key={q.id} question={q} selected={q.id === selectedId} onSelect={() => setSelectedId(q.id)} />
-                                ))}
-                              </div>
-                            )
-                          })}
-                        </div>
-                      )
-                    })}
-                  </div>
-                )}
+                      {year}
+                    </button>
+                  )
+                })}
               </div>
-            )
-          })}
+
+              {/* Selected year's questions, grouped by exam then by type */}
+              <div className="flex-1 min-w-0 border-l border-gray-100 dark:border-gray-800 pl-2.5 flex flex-col">
+                {exams.map((exam, examIndex) => {
+                  const examQuestions = yearQuestions.filter(q => q.exam === exam)
+                  // Skip the "Multiple Choice"/"Short Answer" band entirely when an exam only
+                  // ever has one type of question (e.g. Exam 1 for Methods/Specialist is always
+                  // short-answer-only) — the label adds nothing when there's no other type to
+                  // distinguish it from.
+                  const examHasBothTypes = new Set(examQuestions.map(q => q.type)).size > 1
+                  return (
+                    <div key={exam} className={`flex flex-col gap-1.5 ${examIndex === 0 ? '' : 'mt-2'}`}>
+                      <div className="text-[11px] font-bold text-gray-900 dark:text-white px-1">{exam}</div>
+                      {(['mc', 'sa'] as QuestionType[]).map(type => {
+                        const typeQuestions = examQuestions
+                          .filter(q => q.type === type)
+                          .sort((a, b) => questionNumber(a.code) - questionNumber(b.code))
+                        if (typeQuestions.length === 0) return null
+                        return (
+                          <div key={type} className="flex flex-col gap-0.5">
+                            {examHasBothTypes && (
+                              <div className="flex items-center bg-slate-200 dark:bg-slate-800/40 rounded-lg px-2.5 py-1.5 my-0.5">
+                                <span className="font-display text-[10.5px] font-bold leading-none text-slate-700 dark:text-slate-300 tracking-wide">
+                                  {QUESTION_TYPE_LABEL[type]}
+                                </span>
+                              </div>
+                            )}
+                            {typeQuestions.map(q => (
+                              <QuestionRow
+                                key={q.id}
+                                question={q}
+                                selected={q.id === selectedId}
+                                onSelect={() => setSelectedId(q.id)}
+                              />
+                            ))}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Detail panel */}
@@ -127,8 +179,8 @@ export default function WorkedSolutions() {
                   {selected.year} · {selected.exam} · {selected.code}
                 </span>
                 {selected.percentCorrect !== undefined && (
-                  <span className="font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400">
-                    Only {selected.percentCorrect}% of VCE students got this right
+                  <span className="font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                    {selected.percentCorrect}% accuracy
                   </span>
                 )}
                 {selected.hasVideo && (
@@ -165,40 +217,38 @@ function QuestionRow({
   selected: boolean
   onSelect: () => void
 }) {
-  const c = SUBJECT_COLOR[question.subject]
+  const [category, detail] = splitTopic(question.topic)
   return (
     <button
       onClick={onSelect}
-      className={`text-left flex flex-col gap-1 px-3 py-2.5 rounded-xl border transition-colors ${
-        selected ? `${c.bg} ${c.border}` : 'bg-transparent border-transparent hover:bg-gray-50 dark:hover:bg-gray-800/60'
+      className={`flex items-center gap-2 text-left px-2 py-1.5 ml-2.5 w-[calc(100%-0.625rem)] rounded-xl transition-colors ${
+        selected ? SIDEBAR_ACCENT.bg : 'hover:bg-gray-50 dark:hover:bg-gray-800/60'
       }`}
     >
-      <span className="flex items-center gap-1.5 flex-wrap">
-        <span className={`font-display text-[11px] font-bold px-1.5 py-0.5 rounded-md w-fit ${c.bg} ${c.text}`}>{question.code}</span>
-        {question.percentCorrect !== undefined && (
-          <span
-            className="font-display text-[10px] font-bold px-1.5 py-0.5 rounded-md w-fit bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400"
-            title="Percentage of VCE students who answered this correctly, per the VCAA examination report"
-          >
-            {question.percentCorrect}% correct
+      <span className="flex-1 min-w-0 flex items-start gap-2">
+        <span className={`flex-none w-[52px] font-display text-[11.5px] font-bold ${SIDEBAR_ACCENT.text}`}>{mainCode(question.code)}</span>
+        <span className="flex-1 min-w-0 flex flex-col">
+          <span className="text-[12.5px] text-gray-700 dark:text-gray-300 leading-snug line-clamp-1" title={category}>
+            {toTitleCase(category)}
           </span>
-        )}
-        {question.hasVideo && (
-          <span
-            className="flex items-center gap-1 font-display text-[10px] font-bold px-1.5 py-0.5 rounded-md w-fit bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400"
-            title="Includes a recorded video walkthrough"
-          >
-            <svg viewBox="0 0 20 20" fill="currentColor" className="w-2.5 h-2.5">
-              <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
-            </svg>
-            Video
-          </span>
-        )}
+          {detail && (
+            <span
+              className="text-[12.5px] text-gray-400 dark:text-gray-500 leading-snug mt-0.5 line-clamp-2"
+              title={detail}
+            >
+              {toSentenceCase(detail)}
+            </span>
+          )}
+        </span>
       </span>
-      <span className="text-[13px] text-gray-700 dark:text-gray-300 leading-snug">{question.topic}</span>
-      <span className="text-[10.5px] font-medium text-gray-400 dark:text-gray-500">
-        {question.hasDetail ? 'Written solution ready' : 'Coming soon'}
-      </span>
+      {question.hasVideo && (
+        <span className="flex-none flex items-center gap-1 font-display text-[10.5px] font-bold text-violet-600 dark:text-violet-400 whitespace-nowrap">
+          <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+            <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+          </svg>
+          Video
+        </span>
+      )}
     </button>
   )
 }

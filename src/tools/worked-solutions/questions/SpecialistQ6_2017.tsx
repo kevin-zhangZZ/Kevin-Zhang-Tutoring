@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Product rule on <Katex tex="e^x\arctan(y)" />, with the chain rule applied to <Katex tex="\arctan(y)" /> since <Katex tex="y" /> is itself a function of <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="\text{at } (0,1): \quad \frac{dy}{dx} = e^0\arctan(1) = \frac{\pi}{4}" />,
+    working: <Katex display tex="\begin{aligned} \text{at } (0,1): \quad \frac{dy}{dx} &= e^0\arctan(1) \\ &= \frac{\pi}{4} \end{aligned}" />,
     reason: 'First evaluate the given first-derivative expression at the point, since it feeds into the second derivative.',
   },
   {

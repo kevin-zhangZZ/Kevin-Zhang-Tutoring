@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="A(u) = u \cdot v = u(4-u^2)" />
+        <Katex display tex="\begin{aligned} A(u) &= u \cdot v \\ &= u(4-u^2) \end{aligned}" />
         <Katex display tex="= 4u - u^3" />
       </>
     ),
@@ -38,18 +38,18 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="A'(u) = 4-3u^2 = 0" />
+        <Katex display tex="\begin{aligned} A'(u) &= 4-3u^2 \\ &= 0 \end{aligned}" />
         <Katex display tex="\implies\; u^2 = \frac43 \implies u = \frac{2}{\sqrt3} = \frac{2\sqrt3}{3}" />
       </>
     ),
     reason: <>Maximise by setting the derivative to zero (taking the positive root, since <Katex tex="u>0" />).</>,
   },
   {
-    working: <Katex display tex="v = 4-\frac43 = \frac83" />,
+    working: <Katex display tex="\begin{aligned} v &= 4-\frac43 \\ &= \frac83 \end{aligned}" />,
     reason: 'The corresponding height.',
   },
   {
-    working: <Katex display tex="A_{\max} = \frac{2\sqrt3}{3}\times\frac83 = \frac{16\sqrt3}{9}" />,
+    working: <Katex display tex="\begin{aligned} A_{\max} &= \frac{2\sqrt3}{3}\times\frac83 \\ &= \frac{16\sqrt3}{9} \end{aligned}" />,
   },
   {
     working: <Katex display tex="\boxed{A_{\max} = \dfrac{16\sqrt3}{9}}" />,

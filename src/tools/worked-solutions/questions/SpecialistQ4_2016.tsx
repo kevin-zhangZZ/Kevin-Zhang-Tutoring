@@ -144,8 +144,8 @@ export default function SpecialistQ4_2016() {
         <>
           <Katex display tex="D(t)^2=(13-9t)^2+(5-2t)^2" />
           <Katex display tex="= 85t^2-254t+194" />
-          <Katex display tex="D'(t)^2 = 170t - 254 = 0" />
-          <Katex display tex="t = \frac{254}{170} = \frac{127}{85}" />
+          <Katex display tex="\begin{aligned} D'(t)^2 &= 170t - 254 \\ &= 0 \end{aligned}" />
+          <Katex display tex="\begin{aligned} t &= \frac{254}{170} \\ &= \frac{127}{85} \end{aligned}" />
         </>
       ),
       reason: 'Minimise the square of the distance.',

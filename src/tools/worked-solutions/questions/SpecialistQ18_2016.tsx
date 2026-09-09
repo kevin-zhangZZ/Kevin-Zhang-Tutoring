@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Let <Katex tex="O_i" /> and <Katex tex="L_i" /> be the independent masses of the three oranges and two lemons.</>,
   },
   {
-    working: <Katex display tex="\mathrm{E}(S) = 3(204) + 2(76) = 612+152 = 764" />,
+    working: <Katex display tex="\begin{aligned} \mathrm{E}(S) &= 3(204) + 2(76) \\ &= 612+152 \\ &= 764 \end{aligned}" />,
     reason: 'Expectation is linear, so it adds regardless of independence.',
   },
   {
@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
     reason: <>For <em>independent</em> variables, variances add — but each orange contributes its own <Katex tex="\mathrm{Var}(O)=9^2" /> separately, which is <em>not</em> the same as <Katex tex="\mathrm{Var}(3\times\text{one orange})=3^2\times9^2" />.</>,
   },
   {
-    working: <Katex display tex="\mathrm{sd}(S) = \sqrt{261} = \sqrt{9\times29} = 3\sqrt{29}" />,
+    working: <Katex display tex="\begin{aligned} \mathrm{sd}(S) &= \sqrt{261} \\ &= \sqrt{9\times29} \\ &= 3\sqrt{29} \end{aligned}" />,
     reason: 'Standard deviation is the square root of variance.',
   },
   {

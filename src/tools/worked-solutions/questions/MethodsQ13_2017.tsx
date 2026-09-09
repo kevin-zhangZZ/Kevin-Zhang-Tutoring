@@ -32,17 +32,17 @@ const ROWS: WorkingRow[] = [
     reason: <>Matches option <b>E</b> as the statement that is <em>not</em> true.</>,
   },
   {
-    working: <Katex display tex="\text{A: } h(x)h(-x) = \frac{1}{x-1}\cdot\frac{1}{-x-1} = \frac{-1}{x^2-1} = -h(x^2) \ \checkmark" />,
+    working: <Katex display tex="\begin{aligned} \text{A: } h(x)h(-x) &= \frac{1}{x-1}\cdot\frac{1}{-x-1} \\ &= \frac{-1}{x^2-1} \\ &= -h(x^2) \ \checkmark \end{aligned}" />,
     reason: 'Checking the other four confirms they do genuinely hold for every x — the "odd one out" really is unique.',
   },
   {
-    working: <Katex display tex="\text{B: } h(x)+h(-x) = \frac{1}{x-1}-\frac{1}{x+1} = \frac{2}{x^2-1} = 2h(x^2) \ \checkmark" />,
+    working: <Katex display tex="\begin{aligned} \text{B: } h(x)+h(-x) &= \frac{1}{x-1}-\frac{1}{x+1} \\ &= \frac{2}{x^2-1} \\ &= 2h(x^2) \ \checkmark \end{aligned}" />,
   },
   {
-    working: <Katex display tex="\text{C: } h(x)-h(0) = \frac{1}{x-1}+1 = \frac{x}{x-1} = x\,h(x) \ \checkmark" />,
+    working: <Katex display tex="\begin{aligned} \text{C: } h(x)-h(0) &= \frac{1}{x-1}+1 \\ &= \frac{x}{x-1} \\ &= x\,h(x) \ \checkmark \end{aligned}" />,
   },
   {
-    working: <Katex display tex="\text{D: } h(x)-h(-x) = \frac{1}{x-1}+\frac{1}{x+1} = \frac{2x}{x^2-1} = 2x\,h(x^2) \ \checkmark" />,
+    working: <Katex display tex="\begin{aligned} \text{D: } h(x)-h(-x) &= \frac{1}{x-1}+\frac{1}{x+1} \\ &= \frac{2x}{x^2-1} \\ &= 2x\,h(x^2) \ \checkmark \end{aligned}" />,
   },
 ]
 

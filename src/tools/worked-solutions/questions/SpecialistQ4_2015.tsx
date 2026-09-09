@@ -33,11 +33,11 @@ const ROWS: WorkingRow[] = [
     reason: <>Checking every option's slope this way, only options <b>D</b> and <b>E</b> give <Katex tex="\tfrac23" /> — options A, B and C all give <Katex tex="\sqrt{9/4}=\tfrac32" /> instead. So it comes down to D vs E.</>,
   },
   {
-    working: <Katex display tex="\text{D:} \ \frac{(5-1)^2}{4}-\frac{(5-2)^2}{9} = \frac{16}{4}-\frac{9}{9} = 4-1 = 3 \ \checkmark" />,
+    working: <Katex display tex="\begin{aligned} \text{D:} \ \frac{(5-1)^2}{4}-\frac{(5-2)^2}{9} &= \frac{16}{4}-\frac{9}{9} \\ &= 4-1 \\ &= 3 \ \checkmark \end{aligned}" />,
     reason: <>Test <Katex tex="(5,5)" /> in option D — it must satisfy the equation exactly, matching the RHS of <Katex tex="3" />.</>,
   },
   {
-    working: <Katex display tex="\text{E:} \ \frac{(5-2)^2}{9}-\frac{(5-1)^2}{4} = \frac{9}{9}-\frac{16}{4} = 1-4 = -3 \ \ne 3" />,
+    working: <Katex display tex="\begin{aligned} \text{E:} \ \frac{(5-2)^2}{9}-\frac{(5-1)^2}{4} &= \frac{9}{9}-\frac{16}{4} \\ &= 1-4 \\ &= -3 \ \ne 3 \end{aligned}" />,
     reason: <>Test <Katex tex="(5,5)" /> in option E — it fails, since swapping which variable is squared first flips which branch of the hyperbola the point <Katex tex="(5,5)" /> would need to sit on.</>,
   },
   {

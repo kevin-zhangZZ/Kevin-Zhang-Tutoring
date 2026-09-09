@@ -20,19 +20,19 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="P(\text{John misses all 4}) = \left(\dfrac34\right)^4 = \dfrac{81}{256}" />,
+    working: <Katex display tex="\begin{aligned} P(\text{John misses all 4}) &= \left(\dfrac34\right)^4 \\ &= \dfrac{81}{256} \end{aligned}" />,
     reason: <>John hits with probability <Katex tex="\tfrac14" />, so misses with probability <Katex tex="\tfrac34" />, independently on each of 4 throws.</>,
   },
   {
-    working: <Katex display tex="P(\text{John} \ge 1) = 1-\dfrac{81}{256} = \dfrac{175}{256}" />,
+    working: <Katex display tex="\begin{aligned} P(\text{John} \ge 1) &= 1-\dfrac{81}{256} \\ &= \dfrac{175}{256} \end{aligned}" />,
     reason: '"At least one hit" is the complement of "no hits".',
   },
   {
-    working: <Katex display tex="P(\text{Rebecca misses both}) = \left(\dfrac12\right)^2 = \dfrac14" />,
+    working: <Katex display tex="\begin{aligned} P(\text{Rebecca misses both}) &= \left(\dfrac12\right)^2 \\ &= \dfrac14 \end{aligned}" />,
     reason: <>Rebecca hits with probability <Katex tex="\tfrac12" /> on each of 2 throws.</>,
   },
   {
-    working: <Katex display tex="P(\text{Rebecca} \ge 1) = 1-\dfrac14 = \dfrac34 = \dfrac{192}{256}" />,
+    working: <Katex display tex="\begin{aligned} P(\text{Rebecca} \ge 1) &= 1-\dfrac14 \\ &= \dfrac34 \\ &= \dfrac{192}{256} \end{aligned}" />,
     reason: <>Written over a denominator of 256 so it can be compared directly with John's result.</>,
   },
   {

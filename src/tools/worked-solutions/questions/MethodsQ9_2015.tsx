@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="\mathrm{E}(X) = \frac{2+8}{2} = 5" />,
+    working: <Katex display tex="\begin{aligned} \mathrm{E}(X) &= \frac{2+8}{2} \\ &= 5 \end{aligned}" />,
     reason: <>For a <em>uniform</em> distribution, the mean is always exactly halfway between the endpoints — no integration needed.</>,
   },
   {

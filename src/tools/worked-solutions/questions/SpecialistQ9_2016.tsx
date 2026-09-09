@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="y_1 = y_0 + 0.1f(x_0) = 0 + 0.1f(2)" />
+        <Katex display tex="\begin{aligned} y_1 &= y_0 + 0.1f(x_0) \\ &= 0 + 0.1f(2) \end{aligned}" />
         <Katex display tex="= 0.1\bigl(2(2)^2-2\bigr) = 0.1(6) = 0.6" />
       </>
     ),
@@ -30,14 +30,14 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="y_2 = y_1 + 0.1f(x_1) = 0.6 + 0.1f(2.1)" />
+        <Katex display tex="\begin{aligned} y_2 &= y_1 + 0.1f(x_1) \\ &= 0.6 + 0.1f(2.1) \end{aligned}" />
         <Katex display tex="= 0.6 + 0.1\bigl(2(2.1)^2-2.1\bigr) = 0.6+0.672 = 1.272" />
       </>
     ),
     reason: <>One more step, at <Katex tex="x_2=2.2" />.</>,
   },
   {
-    working: <Katex display tex="y_3 = y_2 + 0.1f(x_2) = 1.272 + 0.1f(2.2)" />,
+    working: <Katex display tex="\begin{aligned} y_3 &= y_2 + 0.1f(x_2) \\ &= 1.272 + 0.1f(2.2) \end{aligned}" />,
     reason: <>The question asks for <Katex tex="y_3" /> itself — left in this unevaluated form, exactly as the options present it.</>,
   },
   {

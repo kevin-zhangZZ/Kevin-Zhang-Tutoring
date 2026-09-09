@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\frac{1}{z} = \frac{1}{a+bi} = \frac{a-bi}{a^2+b^2}" />,
+    working: <Katex display tex="\begin{aligned} \frac{1}{z} &= \frac{1}{a+bi} \\ &= \frac{a-bi}{a^2+b^2} \end{aligned}" />,
     reason: <>Multiply top and bottom by the conjugate <Katex tex="a-bi" /> to rationalise.</>,
   },
   {

@@ -50,7 +50,7 @@ const ROWS: WorkingRow[] = [
     working: (
       <>
         <Katex display tex="g'(x') = \frac{b}{a}f'\!\left(\frac{x'}{a}\right)" />
-        <Katex display tex="\implies\; g'(0) = \frac{b}{a}f'(0) = \frac{4}{a|a|}" />
+        <Katex display tex="\begin{aligned} \implies\; g'(0) &= \frac{b}{a}f'(0) \\ &= \frac{4}{a|a|} \end{aligned}" />
       </>
     ),
     reason: <>Chain rule, then evaluate at <Katex tex="x'=0" /> (median maps to median, since the transform fixes the origin) using <Katex tex="f'(0)=4" /> and <Katex tex="b=1/|a|" />.</>,

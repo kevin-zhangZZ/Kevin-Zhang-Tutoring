@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\left(\frac{y+1}{4}\right)^2 = \frac{x}{3} - 1 = \frac{x-3}{3}" />
+        <Katex display tex="\begin{aligned} \left(\frac{y+1}{4}\right)^2 &= \frac{x}{3} - 1 \\ &= \frac{x-3}{3} \end{aligned}" />
         <Katex display tex="\implies\; (y+1)^2 = 16\!\left(\frac{x-3}{3}\right)" />
       </>
     ),

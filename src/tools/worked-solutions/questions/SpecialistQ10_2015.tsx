@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
     reason: 'Convert the limits of integration to the new variable too.',
   },
   {
-    working: <Katex display tex="x^2\sqrt{3x+1} = \left(\frac{u-1}{3}\right)^2\sqrt u = \frac{(u-1)^2}{9}\sqrt u" />,
+    working: <Katex display tex="\begin{aligned} x^2\sqrt{3x+1} &= \left(\frac{u-1}{3}\right)^2\sqrt u \\ &= \frac{(u-1)^2}{9}\sqrt u \end{aligned}" />,
     reason: <>Rewrite the whole integrand — both the <Katex tex="x^2" /> factor and the square root — in terms of <Katex tex="u" />.</>,
   },
   {

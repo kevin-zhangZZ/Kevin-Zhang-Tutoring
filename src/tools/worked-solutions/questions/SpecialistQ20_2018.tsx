@@ -24,8 +24,8 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\mathrm{E}(D) = 71-75 = -4" />
-        <Katex display tex="\mathrm{Var}(D) = 10^2+7^2 = 149" />
+        <Katex display tex="\begin{aligned} \mathrm{E}(D) &= 71-75 \\ &= -4 \end{aligned}" />
+        <Katex display tex="\begin{aligned} \mathrm{Var}(D) &= 10^2+7^2 \\ &= 149 \end{aligned}" />
       </>
     ),
     reason: <>For independent variables, the variance of a <em>difference</em> still <em>adds</em> — the minus sign only affects the mean.</>,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="D \sim N(-4,\,149), \qquad \mathrm{sd}(D)=\sqrt{149}\approx12.207" />,
   },
   {
-    working: <Katex display tex="\Pr(D>0) = \Pr\!\left(Z > \frac{0-(-4)}{\sqrt{149}}\right) = \Pr(Z>0.3277)" />,
+    working: <Katex display tex="\begin{aligned} \Pr(D>0) &= \Pr\!\left(Z > \frac{0-(-4)}{\sqrt{149}}\right) \\ &= \Pr(Z>0.3277) \end{aligned}" />,
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>0.3277) \approx 0.3716}" />,

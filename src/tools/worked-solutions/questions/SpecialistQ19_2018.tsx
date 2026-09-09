@@ -24,8 +24,8 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\mathrm{Var}(\bar X) = \frac{16/9}{5} = \frac{16}{45}" />
-        <Katex display tex="\mathrm{sd}(\bar X) = \sqrt{\frac{16}{45}} = \frac{4}{3\sqrt5}" />
+        <Katex display tex="\begin{aligned} \mathrm{Var}(\bar X) &= \frac{16/9}{5} \\ &= \frac{16}{45} \end{aligned}" />
+        <Katex display tex="\begin{aligned} \mathrm{sd}(\bar X) &= \sqrt{\frac{16}{45}} \\ &= \frac{4}{3\sqrt5} \end{aligned}" />
       </>
     ),
   },

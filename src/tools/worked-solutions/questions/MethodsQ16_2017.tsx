@@ -26,8 +26,8 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\Pr(\hat P=0) = \Pr(X=0) = (1-p)^5 = \frac{1}{243}" />
-        <Katex display tex="\implies\; 1-p = \left(\frac{1}{243}\right)^{1/5} = \frac13" />
+        <Katex display tex="\begin{aligned} \Pr(\hat P=0) &= \Pr(X=0) \\ &= (1-p)^5 \\ &= \frac{1}{243} \end{aligned}" />
+        <Katex display tex="\begin{aligned} \implies\; 1-p &= \left(\frac{1}{243}\right)^{1/5} \\ &= \frac13 \end{aligned}" />
       </>
     ),
     reason: <>Since <Katex tex="243=3^5" />.</>,
@@ -36,14 +36,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{p = \frac23}" />,
   },
   {
-    working: <Katex display tex="\Pr(\hat P>0.6) = \Pr(X>3) = \Pr(X=4)+\Pr(X=5)" />,
+    working: <Katex display tex="\begin{aligned} \Pr(\hat P>0.6) &= \Pr(X>3) \\ &= \Pr(X=4)+\Pr(X=5) \end{aligned}" />,
     reason: <>Since <Katex tex="X" /> only takes integer values <Katex tex="0" /> to <Katex tex="5" />, <Katex tex="X/5>0.6" /> means <Katex tex="X>3" />, i.e. <Katex tex="X\in\{4,5\}" />.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="\Pr(X=4) = \binom54\left(\frac23\right)^4\left(\frac13\right)^1 = \frac{80}{243}" />
-        <Katex display tex="\Pr(X=5) = \left(\frac23\right)^5 = \frac{32}{243}" />
+        <Katex display tex="\begin{aligned} \Pr(X=4) &= \binom54\left(\frac23\right)^4\left(\frac13\right)^1 \\ &= \frac{80}{243} \end{aligned}" />
+        <Katex display tex="\begin{aligned} \Pr(X=5) &= \left(\frac23\right)^5 \\ &= \frac{32}{243} \end{aligned}" />
       </>
     ),
   },

@@ -143,7 +143,7 @@ export default function SpecialistQ2_2016() {
     {
       working: (
         <>
-          <Katex display tex="\cos\theta = \frac{(-3)(0)+(0)(3)}{3\times 3} = 0" />
+          <Katex display tex="\begin{aligned} \cos\theta &= \frac{(-3)(0)+(0)(3)}{3\times 3} \\ &= 0 \end{aligned}" />
           <Katex display tex="\implies\; \theta = \frac{\pi}{2}" />
         </>
       ),
@@ -156,14 +156,14 @@ export default function SpecialistQ2_2016() {
       ),
     },
     {
-      working: <Katex display tex="\theta_{\text{major}} = 2\pi - \tfrac{\pi}{2} = \tfrac{3\pi}{2}" />,
+      working: <Katex display tex="\begin{aligned} \theta_{\text{major}} &= 2\pi - \tfrac{\pi}{2} \\ &= \tfrac{3\pi}{2} \end{aligned}" />,
       reason: "That's the angle for the minor segment, so the major segment's is the reflex angle.",
     },
     {
       working: (
         <Katex
           display
-          tex="\text{Area} = \frac{1}{2}(3)^2\left(\frac{3\pi}{2} - \sin\frac{3\pi}{2}\right) = \frac{9}{2}\left(\frac{3\pi}{2}+1\right)"
+          tex="\begin{aligned} \text{Area} &= \frac{1}{2}(3)^2\left(\frac{3\pi}{2} - \sin\frac{3\pi}{2}\right) \\ &= \frac{9}{2}\left(\frac{3\pi}{2}+1\right) \end{aligned}"
         />
       ),
       reason: <>Segment area <Katex tex="=\tfrac{1}{2}r^2(\theta-\sin\theta)" />, with <Katex tex="r=3" />.</>,

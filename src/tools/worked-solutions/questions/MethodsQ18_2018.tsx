@@ -42,7 +42,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="h(x)=g(x)-f(x)=x^s-x^r" />
+        <Katex display tex="\begin{aligned} h(x) &= g(x)-f(x) \\ &= x^s-x^r \end{aligned}" />
         <Katex display tex="h'(x)=sx^{s-1}-rx^{r-1}" />
         <Katex display tex="=x^{r-1}\bigl(sx^{s-r}-r\bigr)" />
       </>

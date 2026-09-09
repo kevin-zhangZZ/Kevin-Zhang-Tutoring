@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
     reason: 'Name the two graphs so the transformation between them can be written algebraically.',
   },
   {
-    working: <Katex display tex="y_1\!\left(\frac{x}{2}\right) = \sqrt{8\left(\frac{x}{2}\right)^3+1} = \sqrt{8\cdot\frac{x^3}{8}+1} = \sqrt{x^3+1} = y_2(x)" />,
+    working: <Katex display tex="\begin{aligned} y_1\!\left(\frac{x}{2}\right) &= \sqrt{8\left(\frac{x}{2}\right)^3+1} \\ &= \sqrt{8\cdot\frac{x^3}{8}+1} \\ &= \sqrt{x^3+1} \\ &= y_2(x) \end{aligned}" />,
     reason: <>Try replacing <Katex tex="x" /> with <Katex tex="\tfrac{x}{2}" /> in <Katex tex="y_1" /> and simplify — the <Katex tex="8" /> and the <Katex tex="\tfrac18" /> from cubing <Katex tex="\tfrac12" /> cancel exactly.</>,
   },
   {

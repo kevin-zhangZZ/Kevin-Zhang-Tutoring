@@ -20,7 +20,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="y_1 = y_0 + (-0.1)f(x_0) = 2 - 0.1f(1)" />
+        <Katex display tex="\begin{aligned} y_1 &= y_0 + (-0.1)f(x_0) \\ &= 2 - 0.1f(1) \end{aligned}" />
         <Katex display tex="f(1) = 2(1)^2+1+1 = 4 \;\implies\; y_1 = 2-0.1(4) = 1.6" />
       </>
     ),
@@ -29,14 +29,14 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="y_2 = y_1 + (-0.1)f(x_1) = 1.6 - 0.1f(0.9)" />
-        <Katex display tex="f(0.9) = 2(0.9)^2+0.9+1 = 1.62+0.9+1 = 3.52" />
+        <Katex display tex="\begin{aligned} y_2 &= y_1 + (-0.1)f(x_1) \\ &= 1.6 - 0.1f(0.9) \end{aligned}" />
+        <Katex display tex="\begin{aligned} f(0.9) &= 2(0.9)^2+0.9+1 \\ &= 1.62+0.9+1 \\ &= 3.52 \end{aligned}" />
       </>
     ),
     reason: <>Second backward step, landing at <Katex tex="x_2=0.8" />.</>,
   },
   {
-    working: <Katex display tex="y_2 = 1.6 - 0.1(3.52) = 1.6-0.352 = 1.248" />,
+    working: <Katex display tex="\begin{aligned} y_2 &= 1.6 - 0.1(3.52) \\ &= 1.6-0.352 \\ &= 1.248 \end{aligned}" />,
   },
   {
     working: <Katex display tex="\boxed{y(0.8) \approx 1.248}" />,
