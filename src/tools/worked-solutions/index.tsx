@@ -162,23 +162,37 @@ export default function WorkedSolutions() {
                       <div className="flex items-baseline justify-between gap-2 px-1">
                         <span className="text-[11px] font-bold text-gray-900 dark:text-white">{exam}</span>
                         {source && (
-                          <span className="flex gap-2.5">
-                            <a
-                              href={source.paper}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
-                            >
-                              Paper
-                            </a>
-                            <a
-                              href={source.report}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
-                            >
-                              Report
-                            </a>
+                          <span className="flex flex-col items-end gap-1">
+                            <span className="flex gap-2.5">
+                              <a
+                                href={source.paper}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
+                              >
+                                Paper
+                              </a>
+                              <a
+                                href={source.report}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
+                              >
+                                Report
+                              </a>
+                            </span>
+                            {/* VCAA's report is a DOCX for 2020+ — offer a converted PDF copy
+                                underneath for visitors without a DOCX viewer. */}
+                            {source.reportPdf && (
+                              <a
+                                href={source.reportPdf}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-[10px] font-semibold text-sky-700 dark:text-sky-400 hover:underline"
+                              >
+                                Report (PDF)
+                              </a>
+                            )}
                           </span>
                         )}
                       </div>
