@@ -29,6 +29,22 @@ import SpecialistQ10_2017 from './questions/SpecialistQ10_2017'
 import SpecialistQ12_2018 from './questions/SpecialistQ12_2018'
 import SpecialistQ2_2017 from './questions/SpecialistQ2_2017'
 import SpecialistQ5_2018 from './questions/SpecialistQ5_2018'
+import SpecialistQ9_2015 from './questions/SpecialistQ9_2015'
+import SpecialistQ17_2015 from './questions/SpecialistQ17_2015'
+import SpecialistQ3_2015 from './questions/SpecialistQ3_2015'
+import SpecialistQ10_2015 from './questions/SpecialistQ10_2015'
+import SpecialistQ9_2016 from './questions/SpecialistQ9_2016'
+import SpecialistQ1_2016 from './questions/SpecialistQ1_2016'
+import SpecialistQ18_2016 from './questions/SpecialistQ18_2016'
+import SpecialistQ10_2016 from './questions/SpecialistQ10_2016'
+import SpecialistQ19_2017 from './questions/SpecialistQ19_2017'
+import SpecialistQ9_2017 from './questions/SpecialistQ9_2017'
+import SpecialistQ6_2017 from './questions/SpecialistQ6_2017'
+import SpecialistQ3_2017 from './questions/SpecialistQ3_2017'
+import SpecialistQ3_2018 from './questions/SpecialistQ3_2018'
+import SpecialistQ4_2018 from './questions/SpecialistQ4_2018'
+import SpecialistQ20_2018 from './questions/SpecialistQ20_2018'
+import SpecialistQ19_2018 from './questions/SpecialistQ19_2018'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-mcq6': SpecialistMCQ6,
@@ -52,6 +68,22 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q7-2016': SpecialistQ7_2016,
   'spec-q4-2015': SpecialistQ4_2015,
   'spec-q6-2015': SpecialistQ6_2015,
+  'spec-q9-2015': SpecialistQ9_2015,
+  'spec-q17-2015': SpecialistQ17_2015,
+  'spec-q3-2015': SpecialistQ3_2015,
+  'spec-q10-2015': SpecialistQ10_2015,
+  'spec-q9-2016': SpecialistQ9_2016,
+  'spec-q1-2016': SpecialistQ1_2016,
+  'spec-q18-2016': SpecialistQ18_2016,
+  'spec-q10-2016': SpecialistQ10_2016,
+  'spec-q19-2017': SpecialistQ19_2017,
+  'spec-q9-2017': SpecialistQ9_2017,
+  'spec-q6-2017': SpecialistQ6_2017,
+  'spec-q3-2017': SpecialistQ3_2017,
+  'spec-q3-2018': SpecialistQ3_2018,
+  'spec-q4-2018': SpecialistQ4_2018,
+  'spec-q20-2018': SpecialistQ20_2018,
+  'spec-q19-2018': SpecialistQ19_2018,
 
   // Hardest-5 MCQs per subject, 2017-2018 Exam 2 (see data.ts percentCorrect)
   'meth-q18-2018': MethodsQ18_2018,
