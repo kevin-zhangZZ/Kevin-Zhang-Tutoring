@@ -1,10 +1,12 @@
 // 2017 Chemistry Exam, MCQ 23. VCAA examination report: 49% correct — tied for fourth-hardest
 // MCQ on the 2017 paper. Distinguish precision, accuracy, validity and uncertainty in the
-// context of a bomb-calorimeter experiment. Question text/diagram transcribed from the
-// original paper; solution is original.
+// context of a bomb-calorimeter experiment. Question text transcribed from the original paper;
+// the apparatus diagram is cropped directly from the original VCAA exam PDF, not a redrawing.
+// Solution is original.
 
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import apparatusSrc from './chem-2017-mcq23-bomb-calorimeter.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 49, B: 18, C: 28, D: 5 },
@@ -42,10 +44,14 @@ export default function ChemistryQ23_2017() {
         <>
           <p className="mb-2">
             The heat of combustion of a sample of crude oil is to be determined using a bomb
-            calorimeter. All of the students in a class are given the same method to follow, using
-            a sealed vessel containing a sample of crude oil in excess oxygen, submerged in a
-            stirred, insulated water bath with a thermometer.
+            calorimeter. All of the students in a class are given the same method to follow. The
+            apparatus used by the students is shown below.
           </p>
+          <div className="mb-2 flex justify-center">
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img src={apparatusSrc} alt="Bomb calorimeter apparatus: a sealed vessel with crude oil and excess oxygen, submerged in water in an insulated container, with a thermometer, stirrer, and ignition wire, from the original 2017 VCAA exam paper" className="w-full max-w-[380px]" />
+            </div>
+          </div>
           <p>For this experiment, the students could maximise</p>
         </>
       }

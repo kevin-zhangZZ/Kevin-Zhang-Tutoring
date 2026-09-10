@@ -1,12 +1,15 @@
 // 2016 Chemistry Exam, MCQ 27. VCAA examination report: 21% correct — the hardest MCQ on the
 // 2016 paper. Two trials of acid + marble chips are graphed on the same axes: Trial 2 loses
 // more mass (more CO2) AND does so faster (steeper initial slope) than Trial 1 — which single
-// change explains both? Question text/diagram transcribed from the original paper; solution is
-// original.
+// change explains both? Question text transcribed from the original paper; the apparatus and
+// mass-vs-time graph are both cropped directly from the original VCAA exam PDF, not
+// redrawings. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import apparatusSrc from './chem-2016-mcq27-apparatus.png'
+import graphSrc from './chem-2016-mcq27-mass-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 20, C: 21, D: 46 },
@@ -81,12 +84,21 @@ export default function ChemistryQ27_2016() {
               <b>Trial 1</b>: 100 mL of 0.5 M hydrochloric acid, HCl, was added to 20 g of marble
               chips. The equation for the reaction is <Chem eq="2HCl(aq) + CaCO3(s) -> CaCl2(aq) + CO2(g) + H2O(l)" />.
             </p>
-            <p>
+            <p className="mb-2">
               <b>Trial 2</b>: one change to the reaction conditions was made and the experiment was
-              repeated. The results of both trials, graphed on the same axes (mass of flask vs.
-              time), showed that Trial 2 lost more total mass <em>and</em> had a steeper initial
-              slope than Trial 1.
+              repeated.
             </p>
+            <div className="flex justify-center mb-2">
+              <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+                <img src={apparatusSrc} alt="Trial 1 apparatus: an Erlenmeyer flask with 100 mL 0.5 M HCl and 20 g marble chips, plugged with cottonwool and releasing CO2, sitting on digital scales, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
+              </div>
+            </div>
+            <p className="mb-2">The results of the two trials were graphed on the same axes and are shown below.</p>
+            <div className="flex justify-center">
+              <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+                <img src={graphSrc} alt="Graph of mass of flask versus time for Trial 1 and Trial 2 — both curves start at the same mass and decrease to a plateau, with Trial 2 dropping faster and further, from the original 2016 VCAA exam paper" className="w-full max-w-[340px]" />
+              </div>
+            </div>
           </div>
           <p>In Trial 2, the student must have</p>
         </>

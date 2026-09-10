@@ -1,11 +1,14 @@
 // 2015 Chemistry Exam, MCQ 28. VCAA examination report: 48% correct — the fourth-hardest MCQ
 // on the 2015 paper. Electrorefining blister copper: which impurity metals end up as solid
-// sludge, rather than dissolving into the electrolyte? Question text/diagram transcribed from
-// the original paper; solution is original.
+// sludge, rather than dissolving into the electrolyte? Question text transcribed from the
+// original paper; the cell diagram is cropped directly from the original VCAA exam PDF (the
+// same crop MCQ 29 uses, since both questions share this diagram), not a redrawing. Solution
+// is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import electrorefiningSrc from './chem-2015-mcq29-electrorefining.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 11, B: 30, C: 10, D: 48 },
@@ -50,13 +53,19 @@ export default function ChemistryQ28_2015() {
       question={
         <>
           <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-4 py-3 mb-3 text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300">
-            An electrolytic cell is set up to obtain pure copper from an impure piece of copper
-            called "blister copper". The electrolyte solution contains both copper(II) sulfate and
-            sulfuric acid. The blister copper, Electrode I, contains impurities such as zinc,
-            cobalt, silver, gold, nickel and iron. The cell voltage is adjusted so that only copper
-            is deposited on Electrode II. Sludge, which contains some of the solid metal impurities
-            present in the blister copper, forms beneath Electrode I. The other impurities remain
-            in solution as ions.
+            <p className="mb-2">
+              An electrolytic cell is set up to obtain pure copper from an impure piece of copper
+              called "blister copper". The electrolyte solution contains both copper(II) sulfate and
+              sulfuric acid. The blister copper, Electrode I, contains impurities such as zinc,
+              cobalt, silver, gold, nickel and iron. The cell voltage is adjusted so that only copper
+              is deposited on Electrode II. Sludge, which contains some of the solid metal impurities
+              present in the blister copper, forms beneath Electrode I. The other impurities remain
+              in solution as ions.
+            </p>
+            <p className="mb-2">The diagram below represents the cell.</p>
+            <div className="flex justify-center">
+              <img src={electrorefiningSrc} alt="Electrolytic cell refining blister copper: Electrode I (impure copper) and Electrode II (pure copper) in copper(II) sulfate solution with sulfuric acid, from the original 2015 VCAA exam paper" className="w-full max-w-[380px]" />
+            </div>
           </div>
           <p>The solid metal impurities that are found in the sludge are</p>
         </>
