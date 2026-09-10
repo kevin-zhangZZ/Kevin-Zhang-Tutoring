@@ -1,6 +1,7 @@
 // 2020 Mathematical Methods — Exam 2, MCQ 17. VCAA examination report: 42% correct. Maximum
-// possible y-intercept of a tangent line to f(x) = −ln(x + 2). Question text and diagram
-// transcribed from the original paper. Solution is original.
+// possible y-intercept of a tangent line to f(x) = −ln(x + 2). Question text transcribed from
+// the original paper (no diagram was given — f is defined purely algebraically). Solution is
+// original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'

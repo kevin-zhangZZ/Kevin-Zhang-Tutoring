@@ -1,11 +1,19 @@
 // 2021 Chemistry Exam, MCQ 25. VCAA examination report: 12% correct — the hardest MCQ on this
 // paper. Deducing what change was made to an equilibrium system from a rate–time graph showing
 // an instantaneous jump in the reverse rate but no instantaneous change in the forward rate.
-// Question text transcribed from the original paper. Solution is original.
+// Question text transcribed from the original paper; the graph is cropped directly from the
+// original VCAA exam PDF, not a redrawing. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import rateGraphSrc from './chem-2021-mcq25-rate-graph.png'
+
+const RATE_GRAPH = (
+  <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+    <img src={rateGraphSrc} alt="Graph of the rate of the forward and reverse reactions versus time: both constant before t1, then the reverse rate jumps instantly upward at t1 and decays back down while the forward rate rises smoothly, both meeting at a new steady rate by t2, from the original 2021 VCAA exam paper" className="w-full max-w-[420px]" />
+  </div>
+)
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 29, C: 34, D: 25 },
@@ -26,8 +34,8 @@ const ROWS: WorkingRow[] = [
     reason: 'ΔH > 0: the forward reaction is endothermic.',
   },
   {
-    working: <>At <Chem eq="t1" />, the <b>reverse</b> rate jumps up instantly; the <b>forward</b> rate shows no instantaneous change at all, only drifting afterwards as the system re-equilibrates.</>,
-    reason: 'The key clue: whatever changed at t₁ must affect the reverse-reaction rate law immediately, but not the forward-reaction rate law.',
+    working: RATE_GRAPH,
+    reason: <>At <Chem eq="t1" />, the <b>reverse</b> rate jumps up instantly; the <b>forward</b> rate shows no instantaneous change at all, only drifting afterwards as the system re-equilibrates.</>,
   },
   {
     working: <>Only concentrations that appear in the reverse rate expression (i.e. the <b>products</b>, C and D) can jump the reverse rate instantly while leaving the forward rate — which depends only on reactant concentrations — completely untouched at that instant.</>,
@@ -62,11 +70,11 @@ export default function ChemistryQ25_2021() {
           <Chem eq="A(g) + 2B(g) <=> C(g) + D(g)" className="block text-[14px] my-2" />
           <p className="mb-2">ΔH &gt; 0</p>
           <p className="mb-2">
-            A graph of the rate of the forward and reverse reactions versus time shows the reverse
-            reaction's rate jumping instantly upward at time t₁, with no instantaneous change to
-            the forward reaction's rate at that moment. A single change was made to the
-            equilibrium mixture at t₁, and equilibrium is re-established at t₂.
+            The graph below shows the rate of the forward and reverse reactions versus time. A
+            single change is made to the equilibrium mixture at time t₁ and equilibrium is
+            re-established at time t₂.
           </p>
+          <div className="mb-2">{RATE_GRAPH}</div>
           <p>Which one of the following is consistent with the information given above?</p>
         </>
       }

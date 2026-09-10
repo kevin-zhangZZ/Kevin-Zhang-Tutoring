@@ -1,10 +1,17 @@
 // 2016 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 65% correct.
-// Trace a solution curve of dy/dx = -x - y through a given direction field. Question text
-// transcribed from the original paper; the direction field diagram — both in the question
-// and in the worked solution below — is the actual VCAA diagram (cropped from the official
-// exam PDF), not a redrawing. The worked solution overlays the exact solved curve and the
-// two marked points on top of that same real image (calibrated to its gridlines), rather
-// than redrawing the field itself. Solution is original.
+// Trace a solution curve of dy/dx = -x - y through a given direction field, starting at
+// (0, -1) and following the field. This is genuinely a graphical/numerical question, not an
+// algebraic one: solving dy/dx + y = -x by an integrating factor is not in the VCE Specialist
+// Mathematics study design (only separable differential equations are solved analytically in
+// this course) — the direction field is given precisely so the solution curve can be traced
+// directly from it. The solution below does that using Euler's method (which is in the
+// course) as a rigorous, reproducible way to "follow the field lines" numerically from
+// (0, -1), matching the diagram's own 0.5-unit grid spacing, rather than solving the
+// equation. Question text transcribed from the original paper; the direction field diagram —
+// both in the question and in the worked solution below — is the actual VCAA diagram
+// (cropped from the official exam PDF), not a redrawing. The worked solution overlays the
+// traced path and the two marked points on top of that same real image (calibrated to its
+// gridlines), rather than redrawing the field itself. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -17,44 +24,58 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
 }
 
+// Euler's-method trace of dy/dx = -x-y from (0,-1), step size h=0.5 (matching the diagram's
+// own grid spacing) — computed with y_{n+1} = y_n + h·f(x_n,y_n). Numeric x/y used for the
+// overlay's pixel calibration below; yLabel/fLabel are the same values pre-formatted (proper
+// minus sign, 3 sig figs) for display in the table.
+const STEPS: { x: number; y: number; yLabel: string; fLabel: string }[] = [
+  { x: 0, y: -1, yLabel: '−1', fLabel: '1' },
+  { x: 0.5, y: -0.5, yLabel: '−0.5', fLabel: '0' },
+  { x: 1, y: -0.5, yLabel: '−0.5', fLabel: '−0.5' },
+  { x: 1.5, y: -0.75, yLabel: '−0.75', fLabel: '−0.75' },
+  { x: 2, y: -1.125, yLabel: '−1.125', fLabel: '−0.875' },
+  { x: 2.5, y: -1.5625, yLabel: '−1.563', fLabel: '−0.938' },
+  { x: 3, y: -2.03125, yLabel: '−2.031', fLabel: '−0.969' },
+  { x: 3.5, y: -2.515625, yLabel: '−2.516', fLabel: '−0.984' },
+]
+
+const STEPS_TABLE = (
+  <div className="overflow-x-auto">
+    <table className="w-full text-[13px] text-center border-collapse">
+      <thead>
+        <tr className="bg-gray-50 dark:bg-gray-800/60">
+          <th className="px-3 py-1.5 text-left">Step</th>
+          <th className="px-3 py-1.5">x</th>
+          <th className="px-3 py-1.5">y</th>
+          <th className="px-3 py-1.5">f(x, y) = −x − y</th>
+        </tr>
+      </thead>
+      <tbody className="[&>tr]:border-t [&>tr]:border-gray-100 dark:[&>tr]:border-gray-800">
+        {STEPS.map((s, i) => (
+          <tr key={i}>
+            <td className="px-3 py-1.5 text-left">{i}</td>
+            <td className="px-3 py-1.5">{s.x}</td>
+            <td className="px-3 py-1.5">{s.yLabel}</td>
+            <td className="px-3 py-1.5">{s.fLabel}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+)
+
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\frac{dy}{dx} + x + y = 0 \;\implies\; \frac{dy}{dx} = -x-y" />,
-    reason: 'Rearrange the given differential equation into explicit form, ready to solve.',
+    working: <>Rearrange: <Katex tex="\dfrac{dy}{dx} = -x-y" />.</>,
+    reason: <>This is a first-order linear differential equation, but solving it by an integrating factor is <b>not</b> a VCE Specialist Mathematics technique — only separable differential equations are solved analytically in this course. The direction field is given precisely so the solution curve can be traced directly from it instead.</>,
   },
   {
-    working: (
-      <>
-        <Katex display tex="\frac{dy}{dx} + y = -x" />
-        <Katex display tex="\text{integrating factor: } e^{\int 1\,dx} = e^x" />
-      </>
-    ),
-    reason: 'A first-order linear equation — solve it exactly rather than only reading the field by eye.',
+    working: <>Start at the given point <Katex tex="(0,-1)" /> and follow the field: at each point, step a small distance <Katex tex="h" /> in the direction the local arrow points, then re-read the new local slope and repeat — this is <b>Euler's method</b>, a genuine VCE Specialist Mathematics technique for numerically tracing a solution curve.</>,
+    reason: <>Using the diagram's own <Katex tex="0.5" />-unit grid spacing as the step size <Katex tex="h" /> keeps every step lined up with an arrow actually drawn on the field.</>,
   },
   {
-    working: (
-      <>
-        <Katex display tex="\frac{d}{dx}\bigl(ye^x\bigr) = -xe^x" />
-        <Katex display tex="\begin{aligned} \implies\; ye^x &= \int -xe^x\,dx \\ &= (1-x)e^x + C \end{aligned}" />
-      </>
-    ),
-    reason: <>Integrate by parts: <Katex tex="\int -xe^x\,dx = -xe^x+\int e^x\,dx = (1-x)e^x+C" />.</>,
-  },
-  {
-    working: <Katex display tex="y = 1-x + Ce^{-x}" />,
-    reason: <>Divide through by <Katex tex="e^x" />.</>,
-  },
-  {
-    working: (
-      <>
-        <Katex display tex="\begin{aligned} (0,-1): \ -1 &= 1-0+Ce^0 \\ &= 1+C \end{aligned}" />
-        <Katex display tex="\implies\; C=-2" />
-      </>
-    ),
-    reason: 'Use the given point to pin down the particular solution.',
-  },
-  {
-    working: <Katex display tex="\boxed{y = 1-x-2e^{-x}}" />,
+    working: STEPS_TABLE,
+    reason: <>Each row applies <Katex tex="y_{n+1} = y_n + h \cdot f(x_n,y_n)" /> with <Katex tex="f(x,y)=-x-y" /> and <Katex tex="h=0.5" />, starting from <Katex tex="(x_0,y_0)=(0,-1)" />.</>,
   },
   {
     working: (
@@ -62,17 +83,27 @@ const ROWS: WorkingRow[] = [
         <DirectionFieldDiagram />
       </div>
     ),
-    reason: (
-      <>
-        Checking each option against <Katex tex="y=1-x-2e^{-x}" />: <Katex tex="y(3)\approx-2.10" /> (not{' '}
-        <Katex tex="-1" />), <Katex tex="y(-1.5)\approx-6.46" />, <Katex tex="y(2.5)\approx-1.66" /> — none of
-        A, C, D, E lie on the curve. Only <Katex tex="y(3.5)\approx-2.56" /> is close to a listed point.
-      </>
-    ),
+    reason: <>The traced path, plotted directly on the real direction field, visibly follows the arrows all the way from <Katex tex="(0,-1)" /> out to <Katex tex="x=3.5" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{y(3.5) \approx -2.56 \ \approx \ (3.5,\,-2.5)}" />,
-    reason: <>Matches option <b>B</b> — the only point lying on (or extrapolating smoothly along) the solution curve through <Katex tex="(0,-1)" />.</>,
+    working: (
+      <>
+        A: at <Katex tex="x=3" />, the trace gives <Katex tex="y\approx-2.03" />, not <Katex tex="-1" />.
+        <br />
+        D: at <Katex tex="x=2.5" />, the trace gives <Katex tex="y\approx-1.56" />, not <Katex tex="-1" />.
+        <br />
+        E: at <Katex tex="x=2.5" />, the trace gives <Katex tex="y\approx-1.56" /> — not even the right sign for <Katex tex="+1" />.
+      </>
+    ),
+    reason: 'Each of these sits well away from the traced curve — ruled out.',
+  },
+  {
+    working: <>C: tracing <em>backward</em> from <Katex tex="(0,-1)" /> with the same method (<Katex tex="h=-0.5" />) gives <Katex tex="y(-1)\approx-2.5" /> and <Katex tex="y(-1.5)\approx-4.25" /> — nowhere near <Katex tex="-2" />.</>,
+    reason: <>The curve drops away much faster than option C suggests as <Katex tex="x" /> decreases below <Katex tex="0" /> — ruled out.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{y(3.5) \approx -2.52 \ \approx \ (3.5,\,-2.5)}" />,
+    reason: <>Matches option <b>B</b> — the only point lying on (or extrapolating smoothly along) the traced curve through <Katex tex="(0,-1)" />.</>,
   },
 ]
 
@@ -106,23 +137,18 @@ export default function SpecialistQ10_2016() {
   )
 }
 
-// Overlays the exact solution curve y = 1-x-2e^{-x} through (0,-1), extended out to x=3.5
-// (where it reaches option B), on top of the *real* cropped VCAA direction-field image —
-// rather than redrawing the field itself. Pixel calibration (ox, oy, scaleX, scaleY) was
-// measured directly off spec-2016-mcq10-direction-field.png's own gridlines (1275×889px;
-// gridlines every 0.5 units), so the overlay lines up with the real image, not an
-// approximation of it.
+// Overlays the Euler's-method trace (from the STEPS table above, step size 0.5) on top of the
+// *real* cropped VCAA direction-field image — a piecewise-linear path following the arrows
+// from (0,-1) out to (3.5,-2.52), rather than redrawing the field itself. Pixel calibration
+// (ox, oy, scaleX, scaleY) was measured directly off spec-2016-mcq10-direction-field.png's own
+// gridlines (1275×889px; gridlines every 0.5 units), so the overlay lines up with the real
+// image, not an approximation of it.
 function DirectionFieldDiagram() {
   const ox = 636
   const oy = 484
   const scaleX = 143.4
   const scaleY = 131
-  const curvePts: string[] = []
-  for (let i = 0; i <= 60; i++) {
-    const x = -1.2 + (4.7 * i) / 60
-    const y = 1 - x - 2 * Math.exp(-x)
-    curvePts.push(`${ox + x * scaleX},${oy - y * scaleY}`)
-  }
+  const tracePts = STEPS.map(s => `${ox + s.x * scaleX},${oy - s.y * scaleY}`)
   return (
     <div className="relative w-full max-w-[300px]">
       <img
@@ -131,12 +157,15 @@ function DirectionFieldDiagram() {
         className="w-full block"
       />
       <svg viewBox="0 0 1275 889" className="absolute inset-0 w-full h-full">
-        <polyline points={curvePts.join(' ')} fill="none" stroke="#38bdf8" strokeWidth={5} />
-        <circle cx={ox} cy={oy - -1 * scaleY} r={8} fill="#dc2626" />
+        <polyline points={tracePts.join(' ')} fill="none" stroke="#38bdf8" strokeWidth={5} />
+        {STEPS.map((s, i) => (
+          <circle key={i} cx={ox + s.x * scaleX} cy={oy - s.y * scaleY} r={6} className="fill-sky-500" />
+        ))}
+        <circle cx={ox} cy={oy - -1 * scaleY} r={9} fill="#dc2626" />
         <text x={ox + 14} y={oy - -1 * scaleY - 14} fontSize={26} className="fill-rose-600 dark:fill-rose-400">(0, −1)</text>
 
-        <circle cx={ox + 3.5 * scaleX} cy={oy - -2.56 * scaleY} r={8} fill="#22c55e" />
-        <text x={ox + 3.5 * scaleX - 190} y={oy - -2.56 * scaleY - 16} fontSize={26} className="fill-emerald-600 dark:fill-emerald-400">
+        <circle cx={ox + 3.5 * scaleX} cy={oy - -2.515625 * scaleY} r={9} fill="#22c55e" />
+        <text x={ox + 3.5 * scaleX - 190} y={oy - -2.515625 * scaleY - 16} fontSize={26} className="fill-emerald-600 dark:fill-emerald-400">
           ≈ (3.5, −2.5)
         </text>
       </svg>

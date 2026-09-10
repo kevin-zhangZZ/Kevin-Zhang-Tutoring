@@ -1,10 +1,12 @@
 // 2025 Chemistry Exam, MCQ 19. VCAA examination report: 34% correct. Ranking four pieces of
 // laboratory glassware by resolution (the smallest scale division each can read), from lowest to
-// highest. Question text transcribed from the original paper; the glassware diagram is
-// summarised by the scale markings each instrument actually shows. Solution is original.
+// highest. Question text transcribed from the original paper; the glassware diagram (with its
+// zoomed-in scale callouts) is cropped directly from the original VCAA exam PDF, not a
+// redrawing. Solution is original.
 
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import glasswareSrc from './chem-2025-mcq19-glassware.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 19, B: 21, C: 34, D: 25 },
@@ -23,8 +25,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>"Resolution" here means the smallest scale division marked on the instrument — the finer the gaps between marked lines, the higher the resolution, regardless of how large the instrument's total capacity is.</>,
-    reason: "Resolution isn't about total volume — a small instrument can easily out-resolve a much bigger one.",
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img src={glasswareSrc} alt="Four pieces of laboratory glassware with zoomed-in scale callouts, from the original 2025 VCAA exam paper" className="w-full max-w-[420px]" />
+      </div>
+    ),
+    reason: <>"Resolution" here means the smallest scale division marked on the instrument — the finer the gaps between marked lines, the higher the resolution, regardless of how large the instrument's total capacity is. Resolution isn't about total volume — a small instrument can easily out-resolve a much bigger one.</>,
   },
   {
     working: <>The <b>50 mL beaker</b> is marked only every 10 mL (50, 40, 30, 20, 10) — resolution <b>10 mL</b>, by far the coarsest of the four despite holding the most liquid.</>,
@@ -53,12 +59,12 @@ export default function ChemistryQ19_2025() {
     <MCQShell
       question={
         <>
-          <p className="mb-2">
-            Four pieces of laboratory glassware are shown, each with its own scale markings: a
-            50 mL beaker marked every 10 mL, a 50 mL measuring cylinder marked every 1 mL, a
-            10 mL measuring cylinder marked every 0.2 mL, and a 3 mL graduated plastic pipette
-            marked every 0.5 mL.
-          </p>
+          <p className="mb-2">Some of the equipment used during the experiment is shown below.</p>
+          <div className="mb-2 flex justify-center">
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img src={glasswareSrc} alt="Four pieces of laboratory glassware with zoomed-in scale callouts: a 50 mL beaker marked every 10 mL, a 50 mL measuring cylinder marked every 1 mL, a 10 mL measuring cylinder marked every 0.2 mL, and a 3 mL graduated plastic pipette marked every 0.5 mL, from the original 2025 VCAA exam paper" className="w-full max-w-[420px]" />
+            </div>
+          </div>
           <p>The resolution of the equipment shown, from lowest to highest, is</p>
         </>
       }

@@ -1,10 +1,18 @@
 // 2020 Chemistry Exam, MCQ 19. VCAA examination report: 22% correct. Identifying the change
 // made to an NO₂/N₂O₄ equilibrium, and the resulting colour change, from a forward-reaction
-// rate–time graph. Question text transcribed from the original paper. Solution is original.
+// rate–time graph. Question text transcribed from the original paper; the graph is cropped
+// directly from the original VCAA exam PDF, not a redrawing. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import rateGraphSrc from './chem-2020-mcq19-rate-graph.png'
+
+const RATE_GRAPH = (
+  <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+    <img src={rateGraphSrc} alt="Graph of the rate of the forward reaction versus time: constant until t1, then rising to a new, higher steady rate by t2, from the original 2020 VCAA exam paper" className="w-full max-w-[380px]" />
+  </div>
+)
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 19, B: 22, C: 53, D: 5 },
@@ -24,8 +32,12 @@ const ROWS: WorkingRow[] = [
     reason: <>ΔH = −57.2 kJ mol⁻¹: the <b>forward</b> reaction (making colourless N₂O₄) is exothermic.</>,
   },
   {
-    working: <>The graph shows the forward reaction's rate genuinely <b>increasing</b> from t₁ to a new, higher steady rate at t₂.</>,
-    reason: <>A change in temperature affects the rate of <i>every</i> reaction, forward and reverse alike — a rate increase can only come from a temperature <b>increase</b> (a decrease would slow every reaction down, including the forward one).</>,
+    working: RATE_GRAPH,
+    reason: <>The graph shows the forward reaction's rate genuinely <b>increasing</b> from t₁ to a new, higher steady rate at t₂.</>,
+  },
+  {
+    working: <>A change in temperature affects the rate of <i>every</i> reaction, forward and reverse alike — a rate increase can only come from a temperature <b>increase</b> (a decrease would slow every reaction down, including the forward one).</>,
+    reason: 'This is the key reasoning that rules out a concentration or catalyst change too — only temperature affects both the forward and reverse rate constants.',
   },
   {
     working: <>This rules out options C and D, both of which claim the temperature <b>decreased</b>.</>,
@@ -56,11 +68,13 @@ export default function ChemistryQ19_2020() {
           </p>
           <Chem eq="2NO2(g) <=> N2O4(g)" className="block text-[14px] my-2" />
           <p className="mb-2">ΔH = −57.2 kJ mol⁻¹</p>
-          <p>
+          <p className="mb-2">
             A change was made at time t₁ to an equilibrium mixture of NO₂ and N₂O₄, which achieved
-            a new equilibrium at time t₂. A graph of the rate of the forward reaction shows it
-            rising from t₁ to a new, higher steady rate by t₂.
-            <br />
+            a new equilibrium at time t₂. A graph showing the rate of the forward reaction is shown
+            below.
+          </p>
+          <div className="mb-2">{RATE_GRAPH}</div>
+          <p>
             Which one of the following describes the change made and the colour change that
             occurred between t₁ and t₂?
           </p>

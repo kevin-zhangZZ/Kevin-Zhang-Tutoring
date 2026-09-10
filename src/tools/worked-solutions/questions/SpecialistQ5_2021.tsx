@@ -1,11 +1,12 @@
 // 2021 Specialist Mathematics — Exam 2, MCQ 5. VCAA examination report: 32% correct.
-// Maximum |z| on a given circle in the Argand plane. Question text and diagram transcribed
-// from the original paper (the diagram is the actual VCAA figure, cropped from the official
-// exam PDF, not a redrawing). Solution is original.
+// Maximum |z| on a given circle in the Argand plane. Question text transcribed from the
+// original paper; the diagram is cropped directly from the original VCAA exam PDF, not a
+// redrawing. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import circleSrc from './spec-2021-mcq5-argand-circle.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 42, B: 6, C: 18, D: 32, E: 2 },
@@ -36,12 +37,18 @@ export default function SpecialistQ5_2021() {
   return (
     <MCQShell
       question={
-        <p>
-          The graph of the circle given by <Katex tex="|z-2-\sqrt3i|=1" />, where <Katex tex="z\in\mathbb{C}" />, is a
-          circle of radius 1 centred at <Katex tex="(2,\sqrt3)" /> on the Argand plane.
-          <br />
-          For points on this circle, the maximum value of <Katex tex="|z|" /> is
-        </p>
+        <>
+          <p className="mb-2">
+            The graph of the circle given by <Katex tex="|z-2-\sqrt3i|=1" />, where <Katex tex="z\in\mathbb{C}" />, is
+            shown below.
+          </p>
+          <div className="mb-2 flex justify-center">
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img src={circleSrc} alt="Argand diagram showing a circle of radius 1 centred at (2, √3), from the original 2021 VCAA exam paper" className="w-full max-w-[280px]" />
+            </div>
+          </div>
+          <p>For points on this circle, the maximum value of <Katex tex="|z|" /> is</p>
+        </>
       }
       options={[
         { letter: 'A', content: <Katex tex="\sqrt3+1" /> },
