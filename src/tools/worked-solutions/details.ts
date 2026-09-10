@@ -9,11 +9,16 @@ import SpecialistQ4_2016 from './questions/SpecialistQ4_2016'
 import MethodsQ3_2015 from './questions/MethodsQ3_2015'
 import MethodsQ16_2015 from './questions/MethodsQ16_2015'
 import MethodsQ17_2015 from './questions/MethodsQ17_2015'
-import MethodsQ4_2014Exam1 from './questions/MethodsQ4_2014Exam1'
 import MethodsQ21_2014 from './questions/MethodsQ21_2014'
 import MethodsQ22_2014 from './questions/MethodsQ22_2014'
 import MethodsQ3_2014Exam2 from './questions/MethodsQ3_2014Exam2'
 import MethodsQ4_2014Exam2 from './questions/MethodsQ4_2014Exam2'
+import MethodsQ3_2015Exam2 from './questions/MethodsQ3_2015Exam2'
+import MethodsQ4_2015Exam2 from './questions/MethodsQ4_2015Exam2'
+import MethodsQ5_2015Exam2 from './questions/MethodsQ5_2015Exam2'
+import MethodsQ8_2016Exam1 from './questions/MethodsQ8_2016Exam1'
+import MethodsQ3_2017Exam1 from './questions/MethodsQ3_2017Exam1'
+import MethodsQ4_2017Exam1 from './questions/MethodsQ4_2017Exam1'
 import MethodsQ19_2016 from './questions/MethodsQ19_2016'
 import MethodsQ20_2016 from './questions/MethodsQ20_2016'
 import MethodsQ11_2015 from './questions/MethodsQ11_2015'
@@ -223,11 +228,16 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q3-2015': MethodsQ3_2015,
   'meth-q16-2015': MethodsQ16_2015,
   'meth-q17-2015': MethodsQ17_2015,
-  'meth-q4-2014-e1': MethodsQ4_2014Exam1,
   'meth-q21-2014': MethodsQ21_2014,
   'meth-q22-2014': MethodsQ22_2014,
   'meth-q3-2014-e2': MethodsQ3_2014Exam2,
   'meth-q4-2014-e2': MethodsQ4_2014Exam2,
+  'meth-q3-2015-e2': MethodsQ3_2015Exam2,
+  'meth-q4-2015-e2': MethodsQ4_2015Exam2,
+  'meth-q5-2015-e2': MethodsQ5_2015Exam2,
+  'meth-q8-2016-e1': MethodsQ8_2016Exam1,
+  'meth-q3-2017-e1': MethodsQ3_2017Exam1,
+  'meth-q4-2017-e1': MethodsQ4_2017Exam1,
 
   // Hardest-5 MCQs per subject, 2014-2016 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2016': MethodsQ19_2016,

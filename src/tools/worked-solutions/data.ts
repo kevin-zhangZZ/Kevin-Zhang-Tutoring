@@ -84,7 +84,6 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-saq3', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Differential equations — rates of mixing (two-tank problem)', type: 'sa', hasDetail: true, hasVideo: true },
   { id: 'spec-q4-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — relative position, collision, and minimum distance', type: 'sa', hasDetail: true },
 
-  { id: 'meth-q4-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q4(a–d)', topic: 'Calculus — area between sine graphs', type: 'sa', hasDetail: true },
   { id: 'meth-q21-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 21', topic: 'Calculus — maximising the area of a trapezium', type: 'mc', hasDetail: true },
   { id: 'meth-q22-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 22', topic: 'Probability — independent events and ratios', type: 'mc', hasDetail: true },
   { id: 'meth-q3-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Calculus — optimisation and related rates (melting ice cylinder)', type: 'sa', hasDetail: true },
@@ -98,6 +97,15 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q21-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 21', topic: 'Graphs — a line and a parabola with no intersection', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q17-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — turning points and number of x-intercepts', type: 'mc', hasDetail: true, percentCorrect: 60 },
 
+  // Section 2 (short-answer). meth-q4-2015-e2 was previously miscatalogued as 2014 Exam 1
+  // Q4 — that question is actually a 2-mark "solve 2^(3x-3)=8^(2-x)" (confirmed against the
+  // real 2014 Exam 1 paper), nothing like this 9-mark sine-area question. The content below
+  // matches 2015 Exam 2 Q4 exactly (confirmed against the source PDF and report), so it's
+  // recatalogued here with its real year/exam and real examiner-report stats added.
+  { id: 'meth-q3-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q3(a–d)', topic: 'Probability — continuous distribution, binomial, normal, and geometric-style modelling', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Calculus — area between sine graphs', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q5(a–d)', topic: 'Calculus — optimising a sum of exponentials', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2016 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q19-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — bounding E(X) for a discrete distribution', type: 'mc', hasDetail: true, percentCorrect: 15 },
   { id: 'meth-q20-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — relating definite integrals under a mapping', type: 'mc', hasDetail: true, percentCorrect: 17 },
@@ -105,6 +113,8 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q9-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — deriving ∫xe^(kx)dx from a given derivative', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'meth-q11-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 11', topic: 'Algebra — testing candidate rules against a functional equation', type: 'mc', hasDetail: true, percentCorrect: 47 },
   { id: 'meth-q10-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — tangent parallel to a chord of intercepts', type: 'mc', hasDetail: true, percentCorrect: 52 },
+
+  { id: 'meth-q8-2016-e1', subject: 'methods', year: 2016, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Calculus — an antiderivative of x^(k-1)ln(x), then a probability and a median comparison', type: 'sa', hasDetail: true },
 
   // The 6 hardest Specialist MCQs from 2015 Exam 2 Section A, by VCAA-reported % correct.
   // Mechanics questions (no longer on the VCE study design) are excluded from these picks —
@@ -131,6 +141,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q16-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 16', topic: 'Probability — a binomial probability from a given one', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'meth-q12-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 12', topic: 'Trigonometry — sum of solutions on an interval', type: 'mc', hasDetail: true, percentCorrect: 45 },
   { id: 'meth-q13-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 13', topic: 'Algebra — the identity that fails for h(x) = 1/(x-1)', type: 'mc', hasDetail: true, percentCorrect: 46 },
+
+  { id: 'meth-q3-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Calculus — expanding a factorised cubic, then sketching it', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q4', topic: 'Probability — smallest sample size for a bound on sd(P̂)', type: 'sa', hasDetail: true },
 
   // The 6 hardest Methods MCQs from 2018 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q18-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 18', topic: 'Calculus — comparing derivatives of two power functions', type: 'mc', hasDetail: true, percentCorrect: 14 },
