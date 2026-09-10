@@ -166,6 +166,48 @@ import MethodsQ20_2025 from './questions/MethodsQ20_2025'
 import MethodsQ17_2025 from './questions/MethodsQ17_2025'
 import MethodsQ15_2025 from './questions/MethodsQ15_2025'
 import MethodsQ13_2025 from './questions/MethodsQ13_2025'
+import ChemistryQ13_2019 from './questions/ChemistryQ13_2019'
+import ChemistryQ18_2019 from './questions/ChemistryQ18_2019'
+import ChemistryQ22_2019 from './questions/ChemistryQ22_2019'
+import ChemistryQ15_2019 from './questions/ChemistryQ15_2019'
+import ChemistryQ27_2019 from './questions/ChemistryQ27_2019'
+import ChemistryQ29_2019 from './questions/ChemistryQ29_2019'
+import ChemistryQ16_2020 from './questions/ChemistryQ16_2020'
+import ChemistryQ19_2020 from './questions/ChemistryQ19_2020'
+import ChemistryQ28_2020 from './questions/ChemistryQ28_2020'
+import ChemistryQ15_2020 from './questions/ChemistryQ15_2020'
+import ChemistryQ10_2020 from './questions/ChemistryQ10_2020'
+import ChemistryQ9_2020 from './questions/ChemistryQ9_2020'
+import ChemistryQ25_2021 from './questions/ChemistryQ25_2021'
+import ChemistryQ28_2021 from './questions/ChemistryQ28_2021'
+import ChemistryQ21_2021 from './questions/ChemistryQ21_2021'
+import ChemistryQ22_2021 from './questions/ChemistryQ22_2021'
+import ChemistryQ16_2021 from './questions/ChemistryQ16_2021'
+import ChemistryQ24_2021 from './questions/ChemistryQ24_2021'
+import ChemistryQ13_2022 from './questions/ChemistryQ13_2022'
+import ChemistryQ25_2022 from './questions/ChemistryQ25_2022'
+import ChemistryQ20_2022 from './questions/ChemistryQ20_2022'
+import ChemistryQ30_2022 from './questions/ChemistryQ30_2022'
+import ChemistryQ12_2022 from './questions/ChemistryQ12_2022'
+import ChemistryQ28_2022 from './questions/ChemistryQ28_2022'
+import ChemistryQ10_2023 from './questions/ChemistryQ10_2023'
+import ChemistryQ18_2023 from './questions/ChemistryQ18_2023'
+import ChemistryQ2_2023 from './questions/ChemistryQ2_2023'
+import ChemistryQ15_2023 from './questions/ChemistryQ15_2023'
+import ChemistryQ22_2023 from './questions/ChemistryQ22_2023'
+import ChemistryQ5_2023 from './questions/ChemistryQ5_2023'
+import ChemistryQ24_2024 from './questions/ChemistryQ24_2024'
+import ChemistryQ9_2024 from './questions/ChemistryQ9_2024'
+import ChemistryQ12_2024 from './questions/ChemistryQ12_2024'
+import ChemistryQ19_2024 from './questions/ChemistryQ19_2024'
+import ChemistryQ17_2024 from './questions/ChemistryQ17_2024'
+import ChemistryQ2_2024 from './questions/ChemistryQ2_2024'
+import ChemistryQ8_2025 from './questions/ChemistryQ8_2025'
+import ChemistryQ2_2025 from './questions/ChemistryQ2_2025'
+import ChemistryQ19_2025 from './questions/ChemistryQ19_2025'
+import ChemistryQ18_2025 from './questions/ChemistryQ18_2025'
+import ChemistryQ27_2025 from './questions/ChemistryQ27_2025'
+import ChemistryQ28_2025 from './questions/ChemistryQ28_2025'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-mcq6': SpecialistMCQ6,
@@ -365,4 +407,54 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q17-2025': MethodsQ17_2025,
   'meth-q15-2025': MethodsQ15_2025,
   'meth-q13-2025': MethodsQ13_2025,
+
+  // Hardest-6 Chemistry MCQs, 2019 Exam (see data.ts percentCorrect)
+  'chem-q13-2019': ChemistryQ13_2019,
+  'chem-q18-2019': ChemistryQ18_2019,
+  'chem-q22-2019': ChemistryQ22_2019,
+  'chem-q15-2019': ChemistryQ15_2019,
+  'chem-q27-2019': ChemistryQ27_2019,
+  'chem-q29-2019': ChemistryQ29_2019,
+
+  // Hardest-6 Chemistry MCQs, 2020 Exam (see data.ts percentCorrect)
+  'chem-q16-2020': ChemistryQ16_2020,
+  'chem-q19-2020': ChemistryQ19_2020,
+  'chem-q28-2020': ChemistryQ28_2020,
+  'chem-q15-2020': ChemistryQ15_2020,
+  'chem-q10-2020': ChemistryQ10_2020,
+  'chem-q9-2020': ChemistryQ9_2020,
+
+  // Hardest-6 Chemistry MCQs, 2021 Exam (see data.ts percentCorrect)
+  'chem-q25-2021': ChemistryQ25_2021,
+  'chem-q28-2021': ChemistryQ28_2021,
+  'chem-q21-2021': ChemistryQ21_2021,
+  'chem-q22-2021': ChemistryQ22_2021,
+  'chem-q16-2021': ChemistryQ16_2021,
+  'chem-q24-2021': ChemistryQ24_2021,
+
+  // Hardest-6 Chemistry MCQs, 2022 Exam (see data.ts percentCorrect)
+  'chem-q13-2022': ChemistryQ13_2022,
+  'chem-q25-2022': ChemistryQ25_2022,
+  'chem-q20-2022': ChemistryQ20_2022,
+  'chem-q30-2022': ChemistryQ30_2022,
+  'chem-q12-2022': ChemistryQ12_2022,
+  'chem-q28-2022': ChemistryQ28_2022,
+  'chem-q10-2023': ChemistryQ10_2023,
+  'chem-q18-2023': ChemistryQ18_2023,
+  'chem-q2-2023': ChemistryQ2_2023,
+  'chem-q15-2023': ChemistryQ15_2023,
+  'chem-q22-2023': ChemistryQ22_2023,
+  'chem-q5-2023': ChemistryQ5_2023,
+  'chem-q24-2024': ChemistryQ24_2024,
+  'chem-q9-2024': ChemistryQ9_2024,
+  'chem-q12-2024': ChemistryQ12_2024,
+  'chem-q19-2024': ChemistryQ19_2024,
+  'chem-q17-2024': ChemistryQ17_2024,
+  'chem-q2-2024': ChemistryQ2_2024,
+  'chem-q8-2025': ChemistryQ8_2025,
+  'chem-q2-2025': ChemistryQ2_2025,
+  'chem-q19-2025': ChemistryQ19_2025,
+  'chem-q18-2025': ChemistryQ18_2025,
+  'chem-q27-2025': ChemistryQ27_2025,
+  'chem-q28-2025': ChemistryQ28_2025,
 }

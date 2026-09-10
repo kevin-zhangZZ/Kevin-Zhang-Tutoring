@@ -305,4 +305,61 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — which graph satisfies a definite-integral inequality', type: 'mc', hasDetail: true, percentCorrect: 38 },
   { id: 'meth-q15-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Transformations — a point on a transformed graph', type: 'mc', hasDetail: true, percentCorrect: 44 },
   { id: 'meth-q13-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 13', topic: 'Functions — identifying a composite function from a sketch', type: 'mc', hasDetail: true, percentCorrect: 45 },
+
+  // The 6 hardest Chemistry MCQs from 2019 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q13-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 13', topic: 'Organic chemistry — reasoning about flashpoint from a substance’s physical state', type: 'mc', hasDetail: true, percentCorrect: 20 },
+  { id: 'chem-q18-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 18', topic: 'Electrochemistry — comparing four galvanic cells’ voltages', type: 'mc', hasDetail: true, percentCorrect: 24 },
+  { id: 'chem-q22-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 22', topic: 'Experimental design — precision, accuracy, validity and uncertainty', type: 'mc', hasDetail: true, percentCorrect: 30 },
+  { id: 'chem-q15-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 15', topic: 'Organic chemistry — chiral centres and optical isomers of aspartame', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'chem-q27-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 27', topic: 'Analytical chemistry — identifying an alcohol from its ¹³C NMR peak count', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'chem-q29-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 29', topic: 'Analytical chemistry — which titration error underestimates vitamin C', type: 'mc', hasDetail: true, percentCorrect: 37 },
+
+  // The 6 hardest Chemistry MCQs from 2020 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q16-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 16', topic: 'Organic chemistry — estimating an ester’s boiling point from two related isomers', type: 'mc', hasDetail: true, percentCorrect: 20 },
+  { id: 'chem-q19-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 19', topic: 'Equilibrium — identifying a temperature change from a rate–time graph', type: 'mc', hasDetail: true, percentCorrect: 22 },
+  { id: 'chem-q28-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 28', topic: 'Thermochemistry — comparing Maxwell–Boltzmann distributions of combustion products', type: 'mc', hasDetail: true, percentCorrect: 22 },
+  { id: 'chem-q15-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 15', topic: 'Equilibrium — rate, activation energy and temperature for the Haber process', type: 'mc', hasDetail: true, percentCorrect: 25 },
+  { id: 'chem-q10-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 10', topic: 'Thermochemistry — what is true of a solution calorimeter', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'chem-q9-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 9', topic: 'Thermochemistry — calculating a calorimeter’s calibration factor', type: 'mc', hasDetail: true, percentCorrect: 28 },
+
+  // The 6 hardest Chemistry MCQs from 2021 Exam Section A, by VCAA-reported % correct
+  // (one question was later redacted by VCAA and excluded from consideration).
+  { id: 'chem-q25-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 25', topic: 'Equilibrium — deducing what change was made from a rate–time graph', type: 'mc', hasDetail: true, percentCorrect: 12 },
+  { id: 'chem-q28-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 28', topic: 'Equilibrium — deducing K and total energy change from a rate increase', type: 'mc', hasDetail: true, percentCorrect: 22 },
+  { id: 'chem-q21-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 21', topic: 'Electrochemistry — which cell change reduces nickel electroplated', type: 'mc', hasDetail: true, percentCorrect: 31 },
+  { id: 'chem-q22-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 22', topic: 'Thermochemistry — octane volume needed at 25% engine efficiency', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'chem-q16-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 16', topic: 'Analytical chemistry — which statement about IR spectroscopy is correct', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'chem-q24-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 24', topic: 'Thermochemistry — effect of a catalyst on an energy profile diagram', type: 'mc', hasDetail: true, percentCorrect: 38 },
+
+  // The 6 hardest Chemistry MCQs from 2022 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q13-2022', subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 13', topic: 'Electrochemistry — which electrolyte produces a gas at the cathode', type: 'mc', hasDetail: true, percentCorrect: 29 },
+  { id: 'chem-q25-2022', subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 25', topic: 'Organic chemistry — which statements about biodiesel vs petrodiesel hold', type: 'mc', hasDetail: true, percentCorrect: 33 },
+  { id: 'chem-q20-2022', subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 20', topic: 'Electrochemistry — a metal rod placed directly into a mixed solution', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q30-2022', subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 30', topic: 'Electrochemistry — ranking unfamiliar half-cells from reactivity clues', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q12-2022', subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 12', topic: 'Organic chemistry — why enzymes fail in acidic conditions', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'chem-q28-2022', subject: 'chemistry', year: 2022, exam: 'Exam', code: 'MCQ 28', topic: 'Analytical chemistry — identifying a structure from a ¹³C NMR spectrum', type: 'mc', hasDetail: true, percentCorrect: 42 },
+
+  // The 6 hardest Chemistry MCQs from 2023 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q10-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 10', topic: 'Equilibrium — what always increases the yield of a reaction', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'chem-q18-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 18', topic: 'Analytical chemistry — reading an HPLC calibration curve after dilution', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'chem-q2-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 2', topic: 'Electrochemistry — which statement about fuel cells vs galvanic cells is correct', type: 'mc', hasDetail: true, percentCorrect: 40 },
+  { id: 'chem-q15-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 15', topic: 'Thermochemistry — comparing petrol-powered and hydrogen-fuel-cell drones', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'chem-q22-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 22', topic: 'Electrochemistry — comparing methane and methanol fuel cells', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'chem-q5-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 5', topic: 'Biochemistry — which statements about coenzymes are correct', type: 'mc', hasDetail: true, percentCorrect: 42 },
+
+  // The 6 hardest Chemistry MCQs from 2024 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q24-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 24', topic: 'Analytical chemistry — equivalence-point volume in a permanganate/oxalic acid titration', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'chem-q9-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 9', topic: 'Electrochemistry — balancing an alkaline ethanol fuel cell half-equation', type: 'mc', hasDetail: true, percentCorrect: 29 },
+  { id: 'chem-q12-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 12', topic: 'Thermochemistry — why butane combustion is treated as irreversible', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'chem-q19-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 19', topic: 'Organic chemistry — comparing cyclohexane and benzene', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q17-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 17', topic: 'Electrochemistry — electrorefining blister copper', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'chem-q2-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 2', topic: 'Thermochemistry — comparing combustion energy of glucose and hydrogen', type: 'mc', hasDetail: true, percentCorrect: 40 },
+
+  // The 6 hardest Chemistry MCQs from 2025 Exam Section A, by VCAA-reported % correct.
+  { id: 'chem-q8-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 8', topic: 'Electrochemistry — comparing potential differences of four metal–air cells', type: 'mc', hasDetail: true, percentCorrect: 29 },
+  { id: 'chem-q2-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 2', topic: 'Thermochemistry — total energy content of a snack bar per 100 g', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q19-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 19', topic: 'Analytical chemistry — ranking laboratory glassware by resolution', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'chem-q18-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 18', topic: 'Electrochemistry — which statement about artificial photosynthesis is correct', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'chem-q27-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 27', topic: 'Organic chemistry — distinguishing geranial from linalool by a lab test', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'chem-q28-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 28', topic: 'Analytical chemistry — predicting a melting-point range for an impure sample', type: 'mc', hasDetail: true, percentCorrect: 45 },
 ]
