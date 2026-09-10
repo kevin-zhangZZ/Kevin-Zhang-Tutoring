@@ -72,8 +72,8 @@ export default function Sidebar({ dark, onToggleDark, collapsed, onToggleCollaps
       {/* Header */}
       <div className={`flex items-center border-b border-gray-200 dark:border-gray-800 ${collapsed ? 'flex-col gap-2 px-2 py-4' : 'justify-between px-5 py-4'}`}>
         {!collapsed && (
-          <span className="font-semibold text-gray-900 dark:text-white text-sm tracking-tight">
-            Math Practice
+          <span className="font-semibold text-gray-900 dark:text-white text-sm tracking-tight leading-tight">
+            Kevin Zhang Tutoring
           </span>
         )}
         <div className={`flex items-center gap-2 ${collapsed ? 'flex-col' : ''}`}>

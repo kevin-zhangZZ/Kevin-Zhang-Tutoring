@@ -1,8 +1,7 @@
-# Math Practice Tools
+# Kevin Zhang Tutoring — VCE Tools
 
-Interactive math practice tools for high school students, deployed as a static site on GitHub Pages.
-
-**Current tools:** Unit Circle (memorization + test mode)
+Interactive VCE practice tools (Maths Methods, Specialist Maths, Chemistry) for high school
+students, deployed as a static site on GitHub Pages.
 
 ---
 

@@ -8,10 +8,10 @@ export default function Home() {
     <div className="max-w-4xl mx-auto px-6 py-12">
       <div className="mb-10">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
-          Math Practice Tools
+          VCE Tools
         </h1>
         <p className="text-gray-500 dark:text-gray-400 text-lg max-w-xl">
-          Various VCE tools
+          Free interactive resources from Kevin Zhang Tutoring
         </p>
       </div>
 

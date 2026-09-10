@@ -57,7 +57,7 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
               </svg>
             )}
           </button>
-          <span className="font-semibold text-sm text-gray-900 dark:text-white">Math Practice</span>
+          <span className="font-semibold text-sm text-gray-900 dark:text-white">Kevin Zhang Tutoring</span>
           <button
             onClick={onToggleDark}
             aria-label="Toggle dark mode"
