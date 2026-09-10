@@ -1,10 +1,12 @@
 // 2014 Mathematical Methods — Exam 2, Question 2 (Section 2).
 // Tasmania Jones carves a statue from a cylinder of ice — volume, surface area minimisation,
 // then a melting-rate related-rates problem. Question text transcribed from the original
-// paper; worked solutions below are original. No video walkthrough yet.
+// paper; the diagram is cropped directly from the original VCAA exam PDF, not a redrawing.
+// Worked solutions below are original. No video walkthrough yet.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import diagramSrc from './meth-2014exam2-q2-ice-cylinder.png'
 
 const EXAMINER_A: SAExaminerStats = {
   marks: [15, 10, 75],
@@ -282,7 +284,7 @@ export default function MethodsQ3_2014Exam2() {
           cylinder had not changed in a thousand years. It was exactly as it was when the Vikings made it.
         </p>
         <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 mt-3 w-fit">
-          <IceCylinderDiagram />
+          <img src={diagramSrc} alt="Ice cylinder of height h metres and diameter d metres, with a 1 m statue at its centre, from the original 2014 VCAA exam paper" className="w-full max-w-[280px]" />
         </div>
       </div>
 
@@ -330,25 +332,5 @@ export default function MethodsQ3_2014Exam2() {
         <WorkingTable rows={rowsH} />
       </PartCard>
     </div>
-  )
-}
-
-function IceCylinderDiagram() {
-  return (
-    <svg viewBox="0 0 240 220" width={200} height={183}>
-      <ellipse cx={120} cy={40} rx={80} ry={22} fill="#e0f2fe" stroke="#38bdf8" strokeWidth={2} />
-      <line x1={40} y1={40} x2={40} y2={170} stroke="#38bdf8" strokeWidth={2} />
-      <line x1={200} y1={40} x2={200} y2={170} stroke="#38bdf8" strokeWidth={2} />
-      <path d="M 40 170 A 80 22 0 0 0 200 170" fill="none" stroke="#38bdf8" strokeWidth={2} />
-      <path d="M 40 170 A 80 22 0 0 1 200 170" fill="none" stroke="#38bdf8" strokeWidth={2} strokeDasharray="4 3" />
-      {/* statue */}
-      <rect x={112} y={95} width={16} height={60} rx={3} fill="#94a3b8" />
-      <circle cx={120} cy={90} r={8} fill="#94a3b8" />
-      <line x1={40} y1={40} x2={200} y2={40} stroke="#9ca3af" strokeWidth={1} strokeDasharray="3 2" />
-      <text x={210} y={100} fontSize={12} className="fill-gray-700 dark:fill-gray-300">h</text>
-      <line x1={222} y1={40} x2={222} y2={170} stroke="#9ca3af" strokeWidth={1} />
-      <text x={110} y={30} fontSize={12} className="fill-gray-700 dark:fill-gray-300">d</text>
-      <line x1={40} y1={18} x2={200} y2={18} stroke="#9ca3af" strokeWidth={1} />
-    </svg>
   )
 }

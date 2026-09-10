@@ -1,11 +1,13 @@
 // 2015 Mathematical Methods (CAS) — Exam 2, MCQ 9. VCAA examination report: 37% correct.
 // Find E(X) for a uniform distribution once the unknown upper endpoint is pinned down by the
-// total-area-equals-1 condition. Question text transcribed from the original paper; solution
+// total-area-equals-1 condition. Question text transcribed from the original paper; the
+// diagram is cropped directly from the original VCAA exam PDF, not a redrawing. Solution
 // is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import diagramSrc from './meth-2015-mcq9-uniform-pdf.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 37, C: 21, D: 15, E: 9 },
@@ -17,8 +19,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: (
-      <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <UniformPdfDiagram />
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
+        <img src={diagramSrc} alt="Uniform probability density function, constant at 1/6 from x=2 to x=a, from the original 2015 VCAA exam paper" className="w-full max-w-[300px]" />
       </div>
     ),
     reason: <>The graph shows a constant density <Katex tex="\tfrac16" /> from <Katex tex="x=2" /> to some unknown <Katex tex="x=a" />.</>,
@@ -49,17 +51,13 @@ export default function MethodsQ9_2015() {
   return (
     <MCQShell
       question={
-        <>
-          <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit mb-3">
-            <UniformPdfDiagram />
-          </div>
-          <p>
-            The graph of the probability density function of a continuous random variable,{' '}
-            <Katex tex="X" />, is shown above. If <Katex tex="a>2" />, then <Katex tex="\mathrm{E}(X)" /> is
-            equal to
-          </p>
-        </>
+        <p>
+          The graph of the probability density function of a continuous random variable,{' '}
+          <Katex tex="X" />, is shown below. If <Katex tex="a>2" />, then <Katex tex="\mathrm{E}(X)" /> is
+          equal to
+        </p>
       }
+      diagram={<img src={diagramSrc} alt="Uniform probability density function, constant at 1/6 from x=2 to x=a, from the original 2015 VCAA exam paper" className="w-full max-w-[280px]" />}
       options={[
         { letter: 'A', content: <Katex tex="8" /> },
         { letter: 'B', content: <Katex tex="5" />, isAnswer: true },
@@ -70,31 +68,5 @@ export default function MethodsQ9_2015() {
       rows={ROWS}
       examinerReport={EXAMINER}
     />
-  )
-}
-
-// A constant-height rectangle from x=2 to x=a=8, height 1/6 — the uniform pdf.
-function UniformPdfDiagram() {
-  const ox = 30
-  const oy = 140
-  const scale = 26
-  const x2 = ox + 2 * scale
-  const xa = ox + 8 * scale
-  const h = 90
-  return (
-    <svg viewBox="0 0 260 160" width={260} height={160}>
-      <line x1={0} y1={oy} x2={250} y2={oy} stroke="#9ca3af" strokeWidth={1.5} />
-      <line x1={ox} y1={10} x2={ox} y2={oy} stroke="#9ca3af" strokeWidth={1.5} />
-      <text x={228} y={oy + 14} fontSize={11} className="fill-gray-500 dark:fill-gray-400">x</text>
-      <text x={ox - 20} y={oy - h - 4} fontSize={11} className="fill-gray-500 dark:fill-gray-400">1/6</text>
-
-      <line x1={x2} y1={oy} x2={x2} y2={oy - h} stroke="#9ca3af" strokeWidth={1} strokeDasharray="3 3" />
-      <line x1={x2} y1={oy - h} x2={xa} y2={oy - h} stroke="#38bdf8" strokeWidth={2.5} />
-      <line x1={x2} y1={oy} x2={x2} y2={oy - h} stroke="#38bdf8" strokeWidth={2.5} />
-      <line x1={xa} y1={oy} x2={xa} y2={oy - h} stroke="#38bdf8" strokeWidth={2.5} />
-
-      <text x={x2 - 4} y={oy + 14} fontSize={11} className="fill-gray-700 dark:fill-gray-300">2</text>
-      <text x={xa - 4} y={oy + 14} fontSize={11} className="fill-rose-600 dark:fill-rose-400">a</text>
-    </svg>
   )
 }

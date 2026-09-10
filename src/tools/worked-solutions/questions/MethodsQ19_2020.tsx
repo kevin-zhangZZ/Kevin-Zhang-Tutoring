@@ -1,11 +1,13 @@
 // 2020 Mathematical Methods — Exam 2, MCQ 19. VCAA examination report: 15% correct — the
 // hardest MCQ on this paper. Relating the probability function for "6 rolled" to that for
-// "6 not rolled" in 20 trials. Question text and diagram transcribed from the original paper.
-// Solution is original.
+// "6 not rolled" in 20 trials. Question text transcribed from the original paper; the
+// diagram is cropped directly from the original VCAA exam PDF, not a redrawing. Solution
+// is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import diagramSrc from './meth-2020-mcq19-probfunc.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 33, C: 15, D: 9, E: 27 },
@@ -47,21 +49,7 @@ export default function MethodsQ19_2020() {
             times, <Katex tex="x" />, that a '6' is rolled on a fair six-sided die in 20 trials.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-            <svg viewBox="0 0 420 220" className="w-full max-w-[380px]">
-              <line x1="40" y1="190" x2="410" y2="190" stroke="currentColor" strokeWidth="1.5" className="text-gray-400" />
-              <line x1="40" y1="190" x2="40" y2="10" stroke="currentColor" strokeWidth="1.5" className="text-gray-400" />
-              {[0.03,0.11,0.2,0.24,0.2,0.13,0.065,0.03,0.013,0.005,0.002].map((p,i) => (
-                <circle key={i} cx={40+i*17} cy={190-p*530} r="3" className="fill-sky-600 dark:fill-sky-400" />
-              ))}
-              {Array.from({length:9},(_,i)=>(
-                <circle key={`z${i}`} cx={40+(11+i)*17} cy={188} r="2.5" className="fill-sky-600 dark:fill-sky-400" />
-              ))}
-              <text x="8" y="55" fontSize="10" className="fill-gray-500 dark:fill-gray-400">0.3</text>
-              <text x="8" y="100" fontSize="10" className="fill-gray-500 dark:fill-gray-400">0.2</text>
-              <text x="8" y="145" fontSize="10" className="fill-gray-500 dark:fill-gray-400">0.1</text>
-              <text x="200" y="210" fontSize="11" className="fill-gray-500 dark:fill-gray-400">x</text>
-              <text x="30" y="8" fontSize="11" className="fill-gray-500 dark:fill-gray-400">p(x)</text>
-            </svg>
+            <img src={diagramSrc} alt="Graph of p(x), the probability function for the number of 6s rolled in 20 trials, from the original 2020 VCAA exam paper" className="w-full max-w-[380px]" />
           </div>
           <p>
             Let <Katex tex="q" /> be the probability function for the number of times, <Katex tex="w" />, that a '6'

@@ -1,59 +1,32 @@
 // 2021 Mathematical Methods — Exam 2, MCQ 8. VCAA examination report: 40% correct. Matching a
-// function's graph to the graph of its derivative. Question text and diagrams transcribed
-// from the original paper (schematic redrawings capturing the same domain, monotonicity and
-// concavity as the originals). Solution is original.
+// function's graph to the graph of its derivative. Question text transcribed from the
+// original paper; the stem graph and all five option graphs are cropped directly from the
+// original VCAA exam PDF, not redrawings. Solution is original.
 
-import type { ReactNode } from 'react'
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import stemSrc from './meth-2021-mcq8-stem.png'
+import optASrc from './meth-2021-mcq8-optA.png'
+import optBSrc from './meth-2021-mcq8-optB.png'
+import optCSrc from './meth-2021-mcq8-optC.png'
+import optDSrc from './meth-2021-mcq8-optD.png'
+import optESrc from './meth-2021-mcq8-optE.png'
 
-function Panel({ children, label }: { children: ReactNode; label?: string }) {
+function Panel({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-2 w-fit">
-      <svg viewBox="0 0 160 130" className="w-full max-w-[160px]">
-        <line x1="10" y1="115" x2="150" y2="115" stroke="currentColor" strokeWidth="1.2" className="text-gray-400" />
-        <line x1="20" y1="125" x2="20" y2="5" stroke="currentColor" strokeWidth="1.2" className="text-gray-400" />
-        <line x1="75" y1="125" x2="75" y2="5" stroke="currentColor" strokeWidth="1" strokeDasharray="3,2" className="text-gray-300 dark:text-gray-600" />
-        {children}
-        <text x="66" y="128" fontSize="9" className="fill-gray-400 dark:fill-gray-500">a</text>
-      </svg>
-      {label && <p className="text-[10px] text-center text-gray-500 dark:text-gray-400 mt-0.5">{label}</p>}
+      <img src={src} alt={alt} className="w-full max-w-[160px]" />
     </div>
   )
 }
 
-const STEM = (
-  <Panel>
-    <path d="M 78 118 Q 82 60 145 20" fill="none" stroke="currentColor" strokeWidth="2" className="text-sky-600 dark:text-sky-400" />
-  </Panel>
-)
-const OPT_A = (
-  <Panel>
-    <path d="M 20 65 Q 50 65 75 60 Q 110 40 145 15" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
-  </Panel>
-)
-const OPT_B = (
-  <Panel>
-    <path d="M 20 100 Q 55 80 75 55 Q 90 30 100 5" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
-  </Panel>
-)
-const OPT_C = (
-  <Panel>
-    <path d="M 78 118 Q 90 100 145 65" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
-  </Panel>
-)
-const OPT_D = (
-  <Panel>
-    <path d="M 20 45 Q 55 75 72 118" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
-    <path d="M 78 10 Q 95 45 145 60" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
-  </Panel>
-)
-const OPT_E = (
-  <Panel>
-    <path d="M 78 10 Q 95 45 145 65" fill="none" stroke="currentColor" strokeWidth="2" className="text-sky-600 dark:text-sky-400" />
-  </Panel>
-)
+const STEM = <Panel src={stemSrc} alt="Graph of f, rising from an asymptote at x=a, from the original 2021 VCAA exam paper" />
+const OPT_A = <Panel src={optASrc} alt="Option A: candidate graph of f′" />
+const OPT_B = <Panel src={optBSrc} alt="Option B: candidate graph of f′" />
+const OPT_C = <Panel src={optCSrc} alt="Option C: candidate graph of f′" />
+const OPT_D = <Panel src={optDSrc} alt="Option D: candidate graph of f′" />
+const OPT_E = <Panel src={optESrc} alt="Option E: candidate graph of f′" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 19, B: 9, C: 3, D: 29, E: 40 },

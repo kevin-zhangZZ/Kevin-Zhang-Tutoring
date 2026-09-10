@@ -1,32 +1,24 @@
 // 2025 Mathematical Methods — Exam 2, MCQ 13. VCAA examination report: 45% correct. This
 // year's paper used four options (A–D) rather than five. Identifying the graph of (g∘f)(x)
 // from sketches of f and g alone, using the standard trick of substituting concrete functions
-// with matching qualitative shape. Question text and diagrams transcribed from the original
-// paper (the worked substitute functions are original, following the same method VCAA's own
-// report uses). Solution is original.
+// with matching qualitative shape. Question text transcribed from the original paper; the
+// stem graph and all four option graphs are cropped directly from the original VCAA exam PDF,
+// not redrawings. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import stemSrc from './meth-2025-mcq13-stem.png'
+import optASrc from './meth-2025-mcq13-optA.png'
+import optBSrc from './meth-2025-mcq13-optB.png'
+import optCSrc from './meth-2025-mcq13-optC.png'
+import optDSrc from './meth-2025-mcq13-optD.png'
 
-const STEM = (
-  <svg viewBox="0 0 220 140" className="w-full max-w-[260px]">
-    <line x1="15" y1="70" x2="205" y2="70" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    <line x1="110" y1="130" x2="110" y2="10" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    <line x1="60" y1="15" x2="165" y2="120" stroke="currentColor" strokeWidth="1.8" className="text-gray-500 dark:text-gray-400" />
-    <path d="M 30 25 Q 65 25 90 60 Q 110 85 130 60 Q 155 25 190 25" fill="none" stroke="currentColor" strokeWidth="2" className="text-sky-600 dark:text-sky-400" />
-    <text x="45" y="15" fontSize="10" className="fill-gray-500 dark:fill-gray-400">f</text>
-    <text x="185" y="18" fontSize="10" className="fill-sky-600 dark:fill-sky-400">g</text>
-  </svg>
-)
-
-const RESULT = (
-  <svg viewBox="0 0 220 140" className="w-full max-w-[260px]">
-    <line x1="15" y1="70" x2="205" y2="70" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    <line x1="110" y1="130" x2="110" y2="10" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    <path d="M 55 20 Q 75 75 95 62 Q 112 52 130 65 Q 150 90 175 20" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-600 dark:text-emerald-400" />
-  </svg>
-)
+const STEM = <img src={stemSrc} alt="Graphs of y=f(x), a line through the origin with negative gradient, and y=g(x), a W-shaped quartic through the origin, from the original 2025 VCAA exam paper" className="w-full max-w-[320px]" />
+const OPT_A = <img src={optASrc} alt="Option A: a W-shaped quartic symmetric about the y-axis, meeting at the origin" className="w-full max-w-[300px]" />
+const OPT_B = <img src={optBSrc} alt="Option B: an M-shaped quartic (ends pointing down) with two humps above the x-axis" className="w-full max-w-[300px]" />
+const OPT_C = <img src={optCSrc} alt="Option C: a W-shaped quartic, asymmetric, shifted toward negative x" className="w-full max-w-[300px]" />
+const OPT_D = <img src={optDSrc} alt="Option D: an M-shaped quartic (ends pointing down) with two humps of different heights" className="w-full max-w-[300px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 17, C: 45, D: 25 },
@@ -59,11 +51,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(g\circ f)(x) = x(x-1)(x+1)(x+2)}" />,
-    reason: <>Rewrite <Katex tex="(-x)(1-x)=x(x-1)" />. Roots at <Katex tex="-2,-1,0,1" /> — <b>not</b> symmetric about the <Katex tex="y" />-axis (the roots aren't evenly spread either side of 0).</>,
+    reason: <>Rewrite <Katex tex="(-x)(1-x)=x(x-1)" />. Roots at <Katex tex="-2,-1,0,1" /> — three non-positive and only one positive, so <b>not</b> symmetric about the <Katex tex="y" />-axis.</>,
   },
   {
-    working: RESULT,
-    reason: <>A "W"-shape whose hump sits just right of centre and whose two dips are at different depths — matches option <b>C</b> (the other options are either fully symmetric, or have the asymmetry the wrong way round).</>,
+    working: <>This is a product of four linear factors, so the leading term is <Katex tex="x^4" /> with a <b>positive</b> coefficient — the graph must rise to <Katex tex="+\infty" /> at <i>both</i> ends (a "W"-family shape), never dropping away at either end.</>,
+    reason: <>Immediately rules out <b>B</b> and <b>D</b> — both curve back downward at the far left and right ends ("M"-family shapes), which would mean a negative leading coefficient instead.</>,
+  },
+  {
+    working: <>Between the two remaining "W"-shaped candidates: <b>A</b> is symmetric about the <Katex tex="y" />-axis (its roots and dip-depths mirror each other either side of <Katex tex="x=0" />); <b>C</b> is visibly asymmetric, shifted toward negative <Katex tex="x" />.</>,
+    reason: <>The roots <Katex tex="-2,-1,0,1" /> are <i>not</i> symmetric about <Katex tex="x=0" /> (three of the four roots are negative or zero) — so the graph can't be symmetric either. Rules out <b>A</b>.</>,
+  },
+  {
+    working: OPT_C,
+    reason: <>Matches option <b>C</b> — the only "W"-family graph that's also visibly asymmetric, shifted toward negative <Katex tex="x" />, consistent with roots <Katex tex="-2,-1,0,1" />.</>,
   },
 ]
 
@@ -73,16 +73,15 @@ export default function MethodsQ13_2025() {
       question={
         <>
           <p className="mb-2">The graphs of <Katex tex="y=f(x)" /> and <Katex tex="y=g(x)" /> are sketched on the same set of axes below.</p>
-          <div className="mb-3">{STEM}</div>
           <p>Which of the following could be the graph of <Katex tex="y=(g\circ f)(x)" />?</p>
         </>
       }
       diagram={STEM}
       options={[
-        { letter: 'A', content: 'A symmetric W-shape, hump centred exactly on the y-axis, both dips equally deep.' },
-        { letter: 'B', content: 'An asymmetric shape with one branch turning back down as x increases.' },
-        { letter: 'C', content: RESULT, isAnswer: true },
-        { letter: 'D', content: 'An asymmetric W-shape with the two humps at clearly different heights.' },
+        { letter: 'A', content: OPT_A },
+        { letter: 'B', content: OPT_B },
+        { letter: 'C', content: OPT_C, isAnswer: true },
+        { letter: 'D', content: OPT_D },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

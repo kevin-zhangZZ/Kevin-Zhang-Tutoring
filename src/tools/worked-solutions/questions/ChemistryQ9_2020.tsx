@@ -1,31 +1,15 @@
 // 2020 Chemistry Exam, MCQ 9. VCAA examination report: 28% correct. Calculating a solution
 // calorimeter's calibration factor from an electrical calibration graph, using the plateau
-// temperature rather than the reading at the moment the current stopped. Question text and
-// graph transcribed from the original paper. Solution is original.
+// temperature rather than the reading at the moment the current stopped. Question text
+// transcribed from the original paper; the graph is cropped directly from the original VCAA
+// exam PDF, not a redrawing. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import graphSrc from './chem-2020-mcq9-calibration-graph.png'
 
-const GRAPH = (
-  <svg viewBox="0 0 260 170" className="w-full max-w-[280px]">
-    <line x1="35" y1="150" x2="245" y2="150" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    <line x1="35" y1="150" x2="35" y2="15" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    {[17, 18, 19, 20, 21, 22].map((t, i) => (
-      <text key={t} x="10" y={150 - i * 24 + 3} fontSize="9" className="fill-gray-500 dark:fill-gray-400">{t}</text>
-    ))}
-    <text x="120" y="163" fontSize="9" className="fill-gray-500 dark:fill-gray-400">time (s)</text>
-    <path
-      d="M 35 126 L 60 126 Q 90 126 110 100 Q 135 78 160 60 Q 180 45 200 32 Q 215 26 245 27"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      className="text-sky-600 dark:text-sky-400"
-    />
-    <line x1="35" y1="27" x2="245" y2="27" strokeDasharray="3,2" stroke="currentColor" strokeWidth="1" className="text-gray-400" />
-    <text x="200" y="20" fontSize="10" className="fill-gray-600 dark:fill-gray-300">21.2 °C plateau</text>
-  </svg>
-)
+const GRAPH = <img src={graphSrc} alt="Graph of temperature versus time during electrical calibration of the solution calorimeter, plateauing at 21.2 °C, from the original 2020 VCAA exam paper" className="w-full max-w-[420px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 28, C: 29, D: 35 },
@@ -77,7 +61,6 @@ export default function ChemistryQ9_2020() {
             current was 2.7 A, applied for 180 s starting at t = 60 s, at a voltage of 5.4 V. The
             temperature-vs-time graph of the calibration is shown below.
           </p>
-          <div className="mb-3">{GRAPH}</div>
           <p>What is the calibration factor for this calorimeter?</p>
         </>
       }

@@ -171,21 +171,47 @@ instead of Katex. Pass plain text via the `eq` prop:
 
 ## 7. Diagrams
 
-Two patterns, chosen by how much the solution logic depends on the figure's exact shape:
+**If the original VCAA question includes a diagram — a graph, direction field, figure,
+geometric drawing, anything — crop it directly from the exam PDF and use that image.
+Never hand-redraw it as an inline SVG (or recreate it any other way), no matter how
+simple the figure looks or how well an SVG could plausibly reproduce it.**
 
-- **Real cropped PNG** — when fidelity to the original figure genuinely matters (e.g. a
-  direction-field/slope-field graph students need to read precise details from). Crop
-  from a `pdftoppm`-rendered page via a small Python/PIL script, save as a `.png` asset
-  next to the question file (see §2 naming), import it, and pass it as `diagram` (or as
-  an option's `content` for the diagram-in-options case, §4).
-- **Hand-drawn inline SVG** — when only the qualitative shape/behaviour matters for the
-  solution (domain, monotonicity, concavity, intercepts), not pixel-fidelity to the
-  original. Preserves exactly the features the reasoning depends on without overstating
-  precision. Used for e.g. a schematic f/f′ matching panel or a piecewise-linear PDF
-  triangle.
+This is a hard rule, not a judgement call to make per-question — a redrawn "schematic"
+version is a second-hand rendering of what VCAA actually printed, and it has repeatedly
+introduced real inaccuracies (subtly wrong curve shape, wrong proportions, a missed
+feature of the original) that a direct crop can't. It also misrepresents the page's own
+"question text transcribed from the original paper" claim if the figure isn't actually
+from the original paper.
 
-`MCQShell`'s `diagram` prop renders in a bordered card to the left of the options on wide
-screens, stacking above them on narrow ones — no extra wrapper needed.
+**How to crop one:**
+1. Render the relevant exam-paper page(s) to PNG: `pdftoppm -r 150-200 -f N -l N
+   {paper}.pdf out` (bump to `-r 200` or higher for a small or detail-heavy figure).
+2. Crop just the diagram out of the rendered page — a small Python/PIL script cropping to
+   the figure's pixel bounding box works well; re-render at higher DPI first if the crop
+   looks soft.
+3. Save as a `.png` asset next to the question file (naming — see §2), import it, and
+   pass it as `diagram` (renders in a bordered card beside the options — no extra wrapper
+   needed) or as an option's own `content` for the diagram-in-options case below.
+4. The file's top comment should say the diagram is "cropped from the original paper" (or
+   similar) — not "transcribed" or "redrawn", which implies it was recreated by hand.
+
+**Diagram-in-options**: when the *options themselves* are diagrams (not just the question
+stem) — e.g. 5 candidate slope-field graphs as options A–E — crop each option as its own
+small PNG from the same rendered page and pass each as that option's `content`, rather
+than one combined image.
+
+**Annotating a cropped diagram** (e.g. tracing a solution curve through a direction
+field, marking a point) is fine — but the annotation goes in an `<img>`/SVG *overlay* on
+top of the real cropped image, or as a separate call-out next to it, never by redrawing
+the underlying figure itself from scratch.
+
+**A hand-drawn inline SVG is only acceptable when there is no original diagram to crop at
+all** — e.g. an axes/number-line sketch built purely to illustrate this site's own
+original reasoning, that VCAA's paper never printed in the first place. If VCAA printed a
+figure for the question, crop it — full stop.
+
+If you find an existing question file that redrew a diagram VCAA actually provided, fix
+it: crop the real figure and replace the SVG, updating the top comment accordingly.
 
 ## 8. VCAA-flagged questions (no single correct answer)
 
