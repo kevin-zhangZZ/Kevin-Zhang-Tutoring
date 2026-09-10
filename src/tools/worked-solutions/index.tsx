@@ -3,6 +3,7 @@ import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, QUESTION_TYPE_LABEL, 
 import { QUESTION_DETAILS } from './details'
 import ComingSoon from './ComingSoon'
 import { examSourceFor } from './examSources'
+import { LightboxProvider } from './Lightbox'
 
 // `topic` is stored as "<category> — <description>" (e.g. "Complex numbers — Argand diagram
 // parallelogram"). The sidebar shows the two halves as a topic/subtopic pair; the detail panel
@@ -84,6 +85,7 @@ export default function WorkedSolutions() {
   const exams = openYear === null ? [] : subject ? DEFAULT_EXAMS[subject] : []
 
   return (
+    <LightboxProvider>
     <div className="px-6 py-10">
       {/* Header */}
       <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
@@ -270,6 +272,7 @@ export default function WorkedSolutions() {
         )}
       </div>
     </div>
+    </LightboxProvider>
   )
 }
 

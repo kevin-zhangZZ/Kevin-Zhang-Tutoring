@@ -5,6 +5,7 @@
 import { useState, ReactNode } from 'react'
 import { WorkingTable, ExaminerReport, type WorkingRow, type MCQExaminerStats } from './QuestionParts'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
+import { DiagramScope } from './Lightbox'
 
 export interface MCQOptionData {
   letter: string
@@ -42,7 +43,7 @@ export function MCQShell({
   const [tab, setTab] = useState<'solution' | 'report' | 'video'>('solution')
 
   return (
-    <div>
+    <DiagramScope>
       {flawed && (
         <div className="flex gap-3 items-start rounded-2xl border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 px-5 py-4 mb-5">
           <span className="flex-none text-xl leading-none mt-0.5">⚠️</span>
@@ -99,7 +100,7 @@ export function MCQShell({
           </div>
         )
       ) : null}
-    </div>
+    </DiagramScope>
   )
 }
 
