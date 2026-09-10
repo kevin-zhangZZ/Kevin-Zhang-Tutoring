@@ -181,4 +181,68 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'chem-q17-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 17', topic: 'Analytical chemistry — concentration of oxalic acid from a permanganate titration', type: 'mc', hasDetail: true, percentCorrect: 56 },
   { id: 'chem-q25-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 25', topic: 'Thermochemistry — mass of fuel needed for a given energy release, in tonnes', type: 'mc', hasDetail: true, percentCorrect: 57 },
   { id: 'chem-q27-2018', subject: 'chemistry', year: 2018, exam: 'Exam', code: 'MCQ 27', topic: 'Equilibrium — Kc for a reversed and doubled reaction', type: 'mc', hasDetail: true, percentCorrect: 59 },
+
+  // The 6 hardest Specialist MCQs from 2019 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic questions excluded, matching the 2015-2018 batch's convention).
+  { id: 'spec-q5-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — where two Argand-plane rays intersect', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'spec-q4-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 4', topic: 'Complex numbers — a sum of i to consecutive factorial powers', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'spec-q16-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — acceleration from a = v dv/dx', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'spec-q6-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — the argument of z⁵/w⁴', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'spec-q9-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 57 },
+  { id: 'spec-q10-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — related rates for a growing conical sand pile', type: 'mc', hasDetail: true, percentCorrect: 58 },
+
+  // The 6 hardest Specialist MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic questions excluded). MCQ 7 is the hardest MCQ on this whole paper at
+  // just 2% — a third-party solutions PDF gets it wrong (see SpecialistQ7_2020.tsx).
+  { id: 'spec-q7-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 7', topic: 'Algebra — partial fractions of 1/(ax(x²+b)) with b < 0', type: 'mc', hasDetail: true, percentCorrect: 2 },
+  { id: 'spec-q4-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 4', topic: 'Functions — a composite function and its range', type: 'mc', hasDetail: true, percentCorrect: 28 },
+  { id: 'spec-q8-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 8', topic: 'Complex numbers — (y − ix)¹⁴ from a known (x + iy)¹⁴', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'spec-q9-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential equations — matching a curve to its slope field', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'spec-q2-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the range of |b·cos⁻¹(x) − a|', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'spec-q17-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — acceleration from a = v dv/dx', type: 'mc', hasDetail: true, percentCorrect: 58 },
+
+  // The 6 hardest Specialist MCQs from 2021 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic questions excluded). This report gives the correct answer directly.
+  { id: 'spec-q6-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — possible arguments when z² is real', type: 'mc', hasDetail: true, percentCorrect: 23 },
+  { id: 'spec-q5-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — maximum |z| on a given circle', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'spec-q4-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 4', topic: 'Complex numbers — Arg(z·z̄/(z − z̄))', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'spec-q9-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — which derivative gives no points of inflection', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'spec-q7-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 7', topic: 'Coordinate geometry — shortest arc between two points on a circle', type: 'mc', hasDetail: true, percentCorrect: 39 },
+  { id: 'spec-q20-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — probability two independent normal times differ', type: 'mc', hasDetail: true, percentCorrect: 43 },
+
+  // The 6 hardest Specialist MCQs from 2022 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic and redacted questions excluded).
+  { id: 'spec-q3-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — which asymptote behaviour always holds', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'spec-q10-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — sign of an implicit tangent gradient at a constrained point', type: 'mc', hasDetail: true, percentCorrect: 21 },
+  { id: 'spec-q18-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 18', topic: 'Statistics — probability two independent normal times differ', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'spec-q2-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 2', topic: 'Trigonometry — simplifying 1 − 4sin²(x)/(tan²(x)+1)', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'spec-q6-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — which locus meets a given circle twice', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'spec-q5-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — the Cartesian form of an Argand-plane ray', type: 'mc', hasDetail: true, percentCorrect: 62 },
+
+  // The 6 hardest Specialist MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic questions excluded).
+  { id: 'spec-q15-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — magnitude of the difference of two unit vectors', type: 'mc', hasDetail: true, percentCorrect: 18 },
+  { id: 'spec-q10-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — a reduction formula via integration by parts', type: 'mc', hasDetail: true, percentCorrect: 33 },
+  { id: 'spec-q5-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — z² in terms of z̄ from a given modulus and argument', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'spec-q8-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 8', topic: 'Differential equations — setting up a mixing problem', type: 'mc', hasDetail: true, percentCorrect: 37 },
+  { id: 'spec-q11-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — setting up a surface-of-revolution integral', type: 'mc', hasDetail: true, percentCorrect: 46 },
+  { id: 'spec-q14-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 14', topic: 'Vectors — c·n for n orthogonal to two given vectors', type: 'mc', hasDetail: true, percentCorrect: 48 },
+
+  // The 6 hardest Specialist MCQs from 2024 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic questions excluded). This year's Section A used 4 options (A-D), not 5.
+  { id: 'spec-q4-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 4', topic: 'Trigonometry — cos(x/2) from sin(x) and the quadrant of x', type: 'mc', hasDetail: true, percentCorrect: 27 },
+  { id: 'spec-q14-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 14', topic: 'Vectors — scalar resolute from a given vector resolute', type: 'mc', hasDetail: true, percentCorrect: 36 },
+  { id: 'spec-q15-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — describing motion along a parametric parabola', type: 'mc', hasDetail: true, percentCorrect: 36 },
+  { id: 'spec-q16-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — how often is velocity perpendicular to another particle’s position', type: 'mc', hasDetail: true, percentCorrect: 43 },
+  { id: 'spec-q9-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — arc length of a cycloid', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'spec-q20-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — probability for the sum of four scaled normal variables', type: 'mc', hasDetail: true, percentCorrect: 48 },
+
+  // The 6 hardest Specialist MCQs from 2025 Exam 2 Section A, by VCAA-reported % correct
+  // (Mechanics-topic questions excluded). This year's Section A used 4 options (A-D), not 5.
+  { id: 'spec-q2-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 2', topic: 'Calculus — a counter-example to a false inflection-point claim', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'spec-q14-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 14', topic: 'Vectors — angle between two vectors from dot and cross products', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'spec-q9-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — setting up a surface-of-revolution integral', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'spec-q18-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 18', topic: 'Vectors — unknown constants from where two 3D lines intersect', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'spec-q15-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the angle-between-planes formula rearranged', type: 'mc', hasDetail: true, percentCorrect: 52 },
+  { id: 'spec-q17-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — integrating acceleration to find velocity', type: 'mc', hasDetail: true, percentCorrect: 52 },
 ]
