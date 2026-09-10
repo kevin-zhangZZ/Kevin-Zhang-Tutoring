@@ -1,11 +1,10 @@
 // 2016 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 65% correct.
-// Trace a solution curve of dy/dx = -x - y through a given direction field.
-// Question text transcribed from the original paper; the direction field shown in the
-// question itself is the actual VCAA diagram (cropped from the official exam PDF), not a
-// redrawing. The *second* copy of the field, in the worked solution below, is a separate
-// original diagram — computing the exact slope -x-y at every grid point and overlaying the
-// exact solved curve — used to explain the answer, not to reproduce the given figure.
-// Solution is original.
+// Trace a solution curve of dy/dx = -x - y through a given direction field. Question text
+// transcribed from the original paper; the direction field diagram — both in the question
+// and in the worked solution below — is the actual VCAA diagram (cropped from the official
+// exam PDF), not a redrawing. The worked solution overlays the exact solved curve and the
+// two marked points on top of that same real image (calibrated to its gridlines), rather
+// than redrawing the field itself. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -107,69 +106,40 @@ export default function SpecialistQ10_2016() {
   )
 }
 
-// Direction field for dy/dx = -x-y on x,y ∈ [-3,3], with a short tangent-line segment drawn at
-// each integer grid point using the exact computed slope (not traced from the original
-// drawing) — plus the actual solution curve y = 1-x-2e^{-x} through (0,-1), extended out to
-// x=3.5 where it reaches option B.
-function SlopeSegment({ x, y, scale, ox, oy }: { x: number; y: number; scale: number; ox: number; oy: number }) {
-  const slope = -x - y
-  const len = 0.35 // half-length in data units, before normalising by slope
-  const norm = Math.sqrt(1 + slope * slope)
-  const dx = len / norm
-  const dy = (len * slope) / norm
-  const cx = ox + x * scale
-  const cy = oy - y * scale
-  return (
-    <line
-      x1={cx - dx * scale}
-      y1={cy + dy * scale}
-      x2={cx + dx * scale}
-      y2={cy - dy * scale}
-      stroke="#9ca3af"
-      strokeWidth={1.5}
-    />
-  )
-}
-
+// Overlays the exact solution curve y = 1-x-2e^{-x} through (0,-1), extended out to x=3.5
+// (where it reaches option B), on top of the *real* cropped VCAA direction-field image —
+// rather than redrawing the field itself. Pixel calibration (ox, oy, scaleX, scaleY) was
+// measured directly off spec-2016-mcq10-direction-field.png's own gridlines (1275×889px;
+// gridlines every 0.5 units), so the overlay lines up with the real image, not an
+// approximation of it.
 function DirectionFieldDiagram() {
-  const scale = 38
-  const ox = 150
-  const oy = 130
-  const points: { x: number; y: number }[] = []
-  for (let x = -3; x <= 3; x++) {
-    for (let y = -2; y <= 2; y++) points.push({ x, y })
-  }
-  // Solution curve y = 1 - x - 2e^{-x}, sampled from x = -1.2 (leaves the visible box near the
-  // top) to x = 3.5 (where option B sits).
+  const ox = 636
+  const oy = 484
+  const scaleX = 143.4
+  const scaleY = 131
   const curvePts: string[] = []
   for (let i = 0; i <= 60; i++) {
     const x = -1.2 + (4.7 * i) / 60
     const y = 1 - x - 2 * Math.exp(-x)
-    curvePts.push(`${ox + x * scale},${oy - y * scale}`)
+    curvePts.push(`${ox + x * scaleX},${oy - y * scaleY}`)
   }
   return (
-    <svg viewBox="0 0 300 260" width={280} height={243}>
-      <line x1={0} y1={oy} x2={300} y2={oy} stroke="#9ca3af" strokeWidth={1.5} />
-      <line x1={ox} y1={0} x2={ox} y2={260} stroke="#9ca3af" strokeWidth={1.5} />
-      {[-3, -2, -1, 1, 2, 3].map(n => (
-        <text key={`xt${n}`} x={ox + n * scale - 3} y={oy + 14} fontSize={10} className="fill-gray-500 dark:fill-gray-400">{n}</text>
-      ))}
-      {[-2, -1, 1, 2].map(n => (
-        <text key={`yt${n}`} x={ox + 6} y={oy - n * scale + 3} fontSize={10} className="fill-gray-500 dark:fill-gray-400">{n}</text>
-      ))}
+    <div className="relative w-full max-w-[300px]">
+      <img
+        src={directionFieldSrc}
+        alt="Direction field for dy/dx + x + y = 0, from the original 2016 VCAA exam paper"
+        className="w-full block"
+      />
+      <svg viewBox="0 0 1275 889" className="absolute inset-0 w-full h-full">
+        <polyline points={curvePts.join(' ')} fill="none" stroke="#38bdf8" strokeWidth={5} />
+        <circle cx={ox} cy={oy - -1 * scaleY} r={8} fill="#dc2626" />
+        <text x={ox + 14} y={oy - -1 * scaleY - 14} fontSize={26} className="fill-rose-600 dark:fill-rose-400">(0, −1)</text>
 
-      {points.map((p, i) => (
-        <SlopeSegment key={i} x={p.x} y={p.y} scale={scale} ox={ox} oy={oy} />
-      ))}
-
-      <polyline points={curvePts.join(' ')} fill="none" stroke="#38bdf8" strokeWidth={2.25} />
-      <circle cx={ox} cy={oy - -1 * scale} r={4} fill="#dc2626" />
-      <text x={ox + 6} y={oy - -1 * scale - 6} fontSize={11} className="fill-rose-600 dark:fill-rose-400">(0, −1)</text>
-
-      <circle cx={ox + 3.5 * scale} cy={oy - -2.56 * scale} r={4} fill="#22c55e" />
-      <text x={ox + 3.5 * scale - 60} y={oy - -2.56 * scale - 8} fontSize={11} className="fill-emerald-600 dark:fill-emerald-400">
-        ≈ (3.5, −2.5)
-      </text>
-    </svg>
+        <circle cx={ox + 3.5 * scaleX} cy={oy - -2.56 * scaleY} r={8} fill="#22c55e" />
+        <text x={ox + 3.5 * scaleX - 190} y={oy - -2.56 * scaleY - 16} fontSize={26} className="fill-emerald-600 dark:fill-emerald-400">
+          ≈ (3.5, −2.5)
+        </text>
+      </svg>
+    </div>
   )
 }

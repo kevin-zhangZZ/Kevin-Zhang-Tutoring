@@ -203,7 +203,26 @@ than one combined image.
 **Annotating a cropped diagram** (e.g. tracing a solution curve through a direction
 field, marking a point) is fine — but the annotation goes in an `<img>`/SVG *overlay* on
 top of the real cropped image, or as a separate call-out next to it, never by redrawing
-the underlying figure itself from scratch.
+the underlying figure itself from scratch, even if the redrawing is computed exactly
+rather than eyeballed (a real past mistake: SpecialistQ10_2016's worked solution redrew
+an entire direction field with exactly-computed slope segments, just to overlay a solved
+curve on top — still a violation, since the base figure itself was redrawn).
+
+To build the overlay: `<div className="relative">` containing the real `<img>` plus a
+sibling `<svg viewBox="0 0 {naturalWidth} {naturalHeight}" className="absolute inset-0
+w-full h-full">` holding only the annotation (curve/points/labels), nothing that
+reproduces the base image's own content. **Measure the pixel calibration from the image
+itself — don't eyeball it.** A quick Python/PIL script does this reliably: threshold to
+dark pixels (`arr < 128`), sum per row and per column, and keep the rows/columns whose
+count exceeds ~50% of the image's width/height — those are the full-span gridlines.
+Cluster consecutive hits and average each cluster to get one pixel coordinate per
+gridline; the middle entry is the origin, and the spacing between entries is the
+per-gridline-interval scale. Use those measured values (`ox`, `oy`, `scaleX`, `scaleY`)
+in the overlay's coordinate math, not estimated ones. After building it, verify the
+overlay lines up by reading the rendered SVG element's own attributes back out (e.g. via
+the browser devtools/JS console) and checking they equal what the calibration math
+predicts, rather than trusting a screenshot — screenshots of an overlay can look
+"close enough" while actually being pixels off.
 
 **A hand-drawn inline SVG is only acceptable when there is no original diagram to crop at
 all** — e.g. an axes/number-line sketch built purely to illustrate this site's own
