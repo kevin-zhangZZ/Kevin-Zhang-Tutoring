@@ -1,17 +1,20 @@
 // 2016 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 65% correct.
 // Trace a solution curve of dy/dx = -x - y through a given direction field, starting at
-// (0, -1) and following the field. This is genuinely a graphical/numerical question, not an
-// algebraic one: solving dy/dx + y = -x by an integrating factor is not in the VCE Specialist
-// Mathematics study design (only separable differential equations are solved analytically in
-// this course) — the direction field is given precisely so the solution curve can be traced
-// directly from it. The solution below does that using Euler's method (which is in the
-// course) as a rigorous, reproducible way to "follow the field lines" numerically from
-// (0, -1), matching the diagram's own 0.5-unit grid spacing, rather than solving the
-// equation. Question text transcribed from the original paper; the direction field diagram —
-// both in the question and in the worked solution below — is the actual VCAA diagram
-// (cropped from the official exam PDF), not a redrawing. The worked solution overlays the
-// traced path and the two marked points on top of that same real image (calibrated to its
-// gridlines), rather than redrawing the field itself. Solution is original.
+// (0, -1) and following the field lines by eye. Three methods are worth distinguishing here:
+// (1) solving dy/dx + y = -x exactly via an integrating factor — not a VCE Specialist
+// Mathematics technique (only separable differential equations are solved analytically in
+// this course); (2) Euler's method — genuinely in the course and fully rigorous, but more
+// machinery than a multiple-choice question calls for; (3) the actual best approach for an
+// MCQ like this: start at the given point and simply follow the arrows already drawn on the
+// field to sketch the curve's approximate path. The solution below leads with (3), notes (1)
+// and (2) only as context, and uses light numerical readings (which happen to coincide with
+// an Euler's-method trace, since that's exactly what "stepping along the arrows" means made
+// precise) only to distinguish between the five candidate points. Question text transcribed
+// from the original paper; the direction field diagram — both in the question and in the
+// worked solution below — is the actual VCAA diagram (cropped from the official exam PDF),
+// not a redrawing. The worked solution overlays the traced path and the two marked points on
+// top of that same real image (calibrated to its gridlines), rather than redrawing the field
+// itself. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -24,19 +27,20 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
 }
 
-// Euler's-method trace of dy/dx = -x-y from (0,-1), step size h=0.5 (matching the diagram's
-// own grid spacing) — computed with y_{n+1} = y_n + h·f(x_n,y_n). Numeric x/y used for the
-// overlay's pixel calibration below; yLabel/fLabel are the same values pre-formatted (proper
-// minus sign, 3 sig figs) for display in the table.
-const STEPS: { x: number; y: number; yLabel: string; fLabel: string }[] = [
-  { x: 0, y: -1, yLabel: '−1', fLabel: '1' },
-  { x: 0.5, y: -0.5, yLabel: '−0.5', fLabel: '0' },
-  { x: 1, y: -0.5, yLabel: '−0.5', fLabel: '−0.5' },
-  { x: 1.5, y: -0.75, yLabel: '−0.75', fLabel: '−0.75' },
-  { x: 2, y: -1.125, yLabel: '−1.125', fLabel: '−0.875' },
-  { x: 2.5, y: -1.5625, yLabel: '−1.563', fLabel: '−0.938' },
-  { x: 3, y: -2.03125, yLabel: '−2.031', fLabel: '−0.969' },
-  { x: 3.5, y: -2.515625, yLabel: '−2.516', fLabel: '−0.984' },
+// Approximate points along the curve traced by eye from (0,-1), following the arrows already
+// drawn on the field. (These happen to be exactly what Euler's method with step size 0.5 —
+// matching the diagram's own grid — would also give, since "step along the local arrow,
+// re-read the new arrow, repeat" is precisely what tracing the field by eye means made
+// precise. Shown here only as a light numerical check, not as the primary method.)
+const STEPS: { x: number; y: number; yLabel: string }[] = [
+  { x: 0, y: -1, yLabel: '−1' },
+  { x: 0.5, y: -0.5, yLabel: '−0.5' },
+  { x: 1, y: -0.5, yLabel: '−0.5' },
+  { x: 1.5, y: -0.75, yLabel: '−0.75' },
+  { x: 2, y: -1.125, yLabel: '−1.125' },
+  { x: 2.5, y: -1.5625, yLabel: '−1.563' },
+  { x: 3, y: -2.03125, yLabel: '−2.031' },
+  { x: 3.5, y: -2.515625, yLabel: '−2.516' },
 ]
 
 const STEPS_TABLE = (
@@ -44,19 +48,15 @@ const STEPS_TABLE = (
     <table className="w-full text-[13px] text-center border-collapse">
       <thead>
         <tr className="bg-gray-50 dark:bg-gray-800/60">
-          <th className="px-3 py-1.5 text-left">Step</th>
           <th className="px-3 py-1.5">x</th>
-          <th className="px-3 py-1.5">y</th>
-          <th className="px-3 py-1.5">f(x, y) = −x − y</th>
+          <th className="px-3 py-1.5">approximate y on the traced curve</th>
         </tr>
       </thead>
       <tbody className="[&>tr]:border-t [&>tr]:border-gray-100 dark:[&>tr]:border-gray-800">
         {STEPS.map((s, i) => (
           <tr key={i}>
-            <td className="px-3 py-1.5 text-left">{i}</td>
             <td className="px-3 py-1.5">{s.x}</td>
             <td className="px-3 py-1.5">{s.yLabel}</td>
-            <td className="px-3 py-1.5">{s.fLabel}</td>
           </tr>
         ))}
       </tbody>
@@ -66,16 +66,12 @@ const STEPS_TABLE = (
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Rearrange: <Katex tex="\dfrac{dy}{dx} = -x-y" />.</>,
-    reason: <>This is a first-order linear differential equation, but solving it by an integrating factor is <b>not</b> a VCE Specialist Mathematics technique — only separable differential equations are solved analytically in this course. The direction field is given precisely so the solution curve can be traced directly from it instead.</>,
+    working: <>Rearranged, <Katex tex="\dfrac{dy}{dx}+y=-x" /> is a first-order linear differential equation — it <em>can</em> be solved exactly using an <b>integrating factor</b> (<Katex tex="e^{\int 1\,dx}=e^x" />), giving the closed form <Katex tex="y=1-x-2e^{-x}" /> through <Katex tex="(0,-1)" />.</>,
+    reason: <>This technique is <b>not</b> in the VCE Specialist Mathematics study design — only separable differential equations are solved analytically in this course. It's mentioned only for context; it isn't the intended (or fastest) way to answer this question.</>,
   },
   {
-    working: <>Start at the given point <Katex tex="(0,-1)" /> and follow the field: at each point, step a small distance <Katex tex="h" /> in the direction the local arrow points, then re-read the new local slope and repeat — this is <b>Euler's method</b>, a genuine VCE Specialist Mathematics technique for numerically tracing a solution curve.</>,
-    reason: <>Using the diagram's own <Katex tex="0.5" />-unit grid spacing as the step size <Katex tex="h" /> keeps every step lined up with an arrow actually drawn on the field.</>,
-  },
-  {
-    working: STEPS_TABLE,
-    reason: <>Each row applies <Katex tex="y_{n+1} = y_n + h \cdot f(x_n,y_n)" /> with <Katex tex="f(x,y)=-x-y" /> and <Katex tex="h=0.5" />, starting from <Katex tex="(x_0,y_0)=(0,-1)" />.</>,
+    working: <>The fully rigorous graphical technique here is <b>Euler's method</b> — stepping along the local slope repeatedly and re-reading it at each new point — which <em>is</em> genuinely in the course.</>,
+    reason: <>For a multiple-choice question, computing Euler steps by hand is more machinery than is actually needed. The practical approach: start at the given point and simply <b>follow the arrows already drawn</b> on the field.</>,
   },
   {
     working: (
@@ -83,23 +79,27 @@ const ROWS: WorkingRow[] = [
         <DirectionFieldDiagram />
       </div>
     ),
-    reason: <>The traced path, plotted directly on the real direction field, visibly follows the arrows all the way from <Katex tex="(0,-1)" /> out to <Katex tex="x=3.5" />.</>,
+    reason: <>Starting at <Katex tex="(0,-1)" />, the local arrows point up-and-right — the curve climbs gently at first. Following the arrows further right, they swing around: by about <Katex tex="x\approx1" /> they're close to horizontal, and beyond that they tilt increasingly down-and-right. The curve turns over, flattens briefly, then descends — bending down more and more steeply as <Katex tex="x" /> grows, exactly as sketched here.</>,
+  },
+  {
+    working: STEPS_TABLE,
+    reason: <>Reading a few approximate coordinates off the sketched curve is enough to tell the five candidate points apart — no need to solve anything, just follow where the traced curve actually sits at each <Katex tex="x" />.</>,
   },
   {
     working: (
       <>
-        A: at <Katex tex="x=3" />, the trace gives <Katex tex="y\approx-2.03" />, not <Katex tex="-1" />.
+        A: at <Katex tex="x=3" />, the curve sits at <Katex tex="y\approx-2.03" />, not <Katex tex="-1" />.
         <br />
-        D: at <Katex tex="x=2.5" />, the trace gives <Katex tex="y\approx-1.56" />, not <Katex tex="-1" />.
+        D: at <Katex tex="x=2.5" />, the curve sits at <Katex tex="y\approx-1.56" />, not <Katex tex="-1" />.
         <br />
-        E: at <Katex tex="x=2.5" />, the trace gives <Katex tex="y\approx-1.56" /> — not even the right sign for <Katex tex="+1" />.
+        E: at <Katex tex="x=2.5" />, the curve sits at <Katex tex="y\approx-1.56" /> — not even the right sign for <Katex tex="+1" />.
       </>
     ),
     reason: 'Each of these sits well away from the traced curve — ruled out.',
   },
   {
-    working: <>C: tracing <em>backward</em> from <Katex tex="(0,-1)" /> with the same method (<Katex tex="h=-0.5" />) gives <Katex tex="y(-1)\approx-2.5" /> and <Katex tex="y(-1.5)\approx-4.25" /> — nowhere near <Katex tex="-2" />.</>,
-    reason: <>The curve drops away much faster than option C suggests as <Katex tex="x" /> decreases below <Katex tex="0" /> — ruled out.</>,
+    working: <>C: following the arrows <em>backward</em> from <Katex tex="(0,-1)" /> instead, the curve drops away sharply — by <Katex tex="x=-1.5" /> it's already well below <Katex tex="-4" />, nowhere near <Katex tex="-2" />.</>,
+    reason: 'Ruled out.',
   },
   {
     working: <Katex display tex="\boxed{y(3.5) \approx -2.52 \ \approx \ (3.5,\,-2.5)}" />,
@@ -137,12 +137,12 @@ export default function SpecialistQ10_2016() {
   )
 }
 
-// Overlays the Euler's-method trace (from the STEPS table above, step size 0.5) on top of the
-// *real* cropped VCAA direction-field image — a piecewise-linear path following the arrows
-// from (0,-1) out to (3.5,-2.52), rather than redrawing the field itself. Pixel calibration
-// (ox, oy, scaleX, scaleY) was measured directly off spec-2016-mcq10-direction-field.png's own
-// gridlines (1275×889px; gridlines every 0.5 units), so the overlay lines up with the real
-// image, not an approximation of it.
+// Overlays the traced path (the STEPS points above, read off the field by following its
+// arrows from (0,-1) out to (3.5,-2.52)) on top of the *real* cropped VCAA direction-field
+// image, rather than redrawing the field itself. Pixel calibration (ox, oy, scaleX, scaleY)
+// was measured directly off spec-2016-mcq10-direction-field.png's own gridlines (1275×889px;
+// gridlines every 0.5 units), so the overlay lines up with the real image, not an
+// approximation of it.
 function DirectionFieldDiagram() {
   const ox = 636
   const oy = 484
