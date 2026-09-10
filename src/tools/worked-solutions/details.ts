@@ -124,6 +124,48 @@ import SpecialistQ9_2025 from './questions/SpecialistQ9_2025'
 import SpecialistQ18_2025 from './questions/SpecialistQ18_2025'
 import SpecialistQ15_2025 from './questions/SpecialistQ15_2025'
 import SpecialistQ17_2025 from './questions/SpecialistQ17_2025'
+import MethodsQ19_2019 from './questions/MethodsQ19_2019'
+import MethodsQ18_2019 from './questions/MethodsQ18_2019'
+import MethodsQ11_2019 from './questions/MethodsQ11_2019'
+import MethodsQ12_2019 from './questions/MethodsQ12_2019'
+import MethodsQ17_2019 from './questions/MethodsQ17_2019'
+import MethodsQ20_2019 from './questions/MethodsQ20_2019'
+import MethodsQ19_2020 from './questions/MethodsQ19_2020'
+import MethodsQ20_2020 from './questions/MethodsQ20_2020'
+import MethodsQ13_2020 from './questions/MethodsQ13_2020'
+import MethodsQ15_2020 from './questions/MethodsQ15_2020'
+import MethodsQ9_2020 from './questions/MethodsQ9_2020'
+import MethodsQ17_2020 from './questions/MethodsQ17_2020'
+import MethodsQ16_2021 from './questions/MethodsQ16_2021'
+import MethodsQ19_2021 from './questions/MethodsQ19_2021'
+import MethodsQ18_2021 from './questions/MethodsQ18_2021'
+import MethodsQ20_2021 from './questions/MethodsQ20_2021'
+import MethodsQ8_2021 from './questions/MethodsQ8_2021'
+import MethodsQ15_2021 from './questions/MethodsQ15_2021'
+import MethodsQ20_2022 from './questions/MethodsQ20_2022'
+import MethodsQ19_2022 from './questions/MethodsQ19_2022'
+import MethodsQ13_2022 from './questions/MethodsQ13_2022'
+import MethodsQ17_2022 from './questions/MethodsQ17_2022'
+import MethodsQ6_2022 from './questions/MethodsQ6_2022'
+import MethodsQ18_2022 from './questions/MethodsQ18_2022'
+import MethodsQ11_2023 from './questions/MethodsQ11_2023'
+import MethodsQ17_2023 from './questions/MethodsQ17_2023'
+import MethodsQ12_2023 from './questions/MethodsQ12_2023'
+import MethodsQ14_2023 from './questions/MethodsQ14_2023'
+import MethodsQ18_2023 from './questions/MethodsQ18_2023'
+import MethodsQ20_2023 from './questions/MethodsQ20_2023'
+import MethodsQ17_2024 from './questions/MethodsQ17_2024'
+import MethodsQ16_2024 from './questions/MethodsQ16_2024'
+import MethodsQ10_2024 from './questions/MethodsQ10_2024'
+import MethodsQ11_2024 from './questions/MethodsQ11_2024'
+import MethodsQ20_2024 from './questions/MethodsQ20_2024'
+import MethodsQ13_2024 from './questions/MethodsQ13_2024'
+import MethodsQ19_2025 from './questions/MethodsQ19_2025'
+import MethodsQ16_2025 from './questions/MethodsQ16_2025'
+import MethodsQ20_2025 from './questions/MethodsQ20_2025'
+import MethodsQ17_2025 from './questions/MethodsQ17_2025'
+import MethodsQ15_2025 from './questions/MethodsQ15_2025'
+import MethodsQ13_2025 from './questions/MethodsQ13_2025'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-mcq6': SpecialistMCQ6,
@@ -267,4 +309,60 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q18-2025': SpecialistQ18_2025,
   'spec-q15-2025': SpecialistQ15_2025,
   'spec-q17-2025': SpecialistQ17_2025,
+
+  // Hardest-6 Methods MCQs, 2019 Exam 2 (see data.ts percentCorrect)
+  'meth-q19-2019': MethodsQ19_2019,
+  'meth-q18-2019': MethodsQ18_2019,
+  'meth-q11-2019': MethodsQ11_2019,
+  'meth-q12-2019': MethodsQ12_2019,
+  'meth-q17-2019': MethodsQ17_2019,
+  'meth-q20-2019': MethodsQ20_2019,
+
+  // Hardest-6 Methods MCQs, 2020 Exam 2 (see data.ts percentCorrect)
+  'meth-q19-2020': MethodsQ19_2020,
+  'meth-q20-2020': MethodsQ20_2020,
+  'meth-q13-2020': MethodsQ13_2020,
+  'meth-q15-2020': MethodsQ15_2020,
+  'meth-q9-2020': MethodsQ9_2020,
+  'meth-q17-2020': MethodsQ17_2020,
+
+  // Hardest-6 Methods MCQs, 2021 Exam 2 (see data.ts percentCorrect)
+  'meth-q16-2021': MethodsQ16_2021,
+  'meth-q19-2021': MethodsQ19_2021,
+  'meth-q18-2021': MethodsQ18_2021,
+  'meth-q20-2021': MethodsQ20_2021,
+  'meth-q8-2021': MethodsQ8_2021,
+  'meth-q15-2021': MethodsQ15_2021,
+
+  // Hardest-6 Methods MCQs, 2022 Exam 2 (see data.ts percentCorrect)
+  'meth-q20-2022': MethodsQ20_2022,
+  'meth-q19-2022': MethodsQ19_2022,
+  'meth-q13-2022': MethodsQ13_2022,
+  'meth-q17-2022': MethodsQ17_2022,
+  'meth-q6-2022': MethodsQ6_2022,
+  'meth-q18-2022': MethodsQ18_2022,
+
+  // Hardest-6 Methods MCQs, 2023 Exam 2 (see data.ts percentCorrect)
+  'meth-q11-2023': MethodsQ11_2023,
+  'meth-q17-2023': MethodsQ17_2023,
+  'meth-q12-2023': MethodsQ12_2023,
+  'meth-q14-2023': MethodsQ14_2023,
+  'meth-q18-2023': MethodsQ18_2023,
+  'meth-q20-2023': MethodsQ20_2023,
+
+  // Hardest-6 Methods MCQs, 2024 Exam 2 (see data.ts percentCorrect)
+  'meth-q17-2024': MethodsQ17_2024,
+  'meth-q16-2024': MethodsQ16_2024,
+  'meth-q10-2024': MethodsQ10_2024,
+  'meth-q11-2024': MethodsQ11_2024,
+  'meth-q20-2024': MethodsQ20_2024,
+  'meth-q13-2024': MethodsQ13_2024,
+
+  // Hardest-6 Methods MCQs, 2025 Exam 2 (see data.ts percentCorrect)
+  'meth-q19-2025': MethodsQ19_2025,
+  'meth-q16-2025': MethodsQ16_2025,
+  'meth-q20-2025': MethodsQ20_2025,
+  'meth-q17-2025': MethodsQ17_2025,
+  'meth-q15-2025': MethodsQ15_2025,
+  'meth-q13-2025': MethodsQ13_2025,
 }

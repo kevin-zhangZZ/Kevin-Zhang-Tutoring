@@ -245,4 +245,64 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q18-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 18', topic: 'Vectors — unknown constants from where two 3D lines intersect', type: 'mc', hasDetail: true, percentCorrect: 49 },
   { id: 'spec-q15-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the angle-between-planes formula rearranged', type: 'mc', hasDetail: true, percentCorrect: 52 },
   { id: 'spec-q17-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — integrating acceleration to find velocity', type: 'mc', hasDetail: true, percentCorrect: 52 },
+
+  // The 6 hardest Methods MCQs from 2019 Exam 2 Section A, by VCAA-reported % correct.
+  // Methods has no Mechanics area of study, so no exclusion category applies here.
+  { id: 'meth-q19-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 19', topic: 'Trigonometry — sum of the solutions to tan(2x) = d', type: 'mc', hasDetail: true, percentCorrect: 25 },
+  { id: 'meth-q18-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — Pr(X > 0) for a piecewise-linear density', type: 'mc', hasDetail: true, percentCorrect: 27 },
+  { id: 'meth-q11-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 11', topic: 'Probability — the condition for independence of two events', type: 'mc', hasDetail: true, percentCorrect: 30 },
+  { id: 'meth-q12-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 12', topic: 'Calculus — combining two given definite integrals', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'meth-q17-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 17', topic: 'Probability — two marbles drawn without replacement', type: 'mc', hasDetail: true, percentCorrect: 43 },
+  { id: 'meth-q20-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 20', topic: 'Algebra — rewriting logs via change of base', type: 'mc', hasDetail: true, percentCorrect: 47 },
+
+  // The 6 hardest Methods MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct.
+  { id: 'meth-q19-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — the "not rolled" probability function from the "rolled" one', type: 'mc', hasDetail: true, percentCorrect: 15 },
+  { id: 'meth-q20-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — a domain giving log₂(cos(ax)) the range [−1, 0]', type: 'mc', hasDetail: true, percentCorrect: 18 },
+  { id: 'meth-q13-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 13', topic: 'Transformations — the matrix mapping cos(x) to cos(2x+4)', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'meth-q15-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — average value of a piecewise-linear function', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'meth-q9-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — a definite integral after dilation and translation', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'meth-q17-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — maximum y-intercept of a tangent to −ln(x+2)', type: 'mc', hasDetail: true, percentCorrect: 42 },
+
+  // The 6 hardest Methods MCQs from 2021 Exam 2 Section A, by VCAA-reported % correct.
+  // This report gives the correct answer directly.
+  { id: 'meth-q16-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 16', topic: 'Trigonometry — sin(x)+cos(y) from cos(x) and sin²(y) in Q4', type: 'mc', hasDetail: true, percentCorrect: 31 },
+  { id: 'meth-q19-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — which piecewise function is differentiable everywhere', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'meth-q18-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 18', topic: 'Functions — max solutions of a translated cubic meeting a log curve', type: 'mc', hasDetail: true, percentCorrect: 39 },
+  { id: 'meth-q20-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 20', topic: 'Probability — Pr(A′ ∪ B) for independent events', type: 'mc', hasDetail: true, percentCorrect: 39 },
+  { id: 'meth-q8-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — matching a graph to its derivative graph', type: 'mc', hasDetail: true, percentCorrect: 40 },
+  { id: 'meth-q15-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 15', topic: 'Probability — an equal split of 4 coins, given at least one head', type: 'mc', hasDetail: true, percentCorrect: 48 },
+
+  // The 6 hardest Methods MCQs from 2022 Exam 2 Section A, by VCAA-reported % correct.
+  { id: 'meth-q20-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — probability a projectile clears a distance, given θ~N', type: 'mc', hasDetail: true, percentCorrect: 30 },
+  { id: 'meth-q19-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — where a cut-corner box reaches maximum volume', type: 'mc', hasDetail: true, percentCorrect: 34 },
+  { id: 'meth-q13-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 13', topic: 'Functions — the maximal domain of ln((x+a)/(x−a))', type: 'mc', hasDetail: true, percentCorrect: 39 },
+  { id: 'meth-q17-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 17', topic: 'Functions — what a dip in an overall rise implies about a function', type: 'mc', hasDetail: true, percentCorrect: 39 },
+  { id: 'meth-q6-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 6', topic: 'Functions — which pair of functions is not a genuine inverse pair', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'meth-q18-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — solving a binomial conditional-probability equation', type: 'mc', hasDetail: true, percentCorrect: 47 },
+
+  // The 6 hardest Methods MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct.
+  { id: 'meth-q11-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — gradient of a product f(x)·g(x) at a point', type: 'mc', hasDetail: true, percentCorrect: 22 },
+  { id: 'meth-q17-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — volume of a cylinder rolled from a rectangular sheet', type: 'mc', hasDetail: true, percentCorrect: 28 },
+  { id: 'meth-q12-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 12', topic: 'Probability — maximum possible mean of a discrete random variable', type: 'mc', hasDetail: true, percentCorrect: 29 },
+  { id: 'meth-q14-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 14', topic: 'Calculus — tangents to a quartic through its own x-intercept', type: 'mc', hasDetail: true, percentCorrect: 29 },
+  { id: 'meth-q18-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 18', topic: 'Trigonometry — number of local minima of sin(ax) on [−aπ, aπ]', type: 'mc', hasDetail: true, percentCorrect: 29 },
+  { id: 'meth-q20-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — largest interval where two composite functions both exist', type: 'mc', hasDetail: true, percentCorrect: 30 },
+
+  // The 6 hardest Methods MCQs from 2024 Exam 2 Section A, by VCAA-reported % correct.
+  // This year's Section A used 4 options (A-D), not 5.
+  { id: 'meth-q17-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 17', topic: 'Algorithms — tracing a cubic-root-finding algorithm', type: 'mc', hasDetail: true, percentCorrect: 27 },
+  { id: 'meth-q16-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — gradient of √f(x) from f and f′ at a point', type: 'mc', hasDetail: true, percentCorrect: 36 },
+  { id: 'meth-q10-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 10', topic: 'Functions — what a sign change in f′ implies about f', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'meth-q11-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 11', topic: 'Probability — exactly two of three students from one row', type: 'mc', hasDetail: true, percentCorrect: 40 },
+  { id: 'meth-q20-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 20', topic: 'Calculus — integral of a period-2 function over two periods', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'meth-q13-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 13', topic: 'Transformations — tracking a local minimum through two transformations', type: 'mc', hasDetail: true, percentCorrect: 45 },
+
+  // The 6 hardest Methods MCQs from 2025 Exam 2 Section A, by VCAA-reported % correct.
+  // This year's Section A used 4 options (A-D), not 5.
+  { id: 'meth-q19-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — finding c from a minimum-distance condition', type: 'mc', hasDetail: true, percentCorrect: 14 },
+  { id: 'meth-q16-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — what must be true for a·ln(bx)′ to have range (0,∞)', type: 'mc', hasDetail: true, percentCorrect: 18 },
+  { id: 'meth-q20-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — which sequence does not map aˣ to a^(2x+2)', type: 'mc', hasDetail: true, percentCorrect: 36 },
+  { id: 'meth-q17-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — which graph satisfies a definite-integral inequality', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'meth-q15-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Transformations — a point on a transformed graph', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'meth-q13-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 13', topic: 'Functions — identifying a composite function from a sketch', type: 'mc', hasDetail: true, percentCorrect: 45 },
 ]

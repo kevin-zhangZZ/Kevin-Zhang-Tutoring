@@ -1,0 +1,113 @@
+// 2021 Mathematical Methods — Exam 2, MCQ 8. VCAA examination report: 40% correct. Matching a
+// function's graph to the graph of its derivative. Question text and diagrams transcribed
+// from the original paper (schematic redrawings capturing the same domain, monotonicity and
+// concavity as the originals). Solution is original.
+
+import type { ReactNode } from 'react'
+import Katex from '../../../components/Katex'
+import { MCQShell } from '../MCQShell'
+import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+
+function Panel({ children, label }: { children: ReactNode; label?: string }) {
+  return (
+    <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-2 w-fit">
+      <svg viewBox="0 0 160 130" className="w-full max-w-[160px]">
+        <line x1="10" y1="115" x2="150" y2="115" stroke="currentColor" strokeWidth="1.2" className="text-gray-400" />
+        <line x1="20" y1="125" x2="20" y2="5" stroke="currentColor" strokeWidth="1.2" className="text-gray-400" />
+        <line x1="75" y1="125" x2="75" y2="5" stroke="currentColor" strokeWidth="1" strokeDasharray="3,2" className="text-gray-300 dark:text-gray-600" />
+        {children}
+        <text x="66" y="128" fontSize="9" className="fill-gray-400 dark:fill-gray-500">a</text>
+      </svg>
+      {label && <p className="text-[10px] text-center text-gray-500 dark:text-gray-400 mt-0.5">{label}</p>}
+    </div>
+  )
+}
+
+const STEM = (
+  <Panel>
+    <path d="M 78 118 Q 82 60 145 20" fill="none" stroke="currentColor" strokeWidth="2" className="text-sky-600 dark:text-sky-400" />
+  </Panel>
+)
+const OPT_A = (
+  <Panel>
+    <path d="M 20 65 Q 50 65 75 60 Q 110 40 145 15" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
+  </Panel>
+)
+const OPT_B = (
+  <Panel>
+    <path d="M 20 100 Q 55 80 75 55 Q 90 30 100 5" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
+  </Panel>
+)
+const OPT_C = (
+  <Panel>
+    <path d="M 78 118 Q 90 100 145 65" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
+  </Panel>
+)
+const OPT_D = (
+  <Panel>
+    <path d="M 20 45 Q 55 75 72 118" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
+    <path d="M 78 10 Q 95 45 145 60" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 dark:text-gray-300" />
+  </Panel>
+)
+const OPT_E = (
+  <Panel>
+    <path d="M 78 10 Q 95 45 145 65" fill="none" stroke="currentColor" strokeWidth="2" className="text-sky-600 dark:text-sky-400" />
+  </Panel>
+)
+
+const EXAMINER: MCQExaminerStats = {
+  percentages: { A: 19, B: 9, C: 3, D: 29, E: 40 },
+  answer: 'E',
+  comment: <>The gradient is decreasing and positive over the interval <Katex tex="(a,\infty)" />.</>,
+}
+
+const ROWS: WorkingRow[] = [
+  {
+    working: STEM,
+    reason: <>The graph of <Katex tex="f" /> exists only for <Katex tex="x>a" />: it falls to <Katex tex="-\infty" /> as <Katex tex="x\to a^+" />, then rises, always increasing but with a <b>decreasing</b> gradient (concave down) — a log-like shape.</>,
+  },
+  {
+    working: <>Since <Katex tex="f" /> is only defined for <Katex tex="x>a" />, so is <Katex tex="f'" />.</>,
+    reason: <>Rules out options A and B (both drawn continuing past <Katex tex="x=a" /> to the left) and option D (drawn with a second branch for <Katex tex="x<a" />).</>,
+  },
+  {
+    working: <>Since <Katex tex="f" /> is always increasing, <Katex tex="f'(x)>0" /> throughout <Katex tex="(a,\infty)" />.</>,
+    reason: 'Every candidate graph restricted to x > a must stay above the x-axis.',
+  },
+  {
+    working: <>Since <Katex tex="f" /> is concave down (its steepness eases off as <Katex tex="x" /> increases), <Katex tex="f'" /> must be <b>decreasing</b>.</>,
+    reason: <>Rules out option C, whose curve for <Katex tex="x>a" /> is <i>increasing</i>, not decreasing.</>,
+  },
+  {
+    working: <Katex display tex="f'(x)\to\infty \text{ as } x\to a^+" />,
+    reason: <>The steep near-vertical drop of <Katex tex="f" /> just right of the asymptote means its gradient is very large there.</>,
+  },
+  {
+    working: OPT_E,
+    reason: <>Option <b>E</b> is the only graph that is positive, decreasing, restricted to <Katex tex="x>a" />, and shoots up sharply as <Katex tex="x\to a^+" /> — exactly matching every property of <Katex tex="f'" /> derived above.</>,
+  },
+]
+
+export default function MethodsQ8_2021() {
+  return (
+    <MCQShell
+      question={
+        <>
+          <p className="mb-2">The graph of the function <Katex tex="f" /> is shown below.</p>
+          <div className="mb-3">{STEM}</div>
+          <p>The graph corresponding to <Katex tex="f'" /> is</p>
+        </>
+      }
+      diagram={STEM}
+      options={[
+        { letter: 'A', content: OPT_A },
+        { letter: 'B', content: OPT_B },
+        { letter: 'C', content: OPT_C },
+        { letter: 'D', content: OPT_D },
+        { letter: 'E', content: OPT_E, isAnswer: true },
+      ]}
+      rows={ROWS}
+      examinerReport={EXAMINER}
+    />
+  )
+}
