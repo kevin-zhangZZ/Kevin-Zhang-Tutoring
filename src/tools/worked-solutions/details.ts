@@ -208,6 +208,11 @@ import ChemistryQ19_2025 from './questions/ChemistryQ19_2025'
 import ChemistryQ18_2025 from './questions/ChemistryQ18_2025'
 import ChemistryQ27_2025 from './questions/ChemistryQ27_2025'
 import ChemistryQ28_2025 from './questions/ChemistryQ28_2025'
+import ChemistryQ20_2023 from './questions/ChemistryQ20_2023'
+import ChemistryQ10_2024 from './questions/ChemistryQ10_2024'
+import ChemistryQ15_2024 from './questions/ChemistryQ15_2024'
+import ChemistryQ27_2024 from './questions/ChemistryQ27_2024'
+import ChemistryQ10_2025 from './questions/ChemistryQ10_2025'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-mcq6': SpecialistMCQ6,
@@ -457,4 +462,9 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'chem-q18-2025': ChemistryQ18_2025,
   'chem-q27-2025': ChemistryQ27_2025,
   'chem-q28-2025': ChemistryQ28_2025,
+  'chem-q20-2023': ChemistryQ20_2023,
+  'chem-q10-2024': ChemistryQ10_2024,
+  'chem-q15-2024': ChemistryQ15_2024,
+  'chem-q27-2024': ChemistryQ27_2024,
+  'chem-q10-2025': ChemistryQ10_2025,
 }

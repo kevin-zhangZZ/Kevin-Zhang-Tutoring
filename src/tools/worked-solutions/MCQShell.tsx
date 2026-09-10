@@ -20,6 +20,7 @@ export function MCQShell({
   examinerReport,
   videoSrc,
   videoIsExternal,
+  flawed,
 }: {
   question: ReactNode
   diagram?: ReactNode
@@ -28,11 +29,32 @@ export function MCQShell({
   examinerReport?: MCQExaminerStats
   videoSrc?: string
   videoIsExternal?: boolean
+  /**
+   * A small number of VCAA questions each year turn out to have no single defensible
+   * correct answer — after review, VCAA itself retroactively accepts two, or all four
+   * or five, of the options as correct (or, rarely, withdraws the question entirely).
+   * Pass an explanation here and it renders as an unmissable warning banner above the
+   * question — before the reader even sees the options — rather than only inside the
+   * Examiner's Report tab. Mark every VCAA-accepted option with `isAnswer: true`.
+   */
+  flawed?: ReactNode
 }) {
   const [tab, setTab] = useState<'solution' | 'report' | 'video'>('solution')
 
   return (
     <div>
+      {flawed && (
+        <div className="flex gap-3 items-start rounded-2xl border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 px-5 py-4 mb-5">
+          <span className="flex-none text-xl leading-none mt-0.5">⚠️</span>
+          <div className="text-[13.5px] leading-relaxed text-amber-900 dark:text-amber-200">
+            <p className="font-display font-bold text-[13px] tracking-wide uppercase mb-1.5">
+              VCAA-flagged question — no single correct answer
+            </p>
+            {flawed}
+          </div>
+        </div>
+      )}
+
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 mb-6">
         {question}
       </div>

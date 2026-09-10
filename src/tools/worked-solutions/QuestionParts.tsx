@@ -13,14 +13,22 @@ export interface SAExaminerStats {
   comment?: ReactNode
 }
 
+export type MCQLetter = 'A' | 'B' | 'C' | 'D' | 'E'
+
 // VCAA examination-report stats for a multiple-choice question: the percentage of
 // students who chose each option (correct one flagged via `answer`), % who left it
-// blank, and the examiner's written comment (if the report included one).
+// blank, and the examiner's written comment (if the report included one). `answer` is
+// normally a single letter, but a small number of VCAA questions each year turn out to
+// have no single defensible correct answer — VCAA itself retroactively accepts two or
+// all four/five options as correct after review. `answer` accepts an array for exactly
+// this case, and `flawed` carries the caveat explaining why (see MCQShell's `flawed`
+// prop, which surfaces the same explanation up front rather than only in this tab).
 export interface MCQExaminerStats {
-  percentages: Partial<Record<'A' | 'B' | 'C' | 'D' | 'E', number>>
-  answer: 'A' | 'B' | 'C' | 'D' | 'E'
+  percentages: Partial<Record<MCQLetter, number>>
+  answer: MCQLetter | MCQLetter[]
   noAnswer?: number
   comment?: ReactNode
+  flawed?: ReactNode
 }
 
 export function PartCard({
@@ -130,8 +138,18 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
 // %A-E distribution + comment for an MCQ, as published in the VCAA examination report.
 export function ExaminerReport({ stats }: { stats: MCQExaminerStats }) {
   const letters = ['A', 'B', 'C', 'D', 'E'] as const
+  const isAnswer = (l: MCQLetter) => (Array.isArray(stats.answer) ? stats.answer.includes(l) : l === stats.answer)
   return (
     <div>
+      {stats.flawed && (
+        <div className="flex gap-2.5 items-start rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 mb-3 text-[12.5px] leading-relaxed text-amber-900 dark:text-amber-200">
+          <span className="flex-none text-base leading-none mt-0.5">⚠️</span>
+          <div>
+            <p className="font-bold tracking-wide mb-1">VCAA-flagged question</p>
+            {stats.flawed}
+          </div>
+        </div>
+      )}
       <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-center text-[12.5px] border-collapse min-w-[300px]">
@@ -153,7 +171,7 @@ export function ExaminerReport({ stats }: { stats: MCQExaminerStats }) {
                   <td
                     key={l}
                     className={`px-3 py-2 ${
-                      l === stats.answer
+                      isAnswer(l)
                         ? 'bg-emerald-50 dark:bg-emerald-950/40 font-bold text-emerald-700 dark:text-emerald-300'
                         : 'text-gray-800 dark:text-gray-100'
                     }`}

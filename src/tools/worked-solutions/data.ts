@@ -32,6 +32,14 @@ export interface QuestionMeta {
   percentCorrect?: number
   /** True once at least one part of this question has a real recorded video walkthrough. */
   hasVideo?: boolean
+  /**
+   * True for the rare MCQ that VCAA itself later flagged as having no single defensible
+   * correct answer — after review, VCAA retroactively accepted two, or all four/five, of
+   * the options as correct. `percentCorrect` is omitted for these (there's no single
+   * "correct" rate to report); the detail page instead shows an unmissable warning
+   * banner via `MCQShell`'s `flawed` prop.
+   */
+  flagged?: boolean
 }
 
 export const QUESTION_TYPE_LABEL: Record<QuestionType, string> = {
@@ -346,6 +354,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'chem-q15-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 15', topic: 'Thermochemistry — comparing petrol-powered and hydrogen-fuel-cell drones', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'chem-q22-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 22', topic: 'Electrochemistry — comparing methane and methanol fuel cells', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'chem-q5-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 5', topic: 'Biochemistry — which statements about coenzymes are correct', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'chem-q20-2023', subject: 'chemistry', year: 2023, exam: 'Exam', code: 'MCQ 20', topic: 'Analytical chemistry — a titration-accuracy question VCAA accepted every answer for', type: 'mc', hasDetail: true, flagged: true },
 
   // The 6 hardest Chemistry MCQs from 2024 Exam Section A, by VCAA-reported % correct.
   { id: 'chem-q24-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 24', topic: 'Analytical chemistry — equivalence-point volume in a permanganate/oxalic acid titration', type: 'mc', hasDetail: true, percentCorrect: 26 },
@@ -354,6 +363,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'chem-q19-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 19', topic: 'Organic chemistry — comparing cyclohexane and benzene', type: 'mc', hasDetail: true, percentCorrect: 34 },
   { id: 'chem-q17-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 17', topic: 'Electrochemistry — electrorefining blister copper', type: 'mc', hasDetail: true, percentCorrect: 38 },
   { id: 'chem-q2-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 2', topic: 'Thermochemistry — comparing combustion energy of glucose and hydrogen', type: 'mc', hasDetail: true, percentCorrect: 40 },
+  { id: 'chem-q10-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 10', topic: 'Thermochemistry — a bioethanol/fuel cell question VCAA accepted every answer for', type: 'mc', hasDetail: true, flagged: true },
+  { id: 'chem-q15-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 15', topic: 'Equilibrium — an SO₃/SO₂/O₂ question VCAA accepted two answers for', type: 'mc', hasDetail: true, flagged: true },
+  { id: 'chem-q27-2024', subject: 'chemistry', year: 2024, exam: 'Exam', code: 'MCQ 27', topic: 'Analytical chemistry — a spectroscopy-comparison question VCAA accepted every answer for', type: 'mc', hasDetail: true, flagged: true },
 
   // The 6 hardest Chemistry MCQs from 2025 Exam Section A, by VCAA-reported % correct.
   { id: 'chem-q8-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 8', topic: 'Electrochemistry — comparing potential differences of four metal–air cells', type: 'mc', hasDetail: true, percentCorrect: 29 },
@@ -362,4 +374,5 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'chem-q18-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 18', topic: 'Electrochemistry — which statement about artificial photosynthesis is correct', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'chem-q27-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 27', topic: 'Organic chemistry — distinguishing geranial from linalool by a lab test', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'chem-q28-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 28', topic: 'Analytical chemistry — predicting a melting-point range for an impure sample', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'chem-q10-2025', subject: 'chemistry', year: 2025, exam: 'Exam', code: 'MCQ 10', topic: 'Organic chemistry — a bioethanol-production question VCAA accepted every answer for', type: 'mc', hasDetail: true, flagged: true },
 ]

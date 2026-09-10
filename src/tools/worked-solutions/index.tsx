@@ -248,6 +248,11 @@ export default function WorkedSolutions() {
                   {selected.percentCorrect}% accuracy
                 </span>
               )}
+              {selected.flagged && (
+                <span className="font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300">
+                  ⚠️ VCAA-flagged
+                </span>
+              )}
               {selected.hasVideo && (
                 <span className="flex items-center gap-1.5 font-display text-[12.5px] font-bold px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400">
                   <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
@@ -301,6 +306,14 @@ function QuestionRow({
           )}
         </span>
       </span>
+      {question.flagged && (
+        <span
+          className="flex-none font-display text-[10.5px] font-bold text-amber-600 dark:text-amber-400 whitespace-nowrap"
+          title="VCAA-flagged: no single correct answer"
+        >
+          ⚠️
+        </span>
+      )}
       {question.hasVideo && (
         <span className="flex-none flex items-center gap-1 font-display text-[10.5px] font-bold text-violet-600 dark:text-violet-400 whitespace-nowrap">
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
