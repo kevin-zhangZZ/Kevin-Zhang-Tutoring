@@ -120,6 +120,12 @@ import SpecialistQ16_2019 from './questions/SpecialistQ16_2019'
 import SpecialistQ6_2019 from './questions/SpecialistQ6_2019'
 import SpecialistQ9_2019 from './questions/SpecialistQ9_2019'
 import SpecialistQ10_2019 from './questions/SpecialistQ10_2019'
+import SpecialistQ1_2018Exam2 from './questions/SpecialistQ1_2018Exam2'
+import SpecialistQ2_2018Exam2 from './questions/SpecialistQ2_2018Exam2'
+import SpecialistQ3_2018Exam2 from './questions/SpecialistQ3_2018Exam2'
+import SpecialistQ4_2018Exam2 from './questions/SpecialistQ4_2018Exam2'
+import SpecialistQ5_2018Exam2 from './questions/SpecialistQ5_2018Exam2'
+import SpecialistQ6_2018Exam2 from './questions/SpecialistQ6_2018Exam2'
 import SpecialistQ2_2018Exam1 from './questions/SpecialistQ2_2018Exam1'
 import SpecialistQ3_2018Exam1 from './questions/SpecialistQ3_2018Exam1'
 import SpecialistQ4_2018Exam1 from './questions/SpecialistQ4_2018Exam1'
@@ -448,6 +454,12 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q6-2019': SpecialistQ6_2019,
   'spec-q9-2019': SpecialistQ9_2019,
   'spec-q10-2019': SpecialistQ10_2019,
+  'spec-q1-2018-e2': SpecialistQ1_2018Exam2,
+  'spec-q2-2018-e2': SpecialistQ2_2018Exam2,
+  'spec-q3-2018-e2': SpecialistQ3_2018Exam2,
+  'spec-q4-2018-e2': SpecialistQ4_2018Exam2,
+  'spec-q5-2018-e2': SpecialistQ5_2018Exam2,
+  'spec-q6-2018-e2': SpecialistQ6_2018Exam2,
   'spec-q2-2018-e1': SpecialistQ2_2018Exam1,
   'spec-q3-2018-e1': SpecialistQ3_2018Exam1,
   'spec-q4-2018-e1': SpecialistQ4_2018Exam1,

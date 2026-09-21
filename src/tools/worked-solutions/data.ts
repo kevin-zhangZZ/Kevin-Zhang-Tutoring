@@ -368,6 +368,17 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — the value of b putting a turning point closest to the origin', type: 'mc', hasDetail: true, percentCorrect: 45 },
   { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — the transformation carrying one density function to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
 
+  // The 2018 Specialist Exam 2 Section B questions. Question 5 parts (a) and (b) are
+  // omitted — a force diagram and resolving forces along the ramp — but (b)(ii) supplies
+  // the acceleration, so parts (c) to (e) are ordinary differential-equation work and are
+  // included. Same treatment the skip guide already gives 2015 and 2016 Exam 2 SAQ5.
+  { id: 'spec-q1-2018-e2', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'Q1', topic: 'Calculus — an arcsin composite, its graph, and a derivative that splits at zero', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2018-e2', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'Q2', topic: 'Complex Numbers — two descriptions of one circle, a bisector line, and a minor segment', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2018-e2', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'Q3', topic: 'Calculus — a fountain as a volume of revolution, filled against an outflow', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2018-e2', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'Q4', topic: 'Vectors — two yachts: paths, collision, speeds and closest approach', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2018-e2', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'Q5(c-e)', topic: 'Differential Equations — a suitcase sliding down a ramp against resistance (parts c-e)', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2018-e2', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'Q6', topic: 'Statistics — a one-tailed test on buffalo heights, its boundary, and a confidence interval', type: 'sa', hasDetail: true },
+
   // The rest of the 2018 Specialist Exam 2 Section A MCQs (the 6 hardest were already
   // covered). MCQ 16 is omitted: a statics equilibrium-of-forces question, off the current
   // study design. MCQ 15 and MCQ 17 use mechanics wording but need only one substitution
