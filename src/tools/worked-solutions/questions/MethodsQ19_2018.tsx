@@ -27,16 +27,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Within <Katex tex="[0,3]" />, this gives four crossings: <Katex tex="x=\tfrac13,\,1,\,\tfrac53,\,3" /> — matching the diagram's dashed lines and the visible crossings at <Katex tex="x=1" /> and <Katex tex="x=3" />.</>,
   },
   {
-    working: (
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <img
-          src={graphSrc}
-          alt="Graphs of f(x)=cos(πx/2) and g(x)=sin(πx) on [0,3], with the regions between them shaded, from the original 2018 VCAA exam paper"
-          className="w-full max-w-[420px]"
-        />
-      </div>
-    ),
-    reason: <>Between consecutive crossings, <Katex tex="f-g" /> keeps a constant sign — testing one point per interval: <Katex tex="f>g" /> on <Katex tex="(0,\tfrac13)" /> and <Katex tex="(1,\tfrac53)" />; <Katex tex="g>f" /> on <Katex tex="(\tfrac13,1)" /> and <Katex tex="(\tfrac53,3)" />.</>,
+    working: <Katex display tex="f>g \text{ on } \left(0,\tfrac13\right)\cup\left(1,\tfrac53\right); \qquad g>f \text{ on } \left(\tfrac13,1\right)\cup\left(\tfrac53,3\right)" />,
+    reason: <>Between consecutive crossings, <Katex tex="f-g" /> keeps a constant sign — testing one point per interval gives this pattern, matching the shading in the diagram above.</>,
   },
   {
     working: <Katex display tex="h(x) = \int\!\left(\cos\tfrac{\pi x}{2}-\sin(\pi x)\right)dx = \frac{2}{\pi}\sin\!\left(\frac{\pi x}{2}\right) + \frac{1}{\pi}\cos(\pi x)" />,
@@ -80,13 +72,21 @@ export default function MethodsQ19_2018() {
   return (
     <MCQShell
       question={
-        <p>
-          The graphs <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=\cos\!\left(\tfrac{\pi x}{2}\right)" />{' '}
-          and <Katex tex="g:\mathbb{R}\to\mathbb{R},\ g(x)=\sin(\pi x)" /> are shown in the diagram
-          below.
-          <br />
-          An integral expression that gives the total area of the shaded regions is
-        </p>
+        <>
+          <p className="mb-2">
+            The graphs <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=\cos\!\left(\tfrac{\pi x}{2}\right)" />{' '}
+            and <Katex tex="g:\mathbb{R}\to\mathbb{R},\ g(x)=\sin(\pi x)" /> are shown in the
+            diagram below.
+          </p>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
+            <img
+              src={graphSrc}
+              alt="Graphs of f(x)=cos(πx/2) and g(x)=sin(πx) on [0,3], with the regions between them shaded, from the original 2018 VCAA exam paper"
+              className="w-full max-w-[380px]"
+            />
+          </div>
+          <p>An integral expression that gives the total area of the shaded regions is</p>
+        </>
       }
       options={[
         { letter: 'A', content: <Katex tex="\displaystyle\int_0^3\!\left(\sin(\pi x)-\cos\tfrac{\pi x}{2}\right)dx" /> },
