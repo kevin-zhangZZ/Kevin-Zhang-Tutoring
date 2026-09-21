@@ -90,14 +90,14 @@ export const guides: SubjectGuide[] = [
         title: 'Mechanics — the whole area of study',
         confidence: 'skip',
         detail:
-          'Forces, Newton’s second law, connected particles on strings/pulleys, friction, normal reaction, equilibrium of particles, momentum/impulse — all of it. Mechanics was removed from Specialist Units 3&4 entirely to make room for the new Logic and Proof area of study.',
-        where: 'Exam 2 — almost always one of the longer extended-response questions',
+          'Forces, Newton’s second law, connected particles on strings/pulleys, friction, normal reaction, equilibrium of particles, momentum/impulse — all of it. Mechanics was removed from Specialist Units 3&4 entirely to make room for the new Logic and Proof area of study.\n\nThe test is whether the *mathematics* needs force analysis, not whether the word "force" appears. Plenty of questions say "a force acts on the particle" as scene-setting for what is really vector calculus — integrating an acceleration vector, or using a = v·dv/dx — and those are still completely on the course. In 2019 Exam 2, for instance, MCQ 13, 14, 17 and the whole of Section B Question 5 are genuine mechanics and should be skipped, but MCQ 15 and MCQ 16 both mention a force and are still worth doing.',
+        where: 'Exam 2 — almost always one of the longer extended-response questions, plus a cluster of MCQs',
       },
       {
         title: 'Arc length from a Cartesian curve',
         confidence: 'skip',
         detail:
-          'Finding the arc length of a curve given in Cartesian form y = f(x), rather than as a vector/parametric curve, is no longer required — this specific technique was dropped even though arc length via vector functions is still examinable.',
+          'Finding the arc length of a curve given in Cartesian form y = f(x), rather than as a vector/parametric curve, is no longer required — this specific technique was dropped even though arc length via vector functions is still examinable.\n\nSo don’t skip on the phrase "arc length" alone: check how the curve is given. 2019 Exam 2 MCQ 7 asks for the length of a curve defined by x = 3sin(t), y = 4cos(t) — that’s parametric, so it’s still fully examinable and worth doing.',
         where: 'Exam 2, Calculus section',
       },
     ],

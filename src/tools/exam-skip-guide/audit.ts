@@ -1,7 +1,9 @@
 // Question-by-question audit of VCAA past exams.
 //
 // Every row below comes from the tutor's own question-by-question exam review (Aug 2026):
-// Methods and Specialist 2014–2017, and Chemistry 2016–2018. It also identified several
+// Methods and Specialist 2014–2017, and Chemistry 2016–2018 — extended to Specialist 2019
+// (both exams) in Sep 2026 while the 2019 worked solutions were being written, which is why
+// that year's rows carry more detailed notes. It also identified several
 // "still doable" workarounds — cases where a question looks like it needs removed content
 // (a matrix, a force/motion setup, an old technique/instrument) but can actually be solved by
 // translating it into non-matrix, non-mechanics, or otherwise current-syllabus terms. Those
@@ -82,6 +84,11 @@ export const audits: SubjectAudit[] = [
       { year: 2017, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis' },
       { year: 2017, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis' },
       { year: 2017, exam: 'Exam 2', question: 'SAQ3e', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
+      { year: 2019, exam: 'Exam 1', question: 'Entire Q9', topic: 'Dynamics and force analysis', note: 'Both parts are statics: a mass hanging in equilibrium from a smooth ring on a string, resolving the tension (a) and then adding a horizontal force (b). Nothing salvageable — skip the whole question. The other nine questions on this paper are all current.' },
+      { year: 2019, exam: 'Exam 2', question: 'MCQ 13', topic: 'Dynamics and force analysis', note: 'Doable if you accept one substitution: net force = mass × acceleration, so F₁ + F₂ = 3(√3 i + j). Everything after that is ordinary vector work — subtract to get F₂, then use the dot product for the angle.' },
+      { year: 2019, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis', note: 'Connected masses over a pulley with tension in the string — no workaround, skip it.' },
+      { year: 2019, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis', note: 'A particle held in equilibrium by three coplanar forces (Lami / triangle of forces) — skip it.' },
+      { year: 2019, exam: 'Exam 2', question: 'Entire SAQ5', topic: 'Dynamics and force analysis', note: 'Masses on a smooth inclined plane connected over a pulley: label the weight/normal/tension forces, show a condition for equilibrium, find the acceleration and the distance travelled. Every part needs force analysis — skip the whole question.' },
     ],
     notFound: [
       {

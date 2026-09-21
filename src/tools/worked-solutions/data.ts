@@ -217,6 +217,33 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q9-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 57 },
   { id: 'spec-q10-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — related rates for a growing conical sand pile', type: 'mc', hasDetail: true, percentCorrect: 58 },
 
+  // The rest of 2019 Specialist Exam 2 Section A, filling out the 20-question paper (the 6
+  // hardest, above, were already covered). MCQ 13, 14 and 17 are omitted — all three are
+  // Mechanics (resolving forces, connected masses over a pulley, equilibrium of three coplanar
+  // forces), which is no longer an area of study. MCQ 15 and 16 are kept: both mention a force
+  // in passing, but the mathematics is pure vector kinematics/calculus with no force analysis.
+  { id: 'spec-q1-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 1', topic: 'Graphs — which feature eˣ/(x−1) does not have', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q2-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 2', topic: 'Graphs — the oblique asymptote of a rational function', type: 'mc', hasDetail: true, percentCorrect: 86 },
+  { id: 'spec-q3-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 3', topic: 'Trigonometry — the implied domain of a secant function', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q7-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — the arc-length integral for a parametric curve', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'spec-q8-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — rewriting a definite integral under a substitution', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'spec-q11-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 11', topic: 'Vectors — unknown coordinates from a midpoint in 3D', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q12-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 12', topic: 'Vectors — the equations behind a vector resolute condition', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'spec-q15-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the path traced under a constant perpendicular acceleration', type: 'mc', hasDetail: true, percentCorrect: 35 },
+  { id: 'spec-q18-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 18', topic: 'Statistics — a 98% confidence interval for a mean', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q19-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 19', topic: 'Statistics — coefficients of a linear combination from its mean and variance', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'spec-q20-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — the p value for a one-sided test', type: 'mc', hasDetail: true, percentCorrect: 70 },
+
+  // The complete 2019 Specialist Exam 2 Section B (extended response), cross-referenced against
+  // itute's independent solutions and the VCAA examination report. Question 5 is omitted — it is
+  // a full Mechanics question (masses on an inclined plane connected over a pulley, weight and
+  // normal reaction forces, equilibrium), and Mechanics is no longer an area of study.
+  { id: 'spec-q1-2019-e2', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'Q1(a–e)', topic: 'Calculus — a parametric curve, its cartesian form, gradient and volume of revolution', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2019-e2', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'Q2(a–d)', topic: 'Complex numbers — conjugate roots and the circle of minimum radius through them', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2019-e2', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'Q3(a–b)', topic: 'Differential equations — exponential growth, separation of variables, and no inflection', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2019-e2', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Vectors — a pyramid on a parallelogram base, its area, unit normal and volume', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2019-e2', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'Q6(a–f)', topic: 'Statistics — sample means, the difference of two means, and a two-tailed test', type: 'sa', hasDetail: true },
+
   // The complete 2019 Specialist Exam 1 (short answer), cross-referenced against itute's
   // independent solutions and the VCAA examination report. Question 9 is omitted: both its
   // parts are Mechanics (resolving forces on a mass hanging from a string in equilibrium),
