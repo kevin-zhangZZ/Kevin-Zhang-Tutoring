@@ -2,10 +2,13 @@
 // Add a new file under ./questions and register it here as you write more up.
 
 import { ComponentType } from 'react'
-import SpecialistMCQ6 from './questions/SpecialistMCQ6'
-import SpecialistQ2_2016 from './questions/SpecialistQ2_2016'
-import SpecialistSAQ3_2016 from './questions/SpecialistSAQ3_2016'
-import SpecialistQ4_2016 from './questions/SpecialistQ4_2016'
+import SpecialistQ6_2016 from './questions/SpecialistQ6_2016'
+import SpecialistQ2_2016Exam2 from './questions/SpecialistQ2_2016Exam2'
+import SpecialistQ1_2016Exam2 from './questions/SpecialistQ1_2016Exam2'
+import SpecialistQ5_2016Exam2 from './questions/SpecialistQ5_2016Exam2'
+import SpecialistQ6_2016Exam2 from './questions/SpecialistQ6_2016Exam2'
+import SpecialistQ3_2016Exam2 from './questions/SpecialistQ3_2016Exam2'
+import SpecialistQ4_2016Exam2 from './questions/SpecialistQ4_2016Exam2'
 import MethodsQ3_2015 from './questions/MethodsQ3_2015'
 import MethodsQ16_2015 from './questions/MethodsQ16_2015'
 import MethodsQ17_2015 from './questions/MethodsQ17_2015'
@@ -129,6 +132,26 @@ import SpecialistQ3_2015 from './questions/SpecialistQ3_2015'
 import SpecialistQ10_2015 from './questions/SpecialistQ10_2015'
 import SpecialistQ9_2016 from './questions/SpecialistQ9_2016'
 import SpecialistQ1_2016 from './questions/SpecialistQ1_2016'
+import SpecialistQ2_2016 from './questions/SpecialistQ2_2016'
+import SpecialistQ3_2016 from './questions/SpecialistQ3_2016'
+import SpecialistQ4_2016 from './questions/SpecialistQ4_2016'
+import SpecialistQ5_2016 from './questions/SpecialistQ5_2016'
+import SpecialistQ8_2016 from './questions/SpecialistQ8_2016'
+import SpecialistQ11_2016 from './questions/SpecialistQ11_2016'
+import SpecialistQ12_2016 from './questions/SpecialistQ12_2016'
+import SpecialistQ15_2016 from './questions/SpecialistQ15_2016'
+import SpecialistQ16_2016 from './questions/SpecialistQ16_2016'
+import SpecialistQ19_2016 from './questions/SpecialistQ19_2016'
+import SpecialistQ20_2016 from './questions/SpecialistQ20_2016'
+import SpecialistQ2_2016Exam1 from './questions/SpecialistQ2_2016Exam1'
+import SpecialistQ3_2016Exam1 from './questions/SpecialistQ3_2016Exam1'
+import SpecialistQ4_2016Exam1 from './questions/SpecialistQ4_2016Exam1'
+import SpecialistQ5_2016Exam1 from './questions/SpecialistQ5_2016Exam1'
+import SpecialistQ6_2016Exam1 from './questions/SpecialistQ6_2016Exam1'
+import SpecialistQ7_2016Exam1 from './questions/SpecialistQ7_2016Exam1'
+import SpecialistQ8_2016Exam1 from './questions/SpecialistQ8_2016Exam1'
+import SpecialistQ9_2016Exam1 from './questions/SpecialistQ9_2016Exam1'
+import SpecialistQ10_2016Exam1 from './questions/SpecialistQ10_2016Exam1'
 import SpecialistQ18_2016 from './questions/SpecialistQ18_2016'
 import SpecialistQ10_2016 from './questions/SpecialistQ10_2016'
 import SpecialistQ19_2017 from './questions/SpecialistQ19_2017'
@@ -405,10 +428,13 @@ import ChemistryQ27_2024 from './questions/ChemistryQ27_2024'
 import ChemistryQ10_2025 from './questions/ChemistryQ10_2025'
 
 export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
-  'spec-mcq6': SpecialistMCQ6,
-  'spec-q2-2016': SpecialistQ2_2016,
-  'spec-saq3': SpecialistSAQ3_2016,
-  'spec-q4-2016': SpecialistQ4_2016,
+  'spec-q6-2016': SpecialistQ6_2016,
+  'spec-q2-2016-e2': SpecialistQ2_2016Exam2,
+  'spec-q1-2016-e2': SpecialistQ1_2016Exam2,
+  'spec-q5-2016-e2': SpecialistQ5_2016Exam2,
+  'spec-q6-2016-e2': SpecialistQ6_2016Exam2,
+  'spec-q3-2016-e2': SpecialistQ3_2016Exam2,
+  'spec-q4-2016-e2': SpecialistQ4_2016Exam2,
 
   'meth-q3-2015': MethodsQ3_2015,
   'meth-q16-2015': MethodsQ16_2015,
@@ -459,6 +485,26 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q10-2015': SpecialistQ10_2015,
   'spec-q9-2016': SpecialistQ9_2016,
   'spec-q1-2016': SpecialistQ1_2016,
+  'spec-q2-2016': SpecialistQ2_2016,
+  'spec-q3-2016': SpecialistQ3_2016,
+  'spec-q4-2016': SpecialistQ4_2016,
+  'spec-q5-2016': SpecialistQ5_2016,
+  'spec-q8-2016': SpecialistQ8_2016,
+  'spec-q11-2016': SpecialistQ11_2016,
+  'spec-q12-2016': SpecialistQ12_2016,
+  'spec-q15-2016': SpecialistQ15_2016,
+  'spec-q16-2016': SpecialistQ16_2016,
+  'spec-q19-2016': SpecialistQ19_2016,
+  'spec-q20-2016': SpecialistQ20_2016,
+  'spec-q2-2016-e1': SpecialistQ2_2016Exam1,
+  'spec-q3-2016-e1': SpecialistQ3_2016Exam1,
+  'spec-q4-2016-e1': SpecialistQ4_2016Exam1,
+  'spec-q5-2016-e1': SpecialistQ5_2016Exam1,
+  'spec-q6-2016-e1': SpecialistQ6_2016Exam1,
+  'spec-q7-2016-e1': SpecialistQ7_2016Exam1,
+  'spec-q8-2016-e1': SpecialistQ8_2016Exam1,
+  'spec-q9-2016-e1': SpecialistQ9_2016Exam1,
+  'spec-q10-2016-e1': SpecialistQ10_2016Exam1,
   'spec-q18-2016': SpecialistQ18_2016,
   'spec-q10-2016': SpecialistQ10_2016,
   'spec-q19-2017': SpecialistQ19_2017,

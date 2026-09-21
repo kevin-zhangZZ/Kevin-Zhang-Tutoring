@@ -9,7 +9,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 11, B: 12, C: 11, D: 4, E: 61 },
   answer: 'E',
-  noAnswer: 0,
+  noAnswer: 1,
   comment: <>Write <Katex tex="\dfrac{x}{3}=\mathrm{cosec}^2(t)" />, <Katex tex="\dfrac{y+1}{4}=\cot(t)" />, then eliminate <Katex tex="t" />.</>,
 }
 
