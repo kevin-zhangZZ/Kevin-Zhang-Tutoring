@@ -270,13 +270,19 @@ see §2, e.g. `meth-2019exam1-q5-truncus-sketch.png`). Python is at
   curve itself. Check the rendered PNG at full size before using it; nudge an
   `ax.annotate`'s `xytext` offset (or its `ha`/`va`) whenever a label sits on top of the
   axis line, another label, a tick number, or the curve.
-- **The plotted curve stays within the given axis range** — sample the function only over
-  the *x*-domain the question actually restricts it to (which may be narrower than the
-  full axis range VCAA drew for framing/labelling purposes; don't sample past it just
-  because the grid extends further). Set `xlim`/`ylim` to the given range itself (plus the
-  small margin `draw_axes` needs for the arrowhead), not a range that happens to fit the
-  curve — a vertical asymptote will still run off the top/bottom of frame as it should,
-  that's expected, not an overlap or an extension to avoid.
+- **The plotted curve never extends past the given axis range — including at an
+  asymptote.** Sample the function only over the *x*-domain the question actually
+  restricts it to (which may be narrower than the full axis range VCAA drew for
+  framing/labelling purposes — don't sample past it just because the grid extends
+  further). Then set `ax.set_xlim(xmin, xmax)` / `ax.set_ylim(ymin, ymax)` to the given
+  range **exactly, with no extra padding** — matplotlib clips any plotted line to the
+  axes' own limits automatically, so a strict `ylim` is what stops a vertical asymptote
+  from visibly poking up past the top of the grid (padding the limits to make room for
+  the arrowhead is exactly what lets the curve overshoot — don't do that). To keep the
+  arrowhead itself from being clipped right at that same boundary, pass
+  `annotation_clip=False` to the `ax.annotate(...)` calls that draw the two axis arrows;
+  text labels don't need this (`clip_on=False` is matplotlib's default for text, so the
+  `x`/`y` labels sitting just past the tip already render in full).
 - **Gridlines**: shown, light grey, behind the curve (`zorder`) and behind nothing else.
 - **Axis range and step size must match VCAA's own blank grid exactly** — re-open the
   source PDF page for that part and read off the printed range and tick spacing (the two

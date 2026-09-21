@@ -1,10 +1,13 @@
 // 2016 Specialist Mathematics — Exam 2, Question 4 (10 marks).
 // Two ships' position vectors: collision check, angle between paths, closest approach.
 // Question text transcribed from the original paper; worked solutions below are original.
-// No video walkthrough yet — the tutor will record and add these later.
+// Part (b)'s sketch axes VCAA supplied were blank, so the plotted ship paths are this
+// site's own original content — plotted with matplotlib, not cropped from anything VCAA
+// printed. No video walkthrough yet — the tutor will record and add these later.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import shipPathsSrc from './spec-2016exam2-q4b-ship-paths.png'
 
 const EXAMINER_A: SAExaminerStats = {
   marks: [23, 18, 58],
@@ -97,8 +100,12 @@ export default function SpecialistQ4_2016() {
     },
     {
       working: (
-        <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
-          <ShipPathsDiagram />
+        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+          <img
+            src={shipPathsSrc}
+            alt="Ship A's path from (10,0) to (-5,9) and ship B's path from (-8,-2) to (0,8), both relative to the lighthouse at the origin — this site's own sketch, not a VCAA diagram"
+            className="w-full max-w-[320px]"
+          />
         </div>
       ),
       reason: (
@@ -195,45 +202,5 @@ export default function SpecialistQ4_2016() {
         <WorkingTable rows={rowsDii} />
       </PartCard>
     </div>
-  )
-}
-
-// Lighthouse-at-origin sketch: ship A's path (sky) and ship B's path (amber), each drawn
-// over the visible t-range with an arrowhead showing the direction of increasing t.
-function ShipPathsDiagram() {
-  const A1 = { x: 300, y: 150 } // t=-1 -> (10,0)
-  const A2 = { x: 75, y: 15 } // t=2 -> (-5,9), direction of travel
-  const B1 = { x: 30, y: 180 } // t=0 -> (-8,-2)
-  const B2 = { x: 150, y: 30 } // t=2 -> (0,8), direction of travel
-
-  return (
-    <svg viewBox="0 0 300 300" width={260} height={260}>
-      {[-10, -5, 0, 5, 10].map(n => (
-        <g key={n}>
-          <line x1={150 + n * 15} y1={0} x2={150 + n * 15} y2={300} stroke="#e5e7eb" strokeWidth={1} />
-          <line x1={0} y1={150 - n * 15} x2={300} y2={150 - n * 15} stroke="#e5e7eb" strokeWidth={1} />
-        </g>
-      ))}
-      <line x1={0} y1={150} x2={300} y2={150} stroke="#9ca3af" strokeWidth={1.5} />
-      <line x1={150} y1={0} x2={150} y2={300} stroke="#9ca3af" strokeWidth={1.5} />
-
-      <circle cx={150} cy={150} r={4} fill="#374151" />
-      <text x={156} y={146} fontSize={11} className="fill-gray-700 dark:fill-gray-300">O</text>
-
-      <defs>
-        <marker id="arrowA" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#0ea5e9" />
-        </marker>
-        <marker id="arrowB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#f97316" />
-        </marker>
-      </defs>
-
-      <line x1={A1.x} y1={A1.y} x2={A2.x} y2={A2.y} stroke="#0ea5e9" strokeWidth={2.5} markerEnd="url(#arrowA)" />
-      <line x1={B1.x} y1={B1.y} x2={B2.x} y2={B2.y} stroke="#f97316" strokeWidth={2.5} markerEnd="url(#arrowB)" />
-
-      <text x={A1.x - 22} y={A1.y - 8} fontSize={12} className="fill-sky-600 dark:fill-sky-400" fontWeight={700}>A</text>
-      <text x={B1.x + 6} y={B1.y + 14} fontSize={12} className="fill-orange-600 dark:fill-orange-400" fontWeight={700}>B</text>
-    </svg>
   )
 }
