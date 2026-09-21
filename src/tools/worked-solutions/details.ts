@@ -26,6 +26,10 @@ import MethodsQ6_2017Exam1 from './questions/MethodsQ6_2017Exam1'
 import MethodsQ7_2017Exam1 from './questions/MethodsQ7_2017Exam1'
 import MethodsQ8_2017Exam1 from './questions/MethodsQ8_2017Exam1'
 import MethodsQ9_2017Exam1 from './questions/MethodsQ9_2017Exam1'
+import MethodsQ1_2017Exam2 from './questions/MethodsQ1_2017Exam2'
+import MethodsQ2_2017Exam2 from './questions/MethodsQ2_2017Exam2'
+import MethodsQ3_2017Exam2 from './questions/MethodsQ3_2017Exam2'
+import MethodsQ4_2017Exam2 from './questions/MethodsQ4_2017Exam2'
 import MethodsQ19_2016 from './questions/MethodsQ19_2016'
 import MethodsQ12_2016 from './questions/MethodsQ12_2016'
 import MethodsQ11_2015 from './questions/MethodsQ11_2015'
@@ -375,6 +379,10 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q7-2017-e1': MethodsQ7_2017Exam1,
   'meth-q8-2017-e1': MethodsQ8_2017Exam1,
   'meth-q9-2017-e1': MethodsQ9_2017Exam1,
+  'meth-q1-2017-e2': MethodsQ1_2017Exam2,
+  'meth-q2-2017-e2': MethodsQ2_2017Exam2,
+  'meth-q3-2017-e2': MethodsQ3_2017Exam2,
+  'meth-q4-2017-e2': MethodsQ4_2017Exam2,
 
   // Hardest-5 MCQs per subject, 2014-2016 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2016': MethodsQ19_2016,
