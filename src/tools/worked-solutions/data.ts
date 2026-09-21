@@ -217,6 +217,20 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q9-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 57 },
   { id: 'spec-q10-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — related rates for a growing conical sand pile', type: 'mc', hasDetail: true, percentCorrect: 58 },
 
+  // The complete 2019 Specialist Exam 1 (short answer), cross-referenced against itute's
+  // independent solutions and the VCAA examination report. Question 9 is omitted: both its
+  // parts are Mechanics (resolving forces on a mass hanging from a string in equilibrium),
+  // and Mechanics is no longer an area of study in VCE Specialist Mathematics.
+  { id: 'spec-q1-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q1', topic: 'Differential equations — separating variables with an f′/f integral', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q2', topic: 'Algebra — solving an absolute value equation case by case', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q3(a–c)', topic: 'Probability — mean and variance of a linear function of a random variable', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q4', topic: 'Vectors — when two particles collide, not just where their paths cross', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Calculus — turning points of cos²x + cos x + 1, then sketching its reciprocal', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q6', topic: 'Vectors — the value of d making three vectors linearly dependent', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q7(a–d)', topic: 'Complex numbers — polar form, de Moivre, and when a power is real or imaginary', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q8', topic: 'Calculus — a solid of revolution whose integrand splits into two standard forms', type: 'sa', hasDetail: true },
+  { id: 'spec-q10-2019-e1', subject: 'specialist', year: 2019, exam: 'Exam 1', code: 'Q10', topic: 'Calculus — implicit differentiation at a point, answered in exact surd form', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). MCQ 7 is the hardest MCQ on this whole paper at
   // just 2% — a third-party solutions PDF gets it wrong (see SpecialistQ7_2020.tsx).
