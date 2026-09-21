@@ -342,6 +342,18 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q15-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — the derivative of an inverse function at a point', type: 'mc', hasDetail: true, percentCorrect: 55 },
   { id: 'meth-q16-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — matching the graph of f′ to a given graph of f', type: 'mc', hasDetail: true, percentCorrect: 63 },
 
+  // The complete 2018 Methods Exam 1 (short answer), cross-referenced against the VCAA
+  // examination report and re-derived independently with sympy.
+  { id: 'meth-q1-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q1', topic: 'Calculus — a chain-rule derivative, then a quotient rule evaluated at x = π', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — antidifferentiating a given f′ and pinning the constant', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q3', topic: 'Trigonometry — solving 2cos(x)+1 = 0, then sketching the curve', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q4', topic: 'Probability — normal symmetry, then standardising a tail probability', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q5', topic: 'Functions — the rule and domain of the inverse of a truncus branch', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q6', topic: 'Probability — total probability across two boxes, then the reverse conditional', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q7', topic: 'Calculus — the point on a line closest to the origin, and that distance', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q8', topic: 'Calculus — a show-that derivative, one intersection of f and f′, and a bounded area', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q9', topic: 'Calculus — integrals of x sin(x) over π-intervals, a tangent, a translation and a shaded area', type: 'sa', hasDetail: true },
+
   // The complete 2019 Methods Exam 1 (short answer), cross-referenced against itute's
   // independent solutions and the VCAA examination report.
   { id: 'meth-q1-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — differentiating and antidifferentiating 1/(3x-1), then a quotient-rule evaluation', type: 'sa', hasDetail: true },
