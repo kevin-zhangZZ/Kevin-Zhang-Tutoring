@@ -18,6 +18,7 @@ export function MCQShell({
   diagram,
   options,
   rows,
+  background,
   examinerReport,
   videoSrc,
   videoIsExternal,
@@ -27,6 +28,12 @@ export function MCQShell({
   diagram?: ReactNode
   options: MCQOptionData[]
   rows: WorkingRow[]
+  /**
+   * Optional context to read before the working — the MCQ equivalent of a `<Background>`
+   * inside a PartCard. Renders at the top of the Worked Solution tab. Use it when the
+   * question leans on an idea the reader may not have met, not to restate the question.
+   */
+  background?: ReactNode
   examinerReport?: MCQExaminerStats
   videoSrc?: string
   videoIsExternal?: boolean
@@ -84,7 +91,14 @@ export function MCQShell({
       </div>
 
       {tab === 'solution' ? (
-        <WorkingTable rows={rows} />
+        background ? (
+          <div className="flex flex-col gap-4">
+            {background}
+            <WorkingTable rows={rows} />
+          </div>
+        ) : (
+          <WorkingTable rows={rows} />
+        )
       ) : tab === 'report' && examinerReport ? (
         <ExaminerReport stats={examinerReport} />
       ) : tab === 'video' ? (

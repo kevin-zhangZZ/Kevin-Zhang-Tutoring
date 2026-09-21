@@ -2,8 +2,8 @@
 //
 // Every row below comes from the tutor's own question-by-question exam review (Aug 2026):
 // Methods and Specialist 2014–2017, and Chemistry 2016–2018 — extended to Specialist 2019
-// (both exams) in Sep 2026 while the 2019 worked solutions were being written, which is why
-// that year's rows carry more detailed notes. It also identified several
+// and Methods 2019 (both exams each) in Sep 2026 while the 2019 worked solutions were being
+// written, which is why that year's rows carry more detailed notes. It also identified several
 // "still doable" workarounds — cases where a question looks like it needs removed content
 // (a matrix, a force/motion setup, an old technique/instrument) but can actually be solved by
 // translating it into non-matrix, non-mechanics, or otherwise current-syllabus terms. Those
@@ -46,6 +46,8 @@ export const audits: SubjectAudit[] = [
       { year: 2016, exam: 'Exam 2', question: 'SAQ1e', topic: 'Matrix transformation', note: 'Doable if you read a as the dilation factor from the x-axis (negative if there’s also a reflection in the y-axis) and b as the vertical translation (positive = up, negative = down).' },
       { year: 2017, exam: 'Exam 2', question: 'MCQ 10', topic: 'Matrix transformation', note: 'Doable if you read the matrix as: dilation by factor 2 from the y-axis, then dilation by factor 1/3 from the x-axis.' },
       { year: 2017, exam: 'Exam 2', question: 'SAQ4a', topic: 'Matrix transformation', note: 'Doable if you read c as the horizontal translation (positive = right, negative = left) and d as the vertical translation (positive = up, negative = down).' },
+      { year: 2019, exam: 'Exam 1', question: 'Q2c', topic: 'Matrix transformation', note: 'Doable — the matrix in T is the identity, so T is nothing but a translation: c across and d up. Write g(x) = f(x − c) + d, set it equal to the inverse from part (a), and compare. Parts (a) and (b) are ordinary inverse-function work.' },
+      { year: 2019, exam: 'Exam 2', question: 'MCQ 9', topic: 'Matrix transformation', note: 'Doable — the matrix is diagonal, so read it off as two ordinary equations, x′ = x/2 − 1/2 and y′ = −2y − 2, then set both images to 0 and solve. Nothing matrix-specific survives that step. Everything else on both 2019 papers is current.' },
     ],
     notFound: [
       {

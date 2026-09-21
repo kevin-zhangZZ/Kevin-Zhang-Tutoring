@@ -168,6 +168,7 @@ import MethodsQ5_2019 from './questions/MethodsQ5_2019'
 import MethodsQ6_2019 from './questions/MethodsQ6_2019'
 import MethodsQ7_2019 from './questions/MethodsQ7_2019'
 import MethodsQ8_2019 from './questions/MethodsQ8_2019'
+import MethodsQ9_2019 from './questions/MethodsQ9_2019'
 import MethodsQ10_2019 from './questions/MethodsQ10_2019'
 import MethodsQ13_2019 from './questions/MethodsQ13_2019'
 import MethodsQ14_2019 from './questions/MethodsQ14_2019'
@@ -459,6 +460,7 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q6-2019': MethodsQ6_2019,
   'meth-q7-2019': MethodsQ7_2019,
   'meth-q8-2019': MethodsQ8_2019,
+  'meth-q9-2019': MethodsQ9_2019,
   'meth-q10-2019': MethodsQ10_2019,
   'meth-q13-2019': MethodsQ13_2019,
   'meth-q14-2019': MethodsQ14_2019,

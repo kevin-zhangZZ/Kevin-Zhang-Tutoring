@@ -324,9 +324,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q20-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 20', topic: 'Algebra — rewriting logs via change of base', type: 'mc', hasDetail: true, percentCorrect: 47 },
 
   // The remaining 2019 Methods Exam 2 Section A MCQs, filling out the rest of the 20-question
-  // paper (the 6 hardest, above, were already covered). MCQ 9 is omitted — it asks to apply an
-  // explicit matrix transformation, which VCAA's own report calls "matrix form"; matrices
-  // aren't part of the current VCE Methods study design (same exclusion as meth-q2-2019-e1).
+  // paper (the 6 hardest, above, were already covered). MCQ 9 writes its transformation in
+  // matrix form but the matrix is diagonal, so the question is two independent one-line
+  // equations — see MethodsQ9_2019.tsx and the skip guide's row for that reading.
   { id: 'meth-q1-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 1', topic: 'Graphs — the period and range of a scaled, shifted sine function', type: 'mc', hasDetail: true, percentCorrect: 89 },
   { id: 'meth-q2-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 2', topic: 'Algebra — the set of k giving a quadratic two real solutions', type: 'mc', hasDetail: true, percentCorrect: 59 },
   { id: 'meth-q3-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — the average rate of change of a hyperbola-type function', type: 'mc', hasDetail: true, percentCorrect: 80 },
@@ -335,6 +335,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q6-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 6', topic: 'Calculus — maximising the volume of a folded open-top box', type: 'mc', hasDetail: true, percentCorrect: 63 },
   { id: 'meth-q7-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 7', topic: 'Probability — the mean of a discrete random variable in terms of a', type: 'mc', hasDetail: true, percentCorrect: 82 },
   { id: 'meth-q8-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 8', topic: 'Probability — a binomial conditional probability', type: 'mc', hasDetail: true, percentCorrect: 71 },
+  { id: 'meth-q9-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 9', topic: 'Functions — finding the point whose image under a transformation is the origin', type: 'mc', hasDetail: true, percentCorrect: 57 },
   { id: 'meth-q10-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 10', topic: 'Graphs — which property holds for f(x) = x + sin(x)', type: 'mc', hasDetail: true, percentCorrect: 55 },
   { id: 'meth-q13-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 13', topic: 'Graphs — a point on a dilated and translated graph', type: 'mc', hasDetail: true, percentCorrect: 65 },
   { id: 'meth-q14-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — the standard deviation of a normal distribution from a tail probability', type: 'mc', hasDetail: true, percentCorrect: 67 },
@@ -342,12 +343,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q16-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — matching the graph of f′ to a given graph of f', type: 'mc', hasDetail: true, percentCorrect: 63 },
 
   // The complete 2019 Methods Exam 1 (short answer), cross-referenced against itute's
-  // independent solutions and the VCAA examination report. Question 2(c) is omitted from
-  // meth-q2-2019-e1 — it asks for a transformation in explicit matrix/column-vector form,
-  // which VCAA's own report calls "matrix form"; matrices aren't part of the current VCE
-  // Methods study design.
+  // independent solutions and the VCAA examination report.
   { id: 'meth-q1-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — differentiating and antidifferentiating 1/(3x-1), then a quotient-rule evaluation', type: 'sa', hasDetail: true },
-  { id: 'meth-q2-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q2(a–b)', topic: 'Functions — the rule and domain of an inverse function', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q2', topic: 'Functions — the rule and domain of an inverse function, and the translation onto it', type: 'sa', hasDetail: true },
   { id: 'meth-q3-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Probability — a mixed bag of biased and unbiased coins', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Trigonometry — solving a cosine equation, then sketching 1 minus the given graph', type: 'sa', hasDetail: true },
   { id: 'meth-q5-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Graphs — a truncus, its sketch, and a bounded area', type: 'sa', hasDetail: true },
