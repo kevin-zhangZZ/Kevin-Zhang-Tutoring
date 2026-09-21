@@ -158,6 +158,32 @@ import SpecialistQ9_2015 from './questions/SpecialistQ9_2015'
 import SpecialistQ17_2015 from './questions/SpecialistQ17_2015'
 import SpecialistQ3_2015 from './questions/SpecialistQ3_2015'
 import SpecialistQ10_2015 from './questions/SpecialistQ10_2015'
+import SpecialistQ1_2015 from './questions/SpecialistQ1_2015'
+import SpecialistQ2_2015 from './questions/SpecialistQ2_2015'
+import SpecialistQ5_2015 from './questions/SpecialistQ5_2015'
+import SpecialistQ7_2015 from './questions/SpecialistQ7_2015'
+import SpecialistQ8_2015 from './questions/SpecialistQ8_2015'
+import SpecialistQ11_2015 from './questions/SpecialistQ11_2015'
+import SpecialistQ12_2015 from './questions/SpecialistQ12_2015'
+import SpecialistQ13_2015 from './questions/SpecialistQ13_2015'
+import SpecialistQ14_2015 from './questions/SpecialistQ14_2015'
+import SpecialistQ15_2015 from './questions/SpecialistQ15_2015'
+import SpecialistQ18_2015 from './questions/SpecialistQ18_2015'
+import SpecialistQ20_2015 from './questions/SpecialistQ20_2015'
+import SpecialistQ22_2015 from './questions/SpecialistQ22_2015'
+import SpecialistQ1_2015Exam1 from './questions/SpecialistQ1_2015Exam1'
+import SpecialistQ3_2015Exam1 from './questions/SpecialistQ3_2015Exam1'
+import SpecialistQ4_2015Exam1 from './questions/SpecialistQ4_2015Exam1'
+import SpecialistQ5_2015Exam1 from './questions/SpecialistQ5_2015Exam1'
+import SpecialistQ6_2015Exam1 from './questions/SpecialistQ6_2015Exam1'
+import SpecialistQ7_2015Exam1 from './questions/SpecialistQ7_2015Exam1'
+import SpecialistQ8_2015Exam1 from './questions/SpecialistQ8_2015Exam1'
+import SpecialistQ9_2015Exam1 from './questions/SpecialistQ9_2015Exam1'
+import SpecialistQ1_2015Exam2 from './questions/SpecialistQ1_2015Exam2'
+import SpecialistQ2_2015Exam2 from './questions/SpecialistQ2_2015Exam2'
+import SpecialistQ3_2015Exam2 from './questions/SpecialistQ3_2015Exam2'
+import SpecialistQ4_2015Exam2 from './questions/SpecialistQ4_2015Exam2'
+import SpecialistQ5_2015Exam2 from './questions/SpecialistQ5_2015Exam2'
 import SpecialistQ9_2016 from './questions/SpecialistQ9_2016'
 import SpecialistQ1_2016 from './questions/SpecialistQ1_2016'
 import SpecialistQ2_2016 from './questions/SpecialistQ2_2016'
@@ -539,6 +565,32 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q17-2015': SpecialistQ17_2015,
   'spec-q3-2015': SpecialistQ3_2015,
   'spec-q10-2015': SpecialistQ10_2015,
+  'spec-q1-2015': SpecialistQ1_2015,
+  'spec-q2-2015': SpecialistQ2_2015,
+  'spec-q5-2015': SpecialistQ5_2015,
+  'spec-q7-2015': SpecialistQ7_2015,
+  'spec-q8-2015': SpecialistQ8_2015,
+  'spec-q11-2015': SpecialistQ11_2015,
+  'spec-q12-2015': SpecialistQ12_2015,
+  'spec-q13-2015': SpecialistQ13_2015,
+  'spec-q14-2015': SpecialistQ14_2015,
+  'spec-q15-2015': SpecialistQ15_2015,
+  'spec-q18-2015': SpecialistQ18_2015,
+  'spec-q20-2015': SpecialistQ20_2015,
+  'spec-q22-2015': SpecialistQ22_2015,
+  'spec-q1-2015-e1': SpecialistQ1_2015Exam1,
+  'spec-q3-2015-e1': SpecialistQ3_2015Exam1,
+  'spec-q4-2015-e1': SpecialistQ4_2015Exam1,
+  'spec-q5-2015-e1': SpecialistQ5_2015Exam1,
+  'spec-q6-2015-e1': SpecialistQ6_2015Exam1,
+  'spec-q7-2015-e1': SpecialistQ7_2015Exam1,
+  'spec-q8-2015-e1': SpecialistQ8_2015Exam1,
+  'spec-q9-2015-e1': SpecialistQ9_2015Exam1,
+  'spec-q1-2015-e2': SpecialistQ1_2015Exam2,
+  'spec-q2-2015-e2': SpecialistQ2_2015Exam2,
+  'spec-q3-2015-e2': SpecialistQ3_2015Exam2,
+  'spec-q4-2015-e2': SpecialistQ4_2015Exam2,
+  'spec-q5-2015-e2': SpecialistQ5_2015Exam2,
   'spec-q9-2016': SpecialistQ9_2016,
   'spec-q1-2016': SpecialistQ1_2016,
   'spec-q2-2016': SpecialistQ2_2016,

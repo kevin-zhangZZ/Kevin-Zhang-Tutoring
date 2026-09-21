@@ -185,6 +185,51 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q3-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 3', topic: 'Coordinate geometry — classifying a family of conics', type: 'mc', hasDetail: true, percentCorrect: 50 },
   { id: 'spec-q10-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — a definite integral by substitution', type: 'mc', hasDetail: true, percentCorrect: 56 },
 
+  // The rest of 2015 Specialist Exam 2 Section 1, answers and percentages read off the
+  // rendered report table (the correct option is marked only by shading). MCQ 16, 19 and 21
+  // are omitted — all three are Mechanics (equilibrium of three coplanar forces, connected
+  // masses over a pulley, and friction on a rough plane), which is no longer an area of
+  // study. MCQ 15, 20 and 22 use mechanics wording but the mathematics is a vector resolute,
+  // constant-acceleration kinematics and a separable differential equation respectively, so
+  // they are included — matching the skip guide's own note on this paper.
+  { id: 'spec-q1-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 1', topic: 'Conics — parametrising a translated ellipse', type: 'mc', hasDetail: true, percentCorrect: 84 },
+  { id: 'spec-q2-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the range of (2 − x)arcsin(x/2 − 1)', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'spec-q5-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — modulus and argument of a fifth power', type: 'mc', hasDetail: true, percentCorrect: 81 },
+  { id: 'spec-q7-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 7', topic: 'Complex numbers — a 63rd power by De Moivre', type: 'mc', hasDetail: true, percentCorrect: 63 },
+  { id: 'spec-q8-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 8', topic: 'Complex numbers — which modulus relation is not a circle', type: 'mc', hasDetail: true, percentCorrect: 57 },
+  { id: 'spec-q11-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 11', topic: 'Kinematics — displacement as signed area under a velocity–time graph', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q12-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 12', topic: 'Differential equations — a separable equation with an initial condition', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q13-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 13', topic: 'Differential equations — tracing a solution through a direction field', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'spec-q14-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 14', topic: 'Differential equations — which second-order equation x·sin(x) satisfies', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q15-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the vector resolute of one vector along another', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'spec-q18-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 18', topic: 'Vectors — when two moving particles collide', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'spec-q20-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 20', topic: 'Kinematics — constant acceleration with a reversal of direction', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'spec-q22-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 22', topic: 'Differential equations — time to maximum height with air resistance', type: 'mc', hasDetail: true, percentCorrect: 42 },
+
+  // The complete 2015 Specialist Exam 1 (short answer), cross-referenced against the VCAA
+  // examination report and checked with sympy. Question 2 is omitted: both its parts are
+  // Mechanics (the reaction force on a parcel in an accelerating lift), and Mechanics is no
+  // longer an area of study in VCE Specialist Mathematics.
+  { id: 'spec-q1-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Vectors — the side of a rhombus, then perpendicular diagonals', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q3', topic: 'Vectors — antidifferentiating a velocity vector to a distance from the origin', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Complex numbers — the cube roots of 8i, then the same roots translated', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q5', topic: 'Calculus — a volume of revolution about the y-axis', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q6', topic: 'Differential equations — acceleration as a function of velocity', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Trigonometry — solving sin(2x) = sin(x), then a cosec inequality', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q8(a–d)', topic: 'Calculus — an antiderivative of tan(2x), the inverse of arctan(x)/2, and an area', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2015-e1', subject: 'specialist', year: 2015, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — implicit differentiation, two tangents, and the angle between them', type: 'sa', hasDetail: true },
+
+  // The complete 2015 Specialist Exam 2 Section 2 (extended response), checked with sympy
+  // against the VCAA examination report. Question 5 appears as part (d) only: parts (a)-(c)
+  // resolve the weight force on a trailer held on a ramp, which is Mechanics and no longer an
+  // area of study, while part (d) starts from a differential equation the paper prints in
+  // full — the treatment the skip guide's own row for this paper recommends.
+  { id: 'spec-q1-2015-e2', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'Q1(a–f)', topic: 'Calculus — implicit differentiation, an inverse function, and a volume of revolution', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2015-e2', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'Q2(a–b)', topic: 'Complex numbers — a perpendicular-bisector line, a circle, and a quadratic in cis form', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2015-e2', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Calculus — a parametric curve, its cartesian form, and the area it encloses', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2015-e2', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Vectors — a helicopter on a helix: elevation, period, speed and distance', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2015-e2', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'Q5(d)', topic: 'Differential equations — a sinking trailer, by separation and a definite integral', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2016 Exam 2 Section A, by VCAA-reported % correct
   // (spec-mcq6 above is also a 2016 MCQ, at 57%).
   { id: 'spec-q7-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — parametric differentiation', type: 'mc', hasDetail: true, percentCorrect: 37 },
