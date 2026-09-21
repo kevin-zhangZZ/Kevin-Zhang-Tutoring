@@ -368,6 +368,21 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — the value of b putting a turning point closest to the origin', type: 'mc', hasDetail: true, percentCorrect: 45 },
   { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — the transformation carrying one density function to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
 
+  // The 2018 Specialist Exam 1 short-answer questions, cross-referenced against the VCAA
+  // examination report and re-derived independently with sympy. Question 1 is omitted:
+  // it is a connected-masses pulley problem needing force resolution, which is off the
+  // current study design (see the skip guide). Question 6 uses the word momentum but the
+  // mathematics is vector calculus, so it is in.
+  { id: 'spec-q2-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q2', topic: 'Complex Numbers — polar form and de Moivre on a quotient of powers', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q3', topic: 'Calculus — implicit differentiation at a point, in exact surd form', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q4', topic: 'Statistics — mean and variance of a linear combination, solved for integers', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q5', topic: 'Graphs — sketching a rational function with two vertical asymptotes', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q6', topic: 'Vectors — change in momentum from a position vector', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q7', topic: 'Trigonometry — a double angle identity collapsing to a multiple of cot(x)', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q8', topic: 'Differential Equations — a salt tank with unequal inflow and outflow', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q9', topic: 'Calculus — a parametric hyperbola, its intersections with a line, and a volume of revolution', type: 'sa', hasDetail: true },
+  { id: 'spec-q10-2018-e1', subject: 'specialist', year: 2018, exam: 'Exam 1', code: 'Q10', topic: 'Calculus — arc length of a parametric curve reduced to a quadratic integrand', type: 'sa', hasDetail: true },
+
   // The complete 2018 Methods Exam 1 (short answer), cross-referenced against the VCAA
   // examination report and re-derived independently with sympy.
   { id: 'meth-q1-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q1', topic: 'Calculus — a chain-rule derivative, then a quotient rule evaluated at x = π', type: 'sa', hasDetail: true },
