@@ -99,6 +99,22 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q9-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 9', topic: 'Probability — E(X) for a uniform distribution', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q21-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 21', topic: 'Graphs — a line and a parabola with no intersection', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q17-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — turning points and number of x-intercepts', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q1-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — period and range of 2sin(3x) − 3', type: 'mc', hasDetail: true, percentCorrect: 95 },
+  { id: 'meth-q2-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the inverse of 1/√(x + 2)', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'meth-q4-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — a point on the tangent to y = x² at (2, 4)', type: 'mc', hasDetail: true, percentCorrect: 77 },
+  { id: 'meth-q5-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 5', topic: 'Functions — reading the graph of an inverse off the graph of f', type: 'mc', hasDetail: true, percentCorrect: 71 },
+  { id: 'meth-q6-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 6', topic: 'Algebra — finding a coefficient from a given polynomial value', type: 'mc', hasDetail: true, percentCorrect: 91 },
+  { id: 'meth-q7-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 7', topic: 'Functions — the range of a quadratic on a half-open domain', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'meth-q8-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — an average value of zero fixing the endpoint of a line', type: 'mc', hasDetail: true, percentCorrect: 53 },
+  { id: 'meth-q10-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 10', topic: 'Probability — recovering n and p from E(X) and Var(X)', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'meth-q12-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 12', topic: 'Probability — at least one red, selecting without replacement', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q13-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 13', topic: 'Probability — normalising a piecewise probability density function', type: 'mc', hasDetail: true, percentCorrect: 63 },
+  { id: 'meth-q14-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — the mean of a discrete distribution', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'meth-q15-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — linearity of the definite integral', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'meth-q18-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 18', topic: 'Functions — testing a functional equation against five rules', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'meth-q19-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — the fundamental theorem with a variable upper limit', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'meth-q20-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — recovering f(x) from f(x − 1)', type: 'mc', hasDetail: true, percentCorrect: 61 },
+  { id: 'meth-q22-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 22', topic: 'Functions — the graph of g(−f(x)) when f(x) = −|x|', type: 'mc', hasDetail: true, percentCorrect: 35 },
 
   // Section 2 (short-answer). meth-q4-2015-e2 was previously miscatalogued as 2014 Exam 1
   // Q4 — that question is actually a 2-mark "solve 2^(3x-3)=8^(2-x)" (confirmed against the
@@ -106,8 +122,20 @@ export const QUESTIONS: QuestionMeta[] = [
   // matches 2015 Exam 2 Q4 exactly (confirmed against the source PDF and report), so it's
   // recatalogued here with its real year/exam and real examiner-report stats added.
   { id: 'meth-q3-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q3(a–d)', topic: 'Probability — continuous distribution, binomial, normal, and geometric-style modelling', type: 'sa', hasDetail: true },
+  { id: 'meth-q1-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a chain rule, then a quotient rule with a logarithm', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — antidifferentiating 1 − 3/x and pinning the constant', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q3', topic: 'Calculus — a definite integral of x^(−1/2), not a logarithm', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q4(a–c)', topic: 'Calculus — stationary points of a restricted cubic, and an average value', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Trigonometry — minimum depth and the times at a given depth', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Probability — standardising, then a conditional from the 68–95 facts', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Algebra — a logarithm equation, then a hidden quadratic in e^t', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Probability — a conditional, a complement, and independence', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Probability — total probability in terms of p, then solving for p', type: 'sa', hasDetail: true },
+  { id: 'meth-q10-2015-e1', subject: 'methods', year: 2015, exam: 'Exam 1', code: 'Q10(a–d)', topic: 'Calculus — a tangent to a circle, then minimising a trapezium area', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Calculus — area between sine graphs', type: 'sa', hasDetail: true },
   { id: 'meth-q5-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q5(a–d)', topic: 'Calculus — optimising a sum of exponentials', type: 'sa', hasDetail: true },
+  { id: 'meth-q1-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Calculus — a tangent to a cubic and the area it encloses', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Calculus — a parabolic bridge frame and a cubic road', type: 'sa', hasDetail: true },
 
   // The 6 hardest Methods MCQs from 2016 Exam 2 Section A, by VCAA-reported % correct
   // (matrix-representation questions excluded — matrices aren't part of the current VCE

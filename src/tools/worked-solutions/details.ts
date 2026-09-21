@@ -12,13 +12,41 @@ import SpecialistQ4_2016Exam2 from './questions/SpecialistQ4_2016Exam2'
 import MethodsQ3_2015 from './questions/MethodsQ3_2015'
 import MethodsQ16_2015 from './questions/MethodsQ16_2015'
 import MethodsQ17_2015 from './questions/MethodsQ17_2015'
+import MethodsQ1_2015 from './questions/MethodsQ1_2015'
+import MethodsQ2_2015 from './questions/MethodsQ2_2015'
+import MethodsQ4_2015 from './questions/MethodsQ4_2015'
+import MethodsQ5_2015 from './questions/MethodsQ5_2015'
+import MethodsQ6_2015 from './questions/MethodsQ6_2015'
+import MethodsQ7_2015 from './questions/MethodsQ7_2015'
+import MethodsQ8_2015 from './questions/MethodsQ8_2015'
+import MethodsQ10_2015 from './questions/MethodsQ10_2015'
+import MethodsQ12_2015 from './questions/MethodsQ12_2015'
+import MethodsQ13_2015 from './questions/MethodsQ13_2015'
+import MethodsQ14_2015 from './questions/MethodsQ14_2015'
+import MethodsQ15_2015 from './questions/MethodsQ15_2015'
+import MethodsQ18_2015 from './questions/MethodsQ18_2015'
+import MethodsQ19_2015 from './questions/MethodsQ19_2015'
+import MethodsQ20_2015 from './questions/MethodsQ20_2015'
+import MethodsQ22_2015 from './questions/MethodsQ22_2015'
 import MethodsQ21_2014 from './questions/MethodsQ21_2014'
 import MethodsQ22_2014 from './questions/MethodsQ22_2014'
 import MethodsQ3_2014Exam2 from './questions/MethodsQ3_2014Exam2'
 import MethodsQ4_2014Exam2 from './questions/MethodsQ4_2014Exam2'
 import MethodsQ3_2015Exam2 from './questions/MethodsQ3_2015Exam2'
+import MethodsQ1_2015Exam1 from './questions/MethodsQ1_2015Exam1'
+import MethodsQ2_2015Exam1 from './questions/MethodsQ2_2015Exam1'
+import MethodsQ3_2015Exam1 from './questions/MethodsQ3_2015Exam1'
+import MethodsQ4_2015Exam1 from './questions/MethodsQ4_2015Exam1'
+import MethodsQ5_2015Exam1 from './questions/MethodsQ5_2015Exam1'
+import MethodsQ6_2015Exam1 from './questions/MethodsQ6_2015Exam1'
+import MethodsQ7_2015Exam1 from './questions/MethodsQ7_2015Exam1'
+import MethodsQ8_2015Exam1 from './questions/MethodsQ8_2015Exam1'
+import MethodsQ9_2015Exam1 from './questions/MethodsQ9_2015Exam1'
+import MethodsQ10_2015Exam1 from './questions/MethodsQ10_2015Exam1'
 import MethodsQ4_2015Exam2 from './questions/MethodsQ4_2015Exam2'
 import MethodsQ5_2015Exam2 from './questions/MethodsQ5_2015Exam2'
+import MethodsQ1_2015Exam2 from './questions/MethodsQ1_2015Exam2'
+import MethodsQ2_2015Exam2 from './questions/MethodsQ2_2015Exam2'
 import MethodsQ8_2016Exam1 from './questions/MethodsQ8_2016Exam1'
 import MethodsQ1_2016Exam2 from './questions/MethodsQ1_2016Exam2'
 import MethodsQ2_2016Exam2 from './questions/MethodsQ2_2016Exam2'
@@ -439,13 +467,41 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q3-2015': MethodsQ3_2015,
   'meth-q16-2015': MethodsQ16_2015,
   'meth-q17-2015': MethodsQ17_2015,
+  'meth-q1-2015': MethodsQ1_2015,
+  'meth-q2-2015': MethodsQ2_2015,
+  'meth-q4-2015': MethodsQ4_2015,
+  'meth-q5-2015': MethodsQ5_2015,
+  'meth-q6-2015': MethodsQ6_2015,
+  'meth-q7-2015': MethodsQ7_2015,
+  'meth-q8-2015': MethodsQ8_2015,
+  'meth-q10-2015': MethodsQ10_2015,
+  'meth-q12-2015': MethodsQ12_2015,
+  'meth-q13-2015': MethodsQ13_2015,
+  'meth-q14-2015': MethodsQ14_2015,
+  'meth-q15-2015': MethodsQ15_2015,
+  'meth-q18-2015': MethodsQ18_2015,
+  'meth-q19-2015': MethodsQ19_2015,
+  'meth-q20-2015': MethodsQ20_2015,
+  'meth-q22-2015': MethodsQ22_2015,
   'meth-q21-2014': MethodsQ21_2014,
   'meth-q22-2014': MethodsQ22_2014,
   'meth-q3-2014-e2': MethodsQ3_2014Exam2,
   'meth-q4-2014-e2': MethodsQ4_2014Exam2,
   'meth-q3-2015-e2': MethodsQ3_2015Exam2,
+  'meth-q1-2015-e1': MethodsQ1_2015Exam1,
+  'meth-q2-2015-e1': MethodsQ2_2015Exam1,
+  'meth-q3-2015-e1': MethodsQ3_2015Exam1,
+  'meth-q4-2015-e1': MethodsQ4_2015Exam1,
+  'meth-q5-2015-e1': MethodsQ5_2015Exam1,
+  'meth-q6-2015-e1': MethodsQ6_2015Exam1,
+  'meth-q7-2015-e1': MethodsQ7_2015Exam1,
+  'meth-q8-2015-e1': MethodsQ8_2015Exam1,
+  'meth-q9-2015-e1': MethodsQ9_2015Exam1,
+  'meth-q10-2015-e1': MethodsQ10_2015Exam1,
   'meth-q4-2015-e2': MethodsQ4_2015Exam2,
   'meth-q5-2015-e2': MethodsQ5_2015Exam2,
+  'meth-q1-2015-e2': MethodsQ1_2015Exam2,
+  'meth-q2-2015-e2': MethodsQ2_2015Exam2,
   'meth-q8-2016-e1': MethodsQ8_2016Exam1,
   'meth-q1-2016-e2': MethodsQ1_2016Exam2,
   'meth-q2-2016-e2': MethodsQ2_2016Exam2,
