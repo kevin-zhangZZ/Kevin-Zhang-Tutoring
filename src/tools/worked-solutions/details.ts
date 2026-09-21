@@ -17,6 +17,13 @@ import MethodsQ3_2015Exam2 from './questions/MethodsQ3_2015Exam2'
 import MethodsQ4_2015Exam2 from './questions/MethodsQ4_2015Exam2'
 import MethodsQ5_2015Exam2 from './questions/MethodsQ5_2015Exam2'
 import MethodsQ8_2016Exam1 from './questions/MethodsQ8_2016Exam1'
+import MethodsQ1_2016Exam1 from './questions/MethodsQ1_2016Exam1'
+import MethodsQ2_2016Exam1 from './questions/MethodsQ2_2016Exam1'
+import MethodsQ3_2016Exam1 from './questions/MethodsQ3_2016Exam1'
+import MethodsQ4_2016Exam1 from './questions/MethodsQ4_2016Exam1'
+import MethodsQ5_2016Exam1 from './questions/MethodsQ5_2016Exam1'
+import MethodsQ6_2016Exam1 from './questions/MethodsQ6_2016Exam1'
+import MethodsQ7_2016Exam1 from './questions/MethodsQ7_2016Exam1'
 import MethodsQ3_2017Exam1 from './questions/MethodsQ3_2017Exam1'
 import MethodsQ4_2017Exam1 from './questions/MethodsQ4_2017Exam1'
 import MethodsQ1_2017Exam1 from './questions/MethodsQ1_2017Exam1'
@@ -132,6 +139,20 @@ import MethodsQ9_2015 from './questions/MethodsQ9_2015'
 import MethodsQ21_2015 from './questions/MethodsQ21_2015'
 import MethodsQ14_2016 from './questions/MethodsQ14_2016'
 import MethodsQ9_2016 from './questions/MethodsQ9_2016'
+import MethodsQ1_2016 from './questions/MethodsQ1_2016'
+import MethodsQ2_2016 from './questions/MethodsQ2_2016'
+import MethodsQ3_2016 from './questions/MethodsQ3_2016'
+import MethodsQ4_2016 from './questions/MethodsQ4_2016'
+import MethodsQ5_2016 from './questions/MethodsQ5_2016'
+import MethodsQ6_2016 from './questions/MethodsQ6_2016'
+import MethodsQ7_2016 from './questions/MethodsQ7_2016'
+import MethodsQ8_2016 from './questions/MethodsQ8_2016'
+import MethodsQ13_2016 from './questions/MethodsQ13_2016'
+import MethodsQ15_2016 from './questions/MethodsQ15_2016'
+import MethodsQ16_2016 from './questions/MethodsQ16_2016'
+import MethodsQ17_2016 from './questions/MethodsQ17_2016'
+import MethodsQ18_2016 from './questions/MethodsQ18_2016'
+import MethodsQ20_2016 from './questions/MethodsQ20_2016'
 import MethodsQ11_2016 from './questions/MethodsQ11_2016'
 import MethodsQ10_2016 from './questions/MethodsQ10_2016'
 import MethodsQ18_2017 from './questions/MethodsQ18_2017'
@@ -396,6 +417,13 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q4-2015-e2': MethodsQ4_2015Exam2,
   'meth-q5-2015-e2': MethodsQ5_2015Exam2,
   'meth-q8-2016-e1': MethodsQ8_2016Exam1,
+  'meth-q1-2016-e1': MethodsQ1_2016Exam1,
+  'meth-q2-2016-e1': MethodsQ2_2016Exam1,
+  'meth-q3-2016-e1': MethodsQ3_2016Exam1,
+  'meth-q4-2016-e1': MethodsQ4_2016Exam1,
+  'meth-q5-2016-e1': MethodsQ5_2016Exam1,
+  'meth-q6-2016-e1': MethodsQ6_2016Exam1,
+  'meth-q7-2016-e1': MethodsQ7_2016Exam1,
   'meth-q3-2017-e1': MethodsQ3_2017Exam1,
   'meth-q4-2017-e1': MethodsQ4_2017Exam1,
   'meth-q1-2017-e1': MethodsQ1_2017Exam1,
@@ -437,6 +465,20 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q21-2015': MethodsQ21_2015,
   'meth-q14-2016': MethodsQ14_2016,
   'meth-q9-2016': MethodsQ9_2016,
+  'meth-q1-2016': MethodsQ1_2016,
+  'meth-q2-2016': MethodsQ2_2016,
+  'meth-q3-2016': MethodsQ3_2016,
+  'meth-q4-2016': MethodsQ4_2016,
+  'meth-q5-2016': MethodsQ5_2016,
+  'meth-q6-2016': MethodsQ6_2016,
+  'meth-q7-2016': MethodsQ7_2016,
+  'meth-q8-2016': MethodsQ8_2016,
+  'meth-q13-2016': MethodsQ13_2016,
+  'meth-q15-2016': MethodsQ15_2016,
+  'meth-q16-2016': MethodsQ16_2016,
+  'meth-q17-2016': MethodsQ17_2016,
+  'meth-q18-2016': MethodsQ18_2016,
+  'meth-q20-2016': MethodsQ20_2016,
   'meth-q11-2016': MethodsQ11_2016,
   'meth-q10-2016': MethodsQ10_2016,
   'meth-q18-2017': MethodsQ18_2017,

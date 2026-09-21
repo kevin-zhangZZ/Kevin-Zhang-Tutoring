@@ -112,7 +112,7 @@ const ROWS_BII: WorkingRow[] = [
     working: <Katex display tex="\Pr(X>\tfrac1e) > 0.5" />,
   },
   {
-    working: <b>So the median is greater than 1/e.</b>,
+    working: <Katex display tex="	herefore\ 	ext{median } m > 	frac1e" />,
     reason: <>The median <Katex tex="m" /> is defined by <Katex tex="\Pr(X>m)=0.5" /> exactly, and <Katex tex="\Pr(X>x)" /> is strictly decreasing in <Katex tex="x" /> (it's a survival function). Since <Katex tex="\Pr(X>\tfrac1e) > 0.5" />, the threshold has to move further right than <Katex tex="\tfrac1e" /> before that probability drops to exactly <Katex tex="0.5" /> — i.e. <Katex tex="m > \tfrac1e" />.</>,
   },
 ]
