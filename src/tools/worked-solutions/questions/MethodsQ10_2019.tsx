@@ -1,7 +1,10 @@
 // 2019 Mathematical Methods — Exam 2, MCQ 10. VCAA examination report: 55% correct. Which
 // property is true for f(x) = x + sin(x). Question text transcribed from the original paper.
-// VCAA printed no diagram; the graph is this site's own explanatory figure (matplotlib), since
-// every option is a claim about the shape of this curve. Solution is original.
+// VCAA printed no diagram, so the question stem here has none either (guide §7) — the graph
+// is this site's own explanatory figure (matplotlib) and appears only inside the worked
+// solution, where it is our explanation rather than given information. It would give the
+// answer away in the stem: every option is a claim about the shape of this curve.
+// Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -60,7 +63,6 @@ export default function MethodsQ10_2019() {
           Which one of the following statements is true for <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=x+\sin(x)" />?
         </p>
       }
-      diagram={<img src={graphSrc} alt="Graph of y = x + sin(x): an always-rising curve that briefly flattens at x = ±π but never turns back down" className="w-full max-w-[300px]" />}
       options={[
         { letter: 'A', content: <>The graph of <Katex tex="f" /> has a horizontal asymptote</> },
         { letter: 'B', content: <>There are infinitely many solutions to <Katex tex="f(x)=4" /></> },

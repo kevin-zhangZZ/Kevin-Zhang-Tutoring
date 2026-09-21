@@ -266,10 +266,27 @@ integral measures. These are legitimate and often the single most valuable thing
 page — the 2019 Exam 2 report literally says errors in its Question 1 "could have been
 avoided if a graph of the function had been sketched", so that solution now shows one.
 Build them with matplotlib in the same house style, and say in the file's top comment that
-the figure is this site's own explanatory graph of something VCAA never printed. Two
+the figure is this site's own explanatory graph of something VCAA never printed. Three
 limits: it must be a *different* function or view from any figure VCAA did print (never a
-re-plot of the question's own given graph — crop that instead), and the question's real
-figure still appears, cropped, wherever the question itself relies on it.
+re-plot of the question's own given graph — crop that instead); the question's real
+figure still appears, cropped, wherever the question itself relies on it; and — the rule
+below — it never goes in the question stem.
+
+**The question stem shows only what VCAA printed. If VCAA printed no diagram, the stem
+gets no diagram.** An explanatory figure of our own belongs in the worked solution and
+nowhere else: `MCQShell`'s `diagram` prop and the figure block inside a short-answer
+question's stem card are reserved for cropped VCAA artwork. Putting an original sketch in
+the stem misrepresents the paper twice over — it hands the reader information the real
+candidates never had (often the answer, as when a graph of `f(x) = x + sin(x)` sits beside
+five options that are all claims about the shape of that curve), and it contradicts the
+file's own "question text transcribed from the original paper" claim. The stem a student
+reads on this site should be the stem they would face in the exam room, so that attempting
+it before opening the solution is worth something. Move the figure into the first
+`WorkingRow`, or into a `<Background>`, where it reads as *our* explanation rather than
+*VCAA's* given information.
+
+This applies to the answer-sketch case too: where VCAA printed blank axes for a "sketch
+the graph" part, the stem may show the blank axes (cropped), never the completed curve.
 
 **Build it with matplotlib (real graphing software), not hand-coded SVG.** Inline SVG
 built by hand (waypoints, or even a `functionToPath`-style exact sampling) is harder to
@@ -602,6 +619,10 @@ the explanation is the product, not the number at the end.
   measures) are encouraged wherever they help understanding — provided the figure is a
   different function or view from anything VCAA printed, and the real figure still appears
   wherever the question relies on it.
+- **Never in the question stem** (§7). The stem carries cropped VCAA artwork only; if VCAA
+  printed no figure, the stem has no figure. Our own graphs go in a `WorkingRow` or a
+  `<Background>`, so the stem the reader attempts matches the real paper instead of
+  handing them information — sometimes the answer — that the actual candidates never had.
 - **Colour conventions**: the plotted function in sky blue `#0ea5e9`; a second function in
   orange `#f97316`; asymptotes and reference lines dashed in red `#ef4444`; marked points
   as small black dots — or the curve's own colour when drawn as an overlay on a black VCAA

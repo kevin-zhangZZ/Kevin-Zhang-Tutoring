@@ -1,8 +1,10 @@
 // 2019 Specialist Mathematics — Exam 2, MCQ 1. VCAA examination report: 72% correct. Which
 // feature the graph of f(x) = eˣ/(x−1) does NOT have. Question text transcribed from the
-// original paper. VCAA printed no diagram; the graph is this site's own explanatory figure
-// (matplotlib), since every option is a claim about the shape of this curve.
-// Solution is original.
+// original paper. VCAA printed no diagram, so the question stem here has none either
+// (guide §7) — the graph is this site's own explanatory figure (matplotlib) and appears
+// only inside the worked solution, where it is our explanation rather than given
+// information. It would give the answer away in the stem: every option is a claim about
+// the shape of this curve. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -64,7 +66,6 @@ export default function SpecialistQ1_2019() {
   return (
     <MCQShell
       question={<p>The graph of <Katex tex="f(x)=\dfrac{e^x}{x-1}" /> does <b>not</b> have a</p>}
-      diagram={<img src={graphSrc} alt="Graph of y = eˣ/(x−1)" className="w-full max-w-[300px]" />}
       options={[
         { letter: 'A', content: <>horizontal asymptote.</> },
         { letter: 'B', content: <>vertical asymptote.</> },

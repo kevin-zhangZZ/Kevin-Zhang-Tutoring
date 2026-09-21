@@ -1,7 +1,8 @@
 // 2019 Mathematical Methods — Exam 2, MCQ 9. VCAA examination report: 57% correct. A point
 // is put through a transformation written in matrix form; given its image is the origin,
-// find the point. Question text transcribed from the original paper (VCAA printed no
-// diagram; the figure here is this site's own explanatory sketch, matplotlib).
+// find the point. Question text transcribed from the original paper. VCAA printed no
+// diagram, so the question stem here has none either (guide §7); the figure is this site's
+// own explanatory sketch (matplotlib) and sits inside the worked solution.
 //
 // This question was left out when the rest of the 2019 Exam 2 MCQs were written, on the
 // grounds that matrices are off the current study design. That was the wrong test: the
@@ -43,6 +44,14 @@ const ROWS: WorkingRow[] = [
     reason: <>The <Katex tex="y" /> equation on its own.</>,
   },
   {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img src={graphSrc} alt="The point (1, −1) mapped by T to the origin: a dashed arrow runs from (1, −1) up and left to (0, 0)" className="w-full max-w-[300px]" />
+      </div>
+    ),
+    reason: <>What the transformation is doing: the point sits in the fourth quadrant and <Katex tex="T" /> carries it to the origin. Halving the <Katex tex="x" /> then shifting left by <Katex tex="\tfrac12" /> takes <Katex tex="1" /> to <Katex tex="0" />; doubling-and-flipping the <Katex tex="y" /> then shifting down by <Katex tex="2" /> takes <Katex tex="-1" /> to <Katex tex="0" />.</>,
+  },
+  {
     working: <Katex display tex="\boxed{(a,b) = (1,-1)}" />,
     reason: <>Matches option <b>E</b>. Check it forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓ and <Katex tex="-2(-1)-2 = 0" /> ✓. Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped — what you get from applying the transformation <em>to</em> the origin rather than solving back from it.</>,
   },
@@ -62,7 +71,6 @@ export default function MethodsQ9_2019() {
           </p>
         </>
       }
-      diagram={<img src={graphSrc} alt="The point (1, −1) mapped by T to the origin: a dashed arrow runs from (1, −1) to (0, 0)" className="w-full max-w-[300px]" />}
       options={[
         { letter: 'A', content: <Katex tex="(1,1)" /> },
         { letter: 'B', content: <Katex tex="(-1,1)" /> },
