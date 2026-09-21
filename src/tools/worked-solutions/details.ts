@@ -85,6 +85,26 @@ import SpecialistQ17_2018 from './questions/SpecialistQ17_2018'
 import SpecialistQ18_2018 from './questions/SpecialistQ18_2018'
 import SpecialistQ12_2018 from './questions/SpecialistQ12_2018'
 import SpecialistQ2_2017 from './questions/SpecialistQ2_2017'
+import SpecialistQ1_2017 from './questions/SpecialistQ1_2017'
+import SpecialistQ4_2017 from './questions/SpecialistQ4_2017'
+import SpecialistQ5_2017 from './questions/SpecialistQ5_2017'
+import SpecialistQ7_2017 from './questions/SpecialistQ7_2017'
+import SpecialistQ8_2017 from './questions/SpecialistQ8_2017'
+import SpecialistQ11_2017 from './questions/SpecialistQ11_2017'
+import SpecialistQ12_2017 from './questions/SpecialistQ12_2017'
+import SpecialistQ13_2017 from './questions/SpecialistQ13_2017'
+import SpecialistQ15_2017 from './questions/SpecialistQ15_2017'
+import SpecialistQ18_2017 from './questions/SpecialistQ18_2017'
+import SpecialistQ20_2017 from './questions/SpecialistQ20_2017'
+import SpecialistQ1_2017Exam1 from './questions/SpecialistQ1_2017Exam1'
+import SpecialistQ2_2017Exam1 from './questions/SpecialistQ2_2017Exam1'
+import SpecialistQ3_2017Exam1 from './questions/SpecialistQ3_2017Exam1'
+import SpecialistQ4_2017Exam1 from './questions/SpecialistQ4_2017Exam1'
+import SpecialistQ5_2017Exam1 from './questions/SpecialistQ5_2017Exam1'
+import SpecialistQ6_2017Exam1 from './questions/SpecialistQ6_2017Exam1'
+import SpecialistQ7_2017Exam1 from './questions/SpecialistQ7_2017Exam1'
+import SpecialistQ8_2017Exam1 from './questions/SpecialistQ8_2017Exam1'
+import SpecialistQ10_2017Exam1 from './questions/SpecialistQ10_2017Exam1'
 import SpecialistQ5_2018 from './questions/SpecialistQ5_2018'
 import SpecialistQ9_2015 from './questions/SpecialistQ9_2015'
 import SpecialistQ17_2015 from './questions/SpecialistQ17_2015'
@@ -495,6 +515,26 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q18-2018': SpecialistQ18_2018,
   'spec-q12-2018': SpecialistQ12_2018,
   'spec-q2-2017': SpecialistQ2_2017,
+  'spec-q1-2017': SpecialistQ1_2017,
+  'spec-q4-2017': SpecialistQ4_2017,
+  'spec-q5-2017': SpecialistQ5_2017,
+  'spec-q7-2017': SpecialistQ7_2017,
+  'spec-q8-2017': SpecialistQ8_2017,
+  'spec-q11-2017': SpecialistQ11_2017,
+  'spec-q12-2017': SpecialistQ12_2017,
+  'spec-q13-2017': SpecialistQ13_2017,
+  'spec-q15-2017': SpecialistQ15_2017,
+  'spec-q18-2017': SpecialistQ18_2017,
+  'spec-q20-2017': SpecialistQ20_2017,
+  'spec-q1-2017-e1': SpecialistQ1_2017Exam1,
+  'spec-q2-2017-e1': SpecialistQ2_2017Exam1,
+  'spec-q3-2017-e1': SpecialistQ3_2017Exam1,
+  'spec-q4-2017-e1': SpecialistQ4_2017Exam1,
+  'spec-q5-2017-e1': SpecialistQ5_2017Exam1,
+  'spec-q6-2017-e1': SpecialistQ6_2017Exam1,
+  'spec-q7-2017-e1': SpecialistQ7_2017Exam1,
+  'spec-q8-2017-e1': SpecialistQ8_2017Exam1,
+  'spec-q10-2017-e1': SpecialistQ10_2017Exam1,
   'spec-q5-2018': SpecialistQ5_2018,
 
   // Hardest-6 Specialist MCQs, 2019 Exam 2 (see data.ts percentCorrect)
