@@ -223,7 +223,26 @@ export default function MethodsQ4_2015Exam2() {
         and <Katex tex="h(x)=\tfrac13\sin(3x)" />, for <Katex tex="0 \le x \le 2\pi" />.
       </div>
 
-      <PartCard letter="b" marks={2} statement={<>On the axes below, the graph of <Katex tex="y=f(x)" /> has been drawn. On the same axes, draw the graph of <Katex tex="y=h(x)" />.</>} examinerReport={EXAM_B}>
+      <PartCard
+        letter="b"
+        marks={2}
+        statement={
+          <>
+            <p className="mb-2">
+              On the axes below, the graph of <Katex tex="y=f(x)" /> has been drawn. On the same
+              axes, draw the graph of <Katex tex="y=h(x)" />.
+            </p>
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img
+                src={fAxesSrc}
+                alt="Axes with y=2sin(x) already drawn on them, from the original 2015 VCAA exam paper"
+                className="w-full max-w-[300px]"
+              />
+            </div>
+          </>
+        }
+        examinerReport={EXAM_B}
+      >
         <WorkingTable rows={rowsB} />
       </PartCard>
 
