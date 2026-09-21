@@ -4,12 +4,13 @@
 // where the minimum occurs (parts b, c), then a general closed form for the minimum value
 // itself (part d). Question text transcribed from the original paper; the sketch axes VCAA
 // supplied for part (a)(iii) were blank (nothing pre-drawn to redraw), so the sketched
-// curve is this site's own original content, computed exactly rather than hand-waypointed.
-// Solution is original.
+// curve is this site's own original content — plotted with matplotlib (real graphing
+// software, exact, not hand-waypointed), not cropped from anything VCAA printed. Solution
+// is original.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import { functionToPath } from '../graphUtils'
+import sSketchSrc from './meth-2015exam2-q5-s-sketch.png'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [32, 68],
@@ -116,16 +117,20 @@ const ROWS_AII: WorkingRow[] = [
 const ROWS_AIII: WorkingRow[] = [
   {
     working: (
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <SSketch />
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sSketchSrc}
+          alt="S falling from (0,10) to a minimum at (log_e(8), 6) then rising to (5, 2e^(5/3)+8e^(-10/3)) — this site's own sketch, not a VCAA diagram"
+          className="w-full max-w-[340px]"
+        />
       </div>
     ),
     reason: (
       <>
         <Katex tex="S" /> falls from the left endpoint <Katex tex="(0,10)" /> down to the minimum{' '}
-        <Katex tex="(\ln_e8,\,6)\approx(2.08,\,6)" />, then rises back up to the right endpoint{' '}
-        <Katex tex="(5,\ 2e^{5/3}+8e^{-10/3})\approx(5,\,10.87)" /> — a smooth, single-dip curve
-        over the whole domain, all three points explicitly labelled.
+        <Katex tex="(\log_e(8),\,6)" />, then rises back up to the right endpoint{' '}
+        <Katex tex="(5,\ 2e^{5/3}+8e^{-10/3})" /> — a smooth, single-dip curve over the whole
+        domain, all three points explicitly labelled.
       </>
     ),
   },
@@ -293,40 +298,5 @@ export default function MethodsQ5_2015Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
     </div>
-  )
-}
-
-// S(t) = 2e^(t/3) + 8e^(-2t/3) on [0,5] — sampled exactly via functionToPath. VCAA's own
-// axes for this part were blank (a "sketch it yourself" grid), so this curve is this site's
-// own original content, not a redrawing of anything VCAA printed.
-function SSketch() {
-  const S = (t: number) => 2 * Math.exp(t / 3) + 8 * Math.exp((-2 * t) / 3)
-  const s5 = S(5)
-  const toSvgX = (t: number) => 40 + t * 44
-  const toSvgY = (y: number) => 220 - y * 18
-  return (
-    <svg viewBox="0 0 300 230" width={290} height={222}>
-      <line x1={30} y1={toSvgY(0)} x2={280} y2={toSvgY(0)} stroke="#9ca3af" strokeWidth={1} />
-      <line x1={40} y1={10} x2={40} y2={210} stroke="#9ca3af" strokeWidth={1} />
-      {[2, 4, 6, 8, 10].map(v => (
-        <text key={v} x={30} y={toSvgY(v) + 3} fontSize={9} textAnchor="end" className="fill-gray-500 dark:fill-gray-400">{v}</text>
-      ))}
-      {[1, 2, 3, 4, 5].map(v => (
-        <text key={v} x={toSvgX(v)} y={toSvgY(0) + 12} fontSize={9} textAnchor="middle" className="fill-gray-500 dark:fill-gray-400">{v}</text>
-      ))}
-      <text x={272} y={toSvgY(0) - 6} fontSize={10} className="fill-gray-600 dark:fill-gray-400">t</text>
-      <text x={44} y={16} fontSize={10} className="fill-gray-600 dark:fill-gray-400">S</text>
-
-      <path d={functionToPath(S, 0, 5, toSvgX, toSvgY)} fill="none" stroke="#0ea5e9" strokeWidth={2.2} />
-
-      <circle cx={toSvgX(0)} cy={toSvgY(10)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(0) + 4} y={toSvgY(10) - 6} fontSize={9} className="fill-gray-700 dark:fill-gray-300">(0, 10)</text>
-
-      <circle cx={toSvgX(Math.log(8))} cy={toSvgY(6)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(Math.log(8)) + 6} y={toSvgY(6) + 16} fontSize={9} className="fill-gray-700 dark:fill-gray-300">(ln 8, 6)</text>
-
-      <circle cx={toSvgX(5)} cy={toSvgY(s5)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(5) - 4} y={toSvgY(s5) - 8} fontSize={9} textAnchor="end" className="fill-gray-700 dark:fill-gray-300">(5, ≈10.87)</text>
-    </svg>
   )
 }

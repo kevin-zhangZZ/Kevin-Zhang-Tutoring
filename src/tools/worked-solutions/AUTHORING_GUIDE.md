@@ -242,10 +242,62 @@ the browser devtools/JS console) and checking they equal what the calibration ma
 predicts, rather than trusting a screenshot — screenshots of an overlay can look
 "close enough" while actually being pixels off.
 
-**A hand-drawn inline SVG is only acceptable when there is no original diagram to crop at
-all** — e.g. an axes/number-line sketch built purely to illustrate this site's own
-original reasoning, that VCAA's paper never printed in the first place. If VCAA printed a
-figure for the question, crop it — full stop.
+**An original sketch — plotted with matplotlib, not hand-drawn — is only appropriate when
+there is no original diagram to crop at all**: a "sketch the graph of f" part where VCAA's
+own axes are blank (nothing pre-drawn on them), so the finished curve is this site's own
+answer, not a redrawing of anything VCAA printed. If VCAA printed a figure for the
+question, crop it — full stop. This is a different case from the overlay above (annotating
+a *real* cropped image) — here there is no real image at all, only a blank grid, so the
+whole curve is original content.
+
+**Build it with matplotlib (real graphing software), not hand-coded SVG.** Inline SVG
+built by hand (waypoints, or even a `functionToPath`-style exact sampling) is harder to
+lay out correctly and has produced real bugs (overflowing rows, mislabelled points) that
+a proper plotting library avoids by construction. Generate a transparent-background PNG
+and embed it exactly like a cropped diagram — same `bg-white border border-gray-200
+dark:border-gray-800 rounded-xl p-3 w-fit` card, saved next to the question file (naming —
+see §2, e.g. `meth-2019exam1-q5-truncus-sketch.png`). Python is at
+`C:/Users/Kevin/AppData/Local/Programs/Python/Python310/python`.
+
+**House style for these plots** (all of the below, every time):
+- **Axes**: both the *x*- and *y*-axis drawn fully black, identical line thickness, with an
+  arrowhead only at the positive end of each (`matplotlib.axes.Axes.annotate` with
+  `arrowstyle="-|>"` from the negative extent to the positive extent — a plain
+  `axhline`/`axvline` has no arrowhead). Axis *labels* (`x`/`y`, or whatever the question
+  actually calls them — e.g. `t`/`S`) sit right next to each arrow tip, not at
+  matplotlib's default centred/rotated position.
+- **Nothing overlaps** — not axis labels, not coordinate labels on marked points, not the
+  curve itself. Check the rendered PNG at full size before using it; nudge an
+  `ax.annotate`'s `xytext` offset (or its `ha`/`va`) whenever a label sits on top of the
+  axis line, another label, a tick number, or the curve.
+- **The plotted curve stays within the given axis range** — sample the function only over
+  the *x*-domain the question actually restricts it to (which may be narrower than the
+  full axis range VCAA drew for framing/labelling purposes; don't sample past it just
+  because the grid extends further). Set `xlim`/`ylim` to the given range itself (plus the
+  small margin `draw_axes` needs for the arrowhead), not a range that happens to fit the
+  curve — a vertical asymptote will still run off the top/bottom of frame as it should,
+  that's expected, not an overlap or an extension to avoid.
+- **Gridlines**: shown, light grey, behind the curve (`zorder`) and behind nothing else.
+- **Axis range and step size must match VCAA's own blank grid exactly** — re-open the
+  source PDF page for that part and read off the printed range and tick spacing (the two
+  axes are often on *different* steps, e.g. *x* every 1 but *y* every 2 — check both
+  independently), rather than choosing a range that merely fits the curve. Getting this
+  wrong is a real, repeatable mistake: it happened on the first pass of two of these three
+  graphs before this rule was written down.
+- **Coordinates in exact form**, matching the algebra in the worked solution — a fraction
+  (`3/2`, via mathtext `\frac{3}{2}`) or exact expression (`2e^{5/3}+8e^{-10/3}`), never a
+  rounded decimal, unless the question itself asked for a specific number of decimal
+  places at that point.
+- **Notation matches the site's own Katex convention** — natural log as `log_e(x)` (`e`
+  subscript, parentheses around the argument, mathtext `\log_e(x)`), not `ln(x)` or
+  `\ln_e`.
+- Curve in the site's sky blue (`#0ea5e9`), any given asymptote as a dashed line in a
+  colour distinct from the curve (e.g. red `#ef4444` for a vertical asymptote), marked
+  points as small filled black dots with their coordinate labelled beside them.
+
+If you find an existing question file with a hand-coded inline SVG sketch (look for
+`functionToPath` imported for a *standalone* sketch, not an overlay), it should be
+converted to a matplotlib PNG the next time you touch that file.
 
 If you find an existing question file that redrew a diagram VCAA actually provided, fix
 it: crop the real figure and replace the SVG, updating the top comment accordingly.

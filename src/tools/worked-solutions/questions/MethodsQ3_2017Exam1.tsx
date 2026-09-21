@@ -2,12 +2,12 @@
 // f : [-3, 0] → R, f(x) = (x+2)²(x-1) — expand the factorised form, then sketch f on its
 // restricted domain. Question text transcribed from the original paper; the sketch axes
 // VCAA supplied were blank (nothing pre-drawn to redraw), so the sketched curve below is
-// this site's own original content, computed exactly rather than hand-waypointed. Solution
-// is original.
+// this site's own original content — plotted with matplotlib (real graphing software,
+// exact, not hand-waypointed), not cropped from anything VCAA printed. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import { functionToPath } from '../graphUtils'
+import cubicSketchSrc from './meth-2017exam1-q3-cubic-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [21, 79],
@@ -73,8 +73,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: (
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <CubicSketch />
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={cubicSketchSrc}
+          alt="Cubic hump from (-3,-4) up to a touch point at (-2,0) and back down to (0,-4) — this site's own sketch, not a VCAA diagram"
+          className="w-full max-w-[300px]"
+        />
       </div>
     ),
     reason: <>Endpoints <Katex tex="(-3,-4)" /> and <Katex tex="(0,-4)" />, touching the axis at <Katex tex="(-2,0)" /> — a single hump entirely at or below the <Katex tex="x" />-axis, since <Katex tex="x=1" /> (the only place <Katex tex="f" /> would otherwise cross) isn't in the domain.</>,
@@ -104,36 +108,5 @@ export default function MethodsQ3_2017Exam1() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>
-  )
-}
-
-// f(x) = (x+2)²(x-1) on [-3,0] — sampled exactly via functionToPath, not hand-waypointed.
-// VCAA's own axes for this part were blank (a "sketch it yourself" grid), so this curve is
-// this site's own original content, not a redrawing of anything VCAA printed.
-function CubicSketch() {
-  const f = (x: number) => (x + 2) ** 2 * (x - 1)
-  const toSvgX = (x: number) => 40 + (x - -3.5) * 60
-  const toSvgY = (y: number) => 130 - y * 22
-  return (
-    <svg viewBox="0 0 300 220" width={280} height={205}>
-      <line x1={20} y1={toSvgY(0)} x2={280} y2={toSvgY(0)} stroke="#9ca3af" strokeWidth={1} />
-      <line x1={toSvgX(-3)} y1={10} x2={toSvgX(-3)} y2={200} stroke="#e5e7eb" strokeWidth={1} />
-      <text x={264} y={toSvgY(0) - 6} fontSize={10} className="fill-gray-600 dark:fill-gray-400">x</text>
-
-      <path d={functionToPath(f, -3, 0, toSvgX, toSvgY)} fill="none" stroke="#0ea5e9" strokeWidth={2.2} />
-
-      {/* endpoints + touch point */}
-      <circle cx={toSvgX(-3)} cy={toSvgY(-4)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(-3) - 6} y={toSvgY(-4) + 16} fontSize={10} textAnchor="middle" className="fill-gray-700 dark:fill-gray-300">(−3, −4)</text>
-
-      <circle cx={toSvgX(-2)} cy={toSvgY(0)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(-2)} y={toSvgY(0) - 8} fontSize={10} textAnchor="middle" className="fill-gray-700 dark:fill-gray-300">(−2, 0)</text>
-
-      <circle cx={toSvgX(0)} cy={toSvgY(-4)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(0) + 20} y={toSvgY(-4) + 14} fontSize={10} textAnchor="middle" className="fill-gray-700 dark:fill-gray-300">(0, −4)</text>
-
-      <text x={toSvgX(-3) - 14} y={toSvgY(0) + 4} fontSize={10} className="fill-gray-500 dark:fill-gray-400">−3</text>
-      <text x={toSvgX(0) - 4} y={toSvgY(0) + 16} fontSize={10} className="fill-gray-500 dark:fill-gray-400">O</text>
-    </svg>
   )
 }

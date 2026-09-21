@@ -2,13 +2,14 @@
 // f(x) = 2/(x-1)² + 1 — evaluate f(-1) and sketch f (part a), then find the area it bounds
 // with the x-axis, x=-1 and x=0 (part b). Question text transcribed from the original paper;
 // the sketch axes VCAA supplied were blank (nothing pre-drawn to redraw), so the sketched
-// curve is this site's own original content, computed exactly rather than hand-waypointed.
+// curve is this site's own original content — plotted with matplotlib (real graphing
+// software, exact, not hand-waypointed), not cropped from anything VCAA printed.
 // Cross-checked against the VCAA examination report and itute's independent solutions —
 // both agree with the derivation below. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import { functionToPath } from '../graphUtils'
+import fSketchSrc from './meth-2019exam1-q5-truncus-sketch.png'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [7, 93],
@@ -67,8 +68,12 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: (
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <FSketch />
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={fSketchSrc}
+          alt="Truncus with vertical asymptote x=1 and horizontal asymptote y=1, passing through (-1, 1.5) and (0, 3) — this site's own sketch, not a VCAA diagram"
+          className="w-full max-w-[320px]"
+        />
       </div>
     ),
     reason: <>Two truncus branches either side of <Katex tex="x=1" />, both approaching <Katex tex="y=1" /> and curving away from (never crossing) either asymptote.</>,
@@ -117,36 +122,5 @@ export default function MethodsQ5_2019Exam1() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>
-  )
-}
-
-// f(x) = 2/(x-1)² + 1 — sampled exactly via functionToPath on each branch. VCAA's own axes
-// for this part were blank, so this curve is this site's own original content.
-function FSketch() {
-  const f = (x: number) => 2 / (x - 1) ** 2 + 1
-  const toSvgX = (x: number) => 60 + (x + 5) * 26
-  const toSvgY = (y: number) => 230 - y * 26
-  return (
-    <svg viewBox="0 0 340 250" width={330} height={243}>
-      <line x1={20} y1={toSvgY(0)} x2={320} y2={toSvgY(0)} stroke="#9ca3af" strokeWidth={1} />
-      <line x1={toSvgX(-5)} y1={10} x2={toSvgX(-5)} y2={240} stroke="#e5e7eb" strokeWidth={1} />
-      <line x1={toSvgX(1)} y1={5} x2={toSvgX(1)} y2={245} stroke="#fca5a5" strokeWidth={1.3} strokeDasharray="4 3" />
-      <line x1={20} y1={toSvgY(1)} x2={320} y2={toSvgY(1)} stroke="#93c5fd" strokeWidth={1.3} strokeDasharray="4 3" />
-      <text x={toSvgX(1) + 4} y={16} fontSize={11} className="fill-rose-500">x = 1</text>
-      <text x={24} y={toSvgY(1) - 5} fontSize={11} className="fill-sky-500">y = 1</text>
-
-      <path d={functionToPath(f, -5, 0.85, toSvgX, toSvgY)} fill="none" stroke="#0ea5e9" strokeWidth={2.2} />
-      <path d={functionToPath(f, 1.15, 5, toSvgX, toSvgY)} fill="none" stroke="#0ea5e9" strokeWidth={2.2} />
-
-      <circle cx={toSvgX(-1)} cy={toSvgY(1.5)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(-1) - 6} y={toSvgY(1.5) - 8} fontSize={10} textAnchor="end" className="fill-gray-700 dark:fill-gray-300">(−1, 1.5)</text>
-
-      <circle cx={toSvgX(0)} cy={toSvgY(3)} r={3} className="fill-gray-800 dark:fill-gray-200" />
-      <text x={toSvgX(0) + 4} y={toSvgY(3) - 6} fontSize={10} className="fill-gray-700 dark:fill-gray-300">(0, 3)</text>
-
-      {[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map(v => (
-        <text key={v} x={toSvgX(v)} y={toSvgY(0) + 13} fontSize={9} textAnchor="middle" className="fill-gray-500 dark:fill-gray-400">{v}</text>
-      ))}
-    </svg>
   )
 }
