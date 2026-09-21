@@ -342,6 +342,14 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q15-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — the derivative of an inverse function at a point', type: 'mc', hasDetail: true, percentCorrect: 55 },
   { id: 'meth-q16-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — matching the graph of f′ to a given graph of f', type: 'mc', hasDetail: true, percentCorrect: 63 },
 
+  // The complete 2018 Methods Exam 2 Section B, cross-referenced against the VCAA
+  // examination report and re-derived independently with sympy.
+  { id: 'meth-q1-2018-e2', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'Q1', topic: 'Calculus — a quartic, a tangent and the area it cuts off, then the same quartic with a parameter', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2018-e2', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'Q2', topic: 'Calculus — a two-exponential drug model, averages, and two staggered doses', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2018-e2', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'Q3', topic: 'Trigonometry — three sine arches under a bridge, the stone area, and a perpendicular rod', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2018-e2', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'Q4', topic: 'Probability — heart rates: a normal, independence, a sample proportion, a confidence interval and a density function', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2018-e2', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'Q5', topic: 'Calculus — a parameterised cubic and a line, then the cubic against its own inverse', type: 'sa', hasDetail: true },
+
   // The rest of the 2018 Methods Exam 2 Section A MCQs, filling out the 20-question paper
   // (the 6 hardest were already covered). Stats read off the rendered report table, since
   // the shading that marks the correct answer does not survive text extraction.
