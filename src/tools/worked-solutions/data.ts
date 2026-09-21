@@ -89,8 +89,46 @@ export const QUESTIONS: QuestionMeta[] = [
 
   { id: 'meth-q21-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 21', topic: 'Calculus — maximising the area of a trapezium', type: 'mc', hasDetail: true },
   { id: 'meth-q22-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 22', topic: 'Probability — independent events and ratios', type: 'mc', hasDetail: true },
-  { id: 'meth-q3-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Calculus — optimisation and related rates (melting ice cylinder)', type: 'sa', hasDetail: true },
-  { id: 'meth-q4-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q4(f)', topic: 'Probability — conditional probability and Markov-style recursion', type: 'sa', hasDetail: true },
+
+  // The rest of 2014 Methods Exam 2 Section 1, answers and percentages read off the rendered
+  // report table (the correct option is marked only by shading). MCQ 7, 12 and 19 are omitted:
+  // the skip guide lists them as a standalone modulus graph, a matrix transformation and a
+  // rectangle area-approximation respectively, none of which is on the current study design.
+  { id: 'meth-q1-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 1', topic: 'Transformations — a translation then a reflection, in order', type: 'mc', hasDetail: true, percentCorrect: 89 },
+  { id: 'meth-q2-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the domain of a decreasing linear function from its range', type: 'mc', hasDetail: true, percentCorrect: 80 },
+  { id: 'meth-q3-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 3', topic: 'Calculus — total area between a cubic and the x-axis', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q4-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — classifying a stationary point from the sign of f′', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'meth-q5-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 5', topic: 'Probability — standardising a normal probability', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q6-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 6', topic: 'Functions — restricting a cubic so it has an inverse', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'meth-q8-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — linearity of the definite integral', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'meth-q9-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 9', topic: 'Functions — the inverse of 1/√x + 4, domain included', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'meth-q10-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 10', topic: 'Functions — which rule is its own inverse', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'meth-q11-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 11', topic: 'Probability — two marbles of different colours, without replacement', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'meth-q13-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 13', topic: 'Functions — restricting cos(log_a x) so it is one-to-one', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'meth-q14-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — a conditional written in terms of two tail probabilities', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'meth-q15-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — the open-box optimisation', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'meth-q16-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 16', topic: 'Probability — recovering E(X²) from the mean and variance', type: 'mc', hasDetail: true, percentCorrect: 46 },
+  { id: 'meth-q17-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 17', topic: 'Algebra — when simultaneous linear equations have no solution', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'meth-q18-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 18', topic: 'Algebra — a discriminant condition for two distinct intersections', type: 'mc', hasDetail: true, percentCorrect: 53 },
+  { id: 'meth-q20-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 20', topic: 'Calculus — the average value of a piecewise-linear function', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'meth-q2-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Calculus — optimisation and related rates (melting ice cylinder)', type: 'sa', hasDetail: true },
+  { id: 'meth-q1-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Trigonometry — a sinusoidal population model and the fraction of a year below a level', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q3(a–d)', topic: 'Calculus — a concentration model, its peak, and average vs instantaneous rate', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q5(a–f)', topic: 'Calculus — factorising x⁴ − 8x, counting intercepts, and tangents through a point', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2014-e2', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'Q4(a–g)', topic: 'Probability — normal heights, a sine density, a binomial, and a two-state chain', type: 'sa', hasDetail: true },
+
+  // The complete 2014 Methods Exam 1 (short answer), checked with sympy against the VCAA
+  // examination report.
+  { id: 'meth-q1-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a product rule, then a chain rule evaluated at a point', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — a definite integral written as a single logarithm', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q3', topic: 'Trigonometry — solving 2cos(2x) = −√3 on a restricted domain', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q4', topic: 'Algebra — an index equation solved by matching bases', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q5(a–c)', topic: 'Calculus — stationary points of a restricted cubic, and an enclosed area', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q6', topic: 'Algebra — a logarithm equation and the index law behind it', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q7', topic: 'Calculus — antidifferentiating a trigonometric derivative', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Probability — the median of an exponential density, then a conditional', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Probability — total probability, then the reverse conditional', type: 'sa', hasDetail: true },
+  { id: 'meth-q10-2014-e1', subject: 'methods', year: 2014, exam: 'Exam 1', code: 'Q10(a–b)', topic: 'Calculus — a tangent to a parabola, then optimising an area on a closed interval', type: 'sa', hasDetail: true },
 
   // The 6 hardest Methods MCQs from 2015 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q3-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — identifying a quartic rule from its graph', type: 'mc', hasDetail: true, percentCorrect: 20 },

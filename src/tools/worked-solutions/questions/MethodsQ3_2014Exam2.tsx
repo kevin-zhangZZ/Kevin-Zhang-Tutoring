@@ -1,335 +1,331 @@
-// 2014 Mathematical Methods — Exam 2, Question 2 (Section 2).
-// Tasmania Jones carves a statue from a cylinder of ice — volume, surface area minimisation,
-// then a melting-rate related-rates problem. Question text transcribed from the original
-// paper; the diagram is cropped directly from the original VCAA exam PDF, not a redrawing.
-// Worked solutions below are original. No video walkthrough yet.
+// 2014 Mathematical Methods (CAS) — Exam 2, Section 2 Question 3 (11 marks). A concentration
+// model c(t) = (5/2)t·e^(-3t/2): its maximum, the window above 0.5 mg/L, an average rate of
+// change and where the instantaneous rate matches it, then recovering a parameter from a
+// second model. Question text transcribed from the original paper; the figure is a crop of
+// VCAA's own artwork. Answers checked with sympy and against the VCAA examination report.
+// Solution is original.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import diagramSrc from './meth-2014exam2-q2-ice-cylinder.png'
+import { Cas } from '../CasRef'
+import graphSrc from './meth-2014e2-q3-graph.png'
 
-const EXAMINER_A: SAExaminerStats = {
-  marks: [15, 10, 75],
-  average: 1.6,
+const EXAM_A: SAExaminerStats = {
+  marks: [25, 75],
+  average: 0.8,
   comment: (
     <>
-      This question was quite well answered. Some students used the formula for the volume of a cone
-      instead of a cylinder. Some used poor notation, omitting brackets and writing{' '}
-      <Katex tex="\tfrac{d^2}{2}=\tfrac{d^2}{4}" />. Many left their answer in the form{' '}
-      <Katex tex="h=\dfrac{216}{\pi(d/2)^2}" />, which was accepted; however, it is preferable to write in
-      simplified form.
+      This question was answered well. Some students had incorrect units, such as mm for
+      milligrams. Some left their answers in exact form. Some found <Katex tex="t" /> correct
+      to two decimal places and left their answer as <Katex tex="0.67" />.
     </>
   ),
 }
 
-const EXAMINER_B: SAExaminerStats = {
-  marks: [43, 57],
-  average: 0.6,
-  comment:
-    "This was a 'show that' question and some students showed sufficient working. Some included the area of the base of the cylinder. Others did not include the area of the top of the cylinder and only considered the curved surface area.",
+const EXAM_BI: SAExaminerStats = {
+  marks: [19, 81],
+  average: 0.8,
+  comment: (
+    <>
+      Some students gave two answers, <Katex tex="0.33" /> and <Katex tex="1.19" />, instead
+      of only the first one, as specified in the question. Some students rounded incorrectly
+      and gave <Katex tex="0.32" />.
+    </>
+  ),
 }
 
-const EXAMINER_C: SAExaminerStats = {
-  marks: [25, 25, 50],
+const EXAM_BII: SAExaminerStats = {
+  marks: [19, 9, 72],
+  average: 1.6,
+  comment: (
+    <>
+      Students should always work to suitable accuracy in intermediate calculations to
+      support rounding the answer to the required accuracy. Some students wrote down the two
+      values but did not find the difference. Some added the two values.
+    </>
+  ),
+}
+
+const EXAM_CI: SAExaminerStats = {
+  marks: [27, 21, 52],
   average: 1.3,
   comment: (
     <>
-      Some students answered only part of the question, finding the correct value for <Katex tex="d" /> but
-      not attempting to find <Katex tex="S" />. Exact answers were required. Answers such as{' '}
-      <Katex tex="d=8.19\ldots" /> and <Katex tex="S=158.17\ldots" /> were often given.
+      Some students worked out the average <em>value</em> of the function. Others had
+      incorrect units.
     </>
   ),
 }
 
-const EXAMINER_D: SAExaminerStats = {
-  marks: [58, 42],
-  average: 0.4,
+const EXAM_CII: SAExaminerStats = {
+  marks: [51, 23, 26],
+  average: 0.8,
   comment: (
     <>
-      Some students did not square <Katex tex="\tfrac{12}{\sqrt[3]{\pi}}" />, using{' '}
-      <Katex tex="h=\dfrac{864}{\pi(12/\sqrt[3]{\pi})}" /> to get <Katex tex="\dfrac{72}{\pi^{2/3}}" />. An
-      exact answer was required, not a decimal expression such as 4.09, as was given by some students. Some
-      substituted <Katex tex="d=\tfrac{12}{\sqrt[3]{\pi}}" /> into <Katex tex="S=\tfrac{\pi d^2}{4}+\tfrac{864}{d}" />.
+      Some rounded their answers incorrectly. Others did not work to the required number of
+      decimal places.
     </>
   ),
 }
 
-const EXAMINER_E: SAExaminerStats = {
-  marks: [41, 59],
-  average: 0.6,
+const EXAM_D: SAExaminerStats = {
+  marks: [31, 27, 12, 29],
+  average: 1.4,
   comment: (
     <>
-      Some students used an incorrect formula, such as <Katex tex="V=\pi(2h)^2h=4\pi h^3" /> or{' '}
-      <Katex tex="V=2\pi rh=2\pi h^2" />.
+      Many students were able to set up at least one of the equations.{' '}
+      <Katex tex="n(0.5)=0.74" /> was often used. Some students differentiated by hand
+      incorrectly. Some students gave the value of <Katex tex="k" />, not <Katex tex="A" />.
+      Others gave an exact answer.
     </>
   ),
 }
 
-const EXAMINER_F: SAExaminerStats = {
-  marks: [27, 12, 38, 22],
-  average: 1.6,
-  comment: (
-    <>
-      Many students were able to set up the related rates equation and find <Katex tex="\tfrac{dV}{dh}" />.
-      Some students did not find the reciprocal before substituting into <Katex tex="\tfrac{dh}{dV}" />. Many
-      used <Katex tex="\tfrac{dV}{dt}=10\ \text{m}^3/\text{year}" />.
-    </>
-  ),
-}
+const ROWS_A: WorkingRow[] = [
+  {
+    working: <Katex display tex="c(t) = \tfrac52 t e^{-3t/2}" />,
+    reason: <>The maximum is at a stationary point, so differentiate — a product rule with a chain rule inside.</>,
+  },
+  {
+    working: <Katex display tex="c'(t) = \tfrac52 e^{-3t/2}\left(1-\tfrac32 t\right)" />,
+    reason: <>Factorising out <Katex tex="e^{-3t/2}" />, which is never zero.</>,
+  },
+  {
+    working: <Katex display tex="1-\tfrac32t = 0 \implies t = \tfrac23" />,
+    reason: <>The only stationary point, and the graph shows it is the maximum.</>,
+  },
+  {
+    working: <Katex display tex="c\!\left(\tfrac23\right) = \tfrac52\times\tfrac23\times e^{-1} = \tfrac{5}{3e}" />,
+    reason: <>The exact value.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{0.61\ \text{mg/L}}" />,
+    reason: <>To two decimal places, as asked. The answer is the <em>concentration</em>, not the time <Katex tex="0.67" /> at which it occurs.</>,
+  },
+]
 
-const EXAMINER_G: SAExaminerStats = {
-  marks: [60, 40],
-  average: 0.4,
-  comment: 'Students who answered part (f) correctly tended to also answer this question correctly. An exact answer was required. Some students gave incorrect units.',
-}
+const ROWS_BI: WorkingRow[] = [
+  {
+    working: <Cas fn="nSolve">nSolve((5/2)·t·e^(-3t/2) = 0.5, t) | 0 &lt; t &lt; 1</Cas>,
+    reason: <>The graph rises steeply then decays, so it crosses <Katex tex="0.5" /> twice. Restricting to <Katex tex="t<1" /> picks out the first crossing.</>,
+  },
+  {
+    working: <Katex display tex="t = 0.326268\ldots" />,
+    reason: <>Keep the extra digits — part b(ii) needs them.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{t \approx 0.33\ \text{hours}}" />,
+    reason: <>Rounding up, not down to <Katex tex="0.32" />. Only the <em>first</em> time is wanted.</>,
+  },
+]
 
-const EXAMINER_H: SAExaminerStats = {
-  marks: [86, 4, 9],
-  average: 0.3,
-  comment: (
-    <>
-      This question was not answered well. A number of different approaches could have been used. Some
-      students gave 2032 as their final answer. Some did not subtract <Katex tex="\pi" /> from 216 and used{' '}
-      <Katex tex="t=\tfrac{216}{10}" />. Incorrect terminals were often used or, if evaluating{' '}
-      <Katex tex="t=\displaystyle\int\!\left(-\tfrac{3\pi h^2}{10}\right)dh" />, a constant of integration was
-      often missing. Some used <Katex tex="t=\displaystyle\int\!\left(-\tfrac{10}{3\pi h^2}\right)dh" />.
-    </>
-  ),
-}
+const ROWS_BII: WorkingRow[] = [
+  {
+    working: <Cas fn="nSolve">nSolve((5/2)·t·e^(-3t/2) = 0.5, t) | t &gt; 1</Cas>,
+    reason: <>The second crossing, on the decaying side of the peak.</>,
+  },
+  {
+    working: <Katex display tex="t = 1.187558\ldots" />,
+    reason: <>Again unrounded.</>,
+  },
+  {
+    working: <Katex display tex="\Delta t = 1.187558\ldots - 0.326268\ldots" />,
+    reason: <>The <em>length of time above</em> <Katex tex="0.5" /> is the difference of the two crossings — not their sum, and not either one alone.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{0.86\ \text{hours}}" />,
+    reason: <>Rounding the two crossings first would give <Katex tex="1.19-0.33=0.86" /> here too, but working unrounded is what guarantees the second decimal place.</>,
+  },
+]
+
+const ROWS_CI: WorkingRow[] = [
+  {
+    working: <Katex display tex="\text{average rate of change} = \frac{c(3)-c\!\left(\tfrac23\right)}{3-\tfrac23}" />,
+    reason: <>Rise over run between the two endpoints — the gradient of the chord. This is not the average <em>value</em> of <Katex tex="c" />, which is an integral.</>,
+  },
+  {
+    working: <Katex display tex="c(3) = \tfrac{15}{2}e^{-4.5} = 0.083317\ldots" />,
+    reason: <>The concentration has decayed a long way by <Katex tex="t=3" />.</>,
+  },
+  {
+    working: <Katex display tex="c\!\left(\tfrac23\right) = \tfrac{5}{3e} = 0.613132\ldots" />,
+    reason: <>The peak, from part a.</>,
+  },
+  {
+    working: <Katex display tex="\frac{0.083317\ldots-0.613132\ldots}{\tfrac73} = -0.227063\ldots" />,
+    reason: <>The run is <Katex tex="3-\tfrac23=\tfrac73" />.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{-0.23\ \text{mg/L/h}}" />,
+    reason: <>Negative, because the concentration is falling across this interval. The units matter.</>,
+  },
+]
+
+const ROWS_CII: WorkingRow[] = [
+  {
+    working: <Katex display tex="c'(t) = -0.227063\ldots" />,
+    reason: <>The mean value theorem guarantees at least one such <Katex tex="t" /> in the interval; here there are two.</>,
+  },
+  {
+    working: <Cas fn="nSolve">nSolve(d/dt((5/2)·t·e^(-3t/2)) = -0.227063…, t) | 2/3 &lt; t &lt; 3</Cas>,
+    reason: <>Use the unrounded value from part c(i), and solve inside the interval.</>,
+  },
+  {
+    working: <Katex display tex="t_1 = 0.900361\ldots, \qquad t_2 = 2.117708\ldots" />,
+    reason: <>One on the steep part just past the peak, one out on the flattening tail.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{t_1 \approx 0.90,\quad t_2 \approx 2.12\ \text{hours}}" />,
+    reason: <>Both to two decimal places — <Katex tex="0.90" /> keeps its trailing zero.</>,
+  },
+]
+
+const ROWS_D: WorkingRow[] = [
+  {
+    working: <Katex display tex="n(t) = Ate^{-kt}" />,
+    reason: <>Two unknowns, so two equations are needed — the maximum supplies both.</>,
+  },
+  {
+    working: <Katex display tex="n'(t) = Ae^{-kt}(1-kt)" />,
+    reason: <>Product rule again, with the same structure as part a.</>,
+  },
+  {
+    working: <Katex display tex="n'(0.5) = 0 \implies 1-0.5k = 0 \implies k = 2" />,
+    reason: <>The maximum is <em>at</em> <Katex tex="t=0.5" />, which is the second equation many students missed.</>,
+  },
+  {
+    working: <Katex display tex="n(0.5) = 0.74 \implies A(0.5)e^{-1} = 0.74" />,
+    reason: <>Now the height fixes <Katex tex="A" />.</>,
+  },
+  {
+    working: <Katex display tex="A = \frac{0.74\times2}{e^{-1}} = 1.48e = 4.023\ldots" />,
+    reason: <>Multiplying by <Katex tex="e" /> rather than dividing by <Katex tex="e^{-1}" />.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{A = 4}" />,
+    reason: <>To the nearest integer, as asked — and it is <Katex tex="A" />, not <Katex tex="k=2" />, that the question wants.</>,
+  },
+]
 
 export default function MethodsQ3_2014Exam2() {
-  const rowsA: WorkingRow[] = [
-    {
-      working: <Katex display tex="\begin{aligned} V &= \pi r^2 h \\ &= \pi\left(\frac{d}{2}\right)^2 h \\ &= 216 \end{aligned}" />,
-      reason: <>Cylinder volume, with radius written as <Katex tex="\tfrac{d}{2}" /> since the diameter <Katex tex="d" /> is the given variable.</>,
-    },
-    {
-      working: <Katex display tex="\boxed{h = \dfrac{864}{\pi d^2}}" />,
-      reason: <>Rearrange: <Katex tex="\tfrac{\pi d^2}{4}h=216 \implies h = \tfrac{864}{\pi d^2}" />.</>,
-    },
-  ]
-
-  const rowsB: WorkingRow[] = [
-    {
-      working: <Katex display tex="\begin{aligned} S &= \pi d h + \pi\left(\frac{d}{2}\right)^2 \\ &= \pi dh + \frac{\pi d^2}{4} \end{aligned}" />,
-      reason: <>Excluding the base: lateral (curved) surface <Katex tex="\pi dh" /> plus the flat top, a circle of radius <Katex tex="\tfrac{d}{2}" />.</>,
-    },
-    {
-      working: <Katex display tex="\begin{aligned} S &= \pi d\left(\frac{864}{\pi d^2}\right) + \frac{\pi d^2}{4} \\ &= \frac{864}{d}+\frac{\pi d^2}{4} \end{aligned}" />,
-      reason: <>Substitute <Katex tex="h" /> from part (a) to write <Katex tex="S" /> in terms of <Katex tex="d" /> alone.</>,
-    },
-    {
-      working: <Katex display tex="\boxed{S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}} \quad \checkmark" />,
-      reason: 'Matches the given form — confirms the substitution.',
-    },
-  ]
-
-  const rowsC: WorkingRow[] = [
-    {
-      working: <Katex display tex="\begin{aligned} \frac{dS}{dd} &= \frac{\pi d}{2} - \frac{864}{d^2} \\ &= 0 \end{aligned}" />,
-    },
-    {
-      working: (
-        <>
-          <Katex display tex="\frac{\pi d^3}{2} = 864" />
-          <Katex display tex="\implies\; d^3 = \frac{1728}{\pi}" />
-        </>
-      ),
-    },
-    {
-      working: <Katex display tex="\boxed{d = \sqrt[3]{\dfrac{1728}{\pi}} = \dfrac{12}{\sqrt[3]{\pi}} \approx 8.19 \text{ m}}" />,
-      reason: (
-        <>
-          <Katex tex="\dfrac{d^2S}{dd^2}=\dfrac{\pi}{2}+\dfrac{1728}{d^3}>0" /> everywhere, so this is a minimum.
-        </>
-      ),
-    },
-    {
-      working: <Katex display tex="\begin{aligned} S_{\min} &= \frac{864}{d}+\frac{864}{2d} \\ &= \frac{1296}{d} \end{aligned}" />,
-      reason: <>Using <Katex tex="\tfrac{\pi d^2}{4}=\tfrac{\pi d^3}{4d}=\tfrac{864}{2d}" /> (from <Katex tex="\tfrac{\pi d^3}{2}=864" />) to rewrite the first term of <Katex tex="S" /> without <Katex tex="\pi" />.</>,
-    },
-    {
-      working: <Katex display tex="\boxed{S_{\min} = 1296\left(\frac{\pi}{1728}\right)^{1/3} = 108\sqrt[3]{\pi} \approx 158.18 \text{ m}^2}" />,
-      reason: <>Substitute <Katex tex="\tfrac1d = \left(\tfrac{\pi}{1728}\right)^{1/3}" />.</>,
-    },
-  ]
-
-  const rowsD: WorkingRow[] = [
-    {
-      working: (
-        <>
-          <Katex display tex="\frac{\pi d^3}{2}=864" />
-          <Katex display tex="\implies\; d^3 = \frac{1728}{\pi}, \qquad h = \frac{864}{\pi d^2}" />
-        </>
-      ),
-      reason: 'Combine the optimal-d condition from part (c) with the h–d relation from part (a).',
-    },
-    {
-      working: <Katex display tex="\begin{aligned} h &= \frac{864}{\pi d^2} \\ &= \frac{d^3/2}{d^2} \\ &= \frac{d}{2} \end{aligned}" />,
-      reason: <>Since <Katex tex="864 = \tfrac{\pi d^3}{2}" />, substitute directly: <Katex tex="\tfrac{864}{\pi d^2} = \tfrac{\pi d^3/2}{\pi d^2}" />.</>,
-    },
-    {
-      working: <Katex display tex="\boxed{h = \dfrac{d}{2} = \dfrac{6}{\sqrt[3]{\pi}} \approx 4.10 \text{ m}}" />,
-      reason: <>Halve the value of <Katex tex="d" /> found in part (c). Neatly, the minimising cylinder has height exactly half its diameter.</>,
-    },
-  ]
-
-  const rowsE: WorkingRow[] = [
-    {
-      working: (
-        <>
-          <Katex display tex="d = 2h" />
-          <Katex display tex="\begin{aligned} \implies\; r &= \frac{d}{2} \\ &= h \end{aligned}" />
-        </>
-      ),
-      reason: <>The problem now assumes the ice keeps the <Katex tex="d=2h" /> proportions found in part (d) as it melts.</>,
-    },
-    {
-      working: <Katex display tex="\begin{aligned} V &= \pi r^2 h \\ &= \pi h^2\cdot h \end{aligned}" />,
-    },
-    {
-      working: <Katex display tex="\boxed{V = \pi h^3}" />,
-    },
-  ]
-
-  const rowsF: WorkingRow[] = [
-    {
-      working: <Katex display tex="\frac{dV}{dt} = -10 \quad \text{(given, constant)}, \qquad \frac{dV}{dh} = 3\pi h^2" />,
-      reason: <>Differentiate <Katex tex="V=\pi h^3" /> from part (e) with respect to <Katex tex="h" />.</>,
-    },
-    {
-      working: <Katex display tex="\frac{dh}{dt} = \frac{dV}{dt}\Big/\frac{dV}{dh}" />,
-      reason: 'Chain rule (related rates).',
-    },
-    {
-      working: <Katex display tex="\boxed{\dfrac{dh}{dt} = \dfrac{-10}{3\pi h^2}}" />,
-    },
-  ]
-
-  const rowsG: WorkingRow[] = [
-    {
-      working: (
-        <>
-          <Katex display tex="\text{Statue height} = 1\text{ m, based at the centre of the ice's base}" />
-          <Katex display tex="\implies\; h=1" />
-        </>
-      ),
-      reason: 'The top of the statue is "just exposed" exactly when the melting ice surface has dropped to the height of the statue.',
-    },
-    {
-      working: <Katex display tex="\left.\frac{dh}{dt}\right|_{h=1} = \frac{-10}{3\pi(1)^2}" />,
-      reason: 'Substitute h = 1 into the result from part (f).',
-    },
-    {
-      working: <Katex display tex="\boxed{\dfrac{dh}{dt} = -\dfrac{10}{3\pi} \approx -1.06 \text{ m/year}}" />,
-    },
-  ]
-
-  const rowsH: WorkingRow[] = [
-    {
-      working: (
-        <>
-          <Katex display tex="\frac{dV}{dt}=-10 \text{ (constant)}" />
-          <Katex display tex="\implies\; V(t) = 216-10t" />
-        </>
-      ),
-      reason: <>Since the volume decreases at a constant rate from its initial value <Katex tex="V(0)=216" /> — no need to integrate <Katex tex="\tfrac{dh}{dt}" /> separately.</>,
-    },
-    {
-      working: (
-        <>
-          <Katex display tex="V=\pi h^3" />
-          <Katex display tex="\implies\; h^3 = \frac{216-10t}{\pi}" />
-        </>
-      ),
-      reason: <>From part (e), valid throughout while <Katex tex="d=2h" /> holds.</>,
-    },
-    {
-      working: (
-        <>
-          <Katex display tex="h=1" />
-          <Katex display tex="\implies\; 1 = \frac{216-10t}{\pi}" />
-          <Katex display tex="\implies\; 216-10t=\pi" />
-        </>
-      ),
-      reason: 'Set h = 1, the condition from part (g).',
-    },
-    {
-      working: <Katex display tex="t = \frac{216-\pi}{10} \approx 21.29 \text{ years}" />,
-    },
-    {
-      working: <Katex display tex="\boxed{\text{Sometime during the year } 2031}" />,
-      reason: (
-        <>
-          Counting from 1 Jan 2010: <Katex tex="t=21" /> years lands on 1 Jan 2031, and the remaining{' '}
-          <Katex tex="\approx 0.29" /> of a year (<Katex tex="\approx" /> 3.5 months) falls in 2031, before
-          1 Jan 2032.
-        </>
-      ),
-    },
-  ]
-
   return (
     <div className="flex flex-col gap-8">
-      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (13 marks)</p>
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
+        <p className="font-semibold text-gray-900 dark:text-white">Question 3 (11 marks)</p>
         <p>
-          On 1 January 2010, Tasmania Jones was walking through an ice-covered region of Greenland when he
-          found a large ice cylinder that was made a thousand years ago by the Vikings. A statue was inside
-          the ice cylinder. The statue was 1 m tall and its base was at the centre of the base of the cylinder.
+          In a controlled experiment, Juan took some medicine at 8 pm. The concentration of
+          medicine in his blood was then measured at regular intervals. The concentration of
+          medicine in Juan's blood is modelled by the function{' '}
+          <Katex tex="c(t)=\tfrac52 te^{-3t/2}" />, <Katex tex="t\ge0" />, where{' '}
+          <Katex tex="c" /> is the concentration of medicine in his blood, in milligrams per
+          litre, <Katex tex="t" /> hours after 8 pm. Part of the graph of the function{' '}
+          <Katex tex="c" /> is shown below.
         </p>
-        <p className="mt-2">
-          The cylinder had a height of <Katex tex="h" /> metres and a diameter of <Katex tex="d" /> metres.
-          Tasmania Jones found that the volume of the cylinder was 216 m³. At that time, 1 January 2010, the
-          cylinder had not changed in a thousand years. It was exactly as it was when the Vikings made it.
-        </p>
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 mt-3 w-fit">
-          <img src={diagramSrc} alt="Ice cylinder of height h metres and diameter d metres, with a 1 m statue at its centre, from the original 2014 VCAA exam paper" className="w-full max-w-[280px]" />
+        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+          <img
+            src={graphSrc}
+            alt="A curve rising steeply from the origin to a peak just above 0.5 and then decaying slowly towards the t-axis — from the original 2014 VCAA exam paper"
+            className="w-full max-w-[380px]"
+          />
         </div>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Write an expression for <Katex tex="h" /> in terms of <Katex tex="d" />.</>} examinerReport={EXAMINER_A}>
-        <WorkingTable rows={rowsA} />
+      <PartCard
+        letter="a"
+        marks={1}
+        statement={
+          <>
+            What was the maximum value of the concentration of medicine in Juan's blood, in
+            milligrams per litre, correct to two decimal places?
+          </>
+        }
+        examinerReport={EXAM_A}
+      >
+        <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Show that the surface area of the cylinder excluding the base, <Katex tex="S" /> square metres, is given by the rule <Katex tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}" />.</>} examinerReport={EXAMINER_B}>
-        <WorkingTable rows={rowsB} />
+      <PartCard
+        letter="b.i"
+        marks={1}
+        statement={
+          <>
+            Find the value of <Katex tex="t" />, in hours, correct to two decimal places, when
+            the concentration of medicine in Juan's blood first reached 0.5 milligrams per
+            litre.
+          </>
+        }
+        examinerReport={EXAM_BI}
+      >
+        <WorkingTable rows={ROWS_BI} />
+      </PartCard>
+
+      <PartCard
+        letter="b.ii"
+        marks={2}
+        statement={
+          <>
+            Find the length of time that the concentration of medicine in Juan's blood was
+            above 0.5 milligrams per litre. Express the answer in hours, correct to two
+            decimal places.
+          </>
+        }
+        examinerReport={EXAM_BII}
+      >
+        <WorkingTable rows={ROWS_BII} />
+      </PartCard>
+
+      <PartCard
+        letter="c.i"
+        marks={2}
+        statement={
+          <>
+            What was the value of the average rate of change of the concentration of medicine
+            in Juan's blood over the interval <Katex tex="\left[\tfrac23,3\right]" />? Express
+            the answer in milligrams per litre per hour, correct to two decimal places.
+          </>
+        }
+        examinerReport={EXAM_CI}
+      >
+        <WorkingTable rows={ROWS_CI} />
+      </PartCard>
+
+      <PartCard
+        letter="c.ii"
+        marks={2}
+        statement={
+          <>
+            At times <Katex tex="t_1" /> and <Katex tex="t_2" />, the instantaneous rate of
+            change of the concentration of medicine in Juan's blood was equal to the average
+            rate of change over the interval <Katex tex="\left[\tfrac23,3\right]" />. Find the
+            values of <Katex tex="t_1" /> and <Katex tex="t_2" />, in hours, correct to two
+            decimal places.
+          </>
+        }
+        examinerReport={EXAM_CII}
+      >
+        <WorkingTable rows={ROWS_CII} />
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
-        Tasmania found that the Vikings made the cylinder so that <Katex tex="S" /> is a minimum.
+        Alicia took part in a similar controlled experiment. However, she used a different
+        medicine. The concentration of this different medicine was modelled by the function{' '}
+        <Katex tex="n(t)=Ate^{-kt}" />, <Katex tex="t\ge0" />, where <Katex tex="A" /> and{' '}
+        <Katex tex="k\in R^+" />.
       </div>
 
-      <PartCard letter="c" marks={2} statement={<>Find the value of <Katex tex="d" /> for which <Katex tex="S" /> is a minimum and find this minimum value of <Katex tex="S" />.</>} examinerReport={EXAMINER_C}>
-        <WorkingTable rows={rowsC} />
-      </PartCard>
-
-      <PartCard letter="d" marks={1} statement={<>Find the value of <Katex tex="h" /> when <Katex tex="S" /> is a minimum.</>} examinerReport={EXAMINER_D}>
-        <WorkingTable rows={rowsD} />
-      </PartCard>
-
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
-        On 1 January 2010, Tasmania believed that due to recent temperature changes in Greenland, the ice of
-        the cylinder had just started melting. Therefore, he decided to return on 1 January each year to
-        measure the ice cylinder. He observes that the volume of the ice cylinder decreases by a constant rate
-        of 10 m³ per year. Assume that the cylindrical shape is retained and <Katex tex="d=2h" /> at the
-        beginning and as the cylinder melts.
-      </div>
-
-      <PartCard letter="e" marks={1} statement={<>Write down an expression for <Katex tex="V" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_E}>
-        <WorkingTable rows={rowsE} />
-      </PartCard>
-
-      <PartCard letter="f" marks={3} statement={<>Find <Katex tex="\dfrac{dh}{dt}" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_F}>
-        <WorkingTable rows={rowsF} />
-      </PartCard>
-
-      <PartCard letter="g" marks={1} statement="Find the rate at which the height of the cylinder will be decreasing when the top of the statue is just exposed." examinerReport={EXAMINER_G}>
-        <WorkingTable rows={rowsG} />
-      </PartCard>
-
-      <PartCard letter="h" marks={2} statement="Find the year in which the top of the statue will just be exposed. (Assume that the melting started on 1 January 2010.)" examinerReport={EXAMINER_H}>
-        <WorkingTable rows={rowsH} />
+      <PartCard
+        letter="d"
+        marks={3}
+        statement={
+          <>
+            If the maximum concentration of medicine in Alicia's blood was 0.74 milligrams per
+            litre at <Katex tex="t=0.5" /> hours, find the value of <Katex tex="A" />, correct
+            to the nearest integer.
+          </>
+        }
+        examinerReport={EXAM_D}
+      >
+        <WorkingTable rows={ROWS_D} />
       </PartCard>
     </div>
   )

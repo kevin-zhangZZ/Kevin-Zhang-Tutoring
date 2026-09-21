@@ -30,8 +30,38 @@ import MethodsQ20_2015 from './questions/MethodsQ20_2015'
 import MethodsQ22_2015 from './questions/MethodsQ22_2015'
 import MethodsQ21_2014 from './questions/MethodsQ21_2014'
 import MethodsQ22_2014 from './questions/MethodsQ22_2014'
+import MethodsQ1_2014 from './questions/MethodsQ1_2014'
+import MethodsQ2_2014 from './questions/MethodsQ2_2014'
+import MethodsQ3_2014 from './questions/MethodsQ3_2014'
+import MethodsQ4_2014 from './questions/MethodsQ4_2014'
+import MethodsQ5_2014 from './questions/MethodsQ5_2014'
+import MethodsQ6_2014 from './questions/MethodsQ6_2014'
+import MethodsQ8_2014 from './questions/MethodsQ8_2014'
+import MethodsQ9_2014 from './questions/MethodsQ9_2014'
+import MethodsQ10_2014 from './questions/MethodsQ10_2014'
+import MethodsQ11_2014 from './questions/MethodsQ11_2014'
+import MethodsQ13_2014 from './questions/MethodsQ13_2014'
+import MethodsQ14_2014 from './questions/MethodsQ14_2014'
+import MethodsQ15_2014 from './questions/MethodsQ15_2014'
+import MethodsQ16_2014 from './questions/MethodsQ16_2014'
+import MethodsQ17_2014 from './questions/MethodsQ17_2014'
+import MethodsQ18_2014 from './questions/MethodsQ18_2014'
+import MethodsQ20_2014 from './questions/MethodsQ20_2014'
+import MethodsQ2_2014Exam2 from './questions/MethodsQ2_2014Exam2'
+import MethodsQ1_2014Exam2 from './questions/MethodsQ1_2014Exam2'
 import MethodsQ3_2014Exam2 from './questions/MethodsQ3_2014Exam2'
+import MethodsQ5_2014Exam2 from './questions/MethodsQ5_2014Exam2'
 import MethodsQ4_2014Exam2 from './questions/MethodsQ4_2014Exam2'
+import MethodsQ1_2014Exam1 from './questions/MethodsQ1_2014Exam1'
+import MethodsQ2_2014Exam1 from './questions/MethodsQ2_2014Exam1'
+import MethodsQ3_2014Exam1 from './questions/MethodsQ3_2014Exam1'
+import MethodsQ4_2014Exam1 from './questions/MethodsQ4_2014Exam1'
+import MethodsQ5_2014Exam1 from './questions/MethodsQ5_2014Exam1'
+import MethodsQ6_2014Exam1 from './questions/MethodsQ6_2014Exam1'
+import MethodsQ7_2014Exam1 from './questions/MethodsQ7_2014Exam1'
+import MethodsQ8_2014Exam1 from './questions/MethodsQ8_2014Exam1'
+import MethodsQ9_2014Exam1 from './questions/MethodsQ9_2014Exam1'
+import MethodsQ10_2014Exam1 from './questions/MethodsQ10_2014Exam1'
 import MethodsQ3_2015Exam2 from './questions/MethodsQ3_2015Exam2'
 import MethodsQ1_2015Exam1 from './questions/MethodsQ1_2015Exam1'
 import MethodsQ2_2015Exam1 from './questions/MethodsQ2_2015Exam1'
@@ -511,8 +541,38 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q22-2015': MethodsQ22_2015,
   'meth-q21-2014': MethodsQ21_2014,
   'meth-q22-2014': MethodsQ22_2014,
+  'meth-q1-2014': MethodsQ1_2014,
+  'meth-q2-2014': MethodsQ2_2014,
+  'meth-q3-2014': MethodsQ3_2014,
+  'meth-q4-2014': MethodsQ4_2014,
+  'meth-q5-2014': MethodsQ5_2014,
+  'meth-q6-2014': MethodsQ6_2014,
+  'meth-q8-2014': MethodsQ8_2014,
+  'meth-q9-2014': MethodsQ9_2014,
+  'meth-q10-2014': MethodsQ10_2014,
+  'meth-q11-2014': MethodsQ11_2014,
+  'meth-q13-2014': MethodsQ13_2014,
+  'meth-q14-2014': MethodsQ14_2014,
+  'meth-q15-2014': MethodsQ15_2014,
+  'meth-q16-2014': MethodsQ16_2014,
+  'meth-q17-2014': MethodsQ17_2014,
+  'meth-q18-2014': MethodsQ18_2014,
+  'meth-q20-2014': MethodsQ20_2014,
+  'meth-q2-2014-e2': MethodsQ2_2014Exam2,
+  'meth-q1-2014-e2': MethodsQ1_2014Exam2,
   'meth-q3-2014-e2': MethodsQ3_2014Exam2,
+  'meth-q5-2014-e2': MethodsQ5_2014Exam2,
   'meth-q4-2014-e2': MethodsQ4_2014Exam2,
+  'meth-q1-2014-e1': MethodsQ1_2014Exam1,
+  'meth-q2-2014-e1': MethodsQ2_2014Exam1,
+  'meth-q3-2014-e1': MethodsQ3_2014Exam1,
+  'meth-q4-2014-e1': MethodsQ4_2014Exam1,
+  'meth-q5-2014-e1': MethodsQ5_2014Exam1,
+  'meth-q6-2014-e1': MethodsQ6_2014Exam1,
+  'meth-q7-2014-e1': MethodsQ7_2014Exam1,
+  'meth-q8-2014-e1': MethodsQ8_2014Exam1,
+  'meth-q9-2014-e1': MethodsQ9_2014Exam1,
+  'meth-q10-2014-e1': MethodsQ10_2014Exam1,
   'meth-q3-2015-e2': MethodsQ3_2015Exam2,
   'meth-q1-2015-e1': MethodsQ1_2015Exam1,
   'meth-q2-2015-e1': MethodsQ2_2015Exam1,
