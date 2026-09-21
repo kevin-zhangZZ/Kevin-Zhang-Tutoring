@@ -164,33 +164,18 @@ algebraically, and match its shape/root-pattern to the correct option.
   omit `.reason` for a row that's pure algebraic manipulation with nothing to explain.
 - The final `ROWS` entry should be a bolded conclusion (`<b>...</b>`) whose `.reason`
   reads `Matches option **X**.` (or, for a flagged question, the flaw's resolution — §8).
-- `EXAMINER.comment` should quote/paraphrase VCAA's own report prose closely — it's
-  presented as VCAA's voice, not this site's analysis. Original reasoning belongs in
-  `ROWS`, not `comment` (exception: §8's un-explained flagged questions).
+- `EXAMINER.comment` is VCAA's report text for that part, **copied verbatim and in full**
+  — see §12.6. It is presented as VCAA's voice, not this site's analysis; original
+  reasoning belongs in `ROWS`, never in `comment` (exception: §8's un-explained flagged
+  questions).
 - Use real Unicode characters directly in JSX text (e.g. `≡` for a triple bond, `⇌` for
   equilibrium, `°C`, `µg`) rather than escape sequences or HTML entities, except inside a
   `Chem`/`Katex` `eq` string where the component's own notation applies (§6, §7).
 
-**Write for a student reading alone.** The audience is a Year 12 student working through
-the paper by themselves with no teacher to ask, so a solution is only finished when
-someone who got the question *wrong* could follow it unaided. In practice:
-
-- Every non-obvious step gets a `.reason` saying *why* that step, not just what it is.
-  "Product rule" is a label; "f is a product of two functions of x, so use (uv)′ = u′v +
-  uv′" is an explanation.
-- Don't leave `by CAS` standing alone where the algebra is doable — show the
-  antiderivative, the factorisation, the substitution. Reserve "by CAS" for integrals and
-  equations that genuinely have no by-hand route (and say so, e.g. `x²e^(−x²)` has no
-  elementary antiderivative), which is a fair description of a real Exam 2.
-- Use the **`Background`** component (exported from `QuestionParts`) for the theory a part
-  quietly assumes — what "average rate of change" means, how a matrix transformation acts
-  on a graph, why an inverse's tangent is the reflected one. It renders as a sky-tinted
-  box above that part's `WorkingTable`, inside the `PartCard`. Reach for it wherever the
-  examination report shows students misreading the question itself rather than fumbling
-  the algebra (VCAA's 2019 Exam 2 Question 2b — 3% correct — is the archetype).
-- Name the distractors. In an MCQ's final `.reason`, say which wrong option corresponds to
-  which specific slip; the report's percentages tell you which mistake students actually
-  made, so address that one.
+**How a solution is written** — audience, working vs reasoning columns, `Background`
+boxes, CAS references, sanity checks, distractors — is set out in §12 (all subjects),
+§13 (Mathematics) and §14 (Chemistry). Those sections are the authority on content;
+this section covers source formatting only.
 
 ## 6. Chemistry notation — the `Chem` component
 
@@ -421,7 +406,8 @@ source PDF/DOCX already exists under `public/exams/{subject}/`.
 
 - Stage with `git add -A -- ':!scratch' ':!vite.config.ts.timestamp-*'` (both are
   session/build junk, never committed).
-- Commit message ends with `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>`.
+- Commit message ends with the `Co-Authored-By:` line the session's system reminder
+  specifies (the model name changes between sessions — don't hard-code one).
 - **Commit locally once a whole batch is done** (e.g. all 7 years × 6 questions for one
   subject, or one batch of bonus questions) — don't push or deploy without the user
   asking.
@@ -433,3 +419,395 @@ source PDF/DOCX already exists under `public/exams/{subject}/`.
   poll loop (`curl` the live URL until the new build's JS hash appears) rather than
   checking immediately, and check in a **fresh browser tab** (an already-open tab can keep
   serving a cached bundle even after the CDN has updated).
+
+## 12. Solution-writing standards — all subjects
+
+Approved 2026-09-22. These sections are the authority on *what a solution contains and how
+it explains*; §3–§7 cover the mechanics of the codebase. Where anything above conflicts
+with §12–§14, §12–§14 win.
+
+### 12.1 Who this is for
+
+A Year 12 student working through the paper alone, with no teacher to ask. A solution is
+finished only when a student who got the question *wrong* could follow it unaided and
+understand *why* each step happens. The site is a tutoring resource, not an answer key:
+the explanation is the product, not the number at the end.
+
+### 12.2 Sourcing and verification
+
+- **Cover the whole paper.** When asked for an exam, every question is written up except
+  those excluded under §12.8, and every exclusion is labelled, never silently dropped.
+- **Cross-reference every question** against the VCAA examination report and (Maths only —
+  Chemistry has no equivalent) itute's solutions, for both accuracy and completeness of the
+  working.
+- **Never trust a single source.** Re-derive every answer independently before comparing.
+  itute has been wrong four times on this site (2020 Specialist MCQ 7 and 11; 2019
+  Specialist Exam 1 Q4's factorisation; 2019 Specialist Exam 2 Q2(c)) and incomplete twice
+  more (2019 Specialist Exam 2 Q3(a)(ii) and Q1(e)). Where itute and VCAA disagree, VCAA
+  wins; where both are silent or unclear, our own derivation wins.
+- **Verify every numeric or algebraic answer by computer algebra** (sympy/scipy) before
+  writing it up — integrals, factorisations, probabilities, confidence intervals, all of it.
+  Not as a substitute for the by-hand working shown to the student, but as a check on it.
+- **`pdftotext` is unreliable on maths** — it drops π, primes, superscripts and roots.
+  Anything consequential (a function's rule, an initial condition, a mark distribution) is
+  confirmed against a rendered page image (`pdftoppm -r 200`) before it is transcribed or
+  used.
+- **Every discrepancy with a source is recorded in the file's top comment** ("itute gives X;
+  VCAA gives Y; the solution follows Y because…") so it is never re-litigated.
+- **If VCAA looks wrong, say so in chat.** VCAA is generally not wrong. Where a published
+  answer looks incorrect or ambiguous (2019 Methods Exam 2 Q2(b)'s `(0,20]` is the
+  archetype), present VCAA's published form as the answer to write in an exam, add a short
+  note in the solution explaining the discrepancy, and **tell KZ in the chat** which
+  question it is and why, so the accuracy can be rechecked. Never silently "correct" VCAA,
+  and never present a non-VCAA form as the marked answer.
+
+### 12.3 Transcribing the question
+
+- Question text is transcribed from the original paper, verbatim, including the mark
+  allocation per part and any stem text between parts (rendered as its own grey box between
+  the relevant `PartCard`s).
+- **Any diagram the question provides MUST be screenshotted — cropped from the exam PDF —
+  never recreated** in any way. This is the hard rule of §7 restated: no SVG, no matplotlib,
+  no "clean" redraw of a VCAA figure, however simple it looks.
+- A diagram the question refers to ("as shown below", "on the axes above") appears **in the
+  stem**, where the reference is, not only inside the working. It may also be repeated
+  inside the working where a step needs it.
+- The top comment states the provenance of every image: "cropped from the original VCAA
+  exam PDF", "this site's own explanatory figure", or "SVG overlay on the cropped figure".
+
+### 12.4 Anatomy of a solution
+
+- **Short-answer question**: grey stem box → optional "Before You Start" `Background` →
+  one `PartCard` per lettered part (statement, marks, `Background` if needed,
+  `WorkingTable`, examiner's report, video slot). A question with no lettered parts uses
+  the single-card layout (`WorkingTable` + `SAExaminerReport` + video slot), not a
+  `PartCard` with a fake letter.
+- **MCQ**: `MCQShell` with the question, optional `diagram`, the options with the correct
+  one(s) flagged, a `WorkingTable`, and `MCQExaminerStats`. Options are A–E up to 2023 and
+  **A–D from 2024 for Methods and Specialist**; Chemistry has always been A–D.
+- Section labels in Title Case, never ALL CAPS in source.
+- Every solution ends with a boxed final answer (`\boxed{…}`) or, for an MCQ, a boxed
+  "Option X" whose reason reads "Matches option **X**" and names the distractors (§12.9).
+
+### 12.5 Writing the working
+
+- **The Working column is what a student writes on the exam page. The Reasoning column is
+  everything else.** Every line in `working` must be something a student would actually
+  write down — equations, substitutions, a sketch, the boxed answer. Any explanation *for*
+  the student that should not appear in an exam answer (why this rule, what to watch for,
+  what the examiner said) goes in `reason`, never in `working`.
+- Every non-obvious step has a `reason` saying *why* that step, not just *what*. "Product
+  rule" is a label; "f is a product of two functions of x, so use (uv)′ = u′v + uv′" is an
+  explanation. Pure algebraic manipulation with nothing to explain may go without one.
+- **Use the `Background` component** wherever a part quietly relies on theory the student
+  may not have to hand — what "average rate of change" means, how a transformation acts on
+  a graph, why an inverse's tangent is the reflected one, what a sample proportion is. Reach
+  for it especially where the examiner's report shows students misread the *question*
+  rather than fumbled the algebra.
+- **Only VCE-level methods.** Every technique used must be in the relevant VCE study
+  design. Nothing beyond VCE level — no university methods, no shortcuts the student can't
+  be expected to know — even when they would be shorter.
+- **"By CAS" is not working.** Where the algebra is doable by hand — an antiderivative, a
+  factorisation, a substitution, a surd simplification — show it. Reserve technology for
+  things with genuinely no by-hand route (and say why: "x²e^(−x²) has no elementary
+  antiderivative").
+- **Where technology is used, name the operation in TI-Nspire CAS syntax** — e.g.
+  `normCdf(370, 375, 375, 15/√50)`, `invNorm(0.05, 14.1, 2.1)`, `binomCdf(36, 0.0527, 0, 2)`,
+  `solve(…, a) | 10 ≤ a ≤ 20`, `nInt(…)` — and **every such reference carries a popup link**
+  which, when clicked, explains that function's structure (argument order), purpose, and
+  syntax. *(Implementation: a `CasRef` component with a per-function reference table —
+  not yet built as of 2026-09-22; until it exists, write the syntax inline and note the
+  popup is pending in the top comment.)*
+- **"Show that" questions**: every line of the derivation appears; never start from the
+  result and work backwards; end with "as required". The final row's reason reminds the
+  student that a bare final line earns nothing.
+- **Answer in the form the question asks for**, and say so: "in terms of a", "in the form
+  (π − a√b)/…", "correct to three decimal places", "as an equation". Where VCAA's report
+  notes that a different form lost marks (an expression instead of an equation, a decimal
+  instead of exact), the reason on the final row repeats that warning.
+- Later parts reference earlier ones explicitly ("from part (b)") and, where a later part
+  uses an *unrounded* earlier value, say so — the report regularly flags early rounding.
+- **Rejected solutions are shown and justified**, not omitted: "x = −1 is outside
+  0 ≤ t ≤ 2", "a = −½ rejected since 0 < a < 1". Where a common wrong answer in the report
+  *is* the rejected root, say that.
+- The report's flagged errors are surfaced at the step where they happen (in that row's
+  `reason`), not only in the examiner comment at the bottom.
+
+### 12.6 Sanity checks
+
+- The final row of every numeric or algebraic answer carries a one-line sanity check where
+  one exists: sign (a falling graph has a negative gradient), magnitude (a volume ≈ πr²h
+  estimate), consistency with a given graph ("the peak is drawn a little under 2 — ✓"),
+  symmetry, substitution back into the original equation, or **real-world plausibility**
+  (a human can't swim at 50 m/s; a probability can't exceed 1; a proportion can't be
+  negative).
+- Endpoints of a restricted domain are checked in optimisation questions, so the student
+  sees that the interior stationary point really is the extremum.
+
+### 12.7 The examiner's report
+
+- Every part carries the report's mark distribution and average.
+- **The report's feedback for each question is copied verbatim and in full.** Nothing is
+  paraphrased, trimmed or reordered, and nothing is omitted. Where the report's own maths is
+  mangled by text extraction, the prose stays verbatim and the maths is transcribed into
+  Katex from the rendered page. Where the report has no comment for a part, `comment` is
+  omitted — never invented.
+- Percentages for MCQs are read from a rendered image of the report table, not from
+  `pdftotext`, because column alignment in the text dump is unreliable.
+- Where the report's sample answer is in a different but equivalent form to ours, the
+  final row of the working says so ("VCAA writes this as …") so a student comparing the two
+  isn't thrown.
+
+### 12.8 Study-design exclusions and the skip guide
+
+- Anything not on the current study design is labelled and skipped, not written up:
+  Mechanics (Specialist), matrix transformations and transition matrices (Methods), arc
+  length from a cartesian rule (Specialist), and the Chemistry items already in the skip
+  guide.
+- The test is the question's *mathematics*, not its vocabulary. "A force acts on the
+  particle" as scene-setting for vector kinematics or a = v·dv/dx is still on the course;
+  resolving forces is not. Likewise "matrix" in a report comment describing a wrong method
+  doesn't make the question a matrix question.
+- **The skip guide is the source of truth.** If `exam-skip-guide/audit.ts` already has rows
+  for the year being written up, follow them exactly for what is in and out. If it has no
+  rows for that year, make the additions yourself as the questions are reviewed. If it has
+  rows and you disagree with any inclusion or exclusion, **flag it in chat** so KZ can make
+  an explicit decision — don't act on the disagreement unilaterally.
+- **Never delete or alter anything KZ has written in the skip guide without asking.**
+  Additions (new rows, new notes, appended paragraphs to an item) are allowed without
+  permission; deletions and rewrites of existing text are not.
+- Every exclusion is also recorded in `data.ts` as a comment on the block explaining which
+  question and why.
+
+### 12.9 Multiple-choice specifics
+
+- The correct option is flagged; VCAA-flagged questions with more than one accepted answer
+  follow §8.
+- The final row names the distractors: which wrong option corresponds to which specific
+  slip, prioritising the ones the report's percentages show students actually chose.
+- When the *options* are the discriminating part (five candidate graphs, five sets of
+  equations), the working checks each option against the derived requirement in turn,
+  rather than only justifying the right one.
+
+### 12.10 Diagrams
+
+- **VCAA's figures are cropped, never redrawn** (§7 and §12.3). Annotations go in an SVG
+  overlay calibrated from the printed gridlines, with the calibration measured
+  programmatically and the rendered registration verified by reading the element geometry
+  back, not by eyeballing a screenshot.
+- **Our own sketches** — a "sketch the graph" answer on VCAA's blank axes — are drawn with
+  matplotlib, never hand-coded SVG, in the §7 house style.
+- **Explanatory figures** the question never asked for (the shape of a function VCAA never
+  printed, a gradient function, an inverse, a shaded region showing which area an integral
+  measures) are encouraged wherever they help understanding — provided the figure is a
+  different function or view from anything VCAA printed, and the real figure still appears
+  wherever the question relies on it.
+- **Colour conventions**: the plotted function in sky blue `#0ea5e9`; a second function in
+  orange `#f97316`; asymptotes and reference lines dashed in red `#ef4444`; marked points
+  as small black dots — or the curve's own colour when drawn as an overlay on a black VCAA
+  figure, so the answer is distinguishable from the original.
+- Every image has descriptive alt text stating what it shows and whether it is VCAA's or
+  ours.
+
+### 12.11 Quality gates before a commit
+
+- `npx tsc -p tsconfig.app.json --noEmit` is clean apart from the known `monte-carlo`
+  error.
+- The new pages are opened in the browser and checked: Katex renders, images load, no
+  console errors, no page-level horizontal scroll (split over-long equations into two
+  `display` lines), `Background` boxes and tables lay out at the narrow pane width.
+- A scan for the JSX whitespace bug — a text line ending immediately before a line
+  starting with `<em>`/`<b>`/`<Katex>` collapses the space ("findany").
+- Commit with a message that says what was built, what was excluded and why, and what the
+  cross-check caught. Push and deploy only when asked, as separate steps.
+
+## 13. Mathematics — Methods and Specialist
+
+### 13.1 Exam 1 versus Exam 2
+
+- **Exam 1 is technology-free.** An Exam 1 solution never says "by CAS" and never uses a
+  decimal approximation except to sanity-check an exact answer in the reasoning column.
+  Everything is done the way a student must do it on the day, including surd and log
+  manipulation and exact trigonometric values.
+- **Exam 2**: solutions say when technology is the expected tool and name the operation
+  generically (solve, define and graph, normalCdf, invNorm, binomPdf/Cdf, numerical
+  integral), and also give the specific CAS operation in TI-Nspire CAS syntax. Every such
+  reference carries a popup link which, when clicked, explains the structure, purpose and
+  syntax of that CAS function (§12.5). Where a by-hand route also exists and is short, show
+  it as well — the report repeatedly rewards recognising a standard form over reaching for
+  a substitution or a solver.
+
+### 13.2 Exact form and rounding
+
+- **Exact answers unless the question specifies decimal places.** Where a decimal is useful
+  for intuition, add its value in the reasoning column in brackets ("= 15/π ≈ 4.77") along
+  with an explanation of the intuitive understanding it gives (what size the number is,
+  what it corresponds to on the graph, why it is plausible).
+- Rounding is done once, at the end, and the required precision is stated on the boxed
+  answer ("correct to four decimal places"). Intermediate values are shown unrounded or
+  with a trailing ellipsis (0.4907889…) so the student sees that rounding early is the
+  mistake.
+- Trailing zeros are kept when the precision demands them (0.7380, not 0.738) — VCAA marks
+  them.
+
+### 13.3 Notation
+
+- Matches VCAA's formula sheet and the site's Katex conventions: `\log_e` (never `\ln`),
+  `\text{cis}`, `\Pr`, `\hat P`, `\overline{X}`, `\operatorname{Var}`, `\text{sd}`, vectors
+  with a tilde beneath (`\underset{\sim}{a}`), `\overrightarrow{AB}`, `\mathbb{R}` /
+  `\mathbb{Z}` / `\mathbb{C}`, intervals with round/square brackets, sets with braces.
+- Transformations are described in mapping language (dilation by factor k from the y-axis,
+  translation of c units in the positive x direction), never with a matrix, even where the
+  original 2016–2022 question used one — the matrix is translated before the solution
+  proceeds.
+
+### 13.4 Domains, restrictions and rejected solutions
+
+- Every solution to an equation is filtered against the stated domain or restriction, and
+  the filtering is written down (§12.5). Open versus closed interval endpoints are
+  justified ("strictly less than — at d = −1/e the peak touches the axis, and zero isn't
+  negative").
+- Implied domains are found by listing what can fail (division by zero, even roots of
+  negatives, logs of non-positives, undefined trig ratios) and ruling each in or out.
+
+### 13.5 Sketches and graphs
+
+- House style in §7 and §12.10. An answer sketch labels exactly what the question asks
+  for — turning points, endpoints (closed vs open), intercepts, asymptotes with their
+  equations — and nothing that isn't asked for and would clutter.
+- Where the sketch is on VCAA's *printed* graph (a reciprocal, a derivative, a transformed
+  function), the working also names the points where the new curve meets the old one,
+  since the reports repeatedly flag those as the accuracy checks students miss.
+- Reading features off a given graph (zeros, turning points) is confirmed algebraically
+  where the algebra is short, so the student sees both routes agree.
+
+### 13.6 Topic conventions
+
+- **Calculus** — name the rule used at each differentiation step (product, chain,
+  quotient, implicit); for implicit differentiation, point out every `dy/dx` factor the
+  chain rule produces; for definite integrals show the antiderivative, then the
+  substitution of terminals as a separate line; for area between curves state which is the
+  upper function and why; for volumes state the axis of rotation and why the radius is x
+  or y.
+- **Probability and statistics** — name the distribution with its parameters on its own
+  line (`X ~ Bi(36, 0.0527)`, `X̄ ~ N(375, 15²/50)`); justify why that distribution applies
+  (the four binomial conditions; the sample-mean result); write hypotheses in terms of μ;
+  state whether a test is one- or two-tailed and why; give the decision *in context* with
+  the p-value comparison; convert proportion intervals to counts before using a binomial.
+- **Vectors** — name the property used (parallelogram: equal opposite sides as vectors;
+  perpendicularity: zero dot product; height: scalar resolute on the unit normal); show
+  magnitudes as explicit square roots.
+- **Complex numbers** — always check the quadrant when finding an argument; show the
+  modulus calculation for a "show that"; for powers use de Moivre and say the modulus
+  scales while the argument rotates; for loci, state what shape the relation is before
+  converting to cartesian form.
+- **Differential equations** — write the separated form explicitly; keep the constant of
+  integration and show the initial condition fixing it; name the `f′/f` form when it
+  appears.
+
+### 13.7 Subject-specific exclusions
+
+- **Methods**: matrix transformations and transition matrices are excluded (the whole
+  question, or the specific part, with a `data.ts` comment).
+- **Specialist**: Mechanics — force analysis, connected particles, equilibrium, statics — is
+  excluded; arc length from a cartesian rule is excluded; parametric/vector arc length is
+  kept. Statistical inference, vector calculus, complex loci and differential equations are
+  all current.
+
+## 14. Chemistry
+
+Chemistry has no third-party solutions to cross-reference and a different marking culture
+(mark points for named ideas, units and significant figures). The rules that follow
+replace the "own worked solution" model for short-answer questions and adapt the rest.
+
+### 14.1 Sourcing
+
+- The VCAA examination report is the only official key and is read from a rendered image,
+  since the shaded correct option does not survive `pdftotext` (§4).
+- Where a reputable second source exists (a tutoring company's published solutions, a
+  textbook), use it as a cross-check but label it as unofficial in the top comment; where
+  none exists, say "VCAA report only" so the confidence level is visible.
+- Numeric answers in MCQ explanations are recomputed independently, including a molar-mass
+  check against the Data Book.
+
+### 14.2 Short-answer questions: the report, not our own solution
+
+- **For short-answer questions, present the examination report's own answer and
+  commentary — verbatim and complete — and do not write our own solution or explanation.**
+  The report is the marking scheme; the value to the student is seeing exactly what earned
+  the marks, in VCAA's words.
+- **Highlight the key chemistry terms** in the presented answer (bold, via `<b>`) so the
+  mark-carrying vocabulary stands out — "partially oppose", "equilibrium shifts to the
+  left", "limiting reagent", "oxidant", "rate of the forward reaction" — for easier reading
+  and revision.
+- The report's calculations are shown as printed (formula → substitution → answer with
+  units), transcribed into `Chem`/`Katex` where the text extraction mangles them.
+- A `Background` box is still appropriate for the underlying principle in study-design
+  language, kept short and clearly separate from the report's text.
+
+### 14.3 Multiple-choice questions: our own explanation
+
+MCQs get a self-made explanation, following the §12 rules and these conventions:
+
+- **Three-line calculations**: the formula in symbols → the substitution with units → the
+  answer with units. `n = m/M` → `n = 2.50 g / 58.44 g mol⁻¹` → `n = 0.04278 mol`.
+- Units on every quantity, including intermediate ones; the answer's units on the boxed
+  line.
+- Significant figures follow the least precise datum in the question, and the final row
+  says which datum set the limit. Intermediate values are carried unrounded.
+- Every Data Book value is cited as such in the reason ("Data Book: M(Na) = 23.0 g mol⁻¹";
+  "E° values from the electrochemical series").
+- Ratio steps in stoichiometry are shown explicitly — the mole ratio from the balanced
+  equation on its own line.
+- Equations use the `Chem` component (§6), are balanced, and carry states (s)/(l)/(g)/(aq)
+  wherever the question does or a marker would expect them. Half-equations show the
+  electrons and are balanced in the conditions the question specifies — including basic
+  conditions, which the current study design examines and old papers never did.
+- Oxidant/reductant, oxidised/reduced, anode/cathode and electrode polarity are named
+  explicitly and consistently; where students commonly swap them, the reason says so.
+- Terminology precision is enforced: amount vs concentration vs mass; strong vs
+  concentrated; rate vs extent; heat vs temperature.
+- **Distractors are explained by misconception**, not arithmetic ("B assumes the strong
+  acid is also concentrated"; "D reverses the anode and cathode"), because Chemistry
+  distractors are written around misconceptions.
+
+### 14.4 Data Book changes between years
+
+- **The VCE Chemistry Data Book has changed specific values over the years, so some
+  answers differ depending on whether the old or the current Data Book is used.** Known
+  examples: the density of water was 0.997 g mL⁻¹ and is now taken as 1; several
+  electrochemical-series E° values have been revised.
+- **Flag every question this affects**, in the stem or the relevant part: state which value
+  the original paper and report used, what the current Data Book gives, and what the answer
+  becomes with the current value — so a student working with today's Data Book isn't
+  confused by a mismatch with the report.
+
+### 14.5 Diagrams and data
+
+- Chromatograms, spectra, cell diagrams, energy profiles and tables are cropped from the
+  exam PDF, never redrawn (§12.3). Annotations (a labelled peak, a highlighted region, the
+  ¹³C environments marked on a structure) go in an overlay.
+- Our own explanatory figures are appropriate for MCQ explanations where VCAA printed
+  nothing and a picture carries the idea — an energy profile with and without a catalyst, a
+  galvanic cell with electron and ion flow, a titration curve with the equivalence point —
+  drawn with matplotlib in the house style and labelled as ours.
+- Structures are drawn only where they are the point of the question, and then as an
+  image (cropped or generated), never as ASCII in text.
+
+### 14.6 Study design
+
+- Excluded: alkynes; AAS and GC as named techniques (doable if translated to HPLC — say so);
+  old nutrition/biomolecule content; the aspirin pathway; and the one-off flags in the skip
+  guide. New content with no old-paper equivalent (medicinal chemistry, green chemistry,
+  redox in basic conditions, bond enthalpies) is flagged as such when an old question
+  brushes against it.
+- Chemistry exclusions get the same `data.ts` comment and skip-guide audit row as the
+  maths ones, under the same rules (§12.8), with the "still doable if translated" note
+  where it applies.
+
+### 14.7 Sanity checks (MCQ explanations)
+
+- Sign of ΔH matches exothermic/endothermic; an equilibrium shift is consistent with the
+  stated change and with K; a concentration or yield is physically plausible (not > 100%,
+  not negative); stoichiometric amounts stay in proportion; a pH is in range for the acid
+  strength described.
