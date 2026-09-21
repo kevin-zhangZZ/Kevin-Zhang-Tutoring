@@ -135,6 +135,15 @@ import MethodsQ11_2019 from './questions/MethodsQ11_2019'
 import MethodsQ12_2019 from './questions/MethodsQ12_2019'
 import MethodsQ17_2019 from './questions/MethodsQ17_2019'
 import MethodsQ20_2019 from './questions/MethodsQ20_2019'
+import MethodsQ1_2019Exam1 from './questions/MethodsQ1_2019Exam1'
+import MethodsQ2_2019Exam1 from './questions/MethodsQ2_2019Exam1'
+import MethodsQ3_2019Exam1 from './questions/MethodsQ3_2019Exam1'
+import MethodsQ4_2019Exam1 from './questions/MethodsQ4_2019Exam1'
+import MethodsQ5_2019Exam1 from './questions/MethodsQ5_2019Exam1'
+import MethodsQ6_2019Exam1 from './questions/MethodsQ6_2019Exam1'
+import MethodsQ7_2019Exam1 from './questions/MethodsQ7_2019Exam1'
+import MethodsQ8_2019Exam1 from './questions/MethodsQ8_2019Exam1'
+import MethodsQ9_2019Exam1 from './questions/MethodsQ9_2019Exam1'
 import MethodsQ19_2020 from './questions/MethodsQ19_2020'
 import MethodsQ20_2020 from './questions/MethodsQ20_2020'
 import MethodsQ18_2020 from './questions/MethodsQ18_2020'
@@ -374,6 +383,15 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q12-2019': MethodsQ12_2019,
   'meth-q17-2019': MethodsQ17_2019,
   'meth-q20-2019': MethodsQ20_2019,
+  'meth-q1-2019-e1': MethodsQ1_2019Exam1,
+  'meth-q2-2019-e1': MethodsQ2_2019Exam1,
+  'meth-q3-2019-e1': MethodsQ3_2019Exam1,
+  'meth-q4-2019-e1': MethodsQ4_2019Exam1,
+  'meth-q5-2019-e1': MethodsQ5_2019Exam1,
+  'meth-q6-2019-e1': MethodsQ6_2019Exam1,
+  'meth-q7-2019-e1': MethodsQ7_2019Exam1,
+  'meth-q8-2019-e1': MethodsQ8_2019Exam1,
+  'meth-q9-2019-e1': MethodsQ9_2019Exam1,
 
   // Hardest-6 Methods MCQs, 2020 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2020': MethodsQ19_2020,

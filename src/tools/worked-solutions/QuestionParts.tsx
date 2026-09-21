@@ -57,7 +57,7 @@ export function PartCard({
           <span className="flex-none w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 font-display text-sm font-bold flex items-center justify-center">
             {letter}
           </span>
-          <p className="text-[14px] text-gray-800 dark:text-gray-200 leading-relaxed pt-0.5">{statement}</p>
+          <div className="text-[14px] text-gray-800 dark:text-gray-200 leading-relaxed pt-0.5">{statement}</div>
         </div>
         <span className="flex-none text-[11px] font-medium text-gray-400 dark:text-gray-500 whitespace-nowrap pt-1">
           {marks} mark{marks === 1 ? '' : 's'}

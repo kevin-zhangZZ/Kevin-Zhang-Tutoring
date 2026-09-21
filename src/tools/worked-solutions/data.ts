@@ -282,6 +282,21 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 17', topic: 'Probability — two marbles drawn without replacement', type: 'mc', hasDetail: true, percentCorrect: 43 },
   { id: 'meth-q20-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 20', topic: 'Algebra — rewriting logs via change of base', type: 'mc', hasDetail: true, percentCorrect: 47 },
 
+  // The complete 2019 Methods Exam 1 (short answer), cross-referenced against itute's
+  // independent solutions and the VCAA examination report. Question 2(c) is omitted from
+  // meth-q2-2019-e1 — it asks for a transformation in explicit matrix/column-vector form,
+  // which VCAA's own report calls "matrix form"; matrices aren't part of the current VCE
+  // Methods study design.
+  { id: 'meth-q1-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — differentiating and antidifferentiating 1/(3x-1), then a quotient-rule evaluation', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q2(a–b)', topic: 'Functions — the rule and domain of an inverse function', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Probability — a mixed bag of biased and unbiased coins', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Trigonometry — solving a cosine equation, then sketching 1 minus the given graph', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Graphs — a truncus, its sketch, and a bounded area', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Probability — a sample proportion, then Pr(P̂ < true proportion)', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Calculus — maximising the area of a triangle inscribed under a semicircle', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Functions — a quartic rule from its graph, then the domain and range of a log composite', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q9(a–f)', topic: 'Functions — composites of a quadratic and an exponential, their calculus, and a solution count', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
   // (matrix-representation questions excluded; MCQ 13 (26%, an explicit matrix mapping per
   // its own report comment) was removed for this, backfilled by MCQ 18).
