@@ -282,6 +282,24 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 17', topic: 'Probability — two marbles drawn without replacement', type: 'mc', hasDetail: true, percentCorrect: 43 },
   { id: 'meth-q20-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 20', topic: 'Algebra — rewriting logs via change of base', type: 'mc', hasDetail: true, percentCorrect: 47 },
 
+  // The remaining 2019 Methods Exam 2 Section A MCQs, filling out the rest of the 20-question
+  // paper (the 6 hardest, above, were already covered). MCQ 9 is omitted — it asks to apply an
+  // explicit matrix transformation, which VCAA's own report calls "matrix form"; matrices
+  // aren't part of the current VCE Methods study design (same exclusion as meth-q2-2019-e1).
+  { id: 'meth-q1-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 1', topic: 'Graphs — the period and range of a scaled, shifted sine function', type: 'mc', hasDetail: true, percentCorrect: 89 },
+  { id: 'meth-q2-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 2', topic: 'Algebra — the set of k giving a quadratic two real solutions', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'meth-q3-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — the average rate of change of a hyperbola-type function', type: 'mc', hasDetail: true, percentCorrect: 80 },
+  { id: 'meth-q4-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — a definite integral of a sin/cos combination', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'meth-q5-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 5', topic: 'Calculus — recovering f from f′ and one function value', type: 'mc', hasDetail: true, percentCorrect: 90 },
+  { id: 'meth-q6-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 6', topic: 'Calculus — maximising the volume of a folded open-top box', type: 'mc', hasDetail: true, percentCorrect: 63 },
+  { id: 'meth-q7-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 7', topic: 'Probability — the mean of a discrete random variable in terms of a', type: 'mc', hasDetail: true, percentCorrect: 82 },
+  { id: 'meth-q8-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 8', topic: 'Probability — a binomial conditional probability', type: 'mc', hasDetail: true, percentCorrect: 71 },
+  { id: 'meth-q10-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 10', topic: 'Graphs — which property holds for f(x) = x + sin(x)', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'meth-q13-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 13', topic: 'Graphs — a point on a dilated and translated graph', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'meth-q14-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — the standard deviation of a normal distribution from a tail probability', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'meth-q15-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — the derivative of an inverse function at a point', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'meth-q16-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — matching the graph of f′ to a given graph of f', type: 'mc', hasDetail: true, percentCorrect: 63 },
+
   // The complete 2019 Methods Exam 1 (short answer), cross-referenced against itute's
   // independent solutions and the VCAA examination report. Question 2(c) is omitted from
   // meth-q2-2019-e1 — it asks for a transformation in explicit matrix/column-vector form,
@@ -296,6 +314,15 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q7-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Calculus — maximising the area of a triangle inscribed under a semicircle', type: 'sa', hasDetail: true },
   { id: 'meth-q8-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Functions — a quartic rule from its graph, then the domain and range of a log composite', type: 'sa', hasDetail: true },
   { id: 'meth-q9-2019-e1', subject: 'methods', year: 2019, exam: 'Exam 1', code: 'Q9(a–f)', topic: 'Functions — composites of a quadratic and an exponential, their calculus, and a solution count', type: 'sa', hasDetail: true },
+
+  // The complete 2019 Methods Exam 2 Section B (extended response), cross-referenced against
+  // itute's independent solutions and the VCAA examination report. No matrix or Mechanics
+  // content arises in any of these 5 questions, so nothing is excluded here.
+  { id: 'meth-q1-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Calculus — a Gaussian-type curve, its stationary points and turning-point area, and a minimum distance', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q2(a–e)', topic: 'Calculus — a zip-line cable following a hill, its gradient, and a smooth join point', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q3(a–f)', topic: 'Trigonometry — a dual-tone signal, its period and zeros, a bounded area, and a transformation', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q4(a–g)', topic: 'Probability — a butterfly life span and wingspan, a binomial sample, and a confidence interval', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q5(a–g)', topic: 'Calculus — a cubic, its tangent, minimised bounded areas, and the mirror problem for its inverse', type: 'sa', hasDetail: true },
 
   // The 6 hardest Methods MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
   // (matrix-representation questions excluded; MCQ 13 (26%, an explicit matrix mapping per

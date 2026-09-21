@@ -133,14 +133,16 @@ equilibrium, friction, Newton, incline, projectile, weight, resultant, kg, 9.8, 
 and checked every hit by hand; none were genuine mechanics.
 
 **Exclusion category — Methods**: any question whose content is a **matrix** (matrix
-notation for a transformation, a transition matrix, etc.) is excluded from the hardest-6
-pool — matrices aren't part of the current VCE Mathematical Methods study design at all
-(transformations are examined via mapping notation, not matrix algebra). As with Mechanics
-above, the test is whether the question's own mathematics uses a matrix, not whether the
-word "matrix" appears anywhere in it — e.g. an examiner-report comment describing a
-transition-matrix approach some students *incorrectly* used as an alternative to a tree
-diagram doesn't make the question itself a matrix question if the actual worked solution
-never needs one. Chemistry has no equivalent exclusion category.
+notation for a transformation, a transition matrix, etc.) is excluded — from the hardest-6
+pool, from a full-exam buildout, anywhere — matrices aren't part of the current VCE
+Mathematical Methods study design at all (transformations are examined via mapping
+notation, not matrix algebra). As with Mechanics above, the test is whether the question's
+own mathematics uses a matrix, not whether the word "matrix" appears anywhere in it — e.g.
+an examiner-report comment describing a transition-matrix approach some students
+*incorrectly* used as an alternative to a tree diagram doesn't make the question itself a
+matrix question if the actual worked solution never needs one. Applied twice so far: Exam 1
+2019 Q2(c) (a full-exam buildout) and Exam 2 2019 MCQ 9 (a full-exam buildout of the
+remaining Section A questions). Chemistry has no equivalent exclusion category.
 
 **Diagram-in-options edge case**: when the *options themselves* are diagrams (not just the
 question stem) — e.g. 5 candidate slope-field graphs as options A–E — crop each option as
