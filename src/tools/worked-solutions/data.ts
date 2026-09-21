@@ -140,6 +140,20 @@ export const QUESTIONS: QuestionMeta[] = [
   // The 6 hardest Methods MCQs from 2017 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q17-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — area under an even function as one integral', type: 'mc', hasDetail: true, percentCorrect: 21 },
   { id: 'meth-q7-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 7', topic: 'Quadratics — discriminant condition for no real roots', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'meth-q1-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — period and range of 5sin(2x) − 1', type: 'mc', hasDetail: true, percentCorrect: 92 },
+  { id: 'meth-q2-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 2', topic: 'Calculus — reading where a cubic is decreasing off its turning points', type: 'mc', hasDetail: true, percentCorrect: 80 },
+  { id: 'meth-q3-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 3', topic: 'Probability — two marbles of different colours, drawn without replacement', type: 'mc', hasDetail: true, percentCorrect: 83 },
+  { id: 'meth-q4-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 4', topic: 'Functions — evaluating a composite from a table of values', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'meth-q5-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 5', topic: 'Statistics — recovering the sample proportion from a confidence interval', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'meth-q6-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 6', topic: 'Functions — identifying the graph of an inverse', type: 'mc', hasDetail: true, percentCorrect: 88 },
+  { id: 'meth-q8-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 8', topic: 'Logarithms — transposing y = a^(b − 4x) + 2 for x', type: 'mc', hasDetail: true, percentCorrect: 64 },
+  { id: 'meth-q9-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — average rate of change over [1, a], solved for a', type: 'mc', hasDetail: true, percentCorrect: 78 },
+  { id: 'meth-q10-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 10', topic: 'Transformations — two dilations applied to a sine graph, giving a cosine', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'meth-q11-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — finding a and b from where a cubic turns', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'meth-q14-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — variance of a three-valued distribution in terms of p', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'meth-q15-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — maximising the area of a rectangle under y = −x³ + 8', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q19-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — the left endpoint of a density function of width 1', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'meth-q20-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 20', topic: 'Calculus — ratio of a region between two curves to a triangle', type: 'mc', hasDetail: true, percentCorrect: 47 },
   { id: 'meth-q18-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — smallest n so that binomial mean equals sd', type: 'mc', hasDetail: true, percentCorrect: 38 },
   { id: 'meth-q16-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 16', topic: 'Probability — a binomial probability from a given one', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'meth-q12-2017', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'MCQ 12', topic: 'Trigonometry — sum of solutions on an interval', type: 'mc', hasDetail: true, percentCorrect: 45 },
@@ -147,6 +161,13 @@ export const QUESTIONS: QuestionMeta[] = [
 
   { id: 'meth-q3-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Calculus — expanding a factorised cubic, then sketching it', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q4', topic: 'Probability — smallest sample size for a bound on sd(P̂)', type: 'sa', hasDetail: true },
+  { id: 'meth-q1-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a quotient rule, then a chain rule evaluated at x = 1', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q2(a–b)', topic: 'Calculus — the derivative of x logₑ(3x), then integration by recognition', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q5(a–c)', topic: 'Probability — at most three independent attempts at a password', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Trigonometry — a factorised equation, then a difference of two squares in sin and cos', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Functions — when a composite exists, and what its range is', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Probability — two conditional probabilities, everything else in terms of p', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q9(a–d)', topic: 'Calculus — area under √x(1−x), a show-that derivative, and a right-angled triangle of tangents', type: 'sa', hasDetail: true },
 
   // The 6 hardest Methods MCQs from 2018 Exam 2 Section A, by VCAA-reported % correct
   // (matrix-representation questions excluded; MCQ 20 (20%, an explicit matrix mapping per

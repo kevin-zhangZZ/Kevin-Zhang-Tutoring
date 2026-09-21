@@ -19,6 +19,13 @@ import MethodsQ5_2015Exam2 from './questions/MethodsQ5_2015Exam2'
 import MethodsQ8_2016Exam1 from './questions/MethodsQ8_2016Exam1'
 import MethodsQ3_2017Exam1 from './questions/MethodsQ3_2017Exam1'
 import MethodsQ4_2017Exam1 from './questions/MethodsQ4_2017Exam1'
+import MethodsQ1_2017Exam1 from './questions/MethodsQ1_2017Exam1'
+import MethodsQ2_2017Exam1 from './questions/MethodsQ2_2017Exam1'
+import MethodsQ5_2017Exam1 from './questions/MethodsQ5_2017Exam1'
+import MethodsQ6_2017Exam1 from './questions/MethodsQ6_2017Exam1'
+import MethodsQ7_2017Exam1 from './questions/MethodsQ7_2017Exam1'
+import MethodsQ8_2017Exam1 from './questions/MethodsQ8_2017Exam1'
+import MethodsQ9_2017Exam1 from './questions/MethodsQ9_2017Exam1'
 import MethodsQ19_2016 from './questions/MethodsQ19_2016'
 import MethodsQ12_2016 from './questions/MethodsQ12_2016'
 import MethodsQ11_2015 from './questions/MethodsQ11_2015'
@@ -44,6 +51,20 @@ import MethodsQ19_2018 from './questions/MethodsQ19_2018'
 import MethodsQ17_2017 from './questions/MethodsQ17_2017'
 import MethodsQ11_2018 from './questions/MethodsQ11_2018'
 import MethodsQ7_2017 from './questions/MethodsQ7_2017'
+import MethodsQ1_2017 from './questions/MethodsQ1_2017'
+import MethodsQ2_2017 from './questions/MethodsQ2_2017'
+import MethodsQ3_2017 from './questions/MethodsQ3_2017'
+import MethodsQ4_2017 from './questions/MethodsQ4_2017'
+import MethodsQ5_2017 from './questions/MethodsQ5_2017'
+import MethodsQ6_2017 from './questions/MethodsQ6_2017'
+import MethodsQ8_2017 from './questions/MethodsQ8_2017'
+import MethodsQ9_2017 from './questions/MethodsQ9_2017'
+import MethodsQ10_2017 from './questions/MethodsQ10_2017'
+import MethodsQ11_2017 from './questions/MethodsQ11_2017'
+import MethodsQ14_2017 from './questions/MethodsQ14_2017'
+import MethodsQ15_2017 from './questions/MethodsQ15_2017'
+import MethodsQ19_2017 from './questions/MethodsQ19_2017'
+import MethodsQ20_2017 from './questions/MethodsQ20_2017'
 import SpecialistQ10_2017 from './questions/SpecialistQ10_2017'
 import SpecialistQ1_2018 from './questions/SpecialistQ1_2018'
 import SpecialistQ2_2018 from './questions/SpecialistQ2_2018'
@@ -347,6 +368,13 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q8-2016-e1': MethodsQ8_2016Exam1,
   'meth-q3-2017-e1': MethodsQ3_2017Exam1,
   'meth-q4-2017-e1': MethodsQ4_2017Exam1,
+  'meth-q1-2017-e1': MethodsQ1_2017Exam1,
+  'meth-q2-2017-e1': MethodsQ2_2017Exam1,
+  'meth-q5-2017-e1': MethodsQ5_2017Exam1,
+  'meth-q6-2017-e1': MethodsQ6_2017Exam1,
+  'meth-q7-2017-e1': MethodsQ7_2017Exam1,
+  'meth-q8-2017-e1': MethodsQ8_2017Exam1,
+  'meth-q9-2017-e1': MethodsQ9_2017Exam1,
 
   // Hardest-5 MCQs per subject, 2014-2016 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2016': MethodsQ19_2016,
@@ -429,6 +457,20 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q17-2017': MethodsQ17_2017,
   'meth-q11-2018': MethodsQ11_2018,
   'meth-q7-2017': MethodsQ7_2017,
+  'meth-q1-2017': MethodsQ1_2017,
+  'meth-q2-2017': MethodsQ2_2017,
+  'meth-q3-2017': MethodsQ3_2017,
+  'meth-q4-2017': MethodsQ4_2017,
+  'meth-q5-2017': MethodsQ5_2017,
+  'meth-q6-2017': MethodsQ6_2017,
+  'meth-q8-2017': MethodsQ8_2017,
+  'meth-q9-2017': MethodsQ9_2017,
+  'meth-q10-2017': MethodsQ10_2017,
+  'meth-q11-2017': MethodsQ11_2017,
+  'meth-q14-2017': MethodsQ14_2017,
+  'meth-q15-2017': MethodsQ15_2017,
+  'meth-q19-2017': MethodsQ19_2017,
+  'meth-q20-2017': MethodsQ20_2017,
   'spec-q10-2017': SpecialistQ10_2017,
   'spec-q1-2018': SpecialistQ1_2018,
   'spec-q2-2018': SpecialistQ2_2018,
