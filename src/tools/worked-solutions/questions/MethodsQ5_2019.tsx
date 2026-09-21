@@ -13,14 +13,19 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = \int(3x^2-2x)\,dx = x^3-x^2+c" />,
+    working: <Katex display tex="f(x) = \int f'(x)\,dx = \int\left(3x^2-2x\right)dx = x^3-x^2+c" />,
+    reason: <>Antidifferentiating reverses the derivative, but it can't recover the constant term — every function <Katex tex="x^3-x^2+c" /> has the same derivative. That unknown <Katex tex="c" /> is exactly what the extra fact <Katex tex="f(4)=0" /> is for.</>,
   },
   {
-    working: <Katex display tex="f(4) = 64-16+c = 48+c = 0" />,
+    working: <Katex display tex="f(4) = 4^3-4^2+c = 64-16+c = 48+c" />,
   },
   {
-    working: <Katex display tex="\boxed{c=-48 \implies f(x)=x^3-x^2-48}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    working: <Katex display tex="48+c = 0 \implies c = -48" />,
+    reason: <>Substituting the known point pins down the constant.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{f(x)=x^3-x^2-48}" />,
+    reason: <>Matches option <b>C</b>. Options <b>D</b> and <b>E</b> are what you get by <em>differentiating</em> instead of antidifferentiating, and option <b>B</b> has the sign of the constant reversed.</>,
   },
 ]
 

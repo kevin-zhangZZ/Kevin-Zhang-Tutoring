@@ -13,11 +13,11 @@ import optCSrc from './meth-2019-mcq16-optC.png'
 import optDSrc from './meth-2019-mcq16-optD.png'
 import optESrc from './meth-2019-mcq16-optE.png'
 
-const OPT_A = <img src={optASrc} alt="Option A: negative, touching near zero close to the origin, dipping to a trough just before 5, crossing to positive between 5 and 6" className="w-full max-w-[220px]" />
-const OPT_B = <img src={optBSrc} alt="Option B: negative, rising to a positive hump around x=5, then falling steeply negative again after 5" className="w-full max-w-[220px]" />
-const OPT_C = <img src={optCSrc} alt="Option C: a downward parabola, positive near the origin, crossing to negative between 5 and 6" className="w-full max-w-[220px]" />
-const OPT_D = <img src={optDSrc} alt="Option D: a positive hump peaking well before 5, dropping to touch zero between 5 and 6, then rising steeply" className="w-full max-w-[220px]" />
-const OPT_E = <img src={optESrc} alt="Option E: negative, a small hump near the origin, dipping to a trough around 5, crossing to positive just before 6" className="w-full max-w-[220px]" />
+const OPT_A = <img src={optASrc} alt="Option A: negative everywhere except a touch at zero near the origin, dipping to a trough and crossing up through zero at x = 5" className="w-full max-w-[220px]" />
+const OPT_B = <img src={optBSrc} alt="Option B: rises to a positive hump between the origin and x = 5, then plunges steeply negative after 5" className="w-full max-w-[220px]" />
+const OPT_C = <img src={optCSrc} alt="Option C: a downward parabola, positive from the origin until it crosses to negative between 5 and 6" className="w-full max-w-[220px]" />
+const OPT_D = <img src={optDSrc} alt="Option D: a positive hump peaking well before 5, dropping to touch zero between 5 and 6, then rising steeply — never negative" className="w-full max-w-[220px]" />
+const OPT_E = <img src={optESrc} alt="Option E: the same shape as option A but crossing up through zero at x = 6 instead of x = 5" className="w-full max-w-[220px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 63, B: 7, C: 7, D: 9, E: 14 },
@@ -28,35 +28,50 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={stemSrc} alt="Graph of y=f(x): steep from the upper left, flattening through the origin, dipping to a local minimum between 5 and 6, then rising steeply" className="w-full max-w-[340px]" />
+        <img src={stemSrc} alt="Graph of y = f(x): falling steeply from the upper left, flattening onto the axis at the origin, continuing down to a minimum turning point at x = 5, then rising steeply and crossing the axis at x = 6" className="w-full max-w-[340px]" />
       </div>
     ),
-    reason: <>The given part of <Katex tex="y=f(x)" />.</>,
+    reason: <>Read off the two features that control the shape of <Katex tex="f'" />: a <b>flattening at the origin</b> where the curve touches the axis but keeps going down, and a <b>minimum turning point at <Katex tex="x=5" /></b>. (The curve then cuts the axis at <Katex tex="x=6" /> — an important feature of <Katex tex="f" />, but not of <Katex tex="f'" />.)</>,
   },
   {
-    working: <>Read the gradient of <Katex tex="f" /> off the shape of its graph, left to right:</>,
+    working: <Katex display tex="\text{At } x=0: \ f \text{ is momentarily flat} \implies f'(0)=0" />,
+    reason: <>But <Katex tex="f" /> is falling both before and after <Katex tex="x=0" /> — it flattens without turning around, a stationary point of inflection. So <Katex tex="f'" /> <em>touches</em> zero there and goes straight back down; it does not change sign.</>,
   },
   {
-    working: <>Far left: steeply <b>decreasing</b> — so <Katex tex="f'" /> is a large negative number there.</>,
-    reason: <>The curve falls very steeply as it enters from the top left.</>,
+    working: <Katex display tex="\text{On } 0<x<5: \ f \text{ is decreasing} \implies f'(x)<0" />,
   },
   {
-    working: <>Near the origin: the curve flattens (an inflection-like S-bend) before continuing to fall — so <Katex tex="f'" /> rises toward, but doesn't cross, zero, then dips negative again.</>,
-    reason: <>A flattening without an actual turning point means <Katex tex="f'" /> touches near zero but stays negative.</>,
+    working: <Katex display tex="\text{At } x=5: \ \text{minimum turning point} \implies f'(5)=0, \ \text{changing } - \text{ to } +" />,
+    reason: <>This is the one genuine sign change, and it happens at the <em>turning point</em>, not at the <Katex tex="x" />-intercept.</>,
   },
   {
-    working: <>Between <Katex tex="5" /> and <Katex tex="6" />: a local <b>minimum</b> of <Katex tex="f" /> — so <Katex tex="f'=0" /> exactly there, changing from negative to positive.</>,
-  },
-  {
-    working: <>After <Katex tex="6" />: steeply <b>increasing</b> — so <Katex tex="f'" /> is large and positive.</>,
+    working: <Katex display tex="\text{On } x>5: \ f \text{ is increasing steeply} \implies f'(x)>0" />,
   },
   {
     working: OPT_A,
-    reason: <>Negative throughout except a touch near zero close to the origin (matching the inflection) and a genuine zero crossing between <Katex tex="5" /> and <Katex tex="6" /> (matching the local minimum). ✓</>,
+    reason: <>Everything matches: negative throughout, a touch-and-return at the origin, and a single crossing from negative to positive at <Katex tex="x=5" />. ✓</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Option A}}" />,
-    reason: <>The only option consistent with <Katex tex="f'" /> being negative everywhere shown except a single sign change at the local minimum.</>,
+  },
+  {
+    working: <>Why the others fail:</>,
+  },
+  {
+    working: OPT_E,
+    reason: <>The trap, chosen by <Katex tex="14\%" />: identical in shape to A, but it crosses zero at <Katex tex="x=6" /> instead of <Katex tex="x=5" />. That's the point where <Katex tex="f" /> crosses the <Katex tex="x" />-<em>axis</em>, not where it turns around — and <Katex tex="f(x)=0" /> tells you nothing at all about <Katex tex="f'(x)" />.</>,
+  },
+  {
+    working: OPT_B,
+    reason: <>Positive between the origin and <Katex tex="x=5" />, which would mean <Katex tex="f" /> is <em>rising</em> there — but the given graph is clearly falling. It also turns negative after <Katex tex="5" />, the opposite way round.</>,
+  },
+  {
+    working: OPT_C,
+    reason: <>Positive near the origin then negative later: that describes a function that rises to a maximum and falls — the reverse of the given shape.</>,
+  },
+  {
+    working: OPT_D,
+    reason: <>Never negative, so it describes a function that never decreases. The given <Katex tex="f" /> decreases over the whole stretch from the origin to <Katex tex="x=5" />.</>,
   },
 ]
 
@@ -64,7 +79,7 @@ export default function MethodsQ16_2019() {
   return (
     <MCQShell
       question={<p>Part of the graph of <Katex tex="y=f(x)" /> is shown below. The corresponding part of the graph of <Katex tex="y=f'(x)" /> is best represented by</p>}
-      diagram={<img src={stemSrc} alt="Graph of y=f(x): steep from the upper left, flattening through the origin, dipping to a local minimum between 5 and 6, then rising steeply" className="w-full max-w-[300px]" />}
+      diagram={<img src={stemSrc} alt="Graph of y = f(x): falling steeply from the upper left, flattening at the origin, continuing down to a minimum at x = 5, then rising steeply through the axis at x = 6" className="w-full max-w-[300px]" />}
       options={[
         { letter: 'A', content: OPT_A, isAnswer: true },
         { letter: 'B', content: OPT_B },

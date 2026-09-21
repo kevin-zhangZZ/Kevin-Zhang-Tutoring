@@ -14,21 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="X\sim N(200,\ \sigma^2)" />,
+    working: <Katex display tex="X\sim N\!\left(200,\ \sigma^2\right), \qquad \Pr(X>190)=0.97" />,
+    reason: <>The mean is known, the standard deviation is the unknown — the reverse of the usual set-up, so the standard normal has to be used as the bridge.</>,
   },
   {
-    working: <Katex display tex="\Pr(X>190) = 0.97 \implies \Pr(X<190)=0.03" />,
+    working: <Katex display tex="\Pr(X<190) = 1-0.97 = 0.03" />,
+    reason: <>Switch to the lower tail, because that's the form the inverse normal expects.</>,
   },
   {
-    working: <Katex display tex="\Pr\!\left(Z < \dfrac{190-200}{\sigma}\right) = 0.03 \implies \dfrac{-10}{\sigma} = \operatorname{invNorm}(0.03)" />,
-    reason: <>Standardise, then invert the standard normal CDF (by CAS).</>,
+    working: <Katex display tex="Z = \dfrac{X-\mu}{\sigma} = \dfrac{190-200}{\sigma} = \dfrac{-10}{\sigma}" />,
+    reason: <>Standardising converts any normal variable into <Katex tex="Z\sim N(0,1)" />, whose values are the same for everyone — so the unknown <Katex tex="\sigma" /> can be isolated.</>,
   },
   {
-    working: <Katex display tex="\dfrac{-10}{\sigma} \approx -1.8808 \implies \sigma \approx 5.317" />,
+    working: <Katex display tex="\Pr\!\left(Z<\dfrac{-10}{\sigma}\right)=0.03 \implies \dfrac{-10}{\sigma} = \operatorname{invNorm}(0.03) \approx -1.8808" />,
+    reason: <>The inverse normal returns the <Katex tex="z" />-value with <Katex tex="3\%" /> of the area below it. It is negative, which is the check that the answer is heading the right way — <Katex tex="190" /> is below the mean.</>,
+  },
+  {
+    working: <Katex display tex="\sigma = \dfrac{-10}{-1.8808} \approx 5.317" />,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 5.3 \text{ g}}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Quick sanity check: <Katex tex="190" /> is <Katex tex="10" /> g below the mean, and <Katex tex="97\%" /> of packets are heavier than that — so <Katex tex="10" /> g must be a bit under two standard deviations, making <Katex tex="\sigma" /> a bit over <Katex tex="5" />. ✓</>,
   },
 ]
 

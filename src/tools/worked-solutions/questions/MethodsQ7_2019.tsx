@@ -13,15 +13,22 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="a+3a+5a+7a=1 \implies 16a=1 \implies a=\dfrac{1}{16}" />,
-    reason: <>All probabilities sum to <Katex tex="1" />.</>,
+    working: <Katex display tex="a+3a+5a+7a=1" />,
+    reason: <>Every probability distribution must total <Katex tex="1" /> — that's the equation that turns the unknown <Katex tex="a" /> into a number.</>,
   },
   {
-    working: <Katex display tex="E(X) = 0(a)+1(3a)+2(5a)+3(7a) = 34a" />,
+    working: <Katex display tex="16a=1 \implies a=\dfrac{1}{16}" />,
   },
   {
-    working: <Katex display tex="\boxed{E(X) = 34\times\dfrac{1}{16} = \dfrac{17}{8}}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    working: <Katex display tex="E(X) = \sum x\Pr(X=x) = 0(a)+1(3a)+2(5a)+3(7a)" />,
+    reason: <>The mean of a discrete random variable weights each value by its probability. Note the <Katex tex="x=0" /> term contributes nothing.</>,
+  },
+  {
+    working: <Katex display tex="= (0+3+10+21)a = 34a" />,
+  },
+  {
+    working: <Katex display tex="\boxed{E(X) = \dfrac{34}{16} = \dfrac{17}{8}}" />,
+    reason: <>Matches option <b>D</b>. Sanity check: <Katex tex="\tfrac{17}{8}=2.125" />, which sits between <Katex tex="0" /> and <Katex tex="3" /> and leans towards the larger values — right, since they carry the bigger probabilities. Option <b>A</b> <Katex tex="\left(\tfrac{1}{16}\right)" /> is just <Katex tex="a" />, and option <b>C</b> <Katex tex="(16)" /> is <Katex tex="\tfrac1a" />.</>,
   },
 ]
 

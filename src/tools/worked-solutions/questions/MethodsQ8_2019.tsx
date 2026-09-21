@@ -14,18 +14,31 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \operatorname{Bi}(80,\ 0.9)" />,
-    reason: <>Number of successful hits in <Katex tex="80" /> independent attempts.</>,
+    reason: <>Let <Katex tex="X" /> be the number of hits. Binomial applies: a fixed <Katex tex="80" /> attempts, each a hit or a miss, a constant probability <Katex tex="0.9" />, and (stated) independence.</>,
   },
   {
-    working: <Katex display tex="\Pr(X=74 \mid X\ge70) = \dfrac{\Pr(X=74)}{\Pr(X\ge70)}" />,
-    reason: <>Definition of conditional probability, since <Katex tex="\{X=74\}\subset\{X\ge70\}" />.</>,
+    working: <Katex display tex="\Pr(X=74 \mid X\ge70) = \dfrac{\Pr\bigl(X=74 \ \cap \ X\ge70\bigr)}{\Pr(X\ge70)}" />,
+    reason: <>The conditional probability formula <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. The word "given" is what signals it.</>,
   },
   {
-    working: <Katex display tex="\text{Evaluate by CAS}" />,
+    working: <Katex display tex="= \dfrac{\Pr(X=74)}{\Pr(X\ge70)}" />,
+    reason: <>Hitting exactly <Katex tex="74" /> times <em>already</em> means hitting at least <Katex tex="70" /> times, so the overlap of the two events is simply <Katex tex="X=74" />. This collapse is the whole idea of the question.</>,
+  },
+  {
+    working: (
+      <>
+        <Katex display tex="\Pr(X=74) = \binom{80}{74}(0.9)^{74}(0.1)^{6} \approx 0.12354" />
+        <Katex display tex="\Pr(X\ge70) = 1-\Pr(X\le69) \approx 0.82662" />
+      </>
+    ),
+    reason: <>The first from the binomial probability formula (or binomPdf), the second from binomCdf via the complement, since calculators total from the bottom up.</>,
+  },
+  {
+    working: <Katex display tex="\dfrac{0.12354}{0.82662} \approx 0.1494" />,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.1494}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. The distractors are all near-misses: <b>B</b> <Katex tex="(0.8266)" /> is the denominator on its own, <b>D</b> <Katex tex="(0.3005)" /> is <Katex tex="\Pr(X\ge74)" />, and <b>A</b> <Katex tex="(0.3635)" /> is <Katex tex="\Pr(X\ge74\mid X\ge70)" /> — the answer to the question if "exactly" had read "at least".</>,
   },
 ]
 

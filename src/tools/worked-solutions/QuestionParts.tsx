@@ -88,6 +88,20 @@ export function PartCard({
   )
 }
 
+// A short recap of the theory a part depends on, shown above that part's working — what
+// "average rate of change" actually means, how a transformation acts on a graph, why an
+// inverse function's tangent is the reflected one, and so on. The worked solutions assume a
+// student is reading alone with no teacher to ask, so anything the question quietly relies
+// on gets stated here rather than left implicit in the algebra.
+export function Background({ children, title = 'Background' }: { children: ReactNode; title?: string }) {
+  return (
+    <div className="rounded-xl border border-sky-100 dark:border-sky-900/50 bg-sky-50/70 dark:bg-sky-950/20 px-4 py-3">
+      <p className="text-[11px] font-bold tracking-wider text-sky-700 dark:text-sky-300 mb-1.5">{title}</p>
+      <div className="text-[13px] leading-relaxed text-gray-600 dark:text-gray-300 space-y-2">{children}</div>
+    </div>
+  )
+}
+
 // Marks-distribution table + comment for one part of a short-answer question, as published
 // in the VCAA examination report (e.g. "Marks 0 1 2 | % 7 15 78 | Average 1.7").
 export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; maxMarks: number }) {

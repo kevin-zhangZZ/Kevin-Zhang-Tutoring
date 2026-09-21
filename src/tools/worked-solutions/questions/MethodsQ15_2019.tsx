@@ -13,19 +13,23 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(5)=7 \implies g(7)=5" />,
-    reason: <><Katex tex="g=f^{-1}" />, so <Katex tex="g" /> undoes <Katex tex="f" />.</>,
+    working: <Katex display tex="g=f^{-1} \text{ and } f(5)=7 \implies g(7)=5" />,
+    reason: <>An inverse undoes its function: if <Katex tex="f" /> sends <Katex tex="5" /> to <Katex tex="7" />, then <Katex tex="g" /> sends <Katex tex="7" /> back to <Katex tex="5" />. This is why the question hands you <Katex tex="f(5)=7" /> — it identifies the matching point.</>,
   },
   {
-    working: <Katex display tex="f'(x) = 2x-4 \implies f'(5) = 6" />,
+    working: <Katex display tex="\text{Graph of } g \text{ is the graph of } f \text{ reflected in } y=x" />,
+    reason: <>Reflection swaps "rise" and "run", so it turns a gradient of <Katex tex="m" /> into a gradient of <Katex tex="\tfrac1m" />. That is the whole idea behind the rule on the next line.</>,
   },
   {
-    working: <Katex display tex="g'(7) = \dfrac{1}{f'(g(7))} = \dfrac{1}{f'(5)}" />,
-    reason: <>Standard inverse-function derivative rule.</>,
+    working: <Katex display tex="g'(7) = \dfrac{1}{f'\bigl(g(7)\bigr)} = \dfrac{1}{f'(5)}" />,
+    reason: <>The inverse-function derivative rule. Note the gradient of <Katex tex="g" /> at <Katex tex="x=7" /> is controlled by the gradient of <Katex tex="f" /> at the <em>matching</em> point <Katex tex="x=5" />, not at <Katex tex="x=7" />.</>,
+  },
+  {
+    working: <Katex display tex="f'(x) = 2x-4 \implies f'(5) = 2(5)-4 = 6" />,
   },
   {
     working: <Katex display tex="\boxed{g'(7) = \dfrac16}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. The distractors map the common slips exactly: <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" /> rather than <Katex tex="g'(7)" /> — chosen by a quarter of students, who answered the wrong question; <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal; <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f'(7)}" />, evaluated at the wrong point.</>,
   },
 ]
 

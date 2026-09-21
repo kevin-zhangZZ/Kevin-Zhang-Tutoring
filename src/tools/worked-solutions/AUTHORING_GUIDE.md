@@ -171,6 +171,27 @@ algebraically, and match its shape/root-pattern to the correct option.
   equilibrium, `°C`, `µg`) rather than escape sequences or HTML entities, except inside a
   `Chem`/`Katex` `eq` string where the component's own notation applies (§6, §7).
 
+**Write for a student reading alone.** The audience is a Year 12 student working through
+the paper by themselves with no teacher to ask, so a solution is only finished when
+someone who got the question *wrong* could follow it unaided. In practice:
+
+- Every non-obvious step gets a `.reason` saying *why* that step, not just what it is.
+  "Product rule" is a label; "f is a product of two functions of x, so use (uv)′ = u′v +
+  uv′" is an explanation.
+- Don't leave `by CAS` standing alone where the algebra is doable — show the
+  antiderivative, the factorisation, the substitution. Reserve "by CAS" for integrals and
+  equations that genuinely have no by-hand route (and say so, e.g. `x²e^(−x²)` has no
+  elementary antiderivative), which is a fair description of a real Exam 2.
+- Use the **`Background`** component (exported from `QuestionParts`) for the theory a part
+  quietly assumes — what "average rate of change" means, how a matrix transformation acts
+  on a graph, why an inverse's tangent is the reflected one. It renders as a sky-tinted
+  box above that part's `WorkingTable`, inside the `PartCard`. Reach for it wherever the
+  examination report shows students misreading the question itself rather than fumbling
+  the algebra (VCAA's 2019 Exam 2 Question 2b — 3% correct — is the archetype).
+- Name the distractors. In an MCQ's final `.reason`, say which wrong option corresponds to
+  which specific slip; the report's percentages tell you which mistake students actually
+  made, so address that one.
+
 ## 6. Chemistry notation — the `Chem` component
 
 Import from `'../Chem'`, use for all chemical formulas/equations in Chemistry questions
@@ -251,6 +272,19 @@ answer, not a redrawing of anything VCAA printed. If VCAA printed a figure for t
 question, crop it — full stop. This is a different case from the overlay above (annotating
 a *real* cropped image) — here there is no real image at all, only a blank grid, so the
 whole curve is original content.
+
+**A third category — an explanatory figure the question never asked for.** Separate from
+both the crop (VCAA's own figure) and the answer-sketch (VCAA's blank axes) is a graph
+drawn purely to *teach* the solution: the shape of a function VCAA never printed, a
+gradient function, an inverse, a transformed curve, a shaded region showing which area an
+integral measures. These are legitimate and often the single most valuable thing on the
+page — the 2019 Exam 2 report literally says errors in its Question 1 "could have been
+avoided if a graph of the function had been sketched", so that solution now shows one.
+Build them with matplotlib in the same house style, and say in the file's top comment that
+the figure is this site's own explanatory graph of something VCAA never printed. Two
+limits: it must be a *different* function or view from any figure VCAA did print (never a
+re-plot of the question's own given graph — crop that instead), and the question's real
+figure still appears, cropped, wherever the question itself relies on it.
 
 **Build it with matplotlib (real graphing software), not hand-coded SVG.** Inline SVG
 built by hand (waypoints, or even a `functionToPath`-style exact sampling) is harder to

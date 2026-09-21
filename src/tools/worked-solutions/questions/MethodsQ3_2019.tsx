@@ -13,17 +13,19 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
+    working: <Katex display tex="\text{Average rate of change} = \dfrac{f(8)-f(6)}{8-6}" />,
+    reason: <>The gradient of the straight line joining the two points on the curve — rise over run. No calculus is needed: an <em>average</em> rate only ever looks at the two endpoints.</>,
+  },
+  {
     working: <Katex display tex="f(6) = \dfrac{a}{6-4} = \dfrac{a}{2}, \qquad f(8) = \dfrac{a}{8-4} = \dfrac{a}{4}" />,
   },
   {
-    working: <Katex display tex="\text{Average rate of change} = \dfrac{f(8)-f(6)}{8-6} = \dfrac{\tfrac{a}{4}-\tfrac{a}{2}}{2}" />,
-  },
-  {
-    working: <Katex display tex="= \dfrac{-\tfrac{a}{4}}{2}" />,
+    working: <Katex display tex="= \dfrac{\tfrac{a}{4}-\tfrac{a}{2}}{2} = \dfrac{-\tfrac{a}{4}}{2}" />,
+    reason: <><Katex tex="\tfrac{a}{4}-\tfrac{a}{2}=\tfrac{a}{4}-\tfrac{2a}{4}=-\tfrac{a}{4}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{-\dfrac{a}{8}}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. The negative sign is worth a sanity check: <Katex tex="a>0" /> and the denominator <Katex tex="x-4" /> is growing, so <Katex tex="f" /> is shrinking across <Katex tex="[6,8]" /> — a falling graph must have a negative average rate of change.</>,
   },
 ]
 

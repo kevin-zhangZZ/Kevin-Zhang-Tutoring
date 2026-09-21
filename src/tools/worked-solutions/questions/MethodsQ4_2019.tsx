@@ -13,20 +13,26 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\int_0^{\pi/6}\bigl(a\sin(x)+b\cos(x)\bigr)dx = \Bigl[-a\cos(x)+b\sin(x)\Bigr]_0^{\pi/6}" />,
+    working: <Katex display tex="\int\bigl(a\sin(x)+b\cos(x)\bigr)dx = -a\cos(x)+b\sin(x)+c" />,
+    reason: <>Antidifferentiate term by term: <Katex tex="\sin" /> integrates to <Katex tex="-\cos" /> and <Katex tex="\cos" /> integrates to <Katex tex="+\sin" />. The constants <Katex tex="a" /> and <Katex tex="b" /> just ride along. Getting that pair of signs the wrong way round is what most of the wrong options are built from.</>,
   },
   {
-    working: <Katex display tex="= \left(-a\cos\tfrac{\pi}{6}+b\sin\tfrac{\pi}{6}\right) - \left(-a\cos0+b\sin0\right)" />,
+    working: <Katex display tex="\int_0^{\pi/6} = \Bigl[-a\cos(x)+b\sin(x)\Bigr]_0^{\pi/6} = \left(-a\cos\tfrac{\pi}{6}+b\sin\tfrac{\pi}{6}\right) - \left(-a\cos0+b\sin0\right)" />,
   },
   {
-    working: <Katex display tex="= \left(-\dfrac{a\sqrt3}{2}+\dfrac{b}{2}\right) - (-a)" />,
+    working: <Katex display tex="\cos\tfrac{\pi}{6}=\dfrac{\sqrt3}{2}, \quad \sin\tfrac{\pi}{6}=\dfrac12, \quad \cos0=1, \quad \sin0=0" />,
+    reason: <>Exact values from the unit circle — the presence of <Katex tex="\sqrt3" /> in every option confirms they're expected here.</>,
   },
   {
-    working: <Katex display tex="= a\left(1-\dfrac{\sqrt3}{2}\right)+\dfrac{b}{2} = \dfrac{(2-\sqrt3)a+b}{2}" />,
+    working: <Katex display tex="= \left(-\dfrac{a\sqrt3}{2}+\dfrac{b}{2}\right) - \bigl(-a\bigr) = a-\dfrac{a\sqrt3}{2}+\dfrac{b}{2}" />,
+  },
+  {
+    working: <Katex display tex="= \dfrac{2a-a\sqrt3+b}{2} = \dfrac{(2-\sqrt3)a+b}{2}" />,
+    reason: <>Put everything over <Katex tex="2" />, then factor <Katex tex="a" /> out of the first two terms.</>,
   },
   {
     working: <Katex display tex="\boxed{\dfrac{(2-\sqrt3)a+b}{2}}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Options <b>D</b> and <b>E</b> swap <Katex tex="a" /> and <Katex tex="b" /> — the result of mixing up which function integrates to which.</>,
   },
 ]
 

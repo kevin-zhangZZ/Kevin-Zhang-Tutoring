@@ -13,19 +13,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="h(x) = f\!\left(\dfrac{x}{2}\right)+5" />,
-    reason: <>A horizontal dilation of factor <Katex tex="2" /> from the <Katex tex="y" />-axis, then a vertical translation of <Katex tex="5" /> units up.</>,
+    working: <Katex display tex="\text{Known: } f(-2)=7" />,
+    reason: <>That is all the information there is about <Katex tex="f" /> — so the whole question is about arranging for <Katex tex="f" /> to be fed <Katex tex="-2" />.</>,
   },
   {
-    working: <Katex display tex="\text{Need } \dfrac{x}{2}=-2 \implies x=-4" />,
-    reason: <>To reuse the known point <Katex tex="(-2,7)" /> on <Katex tex="f" />.</>,
+    working: <Katex display tex="h(x) = f\!\left(\dfrac{x}{2}\right)+5 \implies \text{need } \dfrac{x}{2}=-2" />,
+    reason: <>The input to <Katex tex="f" /> inside <Katex tex="h" /> is <Katex tex="\tfrac{x}{2}" />, not <Katex tex="x" />.</>,
+  },
+  {
+    working: <Katex display tex="\dfrac{x}{2}=-2 \implies x=-4" />,
+    reason: <>Multiply by <Katex tex="2" />. Replacing <Katex tex="x" /> by <Katex tex="\tfrac{x}{2}" /> stretches the graph <em>away</em> from the <Katex tex="y" />-axis by a factor of <Katex tex="2" />, so the <Katex tex="x" />-coordinate doubles: <Katex tex="-2\to-4" />. (Halving it to <Katex tex="-1" /> is the trap behind options <b>A</b> and <b>B</b>.)</>,
   },
   {
     working: <Katex display tex="h(-4) = f(-2)+5 = 7+5 = 12" />,
+    reason: <>The <Katex tex="+5" /> lifts the <Katex tex="y" />-coordinate by <Katex tex="5" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(-4,12)}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. In short: the dilation acts on <Katex tex="x" />, the translation acts on <Katex tex="y" />, and they don't interfere with each other.</>,
   },
 ]
 

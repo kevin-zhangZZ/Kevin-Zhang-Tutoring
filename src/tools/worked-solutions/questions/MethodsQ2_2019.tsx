@@ -13,15 +13,20 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\Delta = 2^2-4(1)(-k) = 4+4k" />,
-    reason: <>Discriminant of <Katex tex="x^2+2x-k=0" />.</>,
+    working: <Katex display tex="a=1, \quad b=2, \quad c=-k" />,
+    reason: <>Matching <Katex tex="x^2+2x-k=0" /> to <Katex tex="ax^2+bx+c=0" />. Watch the sign: the constant term is <Katex tex="-k" />, not <Katex tex="k" /> — that minus sign is what flips the final inequality.</>,
   },
   {
-    working: <Katex display tex="\text{Two real solutions} \iff \Delta>0 \iff 4+4k>0" />,
+    working: <Katex display tex="\Delta = b^2-4ac = 2^2-4(1)(-k) = 4+4k" />,
+    reason: <>The discriminant decides how many real solutions a quadratic has: two if <Katex tex="\Delta>0" />, one if <Katex tex="\Delta=0" />, none if <Katex tex="\Delta<0" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{k>-1, \text{ i.e. } k\in(-1,\infty)}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    working: <Katex display tex="\text{Two real solutions} \iff \Delta>0 \iff 4+4k>0 \iff k>-1" />,
+    reason: <>Strictly greater than zero. At <Katex tex="k=-1" /> the discriminant is zero, giving only <em>one</em> solution — which is why <Katex tex="k=-1" /> must be excluded.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{k\in(-1,\infty)}" />,
+    reason: <>Matches option <b>B</b>. The round bracket does the excluding; option <b>E</b>, <Katex tex="[-1,\infty)" />, is the same set but wrongly includes the one-solution case.</>,
   },
 ]
 
