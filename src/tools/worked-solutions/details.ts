@@ -25,6 +25,20 @@ import MethodsQ11_2015 from './questions/MethodsQ11_2015'
 import SpecialistQ7_2016 from './questions/SpecialistQ7_2016'
 import SpecialistQ4_2015 from './questions/SpecialistQ4_2015'
 import SpecialistQ6_2015 from './questions/SpecialistQ6_2015'
+import MethodsQ1_2018 from './questions/MethodsQ1_2018'
+import MethodsQ2_2018 from './questions/MethodsQ2_2018'
+import MethodsQ3_2018 from './questions/MethodsQ3_2018'
+import MethodsQ5_2018 from './questions/MethodsQ5_2018'
+import MethodsQ6_2018 from './questions/MethodsQ6_2018'
+import MethodsQ7_2018 from './questions/MethodsQ7_2018'
+import MethodsQ8_2018 from './questions/MethodsQ8_2018'
+import MethodsQ9_2018 from './questions/MethodsQ9_2018'
+import MethodsQ10_2018 from './questions/MethodsQ10_2018'
+import MethodsQ12_2018 from './questions/MethodsQ12_2018'
+import MethodsQ13_2018 from './questions/MethodsQ13_2018'
+import MethodsQ14_2018 from './questions/MethodsQ14_2018'
+import MethodsQ17_2018 from './questions/MethodsQ17_2018'
+import MethodsQ20_2018 from './questions/MethodsQ20_2018'
 import MethodsQ18_2018 from './questions/MethodsQ18_2018'
 import MethodsQ19_2018 from './questions/MethodsQ19_2018'
 import MethodsQ17_2017 from './questions/MethodsQ17_2017'
@@ -363,6 +377,20 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'chem-q27-2018': ChemistryQ27_2018,
 
   // Hardest-5 MCQs per subject, 2017-2018 Exam 2 (see data.ts percentCorrect)
+  'meth-q1-2018': MethodsQ1_2018,
+  'meth-q2-2018': MethodsQ2_2018,
+  'meth-q3-2018': MethodsQ3_2018,
+  'meth-q5-2018': MethodsQ5_2018,
+  'meth-q6-2018': MethodsQ6_2018,
+  'meth-q7-2018': MethodsQ7_2018,
+  'meth-q8-2018': MethodsQ8_2018,
+  'meth-q9-2018': MethodsQ9_2018,
+  'meth-q10-2018': MethodsQ10_2018,
+  'meth-q12-2018': MethodsQ12_2018,
+  'meth-q13-2018': MethodsQ13_2018,
+  'meth-q14-2018': MethodsQ14_2018,
+  'meth-q17-2018': MethodsQ17_2018,
+  'meth-q20-2018': MethodsQ20_2018,
   'meth-q18-2018': MethodsQ18_2018,
   'meth-q19-2018': MethodsQ19_2018,
   'meth-q17-2017': MethodsQ17_2017,

@@ -342,6 +342,24 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q15-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — the derivative of an inverse function at a point', type: 'mc', hasDetail: true, percentCorrect: 55 },
   { id: 'meth-q16-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — matching the graph of f′ to a given graph of f', type: 'mc', hasDetail: true, percentCorrect: 63 },
 
+  // The rest of the 2018 Methods Exam 2 Section A MCQs, filling out the 20-question paper
+  // (the 6 hardest were already covered). Stats read off the rendered report table, since
+  // the shading that marks the correct answer does not survive text extraction.
+  { id: 'meth-q1-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — the period of a scaled cosine', type: 'mc', hasDetail: true, percentCorrect: 95 },
+  { id: 'meth-q2-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — which rule has maximal domain R\{1}', type: 'mc', hasDetail: true, percentCorrect: 88 },
+  { id: 'meth-q3-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 3', topic: 'Functions — the range of 1/x on a half-open interval', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'meth-q5-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 5', topic: 'Calculus — finding p from a stationary point', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'meth-q6-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 6', topic: 'Functions — a composite where g is given at a shifted input', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q7-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 7', topic: 'Functions — finding k from an inverse-function value', type: 'mc', hasDetail: true, percentCorrect: 83 },
+  { id: 'meth-q8-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — combining definite integrals with a reversed interval', type: 'mc', hasDetail: true, percentCorrect: 41 },
+  { id: 'meth-q9-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — the y-intercept of a tangent to a log curve', type: 'mc', hasDetail: true, percentCorrect: 57 },
+  { id: 'meth-q10-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 10', topic: 'Functions — which rule satisfies f(x + f(x)) = f(2x)', type: 'mc', hasDetail: true, percentCorrect: 74 },
+  { id: 'meth-q12-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 12', topic: 'Probability — Pr(X < mean) for a discrete distribution', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q13-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 13', topic: 'Probability — the chance two marbles score +1', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'meth-q14-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — Pr(A) for independent events from their union', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q17-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — the value of b putting a turning point closest to the origin', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — the transformation carrying one density function to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
+
   // The complete 2018 Methods Exam 1 (short answer), cross-referenced against the VCAA
   // examination report and re-derived independently with sympy.
   { id: 'meth-q1-2018-e1', subject: 'methods', year: 2018, exam: 'Exam 1', code: 'Q1', topic: 'Calculus — a chain-rule derivative, then a quotient rule evaluated at x = π', type: 'sa', hasDetail: true },
