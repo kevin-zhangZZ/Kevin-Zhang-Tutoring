@@ -118,11 +118,29 @@ the Read tool. Confirmed isolated to 2024 — 2025 and all earlier years extract
 - **Chemistry has always used the 4-option (A–D) format**, every year 2015–2025. No
   transition to handle.
 
-**Exclusion category — Specialist only**: any question on a **Mechanics** topic (forces,
-equilibrium, tension, pulleys, projectile/incline motion — including mechanics dressed up
-inside a stats/probability question, e.g. a pulley-and-mass probability setup) is excluded
-from the hardest-6 pool, confirmed via the actual question text, not just a report comment
-mentioning "g" or masses. Methods and Chemistry have no equivalent exclusion category.
+**Exclusion category — Specialist**: any question on a **Mechanics** (force-analysis) topic
+— forces, equilibrium, tension, pulleys, friction, connected particles, projectile/incline
+motion, Newton's second law (F = ma) — is excluded from the hardest-6 pool, confirmed via
+the actual question text, not just a report comment mentioning "g", masses, or the word
+"force" in passing (a question can say "a variable force acts on a particle..." as flavour
+text for what is actually a pure calculus/kinematics question — e.g. finding acceleration
+from `a = v dv/dx` given `v` as a function of position — with no force analysis anywhere in
+the actual mathematics; that's still fully on the current study design and should be kept).
+The real test is whether *solving* the question requires force analysis, not whether the
+word "force" appears anywhere in it. Confirmed clean as of this exclusion pass — grepped
+every Specialist file for the obvious mechanics vocabulary (force, tension, pulley,
+equilibrium, friction, Newton, incline, projectile, weight, resultant, kg, 9.8, gravity)
+and checked every hit by hand; none were genuine mechanics.
+
+**Exclusion category — Methods**: any question whose content is a **matrix** (matrix
+notation for a transformation, a transition matrix, etc.) is excluded from the hardest-6
+pool — matrices aren't part of the current VCE Mathematical Methods study design at all
+(transformations are examined via mapping notation, not matrix algebra). As with Mechanics
+above, the test is whether the question's own mathematics uses a matrix, not whether the
+word "matrix" appears anywhere in it — e.g. an examiner-report comment describing a
+transition-matrix approach some students *incorrectly* used as an alternative to a tree
+diagram doesn't make the question itself a matrix question if the actual worked solution
+never needs one. Chemistry has no equivalent exclusion category.
 
 **Diagram-in-options edge case**: when the *options themselves* are diagrams (not just the
 question stem) — e.g. 5 candidate slope-field graphs as options A–E — crop each option as

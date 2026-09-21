@@ -20,13 +20,13 @@ import MethodsQ8_2016Exam1 from './questions/MethodsQ8_2016Exam1'
 import MethodsQ3_2017Exam1 from './questions/MethodsQ3_2017Exam1'
 import MethodsQ4_2017Exam1 from './questions/MethodsQ4_2017Exam1'
 import MethodsQ19_2016 from './questions/MethodsQ19_2016'
-import MethodsQ20_2016 from './questions/MethodsQ20_2016'
+import MethodsQ12_2016 from './questions/MethodsQ12_2016'
 import MethodsQ11_2015 from './questions/MethodsQ11_2015'
 import SpecialistQ7_2016 from './questions/SpecialistQ7_2016'
 import SpecialistQ4_2015 from './questions/SpecialistQ4_2015'
 import SpecialistQ6_2015 from './questions/SpecialistQ6_2015'
 import MethodsQ18_2018 from './questions/MethodsQ18_2018'
-import MethodsQ20_2018 from './questions/MethodsQ20_2018'
+import MethodsQ19_2018 from './questions/MethodsQ19_2018'
 import MethodsQ17_2017 from './questions/MethodsQ17_2017'
 import MethodsQ11_2018 from './questions/MethodsQ11_2018'
 import MethodsQ7_2017 from './questions/MethodsQ7_2017'
@@ -137,7 +137,7 @@ import MethodsQ17_2019 from './questions/MethodsQ17_2019'
 import MethodsQ20_2019 from './questions/MethodsQ20_2019'
 import MethodsQ19_2020 from './questions/MethodsQ19_2020'
 import MethodsQ20_2020 from './questions/MethodsQ20_2020'
-import MethodsQ13_2020 from './questions/MethodsQ13_2020'
+import MethodsQ18_2020 from './questions/MethodsQ18_2020'
 import MethodsQ15_2020 from './questions/MethodsQ15_2020'
 import MethodsQ9_2020 from './questions/MethodsQ9_2020'
 import MethodsQ17_2020 from './questions/MethodsQ17_2020'
@@ -241,7 +241,7 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
 
   // Hardest-5 MCQs per subject, 2014-2016 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2016': MethodsQ19_2016,
-  'meth-q20-2016': MethodsQ20_2016,
+  'meth-q12-2016': MethodsQ12_2016,
   'meth-q11-2015': MethodsQ11_2015,
   'spec-q7-2016': SpecialistQ7_2016,
   'spec-q4-2015': SpecialistQ4_2015,
@@ -302,7 +302,7 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
 
   // Hardest-5 MCQs per subject, 2017-2018 Exam 2 (see data.ts percentCorrect)
   'meth-q18-2018': MethodsQ18_2018,
-  'meth-q20-2018': MethodsQ20_2018,
+  'meth-q19-2018': MethodsQ19_2018,
   'meth-q17-2017': MethodsQ17_2017,
   'meth-q11-2018': MethodsQ11_2018,
   'meth-q7-2017': MethodsQ7_2017,
@@ -378,7 +378,7 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   // Hardest-6 Methods MCQs, 2020 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2020': MethodsQ19_2020,
   'meth-q20-2020': MethodsQ20_2020,
-  'meth-q13-2020': MethodsQ13_2020,
+  'meth-q18-2020': MethodsQ18_2020,
   'meth-q15-2020': MethodsQ15_2020,
   'meth-q9-2020': MethodsQ9_2020,
   'meth-q17-2020': MethodsQ17_2020,

@@ -106,19 +106,22 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q4-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Calculus — area between sine graphs', type: 'sa', hasDetail: true },
   { id: 'meth-q5-2015-e2', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'Q5(a–d)', topic: 'Calculus — optimising a sum of exponentials', type: 'sa', hasDetail: true },
 
-  // The 6 hardest Methods MCQs from 2016 Exam 2 Section A, by VCAA-reported % correct.
+  // The 6 hardest Methods MCQs from 2016 Exam 2 Section A, by VCAA-reported % correct
+  // (matrix-representation questions excluded — matrices aren't part of the current VCE
+  // Methods study design; MCQ 20 (17%, "the matrix mapping..." per its own report comment)
+  // was removed for this, backfilled by MCQ 12).
   { id: 'meth-q19-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — bounding E(X) for a discrete distribution', type: 'mc', hasDetail: true, percentCorrect: 15 },
-  { id: 'meth-q20-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — relating definite integrals under a mapping', type: 'mc', hasDetail: true, percentCorrect: 17 },
   { id: 'meth-q14-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 14', topic: 'Calculus — maximum area of a rectangle under a parabola', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q9-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — deriving ∫xe^(kx)dx from a given derivative', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'meth-q11-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 11', topic: 'Algebra — testing candidate rules against a functional equation', type: 'mc', hasDetail: true, percentCorrect: 47 },
   { id: 'meth-q10-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — tangent parallel to a chord of intercepts', type: 'mc', hasDetail: true, percentCorrect: 52 },
+  { id: 'meth-q12-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 12', topic: 'Transformations — a reflection and dilation applied to a square-root rule', type: 'mc', hasDetail: true, percentCorrect: 52 },
 
   { id: 'meth-q8-2016-e1', subject: 'methods', year: 2016, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Calculus — an antiderivative of x^(k-1)ln(x), then a probability and a median comparison', type: 'sa', hasDetail: true },
 
   // The 6 hardest Specialist MCQs from 2015 Exam 2 Section A, by VCAA-reported % correct.
   // Mechanics questions (no longer on the VCE study design) are excluded from these picks —
-  // meth-q14-2016 and meth-q22-2015 (Mechanics) were removed entirely for the same reason.
+  // spec-q14-2016 and spec-q22-2015 (Mechanics) were removed entirely for the same reason.
   { id: 'spec-q4-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 4', topic: 'Coordinate geometry — hyperbola from its asymptotes', type: 'mc', hasDetail: true, percentCorrect: 43 },
   { id: 'spec-q6-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — matching a relation to a point', type: 'mc', hasDetail: true, percentCorrect: 43 },
   { id: 'spec-q9-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 9', topic: 'Complex numbers — comparing z1 and z1z2 on an Argand diagram', type: 'mc', hasDetail: true, percentCorrect: 47 },
@@ -145,10 +148,12 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q3-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Calculus — expanding a factorised cubic, then sketching it', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q4', topic: 'Probability — smallest sample size for a bound on sd(P̂)', type: 'sa', hasDetail: true },
 
-  // The 6 hardest Methods MCQs from 2018 Exam 2 Section A, by VCAA-reported % correct.
+  // The 6 hardest Methods MCQs from 2018 Exam 2 Section A, by VCAA-reported % correct
+  // (matrix-representation questions excluded; MCQ 20 (20%, an explicit matrix mapping per
+  // its own report comment) was removed for this, backfilled by MCQ 19).
   { id: 'meth-q18-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 18', topic: 'Calculus — comparing derivatives of two power functions', type: 'mc', hasDetail: true, percentCorrect: 14 },
-  { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Transformations — a matrix mapping one pdf to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
   { id: 'meth-q11-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 11', topic: 'Graphs — pinning down tan(ax) from its asymptote', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'meth-q19-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — total area between cos(πx/2) and sin(πx) across four regions', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'meth-q4-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 4', topic: 'Transformations — tracking a point through a dilation and shift', type: 'mc', hasDetail: true, percentCorrect: 48 },
   { id: 'meth-q15-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 15', topic: 'Probability — the equation defining a median', type: 'mc', hasDetail: true, percentCorrect: 49 },
   { id: 'meth-q16-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — rectangle approximation vs. exact area', type: 'mc', hasDetail: true, percentCorrect: 49 },
@@ -267,8 +272,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q15-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the angle-between-planes formula rearranged', type: 'mc', hasDetail: true, percentCorrect: 52 },
   { id: 'spec-q17-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — integrating acceleration to find velocity', type: 'mc', hasDetail: true, percentCorrect: 52 },
 
-  // The 6 hardest Methods MCQs from 2019 Exam 2 Section A, by VCAA-reported % correct.
-  // Methods has no Mechanics area of study, so no exclusion category applies here.
+  // The 6 hardest Methods MCQs from 2019 Exam 2 Section A, by VCAA-reported % correct
+  // (Methods has no Mechanics area of study; no matrix-representation question landed in
+  // this year's hardest-6 either, so nothing was excluded here).
   { id: 'meth-q19-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 19', topic: 'Trigonometry — sum of the solutions to tan(2x) = d', type: 'mc', hasDetail: true, percentCorrect: 25 },
   { id: 'meth-q18-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — Pr(X > 0) for a piecewise-linear density', type: 'mc', hasDetail: true, percentCorrect: 27 },
   { id: 'meth-q11-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 11', topic: 'Probability — the condition for independence of two events', type: 'mc', hasDetail: true, percentCorrect: 30 },
@@ -276,13 +282,15 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 17', topic: 'Probability — two marbles drawn without replacement', type: 'mc', hasDetail: true, percentCorrect: 43 },
   { id: 'meth-q20-2019', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'MCQ 20', topic: 'Algebra — rewriting logs via change of base', type: 'mc', hasDetail: true, percentCorrect: 47 },
 
-  // The 6 hardest Methods MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct.
+  // The 6 hardest Methods MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
+  // (matrix-representation questions excluded; MCQ 13 (26%, an explicit matrix mapping per
+  // its own report comment) was removed for this, backfilled by MCQ 18).
   { id: 'meth-q19-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — the "not rolled" probability function from the "rolled" one', type: 'mc', hasDetail: true, percentCorrect: 15 },
   { id: 'meth-q20-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — a domain giving log₂(cos(ax)) the range [−1, 0]', type: 'mc', hasDetail: true, percentCorrect: 18 },
-  { id: 'meth-q13-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 13', topic: 'Transformations — the matrix mapping cos(x) to cos(2x+4)', type: 'mc', hasDetail: true, percentCorrect: 26 },
   { id: 'meth-q15-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — average value of a piecewise-linear function', type: 'mc', hasDetail: true, percentCorrect: 32 },
   { id: 'meth-q9-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — a definite integral after dilation and translation', type: 'mc', hasDetail: true, percentCorrect: 35 },
   { id: 'meth-q17-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — maximum y-intercept of a tangent to −ln(x+2)', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'meth-q18-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 18', topic: 'Functions — range of a hyperbola-type rule split by its asymptote', type: 'mc', hasDetail: true, percentCorrect: 43 },
 
   // The 6 hardest Methods MCQs from 2021 Exam 2 Section A, by VCAA-reported % correct.
   // This report gives the correct answer directly.
