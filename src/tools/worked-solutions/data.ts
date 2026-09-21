@@ -368,6 +368,25 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — the value of b putting a turning point closest to the origin', type: 'mc', hasDetail: true, percentCorrect: 45 },
   { id: 'meth-q20-2018', subject: 'methods', year: 2018, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — the transformation carrying one density function to another', type: 'mc', hasDetail: true, percentCorrect: 20 },
 
+  // The rest of the 2018 Specialist Exam 2 Section A MCQs (the 6 hardest were already
+  // covered). MCQ 16 is omitted: a statics equilibrium-of-forces question, off the current
+  // study design. MCQ 15 and MCQ 17 use mechanics wording but need only one substitution
+  // each on top of ordinary constant-acceleration work, so they stay in (see the skip guide).
+  // Stats read off the rendered report table, since the shading does not survive extraction.
+  { id: 'spec-q1-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 1', topic: 'Graphs — the asymptotes of a scaled arctan', type: 'mc', hasDetail: true, percentCorrect: 85 },
+  { id: 'spec-q2-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the maximal domain of a reciprocal square root of arcsin', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'spec-q6-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex Numbers — the area of the triangle formed by z, iz and z+iz', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'spec-q7-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — the length of a parametric curve', type: 'mc', hasDetail: true, percentCorrect: 78 },
+  { id: 'spec-q8-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — rewriting a definite integral under a substitution', type: 'mc', hasDetail: true, percentCorrect: 71 },
+  { id: 'spec-q9-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential Equations — separating after a compound angle expansion', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q10-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 10', topic: 'Differential Equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q11-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 11', topic: 'Vectors — the m giving a 30 degree angle between two vectors', type: 'mc', hasDetail: true, percentCorrect: 80 },
+  { id: 'spec-q13-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — the first time the speed on an ellipse is a minimum', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q14-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 14', topic: 'Vectors — a scalar resolute in a given direction', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'spec-q15-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 15', topic: 'Kinematics — the force accelerating a particle between two speeds', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q17-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 17', topic: 'Kinematics — a camera dropped from an ascending balloon', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'spec-q18-2018', subject: 'specialist', year: 2018, exam: 'Exam 2', code: 'MCQ 18', topic: 'Statistics — the population standard deviation from a confidence interval', type: 'mc', hasDetail: true, percentCorrect: 62 },
+
   // The 2018 Specialist Exam 1 short-answer questions, cross-referenced against the VCAA
   // examination report and re-derived independently with sympy. Question 1 is omitted:
   // it is a connected-masses pulley problem needing force resolution, which is off the

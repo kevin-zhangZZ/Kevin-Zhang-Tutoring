@@ -45,6 +45,19 @@ import MethodsQ17_2017 from './questions/MethodsQ17_2017'
 import MethodsQ11_2018 from './questions/MethodsQ11_2018'
 import MethodsQ7_2017 from './questions/MethodsQ7_2017'
 import SpecialistQ10_2017 from './questions/SpecialistQ10_2017'
+import SpecialistQ1_2018 from './questions/SpecialistQ1_2018'
+import SpecialistQ2_2018 from './questions/SpecialistQ2_2018'
+import SpecialistQ6_2018 from './questions/SpecialistQ6_2018'
+import SpecialistQ7_2018 from './questions/SpecialistQ7_2018'
+import SpecialistQ8_2018 from './questions/SpecialistQ8_2018'
+import SpecialistQ9_2018 from './questions/SpecialistQ9_2018'
+import SpecialistQ10_2018 from './questions/SpecialistQ10_2018'
+import SpecialistQ11_2018 from './questions/SpecialistQ11_2018'
+import SpecialistQ13_2018 from './questions/SpecialistQ13_2018'
+import SpecialistQ14_2018 from './questions/SpecialistQ14_2018'
+import SpecialistQ15_2018 from './questions/SpecialistQ15_2018'
+import SpecialistQ17_2018 from './questions/SpecialistQ17_2018'
+import SpecialistQ18_2018 from './questions/SpecialistQ18_2018'
 import SpecialistQ12_2018 from './questions/SpecialistQ12_2018'
 import SpecialistQ2_2017 from './questions/SpecialistQ2_2017'
 import SpecialistQ5_2018 from './questions/SpecialistQ5_2018'
@@ -411,6 +424,19 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q11-2018': MethodsQ11_2018,
   'meth-q7-2017': MethodsQ7_2017,
   'spec-q10-2017': SpecialistQ10_2017,
+  'spec-q1-2018': SpecialistQ1_2018,
+  'spec-q2-2018': SpecialistQ2_2018,
+  'spec-q6-2018': SpecialistQ6_2018,
+  'spec-q7-2018': SpecialistQ7_2018,
+  'spec-q8-2018': SpecialistQ8_2018,
+  'spec-q9-2018': SpecialistQ9_2018,
+  'spec-q10-2018': SpecialistQ10_2018,
+  'spec-q11-2018': SpecialistQ11_2018,
+  'spec-q13-2018': SpecialistQ13_2018,
+  'spec-q14-2018': SpecialistQ14_2018,
+  'spec-q15-2018': SpecialistQ15_2018,
+  'spec-q17-2018': SpecialistQ17_2018,
+  'spec-q18-2018': SpecialistQ18_2018,
   'spec-q12-2018': SpecialistQ12_2018,
   'spec-q2-2017': SpecialistQ2_2017,
   'spec-q5-2018': SpecialistQ5_2018,
