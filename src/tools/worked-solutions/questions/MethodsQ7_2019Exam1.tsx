@@ -67,6 +67,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum area} = \dfrac{3\sqrt3}{8}}" />,
+    reason: <>Exact form, since the question sets no rounding. (<Katex tex="\tfrac{3\sqrt3}{8}\approx0.65" /> square units. Worth a sanity check: the whole semicircle has area <Katex tex="\tfrac{\pi}{2}\approx1.57" />, so the biggest triangle that fits inside it takes up a little over <Katex tex="40\%" /> of that — a believable size for a triangle inscribed in a curved region.)</>,
   },
 ]
 

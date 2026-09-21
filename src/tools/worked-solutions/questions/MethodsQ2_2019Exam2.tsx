@@ -12,6 +12,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 import hillSrc from './meth-2019exam2-q2-hill.png'
 import hillCableSrc from './meth-2019exam2-q2-hill-cable.png'
 import gradientSrc from './meth-2019exam2-q2-gradient.png'
@@ -237,7 +238,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dfrac{3a^2}{2000}-\dfrac{9a}{100}+\dfrac{27}{20}-\dfrac{7}{a} = \dfrac{9(a-30)(a-10)}{2000}" />,
-    reason: <>Solve on CAS over <Katex tex="10\le a\le20" />, the range the question gives for <Katex tex="a" /> — that restriction is what picks out the one relevant solution.</>,
+    reason: <>Hand this to technology: <Cas fn="solve">solve(3a^2/2000-9a/100+27/20-7/a = 9(a-30)(a-10)/2000, a) | 10&lt;=a&lt;=20</Cas> returns it directly. The domain restriction is not optional — the range the question gives for <Katex tex="a" /> is what picks out the one relevant solution from the several the equation has.</>,
   },
   {
     working: <Katex display tex="a \approx 11.1157\ldots \implies a\approx11.12" />,

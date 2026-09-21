@@ -25,12 +25,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Four of the five features are visible immediately; the question is which one is missing.</>,
   },
   {
-    working: <><b>A — horizontal asymptote.</b> <Katex display tex="\lim_{x\to-\infty}\dfrac{e^x}{x-1} = 0" /></>,
-    reason: <><Katex tex="e^x\to0" /> while the denominator grows without bound, so <Katex tex="y=0" /> is a horizontal asymptote on the left. <b>Has one.</b></>,
+    working: <Katex display tex="\lim_{x\to-\infty}\dfrac{e^x}{x-1} = 0" />,
+    reason: <><b>A — horizontal asymptote.</b> <Katex tex="e^x\to0" /> while the denominator grows without bound, so <Katex tex="y=0" /> is a horizontal asymptote on the left. <b>Has one.</b></>,
   },
   {
-    working: <><b>B — vertical asymptote.</b> Denominator zero at <Katex tex="x=1" />, numerator <Katex tex="e^1\ne0" />.</>,
-    reason: <>So <Katex tex="x=1" /> is a vertical asymptote. <b>Has one.</b></>,
+    working: <Katex display tex="x-1=0 \implies x=1, \quad e^{1}\ne0" />,
+    reason: <><b>B — vertical asymptote.</b> The denominator vanishes at <Katex tex="x=1" /> while the numerator does not, so the value blows up there rather than cancelling. <b>Has one.</b></>,
   },
   {
     working: (
@@ -42,8 +42,8 @@ const ROWS: WorkingRow[] = [
     reason: <><b>C — local minimum.</b> The denominator is always positive and <Katex tex="e^x>0" />, so <Katex tex="f'" /> takes the sign of <Katex tex="(x-2)" />: negative before <Katex tex="x=2" />, positive after. That's a minimum, at <Katex tex="\left(2,e^2\right)" />. <b>Has one.</b></>,
   },
   {
-    working: <><b>D — vertical axis intercept.</b> <Katex display tex="f(0) = \dfrac{e^0}{0-1} = -1" /></>,
-    reason: <>The graph crosses the <Katex tex="y" />-axis at <Katex tex="(0,-1)" />. <b>Has one.</b></>,
+    working: <Katex display tex="f(0) = \dfrac{e^0}{0-1} = -1" />,
+    reason: <><b>D — vertical axis intercept.</b> <Katex tex="x=0" /> lies in the domain, so the graph does cross the <Katex tex="y" />-axis, at <Katex tex="(0,-1)" />. <b>Has one.</b></>,
   },
   {
     working: (

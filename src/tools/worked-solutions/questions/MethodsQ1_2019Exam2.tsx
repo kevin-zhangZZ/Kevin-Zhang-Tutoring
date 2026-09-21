@@ -12,6 +12,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 import curveSrc from './meth-2019exam2-q1-curve.png'
 import areaSrc from './meth-2019exam2-q1-area.png'
 import distanceSrc from './meth-2019exam2-q1-distance.png'
@@ -232,7 +233,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} \approx 0.3568}" />,
-    reason: <>Evaluate on CAS. <Katex tex="x^2e^{-x^2}" /> has no antiderivative that can be written with the functions in this course, so this integral genuinely has to be done by technology — which is exactly what Exam 2 expects.</>,
+    reason: <>Evaluate with technology: <Cas fn="nInt">nInt(1/e - x^2*e^(-x^2), x, -1, 1)</Cas> does it in one line, or build the same thing with the definite-integral template. <Katex tex="x^2e^{-x^2}" /> has no antiderivative that can be written with the functions in this course, so this integral genuinely has to be done by technology — which is exactly what Exam 2 expects.</>,
   },
 ]
 
@@ -254,8 +255,8 @@ const ROWS_D: WorkingRow[] = [
     reason: <>The point <Katex tex="(0,e)" /> sits high above the curve (<Katex tex="e\approx2.72" />, while the curve never rises past <Katex tex="\tfrac1e\approx0.37" />), so the shortest link runs down and slightly to the right.</>,
   },
   {
-    working: <Katex display tex="\text{Minimise } D(m) \text{ for } m\in[0,1] \text{ (by CAS)}" />,
-    reason: <>Graph <Katex tex="D" /> against <Katex tex="m" /> and read off the minimum, or solve <Katex tex="D'(m)=0" />. (Minimising <Katex tex="D^2" /> instead gives the same <Katex tex="m" /> and avoids the square root, which is handy by hand.)</>,
+    working: <Katex display tex="\text{Minimise } D(m) \text{ for } m\in[0,1]" />,
+    reason: <>Technology does this one. Store the rule first with <Cas fn="define">Define dist(m)=√(m^2+(m^2*e^(-m^2)-e)^2)</Cas> and then ask for <Cas fn="fMin">fMin(dist(m), m) | 0&lt;=m&lt;=1</Cas> to get the minimising value. Graphing <Katex tex="D" /> against <Katex tex="m" /> and reading off the minimum works just as well, as does solving <Katex tex="D'(m)=0" />. (Minimising <Katex tex="D^2" /> instead gives the same <Katex tex="m" /> and avoids the square root, which is handy by hand.)</>,
   },
   {
     working: <Katex display tex="D(0)=e\approx2.718, \qquad D(1)\approx2.554" />,

@@ -33,6 +33,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\dfrac{8}{41}}" />,
+    reason: <>Leave it as a fraction: the question asks for a proportion and sets no rounding. (<Katex tex="\tfrac{8}{41}\approx0.195" /> — a shade under one peg in five was faulty in this particular sample. Part (b) then tells you the company's <em>actual</em> long-run rate is <Katex tex="\tfrac16\approx0.167" />, so this sample happened to run slightly faulty; a sample proportion is an estimate, not the true value.)</>,
   },
 ]
 

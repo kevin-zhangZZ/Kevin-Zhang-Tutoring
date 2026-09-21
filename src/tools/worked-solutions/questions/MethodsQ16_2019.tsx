@@ -55,23 +55,20 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{Option A}}" />,
   },
   {
-    working: <>Why the others fail:</>,
-  },
-  {
     working: OPT_E,
-    reason: <>The trap, chosen by <Katex tex="14\%" />: identical in shape to A, but it crosses zero at <Katex tex="x=6" /> instead of <Katex tex="x=5" />. That's the point where <Katex tex="f" /> crosses the <Katex tex="x" />-<em>axis</em>, not where it turns around — and <Katex tex="f(x)=0" /> tells you nothing at all about <Katex tex="f'(x)" />.</>,
+    reason: <>Ruling out the others — <b>E</b> is the trap, chosen by <Katex tex="14\%" />: identical in shape to A, but it crosses zero at <Katex tex="x=6" /> instead of <Katex tex="x=5" />. That's the point where <Katex tex="f" /> crosses the <Katex tex="x" />-<em>axis</em>, not where it turns around — and <Katex tex="f(x)=0" /> tells you nothing at all about <Katex tex="f'(x)" />.</>,
   },
   {
     working: OPT_B,
-    reason: <>Positive between the origin and <Katex tex="x=5" />, which would mean <Katex tex="f" /> is <em>rising</em> there — but the given graph is clearly falling. It also turns negative after <Katex tex="5" />, the opposite way round.</>,
+    reason: <><b>B</b> — positive between the origin and <Katex tex="x=5" />, which would mean <Katex tex="f" /> is <em>rising</em> there — but the given graph is clearly falling. It also turns negative after <Katex tex="5" />, the opposite way round.</>,
   },
   {
     working: OPT_C,
-    reason: <>Positive near the origin then negative later: that describes a function that rises to a maximum and falls — the reverse of the given shape.</>,
+    reason: <><b>C</b> — positive near the origin then negative later: that describes a function that rises to a maximum and falls — the reverse of the given shape.</>,
   },
   {
     working: OPT_D,
-    reason: <>Never negative, so it describes a function that never decreases. The given <Katex tex="f" /> decreases over the whole stretch from the origin to <Katex tex="x=5" />.</>,
+    reason: <><b>D</b> — never negative, so it describes a function that never decreases. The given <Katex tex="f" /> decreases over the whole stretch from the origin to <Katex tex="x=5" />.</>,
   },
 ]
 

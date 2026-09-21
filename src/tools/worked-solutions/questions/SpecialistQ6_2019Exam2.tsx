@@ -7,6 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 
 const EXAM_A: SAExaminerStats = {
   marks: [40, 31, 29],
@@ -51,7 +52,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\left(370<\overline{X}<375\right) \approx 0.490789" />,
-    reason: <>By CAS. Sensible: <Katex tex="375" /> is the mean, so this is just under half the distribution.</>,
+    reason: <>Technology: <Cas fn="normCdf">normCdf(370, 375, 375, 15/√50)</Cas> gives it. The last argument is the standard deviation of the <em>sample mean</em>, <Katex tex="\tfrac{\sigma}{\sqrt n}" />, not the population <Katex tex="\sigma=15" /> — using <Katex tex="15" /> here is the single most common error in this style of question. Sensible answer: <Katex tex="375" /> is the mean, so this is just under half the distribution.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{at least one of two}) = 1-\Pr(\text{neither})" />,
@@ -87,6 +88,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.495}" />,
+    reason: <><Cas fn="normCdf">normCdf(-2, 2, 0, 3)</Cas> finishes it. Sanity check: <Katex tex="2" /> g is only two-thirds of a standard deviation, so a shade under half is the right size of answer.</>,
   },
 ]
 
@@ -108,6 +110,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 2\times0.02275 \approx 0.0455" />,
+    reason: <>The single tail is <Cas fn="normCdf">normCdf(-∞, 372, 375, 1.5)</Cas> on a CAS. On the handheld, type the lower bound as <Katex tex="-9\times10^{99}" /> if you would rather not use the <Katex tex="\infty" /> symbol; anything far enough below the mean gives the same answer.</>,
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.046}" />,
@@ -139,8 +142,8 @@ const ROWS_F: WorkingRow[] = [
     reason: <>Split the <Katex tex="5\%" /> evenly between the two tails.</>,
   },
   {
-    working: <Katex display tex="\overline{x} = \operatorname{invNorm}(0.025,\ 375,\ 1.5) \approx 372.06" />,
-    reason: <>Equivalently <Katex tex="375-1.96\times1.5 = 372.06" />.</>,
+    working: <Katex display tex="\overline{x} \approx 372.06" />,
+    reason: <>Run the distribution backwards from the area: <Cas fn="invNorm">invNorm(0.025, 375, 1.5)</Cas> does it. Equivalently by hand, <Katex tex="375-1.96\times1.5 = 372.06" /> — the boundary sits <Katex tex="1.96" /> standard deviations below the claimed mean.</>,
   },
   {
     working: <Katex display tex="\boxed{\overline{x} \approx 372.1 \text{ grams}}" />,

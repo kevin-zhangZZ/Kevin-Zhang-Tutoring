@@ -11,6 +11,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 import pdfSrc from './meth-2019exam2-q4-pdf.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -173,7 +174,8 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Let <Katex tex="L" /> be the wingspan in cm. Careful: the second parameter is the <em>variance</em>, so the standard deviation <Katex tex="2.1" /> is squared here.</>,
   },
   {
-    working: <Katex display tex="\Pr(16<L<18) \text{ (by CAS: normalCdf with lower } 16 \text{, upper } 18)" />,
+    working: <Katex display tex="\Pr(16<L<18)" />,
+    reason: <>Straight to technology: <Cas fn="normCdf">normCdf(16, 18, 14.1, 2.1)</Cas> gives it. The bounds go first and the parameters last, and the final argument is the standard deviation <Katex tex="2.1" />, not the variance <Katex tex="2.1^2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.1512}" />,
@@ -187,8 +189,8 @@ const ROWS_E: WorkingRow[] = [
     reason: <>"In the smallest <Katex tex="5\%" />" means the bottom <Katex tex="5\%" /> of the distribution, so the cut-off has <Katex tex="5\%" /> of the area to its <em>left</em>. The greatest wingspan still counted as very small is exactly that cut-off.</>,
   },
   {
-    working: <Katex display tex="\ell = \operatorname{invNorm}(0.05,\ 14.1,\ 2.1) \approx 10.6458" />,
-    reason: <>The inverse normal runs the normal distribution backwards: give it an area, it returns the boundary.</>,
+    working: <Katex display tex="\ell \approx 10.6458" />,
+    reason: <>The inverse normal runs the distribution backwards — give it an area, it returns the boundary: <Cas fn="invNorm">invNorm(0.05, 14.1, 2.1)</Cas> here. The first argument is always the area to the <em>left</em>, which is why <Katex tex="0.05" /> goes in without any adjustment.</>,
   },
   {
     working: <Katex display tex="\boxed{\ell \approx 10.6 \text{ cm}}" />,
@@ -203,10 +205,11 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = 1-\Pr(X\le2)" />,
-    reason: <>Most calculators give cumulative probabilities from the bottom up, so flip to the complement. "<Katex tex="3" /> or more" is the opposite of "<Katex tex="2" /> or fewer" — the boundary value <Katex tex="3" /> belongs to the event, which is where off-by-one errors creep in.</>,
+    reason: <>"<Katex tex="3" /> or more" is the opposite of "<Katex tex="2" /> or fewer" — the boundary value <Katex tex="3" /> belongs to the event, which is where off-by-one errors creep in.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.2947}" />,
+    reason: <>Either <Cas fn="binomCdf">1 - binomCdf(36, 0.0527, 0, 2)</Cas> using the complement, or <Cas fn="binomCdf">binomCdf(36, 0.0527, 3, 36)</Cas> counting the wanted values directly. Both bounds are inclusive, so the upper one is <Katex tex="36" />, not <Katex tex="35" />.</>,
   },
 ]
 
@@ -222,7 +225,7 @@ const ROWS_FII: WorkingRow[] = [
         <Katex display tex="\Pr(X\ge7) = 0.00244\ldots < 0.01 \quad \checkmark" />
       </>
     ),
-    reason: <>Both lines are needed as working: one shows <Katex tex="6" /> fails, the other shows <Katex tex="7" /> succeeds, which together prove <Katex tex="7" /> is the <em>smallest</em>.</>,
+    reason: <>Each line is one call: <Cas fn="binomCdf">binomCdf(36, 0.0527, 6, 36)</Cas> and then the same with <Katex tex="7" /> as the lower bound. Both lines are needed as working: one shows <Katex tex="6" /> fails, the other shows <Katex tex="7" /> succeeds, which together prove <Katex tex="7" /> is the <em>smallest</em>.</>,
   },
   {
     working: <Katex display tex="\boxed{n=7}" />,
@@ -266,7 +269,7 @@ const ROWS_FIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.7380}" />,
-    reason: <>Four decimal places — write the trailing zero, since <Katex tex="0.738" /> was marked down.</>,
+    reason: <><Cas fn="binomCdf">binomCdf(36, 0.0527, 1, 3)</Cas> covers it, both bounds inclusive — exactly what <Katex tex="X\in\{1,2,3\}" /> needs. Four decimal places, and write the trailing zero: <Katex tex="0.738" /> was marked down.</>,
   },
 ]
 

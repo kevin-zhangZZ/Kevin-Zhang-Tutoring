@@ -84,7 +84,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\cos\theta = \dfrac{4}{9}}" />,
-    reason: <>Positive, so the angle at <Katex tex="A" /> is acute.</>,
+    reason: <>Exact form — the question asks for the cosine, not the angle, so stop here. (<Katex tex="\tfrac49\approx0.44" />, i.e. <Katex tex="\theta\approx63.6^\circ" />. It is positive, so the angle at <Katex tex="A" /> is acute, which matches the pyramid's base being a fairly open parallelogram rather than a thin sliver.)</>,
   },
 ]
 

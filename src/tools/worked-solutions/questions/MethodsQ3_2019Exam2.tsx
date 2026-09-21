@@ -12,6 +12,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 import ftGraphSrc from './meth-2019exam2-q3-ft-graph.png'
 import transformedSrc from './meth-2019exam2-q3-transformed.png'
 
@@ -123,8 +124,8 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Maximise } f(t)=\sin\!\left(\dfrac{\pi t}{3}\right)+\sin\!\left(\dfrac{\pi t}{6}\right) \text{ (by CAS)}" />,
-    reason: <>Either graph <Katex tex="f" /> and read the highest point, or solve <Katex tex="f'(t)=0" /> and test the solutions.</>,
+    working: <Katex display tex="\text{Maximise } f(t)=\sin\!\left(\dfrac{\pi t}{3}\right)+\sin\!\left(\dfrac{\pi t}{6}\right)" />,
+    reason: <>Technology is the expected route: <Cas fn="fMax">fMax(sin(πt/3)+sin(πt/6), t) | 0&lt;=t&lt;=12</Cas> returns the <Katex tex="t" /> value, which you then substitute back to get the strength itself. Restricting to one period <Katex tex="[0,12]" /> matters — without it the solver can return a peak from any repeat of the pattern. Graphing <Katex tex="f" /> and reading the highest point works equally well, as does solving <Katex tex="f'(t)=0" /> and testing the solutions.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum strength} \approx 1.76}" />,

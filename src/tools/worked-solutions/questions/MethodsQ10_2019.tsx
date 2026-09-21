@@ -35,23 +35,20 @@ const ROWS: WorkingRow[] = [
     reason: <>Matches option <b>D</b>. The gradient touches zero at <Katex tex="x=\pm\pi,\pm3\pi,\dots" /> (where <Katex tex="\cos x=-1" />) — those are the flat spots visible on the graph — but it is never negative, so the curve never falls.</>,
   },
   {
-    working: <>Checking the other four:</>,
+    working: <Katex display tex="f(x)\to\pm\infty \ \text{ as } \ x\to\pm\infty" />,
+    reason: <>Ruling out <b>A</b>: the <Katex tex="x" /> term grows without bound, so the curve never levels out towards a horizontal asymptote.</>,
   },
   {
-    working: <><b>A</b> — a horizontal asymptote</>,
-    reason: <>False: <Katex tex="f(x)\to\pm\infty" /> as <Katex tex="x\to\pm\infty" />, because the <Katex tex="x" /> term grows without bound. The curve never levels out.</>,
+    working: <Katex display tex="f \text{ strictly increasing} \implies f(x)=4 \text{ has one solution}" />,
+    reason: <>Ruling out <b>B</b>: the flat spots are single points, not flat <em>intervals</em>, so <Katex tex="f" /> takes each value exactly once and <Katex tex="f(x)=4" /> has exactly one solution, not infinitely many.</>,
   },
   {
-    working: <><b>B</b> — infinitely many solutions to <Katex tex="f(x)=4" /></>,
-    reason: <>False: the flat spots are single points, not flat <em>intervals</em>, so <Katex tex="f" /> is strictly increasing overall and takes each value exactly once. <Katex tex="f(x)=4" /> has exactly one solution.</>,
+    working: <Katex display tex="f(x+2\pi) = (x+2\pi)+\sin(x+2\pi) = f(x)+2\pi \ne f(x)" />,
+    reason: <>Ruling out <b>C</b>, the most popular wrong answer at <Katex tex="33\%" />: <Katex tex="\sin(x)" /> repeats every <Katex tex="2\pi" />, but the <Katex tex="+x" /> keeps climbing. A periodic function must return to the <em>same</em> value.</>,
   },
   {
-    working: <><b>C</b> — period <Katex tex="2\pi" /></>,
-    reason: <>False, and the most popular wrong answer at <Katex tex="33\%" />: <Katex tex="\sin(x)" /> repeats every <Katex tex="2\pi" />, but the <Katex tex="+x" /> keeps climbing, so <Katex tex="f(x+2\pi)=f(x)+2\pi\ne f(x)" />. A periodic function must return to the <em>same</em> value.</>,
-  },
-  {
-    working: <><b>E</b> — <Katex tex="f'(x)=\cos(x)" /></>,
-    reason: <>False: differentiating <Katex tex="x" /> leaves <Katex tex="1" /> behind, so the derivative is <Katex tex="1+\cos(x)" />, not <Katex tex="\cos(x)" />.</>,
+    working: <Katex display tex="f'(x) = 1+\cos(x) \ne \cos(x)" />,
+    reason: <>Ruling out <b>E</b>: differentiating the <Katex tex="x" /> term leaves <Katex tex="1" /> behind.</>,
   },
 ]
 

@@ -18,20 +18,24 @@ const ROWS: WorkingRow[] = [
     reason: 'Given information.',
   },
   {
-    working: <>Events <Katex tex="A" /> and <Katex tex="B" /> are independent exactly when knowing <Katex tex="A" /> occurred doesn't change the probability of <Katex tex="B" />.</>,
-    reason: <>The definition of independence: <Katex tex="\Pr(B\mid A) = \Pr(B)" />.</>,
+    working: <Katex display tex="A,B \text{ independent} \iff \Pr(B\mid A)=\Pr(B)" />,
+    reason: <>The definition of independence, in the conditional form: knowing that <Katex tex="A" /> occurred does not change the probability of <Katex tex="B" />.</>,
   },
   {
     working: <Katex display tex="\Pr(B) = \Pr(B\mid A)\Pr(A) + \Pr(B\mid A')\Pr(A') = mp+n(1-p)" />,
-    reason: 'Law of total probability.',
+    reason: <>The law of total probability: <Katex tex="B" /> can happen either with <Katex tex="A" /> or without it, so split <Katex tex="\Pr(B)" /> across those two cases. Everything is now written in terms of <Katex tex="m" />, <Katex tex="n" /> and <Katex tex="p" />.</>,
   },
   {
-    working: <>If <Katex tex="A,B" /> are independent, both <Katex tex="\Pr(B\mid A)" /> and <Katex tex="\Pr(B\mid A')" /> must equal the same value, <Katex tex="\Pr(B)" />.</>,
-    reason: <>So <Katex tex="m=\Pr(B)=n" /> — the conditional probability doesn't depend on whether <Katex tex="A" /> occurred or not.</>,
+    working: <Katex display tex="m = mp+n(1-p)" />,
+    reason: <>Substituting both sides of the independence condition: the left side is <Katex tex="\Pr(B\mid A)=m" />, the right side is <Katex tex="\Pr(B)" /> from the line above.</>,
+  },
+  {
+    working: <Katex display tex="m(1-p) = n(1-p)" />,
+    reason: <>Subtracting <Katex tex="mp" /> from both sides and factorising. Since the question quotes <Katex tex="\Pr(B\mid A')=n" />, the event <Katex tex="A'" /> must be possible, so <Katex tex="p<1" /> and <Katex tex="1-p\ne0" /> — it can be divided out.</>,
   },
   {
     working: <Katex display tex="\boxed{m=n}" />,
-    reason: <>Matches option <b>A</b>. (This also makes sense directly: if <Katex tex="\Pr(B\mid A)=\Pr(B\mid A')" />, then <Katex tex="B" /> occurs at the same rate regardless of <Katex tex="A" />, which is exactly independence — and this holds for any value of <Katex tex="p" />.)</>,
+    reason: <>Matches option <b>A</b>. (This also makes sense directly: if <Katex tex="\Pr(B\mid A)=\Pr(B\mid A')" />, then <Katex tex="B" /> occurs at the same rate whether or not <Katex tex="A" /> happens, which is exactly independence — and it holds for any value of <Katex tex="p" />, which is why none of the options involving <Katex tex="p" /> can be right.)</>,
   },
 ]
 

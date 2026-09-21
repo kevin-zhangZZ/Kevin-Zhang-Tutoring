@@ -7,6 +7,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 import diagramSrc from './meth-2019-mcq6-cardboard.png'
 import volumeSrc from './meth-2019-mcq6-volume.png'
 
@@ -44,7 +45,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="V'(x) = 12x^2-520x+4000 = 4\left(3x^2-130x+1000\right)" />
       </>
     ),
-    reason: <>Expand, then differentiate. (On CAS you can skip straight to solving <Katex tex="V'(x)=0" />, or simply graph <Katex tex="V" /> and read off the peak.)</>,
+    reason: <>Expand, then differentiate. (On a CAS you can skip both lines: <Cas fn="fMax">fMax(x(80-2x)(50-2x), x) | 0&lt;x&lt;25</Cas> returns <Katex tex="x=10" /> directly, and graphing <Katex tex="V" /> and reading off the peak works too. The by-hand route is shown because the factorisation is short and it is the only route available on Exam 1.)</>,
   },
   {
     working: <Katex display tex="3x^2-130x+1000 = (3x-100)(x-10) = 0 \implies x=\dfrac{100}{3} \ \text{ or } \ x=10" />,

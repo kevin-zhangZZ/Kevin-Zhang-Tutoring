@@ -30,16 +30,16 @@ const ROWS: WorkingRow[] = [
     reason: 'The field repeats identically along every diagonal line of gradient 1 — the slope markers depend only on the value of y − x, not on x and y individually.',
   },
   {
-    working: <>All five options are functions of <Katex tex="y-x" /> alone, matching that banding.</>,
-    reason: <>Narrows the choice to which specific function of <Katex tex="u=y-x" /> fits.</>,
+    working: <Katex display tex="\frac{dy}{dx}=f(y-x) \implies \text{slope constant on } y-x=k" />,
+    reason: <>All five options already have this form, so the banding on its own does not separate them. Write <Katex tex="u=y-x" /> and ask instead <em>where along the diagonals</em> the markers go flat.</>,
   },
   {
-    working: <>Options <b>D</b> and <b>E</b> involve <Katex tex="\dfrac{1}{\cos(y-x)}" /> and <Katex tex="\dfrac{1}{\sin(y-x)}" />, which blow up to <Katex tex="\pm\infty" /> (vertical tangents) on some diagonals.</>,
-    reason: 'The diagram shows only smooth, bounded slope markers everywhere — no near-vertical dashes anywhere — ruling out D and E.',
+    working: <Katex display tex="\cos(u)=0 \ \text{ or } \ \sin(u)=0 \implies \frac{dy}{dx}\to\pm\infty" />,
+    reason: <>Ruling out <b>D</b> and <b>E</b>: both have <Katex tex="u" /> in a denominator, so on the diagonals where that denominator hits zero the gradient becomes infinite and the markers would be drawn vertical. Every marker in the diagram is finite and gently sloped.</>,
   },
   {
-    working: <>Options <b>A</b> and <b>C</b>, <Katex tex="\sin(y-x)" /> and <Katex tex="\sin(x-y)=-\sin(y-x)" />, are both zero exactly on the diagonal <Katex tex="y=x" /> through the origin.</>,
-    reason: <>In the diagram the markers sitting <i>on</i> the line <Katex tex="y=x" /> are visibly tilted, not flat — so the zero-gradient diagonal is not <Katex tex="y=x" /> itself, ruling out A and C.</>,
+    working: <Katex display tex="\sin(y-x)=0 \ \text{ and } \ \sin(x-y)=0 \ \text{ on } \ y=x" />,
+    reason: <>Ruling out <b>A</b> and <b>C</b>: both are zero exactly on the diagonal through the origin, so both would show <em>flat</em> markers along <Katex tex="y=x" />. In the diagram the markers sitting on <Katex tex="y=x" /> are visibly tilted, so the flat diagonal is somewhere else.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \cos(y-x)}" />,
