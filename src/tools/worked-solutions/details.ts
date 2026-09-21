@@ -201,6 +201,36 @@ import SpecialistQ15_2015 from './questions/SpecialistQ15_2015'
 import SpecialistQ18_2015 from './questions/SpecialistQ18_2015'
 import SpecialistQ20_2015 from './questions/SpecialistQ20_2015'
 import SpecialistQ22_2015 from './questions/SpecialistQ22_2015'
+import SpecialistQ1_2014 from './questions/SpecialistQ1_2014'
+import SpecialistQ2_2014 from './questions/SpecialistQ2_2014'
+import SpecialistQ3_2014 from './questions/SpecialistQ3_2014'
+import SpecialistQ4_2014 from './questions/SpecialistQ4_2014'
+import SpecialistQ5_2014 from './questions/SpecialistQ5_2014'
+import SpecialistQ6_2014 from './questions/SpecialistQ6_2014'
+import SpecialistQ7_2014 from './questions/SpecialistQ7_2014'
+import SpecialistQ8_2014 from './questions/SpecialistQ8_2014'
+import SpecialistQ9_2014 from './questions/SpecialistQ9_2014'
+import SpecialistQ10_2014 from './questions/SpecialistQ10_2014'
+import SpecialistQ11_2014 from './questions/SpecialistQ11_2014'
+import SpecialistQ12_2014 from './questions/SpecialistQ12_2014'
+import SpecialistQ13_2014 from './questions/SpecialistQ13_2014'
+import SpecialistQ14_2014 from './questions/SpecialistQ14_2014'
+import SpecialistQ15_2014 from './questions/SpecialistQ15_2014'
+import SpecialistQ16_2014 from './questions/SpecialistQ16_2014'
+import SpecialistQ17_2014 from './questions/SpecialistQ17_2014'
+import SpecialistQ21_2014 from './questions/SpecialistQ21_2014'
+import SpecialistQ22_2014 from './questions/SpecialistQ22_2014'
+import SpecialistQ1_2014Exam2 from './questions/SpecialistQ1_2014Exam2'
+import SpecialistQ2_2014Exam2 from './questions/SpecialistQ2_2014Exam2'
+import SpecialistQ3_2014Exam2 from './questions/SpecialistQ3_2014Exam2'
+import SpecialistQ4_2014Exam2 from './questions/SpecialistQ4_2014Exam2'
+import SpecialistQ1_2014Exam1 from './questions/SpecialistQ1_2014Exam1'
+import SpecialistQ2_2014Exam1 from './questions/SpecialistQ2_2014Exam1'
+import SpecialistQ3_2014Exam1 from './questions/SpecialistQ3_2014Exam1'
+import SpecialistQ4_2014Exam1 from './questions/SpecialistQ4_2014Exam1'
+import SpecialistQ5_2014Exam1 from './questions/SpecialistQ5_2014Exam1'
+import SpecialistQ6_2014Exam1 from './questions/SpecialistQ6_2014Exam1'
+import SpecialistQ7_2014Exam1 from './questions/SpecialistQ7_2014Exam1'
 import SpecialistQ1_2015Exam1 from './questions/SpecialistQ1_2015Exam1'
 import SpecialistQ3_2015Exam1 from './questions/SpecialistQ3_2015Exam1'
 import SpecialistQ4_2015Exam1 from './questions/SpecialistQ4_2015Exam1'
@@ -638,6 +668,36 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q18-2015': SpecialistQ18_2015,
   'spec-q20-2015': SpecialistQ20_2015,
   'spec-q22-2015': SpecialistQ22_2015,
+  'spec-q1-2014': SpecialistQ1_2014,
+  'spec-q2-2014': SpecialistQ2_2014,
+  'spec-q3-2014': SpecialistQ3_2014,
+  'spec-q4-2014': SpecialistQ4_2014,
+  'spec-q5-2014': SpecialistQ5_2014,
+  'spec-q6-2014': SpecialistQ6_2014,
+  'spec-q7-2014': SpecialistQ7_2014,
+  'spec-q8-2014': SpecialistQ8_2014,
+  'spec-q9-2014': SpecialistQ9_2014,
+  'spec-q10-2014': SpecialistQ10_2014,
+  'spec-q11-2014': SpecialistQ11_2014,
+  'spec-q12-2014': SpecialistQ12_2014,
+  'spec-q13-2014': SpecialistQ13_2014,
+  'spec-q14-2014': SpecialistQ14_2014,
+  'spec-q15-2014': SpecialistQ15_2014,
+  'spec-q16-2014': SpecialistQ16_2014,
+  'spec-q17-2014': SpecialistQ17_2014,
+  'spec-q21-2014': SpecialistQ21_2014,
+  'spec-q22-2014': SpecialistQ22_2014,
+  'spec-q1-2014-e2': SpecialistQ1_2014Exam2,
+  'spec-q2-2014-e2': SpecialistQ2_2014Exam2,
+  'spec-q3-2014-e2': SpecialistQ3_2014Exam2,
+  'spec-q4-2014-e2': SpecialistQ4_2014Exam2,
+  'spec-q1-2014-e1': SpecialistQ1_2014Exam1,
+  'spec-q2-2014-e1': SpecialistQ2_2014Exam1,
+  'spec-q3-2014-e1': SpecialistQ3_2014Exam1,
+  'spec-q4-2014-e1': SpecialistQ4_2014Exam1,
+  'spec-q5-2014-e1': SpecialistQ5_2014Exam1,
+  'spec-q6-2014-e1': SpecialistQ6_2014Exam1,
+  'spec-q7-2014-e1': SpecialistQ7_2014Exam1,
   'spec-q1-2015-e1': SpecialistQ1_2015Exam1,
   'spec-q3-2015-e1': SpecialistQ3_2015Exam1,
   'spec-q4-2015-e1': SpecialistQ4_2015Exam1,

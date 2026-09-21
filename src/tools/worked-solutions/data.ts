@@ -244,6 +244,50 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q20-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 20', topic: 'Kinematics — constant acceleration with a reversal of direction', type: 'mc', hasDetail: true, percentCorrect: 60 },
   { id: 'spec-q22-2015', subject: 'specialist', year: 2015, exam: 'Exam 2', code: 'MCQ 22', topic: 'Differential equations — time to maximum height with air resistance', type: 'mc', hasDetail: true, percentCorrect: 42 },
 
+  // 2014 Specialist Exam 2 Section 1, answers and percentages read off the rendered report
+  // table (the correct option is marked only by shading). MCQ 18, 19 and 20 are omitted as
+  // Mechanics; MCQ 21 and 22 use kinematics wording but involve no forces at all, so they
+  // are included.
+  { id: 'spec-q1-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 1', topic: 'Coordinate geometry — where a hyperbola’s asymptotes cut the axes', type: 'mc', hasDetail: true, percentCorrect: 85 },
+  { id: 'spec-q2-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 2', topic: 'Coordinate geometry — completing the square to read off an ellipse', type: 'mc', hasDetail: true, percentCorrect: 71 },
+  { id: 'spec-q3-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 3', topic: 'Functions — an asymptote versus a point of discontinuity', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q4-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 4', topic: 'Functions — the domain of arcsin(2x − 1)', type: 'mc', hasDetail: true, percentCorrect: 90 },
+  { id: 'spec-q5-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — squaring in polar form', type: 'mc', hasDetail: true, percentCorrect: 85 },
+  { id: 'spec-q6-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — index laws with powers of i', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q7-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 7', topic: 'Complex numbers — the sum of the roots of a cubic', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'spec-q8-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 8', topic: 'Complex numbers — the principal argument of a quotient', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q9-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 9', topic: 'Complex numbers — which line cuts a circle twice', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'spec-q10-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 10', topic: 'Differential equations — a mixing problem with a changing volume', type: 'mc', hasDetail: true, percentCorrect: 64 },
+  { id: 'spec-q11-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 11', topic: 'Differential equations — one step of Euler’s method', type: 'mc', hasDetail: true, percentCorrect: 77 },
+  { id: 'spec-q12-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 12', topic: 'Calculus — an initial value plus a definite integral', type: 'mc', hasDetail: true, percentCorrect: 64 },
+  { id: 'spec-q13-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 13', topic: 'Calculus — changing an integral by substitution, terminals included', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q14-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 14', topic: 'Differential equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q15-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the angle between two vectors, then a double angle', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q16-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — a magnitude and a perpendicularity condition', type: 'mc', hasDetail: true, percentCorrect: 77 },
+  { id: 'spec-q17-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — antidifferentiating an acceleration vector from rest', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'spec-q21-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 21', topic: 'Kinematics — acceleration as a function of displacement', type: 'mc', hasDetail: true, percentCorrect: 52 },
+  { id: 'spec-q22-2014', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'MCQ 22', topic: 'Kinematics — total distance from a velocity–time graph', type: 'mc', hasDetail: true, percentCorrect: 49 },
+
+  // 2014 Specialist Exam 2 Section 2 (extended response), checked with sympy against the
+  // VCAA examination report. Question 5 is omitted — blocks connected by ropes over a pulley
+  // on an inclined plane, i.e. Mechanics, which is no longer an area of study.
+  { id: 'spec-q1-2014-e2', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Calculus — stationary point, asymptotes and a volume of revolution', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2014-e2', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'Q2(a–c)', topic: 'Complex numbers — polar form, cube roots, a circle and a tangent to it', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2014-e2', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'Q3(a–b)', topic: 'Vectors — parallel and perpendicular resolutes, then a parallelogram', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2014-e2', subject: 'specialist', year: 2014, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Related rates — a conical tank filling and draining, then a bucket', type: 'sa', hasDetail: true },
+
+  // The complete 2014 Specialist Exam 1 (short answer), checked with sympy against the VCAA
+  // examination report. Question 8 is omitted: it is a body held in equilibrium by two strings,
+  // i.e. Mechanics, which is no longer an area of study. The 2014 Specialist papers and reports
+  // were fetched from vcaa.vic.edu.au and now sit alongside the rest under public/exams.
+  { id: 'spec-q1-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q1(a–c)', topic: 'Vectors — a unit vector, an angle with the x-axis, and perpendicularity', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q2(a–c)', topic: 'Vectors — a parametric path in cartesian form, its sketch, and a speed', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Complex numbers — factorising a real quartic from one complex root', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q4', topic: 'Calculus — implicit differentiation and the gradient of a normal', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q5(a–c)', topic: 'Calculus — a double-angle simplification, then integration by substitution', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Calculus — a division identity and the volume of revolution that uses it', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2014-e1', subject: 'specialist', year: 2014, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Calculus — the range of 3x·arctan(2x) and the area under arctan(2x)', type: 'sa', hasDetail: true },
+
   // The complete 2015 Specialist Exam 1 (short answer), cross-referenced against the VCAA
   // examination report and checked with sympy. Question 2 is omitted: both its parts are
   // Mechanics (the reaction force on a parcel in an accelerating lift), and Mechanics is no

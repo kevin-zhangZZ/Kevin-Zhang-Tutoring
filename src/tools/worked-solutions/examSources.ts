@@ -40,12 +40,14 @@ for (let year = 2015; year <= 2025; year++) {
   register('chemistry', 'chemistry', year, 'Exam', `${year}-exam`)
 }
 
-// Methods also has transcribed 2014 questions, so its source archive extends one year earlier
-// than the other subjects.
+// Methods and Specialist also have transcribed 2014 questions, so their source archives
+// extend one year earlier than Chemistry's.
 register('methods', 'methods', 2014, 'Exam 1', '2014-exam1')
 register('methods', 'methods', 2014, 'Exam 2', '2014-exam2')
+register('specialist', 'specialist', 2014, 'Exam 1', '2014-exam1')
+register('specialist', 'specialist', 2014, 'Exam 2', '2014-exam2')
 
-// Returns undefined for any subject/year/exam combination outside 2015-2025, so callers can
+// Returns undefined for any subject/year/exam combination outside the registered range, so callers can
 // simply skip rendering the links rather than guess at a URL.
 export function examSourceFor(subject: SubjectId, year: number, exam: string): ExamSource | undefined {
   return SOURCES[`${subject}-${year}-${exam}`]
