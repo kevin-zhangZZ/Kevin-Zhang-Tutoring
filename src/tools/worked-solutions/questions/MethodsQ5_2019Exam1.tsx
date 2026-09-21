@@ -53,7 +53,12 @@ const ROWS_AI: WorkingRow[] = [
 
 const ROWS_AII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Vertical asymptote: } x=1 \qquad \text{Horizontal asymptote: } y=1" />,
+    working: (
+      <>
+        <Katex display tex="\text{Vertical asymptote: } x=1" />
+        <Katex display tex="\text{Horizontal asymptote: } y=1" />
+      </>
+    ),
     reason: <>The denominator <Katex tex="(x-1)^2\to0" /> as <Katex tex="x\to1" />; and <Katex tex="\dfrac{2}{(x-1)^2}\to0" /> as <Katex tex="x\to\pm\infty" />, leaving <Katex tex="f\to1" />.</>,
   },
   {
