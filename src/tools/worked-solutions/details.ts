@@ -105,6 +105,12 @@ import SpecialistQ6_2017Exam1 from './questions/SpecialistQ6_2017Exam1'
 import SpecialistQ7_2017Exam1 from './questions/SpecialistQ7_2017Exam1'
 import SpecialistQ8_2017Exam1 from './questions/SpecialistQ8_2017Exam1'
 import SpecialistQ10_2017Exam1 from './questions/SpecialistQ10_2017Exam1'
+import SpecialistQ1_2017Exam2 from './questions/SpecialistQ1_2017Exam2'
+import SpecialistQ2_2017Exam2 from './questions/SpecialistQ2_2017Exam2'
+import SpecialistQ3_2017Exam2 from './questions/SpecialistQ3_2017Exam2'
+import SpecialistQ4_2017Exam2 from './questions/SpecialistQ4_2017Exam2'
+import SpecialistQ5_2017Exam2 from './questions/SpecialistQ5_2017Exam2'
+import SpecialistQ6_2017Exam2 from './questions/SpecialistQ6_2017Exam2'
 import SpecialistQ5_2018 from './questions/SpecialistQ5_2018'
 import SpecialistQ9_2015 from './questions/SpecialistQ9_2015'
 import SpecialistQ17_2015 from './questions/SpecialistQ17_2015'
@@ -535,6 +541,12 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q7-2017-e1': SpecialistQ7_2017Exam1,
   'spec-q8-2017-e1': SpecialistQ8_2017Exam1,
   'spec-q10-2017-e1': SpecialistQ10_2017Exam1,
+  'spec-q1-2017-e2': SpecialistQ1_2017Exam2,
+  'spec-q2-2017-e2': SpecialistQ2_2017Exam2,
+  'spec-q3-2017-e2': SpecialistQ3_2017Exam2,
+  'spec-q4-2017-e2': SpecialistQ4_2017Exam2,
+  'spec-q5-2017-e2': SpecialistQ5_2017Exam2,
+  'spec-q6-2017-e2': SpecialistQ6_2017Exam2,
   'spec-q5-2018': SpecialistQ5_2018,
 
   // Hardest-6 Specialist MCQs, 2019 Exam 2 (see data.ts percentCorrect)
