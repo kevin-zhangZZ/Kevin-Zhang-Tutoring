@@ -132,6 +132,10 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q12-2016', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'MCQ 12', topic: 'Transformations — a reflection and dilation applied to a square-root rule', type: 'mc', hasDetail: true, percentCorrect: 52 },
 
   { id: 'meth-q8-2016-e1', subject: 'methods', year: 2016, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Calculus — an antiderivative of x^(k-1)ln(x), then a probability and a median comparison', type: 'sa', hasDetail: true },
+  { id: 'meth-q1-2016-e2', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'Q1(a–f)', topic: 'Trigonometry — period, range, tangents, and a transformation carrying f to f′', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2016-e2', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'Q2(a–c)', topic: 'Calculus — an antiderivative, a tangent and its perpendicular, and a length', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2016-e2', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'Q3(a–h)', topic: 'Probability — laptops: binomials, normals, a confidence interval and a density', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2016-e2', subject: 'methods', year: 2016, exam: 'Exam 2', code: 'Q4(a–f)', topic: 'Functions — a hyperbola and its inverse, then the whole family (kx+1)/(x+k)', type: 'sa', hasDetail: true },
   { id: 'meth-q1-2016-e1', subject: 'methods', year: 2016, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a quotient rule, then a product rule evaluated at x = 1', type: 'sa', hasDetail: true },
   { id: 'meth-q2-2016-e1', subject: 'methods', year: 2016, exam: 'Exam 1', code: 'Q2(a–b)', topic: 'Calculus — the derivative of √(1−2x), then a gradient turned into an angle', type: 'sa', hasDetail: true },
   { id: 'meth-q3-2016-e1', subject: 'methods', year: 2016, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Functions — sketching a hyperbola, then an area under it', type: 'sa', hasDetail: true },

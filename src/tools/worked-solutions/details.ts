@@ -17,6 +17,10 @@ import MethodsQ3_2015Exam2 from './questions/MethodsQ3_2015Exam2'
 import MethodsQ4_2015Exam2 from './questions/MethodsQ4_2015Exam2'
 import MethodsQ5_2015Exam2 from './questions/MethodsQ5_2015Exam2'
 import MethodsQ8_2016Exam1 from './questions/MethodsQ8_2016Exam1'
+import MethodsQ1_2016Exam2 from './questions/MethodsQ1_2016Exam2'
+import MethodsQ2_2016Exam2 from './questions/MethodsQ2_2016Exam2'
+import MethodsQ3_2016Exam2 from './questions/MethodsQ3_2016Exam2'
+import MethodsQ4_2016Exam2 from './questions/MethodsQ4_2016Exam2'
 import MethodsQ1_2016Exam1 from './questions/MethodsQ1_2016Exam1'
 import MethodsQ2_2016Exam1 from './questions/MethodsQ2_2016Exam1'
 import MethodsQ3_2016Exam1 from './questions/MethodsQ3_2016Exam1'
@@ -417,6 +421,10 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q4-2015-e2': MethodsQ4_2015Exam2,
   'meth-q5-2015-e2': MethodsQ5_2015Exam2,
   'meth-q8-2016-e1': MethodsQ8_2016Exam1,
+  'meth-q1-2016-e2': MethodsQ1_2016Exam2,
+  'meth-q2-2016-e2': MethodsQ2_2016Exam2,
+  'meth-q3-2016-e2': MethodsQ3_2016Exam2,
+  'meth-q4-2016-e2': MethodsQ4_2016Exam2,
   'meth-q1-2016-e1': MethodsQ1_2016Exam1,
   'meth-q2-2016-e1': MethodsQ2_2016Exam1,
   'meth-q3-2016-e1': MethodsQ3_2016Exam1,
