@@ -774,6 +774,24 @@ import MethodsQ6_2025Exam1 from './questions/MethodsQ6_2025Exam1'
 import MethodsQ7_2025Exam1 from './questions/MethodsQ7_2025Exam1'
 import MethodsQ8_2025Exam1 from './questions/MethodsQ8_2025Exam1'
 import MethodsQ9_2025Exam1 from './questions/MethodsQ9_2025Exam1'
+import MethodsQ1_2025 from './questions/MethodsQ1_2025'
+import MethodsQ2_2025 from './questions/MethodsQ2_2025'
+import MethodsQ3_2025 from './questions/MethodsQ3_2025'
+import MethodsQ4_2025 from './questions/MethodsQ4_2025'
+import MethodsQ5_2025 from './questions/MethodsQ5_2025'
+import MethodsQ6_2025 from './questions/MethodsQ6_2025'
+import MethodsQ7_2025 from './questions/MethodsQ7_2025'
+import MethodsQ8_2025 from './questions/MethodsQ8_2025'
+import MethodsQ9_2025 from './questions/MethodsQ9_2025'
+import MethodsQ10_2025 from './questions/MethodsQ10_2025'
+import MethodsQ11_2025 from './questions/MethodsQ11_2025'
+import MethodsQ12_2025 from './questions/MethodsQ12_2025'
+import MethodsQ14_2025 from './questions/MethodsQ14_2025'
+import MethodsQ18_2025 from './questions/MethodsQ18_2025'
+import MethodsQ1_2025Exam2 from './questions/MethodsQ1_2025Exam2'
+import MethodsQ2_2025Exam2 from './questions/MethodsQ2_2025Exam2'
+import MethodsQ3_2025Exam2 from './questions/MethodsQ3_2025Exam2'
+import MethodsQ4_2025Exam2 from './questions/MethodsQ4_2025Exam2'
 import ChemistryQ13_2019 from './questions/ChemistryQ13_2019'
 import ChemistryQ18_2019 from './questions/ChemistryQ18_2019'
 import ChemistryQ22_2019 from './questions/ChemistryQ22_2019'
@@ -1628,6 +1646,24 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q7-2025-e1': MethodsQ7_2025Exam1,
   'meth-q8-2025-e1': MethodsQ8_2025Exam1,
   'meth-q9-2025-e1': MethodsQ9_2025Exam1,
+  'meth-q1-2025': MethodsQ1_2025,
+  'meth-q2-2025': MethodsQ2_2025,
+  'meth-q3-2025': MethodsQ3_2025,
+  'meth-q4-2025': MethodsQ4_2025,
+  'meth-q5-2025': MethodsQ5_2025,
+  'meth-q6-2025': MethodsQ6_2025,
+  'meth-q7-2025': MethodsQ7_2025,
+  'meth-q8-2025': MethodsQ8_2025,
+  'meth-q9-2025': MethodsQ9_2025,
+  'meth-q10-2025': MethodsQ10_2025,
+  'meth-q11-2025': MethodsQ11_2025,
+  'meth-q12-2025': MethodsQ12_2025,
+  'meth-q14-2025': MethodsQ14_2025,
+  'meth-q18-2025': MethodsQ18_2025,
+  'meth-q1-2025-e2': MethodsQ1_2025Exam2,
+  'meth-q2-2025-e2': MethodsQ2_2025Exam2,
+  'meth-q3-2025-e2': MethodsQ3_2025Exam2,
+  'meth-q4-2025-e2': MethodsQ4_2025Exam2,
 
   // Hardest-6 Chemistry MCQs, 2019 Exam (see data.ts percentCorrect)
   'chem-q13-2019': ChemistryQ13_2019,

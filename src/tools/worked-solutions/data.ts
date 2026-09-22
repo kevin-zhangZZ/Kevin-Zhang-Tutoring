@@ -1149,6 +1149,28 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q8-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Probability — a triangular density, then integrating a transformation of it', type: 'sa', hasDetail: true },
   { id: 'meth-q9-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Functions — a truncus meeting a parabola, and when three solutions survive', type: 'sa', hasDetail: true },
 
+  // The remaining 2025 Mathematical Methods Exam 2 multiple-choice questions.
+  { id: 'meth-q1-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 1', topic: 'Functions — matching a range to a cosine by centre and amplitude', type: 'mc', hasDetail: true, percentCorrect: 91 },
+  { id: 'meth-q2-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the asymptotes of a tangent graph as a general solution', type: 'mc', hasDetail: true, percentCorrect: 51 },
+  { id: 'meth-q3-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 3', topic: 'Transformations — a reflection in the y-axis, then a shift up', type: 'mc', hasDetail: true, percentCorrect: 71 },
+  { id: 'meth-q4-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 4', topic: 'Algebra — no solutions needs a zero determinant and an inconsistency', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'meth-q5-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 5', topic: 'Functions — which set of points is one-to-one', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'meth-q6-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 6', topic: 'Calculus — when the trapezium rule overestimates', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'meth-q7-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 7', topic: 'Algorithms — tracing a while loop that prints inside the body', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'meth-q8-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 8', topic: 'Statistics — recovering the sample size from a confidence interval', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'meth-q9-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 9', topic: 'Probability — Bayes with letters instead of numbers', type: 'mc', hasDetail: true, percentCorrect: 57 },
+  { id: 'meth-q10-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 10', topic: 'Functions — a quadratic inequality in sin(x), clipped to its range', type: 'mc', hasDetail: true, percentCorrect: 57 },
+  { id: 'meth-q11-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — the steepest chord on a share-price chart', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'meth-q12-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 12', topic: 'Statistics — two normal probabilities give the mean and deviation', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q14-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — a two-branch density whose area fixes the constant', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'meth-q18-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — which two mass functions share a mean', type: 'mc', hasDetail: true, percentCorrect: 50 },
+
+  // 2025 Mathematical Methods Exam 2 — all four Section B questions.
+  { id: 'meth-q1-2025-e2', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'Q1(a–f)', topic: 'Calculus — a quartic with a stationary point of inflection, and the same rule as a binomial probability', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2025-e2', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Functions — a line meeting an exponential twice: the area between, the biggest gap, and an antiderivative that cannot fit both points', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2025-e2', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'Q3(a–d)', topic: 'Probability — a commuting driver: a quartic density, a binomial for lateness, and three traffic lights', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2025-e2', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'Q4(a–g)', topic: 'Calculus — a shifted sine: the Newton method, a tangent in terms of its point of contact, and a cubic matched to it', type: 'sa', hasDetail: true },
+
   // The 6 hardest Chemistry MCQs from 2019 Exam Section A, by VCAA-reported % correct.
   { id: 'chem-q13-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 13', topic: 'Organic chemistry — reasoning about flashpoint from a substance’s physical state', type: 'mc', hasDetail: true, percentCorrect: 20 },
   { id: 'chem-q18-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 18', topic: 'Electrochemistry — comparing four galvanic cells’ voltages', type: 'mc', hasDetail: true, percentCorrect: 24 },
