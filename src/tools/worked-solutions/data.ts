@@ -1138,6 +1138,17 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q15-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Transformations — a point on a transformed graph', type: 'mc', hasDetail: true, percentCorrect: 44 },
   { id: 'meth-q13-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 13', topic: 'Functions — identifying a composite function from a sketch', type: 'mc', hasDetail: true, percentCorrect: 45 },
 
+  // 2025 Mathematical Methods Exam 1 — all nine short-answer questions.
+  { id: 'meth-q1-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a product rule, then a chain rule on a square root', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — antidifferentiating a reciprocal-linear derivative', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q3(a–c)', topic: 'Functions — a cosine of doubled frequency: range, all four zeros, one period sketched', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Probability — a distribution whose unknown satisfies a quadratic', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Functions — a quadratic in eˣ, then the largest one-to-one restriction', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Probability — a binomial variance and an upper tail as a power of two', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q7(a–d)', topic: 'Functions — a cubic with a repeated root, and the quartic its product makes', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Probability — a triangular density, then integrating a transformation of it', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2025-e1', subject: 'methods', year: 2025, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Functions — a truncus meeting a parabola, and when three solutions survive', type: 'sa', hasDetail: true },
+
   // The 6 hardest Chemistry MCQs from 2019 Exam Section A, by VCAA-reported % correct.
   { id: 'chem-q13-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 13', topic: 'Organic chemistry — reasoning about flashpoint from a substance’s physical state', type: 'mc', hasDetail: true, percentCorrect: 20 },
   { id: 'chem-q18-2019', subject: 'chemistry', year: 2019, exam: 'Exam', code: 'MCQ 18', topic: 'Electrochemistry — comparing four galvanic cells’ voltages', type: 'mc', hasDetail: true, percentCorrect: 24 },
