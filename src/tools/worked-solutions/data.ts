@@ -973,6 +973,17 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q18-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 18', topic: 'Trigonometry — number of local minima of sin(ax) on [−aπ, aπ]', type: 'mc', hasDetail: true, percentCorrect: 29 },
   { id: 'meth-q20-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — largest interval where two composite functions both exist', type: 'mc', hasDetail: true, percentCorrect: 30 },
 
+  // 2023 Mathematical Methods Exam 1 — all nine short-answer questions.
+  { id: 'meth-q1-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a quotient rule that has to be simplified, then a product rule at π/4', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q2', topic: 'Functions — an exponential equation that is a hidden quadratic', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Functions — a translated hyperbola, then reading an inequality off the sketch', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q4', topic: 'Calculus — two trapeziums, with integration explicitly not allowed', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Calculus — matching two definite integrals across two and a half revolutions', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q6(a–c)', topic: 'Statistics — a confidence interval read backwards, and how its width scales', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q7(a–d)', topic: 'Functions — a restricted parabola and its inverse, and the area they cut with y = −x', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Probability — a cubic density function: normalising it, its mean, a conditional probability', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — two walking tracks sharing a peak, then the largest triangle under one', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2024 Exam 2 Section A, by VCAA-reported % correct.
   // This year's Section A used 4 options (A-D), not 5.
   { id: 'meth-q17-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 17', topic: 'Algorithms — tracing a cubic-root-finding algorithm', type: 'mc', hasDetail: true, percentCorrect: 27 },
