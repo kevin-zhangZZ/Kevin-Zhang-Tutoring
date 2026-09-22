@@ -518,6 +518,26 @@ import SpecialistQ7_2024Exam1 from './questions/SpecialistQ7_2024Exam1'
 import SpecialistQ8_2024Exam1 from './questions/SpecialistQ8_2024Exam1'
 import SpecialistQ9_2024Exam1 from './questions/SpecialistQ9_2024Exam1'
 import SpecialistQ10_2024Exam1 from './questions/SpecialistQ10_2024Exam1'
+import SpecialistQ1_2024 from './questions/SpecialistQ1_2024'
+import SpecialistQ2_2024 from './questions/SpecialistQ2_2024'
+import SpecialistQ3_2024 from './questions/SpecialistQ3_2024'
+import SpecialistQ5_2024 from './questions/SpecialistQ5_2024'
+import SpecialistQ6_2024 from './questions/SpecialistQ6_2024'
+import SpecialistQ7_2024 from './questions/SpecialistQ7_2024'
+import SpecialistQ8_2024 from './questions/SpecialistQ8_2024'
+import SpecialistQ10_2024 from './questions/SpecialistQ10_2024'
+import SpecialistQ11_2024 from './questions/SpecialistQ11_2024'
+import SpecialistQ12_2024 from './questions/SpecialistQ12_2024'
+import SpecialistQ13_2024 from './questions/SpecialistQ13_2024'
+import SpecialistQ17_2024 from './questions/SpecialistQ17_2024'
+import SpecialistQ18_2024 from './questions/SpecialistQ18_2024'
+import SpecialistQ19_2024 from './questions/SpecialistQ19_2024'
+import SpecialistQ1_2024Exam2 from './questions/SpecialistQ1_2024Exam2'
+import SpecialistQ2_2024Exam2 from './questions/SpecialistQ2_2024Exam2'
+import SpecialistQ3_2024Exam2 from './questions/SpecialistQ3_2024Exam2'
+import SpecialistQ4_2024Exam2 from './questions/SpecialistQ4_2024Exam2'
+import SpecialistQ5_2024Exam2 from './questions/SpecialistQ5_2024Exam2'
+import SpecialistQ6_2024Exam2 from './questions/SpecialistQ6_2024Exam2'
 import SpecialistQ2_2025 from './questions/SpecialistQ2_2025'
 import SpecialistQ14_2025 from './questions/SpecialistQ14_2025'
 import SpecialistQ9_2025 from './questions/SpecialistQ9_2025'
@@ -1327,6 +1347,26 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q8-2024-e1': SpecialistQ8_2024Exam1,
   'spec-q9-2024-e1': SpecialistQ9_2024Exam1,
   'spec-q10-2024-e1': SpecialistQ10_2024Exam1,
+  'spec-q1-2024': SpecialistQ1_2024,
+  'spec-q2-2024': SpecialistQ2_2024,
+  'spec-q3-2024': SpecialistQ3_2024,
+  'spec-q5-2024': SpecialistQ5_2024,
+  'spec-q6-2024': SpecialistQ6_2024,
+  'spec-q7-2024': SpecialistQ7_2024,
+  'spec-q8-2024': SpecialistQ8_2024,
+  'spec-q10-2024': SpecialistQ10_2024,
+  'spec-q11-2024': SpecialistQ11_2024,
+  'spec-q12-2024': SpecialistQ12_2024,
+  'spec-q13-2024': SpecialistQ13_2024,
+  'spec-q17-2024': SpecialistQ17_2024,
+  'spec-q18-2024': SpecialistQ18_2024,
+  'spec-q19-2024': SpecialistQ19_2024,
+  'spec-q1-2024-e2': SpecialistQ1_2024Exam2,
+  'spec-q2-2024-e2': SpecialistQ2_2024Exam2,
+  'spec-q3-2024-e2': SpecialistQ3_2024Exam2,
+  'spec-q4-2024-e2': SpecialistQ4_2024Exam2,
+  'spec-q5-2024-e2': SpecialistQ5_2024Exam2,
+  'spec-q6-2024-e2': SpecialistQ6_2024Exam2,
 
   // Hardest-6 Specialist MCQs, 2025 Exam 2 (see data.ts percentCorrect)
   'spec-q2-2025': SpecialistQ2_2025,

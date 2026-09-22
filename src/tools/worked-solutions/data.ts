@@ -739,6 +739,30 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q9-2024-e1', subject: 'specialist', year: 2024, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Kinematics — a speed camera threshold, then acceleration from v squared against position', type: 'sa', hasDetail: true },
   { id: 'spec-q10-2024-e1', subject: 'specialist', year: 2024, exam: 'Exam 1', code: 'Q10', topic: 'Vectors — the shortest distance between two skew lines', type: 'sa', hasDetail: true },
 
+  // The remaining 2024 Specialist Mathematics Exam 2 multiple-choice questions.
+  { id: 'spec-q1-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 1', topic: 'Proof — the contrapositive, with De Morgan on the conclusion', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q2-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — a hybrid whose rational branch cancels to a line', type: 'mc', hasDetail: true, percentCorrect: 48 },
+  { id: 'spec-q3-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 3', topic: 'Functions — no turning points, including the two cancelling cases', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'spec-q5-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — conjugate then negate is a single reflection', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'spec-q6-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — the k that makes an expression purely imaginary', type: 'mc', hasDetail: true, percentCorrect: 77 },
+  { id: 'spec-q7-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — the identity that makes a differential equation separable', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q8-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — three Euler steps, solved backwards for the step size', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'spec-q10-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — a surface of revolution about the vertical axis', type: 'mc', hasDetail: true, percentCorrect: 74 },
+  { id: 'spec-q11-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 11', topic: 'Kinematics — signed area under a velocity–time graph', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'spec-q12-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 12', topic: 'Kinematics — acceleration of an exponential as a multiple of position', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'spec-q13-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — a known angle, solved for the missing component', type: 'mc', hasDetail: true, percentCorrect: 81 },
+  { id: 'spec-q17-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — the distance between two parallel lines', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'spec-q18-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 18', topic: 'Vectors — where a parametrised line meets a plane', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'spec-q19-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 19', topic: 'Statistics — what a type II error actually is', type: 'mc', hasDetail: true, percentCorrect: 68 },
+
+  // 2024 Specialist Mathematics Exam 2 — all six Section B questions.
+  { id: 'spec-q1-2024-e2', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Functions — a rational sketch, a volume about the y-axis, and counting stationary points', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2024-e2', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'Q2(a–e)', topic: 'Complex numbers — a perpendicular bisector, a circle on a diameter, a ray and a segment', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2024-e2', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Calculus — a spreading pollutant: related rates, an arctan integral, and the clean-up time', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2024-e2', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Vectors — a yacht on a hyperbolic path, its minimum speed, and a drone’s closest approach', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2024-e2', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'Q5(a–d)', topic: 'Vectors — lines, planes, a point-to-line distance and the triangle cut from the axes', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2024-e2', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'Q6(a–g)', topic: 'Statistics — a one-sided test, a type II error, and confidence-interval sample size', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2025 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). This year's Section A used 4 options (A-D), not 5.
   { id: 'spec-q2-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 2', topic: 'Calculus — a counter-example to a false inflection-point claim', type: 'mc', hasDetail: true, percentCorrect: 48 },
