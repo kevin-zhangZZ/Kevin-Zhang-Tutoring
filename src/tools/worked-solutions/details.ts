@@ -451,6 +451,21 @@ import SpecialistQ7_2022Exam1 from './questions/SpecialistQ7_2022Exam1'
 import SpecialistQ8_2022Exam1 from './questions/SpecialistQ8_2022Exam1'
 import SpecialistQ9_2022Exam1 from './questions/SpecialistQ9_2022Exam1'
 import SpecialistQ10_2022Exam1 from './questions/SpecialistQ10_2022Exam1'
+import SpecialistQ1_2022 from './questions/SpecialistQ1_2022'
+import SpecialistQ7_2022 from './questions/SpecialistQ7_2022'
+import SpecialistQ8_2022 from './questions/SpecialistQ8_2022'
+import SpecialistQ9_2022 from './questions/SpecialistQ9_2022'
+import SpecialistQ11_2022 from './questions/SpecialistQ11_2022'
+import SpecialistQ12_2022 from './questions/SpecialistQ12_2022'
+import SpecialistQ13_2022 from './questions/SpecialistQ13_2022'
+import SpecialistQ14_2022 from './questions/SpecialistQ14_2022'
+import SpecialistQ16_2022 from './questions/SpecialistQ16_2022'
+import SpecialistQ17_2022 from './questions/SpecialistQ17_2022'
+import SpecialistQ1_2022Exam2 from './questions/SpecialistQ1_2022Exam2'
+import SpecialistQ2_2022Exam2 from './questions/SpecialistQ2_2022Exam2'
+import SpecialistQ3_2022Exam2 from './questions/SpecialistQ3_2022Exam2'
+import SpecialistQ4_2022Exam2 from './questions/SpecialistQ4_2022Exam2'
+import SpecialistQ6_2022Exam2 from './questions/SpecialistQ6_2022Exam2'
 import SpecialistQ15_2023 from './questions/SpecialistQ15_2023'
 import SpecialistQ10_2023 from './questions/SpecialistQ10_2023'
 import SpecialistQ5_2023 from './questions/SpecialistQ5_2023'
@@ -1146,6 +1161,21 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q8-2022-e1': SpecialistQ8_2022Exam1,
   'spec-q9-2022-e1': SpecialistQ9_2022Exam1,
   'spec-q10-2022-e1': SpecialistQ10_2022Exam1,
+  'spec-q1-2022': SpecialistQ1_2022,
+  'spec-q7-2022': SpecialistQ7_2022,
+  'spec-q8-2022': SpecialistQ8_2022,
+  'spec-q9-2022': SpecialistQ9_2022,
+  'spec-q11-2022': SpecialistQ11_2022,
+  'spec-q12-2022': SpecialistQ12_2022,
+  'spec-q13-2022': SpecialistQ13_2022,
+  'spec-q14-2022': SpecialistQ14_2022,
+  'spec-q16-2022': SpecialistQ16_2022,
+  'spec-q17-2022': SpecialistQ17_2022,
+  'spec-q1-2022-e2': SpecialistQ1_2022Exam2,
+  'spec-q2-2022-e2': SpecialistQ2_2022Exam2,
+  'spec-q3-2022-e2': SpecialistQ3_2022Exam2,
+  'spec-q4-2022-e2': SpecialistQ4_2022Exam2,
+  'spec-q6-2022-e2': SpecialistQ6_2022Exam2,
 
   // Hardest-6 Specialist MCQs, 2023 Exam 2 (see data.ts percentCorrect)
   'spec-q15-2023': SpecialistQ15_2023,

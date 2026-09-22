@@ -642,6 +642,32 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q9-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q9', topic: 'Calculus — antidifferentiating cos(2x)/sin³(2x) by substitution', type: 'sa', hasDetail: true },
   { id: 'spec-q10-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q10(a–b)', topic: 'Calculus — sketching sec(4x), then a volume of revolution needing tan(π/12)', type: 'sa', hasDetail: true },
 
+  // The remaining 2022 Specialist Exam 2 multiple-choice questions. MCQ 4 and MCQ 19
+  // were redacted by VCAA following the Independent Review. MCQ 15 (three forces on an
+  // inclined plane) and MCQ 20 (a pulley and mass system) are omitted: both are pure
+  // Mechanics, which is no longer an area of study. MCQ 14, 16 and 17 use force,
+  // equilibrium or momentum wording over mathematics that is still current, so they are
+  // in with an explanatory note.
+  { id: 'spec-q1-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 1', topic: 'Functions — two absolute values on an interval where both signs are known', type: 'mc', hasDetail: true, percentCorrect: 85 },
+  { id: 'spec-q7-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — rewriting an integral under u = 1 + e^x, terminals and all', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'spec-q8-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 8', topic: 'Differential equations — which equation draws the given direction field', type: 'mc', hasDetail: true, percentCorrect: 74 },
+  { id: 'spec-q9-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential equations — the Euler method run backwards for the step size', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q11-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 11', topic: 'Vectors — the condition for three vectors to be linearly dependent', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q12-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 12', topic: 'Vectors — a dot product that collapses to cot(x) = √3', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q13-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — antidifferentiating an acceleration, with a vector constant', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q14-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 14', topic: 'Kinematics — the velocity halfway along, which is not the average', type: 'mc', hasDetail: true, percentCorrect: 28 },
+  { id: 'spec-q16-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — three forces in equilibrium close into a triangle', type: 'mc', hasDetail: true, percentCorrect: 17 },
+  { id: 'spec-q17-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 17', topic: 'Kinematics — constant acceleration, then a change in momentum', type: 'mc', hasDetail: true, percentCorrect: 74 },
+
+  // 2022 Specialist Exam 2, Section B. Question 5 is omitted: an object driven by two
+  // angled forces and a resistance, then pushed up a rough incline — entirely Mechanics.
+  // Question 6f. was redacted by VCAA, so Question 6 carries parts a. to e.
+  { id: 'spec-q1-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Functions — a family of rational curves, their turning points, and a washer volume', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q2(a–d)', topic: 'Complex numbers — a product fixing a quadratic, then a chord, a bisector and a segment', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Differential equations — a particle whose arctan solution is bounded, and a second one chasing it', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — a minigolf ball in the wind: launch angle, minimum speed, closest approach, arc length', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2022-e2', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'Q6(a–e)', topic: 'Statistics — a one-tailed test on can masses, its critical value, and a difference of two normals', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded).
   { id: 'spec-q15-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — magnitude of the difference of two unit vectors', type: 'mc', hasDetail: true, percentCorrect: 18 },
