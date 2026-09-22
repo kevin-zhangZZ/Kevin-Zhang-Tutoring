@@ -335,9 +335,15 @@ see §2, e.g. `meth-2019exam1-q5-truncus-sketch.png`). Python is at
 - **Notation matches the site's own Katex convention** — natural log as `log_e(x)` (`e`
   subscript, parentheses around the argument, mathtext `\log_e(x)`), not `ln(x)` or
   `\ln_e`.
-- Curve in the site's sky blue (`#0ea5e9`), any given asymptote as a dashed line in a
-  colour distinct from the curve (e.g. red `#ef4444` for a vertical asymptote), marked
-  points as small filled black dots with their coordinate labelled beside them.
+- Curve in the site's sky blue (`#0ea5e9`), marked points as small filled black dots with
+  their coordinate labelled beside them.
+- **An asymptote is drawn dashed in the same colour as the curve it belongs to** — sky
+  blue for a curve in sky blue, orange for a second curve in orange. The dashes already
+  say "this is not part of the graph"; matching the colour says *which* graph it belongs
+  to, which is the information that actually matters once two functions share a set of
+  axes. Reserve red `#ef4444` for a line that belongs to no curve (a boundary the question
+  imposes, say). Earlier figures in this archive put every asymptote in red before this
+  rule was written down; recolour one when you next touch its question.
 
 If you find an existing question file with a hand-coded inline SVG sketch (look for
 `functionToPath` imported for a *standalone* sketch, not an overlay), it should be
@@ -624,7 +630,8 @@ the explanation is the product, not the number at the end.
   `<Background>`, so the stem the reader attempts matches the real paper instead of
   handing them information — sometimes the answer — that the actual candidates never had.
 - **Colour conventions**: the plotted function in sky blue `#0ea5e9`; a second function in
-  orange `#f97316`; asymptotes and reference lines dashed in red `#ef4444`; marked points
+  orange `#f97316`; **each asymptote dashed in its own curve's colour** (§7), with red
+  `#ef4444` left for a reference line that belongs to no curve; marked points
   as small black dots — or the curve's own colour when drawn as an overlay on a black VCAA
   figure, so the answer is distinguishable from the original.
 - Every image has descriptive alt text stating what it shows and whether it is VCAA's or

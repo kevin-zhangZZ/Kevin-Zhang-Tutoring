@@ -530,6 +530,21 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q2-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the range of |b·cos⁻¹(x) − a|', type: 'mc', hasDetail: true, percentCorrect: 42 },
   { id: 'spec-q17-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — acceleration from a = v dv/dx', type: 'mc', hasDetail: true, percentCorrect: 58 },
 
+  // The 2020 Specialist Exam 1 short-answer questions, cross-referenced against the
+  // VCAA examination report and re-derived independently with sympy. 2020 ran on an
+  // adjusted study design: Probability and Statistics was removed for that year only,
+  // so this paper has none. Question 1 is omitted — all three parts resolve forces on
+  // a mass to find a normal reaction and an acceleration, and Mechanics is no longer
+  // an area of study in VCE Specialist Mathematics.
+  { id: 'spec-q2-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — a definite integral that one linear substitution turns into two power rules', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q3', topic: 'Complex numbers — cube roots on the unit circle, in principal-value polar form', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q4', topic: 'Algebra — an inequality with an absolute value in the denominator', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Vectors — recovering an unknown component from a given resolute, then the perpendicular part', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q6(a–c)', topic: 'Calculus — differentiating an arctan, justifying an inflection, and sketching both asymptotes', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Calculus — making a piecewise function and its derivative continuous, then its area', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q8', topic: 'Calculus — a volume of revolution needing partial fractions with an irreducible quadratic', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Calculus — a parametric arc length whose integrand collapses to a perfect square', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2021 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). This report gives the correct answer directly.
   { id: 'spec-q6-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — possible arguments when z² is real', type: 'mc', hasDetail: true, percentCorrect: 23 },
