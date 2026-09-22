@@ -1,6 +1,9 @@
 // 2015 Mathematical Methods (CAS) — Exam 2, MCQ 22. VCAA examination report: 35% correct.
-// Composing two graphs read off a diagram. Question text transcribed from the original
-// paper; both figures are crops of VCAA's own artwork. Solution is original.
+// Composing two graphs read off a diagram. The skip guide lists this as a standalone
+// modulus question, off the current Methods study design, so the Background says so — it is
+// kept because analysing f(|x|) graphs is still current in Specialist. Question text
+// transcribed from the original paper; both figures are crops of VCAA's own artwork.
+// Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -78,13 +81,21 @@ export default function MethodsQ22_2015() {
         </div>
       }
       background={
-        <p>
-          Composing with <Katex tex="|x| " /> always produces an even function: since{' '}
-          <Katex tex="|-x|=|x|" />, the output at <Katex tex="-x" /> is identical to the
-          output at <Katex tex="x" />. So the answer must be symmetric about the{' '}
-          <Katex tex="y" />-axis, and it will be the right-hand half of{' '}
-          <Katex tex="g" /> reflected across.
-        </p>
+        <>
+          <p className="mb-2">
+            <b>Not required for Methods.</b> The skip guide lists this as a standalone
+            modulus question, which is no longer part of the Methods study design. It is
+            still worth doing if you take Specialist, where analysing graphs of{' '}
+            <Katex tex="f(|x|)" /> is current content.
+          </p>
+          <p>
+            Composing with <Katex tex="|x|" /> always produces an even function: since{' '}
+            <Katex tex="|-x|=|x|" />, the output at <Katex tex="-x" /> is identical to the
+            output at <Katex tex="x" />. So the answer must be symmetric about the{' '}
+            <Katex tex="y" />-axis, and it will be the right-hand half of{' '}
+            <Katex tex="g" /> reflected across.
+          </p>
+        </>
       }
       options={[
         { letter: 'A', content: <>the sketch labelled A above</> },

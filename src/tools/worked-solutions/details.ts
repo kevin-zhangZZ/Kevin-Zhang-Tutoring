@@ -364,6 +364,7 @@ import SpecialistQ7_2019 from './questions/SpecialistQ7_2019'
 import SpecialistQ8_2019 from './questions/SpecialistQ8_2019'
 import SpecialistQ11_2019 from './questions/SpecialistQ11_2019'
 import SpecialistQ12_2019 from './questions/SpecialistQ12_2019'
+import SpecialistQ13_2019 from './questions/SpecialistQ13_2019'
 import SpecialistQ15_2019 from './questions/SpecialistQ15_2019'
 import SpecialistQ18_2019 from './questions/SpecialistQ18_2019'
 import SpecialistQ19_2019 from './questions/SpecialistQ19_2019'
@@ -911,6 +912,7 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q8-2019': SpecialistQ8_2019,
   'spec-q11-2019': SpecialistQ11_2019,
   'spec-q12-2019': SpecialistQ12_2019,
+  'spec-q13-2019': SpecialistQ13_2019,
   'spec-q15-2019': SpecialistQ15_2019,
   'spec-q18-2019': SpecialistQ18_2019,
   'spec-q19-2019': SpecialistQ19_2019,

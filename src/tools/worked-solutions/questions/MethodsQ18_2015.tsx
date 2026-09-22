@@ -1,6 +1,8 @@
 // 2015 Mathematical Methods (CAS) — Exam 2, MCQ 18. VCAA examination report: 48% correct.
-// Testing a functional equation against five candidate rules. Question text transcribed
-// from the original paper; solution is original.
+// Testing a functional equation against five candidate rules. The skip guide lists this as
+// a standalone modulus question, off the current Methods study design, so the Background
+// says so — it is kept because the same modulus work is still current in Specialist.
+// Question text transcribed from the original paper; solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -53,12 +55,21 @@ export default function MethodsQ18_2015() {
         </p>
       }
       background={
-        <p>
-          With five candidates and one identity, testing a convenient pair of values first —{' '}
-          <Katex tex="x=y=1" /> is usually enough — eliminates most options in seconds.
-          Then verify the survivor algebraically, because "true for one pair" is not "true
-          for all".
-        </p>
+        <>
+          <p className="mb-2">
+            <b>Not required for Methods.</b> The skip guide lists this as a standalone
+            modulus question, and the algebra of absolute-value functions is no longer part
+            of the Methods study design. It is still worth doing if you take Specialist,
+            where analysing <Katex tex="f(|x|)" /> — its graph and its algebra — is current
+            content.
+          </p>
+          <p>
+            With five candidates and one identity, testing a convenient pair of values first —{' '}
+            <Katex tex="x=y=1" /> is usually enough — eliminates most options in seconds.
+            Then verify the survivor algebraically, because "true for one pair" is not "true
+            for all".
+          </p>
+        </>
       }
       options={[
         { letter: 'A', content: <Katex tex="f(x)=x^2" />, isAnswer: true },

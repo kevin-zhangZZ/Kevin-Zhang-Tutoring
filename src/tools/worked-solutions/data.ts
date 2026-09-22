@@ -137,6 +137,11 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q9-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 9', topic: 'Probability — E(X) for a uniform distribution', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q21-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 21', topic: 'Graphs — a line and a parabola with no intersection', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q17-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — turning points and number of x-intercepts', type: 'mc', hasDetail: true, percentCorrect: 60 },
+
+  // The rest of 2015 Methods Exam 2 Section 1. MCQ 18 and 22 are on the skip guide as
+  // standalone modulus questions, off the current Methods study design; they are kept
+  // because analysing f(|x|) is still current Specialist content, and each one says so in
+  // its Background.
   { id: 'meth-q1-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — period and range of 2sin(3x) − 3', type: 'mc', hasDetail: true, percentCorrect: 95 },
   { id: 'meth-q2-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the inverse of 1/√(x + 2)', type: 'mc', hasDetail: true, percentCorrect: 50 },
   { id: 'meth-q4-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — a point on the tangent to y = x² at (2, 4)', type: 'mc', hasDetail: true, percentCorrect: 77 },
@@ -483,6 +488,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q8-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — rewriting a definite integral under a substitution', type: 'mc', hasDetail: true, percentCorrect: 75 },
   { id: 'spec-q11-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 11', topic: 'Vectors — unknown coordinates from a midpoint in 3D', type: 'mc', hasDetail: true, percentCorrect: 66 },
   { id: 'spec-q12-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 12', topic: 'Vectors — the equations behind a vector resolute condition', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  // MCQ 13 is mechanics-flavoured, but the skip guide's own row marks it doable: one
+  // substitution (net force = mass x acceleration) and the rest is vector work.
+  { id: 'spec-q13-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — the angle between two forces acting on a mass', type: 'mc', hasDetail: true, percentCorrect: 51 },
   { id: 'spec-q15-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the path traced under a constant perpendicular acceleration', type: 'mc', hasDetail: true, percentCorrect: 35 },
   { id: 'spec-q18-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 18', topic: 'Statistics — a 98% confidence interval for a mean', type: 'mc', hasDetail: true, percentCorrect: 76 },
   { id: 'spec-q19-2019', subject: 'specialist', year: 2019, exam: 'Exam 2', code: 'MCQ 19', topic: 'Statistics — coefficients of a linear combination from its mean and variance', type: 'mc', hasDetail: true, percentCorrect: 75 },
