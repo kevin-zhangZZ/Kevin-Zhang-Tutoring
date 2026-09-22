@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\vec r(t) = \sin(t)\vec i + \cos(2t)\vec j,\quad x=\sin(t),\ y=\cos(2t)" />,
+    working: <Katex display tex="\underset{\sim}{r}(t) = \sin(t)\underset{\sim}{i} + \cos(2t)\underset{\sim}{j},\quad x=\sin(t),\ y=\cos(2t)" />,
     reason: 'Position vector — read off the Cartesian coordinates.',
   },
   {
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Track <Katex tex="(x,y)" /> at each quarter-turn of <Katex tex="t" />, since <Katex tex="x=\sin(t)" /> oscillates between <Katex tex="\pm1" /> while <Katex tex="y" /> is pinned to <Katex tex="1-2x^2" />.</>,
   },
   {
-    working: <Katex display tex="\vec r(t+\pi) = \big(-\sin(t),\ \cos(2t)\big) \neq \vec r(t) \text{ in general}" />,
+    working: <Katex display tex="\underset{\sim}{r}(t+\pi) = \big(-\sin(t),\ \cos(2t)\big) \neq \underset{\sim}{r}(t) \text{ in general}" />,
     reason: <>Check whether the motion could repeat every <Katex tex="\pi" /> instead of <Katex tex="2\pi" /> — it doesn't, since <Katex tex="x" /> flips sign. The full cycle takes <Katex tex="2\pi" /> seconds.</>,
   },
   {
@@ -48,7 +48,7 @@ export default function SpecialistQ15_2024() {
     <MCQShell
       question={
         <p>
-          The position of a moving body is given by <Katex tex="\vec r(t) = \sin(t)\vec i + \cos(2t)\vec j" />, where{' '}
+          The position of a moving body is given by <Katex tex="\underset{\sim}{r}(t) = \sin(t)\underset{\sim}{i} + \cos(2t)\underset{\sim}{j}" />, where{' '}
           <Katex tex="t" /> is measured in seconds, for <Katex tex="t\geq0" />.
           <br />
           The motion of the body can be described as moving along a parabolic path given by

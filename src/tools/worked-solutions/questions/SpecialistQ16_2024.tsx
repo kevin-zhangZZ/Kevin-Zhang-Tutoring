@@ -14,20 +14,20 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\vec r_1(t) = \cos(t)\vec i+\sin(t)\vec j+\sqrt{\sin(2t)}\,\vec k" />,
+    working: <Katex display tex="\underset{\sim}{r_1}(t) = \cos(t)\underset{\sim}{i}+\sin(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
     reason: 'Particle 1’s position.',
   },
   {
-    working: <Katex display tex="\vec v_1(t) = -\sin(t)\vec i+\cos(t)\vec j+\frac{\cos(2t)}{\sqrt{\sin(2t)}}\vec k" />,
-    reason: <>Differentiate; the <Katex tex="\vec k" /> component uses the chain rule on <Katex tex="\sqrt{\sin(2t)}" />.</>,
+    working: <Katex display tex="\underset{\sim}{v_1}(t) = -\sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\frac{\cos(2t)}{\sqrt{\sin(2t)}}\underset{\sim}{k}" />,
+    reason: <>Differentiate; the <Katex tex="\underset{\sim}{k}" /> component uses the chain rule on <Katex tex="\sqrt{\sin(2t)}" />.</>,
   },
   {
-    working: <Katex display tex="\vec r_2(t) = \sin(t)\vec i+\cos(t)\vec j+\sqrt{\sin(2t)}\,\vec k" />,
+    working: <Katex display tex="\underset{\sim}{r_2}(t) = \sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
     reason: 'Particle 2’s position (same k-component as particle 1).',
   },
   {
-    working: <Katex display tex="\vec v_1\cdot\vec r_2 = -\sin^2(t)+\cos^2(t) + \frac{\cos(2t)}{\sqrt{\sin(2t)}}\cdot\sqrt{\sin(2t)}" />,
-    reason: <>Dot product — the <Katex tex="\vec k" /> components' square roots cancel neatly.</>,
+    working: <Katex display tex="\underset{\sim}{v_1}\cdot\underset{\sim}{r_2} = -\sin^2(t)+\cos^2(t) + \frac{\cos(2t)}{\sqrt{\sin(2t)}}\cdot\sqrt{\sin(2t)}" />,
+    reason: <>Dot product — the <Katex tex="\underset{\sim}{k}" /> components' square roots cancel neatly.</>,
   },
   {
     working: <Katex display tex="= \cos(2t) + \cos(2t) = 2\cos(2t)" />,
@@ -48,12 +48,12 @@ export default function SpecialistQ16_2024() {
     <MCQShell
       question={
         <p>
-          Particle 1 has position vector <Katex tex="\vec r_1(t)=\cos(t)\vec i+\sin(t)\vec j+\sqrt{\sin(2t)}\,\vec k" />{' '}
-          and Particle 2 has position vector <Katex tex="\vec r_2(t)=\sin(t)\vec i+\cos(t)\vec j+\sqrt{\sin(2t)}\,\vec k" />,
+          Particle 1 has position vector <Katex tex="\underset{\sim}{r_1}(t)=\cos(t)\underset{\sim}{i}+\sin(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />{' '}
+          and Particle 2 has position vector <Katex tex="\underset{\sim}{r_2}(t)=\sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
           where <Katex tex="t" /> is measured in seconds and <Katex tex="t\in\big(0,\tfrac{\pi}{2}\big)" />.
           <br />
           The number of times the <b>velocity</b> of Particle 1 is perpendicular to the <b>position</b> vector{' '}
-          <Katex tex="\vec r_2(t)" /> during the first <Katex tex="\tfrac{\pi}{2}" /> seconds is
+          <Katex tex="\underset{\sim}{r_2}(t)" /> during the first <Katex tex="\tfrac{\pi}{2}" /> seconds is
         </p>
       }
       options={[

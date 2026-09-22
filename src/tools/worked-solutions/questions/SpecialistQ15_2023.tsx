@@ -13,31 +13,31 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       If the sum of two unit vectors is a unit vector, an equilateral triangle is formed. By the cosine rule,{' '}
-      <Katex tex="|\vec a-\vec b|^2 = 1^2+1^2-2(1)(1)\cos(120^\circ) = 3" />.
+      <Katex tex="|\underset{\sim}{a}-\underset{\sim}{b}|^2 = 1^2+1^2-2(1)(1)\cos(120^\circ) = 3" />.
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="|\vec a| = |\vec b| = |\vec a+\vec b| = 1" />,
+    working: <Katex display tex="|\underset{\sim}{a}| = |\underset{\sim}{b}| = |\underset{\sim}{a}+\underset{\sim}{b}| = 1" />,
     reason: 'Two unit vectors whose sum is also a unit vector.',
   },
   {
-    working: <Katex display tex="|\vec a+\vec b|^2 = |\vec a|^2+2\vec a\cdot\vec b+|\vec b|^2 = 2+2\vec a\cdot\vec b" />,
+    working: <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2 = |\underset{\sim}{a}|^2+2\underset{\sim}{a}\cdot\underset{\sim}{b}+|\underset{\sim}{b}|^2 = 2+2\underset{\sim}{a}\cdot\underset{\sim}{b}" />,
     reason: 'Expand the square of the sum.',
   },
   {
-    working: <Katex display tex="1 = 2+2\vec a\cdot\vec b \;\implies\; \vec a\cdot\vec b = -\tfrac12" />,
-    reason: <>Set equal to <Katex tex="|\vec a+\vec b|^2=1^2=1" /> and solve.</>,
+    working: <Katex display tex="1 = 2+2\underset{\sim}{a}\cdot\underset{\sim}{b} \;\implies\; \underset{\sim}{a}\cdot\underset{\sim}{b} = -\tfrac12" />,
+    reason: <>Set equal to <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=1^2=1" /> and solve.</>,
   },
   {
-    working: <Katex display tex="|\vec a-\vec b|^2 = |\vec a|^2-2\vec a\cdot\vec b+|\vec b|^2 = 2-2\left(-\tfrac12\right) = 3" />,
+    working: <Katex display tex="|\underset{\sim}{a}-\underset{\sim}{b}|^2 = |\underset{\sim}{a}|^2-2\underset{\sim}{a}\cdot\underset{\sim}{b}+|\underset{\sim}{b}|^2 = 2-2\left(-\tfrac12\right) = 3" />,
     reason: 'Expand the square of the difference using the same dot product.',
   },
   {
-    working: <Katex display tex="\boxed{|\vec a-\vec b| = \sqrt3}" />,
-    reason: <>Matches option <b>D</b>. (Geometrically: two unit vectors summing to a third unit vector form an equilateral triangle of side 1, whose "short diagonal" — the difference — has length <Katex tex="\sqrt3" /> by the cosine rule with a <Katex tex="120^\circ" /> angle between <Katex tex="\vec a" /> and <Katex tex="-\vec b" />.)</>,
+    working: <Katex display tex="\boxed{|\underset{\sim}{a}-\underset{\sim}{b}| = \sqrt3}" />,
+    reason: <>Matches option <b>D</b>. (Geometrically: two unit vectors summing to a third unit vector form an equilateral triangle of side 1, whose "short diagonal" — the difference — has length <Katex tex="\sqrt3" /> by the cosine rule with a <Katex tex="120^\circ" /> angle between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="-\underset{\sim}{b}" />.)</>,
   },
 ]
 
