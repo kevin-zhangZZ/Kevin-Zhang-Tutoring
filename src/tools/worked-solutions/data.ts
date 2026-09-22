@@ -628,6 +628,20 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q6-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — which locus meets a given circle twice', type: 'mc', hasDetail: true, percentCorrect: 59 },
   { id: 'spec-q5-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — the Cartesian form of an Argand-plane ray', type: 'mc', hasDetail: true, percentCorrect: 62 },
 
+  // 2022 Specialist Exam 1. Question 5 is omitted — both parts resolve forces on a
+  // mass sliding down an inclined plane, and Mechanics is no longer an area of study in
+  // VCE Specialist Mathematics. Question 3b. was redacted by VCAA following the
+  // Independent Review, so Question 3 carries part a. only.
+  { id: 'spec-q1-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Complex numbers — completing the square when a coefficient is imaginary', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q2', topic: 'Differential equations — a separable equation whose y-side is an arcsin', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q3(a)', topic: 'Statistics — four cups of coffee, and why variances add but deviations do not', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q4', topic: 'Calculus — a rational integrand that splits without partial fractions', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Vectors — the angle between two vectors, then Thales by dot product', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q7', topic: 'Calculus — implicit differentiation of x·cos(x + y), left unexpanded', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q8', topic: 'Kinematics — acceleration as a function of displacement, and choosing the sign', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q9', topic: 'Calculus — antidifferentiating cos(2x)/sin³(2x) by substitution', type: 'sa', hasDetail: true },
+  { id: 'spec-q10-2022-e1', subject: 'specialist', year: 2022, exam: 'Exam 1', code: 'Q10(a–b)', topic: 'Calculus — sketching sec(4x), then a volume of revolution needing tan(π/12)', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded).
   { id: 'spec-q15-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — magnitude of the difference of two unit vectors', type: 'mc', hasDetail: true, percentCorrect: 18 },
