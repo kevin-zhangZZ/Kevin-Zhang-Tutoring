@@ -890,6 +890,17 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q6-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 6', topic: 'Functions — which pair of functions is not a genuine inverse pair', type: 'mc', hasDetail: true, percentCorrect: 47 },
   { id: 'meth-q18-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 18', topic: 'Probability — solving a binomial conditional-probability equation', type: 'mc', hasDetail: true, percentCorrect: 47 },
 
+  // The complete 2022 Methods Exam 1 (short answer), cross-referenced against the VCAA
+  // examination report and re-derived independently with sympy.
+  { id: 'meth-q1-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a product rule, then a quotient rule that simplifies', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q2(a–b)', topic: 'Calculus — an antiderivative, then an integral evaluated from two given ones', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q3', topic: 'Algebra — when a 2×2 system has infinitely many solutions', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q4(a–c)', topic: 'Probability — a binomial table, and two conditions that turn out to be irrelevant', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Algebra — an exponential equation, then the maximal domain of a log', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q6(a–c)', topic: 'Trigonometry — reflecting a sine, its zeros, and the translation that maps one onto the other', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Calculus — two tile designs that each halve a square and line up edge to edge', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Calculus — an area function given outright, run by the fundamental theorem', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q11-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — gradient of a product f(x)·g(x) at a point', type: 'mc', hasDetail: true, percentCorrect: 22 },
   { id: 'meth-q17-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — volume of a cylinder rolled from a rectangular sheet', type: 'mc', hasDetail: true, percentCorrect: 28 },
