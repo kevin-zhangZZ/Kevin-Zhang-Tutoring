@@ -545,6 +545,31 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q8-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q8', topic: 'Calculus — a volume of revolution needing partial fractions with an irreducible quadratic', type: 'sa', hasDetail: true },
   { id: 'spec-q9-2020-e1', subject: 'specialist', year: 2020, exam: 'Exam 1', code: 'Q9(a–b)', topic: 'Calculus — a parametric arc length whose integrand collapses to a perfect square', type: 'sa', hasDetail: true },
 
+  // The remaining 2020 Specialist Exam 2 multiple-choice questions, completing all 20
+  // alongside the six hardest above. MCQ 18 (tension in a string in equilibrium) and
+  // MCQ 20 (a spring balance in a lift) are omitted: both are pure Mechanics, which is
+  // no longer an area of study. MCQ 14, 15 and 19 use force or momentum wording over
+  // mathematics that is still current, so they are in with an explanatory note.
+  { id: 'spec-q1-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 1', topic: 'Calculus — when the y-intercept of a rational function is also a stationary point', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'spec-q3-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 3', topic: 'Kinematics — a piecewise velocity function for a three-stage train journey', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'spec-q5-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — simplifying 4z·z̄/(z + z̄)² into real and imaginary parts', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q6-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — a real cubic from one real and one purely imaginary root', type: 'mc', hasDetail: true, percentCorrect: 79 },
+  { id: 'spec-q10-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 10', topic: 'Differential equations — a mixing tank whose volume is falling', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q11-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — a u = tan(x) substitution turning an integral into partial fractions', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'spec-q12-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 12', topic: 'Differential equations — three steps of the Euler method, left unevaluated', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'spec-q13-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — the parameter that makes three vectors linearly dependent', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q14-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 14', topic: 'Vectors — a scalar resolute, dressed up as a force', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q15-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — a constant acceleration integrated twice into a cartesian path', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'spec-q16-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — the angle between two vectors, then a double-angle sine', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q19-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 19', topic: 'Vectors — a change in momentum as a vector subtraction', type: 'mc', hasDetail: true, percentCorrect: 72 },
+
+  // 2020 Specialist Exam 2, Section B. Question 5 is omitted: it is a connected-masses
+  // pulley problem with friction, entirely Mechanics.
+  { id: 'spec-q1-2020-e2', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Calculus — a parametric path: distance, tangent, velocity, acceleration and arc length', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2020-e2', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'Q2(a–e)', topic: 'Complex numbers — a perpendicular bisector, a ray, and the circle through three points', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2020-e2', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Calculus — the graph of x²e^(−x), and how many inflections xⁿe^(−x) has for each integer n', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2020-e2', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — an aeroplane on an ellipse and a drone on a parabola, and whether they meet', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2021 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). This report gives the correct answer directly.
   { id: 'spec-q6-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — possible arguments when z² is real', type: 'mc', hasDetail: true, percentCorrect: 23 },

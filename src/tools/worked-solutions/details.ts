@@ -365,6 +365,22 @@ import SpecialistQ6_2020Exam1 from './questions/SpecialistQ6_2020Exam1'
 import SpecialistQ7_2020Exam1 from './questions/SpecialistQ7_2020Exam1'
 import SpecialistQ8_2020Exam1 from './questions/SpecialistQ8_2020Exam1'
 import SpecialistQ9_2020Exam1 from './questions/SpecialistQ9_2020Exam1'
+import SpecialistQ1_2020 from './questions/SpecialistQ1_2020'
+import SpecialistQ3_2020 from './questions/SpecialistQ3_2020'
+import SpecialistQ5_2020 from './questions/SpecialistQ5_2020'
+import SpecialistQ6_2020 from './questions/SpecialistQ6_2020'
+import SpecialistQ10_2020 from './questions/SpecialistQ10_2020'
+import SpecialistQ11_2020 from './questions/SpecialistQ11_2020'
+import SpecialistQ12_2020 from './questions/SpecialistQ12_2020'
+import SpecialistQ13_2020 from './questions/SpecialistQ13_2020'
+import SpecialistQ14_2020 from './questions/SpecialistQ14_2020'
+import SpecialistQ15_2020 from './questions/SpecialistQ15_2020'
+import SpecialistQ16_2020 from './questions/SpecialistQ16_2020'
+import SpecialistQ19_2020 from './questions/SpecialistQ19_2020'
+import SpecialistQ1_2020Exam2 from './questions/SpecialistQ1_2020Exam2'
+import SpecialistQ2_2020Exam2 from './questions/SpecialistQ2_2020Exam2'
+import SpecialistQ3_2020Exam2 from './questions/SpecialistQ3_2020Exam2'
+import SpecialistQ4_2020Exam2 from './questions/SpecialistQ4_2020Exam2'
 import SpecialistQ1_2019 from './questions/SpecialistQ1_2019'
 import SpecialistQ2_2019 from './questions/SpecialistQ2_2019'
 import SpecialistQ3_2019 from './questions/SpecialistQ3_2019'
@@ -948,6 +964,22 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q7-2020-e1': SpecialistQ7_2020Exam1,
   'spec-q8-2020-e1': SpecialistQ8_2020Exam1,
   'spec-q9-2020-e1': SpecialistQ9_2020Exam1,
+  'spec-q1-2020': SpecialistQ1_2020,
+  'spec-q3-2020': SpecialistQ3_2020,
+  'spec-q5-2020': SpecialistQ5_2020,
+  'spec-q6-2020': SpecialistQ6_2020,
+  'spec-q10-2020': SpecialistQ10_2020,
+  'spec-q11-2020': SpecialistQ11_2020,
+  'spec-q12-2020': SpecialistQ12_2020,
+  'spec-q13-2020': SpecialistQ13_2020,
+  'spec-q14-2020': SpecialistQ14_2020,
+  'spec-q15-2020': SpecialistQ15_2020,
+  'spec-q16-2020': SpecialistQ16_2020,
+  'spec-q19-2020': SpecialistQ19_2020,
+  'spec-q1-2020-e2': SpecialistQ1_2020Exam2,
+  'spec-q2-2020-e2': SpecialistQ2_2020Exam2,
+  'spec-q3-2020-e2': SpecialistQ3_2020Exam2,
+  'spec-q4-2020-e2': SpecialistQ4_2020Exam2,
   'spec-q1-2019': SpecialistQ1_2019,
   'spec-q2-2019': SpecialistQ2_2019,
   'spec-q3-2019': SpecialistQ3_2019,
