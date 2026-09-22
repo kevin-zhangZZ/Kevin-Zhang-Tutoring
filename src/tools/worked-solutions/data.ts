@@ -708,6 +708,18 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q4-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q4(a–g)', topic: 'Probability — a butterfly life span and wingspan, a binomial sample, and a confidence interval', type: 'sa', hasDetail: true },
   { id: 'meth-q5-2019-e2', subject: 'methods', year: 2019, exam: 'Exam 2', code: 'Q5(a–g)', topic: 'Calculus — a cubic, its tangent, minimised bounded areas, and the mirror problem for its inverse', type: 'sa', hasDetail: true },
 
+  // The complete 2020 Methods Exam 1 (short answer), checked with sympy against the VCAA
+  // examination report. 2020 ran on the Adjusted Study Design, with most of the probability
+  // and statistics area of study removed; the paper is eight questions rather than nine.
+  { id: 'meth-q1-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a product rule, then a chain rule evaluated at a point', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q2(a–b)', topic: 'Probability — a Venn-diagram subtraction, then the same in algebra', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q3', topic: 'Trigonometry — finding a and b in y = tan(ax + b) from two points', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q4', topic: 'Algebra — a logarithm equation with a solution to reject', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Probability — a binomial "three or more", then a conditional', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q6(a–c)', topic: 'Calculus — an inverse function and the area between a curve and its inverse', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Calculus — tangents from an external point, then a shortest distance', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2020-e1', subject: 'methods', year: 2020, exam: 'Exam 1', code: 'Q8(a–d)', topic: 'Calculus — the minimum, area and vertical translation of x·log(x)', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
   // (matrix-representation questions excluded; MCQ 13 (26%, an explicit matrix mapping per
   // its own report comment) was removed for this, backfilled by MCQ 18).

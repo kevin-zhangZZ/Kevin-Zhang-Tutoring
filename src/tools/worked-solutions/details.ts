@@ -445,6 +445,14 @@ import MethodsQ7_2018Exam1 from './questions/MethodsQ7_2018Exam1'
 import MethodsQ8_2018Exam1 from './questions/MethodsQ8_2018Exam1'
 import MethodsQ9_2018Exam1 from './questions/MethodsQ9_2018Exam1'
 import MethodsQ1_2019Exam1 from './questions/MethodsQ1_2019Exam1'
+import MethodsQ1_2020Exam1 from './questions/MethodsQ1_2020Exam1'
+import MethodsQ2_2020Exam1 from './questions/MethodsQ2_2020Exam1'
+import MethodsQ3_2020Exam1 from './questions/MethodsQ3_2020Exam1'
+import MethodsQ4_2020Exam1 from './questions/MethodsQ4_2020Exam1'
+import MethodsQ5_2020Exam1 from './questions/MethodsQ5_2020Exam1'
+import MethodsQ6_2020Exam1 from './questions/MethodsQ6_2020Exam1'
+import MethodsQ7_2020Exam1 from './questions/MethodsQ7_2020Exam1'
+import MethodsQ8_2020Exam1 from './questions/MethodsQ8_2020Exam1'
 import MethodsQ2_2019Exam1 from './questions/MethodsQ2_2019Exam1'
 import MethodsQ3_2019Exam1 from './questions/MethodsQ3_2019Exam1'
 import MethodsQ4_2019Exam1 from './questions/MethodsQ4_2019Exam1'
@@ -1007,6 +1015,14 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q8-2018-e1': MethodsQ8_2018Exam1,
   'meth-q9-2018-e1': MethodsQ9_2018Exam1,
   'meth-q1-2019-e1': MethodsQ1_2019Exam1,
+  'meth-q1-2020-e1': MethodsQ1_2020Exam1,
+  'meth-q2-2020-e1': MethodsQ2_2020Exam1,
+  'meth-q3-2020-e1': MethodsQ3_2020Exam1,
+  'meth-q4-2020-e1': MethodsQ4_2020Exam1,
+  'meth-q5-2020-e1': MethodsQ5_2020Exam1,
+  'meth-q6-2020-e1': MethodsQ6_2020Exam1,
+  'meth-q7-2020-e1': MethodsQ7_2020Exam1,
+  'meth-q8-2020-e1': MethodsQ8_2020Exam1,
   'meth-q2-2019-e1': MethodsQ2_2019Exam1,
   'meth-q3-2019-e1': MethodsQ3_2019Exam1,
   'meth-q4-2019-e1': MethodsQ4_2019Exam1,
