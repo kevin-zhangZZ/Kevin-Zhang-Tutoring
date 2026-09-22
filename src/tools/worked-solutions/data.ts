@@ -783,6 +783,30 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q8-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Complex numbers — a real quartic and its two conjugate pairs', type: 'sa', hasDetail: true },
   { id: 'spec-q9-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Functions — an oblique asymptote and a removable discontinuity', type: 'sa', hasDetail: true },
 
+  // The remaining 2025 Specialist Mathematics Exam 2 multiple-choice questions.
+  { id: 'spec-q1-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 1', topic: 'Proof — the contrapositive of a conditional statement', type: 'mc', hasDetail: true, percentCorrect: 93 },
+  { id: 'spec-q3-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 3', topic: 'Functions — three constants from an oblique asymptote and an intercept', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'spec-q4-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 4', topic: 'Algorithms — tracing a while loop that sums disc volumes', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q5-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 5', topic: 'Complex numbers — a real cubic with one complex root given', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q6-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — the real part of 1/(1−z) on the unit circle', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'spec-q7-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — rewriting a trigonometric integral by substitution', type: 'mc', hasDetail: true, percentCorrect: 79 },
+  { id: 'spec-q8-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 8', topic: 'Differential equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 80 },
+  { id: 'spec-q10-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 10', topic: 'Calculus — the terminal of a volume integral about the y-axis', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q11-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 11', topic: 'Differential equations — separating the variables, then the domain of the solution', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'spec-q12-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 12', topic: 'Kinematics — the velocity at the midpoint, not the midpoint of the velocities', type: 'mc', hasDetail: true, percentCorrect: 33 },
+  { id: 'spec-q13-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 13', topic: 'Kinematics — a ball thrown up from a window and caught below it', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'spec-q16-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — making the acceleration perpendicular to the velocity', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'spec-q19-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 19', topic: 'Vectors — the triangle a plane cuts from the coordinate axes', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'spec-q20-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — a linear combination of three independent normals', type: 'mc', hasDetail: true, percentCorrect: 54 },
+
+  // 2025 Specialist Mathematics Exam 2 — all six Section B questions.
+  { id: 'spec-q1-2025-e2', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Functions — a cubic denominator: asymptotes, a volume of revolution, and a family of curves whose stationary point never moves', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2025-e2', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'Q2(a–e)', topic: 'Complex numbers — a circle meeting a perpendicular bisector, a ray through two points, and the area of a minor segment', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2025-e2', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'Q3(a–g)', topic: 'Differential equations — a mixing tank: Euler’s method, separation of variables, and a tap that gets turned off', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2025-e2', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'Q4(a–g)', topic: 'Vectors — an epitrochoid: when it closes, a compound-angle speed, and the length of one arc', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2025-e2', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'Q5(a–d)', topic: 'Vectors — three planes, the line two of them share, and a family of planes parallel to the first', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2025-e2', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'Q6(a–h)', topic: 'Statistics — sampling distributions, a confidence interval, and a one-tailed test with its Type II error', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2019 Exam 2 Section A, by VCAA-reported % correct
   // (Methods has no Mechanics area of study; no matrix-representation question landed in
   // this year's hardest-6 either, so nothing was excluded here).

@@ -553,6 +553,26 @@ import SpecialistQ6_2025Exam1 from './questions/SpecialistQ6_2025Exam1'
 import SpecialistQ7_2025Exam1 from './questions/SpecialistQ7_2025Exam1'
 import SpecialistQ8_2025Exam1 from './questions/SpecialistQ8_2025Exam1'
 import SpecialistQ9_2025Exam1 from './questions/SpecialistQ9_2025Exam1'
+import SpecialistQ1_2025 from './questions/SpecialistQ1_2025'
+import SpecialistQ3_2025 from './questions/SpecialistQ3_2025'
+import SpecialistQ4_2025 from './questions/SpecialistQ4_2025'
+import SpecialistQ5_2025 from './questions/SpecialistQ5_2025'
+import SpecialistQ6_2025 from './questions/SpecialistQ6_2025'
+import SpecialistQ7_2025 from './questions/SpecialistQ7_2025'
+import SpecialistQ8_2025 from './questions/SpecialistQ8_2025'
+import SpecialistQ10_2025 from './questions/SpecialistQ10_2025'
+import SpecialistQ11_2025 from './questions/SpecialistQ11_2025'
+import SpecialistQ12_2025 from './questions/SpecialistQ12_2025'
+import SpecialistQ13_2025 from './questions/SpecialistQ13_2025'
+import SpecialistQ16_2025 from './questions/SpecialistQ16_2025'
+import SpecialistQ19_2025 from './questions/SpecialistQ19_2025'
+import SpecialistQ20_2025 from './questions/SpecialistQ20_2025'
+import SpecialistQ1_2025Exam2 from './questions/SpecialistQ1_2025Exam2'
+import SpecialistQ2_2025Exam2 from './questions/SpecialistQ2_2025Exam2'
+import SpecialistQ3_2025Exam2 from './questions/SpecialistQ3_2025Exam2'
+import SpecialistQ4_2025Exam2 from './questions/SpecialistQ4_2025Exam2'
+import SpecialistQ5_2025Exam2 from './questions/SpecialistQ5_2025Exam2'
+import SpecialistQ6_2025Exam2 from './questions/SpecialistQ6_2025Exam2'
 import MethodsQ19_2019 from './questions/MethodsQ19_2019'
 import MethodsQ18_2019 from './questions/MethodsQ18_2019'
 import MethodsQ11_2019 from './questions/MethodsQ11_2019'
@@ -1420,6 +1440,26 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q7-2025-e1': SpecialistQ7_2025Exam1,
   'spec-q8-2025-e1': SpecialistQ8_2025Exam1,
   'spec-q9-2025-e1': SpecialistQ9_2025Exam1,
+  'spec-q1-2025': SpecialistQ1_2025,
+  'spec-q3-2025': SpecialistQ3_2025,
+  'spec-q4-2025': SpecialistQ4_2025,
+  'spec-q5-2025': SpecialistQ5_2025,
+  'spec-q6-2025': SpecialistQ6_2025,
+  'spec-q7-2025': SpecialistQ7_2025,
+  'spec-q8-2025': SpecialistQ8_2025,
+  'spec-q10-2025': SpecialistQ10_2025,
+  'spec-q11-2025': SpecialistQ11_2025,
+  'spec-q12-2025': SpecialistQ12_2025,
+  'spec-q13-2025': SpecialistQ13_2025,
+  'spec-q16-2025': SpecialistQ16_2025,
+  'spec-q19-2025': SpecialistQ19_2025,
+  'spec-q20-2025': SpecialistQ20_2025,
+  'spec-q1-2025-e2': SpecialistQ1_2025Exam2,
+  'spec-q2-2025-e2': SpecialistQ2_2025Exam2,
+  'spec-q3-2025-e2': SpecialistQ3_2025Exam2,
+  'spec-q4-2025-e2': SpecialistQ4_2025Exam2,
+  'spec-q5-2025-e2': SpecialistQ5_2025Exam2,
+  'spec-q6-2025-e2': SpecialistQ6_2025Exam2,
 
   // Hardest-6 Methods MCQs, 2019 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2019': MethodsQ19_2019,

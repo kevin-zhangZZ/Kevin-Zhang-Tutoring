@@ -15,8 +15,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\vec r_1(\lambda) = (2+\lambda)\vec i + (r-\lambda)\vec j + (-3+4\lambda)\vec k" />,
-    reason: <>Expand <Katex tex="\vec r_1(\lambda)=2\vec i+r\vec j-3\vec k+\lambda(\vec i-\vec j+4\vec k)" /> component-wise.</>,
+    working: <Katex display tex="\underset{\sim}{r_1}(\lambda) = (2+\lambda)\underset{\sim}{i} + (r-\lambda)\underset{\sim}{j} + (-3+4\lambda)\underset{\sim}{k}" />,
+    reason: <>Expand <Katex tex="\underset{\sim}{r_1}(\lambda)=2\underset{\sim}{i}+r\underset{\sim}{j}-3\underset{\sim}{k}+\lambda(\underset{\sim}{i}-\underset{\sim}{j}+4\underset{\sim}{k})" /> component-wise.</>,
   },
   {
     working: <Katex display tex="2+\lambda = 4 \;\implies\; \lambda=2" />,
@@ -31,8 +31,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Match the <Katex tex="z" />-coordinate.</>,
   },
   {
-    working: <Katex display tex="\vec r_2(\mu) = (1+\mu)\vec i + \mu\vec j + (s-\mu)\vec k" />,
-    reason: <>Now expand <Katex tex="\vec r_2(\mu)=\vec i+s\vec k+\mu(\vec i+\vec j-\vec k)" />.</>,
+    working: <Katex display tex="\underset{\sim}{r_2}(\mu) = (1+\mu)\underset{\sim}{i} + \mu\underset{\sim}{j} + (s-\mu)\underset{\sim}{k}" />,
+    reason: <>Now expand <Katex tex="\underset{\sim}{r_2}(\mu)=\underset{\sim}{i}+s\underset{\sim}{k}+\mu(\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k})" />.</>,
   },
   {
     working: <Katex display tex="1+\mu = 4 \;\implies\; \mu=3 \qquad (\text{check: } \mu=3 \text{ matches } y=3\ \checkmark)" />,
@@ -49,8 +49,8 @@ export default function SpecialistQ18_2025() {
     <MCQShell
       question={
         <p>
-          The lines given by <Katex tex="\vec r_1(\lambda) = 2\vec i+r\vec j-3\vec k+\lambda(\vec i-\vec j+4\vec k)" />{' '}
-          and <Katex tex="\vec r_2(\mu) = \vec i+s\vec k+\mu(\vec i+\vec j-\vec k)" /> intersect at the point{' '}
+          The lines given by <Katex tex="\underset{\sim}{r_1}(\lambda) = 2\underset{\sim}{i}+r\underset{\sim}{j}-3\underset{\sim}{k}+\lambda(\underset{\sim}{i}-\underset{\sim}{j}+4\underset{\sim}{k})" />{' '}
+          and <Katex tex="\underset{\sim}{r_2}(\mu) = \underset{\sim}{i}+s\underset{\sim}{k}+\mu(\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k})" /> intersect at the point{' '}
           <Katex tex="(4,3,t)" />, where <Katex tex="\lambda,\mu\in\mathbb{R}" /> and <Katex tex="r" />, <Katex tex="s" />{' '}
           and <Katex tex="t" /> are real constants.
           <br />

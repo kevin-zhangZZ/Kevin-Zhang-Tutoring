@@ -14,16 +14,16 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\vec a\cdot\vec b = |\vec a||\vec b|\cos\theta \qquad |\vec a\times\vec b| = |\vec a||\vec b|\sin\theta" />,
-    reason: <>Standard formulas, where <Katex tex="\theta" /> is the angle between <Katex tex="\vec a" /> and <Katex tex="\vec b" />, <Katex tex="\theta\in[0,\pi]" /> (so <Katex tex="\sin\theta\geq0" /> always).</>,
+    working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta \qquad |\underset{\sim}{a}\times\underset{\sim}{b}| = |\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta" />,
+    reason: <>Standard formulas, where <Katex tex="\theta" /> is the angle between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, <Katex tex="\theta\in[0,\pi]" /> (so <Katex tex="\sin\theta\geq0" /> always).</>,
   },
   {
-    working: <Katex display tex="|\vec a||\vec b|\cos\theta = |\vec a||\vec b|\sin\theta" />,
+    working: <Katex display tex="|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta = |\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta" />,
     reason: 'Set the two given quantities equal.',
   },
   {
     working: <Katex display tex="\cos\theta = \sin\theta \;\implies\; \tan\theta = 1" />,
-    reason: <>Divide through by <Katex tex="|\vec a||\vec b|\cos\theta" /> (non-zero, since both vectors are non-zero and the equality forces <Katex tex="\cos\theta\geq0" />).</>,
+    reason: <>Divide through by <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" /> (non-zero, since both vectors are non-zero and the equality forces <Katex tex="\cos\theta\geq0" />).</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = \tfrac{\pi}{4}}" />,
@@ -36,9 +36,9 @@ export default function SpecialistQ14_2025() {
     <MCQShell
       question={
         <p>
-          For non-zero vectors <Katex tex="\vec a" /> and <Katex tex="\vec b" />, if{' '}
-          <Katex tex="\vec a\cdot\vec b = |\vec a\times\vec b|" />, then the angle between <Katex tex="\vec a" /> and{' '}
-          <Katex tex="\vec b" /> is
+          For non-zero vectors <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, if{' '}
+          <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}\times\underset{\sim}{b}|" />, then the angle between <Katex tex="\underset{\sim}{a}" /> and{' '}
+          <Katex tex="\underset{\sim}{b}" /> is
         </p>
       }
       options={[

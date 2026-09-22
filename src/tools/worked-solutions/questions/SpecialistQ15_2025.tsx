@@ -15,12 +15,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\vec n_1 = (2,2,1) \qquad \vec n_2 = (a,0,4)" />,
+    working: <Katex display tex="\underset{\sim}{n_1} = (2,2,1) \qquad \underset{\sim}{n_2} = (a,0,4)" />,
     reason: 'Normal vectors read off from each plane’s equation.',
   },
   {
-    working: <Katex display tex="\cos(\text{angle}) = \frac{|\vec n_1\cdot\vec n_2|}{|\vec n_1||\vec n_2|} = \frac{|2a+4|}{3\sqrt{a^2+16}}" />,
-    reason: <>Angle between planes = angle between normals; <Katex tex="|\vec n_1|=\sqrt{4+4+1}=3" />.</>,
+    working: <Katex display tex="\cos(\text{angle}) = \frac{|\underset{\sim}{n_1}\cdot\underset{\sim}{n_2}|}{|\underset{\sim}{n_1}||\underset{\sim}{n_2}|} = \frac{|2a+4|}{3\sqrt{a^2+16}}" />,
+    reason: <>Angle between planes = angle between normals; <Katex tex="|\underset{\sim}{n_1}|=\sqrt{4+4+1}=3" />.</>,
   },
   {
     working: <Katex display tex="a>0 \;\implies\; 2a+4>0 \;\implies\; |2a+4|=2a+4" />,

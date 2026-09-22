@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\vec a(t) = 4\cos(2t)\vec i+10\sin(2t)\vec j-6e^{-2t}\vec k" />,
+    working: <Katex display tex="\underset{\sim}{a}(t) = 4\cos(2t)\underset{\sim}{i}+10\sin(2t)\underset{\sim}{j}-6e^{-2t}\underset{\sim}{k}" />,
     reason: 'Given acceleration vector.',
   },
   {
@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v_x(0)=0 \;\implies\; 0+C_1=0 \;\implies\; C_1=0" />,
-    reason: <>"Starts from rest" means <Katex tex="\vec v(0)=\vec 0" /> — use this to pin down each constant.</>,
+    reason: <>"Starts from rest" means <Katex tex="\underset{\sim}{v}(0)=\underset{\sim}{0}" /> — use this to pin down each constant.</>,
   },
   {
     working: <Katex display tex="v_y(t) = \int 10\sin(2t)\,dt = -5\cos(2t)+C_2" />,
@@ -43,7 +43,7 @@ const ROWS: WorkingRow[] = [
     reason: 'Solve for the constant and factor.',
   },
   {
-    working: <Katex display tex="\boxed{\vec v(t) = 2\sin(2t)\vec i - 5\big(\cos(2t)-1\big)\vec j+3\big(e^{-2t}-1\big)\vec k}" />,
+    working: <Katex display tex="\boxed{\underset{\sim}{v}(t) = 2\sin(2t)\underset{\sim}{i} - 5\big(\cos(2t)-1\big)\underset{\sim}{j}+3\big(e^{-2t}-1\big)\underset{\sim}{k}}" />,
     reason: <>Matches option <b>C</b>.</>,
   },
 ]
@@ -54,16 +54,16 @@ export default function SpecialistQ17_2025() {
       question={
         <p>
           The acceleration vector of a particle that starts from rest is given by{' '}
-          <Katex tex="\vec a(t) = 4\cos(2t)\vec i+10\sin(2t)\vec j-6e^{-2t}\vec k" />, where <Katex tex="t\geq0" />.
+          <Katex tex="\underset{\sim}{a}(t) = 4\cos(2t)\underset{\sim}{i}+10\sin(2t)\underset{\sim}{j}-6e^{-2t}\underset{\sim}{k}" />, where <Katex tex="t\geq0" />.
           <br />
-          The velocity vector of the particle, <Katex tex="\vec v(t)" />, is given by
+          The velocity vector of the particle, <Katex tex="\underset{\sim}{v}(t)" />, is given by
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="2\sin(2t)\vec i-5\cos(2t)\vec j+3e^{-2t}\vec k" /> },
-        { letter: 'B', content: <Katex tex="2\sin(2t)\vec i-5\big(\cos(2t)+1\big)\vec j+3\big(e^{-2t}+1\big)\vec k" /> },
-        { letter: 'C', content: <Katex tex="2\sin(2t)\vec i-5\big(\cos(2t)-1\big)\vec j+3\big(e^{-2t}-1\big)\vec k" />, isAnswer: true },
-        { letter: 'D', content: <Katex tex="-8\sin(2t)\vec i+20\cos(2t)\vec j+12e^{-2t}\vec k" /> },
+        { letter: 'A', content: <Katex tex="2\sin(2t)\underset{\sim}{i}-5\cos(2t)\underset{\sim}{j}+3e^{-2t}\underset{\sim}{k}" /> },
+        { letter: 'B', content: <Katex tex="2\sin(2t)\underset{\sim}{i}-5\big(\cos(2t)+1\big)\underset{\sim}{j}+3\big(e^{-2t}+1\big)\underset{\sim}{k}" /> },
+        { letter: 'C', content: <Katex tex="2\sin(2t)\underset{\sim}{i}-5\big(\cos(2t)-1\big)\underset{\sim}{j}+3\big(e^{-2t}-1\big)\underset{\sim}{k}" />, isAnswer: true },
+        { letter: 'D', content: <Katex tex="-8\sin(2t)\underset{\sim}{i}+20\cos(2t)\underset{\sim}{j}+12e^{-2t}\underset{\sim}{k}" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
