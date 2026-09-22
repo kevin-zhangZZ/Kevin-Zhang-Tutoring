@@ -544,6 +544,15 @@ import SpecialistQ9_2025 from './questions/SpecialistQ9_2025'
 import SpecialistQ18_2025 from './questions/SpecialistQ18_2025'
 import SpecialistQ15_2025 from './questions/SpecialistQ15_2025'
 import SpecialistQ17_2025 from './questions/SpecialistQ17_2025'
+import SpecialistQ1_2025Exam1 from './questions/SpecialistQ1_2025Exam1'
+import SpecialistQ2_2025Exam1 from './questions/SpecialistQ2_2025Exam1'
+import SpecialistQ3_2025Exam1 from './questions/SpecialistQ3_2025Exam1'
+import SpecialistQ4_2025Exam1 from './questions/SpecialistQ4_2025Exam1'
+import SpecialistQ5_2025Exam1 from './questions/SpecialistQ5_2025Exam1'
+import SpecialistQ6_2025Exam1 from './questions/SpecialistQ6_2025Exam1'
+import SpecialistQ7_2025Exam1 from './questions/SpecialistQ7_2025Exam1'
+import SpecialistQ8_2025Exam1 from './questions/SpecialistQ8_2025Exam1'
+import SpecialistQ9_2025Exam1 from './questions/SpecialistQ9_2025Exam1'
 import MethodsQ19_2019 from './questions/MethodsQ19_2019'
 import MethodsQ18_2019 from './questions/MethodsQ18_2019'
 import MethodsQ11_2019 from './questions/MethodsQ11_2019'
@@ -1402,6 +1411,15 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q18-2025': SpecialistQ18_2025,
   'spec-q15-2025': SpecialistQ15_2025,
   'spec-q17-2025': SpecialistQ17_2025,
+  'spec-q1-2025-e1': SpecialistQ1_2025Exam1,
+  'spec-q2-2025-e1': SpecialistQ2_2025Exam1,
+  'spec-q3-2025-e1': SpecialistQ3_2025Exam1,
+  'spec-q4-2025-e1': SpecialistQ4_2025Exam1,
+  'spec-q5-2025-e1': SpecialistQ5_2025Exam1,
+  'spec-q6-2025-e1': SpecialistQ6_2025Exam1,
+  'spec-q7-2025-e1': SpecialistQ7_2025Exam1,
+  'spec-q8-2025-e1': SpecialistQ8_2025Exam1,
+  'spec-q9-2025-e1': SpecialistQ9_2025Exam1,
 
   // Hardest-6 Methods MCQs, 2019 Exam 2 (see data.ts percentCorrect)
   'meth-q19-2019': MethodsQ19_2019,

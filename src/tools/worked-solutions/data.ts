@@ -772,6 +772,17 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q15-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 15', topic: 'Vectors — the angle-between-planes formula rearranged', type: 'mc', hasDetail: true, percentCorrect: 52 },
   { id: 'spec-q17-2025', subject: 'specialist', year: 2025, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — integrating acceleration to find velocity', type: 'mc', hasDetail: true, percentCorrect: 52 },
 
+  // 2025 Specialist Mathematics Exam 1 — all nine short-answer questions.
+  { id: 'spec-q1-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q1', topic: 'Calculus — implicit differentiation, then the tangent at a point', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q2', topic: 'Vectors — where two lines in space meet, with two parameters', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q3(a–c)', topic: 'Kinematics — displacement by integration, then matching a second particle', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Statistics — a mean needing partial fractions, then a sample mean', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q5(a–c)', topic: 'Vectors — a collision where both velocities point the same way', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q6', topic: 'Calculus — a solid of revolution that is an arctan reverse chain rule', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q7', topic: 'Proof — induction on a closed form for a sum of squares', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Complex numbers — a real quartic and its two conjugate pairs', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2025-e1', subject: 'specialist', year: 2025, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Functions — an oblique asymptote and a removable discontinuity', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2019 Exam 2 Section A, by VCAA-reported % correct
   // (Methods has no Mechanics area of study; no matrix-representation question landed in
   // this year's hardest-6 either, so nothing was excluded here).
