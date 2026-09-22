@@ -1057,6 +1057,17 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q20-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 20', topic: 'Calculus — integral of a period-2 function over two periods', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'meth-q13-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 13', topic: 'Transformations — tracking a local minimum through two transformations', type: 'mc', hasDetail: true, percentCorrect: 45 },
 
+  // 2024 Mathematical Methods Exam 1 — all eight short-answer questions. The 2024
+  // papers are image-only PDFs, so the question text was read from rendered pages.
+  { id: 'meth-q1-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a product rule, then a chain rule on a logarithm', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q2', topic: 'Algebra — the k that gives no solution, not infinitely many', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Functions — sketching a truncus, then the area it cuts below the axis', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Probability — a binomial standard deviation and a two-term probability', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q5(a–c)', topic: 'Functions — halving a rate of decline by transformation, and a confidence interval', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q6', topic: 'Functions — a log equation whose cubic has two roots outside the domain', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Calculus — three trapezia under x·sin(x), then sketching its derivative', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q8(a–d)', topic: 'Calculus — a cube-root curve and the two points sharing a gradient', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2025 Exam 2 Section A, by VCAA-reported % correct.
   // This year's Section A used 4 options (A-D), not 5.
   { id: 'meth-q19-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — finding c from a minimum-distance condition', type: 'mc', hasDetail: true, percentCorrect: 14 },
