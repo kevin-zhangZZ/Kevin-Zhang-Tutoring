@@ -365,6 +365,15 @@ import SpecialistQ6_2020Exam1 from './questions/SpecialistQ6_2020Exam1'
 import SpecialistQ7_2020Exam1 from './questions/SpecialistQ7_2020Exam1'
 import SpecialistQ8_2020Exam1 from './questions/SpecialistQ8_2020Exam1'
 import SpecialistQ9_2020Exam1 from './questions/SpecialistQ9_2020Exam1'
+import SpecialistQ1_2021Exam1 from './questions/SpecialistQ1_2021Exam1'
+import SpecialistQ2_2021Exam1 from './questions/SpecialistQ2_2021Exam1'
+import SpecialistQ3_2021Exam1 from './questions/SpecialistQ3_2021Exam1'
+import SpecialistQ4_2021Exam1 from './questions/SpecialistQ4_2021Exam1'
+import SpecialistQ5_2021Exam1 from './questions/SpecialistQ5_2021Exam1'
+import SpecialistQ6_2021Exam1 from './questions/SpecialistQ6_2021Exam1'
+import SpecialistQ7_2021Exam1 from './questions/SpecialistQ7_2021Exam1'
+import SpecialistQ8_2021Exam1 from './questions/SpecialistQ8_2021Exam1'
+import SpecialistQ9_2021Exam1 from './questions/SpecialistQ9_2021Exam1'
 import SpecialistQ1_2020 from './questions/SpecialistQ1_2020'
 import SpecialistQ3_2020 from './questions/SpecialistQ3_2020'
 import SpecialistQ5_2020 from './questions/SpecialistQ5_2020'
@@ -992,6 +1001,15 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q7-2020-e1': SpecialistQ7_2020Exam1,
   'spec-q8-2020-e1': SpecialistQ8_2020Exam1,
   'spec-q9-2020-e1': SpecialistQ9_2020Exam1,
+  'spec-q1-2021-e1': SpecialistQ1_2021Exam1,
+  'spec-q2-2021-e1': SpecialistQ2_2021Exam1,
+  'spec-q3-2021-e1': SpecialistQ3_2021Exam1,
+  'spec-q4-2021-e1': SpecialistQ4_2021Exam1,
+  'spec-q5-2021-e1': SpecialistQ5_2021Exam1,
+  'spec-q6-2021-e1': SpecialistQ6_2021Exam1,
+  'spec-q7-2021-e1': SpecialistQ7_2021Exam1,
+  'spec-q8-2021-e1': SpecialistQ8_2021Exam1,
+  'spec-q9-2021-e1': SpecialistQ9_2021Exam1,
   'spec-q1-2020': SpecialistQ1_2020,
   'spec-q3-2020': SpecialistQ3_2020,
   'spec-q5-2020': SpecialistQ5_2020,

@@ -579,6 +579,20 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q7-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 7', topic: 'Coordinate geometry — shortest arc between two points on a circle', type: 'mc', hasDetail: true, percentCorrect: 39 },
   { id: 'spec-q20-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — probability two independent normal times differ', type: 'mc', hasDetail: true, percentCorrect: 43 },
 
+  // The complete 2021 Specialist Exam 1 (short answer), cross-referenced against the
+  // VCAA examination report and re-derived independently with sympy. Question 1 uses
+  // F = ma and p = mv, but everything else in it is vector calculus, so it is in with
+  // an explanatory note (guide §13.7).
+  { id: 'spec-q1-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q1(a–c)', topic: 'Vectors — force and momentum wording over vector antidifferentiation', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — a rational integrand that splits into a log and an arctan', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q3(a–c)', topic: 'Statistics — a one-tailed test on a sample mean, then a confidence interval', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Calculus — a solid of revolution under one arch of sine, then the same for sin(kx)', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q5', topic: 'Calculus — implicit differentiation of an equation with two exponentials', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q6', topic: 'Vectors — making three vectors linearly independent, with an absolute value in the way', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Differential equations — separating variables, then reading off the maximum', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Complex numbers — a quadratic in z, then the same quadratic with the conjugate', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — two parametric paths, where they collide, and an area under an ellipse', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2022 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic and redacted questions excluded).
   { id: 'spec-q3-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — which asymptote behaviour always holds', type: 'mc', hasDetail: true, percentCorrect: 38 },
