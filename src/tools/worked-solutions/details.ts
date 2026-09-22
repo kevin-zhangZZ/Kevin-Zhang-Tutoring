@@ -508,6 +508,16 @@ import SpecialistQ15_2024 from './questions/SpecialistQ15_2024'
 import SpecialistQ16_2024 from './questions/SpecialistQ16_2024'
 import SpecialistQ9_2024 from './questions/SpecialistQ9_2024'
 import SpecialistQ20_2024 from './questions/SpecialistQ20_2024'
+import SpecialistQ1_2024Exam1 from './questions/SpecialistQ1_2024Exam1'
+import SpecialistQ2_2024Exam1 from './questions/SpecialistQ2_2024Exam1'
+import SpecialistQ3_2024Exam1 from './questions/SpecialistQ3_2024Exam1'
+import SpecialistQ4_2024Exam1 from './questions/SpecialistQ4_2024Exam1'
+import SpecialistQ5_2024Exam1 from './questions/SpecialistQ5_2024Exam1'
+import SpecialistQ6_2024Exam1 from './questions/SpecialistQ6_2024Exam1'
+import SpecialistQ7_2024Exam1 from './questions/SpecialistQ7_2024Exam1'
+import SpecialistQ8_2024Exam1 from './questions/SpecialistQ8_2024Exam1'
+import SpecialistQ9_2024Exam1 from './questions/SpecialistQ9_2024Exam1'
+import SpecialistQ10_2024Exam1 from './questions/SpecialistQ10_2024Exam1'
 import SpecialistQ2_2025 from './questions/SpecialistQ2_2025'
 import SpecialistQ14_2025 from './questions/SpecialistQ14_2025'
 import SpecialistQ9_2025 from './questions/SpecialistQ9_2025'
@@ -1307,6 +1317,16 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q16-2024': SpecialistQ16_2024,
   'spec-q9-2024': SpecialistQ9_2024,
   'spec-q20-2024': SpecialistQ20_2024,
+  'spec-q1-2024-e1': SpecialistQ1_2024Exam1,
+  'spec-q2-2024-e1': SpecialistQ2_2024Exam1,
+  'spec-q3-2024-e1': SpecialistQ3_2024Exam1,
+  'spec-q4-2024-e1': SpecialistQ4_2024Exam1,
+  'spec-q5-2024-e1': SpecialistQ5_2024Exam1,
+  'spec-q6-2024-e1': SpecialistQ6_2024Exam1,
+  'spec-q7-2024-e1': SpecialistQ7_2024Exam1,
+  'spec-q8-2024-e1': SpecialistQ8_2024Exam1,
+  'spec-q9-2024-e1': SpecialistQ9_2024Exam1,
+  'spec-q10-2024-e1': SpecialistQ10_2024Exam1,
 
   // Hardest-6 Specialist MCQs, 2025 Exam 2 (see data.ts percentCorrect)
   'spec-q2-2025': SpecialistQ2_2025,
