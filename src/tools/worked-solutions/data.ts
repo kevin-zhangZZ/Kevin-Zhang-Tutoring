@@ -593,6 +593,32 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q8-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Complex numbers — a quadratic in z, then the same quadratic with the conjugate', type: 'sa', hasDetail: true },
   { id: 'spec-q9-2021-e1', subject: 'specialist', year: 2021, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — two parametric paths, where they collide, and an area under an ellipse', type: 'sa', hasDetail: true },
 
+  // The remaining 2021 Specialist Exam 2 multiple-choice questions, completing 18 of
+  // 20 alongside the six hardest above. MCQ 15 (four forces on a stationary body) and
+  // MCQ 16 (a mass on a smooth slope) are omitted as pure Mechanics; MCQ 14 wears
+  // force wording over rectilinear kinematics, so it is in with a note.
+  { id: 'spec-q1-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — counting the asymptotes of a reciprocal secant', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'spec-q2-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the implied domain of an inverse cosine of a logarithm', type: 'mc', hasDetail: true, percentCorrect: 76 },
+  { id: 'spec-q3-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 3', topic: 'Functions — local maxima found by minimising a denominator', type: 'mc', hasDetail: true, percentCorrect: 51 },
+  { id: 'spec-q8-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 8', topic: 'Differential equations — two steps of the Euler method', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q10-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 10', topic: 'Differential equations — matching a direction field to its equation', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'spec-q11-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 11', topic: 'Vectors — a compass bearing turned into components, then a second leg', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q12-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 12', topic: 'Vectors — two angles whose cosines are negatives of each other', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'spec-q13-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — turning a scalar resolute back into a vector resolute', type: 'mc', hasDetail: true, percentCorrect: 46 },
+  { id: 'spec-q14-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 14', topic: 'Kinematics — a = v dv/dx, dressed up as a force', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'spec-q17-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 17', topic: 'Statistics — the distribution of a sample mean of six', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'spec-q18-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 18', topic: 'Statistics — reading the mean and deviation back out of a confidence interval', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q19-2021', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'MCQ 19', topic: 'Statistics — a linear scaling fixed by a mean and a variance', type: 'mc', hasDetail: true, percentCorrect: 51 },
+
+  // 2021 Specialist Exam 2, Section B. Question 5 is omitted: two masses connected
+  // over a pulley on a rough inclined plane, entirely Mechanics. Question 4 hands the
+  // projectile position vector to you, so the mathematics in it is all current.
+  { id: 'spec-q1-2021-e2', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Functions — a rational function, its asymptotes and sketch, then a parameter that changes both', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2021-e2', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'Q2(a–c)', topic: 'Complex numbers — a real cubic with conjugate roots, then a ray cutting a circle', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2021-e2', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'Q3(a–c)', topic: 'Differential equations — a leaking vessel made by rotating a cubic about the y-axis', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2021-e2', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Vectors — a stunt car: a given trajectory in cartesian form, a smooth landing, and the run-up', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2021-e2', subject: 'specialist', year: 2021, exam: 'Exam 2', code: 'Q6(a–e)', topic: 'Statistics — a lift load, a queue of hot drinks, and a one-sided test with its Type II error', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2022 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic and redacted questions excluded).
   { id: 'spec-q3-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 3', topic: 'Graphs — which asymptote behaviour always holds', type: 'mc', hasDetail: true, percentCorrect: 38 },

@@ -374,6 +374,23 @@ import SpecialistQ6_2021Exam1 from './questions/SpecialistQ6_2021Exam1'
 import SpecialistQ7_2021Exam1 from './questions/SpecialistQ7_2021Exam1'
 import SpecialistQ8_2021Exam1 from './questions/SpecialistQ8_2021Exam1'
 import SpecialistQ9_2021Exam1 from './questions/SpecialistQ9_2021Exam1'
+import SpecialistQ1_2021 from './questions/SpecialistQ1_2021'
+import SpecialistQ2_2021 from './questions/SpecialistQ2_2021'
+import SpecialistQ3_2021 from './questions/SpecialistQ3_2021'
+import SpecialistQ8_2021 from './questions/SpecialistQ8_2021'
+import SpecialistQ10_2021 from './questions/SpecialistQ10_2021'
+import SpecialistQ11_2021 from './questions/SpecialistQ11_2021'
+import SpecialistQ12_2021 from './questions/SpecialistQ12_2021'
+import SpecialistQ13_2021 from './questions/SpecialistQ13_2021'
+import SpecialistQ14_2021 from './questions/SpecialistQ14_2021'
+import SpecialistQ17_2021 from './questions/SpecialistQ17_2021'
+import SpecialistQ18_2021 from './questions/SpecialistQ18_2021'
+import SpecialistQ19_2021 from './questions/SpecialistQ19_2021'
+import SpecialistQ1_2021Exam2 from './questions/SpecialistQ1_2021Exam2'
+import SpecialistQ2_2021Exam2 from './questions/SpecialistQ2_2021Exam2'
+import SpecialistQ3_2021Exam2 from './questions/SpecialistQ3_2021Exam2'
+import SpecialistQ4_2021Exam2 from './questions/SpecialistQ4_2021Exam2'
+import SpecialistQ6_2021Exam2 from './questions/SpecialistQ6_2021Exam2'
 import SpecialistQ1_2020 from './questions/SpecialistQ1_2020'
 import SpecialistQ3_2020 from './questions/SpecialistQ3_2020'
 import SpecialistQ5_2020 from './questions/SpecialistQ5_2020'
@@ -1010,6 +1027,23 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q7-2021-e1': SpecialistQ7_2021Exam1,
   'spec-q8-2021-e1': SpecialistQ8_2021Exam1,
   'spec-q9-2021-e1': SpecialistQ9_2021Exam1,
+  'spec-q1-2021': SpecialistQ1_2021,
+  'spec-q2-2021': SpecialistQ2_2021,
+  'spec-q3-2021': SpecialistQ3_2021,
+  'spec-q8-2021': SpecialistQ8_2021,
+  'spec-q10-2021': SpecialistQ10_2021,
+  'spec-q11-2021': SpecialistQ11_2021,
+  'spec-q12-2021': SpecialistQ12_2021,
+  'spec-q13-2021': SpecialistQ13_2021,
+  'spec-q14-2021': SpecialistQ14_2021,
+  'spec-q17-2021': SpecialistQ17_2021,
+  'spec-q18-2021': SpecialistQ18_2021,
+  'spec-q19-2021': SpecialistQ19_2021,
+  'spec-q1-2021-e2': SpecialistQ1_2021Exam2,
+  'spec-q2-2021-e2': SpecialistQ2_2021Exam2,
+  'spec-q3-2021-e2': SpecialistQ3_2021Exam2,
+  'spec-q4-2021-e2': SpecialistQ4_2021Exam2,
+  'spec-q6-2021-e2': SpecialistQ6_2021Exam2,
   'spec-q1-2020': SpecialistQ1_2020,
   'spec-q3-2020': SpecialistQ3_2020,
   'spec-q5-2020': SpecialistQ5_2020,
