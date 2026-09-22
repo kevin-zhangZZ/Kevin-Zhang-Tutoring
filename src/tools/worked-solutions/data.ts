@@ -1068,6 +1068,30 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q7-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Calculus — three trapezia under x·sin(x), then sketching its derivative', type: 'sa', hasDetail: true },
   { id: 'meth-q8-2024-e1', subject: 'methods', year: 2024, exam: 'Exam 1', code: 'Q8(a–d)', topic: 'Calculus — a cube-root curve and the two points sharing a gradient', type: 'sa', hasDetail: true },
 
+  // The remaining 2024 Mathematical Methods Exam 2 multiple-choice questions. This paper
+  // has only four options per question (A–D), a change from the five used in 2023.
+  { id: 'meth-q1-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 1', topic: 'Functions — why a translated logarithm has no horizontal asymptote', type: 'mc', hasDetail: true, percentCorrect: 74 },
+  { id: 'meth-q2-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 2', topic: 'Calculus — recovering g(2) from g′ and g(0)', type: 'mc', hasDetail: true, percentCorrect: 81 },
+  { id: 'meth-q3-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 3', topic: 'Probability — a conditional probability where the unknown k cancels', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'meth-q4-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — splitting an integral at an interior point', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'meth-q5-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 5', topic: 'Functions — the range of a composite, bracket by bracket', type: 'mc', hasDetail: true, percentCorrect: 52 },
+  { id: 'meth-q6-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 6', topic: 'Functions — an inverse whose domain is the original range', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'meth-q7-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 7', topic: 'Probability — how many rolls until a six is 95% likely', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'meth-q8-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 8', topic: 'Functions — the one x-intercept a table of values forces', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'meth-q9-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 9', topic: 'Probability — Bayes on a two-branch tree', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'meth-q12-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 12', topic: 'Transformations — reading f(2x+1) off a graph', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'meth-q14-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — a hybrid density, and how far 0.5 reaches into it', type: 'mc', hasDetail: true, percentCorrect: 53 },
+  { id: 'meth-q15-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 15', topic: 'Functions — the points of inflection of a translated tangent graph', type: 'mc', hasDetail: true, percentCorrect: 53 },
+  { id: 'meth-q18-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 18', topic: 'Calculus — maximising the area of a trapezium', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q19-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 19', topic: 'Probability — two symmetric tails pin down the mean and deviation', type: 'mc', hasDetail: true, percentCorrect: 57 },
+
+  // 2024 Mathematical Methods Exam 2 — all five Section B questions.
+  { id: 'meth-q1-2024-e2', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Functions — counting distinct roots of a parametrised quartic, then matching two quartics by transformation', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2024-e2', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Calculus — two models for a heated room, then energy as area under a power curve', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2024-e2', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'Q3(a–b)', topic: 'Calculus — fitting a cubic to sales data, then a two-cosine model of the annual cycle', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2024-e2', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Probability — luggage mass as a density, heavy bags per traveller, and confidence-interval width', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2024-e2', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'Q5(a–d)', topic: 'Functions — the two compositions of sin(x) with sin(2x), and when a restricted one exists', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2025 Exam 2 Section A, by VCAA-reported % correct.
   // This year's Section A used 4 options (A-D), not 5.
   { id: 'meth-q19-2025', subject: 'methods', year: 2025, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — finding c from a minimum-distance condition', type: 'mc', hasDetail: true, percentCorrect: 14 },
