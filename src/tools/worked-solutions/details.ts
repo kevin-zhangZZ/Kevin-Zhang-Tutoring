@@ -482,6 +482,26 @@ import SpecialistQ7_2023Exam1 from './questions/SpecialistQ7_2023Exam1'
 import SpecialistQ8_2023Exam1 from './questions/SpecialistQ8_2023Exam1'
 import SpecialistQ9_2023Exam1 from './questions/SpecialistQ9_2023Exam1'
 import SpecialistQ10_2023Exam1 from './questions/SpecialistQ10_2023Exam1'
+import SpecialistQ1_2023 from './questions/SpecialistQ1_2023'
+import SpecialistQ2_2023 from './questions/SpecialistQ2_2023'
+import SpecialistQ3_2023 from './questions/SpecialistQ3_2023'
+import SpecialistQ4_2023 from './questions/SpecialistQ4_2023'
+import SpecialistQ6_2023 from './questions/SpecialistQ6_2023'
+import SpecialistQ7_2023 from './questions/SpecialistQ7_2023'
+import SpecialistQ9_2023 from './questions/SpecialistQ9_2023'
+import SpecialistQ12_2023 from './questions/SpecialistQ12_2023'
+import SpecialistQ13_2023 from './questions/SpecialistQ13_2023'
+import SpecialistQ16_2023 from './questions/SpecialistQ16_2023'
+import SpecialistQ17_2023 from './questions/SpecialistQ17_2023'
+import SpecialistQ18_2023 from './questions/SpecialistQ18_2023'
+import SpecialistQ19_2023 from './questions/SpecialistQ19_2023'
+import SpecialistQ20_2023 from './questions/SpecialistQ20_2023'
+import SpecialistQ1_2023Exam2 from './questions/SpecialistQ1_2023Exam2'
+import SpecialistQ2_2023Exam2 from './questions/SpecialistQ2_2023Exam2'
+import SpecialistQ3_2023Exam2 from './questions/SpecialistQ3_2023Exam2'
+import SpecialistQ4_2023Exam2 from './questions/SpecialistQ4_2023Exam2'
+import SpecialistQ5_2023Exam2 from './questions/SpecialistQ5_2023Exam2'
+import SpecialistQ6_2023Exam2 from './questions/SpecialistQ6_2023Exam2'
 import SpecialistQ4_2024 from './questions/SpecialistQ4_2024'
 import SpecialistQ14_2024 from './questions/SpecialistQ14_2024'
 import SpecialistQ15_2024 from './questions/SpecialistQ15_2024'
@@ -1232,6 +1252,26 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q8-2023-e1': SpecialistQ8_2023Exam1,
   'spec-q9-2023-e1': SpecialistQ9_2023Exam1,
   'spec-q10-2023-e1': SpecialistQ10_2023Exam1,
+  'spec-q1-2023': SpecialistQ1_2023,
+  'spec-q2-2023': SpecialistQ2_2023,
+  'spec-q3-2023': SpecialistQ3_2023,
+  'spec-q4-2023': SpecialistQ4_2023,
+  'spec-q6-2023': SpecialistQ6_2023,
+  'spec-q7-2023': SpecialistQ7_2023,
+  'spec-q9-2023': SpecialistQ9_2023,
+  'spec-q12-2023': SpecialistQ12_2023,
+  'spec-q13-2023': SpecialistQ13_2023,
+  'spec-q16-2023': SpecialistQ16_2023,
+  'spec-q17-2023': SpecialistQ17_2023,
+  'spec-q18-2023': SpecialistQ18_2023,
+  'spec-q19-2023': SpecialistQ19_2023,
+  'spec-q20-2023': SpecialistQ20_2023,
+  'spec-q1-2023-e2': SpecialistQ1_2023Exam2,
+  'spec-q2-2023-e2': SpecialistQ2_2023Exam2,
+  'spec-q3-2023-e2': SpecialistQ3_2023Exam2,
+  'spec-q4-2023-e2': SpecialistQ4_2023Exam2,
+  'spec-q5-2023-e2': SpecialistQ5_2023Exam2,
+  'spec-q6-2023-e2': SpecialistQ6_2023Exam2,
 
   // Hardest-6 Specialist MCQs, 2024 Exam 2 (see data.ts percentCorrect)
   'spec-q4-2024': SpecialistQ4_2024,

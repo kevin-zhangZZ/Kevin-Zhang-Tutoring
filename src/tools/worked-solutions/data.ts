@@ -690,6 +690,33 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q9-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q9(a–e)', topic: 'Vectors — a plane through three points, and the area it spans', type: 'sa', hasDetail: true },
   { id: 'spec-q10-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q10(a–d)', topic: 'Vectors — a double angle turns a path into a circle at constant speed', type: 'sa', hasDetail: true },
 
+  // The remaining 2023 Specialist Exam 2 multiple-choice questions, completing all 20
+  // alongside the six hardest above. 2023 is the first paper on the current study design,
+  // so nothing here is Mechanics and nothing is omitted.
+  { id: 'spec-q1-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 1', topic: 'Proof — the contrapositive: negate both parts and swap them', type: 'mc', hasDetail: true, percentCorrect: 85 },
+  { id: 'spec-q2-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — an oblique asymptote fixes two coefficients, a vertical one the third', type: 'mc', hasDetail: true, percentCorrect: 59 },
+  { id: 'spec-q3-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 3', topic: 'Trigonometry — when a + sec(x) has exactly two x-intercepts', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'spec-q4-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 4', topic: 'Complex numbers — a quotient whose parameter cancels, in polar form', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'spec-q6-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 6', topic: 'Differential equations — tracing the Euler method through pseudocode', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'spec-q7-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 7', topic: 'Differential equations — following a solution curve through a direction field', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'spec-q9-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — the slope of a parametric path', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'spec-q12-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 12', topic: 'Kinematics — acceleration given as a function of velocity', type: 'mc', hasDetail: true, percentCorrect: 54 },
+  { id: 'spec-q13-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 13', topic: 'Kinematics — a phone dropped from a rising balloon keeps its velocity', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'spec-q16-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — total vertical distance travelled, not displacement', type: 'mc', hasDetail: true, percentCorrect: 32 },
+  { id: 'spec-q17-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 17', topic: 'Vectors — a cross product matched component by component', type: 'mc', hasDetail: true, percentCorrect: 73 },
+  { id: 'spec-q18-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 18', topic: 'Vectors — perpendicular planes have perpendicular normals', type: 'mc', hasDetail: true, percentCorrect: 74 },
+  { id: 'spec-q19-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 19', topic: 'Statistics — the total of 16 invoices, not their mean', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'spec-q20-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — a confidence interval read backwards for σ', type: 'mc', hasDetail: true, percentCorrect: 63 },
+
+  // 2023 Specialist Exam 2, Section B — all six extended-response questions.
+  // Question 6h. was invalidated by VCAA after an error was found in the stimulus.
+  { id: 'spec-q1-2023-e2', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'Q1(a–f)', topic: 'Calculus — a piecewise walking track joined smoothly, and the arc length of an elliptical return', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2023-e2', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Complex numbers — the seventh roots of unity, a ray between two of them, and the identity they satisfy', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2023-e2', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'Q3(a–d)', topic: 'Calculus — volume and curved surface area of a solid of revolution, and its "efficiency ratio"', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2023-e2', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'Q4(a–g)', topic: 'Differential equations — two logistic fish populations, where growth peaks, and a harvest term', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2023-e2', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'Q5(a–f)', topic: 'Vectors — a triangle by cross product, then lines and planes in three dimensions', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2023-e2', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'Q6(a–h)', topic: 'Statistics — a confidence interval, the sample size to shrink it, and a Type II error', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2024 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). This year's Section A used 4 options (A-D), not 5.
   { id: 'spec-q4-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 4', topic: 'Trigonometry — cos(x/2) from sin(x) and the quadrant of x', type: 'mc', hasDetail: true, percentCorrect: 27 },
