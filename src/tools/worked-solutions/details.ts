@@ -647,6 +647,25 @@ import MethodsQ6_2023Exam1 from './questions/MethodsQ6_2023Exam1'
 import MethodsQ7_2023Exam1 from './questions/MethodsQ7_2023Exam1'
 import MethodsQ8_2023Exam1 from './questions/MethodsQ8_2023Exam1'
 import MethodsQ9_2023Exam1 from './questions/MethodsQ9_2023Exam1'
+import MethodsQ1_2023 from './questions/MethodsQ1_2023'
+import MethodsQ2_2023 from './questions/MethodsQ2_2023'
+import MethodsQ3_2023 from './questions/MethodsQ3_2023'
+import MethodsQ4_2023 from './questions/MethodsQ4_2023'
+import MethodsQ5_2023 from './questions/MethodsQ5_2023'
+import MethodsQ6_2023 from './questions/MethodsQ6_2023'
+import MethodsQ7_2023 from './questions/MethodsQ7_2023'
+import MethodsQ8_2023 from './questions/MethodsQ8_2023'
+import MethodsQ9_2023 from './questions/MethodsQ9_2023'
+import MethodsQ10_2023 from './questions/MethodsQ10_2023'
+import MethodsQ13_2023 from './questions/MethodsQ13_2023'
+import MethodsQ15_2023 from './questions/MethodsQ15_2023'
+import MethodsQ16_2023 from './questions/MethodsQ16_2023'
+import MethodsQ19_2023 from './questions/MethodsQ19_2023'
+import MethodsQ1_2023Exam2 from './questions/MethodsQ1_2023Exam2'
+import MethodsQ2_2023Exam2 from './questions/MethodsQ2_2023Exam2'
+import MethodsQ3_2023Exam2 from './questions/MethodsQ3_2023Exam2'
+import MethodsQ4_2023Exam2 from './questions/MethodsQ4_2023Exam2'
+import MethodsQ5_2023Exam2 from './questions/MethodsQ5_2023Exam2'
 import MethodsQ17_2024 from './questions/MethodsQ17_2024'
 import MethodsQ16_2024 from './questions/MethodsQ16_2024'
 import MethodsQ10_2024 from './questions/MethodsQ10_2024'
@@ -1382,6 +1401,25 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q7-2023-e1': MethodsQ7_2023Exam1,
   'meth-q8-2023-e1': MethodsQ8_2023Exam1,
   'meth-q9-2023-e1': MethodsQ9_2023Exam1,
+  'meth-q1-2023': MethodsQ1_2023,
+  'meth-q2-2023': MethodsQ2_2023,
+  'meth-q3-2023': MethodsQ3_2023,
+  'meth-q4-2023': MethodsQ4_2023,
+  'meth-q5-2023': MethodsQ5_2023,
+  'meth-q6-2023': MethodsQ6_2023,
+  'meth-q7-2023': MethodsQ7_2023,
+  'meth-q8-2023': MethodsQ8_2023,
+  'meth-q9-2023': MethodsQ9_2023,
+  'meth-q10-2023': MethodsQ10_2023,
+  'meth-q13-2023': MethodsQ13_2023,
+  'meth-q15-2023': MethodsQ15_2023,
+  'meth-q16-2023': MethodsQ16_2023,
+  'meth-q19-2023': MethodsQ19_2023,
+  'meth-q1-2023-e2': MethodsQ1_2023Exam2,
+  'meth-q2-2023-e2': MethodsQ2_2023Exam2,
+  'meth-q3-2023-e2': MethodsQ3_2023Exam2,
+  'meth-q4-2023-e2': MethodsQ4_2023Exam2,
+  'meth-q5-2023-e2': MethodsQ5_2023Exam2,
 
   // Hardest-6 Methods MCQs, 2024 Exam 2 (see data.ts percentCorrect)
   'meth-q17-2024': MethodsQ17_2024,

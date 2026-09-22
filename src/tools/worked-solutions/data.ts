@@ -984,6 +984,30 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q8-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Probability — a cubic density function: normalising it, its mean, a conditional probability', type: 'sa', hasDetail: true },
   { id: 'meth-q9-2023-e1', subject: 'methods', year: 2023, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — two walking tracks sharing a peak, then the largest triangle under one', type: 'sa', hasDetail: true },
 
+  // The remaining 2023 Methods Exam 2 multiple-choice questions, completing all 20
+  // alongside the six hardest above.
+  { id: 'meth-q1-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — amplitude is a magnitude, so the minus sign does not survive', type: 'mc', hasDetail: true, percentCorrect: 77 },
+  { id: 'meth-q2-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the axis of symmetry when the linear coefficient is 2b', type: 'mc', hasDetail: true, percentCorrect: 53 },
+  { id: 'meth-q3-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 3', topic: 'Functions — the domain of a sum is the intersection, not the union', type: 'mc', hasDetail: true, percentCorrect: 47 },
+  { id: 'meth-q4-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 4', topic: 'Algebra — a zero determinant that still gives no solutions', type: 'mc', hasDetail: true, percentCorrect: 55 },
+  { id: 'meth-q5-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 5', topic: 'Calculus — which fractional power is flat rather than vertical at the origin', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'meth-q6-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 6', topic: 'Calculus — splitting an integral, then reversing the terminals', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'meth-q7-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 7', topic: 'Functions — the domain of the derivative of a composite', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q8-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 8', topic: 'Probability — at least one green ball in eight draws with replacement', type: 'mc', hasDetail: true, percentCorrect: 49 },
+  { id: 'meth-q9-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 9', topic: 'Calculus — making a piecewise function both continuous and smooth', type: 'mc', hasDetail: true, percentCorrect: 42 },
+  { id: 'meth-q10-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 10', topic: 'Probability — a percentile of a two-piece density function', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q13-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 13', topic: 'Calculus — three iterations of the Newton method, read out of pseudocode', type: 'mc', hasDetail: true, percentCorrect: 52 },
+  { id: 'meth-q15-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 15', topic: 'Statistics — matching two normal curves to their means and deviations', type: 'mc', hasDetail: true, percentCorrect: 65 },
+  { id: 'meth-q16-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 16', topic: 'Functions — dividing exponentials to recover the second factor', type: 'mc', hasDetail: true, percentCorrect: 69 },
+  { id: 'meth-q19-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 19', topic: 'Algebra — roots of opposite signs, from the product of the roots', type: 'mc', hasDetail: true, percentCorrect: 32 },
+
+  // 2023 Methods Exam 2, Section B — the five extended-response questions.
+  { id: 'meth-q1-2023-e2', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Calculus — a cubic, the area it cuts with a line, and the shift that gives it a repeated root', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2023-e2', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'Q2(a–d)', topic: 'Trigonometry — an observation wheel: average value against average rate of change, then a piecewise ride', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2023-e2', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'Q3(a–h)', topic: 'Calculus — tangents to 2^x, then 2^x − x²: inflection, strict decrease and where the Newton method breaks', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2023-e2', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'Q4(a–j)', topic: 'Probability — tennis balls: normal, binomial, conditional, a confidence level read backwards, and a transformed density', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2023-e2', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'Q5(a–f)', topic: 'Functions — a catenary and its two inverse branches, and a family whose turning point traces a hyperbola', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2024 Exam 2 Section A, by VCAA-reported % correct.
   // This year's Section A used 4 options (A-D), not 5.
   { id: 'meth-q17-2024', subject: 'methods', year: 2024, exam: 'Exam 2', code: 'MCQ 17', topic: 'Algorithms — tracing a cubic-root-finding algorithm', type: 'mc', hasDetail: true, percentCorrect: 27 },
