@@ -806,6 +806,18 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q8-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — matching a graph to its derivative graph', type: 'mc', hasDetail: true, percentCorrect: 40 },
   { id: 'meth-q15-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 15', topic: 'Probability — an equal split of 4 coins, given at least one head', type: 'mc', hasDetail: true, percentCorrect: 48 },
 
+  // The complete 2021 Methods Exam 1 (short answer), cross-referenced against the VCAA
+  // examination report and re-derived independently with sympy.
+  { id: 'meth-q1-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Calculus — a chain rule on an exponential, then a product rule with a square root', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q2', topic: 'Calculus — antidifferentiating, with a condition that pins the constant', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q3(a–c)', topic: 'Trigonometry — range and period of a sine, then a general solution', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q4(a–b)', topic: 'Functions — sketching a rectangular hyperbola, then reading an inequality off it', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Transformations — a dilation and a translation applied in a given order', type: 'sa', hasDetail: true },
+  { id: 'meth-q6-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q6(a–c)', topic: 'Probability — a box of doughnuts: a two-way count, a conditional, and a sample proportion', type: 'sa', hasDetail: true },
+  { id: 'meth-q7-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q7(a–b)', topic: 'Probability — normalising a density function, then its mean', type: 'sa', hasDetail: true },
+  { id: 'meth-q8-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Calculus — recovering a function from its gradient, then classifying its stationary point', type: 'sa', hasDetail: true },
+  { id: 'meth-q9-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — a tangent to the unit circle, its vertical dilation, and the largest triangle it cuts', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2022 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q20-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — probability a projectile clears a distance, given θ~N', type: 'mc', hasDetail: true, percentCorrect: 30 },
   { id: 'meth-q19-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — where a cut-corner box reaches maximum volume', type: 'mc', hasDetail: true, percentCorrect: 34 },
