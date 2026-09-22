@@ -677,6 +677,19 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q11-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — setting up a surface-of-revolution integral', type: 'mc', hasDetail: true, percentCorrect: 46 },
   { id: 'spec-q14-2023', subject: 'specialist', year: 2023, exam: 'Exam 2', code: 'MCQ 14', topic: 'Vectors — c·n for n orthogonal to two given vectors', type: 'mc', hasDetail: true, percentCorrect: 48 },
 
+  // 2023 Specialist Exam 1 — all ten short-answer questions. The 2023 paper is the
+  // first on the current study design, so there is no Mechanics to omit.
+  { id: 'spec-q1-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q1(a–b)', topic: 'Functions — dividing out an oblique asymptote, then sketching', type: 'sa', hasDetail: true },
+  { id: 'spec-q2-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q2', topic: 'Complex numbers — the argument of a cube, divided by three', type: 'sa', hasDetail: true },
+  { id: 'spec-q3-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q3(a–b)', topic: 'Kinematics — velocity as a function of displacement, and its limit', type: 'sa', hasDetail: true },
+  { id: 'spec-q4-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q4', topic: 'Calculus — implicit differentiation of x·arcsin(y²)', type: 'sa', hasDetail: true },
+  { id: 'spec-q5-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q5', topic: 'Calculus — integration by parts on x²·log(x)', type: 'sa', hasDetail: true },
+  { id: 'spec-q6-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q6(a–b)', topic: 'Statistics — adding three independent normals, then a sample mean', type: 'sa', hasDetail: true },
+  { id: 'spec-q7-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q7', topic: 'Calculus — the surface area of a parametric surface of revolution', type: 'sa', hasDetail: true },
+  { id: 'spec-q8-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q8', topic: 'Proof — induction for the nth derivative of x·e^(2x)', type: 'sa', hasDetail: true },
+  { id: 'spec-q9-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q9(a–e)', topic: 'Vectors — a plane through three points, and the area it spans', type: 'sa', hasDetail: true },
+  { id: 'spec-q10-2023-e1', subject: 'specialist', year: 2023, exam: 'Exam 1', code: 'Q10(a–d)', topic: 'Vectors — a double angle turns a path into a circle at constant speed', type: 'sa', hasDetail: true },
+
   // The 6 hardest Specialist MCQs from 2024 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). This year's Section A used 4 options (A-D), not 5.
   { id: 'spec-q4-2024', subject: 'specialist', year: 2024, exam: 'Exam 2', code: 'MCQ 4', topic: 'Trigonometry — cos(x/2) from sin(x) and the quadrant of x', type: 'mc', hasDetail: true, percentCorrect: 27 },
