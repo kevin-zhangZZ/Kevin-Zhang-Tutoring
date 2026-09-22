@@ -730,6 +730,33 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q17-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — maximum y-intercept of a tangent to −ln(x+2)', type: 'mc', hasDetail: true, percentCorrect: 42 },
   { id: 'meth-q18-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 18', topic: 'Functions — range of a hyperbola-type rule split by its asymptote', type: 'mc', hasDetail: true, percentCorrect: 43 },
 
+  // The rest of 2020 Methods Exam 2 Section A, answers and percentages read off the rendered
+  // report table (the correct option is marked only by shading). MCQ 13 is written as a matrix
+  // transformation, which is off the current study design, but every option is a diagonal
+  // matrix plus a shift, so it reads as "dilate, then translate" and is included with a note --
+  // the same treatment given the matrix questions in 2016-2019.
+  { id: 'meth-q1-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 1', topic: 'Functions — evaluating a composite from a table of values', type: 'mc', hasDetail: true, percentCorrect: 84 },
+  { id: 'meth-q2-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 2', topic: 'Algebra — the remainder theorem with an unknown coefficient', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'meth-q3-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 3', topic: 'Calculus — antidifferentiating and pinning the constant', type: 'mc', hasDetail: true, percentCorrect: 86 },
+  { id: 'meth-q4-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 4', topic: 'Trigonometry — the general solution of a cosine equation', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'meth-q5-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 5', topic: 'Functions — the asymptotes of a rational function', type: 'mc', hasDetail: true, percentCorrect: 83 },
+  { id: 'meth-q6-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 6', topic: 'Calculus — recovering the shape of f from the graph of f′', type: 'mc', hasDetail: true, percentCorrect: 61 },
+  { id: 'meth-q7-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — a double chain rule through an unknown function', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'meth-q8-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 8', topic: 'Probability — recovering p from a binomial mean, then a tail', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'meth-q10-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 10', topic: 'Algebra — which integers make a logarithm a positive integer', type: 'mc', hasDetail: true, percentCorrect: 62 },
+  { id: 'meth-q11-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 11', topic: 'Probability — a standard deviation from a standardised probability', type: 'mc', hasDetail: true, percentCorrect: 60 },
+  { id: 'meth-q12-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 12', topic: 'Trigonometry — a sinusoidal model for the tip of a minute hand', type: 'mc', hasDetail: true, percentCorrect: 45 },
+  { id: 'meth-q13-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 13', topic: 'Transformations — a dilation and a translation, in matrix form', type: 'mc', hasDetail: true, percentCorrect: 26 },
+  { id: 'meth-q14-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — a normal distribution with mean twice its deviation', type: 'mc', hasDetail: true, percentCorrect: 44 },
+  { id: 'meth-q16-2020', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — maximising a triangle under a parabola', type: 'mc', hasDetail: true, percentCorrect: 53 },
+
+  // 2020 Methods Exam 2, Section B — the five extended-response questions.
+  { id: 'meth-q1-2020-e2', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'Q1(a–f)', topic: 'Calculus — a quartic with two repeated roots, its derivative, and the area against its reflection', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2020-e2', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Calculus — a river between two cosine banks: distances, areas and a dilation constraint', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2020-e2', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'Q3(a–f)', topic: 'Probability — delivery times: a normal model, a shifted mean, a binomial tail and total probability', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2020-e2', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Calculus — tangents to 2x·e^(1−x²), a perpendicular pair, and two chords cutting equal areas', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2020-e2', subject: 'methods', year: 2020, exam: 'Exam 2', code: 'Q5(a–h)', topic: 'Calculus — where a tangent to x³ − x meets the axis, and the odd family x³ + wx under a transformation', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2021 Exam 2 Section A, by VCAA-reported % correct.
   // This report gives the correct answer directly.
   { id: 'meth-q16-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 16', topic: 'Trigonometry — sin(x)+cos(y) from cos(x) and sin²(y) in Q4', type: 'mc', hasDetail: true, percentCorrect: 31 },
