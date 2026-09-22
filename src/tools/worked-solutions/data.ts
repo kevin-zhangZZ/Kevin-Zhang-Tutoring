@@ -818,6 +818,30 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q8-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q8(a–b)', topic: 'Calculus — recovering a function from its gradient, then classifying its stationary point', type: 'sa', hasDetail: true },
   { id: 'meth-q9-2021-e1', subject: 'methods', year: 2021, exam: 'Exam 1', code: 'Q9(a–c)', topic: 'Calculus — a tangent to the unit circle, its vertical dilation, and the largest triangle it cuts', type: 'sa', hasDetail: true },
 
+  // The remaining 2021 Methods Exam 2 multiple-choice questions, completing all 20
+  // alongside the six hardest above.
+  { id: 'meth-q1-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — the period of a tangent function', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'meth-q2-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 2', topic: 'Algebra — combining two logarithms into one', type: 'mc', hasDetail: true, percentCorrect: 81 },
+  { id: 'meth-q3-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 3', topic: 'Probability — a 95% confidence interval for a population proportion', type: 'mc', hasDetail: true, percentCorrect: 72 },
+  { id: 'meth-q4-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — a maximum on a closed interval that sits at an endpoint', type: 'mc', hasDetail: true, percentCorrect: 58 },
+  { id: 'meth-q5-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 5', topic: 'Functions — testing four functional relations against f(x) = x', type: 'mc', hasDetail: true, percentCorrect: 73 },
+  { id: 'meth-q6-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 6', topic: 'Probability — a single binomial term', type: 'mc', hasDetail: true, percentCorrect: 88 },
+  { id: 'meth-q7-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — a tangent through the origin fixes an unknown coefficient', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'meth-q9-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 9', topic: 'Functions — the range of a composite on a restricted domain', type: 'mc', hasDetail: true, percentCorrect: 56 },
+  { id: 'meth-q10-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 10', topic: 'Functions — the maximal domain of a sum of two square roots', type: 'mc', hasDetail: true, percentCorrect: 70 },
+  { id: 'meth-q11-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — linearity of the definite integral, with a constant term', type: 'mc', hasDetail: true, percentCorrect: 67 },
+  { id: 'meth-q12-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 12', topic: 'Probability — the smallest sample size making a proportion precise enough', type: 'mc', hasDetail: true, percentCorrect: 54 },
+  { id: 'meth-q13-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 13', topic: 'Calculus — an average rate of change over twelve months', type: 'mc', hasDetail: true, percentCorrect: 80 },
+  { id: 'meth-q14-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 14', topic: 'Calculus — matching two average values over the same interval', type: 'mc', hasDetail: true, percentCorrect: 63 },
+  { id: 'meth-q17-2021', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'MCQ 17', topic: 'Probability — the smallest n making a binomial tail reach 0.5', type: 'mc', hasDetail: true, percentCorrect: 57 },
+
+  // 2021 Methods Exam 2, Section B — the five extended-response questions.
+  { id: 'meth-q1-2021-e2', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'Q1(a–g)', topic: 'Calculus — an open-topped box cut from a sheet: maximum volume, waste, and the same in terms of h', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2021-e2', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Calculus — right-endpoint rectangles, the exact integral, and an area with three solutions', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2021-e2', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'Q3(a–f)', topic: 'Calculus — a log difference, a tangent and normal, the angle between two lines, and an area', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2021-e2', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'Q4(a–h)', topic: 'Probability — a ball machine: a normal model, a sample proportion, and a density function transformed', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2021-e2', subject: 'methods', year: 2021, exam: 'Exam 2', code: 'Q5(a–g)', topic: 'Trigonometry — the family sin(x/a) + cos(ax): period, symmetry, balanced areas and its greatest minimum', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2022 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q20-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — probability a projectile clears a distance, given θ~N', type: 'mc', hasDetail: true, percentCorrect: 30 },
   { id: 'meth-q19-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — where a cut-corner box reaches maximum volume', type: 'mc', hasDetail: true, percentCorrect: 34 },

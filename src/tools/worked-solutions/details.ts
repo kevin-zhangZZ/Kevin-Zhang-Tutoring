@@ -530,6 +530,25 @@ import MethodsQ6_2021Exam1 from './questions/MethodsQ6_2021Exam1'
 import MethodsQ7_2021Exam1 from './questions/MethodsQ7_2021Exam1'
 import MethodsQ8_2021Exam1 from './questions/MethodsQ8_2021Exam1'
 import MethodsQ9_2021Exam1 from './questions/MethodsQ9_2021Exam1'
+import MethodsQ1_2021 from './questions/MethodsQ1_2021'
+import MethodsQ2_2021 from './questions/MethodsQ2_2021'
+import MethodsQ3_2021 from './questions/MethodsQ3_2021'
+import MethodsQ4_2021 from './questions/MethodsQ4_2021'
+import MethodsQ5_2021 from './questions/MethodsQ5_2021'
+import MethodsQ6_2021 from './questions/MethodsQ6_2021'
+import MethodsQ7_2021 from './questions/MethodsQ7_2021'
+import MethodsQ9_2021 from './questions/MethodsQ9_2021'
+import MethodsQ10_2021 from './questions/MethodsQ10_2021'
+import MethodsQ11_2021 from './questions/MethodsQ11_2021'
+import MethodsQ12_2021 from './questions/MethodsQ12_2021'
+import MethodsQ13_2021 from './questions/MethodsQ13_2021'
+import MethodsQ14_2021 from './questions/MethodsQ14_2021'
+import MethodsQ17_2021 from './questions/MethodsQ17_2021'
+import MethodsQ1_2021Exam2 from './questions/MethodsQ1_2021Exam2'
+import MethodsQ2_2021Exam2 from './questions/MethodsQ2_2021Exam2'
+import MethodsQ3_2021Exam2 from './questions/MethodsQ3_2021Exam2'
+import MethodsQ4_2021Exam2 from './questions/MethodsQ4_2021Exam2'
+import MethodsQ5_2021Exam2 from './questions/MethodsQ5_2021Exam2'
 import MethodsQ20_2022 from './questions/MethodsQ20_2022'
 import MethodsQ19_2022 from './questions/MethodsQ19_2022'
 import MethodsQ13_2022 from './questions/MethodsQ13_2022'
@@ -1156,6 +1175,25 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q7-2021-e1': MethodsQ7_2021Exam1,
   'meth-q8-2021-e1': MethodsQ8_2021Exam1,
   'meth-q9-2021-e1': MethodsQ9_2021Exam1,
+  'meth-q1-2021': MethodsQ1_2021,
+  'meth-q2-2021': MethodsQ2_2021,
+  'meth-q3-2021': MethodsQ3_2021,
+  'meth-q4-2021': MethodsQ4_2021,
+  'meth-q5-2021': MethodsQ5_2021,
+  'meth-q6-2021': MethodsQ6_2021,
+  'meth-q7-2021': MethodsQ7_2021,
+  'meth-q9-2021': MethodsQ9_2021,
+  'meth-q10-2021': MethodsQ10_2021,
+  'meth-q11-2021': MethodsQ11_2021,
+  'meth-q12-2021': MethodsQ12_2021,
+  'meth-q13-2021': MethodsQ13_2021,
+  'meth-q14-2021': MethodsQ14_2021,
+  'meth-q17-2021': MethodsQ17_2021,
+  'meth-q1-2021-e2': MethodsQ1_2021Exam2,
+  'meth-q2-2021-e2': MethodsQ2_2021Exam2,
+  'meth-q3-2021-e2': MethodsQ3_2021Exam2,
+  'meth-q4-2021-e2': MethodsQ4_2021Exam2,
+  'meth-q5-2021-e2': MethodsQ5_2021Exam2,
 
   // Hardest-6 Methods MCQs, 2022 Exam 2 (see data.ts percentCorrect)
   'meth-q20-2022': MethodsQ20_2022,
