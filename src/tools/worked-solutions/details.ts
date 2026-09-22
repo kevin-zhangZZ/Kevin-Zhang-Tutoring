@@ -589,6 +589,25 @@ import MethodsQ5_2022Exam1 from './questions/MethodsQ5_2022Exam1'
 import MethodsQ6_2022Exam1 from './questions/MethodsQ6_2022Exam1'
 import MethodsQ7_2022Exam1 from './questions/MethodsQ7_2022Exam1'
 import MethodsQ8_2022Exam1 from './questions/MethodsQ8_2022Exam1'
+import MethodsQ1_2022 from './questions/MethodsQ1_2022'
+import MethodsQ2_2022 from './questions/MethodsQ2_2022'
+import MethodsQ3_2022 from './questions/MethodsQ3_2022'
+import MethodsQ4_2022 from './questions/MethodsQ4_2022'
+import MethodsQ5_2022 from './questions/MethodsQ5_2022'
+import MethodsQ7_2022 from './questions/MethodsQ7_2022'
+import MethodsQ8_2022 from './questions/MethodsQ8_2022'
+import MethodsQ9_2022 from './questions/MethodsQ9_2022'
+import MethodsQ10_2022 from './questions/MethodsQ10_2022'
+import MethodsQ11_2022 from './questions/MethodsQ11_2022'
+import MethodsQ12_2022 from './questions/MethodsQ12_2022'
+import MethodsQ14_2022 from './questions/MethodsQ14_2022'
+import MethodsQ15_2022 from './questions/MethodsQ15_2022'
+import MethodsQ16_2022 from './questions/MethodsQ16_2022'
+import MethodsQ1_2022Exam2 from './questions/MethodsQ1_2022Exam2'
+import MethodsQ2_2022Exam2 from './questions/MethodsQ2_2022Exam2'
+import MethodsQ3_2022Exam2 from './questions/MethodsQ3_2022Exam2'
+import MethodsQ4_2022Exam2 from './questions/MethodsQ4_2022Exam2'
+import MethodsQ5_2022Exam2 from './questions/MethodsQ5_2022Exam2'
 import MethodsQ11_2023 from './questions/MethodsQ11_2023'
 import MethodsQ17_2023 from './questions/MethodsQ17_2023'
 import MethodsQ12_2023 from './questions/MethodsQ12_2023'
@@ -1270,6 +1289,25 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q6-2022-e1': MethodsQ6_2022Exam1,
   'meth-q7-2022-e1': MethodsQ7_2022Exam1,
   'meth-q8-2022-e1': MethodsQ8_2022Exam1,
+  'meth-q1-2022': MethodsQ1_2022,
+  'meth-q2-2022': MethodsQ2_2022,
+  'meth-q3-2022': MethodsQ3_2022,
+  'meth-q4-2022': MethodsQ4_2022,
+  'meth-q5-2022': MethodsQ5_2022,
+  'meth-q7-2022': MethodsQ7_2022,
+  'meth-q8-2022': MethodsQ8_2022,
+  'meth-q9-2022': MethodsQ9_2022,
+  'meth-q10-2022': MethodsQ10_2022,
+  'meth-q11-2022': MethodsQ11_2022,
+  'meth-q12-2022': MethodsQ12_2022,
+  'meth-q14-2022': MethodsQ14_2022,
+  'meth-q15-2022': MethodsQ15_2022,
+  'meth-q16-2022': MethodsQ16_2022,
+  'meth-q1-2022-e2': MethodsQ1_2022Exam2,
+  'meth-q2-2022-e2': MethodsQ2_2022Exam2,
+  'meth-q3-2022-e2': MethodsQ3_2022Exam2,
+  'meth-q4-2022-e2': MethodsQ4_2022Exam2,
+  'meth-q5-2022-e2': MethodsQ5_2022Exam2,
 
   // Hardest-6 Methods MCQs, 2023 Exam 2 (see data.ts percentCorrect)
   'meth-q11-2023': MethodsQ11_2023,

@@ -901,6 +901,30 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q7-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q7(a–c)', topic: 'Calculus — two tile designs that each halve a square and line up edge to edge', type: 'sa', hasDetail: true },
   { id: 'meth-q8-2022-e1', subject: 'methods', year: 2022, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Calculus — an area function given outright, run by the fundamental theorem', type: 'sa', hasDetail: true },
 
+  // The remaining 2022 Methods Exam 2 multiple-choice questions, completing all 20
+  // alongside the six hardest above.
+  { id: 'meth-q1-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — the period of a cosine with a phase shift', type: 'mc', hasDetail: true, percentCorrect: 91 },
+  { id: 'meth-q2-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the horizontal asymptote of a translated truncus', type: 'mc', hasDetail: true, percentCorrect: 78 },
+  { id: 'meth-q3-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 3', topic: 'Calculus — a gradient at the y-intercept', type: 'mc', hasDetail: true, percentCorrect: 73 },
+  { id: 'meth-q4-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 4', topic: 'Functions — which of five functions fails to be continuous on [0, 5]', type: 'mc', hasDetail: true, percentCorrect: 68 },
+  { id: 'meth-q5-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 5', topic: 'Functions — the largest restriction making a parabola one-to-one', type: 'mc', hasDetail: true, percentCorrect: 74 },
+  { id: 'meth-q7-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — matching a cubic to the shape of its derivative', type: 'mc', hasDetail: true, percentCorrect: 73 },
+  { id: 'meth-q8-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — splitting a definite integral at an interior point', type: 'mc', hasDetail: true, percentCorrect: 78 },
+  { id: 'meth-q9-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 9', topic: 'Functions — a distance to the origin that collapses to a perfect square', type: 'mc', hasDetail: true, percentCorrect: 50 },
+  { id: 'meth-q10-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 10', topic: 'Statistics — a 95% confidence interval quoted as a percentage', type: 'mc', hasDetail: true, percentCorrect: 78 },
+  { id: 'meth-q11-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — integration by parts in disguise, from a given derivative', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'meth-q12-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 12', topic: 'Probability — drawing one of each colour without replacement', type: 'mc', hasDetail: true, percentCorrect: 52 },
+  { id: 'meth-q14-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — the mean of a density function built from x·e^(−x²/9)', type: 'mc', hasDetail: true, percentCorrect: 75 },
+  { id: 'meth-q15-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 15', topic: 'Functions — the maximal domain of a square root of a quadratic', type: 'mc', hasDetail: true, percentCorrect: 88 },
+  { id: 'meth-q16-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 16', topic: 'Calculus — two turning points and a point fix three coefficients', type: 'mc', hasDetail: true, percentCorrect: 59 },
+
+  // 2022 Methods Exam 2, Section B — the five extended-response questions.
+  { id: 'meth-q1-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q1(a–e)', topic: 'Calculus — a tangent and normal to a parabola, the area they cut, then the same with a parameter', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Trigonometry — fox and rabbit populations as two sinusoids, a matrix transformation, and damping', type: 'sa', hasDetail: true },
+  { id: 'meth-q3-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q3(a–c)', topic: 'Probability — coin flips: a binomial, a quadratic density function, and a sample proportion', type: 'sa', hasDetail: true },
+  { id: 'meth-q4-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Functions — a log difference that turns out odd, its inverse, and when it encloses area with it', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q5(a–e)', topic: 'Calculus — a composite with an unknown inner function, worked from a table of values', type: 'sa', hasDetail: true },
+
   // The 6 hardest Methods MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q11-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — gradient of a product f(x)·g(x) at a point', type: 'mc', hasDetail: true, percentCorrect: 22 },
   { id: 'meth-q17-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — volume of a cylinder rolled from a rectangular sheet', type: 'mc', hasDetail: true, percentCorrect: 28 },
