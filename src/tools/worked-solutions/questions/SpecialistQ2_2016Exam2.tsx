@@ -11,9 +11,9 @@ import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '.
 // in the wrong container (.mkv) — so each was only losslessly remuxed to .mp4
 // (`ffmpeg -c copy -movflags +faststart`), no re-encoding needed.
 const VIDEO = {
-  d: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AM19bglUj0kg0OfXJznhiSE/SM%202016/Converted/SAQ2d/SAQ2d-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
-  e: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AJwryms95NSmXmLSJkGzMMM/SM%202016/Converted/SAQ2e/SAQ2e-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
-  f: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AC-iJ7WmthFKFtKCLetJpxs/SM%202016/Converted/SAQ2f/SAQ2f-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  d: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/APWF4toNWprpJwahCcejsmE/SM%202016/Converted/SAQ2/SAQ2d-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  e: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/APrsfg5ws8nXs3ikWvExzCY/SM%202016/Converted/SAQ2/SAQ2e-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  f: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AAhxSw2nFv5frlU9zTHhVBk/SM%202016/Converted/SAQ2/SAQ2f-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
 }
 
 const EXAMINER_A: SAExaminerStats = {

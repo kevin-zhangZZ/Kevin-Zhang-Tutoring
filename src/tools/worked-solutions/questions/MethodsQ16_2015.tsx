@@ -12,7 +12,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 // portrait phone recording with QuickTime rotation metadata, which the remux preserves and
 // browsers render correctly.
 const VIDEO_SRC =
-  'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/APIwJzjg4AlRB1ounX0aOdA/MM%202015/Converted/MCQ16/MCQ16-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1'
+  'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AJHdgWbSWqdR_tZlFbYrNCg/MM%202015/Converted/MCQ/MCQ16-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 24, B: 19, C: 26, D: 22, E: 8 },
