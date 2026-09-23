@@ -67,11 +67,11 @@ const EXAMINER_E: SAExaminerStats = {
 // that one was only remuxed into an .mp4 container (`ffmpeg -c copy`, instant, no
 // re-encoding, identical quality). Originals are kept alongside in Dropbox.
 const VIDEO = {
-  a: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/AJ3S_a1D0X0pluAFSVBermo/SAQ3a-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
-  b: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ANTJtcJqXZ0_hFJrJ2SGLOs/SAQ3b-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
-  c: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ANvMSeh8zPfysFrcGcQ-haM/SAQ3c-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
-  d: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ANRTMZqrSSj-8C7XCT3IbR8/SAQ3d-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
-  e: 'https://www.dropbox.com/scl/fo/x672xwjrtj2j9xu7i61hm/ADbe9Ndd7W_QuzOCq-K07do/SAQ3e-h264.mp4?rlkey=5hew4el0gbyauzhc3y9aqdda2&raw=1',
+  a: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AO0X_Szmbr5wk53u7zdVKFs/SM%202016/Converted/SAQ3a/SAQ3a-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  b: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ACzdHm8Pd4oKmkkbSTyt30Q/SM%202016/Converted/SAQ3b/SAQ3b-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  c: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ANy0JFt_DCU3hFXlJkr6Tp4/SM%202016/Converted/SAQ3c/SAQ3c-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  d: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AAZ-OSxHeOYbAP8xjMD85Rk/SM%202016/Converted/SAQ3d/SAQ3d-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  e: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AACfiM4CfJTi7JYcS_5oQds/SM%202016/Converted/SAQ3e/SAQ3e-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
 }
 
 export default function SpecialistSAQ3_2016() {
