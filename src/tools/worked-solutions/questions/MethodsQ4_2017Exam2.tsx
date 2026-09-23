@@ -13,6 +13,24 @@ import { Cas } from '../CasRef'
 import graphSrc from './meth-2017exam2-q4-graph.png'
 import pairSrc from './meth-2017exam2-q4d-pair.png'
 
+// Dropbox share links for the tutor's video walkthrough of every part, converted to
+// `raw=1` so the browser can stream them directly. All were already H.264/AAC — just
+// muxed in the wrong container (.mkv) or missing the fast-start flag — so each was only
+// losslessly remuxed (`ffmpeg -c copy -movflags +faststart`), no re-encoding needed.
+// Part (g) covers both g.i and g.ii in one recording; part (i) is split into i.i and i.ii.
+const VIDEO = {
+  a: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AO91l09q9jI9cAYwDUzJ_5Y/MM%202017/SAQ4a-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  b: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/APj9lpYi0u--pZdiyA3aYk0/MM%202017/SAQ4b-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  c: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ANFPVdHzKfkREIere3wtae4/MM%202017/SAQ4c-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  d: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ABvTHN6NPdd0vXLpwhsoEl8/MM%202017/SAQ4d-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  e: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AAw0-cF9OtJchN3RkrFABgA/MM%202017/SAQ4e-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  f: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AETPYcEAPYlcV_SBqzfQclw/MM%202017/SAQ4f-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  g: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ALv8hkfndHRlkZ2HEmk5vR8/MM%202017/SAQ4g-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  h: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AP14aDiPQmzSSgNM1VrSEoM/MM%202017/SAQ4h-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  ii: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AKs04OxDxXYlF4OCP3LIbTs/MM%202017/SAQ4i.i-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  iii: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AMZfgWrKgDAgPRt677UpKD0/MM%202017/SAQ4i.ii-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+}
+
 const EXAM_A: SAExaminerStats = {
   marks: [24, 28, 48],
   average: 1.3,
@@ -387,6 +405,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_A}
+        videoSrc={VIDEO.a}
       >
         <Background title="On the matrix notation">
           <p>
@@ -411,6 +430,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_B}
+        videoSrc={VIDEO.b}
       >
         <WorkingTable rows={ROWS_B} />
       </PartCard>
@@ -425,6 +445,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_C}
+        videoSrc={VIDEO.c}
       >
         <Background title="The y = x shortcut">
           <p>
@@ -468,6 +489,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_D}
+        videoSrc={VIDEO.d}
       >
         <WorkingTable rows={ROWS_D} />
       </PartCard>
@@ -488,6 +510,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_E}
+        videoSrc={VIDEO.e}
       >
         <WorkingTable rows={ROWS_E} />
       </PartCard>
@@ -502,6 +525,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_F}
+        videoSrc={VIDEO.f}
       >
         <WorkingTable rows={ROWS_F} />
       </PartCard>
@@ -516,6 +540,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_GI}
+        videoSrc={VIDEO.g}
       >
         <WorkingTable rows={ROWS_GI} />
       </PartCard>
@@ -530,6 +555,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_GII}
+        videoSrc={VIDEO.g}
       >
         <WorkingTable rows={ROWS_GII} />
       </PartCard>
@@ -546,6 +572,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_H}
+        videoSrc={VIDEO.h}
       >
         <WorkingTable rows={ROWS_H} />
       </PartCard>
@@ -560,6 +587,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_II}
+        videoSrc={VIDEO.ii}
       >
         <WorkingTable rows={ROWS_II} />
         <div>
@@ -583,6 +611,7 @@ export default function MethodsQ4_2017Exam2() {
           </>
         }
         examinerReport={EXAM_IIII}
+        videoSrc={VIDEO.iii}
       >
         <Background title="A limit, not an integral">
           <p>
