@@ -377,7 +377,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q8-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Probability — two conditional probabilities, everything else in terms of p', type: 'sa', hasDetail: true },
   { id: 'meth-q9-2017-e1', subject: 'methods', year: 2017, exam: 'Exam 1', code: 'Q9(a–d)', topic: 'Calculus — area under √x(1−x), a show-that derivative, and a right-angled triangle of tangents', type: 'sa', hasDetail: true },
   { id: 'meth-q1-2017-e2', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'Q1(a–d)', topic: 'Calculus — turning points, a chord, and an area that collapses to (k+1)²/4', type: 'sa', hasDetail: true },
-  { id: 'meth-q2-2017-e2', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Trigonometry — a Ferris wheel, a tangent line of sight, and an arc turned into a time', type: 'sa', hasDetail: true },
+  { id: 'meth-q2-2017-e2', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Trigonometry — a Ferris wheel, a tangent line of sight, and an arc turned into a time', type: 'sa', hasDetail: true, hasVideo: true },
   { id: 'meth-q3-2017-e2', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'Q3(a–g)', topic: 'Probability — a triangular density function with a binomial layered on top', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2017-e2', subject: 'methods', year: 2017, exam: 'Exam 2', code: 'Q4(a–i)', topic: 'Functions — 2^(x+1) − 2 and its inverse, then the family 2e^(kx) − 2', type: 'sa', hasDetail: true, hasVideo: true },
 

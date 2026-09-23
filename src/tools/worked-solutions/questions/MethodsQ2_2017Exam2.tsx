@@ -11,6 +11,17 @@ import { Cas } from '../CasRef'
 import p1Src from './meth-2017exam2-q2-p1.png'
 import p2Src from './meth-2017exam2-q2-p2.png'
 
+// Dropbox share links for the tutor's video walkthrough of parts d, f, g, h, converted to
+// `raw=1` so the browser can stream them directly. All were already H.264/AAC — just
+// muxed in the wrong container — so each was only losslessly remuxed
+// (`ffmpeg -c copy -movflags +faststart`), no re-encoding needed.
+const VIDEO = {
+  d: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ALqaULFC6Uhf2HDxUit22Vc/MM%202017/Converted/SAQ2/SAQ2d-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  f: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AEzxO6rgIgIp4UDnxcFtJf0/MM%202017/Converted/SAQ2/SAQ2f-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  g: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AC0Vq2IehSDFLF-7DYgK2dw/MM%202017/Converted/SAQ2/SAQ2g-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+  h: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/ADhqnTXaLXCZETOHqUh4AwI/MM%202017/Converted/SAQ2/SAQ2h-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
+}
+
 const EXAM_A: SAExaminerStats = { marks: [11, 89], average: 0.9, comment: <>This question was well answered.</> }
 
 const EXAM_B: SAExaminerStats = {
@@ -305,6 +316,7 @@ export default function MethodsQ2_2017Exam2() {
           </>
         }
         examinerReport={EXAM_D}
+        videoSrc={VIDEO.d}
       >
         <WorkingTable rows={ROWS_D} />
       </PartCard>
@@ -348,6 +360,7 @@ export default function MethodsQ2_2017Exam2() {
           </>
         }
         examinerReport={EXAM_F}
+        videoSrc={VIDEO.f}
       >
         <Background title="Two expressions for one gradient">
           <p>
@@ -375,6 +388,7 @@ export default function MethodsQ2_2017Exam2() {
           </>
         }
         examinerReport={EXAM_G}
+        videoSrc={VIDEO.g}
       >
         <WorkingTable rows={ROWS_G} />
       </PartCard>
@@ -389,6 +403,7 @@ export default function MethodsQ2_2017Exam2() {
           </>
         }
         examinerReport={EXAM_H}
+        videoSrc={VIDEO.h}
       >
         <Background title="Turning an angle into a time">
           <p>
