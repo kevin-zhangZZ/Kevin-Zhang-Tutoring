@@ -12,9 +12,33 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="(f\circ g)(x)" /> needs <Katex tex="\sin(x)+\tfrac{1}{\sqrt2}>0" />, giving{' '}
-      <Katex tex="x\in\big(-\tfrac{\pi}{4},\tfrac{5\pi}{4}\big)" /> (the branch near 0). <Katex tex="(g\circ f)(x)" />{' '}
-      needs <Katex tex="x>-\tfrac{1}{\sqrt2}" /> and <Katex tex="x<e^5-\tfrac{1}{\sqrt2}" />.
+      <Katex tex="f(x)=\log_e\left(x+\tfrac{1}{\sqrt2}\right)" />,{' '}
+      <Katex tex="g(x)=\sin(x)" /> where <Katex tex="x\in(-\infty,5)" />
+      <br />
+      <Katex tex="(f\circ g)(x)=\log_e\left(\sin(x)+\tfrac{1}{\sqrt2}\right)" />
+      <br />
+      <Katex tex="\sin(x)+\tfrac{1}{\sqrt2}>0" />
+      <br />
+      <Katex tex="\sin(x)=-\tfrac{1}{\sqrt2}" />, <Katex tex="x=\ldots-\tfrac\pi4,\tfrac{5\pi}{4}" /> as{' '}
+      <Katex tex="x<5" />
+      <br />
+      <Katex tex="x\in\left(-\tfrac\pi4+2\pi k,\tfrac{5\pi}{4}+2\pi k\right),\ k\in Z^-\cup\{0\}" />
+      <br />
+      <Katex tex="(g\circ f)(x)=\sin\left(\log_e\left(x+\tfrac{1}{\sqrt2}\right)\right)" />
+      <br />
+      <Katex tex="\log_e\left(x+\tfrac{1}{\sqrt2}\right)<5" />,{' '}
+      <Katex tex="x=e^5-\tfrac{1}{\sqrt2}" />
+      <br />
+      <Katex tex="x\in\left(-\tfrac{1}{\sqrt2},e^5-\tfrac{1}{\sqrt2}\right)" />
+      <br />
+      The largest interval of <Katex tex="x" /> values for which{' '}
+      <Katex tex="(f\circ g)(x)" /> and <Katex tex="(g\circ f)(x)" /> both exist is
+      <br />
+      <Katex tex="\left(-\tfrac\pi4+2\pi k,\tfrac{5\pi}{4}+2\pi k\right)\cap\left(-\tfrac{1}{\sqrt2},e^5-\tfrac{1}{\sqrt2}\right)," />
+      <br />
+      <Katex tex="k\in Z^-\cup\{0\}" />
+      <br />
+      <Katex tex="=\left(-\tfrac{1}{\sqrt2},\tfrac{5\pi}{4}\right)" />
     </>
   ),
 }
@@ -22,7 +46,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)=\log_e\!\left(x+\tfrac{1}{\sqrt2}\right) \qquad g(x)=\sin(x),\ \ x\in(-\infty,5)" />,
-    reason: 'Given functions.',
+    reason: <>Given functions.</>,
   },
   {
     working: <Katex display tex="(f\circ g)(x) = \log_e\!\left(\sin(x)+\tfrac{1}{\sqrt2}\right)" />,
@@ -34,7 +58,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Domain of } f\circ g: \ \ x \in \left(-\tfrac{\pi}{4},\ \tfrac{5\pi}{4}\right)" />,
-    reason: 'Open interval, since the inequality is strict.',
+    reason: <>Open interval, since the inequality is strict.</>,
   },
   {
     working: <Katex display tex="(g\circ f)(x) = \sin\!\left(\log_e\!\left(x+\tfrac{1}{\sqrt2}\right)\right)" />,
@@ -42,7 +66,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x+\tfrac{1}{\sqrt2}>0 \;\implies\; x > -\tfrac{1}{\sqrt2}" />,
-    reason: 'Domain requirement for the logarithm.',
+    reason: <>Domain requirement for the logarithm.</>,
   },
   {
     working: <Katex display tex="\log_e\!\left(x+\tfrac{1}{\sqrt2}\right) < 5 \;\implies\; x < e^5-\tfrac{1}{\sqrt2}" />,
@@ -53,12 +77,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Combine the two conditions — note <Katex tex="e^5-\tfrac{1}{\sqrt2}\approx147" /> is far larger than anything from the other domain.</>,
   },
   {
-    working: <>Both composites need to exist together, so intersect the two domains. Since <Katex tex="-\tfrac{\pi}{4}\approx-0.785 < -\tfrac{1}{\sqrt2}\approx-0.707" />, and <Katex tex="\tfrac{5\pi}{4}\approx3.93" /> is far smaller than <Katex tex="e^5-\tfrac{1}{\sqrt2}" />.</>,
+    working: <>Both composites need to exist together, so intersect the two domains: <Katex tex="-\tfrac{\pi}{4}\approx-0.785 < -\tfrac{1}{\sqrt2}\approx-0.707" />, and <Katex tex="\tfrac{5\pi}{4}\approx3.93" /> is far smaller than <Katex tex="e^5-\tfrac{1}{\sqrt2}" />.</>,
     reason: <>The tighter bound wins on each side: <Katex tex="-\tfrac{1}{\sqrt2}" /> from <Katex tex="g\circ f" />, and <Katex tex="\tfrac{5\pi}{4}" /> from <Katex tex="f\circ g" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(-\tfrac{1}{\sqrt2},\ \tfrac{5\pi}{4}\right)}" />,
-    reason: <>Matches option <b>A</b> — open at both ends, since both contributing inequalities were strict.</>,
+    reason: <>Matches option <b>A</b>. Open at both ends, since both contributing inequalities were strict. Option <b>C</b> is the domain of <Katex tex="f\circ g" /> alone.</>,
   },
 ]
 

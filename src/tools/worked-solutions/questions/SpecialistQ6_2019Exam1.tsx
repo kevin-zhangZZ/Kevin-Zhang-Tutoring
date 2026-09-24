@@ -12,11 +12,11 @@ const EXAMINER: SAExaminerStats = {
   average: 2.3,
   comment: (
     <>
-      This question was handled well, with most students being able to write down correct
+      This question was handled well with most students being able to write down correct
       simultaneous equations to solve. Occasional arithmetic and transcription errors were
       noted, but a large number were successful in finding the value of <Katex tex="d" />. A
-      number of students successfully evaluated a determinant instead. Demonstrating linear
-      dependence of a set of vectors was noted as an area of strength.
+      number of students successfully evaluated a <Katex tex="3\times3" /> determinant in order to
+      find the value of <Katex tex="d" />.
     </>
   ),
 }
@@ -28,6 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-6\underset{\sim}{i}+2\underset{\sim}{j}+d\underset{\sim}{k} = m\left(2\underset{\sim}{i}-3\underset{\sim}{j}+4\underset{\sim}{k}\right)+n\left(-2\underset{\sim}{i}+4\underset{\sim}{j}-8\underset{\sim}{k}\right)" />,
+    reason: <>Substituting the three given vectors.</>,
   },
   {
     working: (
@@ -54,14 +55,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m = n-3 = -7-3 = -10" />,
+    reason: <>Back-substituting.</>,
   },
   {
     working: <Katex display tex="d = 4m-8n = 4(-10)-8(-7) = -40+56" />,
     reason: <>Now use the third component equation, which was held back for exactly this.</>,
-  },
-  {
-    working: <Katex display tex="\boxed{d = 16}" />,
-    reason: <>Check with the first two components: <Katex tex="2(-10)-2(-7)=-20+14=-6" /> ✓ and <Katex tex="-3(-10)+4(-7)=30-28=2" /> ✓.</>,
   },
   {
     working: (
@@ -70,7 +68,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="2(4d+16)+3(-2d-48)+4(-4+24) = 2d-32 = 0 \implies d=16" />
       </>
     ),
-    reason: <>Three vectors are linearly dependent exactly when the determinant of the matrix of their components is zero — they then fail to span three dimensions. This route is quicker if you're confident with determinants, and the report notes a number of students used it successfully.</>,
+    reason: <>Three vectors are linearly dependent exactly when the determinant of the matrix of their components is zero — they then fail to span three dimensions. This route is quicker if you're confident with determinants, and the report notes a number of students used it successfully. Both routes agree.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{d = 16}" />,
+    reason: <>Check with the first two components: <Katex tex="2(-10)-2(-7)=-20+14=-6" /> ✓ and <Katex tex="-3(-10)+4(-7)=30-28=2" /> ✓.</>,
   },
 ]
 

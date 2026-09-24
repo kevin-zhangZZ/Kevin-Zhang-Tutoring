@@ -6,7 +6,7 @@
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 
 const EXAM_DI: SAExaminerStats = {
@@ -96,7 +96,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{1.4x = -v-7\log_e(7-v)+7\log_e(7)}" />,
-    reason: <>The modulus can be dropped: the trailer never reaches <Katex tex="v=7" /> (that is the terminal velocity), so <Katex tex="7-v>0" /> throughout.</>,
+    reason: <>The modulus can be dropped: the trailer never reaches <Katex tex="v=7" /> (that is the terminal velocity), so <Katex tex="7-v>0" /> throughout. This is the given equation, as required.</>,
   },
 ]
 
@@ -148,15 +148,6 @@ export default function SpecialistQ5_2015Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">Question 5 (12 marks) — part d. only</p>
         <p>
-          Parts a., b. and c. of this question resolve the weight force on a 250 kg trailer
-          held on a ramp inclined at <Katex tex="10^\circ" />. Mechanics is no longer an area
-          of study in VCE Specialist Mathematics, so those three parts are omitted here.
-        </p>
-        <p>
-          Part d. stands on its own: it begins from a differential equation the paper prints
-          in full, and everything after that is ordinary separable-equation work.
-        </p>
-        <p>
           When the trailer rolls into the water, it stops, then sinks vertically from rest so
           that its depth <Katex tex="x" /> metres after <Katex tex="t" /> seconds is given by
           the differential equation
@@ -166,8 +157,23 @@ export default function SpecialistQ5_2015Exam2() {
         </div>
       </div>
 
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+        <Background title="Why only part d.">
+          <p>
+            Parts a., b. and c. of this question resolve the weight force on a 250 kg trailer
+            held on a ramp inclined at <Katex tex="10^\circ" />. Mechanics is no longer an area
+            of study in VCE Specialist Mathematics, so those three parts are omitted here.
+          </p>
+          <p>
+            Part d. stands on its own: it begins from a differential equation the paper prints
+            in full, and everything after that is ordinary separable-equation work.
+          </p>
+        </Background>
+      </div>
+
       <PartCard
         letter="d.i"
+        topic="Acceleration Form"
         marks={2}
         statement={
           <>
@@ -183,6 +189,7 @@ export default function SpecialistQ5_2015Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Separable DE"
         marks={1}
         statement={
           <>
@@ -197,6 +204,7 @@ export default function SpecialistQ5_2015Exam2() {
 
       <PartCard
         letter="d.iii"
+        topic="Solve for Depth"
         marks={1}
         statement={
           <>
@@ -212,6 +220,7 @@ export default function SpecialistQ5_2015Exam2() {
 
       <PartCard
         letter="d.iv"
+        topic="Time Integral"
         marks={3}
         statement={
           <>

@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac59}" />,
-    reason: <>Option E, after dividing top and bottom by 8. Options A and D use <Katex tex="81=9^2" /> as the denominator, which would be right <em>with</em> replacement.</>,
+    reason: <>Matches option <b>E</b>, after dividing top and bottom by 8. Options A and D use <Katex tex="81=9^2" /> as the denominator, which would be right <em>with</em> replacement.</>,
   },
 ]
 

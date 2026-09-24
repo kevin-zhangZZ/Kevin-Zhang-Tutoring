@@ -10,12 +10,24 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 14, B: 36, C: 33, D: 17 },
   answer: 'B',
+  comment: (
+    <>
+      Vector resolute of <Katex tex="\underset{\sim}{r}" /> in the direction of{' '}
+      <Katex tex="\underset{\sim}{s}=\dfrac{\underset{\sim}{r}\cdot \underset{\sim}{s}}{|\underset{\sim}{s}|^2}\underset{\sim}{s}=-4\underset{\sim}{i}+4\underset{\sim}{j}-2\underset{\sim}{k}" />
+      <br />
+      so <Katex tex="\dfrac{\underset{\sim}{r}\cdot \underset{\sim}{s}}{9}\left(2\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k}\right)=-4\underset{\sim}{i}+4\underset{\sim}{j}-2\underset{\sim}{k}" /> hence{' '}
+      <Katex tex="\underset{\sim}{r}\cdot \underset{\sim}{s}=-18" />.
+      <br />
+      Scalar resolute or <Katex tex="\underset{\sim}{s}" /> in the direction of{' '}
+      <Katex tex="\underset{\sim}{r}=\dfrac{\underset{\sim}{r}\cdot \underset{\sim}{s}}{|\underset{\sim}{r}|}=-\dfrac{18}{9}=-2" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{vector resolute of } \underset{\sim}{r} \text{ on } \underset{\sim}{s} = \left(\frac{\underset{\sim}{r}\cdot\underset{\sim}{s}}{|\underset{\sim}{s}|^2}\right)\underset{\sim}{s}" />,
-    reason: 'Standard formula for a vector resolute.',
+    reason: <>Standard formula for a vector resolute.</>,
   },
   {
     working: <Katex display tex="-4\underset{\sim}{i}+4\underset{\sim}{j}-2\underset{\sim}{k} = -2\big(2\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k}\big) = -2\underset{\sim}{s}" />,
@@ -23,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{\underset{\sim}{r}\cdot\underset{\sim}{s}}{|\underset{\sim}{s}|^2} = -2 \;\implies\; \underset{\sim}{r}\cdot\underset{\sim}{s} = -2|\underset{\sim}{s}|^2" />,
-    reason: 'Match coefficients with the formula above.',
+    reason: <>Match coefficients with the formula above.</>,
   },
   {
     working: <Katex display tex="|\underset{\sim}{s}|^2 = 2^2+(-2)^2+1^2 = 9 \;\implies\; \underset{\sim}{r}\cdot\underset{\sim}{s} = -18" />,
@@ -35,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{-18}{9} = -2}" />,
-    reason: <>Using <Katex tex="|\underset{\sim}{r}|=9" /> — matches option <b>B</b>.</>,
+    reason: <>Using <Katex tex="|\underset{\sim}{r}|=9" />. Matches option <b>B</b>. Option <b>A</b>, <Katex tex="-18" />, is <Katex tex="\underset{\sim}{r}\cdot\underset{\sim}{s}" /> itself.</>,
   },
 ]
 

@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{7}{25}}" />,
-    reason: <>Option B. Option C is the same magnitude with the sign of <Katex tex="\cos\theta" /> carried through by mistake.</>,
+    reason: <>Matches option <b>B</b>. Option C (12%) is the same magnitude with the wrong sign; option E, <Katex tex="-\tfrac{24}{25}" />, is <Katex tex="\sin(2\theta)=2\left(\tfrac35\right)\left(-\tfrac45\right)" />, the wrong double-angle formula.</>,
   },
 ]
 

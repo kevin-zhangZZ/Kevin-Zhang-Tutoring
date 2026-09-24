@@ -14,7 +14,9 @@ const EXAM_A: SAExaminerStats = {
       Most students were able to confidently apply the quotient rule. However, many students
       did not obtain full marks due to errors caused by, for example, a denominator of{' '}
       <Katex tex="x^4+4" /> as the supposed expansion of <Katex tex="(x^2+2)^2" />. Students
-      should very carefully consider the placement and usage of brackets.
+      should very carefully consider the placement and usage of brackets. For example, the
+      expression <Katex tex="x^2+2\times-\sin(x)" /> is not equivalent to{' '}
+      <Katex tex="(x^2+2)\times-\sin(x)" />.
     </>
   ),
 }
@@ -66,7 +68,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(1) = 2e^5+5e^5" />,
-    reason: <>Substituting. The question says "evaluate", so this last step is not optional — the report says many students stopped at the derivative.</>,
+    reason: <>Substituting. The question says "evaluate", so this last step is not optional — the report says many students found the derivative but did not evaluate it.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(1) = 7e^5}" />,
@@ -77,8 +79,13 @@ const ROWS_B: WorkingRow[] = [
 export default function MethodsQ1_2016Exam1() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p className="font-semibold text-gray-900 dark:text-white">Question 1 (4 marks)</p>
+      </div>
+
       <PartCard
         letter="a"
+        topic="Quotient Rule"
         marks={2}
         statement={
           <>
@@ -101,6 +108,7 @@ export default function MethodsQ1_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="Product Rule"
         marks={2}
         statement={
           <>

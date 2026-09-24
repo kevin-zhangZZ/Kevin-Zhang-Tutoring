@@ -9,6 +9,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 22, C: 52, D: 7, E: 3 },
   answer: 'C',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
@@ -22,15 +23,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x_2 = 0.83333-\frac{0.07870}{5.08333} = 0.81785" />,
-    reason: <>Option <b>B</b> is this, the two-iteration value. The three options <b>A</b>, <b>B</b>, <b>C</b> are the successive estimates, so miscounting the loop is the whole trap.</>,
+    reason: <>Option <b>B</b> is this, the two-iteration value. Options <b>A</b>, <b>B</b> and <b>C</b> are the successive estimates, so miscounting the loop lands on a wrong one.</>,
   },
   {
     working: <Katex display tex="x_3 = 0.81785-\frac{0.00057}{5.00662} = 0.81773" />,
-    reason: 'The third pass, which is where the For loop ends and the value is returned.',
+    reason: <>The third pass, which is where the For loop ends and the value is returned.</>,
   },
   {
     working: <Katex display tex="\boxed{0.81773}" />,
-    reason: <>Option <b>C</b>. The true root is <Katex tex="0.817731\ldots" />, so three steps have already converged to five decimal places — Newton's method roughly doubles the number of correct digits each step.</>,
+    reason: <>Matches option <b>C</b>. The true root is <Katex tex="0.817731\ldots" />, so three steps have already converged to five decimal places — Newton's method roughly doubles the number of correct digits each step.</>,
   },
 ]
 
@@ -40,7 +41,7 @@ export default function MethodsQ13_2023() {
       question={
         <div className="flex flex-col gap-3">
           <p>
-            The following algorithm applies Newton's method using a For loop with 3
+            The following algorithm applies Newton's method using a <b>For</b> loop with 3
             iterations.
           </p>
           <pre className="text-[12.5px] leading-relaxed bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 rounded-xl p-4 overflow-x-auto">
@@ -58,7 +59,7 @@ Define newton(f(x), df(x), x0)
     Return x0`}
           </pre>
           <p>
-            The Return value of the function{' '}
+            The <b>Return</b> value of the function{' '}
             <Katex tex="\mathrm{newton}\!\left(x^3+3x-3,\ 3x^2+3,\ 1\right)" /> is closest to
           </p>
         </div>

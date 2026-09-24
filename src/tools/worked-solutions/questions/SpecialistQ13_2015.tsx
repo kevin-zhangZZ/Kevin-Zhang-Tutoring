@@ -5,7 +5,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
-import fieldSrc from './spec-2015e2-mcq13-field.png'
+import fieldSrc from './spec-2015-mcq13-field.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 15, C: 26, D: 47, E: 6 },
@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(3,\ -0.5)}" />,
-    reason: <>Option D — the only point both below the start and reachable by following the segments across the whole field.</>,
+    reason: <>Matches option <b>D</b> — the only point both below the start and reachable by following the segments across the whole field.</>,
   },
 ]
 
@@ -46,19 +46,19 @@ export default function SpecialistQ13_2015() {
     <MCQShell
       question={
         <>
-          <p className="mb-2">The direction field for a certain differential equation is shown below.</p>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
+            <img
+              src={fieldSrc}
+              alt="A direction field on axes from x = -3.5 to 3.5 and y = -2.5 to 2.5: the line segments are steeply negative near the left and right edges, and almost horizontal in a band through the middle of the field — from the original 2015 VCAA exam paper"
+              className="w-full max-w-[460px]"
+            />
+          </div>
+          <p className="mb-2">The direction field for a certain differential equation is shown above.</p>
           <p>
             The solution curve to the differential equation that passes through the point{' '}
             <Katex tex="(-2.5,\,1.5)" /> could also pass through
           </p>
         </>
-      }
-      diagram={
-        <img
-          src={fieldSrc}
-          alt="A direction field on axes from x = -3.5 to 3.5 and y = -2.5 to 2: the line segments are steeply negative near the left and right edges, and almost horizontal in a band through the middle of the field — from the original 2015 VCAA exam paper"
-          className="w-full max-w-[460px]"
-        />
       }
       background={
         <p>

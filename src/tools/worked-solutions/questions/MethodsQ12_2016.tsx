@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = -\sqrt{4x-5}}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option E (22%) doubles the whole of <Katex tex="2x-5" /> instead of replacing <Katex tex="x" /> by <Katex tex="2x" />; option B (19%) replaces <Katex tex="x" /> by <Katex tex="\tfrac{x}{2}" />, which is a dilation by factor <Katex tex="2" />, not <Katex tex="\tfrac12" />.</>,
   },
 ]
 

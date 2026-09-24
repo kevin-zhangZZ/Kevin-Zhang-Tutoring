@@ -17,11 +17,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z^4-1=0 \;\implies\; z^4=1" />,
-    reason: 'Solve each factor separately, then combine — being alert to any repeats.',
+    reason: <>Solve each factor separately, then combine — being alert to any repeats.</>,
   },
   {
-    working: <Katex display tex="\boxed{z \in \{1,\,-1,\,i,\,-i\}}" />,
-    reason: 'The four 4th roots of unity, evenly spaced around the unit circle.',
+    working: <Katex display tex="z \in \{1,\,-1,\,i,\,-i\}" />,
+    reason: <>The four fourth roots of unity, evenly spaced around the unit circle.</>,
   },
   {
     working: <Katex display tex="z^2+3iz-2=0" />,
@@ -33,10 +33,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{-3i\pm i}{2}" />
       </>
     ),
-    reason: 'The quadratic formula, remembering that i² = -1.',
+    reason: <>The quadratic formula, remembering that <Katex tex="i^2=-1" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{z = \frac{-3i+i}{2}=-i, \quad \text{or} \quad z=\frac{-3i-i}{2}=-2i}" />,
+    working: <Katex display tex="z = \frac{-3i+i}{2}=-i, \quad \text{or} \quad z=\frac{-3i-i}{2}=-2i" />,
+    reason: <>The two roots of the quadratic.</>,
   },
   {
     working: <Katex display tex="\{1,-1,i,-i\} \cup \{-i,-2i\} = \{1,-1,i,-i,-2i\}" />,
@@ -44,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{5 \text{ distinct roots}}" />,
-    reason: <>Matches option <b>D</b> — not <Katex tex="4+2=6" />, since the two factors share the common root <Katex tex="z=-i" />.</>,
+    reason: <>Matches option <b>D</b> — not <Katex tex="4+2=6" /> (option E, 35%), since the two factors share the common root <Katex tex="z=-i" />.</>,
   },
 ]
 
@@ -54,7 +55,7 @@ export default function SpecialistQ3_2017() {
       question={
         <p>
           The number of distinct roots of the equation <Katex tex="(z^4-1)(z^2+3iz-2)=0" />, where{' '}
-          <Katex tex="z\in\mathbb{C}" />, is
+          <Katex tex="z\in C" />, is
         </p>
       }
       options={[

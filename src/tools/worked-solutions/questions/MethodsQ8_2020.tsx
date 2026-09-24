@@ -31,11 +31,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Cas fn="binomCdf">1 - binomCdf(25, 0.056, 0, 3)</Cas>,
-    reason: <>Using <Katex tex="\Pr(X\le4)" /> instead gives <Katex tex="0.0088" />; using <Katex tex="\Pr(X\ge3)" /> gives <Katex tex="0.162" />, which is option E.</>,
+    reason: <>The complement of "at most 3". Using <Katex tex="\Pr(X\ge3)" /> instead gives <Katex tex="0.162" />, which is option <b>E</b>.</>,
   },
   {
     working: <Katex display tex="\boxed{0.048}" />,
-    reason: <>Option B, to three decimal places (<Katex tex="0.04850\ldots" />).</>,
+    reason: <>To three decimal places (<Katex tex="0.04850\ldots" />). Matches option <b>B</b>. The distractors are single binomial values: <b>D</b> is <Katex tex="\Pr(X=3)\approx0.114" />, <b>A</b> is <Katex tex="\Pr(X=4)\approx0.037" />, <b>E</b> is <Katex tex="\Pr(X\ge3)" /> and <b>C</b> is <Katex tex="p" /> itself.</>,
   },
 ]
 

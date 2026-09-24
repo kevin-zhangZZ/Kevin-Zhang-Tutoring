@@ -14,10 +14,17 @@ const EXAM: SAExaminerStats = {
     <>
       Students found this question challenging. Most students were able to separate the
       variables correctly, but there were then many errors in the subsequent integration.
-      It was common for logarithms to be seen. A large number of students, when confronted
-      with a square equals a constant, gave only the positive root. Many gave both roots but
-      did not realise that only the negative root satisfied the initial conditions. Several
-      students omitted the constant of integration.
+      Errors were seen in the integration of the polynomial part but far more in the
+      integration of the term involving the reciprocal of the square root, despite the
+      formula being on the formula sheet. It was common for logarithms to be seen. Some
+      students were unable to proceed by completing the square or otherwise having
+      integrated. A large number of students, when confronted with a square equals a
+      constant, gave only the positive root. Many gave both roots but did not realise that
+      only the negative root satisfied the initial conditions. Several students omitted the
+      constant of integration; others made mistakes when attempting to evaluate the
+      constant. A number of students interpreted <Katex tex="y(1)=0" /> as{' '}
+      <Katex tex="x=0" /> when <Katex tex="y=1" />, while some attempted to solve for{' '}
+      <Katex tex="x" /> rather than <Katex tex="y" />.
     </>
   ),
 }
@@ -37,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y(1)=0: \quad 0 = \arcsin\!\left(\frac{1}{\sqrt2}\right)+c = \frac{\pi}{4}+c" />,
-    reason: <>Substituting the initial condition. <Katex tex="\arcsin\!\left(\tfrac{1}{\sqrt2}\right)=\tfrac{\pi}{4}" />.</>,
+    reason: <>Substituting the initial condition: <Katex tex="y(1)=0" /> means <Katex tex="y=0" /> when <Katex tex="x=1" />, not the other way round. <Katex tex="\arcsin\!\left(\tfrac{1}{\sqrt2}\right)=\tfrac{\pi}{4}" />.</>,
   },
   {
     working: <Katex display tex="c = -\frac{\pi}{4} \implies 2y-\frac{y^2}{2} = \arcsin\!\left(\frac{x}{\sqrt2}\right)-\frac{\pi}{4}" />,
@@ -53,7 +60,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = 2\pm\sqrt{4+\frac{\pi}{2}-2\arcsin\!\left(\frac{x}{\sqrt2}\right)}" />,
-    reason: <>Both roots — writing only the positive one was the report's most common error.</>,
+    reason: <>Both roots — the report says a large number of students wrote only the positive one.</>,
   },
   {
     working: <Katex display tex="x=1: \quad 4+\frac{\pi}{2}-2\times\frac{\pi}{4} = 4 \implies y = 2\pm2" />,
@@ -75,6 +82,8 @@ export default function SpecialistQ10_2016Exam1() {
           <Katex tex="y(1)=0" />. Express <Katex tex="y" /> as a function of{' '}
           <Katex tex="x" />.
         </p>
+      </Background>
+      <Background>
         <p>
           Three separate places to lose marks: recognising{' '}
           <Katex tex="\tfrac{1}{\sqrt{a^2-x^2}}" /> as an inverse sine rather than a

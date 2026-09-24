@@ -1,13 +1,13 @@
 // 2017 Mathematical Methods — Exam 1, Question 7 (5 marks).
 // Composite functions: when does a composition exist, and what is its range. Parts (b)(ii)
-// and (c) were the two worst-answered single-mark parts on the paper (80% and 70% zero).
+// and (c) were answered poorly (80% and 70% of students scored zero).
 // Question text transcribed from the original paper (no diagram given); the parabola sketch
 // below is this site's own, plotted with matplotlib. Answers verified with sympy. Solution
 // is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import parabolaSrc from './meth-2017exam1-q7-parabola.png'
+import parabolaSrc from './meth-2017e1-q7-parabola.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [35, 65],
@@ -80,7 +80,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{c=-3}" />,
-    reason: <>The largest value allowed, and it does satisfy <Katex tex="c<0" />. Pushing <Katex tex="c" /> any further right — to <Katex tex="-2" />, say — would let <Katex tex="g" /> return <Katex tex="-1" />, and <Katex tex="\sqrt{-1+1}" /> would be fine but <Katex tex="f" /> is not defined at <Katex tex="-1" /> because its domain starts at <Katex tex="0" />.</>,
+    reason: <>The largest value allowed, and it does satisfy <Katex tex="c<0" />. Pushing <Katex tex="c" /> any further right — to <Katex tex="-2" />, say — would include <Katex tex="x" />-values where <Katex tex="g(x)<0" /> (for example <Katex tex="g(-2)=-1" />), and <Katex tex="-1" /> is not in the domain of <Katex tex="f" />, <Katex tex="[0,\infty)" />.</>,
   },
 ]
 
@@ -132,7 +132,7 @@ export default function MethodsQ7_2017Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Range" marks={1} statement={<>State the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <Background title="The one rule behind this whole question">
           <p>
             <Katex tex="f(g(x))" /> exists only when{' '}
@@ -152,6 +152,7 @@ export default function MethodsQ7_2017Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Composite Function"
         marks={2}
         statement={
           <>
@@ -175,6 +176,7 @@ export default function MethodsQ7_2017Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Range"
         marks={1}
         statement={
           <>
@@ -189,6 +191,7 @@ export default function MethodsQ7_2017Exam1() {
 
       <PartCard
         letter="c"
+        topic="Range"
         marks={1}
         statement={
           <>

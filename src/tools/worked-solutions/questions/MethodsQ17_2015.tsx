@@ -1,4 +1,4 @@
-// 2015 Mathematical Methods — Exam 2, MCQ 17.
+// 2015 Mathematical Methods (CAS) — Exam 2, MCQ 17. VCAA examination report: 60% correct.
 // f(x) = x^3 - 3x^2 + c has three distinct x-intercepts — find the set of possible c.
 // Question text transcribed from the original paper; solution is original.
 
@@ -29,7 +29,8 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>D</b> — open interval, since <Katex tex="c=0" /> or <Katex tex="c=4" /> would make
-        a turning point touch the axis, giving a repeated (not distinct) root.
+        a turning point touch the axis, giving a repeated (not distinct) root — those two boundary cases are
+        option C. Option E only keeps the local minimum below the axis and forgets the maximum must stay above it.
       </>
     ),
   },
@@ -48,8 +49,8 @@ export default function MethodsQ17_2015() {
         </>
       }
       options={[
-        { letter: 'A', content: <Katex tex="\mathbb{R}" /> },
-        { letter: 'B', content: <Katex tex="\mathbb{R}^+" /> },
+        { letter: 'A', content: <Katex tex="R" /> },
+        { letter: 'B', content: <Katex tex="R^+" /> },
         { letter: 'C', content: <Katex tex="\{0,4\}" /> },
         { letter: 'D', content: <Katex tex="(0,4)" />, isAnswer: true },
         { letter: 'E', content: <Katex tex="(-\infty,4)" /> },

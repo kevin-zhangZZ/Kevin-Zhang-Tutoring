@@ -23,7 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(2)=5}" />,
-    reason: <>Reading the last value off the list. The trap is doing it outside-in: <Katex tex="f(3)=4" /> then <Katex tex="g(4)=1" /> gives option A, which is <Katex tex="g(f(3))" />, not <Katex tex="f(g(3))" />.</>,
+    reason: <>Reading <Katex tex="f(2)" /> off the list. Matches option <b>E</b>. The trap is doing it outside-in: <Katex tex="f(3)=4" /> then <Katex tex="g(4)=1" /> gives option A, which is <Katex tex="g(f(3))" />, not <Katex tex="f(g(3))" />.</>,
   },
 ]
 

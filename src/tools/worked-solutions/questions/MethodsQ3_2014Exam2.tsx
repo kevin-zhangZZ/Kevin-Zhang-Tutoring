@@ -27,9 +27,9 @@ const EXAM_BI: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students gave two answers, <Katex tex="0.33" /> and <Katex tex="1.19" />, instead
-      of only the first one, as specified in the question. Some students rounded incorrectly
-      and gave <Katex tex="0.32" />.
+      This question was answered well. Some students gave two answers, <Katex tex="0.33" />{' '}
+      and <Katex tex="1.19" />, instead of only the first one, as specified in the question.
+      Some students rounded incorrectly and gave <Katex tex="0.32" /> as their answer.
     </>
   ),
 }
@@ -41,7 +41,8 @@ const EXAM_BII: SAExaminerStats = {
     <>
       Students should always work to suitable accuracy in intermediate calculations to
       support rounding the answer to the required accuracy. Some students wrote down the two
-      values but did not find the difference. Some added the two values.
+      values but did not find the difference for the length of time. Some added the two
+      values. Some students incorrectly converted the time to minutes.
     </>
   ),
 }
@@ -51,8 +52,9 @@ const EXAM_CI: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Some students worked out the average <em>value</em> of the function. Others had
-      incorrect units.
+      Some students worked out the average value of the function. Some used{' '}
+      <Katex tex="\dfrac{3-\frac23}{c(3)-c\left(\frac23\right)}" />. Others had incorrect units.
+      Some changed their answer to <Katex tex="0.23" /> mg/L/h.
     </>
   ),
 }
@@ -74,7 +76,7 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Many students were able to set up at least one of the equations.{' '}
-      <Katex tex="n(0.5)=0.74" /> was often used. Some students differentiated by hand
+      <Katex tex="n'(0.5)=0.74" /> was often used. Some students differentiated by hand
       incorrectly. Some students gave the value of <Katex tex="k" />, not <Katex tex="A" />.
       Others gave an exact answer.
     </>
@@ -157,7 +159,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-0.23\ \text{mg/L/h}}" />,
-    reason: <>Negative, because the concentration is falling across this interval. The units matter.</>,
+    reason: <>Negative, because the concentration is falling across this interval — the report notes some students changed their answer to <Katex tex="+0.23" />, dropping the sign. The units matter too.</>,
   },
 ]
 
@@ -191,7 +193,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n'(0.5) = 0 \implies 1-0.5k = 0 \implies k = 2" />,
-    reason: <>The maximum is <em>at</em> <Katex tex="t=0.5" />, which is the second equation many students missed.</>,
+    reason: <>The maximum is <em>at</em> <Katex tex="t=0.5" />, so the derivative is zero there. The report says <Katex tex="n'(0.5)=0.74" /> was often written instead — mixing up the maximum's location (where <Katex tex="n'=0" />) with its value (<Katex tex="n=0.74" />).</>,
   },
   {
     working: <Katex display tex="n(0.5) = 0.74 \implies A(0.5)e^{-1} = 0.74" />,
@@ -232,6 +234,7 @@ export default function MethodsQ3_2014Exam2() {
 
       <PartCard
         letter="a"
+        topic="Maximum Value"
         marks={1}
         statement={
           <>
@@ -246,6 +249,7 @@ export default function MethodsQ3_2014Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Solve Equation"
         marks={1}
         statement={
           <>
@@ -261,6 +265,7 @@ export default function MethodsQ3_2014Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Time Above Level"
         marks={2}
         statement={
           <>
@@ -276,6 +281,7 @@ export default function MethodsQ3_2014Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Average Rate"
         marks={2}
         statement={
           <>
@@ -291,6 +297,7 @@ export default function MethodsQ3_2014Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Instantaneous Rate"
         marks={2}
         statement={
           <>
@@ -315,6 +322,7 @@ export default function MethodsQ3_2014Exam2() {
 
       <PartCard
         letter="d"
+        topic="Find Parameter"
         marks={3}
         statement={
           <>

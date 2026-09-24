@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(-6,-2]}" />,
-    reason: <>Option C. Between <Katex tex="x=-1" /> and <Katex tex="x=1" /> the function sweeps continuously from just above <Katex tex="-6" /> up to <Katex tex="-2" />, which covers everything. Option B stops at <Katex tex="-3" /> — the right endpoint — and misses the top of the curve.</>,
+    reason: <>Matches option <b>C</b>. Between <Katex tex="x=-1" /> and <Katex tex="x=1" /> the function sweeps continuously from just above <Katex tex="-6" /> up to <Katex tex="-2" />, which covers everything. Option B stops at <Katex tex="-3" /> — the right endpoint — and misses the top of the curve.</>,
   },
 ]
 

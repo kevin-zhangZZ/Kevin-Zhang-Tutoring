@@ -10,11 +10,7 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 25, B: 9, C: 14, D: 8, E: 42 },
   answer: 'E',
   noAnswer: 1,
-  comment: (
-    <>
-      <Katex tex="\mathrm{E}(W)=-4" />, <Katex tex="\mathrm{sd}(W)=5" />.
-    </>
-  ),
+  comment: <Katex tex="\mathrm{E}(W)=-4,\ \mathrm{sd}(W)=5" />,
 }
 
 const ROWS: WorkingRow[] = [
@@ -40,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>1.8)}" />,
-    reason: <>Option E. Option D, <Katex tex="\Pr(Z>0.2)" />, comes from taking <Katex tex="\mathrm{E}(W)=+4" />; option B has the inequality reversed.</>,
+    reason: <>Matches option <b>E</b>. Option A (25%) subtracts the variances, giving <Katex tex="\mathrm{sd}(W)=\sqrt7" />; option D, <Katex tex="\Pr(Z>0.2)" />, comes from taking <Katex tex="\mathrm{E}(W)=+4" />; option B has the inequality reversed.</>,
   },
 ]
 

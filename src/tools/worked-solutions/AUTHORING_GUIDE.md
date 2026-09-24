@@ -1,29 +1,63 @@
 # Worked-Solutions Authoring Guide
 
-Reference for adding a new worked-solution question (MCQ or short-answer) to this tool.
-Consolidates every formatting, structure, and content requirement established while
-building out the 2015–2025 Specialist / Methods / Chemistry question bank. Read this
-before writing a new question file — it exists so every question stays consistent
+Reference for adding a new worked-solution question (MCQ or short-answer) to this tool, or
+editing an existing one. Consolidates every formatting, structure, and content requirement
+established while building out the 2014–2025 Methods / Specialist / Chemistry question bank
+and while auditing the whole maths archive against the papers and reports (Sept 2026). Read
+this before writing a new question file — it exists so every question stays consistent
 without re-deriving these rules from scratch each session.
 
 ## 1. Scope
 
 Covers VCE Mathematical Methods, Specialist Mathematics, and Chemistry — Exam 1 + Exam 2
-for the two maths subjects, one Exam for Chemistry. Currently populated: the 6 hardest
-multiple-choice questions (by VCAA-reported % correct) per subject per year, 2015–2025
-(198 questions), plus a small set of "bonus" VCAA-flagged questions with no single
-correct answer (§8).
+for the two maths subjects, one Exam for Chemistry. Currently populated:
+- **Methods and Specialist: every question, 2014–2025, both exams**, except the study-design
+  exclusions in §12.8 (each shown as a greyed row in the sidebar). The whole maths archive was
+  audited question by question in Sept 2026 — transcription against the paper, statistics and
+  comments against the report, every answer re-derived — and the conventions that audit
+  settled are written into §12–§13.
+- **Chemistry**: the 6 hardest multiple-choice questions (by VCAA-reported % correct) per
+  year, 2015–2025, plus a small set of "bonus" VCAA-flagged questions with no single correct
+  answer (§8).
 
-## 2. File & ID naming
+## 2. File, ID and image naming
 
-- File: `src/tools/worked-solutions/questions/{Subject}Q{code}_{year}.tsx`
-  e.g. `SpecialistQ5_2019.tsx`, `MethodsQ19_2020.tsx`, `ChemistryQ13_2022.tsx`.
-- Component function name matches the file name exactly (`export default function
+**Question files** live in `src/tools/worked-solutions/questions/`:
+- Multiple choice: `{Subject}Q{n}_{year}.tsx` — `SpecialistQ5_2019.tsx`,
+  `MethodsQ19_2020.tsx`, `ChemistryQ13_2022.tsx`.
+- Short answer: `{Subject}Q{n}_{year}Exam{1|2}.tsx` — `MethodsQ4_2014Exam2.tsx`,
+  `SpecialistQ1_2025Exam1.tsx`.
+- The component function name matches the file name exactly (`export default function
   ChemistryQ13_2022() { ... }`).
-- `data.ts` id: `{subj}-q{code}-{year}` — lowercase, e.g. `spec-q5-2019`, `meth-q19-2020`,
-  `chem-q13-2022`. `subj` abbreviations: `spec`, `meth`, `chem`.
-- Diagram image assets (if any) live next to the question file, named
-  `{subj}-{year}-mcq{code}-{short-description}.png`.
+
+**`data.ts` ids** are lowercase, with `subj` one of `meth`, `spec`, `chem`:
+- Multiple choice: `{subj}-q{n}-{year}` — `spec-q5-2019`, `chem-q13-2022`.
+- Short answer: `{subj}-q{n}-{year}-e{1|2}` — `meth-q4-2014-e2`, `spec-q1-2025-e1`.
+- `code` is `'MCQ 18'`, or for a short-answer question `'Q4(a–g)'` naming the parts the page
+  actually carries (`'Q5(c–e)'` when earlier parts are excluded — §12.8).
+
+**Images** live next to the question files. Names are lowercase kebab-case, in one of two
+forms:
+- Multiple choice: `{subj}-{year}-mcq{n}-{description}.png` — `spec-2022-mcq20-pulley.png`,
+  `chem-2021-mcq27-graph.png`. No exam number: maths MCQs are always Exam 2 and Chemistry has
+  one exam.
+- Short answer: `{subj}-{year}e{1|2}-q{n}{part}-{description}.png` —
+  `meth-2025e1-q3c-sketch.png`, `spec-2024e1-q1c-argand.png`, `meth-2016e2-q4bii-shaded.png`.
+  The part is written without dots or brackets (`q4bii`); leave it off when the image belongs
+  to the whole question (`spec-2025e2-q4-path.png`). Always `e1`/`e2`, never `exam1`/`exam2`
+  (the 2014–2019 images that used `exam1`/`exam2` were renamed in Sept 2026).
+
+Fixed suffixes:
+- `-optA` … `-optE` for one option's crop. This is the one place an uppercase letter appears,
+  matching the printed option letter. Never a combined `-options` image (§7).
+- `-stem` for a crop of the question stem's figure when the question also has other images.
+- `-report-graph` for a graph cropped from the examination report's comment, numbered
+  `-report-graph1`, `-report-graph2` … when there are several.
+- `-sketch` for our own answer drawn on VCAA's blank grid (§7). Otherwise use a short
+  descriptive noun: `-argand`, `-path`, `-field`, `-graph`, `-pulley`.
+
+When the last import of an image is removed, delete the image in the same change — the folder
+should hold no unreferenced files.
 
 ## 3. Question file template
 
@@ -42,13 +76,13 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: .., B: .., C: .., D: .., /* E omitted for a 4-option year */ },
   answer: 'X',                 // or ['X', 'Y'] / all letters — see §8
-  noAnswer: n,                 // optional
-  comment: (<>...</>),         // optional — VCAA's own report prose, verbatim where possible
+  noAnswer: n,                 // when the report has a no-answer column
+  comment: (<>...</>),         // the report's Comments cell, verbatim and complete — §12.7
 }
 
 const ROWS: WorkingRow[] = [
   { working: <>...</>, reason: <>...</> },
-  // ...several steps, ending in a boxed/bolded final-answer row
+  // ...several steps, ending in the boxed answer; its reason starts "Matches option <b>X</b>."
 ]
 
 export default function {Subject}Q{code}_{year}() {
@@ -162,12 +196,17 @@ algebraically, and match its shape/root-pattern to the correct option.
 - `WorkingRow.working` is what a student would actually write on the exam page
   (equations, substitutions, the final boxed/bolded answer); `.reason` is the "why" —
   omit `.reason` for a row that's pure algebraic manipulation with nothing to explain.
-- The final `ROWS` entry should be a bolded conclusion (`<b>...</b>`) whose `.reason`
-  reads `Matches option **X**.` (or, for a flagged question, the flaw's resolution — §8).
+- The final `ROWS` entry holds the answer — `\boxed{…}` in Katex for maths, a bold
+  statement for Chemistry — and its `.reason` begins `Matches option <b>X</b>.` followed by
+  the verified distractors (§12.9); for a flagged question, the flaw's resolution (§8).
 - `EXAMINER.comment` is VCAA's report text for that part, **copied verbatim and in full**
-  — see §12.6. It is presented as VCAA's voice, not this site's analysis; original
+  — see §12.7. It is presented as VCAA's voice, not this site's analysis; original
   reasoning belongs in `ROWS`, never in `comment` (exception: §8's un-explained flagged
   questions).
+- **Write `reason` (and `working`) values as JSX fragments, `<>…</>`.** A plain string is
+  only safe for text with no markup and no escapes — it shows `<em>`, `<b>` or `’`
+  literally. Inside JSX text a bare `<` breaks the parse (`−1 < b < 0`), so inequalities go
+  in `<Katex>`.
 - Use real Unicode characters directly in JSX text (e.g. `≡` for a triple bond, `⇌` for
   equilibrium, `°C`, `µg`) rather than escape sequences or HTML entities, except inside a
   `Chem`/`Katex` `eq` string where the component's own notation applies (§6, §7).
@@ -210,11 +249,15 @@ feature of the original) that a direct crop can't. It also misrepresents the pag
 from the original paper.
 
 **How to crop one:**
-1. Render the relevant exam-paper page(s) to PNG: `pdftoppm -r 150-200 -f N -l N
-   {paper}.pdf out` (bump to `-r 200` or higher for a small or detail-heavy figure).
+1. Render the relevant exam-paper page(s) to PNG at **300 dpi** for anything that will be
+   shown: `pdftoppm -r 300 -f N -l N {paper}.pdf out`. (A 90–150 dpi render is fine for
+   reading the page; it is too soft to publish.)
 2. Crop just the diagram out of the rendered page — a small Python/PIL script cropping to
-   the figure's pixel bounding box works well; re-render at higher DPI first if the crop
-   looks soft.
+   the figure's pixel bounding box works well. **The crop holds the figure and nothing else**:
+   no line of question text, no answer lines, no part letter or "1 mark", no option letter
+   (an option crop is the option's content only). Check every crop by eye before using it —
+   clipped axes and stray text fragments were among the commonest defects the Sept 2026 audit
+   found.
 3. Save as a `.png` asset next to the question file (naming — see §2), import it, and
    pass it as `diagram` (renders in a bordered card beside the options — no extra wrapper
    needed) or as an option's own `content` for the diagram-in-options case below.
@@ -244,11 +287,24 @@ count exceeds ~50% of the image's width/height — those are the full-span gridl
 Cluster consecutive hits and average each cluster to get one pixel coordinate per
 gridline; the middle entry is the origin, and the spacing between entries is the
 per-gridline-interval scale. Use those measured values (`ox`, `oy`, `scaleX`, `scaleY`)
-in the overlay's coordinate math, not estimated ones. After building it, verify the
-overlay lines up by reading the rendered SVG element's own attributes back out (e.g. via
-the browser devtools/JS console) and checking they equal what the calibration math
-predicts, rather than trusting a screenshot — screenshots of an overlay can look
-"close enough" while actually being pixels off.
+in the overlay's coordinate math, not estimated ones. (On a figure without full gridlines —
+a polar Argand plane, a bare axis pair — calibrate from the tick marks instead: find the
+short dark runs just beside each axis line and average them.) Before writing the TSX, check
+the calibration with a **PIL composite**: draw the computed geometry (the curve, the circle,
+the points) onto the crop in Python and look at it — the computed curve should sit exactly on
+VCAA's printed one. After building it, verify the rendered overlay by reading the SVG
+element's own geometry back out (e.g. via the browser JS console) and checking it matches
+what the calibration predicts, rather than trusting a screenshot — screenshots of an overlay
+can look "close enough" while actually being pixels off.
+
+**Any answer drawn on a figure VCAA printed is an overlay** — "on the graph above", "on the
+Argand plane in part a", "on the axes in part d", a slope field, a printed curve. Never a
+matplotlib redraw of the printed figure with our answer on top. Overlay style: the answer in
+orange `#f97316` (strokes about 7–8 units wide in the crop's own pixel viewBox); labels in
+`#c2410c` with a white halo (`stroke: 'white'`, `paintOrder: 'stroke'`) so they stay legible
+over gridlines. Where one printed figure carries answers to several parts, give each part its
+own overlay showing the answer as it stands after that part (see
+`SpecialistQ2_2025Exam2.tsx`'s `ArgandAnswer`).
 
 **An original sketch — plotted with matplotlib, not hand-drawn — is only appropriate when
 there is no original diagram to crop at all**: a "sketch the graph of f" part where VCAA's
@@ -288,13 +344,18 @@ it before opening the solution is worth something. Move the figure into the firs
 This applies to the answer-sketch case too: where VCAA printed blank axes for a "sketch
 the graph" part, the stem may show the blank axes (cropped), never the completed curve.
 
+**Where a finished sketch or overlay goes: the final `WorkingRow` of its part** (as the row's
+`working`, in the bordered white card), with the reason saying what it shows. Not as a
+separate block after the `WorkingTable`, and not under a later part — each part that asks
+for something to be drawn ends with its own drawing.
+
 **Build it with matplotlib (real graphing software), not hand-coded SVG.** Inline SVG
 built by hand (waypoints, or even a `functionToPath`-style exact sampling) is harder to
 lay out correctly and has produced real bugs (overflowing rows, mislabelled points) that
 a proper plotting library avoids by construction. Generate a transparent-background PNG
 and embed it exactly like a cropped diagram — same `bg-white border border-gray-200
 dark:border-gray-800 rounded-xl p-3 w-fit` card, saved next to the question file (naming —
-see §2, e.g. `meth-2019exam1-q5-truncus-sketch.png`). Python is at
+see §2, e.g. `meth-2019e1-q5-truncus-sketch.png`). Python is at
 `C:/Users/Kevin/AppData/Local/Programs/Python/Python310/python`.
 
 **House style for these plots** (all of the below, every time):
@@ -326,8 +387,16 @@ see §2, e.g. `meth-2019exam1-q5-truncus-sketch.png`). Python is at
   source PDF page for that part and read off the printed range and tick spacing (the two
   axes are often on *different* steps, e.g. *x* every 1 but *y* every 2 — check both
   independently), rather than choosing a range that merely fits the curve. Getting this
-  wrong is a real, repeatable mistake: it happened on the first pass of two of these three
-  graphs before this rule was written down.
+  wrong is a real, repeatable mistake: the Sept 2026 audit found and redrew many sketches
+  that were off VCAA's grid. Measure the printed grid from a 300 dpi crop (where
+  the gridlines start and stop, their spacing, how far the axes run past them), then draw the
+  gridlines with `ax.grid(False)` plus `ax.vlines(...)`/`ax.hlines(...)` over exactly the
+  printed grid region — VCAA's grid usually stops short of the arrowheads, and cells are
+  often not square. `scripts/plotlib.py` has the house axes (`axes(...)`), point labels
+  (`point(...)`), the colours and `save(...)`; add the grid with explicit `vlines`/`hlines`.
+- **Label only what the question asks for** (§13.5). An unrequested label — an extra
+  intercept, a curve's name, "max", an inflection the question didn't mention — is clutter
+  and suggests it was required.
 - **Coordinates in exact form**, matching the algebra in the worked solution — a fraction
   (`3/2`, via mathtext `\frac{3}{2}`) or exact expression (`2e^{5/3}+8e^{-10/3}`), never a
   rounded decimal, unless the question itself asked for a specific number of decimal
@@ -378,6 +447,8 @@ correct" for a question with no correct answer).
   independently questionable. **Explicitly label this as independent analysis, not VCAA's
   own words**, both in the `flawed` banner text and, ideally, in the file's top comment —
   never present speculative reasoning as if VCAA said it.
+- `percentages`: use the report's figures if it prints them for the question (2023
+  Chemistry MCQ 20 does); if its row is blank, `percentages: {}` (§12.7).
 - In `data.ts`, set `QuestionMeta.flagged: true` and **omit `percentCorrect`** (an "X%
   accuracy" badge would be misleading when there's no single correct answer). The
   `flagged` badge (⚠️) renders automatically in both the sidebar list row and the detail
@@ -399,9 +470,10 @@ Every new question file needs two more edits, always together:
      topic: 'Electrochemistry — which electrolyte produces a gas at the cathode',
      type: 'mc', hasDetail: true, percentCorrect: 29 },
    ```
-   `topic` is `"{Category} — {one-line description}"` — the sidebar splits on the em-dash
-   to show category/subtopic. Use real `percentCorrect` (omit entirely for a flagged
-   question, §8).
+   `topic` is `"{Category} — {one-line description}"` — the sidebar shows only the
+   category (the description often names the trick) and groups By Topic on it; the question
+   page shows the whole string. Use real `percentCorrect` (omit entirely for a flagged
+   question, §8) — the sidebar shows it on the row and sorts by it.
 2. **`details.ts`** — add the import and the registry entry (both required, in the two
    separate blocks that already exist in the file):
    ```ts
@@ -409,6 +481,11 @@ Every new question file needs two more edits, always together:
    // ...
    'chem-q13-2022': ChemistryQ13_2022,
    ```
+3. **Short-answer questions only — `npm run part-stats`.** It regenerates `partStats.ts`
+   (each question's parts with their `topic`, marks and VCAA averages, read from the question
+   file), which the sidebar uses to list a question's parts and show how hard it was. Commit
+   the regenerated file with the question. It reports any short-answer question it couldn't
+   read, and any multi-part question with a `PartCard` missing its `topic`.
 
 Exam paper/report links (Paper / Report / Report (PDF)) are wired automatically from
 `examSources.ts` by subject+year+exam — no per-question edit needed there, as long as the
@@ -445,9 +522,10 @@ source PDF/DOCX already exists under `public/exams/{subject}/`.
 
 ## 12. Solution-writing standards — all subjects
 
-Approved 2026-09-22. These sections are the authority on *what a solution contains and how
-it explains*; §3–§7 cover the mechanics of the codebase. Where anything above conflicts
-with §12–§14, §12–§14 win.
+Approved 2026-09-22; updated 2026-09-24 with the conventions settled by the full audit of
+the Methods and Specialist archive. These sections are the authority on *what a solution
+contains and how it explains*; §3–§7 cover the mechanics of the codebase. Where anything
+above conflicts with §12–§14, §12–§14 win.
 
 ### 12.1 Who this is for
 
@@ -487,8 +565,23 @@ the explanation is the product, not the number at the end.
 ### 12.3 Transcribing the question
 
 - Question text is transcribed from the original paper, verbatim, including the mark
-  allocation per part and any stem text between parts (rendered as its own grey box between
-  the relevant `PartCard`s).
+  allocation per part and any stem text between parts. Options are transcribed exactly too —
+  the audit found many mistranscribed options and stems, several of which changed the
+  answer.
+- **Line breaks and emphasis as printed.** Where the paper starts a new line inside a stem or
+  statement (typically before the instruction — "Find …", "Give your answer correct to …",
+  "Hence …"), put a `<br />` there. Bold what the paper bolds (`<b>must</b>`,
+  `<b>part a</b>`, `<b>up</b>`).
+- **No invented stems.** When the paper has no stem, the question's header box holds only
+  "Question N (M marks)". Our own summary of what the question is about belongs in a
+  `Background`, never in the box a student reads as the question.
+- **Stem text between parts** goes in its own grey box between the relevant `PartCard`s
+  (`text-[14.5px] leading-relaxed … bg-gray-50 … rounded-2xl px-5 py-4`), never folded into
+  the next part's statement. Give the box a part label (`<p className="font-semibold …">d.</p>`)
+  only when the paper labels that text (a "d." followed by d.i and d.ii); otherwise it is
+  unlabelled.
+- **Page references** ("on the graph on page 18") become "above"/"below" to match where the
+  figure sits on the site; that is the one wording change allowed.
 - **Any diagram the question provides MUST be screenshotted — cropped from the exam PDF —
   never recreated** in any way. This is the hard rule of §7 restated: no SVG, no matplotlib,
   no "clean" redraw of a VCAA figure, however simple it looks.
@@ -502,15 +595,21 @@ the explanation is the product, not the number at the end.
 
 - **Short-answer question**: grey stem box → optional "Before You Start" `Background` →
   one `PartCard` per lettered part (statement, marks, `Background` if needed,
-  `WorkingTable`, examiner's report, video slot). A question with no lettered parts uses
+  `WorkingTable`, examiner's report, video slot). Give every `PartCard` a `topic`: a one-
+  to three-word Title Case subtopic naming what the part is about ("Confidence Interval",
+  "Chain Rule", "Area Between Curves", "Type II Error") — it's what the sidebar lists under
+  the question. Reuse the wording other years already use for the same idea. A question with no lettered parts uses
   the single-card layout (`WorkingTable` + `SAExaminerReport` + video slot), not a
   `PartCard` with a fake letter.
 - **MCQ**: `MCQShell` with the question, optional `diagram`, the options with the correct
   one(s) flagged, a `WorkingTable`, and `MCQExaminerStats`. Options are A–E up to 2023 and
   **A–D from 2024 for Methods and Specialist**; Chemistry has always been A–D.
 - Section labels in Title Case, never ALL CAPS in source.
-- Every solution ends with a boxed final answer (`\boxed{…}`) or, for an MCQ, a boxed
-  "Option X" whose reason reads "Matches option **X**" and names the distractors (§12.9).
+- Every solution ends with a boxed final answer (`\boxed{…}`); for an MCQ the final row's
+  reason reads "Matches option **X**." and names the distractors (§12.9). Nothing follows
+  the boxed row — a check belongs in the rows before it or in the final row's reason.
+- **"Show that" and "verify" parts end with "As required."** in the final row's reason — not
+  a ✓, not ■, not "QED".
 
 ### 12.5 Writing the working
 
@@ -538,12 +637,11 @@ the explanation is the product, not the number at the end.
   `normCdf(370, 375, 375, 15/√50)`, `invNorm(0.05, 14.1, 2.1)`, `binomCdf(36, 0.0527, 0, 2)`,
   `solve(…, a) | 10 ≤ a ≤ 20`, `nInt(…)` — and **every such reference carries a popup link**
   which, when clicked, explains that function's structure (argument order), purpose, and
-  syntax. *(Implementation: a `CasRef` component with a per-function reference table —
-  not yet built as of 2026-09-22; until it exists, write the syntax inline and note the
-  popup is pending in the top comment.)*
+  syntax. Implemented in `CasRef.tsx`: `<Cas fn="normCdf" />` inline in a reason, or
+  `<Cas fn="solve">solve(2x³ + x² − 4 = 0, x)</Cas>` as a working row showing the actual
+  call. If a function isn't in its `CAS_FUNCTIONS` table yet, add the entry first.
 - **"Show that" questions**: every line of the derivation appears; never start from the
-  result and work backwards; end with "as required". The final row's reason reminds the
-  student that a bare final line earns nothing.
+  result and work backwards; the final row's reason ends "As required." (§12.4).
 - **Answer in the form the question asks for**, and say so: "in terms of a", "in the form
   (π − a√b)/…", "correct to three decimal places", "as an equation". Where VCAA's report
   notes that a different form lost marks (an expression instead of an equation, a decimal
@@ -571,12 +669,45 @@ the explanation is the product, not the number at the end.
 
 - Every part carries the report's mark distribution and average.
 - **The report's feedback for each question is copied verbatim and in full.** Nothing is
-  paraphrased, trimmed or reordered, and nothing is omitted. Where the report's own maths is
-  mangled by text extraction, the prose stays verbatim and the maths is transcribed into
-  Katex from the rendered page. Where the report has no comment for a part, `comment` is
+  paraphrased, trimmed or reordered, and nothing is omitted. (Before the Sept 2026 audit
+  nearly every paper's comments had been condensed, and some had been changed in substance —
+  wrong answers altered, meanings reversed, whole sentences invented.) Where the report's own
+  maths is mangled by text extraction, the prose stays verbatim and the maths is transcribed
+  into Katex from the rendered page. Where the report has no comment for a part, `comment` is
   omitted — never invented.
-- Percentages for MCQs are read from a rendered image of the report table, not from
-  `pdftotext`, because column alignment in the text dump is unreliable.
+- **Layout as printed**: each of the report's paragraphs is separated by `<br />`; a bulleted
+  comment keeps its bullets, as
+  `<ul className="list-disc pl-5 flex flex-col gap-1"><li>…</li></ul>`; references stay as
+  the report writes them ("Question 3d", "part 6a.i.").
+- **Multiple choice**: the report's Comments cell is transcribed in full, **including its
+  working, line by line** (one expression per line, `<br />` between), and any graph it
+  prints, cropped as `-report-graph` and shown as
+  `<img … className="w-full max-w-[360px] mt-1" />` where the report places it.
+- **Short answer: the report's feedback only.** The sample answer or worked lines the report
+  prints above its feedback are the answer, which our working already gives — they are not
+  copied into `comment`. Prose sentences stay whole even when they carry inline maths ("This
+  can be found by equating the concentration to the given value (2t + 100)/(3000 + 20t) =
+  1/20.").
+- **Percentages**: read the MCQ table from a rendered image of the report, not from
+  `pdftotext`, because column alignment in the text dump is unreliable (and pre-2021 reports
+  mark the answer only by shading). Set `noAnswer` from the report's no-answer column where it
+  has one. Where the report prints **no** percentages for a question (VCAA accepted every
+  option and left the row blank), use `percentages: {}` — the report panel then says so. Never
+  fill the gap with another question's numbers: three flagged Chemistry questions had done
+  exactly that until Sept 2026.
+- **`percentCorrect` in `data.ts` must equal `percentages[answer]` in the question file** —
+  compare the two whenever either changes. Mismatches here put wrong difficulty figures in the
+  sidebar and wrong questions in the "hardest six".
+- **VCAA's slips are kept verbatim** — a typo, a wrong symbol, a misnumbered part, an answer
+  that contradicts the report's own working. Never silently correct the report. Where a
+  student could be misled, the working says so ("the report's 'x = 2.468' is a slip for
+  2.486…"), and KZ is told in chat (§12.2).
+- **Never attribute to the report what it doesn't say.** "A listed error", "the report's
+  named error", "the error the examiner singled out", "scored nothing", "cost the mark",
+  "most students …", "the common loss" are allowed only when the report says exactly that.
+  Otherwise use its words ("the report notes many responses did not …"). Cohort statistics
+  are quoted as the mark table shows them ("only about a third scored full marks"), not
+  extrapolated ("two-thirds found at most one"). The audit removed a great many of these.
 - Where the report's sample answer is in a different but equivalent form to ours, the
   final row of the working says so ("VCAA writes this as …") so a student comparing the two
   isn't thrown.
@@ -584,9 +715,28 @@ the explanation is the product, not the number at the end.
 ### 12.8 Study-design exclusions and the skip guide
 
 - Anything not on the current study design is labelled and skipped, not written up:
-  Mechanics (Specialist), matrix transformations and transition matrices (Methods), arc
-  length from a cartesian rule (Specialist), and the Chemistry items already in the skip
-  guide.
+  Mechanics (Specialist), matrix transformations, transition matrices, standalone
+  modulus-function questions and area approximation by rectangles (Methods), arc length from a
+  Cartesian rule (Specialist), and the Chemistry items already in the skip guide.
+- **How an exclusion looks on the site:**
+  - *A whole question*: no question file and no `data.ts` row (a comment on the block says
+    which question and why), an `omitted.ts` entry, and a skip-guide `audit.ts` row. The
+    sidebar shows a greyed "… · not in the current study design" row where it would be.
+  - *Leading parts that set up removed content* (the Mechanics parts a.–b. of 2018
+    Specialist Exam 2 Q5, say): those parts are left out, `code` lists the parts shown
+    (`'Q5(c–e)'`), and a question-level `<Background title="Why only parts c.–e.">`
+    explains, quoting any result the remaining parts rely on.
+  - *A single part inside an otherwise current question* (2014 Methods Exam 2 Q4g; 2016
+    Specialist Exam 2 Q1d.ii): the `PartCard` keeps its statement and marks, with a
+    `<Background title="Not in the Current Study Design">` saying what removed content it needs
+    in place of the working, and no examiner report.
+- **KZ's rulings on borderline cases (Sept 2026)** — follow these rather than re-litigating:
+  2014 Methods Exam 2 Q4g (transition matrix) is out; 2015 Methods Exam 2 MCQ 18 and 22
+  (standalone modulus functions) are out; 2016 Specialist Exam 1 Q7 and Exam 2 Q1d.ii
+  (Cartesian arc length) are out; 2014 Specialist Exam 1 Q8 is out entirely, part b.'s
+  trigonometry included; 2022 Specialist Exam 2 MCQ 20 is **in**, as Statistics — its pulley
+  is scene-setting, and the question is the probability that a combination of normally
+  distributed masses is positive.
 - The test is the question's *mathematics*, not its vocabulary. "A force acts on the
   particle" as scene-setting for vector kinematics or a = v·dv/dx is still on the course;
   resolving forces is not. Likewise "matrix" in a report comment describing a wrong method
@@ -600,14 +750,22 @@ the explanation is the product, not the number at the end.
   Additions (new rows, new notes, appended paragraphs to an item) are allowed without
   permission; deletions and rewrites of existing text are not.
 - Every exclusion is also recorded in `data.ts` as a comment on the block explaining which
-  question and why.
+  question and why, **and** added to `omitted.ts` (subject, year, exam, code, reason), which
+  is what puts the greyed "Mechanics · not in the current study design" row in the sidebar
+  where the question would be.
 
 ### 12.9 Multiple-choice specifics
 
 - The correct option is flagged; VCAA-flagged questions with more than one accepted answer
   follow §8.
-- The final row names the distractors: which wrong option corresponds to which specific
-  slip, prioritising the ones the report's percentages show students actually chose.
+- The final row's reason starts "Matches option **X**." and then names the distractors:
+  which wrong option corresponds to which specific slip, prioritising the ones the report's
+  percentages show students actually chose. **Name a distractor only after verifying it** —
+  compute the slip and check it lands on that option exactly (for Chemistry, a genuine
+  misconception that leads there). The audit found many confident but false
+  attributions. If no clean slip produces an option, say nothing about it, and never
+  speculate about *why* a percentage of students chose something ("which is why 31% chose
+  it").
 - When the *options* are the discriminating part (five candidate graphs, five sets of
   equations), the working checks each option against the derived requirement in turn,
   rather than only justifying the right one.
@@ -646,6 +804,11 @@ the explanation is the product, not the number at the end.
   `display` lines), `Background` boxes and tables lay out at the narrow pane width.
 - A scan for the JSX whitespace bug — a text line ending immediately before a line
   starting with `<em>`/`<b>`/`<Katex>` collapses the space ("findany").
+- **MCQ report comments sit behind the "Examiner's Report" tab** — a browser check must click
+  it before counting `.katex-error` elements, or broken maths in comments goes unseen.
+- After adding or changing a short-answer question, `npm run part-stats` (§9).
+- `percentCorrect` in `data.ts` equals `percentages[answer]` in the file (§12.7), and no
+  image in `questions/` is unreferenced (§2).
 - Commit with a message that says what was built, what was excluded and why, and what the
   cross-check caught. Push and deploy only when asked, as separate steps.
 
@@ -682,8 +845,13 @@ the explanation is the product, not the number at the end.
 
 - Matches VCAA's formula sheet and the site's Katex conventions: `\log_e` (never `\ln`),
   `\text{cis}`, `\Pr`, `\hat P`, `\overline{X}`, `\operatorname{Var}`, `\text{sd}`, vectors
-  with a tilde beneath (`\underset{\sim}{a}`), `\overrightarrow{AB}`, `\mathbb{R}` /
-  `\mathbb{Z}` / `\mathbb{C}`, intervals with round/square brackets, sets with braces.
+  with a tilde beneath (`\underset{\sim}{a}`), `\overrightarrow{AB}`, intervals with
+  round/square brackets, sets with braces.
+- **Number sets in plain type — `R`, `Z`, `C`, `N`, `R^+`, `R\setminus\{0\}` — as the VCAA
+  papers print them, never blackboard bold (`\mathbb{R}`, ℝ).** The whole archive was
+  converted in Sept 2026; don't reintroduce `\mathbb`.
+- Natural log always `\log_e(x)` with brackets around the argument — never `\ln`, `\ln_e`,
+  or `\log_e x`.
 - Transformations are described in mapping language (dilation by factor k from the y-axis,
   translation of c units in the positive x direction), never with a matrix, even where the
   original 2016–2022 question used one — the matrix is translated before the solution
@@ -735,12 +903,14 @@ the explanation is the product, not the number at the end.
 
 ### 13.7 Subject-specific exclusions
 
-- **Methods**: matrix transformations and transition matrices are excluded (the whole
-  question, or the specific part, with a `data.ts` comment).
+- **Methods**: matrix transformations, transition matrices, standalone modulus-function
+  questions and area approximation by rectangles are excluded (the whole question, or the
+  specific part — §12.8).
 - **Specialist**: Mechanics — force analysis, connected particles, equilibrium, statics — is
-  excluded; arc length from a cartesian rule is excluded; parametric/vector arc length is
+  excluded; arc length from a Cartesian rule is excluded; parametric/vector arc length is
   kept. Statistical inference, vector calculus, complex loci and differential equations are
-  all current.
+  all current, including a statistics question dressed in a mechanics scenario (2022 Exam 2
+  MCQ 20).
 
 ## 14. Chemistry
 

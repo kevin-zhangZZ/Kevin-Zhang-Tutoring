@@ -9,6 +9,19 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 6, C: 5, D: 77 },
   answer: 'D',
+  comment: (
+    <>
+      Substitute <Katex tex="z=3+ki" />
+      <br />
+      <Katex tex="z^2+4iz+3=(3+ki)^2+4i(3+ki)+3" />
+      <br />
+      <Katex tex="=-k^2-4k+12+(6k+12)i" />
+      <br />
+      If purely imaginary then <Katex tex="-k^2-4k+12=0" />
+      <br />
+      <Katex tex="\therefore k=-6,2" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -26,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{purely imaginary} \implies 12-k^2-4k = 0 \implies k^2+4k-12 = 0" />,
-    reason: 'The real part must vanish.',
+    reason: <>The real part must vanish.</>,
   },
   {
     working: <Katex display tex="(k+6)(k-2) = 0 \implies k = -6 \ \text{ or } \ k = 2" />,
@@ -34,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = 2}" />,
-    reason: <>Option <b>D</b>, the value that appears among the options. The question asks for "a value", which is the hint that there is more than one.</>,
+    reason: <>Matches option <b>D</b>, the value that appears among the options. The question asks for "a value", which is the hint that there is more than one.</>,
   },
 ]
 
@@ -44,7 +57,7 @@ export default function SpecialistQ6_2024() {
       question={
         <div className="flex flex-col gap-1">
           <p>
-            Let <Katex tex="z=3+ki" /> where <Katex tex="k\in\mathbb{R}" />.
+            Let <Katex tex="z=3+ki" /> where <Katex tex="k\in R" />.
           </p>
           <p>
             A value of <Katex tex="k" /> that makes <Katex tex="z^2+4iz+3" /> purely imaginary

@@ -13,8 +13,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      This question was well answered. There were, however, some unconvincing arguments,
-      often due to insufficient steps being shown. Some students made algebraic errors.
+      This question was well answered. Most students were able to obtain the given result.
+      There were, however, some unconvincing arguments, often due to insufficient steps being
+      shown. Some students made algebraic errors.
     </>
   ),
 }
@@ -24,10 +25,12 @@ const EXAM_B: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Most students knew that a parabola was required. Many graphs were drawn with a wrong
-      domain, the most common being the whole parabola or <Katex tex="x\ge0" />, which may
-      have been due to a confusion with <Katex tex="t\ge0" />. Many students did not choose a
-      number scale, primarily on the vertical axis, which distorted the graph.
+      Most students knew that a parabola was required. Some graphs were poorly drawn and did
+      not give a smoothly drawn curve that had symmetry properties. Many graphs were drawn with
+      a wrong domain, the most common being the whole parabola or <Katex tex="x\ge0" />, which
+      may have been due to a confusion with <Katex tex="t\ge0" />. Many students did not choose
+      a number scale, primarily on the vertical axis, which caused the graph to be distorted
+      and therefore led to an incorrect answer.
     </>
   ),
 }
@@ -37,10 +40,19 @@ const EXAM_C: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Many students substituted <Katex tex="t=1" /> into the <em>displacement</em> vector, or
-      differentiated incorrectly. Many students gave the term{' '}
-      <Katex tex="2t-4\,\underset{\sim}{j}" /> without brackets. Some students gave the
-      answer as the velocity vector rather than finding its magnitude.
+      This question was generally answered well but many students substituted{' '}
+      <Katex tex="t=1" /> into the displacement vector or differentiated incorrectly. Common
+      errors for the velocity were{' '}
+      <Katex tex="t\,\underset{\sim}{i}+(2t-4)\,\underset{\sim}{j}" /> and{' '}
+      <Katex tex="-2\,\underset{\sim}{i}+(2t-4)\,\underset{\sim}{j}" />. Many students gave the
+      term <Katex tex="2t-4\,\underset{\sim}{j}" /> without any brackets. Some derivatives did
+      not include <Katex tex="\underset{\sim}{i}" /> or <Katex tex="\underset{\sim}{j}" />.
+      There was also an arithmetic issue involving the square of a negative, so the answer{' '}
+      <Katex tex="\sqrt3" /> was common. Some students gave the answer as the velocity vector
+      rather than finding its magnitude to give the speed. Others made the question more
+      difficult by finding the magnitude of the velocity vector prior to substituting in{' '}
+      <Katex tex="t=1" /> rather than the other way around. Several made errors when expanding
+      inside the square root.
     </>
   ),
 }
@@ -63,8 +75,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Expanding carefully — this line is what makes the argument convincing.</>,
   },
   {
-    working: <Katex display tex="y = x^2-3 \ \checkmark" />,
-    reason: <>As required.</>,
+    working: <Katex display tex="y = x^2-3 \quad \text{as required}" />,
+    reason: <>A "show that" is marked on the steps above this line, not on restating the given equation — the report criticises arguments with too few steps.</>,
   },
 ]
 
@@ -138,6 +150,7 @@ export default function SpecialistQ2_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Cartesian Equation"
         marks={1}
         statement={
           <>
@@ -152,6 +165,7 @@ export default function SpecialistQ2_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Sketch Path"
         marks={2}
         statement={
           <>
@@ -166,6 +180,7 @@ export default function SpecialistQ2_2014Exam1() {
 
       <PartCard
         letter="c"
+        topic="Speed"
         marks={2}
         statement={<>Find the speed of the particle when <Katex tex="t=1" />.</>}
         examinerReport={EXAM_C}

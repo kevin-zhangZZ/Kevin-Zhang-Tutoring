@@ -17,7 +17,8 @@ const EXAM: SAExaminerStats = {
       when substituting the given point; others found the gradient of the perpendicular line
       and did not continue. Others found the gradient and/or equation of the tangent, while
       some thought that the gradient of the normal was equal to the reciprocal rather than
-      the negative reciprocal of the gradient of the tangent.
+      the negative reciprocal of the gradient of the tangent. Others used the negative of the
+      gradient of the tangent.
     </>
   ),
 }
@@ -37,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{dx} - \frac{\pi}{2} = 0 \implies \frac{dy}{dx} = \frac{\pi}{2}" />,
-    reason: <>Because <Katex tex="-\sin\!\left(-\tfrac{\pi}{2}\right)=-(-1)=+1" />. The report says the double negative here is where the sign errors happened.</>,
+    reason: <>Because <Katex tex="-\sin\!\left(-\tfrac{\pi}{2}\right)=-(-1)=+1" />. The report notes sign errors when substituting the point — watch this double negative.</>,
   },
   {
     working: <Katex display tex="m_{\perp} = -\frac{1}{\frac{\pi}{2}} = -\frac{2}{\pi}" />,
@@ -62,6 +63,8 @@ export default function SpecialistQ3_2016Exam1() {
           <Katex tex="\cos(y)+y\sin(x)=x^2" /> at{' '}
           <Katex tex="\left(0,-\tfrac{\pi}{2}\right)" />.
         </p>
+      </Background>
+      <Background>
         <p>
           The curve cannot be written as <Katex tex="y=\ldots" />, so implicit
           differentiation is the only route — and with a point supplied you can substitute

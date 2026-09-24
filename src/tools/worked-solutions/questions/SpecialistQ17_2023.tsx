@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\times\underset{\sim}{b} = \begin{vmatrix}\underset{\sim}{i}&\underset{\sim}{j}&\underset{\sim}{k}\\\alpha&1&-1\\3&\beta&4\end{vmatrix}" />,
-    reason: 'Set up the determinant with a on the middle row.',
+    reason: <>Set up the determinant with a on the middle row.</>,
   },
   {
     working: <Katex display tex="= \bigl(4+\beta\bigr)\underset{\sim}{i}-\bigl(4\alpha+3\bigr)\underset{\sim}{j}+\bigl(\alpha\beta-3\bigr)\underset{\sim}{k}" />,
@@ -22,19 +22,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \ 4+\beta = 2 \implies \beta = -2" />,
-    reason: 'The first component involves only β, so start there.',
+    reason: <>The first component involves only β, so start there.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{j}: \ -(4\alpha+3) = -7 \implies 4\alpha = 4 \implies \alpha = 1" />,
-    reason: 'The second involves only α. Losing the leading minus sign here flips the answer.',
+    reason: <>The second involves only α. Losing the leading minus sign here flips the answer.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{k}: \ \gamma = \alpha\beta-3 = (1)(-2)-3 = -5" />,
-    reason: 'The third then follows from the first two.',
+    reason: <>The third then follows from the first two.</>,
   },
   {
     working: <Katex display tex="\boxed{\alpha = 1, \quad \beta = -2, \quad \gamma = -5}" />,
-    reason: <>Option <b>C</b>. Testing the options directly is just as fast on a CAS, and either way the <Katex tex="\underset{\sim}{j}" /> component is what separates <b>C</b> from <b>E</b>.</>,
+    reason: <>Matches option <b>C</b>. Testing the options directly is just as fast on a CAS; option <b>E</b> has the right <Katex tex="\alpha" /> and <Katex tex="\beta" /> but the sign of <Katex tex="\gamma" /> wrong.</>,
   },
 ]
 
@@ -48,7 +48,7 @@ export default function SpecialistQ17_2023() {
           <Katex tex="\underset{\sim}{b}=3\underset{\sim}{i}+\beta\underset{\sim}{j}+4\underset{\sim}{k}" />{' '}
           and{' '}
           <Katex tex="\underset{\sim}{c}=2\underset{\sim}{i}-7\underset{\sim}{j}+\gamma\underset{\sim}{k}" />
-          , where <Katex tex="\alpha,\beta,\gamma\in\mathbb{R}" />. If{' '}
+          , where <Katex tex="\alpha,\beta,\gamma\in R" />. If{' '}
           <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}=\underset{\sim}{c}" />, then
         </p>
       }

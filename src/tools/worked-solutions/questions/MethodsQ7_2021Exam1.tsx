@@ -12,8 +12,8 @@ const EXAM_A: SAExaminerStats = {
     <>
       Most students could set up an integral, with correct terminals, equal to one.
       Occasionally the antiderivative was written as a logarithm, but generally students were
-      able to correctly antidifferentiate the function. This was a "show that" question and
-      generally the solution process was clear, logical and well explained. The{' '}
+      able to correctly anti-differentiate the function. This was a 'show that' question and
+      generally the solution process was clear, logical and well-explained. The{' '}
       <Katex tex="dx" /> was rarely missing.
     </>
   ),
@@ -25,7 +25,7 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This was generally well answered, although some formed the integral of{' '}
-      <Katex tex="f(x)" /> rather than <Katex tex="x\,f(x)" />. Common errors involved not
+      <Katex tex="f(x)" /> rather than <Katex tex="xf(x)" />. Common errors involved not
       recognising <Katex tex="\log_e(1)=0" />.
     </>
   ),
@@ -34,7 +34,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{-\infty}^{\infty}f(x)\,dx = 1" />,
-    reason: 'The defining property of a probability density function.',
+    reason: <>The defining property of a probability density function.</>,
   },
   {
     working: <Katex display tex="\int_1^2\frac{k}{x^2}\,dx = 1" />,
@@ -46,11 +46,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -\frac{k}{2}+k = \frac{k}{2}" />,
-    reason: 'Substituting the terminals.',
+    reason: <>Substituting the terminals.</>,
   },
   {
-    working: <Katex display tex="\frac{k}{2} = 1 \implies \boxed{k = 2} \ \checkmark" />,
-    reason: <>Shown, not assumed. And <Katex tex="k=2>0" />, consistent with "<Katex tex="k" /> is a positive real number".</>,
+    working: <Katex display tex="\frac{k}{2} = 1 \implies \boxed{k = 2}" />,
+    reason: <>As required — shown, not assumed. And <Katex tex="k=2>0" />, consistent with "<Katex tex="k" /> is a positive real number".</>,
   },
 ]
 
@@ -64,12 +64,12 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Now the integrand <em>is</em> a reciprocal, so the antiderivative is a logarithm after all.</>,
   },
   {
-    working: <Katex display tex="= 2\left[\log_e(x)\right]_1^2 = 2\left(\log_e2-\log_e1\right)" />,
+    working: <Katex display tex="= 2\left[\log_e(x)\right]_1^2 = 2\left(\log_e(2)-\log_e(1)\right)" />,
     reason: <><Katex tex="x>0" /> throughout, so no absolute value is needed.</>,
   },
   {
     working: <Katex display tex="\log_e(1) = 0" />,
-    reason: 'The step the report singles out as most often forgotten.',
+    reason: <>The report lists not recognising <Katex tex="\log_e(1)=0" /> among the common errors.</>,
   },
   {
     working: <Katex display tex="\boxed{E(X) = 2\log_e(2) = \log_e(4)}" />,
@@ -99,6 +99,7 @@ export default function MethodsQ7_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Continuous PDF"
         marks={1}
         statement={<>Show that <Katex tex="k=2" />.</>}
         examinerReport={EXAM_A}
@@ -106,7 +107,7 @@ export default function MethodsQ7_2021Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Find <Katex tex="E(X)" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Mean of PDF" marks={2} statement={<>Find <Katex tex="E(X)" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>

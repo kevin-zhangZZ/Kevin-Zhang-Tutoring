@@ -1,5 +1,5 @@
-// 2018 Mathematical Methods — Exam 2, MCQ 8. VCAA examination report: 41% correct — one of
-// the paper's harder questions, and the correct option was not the most popular. Additivity
+// 2018 Mathematical Methods — Exam 2, MCQ 8. VCAA examination report: 41% correct, with option
+// E close behind at 36%. Additivity
 // of definite integrals with a reversed interval. Question text transcribed from the original
 // paper; VCAA printed no diagram and neither does the stem here (guide §7).
 // Solution is original.
@@ -14,10 +14,13 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="\displaystyle\int_1^{12} g(x)\,dx = 5,\quad \int_{12}^{5} g(x)\,dx = -6" />.{' '}
-      <Katex tex="\displaystyle\int_1^{12} g(x)\,dx = \int_1^{5} g(x)\,dx + \int_5^{12} g(x)\,dx" />{' '}
-      so <Katex tex="\displaystyle 5 = \int_1^{5} g(x)\,dx + 6" />, giving{' '}
-      <Katex tex="\displaystyle\int_1^{5} g(x)\,dx = -1" />.
+      <Katex tex="\displaystyle\int_1^{12} g(x)\,dx = 5,\ \int_{12}^{5} g(x)\,dx = -6" />
+      <br />
+      <Katex tex="\displaystyle\int_1^{12} g(x)\,dx = \int_1^{5} g(x)\,dx + \int_5^{12} g(x)\,dx" /> so
+      <br />
+      <Katex tex="\displaystyle 5 = \int_1^{5} g(x)\,dx + 6" />
+      <br />
+      <Katex tex="\displaystyle\int_1^{5} g(x)\,dx = -1" />
     </>
   ),
 }
@@ -36,16 +39,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Substituting the known values.</>,
   },
   {
-    working: <Katex display tex="\boxed{\int_1^{5} g(x)\,dx = -1}" />,
-    reason: <>Matches option <b>B</b>.</>,
-  },
-  {
     working: <Katex display tex="5 + (-6) = -1 \quad \text{(same answer, one line)}" />,
     reason: <>The quick route: <Katex tex="\int_1^{12}+\int_{12}^{5}=\int_1^{5}" /> directly, because the terminals chain <Katex tex="1\to12\to5" />. Additivity does not require the middle point to lie <em>between</em> the ends — a backwards leg is fine as long as the chain joins up.</>,
   },
   {
-    working: <Katex display tex="5 - (-6) = 11" />,
-    reason: <>Ruling out <b>E</b>, chosen by <Katex tex="36\%" /> — almost as many as answered correctly. It flips the second integral's sign <em>and</em> subtracts, double-correcting for the reversed terminals. Options <b>A</b> <Katex tex="(-11)" /> and <b>C</b> <Katex tex="(1)" /> are the other sign permutations.</>,
+    working: <Katex display tex="\boxed{\int_1^{5} g(x)\,dx = -1}" />,
+    reason: <>Matches option <b>B</b>. Option <b>E</b> <Katex tex="(11)" />, chosen by <Katex tex="36\%" /> — almost as many as answered correctly — is <Katex tex="5-(-6)" />: subtracting the given <Katex tex="\int_{12}^{5}" /> as though it were <Katex tex="\int_{5}^{12}" />, i.e. forgetting that swapping the terminals changes the sign. Options <b>A</b> <Katex tex="(-11)" /> and <b>C</b> <Katex tex="(1)" /> are the other sign permutations.</>,
   },
 ]
 

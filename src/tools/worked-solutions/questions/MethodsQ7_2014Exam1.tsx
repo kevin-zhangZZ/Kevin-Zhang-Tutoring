@@ -12,8 +12,8 @@ const EXAM: SAExaminerStats = {
   average: 1.9,
   comment: (
     <>
-      The students who omitted a constant of integration when completing the
-      antidifferentiation were then unable to find the specific equation required.
+      The students who omitted a constant of integration (+<Katex tex="c" />) when completing
+      the anti-differentiation were then unable to find the specific equation required.
     </>
   ),
 }

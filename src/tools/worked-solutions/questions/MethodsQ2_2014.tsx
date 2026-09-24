@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{D = (-2,6]}" />,
-    reason: <>Option D. Option A keeps the bracket types where they were, which is the trap for a decreasing function.</>,
+    reason: <>Matches option <b>D</b>. Option A keeps the bracket types where they were, which is the trap for a decreasing function.</>,
   },
 ]
 

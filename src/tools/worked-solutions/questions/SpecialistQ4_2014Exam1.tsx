@@ -12,13 +12,18 @@ const EXAM: SAExaminerStats = {
   average: 2.1,
   comment: (
     <>
-      Most recognised the need for implicit differentiation and attempted to use the product
-      rule. The most common differentiation errors were{' '}
-      <Katex tex="\tfrac{d}{dy}\!\left(e^y\right)=ye^y" /> and{' '}
-      <Katex tex="\tfrac{d}{dy}(y)=0" />. Many students did not substitute in the given
-      values. Several students correctly found the gradient of the <em>tangent</em> and then
-      did no further work. Some students found the equation of the normal, which was not
-      required.
+      Many students answered this question well. Most recognised the need for implicit
+      differentiation and attempted to use the product rule. The most common differentiation
+      errors were <Katex tex="\tfrac{d}{dy}\!\left(e^y\right)=ye^y" /> and{' '}
+      <Katex tex="\tfrac{d}{dy}(y)=0" />, or occasionally <Katex tex="=1" />. Some students
+      rearranged the equation prior to attempting to find the derivative. On most occasions
+      this either led to complications or was an incomplete attempt. A number of students were
+      unable to take the <Katex tex="\tfrac{dy}{dx}" /> terms to one side of the equation or
+      made algebraic errors in doing so. Many students did not substitute in the given values.
+      Some who did substitute in the given values made numerical errors or were unable to
+      simplify <Katex tex="e^{-3}e^3" />. Several students correctly found the gradient of the
+      tangent and then did no further work. Some students found the equation of the normal,
+      which was not required.
     </>
   ),
 }
@@ -50,7 +55,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac49}" />,
-    reason: <>Just the gradient — the question does not ask for the equation of the normal.</>,
+    reason: <>Just the gradient — the question does not ask for the equation of the normal. Check: <Katex tex="-\tfrac94\times\tfrac49=-1" />, so the normal is perpendicular to the tangent ✓.</>,
   },
 ]
 
@@ -62,6 +67,8 @@ export default function SpecialistQ4_2014Exam1() {
           Find the gradient of the normal to the curve defined by{' '}
           <Katex tex="y=-3e^{3x}e^y" /> at the point <Katex tex="(1,-3)" />.
         </p>
+      </Background>
+      <Background>
         <p>
           Two traps sit at the ends: <Katex tex="e^y" /> differentiates to{' '}
           <Katex tex="e^y\tfrac{dy}{dx}" /> at the start, and the question asks for the{' '}

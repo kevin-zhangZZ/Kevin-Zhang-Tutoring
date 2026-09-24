@@ -48,11 +48,11 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x\sqrt{2x+1} = x(2x+1)^{1/2}" />,
-    reason: 'A product of x and a square root, so the product rule — with a chain rule inside the second factor.',
+    reason: <>A product of x and a square root, so the product rule — with a chain rule inside the second factor.</>,
   },
   {
     working: <Katex display tex="f'(x) = (2x+1)^{1/2}+x\cdot\tfrac12(2x+1)^{-1/2}\cdot 2" />,
-    reason: <>The trailing <Katex tex="\times2" /> is the derivative of the inside. Leaving it out is the report's most common error.</>,
+    reason: <>The trailing <Katex tex="\times2" /> is the derivative of the inside. The report notes a common error was not differentiating the <Katex tex="2x" /> within <Katex tex="\sqrt{2x+1}" />.</>,
   },
   {
     working: <Katex display tex="= \sqrt{2x+1}+\frac{x}{\sqrt{2x+1}}" />,
@@ -60,7 +60,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{(2x+1)+x}{\sqrt{2x+1}} = \frac{3x+1}{\sqrt{2x+1}}" />,
-    reason: 'A common denominator makes substitution cleaner, though it is not required.',
+    reason: <>A common denominator makes substitution cleaner, though it is not required.</>,
   },
   {
     working: <Katex display tex="f'(4) = \frac{13}{\sqrt{9}} = \frac{13}{3}" />,
@@ -81,6 +81,7 @@ export default function MethodsQ1_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Chain Rule"
         marks={1}
         statement={
           <>
@@ -94,6 +95,7 @@ export default function MethodsQ1_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Product Rule"
         marks={2}
         statement={
           <>

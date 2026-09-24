@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x \in [-5,-1) \implies x+2 \in [-3,1)" />,
-    reason: 'Shifting the domain.',
+    reason: <>Shifting the domain.</>,
   },
   {
     working: <Katex display tex="(x+2)^2: \ \text{minimum } 0 \text{ at } x=-2, \ \text{maximum } 9 \text{ at } x=-5" />,
@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{[-4,\ 5]}" />,
-    reason: <>Matches option <b>E</b>. Option D keeps an open left end, option A starts the parabola's minimum at the wrong place.</>,
+    reason: <>Matches option <b>E</b>. Option A uses the endpoint value <Katex tex="h(-1)=-3" /> as the minimum, missing the turning point at <Katex tex="x=-2" />; option D wrongly opens the bracket at <Katex tex="-4" />.</>,
   },
 ]
 
@@ -39,8 +39,9 @@ export default function MethodsQ9_2021() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="g(x)=x+2" /> and <Katex tex="f(x)=x^2-4" />. If <Katex tex="h" />{' '}
-          is the composite function given by{' '}
+          Let <Katex tex="g(x)=x+2" /> and <Katex tex="f(x)=x^2-4" />.
+          <br />
+          If <Katex tex="h" /> is the composite function given by{' '}
           <Katex tex="h:[-5,-1)\to R,\ h(x)=f\bigl(g(x)\bigr)" />, then the range of{' '}
           <Katex tex="h" /> is
         </p>

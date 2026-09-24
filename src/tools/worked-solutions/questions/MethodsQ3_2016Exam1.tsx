@@ -1,12 +1,12 @@
 // 2016 Mathematical Methods — Exam 1, Question 3 (5 marks).
 // Sketch y = 2 + 3/(x − 1), then an area under it. Question text transcribed from the
-// original paper; VCAA supplied blank axes, so the finished sketch below is our own
-// matplotlib figure. Answers checked with sympy and against the VCAA examination report.
+// original paper; VCAA supplied blank gridded axes, so the finished sketch below is our own
+// matplotlib figure drawn on the same grid (x from −4 to 4 in halves, y from −6 to 6). Answers checked with sympy and against the VCAA examination report.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import hyperbolaSrc from './meth-2016exam1-q3-hyperbola.png'
+import hyperbolaSrc from './meth-2016e1-q3-hyperbola.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [9, 10, 24, 57],
@@ -14,8 +14,8 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Some well-constructed graphs were presented by students. The highest-scoring graphs
-      were clearly labelled with the correct points and equations, as specified by the
-      question, and with care taken in showing the asymptotic behaviour of the curve as it
+      were clearly labelled with the correct points/equations, as specified by the question,
+      and with care taken in showing the asymptotic behaviour nature of the curve as it
       approached an asymptote. Using a dashed line to represent an asymptote indicated that
       the curve was distinct from its asymptote.
     </>
@@ -51,8 +51,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Setting <Katex tex="f(x)=0" /> for the <Katex tex="x" />-intercept.</>,
   },
   {
-    working: <Katex display tex="\boxed{\left(-\tfrac12,\,0\right) \text{ and } (0,-1)}" />,
-    reason: <>Both intercepts sit on the left branch, which is why that branch is the one that crosses the axes.</>,
+    working: <Katex display tex="\boxed{\text{intercepts }\left(-\tfrac12,\,0\right),\ (0,-1);\ \text{asymptotes } x=1,\ y=2}" />,
+    reason: <>Both intercepts are on the left branch. The right branch (<Katex tex="x>1" />) has <Katex tex="\tfrac{3}{x-1}>0" />, so it stays above <Katex tex="y=2" /> and never meets either axis.</>,
   },
 ]
 
@@ -92,6 +92,7 @@ export default function MethodsQ3_2016Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sketch Hyperbola"
         marks={3}
         statement={
           <>
@@ -125,6 +126,7 @@ export default function MethodsQ3_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="Area Under Curve"
         marks={2}
         statement={
           <>

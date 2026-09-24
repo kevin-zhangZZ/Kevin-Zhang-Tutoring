@@ -9,12 +9,22 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 10, B: 18, C: 16, D: 47, E: 8 },
   answer: 'D',
+  noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="\log_x(y)+\log_y(z)" />
+      <br />
+      <Katex tex="=\dfrac{\log_y(y)}{\log_y(x)}+\dfrac{\log_z(z)}{\log_z(y)}" />
+      <br />
+      <Katex tex="=\dfrac{1}{\log_y(x)}+\dfrac{1}{\log_z(y)}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\log_x(y) + \log_y(z)" />,
-    reason: 'The expression to rewrite.',
+    reason: <>The expression to rewrite.</>,
   },
   {
     working: <Katex display tex="\log_a(b) = \frac{1}{\log_b(a)}" />,
@@ -22,15 +32,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_x(y) = \frac{1}{\log_y(x)}" />,
-    reason: 'Apply the identity to the first term.',
+    reason: <>Apply the identity to the first term.</>,
   },
   {
     working: <Katex display tex="\log_y(z) = \frac{1}{\log_z(y)}" />,
-    reason: 'Apply the identity to the second term.',
+    reason: <>Apply the identity to the second term.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{1}{\log_y(x)} + \frac{1}{\log_z(y)}}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> (<Katex tex="18\%" />) takes reciprocals without swapping base and argument, and option <b>E</b> swaps them without taking reciprocals.</>,
   },
 ]
 

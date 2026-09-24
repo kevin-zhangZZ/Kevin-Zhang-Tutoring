@@ -11,11 +11,12 @@ const EXAM_A: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      The question required students to simplify their answers. Many students simplified the
-      quadratic component but left the exponential terms unsimplified. Some students did not
-      use brackets around terms and subsequently did not correctly develop the signs of
-      terms, or collect like terms; <Katex tex="\tfrac{-x^2+x-1}{e^x}" /> was a common
-      incorrect response.
+      This question was well attempted and required students to use either the product rule or
+      quotient rule to find the derivative. The question required students to simplify their
+      answers. Many students simplified the quadratic component but left the exponential terms
+      unsimplified. Some students did not use brackets around terms and subsequently did not
+      correctly develop the signs of terms, or collect 'like terms'. For example,{' '}
+      <Katex tex="\tfrac{-x^2+x-1}{e^x}" /> was a common incorrect response.
     </>
   ),
 }
@@ -25,10 +26,13 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      There was no requirement to give the answer in a particular form. Some students did not
-      demonstrate an understanding of how to differentiate <Katex tex="e^{2x}" /> correctly
-      and produced responses that had a combination of <Katex tex="e^{2x}" /> and{' '}
-      <Katex tex="e^x" /> terms. Some students did not know how to arithmetically engage with
+      Students generally responded to this question well. The question required students to use
+      the product rule to differentiate and then evaluate the derivative at{' '}
+      <Katex tex="x=\tfrac\pi4" />. There was no requirement to give the answer in a
+      particular form. Some students did not demonstrate an understanding of how to
+      differentiate <Katex tex="e^{2x}" /> correctly and produced responses that had a
+      combination of <Katex tex="e^{2x}" /> and <Katex tex="e^x" /> terms. Some students
+      presented responses indicating that they did not know how to arithmetically engage with
       the surd terms in their answer.
     </>
   ),
@@ -37,11 +41,11 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = \frac{x^2-x}{e^x}" />,
-    reason: 'A quotient — though rewriting it as (x² − x)e^(−x) and using the product rule works just as well.',
+    reason: <>A quotient — though rewriting it as (x² − x)e^(−x) and using the product rule works just as well.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = \frac{(2x-1)e^x-\left(x^2-x\right)e^x}{\left(e^x\right)^2}" />,
-    reason: 'Quotient rule. Keep the bracket around x² − x; dropping it is where the sign errors start.',
+    reason: <>Quotient rule. Keep the bracket around x² − x; dropping it is where the sign errors start.</>,
   },
   {
     working: <Katex display tex="= \frac{e^x\left(2x-1-x^2+x\right)}{e^{2x}}" />,
@@ -49,14 +53,14 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{-x^2+3x-1}{e^x}}" />,
-    reason: <>Collecting <Katex tex="2x+x=3x" />, and <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. Leaving <Katex tex="\tfrac{e^x(\ldots)}{e^{2x}}" /> is not simplified; nor is <Katex tex="-x^2+x-1" />, the report's named slip. Equivalently <Katex tex="\left(-x^2+3x-1\right)e^{-x}" />.</>,
+    reason: <>Collecting <Katex tex="2x+x=3x" />, and <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. Leaving <Katex tex="\tfrac{e^x(\ldots)}{e^{2x}}" /> is not simplified; nor is <Katex tex="\tfrac{-x^2+x-1}{e^x}" />, which the report notes was a common incorrect response. Equivalently <Katex tex="\left(-x^2+3x-1\right)e^{-x}" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \sin(x)e^{2x}" />,
-    reason: 'A product of two functions.',
+    reason: <>A product of two functions.</>,
   },
   {
     working: <Katex display tex="f'(x) = \cos(x)e^{2x}+\sin(x)\cdot2e^{2x}" />,
@@ -85,11 +89,13 @@ export default function MethodsQ1_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Quotient Rule"
         marks={2}
         statement={
           <>
-            Let <Katex tex="y=\dfrac{x^2-x}{e^x}" />. Find and simplify{' '}
-            <Katex tex="\dfrac{dy}{dx}" />.
+            Let <Katex tex="y=\dfrac{x^2-x}{e^x}" />.
+            <br />
+            Find and simplify <Katex tex="\dfrac{dy}{dx}" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -99,11 +105,13 @@ export default function MethodsQ1_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Product Rule"
         marks={2}
         statement={
           <>
-            Let <Katex tex="f(x)=\sin(x)e^{2x}" />. Find{' '}
-            <Katex tex="f'\!\left(\dfrac\pi4\right)" />.
+            Let <Katex tex="f(x)=\sin(x)e^{2x}" />.
+            <br />
+            Find <Katex tex="f'\!\left(\dfrac\pi4\right)" />.
           </>
         }
         examinerReport={EXAM_B}

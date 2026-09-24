@@ -11,13 +11,23 @@ const EXAM: SAExaminerStats = {
   average: 1.7,
   comment: (
     <>
-      Those who knew that the two lines needed to have identical gradients were generally
-      successful. Students using the determinant method often arrived at{' '}
-      <Katex tex="k=-2" /> and <Katex tex="k=\tfrac43" /> and then did not justify which
-      answer was valid. The quadratic was readily factorised by inspection, yet a large
-      proportion used the quadratic formula. Some students incorrectly gave{' '}
-      <Katex tex="k=-2" />, indicating confusion between "infinite solutions" and "no
-      solution".
+      There were multiple ways to approach this question; however, generally students approached
+      this by one of the following: equating gradients and <Katex tex="y" />-intercepts
+      separately; using a matrix/determinant method; forming ratios; or attempting to solve
+      simultaneously. These methods were met with varying degrees of success. Those who knew
+      that the two lines needed to have identical gradients were generally successful.
+      Students using the determinant method often arrived at <Katex tex="k=-2" /> and{' '}
+      <Katex tex="k=\tfrac43" /> and then did not justify which answer was the valid solution.
+      Students who set the two initial equations equal to one another commonly found they had
+      multiple variables to deal with and did not know how to solve for <Katex tex="k" />. The
+      methods involving forming ratios or setting gradients equal to one another regularly led
+      to the required quadratic. Some students struggled with applying an appropriate method to
+      solve the quadratic equation. The quadratic was readily factorised by inspection, yet a
+      large proportion of students used the quadratic formula or other techniques such as
+      splitting the middle term and grouping. Some students incorrectly put{' '}
+      <Katex tex="k=-2" /> as the final solution, rejecting <Katex tex="k=\tfrac43" />,
+      indicating confusion about the definition between 'infinite solutions' and 'no
+      solution'.
     </>
   ),
 }
@@ -25,11 +35,11 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{pmatrix}3k&-2\\k-4&k\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}k+4\\-k\end{pmatrix}" />,
-    reason: 'Matrix form. A unique solution exists exactly when the determinant is non-zero, so the candidates are the values that make it vanish.',
+    reason: <>Matrix form. A unique solution exists exactly when the determinant is non-zero, so the candidates are the values that make it vanish.</>,
   },
   {
     working: <Katex display tex="\det = 3k(k)-(-2)(k-4) = 3k^2+2k-8" />,
-    reason: 'Expanding, being careful with the double negative.',
+    reason: <>Expanding, being careful with the double negative.</>,
   },
   {
     working: <Katex display tex="3k^2+2k-8 = (3k-4)(k+2) = 0 \implies k = \frac43 \ \text{ or } \ k = -2" />,
@@ -45,7 +55,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \frac43}" />,
-    reason: 'A zero determinant means "no unique solution"; only checking each case separately tells you whether that is none or infinitely many. Stopping at the quadratic loses the last mark.',
+    reason: <>A zero determinant means "no unique solution"; only checking each case separately tells you whether that is none or infinitely many. The report notes students using the determinant method often did not justify which answer was valid.</>,
   },
 ]
 
@@ -59,7 +69,9 @@ export default function MethodsQ2_2024Exam1() {
           <Katex display tex="\begin{aligned}3kx-2y &= k+4\\ (k-4)x+ky &= -k\end{aligned}" />
         </div>
         <p>
-          where <Katex tex="x,y\in\mathbb{R}" /> and <Katex tex="k" /> is a real constant.
+          where <Katex tex="x,y\in R" /> and <Katex tex="k" /> is a real constant.
+        </p>
+        <p>
           Determine the value of <Katex tex="k" /> for which the system of equations has no
           real solution.
         </p>

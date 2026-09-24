@@ -13,7 +13,9 @@ const EXAM_AI: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      This question was answered well. Some students used the incorrect formula for the mean.
+      This question was answered well. <Katex tex="38" /> was an occasional incorrect response.
+      Some students used the incorrect formula for the mean. Others made transcription errors when
+      transcribing the formula.
     </>
   ),
 }
@@ -23,8 +25,9 @@ const EXAM_AII: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Some responses worked out the variance but did not proceed to compute the standard
-      deviation. Some students gave the approximate answer <Katex tex="5.34\ldots" /> and
+      Some responses were not awarded full marks because while they worked out the variance, they
+      did not proceed to compute the standard deviation. Others gave the correct answer but did not
+      show any working. Some students gave the approximate answer <Katex tex="5.34\ldots" /> and
       were not awarded full marks.
     </>
   ),
@@ -33,6 +36,13 @@ const EXAM_AII: SAExaminerStats = {
 const EXAM_BI: SAExaminerStats = {
   marks: [19, 81],
   average: 0.8,
+  comment: (
+    <>
+      This question was answered well.{' '}
+      <Katex tex="\displaystyle\int_{29}^{47}f(t)\,dt=0.08704" /> was an occasional incorrect
+      response.
+    </>
+  ),
 }
 
 const EXAM_BII: SAExaminerStats = {
@@ -41,7 +51,9 @@ const EXAM_BII: SAExaminerStats = {
   comment: (
     <>
       Some students just gave the answer without showing appropriate working. Other students
-      rounded incorrectly.
+      rounded their answer incorrectly, giving <Katex tex="0.3657" /> instead of{' '}
+      <Katex tex="0.3658" />. Some students incorrectly multiplied <Katex tex="0.08704" /> by{' '}
+      <Katex tex="5" />.
     </>
   ),
 }
@@ -57,8 +69,10 @@ const EXAM_BIV: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      An integer value was required. Many students tried to solve an equation exactly; some
-      correctly used trial and error. Others just gave the answer without working.
+      <Katex tex="k=49.1" /> was a common incorrect answer. An integer value was required. Many
+      students tried to solve <Katex tex="\displaystyle\int_k^{59}f(x)\,dx=0.2" />. Some students
+      correctly used trial and error. Others just gave the answer, without showing appropriate
+      working as required.
     </>
   ),
 }
@@ -72,7 +86,12 @@ const EXAM_CI: SAExaminerStats = {
 const EXAM_CII: SAExaminerStats = {
   marks: [52, 48],
   average: 0.5,
-  comment: <>This question was not answered well.</>,
+  comment: (
+    <>
+      This question was not answered well. <Katex tex="\sigma=0.48" /> and{' '}
+      <Katex tex="\sigma=1.19" /> were common incorrect responses.
+    </>
+  ),
 }
 
 const EXAM_D: SAExaminerStats = {
@@ -80,9 +99,10 @@ const EXAM_D: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Some students had the second and fifth columns correct but not the third and fourth,
-      often interchanging them. Others did not attempt the question or appeared to guess, as
-      their probabilities were unreasonable.
+      Some students had the second and fifth columns correct but not the third and fourth columns,
+      often interchanging these two columns. Others did not attempt the question or appeared to
+      guess the answers as their probabilities were unreasonable. Some put <Katex tex="0.06" />,
+      instead of <Katex tex="0.006" />.
     </>
   ),
 }
@@ -90,7 +110,7 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(T) = \int_{29}^{59}t\,f(t)\,dt" />,
-    reason: 'The definition for a continuous random variable — not the midpoint of the interval.',
+    reason: <>The definition for a continuous random variable — not the midpoint of the interval.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{1\,215\,000}\int_{29}^{59}t(t-29)(59-t)^3\,dt" />,
@@ -109,15 +129,15 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{200}{7}" />,
-    reason: 'A tidy exact value, which is the hint that an exact answer is wanted.',
+    reason: <>A tidy exact value, which is the hint that an exact answer is wanted.</>,
   },
   {
     working: <Katex display tex="\mathrm{sd}(T) = \sqrt{\frac{200}{7}} = \frac{10\sqrt2}{\sqrt7}" />,
-    reason: <>Stopping at the variance was one listed error; giving the decimal <Katex tex="5.34" /> was the other.</>,
+    reason: <>The report notes some students stopped at the variance, and some gave the approximate answer <Katex tex="5.34\ldots" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(T) = \frac{10\sqrt{14}}{7} \approx 5.35 \text{ minutes}}" />,
-    reason: 'Rationalised. Exact form was required.',
+    reason: <>Rationalised. Exact form was required.</>,
   },
 ]
 
@@ -128,37 +148,37 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(T>47) = \int_{47}^{59}\frac{1}{1\,215\,000}(t-29)(59-t)^3\,dt = 0.08704}" />,
-    reason: <>The upper terminal is 59, where the density ends — not <Katex tex="\infty" />. Exactly, this is <Katex tex="\tfrac{272}{3125}" />.</>,
+    reason: <>The upper terminal 59 is where the density ends; the report also accepts <Katex tex="\int_{47}^{\infty}" /> or <Katex tex="1-\int_{29}^{47}" />. Exactly, this is <Katex tex="\tfrac{272}{3125}" />. As required.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="L\sim\text{Bi}(5,\,0.08704)" />,
-    reason: 'Five independent days, each with the same probability of a late arrival.',
+    reason: <>Five independent days, each with the same probability of a late arrival.</>,
   },
   {
     working: <Katex display tex="\Pr(L\ge1) = 1-\Pr(L=0)" />,
-    reason: 'The complement is a single term instead of five.',
+    reason: <>The complement is a single term instead of five.</>,
   },
   {
     working: <Katex display tex="= 1-(1-0.08704)^5 = 1-(0.91296)^5" />,
-    reason: 'No binomial coefficient needed for the zero term.',
+    reason: <>No binomial coefficient needed for the zero term.</>,
   },
   {
     working: <Katex display tex="= 1-0.63425 = 0.365752\ldots" />,
-    reason: 'One evaluation.',
+    reason: <>One evaluation.</>,
   },
   {
     working: <Katex display tex="\boxed{0.3658}" />,
-    reason: 'Four decimal places, as asked.',
+    reason: <>Four decimal places, as asked.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\hat{P} = \frac{L}{5} \ \text{ with } L\sim\text{Bi}(5,\,0.08704)" />,
-    reason: 'The sample proportion over a five-day week — a binomial count divided by 5.',
+    reason: <>The sample proportion over a five-day week — a binomial count divided by 5.</>,
   },
   {
     working: <Katex display tex="0.4 \le \hat{P} \le 0.6 \iff 2 \le L \le 3" />,
@@ -181,7 +201,7 @@ const ROWS_BIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(1-p_k)^5 = 0.8 \implies p_k = 1-0.8^{1/5} = 0.04365" />,
-    reason: 'Working backwards gives the target daily probability.',
+    reason: <>Working backwards gives the target daily probability.</>,
   },
   {
     working: <Katex display tex="k=49: \ p_{49} = 0.04527 \implies 1-(1-p_{49})^5 = 0.2068" />,
@@ -189,7 +209,7 @@ const ROWS_BIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k=48: \ 0.2811 \ (\to0.3); \qquad k=50: \ 0.1447 \ (\to0.1)" />,
-    reason: <>The neighbours confirm that 49 is the only integer that works — trial and error over a couple of values, which is the method the examiner endorsed.</>,
+    reason: <>The neighbours confirm that 49 is the only integer that works — trial and error over a couple of values, which the report notes some students correctly used.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 49 \text{ minutes}}" />,
@@ -200,7 +220,7 @@ const ROWS_BIV: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="W\sim\mathrm{N}\!\left(2.5,\,0.6^2\right)" />,
-    reason: 'The wait time at the light.',
+    reason: <>The wait time at the light.</>,
   },
   {
     working: <Katex display tex="\Pr(W<3.5) = \text{normCdf}(-\infty,\,3.5,\,2.5,\,0.6)" />,
@@ -208,14 +228,14 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.95}" />,
-    reason: 'Two decimal places.',
+    reason: <>Two decimal places.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(W>3.5) = 0.02 \implies \Pr(W<3.5) = 0.98" />,
-    reason: 'Turning the upper tail into a cumulative probability.',
+    reason: <>Turning the upper tail into a cumulative probability.</>,
   },
   {
     working: <Katex display tex="\frac{3.5-2.5}{\sigma} = \text{invNorm}(0.98) = 2.0537" />,
@@ -223,13 +243,38 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sigma = \frac{1}{2.0537} = 0.48691\ldots" />,
-    reason: 'Rearranging.',
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma = 0.49}" />,
     reason: <>Two decimal places. Smaller than the 0.6 in part c.i., which fits: a tighter spread pushes less probability past 3.5 minutes.</>,
   },
 ]
+
+const DIST_TABLE = (
+  <div className="overflow-x-auto">
+    <table className="text-[13.5px] border-collapse">
+      <tbody>
+        <tr>
+          <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal">
+            <Katex tex="y" />
+          </th>
+          {[0, 1, 2, 3].map((v) => (
+            <td key={v} className="border border-gray-300 dark:border-gray-700 px-4 py-1.5 text-center">{v}</td>
+          ))}
+        </tr>
+        <tr>
+          <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal whitespace-nowrap">
+            <Katex tex="\Pr(Y=y)" />
+          </th>
+          {['0.504', '0.398', '0.092', '0.006'].map((v) => (
+            <td key={v} className="border border-gray-300 dark:border-gray-700 px-4 py-1.5 text-center">{v}</td>
+          ))}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+)
 
 const ROWS_D: WorkingRow[] = [
   {
@@ -238,19 +283,19 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(Y=0) = 0.8\times0.7\times0.9 = 0.504" />,
-    reason: 'All three green.',
+    reason: <>All three green.</>,
   },
   {
     working: <Katex display tex="\Pr(Y=3) = 0.2\times0.3\times0.1 = 0.006" />,
-    reason: 'All three red — the other easy corner.',
+    reason: <>All three red — the other easy corner.</>,
   },
   {
     working: <Katex display tex="\Pr(Y=1) = (0.2)(0.7)(0.9)+(0.8)(0.3)(0.9)+(0.8)(0.7)(0.1)" />,
-    reason: 'Three ways: exactly A red, exactly B red, or exactly C red.',
+    reason: <>Three ways: exactly A red, exactly B red, or exactly C red.</>,
   },
   {
     working: <Katex display tex="= 0.126+0.216+0.056 = 0.398" />,
-    reason: 'Adding the three terms.',
+    reason: <>Adding the three terms.</>,
   },
   {
     working: <Katex display tex="\Pr(Y=2) = 1-0.504-0.398-0.006 = 0.092" />,
@@ -259,6 +304,10 @@ const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{0.504,\ 0.398,\ 0.092,\ 0.006}" />,
     reason: <>The report notes students who swapped the middle two — a sanity check settles it: one red light is much more likely than two.</>,
+  },
+  {
+    working: DIST_TABLE,
+    reason: <>The completed table.</>,
   },
 ]
 
@@ -292,14 +341,15 @@ export default function MethodsQ3_2025Exam2() {
           <p>
             Part b.iv. has no closed-form route: <Katex tex="k" /> appears inside an integral
             that then goes through a binomial. Working backwards to the required daily
-            probability and then testing integers is the intended method, and the examiner
-            endorsed trial and error explicitly.
+            probability and then testing integers is a reliable method — the report notes
+            some students correctly used trial and error.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a.i"
+        topic="Mean of PDF"
         marks={1}
         statement={<>Find the mean time taken, in minutes, for the driver to travel to work each day.</>}
         examinerReport={EXAM_AI}
@@ -309,6 +359,7 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Standard Deviation"
         marks={2}
         statement={
           <>
@@ -333,11 +384,12 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Continuous PDF"
         marks={1}
         statement={
           <>
             If <Katex tex="k=47" />, write a definite integral to show that the probability of
-            the driver being late is <Katex tex="0.08704" />.
+            the driver being late is <Katex tex="0.08704" />
           </>
         }
         examinerReport={EXAM_BI}
@@ -347,12 +399,14 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="At Least One"
         marks={2}
         statement={
           <>
             If <Katex tex="k=47" />, find the probability that the driver will be late on at
-            least one day in a five-day working week. Give your answer correct to four decimal
-            places.
+            least one day in a five-day working week.
+            <br />
+            Give your answer correct to four decimal places.
           </>
         }
         examinerReport={EXAM_BII}
@@ -362,6 +416,7 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Sample Proportion"
         marks={2}
         statement={
           <>
@@ -378,6 +433,7 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="b.iv"
+        topic="Find Parameter"
         marks={2}
         statement={
           <>
@@ -401,11 +457,14 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Normal Distribution"
         marks={1}
         statement={
           <>
             If <Katex tex="\sigma=0.6" />, find the probability that the wait time will be
-            less than 3.5 minutes. Give your answer correct to two decimal places.
+            less than 3.5 minutes.
+            <br />
+            Give your answer correct to two decimal places.
           </>
         }
         examinerReport={EXAM_CI}
@@ -415,11 +474,14 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Inverse Normal"
         marks={1}
         statement={
           <>
             Find the value of <Katex tex="\sigma" /> such that there is a 2% chance of a wait
-            time longer than 3.5 minutes. Give your answer correct to two decimal places.
+            time longer than 3.5 minutes.
+            <br />
+            Give your answer correct to two decimal places.
           </>
         }
         examinerReport={EXAM_CII}
@@ -429,42 +491,64 @@ export default function MethodsQ3_2025Exam2() {
 
       <PartCard
         letter="d"
+        topic="Discrete Distribution"
         marks={2}
         statement={
-          <>
-            The driver passes through three traffic lights (<Katex tex="A" />,{' '}
-            <Katex tex="B" /> and <Katex tex="C" />) on their journey to work, with
-            probabilities of being red of 0.2, 0.3 and 0.1 respectively. Let{' '}
-            <Katex tex="Y" /> be the random variable representing the number of traffic lights
-            that are red, assuming independence. Complete the table for the probability
-            distribution of <Katex tex="Y" />.
-          </>
+          <div className="flex flex-col gap-3">
+            <p>
+              The driver passes through three traffic lights (<Katex tex="A" />,{' '}
+              <Katex tex="B" /> and <Katex tex="C" />) on their journey to work. The probability
+              of each traffic light being red is shown in the table below.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="text-[13.5px] border-collapse">
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-300 dark:border-gray-700 px-3 py-1.5">Traffic light</td>
+                    {['A', 'B', 'C'].map((v) => (
+                      <td key={v} className="border border-gray-300 dark:border-gray-700 px-5 py-1.5 text-center"><Katex tex={v} /></td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-300 dark:border-gray-700 px-3 py-1.5">Probability that the traffic light is red</td>
+                    {['0.2', '0.3', '0.1'].map((v) => (
+                      <td key={v} className="border border-gray-300 dark:border-gray-700 px-5 py-1.5 text-center">{v}</td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Let <Katex tex="Y" /> be the random variable representing the number of traffic
+              lights that are red on the driver’s journey to work. Assume that each traffic light
+              being red is independent of any other traffic light being red.
+              <br />
+              Complete the following table for the probability distribution of{' '}
+              <Katex tex="Y" />.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="text-[13.5px] border-collapse">
+                <tbody>
+                  <tr>
+                    <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal"><Katex tex="y" /></th>
+                    {[0, 1, 2, 3].map((v) => (
+                      <td key={v} className="border border-gray-300 dark:border-gray-700 px-6 py-1.5 text-center">{v}</td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal whitespace-nowrap"><Katex tex="\Pr(Y=y)" /></th>
+                    {[0, 1, 2, 3].map((v) => (
+                      <td key={v} className="border border-gray-300 dark:border-gray-700 px-6 py-3" />
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         }
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
-        <div className="overflow-x-auto">
-          <table className="text-[13.5px] border-collapse">
-            <tbody>
-              <tr>
-                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal">
-                  <Katex tex="y" />
-                </th>
-                {[0, 1, 2, 3].map((v) => (
-                  <td key={v} className="border border-gray-300 dark:border-gray-700 px-4 py-1.5 text-center">{v}</td>
-                ))}
-              </tr>
-              <tr>
-                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal whitespace-nowrap">
-                  <Katex tex="\Pr(Y=y)" />
-                </th>
-                {['0.504', '0.398', '0.092', '0.006'].map((v) => (
-                  <td key={v} className="border border-gray-300 dark:border-gray-700 px-4 py-1.5 text-center">{v}</td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </PartCard>
     </div>
   )

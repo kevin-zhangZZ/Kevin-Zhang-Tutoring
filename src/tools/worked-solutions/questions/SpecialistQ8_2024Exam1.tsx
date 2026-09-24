@@ -12,9 +12,10 @@ const EXAM_A: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      The implicit differentiation was done very well. Some students made algebraic errors
-      and some moved too quickly to the final answer. Students needed to present evidence,
-      typically a clear and correct factorisation.
+      The implicit differentiation was done very well. Some students made algebraic errors and
+      some students moved too quickly to the final answer. Students needed to present evidence,
+      typically consisting of clear and correct factorisation such as{' '}
+      <Katex tex="\dfrac{dy}{dx}=-\dfrac{y(2xy+1)}{x(2xy+1)}=-\dfrac{y}{x}" />.
     </>
   ),
 }
@@ -25,9 +26,11 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Some students, while recognising the relationship <Katex tex="y=x" />, neglected to
-      consider that the points lay on the graph of the relation. Some who found an equation
-      had difficulty solving it, or found incorrect coordinates in addition to the correct
-      ones.
+      consider that the points lay on the graph of <Katex tex="x^2y^2+xy=2" />.
+      <br />
+      Some students who did find an equation such as <Katex tex="x^4+x^2=2" /> had difficulty
+      solving it or found incorrect coordinates in addition to <Katex tex="(1,1)" /> and{' '}
+      <Katex tex="(-1,-1)" />.
     </>
   ),
 }
@@ -35,38 +38,38 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\left(x^2y^2\right)+\frac{d}{dx}(xy) = \frac{d}{dx}(2)" />,
-    reason: 'Differentiating both sides with respect to x.',
+    reason: <>Differentiating both sides with respect to x.</>,
   },
   {
     working: <Katex display tex="2xy^2+x^2\cdot2y\frac{dy}{dx} \ + \ y+x\frac{dy}{dx} \ = \ 0" />,
-    reason: 'Product rule on each term, with the chain rule supplying dy/dx whenever y is differentiated.',
+    reason: <>Product rule on each term, with the chain rule supplying dy/dx whenever y is differentiated.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx}\left(2x^2y+x\right) = -\left(2xy^2+y\right)" />,
-    reason: 'Collecting the dy/dx terms on one side.',
+    reason: <>Collecting the dy/dx terms on one side.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx}\cdot x(2xy+1) = -y(2xy+1)" />,
-    reason: 'Factorising both sides. This is the step the examiner wanted to see written down — without it the cancellation looks like a guess.',
+    reason: <>Factorising both sides. The report says students needed to present evidence, typically a clear and correct factorisation like this one — without it the cancellation looks like a guess.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{y}{x}, \quad \text{provided } 2xy\ne-1}" />,
-    reason: <>The common factor <Katex tex="2xy+1" /> cancels, which is exactly why the condition <Katex tex="2xy\ne-1" /> is attached.</>,
+    reason: <>The common factor <Katex tex="2xy+1" /> cancels, which is exactly why the condition <Katex tex="2xy\ne-1" /> is attached. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="-\frac{y}{x} = -1 \implies y = x" />,
-    reason: 'Setting the gradient from part a. equal to the required slope.',
+    reason: <>Setting the gradient from part a. equal to the required slope.</>,
   },
   {
     working: <Katex display tex="\text{the points must also satisfy } x^2y^2+xy = 2" />,
-    reason: <>The missing step for many: <Katex tex="y=x" /> is a whole line, and only the points of it that lie <em>on the curve</em> count.</>,
+    reason: <>The step the report notes some students neglected: <Katex tex="y=x" /> is a whole line, and only the points of it that lie <em>on the curve</em> count.</>,
   },
   {
     working: <Katex display tex="x^2\cdot x^2+x\cdot x = 2 \implies x^4+x^2-2 = 0" />,
-    reason: 'Substituting y = x into the relation.',
+    reason: <>Substituting y = x into the relation.</>,
   },
   {
     working: <Katex display tex="\left(x^2+2\right)\left(x^2-1\right) = 0" />,
@@ -74,7 +77,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2 = 1 \implies x = \pm1, \quad y = x" />,
-    reason: 'Both signs.',
+    reason: <>Both signs.</>,
   },
   {
     working: <Katex display tex="\boxed{(1,\,1) \ \text{ and } \ (-1,\,-1)}" />,
@@ -89,7 +92,7 @@ export default function SpecialistQ8_2024Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 8 (4 marks)</p>
         <p>
           Consider the relation <Katex tex="x^2y^2+xy=2" />, where{' '}
-          <Katex tex="x,y\in\mathbb{R}" />.
+          <Katex tex="x,y\in R" />.
         </p>
       </div>
 
@@ -106,13 +109,15 @@ export default function SpecialistQ8_2024Exam1() {
           <p>
             Part b. needs two conditions, not one. <Katex tex="y=x" /> says where the
             gradient is right; <Katex tex="x^2y^2+xy=2" /> says where the point is on the
-            curve. Using only the first was the most common way to lose marks.
+            curve. The report notes some students recognised <Katex tex="y=x" /> but
+            neglected to consider that the points lay on the graph.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Implicit Differentiation"
         marks={2}
         statement={
           <>
@@ -127,6 +132,7 @@ export default function SpecialistQ8_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Tangent Gradient"
         marks={2}
         statement={
           <>

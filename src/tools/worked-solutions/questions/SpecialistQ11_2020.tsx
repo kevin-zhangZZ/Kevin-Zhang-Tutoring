@@ -19,15 +19,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sec^2(x) = 1+\tan^2(x) = 1+u^2" />,
-    reason: 'The Pythagorean identity converts the rest of the denominator.',
+    reason: <>The Pythagorean identity converts the rest of the denominator.</>,
   },
   {
     working: <Katex display tex="\sec^2(x)-3\tan(x)+1 = \left(1+u^2\right)-3u+1 = u^2-3u+2" />,
-    reason: 'A quadratic in u.',
+    reason: <>A quadratic in u.</>,
   },
   {
     working: <Katex display tex="u^2-3u+2 = (u-1)(u-2)" />,
-    reason: 'Factorising — which is what makes "linear denominators" possible.',
+    reason: <>Factorising — which is what makes "linear denominators" possible.</>,
   },
   {
     working: <Katex display tex="x = \tfrac\pi4 \Rightarrow u = 1; \quad x = \tfrac\pi3 \Rightarrow u = \sqrt3" />,
@@ -35,11 +35,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1}{(u-1)(u-2)} = \frac{A}{u-1}+\frac{B}{u-2}" />,
-    reason: 'Partial fractions.',
+    reason: <>Partial fractions.</>,
   },
   {
     working: <Katex display tex="u=2: \ B=1; \quad u=1: \ -A=1 \implies A=-1" />,
-    reason: 'The cover-up rule. The signs matter: the answer is a difference, and which term comes first is exactly what separates C from D.',
+    reason: <>The cover-up rule. The signs matter: the answer is a difference, and which term comes first is exactly what separates C from D.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_1^{\sqrt3}\left(\frac{1}{u-2}-\frac{1}{u-1}\right)du}" />,

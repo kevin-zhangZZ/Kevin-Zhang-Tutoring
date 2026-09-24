@@ -54,11 +54,11 @@ const EXAM_EII: SAExaminerStats = {
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="a = v\frac{dv}{dx}" />,
-    reason: <>The question wants distance as a function of <em>speed</em>, so choose the form of acceleration that involves <Katex tex="x" /> and <Katex tex="v" /> and no <Katex tex="t" />. Picking the right one of the three forms is the first mark.</>,
+    reason: <>The question wants distance as a function of <em>speed</em>, so choose the form of acceleration that involves <Katex tex="x" /> and <Katex tex="v" /> and no <Katex tex="t" />. The report says most students chose the appropriate form.</>,
   },
   {
     working: <Katex display tex="v\frac{dv}{dx} = \frac{g-2v}{2}" />,
-    reason: <>Substituting the acceleration given in part (b)(ii).</>,
+    reason: <>Substituting the acceleration given in part b.ii.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dv} = \frac{2v}{g-2v}" />,
@@ -82,7 +82,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = -v + 4.9\log_e\!\left(\frac{4.9}{4.9-v}\right)}" />,
-    reason: <>Dividing numerator and denominator inside the log by <Katex tex="2" /> puts it in the required form <Katex tex="x=bv+c\log_e\!\left(\tfrac{c}{c-v}\right)" /> with <Katex tex="b=-1" /> and <Katex tex="c=\tfrac{g}{2}=4.9" />. The report says many students solved the equation correctly and then lost the mark on the form.</>,
+    reason: <>Dividing numerator and denominator inside the log by <Katex tex="2" /> puts it in the required form <Katex tex="x=bv+c\log_e\!\left(\tfrac{c}{c-v}\right)" /> with <Katex tex="b=-1" /> and <Katex tex="c=\tfrac{g}{2}=4.9" />. The report says many students who solved the equation correctly did not give the solution in the required form.</>,
   },
 ]
 
@@ -108,7 +108,7 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dt}{dv} = \frac{2}{g-2v}" />,
-    reason: <>Inverting. The report notes the reciprocal of this — <Katex tex="\tfrac{g-2v}{2}" /> — being integrated instead, which is the single most common error here.</>,
+    reason: <>Inverting. The report notes the reciprocal of this — <Katex tex="\tfrac{g-2v}{2}" /> — being integrated instead, which the report says was common.</>,
   },
   {
     working: <Katex display tex="\boxed{t = \int_0^{4.5}\frac{2}{9.8-2v}\,dv}" />,
@@ -131,7 +131,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t \approx 2.51 \text{ seconds}}" />,
-    reason: <>Two decimal places. Consistent with part (d): the suitcase reaches <Katex tex="4.5" /> m s<Katex tex="^{-1}" /> in about two and a half seconds, then spends the rest of the ramp creeping the last <Katex tex="0.3" /> m s<Katex tex="^{-1}" /> towards its terminal speed.</>,
+    reason: <>Two decimal places. Consistent with part d.: the suitcase reaches <Katex tex="4.5" /> m s<Katex tex="^{-1}" /> in about two and a half seconds, then spends the rest of the ramp creeping the last <Katex tex="0.3" /> m s<Katex tex="^{-1}" /> towards its terminal speed.</>,
   },
 ]
 
@@ -147,15 +147,21 @@ export default function SpecialistQ5_2018Exam2() {
           a resistance of <Katex tex="v" /> newtons per kilogram, where <Katex tex="v" /> m
           s<Katex tex="^{-1}" /> is the speed of the suitcase.
         </p>
-        <p>
-          Parts (a) and (b) ask for a force diagram and an equation of motion by resolving
-          forces — force analysis, which is not part of the current study design. Part
-          (b)(ii) establishes that the magnitude of the acceleration down the ramp is{' '}
-          <Katex tex="a=\dfrac{g-2v}{2}" />, and the remaining parts use that result.
-        </p>
       </div>
 
-      <PartCard letter="c" marks={2} statement={<>By expressing <Katex tex="a" /> in an appropriate form, find the distance <Katex tex="x" /> metres that the suitcase has slid as a function of <Katex tex="v" />. Give your answer in the form <Katex tex="x=bv+c\log_e\!\left(\dfrac{c}{c-v}\right)" />, where <Katex tex="b,c\in\mathbb{R}" />.</>} examinerReport={EXAM_C}>
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+        <Background title="Why only parts c.–e.">
+          <p>
+            Parts a. and b. ask for a force diagram and an equation of motion by resolving
+            forces — force analysis, which is not part of the current study design. Part b.ii.
+            establishes that the magnitude of the acceleration, <Katex tex="a" /> m s
+            <Katex tex="^{-2}" />, of the suitcase down the ramp is{' '}
+            <Katex tex="a=\dfrac{g-2v}{2}" />, and the remaining parts use that result.
+          </p>
+        </Background>
+      </div>
+
+      <PartCard letter="c" topic="Velocity-Distance DE" marks={2} statement={<>By expressing <Katex tex="a" /> in an appropriate form, find the distance <Katex tex="x" /> metres that the suitcase has slid as a function of <Katex tex="v" />. Give your answer in the form <Katex tex="x=bv+c\log_e\!\left(\dfrac{c}{c-v}\right)" />, where <Katex tex="b,c\in R" />.</>} examinerReport={EXAM_C}>
         <Background title="Which form of acceleration?">
           <p>
             Acceleration can be written three ways, and choosing the right one is most of the
@@ -168,22 +174,22 @@ export default function SpecialistQ5_2018Exam2() {
             in a form that is sometimes tidier.
           </p>
           <p>
-            Part (c) asks for <Katex tex="x" /> as a function of <Katex tex="v" /> with no
-            time in sight, so it is the second. Part (e) asks for a time, so it is the first.
+            Part c. asks for <Katex tex="x" /> as a function of <Katex tex="v" /> with no
+            time in sight, so it is the second. Part e. asks for a time, so it is the first.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={1} statement={<>Find the velocity of the suitcase just before it reaches the end of the ramp. Give your answer in m s<Katex tex="^{-1}" />, correct to two decimal places.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Velocity" marks={1} statement={<>Find the velocity of the suitcase just before it reaches the end of the ramp. Give your answer in m s<Katex tex="^{-1}" />, correct to two decimal places.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e.i" marks={1} statement={<>Write down a definite integral that gives the time taken for the suitcase to reach a speed of <Katex tex="4.5" /> m s<Katex tex="^{-1}" />.</>} examinerReport={EXAM_EI}>
+      <PartCard letter="e.i" topic="Time Integral" marks={1} statement={<>Write down a definite integral that gives the time taken for the suitcase to reach a speed of <Katex tex="4.5" /> m s<Katex tex="^{-1}" />.</>} examinerReport={EXAM_EI}>
         <WorkingTable rows={ROWS_EI} />
       </PartCard>
 
-      <PartCard letter="e.ii" marks={1} statement={<>Find the time taken for the suitcase to reach a speed of <Katex tex="4.5" /> m s<Katex tex="^{-1}" />. Give your answer in seconds, correct to two decimal places.</>} examinerReport={EXAM_EII}>
+      <PartCard letter="e.ii" topic="Time Integral" marks={1} statement={<>Find the time taken for the suitcase to reach a speed of <Katex tex="4.5" /> m s<Katex tex="^{-1}" />. Give your answer in seconds, correct to two decimal places.</>} examinerReport={EXAM_EII}>
         <WorkingTable rows={ROWS_EII} />
       </PartCard>
     </div>

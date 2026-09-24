@@ -12,17 +12,23 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 21, C: 20, D: 14, E: 37 },
   answer: 'E',
   noAnswer: 1,
-  comment: <>Area of the rectangle <Katex tex="=uv" />. Solve <Katex tex="A'(u)=-3u^2+4=0" />, <Katex tex="u=\tfrac{2\sqrt3}{3}" />.</>,
+  comment: (
+    <>
+      Area of the rectangle <Katex tex="=x(4-x^2)" />
+      <br />
+      Let <Katex tex="A(x)=x(4-x^2)" />
+      <br />
+      Solve <Katex tex="A'(x)=-3x^2+4=0,\ x=\dfrac{2\sqrt3}{3}" />
+      <br />
+      <Katex tex="A\!\left(\dfrac{2\sqrt3}{3}\right)=\dfrac{16\sqrt3}{9}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <img src={diagramSrc} alt="Rectangle with corner (u,v) inscribed under y = 4 - x², from the original 2016 VCAA exam paper" className="w-full max-w-[260px]" />
-      </div>
-    ),
-    reason: <>The rectangle's corners are <Katex tex="(0,0)" />, <Katex tex="(u,0)" />, <Katex tex="(u,v)" /> and <Katex tex="(0,v)" />, with <Katex tex="(u,v)" /> on the parabola.</>,
+    working: <Katex display tex="\text{corners } (0,0),\ (u,0),\ (u,v),\ (0,v)" />,
+    reason: <>The rectangle sits on the axes, with its top-right corner <Katex tex="(u,v)" /> on the parabola.</>,
   },
   {
     working: <Katex display tex="v = 4-u^2, \qquad u>0" />,
@@ -35,7 +41,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 4u - u^3" />
       </>
     ),
-    reason: 'Area of a rectangle is width times height.',
+    reason: <>Width times height.</>,
   },
   {
     working: (
@@ -48,14 +54,14 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} v &= 4-\frac43 \\ &= \frac83 \end{aligned}" />,
-    reason: 'The corresponding height.',
+    reason: <>The corresponding height.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} A_{\max} &= \frac{2\sqrt3}{3}\times\frac83 \\ &= \frac{16\sqrt3}{9} \end{aligned}" />,
   },
   {
     working: <Katex display tex="\boxed{A_{\max} = \dfrac{16\sqrt3}{9}}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>About <Katex tex="3.08" />. It is a maximum because <Katex tex="A'(u)=4-3u^2" /> changes from positive to negative there. Matches option <b>E</b>. Options B (21%) and D (14%) are <Katex tex="u" /> and <Katex tex="v" /> — the width and height, not the area.</>,
   },
 ]
 

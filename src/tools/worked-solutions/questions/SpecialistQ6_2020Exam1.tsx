@@ -39,10 +39,12 @@ const EXAM_C: SAExaminerStats = {
       Most students sketched a smooth curve with the appropriate shape. The asymptotes{' '}
       <Katex tex="y=\tfrac\pi2" /> and <Katex tex="y=\tfrac{3\pi}{2}" /> as well as the point
       of inflection <Katex tex="(2,\pi)" /> needed to be labelled. The{' '}
-      <Katex tex="y" />-intercept was not required. Students are reminded that when a grid is
-      provided, sufficient area should be used so that all features of the graph can be
-      shown. Some students drew their graphs on such a limited domain that the asymptotic
-      behaviour was not shown.
+      <Katex tex="y" />-intercept was not required.
+      <br />
+      Students are reminded that when a grid is provided for them to draw their graphs,
+      sufficient area should be utilised so that all features of the graph can be shown. Some
+      students drew their graphs on such a limited domain that the asymptotic behaviour was not
+      shown.
     </>
   ),
 }
@@ -61,8 +63,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Expanding the square.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(x) = \frac{3}{9x^2-36x+37}} \ \checkmark" />,
-    reason: <>The <Katex tex="+1" /> lifts 36 to 37. A "show that" needs the expansion written out, not just the chain-rule line.</>,
+    working: <Katex display tex="\boxed{f'(x) = \frac{3}{9x^2-36x+37}}" />,
+    reason: <>The <Katex tex="+1" /> lifts 36 to 37. As required. A "show that" needs the expansion written out, not just the chain-rule line — the report says students needed to demonstrate the use of the chain rule.</>,
   },
 ]
 
@@ -81,7 +83,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f''(2) = 0" />,
-    reason: <>Necessary, but on its own only worth part of the mark — a zero second derivative does not by itself make an inflection.</>,
+    reason: <>Necessary, but not sufficient — a zero second derivative does not by itself make an inflection.</>,
   },
   {
     working: <Katex display tex="9x^2-36x+37 = 9(x-2)^2+1 > 0 \ \text{ for all } x" />,
@@ -92,8 +94,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Concave up then concave down.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{concavity changes at } x=2, \text{ so there is a point of inflection there}} \ \checkmark" />,
-    reason: <>This sign test is the justification the report says almost no one supplied.</>,
+    working: <Katex display tex="\boxed{\text{concavity changes at } x=2, \text{ so there is a point of inflection there}}" />,
+    reason: <>As required. This sign test is the justification — the report notes most students showed <Katex tex="f''(2)=0" /> but few attempted to justify that a point of inflection occurred.</>,
   },
 ]
 
@@ -119,12 +121,12 @@ const ROWS_C: WorkingRow[] = [
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={sketchSrc}
-          alt="An S-shaped increasing curve rising from the asymptote y = π/2 to the asymptote y = 3π/2, with a marked point of inflection at (2, π)"
+          alt="The answer sketched on VCAA's grid (x from −6 to 6, gridlines every 2; y in steps of π/2): an S-shaped increasing curve rising from the asymptote y = π/2 to the asymptote y = 3π/2, with the point of inflection (2, π) labelled"
           className="w-full max-w-[420px]"
         />
       </div>
     ),
-    reason: <>Three labels earn the two marks: <Katex tex="y=\tfrac\pi2" />, <Katex tex="y=\tfrac{3\pi}{2}" /> and <Katex tex="(2,\pi)" />. Use the width of the grid — a curve drawn over only <Katex tex="0\le x\le4" /> never shows the asymptotic behaviour.</>,
+    reason: <>The question asks for three labels: <Katex tex="y=\tfrac\pi2" />, <Katex tex="y=\tfrac{3\pi}{2}" /> and <Katex tex="(2,\pi)" /> (the <Katex tex="y" />-intercept is not required). Use the width of the grid — a curve drawn over only <Katex tex="0\le x\le4" /> never shows the asymptotic behaviour.</>,
   },
 ]
 
@@ -140,6 +142,7 @@ export default function SpecialistQ6_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Arctan Derivative"
         marks={1}
         statement={<>Show that <Katex tex="f'(x)=\dfrac{3}{9x^2-36x+37}" />.</>}
         examinerReport={EXAM_A}
@@ -149,6 +152,7 @@ export default function SpecialistQ6_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Point of Inflection"
         marks={2}
         statement={
           <>
@@ -163,10 +167,11 @@ export default function SpecialistQ6_2020Exam1() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={2}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=f(x)" /> on the axes provided. Label any
+            Sketch the graph of <Katex tex="y=f(x)" /> on the axes provided below. Label any
             asymptotes with their equations and the point of inflection with its coordinates.
           </>
         }

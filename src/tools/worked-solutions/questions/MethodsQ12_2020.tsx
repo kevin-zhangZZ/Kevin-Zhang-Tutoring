@@ -12,9 +12,11 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      The maximum height is 25 cm at <Katex tex="t=0" />. Hence options D or E. The period is
-      60 minutes. Hence option E:{' '}
-      <Katex tex="h(t)=15+10\cos\!\left(\tfrac{\pi t}{30}\right)" />.
+      The maximum height is 25 cm at <Katex tex="t=0" />. Hence <b>options D</b> or <b>E</b>.
+      <br />
+      The period is 60 minutes. Hence <b>option E</b>.
+      <br />
+      <Katex tex="h(t)=15+10\cos\!\left(\dfrac{\pi t}{30}\right)" />
     </>
   ),
 }
@@ -42,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{h(t) = 15+10\cos\!\left(\frac{\pi t}{30}\right)}" />,
-    reason: <>Option E. Check <Katex tex="t=30" /> (half past): <Katex tex="15+10\cos(\pi)=5" />, the hand pointing straight down ✓.</>,
+    reason: <>Matches option <b>E</b>; <b>A</b>, <b>B</b> and <b>C</b> are sines and <b>D</b> has the wrong period. Check <Katex tex="t=30" /> (half past): <Katex tex="15+10\cos(\pi)=5" />, the hand pointing straight down ✓.</>,
   },
 ]
 
@@ -53,22 +55,24 @@ export default function MethodsQ12_2020() {
         <>
           <p className="mb-2">
             A clock has a minute hand that is 10 cm long and a clock face with a radius of
-            15 cm, as shown below. At 12.00 noon, both hands of the clock point vertically
-            upwards and the tip of the minute hand is at its maximum distance above the base
-            of the clock face.
+            15 cm, as shown below.
+          </p>
+          <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+            <img
+              src={clockSrc}
+              alt="A clock face of radius 15 cm resting on a horizontal base, with the 10 cm minute hand from the centre and the height h measured from the base up to the tip of the hand — from the original 2020 VCAA exam paper"
+              className="w-full max-w-[430px]"
+            />
+          </div>
+          <p className="mb-2">
+            At 12.00 noon, both hands of the clock point vertically upwards and the tip of the
+            minute hand is at its maximum distance above the base of the clock face.
           </p>
           <p>
             The height, <Katex tex="h" /> centimetres, of the tip of the minute hand above the
             base of the clock face <Katex tex="t" /> minutes after 12.00 noon is given by
           </p>
         </>
-      }
-      diagram={
-        <img
-          src={clockSrc}
-          alt="A clock face of radius 15 cm resting on a horizontal base, with the 10 cm minute hand from the centre and the height h measured from the base up to the tip of the hand — from the original 2020 VCAA exam paper"
-          className="w-full max-w-[430px]"
-        />
       }
       background={
         <p>

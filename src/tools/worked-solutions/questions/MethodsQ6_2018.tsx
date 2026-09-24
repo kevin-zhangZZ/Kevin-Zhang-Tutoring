@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(g(x)) = 6x-10}" />,
-    reason: <>Matches option <b>D</b>. Option <b>E</b> <Katex tex="(6x+2)" />, chosen by <Katex tex="20\%" />, is what you get by treating <Katex tex="3x+1" /> as the rule for <Katex tex="g" /> itself and doubling it — skipping the substitution step entirely. Option <b>C</b> <Katex tex="\left(6x^2+1\right)" /> comes from composing the wrong way round.</>,
+    reason: <>Matches option <b>D</b>. Option <b>E</b> <Katex tex="(6x+2)" />, chosen by <Katex tex="20\%" />, is what you get by treating <Katex tex="3x+1" /> as the rule for <Katex tex="g" /> itself and doubling it — skipping the substitution step entirely. Option <b>A</b> <Katex tex="(6x-5)" /> is <Katex tex="g(f(x))=3(2x)-5" /> — the composition the wrong way round.</>,
   },
 ]
 

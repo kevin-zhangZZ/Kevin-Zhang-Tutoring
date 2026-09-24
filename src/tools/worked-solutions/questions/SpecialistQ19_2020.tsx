@@ -24,11 +24,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Delta\underset{\sim}{p} = 0.02\times3\underset{\sim}{j} = 0.06\underset{\sim}{j}" />,
-    reason: 'Scaling by the mass in kilograms.',
+    reason: <>Scaling by the mass in kilograms.</>,
   },
   {
     working: <Katex display tex="\boxed{\left|\Delta\underset{\sim}{p}\right| = 0.06}" />,
-    reason: <>Matches option <b>B</b>. Subtracting the <em>magnitudes</em> instead of the vectors, or taking the magnitude of each momentum separately, produces the distractors.</>,
+    reason: <>Matches option <b>B</b>. Option <b>E</b>, <Katex tex="0.34=0.02\times17" />, comes from adding the <Katex tex="\underset{\sim}{j}" />-components (<Katex tex="10+7" />) instead of subtracting them.</>,
   },
 ]
 
@@ -40,8 +40,9 @@ export default function SpecialistQ19_2020() {
           A cricket ball of mass 0.02 kg, moving with velocity{' '}
           <Katex tex="2\underset{\sim}{i}-10\underset{\sim}{j}\text{ m s}^{-1}" />, is hit
           and after impact travels with velocity{' '}
-          <Katex tex="2\underset{\sim}{i}-7\underset{\sim}{j}\text{ m s}^{-1}" />. The
-          magnitude of the change in momentum of the cricket ball, in{' '}
+          <Katex tex="2\underset{\sim}{i}-7\underset{\sim}{j}\text{ m s}^{-1}" />.
+          <br />
+          The magnitude of the change in momentum of the cricket ball, in{' '}
           <Katex tex="\text{kg m s}^{-1}" />, is closest to
         </p>
       }

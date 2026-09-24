@@ -9,6 +9,19 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 22, B: 12, C: 11, D: 7, E: 47 },
   answer: 'E',
+  comment: (
+    <>
+      The domain of <Katex tex="p" /> is <Katex tex="[-2,3)" /> and the domain of{' '}
+      <Katex tex="q" /> is <Katex tex="(-1,5]" />.
+      <br />
+      The domain of the sum function <Katex tex="p+q" /> is the intersection of the two
+      domains.
+      <br />
+      <Katex tex="[-2,3)\cap(-1,5]" />
+      <br />
+      <Katex tex="=(-1,3)" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -18,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="[-2,3)\cap(-1,5]" />,
-    reason: 'Substituting the two given domains.',
+    reason: <>Substituting the two given domains.</>,
   },
   {
     working: <Katex display tex="\text{lower end: } \max(-2,-1) = -1, \text{ excluded (open in } q)" />,
@@ -26,11 +39,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{upper end: } \min(3,5) = 3, \text{ excluded (open in } p)" />,
-    reason: 'Same reasoning at the other end.',
+    reason: <>Same reasoning at the other end.</>,
   },
   {
     working: <Katex display tex="\boxed{(-1,\,3)}" />,
-    reason: <>Option <b>E</b>. Option <b>D</b> has the right numbers with the wrong brackets — at <Katex tex="x=3" />, <Katex tex="p(3)" /> does not exist, so neither does the sum.</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b> has the right numbers with the wrong brackets — at <Katex tex="x=3" />, <Katex tex="p(3)" /> does not exist, so neither does the sum.</>,
   },
 ]
 
@@ -41,6 +54,7 @@ export default function MethodsQ3_2023() {
         <p>
           Two functions, <Katex tex="p" /> and <Katex tex="q" />, are continuous over their
           domains, which are <Katex tex="[-2,3)" /> and <Katex tex="(-1,5]" />, respectively.
+          <br />
           The domain of the sum function <Katex tex="p+q" /> is
         </p>
       }

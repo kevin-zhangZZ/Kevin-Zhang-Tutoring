@@ -12,10 +12,7 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'A',
   comment: (
     <>
-      The angle between the head and tail of the 5 N and 7 N forces in the closed triangle is{' '}
-      <Katex tex="\pi-\theta" />, not <Katex tex="\theta" /> — which is why the sign in front of
-      the <Katex tex="2\times5\times7\cos(\theta)" /> term flips. Sixty-three per cent of
-      students chose <b>B</b>, the cosine rule with the untouched sign.
+      The angle between the head and tail of the 5 and 7 N forces is <Katex tex="\pi-\theta" />.
     </>
   ),
 }
@@ -23,15 +20,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{F_1}+\underset{\sim}{F_2}+\underset{\sim}{F_3} = \underset{\sim}{0}" />,
-    reason: 'Equilibrium means the three vectors add to nothing, so drawn head-to-tail they close into a triangle with sides 5, 7 and 10.',
+    reason: <>Equilibrium means the three vectors add to nothing, so drawn head-to-tail they close into a triangle with sides 5, 7 and 10.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{F_1}+\underset{\sim}{F_2} = -\underset{\sim}{F_3} \implies \left|\underset{\sim}{F_1}+\underset{\sim}{F_2}\right| = 10" />,
-    reason: 'The 5 N and 7 N forces together must exactly oppose the 10 N one, so their resultant has magnitude 10.',
+    reason: <>The 5 N and 7 N forces together must exactly oppose the 10 N one, so their resultant has magnitude 10.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{F_1}+\underset{\sim}{F_2}\right|^2 = \left|\underset{\sim}{F_1}\right|^2+\left|\underset{\sim}{F_2}\right|^2+2\,\underset{\sim}{F_1}\cdot\underset{\sim}{F_2}" />,
-    reason: 'Expanding the dot product of the sum with itself — the vector version of squaring a bracket.',
+    reason: <>Expanding the dot product of the sum with itself — the vector version of squaring a bracket.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{F_1}\cdot\underset{\sim}{F_2} = 5\times7\cos(\theta)" />,
@@ -39,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{100 = 25+49+2\times5\times7\cos(\theta)}" />,
-    reason: <>Option <b>A</b>. The <b>plus</b> sign is the whole question: in the closed triangle the interior angle is <Katex tex="\pi-\theta" />, and <Katex tex="\cos(\pi-\theta)=-\cos(\theta)" /> turns the cosine rule's minus into a plus. (Incidentally <Katex tex="\cos\theta=-\tfrac{13}{35}" />, so <Katex tex="\theta\approx112^\circ" /> — obtuse, as it must be for three such forces to balance.)</>,
+    reason: <>Matches option <b>A</b>. The <b>plus</b> sign is the whole question: in the closed triangle the interior angle is <Katex tex="\pi-\theta" />, and <Katex tex="\cos(\pi-\theta)=-\cos(\theta)" /> turns the cosine rule's minus into a plus — option B uses the cosine rule with <Katex tex="\theta" /> itself. (Incidentally <Katex tex="\cos\theta=\tfrac{26}{70}=\tfrac{13}{35}" />, so <Katex tex="\theta\approx68^\circ" />.)</>,
   },
 ]
 
@@ -49,7 +46,9 @@ export default function SpecialistQ16_2022() {
       question={
         <p>
           Three coplanar forces of magnitudes 5 N, 7 N and 10 N maintain a particle in
-          equilibrium. The angle <Katex tex="\theta" /> between the forces of magnitudes 5 N
+          equilibrium.
+          <br />
+          The angle <Katex tex="\theta" /> between the forces of magnitudes 5 N
           and 7 N can be found by solving which one of the following equations?
         </p>
       }

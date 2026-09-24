@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{period } \frac{2\pi}{3}, \quad \text{range } [-5,-1]}" />,
-    reason: <>Option A. Check: the midpoint of the range, <Katex tex="-3" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude.</>,
+    reason: <>Matches option <b>A</b>. Option B forgets the vertical shift of <Katex tex="-3" />; options D and E multiply <Katex tex="\pi" /> by 3 instead of dividing <Katex tex="2\pi" /> by it. Check: the midpoint of the range, <Katex tex="-3" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude.</>,
   },
 ]
 
@@ -46,8 +46,8 @@ export default function MethodsQ1_2015() {
         { letter: 'A', content: <>period <Katex tex="=\tfrac{2\pi}{3}" /> and range <Katex tex="=[-5,-1]" /></>, isAnswer: true },
         { letter: 'B', content: <>period <Katex tex="=\tfrac{2\pi}{3}" /> and range <Katex tex="=[-2,2]" /></> },
         { letter: 'C', content: <>period <Katex tex="=\tfrac{\pi}{3}" /> and range <Katex tex="=[-1,5]" /></> },
-        { letter: 'D', content: <>period <Katex tex="=3" /> and range <Katex tex="=[-1,5]" /></> },
-        { letter: 'E', content: <>period <Katex tex="=3" /> and range <Katex tex="=[-2,2]" /></> },
+        { letter: 'D', content: <>period <Katex tex="=3\pi" /> and range <Katex tex="=[-1,5]" /></> },
+        { letter: 'E', content: <>period <Katex tex="=3\pi" /> and range <Katex tex="=[-2,2]" /></> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

@@ -22,11 +22,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to\infty \implies \log_e(x+1)\to\infty" />,
-    reason: 'Slowly, but without bound — so the graph never levels off.',
+    reason: <>Slowly, but without bound — so the graph never levels off.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -1 \text{ only}}" />,
-    reason: <>Option <b>A</b>. A fifth of students chose <b>D</b>, adding a horizontal asymptote <Katex tex="y=-3" />; that would be right for an <em>exponential</em>, but a log has none. The <Katex tex="-3" /> only moves the graph down.</>,
+    reason: <>Matches option <b>A</b>. A fifth of students chose <b>D</b>, adding a horizontal asymptote <Katex tex="y=-3" />; that would be right for an <em>exponential</em>, but a log has none. The <Katex tex="-3" /> only moves the graph down.</>,
   },
 ]
 

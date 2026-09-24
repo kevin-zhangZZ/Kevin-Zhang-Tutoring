@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>1)}" />,
-    reason: <>Option C. Option A, <Katex tex="\Pr(Z>-1)" />, is the complement — about <Katex tex="0.84" /> instead of <Katex tex="0.16" />.</>,
+    reason: <>Matches option <b>C</b>. Option A, <Katex tex="\Pr(Z>-1)" />, is the complement — about <Katex tex="0.84" /> instead of <Katex tex="0.16" />.</>,
   },
 ]
 

@@ -13,8 +13,8 @@ const EXAM_A: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Many correct answers exist. Some students did not use the correct notation; a common
-      error was to write the direction vector rather than the vector equation of the line.
+      Some students did not use the correct notation. A common error was to write the vector{' '}
+      <Katex tex="\overrightarrow{AB}" /> rather than the vector equation of the line.
     </>
   ),
 }
@@ -24,8 +24,15 @@ const EXAM_B: SAExaminerStats = {
   average: 1.9,
   comment: (
     <>
-      Students used many different techniques to solve this problem. Some students used the
-      wrong line equation, using their answer to part a. rather than the one given.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Students used many different techniques to solve this problem.
+        </li>
+        <li>
+          Some students used the wrong line equation, using their answer to part a rather than
+          the one given.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -51,9 +58,18 @@ const EXAM_DII: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Common errors were: incorrectly determining the spanning vectors; omitting the division
-      of the cross product by 2 to find the area; and incorrectly assuming the triangle was
-      either isosceles or right-angled.
+      Common errors were:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          incorrectly determining the spanning vectors
+        </li>
+        <li>
+          omitting the division of the cross product by 2 to find the area
+        </li>
+        <li>
+          incorrectly assuming the triangle was either isosceles or right-angled.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -61,14 +77,14 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\overrightarrow{AB} = (2-1)\underset{\sim}{i}+(-5-(-2))\underset{\sim}{j}+(-1-3)\underset{\sim}{k} = \underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}" />,
-    reason: 'Subtract the position vectors to get a direction along the line.',
+    reason: <>Subtract the position vectors to get a direction along the line.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r} = \underset{\sim}{a}+s\underset{\sim}{d}" />,
-    reason: <>A point plus a multiple of a direction. Writing down only <Katex tex="\overrightarrow{AB}" /> answers a different question — the error the examiner named.</>,
+    reason: <>A point plus a multiple of a direction. Writing down only <Katex tex="\overrightarrow{AB}" /> answers a different question — the report's common error.</>,
   },
   {
-    working: <Katex display tex="\boxed{\underset{\sim}{r}(s) = \underset{\sim}{i}-2\underset{\sim}{j}+3\underset{\sim}{k}+s\left(\underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}\right), \quad s\in\mathbb{R}}" />,
+    working: <Katex display tex="\boxed{\underset{\sim}{r}(s) = \underset{\sim}{i}-2\underset{\sim}{j}+3\underset{\sim}{k}+s\left(\underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}\right), \quad s\in R}" />,
     reason: <>Using <Katex tex="A" /> as the anchor. Starting from <Katex tex="B" />, or scaling the direction, gives an equally correct answer — "many correct answers exist".</>,
   },
 ]
@@ -76,7 +92,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="L_1: \ \underset{\sim}{a_1} = (2,1,-3), \qquad \underset{\sim}{d} = (-1,2,1)" />,
-    reason: <>The <em>given</em> line, not the one from part a. — confusing the two was a listed error.</>,
+    reason: <>The <em>given</em> line, not the one from part a. — the report notes some students used their answer to part a instead.</>,
   },
   {
     working: <Katex display tex="\overrightarrow{AP} = (2,1,-3)-(1,-2,3) = (1,3,-6)" />,
@@ -108,7 +124,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\overrightarrow{AB} = (1,-3,-4), \qquad \overrightarrow{AC} = (0,2,-5)-(1,-2,3) = (-1,4,-8)" />,
-    reason: 'Two vectors lying in the plane.',
+    reason: <>Two vectors lying in the plane.</>,
   },
   {
     working: (
@@ -121,11 +137,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="40x+12y+z = d" />,
-    reason: 'The Cartesian form, with the normal supplying the coefficients.',
+    reason: <>The Cartesian form, with the normal supplying the coefficients.</>,
   },
   {
     working: <Katex display tex="A(1,-2,3): \quad 40(1)+12(-2)+3 = 40-24+3 = 19" />,
-    reason: 'Substituting any one of the three points fixes the constant.',
+    reason: <>Substituting any one of the three points fixes the constant.</>,
   },
   {
     working: <Katex display tex="\boxed{40x+12y+z = 19}" />,
@@ -136,15 +152,15 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="y = z = 0: \quad 2x = 12 \implies x = 6" />,
-    reason: 'The x-intercept: set the other two variables to zero.',
+    reason: <>The x-intercept: set the other two variables to zero.</>,
   },
   {
     working: <Katex display tex="x = z = 0: \quad -3y = 12 \implies y = -4" />,
-    reason: 'The y-intercept. Note the sign.',
+    reason: <>The y-intercept. Note the sign.</>,
   },
   {
     working: <Katex display tex="x = y = 0: \quad 4z = 12 \implies z = 3" />,
-    reason: 'The z-intercept.',
+    reason: <>The z-intercept.</>,
   },
   {
     working: <Katex display tex="\boxed{(6,0,0), \quad (0,-4,0), \quad (0,0,3)}" />,
@@ -159,7 +175,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{v} = (0,0,3)-(6,0,0) = (-6,0,3)" />,
-    reason: <>The other side from the same vertex. Both must start at the <em>same</em> vertex — using the three position vectors instead was the listed error.</>,
+    reason: <>The other side from the same vertex. Both must start at the <em>same</em> vertex — the report lists incorrectly determining the spanning vectors among the common errors.</>,
   },
   {
     working: (
@@ -168,7 +184,7 @@ const ROWS_DII: WorkingRow[] = [
         tex="\underset{\sim}{u}\times\underset{\sim}{v} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\-6 & -4 & 0\\-6 & 0 & 3\end{vmatrix} = -12\underset{\sim}{i}+18\underset{\sim}{j}-24\underset{\sim}{k}"
       />
     ),
-    reason: 'The cross product gives the area of the parallelogram the two sides span.',
+    reason: <>The cross product gives the area of the parallelogram the two sides span.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{u}\times\underset{\sim}{v}\right| = \sqrt{144+324+576} = \sqrt{1044} = 6\sqrt{29}" />,
@@ -176,7 +192,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = \tfrac12\times6\sqrt{29} = 3\sqrt{29}}" />,
-    reason: <>About <Katex tex="16.2" /> square units. Forgetting the half gives <Katex tex="6\sqrt{29}" />, the parallelogram — the other listed error. The triangle is neither isosceles nor right-angled, so no shortcut applies.</>,
+    reason: <>About <Katex tex="16.2" /> square units. Forgetting the half gives <Katex tex="6\sqrt{29}" />, the parallelogram — one of the report's common errors. The triangle is neither isosceles nor right-angled (assuming it was is another), so no shortcut applies.</>,
   },
 ]
 
@@ -193,7 +209,7 @@ export default function SpecialistQ5_2024Exam2() {
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
         <Background>
           <p>
-            Four of the five parts are a cross product and a division. Point to line:{' '}
+            Three of the five parts turn on a cross product. Point to line:{' '}
             <Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|\div\left|\underset{\sim}{d}\right|" />.
             Plane through three points: the cross product of two side vectors is the normal.
             Area of a triangle:{' '}
@@ -211,6 +227,7 @@ export default function SpecialistQ5_2024Exam2() {
 
       <PartCard
         letter="a"
+        topic="Line Equation"
         marks={1}
         statement={
           <>
@@ -226,13 +243,17 @@ export default function SpecialistQ5_2024Exam2() {
 
       <PartCard
         letter="b"
+        topic="Shortest Distance"
         marks={3}
         statement={
           <>
             Consider the different line{' '}
             <Katex tex="L_1:\ \underset{\sim}{r_1}(t) = 2\underset{\sim}{i}+\underset{\sim}{j}-3\underset{\sim}{k}+t\left(-\underset{\sim}{i}+2\underset{\sim}{j}+\underset{\sim}{k}\right)" />,{' '}
-            <Katex tex="t\in\mathbb{R}" />. Find the shortest distance from{' '}
-            <Katex tex="L_1" /> to point <Katex tex="A" />. Give your answer in the form{' '}
+            <Katex tex="t\in R" />.
+            <br />
+            Find the shortest distance from <Katex tex="L_1" /> to point <Katex tex="A" />.
+            <br />
+            Give your answer in the form{' '}
             <Katex tex="\dfrac{a\sqrt b}{c}" /> where <Katex tex="a" />, <Katex tex="b" /> and{' '}
             <Katex tex="c" /> are positive integers.
           </>
@@ -244,11 +265,13 @@ export default function SpecialistQ5_2024Exam2() {
 
       <PartCard
         letter="c"
+        topic="Plane Equation"
         marks={3}
         statement={
           <>
-            Let <Katex tex="C" /> be the point <Katex tex="(0,2,-5)" />. Find the Cartesian
-            equation of the plane that contains the points <Katex tex="A" />,{' '}
+            Let <Katex tex="C" /> be the point <Katex tex="(0,2,-5)" />.
+            <br />
+            Find the Cartesian equation of the plane that contains the points <Katex tex="A" />,{' '}
             <Katex tex="B" /> and <Katex tex="C" />.
           </>
         }
@@ -260,22 +283,26 @@ export default function SpecialistQ5_2024Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">d.</p>
         <p>
-          Another plane has the Cartesian equation <Katex tex="2x-3y+4z=12" />. This plane
-          intersects the coordinate axes at three points, which form the vertices of a
+          Another plane has the Cartesian equation <Katex tex="2x-3y+4z=12" />.
+          <br />
+          This plane intersects the coordinate axes at three points, which form the vertices of a
           triangle.
         </p>
       </div>
 
-      <PartCard letter="d.i" marks={1} statement={<>Find the coordinates of these three points.</>} examinerReport={EXAM_DI}>
+      <PartCard letter="d.i" topic="Axis Intercepts" marks={1} statement={<>Find the coordinates of these three points.</>} examinerReport={EXAM_DI}>
         <WorkingTable rows={ROWS_DI} />
       </PartCard>
 
       <PartCard
         letter="d.ii"
+        topic="Triangle Area"
         marks={2}
         statement={
           <>
-            Find the area of the triangle. Give your answer in the form{' '}
+            Find the area of the triangle.
+            <br />
+            Give your answer in the form{' '}
             <Katex tex="m\sqrt n" /> where <Katex tex="m" /> and <Katex tex="n" /> are
             integers.
           </>

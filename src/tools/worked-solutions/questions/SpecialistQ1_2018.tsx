@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="-\frac{\pi}{2} < \tan^{-1}(x) < \frac{\pi}{2} \ \text{ for all } x\in\mathbb{R}" />,
+    working: <Katex display tex="-\frac{\pi}{2} < \tan^{-1}(x) < \frac{\pi}{2} \ \text{ for all } x\in R" />,
     reason: <>The range of the inverse tangent. It approaches <Katex tex="\pm\tfrac{\pi}{2}" /> but never reaches them, which is exactly what makes those values asymptotes.</>,
   },
   {

@@ -51,7 +51,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \frac{10\pi}{3\sqrt{98}} = \frac{10\pi}{21\sqrt2}}" />,
-    reason: <>Option D, since <Katex tex="3\sqrt{98}=3\times7\sqrt2=21\sqrt2" />. Numerically <Katex tex="1.06" /> s, comfortably under the <Katex tex="\tfrac{7\sqrt6}{9.8}\approx1.75" /> s it would take with no air resistance — as it must be.</>,
+    reason: <>Matches option <b>D</b>, since <Katex tex="3\sqrt{98}=3\times7\sqrt2=21\sqrt2" />. Numerically <Katex tex="1.06" /> s, comfortably under the <Katex tex="\tfrac{7\sqrt6}{9.8}\approx1.75" /> s it would take with no air resistance — as it must be.</>,
   },
 ]
 
@@ -77,8 +77,8 @@ export default function SpecialistQ22_2015() {
           that is a separable differential equation whose integral is the standard{' '}
           <Katex tex="\arctan" /> form. Choosing <Katex tex="\tfrac{dv}{dt}" /> over{' '}
           <Katex tex="v\tfrac{dv}{dx}" /> is the one decision that matters: the other choice
-          would give the maximum <em>height</em> instead, and lands you on the two logarithm
-          options.
+          leads to the maximum <em>height</em>, <Katex tex="5\log_e(4)" /> metres — a logarithm,
+          which is where the distractors C and E come from.
         </p>
       }
       options={[

@@ -13,8 +13,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{c} = m\underset{\sim}{a}+n\underset{\sim}{b} \ \text{ for some } m,n\in\mathbb{R}" />,
-    reason: 'Three vectors are linearly dependent exactly when one is a combination of the other two.',
+    working: <Katex display tex="\underset{\sim}{c} = m\underset{\sim}{a}+n\underset{\sim}{b} \ \text{ for some } m,n\in R" />,
+    reason: <>Three vectors are linearly dependent exactly when one is a combination of the other two.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \ 2m+n = -3; \qquad \underset{\sim}{j}: \ -3m+2n = 2" />,
@@ -26,15 +26,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{k}: \ 5 = mp+n(-q) = -\frac{8p}{7}+\frac{5q}{7}" />,
-    reason: 'The third component is the condition the question is after.',
+    reason: <>The third component is the condition the question is after.</>,
   },
   {
     working: <Katex display tex="35 = -8p+5q" />,
-    reason: 'Multiplying through by 7.',
+    reason: <>Multiplying through by 7.</>,
   },
   {
     working: <Katex display tex="\boxed{8p = 5q-35}" />,
-    reason: <>Option <b>A</b>. The determinant route is quicker on a CAS: <Katex tex="\det\begin{pmatrix}2&-3&p\\1&2&-q\\-3&2&5\end{pmatrix}=8p-5q+35=0" /> gives the same line.</>,
+    reason: <>Matches option <b>A</b>. The determinant route is quicker on a CAS: <Katex tex="\det\begin{pmatrix}2&-3&p\\1&2&-q\\-3&2&5\end{pmatrix}=8p-5q+35=0" /> gives the same line.</>,
   },
 ]
 
@@ -48,8 +48,9 @@ export default function SpecialistQ11_2022() {
           <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+2\underset{\sim}{j}-q\underset{\sim}{k}" />{' '}
           and{' '}
           <Katex tex="\underset{\sim}{c}=-3\underset{\sim}{i}+2\underset{\sim}{j}+5\underset{\sim}{k}" />
-          , where <Katex tex="p" /> and <Katex tex="q" /> are real numbers. If these vectors
-          are linearly <b>dependent</b>, then
+          , where <Katex tex="p" /> and <Katex tex="q" /> are real numbers.
+          <br />
+          If these vectors are linearly <b>dependent</b>, then
         </p>
       }
       options={[

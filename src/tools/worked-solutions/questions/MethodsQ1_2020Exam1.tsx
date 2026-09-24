@@ -19,8 +19,7 @@ const EXAM_B: SAExaminerStats = {
     <>
       Students applied the chain rule; however, too often the lack of brackets resulted in an
       incorrect answer: for example,{' '}
-      <Katex tex="2x-1e^{x^2-x+3}" /> instead of{' '}
-      <Katex tex="(2x-1)e^{x^2-x+3}" />.
+      <Katex tex="(2x-1)e^{x^2-x+3}\ne2x-1e^{x^2-x+3}" />.
     </>
   ),
 }
@@ -64,8 +63,9 @@ export default function MethodsQ1_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={1}
-        statement={<>Let <Katex tex="y=x^2\sin(x)" />. Find <Katex tex="\tfrac{dy}{dx}" />.</>}
+        statement={<>Let <Katex tex="y=x^2\sin(x)" />.<br />Find <Katex tex="\dfrac{dy}{dx}" />.</>}
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
@@ -73,6 +73,7 @@ export default function MethodsQ1_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Chain Rule"
         marks={2}
         statement={
           <>

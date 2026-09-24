@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = Ax^2+Bx+C \implies \text{axis of symmetry } x = -\frac{B}{2A}" />,
-    reason: 'The standard result — halfway between the two roots given by the quadratic formula.',
+    reason: <>The standard result — halfway between the two roots given by the quadratic formula.</>,
   },
   {
     working: <Katex display tex="y = ax^2+2bx+c \implies A = a, \quad B = 2b" />,
@@ -22,11 +22,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = -\frac{2b}{2a}" />,
-    reason: 'Substituting.',
+    reason: <>Substituting.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -\frac{b}{a}}" />,
-    reason: <>Option <b>A</b>. Check with <Katex tex="y=x^2+4x" /> (so <Katex tex="a=1,b=2" />): the vertex is at <Katex tex="x=-2=-\tfrac21" /> ✓.</>,
+    reason: <>Matches option <b>A</b>. Check with <Katex tex="y=x^2+4x" /> (so <Katex tex="a=1,b=2" />): the vertex is at <Katex tex="x=-2=-\tfrac21" /> ✓.</>,
   },
 ]
 
@@ -36,7 +36,7 @@ export default function MethodsQ2_2023() {
       question={
         <p>
           For the parabola with equation <Katex tex="y=ax^2+2bx+c" />, where{' '}
-          <Katex tex="a,b,c\in\mathbb{R}" />, the equation of the axis of symmetry is
+          <Katex tex="a,b,c\in R" />, the equation of the axis of symmetry is
         </p>
       }
       options={[

@@ -9,6 +9,22 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 10, B: 15, C: 57, D: 17 },
   answer: 'C',
+  noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="f:R\to R,\ f(x)=2x^2+x-1" />
+      <br />
+      <Katex tex="g:R\to R,\ g(x)=\sin(x)" />
+      <br />
+      Let <Katex tex="a=\sin(x)" />.
+      <br />
+      <Katex tex="f\big(g(x)\big)=2\sin^2(x)+\sin(x)-1=2a^2+a-1" />
+      <br />
+      Solve <Katex tex="2a^2+a-1>0" /> and <Katex tex="-1\le a\le1" />.
+      <br />
+      <Katex tex="\dfrac{1}{2}<a\le1,\ \dfrac{1}{2}<\sin(x)\le1" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -18,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{let } u = \sin(x): \quad 2u^2+u-1>0" />,
-    reason: 'An ordinary quadratic inequality in u.',
+    reason: <>An ordinary quadratic inequality in u.</>,
   },
   {
     working: <Katex display tex="2u^2+u-1 = (2u-1)(u+1) > 0" />,
@@ -26,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{upward parabola} \implies u<-1 \ \text{ or } \ u>\tfrac12" />,
-    reason: 'Positive outside the roots.',
+    reason: <>Positive outside the roots.</>,
   },
   {
     working: <Katex display tex="u = \sin(x) \in [-1,1] \implies u<-1 \text{ is impossible}" />,
@@ -34,7 +50,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac12 < \sin(x) \le 1}" />,
-    reason: <>Option <b>C</b>. The upper bound is closed because <Katex tex="\sin(x)=1" /> is attainable and gives <Katex tex="2+1-1=2>0" /> ✓.</>,
+    reason: <>Matches option <b>C</b>. The upper bound is closed because <Katex tex="\sin(x)=1" /> is attainable and gives <Katex tex="2+1-1=2>0" /> ✓.</>,
   },
 ]
 
@@ -44,8 +60,8 @@ export default function MethodsQ10_2025() {
       question={
         <div className="flex flex-col gap-1">
           <p>
-            Consider <Katex tex="f:\mathbb{R}\to\mathbb{R}" />,{' '}
-            <Katex tex="f(x)=2x^2+x-1" /> and <Katex tex="g:\mathbb{R}\to\mathbb{R}" />,{' '}
+            Consider <Katex tex="f:R\to R" />,{' '}
+            <Katex tex="f(x)=2x^2+x-1" /> and <Katex tex="g:R\to R" />,{' '}
             <Katex tex="g(x)=\sin(x)" />.
           </p>
           <p>

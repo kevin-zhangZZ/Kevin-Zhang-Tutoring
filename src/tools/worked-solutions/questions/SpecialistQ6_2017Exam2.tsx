@@ -76,7 +76,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{79.8\%}" />,
-    reason: <>As a percentage to one decimal place, as asked. Both the "percentage" and the "one decimal place" cost marks when missed.</>,
+    reason: <>As a percentage to one decimal place, as asked — the report says many students missed one or the other.</>,
   },
 ]
 
@@ -91,7 +91,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{Var}(T) = 10\times6^2 = 360" />,
-    reason: <>Variances add for independent variables. The frequent error is multiplying the <em>standard deviation</em> by <Katex tex="10" /> instead.</>,
+    reason: <>Variances add for independent variables. The report says errors frequently occurred at this step — for example, multiplying the <em>standard deviation</em> by <Katex tex="10" />, or the variance by <Katex tex="10^2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(T) = \sqrt{360} = \sqrt{36}\sqrt{10} = 6\sqrt{10} \text{ mL}}" />,
@@ -106,7 +106,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \Pr(Z\ge-2.635)" />,
-    reason: <><Katex tex="\tfrac{-50}{18.974}" />. Further into the tail than the single-bottle case in part (a) — packing ten bottles averages out the variation.</>,
+    reason: <><Katex tex="\tfrac{-50}{18.974}" />. Further into the tail than the single-bottle case in part a. — packing ten bottles averages out the variation.</>,
   },
   {
     working: <Katex display tex="\boxed{99.6\%}" />,
@@ -133,7 +133,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{sd}(T) = \sigma\sqrt{10} \implies \sigma = \frac{16.18}{\sqrt{10}}" />,
-    reason: <>This is the step the report says most students skipped: the answer wanted is the standard deviation of a single <em>bottle</em>, and the sample size has to be undone.</>,
+    reason: <>This is the step the report says many students missed: the answer wanted is the standard deviation of a single <em>bottle</em>, and the sample size has to be undone.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 5.1 \text{ mL}}" />,
@@ -148,7 +148,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\bar X \sim N\!\left(2005,\ \frac{2^2}{10}\right), \qquad \mathrm{sd}(\bar X) = \frac{2}{\sqrt{10}} \approx 0.6325" />,
-    reason: <>A sample <em>mean</em> this time, so divide by <Katex tex="\sqrt n" /> rather than multiplying — the opposite of part (b).</>,
+    reason: <>A sample <em>mean</em> this time, so divide by <Katex tex="\sqrt n" /> rather than multiplying — the opposite of part b.</>,
   },
   {
     working: <Katex display tex="p = \Pr(\bar X\le2004) = \Pr\!\left(Z\le\frac{2004-2005}{0.6325}\right)" />,
@@ -164,7 +164,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Do not reject } H_0: \text{ accept the dairy's claim at the } 5\% \text{ level}}" />,
-    reason: <>State the conclusion in words as well as symbols. The report notes that students who computed <Katex tex="p" /> correctly and then stopped lost the second mark.</>,
+    reason: <>State the conclusion in words as well as symbols, with the reason. The report notes some students did not go on to explicitly answer the question or state a correct conclusion.</>,
   },
 ]
 
@@ -183,6 +183,7 @@ export default function SpecialistQ6_2017Exam2() {
 
       <PartCard
         letter="a"
+        topic="Normal Distribution"
         marks={1}
         statement={
           <>
@@ -204,8 +205,8 @@ export default function SpecialistQ6_2017Exam2() {
             <Katex tex="\tfrac{\sigma}{\sqrt n}" /> — less spread, because errors cancel.
           </p>
           <p>
-            Parts (b)–(d) are about a crate total, so <Katex tex="\times\sqrt{10}" />. Part
-            (e) is about a sample mean, so <Katex tex="\div\sqrt{10}" />.
+            Parts b.–d. are about a crate total, so <Katex tex="\times\sqrt{10}" />. Part e.
+            is about a sample mean, so <Katex tex="\div\sqrt{10}" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -220,6 +221,7 @@ export default function SpecialistQ6_2017Exam2() {
 
       <PartCard
         letter="b"
+        topic="Linear Combination"
         marks={2}
         statement={
           <>
@@ -235,6 +237,7 @@ export default function SpecialistQ6_2017Exam2() {
 
       <PartCard
         letter="c"
+        topic="Normal Distribution"
         marks={1}
         statement={
           <>
@@ -249,6 +252,7 @@ export default function SpecialistQ6_2017Exam2() {
 
       <PartCard
         letter="d"
+        topic="Find Standard Deviation"
         marks={3}
         statement={
           <>
@@ -276,6 +280,7 @@ export default function SpecialistQ6_2017Exam2() {
 
       <PartCard
         letter="e"
+        topic="Hypothesis Test"
         marks={2}
         statement={
           <>

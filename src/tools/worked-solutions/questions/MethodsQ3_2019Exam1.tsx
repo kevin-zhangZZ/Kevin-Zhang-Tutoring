@@ -12,8 +12,10 @@ const EXAM_A: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      As this question was worth two marks, appropriate working was required — computations
-      or a probability tree diagram with relevant branches clearly identified.
+      As this question was worth two marks appropriate working was required to be shown. This
+      could include computations or a probability tree diagram with relevant branches clearly
+      identified. In some instances, it was not clear which fractions were being manipulated or
+      how they were manipulated.
     </>
   ),
 }
@@ -24,8 +26,8 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Most students correctly identified the conditional nature of this probability problem.
-      Many students who did not simplify their answer to part (a) did not carry out the
-      subsequent calculation successfully.
+      It was noted that many students who did not simplify their answer to part a. did not
+      carry out the subsequent calculation successfully.
     </>
   ),
 }
@@ -41,9 +43,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(H) = \tfrac23\cdot\tfrac12 + \tfrac13\cdot\tfrac13 = \tfrac13 + \tfrac19" />,
+    reason: <>Multiply along each branch of the tree, then add the branches.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(H) = \dfrac{4}{9}}" />,
+    reason: <>Simplified — the report notes that students who did not simplify this often went wrong in part b. It is a little under <Katex tex="\tfrac12" />, as it should be: the biased coin pulls the chance of a head down.</>,
   },
 ]
 
@@ -54,10 +58,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \dfrac{\tfrac23\cdot\tfrac12}{\tfrac49} = \dfrac{\tfrac13}{\tfrac49}" />,
-    reason: <>Numerator is exactly the first term computed in part (a); denominator is part (a)'s final answer.</>,
+    reason: <>Numerator is exactly the first term computed in part a.; denominator is part a.'s final answer.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(U\mid H) = \dfrac34}" />,
+    reason: <><Katex tex="\tfrac13\times\tfrac94=\tfrac34" />. Higher than the prior <Katex tex="\tfrac23" />: a head is slightly more likely from an unbiased coin, so seeing one nudges the probability up.</>,
   },
 ]
 
@@ -78,11 +83,11 @@ export default function MethodsQ3_2019Exam1() {
         <p>Jo randomly selects a coin from her pocket and tosses it.</p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the probability that she tosses a head.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Total Probability" marks={2} statement={<>Find the probability that she tosses a head.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Find the probability that she selected an unbiased coin, given that she tossed a head.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Conditional Probability" marks={1} statement={<>Find the probability that she selected an unbiased coin, given that she tossed a head.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>

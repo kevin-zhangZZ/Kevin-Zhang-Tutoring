@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y \approx 1.9}" />,
-    reason: <>Option D. The small options A to C would need a step size ten times larger.</>,
+    reason: <>Matches option <b>D</b>. Option E (2.1) has the sign of the gradient wrong; option C (1.1) is just the new <Katex tex="x" />-value; option A (0.9) steps from 1 instead of from <Katex tex="y_0=2" />.</>,
   },
 ]
 

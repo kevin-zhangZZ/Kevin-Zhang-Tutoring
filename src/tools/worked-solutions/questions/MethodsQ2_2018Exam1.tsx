@@ -15,8 +15,9 @@ const EXAM: SAExaminerStats = {
       <Katex tex="\displaystyle\int\frac{1}{2x-2}\,dx = \log_e(2x-2)+c" />, which was
       incorrect. Some students found a value of <Katex tex="c" /> but did not substitute it
       back into the final answer to state <Katex tex="f(x)" />. Some poor notation was
-      observed, and notation for the natural logarithm is <Katex tex="\log_e" /> not{' '}
-      <Katex tex="\mathrm{loge}" />.
+      observed, for example, <Katex tex="\dfrac{1}{2x}" /> is not the same as{' '}
+      <Katex tex="\dfrac{x}{2}" />, and notation for the natural logarithm is{' '}
+      <Katex tex="\log_e" /> not <Katex tex="\mathrm{loge}" />.
     </>
   ),
 }
@@ -28,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int \frac{1}{2x-2}\,dx = \frac12\log_e(2x-2)+c" />,
-    reason: <>The inside <Katex tex="2x-2" /> has derivative <Katex tex="2" />, so a <Katex tex="\tfrac12" /> must appear out the front to undo it. Dropping that <Katex tex="\tfrac12" /> is the single error the report names. No absolute value is needed: the domain is <Katex tex="(1,\infty)" />, so <Katex tex="2x-2>0" /> throughout.</>,
+    reason: <>The inside <Katex tex="2x-2" /> has derivative <Katex tex="2" />, so a <Katex tex="\tfrac12" /> must appear out the front to undo it. Dropping that <Katex tex="\tfrac12" /> is the common misconception the report names. No absolute value is needed: the domain is <Katex tex="(1,\infty)" />, so <Katex tex="2x-2>0" /> throughout.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{x}{2} - \frac12\log_e(2x-2) + c" />,
@@ -55,7 +56,7 @@ export default function MethodsQ2_2018Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (3 marks)</p>
         <p>
           The derivative with respect to <Katex tex="x" /> of the function{' '}
-          <Katex tex="f:(1,\infty)\to\mathbb{R}" /> has the rule{' '}
+          <Katex tex="f:(1,\infty)\to R" /> has the rule{' '}
           <Katex tex="f'(x)=\dfrac12-\dfrac{1}{2x-2}" />. Given that <Katex tex="f(2)=0" />,
           find <Katex tex="f(x)" /> in terms of <Katex tex="x" />.
         </p>

@@ -11,8 +11,9 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Most students were able to write down the null and alternative hypotheses correctly.
-      The alternative hypothesis was sometimes written with the incorrect inequality, and
-      some idiosyncratic notation was observed.
+      The alternative hypothesis was sometimes written with the incorrect inequality (
+      <Katex tex="\mu>200" /> or <Katex tex="\mu\ne200" />) and some idiosyncratic notation
+      was observed.
     </>
   ),
 }
@@ -46,7 +47,7 @@ const EXAM_C: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Students frequently used <Katex tex="\bar x=200" /> rather than 250. Arithmetic errors
+      Students frequently used <Katex tex="\mu=200" /> rather than 250. Arithmetic errors
       were also observed, as was the use of <Katex tex="z=2" /> rather than 1.96 as
       instructed.
     </>
@@ -56,7 +57,7 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="H_0: \mu = 200" />,
-    reason: 'The null hypothesis always asserts the claimed value, with an equals sign.',
+    reason: <>The null hypothesis always asserts the claimed value, with an equals sign.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \mu < 200}" />,
@@ -71,7 +72,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = \Pr\!\left(\bar X \le 195 \mid \mu = 200\right) = \Pr\!\left(Z \le \frac{195-200}{5/3}\right)" />,
-    reason: 'Standardising the observed sample mean.',
+    reason: <>Standardising the observed sample mean.</>,
   },
   {
     working: <Katex display tex="= \Pr(Z \le -3)" />,
@@ -79,11 +80,11 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(Z\le-3) = \frac{1-0.9973}{2} = 0.00135" />,
-    reason: 'The two tails outside ±3 share the leftover probability equally.',
+    reason: <>The two tails outside ±3 share the leftover probability equally.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.001}" />,
-    reason: 'To three decimal places.',
+    reason: <>To three decimal places.</>,
   },
 ]
 
@@ -94,18 +95,18 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{reject } H_0 \text{ at the } 1\% \text{ level}}" />,
-    reason: 'There is significant evidence that the mean lifetime is less than 200 weeks, so the company should be told the complaints are supported.',
+    reason: <>There is significant evidence that the mean lifetime is less than 200 weeks, so the company should be told the complaints are supported.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\bar x \pm z\frac{\sigma}{\sqrt n} \ \text{ with } \bar x = 250, \ \sigma = 10, \ n = 25" />,
-    reason: <>This is the <em>new</em> globe, so the sample mean is 250 — using 200 is the report's most common error.</>,
+    reason: <>This is the <em>new</em> globe, so the sample mean is 250 — the report notes students frequently used 200.</>,
   },
   {
     working: <Katex display tex="\frac{\sigma}{\sqrt n} = \frac{10}{5} = 2" />,
-    reason: 'The standard error.',
+    reason: <>The standard error.</>,
   },
   {
     working: <Katex display tex="250 \pm 1.96\times2 = 250 \pm 3.92" />,
@@ -113,7 +114,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(246.08,\ 253.92)}" />,
-    reason: 'To two decimal places.',
+    reason: <>To two decimal places.</>,
   },
 ]
 
@@ -139,6 +140,7 @@ export default function SpecialistQ3_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Hypotheses"
         marks={1}
         statement={
           <>
@@ -153,6 +155,7 @@ export default function SpecialistQ3_2021Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="p-Value"
         marks={2}
         statement={
           <>
@@ -167,6 +170,7 @@ export default function SpecialistQ3_2021Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Conclusion"
         marks={1}
         statement={
           <>
@@ -181,11 +185,13 @@ export default function SpecialistQ3_2021Exam1() {
 
       <PartCard
         letter="c"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
-            The company decided to produce a new type of light globe called Globeplus. Find
-            an approximate 95% confidence interval for the mean lifetime of the new globes if
+            The company decided to produce a new type of light globe called Globeplus.
+            <br />
+            Find an approximate 95% confidence interval for the mean lifetime of the new globes if
             a random sample of 25 Globeplus globes is tested and the sample mean is found to
             be 250 weeks. Assume that the standard deviation of the population is 10 weeks.
             Give your answer correct to two decimal places.

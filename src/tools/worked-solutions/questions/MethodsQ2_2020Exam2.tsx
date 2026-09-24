@@ -20,9 +20,9 @@ const EXAM_B: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Some students subtracted 30 instead of 50, giving <Katex tex="\tfrac{110}{3}" />. Others
-      did not subtract at all, leaving <Katex tex="x=\tfrac{200}{3}" />. Exact answers were
-      required; <Katex tex="16.7" /> was often seen.
+      Some students subtracted 30 instead of 50, giving <Katex tex="\dfrac{110}{3}" /> as their
+      final answer. Others did not subtract, leaving their answer as{' '}
+      <Katex tex="x=\dfrac{200}{3}" />. Exact answers were required; 16.7 was often seen.
     </>
   ),
 }
@@ -32,9 +32,10 @@ const EXAM_C: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some found the <Katex tex="x" /> value but not the minimum distance. The distance
-      formula was often set up correctly, but the incorrect <Katex tex="x" /> value was
-      given.
+      Most students used the first method. Some found the <Katex tex="x" /> value but not the
+      minimum distance. The distance formula was often set up correctly, but the incorrect{' '}
+      <Katex tex="x" /> value was given. Students need to check that they have entered their
+      formulas correctly into their technology.
     </>
   ),
 }
@@ -49,8 +50,12 @@ const EXAM_E: SAExaminerStats = {
   average: 1,
   comment: (
     <>
-      There were various approaches to this question. Appropriate working needed to be
-      shown. Some students incorrectly used triangles.
+      There were various approaches to this question. Appropriate working needed to be shown.
+      <br />
+      <Katex tex="\displaystyle\int_{50}^{100}\bigl(f_1(x)-f_2(x)\bigr)dx=1000" /> was often seen.
+      Some students incorrectly used triangles:
+      <br />
+      <Katex tex="\displaystyle A=2\times\frac12\times\frac{50}{3}\times10+\int_{200/3}^{400/3}\bigl(f_1(x)-f_2(x)\bigr)dx" />
     </>
   ),
 }
@@ -60,9 +65,17 @@ const EXAM_F: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Some students were able to set up an appropriate inequality. Some did not substitute
-      either <Katex tex="x=0" /> or <Katex tex="x=200" />. A common incorrect approach was
-      solving <Katex tex="kf_1(50)-f_2(50)\le20" />, giving <Katex tex="k\le\tfrac54" />.
+      Some students were able to set up an appropriate inequality. There was no need to write
+      out the expression for <Katex tex="f_1(x)" /> and <Katex tex="f_2(x)" /> as this often led to
+      errors such as{' '}
+      <Katex tex="20k\cos\left(\frac{\pi x}{100}\right)+40k-20\cos\left(\frac{\pi x}{100}\right)+30" />{' '}
+      instead of{' '}
+      <Katex tex="20k\cos\left(\frac{\pi x}{100}\right)+40k-20\cos\left(\frac{\pi x}{100}\right)-30" />.
+      Some students did not substitute either <Katex tex="x=0" /> or <Katex tex="x=200" /> into the
+      equation, leaving their answer as{' '}
+      <Katex tex="k<\dfrac{2\cos\left(\frac{\pi x}{100}\right)+5}{2\left(\cos\left(\frac{\pi x}{100}\right)+2\right)}" />.
+      A common incorrect approach was solving <Katex tex="kf_1(50)-f_2(50)<20" />, giving{' '}
+      <Katex tex="k<\dfrac54" />.
     </>
   ),
 }
@@ -101,7 +114,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{200}{3}-50 = \tfrac{50}{3}\ \text{m}}" />,
-    reason: <>Subtract the starting <Katex tex="x" />-coordinate. Exact, as required: <Katex tex="16\tfrac23" /> m.</>,
+    reason: <>Subtract the starting <Katex tex="x" />-coordinate — the report notes some students subtracted 30 instead, or did not subtract at all. Exact, as required: <Katex tex="16\tfrac23" /> m (not 16.7).</>,
   },
 ]
 
@@ -166,7 +179,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{837\ \text{m}^2}" />,
-    reason: <>To the nearest square metre. A check: it is well under half of the river's 2000 m², which the picture agrees with.</>,
+    reason: <>To the nearest square metre. A check: it is well under half of the river's 2000 m², which the picture agrees with. The report notes <Katex tex="\int_{50}^{100}(f_1-f_2)\,dx=1000" /> was often seen, and some students incorrectly used triangles.</>,
   },
 ]
 
@@ -177,23 +190,23 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 20k\cos\!\left(\tfrac{\pi x}{100}\right)+40k-20\cos\!\left(\tfrac{\pi x}{100}\right)-30" />,
-    reason: <>Expanding — noting the <Katex tex="-30" />, not <Katex tex="+30" />, which the report flags.</>,
+    reason: <>Expanding — noting the <Katex tex="-30" />; the report notes errors such as <Katex tex="+30" /> here.</>,
   },
   {
     working: <Katex display tex="= 20(k-1)\cos\!\left(\tfrac{\pi x}{100}\right)+40k-30" />,
-    reason: <>Since <Katex tex="k>1" />, the coefficient <Katex tex="20(k-1)" /> is positive, so the width is largest where the cosine is largest.</>,
+    reason: <>For <Katex tex="k>1" /> the coefficient <Katex tex="20(k-1)" /> is positive, so the width is largest where the cosine is largest. (At <Katex tex="k=1" /> the width is the constant <Katex tex="10" /> from part a., well under 20.)</>,
   },
   {
     working: <Katex display tex="\cos\!\left(\tfrac{\pi x}{100}\right) = 1 \text{ at } x = 0 \text{ and } x = 200" />,
-    reason: <>The ends of the stretch shown. "For all parts of the river" means the <em>maximum</em> width must be under 20 — testing <Katex tex="x=50" /> instead is the report's common error.</>,
+    reason: <>The ends of the stretch shown. "For all parts of the river" means the <em>maximum</em> width must be under 20 — the report notes a common incorrect approach was testing <Katex tex="x=50" />, giving <Katex tex="k<\tfrac54" />.</>,
   },
   {
     working: <Katex display tex="20(k-1)+40k-30 < 20 \implies 60k-50 < 20" />,
     reason: <>Substituting <Katex tex="x=0" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{k \in \left(1,\tfrac76\right)}" />,
-    reason: <><Katex tex="60k<70" /> gives <Katex tex="k<\tfrac76" />, combined with the given <Katex tex="k>1" />. Strictly less than 20, so the endpoint is excluded.</>,
+    working: <Katex display tex="\boxed{k \in \left[1,\tfrac76\right)}" />,
+    reason: <><Katex tex="60k<70" /> gives <Katex tex="k<\tfrac76" />, combined with the given <Katex tex="k\ge1" />, so <Katex tex="1\le k<\tfrac76" />. "Strictly less than 20" excludes <Katex tex="\tfrac76" />; <Katex tex="k=1" /> is included.</>,
   },
 ]
 
@@ -203,13 +216,18 @@ export default function MethodsQ2_2020Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">Question 2 (11 marks)</p>
         <p>
-          An area of parkland has a river running through it, as shown below. The north bank
-          is modelled by{' '}
-          <Katex tex="f_1:[0,200]\to R,\ f_1(x)=20\cos\!\left(\tfrac{\pi x}{100}\right)+40" />{' '}
-          and the south bank by{' '}
-          <Katex tex="f_2:[0,200]\to R,\ f_2(x)=20\cos\!\left(\tfrac{\pi x}{100}\right)+30" />
-          . The horizontal axis points east and the vertical axis points north. All distances
-          are measured in metres.
+          An area of parkland has a river running through it, as shown below. The river is shown
+          shaded.
+          <br />
+          The north bank of the river is modelled by the function{' '}
+          <Katex tex="f_1:[0,200]\to R,\ f_1(x)=20\cos\!\left(\dfrac{\pi x}{100}\right)+40" />.
+          <br />
+          The south bank of the river is modelled by the function{' '}
+          <Katex tex="f_2:[0,200]\to R,\ f_2(x)=20\cos\!\left(\dfrac{\pi x}{100}\right)+30" />.
+          <br />
+          The horizontal axis points east and the vertical axis points north.
+          <br />
+          All distances are measured in metres.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -220,17 +238,22 @@ export default function MethodsQ2_2020Exam2() {
         </div>
         <p>
           A swimmer always starts at point <Katex tex="P" />, which has coordinates{' '}
-          <Katex tex="(50,30)" />. Assume that no movement of water in the river affects the
+          <Katex tex="(50,30)" />.
+          <br />
+          Assume that no movement of water in the river affects the
           motion or path of the swimmer, which is always a straight line.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Distance"
         marks={1}
         statement={
           <>
-            The swimmer swims north from point <Katex tex="P" />. Find the distance, in
+            The swimmer swims north from point <Katex tex="P" />.
+            <br />
+            Find the distance, in
             metres, that the swimmer needs to swim to get to the north bank of the river.
           </>
         }
@@ -241,10 +264,13 @@ export default function MethodsQ2_2020Exam2() {
 
       <PartCard
         letter="b"
+        topic="Distance"
         marks={2}
         statement={
           <>
-            The swimmer swims east from point <Katex tex="P" />. Find the distance, in metres,
+            The swimmer swims east from point <Katex tex="P" />.
+            <br />
+            Find the distance, in metres,
             that the swimmer needs to swim to get to the north bank of the river.
           </>
         }
@@ -255,11 +281,14 @@ export default function MethodsQ2_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Minimum Distance"
         marks={2}
         statement={
           <>
             On another occasion, the swimmer swims the minimum distance from point{' '}
-            <Katex tex="P" /> to the north bank of the river. Find this minimum distance. Give
+            <Katex tex="P" /> to the north bank of the river.
+            <br />
+            Find this minimum distance. Give
             your answer in metres, correct to one decimal place.
           </>
         }
@@ -270,11 +299,12 @@ export default function MethodsQ2_2020Exam2() {
 
       <PartCard
         letter="d"
+        topic="Area Between Curves"
         marks={1}
         statement={
           <>
-            Calculate the surface area of the section of the river shown on the graph, in
-            square metres.
+            Calculate the surface area of the section of the river shown on the graph, in square
+            metres.
           </>
         }
         examinerReport={EXAM_D}
@@ -284,12 +314,14 @@ export default function MethodsQ2_2020Exam2() {
 
       <PartCard
         letter="e"
+        topic="Area Between Curves"
         marks={3}
         statement={
           <>
             A horizontal line is drawn through point <Katex tex="P" />. The section of the
-            river that is south of the line is declared a "no swimming" zone. Find the area of
-            the "no swimming" zone, correct to the nearest square metre.
+            river that is south of the line is declared a 'no swimming' zone.
+            <br />
+            Find the area of the 'no swimming' zone, correct to the nearest square metre.
           </>
         }
         examinerReport={EXAM_E}
@@ -299,12 +331,16 @@ export default function MethodsQ2_2020Exam2() {
 
       <PartCard
         letter="f"
+        topic="Dilation"
         marks={2}
         statement={
           <>
-            Scientists observe that the north bank of the river is moving further north from
-            its current position. They model its predicted new location using the function
-            with rule <Katex tex="y=kf_1(x)" />, where <Katex tex="k\ge1" />. Find the values
+            Scientists observe that the north bank of the river is changing over time. It is
+            moving further north from its current position. They model its predicted new
+            location using the function with rule <Katex tex="y=kf_1(x)" />, where{' '}
+            <Katex tex="k\ge1" />.
+            <br />
+            Find the values
             of <Katex tex="k" /> for which the distance north across the river, for all parts
             of the river, is strictly less than 20 m.
           </>

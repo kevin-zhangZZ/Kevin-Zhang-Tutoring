@@ -5,12 +5,29 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2022-mcq19-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 34, C: 13, D: 34, E: 9 },
   answer: 'D',
   noAnswer: 1,
-  comment: <>Solve <Katex tex="V'(x)=0" /> for <Katex tex="x" />. The maximum occurs at the smaller <Katex tex="x" /> value.</>,
+  comment: (
+    <>
+      <Katex tex="V(x)=x(b-2x)(a-2x)" />
+      <br />
+      Solve <Katex tex="V'(x)=0" /> for <Katex tex="x" />.
+      <br />
+      <Katex tex="x=\dfrac{a+b\pm\sqrt{a^2-ab+b^2}}{6}" />
+      <br />
+      <Katex tex="x=\dfrac{a+b-\sqrt{a^2-ab+b^2}}{6}" />
+      <br />
+      The maximum occurs at the smaller <Katex tex="x" /> value.
+      <br />
+      An example is shown below for a general cubic function using <Katex tex="b=2" /> and{' '}
+      <Katex tex="a=1" />.
+      <img src={reportGraphSrc} alt="The report's example: y = x(2 − 2x)(1 − 2x), a cubic with a local maximum at the smaller stationary point" className="w-full max-w-[340px] mt-1" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -20,19 +37,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V(x) = 4x^3 - 2(a+b)x^2 + abx" />,
-    reason: 'Expand the product.',
+    reason: <>Expand the product.</>,
   },
   {
     working: <Katex display tex="V'(x) = 12x^2 - 4(a+b)x + ab" />,
-    reason: 'Differentiate.',
+    reason: <>Differentiate.</>,
   },
   {
     working: <Katex display tex="x = \frac{4(a+b)\pm\sqrt{16(a+b)^2-48ab}}{24}" />,
-    reason: 'Quadratic formula on V′(x) = 0.',
+    reason: <>Quadratic formula on V′(x) = 0.</>,
   },
   {
     working: <Katex display tex="16(a+b)^2 - 48ab = 16\big(a^2+2ab+b^2-3ab\big) = 16(a^2-ab+b^2)" />,
-    reason: 'Simplify inside the square root.',
+    reason: <>Simplify inside the square root.</>,
   },
   {
     working: <Katex display tex="x = \frac{4(a+b)\pm4\sqrt{a^2-ab+b^2}}{24} = \frac{(a+b)\pm\sqrt{a^2-ab+b^2}}{6}" />,
@@ -44,7 +61,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = \frac{a+b-\sqrt{a^2-ab+b^2}}{6}}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option B, the larger root, gives the local minimum.</>,
   },
 ]
 

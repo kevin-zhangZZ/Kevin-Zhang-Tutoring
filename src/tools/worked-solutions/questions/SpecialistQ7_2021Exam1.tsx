@@ -33,15 +33,15 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dx}{dt} = x\sin(t) \implies \frac{1}{x}\,dx = \sin(t)\,dt" />,
-    reason: 'Separating: everything in x on the left, everything in t on the right.',
+    reason: <>Separating: everything in x on the left, everything in t on the right.</>,
   },
   {
     working: <Katex display tex="\int\frac{1}{x}\,dx = \int\sin(t)\,dt" />,
-    reason: 'Integrating both sides.',
+    reason: <>Integrating both sides.</>,
   },
   {
     working: <Katex display tex="\log_e|x| = -\cos(t)+c" />,
-    reason: <>The antiderivative of <Katex tex="\sin" /> is <em>minus</em> cosine — the sign slip the report names.</>,
+    reason: <>The antiderivative of <Katex tex="\sin" /> is <em>minus</em> cosine — the report notes some sign errors here.</>,
   },
   {
     working: <Katex display tex="t=0, \ x=1: \ \log_e(1) = -1+c \implies c = 1" />,
@@ -64,7 +64,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(t) \ge -1, \text{ so } 1-\cos(t) \le 2" />,
-    reason: 'The exponent peaks at 2.',
+    reason: <>The exponent peaks at 2.</>,
   },
   {
     working: <Katex display tex="\boxed{x_{\max} = e^2\ \text{cm}}" />,
@@ -72,11 +72,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(t) = -1 \implies t = \pi,\ 3\pi,\ 5\pi,\ \ldots" />,
-    reason: 'The odd multiples of π.',
+    reason: <>The odd multiples of π.</>,
   },
   {
     working: <Katex display tex="\boxed{t = (2k+1)\pi \text{ seconds}, \quad k \in \{0,1,2,\ldots\}}" />,
-    reason: <>Both halves are needed. Time starts at <Katex tex="t=0" />, so negative <Katex tex="k" /> is excluded — and the report says this half of the answer is what most students missed.</>,
+    reason: <>Both halves are needed. Time starts at <Katex tex="t=0" />, so negative <Katex tex="k" /> is excluded. The report notes most students did not attempt or were unable to give these times.</>,
   },
 ]
 
@@ -89,12 +89,15 @@ export default function SpecialistQ7_2021Exam1() {
           The velocity of a particle satisfies the differential equation{' '}
           <Katex tex="\dfrac{dx}{dt}=x\sin(t)" />, where <Katex tex="x" /> centimetres is its
           displacement relative to a fixed point <Katex tex="O" /> at time <Katex tex="t" />{' '}
-          seconds. Initially, the displacement of the particle is 1 cm.
+          seconds.
+          <br />
+          Initially, the displacement of the particle is 1 cm.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Separable DE"
         marks={3}
         statement={
           <>
@@ -108,6 +111,7 @@ export default function SpecialistQ7_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Maximum Displacement"
         marks={2}
         statement={
           <>

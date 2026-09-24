@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-\frac{14}{9}\left(2\underset{\sim}{i}+2\underset{\sim}{j}-\underset{\sim}{k}\right)}" />,
-    reason: <>Option C. Option B divides by <Katex tex="3" /> instead of <Katex tex="9" />; options A and D are scalars, so they answer "scalar resolute" instead — and <Katex tex="-\tfrac{14}{3}" /> is indeed that scalar resolute.</>,
+    reason: <>Matches option <b>C</b>. Option B divides by <Katex tex="3" /> instead of <Katex tex="9" />; options A and D are scalars, so they answer "scalar resolute" instead — and <Katex tex="-\tfrac{14}{3}" /> is indeed that scalar resolute.</>,
   },
 ]
 

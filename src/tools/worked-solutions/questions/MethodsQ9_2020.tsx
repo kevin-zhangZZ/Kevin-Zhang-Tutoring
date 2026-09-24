@@ -9,11 +9,18 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 17, C: 19, D: 12, E: 35 },
   answer: 'E',
+  noAnswer: 1,
   comment: (
     <>
-      Dilate by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis:{' '}
-      <Katex tex="\int_2^4 f(2x)\,dx = \tfrac52" />. Translating 2 units to the left doesn't change the area:{' '}
-      <Katex tex="\int_0^2 f(2(x+2))\,dx = \tfrac52" />.
+      <Katex tex="\displaystyle\int_4^8 f(x)\,dx = 5" />
+      <br />
+      Dilate by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis.
+      <br />
+      <Katex tex="\displaystyle\int_2^4 f(2x)\,dx = \frac52" />
+      <br />
+      Translating 2 units to the left does not change the area.
+      <br />
+      <Katex tex="\displaystyle\int_0^2 f\bigl(2(x+2)\bigr)\,dx = \frac52" />
     </>
   ),
 }
@@ -21,7 +28,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_4^8 f(x)\,dx = 5" />,
-    reason: 'Given integral.',
+    reason: <>The given integral.</>,
   },
   {
     working: <Katex display tex="u = 2(x+2) = 2x+4,\qquad du = 2\,dx" />,
@@ -29,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=0 \implies u=4 \qquad x=2 \implies u=8" />,
-    reason: 'Transform the limits of integration.',
+    reason: <>Transform the limits of integration.</>,
   },
   {
     working: <Katex display tex="\int_0^2 f\big(2(x+2)\big)\,dx = \int_4^8 f(u)\cdot\frac{du}{2} = \frac12\int_4^8 f(u)\,du" />,
@@ -37,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac12(5) = \frac52}" />,
-    reason: <>Using the given value of the integral — matches option <b>E</b>.</>,
+    reason: <>Using the given value of the integral. Matches option <b>E</b>. Option <b>B</b> (<Katex tex="10" />) multiplies by <Katex tex="2" /> instead of dividing, and option <b>D</b> (<Katex tex="\tfrac12" />) is the scale factor without the <Katex tex="5" />. The report's alternative is geometric: a dilation by <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis halves the area, and the translation leaves it unchanged.</>,
   },
 ]
 

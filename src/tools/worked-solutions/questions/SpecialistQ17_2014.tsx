@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{v}(t) = \bigl(2\cos(2t)-2\bigr)\underset{\sim}{i}+10\sin(2t)\underset{\sim}{j}+\bigl(10e^{-2t}-10\bigr)\underset{\sim}{k}}" />,
-    reason: <>Option D. Check <Katex tex="t=0" />: every bracket is zero ✓.</>,
+    reason: <>Matches option <b>D</b>. Option B (24%) is the antiderivative with the constant left out. Check <Katex tex="t=0" />: every bracket is zero ✓.</>,
   },
 ]
 
@@ -61,8 +61,9 @@ export default function SpecialistQ17_2014() {
       background={
         <p>
           A fast check on all five options: substitute <Katex tex="t=0" /> and keep only
-          those that give the zero vector. Options B, C and E fail that test immediately;
-          differentiating the survivors settles the rest.
+          those that give the zero vector. Options A and B fail that test immediately;
+          differentiating the survivors C, D and E settles the rest — only D gives back the
+          acceleration.
         </p>
       }
       options={[

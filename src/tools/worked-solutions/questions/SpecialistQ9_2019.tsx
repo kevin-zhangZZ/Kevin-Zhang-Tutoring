@@ -13,25 +13,20 @@ const DIAGRAM = (
     <img
       src={dirFieldSrc}
       alt="A direction field on axes from -8 to 8, banded diagonally: constant along lines y-x=k, with horizontal tangent marks offset from the y=x diagonal rather than sitting on it"
-      className="w-full max-w-[340px]"
+      className="w-full max-w-[440px]"
     />
   </div>
 )
 
 const EXAMINER: MCQExaminerStats = {
-  percentages: { A: 19, B: 70, C: 5, D: 2, E: 5 },
+  percentages: { A: 10, B: 57, C: 12, D: 16, E: 5 },
   answer: 'B',
-  comment: 'The direction field is banded along diagonals of gradient 1, consistent with a right-hand side that depends only on y − x.',
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: DIAGRAM,
-    reason: 'The field repeats identically along every diagonal line of gradient 1 — the slope markers depend only on the value of y − x, not on x and y individually.',
-  },
-  {
     working: <Katex display tex="\frac{dy}{dx}=f(y-x) \implies \text{slope constant on } y-x=k" />,
-    reason: <>All five options already have this form, so the banding on its own does not separate them. Write <Katex tex="u=y-x" /> and ask instead <em>where along the diagonals</em> the markers go flat.</>,
+    reason: <>The field repeats identically along every diagonal line of gradient <Katex tex="1" /> — the slope markers depend only on the value of <Katex tex="y-x" />. All five options already have this form, so the banding on its own does not separate them. Write <Katex tex="u=y-x" /> and ask instead <em>where along the diagonals</em> the markers go flat.</>,
   },
   {
     working: <Katex display tex="\cos(u)=0 \ \text{ or } \ \sin(u)=0 \implies \frac{dy}{dx}\to\pm\infty" />,
@@ -43,15 +38,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \cos(y-x)}" />,
-    reason: <>Option <b>B</b> is zero (horizontal) on the diagonal <Katex tex="y-x=\tfrac{\pi}{2}" /> — offset from the origin, exactly as shown — and reaches its steepest gradient <Katex tex="\pm1" /> on <Katex tex="y-x=0,\pi" />, matching the diagram.</>,
+    reason: <>Option <b>B</b> is zero (horizontal) on the diagonal <Katex tex="y-x=\tfrac{\pi}{2}" /> — offset from the origin, exactly as shown — and reaches its steepest gradient <Katex tex="\pm1" /> on <Katex tex="y-x=0,\pi" />, matching the diagram. Matches option <b>B</b>.</>,
   },
 ]
 
 export default function SpecialistQ9_2019() {
   return (
     <MCQShell
-      question={<p>The differential equation that has the diagram below as its direction field is</p>}
-      diagram={DIAGRAM}
+      question={
+        <>
+          <div className="mb-3">{DIAGRAM}</div>
+          <p>The differential equation that has the diagram above as its direction field is</p>
+        </>
+      }
       options={[
         { letter: 'A', content: <Katex tex="\dfrac{dy}{dx} = \sin(y-x)" /> },
         { letter: 'B', content: <Katex tex="\dfrac{dy}{dx} = \cos(y-x)" />, isAnswer: true },

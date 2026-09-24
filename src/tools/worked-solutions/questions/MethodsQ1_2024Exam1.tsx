@@ -11,10 +11,12 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Many students did not tidy up the negative signs and left their answer as{' '}
-      <Katex tex="e^x\cos(3x)+-3e^x\sin(3x)" />. Some students did not use brackets around
-      terms, and some altered the argument of the sine term, writing{' '}
-      <Katex tex="e^x\cos(3x)-3e^x\sin(x)" />.
+      This question was well attempted and required students to use the product rule to find
+      the derivative. Many students did not tidy up the negative signs in their answer and left
+      their answer as <Katex tex="e^x\cos(3x)+-3e^x\sin(3x)" /> or{' '}
+      <Katex tex="e^x\cos(3x)+e^x-3\sin(3x)" />. Some students did not use brackets around
+      terms and this had the potential to be misinterpreted. Some students altered the argument
+      of the sine term and wrote <Katex tex="e^x\cos(3x)-3e^x\sin(x)" />.
     </>
   ),
 }
@@ -24,9 +26,12 @@ const EXAM_B: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Some students did not correctly execute the chain rule and omitted the numerator. Some
-      did not put brackets around the quadratic term, creating ambiguity when evaluating at{' '}
-      <Katex tex="x=3" />. A correct answer must emerge from correct working.
+      This question was well attempted and required students to use the chain rule to find the
+      derivative then evaluate the derivative at <Katex tex="x=3" />. Some students did not
+      correctly execute the chain rule and omitted the numerator. Some students did not put
+      brackets around the quadratic term; this created ambiguity in their solution process
+      with the evaluation of the derivative at <Katex tex="x=3" />. A correct answer must
+      emerge from correct working.
     </>
   ),
 }
@@ -34,7 +39,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = e^x\cos(3x)" />,
-    reason: 'A product of two functions, each of which needs its own derivative.',
+    reason: <>A product of two functions, each of which needs its own derivative.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = e^x\cos(3x)+e^x\cdot\bigl(-3\sin(3x)\bigr)" />,
@@ -42,18 +47,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = e^x\bigl(\cos(3x)-3\sin(3x)\bigr)}" />,
-    reason: <>Resolve the "<Katex tex="+\ {-}3" />" into a single minus and factorise. Leaving <Katex tex="e^x\cos(3x)+-3e^x\sin(3x)" /> is untidy enough that the report calls it out.</>,
+    reason: <>Resolve the "<Katex tex="+\ {-}3" />" into a single minus and factorise. The report notes many students left <Katex tex="e^x\cos(3x)+-3e^x\sin(3x)" /> untidied.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \log_e\left(x^3-3x+2\right)" />,
-    reason: 'A log of a function, so the chain rule in its f′/f form.',
+    reason: <>A log of a function, so the chain rule in its f′/f form.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{3x^2-3}{x^3-3x+2}" />,
-    reason: <>Derivative of the inside over the inside. Omitting the numerator — writing just <Katex tex="\tfrac{1}{x^3-3x+2}" /> — is the report's named error.</>,
+    reason: <>Derivative of the inside over the inside. Omitting the numerator — writing just <Katex tex="\tfrac{1}{x^3-3x+2}" /> — the report notes some students omitted it.</>,
   },
   {
     working: <Katex display tex="f'(3) = \frac{3(3)^2-3}{3^3-3(3)+2} = \frac{27-3}{27-9+2}" />,
@@ -74,10 +79,13 @@ export default function MethodsQ1_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={1}
         statement={
           <>
-            Let <Katex tex="y=e^x\cos(3x)" />. Find <Katex tex="\dfrac{dy}{dx}" />.
+            Let <Katex tex="y=e^x\cos(3x)" />.
+            <br />
+            Find <Katex tex="\dfrac{dy}{dx}" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -87,11 +95,13 @@ export default function MethodsQ1_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Chain Rule"
         marks={2}
         statement={
           <>
-            Let <Katex tex="f(x)=\log_e\left(x^3-3x+2\right)" />. Find{' '}
-            <Katex tex="f'(3)" />.
+            Let <Katex tex="f(x)=\log_e\left(x^3-3x+2\right)" />.
+            <br />
+            Find <Katex tex="f'(3)" />.
           </>
         }
         examinerReport={EXAM_B}

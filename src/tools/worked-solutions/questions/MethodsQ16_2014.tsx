@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}\!\left(X^2\right) = 9}" />,
-    reason: <>Option C. Option A, 1, subtracts instead of adding; option E, 29, uses <Katex tex="5^2+4" />.</>,
+    reason: <>Matches option <b>C</b>. Option A, 1, subtracts instead of adding; option E, 29, uses <Katex tex="5^2+4" />.</>,
   },
 ]
 

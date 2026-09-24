@@ -1,5 +1,4 @@
-// 2021 Chemistry Exam, MCQ 25. VCAA examination report: 12% correct — the hardest MCQ on this
-// paper. Deducing what change was made to an equilibrium system from a rate–time graph showing
+// 2021 Chemistry Exam, MCQ 25. VCAA examination report: 34% correct. Deducing what change was made to an equilibrium system from a rate–time graph showing
 // an instantaneous jump in the reverse rate but no instantaneous change in the forward rate.
 // Question text transcribed from the original paper; the graph is cropped directly from the
 // original VCAA exam PDF, not a redrawing. Solution is original.

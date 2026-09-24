@@ -6,6 +6,8 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraph1Src from './meth-2025-mcq16-report-graph1.png'
+import reportGraph2Src from './meth-2025-mcq16-report-graph2.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 20, B: 16, C: 46, D: 18 },
@@ -13,8 +15,18 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      The two cases where <Katex tex="h'" /> has range <Katex tex="(0,\infty)" /> are <Katex tex="a>0,\ b>0" /> or{' '}
-      <Katex tex="a<0,\ b<0" />. In both cases, <Katex tex="ab>0" />.
+      <Katex tex="h(x)=a\log_e(bx),\ h'(x)=\dfrac{a}{x}" />
+      <br />
+      The two cases where <Katex tex="h'" /> has range <Katex tex="(0,\infty)" /> are{' '}
+      <Katex tex="a>0" /> and <Katex tex="b>0" /> or <Katex tex="a<0" /> and <Katex tex="b<0" />.
+      <br />
+      In both cases it must be true that <Katex tex="ab>0" />.
+      <br />
+      Example 1 <Katex tex="a=1" /> and <Katex tex="b=1" />.
+      <img src={reportGraph1Src} alt="The report's Example 1: h(x) = ln(x) and h′(x) = 1/x, both defined for x > 0, with h′ positive throughout" className="w-full max-w-[360px] mt-1" />
+      <br />
+      Example 2 <Katex tex="a=-1" /> and <Katex tex="b=-1" />.
+      <img src={reportGraph2Src} alt="The report's Example 2: h(x) = −ln(−x) and h′(x) = −1/x, both defined for x < 0, with h′ positive throughout" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
@@ -42,7 +54,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{ab>0}" />,
-    reason: <>The general condition covering both cases — matches option <b>D</b>.</>,
+    reason: <>The general condition covering both cases. Matches option <b>D</b>.</>,
   },
 ]
 
@@ -51,10 +63,10 @@ export default function MethodsQ16_2025() {
     <MCQShell
       question={
         <p>
-          Consider the function <Katex tex="h(x)=a\log_e(bx)" />, where <Katex tex="a,b\in\mathbb{R}\setminus\{0\}" />.
+          Consider the function <Katex tex="h(x)=a\log_e(bx)" />, where <Katex tex="a,b\in R\setminus\{0\}" />.
           <br />
           Given that its derivative <Katex tex="h'(x)" /> has range <Katex tex="(0,\infty)" />, which of the
-          following must be true?
+          following <b>must</b> be true?
         </p>
       }
       options={[

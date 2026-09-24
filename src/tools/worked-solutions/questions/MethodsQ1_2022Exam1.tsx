@@ -10,11 +10,14 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      A number of students wrote <Katex tex="3x\cdot2e^{2x}+3e^{2x}" /> as their final
-      answer; this was incomplete, as <Katex tex="3x\cdot2e^{2x}" /> needed to be written as{' '}
-      <Katex tex="6xe^{2x}" />. Many students chose to factorise their answer and in doing so
-      factorised incorrectly. There was no requirement to express the answer in factorised
-      form.
+      This question was well attempted; however a number of students wrote{' '}
+      <Katex tex="3x2e^{2x}+3e^{2x}" /> as their final answer. This was an incomplete answer, as
+      the term <Katex tex="3x2e^{2x}" /> needed to be written as <Katex tex="6xe^{2x}" />. Some
+      students did not use the product rule that was required. Many students chose to
+      factorise their answer and in doing so factorised incorrectly. It is important to note
+      that there was no requirement to express the answer in factorised form. If students
+      further engage with their answer, and the final response is incorrect, even if a correct
+      answer has been previously written, full marks cannot be awarded.
     </>
   ),
 }
@@ -24,9 +27,10 @@ const EXAM_B: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Students generally responded well, applying either the product rule or the quotient
-      rule. Some students did not demonstrate an understanding of what was required to
-      simplify the expression; some cancelled only one of the <Katex tex="e^x" /> terms.
+      Students generally responded to this question well, applying either the product rule or
+      quotient rule to obtain the derivative. Some students did not demonstrate an
+      understanding of what was required to simplify the expression. Some students cancelled
+      only one of the <Katex tex="e^x" /> terms.
     </>
   ),
 }
@@ -42,14 +46,14 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = 6xe^{2x}+3e^{2x}}" />,
-    reason: <>The multiplication <Katex tex="3x\times2" /> must actually be carried out — leaving it unmultiplied is the report's named incomplete answer. Factorising to <Katex tex="3e^{2x}(2x+1)" /> is fine but not required, and is where several students went wrong.</>,
+    reason: <>The multiplication <Katex tex="3x\times2" /> must actually be carried out — the report calls leaving it unmultiplied an incomplete answer. Factorising to <Katex tex="3e^{2x}(2x+1)" /> is fine but not required; the report notes many who factorised did so incorrectly.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{\cos(x)}{e^x}" />,
-    reason: 'A quotient — though writing it as a product with e^(−x) works just as well.',
+    reason: <>A quotient — though writing it as a product with <Katex tex="e^{-x}" /> works just as well.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{-\sin(x)\cdot e^x-\cos(x)\cdot e^x}{\left(e^x\right)^2}" />,
@@ -61,7 +65,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = -\frac{\sin(x)+\cos(x)}{e^x}}" />,
-    reason: <>Both exponentials cancel down: <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. Cancelling only one is the report's named slip. Equivalently <Katex tex="-e^{-x}\bigl(\sin x+\cos x\bigr)" />.</>,
+    reason: <>Both exponentials cancel down: <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. The report notes some students cancelled only one. Equivalently <Katex tex="-e^{-x}\bigl(\sin x+\cos x\bigr)" />.</>,
   },
 ]
 
@@ -74,10 +78,13 @@ export default function MethodsQ1_2022Exam1() {
 
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={1}
         statement={
           <>
-            Let <Katex tex="y=3xe^{2x}" />. Find <Katex tex="\dfrac{dy}{dx}" />.
+            Let <Katex tex="y=3xe^{2x}" />.
+            <br />
+            Find <Katex tex="\dfrac{dy}{dx}" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -87,6 +94,7 @@ export default function MethodsQ1_2022Exam1() {
 
       <PartCard
         letter="b"
+        topic="Quotient Rule"
         marks={2}
         statement={
           <>

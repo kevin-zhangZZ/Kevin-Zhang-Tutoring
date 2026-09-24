@@ -75,6 +75,7 @@ export const audits: SubjectAudit[] = [
       { year: 2015, exam: 'Exam 2', question: 'MCQ 21', topic: 'Dynamics and force analysis' },
       { year: 2015, exam: 'Exam 2', question: 'SAQ5a,b,c', topic: 'Dynamics and force analysis', note: 'SAQ5d is still doable — just use the differential equation given right before part (d).\nAlso: MCQ15 in this exam is still doable, since it has nothing to do with actual forces content.' },
       { year: 2016, exam: 'Exam 1', question: 'Entire Q1', topic: 'Dynamics and force analysis' },
+      { year: 2016, exam: 'Exam 1', question: 'Q7', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 13', topic: 'Dynamics and force analysis' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', note: 'Doable if you substitute F = 3a into each option and treat it as converting v = f(x) into a = g(x).' },

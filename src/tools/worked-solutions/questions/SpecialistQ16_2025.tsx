@@ -10,29 +10,47 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 5, B: 12, C: 67, D: 15 },
   answer: 'C',
-  comment: <>This question may be completed manually or using CAS. Find the velocity and acceleration vectors by differentiation, substitute the given time, and set their dot product to zero.</>,
+  comment: (
+    <>
+      This question may be completed manually or using CAS. Find the velocity and acceleration
+      vectors through differentiation and then substitute <Katex tex="\dfrac{1}{2}" />. The dot
+      product of these two vectors is 0 as they are perpendicular.
+      <br />
+      <Katex tex="\underset{\sim}{v}(t)=-2ne^{-2t}\underset{\sim}{i}-2t\underset{\sim}{j}" />
+      <br />
+      <Katex tex="\underset{\sim}{v}\left(\tfrac{1}{2}\right)=-2ne^{-1}\underset{\sim}{i}-\underset{\sim}{j}" />
+      <br />
+      <Katex tex="\underset{\sim}{a}(t)=4ne^{-2t}\underset{\sim}{i}-2\underset{\sim}{j}" />
+      <br />
+      <Katex tex="\underset{\sim}{a}\left(\tfrac{1}{2}\right)=4ne^{-1}\underset{\sim}{i}-2\underset{\sim}{j}" />
+      <br />
+      <Katex tex="-8n^2e^{-2}+2=0" />
+      <br />
+      <Katex tex="n^2=\dfrac{e^2}{4}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}(t) = ne^{-2t}\underset{\sim}{i}-t^2\underset{\sim}{j}" />,
-    reason: 'The given position vector.',
+    reason: <>The given position vector.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}(t) = -2ne^{-2t}\underset{\sim}{i}-2t\,\underset{\sim}{j}" />,
-    reason: 'Differentiate each component.',
+    reason: <>Differentiate each component.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}(t) = 4ne^{-2t}\underset{\sim}{i}-2\underset{\sim}{j}" />,
-    reason: 'Differentiate again.',
+    reason: <>Differentiate again.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}\cdot\underset{\sim}{a} = -8n^2e^{-4t}+4t" />,
-    reason: 'Perpendicular vectors have zero dot product.',
+    reason: <>Perpendicular vectors have zero dot product.</>,
   },
   {
     working: <Katex display tex="t = \frac{1}{2}: \quad -8n^2e^{-2}+2 = 0" />,
-    reason: 'Substituting the given time.',
+    reason: <>Substituting the given time.</>,
   },
   {
     working: <Katex display tex="n^2 = \frac{2e^2}{8} = \frac{e^2}{4} \implies n = \frac{e}{2}" />,
@@ -40,7 +58,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = \frac{e}{2}}" />,
-    reason: <>Option <b>C</b>, about 1.359. Option B, <Katex tex="\tfrac{e^{0.5}}{2}" />, comes from forgetting to square n.</>,
+    reason: <>Matches option <b>C</b>, about 1.359. Option <b>B</b>, <Katex tex="\tfrac{e^{0.5}}{2}" />, comes from using <Katex tex="e^{-1}" /> rather than <Katex tex="e^{-2}" /> in the dot product, which gives <Katex tex="n^2=\tfrac{e}{4}" />.</>,
   },
 ]
 

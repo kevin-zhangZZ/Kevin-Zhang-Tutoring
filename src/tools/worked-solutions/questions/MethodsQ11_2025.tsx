@@ -5,6 +5,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2025-mcq11-report-graph.png'
 import chartSrc from './meth-2025-mcq11-chart.png'
 
 const EXAMINER: MCQExaminerStats = {
@@ -12,8 +13,11 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      Use a ruler to draw line segments for each option, then select the segment with the
-      steepest gradient.
+      Use a ruler to draw line segments for each option. Then, select the line segment with the
+      steepest gradient. Day 14 to day 28 has the greatest average rate of change.
+      <img src={reportGraphSrc} alt="The report's copy of the share-price chart with line segments drawn for the options: two blue segments from day 3 and a red segment from day 14 to day 28, the steepest" className="w-full max-w-[360px] mt-1" />
+      <br />
+      Average rate of change <Katex tex="\approx\dfrac{39.4-35.0}{28-14}=0.3143" />.
     </>
   ),
 }
@@ -21,15 +25,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average rate of change} = \frac{\text{price}(b)-\text{price}(a)}{b-a}" />,
-    reason: 'The gradient of the chord joining the two endpoints — the interior wiggles are irrelevant.',
+    reason: <>The gradient of the chord joining the two endpoints — the interior wiggles are irrelevant.</>,
   },
   {
     working: <Katex display tex="\text{day }3\approx34.8, \quad \text{day }10\approx36.4, \quad \text{day }14\approx35.0" />,
-    reason: 'Reading the four required values off the chart.',
+    reason: <>Reading the four required values off the chart.</>,
   },
   {
     working: <Katex display tex="\text{day }17\approx37.4, \quad \text{day }21\approx37.0, \quad \text{day }28\approx39.4" />,
-    reason: 'And the other three.',
+    reason: <>And the other three.</>,
   },
   {
     working: <Katex display tex="\text{A: } \frac{36.4-34.8}{7} \approx 0.23; \qquad \text{B: } \frac{37.4-34.8}{14} \approx 0.19" />,
@@ -37,11 +41,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{C: } \frac{37.0-35.0}{7} \approx 0.29; \qquad \text{D: } \frac{39.4-35.0}{14} \approx 0.31" />,
-    reason: 'Both start from the low point at day 14, but D captures the whole climb.',
+    reason: <>Both start from the low point at day 14, but D captures the whole climb.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{day 14 to day 28}}" />,
-    reason: <>Option <b>D</b>. The quickest route is a ruler: laying a straight edge across each pair of days makes the steepest one obvious without any arithmetic.</>,
+    reason: <>Matches option <b>D</b>. The quickest route is a ruler: laying a straight edge across each pair of days makes the steepest one obvious without any arithmetic.</>,
   },
 ]
 

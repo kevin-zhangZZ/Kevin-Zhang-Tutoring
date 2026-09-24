@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y\text{-intercept} = -1}" />,
-    reason: <>Setting <Katex tex="x=0" />. Matches option <b>C</b>. Option <b>A</b> <Katex tex="(0)" />, chosen by <Katex tex="15\%" />, is the <Katex tex="y" />-value at the point of tangency rather than at the <Katex tex="y" />-axis — the question asks where the tangent <em>crosses</em> the axis, which is a different place. Options <b>D</b> and <b>E</b> are what appear if the derivative is taken as <Katex tex="\tfrac{1}{2x}" />.</>,
+    reason: <>Setting <Katex tex="x=0" />. Matches option <b>C</b>. Option <b>A</b> <Katex tex="(0)" />, chosen by <Katex tex="15\%" />, is the <Katex tex="y" />-value at the point of tangency rather than at the <Katex tex="y" />-axis — the question asks where the tangent <em>crosses</em> the axis, which is a different place. Option <b>D</b> <Katex tex="\left(-1-\log_e(2)\right)" /> finds the right point of contact, <Katex tex="x=\tfrac12" />, but evaluates its <Katex tex="y" />-value as <Katex tex="\log_e\left(\tfrac12\right)" /> instead of <Katex tex="\log_e\left(2\times\tfrac12\right)=0" />.</>,
   },
 ]
 

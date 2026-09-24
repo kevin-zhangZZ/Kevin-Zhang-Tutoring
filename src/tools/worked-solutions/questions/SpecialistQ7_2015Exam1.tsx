@@ -4,18 +4,20 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 45, 14, 34],
   average: 1.8,
   comment: (
     <>
-      The most common error was to use the double-angle formula for{' '}
-      <Katex tex="\sin(2x)" /> but then cancel the <Katex tex="\sin(x)" /> term from both
-      sides, thereby losing a set of solutions. Some tried a graphical approach and missed
-      solutions. Others got only two solutions for <Katex tex="\sin(x)=0" /> (usually{' '}
-      <Katex tex="0" /> and <Katex tex="\pi" />). Some were not able to solve{' '}
+      This question divided the cohort, with some students answering it very well but a
+      number having difficulty. The most common error was to use the double-angle formula
+      for <Katex tex="\sin(2x)" /> but then cancel the <Katex tex="\sin(x)" /> term from both
+      sides, which many students did, thereby losing a set of solutions. Some tried to use a
+      graphical approach and missed solutions. Others solved the two equations they generated
+      but got only two solutions for <Katex tex="\sin(x)=0" /> (usually 0 and{' '}
+      <Katex tex="\pi" /> but occasionally 0 and <Katex tex="2\pi" />). Some were not able to solve{' '}
       <Katex tex="2\cos(x)=1" />. Errors were made with exact values.
     </>
   ),
@@ -29,8 +31,9 @@ const EXAM_B: SAExaminerStats = {
       High-scoring students used a graphical argument for this question. Typical errors
       included incorrect simplification with inequalities (multiplying by a term that could be
       negative but not changing the inequality), choosing the incorrect interval in the first
-      quadrant, including endpoint(s) and giving single-value answers rather than intervals. A
-      common incorrect response was <Katex tex="x=\tfrac\pi3" />.
+      quadrant – i.e. <Katex tex="\left(\tfrac\pi3,\pi\right)" /> – including endpoint(s) and
+      giving single value answer(s) rather than intervals. A common incorrect response was{' '}
+      <Katex tex="x<\tfrac\pi3" />.
     </>
   ),
 }
@@ -46,7 +49,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2\sin(x)\cos(x)-\sin(x) = 0" />,
-    reason: <>Move everything to one side. Do <em>not</em> divide by <Katex tex="\sin(x)" /> — that throws away every solution where <Katex tex="\sin(x)=0" />, which is exactly what the report says most students did.</>,
+    reason: <>Move everything to one side. Do <em>not</em> divide by <Katex tex="\sin(x)" /> — that throws away every solution where <Katex tex="\sin(x)=0" />, which the report says many students did.</>,
   },
   {
     working: <Katex display tex="\sin(x)\bigl(2\cos(x)-1\bigr) = 0" />,
@@ -97,7 +100,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(0,\tfrac\pi3\right)\cup\left(\tfrac\pi2,\pi\right)}" />,
-    reason: <>The answer is a set of intervals, not a list of values — <Katex tex="x=\tfrac\pi3" /> alone was the common wrong response.</>,
+    reason: <>The answer is a set of intervals, not a list of values — and it has two pieces: <Katex tex="x<\tfrac\pi3" /> on its own, missing the whole of <Katex tex="\left(\tfrac\pi2,\pi\right)" />, was the common wrong response.</>,
   },
 ]
 
@@ -105,17 +108,12 @@ export default function SpecialistQ7_2015Exam1() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 7 (5 marks)</p>
-        <p>
-          Part b. is the same trigonometric comparison as part a., but as an inequality —
-          and the domain it hands you, split at <Katex tex="\tfrac\pi2" />, is a strong hint
-          that the sign of <Katex tex="\sin(2x)" /> changes there and the two halves need
-          separate treatment.
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 7 (5 marks)</p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Trig Equation"
         marks={3}
         statement={<>Solve <Katex tex="\sin(2x)=\sin(x)" />, <Katex tex="x\in[0,2\pi]" />.</>}
         examinerReport={EXAM_A}
@@ -125,6 +123,7 @@ export default function SpecialistQ7_2015Exam1() {
 
       <PartCard
         letter="b"
+        topic="Trig Inequality"
         marks={2}
         statement={
           <>
@@ -135,6 +134,14 @@ export default function SpecialistQ7_2015Exam1() {
         }
         examinerReport={EXAM_B}
       >
+        <Background>
+          <p>
+            Part b. is the same trigonometric comparison as part a., but as an inequality — and
+            the domain it hands you, split at <Katex tex="\tfrac\pi2" />, is a strong hint that
+            the sign of <Katex tex="\sin(2x)" /> changes there and the two halves need separate
+            treatment.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>

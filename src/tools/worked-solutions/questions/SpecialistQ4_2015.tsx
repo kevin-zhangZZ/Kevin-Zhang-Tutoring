@@ -1,5 +1,4 @@
-// 2015 Specialist Mathematics — Exam 2, MCQ 4. VCAA examination report: 43% correct
-// (tied for fourth-hardest in the 2014-2016 Specialist Exam 2 papers).
+// 2015 Specialist Mathematics — Exam 2, MCQ 4. VCAA examination report: 43% correct.
 // Reconstruct a hyperbola's equation from its asymptotes and a point on it.
 // Question text transcribed from the original paper; solution is original.
 
@@ -42,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{(y-1)^2}{4} - \frac{(x-2)^2}{9} = 3}" />,
-    reason: <>Only option <b>D</b> has both the correct asymptote gradient and passes through <Katex tex="(5,5)" />.</>,
+    reason: <>Matches option <b>D</b>, the only one with both the correct asymptote gradients and <Katex tex="(5,5)" /> on it. Option B (20%) inverts the gradient ratio; option E (18%) has the right asymptotes but opens sideways, so <Katex tex="(5,5)" /> is not on it — exactly the report's comment.</>,
   },
 ]
 

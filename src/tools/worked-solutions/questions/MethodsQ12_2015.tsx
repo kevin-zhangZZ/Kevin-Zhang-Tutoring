@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{1-\frac{1}{56} = \frac{55}{56}}" />,
-    reason: <>Option E, about <Katex tex="0.982" />. Sensible: with five of the eight balls red, drawing three and getting no red at all would be remarkable.</>,
+    reason: <>Matches option <b>E</b>. Option D, <Katex tex="\tfrac{15}{56}" />, is the probability of <em>exactly</em> one red. About <Katex tex="0.982" />. Sensible: with five of the eight balls red, drawing three and getting no red at all would be remarkable.</>,
   },
 ]
 

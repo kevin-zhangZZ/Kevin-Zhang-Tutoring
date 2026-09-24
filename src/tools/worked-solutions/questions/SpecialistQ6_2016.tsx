@@ -1,9 +1,13 @@
-// 2016 Specialist Mathematics — Exam 2, MCQ 6.
-// Complex numbers: which statement about the Argand-diagram parallelogram is not true?
+// 2016 Specialist Mathematics — Exam 2, MCQ 6. VCAA examination report: 57% correct.
+// Complex numbers: which statement about a parallelogram of four points in the complex
+// plane is not true? Question text transcribed from the original paper, which has no
+// diagram; the Argand diagram in the working is this site's own explanatory graph
+// (matplotlib), not something VCAA printed. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import argandSrc from './spec-2016-mcq6-argand.png'
 
 // Dropbox share link for the tutor's video walkthrough, converted to `raw=1` so the browser
 // can stream it directly. Already H.264/AAC in an .mp4 container — only remuxed with
@@ -19,6 +23,18 @@ const EXAMINER: MCQExaminerStats = {
 }
 
 const ROWS: WorkingRow[] = [
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={argandSrc}
+          alt="Argand diagram (our own): z1 and z3 on the circle of radius 2, z2 and z4 on the circle of radius 1, joined as a parallelogram whose diagonals z1z3 and z2z4 cross at the origin at an angle of 5π/12"
+          className="w-full max-w-[300px]"
+        />
+      </div>
+    ),
+    reason: <>A quick sketch first (the paper gives none): plot each point from its modulus and argument.</>,
+  },
   {
     working: <Katex display tex="z_3 = 2\,\mathrm{cis}\!\left(\tfrac{\pi}{3}+\pi\right) = -z_1, \qquad z_4 = \mathrm{cis}\!\left(\tfrac{3\pi}{4}+\pi\right) = -z_2" />,
     reason: (
@@ -51,11 +67,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z_1z_2z_3z_4 \ne 0}" />,
-    reason: <><b>C is not true — that's the answer.</b> (A product of complex numbers is zero only if one of the factors is zero, and here every modulus is 1 or 2.)</>,
+    reason: <>Matches option <b>C</b> — the one statement that is not true. A product of complex numbers is zero only if one of the factors is zero, and here every modulus is <Katex tex="1" /> or <Katex tex="2" />.</>,
   },
 ]
 
-export default function SpecialistMCQ6() {
+export default function SpecialistQ6_2016() {
   return (
     <MCQShell
       question={
@@ -72,66 +88,16 @@ export default function SpecialistMCQ6() {
           </p>
         </>
       }
-      diagram={<ArgandDiagram />}
       options={[
-        { letter: 'A', content: <>The acute angle between the diagonals of the parallelogram is <Katex tex="\tfrac{5\pi}{12}" />.</> },
-        { letter: 'B', content: 'The diagonals of the parallelogram have lengths 2 and 4.' },
+        { letter: 'A', content: <>The acute angle between the diagonals of the parallelogram is <Katex tex="\tfrac{5\pi}{12}" /></> },
+        { letter: 'B', content: 'The diagonals of the parallelogram have lengths 2 and 4' },
         { letter: 'C', content: <Katex tex="z_1z_2z_3z_4 = 0" />, isAnswer: true },
         { letter: 'D', content: <Katex tex="z_1 + z_2 + z_3 + z_4 = 0" /> },
-        { letter: 'E', content: <><Katex tex="1 \le |z| \le 2" /> for all four of <Katex tex="z_1, z_2, z_3, z_4" />.</> },
+        { letter: 'E', content: <><Katex tex="1 \le |z| \le 2" /> for all four of <Katex tex="z_1, z_2, z_3, z_4" /></> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
       videoSrc={VIDEO_SRC}
     />
-  )
-}
-
-// Argand diagram: z1 = 2cis(60°), z2 = cis(135°), z3 = 2cis(-120°), z4 = cis(-45°) —
-// plotted on unit-radius-1 and radius-2 circles, diagonals z1–z3 and z2–z4 drawn in orange.
-// Auxiliary diameters at every multiple of 30° and 45° (i.e. through π/6, π/4, π/3, ...) other
-// than the horizontal/vertical ones already drawn as the main axes — light grey, behind
-// everything else, purely to help read off the angles used in the options.
-const AUX_ANGLES_DEG = [30, 45, 60, 120, 135, 150]
-
-function ArgandDiagram() {
-  return (
-    <svg viewBox="0 0 240 240" width={204} height={204}>
-      {AUX_ANGLES_DEG.map(deg => {
-        const rad = (deg * Math.PI) / 180
-        const dx = 112 * Math.cos(rad)
-        const dy = 112 * Math.sin(rad)
-        return (
-          <line
-            key={deg}
-            x1={120 + dx}
-            y1={120 - dy}
-            x2={120 - dx}
-            y2={120 + dy}
-            className="stroke-gray-200 dark:stroke-gray-700"
-            strokeWidth={1}
-          />
-        )
-      })}
-      <line x1={8} y1={120} x2={232} y2={120} stroke="#7dd3fc" strokeWidth={1.5} />
-      <line x1={120} y1={8} x2={120} y2={232} stroke="#7dd3fc" strokeWidth={1.5} />
-      <circle cx={120} cy={120} r={45} fill="none" stroke="#7dd3fc" strokeWidth={1.5} />
-      <circle cx={120} cy={120} r={90} fill="none" stroke="#7dd3fc" strokeWidth={1.5} />
-      <line x1={165} y1={42.06} x2={75} y2={197.94} stroke="#fb923c" strokeWidth={2} />
-      <line x1={88.18} y1={88.18} x2={151.82} y2={151.82} stroke="#fb923c" strokeWidth={2} />
-      <circle cx={165} cy={42.06} r={4.5} fill="#f97316" />
-      <circle cx={88.18} cy={88.18} r={4.5} fill="#f97316" />
-      <circle cx={75} cy={197.94} r={4.5} fill="#f97316" />
-      <circle cx={151.82} cy={151.82} r={4.5} fill="#f97316" />
-      <text x={170} y={38} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₁</text>
-      <text x={56} y={84} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₂</text>
-      <text x={48} y={207} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₃</text>
-      <text x={157} y={165} fontSize={12} className="fill-gray-700 dark:fill-gray-300">z₄</text>
-      {/* Angle between rays Oz1 (60°) and Oz2 (135°) — the acute 5π/12 gap between them
-          sweeps across the top of the origin, not down toward z4 (that wedge is the
-          obtuse 7π/12 supplement instead). */}
-      <path d="M 128.5 105.28 A 17 17 0 0 0 107.98 107.98" fill="none" stroke="#ef4444" strokeWidth={1.5} />
-      <text x={100} y={90} fontSize={10} className="fill-rose-600 dark:fill-rose-400">5π/12</text>
-    </svg>
   )
 }

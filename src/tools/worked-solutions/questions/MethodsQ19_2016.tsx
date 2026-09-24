@@ -1,5 +1,5 @@
 // 2016 Mathematical Methods — Exam 2, MCQ 19. VCAA examination report: 15% of students
-// answered this correctly — the hardest MCQ in the 2014-2016 Methods Exam 2 papers.
+// answered this correctly — the hardest MCQ on this paper.
 // Discrete probability distribution with two unknowns; find the range of possible E(X).
 // Question text transcribed from the original paper; solution is original.
 
@@ -13,11 +13,18 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      From <Katex tex="a+4b+0.2=1" />, <Katex tex="a+4b=0.8" />. Then{' '}
-      <Katex tex="\mathrm{E}(X)=-a+5b^2+0.8" />; substituting <Katex tex="0.8-4b" /> for <Katex tex="a" /> gives{' '}
-      <Katex tex="\mathrm{E}(X)=5b^2+4b" /> for <Katex tex="0\le b\le 0.2" />, whose maximum occurs when{' '}
-      <Katex tex="a" /> is zero, i.e. <Katex tex="4b+0.2=1" />, <Katex tex="b=0.2" />. The smallest value for{' '}
-      <Katex tex="\mathrm{E}(X)" /> is 0 and the largest value is 1.
+      <Katex tex="a+4b+0.2=1" />
+      <br />
+      <Katex tex="a+4b=0.8\ldots(1)" />
+      <br />
+      <Katex tex="\mathrm{E}(X)=-a+5b^2+0.8\ldots(2)" />
+      <br />
+      Substitute <Katex tex="0.8-4b" /> for <Katex tex="a" /> into (2).
+      <br />
+      <Katex tex="\mathrm{E}(X)=5b^2+4b,\ 0\le b\le0.2" />, maximum value of <Katex tex="b" />{' '}
+      occurs when <Katex tex="a" /> is zero, <Katex tex="4b+0.2=1,\ b=0.2" />
+      <br />
+      The smallest value for <Katex tex="\mathrm{E}(X)" /> is 0 and the largest value is 1.
     </>
   ),
 }
@@ -30,7 +37,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; a+4b = 0.8" />
       </>
     ),
-    reason: 'All probabilities in the table must sum to 1.',
+    reason: <>The probabilities in the table must sum to <Katex tex="1" />.</>,
   },
   {
     working: (
@@ -48,7 +55,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\begin{aligned} \implies\; \mathrm{E}(X) &= -(0.8-4b)+5b^2+0.8 \\ &= 5b^2+4b \end{aligned}" />
       </>
     ),
-    reason: 'Eliminate a using the constraint from the first line, leaving E(X) as a function of b alone.',
+    reason: <>Eliminate <Katex tex="a" /> using the first line, leaving <Katex tex="\mathrm{E}(X)" /> as a function of <Katex tex="b" /> alone.</>,
   },
   {
     working: (
@@ -69,7 +76,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{smallest} = 0, \ \text{largest} = 1}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. Options A and B (41% between them) have a negative smallest value, which is impossible: <Katex tex="5b^2+4b\ge0" /> for every allowed <Katex tex="b" />. It is the constraint <Katex tex="a\ge0" /> that caps <Katex tex="b" /> at <Katex tex="0.2" />, and so caps the largest value at <Katex tex="1" />.</>,
   },
 ]
 

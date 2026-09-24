@@ -16,8 +16,15 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      The base of the cylinder has a circumference of <Katex tex="2\pi r" /> units, so <Katex tex="y=2\pi r" />,{' '}
-      <Katex tex="r=y/(2\pi)" />; <Katex tex="h=x-4r" />; <Katex tex="V=\pi r^2h = \dfrac{\pi xy^2-2y^3}{4\pi^2}" />.
+      The base of the cylinder has a circumference of <Katex tex="2\pi r" /> units.
+      <br />
+      <Katex tex="y=2\pi r" />, <Katex tex="r=\tfrac{y}{2\pi}" />
+      <br />
+      <Katex tex="h=x-4r" />, <Katex tex="h=x-\tfrac{2y}{\pi}" />
+      <br />
+      The formula for volume of the cylinder is <Katex tex="V=\pi r^2h" />
+      <br />
+      <Katex tex="V=\pi\left(\tfrac{y}{2\pi}\right)^2\left(x-\tfrac{2y}{\pi}\right)=\tfrac{\pi xy^2-2y^3}{4\pi^2}" />
     </>
   ),
 }
@@ -37,19 +44,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h = x - \frac{4y}{2\pi} = x - \frac{2y}{\pi}" />,
-    reason: 'Substitute r in terms of y.',
+    reason: <>Substitute r in terms of y.</>,
   },
   {
     working: <Katex display tex="V = \pi r^2 h = \pi\left(\frac{y}{2\pi}\right)^2\left(x-\frac{2y}{\pi}\right)" />,
-    reason: 'Standard cylinder volume formula.',
+    reason: <>Standard cylinder volume formula.</>,
   },
   {
     working: <Katex display tex="= \frac{y^2}{4\pi}\left(x - \frac{2y}{\pi}\right) = \frac{xy^2}{4\pi} - \frac{2y^3}{4\pi^2}" />,
-    reason: 'Expand.',
+    reason: <>Expand.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{\pi xy^2 - 2y^3}{4\pi^2}}" />,
-    reason: <>Common denominator <Katex tex="4\pi^2" /> — matches option <b>B</b>.</>,
+    reason: <>Common denominator <Katex tex="4\pi^2" />. Matches option <b>B</b>; option <b>C</b> is its negative.</>,
   },
 ]
 

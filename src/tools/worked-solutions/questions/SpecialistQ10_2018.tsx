@@ -14,20 +14,10 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
 }
 
-const DIAGRAM = (
-  <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img src={fieldSrc} alt="A direction field on axes from −8 to 8: slope marks turn steeply near the origin and flatten far out, with a clear change of behaviour across the lines y = 2x and y = −x/2" className="w-full max-w-[420px]" />
-  </div>
-)
-
 const ROWS: WorkingRow[] = [
   {
-    working: DIAGRAM,
-    reason: <>Test a few easy points against each option rather than trying to read the whole field at once. Points on the axes are quickest, because one variable is zero.</>,
-  },
-  {
     working: <Katex display tex="\text{On the positive } x\text{-axis } (x>0,\ y=0): \ \text{marks slope down-right}" />,
-    reason: <>Reading the field: just to the right of the origin along the axis, the dashes tilt downwards.</>,
+    reason: <>Test a few easy points against each option rather than trying to read the whole field at once — points on the axes are quickest, because one variable is zero. To the right of the origin along the axis, the dashes tilt downwards.</>,
   },
   {
     working: <Katex display tex="\textbf{A}: \ \frac{dy}{dx} = \frac{2x+y}{y-2x} \implies \frac{2x+0}{0-2x} = -1 \ \checkmark" />,

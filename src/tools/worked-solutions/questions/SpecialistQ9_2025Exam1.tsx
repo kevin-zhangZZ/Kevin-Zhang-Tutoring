@@ -1,7 +1,8 @@
 // 2025 Specialist Mathematics — Exam 1 Question 9 (6 marks). A rational function that
 // cancels to reveal an oblique asymptote and a removable discontinuity. Question text
-// transcribed from the original paper; the graph is our own drawing of the answer. Answers
-// checked with sympy and against the VCAA examination report. Solution is original.
+// transcribed from the original paper; the part c. graph is our own drawing of the answer on
+// VCAA's exact grid (−4 to 4 on both axes, gridlines every 0.5). Answers checked with sympy
+// and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -29,10 +30,16 @@ const EXAM_C: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      A number of students included an incorrect vertical asymptote <Katex tex="x=1" /> or
-      had curves that did not pass through the axis intercepts. The point of discontinuity at{' '}
-      <Katex tex="x=1" /> was often missing or was placed incorrectly. Students who were most
-      successful used a ruler to draw the asymptotes.
+      Students were required to label the asymptotes with their equations. An open circle to
+      indicate the point of discontinuity at <Katex tex="(1,-1.5)" /> needed to be shown.
+      <br />
+      A number of students included an incorrect vertical asymptote <Katex tex="x=1" /> or had
+      curves that did not pass through the axis intercepts at <Katex tex="(-2,0)" /> and{' '}
+      <Katex tex="(0,0)" />. The point of discontinuity at <Katex tex="(1,-1.5)" /> was often
+      missing or was placed incorrectly.
+      <br />
+      Students who were most successful used a ruler to draw the asymptotes and had graphs that did
+      not curve away from the asymptotes.
     </>
   ),
 }
@@ -40,7 +47,7 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x^3+x^2-2x = x\left(x^2+x-2\right) = x(x+2)(x-1)" />,
-    reason: 'Factorising the numerator first is what exposes the cancellation.',
+    reason: <>Factorising the numerator first is what exposes the cancellation.</>,
   },
   {
     working: <Katex display tex="1-x^2 = (1-x)(1+x) = -(x-1)(x+1)" />,
@@ -52,11 +59,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-x(x+2) = -\left(x^2+2x\right) = -\left[(x+1)^2-1\right]" />,
-    reason: 'Completing the square in the numerator, so that the denominator divides out exactly.',
+    reason: <>Completing the square in the numerator, so that the denominator divides out exactly.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{-(x+1)^2+1}{x+1} = -(x+1)+\frac{1}{x+1}" />,
-    reason: 'Splitting the fraction term by term.',
+    reason: <>Splitting the fraction term by term.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = -x-1+\frac{1}{x+1}}" />,
@@ -71,7 +78,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\lim_{x\to1}\left(-x-1+\frac{1}{x+1}\right) = -1-1+\frac12" />,
-    reason: 'The part-a. form is continuous at x = 1, so the limit is just a substitution.',
+    reason: <>The part-a. form is continuous at x = 1, so the limit is just a substitution.</>,
   },
   {
     working: <Katex display tex="\boxed{k = -\frac32}" />,
@@ -82,15 +89,15 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x+1 = 0 \implies \text{vertical asymptote } x = -1" />,
-    reason: <>The only one. An asymptote at <Katex tex="x=1" /> was the commonest error — the factor there cancelled.</>,
+    reason: <>The only one — the factor at <Katex tex="x=1" /> cancelled. The report notes a number of students included an incorrect vertical asymptote <Katex tex="x=1" />.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty \implies \frac{1}{x+1}\to0 \implies \text{oblique asymptote } y = -x-1" />,
-    reason: 'Read straight off the part-a. form. Both asymptotes must be labelled with their equations.',
+    reason: <>Read straight off the part-a. form. Both asymptotes must be labelled with their equations.</>,
   },
   {
     working: <Katex display tex="f(x) = 0 \implies \frac{1}{x+1} = x+1 \implies (x+1)^2 = 1" />,
-    reason: 'Setting the rule from part a. to zero.',
+    reason: <>Setting the rule from part a. to zero.</>,
   },
   {
     working: <Katex display tex="x+1 = \pm1 \implies x = 0 \ \text{ or } \ x = -2" />,
@@ -98,11 +105,19 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 1 \text{ is excluded from the domain}, \ f\to-\tfrac32" />,
-    reason: <>An open circle at <Katex tex="\left(1,-\tfrac32\right)" />, using the value from part b. Omitting or misplacing it was a listed error.</>,
+    reason: <>An open circle at <Katex tex="\left(1,-\tfrac32\right)" />, using the value from part b. The report notes it was often missing or placed incorrectly.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{see the sketch below}}" />,
-    reason: <>Note <Katex tex="\tfrac{1}{x+1}>0" /> for <Katex tex="x>-1" />, so the right branch sits <em>above</em> the oblique asymptote and the left branch below it.</>,
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's grid (−4 to 4 on both axes): two branches either side of the dashed vertical asymptote x = −1, both approaching the dashed oblique asymptote y = −x − 1, the left branch crossing the x-axis at −2 and the right branch passing through the origin, with an open circle at (1, −1.5)"
+          className="w-full max-w-[420px]"
+        />
+      </div>
+    ),
+    reason: <>Both asymptotes labelled with their equations and the open circle shown. Note <Katex tex="\tfrac{1}{x+1}>0" /> for <Katex tex="x>-1" />, so the right branch sits <em>above</em> the oblique asymptote and the left branch below it.</>,
   },
 ]
 
@@ -112,7 +127,7 @@ export default function SpecialistQ9_2025Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 9 (6 marks)</p>
         <p>
-          Let <Katex tex="f:\mathbb{R}\setminus\{-1,1\}\to\mathbb{R}" />,{' '}
+          Let <Katex tex="f:R\setminus\{-1,1\}\to R" />,{' '}
           <Katex tex="f(x)=\dfrac{x^3+x^2-2x}{1-x^2}" />.
         </p>
       </div>
@@ -135,12 +150,13 @@ export default function SpecialistQ9_2025Exam1() {
 
       <PartCard
         letter="a"
+        topic="Oblique Asymptote"
         marks={2}
         statement={
           <>
             Show that <Katex tex="f(x)" /> can be written in the form{' '}
             <Katex tex="f(x)=-x-1+\dfrac{1}{x+1}" />, for{' '}
-            <Katex tex="x\in\mathbb{R}\setminus\{-1,1\}" />.
+            <Katex tex="x\in R\setminus\{-1,1\}" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -150,12 +166,13 @@ export default function SpecialistQ9_2025Exam1() {
 
       <PartCard
         letter="b"
+        topic="Removable Discontinuity"
         marks={1}
         statement={
           <>
-            Consider the function with rule{' '}
-            <Katex tex="g(x)=\begin{cases}\dfrac{x^3+x^2-2x}{1-x^2} & x\in\mathbb{R}\setminus\{-1,1\}\\[6pt] k & x=1\end{cases}" />
-            . Find the value of <Katex tex="k" /> such that the graph of <Katex tex="g" /> is
+            Consider the function with rule
+            <Katex display tex="g(x)=\begin{cases}\dfrac{x^3+x^2-2x}{1-x^2}, & x\in R\setminus\{-1,1\}\\[6pt] k, & x\in\{1\}\end{cases}" />
+            Find the value of <Katex tex="k" /> such that the graph of <Katex tex="g" /> is
             continuous at <Katex tex="x=1" />.
           </>
         }
@@ -166,23 +183,18 @@ export default function SpecialistQ9_2025Exam1() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=f(x)" />. Label the asymptotes with their
-            equations.
+            Sketch the graph of <Katex tex="y=f(x)" /> on the axes below.
+            <br />
+            Label the asymptotes with their equations.
           </>
         }
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="Two branches either side of the dashed vertical asymptote x = −1, both approaching the dashed oblique asymptote y = −x − 1, passing through (−2, 0) and (0, 0), with an open circle marking the removable discontinuity at (1, −3/2)"
-            className="w-full max-w-[520px]"
-          />
-        </div>
       </PartCard>
     </div>
   )

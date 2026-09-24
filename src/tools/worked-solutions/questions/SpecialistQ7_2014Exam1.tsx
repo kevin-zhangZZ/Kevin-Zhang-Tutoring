@@ -4,7 +4,7 @@
 // against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [96, 4],
@@ -13,8 +13,14 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was answered poorly by most students. Few realised that <Katex tex="x" />{' '}
       and the arctan function are both positive for the same values, negative for the same
-      values and zero for the same values. Many students seemed to use the product of the
-      ranges of each of the "parts".
+      values and zero for the same values. Incorrect responses included <Katex tex="R" />,{' '}
+      <Katex tex="\left(-\tfrac\pi4,\tfrac\pi4\right)" />,{' '}
+      <Katex tex="\left(-\tfrac\pi2,\tfrac\pi2\right)" />,{' '}
+      <Katex tex="\left(-\tfrac{3\pi}2,\tfrac{3\pi}2\right)" /> and{' '}
+      <Katex tex="\left(-\tfrac{3\pi x}2,\tfrac{3\pi x}2\right)" />. Many students seemed to
+      use the product of the range of each of the ‘parts’, some ignored one part and others
+      found the product of the range of one part and the variable <Katex tex="x" />. Some
+      ignored the presence of one of the two functions involved.
     </>
   ),
 }
@@ -24,8 +30,9 @@ const EXAM_B: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      This question was well answered. There were, however, some unconvincing arguments,
-      often because insufficient steps were shown. A few students used{' '}
+      This question was well answered. Most students were able to obtain the given result.
+      There were, however, some unconvincing arguments, often because insufficient steps were
+      shown. A few students used{' '}
       <Katex tex="\tan^{-1}(2x)" /> and then confused inverses with reciprocals.
     </>
   ),
@@ -36,10 +43,11 @@ const EXAM_C: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Most students who used the result from part b. made good attempts. Some ignored the
-      word "hence". When attempting to integrate <Katex tex="\tfrac{6x}{1+4x^2}" />, some gave{' '}
-      <Katex tex="3\arctan(2x)" /> or similar; others made the correct substitution but made
-      errors in changing the terminals or with the arithmetic.
+      Most students who used the result from Question 7b. made good attempts at this
+      question. Some ignored the word ‘hence’. Most attempted to apply this method but many
+      made algebraic errors. When attempting to integrate <Katex tex="\tfrac{6x}{1+4x^2}" />,
+      some gave <Katex tex="3\arctan(2x)" /> or similar, others made the correct substitution
+      but made errors in either changing the terminals or with the arithmetic.
     </>
   ),
 }
@@ -81,8 +89,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <><Katex tex="u'v+uv'" />.</>,
   },
   {
-    working: <Katex display tex="f'(x) = 3\arctan(2x)+\frac{6x}{1+4x^2} \ \checkmark" />,
-    reason: <>As required.</>,
+    working: <Katex display tex="f'(x) = 3\arctan(2x)+\frac{6x}{1+4x^2} \quad \text{as required}" />,
+    reason: <>The mark is for the product-rule line above, not this restatement — the report criticises arguments with too few steps.</>,
   },
 ]
 
@@ -127,14 +135,13 @@ export default function SpecialistQ7_2014Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 7 (5 marks)</p>
         <p>
-          Consider <Katex tex="f(x)=3x\arctan(2x)" />. There is no elementary antiderivative
-          of <Katex tex="\arctan" /> to quote on Exam 1, so part c. has to be run backwards
-          out of part b. — that is what the word "hence" is telling you.
+          Consider <Katex tex="f(x)=3x\arctan(2x)" />.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Range"
         marks={1}
         statement={<>Write down the range of <Katex tex="f" />.</>}
         examinerReport={EXAM_A}
@@ -144,6 +151,7 @@ export default function SpecialistQ7_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Product Rule"
         marks={1}
         statement={
           <>
@@ -158,6 +166,7 @@ export default function SpecialistQ7_2014Exam1() {
 
       <PartCard
         letter="c"
+        topic="Area Under Curve"
         marks={3}
         statement={
           <>
@@ -168,6 +177,14 @@ export default function SpecialistQ7_2014Exam1() {
         }
         examinerReport={EXAM_C}
       >
+        <Background>
+          <p>
+            An antiderivative of <Katex tex="\arctan" /> is not on the formula sheet, and the
+            technique that produces one directly (integration by parts) is not part of VCE
+            Specialist Mathematics — so part c. has to be run backwards out of part b. That is
+            what the word "hence" is telling you.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
     </div>

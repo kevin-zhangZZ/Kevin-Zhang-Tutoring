@@ -6,8 +6,8 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import triangleSrc from './meth-2016exam2-q2b-triangle.png'
-import tangentsSrc from './meth-2016exam2-q2c-tangents.png'
+import triangleSrc from './meth-2016e2-q2b-triangle.png'
+import tangentsSrc from './meth-2016e2-q2c-tangents.png'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [25, 75],
@@ -16,7 +16,8 @@ const EXAM_AI: SAExaminerStats = {
     <>
       Often the <Katex tex="dx" /> and <Katex tex="+c" /> were missing from students'
       answers. Some students made sign errors when writing the equation for{' '}
-      <Katex tex="g" />.
+      <Katex tex="g" />; for example,{' '}
+      <Katex tex="g(x)=\dfrac{x^4}{12}+\dfrac{x^2}{2}-\dfrac{2x}{3}+1" />.
     </>
   ),
 }
@@ -109,7 +110,7 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = -2 \text{ and } x = 1}" />,
-    reason: <>Two values, not three: <Katex tex="x=1" /> is a repeated root of the cubic but only one place on the graph. The report says some students listed it twice. The question asks for <Katex tex="x" /> values only, so coordinates are not needed.</>,
+    reason: <>Two values: <Katex tex="x=1" /> is a repeated root of <Katex tex="f" />, but it is one place on the graph. The report notes students who gave three <Katex tex="x" />-values. The question asks for <Katex tex="x" />-values only, so coordinates are not needed.</>,
   },
 ]
 
@@ -181,7 +182,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(-1) = -\frac{1}{12}+\frac12+\frac23+1 = \frac{25}{12}" />,
-    reason: <>Common denominator <Katex tex="12" />: <Katex tex="\tfrac{-1+6+8+12}{12}" />. The report says finding <Katex tex="x=-1" /> and then miscomputing this was the usual failure.</>,
+    reason: <>Common denominator <Katex tex="12" />: <Katex tex="\tfrac{-1+6+8+12}{12}" />. The report notes students who found <Katex tex="x=-1" /> and then gave the wrong <Katex tex="y" />-coordinate.</>,
   },
   {
     working: <Katex display tex="\boxed{D = \left(-1,\ \frac{25}{12}\right)}" />,
@@ -236,6 +237,7 @@ export default function MethodsQ2_2016Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Antiderivative"
         marks={1}
         statement={
           <>
@@ -250,6 +252,7 @@ export default function MethodsQ2_2016Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Stationary Points"
         marks={1}
         statement={
           <>
@@ -281,12 +284,13 @@ export default function MethodsQ2_2016Exam2() {
         </div>
       </div>
 
-      <PartCard letter="b.i" marks={1} statement={<>Find the coordinates of <Katex tex="B" />.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Coordinates" marks={1} statement={<>Find the coordinates of <Katex tex="B" />.</>} examinerReport={EXAM_BI}>
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
       <PartCard
         letter="b.ii"
+        topic="Line Equation"
         marks={2}
         statement={
           <>
@@ -301,6 +305,7 @@ export default function MethodsQ2_2016Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Triangle Area"
         marks={2}
         statement={<>Find the area of triangle <Katex tex="ABC" />.</>}
         examinerReport={EXAM_BIII}
@@ -336,11 +341,11 @@ export default function MethodsQ2_2016Exam2() {
         </div>
       </div>
 
-      <PartCard letter="c.i" marks={2} statement={<>Find the coordinates of <Katex tex="D" />.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Coordinates" marks={2} statement={<>Find the coordinates of <Katex tex="D" />.</>} examinerReport={EXAM_CI}>
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
-      <PartCard letter="c.ii" marks={3} statement={<>Find the length of <Katex tex="AE" />.</>} examinerReport={EXAM_CII}>
+      <PartCard letter="c.ii" topic="Distance" marks={3} statement={<>Find the length of <Katex tex="AE" />.</>} examinerReport={EXAM_CII}>
         <WorkingTable rows={ROWS_CII} />
       </PartCard>
     </div>

@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(-4,1)}" />,
-    reason: <>Option A. Option E, <Katex tex="(-4,-1)" />, reflects in the <Katex tex="x" />-axis as well; option B negates <Katex tex="y" /> before translating.</>,
+    reason: <>Matches option <b>A</b>. Option E, <Katex tex="(-4,-1)" />, also reflects in the <Katex tex="x" />-axis; option B, <Katex tex="(-4,3)" />, reflects <Katex tex="P" /> in both axes and never translates it.</>,
   },
 ]
 

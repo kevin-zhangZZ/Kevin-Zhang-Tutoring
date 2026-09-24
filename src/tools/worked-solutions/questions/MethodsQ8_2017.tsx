@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x=\tfrac14\bigl(b-\log_a(y-2)\bigr)}" />,
-    reason: <>Option A. Note the bracket: dividing by <Katex tex="4" /> applies to the whole right-hand side. Option D divides only the <Katex tex="b" />, which is the most common slip here.</>,
+    reason: <>Matches option <b>A</b>. Note the bracket: dividing by <Katex tex="4" /> applies to the whole right-hand side. Option D (11%) divides only the <Katex tex="b" />; option B (14%) has the sign slip <Katex tex="y+2" />.</>,
   },
 ]
 

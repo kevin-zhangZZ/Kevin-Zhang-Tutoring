@@ -12,10 +12,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="\underset{\sim}{a}-\underset{\sim}{b}=(m-2)\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k}" />
-      , and{' '}
-      <Katex tex="\left(\underset{\sim}{a}-\underset{\sim}{b}\right)\cdot\underset{\sim}{b}=0" />
-      .
+      <Katex tex="\underset{\sim}{a}-\underset{\sim}{b}=(m-2)\underset{\sim}{i}-2\underset{\sim}{j}+\underset{\sim}{k},\ \left(\underset{\sim}{a}-\underset{\sim}{b}\right)\cdot\underset{\sim}{b}=0" />
     </>
   ),
 }
@@ -39,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m = 0 \text{ or } m = 2}" />,
-    reason: <>Option C. Both are valid: <Katex tex="m=0" /> is a genuine solution, not a degenerate one, since <Katex tex="\underset{\sim}{b}=\underset{\sim}{j}+2\underset{\sim}{k}" /> is still a non-zero vector. Options A and B each keep only one root.</>,
+    reason: <>Matches option <b>C</b>. Both are valid: <Katex tex="m=0" /> is a genuine solution, not a degenerate one, since <Katex tex="\underset{\sim}{b}=\underset{\sim}{j}+2\underset{\sim}{k}" /> is still a non-zero vector. Options A and B each keep only one root.</>,
   },
 ]
 
@@ -58,8 +55,8 @@ export default function SpecialistQ12_2016() {
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="0" /> },
-        { letter: 'B', content: <Katex tex="2" /> },
+        { letter: 'A', content: <><Katex tex="0" /> only</> },
+        { letter: 'B', content: <><Katex tex="2" /> only</> },
         { letter: 'C', content: <><Katex tex="0" /> or <Katex tex="2" /></>, isAnswer: true },
         { letter: 'D', content: <Katex tex="4.5" /> },
         { letter: 'E', content: <><Katex tex="0" /> or <Katex tex="-2" /></> },

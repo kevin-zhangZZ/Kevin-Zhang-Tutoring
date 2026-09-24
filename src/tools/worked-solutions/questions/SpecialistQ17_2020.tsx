@@ -15,11 +15,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="v = \frac{1}{x}" />,
-    reason: 'Velocity as a function of position.',
+    reason: <>Velocity as a function of position.</>,
   },
   {
     working: <Katex display tex="\frac{dv}{dx} = -\frac{1}{x^2}" />,
-    reason: 'Differentiate with respect to x.',
+    reason: <>Differentiate with respect to x.</>,
   },
   {
     working: <Katex display tex="a = v\frac{dv}{dx} = \frac1x\cdot\left(-\frac{1}{x^2}\right) = -\frac{1}{x^3}" />,
@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -\frac{1}{2^3} = -\frac18}" />,
-    reason: <>Substitute <Katex tex="x=2" /> — matches option <b>B</b>.</>,
+    reason: <>Substitute <Katex tex="x=2" />. Matches option <b>B</b>. Option <b>A</b>, <Katex tex="-\tfrac14" />, is <Katex tex="\tfrac{dv}{dx}" /> alone, without the factor of <Katex tex="v" />; option <b>C</b> has the sign wrong.</>,
   },
 ]
 

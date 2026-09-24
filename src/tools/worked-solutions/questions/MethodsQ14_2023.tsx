@@ -12,8 +12,22 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Solving <Katex tex="y_T\!\left(\tfrac13\right)=0" /> for <Katex tex="a" /> gives{' '}
-      <Katex tex="a = \tfrac{-\sqrt7-4}{3},\ \tfrac{\sqrt7-4}{3}\text{, or }\tfrac13" /> — three solutions.
+      <Katex tex="y=x(3x-1)(x+3)(x+1)" />
+      <br />
+      The positive <Katex tex="x" />-intercept is <Katex tex="\tfrac13" />.
+      <br />
+      Find the tangent line at <Katex tex="x=a" />.
+      <br />
+      <Katex tex="y_T=\left(12a^3+33a^2+10a-3\right)x-a^2\left(9a^2+22a+5\right)" />
+      <br />
+      Solve <Katex tex="y_T\left(\tfrac13\right)=0" /> for <Katex tex="a" />.
+      <br />
+      <Katex tex="a=\tfrac{-\sqrt7-4}{3}" />, <Katex tex="a=\tfrac{\sqrt7-4}{3}" /> or{' '}
+      <Katex tex="a=\tfrac13" />
+      <br />
+      Hence there are three solutions.
+      <br />
+      Alternatively, a graphical approach could be taken.
     </>
   ),
 }
@@ -25,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = 3x^4+11x^3+5x^2-3x \qquad y' = 12x^3+33x^2+10x-3" />,
-    reason: 'Expand the quartic and differentiate.',
+    reason: <>Expand the quartic and differentiate.</>,
   },
   {
     working: <Katex display tex="y_T(x) = y'(a)\,x + \big[y(a)-a\,y'(a)\big]" />,
@@ -33,15 +47,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y(a)-a\,y'(a) = -a^2\big(9a^2+22a+5\big)" />,
-    reason: 'Simplify the y-intercept term (routine but lengthy algebra).',
+    reason: <>Simplify the y-intercept term (routine but lengthy algebra).</>,
   },
   {
-    working: <>Want the tangent's <Katex tex="y" />-intercept-form value at <Katex tex="x=\tfrac13" /> to equal <Katex tex="0" /> (i.e. the tangent line passes through <Katex tex="\big(\tfrac13,0\big)" />).</>,
-    reason: <>Substitute <Katex tex="x=\tfrac13" /> into <Katex tex="y_T(x)" /> and set it to zero — this becomes a quartic equation in <Katex tex="a" />.</>,
+    working: <Katex display tex="y_T\!\left(\tfrac13\right) = \tfrac13\,y'(a)-a^2\big(9a^2+22a+5\big) = 0" />,
+    reason: <>The tangent must pass through <Katex tex="\big(\tfrac13,0\big)" />. Substituting <Katex tex="x=\tfrac13" /> gives a quartic equation in <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="27a^4+54a^3-18a^2-10a+3 = 0" />,
-    reason: 'After clearing denominators and simplifying.',
+    reason: <>After clearing denominators and simplifying.</>,
   },
   {
     working: <Katex display tex="= (3a-1)^2(3a^2+8a+3)" />,
@@ -49,11 +63,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3a^2+8a+3=0 \;\implies\; a = \frac{-8\pm\sqrt{64-36}}{6} = \frac{-4\pm\sqrt7}{3}" />,
-    reason: 'Solve the remaining quadratic factor.',
+    reason: <>Solve the remaining quadratic factor.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac13,\ \ \tfrac{-4+\sqrt7}{3},\ \ \tfrac{-4-\sqrt7}{3}}" />,
-    reason: <>Three distinct values of <Katex tex="a" />, so three distinct tangent lines pass through <Katex tex="\big(\tfrac13,0\big)" /> — matches option <b>D</b>.</>,
+    reason: <>Three distinct values of <Katex tex="a" />, so three distinct tangent lines pass through <Katex tex="\big(\tfrac13,0\big)" />. Matches option <b>D</b>.</>,
   },
 ]
 

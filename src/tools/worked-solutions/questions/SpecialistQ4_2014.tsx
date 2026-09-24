@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{[0,1]}" />,
-    reason: <>Halving. Option A is the input range being handed back; option D halves without shifting.</>,
+    reason: <>Halving. Matches option <b>C</b>. Option A is the input range handed back unchanged; option D halves without first adding 1. Check: <Katex tex="x=0" /> gives <Katex tex="\arcsin(-1)" /> and <Katex tex="x=1" /> gives <Katex tex="\arcsin(1)" />, the two ends of arcsin's domain ✓.</>,
   },
 ]
 

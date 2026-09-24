@@ -9,10 +9,22 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 55, B: 13, C: 19, D: 12 },
   answer: 'A',
+  noAnswer: 1,
   comment: (
     <>
-      When <Katex tex="k=\tfrac32" /> there are infinite solutions; when{' '}
-      <Katex tex="k=-2" /> there are no real solutions.
+      <Katex tex="kx+3y=k^2" />
+      <br />
+      <Katex tex="2x+(2k+1)y=6-2k" />
+      <br />
+      <Katex tex="\dfrac{k}{2}=\dfrac{3}{2k+1},\ k=\dfrac{3}{2}" /> or <Katex tex="k=-2" />
+      <br />
+      When <Katex tex="k=\dfrac{3}{2}" />
+      <br />
+      <Katex tex="\dfrac{k^2}{6-2k}=\dfrac{3}{4}=\dfrac{k}{2}" />, infinite solutions
+      <br />
+      When <Katex tex="k=-2" />
+      <br />
+      <Katex tex="\dfrac{k^2}{6-2k}=\dfrac{2}{5}.\ \dfrac{k}{2}=-1" />, no real solutions
     </>
   ),
 }
@@ -20,7 +32,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{vmatrix}k & 3\\2 & 2k+1\end{vmatrix} = k(2k+1)-6 = 2k^2+k-6" />,
-    reason: 'A unique solution exists exactly when this determinant is non-zero, so the candidates come from setting it to zero.',
+    reason: <>A unique solution exists exactly when this determinant is non-zero, so the candidates come from setting it to zero.</>,
   },
   {
     working: <Katex display tex="2k^2+k-6 = (2k-3)(k+2) = 0 \implies k = \tfrac32 \ \text{ or } \ k = -2" />,
@@ -32,15 +44,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\implies \text{infinitely many solutions, not none}" />,
-    reason: <>So <Katex tex="k=\tfrac32" /> is rejected — the trap that caught the 19% who chose <b>C</b>.</>,
+    reason: <>So <Katex tex="k=\tfrac32" /> is rejected. Option <b>C</b>, chosen by 19%, keeps it.</>,
   },
   {
     working: <Katex display tex="k=-2: \quad -2x+3y = 4 \ \text{ and } \ 2x-3y = 10" />,
-    reason: 'Adding the two gives 0 = 14.',
+    reason: <>Adding the two gives 0 = 14.</>,
   },
   {
     working: <Katex display tex="\boxed{k = -2 \text{ only}}" />,
-    reason: <>Option <b>A</b>: parallel but distinct lines, so no solutions.</>,
+    reason: <>Matches option <b>A</b>: parallel but distinct lines, so no solutions.</>,
   },
 ]
 
@@ -51,7 +63,7 @@ export default function MethodsQ4_2025() {
         <div className="flex flex-col gap-2">
           <p>
             Consider the system of equations below containing the parameter{' '}
-            <Katex tex="k" />, where <Katex tex="k\in\mathbb{R}" />.
+            <Katex tex="k" />, where <Katex tex="k\in R" />.
           </p>
           <Katex display tex="\begin{aligned}kx+3y &= k^2\\ 2x+(2k+1)y &= 6-2k\end{aligned}" />
           <p>
@@ -64,7 +76,7 @@ export default function MethodsQ4_2025() {
         { letter: 'A', content: <Katex tex="k=-2 \text{ only}" />, isAnswer: true },
         { letter: 'B', content: <Katex tex="k=\tfrac32 \text{ only}" /> },
         { letter: 'C', content: <Katex tex="k=-2 \text{ or } \tfrac32" /> },
-        { letter: 'D', content: <Katex tex="k\in\mathbb{R}\setminus\left\{-2,\tfrac32\right\}" /> },
+        { letter: 'D', content: <Katex tex="k\in R\setminus\left\{-2,\tfrac32\right\}" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

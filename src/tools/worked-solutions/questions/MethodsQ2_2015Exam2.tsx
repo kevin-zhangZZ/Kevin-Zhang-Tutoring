@@ -44,7 +44,8 @@ const EXAM_C: SAExaminerStats = {
     <>
       Some students did not give their answers correct to two decimal places. Some worked to
       one decimal place and others rounded their answers incorrectly. Others did not set up
-      the distance formula correctly. Some substituted <Katex tex="u" /> into{' '}
+      the distance formula correctly or did not use brackets correctly in the distance formula.
+      Some substituted <Katex tex="u" /> into{' '}
       <Katex tex="g" /> instead of <Katex tex="h" />. A common incorrect response was{' '}
       <Katex tex="v=24.53" />.
     </>
@@ -96,15 +97,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\tan(\theta) = 3" />,
-    reason: <>The angle a line makes with the horizontal has tangent equal to its gradient — this is the step the report says most students missed.</>,
+    reason: <>The angle a line makes with the horizontal has tangent equal to its gradient — the report notes students who found <Katex tex="m=3" /> but could not turn it into an angle.</>,
   },
   {
     working: <Katex display tex="\theta = \tan^{-1}(3) = 71.565\ldots^\circ" />,
     reason: <>Make sure the CAS is in degree mode, or convert from <Katex tex="1.249" /> radians.</>,
   },
   {
-    working: <Katex display tex="\theta \approx 72^\circ" />,
-    reason: <>To the nearest degree. Truncating to <Katex tex="71^\circ" /> instead of rounding was the most common error.</>,
+    working: <Katex display tex="\boxed{\theta \approx 72^\circ}" />,
+    reason: <>To the nearest degree — <Katex tex="71^\circ" /> (truncating rather than rounding) was a common incorrect response. Sensible: the frame rises steeply from its footing, three units up for every one across.</>,
   },
 ]
 
@@ -122,7 +123,7 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The steepest descent is where <Katex tex="h'" /> is smallest, so differentiate again. An upward parabola takes its minimum at its vertex, which here sits on the <Katex tex="y" />-axis.</>,
   },
   {
-    working: <Katex display tex="h'(0) = -\tfrac3{16}" />,
+    working: <Katex display tex="\boxed{h'(0) = -\tfrac3{16}}" />,
     reason: <>So <Katex tex="m=3" /> and <Katex tex="n=16" />. Solving <Katex tex="h'(x)=0" /> instead finds where the road is flat — the two ends <Katex tex="X" /> and <Katex tex="Y" /> — which is not what was asked.</>,
   },
 ]
@@ -137,8 +138,8 @@ const ROWS_C: WorkingRow[] = [
     reason: <>Subtracting and collecting.</>,
   },
   {
-    working: <Cas fn="solve">solve(d(x) = 0, x) | 0 ≤ x ≤ 40</Cas>,
-    reason: <>Differentiate first, then solve <Katex tex="d'(x)=0" />; restricting to the right half of the bridge picks out <Katex tex="M" /> rather than the other root at <Katex tex="x\approx-642" />.</>,
+    working: <Cas fn="solve">solve(d/dx(d(x)) = 0, x) | 0 ≤ x ≤ 40</Cas>,
+    reason: <>The gap is greatest where <Katex tex="d'(x)=0" />; restricting to the bridge picks out <Katex tex="M" /> rather than the other root at <Katex tex="x\approx-642" />. By hand, <Katex tex="d'(x)=\tfrac3{16}-\tfrac{3}{40}x-\tfrac{3x^2}{25600}=0" /> becomes <Katex tex="x^2+640x-1600=0" />, so <Katex tex="x=-320\pm40\sqrt{65}" />.</>,
   },
   {
     working: <Katex display tex="u = 40\sqrt{65}-320 = 2.4903\ldots \approx 2.49" />,
@@ -146,10 +147,10 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v = h(2.4903\ldots) = 34.5337\ldots \approx 34.53" />,
-    reason: <><Katex tex="M" /> sits on the <em>road</em>, so substitute into <Katex tex="h" />. Substituting into <Katex tex="g" /> gives <Katex tex="59.77" />, the height of <Katex tex="N" />; the common wrong answer <Katex tex="24.53" /> comes from using <Katex tex="d" /> itself.</>,
+    reason: <><Katex tex="M" /> sits on the <em>road</em>, so substitute into <Katex tex="h" />. Substituting into <Katex tex="g" /> gives <Katex tex="59.77" />, the height of <Katex tex="N" /> — an error the report names. It also lists <Katex tex="v=24.53" /> as a common incorrect response.</>,
   },
   {
-    working: <Katex display tex="M = (2.49,\ 34.53)" />,
+    working: <Katex display tex="\boxed{M = (2.49,\ 34.53)}" />,
     reason: <>Both coordinates to two decimal places, as specified.</>,
   },
 ]
@@ -172,7 +173,7 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Two decimal places.</>,
   },
   {
-    working: <Katex display tex="PQ = g(-u)-h(-u) = 59.7674\ldots-35.4663\ldots = 24.3011\ldots \approx 24.30" />,
+    working: <Katex display tex="\boxed{w \approx 35.47, \quad MN \approx 25.23, \quad PQ = 59.7674\ldots-35.4663\ldots \approx 24.30}" />,
     reason: <>Shorter than <Katex tex="MN" />, which is the check worth making: <Katex tex="MN" /> was <em>defined</em> as the maximum gap, so swapping the two answers must be wrong.</>,
   },
 ]
@@ -191,7 +192,7 @@ const ROWS_E: WorkingRow[] = [
     reason: <>The left crossing, reading <Katex tex="E" /> off the diagram as the one on the negative side.</>,
   },
   {
-    working: <Katex display tex="F:\ x \approx 28.00" />,
+    working: <Katex display tex="\boxed{E:\ x \approx -23.71, \qquad F:\ x \approx 28.00}" />,
     reason: <>Since <Katex tex="27.9962\ldots" /> rounds <em>up</em>, the two decimal places are both zeros — write <Katex tex="28.00" />, not <Katex tex="27.00" /> and not <Katex tex="28" />.</>,
   },
 ]
@@ -206,7 +207,7 @@ const ROWS_F: WorkingRow[] = [
     reason: <>Storing the roots from part e. as variables and integrating between them avoids rounding error creeping into the final figure.</>,
   },
   {
-    working: <Katex display tex="A = 869.619\ldots \approx 870\ \text{m}^2" />,
+    working: <Katex display tex="\boxed{A = 869.619\ldots \approx 870\ \text{m}^2}" />,
     reason: <>To the nearest square metre. Rounding the terminals first is what produced the common answer <Katex tex="869" />.</>,
   },
 ]
@@ -239,6 +240,7 @@ export default function MethodsQ2_2015Exam2() {
 
       <PartCard
         letter="a"
+        topic="Tangent Angle"
         marks={2}
         statement={
           <>
@@ -259,6 +261,7 @@ export default function MethodsQ2_2015Exam2() {
 
       <PartCard
         letter="b"
+        topic="Maximum Gradient"
         marks={2}
         statement={
           <>
@@ -274,12 +277,13 @@ export default function MethodsQ2_2015Exam2() {
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
         Two vertical supporting columns, <Katex tex="MN" /> and <Katex tex="PQ" />, connect the
-        road with the parabolic frame. The supporting column <Katex tex="MN" /> is at the point
+        road with the parabolic frame. The supporting column, <Katex tex="MN" />, is at the point
         where the vertical distance between the road and the parabolic frame is a maximum.
       </div>
 
       <PartCard
         letter="c"
+        topic="Coordinates"
         marks={3}
         statement={
           <>
@@ -299,6 +303,7 @@ export default function MethodsQ2_2015Exam2() {
 
       <PartCard
         letter="d"
+        topic="Coordinates"
         marks={3}
         statement={
           <>
@@ -327,6 +332,7 @@ export default function MethodsQ2_2015Exam2() {
 
       <PartCard
         letter="e"
+        topic="Intersections"
         marks={3}
         statement={
           <>
@@ -342,6 +348,7 @@ export default function MethodsQ2_2015Exam2() {
 
       <PartCard
         letter="f"
+        topic="Area Between Curves"
         marks={1}
         statement={
           <>

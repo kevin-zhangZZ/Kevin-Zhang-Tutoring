@@ -11,9 +11,12 @@ const EXAM: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Some students used graphical approaches or expanded the cube. If{' '}
-      <Katex tex="\arg(z)=-\tfrac\pi2" /> then <Katex tex="b^3-3b=0" />, so{' '}
-      <Katex tex="b=\sqrt3" /> since <Katex tex="b>0" />.
+      Some students used graphical approaches or expanded; for example,
+      <br />
+      <Katex tex="(b-i)^3=b^3-3b+\left(1-3b^2\right)i" />
+      <br />
+      If <Katex tex="\arg(z)=-\tfrac\pi2" /> then{' '}
+      <Katex tex="b^3-3b=0\Rightarrow b=\sqrt3" /> since <Katex tex="b>0" />.
     </>
   ),
 }
@@ -21,7 +24,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\arg\left(z^3\right) = 3\arg(z) \implies \arg\bigl((b-i)^3\bigr) = 3\arg(b-i)" />,
-    reason: 'Arguments add under multiplication, so cubing triples the argument.',
+    reason: <>Arguments add under multiplication, so cubing triples the argument.</>,
   },
   {
     working: <Katex display tex="3\arg(b-i) = -\frac\pi2 \implies \arg(b-i) = -\frac\pi6" />,
@@ -37,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Or: } (b-i)^3 = \left(b^3-3b\right)+\left(1-3b^2\right)i" />,
-    reason: 'Expanding with the binomial theorem is the alternative route the report mentions.',
+    reason: <>Expanding with the binomial theorem is the alternative route the report mentions.</>,
   },
   {
     working: <Katex display tex="\arg(z) = -\frac\pi2 \implies \mathrm{Re}(z) = 0 \text{ and } \mathrm{Im}(z)<0" />,
@@ -52,7 +55,9 @@ export default function SpecialistQ2_2023Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (3 marks)</p>
         <p>
           Consider the complex number <Katex tex="z=(b-i)^3" />, where{' '}
-          <Katex tex="b\in\mathbb{R}^+" />. Find <Katex tex="b" /> given that{' '}
+          <Katex tex="b\in R^+" />.
+          <br />
+          Find <Katex tex="b" /> given that{' '}
           <Katex tex="\arg(z)=-\dfrac\pi2" />.
         </p>
       </div>

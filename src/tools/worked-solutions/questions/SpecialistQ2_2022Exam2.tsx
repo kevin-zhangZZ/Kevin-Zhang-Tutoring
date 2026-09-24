@@ -1,7 +1,8 @@
 // 2022 Specialist Mathematics — Exam 2, Section B Question 2 (9 marks). A product of two
 // complex numbers that leads to a quadratic in a, then an Argand diagram, an angle bisector
 // and a circular segment. Question text transcribed from the original paper; the Argand
-// diagram is our own drawing of the answer. Answers checked with sympy and against the VCAA
+// diagram is this site's own matplotlib drawing of the answer, on VCAA's polar grid (circles
+// r = 1, 2; rays every π/24). Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -13,9 +14,10 @@ const EXAM_AI: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      In a "show that" question, students are required to clearly and logically show the steps
+      In a 'show that' question, students are required to clearly and logically show the steps
       that lead to the given result. A number of students apparently used a CAS to solve the
-      given equation and then substituted their answers, again using CAS to verify the result.
+      given equation and then substituted their answers, again using CAS to verify the given
+      result.
     </>
   ),
 }
@@ -37,9 +39,10 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Some students appeared to use the Cartesian values to plot the approximate position of
-      the points rather than the more successful approach of considering the polar form.
-      Students should be aware of the polar grid provided, which enables them to plot the
-      required points precisely.
+      the points rather than the more successful approach of considering the polar form,
+      resulting in accurate positions. Students should be aware of the polar grid provided,
+      which enables them to plot the required points precisely. Most students labelled their
+      points.
     </>
   ),
 }
@@ -50,7 +53,7 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       A common incorrect argument was <Katex tex="\theta=-\tfrac{\pi}{12}" />. Many students
-      did not draw a ray; in some cases this appeared to be an unfortunate slip, as some of
+      did not draw a ray; in some cases this appeared to be an unfortunate slip as some of
       these gave a correct argument.
     </>
   ),
@@ -62,7 +65,8 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Most successful students correctly applied a segment area formula. A smaller proportion
-      correctly used a definite integral, but this approach usually led to error.
+      correctly used a definite integral but this approach usually led to error. Some
+      students who used an area formula, either of segments or triangles, had difficulty.
     </>
   ),
 }
@@ -70,7 +74,7 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="uv = (a+i)\bigl(b-\sqrt2\,i\bigr) = ab-\sqrt2\,ai+bi-\sqrt2\,i^2" />,
-    reason: 'Expand first; the given form tells you nothing until the real and imaginary parts are separated.',
+    reason: <>Expand first; the given form tells you nothing until the real and imaginary parts are separated.</>,
   },
   {
     working: <Katex display tex="= \bigl(ab+\sqrt2\bigr)+\bigl(b-\sqrt2\,a\bigr)i" />,
@@ -78,11 +82,11 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="ab+\sqrt2 = \sqrt2+\sqrt6 \implies ab = \sqrt6" />,
-    reason: 'Equating real parts. Two complex numbers are equal only if both parts match.',
+    reason: <>Equating real parts. Two complex numbers are equal only if both parts match.</>,
   },
   {
     working: <Katex display tex="b-\sqrt2\,a = \sqrt2-\sqrt6" />,
-    reason: 'Equating imaginary parts — the second equation.',
+    reason: <>Equating imaginary parts — the second equation.</>,
   },
   {
     working: <Katex display tex="b = \frac{\sqrt6}{a} \implies \frac{\sqrt6}{a}-\sqrt2\,a = \sqrt2-\sqrt6" />,
@@ -97,8 +101,8 @@ const ROWS_AI: WorkingRow[] = [
     reason: <>Dividing every term by <Katex tex="\sqrt2" />: <Katex tex="\tfrac{\sqrt6}{\sqrt2}=\sqrt3" />. This is the step that makes the surds tidy.</>,
   },
   {
-    working: <Katex display tex="\boxed{a^2+\bigl(1-\sqrt3\bigr)a-\sqrt3 = 0} \ \checkmark" />,
-    reason: 'Collecting everything on one side. Every line must be shown — the report is explicit that verifying the given result with a CAS earns nothing.',
+    working: <Katex display tex="\boxed{a^2+\bigl(1-\sqrt3\bigr)a-\sqrt3 = 0}" />,
+    reason: <>Collecting everything on one side. Every line must be shown — the report notes some students instead used a CAS to solve the given equation and verify it. As required.</>,
   },
 ]
 
@@ -117,7 +121,7 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -1, \quad b = -\sqrt6}" />,
-    reason: <>Check: <Katex tex="b-\sqrt2a=-\sqrt6+\sqrt2" /> ✓. The report notes students who gave <Katex tex="a=1" />, <Katex tex="b=\sqrt6" /> — the negatives — which fails this check.</>,
+    reason: <>Check: <Katex tex="b-\sqrt2a=-\sqrt6+\sqrt2" />. The report notes students who gave <Katex tex="a=1" />, <Katex tex="b=\sqrt6" /> — the negatives — which fails this check.</>,
   },
 ]
 
@@ -132,14 +136,26 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Both lie on the circle } |z|=2" />,
-    reason: 'The whole reason the polar grid is printed. Follow the r = 2 circle round to the right ray rather than estimating x and y — the report says that was the successful approach.',
+    reason: <>The whole reason the polar grid is printed. Follow the <Katex tex="r=2" /> circle round to the right ray rather than estimating <Katex tex="x" /> and <Katex tex="y" /> — the report notes considering the polar form was the more successful approach.</>,
+  },
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={argandSrc}
+          alt="On VCAA's polar grid: the points u = √3 + i (modulus 2, argument π/6) and v = √2 − √2i (modulus 2, argument −π/4), a dashed line joining them, and the part c. ray Arg(z) = −π/24 from an open circle at O through the midpoint of that line"
+          className="w-full max-w-[440px]"
+        />
+      </div>
+    ),
+    reason: <>Both points plotted and labelled. The ray from part c. is drawn on the same diagram, as that part asks.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="|u| = |v| = 2" />,
-    reason: 'Both points are the same distance from the origin, which is what makes the next step possible.',
+    reason: <>Both points are the same distance from the origin, which is what makes the next step possible.</>,
   },
   {
     working: <Katex display tex="\triangle Ouv \text{ is isosceles} \implies \text{the median from } O \text{ bisects } \angle uOv" />,
@@ -147,26 +163,26 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\theta = \frac{1}{2}\left(\frac\pi6+\left(-\frac\pi4\right)\right) = \frac12\left(\frac{2\pi}{12}-\frac{3\pi}{12}\right)" />,
-    reason: 'Averaging, with a common denominator of 12.',
+    reason: <>Averaging, with a common denominator of 12.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = -\frac{\pi}{24}}" />,
-    reason: <>The report's common wrong answer <Katex tex="-\tfrac{\pi}{12}" /> is the <em>difference</em> of the arguments, not the average — one halving short.</>,
+    reason: <>The report's common incorrect argument <Katex tex="-\tfrac{\pi}{12}" /> is the <em>sum</em> of the two arguments, not their average — one halving short.</>,
   },
   {
     working: <Katex display tex="\text{Midpoint} = \frac{u+v}{2} = \frac{\sqrt3+\sqrt2}{2}+\frac{1-\sqrt2}{2}i \approx 1.57-0.21i" />,
-    reason: <>A direct check: <Katex tex="\arctan\!\left(\tfrac{-0.207}{1.573}\right)=-0.1309=-\tfrac{\pi}{24}" /> ✓. And the ray must actually be drawn — nearly half the cohort lost a mark for leaving it off.</>,
+    reason: <>A direct check: <Katex tex="\arctan\!\left(\tfrac{-0.207}{1.573}\right)=-0.1309=-\tfrac{\pi}{24}" /> ✓. And the ray must actually be drawn — the report notes many students did not draw one.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\alpha = \mathrm{Arg}(u)-\mathrm{Arg}(v) = \frac\pi6-\left(-\frac\pi4\right) = \frac{5\pi}{12}" />,
-    reason: 'The angle the chord subtends at the centre. Less than π, so the segment it cuts off is the minor one.',
+    reason: <>The angle the chord subtends at the centre. Less than π, so the segment it cuts off is the minor one.</>,
   },
   {
     working: <Katex display tex="A = \frac12r^2\bigl(\alpha-\sin(\alpha)\bigr)" />,
-    reason: 'Sector minus triangle, in one formula. The angle must be in radians.',
+    reason: <>Sector minus triangle, in one formula. The angle must be in radians.</>,
   },
   {
     working: <Katex display tex="A = \frac12(2)^2\left(\frac{5\pi}{12}-\sin\!\left(\frac{5\pi}{12}\right)\right) = 2\left(\frac{5\pi}{12}-\sin\!\left(\frac{5\pi}{12}\right)\right)" />,
@@ -186,7 +202,7 @@ export default function SpecialistQ2_2022Exam2() {
         <p>
           Two complex numbers <Katex tex="u" /> and <Katex tex="v" /> are given by{' '}
           <Katex tex="u=a+i" /> and <Katex tex="v=b-\sqrt2\,i" />, where{' '}
-          <Katex tex="a,b\in\mathbb{R}" />.
+          <Katex tex="a,b\in R" />.
         </p>
       </div>
 
@@ -205,6 +221,7 @@ export default function SpecialistQ2_2022Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Complex Product"
         marks={2}
         statement={
           <>
@@ -219,11 +236,14 @@ export default function SpecialistQ2_2022Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Complex Product"
         marks={1}
         statement={
           <>
             One set of possible values for <Katex tex="a" /> and <Katex tex="b" /> is{' '}
-            <Katex tex="a=\sqrt3" /> and <Katex tex="b=\sqrt2" />. Hence, or otherwise, find
+            <Katex tex="a=\sqrt3" /> and <Katex tex="b=\sqrt2" />.
+            <br />
+            Hence, or otherwise, find
             the other set of possible values.
           </>
         }
@@ -234,33 +254,30 @@ export default function SpecialistQ2_2022Exam2() {
 
       <PartCard
         letter="b"
+        topic="Argand Diagram"
         marks={2}
         statement={
           <>
             Plot and label the points representing <Katex tex="u=\sqrt3+i" /> and{' '}
-            <Katex tex="v=\sqrt2-\sqrt2\,i" /> on the Argand diagram provided.
+            <Katex tex="v=\sqrt2-\sqrt2\,i" /> on the Argand diagram below.
           </>
         }
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={argandSrc}
-            alt="An Argand diagram showing the circle |z| = 2 with u = √3 + i at argument π/6 and v = √2 − √2i at argument −π/4, the chord joining them, the shaded minor segment it cuts off, and the ray Arg(z) = −π/24 passing through the chord's midpoint"
-            className="w-full max-w-[440px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="c"
+        topic="Ray Locus"
         marks={2}
         statement={
           <>
             The ray given by <Katex tex="\mathrm{Arg}(z)=\theta" /> passes through the midpoint
             of the line interval that joins the points <Katex tex="u=\sqrt3+i" /> and{' '}
-            <Katex tex="v=\sqrt2-\sqrt2\,i" />. Find, in radians, the value of{' '}
+            <Katex tex="v=\sqrt2-\sqrt2\,i" />.
+            <br />
+            Find, in radians, the value of{' '}
             <Katex tex="\theta" /> and plot this ray on the Argand diagram in part b.
           </>
         }
@@ -271,12 +288,15 @@ export default function SpecialistQ2_2022Exam2() {
 
       <PartCard
         letter="d"
+        topic="Segment Area"
         marks={2}
         statement={
           <>
             The line interval that joins the points <Katex tex="u=\sqrt3+i" /> and{' '}
             <Katex tex="v=\sqrt2-\sqrt2\,i" /> cuts the circle <Katex tex="|z|=2" /> into a
-            major and a minor segment. Find the area of the minor segment, giving your answer
+            major and a minor segment.
+            <br />
+            Find the area of the minor segment, giving your answer
             correct to two decimal places.
           </>
         }

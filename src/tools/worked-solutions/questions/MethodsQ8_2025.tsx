@@ -9,16 +9,28 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 18, C: 66, D: 8 },
   answer: 'C',
+  noAnswer: 1,
+  comment: (
+    <>
+      95% confidence interval is <Katex tex="(0.248,\ 0.552)" />, correct to three decimal places.
+      <br />
+      <Katex tex="\hat{p}\approx\dfrac{0.248+0.552}{2}=0.4" />
+      <br />
+      <Katex tex="1.96\sqrt{\dfrac{0.4\times0.6}{n}}\approx0.152,\ n\approx39.905\ldots" />
+      <br />
+      <Katex tex="n=40" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\hat{p} = \frac{0.248+0.552}{2} = 0.4" />,
-    reason: 'The interval is symmetric about the sample proportion, so its midpoint gives p̂.',
+    reason: <>The interval is symmetric about the sample proportion, so its midpoint gives p̂.</>,
   },
   {
     working: <Katex display tex="\text{margin of error} = \frac{0.552-0.248}{2} = 0.152" />,
-    reason: 'Half the width.',
+    reason: <>Half the width.</>,
   },
   {
     working: <Katex display tex="1.96\sqrt{\frac{0.4\times0.6}{n}} = 0.152" />,
@@ -26,15 +38,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt{\frac{0.24}{n}} = \frac{0.152}{1.96} = 0.07755" />,
-    reason: 'Isolating the root.',
+    reason: <>Isolating the root.</>,
   },
   {
     working: <Katex display tex="\frac{0.24}{n} = 0.006014 \implies n = 39.9" />,
-    reason: 'Squaring and rearranging.',
+    reason: <>Squaring and rearranging.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 40}" />,
-    reason: <>Option <b>C</b>. Check: <Katex tex="0.4\pm1.96\sqrt{\tfrac{0.24}{40}} = 0.4\pm0.1518" />, giving <Katex tex="(0.248,\,0.552)" /> ✓. Substituting the four options back is a perfectly fast route.</>,
+    reason: <>Matches option <b>C</b>. Check: <Katex tex="0.4\pm1.96\sqrt{\tfrac{0.24}{40}} = 0.4\pm0.1518" />, giving <Katex tex="(0.248,\,0.552)" /> ✓. Substituting the four options back is a perfectly fast route.</>,
   },
 ]
 

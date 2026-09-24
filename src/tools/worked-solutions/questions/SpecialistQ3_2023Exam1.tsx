@@ -11,9 +11,12 @@ const EXAM_A: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
+      A smaller number of students evaluated{' '}
+      <Katex tex="\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> when <Katex tex="x=2" /> to
+      obtain the same result.
+      <br />
       A large number of students evaluated <Katex tex="\tfrac{dv}{dx}" /> at{' '}
-      <Katex tex="x=2" /> and proceeded no further. A smaller number evaluated{' '}
-      <Katex tex="\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> to obtain the same result.
+      <Katex tex="x=2" /> and proceeded no further.
     </>
   ),
 }
@@ -23,9 +26,12 @@ const EXAM_B: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Some students separated the fraction to find the limit; others divided numerator and
-      denominator by <Katex tex="x" />. Many students wrote 0 or <Katex tex="\infty" /> for
-      their answer.
+      Some students separated the fraction to find the limit:
+      <br />
+      <Katex tex="\tfrac{3x+2}{2x-1}=\tfrac32+\tfrac{7}{2(2x-1)}" />
+      <br />
+      Other students divided both the numerator and denominator by <Katex tex="x" /> to find
+      the limit. Many students wrote for their answer 0 or <Katex tex="\infty" />.
     </>
   ),
 }
@@ -33,11 +39,11 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="a = v\frac{dv}{dx}" />,
-    reason: <>Velocity is given in terms of <Katex tex="x" />, not <Katex tex="t" />, so this is the form of acceleration to use. Handing in <Katex tex="\tfrac{dv}{dx}" /> alone was the single most common loss of marks.</>,
+    reason: <>Velocity is given in terms of <Katex tex="x" />, not <Katex tex="t" />, so this is the form of acceleration to use. The report notes a large number of students evaluated <Katex tex="\tfrac{dv}{dx}" /> at <Katex tex="x=2" /> and proceeded no further.</>,
   },
   {
     working: <Katex display tex="v = \frac{3x+2}{2x-1} \implies \frac{dv}{dx} = \frac{3(2x-1)-2(3x+2)}{(2x-1)^2}" />,
-    reason: 'Quotient rule.',
+    reason: <>Quotient rule.</>,
   },
   {
     working: <Katex display tex="= \frac{6x-3-6x-4}{(2x-1)^2} = \frac{-7}{(2x-1)^2}" />,
@@ -45,7 +51,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = \frac{3x+2}{2x-1}\cdot\frac{-7}{(2x-1)^2}" />,
-    reason: 'Multiplying the two pieces together.',
+    reason: <>Multiplying the two pieces together.</>,
   },
   {
     working: <Katex display tex="x=2: \quad a = \frac{8}{3}\cdot\frac{-7}{9}" />,
@@ -60,7 +66,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\lim_{x\to\infty}\frac{3x+2}{2x-1}" />,
-    reason: <>Both parts grow without bound, so the answer is neither 0 nor <Katex tex="\infty" /> — those were the two common wrong answers.</>,
+    reason: <>Both parts grow without bound, so the answer is neither 0 nor <Katex tex="\infty" /> — the report notes many students wrote one of those.</>,
   },
   {
     working: <Katex display tex="\frac{3x+2}{2x-1} = \frac{3+\tfrac2x}{2-\tfrac1x}" />,
@@ -68,7 +74,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac2x\to0 \ \text{ and } \ \frac1x\to0" />,
-    reason: 'The two vanishing pieces.',
+    reason: <>The two vanishing pieces.</>,
   },
   {
     working: <Katex display tex="\boxed{v \to \frac32 \ \mathrm{ms^{-1}}}" />,
@@ -84,9 +90,9 @@ export default function SpecialistQ3_2023Exam1() {
         <p>
           A particle moves along a straight line. When the particle is <Katex tex="x" /> m
           from a fixed point <Katex tex="O" />, its velocity, <Katex tex="v" />{' '}
-          <Katex tex="\mathrm{ms^{-1}}" />, is given by{' '}
-          <Katex tex="v=\dfrac{3x+2}{2x-1}" />, where <Katex tex="x>1" />.
+          <Katex tex="\mathrm{m\,s^{-1}}" />, is given by
         </p>
+        <Katex display tex="v=\frac{3x+2}{2x-1}, \ \text{where } x\ge1." />
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
@@ -97,17 +103,19 @@ export default function SpecialistQ3_2023Exam1() {
             <Katex tex="\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> — and the one to reach for
             is whichever matches the variable you have. Here everything is in{' '}
             <Katex tex="x" />, so it is the second or the third. Differentiating and stopping
-            is the classic error: <Katex tex="\tfrac{dv}{dx}" /> is not acceleration.
+            is the error the report saw most: <Katex tex="\tfrac{dv}{dx}" /> is not
+            acceleration.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Acceleration"
         marks={2}
         statement={
           <>
-            Find the acceleration of the particle, in <Katex tex="\mathrm{ms^{-2}}" />, when{' '}
+            Find the acceleration of the particle, in <Katex tex="\mathrm{m\,s^{-2}}" />, when{' '}
             <Katex tex="x=2" />.
           </>
         }
@@ -118,6 +126,7 @@ export default function SpecialistQ3_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Limiting Velocity"
         marks={1}
         statement={
           <>

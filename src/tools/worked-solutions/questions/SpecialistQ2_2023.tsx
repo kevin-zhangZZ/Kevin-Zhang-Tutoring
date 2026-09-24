@@ -14,27 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{x^3}{ax^2+bx+c} = \frac{x}{a}-\frac{b}{a^2}+\frac{\text{remainder}}{ax^2+bx+c}" />,
-    reason: 'Long division: a cubic over a quadratic gives a linear quotient, which is the oblique asymptote.',
+    reason: <>Long division: a cubic over a quadratic gives a linear quotient, which is the oblique asymptote.</>,
   },
   {
     working: <Katex display tex="\frac{x}{a}-\frac{b}{a^2} = 2x+1" />,
-    reason: 'Match the quotient to the given asymptote.',
+    reason: <>Match the quotient to the given asymptote.</>,
   },
   {
     working: <Katex display tex="\frac1a = 2 \implies a = \frac12" />,
-    reason: 'The gradient.',
+    reason: <>The gradient.</>,
   },
   {
     working: <Katex display tex="-\frac{b}{a^2} = -\frac{b}{1/4} = -4b = 1 \implies b = -\frac14" />,
-    reason: <>The intercept. Forgetting that <Katex tex="a^2=\tfrac14" /> rather than <Katex tex="\tfrac12" /> is where the distractors come from.</>,
+    reason: <>The intercept: <Katex tex="a^2=\tfrac14" />, not <Katex tex="\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="x=1 \text{ is a vertical asymptote} \implies a+b+c = 0" />,
-    reason: 'The denominator must vanish there.',
+    reason: <>The denominator must vanish there.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \frac12, \quad b = -\frac14, \quad c = -\frac14}" />,
-    reason: <>Option <b>B</b>: <Katex tex="\tfrac12-\tfrac14+c=0" />. Check: the denominator factorises as <Katex tex="\tfrac14(2x+1)(x-1)" />, so <Katex tex="x=1" /> really is an asymptote.</>,
+    reason: <>Matches option <b>B</b>: <Katex tex="\tfrac12-\tfrac14+c=0" />. Check: the denominator factorises as <Katex tex="\tfrac14(2x+1)(x-1)" />, so <Katex tex="x=1" /> really is an asymptote.</>,
   },
 ]
 

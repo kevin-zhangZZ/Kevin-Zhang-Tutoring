@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{25}{3}}" />,
-    reason: <>Option D, about <Katex tex="8.33" />. Option B, <Katex tex="25" />, is the rise without dividing by the run.</>,
+    reason: <>Matches option <b>D</b>, about <Katex tex="8.33" />. Option B, <Katex tex="25" />, is the rise without dividing by the run.</>,
   },
 ]
 

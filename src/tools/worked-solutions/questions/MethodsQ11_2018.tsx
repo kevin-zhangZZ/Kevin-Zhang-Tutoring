@@ -1,5 +1,5 @@
-// 2018 Mathematical Methods — Exam 2, MCQ 11. VCAA examination report: 26% correct —
-// the fourth-hardest MCQ in the 2017-2018 Methods Exam 2 papers.
+// 2018 Mathematical Methods — Exam 2, MCQ 11. VCAA examination report: 26% correct, with
+// option A (38%) the most popular answer.
 // Pin down a in y = tan(ax) from one asymptote location and a count of x-intercepts.
 // Question text transcribed from the original paper; solution is original.
 
@@ -13,8 +13,13 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="y=\tan(ax) \;\implies\; y=\tan\!\left(\dfrac{x}{2}\right)" />, Period <Katex tex="=2\pi" />.
-      Asymptotes are at <Katex tex="x=\pi,\,x=3\pi" />. The <Katex tex="x" />-intercept is <Katex tex="2\pi" />.
+      <Katex tex="y=\tan(ax)" />
+      <br />
+      <Katex tex="y=\tan\!\left(\dfrac{x}{2}\right)" />, Period <Katex tex="=2\pi" />
+      <br />
+      Asymptotes are at <Katex tex="x=\pi,\ x=3\pi" />
+      <br />
+      <Katex tex="x" />-intercept is <Katex tex="2\pi" />
     </>
   ),
 }
@@ -37,6 +42,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; x=\frac{n\pi}{a}, \quad n=0,1,2,\dots" />
       </>
     ),
+    reason: <>The <Katex tex="x" />-intercepts of <Katex tex="\tan" /> are where its argument is a multiple of <Katex tex="\pi" />.</>,
   },
   {
     working: (
@@ -70,7 +76,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; \text{no integer } n" />
       </>
     ),
-    reason: <>Option A gives <em>zero</em> <Katex tex="x" />-intercepts in <Katex tex="(0,3\pi)" /> (the first one after <Katex tex="x=0" /> is way out at <Katex tex="6\pi" />), so it fails the "exactly one" requirement.</>,
+    reason: <>Option A — the most popular answer, at <Katex tex="38\%" /> — does put its first asymptote at <Katex tex="3\pi" />, but it gives <em>zero</em> <Katex tex="x" />-intercepts in <Katex tex="(0,3\pi)" /> (the first one after <Katex tex="x=0" /> is way out at <Katex tex="6\pi" />), so it fails the "exactly one" requirement.</>,
   },
   {
     working: (
@@ -95,7 +101,7 @@ export default function MethodsQ11_2018() {
       question={
         <>
           <p className="mb-2">
-            The graph of <Katex tex="y=\tan(ax)" />, where <Katex tex="a\in\mathbb{R}^+" />, has a vertical
+            The graph of <Katex tex="y=\tan(ax)" />, where <Katex tex="a\in R^+" />, has a vertical
             asymptote <Katex tex="x=3\pi" /> and has exactly one <Katex tex="x" />-intercept in the region{' '}
             <Katex tex="(0,3\pi)" />.
           </p>

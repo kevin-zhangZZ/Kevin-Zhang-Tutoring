@@ -16,13 +16,18 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import oneTabletSrc from './meth-2018exam2-q2-onetablet.png'
-import twoTabletsSrc from './meth-2018exam2-q2-twotablets.png'
+import oneTabletSrc from './meth-2018e2-q2-onetablet.png'
+import twoTabletsSrc from './meth-2018e2-q2-twotablets.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [19, 8, 73],
-  average: 1.5,
-  comment: <>This question was answered well. An exact answer was required.</>,
+  average: 1.6,
+  comment: (
+    <>
+      This question was answered well. An exact answer was required. Some students converted{' '}
+      <Katex tex="t=2.148\ldots" /> to 2 hours and 15 minutes.
+    </>
+  ),
 }
 
 const EXAM_B: SAExaminerStats = {
@@ -30,12 +35,11 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Average rate of change <Katex tex="=\dfrac{b(6)-b(2)}{6-2}\approx-33.5" /> mg/h, correct
-      to one decimal place. Some students used the average value of the function. Others made
+      Some students used the average value of the function. Others made
       substitution errors. A common incorrect answer was <Katex tex="33.5" />. Several
       students used the graph to approximate values rather than find <Katex tex="b(6)" /> and{' '}
       <Katex tex="b(2)" />. Some students found the average of the gradient at{' '}
-      <Katex tex="t=2" /> and <Katex tex="t=6" />.
+      <Katex tex="b=2" /> and <Katex tex="b=6" />.
     </>
   ),
 }
@@ -45,14 +49,14 @@ const EXAM_C: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Average amount of drug <Katex tex="=\dfrac16\displaystyle\int_0^6 b(t)\,dt \approx 256" />{' '}
-      mg to the nearest integer. Some students used the interval <Katex tex="[2,6]" /> instead
-      of <Katex tex="[0,6]" />. Others did not divide by <Katex tex="6" />, which gave{' '}
+      Some students used the interval <Katex tex="[2,6]" /> from Question 2c., instead of{' '}
+      <Katex tex="[0,6]" />. Others did not divide by <Katex tex="6" />, which gave{' '}
       <Katex tex="1535.1\ldots" /> mg.{' '}
-      <Katex tex="b(0)+b(1)+b(2)+b(3)+b(4)+b(5)+b(6)" /> was often given. Some thought that
-      the first six hours meant <Katex tex="t=1" /> to <Katex tex="t=6" /> instead of{' '}
-      <Katex tex="t=0" /> to <Katex tex="t=6" />. Others evaluated{' '}
-      <Katex tex="\int t\,b(t)\,dt" /> or found the average rate of change.
+      <Katex tex="\dfrac{b(0)+b(1)+b(2)+b(3)+b(4)+b(5)+b(6)}{6}" /> was often given. Some
+      thought that the first six hours meant <Katex tex="t=1" /> to <Katex tex="t=6" /> instead
+      of <Katex tex="t=0" /> to <Katex tex="t=6" />. Others evaluated{' '}
+      <Katex tex="\displaystyle\int_0^6 t\times b(t)\,dt" /> or found the average rate of
+      change.
     </>
   ),
 }
@@ -64,10 +68,10 @@ const EXAM_DI: SAExaminerStats = {
     <>
       Many students were able to trace over the first part of the graph from{' '}
       <Katex tex="t=0" /> to <Katex tex="t=6" />. Some did not join the two sections at{' '}
-      <Katex tex="t=6" />, with some starting at the intersection of the two graphs. Students
+      <Katex tex="x=6" />, with some starting at the intersection of the two graphs. Students
       could use addition of ordinates or define the function{' '}
       <Katex tex="b_2(t)=b(t)+b(t-6)" /> and use technology to sketch the graph and find the
-      position of the turning point.
+      position of turning point. Some students shaded the area under the graph.
     </>
   ),
 }
@@ -77,9 +81,7 @@ const EXAM_DII: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Total amount of drug <Katex tex="=b(t)+b(t-6)" />; maximum amount of drug is{' '}
-      <Katex tex="455.82" /> mg, correct to two decimal places, at <Katex tex="t=7.78" /> h
-      correct to two decimal places. This question was not answered well. Many students were
+      This question was not answered well. Many students were
       unable to find the new rule and solved <Katex tex="b'(t)=0" /> for <Katex tex="t" />,
       getting <Katex tex="324.34" /> mg for the maximum amount of drug. Some then added six to
       this answer, <Katex tex="324.34+6=330.34" /> mg. Some assumed that <Katex tex="t=8" />.
@@ -128,18 +130,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \frac{10}{7}\log_e\!\left(\frac92\right)}" />,
-    reason: <>Flipping the fraction absorbs the minus sign, giving the required form <Katex tex="a\log_e(c)" /> with <Katex tex="a=\tfrac{10}{7}" />, <Katex tex="c=\tfrac92" />. Exact, as the report insists. (<Katex tex="\approx2.15" /> hours — matching the peak just past <Katex tex="t=2" /> on the printed graph.)</>,
+    reason: <>Flipping the fraction absorbs the minus sign, giving the required form <Katex tex="a\log_e(c)" /> with <Katex tex="a=\tfrac{10}{7}" />, <Katex tex="c=\tfrac92" />. An exact answer was required. (<Katex tex="\approx2.15" /> hours — matching the peak just past <Katex tex="t=2" /> on the printed graph.)</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Average rate of change} = \frac{b(6)-b(2)}{6-2}" />,
-    reason: <>Average <em>rate</em> of change is the gradient of the chord — the change in amount divided by the change in time. Not the average value of the function, and not the average of two gradients; the report names both as errors.</>,
+    reason: <>Average <em>rate</em> of change is the gradient of the chord — the change in amount divided by the change in time. Not the average value of the function, and not the average of two gradients; the report lists both among the errors.</>,
   },
   {
     working: <Katex display tex="b(2) \approx 324.6565, \qquad b(6) \approx 190.7213" />,
-    reason: <>Evaluate the rule, not the graph. The report notes students who read these off the printed curve and lost accuracy.</>,
+    reason: <>Evaluate the rule, not the graph — the report notes several students used the graph to approximate these values.</>,
   },
   {
     working: <Katex display tex="= \frac{190.7213-324.6565}{4}" />,
@@ -154,7 +156,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Average value} = \frac{1}{b-a}\int_a^b f(x)\,dx" />,
-    reason: <>The standard formula. "Average amount" is an average <em>value</em> of the function — a different thing from part (b)'s average rate of change, and the two parts sit side by side precisely to test that.</>,
+    reason: <>The standard formula. "Average amount" is an average <em>value</em> of the function — a different thing from part b.'s average rate of change, and the two parts sit side by side precisely to test that.</>,
   },
   {
     working: <Katex display tex="= \frac16\int_0^6 \frac{4500}{7}\left(e^{-t/5}-e^{-9t/10}\right)dt" />,
@@ -177,7 +179,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0\le t<6: \ b_{\text{total}}(t) = b(t)" />,
-    reason: <>The total curve simply traces Tablet 1's curve over the first six hours. The report notes that most students managed this part but then failed to <em>join</em> the two sections at <Katex tex="t=6" /> — the sketch must be one continuous curve, not two pieces.</>,
+    reason: <>The total curve simply traces Tablet 1's curve over the first six hours. The report says many students traced this part, but some did not <em>join</em> the two sections at <Katex tex="t=6" /> — the sketch must be one continuous curve, not two pieces.</>,
   },
   {
     working: OVERLAY,
@@ -188,7 +190,7 @@ const ROWS_DI: WorkingRow[] = [
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="b_{\text{total}}(t) = b(t)+b(t-6)" />,
-    reason: <>The new rule. The report is blunt here: most students never formed it, and instead solved <Katex tex="b'(t)=0" /> for the single-tablet peak.</>,
+    reason: <>The new rule. The report says many students were unable to find it, and instead solved <Katex tex="b'(t)=0" /> for the single-tablet peak.</>,
   },
   {
     working: <Cas fn="define">Define btot(t)=b(t)+b(t-6)</Cas>,
@@ -200,7 +202,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum} \approx 455.82 \text{ mg at } t \approx 7.78 \text{ hours}}" />,
-    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. Watch the two traps it names: <Katex tex="324.34" /> mg is the single-tablet peak, and <Katex tex="330.34" /> comes from adding <Katex tex="6" /> to a milligram figure, which mixes up the units entirely. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
+    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. Watch the two traps it names: <Katex tex="324.34" /> mg is the report's figure for the single-tablet peak (which is actually <Katex tex="325.34" /> mg), and <Katex tex="330.34" /> comes from adding <Katex tex="6" /> to a milligram figure, which mixes up the units entirely. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
   },
 ]
 
@@ -220,7 +222,7 @@ export default function MethodsQ2_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the time, in hours, it takes for drug <Katex tex="X" /> to reach a maximum amount in the bloodstream after one tablet is consumed. Express your answer in the form <Katex tex="a\log_e(c)" />, where <Katex tex="a,c\in\mathbb{R}" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Maximum Time" marks={2} statement={<>Find the time, in hours, it takes for drug <Katex tex="X" /> to reach a maximum amount in the bloodstream after one tablet is consumed. Express your answer in the form <Katex tex="a\log_e(c)" />, where <Katex tex="a,c\in R" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
@@ -233,10 +235,10 @@ export default function MethodsQ2_2018Exam2() {
         </div>
       </div>
 
-      <PartCard letter="b" marks={2} statement={<>Find the average rate of change of the amount of drug <Katex tex="X" /> in the bloodstream, in milligrams per hour, over the interval <Katex tex="[2,6]" />. Give your answer correct to one decimal place.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Average Rate" marks={2} statement={<>Find the average rate of change of the amount of drug <Katex tex="X" /> in the bloodstream, in milligrams per hour, over the interval <Katex tex="[2,6]" />. Give your answer correct to one decimal place.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
-            Parts (b) and (c) ask for two different "averages" and the wording is the only
+            Parts b. and c. ask for two different "averages" and the wording is the only
             thing distinguishing them. Average <em>rate of change</em> is the gradient of the
             chord between two points — a difference divided by a difference. Average{' '}
             <em>value</em> is the mean height of the curve — an integral divided by the
@@ -246,7 +248,7 @@ export default function MethodsQ2_2018Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Find the average amount of drug <Katex tex="X" /> in the bloodstream, in milligrams, during the first six hours after one tablet is consumed. Give your answer correct to the nearest milligram.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Average Value" marks={2} statement={<>Find the average amount of drug <Katex tex="X" /> in the bloodstream, in milligrams, during the first six hours after one tablet is consumed. Give your answer correct to the nearest milligram.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
@@ -262,15 +264,15 @@ export default function MethodsQ2_2018Exam2() {
         </div>
       </div>
 
-      <PartCard letter="d.i" marks={2} statement={<>On the graph above, sketch the total amount of drug <Katex tex="X" /> in the bloodstream during the first 12 hours after Tablet 1 is consumed.</>} examinerReport={EXAM_DI}>
+      <PartCard letter="d.i" topic="Sketch Graph" marks={2} statement={<>On the graph above, sketch the total amount of drug <Katex tex="X" /> in the bloodstream during the first 12 hours after Tablet 1 is consumed.</>} examinerReport={EXAM_DI}>
         <WorkingTable rows={ROWS_DI} />
       </PartCard>
 
-      <PartCard letter="d.ii" marks={2} statement={<>Find the maximum amount of drug <Katex tex="X" /> in the bloodstream in the first 12 hours and the time at which this maximum occurs. Give your answers correct to two decimal places.</>} examinerReport={EXAM_DII}>
+      <PartCard letter="d.ii" topic="Maximum Value" marks={2} statement={<>Find the maximum amount of drug <Katex tex="X" /> in the bloodstream in the first 12 hours and the time at which this maximum occurs. Give your answers correct to two decimal places.</>} examinerReport={EXAM_DII}>
         <Background>
           <p>
-            <Katex tex="74\%" /> of the state scored zero here, and the report identifies a
-            single cause: not writing down the combined rule. A second dose taken at{' '}
+            <Katex tex="74\%" /> of students scored zero here, and the report says many were
+            unable to find the combined rule. A second dose taken at{' '}
             <Katex tex="t=6" /> contributes <Katex tex="b(t-6)" /> — the same curve shifted
             six hours right — and the body holds both at once, so the total is the{' '}
             <em>sum</em>.
@@ -278,8 +280,8 @@ export default function MethodsQ2_2018Exam2() {
           <p>
             Once <Katex tex="b(t)+b(t-6)" /> is defined, this is an ordinary maximum on{' '}
             <Katex tex="[6,12]" />. Without it, the only thing left to maximise is the
-            single-tablet curve, which is why <Katex tex="324.34" /> mg appears so often in
-            the report's list of wrong answers.
+            single-tablet curve, which is where the report's <Katex tex="324.34" /> mg comes
+            from.
           </p>
         </Background>
         <WorkingTable rows={ROWS_DII} />

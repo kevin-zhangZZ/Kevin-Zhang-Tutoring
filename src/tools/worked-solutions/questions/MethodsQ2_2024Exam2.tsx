@@ -24,9 +24,11 @@ const EXAM_B: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      A common incorrect answer was <Katex tex="30\,^\circ\text{C/h}" />, found by substituting{' '}
-      <Katex tex="\tfrac12" /> into <Katex tex="12+30t" />. Some students incorrectly found the
-      average value of the temperature.
+      A common incorrect answer was <Katex tex="30\,^\circ\text{C/h}" /> where{' '}
+      <Katex tex="\tfrac12" /> was substituted into <Katex tex="12+30t" />, giving{' '}
+      <Katex tex="\tfrac{27-12}{\frac12}=30" />.
+      <br />
+      Some students incorrectly found the average value of the temperature.
     </>
   ),
 }
@@ -63,9 +65,10 @@ const EXAM_E: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      A common incorrect answer was <Katex tex="\tfrac13" />, which is when{' '}
+      A common incorrect answer was <Katex tex="\tfrac13" />, which is the time when{' '}
       <Katex tex="f(t)-g(t)" /> is a maximum. The maximum difference occurs when{' '}
-      <Katex tex="g(t)-f(t)" /> is a maximum.
+      <Katex tex="g(t)-f(t)" /> is a maximum or{' '}
+      <Katex tex="\left|f(t)-g(t)\right|=\left|g(t)-f(t)\right|" /> is a maximum.
     </>
   ),
 }
@@ -76,7 +79,7 @@ const EXAM_FI: SAExaminerStats = {
   comment: (
     <>
       Most students substituted the correct values into the equation. Students must make sure
-      they show adequate working for "show that" questions.
+      they show adequate working for 'show that' questions.
     </>
   ),
 }
@@ -98,8 +101,9 @@ const EXAM_FIII: SAExaminerStats = {
   comment: (
     <>
       Some students solved <Katex tex="p(t)=1" /> for <Katex tex="t" /> or found{' '}
-      <Katex tex="p(1)" />. Others just gave the answer; for questions worth more than one
-      mark, appropriate working must be shown.
+      <Katex tex="p(1)" />. Others just gave the answer. For questions worth more than 1 mark,
+      appropriate working must be shown. Some students transcribed <Katex tex="A" /> incorrectly
+      into the function.
     </>
   ),
 }
@@ -107,7 +111,7 @@ const EXAM_FIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dt}(12+30t) = 30, \qquad \frac{d}{dt}(22) = 0" />,
-    reason: 'Differentiate each branch separately — a linear rise and a constant.',
+    reason: <>Differentiate each branch separately — a linear rise and a constant.</>,
   },
   {
     working: <Katex display tex="\text{at } t=\tfrac13: \quad \text{left gradient } 30 \ne 0 \ \text{right gradient}" />,
@@ -127,7 +131,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average rate of change} = \frac{f\!\left(\tfrac12\right)-f(0)}{\tfrac12-0}" />,
-    reason: 'The gradient of the chord — not the average value, and not the derivative at a point.',
+    reason: <>The gradient of the chord — not the average value, and not the derivative at a point.</>,
   },
   {
     working: <Katex display tex="f(0) = 12, \qquad f\!\left(\tfrac12\right) = 22" />,
@@ -142,26 +146,26 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="g(t) = 22-10e^{-6t}" />,
-    reason: 'The 22 differentiates to zero.',
+    reason: <>The 22 differentiates to zero.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dt}\left(e^{-6t}\right) = -6e^{-6t}" />,
-    reason: 'Chain rule on the exponential.',
+    reason: <>Chain rule on the exponential.</>,
   },
   {
     working: <Katex display tex="\boxed{g'(t) = -10\times\left(-6e^{-6t}\right) = 60e^{-6t}}" />,
-    reason: 'Two negatives, so the rate is positive — the room is warming, as it should be.',
+    reason: <>Two negatives, so the rate is positive — the room is warming, as it should be.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="60e^{-6t} = 10" />,
-    reason: 'Setting the derivative from c.i. equal to 10.',
+    reason: <>Setting the derivative from c.i. equal to 10.</>,
   },
   {
     working: <Katex display tex="e^{-6t} = \tfrac16 \implies -6t = \log_e\!\left(\tfrac16\right) = -\log_e(6)" />,
-    reason: 'Taking logs of both sides.',
+    reason: <>Taking logs of both sides.</>,
   },
   {
     working: <Katex display tex="t = \frac{\log_e(6)}{6} = 0.298626\ldots" />,
@@ -169,18 +173,18 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = 0.299}" />,
-    reason: 'Three decimal places, as asked. Truncating rather than rounding gives 0.298.',
+    reason: <>Three decimal places, as asked. Truncating rather than rounding gives 0.298.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="t>\tfrac13: \quad 22 = 22-10e^{-6t} \implies e^{-6t}=0" />,
-    reason: 'No solution — an exponential is never zero, so the two models can only agree on the first branch.',
+    reason: <>No solution — an exponential is never zero, so the two models can only agree on the first branch.</>,
   },
   {
     working: <Katex display tex="0<t\le\tfrac13: \quad 12+30t = 22-10e^{-6t}" />,
-    reason: 'The equation to solve.',
+    reason: <>The equation to solve.</>,
   },
   {
     working: <Katex display tex="\text{solve} \implies t = 0 \ \text{ or } \ t = 0.265604\ldots" />,
@@ -188,7 +192,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = 0.27}" />,
-    reason: 'Two decimal places. This is the moment the exponential model, which starts faster, is overtaken by the linear one.',
+    reason: <>Two decimal places. This is the moment the exponential model, which starts faster, is overtaken by the linear one.</>,
   },
 ]
 
@@ -199,7 +203,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dt}\left(f-g\right) = 30-60e^{-6t} = 0 \implies e^{-6t}=\tfrac12" />,
-    reason: 'A stationary point of the signed difference.',
+    reason: <>A stationary point of the signed difference.</>,
   },
   {
     working: <Katex display tex="t = \frac{\log_e(2)}{6} = 0.115524\ldots" />,
@@ -207,26 +211,26 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|f-g\right| = 1.534 \ \text{ here, versus } 1.353 \ \text{ at } t=\tfrac13" />,
-    reason: <>Comparing against the other candidate. The examiner noted <Katex tex="\tfrac13" /> as the common wrong answer — it maximises <Katex tex="f-g" />, not <Katex tex="\left|f-g\right|" />.</>,
+    reason: <>Comparing against the other candidate. The report notes <Katex tex="\tfrac13" /> was a common incorrect answer — it maximises <Katex tex="f-g" />, not <Katex tex="\left|f-g\right|" />.</>,
   },
   {
     working: <Katex display tex="\boxed{t = 0.12}" />,
-    reason: 'Two decimal places.',
+    reason: <>Two decimal places.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="p \text{ continuous at } t=0.4 \implies \lim_{t\to0.4^-}p(t) = \lim_{t\to0.4^+}p(t)" />,
-    reason: 'Continuity is the only condition available, and 0.4 is the only place the rule changes.',
+    reason: <>Continuity is the only condition available, and 0.4 is the only place the rule changes.</>,
   },
   {
     working: <Katex display tex="1.5 = 0.3+Ae^{-10(0.4)}" />,
-    reason: 'Equating the two branches at the join.',
+    reason: <>Equating the two branches at the join.</>,
   },
   {
     working: <Katex display tex="Ae^{-4} = 1.2" />,
-    reason: 'Subtracting 0.3. Each of these lines earns its place in a "show that".',
+    reason: <>Subtracting 0.3. Each of these lines earns its place in a "show that".</>,
   },
   {
     working: <Katex display tex="\boxed{A = 1.2e^{4}}" />,
@@ -237,15 +241,15 @@ const ROWS_FI: WorkingRow[] = [
 const ROWS_FII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{energy} = \int_0^{T}p(t)\,dt" />,
-    reason: 'Energy in kilowatt hours is the area under the power curve, as the stem states.',
+    reason: <>Energy in kilowatt hours is the area under the power curve, as the stem states.</>,
   },
   {
     working: <Katex display tex="\int_0^{0.4}1.5\,dt = 1.5\times0.4 = 0.6 > 0.5" />,
-    reason: 'The first branch alone already supplies more than 0.5 kWh, so the answer lies inside it — no exponential needed.',
+    reason: <>The first branch alone already supplies more than 0.5 kWh, so the answer lies inside it — no exponential needed.</>,
   },
   {
     working: <Katex display tex="1.5T = 0.5" />,
-    reason: 'A rectangle of height 1.5 and width T.',
+    reason: <>A rectangle of height 1.5 and width T.</>,
   },
   {
     working: <Katex display tex="\boxed{T = \tfrac13 \text{ hour}}" />,
@@ -256,11 +260,11 @@ const ROWS_FII: WorkingRow[] = [
 const ROWS_FIII: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{0.4}1.5\,dt = 0.6" />,
-    reason: 'The first branch contributes 0.6 kWh, so 0.4 kWh still has to come from the second.',
+    reason: <>The first branch contributes 0.6 kWh, so 0.4 kWh still has to come from the second.</>,
   },
   {
     working: <Katex display tex="\int_{0.4}^{a}\left(0.3+1.2e^{4}e^{-10t}\right)dt = 0.4" />,
-    reason: 'Setting up the remaining area, with A from part f.i.',
+    reason: <>Setting up the remaining area, with A from part f.i.</>,
   },
   {
     working: <Katex display tex="\left[0.3t-0.12e^{4}e^{-10t}\right]_{0.4}^{a} = 0.3a-0.12e^{4-10a}-\left(0.12-0.12\right)" />,
@@ -272,7 +276,7 @@ const ROWS_FIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 1.33 \text{ hours}}" />,
-    reason: 'Two decimal places. Roughly 1 hour 20 minutes.',
+    reason: <>Two decimal places. Roughly 1 hour 20 minutes.</>,
   },
 ]
 
@@ -298,7 +302,7 @@ export default function MethodsQ2_2024Exam2() {
           <p>
             The whole question runs on knowing which branch you are in. The join is at{' '}
             <Katex tex="t=\tfrac13" /> for the temperature and at <Katex tex="t=0.4" /> for the
-            power, and almost every mark lost here came from using the wrong rule: part b. asks
+            power, and using the wrong rule is the easiest way to go astray: part b. asks
             about <Katex tex="t=\tfrac12" />, which is past the join; part f.ii. asks for a
             time that turns out to be before it.
           </p>
@@ -306,14 +310,15 @@ export default function MethodsQ2_2024Exam2() {
             Parts d. and e. sound similar and are not. Part d. is{' '}
             <Katex tex="f(t)=g(t)" />; part e. maximises <Katex tex="\left|f(t)-g(t)\right|" />.
             Because <Katex tex="f-g" /> is negative before they cross, the maximum <em>gap</em>{' '}
-            occurs at a <em>minimum</em> of the signed difference — the sign trap that cost
-            most of the marks in part e.
+            occurs at a <em>minimum</em> of the signed difference — the sign trap behind the
+            report's common incorrect answer to part e.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Hybrid Function"
         marks={2}
         statement={<>Express the derivative <Katex tex="f'(t)" /> as a hybrid function.</>}
         examinerReport={EXAM_A}
@@ -323,12 +328,14 @@ export default function MethodsQ2_2024Exam2() {
 
       <PartCard
         letter="b"
+        topic="Average Rate"
         marks={1}
         statement={
           <>
             Find the average rate of change in temperature predicted by the model between{' '}
-            <Katex tex="t=0" /> and <Katex tex="t=\tfrac12" />. Give your answer in degrees
-            Celsius per hour.
+            <Katex tex="t=0" /> and <Katex tex="t=\tfrac12" />.
+            <br />
+            Give your answer in degrees Celsius per hour.
           </>
         }
         examinerReport={EXAM_B}
@@ -344,17 +351,19 @@ export default function MethodsQ2_2024Exam2() {
         </p>
       </div>
 
-      <PartCard letter="c.i" marks={1} statement={<>Find the derivative <Katex tex="g'(t)" />.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Derivative" marks={1} statement={<>Find the derivative <Katex tex="g'(t)" />.</>} examinerReport={EXAM_CI}>
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
       <PartCard
         letter="c.ii"
+        topic="Solve Equation"
         marks={1}
         statement={
           <>
-            Find the value of <Katex tex="t" /> for which <Katex tex="g'(t)=10" />. Give your
-            answer correct to three decimal places.
+            Find the value of <Katex tex="t" /> for which <Katex tex="g'(t)=10" />.
+            <br />
+            Give your answer correct to three decimal places.
           </>
         }
         examinerReport={EXAM_CII}
@@ -364,12 +373,14 @@ export default function MethodsQ2_2024Exam2() {
 
       <PartCard
         letter="d"
+        topic="Intersections"
         marks={1}
         statement={
           <>
             Find the time <Katex tex="t\in(0,1)" /> when the temperatures predicted by the
-            models <Katex tex="f" /> and <Katex tex="g" /> are equal. Give your answer correct
-            to two decimal places.
+            models <Katex tex="f" /> and <Katex tex="g" /> are equal.
+            <br />
+            Give your answer correct to two decimal places.
           </>
         }
         examinerReport={EXAM_D}
@@ -379,12 +390,14 @@ export default function MethodsQ2_2024Exam2() {
 
       <PartCard
         letter="e"
+        topic="Maximum Difference"
         marks={1}
         statement={
           <>
             Find the time <Katex tex="t\in(0,1)" /> when the difference between the
-            temperatures predicted by the two models is the greatest. Give your answer correct
-            to two decimal places.
+            temperatures predicted by the two models is the greatest.
+            <br />
+            Give your answer correct to two decimal places.
           </>
         }
         examinerReport={EXAM_E}
@@ -421,6 +434,7 @@ export default function MethodsQ2_2024Exam2() {
 
       <PartCard
         letter="f.i"
+        topic="Continuity"
         marks={1}
         statement={
           <>
@@ -435,11 +449,14 @@ export default function MethodsQ2_2024Exam2() {
 
       <PartCard
         letter="f.ii"
+        topic="Area Under Curve"
         marks={1}
         statement={
           <>
             Find how long it takes, after the heater is switched on, until the heater has used
-            0.5 kilowatt hours of energy. Give your answer in hours.
+            0.5 kilowatt hours of energy.
+            <br />
+            Give your answer in hours.
           </>
         }
         examinerReport={EXAM_FII}
@@ -449,12 +466,14 @@ export default function MethodsQ2_2024Exam2() {
 
       <PartCard
         letter="f.iii"
+        topic="Area Under Curve"
         marks={2}
         statement={
           <>
             Find how long it takes, after the heater is switched on, until the heater has used
-            1 kilowatt hour of energy. Give your answer in hours, correct to two decimal
-            places.
+            1 kilowatt hour of energy.
+            <br />
+            Give your answer in hours, correct to two decimal places.
           </>
         }
         examinerReport={EXAM_FIII}

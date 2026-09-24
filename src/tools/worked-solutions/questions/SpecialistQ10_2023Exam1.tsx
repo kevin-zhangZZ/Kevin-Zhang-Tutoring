@@ -24,7 +24,7 @@ const EXAM_B: SAExaminerStats = {
     <>
       Students needed to use a double angle formula to express <Katex tex="y" /> in terms of{' '}
       <Katex tex="\sin(2t)" /> and then use another trigonometric identity to show that the
-      Cartesian equation of the path was the circle.
+      Cartesian equation of the path was the circle <Katex tex="(x-2)^2+(y-1)^2=9" />.
     </>
   ),
 }
@@ -34,9 +34,10 @@ const EXAM_C: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Some students applied a geometric argument or used circle mensuration,{' '}
-      <Katex tex="3(2a)=\tfrac{3\pi}{4}" />, to obtain the answer. A number of students
-      correctly evaluated an arc-length integral.
+      Some students were able to apply a geometric argument or use circle mensuration,{' '}
+      <Katex tex="3\times(2a)=\tfrac{3\pi}{4}" />, to obtain the answer. A number of students
+      correctly evaluated an integral for the arc length to find the value of{' '}
+      <Katex tex="a" />.
     </>
   ),
 }
@@ -56,11 +57,11 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(2t) = 1-2\sin^2(t) \implies \sin^2(t) = \frac{1-\cos(2t)}{2}" />,
-    reason: 'The double-angle identity, rearranged to remove the square.',
+    reason: <>The double-angle identity, rearranged to remove the square.</>,
   },
   {
     working: <Katex display tex="5-6\sin^2(t) = 5-6\cdot\frac{1-\cos(2t)}{2} = 5-3\bigl(1-\cos(2t)\bigr)" />,
-    reason: 'Substituting.',
+    reason: <>Substituting.</>,
   },
   {
     working: <Katex display tex="\boxed{5-6\sin^2(t) = 2+3\cos(2t)}" />,
@@ -71,7 +72,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x = 5-6\sin^2(t) = 2+3\cos(2t) \implies x-2 = 3\cos(2t)" />,
-    reason: 'Straight from part a.',
+    reason: <>Straight from part a.</>,
   },
   {
     working: <Katex display tex="y = 1+6\sin(t)\cos(t) = 1+3\bigl(2\sin(t)\cos(t)\bigr) = 1+3\sin(2t)" />,
@@ -79,30 +80,30 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y-1 = 3\sin(2t)" />,
-    reason: 'Now both components are a constant plus 3 times a single trigonometric function of 2t.',
+    reason: <>Now both components are a constant plus 3 times a single trigonometric function of 2t.</>,
   },
   {
     working: <Katex display tex="\left(\frac{x-2}{3}\right)^2+\left(\frac{y-1}{3}\right)^2 = \cos^2(2t)+\sin^2(2t) = 1" />,
-    reason: 'The Pythagorean identity is what eliminates the parameter.',
+    reason: <>The Pythagorean identity is what eliminates the parameter.</>,
   },
   {
-    working: <Katex display tex="\boxed{(x-2)^2+(y-1)^2 = 9} \ \checkmark" />,
-    reason: <>A circle of centre <Katex tex="(2,1)" /> and radius 3 — the fact parts c. and d. both lean on.</>,
+    working: <Katex display tex="\boxed{(x-2)^2+(y-1)^2 = 9}" />,
+    reason: <>A circle of centre <Katex tex="(2,1)" /> and radius 3 — the fact parts c. and d. both lean on. As required.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(t) = -6\sin(2t)\underset{\sim}{i}+6\cos(2t)\underset{\sim}{j}" />,
-    reason: 'Differentiating the tidied components from part b.',
+    reason: <>Differentiating the tidied components from part b.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{\dot r}(t)\right| = \sqrt{36\sin^2(2t)+36\cos^2(2t)} = 6" />,
-    reason: 'Constant speed — the particle goes round the circle at a steady 6 units per second.',
+    reason: <>Constant speed — the particle goes round the circle at a steady 6 units per second.</>,
   },
   {
     working: <Katex display tex="\text{distance} = \int_0^a 6\,dt = 6a" />,
-    reason: 'Arc length of a constant-speed path is just speed × time.',
+    reason: <>Arc length of a constant-speed path is just speed × time.</>,
   },
   {
     working: <Katex display tex="6a = \frac{3\pi}{4} \implies \boxed{a = \frac{\pi}{8}}" />,
@@ -113,19 +114,19 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}(t)\cdot\underset{\sim}{\dot r}(t) = 0 \ \text{ for perpendicular vectors}" />,
-    reason: <>Note this is the position vector from the <em>origin</em>, not from the centre of the circle — otherwise the answer would be "never".</>,
+    reason: <>Note this is the position vector from the <em>origin</em>, not from the centre of the circle — a radius is perpendicular to the velocity at every instant, so from the centre the answer would be "always".</>,
   },
   {
     working: <Katex display tex="= \bigl(2+3\cos(2t)\bigr)\bigl(-6\sin(2t)\bigr)+\bigl(1+3\sin(2t)\bigr)\bigl(6\cos(2t)\bigr)" />,
-    reason: 'Matching components and adding.',
+    reason: <>Matching components and adding.</>,
   },
   {
     working: <Katex display tex="= -12\sin(2t)-18\sin(2t)\cos(2t)+6\cos(2t)+18\sin(2t)\cos(2t)" />,
-    reason: 'Expanding.',
+    reason: <>Expanding.</>,
   },
   {
     working: <Katex display tex="= 6\bigl(\cos(2t)-2\sin(2t)\bigr) = 0" />,
-    reason: 'The two product terms cancel exactly, which is the point of the question.',
+    reason: <>The two product terms cancel exactly, which is the point of the question.</>,
   },
   {
     working: <Katex display tex="\cos(2t) = 2\sin(2t) \implies \tan(2t) = \frac12" />,
@@ -136,7 +137,7 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Tangent has period <Katex tex="\pi" />, so every solution differs by <Katex tex="\pi" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{t = \frac12\arctan\!\left(\frac12\right)+\frac{k\pi}{2}, \quad k\in\mathbb{N}\cup\{0\}}" />,
+    working: <Katex display tex="\boxed{t = \frac12\arctan\!\left(\frac12\right)+\frac{k\pi}{2}, \quad k\in N\cup\{0\}}" />,
     reason: <>Halving. Only non-negative <Katex tex="k" /> is kept because the question states <Katex tex="t\ge0" />. The first time is about <Katex tex="0.232" /> seconds.</>,
   },
 ]
@@ -146,11 +147,11 @@ export default function SpecialistQ10_2023Exam1() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 10 (6 marks)</p>
-        <p>
-          The position vector of a particle at time <Katex tex="t" /> seconds is given by{' '}
-          <Katex tex="\underset{\sim}{r}(t)=\left(5-6\sin^2(t)\right)\underset{\sim}{i}+\bigl(1+6\sin(t)\cos(t)\bigr)\underset{\sim}{j}" />
-          , where <Katex tex="t\ge0" />.
-        </p>
+        <p>The position vector of a particle at time <Katex tex="t" /> seconds is given by</p>
+        <Katex
+          display
+          tex="\underset{\sim}{r}(t)=\left(5-6\sin^2(t)\right)\underset{\sim}{i}+\bigl(1+6\sin(t)\cos(t)\bigr)\underset{\sim}{j}, \ \text{where } t\ge0."
+        />
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
@@ -167,12 +168,13 @@ export default function SpecialistQ10_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Double Angle"
         marks={1}
         statement={
           <>
             Write <Katex tex="5-6\sin^2(t)" /> in the form{' '}
             <Katex tex="\alpha+\beta\cos(2t)" />, where{' '}
-            <Katex tex="\alpha,\beta\in\mathbb{Z}^+" />.
+            <Katex tex="\alpha,\beta\in Z^+" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -182,6 +184,7 @@ export default function SpecialistQ10_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Cartesian Equation"
         marks={2}
         statement={
           <>
@@ -196,12 +199,15 @@ export default function SpecialistQ10_2023Exam1() {
 
       <PartCard
         letter="c"
+        topic="Distance Along Path"
         marks={1}
         statement={
           <>
             The particle is at point <Katex tex="A" /> when <Katex tex="t=0" /> and at point{' '}
             <Katex tex="B" /> when <Katex tex="t=a" />, where <Katex tex="a" /> is a positive
-            real constant. If the distance travelled along the curve from <Katex tex="A" /> to{' '}
+            real constant.
+            <br />
+            If the distance travelled along the curve from <Katex tex="A" /> to{' '}
             <Katex tex="B" /> is <Katex tex="\dfrac{3\pi}{4}" />, find <Katex tex="a" />.
           </>
         }
@@ -212,6 +218,7 @@ export default function SpecialistQ10_2023Exam1() {
 
       <PartCard
         letter="d"
+        topic="Perpendicular Vectors"
         marks={2}
         statement={
           <>

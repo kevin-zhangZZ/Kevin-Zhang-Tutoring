@@ -1,5 +1,5 @@
 // 2018 Specialist Mathematics — Exam 2, MCQ 12. VCAA examination report: 36% correct —
-// the hardest MCQ in the 2017-2018 Specialist Exam 2 papers.
+// the hardest MCQ on this paper.
 // The equality case of the triangle inequality for vectors — what does it force?
 // Question text transcribed from the original paper; solution is original.
 
@@ -14,7 +14,9 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       Option B would not necessarily satisfy the given statement. Options D and E would not satisfy the
-      given statement. Options A and C would satisfy the given statement, but only A is necessarily true.
+      given statement.
+      <br />
+      Options A and C would satisfy the given statement, but only A is necessarily true.
     </>
   ),
 }
@@ -31,10 +33,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2 = |\underset{\sim}{a}|^2+2\,\underset{\sim}{a}\!\cdot\!\underset{\sim}{b}+|\underset{\sim}{b}|^2" />,
-    reason: 'Expand the left side of the given equation after squaring both sides, to work with dot products instead of magnitudes.',
+    reason: <>Expand the left side of the given equation after squaring both sides, to work with dot products instead of magnitudes.</>,
   },
   {
     working: <Katex display tex="\bigl(|\underset{\sim}{a}|+|\underset{\sim}{b}|\bigr)^2 = |\underset{\sim}{a}|^2+2|\underset{\sim}{a}||\underset{\sim}{b}|+|\underset{\sim}{b}|^2" />,
+    reason: <>And the right side, squared.</>,
   },
   {
     working: (
@@ -43,7 +46,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; \underset{\sim}{a}\!\cdot\!\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|" />
       </>
     ),
-    reason: 'Equate the two expansions above (squaring is valid since both sides are non-negative) and cancel matching terms.',
+    reason: <>Equate the two expansions above (squaring is valid since both sides are non-negative) and cancel matching terms.</>,
   },
   {
     working: (

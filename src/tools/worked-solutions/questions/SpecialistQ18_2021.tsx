@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\bar x = \frac{70.2+75.8}{2} = 73" />,
-    reason: 'The sample mean sits exactly at the centre of a symmetric confidence interval.',
+    reason: <>The sample mean sits exactly at the centre of a symmetric confidence interval.</>,
   },
   {
     working: <Katex display tex="\text{half-width} = \frac{75.8-70.2}{2} = 2.8 = 1.96\times\frac{\sigma}{\sqrt{100}}" />,
@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sigma = \frac{2.8\times10}{1.96} = \frac{28}{1.96} = 14.2857\ldots" />,
-    reason: 'Rearranging for the population standard deviation.',
+    reason: <>Rearranging for the population standard deviation.</>,
   },
   {
     working: <Katex display tex="\frac{\bar x}{\sigma} = \frac{73}{14.2857\ldots}" />,
@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{5.1}" />,
-    reason: <>Matches option <b>C</b>. Option D, 10.2, is <Katex tex="\tfrac{73}{\sigma/\sqrt{n}}\div\sqrt{n}" />-flavoured confusion between <Katex tex="\sigma" /> and the standard error.</>,
+    reason: <>Matches option <b>C</b>. Option B, 2.6, uses the full width 5.6 in place of the half-width.</>,
   },
 ]
 
@@ -41,8 +41,9 @@ export default function SpecialistQ18_2021() {
         <p>
           A scientist investigates the distribution of the masses of fish in a particular
           river. A 95% confidence interval for the mean mass of a fish, in grams, calculated
-          from a random sample of 100 fish is <Katex tex="(70.2,\ 75.8)" />. The sample mean
-          divided by the population standard deviation is closest to
+          from a random sample of 100 fish is <Katex tex="(70.2,\ 75.8)" />.
+          <br />
+          The sample mean divided by the population standard deviation is closest to
         </p>
       }
       options={[

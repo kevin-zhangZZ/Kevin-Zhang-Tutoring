@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="T\!\left(\begin{bmatrix}a\\b\end{bmatrix}\right) = \begin{bmatrix}0\\0\end{bmatrix}" />,
-    reason: <>The question gives you the <em>output</em> and asks for the input, so substitute <Katex tex="x'=0" /> and <Katex tex="y'=0" /> and solve backwards. This is the step the distractors punish: several options are what you get by putting <Katex tex="(0,0)" /> in as the input instead.</>,
+    reason: <>The question gives you the <em>output</em> and asks for the input, so substitute <Katex tex="x'=0" /> and <Katex tex="y'=0" /> and solve backwards. The origin is the <em>image</em>, not the point being transformed.</>,
   },
   {
     working: <Katex display tex="\tfrac12 a - \tfrac12 = 0 \implies a = 1" />,
@@ -53,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(a,b) = (1,-1)}" />,
-    reason: <>Matches option <b>E</b>. Check it forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓ and <Katex tex="-2(-1)-2 = 0" /> ✓. Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped — what you get from applying the transformation <em>to</em> the origin rather than solving back from it.</>,
+    reason: <>Matches option <b>E</b>. Check it forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓ and <Katex tex="-2(-1)-2 = 0" /> ✓. Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped — what you get if the translation column is added with the wrong signs (solving <Katex tex="\tfrac12a+\tfrac12=0" /> and <Katex tex="-2b+2=0" />).</>,
   },
 ]
 

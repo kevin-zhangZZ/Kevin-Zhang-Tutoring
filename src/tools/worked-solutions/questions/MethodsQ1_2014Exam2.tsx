@@ -14,7 +14,7 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was answered well. However, some students did not answer both parts of
       the question. Most had the correct period but some expressed the amplitude as{' '}
-      <Katex tex="800" /> or <Katex tex="1600" />.
+      <Katex tex="[800,1600]" />.
     </>
   ),
 }
@@ -60,11 +60,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{amplitude} = 400" />,
-    reason: <>The coefficient of the cosine — the swing either side of the mean, not the full swing (800) and not the peak value (1600).</>,
+    reason: <>The coefficient of the cosine — the swing either side of the mean line <Katex tex="n=1200" />. It is a single number, not the interval <Katex tex="[800,1600]" /> the population moves between, which the report says some students gave.</>,
   },
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{\pi/3} = 2\pi\times\frac3\pi = 6" />,
-    reason: <>Six months. Both parts are needed for the two marks.</>,
+    reason: <>Six months — <Katex tex="t" /> is measured in months.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\text{amplitude } 400, \quad \text{period } 6 \text{ months}}" />,
+    reason: <>Both are needed for the two marks — the report notes some students answered only one.</>,
   },
 ]
 
@@ -79,7 +83,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{minimum} = 1200-400 = 800 \text{ wombats}" />,
-    reason: <>When the cosine is <Katex tex="-1" />. Populations, so give numbers of wombats, not coordinate pairs.</>,
+    reason: <>When the cosine is <Katex tex="-1" />.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\text{maximum } 1600 \text{ wombats}, \quad \text{minimum } 800 \text{ wombats}}" />,
+    reason: <>Populations, so give numbers of wombats — not coordinate pairs such as <Katex tex="(0,1600)" />, which the report marked incorrect.</>,
   },
 ]
 
@@ -140,6 +148,7 @@ export default function MethodsQ1_2014Exam2() {
 
       <PartCard
         letter="a"
+        topic="Period & Amplitude"
         marks={2}
         statement={<>Find the period and amplitude of the function <Katex tex="n" />.</>}
         examinerReport={EXAM_A}
@@ -149,6 +158,7 @@ export default function MethodsQ1_2014Exam2() {
 
       <PartCard
         letter="b"
+        topic="Max & Min"
         marks={2}
         statement={<>Find the maximum and minimum populations of wombats in this location.</>}
         examinerReport={EXAM_B}
@@ -156,12 +166,13 @@ export default function MethodsQ1_2014Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={1} statement={<>Find <Katex tex="n(10)" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Function Value" marks={1} statement={<>Find <Katex tex="n(10)" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
       <PartCard
         letter="d"
+        topic="Trig Inequality"
         marks={2}
         statement={
           <>

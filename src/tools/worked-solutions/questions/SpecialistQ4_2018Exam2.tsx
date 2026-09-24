@@ -39,7 +39,9 @@ const EXAM_D: SAExaminerStats = {
     <>
       Many students approached this question incorrectly. Some set up inequalities using
       magnitudes of the position vectors, others attempted to compare the velocities of the
-      yachts rather than correctly set up an equation or inequation involving the speeds.
+      yachts rather than correctly set up an equation or inequation involving the speeds. Of
+      those who approached the question correctly, a number ignored the domain of{' '}
+      <Katex tex="t" />, giving answers that included negative values.
     </>
   ),
 }
@@ -51,10 +53,11 @@ const EXAM_E: SAExaminerStats = {
     <>
       Many students did not attempt Question 4e. A common misconception was evident when
       students attempted to solve{' '}
-      <Katex tex="\left|\underset{\sim}{r}_B-\underset{\sim}{r}_A\right|=0.2" /> rather than
-      the correct{' '}
+      <Katex tex="\left|\underset{\sim}{r}_B\right|-\left|\underset{\sim}{r}_A\right|<0.2" />,
+      rather than the correct{' '}
       <Katex tex="\left|\underset{\sim}{r}_B-\underset{\sim}{r}_A\right|<0.2" />. Responses
-      in terms of hours, rather than minutes, were given by a number of students.
+      in terms of hours, rather than minutes, were given by a number of students who did not
+      respond to the specifics of the question.
     </>
   ),
 }
@@ -70,7 +73,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A: \ y = x^2-1, \ x\ge1}" />,
-    reason: <>The domain restriction matters in part (c).</>,
+    reason: <>The domain restriction matters in part c.</>,
   },
   {
     working: <Katex display tex="B: \ x = t^2, \quad y = t^2+3 \implies y = x+3" />,
@@ -108,7 +111,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x^2-1 = x+3 \implies x^2-x-4 = 0" />,
-    reason: <>Where the two <em>paths</em> meet, ignoring time. Part (b) has already shown they are not there together.</>,
+    reason: <>Where the two <em>paths</em> meet, ignoring time. Part b. has already shown they are not there together.</>,
   },
   {
     working: <Katex display tex="x = \frac{1\pm\sqrt{17}}{2}" />,
@@ -116,7 +119,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1-\sqrt{17}}{2} \approx -1.562 \ \text{ rejected}" />,
-    reason: <>Both paths require <Katex tex="x\ge0" /> (indeed <Katex tex="x\ge1" /> for yacht A), because <Katex tex="t\ge0" />. The report names dropping this condition — and so giving two points — as the main error.</>,
+    reason: <>Both paths require <Katex tex="x\ge0" /> (indeed <Katex tex="x\ge1" /> for yacht A), because <Katex tex="t\ge0" />. The report says missing this condition led to two points being given.</>,
   },
   {
     working: <Katex display tex="x = \frac{1+\sqrt{17}}{2} \approx 2.5616, \qquad y = x+3 \approx 5.5616" />,
@@ -124,7 +127,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(2.562,\ 5.562)}" />,
-    reason: <>Three decimal places, as prescribed — the report notes otherwise-correct answers losing marks on the form.</>,
+    reason: <>Three decimal places, as prescribed — the report notes many otherwise correct responses were not expressed in this form.</>,
   },
 ]
 
@@ -151,14 +154,14 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0 \le t < \frac52}" />,
-    reason: <>Intersect with the stated <Katex tex="t\ge0" />. So A leads for the first two and a half hours, then B — which started from rest but keeps accelerating — overtakes it in speed.</>,
+    reason: <>Intersect with the stated <Katex tex="t\ge0" />. The report notes some students ignored the domain of <Katex tex="t" /> and included negative values. So A is faster for the first two and a half hours, then B — which started from rest but keeps accelerating — overtakes it in speed.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}_B-\underset{\sim}{r}_A = \left(t^2-t-1\right)\underset{\sim}{i} + \left(3-2t\right)\underset{\sim}{j}" />,
-    reason: <>The displacement between the yachts at time <Katex tex="t" />.</>,
+    reason: <>The displacement between the yachts at time <Katex tex="t" />. It is the magnitude of this <em>difference</em> that measures how far apart they are — the report's common misconception was using <Katex tex="\left|\underset{\sim}{r}_B\right|-\left|\underset{\sim}{r}_A\right|" />, the difference of their distances from the buoy.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{r}_B-\underset{\sim}{r}_A\right|^2 = \left(t^2-t-1\right)^2+(3-2t)^2 = t^4-2t^3+3t^2-10t+10" />,
@@ -166,7 +169,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{r}_B-\underset{\sim}{r}_A\right| < 0.2 \iff t^4-2t^3+3t^2-10t+10 < 0.04" />,
-    reason: <>An <em>inequality</em>, not an equation — the report names solving the equality as the common misconception. The equality only locates the two endpoints of the interval.</>,
+    reason: <>"Within <Katex tex="0.2" /> km" is an inequality. Solving the matching equation locates the two endpoints of the interval.</>,
   },
   {
     working: <Cas fn="solve">solve(t^4-2t^3+3t^2-10t+10 = 0.04, t) | t&gt;=0</Cas>,
@@ -178,11 +181,11 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(1.5973-1.5288)\times60 \approx 4.11" />,
-    reason: <>Convert the duration from hours to minutes — the report notes answers left in hours.</>,
+    reason: <>Convert the duration from hours to minutes — the report notes a number of answers were left in hours.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 4.1 \text{ minutes}}" />,
-    reason: <>One decimal place. Only <Katex tex="28\%" /> of the state scored both marks, and more than half did not attempt it.</>,
+    reason: <>One decimal place. Only <Katex tex="28\%" /> of students scored both marks, and the report says many did not attempt it.</>,
   },
 ]
 
@@ -205,11 +208,11 @@ export default function SpecialistQ4_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the cartesian equation of the path for each yacht.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Cartesian Equation" marks={2} statement={<>Find the cartesian equation of the path for each yacht.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Show that the two yachts will not collide if they follow these paths.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Collision" marks={2} statement={<>Show that the two yachts will not collide if they follow these paths.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
             Crossing paths and colliding are different things. Two yachts collide only if
@@ -220,11 +223,11 @@ export default function SpecialistQ4_2018Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Find the coordinates of the point where the paths of the two yachts cross. Give your coordinates correct to three decimal places.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Intersection" marks={2} statement={<>Find the coordinates of the point where the paths of the two yachts cross. Give your coordinates correct to three decimal places.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={2} statement={<>For what values of <Katex tex="t" /> is yacht <Katex tex="A" /> travelling faster than yacht <Katex tex="B" />?</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Speed Comparison" marks={2} statement={<>For what values of <Katex tex="t" /> is yacht <Katex tex="A" /> travelling faster than yacht <Katex tex="B" />?</>} examinerReport={EXAM_D}>
         <Background>
           <p>
             Speed is <Katex tex="\left|\underset{\sim}{v}\right|" />, a single non-negative
@@ -236,7 +239,7 @@ export default function SpecialistQ4_2018Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<>If yacht <Katex tex="A" /> does not alter its course, for what period of time will yacht <Katex tex="A" /> be within <Katex tex="0.2" /> km of yacht <Katex tex="B" />? Give your answer in minutes, correct to one decimal place.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Time Within Distance" marks={2} statement={<>If yacht <Katex tex="A" /> does not alter its course, for what period of time will yacht <Katex tex="A" /> be within <Katex tex="0.2" /> km of yacht <Katex tex="B" />? Give your answer in minutes, correct to one decimal place.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
     </div>

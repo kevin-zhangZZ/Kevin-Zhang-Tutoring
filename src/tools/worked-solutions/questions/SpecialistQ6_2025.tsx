@@ -10,20 +10,35 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 11, C: 70, D: 10 },
   answer: 'C',
+  comment: (
+    <>
+      <Katex tex="z=a+bi" />
+      <br />
+      <Katex tex="|z|=1\Rightarrow a^2+b^2=1" />
+      <br />
+      <Katex tex="re\left(\dfrac{1}{1-z}\right)=\dfrac{-a+1}{a^2-2a+b^2+1}" />
+      <br />
+      <Katex tex="=\dfrac{-a+1}{1-2a+1}" />
+      <br />
+      <Katex tex="=\dfrac{-(a-1)}{-2(a-1)}" />
+      <br />
+      <Katex tex="=\dfrac{1}{2}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|z| = 1 \implies z = \cos(\theta)+i\sin(\theta)" />,
-    reason: 'Every point on the unit circle can be written this way. Working with a general θ shows the answer is the same for all of them.',
+    reason: <>Every point on the unit circle can be written this way. Working with a general θ shows the answer is the same for all of them.</>,
   },
   {
     working: <Katex display tex="1-z = \big(1-\cos(\theta)\big)-i\sin(\theta)" />,
-    reason: 'Subtracting, and collecting real and imaginary parts.',
+    reason: <>Subtracting, and collecting real and imaginary parts.</>,
   },
   {
     working: <Katex display tex="\frac{1}{1-z} = \frac{\big(1-\cos(\theta)\big)+i\sin(\theta)}{\big(1-\cos(\theta)\big)^2+\sin^2(\theta)}" />,
-    reason: 'Multiply numerator and denominator by the conjugate of the denominator.',
+    reason: <>Multiply numerator and denominator by the conjugate of the denominator.</>,
   },
   {
     working: <Katex display tex="\big(1-\cos\theta\big)^2+\sin^2\theta = 1-2\cos\theta+\cos^2\theta+\sin^2\theta = 2-2\cos\theta" />,
@@ -35,7 +50,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{1}{2}}" />,
-    reason: <>Option <b>C</b> — a constant, independent of where z sits on the circle.</>,
+    reason: <>Matches option <b>C</b> — a constant, independent of where z sits on the circle.</>,
   },
 ]
 
@@ -44,7 +59,7 @@ export default function SpecialistQ6_2025() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="z\in\mathbb{C}" />.
+          Let <Katex tex="z\in C" />.
           <br />
           Given that <Katex tex="|z| = 1" /> and <Katex tex="z\neq1" />,{' '}
           <Katex tex="\operatorname{Re}\left(\dfrac{1}{1-z}\right)" /> is

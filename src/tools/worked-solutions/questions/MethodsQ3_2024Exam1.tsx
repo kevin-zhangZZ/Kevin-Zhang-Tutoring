@@ -12,10 +12,13 @@ const EXAM_A: SAExaminerStats = {
   average: 2.1,
   comment: (
     <>
-      Common errors included not labelling the asymptotes with <Katex tex="x=" /> or{' '}
-      <Katex tex="y=" />, incorrectly determining the coordinates of{' '}
-      <Katex tex="x" />-intercepts, and not indicating the symmetry of the curve. Some
-      students mistakenly sketched a hyperbola.
+      Most students presented graphs that were well drawn and appropriately labelled.
+      Generally students included details and labels as required and produced smooth graph
+      lines that displayed appropriate asymptotic behaviour, with asymptotes indicated as dashed
+      or dotted lines. Common errors included not labelling the asymptotes with{' '}
+      <Katex tex="x=" /> or <Katex tex="y=" />, incorrectly determining the coordinates of{' '}
+      <Katex tex="x" />-intercepts, and not indicating the symmetry of the curve. Some students
+      mistakenly sketched a hyperbola.
     </>
   ),
 }
@@ -25,11 +28,15 @@ const EXAM_B: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Common errors included using an <Katex tex="x" />-intercept for one of the terminals
-      rather than <Katex tex="0" /> and <Katex tex="-2" />, incorrect integration, and
-      arithmetic errors. Many students arrived at a negative answer and knew the area needed
-      to be positive, but did not provide correct reasoning; many simply wrote{' '}
-      <Katex tex="-\tfrac{10}{3}=\tfrac{10}{3}" />.
+      This question required students to find the area bounded by a graph below the{' '}
+      <Katex tex="x" />-axis using integral calculus. Students generally performed well on this
+      question. Common errors included setting up the integral using an{' '}
+      <Katex tex="x" />-intercept for one of the terminals rather than 0 and <Katex tex="-2" />,
+      incorrect integration, and arithmetic errors in the substitution. Many students arrived at
+      a negative answer and knew that the area needed to be positive, but did not provide
+      correct reasoning steps (e.g. use absolute value sign, or state area must be positive)
+      when they attempted to show the final answer as positive. Many simply wrote{' '}
+      <Katex tex="-\tfrac{10}{3}=\tfrac{10}{3}" /> as the final answer.
     </>
   ),
 }
@@ -37,7 +44,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = \frac{1}{(x+3)^2}-2" />,
-    reason: <>A <em>truncus</em>: <Katex tex="y=\tfrac{1}{x^2}" /> translated 3 left and 2 down. Squaring the denominator makes both branches positive before the shift, so the curve is symmetric about its vertical asymptote — unlike a hyperbola, which the report says some students drew.</>,
+    reason: <>A <em>truncus</em>: <Katex tex="y=\tfrac{1}{x^2}" /> translated 3 left and 2 down. Squaring the denominator makes both branches positive before the shift, so the curve is symmetric about its vertical asymptote — unlike a hyperbola, which the report notes some students mistakenly sketched.</>,
   },
   {
     working: <Katex display tex="x+3 = 0 \implies x = -3 \ \text{(vertical asymptote)}" />,
@@ -49,7 +56,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(x) = 0 \implies (x+3)^2 = \frac12 \implies x+3 = \pm\frac{1}{\sqrt2}" />,
-    reason: 'Two x-intercepts, one either side of the asymptote — the symmetry made visible.',
+    reason: <>Two x-intercepts, one either side of the asymptote — the symmetry made visible.</>,
   },
   {
     working: <Katex display tex="x = -3\pm\frac{\sqrt2}{2}" />,
@@ -59,20 +66,32 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="g(0) = \frac19-2 = -\frac{17}{9}" />,
     reason: <>The <Katex tex="y" />-intercept, just above the horizontal asymptote.</>,
   },
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's grid (x from about −5.3 to 1.3, y from about −3.3 to 2.7): a truncus with two branches rising steeply either side of the dashed asymptote x = −3, crossing the x-axis at −3 ± √2⁄2 and flattening towards the dashed asymptote y = −2, passing through (0, −17/9)"
+          className="w-full max-w-[440px]"
+        />
+      </div>
+    ),
+    reason: <>Both asymptotes labelled with equations and all three intercepts with coordinates; the symmetry about <Katex tex="x=-3" /> visible.</>,
+  },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Region: } -2\le x\le0 \text{ (between } x=-2 \text{ and the } y\text{-axis)}" />,
-    reason: <>The four boundaries named in the question are <Katex tex="x=-2" />, the <Katex tex="x" />-axis, the <Katex tex="y" />-axis and the curve. The terminals are <Katex tex="-2" /> and <Katex tex="0" /> — not an <Katex tex="x" />-intercept, which is the report's first named error.</>,
+    reason: <>The four boundaries named in the question are <Katex tex="x=-2" />, the <Katex tex="x" />-axis, the <Katex tex="y" />-axis and the curve. The terminals are <Katex tex="-2" /> and <Katex tex="0" /> — not an <Katex tex="x" />-intercept, which the report notes some students used.</>,
   },
   {
     working: <Katex display tex="g(-2) = 1-2 = -1, \qquad g(0) = -\frac{17}{9}" />,
-    reason: 'Both negative, so the curve lies entirely below the axis across this strip.',
+    reason: <>Both negative, so the curve lies entirely below the axis across this strip.</>,
   },
   {
     working: <Katex display tex="A = \int_{-2}^{0}\bigl|g(x)\bigr|\,dx = \int_{-2}^{0}\left(2-\frac{1}{(x+3)^2}\right)dx" />,
-    reason: 'Flipping the integrand up front is cleaner than integrating and apologising for a negative afterwards.',
+    reason: <>Flipping the integrand up front is cleaner than integrating and apologising for a negative afterwards.</>,
   },
   {
     working: <Katex display tex="= \left[2x+\frac{1}{x+3}\right]_{-2}^{0}" />,
@@ -84,7 +103,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = \frac{10}{3} \ \text{square units}}" />,
-    reason: <>About <Katex tex="3.33" />. If you integrate <Katex tex="g" /> as it stands you get <Katex tex="-\tfrac{10}{3}" />; say <em>why</em> you are taking the positive value, rather than writing <Katex tex="-\tfrac{10}{3}=\tfrac{10}{3}" />, which is simply false.</>,
+    reason: <>About <Katex tex="3.33" />. If you integrate <Katex tex="g" /> as it stands you get <Katex tex="-\tfrac{10}{3}" />; say <em>why</em> you are taking the positive value, rather than writing <Katex tex="-\tfrac{10}{3}=\tfrac{10}{3}" /> — which is false, and which the report notes many students wrote.</>,
   },
 ]
 
@@ -94,7 +113,7 @@ export default function MethodsQ3_2024Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 3 (5 marks)</p>
         <p>
-          Let <Katex tex="g:\mathbb{R}\setminus\{-3\}\to\mathbb{R}" />,{' '}
+          Let <Katex tex="g:R\setminus\{-3\}\to R" />,{' '}
           <Katex tex="g(x)=\dfrac{1}{(x+3)^2}-2" />.
         </p>
       </div>
@@ -116,27 +135,22 @@ export default function MethodsQ3_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sketch Truncus"
         marks={3}
         statement={
           <>
-            On the axes provided, sketch the graph of <Katex tex="y=g(x)" />, labelling all
+            On the axes below, sketch the graph of <Katex tex="y=g(x)" />, labelling all
             asymptotes with their equations and axis intercepts with their coordinates.
           </>
         }
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="A truncus with two branches rising steeply either side of the dashed asymptote x = −3, crossing the x-axis at −3 ± √2⁄2 and flattening towards the dashed asymptote y = −2, passing through (0, −17/9)"
-            className="w-full max-w-[440px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Area Under Curve"
         marks={2}
         statement={
           <>

@@ -11,9 +11,17 @@ const EXAM: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Some students did not recognise that the integral would involve a logarithmic
-      function. A common error was writing <Katex tex="\log_e(2x+3)" /> as the first step,
-      without accounting for the necessary factor of <Katex tex="\tfrac12" /> in front.
+      This question required students to antidifferentiate <Katex tex="g(x)" /> to obtain a{' '}
+      <Katex tex="\log_e" /> term plus the constant of integration, <Katex tex="c" />. Using the
+      condition <Katex tex="g(1)=0" /> allowed the value of <Katex tex="c" /> to be calculated.
+      Some students chose to take out a factor of <Katex tex="\dfrac{1}{2}" /> to obtain an
+      equivalent antiderivative{' '}
+      <Katex tex="\dfrac{1}{2}\log_e\left(x+\dfrac{3}{2}\right)+c" />. Upon substituting{' '}
+      <Katex tex="g(1)=0" /> this yielded the same answer for <Katex tex="g(x)" />. Some students
+      did not recognise that the integral would involve a logarithmic function. A common error was
+      writing <Katex tex="\ln(2x+3)+c" /> as the first step, without accounting for the necessary
+      factor of <Katex tex="\dfrac{1}{2}" /> in front of <Katex tex="\ln(2x+3)" />. A common
+      incorrect answer was <Katex tex="\log_e\left(\dfrac{2x+3}{5}\right)" />.
     </>
   ),
 }
@@ -21,11 +29,11 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = \int\frac{1}{2x+3}\,dx" />,
-    reason: 'A reciprocal of a linear expression, so the antiderivative is a logarithm.',
+    reason: <>A reciprocal of a linear expression, so the antiderivative is a logarithm.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\log_e(2x+3) = \frac{2}{2x+3}" />,
-    reason: <>Checking the derivative first shows where the <Katex tex="\tfrac12" /> comes from — the single most common slip was omitting it.</>,
+    reason: <>Checking the derivative first shows where the <Katex tex="\tfrac12" /> comes from — the report notes a common error was omitting it.</>,
   },
   {
     working: <Katex display tex="g(x) = \tfrac12\log_e(2x+3)+c" />,
@@ -33,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(1) = 0: \quad \tfrac12\log_e(5)+c = 0 \implies c = -\tfrac12\log_e(5)" />,
-    reason: 'Substituting the given condition.',
+    reason: <>Substituting the given condition.</>,
   },
   {
     working: <Katex display tex="\boxed{g(x) = \tfrac12\log_e(2x+3)-\tfrac12\log_e(5) = \tfrac12\log_e\!\left(\frac{2x+3}{5}\right)}" />,
@@ -48,8 +56,9 @@ export default function MethodsQ2_2025Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (2 marks)</p>
         <p>
           Let <Katex tex="g(x)" /> be a function defined for <Katex tex="x>-\tfrac32" /> so
-          that <Katex tex="g'(x)=\dfrac{1}{2x+3}" /> and <Katex tex="g(1)=0" />. Find{' '}
-          <Katex tex="g(x)" />.
+          that <Katex tex="g'(x)=\dfrac{1}{2x+3}" /> and <Katex tex="g(1)=0" />.
+          <br />
+          Find <Katex tex="g(x)" />.
         </p>
       </div>
 

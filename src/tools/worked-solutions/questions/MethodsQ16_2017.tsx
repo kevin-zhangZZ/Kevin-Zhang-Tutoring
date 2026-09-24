@@ -12,8 +12,11 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 2,
   comment: (
     <>
-      <Katex tex="X\sim\mathrm{Bi}(5,p)" />: <Katex tex="\Pr(X=0)=(1-p)^5=\tfrac{1}{243}" />, then{' '}
-      <Katex tex="\Pr(X>3)=\Pr(X=4)+\Pr(X=5)\approx0.4609" />.
+      <Katex tex="X\sim\mathrm{Bi}(5,p)" />
+      <br />
+      <Katex tex="\Pr(X=0)=\dbinom{5}{0}p^0(1-p)^5=\dfrac{1}{243},\ p=\dfrac23" />
+      <br />
+      <Katex tex="\Pr(X>3)=\Pr(X\ge4)=0.4609" />, correct to four decimal places
     </>
   ),
 }
@@ -33,7 +36,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Since <Katex tex="243=3^5" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{p = \frac23}" />,
+    working: <Katex display tex="p = \frac23" />,
+    reason: <>The probability that one Australian lives in a capital city.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \Pr(\hat P>0.6) &= \Pr(X>3) \\ &= \Pr(X=4)+\Pr(X=5) \end{aligned}" />,
@@ -49,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(\hat P>0.6) = \frac{80}{243}+\frac{32}{243} = \frac{112}{243} \approx 0.4609}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option E (13%), <Katex tex="0.7901" />, is <Katex tex="\Pr(X\ge3)" /> — it includes <Katex tex="\hat P=0.6" /> itself; option D is the complement of the answer.</>,
   },
 ]
 

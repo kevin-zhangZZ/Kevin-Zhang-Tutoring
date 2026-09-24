@@ -14,8 +14,10 @@ const EXAM: SAExaminerStats = {
     <>
       Most students recognised that this was a separable differential equation. Occasional
       errors in integration were seen. Some students did not give their answer in the form of{' '}
-      <Katex tex="y" /> as a function of <Katex tex="x" /> as required, instead leaving{' '}
-      <Katex tex="y^2=\ldots" />. Some students failed to choose the correct sign.
+      <Katex tex="y" /> as a function of <Katex tex="x" /> as required by the question, instead
+      writing their final answer as <Katex tex="y^2=5-\sqrt{x^2+1}" />. Some students failed to
+      choose the correct sign and gave <Katex tex="y=\sqrt{5-\sqrt{x^2+1}}" /> as their
+      answer.
     </>
   ),
 }
@@ -23,15 +25,15 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x+2y\sqrt{x^2+1}\,\frac{dy}{dx} = 0" />,
-    reason: 'The equation as given.',
+    reason: <>The equation as given.</>,
   },
   {
     working: <Katex display tex="2y\,\frac{dy}{dx} = \frac{-x}{\sqrt{x^2+1}}" />,
-    reason: 'Separating: all the y on the left, all the x on the right.',
+    reason: <>Separating: all the y on the left, all the x on the right.</>,
   },
   {
     working: <Katex display tex="\int 2y\,dy = -\int x\left(x^2+1\right)^{-1/2}dx" />,
-    reason: 'Integrating both sides.',
+    reason: <>Integrating both sides.</>,
   },
   {
     working: <Katex display tex="y^2 = -\left(x^2+1\right)^{1/2}+c" />,
@@ -43,11 +45,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y^2 = 5-\sqrt{x^2+1}" />,
-    reason: <>Stopping here loses marks: the question asks for <Katex tex="y" /> as a function of <Katex tex="x" />.</>,
+    reason: <>Not the place to stop: the question asks for <Katex tex="y" /> as a function of <Katex tex="x" />, and the report notes some students gave this as their final answer.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -\sqrt{5-\sqrt{x^2+1}}}" />,
-    reason: <>The negative root, because <Katex tex="y(0)=-2<0" /> and a solution of a differential equation is continuous — it cannot jump branches. Check: at <Katex tex="x=0" />, <Katex tex="-\sqrt{5-1}=-2" /> ✓.</>,
+    reason: <>The negative root, because <Katex tex="y(0)=-2<0" /> and a solution of a differential equation is continuous — it cannot jump branches. Check: at <Katex tex="x=0" />, <Katex tex="-\sqrt{5-1}=-2" /> ✓. The report notes some students failed to choose the correct sign.</>,
   },
 ]
 
@@ -66,8 +68,8 @@ export default function SpecialistQ7_2024Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Two of the four marks sit at the very end. "Expressing <Katex tex="y" /> as a
-            function of <Katex tex="x" />" rules out leaving the answer as{' '}
+            The last steps matter. "Expressing <Katex tex="y" /> as a function of{' '}
+            <Katex tex="x" />" rules out leaving the answer as{' '}
             <Katex tex="y^2=\ldots" />, and taking the square root then forces a choice of
             sign.
           </p>

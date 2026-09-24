@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import regionSrc from './meth-2018exam1-q8-region.png'
+import regionSrc from './meth-2018e1-q8-region.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [13, 87],
@@ -34,8 +34,8 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       This question was attempted well, although students commonly left out the{' '}
-      <Katex tex="dx" />, or found the sum of the two areas rather than the difference of the
-      two functions.
+      <Katex tex="dx" />, or found the sum of the integral of <Katex tex="f(x)" /> and{' '}
+      <Katex tex="g(x)" />.
     </>
   ),
 }
@@ -66,8 +66,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Factor out the common <Katex tex="x\,e^{kx}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(x) = x\,e^{kx}(kx+2)} \quad \checkmark" />,
-    reason: <>Matches the required form. On a "show that" the full factorising must be written down — you cannot leave the reader to do the last step.</>,
+    working: <Katex display tex="\boxed{f'(x) = x\,e^{kx}(kx+2)}" />,
+    reason: <>As required. On a "show that" the full factorising must be written down — you cannot leave the reader to do the last step.</>,
   },
 ]
 
@@ -100,35 +100,27 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={regionSrc} alt="VCAA's figure: the curve f above the x-axis and g below it, both starting at the origin and diverging, with the region between them shaded from x = 0 to the vertical line x = 2" className="w-full max-w-[420px]" />
-      </div>
-    ),
-    reason: <>Read the boundaries off the figure: <Katex tex="f" /> is the upper curve, <Katex tex="g" /> the lower one, and the region runs from where they meet at <Katex tex="x=0" /> across to the line <Katex tex="x=2" />.</>,
-  },
-  {
     working: <Katex display tex="A = \int_0^2 \bigl(f(x)-g(x)\bigr)\,dx" />,
-    reason: <>Area between two curves is always <Katex tex="\int(\text{upper}-\text{lower})" />. The report flags students who added two separate areas instead — that double-counts nothing and mis-handles the part of <Katex tex="g" /> below the axis, where the "area" and the integral differ in sign.</>,
+    reason: <>Read the boundaries off the figure: <Katex tex="f" /> is the upper curve, <Katex tex="g" /> the lower one, and the region runs from where they meet at <Katex tex="x=0" /> across to the line <Katex tex="x=2" />. Area between two curves is <Katex tex="\int(\text{upper}-\text{lower})" />. The report says students commonly found the sum of the integrals of <Katex tex="f(x)" /> and <Katex tex="g(x)" /> instead — since <Katex tex="g" /> is below the axis, that subtracts the lower area rather than adding it.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \int_0^2 \left(x^2e^{kx} + \frac{2x\,e^{kx}}{k}\right)dx}" />,
-    reason: <>Substituting the two rules: subtracting <Katex tex="g(x)=-\tfrac{2x e^{kx}}{k}" /> flips its sign to a plus. Keep the <Katex tex="dx" /> — the report names its omission explicitly.</>,
+    reason: <>Substituting the two rules: subtracting <Katex tex="g(x)=-\tfrac{2x e^{kx}}{k}" /> flips its sign to a plus. Keep the <Katex tex="dx" /> — the report says students commonly left it out.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = x\,e^{kx}(kx+2) = kx^2e^{kx} + 2x\,e^{kx}" />,
-    reason: <>Expanding part (a)'s answer. This is the connection the question is pointing at with "using your result from part a."</>,
+    reason: <>Expanding part a.'s answer. This is the connection the question is pointing at with "using your result from part a."</>,
   },
   {
     working: <Katex display tex="\frac{1}{k}f'(x) = x^2e^{kx} + \frac{2x\,e^{kx}}{k} = f(x)-g(x)" />,
-    reason: <>Dividing by <Katex tex="k" /> reproduces the integrand from part (c) <em>exactly</em>. The whole question is built around this: the awkward integral is really just <Katex tex="\tfrac1k f'" />, and the antiderivative of <Katex tex="f'" /> is <Katex tex="f" />.</>,
+    reason: <>Dividing by <Katex tex="k" /> reproduces the integrand from part c. <em>exactly</em>. The whole question is built around this: the awkward integral is really just <Katex tex="\tfrac1k f'" />, and the antiderivative of <Katex tex="f'" /> is <Katex tex="f" />.</>,
   },
   {
     working: <Katex display tex="A = \frac{1}{k}\int_0^2 f'(x)\,dx = \frac{1}{k}\Bigl[f(x)\Bigr]_0^2" />,
-    reason: <>No integration by parts needed. Without this step the integral is not doable by hand, which is why the report stresses that students who ignored part (a) struggled.</>,
+    reason: <>No integration by parts needed (it is not part of Methods anyway). The report says many students did not use their result from part a.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{k}\left(4e^{2k} - 0\right) = \frac{4e^{2k}}{k}" />,
@@ -154,13 +146,14 @@ export default function MethodsQ8_2018Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 8 (7 marks)</p>
         <p>
-          Let <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=x^2e^{kx}" />, where{' '}
+          Let <Katex tex="f:R\to R,\ f(x)=x^2e^{kx}" />, where{' '}
           <Katex tex="k" /> is a positive real constant.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={1}
         statement={<>Show that <Katex tex="f'(x)=x\,e^{kx}(kx+2)" />.</>}
         examinerReport={EXAM_A}
@@ -170,6 +163,7 @@ export default function MethodsQ8_2018Exam1() {
 
       <PartCard
         letter="b"
+        topic="Intersections"
         marks={2}
         statement={<>Find the value of <Katex tex="k" /> for which the graphs of <Katex tex="y=f(x)" /> and <Katex tex="y=f'(x)" /> have exactly one point of intersection.</>}
         examinerReport={EXAM_B}
@@ -207,6 +201,7 @@ export default function MethodsQ8_2018Exam1() {
 
       <PartCard
         letter="c"
+        topic="Definite Integral"
         marks={1}
         statement={<>Write down a definite integral that gives the value of <Katex tex="A" />.</>}
         examinerReport={EXAM_C}
@@ -216,15 +211,15 @@ export default function MethodsQ8_2018Exam1() {
 
       <PartCard
         letter="d"
+        topic="Area"
         marks={3}
         statement={<>Using your result from <b>part a.</b>, or otherwise, find the value of <Katex tex="k" /> such that <Katex tex="A=\dfrac{16}{k}" />.</>}
         examinerReport={EXAM_D}
       >
         <Background>
           <p>
-            "Using your result from part a." is not a suggestion. The integrand in part (c)
-            has no elementary antiderivative you could reach by hand on Exam 1 — unless you
-            notice it is a multiple of <Katex tex="f'" />, in which case the integral is just{' '}
+            "Using your result from part a." is not a suggestion. The integrand in part c. has
+            no antiderivative you can find with Methods techniques — unless you notice it is a multiple of <Katex tex="f'" />, in which case the integral is just{' '}
             <Katex tex="f" /> evaluated at the terminals. The question was built backwards
             from that identity.
           </p>

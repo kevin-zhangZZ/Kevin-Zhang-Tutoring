@@ -43,7 +43,7 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      A correct response to Question 6c.i. was generally followed by a correct answer to
+      A correct response to Question 6ci. was generally followed by a correct answer to
       this question. Some students did not explicitly test at the <Katex tex="5\%" /> level
       of significance. Two-tail approaches appeared occasionally.
     </>
@@ -124,7 +124,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{The sample supports an increase in the mean pollutant level.}}" />,
-    reason: <>Answer the question in words as well. The report says students who stopped at "reject <Katex tex="H_0" />" without an explicit conclusion lost the mark.</>,
+    reason: <>Answer the question in words as well, and say explicitly that the test is at the <Katex tex="5\%" /> level — the report notes students who did not. A two-tailed comparison is not appropriate here.</>,
   },
 ]
 
@@ -135,7 +135,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Cas fn="invNorm">invNorm(0.95, 1.1, 0.032)</Cas>,
-    reason: <>Inverse normal on the <em>left</em> tail, so use <Katex tex="0.95" /> rather than <Katex tex="0.05" />.</>,
+    reason: <>The inverse normal works with the area to the <em>left</em>, so enter <Katex tex="0.95" />, not <Katex tex="0.05" />. Keep full precision until the end — the report says rounding errors cost marks.</>,
   },
   {
     working: <Katex display tex="\bar x_c = 1.1+1.6449\times0.032" />,
@@ -179,12 +179,15 @@ export default function SpecialistQ6_2016Exam2() {
 
       <PartCard
         letter="a"
+        topic="Sample Mean"
         marks={2}
         statement={
           <>
             Let the random variable <Katex tex="\bar X" /> represent the mean level of
             pollutant in the measurements from a random sample of <Katex tex="25" /> sites
-            along the river. Write down the mean and standard deviation of{' '}
+            along the river.
+            <br />
+            Write down the mean and standard deviation of{' '}
             <Katex tex="\bar X" />.
           </>
         }
@@ -204,6 +207,7 @@ export default function SpecialistQ6_2016Exam2() {
 
       <PartCard
         letter="b"
+        topic="Hypotheses"
         marks={2}
         statement={
           <>
@@ -232,6 +236,7 @@ export default function SpecialistQ6_2016Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="p-Value"
         marks={2}
         statement={
           <>
@@ -245,6 +250,7 @@ export default function SpecialistQ6_2016Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Conclusion"
         marks={1}
         statement={
           <>
@@ -260,6 +266,7 @@ export default function SpecialistQ6_2016Exam2() {
 
       <PartCard
         letter="d"
+        topic="Critical Value"
         marks={1}
         statement={
           <>
@@ -275,19 +282,16 @@ export default function SpecialistQ6_2016Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p>
-          Suppose that for a level of significance of <Katex tex="2.5\%" />, we find that{' '}
-          <Katex tex="\bar x_c=1.163" />. That is,{' '}
-          <Katex tex="\Pr\!\left(\bar X>1.163 \mid \mu=1.1\right)=0.025" />.
-        </p>
-      </div>
-
       <PartCard
         letter="e"
+        topic="Type II Error"
         marks={1}
         statement={
           <>
+            Suppose that for a level of significance of <Katex tex="2.5\%" />, we find that{' '}
+            <Katex tex="\bar x_c=1.163" />. That is,{' '}
+            <Katex tex="\Pr\!\left(\bar X>1.163 \mid \mu=1.1\right)=0.025" />.
+            <br />
             If the mean level of pollutant in the river, <Katex tex="\mu" />, is in fact{' '}
             <Katex tex="1.2" /> mg/L after the spill, find{' '}
             <Katex tex="\Pr\!\left(\bar X<1.163 \mid \mu=1.2\right)" />. Give your answer

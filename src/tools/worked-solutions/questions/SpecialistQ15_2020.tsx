@@ -22,15 +22,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Sigma\underset{\sim}{F} = \left(4\underset{\sim}{i}-2\underset{\sim}{j}\right)+\left(2\underset{\sim}{i}+5\underset{\sim}{j}\right) = 6\underset{\sim}{i}+3\underset{\sim}{j}" />,
-    reason: 'Add the two forces component by component before doing anything else.',
+    reason: <>Add the two forces component by component before doing anything else.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a} = \frac{\Sigma\underset{\sim}{F}}{m} = \frac{6\underset{\sim}{i}+3\underset{\sim}{j}}{3} = 2\underset{\sim}{i}+\underset{\sim}{j}" />,
-    reason: 'Constant, because both forces are.',
+    reason: <>Constant, because both forces are.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v} = t\left(2\underset{\sim}{i}+\underset{\sim}{j}\right)" />,
-    reason: 'Antidifferentiating once; the particle starts at rest, so the constant vector is zero.',
+    reason: <>Antidifferentiating once; the particle starts at rest, so the constant vector is zero.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r} = \left(\underset{\sim}{i}+\underset{\sim}{j}\right)+\tfrac{t^2}{2}\left(2\underset{\sim}{i}+\underset{\sim}{j}\right)" />,
@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 1+t^2, \quad y = 1+\tfrac{t^2}{2}" />,
-    reason: 'Reading off the components.',
+    reason: <>Reading off the components.</>,
   },
   {
     working: <Katex display tex="t^2 = x-1 \implies y = 1+\frac{x-1}{2}" />,
@@ -60,8 +60,9 @@ export default function SpecialistQ15_2020() {
           <Katex tex="\underset{\sim}{F}_B=2\underset{\sim}{i}+5\underset{\sim}{j}" />, act on
           a particle of mass 3 kg. The particle is initially at rest at position{' '}
           <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}" />. All force components are
-          measured in newtons and displacements are measured in metres. The cartesian
-          equation of the path of the particle is
+          measured in newtons and displacements are measured in metres.
+          <br />
+          The cartesian equation of the path of the particle is
         </p>
       }
       background={

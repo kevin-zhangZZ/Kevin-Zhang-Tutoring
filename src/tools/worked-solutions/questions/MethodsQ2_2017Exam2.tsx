@@ -8,8 +8,8 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import p1Src from './meth-2017exam2-q2-p1.png'
-import p2Src from './meth-2017exam2-q2-p2.png'
+import p1Src from './meth-2017e2-q2-p1.png'
+import p2Src from './meth-2017e2-q2-p2.png'
 
 // Dropbox share links for the tutor's video walkthrough of parts d, f, g, h, converted to
 // `raw=1` so the browser can stream them directly. All were already H.264/AAC — just
@@ -37,9 +37,11 @@ const EXAM_C: SAExaminerStats = {
     <>
       Most students were able to find the derivative. There were occasions when{' '}
       <Katex tex="\tfrac{y_2-y_1}{x_2-x_1}" /> was attempted (average rate of change). Some
-      students had their technology in degree instead of radian mode. Many could not find the
-      maximum rate of change. A common incorrect answer was 15 minutes. Many found the value
-      of <Katex tex="t" /> for the maximum value of <Katex tex="h" />.
+      students had their technology in degree instead of radian mode, giving{' '}
+      <Katex tex="h'(t)=\dfrac{11\pi^2\sin\!\left(\frac{\pi t}{15}\right)}{540}" />. Many could not
+      find the maximum rate of change. A common incorrect answer was 15 minutes. Many found the
+      value of <Katex tex="t" /> for the maximum value of <Katex tex="h" />. Others gave a
+      general solution or two <Katex tex="t" /> values.
     </>
   ),
 }
@@ -50,10 +52,15 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Many students knew to get <Katex tex="\tan^{-1}\!\left(\tfrac{65}{500}\right)" /> but
-      they did not specify degrees for their technology. A common incorrect answer was{' '}
-      <Katex tex="\tan^{-1}\!\left(\tfrac{55}{500}\right)=6.28" />. Some used{' '}
-      <Katex tex="\tan\!\left(\tfrac{65}{500}\right)" /> instead of{' '}
-      <Katex tex="\tan^{-1}" />. Others used <Katex tex="\sin^{-1}" />.
+      they did not specify 'degree' for their technology. A common incorrect answer was{' '}
+      <Katex tex="\theta=\tan^{-1}\!\left(\tfrac{55}{500}\right)=6.28^\circ" />. Some used{' '}
+      <Katex tex="\theta=\tan\!\left(\tfrac{65}{500}\right)" /> instead of{' '}
+      <Katex tex="\theta=\tan^{-1}\!\left(\tfrac{65}{500}\right)" />. Others used{' '}
+      <Katex tex="\theta=\sin^{-1}\!\left(\tfrac{65}{500}\right)" />.
+      <br />
+      <br />
+      Students should be familiar with the relevant functionality for the context and select it
+      appropriately.
     </>
   ),
 }
@@ -61,7 +68,13 @@ const EXAM_D: SAExaminerStats = {
 const EXAM_E: SAExaminerStats = {
   marks: [10, 91],
   average: 0.9,
-  comment: <>This question was answered well. There was no need to rationalise the denominator.</>,
+  comment: (
+    <>
+      This question was answered well. Some students wrote{' '}
+      <Katex tex="\dfrac{dy}{dx}=\dfrac{x}{\sqrt{3025-x^2}}" />. There was no need to rationalise
+      the denominator.
+    </>
+  ),
 }
 
 const EXAM_F: SAExaminerStats = {
@@ -134,7 +147,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin\!\left(\frac{\pi t}{15}\right)=1 \implies \frac{\pi t}{15}=\frac{\pi}{2}" />,
-    reason: <>The rate is greatest when the sine hits its maximum of <Katex tex="1" />, not when <Katex tex="h" /> is greatest. That confusion is the report's main complaint here.</>,
+    reason: <>The rate is greatest when the sine hits its maximum of <Katex tex="1" />, not when <Katex tex="h" /> is greatest. The report notes many students found the time of maximum height instead.</>,
   },
   {
     working: <Katex display tex="\boxed{t = 7.5 \text{ minutes}}" />,
@@ -145,7 +158,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\tan(\theta) = \frac{OC}{OB} = \frac{65}{500}" />,
-    reason: <>Triangle <Katex tex="OCB" /> is right-angled at <Katex tex="O" />. The opposite side is the height of the centre, <Katex tex="65" /> m — not the radius <Katex tex="55" />, which is the report's popular slip.</>,
+    reason: <>Triangle <Katex tex="OCB" /> is right-angled at <Katex tex="O" />. The opposite side is the height of the centre, <Katex tex="65" /> m — not the radius <Katex tex="55" />, which gives the report's common incorrect answer, 6.28°.</>,
   },
   {
     working: <Katex display tex="\theta = \tan^{-1}\!\left(\frac{65}{500}\right)" />,
@@ -179,7 +192,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m_{P_2B} = \frac{v-0}{u-500} = \frac{\sqrt{3025-u^2}+65}{u-500}" />,
-    reason: <>Rise over run between <Katex tex="P_2(u,v)" /> and <Katex tex="B(500,0)" />, with <Katex tex="v" /> replaced using the path equation. The report says this second expression is where most students stalled.</>,
+    reason: <>Rise over run between <Katex tex="P_2(u,v)" /> and <Katex tex="B(500,0)" />, with <Katex tex="v" /> replaced using the path equation. The report says many students could not find this second expression.</>,
   },
   {
     working: <Katex display tex="\frac{-u}{\sqrt{3025-u^2}} = \frac{\sqrt{3025-u^2}+65}{u-500}" />,
@@ -237,7 +250,7 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 7 \text{ minutes}}" />,
-    reason: <><Katex tex="6.978" /> minutes to the nearest minute. The report is blunt that writing "7 minutes" alone earned nothing — two marks demands the angle and the proportion.</>,
+    reason: <><Katex tex="6.978" /> minutes to the nearest minute. The report notes students who wrote "7 minutes" with no working — a two-mark question needs the angle and the proportion shown.</>,
   },
 ]
 
@@ -260,6 +273,7 @@ export default function MethodsQ2_2017Exam2() {
 
       <PartCard
         letter="a"
+        topic="Max & Min"
         marks={1}
         statement={
           <>
@@ -271,12 +285,13 @@ export default function MethodsQ2_2017Exam2() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>For how much time is Sammy in the capsule?</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Period" marks={1} statement={<>For how much time is Sammy in the capsule?</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
       <PartCard
         letter="c"
+        topic="Rate of Change"
         marks={2}
         statement={
           <>
@@ -309,6 +324,7 @@ export default function MethodsQ2_2017Exam2() {
 
       <PartCard
         letter="d"
+        topic="Trig Ratio"
         marks={1}
         statement={
           <>
@@ -329,7 +345,7 @@ export default function MethodsQ2_2017Exam2() {
         </p>
       </div>
 
-      <PartCard letter="e" marks={1} statement={<>Find <Katex tex="\dfrac{dy}{dx}" />.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Derivative" marks={1} statement={<>Find <Katex tex="\dfrac{dy}{dx}" />.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
@@ -351,6 +367,7 @@ export default function MethodsQ2_2017Exam2() {
 
       <PartCard
         letter="f"
+        topic="Tangent Line"
         marks={3}
         statement={
           <>
@@ -381,6 +398,7 @@ export default function MethodsQ2_2017Exam2() {
 
       <PartCard
         letter="g"
+        topic="Angle"
         marks={1}
         statement={
           <>
@@ -395,6 +413,7 @@ export default function MethodsQ2_2017Exam2() {
 
       <PartCard
         letter="h"
+        topic="Time Interval"
         marks={2}
         statement={
           <>

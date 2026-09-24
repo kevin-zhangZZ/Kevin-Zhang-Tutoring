@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z^2 = -8i}" />,
-    reason: <>Option A.</>,
+    reason: <>Matches option <b>A</b>. Option E, <Katex tex="-4i" />, points the right way but squares the modulus to 4 instead of 8.</>,
   },
 ]
 

@@ -38,11 +38,11 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      This question was answered poorly. A complete solution required setting up an equation
-      for the area in one variable and then testing turning points <em>as well as endpoints</em>{' '}
-      to determine the minimum value. Many students set up overly complex equations for the
-      area or had difficulty differentiating. Other students simply assumed{' '}
-      <Katex tex="u=6" />.
+      This question was answered poorly. A complete solution to this question required
+      setting up an equation for the area in one variable and then testing turning points as
+      well as endpoints to determine the minimum value. Many students set up overly complex
+      equations for the area or had difficulty in differentiating their equation correctly.
+      Other students did the reverse by simply assuming <Katex tex="u=6" />.
     </>
   ),
 }
@@ -52,9 +52,10 @@ const EXAM_BIII: SAExaminerStats = {
   average: 0.1,
   comment: (
     <>
-      This question was also answered poorly. Many students who attempted it incorrectly
-      assumed that the maximum area occurred at a local stationary point. Some students gave
-      only a partial answer and not the values for both <Katex tex="u" /> and the area.
+      This question was also answered poorly. Many students who attempted this question
+      incorrectly assumed that the value of the maximum area occurred at a local stationary
+      point. Some students only gave a partial answer to the question and not the values for
+      both <Katex tex="u" /> and area.
     </>
   ),
 }
@@ -131,7 +132,7 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>The stationary value.</>,
   },
   {
-    working: <Katex display tex="A\!\left(\tfrac52\right) = \frac{12.5}{0.5}-8 = 17, \qquad A(6) = \frac{72}{4}-8 = 10" />,
+    working: <Katex display tex="A\!\left(\tfrac52\right) = \frac{25/2}{1/2}-8 = 17, \qquad A(6) = \frac{72}{4}-8 = 10" />,
     reason: <>Both endpoints must be checked on a closed interval — the step the report singles out.</>,
   },
   {
@@ -185,6 +186,7 @@ export default function MethodsQ10_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Tangent Line"
         marks={3}
         statement={
           <>
@@ -213,6 +215,7 @@ export default function MethodsQ10_2014Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Line Equation"
         marks={1}
         statement={<>Find an expression for <Katex tex="v" /> in terms of <Katex tex="u" />.</>}
         examinerReport={EXAM_BI}
@@ -222,6 +225,7 @@ export default function MethodsQ10_2014Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Optimisation"
         marks={2}
         statement={
           <>
@@ -236,6 +240,7 @@ export default function MethodsQ10_2014Exam1() {
 
       <PartCard
         letter="b.iii"
+        topic="Optimisation"
         marks={1}
         statement={
           <>

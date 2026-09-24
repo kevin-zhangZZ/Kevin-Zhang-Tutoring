@@ -51,7 +51,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{1}{27}\int_1^4 \left(u^{5/2} - 2u^{3/2} + u^{1/2}\right) du}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option C (27%) forgets the <Katex tex="\tfrac13" /> from <Katex tex="dx=\tfrac{du}3" />; options A and D keep the old terminals 0 and 1.</>,
   },
 ]
 

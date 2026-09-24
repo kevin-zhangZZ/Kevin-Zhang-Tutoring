@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        // Aptos first: it's used wherever it's installed (it isn't a web font, so it can't be
+        // served to visitors); everyone else gets the fonts after it.
+        sans: ['Aptos', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Aptos Display"', 'Aptos', '"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Trig ratio colors (accessible in both light and dark)

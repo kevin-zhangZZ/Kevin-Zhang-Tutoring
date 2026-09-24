@@ -23,10 +23,10 @@ const EXAM_B: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      Some students did not apply the formula for the variance of a sum of independent
-      random variables, frequently forgetting to square either the cost values or the
-      standard deviation at each stage. Of those who applied the formula correctly, some
-      made arithmetic errors.
+      Some students did not apply the formula for the variance of a sum of independent and
+      identically distributed random variables, frequently forgetting to square either the cost
+      values or the standard deviation at each stage. Of those students who correctly applied
+      the formula, some made arithmetic errors.
     </>
   ),
 }
@@ -36,10 +36,14 @@ const EXAM_C: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
+      Students needed to find <Katex tex="\Pr\left(W_1-W_2>0\right)" /> or (equivalently){' '}
+      <Katex tex="\Pr\left(W_2-W_1<0\right)" />.
+      <br />
       This required finding the expected value and the variance (or going directly to the
-      standard deviation) of the difference of the two random variables. Some arithmetic
-      errors were observed and some students gave the correct final answer with little or no
-      evidence of appropriate working.
+      standard deviation) of the difference of the two random variables. Using the given result
+      allowed the final answer to be obtained. Some arithmetic errors were observed and some
+      students gave the correct final answer with little or no evidence of appropriate
+      working.
     </>
   ),
 }
@@ -47,11 +51,11 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="T = W_1+W_2+W_3" />,
-    reason: 'Each stage starts as the previous one ends, so the total time is the plain sum.',
+    reason: <>Each stage starts as the previous one ends, so the total time is the plain sum.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(T) = 1.0+1.5+2.0 = 4.5 \ \text{hours}" />,
-    reason: 'Means always add.',
+    reason: <>Means always add.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(T) = 0.3^2+0.4^2+0.5^2 = 0.09+0.16+0.25" />,
@@ -66,19 +70,19 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="C = 10W_1+20W_2+15W_3" />,
-    reason: 'Cost is a rate in dollars per hour times a number of hours, stage by stage.',
+    reason: <>Cost is a rate in dollars per hour times a number of hours, stage by stage.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(aX) = a^2\,\mathrm{Var}(X)" />,
-    reason: 'The rule that does the work: a constant multiplier comes out squared.',
+    reason: <>The rule that does the work: a constant multiplier comes out squared.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(C) = 10^2(0.3)^2+20^2(0.4)^2+15^2(0.5)^2" />,
-    reason: 'Both the cost and the standard deviation are squared at each stage — the report names forgetting either one as the common error.',
+    reason: <>Both the cost and the standard deviation are squared at each stage — the report notes students frequently forgot to square one or the other.</>,
   },
   {
     working: <Katex display tex="= 100(0.09)+400(0.16)+225(0.25) = 9+64+56.25" />,
-    reason: 'Three terms.',
+    reason: <>Three terms.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{Var}(C) = 129.25 \ \text{dollars}^2}" />,
@@ -89,15 +93,15 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(W_2<W_1) = \Pr(W_2-W_1<0)" />,
-    reason: 'Comparing two random variables is always a question about their difference.',
+    reason: <>Comparing two random variables is always a question about their difference.</>,
   },
   {
     working: <Katex display tex="D = W_2-W_1 \ \text{ is normal, as a linear combination of independent normals}" />,
-    reason: 'This sentence is part of the working — it is what licenses using the standard normal at the end.',
+    reason: <>This sentence is part of the working — it is what licenses using the standard normal at the end.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(D) = 1.5-1.0 = 0.5" />,
-    reason: 'Means subtract.',
+    reason: <>Means subtract.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(D) = (0.4)^2+(0.3)^2 = 0.25 \implies \mathrm{sd}(D) = 0.5" />,
@@ -105,15 +109,15 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(D<0) = \Pr\!\left(Z<\frac{0-0.5}{0.5}\right) = \Pr(Z<-1)" />,
-    reason: 'Standardising. The deliberately tidy numbers point straight at the given result.',
+    reason: <>Standardising. The deliberately tidy numbers point straight at the given result.</>,
   },
   {
     working: <Katex display tex="\Pr(Z<-1) = \frac{1-\Pr(-1<Z<1)}{2} = \frac{1-0.68}{2}" />,
-    reason: 'By symmetry the two tails outside ±1 are equal, so halve what is left over.',
+    reason: <>By symmetry the two tails outside ±1 are equal, so halve what is left over.</>,
   },
   {
     working: <Katex display tex="\boxed{0.16}" />,
-    reason: 'Two decimal places, as asked. Sensible: Stage 2 averages half an hour longer than Stage 1, so it is the shorter one only about one time in six.',
+    reason: <>Two decimal places, as asked. Sensible: Stage 2 averages half an hour longer than Stage 1, so it is the shorter one only about one time in six.</>,
   },
 ]
 
@@ -181,6 +185,7 @@ export default function SpecialistQ6_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sum of Normals"
         marks={1}
         statement={<>Find the mean and the variance of the total time to produce one weed trimmer.</>}
         examinerReport={EXAM_A}
@@ -190,6 +195,7 @@ export default function SpecialistQ6_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Linear Combination"
         marks={2}
         statement={<>Find the variance of the total cost to produce one weed trimmer.</>}
         examinerReport={EXAM_B}
@@ -199,14 +205,17 @@ export default function SpecialistQ6_2024Exam1() {
 
       <PartCard
         letter="c"
+        topic="Difference of Normals"
         marks={2}
         statement={
           <>
             If a single weed trimmer is produced, find the probability that the time spent at
-            Stage 2 will be less than the time spent at Stage 1. Give your answer correct to
-            two decimal places. Use <Katex tex="\Pr(-1<Z<1)=0.68" />, where{' '}
-            <Katex tex="Z" /> is the standard normal variable with mean 0 and standard
-            deviation 1.
+            Stage 2 will be less than the time spent at Stage 1.
+            <br />
+            Give your answer correct to two decimal places.
+            <br />
+            Use <Katex tex="\Pr(-1<Z<1)=0.68" />, where <Katex tex="Z" /> is the standard normal
+            variable with mean 0 and standard deviation 1.
           </>
         }
         examinerReport={EXAM_C}

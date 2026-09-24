@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = \tfrac97}" />,
-    reason: <>The question asks for <Katex tex="b" />, not for the integral.</>,
+    reason: <>The question asks for <Katex tex="b" />, not for the integral. Sanity check: on <Katex tex="[4,5]" /> the integrand runs from <Katex tex="\tfrac27" /> down to <Katex tex="\tfrac29" />, so the integral is roughly <Katex tex="\tfrac14" /> — and <Katex tex="\log_e\!\left(\tfrac97\right)\approx0.25" /> ✓.</>,
   },
 ]
 
@@ -49,6 +49,8 @@ export default function MethodsQ2_2014Exam1() {
           Let <Katex tex="\displaystyle\int_4^5\frac{2}{2x-1}\,dx = \log_e(b)" />. Find the
           value of <Katex tex="b" />.
         </p>
+      </Background>
+      <Background>
         <p>
           The answer is already promised to be a single logarithm, so the last step is always
           going to be combining two logs into one — and that means <Katex tex="b" /> will be a

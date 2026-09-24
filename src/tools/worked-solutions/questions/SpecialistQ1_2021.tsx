@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x \in \left[-\tfrac\pi6,\ \pi\right] \implies 3x \in \left[-\tfrac\pi2,\ 3\pi\right]" />,
-    reason: 'Transform the interval before counting — that is where most of the wrong answers come from.',
+    reason: <>Transform the interval before counting.</>,
   },
   {
     working: <Katex display tex="\cos(u) = -\tfrac23, \ u\in\left[-\tfrac\pi2,3\pi\right]: \ u = 2.30,\ 3.98,\ 8.58" />,
@@ -39,7 +39,9 @@ export default function SpecialistQ1_2021() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f(x)=\dfrac{1}{\sec(3x)+\tfrac32}" />. The number of asymptotes
+          Let <Katex tex="f(x)=\dfrac{1}{\sec(3x)+\tfrac32}" />.
+          <br />
+          The number of asymptotes
           that the graph of <Katex tex="f" /> has in the interval{' '}
           <Katex tex="\left[-\tfrac\pi6,\ \pi\right]" /> is
         </p>

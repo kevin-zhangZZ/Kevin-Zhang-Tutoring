@@ -9,20 +9,31 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 13, B: 13, C: 70, D: 4 },
   answer: 'C',
+  comment: (
+    <>
+      Given <Katex tex="z=1+\sqrt{3}i," /> then
+      <br />
+      <Katex tex="\bar{z}=1-\sqrt{3}i" />
+      <br />
+      <Katex tex="-\bar{z}=-1+\sqrt{3}i" />
+      <br />
+      <Katex tex="\therefore" /> Reflected in imaginary axis
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z = 1+\sqrt3\,i" />,
-    reason: 'The point (1, √3) on the Argand diagram.',
+    reason: <>The point (1, √3) on the Argand diagram.</>,
   },
   {
     working: <Katex display tex="\bar{z} = 1-\sqrt3\,i" />,
-    reason: 'Conjugation reflects in the real axis.',
+    reason: <>Conjugation reflects in the real axis.</>,
   },
   {
     working: <Katex display tex="-\bar{z} = -1+\sqrt3\,i" />,
-    reason: 'Negating rotates by 180° about the origin.',
+    reason: <>Negating rotates by 180° about the origin.</>,
   },
   {
     working: <Katex display tex="(1,\sqrt3) \mapsto (-1,\sqrt3)" />,
@@ -30,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{reflection in the imaginary axis}}" />,
-    reason: <>Option <b>C</b>. Reflecting then rotating by 180° is the same single reflection in the perpendicular axis — true for <em>every</em> <Katex tex="z" />, so no calculation with these particular numbers is really needed. Option <b>A</b> describes <Katex tex="\bar{z}" /> alone.</>,
+    reason: <>Matches option <b>C</b>. Reflecting then rotating by 180° is the same single reflection in the perpendicular axis — true for <em>every</em> <Katex tex="z" />, so no calculation with these particular numbers is really needed. Option <b>A</b> describes <Katex tex="\bar{z}" /> alone.</>,
   },
 ]
 

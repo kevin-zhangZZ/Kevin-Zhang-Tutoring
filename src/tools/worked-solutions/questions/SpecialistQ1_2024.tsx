@@ -11,8 +11,8 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'C',
   comment: (
     <>
-      Asked for the contrapositive — therefore switch the hypothesis and the conclusion, and
-      negate both.
+      Asked for contrapositive – therefore, switch the hypothesis and the conclusion and negate
+      both.
     </>
   ),
 }
@@ -20,11 +20,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P \implies Q \quad\text{has contrapositive}\quad \neg Q \implies \neg P" />,
-    reason: 'Both halves are negated and their order is swapped. Doing only one of the two gives the converse or the inverse instead.',
+    reason: <>Both halves are negated and their order is swapped. Doing only one of the two gives the converse or the inverse instead.</>,
   },
   {
     working: <Katex display tex="P: \ m+n\ge9, \qquad Q: \ m\ge5 \text{ or } n\ge5" />,
-    reason: 'Naming the two halves first keeps the negations straight.',
+    reason: <>Naming the two halves first keeps the negations straight.</>,
   },
   {
     working: <Katex display tex="\neg Q: \ \neg(m\ge5 \text{ or } n\ge5) \equiv m<5 \text{ and } n<5" />,
@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{if } m<5 \text{ and } n<5, \text{ then } m+n<9}" />,
-    reason: <>Option <b>C</b>. A contrapositive is logically equivalent to the original, and indeed both are true here: two integers each below 5 are each at most 4, so their sum is at most 8.</>,
+    reason: <>Matches option <b>C</b>. A contrapositive is logically equivalent to the original, and indeed both are true here: two integers each below 5 are each at most 4, so their sum is at most 8.</>,
   },
 ]
 

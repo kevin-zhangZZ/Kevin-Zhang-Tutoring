@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = \tfrac12, \quad P = \tfrac{2\pi}{3}}" />,
-    reason: <>Option <b>E</b>. Option <b>D</b> pairs the right amplitude with the period of <Katex tex="\sin(6x)" />.</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b> pairs the right amplitude with the period of <Katex tex="\sin(6x)" />.</>,
   },
 ]
 

@@ -16,9 +16,17 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Average value <Katex tex="= \dfrac{1}{b-(-a)}\displaystyle\int_{-a}^b p(x)\,dx = \tfrac34" />. The area under
-      the curve is also the area of the triangle plus the area of the trapezium:{' '}
-      <Katex tex="a^2+\tfrac12 b(2a+b)" />.
+      Average value = <Katex tex="\dfrac{1}{a+b}\displaystyle\int_{-a}^{b}p(x)\,dx=\dfrac34" />
+      <br />
+      The area under curve = area of the triangle + area of the trapezium ={' '}
+      <Katex tex="a^2+\dfrac{b(2a+b)}{2}" />
+      <br />
+      <Katex tex="\dfrac34(a+b)=\displaystyle\int_{-a}^{b}p(x)\,dx=a^2+\dfrac{b(2a+b)}{2}=1" />
+      <br />
+      Solve <Katex tex="\dfrac34(a+b)=1" /> and <Katex tex="a^2+\dfrac{b(2a+b)}{2}=1" /> for{' '}
+      <Katex tex="a" />, <Katex tex="a=\dfrac{\sqrt2}{3}" />,
+      <br />
+      <Katex tex="\Pr(X>0)=1-a^2=1-\left(\dfrac{\sqrt2}{3}\right)^2=\dfrac79" />
     </>
   ),
 }
@@ -30,11 +38,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Average value} = \frac{1}{b-(-a)}\int_{-a}^b p(x)\,dx = \frac{1}{a+b} = \frac34" />,
-    reason: 'Use the given average value directly — the integral is already known to be 1.',
+    reason: <>Use the given average value directly — the integral is already known to be 1.</>,
   },
   {
     working: <Katex display tex="a+b = \frac43" />,
-    reason: 'Rearrange.',
+    reason: <>Rearrange.</>,
   },
   {
     working: <Katex display tex="1 = \underbrace{a^2}_{\text{triangle}} + \underbrace{\tfrac12 b(2a+b)}_{\text{trapezium}} = a^2+ab+\tfrac{b^2}{2}" />,
@@ -54,7 +62,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>0) = 1-\frac29 = \frac79}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> <Katex tex="\left(\tfrac34\right)" /> is the average value itself, not a probability.</>,
   },
 ]
 
@@ -71,7 +79,7 @@ export default function MethodsQ18_2019() {
             <Katex tex="f(x) = \begin{cases} p(x) & -a\leq x\leq b \\ 0 & \text{otherwise} \end{cases}" />
           </p>
           <p className="mb-2">
-            and <Katex tex="a,b\in\mathbb{R}^+" />. The graph of the function <Katex tex="p" /> is shown below.
+            and <Katex tex="a,b\in R^+" />. The graph of the function <Katex tex="p" /> is shown below.
           </p>
           <p>
             It is known that the average value of <Katex tex="p" /> over the interval <Katex tex="[-a,b]" /> is{' '}

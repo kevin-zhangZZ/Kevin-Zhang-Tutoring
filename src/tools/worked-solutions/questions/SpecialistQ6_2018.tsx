@@ -46,7 +46,7 @@ export default function SpecialistQ6_2018() {
       question={
         <p>
           The complex numbers <Katex tex="z" />, <Katex tex="iz" /> and{' '}
-          <Katex tex="z+iz" />, where <Katex tex="z\in\mathbb{C}\setminus\{0\}" />, are
+          <Katex tex="z+iz" />, where <Katex tex="z\in C\setminus\{0\}" />, are
           plotted in the Argand plane, forming the vertices of a triangle. The area of this
           triangle is given by
         </p>

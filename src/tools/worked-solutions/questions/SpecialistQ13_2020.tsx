@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\lambda\underset{\sim}{i}+3\underset{\sim}{j}+2\underset{\sim}{k} = m\left(\underset{\sim}{i}+2\underset{\sim}{j}-\underset{\sim}{k}\right)+n\left(\underset{\sim}{i}+\underset{\sim}{k}\right)" />,
-    reason: 'Substituting the three vectors.',
+    reason: <>Substituting the three vectors.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{j}: \ 2m = 3 \implies m = \tfrac32" />,
@@ -26,15 +26,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{k}: \ -m+n = 2 \implies n = 2+\tfrac32 = \tfrac72" />,
-    reason: 'Now the second unknown falls out.',
+    reason: <>Now the second unknown falls out.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \ m+n = \lambda \implies \lambda = \tfrac32+\tfrac72" />,
-    reason: 'The remaining component equation fixes the parameter.',
+    reason: <>The remaining component equation fixes the parameter.</>,
   },
   {
     working: <Katex display tex="\boxed{\lambda = 5}" />,
-    reason: <>Matches option <b>E</b>. The determinant test gives the same thing: <Katex tex="\begin{vmatrix}1&2&-1\\\lambda&3&2\\1&0&1\end{vmatrix}=10-2\lambda=0" />.</>,
+    reason: <>Matches option <b>E</b>; every other option leaves the determinant non-zero. The determinant test gives the same thing: <Katex tex="\begin{vmatrix}1&2&-1\\\lambda&3&2\\1&0&1\end{vmatrix}=10-2\lambda=0" />.</>,
   },
 ]
 

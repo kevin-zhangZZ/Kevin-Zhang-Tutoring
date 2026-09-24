@@ -25,8 +25,8 @@ const EXAM_B: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Many students made up their working because the answer was given, rather than clearly
-      demonstrating progression to it.
+      Many students made-up their working as the answer was given, rather than clearly
+      demonstrating progression to the answer.
     </>
   ),
 }
@@ -36,9 +36,9 @@ const EXAM_C: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Many students were unsure of which terminals to use for the definite integral, opting
-      to use a generic <Katex tex="a" /> and <Katex tex="b" />. A common oversight was the
-      fact that the required area was below the <Katex tex="x" />-axis.
+      Many students were unsure of which terminals to use for the definite integral, opting to
+      use a generic 'a' and 'b'. A common oversight was the fact that the required area was
+      below the <Katex tex="x" />-axis. Other errors occurred in evaluation.
     </>
   ),
 }
@@ -60,7 +60,7 @@ const EXAM_DII: SAExaminerStats = {
   comment: (
     <>
       Some students tried to algebraically find the point of intersection of the graphs of
-      the function and its inverse, with limited progress. This question could also be solved
+      function and its inverse function, with limited progress. This question could also be solved
       by consideration of the point where the gradient of <Katex tex="g(x)" /> was equal to
       the gradient of <Katex tex="y=x" />.
     </>
@@ -97,7 +97,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2\log_e(x) = \int\bigl(2x\log_e(x)+x\bigr)dx" />,
-    reason: <>Reading the derivative backwards.</>,
+    reason: <>Reading the derivative backwards (up to a constant, which can be taken as <Katex tex="0" /> since any one antiderivative will do).</>,
   },
   {
     working: <Katex display tex="x^2\log_e(x) = 2\int x\log_e(x)\,dx + \frac{x^2}{2}" />,
@@ -108,8 +108,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Rearranging for the term we want.</>,
   },
   {
-    working: <Katex display tex="\int x\log_e(x)\,dx = \frac{x^2\log_e(x)}{2}-\frac{x^2}{4} \ \checkmark" />,
-    reason: <>Dividing by 2. Differentiating the given answer back also works, but the argument has to run one way or the other — the report warns against inventing steps because the answer is printed.</>,
+    working: <Katex display tex="\boxed{\int x\log_e(x)\,dx = \frac{x^2\log_e(x)}{2}-\frac{x^2}{4}}" />,
+    reason: <>Dividing by 2. As required. Differentiating the given answer back also works (the report's alternative), but the argument has to run one way or the other — the report notes many students made up their working because the answer was given.</>,
   },
 ]
 
@@ -210,7 +210,7 @@ export default function MethodsQ8_2020Exam1() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={graphSrc}
-            alt="A curve dipping just below the x-axis to a minimum labelled Q(a, f(a)), crossing back at (b, 0) and then rising steeply — from the original 2020 VCAA exam paper"
+            alt="The curve y = x log_e(x) starting at an open circle at O, dipping just below the x-axis to a minimum labelled Q(a, f(a)), crossing back at (b, 0) and then rising steeply — from the original 2020 VCAA exam paper"
             className="w-full max-w-[320px]"
           />
         </div>
@@ -222,6 +222,7 @@ export default function MethodsQ8_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Minimum Point"
         marks={2}
         statement={<>Find the coordinates of the point <Katex tex="Q" />.</>}
         examinerReport={EXAM_A}
@@ -231,6 +232,7 @@ export default function MethodsQ8_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Antiderivative"
         marks={1}
         statement={
           <>
@@ -247,6 +249,7 @@ export default function MethodsQ8_2020Exam1() {
 
       <PartCard
         letter="c"
+        topic="Area Under Curve"
         marks={2}
         statement={
           <>
@@ -260,13 +263,16 @@ export default function MethodsQ8_2020Exam1() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
-        Let <Katex tex="g:(a,\infty)\to R" />, <Katex tex="g(x)=f(x)+k" /> for{' '}
-        <Katex tex="k\in R" />.
+<div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          Let <Katex tex="g:(a,\infty)\to R" />, <Katex tex="g(x)=f(x)+k" /> for{' '}
+          <Katex tex="k\in R" />.
+        </p>
       </div>
 
       <PartCard
         letter="d.i"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -281,6 +287,7 @@ export default function MethodsQ8_2020Exam1() {
 
       <PartCard
         letter="d.ii"
+        topic="Inverse Intersections"
         marks={2}
         statement={
           <>

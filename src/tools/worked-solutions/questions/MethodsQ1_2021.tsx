@@ -14,15 +14,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{period of } \tan(nx) = \frac{\pi}{n}" />,
-    reason: <>Tangent repeats every <Katex tex="\pi" />, not every <Katex tex="2\pi" /> — that is where options D and E come from.</>,
+    reason: <>Tangent repeats every <Katex tex="\pi" />, not every <Katex tex="2\pi" />.</>,
   },
   {
     working: <Katex display tex="y = \tan\!\left(\frac{\pi x}{2}\right) \implies n = \frac{\pi}{2}" />,
-    reason: 'Reading the coefficient of x inside the function.',
+    reason: <>Reading the coefficient of <Katex tex="x" /> inside the function.</>,
   },
   {
     working: <Katex display tex="\text{period} = \frac{\pi}{\pi/2} = \boxed{2}" />,
-    reason: <>The <Katex tex="\pi" /> cancels, which is why the answer is a plain number. Matches option <b>B</b>.</>,
+    reason: <>The <Katex tex="\pi" /> cancels, which is why the answer is a plain number. Matches option <b>B</b>. Using <Katex tex="2\pi" /> in place of <Katex tex="\pi" /> gives 4, option C.</>,
   },
 ]
 

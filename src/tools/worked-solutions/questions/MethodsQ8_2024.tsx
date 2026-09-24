@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = 0 \iff f(x) = g(x)" />,
-    reason: 'An x-intercept of the difference is a point where the two functions are equal.',
+    reason: <>An x-intercept of the difference is a point where the two functions are equal.</>,
   },
   {
     working: <Katex display tex="h(1) = 0-3 = -3" />,
-    reason: 'Not zero.',
+    reason: <>Not zero.</>,
   },
   {
     working: <Katex display tex="h(2) = 4-4 = 0" />,
@@ -26,11 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(3) = 5-(-5) = 10" />,
-    reason: 'Not zero — and watch the double negative.',
+    reason: <>Not zero — and watch the double negative.</>,
   },
   {
     working: <Katex display tex="\boxed{(2,\,0)}" />,
-    reason: <>Option <b>A</b>. The word "must" matters: <Katex tex="h" /> may well have other intercepts between the tabulated values, but this is the only one the table <em>forces</em>. The wrong options all use the shared value 4 as an <Katex tex="x" />-coordinate.</>,
+    reason: <>Matches option <b>A</b>. The word "must" matters: <Katex tex="h" /> may well have other intercepts between the tabulated values, but this is the only one the table <em>forces</em>. Options <b>C</b> and <b>D</b> take function values (4 and 5) as <Katex tex="x" />-coordinates.</>,
   },
 ]
 
@@ -40,8 +40,8 @@ export default function MethodsQ8_2024() {
       question={
         <div className="flex flex-col gap-3">
           <p>
-            Some values of the functions <Katex tex="f:\mathbb{R}\to\mathbb{R}" /> and{' '}
-            <Katex tex="g:\mathbb{R}\to\mathbb{R}" /> are shown below.
+            Some values of the functions <Katex tex="f:R\to R" /> and{' '}
+            <Katex tex="g:R\to R" /> are shown below.
           </p>
           <div className="overflow-x-auto">
             <table className="text-[13.5px] border-collapse">

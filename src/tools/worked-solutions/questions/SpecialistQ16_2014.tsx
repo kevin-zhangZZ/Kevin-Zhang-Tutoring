@@ -44,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m = 5\sqrt3,\quad n = \tfrac{\sqrt3}{3}}" />,
-    reason: <>Option A.</>,
+    reason: <>Matches option <b>A</b>. Check: <Katex tex="16+75+9=100" /> ✓ and <Katex tex="-8+5\sqrt3\cdot\tfrac{1}{\sqrt3}+3=0" /> ✓.</>,
   },
 ]
 

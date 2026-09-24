@@ -1,15 +1,16 @@
 // 2018 Specialist Mathematics — Exam 2, Section B, Question 1 (11 marks). The composite
 // f(x) = 2arcsin(x²−1): its maximal domain and range, its graph, and a derivative that
 // splits either side of x = 0. Question text transcribed from the original paper. VCAA
-// supplied blank axes for parts (b) and (e)(iii), so both curves are this site's own
-// answer-sketches (matplotlib), drawn to VCAA's printed range and living in the solution
+// supplied blank axes for parts b. and e.iii. (−4.5 to 4.5 on both axes, gridlines every 0.5),
+// so both curves are this site's own answer-sketches (matplotlib), drawn to VCAA's printed
+// grid and living in the solution
 // rather than the stem (guide §7). Answers checked in sympy and against the VCAA
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import arcsinSrc from './spec-2018exam2-q1b-arcsin.png'
-import piecewiseSrc from './spec-2018exam2-q1e-piecewise.png'
+import arcsinSrc from './spec-2018e2-q1b-arcsin.png'
+import piecewiseSrc from './spec-2018e2-q1e-piecewise.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [16, 16, 68],
@@ -29,10 +30,16 @@ const EXAM_B: SAExaminerStats = {
   average: 2.3,
   comment: (
     <>
-      This question required students to label any endpoints and the <Katex tex="y" />
-      -intercept with their coordinates. Not doing this or giving incorrect coordinates
-      frequently caused students to miss out on marks. Students' graphs were not always
-      precise and accurate.
+      This question required students to label any endpoints and the{' '}
+      <Katex tex="y" />-intercept with their coordinates. Not doing this or giving incorrect
+      coordinates frequently caused students to miss out on marks.
+      <br />
+      Students' graphs were not always precise and accurate as required. For example, many
+      graphs had an obvious turning point at the <Katex tex="y" />-intercept rather than the
+      required shape. Other incorrect responses had endpoints in the incorrect location.
+      <br />
+      Students are advised to set viewing windows on technology to a scale that closely
+      matches the scale provided on the examination.
     </>
   ),
 }
@@ -73,9 +80,9 @@ const EXAM_EIII: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      The majority of students who answered Question 1e.ii. correctly were also able to
+      The majority of students who answered Question 1eii. correctly were also able to
       sketch a correct graph in this question. Attempts to sketch graphs of{' '}
-      <Katex tex="f'(x)" />, rather than <Katex tex="g(x)" />, were frequently seen.
+      <Katex tex="f'(x)" />, rather than <Katex tex="g(x)" />, were frequently made.
     </>
   ),
 }
@@ -115,10 +122,10 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={arcsinSrc} alt="Graph of y = 2arcsin(x²−1): a symmetric U-shaped curve from (−√2, π) down to a cusp-like minimum at (0, −π) and back up to (√2, π)" className="w-full max-w-[380px]" />
+        <img src={arcsinSrc} alt="Graph of y = 2arcsin(x²−1) on a grid from −4.5 to 4.5: a symmetric curve from (−√2, π) down to a sharp corner at (0, −π) and back up to (√2, π)" className="w-full max-w-[380px]" />
       </div>
     ),
-    reason: <>Three labelled points, as the question demands. Note the shape at the ends: the curve meets <Katex tex="x=\pm\sqrt2" /> <em>vertically</em>, because the derivative blows up there — part (c) will show <Katex tex="f'(x)=\tfrac{4}{\sqrt{2-x^2}}\to\infty" />. At <Katex tex="x=0" /> it turns sharply rather than smoothly, which part (e) explains.</>,
+    reason: <>Three labelled points, as the question demands. Note the shape at the ends: the curve meets <Katex tex="x=\pm\sqrt2" /> <em>vertically</em>, because the derivative blows up there — part c. will show <Katex tex="f'(x)=\tfrac{4}{\sqrt{2-x^2}}\to\infty" />. At <Katex tex="x=0" /> it has a sharp corner rather than a smooth turning point — the report says many graphs showed an obvious turning point there — which part e. explains.</>,
   },
 ]
 
@@ -133,7 +140,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt{x^2\left(2-x^2\right)} = |x|\sqrt{2-x^2}" />,
-    reason: <>The absolute value is essential — <Katex tex="\sqrt{x^2}=|x|" />, not <Katex tex="x" />. This is where the split between parts (c) and (d) comes from.</>,
+    reason: <>The absolute value is essential — <Katex tex="\sqrt{x^2}=|x|" />, not <Katex tex="x" />. This is where the split between parts c. and d. comes from.</>,
   },
   {
     working: <Katex display tex="x>0 \implies |x|=x \implies f'(x) = \frac{4x}{x\sqrt{2-x^2}}" />,
@@ -152,7 +159,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = \frac{4x}{-x\sqrt{2-x^2}}" />,
-    reason: <>Substituting into the same expression from part (c).</>,
+    reason: <>Substituting into the same expression from part c.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \frac{-4}{\sqrt{2-x^2}}, \quad B = -4}" />,
@@ -175,18 +182,18 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(-\sqrt2,\ 0\right)\cup\left(0,\ \sqrt2\right)}" />,
-    reason: <>Only <Katex tex="21\%" /> of the state got this mark. The domain of a derivative is always a subset of the function's own domain, and here it is strictly smaller at three separate points.</>,
+    reason: <>Only <Katex tex="21\%" /> of students got this mark. The domain of a derivative is always a subset of the function's own domain, and here it is strictly smaller at three separate points.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = \frac{g(x)}{\sqrt{2-x^2}}" />,
-    reason: <>Comparing with parts (c) and (d), where the numerators were <Katex tex="4" /> and <Katex tex="-4" />.</>,
+    reason: <>Comparing with parts c. and d., where the numerators were <Katex tex="4" /> and <Katex tex="-4" />.</>,
   },
   {
     working: <Katex display tex="\boxed{g(x) = \begin{cases} 4 & 0<x<\sqrt2 \\[2pt] -4 & -\sqrt2<x<0 \end{cases}}" />,
-    reason: <>A hybrid function taking just two values. Note <Katex tex="x=0" /> is excluded from both branches — including it would make <Katex tex="g" /> either undefined twice over or not a function at all, which is what the report means by "some graphs were not graphs of functions".</>,
+    reason: <>A hybrid function taking just two values. Note <Katex tex="x=0" /> is excluded from both branches, since <Katex tex="f'(0)" /> does not exist. The report notes that some graphs of <Katex tex="g" /> were not graphs of functions.</>,
   },
 ]
 
@@ -207,20 +214,20 @@ export default function SpecialistQ1_2018Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 1 (11 marks)</p>
         <p>
-          Consider the function <Katex tex="f:D\to\mathbb{R}" />, where{' '}
-          <Katex tex="f(x)=2\sin^{-1}\!\left(x^2-1\right)" />.
+          Consider the function <Katex tex="f:D\to R" />, where{' '}
+          <Katex tex="f(x)=2\arcsin\!\left(x^2-1\right)" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Determine the maximal domain <Katex tex="D" /> and the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Domain & Range" marks={2} statement={<>Determine the maximal domain <Katex tex="D" /> and the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={3} statement={<>Sketch the graph of <Katex tex="y=f(x)" />, labelling any endpoints and the <Katex tex="y" />-intercept with their coordinates.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Sketch Graph" marks={3} statement={<>Sketch the graph of <Katex tex="y=f(x)" /> on the axes below, labelling any endpoints and the <Katex tex="y" />-intercept with their coordinates.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={1} statement={<>Find <Katex tex="f'(x)" /> for <Katex tex="x>0" />, expressing your answer in the form <Katex tex="f'(x)=\dfrac{A}{\sqrt{2-x^2}}" />, <Katex tex="A\in\mathbb{R}" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Chain Rule" marks={1} statement={<>Find <Katex tex="f'(x)" /> for <Katex tex="x>0" />, expressing your answer in the form <Katex tex="f'(x)=\dfrac{A}{\sqrt{2-x^2}}" />, <Katex tex="A\in R" />.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
             The prescribed answer form is doing you a favour: it tells you the{' '}
@@ -231,25 +238,25 @@ export default function SpecialistQ1_2018Exam2() {
           <p>
             And <Katex tex="\sqrt{x^2}" /> is <Katex tex="|x|" />, not <Katex tex="x" />. That
             single fact is the reason this derivative needs two parts, and it is what makes
-            the graph in part (b) have a corner at the origin.
+            the graph in part b. have a corner on the <Katex tex="y" />-axis.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={1} statement={<>Write down <Katex tex="f'(x)" /> for <Katex tex="x<0" />, expressing your answer in the form <Katex tex="f'(x)=\dfrac{B}{\sqrt{2-x^2}}" />, <Katex tex="B\in\mathbb{R}" />.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Derivative" marks={1} statement={<>Write down <Katex tex="f'(x)" /> for <Katex tex="x<0" />, expressing your answer in the form <Katex tex="f'(x)=\dfrac{B}{\sqrt{2-x^2}}" />, <Katex tex="B\in R" />.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e.i" marks={1} statement={<>The derivative <Katex tex="f'(x)" /> can be expressed in the form <Katex tex="f'(x)=\dfrac{g(x)}{\sqrt{2-x^2}}" /> over its maximal domain. Find the maximal domain of <Katex tex="f'" />.</>} examinerReport={EXAM_EI}>
+      <PartCard letter="e.i" topic="Maximal Domain" marks={1} statement={<>The derivative <Katex tex="f'(x)" /> can be expressed in the form <Katex tex="f'(x)=\dfrac{g(x)}{\sqrt{2-x^2}}" /> over its maximal domain. Find the maximal domain of <Katex tex="f'" />.</>} examinerReport={EXAM_EI}>
         <WorkingTable rows={ROWS_EI} />
       </PartCard>
 
-      <PartCard letter="e.ii" marks={1} statement={<>Find <Katex tex="g(x)" />, expressing your answer as a piecewise (hybrid) function.</>} examinerReport={EXAM_EII}>
+      <PartCard letter="e.ii" topic="Hybrid Function" marks={1} statement={<>Find <Katex tex="g(x)" />, expressing your answer as a piecewise (hybrid) function.</>} examinerReport={EXAM_EII}>
         <WorkingTable rows={ROWS_EII} />
       </PartCard>
 
-      <PartCard letter="e.iii" marks={2} statement={<>Sketch the graph of <Katex tex="g" />.</>} examinerReport={EXAM_EIII}>
+      <PartCard letter="e.iii" topic="Sketch Graph" marks={2} statement={<>Sketch the graph of <Katex tex="g" /> on the axes below.</>} examinerReport={EXAM_EIII}>
         <WorkingTable rows={ROWS_EIII} />
       </PartCard>
     </div>

@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="M \sim N(71, 10^2), \qquad S \sim N(75, 7^2), \qquad M,S \text{ independent}" />,
-    reason: 'A randomly chosen Mathematics score and a randomly chosen Statistics score.',
+    reason: <>A randomly chosen Mathematics score and a randomly chosen Statistics score.</>,
   },
   {
     working: <Katex display tex="\Pr(M>S) = \Pr(M-S>0)" />,
@@ -32,13 +32,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="D \sim N(-4,\,149), \qquad \mathrm{sd}(D)=\sqrt{149}\approx12.207" />,
+    reason: <>A difference of independent normal variables is itself normal.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \Pr(D>0) &= \Pr\!\left(Z > \frac{0-(-4)}{\sqrt{149}}\right) \\ &= \Pr(Z>0.3277) \end{aligned}" />,
+    reason: <>Standardising.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>0.3277) \approx 0.3716}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option <b>A</b> (<Katex tex="0.2877" />) subtracts the variances (<Katex tex="100-49=51" />), and option <b>C</b> (<Katex tex="0.4070" />) adds the standard deviations (<Katex tex="10+7=17" />).</>,
   },
 ]
 

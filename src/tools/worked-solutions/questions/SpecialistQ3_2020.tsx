@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="0\le t\le30: \ v \text{ rises from } 0 \text{ to } 10" />,
-    reason: 'Constant acceleration from rest is a straight line through the origin.',
+    reason: <>Constant acceleration from rest is a straight line through the origin.</>,
   },
   {
     working: <Katex display tex="v = \frac{10}{30}t = \frac{t}{3}" />,
@@ -22,11 +22,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="30<t\le230: \ v = 10" />,
-    reason: 'Two hundred seconds at the cruising speed, so the middle interval ends at 30 + 200 = 230.',
+    reason: <>Two hundred seconds at the cruising speed, so the middle interval ends at 30 + 200 = 230.</>,
   },
   {
     working: <Katex display tex="230<t\le260: \ v \text{ falls from } 10 \text{ to } 0" />,
-    reason: 'The whole trip is 260 seconds, so braking takes the last 30.',
+    reason: <>The whole trip is 260 seconds, so braking takes the last 30.</>,
   },
   {
     working: <Katex display tex="v = \frac{10}{30}(260-t) = \frac{260-t}{3}" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{option A}}" />,
-    reason: <>Check the joins: <Katex tex="\tfrac{30}{3}=10" /> ✓ and <Katex tex="\tfrac{260-230}{3}=10" /> ✓, so the function is continuous.</>,
+    reason: <>Matches option <b>A</b>; option <b>E</b> also gets the times wrong (the cruise ends at 230, not 200). Check the joins: <Katex tex="\tfrac{30}{3}=10" /> ✓ and <Katex tex="\tfrac{260-230}{3}=10" /> ✓, so the function is continuous.</>,
   },
 ]
 
@@ -65,7 +65,9 @@ export default function SpecialistQ3_2020() {
           for 200 seconds. The train then slows down, with constant acceleration, and stops
           at Station B having travelled for 260 seconds in total. Let{' '}
           <Katex tex="v\text{ m s}^{-1}" /> be the velocity of the train at time{' '}
-          <Katex tex="t" /> seconds. The velocity <Katex tex="v" /> as a function of{' '}
+          <Katex tex="t" /> seconds.
+          <br />
+          The velocity <Katex tex="v" /> as a function of{' '}
           <Katex tex="t" /> is given by
         </p>
       }

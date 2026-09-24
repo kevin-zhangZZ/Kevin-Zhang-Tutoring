@@ -11,11 +11,17 @@ const EXAM: SAExaminerStats = {
   average: 2.5,
   comment: (
     <>
-      A small number of students realised the numerator could be regrouped, which removed the
-      need to use partial fractions. Many students used elements of both methods with some
-      initial algebraic work followed by one or more applications of partial fractions; such
-      approaches were inefficient. A number of students did not include absolute value signs
-      in the logarithmic term or failed to include the arbitrary constant, and a small number
+      The appropriate partial fraction decomposition for the integrand was
+      <Katex display tex="\frac{3x^2+4x+12}{x\left(x^2+4\right)}\equiv\frac Ax+\frac{Bx+C}{x^2+4}" />
+      A small number of students realised that
+      <Katex display tex="\begin{aligned}\frac{3x^2+4x+12}{x\left(x^2+4\right)}&=\frac{3x^2+12}{x\left(x^2+4\right)}+\frac{4x}{x\left(x^2+4\right)}\\&=\frac3x+\frac{4}{x^2+4}\end{aligned}" />
+      This removed the need to use partial fractions. Many students used elements of both
+      the above methods with some initial algebraic work followed by one or more
+      applications of partial fractions. Such approaches were inefficient and often resulted
+      in students doing significantly more work than would otherwise be required.
+      <br />
+      A number of students did not include absolute value signs in the logarithmic term or
+      failed to include the arbitrary constant in their answer. A small number of students
       integrated <Katex tex="\tfrac{4}{x^2+4}" /> incorrectly.
     </>
   ),
@@ -40,7 +46,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{3\log_e|x|+2\arctan\!\left(\frac{x}{2}\right)+c}" />,
-    reason: <>Differentiating back gives <Katex tex="\tfrac3x+\tfrac{2}{2}\cdot\tfrac{1}{1+x^2/4}\cdot\tfrac12=\tfrac3x+\tfrac{4}{x^2+4}" /> ✓. The <Katex tex="+c" /> is worth a mark on its own.</>,
+    reason: <>Differentiating back gives <Katex tex="\tfrac3x+2\cdot\tfrac{1}{1+x^2/4}\cdot\tfrac12=\tfrac3x+\tfrac{4}{x^2+4}" />. Include the <Katex tex="+c" /> — the report notes some students failed to.</>,
   },
 ]
 
@@ -61,8 +67,8 @@ export default function SpecialistQ4_2022Exam1() {
             part of it is a multiple of a factor of the denominator. Here{' '}
             <Katex tex="3x^2+12" /> is exactly <Katex tex="3\left(x^2+4\right)" />, so
             splitting the numerator does in one line what partial fractions does in five.
-            The report is blunt about the cost of not seeing it: students who mixed the two
-            methods "were doing significantly more work than would otherwise be required".
+            The report notes that mixing the two methods "often resulted in students doing
+            significantly more work than would otherwise be required".
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

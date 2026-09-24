@@ -22,8 +22,8 @@ const EXAM_BI: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Many students made a good attempt at this question. Most correctly identified the
-      required sum of two products; however, they made errors in the evaluation of the final
+      Many students made a good attempt at this question. Most students correctly identified
+      the required sum of two products; however, made errors in the evaluation of the final
       fraction.
     </>
   ),
@@ -35,7 +35,7 @@ const EXAM_BII: SAExaminerStats = {
   comment: (
     <>
       Many students were able to identify the conditional probability and use their answer to
-      part b.i. in the denominator; however, they used an incorrect numerator.
+      part bi. in the denominator; however, used an incorrect numerator.
     </>
   ),
 }
@@ -123,6 +123,7 @@ export default function MethodsQ9_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="At Least One"
         marks={2}
         statement={
           <>
@@ -143,6 +144,7 @@ export default function MethodsQ9_2014Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Total Probability"
         marks={2}
         statement={
           <>
@@ -156,6 +158,7 @@ export default function MethodsQ9_2014Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>

@@ -1,6 +1,6 @@
 // 2023 Mathematical Methods — Exam 1 Question 3 (4 marks). Sketching a translated hyperbola,
 // then reading an inequality off the sketch. Question text transcribed from the original
-// paper; the sketch is our own drawing of the answer. Answers checked with sympy and against
+// paper; the sketch is our own matplotlib drawing of the answer on VCAA's grid. Answers checked with sympy and against
 // the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -12,11 +12,12 @@ const EXAM_A: SAExaminerStats = {
   average: 2.4,
   comment: (
     <>
-      Most students presented graphs that were well drawn and appropriately labelled. The most
-      common errors were labelling the <Katex tex="y" />-intercept as{' '}
-      <Katex tex="(5,0)" />, the <Katex tex="x" />-intercept as{' '}
-      <Katex tex="\left(\tfrac32,0\right)" />, the vertical asymptote as{' '}
-      <Katex tex="y=1" /> and the horizontal asymptote as <Katex tex="x=2" />.
+      Most students presented graphs that were well drawn and appropriately labelled.
+      Generally students included details and labels as required and produced smooth graph
+      lines that displayed appropriately asymptotic behaviour. The most common errors were
+      labelling the <Katex tex="y" />-intercept as <Katex tex="(5,0)" />, the{' '}
+      <Katex tex="x" />-intercept as <Katex tex="\left(\tfrac32,0\right)" />, the vertical
+      asymptote as <Katex tex="y=1" /> and horizontal asymptote as <Katex tex="x=2" />.
     </>
   ),
 }
@@ -26,9 +27,10 @@ const EXAM_B: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Unfortunately, many students did not use their graph from part a. to help them correctly
-      identify the interval required, and many erroneously gave{' '}
-      <Katex tex="(-\infty,4]" /> as their answer.
+      This question required students to solve an inequation involving the function they had
+      already sketched in part 3a. Unfortunately, many students did not use their graph from
+      part 3a. to assist them to correctly identify the interval required, and many
+      erroneously gave <Katex tex="(-\infty,4]" /> as their answer.
     </>
   ),
 }
@@ -52,11 +54,23 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2-\frac{3}{x-1} = 0 \implies \frac{3}{x-1} = 2 \implies x-1 = \frac32" />,
-    reason: <>Now <em>add the 1 back</em> — stopping at <Katex tex="\tfrac32" /> is exactly the named wrong intercept.</>,
+    reason: <>Now <em>add the 1 back</em> — stopping at <Katex tex="\tfrac32" /> gives the <Katex tex="x" />-intercept the report lists among the most common errors.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \frac52 \implies \left(\tfrac52,\,0\right)}" />,
-    reason: <>The <Katex tex="x" />-intercept, on the right branch. With both asymptotes and both intercepts, the two branches are forced.</>,
+    reason: <>The <Katex tex="x" />-intercept, on the right branch.</>,
+  },
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's grid (x from −3 to 4, y from −2 to 6): a hyperbola with dashed asymptotes x = 1 and y = 2, the left branch rising from just above y = 2 through (0, 5) towards the vertical asymptote, the right branch climbing from below through (5/2, 0) and flattening towards y = 2"
+          className="w-full max-w-[420px]"
+        />
+      </div>
+    ),
+    reason: <>With both asymptotes and both intercepts, the two branches are forced. The report's general comments stress that hyperbolas must show asymptotic behaviour, approaching but never crossing the asymptotes.</>,
   },
 ]
 
@@ -71,7 +85,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{On } x<1: \ f(x)>2 > 1 \ \text{ always}" />,
-    reason: <>The left branch sits entirely above the horizontal asymptote, so it never satisfies the inequality. Ignoring this branch is what produces the report's wrong answer <Katex tex="(-\infty,4]" />.</>,
+    reason: <>The left branch sits entirely above the horizontal asymptote, so it never satisfies the inequality. The report notes many students did not use their graph this way and erroneously gave <Katex tex="(-\infty,4]" />.</>,
   },
   {
     working: <Katex display tex="\boxed{1 < x \le 4}" />,
@@ -101,10 +115,11 @@ export default function MethodsQ3_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sketch Hyperbola"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="f(x)=2-\dfrac{3}{x-1}" /> on the axes provided,
+            Sketch the graph of <Katex tex="f(x)=2-\dfrac{3}{x-1}" /> on the axes below,
             labelling all asymptotes with their equations and axial intercepts with their
             coordinates.
           </>
@@ -112,17 +127,11 @@ export default function MethodsQ3_2023Exam1() {
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="A hyperbola with dashed asymptotes x = 1 and y = 2: the left branch rises from just above y = 2 through (0, 5) towards the vertical asymptote, and the right branch climbs from below, crossing the x-axis at (5/2, 0) and flattening towards y = 2"
-            className="w-full max-w-[420px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Inequality"
         marks={1}
         statement={
           <>

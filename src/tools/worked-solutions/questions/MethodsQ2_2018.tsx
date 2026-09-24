@@ -15,16 +15,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Maximal domain} = \mathbb{R}\setminus\{1\} \implies \text{only } x=1 \text{ is excluded}" />,
+    working: <Katex display tex="\text{Maximal domain} = R\setminus\{1\} \implies \text{only } x=1 \text{ is excluded}" />,
     reason: <>So the rule must fail at <Katex tex="x=1" /> and be perfectly well defined at every other real number. Two things can exclude a value: a zero denominator, or a negative under a square root.</>,
   },
   {
     working: <Katex display tex="\textbf{A}: \ \frac{x^2-5}{x-1}, \quad x-1=0 \implies x=1" />,
-    reason: <>The denominator vanishes at <Katex tex="x=1" /> and nowhere else, and the numerator is a polynomial defined everywhere. Maximal domain <Katex tex="\mathbb{R}\setminus\{1\}" /> ✓</>,
-  },
-  {
-    working: <Katex display tex="\boxed{\textbf{A}}" />,
-    reason: <>The <Katex tex="x^2-5" /> on top is a decoy: it makes the numerator zero at <Katex tex="x=\pm\sqrt5" />, but a zero numerator is perfectly legal — the function just takes the value <Katex tex="0" /> there. Only the denominator restricts the domain.</>,
+    reason: <>The denominator vanishes at <Katex tex="x=1" /> and nowhere else, and the numerator is a polynomial defined everywhere. Maximal domain <Katex tex="R\setminus\{1\}" /> ✓</>,
   },
   {
     working: <Katex display tex="\textbf{B}: \ x-5=0 \implies x=5" />,
@@ -32,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\textbf{C}: \ x^2+1>0 \ \text{ for all } x" />,
-    reason: <>Ruling out <b>C</b>: the denominator is never zero, so the maximal domain is all of <Katex tex="\mathbb{R}" />.</>,
+    reason: <>Ruling out <b>C</b>: the denominator is never zero, so the maximal domain is all of <Katex tex="R" />.</>,
   },
   {
     working: <Katex display tex="\textbf{D}: \ 1+x=0 \implies x=-1" />,
@@ -42,6 +38,10 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\textbf{E}: \ x-1\ge0 \implies x\ge1" />,
     reason: <>Ruling out <b>E</b>, the most popular wrong answer at <Katex tex="5\%" />: a square root <em>requires</em> its argument to be non-negative, so the maximal domain is <Katex tex="[1,\infty)" /> — everything from <Katex tex="1" /> upwards is kept and everything below is lost. That is close to the opposite of excluding the single point <Katex tex="1" />.</>,
   },
+  {
+    working: <Katex display tex="\boxed{\textbf{A}}" />,
+    reason: <>Matches option <b>A</b>. The <Katex tex="x^2-5" /> on top is a decoy: it makes the numerator zero at <Katex tex="x=\pm\sqrt5" />, but a zero numerator is perfectly legal — the function just takes the value <Katex tex="0" /> there. Only the denominator restricts the domain.</>,
+  },
 ]
 
 export default function MethodsQ2_2018() {
@@ -50,7 +50,7 @@ export default function MethodsQ2_2018() {
       question={
         <p>
           The maximal domain of the function <Katex tex="f" /> is{' '}
-          <Katex tex="\mathbb{R}\setminus\{1\}" />. A possible rule for <Katex tex="f" /> is
+          <Katex tex="R\setminus\{1\}" />. A possible rule for <Katex tex="f" /> is
         </p>
       }
       options={[
@@ -70,7 +70,7 @@ export default function MethodsQ2_2018() {
             the square root of a negative. Everything else is allowed.
           </p>
           <p>
-            Here the target is <Katex tex="\mathbb{R}\setminus\{1\}" /> — every real{' '}
+            Here the target is <Katex tex="R\setminus\{1\}" /> — every real{' '}
             <em>except</em> <Katex tex="1" />. So you want a rule that dies at exactly one
             point, and that point is <Katex tex="1" />.
           </p>

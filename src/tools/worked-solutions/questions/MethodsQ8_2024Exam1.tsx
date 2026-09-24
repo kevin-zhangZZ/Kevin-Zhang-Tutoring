@@ -11,10 +11,11 @@ const EXAM_A: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Many students attained the <Katex tex="y" /> value of the intercept but did not write
-      the answer in coordinate form. Some demonstrated difficulties with a negative sign
-      inside a cube root, and some incorrectly wrote the radical as{' '}
-      <Katex tex="\sqrt[3]{-k}+m" /> with the sign misplaced, which led to errors later.
+      Many students attained the <Katex tex="y" /> value of the intercept, but did not correctly
+      write the answer in coordinate form, with correct brackets. Some students demonstrated
+      difficulties in dealing with a negative sign inside a cube-root, noting the odd nature of
+      the function. Some students incorrectly wrote the radical sign as{' '}
+      <Katex tex="3\sqrt{-k}+m" /> and this often led to errors in later parts of Question 8.
     </>
   ),
 }
@@ -24,10 +25,13 @@ const EXAM_B: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students confused the process and integrated instead of differentiating, leading
-      to an incorrect power of <Katex tex="\tfrac43" />. Many calculated{' '}
-      <Katex tex="g'(0)" /> but mistakenly took the negative sign out, leaving{' '}
-      <Katex tex="-\tfrac{1}{3k^{2/3}}" />.
+      There were many ways the answer could be expressed in this question and students were not
+      required to give their answer in a particular form. Some students confused the process
+      involved in this question using integration instead of differentiation, leading to
+      answers that involved an incorrect power of <Katex tex="\tfrac43" />. Many students
+      calculated the <Katex tex="g'(0)" /> but mistakenly took the negative sign out, leaving
+      their final response as <Katex tex="-\tfrac{1}{3k^{2/3}}" />. Some students did not
+      manipulate or write the surds correctly.
     </>
   ),
 }
@@ -45,8 +49,9 @@ const EXAM_D: SAExaminerStats = {
     <>
       Very few students were able to view this question visually; however, those who did
       usually achieved success. Many students noted they needed to equate derivatives from
-      earlier questions, but some had incorrect derivatives or used incorrect procedures to
-      solve for <Katex tex="x=2m^3" />.
+      earlier questions, but some either had incorrect derivatives or used incorrect procedures
+      to solve for <Katex tex="x=2m^3" />. Students who successfully calculated the{' '}
+      <Katex tex="x" /> value were generally able to identify the correct coordinates.
     </>
   ),
 }
@@ -54,7 +59,7 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="P \text{ is the } y\text{-intercept} \implies x = 0" />,
-    reason: 'Substitute and simplify.',
+    reason: <>Substitute and simplify.</>,
   },
   {
     working: <Katex display tex="g(0) = \sqrt[3]{0-k}+m = \sqrt[3]{-k}+m" />,
@@ -62,18 +67,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt[3]{-k} = -\sqrt[3]{k}" />,
-    reason: <>Because <Katex tex="x\mapsto x^3" /> is odd. Writing <Katex tex="\sqrt[3]{-k}+m" /> and then mishandling the sign is what the report says caused trouble downstream.</>,
+    reason: <>Because <Katex tex="x\mapsto x^3" /> is odd. The report notes some students had difficulty with the negative sign inside the cube root, and some wrote the index 3 as a coefficient, <Katex tex="3\sqrt{-k}+m" />, which caused trouble later.</>,
   },
   {
     working: <Katex display tex="\boxed{P\left(0,\ m-\sqrt[3]{k}\right)}" />,
-    reason: <>In coordinate form, with brackets — the mark is for the point, not just the <Katex tex="y" /> value.</>,
+    reason: <>In coordinate form, with brackets — the report notes many students gave only the <Katex tex="y" /> value.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = (x-k)^{\frac13}+m" />,
-    reason: 'Index form makes the differentiation routine.',
+    reason: <>Index form makes the differentiation routine.</>,
   },
   {
     working: <Katex display tex="g'(x) = \frac13(x-k)^{-\frac23}" />,
@@ -81,11 +86,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g'(0) = \frac13(-k)^{-\frac23} = \frac{1}{3(-k)^{\frac23}}" />,
-    reason: 'Substituting the x-coordinate of P.',
+    reason: <>Substituting the x-coordinate of P.</>,
   },
   {
     working: <Katex display tex="(-k)^{\frac23} = \left((-k)^2\right)^{\frac13} = \left(k^2\right)^{\frac13} = k^{\frac23}" />,
-    reason: <>The <em>even</em> power inside removes the sign, so the gradient is positive. Pulling a minus out front is the report's named error.</>,
+    reason: <>The <em>even</em> power inside removes the sign, so the gradient is positive. The report notes many students mistakenly took the negative sign out.</>,
   },
   {
     working: <Katex display tex="\boxed{g'(0) = \frac{1}{3k^{\frac23}}}" />,
@@ -100,7 +105,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m-\sqrt[3]{k} = 0 \implies \sqrt[3]{k} = m" />,
-    reason: 'Rearranging part a.',
+    reason: <>Rearranging part a.</>,
   },
   {
     working: <Katex display tex="\boxed{k = m^3}" />,
@@ -111,7 +116,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = g'(0) \implies \frac13(x-k)^{-\frac23} = \frac13(-k)^{-\frac23}" />,
-    reason: 'Equal gradients at Q and at P.',
+    reason: <>Equal gradients at Q and at P.</>,
   },
   {
     working: <Katex display tex="(x-k)^{-\frac23} = (-k)^{-\frac23} \implies (x-k)^2 = (-k)^2" />,
@@ -123,15 +128,15 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k = m^3 \implies x = 2m^3" />,
-    reason: 'Using part c.',
+    reason: <>Using part c.</>,
   },
   {
     working: <Katex display tex="g\!\left(2m^3\right) = \sqrt[3]{2m^3-m^3}+m = \sqrt[3]{m^3}+m = m+m" />,
-    reason: 'The cube root undoes the cube exactly, which is why the answer is so clean.',
+    reason: <>The cube root undoes the cube exactly, which is why the answer is so clean.</>,
   },
   {
     working: <Katex display tex="\boxed{Q\left(2m^3,\ 2m\right)}" />,
-    reason: <>The point of inflection of <Katex tex="g" /> is at <Katex tex="(k,m)=(m^3,m)" />, and <Katex tex="Q" /> is the reflection of the origin in it — which is the "visual" route the report says was the most successful.</>,
+    reason: <>The point of inflection of <Katex tex="g" /> is at <Katex tex="(k,m)=(m^3,m)" />, and <Katex tex="Q" /> is the reflection of the origin in it — the "visual" route; the report notes the few students who saw the question this way usually succeeded.</>,
   },
 ]
 
@@ -141,10 +146,11 @@ export default function MethodsQ8_2024Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 8 (7 marks)</p>
         <p>
-          Let <Katex tex="g:\mathbb{R}\to\mathbb{R}" />,{' '}
+          Let <Katex tex="g:R\to R" />,{' '}
           <Katex tex="g(x)=\sqrt[3]{x-k}+m" />, where{' '}
-          <Katex tex="k\in\mathbb{R}\setminus\{0\}" /> and <Katex tex="m\in\mathbb{R}" />. Let
-          the point <Katex tex="P" /> be the <Katex tex="y" />-intercept of the graph of{' '}
+          <Katex tex="k\in R\setminus\{0\}" /> and <Katex tex="m\in R" />.
+          <br />
+          Let the point <Katex tex="P" /> be the <Katex tex="y" />-intercept of the graph of{' '}
           <Katex tex="y=g(x)" />.
         </p>
       </div>
@@ -169,6 +175,7 @@ export default function MethodsQ8_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Coordinates"
         marks={1}
         statement={
           <>
@@ -183,6 +190,7 @@ export default function MethodsQ8_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Gradient"
         marks={2}
         statement={
           <>
@@ -197,6 +205,7 @@ export default function MethodsQ8_2024Exam1() {
 
       <PartCard
         letter="c"
+        topic="Find Parameter"
         marks={1}
         statement={
           <>
@@ -211,12 +220,15 @@ export default function MethodsQ8_2024Exam1() {
 
       <PartCard
         letter="d"
+        topic="Equal Gradients"
         marks={3}
         statement={
           <>
             Let the point <Katex tex="Q" /> be a point different from the point{' '}
             <Katex tex="P" />, such that the gradient of <Katex tex="g" /> at points{' '}
-            <Katex tex="P" /> and <Katex tex="Q" /> are equal. Given that the graph of{' '}
+            <Katex tex="P" /> and <Katex tex="Q" /> are equal.
+            <br />
+            Given that the graph of{' '}
             <Katex tex="y=g(x)" /> passes through the origin, find the coordinates of{' '}
             <Katex tex="Q" /> in terms of <Katex tex="m" />.
           </>

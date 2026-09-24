@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma = 6\ \text{mm}}" />,
-    reason: <>Option C. Multiplying instead of dividing gives <Katex tex="13.5" />; reading the numerator as <Katex tex="259" /> gives nothing on the list.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b> is the <Katex tex="z" />-value itself and option <b>D</b> is the difference <Katex tex="259-250" /> — both stop a step short.</>,
   },
 ]
 
@@ -41,9 +41,9 @@ export default function MethodsQ11_2020() {
         <>
           <p className="mb-2">
             The lengths of plastic pipes that are cut by a particular machine are a normally
-            distributed random variable, <Katex tex="X" />, with a mean of 250 mm.{' '}
-            <Katex tex="Z" /> is the standard normal random variable.
+            distributed random variable, <Katex tex="X" />, with a mean of 250 mm.
           </p>
+          <p className="mb-2"><Katex tex="Z" /> is the standard normal random variable.</p>
           <p>
             If <Katex tex="\Pr(X<259)=1-\Pr(Z>1.5)" />, then the standard deviation of the
             lengths of plastic pipes, in millimetres, is

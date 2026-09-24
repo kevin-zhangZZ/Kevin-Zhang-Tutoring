@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{D = (7,\infty)}" />,
-    reason: <>Option B is the only choice contained in one of those three intervals. Option C contains <Katex tex="7" />, option D contains <Katex tex="-4" />, option E contains both, and option A is all of <Katex tex="R" />.</>,
+    reason: <>Matches option <b>B</b>, the only choice contained in one of those three intervals. Option C contains <Katex tex="7" />, option D contains <Katex tex="-4" />, option E contains <Katex tex="7" />, and option A (20%) is all of <Katex tex="R" /> — a positive cubic with two turning points is not one-to-one.</>,
   },
 ]
 
@@ -50,7 +50,7 @@ export default function MethodsQ6_2014() {
         { letter: 'B', content: <Katex tex="D = (7,\infty)" />, isAnswer: true },
         { letter: 'C', content: <Katex tex="D = (-4,8)" /> },
         { letter: 'D', content: <Katex tex="D = (-\infty,0)" /> },
-        { letter: 'E', content: <Katex tex="D = \left(-\tfrac12,\infty\right)" /> },
+        { letter: 'E', content: <Katex tex="D = \left[-\tfrac12,\infty\right)" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

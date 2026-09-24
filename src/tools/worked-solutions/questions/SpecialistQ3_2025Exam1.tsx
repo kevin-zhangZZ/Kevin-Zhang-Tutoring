@@ -11,8 +11,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      While this question was generally well answered, some students did not correctly apply
-      the initial condition in order to find the value of the constant of integration.
+      In this question the result was given. While this question was generally well answered, some
+      students did not correctly apply the initial condition in order to find the value of the
+      constant of integration.
     </>
   ),
 }
@@ -22,9 +23,10 @@ const EXAM_B: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      The quotient rule was not always applied correctly, so while the correct value for the
-      initial acceleration may have been given, full marks would not have been obtained due
-      to the incorrect derivative.
+      Students needed to apply the quotient rule (or the chain rule) to find{' '}
+      <Katex tex="a(t)" />. The quotient rule was not always applied correctly so while the correct
+      value for the initial acceleration may have been given, full marks would not have been
+      obtained due to the incorrect derivative.
     </>
   ),
 }
@@ -34,8 +36,8 @@ const EXAM_C: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some ineffective attempts at rearranging and squaring were seen. Only a small
-      proportion of students were able to arrive successfully at the correct answer.
+      Some ineffective attempts at rearranging and squaring were seen in some responses. Only a
+      small proportion of students were able to arrive successfully at the correct answer.
     </>
   ),
 }
@@ -43,7 +45,7 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x(t) = \int v(t)\,dt = \int t\left(t^2+k\right)^{-1/2}dt" />,
-    reason: 'Displacement is the antiderivative of velocity.',
+    reason: <>Displacement is the antiderivative of velocity.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dt}\left(t^2+k\right)^{1/2} = t\left(t^2+k\right)^{-1/2}" />,
@@ -51,15 +53,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x(t) = \sqrt{t^2+k}+c" />,
-    reason: 'The general antiderivative.',
+    reason: <>The general antiderivative.</>,
   },
   {
     working: <Katex display tex="x(0) = 0: \quad \sqrt{k}+c = 0 \implies c = -\sqrt{k}" />,
-    reason: <>"Starts from rest at <Katex tex="O" />" fixes the constant — the step the report says was often missed.</>,
+    reason: <>"Starts from rest at <Katex tex="O" />" fixes the constant — the report notes some students did not apply it correctly.</>,
   },
   {
     working: <Katex display tex="\boxed{x(t) = \sqrt{t^2+k}-\sqrt{k}}" />,
-    reason: 'As required.',
+    reason: <>As required.</>,
   },
 ]
 
@@ -70,7 +72,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dv}{dt} = \frac{\sqrt{t^2+k}-t\cdot\frac{t}{\sqrt{t^2+k}}}{t^2+k}" />,
-    reason: 'Quotient rule, with the chain rule on the denominator.',
+    reason: <>Quotient rule, with the chain rule on the denominator.</>,
   },
   {
     working: <Katex display tex="= \frac{\left(t^2+k\right)-t^2}{\left(t^2+k\right)^{3/2}} = \frac{k}{\left(t^2+k\right)^{3/2}}" />,
@@ -78,7 +80,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = 0: \quad a = \frac{k}{k^{3/2}} = k^{-1/2}" />,
-    reason: 'Substituting the initial time.',
+    reason: <>Substituting the initial time.</>,
   },
   {
     working: <Katex display tex="\boxed{a(0) = \frac{1}{\sqrt{k}} \ \text{ m s}^{-2}}" />,
@@ -89,15 +91,15 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="s(3)-x(3) = 1" />,
-    reason: '"Ahead by 1 m" — the second particle minus the first.',
+    reason: <>"Ahead by 1 m" — the second particle minus the first.</>,
   },
   {
     working: <Katex display tex="3-\left(\sqrt{9+k}-\sqrt{k}\right) = 1 \implies \sqrt{9+k}-\sqrt{k} = 2" />,
-    reason: 'Substituting both position functions.',
+    reason: <>Substituting both position functions.</>,
   },
   {
     working: <Katex display tex="\sqrt{9+k} = 2+\sqrt{k}" />,
-    reason: <>Isolating one root before squaring is what makes this work — squaring the difference directly leaves a cross term and goes nowhere, which is the "ineffective rearranging" the report describes.</>,
+    reason: <>Isolating one root before squaring is what makes this work — squaring the difference directly leaves a cross term <Katex tex="\sqrt{k(9+k)}" /> that needs a second round of squaring. The report notes some ineffective attempts at rearranging and squaring.</>,
   },
   {
     working: <Katex display tex="9+k = 4+4\sqrt{k}+k" />,
@@ -105,7 +107,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="5 = 4\sqrt{k} \implies \sqrt{k} = \tfrac54" />,
-    reason: 'A single remaining root.',
+    reason: <>A single remaining root.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \frac{25}{16}}" />,
@@ -120,7 +122,10 @@ export default function SpecialistQ3_2025Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 3 (5 marks)</p>
         <p>
           A particle starts from rest at a fixed point <Katex tex="O" /> and travels in a
-          straight line. The velocity, <Katex tex="v" /> m s<Katex tex="^{-1}" />, of the
+          straight line.
+        </p>
+        <p>
+          The velocity, <Katex tex="v" /> m s<Katex tex="^{-1}" />, of the
           particle at time <Katex tex="t" /> seconds has equation{' '}
           <Katex tex="v(t)=\dfrac{t}{\sqrt{t^2+k}}" />, where <Katex tex="k" /> is a positive
           constant and <Katex tex="t\ge0" />.
@@ -138,13 +143,14 @@ export default function SpecialistQ3_2025Exam1() {
             Part c. reduces to <Katex tex="\sqrt{9+k}-\sqrt{k}=2" />. The reliable way to
             clear two square roots is to isolate one of them <em>before</em> squaring;
             squaring the difference as it stands leaves a <Katex tex="\sqrt{k(9+k)}" /> term
-            and no progress.
+            that needs a second round of squaring.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Displacement"
         marks={1}
         statement={
           <>
@@ -160,6 +166,7 @@ export default function SpecialistQ3_2025Exam1() {
 
       <PartCard
         letter="b"
+        topic="Acceleration"
         marks={2}
         statement={
           <>
@@ -174,14 +181,20 @@ export default function SpecialistQ3_2025Exam1() {
 
       <PartCard
         letter="c"
+        topic="Meeting Times"
         marks={2}
         statement={
           <>
             Another particle starts at <Katex tex="O" /> at the same time as the first
-            particle and follows the same path. Its position relative to <Katex tex="O" /> is
-            described by the equation <Katex tex="s(t)=t" />. Three seconds after leaving{' '}
-            <Katex tex="O" /> the second particle is 1 m ahead of the first particle. Find the
-            value of <Katex tex="k" />.
+            particle and follows the same path.
+            <br />
+            Its position relative to <Katex tex="O" /> is described by the equation{' '}
+            <Katex tex="s(t)=t" />.
+            <br />
+            Three seconds after leaving <Katex tex="O" /> the second particle is 1 m ahead of the
+            first particle.
+            <br />
+            Find the value of <Katex tex="k" />.
           </>
         }
         examinerReport={EXAM_C}

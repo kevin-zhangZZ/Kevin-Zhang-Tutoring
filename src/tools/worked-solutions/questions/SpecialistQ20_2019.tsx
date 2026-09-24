@@ -27,10 +27,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = \Pr(Z<-0.9525) \approx 0.1704" />,
+    reason: <>Standard normal lower tail, e.g. <Katex tex="\operatorname{normCdf}(-\infty,-0.9525,0,1)" />, or directly <Katex tex="\Pr\left(\overline X<0.4725\right)" /> with mean <Katex tex="0.5" /> and standard deviation <Katex tex="0.02887" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.1704}" />,
-    reason: <>Matches option <b>B</b>. Watch option <b>E</b>, <Katex tex="0.9525" /> — that is the magnitude of the <Katex tex="z" /> value, not a probability. Option <b>D</b> <Katex tex="(0.8296)" /> is the upper-tail probability, i.e. the complement. Since <Katex tex="p>0.05" />, this sample gives no real evidence the generator is faulty.</>,
+    reason: <>Matches option <b>B</b>. Watch option <b>E</b>, <Katex tex="0.9525" /> — that is the magnitude of the <Katex tex="z" /> value, not a probability. Option <b>D</b> <Katex tex="(0.8296)" /> is the upper-tail probability, i.e. the complement. Option <b>C</b> <Katex tex="(0.4621)" /> uses <Katex tex="\sigma" /> instead of <Katex tex="\tfrac{\sigma}{\sqrt n}" />, and option <b>A</b> <Katex tex="(0.0953)" /> is the size of that <Katex tex="z" /> value. Since <Katex tex="p>0.05" />, this sample gives no real evidence the generator is faulty.</>,
   },
 ]
 
@@ -43,12 +44,14 @@ export default function SpecialistQ20_2019() {
             The random number function of a calculator is designed to generate random numbers
             that are uniformly distributed from <Katex tex="0" /> to <Katex tex="1" />. When
             working properly, a calculator generates random numbers from a population where{' '}
-            <Katex tex="\mu=0.5" /> and <Katex tex="\sigma=0.2887" />.
+            <Katex tex="\mu=0.5" /> and <Katex tex="\sigma=0.2887" />
           </p>
           <p>
             When checking the random number function of a particular calculator, a sample of{' '}
             <Katex tex="100" /> random numbers was generated and was found to have a mean of{' '}
-            <Katex tex="\overline{x}=0.4725" />. Assuming <Katex tex="H_0:\mu=0.5" /> and{' '}
+            <Katex tex="\overline{x}=0.4725" />
+            <br />
+            Assuming <Katex tex="H_0:\mu=0.5" /> and{' '}
             <Katex tex="H_1:\mu<0.5" />, and <Katex tex="\sigma=0.2887" />, the <Katex tex="p" />{' '}
             value for a one-sided test is
           </p>

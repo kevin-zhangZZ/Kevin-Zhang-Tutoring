@@ -26,12 +26,12 @@ const ROWS: WorkingRow[] = [
     reason: <>On <Katex tex="[3,\infty)" /> the inside <Katex tex="2x-6" /> runs over <Katex tex="[0,\infty)" />, and so does its square root.</>,
   },
   {
-    working: <Katex display tex="\boxed{g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=\frac{x^2+6}{2}}" />,
-    reason: <>Option D. The domain of the inverse is the range of the original — and getting that right is what separates D from A and E, which carry the same rule on the wrong domain.</>,
+    working: <Katex display tex="g^{-1}(0)=\frac{0+6}{2}=3 \ \checkmark" />,
+    reason: <>A quick check: the inverse should send the smallest output of <Katex tex="g" /> back to the smallest input, and <Katex tex="g(3)=0" />.</>,
   },
   {
-    working: <Katex display tex="g^{-1}(0)=3 \ \checkmark" />,
-    reason: <>A quick check: the inverse should send the smallest output of <Katex tex="g" /> back to the smallest input, and <Katex tex="g(3)=0" />.</>,
+    working: <Katex display tex="\boxed{g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=\frac{x^2+6}{2}}" />,
+    reason: <>Matches option <b>D</b>. The domain of the inverse is the range of the original — getting that right is what separates D from A (10%) and E (12%), which carry the same rule on the wrong domain.</>,
   },
 ]
 
@@ -47,7 +47,7 @@ export default function MethodsQ5_2016() {
       options={[
         { letter: 'A', content: <Katex tex="g^{-1}:[3,\infty)\to R,\ g^{-1}(x)=\tfrac{x^2+6}{2}" /> },
         { letter: 'B', content: <Katex tex="g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=(2x-6)^2" /> },
-        { letter: 'C', content: <Katex tex="g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=\tfrac{x+6}{2}" /> },
+        { letter: 'C', content: <Katex tex="g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=\sqrt{\tfrac{x}{2}+6}" /> },
         { letter: 'D', content: <Katex tex="g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=\tfrac{x^2+6}{2}" />, isAnswer: true },
         { letter: 'E', content: <Katex tex="g^{-1}:R\to R,\ g^{-1}(x)=\tfrac{x^2+6}{2}" /> },
       ]}

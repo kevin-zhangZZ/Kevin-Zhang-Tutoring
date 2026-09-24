@@ -11,6 +11,8 @@ const EXAM: SAExaminerStats = {
   average: 2.0,
   comment: (
     <>
+      Alternative correct answers were acceptable.
+      <br />
       A number of students attempted to manipulate the integrand using trigonometric
       identities prior to integration, often with little success. Of those who used an
       appropriate substitution, errors including integrating <Katex tex="\tfrac{1}{u^3}" /> to
@@ -26,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="u = \sin(2x) \implies \frac{du}{dx} = 2\cos(2x) \implies \cos(2x)\,dx = \frac{du}{2}" />,
-    reason: 'The chain-rule factor 2 is carried across so nothing is lost.',
+    reason: <>The chain-rule factor 2 is carried across so nothing is lost.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac12\int u^{-3}\,du" />,
@@ -38,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = -\frac{1}{4\sin^2(2x)}+c" />,
-    reason: 'Back-substituting.',
+    reason: <>Back-substituting.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac\pi8\right) = \frac34: \quad -\frac{1}{4\sin^2\!\left(\frac\pi4\right)}+c = \frac34" />,
@@ -50,7 +52,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = -\frac{1}{4\sin^2(2x)}+\frac54 = -\frac14\operatorname{cosec}^2(2x)+\frac54}" />,
-    reason: <>Either form is accepted. Check by differentiating: <Katex tex="-\tfrac14\cdot(-2)\sin^{-3}(2x)\cdot2\cos(2x)=\tfrac{\cos(2x)}{\sin^3(2x)}" /> ✓.</>,
+    reason: <>Either form is accepted. Check by differentiating: <Katex tex="-\tfrac14\cdot(-2)\sin^{-3}(2x)\cdot2\cos(2x)=\tfrac{\cos(2x)}{\sin^3(2x)}" />.</>,
   },
 ]
 
@@ -72,7 +74,8 @@ export default function SpecialistQ9_2022Exam1() {
             derivative of the thing being powered in the denominator is a substitution, not
             an identity. Rewriting as{' '}
             <Katex tex="\cot(2x)\operatorname{cosec}^2(2x)" /> or similar is legal but leads
-            nowhere useful, which is the report's complaint.
+            nowhere useful — the report notes students who tried this often had little
+            success.
           </p>
           <p>
             Once the integral is done, the condition <Katex tex="f\!\left(\tfrac\pi8\right)=\tfrac34" />{' '}

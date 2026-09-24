@@ -13,8 +13,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Some students did not attempt the question and appear not to have recognised the
-      notation <Katex tex="\lim_{x\to-\infty}g(x)" />. A common incorrect answer was 6.
+      This question was done well. Some students did not attempt the question and appear not
+      to have recognised the notation <Katex tex="\lim_{x\to-\infty}g(x)" />. A common incorrect
+      answer was 6.
     </>
   ),
 }
@@ -30,8 +31,10 @@ const EXAM_CI: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      An equation was required. There were many transcription errors. Some students attempted
-      to find the equation by hand, making algebraic errors.
+      An equation was required. There were many transcription errors such as{' '}
+      <Katex tex="y=2^a\ln(2)-2^a a\ln(2)+2a-5" /> and{' '}
+      <Katex tex="y=2^a\ln(2)-2^a\ln(2)+2^a+5" />. Some students attempted to find the
+      equation by hand, making algebraic errors.
     </>
   ),
 }
@@ -41,10 +44,11 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Many misread the question and found the equation of the tangent line at{' '}
-      <Katex tex="x=0" />, giving <Katex tex="y=0.693x+6" />.{' '}
-      <Katex tex="y=4.255x+8.14\mathrm{E}\!-\!10" /> was often seen — students did not
-      recognise that the constant should be zero.
+      Some students did not substitute <Katex tex="(0,0)" /> into the correct equation. Many
+      misread the question and found the equation of the tangent line at <Katex tex="x=0" />,
+      giving <Katex tex="y=0.693x+6" /> as the answer. Some substituted <Katex tex="a=0" />{' '}
+      rather than <Katex tex="x=0" /> into their equation.{' '}
+      <Katex tex="y=4.255x+8.14\mathrm{E}-10" /> was often seen.
     </>
   ),
 }
@@ -66,10 +70,13 @@ const EXAM_E: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Round brackets were often seen; these were incorrect, as the largest interval was
-      required, which included the endpoints. Another incorrect response was{' '}
-      <Katex tex="(-\infty,0.49]\cup[3.21,\infty)" />, which is where the function is strictly
-      increasing.
+      Round brackets were often seen; these were incorrect as the largest interval of{' '}
+      <Katex tex="x" /> values was required, which included the interval endpoints. In some
+      cases, it was impossible to determine whether the student meant round or square
+      brackets. Another incorrect response was{' '}
+      <Katex tex="(-\infty,0.49]\cup[3.21,\infty)" />. These students have incorrectly
+      interpreted the question requirements as asking for intervals where the function is
+      strictly increasing.
     </>
   ),
 }
@@ -79,8 +86,8 @@ const EXAM_F: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Answers were required to three decimal places. Some students only had one correct
-      answer; others had rounding errors.
+      Many students were familiar with Newton's method. Answers were required to three decimal
+      places. Some students only had one correct answer. Others had rounding errors.
     </>
   ),
 }
@@ -96,9 +103,11 @@ const EXAM_H: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Many students indicated that <Katex tex="f(x)=0" /> but did not combine it with{' '}
-      <Katex tex="f'(x)=0" />. Others found an approximate value such as{' '}
-      <Katex tex="n=2.7" />; an exact answer was required.
+      This question was not done well. Many students indicated that{' '}
+      <Katex tex="f'(x)=0" /> but did not combine it with <Katex tex="f(x)=0" />. Some
+      formulated the question correctly but did not provide an answer. Others found an
+      approximate value for the answer such as <Katex tex="n=2.7" />. An exact answer was
+      required.
     </>
   ),
 }
@@ -106,37 +115,37 @@ const EXAM_H: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x\to-\infty \implies 2^x\to0" />,
-    reason: 'An exponential with base greater than 1 decays to zero in the negative direction.',
+    reason: <>An exponential with base greater than 1 decays to zero in the negative direction.</>,
   },
   {
     working: <Katex display tex="\boxed{\lim_{x\to-\infty}g(x) = 0+5 = 5}" />,
-    reason: <>The horizontal asymptote. The common wrong answer 6 comes from <Katex tex="2^0=1" /> — but the limit is as <Katex tex="x\to-\infty" />, not at <Katex tex="x=0" />.</>,
+    reason: <>The horizontal asymptote. The report notes 6 was a common incorrect answer — that is <Katex tex="g(0)" />, not the limit as <Katex tex="x\to-\infty" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\left(a^x\right) = \log_e(a)\cdot a^x" />,
-    reason: 'The formula-sheet derivative of a general exponential.',
+    reason: <>The formula-sheet derivative of a general exponential.</>,
   },
   {
     working: <Katex display tex="g'(x) = \log_e(2)\cdot2^x" />,
-    reason: 'The constant 5 differentiates away.',
+    reason: <>The constant 5 differentiates away.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \log_e(2)}" />,
-    reason: <>Write the base: "<Katex tex="\log(2)" />" without a subscript is not the same thing, and the report docks it.</>,
+    reason: <>Write the base: the report notes some students did not include it.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Point: } \left(a,\ 2^a+5\right); \quad \text{gradient: } g'(a) = 2^a\log_e(2)" />,
-    reason: 'Both pieces come straight from parts a. and b.',
+    reason: <>Both pieces come straight from parts a. and b.</>,
   },
   {
     working: <Katex display tex="y-\left(2^a+5\right) = 2^a\log_e(2)\,(x-a)" />,
-    reason: 'Point–gradient form.',
+    reason: <>Point–gradient form.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 2^a\log_e(2)\,x-a\,2^a\log_e(2)+2^a+5}" />,
@@ -147,11 +156,11 @@ const ROWS_CI: WorkingRow[] = [
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Through the origin} \implies \text{the } y\text{-intercept is } 0" />,
-    reason: <>Not "the tangent at <Katex tex="x=0" />" — that would give <Katex tex="y=0.693x+6" />, the report's most common misreading.</>,
+    reason: <>Not "the tangent at <Katex tex="x=0" />" — that gives <Katex tex="y=0.693x+6" />, and the report notes many students misread the question this way.</>,
   },
   {
     working: <Katex display tex="-a\,2^a\log_e(2)+2^a+5 = 0" />,
-    reason: 'Setting the constant from part c.i. to zero.',
+    reason: <>Setting the constant from part c.i. to zero.</>,
   },
   {
     working: (
@@ -159,45 +168,57 @@ const ROWS_CII: WorkingRow[] = [
         solve(−a·2^a·ln(2)+2^a+5=0, a)
       </Cas>
     ),
-    reason: 'A transcendental equation, so a numerical solve is the intended route.',
+    reason: <>A transcendental equation, so a numerical solve is the intended route.</>,
   },
   {
     working: <Katex display tex="a = 2.61784\ldots" />,
-    reason: 'The point of tangency.',
+    reason: <>The point of tangency.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 4.255x}" />,
-    reason: <>The gradient is <Katex tex="2^{2.61785}\log_e(2)=4.25477\ldots" />. A CAS may report the intercept as <Katex tex="8.14\mathrm{E}\!-\!10" />; that is numerical dust and should be written as 0.</>,
+    reason: <>The gradient is <Katex tex="2^{2.61785}\log_e(2)=4.25477\ldots" />. A CAS may report the intercept as <Katex tex="8.14\mathrm{E}\!-\!10" />; that is numerical dust, and the report's general comments note it should be recognised as zero.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = 2^x-x^2 \implies h'(x) = \log_e(2)\cdot2^x-2x" />,
-    reason: 'First derivative.',
+    reason: <>First derivative.</>,
   },
   {
-    working: <Katex display tex="h''(x) = \left(\log_e2\right)^2 2^x-2" />,
-    reason: <>The point of inflection needs the <em>second</em> derivative — setting <Katex tex="h'=0" /> gives the stationary points, which is what the report says most students handed in.</>,
+    working: <Katex display tex="h''(x) = \left(\log_e(2)\right)^2 2^x-2" />,
+    reason: <>The point of inflection needs the <em>second</em> derivative — setting <Katex tex="h'=0" /> gives the stationary points, which the report notes many students gave instead.</>,
   },
   {
-    working: <Katex display tex="\left(\log_e2\right)^2 2^x = 2 \implies 2^x = \frac{2}{\left(\log_e2\right)^2}" />,
-    reason: 'Rearranging.',
+    working: <Katex display tex="\left(\log_e(2)\right)^2 2^x = 2 \implies 2^x = \frac{2}{\left(\log_e(2)\right)^2}" />,
+    reason: <>Rearranging.</>,
   },
   {
-    working: <Katex display tex="x = \log_2\!\left(\frac{2}{\left(\log_e2\right)^2}\right) = 2.05753\ldots" />,
+    working: <Katex display tex="x = \log_2\!\left(\frac{2}{\left(\log_e(2)\right)^2}\right) = 2.05753\ldots" />,
     reason: <><Katex tex="h''" /> is increasing, so it changes sign here — a genuine inflection.</>,
   },
   {
     working: <Katex display tex="\boxed{(2.06,\ -0.07)}" />,
     reason: <><Katex tex="h(2.0575)=4.1627-4.2334=-0.0707" />. Two decimal places, as asked.</>,
   },
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={graphSrc}
+          alt="The curve y = 2^x − x² rising to a local maximum near (0.49, 1.16), falling through an inflection at (2.06, −0.07) to a local minimum near (3.21, −1.05), then rising again; the left x-intercept is near x = −0.767"
+          className="w-full max-w-[520px]"
+        />
+      </div>
+    ),
+    reason: <>The inflection sits between the two stationary points the report notes many students gave instead.</>,
+  },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="h'(x) = \log_e(2)\cdot2^x-2x = 0" />,
-    reason: 'Strictly decreasing between the two stationary points.',
+    reason: <>Strictly decreasing between the two stationary points.</>,
   },
   {
     working: (
@@ -205,7 +226,7 @@ const ROWS_E: WorkingRow[] = [
         solve(ln(2)·2^x−2x=0, x)
       </Cas>
     ),
-    reason: 'Two solutions, both needed.',
+    reason: <>Two solutions, both needed.</>,
   },
   {
     working: <Katex display tex="x = 0.48509\ldots \ \text{ and } \ x = 3.21243\ldots" />,
@@ -213,26 +234,26 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{[0.49,\ 3.21]}" />,
-    reason: <><strong>Square</strong> brackets: the question asks for the <em>largest</em> interval on which <Katex tex="h" /> is strictly decreasing, and a function is still strictly decreasing on a closed interval whose endpoints are its turning points. Round brackets were the report's main complaint.</>,
+    reason: <><strong>Square</strong> brackets: the question asks for the <em>largest</em> interval on which <Katex tex="h" /> is strictly decreasing, and a function is still strictly decreasing on a closed interval whose endpoints are its turning points. The report notes round brackets were often seen, and were incorrect.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="x_{n+1} = x_n-\frac{h(x_n)}{h'(x_n)}, \qquad h'(x) = \log_e(2)\cdot2^x-2x" />,
-    reason: "Newton's method, with the derivative from part d.",
+    reason: <>Newton's method, with the derivative from part d.</>,
   },
   {
     working: <Katex display tex="x_1 = 0-\frac{h(0)}{h'(0)} = 0-\frac{1}{0.69315} = -1.443" />,
-    reason: <><Katex tex="h(0)=2^0-0=1" /> and <Katex tex="h'(0)=\log_e2" />.</>,
+    reason: <><Katex tex="h(0)=2^0-0=1" /> and <Katex tex="h'(0)=\log_e(2)" />.</>,
   },
   {
     working: <Katex display tex="x_2 = -1.443-\frac{h(-1.443)}{h'(-1.443)} = -0.897" />,
-    reason: 'Feed the unrounded value back in; rounding at each step is where the report saw errors creep in.',
+    reason: <>Feed the unrounded value back in — the report notes rounding errors.</>,
   },
   {
     working: <Katex display tex="x_3 = -0.773" />,
-    reason: 'Three decimal places, as the table asks.',
+    reason: <>Three decimal places, as the table asks.</>,
   },
   {
     working: <Katex display tex="\boxed{x_1 = -1.443,\quad x_2 = -0.897,\quad x_3 = -0.773}" />,
@@ -243,7 +264,7 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\log_e(2)\cdot2^x-2x = h'(x)" />,
-    reason: 'Recognise the expression: this is exactly the derivative from part d.',
+    reason: <>Recognise the expression: this is exactly the derivative from part d.</>,
   },
   {
     working: <Katex display tex="\log_e(2)\cdot2^x-2x = 0 \iff h'(x) = 0" />,
@@ -251,34 +272,34 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x_1 = x_0-\frac{h(x_0)}{h'(x_0)} \ \text{ with } \ h'(x_0) = 0" />,
-    reason: 'Division by zero — the first iteration is undefined and the method cannot start.',
+    reason: <>Division by zero — the first iteration is undefined and the method cannot start.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{The tangent there is horizontal, so it never meets the } x\text{-axis.}}" />,
-    reason: <>The geometric reading of the same fact, and the better answer: Newton's method works by following a tangent to the <Katex tex="x" />-axis, and a horizontal tangent goes nowhere. Naming the two solutions without explaining the consequence earned nothing.</>,
+    reason: <>The geometric reading of the same fact, and the better answer: Newton's method works by following a tangent to the <Katex tex="x" />-axis, and a horizontal tangent goes nowhere. The report notes some students only mentioned the two solutions; the consequence for Newton's method is what needs explaining.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = n^x-x^n \ \text{ has a local minimum } \textbf{on the } x\textbf{-axis}" />,
-    reason: 'Two conditions at the same point: it is a stationary point, and its height is zero.',
+    reason: <>Two conditions at the same point: it is a stationary point, and its height is zero.</>,
   },
   {
     working: <Katex display tex="f(x) = 0: \ n^x = x^n; \qquad f'(x) = 0: \ n^x\log_e(n) = n\,x^{n-1}" />,
-    reason: <>Both are needed. The report says most students wrote one and stopped.</>,
+    reason: <>Both are needed — the report notes many students indicated <Katex tex="f'(x)=0" /> but did not combine it with <Katex tex="f(x)=0" />.</>,
   },
   {
-    working: <Katex display tex="\frac{f'}{f}: \quad \log_e(n) = \frac{n\,x^{n-1}}{x^n} = \frac nx \implies x = \frac{n}{\log_e(n)}" />,
-    reason: 'Dividing the two equations eliminates the exponentials in one step.',
+    working: <Katex display tex="\text{Dividing: } \log_e(n) = \frac{n\,x^{n-1}}{x^n} = \frac nx \implies x = \frac{n}{\log_e(n)}" />,
+    reason: <>Dividing the second equation by the first eliminates the exponentials in one step.</>,
   },
   {
     working: <Katex display tex="\log\text{ of } n^x = x^n: \quad x\log_e(n) = n\log_e(x)" />,
-    reason: 'Taking logs of the first condition.',
+    reason: <>Taking logs of the first condition.</>,
   },
   {
     working: <Katex display tex="\frac{n}{\log_e n}\cdot\log_e(n) = n\log_e(x) \implies n = n\log_e(x) \implies x = e" />,
-    reason: 'Substituting. Everything collapses.',
+    reason: <>Substituting. Everything collapses.</>,
   },
   {
     working: <Katex display tex="e = \frac{n}{\log_e(n)} \implies n = e\log_e(n)" />,
@@ -286,7 +307,7 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = e}" />,
-    reason: <>Check: <Katex tex="e\log_e(e)=e" /> ✓. It is the only solution — writing <Katex tex="u=\log_e n" /> turns the equation into <Katex tex="u-\log_e u=1" />, whose unique root is <Katex tex="u=1" />. An exact answer was required, so <Katex tex="2.7" /> scored nothing.</>,
+    reason: <>Check: <Katex tex="e\log_e(e)=e" /> ✓. It is the only solution — writing <Katex tex="u=\log_e n" /> turns the equation into <Katex tex="u-\log_e u=1" />, whose unique root is <Katex tex="u=1" />. An exact answer was required — the report notes approximate values such as <Katex tex="n=2.7" /> were given.</>,
   },
 ]
 
@@ -296,7 +317,7 @@ export default function MethodsQ3_2023Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 3 (12 marks)</p>
         <p>
-          Consider the function <Katex tex="g:\mathbb{R}\to\mathbb{R}" />,{' '}
+          Consider the function <Katex tex="g:R\to R" />,{' '}
           <Katex tex="g(x)=2^x+5" />.
         </p>
       </div>
@@ -320,6 +341,7 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="a"
+        topic="Limit"
         marks={1}
         statement={
           <>
@@ -333,11 +355,14 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="b"
+        topic="Derivative"
         marks={1}
         statement={
           <>
             The derivative, <Katex tex="g'(x)" />, can be expressed in the form{' '}
-            <Katex tex="g'(x)=k\cdot2^x" />. Find the real number <Katex tex="k" />.
+            <Katex tex="g'(x)=k\times2^x" />.
+            <br />
+            Find the real number <Katex tex="k" />.
           </>
         }
         examinerReport={EXAM_B}
@@ -347,6 +372,7 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -362,6 +388,7 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Tangent Through Origin"
         marks={2}
         statement={
           <>
@@ -376,12 +403,13 @@ export default function MethodsQ3_2023Exam2() {
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
-          Let <Katex tex="h:\mathbb{R}\to\mathbb{R}" />, <Katex tex="h(x)=2^x-x^2" />.
+          Let <Katex tex="h:R\to R" />, <Katex tex="h(x)=2^x-x^2" />.
         </p>
       </div>
 
       <PartCard
         letter="d"
+        topic="Point of Inflection"
         marks={1}
         statement={
           <>
@@ -392,22 +420,18 @@ export default function MethodsQ3_2023Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={graphSrc}
-            alt="The curve y = 2^x − x² rising to a local maximum near (0.49, 1.17), falling through an inflection at (2.06, −0.07) to a local minimum near (3.21, −1.05), then rising again; the left x-intercept is near x = −0.767"
-            className="w-full max-w-[520px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="e"
+        topic="Decreasing Interval"
         marks={1}
         statement={
           <>
             Find the largest interval of <Katex tex="x" /> values for which <Katex tex="h" />{' '}
-            is strictly decreasing. Give your answer correct to two decimal places.
+            is strictly decreasing.
+            <br />
+            Give your answer correct to two decimal places.
           </>
         }
         examinerReport={EXAM_E}
@@ -417,13 +441,27 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="f"
+        topic="Newton's Method"
         marks={2}
         statement={
           <>
-            Apply Newton's method, with an initial estimate of <Katex tex="x_0=0" />, to find
-            an approximate <Katex tex="x" />-intercept of <Katex tex="h" />. Write the
-            estimates <Katex tex="x_1" />, <Katex tex="x_2" /> and <Katex tex="x_3" />,
-            correct to three decimal places.
+            <div className="flex flex-col gap-3">
+              <p>
+                Apply Newton's method, with an initial estimate of <Katex tex="x_0=0" />, to
+                find an approximate <Katex tex="x" />-intercept of <Katex tex="h" />.
+                <br />
+                Write the estimates <Katex tex="x_1" />, <Katex tex="x_2" /> and{' '}
+                <Katex tex="x_3" /> in the table below, correct to three decimal places.
+              </p>
+              <table className="border-collapse text-[13.5px] text-center w-fit">
+                <tbody>
+                  <tr><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5"><Katex tex="x_0" /></td><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5">0</td></tr>
+                  <tr><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5"><Katex tex="x_1" /></td><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5" /></tr>
+                  <tr><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5"><Katex tex="x_2" /></td><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5" /></tr>
+                  <tr><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5"><Katex tex="x_3" /></td><td className="border border-gray-300 dark:border-gray-700 px-6 py-1.5" /></tr>
+                </tbody>
+              </table>
+            </div>
           </>
         }
         examinerReport={EXAM_F}
@@ -433,11 +471,12 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="g"
+        topic="Newton's Method"
         marks={1}
         statement={
           <>
             For the function <Katex tex="h" />, explain why a solution to the equation{' '}
-            <Katex tex="\log_e(2)\cdot\left(2^x\right)-2x=0" /> should not be used as an
+            <Katex tex="\log_e(2)\times\left(2^x\right)-2x=0" /> should not be used as an
             initial estimate <Katex tex="x_0" /> in Newton's method.
           </>
         }
@@ -448,11 +487,13 @@ export default function MethodsQ3_2023Exam2() {
 
       <PartCard
         letter="h"
+        topic="Local Minimum"
         marks={2}
         statement={
           <>
             There is a positive real number <Katex tex="n" /> for which the function{' '}
             <Katex tex="f(x)=n^x-x^n" /> has a local minimum on the <Katex tex="x" />-axis.
+            <br />
             Find this value of <Katex tex="n" />.
           </>
         }

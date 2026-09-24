@@ -1,5 +1,24 @@
-import { useState, useEffect, useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useRef } from 'react'
 import Sidebar, { NavLinks } from './Sidebar'
+
+// Lets a tool move the shared back-to-top button out of the way of its own controls:
+// `hideAtLg` hides it on large screens (where the tool has its own "back to top", e.g. the
+// worked solutions' floating previous/next control), `liftBelowLg` raises it above a bar the
+// tool pins to the bottom of the screen on smaller ones.
+interface BackToTopOptions {
+  hideAtLg?: boolean
+  liftBelowLg?: boolean
+}
+
+const BackToTopCtx = createContext<(opts: BackToTopOptions) => void>(() => {})
+
+export function useBackToTop({ hideAtLg = false, liftBelowLg = false }: BackToTopOptions) {
+  const set = useContext(BackToTopCtx)
+  useEffect(() => {
+    set({ hideAtLg, liftBelowLg })
+    return () => set({})
+  }, [set, hideAtLg, liftBelowLg])
+}
 
 interface LayoutProps {
   dark: boolean
@@ -15,16 +34,25 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [collapsed, setCollapsed] = useState<boolean>(() => localStorage.getItem('sidebarCollapsed') === 'true')
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [backToTop, setBackToTop] = useState<BackToTopOptions>({})
   const mainRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     localStorage.setItem('sidebarCollapsed', String(collapsed))
   }, [collapsed])
 
+  // The button only shows while scrolling back up: on a phone it sits over the text, so while
+  // reading down the page it gets out of the way.
   useEffect(() => {
     const el = mainRef.current
     if (!el) return
-    const onScroll = () => setShowBackToTop(el.scrollTop > BACK_TO_TOP_THRESHOLD)
+    let lastTop = el.scrollTop
+    const onScroll = () => {
+      const top = el.scrollTop
+      if (top <= BACK_TO_TOP_THRESHOLD || top > lastTop + 4) setShowBackToTop(false)
+      else if (top < lastTop - 4) setShowBackToTop(true)
+      lastTop = top
+    }
     onScroll()
     el.addEventListener('scroll', onScroll, { passive: true })
     return () => el.removeEventListener('scroll', onScroll)
@@ -87,13 +115,13 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
 
         {/* Page content */}
         <main ref={mainRef} className="flex-1 overflow-y-auto">
-          {children}
+          <BackToTopCtx.Provider value={setBackToTop}>{children}</BackToTopCtx.Provider>
 
           <button
             onClick={() => mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Back to top"
             title="Back to top"
-            className={`fixed bottom-6 right-6 z-20 w-11 h-11 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 shadow-lg hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 ${
+            className={`fixed ${backToTop.liftBelowLg ? 'bottom-[76px] lg:bottom-6' : 'bottom-6'} ${backToTop.hideAtLg ? 'lg:hidden' : ''} right-6 z-20 w-11 h-11 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 shadow-lg hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 ${
               showBackToTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
             }`}
           >

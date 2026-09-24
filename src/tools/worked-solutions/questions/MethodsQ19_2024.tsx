@@ -10,16 +10,17 @@ import { Cas } from '../CasRef'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 10, B: 19, C: 57, D: 13 },
   answer: 'C',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X<10) = \Pr(X>18) = 0.2" />,
-    reason: 'Two tails of equal size, so 10 and 18 are the same distance from the mean.',
+    reason: <>Two tails of equal size, so 10 and 18 are the same distance from the mean.</>,
   },
   {
     working: <Katex display tex="\mu = \frac{10+18}{2} = 14" />,
-    reason: 'The symmetry of the normal curve — no calculation required.',
+    reason: <>The symmetry of the normal curve — no calculation required.</>,
   },
   {
     working: <Katex display tex="z = \text{invNorm}(0.2,0,1) = -0.8416" />,
@@ -27,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{10-14}{\sigma} = -0.8416 \implies \sigma = \frac{4}{0.8416} = 4.7527" />,
-    reason: 'Standardising the known point. Keep full precision — rounding σ to 4.8 here shifts the final answer in the third decimal place.',
+    reason: <>Standardising the known point. Keep full precision — rounding σ to 4.8 here shifts the final answer in the third decimal place.</>,
   },
   {
     working: <Katex display tex="\Pr(X<12) = \text{normCdf}(-\infty,\,12,\,14,\,4.7527)" />,
@@ -35,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.337}" />,
-    reason: <>Option <b>C</b>. Reasonable: 12 is between the 20th percentile (10) and the median (14), so the answer must lie between 0.2 and 0.5, which already rules out <b>A</b>.</>,
+    reason: <>Matches option <b>C</b>. Reasonable: 12 is between the 20th percentile (10) and the median (14), so the answer must lie between 0.2 and 0.5, which already rules out <b>A</b>.</>,
   },
 ]
 

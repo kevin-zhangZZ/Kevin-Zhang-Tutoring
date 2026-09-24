@@ -5,6 +5,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import raysSrc from './spec-2019-mcq5-rays.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 25, C: 8, D: 38, E: 21 },
@@ -12,8 +13,8 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Intersection of <Katex tex="y = x-2,\ x\geq 2" /> and{' '}
-      <Katex tex="y-1 = -\tfrac{1}{\sqrt3}(x-5),\ x\leq 5" />.
+      Intersection of <Katex tex="y = x-2,\ x>2" /> and{' '}
+      <Katex tex="y-1 = -\dfrac{1}{\sqrt3}(x-5),\ x<5" />.
     </>
   ),
 }
@@ -25,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y - 0 = 1\cdot(x-2) \;\implies\; y = x-2,\ \ x>2" />,
-    reason: 'Point-gradient form of the first ray (only the forward half-line counts, since Arg fixes a direction, not a full line).',
+    reason: <>Point-gradient form of the first ray (only the forward half-line counts, since Arg fixes a direction, not a full line).</>,
   },
   {
     working: <Katex display tex="\mathrm{Arg}\big(z-(5+i)\big) = \tfrac{5\pi}{6}" />,
@@ -33,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y - 1 = -\tfrac{1}{\sqrt3}(x-5),\ \ x<5" />,
-    reason: 'Point-gradient form of the second ray.',
+    reason: <>Point-gradient form of the second ray.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} x-2-1 &= -\tfrac{1}{\sqrt3}(x-5) \\ \sqrt3(x-3) &= -(x-5) \\ x(\sqrt3+1) &= 5+3\sqrt3 \end{aligned}" />,
@@ -41,11 +42,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \frac{5+3\sqrt3}{\sqrt3+1} = \frac{(5+3\sqrt3)(\sqrt3-1)}{2} = \sqrt3+2" />,
-    reason: <>Rationalise the denominator — both <Katex tex="x=2+\sqrt3\approx3.73" /> and <Katex tex="y=x-2\approx1.73" /> land inside the two rays' valid ranges, confirming the ray (not just line) intersection.</>,
+    reason: <>Rationalise the denominator. Both <Katex tex="x=2+\sqrt3\approx3.73" /> and <Katex tex="y=x-2\approx1.73" /> land inside the two rays' valid ranges, confirming the ray (not just line) intersection.</>,
+  },
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img src={raysSrc} alt="The ray from 2 at angle π/4 and the ray from 5 + i at angle 5π/6, each starting at an open circle, crossing at (2 + √3, √3) — this site's own explanatory figure" className="w-full max-w-[420px]" />
+      </div>
+    ),
+    reason: <>The two rays really do cross, at <Katex tex="\left(2+\sqrt3,\ \sqrt3\right)" />. The starting points are open circles, since <Katex tex="\mathrm{Arg}(0)" /> is undefined.</>,
   },
   {
     working: <Katex display tex="\boxed{b = y = x-2 = \sqrt3}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>E</b>, <Katex tex="2+\sqrt3" />, is <Katex tex="a" /> — the <Katex tex="x" />-coordinate — not <Katex tex="b" />.</>,
   },
 ]
 
@@ -54,10 +63,12 @@ export default function SpecialistQ5_2019() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="z=x+yi" />, where <Katex tex="x,y\in\mathbb{R}" />. The rays{' '}
+          Let <Katex tex="z=x+yi" />, where <Katex tex="x,y\in R" />. The rays{' '}
           <Katex tex="\mathrm{Arg}(z-2) = \tfrac{\pi}{4}" /> and{' '}
-          <Katex tex="\mathrm{Arg}\big(z-(5+i)\big) = \tfrac{5\pi}{6}" />, where <Katex tex="z\in\mathbb{C}" />, intersect on
-          the complex plane at a point <Katex tex="(a,b)" />. The value of <Katex tex="b" /> is
+          <Katex tex="\mathrm{Arg}\big(z-(5+i)\big) = \tfrac{5\pi}{6}" />, where <Katex tex="z\in C" />, intersect on
+          the complex plane at a point <Katex tex="(a,b)" />.
+          <br />
+          The value of <Katex tex="b" /> is
         </p>
       }
       options={[

@@ -14,23 +14,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X_i \sim \mathrm{N}\!\left(800,\ 200^2\right), \qquad T = X_1+X_2+\cdots+X_{16}" />,
-    reason: 'The question asks about the total owed, not the average.',
+    reason: <>The question asks about the total owed, not the average.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(T) = 16\times800 = 12\,800" />,
-    reason: 'Means add.',
+    reason: <>Means add.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(T) = 16\times200^2 = 640\,000 \implies \mathrm{sd}(T) = 800" />,
-    reason: <>Variances add, so the standard deviation of a sum is <Katex tex="\sqrt{16}\times200" />. For a sample <em>mean</em> it would instead be <Katex tex="200/\sqrt{16}=50" /> — that mix-up is what the distractors reward.</>,
+    reason: <>Variances add, so the standard deviation of a sum is <Katex tex="\sqrt{16}\times200" />. Multiplying by 16 instead (standard deviation 3200) gives <Katex tex="0.413" />, option <b>C</b>.</>,
   },
   {
     working: <Katex display tex="\Pr(T>13\,500) = \Pr\!\left(Z>\frac{13\,500-12\,800}{800}\right) = \Pr(Z>0.875)" />,
-    reason: 'Standardising.',
+    reason: <>Standardising.</>,
   },
   {
     working: <Katex display tex="\boxed{0.191}" />,
-    reason: <>Option <b>B</b>, to three decimal places. Option <b>D</b>, <Katex tex="0.809" />, is the complement — the probability of owing <em>less</em> than $13 500.</>,
+    reason: <>Matches option <b>B</b>, to three decimal places. Option <b>E</b>, <Katex tex="0.809" />, is the complement — the probability of owing <em>less</em> than $13 500.</>,
   },
 ]
 
@@ -40,9 +40,10 @@ export default function SpecialistQ19_2023() {
       question={
         <p>
           A company accountant knows that the amount owed on any individual unpaid invoice is
-          normally distributed with a mean of $800 and a standard deviation of $200. What is
-          the probability, correct to three decimal places, that in a random sample of 16
-          unpaid invoices the total amount owed is more than $13 500?
+          normally distributed with a mean of $800 and a standard deviation of $200.
+          <br />
+          What is the probability, correct to three decimal places, that in a random sample of
+          16 unpaid invoices the <b>total</b> amount owed is more than $13 500?
         </p>
       }
       options={[

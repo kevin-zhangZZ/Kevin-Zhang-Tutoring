@@ -8,10 +8,29 @@ import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import diagramSrc from './meth-2017-mcq20-shaded.png'
 
+const EXAMINER_COMMENT = (
+  <>
+    <Katex tex="\cos(x)=\sqrt3\sin(x)" />
+    <br />
+    <Katex tex="\tan(x)=\dfrac{1}{\sqrt3},\ x=\dfrac{\pi}{6}" />
+    <br />
+    <Katex tex="B\left(\dfrac{\pi}{6},\dfrac{\sqrt3}{2}\right)" />
+    <br />
+    <Katex tex="A_{\text{triangle}}=\dfrac{\pi}{4}\times\dfrac{\sqrt3}{2}=\dfrac{\sqrt3\pi}{8}" />
+    <br />
+    <Katex tex="A_{\text{shaded}}=\int_0^{\frac{\pi}{6}}\sqrt3\sin(x)\,dx+\int_{\frac{\pi}{6}}^{\frac{\pi}{2}}\cos(x)\,dx=\sqrt3-1" />
+    <br />
+    <Katex tex="A_{\text{shaded}}:A_{\text{triangle}}" />
+    <br />
+    <Katex tex="\sqrt3-1:\dfrac{\sqrt3\pi}{8}" />
+  </>
+)
+
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 47, C: 18, D: 18, E: 9 },
   answer: 'B',
   noAnswer: 1,
+  comment: EXAMINER_COMMENT,
 }
 
 const ROWS: WorkingRow[] = [
@@ -33,7 +52,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A_{\text{shaded}} = \int_0^{\pi/6}\!\sqrt3\sin(x)\,dx + \int_{\pi/6}^{\pi/2}\!\cos(x)\,dx" />,
-    reason: <>The upper boundary of the shaded region switches at <Katex tex="B" />: to the left of <Katex tex="B" /> the sine curve is lower, to the right the cosine curve is. Splitting at <Katex tex="B" /> is the step most students missed.</>,
+    reason: <>The upper boundary of the shaded region switches at <Katex tex="B" />: to the left of <Katex tex="B" /> the sine curve is lower, to the right the cosine curve is.</>,
   },
   {
     working: <Katex display tex="= \Bigl[-\sqrt3\cos(x)\Bigr]_0^{\pi/6} + \Bigl[\sin(x)\Bigr]_{\pi/6}^{\pi/2}" />,
@@ -49,7 +68,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sqrt3-1 \;:\; \frac{\sqrt3\pi}{8}}" />,
-    reason: <>Option B. Ratios are not usually simplified to a single number here — read the options and stop when one matches. Option D halves the triangle a second time.</>,
+    reason: <>Matches option <b>B</b>. Ratios are not usually simplified to a single number here — read the options and stop when one matches. Option D forgets the <Katex tex="\tfrac12" /> in the triangle's area.</>,
   },
 ]
 
@@ -74,7 +93,7 @@ export default function MethodsQ20_2017() {
       diagram={
         <img
           src={diagramSrc}
-          alt="y = cos(x) falling from 1 and y = √3 sin(x) rising from 0, crossing at B; the region between the chords OB and BA and the two curves is shaded, with A at (π/2, 0) — from the original 2017 VCAA exam paper"
+          alt="y = cos(x) falling from 1 and y = √3 sin(x) rising from 0, crossing at B; the region under both curves (√3 sin(x) from O to B, cos(x) from B to A) down to the x-axis is shaded, with triangle OAB drawn inside it and A at (π/2, 0) — from the original 2017 VCAA exam paper"
           className="w-full max-w-[400px]"
         />
       }

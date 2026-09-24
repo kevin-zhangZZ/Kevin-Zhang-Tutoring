@@ -21,7 +21,7 @@ const EXAM_C: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Generally well done, but some students did not justify their response with reference to
+      Generally well done but some students did not justify their response with reference to
       the <Katex tex="p" /> value.
     </>
   ),
@@ -43,7 +43,9 @@ const EXAM_E: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Most students understood that the difference meant that <Katex tex="-3\le D\le3" />.
+      Most students understood that the difference meant that <Katex tex="-3<D<3" />. Some
+      students stated a correct conclusion but did not give a reason by referencing the{' '}
+      <Katex tex="p" /> value.
     </>
   ),
 }
@@ -51,11 +53,11 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="H_0: \ \mu = 15" />,
-    reason: 'The null hypothesis is always the supplier\u2019s claim — the status quo being tested.',
+    reason: <>The null hypothesis is always the supplier’s claim — the status quo being tested.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \ \mu < 15}" />,
-    reason: <>The sample mean 14.94 came in <em>below</em> 15, and the test is stated to be one-tailed, so the alternative points that way. <Katex tex="\mu\ne15" /> would be a two-tailed test — the report's named error.</>,
+    reason: <>The sample mean 14.94 came in <em>below</em> 15, and the test is stated to be one-tailed, so the alternative points that way. <Katex tex="\mu\ne15" /> would be a two-tailed test — the report notes some responses gave hypotheses for one.</>,
   },
 ]
 
@@ -78,25 +80,25 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.027}" />,
-    reason: 'Correct to three decimal places.',
+    reason: <>Correct to three decimal places.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.027 < 0.05" />,
-    reason: 'Compare the p value with the stated significance level. That comparison is the entire argument.',
+    reason: <>Compare the p value with the stated significance level. That comparison is the entire argument.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Reject } H_0 \text{: the sample does not support the supplier's claim.}}" />,
-    reason: <>A sample mean this low would arise under the claim less than 5% of the time. The reason must cite the <Katex tex="p" /> value — the report docks responses that state the conclusion alone.</>,
+    reason: <>A sample mean this low would arise under the claim less than 5% of the time. The reason must cite the <Katex tex="p" /> value — the report notes some students did not justify their response this way.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="H_0 \text{ stands} \iff p \ge 0.05 \iff \bar x \ge c, \ \text{ where } \Pr\!\left(\bar X<c\right) = 0.05" />,
-    reason: 'The critical value: the boundary sample mean whose p value is exactly 0.05.',
+    reason: <>The critical value: the boundary sample mean whose p value is exactly 0.05.</>,
   },
   {
     working: (
@@ -108,7 +110,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="c = 14.9486\ldots" />,
-    reason: 'Anything at or above this leaves the null hypothesis standing.',
+    reason: <>Anything at or above this leaves the null hypothesis standing.</>,
   },
   {
     working: <Katex display tex="\boxed{14.95 \ \text{grams}}" />,
@@ -119,11 +121,11 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="M_1, M_2 \sim \mathrm{N}\!\left(406,\ 5^2\right) \ \text{ independent}" />,
-    reason: 'Two randomly selected filled cans.',
+    reason: <>Two randomly selected filled cans.</>,
   },
   {
     working: <Katex display tex="D = M_1-M_2 \implies \mathrm{E}(D) = 406-406 = 0" />,
-    reason: 'The difference of two normal variables is normal, and the means subtract.',
+    reason: <>The difference of two normal variables is normal, and the means subtract.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(D) = 1^2\mathrm{Var}(M_1)+(-1)^2\mathrm{Var}(M_2) = 25+25 = 50" />,
@@ -132,11 +134,11 @@ const ROWS_E: WorkingRow[] = [
   {
     working: (
       <>
-        <p className="text-[13.5px] mb-1">\u201cdiffer by no more than 3\u201d:</p>
+        <p className="text-[13.5px] mb-1">“differ by no more than 3”:</p>
         <Katex display tex="|D|\le3 \implies -3\le D\le3" />
       </>
     ),
-    reason: 'Either can could be the heavier one, so both tails count.',
+    reason: <>Either can could be the heavier one, so both tails count.</>,
   },
   {
     working: (
@@ -144,7 +146,7 @@ const ROWS_E: WorkingRow[] = [
         normCdf(−3, 3, 0, √50)
       </Cas>
     ),
-    reason: 'One call with both terminals.',
+    reason: <>One call with both terminals.</>,
   },
   {
     working: <Katex display tex="\boxed{0.329}" />,
@@ -158,13 +160,16 @@ export default function SpecialistQ6_2022Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 6 (9 marks)</p>
         <p>
-          A company produces soft drinks in aluminium cans. The company sources empty cans
-          from an external supplier, who claims that the mass of aluminium in each can is
-          normally distributed with a mean of 15 grams and a standard deviation of 0.25 grams.
-        </p>
-        <p>
+          A company produces soft drinks in aluminium cans.
+          <br />
+          The company sources empty cans from an external supplier, who claims that the mass
+          of aluminium in each can is normally distributed with a mean of 15 grams and a
+          standard deviation of 0.25 grams.
+          <br />
           A random sample of 64 empty cans was taken and the mean mass of the sample was found
-          to be 14.94 grams. Uncertain about the supplier's claim, the company will conduct a
+          to be 14.94 grams.
+          <br />
+          Uncertain about the supplier's claim, the company will conduct a
           one-tailed test at the 5% level of significance. Assume that the standard deviation
           for the test is 0.25 grams.
         </p>
@@ -181,7 +186,8 @@ export default function SpecialistQ6_2022Exam2() {
             the stated level. Part d. simply runs the last line backwards.
           </p>
           <p>
-            Part e. is a different animal and the paper's weakest question: a{' '}
+            Part e. is a different animal — the report's general comments list working with
+            random variables that are functions of other variables as an area of weakness: a{' '}
             <em>difference</em> of two random variables, not a sample mean. Its variance is{' '}
             <Katex tex="25+25=50" /> — adding, never subtracting.
           </p>
@@ -190,6 +196,7 @@ export default function SpecialistQ6_2022Exam2() {
 
       <PartCard
         letter="a"
+        topic="Hypotheses"
         marks={1}
         statement={
           <>
@@ -204,6 +211,7 @@ export default function SpecialistQ6_2022Exam2() {
 
       <PartCard
         letter="b"
+        topic="p-Value"
         marks={1}
         statement={
           <>
@@ -217,6 +225,7 @@ export default function SpecialistQ6_2022Exam2() {
 
       <PartCard
         letter="c"
+        topic="Conclusion"
         marks={1}
         statement={
           <>
@@ -231,6 +240,7 @@ export default function SpecialistQ6_2022Exam2() {
 
       <PartCard
         letter="d"
+        topic="Critical Value"
         marks={1}
         statement={
           <>
@@ -255,6 +265,7 @@ export default function SpecialistQ6_2022Exam2() {
 
       <PartCard
         letter="e"
+        topic="Difference of Normals"
         marks={2}
         statement={
           <>

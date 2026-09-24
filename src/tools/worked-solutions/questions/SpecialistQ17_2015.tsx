@@ -48,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\cos(\angle ABC) = \frac{-1}{\sqrt6\sqrt{13}}}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Negative, so the angle at <Katex tex="B" /> is just obtuse — about <Katex tex="96^\circ" />, since <Katex tex="\cos^{-1}\!\left(-\tfrac{1}{\sqrt{78}}\right)\approx96.5^\circ" />. Both vectors must start at <Katex tex="B" />; using <Katex tex="\overrightarrow{AB}" /> instead of <Katex tex="\overrightarrow{BA}" /> flips the sign.</>,
   },
 ]
 

@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim N(\mu, \sigma^2), \qquad \mu=66, \ \sigma^2=\frac{16}{9}" />,
-    reason: 'The gestation period of a single cat.',
+    reason: <>The gestation period of a single cat.</>,
   },
   {
     working: <Katex display tex="\bar X \sim N\!\left(\mu, \frac{\sigma^2}{n}\right), \qquad n=5" />,
@@ -28,6 +28,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\begin{aligned} \mathrm{sd}(\bar X) &= \sqrt{\frac{16}{45}} \\ &= \frac{4}{3\sqrt5} \end{aligned}" />
       </>
     ),
+    reason: <>Divide the <em>variance</em> by <Katex tex="n" /> (equivalently, the standard deviation by <Katex tex="\sqrt n" />).</>,
   },
   {
     working: (
@@ -36,11 +37,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \Pr\bigl(Z > -0.75\sqrt5\bigr) = \Pr(Z>-1.677)" />
       </>
     ),
-    reason: 'Standardise using the distribution of the sample mean, not the individual variable.',
+    reason: <>Standardise using the distribution of the sample mean, not the individual variable.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>-1.677) \approx 0.9532}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. Option <b>C</b> (<Katex tex="25\%" />), <Katex tex="0.7734" />, is <Katex tex="\Pr(X>65)" /> for a single cat — the standard deviation <Katex tex="\tfrac43" /> used without dividing by <Katex tex="\sqrt5" />.</>,
   },
 ]
 

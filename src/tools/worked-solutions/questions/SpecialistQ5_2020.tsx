@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z = a+bi \implies \bar z = a-bi" />,
-    reason: 'Working in components is quicker here than juggling conjugate identities.',
+    reason: <>Working in components is quicker here than juggling conjugate identities.</>,
   },
   {
     working: <Katex display tex="z\bar z = a^2+b^2" />,
@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 1+\frac{b^2}{a^2} = \boxed{1+\left(\frac{\operatorname{Im}(z)}{\operatorname{Re}(z)}\right)^2}" />,
-    reason: <>Splitting the fraction. Matches option <b>A</b>.</>,
+    reason: <>Splitting the fraction. Matches option <b>A</b>. Option <b>C</b> is <Katex tex="4z\bar z" />, the numerator alone, without dividing by <Katex tex="(z+\bar z)^2" />.</>,
   },
 ]
 
@@ -50,13 +50,13 @@ export default function SpecialistQ5_2020() {
           content: <Katex tex="1+\left(\frac{\operatorname{Im}(z)}{\operatorname{Re}(z)}\right)^2" />,
           isAnswer: true,
         },
-        { letter: 'B', content: <Katex tex="4\left[\operatorname{Re}(z)\cdot\operatorname{Im}(z)\right]" /> },
+        { letter: 'B', content: <Katex tex="4\left[\operatorname{Re}(z)\times\operatorname{Im}(z)\right]" /> },
         { letter: 'C', content: <Katex tex="4\left([\operatorname{Re}(z)]^2+[\operatorname{Im}(z)]^2\right)" /> },
         {
           letter: 'D',
           content: <Katex tex="4\left[1+(\operatorname{Re}(z)+\operatorname{Im}(z))^2\right]" />,
         },
-        { letter: 'E', content: <Katex tex="\frac{2\cdot\operatorname{Im}(z)}{[\operatorname{Re}(z)]^2}" /> },
+        { letter: 'E', content: <Katex tex="\frac{2\times\operatorname{Im}(z)}{[\operatorname{Re}(z)]^2}" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

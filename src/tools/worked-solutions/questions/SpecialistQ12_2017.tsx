@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{ab^2 = 1}" />,
-    reason: <>Option A. A quick test: <Katex tex="a=4" />, <Katex tex="b=\tfrac12" /> gives <Katex tex="ab^2=1" />, and then <Katex tex="\sqrt a=2=\tfrac1b" /> — a circle of radius <Katex tex="2" /> centred at <Katex tex="(1,1)" /> ✓.</>,
+    reason: <>Matches option <b>A</b>. A quick test: <Katex tex="a=4" />, <Katex tex="b=\tfrac12" /> gives <Katex tex="ab^2=1" />, and then <Katex tex="\sqrt a=2=\tfrac1b" /> — a circle of radius <Katex tex="2" /> centred at <Katex tex="(1,1)" /> ✓.</>,
   },
 ]
 

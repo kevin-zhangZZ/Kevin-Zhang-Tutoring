@@ -11,9 +11,13 @@ const EXAM: SAExaminerStats = {
   average: 2.9,
   comment: (
     <>
+      Students used implicit differentiation to find the tangent to the curve at a given point.
       While the implicit differentiation was often performed successfully, arithmetic errors
-      prevented some students from obtaining the correct gradient. A small number of students
-      who found the gradient neglected to give the <em>equation</em> of the tangent.
+      prevented some students from obtaining the correct gradient.
+      <br />
+      A small number of students who successfully found the value of the gradient at the given
+      point neglected to give the equation of the tangent at that point and were not awarded full
+      marks.
     </>
   ),
 }
@@ -29,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left(y^2e^x\right) = 2y e^x\frac{dy}{dx}+y^2e^x" />,
-    reason: 'Product rule again; the first term carries dy/dx, the second does not.',
+    reason: <>Product rule again; the first term carries dy/dx, the second does not.</>,
   },
   {
     working: <Katex display tex="e^{-2y}-2xe^{-2y}\frac{dy}{dx}+2ye^x\frac{dy}{dx}+y^2e^x = 0" />,
@@ -45,11 +49,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y-(-2) = \tfrac{5}{12}(x-4)" />,
-    reason: 'Point–gradient form.',
+    reason: <>Point–gradient form.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \frac{5x}{12}-\frac{11}{3}}" />,
-    reason: <>The <em>equation</em>, not just the gradient — stopping at <Katex tex="\tfrac{5}{12}" /> lost marks.</>,
+    reason: <>The <em>equation</em>, not just the gradient — the report notes students who stopped at <Katex tex="\tfrac{5}{12}" /> were not awarded full marks.</>,
   },
 ]
 
@@ -59,8 +63,9 @@ export default function SpecialistQ1_2025Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 1 (4 marks)</p>
         <p>
-          Consider the curve with equation <Katex tex="xe^{-2y}+y^2e^x=8e^4" />. Find the
-          equation of the tangent to the curve at the point <Katex tex="(4,-2)" />.
+          Consider the curve with equation <Katex tex="xe^{-2y}+y^2e^x=8e^4" />.
+          <br />
+          Find the equation of the tangent to the curve at the point <Katex tex="(4,-2)" />.
         </p>
       </div>
 
@@ -75,7 +80,8 @@ export default function SpecialistQ1_2025Exam1() {
           </p>
           <p>
             Note <Katex tex="e^{-2y}" /> with <Katex tex="y=-2" /> is <Katex tex="e^{4}" />,
-            not <Katex tex="e^{-4}" /> — the sign slip behind most of the wrong gradients.
+            not <Katex tex="e^{-4}" /> — an easy slip; the report notes arithmetic errors
+            prevented some students from obtaining the correct gradient.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

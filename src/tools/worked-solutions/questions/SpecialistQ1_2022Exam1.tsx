@@ -22,8 +22,8 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Students could either use the result from Question 1a. or use the quadratic formula to
-      find the solution to the equation.
+      Students could either use the result from Question 1a. as shown above or use the
+      quadratic formula to find the solution to the equation.
     </>
   ),
 }
@@ -39,26 +39,26 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-a^2+b = -25 \implies -9+b = -25 \implies b = -16" />,
-    reason: 'Matching the constant term.',
+    reason: <>Matching the constant term.</>,
   },
   {
     working: <Katex display tex="\boxed{p(z) = (z+3i)^2-16}" />,
-    reason: <>Both <Katex tex="a=3" /> and <Katex tex="b=-16" /> are real, as required. Check by expanding: <Katex tex="z^2+6iz-9-16=z^2+6iz-25" /> ✓.</>,
+    reason: <>Both <Katex tex="a=3" /> and <Katex tex="b=-16" /> are real, as required. Check by expanding: <Katex tex="z^2+6iz-9-16=z^2+6iz-25" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(z+3i)^2-16 = 0 \implies (z+3i)^2 = 16" />,
-    reason: 'Part a. has already done the hard work.',
+    reason: <>Part a. has already done the hard work.</>,
   },
   {
     working: <Katex display tex="z+3i = \pm4" />,
-    reason: <>Both square roots — dropping the negative one loses a solution, and a quadratic over <Katex tex="\mathbb{C}" /> always has two.</>,
+    reason: <>Both square roots — dropping the negative one loses a solution, and a quadratic over <Katex tex="C" /> always has two.</>,
   },
   {
     working: <Katex display tex="\boxed{z = 4-3i \quad\text{or}\quad z = -4-3i}" />,
-    reason: <>Note these are <em>not</em> conjugates of each other. Sub back: <Katex tex="(4-3i)^2=7-24i" /> and <Katex tex="6i(4-3i)=18+24i" />, and <Katex tex="7-24i+18+24i-25=0" /> ✓.</>,
+    reason: <>Note these are <em>not</em> conjugates of each other. Sub back: <Katex tex="(4-3i)^2=7-24i" /> and <Katex tex="6i(4-3i)=18+24i" />, and <Katex tex="7-24i+18+24i-25=0" />.</>,
   },
 ]
 
@@ -68,7 +68,7 @@ export default function SpecialistQ1_2022Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 1 (3 marks)</p>
         <p>
-          Consider the equation <Katex tex="p(z)=z^2+6iz-25" />, <Katex tex="z\in\mathbb{C}" />.
+          Consider the equation <Katex tex="p(z)=z^2+6iz-25" />, <Katex tex="z\in C" />.
         </p>
       </div>
 
@@ -77,7 +77,7 @@ export default function SpecialistQ1_2022Exam1() {
           <p>
             The coefficients here are <em>not</em> all real — there is a <Katex tex="6i" /> in
             the middle. That single fact kills the habit most students bring to quadratics
-            over <Katex tex="\mathbb{C}" />: the conjugate root theorem only applies when
+            over <Katex tex="C" />: the conjugate root theorem only applies when
             every coefficient is real, so there is no reason to expect the two solutions to
             be conjugates, and indeed they are not. Completing the square, or the quadratic
             formula, still works exactly as usual.
@@ -87,11 +87,12 @@ export default function SpecialistQ1_2022Exam1() {
 
       <PartCard
         letter="a"
+        topic="Completing the Square"
         marks={1}
         statement={
           <>
             Express <Katex tex="p(z)" /> in the form{' '}
-            <Katex tex="p(z)=(z+ai)^2+b" />, where <Katex tex="a,b\in\mathbb{R}" />.
+            <Katex tex="p(z)=(z+ai)^2+b" />, where <Katex tex="a,b\in R" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -101,6 +102,7 @@ export default function SpecialistQ1_2022Exam1() {
 
       <PartCard
         letter="b"
+        topic="Complex Quadratic"
         marks={2}
         statement={
           <>

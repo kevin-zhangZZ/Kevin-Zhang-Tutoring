@@ -22,15 +22,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{gradient} = \tan\!\big(\tfrac{3\pi}{4}\big) = -1" />,
-    reason: 'Gradient from the angle.',
+    reason: <>Gradient from the angle.</>,
   },
   {
     working: <Katex display tex="y - 1 = -1\cdot(x-0) \;\implies\; y = 1-x" />,
-    reason: 'Point-gradient form through (0, 1).',
+    reason: <>Point-gradient form through (0, 1).</>,
   },
   {
     working: <>Since the ray points up-and-left (second-quadrant direction from its start), every point on it has <Katex tex="x<0" />.</>,
-    reason: <>This restriction is what separates the correct option from the plain line <Katex tex="y=1-x" /> (option C is for the whole underlying line, not just the ray).</>,
+    reason: <>This restriction is what separates option A from option B, which takes the other half of the line. Options C–E have the wrong gradient.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 1-x,\ \ x<0}" />,
@@ -43,7 +43,7 @@ export default function SpecialistQ5_2022() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="z=x+yi" />, where <Katex tex="x,y\in\mathbb{R}" /> and <Katex tex="z\in\mathbb{C}" />.
+          Let <Katex tex="z=x+yi" />, where <Katex tex="x,y\in R" /> and <Katex tex="z\in C" />.
           <br />
           If <Katex tex="\mathrm{Arg}(z-i)=\dfrac{3\pi}{4}" />, which one of the following is true?
         </p>

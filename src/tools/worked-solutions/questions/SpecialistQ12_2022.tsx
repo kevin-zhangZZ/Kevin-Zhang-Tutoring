@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{u}\cdot\underset{\sim}{v} = 0 \ \text{ for perpendicular vectors}" />,
-    reason: 'The only condition available, and it turns the question into trigonometry.',
+    reason: <>The only condition available, and it turns the question into trigonometry.</>,
   },
   {
     working: <Katex display tex="\bigl(-\operatorname{cosec}(x)\bigr)\bigl(\cos(x)\bigr)+\sqrt3\cdot1 = 0" />,
-    reason: 'Matching components and adding.',
+    reason: <>Matching components and adding.</>,
   },
   {
     working: <Katex display tex="-\frac{\cos(x)}{\sin(x)}+\sqrt3 = 0 \implies \cot(x) = \sqrt3" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = \frac\pi6 \ \text{ and } \ \frac{7\pi}{6}}" />,
-    reason: <>Option <b>A</b>. Option <b>E</b> pairs <Katex tex="\tfrac\pi6" /> with <Katex tex="\tfrac{5\pi}{6}" />, which is where <Katex tex="\tan" /> is <em>negative</em>.</>,
+    reason: <>Matches option <b>A</b>. Option <b>E</b> pairs <Katex tex="\tfrac\pi6" /> with <Katex tex="\tfrac{5\pi}{6}" />, which is where <Katex tex="\tan" /> is <em>negative</em>.</>,
   },
 ]
 
@@ -46,7 +46,9 @@ export default function SpecialistQ12_2022() {
           Consider the vectors{' '}
           <Katex tex="\underset{\sim}{u}(x)=-\operatorname{cosec}(x)\underset{\sim}{i}+\sqrt3\,\underset{\sim}{j}" />{' '}
           and{' '}
-          <Katex tex="\underset{\sim}{v}(x)=\cos(x)\underset{\sim}{i}+\underset{\sim}{j}" />. If{' '}
+          <Katex tex="\underset{\sim}{v}(x)=\cos(x)\underset{\sim}{i}+\underset{\sim}{j}" />.
+          <br />
+          If{' '}
           <Katex tex="\underset{\sim}{u}(x)" /> is perpendicular to{' '}
           <Katex tex="\underset{\sim}{v}(x)" />, then possible values for <Katex tex="x" /> are
         </p>

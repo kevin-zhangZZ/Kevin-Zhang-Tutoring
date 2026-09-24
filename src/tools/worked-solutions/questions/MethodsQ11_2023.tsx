@@ -12,30 +12,42 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'E',
   noAnswer: 1,
   comment: (
-    <Katex tex="\frac{d}{dx}[f(x)g(x)]\Big|_{x=-2} = f(-2)g'(-2)+g(-2)f'(-2) = (-7\times2)+(3\times8) = 10" />
+    <>
+      <Katex tex="\tfrac{d}{dx}\big[f(x)g(x)\big]" />
+      <br />
+      <Katex tex="=f(x)g'(x)+g(x)f'(x)" />
+      <br />
+      at <Katex tex="x=-2" />
+      <br />
+      <Katex tex="=f(-2)g'(-2)+g(-2)f'(-2)" />
+      <br />
+      <Katex tex="=(-7\times2)+(3\times8)" />
+      <br />
+      <Katex tex="=10" />
+    </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(-2)=-7,\quad g(-2)=8,\quad f'(-2)=3,\quad g'(-2)=2" />,
-    reason: 'Given values.',
+    reason: <>Given values.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\big[f(x)g(x)\big] = f'(x)g(x) + f(x)g'(x)" />,
-    reason: 'Product rule.',
+    reason: <>Product rule.</>,
   },
   {
     working: <Katex display tex="\text{At } x=-2:\quad f'(-2)g(-2) + f(-2)g'(-2)" />,
-    reason: 'Substitute the point of interest.',
+    reason: <>Substitute the point of interest.</>,
   },
   {
     working: <Katex display tex="= (3)(8) + (-7)(2) = 24 - 14" />,
-    reason: 'Substitute the given values.',
+    reason: <>Substitute the given values.</>,
   },
   {
     working: <Katex display tex="\boxed{10}" />,
-    reason: <>Matches option <b>E</b>. (Watch the pairing carefully — it's easy to accidentally multiply <Katex tex="f'" /> with <Katex tex="f" /> instead of <Katex tex="g" />, which is likely why this was the hardest question on the paper.)</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b>, 6, is <Katex tex="f'(-2)\times g'(-2)" /> — multiplying the two derivatives, which is not the product rule.</>,
   },
 ]
 
@@ -45,7 +57,7 @@ export default function MethodsQ11_2023() {
       question={
         <p>
           Two functions, <Katex tex="f" /> and <Katex tex="g" />, are continuous and differentiable for all{' '}
-          <Katex tex="x\in\mathbb{R}" />. It is given that <Katex tex="f(-2)=-7" />, <Katex tex="g(-2)=8" /> and{' '}
+          <Katex tex="x\in R" />. It is given that <Katex tex="f(-2)=-7" />, <Katex tex="g(-2)=8" /> and{' '}
           <Katex tex="f'(-2)=3" />, <Katex tex="g'(-2)=2" />.
           <br />
           The gradient of the graph <Katex tex="y=f(x)\times g(x)" /> at the point where <Katex tex="x=-2" /> is

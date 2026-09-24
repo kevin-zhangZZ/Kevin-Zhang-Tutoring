@@ -15,7 +15,7 @@ const EXAM_A: SAExaminerStats = {
     <>
       Successful students used a trial-and-error approach or used a standardised value to
       solve for <Katex tex="n" />. A common error was to approach this as a sampling problem
-      with <Katex tex="\tfrac{8}{\sqrt n}" />.
+      with <Katex tex="\sigma=\tfrac{8}{\sqrt n}" />.
     </>
   ),
 }
@@ -37,7 +37,11 @@ const EXAM_CI: SAExaminerStats = {
   comment: <>Most students correctly stated the hypotheses for a one-sided test.</>,
 }
 
-const EXAM_CII: SAExaminerStats = { marks: [30, 70], average: 0.7 }
+const EXAM_CII: SAExaminerStats = {
+  marks: [30, 70],
+  average: 0.7,
+  comment: <>Students generally handled this question well.</>,
+}
 
 const EXAM_CIII: SAExaminerStats = {
   marks: [45, 55],
@@ -45,7 +49,7 @@ const EXAM_CIII: SAExaminerStats = {
   comment: (
     <>
       Some students stated a correct conclusion but did not give a reason by referencing the{' '}
-      <Katex tex="p" /> value.
+      <Katex tex="p" />-value.
     </>
   ),
 }
@@ -55,7 +59,7 @@ const EXAM_D: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Some students calculated <Katex tex="63\,108.7" /> but did not proceed to answer the
+      Some students calculated <Katex tex="63{,}108.7" /> but did not proceed to answer the
       question correctly as a range of values.
     </>
   ),
@@ -66,7 +70,7 @@ const EXAM_E: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Most students who found <Katex tex="\bar x = 62\,198.03" /> were able to go on to find
+      Most students who found <Katex tex="\bar x = 62{,}198.03" /> were able to go on to find
       the required probability.
     </>
   ),
@@ -75,11 +79,11 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="W_n = X_1+X_2+\cdots+X_n \sim \mathrm{N}\!\left(75n,\ 8^2n\right)" />,
-    reason: <>The <em>total</em> mass of <Katex tex="n" /> people, not their mean — so the variances add and the standard deviation is <Katex tex="8\sqrt n" />, not <Katex tex="\tfrac{8}{\sqrt n}" />. That confusion is the report's named error.</>,
+    reason: <>The <em>total</em> mass of <Katex tex="n" /> people, not their mean — so the variances add and the standard deviation is <Katex tex="8\sqrt n" />, not <Katex tex="\tfrac{8}{\sqrt n}" />. The report notes this as a common error.</>,
   },
   {
     working: <Katex display tex="\Pr(W_n>1000) < 0.01" />,
-    reason: 'The lift exceeds its load only if the total mass does.',
+    reason: <>The lift exceeds its load only if the total mass does.</>,
   },
   {
     working: <Katex display tex="n=13: \ \Pr(W_{13}>1000) = 0.193" />,
@@ -91,18 +95,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 12}" />,
-    reason: 'The maximum possible value — trial and error is the practical route, because n sits inside both the mean and the standard deviation.',
+    reason: <>The maximum possible value — trial and error is the practical route, because n sits inside both the mean and the standard deviation.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{available time} = 9{:}00-8{:}52-0.5 = 7.5 \text{ minutes}" />,
-    reason: 'Eight minutes until the meeting, less the half minute to walk there.',
+    reason: <>Eight minutes until the meeting, less the half minute to walk there.</>,
   },
   {
-    working: <Katex display tex="T_4 = T_1+T_2+T_3+T_4 \sim \mathrm{N}\!\left(4\times2,\ 4\times0.5^2\right) = \mathrm{N}(8,\ 1)" />,
-    reason: <>Fourth in the queue means four drinks must be dispensed. Summing four independent variables adds the variances — it is not the same as <Katex tex="4T" />, which would have variance 4.</>,
+    working: <Katex display tex="T_4 = D_1+D_2+D_3+D_4 \sim \mathrm{N}\!\left(4\times2,\ 4\times0.5^2\right) = \mathrm{N}(8,\ 1)" />,
+    reason: <>Fourth in the queue means four drinks must be dispensed, with dispensing times <Katex tex="D_1,\ldots,D_4" />. Summing four independent variables adds the variances — it is not the same as <Katex tex="4T" />, which would have variance 4.</>,
   },
   {
     working: <Katex display tex="\Pr(T_4 \le 7.5) = \Pr\!\left(Z \le \frac{7.5-8}{1}\right) = \Pr(Z\le-0.5)" />,
@@ -117,7 +121,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_0: \mu = 60\,000}" />,
-    reason: 'The pre-campaign mean, stated with an equals sign.',
+    reason: <>The pre-campaign mean, stated with an equals sign.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \mu > 60\,000}" />,
@@ -143,11 +147,11 @@ const ROWS_CII: WorkingRow[] = [
 const ROWS_CIII: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.0044 < 0.01" />,
-    reason: 'Compare against the stated significance level — the comparison itself is what earns the mark.',
+    reason: <>Compare against the stated significance level.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{reject } H_0: \text{ the campaign was effective}}" />,
-    reason: 'A conclusion without the p-value reference was not accepted.',
+    working: <Katex display tex="\boxed{\text{reject } H_0: \text{ there is evidence that the campaign was effective}}" />,
+    reason: <>Give the <Katex tex="p" />-value comparison as the reason — the report notes some students stated a correct conclusion without it.</>,
   },
 ]
 
@@ -181,7 +185,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Cas fn="normCdf">normCdf(−∞, 62198.03, 63000, 5000/√14)</Cas>,
-    reason: 'The same standard error, a different centre.',
+    reason: <>The same standard error, a different centre.</>,
   },
   {
     working: <Katex display tex="\boxed{0.274}" />,
@@ -204,6 +208,7 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="a"
+        topic="Linear Combination"
         marks={2}
         statement={
           <>
@@ -216,7 +221,7 @@ export default function SpecialistQ6_2021Exam2() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Clare, who is one of the employees, likes to have a hot drink after she exits the
           lift. The time taken for the drink machine to dispense a hot drink is normally
@@ -227,13 +232,17 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="b"
+        topic="Sum of Normals"
         marks={2}
         statement={
           <>
             Clare has a meeting at 9.00 am and at 8.52 am she is fourth in the queue for a
-            hot drink. Assume that the waiting time between hot drinks dispensed is
-            negligible and that it takes Clare 0.5 minutes to get from the drink machine to
-            the meeting room. What is the probability, correct to four decimal places, that
+            hot drink.
+            <br />
+            Assume that the waiting time between hot drinks dispensed is negligible and that
+            it takes Clare 0.5 minutes to get from the drink machine to the meeting room.
+            <br />
+            What is the probability, correct to four decimal places, that
             Clare will get to her meeting on time?
           </>
         }
@@ -242,13 +251,15 @@ export default function SpecialistQ6_2021Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Clare is a statistician for the chocolate company. The number of chocolate bars
-          sold daily is normally distributed with a mean of 60 000 and a standard deviation
-          of 5000. To increase sales, the company decides to run an advertising campaign.
-          After the campaign, the mean daily sales from 14 randomly selected days was found
-          to be 63 500. Clare has been asked to investigate whether the advertising campaign
+          sold daily is normally distributed with a mean of 60000 and a standard deviation of
+          5000. To increase sales, the company decides to run an advertising campaign. After
+          the campaign, the mean daily sales from 14 randomly selected days was found to be
+          63500.
+          <br />
+          Clare has been asked to investigate whether the advertising campaign
           was effective, so she decides to perform a one-sided statistical test at the 1%
           level of significance.
         </p>
@@ -256,6 +267,7 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Hypotheses"
         marks={1}
         statement={<>Write down suitable null and alternative hypotheses for this test.</>}
         examinerReport={EXAM_CI}
@@ -265,6 +277,7 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="p-Value"
         marks={1}
         statement={
           <>
@@ -279,8 +292,14 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="c.iii"
+        topic="Conclusion"
         marks={1}
-        statement={<>State the conclusion of the test, giving a reason for your answer.</>}
+        statement={
+          <>
+            Giving a reason, state whether there is any evidence for the success of the
+            advertising campaign.
+          </>
+        }
         examinerReport={EXAM_CIII}
       >
         <WorkingTable rows={ROWS_CIII} />
@@ -288,12 +307,13 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="d"
+        topic="Critical Region"
         marks={1}
         statement={
           <>
-            Find the values of the mean daily sales that would lead to the null hypothesis
-            being rejected when tested at the 1% level of significance. Give your answer
-            correct to the nearest integer.
+            Find the range of values for the mean daily sales of another 14 randomly selected
+            days that would lead to the null hypothesis being rejected when tested at the 1%
+            level of significance. Give your answer correct to the nearest integer.
           </>
         }
         examinerReport={EXAM_D}
@@ -303,12 +323,16 @@ export default function SpecialistQ6_2021Exam2() {
 
       <PartCard
         letter="e"
+        topic="Type II Error"
         marks={2}
         statement={
           <>
             The advertising campaign has been successful to the extent that the mean daily
-            sales is now 63 000. A statistical test is applied at the 5% level of
-            significance. Find the probability that the null hypothesis would be incorrectly
+            sales is now 63000.
+            <br />
+            A statistical test is applied at the 5% level of significance.
+            <br />
+            Find the probability that the null hypothesis would be incorrectly
             accepted, based on the sales of another 14 randomly selected days and assuming a
             standard deviation of 5000. Give your answer correct to three decimal places.
           </>

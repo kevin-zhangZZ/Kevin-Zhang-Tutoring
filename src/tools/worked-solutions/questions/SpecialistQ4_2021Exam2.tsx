@@ -1,7 +1,8 @@
 // 2021 Specialist Mathematics — Exam 2, Section B Question 4 (11 marks). A stunt car: a
 // given position vector turned into a cartesian path, the launch conditions that clear or
 // meet a ramp, then rectilinear motion along the run-up. Question text transcribed from the
-// original paper; the figure is a crop of VCAA's own artwork. Answers checked with scipy
+// original paper; the figure is a crop of VCAA's own artwork. Note: the second section of
+// track slopes DOWN at 10° from C (the landing gradient is tan 170°). Answers checked with scipy
 // and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -27,7 +28,8 @@ const EXAM_B: SAExaminerStats = {
     <>
       Incorrect approaches using vector calculus were frequently seen. Some incorrect
       responses swapped the values <Katex tex="(16,4)" /> when substituting into the
-      cartesian equation.
+      cartesian equation. Some students who were unsuccessful in Question 4a. used the given
+      cartesian equation and gained full marks in this question.
     </>
   ),
 }
@@ -38,9 +40,13 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       Many students did not provide a response. Very few students were able to use the
-      information given to state two correct equations. A common error was to incorrectly
-      use <Katex tex="m=\tan(10^\circ)" /> rather than{' '}
-      <Katex tex="m=\tan(170^\circ)=-\tan(10^\circ)" />.
+      information given to state two correct equations. Of those that showed some working, a
+      common error was to incorrectly use <Katex tex="m=\tan10^\circ" />, rather than the
+      correct <Katex tex="m=\tan(170^\circ)" />, <Katex tex="m=-\tan(10^\circ)" /> or{' '}
+      <Katex tex="m=\tan(-10^\circ)" />.
+      <br />
+      It should be noted that <Katex tex="\tan\theta" /> can be isolated by hand by solving
+      the simultaneous equations by elimination.
     </>
   ),
 }
@@ -52,7 +58,8 @@ const EXAM_D: SAExaminerStats = {
     <>
       A number of incorrect responses inappropriately used a constant acceleration formula.
       Of those that correctly used an appropriate form of acceleration, a number did not
-      explicitly include a constant of integration or demonstrate that <Katex tex="c=0" />.
+      explicitly include a constant of integration or demonstrate that <Katex tex="c=0" /> to
+      show the given result.
     </>
   ),
 }
@@ -62,7 +69,7 @@ const EXAM_E: SAExaminerStats = { marks: [87, 10, 1, 3], average: 0.2 }
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x = ut\cos(\theta), \quad y = ut\sin(\theta)-\tfrac12gt^2" />,
-    reason: 'Reading the two components off the given position vector.',
+    reason: <>Reading the two components off the given position vector.</>,
   },
   {
     working: <Katex display tex="t = \frac{x}{u\cos(\theta)}" />,
@@ -70,18 +77,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = u\sin(\theta)\cdot\frac{x}{u\cos(\theta)}-\tfrac12(9.8)\left(\frac{x}{u\cos(\theta)}\right)^2" />,
-    reason: 'Substituting into the vertical component.',
+    reason: <>Substituting into the vertical component.</>,
   },
   {
-    working: <Katex display tex="\boxed{y = x\tan(\theta)-\frac{4.9x^2}{u^2\cos^2(\theta)}} \ \checkmark" />,
-    reason: <>The first term collapses because <Katex tex="\tfrac{\sin}{\cos}=\tan" />, and <Katex tex="\tfrac12(9.8)=4.9" />.</>,
+    working: <Katex display tex="\boxed{y = x\tan(\theta)-\frac{4.9x^2}{u^2\cos^2(\theta)}}" />,
+    reason: <>The first term collapses because <Katex tex="\tfrac{\sin}{\cos}=\tan" />, and <Katex tex="\tfrac12(9.8)=4.9" />. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{land at or beyond } C(16,4) \implies \text{at } x=16, \ y \ge 4" />,
-    reason: <>The second track slopes <em>up</em> away from <Katex tex="C" />, so reaching or passing <Katex tex="C" /> is the condition; the minimum speed is the one that lands exactly on it.</>,
+    reason: <>The second track slopes <em>down</em> from <Katex tex="C" />, so landing at or beyond <Katex tex="C" /> means the path passes through or above <Katex tex="C" />; the minimum speed is the one that passes exactly through it.</>,
   },
   {
     working: <Katex display tex="4 = 16\tan(30^\circ)-\frac{4.9(16)^2}{u^2\cos^2(30^\circ)}" />,
@@ -93,14 +100,14 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{u = 17.87\ \text{m s}^{-1}}" />,
-    reason: 'To two decimal places. Any faster and the car overshoots C, which the question allows.',
+    reason: <>To two decimal places. Any faster and the car lands beyond <Katex tex="C" />, which the question allows.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{join smoothly} \implies \text{same point } and \text{ same gradient at } C" />,
-    reason: 'Two conditions, so two equations — which is exactly what the three marks are for.',
+    reason: <>Two conditions, so two equations — which is exactly what the three marks are for.</>,
   },
   {
     working: <Katex display tex="\text{(1) } 4 = 16\tan(\theta)-\frac{4.9(16)^2}{u^2\cos^2(\theta)}" />,
@@ -108,11 +115,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = \tan(\theta)-\frac{9.8x}{u^2\cos^2(\theta)}" />,
-    reason: 'Differentiating the cartesian path from part a.',
+    reason: <>Differentiating the cartesian path from part a.</>,
   },
   {
     working: <Katex display tex="\text{(2) } \tan(170^\circ) = \tan(\theta)-\frac{9.8(16)}{u^2\cos^2(\theta)}" />,
-    reason: <>The car is <em>descending</em> onto a track that rises at <Katex tex="10^\circ" /> ahead of it, so the required gradient is <Katex tex="\tan(170^\circ)=-\tan(10^\circ)" />, negative. Using <Katex tex="+\tan(10^\circ)" /> is the report's named error.</>,
+    reason: <>The track slopes <em>down</em> at <Katex tex="10^\circ" /> to the horizontal, so the required gradient is <Katex tex="\tan(170^\circ)=-\tan(10^\circ)" />, negative. The report notes using <Katex tex="\tan10^\circ" /> as a common error.</>,
   },
   {
     working: <Cas fn="solve">solve({'{'}eq1, eq2{'}'}, {'{'}θ, u{'}'}) | 0 &lt; θ &lt; 90°, u &gt; 0</Cas>,
@@ -127,23 +134,23 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{60}{v} \text{ with } a = v\frac{dv}{ds}" />,
-    reason: <>Acceleration is given in terms of <em>position</em>, so a constant-acceleration formula is not available — the report says this was a common wrong turn.</>,
+    reason: <>The acceleration is not constant, so a constant-acceleration formula is not available — the report notes a number of incorrect responses used one.</>,
   },
   {
     working: <Katex display tex="v\frac{dv}{ds} = \frac{60}{v} \implies \frac{ds}{dv} = \frac{v^2}{60}" />,
-    reason: 'Separating, then inverting so the integration is with respect to v.',
+    reason: <>Separating, then inverting so the integration is with respect to v.</>,
   },
   {
     working: <Katex display tex="s = \int\frac{v^2}{60}\,dv = \frac{v^3}{180}+c" />,
-    reason: 'The constant must be written down — it is part of the mark.',
+    reason: <>Include the constant — the report notes a number of students did not.</>,
   },
   {
     working: <Katex display tex="\text{from rest at } A: \ s=0 \text{ when } v=0 \implies c=0" />,
     reason: <>Showing <Katex tex="c=0" /> rather than assuming it.</>,
   },
   {
-    working: <Katex display tex="v^3 = 180s \implies \boxed{v = (180s)^{1/3}} \ \checkmark" />,
-    reason: 'Cube-rooting.',
+    working: <Katex display tex="v^3 = 180s \implies \boxed{v = (180s)^{1/3}}" />,
+    reason: <>Cube-rooting. As required.</>,
   },
 ]
 
@@ -162,7 +169,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve((180(400/9 − d))^(2/3) = 18d, d) | 0 &lt; d &lt; 400/9</Cas>,
-    reason: 'One root in range.',
+    reason: <>One root in range.</>,
   },
   {
     working: <Katex display tex="\boxed{d = 16.4\ \text{m}}" />,
@@ -180,18 +187,20 @@ export default function SpecialistQ4_2021Exam2() {
           car accelerates from rest at point <Katex tex="A" />, is launched into the air by
           the ramp <Katex tex="BO" /> and lands on a second section of track at or beyond
           point <Katex tex="C" />. This second section of track is inclined at 10° to the
-          horizontal. Due to a tailwind, the effect of air resistance is negligible. Point{' '}
+          horizontal.
+          <br />
+          Due to a tailwind, the effect of air resistance is negligible. Point{' '}
           <Katex tex="O" /> is taken as the origin of a cartesian coordinate system and all
           displacements are measured in metres. Point <Katex tex="C" /> has the coordinates{' '}
           <Katex tex="(16,4)" />.
-        </p>
-        <p>
+          <br />
           At point <Katex tex="O" />, the speed of the car is{' '}
           <Katex tex="u\ \text{m s}^{-1}" /> and it takes off at an angle of{' '}
-          <Katex tex="\theta" /> to the horizontal direction. After the car passes point{' '}
-          <Katex tex="O" />, the position of the car's rear wheels relative to point{' '}
-          <Katex tex="O" />, at time <Katex tex="t" /> seconds after passing{' '}
-          <Katex tex="O" />, is given by{' '}
+          <Katex tex="\theta" /> to the horizontal direction.
+          <br />
+          After the car passes point <Katex tex="O" />, it follows a trajectory where the
+          position of the car's rear wheels relative to point <Katex tex="O" />, at time{' '}
+          <Katex tex="t" /> seconds after passing point <Katex tex="O" />, is given by{' '}
           <Katex tex="\underset{\sim}{r}(t)=ut\cos(\theta)\,\underset{\sim}{i}+\left(ut\sin(\theta)-\tfrac12gt^2\right)\underset{\sim}{j}" />{' '}
           until the car lands on the second section of track that starts at point{' '}
           <Katex tex="C" />.
@@ -199,7 +208,7 @@ export default function SpecialistQ4_2021Exam2() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={trackSrc}
-            alt="A stunt track: a horizontal run-up from A through W to B, a ramp rising to the origin O, and a second track sloping up at 10° starting at C(16, 4) — from the original 2021 VCAA exam paper"
+            alt="A stunt track: a horizontal run-up from A through W to B below the x-axis, a ramp curving up to the origin O where the car takes off at angle θ, a dashed flight path, and a second track sloping down at 10° to the horizontal from C(16, 4) to the x-axis — from the original 2021 VCAA exam paper"
             className="w-full max-w-[460px]"
           />
         </div>
@@ -223,6 +232,7 @@ export default function SpecialistQ4_2021Exam2() {
 
       <PartCard
         letter="a"
+        topic="Projectile Path"
         marks={1}
         statement={
           <>
@@ -238,6 +248,7 @@ export default function SpecialistQ4_2021Exam2() {
 
       <PartCard
         letter="b"
+        topic="Minimum Speed"
         marks={2}
         statement={
           <>
@@ -255,15 +266,18 @@ export default function SpecialistQ4_2021Exam2() {
 
       <PartCard
         letter="c"
+        topic="Smooth Landing"
         marks={3}
         statement={
           <>
             The ramp <Katex tex="BO" /> is constructed so that the angle{' '}
-            <Katex tex="\theta" /> can be varied. For what values of <Katex tex="\theta" />{' '}
-            and <Katex tex="u" /> will the path of the rear wheels of the car join up
-            smoothly with the beginning of the second section of track at point{' '}
-            <Katex tex="C" />? Give your answer for <Katex tex="\theta" /> in degrees,
-            correct to the nearest degree, and for <Katex tex="u" /> in{' '}
+            <Katex tex="\theta" /> can be varied.
+            <br />
+            For what values of <Katex tex="\theta" /> and <Katex tex="u" /> will the path of
+            the rear wheels of the car join up <b>smoothly</b> with the beginning of the second
+            section of track at point <Katex tex="C" />? Give your answer for{' '}
+            <Katex tex="\theta" /> in degrees, correct to the nearest degree, and give your
+            answer for <Katex tex="u" /> in{' '}
             <Katex tex="\text{m s}^{-1}" />, correct to one decimal place.
           </>
         }
@@ -272,7 +286,7 @@ export default function SpecialistQ4_2021Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           The car accelerates from rest along the horizontal section of track{' '}
           <Katex tex="AB" />, where its acceleration, <Katex tex="a\ \text{m s}^{-2}" />,
@@ -284,6 +298,7 @@ export default function SpecialistQ4_2021Exam2() {
 
       <PartCard
         letter="d"
+        topic="Velocity-Distance"
         marks={2}
         statement={
           <>
@@ -298,6 +313,7 @@ export default function SpecialistQ4_2021Exam2() {
 
       <PartCard
         letter="e"
+        topic="Stopping Distance"
         marks={3}
         statement={
           <>
@@ -307,7 +323,9 @@ export default function SpecialistQ4_2021Exam2() {
             of <Katex tex="9\ \text{m s}^{-2}" />. It is only safe to call off the stunt if
             the car can come to rest at or before point <Katex tex="B" />. Point{' '}
             <Katex tex="W" /> is the furthest point along the section <Katex tex="AB" /> at
-            which the stunt can be called off. How far is point <Katex tex="W" /> from point{' '}
+            which the stunt can be called off.
+            <br />
+            How far is point <Katex tex="W" /> from point{' '}
             <Katex tex="B" />? Give your answer in metres, correct to one decimal place.
           </>
         }

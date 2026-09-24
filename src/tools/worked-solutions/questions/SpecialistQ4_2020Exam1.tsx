@@ -5,16 +5,25 @@
 
 import Katex from '../../../components/Katex'
 import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './spec-2020e1-q4-report-graph.png'
 
 const EXAM: SAExaminerStats = {
   marks: [22, 20, 22, 24, 12],
   average: 1.8,
   comment: (
     <>
-      A quick sketch was helpful. A number of students who found that{' '}
-      <Katex tex="-\infty<x<\tfrac{7-\sqrt5}{2}" /> did not receive full marks as they did
-      not write the final answer in interval notation. Students who approached this problem
-      algebraically were often unsure how to deal with the inequality signs.
+      The intersection of the graphs of <Katex tex="y=3-x" /> and{' '}
+      <Katex tex="y=\dfrac{1}{|x-4|}" /> occurs when <Katex tex="x<3" />. A quick sketch was
+      helpful:
+      <img src={reportGraphSrc} alt="The report's sketch of y = 3 − x and y = 1/|x − 4|, with the asymptote x = 4" className="w-full max-w-[240px] my-2" />
+      As <Katex tex="x<3" />, the inequality to be solved was{' '}
+      <Katex tex="3-x>\dfrac{1}{4-x}" />. This led to the inequality{' '}
+      <Katex tex="x^2-7x+11>0" />, which could be solved using the quadratic formula. A number of
+      students who found that <Katex tex="-\infty<x<\dfrac{7-\sqrt5}{2}" /> did not receive full
+      marks as they did not write the final answer in interval notation.
+      <br />
+      Students who approached this problem algebraically were often unsure how to deal with the
+      inequality signs.
     </>
   ),
 }
@@ -38,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(3-x)(4-x) > 1" />,
-    reason: <>Multiplying by <Katex tex="4-x" />, which is <em>positive</em> on <Katex tex="x<3" />, so the sign of the inequality is safe. This is exactly the step the report says students were unsure of.</>,
+    reason: <>Multiplying by <Katex tex="4-x" />, which is <em>positive</em> on <Katex tex="x<3" />, so the sign of the inequality is safe. The report notes students who approached this algebraically were often unsure how to deal with the inequality signs.</>,
   },
   {
     working: <Katex display tex="12-7x+x^2 > 1 \implies x^2-7x+11 > 0" />,
@@ -58,7 +67,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x \in \left(-\infty,\ \tfrac{7-\sqrt5}{2}\right)}" />,
-    reason: <>Interval notation, as the question demands — writing the same set as a double inequality cost students a mark.</>,
+    reason: <>Interval notation, as the question demands — the report notes students who wrote the same set as <Katex tex="-\infty<x<\tfrac{7-\sqrt5}{2}" /> did not receive full marks.</>,
   },
 ]
 

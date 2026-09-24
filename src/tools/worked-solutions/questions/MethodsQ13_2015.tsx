@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \frac{1}{2e-1}}" />,
-    reason: <>Option E, about <Katex tex="0.226" />. Option C, <Katex tex="\tfrac1e" />, is what you get from the first branch alone.</>,
+    reason: <>Matches option <b>E</b>, about <Katex tex="0.226" />. Option C, <Katex tex="\tfrac1e" />, is what the second branch alone gives; option D, <Katex tex="\tfrac1{2e}" />, forgets the <Katex tex="e^0=1" /> at the lower terminal of the first integral.</>,
   },
 ]
 

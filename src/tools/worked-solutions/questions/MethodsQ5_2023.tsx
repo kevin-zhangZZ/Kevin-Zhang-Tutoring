@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = x^{4/3}}" />,
-    reason: <>Option <b>D</b>, and <Katex tex="0^{4/3}=0" /> puts the origin on the curve. The rule of thumb: <Katex tex="x^p" /> is flat at the origin exactly when <Katex tex="p>1" />.</>,
+    reason: <>Matches option <b>D</b>, and <Katex tex="0^{4/3}=0" /> puts the origin on the curve. The rule of thumb: <Katex tex="x^p" /> is flat at the origin exactly when <Katex tex="p>1" />.</>,
   },
 ]
 

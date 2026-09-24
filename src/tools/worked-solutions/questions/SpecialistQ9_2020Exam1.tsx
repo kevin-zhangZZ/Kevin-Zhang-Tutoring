@@ -25,11 +25,14 @@ const EXAM_B: SAExaminerStats = {
     <>
       Many students could correctly substitute <Katex tex="\tfrac{dx}{dt}" /> and{' '}
       <Katex tex="\tfrac{dy}{dt}" /> into the formula for the arc length of a curve defined
-      parametrically, which is given on the formula sheet. Most students who successfully
-      answered this question were able to identify the perfect square, which allowed the
-      square root in the integrand to be removed. Few students who tried to write the term
-      inside the square root as a single algebraic fraction were able to see the problem
-      through to the conclusion. Some students confused{' '}
+      parametrically, which is given on the formula sheet.
+      <br />
+      Most students who successfully answered this question were able to identify the perfect
+      square, which allowed the square root in the integrand to be removed.
+      <br />
+      Few students who tried to write the term inside the square root as a single algebraic
+      fraction were able to see the problem through to the conclusion. Transcription errors were
+      noted in this question. Some students confused{' '}
       <Katex tex="1-t^2" /> with <Katex tex="(1-t)^2" />, which led to incorrect results.
     </>
   ),
@@ -57,8 +60,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Assembled.</>,
   },
   {
-    working: <Katex display tex="\boxed{a = 1, \quad b = -2, \quad c = 16} \ \checkmark" />,
-    reason: <>Matching against <Katex tex="\tfrac{1}{a(1+t)^2}+\tfrac{1}{b\left(1-t^2\right)}+\tfrac{1}{c(1-t)^2}" />: the minus sign is absorbed into <Katex tex="b=-2" />.</>,
+    working: <Katex display tex="\boxed{a = 1, \quad b = -2, \quad c = 16}" />,
+    reason: <>As required. Matching against <Katex tex="\tfrac{1}{a(1+t)^2}+\tfrac{1}{b\left(1-t^2\right)}+\tfrac{1}{c(1-t)^2}" />: the minus sign is absorbed into <Katex tex="b=-2" />.</>,
   },
 ]
 
@@ -81,7 +84,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left(\frac{1}{1+t}+\frac{1}{4(1-t)}\right)^2 = \frac{1}{(1+t)^2}+\frac{2}{4\left(1-t^2\right)}+\frac{1}{16(1-t)^2}" />,
-    reason: <>Recognising the perfect square. Do not combine into a single fraction first — the report says almost no one who did got through.</>,
+    reason: <>Recognising the perfect square. Do not combine into a single fraction first — the report notes few students who did were able to see the problem through.</>,
   },
   {
     working: <Katex display tex="s = \int_0^{1/2}\left(\frac{1}{1+t}+\frac{1}{4(1-t)}\right)dt" />,
@@ -97,7 +100,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{s = \log_e\!\left(\tfrac32\right)+\tfrac14\log_e(2)}" />,
-    reason: <><Katex tex="-\log_e\tfrac12=\log_e2" />. So <Katex tex="m=\tfrac32" />, <Katex tex="n=\tfrac14" />, <Katex tex="p=2" />, all rational ✓. About 0.579.</>,
+    reason: <><Katex tex="-\log_e\tfrac12=\log_e(2)" />. So <Katex tex="m=\tfrac32" />, <Katex tex="n=\tfrac14" />, <Katex tex="p=2" />, all rational ✓. About 0.579.</>,
   },
 ]
 
@@ -120,13 +123,16 @@ export default function SpecialistQ9_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Partial Fractions"
         marks={2}
         statement={
           <>
             <Katex tex="\left(\dfrac{dy}{dt}\right)^2" /> can be written in the form{' '}
             <Katex tex="\dfrac{1}{a(1+t)^2}+\dfrac{1}{b\left(1-t^2\right)}+\dfrac{1}{c(1-t)^2}" />
             , where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are real
-            numbers. Show that <Katex tex="a=1" />, <Katex tex="b=-2" /> and{' '}
+            numbers.
+            <br />
+            Show that <Katex tex="a=1" />, <Katex tex="b=-2" /> and{' '}
             <Katex tex="c=16" />.
           </>
         }
@@ -137,6 +143,7 @@ export default function SpecialistQ9_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Arc Length"
         marks={3}
         statement={
           <>

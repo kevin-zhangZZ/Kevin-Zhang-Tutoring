@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{8k}{10k} = \frac45}" />,
-    reason: <>Option <b>C</b>. The <Katex tex="k" /> cancels, so there is no need to solve <Katex tex="15k=1" /> at all — though it is worth noticing that <Katex tex="k=\tfrac{1}{15}" /> makes every probability legitimate.</>,
+    reason: <>Matches option <b>C</b>. The <Katex tex="k" /> cancels, so there is no need to solve <Katex tex="15k=1" /> at all — though it is worth noticing that <Katex tex="k=\tfrac{1}{15}" /> makes every probability legitimate. Without the conditioning, <Katex tex="\Pr(X<4)=\tfrac{13}{15}" /> is option <b>A</b> and <Katex tex="\Pr(1<X<4)=\tfrac{8}{15}" /> is option <b>D</b>.</>,
   },
 ]
 
@@ -64,15 +64,15 @@ export default function MethodsQ3_2024() {
             </table>
           </div>
           <p>
-            <Katex tex="\Pr(X<4\mid X>1)" /> is
+            Find <Katex tex="\Pr(X<4\mid X>1)" />.
           </p>
         </div>
       }
       options={[
-        { letter: 'A', content: <Katex tex="\frac{8}{15}" /> },
-        { letter: 'B', content: <Katex tex="\frac{2}{3}" /> },
+        { letter: 'A', content: <Katex tex="\frac{13}{15}" /> },
+        { letter: 'B', content: <Katex tex="\frac{11}{13}" /> },
         { letter: 'C', content: <Katex tex="\frac45" />, isAnswer: true },
-        { letter: 'D', content: <Katex tex="\frac{13}{15}" /> },
+        { letter: 'D', content: <Katex tex="\frac{8}{15}" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

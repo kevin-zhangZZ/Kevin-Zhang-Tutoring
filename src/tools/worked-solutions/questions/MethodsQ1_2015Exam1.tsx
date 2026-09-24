@@ -80,8 +80,13 @@ const ROWS_BII: WorkingRow[] = [
 export default function MethodsQ1_2015Exam1() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p className="font-semibold text-gray-900 dark:text-white">Question 1 (4 marks)</p>
+      </div>
+
       <PartCard
         letter="a"
+        topic="Chain Rule"
         marks={1}
         statement={
           <>
@@ -95,6 +100,7 @@ export default function MethodsQ1_2015Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Quotient Rule"
         marks={2}
         statement={
           <>
@@ -106,7 +112,7 @@ export default function MethodsQ1_2015Exam1() {
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={1} statement={<>Evaluate <Katex tex="f'(1)" />.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Evaluate Derivative" marks={1} statement={<>Evaluate <Katex tex="f'(1)" />.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
     </div>

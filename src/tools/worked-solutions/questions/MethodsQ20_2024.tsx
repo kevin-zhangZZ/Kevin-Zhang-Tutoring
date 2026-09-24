@@ -13,24 +13,27 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="\tfrac12\int_0^2 f(x)\,dx=k \;\implies\; \int_0^2f(x)\,dx=2k" />, and{' '}
-      <Katex tex="\int_0^2f=\int_2^4f=\int_4^6f=2k" />, so <Katex tex="\int_2^6f(x)\,dx=4k" />.
+      <Katex tex="\tfrac12\int_0^2f(x)\,dx=k" />, <Katex tex="\int_0^2f(x)\,dx=2k" />
+      <br />
+      <Katex tex="\int_0^2f(x)\,dx=\int_2^4f(x)\,dx=\int_4^6f(x)\,dx=2k" />
+      <br />
+      <Katex tex="\int_2^6f(x)\,dx=4k" />
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x)=f(x+2) \text{ for all } x\in\mathbb{R}" />,
+    working: <Katex display tex="f(x)=f(x+2) \text{ for all } x\in R" />,
     reason: <><Katex tex="f" /> is periodic with period 2.</>,
   },
   {
     working: <Katex display tex="\text{Average value on } [0,2] = \frac{1}{2-0}\int_0^2 f(x)\,dx = k" />,
-    reason: 'Definition of average value.',
+    reason: <>Definition of average value.</>,
   },
   {
     working: <Katex display tex="\int_0^2 f(x)\,dx = 2k" />,
-    reason: 'Rearrange.',
+    reason: <>Rearrange.</>,
   },
   {
     working: <Katex display tex="\int_2^4 f(x)\,dx = \int_0^2 f(x)\,dx = 2k \qquad \int_4^6 f(x)\,dx = \int_0^2 f(x)\,dx = 2k" />,
@@ -42,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4k}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b>, <Katex tex="2k" />, is the integral over a single period.</>,
   },
 ]
 
@@ -51,9 +54,9 @@ export default function MethodsQ20_2024() {
     <MCQShell
       question={
         <p>
-          The function <Katex tex="f:\mathbb{R}\to\mathbb{R}" /> has an average value <Katex tex="k" /> on the
+          The function <Katex tex="f:R\to R" /> has an average value <Katex tex="k" /> on the
           interval <Katex tex="[0,2]" /> and satisfies <Katex tex="f(x)=f(x+2)" /> for all{' '}
-          <Katex tex="x\in\mathbb{R}" />. The value of the definite integral{' '}
+          <Katex tex="x\in R" />. The value of the definite integral{' '}
           <Katex tex="\displaystyle\int_2^6 f(x)\,dx" /> is
         </p>
       }

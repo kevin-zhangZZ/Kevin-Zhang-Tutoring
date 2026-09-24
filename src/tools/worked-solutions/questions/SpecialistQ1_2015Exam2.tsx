@@ -14,7 +14,8 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      The main error was some answers being given only in terms of <Katex tex="x" />. Some
+      This question was answered reasonably well. The main error was some answers were given
+      only in terms of <Katex tex="x" />. Some
       students moved from a correct answer involving <Katex tex="x" /> and <Katex tex="y" />{' '}
       to an incorrect answer involving only <Katex tex="x" />. Omission of the negative sign
       occurred occasionally.
@@ -39,7 +40,8 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      A few students had answers other than zero, while some students did not make it clear
+      This question was answered quite well. A few students had answers other than zero,
+      while some students did not make it clear
       that both answers were zero.
     </>
   ),
@@ -50,9 +52,9 @@ const EXAM_C: SAExaminerStats = {
   average: 2.4,
   comment: (
     <>
-      The main errors were the incorrect domain and/or range, or the omission of one or both.
-      A small number of students gave the inverse <em>relation</em> by including{' '}
-      <Katex tex="\pm" /> in front of the square root. Most students knew to interchange{' '}
+      This question was answered fairly well. The main errors were the incorrect domain
+      and/or range, or the omission of one or both. A small number of students gave the
+      inverse relation by including <Katex tex="\pm" /> in front of the square root. Most students knew to interchange{' '}
       <Katex tex="x" /> and <Katex tex="y" /> as a first step.
     </>
   ),
@@ -63,7 +65,8 @@ const EXAM_D: SAExaminerStats = {
   average: 1,
   comment: (
     <>
-      Many students did not accurately transfer the graphs from a CAS screen to the axes
+      This question was answered moderately well. Many students did not accurately transfer
+      the graphs from a CAS screen to the axes
       provided. Of those who managed to draw the graphs correctly, a significant number did
       not label them. Incorrect location of endpoints and incorrect concavity were common.
     </>
@@ -81,7 +84,8 @@ const EXAM_FI: SAExaminerStats = {
   average: 1.7,
   comment: (
     <>
-      Common errors included not squaring <Katex tex="f(x)" />, incorrect terminals and the
+      This question was answered reasonably well. Common errors included not squaring{' '}
+      <Katex tex="f(x)" />, incorrect terminals and the
       occasional omission of <Katex tex="\pi" /> and/or <Katex tex="dx" />.
     </>
   ),
@@ -151,7 +155,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \arcsin\!\left(\sqrt{2-x^2}\right)}" />,
-    reason: <>The rule.</>,
+    reason: <>The rule. Check: <Katex tex="f^{-1}\!\left(\sqrt2\right)=\arcsin(0)=0" /> and <Katex tex="f^{-1}(1)=\arcsin(1)=\tfrac\pi2" />, undoing part b(i) ✓.</>,
   },
   {
     working: <Katex display tex="\text{domain } f^{-1} = \text{range } f = \left[1,\sqrt2\right]" />,
@@ -177,12 +181,12 @@ const ROWS_D: WorkingRow[] = [
       <div className="flex flex-col gap-2">
         <img
           src={sketchSrc}
-          alt="The curve y = f(x) falling from (0, √2) to (π/2, 1) with horizontal tangents at both ends, and its mirror image y = f inverse of x falling steeply from (1, π/2) to (√2, 0), the two crossing on the dotted line y = x at P(1.099, 1.099)"
+          alt="This site's sketch on VCAA's 0 to 1.8 grid: the curve y = f(x) falling from (0, √2) to (π/2, 1) with horizontal tangents at both ends, and its mirror image y = f inverse of x falling steeply from (1, π/2) to (√2, 0), the two crossing on the dotted line y = x at P(1.099, 1.099)"
           className="w-full max-w-[380px]"
         />
       </div>
     ),
-    reason: <>Each graph is the other reflected in <Katex tex="y=x" /> (dotted). Labelling which curve is which is the mark the report says students most often threw away.</>,
+    reason: <>Each graph is the other reflected in <Katex tex="y=x" /> (dotted), drawn on VCAA's grid. Label which curve is which — the report says a significant number of students who drew the graphs correctly did not label them.</>,
   },
 ]
 
@@ -247,6 +251,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="a"
+        topic="Implicit Differentiation"
         marks={1}
         statement={
           <>
@@ -262,6 +267,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Endpoint Values"
         marks={1}
         statement={
           <>
@@ -276,6 +282,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Gradient Values"
         marks={1}
         statement={
           <>
@@ -295,6 +302,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="c"
+        topic="Inverse Function"
         marks={3}
         statement={
           <>
@@ -309,6 +317,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="d"
+        topic="Sketch Inverse"
         marks={2}
         statement={
           <>
@@ -323,6 +332,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="e"
+        topic="Intersections"
         marks={1}
         statement={
           <>
@@ -343,6 +353,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="f.i"
+        topic="Volume of Revolution"
         marks={2}
         statement={
           <>
@@ -357,6 +368,7 @@ export default function SpecialistQ1_2015Exam2() {
 
       <PartCard
         letter="f.ii"
+        topic="Volume of Revolution"
         marks={1}
         statement={<>Find the volume of this solid, correct to one decimal place.</>}
         examinerReport={EXAM_FII}

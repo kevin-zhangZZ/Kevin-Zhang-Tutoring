@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.355}" />,
-    reason: <>Option C. Option E, <Katex tex="0.8" />, is the sum of the probabilities without squaring; option A drops the smallest term.</>,
+    reason: <>Matches option <b>C</b>. Sanity check: the "both own none" case alone contributes <Katex tex="0.25" />, and the other three cases add only a little more, so the answer should be a little above <Katex tex="0.25" /> — option E, <Katex tex="0.8" />, is far too big.</>,
   },
 ]
 

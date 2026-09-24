@@ -42,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{a-1}{b-1}}" />,
-    reason: <>Option E. Option A, <Katex tex="\tfrac ab" />, forgets the complements; option B is the probability of <Katex tex="5<X<8" /> divided by <Katex tex="\Pr(X<8)" />, a different conditional.</>,
+    reason: <>Matches option <b>E</b>. Option A, <Katex tex="\tfrac ab" />, forgets the complements; option B is the probability of <Katex tex="5<X<8" /> divided by <Katex tex="\Pr(X<8)" />, a different conditional.</>,
   },
 ]
 

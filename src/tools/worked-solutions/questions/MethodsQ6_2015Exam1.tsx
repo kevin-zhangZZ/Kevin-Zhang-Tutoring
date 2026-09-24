@@ -11,8 +11,8 @@ const EXAM_A: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Those students who drew a diagram of a normal curve with relevant areas shaded found
-      this helpful. An answer of <Katex tex="2" /> was common. The answer of{' '}
+      Those students who drew a diagram of a ‘normal’ curve with relevant areas shaded found
+      this helpful. An answer of <Katex tex="+2" /> was common. The answer of{' '}
       <Katex tex="1.9" /> was also common, and was two standard deviations below the mean of{' '}
       <Katex tex="X" />. This question required a conversion to the standard normal curve.
     </>
@@ -27,7 +27,8 @@ const EXAM_B: SAExaminerStats = {
       Most students could state the relevant rule and obtained the correct denominator of{' '}
       <Katex tex="\tfrac12" /> but then failed to recognise that{' '}
       <Katex tex="\Pr(X<2.8\mid X>2.5)=\tfrac{\Pr(2.5<X<2.8)}{\Pr(X>2.5)}" />.
-      Probabilities greater than <Katex tex="1" /> occurred.
+      Probabilities greater than 1 or errors in handling decimals and/or fraction
+      simplifications were common.
     </>
   ),
 }
@@ -43,7 +44,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = -2}" />,
-    reason: <>The question asks for <Katex tex="\Pr(Z<b)" />, a <em>left</em> tail, so the sign must flip. Answering <Katex tex="2" /> ignores the direction; answering <Katex tex="1.9" /> works in <Katex tex="X" /> instead of <Katex tex="Z" />. Half the state gave one of those.</>,
+    reason: <>The question asks for <Katex tex="\Pr(Z<b)" />, a <em>left</em> tail, so the sign must flip. Answering <Katex tex="2" /> ignores the direction; answering <Katex tex="1.9" /> works in <Katex tex="X" /> instead of <Katex tex="Z" />. The report says both were common. Check: <Katex tex="\Pr(Z<-2)" /> is a small left tail, matching the small right tail <Katex tex="\Pr(X>3.1)" /> ✓.</>,
   },
 ]
 
@@ -89,6 +90,7 @@ export default function MethodsQ6_2015Exam1() {
 
       <PartCard
         letter="a"
+        topic="Standardising"
         marks={1}
         statement={
           <>
@@ -110,6 +112,7 @@ export default function MethodsQ6_2015Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>

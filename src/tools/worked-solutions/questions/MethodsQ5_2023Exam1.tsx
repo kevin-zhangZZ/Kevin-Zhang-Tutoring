@@ -11,10 +11,11 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Common errors were giving the antiderivative of <Katex tex="\sin(x)" /> as{' '}
-      <Katex tex="\cos(x)" />, or stating <Katex tex="\cos\!\left(\tfrac\pi3\right)=\tfrac{\sqrt3}{2}" />{' '}
-      instead of <Katex tex="\tfrac12" />. Students are reminded that forms of common integrals
-      are provided on the formula sheet.
+      This question required students to evaluate a definite integral. Common errors were
+      giving the antiderivative of <Katex tex="\sin(x)" /> as <Katex tex="\cos(x)" /> or
+      stating <Katex tex="\cos\!\left(\tfrac\pi3\right)=\tfrac{\sqrt3}{2}" /> instead of{' '}
+      <Katex tex="\tfrac12" />. Students are reminded that forms of common integrals are
+      provided on the formula sheet.
     </>
   ),
 }
@@ -24,11 +25,14 @@ const EXAM_B: SAExaminerStats = {
   average: 1.8,
   comment: (
     <>
-      Common errors were made when students were unable to determine an appropriate exact
-      value ratio, and consequently could not identify a reference angle. It is important to
-      note that, since the range of <Katex tex="\sin(x)" /> lies within{' '}
-      <Katex tex="[-1,1]" />, <Katex tex="\sin(k)" /> can never take a value outside this
-      range.
+      This question was presented as a 'hence, or otherwise' question and, although not
+      essential, most students did well at using their answer from part 5a. Common errors were
+      made when students were unable to determine an appropriate exact value ratio (implying
+      that their answer from part 5a. was incorrect), and consequently they could not identify
+      a reference angle. It is important to note that, since the range of{' '}
+      <Katex tex="\sin(x)" /> lies within <Katex tex="[-1,1]" />, <Katex tex="\sin(k)" /> can
+      never take a value outside of this range. Other approaches, such as trying to utilise the
+      areas under graphs, were very rarely seen and tended to be unsuccessful.
     </>
   ),
 }
@@ -36,7 +40,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{\frac\pi3}\sin(x)\,dx = \Bigl[-\cos(x)\Bigr]_0^{\frac\pi3}" />,
-    reason: <>The antiderivative of <Katex tex="\sin" /> is <Katex tex="-\cos" />, not <Katex tex="\cos" /> — the sign is on the formula sheet and is the report's first named error.</>,
+    reason: <>The antiderivative of <Katex tex="\sin" /> is <Katex tex="-\cos" />, not <Katex tex="\cos" /> — the sign is on the formula sheet, and the report notes giving <Katex tex="\cos(x)" /> as a common error.</>,
   },
   {
     working: <Katex display tex="= -\cos\!\left(\frac\pi3\right)+\cos(0) = -\frac12+1" />,
@@ -44,7 +48,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac12}" />,
-    reason: 'A clean value, which part b. then has to match.',
+    reason: <>A clean value, which part b. then has to match.</>,
   },
 ]
 
@@ -55,7 +59,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 1-\sin(k)" />,
-    reason: 'One expression in k, which is all that is needed.',
+    reason: <>One expression in k, which is all that is needed.</>,
   },
   {
     working: <Katex display tex="1-\sin(k) = \frac12 \implies \sin(k) = \frac12" />,
@@ -66,7 +70,7 @@ const ROWS_B: WorkingRow[] = [
     reason: <>So within one revolution, <Katex tex="k=\tfrac\pi6" /> and <Katex tex="k=\pi-\tfrac\pi6=\tfrac{5\pi}{6}" />.</>,
   },
   {
-    working: <Katex display tex="\text{General solutions: } k = \frac\pi6+2n\pi \ \text{ or } \ k = \frac{5\pi}{6}+2n\pi, \ n\in\mathbb{Z}" />,
+    working: <Katex display tex="\text{General solutions: } k = \frac\pi6+2n\pi \ \text{ or } \ k = \frac{5\pi}{6}+2n\pi, \ n\in Z" />,
     reason: <>The domain <Katex tex="-3\pi<k<2\pi" /> spans two and a half revolutions, so more than two answers are expected — that width is the hint.</>,
   },
   {
@@ -75,7 +79,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = -\frac{11\pi}{6},\ -\frac{7\pi}{6},\ \frac\pi6,\ \frac{5\pi}{6}}" />,
-    reason: 'All four values are required for full marks.',
+    reason: <>The four values in the report's answer. Check one: <Katex tex="\sin\!\left(-\tfrac{7\pi}{6}\right)=\tfrac12" />, so <Katex tex="1-\sin(k)=\tfrac12" /> ✓.</>,
   },
 ]
 
@@ -99,6 +103,7 @@ export default function MethodsQ5_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Definite Integral"
         marks={1}
         statement={
           <>
@@ -112,6 +117,7 @@ export default function MethodsQ5_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Trig Equation"
         marks={3}
         statement={
           <>

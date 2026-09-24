@@ -12,9 +12,12 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       The graph of <Katex tex="y=\cos(x)" /> is mapped to the graph of{' '}
-      <Katex tex="y=\cos(2x+4)=\cos\bigl(2(x+2)\bigr)" />. There has been a dilation of factor{' '}
-      <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis and then a translation of 2
-      units to the left.
+      <Katex tex="y=\cos(2x+4)=\cos\bigl(2(x+2)\bigr)" />.
+      <br />
+      There has been a dilation of a factor of <Katex tex="\tfrac12" /> from the{' '}
+      <Katex tex="y" />-axis and then a translation of 2 units to the left.
+      <br />
+      <Katex tex="T\left(\begin{bmatrix}x\\y\end{bmatrix}\right)=\begin{bmatrix}\frac12&0\\0&1\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}-2\\0\end{bmatrix}=\begin{bmatrix}\frac12&0\\0&1\end{bmatrix}\left(\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}-4\\0\end{bmatrix}\right)" />
     </>
   ),
 }
@@ -42,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{A}}" />,
-    reason: <>Check with a point: <Katex tex="x=0" /> maps to <Katex tex="x'=-2" />, and <Katex tex="\cos\bigl(2(-2)+4\bigr)=\cos(0)=1" /> ✓.</>,
+    reason: <>Matches option <b>A</b>; options <b>D</b> and <b>E</b> dilate by a factor of <Katex tex="2" />, stretching instead of compressing. Check with a point: <Katex tex="x=0" /> maps to <Katex tex="x'=-2" />, and <Katex tex="\cos\bigl(2(-2)+4\bigr)=\cos(0)=1" /> ✓.</>,
   },
 ]
 

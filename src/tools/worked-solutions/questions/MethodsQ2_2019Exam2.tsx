@@ -2,9 +2,9 @@
 // A zip-line cable above a hill modelled by y = 3x(x-30)²/2000 — the hill's gradient (parts
 // a-b), the cable's rule where it runs 3 m above the hill (part c), where the cable's gradient
 // matches the hill's average gradient (part d), and the join point A where the straight and
-// curved sections meet smoothly (part e). Both photographs of the situation are VCAA's own
-// graphs, cropped directly from the exam paper; the extra graph of dy/dx in part (b) is this
-// site's own explanatory figure (matplotlib) of a function VCAA never printed — part (b) was
+// curved sections meet smoothly (part e). Both graphs of the situation are VCAA's own,
+// cropped directly from the exam paper and shown in the stem where the paper prints them; the extra graph of dy/dx in part b. is this
+// site's own explanatory figure (matplotlib) of a function VCAA never printed — part b. was
 // the worst-answered part of the paper at 3% correct, and the gradient graph is what makes it
 // obvious. Question text transcribed from the original paper. Cross-checked against the VCAA
 // examination report and itute's independent solutions, and independently re-derived (all
@@ -13,15 +13,17 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import hillSrc from './meth-2019exam2-q2-hill.png'
-import hillCableSrc from './meth-2019exam2-q2-hill-cable.png'
-import gradientSrc from './meth-2019exam2-q2-gradient.png'
+import hillSrc from './meth-2019e2-q2-hill.png'
+import hillCableSrc from './meth-2019e2-q2-hill-cable.png'
+import gradientSrc from './meth-2019e2-q2-gradient.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 93],
   average: 1.0,
   comment: (
     <>
+      Other equivalent forms were acceptable.
+      <br />
       This question was answered well. Common incorrect answers were{' '}
       <Katex tex="\dfrac{9x(x-30)(x-15)}{500}" /> and <Katex tex="\dfrac{9(x^2-40x+30)}{2000}" />.
     </>
@@ -34,10 +36,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was not done well. Most students interpreted the question as asking where
-      the function modelling the hill itself was strictly decreasing, rather than where its
-      gradient was strictly decreasing — the most common incorrect response was{' '}
-      <Katex tex="[10,30]" />, or a combination of round and square brackets with those two
-      values.
+      the function modelling the hill was strictly decreasing, rather than the gradient of the
+      hill and so the most common incorrect response was <Katex tex="[10,\ 30]" /> or a
+      combination of round and square brackets with those two values.
     </>
   ),
 }
@@ -53,11 +54,16 @@ const EXAM_D: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      A common incorrect answer for the average gradient was <Katex tex="\tfrac{3}{10}" /> (the
-      sign was dropped). Some students used{' '}
-      <Katex tex="\tfrac{1}{30-10}\int_{10}^{30}h(x)\,dx" /> — the average <em>value</em> of{' '}
-      <Katex tex="h" /> — instead of the average gradient. Some gave approximate answers,{' '}
-      <Katex tex="14.23" /> and <Katex tex="25.77" />, instead of the exact forms.
+      A common incorrect answer for the average gradient was <Katex tex="\tfrac{3}{10}" />.
+      <br />
+      Some students used <Katex tex="\dfrac{1}{30-10}\displaystyle\int_{10}^{30}h(x)\,dx" />{' '}
+      instead of <Katex tex="\dfrac{1}{30-10}\displaystyle\int_{10}^{30}h'(x)\,dx" />.
+      <br />
+      Some students gave approximate answers for the <Katex tex="x" /> values, 14.23 and 25.77.
+      <br />
+      Other students did not use brackets correctly, giving{' '}
+      <Katex tex="x=\dfrac{\pm10\left(\sqrt3+6\right)}{3}" /> as their answer. Another common
+      incorrect answer was <Katex tex="\dfrac{6\pm10\sqrt3}{3}" />.
     </>
   ),
 }
@@ -65,7 +71,19 @@ const EXAM_D: SAExaminerStats = {
 const EXAM_EI: SAExaminerStats = {
   marks: [48, 52],
   average: 0.5,
-  comment: <>The answer had to be given in terms of <Katex tex="a" />. Some students used <Katex tex="\tfrac{f(a)-10}{a}" /> (the hill) instead of <Katex tex="\tfrac{h(a)-10}{a}" /> (the cable). Others wrote <Katex tex="\tfrac{b-10}{a}" />, which is not in terms of <Katex tex="a" /> alone.</>,
+  comment: (
+    <>
+      Common incorrect answers were{' '}
+      <Katex tex="\dfrac{9a^2}{2000}-\dfrac{9a}{50}+\dfrac{27}{50}" />,{' '}
+      <Katex tex="\dfrac{3}{2000}a^2-\dfrac{9}{100}a-\dfrac{10}{a}+\dfrac{27}{20}" /> and{' '}
+      <Katex tex="\dfrac{3a^3-180a^2+2700a-20000}{2000a}" />.
+      <br />
+      Some students used <Katex tex="\dfrac{f(a)-10}{a}" /> instead of{' '}
+      <Katex tex="\dfrac{h(a)-10}{a}" />. Other students wrote <Katex tex="\dfrac{b-10}{a}" />.
+      <br />
+      The answer had to be given in terms of <Katex tex="a" />.
+    </>
+  ),
 }
 
 const EXAM_EII: SAExaminerStats = {
@@ -83,7 +101,7 @@ const EXAM_EII: SAExaminerStats = {
 const EXAM_EIII: SAExaminerStats = {
   marks: [80, 20],
   average: 0.2,
-  comment: <>Students who obtained the correct value for <Katex tex="a" /> in part (e)(ii) were generally successful with this question.</>,
+  comment: <>Students who obtained the correct value for <Katex tex="a" /> in Question 2eii. were generally successful with this question.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
@@ -116,16 +134,8 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={hillSrc} alt="The hill y = 3x(x−30)²/2000 on x ∈ [0,30], rising to a peak at (10,6) and falling back to zero at x = 30" className="w-full max-w-[400px]" />
-      </div>
-    ),
-    reason: <>The hill itself. Reading <em>this</em> graph tells you where the <em>hill</em> is decreasing (from <Katex tex="x=10" /> onwards) — which is the trap. The question asks about the gradient, so the graph to look at is the next one.</>,
-  },
-  {
     working: <Katex display tex="\text{Gradient function: } \dfrac{dy}{dx} = \dfrac{9(x-30)(x-10)}{2000}" />,
-    reason: <>From part (a). This is an upright parabola in <Katex tex="x" /> (positive <Katex tex="x^2" /> coefficient) with roots at <Katex tex="x=10" /> and <Katex tex="x=30" />.</>,
+    reason: <>The graph of the hill in the question tells you where the <em>hill</em> is decreasing (from <Katex tex="x=10" /> onwards) — which is the trap. The question asks about the <em>gradient</em>, so work with the gradient function from part a. This is an upright parabola in <Katex tex="x" /> (positive <Katex tex="x^2" /> coefficient) with roots at <Katex tex="x=10" /> and <Katex tex="x=30" />.</>,
   },
   {
     working: (
@@ -152,16 +162,8 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={hillCableSrc} alt="The hill with the cable above it: straight from (0,10) to A(a,b), then running exactly 3 m above the hill all the way to x = 30" className="w-full max-w-[460px]" />
-      </div>
-    ),
-    reason: <>The dashed cable sits a constant <Katex tex="3" /> m above the hill for <Katex tex="x\in[a,30]" /> — both vertical arrows in the figure are labelled <Katex tex="3" /> m.</>,
-  },
-  {
     working: <Katex display tex="\text{height of cable} = \text{height of hill} + 3" />,
-    reason: <>"Exactly <Katex tex="3" /> m vertically above" means every <Katex tex="y" />-value is <Katex tex="3" /> larger — a vertical translation of the hill's graph.</>,
+    reason: <>In the second graph the dashed cable sits a constant <Katex tex="3" /> m above the hill for <Katex tex="x\in[a,30]" />. "Exactly <Katex tex="3" /> m vertically above" means every <Katex tex="y" />-value is <Katex tex="3" /> larger — a vertical translation of the hill's graph.</>,
   },
   {
     working: <Katex display tex="\boxed{h(x) = \dfrac{3x(x-30)^2}{2000}+3}, \qquad x\in[a,30]" />,
@@ -208,14 +210,14 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 20-\dfrac{10\sqrt3}{3} \ \text{ or } \ x=20+\dfrac{10\sqrt3}{3}}" />,
-    reason: <>Both lie inside <Katex tex="[10,30]" /> (<Katex tex="\approx14.23" /> and <Katex tex="\approx25.77" />), so both are valid. Keep the surd form — the report specifically notes that the decimal answers did not score, because Section B requires exact values unless told otherwise.</>,
+    reason: <>Both lie inside <Katex tex="[10,30]" /> (<Katex tex="\approx14.23" /> and <Katex tex="\approx25.77" />), so both are valid. Keep the surd form — Section B requires exact values unless told otherwise, and the report notes some students gave the approximations. It also notes bracket errors in writing these, such as <Katex tex="\tfrac{\pm10(\sqrt3+6)}{3}" />.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="b = h(a) = \dfrac{3a(a-30)^2}{2000}+3" />,
-    reason: <><Katex tex="A" /> is on the curved section, so its height comes from part (c)'s rule.</>,
+    reason: <><Katex tex="A" /> is on the curved section, so its height comes from part c.'s rule.</>,
   },
   {
     working: <Katex display tex="\text{gradient} = \dfrac{\text{rise}}{\text{run}} = \dfrac{h(a)-10}{a-0}" />,
@@ -223,18 +225,18 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\dfrac{h(a)-10}{a} = \dfrac{3a^2}{2000}-\dfrac{9a}{100}+\dfrac{27}{20}-\dfrac{7}{a}}" />,
-    reason: <>Expanding is optional — either form scores — but it must be <em>in terms of <Katex tex="a" /></em>, so <Katex tex="\tfrac{b-10}{a}" /> alone was not accepted.</>,
+    reason: <>Expanding is optional, but it must be <em>in terms of <Katex tex="a" /></em> — the report notes some students wrote <Katex tex="\tfrac{b-10}{a}" />, and some used <Katex tex="f(a)" /> (the hill) instead of <Katex tex="h(a)" /> (the cable).</>,
   },
   {
     working: <Katex display tex="\text{Equivalently: } \dfrac{9(a-30)(a-10)}{2000}" />,
-    reason: <>Because the join is smooth, the curved section's derivative at <Katex tex="x=a" /> is also "the gradient at <Katex tex="A" />" — this is the form itute gives. The two expressions are only equal at the special value of <Katex tex="a" /> that makes the join smooth, and finding that value is exactly what part (e)(ii) does.</>,
+    reason: <>Because the join is smooth, the curved section's derivative at <Katex tex="x=a" /> is also "the gradient at <Katex tex="A" />", and the report accepts this form too (<Katex tex="\tfrac{9a^2}{2000}-\tfrac{9a}{50}+\tfrac{27}{20}" />). The two expressions are equal only at the value of <Katex tex="a" /> that makes the join smooth, and finding that value is exactly what part e.ii. does.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\underbrace{\dfrac{h(a)-10}{a}}_{\text{straight section}} = \underbrace{\dfrac{9(a-30)(a-10)}{2000}}_{\text{curved section}}" />,
-    reason: <>"Smooth join" means the two sections arrive at <Katex tex="A" /> with the <em>same</em> gradient. Setting the two expressions from part (e)(i) equal gives one equation in the one unknown <Katex tex="a" />.</>,
+    reason: <>"Smooth join" means the two sections arrive at <Katex tex="A" /> with the <em>same</em> gradient. Setting the two expressions from part e.i. equal gives one equation in the one unknown <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="\dfrac{3a^2}{2000}-\dfrac{9a}{100}+\dfrac{27}{20}-\dfrac{7}{a} = \dfrac{9(a-30)(a-10)}{2000}" />,
@@ -242,10 +244,11 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a \approx 11.1157\ldots \implies a\approx11.12" />,
+    reason: <>The one solution in <Katex tex="[10,20]" />.</>,
   },
   {
     working: <Katex display tex="b = h(a) = \dfrac{3(11.1157\ldots)(11.1157\ldots-30)^2}{2000}+3 \approx 8.9461" />,
-    reason: <>Substitute the <em>unrounded</em> value of <Katex tex="a" /> back into <Katex tex="h" />. Rounding <Katex tex="a" /> first is what produced the report's noted wrong answer <Katex tex="(11.11,8.94)" />.</>,
+    reason: <>Substitute the <em>unrounded</em> value of <Katex tex="a" /> back into <Katex tex="h" />. The report notes incorrectly rounded answers, <Katex tex="(11.11,8.94)" />, and students who found <Katex tex="a" /> but not <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A \approx (11.12,\ 8.95)}" />,
@@ -256,10 +259,11 @@ const ROWS_EII: WorkingRow[] = [
 const ROWS_EIII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Gradient at } A = \dfrac{9(a-30)(a-10)}{2000} \quad \text{with } a\approx11.1157" />,
-    reason: <>Use part (e)(i)'s rule with part (e)(ii)'s value of <Katex tex="a" /> — again, the unrounded one.</>,
+    reason: <>Use part e.i.'s rule with part e.ii.'s value of <Katex tex="a" /> — again, the unrounded one.</>,
   },
   {
     working: <Katex display tex="= \dfrac{9(11.1157-30)(11.1157-10)}{2000} \approx -0.0948" />,
+    reason: <>Substituting.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx -0.1}" />,
@@ -276,15 +280,19 @@ export default function MethodsQ2_2019Exam2() {
           An amusement park is planning to build a zip-line above a hill on its property. The
           hill is modelled by <Katex tex="y=\dfrac{3x(x-30)^2}{2000},\ x\in[0,30]" />, where{' '}
           <Katex tex="x" /> is the horizontal distance, in metres, from an origin and{' '}
-          <Katex tex="y" /> is the height, in metres, above this origin.
+          <Katex tex="y" /> is the height, in metres, above this origin, as shown in the graph
+          below.
         </p>
+        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+          <img src={hillSrc} alt="The hill y = 3x(x−30)²/2000 on x ∈ [0, 30], rising to a peak at (10, 6) and falling back to zero at x = 30, from the original 2019 VCAA exam paper" className="w-full max-w-[400px]" />
+        </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find <Katex tex="\dfrac{dy}{dx}" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Derivative" marks={1} statement={<>Find <Katex tex="\dfrac{dy}{dx}" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement="State the set of values for which the gradient of the hill is strictly decreasing." examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Decreasing Gradient" marks={1} statement="State the set of values for which the gradient of the hill is strictly decreasing." examinerReport={EXAM_B}>
         <Background>
           <p>
             Only <b>3%</b> of students scored this mark, and the reason is a single word. There
@@ -328,22 +336,25 @@ export default function MethodsQ2_2019Exam2() {
           <Katex tex="10" /> m and is straight for <Katex tex="0\le x\le a" />, where{' '}
           <Katex tex="10\le a\le20" />. The straight section joins the curved section at{' '}
           <Katex tex="A(a,b)" />. The cable is then exactly <Katex tex="3" /> m vertically above
-          the hill from <Katex tex="a\le x\le30" />.
+          the hill from <Katex tex="a\le x\le30" />, as shown in the graph below.
         </p>
+        <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+          <img src={hillCableSrc} alt="The hill with the dashed cable above it: straight from (0, 10) to A(a, b), then exactly 3 m above the hill all the way to x = 30, from the original 2019 VCAA exam paper" className="w-full max-w-[460px]" />
+        </div>
       </div>
 
-      <PartCard letter="c" marks={1} statement={<>State the rule, in terms of <Katex tex="x" />, for the height of the cable above the horizontal axis for <Katex tex="x\in[a,30]" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Rule of Function" marks={1} statement={<>State the rule, in terms of <Katex tex="x" />, for the height of the cable above the horizontal axis for <Katex tex="x\in[a,30]" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={3} statement={<>Find the values of <Katex tex="x" /> for which the gradient of the cable is equal to the average gradient of the hill for <Katex tex="x\in[10,30]" />.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Average Gradient" marks={3} statement={<>Find the values of <Katex tex="x" /> for which the gradient of the cable is equal to the average gradient of the hill for <Katex tex="x\in[10,30]" />.</>} examinerReport={EXAM_D}>
         <Background>
           <p>
             The <b>average gradient</b> of a curve between two points is just the gradient of the
             straight line joining them:{' '}
             <Katex tex="\dfrac{y(b)-y(a)}{b-a}" />. It is <em>not</em> the average value of the
-            function, and not an integral — the report notes students who integrated{' '}
-            <Katex tex="h" /> here lost the marks.
+            function — the report notes some students used the average value of{' '}
+            <Katex tex="h" />, <Katex tex="\tfrac{1}{30-10}\int_{10}^{30}h(x)\,dx" />, instead.
           </p>
           <p>
             So this part has two halves: work out that one number from the hill's endpoints,
@@ -361,24 +372,24 @@ export default function MethodsQ2_2019Exam2() {
         </p>
       </div>
 
-      <PartCard letter="e.i" marks={1} statement={<>State the gradient of the cable at <Katex tex="A" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_EI}>
+      <PartCard letter="e.i" topic="Gradient" marks={1} statement={<>State the gradient of the cable at <Katex tex="A" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_EI}>
         <Background>
           <p>
             <Katex tex="A" /> is the seam between the two halves of the cable, so there are two
             ways to describe the gradient there — the straight section's, which is a rise-over-run
-            calculation, and the curved section's, which is a derivative. VCAA's published answer
-            uses the straight section, and that is the more useful one here, because the next
-            part equates the two.
+            calculation, and the curved section's, which is a derivative. The report accepts
+            either; the straight-section form is the more useful one here, because the next part
+            equates the two.
           </p>
         </Background>
         <WorkingTable rows={ROWS_EI} />
       </PartCard>
 
-      <PartCard letter="e.ii" marks={3} statement={<>Find the coordinates of <Katex tex="A" />, with each value correct to two decimal places.</>} examinerReport={EXAM_EII}>
+      <PartCard letter="e.ii" topic="Smooth Join" marks={3} statement={<>Find the coordinates of <Katex tex="A" />, with each value correct to two decimal places.</>} examinerReport={EXAM_EII}>
         <WorkingTable rows={ROWS_EII} />
       </PartCard>
 
-      <PartCard letter="e.iii" marks={1} statement="Find the value of the gradient at A, correct to one decimal place." examinerReport={EXAM_EIII}>
+      <PartCard letter="e.iii" topic="Gradient" marks={1} statement={<>Find the value of the gradient at <Katex tex="A" />, correct to one decimal place.</>} examinerReport={EXAM_EIII}>
         <WorkingTable rows={ROWS_EIII} />
       </PartCard>
     </div>

@@ -29,8 +29,10 @@ const EXAM_B: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students tried to expand the function by hand and made algebraic errors. A common
-      incorrect answer was <Katex tex="f(x)=\tfrac14x^4-8x^2+16" />.
+      Some students tried to expand the function by hand and made algebraic errors. Others did
+      not put the expression in the correct form. A common incorrect answer was
+      <br />
+      <Katex tex="f(x)=\dfrac14x^4-8x^2+16" />
     </>
   ),
 }
@@ -63,9 +65,9 @@ const EXAM_D: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students were not able to provide a suitable written description, or did not have
-      the transformations in the correct order. A common incorrect answer was "reflected in
-      the <Katex tex="y" />-axis".
+      Most students were able to describe the transformations. Some were not able to provide a
+      suitable written description for the transformations or did not have them in the correct
+      order. A common incorrect answer was reflected in the <Katex tex="y" />-axis.
     </>
   ),
 }
@@ -81,9 +83,18 @@ const EXAM_EII: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students used <Katex tex="f(x)-h(x)" />. Sometimes <Katex tex="dx" /> was missing.
+      Some students used <Katex tex="f(x)-h(x)" />. Sometimes <Katex tex="dx" /> was missing or
+      the functions were called by other names, such as <Katex tex="g(x)" />, without being
+      defined.
+      <br />
+      There was some poor use of brackets, for example:{' '}
+      <Katex tex="\displaystyle2\int_{\sqrt2}^{\sqrt6}h(x)\,dx-\int_{\sqrt2}^{\sqrt6}f(x)\,dx\ne2\int_{\sqrt2}^{\sqrt6}\bigl(h(x)-f(x)\bigr)dx" />.
+      <br />
       There was no need to write out the full expressions for <Katex tex="f(x)" /> and{' '}
-      <Katex tex="h(x)" /> — this often led to transcription errors.
+      <Katex tex="h(x)" />. This often led to transcription errors. Likewise, it was not
+      necessary to substitute{' '}
+      <Katex tex="h(x)-f(x)=-\tfrac12(x+2)^2(x-2)^2+2=-\tfrac{x^4}{2}+4x^2-6" />. This often led
+      to algebraic errors.
     </>
   ),
 }
@@ -93,8 +104,8 @@ const EXAM_EIII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Some students gave the response <Katex tex="2.71" />. Some forgot to multiply by 2,
-      giving <Katex tex="1.36" />.
+      Some students gave the response of 2.71. Some students forgot to multiply by 2, giving 1.36
+      as the answer.
     </>
   ),
 }
@@ -104,8 +115,11 @@ const EXAM_F: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Others had incorrect inequality signs. Some had extra solutions or only gave the values
-      of <Katex tex="x" /> for when <Katex tex="D=2" /> units.
+      Some students gave exact values for their answers:{' '}
+      <Katex tex="-\sqrt{4+2\sqrt2}\le x\le-\sqrt{4-2\sqrt2},\ \sqrt{4-2\sqrt2}\le x\le\sqrt{4+2\sqrt2}" />.
+      <br />
+      Others had incorrect inequality signs. Some had extra solutions or only gave the values of{' '}
+      <Katex tex="x" /> for when <Katex tex="D=2" /> units.
     </>
   ),
 }
@@ -124,8 +138,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Both squares are 4.</>,
   },
   {
-    working: <Katex display tex="a = \tfrac14 \ \checkmark" />,
-    reason: <>Shown, not assumed — the distinction the report insists on.</>,
+    working: <Katex display tex="\boxed{a = \tfrac14}" />,
+    reason: <>As required. Shown, not assumed — the report notes some students assumed <Katex tex="a=\tfrac14" /> in their proof rather than showing it.</>,
   },
 ]
 
@@ -197,7 +211,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{reflect in the } x\text{-axis, then translate } 2 \text{ units up}}" />,
-    reason: <>The other valid order is translate 2 units <em>down</em> first, then reflect in the <Katex tex="x" />-axis — reflecting changes the sign of a later shift, so the order and the direction go together.</>,
+    reason: <>The other valid order, which the report also gives, is translate 2 units <em>down</em> first, then reflect in the <Katex tex="x" />-axis — reflecting changes the sign of a later shift, so the order and the direction go together.</>,
   },
 ]
 
@@ -231,14 +245,14 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2\int_{\sqrt2}^{\sqrt6}\bigl(h(x)-f(x)\bigr)dx}" />,
-    reason: <>Equivalently <Katex tex="\int_{-\sqrt6}^{-\sqrt2}(h-f)\,dx+\int_{\sqrt2}^{\sqrt6}(h-f)\,dx" />. There is no need to substitute the rules in.</>,
+    reason: <>Equivalently <Katex tex="\int_{-\sqrt6}^{-\sqrt2}(h-f)\,dx+\int_{\sqrt2}^{\sqrt6}(h-f)\,dx" />. Keep the brackets around <Katex tex="h(x)-f(x)" />, and there is no need to substitute the rules in — the report notes both led to errors.</>,
   },
 ]
 
 const ROWS_EIII: WorkingRow[] = [
   {
     working: <Cas fn="nInt">2·∫(h(x) - f(x), x, √2, √6)</Cas>,
-    reason: <>Straight from part e(ii).</>,
+    reason: <>Straight from part e.ii.</>,
   },
   {
     working: <Katex display tex="= \frac{112\sqrt2}{15}-\frac{16\sqrt6}{5} = 2.7210\ldots" />,
@@ -246,7 +260,7 @@ const ROWS_EIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2.72}" />,
-    reason: <>To two decimal places. Forgetting the factor of 2 gives <Katex tex="1.36" />, the report's common error.</>,
+    reason: <>To two decimal places. The report notes some students forgot to multiply by 2, giving <Katex tex="1.36" />, and some gave <Katex tex="2.71" />.</>,
   },
 ]
 
@@ -257,7 +271,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(x)-f(x) = 2-\tfrac12\left(x^2-4\right)^2" />,
-    reason: <>From part e(i)'s algebra.</>,
+    reason: <>From part e.i.'s algebra.</>,
   },
   {
     working: <Katex display tex="D \le 2 \iff -2 \le 2-\tfrac12\left(x^2-4\right)^2 \le 2" />,
@@ -299,12 +313,13 @@ export default function MethodsQ1_2020Exam2() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Show that <Katex tex="a=\tfrac14" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Find Parameter" marks={1} statement={<>Show that <Katex tex="a=\tfrac14" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Expansion"
         marks={1}
         statement={
           <>
@@ -318,7 +333,7 @@ export default function MethodsQ1_2020Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>Part of the graph of the derivative function <Katex tex="f'" /> is shown below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -331,6 +346,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Derivative"
         marks={1}
         statement={<>Write the rule for <Katex tex="f'" /> in terms of <Katex tex="x" />.</>}
         examinerReport={EXAM_CI}
@@ -340,6 +356,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Minimum Value"
         marks={2}
         statement={
           <>
@@ -352,7 +369,7 @@ export default function MethodsQ1_2020Exam2() {
         <WorkingTable rows={ROWS_CII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
           Let <Katex tex="h:R\to R" />, <Katex tex="h(x)=-\tfrac14(x+2)^2(x-2)^2+2" />. Parts
           of the graphs of <Katex tex="f" /> and <Katex tex="h" /> are shown below.
@@ -368,6 +385,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="d"
+        topic="Transformations"
         marks={1}
         statement={
           <>
@@ -380,12 +398,11 @@ export default function MethodsQ1_2020Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
-        <p>The shaded regions referred to in part e. are shown below.</p>
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={shadedSrc}
-            alt="The same two curves with the two lens-shaped regions between them shaded, one either side of the y-axis — from the original 2020 VCAA exam paper"
+            alt="The graphs of f and h with the two regions between them shaded, one either side of the y-axis, each between the intersections near x = ±√2 and x = ±√6 — from the original 2020 VCAA exam paper"
             className="w-full max-w-[380px]"
           />
         </div>
@@ -393,6 +410,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Intersections"
         marks={1}
         statement={
           <>
@@ -407,6 +425,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Definite Integral"
         marks={1}
         statement={
           <>
@@ -421,6 +440,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="e.iii"
+        topic="Area Between Curves"
         marks={1}
         statement={
           <>
@@ -435,11 +455,14 @@ export default function MethodsQ1_2020Exam2() {
 
       <PartCard
         letter="f"
+        topic="Vertical Distance"
         marks={2}
         statement={
           <>
             Let <Katex tex="D" /> be the vertical distance between the graphs of{' '}
-            <Katex tex="f" /> and <Katex tex="h" />. Find all values of <Katex tex="x" /> for
+            <Katex tex="f" /> and <Katex tex="h" />.
+            <br />
+            Find all values of <Katex tex="x" /> for
             which <Katex tex="D" /> is at most 2 units. Give your answers correct to two
             decimal places.
           </>

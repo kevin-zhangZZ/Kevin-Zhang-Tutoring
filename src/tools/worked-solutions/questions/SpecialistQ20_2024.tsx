@@ -10,12 +10,29 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 48, C: 25, D: 17 },
   answer: 'B',
+  comment: (
+    <>
+      <Katex tex="M\sim\mathrm{N}(200,7.5^2)" />
+      <br />
+      <Katex tex="F=0.7M" />
+      <br />
+      <Katex tex="F\sim\mathrm{N}\left(200\times0.7,7.5^2\times0.7^2\right)" />
+      <br />
+      <Katex tex="F\sim\mathrm{N}(140,5.25^2)" />
+      <br />
+      4 avocados flesh{' '}
+      <Katex tex="=F_1+F_2+F_3+F_4\sim\mathrm{N}\left(4\times140,4\times5.25^2\right)" />
+      <br />
+      <Katex tex="\Pr(F_1+F_2+F_3+F>570)=0.17045" /> where{' '}
+      <Katex tex="F_1+F_2+F_3+F_4\sim\mathrm{N}(560,10.5^2)" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="M \sim N(200,\ 7.5^2)" />,
-    reason: 'Mass of one avocado.',
+    reason: <>Mass of one avocado.</>,
   },
   {
     working: <Katex display tex="F = 0.70M \;\implies\; F\sim N\big(0.70(200),\ 0.70^2(7.5^2)\big) = N(140,\ 27.5625)" />,
@@ -23,23 +40,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="S = F_1+F_2+F_3+F_4" />,
-    reason: 'Total edible flesh from four independently selected avocados.',
+    reason: <>Total edible flesh from four independently selected avocados.</>,
   },
   {
     working: <Katex display tex="S \sim N\big(4(140),\ 4(27.5625)\big) = N(560,\ 110.25)" />,
-    reason: 'Means and variances add across independent, identically distributed sums.',
+    reason: <>Means and variances add across independent, identically distributed sums.</>,
   },
   {
     working: <Katex display tex="\mathrm{sd}(S) = \sqrt{110.25} = 10.5" />,
-    reason: 'Standard deviation of the total.',
+    reason: <>Standard deviation of the total.</>,
   },
   {
     working: <Katex display tex="\Pr(S>570) = \Pr\!\left(Z>\frac{570-560}{10.5}\right) = \Pr(Z>0.952)" />,
-    reason: 'Standardise.',
+    reason: <>Standardise.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(S>570) \approx 0.1705}" />,
-    reason: <>Evaluate on CAS — matches option <b>B</b>.</>,
+    reason: <>Evaluate on CAS. Matches option <b>B</b>. Option <b>D</b>, 0.3170, is what treating the total as <Katex tex="4F" /> gives: a standard deviation of <Katex tex="4\times5.25=21" /> instead of 10.5.</>,
   },
 ]
 

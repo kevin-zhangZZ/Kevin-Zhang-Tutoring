@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P(3i) = 0 \implies P(-3i) = 0" />,
-    reason: 'The coefficients are real, so non-real roots come in conjugate pairs. This is what gives a cubic its third root for free.',
+    reason: <>The coefficients are real, so non-real roots come in conjugate pairs. This is what gives a cubic its third root for free.</>,
   },
   {
     working: <Katex display tex="\text{roots: } -2, \ 3i, \ -3i" />,
@@ -22,15 +22,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(z-3i)(z+3i) = z^2+9" />,
-    reason: 'Pairing the conjugates first keeps everything real.',
+    reason: <>Pairing the conjugates first keeps everything real.</>,
   },
   {
     working: <Katex display tex="P(z) = (z+2)\left(z^2+9\right) = z^3+2z^2+9z+18" />,
-    reason: 'Expanding.',
+    reason: <>Expanding.</>,
   },
   {
     working: <Katex display tex="\boxed{a=2, \ b=9, \ c=18}" />,
-    reason: <>Matches option <b>C</b>. A fast check: <Katex tex="c=18" /> must be minus the product of the roots, <Katex tex="-(-2)(3i)(-3i)=-(-2)(9)=18" /> ✓.</>,
+    reason: <>Matches option <b>C</b>. Option <b>E</b> comes from treating the roots as <Katex tex="\pm3" /> instead of <Katex tex="\pm3i" />, and option <b>A</b> from using the root <Katex tex="2" /> instead of <Katex tex="-2" />. A fast check: <Katex tex="c=18" /> must be minus the product of the roots, <Katex tex="-(-2)(3i)(-3i)=-(-2)(9)=18" /> ✓.</>,
   },
 ]
 
@@ -41,7 +41,9 @@ export default function SpecialistQ6_2020() {
         <p>
           For the complex polynomial <Katex tex="P(z)=z^3+az^2+bz+c" /> with real
           coefficients <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" />,{' '}
-          <Katex tex="P(-2)=0" /> and <Katex tex="P(3i)=0" />. The values of{' '}
+          <Katex tex="P(-2)=0" /> and <Katex tex="P(3i)=0" />.
+          <br />
+          The values of{' '}
           <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are respectively
         </p>
       }

@@ -37,7 +37,7 @@ export default function MethodsQ1_2018() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=4\cos\!\left(\dfrac{2\pi x}{3}\right)+1" />.
+          Let <Katex tex="f:R\to R,\ f(x)=4\cos\!\left(\dfrac{2\pi x}{3}\right)+1" />.
           The period of this function is
         </p>
       }

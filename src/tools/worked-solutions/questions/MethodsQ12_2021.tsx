@@ -23,11 +23,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{0.24}{n} < 0.0064 \implies n > \frac{0.24}{0.0064} = 37.5" />,
-    reason: 'Squaring both sides is safe — both are positive.',
+    reason: <>Squaring both sides is safe — both are positive.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 38}" />,
-    reason: <>Round <em>up</em>: <Katex tex="n=37" /> gives a standard deviation of <Katex tex="0.0805" />, still too big. Option C takes 37.5 down instead of up.</>,
+    reason: <>Round <em>up</em>: <Katex tex="n=37" /> gives a standard deviation of <Katex tex="0.0805" />, still too big. Matches option <b>D</b>. Option C takes 37.5 down instead of up.</>,
   },
 ]
 
@@ -37,10 +37,13 @@ export default function MethodsQ12_2021() {
       question={
         <p>
           For a certain species of bird, the proportion of birds with a crest is known to be{' '}
-          <Katex tex="\tfrac35" />. Let <Katex tex="\hat P" /> be the random variable
-          representing the proportion of birds with a crest in samples of size{' '}
-          <Katex tex="n" /> for this specific bird. The smallest sample size for which the
-          standard deviation of <Katex tex="\hat P" /> is less than 0.08 is
+          <Katex tex="\tfrac35" />.
+          <br />
+          Let <Katex tex="\hat P" /> be the random variable representing the proportion of
+          birds with a crest in samples of size <Katex tex="n" /> for this specific bird.
+          <br />
+          The smallest sample size for which the standard deviation of <Katex tex="\hat P" />{' '}
+          is less than 0.08 is
         </p>
       }
       options={[

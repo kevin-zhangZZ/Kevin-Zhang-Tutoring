@@ -41,7 +41,7 @@ export default function MethodsQ7_2018() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f:\mathbb{R}^+\to\mathbb{R},\ f(x)=k\log_2(x),\ k\in\mathbb{R}" />.
+          Let <Katex tex="f:R^+\to R,\ f(x)=k\log_2(x),\ k\in R" />.
           Given that <Katex tex="f^{-1}(1)=8" />, the value of <Katex tex="k" /> is
         </p>
       }

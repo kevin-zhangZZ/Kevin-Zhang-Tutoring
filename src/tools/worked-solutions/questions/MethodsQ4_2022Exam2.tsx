@@ -15,7 +15,8 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students gave the domain rather than the range. A common error was{' '}
+      This question was answered well. Some students gave the domain rather than the range.
+      A common error was{' '}
       <Katex tex="(-26.2,26.2)" />.
     </>
   ),
@@ -38,10 +39,11 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Common incorrect answers were <Katex tex="\left(-\tfrac12,0\right)" />,{' '}
-      <Katex tex="\left(0,\tfrac12\right)" />,{' '}
-      <Katex tex="R\setminus\left(-\tfrac12,\tfrac12\right)" /> and{' '}
-      <Katex tex="(-\infty,\infty)" />.
+      Common incorrect answers were{' '}
+      <Katex tex="\left(-\tfrac12,0\right)\cup\left(0,\tfrac12\right)" />,{' '}
+      <Katex tex="R\setminus\left(-\tfrac12,\tfrac12\right)" />,{' '}
+      <Katex tex="\left[-\tfrac12,\tfrac12\right]" />, <Katex tex="\left[0,\tfrac12\right)" />,{' '}
+      <Katex tex="(-\infty,\infty)" /> and <Katex tex="\left(0,\tfrac12\right)" />.
     </>
   ),
 }
@@ -52,7 +54,10 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       Some students substituted <Katex tex="-x" /> incorrectly. Others substituted a value
-      for <Katex tex="x" /> instead of arguing generally.
+      for <Katex tex="x" />.
+      <br />
+      <Katex tex="\dfrac{x+\frac12}{\frac12-x}\times\dfrac{-x+\frac12}{\frac12+x}=0" /> was
+      occasionally seen.
     </>
   ),
 }
@@ -63,9 +68,12 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Many students were able to swap <Katex tex="x" /> and <Katex tex="y" />. Some wrote{' '}
-      <Katex tex="f^{-1}(x)=\tfrac12\tanh\!\left(\tfrac x2\right)" />, which some
-      technology outputs and which is correct, though <Katex tex="\tanh" /> is not on the
-      study design. Other students did not find the domain.
+      <Katex tex="f^{-1}(x)=\tfrac12\tan\!\left(\tfrac x2\right)" /> instead of{' '}
+      <Katex tex="f^{-1}(x)=\tfrac12\tanh\!\left(\tfrac x2\right)" />. The tanh function is
+      not part of the study design but the output on some students' technology gave this
+      function and it is correct. Other students did not find the domain. Some found{' '}
+      <Katex tex="\tfrac{1}{f(x)}" />. Some students did not use their technology and tried to
+      find the inverse function by hand. This would have been time consuming.
     </>
   ),
 }
@@ -88,15 +96,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to\tfrac12^-: \ \log_e\!\left(\tfrac12-x\right)\to-\infty \implies f\to+\infty" />,
-    reason: 'The second logarithm is subtracted, so it drives the function up.',
+    reason: <>The second logarithm is subtracted, so it drives the function up.</>,
   },
   {
     working: <Katex display tex="x\to-\tfrac12^+: \ f\to-\infty" />,
-    reason: 'The first logarithm dives.',
+    reason: <>The first logarithm dives.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{range } R}" />,
-    reason: <>Continuous and unbounded both ways. The <Katex tex="(-26.2,26.2)" /> the report mentions is just what a calculator window happens to show.</>,
+    reason: <>Continuous and unbounded both ways. The report notes <Katex tex="(-26.2,26.2)" /> as a common error.</>,
   },
 ]
 
@@ -107,7 +115,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{2}{2x+1}+\frac{2}{1-2x} = \frac{-4}{4x^2-1}" />,
-    reason: 'Combining over a common denominator.',
+    reason: <>Combining over a common denominator.</>,
   },
   {
     working: <Katex display tex="f'(0) = \frac{-4}{-1} = \boxed{4}" />,
@@ -118,7 +126,7 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = \frac{-4}{4x^2-1} = \frac{4}{1-4x^2}" />,
-    reason: 'Rewriting with a positive numerator.',
+    reason: <>Rewriting with a positive numerator.</>,
   },
   {
     working: <Katex display tex="x \in \left(-\tfrac12,\tfrac12\right) \implies 4x^2<1 \implies 1-4x^2>0" />,
@@ -137,45 +145,45 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \log_e\!\left(\tfrac12-x\right)-\log_e\!\left(x+\tfrac12\right)" />,
-    reason: 'Reordering the two terms shows they are exactly the negatives of f\u2019s.',
+    reason: <>Reordering the two terms shows they are exactly the negatives of f’s.</>,
   },
   {
     working: <Katex display tex="f(x)+f(-x) = \left[\log_e\!\left(x+\tfrac12\right)-\log_e\!\left(\tfrac12-x\right)\right]+\left[\log_e\!\left(\tfrac12-x\right)-\log_e\!\left(x+\tfrac12\right)\right]" />,
-    reason: 'Adding.',
+    reason: <>Adding.</>,
   },
   {
-    working: <Katex display tex="\boxed{= 0} \ \checkmark" />,
-    reason: <>Everything cancels in pairs, so <Katex tex="f" /> is odd. Testing one value proves nothing — the report flags that.</>,
+    working: <Katex display tex="\boxed{f(x)+f(-x) = 0}" />,
+    reason: <>Everything cancels in pairs, so <Katex tex="f" /> is odd. Testing one value proves nothing — the report notes some students substituted a value for <Katex tex="x" />. As required.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{domain of } f^{-1} = \text{range of } f = \boxed{R}" />,
-    reason: 'From part a. — worth stating first, because it is a separate mark.',
+    reason: <>From part a. — the report notes some students did not find the domain.</>,
   },
   {
     working: <Katex display tex="x = \log_e\!\left(\frac{y+\tfrac12}{\tfrac12-y}\right)" />,
-    reason: 'Swap x and y, then combine the two logarithms into one.',
+    reason: <>Swap x and y, then combine the two logarithms into one.</>,
   },
   {
     working: <Katex display tex="e^x = \frac{y+\tfrac12}{\tfrac12-y} = \frac{2y+1}{1-2y}" />,
-    reason: 'Exponentiating and clearing the halves.',
+    reason: <>Exponentiating and clearing the halves.</>,
   },
   {
     working: <Katex display tex="e^x(1-2y) = 2y+1 \implies e^x-1 = 2y\left(e^x+1\right)" />,
-    reason: 'Collecting the y terms on one side.',
+    reason: <>Collecting the y terms on one side.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \frac{e^x-1}{2\left(e^x+1\right)}}" />,
-    reason: <>Both the rule and the domain <Katex tex="R" /> are needed. Its range is <Katex tex="\left(-\tfrac12,\tfrac12\right)" />, matching <Katex tex="f" />'s domain ✓.</>,
+    reason: <>Both the rule and the domain <Katex tex="R" /> are needed. Its range is <Katex tex="\left(-\tfrac12,\tfrac12\right)" />, matching <Katex tex="f" />'s domain. Equivalently <Katex tex="\tfrac12\tanh\left(\tfrac x2\right)" />, which some CAS output gives.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = \tfrac1kf(x) \implies h'(0) = \tfrac{f'(0)}{k} = \tfrac4k" />,
-    reason: <>Using part b(i). The factor <Katex tex="\tfrac1k" /> flattens the graph.</>,
+    reason: <>Using part b.i. The factor <Katex tex="\tfrac1k" /> flattens the graph.</>,
   },
   {
     working: <Katex display tex="h^{-1} \text{ is the reflection of } h \text{ in } y=x, \text{ and } h(0)=0" />,
@@ -203,27 +211,30 @@ export default function MethodsQ4_2022Exam2() {
         <p>
           Consider the function <Katex tex="f" />, where{' '}
           <Katex tex="f:\left(-\tfrac12,\tfrac12\right)\to R,\ f(x)=\log_e\!\left(x+\tfrac12\right)-\log_e\!\left(\tfrac12-x\right)" />
-          . Part of the graph of <Katex tex="y=f(x)" /> is shown below.
+          .
+          <br />
+          Part of the graph of <Katex tex="y=f(x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={graphSrc}
-            alt="An increasing S-shaped curve through the origin with vertical asymptotes at x = −1/2 and x = 1/2 — from the original 2022 VCAA exam paper"
+            alt="The graph of f: an increasing curve through the origin O between dashed vertical asymptotes x = −1/2 and x = 1/2 — from the original 2022 VCAA exam paper"
             className="w-full max-w-[340px]"
           />
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State the range of <Katex tex="f(x)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Range" marks={1} statement={<>State the range of <Katex tex="f(x)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b.i" marks={2} statement={<>Find <Katex tex="f'(0)" />.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Derivative" marks={2} statement={<>Find <Katex tex="f'(0)" />.</>} examinerReport={EXAM_BI}>
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
       <PartCard
         letter="b.ii"
+        topic="Increasing Function"
         marks={1}
         statement={
           <>
@@ -237,6 +248,7 @@ export default function MethodsQ4_2022Exam2() {
 
       <PartCard
         letter="c"
+        topic="Odd Function"
         marks={1}
         statement={<>Show that <Katex tex="f(x)+f(-x)=0" />.</>}
         examinerReport={EXAM_C}
@@ -246,6 +258,7 @@ export default function MethodsQ4_2022Exam2() {
 
       <PartCard
         letter="d"
+        topic="Inverse Function"
         marks={3}
         statement={
           <>
@@ -258,33 +271,41 @@ export default function MethodsQ4_2022Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
           Let <Katex tex="h" /> be the function{' '}
           <Katex tex="h:\left(-\tfrac12,\tfrac12\right)\to R,\ h(x)=\tfrac1k\left(\log_e\!\left(x+\tfrac12\right)-\log_e\!\left(\tfrac12-x\right)\right)" />
-          , where <Katex tex="k\in R" /> and <Katex tex="k>0" />. The inverse function of{' '}
-          <Katex tex="h" /> is{' '}
+          , where <Katex tex="k\in R" /> and <Katex tex="k>0" />.
+          <br />
+          The inverse function of <Katex tex="h" /> is defined by{' '}
           <Katex tex="h^{-1}:R\to R,\ h^{-1}(x)=\dfrac{e^{kx}-1}{2\left(e^{kx}+1\right)}" />
-          . The area of the regions bound by <Katex tex="h" /> and <Katex tex="h^{-1}" /> can
-          be expressed as a function <Katex tex="A(k)" />, shaded in the graph below.
+          .
+          <br />
+          The area of the regions bound by the functions <Katex tex="h" /> and{' '}
+          <Katex tex="h^{-1}" /> can be expressed as a function, <Katex tex="A(k)" />.
+          <br />
+          The graph below shows the relevant area shaded.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={areaSrc}
-            alt="The curve h and its reflection h inverse crossing at three points, with the two lens-shaped regions between them shaded — from the original 2022 VCAA exam paper"
+            alt="The curves h and h⁻¹ between the dashed lines x = −1/2 and x = 1/2, crossing at the origin and at two symmetric points, with the two regions between them shaded — from the original 2022 VCAA exam paper"
             className="w-full max-w-[400px]"
           />
         </div>
+        <p>
+          You are not required to find or define <Katex tex="A(k)" />.
+        </p>
       </div>
 
       <PartCard
         letter="e.i"
+        topic="Parameter Range"
         marks={1}
         statement={
           <>
             Determine the range of values of <Katex tex="k" /> such that{' '}
-            <Katex tex="A(k)>0" />. You are not required to find or define{' '}
-            <Katex tex="A(k)" />.
+            <Katex tex="A(k)>0" />.
           </>
         }
         examinerReport={EXAM_EI}
@@ -294,7 +315,7 @@ export default function MethodsQ4_2022Exam2() {
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
-          <b>Part e(ii)</b> was redacted by VCAA following the findings of the Independent
+          <b>Part e.ii.</b> was redacted by VCAA following the findings of the Independent
           Review into the VCAA's Examination-Setting Policies, Processes and Procedures for
           the VCE. Neither the question nor a marking scheme was published, so there is
           nothing to solve here.

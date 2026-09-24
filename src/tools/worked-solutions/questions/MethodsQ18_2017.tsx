@@ -6,16 +6,31 @@ import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
+const EXAMINER_COMMENT = (
+  <>
+    <Katex tex="np=\sqrt{np(1-p)}" />
+    <br />
+    <Katex tex="n^2p^2=np(1-p)" />
+    <br />
+    <Katex tex="np(np-1+p)=0,\ np\ne0" />
+    <br />
+    <Katex tex="np=1-p,\ p=\dfrac{1}{n+1}" />
+    <br />
+    <Katex tex="\dfrac{1}{n+1}\le0.01,\ n\ge99" />
+  </>
+)
+
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 10, B: 16, C: 25, D: 38, E: 9 },
   answer: 'D',
   noAnswer: 2,
+  comment: EXAMINER_COMMENT,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(n,p), \qquad \mathrm{E}(X)=np, \qquad \mathrm{sd}(X)=\sqrt{np(1-p)}" />,
-    reason: 'The standard mean and standard deviation formulas for a binomial variable.',
+    reason: <>The standard mean and standard deviation formulas for a binomial variable.</>,
   },
   {
     working: (
@@ -24,7 +39,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; n^2p^2 = np(1-p)" />
       </>
     ),
-    reason: 'Set mean equal to standard deviation, then square both sides to clear the root.',
+    reason: <>Set the mean equal to the standard deviation, then square both sides to clear the root.</>,
   },
   {
     working: <Katex display tex="np = 1-p" />,
@@ -45,11 +60,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; n+1 \ge 100 \implies n \ge 99" />
       </>
     ),
-    reason: 'Smaller p means larger n+1, so this inequality flips when taking reciprocals.',
+    reason: <>Taking reciprocals of positive quantities flips the inequality: a smaller <Katex tex="p" /> needs a larger <Katex tex="n+1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{n=99}" />,
-    reason: <>The smallest integer satisfying <Katex tex="n\ge99" /> — matches option <b>D</b>.</>,
+    reason: <>The smallest integer satisfying <Katex tex="n\ge99" />. Matches option <b>D</b>. Option C (25%), <Katex tex="98" />, is one short: it would give <Katex tex="p=\tfrac1{99}>0.01" />.</>,
   },
 ]
 

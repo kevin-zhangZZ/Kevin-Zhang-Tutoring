@@ -10,6 +10,17 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 14, C: 20, D: 47, E: 12 },
   answer: 'D',
   noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="\dfrac{dy}{dx}=2f(x)-f(y)=(y-x)f(xy)" />
+      <br />
+      <Katex tex="f(x)=\dfrac1x" />
+      <br />
+      <Katex tex="\text{LHS}=\dfrac1x-\dfrac1y" />
+      <br />
+      <Katex tex="\text{RHS}=(y-x)\times\dfrac1{xy}=\dfrac1x-\dfrac1y=\text{LHS}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -22,15 +33,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} f(x)-f(y) &= \frac1x-\frac1y \\ &= \frac{y-x}{xy} \end{aligned}" />,
-    reason: 'The left-hand side of the condition, for this candidate rule.',
+    reason: <>The left-hand side of the condition, for this candidate rule.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} (y-x)f(xy) &= (y-x)\cdot\frac{1}{xy} \\ &= \frac{y-x}{xy} \end{aligned}" />,
-    reason: 'The right-hand side — using the same rule, evaluated at the product xy.',
+    reason: <>The right-hand side, using the same rule evaluated at the product <Katex tex="xy" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{y-x}{xy} = \frac{y-x}{xy} \ \checkmark}" />,
-    reason: <>Both sides agree for every non-zero <Katex tex="x,y" /> — <Katex tex="f(x)=\tfrac1x" /> genuinely works, matching option <b>D</b>.</>,
+    reason: <>Both sides agree for every non-zero <Katex tex="x,y" />. Matches option <b>D</b>. The others fail a single test: option C (20%), <Katex tex="x\log_e(x)" />, is not even defined for negative <Katex tex="x" />; option A with <Katex tex="x=1,\ y=2" /> gives <Katex tex="1-4=-3" /> on the left but <Katex tex="(2-1)\times4=4" /> on the right. (The report's comment opens with a stray line, <Katex tex="\tfrac{dy}{dx}=2f(x)-\dots" />, which looks like a typesetting slip; the rest of its working is the check above.)</>,
   },
 ]
 

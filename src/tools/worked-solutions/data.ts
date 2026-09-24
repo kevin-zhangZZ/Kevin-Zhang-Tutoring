@@ -87,8 +87,8 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q3-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Differential equations — rates of mixing (two-tank problem)', type: 'sa', hasDetail: true, hasVideo: true },
   { id: 'spec-q4-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q4(a–d)', topic: 'Vectors — relative position, collision, and minimum distance', type: 'sa', hasDetail: true },
 
-  { id: 'meth-q21-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 21', topic: 'Calculus — maximising the area of a trapezium', type: 'mc', hasDetail: true },
-  { id: 'meth-q22-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 22', topic: 'Probability — independent events and ratios', type: 'mc', hasDetail: true },
+  { id: 'meth-q21-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 21', topic: 'Calculus — maximising the area of a trapezium', type: 'mc', hasDetail: true, percentCorrect: 28 },
+  { id: 'meth-q22-2014', subject: 'methods', year: 2014, exam: 'Exam 2', code: 'MCQ 22', topic: 'Probability — independent events and ratios', type: 'mc', hasDetail: true, percentCorrect: 37 },
 
   // The rest of 2014 Methods Exam 2 Section 1, answers and percentages read off the rendered
   // report table (the correct option is marked only by shading). MCQ 7, 12 and 19 are omitted:
@@ -138,10 +138,9 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q21-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 21', topic: 'Graphs — a line and a parabola with no intersection', type: 'mc', hasDetail: true, percentCorrect: 37 },
   { id: 'meth-q17-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 17', topic: 'Calculus — turning points and number of x-intercepts', type: 'mc', hasDetail: true, percentCorrect: 60 },
 
-  // The rest of 2015 Methods Exam 2 Section 1. MCQ 18 and 22 are on the skip guide as
-  // standalone modulus questions, off the current Methods study design; they are kept
-  // because analysing f(|x|) is still current Specialist content, and each one says so in
-  // its Background.
+  // The rest of 2015 Methods Exam 2 Section 1. MCQ 18 and 22 are omitted: the skip guide
+  // lists both as standalone modulus-function questions, off the current Methods study
+  // design (KZ's decision, Sept 2026 — they were briefly kept with a note).
   { id: 'meth-q1-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 1', topic: 'Trigonometry — period and range of 2sin(3x) − 3', type: 'mc', hasDetail: true, percentCorrect: 95 },
   { id: 'meth-q2-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 2', topic: 'Functions — the inverse of 1/√(x + 2)', type: 'mc', hasDetail: true, percentCorrect: 50 },
   { id: 'meth-q4-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 4', topic: 'Calculus — a point on the tangent to y = x² at (2, 4)', type: 'mc', hasDetail: true, percentCorrect: 77 },
@@ -154,10 +153,8 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q13-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 13', topic: 'Probability — normalising a piecewise probability density function', type: 'mc', hasDetail: true, percentCorrect: 63 },
   { id: 'meth-q14-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — the mean of a discrete distribution', type: 'mc', hasDetail: true, percentCorrect: 75 },
   { id: 'meth-q15-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 15', topic: 'Calculus — linearity of the definite integral', type: 'mc', hasDetail: true, percentCorrect: 69 },
-  { id: 'meth-q18-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 18', topic: 'Functions — testing a functional equation against five rules', type: 'mc', hasDetail: true, percentCorrect: 48 },
   { id: 'meth-q19-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 19', topic: 'Calculus — the fundamental theorem with a variable upper limit', type: 'mc', hasDetail: true, percentCorrect: 68 },
   { id: 'meth-q20-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 20', topic: 'Functions — recovering f(x) from f(x − 1)', type: 'mc', hasDetail: true, percentCorrect: 61 },
-  { id: 'meth-q22-2015', subject: 'methods', year: 2015, exam: 'Exam 2', code: 'MCQ 22', topic: 'Functions — the graph of g(−f(x)) when f(x) = −|x|', type: 'mc', hasDetail: true, percentCorrect: 35 },
 
   // Section 2 (short-answer). meth-q4-2015-e2 was previously miscatalogued as 2014 Exam 1
   // Q4 — that question is actually a 2-mark "solve 2^(3x-3)=8^(2-x)" (confirmed against the
@@ -338,7 +335,8 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q4-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q4', topic: 'Calculus — a related rate: the surface area of a cube of side arctan(t)', type: 'sa', hasDetail: true },
   { id: 'spec-q5-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q5(a–b)', topic: 'Vectors — a vector resolute, then linear dependence solved for d', type: 'sa', hasDetail: true },
   { id: 'spec-q6-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q6', topic: 'Complex Numbers — a quotient of powers, done in polar form', type: 'sa', hasDetail: true },
-  { id: 'spec-q7-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q7', topic: 'Calculus — arc length where the integrand collapses to a perfect square', type: 'sa', hasDetail: true },
+  // 2016 Specialist Exam 1 Question 7 (arc length from a Cartesian rule) is omitted: no
+  // longer on the study design — the skip guide lists it (KZ's decision, Sept 2026).
   { id: 'spec-q8-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q8(a–c)', topic: 'Vectors — speed from a position vector, and the maximum net force', type: 'sa', hasDetail: true },
   { id: 'spec-q9-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q9', topic: 'Trigonometry — cos(x + y) from cos(x − y) and tan(x)tan(y)', type: 'sa', hasDetail: true },
   { id: 'spec-q10-2016-e1', subject: 'specialist', year: 2016, exam: 'Exam 1', code: 'Q10', topic: 'Differential Equations — a separable equation with an arcsin antiderivative', type: 'sa', hasDetail: true },
@@ -436,7 +434,7 @@ export const QUESTIONS: QuestionMeta[] = [
 
   // The 6 hardest Chemistry MCQs from 2015 Exam Section A, by VCAA-reported % correct. VCAA's
   // own report names these as the year's hardest, in this order (Q29 hardest of all).
-  { id: 'chem-q29-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 29', topic: 'Electrochemistry — cathode reaction and electrode polarity in electrorefining', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'chem-q29-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 29', topic: 'Electrochemistry — cathode reaction and electrode polarity in electrorefining', type: 'mc', hasDetail: true, percentCorrect: 31 },
   { id: 'chem-q15-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 15', topic: 'Organic chemistry — comparing C-H bond counts across four 24-carbon compounds', type: 'mc', hasDetail: true, percentCorrect: 40 },
   { id: 'chem-q8-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 8', topic: 'Analytical chemistry — polarity and attraction in HPLC', type: 'mc', hasDetail: true, percentCorrect: 42 },
   { id: 'chem-q28-2015', subject: 'chemistry', year: 2015, exam: 'Exam', code: 'MCQ 28', topic: 'Electrochemistry — which impurities end up as sludge when refining copper', type: 'mc', hasDetail: true, percentCorrect: 48 },
@@ -523,7 +521,7 @@ export const QUESTIONS: QuestionMeta[] = [
   // The 6 hardest Specialist MCQs from 2020 Exam 2 Section A, by VCAA-reported % correct
   // (Mechanics-topic questions excluded). MCQ 7 is the hardest MCQ on this whole paper at
   // just 2% — a third-party solutions PDF gets it wrong (see SpecialistQ7_2020.tsx).
-  { id: 'spec-q7-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 7', topic: 'Algebra — partial fractions of 1/(ax(x²+b)) with b < 0', type: 'mc', hasDetail: true, percentCorrect: 2 },
+  { id: 'spec-q7-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 7', topic: 'Algebra — partial fractions of 1/(ax(x²+b)) with b < 0', type: 'mc', hasDetail: true, percentCorrect: 26 },
   { id: 'spec-q4-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 4', topic: 'Functions — a composite function and its range', type: 'mc', hasDetail: true, percentCorrect: 28 },
   { id: 'spec-q8-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 8', topic: 'Complex numbers — (y − ix)¹⁴ from a known (x + iy)¹⁴', type: 'mc', hasDetail: true, percentCorrect: 34 },
   { id: 'spec-q9-2020', subject: 'specialist', year: 2020, exam: 'Exam 2', code: 'MCQ 9', topic: 'Differential equations — matching a curve to its slope field', type: 'mc', hasDetail: true, percentCorrect: 35 },
@@ -644,10 +642,12 @@ export const QUESTIONS: QuestionMeta[] = [
 
   // The remaining 2022 Specialist Exam 2 multiple-choice questions. MCQ 4 and MCQ 19
   // were redacted by VCAA following the Independent Review. MCQ 15 (three forces on an
-  // inclined plane) and MCQ 20 (a pulley and mass system) are omitted: both are pure
-  // Mechanics, which is no longer an area of study. MCQ 14, 16 and 17 use force,
-  // equilibrium or momentum wording over mathematics that is still current, so they are
-  // in with an explanatory note.
+  // inclined plane) is omitted as pure Mechanics, which is no longer an area of study.
+  // MCQ 20 (a pulley and mass system) is in, classified as Statistics: the only physics is
+  // that the heavier side falls, and the question is the probability that a combination of
+  // normally distributed masses is positive (KZ's decision, Sept 2026). MCQ 14, 16 and 17
+  // use force, equilibrium or momentum wording over mathematics that is still current, so
+  // they are in with an explanatory note.
   { id: 'spec-q1-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 1', topic: 'Functions — two absolute values on an interval where both signs are known', type: 'mc', hasDetail: true, percentCorrect: 85 },
   { id: 'spec-q7-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 7', topic: 'Calculus — rewriting an integral under u = 1 + e^x, terminals and all', type: 'mc', hasDetail: true, percentCorrect: 68 },
   { id: 'spec-q8-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 8', topic: 'Differential equations — which equation draws the given direction field', type: 'mc', hasDetail: true, percentCorrect: 74 },
@@ -657,6 +657,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q13-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 13', topic: 'Vectors — antidifferentiating an acceleration, with a vector constant', type: 'mc', hasDetail: true, percentCorrect: 76 },
   { id: 'spec-q14-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 14', topic: 'Kinematics — the velocity halfway along, which is not the average', type: 'mc', hasDetail: true, percentCorrect: 28 },
   { id: 'spec-q16-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 16', topic: 'Vectors — three forces in equilibrium close into a triangle', type: 'mc', hasDetail: true, percentCorrect: 17 },
+  { id: 'spec-q20-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 20', topic: 'Statistics — will two random "2 kg" masses outweigh a "4 kg" one?', type: 'mc', hasDetail: true, percentCorrect: 41 },
   { id: 'spec-q17-2022', subject: 'specialist', year: 2022, exam: 'Exam 2', code: 'MCQ 17', topic: 'Kinematics — constant acceleration, then a change in momentum', type: 'mc', hasDetail: true, percentCorrect: 74 },
 
   // 2022 Specialist Exam 2, Section B. Question 5 is omitted: an object driven by two
@@ -1222,13 +1223,18 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'chem-q10-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 10', topic: 'Thermochemistry — what is true of a solution calorimeter', type: 'mc', hasDetail: true, percentCorrect: 26 },
   { id: 'chem-q9-2020', subject: 'chemistry', year: 2020, exam: 'Exam', code: 'MCQ 9', topic: 'Thermochemistry — calculating a calorimeter’s calibration factor', type: 'mc', hasDetail: true, percentCorrect: 28 },
 
-  // The 6 hardest Chemistry MCQs from 2021 Exam Section A, by VCAA-reported % correct
-  // (one question was later redacted by VCAA and excluded from consideration).
-  { id: 'chem-q25-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 25', topic: 'Equilibrium — deducing what change was made from a rate–time graph', type: 'mc', hasDetail: true, percentCorrect: 12 },
+  // The 6 hardest Chemistry MCQs from 2021 Exam Section A, by VCAA-reported % correct (one
+  // question was later redacted by VCAA and excluded from consideration): MCQ 27 (13%), 16
+  // (15%), 10 (17%), 28 (22%), 21 (31%) and 25 (34%). MCQ 22 and 24 were first chosen from
+  // misread percentages (MCQ 25 was logged at 12%, MCQ 16 at 38%); corrected Sept 2026 and
+  // the two are kept as extra questions.
+  { id: 'chem-q27-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 27', topic: 'Equilibrium — a volume halving on a concentration–time graph, then relative rates', type: 'mc', hasDetail: true, percentCorrect: 13 },
+  { id: 'chem-q10-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 10', topic: 'Experimental design — the valid test of whether polishing zinc raises a cell’s current', type: 'mc', hasDetail: true, percentCorrect: 17 },
+  { id: 'chem-q25-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 25', topic: 'Equilibrium — deducing what change was made from a rate–time graph', type: 'mc', hasDetail: true, percentCorrect: 34 },
   { id: 'chem-q28-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 28', topic: 'Equilibrium — deducing K and total energy change from a rate increase', type: 'mc', hasDetail: true, percentCorrect: 22 },
   { id: 'chem-q21-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 21', topic: 'Electrochemistry — which cell change reduces nickel electroplated', type: 'mc', hasDetail: true, percentCorrect: 31 },
   { id: 'chem-q22-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 22', topic: 'Thermochemistry — octane volume needed at 25% engine efficiency', type: 'mc', hasDetail: true, percentCorrect: 37 },
-  { id: 'chem-q16-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 16', topic: 'Analytical chemistry — which statement about IR spectroscopy is correct', type: 'mc', hasDetail: true, percentCorrect: 38 },
+  { id: 'chem-q16-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 16', topic: 'Analytical chemistry — which statement about IR spectroscopy is correct', type: 'mc', hasDetail: true, percentCorrect: 15 },
   { id: 'chem-q24-2021', subject: 'chemistry', year: 2021, exam: 'Exam', code: 'MCQ 24', topic: 'Thermochemistry — effect of a catalyst on an energy profile diagram', type: 'mc', hasDetail: true, percentCorrect: 38 },
 
   // The 6 hardest Chemistry MCQs from 2022 Exam Section A, by VCAA-reported % correct.

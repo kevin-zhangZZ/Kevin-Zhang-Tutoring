@@ -1,4 +1,4 @@
-// 2021 Chemistry Exam, MCQ 16. VCAA examination report: 38% correct. Which statement about IR
+// 2021 Chemistry Exam, MCQ 16. VCAA examination report: 15% correct. Which statement about IR
 // spectroscopy is correct, by elimination against genuine facts about NMR and IR. Question text
 // transcribed from the original paper. Solution is original.
 
@@ -6,7 +6,7 @@ import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
-  percentages: { A: 22, B: 25, C: 38, D: 15 },
+  percentages: { A: 22, B: 25, C: 15, D: 38 },
   answer: 'C',
   comment: (
     <>

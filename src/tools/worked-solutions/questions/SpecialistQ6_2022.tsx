@@ -14,34 +14,34 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|z-5|=2" />,
-    reason: 'A circle of radius 2 centred at (5, 0).',
+    reason: <>A circle of radius 2 centred at (5, 0).</>,
   },
   {
     working: (
       <>
-        <p>A. <Katex tex="\mathrm{Arg}(z-3)=\tfrac{\pi}{2}" /> — vertical ray from (3, 0), tangent at (3, 0): 1 point (and that point has y = 0, excluded from the open ray).</p>
+        <p>A. <Katex tex="\mathrm{Arg}(z-3)=\tfrac{\pi}{2}" /> — vertical ray from (3, 0); the vertical line touches the circle only at (3, 0), which is not on the ray: 0 points.</p>
         <p>B. <Katex tex="|z-1|=2" /> — circle centred (1, 0) r = 2; centre distance 4 = sum of radii: externally tangent, 1 point.</p>
         <p>C. <Katex tex="\mathrm{Im}(z)=2" /> — line y = 2; distance from (5, 0) is 2 = radius: tangent, 1 point.</p>
         <p>D. <Katex tex="\mathrm{Re}(z)+\mathrm{Im}(z)=2" /> — line x+y=2; distance from (5, 0) is <Katex tex="3/\sqrt2\approx2.12>2" />: no intersection.</p>
       </>
     ),
-    reason: 'Check each option against the circle in turn — each of A–D gives 0 or 1 points, not 2.',
+    reason: <>Check each option against the circle in turn — each of A–D gives 0 or 1 points, not 2.</>,
   },
   {
     working: <Katex display tex="|z-5-5i|=4" />,
-    reason: 'Option E: a circle of radius 4 centred at (5, 5).',
+    reason: <>Option E: a circle of radius 4 centred at (5, 5).</>,
   },
   {
     working: <Katex display tex="\text{Centre distance} = |(5,5)-(5,0)| = 5" />,
-    reason: 'Distance between the two circles’ centres.',
+    reason: <>Distance between the two circles’ centres.</>,
   },
   {
     working: <Katex display tex="|4-2| < 5 < 4+2 \;\implies\; 2 < 5 < 6" />,
-    reason: 'Two circles intersect at exactly two points precisely when the centre distance is strictly between the difference and the sum of the radii.',
+    reason: <>Two circles intersect at exactly two points precisely when the centre distance is strictly between the difference and the sum of the radii.</>,
   },
   {
     working: <Katex display tex="\boxed{|z-5-5i|=4}" />,
-    reason: <>The condition holds — matches option <b>E</b>.</>,
+    reason: <>The condition holds. Matches option <b>E</b>.</>,
   },
 ]
 
@@ -50,7 +50,7 @@ export default function SpecialistQ6_2022() {
     <MCQShell
       question={
         <p>
-          Given <Katex tex="z=x+yi" />, where <Katex tex="x,y\in\mathbb{R}" /> and <Katex tex="z\in\mathbb{C}" />, an
+          Given <Katex tex="z=x+yi" />, where <Katex tex="x,y\in R" /> and <Katex tex="z\in C" />, an
           equation that has a graph that has two points of intersection with the graph given by{' '}
           <Katex tex="|z-5|=2" /> is
         </p>

@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac32}" />,
-    reason: <>Simplified — <Katex tex="\tfrac96" /> is the same number but the report says it was not accepted as a final answer.</>,
+    reason: <>Simplified — the report reminds students to simplify fraction answers, and its general comments say an unsimplified final answer is not awarded the answer mark. Check: <Katex tex="3\left(\tfrac32\right)-3=\tfrac32" /> and <Katex tex="3\left(2-\tfrac32\right)=\tfrac32" />, so both sides equal <Katex tex="2^{3/2}" /> ✓.</>,
   },
 ]
 

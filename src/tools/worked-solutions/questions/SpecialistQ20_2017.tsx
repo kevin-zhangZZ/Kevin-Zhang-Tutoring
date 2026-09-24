@@ -30,8 +30,8 @@ const ROWS: WorkingRow[] = [
     reason: <>True.</>,
   },
   {
-    working: <Katex display tex="\text{D: } p\le0.05 \text{ includes } p<0.05" />,
-    reason: <>Most of that range calls for rejection, so "should not be rejected" is false.</>,
+    working: <Katex display tex="\text{D: } p\ne0.05 \text{ includes, for example, } p=0.01" />,
+    reason: <>For any <Katex tex="p<0.05" /> the null hypothesis should be rejected, so "should not be rejected whenever <Katex tex="p\ne0.05" />" is false.</>,
   },
   {
     working: <Katex display tex="\text{E: } p=0.01<0.05" />,
@@ -39,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{C}}" />,
-    reason: <>The one-sided/two-sided distinction is a red herring here: it changes how <Katex tex="p" /> is <em>calculated</em>, not how it is compared with <Katex tex="\alpha" /> once you have it.</>,
+    reason: <>Matches option <b>C</b>. The one-sided/two-sided distinction is a red herring here: it changes how <Katex tex="p" /> is <em>calculated</em>, not how it is compared with <Katex tex="\alpha" /> once you have it.</>,
   },
 ]
 
@@ -56,7 +56,7 @@ export default function SpecialistQ20_2017() {
         { letter: 'A', content: <><Katex tex="H_0" /> should not be rejected if <Katex tex="p=0.04" /></> },
         { letter: 'B', content: <><Katex tex="H_0" /> should be rejected if <Katex tex="p=0.06" /></> },
         { letter: 'C', content: <><Katex tex="H_0" /> should be rejected if <Katex tex="p=0.03" /></>, isAnswer: true },
-        { letter: 'D', content: <><Katex tex="H_0" /> should not be rejected if <Katex tex="p\le0.05" /></> },
+        { letter: 'D', content: <><Katex tex="H_0" /> should not be rejected if <Katex tex="p\ne0.05" /></> },
         { letter: 'E', content: <><Katex tex="H_0" /> should not be rejected if <Katex tex="p=0.01" /></> },
       ]}
       rows={ROWS}

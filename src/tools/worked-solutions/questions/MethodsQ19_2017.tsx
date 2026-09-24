@@ -37,15 +37,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k+1 = \pi-k" />,
-    reason: <>The supplementary case.</>,
-  },
-  {
-    working: <Katex display tex="2k = \pi-1 \implies \boxed{k=\frac{\pi-1}{2}}" />,
-    reason: <>Option D, about <Katex tex="1.07" /> — comfortably inside the given <Katex tex="0<k<2" />, which is how you know it is the intended root.</>,
+    reason: <>The supplementary case (the general solution adds multiples of <Katex tex="2\pi" />, but only this one gives <Katex tex="0<k<2" />).</>,
   },
   {
     working: <Cas fn="solve">solve(∫(cos(x)+1, x, k, k+1) = 1, k) | 0&lt;k&lt;2</Cas>,
     reason: <>Or go straight there on CAS. The domain restriction matters — without it you get an infinite family of solutions.</>,
+  },
+  {
+    working: <Katex display tex="2k = \pi-1 \implies \boxed{k=\frac{\pi-1}{2}}" />,
+    reason: <>Matches option <b>D</b>, about <Katex tex="1.07" /> — comfortably inside the given <Katex tex="0<k<2" />. Option B, <Katex tex="\tfrac{3\pi-1}{2}\approx4.2" />, is another solution of <Katex tex="\sin(k+1)=\sin(k)" /> but lies outside that interval.</>,
   },
 ]
 

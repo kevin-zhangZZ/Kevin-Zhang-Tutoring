@@ -14,7 +14,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was frequently attempted successfully. Most students knew that in order to
-      "verify" the values they needed to show working to support this.
+      'verify' the values they needed to show working to support this.
     </>
   ),
 }
@@ -24,13 +24,17 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      It was not sufficient to assume by inspection that the tracks met at <Katex tex="P" />.
-      Some students misinterpreted the question and solved{' '}
-      <Katex tex="f(x)=g(x)" />, stopping short of showing that the point of intersection was
-      a turning point for both curves. Some students just showed that <Katex tex="g(x)" /> had
-      a turning point at <Katex tex="x=2" />, not addressing <Katex tex="f(x)" />. Some
-      incorrectly used the product rule and gave{' '}
-      <Katex tex="f'(x)=x(x-2)^2" />.
+      This question required students to verify that both <Katex tex="f(x)" /> and{' '}
+      <Katex tex="g(x)" /> have a turning point at <Katex tex="P" />. It was not sufficient to
+      assume by inspection that the tracks met at <Katex tex="P" />. Some students
+      misinterpreted the question and solved <Katex tex="f(x)=g(x)" />; they stopped short of
+      showing that the point of intersection was a turning point for both curves. Errors were
+      involved in expanding the brackets of <Katex tex="f(x)" /> and finding{' '}
+      <Katex tex="f'(x)" />. Some students just showed that <Katex tex="g(x)" /> had a turning
+      point at <Katex tex="x=2" />, not addressing the turning points of <Katex tex="f(x)" />.
+      Some students incorrectly used the product rule to differentiate <Katex tex="f(x)" /> and
+      gave <Katex tex="f'(x)=x(x-2)^2" />. Most students were successful in finding the
+      coordinates of <Katex tex="P" /> at <Katex tex="(2,12)" />.
     </>
   ),
 }
@@ -40,11 +44,18 @@ const EXAM_C: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      This question was not well attempted. Many students were able to differentiate to get{' '}
-      <Katex tex="A'(k)=0" />, although some incorrectly wrote this as{' '}
-      <Katex tex="A'(x)" /> when the variable they were using was <Katex tex="k" />. Many
-      arithmetic mistakes occurred when students substituted <Katex tex="k=\tfrac83" /> back
-      into their expression.
+      This question was not well attempted. Those students who did complete the question
+      generally were able to state the equation for the area of the triangle as either{' '}
+      <Katex tex="A(k)=\tfrac12k\left(12k-3k^2\right)" /> or{' '}
+      <Katex tex="A(k)=6k^2-\tfrac32k^3" /> or an equivalent equation in terms of the variable{' '}
+      <Katex tex="x" />. Many students were able to differentiate to get{' '}
+      <Katex tex="A'(k)=0" />, although some students incorrectly wrote this as{' '}
+      <Katex tex="A'(x)" /> when the variable they were using was <Katex tex="k" />. Most
+      students who were able to solve <Katex tex="A'(k)=0" /> found <Katex tex="k=\tfrac83" />{' '}
+      or its equivalent, <Katex tex="k=\tfrac{24}{9}" />. Many arithmetic mistakes occurred when
+      students tried to substitute the value of <Katex tex="k=\tfrac83" /> or{' '}
+      <Katex tex="k=\tfrac{24}{9}" /> into their expression of <Katex tex="A(k)" /> to find the
+      maximum area.
     </>
   ),
 }
@@ -55,43 +66,43 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Substituting <Katex tex="x=0" /> into track 1's rule. The whole second term vanishes because of its factor of <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="f(0) = 12 \implies \boxed{a = 12} \ \checkmark" />,
-    reason: 'The given condition.',
+    working: <Katex display tex="f(0) = 12 \implies \boxed{a = 12}" />,
+    reason: <>The given condition.</>,
   },
   {
     working: <Katex display tex="g(1) = 12(1)+b(1)^2 = 12+b" />,
-    reason: "Substituting x = 1 into track 2's rule.",
+    reason: <>Substituting x = 1 into track 2's rule.</>,
   },
   {
-    working: <Katex display tex="12+b = 9 \implies \boxed{b = -3} \ \checkmark" />,
-    reason: '"Verify" means show the working that produces the stated values — asserting them is not enough.',
+    working: <Katex display tex="12+b = 9 \implies \boxed{b = -3}" />,
+    reason: <>The report notes that to 'verify' the values, students needed to show working to support this. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 12-x(x-2)^2 = 12-x\left(x^2-4x+4\right) = -x^3+4x^2-4x+12" />,
-    reason: 'Expand before differentiating — the product rule here is what produced the report\u2019s wrong derivative.',
+    reason: <>Expand before differentiating — the report notes some students incorrectly used the product rule and gave <Katex tex="f'(x)=x(x-2)^2" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = -3x^2+8x-4 = -(3x-2)(x-2)" />,
-    reason: 'Factorising makes the roots visible.',
+    reason: <>Factorising makes the roots visible.</>,
   },
   {
-    working: <Katex display tex="f'(2) = -3(4)+16-4 = 0 \ \checkmark" />,
+    working: <Katex display tex="f'(2) = -3(4)+16-4 = 0" />,
     reason: <>So track 1 has a stationary point at <Katex tex="x=2" />. (The other, <Katex tex="x=\tfrac23" />, is the small dip on the left of the diagram.)</>,
   },
   {
     working: <Katex display tex="g(x) = 12x-3x^2 \implies g'(x) = 12-6x" />,
-    reason: 'Track 2.',
+    reason: <>Track 2.</>,
   },
   {
-    working: <Katex display tex="g'(2) = 12-12 = 0 \ \checkmark" />,
-    reason: <>Both curves are stationary at <Katex tex="x=2" />. Showing only one of them is worth at most half the marks.</>,
+    working: <Katex display tex="g'(2) = 12-12 = 0" />,
+    reason: <>Both curves are stationary at <Katex tex="x=2" /> — the report notes some students showed this only for <Katex tex="g(x)" />, not addressing <Katex tex="f(x)" />.</>,
   },
   {
     working: <Katex display tex="f(2) = 12-2(0)^2 = 12, \qquad g(2) = 24-12 = 12" />,
-    reason: 'Equal heights as well, so it really is the same point.',
+    reason: <>Equal heights as well, so it really is the same point.</>,
   },
   {
     working: <Katex display tex="\boxed{P = (2,\,12)}" />,
@@ -110,7 +121,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A'(k) = 12k-\frac92k^2 = \frac{3k}{2}\left(8-3k\right)" />,
-    reason: 'Differentiate and factorise.',
+    reason: <>Differentiate and factorise.</>,
   },
   {
     working: <Katex display tex="A'(k) = 0 \implies k = 0 \ \text{ or } \ k = \frac83" />,
@@ -118,11 +129,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A''(k) = 12-9k, \quad A''\!\left(\tfrac83\right) = 12-24 = -12 < 0" />,
-    reason: 'Confirming a maximum rather than a minimum.',
+    reason: <>Confirming a maximum rather than a minimum.</>,
   },
   {
     working: <Katex display tex="A\!\left(\frac83\right) = 6\cdot\frac{64}{9}-\frac32\cdot\frac{512}{27} = \frac{384}{9}-\frac{768}{27}" />,
-    reason: <><Katex tex="\left(\tfrac83\right)^2=\tfrac{64}{9}" /> and <Katex tex="\left(\tfrac83\right)^3=\tfrac{512}{27}" />. This substitution is where the report says the arithmetic broke down.</>,
+    reason: <><Katex tex="\left(\tfrac83\right)^2=\tfrac{64}{9}" /> and <Katex tex="\left(\tfrac83\right)^3=\tfrac{512}{27}" />. The report notes many arithmetic mistakes occurred at this substitution.</>,
   },
   {
     working: <Katex display tex="\boxed{A_{\max} = \frac{1152-768}{27} = \frac{384}{27} = \frac{128}{9} \ \mathrm{km^2}}" />,
@@ -144,9 +155,11 @@ export default function MethodsQ9_2023Exam1() {
           />
         </div>
         <p>
-          Track 1 is described by the function <Katex tex="f(x)=a-x(x-2)^2" />. Track 2 is
-          defined by the function <Katex tex="g(x)=12x+bx^2" />. The unit of length is
-          kilometres.
+          Track 1 is described by the function <Katex tex="f(x)=a-x(x-2)^2" />.
+          <br />
+          Track 2 is defined by the function <Katex tex="g(x)=12x+bx^2" />.
+          <br />
+          The unit of length is kilometres.
         </p>
       </div>
 
@@ -156,8 +169,8 @@ export default function MethodsQ9_2023Exam1() {
             The command words here do real work. "Verify" (parts a. and b.) means the answer
             is given and the marks are for the working that produces it — and in part b. that
             means showing <Katex tex="f'(2)=0" /> <em>and</em> <Katex tex="g'(2)=0" />, not
-            just that the curves meet. Solving <Katex tex="f(x)=g(x)" /> proves they touch,
-            which is not what was asked.
+            just that the curves meet. Solving <Katex tex="f(x)=g(x)" /> only finds where the
+            curves meet, which is not what was asked.
           </p>
           <p>
             Part c. is an ordinary optimisation once the triangle is read correctly:{' '}
@@ -169,6 +182,7 @@ export default function MethodsQ9_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Find Parameters"
         marks={1}
         statement={
           <>
@@ -183,11 +197,14 @@ export default function MethodsQ9_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Turning Point"
         marks={2}
         statement={
           <>
             Verify that <Katex tex="f(x)" /> and <Katex tex="g(x)" /> both have a turning point
-            at <Katex tex="P" />. Give the coordinates of <Katex tex="P" />.
+            at <Katex tex="P" />.
+            <br />
+            Give the co-ordinates of <Katex tex="P" />.
           </>
         }
         examinerReport={EXAM_B}
@@ -195,32 +212,30 @@ export default function MethodsQ9_2023Exam1() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
-        <p className="font-semibold text-gray-900 dark:text-white">c.</p>
-        <p>
-          A theme park is planned whose boundaries will form the triangle{' '}
-          <Katex tex="OAB" /> where <Katex tex="O" /> is the origin, <Katex tex="A" /> is at{' '}
-          <Katex tex="(k,0)" /> and <Katex tex="B" /> is at{' '}
-          <Katex tex="\bigl(k,\,g(k)\bigr)" />, as shown below, where{' '}
-          <Katex tex="k\in(0,4)" />.
-        </p>
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={triangleSrc}
-            alt="The same two tracks with a triangle drawn from the origin to A on the x-axis and up to B on track 2 directly above A, the right angle at A marked — from the original 2023 VCAA exam paper"
-            className="w-full max-w-[500px]"
-          />
-        </div>
-      </div>
-
       <PartCard
         letter="c"
+        topic="Optimisation"
         marks={3}
         statement={
-          <>
-            Find the maximum possible area of the theme park, in{' '}
-            <Katex tex="\mathrm{km^2}" />.
-          </>
+          <div className="flex flex-col gap-3">
+            <p>
+              A theme park is planned whose boundaries will form the triangle{' '}
+              <Katex tex="\Delta OAB" /> where <Katex tex="O" /> is the origin,{' '}
+              <Katex tex="A" /> is at <Katex tex="(k,0)" /> and <Katex tex="B" /> is at{' '}
+              <Katex tex="\bigl(k,\,g(k)\bigr)" />, as shown below, where{' '}
+              <Katex tex="k\in(0,4)" />.
+              <br />
+              Find the maximum possible area of the theme park, in{' '}
+              <Katex tex="\mathrm{km^2}" />.
+            </p>
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img
+                src={triangleSrc}
+                alt="The same two tracks with a triangle drawn from the origin to A on the x-axis and up to B on track 2 directly above A, the right angle at A marked — from the original 2023 VCAA exam paper"
+                className="w-full max-w-[500px]"
+              />
+            </div>
+          </div>
         }
         examinerReport={EXAM_C}
       >

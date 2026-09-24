@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2\int_1^{\sqrt3}\frac{1}{u^2+1}\,du}" />,
-    reason: <>Option E. (It evaluates to <Katex tex="2\left(\tfrac\pi3-\tfrac\pi4\right)=\tfrac\pi6" />, though the question only asks for the transformed integral.)</>,
+    reason: <>Matches option <b>E</b>. Option A (19%, the most popular wrong answer) has the right terminals but still has a root in the denominator — with <Katex tex="dx=2u\,du" />, the <Katex tex="u" /> from <Katex tex="\sqrt{x+1}" /> cancels completely. (It evaluates to <Katex tex="2\left(\tfrac\pi3-\tfrac\pi4\right)=\tfrac\pi6" />, though the question only asks for the transformed integral.)</>,
   },
 ]
 

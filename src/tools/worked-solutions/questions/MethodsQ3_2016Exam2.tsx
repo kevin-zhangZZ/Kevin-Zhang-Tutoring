@@ -18,7 +18,8 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Most students recognised that it was binomial and
-      gave the correct <Katex tex="n" /> and <Katex tex="p" /> values.
+      gave the correct <Katex tex="n" /> and <Katex tex="p" /> values. Some used{' '}
+      <Katex tex="\Pr(X>1)" /> instead of <Katex tex="\Pr(X\ge1)" />.
     </>
   ),
 }
@@ -41,9 +42,11 @@ const EXAM_C: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Some students thought three hours and ten minutes was <Katex tex="3.1" /> hours and
-      six minutes was <Katex tex="0.6" /> hours. Others had the standard deviation as{' '}
-      <Katex tex="10" /> minutes. Some gave the answer without showing any working.
+      Some students thought 3 hours and 10 minutes was 3.1 hours and 6 minutes was 0.6
+      hours. Others had the standard deviation as 10 minutes. Some gave the answer without
+      showing any working. Students are reminded that some working must be shown for
+      questions worth more than one mark. <Katex tex="\Pr(Y>180)=0.9522" /> was a common
+      incorrect response.
     </>
   ),
 }
@@ -82,13 +85,21 @@ const EXAM_HII: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      <Katex tex="f" /> is not a probability density function, as{' '}
+      <Katex tex="f" /> is not a probability density function as{' '}
       <Katex tex="\int_0^{210}f(x)\,dx\ne1" />. It is a close approximation such that
       student calculations <Katex tex="\int_0^{m}f(x)\,dx=\tfrac12" /> and{' '}
-      <Katex tex="\int_m^{210}f(x)\,dx=\tfrac12" /> both yielded <Katex tex="m=176" />{' '}
-      correct to the nearest integer. Answers correct to the nearest integer were accepted.
-      Some students solved <Katex tex="\int_0^{m}x\,f(x)\,dx=\tfrac12" /> by leaving the{' '}
-      <Katex tex="x" /> in from the previous part, getting <Katex tex="75.58" />.
+      <Katex tex="\int_m^{210}f(x)\,dx=\tfrac12" /> both yielded values <Katex tex="m=176" />{' '}
+      correct to the nearest integer. Answers that were correct to the nearest integer were
+      accepted.
+      <br />
+      <br />
+      Some students wrote down the correct formula but did not delete the <Katex tex="x" />{' '}
+      on their technology from the previous computation for <Katex tex="\mathrm{E}(X)" />,
+      solving <Katex tex="\int_0^{m}f(x)\,dx=\tfrac12" />, getting <Katex tex="m=75.58" />.
+      Students should check their answers to see if they make sense as <Katex tex="75.58" />{' '}
+      is very different from <Katex tex="170.01" />. The <Katex tex="dx" /> was often missing
+      from students' working. Some students gave two solutions; they did not consider the
+      domain.
     </>
   ),
 }
@@ -118,7 +129,7 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The numerator directly.</>,
   },
   {
-    working: <Katex display tex="= \frac{0.83936\ldots}{0.90151\ldots}" />,
+    working: <Katex display tex="= \frac{0.83938\ldots}{0.90152\ldots}" />,
     reason: <>The denominator is part (a). Keep full precision — the report says rounding here produced <Katex tex="0.9312" />.</>,
   },
   {
@@ -203,7 +214,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac18 = 0.125}" />,
-    reason: <>Only <Katex tex="21\%" /> of students scored this mark, mostly because they did not notice that the probability was exactly a half.</>,
+    reason: <>Only <Katex tex="21\%" /> of students scored this mark. The whole question turns on noticing that the probability is exactly a half.</>,
   },
 ]
 
@@ -222,7 +233,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(0.01,\ 0.11)}" />,
-    reason: <>Two decimal places: <Katex tex="0.0134" /> and <Katex tex="0.1065" />. The report's common wrong interval <Katex tex="(0.01,0.12)" /> comes from rounding the upper end up rather than to nearest.</>,
+    reason: <>Two decimal places: <Katex tex="0.0134" /> and <Katex tex="0.1065" />. The report notes <Katex tex="(0.01,0.12)" /> as a common incorrect interval; round each end to the nearest hundredth.</>,
   },
 ]
 
@@ -279,6 +290,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="a"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -294,6 +306,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="b"
+        topic="Conditional Binomial"
         marks={2}
         statement={
           <>
@@ -319,6 +332,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="c"
+        topic="Continuous PDF"
         marks={2}
         statement={
           <>
@@ -353,6 +367,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="d"
+        topic="Sample Proportion"
         marks={3}
         statement={
           <>
@@ -376,6 +391,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="e"
+        topic="Normal Distribution"
         marks={2}
         statement={
           <>
@@ -391,6 +407,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="f"
+        topic="First Success"
         marks={1}
         statement={
           <>
@@ -413,6 +430,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="g"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
@@ -440,6 +458,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="h.i"
+        topic="Mean of PDF"
         marks={1}
         statement={
           <>
@@ -454,6 +473,7 @@ export default function MethodsQ3_2016Exam2() {
 
       <PartCard
         letter="h.ii"
+        topic="Median"
         marks={2}
         statement={
           <>

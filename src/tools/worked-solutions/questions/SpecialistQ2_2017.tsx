@@ -1,5 +1,4 @@
-// 2017 Specialist Mathematics — Exam 2, MCQ 2. VCAA examination report: 37% correct
-// (tied for third-hardest in the 2017-2018 Specialist Exam 2 papers).
+// 2017 Specialist Mathematics — Exam 2, MCQ 2. VCAA examination report: 37% correct.
 // A trigonometric inequality involving cosec — solve with care around the sign of sin(x).
 // Question text transcribed from the original paper; solution is original.
 
@@ -56,7 +55,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x\in\left(\tfrac{\pi}{12},\tfrac{5\pi}{12}\right) \cup \left(\pi,\tfrac{13\pi}{12}\right) \cup \left(\tfrac{17\pi}{12},2\pi\right)}" />,
-    reason: <>Combine both cases. Matches option <b>E</b>.</>,
+    reason: <>Combine both cases. Matches option <b>E</b>. Option B (30%) keeps the band <Katex tex="\left(\tfrac{13\pi}{12},\tfrac{17\pi}{12}\right)" /> — what you get by not flipping the inequality when <Katex tex="\sin(x)<0" />.</>,
   },
 ]
 

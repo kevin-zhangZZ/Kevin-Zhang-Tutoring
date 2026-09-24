@@ -11,9 +11,10 @@ const EXAM_A: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Some errors included values of <Katex tex="\hat p" /> greater than 1; students are
-      reminded that <Katex tex="0\le\hat p\le1" /> and that the span of the confidence
-      interval is symmetric about <Katex tex="\hat p" />.
+      This question was well answered by students. Some errors included{' '}
+      <Katex tex="\hat p" /> values greater than 1; students are reminded that{' '}
+      <Katex tex="0\le\hat p\le1" /> and that the span of the confidence interval is
+      symmetric about <Katex tex="\hat p" />.
     </>
   ),
 }
@@ -24,8 +25,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Many students were able to set up an equation involving <Katex tex="n" /> by using
-      either the lower or upper bound of the interval. Issues with arithmetic manipulation led
-      to the most common errors of <Katex tex="n=10" /> or <Katex tex="n=1000" />.
+      either the lower or upper bound of the 95% confidence interval for the proportion,{' '}
+      <Katex tex="p" />. Issues with arithmetic manipulation led to the most common errors of{' '}
+      <Katex tex="n=10" /> or <Katex tex="n=1000" />.
     </>
   ),
 }
@@ -35,8 +37,10 @@ const EXAM_C: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      This question was not responded to well. A significant number of students gave incorrect
-      answers; a factor of <Katex tex="\tfrac14" /> was a common incorrect answer.
+      This question was not responded to well. The correct answer of <Katex tex="\tfrac12" />{' '}
+      was often given, with a number of students able to show rigorous working out. A
+      significant number of students gave incorrect answers. A factor of{' '}
+      <Katex tex="\tfrac14" /> was a common incorrect answer.
     </>
   ),
 }
@@ -48,18 +52,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\hat p = \frac{0.04+0.16}{2}" />,
-    reason: 'The midpoint of the two endpoints — the average, not the sum.',
+    reason: <>The midpoint of the two endpoints — the average, not the sum.</>,
   },
   {
     working: <Katex display tex="\boxed{\hat p = 0.1}" />,
-    reason: <>Between 0 and 1, as any proportion must be. (Adding instead of averaging gives <Katex tex="0.2" />; the report saw values above 1 as well.)</>,
+    reason: <>Between 0 and 1, as any proportion must be — the report notes some responses gave <Katex tex="\hat p" /> values greater than 1.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="E = \hat p-0.04 = 0.16-\hat p = 0.06" />,
-    reason: 'Half the width of the interval — the margin of error.',
+    reason: <>Half the width of the interval — the margin of error.</>,
   },
   {
     working: <Katex display tex="E = z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}} \implies 0.06 = 2\sqrt{\frac{0.1\times0.9}{n}}" />,
@@ -71,7 +75,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0.0009 = \frac{0.09}{n}" />,
-    reason: <>Squaring both sides. <Katex tex="0.03^2=0.0009" />, not <Katex tex="0.009" /> — this is where the report's <Katex tex="n=10" /> and <Katex tex="n=1000" /> come from.</>,
+    reason: <>Squaring both sides. <Katex tex="0.03^2=0.0009" />, not <Katex tex="0.009" /> — the report notes arithmetic manipulation led to the most common errors, <Katex tex="n=10" /> or <Katex tex="n=1000" />.</>,
   },
   {
     working: <Katex display tex="\boxed{n = \frac{0.09}{0.0009} = 100}" />,
@@ -86,11 +90,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{width} \propto \frac{1}{\sqrt n}" />,
-    reason: <>The <Katex tex="n" /> sits <em>inside</em> a square root — which is exactly what the wrong answer of <Katex tex="\tfrac14" /> forgets.</>,
+    reason: <>The <Katex tex="n" /> sits <em>inside</em> a square root. Forgetting the root gives <Katex tex="\tfrac14" />, which the report notes was a common incorrect answer.</>,
   },
   {
     working: <Katex display tex="n \to 4n \implies \sqrt{4n} = 2\sqrt n" />,
-    reason: 'Quadrupling the sample doubles the square root.',
+    reason: <>Quadrupling the sample doubles the square root.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{the width is halved — a factor of } \tfrac12}" />,
@@ -106,12 +110,10 @@ export default function MethodsQ6_2023Exam1() {
         <p>
           Let <Katex tex="\hat P" /> be the random variable that represents the sample
           proportion of households in a given suburb that have solar panels installed.
-        </p>
-        <p>
+          <br />
           From a sample of randomly selected households in a given suburb, an approximate 95%
           confidence interval for the proportion <Katex tex="p" /> of households having solar
-          panels installed was determined to be <Katex tex="(0.04,\,0.16)" />. Use{' '}
-          <Katex tex="z=2" /> to approximate the 95% confidence interval.
+          panels installed was determined to be <Katex tex="(0.04,\,0.16)" />.
         </p>
       </div>
 
@@ -134,6 +136,7 @@ export default function MethodsQ6_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
@@ -146,8 +149,15 @@ export default function MethodsQ6_2023Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          Use <Katex tex="z=2" /> to approximate the 95% confidence interval.
+        </p>
+      </div>
+
       <PartCard
         letter="b"
+        topic="Sample Size"
         marks={2}
         statement={
           <>Find the size of the sample from which this 95% confidence interval was obtained.</>
@@ -159,13 +169,23 @@ export default function MethodsQ6_2023Exam1() {
 
       <PartCard
         letter="c"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
-            A larger sample of households is selected, with a sample size four times the
-            original sample. The sample proportion of households having solar panels installed
-            is found to be the same. By what factor will the increased sample size affect the
-            width of the confidence interval?
+            <div className="flex flex-col gap-3">
+              <p>
+                A larger sample of households is selected, with a sample size four times the
+                original sample.
+                <br />
+                The sample proportion of households having solar panels installed is found to
+                be the same.
+              </p>
+              <p>
+                By what factor will the increased sample size affect the width of the
+                confidence interval?
+              </p>
+            </div>
           </>
         }
         examinerReport={EXAM_C}

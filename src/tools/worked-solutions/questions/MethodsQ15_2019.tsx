@@ -26,10 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = 2x-4 \implies f'(5) = 2(5)-4 = 6" />,
+    reason: <>Differentiating <Katex tex="f" /> and evaluating at the matching point.</>,
   },
   {
     working: <Katex display tex="\boxed{g'(7) = \dfrac16}" />,
-    reason: <>Matches option <b>A</b>. The distractors map the common slips exactly: <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" /> rather than <Katex tex="g'(7)" /> — chosen by a quarter of students, who answered the wrong question; <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal; <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f'(7)}" />, evaluated at the wrong point.</>,
+    reason: <>Matches option <b>A</b>. The distractors map the common slips exactly: <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" /> rather than <Katex tex="g'(7)" /> — chosen by a quarter of students, who answered the wrong question; <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal; <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f(5)}" />, the reciprocal of the function value rather than the gradient; <b>C</b> <Katex tex="\left(\tfrac{\sqrt7}{14}\right)" /> is the derivative of <Katex tex="\sqrt x" /> at <Katex tex="7" />, from a wrongly inverted rule.</>,
   },
 ]
 
@@ -38,7 +39,7 @@ export default function MethodsQ15_2019() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f:[2,\infty)\to\mathbb{R},\ f(x)=x^2-4x+2" /> and <Katex tex="f(5)=7" />.
+          Let <Katex tex="f:[2,\infty)\to R,\ f(x)=x^2-4x+2" /> and <Katex tex="f(5)=7" />.
           The function <Katex tex="g" /> is the inverse function of <Katex tex="f" />.{' '}
           <Katex tex="g'(7)" /> is equal to
         </p>

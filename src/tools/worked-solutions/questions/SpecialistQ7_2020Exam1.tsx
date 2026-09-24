@@ -13,6 +13,11 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was answered well. If <Katex tex="f" /> is continuous at{' '}
       <Katex tex="x=1" /> then <Katex tex="m+n=2" />.
+      <br />
+      Also{' '}
+      <Katex tex="\dfrac{d}{dx}\left(\dfrac{4}{1+x^2}\right)=\dfrac{-8x}{\left(1+x^2\right)^2}" /> and
+      so <Katex tex="m=-2" /> in order for <Katex tex="f'(x)" /> to be continuous at{' '}
+      <Katex tex="x=1" />.
     </>
   ),
 }
@@ -22,12 +27,13 @@ const EXAM_B: SAExaminerStats = {
   average: 2.1,
   comment: (
     <>
-      This question involved routine integrals and was answered well. A few students
-      recognised that the region enclosed by the graph between <Katex tex="x=0" /> and{' '}
-      <Katex tex="x=1" /> was a trapezium and so were able to avoid evaluating one of the
-      integrals. Several students incorrectly applied results from the formula sheet — in
-      particular, writing{' '}
-      <Katex tex="\int\frac{4}{1+x^2}dx=\tfrac14\arctan(x)" />.
+      This question involved routine integrals and was answered well.
+      <br />
+      A few students recognised that the region enclosed by the graph between{' '}
+      <Katex tex="x=0" /> and <Katex tex="x=1" /> was a trapezium and so were able to avoid
+      evaluating one of the integrals. Several students incorrectly applied results from the
+      formula sheet. In particular,{' '}
+      <Katex tex="\displaystyle\int_1^{\sqrt3}\frac{4}{1+x^2}\,dx=\left[\frac14\arctan(x)\right]_1^{\sqrt3}" />
     </>
   ),
 }
@@ -55,7 +61,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m+n = 2 \implies -2+n = 2 \implies \boxed{n = 4}" />,
-    reason: <>Back-substituting. Both shown ✓.</>,
+    reason: <>Back-substituting. As required.</>,
   },
 ]
 
@@ -109,6 +115,7 @@ export default function SpecialistQ7_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Continuity"
         marks={2}
         statement={
           <>
@@ -123,6 +130,7 @@ export default function SpecialistQ7_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Area Under Curve"
         marks={3}
         statement={
           <>

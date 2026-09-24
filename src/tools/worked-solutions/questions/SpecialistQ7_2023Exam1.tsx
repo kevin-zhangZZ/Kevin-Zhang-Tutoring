@@ -11,10 +11,14 @@ const EXAM: SAExaminerStats = {
   average: 2.2,
   comment: (
     <>
-      Depending on how students manipulated the integrand, various substitutions would lead to
-      the same result. Some students did not use a substitution and instead tried to rely on
-      inspection or recognition to find an antiderivative; this was not always successful.
-      Doing an explicit substitution was the more reliable approach.
+      Depending on how students elected to manipulate the integrand, various substitutions
+      would lead to the same result. A small number of students successfully expressed the
+      curve in Cartesian form and evaluated an appropriate integral to obtain the correct
+      result.
+      <br />
+      Some students did not use a substitution and instead tried to rely on inspection or
+      recognition to find an antiderivative. This approach was not always successful. Doing an
+      explicit substitution was the more reliable approach.
     </>
   ),
 }
@@ -22,7 +26,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="S = 2\pi\int_{t_1}^{t_2}y\,\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\;dt" />,
-    reason: 'The parametric form of the surface area of a solid of revolution about the x-axis, from the formula sheet.',
+    reason: <>The surface area of revolution about the <Katex tex="x" />-axis, in parametric form.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = \frac{t}{2}, \qquad \frac{dy}{dt} = \sqrt3" />,
@@ -45,7 +49,7 @@ const ROWS: WorkingRow[] = [
     reason: <><Katex tex="4^{3/2}=8" /> and <Katex tex="3^{3/2}=3\sqrt3" />.</>,
   },
   {
-    working: <Katex display tex="= \frac{\pi}{3}\left(64\sqrt3-24\cdot3\right)\div1 = \pi\left(\frac{64\sqrt3}{3}-24\right)" />,
+    working: <Katex display tex="= \frac{\pi}{3}\left(64\sqrt3-72\right) = \pi\left(\frac{64\sqrt3}{3}-24\right)" />,
     reason: <>Expanding: <Katex tex="8\sqrt3\times8=64\sqrt3" /> and <Katex tex="8\sqrt3\times3\sqrt3=72" />, so the second term is <Katex tex="\tfrac{72}{3}=24" />.</>,
   },
   {
@@ -59,16 +63,17 @@ export default function SpecialistQ7_2023Exam1() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 7 (4 marks)</p>
+        <p>The curve defined by the parametric equations</p>
+        <Katex display tex="x=\frac{t^2}{4}-1, \ y=\sqrt3\,t, \ \text{where } 0\le t\le2," />
         <p>
-          The curve defined by the parametric equations{' '}
-          <Katex tex="x=\dfrac{t^2}{4}-1" />, <Katex tex="y=\sqrt3\,t" />, where{' '}
-          <Katex tex="0\le t\le2" />, is rotated about the <Katex tex="x" />-axis to form an
-          open hollow surface of revolution.
-        </p>
-        <p>
-          Find the surface area of the surface of revolution. Give your answer in the form{' '}
+          is rotated about the <Katex tex="x" />-axis to form an open hollow surface of
+          revolution.
+          <br />
+          Find the surface area of the surface of revolution.
+          <br />
+          Give your answer in the form{' '}
           <Katex tex="\pi\left(\dfrac{a\sqrt b}{c}-d\right)" />, where{' '}
-          <Katex tex="a,b,c,d\in\mathbb{Z}^+" />.
+          <Katex tex="a,b,c\text{ and }d\in Z^+" />.
         </p>
       </div>
 
@@ -83,7 +88,7 @@ export default function SpecialistQ7_2023Exam1() {
             What makes this one work is that <Katex tex="\dot x=\tfrac t2" /> leaves a lone{' '}
             <Katex tex="t" /> multiplying the square root, which is exactly the derivative of
             what is <em>inside</em> it. Write the substitution out rather than trying to spot
-            the antiderivative; the report is explicit that guessing went badly.
+            the antiderivative; the report notes relying on inspection was not always successful.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

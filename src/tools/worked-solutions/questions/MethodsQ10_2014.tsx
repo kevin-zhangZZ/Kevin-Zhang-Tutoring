@@ -30,12 +30,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Neither returns <Katex tex="x" />. Both are one-to-one, but their inverses (<Katex tex="\tfrac x2" /> and <Katex tex="x+2" />) are not themselves.</>,
   },
   {
-    working: <Katex display tex="\text{B: } f(f(x)) = \left(x^2\right)^2 = x^4, \qquad \text{C: } f(f(x)) = 2^{\left(2^x\right)}" />,
-    reason: <>Also not <Katex tex="x" />; <Katex tex="x^2" /> is not even one-to-one on <Katex tex="R" />.</>,
+    working: <Katex display tex="\text{B: } f(f(x)) = \left(x^2\right)^2 = x^4, \qquad \text{C: } f(f(x)) = 2\sqrt{2\sqrt x}" />,
+    reason: <>Neither returns <Katex tex="x" /> — at <Katex tex="x=2" />, B gives 16 and C gives <Katex tex="2\sqrt{2\sqrt2}\approx3.4" />. Neither could work "for every real number" anyway: <Katex tex="x^2" /> is not one-to-one on <Katex tex="R" />, and <Katex tex="2\sqrt x" /> is not even defined for <Katex tex="x<0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = 2-x}" />,
-    reason: <>Option E — a reflection, and reflecting twice puts everything back.</>,
+    reason: <>Matches option <b>E</b> — a reflection in the line <Katex tex="y=x" /> maps the graph of <Katex tex="y=2-x" /> onto itself, and reflecting twice puts everything back.</>,
   },
 ]
 
@@ -51,7 +51,7 @@ export default function MethodsQ10_2014() {
       options={[
         { letter: 'A', content: <Katex tex="f(x)=2x" /> },
         { letter: 'B', content: <Katex tex="f(x)=x^2" /> },
-        { letter: 'C', content: <Katex tex="f(x)=2^x" /> },
+        { letter: 'C', content: <Katex tex="f(x)=2\sqrt x" /> },
         { letter: 'D', content: <Katex tex="f(x)=x-2" /> },
         { letter: 'E', content: <Katex tex="f(x)=2-x" />, isAnswer: true },
       ]}

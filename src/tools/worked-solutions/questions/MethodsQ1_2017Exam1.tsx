@@ -75,15 +75,20 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g'(1) = -9}" />,
-    reason: <>Negative, as expected: <Katex tex="g" /> is a decreasing cube of a decreasing function near <Katex tex="x=1" />.</>,
+    reason: <>Negative, as expected: the inside, <Katex tex="2-x^3" />, is decreasing, and cubing keeps the order, so <Katex tex="g" /> is decreasing.</>,
   },
 ]
 
 export default function MethodsQ1_2017Exam1() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p className="font-semibold text-gray-900 dark:text-white">Question 1 (4 marks)</p>
+      </div>
+
       <PartCard
         letter="a"
+        topic="Quotient Rule"
         marks={2}
         statement={
           <>
@@ -111,6 +116,7 @@ export default function MethodsQ1_2017Exam1() {
 
       <PartCard
         letter="b"
+        topic="Chain Rule"
         marks={2}
         statement={
           <>

@@ -13,8 +13,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      There were some rounding errors; <Katex tex="0.1586" /> was sometimes seen. Some
-      students found <Katex tex="\Pr(D<6.8)" /> rather than <Katex tex="\Pr(D>6.8)" />.
+      This question was answered well. There were some rounding errors. <Katex tex="0.1586" />{' '}
+      was sometimes seen. Some students found <Katex tex="\Pr(D<6.8)" /> rather than{' '}
+      <Katex tex="\Pr(D>6.8)" />.
     </>
   ),
 }
@@ -24,8 +25,8 @@ const EXAM_B: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      A common error was solving <Katex tex="\Pr(D<a)=0.9" /> the wrong way round, giving{' '}
-      <Katex tex="a=6.57" />.
+      A common error was that students solved <Katex tex="\Pr(D>a)=0.9" />, giving{' '}
+      <Katex tex="a=6.57" /> as the answer.
     </>
   ),
 }
@@ -35,9 +36,10 @@ const EXAM_C: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Students need to be aware that with a continuous distribution{' '}
-      <Katex tex="\Pr(D<6.95)=\Pr(D\le6.95)" />. Some students gave{' '}
-      <Katex tex="0.0062" />, the probability of being larger than 6.95 cm.
+      This question was answered well. <Katex tex="\Pr(D\le6.94)\approx0.9918" /> was seen
+      occasionally. Students need to be aware that with continuous probability{' '}
+      <Katex tex="\Pr(D<6.95)=\Pr(D\le6.95)" />. Some students gave <Katex tex="0.0062" /> as
+      the answer, which was the probability of the tennis ball being larger than 6.95 cm.
     </>
   ),
 }
@@ -47,9 +49,9 @@ const EXAM_D: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Appropriate working must be shown for questions worth more than one mark; students
-      needed to give the <Katex tex="n" /> and <Katex tex="p" /> values. Some students solved{' '}
-      <Katex tex="\Pr(X=3)" /> or <Katex tex="\Pr(X>3)" />.
+      Some students gave only the answer. Appropriate working must be shown for questions worth
+      more than one mark. Students needed to give the <Katex tex="n" /> and <Katex tex="p" />{' '}
+      values. Some students solved <Katex tex="\Pr(X=3)" /> or <Katex tex="\Pr(X>3)" />.
     </>
   ),
 }
@@ -60,8 +62,10 @@ const EXAM_E: SAExaminerStats = {
   comment: (
     <>
       Most students realised this was a conditional probability question.{' '}
-      <Katex tex="\tfrac{0.89040}{0.99977}=0.8906" /> was a common incorrect answer, as was
-      multiplying the two probabilities.
+      <Katex tex="\tfrac{0.89040\ldots}{0.99977\ldots}=0.8906\ldots" /> was a common incorrect
+      answer.{' '}
+      <Katex tex="\tfrac{\Pr(6.54<D<6.86)\times\Pr(D<6.95)}{\Pr(D<6.95)}=0.8904\ldots" /> was also
+      a common incorrect approach.
     </>
   ),
 }
@@ -71,9 +75,15 @@ const EXAM_F: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      The maximum value of the standard deviation was not asked for, so any value from 0.00 to
-      0.06 was accepted. <Katex tex="\Pr(D<6.86)=0.99" /> was a common incorrect approach.
-      Trial and error could be used, but some appropriate working had to be shown.
+      The maximum value of the standard deviation was not asked for in the question. Hence{' '}
+      <Katex tex="0<\sigma\le0.06" /> and{' '}
+      <Katex tex="\sigma=0.00,\ 0.01,\ 0.02,\ 0.03,\ 0.04,\ 0.05" /> or{' '}
+      <Katex tex="0.06" /> were accepted.
+      <br />
+      <Katex tex="\Pr(D<6.86)=0.99" />, <Katex tex="\tfrac{6.86-6.7}{\sigma}=2.3263\ldots" /> was
+      a common incorrect approach. Trial and error could be used but students must make sure
+      they show some appropriate working. Drawing a diagram and showing the probabilities was
+      acceptable.
     </>
   ),
 }
@@ -107,10 +117,11 @@ const EXAM_J: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Some students did not attempt the question. Others recognised that{' '}
-      <Katex tex="a=\tfrac1b" /> but were unable to find the values. A common incorrect answer
-      was <Katex tex="a=\tfrac23" />, <Katex tex="b=1" />. Many of those who set up
-      simultaneous equations did not multiply the terminals by <Katex tex="b" />.
+      This question was not done well. Some students did not attempt the question. Others were
+      able to recognise that <Katex tex="a=\tfrac1b" /> but were unable to find their values. A
+      common incorrect answer was <Katex tex="a=\tfrac23" /> and <Katex tex="b=1" />. Many of
+      those who attempted the second method did not multiply the terminals by{' '}
+      <Katex tex="b" />.
     </>
   ),
 }
@@ -118,7 +129,7 @@ const EXAM_J: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="D \sim \mathrm{N}\!\left(6.7,\ 0.1^2\right)" />,
-    reason: 'Given.',
+    reason: <>Given.</>,
   },
   {
     working: (
@@ -150,7 +161,7 @@ const ROWS_B: WorkingRow[] = [
         invNorm(0.9, 6.7, 0.1)
       </Cas>
     ),
-    reason: 'Working backwards from an area to a value.',
+    reason: <>Working backwards from an area to a value.</>,
   },
   {
     working: <Katex display tex="d = 6.8282\ldots" />,
@@ -158,14 +169,14 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{6.83 \ \text{cm}}" />,
-    reason: 'Two decimal places.',
+    reason: <>Two decimal places.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Fits through} \iff D < 6.95" />,
-    reason: 'Strictly smaller — but for a continuous variable the strict and non-strict versions have the same probability.',
+    reason: <>Strictly smaller — but for a continuous variable the strict and non-strict versions have the same probability.</>,
   },
   {
     working: (
@@ -184,7 +195,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="X = \text{number of the 4 balls that fit} \sim \mathrm{Bi}(4,\ 0.993790\ldots)" />,
-    reason: <>Four independent trials with the part c. probability. Both <Katex tex="n" /> and <Katex tex="p" /> must be written down — the report is explicit.</>,
+    reason: <>Four independent trials with the part c. probability. Both <Katex tex="n" /> and <Katex tex="p" /> must be written down — the report notes students needed to give them.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = \Pr(X=3)+\Pr(X=4)" />,
@@ -196,7 +207,7 @@ const ROWS_D: WorkingRow[] = [
         1 − binomCdf(4, 0.99379, 0, 2)
       </Cas>
     ),
-    reason: 'Or add the two individual terms directly.',
+    reason: <>Or add the two individual terms directly.</>,
   },
   {
     working: <Katex display tex="\boxed{0.9998}" />,
@@ -207,11 +218,11 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(6.54<D<6.86 \mid D<6.95) = \frac{\Pr(6.54<D<6.86 \cap D<6.95)}{\Pr(D<6.95)}" />,
-    reason: 'The conditional probability formula.',
+    reason: <>The conditional probability formula.</>,
   },
   {
     working: <Katex display tex="6.86 < 6.95 \implies \{6.54<D<6.86\}\subset\{D<6.95\}" />,
-    reason: 'Grade A already implies it fits, so the intersection is just the grade A event. This is the step that simplifies everything.',
+    reason: <>Grade A already implies it fits, so the intersection is just the grade A event. This is the step that simplifies everything.</>,
   },
   {
     working: <Katex display tex="\Pr(6.54<D<6.86) = 0.890401\ldots" />,
@@ -219,7 +230,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{0.890401\ldots}{0.993790\ldots}" />,
-    reason: <>Dividing by part c. Multiplying the two instead — another of the report's named errors — would give <Katex tex="0.8849" />.</>,
+    reason: <>Dividing by part c. — not by part d.'s <Katex tex="0.99977\ldots" />, which gives <Katex tex="0.8906\ldots" />, a common incorrect answer the report notes. Nor is the intersection a product of the two probabilities: the events are not independent.</>,
   },
   {
     working: <Katex display tex="\boxed{0.8960}" />,
@@ -230,34 +241,34 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="6.86-6.7 = 0.16 = 6.7-6.54" />,
-    reason: 'The grade A window is symmetric about the mean, which is what makes this tractable by hand.',
+    reason: <>The grade A window is symmetric about the mean, which is what makes this tractable by hand.</>,
   },
   {
     working: <Katex display tex="\Pr(6.54<D<6.86) > 0.99 \implies \Pr\!\left(-\frac{0.16}{\sigma}<Z<\frac{0.16}{\sigma}\right) > 0.99" />,
-    reason: 'Standardising. The two tails share the remaining 1%, half each.',
+    reason: <>Standardising. The two tails share the remaining 1%, half each.</>,
   },
   {
     working: <Katex display tex="\frac{0.16}{\sigma} > z_{0.995} = 2.5758\ldots" />,
-    reason: <>Solving <Katex tex="\Pr(D<6.86)=0.99" /> instead uses <Katex tex="z=2.3263" /> and is the report's named wrong approach — it leaves 1% in one tail rather than across both.</>,
+    reason: <>Solving <Katex tex="\Pr(D<6.86)=0.99" /> instead uses <Katex tex="z=2.3263" /> — the report notes this was a common incorrect approach. It leaves 1% in one tail rather than across both.</>,
   },
   {
     working: <Katex display tex="\sigma < \frac{0.16}{2.5758} = 0.0621\ldots" />,
-    reason: 'The condition on the standard deviation.',
+    reason: <>The condition on the standard deviation.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma = 0.06 \ \text{cm}}" />,
-    reason: <>To two decimal places. Any value from <Katex tex="0.00" /> to <Katex tex="0.06" /> was accepted, since the question asked for "the required standard deviation", not the largest one.</>,
+    reason: <>To two decimal places. The report notes the maximum value was not asked for, so any of <Katex tex="0.00,\ 0.01,\ \ldots,\ 0.06" /> was accepted.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = \frac{0.7382+0.9493}{2} = 0.84375" />,
-    reason: <>The centre of the interval. Reusing <Katex tex="0.8904" /> from part e. — the report's common error — ignores that this is a <em>sample</em> of 32.</>,
+    reason: <>The centre of the interval. The report notes <Katex tex="\hat p=0.8904" /> — the population probability <Katex tex="\Pr(6.54<D<6.86)" /> — was often seen; <Katex tex="\hat p" /> must come from the sample's interval.</>,
   },
   {
     working: <Katex display tex="E = 0.9493-0.84375 = 0.10555" />,
-    reason: 'Half the width: the margin of error.',
+    reason: <>Half the width: the margin of error.</>,
   },
   {
     working: <Katex display tex="E = z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}} \implies 0.10555 = z\sqrt{\frac{0.84375\times0.15625}{32}}" />,
@@ -265,11 +276,11 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = \frac{0.10555}{0.064186} = 1.6444\ldots" />,
-    reason: <>Not <Katex tex="1.96" />, so this is not a 95% interval — assuming it was is what the report saw.</>,
+    reason: <>Not <Katex tex="1.96" />, so this is not a 95% interval — the report notes some students had the correct <Katex tex="z" /> value but then gave 95%.</>,
   },
   {
     working: <Katex display tex="\Pr(-1.6444<Z<1.6444) = 0.8999\ldots" />,
-    reason: 'Converting the z-score back into a confidence level.',
+    reason: <>Converting the z-score back into a confidence level.</>,
   },
   {
     working: <Katex display tex="\boxed{90\%}" />,
@@ -288,7 +299,7 @@ const ROWS_H: WorkingRow[] = [
         nInt(sin(√((v−30)/3))/(6π), v, 50, 3π²+30)
       </Cas>
     ),
-    reason: 'No elementary antiderivative in an obvious form, so integrate numerically.',
+    reason: <>No elementary antiderivative in an obvious form, so integrate numerically.</>,
   },
   {
     working: <Katex display tex="\boxed{0.1345}" />,
@@ -299,7 +310,7 @@ const ROWS_H: WorkingRow[] = [
 const ROWS_I: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(V) = \int_{30}^{3\pi^2+30}v\,f(v)\,dv" />,
-    reason: 'The definition, and the question wants it exact.',
+    reason: <>The definition, and the question wants it exact.</>,
   },
   {
     working: <Katex display tex="u = \sqrt{\frac{v-30}{3}} \implies v = 3u^2+30, \quad dv = 6u\,du" />,
@@ -307,15 +318,15 @@ const ROWS_I: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{E}(V) = \frac{1}{6\pi}\int_0^{\pi}\left(3u^2+30\right)\sin(u)\cdot6u\,du = \frac1\pi\int_0^{\pi}\left(3u^3+30u\right)\sin(u)\,du" />,
-    reason: 'Everything is now a polynomial times a sine.',
+    reason: <>Everything is now a polynomial times a sine.</>,
   },
   {
     working: <Katex display tex="\int_0^{\pi}u\sin(u)\,du = \pi, \qquad \int_0^{\pi}u^3\sin(u)\,du = \pi^3-6\pi" />,
-    reason: 'Standard integration-by-parts results (or straight from a CAS).',
+    reason: <>Standard integration-by-parts results (or straight from a CAS).</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(V) = \frac1\pi\left(3\left(\pi^3-6\pi\right)+30\pi\right) = 3\pi^2-18+30" />,
-    reason: 'Dividing through.',
+    reason: <>Dividing through.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(V) = 3\pi^2+12 = 3\left(\pi^2+4\right) \ \mathrm{ms^{-1}}}" />,
@@ -334,7 +345,7 @@ const ROWS_J: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{E}(W) = b\,\mathrm{E}(V)" />,
-    reason: <>Horizontal scaling scales the mean. (Formally, substituting <Katex tex="v=\tfrac wb" /> into <Katex tex="\int w\,g(w)\,dw" /> — and the terminals must be multiplied by <Katex tex="b" /> too, which the report says many students forgot.)</>,
+    reason: <>Horizontal scaling scales the mean. (Formally, substituting <Katex tex="v=\tfrac wb" /> into <Katex tex="\int w\,g(w)\,dw" /> — and the terminals must be multiplied by <Katex tex="b" /> too, which the report notes many who used simultaneous equations did not do.)</>,
   },
   {
     working: <Katex display tex="2\pi^2+8 = b\left(3\pi^2+12\right) \implies b = \frac{2\left(\pi^2+4\right)}{3\left(\pi^2+4\right)}" />,
@@ -352,7 +363,9 @@ export default function MethodsQ4_2023Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 4 (15 marks)</p>
         <p>
-          A manufacturer produces tennis balls. The diameter of the tennis balls is a normally
+          A manufacturer produces tennis balls.
+          <br />
+          The diameter of the tennis balls is a normally
           distributed random variable <Katex tex="D" />, which has a mean of 6.7 cm and a
           standard deviation of 0.1 cm.
         </p>
@@ -376,6 +389,7 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="a"
+        topic="Normal Distribution"
         marks={1}
         statement={
           <>Find <Katex tex="\Pr(D>6.8)" />, correct to four decimal places.</>
@@ -387,11 +401,14 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="b"
+        topic="Inverse Normal"
         marks={1}
         statement={
           <>
             Find the minimum diameter of a tennis ball that is larger than 90% of all tennis
-            balls produced. Give your answer in centimetres, correct to two decimal places.
+            balls produced.
+            <br />
+            Give your answer in centimetres, correct to two decimal places.
           </>
         }
         examinerReport={EXAM_B}
@@ -409,12 +426,14 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="c"
+        topic="Normal Distribution"
         marks={1}
         statement={
           <>
             Find the probability that a randomly selected tennis ball can fit through the
-            opening at the top of the container. Give your answer correct to four decimal
-            places.
+            opening at the top of the container.
+            <br />
+            Give your answer correct to four decimal places.
           </>
         }
         examinerReport={EXAM_C}
@@ -424,12 +443,14 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="d"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
             In a random selection of 4 tennis balls, find the probability that at least 3
-            balls can fit through the opening at the top of the container. Give your answer
-            correct to four decimal places.
+            balls can fit through the opening at the top of the container.
+            <br />
+            Give your answer correct to four decimal places.
           </>
         }
         examinerReport={EXAM_D}
@@ -446,12 +467,14 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="e"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>
             Given that a tennis ball can fit through the opening at the top of the container,
-            find the probability that it is classed as grade A. Give your answer correct to
-            four decimal places.
+            find the probability that it is classed as grade A.
+            <br />
+            Give your answer correct to four decimal places.
           </>
         }
         examinerReport={EXAM_E}
@@ -461,13 +484,16 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="f"
+        topic="Normal Distribution"
         marks={2}
         statement={
           <>
             The manufacturer would like to improve processes to ensure that more than 99% of
-            all tennis balls produced are classed as grade A. Assuming that the mean diameter
-            remains the same, find the required standard deviation of the diameter, in
-            centimetres, correct to two decimal places.
+            all tennis balls produced are classed as grade A.
+            <br />
+            Assuming that the mean diameter of the tennis balls remains the same, find the
+            required standard deviation of the diameter, in centimetres, correct to two decimal
+            places.
           </>
         }
         examinerReport={EXAM_F}
@@ -477,12 +503,17 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="g"
+        topic="Confidence Level"
         marks={2}
         statement={
           <>
-            An inspector takes a random sample of 32 tennis balls and determines a confidence
-            interval for the population proportion of grade A balls produced. The confidence
-            interval is <Katex tex="(0.7382,\,0.9493)" />, correct to four decimal places.
+            An inspector takes a random sample of 32 tennis balls from the manufacturer and
+            determines a confidence interval for the population proportion of grade A balls
+            produced.
+            <br />
+            The confidence interval is <Katex tex="(0.7382,\,0.9493)" />, correct to 4 decimal
+            places.
+            <br />
             Find the level of confidence that the population proportion of grade A balls is
             within the interval, as a percentage correct to the nearest integer.
           </>
@@ -508,11 +539,14 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="h"
+        topic="Continuous PDF"
         marks={1}
         statement={
           <>
             Find the probability that the serving speed of a grade A ball exceeds 50 metres
-            per second. Give your answer correct to four decimal places.
+            per second.
+            <br />
+            Give your answer correct to four decimal places.
           </>
         }
         examinerReport={EXAM_H}
@@ -522,6 +556,7 @@ export default function MethodsQ4_2023Exam2() {
 
       <PartCard
         letter="i"
+        topic="Mean of PDF"
         marks={1}
         statement={
           <>
@@ -533,18 +568,24 @@ export default function MethodsQ4_2023Exam2() {
         <WorkingTable rows={ROWS_I} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          The serving speed of a grade B ball is given by a continuous random variable,{' '}
+          <Katex tex="W" />, with the probability density function <Katex tex="g(w)" />.
+          <br />
+          A transformation maps the graph of <Katex tex="f" /> to the graph of{' '}
+          <Katex tex="g" />, where <Katex tex="g(w)=af\!\left(\dfrac wb\right)" />.
+        </p>
+      </div>
+
       <PartCard
         letter="j"
+        topic="Transformed PDF"
         marks={2}
         statement={
           <>
-            The serving speed of a grade B ball is given by a continuous random variable,{' '}
-            <Katex tex="W" />, with probability density function <Katex tex="g(w)" />. A
-            transformation maps the graph of <Katex tex="f" /> to the graph of{' '}
-            <Katex tex="g" />, where <Katex tex="g(w)=a\,f\!\left(\dfrac wb\right)" />. If the
-            mean serving speed for a grade B ball is{' '}
-            <Katex tex="2\pi^2+8" /> metres per second, find the values of <Katex tex="a" />{' '}
-            and <Katex tex="b" />.
+            If the mean serving speed for a grade B ball is <Katex tex="2\pi^2+8" /> metres
+            per second, find the values of <Katex tex="a" /> and <Katex tex="b" />.
           </>
         }
         examinerReport={EXAM_J}

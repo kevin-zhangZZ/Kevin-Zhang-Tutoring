@@ -20,10 +20,6 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="= \boxed{\log_e\!\left(2x^2\right)}" />,
     reason: <>Matches option <b>C</b>. The restriction <Katex tex="x>0" /> is what makes this identity safe — over a larger domain <Katex tex="\log_e(2x^2)" /> would be defined where the original is not.</>,
   },
-  {
-    working: <Katex display tex="\text{check } x=1: \ \log_e1+\log_e2 = \log_e2; \quad \log_e\!\left(2\cdot1^2\right) = \log_e2 \ \checkmark" />,
-    reason: 'A single substitution kills every wrong option in seconds.',
-  },
 ]
 
 export default function MethodsQ2_2021() {

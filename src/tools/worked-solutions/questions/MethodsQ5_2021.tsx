@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x \implies f(-x) = -x, \quad f\!\left(x^2\right) = x^2" />,
-    reason: 'Write down the three things every relation will need, then test each in turn.',
+    reason: <>Write down the three things every relation will need, then test each in turn.</>,
   },
   {
     working: <Katex display tex="f(x) = f(-x): \ x = -x \ \text{ only at } x=0 \quad \times" />,
@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\bigl(f(x)\bigr)^2 = f\!\left(x^2\right): \ x^2 = x^2 \quad \checkmark" />,
-    reason: 'True for every real x.',
+    reason: <>True for every real <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="\boxed{2}" />,

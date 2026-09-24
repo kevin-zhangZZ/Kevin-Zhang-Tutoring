@@ -11,7 +11,7 @@ import circleSrc from './spec-2021-mcq5-argand-circle.png'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 42, B: 6, C: 18, D: 32, E: 2 },
   answer: 'D',
-  comment: <Katex tex="\sqrt{2^2+2^2} = 2\sqrt2 \approx 2.83 \text{ (centre's distance from origin)};\ \sqrt7+1\approx 3.65" />,
+  comment: <Katex tex="\sqrt{2^2+\left(\sqrt3\right)^2}+1=\sqrt7+1" />,
 }
 
 const ROWS: WorkingRow[] = [
@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Distance from origin to centre} = \sqrt{2^2+(\sqrt3)^2} = \sqrt{4+3} = \sqrt7" />,
-    reason: 'Distance formula from the origin to the centre of the circle.',
+    reason: <>Distance formula from the origin to the centre of the circle.</>,
   },
   {
     working: <>The farthest point on a circle from an external point lies on the line through that point and the centre, on the far side.</>,
@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{|z|_{\max} = \sqrt7 + 1}" />,
-    reason: <>Distance to the centre, plus the radius — matches option <b>D</b>.</>,
+    reason: <>Distance to the centre, plus the radius. Matches option <b>D</b>. Option A, <Katex tex="\sqrt3+1" />, is the greatest <em>imaginary part</em> on the circle, not the greatest modulus.</>,
   },
 ]
 
@@ -39,12 +39,12 @@ export default function SpecialistQ5_2021() {
       question={
         <>
           <p className="mb-2">
-            The graph of the circle given by <Katex tex="|z-2-\sqrt3i|=1" />, where <Katex tex="z\in\mathbb{C}" />, is
+            The graph of the circle given by <Katex tex="|z-2-\sqrt3i|=1" />, where <Katex tex="z\in C" />, is
             shown below.
           </p>
           <div className="mb-2 flex justify-center">
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img src={circleSrc} alt="Argand diagram showing a circle of radius 1 centred at (2, √3), from the original 2021 VCAA exam paper" className="w-full max-w-[280px]" />
+              <img src={circleSrc} alt="Argand diagram showing a circle of radius 1 centred at (2, √3) — from the original 2021 VCAA exam paper" className="w-full max-w-[280px]" />
             </div>
           </div>
           <p>For points on this circle, the maximum value of <Katex tex="|z|" /> is</p>

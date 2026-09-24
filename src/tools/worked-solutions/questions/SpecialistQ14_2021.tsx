@@ -27,11 +27,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="F = ma = 5\times14" />,
-    reason: 'Now the mass enters.',
+    reason: <>Now the mass enters.</>,
   },
   {
     working: <Katex display tex="\boxed{F = 70\ \text{N}}" />,
-    reason: <>Matches option <b>D</b>. Option C, 35, comes from using <Katex tex="a=\tfrac{dv}{dx}\cdot" /> something without the factor <Katex tex="v" />; option E squares the velocity.</>,
+    reason: <>Matches option <b>D</b>. Option A, 10, uses <Katex tex="a=\tfrac{dv}{dx}" /> and drops the factor <Katex tex="v" />; option C, 35, is <Katex tex="mv" />, the momentum.</>,
   },
 ]
 
@@ -44,8 +44,9 @@ export default function SpecialistQ14_2021() {
           newtons. This force causes the body to move so that its velocity,{' '}
           <Katex tex="v\text{ m s}^{-1}" />, along a straight line of motion is given by{' '}
           <Katex tex="v=3+2x" />, where <Katex tex="x" /> metres is the position of the body
-          at time <Katex tex="t" /> seconds. When <Katex tex="x=2" />, <Katex tex="F" /> is
-          equal to
+          at time <Katex tex="t" /> seconds.
+          <br />
+          When <Katex tex="x=2" />, <Katex tex="F" /> is equal to
         </p>
       }
       background={

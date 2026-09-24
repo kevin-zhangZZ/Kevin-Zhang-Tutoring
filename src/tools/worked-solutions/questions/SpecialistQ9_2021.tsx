@@ -12,7 +12,7 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       The antiderivative of the expression in option B is a quartic with a turning point but no point of
-      inflection. Alternatively, the sign of the second derivative doesn't change around <Katex tex="x=3" /> for
+      inflection. Alternatively, the sign of the second derivative changes around <Katex tex="x=3" /> for
       option B.
     </>
   ),
@@ -33,11 +33,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{C: } f'=\tfrac52(x-3)^2 \;\implies\; f''=5(x-3)" />,
-    reason: 'Linear, changes sign at x = 3. Ruled out.',
+    reason: <>Linear, changes sign at x = 3. Ruled out.</>,
   },
   {
     working: <Katex display tex="\text{D: } f'=\tfrac12(x-3)^2-5 \;\implies\; f''=(x-3)" />,
-    reason: 'Linear, changes sign at x = 3. Ruled out.',
+    reason: <>Linear, changes sign at x = 3. Ruled out.</>,
   },
   {
     working: <Katex display tex="\text{E: } f'=(x-3)^3-12x \;\implies\; f''=3(x-3)^2-12=3(x-5)(x-1)" />,
@@ -45,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = 2(x-3)^3+5}" />,
-    reason: <>Only option <b>B</b> has an <Katex tex="f''" /> that never changes sign.</>,
+    reason: <>The only <Katex tex="f''" /> that never changes sign. Matches option <b>B</b>. (The report's comment says the sign of the second derivative "changes" around <Katex tex="x=3" /> for option B; it does not — <Katex tex="6(x-3)^2\ge0" /> — which is exactly why there is no point of inflection.)</>,
   },
 ]
 

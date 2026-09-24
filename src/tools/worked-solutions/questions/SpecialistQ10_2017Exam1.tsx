@@ -14,7 +14,7 @@ const EXAM_A: SAExaminerStats = {
     <>
       The majority of students answered this question well. A number of students showed
       insufficient working to enable the mark to be awarded; some students simply wrote the
-      answer as given.
+      answer as given. Some students gave a different answer from that given.
     </>
   ),
 }
@@ -36,11 +36,21 @@ const EXAM_C: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Many students found this question quite challenging. Typical errors included trying to
-      find the area rather than the volume of revolution, forgetting the <Katex tex="\pi" />,
-      sign errors when attempting to use the result given in part a., and integrating from{' '}
-      <Katex tex="-2" /> to <Katex tex="0" />. There were many poor attempts to integrate{' '}
-      <Katex tex="\tfrac{x}{\sqrt{4-x^2}}" />.
+      Many students found this question quite challenging. Typical errors included:
+      <ul className="list-disc pl-5 my-1">
+        <li>trying to find the area rather than the volume of revolution</li>
+        <li>forgetting the <Katex tex="\pi" /></li>
+        <li>sign errors when attempting to use the result given in part a.</li>
+        <li>
+          integrating from <Katex tex="-2" /> to <Katex tex="0" /> was common or from{' '}
+          <Katex tex="-2" /> to <Katex tex="\pi" />, which was less common.
+        </li>
+      </ul>
+      There were many poor attempts to integrate <Katex tex="\tfrac{x}{\sqrt{4-x^2}}" /> where
+      arcsin expressions and incorrect constants or incorrect signs were common. Some students
+      attempted to integrate the correct integral expression by turning it into the integration
+      of a cos function, finding the area to the <Katex tex="y" />-axis and subtracting from the
+      surrounding rectangle. This was occasionally done successfully.
     </>
   ),
 }
@@ -87,7 +97,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(f) = \left[0,\sqrt{\pi}\,\right]}" />,
-    reason: <>Do not forget the outer square root — <Katex tex="[0,\pi]" /> was the most common wrong range. <Katex tex="\sqrt\pi\approx1.77" />.</>,
+    reason: <>Do not forget the outer square root — the report says <Katex tex="[0,\pi]" /> was frequently given. <Katex tex="\sqrt\pi\approx1.77" />.</>,
   },
 ]
 
@@ -134,17 +144,12 @@ export default function SpecialistQ10_2017Exam1() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 10 (7 marks)</p>
-        <p>
-          A three-part question about <Katex tex="\arccos" />: a "show that" derivative, then
-          the domain and range of <Katex tex="f(x)=\sqrt{\arccos\!\left(\tfrac{x}{2}\right)}" />
-          , then a volume of revolution that turns out to need exactly the result from part
-          (a).
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 10 (7 marks)</p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={1}
         statement={
           <>
@@ -160,6 +165,7 @@ export default function SpecialistQ10_2017Exam1() {
 
       <PartCard
         letter="b"
+        topic="Domain & Range"
         marks={2}
         statement={
           <>
@@ -174,6 +180,7 @@ export default function SpecialistQ10_2017Exam1() {
 
       <PartCard
         letter="c"
+        topic="Volume of Revolution"
         marks={4}
         statement={
           <>

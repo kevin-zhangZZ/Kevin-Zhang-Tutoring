@@ -1,14 +1,14 @@
 // 2017 Mathematical Methods — Exam 1, Question 9 (9 marks).
 // f(x) = √x(1 − x) on [0, 1]: area, a "show that" derivative, then the right-angled
-// triangle whose two slant edges are tangents to the curve. Parts (c) and (d) were the
-// least-answered on the paper (0.2 average on each). Question text transcribed from the
+// triangle whose two slant edges are tangents to the curve. Parts (c) and (d) were answered
+// poorly (0.2 average on each). Question text transcribed from the
 // original paper; both figures are crops of VCAA's own artwork. Answers verified with
 // sympy. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import curveSrc from './meth-2017exam1-q9-curve.png'
-import triangleSrc from './meth-2017exam1-q9-triangle.png'
+import curveSrc from './meth-2017e1-q9-curve.png'
+import triangleSrc from './meth-2017e1-q9-triangle.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [44, 9, 47],
@@ -46,7 +46,8 @@ const EXAM_C: SAExaminerStats = {
       <Katex tex="BC" />, but were not able to fully determine <Katex tex="B(1,0)" /> due to
       insufficient working. Students had difficulty solving{' '}
       <Katex tex="\tfrac{1-3x}{2\sqrt{x}}=-1" />. The highest-scoring responses were where
-      students used a pronumeral such as "let <Katex tex="a=\sqrt{x}" />". Students should be
+      students used a pronumeral such as 'let <Katex tex="a=\sqrt{x}" />'. This created the
+      correct answer version <Katex tex="a=-\tfrac13" /> or <Katex tex="a=1" />. Students should be
       made aware that squaring both sides introduces extra solutions. Some students found the
       equation of the line through <Katex tex="A" /> and <Katex tex="C" /> rather than through{' '}
       <Katex tex="B" /> and <Katex tex="C" />.
@@ -105,7 +106,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\frac{1}{2\sqrt{x}}-\frac{3\sqrt{x}}{2}\times\frac{\sqrt{x}}{\sqrt{x}}" />,
-    reason: <>Common denominator <Katex tex="2\sqrt{x}" />. This is the step the report says most students skipped — and it is the only step, so skipping it costs the mark.</>,
+    reason: <>Common denominator <Katex tex="2\sqrt{x}" />. This is the step the report says many students skipped — and it is the only step, so skipping it costs the mark.</>,
   },
   {
     working: <Katex display tex="=\frac{1}{2\sqrt{x}}-\frac{3x}{2\sqrt{x}}=\boxed{\frac{1-3x}{2\sqrt{x}}}" />,
@@ -128,7 +129,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1-3x=-2\sqrt{x} \;\Longrightarrow\; 3x-2\sqrt{x}-1=0" />,
-    reason: <>Multiply through by <Katex tex="2\sqrt{x}" /> (positive on <Katex tex="(0,1)" />, so the inequality direction is not an issue) and collect on one side.</>,
+    reason: <>Multiply through by <Katex tex="2\sqrt{x}" /> (non-zero on <Katex tex="(0,1)" />) and collect on one side.</>,
   },
   {
     working: <Katex display tex="\text{let } a=\sqrt{x}:\quad 3a^2-2a-1=0" />,
@@ -144,7 +145,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(1)=\sqrt{1}\,(1-1)=0 \implies B=(1,0)" />,
-    reason: <>The point of contact is on the <Katex tex="x" />-axis, so it is <Katex tex="B" /> itself. This is the detail the report says cost most of the marks.</>,
+    reason: <>The point of contact is on the <Katex tex="x" />-axis, so it is <Katex tex="B" /> itself. The report says many students did not fully establish <Katex tex="B(1,0)" />.</>,
   },
   {
     working: <Katex display tex="y-0=-1(x-1)" />,
@@ -203,7 +204,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{C=\left(\frac{11}{27},\ \frac{16}{27}\right)}" />,
-    reason: <>Roughly <Katex tex="(0.41,0.59)" />, which sits above and slightly left of the hump's peak — exactly where the figure puts <Katex tex="C" />.</>,
+    reason: <>Roughly <Katex tex="(0.41,0.59)" />: above the curve (whose peak is about <Katex tex="0.38" /> high, at <Katex tex="x=\tfrac13" />) and a little to the right of the peak, as the figure shows. Check: <Katex tex="C" /> is on both lines, and <Katex tex="-\tfrac{11}{27}+1=\tfrac{16}{27}=\tfrac{11}{27}+\tfrac{5}{27}" /> ✓.</>,
   },
 ]
 
@@ -227,6 +228,7 @@ export default function MethodsQ9_2017Exam1() {
 
       <PartCard
         letter="a"
+        topic="Area Under Curve"
         marks={2}
         statement={
           <>
@@ -241,6 +243,7 @@ export default function MethodsQ9_2017Exam1() {
 
       <PartCard
         letter="b"
+        topic="Derivative"
         marks={1}
         statement={
           <>
@@ -277,6 +280,7 @@ export default function MethodsQ9_2017Exam1() {
 
       <PartCard
         letter="c"
+        topic="Line Equation"
         marks={2}
         statement={
           <>
@@ -305,6 +309,7 @@ export default function MethodsQ9_2017Exam1() {
 
       <PartCard
         letter="d"
+        topic="Coordinates"
         marks={4}
         statement={
           <>

@@ -18,10 +18,12 @@ const EXAM_BI: SAExaminerStats = {
   average: 1.24,
   comment: (
     <>
-      This could be found using the cross product of the normals to the two planes. Any
-      equivalent form of this vector was accepted. Several responses used CAS to solve the two
-      equations but left the answer in parametric form, or wrote it as the vector equation of a
-      line, without then identifying the direction vector.
+      This could be found using the cross product of the normals to the two planes. Any equivalent
+      form of this vector was accepted.
+      <br />
+      Several responses used CAS to find the solution to the two equations of the planes, but left
+      the answer in parametric form or wrote it as the vector equation of a line. The response
+      should have then identified the direction vector to answer the question.
     </>
   ),
 }
@@ -31,9 +33,10 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.51,
   comment: (
     <>
-      There were many acceptable forms for these equations. However, some responses gave the
-      Cartesian equation of the line rather than the parametric equations and were not awarded
-      the mark.
+      There were many acceptable forms for these equations.
+      <br />
+      However, some responses gave the Cartesian equation of the line rather than the parametric
+      equations and were not awarded the mark.
     </>
   ),
 }
@@ -43,9 +46,11 @@ const EXAM_C: SAExaminerStats = {
   average: 1.42,
   comment: (
     <>
-      There were many different methods used to find this answer. Several responses included
-      only the answer, so they only gained the answer mark. It is essential that students show
-      the mathematics behind their solution.
+      There were many different methods used to find this answer.
+      <br />
+      Several response included only the answer so they only gained the answer mark. It is
+      essential that students show the mathematics behind their solution to be awarded the full
+      marks.
     </>
   ),
 }
@@ -55,9 +60,9 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.67,
   comment: (
     <>
-      To show that two planes are parallel, the normals need to be a scalar multiple of each
-      other. Many responses did not identify that they were working with the normal vectors,
-      and many mixed up the multiple.
+      To show that two planes are parallel, the normals need to be a scalar multiple of each other.
+      Many responses did not identify that they were working with the normal vectors of the planes
+      and many mixed up the multiple, writing <Katex tex="\dfrac{1}{3}" /> rather than 3.
     </>
   ),
 }
@@ -67,8 +72,8 @@ const EXAM_DII: SAExaminerStats = {
   average: 1.36,
   comment: (
     <>
-      There are several methods that can be used. Many responses did not demonstrate that the
-      modulus needed to be used and consequently only one of the solutions was found.
+      There are several methods that can be used to find this. Many responses did not demonstrate
+      that the modulus needed to be used and consequently only one of the solutions was found.
     </>
   ),
 }
@@ -76,7 +81,7 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="2x+9z = 8, \qquad 3x+6y+5z = 7, \qquad x+9y-3z = 7" />,
-    reason: 'The three plane equations, to be solved simultaneously.',
+    reason: <>The three plane equations, to be solved simultaneously.</>,
   },
   {
     working: <Katex display tex="\text{solve the } 3\times3 \text{ system}" />,
@@ -91,38 +96,38 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n_2} = 3\underset{\sim}{i}+6\underset{\sim}{j}+5\underset{\sim}{k}, \qquad \underset{\sim}{n_3} = \underset{\sim}{i}+9\underset{\sim}{j}-3\underset{\sim}{k}" />,
-    reason: 'The normals are read straight off the coefficients.',
+    reason: <>The normals are read straight off the coefficients.</>,
   },
   {
     working: <Katex display tex="\text{the line lies in both planes} \implies \text{it is perpendicular to both normals}" />,
-    reason: 'Which is exactly what the cross product produces.',
+    reason: <>Which is exactly what the cross product produces.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{n_2}\times\underset{\sim}{n_3} = \begin{vmatrix}\underset{\sim}{i}&\underset{\sim}{j}&\underset{\sim}{k}\\3&6&5\\1&9&-3\end{vmatrix}" />,
-    reason: 'Setting up the determinant.',
+    reason: <>Setting up the determinant.</>,
   },
   {
     working: <Katex display tex="= \big(6(-3)-5(9)\big)\underset{\sim}{i}-\big(3(-3)-5(1)\big)\underset{\sim}{j}+\big(3(9)-6(1)\big)\underset{\sim}{k} = -63\underset{\sim}{i}+14\underset{\sim}{j}+21\underset{\sim}{k}" />,
-    reason: 'Expanding, minding the sign on the middle term.',
+    reason: <>Expanding, minding the sign on the middle term.</>,
   },
   {
     working: <Katex display tex="\boxed{-9\underset{\sim}{i}+2\underset{\sim}{j}+3\underset{\sim}{k}}" />,
-    reason: 'Dividing by the common factor 7. Any non-zero multiple was accepted — but a direction vector, not a whole line, had to be named.',
+    reason: <>Dividing by the common factor 7 (the report gives <Katex tex="-63\underset{\sim}{i}+14\underset{\sim}{j}+21\underset{\sim}{k}" />; any equivalent form was accepted). The report notes the direction vector itself should be identified, not left inside a parametric or vector equation of the line.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="(-5,2,2) \text{ lies on } \Pi_2 \text{ and } \Pi_3" />,
-    reason: 'From part a. — it lies on all three planes, so it certainly lies on the line where two of them meet. It saves finding a fresh point.',
+    reason: <>From part a. — it lies on all three planes, so it certainly lies on the line where two of them meet. It saves finding a fresh point.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r} = (-5\underset{\sim}{i}+2\underset{\sim}{j}+2\underset{\sim}{k})+\lambda\left(-9\underset{\sim}{i}+2\underset{\sim}{j}+3\underset{\sim}{k}\right)" />,
-    reason: 'Point plus a multiple of the direction from part b.i.',
+    reason: <>Point plus a multiple of the direction from part b.i.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -5-9\lambda, \qquad y = 2+2\lambda, \qquad z = 2+3\lambda}" />,
-    reason: <>Three separate parametric equations, <Katex tex="\lambda\in\mathbb{R}" />. A Cartesian form was not accepted here.</>,
+    reason: <>Three separate parametric equations, <Katex tex="\lambda\in R" />. A Cartesian form was not accepted here.</>,
   },
 ]
 
@@ -133,19 +138,19 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pi_3: \ x+9y-3z = 7, \qquad \text{point } (1,1,2)" />,
-    reason: 'Identifying the pieces.',
+    reason: <>Identifying the pieces.</>,
   },
   {
     working: <Katex display tex="\left|1+9(1)-3(2)-7\right| = |1+9-6-7| = 3" />,
-    reason: 'The numerator. The modulus matters — the raw value is −3.',
+    reason: <>The numerator. The modulus matters — the raw value is −3.</>,
   },
   {
     working: <Katex display tex="\sqrt{1^2+9^2+(-3)^2} = \sqrt{91}" />,
-    reason: 'The length of the normal.',
+    reason: <>The length of the normal.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \frac{3}{\sqrt{91}} = \frac{3\sqrt{91}}{91} \approx 0.3145}" />,
-    reason: 'Rationalised. The working had to be shown — an answer on its own earned only one of the two marks.',
+    reason: <>Rationalised. The working had to be shown — an answer on its own earned only one of the two marks.</>,
   },
 ]
 
@@ -156,7 +161,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Psi: \ 6x+27z = m \implies \underset{\sim}{n_\Psi} = 6\underset{\sim}{i}+0\underset{\sim}{j}+27\underset{\sim}{k}" />,
-    reason: 'The normal of a typical member of the family.',
+    reason: <>The normal of a typical member of the family.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{n_\Psi} = 3\underset{\sim}{n_1}" />,
@@ -164,34 +169,34 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{the normals are parallel} \implies \text{the planes are parallel}}" />,
-    reason: <>True for every <Katex tex="m" />, since <Katex tex="m" /> never appears in the normal. (At <Katex tex="m=24" /> the two planes coincide.)</>,
+    reason: <>True for every <Katex tex="m" />, since <Katex tex="m" /> never appears in the normal. (At <Katex tex="m=24" /> the two planes coincide.) As required.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="3\times\Pi_1: \quad 6x+27z = 24" />,
-    reason: 'Scaling Π₁ so that both planes have identical left-hand sides — now the distance formula applies directly.',
+    reason: <>Scaling Π₁ so that both planes have identical left-hand sides — now the distance formula applies directly.</>,
   },
   {
     working: <Katex display tex="d = \frac{|24-m|}{\sqrt{6^2+0^2+27^2}}" />,
-    reason: 'The distance between two parallel planes is the difference of the constants over the length of the shared normal.',
+    reason: <>The distance between two parallel planes is the difference of the constants over the length of the shared normal.</>,
   },
   {
     working: <Katex display tex="\sqrt{36+729} = \sqrt{765} = \sqrt{9\times85} = 3\sqrt{85}" />,
-    reason: 'Which is exactly the denominator given in the question — a useful confirmation that the scaling was right.',
+    reason: <>Which is exactly the denominator given in the question — a useful confirmation that the scaling was right.</>,
   },
   {
     working: <Katex display tex="\frac{|24-m|}{3\sqrt{85}} = \frac{23}{3\sqrt{85}} \implies |24-m| = 23" />,
-    reason: 'The modulus is the whole point: it gives two equations, not one.',
+    reason: <>The modulus is the whole point: it gives two equations, not one.</>,
   },
   {
     working: <Katex display tex="24-m = 23 \quad \text{or} \quad 24-m = -23" />,
-    reason: 'Ψ can sit on either side of Π₁.',
+    reason: <>Ψ can sit on either side of Π₁.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 1 \qquad \text{or} \qquad m = 47}" />,
-    reason: <>Both are natural numbers, so both are admissible. Two-thirds of the cohort found at most one of them.</>,
+    reason: <>Both are natural numbers, so both are admissible. The report notes many responses did not show that the modulus was needed, and so found only one of them.</>,
   },
 ]
 
@@ -218,14 +223,15 @@ export default function SpecialistQ5_2025Exam2() {
           <p>
             Part d.ii. is the one that separated the cohort. Scaling{' '}
             <Katex tex="\Pi_1" /> to match the family&rsquo;s left-hand side turns the question
-            into <Katex tex="|24-m|=23" /> — and that modulus has <em>two</em> solutions. Only a
-            third of students found both.
+            into <Katex tex="|24-m|=23" /> — and that modulus has <em>two</em> solutions. Only
+            about a third of students scored full marks.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Planes Intersection"
         marks={1}
         statement={<>Find the point of intersection of the three planes.</>}
         examinerReport={EXAM_A}
@@ -235,6 +241,7 @@ export default function SpecialistQ5_2025Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Line of Intersection"
         marks={2}
         statement={
           <>
@@ -249,6 +256,7 @@ export default function SpecialistQ5_2025Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Parametric Line"
         marks={1}
         statement={
           <>
@@ -263,6 +271,7 @@ export default function SpecialistQ5_2025Exam2() {
 
       <PartCard
         letter="c"
+        topic="Distance to Plane"
         marks={2}
         statement={
           <>
@@ -279,12 +288,13 @@ export default function SpecialistQ5_2025Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white">d.</p>
         <p>
           Consider a family of planes, <Katex tex="\Psi" />, with equation{' '}
-          <Katex tex="6x+27z = m" />, where <Katex tex="m\in\mathbb{N}" />.
+          <Katex tex="6x+27z = m" />, where <Katex tex="m\in N" />.
         </p>
       </div>
 
       <PartCard
         letter="d.i"
+        topic="Parallel Planes"
         marks={1}
         statement={
           <>
@@ -299,6 +309,7 @@ export default function SpecialistQ5_2025Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Distance to Plane"
         marks={3}
         statement={
           <>

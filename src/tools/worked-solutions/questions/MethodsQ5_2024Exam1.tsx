@@ -30,7 +30,8 @@ const EXAM_CI: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Many students were able to find the standard deviation correctly. Some encountered
+      Many students were able to find the standard deviation correctly. Students were not
+      required to present their answer in a particular format. Some students encountered
       problems when they tried to simplify the surd expressions involving decimals and/or
       fractions. Some students incorrectly omitted brackets around the interval.
     </>
@@ -42,8 +43,10 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Students who correctly set up the standard deviation formula were generally able to
-      calculate the correct final answer.
+      This question was well attempted. Many students were able to set up an expression
+      involving <Katex tex="n" /> for the standard deviation and equating that to the known
+      value. Students who correctly set up the standard deviation formula were generally able
+      to calculate the correct final answer.
     </>
   ),
 }
@@ -51,7 +54,7 @@ const EXAM_CII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="h(t) = \frac{3000}{t+1}" />,
-    reason: 'The model, with t in years.',
+    reason: <>The model, with t in years.</>,
   },
   {
     working: <Katex display tex="h(4) = \frac{3000}{4+1} = \frac{3000}{5}" />,
@@ -59,7 +62,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{600 \ \text{people}}" />,
-    reason: 'A population, so a whole number is expected.',
+    reason: <>A population, so a whole number is expected.</>,
   },
 ]
 
@@ -70,15 +73,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h_1'(t) = \tfrac12h'(t) = -\frac{1500}{(t+1)^2} \implies h_1(t) = \frac{1500}{t+1}+c" />,
-    reason: 'Antidifferentiating. Halving the derivative halves the numerator and leaves an unknown constant.',
+    reason: <>Antidifferentiating. Halving the derivative halves the numerator and leaves an unknown constant.</>,
   },
   {
     working: <Katex display tex="h_1(0) = h(0) = 3000 \implies 1500+c = 3000 \implies c = 1500" />,
-    reason: 'The second condition fixes the constant.',
+    reason: <>The second condition fixes the constant.</>,
   },
   {
     working: <Katex display tex="h_1(t) = \tfrac12h(t)+1500" />,
-    reason: 'Now read the transformations off the rule.',
+    reason: <>Now read the transformations off the rule.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Dilation by factor } \tfrac12 \text{ from the } t\text{-axis, then translation } 1500 \text{ units in the positive } h \text{ direction.}}" />,
@@ -89,7 +92,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = \frac{60}{100} = \frac35" />,
-    reason: 'The sample proportion.',
+    reason: <>The sample proportion.</>,
   },
   {
     working: <Katex display tex="\hat p\pm z\sqrt{\frac{\hat p(1-\hat p)}{n}} = \frac35\pm2\sqrt{\frac{\tfrac35\cdot\tfrac25}{100}}" />,
@@ -101,11 +104,11 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2\cdot\frac{\sqrt6}{50} = \frac{\sqrt6}{25}" />,
-    reason: 'The margin of error.',
+    reason: <>The margin of error.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(\frac35-\frac{\sqrt6}{25},\ \frac35+\frac{\sqrt6}{25}\right)}" />,
-    reason: <>About <Katex tex="(0.502,\ 0.698)" />. The brackets are part of the answer — an interval without them was marked down.</>,
+    reason: <>About <Katex tex="(0.502,\ 0.698)" />. The brackets are part of the answer — the report notes some students incorrectly omitted them.</>,
   },
 ]
 
@@ -116,11 +119,11 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt{\frac{6}{25n}} = \frac{\sqrt2}{50}" />,
-    reason: 'Setting it to the required value.',
+    reason: <>Setting it to the required value.</>,
   },
   {
     working: <Katex display tex="\frac{6}{25n} = \frac{2}{2500} \implies 25n\cdot2 = 6\cdot2500" />,
-    reason: 'Squaring both sides and cross-multiplying.',
+    reason: <>Squaring both sides and cross-multiplying.</>,
   },
   {
     working: <Katex display tex="\boxed{n = \frac{15\,000}{50} = 300}" />,
@@ -134,7 +137,7 @@ export default function MethodsQ5_2024Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 5 (6 marks)</p>
         <p>
-          The function <Katex tex="h:[0,\infty)\to\mathbb{R}" />,{' '}
+          The function <Katex tex="h:[0,\infty)\to R" />,{' '}
           <Katex tex="h(t)=\dfrac{3000}{t+1}" />, models the population of a town after{' '}
           <Katex tex="t" /> years.
         </p>
@@ -152,14 +155,15 @@ export default function MethodsQ5_2024Exam1() {
           <p>
             The wording matters as much as the mathematics. VCAA accepts "dilation by factor{' '}
             <Katex tex="\tfrac12" /> from the <Katex tex="t" />-axis" or "parallel to the{' '}
-            <Katex tex="h" />-axis" — the two describe the same thing, and mixing them up is
-            what cost most of the marks.
+            <Katex tex="h" />-axis" — the two describe the same thing. The report notes the
+            incorrect axis or direction was frequently specified.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Function Value"
         marks={1}
         statement={
           <>
@@ -174,13 +178,16 @@ export default function MethodsQ5_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Transformations"
         marks={2}
         statement={
           <>
             A new function, <Katex tex="h_1" />, models a population where{' '}
             <Katex tex="h_1(0)=h(0)" /> but <Katex tex="h_1" /> decreases at half the rate of{' '}
-            <Katex tex="h" /> at any point in time. State a sequence of two transformations
-            that maps <Katex tex="h" /> to this new model <Katex tex="h_1" />.
+            <Katex tex="h" /> at any point in time.
+            <br />
+            State a sequence of two transformations that maps <Katex tex="h" /> to this new
+            model <Katex tex="h_1" />.
           </>
         }
         examinerReport={EXAM_B}
@@ -197,6 +204,7 @@ export default function MethodsQ5_2024Exam1() {
 
       <PartCard
         letter="c.i"
+        topic="Confidence Interval"
         marks={2}
         statement={
           <>
@@ -212,10 +220,12 @@ export default function MethodsQ5_2024Exam1() {
 
       <PartCard
         letter="c.ii"
+        topic="Sample Size"
         marks={1}
         statement={
           <>
             A new sample of <Katex tex="n" /> people results in the same sample proportion.
+            <br />
             Find the smallest value of <Katex tex="n" /> to achieve a standard deviation of{' '}
             <Katex tex="\dfrac{\sqrt2}{50}" /> for the sample proportion.
           </>

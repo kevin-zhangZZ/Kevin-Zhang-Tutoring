@@ -12,9 +12,13 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       Many students identified the correct form of the partial fraction decomposition for the
-      integrand: <Katex tex="\frac{A}{x+1}+\frac{Bx+C}{x^2+1}" />. A number of students used
-      a substitution to evaluate the integral{' '}
-      <Katex tex="\int_0^{\sqrt3}\frac{x}{x^2+1}\,dx" />.
+      integrand: <Katex tex="\dfrac{A}{x+1}+\dfrac{Bx+C}{x^2+1}" />
+      <br />
+      This led to the integral{' '}
+      <Katex tex="\displaystyle2\pi\int_0^{\sqrt3}\left(\frac{1}{x+1}+\frac{x}{x^2+1}+\frac{1}{x^2+1}\right)dx" />
+      <br />
+      A number of students used a substitution to evaluate the integral{' '}
+      <Katex tex="\displaystyle\int_0^{\sqrt3}\frac{x}{x^2+1}\,dx" />
     </>
   ),
 }
@@ -30,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{x^2+x+1}{(x+1)\left(x^2+1\right)} = \frac{A}{x+1}+\frac{Bx+C}{x^2+1}" />,
-    reason: <><Katex tex="x^2+1" /> is irreducible over <Katex tex="R" />, so its numerator must be linear, not constant. Getting this form right was the first mark.</>,
+    reason: <><Katex tex="x^2+1" /> is irreducible over <Katex tex="R" />, so its numerator must be linear, not constant — the report notes many students identified this form.</>,
   },
   {
     working: <Katex display tex="x^2+x+1 = A\left(x^2+1\right)+(Bx+C)(x+1)" />,
@@ -50,19 +54,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V = \pi\left[2\log_e(x+1)+\log_e\left(x^2+1\right)+2\arctan(x)\right]_0^{\sqrt3}" />,
-    reason: <>The middle term is the <Katex tex="\tfrac{f'}{f}" /> form: <Katex tex="\int\frac{2x}{x^2+1}dx=\log_e\left(x^2+1\right)" />, no substitution required.</>,
+    reason: <>The middle term is the <Katex tex="\tfrac{f'}{f}" /> form: <Katex tex="\int\frac{2x}{x^2+1}dx=\log_e\left(x^2+1\right)" />, no substitution required (the report notes a number of students used one).</>,
   },
   {
-    working: <Katex display tex="= \pi\left[2\log_e\left(\sqrt3+1\right)+\log_e4+2\cdot\tfrac\pi3\right]-\pi\left[0+0+0\right]" />,
+    working: <Katex display tex="= \pi\left[2\log_e\left(\sqrt3+1\right)+\log_e(4)+2\cdot\tfrac\pi3\right]-\pi\left[0+0+0\right]" />,
     reason: <><Katex tex="\left(\sqrt3\right)^2+1=4" /> and <Katex tex="\arctan\sqrt3=\tfrac\pi3" />; every term vanishes at <Katex tex="x=0" />.</>,
   },
   {
-    working: <Katex display tex="= \pi\left[2\log_e\left(\sqrt3+1\right)+2\log_e2+\tfrac{2\pi}{3}\right]" />,
-    reason: <><Katex tex="\log_e4=2\log_e2" />, which makes every term carry a factor of 2.</>,
+    working: <Katex display tex="= \pi\left[2\log_e\left(\sqrt3+1\right)+2\log_e(2)+\tfrac{2\pi}{3}\right]" />,
+    reason: <><Katex tex="\log_e(4)=2\log_e(2)" />, which makes every term carry a factor of 2.</>,
   },
   {
     working: <Katex display tex="\boxed{V = 2\pi\left(\log_e\left(2+2\sqrt3\right)+\frac\pi3\right)}" />,
-    reason: <>Combining the logs: <Katex tex="\log_e\left(\sqrt3+1\right)+\log_e2=\log_e\left(2\sqrt3+2\right)" />. So <Katex tex="a=2+2\sqrt3" /> and <Katex tex="b=\tfrac\pi3" />; numerically <Katex tex="V\approx17.25" />.</>,
+    reason: <>Combining the logs: <Katex tex="\log_e\left(\sqrt3+1\right)+\log_e(2)=\log_e\left(2\sqrt3+2\right)" />. So <Katex tex="a=2+2\sqrt3" /> and <Katex tex="b=\tfrac\pi3" />; numerically <Katex tex="V\approx17.25" />.</>,
   },
 ]
 

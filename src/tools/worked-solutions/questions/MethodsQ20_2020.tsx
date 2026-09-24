@@ -6,6 +6,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2020-mcq20-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 21, B: 18, C: 24, D: 21, E: 16 },
@@ -13,15 +14,23 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="-1\leq\log_2(\cos(2\pi x))\leq0 \;\implies\; \tfrac12\leq\cos(2\pi x)\leq1" />. Checking each option
-      for a suitable domain gives <Katex tex="1\leq x\leq\tfrac76" />.
+      <Katex tex="f(x)=\cos(ax)=f(x+h)=\cos\bigl(a(x+h)\bigr),\ a=2\pi" />
+      <br />
+      <Katex tex="g(x)=\log_2\bigl(f(x)\bigr)=\log_2\bigl(f(x+h)\bigr)=\log_2\bigl(\cos(a(x+h))\bigr)" />
+      <br />
+      <Katex tex="-1\le\log_2\bigl(\cos(2\pi x)\bigr)\le0" />
+      <br />
+      <Katex tex="\tfrac12\le\cos(2\pi x)\le1" />
+      <br />
+      Checking each of the options for a suitable domain gives <Katex tex="1\le x\le\tfrac76" />.
+      <img src={reportGraphSrc} alt="The report's graph of y = cos(2πx) with the lines y = 1 and y = 1/2, marking the points (1, 1) and (7/6, 1/2)" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x)=\cos(ax),\quad f(x)=f(x+h) \text{ for all } h\in\mathbb{Z}" />,
+    working: <Katex display tex="f(x)=\cos(ax),\quad f(x)=f(x+h) \text{ for all } h\in Z" />,
     reason: <>Every integer must be a period of <Katex tex="f" /> — a much stronger condition than just having <i>some</i> period.</>,
   },
   {
@@ -34,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = \cos(2\pi x),\qquad g(x) = \log_2\big(\cos(2\pi x)\big)" />,
-    reason: 'Substitute into g.',
+    reason: <>Substitute into g.</>,
   },
   {
     working: <Katex display tex="\text{Range of } g = [-1,0] \;\iff\; \cos(2\pi x)\in\big[2^{-1},2^0\big] = \big[\tfrac12,1\big]" />,
@@ -46,11 +55,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>On <Katex tex="\big[1,\tfrac76\big]" />, <Katex tex="2\pi x" /> runs from <Katex tex="2\pi" /> to <Katex tex="\tfrac{7\pi}{3}" />, so <Katex tex="\cos(2\pi x)" /> decreases monotonically from <Katex tex="1" /> to <Katex tex="\tfrac12" />.</>,
-    reason: 'Confirm the interval sweeps the required range exactly once, with no extra values.',
+    reason: <>Confirm the interval sweeps the required range exactly once, with no extra values.</>,
   },
   {
     working: <Katex display tex="\boxed{D = \left[1,\ \tfrac76\right]}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. With <Katex tex="a=2\pi" />, each other interval lets <Katex tex="\cos(2\pi x)" /> reach <Katex tex="0" /> or go negative, where <Katex tex="\log_2" /> is undefined: <b>A</b> starts at <Katex tex="\cos\left(\tfrac\pi2\right)=0" />, <b>C</b> starts at <Katex tex="\cos\left(\tfrac{10\pi}3\right)=-\tfrac12" />, <b>D</b> starts at <Katex tex="\cos\left(-\tfrac{2\pi}3\right)=-\tfrac12" />, and <b>E</b> ends at <Katex tex="\cos\left(\tfrac\pi2\right)=0" />.</>,
   },
 ]
 
@@ -60,14 +69,14 @@ export default function MethodsQ20_2020() {
       question={
         <>
           <p className="mb-2">
-            Let <Katex tex="f:\mathbb{R}\to\mathbb{R}" />, <Katex tex="f(x)=\cos(ax)" />, where{' '}
-            <Katex tex="a\in\mathbb{R}\setminus\{0\}" />, be a function with the property
+            Let <Katex tex="f:R\to R" />, <Katex tex="f(x)=\cos(ax)" />, where{' '}
+            <Katex tex="a\in R\setminus\{0\}" />, be a function with the property
           </p>
           <p className="mb-2">
-            <Katex tex="f(x) = f(x+h), \text{ for all } h\in\mathbb{Z}" />
+            <Katex tex="f(x) = f(x+h), \text{ for all } h\in Z" />
           </p>
           <p>
-            Let <Katex tex="g:D\to\mathbb{R}" />, <Katex tex="g(x)=\log_2\big(f(x)\big)" /> be a function where the
+            Let <Katex tex="g:D\to R" />, <Katex tex="g(x)=\log_2\big(f(x)\big)" /> be a function where the
             range of <Katex tex="g" /> is <Katex tex="[-1,0]" />.
             <br />
             A possible interval for <Katex tex="D" /> is

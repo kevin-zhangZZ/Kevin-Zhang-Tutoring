@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d\left(D^2\right)}{db} = 4b^3 - 2b = 2b\left(2b^2-1\right)" />,
-    reason: <>Differentiate with respect to <Katex tex="b" /> — the variable being chosen — not <Katex tex="x" />. Mixing these up is the main source of error.</>,
+    reason: <>Differentiate with respect to <Katex tex="b" /> — the variable being chosen — not <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="2b\left(2b^2-1\right) = 0 \implies b = 0 \ \text{ or } \ b = \pm\frac{1}{\sqrt2}" />,

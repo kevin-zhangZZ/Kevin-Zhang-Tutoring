@@ -9,16 +9,35 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 45, B: 11, C: 29, D: 14 },
   answer: 'A',
+  comment: (
+    <>
+      <Katex tex="l=\displaystyle\int_0^{2\pi}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt" />
+      <br />
+      <Katex tex="=\displaystyle\int_0^{2\pi}\sqrt{(\sin(t))^2+(1-\cos(t))^2}\,dt" />
+      <br />
+      <Katex tex="=\displaystyle\int_0^{2\pi}\sqrt{(\sin^2(t)+1-2\cos(t)+\cos^2(t))}\,dt" />
+      <br />
+      <Katex tex="=\displaystyle\int_0^{2\pi}\sqrt{2-2\cos(t)}\,dt" />
+      <br />
+      But <Katex tex="\sin^2(ax)=\dfrac{1}{2}(1-\cos(2ax))" />
+      <br />
+      <Katex tex="=\displaystyle\int_0^{2\pi}\sqrt{2\left(2\sin^2\left(\frac{t}{2}\right)\right)}\,dt" />
+      <br />
+      <Katex tex="=\displaystyle\int_0^{2\pi}2\sin\left(\frac{t}{2}\right)dt" />
+      <br />
+      Since <Katex tex="\sin\left(\dfrac{t}{2}\right)>0" /> for <Katex tex="0\le t\le2\pi" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x = 1-\cos(t),\quad y=t-\sin(t)" />,
-    reason: 'The given parametric curve — a cycloid.',
+    reason: <>The given parametric curve — a cycloid.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = \sin(t) \qquad \frac{dy}{dt} = 1-\cos(t)" />,
-    reason: 'Differentiate each component.',
+    reason: <>Differentiate each component.</>,
   },
   {
     working: <Katex display tex="\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2 = \sin^2(t)+\big(1-\cos(t)\big)^2 = 2-2\cos(t)" />,
@@ -34,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L = \int_0^{2\pi} 2\sin\!\big(\tfrac{t}{2}\big)\,dt}" />,
-    reason: <>Arc length formula <Katex tex="L=\int\sqrt{(x')^2+(y')^2}\,dt" /> — matches option <b>A</b>.</>,
+    reason: <>Arc length formula <Katex tex="L=\int\sqrt{(x')^2+(y')^2}\,dt" />. Matches option <b>A</b>.</>,
   },
 ]
 

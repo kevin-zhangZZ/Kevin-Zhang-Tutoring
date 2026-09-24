@@ -1,7 +1,7 @@
 // 2019 Specialist Mathematics — Exam 1, Question 5 (6 marks).
 // f(x) = cos²(x) + cos(x) + 1 on [0, 2π] — its derivative, its turning points, then sketching
 // y = 1/f(x) on the axes VCAA supplied. Question text transcribed from the original paper.
-// The graph is VCAA's own, cropped directly from the exam PDF; part (b)'s answer curve is drawn
+// The graph is VCAA's own, cropped directly from the exam PDF; part b.'s answer curve is drawn
 // as an SVG *overlay* on that real image (never a redrawing of it), calibrated from the printed
 // gridlines themselves: the grid was measured programmatically from the crop, giving x = 0 at
 // column 346, y = 0 at row 684.5, 190 px per π/2 horizontally and 142.25 px per unit vertically.
@@ -11,21 +11,21 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import graphSrc from './spec-2019exam1-q5-graph.png'
+import graphSrc from './spec-2019e1-q5-graph.png'
 
 // y = 1/f(x) sampled at 97 points across [0, 2π] and mapped into the cropped image's pixel
-// grid with the calibration above. Sits on top of the real VCAA figure as the part (b) answer.
+// grid with the calibration above. Sits on top of the real VCAA figure as the part b. answer.
 const RECIPROCAL_PATH =
   'M 346.0 637.1 L 353.9 637.0 L 361.8 636.7 L 369.8 636.2 L 377.7 635.4 L 385.6 634.5 L 393.5 633.3 L 401.4 631.8 L 409.3 630.1 L 417.2 628.1 L 425.2 625.8 L 433.1 623.1 L 441.0 620.0 L 448.9 616.6 L 456.8 612.6 L 464.8 608.2 L 472.7 603.2 L 480.6 597.7 L 488.5 591.5 L 496.4 584.7 L 504.3 577.2 L 512.2 569.1 L 520.2 560.5 L 528.1 551.5 L 536.0 542.2 L 543.9 533.0 L 551.8 524.0 L 559.8 515.8 L 567.7 508.5 L 575.6 502.6 L 583.5 498.3 L 591.4 495.7 L 599.3 494.8 L 607.2 495.6 L 615.2 497.8 L 623.1 501.0 L 631.0 505.1 L 638.9 509.6 L 646.8 514.4 L 654.8 519.1 L 662.7 523.6 L 670.6 527.8 L 678.5 531.5 L 686.4 534.7 L 694.3 537.4 L 702.2 539.5 L 710.2 541.0 L 718.1 541.9 L 726.0 542.2 L 733.9 541.9 L 741.8 541.0 L 749.8 539.5 L 757.7 537.4 L 765.6 534.7 L 773.5 531.5 L 781.4 527.8 L 789.3 523.6 L 797.2 519.1 L 805.2 514.4 L 813.1 509.6 L 821.0 505.1 L 828.9 501.0 L 836.8 497.8 L 844.7 495.6 L 852.7 494.8 L 860.6 495.7 L 868.5 498.3 L 876.4 502.6 L 884.3 508.5 L 892.2 515.8 L 900.2 524.0 L 908.1 533.0 L 916.0 542.2 L 923.9 551.5 L 931.8 560.5 L 939.7 569.1 L 947.7 577.2 L 955.6 584.7 L 963.5 591.5 L 971.4 597.7 L 979.3 603.2 L 987.2 608.2 L 995.2 612.6 L 1003.1 616.6 L 1011.0 620.0 L 1018.9 623.1 L 1026.8 625.8 L 1034.8 628.1 L 1042.7 630.1 L 1050.6 631.8 L 1058.5 633.3 L 1066.4 634.5 L 1074.3 635.4 L 1082.2 636.2 L 1090.2 636.7 L 1098.1 637.0 L 1106.0 637.1'
 
 const SKY = '#0ea5e9'
 
-// The real VCAA figure with the part (b) answer drawn on top of it.
+// The real VCAA figure with the part b. answer drawn on top of it.
 function ReciprocalOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[620px]">
-        <img src={graphSrc} alt="VCAA's graph of f(x) = cos²x + cos x + 1 on 0 ≤ x ≤ 2π" className="w-full" />
+        <img src={graphSrc} alt="VCAA's graph of f(x) = cos²(x) + cos(x) + 1 on 0 ≤ x ≤ 2π, with the answer y = 1/f(x) drawn over it: a wave from (0, 1/3) up to maximums (2π/3, 4/3) and (4π/3, 4/3), a local minimum (π, 1), and down to (2π, 1/3)" className="w-full" />
         <svg viewBox="0 0 1670 900" className="absolute inset-0 w-full h-full" aria-label="The graph of y = 1/f(x) drawn on the same axes">
           <path d={RECIPROCAL_PATH} fill="none" stroke={SKY} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
           {/* turning points of the reciprocal graph */}
@@ -57,9 +57,11 @@ const EXAM_AI: SAExaminerStats = {
   comment: (
     <>
       This question was well done. A small number of students had difficulty finding the
-      derivative and some who differentiated correctly attempted to factorise their answer with
-      mixed success. Some students used a double angle formula to write the answer in an
-      alternative form; this was not always done correctly, nor was it helpful for the next part.
+      derivative and some students who correctly differentiated attempted to factorise their
+      answer with mixed success.
+      <br />
+      Some students used a double angle formula to write the answer in an alternative form. This
+      was not always done correctly nor was it helpful for the next part of the question.
     </>
   ),
 }
@@ -71,7 +73,8 @@ const EXAM_AII: SAExaminerStats = {
     <>
       This question was generally well done. A common mistake was to include the endpoints at{' '}
       <Katex tex="x=0" /> and <Katex tex="x=2\pi" /> even though the question specifically asked
-      for the turning points in the open interval <Katex tex="(0,2\pi)" />.
+      students to find the coordinates of the turning points in the interval{' '}
+      <Katex tex="(0,2\pi)" />.
     </>
   ),
 }
@@ -83,9 +86,10 @@ const EXAM_B: SAExaminerStats = {
     <>
       Students' graph-sketching abilities were reasonable, with most drawing a single, smooth
       curve with the correct shape. Common errors included neglecting to label the turning point
-      at <Katex tex="(\pi,1)" />, graphs not passing through the intersection points at{' '}
-      <Katex tex="x=\tfrac{\pi}{2}" /> and <Katex tex="x=\tfrac{3\pi}{2}" />, and poor estimation
-      of the heights <Katex tex="\tfrac43" /> and <Katex tex="\tfrac13" /> against the given
+      at <Katex tex="(\pi,1)" />, their graph not passing through the intersection points{' '}
+      <Katex tex="\left(\dfrac{\pi}{2},1\right)" /> and{' '}
+      <Katex tex="\left(\dfrac{4\pi}{3},\dfrac43\right)" />, and poor estimation of the location of
+      the heights <Katex tex="\dfrac13" /> and <Katex tex="\dfrac43" /> with respect to the given
       scale. Some students drew their graphs with an open circle at the endpoints.
     </>
   ),
@@ -101,12 +105,12 @@ const ROWS_AI: WorkingRow[] = [
     reason: <>Chain rule: bring the power down, keep the inside, times the derivative of the inside.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(x) = -2\cos(x)\sin(x)-\sin(x)}" />,
+    working: <Katex display tex="f'(x) = -2\cos(x)\sin(x)-\sin(x)" />,
     reason: <>Adding the derivative of <Katex tex="\cos(x)" />, which is <Katex tex="-\sin(x)" />; the constant <Katex tex="1" /> differentiates to zero.</>,
   },
   {
-    working: <Katex display tex="= -\sin(x)\bigl(2\cos(x)+1\bigr)" />,
-    reason: <>Both terms share a factor of <Katex tex="-\sin(x)" />. Factorising is optional for this mark but makes part (a)(ii) much easier — a product is zero exactly when one of its factors is. (Rewriting <Katex tex="-2\cos x\sin x" /> as <Katex tex="-\sin(2x)" /> is also correct, but then the equation in the next part is harder to solve.)</>,
+    working: <Katex display tex="\boxed{f'(x) = -2\cos(x)\sin(x)-\sin(x) = -\sin(x)\bigl(2\cos(x)+1\bigr)}" />,
+    reason: <>Both terms share a factor of <Katex tex="-\sin(x)" />. Factorising is optional for this mark but makes part a.ii. much easier — a product is zero exactly when one of its factors is. The report also accepts <Katex tex="-\sin(2x)-\sin(x)" />, but notes that using a double angle formula was not always done correctly nor helpful for the next part.</>,
   },
 ]
 
@@ -165,7 +169,7 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\left(\tfrac{4\pi}{3},\ \tfrac34\right)\to\left(\tfrac{4\pi}{3},\ \tfrac43\right)" />
       </>
     ),
-    reason: <>Invert each <Katex tex="y" />-coordinate from part (a)(ii). The two minimums of <Katex tex="f" /> become maximums at height <Katex tex="\tfrac43" />, and the local maximum at <Katex tex="(\pi,1)" /> becomes a local minimum — still at height <Katex tex="1" />, since <Katex tex="1" /> is its own reciprocal.</>,
+    reason: <>Invert each <Katex tex="y" />-coordinate from part a.ii. The two minimums of <Katex tex="f" /> become maximums at height <Katex tex="\tfrac43" />, and the local maximum at <Katex tex="(\pi,1)" /> becomes a local minimum — still at height <Katex tex="1" />, since <Katex tex="1" /> is its own reciprocal.</>,
   },
   {
     working: <Katex display tex="f(0)=f(2\pi)=3 \implies \text{endpoints } \left(0,\ \tfrac13\right) \text{ and } \left(2\pi,\ \tfrac13\right)" />,
@@ -177,7 +181,21 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(x)=0 \implies x=\tfrac{\pi}{2},\ \tfrac{3\pi}{2}; \qquad \cos(x)=-1 \implies x=\pi" />,
-    reason: <>So the two curves meet at <Katex tex="\left(\tfrac{\pi}{2},1\right)" />, <Katex tex="(\pi,1)" /> and <Katex tex="\left(\tfrac{3\pi}{2},1\right)" />. The report singles out the first and third as points students' sketches often missed — they are a useful accuracy check when drawing.</>,
+    reason: <>So the two curves meet at <Katex tex="\left(\tfrac{\pi}{2},1\right)" />, <Katex tex="(\pi,1)" /> and <Katex tex="\left(\tfrac{3\pi}{2},1\right)" /> — a useful accuracy check when drawing. The report notes graphs not passing through "the intersection points <Katex tex="\left(\tfrac{\pi}{2},1\right)" /> and <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" />"; the second is a slip for <Katex tex="\left(\tfrac{3\pi}{2},1\right)" />, since <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" /> is a turning point of the new graph, not a crossing.</>,
+  },
+  {
+    working: <ReciprocalOverlay />,
+    reason: (
+      <>
+        The answer (in blue) drawn on VCAA's own axes. Filled dots are the labelled turning
+        points and endpoints; the two small rings mark where it crosses the original curve, at{' '}
+        <Katex tex="x=\tfrac{\pi}{2}" /> and <Katex tex="x=\tfrac{3\pi}{2}" />. It is a gentle wave
+        between <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> — much flatter than{' '}
+        <Katex tex="f" />, because taking reciprocals squashes the tall value <Katex tex="3" /> down
+        to <Katex tex="\tfrac13" />. The report notes poor estimation of the heights{' '}
+        <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> against the given scale.
+      </>
+    ),
   },
 ]
 
@@ -195,16 +213,17 @@ export default function SpecialistQ5_2019Exam1() {
         </div>
       </div>
 
-      <PartCard letter="a.i" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_AI}>
+      <PartCard letter="a.i" topic="Chain Rule" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_AI}>
         <WorkingTable rows={ROWS_AI} />
       </PartCard>
 
-      <PartCard letter="a.ii" marks={2} statement={<>Hence, find the coordinates of the turning points of the graph in the interval <Katex tex="(0,2\pi)" />.</>} examinerReport={EXAM_AII}>
+      <PartCard letter="a.ii" topic="Turning Points" marks={2} statement={<>Hence, find the coordinates of the turning points of the graph in the interval <Katex tex="(0,2\pi)" />.</>} examinerReport={EXAM_AII}>
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Sketch Reciprocal"
         marks={3}
         statement={<>Sketch the graph of <Katex tex="y=\dfrac{1}{f(x)}" /> on the set of axes above. Clearly label the turning points and endpoints of this graph with their coordinates.</>}
         examinerReport={EXAM_B}
@@ -227,20 +246,6 @@ export default function SpecialistQ5_2019Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
-            The Finished Sketch
-          </p>
-          <ReciprocalOverlay />
-          <p className="text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400 mt-2.5">
-            The answer (in blue) drawn on VCAA's own axes. Filled dots are the labelled turning
-            points and endpoints; the two small rings mark where it crosses the original curve,
-            at <Katex tex="x=\tfrac{\pi}{2}" /> and <Katex tex="x=\tfrac{3\pi}{2}" />. Notice it
-            is a gentle wave between <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> — much
-            flatter than <Katex tex="f" />, because taking reciprocals squashes the tall value{' '}
-            <Katex tex="3" /> down to <Katex tex="\tfrac13" /> and compresses the whole range.
-          </p>
-        </div>
       </PartCard>
     </div>
   )

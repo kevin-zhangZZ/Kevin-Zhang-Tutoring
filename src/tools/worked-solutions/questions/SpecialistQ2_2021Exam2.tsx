@@ -1,7 +1,8 @@
 // 2021 Specialist Mathematics — Exam 2, Section B Question 2 (9 marks). A real cubic with a
 // conjugate pair of roots, then a ray cutting a circle in the complex plane and the area of
-// the minor segment. Question text transcribed from the original paper; the figure is our
-// own matplotlib drawing of the answer. Answers checked with sympy and against the VCAA
+// the minor segment. Question text transcribed from the original paper; the figure is this
+// site's own matplotlib drawing of the answer, on VCAA's polar grid (circles r = 1 to 4,
+// radial lines every 30°). Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -17,6 +18,12 @@ const EXAM_AII: SAExaminerStats = {
     <>
       Many students used <Katex tex="p(2)=-13" /> in the expanded form, which was less
       productive than using the factorised form directly.
+      <br />
+      An alternative solution involving purely real <Katex tex="z" /> values was possible
+      yielding <Katex tex="\alpha=\tfrac35,\ \beta=-9,\ \gamma=-\tfrac{27}{5}" />.
+      <br />
+      Where working was correct and complete across Questions 2ai. and 2aii., these answers
+      were accepted.
     </>
   ),
 }
@@ -27,8 +34,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Where drawn, the ray generally had the correct argument. The point of emanation is not
-      part of the required ray and should be shown as an open circle. This was not always
-      shown or placed correctly.
+      part of required ray and should be shown as an open circle. This was not always shown
+      or placed correctly, sometimes due to an apparent lack of precision rather than an
+      obvious mathematical error.
     </>
   ),
 }
@@ -50,22 +58,22 @@ const EXAM_CII: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="\alpha,\beta,\gamma \in R \text{ and } z_2, z_3 \notin R" />,
-    reason: 'A polynomial with real coefficients cannot have a lone non-real root.',
+    reason: <>A polynomial with real coefficients cannot have a lone non-real root.</>,
   },
   {
     working: <Katex display tex="\boxed{z_3 = \overline{z_2}}" />,
-    reason: 'The conjugate root theorem — non-real roots of a real polynomial come in conjugate pairs.',
+    reason: <>The conjugate root theorem — non-real roots of a real polynomial come in conjugate pairs.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
-    working: <Katex display tex="z_2+z_3 = 0 \text{ with } z_3 = \overline{z_2} \implies \operatorname{Re}(z_2) = 0" />,
-    reason: <>A number plus its conjugate is twice the real part, so <Katex tex="z_2" /> is purely imaginary.</>,
+    working: <Katex display tex="\left|z_2+z_3\right| = 0 \implies z_2+z_3 = 0, \text{ and with } z_3 = \overline{z_2}: \ \operatorname{Re}(z_2) = 0" />,
+    reason: <>A number plus its conjugate is twice the real part, so <Katex tex="z_2" /> is purely imaginary: <Katex tex="z_2=bi" />, <Katex tex="z_3=-bi" />.</>,
   },
   {
-    working: <Katex display tex="z_2z_3 = z_2\overline{z_2} = |z_2|^2 = 9 \implies z_2 = 3i, \ z_3 = -3i" />,
-    reason: 'The modulus is 3, and the number is purely imaginary.',
+    working: <Katex display tex="\left|z_2-z_3\right| = |2bi| = 2|b| = 6 \implies z_2 = 3i, \ z_3 = -3i" />,
+    reason: <>Either labelling gives the same pair. (The report notes a purely real pair, <Katex tex="z_2=3" /> and <Katex tex="z_3=-3" />, was also accepted with correct working across parts a.i. and a.ii.)</>,
   },
   {
     working: <Katex display tex="p(2) = (2-z_1)(2-3i)(2+3i) = (2-z_1)(4+9) = -13" />,
@@ -73,11 +81,11 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="13(2-z_1) = -13 \implies z_1 = 3" />,
-    reason: 'One clean step, where expanding first would have meant solving a messy cubic condition.',
+    reason: <>One clean step, where expanding first would have meant solving a messy cubic condition.</>,
   },
   {
     working: <Katex display tex="p(z) = (z-3)\left(z^2+9\right) = z^3-3z^2+9z-27" />,
-    reason: 'Expanding now that all three roots are known.',
+    reason: <>Expanding now that all three roots are known.</>,
   },
   {
     working: <Katex display tex="\boxed{\alpha = -3, \quad \beta = 9, \quad \gamma = -27}" />,
@@ -92,7 +100,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Arg}(z-z_4) = \tfrac{5\pi}{6} = 150^\circ" />,
-    reason: 'A ray leaving that point up and to the left, at 30° above the negative real direction.',
+    reason: <>A ray leaving that point up and to the left, at 30° above the negative real direction.</>,
   },
   {
     working: <Katex display tex="\text{gradient} = \tan\!\left(\tfrac{5\pi}{6}\right) = -\tfrac{1}{\sqrt3}" />,
@@ -103,30 +111,30 @@ const ROWS_B: WorkingRow[] = [
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={argandSrc}
-          alt="An Argand diagram with an orange ray leaving an open circle at √3 + i heading up and to the left at 150°, cutting the blue unit circle centred at 3i"
+          alt="On VCAA's polar grid: an orange ray leaving an open circle at z4 = √3 + i heading up and to the left at 150°, cutting the blue circle of radius 1 centred at 3i"
           className="w-full max-w-[380px]"
         />
       </div>
     ),
-    reason: <><Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="z_4" /> itself is not on the ray — mark it with an open circle, which the report says was often missed.</>,
+    reason: <><Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="z_4" /> itself is not on the ray — mark it with an open circle; the report notes this was not always shown or placed correctly.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="|z-3i| = 1: \text{ centre } (0,3), \text{ radius } 1" />,
-    reason: 'Read straight off the modulus form.',
+    reason: <>Read straight off the modulus form.</>,
   },
   {
     working: <Katex display tex="\text{drawn in blue on the diagram in part b.}" />,
-    reason: 'The ray passes through it, cutting off a small piece on the far side — the minor segment of part c(ii).',
+    reason: <>The ray passes through it, cutting off a small piece on the far side — the minor segment of part c.ii.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{ray: } y-1 = -\tfrac{1}{\sqrt3}\left(x-\sqrt3\right) \implies x+\sqrt3\,y-2\sqrt3 = 0" />,
-    reason: 'Putting the ray into general form so the point–line distance formula can be used.',
+    reason: <>Putting the ray into general form so the point–line distance formula can be used.</>,
   },
   {
     working: <Katex display tex="d = \frac{\left|0+3\sqrt3-2\sqrt3\right|}{\sqrt{1+3}} = \frac{\sqrt3}{2}" />,
@@ -134,11 +142,11 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos\!\left(\tfrac\theta2\right) = \frac{d}{r} = \frac{\sqrt3}{2} \implies \tfrac\theta2 = \tfrac\pi6 \implies \theta = \tfrac\pi3" />,
-    reason: <>The half-angle the chord subtends at the centre. Getting <Katex tex="\theta" /> is what the report says students struggled with.</>,
+    reason: <>The half-angle the chord subtends at the centre. The report notes some students had difficulty determining this angle.</>,
   },
   {
     working: <Katex display tex="A = \tfrac12r^2\bigl(\theta-\sin\theta\bigr) = \tfrac12\left(\tfrac\pi3-\tfrac{\sqrt3}{2}\right)" />,
-    reason: 'Sector minus triangle — the standard segment formula, with r = 1.',
+    reason: <>Sector minus triangle — the standard segment formula, with r = 1.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{\pi}{6}-\frac{\sqrt3}{4} = \frac{2\pi-3\sqrt3}{12}}" />,
@@ -162,6 +170,7 @@ export default function SpecialistQ2_2021Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Conjugate Roots"
         marks={1}
         statement={
           <>
@@ -175,12 +184,13 @@ export default function SpecialistQ2_2021Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Cubic Coefficients"
         marks={3}
         statement={
           <>
             Determine the values of <Katex tex="\alpha" />, <Katex tex="\beta" /> and{' '}
             <Katex tex="\gamma" />, given that <Katex tex="p(2)=-13" />,{' '}
-            <Katex tex="z_2+z_3=0" /> and <Katex tex="z_2z_3=9" />.
+            <Katex tex="\left|z_2+z_3\right|=0" /> and <Katex tex="\left|z_2-z_3\right|=6" />.
           </>
         }
         examinerReport={EXAM_AII}
@@ -188,7 +198,7 @@ export default function SpecialistQ2_2021Exam2() {
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Consider the point <Katex tex="z_4=\sqrt3+i" />.
         </p>
@@ -196,11 +206,12 @@ export default function SpecialistQ2_2021Exam2() {
 
       <PartCard
         letter="b"
+        topic="Ray Locus"
         marks={2}
         statement={
           <>
             Sketch the ray given by{' '}
-            <Katex tex="\operatorname{Arg}(z-z_4)=\tfrac{5\pi}{6}" /> on an Argand diagram.
+            <Katex tex="\operatorname{Arg}(z-z_4)=\tfrac{5\pi}{6}" /> on the Argand diagram below.
           </>
         }
         examinerReport={EXAM_B}
@@ -208,7 +219,7 @@ export default function SpecialistQ2_2021Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           The ray <Katex tex="\operatorname{Arg}(z-z_4)=\tfrac{5\pi}{6}" /> intersects the
           circle <Katex tex="|z-3i|=1" />, dividing it into a major and a minor segment.
@@ -217,6 +228,7 @@ export default function SpecialistQ2_2021Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Circle Locus"
         marks={1}
         statement={
           <>
@@ -230,6 +242,7 @@ export default function SpecialistQ2_2021Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Segment Area"
         marks={2}
         statement={<>Find the area of the minor segment.</>}
         examinerReport={EXAM_CII}

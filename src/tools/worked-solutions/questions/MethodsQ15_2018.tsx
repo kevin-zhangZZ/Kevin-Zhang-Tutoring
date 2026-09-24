@@ -10,13 +10,21 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 11, B: 9, C: 12, D: 19, E: 49 },
   answer: 'E',
   noAnswer: 1,
-  comment: <>Solve <Katex tex="\displaystyle\int_0^m f(x)\,dx = 0.5" />: <Katex tex="4m^2-\tfrac{m^4}{4}=6 \implies m^4-16m^2+24=0" />.</>,
+  comment: (
+    <>
+      <Katex tex="\displaystyle\int_0^m f(x)\,dx=\frac12" />
+      <br />
+      <Katex tex="-\dfrac{m^4}{48}+\dfrac{m^2}{3}-\dfrac12=0" />
+      <br />
+      <Katex tex="m^4-16m^2+24=0" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{1}{12}\bigl(8x-x^3\bigr), \qquad 0\le x\le2" />,
-    reason: 'The given density function.',
+    reason: <>The given density function.</>,
   },
   {
     working: <Katex display tex="\int_0^m f(x)\,dx = 0.5" />,
@@ -29,7 +37,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{1}{12}\left(4m^2-\frac{m^4}{4}\right)" />
       </>
     ),
-    reason: 'Find the antiderivative and evaluate at the limits.',
+    reason: <>Find the antiderivative and evaluate at the terminals.</>,
   },
   {
     working: (
@@ -38,7 +46,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; 4m^2-\frac{m^4}{4} = 6" />
       </>
     ),
-    reason: 'Multiply both sides by 12.',
+    reason: <>Multiply both sides by <Katex tex="12" />.</>,
   },
   {
     working: (
@@ -47,11 +55,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; m^4-16m^2+24=0" />
       </>
     ),
-    reason: 'Multiply by 4, then rearrange into the standard form the options use.',
+    reason: <>Multiply by <Katex tex="4" /> — <em>both</em> sides — then rearrange into the form the options use. Option A multiplies only the left side by <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="\boxed{m^4-16m^2+24=0}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b>, chosen by <Katex tex="19\%" />, uses the <Katex tex="0.5" /> twice: it is already inside the <Katex tex="24" />, so the right-hand side must be <Katex tex="0" />. Option <b>C</b> sets the integral equal to <Katex tex="0" /> instead of <Katex tex="0.5" />.</>,
   },
 ]
 

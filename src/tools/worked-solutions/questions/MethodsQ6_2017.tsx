@@ -6,7 +6,15 @@ import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import graphSrc from './meth-2017-mcq6-graph.png'
-import optionsSrc from './meth-2017-mcq6-options.png'
+import optASrc from './meth-2017-mcq6-optA.png'
+import optBSrc from './meth-2017-mcq6-optB.png'
+import optCSrc from './meth-2017-mcq6-optC.png'
+import optDSrc from './meth-2017-mcq6-optD.png'
+import optESrc from './meth-2017-mcq6-optE.png'
+
+function OptionGraph({ src, letter }: { src: string; letter: string }) {
+  return <img src={src} alt={`Option ${letter}: a small sketch on x and y axes, from the original 2017 VCAA exam paper`} className="w-full max-w-[180px]" />
+}
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 5, B: 3, C: 88, D: 3, E: 1 },
@@ -33,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{C}}" />,
-    reason: <>A quick confirmation: the curve of <Katex tex="f" /> crosses the axes close to the origin, and C is that same picture with <Katex tex="x" /> and <Katex tex="y" /> interchanged.</>,
+    reason: <>Matches option <b>C</b>. A quick confirmation: the curve of <Katex tex="f" /> crosses the axes close to the origin, and C is that same picture with <Katex tex="x" /> and <Katex tex="y" /> interchanged.</>,
   },
 ]
 
@@ -53,18 +61,11 @@ export default function MethodsQ6_2017() {
         </>
       }
       diagram={
-        <div className="flex flex-col gap-3">
-          <img
-            src={graphSrc}
-            alt="Part of the graph of f: an increasing curve, steep and near-vertical just left of the origin, then flattening and rising gently to the right, from the original 2017 VCAA exam paper"
-            className="w-full max-w-[200px]"
-          />
-          <img
-            src={optionsSrc}
-            alt="The five options A to E, each a small sketch on x and y axes, from the original 2017 VCAA exam paper"
-            className="w-full max-w-[620px]"
-          />
-        </div>
+        <img
+          src={graphSrc}
+          alt="Part of the graph of f: an increasing curve, steep just left of the origin, flattening where it meets the x-axis, then rising gently to the right, from the original 2017 VCAA exam paper"
+          className="w-full max-w-[200px]"
+        />
       }
       background={
         <p>
@@ -75,11 +76,11 @@ export default function MethodsQ6_2017() {
         </p>
       }
       options={[
-        { letter: 'A', content: <>the sketch labelled A above</> },
-        { letter: 'B', content: <>the sketch labelled B above</> },
-        { letter: 'C', content: <>the sketch labelled C above</>, isAnswer: true },
-        { letter: 'D', content: <>the sketch labelled D above</> },
-        { letter: 'E', content: <>the sketch labelled E above</> },
+        { letter: 'A', content: <OptionGraph src={optASrc} letter="A" /> },
+        { letter: 'B', content: <OptionGraph src={optBSrc} letter="B" /> },
+        { letter: 'C', content: <OptionGraph src={optCSrc} letter="C" />, isAnswer: true },
+        { letter: 'D', content: <OptionGraph src={optDSrc} letter="D" /> },
+        { letter: 'E', content: <OptionGraph src={optESrc} letter="E" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

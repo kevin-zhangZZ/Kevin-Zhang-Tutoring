@@ -18,6 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(4) = 4^3-4^2+c = 64-16+c = 48+c" />,
+    reason: <>Substitute <Katex tex="x=4" />.</>,
   },
   {
     working: <Katex display tex="48+c = 0 \implies c = -48" />,
@@ -25,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x)=x^3-x^2-48}" />,
-    reason: <>Matches option <b>C</b>. Options <b>D</b> and <b>E</b> are what you get by <em>differentiating</em> instead of antidifferentiating, and option <b>B</b> has the sign of the constant reversed.</>,
+    reason: <>Matches option <b>C</b>. Options <b>D</b> and <b>E</b> are what you get by <em>differentiating</em> instead of antidifferentiating, option <b>B</b> has the sign of the constant reversed, and option <b>A</b> leaves the constant out altogether.</>,
   },
 ]
 

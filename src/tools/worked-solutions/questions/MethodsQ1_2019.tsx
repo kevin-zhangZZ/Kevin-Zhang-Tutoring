@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Period} = \dfrac{2\pi}{n} = \dfrac{2\pi}{2/5} = 2\pi\times\dfrac52 = 5\pi" />,
-    reason: <>For <Katex tex="\sin(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />. Dividing by a fraction means multiplying by its reciprocal — the step that produces the wrong answer <Katex tex="\tfrac{5\pi}{2}" /> if the <Katex tex="\tfrac25" /> is accidentally multiplied instead.</>,
+    reason: <>For <Katex tex="\sin(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />. Dividing by a fraction means multiplying by its reciprocal The wrong period <Katex tex="\tfrac{5\pi}{2}" /> (options D and E) is <Katex tex="\pi\div\tfrac25" /> — using <Katex tex="\pi" /> instead of <Katex tex="2\pi" /> in the formula.</>,
   },
   {
     working: (
@@ -41,7 +41,7 @@ export default function MethodsQ1_2019() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=3\sin\!\left(\dfrac{2x}{5}\right)-2" />. The
+          Let <Katex tex="f:R\to R,\ f(x)=3\sin\!\left(\dfrac{2x}{5}\right)-2" />. The
           period and range of <Katex tex="f" /> are respectively
         </p>
       }

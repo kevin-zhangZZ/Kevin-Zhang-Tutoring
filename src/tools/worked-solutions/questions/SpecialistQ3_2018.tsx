@@ -13,7 +13,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      Option B did not account for common factors, and its last term is not irreducible, so should not have{' '}
+      Option B did not account for common factors and its last term is not irreducible, so should not have{' '}
       <Katex tex="Dx" /> in the numerator.
     </>
   ),
@@ -22,10 +22,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="2x^2+3x+1 = (2x+1)(x+1)" />,
-    reason: <>Before setting up partial fractions, check whether the numerator factorises — it's the same degree pattern as <Katex tex="(2x+1)(x+1)" /> here.</>,
+    reason: <>Before setting up partial fractions, check whether the numerator factorises — here it does, and both of its factors also appear in the denominator.</>,
   },
   {
     working: <Katex display tex="x^2-1 = (x-1)(x+1)" />,
+    reason: <>The quadratic factor in the denominator is a difference of squares, so it is not irreducible either.</>,
   },
   {
     working: (
@@ -42,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{A}{2x+1} + \frac{B}{(2x+1)^2} + \frac{C}{x-1}}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> (<Katex tex="31\%" />) partial-fractions the expression as printed, without cancelling; option <b>E</b> (<Katex tex="15\%" />) puts <Katex tex="Bx+C" /> over <Katex tex="(2x+1)^2" />, but a repeated <em>linear</em> factor only ever takes constant numerators.</>,
   },
 ]
 

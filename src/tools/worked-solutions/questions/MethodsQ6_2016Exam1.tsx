@@ -13,7 +13,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Most students used the correct gradient rule but erred when evaluating, particularly{' '}
-      <Katex tex="f\!\left(-\tfrac{\pi}{3}\right)" />, or in dealing with fractions in the
+      <Katex tex="f\!\left(-\tfrac{\pi}{3}\right)" /> or in dealing with fractions in the
       denominator. A few students confused average rate of change with average value, and
       some incorrectly found the average of derivatives.
     </>
@@ -103,6 +103,7 @@ export default function MethodsQ6_2016Exam1() {
 
       <PartCard
         letter="a"
+        topic="Average Rate"
         marks={2}
         statement={
           <>
@@ -134,6 +135,7 @@ export default function MethodsQ6_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="Average Value"
         marks={3}
         statement={
           <>

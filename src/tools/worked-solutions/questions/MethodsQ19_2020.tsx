@@ -13,7 +13,23 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 33, C: 15, D: 9, E: 27 },
   answer: 'A',
   noAnswer: 1,
-  comment: <Katex tex="q \sim \mathrm{Bi}\big(20,\tfrac56\big),\quad p \sim \mathrm{Bi}\big(20,\tfrac16\big) \;\implies\; q(w) = p(20-w)" />,
+  comment: (
+    <>
+      <Katex tex="q\sim\mathrm{Bi}\left(20,\tfrac56\right),\ p\sim\mathrm{Bi}\left(20,\tfrac16\right)" />
+      <br />
+      Examples
+      <br />
+      <Katex tex="q(19)=\binom{20}{19}\left(\tfrac56\right)^{19}\left(\tfrac16\right)=p(1)=\binom{20}{1}\left(\tfrac16\right)\left(\tfrac56\right)^{19}" />
+      <br />
+      <Katex tex="q(18)=\binom{20}{18}\left(\tfrac56\right)^{18}\left(\tfrac16\right)^{2}=p(2)=\binom{20}{2}\left(\tfrac16\right)^{2}\left(\tfrac56\right)^{18}" />
+      <br />
+      In general
+      <br />
+      <Katex tex="q(w)=\binom{20}{w}\left(\tfrac56\right)^{w}\left(\tfrac16\right)^{20-w}=p(20-w)=\binom{20}{20-w}\left(\tfrac16\right)^{20-w}\left(\tfrac56\right)^{w}" />
+      <br />
+      <Katex tex="q(w)=p(20-w)" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -30,12 +46,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Rewrite the event <Katex tex="\{W=w\}" /> in terms of <Katex tex="X" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{q(w) = p(20-w)}" />,
-    reason: <>Since <Katex tex="\Pr(X=20-w) = p(20-w)" /> by definition — matches option <b>A</b>.</>,
+    working: <>e.g. <Katex tex="q(19)=p(1)" />, <Katex tex="q(18)=p(2)" />: nineteen non-6s is the same event as one 6.</>,
+    reason: <>Sanity check with the graph: <Katex tex="q" /> is the mirror image of <Katex tex="p" /> in the line <Katex tex="w=10" />, peaking near <Katex tex="w=17" /> where <Katex tex="p" /> peaks near <Katex tex="x=3" />.</>,
   },
   {
-    working: <>e.g. <Katex tex="q(19)=p(1)" />, <Katex tex="q(18)=p(2)" />, matching one "no 6" occurring in a specific way to one "6" occurring, mirrored.</>,
-    reason: 'Sanity check with the graph: q needs to be a mirror image of p (high probability near w=20−(mean of X), just as p peaks near its own mean).',
+    working: <Katex display tex="\boxed{q(w) = p(20-w)}" />,
+    reason: <>Since <Katex tex="\Pr(X=20-w) = p(20-w)" /> by definition. Matches option <b>A</b>. Option <b>E</b>, <Katex tex="1-p(w)" />, takes the complement of a <em>probability</em> rather than of the count; option <b>B</b> treats <Katex tex="w" /> as a proportion; option <b>D</b> gives <Katex tex="p" /> a negative input.</>,
   },
 ]
 

@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{stationary point of inflection}}" />,
-    reason: <>Option E: a flat spot on an otherwise decreasing curve. <Katex tex="f(x)=-(x-5)^3" /> is the standard example.</>,
+    reason: <>Matches option <b>E</b>: a flat spot on an otherwise decreasing curve. <Katex tex="f(x)=-(x-5)^3" /> is the standard example. Option B (20%) is the usual slip — a zero derivative is taken to mean a turning point without checking that <Katex tex="f'" /> changes sign.</>,
   },
 ]
 

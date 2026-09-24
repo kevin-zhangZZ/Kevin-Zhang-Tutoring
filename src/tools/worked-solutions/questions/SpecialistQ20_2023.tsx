@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Interval } (10\,500,\ 15\,500) \implies \bar x = \frac{10\,500+15\,500}{2} = 13\,000" />,
-    reason: 'The sample mean is the centre — not that it is needed, but it confirms the interval is symmetric.',
+    reason: <>The sample mean is the centre — not that it is needed, but it confirms the interval is symmetric.</>,
   },
   {
     working: <Katex display tex="E = 15\,500-13\,000 = 2500" />,
-    reason: 'Half the width: the margin of error.',
+    reason: <>Half the width: the margin of error.</>,
   },
   {
     working: <Katex display tex="E = z\frac{\sigma}{\sqrt n} \ \text{ with } z = 2.5758 \text{ for } 99\%" />,
@@ -30,11 +30,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sigma = \frac{25\,000}{2.5758} = 9705.6\ldots" />,
-    reason: 'Solving.',
+    reason: <>Solving.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 9710}" />,
-    reason: <>Option <b>A</b>, the closest of the five.</>,
+    reason: <>Matches option <b>A</b>, the closest of the five.</>,
   },
 ]
 
@@ -45,7 +45,9 @@ export default function SpecialistQ20_2023() {
         <p>
           The lifespan of a certain electronic component is normally distributed with a mean
           of <Katex tex="\mu" /> hours and a standard deviation of <Katex tex="\sigma" />{' '}
-          hours. Given that a 99% confidence interval, based on a random sample of 100 such
+          hours.
+          <br />
+          Given that a 99% confidence interval, based on a random sample of 100 such
           components, is <Katex tex="(10\,500,\ 15\,500)" />, the value of{' '}
           <Katex tex="\sigma" /> is closest to
         </p>

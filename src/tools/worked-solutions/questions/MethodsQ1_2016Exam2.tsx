@@ -1,8 +1,8 @@
 // 2016 Mathematical Methods — Exam 2, Section B, Question 1 (11 marks).
 // f(x) = 2cos(x/2) + π on [0, 8π]: period and range, the derivative, tangents, then a
-// transformation carrying f to f′. Part (a) of the transformation is written with a
-// matrix, which is off the current study design; the mathematics is a horizontal
-// translation and a vertical dilation, so it is included with a note. Question text
+// transformation carrying f to f′. Part (e) writes the transformation with a matrix,
+// which is off the current study design; the mathematics is a horizontal translation and a
+// vertical dilation, so it is included with a note (the skip guide lists it as doable). Question text
 // transcribed from the original paper (no diagram given). Answers verified with sympy.
 // Solution is original.
 
@@ -16,7 +16,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. However, some students included round brackets
-      instead of square brackets for the range. <Katex tex="[2+\pi,-2+\pi]" /> was
+      instead of square brackets for the range. Range <Katex tex="=[2+\pi,-2+\pi]" /> was
       occasionally seen. Some students gave approximate answers instead of exact answers.
     </>
   ),
@@ -40,8 +40,9 @@ const EXAM_C: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      This question was answered well. Students were not required to show any working; the
-      answer could be obtained directly using technology.
+      This question was answered well. Students were not required to show any working. The
+      answer could be obtained directly using technology. Some left their answer as{' '}
+      <Katex tex="-x+2\pi" />.
     </>
   ),
 }
@@ -78,7 +79,7 @@ const EXAM_F: SAExaminerStats = {
       Some students gave{' '}
       <Katex tex="x=\tfrac{\pi}{2},\tfrac{5\pi}{2},\tfrac{9\pi}{2},\tfrac{13\pi}{2}" /> as
       the answer. Others tried solving <Katex tex="2f'(x)+\pi=0" /> instead of{' '}
-      <Katex tex="f(x)=2f'(x)+\pi" />.
+      <Katex tex="2f'(x)+\pi=f(x)" />.
     </>
   ),
 }
@@ -120,7 +121,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = -x+2\pi}" />,
-    reason: <>A gradient of exactly <Katex tex="-1" /> is no accident: <Katex tex="x=\pi" /> is a quarter-cycle from the start, where the curve is falling fastest.</>,
+    reason: <>Give the equation, not just the expression <Katex tex="-x+2\pi" />. A gradient of exactly <Katex tex="-1" /> is no accident: <Katex tex="x=\pi" /> is a quarter-cycle from the start, where the curve is falling fastest.</>,
   },
 ]
 
@@ -192,12 +193,12 @@ const ROWS_F: WorkingRow[] = [
     reason: <>The domain <Katex tex="0\le x\le8\pi" /> becomes <Katex tex="0\le\tfrac{x}{2}\le4\pi" />, which holds four solutions of <Katex tex="\tan\theta=-1" />. Halving the domain first is the step that stops you stopping at one or two.</>,
   },
   {
-    working: <Katex display tex="\boxed{x = \frac{3\pi}{2},\ \frac{7\pi}{2},\ \frac{11\pi}{2},\ \frac{15\pi}{2}}" />,
-    reason: <>The report's common wrong answer <Katex tex="\tfrac{\pi}{2},\tfrac{5\pi}{2},\ldots" /> comes from <Katex tex="\tan\left(\tfrac{x}{2}\right)=+1" /> — a dropped minus sign.</>,
-  },
-  {
     working: <Cas fn="solve">solve(2cos(x/2) + π = -2sin(x/2) + π, x) | 0≤x≤8π</Cas>,
     reason: <>On CAS, restrict the domain in the same command; without the restriction it returns a general solution with an arbitrary integer.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{x = \frac{3\pi}{2},\ \frac{7\pi}{2},\ \frac{11\pi}{2},\ \frac{15\pi}{2}}" />,
+    reason: <>The report's common wrong answer <Katex tex="\tfrac{\pi}{2},\tfrac{5\pi}{2},\ldots" /> comes from <Katex tex="\tan\left(\tfrac{x}{2}\right)=+1" /> — a dropped minus sign.</>,
   },
 ]
 
@@ -212,16 +213,17 @@ export default function MethodsQ1_2016Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the period and range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Period & Range" marks={2} statement={<>Find the period and range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>State the rule for the derivative function <Katex tex="f'" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Derivative" marks={1} statement={<>State the rule for the derivative function <Katex tex="f'" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
       <PartCard
         letter="c"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -236,6 +238,7 @@ export default function MethodsQ1_2016Exam2() {
 
       <PartCard
         letter="d"
+        topic="Tangent Lines"
         marks={2}
         statement={
           <>
@@ -252,6 +255,7 @@ export default function MethodsQ1_2016Exam2() {
 
       <PartCard
         letter="e"
+        topic="Transformations"
         marks={3}
         statement={
           <>
@@ -283,6 +287,7 @@ export default function MethodsQ1_2016Exam2() {
 
       <PartCard
         letter="f"
+        topic="Trig Equation"
         marks={2}
         statement={
           <>

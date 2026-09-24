@@ -10,12 +10,20 @@ import { Cas } from '../CasRef'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 10, B: 16, C: 15, D: 58 },
   answer: 'D',
+  noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="\dfrac{200-\mu}{\sigma}=0.453\ldots,\ \dfrac{180-\mu}{\sigma}=-1.365\ldots" />
+      <br />
+      <Katex tex="\mu=195,\ \sigma=11" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X<200) = 1-0.325 = 0.675" />,
-    reason: 'Converting the upper tail into a cumulative probability.',
+    reason: <>Converting the upper tail into a cumulative probability.</>,
   },
   {
     working: <Katex display tex="\Pr(X<180) = 1-0.325-0.589 = 0.086" />,
@@ -27,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{180-\mu}{\sigma} = -1.3657, \qquad \frac{200-\mu}{\sigma} = 0.4538" />,
-    reason: 'Two linear equations in μ and σ.',
+    reason: <>Two linear equations in μ and σ.</>,
   },
   {
     working: <Katex display tex="\text{subtract: } \frac{20}{\sigma} = 1.8195 \implies \sigma = 10.99" />,
@@ -35,11 +43,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mu = 200-0.4538(10.99) = 195.0" />,
-    reason: 'Back-substituting.',
+    reason: <>Back-substituting.</>,
   },
   {
     working: <Katex display tex="\boxed{\mu \approx 195, \quad \sigma \approx 11}" />,
-    reason: <>Option <b>D</b>. Note the mean is <em>not</em> midway between 180 and 200: the two tails have different sizes, so the distribution is not centred between them.</>,
+    reason: <>Matches option <b>D</b>. Note the mean is <em>not</em> midway between 180 and 200: the two tails have different sizes, so the distribution is not centred between them.</>,
   },
 ]
 
@@ -50,7 +58,7 @@ export default function MethodsQ12_2025() {
         <div className="flex flex-col gap-1">
           <p>
             For a normal random variable <Katex tex="X" />, it is known that{' '}
-            <Katex tex="\Pr(X>200)=0.325" /> and <Katex tex="\Pr(180<X<200)=0.589" />.
+            <Katex tex="\Pr(X>200)=0.325" /> and <Katex tex="\Pr(180<X<200)=0.589" />
           </p>
           <p>
             The mean and standard deviation of <Katex tex="X" /> are closest to

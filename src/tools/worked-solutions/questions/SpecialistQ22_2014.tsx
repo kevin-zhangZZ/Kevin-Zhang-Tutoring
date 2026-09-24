@@ -4,7 +4,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
-import vtSrc from './spec-2014e2-mcq22-vt.png'
+import vtSrc from './spec-2014-mcq22-vt.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 6, C: 25, D: 12, E: 49 },
@@ -47,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 53.4\ \text{metres}}" />,
-    reason: <>Option E. Subtracting the reverse leg instead of adding it gives <Katex tex="48.6" />, option C — the most popular wrong answer.</>,
+    reason: <>Matches option <b>E</b>. Subtracting the reverse leg instead of adding it gives <Katex tex="48.6" />, option C — the most popular wrong answer.</>,
   },
 ]
 

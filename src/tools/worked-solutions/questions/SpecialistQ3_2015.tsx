@@ -10,13 +10,6 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 5, C: 10, D: 50, E: 19 },
   answer: 'D',
   noAnswer: 0,
-  comment: (
-    <>
-      <Katex tex="a^2x^2+(1-a^2)y^2=c^2" /> is a circle when <Katex tex="a^2=\tfrac12" />. It is a hyperbola
-      when <Katex tex="|a|>1" /> and an ellipse when <Katex tex="|a|<1" />. It is a pair of straight lines{' '}
-      (<Katex tex="x=\pm c" />) when <Katex tex="a=\pm1" />.
-    </>
-  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -71,7 +64,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\boxed{\text{or a } \textit{pair}\text{ of lines} - \text{never a single line}}" />
       </>
     ),
-    reason: <>Matches option <b>D</b> — a single straight line is the one shape this relation can never produce, since <Katex tex="c\ne0" /> forces <Katex tex="x=\pm c" /> to stay two distinct lines whenever it degenerates at all.</>,
+    reason: <>Matches option <b>D</b>. Option E (19%) is the trap: a pair of lines <em>is</em> possible, at <Katex tex="a=\pm1" />. A single straight line is the one shape this relation can never produce, since <Katex tex="c\ne0" /> forces <Katex tex="x=\pm c" /> to stay two distinct lines whenever it degenerates at all.</>,
   },
 ]
 
@@ -81,7 +74,7 @@ export default function SpecialistQ3_2015() {
       question={
         <p>
           If both <Katex tex="a" /> and <Katex tex="c" /> are non-zero real numbers, the relation{' '}
-          <Katex tex="a^2x^2 + (1-a^2)y^2 = c^2" /> cannot represent
+          <Katex tex="a^2x^2 + (1-a^2)y^2 = c^2" /> <b>cannot</b> represent
         </p>
       }
       options={[

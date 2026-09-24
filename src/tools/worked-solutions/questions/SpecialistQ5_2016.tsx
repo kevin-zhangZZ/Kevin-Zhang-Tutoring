@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -\sqrt3}" />,
-    reason: <>Option A. Check: <Katex tex="-1-\sqrt3i" /> has modulus <Katex tex="2" /> and sits in the third quadrant, <Katex tex="\tfrac{\pi}{3}" /> below the negative real axis — which is <Katex tex="-\pi+\tfrac{\pi}{3}=-\tfrac{2\pi}{3}" /> ✓.</>,
+    reason: <>Matches option <b>A</b>. Option E (10%) is the second-quadrant point <Katex tex="-1+\sqrt3i" />, whose argument is <Katex tex="+\tfrac{2\pi}{3}" />. Check: <Katex tex="-1-\sqrt3i" /> has modulus <Katex tex="2" /> and sits in the third quadrant, <Katex tex="\tfrac{\pi}{3}" /> below the negative real axis — which is <Katex tex="-\pi+\tfrac{\pi}{3}=-\tfrac{2\pi}{3}" /> ✓.</>,
   },
 ]
 

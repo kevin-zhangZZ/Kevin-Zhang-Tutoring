@@ -10,11 +10,15 @@ const EXAM: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Those who knew that the two lines needed to be identical were generally successful.
-      Students using the determinant method often arrived at <Katex tex="k=-5" /> and{' '}
-      <Katex tex="k=-3" />, and then did not justify which value was valid. Students who set
-      the two initial equations equal to one another commonly found they had multiple
-      variables to deal with.
+      There were multiple ways to approach this question. Students generally approached this
+      by either equating gradients and <Katex tex="y" />-intercepts separately, using a
+      matrix/determinant method, forming ratios or attempting to solve simultaneously. These
+      methods were met with varying degrees of success. Those who knew that the two lines
+      needed to be identical were generally successful. Students using the determinant method
+      often arrived at <Katex tex="k=5" /> and <Katex tex="k=-3" />, and then did not justify
+      which value was valid. Students who set the two initial equations equal to one another
+      commonly found they had multiple variables to deal with and consequently could not
+      demonstrate how to solve for <Katex tex="k" />.
     </>
   ),
 }
@@ -26,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="kx-5y = 4+k \implies y = \frac{k}{5}x-\frac{4+k}{5}" />,
-    reason: 'Putting both equations into gradient–intercept form makes both conditions visible at once.',
+    reason: <>Putting both equations into gradient–intercept form makes both conditions visible at once.</>,
   },
   {
     working: <Katex display tex="3x+(k+8)y = -1 \implies y = -\frac{3}{k+8}x-\frac{1}{k+8}" />,
@@ -38,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(k+3)(k+5) = 0 \implies k = -3 \text{ or } k = -5" />,
-    reason: 'Two candidates — one gives parallel lines, the other identical ones.',
+    reason: <>Two candidates — one gives parallel lines, the other identical ones.</>,
   },
   {
     working: <Katex display tex="\text{equal intercepts: } -\frac{4+k}{5} = -\frac{1}{k+8} \implies k^2+12k+27 = 0" />,
@@ -46,11 +50,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(k+3)(k+9) = 0 \implies k = -3 \text{ or } k = -9" />,
-    reason: 'The second list of candidates.',
+    reason: <>The second list of candidates.</>,
   },
   {
     working: <Katex display tex="\boxed{k = -3}" />,
-    reason: <>The only value in <em>both</em> lists. Check: <Katex tex="k=-3" /> gives <Katex tex="-3x-5y=1" /> and <Katex tex="3x+5y=-1" /> — the same line ✓. At <Katex tex="k=-5" /> the lines are parallel but distinct, so there are no solutions.</>,
+    reason: <>The only value in <em>both</em> lists. Check: <Katex tex="k=-3" /> gives <Katex tex="-3x-5y=1" /> and <Katex tex="3x+5y=-1" /> — the same line. At <Katex tex="k=-5" /> the lines are parallel but distinct, so there are no solutions.</>,
   },
 ]
 
@@ -75,7 +79,7 @@ export default function MethodsQ3_2022Exam1() {
             A determinant of zero is <em>necessary</em> but not sufficient: it says the
             lines are parallel, and parallel lines have either no solutions or infinitely
             many. The extra step — checking which candidate also makes the intercepts agree
-            — is what most of the marks were for.
+            — is the step the question turns on.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

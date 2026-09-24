@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f^{-1}:R^+\to R,\ f^{-1}(x)=\frac{1}{x^2}-2}" />,
-    reason: <>Option A. Option B's <Katex tex="R\setminus\{0\}" /> — chosen by 42% — allows negative inputs, but <Katex tex="f" /> never produces a negative output, so those values are not in the domain of the inverse.</>,
+    reason: <>Matches option <b>A</b>. Option B's <Katex tex="R\setminus\{0\}" /> — chosen by 42% — allows negative inputs, but <Katex tex="f" /> never produces a negative output, so those values are not in the domain of the inverse.</>,
   },
 ]
 

@@ -22,15 +22,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{second leg: } 10\underset{\sim}{j}" />,
-    reason: 'Due north, so no east–west change at all.',
-  },
-  {
-    working: <Katex display tex="\underset{\sim}{a} = -\tfrac52\underset{\sim}{i}+\left(10-\tfrac{5\sqrt3}{2}\right)\underset{\sim}{j}" />,
-    reason: 'Adding the two displacements, since the position vector is measured from the starting point.',
+    reason: <>Due north, so no east–west change at all.</>,
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{a} = -\tfrac52\underset{\sim}{i}+\left(10-\tfrac{5\sqrt3}{2}\right)\underset{\sim}{j}}" />,
-    reason: <>About <Katex tex="-2.5\underset{\sim}{i}+5.67\underset{\sim}{j}" /> — 2.5 km west and 5.67 km north of the start. Matches option <b>B</b>.</>,
+    reason: <>Adding the two displacements: about 2.5 km west and 5.67 km north of the start. Matches option <b>B</b>. Option A leaves out the second leg; option D swaps sine and cosine in the first.</>,
   },
 ]
 
@@ -40,9 +36,12 @@ export default function SpecialistQ11_2021() {
       question={
         <p>
           Let <Katex tex="\underset{\sim}{i}" /> be a unit vector pointing east and let{' '}
-          <Katex tex="\underset{\sim}{j}" /> be a unit vector pointing north. A group of
-          hikers travels 5 km in the direction south 30° west and then north for 10 km. The
-          position vector <Katex tex="\underset{\sim}{a}" /> of the group of hikers with
+          <Katex tex="\underset{\sim}{j}" /> be a unit vector pointing north.
+          <br />
+          A group of hikers travels 5 km in the direction south 30° west and then north for 10
+          km.
+          <br />
+          The position vector <Katex tex="\underset{\sim}{a}" /> of the group of hikers with
           respect to the starting point is
         </p>
       }
@@ -66,7 +65,7 @@ export default function SpecialistQ11_2021() {
         },
         {
           letter: 'E',
-          content: <Katex tex="\underset{\sim}{a}=\tfrac52\underset{\sim}{i}+\left(10-\tfrac{5\sqrt3}{2}\right)\underset{\sim}{j}" />,
+          content: <Katex tex="\underset{\sim}{a}=\tfrac52\underset{\sim}{i}+\left(10+\tfrac{5\sqrt3}{2}\right)\underset{\sim}{j}" />,
         },
       ]}
       rows={ROWS}

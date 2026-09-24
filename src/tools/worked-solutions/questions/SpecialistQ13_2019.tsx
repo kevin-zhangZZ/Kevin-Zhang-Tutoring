@@ -57,7 +57,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\theta = \arccos\!\left(\frac{1}{2\sqrt7}\right)}" />,
-    reason: <>Option D, about <Katex tex="79^\circ" />. Options B and E subtract from <Katex tex="\pi" />, which would give the obtuse angle between <Katex tex="\underset{\sim}{F}_1" /> and <Katex tex="-\underset{\sim}{F}_2" />; option A uses <Katex tex="\left|\underset{\sim}{F}_2\right|" /> as if the acceleration itself were the second force.</>,
+    reason: <>About <Katex tex="79^\circ" />. Matches option <b>D</b>. Options <b>B</b> and <b>E</b> are obtuse, so cannot be the acute angle; option <b>C</b>, <Katex tex="\tfrac{\pi}{6}" />, is the angle the acceleration <Katex tex="\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" /> makes with <Katex tex="\underset{\sim}{i}" />, not the angle between the forces; option <b>A</b> does not match the cosine <Katex tex="\tfrac{1}{2\sqrt7}" /> found above.</>,
   },
 ]
 

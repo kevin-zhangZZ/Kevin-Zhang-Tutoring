@@ -14,9 +14,11 @@ const EXAM: SAExaminerStats = {
       <Katex tex="z=\tfrac{1}{\sqrt2}-\tfrac{1}{\sqrt2}i" /> in polar form{' '}
       <Katex tex="\operatorname{cis}\!\left(-\tfrac\pi4\right)" /> by recognition (possibly
       with the aid of a small diagram). Some students had difficulty with this first step and
-      gave an incorrect argument or modulus. Some students neglected to give the arguments
-      for their final answers using principal values as required by the question. Some
-      students found the cube of <Katex tex="z" /> rather than the cube roots.
+      gave an incorrect argument or modulus. De Moivre's theorem or a geometric approach could
+      be used to find the three cube roots of <Katex tex="z" />. Some students neglected to give
+      the arguments for their final answers using principal values as required by the question.
+      Some students found the cube of <Katex tex="z=\tfrac{1}{\sqrt2}-\tfrac{1}{\sqrt2}i" /> rather
+      than the cube roots.
     </>
   ),
 }
@@ -72,8 +74,8 @@ export default function SpecialistQ3_2020Exam1() {
         <Background>
           <p>
             "Principal values" means every argument you write down must lie in{' '}
-            <Katex tex="(-\pi,\pi]" />. That is not a formatting detail — the report says
-            students lost marks for leaving an argument outside the range, so choose the{' '}
+            <Katex tex="(-\pi,\pi]" />. That is not a formatting detail — the report notes
+            some students neglected to give the arguments using principal values, so choose the{' '}
             <Katex tex="k" /> values that land there rather than taking{' '}
             <Katex tex="k=0,1,2" /> mechanically.
           </p>

@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(y-ix)^{14} = \big(-i(x+iy)\big)^{14} = (-i)^{14}(x+iy)^{14}" />,
-    reason: 'Raise both sides of the identity to the 14th power.',
+    reason: <>Raise both sides of the identity to the 14th power.</>,
   },
   {
     working: <Katex display tex="(-i)^2 = -1 \;\implies\; (-i)^{14} = \big((-i)^2\big)^7 = (-1)^7 = -1" />,
@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-a - ib}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Options <b>B</b> and <b>C</b> are <Katex tex="-i(a+ib)" /> and <Katex tex="i(a+ib)" /> — what a factor of <Katex tex="\mp i" /> in place of <Katex tex="(-i)^{14}=-1" /> would give.</>,
   },
 ]
 
@@ -40,7 +40,7 @@ export default function SpecialistQ8_2020() {
     <MCQShell
       question={
         <p>
-          Given that <Katex tex="(x+iy)^{14} = a+ib" />, where <Katex tex="x,y,a,b\in\mathbb{R}" />,{' '}
+          Given that <Katex tex="(x+iy)^{14} = a+ib" />, where <Katex tex="x,y,a,b\in R" />,{' '}
           <Katex tex="(y-ix)^{14}" /> for all values of <Katex tex="x" /> and <Katex tex="y" /> is equal to
         </p>
       }

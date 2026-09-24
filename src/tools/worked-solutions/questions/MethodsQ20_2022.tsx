@@ -11,17 +11,27 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 30, B: 24, C: 25, D: 13, E: 8 },
   answer: 'A',
   noAnswer: 1,
-  comment: <>Solve <Katex tex="d(\theta)\geq40" /> for <Katex tex="\theta" /> or sketch the graphs: <Katex tex="26.565^\circ\leq\theta\leq63.434^\circ" />.</>,
+  comment: (
+    <>
+      Solve <Katex tex="d(\theta)\ge40" /> for <Katex tex="\theta" /> or sketch the graphs.
+      <br />
+      <Katex tex="26.565\ldots\le\theta\le63.434\ldots" />
+      <br />
+      <Katex tex="X\sim\mathrm{N}\left(42^\circ,64^\circ\right)" />
+      <br />
+      <Katex tex="\Pr(26.56\le\theta\le63.43)=0.969" /> correct to three decimal places
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\theta \sim N(42,8^2)" />,
-    reason: 'The launch angle, in degrees.',
+    reason: <>The launch angle, in degrees.</>,
   },
   {
     working: <Katex display tex="50\sin(2\theta) > 40 \;\iff\; \sin(2\theta) > 0.8" />,
-    reason: 'Translate the distance condition into a condition on θ.',
+    reason: <>Translate the distance condition into a condition on θ.</>,
   },
   {
     working: <Katex display tex="2\theta \in \big(\sin^{-1}(0.8),\ 180^\circ-\sin^{-1}(0.8)\big) = (53.13^\circ,\ 126.87^\circ)" />,
@@ -29,19 +39,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\theta \in (26.565^\circ,\ 63.434^\circ)" />,
-    reason: 'Halve throughout.',
+    reason: <>Halve throughout.</>,
   },
   {
     working: <Katex display tex="\Pr(26.565<\theta<63.434) = \Pr\!\left(\frac{26.565-42}{8}<Z<\frac{63.434-42}{8}\right)" />,
-    reason: 'Standardise using the given mean and standard deviation.',
+    reason: <>Standardise using the given mean and standard deviation.</>,
   },
   {
     working: <Katex display tex="= \Pr(-1.929<Z<2.679)" />,
-    reason: 'Evaluate the z-scores.',
+    reason: <>Evaluate the z-scores.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.969}" />,
-    reason: <>Evaluate on CAS — matches option <b>A</b>. (Solutions from an extra period, e.g. θ near 206°, are so many standard deviations from the mean that they contribute negligibly.)</>,
+    reason: <>Evaluate on CAS. Matches option <b>A</b>. (Solutions from an extra period, e.g. θ near 206°, are so many standard deviations from the mean that they contribute negligibly.)</>,
   },
 ]
 

@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x\in(-\infty,-2)\cup\left(\tfrac13,\infty\right)}" />,
-    reason: <>Option C — downhill before the minimum and after the maximum. Option D is the complement, where the cubic is increasing; option E uses the <Katex tex="x" />-intercepts instead of the turning points, which is the confusion the question is testing.</>,
+    reason: <>Matches option <b>C</b> — downhill before the minimum and after the maximum. Option D (10%) is where the cubic is <em>increasing</em>; option B uses the <Katex tex="y" />-values of the turning points; option E uses the <Katex tex="x" />-intercept <Katex tex="1" /> in place of the maximum's <Katex tex="x=\tfrac13" />.</>,
   },
 ]
 

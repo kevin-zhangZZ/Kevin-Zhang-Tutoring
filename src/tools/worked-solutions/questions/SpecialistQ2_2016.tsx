@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a-b\le x\le a+b}" />,
-    reason: <>Adding <Katex tex="a" />. Option C is what you get if the <Katex tex="b" /> never gets multiplied through; option E if the <Katex tex="a" /> never gets added.</>,
+    reason: <>Adding <Katex tex="a" />. Matches option <b>B</b>. Option C is what you get if the <Katex tex="b" /> never gets multiplied through; option E if the <Katex tex="a" /> never gets added; option D confuses the domain with the range, which is <Katex tex="[0,\pi]" /> for <Katex tex="\arccos" />.</>,
   },
 ]
 
@@ -42,7 +42,7 @@ export default function SpecialistQ2_2016() {
         { letter: 'A', content: <Katex tex="[-1,1]" /> },
         { letter: 'B', content: <Katex tex="[a-b,\ a+b]" />, isAnswer: true },
         { letter: 'C', content: <Katex tex="[a-1,\ a+1]" /> },
-        { letter: 'D', content: <Katex tex="[a,\ a+b]" /> },
+        { letter: 'D', content: <Katex tex="[a,\ a+b\pi]" /> },
         { letter: 'E', content: <Katex tex="[-b,\ b]" /> },
       ]}
       rows={ROWS}

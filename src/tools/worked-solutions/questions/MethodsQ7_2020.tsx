@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = 2xg'\!\left(x^2\right)e^{g\left(x^2\right)}}" />,
-    reason: <>Option C. Option B drops the prime on <Katex tex="g" />; option D evaluates <Katex tex="g'" /> at <Katex tex="2x" /> instead of <Katex tex="x^2" />; option E puts the <Katex tex="2x" /> inside the exponential's index.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b> leaves out the factor <Katex tex="g'(x^2)" /> altogether; option <b>B</b> drops the prime on <Katex tex="g" />; option <b>D</b> evaluates <Katex tex="g'" /> at <Katex tex="2x" /> instead of <Katex tex="x^2" />; option <b>E</b> puts the <Katex tex="2x" /> inside the exponential's index.</>,
   },
 ]
 

@@ -13,12 +13,17 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       This question was answered well by most students. Typical errors included not being
-      able to use the product rule and/or chain rule on the first term, and finding the
-      correct derivative but not continuing to find the equation of the tangent. A few
+      able to use the product rule and/or chain rule on the first term, finding the correct
+      derivative and not continuing to find the equation of the tangent. There were several
+      arithmetic errors made that gave the derivative as{' '}
+      <Katex tex="-\tfrac12,\ -2\text{ or }2" />. There were also notational errors. A few
       students found the equation of the normal instead. Some tried to make <Katex tex="x" />{' '}
       or <Katex tex="y" /> the subject before differentiating, with these attempts usually
-      leading to difficulties. A number of students gave the derivative of <Katex tex="x" />{' '}
-      to be zero.
+      leading to difficulties. Many realised that substitution could occur without isolating
+      the derivative first, but in both cases some errors occurred in substituting numbers into
+      their equation to find the gradient. A number of students gave the derivative of{' '}
+      <Katex tex="x" /> to be zero. A few found the derivative in terms of <Katex tex="x" /> and{' '}
+      <Katex tex="y" /> and used that in their equation.
     </>
   ),
 }
@@ -30,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\bigl(3xy^2\bigr) = 3y^2 + 3x\cdot 2y\frac{dy}{dx}" />,
-    reason: <>Product rule on <Katex tex="3x" /> times <Katex tex="y^2" />, with a chain rule on <Katex tex="y^2" /> since <Katex tex="y" /> depends on <Katex tex="x" />. This one term is where the report says most marks were lost.</>,
+    reason: <>Product rule on <Katex tex="3x" /> times <Katex tex="y^2" />, with a chain rule on <Katex tex="y^2" /> since <Katex tex="y" /> depends on <Katex tex="x" />. The report lists this term first among the typical errors.</>,
   },
   {
     working: <Katex display tex="3y^2+6xy\frac{dy}{dx}+2\frac{dy}{dx} = 1" />,
@@ -46,7 +51,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y-(-1) = \tfrac12(x-1)" />,
-    reason: <>Point–gradient form. The gradient of the <em>tangent</em> is <Katex tex="\tfrac12" />; the report notes some students used <Katex tex="-2" />, the normal's gradient.</>,
+    reason: <>Point–gradient form. The gradient of the <em>tangent</em> is <Katex tex="\tfrac12" />; the report notes a few students found the normal instead (gradient <Katex tex="-2" />).</>,
   },
   {
     working: <Katex display tex="\boxed{y = \frac{x}{2}-\frac32}" />,
@@ -62,6 +67,8 @@ export default function SpecialistQ1_2017Exam1() {
           Find the equation of the tangent to the curve given by{' '}
           <Katex tex="3xy^2+2y=x" /> at the point <Katex tex="(1,-1)" />.
         </p>
+      </Background>
+      <Background>
         <p>
           The curve cannot be rearranged into <Katex tex="y=\ldots" /> without a cubic
           formula, so implicit differentiation is the only realistic route — and with a point

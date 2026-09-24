@@ -10,20 +10,37 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 4, B: 12, C: 27, D: 30, E: 25 },
   answer: 'E',
   noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="\tan(\alpha)=d,\ d>0,\ 0<\alpha<\dfrac{\pi}{2}" />
+      <br />
+      <Katex tex="\tan(2x)=d,\ 0<x<\dfrac{5\pi}{4}" />
+      <br />
+      Tan is positive in the first and third quadrants.
+      <br />
+      <Katex tex="2x=\alpha,\ \pi+\alpha,\ 2\pi+\alpha\ldots" />
+      <br />
+      So the solutions to <Katex tex="\tan(2x)=d,\ 0<x<\dfrac{5\pi}{4}" /> are{' '}
+      <Katex tex="x=\dfrac{\alpha}{2},\ x=\dfrac{\pi+\alpha}{2},\ x=\dfrac{2\pi+\alpha}{2}" />.
+      <br />
+      The sum of the solutions is{' '}
+      <Katex tex="\dfrac{\alpha}{2}+\dfrac{\pi+\alpha}{2}+\dfrac{2\pi+\alpha}{2}=\dfrac{3\alpha+3\pi}{2}" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\tan(2x) = d = \tan(\alpha)" />,
-    reason: 'Rewrite the equation using the given relationship.',
+    reason: <>Rewrite the equation using the given relationship.</>,
   },
   {
-    working: <Katex display tex="2x = \alpha + k\pi \;\implies\; x = \frac{\alpha}{2} + \frac{k\pi}{2},\quad k\in\mathbb{Z}" />,
+    working: <Katex display tex="2x = \alpha + k\pi \;\implies\; x = \frac{\alpha}{2} + \frac{k\pi}{2},\quad k\in Z" />,
     reason: <>Tan has period <Katex tex="\pi" />, so all solutions to <Katex tex="\tan(2x)=\tan(\alpha)" /> are spaced <Katex tex="\pi/2" /> apart in <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="0 < \alpha < \tfrac{\pi}{2} \;\implies\; 0 < \tfrac{\alpha}{2} < \tfrac{\pi}{4}" />,
-    reason: 'Halve the given range for α.',
+    reason: <>Halve the given range for α.</>,
   },
   {
     working: (
@@ -38,11 +55,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Sum} = 3\cdot\frac{\alpha}{2} + \left(\frac{\pi}{2}+\pi\right) = \frac{3\alpha}{2}+\frac{3\pi}{2}" />,
-    reason: 'Add the three solutions found above.',
+    reason: <>Add the three solutions found above.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{3(\pi+\alpha)}{2}}" />,
-    reason: <>Factor — matches option <b>E</b>.</>,
+    reason: <>Factorising. Matches option <b>E</b>. Option <b>D</b> <Katex tex="\left(\tfrac{\pi}{2}+\alpha\right)" />, the most popular answer at <Katex tex="30\%" />, is the sum of only the first two solutions — it misses the one in <Katex tex="\left(\pi,\tfrac{5\pi}{4}\right)" />.</>,
   },
 ]
 

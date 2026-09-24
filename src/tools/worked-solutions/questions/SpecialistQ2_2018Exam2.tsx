@@ -1,8 +1,9 @@
 // 2018 Specialist Mathematics — Exam 2, Section B, Question 2 (10 marks). Two descriptions
 // of the same circle in the Argand plane, a perpendicular-bisector line, and the area of the
 // minor segment they cut off. Question text transcribed from the original paper. VCAA
-// supplied a blank Argand grid, so the drawn circle and line are this site's own
-// answer-sketch (matplotlib) and live in the solution rather than the stem (guide §7).
+// supplied a blank Argand diagram — a polar grid of circles of radius 1 to 5 and rays every
+// 30° — so the drawn circle and line are this site's own answer-sketch (matplotlib) on that
+// same grid, and live in the solution rather than the stem (guide §7).
 //
 // Note: pdftotext renders the locus as |z+1| = 2|z-i|, dropping a square root. The paper
 // actually says |z+1| = √2|z-i|, which is what makes the two circles coincide — the text
@@ -11,7 +12,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import argandSrc from './spec-2018exam2-q2-argand.png'
+import argandSrc from './spec-2018e2-q2-argand.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [30, 70],
@@ -19,7 +20,8 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Some students gave only one of the two required parts of the answer. An incorrect
-      radius of <Katex tex="\sqrt2" /> was occasionally given.
+      radius of <Katex tex="\sqrt2" /> was occasionally given. Students were not asked to find
+      the expression of the circle at this point but a number did so.
     </>
   ),
 }
@@ -31,7 +33,8 @@ const EXAM_B: SAExaminerStats = {
     <>
       Most students were able to correctly find an expression that did not involve{' '}
       <Katex tex="i" />. In a 'show that' question such as this, students are expected to
-      explicitly show that the given relation leads to the required conclusion.
+      explicitly show that the given relation leads to the required conclusion. The working
+      shown above is an example of a suitable response.
     </>
   ),
 }
@@ -43,7 +46,7 @@ const EXAM_C: SAExaminerStats = {
     <>
       The circle was generally drawn correctly. Students did not always supply the
       coordinates of the <Katex tex="y" />-intercepts as required by the question. Some
-      coordinates were incorrect.
+      coordinates were incorrectly given as imaginary numbers.
     </>
   ),
 }
@@ -55,7 +58,7 @@ const EXAM_D: SAExaminerStats = {
     <>
       While the vertical line was usually sketched correctly, coordinates of the points of
       intersection with the circle were not always shown. Coordinates were sometimes
-      presented as decimals.
+      presented as decimal approximations.
     </>
   ),
 }
@@ -67,7 +70,7 @@ const EXAM_E: SAExaminerStats = {
     <>
       Students who used standard formulas to find the segment area were generally more
       successful than those who took a definite integral approach. Many students did not
-      start the problem with a diagram.
+      start the problem with a correct sector angle.
     </>
   ),
 }
@@ -105,19 +108,19 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Completing the square in both variables.</>,
   },
   {
-    working: <Katex display tex="(x-1)^2+(y-2)^2 = 4 \ \checkmark" />,
-    reason: <>Centre <Katex tex="(1,2)" />, radius <Katex tex="\sqrt4=2" /> — identical to part (a). On a "show that" the final comparison must be written down, not left implied; the report is explicit about that.</>,
+    working: <Katex display tex="\boxed{(x-1)^2+(y-2)^2 = 4}" />,
+    reason: <>Centre <Katex tex="(1,2)" />, radius <Katex tex="\sqrt4=2" /> — identical to part a., as required. On a "show that" the final comparison must be written down, not left implied; the report says students are expected to show explicitly that the relation leads to the conclusion.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x=0: \quad 1+(y-2)^2 = 4 \implies (y-2)^2 = 3" />,
-    reason: <>The vertical axis in an Argand diagram is <Katex tex="\operatorname{Re}(z)=0" />, so set <Katex tex="x=0" /> in the cartesian form from part (b).</>,
+    reason: <>The vertical axis in an Argand diagram is <Katex tex="\operatorname{Re}(z)=0" />, so set <Katex tex="x=0" /> in the cartesian form from part b.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(0,\ 2-\sqrt3\right) \ \text{ and } \ \left(0,\ 2+\sqrt3\right)}" />,
-    reason: <>Exact surds, not decimals — the report flags decimal coordinates on this and the next part. (<Katex tex="\approx0.27" /> and <Katex tex="\approx3.73" />.)</>,
+    reason: <>Give them as coordinates — the report says some were incorrectly given as imaginary numbers — and in exact form. (<Katex tex="\approx0.27" /> and <Katex tex="\approx3.73" />.)</>,
   },
 ]
 
@@ -132,19 +135,19 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=2: \quad 1+(y-2)^2 = 4 \implies y = 2\pm\sqrt3" />,
-    reason: <>Substituting into the circle. The same numbers appear as in part (c), because <Katex tex="x=0" /> and <Katex tex="x=2" /> are symmetric about the centre's <Katex tex="x=1" />.</>,
+    reason: <>Substituting into the circle. The same numbers appear as in part c., because <Katex tex="x=0" /> and <Katex tex="x=2" /> are symmetric about the centre's <Katex tex="x=1" />.</>,
   },
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={argandSrc} alt="Argand diagram showing the circle of centre (1, 2) and radius 2, the vertical line Re(z) = 2, the two imaginary-axis intercepts and the two intersection points, all labelled" className="w-full max-w-[400px]" />
+        <img src={argandSrc} alt="VCAA's polar-grid Argand diagram with the circle of centre (1, 2) and radius 2, the vertical line Re(z) = 2, the two imaginary-axis intercepts and the two intersection points, all labelled" className="w-full max-w-[400px]" />
       </div>
     ),
-    reason: <>Both parts (c) and (d) on one diagram, with all four points labelled in exact form.</>,
+    reason: <>Both parts c. and d. on one diagram, with all four points labelled in exact form — the report notes coordinates were sometimes given as decimal approximations.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(2,\ 2-\sqrt3\right) \ \text{ and } \ \left(2,\ 2+\sqrt3\right)}" />,
-    reason: <>The intersection points, which part (e) needs.</>,
+    reason: <>The intersection points, which part e. needs.</>,
   },
 ]
 
@@ -163,7 +166,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Segment} = \frac{r^2}{2}\bigl(\theta-\sin\theta\bigr)" />,
-    reason: <>Sector minus triangle, in one formula. The report says students who used the standard formula did markedly better than those who set up an integral.</>,
+    reason: <>Sector minus triangle, in one formula. The report says students who used standard formulas were generally more successful than those who took a definite integral approach.</>,
   },
   {
     working: <Katex display tex="= \frac{4}{2}\left(\frac{2\pi}{3}-\frac{\sqrt3}{2}\right) = \frac{4\pi}{3}-\sqrt3" />,
@@ -182,11 +185,11 @@ export default function SpecialistQ2_2018Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (10 marks)</p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State the centre in the form <Katex tex="(x,y)" />, where <Katex tex="x,y\in\mathbb{R}" />, and state the radius of the circle given by <Katex tex="|z-(1+2i)|=2" />, where <Katex tex="z\in\mathbb{C}" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Circle Locus" marks={1} statement={<>State the centre in the form <Katex tex="(x,y)" />, where <Katex tex="x,y\in R" />, and state the radius of the circle given by <Katex tex="|z-(1+2i)|=2" />, where <Katex tex="z\in C" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>By expressing the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> in cartesian form, show that this circle has the same centre and radius as the circle given by <Katex tex="|z-(1+2i)|=2" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Cartesian Form" marks={2} statement={<>By expressing the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> in cartesian form, show that this circle has the same centre and radius as the circle given by <Katex tex="|z-(1+2i)|=2" />.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
             Two quite different-looking descriptions turn out to be the same circle. The
@@ -202,19 +205,26 @@ export default function SpecialistQ2_2018Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Graph the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> on an Argand diagram, labelling the intercepts with the vertical axis.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Sketch Circle" marks={2} statement={<>Graph the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> on the Argand diagram below, labelling the intercepts with the vertical axis.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={2} statement={<>The line given by <Katex tex="|z-1|=|z-3|" /> intersects the circle in two places. Draw the line on the Argand diagram and label the points of intersection with their coordinates.</>} examinerReport={EXAM_D}>
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          The line given by <Katex tex="|z-1|=|z-3|" /> intersects the circle given by{' '}
+          <Katex tex="|z+1|=\sqrt2\,|z-i|" /> in two places.
+        </p>
+      </div>
+
+      <PartCard letter="d" topic="Line & Circle" marks={2} statement={<>Draw the line given by <Katex tex="|z-1|=|z-3|" /> on the Argand diagram in <b>part c.</b> Label the points of intersection with their coordinates.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={3} statement={<>Find the area of the minor segment enclosed by an arc of the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> and part of the line given by <Katex tex="|z-1|=|z-3|" />.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Segment Area" marks={3} statement={<>Find the area of the minor segment enclosed by an arc of the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> and part of the line given by <Katex tex="|z-1|=|z-3|" />.</>} examinerReport={EXAM_E}>
         <Background>
           <p>
-            Half the state scored zero, and the report's first observation is that many did
-            not draw a diagram. With one, this is a standard circular segment: chord{' '}
+            Half the students scored zero, and the report says many did not start with a
+            correct sector angle. A diagram makes this a standard circular segment: chord{' '}
             <Katex tex="x=2" /> across a circle of radius <Katex tex="2" /> centred at{' '}
             <Katex tex="(1,2)" />.
           </p>

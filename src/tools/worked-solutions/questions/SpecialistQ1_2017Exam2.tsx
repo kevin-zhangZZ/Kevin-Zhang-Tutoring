@@ -1,13 +1,14 @@
 // 2017 Specialist Mathematics — Exam 2, Section B, Question 1 (11 marks).
 // f(x) = x/(1 + x³): asymptotes, stationary point, point of inflection, the graph, then
 // splitting a solid of revolution into two equal halves. Question text transcribed from
-// the original paper; VCAA supplied blank axes for part (b), so the sketch below is our
-// own matplotlib figure. Answers verified with sympy and scipy. Solution is original.
+// the original paper; VCAA supplied blank axes for part b. (x from −3 to 3, y from −2 to 2),
+// so the sketch is our own matplotlib figure on that grid. Answers verified with sympy and
+// scipy. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import graphSrc from './spec-2017exam2-q1b-graph.png'
+import graphSrc from './spec-2017e2-q1b-graph.png'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [64, 36],
@@ -64,7 +65,7 @@ const EXAM_CI: SAExaminerStats = {
     <>
       This question was answered well. Other equivalent correct forms were presented. A
       common error was a failure to square <Katex tex="f(x)" /> or including{' '}
-      <Katex tex="\pi" /> on only one side of the equation.
+      <Katex tex="\pi" /> on only one side of the equation above.
     </>
   ),
 }
@@ -74,7 +75,7 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      The majority of students who answered Question 1c.i. correctly were also able to answer
+      The majority of students who answered Question 1ci. correctly were also able to answer
       this question correctly.
     </>
   ),
@@ -91,7 +92,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to\pm\infty \implies f(x)\to\frac{0}{0+1}=0" />,
-    reason: <>The denominator's degree exceeds the numerator's by <Katex tex="2" />, so the curve flattens onto the <Katex tex="x" />-axis. Two-thirds of students missed this one.</>,
+    reason: <>The denominator's degree exceeds the numerator's by <Katex tex="2" />, so the curve flattens onto the <Katex tex="x" />-axis. The report says significantly fewer students stated this one than the vertical asymptote.</>,
   },
   {
     working: <Katex display tex="\boxed{x=-1 \text{ and } y=0}" />,
@@ -118,22 +119,22 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(0.79,\ 0.53)}" />,
-    reason: <>Two decimal places, as coordinates — the report notes marks lost for giving only the <Katex tex="x" />-value.</>,
+    reason: <>Two decimal places, as coordinates — the report notes some students did not give the coordinates in the required form.</>,
   },
 ]
 
 const ROWS_AIII: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(d²/dx²(x/(1+x^3)) = 0, x)</Cas>,
-    reason: <>Differentiating the quotient a second time by hand is unpleasant and this is the technology-permitted paper. The CAS returns <Katex tex="x=0" /> and <Katex tex="x=\sqrt[3]{2}" />.</>,
+    reason: <>This is the technology-active paper, so let the CAS do the second derivative. It gives <Katex tex="f''(x)=\dfrac{6x^2(x^3-2)}{(1+x^3)^3}" />, which is zero at <Katex tex="x=0" /> and <Katex tex="x=\sqrt[3]{2}" />.</>,
   },
   {
     working: <Katex display tex="x=0: \quad f''(x) \text{ does not change sign}" />,
-    reason: <>This is the trap. <Katex tex="f''(0)=0" />, but near <Katex tex="x=0" /> the factor responsible is <Katex tex="x^2" />-like and stays one sign — no change of concavity, so no inflection. The report lists including <Katex tex="(0,0)" /> as the common error.</>,
+    reason: <>This is the trap. <Katex tex="f''(0)=0" />, but the factor responsible is <Katex tex="x^2" />, which never changes sign — no change of concavity, so no inflection. The report lists including <Katex tex="(0,0)" /> as a common error.</>,
   },
   {
     working: <Katex display tex="x=\sqrt[3]{2}\approx1.2599: \quad f''(x) \text{ changes sign}" />,
-    reason: <>Test either side, or read it off the graph: the curve is concave down through the maximum and concave up further out.</>,
+    reason: <>Here the factor <Katex tex="x^3-2" /> changes sign (and the denominator is positive for <Katex tex="x>-1" />), so the curve goes from concave down through the maximum to concave up further out.</>,
   },
   {
     working: <Katex display tex="f\!\left(\sqrt[3]{2}\right) = \frac{\sqrt[3]{2}}{1+2} \approx 0.42" />,
@@ -156,7 +157,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{stationary point } (0.79,0.53),\quad \text{inflection } (1.26,0.42)" />,
-    reason: <>From parts (a)(ii) and (a)(iii). Mark them with coordinates — the question asks for labels.</>,
+    reason: <>From parts a.ii. and a.iii. Mark them with coordinates — the question asks for labels.</>,
   },
   {
     working: <Katex display tex="x\to-1^-: f\to+\infty; \qquad x\to-1^+: f\to-\infty" />,
@@ -167,22 +168,18 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int \bigl(f(x)\bigr)^2 dx" />,
-    reason: <>Volume of revolution about the <Katex tex="x" />-axis. The <Katex tex="f(x)" /> must be <em>squared</em> — the report says forgetting this was the common error.</>,
+    reason: <>Volume of revolution about the <Katex tex="x" />-axis. The <Katex tex="f(x)" /> must be <em>squared</em> — the report lists forgetting this as a common error.</>,
   },
   {
     working: <Katex display tex="\boxed{\pi\int_0^{a}\bigl(f(x)\bigr)^2 dx = \pi\int_{a}^{3}\bigl(f(x)\bigr)^2 dx}" />,
-    reason: <>The two pieces of <Katex tex="S" /> generate equal volumes, so set the two integrals equal. Put <Katex tex="\pi" /> on both sides or neither — including it on one side only is the other flagged error.</>,
-  },
-  {
-    working: <Katex display tex="\text{equivalently } \int_0^{a}\bigl(f(x)\bigr)^2 dx = \frac12\int_0^{3}\bigl(f(x)\bigr)^2 dx" />,
-    reason: <>Another accepted form: the first piece is half the whole.</>,
+    reason: <>The two pieces of <Katex tex="S" /> generate equal volumes, so set the two integrals equal. Put <Katex tex="\pi" /> on both sides or neither — including it on one side only is the other flagged error. An equivalent accepted form says the first piece is half the whole: <Katex tex="\int_0^{a}\bigl(f(x)\bigr)^2 dx = \tfrac12\int_0^{3}\bigl(f(x)\bigr)^2 dx" />.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(∫((x/(1+x³))², x, 0, a) = ∫((x/(1+x³))², x, a, 3), a) | 0&lt;a&lt;3</Cas>,
-    reason: <>Straight from part (c)(i); the <Katex tex="\pi" /> cancels. Restrict to the given <Katex tex="0<a<3" />.</>,
+    reason: <>Straight from part c.i.; the <Katex tex="\pi" /> cancels. Restrict to the given <Katex tex="0<a<3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a \approx 0.98}" />,
@@ -203,6 +200,7 @@ export default function SpecialistQ1_2017Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Asymptotes"
         marks={1}
         statement={<>Find the equations of any asymptotes of the graph of <Katex tex="f" />.</>}
         examinerReport={EXAM_AI}
@@ -212,6 +210,7 @@ export default function SpecialistQ1_2017Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Stationary Points"
         marks={2}
         statement={
           <>
@@ -226,6 +225,7 @@ export default function SpecialistQ1_2017Exam2() {
 
       <PartCard
         letter="a.iii"
+        topic="Point of Inflection"
         marks={2}
         statement={
           <>
@@ -252,6 +252,7 @@ export default function SpecialistQ1_2017Exam2() {
 
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
@@ -286,6 +287,7 @@ export default function SpecialistQ1_2017Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Volume of Revolution"
         marks={2}
         statement={
           <>
@@ -300,6 +302,7 @@ export default function SpecialistQ1_2017Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Volume of Revolution"
         marks={1}
         statement={
           <>

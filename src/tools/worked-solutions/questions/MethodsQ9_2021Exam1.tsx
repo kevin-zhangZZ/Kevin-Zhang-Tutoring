@@ -1,6 +1,6 @@
 // 2021 Mathematical Methods — Exam 1 Question 9 (8 marks). A tangent to the unit circle
 // from an external point, then a vertical dilation of that tangent and the triangle it cuts
-// out. The hardest question on the paper: parts b(i) and b(ii) averaged 0.1 marks each.
+// out. The hardest question on the paper: parts b.i. and b.ii. averaged 0.1 marks each.
 // Question text transcribed from the original paper; both figures are crops of VCAA's own
 // artwork. Answers checked with sympy and against the VCAA examination report. Solution is
 // original.
@@ -15,10 +15,14 @@ const EXAM_A: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      It is important to remember that for "show that" questions, the working needs to be
-      clear and logically structured. Those who could see the question as a right-angled
-      triangle tended to fare better. Many differentiated the equation of the semicircle, but
-      then tried to evaluate the derivative at <Katex tex="x=2" />, a point that is not in
+      It is important to remember that for 'show that' questions, the working needs to be clear
+      and logically structured, with a well-defined progression from start to finish. This was
+      not the case for many students. There were many different ways of approaching this
+      question and those who could see the question as a right-angle triangle tended to fare
+      better. It was clear that some students knew what they were doing; however, they{' '}
+      <b>did not show</b> how they got to find the angle leading to the gradient of the tangent
+      or how they found <Katex tex="P\left(\tfrac12,\tfrac{\sqrt3}{2}\right)" />. Many
+      differentiated the equation of the semi-circle, but then tried to evaluate the derivative at <Katex tex="x=2" />, a point that is not in
       the domain of the derivative. For most students, angles were not defined or labelled on
       diagrams, nor were side lengths indicated.
     </>
@@ -56,7 +60,7 @@ const EXAM_CI: SAExaminerStats = {
       Students are reminded of the need to consider domains when defining functions. Many
       were able to write <Katex tex="g(\theta)=\sin(\theta)" />, but very few stated the
       domain of the function. Some wrote the function incorrectly as{' '}
-      <Katex tex="g(x)=\sin(\theta)" />.
+      <Katex tex="g(x)=\sin\theta" />.
     </>
   ),
 }
@@ -66,11 +70,11 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Because many students overlooked the domain in their definition of{' '}
-      <Katex tex="g(\theta)" />, they did not realise that the maximum occurs at an endpoint,{' '}
-      <Katex tex="\theta=\tfrac\pi3" />. Instead, many attempted this question by
-      differentiation and then solved <Katex tex="\tfrac{d}{d\theta}\sin(\theta)=0" /> to get
-      the incorrect maximum <Katex tex="A=1" />.
+      Because many students overlooked the domain in their definition of the function{' '}
+      <Katex tex="g(\theta)" />, they did not realise that the maximum occurs at an endpoint (
+      <Katex tex="\theta=\tfrac\pi3" />). Instead, many attempted this question by
+      differentiation and then solved <Katex tex="\tfrac{d}{d\theta}(\sin\theta)=0" /> to get
+      the incorrect maximum of <Katex tex="A=1" />.
     </>
   ),
 }
@@ -101,8 +105,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Point–gradient form through <Katex tex="A(2,0)" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{y = -\frac{x}{\sqrt3}+\frac{2}{\sqrt3}} \ \checkmark" />,
-    reason: <>Every step written out, with the angle named — the report is explicit that this is what earned the marks.</>,
+    working: <Katex display tex="\boxed{y = -\frac{x}{\sqrt3}+\frac{2}{\sqrt3}}" />,
+    reason: <>As required. Write every step out, with the angle named — the report notes many students did not show how they found the angle or <Katex tex="P" />, and that angles were rarely defined or labelled on diagrams.</>,
   },
 ]
 
@@ -121,11 +125,11 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{at least one intersection} \iff \text{distance} \le 1" />,
-    reason: 'The line meets the unit circle exactly when it comes within one unit of the centre.',
+    reason: <>The line meets the unit circle exactly when it comes within one unit of the centre.</>,
   },
   {
     working: <Katex display tex="\frac{4q^2}{q^2+3} \le 1 \implies 4q^2 \le q^2+3 \implies q^2 \le 1" />,
-    reason: 'Squaring is safe — both sides are non-negative.',
+    reason: <>Squaring is safe — both sides are non-negative.</>,
   },
   {
     working: <Katex display tex="\boxed{q \in [-1,0) \cup (0,1]}" />,
@@ -140,7 +144,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left(3+q^2\right)x^2-4q^2x+\left(4q^2-3\right) = 0" />,
-    reason: 'Clearing the fraction and collecting. A quadratic, so at most two intersections.',
+    reason: <>Clearing the fraction and collecting. A quadratic, so at most two intersections.</>,
   },
   {
     working: <Katex display tex="\text{two intersections} \iff \Delta = 36\left(1-q^2\right) > 0 \iff |q| < 1" />,
@@ -175,7 +179,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="q\to0^+ \Rightarrow P'\to(1,0) \Rightarrow \theta\to0; \quad q=1 \Rightarrow P'=P \Rightarrow \theta = \tfrac\pi3" />,
-    reason: <>Tracking the endpoints of <Katex tex="0<q\le1" /> gives the domain — the step almost every student skipped.</>,
+    reason: <>Tracking the endpoints of <Katex tex="0<q\le1" /> gives the domain — the report notes very few students stated it.</>,
   },
   {
     working: <Katex display tex="\boxed{g:\left(0,\tfrac\pi3\right]\to R, \ g(\theta) = \sin(\theta)}" />,
@@ -190,7 +194,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{maximum at the right endpoint } \theta = \tfrac\pi3" />,
-    reason: 'An increasing function on a half-open interval attains its maximum at the closed end.',
+    reason: <>An increasing function on a half-open interval attains its maximum at the closed end.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{maximum area} = \sin\!\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}}" />,
@@ -218,6 +222,7 @@ export default function MethodsQ9_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Line Equation"
         marks={2}
         statement={
           <>
@@ -231,7 +236,7 @@ export default function MethodsQ9_2021Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Let{' '}
           <Katex tex="T:R^2\to R^2,\ T\!\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}1&0\\0&q\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}" />
@@ -243,6 +248,7 @@ export default function MethodsQ9_2021Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Intersections"
         marks={1}
         statement={
           <>
@@ -257,11 +263,13 @@ export default function MethodsQ9_2021Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Intersections"
         marks={1}
         statement={
           <>
-            Let the graph of <Katex tex="h" /> intersect the unit circle twice. Find the
-            values of <Katex tex="q" /> for which the coordinates of the points of
+            Let the graph of <Katex tex="h" /> intersect the unit circle twice.
+            <br />
+            Find the values of <Katex tex="q" /> for which the coordinates of the points of
             intersection have only positive values.
           </>
         }
@@ -270,13 +278,12 @@ export default function MethodsQ9_2021Exam1() {
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
           For <Katex tex="0<q\le1" />, let <Katex tex="P'" /> be the point of intersection of
           the graph of <Katex tex="h" /> with the unit circle, where <Katex tex="P'" /> is
           always the point of intersection that is closest to <Katex tex="A" />, as shown in
-          the diagram below. Let <Katex tex="g" /> be the function that gives the area of
-          triangle <Katex tex="OAP'" /> in terms of <Katex tex="\theta" />.
+          the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -285,10 +292,15 @@ export default function MethodsQ9_2021Exam1() {
             className="w-full max-w-[340px]"
           />
         </div>
+        <p>
+          Let <Katex tex="g" /> be the function that gives the area of triangle{' '}
+          <Katex tex="OAP'" /> in terms of <Katex tex="\theta" />.
+        </p>
       </div>
 
       <PartCard
         letter="c.i"
+        topic="Dilation"
         marks={2}
         statement={<>Define the function <Katex tex="g" />.</>}
         examinerReport={EXAM_CI}
@@ -298,6 +310,7 @@ export default function MethodsQ9_2021Exam1() {
 
       <PartCard
         letter="c.ii"
+        topic="Optimisation"
         marks={2}
         statement={
           <>

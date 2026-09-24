@@ -34,8 +34,8 @@ const EXAM_D: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      Students were generally successful. Incorrect responses such as{' '}
-      <Katex tex="H_0=12" /> were occasionally seen.
+      Students were generally successful with this question. Incorrect responses such as '
+      <Katex tex="H_0=12,\ H_1<12" />' were occasionally seen.
     </>
   ),
 }
@@ -64,26 +64,26 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1.9600\times\frac{1}{4.4721} = 0.4383" />,
-    reason: 'The margin of error.',
+    reason: <>The margin of error.</>,
   },
   {
     working: <Katex display tex="\boxed{(10.95,\ 11.83)}" />,
-    reason: 'Two decimal places, written as an interval with brackets.',
+    reason: <>Two decimal places, written as an interval with brackets.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{A 95\% interval captures } \mu \text{ in 95\% of samples, in the long run}" />,
-    reason: 'That is what the confidence level means — it is a statement about the procedure, not about any one interval.',
+    reason: <>That is what the confidence level means — it is a statement about the procedure, not about any one interval.</>,
   },
   {
     working: <Katex display tex="0.95\times60 = 57" />,
-    reason: 'The expected number.',
+    reason: <>The expected number.</>,
   },
   {
     working: <Katex display tex="\boxed{57 \text{ of the } 60 \text{ intervals}}" />,
-    reason: 'Expected, not guaranteed — the actual number varies from one set of 60 samples to the next.',
+    reason: <>Expected, not guaranteed — the actual number varies from one set of 60 samples to the next.</>,
   },
 ]
 
@@ -99,30 +99,30 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="\text{new width} = 0.4\times\text{old width}" />
       </>
     ),
-    reason: 'Decreasing by 60% leaves 40%, not 60% — the phrasing is the first hurdle.',
+    reason: <>Decreasing by 60% leaves 40%, not 60% — the phrasing is the first hurdle.</>,
   },
   {
     working: <Katex display tex="\frac{1}{\sqrt{n_{\text{new}}}} = 0.4\cdot\frac{1}{\sqrt{20}} \implies \sqrt{n_{\text{new}}} = \frac{\sqrt{20}}{0.4}" />,
-    reason: 'Rearranging.',
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="n_{\text{new}} = \frac{20}{0.4^2} = \frac{20}{0.16}" />,
-    reason: 'Squaring both sides. Shrinking a width by a factor costs the square of that factor in sample size.',
+    reason: <>Squaring both sides. Shrinking a width by a factor costs the square of that factor in sample size.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 125 \text{ koalas}}" />,
-    reason: <>More than six times the original sample for a interval less than half as wide — the usual price of precision.</>,
+    reason: <>More than six times the original sample for an interval less than half as wide — the usual price of precision.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_0: \ \mu = 12}" />,
-    reason: <>The hypothesis being tested is about the population mean <Katex tex="\mu" />, so write <Katex tex="\mu=12" />, not <Katex tex="H_0=12" />.</>,
+    reason: <>The hypothesis being tested is about the population mean <Katex tex="\mu" />, so write <Katex tex="\mu=12" /> — the report notes responses such as '<Katex tex="H_0=12" />' were occasionally seen.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \ \mu < 12}" />,
-    reason: '"The ranger thinks the true mean is less than this", and the test is one-tailed, so the alternative points downwards.',
+    reason: <>"The ranger thinks the true mean is less than this", and the test is one-tailed, so the alternative points downwards.</>,
   },
 ]
 
@@ -141,25 +141,25 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p = 0.0057}" />,
-    reason: 'Four decimal places.',
+    reason: <>Four decimal places.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.0057 < 0.01" />,
-    reason: 'Compare the p value with the stated significance level — that comparison is the whole argument.',
+    reason: <>Compare the p value with the stated significance level — that comparison is the whole argument.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Reject } H_0.}" />,
-    reason: <>A sample mean this low would arise under <Katex tex="H_0" /> less than 1% of the time. The reason must cite the <Katex tex="p" /> value; a bare conclusion scored nothing.</>,
+    reason: <>A sample mean this low would arise under <Katex tex="H_0" /> less than 1% of the time. The reason must cite the <Katex tex="p" /> value — the report notes some students stated a correct conclusion without referencing it.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="H_0 \text{ not rejected} \iff p \ge 0.01 \iff \bar x \ge c, \text{ where } \Pr\!\left(\overline{X}<c\right) = 0.01" />,
-    reason: 'The critical value is the boundary sample mean whose p value is exactly 1%.',
+    reason: <>The critical value is the boundary sample mean whose p value is exactly 1%.</>,
   },
   {
     working: (
@@ -182,7 +182,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\overline{X} \sim \mathrm{N}\!\left(11.4,\ \frac{1}{40}\right) \ \text{ under the true mean}" />,
-    reason: 'Same sample size and standard deviation; only the centre moves.',
+    reason: <>Same sample size and standard deviation; only the centre moves.</>,
   },
   {
     working: (
@@ -205,8 +205,9 @@ export default function SpecialistQ6_2023Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 6 (9 marks)</p>
         <p>
           A forest ranger wishes to investigate the mass of adult male koalas in a Victorian
-          forest. A random sample of 20 such koalas has a sample mean of 11.39 kg. It is known
-          that the mass of adult male koalas in the forest is normally distributed with a
+          forest. A random sample of 20 such koalas has a sample mean of 11.39 kg.
+          <br />
+          It is known that the mass of adult male koalas in the forest is normally distributed with a
           standard deviation of 1 kg.
         </p>
       </div>
@@ -216,8 +217,8 @@ export default function SpecialistQ6_2023Exam2() {
           <p>
             Two ideas carry the whole question. First, the width of a confidence interval goes
             like <Katex tex="1/\sqrt n" />, so shrinking it to a fraction <Katex tex="f" />{' '}
-            costs <Katex tex="1/f^2" /> times the sample — that is part c., the hardest mark
-            on the paper.
+            costs <Katex tex="1/f^2" /> times the sample — that is part c., which the report
+            notes was challenging for students.
           </p>
           <p>
             Second, a Type II error is computed under the <em>alternative</em>, not the null.
@@ -229,11 +230,12 @@ export default function SpecialistQ6_2023Exam2() {
 
       <PartCard
         letter="a"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
-            Find a 95% confidence interval for the population mean. Give your values correct
-            to two decimal places.
+            Find a 95% confidence interval for the population mean (the mean mass of all adult
+            male koalas in the forest). Give your values correct to two decimal places.
           </>
         }
         examinerReport={EXAM_A}
@@ -243,10 +245,12 @@ export default function SpecialistQ6_2023Exam2() {
 
       <PartCard
         letter="b"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
             Sixty such random samples are taken and their confidence intervals are calculated.
+            <br />
             In how many of these confidence intervals would the actual mean mass of all adult
             male koalas in the forest be expected to lie?
           </>
@@ -256,15 +260,19 @@ export default function SpecialistQ6_2023Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          The ranger wants to decrease the width of the 95% confidence interval by 60% to get a
+          better estimate of the population mean.
+        </p>
+      </div>
+
       <PartCard
         letter="c"
+        topic="Sample Size"
         marks={1}
         statement={
-          <>
-            The ranger wants to decrease the width of the 95% confidence interval by 60% to
-            get a better estimate of the population mean. How many adult male koalas should be
-            sampled to achieve this?
-          </>
+          <>How many adult male koalas should be sampled to achieve this?</>
         }
         examinerReport={EXAM_C}
       >
@@ -276,13 +284,13 @@ export default function SpecialistQ6_2023Exam2() {
           It is thought that the mean mass of adult male koalas in the forest is 12 kg. The
           ranger thinks that the true mean mass is less than this and decides to apply a
           one-tailed statistical test. A random sample of 40 adult male koalas is taken and
-          the sample mean is found to be 11.6 kg. The test is applied at the 1% level of
-          significance, assuming a mean of 12 kg and a standard deviation of 1 kg.
+          the sample mean is found to be 11.6 kg.
         </p>
       </div>
 
       <PartCard
         letter="d"
+        topic="Hypotheses"
         marks={1}
         statement={
           <>
@@ -295,8 +303,17 @@ export default function SpecialistQ6_2023Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          The ranger decides to apply the one-tailed test at the 1% level of significance and
+          assumes the mass of adult male koalas in the forest is normally distributed with a
+          mean of 12 kg and a standard deviation of 1 kg.
+        </p>
+      </div>
+
       <PartCard
         letter="e.i"
+        topic="p-Value"
         marks={1}
         statement={
           <>
@@ -310,11 +327,12 @@ export default function SpecialistQ6_2023Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Conclusion"
         marks={1}
         statement={
           <>
-            Draw a conclusion about the null hypothesis from the <Katex tex="p" /> value found
-            above, giving a reason for your conclusion.
+            Draw a conclusion about the null hypothesis in <b>part d.</b> from the{' '}
+            <Katex tex="p" /> value found above, giving a reason for your conclusion.
           </>
         }
         examinerReport={EXAM_EII}
@@ -324,6 +342,7 @@ export default function SpecialistQ6_2023Exam2() {
 
       <PartCard
         letter="f"
+        topic="Critical Value"
         marks={1}
         statement={
           <>
@@ -337,13 +356,19 @@ export default function SpecialistQ6_2023Exam2() {
         <WorkingTable rows={ROWS_F} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          Suppose that the true mean mass of adult male koalas in the forest is 11.4 kg, and the
+          standard deviation is 1 kg. The level of significance of the test is still 1%.
+        </p>
+      </div>
+
       <PartCard
         letter="g"
+        topic="Type II Error"
         marks={1}
         statement={
           <>
-            Suppose that the true mean mass of adult male koalas in the forest is 11.4 kg, and
-            the standard deviation is 1 kg. The level of significance of the test is still 1%.
             What is the probability, correct to three decimal places, of the ranger making a
             type II error in the statistical test?
           </>
@@ -357,8 +382,10 @@ export default function SpecialistQ6_2023Exam2() {
         <p className="font-semibold text-gray-700 dark:text-gray-300">h. (1 mark)</p>
         <p>
           The frequency curves for the sampling distributions associated with{' '}
-          <Katex tex="H_0" /> and <Katex tex="H_1" /> are shown below. Label the critical
-          sample mean on the diagram and shade the region that represents the type II error.
+          <Katex tex="H_0" /> and <Katex tex="H_1" /> are shown below.
+          <br />
+          Label the critical sample mean on the diagram and shade the region that represents
+          the type II error.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -368,8 +395,9 @@ export default function SpecialistQ6_2023Exam2() {
           />
         </div>
         <p>
-          <strong>VCAA invalidated this question</strong> after identifying an error in the
-          stimulus, and every student was awarded the mark. Had it stood, the answer would
+          <strong>VCAA invalidated this question.</strong> The report: 'Following the
+          identification of an error in the question stimuli, this question was invalidated.'
+          Every student was awarded the mark. Had it stood, the answer would
           have been to mark <Katex tex="11.632" /> from part f. on the axis and shade the area
           under the <Katex tex="H_1" /> curve to the <em>right</em> of it — the 0.071 computed
           in part g.

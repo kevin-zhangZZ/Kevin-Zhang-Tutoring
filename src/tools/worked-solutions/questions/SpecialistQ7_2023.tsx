@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Start at } (-1,\,2)" />,
-    reason: 'The given point. Put a finger on it and follow the strokes.',
+    reason: <>The given point. Put a finger on it and follow the strokes.</>,
   },
   {
     working: <Katex display tex="\text{Left of the } y\text{-axis the slopes are steeply negative}" />,
@@ -23,15 +23,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Near the } y\text{-axis the strokes flatten out}" />,
-    reason: 'The curve levels off — it is passing through its minimum somewhere around x = 0.',
+    reason: <>The curve levels off — it bottoms out just right of the <Katex tex="y" />-axis, at about <Katex tex="y=0.5" />.</>,
   },
   {
     working: <Katex display tex="\text{Right of the } y\text{-axis the slopes turn positive and steepen}" />,
-    reason: 'The curve turns and climbs again.',
+    reason: <>The curve turns and climbs again.</>,
   },
   {
     working: <Katex display tex="\boxed{y \approx 1.0 \text{ when } x = 1.5}" />,
-    reason: <>Option <b>D</b>. A sketch drawn on the field lands just above <Katex tex="y=1" />; the neighbouring options <Katex tex="0.5" /> and <Katex tex="1.5" /> would need the curve to be noticeably flatter or steeper than the strokes allow.</>,
+    reason: <>Matches option <b>D</b>. A sketch drawn on the field reaches <Katex tex="x=1.5" /> just below <Katex tex="y=1" />. (The field is consistent with <Katex tex="\tfrac{dy}{dx}=x-y^2" /> — zero slope along <Katex tex="x=y^2" />, the same above and below the <Katex tex="x" />-axis — and solving that numerically from <Katex tex="(-1,2)" /> gives <Katex tex="y(1.5)\approx0.97" />.)</>,
   },
 ]
 
@@ -50,8 +50,10 @@ export default function SpecialistQ7_2023() {
           <p>
             The direction field for a differential equation is shown above. On a certain
             solution curve of this differential equation, <Katex tex="y=2" /> when{' '}
-            <Katex tex="x=-1" />. The value of <Katex tex="y" /> on the same solution curve
-            when <Katex tex="x=1.5" /> is closest to
+            <Katex tex="x=-1" />.
+            <br />
+            The value of <Katex tex="y" /> on the same solution curve when{' '}
+            <Katex tex="x=1.5" /> is closest to
           </p>
         </div>
       }

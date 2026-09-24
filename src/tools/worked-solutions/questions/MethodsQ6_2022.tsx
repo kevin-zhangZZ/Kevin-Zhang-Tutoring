@@ -5,14 +5,16 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2022-mcq6-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 3, B: 20, C: 47, D: 14, E: 16 },
   answer: 'C',
   comment: (
     <>
-      The inverse of <Katex tex="f:(-\infty,0)\to\mathbb{R},\ f(x)=x^2" /> is{' '}
-      <Katex tex="f^{-1}:(0,\infty)\to\mathbb{R},\ f^{-1}(x)=-\sqrt x" />, not <Katex tex="g(x)=\sqrt x,\ x>0" />.
+      The inverse of <Katex tex="f:(-\infty,0)\to R,\ f(x)=x^2" /> is{' '}
+      <Katex tex="f^{-1}:(0,\infty)\to R,\ f^{-1}(x)=-\sqrt x" />, not <Katex tex="g(x)=\sqrt x,\ x>0" />.
+      <img src={reportGraphSrc} alt="The report's graph: f(x) = x², x < 0, its reflection g(x) = −√x, x > 0, in the dotted line y = x" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
@@ -20,15 +22,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>Check each pair by confirming <Katex tex="f(g(x))=x" /> <i>and</i> that <Katex tex="g" /> actually reverses <Katex tex="f" />'s own restricted domain — not just any square-root-style inverse.</>,
-    reason: 'The trap: a function can have the "right shape" for an inverse without matching the original domain restriction.',
+    reason: <>The trap: a function can have the "right shape" for an inverse without matching the original domain restriction.</>,
   },
   {
     working: <Katex display tex="\text{A: } f(x)=5x+3,\ g(x)=\tfrac{x-3}{5} \;\implies\; f(g(x))=5\cdot\tfrac{x-3}{5}+3=x \ \checkmark" />,
-    reason: 'Genuine inverse pair.',
+    reason: <>Genuine inverse pair.</>,
   },
   {
     working: <Katex display tex="\text{B: } f(x)=\tfrac23x+2,\ g(x)=\tfrac32x-3 \;\implies\; f(g(x))=\tfrac23\big(\tfrac32x-3\big)+2=x \ \checkmark" />,
-    reason: 'Genuine inverse pair.',
+    reason: <>Genuine inverse pair.</>,
   },
   {
     working: <Katex display tex="\text{C: } f(x)=x^2,\ x<0 \qquad g(x)=\sqrt x,\ x>0" />,
@@ -40,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g(x)=\sqrt x \neq f^{-1}(x)}" />,
-    reason: <>This pair is <b>not</b> genuine inverses — matches option <b>C</b>. (D and E can be checked the same way and both hold up: D is self-inverse, <Katex tex="f(g(x))=1/(1/x)=x" />; E gives <Katex tex="f(g(x))=\log_e(e^{x-1})+1=x" />.)</>,
+    reason: <>This pair is <b>not</b> genuine inverses. Matches option <b>C</b>. (D and E can be checked the same way and both hold up: D is self-inverse, <Katex tex="f(g(x))=1/(1/x)=x" />; E gives <Katex tex="f(g(x))=\log_e(e^{x-1})+1=x" />.)</>,
   },
 ]
 
@@ -49,11 +51,11 @@ export default function MethodsQ6_2022() {
     <MCQShell
       question={<p>Which of the pairs of functions below are <b>not</b> inverse functions?</p>}
       options={[
-        { letter: 'A', content: <><Katex tex="f(x)=5x+3,\ x\in\mathbb{R}" /><br /><Katex tex="g(x)=\dfrac{x-3}{5},\ x\in\mathbb{R}" /></> },
-        { letter: 'B', content: <><Katex tex="f(x)=\tfrac23x+2,\ x\in\mathbb{R}" /><br /><Katex tex="g(x)=\tfrac32x-3,\ x\in\mathbb{R}" /></> },
+        { letter: 'A', content: <><Katex tex="f(x)=5x+3,\ x\in R" /><br /><Katex tex="g(x)=\dfrac{x-3}{5},\ x\in R" /></> },
+        { letter: 'B', content: <><Katex tex="f(x)=\tfrac23x+2,\ x\in R" /><br /><Katex tex="g(x)=\tfrac32x-3,\ x\in R" /></> },
         { letter: 'C', content: <><Katex tex="f(x)=x^2,\ x<0" /><br /><Katex tex="g(x)=\sqrt x,\ x>0" /></>, isAnswer: true },
         { letter: 'D', content: <><Katex tex="f(x)=\dfrac1x,\ x\neq0" /><br /><Katex tex="g(x)=\dfrac1x,\ x\neq0" /></> },
-        { letter: 'E', content: <><Katex tex="f(x)=\log_e(x)+1,\ x>0" /><br /><Katex tex="g(x)=e^{x-1},\ x\in\mathbb{R}" /></> },
+        { letter: 'E', content: <><Katex tex="f(x)=\log_e(x)+1,\ x>0" /><br /><Katex tex="g(x)=e^{x-1},\ x\in R" /></> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g(2)-g(0) = \int_0^2 g'(x)\,dx" />,
-    reason: 'The fundamental theorem of calculus — no need to find g itself.',
+    reason: <>The fundamental theorem of calculus — no need to find g itself.</>,
   },
   {
     working: <Katex display tex="\int_0^2\left(x^3-x\right)dx = \left[\frac{x^4}{4}-\frac{x^2}{2}\right]_0^2" />,
-    reason: 'Antidifferentiating term by term.',
+    reason: <>Antidifferentiating term by term.</>,
   },
   {
     working: <Katex display tex="= \left(4-2\right)-0 = 2" />,
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g(2) = g(0)+2 = 5+2 = 7}" />,
-    reason: <>Option <b>D</b>. The alternative — antidifferentiate to <Katex tex="g(x)=\tfrac{x^4}{4}-\tfrac{x^2}{2}+c" />, use <Katex tex="g(0)=5" /> to get <Katex tex="c=5" />, then substitute — gives the same thing.</>,
+    reason: <>Matches option <b>D</b>. The alternative — antidifferentiate to <Katex tex="g(x)=\tfrac{x^4}{4}-\tfrac{x^2}{2}+c" />, use <Katex tex="g(0)=5" /> to get <Katex tex="c=5" />, then substitute — gives the same thing.</>,
   },
 ]
 
@@ -35,8 +35,10 @@ export default function MethodsQ2_2024() {
     <MCQShell
       question={
         <p>
-          The function <Katex tex="g:\mathbb{R}\to\mathbb{R}" /> has the derivative{' '}
-          <Katex tex="g'(x)=x^3-x" />. Given that <Katex tex="g(0)=5" />, the value of{' '}
+          A function <Katex tex="g:R\to R" /> has the derivative{' '}
+          <Katex tex="g'(x)=x^3-x" />.
+          <br />
+          Given that <Katex tex="g(0)=5" />, the value of{' '}
           <Katex tex="g(2)" /> is
         </p>
       }

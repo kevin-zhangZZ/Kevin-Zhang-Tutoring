@@ -31,12 +31,20 @@ const ROWS: WorkingRow[] = [
     reason: <>Or integrate <Katex tex="|y|" /> straight across.</>,
   },
   {
+    working: <Katex display tex="\int x(x+2)(x-4)\,dx = \int\left(x^3-2x^2-8x\right)dx = \tfrac{x^4}{4}-\tfrac{2x^3}{3}-4x^2" />,
+    reason: <>By hand it is only a cubic: expand, then antidifferentiate term by term. Call this <Katex tex="F(x)" />; <Katex tex="F(0)=0" />, <Katex tex="F(-2)=4+\tfrac{16}3-16=-\tfrac{20}3" /> and <Katex tex="F(4)=64-\tfrac{128}3-64=-\tfrac{128}3" />.</>,
+  },
+  {
+    working: <Katex display tex="A = \left[0-\left(-\tfrac{20}{3}\right)\right] - \left[-\tfrac{128}{3}-0\right]" />,
+    reason: <>Each piece is <Katex tex="F(b)-F(a)" />; the second is negative, and the minus sign in front turns it positive.</>,
+  },
+  {
     working: <Katex display tex="= \tfrac{20}{3} + \tfrac{128}{3}" />,
     reason: <>The right-hand piece is much bigger — it is wider and dips further.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac{148}{3}}" />,
-    reason: <>Option D. Option A, <Katex tex="\tfrac{128}3" />, is the right-hand piece alone; option B, <Katex tex="\tfrac{20}3" />, is the left piece alone; the signed integral across <Katex tex="[-2,4]" /> gives <Katex tex="-36" />, whose magnitude is option E.</>,
+    reason: <>Matches option <b>D</b>. Option A, <Katex tex="\tfrac{128}3" />, is the right-hand piece alone; option B, <Katex tex="\tfrac{20}3" />, is the left piece alone; the signed integral across <Katex tex="[-2,4]" /> gives <Katex tex="-36" />, whose magnitude is option E.</>,
   },
 ]
 

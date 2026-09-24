@@ -1,5 +1,4 @@
-// 2018 Specialist Mathematics — Exam 2, MCQ 5. VCAA examination report: 41% correct —
-// the fifth-hardest MCQ in the 2017-2018 Specialist Exam 2 papers.
+// 2018 Specialist Mathematics — Exam 2, MCQ 5. VCAA examination report: 41% correct.
 // If z + 1/z is real, what must be true of z? A complex-numbers algebra question.
 // Question text transcribed from the original paper; solution is original.
 
@@ -25,19 +24,20 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="{}+ i\left(b-\frac{b}{a^2+b^2}\right)" />
       </>
     ),
-    reason: 'Add real and imaginary parts separately.',
+    reason: <>Add real and imaginary parts separately.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="z+\frac1z \in \mathbb{R}" />
+        <Katex display tex="z+\frac1z \in R" />
         <Katex display tex="\implies\; b-\frac{b}{a^2+b^2}=0" />
       </>
     ),
-    reason: 'The imaginary part of a real number must be exactly zero.',
+    reason: <>The imaginary part of a real number must be exactly zero.</>,
   },
   {
     working: <Katex display tex="b\left(1-\frac{1}{a^2+b^2}\right)=0" />,
+    reason: <>Taking out the common factor <Katex tex="b" />.</>,
   },
   {
     working: (
@@ -47,7 +47,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; a^2+b^2=1" />
       </>
     ),
-    reason: <>Given <Katex tex="b\in\mathbb{R}\setminus\{0\}" />, so the other factor must vanish instead.</>,
+    reason: <>Given <Katex tex="b\in R\setminus\{0\}" />, so the other factor must vanish instead.</>,
   },
   {
     working: <Katex display tex="\boxed{|z| = \sqrt{a^2+b^2} = 1}" />,
@@ -61,10 +61,10 @@ export default function SpecialistQ5_2018() {
       question={
         <>
           <p className="mb-2">
-            Let <Katex tex="z=a+bi" />, where <Katex tex="a,b\in\mathbb{R}\setminus\{0\}" />.
+            Let <Katex tex="z=a+bi" />, where <Katex tex="a,b\in R\setminus\{0\}" />.
           </p>
           <p>
-            If <Katex tex="z+\dfrac{1}{z}\in\mathbb{R}" />, which one of the following must be <b>true</b>?
+            If <Katex tex="z+\dfrac{1}{z}\in R" />, which one of the following must be <b>true</b>?
           </p>
         </>
       }

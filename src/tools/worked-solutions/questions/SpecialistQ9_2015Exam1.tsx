@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [14, 16, 70],
@@ -12,9 +12,9 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Most students correctly used the product and chain
-      rules. A number of sign errors appeared on the left-hand side, while some left the
-      right-hand side as <Katex tex="9" /> after differentiating. Algebraic simplification
-      errors were common.
+      rules. A number of sign errors appeared on the left-hand scale, while some left the
+      right-hand side as 9 after differentiating the left-hand scale. Algebraic
+      simplification errors were common.
     </>
   ),
 }
@@ -38,7 +38,9 @@ const EXAM_C: SAExaminerStats = {
       Most students had little idea of how to proceed with this question. Students were
       expected to apply <Katex tex="\tan(A-B)" /> or use a vector method, but other methods
       were possible. Some correctly applied <Katex tex="\tan(A-B)" /> but made simplification
-      errors. Some found the intersection point of the tangents but were unable to progress
+      errors. There were also some poor attempts to use a vector method. In attempting to
+      convert to vectors, sometimes equations such as <Katex tex="y=mx+c" /> became{' '}
+      <Katex tex="m\underset{\sim}{i}+c\underset{\sim}{j}" />. Some found the intersection point of the tangents but were unable to progress
       from there. A small number attempted to use the cosine rule, with a few of these being
       successful.
     </>
@@ -130,16 +132,12 @@ export default function SpecialistQ9_2015Exam1() {
         <p>
           Consider the curve represented by <Katex tex="x^2-xy+\tfrac32y^2=9" />.
         </p>
-        <p>
-          Part c. is the one only 16% of students got: the angle between two lines is the
-          difference of the angles each makes with the <Katex tex="x" />-axis, and{' '}
-          <Katex tex="\tan(A-B)" /> turns two gradients into that angle without ever
-          evaluating an inverse tangent.
-        </p>
+
       </div>
 
       <PartCard
         letter="a"
+        topic="Implicit Differentiation"
         marks={2}
         statement={<>Find the gradient of the curve at any point <Katex tex="(x,y)" />.</>}
         examinerReport={EXAM_A}
@@ -149,6 +147,7 @@ export default function SpecialistQ9_2015Exam1() {
 
       <PartCard
         letter="b"
+        topic="Tangent Lines"
         marks={2}
         statement={
           <>
@@ -165,6 +164,7 @@ export default function SpecialistQ9_2015Exam1() {
 
       <PartCard
         letter="c"
+        topic="Angle Between Tangents"
         marks={2}
         statement={
           <>
@@ -176,6 +176,14 @@ export default function SpecialistQ9_2015Exam1() {
         }
         examinerReport={EXAM_C}
       >
+        <Background>
+          <p>
+            Only 16% of students scored full marks here. The angle between two lines is the
+            difference of the angles each makes with the <Katex tex="x" />-axis, and{' '}
+            <Katex tex="\tan(A-B)" /> turns two gradients into that angle without ever
+            evaluating an inverse tangent.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
     </div>

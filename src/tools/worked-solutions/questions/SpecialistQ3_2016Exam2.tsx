@@ -1,5 +1,6 @@
 // 2016 Specialist Mathematics — Exam 2, Question 3 (11 marks).
-// Two-tank mixing problem solved by a first-order linear differential equation.
+// Two-tank mixing problem: a separable differential equation, a concentration, a derived DE,
+// verifying a given solution, and solving for a concentration.
 // Question text transcribed from the original paper; worked solutions below are original.
 
 import Katex from '../../../components/Katex'
@@ -8,8 +9,19 @@ import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '.
 const EXAMINER_A: SAExaminerStats = {
   marks: [29, 16, 13, 42],
   average: 1.7,
-  comment:
-    'A range of errors prevented students from achieving full marks for this question. There were many instances where students did not separate variables correctly. Some students did not write down or evaluate the constant. Errors with constants were common among students who added a constant to both sides of the expression before attempting to find its value. A small number of students used definite integrals from 0 to t and 20 to x on the sides.',
+  comment: (
+    <>
+      A range of errors prevented students from achieving full marks for this question. There were many
+      instances where students did not separate variables correctly, offering attempts such as{' '}
+      <Katex tex="\int(20+t)\,dt=\int-x\,dx\Rightarrow20t+\dfrac{t^2}{2}=-\dfrac{x^2}{2}+c" />. Some students did
+      not write down or evaluate the constant. Errors with constants were common among students who added a
+      constant to both sides of the expression before attempting to find its value.
+      <br />
+      <br />
+      A small number of students used definite integrals from 0 to <Katex tex="t" /> and 20 to{' '}
+      <Katex tex="x" /> on the sides.
+    </>
+  ),
 }
 
 const EXAMINER_B: SAExaminerStats = {
@@ -32,7 +44,7 @@ const EXAMINER_C: SAExaminerStats = {
       This 'show that' question required students to obtain the expression{' '}
       <Katex tex="\dfrac{dy}{dt}=\dfrac13-\dfrac{y}{10+t}" /> by logical steps. Some students incorrectly
       started with the given expression with no explanation of its origin. Students frequently did not seem
-      to realise that work done for part (b) was useful here.
+      to realise that work done for Question 3b. was useful here.
     </>
   ),
 }
@@ -74,15 +86,15 @@ const VIDEO = {
   e: 'https://www.dropbox.com/scl/fo/nj8fctdfyn1hpwbiqjktw/AFbovH14n6AotWtF4SAyMXQ/SM%202016/Converted/SAQ3/SAQ3e-h264.mp4?rlkey=9vak8i9afmguex76hqb71mfv8&raw=1',
 }
 
-export default function SpecialistSAQ3_2016() {
+export default function SpecialistQ3_2016Exam2() {
   const rowsA: WorkingRow[] = [
     {
       working: <Katex display tex="\frac{dx}{x} = -\frac{dt}{20+t}" />,
-      reason: 'Separate the variables.',
+      reason: <>Separate the variables: every <Katex tex="x" /> on one side, every <Katex tex="t" /> on the other.</>,
     },
     {
-      working: <Katex display tex="\ln|x| = -\ln|20+t| + c" />,
-      reason: 'Integrate both sides.',
+      working: <Katex display tex="\log_e|x| = -\log_e|20+t| + c" />,
+      reason: <>Integrate both sides. One constant is enough — the report notes errors from adding a constant to each side.</>,
     },
     {
       working: <Katex display tex="x \ge 0 \ (\text{a mass}), \quad 20+t > 0 \text{ for } t \ge 0" />,
@@ -104,32 +116,33 @@ export default function SpecialistSAQ3_2016() {
     },
     {
       working: <Katex display tex="\boxed{x = \dfrac{400}{20+t}}" />,
+      reason: <>Check: <Katex tex="x(0)=20" /> ✓, and the salt decreases towards <Katex tex="0" /> as pure water keeps flowing in, as it should.</>,
     },
   ]
 
   const rowsB: WorkingRow[] = [
     {
       working: <Katex display tex="\begin{aligned} \text{volume}(t) &= 100 + 10t \\ &= 10(10+t)\ \text{L} \end{aligned}" />,
-      reason: 'Tank 2 gains 20 L/min and loses 10 L/min, so its volume grows at 10 L/min.',
+      reason: <>Tank 2 gains 20 L/min and loses 10 L/min, so its volume grows at 10 L/min from 100 L.</>,
     },
     {
       working: <Katex display tex="\boxed{\text{concentration} = \dfrac{y}{10(10+t)}\ \text{kg/L}}" />,
-      reason: 'Concentration is salt divided by volume.',
+      reason: <>Concentration is salt divided by volume — an expression for the concentration, not for <Katex tex="\tfrac{dy}{dt}" />, which the report says many students gave instead. VCAA writes it as <Katex tex="\tfrac{y}{100+10t}" />.</>,
     },
   ]
 
   const rowsC: WorkingRow[] = [
     {
       working: <Katex display tex="\begin{aligned} \text{rate in} &= \frac{1}{60}\times 20 \\ &= \frac{1}{3}\ \text{kg/min} \end{aligned}" />,
-      reason: 'Salt flows in at the fixed inflow concentration times the inflow rate.',
+      reason: <>Salt flows in at the fixed inflow concentration times the inflow rate.</>,
     },
     {
       working: <Katex display tex="\begin{aligned} \text{rate out} &= \frac{y}{10(10+t)}\times 10 \\ &= \frac{y}{10+t} \end{aligned}" />,
-      reason: "Salt flows out at the tank's own concentration (part b) times the outflow rate.",
+      reason: <>Salt flows out at the tank's own concentration (part b.) times the outflow rate.</>,
     },
     {
       working: <Katex display tex="\boxed{\dfrac{dy}{dt} + \dfrac{y}{10+t} = \dfrac{1}{3}}" />,
-      reason: <><Katex tex="\dfrac{dy}{dt}" /> is rate in minus rate out.</>,
+      reason: <><Katex tex="\dfrac{dy}{dt}" /> is rate in minus rate out, <Katex tex="\tfrac13-\tfrac{y}{10+t}" />; moving the second term across gives the given equation, as required.</>,
     },
   ]
 
@@ -147,14 +160,14 @@ export default function SpecialistSAQ3_2016() {
       working: (
         <Katex
           display
-          tex="\begin{aligned} \frac{dy}{dt} + \frac{y}{10+t} &= \frac{t^2+20t-700}{6(10+t)^2} + \frac{t^2+20t+900}{6(10+t)^2} \\ &= \frac{2(t+10)^2}{6(10+t)^2} \\ &= \frac{1}{3} \end{aligned}"
+          tex="\begin{aligned} \frac{dy}{dt} + \frac{y}{10+t} &= \frac{t^2+20t-700}{6(10+t)^2} + \frac{t^2+20t+900}{6(10+t)^2} \\ &= \frac{2t^2+40t+200}{6(10+t)^2} \\ &= \frac{2(t+10)^2}{6(10+t)^2} \\ &= \frac{1}{3} \end{aligned}"
         />
       ),
-      reason: "Matches the right side of part (c)'s equation — verified.",
+      reason: <>The left side, with every step shown — the report notes that it was often unclear how the left side simplified to the right. It equals <Katex tex="\tfrac13" />, the right side, as required.</>,
     },
     {
       working: <Katex display tex="\begin{aligned} y(0) &= \frac{900}{6(10)} \\ &= \frac{900}{60} \\ &= 15 \quad\checkmark \end{aligned}" />,
-      reason: 'Initial condition — the second tank starts with 15 kg.',
+      reason: <>The initial condition: the second tank starts with 15 kg, as required. The report says this check was often left out.</>,
     },
   ]
 
@@ -187,6 +200,7 @@ export default function SpecialistSAQ3_2016() {
           <Katex display tex="\implies\; t = u - 10 \approx \boxed{3.05\ \text{minutes}}" />
         </>
       ),
+      reason: <>Taking the positive root, since <Katex tex="u=10+t>0" />. Sensible: the concentration starts at <Katex tex="\tfrac{15}{100}=0.15" /> and falls towards the inflow's <Katex tex="\tfrac1{60}\approx0.017" />, so <Katex tex="0.095" /> is reached after a few minutes. Solving <Katex tex="\tfrac{dy}{dt}=0.095" /> instead is the report's common error.</>,
     },
   ]
 
@@ -208,7 +222,7 @@ export default function SpecialistSAQ3_2016() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={3} videoSrc={VIDEO.a} statement="Solve this differential equation to find x in terms of t." examinerReport={EXAMINER_A}>
+      <PartCard letter="a" topic="Separable DE" marks={3} videoSrc={VIDEO.a} statement="Solve this differential equation to find x in terms of t." examinerReport={EXAMINER_A}>
         <WorkingTable rows={rowsA} />
       </PartCard>
 
@@ -223,6 +237,7 @@ export default function SpecialistSAQ3_2016() {
 
       <PartCard
         letter="b"
+        topic="Concentration"
         marks={1}
         videoSrc={VIDEO.b}
         statement="If y kilograms is the amount of salt in the tank after t minutes, write down an expression for the concentration, in kg/L, of salt in the second tank at time t."
@@ -233,6 +248,7 @@ export default function SpecialistSAQ3_2016() {
 
       <PartCard
         letter="c"
+        topic="Mixing Problem"
         marks={2}
         videoSrc={VIDEO.c}
         statement={
@@ -248,6 +264,7 @@ export default function SpecialistSAQ3_2016() {
 
       <PartCard
         letter="d"
+        topic="Verify Solution"
         marks={3}
         videoSrc={VIDEO.d}
         statement={
@@ -264,6 +281,7 @@ export default function SpecialistSAQ3_2016() {
 
       <PartCard
         letter="e"
+        topic="Solve Equation"
         marks={2}
         videoSrc={VIDEO.e}
         statement="Find when the concentration of salt in the second tank reaches 0.095 kg/L. Give your answer in minutes, correct to two decimal places."

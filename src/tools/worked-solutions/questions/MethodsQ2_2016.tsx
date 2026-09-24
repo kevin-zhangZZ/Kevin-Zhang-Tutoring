@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4 \text{ and } [-1,3]}" />,
-    reason: <>Option B. Check: the midpoint of the range, <Katex tex="1" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude.</>,
+    reason: <>Matches option <b>B</b>. Options A and E forget the shift of <Katex tex="1" /> up. Check: the midpoint of the range, <Katex tex="1" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude.</>,
   },
 ]
 

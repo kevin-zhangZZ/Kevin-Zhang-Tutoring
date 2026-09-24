@@ -1,9 +1,10 @@
 // 2024 Specialist Mathematics — Exam 2, Section B Question 4 (11 marks). A yacht on a
 // hyperbolic path: Cartesian form, sketch, minimum speed, arc length, then the closest
 // approach of a drone moving in three dimensions. Question text transcribed from the
-// original paper (2024 papers are image-only, so read from rendered pages); the path is our
-// own drawing of the answer. Answers checked with sympy/scipy and against the VCAA
-// examination report. Solution is original.
+// original paper (2024 papers are image-only, so read from rendered pages); the part b.
+// path is our own drawing of the answer on VCAA's exact grid (x from −7.9 to 7.9, gridlines
+// every 1; y from −4.5 to 4.5, gridlines every 0.5). Answers checked with sympy/scipy and
+// against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
@@ -15,8 +16,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      A "show that" question requires logical steps set out to indicate how the solution
-      could be found. In this case an appropriate trigonometric identity needed to be used.
+      A ‘show that’ question requires logical steps set out to indicate how the solution could
+      be found. In this case an appropriate trigonometric identity like{' '}
+      <Katex tex="1+\tan^2(t)=\sec^2(t)" /> needed to be used.
     </>
   ),
 }
@@ -26,10 +28,19 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Students often did not draw this graph well, and it was often not symmetrical about the{' '}
-      <Katex tex="x" />-axis. Negative signs were often left off the coordinates of the
-      endpoints. The direction of the path of the yacht was often left out or in the wrong
-      direction.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Students often did not draw this graph well, and it was often not symmetrical over the{' '}
+          <Katex tex="x" />-axis.
+        </li>
+        <li>
+          Negative signs were often left off the coordinates of the end points.
+        </li>
+        <li>
+          The direction of the path of the yacht was often left out or in the wrong
+          direction.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -39,8 +50,15 @@ const EXAM_CI: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Many students did not answer in terms of <Katex tex="\sec(t)" />. Several students did
-      not find the square of the speed, but left the answer as a velocity or speed.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Many students did not answer in terms of <Katex tex="\sec(t)" />.
+        </li>
+        <li>
+          Several students did not find the square of the speed, but left the answer as a
+          velocity or speed.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -103,34 +121,34 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x = 3\sec(t), \qquad y = 2\tan(t)" />,
-    reason: 'Reading the two components off the position vector.',
+    reason: <>Reading the two components off the position vector.</>,
   },
   {
     working: <Katex display tex="\frac{x}{3} = \sec(t), \qquad \frac{y}{2} = \tan(t)" />,
-    reason: 'Isolating the trigonometric functions, ready for an identity.',
+    reason: <>Isolating the trigonometric functions, ready for an identity.</>,
   },
   {
     working: <Katex display tex="\sec^2(t)-\tan^2(t) = 1" />,
-    reason: <>The Pythagorean identity in its secant form — dividing <Katex tex="\cos^2+\sin^2=1" /> through by <Katex tex="\cos^2" />. Naming it explicitly is what the "show that" asks for.</>,
+    reason: <>The Pythagorean identity in its secant form — dividing <Katex tex="\cos^2+\sin^2=1" /> through by <Katex tex="\cos^2" />. Naming it explicitly is what the "show that" asks for — the report says an appropriate trigonometric identity needed to be used.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{x^2}{9}-\frac{y^2}{4} = 1}" />,
-    reason: 'Substituting. A hyperbola with vertices at (±3, 0) — though the yacht only traverses one branch.',
+    reason: <>Substituting. A hyperbola with vertices at (±3, 0) — though the yacht only traverses one branch. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="t = \frac{2\pi}{3}: \ \sec = \frac{1}{-\tfrac12} = -2, \ \tan = -\sqrt3 \implies \left(-6,\,-2\sqrt3\right)" />,
-    reason: <>The starting buoy. Both coordinates are negative — dropping those signs was a listed error.</>,
+    reason: <>The starting buoy. Both coordinates are negative — the report notes negative signs were often left off the coordinates of the end points.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ \sec = -1, \ \tan = 0 \implies (-3,\,0)" />,
-    reason: 'The vertex of the left branch, reached halfway through.',
+    reason: <>The vertex of the left branch, reached halfway through.</>,
   },
   {
     working: <Katex display tex="t = \frac{4\pi}{3}: \ \sec = -2, \ \tan = \sqrt3 \implies \left(-6,\,2\sqrt3\right)" />,
-    reason: 'The finishing buoy — the mirror image of the start.',
+    reason: <>The finishing buoy — the mirror image of the start.</>,
   },
   {
     working: <Katex display tex="\sec(t)<0 \text{ throughout} \implies x\le-3 \text{: the left branch only}" />,
@@ -141,8 +159,16 @@ const ROWS_B: WorkingRow[] = [
     reason: <><Katex tex="\tan" /> increases across the interval, so the direction arrow points up around the curve.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{see the path below, symmetric about the } x\text{-axis}}" />,
-    reason: 'Endpoints labelled and the direction of motion shown, as required.',
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={pathSrc}
+          alt="The answer on VCAA's grid (x from about −7.9 to 7.9, y from about −4.5 to 4.5): the left branch of a hyperbola, symmetric about the x-axis, from the labelled endpoint (−6, −2√3) up through (−3, 0) to the labelled endpoint (−6, 2√3), with arrows showing upward motion"
+          className="w-full max-w-[520px]"
+        />
+      </div>
+    ),
+    reason: <>Symmetric about the <Katex tex="x" />-axis, with the endpoints labelled and the direction of motion shown, as the question asks.</>,
   },
 ]
 
@@ -153,7 +179,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{v}\right|^2 = 9\sec^2(t)\tan^2(t)+4\sec^4(t)" />,
-    reason: <>The <em>square</em> of the speed — not the speed itself, which is what the question asks for and what many students missed.</>,
+    reason: <>The <em>square</em> of the speed, which is what the question asks for. The report notes several students left the answer as a velocity or speed.</>,
   },
   {
     working: <Katex display tex="\tan^2(t) = \sec^2(t)-1" />,
@@ -180,40 +206,40 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \pi \ \text{minutes}}" />,
-    reason: <>The first derivative test confirms a minimum: decreasing then increasing. An exact value was required — <Katex tex="3.14" /> would not do.</>,
+    reason: <>The first derivative test confirms a minimum: decreasing then increasing. Give the exact value — the report notes some students did not answer in exact form.</>,
   },
 ]
 
 const ROWS_CIII: WorkingRow[] = [
   {
     working: <Katex display tex="t = \pi \implies \sec(\pi) = -1 \implies \sec^2 = 1, \ \sec^4 = 1" />,
-    reason: 'Both even powers come out as 1.',
+    reason: <>Both even powers come out as 1.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{v}\right|^2 = 13(1)-9(1) = 4" />,
-    reason: 'This is the square of the speed, not the speed.',
+    reason: <>This is the square of the speed, not the speed.</>,
   },
   {
     working: <Katex display tex="\boxed{\left|\underset{\sim}{v}\right| = \sqrt4 = 2 \ \text{m/min}}" />,
-    reason: 'Forgetting the square root — answering 4 — was the error over half the cohort made.',
+    reason: <>The report's common error was forgetting to take the square root and answering 4.</>,
   },
 ]
 
 const ROWS_CIV: WorkingRow[] = [
   {
     working: <Katex display tex="t = \pi: \quad x = 3\sec(\pi) = -3, \qquad y = 2\tan(\pi) = 0" />,
-    reason: 'Substituting the time from part c.ii. into the original position vector.',
+    reason: <>Substituting the time from part c.ii. into the original position vector.</>,
   },
   {
     working: <Katex display tex="\boxed{(-3,\,0)}" />,
-    reason: <>The vertex of the branch — the point closest to the origin, where the yacht is turning most sharply and so moving most slowly. Reversing the coordinates or dropping the minus sign were the listed errors.</>,
+    reason: <>The vertex of the branch, the point of the path closest to the origin. The report notes errors such as reversing the coordinates or forgetting the negative sign.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="\text{distance} = \int_{a}^{b}\left|\underset{\sim}{v}(t)\right|\,dt" />,
-    reason: 'Arc length is the integral of the speed.',
+    reason: <>Arc length is the integral of the speed.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_{2\pi/3}^{4\pi/3}\sqrt{9\sec^2(t)\tan^2(t)+4\sec^4(t)}\,\,dt}" />,
@@ -267,7 +293,7 @@ export default function SpecialistQ4_2024Exam2() {
         <div className="py-1">
           <Katex
             display
-            tex="\underset{\sim}{r_Y}(t) = 3\sec(t)\underset{\sim}{i}+2\tan(t)\underset{\sim}{j}, \quad \frac{2\pi}{3}\le t\le\frac{4\pi}{3}"
+            tex="\underset{\sim}{r_Y}(t) = 3\sec(t)\underset{\sim}{i}+2\tan(t)\underset{\sim}{j}, \text{ where } \frac{2\pi}{3}\le t\le\frac{4\pi}{3}."
           />
         </div>
         <p>
@@ -287,14 +313,16 @@ export default function SpecialistQ4_2024Exam2() {
           <p>
             Part c. is a chain of four one-mark parts, and each asks for a different object:
             the <em>square</em> of the speed, the <em>time</em>, the <em>speed</em>, then the{' '}
-            <em>position</em>. The commonest losses were answering the previous part's
-            question — leaving 4 instead of 2 in c.iii. being the clearest case.
+            <em>position</em>. The report notes students leaving the speed squared, 4, in
+            place of the speed in c.iii., and a velocity or speed in place of its square in
+            c.i.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Cartesian Equation"
         marks={1}
         statement={
           <>
@@ -309,27 +337,22 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="b"
+        topic="Sketch Path"
         marks={2}
         statement={
           <>
-            Sketch the path of the yacht. Label the endpoints with their coordinates and show
-            the direction of motion.
+            Sketch the path of the yacht on the axes below. Label the endpoints with their
+            coordinates and show the direction of motion.
           </>
         }
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={pathSrc}
-            alt="The left branch of a hyperbola from the labelled endpoint (−6, −2√3) up through the vertex (−3, 0) to the labelled endpoint (−6, 2√3), with arrows showing upward motion"
-            className="w-full max-w-[520px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="c.i"
+        topic="Speed"
         marks={1}
         statement={
           <>
@@ -344,11 +367,13 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Minimum Speed"
         marks={1}
         statement={
           <>
-            Find the time, in minutes, when the minimum speed occurs. You do not need to
-            justify that this speed is a minimum.
+            Find the time, in minutes, when the minimum speed occurs.
+            <br />
+            You do not need to justify that this speed is a minimum.
           </>
         }
         examinerReport={EXAM_CII}
@@ -358,6 +383,7 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="c.iii"
+        topic="Minimum Speed"
         marks={1}
         statement={<>State the minimum speed of the yacht in metres per minute.</>}
         examinerReport={EXAM_CIII}
@@ -367,6 +393,7 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="c.iv"
+        topic="Position"
         marks={1}
         statement={<>State the coordinates of the yacht when the minimum speed occurs.</>}
         examinerReport={EXAM_CIV}
@@ -376,6 +403,7 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Distance Travelled"
         marks={1}
         statement={
           <>
@@ -392,11 +420,13 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Distance Travelled"
         marks={1}
         statement={
           <>
-            Find the distance travelled by the yacht over this time interval. Give your answer
-            in metres correct to one decimal place.
+            Find the distance travelled by the yacht over this time interval.
+            <br />
+            Give your answer in metres correct to one decimal place.
           </>
         }
         examinerReport={EXAM_DII}
@@ -406,16 +436,24 @@ export default function SpecialistQ4_2024Exam2() {
 
       <PartCard
         letter="e"
+        topic="Closest Approach"
         marks={2}
         statement={
           <>
-            The position vector of a drone videoing the yacht, relative to the same origin{' '}
-            <Katex tex="O" />, is given by{' '}
+            The position vector of a drone videoing the yacht, relative to the same origin as
+            the yacht, <Katex tex="O" />, is given by{' '}
             <Katex tex="\underset{\sim}{r_D}(t) = (2-3t)\underset{\sim}{i}+(4t-1)\underset{\sim}{j}+(6-t)\underset{\sim}{k}" />,
-            where <Katex tex="0\le t\le5" />. Displacement components are measured in metres,
-            and time <Katex tex="t" /> is measured in minutes. What is the shortest distance
-            from the drone to the yacht, as the yacht sails along its path? Give your answer
-            in metres, correct to one decimal place.
+            where <Katex tex="0\le t\le5" />.
+            <br />
+            Displacement components are measured in metres, and time <Katex tex="t" /> is
+            measured in minutes.
+            <br />
+            What is the shortest distance from the drone to the yacht, as the yacht sails
+            along the path given by{' '}
+            <Katex tex="\underset{\sim}{r_Y}(t) = 3\sec(t)\underset{\sim}{i}+2\tan(t)\underset{\sim}{j}" />,
+            where <Katex tex="\dfrac{2\pi}{3}\le t\le\dfrac{4\pi}{3}" />?
+            <br />
+            Give your answer in metres, correct to one decimal place.
           </>
         }
         examinerReport={EXAM_E}

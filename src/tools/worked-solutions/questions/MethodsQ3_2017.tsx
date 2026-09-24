@@ -23,11 +23,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{different}) = \frac{15}{56}+\frac{15}{56} = \frac{30}{56}" />,
-    reason: <>The two orders are mutually exclusive, so add. Option D is what you get if you forget the second order, and option E is the same slip left unsimplified.</>,
+    reason: <>The two orders are mutually exclusive, so add. Option D is what you get if you forget the second order; option E is greater than 1, so it cannot be a probability.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{15}{28}}" />,
-    reason: <>Dividing top and bottom by <Katex tex="2" />. About <Katex tex="0.54" /> — a bit over half, which is sensible for a fairly even split of colours.</>,
+    reason: <>Dividing top and bottom by <Katex tex="2" />. Matches option <b>C</b>. About <Katex tex="0.54" /> — a bit over half, which is sensible for a fairly even split of colours.</>,
   },
 ]
 
@@ -40,7 +40,7 @@ export default function MethodsQ3_2017() {
             A box contains five red marbles and three yellow marbles. Two marbles are drawn at
             random from the box without replacement.
           </p>
-          <p>The probability that the marbles are of different colours is</p>
+          <p>The probability that the marbles are of <b>different</b> colours is</p>
         </>
       }
       options={[

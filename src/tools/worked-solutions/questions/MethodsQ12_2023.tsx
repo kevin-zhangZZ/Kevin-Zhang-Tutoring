@@ -1,4 +1,4 @@
-// 2023 Mathematical Methods — Exam 2, MCQ 12. VCAA examination report: 22% correct. Maximum
+// 2023 Mathematical Methods — Exam 2, MCQ 12. VCAA examination report: 29% correct. Maximum
 // possible mean of a discrete random variable, given a probability mass function in terms of
 // an unknown k. Question text transcribed from the original paper. Solution is original.
 
@@ -12,18 +12,36 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      From observation, <Katex tex="k\geq0" /> and the maximum will occur when <Katex tex="k=0" />,{' '}
-      <Katex tex="E(X)=2" />.
+      From observation, <Katex tex="k\geq0" /> and the maximum will occur when{' '}
+      <Katex tex="k=0" />, <Katex tex="E(X)=2" />.
+      <br />
+      <Katex tex="E(X)=-k^2+k-2k^2-8k+2" />
+      <br />
+      <Katex tex="=-3k^2-7k+2" />
+      <br />
+      When <Katex tex="k=0" />, <Katex tex="E(X)=2" />.
     </>
   ),
 }
 
 const TABLE = (
   <div className="overflow-x-auto">
-    <table className="text-[12.5px] border-collapse">
+    <table className="text-[13px] border-collapse text-center">
       <tbody>
-        <tr><td className="pr-3 font-semibold">X</td><td className="px-2">−1</td><td className="px-2">0</td><td className="px-2">1</td><td className="px-2">2</td></tr>
-        <tr><td className="pr-3 font-semibold">Pr(X=x)</td><td className="px-2"><Katex tex="k^2" /></td><td className="px-2"><Katex tex="3k" /></td><td className="px-2"><Katex tex="k" /></td><td className="px-2"><Katex tex="-k^2-4k+1" /></td></tr>
+        <tr>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="X" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="-1" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="0" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="1" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="2" /></td>
+        </tr>
+        <tr>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="\Pr(X=x)" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="k^2" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="3k" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="k" /></td>
+          <td className="border border-gray-300 dark:border-gray-700 px-4 py-1.5"><Katex tex="-k^2-4k+1" /></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -44,7 +62,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="E(X) = -1(k^2)+0(3k)+1(k)+2(-k^2-4k+1) = -3k^2-7k+2" />,
-    reason: 'Standard formula for the mean of a discrete random variable.',
+    reason: <>Standard formula for the mean of a discrete random variable.</>,
   },
   {
     working: <>This is a downward parabola in <Katex tex="k" />, with vertex at <Katex tex="k=-\tfrac{7}{6}" /> — well to the left of the valid range <Katex tex="[0,\sqrt5-2]" />.</>,
@@ -65,7 +83,7 @@ export default function MethodsQ12_2023() {
             The probability mass function for the discrete random variable <Katex tex="X" /> is shown below.
           </p>
           <div className="mb-3">{TABLE}</div>
-          <p>The maximum possible value for the mean of <Katex tex="X" /> is</p>
+          <p>The maximum possible value for the mean of <Katex tex="X" /> is:</p>
         </>
       }
       options={[

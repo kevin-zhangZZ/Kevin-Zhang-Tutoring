@@ -3,7 +3,7 @@
 // equation dQ/dt = e^(t−Q) and a proof that its solution has no point of inflection. Question
 // text transcribed from the original paper (no diagram given). Cross-checked against the VCAA
 // examination report and itute's independent solutions, and verified by computer algebra.
-// Note on part (a)(ii): itute gives only "a > b and r > s"; VCAA's published answer includes
+// Note on part a.ii.: itute gives only "a > b and r > s"; VCAA's published answer includes
 // the second branch, "a < b and r < s", which the solution below derives. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -12,31 +12,31 @@ import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerSta
 const EXAM_AI: SAExaminerStats = {
   marks: [28, 21, 51],
   average: 1.3,
-  comment: <>Students solved the differential equation to find the given expression for <Katex tex="k" /> by a variety of correct approaches. Common errors were to neglect a constant of integration, or to make mistakes when manipulating logarithmic or exponential terms.</>,
+  comment: <>Students solved the differential equation to find the given expression for <Katex tex="k" /> by a variety of correct approaches. Common errors were to neglect a constant of integration or to make mistakes when manipulating logarithmic or exponential terms.</>,
 }
 
 const EXAM_AII: SAExaminerStats = {
   marks: [60, 20, 20],
   average: 0.6,
-  comment: <>A significant number of students stated only the first of the two conditions.</>,
+  comment: <>A significant number of students stated only the first of the above conditions.</>,
 }
 
 const EXAM_BI: SAExaminerStats = {
   marks: [25, 75],
   average: 0.8,
-  comment: <>Most students correctly separated the variables.</>,
+  comment: <>Most students answered this correctly using the form above or an alternative such as <Katex tex="\displaystyle\int\frac{1}{e^{-Q}}\,dQ=\int e^t\,dt" />.</>,
 }
 
 const EXAM_BII: SAExaminerStats = {
   marks: [27, 4, 69],
   average: 1.4,
-  comment: <>Most students integrated correctly and used the given condition to find the constant of integration.</>,
+  comment: <>Students handled this well by proceeding from the form of the differential equation given in Question 3bi. to the required solution.</>,
 }
 
 const EXAM_BIII: SAExaminerStats = {
   marks: [38, 24, 38],
   average: 1.0,
-  comment: <>Students needed to show that the second derivative is never zero. Some students only showed that it was non-zero at a particular value of <Katex tex="t" />.</>,
+  comment: <>Most students supplied a correct second derivative but not all of them went on to reasonably justify why the graph does not have a point of inflection.</>,
 }
 
 const ROWS_AI: WorkingRow[] = [
@@ -46,7 +46,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e|P| = kt + c \implies P = Ae^{kt}" />,
-    reason: <>Integrate both sides and exponentiate, absorbing <Katex tex="e^c" /> into a single constant <Katex tex="A" />. (Forgetting the constant of integration is the report's most common error.)</>,
+    reason: <>Integrate both sides and exponentiate, absorbing <Katex tex="e^c" /> into a single constant <Katex tex="A" />. (The report lists neglecting a constant of integration among the common errors.)</>,
   },
   {
     working: (
@@ -78,15 +78,15 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e\!\left(\dfrac{r}{s}\right)>0 \iff \dfrac{r}{s}>1 \iff r>s" />,
-    reason: <>A logarithm is positive exactly when its argument exceeds <Katex tex="1" /> (taking <Katex tex="r,s>0" />, as they are population sizes).</>,
+    reason: <>A logarithm is positive exactly when its argument exceeds <Katex tex="1" /> (taking <Katex tex="r,s>0" />, as values of a growing or decaying quantity).</>,
   },
   {
     working: <Katex display tex="\textbf{Case 1: } a-b>0 \text{ and } r>s \implies a>b \text{ and } r>s" />,
-    reason: <>Both factors positive. Sensible: the later time has the larger population, so the quantity is growing.</>,
+    reason: <>Both factors positive. Sensible: the later time has the larger value, so the quantity is growing.</>,
   },
   {
     working: <Katex display tex="\textbf{Case 2: } a-b<0 \text{ and } r<s \implies a<b \text{ and } r<s" />,
-    reason: <>Both factors negative. Same physical situation described the other way round — the earlier time has the smaller population.</>,
+    reason: <>Both factors negative. Same situation described the other way round — the earlier time has the smaller value.</>,
   },
   {
     working: <Katex display tex="\boxed{a>b \text{ and } r>s, \quad \text{or} \quad a<b \text{ and } r<s}" />,
@@ -100,24 +100,31 @@ const ROWS_BI: WorkingRow[] = [
     reason: <>Index law <Katex tex="e^{t-Q}=\tfrac{e^t}{e^Q}" /> — this is what makes the equation separable, by splitting the single exponential into a <Katex tex="t" /> part and a <Katex tex="Q" /> part.</>,
   },
   {
-    working: <Katex display tex="\boxed{e^{Q}\,dQ = e^{t}\,dt}" />,
-    reason: <>Multiply both sides by <Katex tex="e^Q\,dt" />, giving the requested form <Katex tex="f(Q)\,dQ=h(t)\,dt" />.</>,
+    working: <Katex display tex="e^{Q}\,\dfrac{dQ}{dt} = e^{t}" />,
+    reason: <>Multiply both sides by <Katex tex="e^Q" /> to gather the <Katex tex="Q" /> terms on the left.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\int e^{Q}\,dQ = \int e^{t}\,dt}" />,
+    reason: <>Integrate both sides with respect to <Katex tex="t" />; on the left, <Katex tex="\int e^Q\tfrac{dQ}{dt}\,dt=\int e^Q\,dQ" />. This is the requested form, with <Katex tex="f(Q)=e^Q" /> and <Katex tex="h(t)=e^t" /> (the report also accepts equivalents such as <Katex tex="\int\tfrac{1}{e^{-Q}}\,dQ=\int e^t\,dt" />).</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\int e^{Q}\,dQ = \int e^{t}\,dt \implies e^{Q} = e^{t}+c" />,
+    reason: <>Hence: integrate the form from part b.i. One constant of integration is enough.</>,
   },
   {
     working: <Katex display tex="Q=1 \text{ when } t=0: \quad e^{1} = e^{0}+c = 1+c" />,
+    reason: <>Apply the initial condition.</>,
   },
   {
     working: <Katex display tex="c = e-1" />,
+    reason: <>Solving for <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="e^{Q} = e^{t}+e-1 \implies \boxed{Q = \log_e\!\left(e^{t}+e-1\right)}" />,
-    reason: <>Taking logs of both sides. Valid because <Katex tex="e^t+e-1>0" /> for all <Katex tex="t\ge0" />.</>,
+    reason: <>Taking logs of both sides. Valid because <Katex tex="e^t+e-1>0" /> for all <Katex tex="t\ge0" />. As required.</>,
   },
 ]
 
@@ -140,7 +147,7 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{No point of inflection}}" />,
-    reason: <>A point of inflection requires the second derivative to change sign, which in particular requires it to be zero somewhere. It never is, so there is no inflection point. Showing it is non-zero at one specific <Katex tex="t" /> is not enough — the report flags exactly that.</>,
+    reason: <>A point of inflection requires the second derivative to change sign, which in particular requires it to be zero somewhere. It never is, so there is no inflection point. The report notes that not all students who found a correct second derivative went on to reasonably justify this conclusion — the sign argument above is the justification.</>,
   },
 ]
 
@@ -156,7 +163,7 @@ export default function SpecialistQ3_2019Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a.i" marks={2} statement={<>Given that <Katex tex="P(a)=r" /> and <Katex tex="P(b)=s" />, where <Katex tex="P" /> is a function of <Katex tex="t" />, show that <Katex tex="k=\dfrac{1}{a-b}\log_e\!\left(\dfrac{r}{s}\right)" />.</>} examinerReport={EXAM_AI}>
+      <PartCard letter="a.i" topic="Exponential Growth" marks={2} statement={<>Given that <Katex tex="P(a)=r" /> and <Katex tex="P(b)=s" />, where <Katex tex="P" /> is a function of <Katex tex="t" />, show that <Katex tex="k=\dfrac{1}{a-b}\log_e\!\left(\dfrac{r}{s}\right)" />.</>} examinerReport={EXAM_AI}>
         <Background>
           <p>
             <Katex tex="\tfrac{dP}{dt}=kP" /> is the classic exponential growth/decay equation —
@@ -169,7 +176,7 @@ export default function SpecialistQ3_2019Exam2() {
         <WorkingTable rows={ROWS_AI} />
       </PartCard>
 
-      <PartCard letter="a.ii" marks={2} statement="Specify the condition(s) for which k > 0." examinerReport={EXAM_AII}>
+      <PartCard letter="a.ii" topic="Growth Condition" marks={2} statement={<>Specify the condition(s) for which <Katex tex="k>0" />.</>} examinerReport={EXAM_AII}>
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
@@ -182,15 +189,15 @@ export default function SpecialistQ3_2019Exam2() {
         </p>
       </div>
 
-      <PartCard letter="b.i" marks={1} statement={<>Express this differential equation in the form <Katex tex="f(Q)\,dQ = h(t)\,dt" />.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Separable DE" marks={1} statement={<>Express this differential equation in the form <Katex tex="\displaystyle\int f(Q)\,dQ = \int h(t)\,dt" />.</>} examinerReport={EXAM_BI}>
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={2} statement={<>Hence, show that <Katex tex="Q=\log_e\!\left(e^{t}+e-1\right)" />.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Separable DE" marks={2} statement={<>Hence, show that <Katex tex="Q=\log_e\!\left(e^{t}+e-1\right)" />.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
-      <PartCard letter="b.iii" marks={2} statement={<>Show that the graph of <Katex tex="Q" /> as a function of <Katex tex="t" /> does not have a point of inflection.</>} examinerReport={EXAM_BIII}>
+      <PartCard letter="b.iii" topic="No Inflection" marks={2} statement={<>Show that the graph of <Katex tex="Q" /> as a function of <Katex tex="t" /> does not have a point of inflection.</>} examinerReport={EXAM_BIII}>
         <Background>
           <p>
             A point of inflection is where a curve changes concavity — which requires{' '}

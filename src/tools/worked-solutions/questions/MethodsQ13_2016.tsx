@@ -16,20 +16,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="a = 0" />,
-    reason: <>The figure puts <Katex tex="a" /> right at the <Katex tex="y" />-axis. That makes options A and B <em>identical</em> — so neither can be the answer, which is a useful first cut.</>,
+    working: <Katex display tex="\text{shaded region: from } x=0 \text{ to } x=d" />,
+    reason: <>Read the figure carefully. The dashed curve <Katex tex="y=f(x)" /> starts on the <Katex tex="y" />-axis above the origin and meets the <Katex tex="x" />-axis at <Katex tex="d" />; the shading runs all the way from the <Katex tex="y" />-axis to <Katex tex="d" />.</>,
   },
   {
-    working: <Katex display tex="f \text{ runs from } x=0 \text{ to } x=d; \quad g \text{ runs from } x=a=0 \text{ to } x=c" />,
-    reason: <>The dashed curve <Katex tex="f" /> leaves the <Katex tex="y" />-axis above the origin and lands at <Katex tex="d" />; the solid curve <Katex tex="g" /> starts at the origin and lands at <Katex tex="c" />, before <Katex tex="d" />.</>,
+    working: <Katex display tex="y=g(x) \text{ is above the } x\text{-axis only from } x=a \text{ to } x=c" />,
+    reason: <>The solid curve meets the <Katex tex="x" />-axis at <Katex tex="a" />, just to the <em>right</em> of the origin, and again at <Katex tex="c" />, just before <Katex tex="d" />. So the bottom edge of the region is the <Katex tex="x" />-axis on <Katex tex="[0,a]" /> and on <Katex tex="[c,d]" />, and <Katex tex="g" /> only on <Katex tex="[a,c]" />.</>,
   },
   {
-    working: <Katex display tex="\text{shaded} = \text{(area under } f) - \text{(area under } g)" />,
-    reason: <>The shaded strip is everything below <Katex tex="f" /> and above <Katex tex="g" />, including the piece between <Katex tex="c" /> and <Katex tex="d" /> where there is no <Katex tex="g" /> at all.</>,
+    working: <Katex display tex="\text{area} = \int_0^{a}f(x)\,dx+\int_a^{c}\bigl(f(x)-g(x)\bigr)dx+\int_c^{d}f(x)\,dx" />,
+    reason: <>Split wherever the bottom edge changes.</>,
+  },
+  {
+    working: <Katex display tex="= \int_0^{d}f(x)\,dx-\int_a^{c}g(x)\,dx" />,
+    reason: <>The three <Katex tex="f" /> pieces join up into one integral from <Katex tex="0" /> to <Katex tex="d" />: everything under <Katex tex="f" />, minus the part under <Katex tex="g" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^{d}f(x)\,dx-\int_a^{c}g(x)\,dx}" />,
-    reason: <>Option E. Writing it as a single integral of <Katex tex="f-g" /> over <Katex tex="[a,d]" /> would be subtracting a <Katex tex="g" /> that does not exist past <Katex tex="c" /> — which is exactly why the two areas have to be written separately, over different intervals.</>,
+    reason: <>Matches option <b>E</b>. Option D is the three-piece split with the last piece starting at <Katex tex="b" /> instead of <Katex tex="c" />; option B (15%) subtracts <Katex tex="g" /> on <Katex tex="[0,a]" /> and <Katex tex="[c,d]" />, where <Katex tex="g" /> is not the lower edge; option A misses the strip between the <Katex tex="y" />-axis and <Katex tex="a" />.</>,
   },
 ]
 
@@ -48,17 +52,17 @@ export default function MethodsQ13_2016() {
       diagram={
         <img
           src={diagramSrc}
-          alt="A dashed curve f from the y-axis at a, over a hump, down to the x-axis at d; a solid curve g from the origin at a, over a lower hump, down to the x-axis at c just before d; the region between them is shaded — from the original 2016 VCAA exam paper"
+          alt="A dashed curve y = f(x) from the y-axis above the origin, over a hump, down to the x-axis at d; a solid curve y = g(x) from the x-axis at a, just right of the origin, over a lower hump that touches f above b, down to the x-axis at c just before d; the region between the dashed curve and the solid curve or x-axis is shaded — from the original 2016 VCAA exam paper"
           className="w-full max-w-[340px]"
         />
       }
       background={
         <p>
-          Two curves, but they do not share an interval. Wherever the lower boundary of a
-          region changes — from a curve to the axis, say — the integral has to be split, or
-          written as two separate areas subtracted. Here the region runs from{' '}
-          <Katex tex="a" /> to <Katex tex="d" />, but <Katex tex="g" /> only exists as far
-          as <Katex tex="c" />.
+          Two curves, but they do not bound the region over the same interval. Wherever the
+          lower boundary of a region changes — from a curve to the axis, say — the integral
+          has to be split, or written as two separate areas subtracted. Here the region runs
+          from the <Katex tex="y" />-axis to <Katex tex="d" />, but <Katex tex="g" /> is the
+          lower edge only from <Katex tex="a" /> to <Katex tex="c" />.
         </p>
       }
       options={[

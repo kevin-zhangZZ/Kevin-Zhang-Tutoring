@@ -10,22 +10,25 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 20, C: 13, D: 18, E: 34 },
   answer: 'E',
   comment: (
-    <Katex tex="\mathrm{arg}(z^3) = -\mathrm{arg}(\bar z\,)\ \text{is not needed} — z^2 = 16\,\mathrm{cis}\!\big(\tfrac{2\pi}{3}\big) = -4\bar z" />
+    <>
+      <Katex tex="\arg\left(z^3\right)=-\pi\Rightarrow\arg(z)=\tfrac\pi3" />,{' '}
+      <Katex tex="z^2=16\,\mathrm{cis}\!\left(\tfrac{2\pi}{3}\right)=-4\bar z" />
+    </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|\bar z| = |z| = 4" />,
-    reason: 'The modulus of a conjugate equals the modulus of the original number.',
+    reason: <>The modulus of a conjugate equals the modulus of the original number.</>,
   },
   {
     working: <Katex display tex="\mathrm{arg}(z^3) = 3\,\mathrm{arg}(z) \equiv -\pi \pmod{2\pi}" />,
-    reason: 'Argument of a power multiplies (before reducing mod 2π).',
+    reason: <>Argument of a power multiplies (before reducing mod 2π).</>,
   },
   {
-    working: <Katex display tex="\mathrm{arg}(z) = -\tfrac{\pi}{3}+\tfrac{2k\pi}{3},\quad k\in\mathbb{Z}" />,
-    reason: 'General solution for the argument.',
+    working: <Katex display tex="\mathrm{arg}(z) = -\tfrac{\pi}{3}+\tfrac{2k\pi}{3},\quad k\in Z" />,
+    reason: <>General solution for the argument.</>,
   },
   {
     working: <Katex display tex="\mathrm{Re}(z)>0,\ \mathrm{Im}(z)>0 \;\implies\; \mathrm{arg}(z)\in\big(0,\tfrac{\pi}{2}\big)" />,
@@ -41,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z^2 = -4\bar z}" />,
-    reason: <>Both sides equal <Katex tex="16\,\mathrm{cis}(2\pi/3)" /> — matches option <b>E</b>.</>,
+    reason: <>Both sides equal <Katex tex="16\,\mathrm{cis}(2\pi/3)" />. Matches option <b>E</b>.</>,
   },
 ]
 

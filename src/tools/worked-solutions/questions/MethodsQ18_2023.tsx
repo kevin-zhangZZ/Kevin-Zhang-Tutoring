@@ -10,7 +10,25 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 9, C: 22, D: 26, E: 29 },
   answer: 'E',
   noAnswer: 1,
-  comment: <>The number of local minima is <Katex tex="a^2" />.</>,
+  comment: (
+    <>
+      <Katex tex="f:[-a\pi,a\pi]\to R,\ f(x)=\sin(ax)" />
+      <table className="my-1.5 border-collapse text-[12.5px]">
+        <thead>
+          <tr>
+            <th className="border border-gray-300 dark:border-gray-700 px-3 py-1" />
+            <th className="border border-gray-300 dark:border-gray-700 px-3 py-1 font-semibold">Number of local minima</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="border border-gray-300 dark:border-gray-700 px-3 py-1">1</td><td className="border border-gray-300 dark:border-gray-700 px-3 py-1">1</td></tr>
+          <tr><td className="border border-gray-300 dark:border-gray-700 px-3 py-1">2</td><td className="border border-gray-300 dark:border-gray-700 px-3 py-1">4</td></tr>
+          <tr><td className="border border-gray-300 dark:border-gray-700 px-3 py-1">3</td><td className="border border-gray-300 dark:border-gray-700 px-3 py-1">9</td></tr>
+        </tbody>
+      </table>
+      The number of local minima is <Katex tex="a^2" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -28,7 +46,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Each full period of a sine curve has exactly <b>one</b> local minimum.</>,
-    reason: 'Standard property of sin.',
+    reason: <>Standard property of sin.</>,
   },
   {
     working: (
@@ -38,7 +56,7 @@ const ROWS: WorkingRow[] = [
         <span><Katex tex="a=3" />: domain <Katex tex="[-3\pi,3\pi]" />, 9 periods, 9 local minima ✓</span>
       </div>
     ),
-    reason: 'Check the pattern against small cases.',
+    reason: <>Check the pattern against small cases.</>,
   },
   {
     working: <Katex display tex="\boxed{a^2}" />,
@@ -51,7 +69,7 @@ export default function MethodsQ18_2023() {
     <MCQShell
       question={
         <p>
-          Consider the function <Katex tex="f:[-a\pi,a\pi]\to\mathbb{R}" />, <Katex tex="f(x)=\sin(ax)" />, where{' '}
+          Consider the function <Katex tex="f:[-a\pi,a\pi]\to R" />, <Katex tex="f(x)=\sin(ax)" />, where{' '}
           <Katex tex="a" /> is a positive integer.
           <br />
           The number of local minima in the graph of <Katex tex="y=f(x)" /> is always equal to

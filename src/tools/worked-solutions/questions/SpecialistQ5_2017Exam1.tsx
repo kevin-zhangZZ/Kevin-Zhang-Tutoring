@@ -12,15 +12,21 @@ const EXAM: SAExaminerStats = {
   average: 1.8,
   comment: (
     <>
-      A broad spread of levels of achievement was seen for this question. The majority knew
-      that they needed to find two vectors involving <Katex tex="C" /> and attempt to use the
-      dot product, though some algebra when finding the dot product was poor. The most common
-      errors involved finding the dot product of two of the <em>given</em> vectors, not
-      understanding that when finding the angle between vectors they need to be tail to tail
-      and therefore working with <Katex tex="\overrightarrow{CB}" /> and{' '}
-      <Katex tex="\overrightarrow{CD}" />. Others correctly found <Katex tex="a=\pm2" /> from
-      the surd equation but did not eliminate <Katex tex="a=2" />, or incorrectly eliminated{' '}
-      <Katex tex="a=-2" />. Many students did not know their exact values.
+      A broad spread of levels of achievement was seen for this question. Most students were
+      able to make some progress but many had some difficulties. The majority knew that they
+      needed to find to vectors involving <Katex tex="C" /> and attempt to use the dot product
+      to find the unknown, though some algebra when finding the dot product was poor. The most
+      common errors involved finding the dot product of two (or sometimes all three) of the
+      given vectors, not understanding that when finding the angle between vectors they need
+      to be tail to tail and therefore working with <Katex tex="\overrightarrow{BC}" /> and{' '}
+      <Katex tex="\overrightarrow{CD}" />. Some used the correct application of the dot product
+      or cosine rule but poor algebra led to an incorrect equation for <Katex tex="a" />,
+      others correctly found <Katex tex="a=\pm2" /> from the surd equation but did not
+      eliminate <Katex tex="a=2" /> or incorrectly eliminated <Katex tex="a=-2" />. Many
+      students did not know their exact values. Notation was often poor, with students not
+      showing the dot or using another symbol. A large number of students struggled with the
+      algebra. A number of students incorrectly solved <Katex tex="x^2=4" /> to get{' '}
+      <Katex tex="x=\pm\sqrt2" /> or similar.
     </>
   ),
 }

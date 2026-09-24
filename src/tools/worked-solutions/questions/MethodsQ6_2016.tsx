@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{\pi^2+16}{4}}" />,
-    reason: <>Option A, about <Katex tex="6.47" />. A quick check: the two points are <Katex tex="1.57" /> apart horizontally and <Katex tex="2" /> vertically, so a length near <Katex tex="2.5" /> and a square near <Katex tex="6.5" />.</>,
+    reason: <>Matches option <b>A</b>, about <Katex tex="6.47" />. A quick check: the two points are <Katex tex="1.57" /> apart horizontally and <Katex tex="2" /> vertically, so a length near <Katex tex="2.5" /> and a square near <Katex tex="6.5" />.</>,
   },
 ]
 
@@ -54,7 +54,7 @@ export default function MethodsQ6_2016() {
         { letter: 'A', content: <Katex tex="\dfrac{\pi^2+16}{4}" />, isAnswer: true },
         { letter: 'B', content: <Katex tex="\pi+4" /> },
         { letter: 'C', content: <Katex tex="4" /> },
-        { letter: 'D', content: <Katex tex="\dfrac{3\pi^2+16}{4}" /> },
+        { letter: 'D', content: <Katex tex="\dfrac{3\pi^2+16\pi}{4}" /> },
         { letter: 'E', content: <Katex tex="\dfrac{10\pi^2}{16}" /> },
       ]}
       rows={ROWS}

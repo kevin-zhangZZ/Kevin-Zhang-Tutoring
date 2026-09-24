@@ -14,8 +14,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)=2x^3-6x" />, and{' '}
-      <Katex tex="F=3a" />.
+      <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)=2x^3-6x,\quad F=3a" />
     </>
   ),
 }
@@ -39,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{F = 6x^3-18x}" />,
-    reason: <>Option D. Option B, <Katex tex="-6x" />, comes from using <Katex tex="\tfrac{dv}{dx}" /> as the acceleration and forgetting the factor of <Katex tex="v" />.</>,
+    reason: <>Matches option <b>D</b>. Option B (23%), <Katex tex="-6x" />, comes from using <Katex tex="\tfrac{dv}{dx}" /> as the acceleration and forgetting the factor of <Katex tex="v" />.</>,
   },
 ]
 

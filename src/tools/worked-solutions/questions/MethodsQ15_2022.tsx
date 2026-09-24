@@ -18,11 +18,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2-2x-3 = (x-3)(x+1)" />,
-    reason: 'Factorising.',
+    reason: <>Factorising.</>,
   },
   {
     working: <Katex display tex="(x-3)(x+1) \ge 0 \iff x \le -1 \text{ or } x \ge 3" />,
-    reason: 'A positive parabola is on or above the axis outside its roots.',
+    reason: <>A positive parabola is on or above the axis outside its roots.</>,
   },
   {
     working: <Katex display tex="\boxed{(-\infty,-1]\cup[3,\infty)}" />,

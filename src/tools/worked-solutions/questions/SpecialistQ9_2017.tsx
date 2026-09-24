@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y(0.8) \approx 1.248}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option E (30%), <Katex tex="2.852" />, steps <em>forward</em> to <Katex tex="x=1.2" /> instead of back to <Katex tex="0.8" />.</>,
   },
 ]
 

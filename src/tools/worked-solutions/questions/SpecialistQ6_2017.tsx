@@ -20,7 +20,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx} = e^x\arctan(y)" />,
-    reason: 'The given first-order relation — already implicit, since y appears on the right too.',
+    reason: <>The given first-order relation — already implicit, since <Katex tex="y" /> appears on the right too.</>,
   },
   {
     working: (
@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \text{at } (0,1): \quad \frac{dy}{dx} &= e^0\arctan(1) \\ &= \frac{\pi}{4} \end{aligned}" />,
-    reason: 'First evaluate the given first-derivative expression at the point, since it feeds into the second derivative.',
+    reason: <>First evaluate the given first derivative at the point, since it feeds into the second derivative.</>,
   },
   {
     working: (
@@ -45,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2y}{dx^2}\bigg|_{(0,1)} = \frac{3\pi}{8}}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option D (30%), <Katex tex="\tfrac{\pi}{4}" />, is just the first term — forgetting that <Katex tex="\arctan(y)" /> also varies with <Katex tex="x" />.</>,
   },
 ]
 

@@ -12,6 +12,14 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
+      <Katex tex="\mathrm{E}(X_1)=1\times0.1+2\times0.4+3\times0.4+4\times0.1=2.5" />
+      <br />
+      <Katex tex="\mathrm{E}(X_2)=1\times0.1+2\times0.2+3\times0.3+4\times0.4=3" />
+      <br />
+      <Katex tex="\mathrm{E}(X_3)=1\times0.45+2\times0.25+3\times0.15+4\times0.15=2" />
+      <br />
+      <Katex tex="\mathrm{E}(X_4)=1\times0.2+2\times0.2+3\times0.2+4\times0.2+5\times0.2=3" />
+      <br />
       Probability mass functions II and IV both have a mean equal to 3.
     </>
   ),
@@ -20,7 +28,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(X) = \sum x\,p(x)" />,
-    reason: 'Read each height off the graph and weight it by its x-value.',
+    reason: <>Read each height off the graph and weight it by its x-value.</>,
   },
   {
     working: <Katex display tex="\text{I}: \ 1(0.1)+2(0.4)+3(0.4)+4(0.1) = 2.5" />,
@@ -28,11 +36,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{II}: \ 1(0.1)+2(0.2)+3(0.3)+4(0.4) = 0.1+0.4+0.9+1.6 = 3" />,
-    reason: 'Weighted towards the larger values.',
+    reason: <>Weighted towards the larger values.</>,
   },
   {
     working: <Katex display tex="\text{III}: \ 1(0.45)+2(0.25)+3(0.15)+4(0.15) = 0.45+0.5+0.45+0.6 = 2" />,
-    reason: 'Weighted towards the smaller values.',
+    reason: <>Weighted towards the smaller values.</>,
   },
   {
     working: <Katex display tex="\text{IV}: \ \text{uniform on } 1..5 \implies \mathrm{E}(X) = \tfrac{1+5}{2} = 3" />,
@@ -40,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{II and IV}}" />,
-    reason: <>Option <b>D</b>, both with mean 3. Check each set sums to 1 first: <Katex tex="0.1+0.2+0.3+0.4=1" /> ✓ and <Katex tex="5\times0.2=1" /> ✓.</>,
+    reason: <>Matches option <b>D</b>, both with mean 3. Check each set sums to 1 first: <Katex tex="0.1+0.2+0.3+0.4=1" /> ✓ and <Katex tex="5\times0.2=1" /> ✓.</>,
   },
 ]
 

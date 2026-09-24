@@ -14,10 +14,25 @@ const EXAM: SAExaminerStats = {
       Students had varied success with this question. A number of students were unable to
       find the necessary derivatives, neglecting to use the chain rule. Of those who did use
       the chain rule, the question was reasonably well answered, although there were many who
-      did not recognise the appropriate form of the arc length formula. Some incorrect
-      answers involved using the formula with <Katex tex="\tfrac{dy}{dx}" />, errors in
-      derivatives, an inability to correctly simplify the expression under the square root,
-      and taking the square root of individual terms.
+      did not recognise the appropriate form of the arc length formula. Some incorrect answers
+      involved:
+      <ul className="list-disc pl-5 my-1">
+        <li>
+          finding{' '}
+          <Katex tex="\left|\underset{\sim}{r}\!\left(\tfrac{\pi}{4}\right)-\underset{\sim}{r}(0)\right|" />
+        </li>
+        <li>
+          using the formula with <Katex tex="dy/dx" /> (sometimes with correct working, except
+          for using <Katex tex="dt" /> rather than <Katex tex="dx" />)
+        </li>
+        <li>errors in derivatives</li>
+        <li>an inability to correctly simplify the expression under the square root</li>
+        <li>taking the square root of individual terms</li>
+        <li>
+          correct simplification but an error at the end with terminals or substitution and
+          missing <Katex tex="dt" /> in lines of working.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -57,7 +72,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L = \frac34}" />,
-    reason: <>Plausible as a check: the particle runs from <Katex tex="(1,0)" /> to <Katex tex="\left(\tfrac{1}{2\sqrt2},\tfrac{1}{2\sqrt2}\right)\approx(0.354,0.354)" />, a straight-line distance of about <Katex tex="0.72" /> — so a path length a touch longer, <Katex tex="0.75" />, is right.</>,
+    reason: <>Plausible as a check: the particle runs from <Katex tex="(1,0)" /> to <Katex tex="\left(\tfrac{1}{2\sqrt2},\tfrac{1}{2\sqrt2}\right)\approx(0.354,0.354)" />, a straight-line distance of about <Katex tex="0.74" /> (the report notes students who gave this chord length instead) — so a path length a touch longer, <Katex tex="0.75" />, is right.</>,
   },
 ]
 

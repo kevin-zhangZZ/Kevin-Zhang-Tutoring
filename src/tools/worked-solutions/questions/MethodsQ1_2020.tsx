@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g(4) = 6}" />,
-    reason: <>Option D. Answering <Katex tex="4" /> stops one step early; <Katex tex="g(-1)=2" /> would be <Katex tex="g" /> applied to the wrong input.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> (<Katex tex="4" />) stops one step early at <Katex tex="f(-1)" />; option <b>A</b> is <Katex tex="g(-1)=2" />, <Katex tex="g" /> applied to the wrong input; options <b>C</b> and <b>E</b> are <Katex tex="f(2)" /> and <Katex tex="g(2)" />.</>,
   },
 ]
 

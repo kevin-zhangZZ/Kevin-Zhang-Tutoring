@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y(4) = \int_1^4\sqrt{2x^6+1}\,dx+5}" />,
-    reason: <>Option C. Options A and E put the <Katex tex="5" /> inside the integral, which would add <Katex tex="5\times3=15" /> instead of 5; option D subtracts it.</>,
+    reason: <>Matches option <b>C</b>. Options A and E put the <Katex tex="5" /> inside the integral, which would add <Katex tex="5\times3=15" /> instead of 5; option D subtracts it.</>,
   },
 ]
 

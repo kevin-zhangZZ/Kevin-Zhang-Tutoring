@@ -1,7 +1,8 @@
 // 2020 Specialist Mathematics — Exam 2, Section B Question 3 (10 marks). x²e^(−x), its
 // stationary points, asymptote and inflections, then the general family xⁿe^(−x) and how
 // many inflections it has for each integer n. Question text transcribed from the original
-// paper; the sketch is our own matplotlib drawing of the answer. Answers checked with
+// paper; the sketch is this site's own matplotlib drawing of the answer, on VCAA's grid
+// (x −5 to 5, y −3 to 3, gridlines every 1). Answers checked with
 // sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -36,7 +37,7 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       This question was done quite well, with the turning point almost universally correctly
-      labelled. However, students lost marks either for sketching a poor shape in the second
+      labelled and the points of inflection usually correctly labelled. However, students lost marks either for sketching a poor shape in the second
       quadrant or for incorrectly labelling points of inflection, including having the{' '}
       <Katex tex="x" />-value of the left-most point of inflection rounded to 0.58 instead of
       0.59.
@@ -47,7 +48,7 @@ const EXAM_C: SAExaminerStats = {
 const EXAM_D: SAExaminerStats = {
   marks: [9, 91],
   average: 0.9,
-  comment: <>Students responded with a variety of correct forms for the second derivative.</>,
+  comment: <>Students responded with a variety of correct forms for the second derivative, with the two above being the most common.</>,
 }
 
 const EXAM_EI: SAExaminerStats = {
@@ -73,7 +74,7 @@ const EXAM_EII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2e^{-x}" />,
-    reason: 'A product, so the product rule.',
+    reason: <>A product, so the product rule.</>,
   },
   {
     working: <Katex display tex="f'(x) = 2xe^{-x}+x^2\left(-e^{-x}\right) = \left(2x-x^2\right)e^{-x}" />,
@@ -85,22 +86,22 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 0 \text{ or } x = 2" />,
-    reason: 'Two stationary points.',
+    reason: <>Two stationary points.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,\ 0) \ \text{ and } \ \left(2,\ \tfrac{4}{e^2}\right)}" />,
-    reason: <>Coordinates, not just <Katex tex="x" />-values — the only thing that separated full marks from partial. <Katex tex="\tfrac{4}{e^2}\approx0.54" />.</>,
+    reason: <>Coordinates, not just <Katex tex="x" />-values — the report notes students who did not score well stated the derivative only and did not give the coordinates. <Katex tex="\tfrac{4}{e^2}\approx0.54" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x\to\infty: \ e^{-x}\to0 \text{ faster than } x^2\to\infty" />,
-    reason: 'The exponential always wins against a polynomial.',
+    reason: <>The exponential always wins against a polynomial.</>,
   },
   {
     working: <Katex display tex="x\to-\infty: \ x^2e^{-x}\to+\infty" />,
-    reason: 'No asymptote on this side — the graph shoots up.',
+    reason: <>No asymptote on this side — the graph shoots up.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 0}" />,
@@ -111,7 +112,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f''(x) = \left(2-2x\right)e^{-x}-\left(2x-x^2\right)e^{-x} = \left(x^2-4x+2\right)e^{-x}" />,
-    reason: 'Differentiating part a. once more to locate the inflections the question asks to be labelled.',
+    reason: <>Differentiating part a. once more to locate the inflections the question asks to be labelled.</>,
   },
   {
     working: <Katex display tex="x^2-4x+2 = 0 \implies x = 2\pm\sqrt2" />,
@@ -126,19 +127,19 @@ const ROWS_C: WorkingRow[] = [
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={sketchSrc}
-          alt="Graph of y = x²e^(−x): falling steeply from the top left to a minimum at the origin, rising to a local maximum near (2, 0.54), then decaying towards the x-axis, with the two inflection points marked"
+          alt="Graph of y = x²e^(−x) on VCAA's grid: falling steeply from the top left to a minimum at the origin, rising to the local maximum (2, 0.54), then decaying towards the x-axis, with the points of inflection (0.59, 0.19) and (3.41, 0.38) labelled"
           className="w-full max-w-[400px]"
         />
       </div>
     ),
-    reason: 'The second-quadrant branch climbs steeply off the top of the grid — draw it steep, not flat. Three labelled points plus the asymptote earn the three marks.',
+    reason: <>The second-quadrant branch climbs steeply off the top of the grid — draw it steep, not flat; the report notes marks were lost for a poor shape there. The question asks for three labelled points: the local maximum and the two points of inflection.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = x^ne^{-x} \implies g'(x) = nx^{n-1}e^{-x}-x^ne^{-x}" />,
-    reason: 'Product rule, keeping the index general.',
+    reason: <>Product rule, keeping the index general.</>,
   },
   {
     working: <Katex display tex="g''(x) = n(n-1)x^{n-2}e^{-x}-nx^{n-1}e^{-x}-nx^{n-1}e^{-x}+x^ne^{-x}" />,
@@ -241,6 +242,7 @@ export default function SpecialistQ3_2020Exam2() {
 
       <PartCard
         letter="a"
+        topic="Stationary Points"
         marks={2}
         statement={
           <>
@@ -255,6 +257,7 @@ export default function SpecialistQ3_2020Exam2() {
 
       <PartCard
         letter="b"
+        topic="Asymptotes"
         marks={1}
         statement={
           <>
@@ -268,10 +271,11 @@ export default function SpecialistQ3_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=f(x)" /> on the axes provided, labelling the
+            Sketch the graph of <Katex tex="y=f(x)" /> on the axes provided below, labelling the
             local maximum stationary point and all points of inflection with their
             coordinates, correct to two decimal places.
           </>
@@ -281,7 +285,7 @@ export default function SpecialistQ3_2020Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Let <Katex tex="g(x)=x^ne^{-x}" />, where <Katex tex="n\in Z" />.
         </p>
@@ -289,6 +293,7 @@ export default function SpecialistQ3_2020Exam2() {
 
       <PartCard
         letter="d"
+        topic="Second Derivative"
         marks={1}
         statement={
           <>
@@ -302,6 +307,7 @@ export default function SpecialistQ3_2020Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Inflection Points"
         marks={1}
         statement={
           <>
@@ -316,11 +322,28 @@ export default function SpecialistQ3_2020Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Inflection Count"
         marks={2}
         statement={
           <>
-            Complete a table stating the value(s) of <Katex tex="n" /> for which the graph of{' '}
-            <Katex tex="g(x)" /> has 0, 1, 2 and 3 points of inflection.
+            Complete the following table by stating the value(s) of <Katex tex="n" /> for which
+            the graph of <Katex tex="g(x)" /> has the given number of points of inflection.
+            <table className="mt-2 text-[13px] border-collapse">
+              <thead>
+                <tr>
+                  <th className="border border-gray-300 dark:border-gray-700 px-3 py-1 font-normal text-left">Number of points of inflection</th>
+                  <th className="border border-gray-300 dark:border-gray-700 px-3 py-1 font-normal text-left">Value(s) of <Katex tex="n" /> (where <Katex tex="n\in Z" />)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[0, 1, 2, 3].map((k) => (
+                  <tr key={k}>
+                    <td className="border border-gray-300 dark:border-gray-700 px-3 py-1">{k}</td>
+                    <td className="border border-gray-300 dark:border-gray-700 px-3 py-1">&nbsp;</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </>
         }
         examinerReport={EXAM_EII}

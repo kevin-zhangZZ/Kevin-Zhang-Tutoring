@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 4}" />,
-    reason: <>Option B. Option C, <Katex tex="2" />, is what you get from forgetting to double the <Katex tex="20" />.</>,
+    reason: <>Matches option <b>B</b>. Option C (20%), <Katex tex="2" />, comes from antidifferentiating <Katex tex="x" /> as <Katex tex="x^2" /> — dropping the <Katex tex="\tfrac12" /> — which gives <Katex tex="40+25a=90" />. Check: <Katex tex="40+\tfrac{25\times4}{2}=90" /> ✓.</>,
   },
 ]
 

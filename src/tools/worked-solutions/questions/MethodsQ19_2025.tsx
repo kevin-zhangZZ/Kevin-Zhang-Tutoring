@@ -6,6 +6,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2025-mcq19-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 35, B: 25, C: 24, D: 14 },
@@ -13,9 +14,26 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      The shortest distance must be perpendicular. At <Katex tex="B" />, the curve's gradient must be 1. Solving
-      gives <Katex tex="B=(2,0)" />, and minimising the distance to the line gives <Katex tex="c=-4" /> or{' '}
-      <Katex tex="c=0" /> — only <Katex tex="c=0" /> is an available option.
+      Option D gives the shortest distance <Katex tex="\sqrt{2}" /> between <Katex tex="y=x" /> and{' '}
+      <Katex tex="y=\log_e(x-1)" />.
+      <img src={reportGraphSrc} alt="The report's diagram: the line y = x in red with point A at (1, 1), the curve y = logₑ(x − 1) in blue with point B at (2, 0), the dashed segment AB perpendicular to the line, and a dashed blue tangent at B parallel to the line" className="w-full max-w-[360px] mt-1" />
+      <br />
+      The shortest distance between the line and the curve must be a perpendicular distance.
+      <br />
+      At the point <Katex tex="B" />, the gradient of the curve must be 1.
+      <br />
+      Let <Katex tex="f(x)=x+c" /> and <Katex tex="g(x)=\log_e(x-1)" />.
+      <br />
+      Solving <Katex tex="g'(x)=1" /> and <Katex tex="y=g(x)" /> gives{' '}
+      <Katex tex="(x,y)=(2,0)" />.
+      <br />
+      Let <Katex tex="d(x)=\sqrt{(x-2)^2+(f(x)-0)^2}" /> be the distance between the point{' '}
+      <Katex tex="B" /> and a point on the line <Katex tex="y=f(x)" />.
+      <br />
+      Minimising <Katex tex="d(x)" /> gives <Katex tex="x=\dfrac{2-c}{2}" />, then solving{' '}
+      <Katex tex="d\left(\dfrac{2-c}{2}\right)=\sqrt{2}" /> gives <Katex tex="c=-4" /> or{' '}
+      <Katex tex="c=0" />, but the value <Katex tex="c=-4" /> is not an available option, so{' '}
+      <Katex tex="c=0" />.
     </>
   ),
 }
@@ -23,7 +41,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>The shortest segment between a line and a smooth curve is <b>perpendicular</b> to the line — and since the line has gradient 1, the curve's tangent at <Katex tex="B" /> must also have gradient 1.</>,
-    reason: 'Key geometric fact for minimum-distance problems.',
+    reason: <>Key geometric fact for minimum-distance problems.</>,
   },
   {
     working: <Katex display tex="g(x) = \log_e(x-1) \;\implies\; g'(x) = \frac{1}{x-1}" />,
@@ -31,27 +49,27 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1}{x-1} = 1 \;\implies\; x=2" />,
-    reason: 'Find where the tangent has gradient 1.',
+    reason: <>Find where the tangent has gradient 1.</>,
   },
   {
     working: <Katex display tex="B = (2,\ \log_e(1)) = (2,0)" />,
-    reason: 'Coordinates of the closest point on the curve.',
+    reason: <>Coordinates of the closest point on the curve.</>,
   },
   {
     working: <Katex display tex="\text{Distance from } (2,0) \text{ to } x-y+c=0: \quad \frac{|2-0+c|}{\sqrt2} = \frac{|2+c|}{\sqrt2}" />,
-    reason: 'Perpendicular distance from a point to a line.',
+    reason: <>Perpendicular distance from a point to a line.</>,
   },
   {
     working: <Katex display tex="\frac{|2+c|}{\sqrt2} = \sqrt2 \;\implies\; |2+c| = 2" />,
-    reason: 'Set equal to the given minimum distance.',
+    reason: <>Set equal to the given minimum distance.</>,
   },
   {
     working: <Katex display tex="2+c = 2 \ \text{ or } \ 2+c=-2 \;\implies\; c=0 \ \text{ or } \ c=-4" />,
-    reason: 'Solve the absolute value equation.',
+    reason: <>Solve the absolute value equation.</>,
   },
   {
     working: <Katex display tex="\boxed{c=0}" />,
-    reason: <>Since <Katex tex="c=-4" /> isn't offered — matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. The report rejects <Katex tex="c=-4" /> because it is not an option; it also fails on its own terms, since <Katex tex="y=x-4" /> actually crosses the curve (between <Katex tex="x=5" /> and <Katex tex="x=6" />), so its minimum distance would be 0. For <Katex tex="c=0" />, <Katex tex="x>\log_e(x-1)" /> everywhere, so the line and curve never meet.</>,
   },
 ]
 

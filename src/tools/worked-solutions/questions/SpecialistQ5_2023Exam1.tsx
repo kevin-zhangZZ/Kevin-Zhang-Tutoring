@@ -10,10 +10,15 @@ const EXAM: SAExaminerStats = {
   average: 2.0,
   comment: (
     <>
-      Integration by parts is a new topic for 2023 and many students answered this reasonably
-      well. Some did not consistently evaluate the definite integral, leaving the independent
-      variable in their final response. A number of students selected the function to
-      differentiate and the function to antidifferentiate incorrectly.
+      Integration by parts is a new topic for 2023 and many students were able to answer this
+      question reasonably well.
+      <br />
+      Some students did not consistently evaluate the definite integral, and some final
+      responses included the independent variable{' '}
+      <Katex tex="\tfrac13x^3\log_e(x)-\tfrac79" />.
+      <br />
+      A number of students selected the function to differentiate and the function to
+      antidifferentiate incorrectly. Some idiosyncratic methods were also observed.
     </>
   ),
 }
@@ -21,7 +26,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int u\,\frac{dv}{dx}\,dx = uv-\int v\,\frac{du}{dx}\,dx" />,
-    reason: 'Integration by parts, from the formula sheet.',
+    reason: <>Integration by parts, from the formula sheet.</>,
   },
   {
     working: <Katex display tex="u = \log_e(x), \qquad \frac{dv}{dx} = x^2" />,
@@ -29,11 +34,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{du}{dx} = \frac1x, \qquad v = \frac{x^3}{3}" />,
-    reason: 'The two halves you need.',
+    reason: <>The two halves you need.</>,
   },
   {
     working: <Katex display tex="\int_1^2 x^2\log_e(x)\,dx = \left[\frac{x^3}{3}\log_e(x)\right]_1^2-\int_1^2\frac{x^3}{3}\cdot\frac1x\,dx" />,
-    reason: 'Both the boundary term and the remaining integral carry the terminals.',
+    reason: <>Both the boundary term and the remaining integral carry the terminals.</>,
   },
   {
     working: <Katex display tex="= \frac83\log_e(2)-0-\frac13\int_1^2 x^2\,dx" />,
@@ -41,11 +46,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac83\log_e(2)-\frac13\left[\frac{x^3}{3}\right]_1^2 = \frac83\log_e(2)-\frac19(8-1)" />,
-    reason: 'A straightforward power integral.',
+    reason: <>A straightforward power integral.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{8\log_e(2)}{3}-\frac79}" />,
-    reason: <>About <Katex tex="1.071" />. A definite integral must evaluate to a <em>number</em>; leaving <Katex tex="x" /> in the answer is the report's named error.</>,
+    reason: <>About <Katex tex="1.071" />. A definite integral must evaluate to a <em>number</em> — the report notes some final responses still included the independent variable.</>,
   },
 ]
 

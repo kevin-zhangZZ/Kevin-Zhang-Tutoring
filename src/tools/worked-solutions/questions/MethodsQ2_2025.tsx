@@ -9,17 +9,27 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 51, B: 10, C: 21, D: 18 },
   answer: 'A',
-  comment: <>The period is 1. The general solution for the equations of the asymptotes follows from it.</>,
+  comment: (
+    <>
+      <Katex tex="y=2\tan\left(\pi\left(x+\dfrac{1}{2}\right)\right)" />
+      <br />
+      <Katex tex="\pi\left(x+\dfrac{1}{2}\right)=\dfrac{\pi}{2},\ x=0" />
+      <br />
+      The period is 1.
+      <br />
+      The general solution for the equations of the asymptotes is <Katex tex="x=k,\ k\in Z" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\tan(\theta) \text{ is undefined when } \theta = \frac{\pi}{2}+k\pi, \ k\in\mathbb{Z}" />,
-    reason: 'Every asymptote of a tangent graph comes from this one condition.',
+    working: <Katex display tex="\tan(\theta) \text{ is undefined when } \theta = \frac{\pi}{2}+k\pi, \ k\in Z" />,
+    reason: <>Every asymptote of a tangent graph comes from this one condition.</>,
   },
   {
     working: <Katex display tex="\pi\left(x+\tfrac12\right) = \frac{\pi}{2}+k\pi" />,
-    reason: 'Setting the argument equal to it.',
+    reason: <>Setting the argument equal to it.</>,
   },
   {
     working: <Katex display tex="x+\tfrac12 = \tfrac12+k \implies x = k" />,
@@ -30,8 +40,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Asymptotes are one period apart, so consecutive integers is exactly right. Option <b>B</b> spaces them 2 apart and <b>C</b> keeps only the odd ones.</>,
   },
   {
-    working: <Katex display tex="\boxed{x = k, \quad k\in\mathbb{Z}}" />,
-    reason: <>Option <b>A</b>. A quick sanity check: at <Katex tex="x=0" /> the argument is <Katex tex="\tfrac{\pi}{2}" />, so there really is an asymptote there.</>,
+    working: <Katex display tex="\boxed{x = k, \quad k\in Z}" />,
+    reason: <>Matches option <b>A</b>. A quick sanity check: at <Katex tex="x=0" /> the argument is <Katex tex="\tfrac{\pi}{2}" />, so there really is an asymptote there.</>,
   },
 ]
 
@@ -45,10 +55,10 @@ export default function MethodsQ2_2025() {
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="x=k,\ k\in\mathbb{Z}" />, isAnswer: true },
-        { letter: 'B', content: <Katex tex="x=2k,\ k\in\mathbb{Z}" /> },
-        { letter: 'C', content: <Katex tex="x=2k+1,\ k\in\mathbb{Z}" /> },
-        { letter: 'D', content: <Katex tex="x=\frac{4k+1}{2},\ k\in\mathbb{Z}" /> },
+        { letter: 'A', content: <Katex tex="x=k,\ k\in Z" />, isAnswer: true },
+        { letter: 'B', content: <Katex tex="x=2k,\ k\in Z" /> },
+        { letter: 'C', content: <Katex tex="x=2k+1,\ k\in Z" /> },
+        { letter: 'D', content: <Katex tex="x=\frac{4k+1}{2},\ k\in Z" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

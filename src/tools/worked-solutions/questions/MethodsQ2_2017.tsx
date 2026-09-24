@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x)<0 \text{ on } \left(-3,\tfrac53\right)}" />,
-    reason: <>The stretch between the maximum and the minimum — the only part of the graph heading downhill. Option C is the complement, where the cubic is increasing; option B is where <Katex tex="f(x)" /> itself is negative, which is the confusion the question is testing.</>,
+    reason: <>The stretch between the maximum and the minimum — the only part of the graph heading downhill. Matches option <b>D</b>. Option C (12%) is the complement, where the cubic is increasing; option B is where <Katex tex="f(x)" /> itself is negative (the cubic is <Katex tex="x(x+5)(x-3)" />).</>,
   },
 ]
 

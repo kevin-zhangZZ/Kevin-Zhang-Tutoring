@@ -31,11 +31,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2a=-6 \implies a=-3, \qquad b=-9" />,
-    reason: <>Matching coefficients with <Katex tex="3x^2+2ax+b" />. Option C forgets to halve the <Katex tex="-6" />.</>,
+    reason: <>Matching coefficients with <Katex tex="3x^2+2ax+b" />. Option C has the sign of <Katex tex="a" /> wrong.</>,
   },
   {
     working: <Katex display tex="\boxed{a=-3 \text{ and } b=-9}" />,
-    reason: <>Option D. Check the shape: <Katex tex="f'(x)=3(x+1)(x-3)" /> is positive, then negative, then positive, so <Katex tex="x=-1" /> really is the maximum and <Katex tex="x=3" /> the minimum, as stated.</>,
+    reason: <>Matches option <b>D</b>. Check the shape: <Katex tex="f'(x)=3(x+1)(x-3)" /> is positive, then negative, then positive, so <Katex tex="x=-1" /> really is the maximum and <Katex tex="x=3" /> the minimum, as stated.</>,
   },
 ]
 

@@ -11,10 +11,21 @@ const EXAM_A: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      This question required partial fractions to be applied. A significant number of
-      responses were not awarded full marks because the initial expression missed the{' '}
-      <Katex tex="t" /> on the numerator, or the coefficients for the partial fractions were
-      incorrect, or the working towards the given answer was unclear.
+      Students should know how to find the expected value (mean) of a continuous random variable.
+      This question required partial fractions to be applied. A small number of students did not
+      realise this and were unable to progress with the problem. A significant number of responses
+      were not awarded full marks, either because:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          the initial expression missed the ‘<Katex tex="t" />’ term on the numerator, or
+        </li>
+        <li>
+          the coefficients for the partial fractions were incorrect, or
+        </li>
+        <li>
+          the working towards the given answer was unclear.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -25,8 +36,8 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Many students were able to find the mean and standard deviation of the sampling
-      distribution. Some students drew a diagram to aid in identifying the required area
-      under the standard normal curve.
+      distribution. Some students drew a diagram to aid in identifying the required area under the
+      standard normal curve. A common incorrect response was <Katex tex="0.16" />.
     </>
   ),
 }
@@ -34,34 +45,34 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(T) = \int_0^1 t\,f(t)\,dt = \frac{3}{2\log_e(2)}\int_0^1\frac{t}{(t+1)(2-t)}\,dt" />,
-    reason: <>The <Katex tex="t" /> on the numerator is the whole difference between this and the total-probability integral — omitting it was the first listed error.</>,
+    reason: <>The <Katex tex="t" /> on the numerator is the whole difference between this and the total-probability integral — the report lists missing it as one reason responses were not awarded full marks.</>,
   },
   {
     working: <Katex display tex="\frac{t}{(t+1)(2-t)} = \frac{A}{t+1}+\frac{B}{2-t} \implies t = A(2-t)+B(t+1)" />,
-    reason: 'Partial fractions, because the numerator is not a multiple of the derivative of the denominator.',
+    reason: <>Partial fractions, because the numerator is not a multiple of the derivative of the denominator.</>,
   },
   {
     working: <Katex display tex="t=-1: \ -1 = 3A \implies A = -\tfrac13; \qquad t=2: \ 2 = 3B \implies B = \tfrac23" />,
-    reason: 'Substituting the two roots picks off one coefficient at a time.',
+    reason: <>Substituting the two roots picks off one coefficient at a time.</>,
   },
   {
     working: <Katex display tex="\int_0^1\left(\frac{-\tfrac13}{t+1}+\frac{\tfrac23}{2-t}\right)dt = \left[-\tfrac13\log_e(t+1)-\tfrac23\log_e(2-t)\right]_0^1" />,
     reason: <>The second antiderivative picks up a minus from the inner derivative <Katex tex="-1" />, which cancels against the <Katex tex="\tfrac23" />.</>,
   },
   {
-    working: <Katex display tex="= \left(-\tfrac13\log_e2-0\right)-\left(0-\tfrac23\log_e2\right) = \tfrac13\log_e(2)" />,
+    working: <Katex display tex="= \left(-\tfrac13\log_e(2)-0\right)-\left(0-\tfrac23\log_e(2)\right) = \tfrac13\log_e(2)" />,
     reason: <><Katex tex="\log_e(1)=0" /> kills two of the four terms.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(T) = \frac{3}{2\log_e(2)}\times\frac{\log_e(2)}{3} = \frac12}" />,
-    reason: <>The awkward constant was chosen precisely so the logarithms cancel. Every line of this was needed for the "show that".</>,
+    reason: <>The awkward constant was chosen precisely so the logarithms cancel. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\overline{T} \sim \mathrm{N}\!\left(\mu,\ \frac{\sigma^2}{n}\right) \ \text{ approximately, with } \mu = \tfrac12, \ \sigma = 0.3, \ n = 25" />,
-    reason: 'The central limit theorem, as the stem allows.',
+    reason: <>The central limit theorem, as the stem allows.</>,
   },
   {
     working: <Katex display tex="\mathrm{sd}\!\left(\overline{T}\right) = \frac{0.3}{\sqrt{25}} = \frac{0.3}{5} = 0.06" />,
@@ -69,7 +80,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\!\left(0.44<\overline{T}<0.5\right) = \Pr\!\left(\frac{0.44-0.5}{0.06}<Z<\frac{0.5-0.5}{0.06}\right)" />,
-    reason: 'Standardising both endpoints.',
+    reason: <>Standardising both endpoints.</>,
   },
   {
     working: <Katex display tex="= \Pr(-1<Z<0)" />,
@@ -77,7 +88,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(-1<Z<0) = \Pr(0<Z<1) = \Pr(Z<1)-\tfrac12" />,
-    reason: 'By the symmetry of the standard normal about zero — a quick sketch settles which area is wanted.',
+    reason: <>By the symmetry of the standard normal about zero — a quick sketch settles which area is wanted.</>,
   },
   {
     working: <Katex display tex="\boxed{0.84-0.5 = 0.34}" />,
@@ -107,8 +118,8 @@ export default function SpecialistQ4_2025Exam1() {
           <p>
             The mean integrand is <Katex tex="\tfrac{t}{(t+1)(2-t)}" />, and the numerator{' '}
             <Katex tex="t" /> is not a multiple of the derivative of the denominator — so
-            there is no reverse-chain-rule shortcut and partial fractions are unavoidable.
-            Knowing that from the first line is most of the question.
+            there is no reverse-chain-rule shortcut and partial fractions are unavoidable. The
+            report notes a small number of students did not realise this and could not progress.
           </p>
           <p>
             The constant <Katex tex="\tfrac{3}{2\log_e 2}" /> looks forbidding but is chosen
@@ -120,6 +131,7 @@ export default function SpecialistQ4_2025Exam1() {
 
       <PartCard
         letter="a"
+        topic="Expected Value"
         marks={3}
         statement={<>Use integration to show that <Katex tex="\mathrm{E}(T)=\tfrac12" />.</>}
         examinerReport={EXAM_A}
@@ -129,13 +141,17 @@ export default function SpecialistQ4_2025Exam1() {
 
       <PartCard
         letter="b"
+        topic="Sample Mean"
         marks={2}
         statement={
           <>
             For random samples of 25 waiting times, it may be assumed that the sample means
-            are approximately normally distributed. Find the probability that the average
-            waiting time for a random sample of 25 patients is between 0.44 hours and 0.5
-            hours. Use <Katex tex="\sigma=0.3" /> and <Katex tex="\Pr(Z<1)=0.84" />.
+            are approximately normally distributed.
+            <br />
+            Find the probability that the average waiting time for a random sample of 25
+            patients is between 0.44 hours and 0.5 hours.
+            <br />
+            Use <Katex tex="\sigma=0.3" /> and <Katex tex="\Pr(Z<1)=0.84" />
           </>
         }
         examinerReport={EXAM_B}

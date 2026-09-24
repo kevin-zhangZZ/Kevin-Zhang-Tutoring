@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(10,\ 0.25)" />,
-    reason: 'Ten independent games, each won with probability 0.25.',
+    reason: <>Ten independent games, each won with probability 0.25.</>,
   },
   {
     working: <Katex display tex="\Pr(X=4) = \binom{10}{4}(0.25)^4(0.75)^6" />,
-    reason: <>"Exactly four times", so a single term — not a cumulative tail, which is where 0.9219 and 0.7759 come from.</>,
+    reason: <>"Exactly four times", so a single term — not a cumulative probability.</>,
   },
   {
     working: <Katex display tex="= 210\times0.00390625\times0.177978\ldots" />,
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.1460}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Every other option is a cumulative probability: <Katex tex="\Pr(X\ge4)=0.2241" /> (B), <Katex tex="\Pr(X\le4)=0.9219" /> (C), <Katex tex="\Pr(X\ge5)=0.0781" /> (D) and <Katex tex="\Pr(X\le3)=0.7759" /> (E).</>,
   },
 ]
 
@@ -35,9 +35,12 @@ export default function MethodsQ6_2021() {
     <MCQShell
       question={
         <p>
-          The probability of winning a game is 0.25. The probability of winning a game is
-          independent of winning any other game. If Ben plays 10 games, the probability that
-          he will win exactly four times is closest to
+          The probability of winning a game is 0.25
+          <br />
+          The probability of winning a game is independent of winning any other game.
+          <br />
+          If Ben plays 10 games, the probability that he will win exactly four times is closest
+          to
         </p>
       }
       options={[

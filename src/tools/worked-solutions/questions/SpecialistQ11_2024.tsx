@@ -10,6 +10,15 @@ import graphSrc from './spec-2024-mcq11-graph.png'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 13, B: 58, C: 12, D: 16 },
   answer: 'B',
+  comment: (
+    <>
+      Area above the <Katex tex="t" />-axis <Katex tex="=\dfrac{4000}{3}" /> metres travelled east
+      <br />
+      Area below the <Katex tex="t" />-axis <Katex tex="=\dfrac{2500}{3}" /> metres travelled west
+      <br />
+      <Katex tex="\therefore" /> Distance east <Katex tex="=\dfrac{4000}{3}-\dfrac{2500}{3}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -23,11 +32,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A_1 = \tfrac12\times\tfrac{200}{3}\times40 = \tfrac{4000}{3}" />,
-    reason: 'The triangle above the axis — this is eastward travel.',
+    reason: <>The triangle above the axis — this is eastward travel.</>,
   },
   {
     working: <Katex display tex="A_2 = \tfrac12\times\left(100-\tfrac{200}{3}\right)\times20 = \tfrac{1000}{3}" />,
-    reason: 'The small triangle below the axis, from the crossing point to t = 100.',
+    reason: <>The small triangle below the axis, from the crossing point to t = 100.</>,
   },
   {
     working: <Katex display tex="A_3 = \tfrac12\times50\times20 = 500" />,
@@ -35,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{4000}{3}-\tfrac{1000}{3}-500 = 1000-500 = 500 \ \text{m}}" />,
-    reason: <>Option <b>B</b>. The particle travelled <Katex tex="\tfrac{4000}{3}\approx1333" /> m east, then <Katex tex="\tfrac{2500}{3}\approx833" /> m back west, ending 500 m east of <Katex tex="O" />. Option <b>C</b> is the eastward peak alone, rounded.</>,
+    reason: <>Matches option <b>B</b>. The particle travelled <Katex tex="\tfrac{4000}{3}\approx1333" /> m east, then <Katex tex="\tfrac{2500}{3}\approx833" /> m back west, ending 500 m east of <Katex tex="O" />. Option <b>C</b>, 1000, is the displacement at <Katex tex="t=100" /> — it leaves out the second segment.</>,
   },
 ]
 
@@ -59,6 +68,7 @@ export default function SpecialistQ11_2024() {
           </div>
           <p>
             The initial velocity of the particle is 40 m s<Katex tex="^{-1}" /> to the east.
+            <br />
             How far, in metres, is the particle to the east of <Katex tex="O" />, 150 seconds
             later?
           </p>

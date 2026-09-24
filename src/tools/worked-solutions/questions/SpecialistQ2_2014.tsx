@@ -39,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(3,-2),\quad 1,\quad \tfrac{1}{\sqrt2}}" />,
-    reason: <>Option E. The vertical semi-axis is <Katex tex="\sqrt{\tfrac12}=\tfrac1{\sqrt2}" />, not <Katex tex="\tfrac12" /> — which is option C, the most popular wrong answer.</>,
+    reason: <>Matches option <b>E</b>. The vertical semi-axis is <Katex tex="\sqrt{\tfrac12}=\tfrac1{\sqrt2}" />, not <Katex tex="\tfrac12" /> — which is option C, the most popular wrong answer.</>,
   },
 ]
 

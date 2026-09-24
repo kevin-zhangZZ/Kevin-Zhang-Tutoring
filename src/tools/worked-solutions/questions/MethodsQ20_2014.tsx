@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b-a = 11-1 = 10" />,
-    reason: <>The width. Using <Katex tex="11" /> or <Katex tex="12" /> here is what produces the other options.</>,
+    reason: <>The width. Dividing by 11 or 12 instead (reading the width from the origin, or from the axis's last tick) gives about 6.4 or 5.8 — the likely route to option C, the most popular wrong answer at 30%.</>,
   },
   {
     working: <Katex display tex="\int_1^{11}h(x)\,dx = \text{area under the graph}" />,
@@ -49,7 +49,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{7}" />,
-    reason: <>Option D. A check: the average must lie between the minimum 4 and the maximum 10, and nearer the middle — 7 is plausible, 10 is not.</>,
+    reason: <>Matches option <b>D</b>. A check: the average must lie between the minimum 4 and the maximum 10, and nearer the middle — 7 is plausible, 10 is not.</>,
   },
 ]
 

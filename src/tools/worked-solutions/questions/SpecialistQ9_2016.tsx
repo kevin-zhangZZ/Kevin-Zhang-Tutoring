@@ -10,7 +10,7 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 5, B: 9, C: 55, D: 15, E: 16 },
   answer: 'C',
   noAnswer: 0,
-  comment: <><Katex tex="y_0=0" />, <Katex tex="y_1=0.6" />, <Katex tex="y_2=1.272" />.</>,
+  comment: <Katex tex="y_0=0,\ y_1=0.6,\ y_2=1.272" />,
 }
 
 const ROWS: WorkingRow[] = [

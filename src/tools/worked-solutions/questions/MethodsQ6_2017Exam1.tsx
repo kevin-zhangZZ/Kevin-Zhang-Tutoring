@@ -1,6 +1,6 @@
 // 2017 Mathematical Methods — Exam 1, Question 6 (3 marks).
 // A factorised trig equation, then a "hence" that requires spotting the difference of two
-// squares. The hardest question on the paper — 75% scored zero on part (a). Question text
+// squares. 75% of students scored zero on part (a). Question text
 // transcribed from the original paper (no diagram given). Answers verified with sympy.
 // Solution is original.
 
@@ -41,7 +41,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(\theta)-\sqrt3\cos(\theta)=0 \implies \frac{\sin(\theta)}{\cos(\theta)}=\sqrt3" />,
-    reason: <>Move the cosine term across and divide both sides by <Katex tex="\cos(\theta)" />. That is the step most students did not see: the second and third factors are also statements about <Katex tex="\tan" />.</>,
+    reason: <>Move the cosine term across and divide both sides by <Katex tex="\cos(\theta)" />. That is the step to see: the second and third factors are also statements about <Katex tex="\tan" />.</>,
   },
   {
     working: <Katex display tex="\tan(\theta)=\sqrt3" />,
@@ -49,7 +49,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(\theta)+\sqrt3\cos(\theta)=0 \implies \tan(\theta)=-\sqrt3" />,
-    reason: <>Same move on the third factor, but this time the constant moves across as a negative. The report singles out <Katex tex="\tfrac{1}{\sqrt3}" /> as the popular wrong third answer — that comes from confusing "reciprocal" with "negative".</>,
+    reason: <>Same move on the third factor, but this time the constant moves across as a negative. The report notes students who gave <Katex tex="\tfrac{1}{\sqrt3}" /> as the third value — confusing "reciprocal" with "negative".</>,
   },
   {
     working: <Katex display tex="\boxed{\tan(\theta)=1,\ \sqrt3,\ -\sqrt3}" />,
@@ -102,6 +102,7 @@ export default function MethodsQ6_2017Exam1() {
 
       <PartCard
         letter="a"
+        topic="Trig Equation"
         marks={1}
         statement={
           <>
@@ -125,7 +126,8 @@ export default function MethodsQ6_2017Exam1() {
           <p>
             That one move turns the last two factors into <Katex tex="\tan(\theta)=\sqrt3" />{' '}
             and <Katex tex="\tan(\theta)=-\sqrt3" /> in a line each. Three-quarters of students
-            found only the easy first factor.
+            scored zero here; the report says students struggled to go beyond{' '}
+            <Katex tex="\tan(\theta)=1" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -133,6 +135,7 @@ export default function MethodsQ6_2017Exam1() {
 
       <PartCard
         letter="b"
+        topic="Trig Equation"
         marks={2}
         statement={
           <>

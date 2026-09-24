@@ -54,9 +54,12 @@ const EXAM_F: SAExaminerStats = {
   comment: (
     <>
       Some students worked out the mean and not the median. Others set up the hybrid
-      function incorrectly. Students who used <Katex tex="f(x)" /> when writing out the
-      definite integral were more successful. Students should define the hybrid function on
-      their technology to save time.
+      function incorrectly, for example,{' '}
+      <Katex tex="\displaystyle\int_0^m\left(\frac{x}{500}\right)dx+\int_{20}^m\left(\frac{50-x}{750}\right)dx=\frac12" />{' '}
+      or <Katex tex="\displaystyle\int_0^m\frac{x}{500}+\frac{50-x}{750}\,dx=\frac12" />.
+      Students who used <Katex tex="f(x)" /> when writing out the definite integral were
+      more successful with the method mark for this question. Students should define the
+      hybrid function on their technology to save time.
     </>
   ),
 }
@@ -68,7 +71,7 @@ const EXAM_G: SAExaminerStats = {
     <>
       Some students worked out the variance instead of the standard deviation. Once again,
       students who used <Katex tex="f(x)" /> when writing out the definite integrals were
-      more successful.
+      more successful with this question.
     </>
   ),
 }
@@ -82,7 +85,7 @@ const EXAM_H: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="W \sim \mathrm{N}\!\left(10,\ 0.8^2\right)" />,
-    reason: <>The standard deviation is <Katex tex="0.8" />, so the <em>variance</em> is <Katex tex="0.64" /> — feeding 0.8 in as a variance is what gives the report's 0.228.</>,
+    reason: <>The standard deviation is <Katex tex="0.8" />, so the <em>variance</em> is <Katex tex="0.64" />.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(11, ∞, 10, 0.8)</Cas>,
@@ -90,14 +93,14 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.106}" />,
-    reason: 'To three decimal places.',
+    reason: <>To three decimal places.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(W<k) = 0.8" />,
-    reason: '"80% of ball speeds are below k" — a left-tail area, so an inverse normal.',
+    reason: <>"80% of ball speeds are below k" — a left-tail area, so an inverse normal.</>,
   },
   {
     working: <Cas fn="invNorm">invNorm(0.8, 10, 0.8)</Cas>,
@@ -131,7 +134,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\hat P = \frac{X}{25} \text{ where } X \sim \mathrm{Bi}(25,\ 0.08)" />,
-    reason: 'Turning the proportion back into a count is what makes the binomial usable.',
+    reason: <>Turning the proportion back into a count is what makes the binomial usable.</>,
   },
   {
     working: <Katex display tex="\hat P > 0.1 \iff X > 2.5 \iff X \ge 3" />,
@@ -139,11 +142,11 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Cas fn="binomCdf">1 − binomCdf(25, 0.08, 0, 2)</Cas>,
-    reason: 'The complement of the lower tail.',
+    reason: <>The complement of the lower tail.</>,
   },
   {
     working: <Katex display tex="\boxed{0.323}" />,
-    reason: 'To three decimal places.',
+    reason: <>To three decimal places.</>,
   },
 ]
 
@@ -161,15 +164,15 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{20}\frac{x}{500}\,dx = \frac{400}{1000} = 0.4 < 0.5" />,
-    reason: 'Checking the first branch first tells you which branch the median lies in — and saves solving the wrong equation.',
+    reason: <>Checking the first branch first tells you which branch the median lies in — and saves solving the wrong equation.</>,
   },
   {
     working: <Katex display tex="\int_{20}^{m}\frac{50-x}{750}\,dx = 0.1" />,
-    reason: 'The remaining 0.1 of probability needed to reach the halfway point.',
+    reason: <>The remaining 0.1 of probability needed to reach the halfway point.</>,
   },
   {
     working: <Katex display tex="\frac{1}{750}\left[50x-\tfrac{x^2}{2}\right]_{20}^{m} = 0.1" />,
-    reason: 'Antidifferentiating.',
+    reason: <>Antidifferentiating.</>,
   },
   {
     working: <Katex display tex="m^2-100m+1750 = 0 \implies m = 50\pm5\sqrt{30}" />,
@@ -184,15 +187,15 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="E(X) = \int_0^{20}\frac{x^2}{500}\,dx+\int_{20}^{50}\frac{x(50-x)}{750}\,dx" />,
-    reason: 'Both branches contribute; define the hybrid function on the CAS and integrate it in one go.',
+    reason: <>Both branches contribute; define the hybrid function on the CAS and integrate it in one go.</>,
   },
   {
     working: <Katex display tex="= \tfrac{16}{3}+18 = \tfrac{70}{3}" />,
-    reason: <>About <Katex tex="23.33" />, comfortably above the median — the long right tail pulls the mean up.</>,
+    reason: <>About <Katex tex="23.33" />, just above the median — the long right tail pulls the mean up.</>,
   },
   {
     working: <Katex display tex="E\!\left(X^2\right) = \int_0^{20}\frac{x^3}{500}\,dx+\int_{20}^{50}\frac{x^2(50-x)}{750}\,dx = 80+570 = 650" />,
-    reason: 'The same split, with an extra factor of x.',
+    reason: <>The same split, with an extra factor of x.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = 650-\left(\tfrac{70}{3}\right)^2 = \tfrac{950}{9}" />,
@@ -207,7 +210,7 @@ const ROWS_G: WorkingRow[] = [
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = a\,f\!\left(\frac{x}{b}\right): \ \text{horizontal dilation by } b, \text{ vertical dilation by } a" />,
-    reason: 'Reading the transformation off the rule.',
+    reason: <>Reading the transformation off the rule.</>,
   },
   {
     working: <Katex display tex="\int_{-\infty}^{\infty}a\,f\!\left(\tfrac{x}{b}\right)dx = ab\int_{-\infty}^{\infty}f(u)\,du = ab = 1" />,
@@ -215,11 +218,11 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{new median} = b\times\text{old median}" />,
-    reason: 'A horizontal dilation scales every x-value, the median included.',
+    reason: <>A horizontal dilation scales every x-value, the median included.</>,
   },
   {
     working: <Katex display tex="b\left(50-5\sqrt{30}\right) = 30 \implies b = \frac{30}{22.6138\ldots}" />,
-    reason: 'Using the exact median from part f.',
+    reason: <>Using the exact median from part f.</>,
   },
   {
     working: <Katex display tex="\boxed{b = 1.33, \quad a = \tfrac1b = 0.75}" />,
@@ -233,16 +236,22 @@ export default function MethodsQ4_2021Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 4 (14 marks)</p>
         <p>
-          A teacher coaches their school's table tennis team. The teacher has an adjustable
-          ball machine that they use to help the players practise. The speed, measured in
-          metres per second, of the balls shot by the ball machine is a normally distributed
-          random variable <Katex tex="W" />. The teacher sets the ball machine with a mean
-          speed of 10 metres per second and a standard deviation of 0.8 metres per second.
+          A teacher coaches their school's table tennis team.
+          <br />
+          The teacher has an adjustable ball machine that they use to help the players
+          practise.
+          <br />
+          The speed, measured in metres per second, of the balls shot by the ball machine is a
+          normally distributed random variable <Katex tex="W" />.
+          <br />
+          The teacher sets the ball machine with a mean speed of 10 metres per second and a
+          standard deviation of 0.8 metres per second.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Normal Distribution"
         marks={1}
         statement={
           <>
@@ -256,6 +265,7 @@ export default function MethodsQ4_2021Exam2() {
 
       <PartCard
         letter="b"
+        topic="Inverse Normal"
         marks={1}
         statement={
           <>
@@ -269,18 +279,21 @@ export default function MethodsQ4_2021Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           The teacher adjusts the height setting for the ball machine. The machine now shoots
-          balls high above the table tennis table. Unfortunately, with the new height
-          setting, 8% of balls do not land on the table. Let <Katex tex="\hat P" /> be the
-          random variable representing the sample proportion of balls that do not land on the
+          balls high above the table tennis table.
+          <br />
+          Unfortunately, with the new height setting, 8% of balls do not land on the table.
+          <br />
+          Let <Katex tex="\hat P" /> be the random variable representing the sample proportion of balls that do not land on the
           table in random samples of 25 balls.
         </p>
       </div>
 
       <PartCard
         letter="c"
+        topic="Sample Proportion"
         marks={2}
         statement={
           <>
@@ -294,6 +307,7 @@ export default function MethodsQ4_2021Exam2() {
 
       <PartCard
         letter="d"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -306,22 +320,24 @@ export default function MethodsQ4_2021Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-2">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p>
-          The teacher can also adjust the spin setting on the ball machine. The spin, measured
-          in revolutions per second, is a continuous random variable <Katex tex="X" /> with
+          The teacher can also adjust the spin setting on the ball machine.
+          <br />
+          The spin, measured in revolutions per second, is a continuous random variable <Katex tex="X" /> with
           the probability density function
         </p>
         <p className="py-1">
           <Katex
             display
-            tex="f(x)=\begin{cases}\dfrac{x}{500}, & 0\le x<20\\[6pt] \dfrac{50-x}{750}, & 20\le x\le50\\[6pt] 0, & \text{elsewhere}\end{cases}"
+            tex="f(x)=\begin{cases}\dfrac{x}{500} & 0\le x<20\\[6pt] \dfrac{50-x}{750} & 20\le x\le50\\[6pt] 0 & \text{elsewhere}\end{cases}"
           />
         </p>
       </div>
 
       <PartCard
         letter="e"
+        topic="Continuous PDF"
         marks={1}
         statement={
           <>
@@ -336,6 +352,7 @@ export default function MethodsQ4_2021Exam2() {
 
       <PartCard
         letter="f"
+        topic="Median"
         marks={2}
         statement={
           <>
@@ -349,6 +366,7 @@ export default function MethodsQ4_2021Exam2() {
 
       <PartCard
         letter="g"
+        topic="Standard Deviation"
         marks={3}
         statement={
           <>
@@ -363,6 +381,7 @@ export default function MethodsQ4_2021Exam2() {
 
       <PartCard
         letter="h"
+        topic="Transformed PDF"
         marks={2}
         statement={
           <>
@@ -370,6 +389,7 @@ export default function MethodsQ4_2021Exam2() {
             revolutions per second. This will transform the original probability density
             function <Katex tex="f" /> to a new probability density function{' '}
             <Katex tex="g" />, where <Katex tex="g(x)=a\,f\!\left(\tfrac{x}{b}\right)" />.
+            <br />
             Find the values of <Katex tex="a" /> and <Katex tex="b" /> for which the new
             median spin is 30 revolutions per second, giving your answer correct to two
             decimal places.

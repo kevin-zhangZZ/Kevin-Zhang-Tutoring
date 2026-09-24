@@ -12,9 +12,12 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       Most students were able to apply the formula for the volume of the solid obtained by
-      rotating the given region about the <Katex tex="x" />-axis. Some students tried to
-      apply a formula for the surface area of the solid. Students are reminded to be careful
-      to avoid sign errors after the integration.
+      rotating the given region about the <Katex tex="x" />-axis. Some students tried to apply a
+      formula for the surface area of the solid.
+      <br />
+      Some algebraic errors were observed. Students are reminded to be careful to avoid sign
+      errors: responses often included incorrect expressions following the integration, such
+      as <Katex tex="\pi\left(\dfrac{1}{2}k^2+\dfrac{2}{k}-k\textcolor{red}{+1}\right)" />.
     </>
   ),
 }
@@ -22,15 +25,15 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_a^b y^2\,dx" />,
-    reason: 'Rotation about the x-axis. The surface-area formula is a different thing entirely and was a listed error.',
+    reason: <>Rotation about the x-axis. The surface-area formula is a different thing entirely — the report notes some students tried to apply it.</>,
   },
   {
     working: <Katex display tex="y^2 = k-\frac{1}{x^2}" />,
-    reason: 'The square root disappears immediately — this is why the curve was given in that form.',
+    reason: <>The square root disappears immediately — this is why the curve was given in that form.</>,
   },
   {
     working: <Katex display tex="V = \pi\int_1^{k/2}\left(k-x^{-2}\right)dx = \pi\left[kx+\frac1x\right]_1^{k/2}" />,
-    reason: <>The antiderivative of <Katex tex="-x^{-2}" /> is <Katex tex="+x^{-1}" /> — a sign slip here is what the examiner warned about.</>,
+    reason: <>The antiderivative of <Katex tex="-x^{-2}" /> is <Katex tex="+x^{-1}" /> — the report warns that sign errors after the integration were often seen.</>,
   },
   {
     working: <Katex display tex="= \pi\left[\left(\frac{k^2}{2}+\frac{2}{k}\right)-\left(k+1\right)\right]" />,
@@ -46,21 +49,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k^3-2k^2-9k+4 = 0}" />,
-    reason: <>As required. (For interest, the root in <Katex tex="k>2" /> is <Katex tex="k\approx4.14" />, but the question stops at the equation.)</>,
+    reason: <>As required. (For interest, the cubic factorises as <Katex tex="(k-4)\left(k^2+2k-1\right)" />, so the value with <Katex tex="k>2" /> is exactly <Katex tex="k=4" />, but the question stops at the equation.)</>,
   },
 ]
 
 export default function SpecialistQ5_2024Exam1() {
   return (
     <div className="flex flex-col gap-8">
-      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (3 marks)</p>
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
+        <p className="font-semibold text-gray-900 dark:text-white">Question 5 (3 marks)</p>
         <p>
           The curve with equation <Katex tex="y=\sqrt{k-\dfrac{1}{x^2}}" />, for{' '}
           <Katex tex="1\le x\le\dfrac{k}{2}" /> where <Katex tex="k>2" />, is rotated about
           the <Katex tex="x" />-axis to form a solid of revolution that has volume{' '}
-          <Katex tex="\dfrac{7\pi}{2}" /> units<Katex tex="^3" />. Show that{' '}
-          <Katex tex="k" /> satisfies the equation <Katex tex="k^3-2k^2-9k+4=0" />.
+          <Katex tex="\dfrac{7\pi}{2}" /> units<Katex tex="^3" />.
+        </p>
+        <p>
+          Show that <Katex tex="k" /> satisfies the equation <Katex tex="k^3-2k^2-9k+4=0" />.
         </p>
       </div>
 

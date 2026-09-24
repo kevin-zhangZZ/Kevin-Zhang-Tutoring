@@ -41,8 +41,8 @@ const EXAM_BIII: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Errors here generally arose from using a form of <Katex tex="\tfrac{dy}{dx}" /> in part
-      b(ii) rather than <Katex tex="\tfrac{dx}{dt}" />.
+      Errors here generally arose from using a form of <Katex tex="\dfrac{dy}{dx}" /> in Question
+      1bii. rather than <Katex tex="\dfrac{dx}{dt}" />.
     </>
   ),
 }
@@ -67,11 +67,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = 3\cos\!\left(\tfrac\pi6\right) = \tfrac{3\sqrt3}{2}" />,
-    reason: 'Exact values throughout — the question asks for a distance, and nothing says to round.',
+    reason: <>Exact values throughout — the question asks for a distance, and nothing says to round.</>,
   },
   {
     working: <Katex display tex="d^2 = \left(\sqrt3\right)^2+\left(\tfrac{3\sqrt3}{2}\right)^2 = 3+\tfrac{27}{4} = \tfrac{39}{4}" />,
-    reason: <>Distance from the <em>origin</em>, so it is <Katex tex="\sqrt{x^2+y^2}" /> — not the distance from the position at <Katex tex="t=0" />, which is the report's common error.</>,
+    reason: <>Distance from the <em>origin</em>, so it is <Katex tex="\sqrt{x^2+y^2}" /> — not the distance from the position at <Katex tex="t=0" />, which the report notes some students found.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \frac{\sqrt{39}}{2}\ \text{m}}" />,
@@ -86,26 +86,26 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{-3\sin(t)}{4\cos(2t)}}" />,
-    reason: <>Divide, do not subtract. Dropping the minus sign here is what produces the report's <Katex tex="y=3" />.</>,
+    reason: <>The chain rule in parametric form: divide <Katex tex="\tfrac{dy}{dt}" /> by <Katex tex="\tfrac{dx}{dt}" />.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ \frac{dy}{dx} = \frac{-3\sin(\pi)}{4\cos(2\pi)} = \frac{0}{4} = 0" />,
-    reason: 'A horizontal tangent.',
+    reason: <>A horizontal tangent.</>,
   },
   {
     working: <Katex display tex="x = 2\sin(2\pi) = 0, \quad y = 3\cos(\pi) = -3" />,
-    reason: <>The point of contact: the particle is at the origin's level on the <Katex tex="y" />-axis, three metres below.</>,
+    reason: <>The point of contact, <Katex tex="(0,-3)" />: on the <Katex tex="y" />-axis, three metres below the origin. <Katex tex="\cos(\pi)=-1" /> — the report notes some students made a sign error here, giving <Katex tex="y=3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -3}" />,
-    reason: <>The <em>equation</em> of the tangent, which the report notes many students never wrote after finding the derivative.</>,
+    reason: <>The <em>equation</em> of the tangent: a horizontal line through the point of contact.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{v} = \frac{dx}{dt}\underset{\sim}{i}+\frac{dy}{dt}\underset{\sim}{j} = 4\cos(2t)\,\underset{\sim}{i}-3\sin(t)\,\underset{\sim}{j}" />,
-    reason: 'Differentiate each component with respect to time — not with respect to each other.',
+    reason: <>Differentiate each component with respect to time — not with respect to each other.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ 4\cos(2\pi) = 4, \quad -3\sin(\pi) = 0" />,
@@ -120,7 +120,7 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a} = \frac{d\underset{\sim}{v}}{dt} = -8\sin(2t)\,\underset{\sim}{i}-3\cos(t)\,\underset{\sim}{j}" />,
-    reason: 'Differentiating the velocity vector, again with respect to time.',
+    reason: <>Differentiating the velocity vector, again with respect to time.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ -8\sin(2\pi) = 0, \quad -3\cos(\pi) = 3" />,
@@ -132,7 +132,7 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left|\underset{\sim}{a}\right| = 3\ \text{m s}^{-2}}" />,
-    reason: <>Here the <em>magnitude</em> is what is asked for, the opposite of part b(ii).</>,
+    reason: <>Here the <em>magnitude</em> is what is asked for, the opposite of part b.ii.</>,
   },
 ]
 
@@ -154,19 +154,19 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="d = \int_{t_1}^{t_2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt" />,
-    reason: 'The parametric arc length formula from the formula sheet.',
+    reason: <>The parametric arc length formula from the formula sheet.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \int_0^{\pi/6}\sqrt{\left(4\cos(2t)\right)^2+\left(3\sin(t)\right)^2}\,dt}" />,
-    reason: <>The minus sign disappears inside the square. Include the <Katex tex="dt" /> — the report docks for leaving it off.</>,
+    reason: <>The minus sign disappears inside the square. Include the <Katex tex="dt" /> — the report notes errors included missing <Katex tex="dt" />.</>,
   },
   {
     working: <Cas fn="nInt">∫(√((4cos(2t))² + (3sin(t))²), t, 0, π/6)</Cas>,
-    reason: 'No closed form; evaluate numerically.',
+    reason: <>No closed form; evaluate numerically.</>,
   },
   {
     working: <Katex display tex="\boxed{d = 1.804\ \text{m}}" />,
-    reason: <>Three decimal places, as asked — <Katex tex="1.80" /> loses the mark.</>,
+    reason: <>Three decimal places, as asked — the report notes some students gave the distance to fewer decimal places than required.</>,
   },
 ]
 
@@ -190,6 +190,7 @@ export default function SpecialistQ1_2020Exam2() {
 
       <PartCard
         letter="a"
+        topic="Distance"
         marks={2}
         statement={
           <>
@@ -204,6 +205,7 @@ export default function SpecialistQ1_2020Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Parametric Tangent"
         marks={3}
         statement={
           <>
@@ -219,6 +221,7 @@ export default function SpecialistQ1_2020Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Velocity"
         marks={2}
         statement={
           <>
@@ -233,6 +236,7 @@ export default function SpecialistQ1_2020Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Acceleration"
         marks={2}
         statement={
           <>
@@ -247,6 +251,7 @@ export default function SpecialistQ1_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Time at Origin"
         marks={1}
         statement={<>Find the time, in seconds, when the particle first passes through the origin.</>}
         examinerReport={EXAM_C}
@@ -256,6 +261,7 @@ export default function SpecialistQ1_2020Exam2() {
 
       <PartCard
         letter="d"
+        topic="Distance Travelled"
         marks={2}
         statement={
           <>

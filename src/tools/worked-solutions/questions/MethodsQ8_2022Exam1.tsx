@@ -12,8 +12,10 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Students need to ensure they write their answer in an acceptable form; responses such
-      as <Katex tex="\tfrac\pi3\sin\!\left(\tfrac\pi3\right)" /> needed to be simplified.
+      Generally, this question was well answered. Students need to ensure they write their
+      answer in an acceptable form; responses such as{' '}
+      <Katex tex="\left(\tfrac\pi3\right)\sin\tfrac\pi3" /> and{' '}
+      <Katex tex="\tfrac\pi3\times\tfrac{\sqrt3}{2}" /> needed to be simplified.
     </>
   ),
 }
@@ -35,11 +37,19 @@ const EXAM_C: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Many students obtained <Katex tex="\sin(k)" />, found its derivative and set it equal
-      to zero. While acceptable, this was unnecessary and often led to errors. Some students
-      did not recognise that <Katex tex="k" /> was a variable; others correctly got{' '}
-      <Katex tex="\cos(k)=0" /> and then incorrectly wrote <Katex tex="k=1" />. Some set up
-      the average <em>rate of change</em> rather than the average value.
+      This question was not answered well. Many students obtained <Katex tex="\sin(k)" />,
+      found the derivative of this and set it equal to zero to find the maximum. While this
+      was acceptable, it was unnecessary and often led to errors. Some students did not
+      recognise that k was a variable; other students correctly got <Katex tex="\cos(k)=0" />{' '}
+      and then incorrectly wrote <Katex tex="k=1" />.
+      <br />
+      Some students set up the average rate of change, rather than the average value
+      function, and some students tried to find{' '}
+      <Katex tex="\tfrac1k\int_0^k x\sin(x)\,dx" /> using the function for{' '}
+      <Katex tex="A(x)" /> rather than <Katex tex="f(x)" />. Use of nomenclature in student
+      solutions for this question was inconsistently applied, with many students
+      interchanging <Katex tex="k" /> and <Katex tex="x" />. Some students incorrectly set up
+      integrals with terminals of 0 and 2.
     </>
   ),
 }
@@ -47,15 +57,15 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="A(k) = k\sin(k) \implies A\!\left(\tfrac\pi3\right) = \tfrac\pi3\sin\!\left(\tfrac\pi3\right)" />,
-    reason: 'Direct substitution — no integration required, because the area function is given.',
+    reason: <>Direct substitution — no integration required, because the area function is given.</>,
   },
   {
     working: <Katex display tex="\sin\!\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}" />,
-    reason: 'An exact value that must be used, not left unevaluated.',
+    reason: <>An exact value that must be used, not left unevaluated.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{\sqrt3\,\pi}{6}}" />,
-    reason: <>About 0.91. Leaving it as <Katex tex="\tfrac\pi3\sin\tfrac\pi3" /> was not accepted.</>,
+    reason: <>About 0.91. The report notes responses such as <Katex tex="\left(\tfrac\pi3\right)\sin\tfrac\pi3" /> needed to be simplified.</>,
   },
 ]
 
@@ -66,11 +76,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\implies A'(k) = f(k)" />,
-    reason: 'The fundamental theorem of calculus. Spotting this link is the whole question.',
+    reason: <>The fundamental theorem of calculus — the report notes the question relied on this link.</>,
   },
   {
     working: <Katex display tex="A'(k) = \frac{d}{dk}\bigl(k\sin(k)\bigr) = \sin(k)+k\cos(k)" />,
-    reason: <>The <em>product</em> rule — writing just <Katex tex="k\cos(k)" /> is the report's named error.</>,
+    reason: <>The <em>product</em> rule — the report notes common incorrect solutions gave <Katex tex="k\cos(k)" />.</>,
   },
   {
     working: <Katex display tex="f\!\left(\tfrac\pi3\right) = \sin\!\left(\tfrac\pi3\right)+\tfrac\pi3\cos\!\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}+\tfrac\pi3\cdot\tfrac12" />,
@@ -78,7 +88,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{\sqrt3}{2}+\frac{\pi}{6}}" />,
-    reason: <>About 1.39 — consistent with the graph, which peaks a little above 1.4 near <Katex tex="x=1" />.</>,
+    reason: <>About 1.39 — consistent with the graph: <Katex tex="\tfrac\pi3\approx1.05" /> is close to where <Katex tex="f" /> peaks (<Katex tex="x\approx1.08" />).</>,
   },
 ]
 
@@ -92,12 +102,12 @@ const ROWS_C: WorkingRow[] = [
     reason: <>The <Katex tex="k" /> cancels, which is why the given form of <Katex tex="A" /> is so convenient.</>,
   },
   {
-    working: <Katex display tex="\sin(k) \text{ is greatest when } k = \tfrac\pi2 \text{ on } [0,2\pi]" />,
-    reason: <>Sine peaks at 1 there — no calculus needed. Differentiating and solving <Katex tex="\cos(k)=0" /> gives the same answer, but is where the report says errors crept in.</>,
+    working: <Katex display tex="\sin(k) \text{ is greatest when } k = \tfrac\pi2 \text{ on } [0,2]" />,
+    reason: <>Sine peaks at 1 there, and <Katex tex="\tfrac\pi2\approx1.57" /> lies in <Katex tex="[0,2]" /> — no calculus needed. Differentiating and solving <Katex tex="\cos(k)=0" /> gives the same answer, but the report notes it often led to errors.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac\pi2}" />,
-    reason: <>Note <Katex tex="\cos(k)=0" /> does not give <Katex tex="k=1" /> — that confusion between the value of <Katex tex="\sin" /> and the value of <Katex tex="k" /> is the report's other named error.</>,
+    reason: <>Note <Katex tex="\cos(k)=0" /> does not give <Katex tex="k=1" /> — the report notes some students wrote <Katex tex="k=1" /> after correctly getting <Katex tex="\cos(k)=0" />.</>,
   },
 ]
 
@@ -122,6 +132,7 @@ export default function MethodsQ8_2022Exam1() {
 
       <PartCard
         letter="a"
+        topic="Area Function"
         marks={1}
         statement={
           <>
@@ -135,6 +146,7 @@ export default function MethodsQ8_2022Exam1() {
 
       <PartCard
         letter="b"
+        topic="Fundamental Theorem"
         marks={2}
         statement={
           <>
@@ -148,11 +160,14 @@ export default function MethodsQ8_2022Exam1() {
 
       <PartCard
         letter="c"
+        topic="Average Value"
         marks={2}
         statement={
           <>
             Consider the average value of the function <Katex tex="f" /> over the interval{' '}
-            <Katex tex="x\in[0,k]" />, where <Katex tex="k\in[0,2\pi]" />. Find the value of{' '}
+            <Katex tex="x\in[0,k]" />, where <Katex tex="k\in[0,2]" />.
+            <br />
+            Find the value of{' '}
             <Katex tex="k" /> that results in the maximum average value.
           </>
         }

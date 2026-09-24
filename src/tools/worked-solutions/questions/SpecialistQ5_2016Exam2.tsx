@@ -29,7 +29,7 @@ const EXAM_C: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Success in Question 5b. generally translated to success here, although a greater
+      Success in Question 5b. generally translated to success in Question 5c., although a greater
       number of students used a constant acceleration in Question 5c. An answer correct to
       two decimal places was required, but this instruction was ignored by some students.
     </>
@@ -41,10 +41,12 @@ const EXAM_D: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      Students used a variety of correct approaches. The most common misconception was not
-      realising that acceleration was now constant, and some students proceeded to use their
-      equation for the displacement obtained in Question 5c. Students should note the
-      instruction to use <Katex tex="g=9.8" />, not <Katex tex="10" />.
+      Students used a variety of correct approaches. Some students used calculus, while others
+      used constant acceleration formulas. The most common misconception arising in this
+      question was not realising that acceleration was now constant, and some students
+      proceeded to use their equation for the displacement that was obtained in Question 5c.
+      Students should note the instructions at the beginning of Section B where they are told
+      to use <Katex tex="g=9.8" />, not 10.
     </>
   ),
 }
@@ -54,9 +56,12 @@ const EXAM_E: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Of the students who made progress, the majority used equations of constant
-      acceleration. A number who treated the motion in separate sections added only some
-      parts of the motion to get the total time. Inconsistent signs caused some difficulty.
+      Of the students who made progress in this question, the majority used equations of
+      constant acceleration. A few realised that it was possible to describe the whole of
+      this section of the motion using the equation{' '}
+      <Katex tex="-\tfrac{515}{6}=\tfrac{27}{2}t-4.9t^2" />. A number who treated the motion in
+      separate sections added only some parts of the motion to get the total time.
+      Inconsistent signs caused some difficulty.
     </>
   ),
 }
@@ -141,7 +146,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = 5+1.378+4.406 \approx 10.8 \text{ s}}" />,
-    reason: <>All three stages, to one decimal place. The report notes students who computed the pieces correctly and then added only some of them.</>,
+    reason: <>All three stages, to one decimal place. The report notes students who computed the pieces correctly and then added only some of them. Check with the report's one-equation route for everything after the engine cuts out: <Katex tex="-\tfrac{515}{6}=13.5t-4.9t^2" /> gives <Katex tex="t\approx5.78" />, and <Katex tex="5+5.78\approx10.8" /> ✓.</>,
   },
 ]
 
@@ -149,7 +154,7 @@ export default function SpecialistQ5_2016Exam2() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (parts b–e)</p>
+        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (10 marks) — parts b.–e. only</p>
         <p className="mb-2">
           A model rocket of mass <Katex tex="2" /> kg is launched from rest and travels
           vertically up, with a vertical propulsion force of <Katex tex="(50-10t)" /> newtons
@@ -157,16 +162,27 @@ export default function SpecialistQ5_2016Exam2() {
           that the rocket is subject only to the vertical propulsion force and gravity, and
           that air resistance is negligible.
         </p>
-        <p>
-          Part (a) asks for an equation of motion by balancing the propulsion force against
-          the weight — force analysis, which is not part of the current study design. It
-          establishes that <Katex tex="\dfrac{dv}{dt}=\dfrac{76}{5}-5t" />, and the remaining
-          parts use that result.
-        </p>
+      </div>
+
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+        <Background title="Why only parts b.–e.">
+          <p>
+            Part a. reads: "Let <Katex tex="v" /> ms<sup>−1</sup> be the velocity of the rocket{' '}
+            <Katex tex="t" /> seconds after it is launched. Write down an equation of motion for
+            the rocket and show that <Katex tex="\dfrac{dv}{dt}=\dfrac{76}{5}-5t" />." Writing an
+            equation of motion by balancing the propulsion force against the weight is force
+            analysis, which is not part of the current study design, so it is omitted here.
+          </p>
+          <p>
+            The result it establishes, <Katex tex="\dfrac{dv}{dt}=\dfrac{76}{5}-5t" />, is all the
+            remaining parts need.
+          </p>
+        </Background>
       </div>
 
       <PartCard
         letter="b"
+        topic="Velocity"
         marks={2}
         statement={
           <>
@@ -194,6 +210,7 @@ export default function SpecialistQ5_2016Exam2() {
 
       <PartCard
         letter="c"
+        topic="Displacement"
         marks={2}
         statement={
           <>
@@ -208,6 +225,7 @@ export default function SpecialistQ5_2016Exam2() {
 
       <PartCard
         letter="d"
+        topic="Maximum Height"
         marks={2}
         statement={
           <>
@@ -223,6 +241,7 @@ export default function SpecialistQ5_2016Exam2() {
 
       <PartCard
         letter="e"
+        topic="Time of Flight"
         marks={3}
         statement={
           <>

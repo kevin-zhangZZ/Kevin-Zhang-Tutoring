@@ -8,7 +8,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import cylinderSrc from './spec-2019exam1-q3-cylinder.png'
+import cylinderSrc from './spec-2019e1-q3-cylinder.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [11, 89],
@@ -21,9 +21,11 @@ const EXAM_B: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Students could use fractions rather than decimals here; those who did tended to score
-      more highly, as students working in decimals were sometimes unable to evaluate the square
-      correctly. A number of students omitted the <Katex tex="\pi^2" /> from their answer.
+      Students could use fractions to find{' '}
+      <Katex tex="\operatorname{Var}(V)=\operatorname{Var}\left(\pi r^2h\right)=\dfrac{\pi^2}{16}\times\dfrac{1}{100}=\dfrac{\pi^2}{1600}" />.
+      Students who used this approach tended to score more highly than those using decimals, who
+      sometimes were not able to evaluate <Katex tex="(\pi\times0.25)^2\times(0.1)^2" /> correctly.
+      A number of students omitted the <Katex tex="\pi^2" /> from their answer.
     </>
   ),
 }
@@ -31,7 +33,7 @@ const EXAM_B: SAExaminerStats = {
 const EXAM_C: SAExaminerStats = {
   marks: [50, 50],
   average: 0.5,
-  comment: <>Some students were unable to evaluate the expression correctly. Arithmetic was the main area of weakness across this question.</>,
+  comment: <>Some students were unable to evaluate <Katex tex="\dfrac{\pi}{2}+3\pi" /> correctly.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
@@ -52,7 +54,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{Var}(V) = \operatorname{Var}\!\left(\dfrac{\pi}{4}L\right) = \left(\dfrac{\pi}{4}\right)^2\operatorname{Var}(L)" />,
-    reason: <>A constant multiplier comes out of a variance <b>squared</b> — this is the step that separates this part from part (a), and only 30% of students got it.</>,
+    reason: <>A constant multiplier comes out of a variance <b>squared</b> — this is the step that separates this part from part a., and only 30% of students got it.</>,
   },
   {
     working: <Katex display tex="\operatorname{Var}(L) = \bigl(\text{sd}(L)\bigr)^2 = \left(\dfrac{1}{10}\right)^2 = \dfrac{1}{100}" />,
@@ -60,6 +62,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Var}(V) = \dfrac{\pi^2}{16}\times\dfrac{1}{100}" />,
+    reason: <>Substituting. Keep it in fractions — the report notes students using decimals sometimes could not evaluate <Katex tex="(\pi\times0.25)^2\times(0.1)^2" /> correctly.</>,
   },
   {
     working: <Katex display tex="\boxed{\operatorname{Var}(V) = \dfrac{\pi^2}{1600} \text{ cm}^6}" />,
@@ -82,7 +85,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{E(A) = \dfrac{7\pi}{2} \text{ cm}^2}" />,
-    reason: <><Katex tex="\tfrac{\pi}{2}+3\pi=\tfrac{\pi}{2}+\tfrac{6\pi}{2}=\tfrac{7\pi}{2}" />, i.e. <Katex tex="3.5\pi \approx 11.0" /> cm².</>,
+    reason: <><Katex tex="\tfrac{\pi}{2}+3\pi=\tfrac{\pi}{2}+\tfrac{6\pi}{2}=\tfrac{7\pi}{2}" />, i.e. <Katex tex="3.5\pi \approx 11.0" /> cm². The report notes some students were unable to evaluate this sum correctly, and its general comments list arithmetic in Question 3 as an area of weakness.</>,
   },
 ]
 
@@ -122,15 +125,15 @@ export default function SpecialistQ3_2019Exam1() {
         </Background>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find the expected volume of a piece of chocolate in cm³.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Expected Value" marks={1} statement={<>Find the expected volume of a piece of chocolate in cm³.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Find the variance of the volume of a piece of chocolate in cm⁶.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Variance" marks={1} statement={<>Find the variance of the volume of a piece of chocolate in cm⁶.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={1} statement={<>Find the expected surface area of a piece of chocolate in cm².</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Expected Value" marks={1} statement={<>Find the expected surface area of a piece of chocolate in cm².</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
     </div>

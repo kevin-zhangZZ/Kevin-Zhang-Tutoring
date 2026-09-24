@@ -43,8 +43,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Distance equal to the radius, so each touches once — tangents, not two intersections.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{B}}" />,
-    reason: <>The only line that gets inside the circle.</>,
+    working: <Katex display tex="\boxed{|z-3-2i| = |z-5|}" />,
+    reason: <>Matches option <b>B</b>, the only line that gets inside the circle. Options A and C (17% each) miss it altogether; D and E only touch it.</>,
   },
 ]
 

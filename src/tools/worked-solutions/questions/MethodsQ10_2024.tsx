@@ -6,6 +6,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2024-mcq10-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 26, B: 38, C: 16, D: 20 },
@@ -13,18 +14,25 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="f" /> does not have to be strictly decreasing on <Katex tex="[0,2]" />; does not have to be
-      positive on <Katex tex="[4,5]" />; does not have to have a local minimum at <Katex tex="x=3" />. But{' '}
-      <Katex tex="f" /> is many-to-one on <Katex tex="[2,4]" />, since <Katex tex="f'" /> changes sign there — so{' '}
-      <Katex tex="f" /> has no inverse function.
+      Possible graphs of <Katex tex="f" /> and <Katex tex="f'" /> are shown below.
+      <br />
+      <Katex tex="f" /> does not have to be strictly decreasing on <Katex tex="[0,2]" />.
+      <br />
+      <Katex tex="f" /> does not have to be positive on <Katex tex="[4,5]" />.
+      <br />
+      <Katex tex="f" /> does not have to have a local minimum at <Katex tex="x=3" />.
+      <br />
+      <Katex tex="f" /> is many-to-one on <Katex tex="[2,4]" />, since <Katex tex="f'" /> changes
+      sign. So <Katex tex="f" /> does not have an inverse function.
+      <img src={reportGraphSrc} alt="The report's example graphs: a cubic-like y = f(x) with a local maximum near x = 0.8 and a local minimum near x = 3.5, and y = f′(x) negative at x = 2 and positive at x = 4" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f:[0,5]\to\mathbb{R},\quad f' \text{ continuous},\quad f'(2)<0,\quad f'(4)>0" />,
-    reason: 'Given information.',
+    working: <Katex display tex="f:[0,5]\to R,\quad f' \text{ continuous},\quad f'(2)<0,\quad f'(4)>0" />,
+    reason: <>Given information.</>,
   },
   {
     working: <>By the Intermediate Value Theorem, since <Katex tex="f'" /> is continuous and changes sign between <Katex tex="x=2" /> and <Katex tex="x=4" />, there is some point <Katex tex="c\in(2,4)" /> with <Katex tex="f'(c)=0" />, where <Katex tex="f'" /> switches from negative to positive.</>,
@@ -36,11 +44,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Since <Katex tex="f" /> genuinely decreases then increases somewhere in <Katex tex="[2,4]\subset[0,5]" />, it takes at least one output value twice.</>,
-    reason: 'A function that is not monotonic on any part of its domain cannot be one-to-one overall.',
+    reason: <>A function that decreases and then increases takes some value twice, so it cannot be one-to-one.</>,
   },
   {
     working: <Katex display tex="\boxed{f \text{ has no inverse function}}" />,
-    reason: <>This <i>must</i> be true regardless of exactly where the turning point falls — matches option <b>B</b>.</>,
+    reason: <>This <i>must</i> be true regardless of exactly where the turning point falls. Matches option <b>B</b>.</>,
   },
 ]
 
@@ -49,8 +57,8 @@ export default function MethodsQ10_2024() {
     <MCQShell
       question={
         <p>
-          Suppose a function <Katex tex="f:[0,5]\to\mathbb{R}" /> and its derivative{' '}
-          <Katex tex="f':[0,5]\to\mathbb{R}" /> are defined and continuous on their domains. If{' '}
+          Suppose a function <Katex tex="f:[0,5]\to R" /> and its derivative{' '}
+          <Katex tex="f':[0,5]\to R" /> are defined and continuous on their domains. If{' '}
           <Katex tex="f'(2)<0" /> and <Katex tex="f'(4)>0" />, which one of these statements must be true?
         </p>
       }

@@ -15,9 +15,9 @@ const EXAM_A: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      As this was a "show that" question, appropriate working with logical sequencing needed
-      to be shown. Many students were able to show that <Katex tex="c=75" />. Some students
-      wrote <Katex tex="\text{Period}=b" /> instead of <Katex tex="\text{Period}=\tfrac{2\pi}{b}" />.
+      As this was a 'show that' question, appropriate working with logical sequencing needed to
+      be shown. Many students were able to show that <Katex tex="c=75" />. Some students wrote{' '}
+      <Katex tex="\text{Period}=b" /> instead of <Katex tex="\text{Period}=\tfrac{2\pi}{b}" />.
     </>
   ),
 }
@@ -28,7 +28,7 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Some students had the correct formula for average value of a function but used incorrect
-      values; <Katex tex="\tfrac{1}{60}\int_0^{60}h(t)\,dt" /> was often seen. Other students
+      values. <Katex tex="\tfrac{1}{60}\int_0^{60}h(t)\,dt" /> was often seen. Other students
       found the average rate of change.
     </>
   ),
@@ -45,7 +45,7 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Many students were able to find <Katex tex="k" />, but not <Katex tex="m" />;{' '}
+      Many students were able to find <Katex tex="k" />, but not <Katex tex="m" />.{' '}
       <Katex tex="m=\tfrac12" /> was often seen.
     </>
   ),
@@ -57,7 +57,7 @@ const EXAM_DII: SAExaminerStats = {
   comment: (
     <>
       This question was not done well. Some students were able to set up a correct equation. A
-      general solution was required; some students wrote <Katex tex="p\in\mathbb{R}" />.
+      general solution was required. Some students wrote <Katex tex="p\in R" />.
     </>
   ),
 }
@@ -69,7 +69,7 @@ const EXAM_DIII: SAExaminerStats = {
     <>
       Many students had the correct graph for <Katex tex="0\le t\le15" />. The coordinates of
       the endpoints were missing on some graphs. Some students did not draw graphs with the
-      correct curvature; linear graphs were sometimes seen.
+      correct curvature. Linear graphs were sometimes seen.
     </>
   ),
 }
@@ -77,23 +77,23 @@ const EXAM_DIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Period} = \frac{2\pi}{b} = 30" />,
-    reason: <>One full rotation every 30 minutes. The period of <Katex tex="\cos(bt)" /> is <Katex tex="\tfrac{2\pi}{b}" />, not <Katex tex="b" /> — the report's named error.</>,
+    reason: <>One full rotation every 30 minutes. The period of <Katex tex="\cos(bt)" /> is <Katex tex="\tfrac{2\pi}{b}" />, not <Katex tex="b" /> — the report notes some students wrote <Katex tex="\text{Period}=b" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{b = \frac{2\pi}{30} = \frac{\pi}{15}} \ \checkmark" />,
-    reason: 'Rearranging.',
+    working: <Katex display tex="\boxed{b = \frac{2\pi}{30} = \frac{\pi}{15}}" />,
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="t=0 \text{ is at } A \implies h(0) = 15" />,
-    reason: 'The pod starts at the lowest point, 15 m above the ground.',
+    reason: <>The pod starts at the lowest point, 15 m above the ground.</>,
   },
   {
     working: <Katex display tex="-60\cos(0)+c = 15 \implies -60+c = 15" />,
     reason: <><Katex tex="\cos(0)=1" />, so the cosine term is at its most negative — which is exactly why the model uses <Katex tex="-60\cos" /> rather than <Katex tex="+60\cos" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{c = 75} \ \checkmark" />,
-    reason: <>And it checks geometrically: the centre <Katex tex="P" /> is <Katex tex="15+60=75" /> m up, which is the model's midline.</>,
+    working: <Katex display tex="\boxed{c = 75}" />,
+    reason: <>And it checks geometrically: the centre <Katex tex="P" /> is <Katex tex="15+60=75" /> m up, which is the model's midline. As required.</>,
   },
 ]
 
@@ -104,7 +104,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{average value} = \frac{1}{b-a}\int_a^b h(t)\,dt = \frac{1}{7.5}\int_0^{7.5}h(t)\,dt" />,
-    reason: <>The <em>average value of a function</em> — not the average rate of change, which is part c. Using <Katex tex="\tfrac{1}{60}\int_0^{60}" /> integrates over a whole rotation instead.</>,
+    reason: <>The <em>average value of a function</em> — not the average rate of change, which is part c. The report notes <Katex tex="\tfrac{1}{60}\int_0^{60}h(t)\,dt" /> was often seen — the wrong interval entirely.</>,
   },
   {
     working: <Katex display tex="\int_0^{7.5}\left(-60\cos\!\left(\frac{\pi t}{15}\right)+75\right)dt = \left[-\frac{900}{\pi}\sin\!\left(\frac{\pi t}{15}\right)+75t\right]_0^{7.5}" />,
@@ -123,7 +123,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average rate of change} = \frac{h(7.5)-h(0)}{7.5-0}" />,
-    reason: 'Rise over run between the two endpoints — the gradient of the chord, not an integral.',
+    reason: <>Rise over run between the two endpoints — the gradient of the chord, not an integral.</>,
   },
   {
     working: <Katex display tex="h(7.5) = -60\cos\!\left(\frac\pi2\right)+75 = 75" />,
@@ -131,14 +131,14 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{75-15}{7.5} = 8 \ \mathrm{m/min}}" />,
-    reason: <>Positive, because the pod is rising. The report's common wrong answer <Katex tex="-8" /> comes from subtracting the two heights the other way round.</>,
+    reason: <>Positive, because the pod is rising. The report notes <Katex tex="-8" />, with the sign reversed, was a common incorrect answer.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="k = h(15) = -60\cos(\pi)+75 = 60+75" />,
-    reason: 'The wheel stops after 15 minutes — half a rotation, so the pod is at the very top.',
+    reason: <>The wheel stops after 15 minutes — half a rotation, so the pod is at the very top.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 135}" />,
@@ -150,29 +150,29 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m = 2}" />,
-    reason: <>A dilation of factor <Katex tex="\tfrac12" /> from the vertical axis, which is <Katex tex="m=2" /> inside the bracket. Writing <Katex tex="m=\tfrac12" /> — the report's common error — would halve the speed.</>,
+    reason: <>A dilation of factor <Katex tex="\tfrac12" /> from the vertical axis, which is <Katex tex="m=2" /> inside the bracket. The report notes <Katex tex="m=\tfrac12" /> was often seen — that would halve the speed.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="w \text{ continuous at } t=20 \implies h(m(20)+n) = k = 135" />,
-    reason: 'The pod restarts from wherever it stopped, so the third piece must begin at height 135.',
+    reason: <>The pod restarts from wherever it stopped, so the third piece must begin at height 135.</>,
   },
   {
     working: <Katex display tex="h(40+n) = 135 \implies -60\cos\!\left(\frac{\pi(40+n)}{15}\right)+75 = 135" />,
     reason: <>Substituting <Katex tex="m=2" />.</>,
   },
   {
-    working: <Katex display tex="\cos\!\left(\frac{\pi(40+n)}{15}\right) = -1 \implies \frac{\pi(40+n)}{15} = \pi+2p\pi, \ p\in\mathbb{Z}" />,
+    working: <Katex display tex="\cos\!\left(\frac{\pi(40+n)}{15}\right) = -1 \implies \frac{\pi(40+n)}{15} = \pi+2p\pi, \ p\in Z" />,
     reason: <>Cosine equals <Katex tex="-1" /> at every odd multiple of <Katex tex="\pi" />. A <em>general</em> solution is required, and <Katex tex="p" /> must be an integer.</>,
   },
   {
     working: <Katex display tex="40+n = 15+30p \implies n = -25+30p" />,
-    reason: 'Multiplying by 15/π.',
+    reason: <>Multiplying by 15/π.</>,
   },
   {
-    working: <Katex display tex="\boxed{n = 5+30p, \ p\in\mathbb{Z}}" />,
+    working: <Katex display tex="\boxed{n = 5+30p, \ p\in Z}" />,
     reason: <>The same set written from a different starting point (<Katex tex="-25=5-30" />). Taking <Katex tex="n=5" />: at <Katex tex="t=27.5" />, <Katex tex="h(60)=15" />, so the pod is back at the bottom ✓.</>,
   },
 ]
@@ -180,11 +180,11 @@ const ROWS_DII: WorkingRow[] = [
 const ROWS_DIII: WorkingRow[] = [
   {
     working: <Katex display tex="0\le t<15: \ w = -60\cos\!\left(\frac{\pi t}{15}\right)+75" />,
-    reason: <>Half a cosine wave from <Katex tex="(0,15)" /> up to <Katex tex="(15,135)" />, flat at both ends — not a straight line, which the report says several students drew.</>,
+    reason: <>Half a cosine wave from <Katex tex="(0,15)" /> up to <Katex tex="(15,135)" />, flat at both ends — not a straight line; the report notes linear graphs were sometimes seen.</>,
   },
   {
     working: <Katex display tex="15\le t<20: \ w = 135" />,
-    reason: 'A horizontal segment while the wheel is stationary.',
+    reason: <>A horizontal segment while the wheel is stationary.</>,
   },
   {
     working: <Katex display tex="20\le t\le27.5: \ w = h(2t+5)" />,
@@ -192,7 +192,19 @@ const ROWS_DIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(0,15),\ (15,135),\ (20,135),\ (27.5,15)}" />,
-    reason: 'The endpoints of the three pieces, all of which must be labelled with coordinates.',
+    reason: <>The endpoints of the three pieces, all labelled with coordinates — the report notes these were missing on some graphs.</>,
+  },
+  {
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's grid (t from 0 to 30, w from 0 to 180): a curve rising in an S-shape from (0, 15) to (15, 135), flat to (20, 135), then falling in a steeper S-shape to (27.5, 15)"
+          className="w-full max-w-[520px]"
+        />
+      </div>
+    ),
+    reason: <>Drawn on the same grid as the paper's axes: <Katex tex="t" /> in steps of 1, <Katex tex="w" /> in steps of 10.</>,
   },
 ]
 
@@ -218,7 +230,7 @@ export default function MethodsQ2_2023Exam2() {
         </div>
         <p>
           Consider the function <Katex tex="h(t)=-60\cos(bt)+c" /> for some{' '}
-          <Katex tex="b,c\in\mathbb{R}" />, which models the height above the ground of a pod
+          <Katex tex="b,c\in R" />, which models the height above the ground of a pod
           originally situated at point <Katex tex="A" />, after time <Katex tex="t" /> minutes.
         </p>
       </div>
@@ -244,6 +256,7 @@ export default function MethodsQ2_2023Exam2() {
 
       <PartCard
         letter="a"
+        topic="Find Parameters"
         marks={2}
         statement={
           <>
@@ -257,12 +270,14 @@ export default function MethodsQ2_2023Exam2() {
 
       <PartCard
         letter="b"
+        topic="Average Value"
         marks={2}
         statement={
           <>
             Find the average height of a pod on the wheel as it travels from point{' '}
-            <Katex tex="A" /> to point <Katex tex="B" />. Give your answer in metres, correct
-            to two decimal places.
+            <Katex tex="A" /> to point <Katex tex="B" />.
+            <br />
+            Give your answer in metres, correct to two decimal places.
           </>
         }
         examinerReport={EXAM_B}
@@ -272,6 +287,7 @@ export default function MethodsQ2_2023Exam2() {
 
       <PartCard
         letter="c"
+        topic="Average Rate"
         marks={1}
         statement={
           <>
@@ -285,11 +301,11 @@ export default function MethodsQ2_2023Exam2() {
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
-        <p className="font-semibold text-gray-900 dark:text-white">d.</p>
         <p>
           After 15 minutes, the wheel stops moving and remains stationary for 5 minutes. After
-          this, it continues moving at double its previous speed for another 7.5 minutes. The
-          height above the ground of a pod that was initially at point <Katex tex="A" />,
+          this, it continues moving at double its previous speed for another 7.5 minutes.
+          <br />
+          The height above the ground of a pod that was initially at point <Katex tex="A" />,
           after <Katex tex="t" /> minutes, can be modelled by the piecewise function{' '}
           <Katex tex="w" />:
         </p>
@@ -300,12 +316,13 @@ export default function MethodsQ2_2023Exam2() {
           />
         </div>
         <p>
-          where <Katex tex="k>0" />, <Katex tex="m>0" /> and <Katex tex="n\in\mathbb{R}" />.
+          where <Katex tex="k\ge0" />, <Katex tex="m\ge0" /> and <Katex tex="n\in R" />.
         </p>
       </div>
 
       <PartCard
         letter="d.i"
+        topic="Hybrid Function"
         marks={1}
         statement={<>State the values of <Katex tex="k" /> and <Katex tex="m" />.</>}
         examinerReport={EXAM_DI}
@@ -315,8 +332,9 @@ export default function MethodsQ2_2023Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Hybrid Function"
         marks={2}
-        statement={<>Find all possible values of <Katex tex="n" />.</>}
+        statement={<>Find <b>all</b> possible values of <Katex tex="n" />.</>}
         examinerReport={EXAM_DII}
       >
         <WorkingTable rows={ROWS_DII} />
@@ -324,23 +342,17 @@ export default function MethodsQ2_2023Exam2() {
 
       <PartCard
         letter="d.iii"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
-            Sketch the graph of the piecewise function <Katex tex="w" /> on the axes provided,
+            Sketch the graph of the piecewise function <Katex tex="w" /> on the axes below,
             showing the coordinates of the endpoints.
           </>
         }
         examinerReport={EXAM_DIII}
       >
         <WorkingTable rows={ROWS_DIII} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="A curve rising in an S-shape from (0, 15) to (15, 135), then flat to (20, 135), then falling in a steeper S-shape to (27.5, 15)"
-            className="w-full max-w-[520px]"
-          />
-        </div>
       </PartCard>
     </div>
   )

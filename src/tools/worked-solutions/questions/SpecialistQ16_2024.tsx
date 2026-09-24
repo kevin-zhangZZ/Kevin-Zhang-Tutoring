@@ -10,12 +10,24 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 43, B: 30, C: 19, D: 7 },
   answer: 'A',
+  comment: (
+    <>
+      <Katex tex="\underset{\sim}{v}_1(t)=\dfrac{d}{dt}\underset{\sim}{r}_1(t)=-\sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\dfrac{\cos(2t)}{\sqrt{\sin(2t)}}\underset{\sim}{k}" />
+      <br />
+      If perpendicular, then solve <Katex tex="\underset{\sim}{v}_1(t)\cdot \underset{\sim}{r}_2(t)=0" /> in domain{' '}
+      <Katex tex="\left(0,\dfrac{\pi}{2}\right)" />
+      <br />
+      <Katex tex="\underset{\sim}{v}_1(t)\cdot \underset{\sim}{r}_2(t)=-\sin^2t+\cos^2t+\cos(2t)=2\cos(2t)=0" />
+      <br />
+      <Katex tex="2t=\dfrac{\pi}{2},\ t=\dfrac{\pi}{4}" /> is the only solution.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r_1}(t) = \cos(t)\underset{\sim}{i}+\sin(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
-    reason: 'Particle 1’s position.',
+    reason: <>Particle 1’s position.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v_1}(t) = -\sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\frac{\cos(2t)}{\sqrt{\sin(2t)}}\underset{\sim}{k}" />,
@@ -23,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{r_2}(t) = \sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
-    reason: 'Particle 2’s position (same k-component as particle 1).',
+    reason: <>Particle 2’s position (same k-component as particle 1).</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v_1}\cdot\underset{\sim}{r_2} = -\sin^2(t)+\cos^2(t) + \frac{\cos(2t)}{\sqrt{\sin(2t)}}\cdot\sqrt{\sin(2t)}" />,
@@ -35,11 +47,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2\cos(2t)=0 \;\implies\; 2t = \tfrac{\pi}{2}+k\pi \;\implies\; t=\tfrac{\pi}{4}+\tfrac{k\pi}{2}" />,
-    reason: 'Solve for perpendicularity.',
+    reason: <>Solve for perpendicularity.</>,
   },
   {
     working: <Katex display tex="\boxed{t\in\big(0,\tfrac{\pi}{2}\big) \;\implies\; \text{only } t=\tfrac{\pi}{4} \text{ works} \;\implies\; 1 \text{ time}}" />,
-    reason: <>The next solution, <Katex tex="t=\tfrac{3\pi}{4}" />, falls outside the given interval — matches option <b>A</b>.</>,
+    reason: <>The next solution, <Katex tex="t=\tfrac{3\pi}{4}" />, falls outside the given interval. Matches option <b>A</b>.</>,
   },
 ]
 

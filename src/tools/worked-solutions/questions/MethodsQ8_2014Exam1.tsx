@@ -11,11 +11,11 @@ const EXAM_A: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      While most students knew to set up a definite integral involving <Katex tex="m" /> and
-      equate it to <Katex tex="\tfrac12" />, errors with mishandling negatives in the
-      antidifferentiation, or problems with algebraic skills in solving an indicial equation,
-      worked against progress. Some students confused median with the mean or the law of
-      total probability.
+      While most students knew to set up a definite integral involving <Katex tex="m" />{' '}
+      (median) and equating to <Katex tex="\tfrac12" />, errors with mishandling negatives in
+      the anti-differentiation or problems with algebraic skills in solving an indicial
+      equation worked against progress in obtaining the correct answer. Some students
+      confused median with the mean or the law of total probability.
     </>
   ),
 }
@@ -26,7 +26,7 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was not well handled. The most common error was assuming that the value
-      of <Katex tex="m" /> obtained in part a. was equivalent to{' '}
+      of <Katex tex="m" /> (obtained in part a.) was equivalent to{' '}
       <Katex tex="\Pr(X\le m)" />.
     </>
   ),
@@ -108,6 +108,7 @@ export default function MethodsQ8_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Median"
         marks={2}
         statement={<>Determine the value of <Katex tex="m" />.</>}
         examinerReport={EXAM_A}
@@ -117,6 +118,7 @@ export default function MethodsQ8_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>

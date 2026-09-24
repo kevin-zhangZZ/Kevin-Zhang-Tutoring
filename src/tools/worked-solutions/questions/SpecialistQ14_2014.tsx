@@ -4,7 +4,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
-import fieldSrc from './spec-2014e2-mcq14-field.png'
+import fieldSrc from './spec-2014-mcq14-field.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 9, C: 72, D: 4, E: 8 },
@@ -42,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{1}{y-x}}" />,
-    reason: <>Option C. Two checks — where the field is vertical, then the sign somewhere convenient — settle it without testing every point.</>,
+    reason: <>Matches option <b>C</b>. Two checks — where the field is vertical, then the sign somewhere convenient — settle it without testing every point.</>,
   },
 ]
 
@@ -50,16 +50,18 @@ export default function SpecialistQ14_2014() {
   return (
     <MCQShell
       question={
-        <p>
-          The differential equation that is best represented by the direction field below is
-        </p>
-      }
-      diagram={
-        <img
-          src={fieldSrc}
-          alt="A direction field whose segments turn vertical along the diagonal line y = x and slope downwards along the positive x-axis — from the original 2014 VCAA exam paper"
-          className="w-full max-w-[440px]"
-        />
+        <>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
+            <img
+              src={fieldSrc}
+              alt="A direction field whose segments turn vertical along the diagonal line y = x and slope downwards along the positive x-axis — from the original 2014 VCAA exam paper"
+              className="w-full max-w-[440px]"
+            />
+          </div>
+          <p>
+            The differential equation that is best represented by the above direction field is
+          </p>
+        </>
       }
       background={
         <p>

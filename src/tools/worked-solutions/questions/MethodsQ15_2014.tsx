@@ -7,6 +7,7 @@ import { MCQShell } from '../MCQShell'
 import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import netSrc from './meth-2014-mcq15-net.png'
+import boxSrc from './meth-2014-mcq15-box.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 44, C: 16, D: 13, E: 19 },
@@ -44,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x \approx 1.1}" />,
-    reason: <>Option B. Option E, <Katex tex="3.6" />, is the rejected root; option C, <Katex tex="1.6" />, comes from using <Katex tex="(8-x)(6-x)" /> instead.</>,
+    reason: <>Matches option <b>B</b>. Option E, <Katex tex="3.6" />, is the rejected root. Taking only one <Katex tex="x" /> off each side, <Katex tex="x(8-x)(6-x)" />, peaks near <Katex tex="x\approx2.26" /> — closest to option D. Sanity check: <Katex tex="V(1.13)\approx24.3\text{ cm}^3" />, comfortably inside the <Katex tex="8\times6\times3=144" /> bounding box.</>,
   },
 ]
 
@@ -56,21 +57,28 @@ export default function MethodsQ15_2014() {
           <p className="mb-2">
             Zoe has a rectangular piece of cardboard that is 8 cm long and 6 cm wide. Zoe cuts
             squares of side length <Katex tex="x" /> centimetres from each of the corners of
-            the cardboard, as shown in the diagram below. Zoe turns up the sides to form an
-            open box.
+            the cardboard, as shown in the diagram below.
           </p>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
+            <img
+              src={netSrc}
+              alt="A rectangle 8 cm long and 6 cm wide with a small square of side x cm marked by dashed lines at each of the four corners — from the original 2014 VCAA exam paper"
+              className="w-full max-w-[340px]"
+            />
+          </div>
+          <p className="mb-2">Zoe turns up the sides to form an open box.</p>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
+            <img
+              src={boxSrc}
+              alt="The open box formed by folding up the sides, drawn as a rectangular prism with hidden edges dashed — from the original 2014 VCAA exam paper"
+              className="w-full max-w-[220px]"
+            />
+          </div>
           <p>
             The value of <Katex tex="x" /> for which the volume of the box is a maximum is
             closest to
           </p>
         </>
-      }
-      diagram={
-        <img
-          src={netSrc}
-          alt="A rectangle 8 cm long and 6 cm wide with a small square of side x cm marked by dashed lines at each of the four corners — from the original 2014 VCAA exam paper"
-          className="w-full max-w-[380px]"
-        />
       }
       options={[
         { letter: 'A', content: <Katex tex="0.8" /> },

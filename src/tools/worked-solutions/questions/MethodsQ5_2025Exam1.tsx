@@ -11,9 +11,10 @@ const EXAM_A: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
+      This question required the solution of a quadratic equation involving exponential terms.
       Most students recognised the quadratic nature of the question and were able to set up,
       factorise and solve correctly. Some students incorrectly discarded the solution{' '}
-      <Katex tex="x=0" />.
+      <Katex tex="x=\ln(1)" />. Some students did not observe <Katex tex="\log_e(1)=0" />.
     </>
   ),
 }
@@ -23,10 +24,15 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Some students made arithmetic errors when factorising. Some students chose to use a
-      substitution and let <Katex tex="u=e^x" />, leading to a solution of{' '}
-      <Katex tex="u=4" />; rather than recognising that this meant{' '}
-      <Katex tex="x=\log_e(4)" />, they incorrectly concluded that 4 was the answer.
+      This question involved finding the location of the turning point, either by using calculus
+      or symmetry. Although students were generally able to differentiate and set the derivative
+      equal to zero, some students made arithmetic errors when factorising, which led to an
+      incorrect result of <Katex tex="e^x=8" /> and hence an incorrect value{' '}
+      <Katex tex="a=\ln(8)" />. Some students chose to use a substitution and let{' '}
+      <Katex tex="a=e^x" />, leading to a solution of <Katex tex="a=4" />. Rather than
+      recognising that this meant <Katex tex="e^x=4" />, they then incorrectly concluded that{' '}
+      <Katex tex="a=4" /> was the answer to the upper bound of the interval. Students are advised
+      to be careful when introducing variables.
     </>
   ),
 }
@@ -38,38 +44,38 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="u^2-8u+7 = 0 \implies (u-1)(u-7) = 0" />,
-    reason: 'Two numbers multiplying to 7 and adding to 8.',
+    reason: <>Two numbers multiplying to 7 and adding to 8.</>,
   },
   {
     working: <Katex display tex="u = 1 \ \text{ or } \ u = 7" />,
-    reason: 'Both are positive, so neither can be rejected on those grounds.',
+    reason: <>Both are positive, so neither can be rejected on those grounds.</>,
   },
   {
     working: <Katex display tex="e^x = 1 \implies x = 0; \qquad e^x = 7 \implies x = \log_e(7)" />,
-    reason: <>Discarding <Katex tex="x=0" /> was the error the report named — <Katex tex="e^0=1" /> is a perfectly good value.</>,
+    reason: <><Katex tex="x=\log_e(1)=0" /> is a perfectly good solution — the report notes some students incorrectly discarded it.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 0 \ \text{ or } \ x = \log_e(7)}" />,
-    reason: 'Two solutions.',
+    reason: <>Two solutions.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="g \text{ has an inverse} \iff g \text{ is one-to-one on its domain}" />,
-    reason: 'So the domain can extend from the left only as far as the turning point, and no further.',
+    reason: <>So the domain can extend from the left only as far as the turning point, and no further.</>,
   },
   {
     working: <Katex display tex="g'(x) = 2e^{2x}-8e^x = 2e^x\left(e^x-4\right)" />,
-    reason: 'Factorising rather than expanding — this makes the zero immediate.',
+    reason: <>Factorising rather than expanding — this makes the zero immediate.</>,
   },
   {
     working: <Katex display tex="2e^x>0 \ \text{always} \implies e^x = 4" />,
-    reason: 'The only way the derivative can vanish.',
+    reason: <>The only way the derivative can vanish.</>,
   },
   {
     working: <Katex display tex="x = \log_e(4)" />,
-    reason: <>Not 4 — the substitution gives a value of <Katex tex="e^x" />, not of <Katex tex="x" />. This was the trap the examiner singled out.</>,
+    reason: <>Not 4 — the substitution gives a value of <Katex tex="e^x" />, not of <Katex tex="x" />. The report notes some students let <Katex tex="a=e^x" />, found <Katex tex="a=4" /> and gave that as the answer.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \log_e(4) \ \left(= 2\log_e(2)\right)}" />,
@@ -90,8 +96,8 @@ export default function MethodsQ5_2025Exam1() {
             Both parts use the substitution <Katex tex="u=e^x" />, and both have the same
             trap at the end: <Katex tex="u" /> is not the answer. In part a.{' '}
             <Katex tex="u=1" /> means <Katex tex="x=0" />, and in part b.{' '}
-            <Katex tex="u=4" /> means <Katex tex="x=\log_e(4)" />. Between them those two
-            slips account for most of the marks lost.
+            <Katex tex="u=4" /> means <Katex tex="x=\log_e(4)" />. The report notes both
+            slips.
           </p>
           <p>
             Part b. is a domain-restriction question in disguise. A function has an inverse
@@ -103,6 +109,7 @@ export default function MethodsQ5_2025Exam1() {
 
       <PartCard
         letter="a"
+        topic="Exponential Equation"
         marks={2}
         statement={<>Solve <Katex tex="e^{2x}-8e^x+7=0" /> for <Katex tex="x" />.</>}
         examinerReport={EXAM_A}
@@ -112,11 +119,14 @@ export default function MethodsQ5_2025Exam1() {
 
       <PartCard
         letter="b"
+        topic="One-to-One Restriction"
         marks={2}
         statement={
           <>
-            Let <Katex tex="g(x)=e^{2x}-8e^x+7" />, where <Katex tex="x\in\mathbb{R}" />. The
-            function <Katex tex="g(x)" /> has exactly one stationary point, a local minimum.
+            Let <Katex tex="g(x)=e^{2x}-8e^x+7" />, where <Katex tex="x\in R" />.
+            <br />
+            The function <Katex tex="g(x)" /> has exactly one stationary point, a local minimum.
+            <br />
             Find the largest value of <Katex tex="a" /> such that when <Katex tex="g" /> is
             restricted to the domain <Katex tex="(-\infty,a]" /> it has an inverse function.
           </>

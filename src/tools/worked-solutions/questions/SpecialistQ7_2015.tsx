@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z^{63} = -\left(2\sqrt3\right)^{63}}" />,
-    reason: <>Real and negative — option A. Landing on <Katex tex="\mathrm{cis}\!\left(\tfrac{3\pi}2\right)" /> instead (a negative multiple of <Katex tex="i" />) is option B, the most popular wrong answer.</>,
+    reason: <>Real and negative. Matches option <b>A</b>. Landing on <Katex tex="\mathrm{cis}\!\left(\tfrac{3\pi}2\right)" /> instead (a negative multiple of <Katex tex="i" />) is option B, the most popular wrong answer.</>,
   },
 ]
 

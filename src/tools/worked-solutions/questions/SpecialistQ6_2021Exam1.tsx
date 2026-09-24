@@ -13,9 +13,10 @@ const EXAM: SAExaminerStats = {
     <>
       Most students realised that they first needed to write down and solve a system of
       linear equations in order to find the values of <Katex tex="p" /> for which the set of
-      vectors were linearly <em>dependent</em>. Many students were able to find that{' '}
+      vectors were linearly dependent. Many students were able to find that{' '}
       <Katex tex="p=\pm\sqrt5" /> for linear dependence but failed to conclude that{' '}
-      <Katex tex="p\in R\setminus\left\{-\sqrt5,\sqrt5\right\}" /> for independence.
+      <Katex tex="p\in R\setminus\left\{-\sqrt5,\sqrt5\right\}" /> (or equivalent) for
+      independence.
     </>
   ),
 }
@@ -23,11 +24,11 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{c} = m\underset{\sim}{a}+n\underset{\sim}{b} \ \text{ has a solution} \iff \text{the three are linearly dependent}" />,
-    reason: 'Find the dependent values first, then take the complement — the question asks for independence.',
+    reason: <>Find the dependent values first, then take the complement — the question asks for independence.</>,
   },
   {
     working: <Katex display tex="3\underset{\sim}{i}+2\underset{\sim}{j}+\left|1-p^2\right|\underset{\sim}{k} = m\left(-\underset{\sim}{i}+6\underset{\sim}{j}-3\underset{\sim}{k}\right)+n\left(2\underset{\sim}{i}-8\underset{\sim}{j}+5\underset{\sim}{k}\right)" />,
-    reason: 'Writing the vector with the unknown in terms of the other two.',
+    reason: <>Writing the vector with the unknown in terms of the other two.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \ -m+2n = 3; \qquad \underset{\sim}{j}: \ 6m-8n = 2" />,
@@ -35,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m = 2n-3 \implies 6(2n-3)-8n = 2 \implies 4n = 20 \implies n = 5, \ m = 7" />,
-    reason: 'A clean pair of integers.',
+    reason: <>A clean pair of integers.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{k}: \ \left|1-p^2\right| = -3m+5n = -21+25 = 4" />,
@@ -47,11 +48,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p^2 = 5 \implies p = \pm\sqrt5 \ \text{ (dependent)}" />,
-    reason: 'Only these two values make the three vectors coplanar.',
+    reason: <>Only these two values make the three vectors coplanar.</>,
   },
   {
     working: <Katex display tex="\boxed{p \in R\setminus\left\{-\sqrt5,\ \sqrt5\right\}}" />,
-    reason: <>The final flip is the mark most students dropped: the question asks for <em>independent</em>, which is everything except the two dependent values.</>,
+    reason: <>The question asks for <em>independent</em>, which is everything except the two dependent values — the report notes many students found <Katex tex="p=\pm\sqrt5" /> but failed to conclude this.</>,
   },
 ]
 
@@ -67,8 +68,10 @@ export default function SpecialistQ6_2021Exam1() {
           <Katex tex="\underset{\sim}{b}=2\underset{\sim}{i}-8\underset{\sim}{j}+5\underset{\sim}{k}" />{' '}
           and{' '}
           <Katex tex="\underset{\sim}{c}=3\underset{\sim}{i}+2\underset{\sim}{j}+\left|1-p^2\right|\underset{\sim}{k}" />
-          , where <Katex tex="p" /> is a real constant. Find the values of <Katex tex="p" />{' '}
-          for which the three vectors are linearly independent.
+          , where <Katex tex="p" /> is a real constant.
+        </p>
+        <p>
+          Find the values of <Katex tex="p" /> for which the three vectors are linearly independent.
         </p>
       </div>
 

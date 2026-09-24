@@ -31,6 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_1^5 (2x-1)\sqrt{2x+1}\ dx = \int_3^{11}(u-2)\sqrt{u}\ \dfrac{du}{2}" />,
+    reason: <>Replace every piece — the integrand, <Katex tex="dx" /> and the terminals.</>,
   },
   {
     working: <Katex display tex="= \dfrac12\int_3^{11}\left(u\cdot u^{1/2}-2u^{1/2}\right)du" />,
@@ -38,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\dfrac12\int_3^{11}\left(u^{3/2}-2u^{1/2}\right)du}" />,
-    reason: <>Matches option <b>E</b>. Option <b>D</b> has <Katex tex="2" /> outside instead of <Katex tex="\tfrac12" /> — the result of multiplying by <Katex tex="\tfrac{du}{dx}" /> rather than dividing.</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b> has <Katex tex="2" /> outside instead of <Katex tex="\tfrac12" /> — the result of multiplying by <Katex tex="\tfrac{du}{dx}" /> rather than dividing. Options <b>A</b> and <b>B</b> have <Katex tex="u^{3/2}+u^{1/2}=(u+1)\sqrt u" />, which rewrites <Katex tex="2x-1" /> as <Katex tex="u+1" /> instead of <Katex tex="u-2" />; <b>A</b> and <b>C</b> also keep the <Katex tex="x" /> terminals.</>,
   },
 ]
 

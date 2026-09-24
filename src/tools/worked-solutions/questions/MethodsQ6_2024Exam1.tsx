@@ -11,11 +11,16 @@ const EXAM: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Most students demonstrated a knowledge of the logarithm laws; however, many did not
-      employ the correct combination of them. Some students incorrectly identified{' '}
-      <Katex tex="(x+1)" /> or <Katex tex="x=-1" /> as a factor or solution. Although some
-      students found three possible solutions, many overlooked the fact that the domain must
-      be <Katex tex="x>4" /> and did not reject the two invalid solutions.
+      Most students demonstrated a knowledge of the logarithm laws needed to simplify this
+      question; however, many did not employ the correct combination of these laws. Of those
+      students who were able to use all logarithm laws effectively, many students showed good
+      progress in factorising the cubic to find the quadratic factor. Some students did not
+      solve the resultant cubic and subsequent quadratic equation correctly. Some students
+      incorrectly identified <Katex tex="(x+1)" /> or <Katex tex="x=-1" /> as a
+      factor/solution. Although some students were able to find three possible solutions, many
+      students overlooked the fact that the domain of this log function must be{' '}
+      <Katex tex="x>4" /> and, as a result, did not reject the two invalid solutions. Some
+      students managed to engage with the implied domain of the problem.
     </>
   ),
 }
@@ -31,11 +36,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_3\left((x-4)^2\right)+\log_3(x) = \log_3\left(x(x-4)^2\right) = 2" />,
-    reason: 'Then the addition law: logs of the same base add into a single log of a product.',
+    reason: <>Then the addition law: logs of the same base add into a single log of a product.</>,
   },
   {
     working: <Katex display tex="x(x-4)^2 = 3^2 = 9" />,
-    reason: 'Converting to index form.',
+    reason: <>Converting to index form.</>,
   },
   {
     working: <Katex display tex="x^3-8x^2+16x-9 = 0" />,
@@ -43,11 +48,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="P(1) = 1-8+16-9 = 0 \implies (x-1) \text{ is a factor}" />,
-    reason: <>The factor theorem. <Katex tex="P(-1)=-1-8-16-9\ne0" />, so <Katex tex="(x+1)" /> is not a factor — the report's named error.</>,
+    reason: <>The factor theorem. <Katex tex="P(-1)=-1-8-16-9\ne0" />, so <Katex tex="(x+1)" /> is not a factor — the report notes some students identified it as one.</>,
   },
   {
     working: <Katex display tex="x^3-8x^2+16x-9 = (x-1)\left(x^2-7x+9\right) = 0" />,
-    reason: 'Dividing out the known factor.',
+    reason: <>Dividing out the known factor.</>,
   },
   {
     working: <Katex display tex="x = 1 \quad\text{or}\quad x = \frac{7\pm\sqrt{49-36}}{2} = \frac{7\pm\sqrt{13}}{2}" />,
@@ -55,7 +60,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = \frac{7+\sqrt{13}}{2}}" />,
-    reason: <>Only this one exceeds 4. The other two make <Katex tex="\log_3(x-4)" /> undefined, so they must be rejected explicitly — a full-mark answer says so.</>,
+    reason: <>Only this one exceeds 4. The other two make <Katex tex="\log_3(x-4)" /> undefined, so they must be rejected explicitly — the report notes many students overlooked the domain and did not reject them.</>,
   },
 ]
 

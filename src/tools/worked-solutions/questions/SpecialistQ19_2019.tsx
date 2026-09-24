@@ -20,6 +20,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="4a+4b = 8 \implies a+b = 2" />,
+    reason: <>Setting the mean equal to <Katex tex="8" />.</>,
   },
   {
     working: <Katex display tex="\operatorname{Var}(aX+bY) = a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y) = 9a^2+9b^2" />,
@@ -27,6 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="9a^2+9b^2 = 90 \implies a^2+b^2 = 10" />,
+    reason: <>Setting the variance equal to <Katex tex="90" />.</>,
   },
   {
     working: <Katex display tex="(a+b)^2 = a^2+2ab+b^2 \implies 4 = 10+2ab \implies ab = -3" />,
@@ -38,10 +40,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(t-3)(t+1)=0 \implies t=3 \text{ or } t=-1" />,
+    reason: <>Factorising.</>,
   },
   {
     working: <Katex display tex="\boxed{a=3,\ b=-1}" />,
-    reason: <>Matches option <b>C</b>. (<Katex tex="a=-1,\ b=3" /> works equally well by symmetry, but is not offered.) Quick check on option <b>A</b>: <Katex tex="a=b=1" /> gives a mean of <Katex tex="8" /> ✓ but a variance of only <Katex tex="18" /> ✗.</>,
+    reason: <>Matches option <b>C</b>. (<Katex tex="a=-1,\ b=3" /> works equally well by symmetry, but is not offered.) Checking the others: <b>A</b> gives a mean of <Katex tex="8" /> but a variance of only <Katex tex="18" />; <b>B</b> and <b>E</b> give a mean of <Katex tex="8" /> but a variance of <Katex tex="180" />; <b>D</b> gives a mean of <Katex tex="16" />.</>,
   },
 ]
 
@@ -51,7 +54,9 @@ export default function SpecialistQ19_2019() {
       question={
         <p>
           <Katex tex="X" /> and <Katex tex="Y" /> are independent random variables where each has
-          a mean of <Katex tex="4" /> and a variance of <Katex tex="9" />. If the random variable{' '}
+          a mean of <Katex tex="4" /> and a variance of <Katex tex="9" />.
+          <br />
+          If the random variable{' '}
           <Katex tex="Z=aX+bY" /> has a mean of <Katex tex="8" /> and a variance of{' '}
           <Katex tex="90" />, possible values of <Katex tex="a" /> and <Katex tex="b" /> are
         </p>

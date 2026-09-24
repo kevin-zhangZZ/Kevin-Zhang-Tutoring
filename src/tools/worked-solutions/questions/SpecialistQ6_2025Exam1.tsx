@@ -11,9 +11,22 @@ const EXAM: SAExaminerStats = {
   average: 2.5,
   comment: (
     <>
-      Common errors included a missing factor of <Katex tex="\pi" /> through the working,
-      neglecting to adjust the terminals for the definite integral when a substitution was
-      used, and algebraic or arithmetic errors.
+      Most students were able to make some progress with this question, recognising that a
+      substitution (or integration by parts) would be necessary. Common errors included:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          missing factor of <Katex tex="\pi" /> through working
+        </li>
+        <li>
+          neglecting to adjust the terminals for the definite integral if a substitution was used
+        </li>
+        <li>
+          incorrect terminals for definite integral if a substitution was used
+        </li>
+        <li>
+          algebraic and arithmetic errors.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -29,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=1 \implies u = \frac{\pi}{4}; \qquad x=\sqrt3 \implies u = \frac{\pi}{3}" />,
-    reason: 'Adjusting the terminals — the step the examiner flagged most often.',
+    reason: <>Adjusting the terminals — the report lists neglecting to do so among the common errors.</>,
   },
   {
     working: <Katex display tex="V = \pi\int_{\pi/4}^{\pi/3}u\,du = \pi\left[\frac{u^2}{2}\right]_{\pi/4}^{\pi/3}" />,
@@ -37,7 +50,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{\pi}{2}\left(\frac{\pi^2}{9}-\frac{\pi^2}{16}\right) = \frac{\pi^3}{2}\cdot\frac{16-9}{144}" />,
-    reason: <>A common denominator of 144. Losing the leading <Katex tex="\pi" /> here was the other listed error.</>,
+    reason: <>A common denominator of 144. The report lists a missing factor of <Katex tex="\pi" /> among the common errors.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{7\pi^3}{288} \ \text{ cubic units}}" />,
@@ -54,8 +67,10 @@ export default function SpecialistQ6_2025Exam1() {
           Find the volume of the solid of revolution formed when the area between the curve{' '}
           <Katex tex="y=\sqrt{\dfrac{\arctan(x)}{1+x^2}}" /> and the <Katex tex="x" />-axis
           from <Katex tex="x=1" /> to <Katex tex="x=\sqrt3" /> is rotated about the{' '}
-          <Katex tex="x" />-axis. Give your answer in the form{' '}
-          <Katex tex="\dfrac{a\pi^b}{c}" />, where <Katex tex="a,b,c\in\mathbb{Z}^+" />.
+          <Katex tex="x" />-axis.
+          <br />
+          Give your answer in the form{' '}
+          <Katex tex="\dfrac{a\pi^b}{c}" />, where <Katex tex="a,b,c\in Z^+" />.
         </p>
       </div>
 

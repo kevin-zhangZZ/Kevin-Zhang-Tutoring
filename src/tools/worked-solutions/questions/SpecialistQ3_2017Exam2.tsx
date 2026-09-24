@@ -11,7 +11,7 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import broochSrc from './spec-2017exam2-q3-brooch.png'
+import broochSrc from './spec-2017e2-q3-brooch.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [26, 74],
@@ -97,7 +97,7 @@ const ROWS_B: WorkingRow[] = [
         tex="\boxed{g(x)=\begin{cases}-3\arccos\!\left(-\tfrac{x}{2}\right) & -2\le x<-\sqrt2\\[4pt] -3\arcsin\!\left(-\tfrac{x}{2}\right) & -\sqrt2\le x\le0\end{cases}}"
       />
     ),
-    reason: <>The report says half the state gave a single rule instead of a hybrid, or used the wrong domains.</>,
+    reason: <>Two pieces, each with its own domain. The report says many students did not use a hybrid function, and of those who did, the domains were frequently incorrect.</>,
   },
 ]
 
@@ -139,11 +139,11 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="180^\circ - 2(56.31^\circ)" />,
-    reason: <>The two edges enclose <Katex tex="2\theta\approx112.62^\circ" /> above the axis, so the angle on the other side of the crossing is the acute one. Giving <Katex tex="112.6^\circ" /> is the report's noted error.</>,
+    reason: <>The upper-right and lower-right edges enclose <Katex tex="2\theta\approx112.62^\circ" /> inside the right wing. The two curves cross at the origin, so the other angle between them — the gap above (and below) the origin — is the supplement. The report notes the obtuse angle was sometimes given instead.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 67.4^\circ}" />,
-    reason: <>One decimal place. Reading it off the figure: the wings are noticeably wider than tall at the origin, so an acute angle under <Katex tex="90^\circ" /> is right.</>,
+    reason: <>One decimal place. Checking against the figure: each wing opens wider than a right angle at the origin, so the gaps above and below must be acute.</>,
   },
 ]
 
@@ -171,15 +171,21 @@ export default function SpecialistQ3_2017Exam2() {
           display
           tex="f(x)=\begin{cases}3\arcsin\!\left(\tfrac{x}{2}\right) & 0\le x\le\sqrt2\\[4pt] 3\arccos\!\left(\tfrac{x}{2}\right) & \sqrt2<x\le2\end{cases}"
         />
-        <p className="mt-2">
-          Part (e) asks for the length of the gold border, which is arc length from cartesian
-          form — no longer required by the study design, so it is left out here. Parts
-          (a)–(d) are all current.
-        </p>
+      </div>
+
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+        <Background title="Why only parts a.–d.">
+          <p>
+            Part e. asks for the length of the gold border around the brooch, which is arc
+            length from a cartesian rule — no longer required by the study design, so it is
+            left out here. Parts a.–d. are all current.
+          </p>
+        </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Coordinates"
         marks={1}
         statement={<>Write down the coordinates of the corner point of the brooch in the first quadrant.</>}
         examinerReport={EXAM_A}
@@ -189,6 +195,7 @@ export default function SpecialistQ3_2017Exam2() {
 
       <PartCard
         letter="b"
+        topic="Hybrid Function"
         marks={1}
         statement={<>Specify the piecewise function that describes the edges in the third quadrant.</>}
         examinerReport={EXAM_B}
@@ -211,6 +218,7 @@ export default function SpecialistQ3_2017Exam2() {
 
       <PartCard
         letter="c"
+        topic="Area Enclosed"
         marks={3}
         statement={
           <>
@@ -225,6 +233,7 @@ export default function SpecialistQ3_2017Exam2() {
 
       <PartCard
         letter="d"
+        topic="Angle Between Curves"
         marks={3}
         statement={
           <>

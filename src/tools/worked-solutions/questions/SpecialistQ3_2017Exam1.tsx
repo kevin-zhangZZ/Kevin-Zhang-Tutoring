@@ -12,12 +12,22 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       Students generally performed well on this question, with most students able to obtain
-      at least two marks. Typical errors included giving a second solution as{' '}
-      <Katex tex="-1-i" />; correctly giving <Katex tex="1+i" /> as a second solution then
-      multiplying this by the given solution to get <Katex tex="2" /> and stating{' '}
-      <Katex tex="2" /> as the third solution, which was a correct answer but incorrect
-      reasoning; and not being able to correctly determine the third solution after finding{' '}
-      <Katex tex="a=-4" />. Those who attempted to use polar form were unsuccessful.
+      at least two marks. Typical errors included:
+      <ul className="list-disc pl-5 my-1">
+        <li>giving a second solution as <Katex tex="-1-i" /></li>
+        <li>
+          correctly giving <Katex tex="1+i" /> as a second solution then multiplying this by the
+          given solution to get 2 and stating 2 as the third solution, which was a correct
+          answer but incorrect reasoning
+        </li>
+        <li>
+          not being able to correctly determine G. Students could correctly find{' '}
+          <Katex tex="a=-4" /> but were unable to get the third solution.
+        </li>
+      </ul>
+      A small number of students expressed the real solution in terms of <Katex tex="a" />.
+      Some students quoted the answer as factors rather than solutions. Those who attempted to
+      use polar form were unsuccessful.
     </>
   ),
 }
@@ -53,7 +63,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z = 1+i \ \text{ and }\ z = 2}" />,
-    reason: <>Verify in the original: <Katex tex="2^3-4(2)^2+6(2)-4 = 8-16+12-4 = 0" /> ✓. The report notes that answers left as factors were not accepted — the question asks for solutions.</>,
+    reason: <>Verify in the original: <Katex tex="2^3-4(2)^2+6(2)-4 = 8-16+12-4 = 0" /> ✓. The question asks for solutions, not factors — the report notes students who quoted factors.</>,
   },
 ]
 
@@ -66,6 +76,8 @@ export default function SpecialistQ3_2017Exam1() {
           <Katex tex="a" /> is a real constant. Given that <Katex tex="z=1-i" /> is a solution
           to the equation, find all other solutions.
         </p>
+      </Background>
+      <Background>
         <p>
           Long division by <Katex tex="z^2-2z+2" /> also works, but it carries the unknown{' '}
           <Katex tex="a" /> through every line. The sum-and-product relations get there in

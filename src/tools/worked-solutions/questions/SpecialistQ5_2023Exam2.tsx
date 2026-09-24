@@ -12,8 +12,9 @@ const EXAM_A: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Most students successfully obtained the required vectors. Not all were able to "show
-      that" the required area was 1.5 square units.
+      Most students successfully obtained the required vectors. Not all of those students were
+      able to 'show that' the required area was 1.5 square units. Subsequent to finding the
+      vectors, a variety of correct alternative approaches were used.
     </>
   ),
 }
@@ -42,8 +43,8 @@ const EXAM_E: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Many students who did not initially use absolute values dealt inappropriately with
-      inconvenient negative values, with working such as "<Katex tex="=-6=6" />".
+      Many students who did not initially use absolute values, inappropriately dealt with
+      inconvenient negative values, with working such as '<Katex tex="\ldots=-6=6" />'.
     </>
   ),
 }
@@ -53,8 +54,9 @@ const EXAM_F: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Most students recognised that the parametric form from part d. was an efficient
-      approach. Some other approaches were seen but these were generally less successful.
+      Most students recognised that the use of the parametric form from Question 5d. was an
+      efficient approach. Some other approaches were seen but these were generally less
+      successful.
     </>
   ),
 }
@@ -74,11 +76,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\overrightarrow{AB}\times\overrightarrow{AC}\right| = \sqrt{1+4+4} = 3" />,
-    reason: 'The area of the parallelogram the two vectors span.',
+    reason: <>The area of the parallelogram the two vectors span.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Area} = \tfrac12\times3 = 1.5 \ \text{square units}} \ \checkmark" />,
-    reason: 'A triangle is half its parallelogram. The halving step must be shown — this is a "show that".',
+    working: <Katex display tex="\boxed{\text{Area} = \tfrac12\times3 = 1.5 \ \text{square units}}" />,
+    reason: <>A triangle is half its parallelogram. The halving step must be shown — this is a "show that". As required.</>,
   },
 ]
 
@@ -89,11 +91,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\overrightarrow{AC}\right| = \sqrt{4+1+4} = 3" />,
-    reason: 'Another tidy 3 — the numbers in this question are chosen to be friendly.',
+    reason: <>Another tidy 3 — the numbers in this question are chosen to be friendly.</>,
   },
   {
     working: <Katex display tex="1.5 = \tfrac12\times3\times h" />,
-    reason: 'Using the area from part a.',
+    reason: <>Using the area from part a.</>,
   },
   {
     working: <Katex display tex="\boxed{h = 1 \ \text{unit}}" />,
@@ -108,15 +110,15 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(\alpha) = \frac{\left|\underset{\sim}{d}\cdot\underset{\sim}{n}\right|}{\left|\underset{\sim}{d}\right|\left|\underset{\sim}{n}\right|} = \frac{|2+4-2|}{3\times3} = \frac49" />,
-    reason: 'The angle between the line and the normal. Absolute value keeps it acute.',
+    reason: <>The angle between the line and the normal. Absolute value keeps it acute.</>,
   },
   {
     working: <Katex display tex="\alpha = \arccos\!\left(\tfrac49\right) = 63.61^\circ" />,
-    reason: 'This is not the answer — it is the angle to the normal, not to the plane. Half the marks were lost right here.',
+    reason: <>This is not the answer — it is the angle to the normal, not to the plane. The report notes a significant number of students did not proceed beyond <Katex tex="64^\circ" />.</>,
   },
   {
     working: <Katex display tex="\theta = 90^\circ-\alpha" />,
-    reason: 'The normal is perpendicular to the plane, so the two angles are complementary.',
+    reason: <>The normal is perpendicular to the plane, so the two angles are complementary.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta \approx 26^\circ}" />,
@@ -126,16 +128,16 @@ const ROWS_C: WorkingRow[] = [
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="L \text{ is normal to } \Gamma \implies \text{its direction is } \underset{\sim}{n} = 2\underset{\sim}{i}-2\underset{\sim}{j}-\underset{\sim}{k}" />,
-    reason: 'A line perpendicular to a plane runs along the plane\u2019s normal.',
+    working: <Katex display tex="L \text{ is normal to } \psi \implies \text{its direction is } \underset{\sim}{n} = 2\underset{\sim}{i}-2\underset{\sim}{j}-\underset{\sim}{k}" />,
+    reason: <>A line perpendicular to a plane runs along the plane’s normal.</>,
   },
   {
     working: <Katex display tex="\text{Through the origin} \implies \underset{\sim}{r}(t) = t\left(2\underset{\sim}{i}-2\underset{\sim}{j}-\underset{\sim}{k}\right)" />,
-    reason: 'No constant term, since the line passes through (0, 0, 0).',
+    reason: <>No constant term, since the line passes through (0, 0, 0).</>,
   },
   {
     working: <Katex display tex="\boxed{x = 2t, \quad y = -2t, \quad z = -t}" />,
-    reason: 'The parametric form. The vector form was also accepted.',
+    reason: <>The parametric form. The vector form was also accepted.</>,
   },
 ]
 
@@ -146,7 +148,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{|2(0)-2(0)-(0)-(-18)|}{\sqrt{4+4+1}} = \frac{|18|}{3}" />,
-    reason: <>The absolute value belongs in the formula from the start — writing <Katex tex="-6" /> and then silently making it positive is what the report objects to.</>,
+    reason: <>The absolute value belongs in the formula from the start — the report notes many students who did not use absolute values dealt inappropriately with negative values, writing '<Katex tex="\ldots=-6=6" />'.</>,
   },
   {
     working: <Katex display tex="\boxed{d = 6 \ \text{units}}" />,
@@ -161,11 +163,11 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2(2t)-2(-2t)-(-t) = 4t+4t+t = 9t" />,
-    reason: 'All three terms have the same sign, which is exactly what being along the normal guarantees.',
+    reason: <>All three terms have the same sign, which is exactly what being along the normal guarantees.</>,
   },
   {
     working: <Katex display tex="9t = -18 \implies t = -2" />,
-    reason: 'One linear equation in one unknown.',
+    reason: <>One linear equation in one unknown.</>,
   },
   {
     working: <Katex display tex="\boxed{D(-4,\ 4,\ 2)}" />,
@@ -194,14 +196,15 @@ export default function SpecialistQ5_2023Exam2() {
           </p>
           <p>
             The one thing to watch is part c. The dot product gives the angle between the line
-            and the <em>normal</em>; the angle with the <em>plane</em> is its complement. Half
-            the state stopped at <Katex tex="64^\circ" />.
+            and the <em>normal</em>; the angle with the <em>plane</em> is its complement. The
+            report notes a significant number of students stopped at <Katex tex="64^\circ" />.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Cross Product Area"
         marks={2}
         statement={
           <>
@@ -217,6 +220,7 @@ export default function SpecialistQ5_2023Exam2() {
 
       <PartCard
         letter="b"
+        topic="Shortest Distance"
         marks={2}
         statement={
           <>
@@ -231,19 +235,20 @@ export default function SpecialistQ5_2023Exam2() {
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
-          A second plane, <Katex tex="\Gamma" />, has the Cartesian equation{' '}
+          A second plane, <Katex tex="\psi" />, has the Cartesian equation{' '}
           <Katex tex="2x-2y-z=-18" />.
         </p>
       </div>
 
       <PartCard
         letter="c"
+        topic="Line-Plane Angle"
         marks={2}
         statement={
           <>
             At what acute angle does the line given by{' '}
             <Katex tex="\underset{\sim}{r}(t)=3\underset{\sim}{i}+2\underset{\sim}{j}+4\underset{\sim}{k}+t\left(\underset{\sim}{i}-2\underset{\sim}{j}+2\underset{\sim}{k}\right)" />
-            , <Katex tex="t\in\mathbb{R}" />, intersect the plane <Katex tex="\Gamma" />? Give
+            , <Katex tex="t\in R" />, intersect the plane <Katex tex="\psi" />? Give
             your answer in degrees correct to the nearest degree.
           </>
         }
@@ -255,13 +260,14 @@ export default function SpecialistQ5_2023Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           A line <Katex tex="L" /> passes through the origin and is normal to the plane{' '}
-          <Katex tex="\Gamma" />. The line <Katex tex="L" /> intersects <Katex tex="\Gamma" />{' '}
+          <Katex tex="\psi" />. The line <Katex tex="L" /> intersects <Katex tex="\psi" />{' '}
           at a point <Katex tex="D" />.
         </p>
       </div>
 
       <PartCard
         letter="d"
+        topic="Line Equation"
         marks={1}
         statement={
           <>
@@ -275,10 +281,11 @@ export default function SpecialistQ5_2023Exam2() {
 
       <PartCard
         letter="e"
+        topic="Distance to Plane"
         marks={2}
         statement={
           <>
-            Find the shortest distance from the origin to the plane <Katex tex="\Gamma" />.
+            Find the shortest distance from the origin to the plane <Katex tex="\psi" />.
           </>
         }
         examinerReport={EXAM_E}
@@ -288,6 +295,7 @@ export default function SpecialistQ5_2023Exam2() {
 
       <PartCard
         letter="f"
+        topic="Intersection Point"
         marks={2}
         statement={<>Find the coordinates of point <Katex tex="D" />.</>}
         examinerReport={EXAM_F}

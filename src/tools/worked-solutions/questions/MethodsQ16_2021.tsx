@@ -12,9 +12,13 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="\cos(x)=\tfrac35,\ \sin^2(y)=\tfrac{25}{169} \;\implies\; \sin(y)=-\tfrac{5}{13},\ \cos(y)=\tfrac{12}{13},\ \sin(x)=-\tfrac45" />
+      <Katex tex="\cos(x)=\tfrac35,\ \sin^2(y)=\tfrac{25}{169}" />
       <br />
-      <Katex tex="\sin(x)+\cos(y) = -\tfrac45+\tfrac{12}{13} = \tfrac{8}{65}" />
+      <Katex tex="\sin(y)=-\tfrac{5}{13},\ \cos(y)=\tfrac{12}{13}" />
+      <br />
+      <Katex tex="\cos(x)=\tfrac35,\ \sin(x)=-\tfrac45" />
+      <br />
+      <Katex tex="\sin(x)+\cos(y)=-\tfrac45+\tfrac{12}{13}=\tfrac{8}{65}" />
     </>
   ),
 }
@@ -38,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(x)+\cos(y) = -\frac45+\frac{12}{13}" />,
-    reason: 'Combine the two values found.',
+    reason: <>Combine the two values found.</>,
   },
   {
     working: <Katex display tex="= \frac{-4(13)+12(5)}{65} = \frac{-52+60}{65}" />,
@@ -46,7 +50,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{8}{65}}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Option C, <Katex tex="\tfrac{112}{65}=\tfrac45+\tfrac{12}{13}" />, takes <Katex tex="\sin(x)" /> as positive.</>,
   },
 ]
 

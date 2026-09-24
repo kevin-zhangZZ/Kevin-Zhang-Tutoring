@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{200\sqrt3}{g}}" />,
-    reason: <>Option D, about <Katex tex="35.4" /> m — a plausible hit. Option C halves it, which is the distance to the highest point rather than the full range.</>,
+    reason: <>Matches option <b>D</b>, about <Katex tex="35.4" /> m — a plausible hit. Option C (28%) halves it, which is the distance to the highest point rather than the full range.</>,
   },
 ]
 

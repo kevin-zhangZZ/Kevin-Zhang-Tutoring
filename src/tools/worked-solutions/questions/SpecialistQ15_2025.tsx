@@ -10,13 +10,27 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 52, B: 20, C: 14, D: 14 },
   answer: 'A',
-  comment: <>The angle between planes is the same as the angle between the normals to the planes.</>,
+  comment: (
+    <>
+      The angle between planes is the same as the angle between the normals to the planes.
+      <br />
+      Knowing what the two normals are:
+      <br />
+      <Katex tex="\underset{\sim}{n}_1=\begin{pmatrix}2\\2\\1\end{pmatrix}\text{ and }\underset{\sim}{n}_2=\begin{pmatrix}a\\0\\4\end{pmatrix}" />
+      <br />
+      <Katex tex="\underset{\sim}{n}_1\cdot \underset{\sim}{n}_2=|\underset{\sim}{n}_1||\underset{\sim}{n}_2|\cos(\theta)" />
+      <br />
+      <Katex tex="\dfrac{2a+4}{3\sqrt{a^2+16}}=\dfrac{2}{3}" />
+      <br />
+      <Katex tex="a+2=\sqrt{a^2+16}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n_1} = (2,2,1) \qquad \underset{\sim}{n_2} = (a,0,4)" />,
-    reason: 'Normal vectors read off from each plane’s equation.',
+    reason: <>Normal vectors read off from each plane’s equation.</>,
   },
   {
     working: <Katex display tex="\cos(\text{angle}) = \frac{|\underset{\sim}{n_1}\cdot\underset{\sim}{n_2}|}{|\underset{\sim}{n_1}||\underset{\sim}{n_2}|} = \frac{|2a+4|}{3\sqrt{a^2+16}}" />,
@@ -24,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a>0 \;\implies\; 2a+4>0 \;\implies\; |2a+4|=2a+4" />,
-    reason: 'Drop the absolute value using the given sign of a.',
+    reason: <>Drop the absolute value using the given sign of a.</>,
   },
   {
     working: <Katex display tex="\frac{2a+4}{3\sqrt{a^2+16}} = \frac{2}{3}" />,
@@ -32,11 +46,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3(2a+4) = 2\cdot3\sqrt{a^2+16} \;\implies\; 6a+12 = 6\sqrt{a^2+16}" />,
-    reason: 'Cross-multiply.',
+    reason: <>Cross-multiply.</>,
   },
   {
     working: <Katex display tex="\boxed{a+2 = \sqrt{a^2+16}}" />,
-    reason: <>Divide through by 6 — matches option <b>A</b>.</>,
+    reason: <>Divide through by 6. Matches option <b>A</b>.</>,
   },
 ]
 

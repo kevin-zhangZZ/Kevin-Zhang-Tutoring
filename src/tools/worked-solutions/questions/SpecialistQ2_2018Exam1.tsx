@@ -12,8 +12,11 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Students were required to show that{' '}
-      <Katex tex="1+i=\sqrt2\,\operatorname{cis}\!\left(\tfrac{\pi}{4}\right)" />. This
-      question was answered well by most students.
+      <Katex tex="1+i=\sqrt2\,\operatorname{cis}\!\left(\tfrac{\pi}{4}\right)" />.
+      <br />
+      This question was answered well by most students. A common incorrect response was to
+      write <Katex tex="\tan\left(\tfrac11\right)=\tfrac{\pi}{4}" /> rather than{' '}
+      <Katex tex="\arctan\left(\tfrac11\right)=\tfrac{\pi}{4}" />.
     </>
   ),
 }
@@ -23,10 +26,17 @@ const EXAM_B: SAExaminerStats = {
   average: 2.1,
   comment: (
     <>
-      Most students realised that they needed to use polar form and de Moivre's theorem. Quite
-      a few students were not able to write <Katex tex="\sqrt3-i" /> in polar form correctly,
-      with incorrect arguments being given frequently. Students are reminded that a diagram
-      placing the complex number in the correct quadrant is helpful.
+      Most students realised that they needed to use polar form and de Moirvre's theorem.
+      Quite a few students were not able to write <Katex tex="\sqrt3-i" /> in polar form
+      correctly with arguments of <Katex tex="\tfrac{\pi}{6}" />,{' '}
+      <Katex tex="\tfrac{5\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" /> being given
+      frequently. Students are reminded that a diagram placing the complex number in the
+      correct quadrant can be helpful in avoiding errors. Of those students who obtained the
+      result <Katex tex="16\operatorname{cis}\left(-\tfrac{2\pi}{3}\right)" />, some neglected
+      to write the final answer in the required form or made errors in their attempt.
+      <br />
+      A small number of students attempted to expand brackets. This approach was rarely
+      successful.
     </>
   ),
 }
@@ -38,18 +48,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Arg}(1+i) = \tan^{-1}\!\left(\frac11\right) = \frac{\pi}{4}" />,
-    reason: <><Katex tex="1+i" /> lies in the first quadrant, so the inverse tangent gives the argument directly with no adjustment.</>,
+    reason: <><Katex tex="1+i" /> lies in the first quadrant, so the inverse tangent gives the argument directly with no adjustment. Write it as <Katex tex="\tan^{-1}" /> (arctan) — the report's common incorrect response was writing <Katex tex="\tan\left(\tfrac11\right)=\tfrac{\pi}{4}" />.</>,
   },
   {
-    working: <Katex display tex="1+i = \sqrt2\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right) = \sqrt2\,\operatorname{cis}\!\left(\frac{\pi}{4}\right) \ \checkmark" />,
-    reason: <>On a "show that", finish by writing the required form explicitly. Confirm it if you like: <Katex tex="\sqrt2\left(\tfrac{\sqrt2}{2}+i\tfrac{\sqrt2}{2}\right)=1+i" /> ✓</>,
+    working: <Katex display tex="\boxed{1+i = \sqrt2\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right) = \sqrt2\,\operatorname{cis}\!\left(\frac{\pi}{4}\right)}" />,
+    reason: <>As required. On a "show that", finish by writing the required form explicitly. Confirm it if you like: <Katex tex="\sqrt2\left(\tfrac{\sqrt2}{2}+i\tfrac{\sqrt2}{2}\right)=1+i" /> ✓</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\left|\sqrt3-i\right| = \sqrt{3+1} = 2, \qquad \operatorname{Arg}\!\left(\sqrt3-i\right) = -\frac{\pi}{6}" />,
-    reason: <>Fourth quadrant (positive real part, negative imaginary part), so the argument is <em>negative</em>. The report names getting this argument wrong as the main source of lost marks — a quick sketch settles the quadrant.</>,
+    reason: <>Fourth quadrant (positive real part, negative imaginary part), so the argument is <em>negative</em>. The report says quite a few students got this argument wrong, with <Katex tex="\tfrac{\pi}{6}" />, <Katex tex="\tfrac{5\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" /> given frequently — a quick sketch settles the quadrant.</>,
   },
   {
     working: <Katex display tex="\left(\sqrt3-i\right)^{10} = 2^{10}\operatorname{cis}\!\left(-\frac{10\pi}{6}\right) = 1024\operatorname{cis}\!\left(-\frac{5\pi}{3}\right)" />,
@@ -57,7 +67,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(1+i)^{12} = \left(\sqrt2\right)^{12}\operatorname{cis}\!\left(\frac{12\pi}{4}\right) = 64\operatorname{cis}(3\pi)" />,
-    reason: <>Using part (a). <Katex tex="\left(\sqrt2\right)^{12}=2^6=64" />.</>,
+    reason: <>Using part a. <Katex tex="\left(\sqrt2\right)^{12}=2^6=64" />.</>,
   },
   {
     working: <Katex display tex="\frac{\left(\sqrt3-i\right)^{10}}{(1+i)^{12}} = \frac{1024}{64}\operatorname{cis}\!\left(-\frac{5\pi}{3}-3\pi\right) = 16\operatorname{cis}\!\left(-\frac{14\pi}{3}\right)" />,
@@ -73,7 +83,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-8 - 8\sqrt3\,i}" />,
-    reason: <>The required <Katex tex="a+bi" /> form with <Katex tex="a=-8" /> and <Katex tex="b=-8\sqrt3" />; both are real, as the question allows. (<Katex tex="\approx-8-13.86i" />, in the third quadrant — consistent with an argument of <Katex tex="-\tfrac{2\pi}{3}" />.)</>,
+    reason: <>The required <Katex tex="a+bi" /> form — the report notes some students who reached <Katex tex="16\operatorname{cis}\left(-\tfrac{2\pi}{3}\right)" /> did not finish in this form — with <Katex tex="a=-8" /> and <Katex tex="b=-8\sqrt3" />; both are real, as the question allows. (<Katex tex="\approx-8-13.86i" />, in the third quadrant — consistent with an argument of <Katex tex="-\tfrac{2\pi}{3}" />.)</>,
   },
 ]
 
@@ -84,11 +94,11 @@ export default function SpecialistQ2_2018Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (4 marks)</p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Show that <Katex tex="1+i=\sqrt2\,\operatorname{cis}\!\left(\dfrac{\pi}{4}\right)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Polar Form" marks={1} statement={<>Show that <Katex tex="1+i=\sqrt2\,\operatorname{cis}\!\left(\dfrac{\pi}{4}\right)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={3} statement={<>Evaluate <Katex tex="\dfrac{\left(\sqrt3-i\right)^{10}}{(1+i)^{12}}" />, giving your answer in the form <Katex tex="a+bi" />, where <Katex tex="a,b\in\mathbb{R}" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="De Moivre's Theorem" marks={3} statement={<>Evaluate <Katex tex="\dfrac{\left(\sqrt3-i\right)^{10}}{(1+i)^{12}}" />, giving your answer in the form <Katex tex="a+bi" />, where <Katex tex="a,b\in R" />.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
             Expanding these powers in cartesian form is hopeless. Convert both numbers to

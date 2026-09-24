@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = \frac{\pi(6k-1)}{6} \ \text{ or } \ x = \frac{\pi(6k+3)}{6}}" />,
-    reason: <>Option D. A quick sanity check: <Katex tex="k=0" /> gives <Katex tex="x=-\tfrac\pi6" /> and <Katex tex="x=\tfrac\pi2" />, and both satisfy the original equation.</>,
+    reason: <>Matches option <b>D</b>. A quick sanity check: <Katex tex="k=0" /> gives <Katex tex="x=-\tfrac\pi6" /> and <Katex tex="x=\tfrac\pi2" />, and both satisfy the original equation. Every other option contains a value that fails it: <b>A</b> and <b>B</b> include <Katex tex="-\tfrac\pi3" /> (<Katex tex="k=0" />), <b>C</b> includes <Katex tex="\tfrac\pi3" />, and <b>E</b> includes <Katex tex="\pi" />.</>,
   },
 ]
 
@@ -52,11 +52,11 @@ export default function MethodsQ4_2020() {
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="x=\tfrac{\pi(6k-2)}{6} \text{ or } x=\tfrac{\pi(6k-3)}{6},\ k\in Z" /> },
-        { letter: 'B', content: <Katex tex="x=\tfrac{\pi(6k-2)}{6} \text{ or } x=\tfrac{\pi(6k+5)}{6},\ k\in Z" /> },
-        { letter: 'C', content: <Katex tex="x=\tfrac{\pi(6k-1)}{6} \text{ or } x=\tfrac{\pi(6k+2)}{6},\ k\in Z" /> },
-        { letter: 'D', content: <Katex tex="x=\tfrac{\pi(6k-1)}{6} \text{ or } x=\tfrac{\pi(6k+3)}{6},\ k\in Z" />, isAnswer: true },
-        { letter: 'E', content: <Katex tex="x=\pi k \text{ or } x=\tfrac{\pi(6k+2)}{6},\ k\in Z" /> },
+        { letter: 'A', content: <Katex tex="x=\tfrac{\pi(6k-2)}{6} \text{ or } x=\tfrac{\pi(6k-3)}{6}, \text{ for } k\in Z" /> },
+        { letter: 'B', content: <Katex tex="x=\tfrac{\pi(6k-2)}{6} \text{ or } x=\tfrac{\pi(6k+5)}{6}, \text{ for } k\in Z" /> },
+        { letter: 'C', content: <Katex tex="x=\tfrac{\pi(6k-1)}{6} \text{ or } x=\tfrac{\pi(6k+2)}{6}, \text{ for } k\in Z" /> },
+        { letter: 'D', content: <Katex tex="x=\tfrac{\pi(6k-1)}{6} \text{ or } x=\tfrac{\pi(6k+3)}{6}, \text{ for } k\in Z" />, isAnswer: true },
+        { letter: 'E', content: <Katex tex="x=\pi \text{ or } x=\tfrac{\pi(6k+2)}{6}, \text{ for } k\in Z" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

@@ -14,7 +14,9 @@ const EXAM_A: SAExaminerStats = {
     <>
       Many students incorrectly assumed that the speed detection device would be activated by
       the car travelling at a speed greater than 40 km/h. Students needed to show that{' '}
-      <Katex tex="v=44" /> at <Katex tex="x=0" /> and that this meets the 10% threshold.
+      <Katex tex="44^2=1936" /> and that when <Katex tex="x=0" />, <Katex tex="v^2=1936" />.
+      <br />
+      Some students did not use the result that <Katex tex="\arccos(0)=\dfrac{\pi}{2}" />.
     </>
   ),
 }
@@ -24,10 +26,22 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Using the acceleration form <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" />{' '}
-      was the most direct approach. Of students who chose this method, some made errors in
-      differentiation and the factor <Katex tex="\tfrac12" /> was occasionally ignored. The
-      negative sign was sometimes omitted.
+      Using the acceleration form{' '}
+      <Katex tex="\dfrac{d}{dx}\left(\dfrac{1}{2}v^2\right)" /> was the most direct approach.
+      Of students who chose this method, some made errors in differentiation and the factor{' '}
+      <Katex tex="\dfrac{1}{2}" /> was occasionally ignored.
+      <br />
+      The chain rule could be used to differentiate the{' '}
+      <Katex tex="\arccos\left(\dfrac{x}{20}\right)" /> function. Alternatively, the formula
+      from the formula sheet could be applied. In both instances, the negative sign was
+      sometimes omitted.
+      <br />
+      Some students elected to work with{' '}
+      <Katex tex="v=\sqrt{1600+\dfrac{672}{\pi}\arccos\left(\dfrac{x}{20}\right)}" />. Only
+      a small proportion of those students who chose this solution pathway also proceeded to
+      correctly substitute <Katex tex="x=12" /> into the acceleration form{' '}
+      <Katex tex="a=v\dfrac{dv}{dx}" /> in order to obtain the correct final answer. Some
+      students only wrote an expression for <Katex tex="\dfrac{dv}{dx}" />.
     </>
   ),
 }
@@ -35,11 +49,11 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{threshold} = 40\times1.1 = 44 \ \text{km/h}" />,
-    reason: <>"10% or more above the speed limit" means <Katex tex="v\ge44" />, not <Katex tex="v>40" /> — the misreading that cost two thirds of the cohort the mark.</>,
+    reason: <>"10% or more above the speed limit" means <Katex tex="v\ge44" />, not <Katex tex="v>40" /> — the report notes many students incorrectly assumed a speed greater than 40 km/h would activate the device.</>,
   },
   {
     working: <Katex display tex="x = 0: \quad \arccos\!\left(\tfrac{0}{20}\right) = \arccos(0) = \frac{\pi}{2}" />,
-    reason: 'The device sits at the origin, so this is the only position that matters.',
+    reason: <>The device sits at the origin, so this is the only position that matters.</>,
   },
   {
     working: <Katex display tex="v^2 = 1600+\frac{672}{\pi}\times\frac{\pi}{2} = 1600+336 = 1936" />,
@@ -51,18 +65,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{44 \ge 44 \implies \text{the device is activated}}" />,
-    reason: <>Exactly on the threshold, and "or more" makes that enough. A conclusion in words was required, not just the number.</>,
+    reason: <>Exactly on the threshold, and "or more" makes that enough. The question asks whether the device is activated, so finish with that conclusion in words, as the report's sample answer does.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{d}{dx}\left(\frac12v^2\right) = \frac12\cdot\frac{d\left(v^2\right)}{dx}" />,
-    reason: <>The acceleration form to use when <Katex tex="v^2" /> is given as a function of position — no need to find <Katex tex="v" /> itself. Dropping the <Katex tex="\tfrac12" /> is a listed error.</>,
+    reason: <>The acceleration form to use when <Katex tex="v^2" /> is given as a function of position — no need to find <Katex tex="v" /> itself. The report notes the factor <Katex tex="\tfrac12" /> was occasionally ignored.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\arccos\!\left(\frac{x}{20}\right) = \frac{-\tfrac{1}{20}}{\sqrt{1-\tfrac{x^2}{400}}}" />,
-    reason: <>The formula-sheet derivative of <Katex tex="\arccos" />, with the chain rule supplying the <Katex tex="\tfrac{1}{20}" />. The minus sign is easy to lose.</>,
+    reason: <>The formula-sheet derivative of <Katex tex="\arccos" />, with the chain rule supplying the <Katex tex="\tfrac{1}{20}" />. The report notes the negative sign was sometimes omitted.</>,
   },
   {
     working: <Katex display tex="= \frac{-\tfrac{1}{20}}{\tfrac{1}{20}\sqrt{400-x^2}} = \frac{-1}{\sqrt{400-x^2}}" />,
@@ -74,11 +88,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = \frac12\times\frac{-672}{\pi\sqrt{400-x^2}} = \frac{-336}{\pi\sqrt{400-x^2}}" />,
-    reason: 'Applying the half.',
+    reason: <>Applying the half.</>,
   },
   {
     working: <Katex display tex="x = 12: \quad \sqrt{400-144} = \sqrt{256} = 16" />,
-    reason: 'Another exact square — the numbers are chosen to come out cleanly.',
+    reason: <>Another exact square — the numbers are chosen to come out cleanly.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \frac{-336}{16\pi} = -\frac{21}{\pi} \ \text{km h}^{-2}}" />,
@@ -106,8 +120,10 @@ export default function SpecialistQ9_2024Exam1() {
         <p>
           A speed detection device is positioned to detect the speed of a car as it passes
           the position <Katex tex="x=0" />. The speed limit on the road is{' '}
-          <Katex tex="40 \text{ km h}^{-1}" />. The speed detection device will be activated
-          if the car is travelling at 10% or more above the speed limit.
+          <Katex tex="40 \text{ km h}^{-1}" />.
+          <br />
+          The speed detection device will be activated if the car is travelling at 10% or more
+          above the speed limit.
         </p>
       </div>
 
@@ -120,15 +136,16 @@ export default function SpecialistQ9_2024Exam1() {
             <Katex tex="v" />, let alone <Katex tex="x(t)" />.
           </p>
           <p>
-            Part a. is a reading question as much as a mathematical one. Two thirds of
-            students treated "10% or more above the speed limit" as though it meant "above
-            the speed limit", and so never computed the 44 the question turns on.
+            Part a. is a reading question as much as a mathematical one. The report notes
+            many students treated "10% or more above the speed limit" as though it meant
+            "above the speed limit", and so never reached the 44 the question turns on.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Velocity"
         marks={1}
         statement={<>Determine, with evidence, whether the speed detection device will be activated.</>}
         examinerReport={EXAM_A}
@@ -138,12 +155,15 @@ export default function SpecialistQ9_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Acceleration"
         marks={3}
         statement={
           <>
             Find the acceleration of the car, in km h<Katex tex="^{-2}" />, when{' '}
-            <Katex tex="x=12" />. Give your answer in the form{' '}
-            <Katex tex="\dfrac{k}{\pi}" />, where <Katex tex="k\in\mathbb{Z}" />.
+            <Katex tex="x=12" />.
+            <br />
+            Give your answer in the form{' '}
+            <Katex tex="\dfrac{k}{\pi}" />, where <Katex tex="k\in Z" />.
           </>
         }
         examinerReport={EXAM_B}

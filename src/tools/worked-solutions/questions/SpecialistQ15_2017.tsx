@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{r}_2-\underset{\sim}{r}_1 = \left(-\underset{\sim}{i}+5\underset{\sim}{j}\right)-\left(3\underset{\sim}{i}+\underset{\sim}{j}\right)" />,
-    reason: <>Later minus earlier. Getting the order backwards gives option D.</>,
+    reason: <>Later minus earlier. Getting the order backwards (and not dividing by the time) gives option D.</>,
   },
   {
     working: <Katex display tex="= -4\underset{\sim}{i}+4\underset{\sim}{j}" />,
@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{v} = -2\underset{\sim}{i}+2\underset{\sim}{j}\ \text{m s}^{-1}}" />,
-    reason: <>Dividing by <Katex tex="2" /> seconds. Check: starting at <Katex tex="3\underset{\sim}{i}+\underset{\sim}{j}" /> and adding <Katex tex="2\underset{\sim}{v}" /> gives <Katex tex="-\underset{\sim}{i}+5\underset{\sim}{j}" /> ✓.</>,
+    reason: <>Dividing by <Katex tex="2" /> seconds. Matches option <b>B</b>. Check: starting at <Katex tex="3\underset{\sim}{i}+\underset{\sim}{j}" /> and adding <Katex tex="2\underset{\sim}{v}" /> gives <Katex tex="-\underset{\sim}{i}+5\underset{\sim}{j}" /> ✓.</>,
   },
 ]
 

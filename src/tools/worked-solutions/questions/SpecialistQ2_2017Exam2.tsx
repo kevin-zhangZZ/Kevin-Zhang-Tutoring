@@ -87,7 +87,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{v = 19.6 \text{ m s}^{-1}}" />,
-    reason: <>As required. In a "show that", write the substitution line out — 93% of students did, and it is the only way to earn the mark.</>,
+    reason: <>As required. In a "show that", write the substitution line out — the report says the majority of students demonstrated the key steps.</>,
   },
 ]
 
@@ -102,7 +102,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{v = \sqrt{980} = 14\sqrt5 \text{ m s}^{-1}}" />,
-    reason: <>Since <Katex tex="980=196\times5" />. About <Katex tex="31.3" /> m s<Katex tex="^{-1}" />, or <Katex tex="113" /> km/h. Exact form was required — the report notes decimals losing the mark. Equivalently <Katex tex="10\sqrt{g}" />.</>,
+    reason: <>Since <Katex tex="980=196\times5" />. About <Katex tex="31.3" /> m s<Katex tex="^{-1}" />, or <Katex tex="113" /> km/h. Give the exact form — the report notes some answers were not given in exact form. Equivalently <Katex tex="10\sqrt{g}" />.</>,
   },
 ]
 
@@ -117,14 +117,14 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \int_{19.6}^{30}\frac{1}{9.8-0.01v^2}\,dv + 2}" />,
-    reason: <>Two details carry the marks. The lower terminal is <Katex tex="19.6" />, not <Katex tex="0" />, because the model only starts once air resistance matters; and the <Katex tex="+2" /> adds back the first two seconds. The report says most students missed one or the other.</>,
+    reason: <>Two details carry the marks. The lower terminal is <Katex tex="19.6" />, not <Katex tex="0" />, because the model only starts once air resistance matters; and the <Katex tex="+2" /> adds back the first two seconds. The report says the question was often misinterpreted in exactly these two ways.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Cas fn="nInt">nInt(1/(9.8-0.01v²), v, 19.6, 30) + 2</Cas>,
-    reason: <>Evaluating the expression from part (d)(i).</>,
+    reason: <>Evaluating the expression from part d.i.</>,
   },
   {
     working: <Katex display tex="\boxed{t \approx 5.8 \text{ seconds}}" />,
@@ -139,11 +139,11 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dx}{dv} = \frac{v}{9.8-0.01v^2}" />,
-    reason: <>Inverting. Note the extra <Katex tex="v" /> on top compared with part (d) — that single factor is the whole difference between a time and a distance.</>,
+    reason: <>Inverting. Note the extra <Katex tex="v" /> on top compared with part d. — that single factor is the whole difference between a time and a distance.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \int_{19.6}^{30}\frac{v}{9.8-0.01v^2}\,dv + 19.6}" />,
-    reason: <>Same two details as before: start at <Katex tex="19.6" /> m s<Katex tex="^{-1}" />, and add the <Katex tex="19.6" /> m already fallen from part (a).</>,
+    reason: <>Same two details as before: start at <Katex tex="19.6" /> m s<Katex tex="^{-1}" />, and add the <Katex tex="19.6" /> m already fallen from part a.</>,
   },
   {
     working: <Cas fn="nInt">nInt(v/(9.8-0.01v²), v, 19.6, 30) + 19.6</Cas>,
@@ -168,12 +168,13 @@ export default function SpecialistQ2_2017Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the distance, in metres, fallen in the first two seconds.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Displacement" marks={2} statement={<>Find the distance, in metres, fallen in the first two seconds.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Velocity"
         marks={1}
         statement={
           <>
@@ -195,6 +196,7 @@ export default function SpecialistQ2_2017Exam2() {
 
       <PartCard
         letter="c"
+        topic="Terminal Velocity"
         marks={1}
         statement={
           <>
@@ -209,6 +211,7 @@ export default function SpecialistQ2_2017Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Time Integral"
         marks={2}
         statement={
           <>
@@ -223,7 +226,7 @@ export default function SpecialistQ2_2017Exam2() {
             Acceleration can be written <Katex tex="\dfrac{dv}{dt}" /> (use it when you want
             a time), <Katex tex="v\dfrac{dv}{dx}" /> (use it when you want a distance in
             terms of speed), or <Katex tex="\dfrac{d}{dx}\!\left(\tfrac12v^2\right)" />. Parts
-            (d) and (e) are the first two, and the only difference in the integrand is one
+            d. and e. use the first two, and the only difference in the integrand is one
             factor of <Katex tex="v" />.
           </p>
           <p>
@@ -232,8 +235,8 @@ export default function SpecialistQ2_2017Exam2() {
             time the skydiver is already at <Katex tex="19.6" /> m s<Katex tex="^{-1}" /> and{' '}
             <Katex tex="19.6" /> m down. So the integral starts at{' '}
             <Katex tex="v=19.6" />, and the <Katex tex="2" /> seconds (or{' '}
-            <Katex tex="19.6" /> m) has to be added back on. That is where two-thirds of
-            students lost marks.
+            <Katex tex="19.6" /> m) has to be added back on. The report says this part was often
+            misinterpreted on exactly this point, and many students did not attempt it.
           </p>
         </Background>
         <WorkingTable rows={ROWS_DI} />
@@ -241,6 +244,7 @@ export default function SpecialistQ2_2017Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Time Integral"
         marks={1}
         statement={
           <>
@@ -255,6 +259,7 @@ export default function SpecialistQ2_2017Exam2() {
 
       <PartCard
         letter="e"
+        topic="Distance Integral"
         marks={3}
         statement={
           <>

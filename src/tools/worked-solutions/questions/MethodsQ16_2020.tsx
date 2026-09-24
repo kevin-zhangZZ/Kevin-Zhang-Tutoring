@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{3\sqrt3}" />,
-    reason: <>Option D. Answering <Katex tex="\sqrt3" /> (option C) stops at <Katex tex="m" />.</>,
+    reason: <>Matches option <b>D</b>. Answering <Katex tex="\sqrt3" /> (option <b>C</b>) stops at <Katex tex="m" />.</>,
   },
 ]
 
@@ -55,15 +55,15 @@ export default function MethodsQ16_2020() {
             <Katex tex="m\in(0,3)" />, on the parabola <Katex tex="y=9-x^2" />, as shown
             below.
           </p>
+          <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+            <img
+              src={triangleSrc}
+              alt="The parabola y = 9 − x² in the first quadrant with a shaded right-angled triangle from the origin O to B(m, 0) to C(m, 9 − m²) — from the original 2020 VCAA exam paper"
+              className="w-full max-w-[330px]"
+            />
+          </div>
           <p>The maximum area of the triangle <Katex tex="OBC" /> is</p>
         </>
-      }
-      diagram={
-        <img
-          src={triangleSrc}
-          alt="The parabola y = 9 − x² in the first quadrant with a shaded right-angled triangle from the origin O to B(m, 0) to C(m, 9 − m²) — from the original 2020 VCAA exam paper"
-          className="w-full max-w-[330px]"
-        />
       }
       options={[
         { letter: 'A', content: <Katex tex="\tfrac{\sqrt3}{3}" /> },

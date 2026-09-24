@@ -8,8 +8,8 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import quarticSrc from './meth-2018exam2-q1-quartic.png'
-import tangentSrc from './meth-2018exam2-q1-tangent.png'
+import quarticSrc from './meth-2018e2-q1-quartic.png'
+import tangentSrc from './meth-2018e2-q1-tangent.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [5, 95],
@@ -23,9 +23,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Common incorrect answers were{' '}
-      <Katex tex="(-\infty,32)" />, <Katex tex="b\ge32" />, <Katex tex="b<32" />,{' '}
-      <Katex tex="[33,\infty)" /> and <Katex tex="b\ge33" />. Others used the{' '}
-      <Katex tex="x" />-coordinate and gave <Katex tex="x>-2" /> as their answer.
+      <Katex tex="(-\infty,32)" />, <Katex tex="b=32" />, <Katex tex="b\ge32" />,{' '}
+      <Katex tex="[33,\infty)" /> and <Katex tex="b=33" />. Others used the{' '}
+      <Katex tex="x" />-coordinate and gave <Katex tex="x>2" /> as their answer.
     </>
   ),
 }
@@ -68,7 +68,7 @@ const EXAM_F: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Some students gave an additional expression <Katex tex="a=6x(x-2)" />, which was
+      Some students gave an additional expression <Katex tex="a=-6x(x-2)" />, which was
       obtained if technology was used rather than equating coefficients.
     </>
   ),
@@ -79,9 +79,9 @@ const EXAM_G: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      A common error was <Katex tex="x=-1\pm\sqrt{1-a}" /> written as{' '}
-      <Katex tex="x=\tfrac{-1\pm\sqrt{9-4a}}{\ }" />. <Katex tex="x=0" /> was often given.
-      This comes from forgetting to differentiate <Katex tex="-12ax" /> when differentiating{' '}
+      A common error was <Katex tex="x=1\pm\sqrt{1-a}" />.{' '}
+      <Katex tex="x=\dfrac{-1\pm\sqrt{9-4a}}{2},\ x=0" /> was often given. This comes from
+      forgetting to differentiate <Katex tex="-12ax" /> when differentiating{' '}
       <Katex tex="p(x)" />.
     </>
   ),
@@ -93,7 +93,7 @@ const EXAM_HI: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Common incorrect answers were{' '}
-      <Katex tex="a\ge1" />, <Katex tex="a>0" /> or <Katex tex="a\ge0" />.
+      <Katex tex="a=1" />, <Katex tex="a=0" /> or <Katex tex="a>0" />.
     </>
   ),
 }
@@ -115,9 +115,10 @@ const EXAM_HIII: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Many students did not attempt this question. Some
-      students solved <Katex tex="p'(x)=0" /> or <Katex tex="p(x)=0" /> for <Katex tex="x" />.
+      students solved <Katex tex="p(x)=0" /> or <Katex tex="p'(x)=0" /> for <Katex tex="x" />.
       Others tried to apply the discriminant to a cubic equation. Others, who used a correct
-      method, sometimes gave an incorrect inequality.
+      method, sometimes gave an incorrect inequality, for example{' '}
+      <Katex tex="a<\sqrt{14}+3" />.
     </>
   ),
 }
@@ -137,7 +138,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{M = (-2,\ -32)}" />,
-    reason: <>The lowest of the three. Give <em>coordinates</em> — the report notes students who stopped at <Katex tex="x=-2" /> and lost the mark.</>,
+    reason: <>The lowest of the three. Give <em>coordinates</em> — the report notes some students only gave the <Katex tex="x" /> value.</>,
   },
 ]
 
@@ -148,11 +149,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Minimum of } f(x)+b \ = \ -32+b" />,
-    reason: <>From part (a). Everything else on the curve is higher, so this one value decides it.</>,
+    reason: <>From part a. Everything else on the curve is higher, so this one value decides it.</>,
   },
   {
     working: <Katex display tex="-32+b>0 \implies \boxed{b>32}" />,
-    reason: <>Strictly greater. At <Katex tex="b=32" /> exactly, the minimum sits <em>on</em> the axis — that is an <Katex tex="x" />-intercept, so <Katex tex="b=32" /> must be excluded. The report lists <Katex tex="b\ge32" /> and <Katex tex="b\ge33" /> among the common wrong answers, along with <Katex tex="x>-2" /> from students who quoted the <Katex tex="x" />-coordinate instead.</>,
+    reason: <>Strictly greater. At <Katex tex="b=32" /> exactly, the minimum sits <em>on</em> the axis — that is an <Katex tex="x" />-intercept, so <Katex tex="b=32" /> must be excluded. The report lists <Katex tex="b=32" /> and <Katex tex="b\ge32" /> among the common incorrect answers, along with answers in terms of <Katex tex="x" /> from students who used the <Katex tex="x" />-coordinate instead.</>,
   },
 ]
 
@@ -163,7 +164,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'\!\left(-\tfrac13\right) = -\frac49+\frac{12}{9}+8 = \frac{80}{9}" />,
-    reason: <>The gradient, from the derivative in part (a).</>,
+    reason: <>The gradient, from the derivative in part a.</>,
   },
   {
     working: <Katex display tex="y+\frac{13}{9} = \frac{80}{9}\left(x+\frac13\right)" />,
@@ -171,7 +172,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = \frac{80x}{9}+\frac{41}{27}}" />,
-    reason: <><Katex tex="\tfrac{80}{27}-\tfrac{13}{9}=\tfrac{80-39}{27}=\tfrac{41}{27}" />. Write it as an <em>equation</em>, not just a gradient — the report flags that too.</>,
+    reason: <><Katex tex="\tfrac{80}{27}-\tfrac{13}{9}=\tfrac{80-39}{27}=\tfrac{41}{27}" />. Write it as an <em>equation</em> — the report says an equation and exact values were required.</>,
   },
 ]
 
@@ -205,7 +206,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Cas fn="nInt">nInt(80x/9+41/27-(3x^4+4x^3-12x^2), x, (-1-√42)/3, (-1+√42)/3)</Cas>,
-    reason: <>Use the exact terminals from part (d), not rounded decimals, or the surd form will not come out.</>,
+    reason: <>Use the exact terminals from part d., not rounded decimals, or the surd form will not come out.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{784\sqrt{42}}{135}}" />,
@@ -220,7 +221,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="6a = 0, \quad -12a = 0, \quad a^2 = 0" />,
-    reason: <>"For all <Katex tex="x" />" means every coefficient must vanish independently — equate coefficients rather than solving an equation in <Katex tex="x" />. The report notes that students who put this to technology got the spurious extra answer <Katex tex="a=6x(x-2)" />, which is not a constant and so cannot be the value of <Katex tex="a" />.</>,
+    reason: <>"For all <Katex tex="x" />" means every coefficient must vanish independently — equate coefficients rather than solving an equation in <Katex tex="x" />. The report notes that students who used technology instead got the additional expression <Katex tex="a=-6x(x-2)" />, which is not a constant and so cannot be the value of <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 0}" />,
@@ -231,7 +232,7 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="p'(x) = 12x^3+12x^2+12(a-2)x-12a" />,
-    reason: <>Differentiating. The <Katex tex="-12ax" /> term contributes <Katex tex="-12a" /> — the report says forgetting to differentiate it is what produced the common wrong root <Katex tex="x=0" />.</>,
+    reason: <>Differentiating. The <Katex tex="-12ax" /> term contributes <Katex tex="-12a" /> — the report says forgetting to differentiate it is what produced the often-given <Katex tex="x=0" /> and <Katex tex="x=\tfrac{-1\pm\sqrt{9-4a}}{2}" />.</>,
   },
   {
     working: <Katex display tex="= 12\left(x^3+x^2+(a-2)x-a\right)" />,
@@ -247,14 +248,14 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 1 \quad \text{or} \quad x = -1\pm\sqrt{1-a}}" />,
-    reason: <>Completing the square on <Katex tex="x^2+2x+a" /> gives <Katex tex="(x+1)^2 = 1-a" />. The second pair exists only when <Katex tex="1-a\ge0" />, which sets up part (h).</>,
+    reason: <>Completing the square on <Katex tex="x^2+2x+a" /> gives <Katex tex="(x+1)^2 = 1-a" />. The second pair exists only when <Katex tex="1-a\ge0" />, which sets up part h.</>,
   },
 ]
 
 const ROWS_HI: WorkingRow[] = [
   {
     working: <Katex display tex="x=1 \text{ is always a stationary point}" />,
-    reason: <>From part (g). So "only one stationary point" means the other two must fail to exist.</>,
+    reason: <>From part g. So "only one stationary point" means the other two must fail to exist.</>,
   },
   {
     working: <Katex display tex="x^2+2x+a = 0 \ \text{ has no real solutions} \iff \Delta = 4-4a < 0" />,
@@ -262,14 +263,14 @@ const ROWS_HI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="4-4a<0 \implies \boxed{a>1}" />,
-    reason: <>Strict. At <Katex tex="a=1" /> the quadratic has the repeated root <Katex tex="x=-1" />, which is a genuine second stationary point — so <Katex tex="a=1" /> gives two, not one. That boundary is exactly what the report's common wrong answer <Katex tex="a\ge1" /> gets wrong; only <Katex tex="18\%" /> scored this mark.</>,
+    reason: <>Strict. At <Katex tex="a=1" /> the quadratic has the repeated root <Katex tex="x=-1" />, which is a genuine second stationary point — so <Katex tex="a=1" /> gives two, not one. The report lists <Katex tex="a=1" /> among the common incorrect answers; only <Katex tex="18\%" /> scored this mark.</>,
   },
 ]
 
 const ROWS_HII: WorkingRow[] = [
   {
     working: <Katex display tex="a=2>1 \implies \text{the only stationary point is } x=1" />,
-    reason: <>Part (h)(i) applies, so there is nothing to compare — the single turning point of a positive quartic must be its minimum.</>,
+    reason: <>Part h.i. applies, so there is nothing to compare — the single turning point of a positive quartic must be its minimum.</>,
   },
   {
     working: <Katex display tex="p(x) = 3x^4+4x^3+0\cdot x^2-24x+4" />,
@@ -281,18 +282,18 @@ const ROWS_HII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Minimum value} = -13}" />,
-    reason: <>State the <em>value</em>, not the point — the report notes marks lost to answers given as <Katex tex="(1,-13)" /> when a single number was asked for.</>,
+    reason: <>State the <em>value</em> — the report says the minimum value needed to be stated, not just the coordinates of the turning point <Katex tex="(1,-13)" />.</>,
   },
 ]
 
 const ROWS_HIII: WorkingRow[] = [
   {
     working: <Katex display tex="a>1 \implies \text{one stationary point, at } x=1, \text{ a minimum}" />,
-    reason: <>Carrying part (h)(i) forward. A quartic with a positive leading coefficient and a single turning point has that point as its global minimum.</>,
+    reason: <>Carrying part h.i. forward. A quartic with a positive leading coefficient and a single turning point has that point as its global minimum.</>,
   },
   {
     working: <Katex display tex="p(x)=0 \text{ has no solutions} \iff \text{minimum} > 0 \iff p(1)>0" />,
-    reason: <>The curve never reaches the axis exactly when its lowest point is above it. This is the step the report says students missed — many attacked <Katex tex="p(x)=0" /> or <Katex tex="p'(x)=0" /> directly, or tried a discriminant on a cubic, which does not apply.</>,
+    reason: <>The curve never reaches the axis exactly when its lowest point is above it. The report says some students instead solved <Katex tex="p(x)=0" /> or <Katex tex="p'(x)=0" /> for <Katex tex="x" />, and others tried to apply the discriminant to a cubic, which does not work.</>,
   },
   {
     working: <Katex display tex="p(1) = 3+4+6(a-2)-12a+a^2 = a^2-6a-5" />,
@@ -308,11 +309,11 @@ const ROWS_HIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3-\sqrt{14}\approx-0.74 \ \text{ fails } a>1" />,
-    reason: <>The left branch is entirely below <Katex tex="1" />, so the constraint from part (h)(i) removes it. Both conditions have to hold at once, and forgetting to intersect them is the "incorrect inequality" the report describes.</>,
+    reason: <>The left branch is entirely below <Katex tex="1" />, so the constraint from part h.i. removes it. Both conditions have to hold at once — and the inequality must point the right way: the report's example of an incorrect inequality is <Katex tex="a<\sqrt{14}+3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a > 3+\sqrt{14}}" />,
-    reason: <>(<Katex tex="3+\sqrt{14}\approx6.74" />.) Spot-check: at <Katex tex="a=7" /> the minimum of <Katex tex="p" /> is <Katex tex="+2" />, so the curve clears the axis ✓; at <Katex tex="a=6.7" /> it is <Katex tex="-0.31" />, so it still cuts ✓. Only <Katex tex="4\%" /> of the state scored both marks.</>,
+    reason: <>(<Katex tex="3+\sqrt{14}\approx6.74" />.) Spot-check: at <Katex tex="a=7" /> the minimum of <Katex tex="p" /> is <Katex tex="+2" />, so the curve clears the axis ✓; at <Katex tex="a=6.7" /> it is <Katex tex="-0.31" />, so it still cuts ✓. Only <Katex tex="4\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -323,7 +324,7 @@ export default function MethodsQ1_2018Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 1 (13 marks)</p>
         <p className="mb-3">
           Consider the quartic{' '}
-          <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=3x^4+4x^3-12x^2" /> and part of the
+          <Katex tex="f:R\to R,\ f(x)=3x^4+4x^3-12x^2" /> and part of the
           graph of <Katex tex="y=f(x)" /> below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
@@ -331,11 +332,11 @@ export default function MethodsQ1_2018Exam2() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find the coordinates of the point <Katex tex="M" />, at which the minimum value of the function <Katex tex="f" /> occurs.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Minimum Point" marks={1} statement={<>Find the coordinates of the point <Katex tex="M" />, at which the minimum value of the function <Katex tex="f" /> occurs.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>State the values of <Katex tex="b\in\mathbb{R}" /> for which the graph of <Katex tex="y=f(x)+b" /> has no <Katex tex="x" />-intercepts.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Vertical Translation" marks={1} statement={<>State the values of <Katex tex="b\in R" /> for which the graph of <Katex tex="y=f(x)+b" /> has no <Katex tex="x" />-intercepts.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
@@ -349,11 +350,11 @@ export default function MethodsQ1_2018Exam2() {
         </div>
       </div>
 
-      <PartCard letter="c" marks={1} statement={<>Find the equation of the tangent <Katex tex="l" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Tangent Line" marks={1} statement={<>Find the equation of the tangent <Katex tex="l" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={2} statement={<>The tangent <Katex tex="l" /> intersects <Katex tex="y=f(x)" /> at <Katex tex="x=-\dfrac13" /> and at two other points. State the <Katex tex="x" />-values of the two other points of intersection. Express your answers in the form <Katex tex="\dfrac{a\pm\sqrt{b}}{c}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are integers.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Intersections" marks={2} statement={<>The tangent <Katex tex="l" /> intersects <Katex tex="y=f(x)" /> at <Katex tex="x=-\dfrac13" /> and at two other points. State the <Katex tex="x" />-values of the two other points of intersection. Express your answers in the form <Katex tex="\dfrac{a\pm\sqrt{b}}{c}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are integers.</>} examinerReport={EXAM_D}>
         <Background>
           <p>
             A tangent meets its curve at a <em>repeated</em> root. So{' '}
@@ -365,7 +366,7 @@ export default function MethodsQ1_2018Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<>Find the total area of the regions bounded by the tangent <Katex tex="l" /> and <Katex tex="y=f(x)" />. Express your answer in the form <Katex tex="\dfrac{a\sqrt{b}}{c}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are positive integers.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Area Between Curves" marks={2} statement={<>Find the total area of the regions bounded by the tangent <Katex tex="l" /> and <Katex tex="y=f(x)" />. Express your answer in the form <Katex tex="\dfrac{a\sqrt{b}}{c}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are positive integers.</>} examinerReport={EXAM_E}>
         <Background>
           <p>
             "Total area of the regions" sounds like it needs splitting, but it does not. The
@@ -386,32 +387,32 @@ export default function MethodsQ1_2018Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Let{' '}
-          <Katex tex="p:\mathbb{R}\to\mathbb{R},\ p(x)=3x^4+4x^3+6(a-2)x^2-12ax+a^2,\ a\in\mathbb{R}" />.
+          <Katex tex="p:R\to R,\ p(x)=3x^4+4x^3+6(a-2)x^2-12ax+a^2,\ a\in R" />.
         </p>
       </div>
 
-      <PartCard letter="f" marks={1} statement={<>State the value of <Katex tex="a" /> for which <Katex tex="f(x)=p(x)" /> for all <Katex tex="x" />.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Find Parameter" marks={1} statement={<>State the value of <Katex tex="a" /> for which <Katex tex="f(x)=p(x)" /> for all <Katex tex="x" />.</>} examinerReport={EXAM_F}>
         <WorkingTable rows={ROWS_F} />
       </PartCard>
 
-      <PartCard letter="g" marks={1} statement={<>Find all solutions to <Katex tex="p'(x)=0" />, in terms of <Katex tex="a" /> where appropriate.</>} examinerReport={EXAM_G}>
+      <PartCard letter="g" topic="Stationary Points" marks={1} statement={<>Find all solutions to <Katex tex="p'(x)=0" />, in terms of <Katex tex="a" /> where appropriate.</>} examinerReport={EXAM_G}>
         <WorkingTable rows={ROWS_G} />
       </PartCard>
 
-      <PartCard letter="h.i" marks={1} statement={<>Find the values of <Katex tex="a" /> for which <Katex tex="p" /> has only one stationary point.</>} examinerReport={EXAM_HI}>
+      <PartCard letter="h.i" topic="Stationary Points" marks={1} statement={<>Find the values of <Katex tex="a" /> for which <Katex tex="p" /> has only one stationary point.</>} examinerReport={EXAM_HI}>
         <WorkingTable rows={ROWS_HI} />
       </PartCard>
 
-      <PartCard letter="h.ii" marks={1} statement={<>Find the minimum value of <Katex tex="p" /> when <Katex tex="a=2" />.</>} examinerReport={EXAM_HII}>
+      <PartCard letter="h.ii" topic="Minimum Value" marks={1} statement={<>Find the minimum value of <Katex tex="p" /> when <Katex tex="a=2" />.</>} examinerReport={EXAM_HII}>
         <WorkingTable rows={ROWS_HII} />
       </PartCard>
 
-      <PartCard letter="h.iii" marks={2} statement={<>If <Katex tex="p" /> has only one stationary point, find the values of <Katex tex="a" /> for which <Katex tex="p(x)=0" /> has no solutions.</>} examinerReport={EXAM_HIII}>
+      <PartCard letter="h.iii" topic="Number of Solutions" marks={2} statement={<>If <Katex tex="p" /> has only one stationary point, find the values of <Katex tex="a" /> for which <Katex tex="p(x)=0" /> has no solutions.</>} examinerReport={EXAM_HIII}>
         <Background>
           <p>
-            The hardest part on the paper — <Katex tex="92\%" /> scored zero, and many left it
-            blank. The wording carries two separate conditions and both must be imposed: "if{' '}
-            <Katex tex="p" /> has only one stationary point" is part (h)(i)'s{' '}
+            <Katex tex="92\%" /> scored zero here, and the report says many students did not
+            attempt it. The wording carries two separate conditions and both must be imposed:
+            "if <Katex tex="p" /> has only one stationary point" is part h.i.'s{' '}
             <Katex tex="a>1" />, and "<Katex tex="p(x)=0" /> has no solutions" is a statement
             about where the graph sits.
           </p>
@@ -419,8 +420,8 @@ export default function MethodsQ1_2018Exam2() {
             The second condition is the one to translate carefully. A quartic with a single
             turning point misses the <Katex tex="x" />-axis exactly when that turning point is
             above it — so the whole thing reduces to the inequality{' '}
-            <Katex tex="p(1)>0" />. No discriminant is involved; the report notes that trying
-            to apply one to a cubic was a common dead end.
+            <Katex tex="p(1)>0" />. No discriminant is involved; the report notes that some
+            students tried to apply one to a cubic equation.
           </p>
         </Background>
         <WorkingTable rows={ROWS_HIII} />

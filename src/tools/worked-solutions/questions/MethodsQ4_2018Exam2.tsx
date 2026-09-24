@@ -15,8 +15,7 @@ const EXAM_A: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      <Katex tex="M\sim N(68,64)" />, <Katex tex="\Pr(60<M<90)\approx0.838" />, correct to
-      three decimal places. This question was answered well.
+      This question was answered well.
     </>
   ),
 }
@@ -26,11 +25,11 @@ const EXAM_BI: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      <Katex tex="\Pr(H\mid S)=\dfrac{\Pr(H\cap S)}{\Pr(S)}=\dfrac{0.09}{0.29}\approx0.310" />,
-      correct to three decimal places. This question was answered reasonably well. Some
-      students gave their answer as <Katex tex="0.31" />. A common mistake was{' '}
-      <Katex tex="\dfrac{0.09}{0.1587}\approx0.567" />, or taking{' '}
-      <Katex tex="\Pr(H\cap S)=0.9" />, giving an answer greater than <Katex tex="1" />.
+      This question was answered reasonably well. Some students gave their answer as{' '}
+      <Katex tex="0.31" />. A common mistake was{' '}
+      <Katex tex="\dfrac{\Pr(H)}{\Pr(S)}=\dfrac{0.1587}{0.29}=0.547" /> or{' '}
+      <Katex tex="\dfrac{\Pr(H\cap S)}{\Pr(S)}=\dfrac{0.9}{0.1857}" />, giving an answer greater
+      than <Katex tex="1" />.
     </>
   ),
 }
@@ -40,11 +39,9 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      No, the events are not independent:{' '}
-      <Katex tex="\Pr(H\mid S)\ne\Pr(H)" />, or equivalently{' '}
-      <Katex tex="\Pr(H\cap S)\ne\Pr(H)\Pr(S)" />. A mathematical explanation was required.
-      Some students confused mutually exclusive events with independent events. A common
-      mistake was comparing <Katex tex="\Pr(H\mid S)" /> with <Katex tex="\Pr(S)" />.
+      A mathematical explanation was required. Some students confused mutually exclusive
+      events with independent events. A common mistake was{' '}
+      <Katex tex="\Pr(H\mid S)=\Pr(S)" />.
     </>
   ),
 }
@@ -54,9 +51,7 @@ const EXAM_CI: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      <Katex tex="X\sim\operatorname{Bi}(16,\,0.1587)" />,{' '}
-      <Katex tex="\Pr(X=1)\approx0.190" />, correct to three decimal places. This question was
-      reasonably well done. A method was required to get full marks. Stating the correct{' '}
+      This question was reasonably well done. A method was required to get full marks. Stating the correct{' '}
       <Katex tex="n" /> and <Katex tex="p" /> value was sufficient. Some students gave their
       answer as <Katex tex="0.19" />.
     </>
@@ -68,9 +63,9 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      <Katex tex="\Pr\!\left(\hat P>0.1\right)=\Pr(X>1.6)=\Pr(X\ge2)\approx0.747" />, correct
-      to three decimal places. Some students used the normal approximation to the binomial
-      distribution. There was poor use of notation.
+      Some students used the normal approximation to the binomial distribution. There was
+      poor use of variables, for example,{' '}
+      <Katex tex="\Pr\!\left(\hat P>0.1\right)=\Pr\!\left(\hat P>1.6\right)=\Pr\!\left(\hat P\ge2\right)" />.
     </>
   ),
 }
@@ -82,7 +77,7 @@ const EXAM_CIII: SAExaminerStats = {
     <>
       This question was not answered well. Many students appeared to be confused by the
       terminology <Katex tex="\Pr\!\left(\hat P_n>\tfrac1n\right)" />.{' '}
-      <Katex tex="1-\Pr(X=0)>0.99" /> was often evaluated, giving <Katex tex="n=27" />. Trial
+      <Katex tex="1-\Pr(X=0)<0.01" /> was often evaluated, giving <Katex tex="n=27" />. Trial
       and error was an acceptable method.
     </>
   ),
@@ -104,9 +99,7 @@ const EXAM_DII: SAExaminerStats = {
   average: 0.1,
   comment: (
     <>
-      The <Katex tex="95\%" /> confidence interval for Statsville,{' '}
-      <Katex tex="(0.102,\,0.145)" />, does not contain the Mathsland proportion{' '}
-      <Katex tex="0.1587" />. The confidence interval needed to be referred to in the answer.
+      The confidence interval needed to be referred to in the answer.
     </>
   ),
 }
@@ -116,10 +109,10 @@ const EXAM_E: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      <Katex tex="\displaystyle\int_0^{\infty} t\,M(t)\,dt \approx 44.6" />, correct to one
-      decimal place. Some students found the median or the mode. Others found the area under
-      the curve. Some had one of the terminals incorrect. There were rounding errors;{' '}
-      <Katex tex="44.7" /> was sometimes given.
+      Some students found the median or the mode. Others found the area under the curve. Some
+      had one of the terminals incorrect, for example,{' '}
+      <Katex tex="\displaystyle\int_0^{437}\bigl(t\times M(t)\bigr)dt" />. There were rounding
+      errors; <Katex tex="44.7" /> was occasionally given.
     </>
   ),
 }
@@ -129,9 +122,8 @@ const EXAM_F: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      <Katex tex="\displaystyle\int_0^{15} M(t)\,dt \approx 0.0266" />, correct to four decimal
-      places. This question was answered reasonably well.{' '}
-      <Katex tex="\displaystyle\int_0^{15} t\,M(t)\,dt \approx 0.2991" /> was a common
+      This question was answered reasonably well.{' '}
+      <Katex tex="\displaystyle\int_0^{15}\bigl(t\times M(t)\bigr)dt=0.2991" /> was a common
       incorrect answer.
     </>
   ),
@@ -142,10 +134,10 @@ const EXAM_G: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      <Katex tex="\tfrac17(0.05)+\tfrac67 x = 0.0266\ldots" />, <Katex tex="x=0.0227" />,
-      correct to four decimal places. This question was not answered well. There were a number
-      of other approaches to this question, for example Karnaugh maps, tree diagrams or a
-      conditional probability statement.
+      This question was not answered well. There were a number of other approaches to this
+      question, for example, Karnaugh maps, tree diagrams or a conditional probability
+      statement. A common incorrect answer was{' '}
+      <Katex tex="\tfrac67\times0.0266=0.0228" />.
     </>
   ),
 }
@@ -172,11 +164,11 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(H\mid S) = \frac{\Pr(H\cap S)}{\Pr(S)} = \frac{0.09}{0.29}" />,
-    reason: <>The conditioning event goes in the denominator. The report records two errors here: dividing by <Katex tex="\Pr(H)=0.1587" /> instead, and reading the <Katex tex="9\%" /> as <Katex tex="0.9" /> — which gives an answer above <Katex tex="1" /> and should be caught immediately.</>,
+    reason: <>The conditioning event goes in the denominator, and the numerator is the intersection. The report's common mistakes were <Katex tex="\tfrac{\Pr(H)}{\Pr(S)}=0.547" /> — using <Katex tex="\Pr(H)" /> instead of <Katex tex="\Pr(H\cap S)" /> — and versions giving an answer above <Katex tex="1" />, which should be caught immediately.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(H\mid S) \approx 0.310}" />,
-    reason: <>Three decimal places, so write the trailing zero — <Katex tex="0.31" /> was marked down.</>,
+    reason: <>Three decimal places, so write the trailing zero — the report notes some students gave <Katex tex="0.31" />.</>,
   },
 ]
 
@@ -187,7 +179,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(H\mid S) \ne \Pr(H)" />,
-    reason: <>Equivalently <Katex tex="\Pr(H)\Pr(S)=0.1587\times0.29\approx0.046\ne0.09=\Pr(H\cap S)" />. Either comparison scores; comparing <Katex tex="\Pr(H\mid S)" /> with <Katex tex="\Pr(S)" /> does not, and the report names that as a common mistake.</>,
+    reason: <>Equivalently <Katex tex="\Pr(H)\Pr(S)=0.1587\times0.29\approx0.046\ne0.09=\Pr(H\cap S)" />. Either comparison works. Comparing with <Katex tex="\Pr(S)" /> does not — the report's common mistake was <Katex tex="\Pr(H\mid S)=\Pr(S)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{No — } H \text{ and } S \text{ are not independent}}" />,
@@ -198,7 +190,7 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \operatorname{Bi}(16,\ 0.1587)" />,
-    reason: <>Sixteen independent adults, each with probability <Katex tex="0.1587" /> of a slow heart rate. Stating <Katex tex="n" /> and <Katex tex="p" /> is itself worth a mark — the report says a method had to be shown.</>,
+    reason: <>Sixteen independent adults, each with probability <Katex tex="0.1587" /> of a slow heart rate. The report says a method was required for full marks, and stating the correct <Katex tex="n" /> and <Katex tex="p" /> was sufficient.</>,
   },
   {
     working: <Cas fn="binomPdf">binomPdf(16, 0.1587, 1)</Cas>,
@@ -206,7 +198,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X=1) \approx 0.190}" />,
-    reason: <>Three decimal places, trailing zero included — the report notes <Katex tex="0.19" /> being marked down.</>,
+    reason: <>Three decimal places, trailing zero included — the report notes some students gave <Katex tex="0.19" />.</>,
   },
 ]
 
@@ -217,7 +209,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="X \text{ is a whole number} \implies X > 1.6 \iff X \ge 2" />,
-    reason: <>This is the step the question is testing. The report warns against a normal approximation — <Katex tex="X" /> is discrete and binomial, and rounding the boundary correctly is the whole point.</>,
+    reason: <>This is the step the question is testing. <Katex tex="X" /> is discrete and binomial, so use the binomial distribution itself — the report notes some students used the normal approximation instead.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(16, 0.1587, 2, 16)</Cas>,
@@ -232,11 +224,11 @@ const ROWS_CII: WorkingRow[] = [
 const ROWS_CIII: WorkingRow[] = [
   {
     working: <Katex display tex="\hat P_n = \frac{X}{n} > \frac1n \iff X > 1 \iff X \ge 2" />,
-    reason: <>The <Katex tex="n" />s cancel — this is the key simplification, and the report says the notation is what confused most students. Whatever the sample size, the condition is simply "at least two people".</>,
+    reason: <>The <Katex tex="n" />s cancel — this is the key simplification, and the report says many students appeared to be confused by this notation. Whatever the sample size, the condition is simply "at least two people".</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge2) > 0.99 \ \text{ where } X\sim\operatorname{Bi}(n,\ 0.1587)" />,
-    reason: <>Now a single inequality in <Katex tex="n" />. Note <Katex tex="X\ge2" />, not <Katex tex="X\ge1" />: the report records <Katex tex="1-\Pr(X=0)>0.99" /> as the common wrong set-up, which gives <Katex tex="n=27" />.</>,
+    reason: <>Now a single inequality in <Katex tex="n" />. Note <Katex tex="X\ge2" />, not <Katex tex="X\ge1" />: the report says a set-up using only <Katex tex="\Pr(X=0)" /> was often evaluated, giving <Katex tex="n=27" />.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(n, 0.1587, 2, n) &gt; 0.99</Cas>,
@@ -248,7 +240,7 @@ const ROWS_CIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 39}" />,
-    reason: <>Only <Katex tex="8\%" /> of the state scored both marks.</>,
+    reason: <>Only <Katex tex="8\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -278,14 +270,14 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{The interval does not contain } 0.1587}" />,
-    reason: <>So the plausible values for Statsville, at the <Katex tex="95\%" /> level, exclude Mathsland's rate — which is why the two towns could genuinely differ. The report is explicit that the interval had to be <em>referred to</em>: a general remark about the towns being different scored nothing. Only <Katex tex="11\%" /> got this mark.</>,
+    reason: <>So the plausible values for Statsville, at the <Katex tex="95\%" /> level, exclude Mathsland's rate — which is why the two towns could genuinely differ. The report is explicit that the confidence interval needed to be <em>referred to</em> in the answer. Only <Katex tex="11\%" /> got this mark.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="E(T) = \int_{-\infty}^{\infty} t\,M(t)\,dt = \int_0^{\infty} t\cdot\frac{3}{50}\left(\frac{t}{50}\right)^2 e^{-\left(\frac{t}{50}\right)^3}dt" />,
-    reason: <>The expected value of a continuous random variable weights each time by the density. <Katex tex="M" /> is zero for <Katex tex="t<0" />, so the integral starts at <Katex tex="0" /> and runs to <Katex tex="\infty" /> — the report records wrong terminals as a common error.</>,
+    reason: <>The expected value of a continuous random variable weights each time by the density. <Katex tex="M" /> is zero for <Katex tex="t<0" />, so the integral starts at <Katex tex="0" /> and runs to <Katex tex="\infty" /> — the report gives <Katex tex="\int_0^{437}" /> as an example of an incorrect terminal.</>,
   },
   {
     working: <Cas fn="nInt">nInt(t*M(t), t, 0, ∞)</Cas>,
@@ -293,14 +285,14 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{E(T) \approx 44.6 \text{ minutes}}" />,
-    reason: <>One decimal place; <Katex tex="44.7" /> is a rounding error the report names. (Exactly <Katex tex="\tfrac{50}{3}\Gamma\!\left(\tfrac13\right)=44.6489\ldots" />, though that form is well beyond what is needed.)</>,
+    reason: <>One decimal place (<Katex tex="44.6489\ldots" />); <Katex tex="44.7" /> is a rounding error the report names.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T<15) = \int_0^{15} M(t)\,dt" />,
-    reason: <>A probability for a continuous variable is an area under the density — no <Katex tex="t" /> multiplier. The report names <Katex tex="\int_0^{15}t\,M(t)\,dt\approx0.2991" /> as the common wrong answer, which is part (e)'s integrand used here by mistake.</>,
+    reason: <>A probability for a continuous variable is an area under the density — no <Katex tex="t" /> multiplier. The report names <Katex tex="\int_0^{15}t\,M(t)\,dt\approx0.2991" /> as a common incorrect answer — part e.'s integrand used here by mistake.</>,
   },
   {
     working: <Katex display tex="= \left[-e^{-\left(\frac{t}{50}\right)^3}\right]_0^{15} = 1-e^{-27/1000}" />,
@@ -319,11 +311,11 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(E) = \Pr(E\mid Y)\Pr(Y) + \Pr(E\mid Y')\Pr(Y')" />,
-    reason: <>Law of total probability, split by year level. The overall elite rate is the one computed in part (f) — it applies to a randomly selected student from the whole school.</>,
+    reason: <>Law of total probability, split by year level. The overall elite rate is the one computed in part f. — it applies to a randomly selected student from the whole school.</>,
   },
   {
     working: <Katex display tex="0.0266\ldots = 0.05\times\frac17 + x\times\frac67" />,
-    reason: <>With <Katex tex="x=\Pr(E\mid Y')" />, the unknown. Use the <em>unrounded</em> <Katex tex="1-e^{-27/1000}" /> from part (f) so the fourth decimal place is safe.</>,
+    reason: <>With <Katex tex="x=\Pr(E\mid Y')" />, the unknown. Use the <em>unrounded</em> <Katex tex="1-e^{-27/1000}" /> from part f. so the fourth decimal place is safe.</>,
   },
   {
     working: <Cas fn="solve">solve(0.05/7 + 6x/7 = 1-e^(-27/1000), x)</Cas>,
@@ -331,7 +323,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.0227}" />,
-    reason: <>Four decimal places. It is below the school-wide <Katex tex="0.0266" />, as it must be: Year 12s are elite at <Katex tex="5\%" />, well above average, so the remaining six-sevenths have to sit below average to balance. Only <Katex tex="5\%" /> of the state scored both marks.</>,
+    reason: <>Four decimal places. It is below the school-wide <Katex tex="0.0266" />, as it must be: Year 12s are elite at <Katex tex="5\%" />, well above average, so the remaining six-sevenths have to sit below average to balance. Only <Katex tex="5\%" /> of students scored both marks. The report's common incorrect answer, <Katex tex="\tfrac67\times0.0266=0.0228" />, applies the six-sevenths to the wrong side.</>,
   },
 ]
 
@@ -351,7 +343,7 @@ export default function MethodsQ4_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find the probability that a randomly selected Mathsland adult has a resting heart rate between <Katex tex="60" /> bpm and <Katex tex="90" /> bpm. Give your answer correct to three decimal places.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Normal Distribution" marks={1} statement={<>Find the probability that a randomly selected Mathsland adult has a resting heart rate between <Katex tex="60" /> bpm and <Katex tex="90" /> bpm. Give your answer correct to three decimal places.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
@@ -373,27 +365,27 @@ export default function MethodsQ4_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="b.i" marks={1} statement={<>Find <Katex tex="\Pr(H\mid S)" />, correct to three decimal places.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Conditional Probability" marks={1} statement={<>Find <Katex tex="\Pr(H\mid S)" />, correct to three decimal places.</>} examinerReport={EXAM_BI}>
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={1} statement={<>Are the events <Katex tex="H" /> and <Katex tex="S" /> independent? Justify your answer.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Independence" marks={1} statement={<>Are the events <Katex tex="H" /> and <Katex tex="S" /> independent? Justify your answer.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
-      <PartCard letter="c.i" marks={2} statement={<>Find the probability that a random sample of <Katex tex="16" /> Mathsland adults will contain exactly one person with a slow heart rate. Give your answer correct to three decimal places.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Binomial Distribution" marks={2} statement={<>Find the probability that a random sample of <Katex tex="16" /> Mathsland adults will contain exactly one person with a slow heart rate. Give your answer correct to three decimal places.</>} examinerReport={EXAM_CI}>
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
-      <PartCard letter="c.ii" marks={2} statement={<>For random samples of <Katex tex="16" /> Mathsland adults, <Katex tex="\hat P" /> is the random variable that represents the proportion of people who have a slow heart rate. Find the probability that <Katex tex="\hat P" /> is greater than <Katex tex="10\%" />, correct to three decimal places.</>} examinerReport={EXAM_CII}>
+      <PartCard letter="c.ii" topic="Sample Proportion" marks={2} statement={<>For random samples of <Katex tex="16" /> Mathsland adults, <Katex tex="\hat P" /> is the random variable that represents the proportion of people who have a slow heart rate. Find the probability that <Katex tex="\hat P" /> is greater than <Katex tex="10\%" />, correct to three decimal places.</>} examinerReport={EXAM_CII}>
         <WorkingTable rows={ROWS_CII} />
       </PartCard>
 
-      <PartCard letter="c.iii" marks={2} statement={<>For random samples of <Katex tex="n" /> Mathsland adults, <Katex tex="\hat P_n" /> is the random variable that represents the proportion of people who have a slow heart rate. Find the least value of <Katex tex="n" /> for which <Katex tex="\Pr\!\left(\hat P_n>\dfrac1n\right)>0.99" />.</>} examinerReport={EXAM_CIII}>
+      <PartCard letter="c.iii" topic="Sample Size" marks={2} statement={<>For random samples of <Katex tex="n" /> Mathsland adults, <Katex tex="\hat P_n" /> is the random variable that represents the proportion of people who have a slow heart rate. Find the least value of <Katex tex="n" /> for which <Katex tex="\Pr\!\left(\hat P_n>\dfrac1n\right)>0.99" />.</>} examinerReport={EXAM_CIII}>
         <Background>
           <p>
-            <Katex tex="86\%" /> scored zero, and the report blames the notation. Push through
-            it: <Katex tex="\hat P_n" /> is the count divided by <Katex tex="n" />, so{' '}
+            <Katex tex="86\%" /> scored zero, and the report says many students were confused by
+            the notation. Push through it: <Katex tex="\hat P_n" /> is the count divided by <Katex tex="n" />, so{' '}
             <Katex tex="\hat P_n>\tfrac1n" /> says <Katex tex="\tfrac{X}{n}>\tfrac1n" />, i.e.
             simply <Katex tex="X>1" />.
           </p>
@@ -416,11 +408,11 @@ export default function MethodsQ4_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="d.i" marks={1} statement={<>Determine the sample proportion used in the calculation of this confidence interval.</>} examinerReport={EXAM_DI}>
+      <PartCard letter="d.i" topic="Confidence Interval" marks={1} statement={<>Determine the sample proportion used in the calculation of this confidence interval.</>} examinerReport={EXAM_DI}>
         <WorkingTable rows={ROWS_DI} />
       </PartCard>
 
-      <PartCard letter="d.ii" marks={1} statement={<>Explain why this confidence interval suggests that the proportion of adults with a slow heart rate in Statsville could be different from the proportion in Mathsland.</>} examinerReport={EXAM_DII}>
+      <PartCard letter="d.ii" topic="Confidence Interval" marks={1} statement={<>Explain why this confidence interval suggests that the proportion of adults with a slow heart rate in Statsville could be different from the proportion in Mathsland.</>} examinerReport={EXAM_DII}>
         <WorkingTable rows={ROWS_DII} />
       </PartCard>
 
@@ -436,24 +428,24 @@ export default function MethodsQ4_2018Exam2() {
         <p>where <Katex tex="t" /> is given in minutes.</p>
       </div>
 
-      <PartCard letter="e" marks={2} statement={<>Find the expected time, in minutes, for a randomly selected student from Mathsland Secondary College to reach the top of the hill. Give your answer correct to one decimal place.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Mean of PDF" marks={2} statement={<>Find the expected time, in minutes, for a randomly selected student from Mathsland Secondary College to reach the top of the hill. Give your answer correct to one decimal place.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
-      <PartCard letter="f" marks={1} statement={<>Students who take less than <Katex tex="15" /> minutes to get to the top of the hill are categorised as 'elite'. Find the probability that a randomly selected student from Mathsland Secondary College is categorised as elite. Give your answer correct to four decimal places.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Continuous PDF" marks={1} statement={<>Students who take less than <Katex tex="15" /> minutes to get to the top of the hill are categorised as 'elite'. Find the probability that a randomly selected student from Mathsland Secondary College is categorised as elite. Give your answer correct to four decimal places.</>} examinerReport={EXAM_F}>
         <WorkingTable rows={ROWS_F} />
       </PartCard>
 
-      <PartCard letter="g" marks={2} statement={<>The Year 12 students at Mathsland Secondary College make up <Katex tex="\dfrac17" /> of the total number of students at the school. Of the Year 12 students, <Katex tex="5\%" /> are categorised as elite. Find the probability that a randomly selected non-Year 12 student at Mathsland Secondary College is categorised as elite. Give your answer correct to four decimal places.</>} examinerReport={EXAM_G}>
+      <PartCard letter="g" topic="Total Probability" marks={2} statement={<>The Year 12 students at Mathsland Secondary College make up <Katex tex="\dfrac17" /> of the total number of students at the school. Of the Year 12 students at Mathsland Secondary College, <Katex tex="5\%" /> are categorised as elite. Find the probability that a randomly selected non-Year 12 student at Mathsland Secondary College is categorised as elite. Give your answer correct to four decimal places.</>} examinerReport={EXAM_G}>
         <Background>
           <p>
-            Part (f) gave the elite rate for a student drawn from the <em>whole</em> school.
+            Part f. gave the elite rate for a student drawn from the <em>whole</em> school.
             That overall rate is a weighted blend of two groups: Year 12s, who are elite{' '}
             <Katex tex="5\%" /> of the time, and everyone else, whose rate is unknown.
           </p>
           <p>
             Writing the blend out — one-seventh at <Katex tex="0.05" />, six-sevenths at{' '}
-            <Katex tex="x" />, averaging to part (f)'s value — turns the problem into a single
+            <Katex tex="x" />, averaging to part f.'s value — turns the problem into a single
             linear equation. Tree diagrams and Karnaugh maps also work, and the report
             mentions both.
           </p>

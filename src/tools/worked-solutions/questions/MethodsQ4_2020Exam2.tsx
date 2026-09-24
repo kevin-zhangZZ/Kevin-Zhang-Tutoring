@@ -27,8 +27,13 @@ const EXAM_C: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Some responses contained transcription errors. Brackets were not used well, and some
-      students wrote the equation of the tangent instead of its gradient.
+      Some responses contained transcription errors.
+      <br />
+      Instead of writing <Katex tex="2\left(1-2p^2\right)e^{-p^2+1}" />, some wrote{' '}
+      <Katex tex="2\left(1-2p^2\right)e^{-p^2}+1" />.
+      <br />
+      Brackets were not used well, and some students wrote the equation of the tangent instead
+      of its gradient.
     </>
   ),
 }
@@ -53,7 +58,8 @@ const EXAM_DII: SAExaminerStats = {
       Many students successfully found that the point of intersection of the two tangents
       occurred at <Katex tex="x=0.80" /> but then substituted this into <Katex tex="f(x)" />,
       getting the value 2.29 instead of substituting it into one of the two tangent
-      equations. Others rounded too early.
+      equations. Some students managed to find the equation of the tangent at <Katex tex="x=1" />{' '}
+      but did not know what to do with this equation. Others rounded too early.
     </>
   ),
 }
@@ -63,9 +69,12 @@ const EXAM_EI: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Some students did not write a rule. Others left out <Katex tex="x" />, giving the
-      gradient as the final answer. A number of students wrote the rule in terms of{' '}
-      <Katex tex="f(n)" /> and not <Katex tex="n" />.
+      Some students did not write a rule. Others left out <Katex tex="x" />, giving the gradient
+      as the final answer: <Katex tex="y=2e^{1-n^2}" />.
+      <br />
+      A number of students wrote the rule in terms of <Katex tex="f(n)" /> and not{' '}
+      <Katex tex="n" />. Other common incorrect answers were: <Katex tex="y=2xe^{1-x^2}" />,{' '}
+      <Katex tex="y=2ne^{1-n^2}" /> and <Katex tex="y=2e^{1-x^2}" />.
     </>
   ),
 }
@@ -76,7 +85,13 @@ const EXAM_EII: SAExaminerStats = {
   comment: (
     <>
       A rule was required. Some students only wrote down the gradient. Others assumed{' '}
-      <Katex tex="f(3)=0" />. There were a lot of transcription errors.
+      <Katex tex="f(3)=0" />.
+      <br />
+      There were a lot of transcription errors: <Katex tex="e^{n^2-8}" /> was often written as{' '}
+      <Katex tex="e^{n^2}-8" />. The variable <Katex tex="x" /> sometimes looked like{' '}
+      <Katex tex="n" /> and vice versa. Brackets were used poorly. Some students only wrote down
+      part of the equation. Students need to make sure they scroll across the screen to ensure
+      they identify a complete expression when using technology.
     </>
   ),
 }
@@ -87,9 +102,15 @@ const EXAM_EIII: SAExaminerStats = {
   comment: (
     <>
       The majority of students who attempted this question were able to correctly set up the
-      integrals. However, some were then unable to arrive at the final response. Others used
-      areas of triangles, which gave <Katex tex="n=1.087" /> — the region from{' '}
-      <Katex tex="x=n" /> to <Katex tex="x=3" /> is bounded by a trapezium, not a triangle.
+      integrals. However, some were then unable to arrive at the final response. There was no
+      need to write out entire expressions. This often led to transcription errors and misuse
+      of brackets. Others used areas of triangles:{' '}
+      <Katex tex="\displaystyle\int_0^n f(x)\,dx-\frac12nf(n)=\frac12(3-n)\bigl(f(n)-f(3)\bigr)-\int_n^3f(x)\,dx" />,
+      which gave <Katex tex="n=1.087" />.
+      <br />
+      The area from <Katex tex="x=n" /> to <Katex tex="x=3" /> is a trapezium, not a triangle.
+      So, the correct formulation is{' '}
+      <Katex tex="\displaystyle\int_0^n f(x)\,dx-\frac12nf(n)=\frac12(3-n)\bigl(f(n)+f(3)\bigr)-\int_n^3f(x)\,dx" />.
     </>
   ),
 }
@@ -128,7 +149,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{117^\circ}" />,
-    reason: <>To the nearest degree. <Katex tex="63^\circ" /> and <Katex tex="-63^\circ" /> are the two answers the report saw most.</>,
+    reason: <>To the nearest degree. The report lists <Katex tex="63^\circ" /> and <Katex tex="-63^\circ" /> as common incorrect answers.</>,
   },
 ]
 
@@ -150,7 +171,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2\left(1-2p^2\right)e^{1-p^2} = \tfrac12" />,
-    reason: <>Setting the part c. expression equal to <Katex tex="\tfrac12" /> — not to 2, the report's common slip.</>,
+    reason: <>Setting the part c. expression equal to <Katex tex="\tfrac12" /> — the report notes some students solved it equal to 2.</>,
   },
   {
     working: <Cas fn="solve">solve(2(1 − 2p²)·e^(1 − p²) = 1/2, p) | 0 ≤ p ≤ 3</Cas>,
@@ -158,11 +179,11 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = 0.655251\ldots" />,
-    reason: <>Store this value — part d(ii) needs its full precision.</>,
+    reason: <>Store this value — part d.ii. needs its full precision.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.655}" />,
-    reason: <>To three decimal places (0.656 comes from truncating rather than rounding).</>,
+    reason: <>To three decimal places. The report notes <Katex tex="p=0.656" /> was often seen.</>,
   },
 ]
 
@@ -176,7 +197,7 @@ const ROWS_DII: WorkingRow[] = [
     reason: <>Exact, no rounding needed.</>,
   },
   {
-    working: <Katex display tex="\text{at } x=p: \ f(p) = 2.31896\ldots, \quad m = \tfrac12" />,
+    working: <Katex display tex="\text{at } x=p: \ f(p) = 2.31881\ldots, \quad m = \tfrac12" />,
     reason: <>Using the stored <Katex tex="p=0.655251\ldots" />, not the rounded 0.655.</>,
   },
   {
@@ -242,7 +263,7 @@ const ROWS_EIII: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(∫(f(x) − y1, x, 0, n) = ∫(y2 − f(x), x, n, 3), n) | 1 &lt; n &lt; 3</Cas>,
-    reason: <>Define <Katex tex="y_1" /> and <Katex tex="y_2" /> on the CAS first rather than retyping them — the report blames transcription errors for most of the marks lost here.</>,
+    reason: <>Define <Katex tex="y_1" /> and <Katex tex="y_2" /> on the CAS first rather than retyping them — the report notes writing out entire expressions often led to transcription errors and misuse of brackets.</>,
   },
   {
     working: <Katex display tex="n = 1.08803\ldots" />,
@@ -274,6 +295,7 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="a"
+        topic="Tangent Gradient"
         marks={1}
         statement={<>Find the slope of the tangent to <Katex tex="f" /> at <Katex tex="x=1" />.</>}
         examinerReport={EXAM_A}
@@ -283,6 +305,7 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="b"
+        topic="Tangent Angle"
         marks={1}
         statement={
           <>
@@ -298,6 +321,7 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Tangent Gradient"
         marks={1}
         statement={
           <>
@@ -312,6 +336,7 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Perpendicular Tangents"
         marks={2}
         statement={
           <>
@@ -327,6 +352,7 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Intersection Point"
         marks={3}
         statement={
           <>
@@ -340,7 +366,7 @@ export default function MethodsQ4_2020Exam2() {
         <WorkingTable rows={ROWS_DII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
           Two line segments connect the points <Katex tex="\bigl(0,f(0)\bigr)" /> and{' '}
           <Katex tex="\bigl(3,f(3)\bigr)" /> to a single point{' '}
@@ -358,12 +384,14 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Area Between Curves"
         marks={1}
         statement={
           <>
             The first line segment connects the point <Katex tex="\bigl(0,f(0)\bigr)" /> and
-            the point <Katex tex="Q\bigl(n,f(n)\bigr)" />, where <Katex tex="1<n<3" />. Find
-            the equation of this line segment in terms of <Katex tex="n" />.
+            the point <Katex tex="Q\bigl(n,f(n)\bigr)" />, where <Katex tex="1<n<3" />.
+            <br />
+            Find the equation of this line segment in terms of <Katex tex="n" />.
           </>
         }
         examinerReport={EXAM_EI}
@@ -373,12 +401,14 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Area Between Curves"
         marks={1}
         statement={
           <>
             The second line segment connects the point <Katex tex="Q\bigl(n,f(n)\bigr)" /> and
-            the point <Katex tex="\bigl(3,f(3)\bigr)" />, where <Katex tex="1<n<3" />. Find
-            the equation of this line segment in terms of <Katex tex="n" />.
+            the point <Katex tex="\bigl(3,f(3)\bigr)" />, where <Katex tex="1<n<3" />.
+            <br />
+            Find the equation of this line segment in terms of <Katex tex="n" />.
           </>
         }
         examinerReport={EXAM_EII}
@@ -388,6 +418,7 @@ export default function MethodsQ4_2020Exam2() {
 
       <PartCard
         letter="e.iii"
+        topic="Equal Areas"
         marks={3}
         statement={
           <>

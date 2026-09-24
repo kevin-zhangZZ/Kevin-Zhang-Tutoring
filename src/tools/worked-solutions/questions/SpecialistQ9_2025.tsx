@@ -10,21 +10,31 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 15, C: 49, D: 29 },
   answer: 'C',
-  comment: <>Apply the formula for the surface area of a curve rotated about the <Katex tex="x" />-axis.</>,
+  comment: (
+    <>
+      Apply the formula for the surface area of a curve rotated about the <Katex tex="x" />-axis.
+      <br />
+      <Katex tex="2\pi\displaystyle\int_a^b e^{kt}\sqrt{k^2+k^2e^{2kt}}\,dt" />
+      <br />
+      <em>Use the substitution</em> <Katex tex="u=e^{kt}" />
+      <br />
+      <Katex tex="=2\pi\displaystyle\int_{e^{ka}}^{e^{kb}}\frac{1}{k}\sqrt{k^2\left(1+u^2\right)}\,du" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x = kt,\quad y=e^{kt}" />,
-    reason: 'The given parametric curve.',
+    reason: <>The given parametric curve.</>,
   },
   {
     working: <Katex display tex="S = 2\pi\int_a^b y\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt" />,
-    reason: 'Surface-of-revolution formula about the x-axis.',
+    reason: <>Surface-of-revolution formula about the x-axis.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt}=k \qquad \frac{dy}{dt}=ke^{kt}" />,
-    reason: 'Differentiate each component.',
+    reason: <>Differentiate each component.</>,
   },
   {
     working: <Katex display tex="S = 2\pi\int_a^b e^{kt}\cdot k\sqrt{1+e^{2kt}}\,dt" />,
@@ -36,7 +46,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{S = 2\pi\int_{e^{ka}}^{e^{kb}}\sqrt{1+u^2}\,du}" />,
-    reason: <>Limits transform via <Katex tex="u=e^{kt}" /> — matches option <b>C</b>.</>,
+    reason: <>Limits transform via <Katex tex="u=e^{kt}" /> . Matches option <b>C</b>.</>,
   },
 ]
 

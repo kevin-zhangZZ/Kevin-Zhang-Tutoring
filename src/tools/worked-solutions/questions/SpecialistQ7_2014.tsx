@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{5}" />,
-    reason: <>Option E. (The roots happen to be <Katex tex="1" /> and <Katex tex="2\pm\sqrt3 i" />, which do sum to 5.)</>,
+    reason: <>Matches option <b>E</b>. (The roots happen to be <Katex tex="1" /> and <Katex tex="2\pm\sqrt3 i" />, which do sum to 5.)</>,
   },
 ]
 

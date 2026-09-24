@@ -10,6 +10,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import diagramSrc from './meth-2019-mcq6-cardboard.png'
 import volumeSrc from './meth-2019-mcq6-volume.png'
+import boxSrc from './meth-2019-mcq6-box.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 63, B: 9, C: 7, D: 12, E: 8 },
@@ -19,20 +20,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={diagramSrc} alt="Rectangular 80cm by 50cm sheet with x cm squares cut from each corner, from the original 2019 VCAA exam paper" className="w-full max-w-[320px]" />
-      </div>
-    ),
-    reason: <>Folding the flaps up turns the cut sheet into an open box. The <em>height</em> of the box is the size of the cut-out square, <Katex tex="x" />.</>,
-  },
-  {
-    working: (
-      <>
-        <Katex display tex="\text{length} = 80-2x, \qquad \text{width} = 50-2x, \qquad \text{height} = x" />
-      </>
-    ),
-    reason: <>Each dimension of the base loses a square from <em>both</em> ends — hence <Katex tex="2x" />, not <Katex tex="x" />. That's the step the wrong options are built on.</>,
+    working: <Katex display tex="\text{length} = 80-2x, \qquad \text{width} = 50-2x, \qquad \text{height} = x" />,
+    reason: <>Folding the flaps up turns the cut sheet into the open box, and its <em>height</em> is the size of the cut-out square, <Katex tex="x" />. Each dimension of the base loses a square from <em>both</em> ends — hence <Katex tex="2x" />, not <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="V(x) = x(80-2x)(50-2x), \qquad 0<x<25" />,
@@ -49,6 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3x^2-130x+1000 = (3x-100)(x-10) = 0 \implies x=\dfrac{100}{3} \ \text{ or } \ x=10" />,
+    reason: <>Setting <Katex tex="V'(x)=0" /> and factorising.</>,
   },
   {
     working: (
@@ -69,15 +59,23 @@ export default function MethodsQ6_2019() {
     <MCQShell
       question={
         <>
-          <p className="mb-2">
+          <p className="mb-3">
             A rectangular sheet of cardboard has a length of <Katex tex="80" /> cm and a width of{' '}
             <Katex tex="50" /> cm. Squares, of side length <Katex tex="x" /> centimetres, are cut
-            from each of the corners. A rectangular box with an open top is then constructed.
+            from each of the corners, as shown in the diagram below.
           </p>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
+            <img src={diagramSrc} alt="Rectangular 80 cm by 50 cm sheet with x cm squares cut from each corner, from the original 2019 VCAA exam paper" className="w-full max-w-[320px]" />
+          </div>
+          <p className="mb-3">
+            A rectangular box with an open top is then constructed, as shown in the diagram below.
+          </p>
+          <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
+            <img src={boxSrc} alt="The open-topped rectangular box, drawn in perspective with hidden edges dashed, from the original 2019 VCAA exam paper" className="w-full max-w-[220px]" />
+          </div>
           <p>The volume of the box is a maximum when <Katex tex="x" /> is equal to</p>
         </>
       }
-      diagram={<img src={diagramSrc} alt="Rectangular 80cm by 50cm sheet with x cm squares cut from each corner, from the original 2019 VCAA exam paper" className="w-full max-w-[320px]" />}
       options={[
         { letter: 'A', content: <Katex tex="10" />, isAnswer: true },
         { letter: 'B', content: <Katex tex="20" /> },

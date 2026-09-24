@@ -1,7 +1,7 @@
-// 2014 Mathematical Methods — Exam 2, MCQ 21.
-// Isosceles trapezium with three equal sides p; find the angle that maximises its area.
-// Question text transcribed from the original paper; the diagram is the actual VCAA figure
-// (cropped from the official exam PDF), not a redrawing. Solution is original.
+// 2014 Mathematical Methods (CAS) — Exam 2, MCQ 21. VCAA examination report: 28% correct — the
+// hardest MCQ on this paper. Isosceles trapezium with three equal sides p; find the angle that
+// maximises its area. Question text transcribed from the original paper; the diagram is
+// cropped from the original VCAA exam PDF. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -69,7 +69,11 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="A''(x) = p^2(-\sin x - 2\sin 2x) < 0" /> at <Katex tex="x=\tfrac{\pi}{3}" /> — confirms a
-        maximum. Matches option <b>D</b>.
+        maximum. Matches option <b>D</b>. Option C (27%, the most popular wrong answer) is where the
+        two triangular ends alone, <Katex tex="p^2\sin x\cos x" />, are largest — it forgets the
+        rectangle in the middle, whose area <Katex tex="p^2\sin x" /> keeps growing past{' '}
+        <Katex tex="\tfrac\pi4" />. Sanity check: at <Katex tex="x=\tfrac\pi3" /> the shape is half a
+        regular hexagon, the classic answer to this problem.
       </>
     ),
   },

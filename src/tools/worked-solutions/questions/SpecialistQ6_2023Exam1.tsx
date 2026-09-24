@@ -11,8 +11,9 @@ const EXAM_A: SAExaminerStats = {
   average: 1.7,
   comment: (
     <>
-      While many students correctly found the mean, a large number gave the standard
-      deviation as <Katex tex="11+\sqrt3" /> — the sum of the standard deviations.
+      While many students correctly found the mean, a large number of students gave the
+      standard deviation as <Katex tex="11+\sqrt3" /> (the sum of the standard deviations of
+      the random variables).
     </>
   ),
 }
@@ -22,10 +23,12 @@ const EXAM_B: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
+      The symmetric result, <Katex tex="a=-1" /> and <Katex tex="b=\tfrac12" />, was not often
+      seen.
+      <br />
       This question was not answered well. A common error was to use an incorrect standard
-      deviation; <Katex tex="\sqrt3" /> and <Katex tex="\tfrac{3}{\sqrt{12}}" /> were seen
-      frequently. The symmetric result <Katex tex="a=-1" />, <Katex tex="b=\tfrac12" /> was
-      not often seen.
+      deviation: <Katex tex="\sqrt3" /> and <Katex tex="\tfrac{\sqrt3}{12}" /> were seen
+      frequently.
     </>
   ),
 }
@@ -33,11 +36,11 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X = X_c+X_w+X_t" />,
-    reason: 'The total journey is the sum of the three independent legs.',
+    reason: <>The total journey is the sum of the three independent legs.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(X) = 20+8+12 = 40 \ \text{minutes}" />,
-    reason: 'Means always add, independent or not.',
+    reason: <>Means always add, independent or not.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = 6^2+\left(\sqrt3\right)^2+5^2 = 36+3+25 = 64" />,
@@ -45,7 +48,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{64} = 8 \ \text{minutes}}" />,
-    reason: <>The deliberately clean answer. Adding the standard deviations gives <Katex tex="6+\sqrt3+5=11+\sqrt3\approx12.7" />, which is the report's named error and always too big.</>,
+    reason: <>The deliberately clean answer. Adding the standard deviations gives <Katex tex="6+\sqrt3+5=11+\sqrt3\approx12.7" />, which the report notes a large number of students gave. It is always too big.</>,
   },
 ]
 
@@ -56,23 +59,23 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{sd}\!\left(\overline{X}_w\right) = \sqrt{\frac14} = \frac12" />,
-    reason: <>Equivalently <Katex tex="\tfrac{\sqrt3}{\sqrt{12}}=\tfrac{\sqrt3}{2\sqrt3}=\tfrac12" />. Both of the report's wrong values, <Katex tex="\sqrt3" /> and <Katex tex="\tfrac{3}{\sqrt{12}}" />, come from mishandling this step.</>,
+    reason: <>Equivalently <Katex tex="\tfrac{\sqrt3}{\sqrt{12}}=\tfrac{\sqrt3}{2\sqrt3}=\tfrac12" />. The report notes <Katex tex="\sqrt3" /> and <Katex tex="\tfrac{\sqrt3}{12}" /> were seen frequently — not dividing by <Katex tex="\sqrt{12}" /> at all, and dividing by 12 instead.</>,
   },
   {
     working: <Katex display tex="7\ \text{min } 45\ \text{s} = 7.75, \qquad 8\ \text{min } 30\ \text{s} = 8.5" />,
-    reason: 'Convert the times to minutes first — seconds over 60, not over 100.',
+    reason: <>Convert the times to minutes first — seconds over 60, not over 100.</>,
   },
   {
     working: <Katex display tex="Z = \frac{\overline{X}_w-8}{\tfrac12}" />,
-    reason: 'Standardising.',
+    reason: <>Standardising.</>,
   },
   {
     working: <Katex display tex="a = \frac{7.75-8}{\tfrac12} = \frac{-0.25}{0.5}, \qquad b = \frac{8.5-8}{\tfrac12} = \frac{0.5}{0.5}" />,
-    reason: 'Both endpoints through the same transformation.',
+    reason: <>Both endpoints through the same transformation.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\frac12, \quad b = 1}" />,
-    reason: <>The interval is not symmetric about the mean, so <Katex tex="a\ne-b" /> — which is exactly the check that catches a wrong standard deviation.</>,
+    reason: <>The interval is not symmetric about the mean, so <Katex tex="a\ne-b" />. By the symmetry of <Katex tex="Z" />, <Katex tex="a=-1" />, <Katex tex="b=\tfrac12" /> is equally valid — the report notes that symmetric result was not often seen.</>,
   },
 ]
 
@@ -84,13 +87,15 @@ export default function SpecialistQ6_2023Exam1() {
         <p>
           Josie travels from home to work in the city. She drives a car to a train station,
           waits, and then rides on a train to the city. The time, <Katex tex="X_c" /> minutes,
-          taken to drive to the station is normally distributed with{' '}
-          <Katex tex="\mu_c=20" /> and <Katex tex="\sigma_c=6" />. The waiting time,{' '}
-          <Katex tex="X_w" /> minutes, for a train is normally distributed with{' '}
-          <Katex tex="\mu_w=8" /> and <Katex tex="\sigma_w=\sqrt3" />. The time,{' '}
-          <Katex tex="X_t" /> minutes, taken to ride on a train to the city is normally
-          distributed with <Katex tex="\mu_t=12" /> and <Katex tex="\sigma_t=5" />. The three
-          times are independent of each other.
+          taken to drive to the station is normally distributed with a mean of 20 minutes (
+          <Katex tex="\mu_c=20" />) and standard deviation of 6 minutes (
+          <Katex tex="\sigma_c=6" />). The waiting time, <Katex tex="X_w" /> minutes, for a
+          train is normally distributed with a mean of 8 minutes (<Katex tex="\mu_w=8" />) and
+          standard deviation of <Katex tex="\sqrt3" /> minutes (
+          <Katex tex="\sigma_w=\sqrt3" />). The time, <Katex tex="X_t" /> minutes, taken to
+          ride on a train to the city is also normally distributed with a mean of 12 minutes (
+          <Katex tex="\mu_t=12" />) and standard deviation of 5 minutes (
+          <Katex tex="\sigma_t=5" />). The three times are independent of each other.
         </p>
       </div>
 
@@ -108,6 +113,7 @@ export default function SpecialistQ6_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sum of Normals"
         marks={2}
         statement={
           <>
@@ -122,15 +128,18 @@ export default function SpecialistQ6_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Sample Mean"
         marks={2}
         statement={
           <>
             Josie's waiting time for a train on each work day is independent of her waiting
-            time on any other work day. The probability that, for 12 randomly chosen work
-            days, Josie's average waiting time is between 7 minutes 45 seconds and 8 minutes
-            30 seconds is equivalent to <Katex tex="\Pr(a<Z<b)" />, where{' '}
+            time for a train on any other work day. The probability that, for 12 randomly
+            chosen work days, Josie's average waiting time is between 7 minutes 45 seconds and
+            8 minutes 30 seconds is equivalent to <Katex tex="\Pr(a<Z<b)" />, where{' '}
             <Katex tex="Z\sim\mathrm{N}(0,1)" /> and <Katex tex="a" /> and <Katex tex="b" />{' '}
-            are real numbers. Find the values of <Katex tex="a" /> and <Katex tex="b" />.
+            are real numbers.
+            <br />
+            Find the values of <Katex tex="a" /> and <Katex tex="b" />.
           </>
         }
         examinerReport={EXAM_B}

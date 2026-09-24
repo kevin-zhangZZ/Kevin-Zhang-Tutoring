@@ -1,7 +1,6 @@
-// 2015 Mathematical Methods — Exam 2, MCQ 11. VCAA examination report: 24% correct —
-// the fifth-hardest MCQ in the 2014-2016 Methods Exam 2 papers.
-// Identify a single transformation mapping one graph onto a related one.
-// Question text transcribed from the original paper; solution is original.
+// 2015 Mathematical Methods (CAS) — Exam 2, MCQ 11. VCAA examination report: 24% correct.
+// Identify a single dilation mapping one graph onto a related one. Question text transcribed
+// from the original paper; solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -36,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{dilation by a factor of 2 from the } y\text{-axis}}" />,
-    reason: <>Matches option <b>A</b>. A common trap is to instead try scaling <Katex tex="y" /> (options B/C), but the coefficient <Katex tex="8" /> sits inside the cube on <Katex tex="x" />, not outside the square root — so the fix has to act on <Katex tex="x" />, not on the output.</>,
+    reason: <>Matches option <b>A</b>. The two popular wrong answers were D (32%), which reads the 8 as the dilation factor — but the 8 multiplies <Katex tex="x^3" />, so the scale on <Katex tex="x" /> is <Katex tex="\sqrt[3]8=2" /> — and E (29%), the dilation that maps the graphs the other way, from <Katex tex="y_2" /> back to <Katex tex="y_1" />. Check with the report's point: <Katex tex="(1,3)" /> is on <Katex tex="y_1" />, and <Katex tex="(2,3)" /> is on <Katex tex="y_2" /> since <Katex tex="\sqrt{8+1}=3" /> ✓.</>,
   },
 ]
 

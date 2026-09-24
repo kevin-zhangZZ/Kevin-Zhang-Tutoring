@@ -1,7 +1,8 @@
 // 2020 Specialist Mathematics — Exam 2, Section B Question 2 (11 marks). A perpendicular
 // bisector in the complex plane, a ray, and the circle through three given points.
-// Question text transcribed from the original paper; both figures are our own matplotlib
-// drawings of the answers. Answers checked with sympy and against the VCAA examination
+// Question text transcribed from the original paper; both figures are this site's own
+// matplotlib drawings of the answers, the first on VCAA's Argand grid (x −6 to 7, y −6 to 6,
+// gridlines every 1). Answers checked with sympy and against the VCAA examination
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -27,7 +28,7 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was generally done well. Some students who were unable to find the
-      cartesian form in part a. were still able to plot the relation using their geometric
+      cartesian form in Question 2a. were still able to plot the relation using their geometric
       understanding.
     </>
   ),
@@ -39,7 +40,7 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       A variety of reasonable responses were accepted. Insufficiently precise responses such
-      as "a linear line", or responses that did not explicitly interpret the line in relation
+      as 'a linear line' or responses that did not explicitly interpret the line in relation
       to the points, were not accepted.
     </>
   ),
@@ -73,8 +74,9 @@ const EXAM_E: SAExaminerStats = {
   comment: (
     <>
       Students struggled with this question. While many were able to set up suitable
-      cartesian or complex equations, fewer were then able to proceed further. Some students
-      correctly found <Katex tex="z_c" /> but did not also state the radius.
+      cartesian or complex equations, fewer were then able to proceed further. Students familiar
+      with the functionality of CAS were able to use it effectively. Some students correctly
+      found <Katex tex="z_c" /> but did not also state the radius.
     </>
   ),
 }
@@ -82,7 +84,7 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="z = x+yi, \quad u = -2-i, \quad v = -4-3i" />,
-    reason: 'Going straight to cartesian components is the reliable route; the report says the geometric shortcut tripped students up.',
+    reason: <>Going straight to cartesian components is the reliable route — the report notes students who used a geometric approach were generally less successful.</>,
   },
   {
     working: <Katex display tex="|z-u| = |(x+2)+(y+1)i|, \quad |z-v| = |(x+4)+(y+3)i|" />,
@@ -90,7 +92,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(x+2)^2+(y+1)^2 = (x+4)^2+(y+3)^2" />,
-    reason: 'Square both sides — both moduli are non-negative, so nothing is lost.',
+    reason: <>Square both sides — both moduli are non-negative, so nothing is lost.</>,
   },
   {
     working: <Katex display tex="x^2+4x+4+y^2+2y+1 = x^2+8x+16+y^2+6y+9" />,
@@ -98,7 +100,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="4x+2y+5 = 8x+6y+25 \implies 4x+4y+20 = 0" />,
-    reason: 'Collecting.',
+    reason: <>Collecting.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -x-5}" />,
@@ -109,34 +111,34 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="u = -2-i \to (-2,-1), \quad v = -4-3i \to (-4,-3)" />,
-    reason: 'Real part across, imaginary part up.',
+    reason: <>Real part across, imaginary part up.</>,
   },
   {
     working: <Katex display tex="y = -x-5: \ \text{through } (0,-5) \text{ and } (-5,0)" />,
-    reason: 'Two easy points are enough to rule the line.',
+    reason: <>Two easy points are enough to rule the line.</>,
   },
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={argandSrc}
-          alt="An Argand diagram with u at (−2, −1) and v at (−4, −3), the line y = −x − 5, and an orange ray leaving u at 45 degrees with an open circle at u"
+          alt="VCAA's Argand grid with u at (−2, −1) and v at (−4, −3), the line y = −x − 5, and the ray Arg(z − u) = π/4 leaving u at 45 degrees with an open circle at u — this site's own drawing of the answers to b. and d.i."
           className="w-full max-w-[380px]"
         />
       </div>
     ),
-    reason: <>The orange ray is part d(i). Check the line really is the perpendicular bisector: the midpoint of <Katex tex="uv" /> is <Katex tex="(-3,-2)" />, which satisfies <Katex tex="y=-x-5" /> ✓, and <Katex tex="uv" /> has gradient 1, perpendicular to <Katex tex="-1" /> ✓.</>,
+    reason: <>The orange ray is part d.i. Check the line really is the perpendicular bisector: the midpoint of <Katex tex="uv" /> is <Katex tex="(-3,-2)" />, which satisfies <Katex tex="y=-x-5" /> ✓, and <Katex tex="uv" /> has gradient 1, perpendicular to <Katex tex="-1" /> ✓.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="|z-u| = |z-v| \iff \text{the distance to } u \text{ equals the distance to } v" />,
-    reason: 'Read the modulus as a distance and the relation interprets itself.',
+    reason: <>Read the modulus as a distance and the relation interprets itself.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{the perpendicular bisector of the line segment joining } u \text{ and } v}" />,
-    reason: <>Both halves matter: <em>perpendicular bisector</em>, and <em>of the segment joining u and v</em>. "A straight line" earns nothing, because it does not relate the line to the two points.</>,
+    reason: <>Both halves matter: <em>perpendicular bisector</em>, and <em>of the segment joining u and v</em>. The report notes insufficiently precise responses such as 'a linear line', or responses that did not relate the line to the points, were not accepted.</>,
   },
 ]
 
@@ -147,18 +149,18 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{a ray from } u(-2,-1) \text{ at } 45^\circ, \text{ going up and to the right only}" />,
-    reason: <>One direction, not two — the report saw many full lines. And <Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="u" /> itself is excluded: mark it with an open circle.</>,
+    reason: <>One direction, not two — the report notes incorrect responses frequently extended through <Katex tex="u" />, and some sketched a line instead of a ray. And <Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="u" /> itself is excluded: mark it with an open circle.</>,
   },
   {
     working: <Katex display tex="\text{see the orange ray in the diagram in part b.}" />,
-    reason: 'Drawn on the same axes, as the question asks.',
+    reason: <>Drawn on the same axes, as the question asks.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\tan\!\left(\tfrac\pi4\right) = 1 \implies \text{gradient } 1" />,
-    reason: 'The argument is the angle the ray makes with the positive real direction.',
+    reason: <>The argument is the angle the ray makes with the positive real direction.</>,
   },
   {
     working: <Katex display tex="y-(-1) = 1\left(x-(-2)\right) \implies y = x+1" />,
@@ -166,14 +168,14 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = x+1, \quad x>-2}" />,
-    reason: <>The domain is the whole point of the word <em>ray</em> — three-quarters of students lost this mark by omitting it.</>,
+    reason: <>The domain is the whole point of the word <em>ray</em> — the report notes many students gave the correct rule but did not include the domain (75% scored zero).</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="z_c = m+ni; \ \text{equal distances to } u, \ v \text{ and } -5i" />,
-    reason: 'The centre of a circle is equidistant from every point on it, which turns three points into two equations.',
+    reason: <>The centre of a circle is equidistant from every point on it, which turns three points into two equations.</>,
   },
   {
     working: <Katex display tex="(-2-m)^2+(-1-n)^2 = m^2+(n+5)^2" />,
@@ -189,11 +191,11 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="25+8m+6n = 10n+25 \implies 8m = 4n \implies n = 2m" />,
-    reason: 'Expanding the second.',
+    reason: <>Expanding the second.</>,
   },
   {
     working: <Katex display tex="m-2(2m) = 5 \implies -3m = 5 \implies m = -\tfrac53, \ n = -\tfrac{10}{3}" />,
-    reason: 'Substituting.',
+    reason: <>Substituting.</>,
   },
   {
     working: <Katex display tex="\boxed{z_c = -\tfrac53-\tfrac{10}{3}i}" />,
@@ -204,20 +206,20 @@ const ROWS_E: WorkingRow[] = [
     reason: <>Using the distance to <Katex tex="-5i" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{r = \frac{5\sqrt2}{3}}" />,
-    reason: <>About 2.36. The report notes students who found <Katex tex="z_c" /> and then forgot to state the radius at all.</>,
-  },
-  {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={circleSrc}
-          alt="A circle through u at (−2, −1), v at (−4, −3) and −5i at (0, −5), centred at (−5/3, −10/3)"
+          alt="A circle through u at (−2, −1), v at (−4, −3) and −5i at (0, −5), centred at (−5/3, −10/3) — this site's own explanatory figure"
           className="w-full max-w-[340px]"
         />
       </div>
     ),
-    reason: 'Not required, but a quick sketch confirms all three points sit on one circle.',
+    reason: <>Not required, but a quick sketch confirms all three points sit on one circle.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{r = \frac{5\sqrt2}{3}}" />,
+    reason: <>About 2.36. The report notes some students correctly found <Katex tex="z_c" /> but did not also state the radius.</>,
   },
 ]
 
@@ -234,6 +236,7 @@ export default function SpecialistQ2_2020Exam2() {
 
       <PartCard
         letter="a"
+        topic="Line Locus"
         marks={3}
         statement={
           <>
@@ -248,11 +251,12 @@ export default function SpecialistQ2_2020Exam2() {
 
       <PartCard
         letter="b"
+        topic="Sketch Loci"
         marks={2}
         statement={
           <>
             Plot the points that represent <Katex tex="u" /> and <Katex tex="v" /> and the
-            relation <Katex tex="|z-u|=|z-v|" /> on an Argand diagram.
+            relation <Katex tex="|z-u|=|z-v|" /> on the Argand diagram below.
           </>
         }
         examinerReport={EXAM_B}
@@ -262,6 +266,7 @@ export default function SpecialistQ2_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Perpendicular Bisector"
         marks={1}
         statement={
           <>
@@ -276,6 +281,7 @@ export default function SpecialistQ2_2020Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Ray Locus"
         marks={1}
         statement={
           <>
@@ -290,6 +296,7 @@ export default function SpecialistQ2_2020Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Ray Equation"
         marks={1}
         statement={
           <>
@@ -305,13 +312,16 @@ export default function SpecialistQ2_2020Exam2() {
 
       <PartCard
         letter="e"
+        topic="Circle Through Points"
         marks={3}
         statement={
           <>
             The points representing <Katex tex="u" /> and <Katex tex="v" /> and{' '}
             <Katex tex="-5i" /> lie on the circle given by <Katex tex="|z-z_c|=r" />, where{' '}
             <Katex tex="z_c" /> is the centre of the circle and <Katex tex="r" /> is the
-            radius. Find <Katex tex="z_c" /> in the form <Katex tex="a+ib" />, where{' '}
+            radius.
+            <br />
+            Find <Katex tex="z_c" /> in the form <Katex tex="a+ib" />, where{' '}
             <Katex tex="a,b\in R" />, and find the radius <Katex tex="r" />.
           </>
         }

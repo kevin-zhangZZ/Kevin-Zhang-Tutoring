@@ -36,15 +36,15 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="V_s = \pi\int_0^\pi\sin^2(x)\,dx" />,
-    reason: 'Rotation about the x-axis, over the arch shown.',
+    reason: <>Rotation about the x-axis, over the arch shown.</>,
   },
   {
     working: <Katex display tex="\sin^2(x) = \tfrac12\bigl(1-\cos(2x)\bigr)" />,
-    reason: <>The double-angle identity is the only practical route: <Katex tex="\sin^2" /> has no elementary antiderivative in that form.</>,
+    reason: <>The double-angle identity turns <Katex tex="\sin^2(x)" /> into terms with standard antiderivatives — the report notes this was the most effective method.</>,
   },
   {
     working: <Katex display tex="V_s = \frac{\pi}{2}\int_0^\pi\bigl(1-\cos(2x)\bigr)dx = \frac{\pi}{2}\left[x-\frac{\sin(2x)}{2}\right]_0^\pi" />,
-    reason: 'Both terms are now standard.',
+    reason: <>Both terms are now standard.</>,
   },
   {
     working: <Katex display tex="= \frac{\pi}{2}\left(\pi-0\right)-0" />,
@@ -63,11 +63,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{a horizontal dilation by } \tfrac1k \text{ scales the volume by } \tfrac1k" />,
-    reason: <>Every cross-section perpendicular to the <Katex tex="x" />-axis is unchanged — only the axis itself is compressed. This one-line argument is what the report says almost nobody spotted.</>,
+    reason: <>Every cross-section perpendicular to the <Katex tex="x" />-axis is unchanged — only the axis itself is compressed. The report notes very few students recognised this.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{V_s}{k}}" />,
-    reason: <>Checking by integration: <Katex tex="\pi\int_0^{\pi/k}\sin^2(kx)\,dx=\tfrac{\pi^2}{2k}=\tfrac{V_s}{k}" /> ✓. The answer must be <em>in terms of</em> <Katex tex="V_s" />, as instructed.</>,
+    reason: <>Checking by integration: <Katex tex="\pi\int_0^{\pi/k}\sin^2(kx)\,dx=\tfrac{\pi^2}{2k}=\tfrac{V_s}{k}" />. The answer must be <em>in terms of</em> <Katex tex="V_s" />, as instructed.</>,
   },
 ]
 
@@ -78,30 +78,30 @@ export default function SpecialistQ4_2021Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 4 (4 marks)</p>
       </div>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
-        <p>
-          The shaded region in the diagram below is bounded by the graph of{' '}
-          <Katex tex="y=\sin(x)" /> and the <Katex tex="x" />-axis between the first two
-          non-negative <Katex tex="x" />-intercepts of the curve, that is, the interval{' '}
-          <Katex tex="[0,\pi]" />. The shaded region is rotated about the <Katex tex="x" />
-          -axis to form a solid of revolution.
-        </p>
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sineSrc}
-            alt="A sine curve with the single arch between x = 0 and x = π shaded — from the original 2021 VCAA exam paper"
-            className="w-full max-w-[320px]"
-          />
-        </div>
-      </div>
-
       <PartCard
         letter="a"
+        topic="Volume of Revolution"
         marks={3}
         statement={
-          <>
-            Find the volume, <Katex tex="V_s" />, of the solid formed.
-          </>
+          <div className="flex flex-col gap-3">
+            <p>
+              The shaded region in the diagram below is bounded by the graph of{' '}
+              <Katex tex="y=\sin(x)" /> and the <Katex tex="x" />-axis between the first two
+              non-negative <Katex tex="x" />-intercepts of the curve, that is, the interval{' '}
+              <Katex tex="[0,\pi]" />. The shaded region is rotated about the{' '}
+              <Katex tex="x" />-axis to form a solid of revolution.
+            </p>
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img
+                src={sineSrc}
+                alt="The graph of y = sin(x) on a grid from about −π/2 to 9π/4, with the arch between x = 0 and x = π shaded — from the original 2021 VCAA exam paper"
+                className="w-full max-w-[320px]"
+              />
+            </div>
+            <p>
+              Find the volume, <Katex tex="V_s" />, of the solid formed.
+            </p>
+          </div>
         }
         examinerReport={EXAM_A}
       >
@@ -110,6 +110,7 @@ export default function SpecialistQ4_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Volume of Revolution"
         marks={1}
         statement={
           <>
@@ -117,8 +118,9 @@ export default function SpecialistQ4_2021Exam1() {
             a positive real constant. The region bounded by the graph of the function and the{' '}
             <Katex tex="x" />-axis between the first two non-negative <Katex tex="x" />
             -intercepts of the graph is rotated about the <Katex tex="x" />-axis to form a
-            solid of revolution. Find the volume of this solid in terms of{' '}
-            <Katex tex="V_s" />.
+            solid of revolution.
+            <br />
+            Find the volume of this solid in terms of <Katex tex="V_s" />.
           </>
         }
         examinerReport={EXAM_B}

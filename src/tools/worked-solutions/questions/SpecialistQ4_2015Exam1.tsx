@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [19, 23, 18, 40],
@@ -12,10 +12,13 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was quite well answered by students who used polar form, but not by the
-      small number who tried to solve the equation in cartesian form. The most common errors
-      included finding the incorrect polar form for <Katex tex="8i" />, or finding the correct
-      polar form but making errors in finding the other two solutions. Many students assumed
-      that the Conjugate Root Theorem applied. Some gave factors rather than solutions, and a
+      small number of students who tried to solve the equation in cartesian form. The most
+      common errors included finding the incorrect polar form for <Katex tex="8i" /> or
+      finding the correct polar form for <Katex tex="8i" /> but making errors in finding the
+      other two solutions. Some students who found the correct solutions in polar form either
+      left them in polar form or converted them to cartesian form with arithmetical errors.
+      Many students assumed that the Conjugate Root Theorem applied. Others tried to use the
+      formula for perfect cubes. Some gave factors rather than solutions, and a
       number of students gave only one solution for this cubic.
     </>
   ),
@@ -26,7 +29,7 @@ const EXAM_B: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Students were expected to recognise that the solutions to part a. needed to be
+      Students were expected to recognise that the solutions to Question 4a. needed to be
       translated two units up, and so add <Katex tex="2i" />. Several students subtracted{' '}
       <Katex tex="2i" /> from the answers in part a., and a small number tried to solve the
       equation without using their answer to part a.
@@ -76,7 +79,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = \sqrt3+i+2i,\ -\sqrt3+i+2i,\ -2i+2i" />,
-    reason: <><em>Add</em> <Katex tex="2i" /> — a translation two units up in the complex plane. Subtracting it was the common error.</>,
+    reason: <><em>Add</em> <Katex tex="2i" /> — a translation two units up in the complex plane. The report notes several students subtracted it.</>,
   },
   {
     working: <Katex display tex="\boxed{z = \sqrt3+3i,\ -\sqrt3+3i,\ 0}" />,
@@ -88,15 +91,12 @@ export default function SpecialistQ4_2015Exam1() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 4 (4 marks)</p>
-        <p>
-          Part b. is worth one mark for a cubic equation, which is the signal that it is meant
-          to be read off part a. rather than solved from scratch.
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 4 (4 marks)</p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Complex Roots"
         marks={3}
         statement={<>Find all solutions of <Katex tex="z^3=8i" />, <Katex tex="z\in C" />, in cartesian form.</>}
         examinerReport={EXAM_A}
@@ -106,10 +106,17 @@ export default function SpecialistQ4_2015Exam1() {
 
       <PartCard
         letter="b"
+        topic="Translated Roots"
         marks={1}
         statement={<>Find all solutions of <Katex tex="(z-2i)^3=8i" />, <Katex tex="z\in C" />, in cartesian form.</>}
         examinerReport={EXAM_B}
       >
+        <Background>
+          <p>
+            Part b. is worth one mark for a cubic equation, which is the signal that it is meant
+            to be read off part a. rather than solved from scratch.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>

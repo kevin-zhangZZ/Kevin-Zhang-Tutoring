@@ -11,11 +11,13 @@ const EXAM_A: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      This was a "show that" question. The probabilities needed to be added together and
-      equated to 1, a quadratic equation formed and correctly solved. It was not sufficient
-      to verify the solutions by substitution. Some students incorrectly used the formula for{' '}
-      <Katex tex="\mathrm{E}(X)" /> instead of using the fact that the probabilities must sum
-      to 1.
+      This question was a ‘show that’ question. As such, each line of working needed to
+      demonstrate a clear, logical and explicit progression, leading to the result provided in the
+      question stem. In particular, the probabilities needed to be added together and equated to
+      1, a quadratic equation formed and correctly solved. It was not sufficient to verify the
+      solutions of <Katex tex="k=10" /> or <Katex tex="k=15" /> by substitution. Some students
+      did not form the correct quadratic equation. Some students incorrectly used the formula for{' '}
+      <Katex tex="E(X)" /> instead of using the fact that the probabilities must sum to 1.
     </>
   ),
 }
@@ -25,8 +27,11 @@ const EXAM_BI: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Common errors included incorrectly using <Katex tex="\Pr(X\ge1)" /> or{' '}
-      <Katex tex="1-\Pr(X\le1)" /> read from the wrong rows.
+      This question was well attempted. Common errors included incorrectly using{' '}
+      <Katex tex="\Pr(X>1)=1-\Pr(X=0)" /> or{' '}
+      <Katex tex="\Pr(X>1)=\Pr(X=1)+\Pr(X=2)+\Pr(X=3)" />, both of which led to the incorrect
+      answer <Katex tex="\dfrac{11}{15}" />. Some students incorrectly cancelled{' '}
+      <Katex tex="\dfrac{5}{15}" /> to <Katex tex="\dfrac{1}{5}" />.
     </>
   ),
 }
@@ -34,17 +39,17 @@ const EXAM_BI: SAExaminerStats = {
 const EXAM_BII: SAExaminerStats = {
   marks: [29, 71],
   average: 0.7,
-  comment: <>Some students made arithmetic errors when working with the fractions.</>,
+  comment: <>This question was well attempted. Some students made arithmetic errors when working with the fractions.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac4k+\frac{2k}{75}+\frac{k}{75}+\frac2k = 1" />,
-    reason: 'Every probability distribution sums to 1 — this is the only condition available, and the one the question turns on.',
+    reason: <>Every probability distribution sums to 1 — this is the only condition available, and the one the question turns on.</>,
   },
   {
     working: <Katex display tex="\frac6k+\frac{3k}{75} = 1 \implies \frac6k+\frac{k}{25} = 1" />,
-    reason: 'Collecting the two pairs of like terms.',
+    reason: <>Collecting the two pairs of like terms.</>,
   },
   {
     working: <Katex display tex="\times 25k: \quad 150+k^2 = 25k" />,
@@ -52,18 +57,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k^2-25k+150 = 0 \implies (k-10)(k-15) = 0" />,
-    reason: <>Two numbers multiplying to 150 and adding to 25. Forming <em>and solving</em> this equation is what earns the marks — checking the given answers by substitution does not.</>,
+    reason: <>Two numbers multiplying to 150 and adding to 25. Forming <em>and solving</em> this equation is the point — the report says it was not sufficient to verify <Katex tex="k=10" /> or <Katex tex="k=15" /> by substitution.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 10 \ \text{ or } \ k = 15}" />,
-    reason: 'Both are positive, so both survive.',
+    reason: <>Both are positive, so both survive. As required.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="k=15: \quad \Pr(X=x) = \tfrac{4}{15},\ \tfrac{30}{75},\ \tfrac{15}{75},\ \tfrac{2}{15}" />,
-    reason: 'Substituting into each entry of the table.',
+    reason: <>Substituting into each entry of the table.</>,
   },
   {
     working: <Katex display tex="= \tfrac{4}{15},\ \tfrac{6}{15},\ \tfrac{3}{15},\ \tfrac{2}{15}" />,
@@ -71,18 +76,18 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X>1) = \Pr(X=2)+\Pr(X=3) = \tfrac{3}{15}+\tfrac{2}{15}" />,
-    reason: <>Strictly greater than 1, so <Katex tex="X=1" /> is <em>not</em> included — the row that most wrong answers wrongly added in.</>,
+    reason: <>Strictly greater than 1, so <Katex tex="X=1" /> is <em>not</em> included. The report's common errors, <Katex tex="1-\Pr(X=0)" /> and adding in <Katex tex="\Pr(X=1)" />, both include it and give <Katex tex="\tfrac{11}{15}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>1) = \tfrac{5}{15} = \tfrac13}" />,
-    reason: 'In simplest form.',
+    reason: <>In simplest form.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(X) = \sum x\Pr(X=x)" />,
-    reason: 'Each value weighted by its probability.',
+    reason: <>Each value weighted by its probability.</>,
   },
   {
     working: <Katex display tex="= 0\!\left(\tfrac{4}{15}\right)+1\!\left(\tfrac{6}{15}\right)+2\!\left(\tfrac{3}{15}\right)+3\!\left(\tfrac{2}{15}\right)" />,
@@ -90,7 +95,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{0+6+6+6}{15} = \frac{18}{15}" />,
-    reason: 'Common denominator throughout, so no fraction arithmetic is needed.',
+    reason: <>Common denominator throughout, so no fraction arithmetic is needed.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(X) = \tfrac65 = 1.2}" />,
@@ -152,6 +157,7 @@ export default function MethodsQ4_2025Exam1() {
 
       <PartCard
         letter="a"
+        topic="Discrete Distribution"
         marks={2}
         statement={<>Show that <Katex tex="k=10" /> or <Katex tex="k=15" />.</>}
         examinerReport={EXAM_A}
@@ -159,20 +165,24 @@ export default function MethodsQ4_2025Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
+        <p className="font-semibold text-gray-900 dark:text-white">b.</p>
+        <p>
+          Let <Katex tex="k=15" />.
+        </p>
+      </div>
+
       <PartCard
         letter="b.i"
+        topic="Discrete Distribution"
         marks={1}
-        statement={
-          <>
-            Let <Katex tex="k=15" />. Find <Katex tex="\Pr(X>1)" />.
-          </>
-        }
+        statement={<>Find <Katex tex="\Pr(X>1)" />.</>}
         examinerReport={EXAM_BI}
       >
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={1} statement={<>Find <Katex tex="\mathrm{E}(X)" />.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Expected Value" marks={1} statement={<>Find <Katex tex="\mathrm{E}(X)" />.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
     </div>

@@ -17,7 +17,7 @@ const EXAM: SAExaminerStats = {
       many did not proceed further. Many of those who did proceed used incorrect angles.
       Students are expected to know exact values for the circular functions. A common error
       was to use <Katex tex="\tfrac{3\pi}{4}" /> in the first equation or{' '}
-      <Katex tex="\tfrac\pi6" /> in the second.
+      <Katex tex="\tfrac\pi6" /> in the second equation.
     </>
   ),
 }

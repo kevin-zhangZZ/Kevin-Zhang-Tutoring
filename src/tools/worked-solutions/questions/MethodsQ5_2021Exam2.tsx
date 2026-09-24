@@ -76,11 +76,11 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\sin\!\left(\tfrac x2\right): \ \text{period } \frac{2\pi}{1/2} = 4\pi" />,
-    reason: 'The slower of the two components.',
+    reason: <>The slower of the two components.</>,
   },
   {
     working: <Katex display tex="\cos(2x): \ \text{period } \frac{2\pi}{2} = \pi" />,
-    reason: 'The faster one.',
+    reason: <>The faster one.</>,
   },
   {
     working: <Katex display tex="\boxed{4\pi}" />,
@@ -95,7 +95,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{minimum} = -1.72209\ldots" />,
-    reason: <>Note <Katex tex="f\!\left(-\tfrac\pi2\right)=-1-\tfrac{\sqrt2}{2}\cdot0\ldots" /> comes out at <Katex tex="-1.707" />, which looks close but is not the minimum — the report says many students stopped there.</>,
+    reason: <>Note <Katex tex="f\!\left(-\tfrac\pi2\right)=-\tfrac{\sqrt2}{2}-1=-1.707" /> (to three decimal places), which looks close but is not the minimum — the report notes many students evaluated it.</>,
   },
   {
     working: <Katex display tex="\boxed{-1.722}" />,
@@ -118,7 +118,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{common lines: } x = \pi,\ 3\pi,\ 5\pi,\ \ldots \implies \tfrac h2 = \pi" />,
-    reason: 'The smallest positive line of symmetry the two share.',
+    reason: <>The smallest positive line of symmetry the two share.</>,
   },
   {
     working: <Katex display tex="\boxed{h = 2\pi}" />,
@@ -129,7 +129,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="g_a(x) = \sin\!\left(\tfrac xa\right)+\cos(ax), \quad f(x) = \sin\!\left(\tfrac x2\right)+\cos(2x)" />,
-    reason: 'Comparing the two rules term by term.',
+    reason: <>Comparing the two rules term by term.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 2}" />,
@@ -144,7 +144,7 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int\cos(ax)\,dx = \frac{\sin(ax)}{a}" />,
-    reason: 'Here dividing by a really does divide.',
+    reason: <>Here dividing by a really does divide.</>,
   },
   {
     working: <Katex display tex="\boxed{-a\cos\!\left(\tfrac xa\right)+\frac{\sin(ax)}{a}}" />,
@@ -155,7 +155,7 @@ const ROWS_EI: WorkingRow[] = [
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{2a\pi}g_a(x)\,dx = \left[-a\cos\!\left(\tfrac xa\right)+\frac{\sin(ax)}{a}\right]_0^{2a\pi}" />,
-    reason: 'Using part e(i).',
+    reason: <>Using part e.i.</>,
   },
   {
     working: <Katex display tex="\text{at } x=2a\pi: \ -a\cos(2\pi)+\frac{\sin\left(2a^2\pi\right)}{a} = -a+\frac{\sin\left(2a^2\pi\right)}{a}" />,
@@ -163,7 +163,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{at } x=0: \ -a\cos(0)+\frac{\sin(0)}{a} = -a" />,
-    reason: 'The lower terminal.',
+    reason: <>The lower terminal.</>,
   },
   {
     working: <Katex display tex="\int_0^{2a\pi}g_a(x)\,dx = \frac{\sin\!\left(2a^2\pi\right)}{a}" />,
@@ -171,18 +171,18 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a\in Z^+ \implies 2a^2 \text{ is an even integer} \implies \sin\!\left(2a^2\pi\right) = 0" />,
-    reason: <>This is the step the report says students could not interpret: <Katex tex="\sin" /> of any integer multiple of <Katex tex="\pi" /> is zero.</>,
+    reason: <>The report notes some students were unable to interpret <Katex tex="\tfrac{\sin\left(2a^2\pi\right)}{a}" />: <Katex tex="\sin" /> of any integer multiple of <Katex tex="\pi" /> is zero.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^{2a\pi}g_a(x)\,dx = 0 \text{ for all positive integers } a}" />,
-    reason: <>A definite integral of zero means the signed areas cancel — so the area above the axis equals the area below. That interpretation is the final mark.</>,
+    reason: <>A definite integral of zero means the signed areas cancel — so the area above the axis equals the area below. As required.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le \sin\!\left(\tfrac xa\right) \le 1 \ \text{ for all } x \text{ and all } a" />,
-    reason: 'A sine is bounded regardless of how its input is scaled.',
+    reason: <>A sine is bounded regardless of how its input is scaled.</>,
   },
   {
     working: <Katex display tex="-1 \le \cos(ax) \le 1 \ \text{ for all } x \text{ and all } a" />,
@@ -190,18 +190,18 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-2 \le \sin\!\left(\tfrac xa\right)+\cos(ax) \le 2}" />,
-    reason: 'Adding the two inequalities. Both bounds need stating, since the question asks about both.',
+    reason: <>Adding the two inequalities. Both bounds need stating, since the question asks about both.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="g_a = -2 \text{ needs } \sin\!\left(\tfrac xa\right) = -1 \ \text{and}\ \cos(ax) = -1 \text{ at the same } x" />,
-    reason: 'Part f. gives −2 as the floor; whether it is reached is a separate question.',
+    reason: <>Part f. gives −2 as the floor; whether it is reached is a separate question.</>,
   },
   {
     working: <Katex display tex="\tfrac xa = \tfrac{3\pi}{2}+2k\pi \ \text{ and } \ ax = \pi+2m\pi" />,
-    reason: 'The two conditions written out.',
+    reason: <>The two conditions written out.</>,
   },
   {
     working: <Katex display tex="\frac{a^2(4k+3)}{2} = 2m+1 \implies a^2(4k+3) = 2(2m+1)" />,
@@ -212,8 +212,8 @@ const ROWS_G: WorkingRow[] = [
     reason: <>With equal frequencies the two waves combine into a single sinusoid of amplitude <Katex tex="\sqrt2" />.</>,
   },
   {
-    working: <Katex display tex="a=2: \ -1.722; \quad a=3: \ -1.985; \quad a=5: \ -1.998" />,
-    reason: <>As <Katex tex="a" /> grows the two frequencies drift apart and near-coincidences push the minimum towards <Katex tex="-2" />. So the largest minimum is at the smallest <Katex tex="a" />.</>,
+    working: <Katex display tex="a=2: \ -1.722; \quad a=3: \ -1.985; \quad a=4: \ -1.981; \quad a=5: \ -1.998" />,
+    reason: <>For <Katex tex="a\ge2" /> the two frequencies differ and the minimum sits well below <Katex tex="-\sqrt2" />, creeping towards <Katex tex="-2" /> as <Katex tex="a" /> grows. So the greatest minimum is at <Katex tex="a=1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{-\sqrt2}" />,
@@ -239,12 +239,13 @@ export default function MethodsQ5_2021Exam2() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State the period of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Period" marks={1} statement={<>State the period of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Minimum Value"
         marks={1}
         statement={
           <>
@@ -258,6 +259,7 @@ export default function MethodsQ5_2021Exam2() {
 
       <PartCard
         letter="c"
+        topic="Symmetry"
         marks={1}
         statement={
           <>
@@ -270,7 +272,7 @@ export default function MethodsQ5_2021Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Consider the set of functions of the form <Katex tex="g_a:R\to R" />,{' '}
           <Katex tex="g_a(x)=\sin\!\left(\tfrac xa\right)+\cos(ax)" />, where{' '}
@@ -280,6 +282,7 @@ export default function MethodsQ5_2021Exam2() {
 
       <PartCard
         letter="d"
+        topic="Find Parameter"
         marks={1}
         statement={
           <>
@@ -294,6 +297,7 @@ export default function MethodsQ5_2021Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Antiderivative"
         marks={1}
         statement={
           <>
@@ -307,6 +311,7 @@ export default function MethodsQ5_2021Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Definite Integral"
         marks={3}
         statement={
           <>
@@ -322,6 +327,7 @@ export default function MethodsQ5_2021Exam2() {
 
       <PartCard
         letter="f"
+        topic="Max & Min Bounds"
         marks={1}
         statement={
           <>
@@ -337,6 +343,7 @@ export default function MethodsQ5_2021Exam2() {
 
       <PartCard
         letter="g"
+        topic="Minimum Value"
         marks={1}
         statement={
           <>

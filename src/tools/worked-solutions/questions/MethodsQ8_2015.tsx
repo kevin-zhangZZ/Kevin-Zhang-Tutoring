@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p = \frac52}" />,
-    reason: <>Option D. Take the positive root: the figure puts <Katex tex="(p,p)" /> in the first quadrant. Option E, <Katex tex="\tfrac{25}{4}" />, is <Katex tex="p^2" /> left un-rooted.</>,
+    reason: <>Matches option <b>D</b>. Take the positive root: the figure puts <Katex tex="(p,p)" /> in the first quadrant. Option E, <Katex tex="\tfrac{25}{4}" />, is <Katex tex="p^2" /> left un-rooted.</>,
   },
 ]
 

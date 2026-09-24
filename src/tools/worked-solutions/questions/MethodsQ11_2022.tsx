@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\bigl(x\sin(x)\bigr) = \sin(x)+x\cos(x)" />,
-    reason: 'The given result — read it as an antiderivative statement.',
+    reason: <>The given result — read it as an antiderivative statement.</>,
   },
   {
     working: <Katex display tex="\int\bigl(\sin(x)+x\cos(x)\bigr)dx = x\sin(x)+c" />,
-    reason: 'Integrating both sides.',
+    reason: <>Integrating both sides.</>,
   },
   {
     working: <Katex display tex="\int x\cos(x)\,dx = x\sin(x)-\int\sin(x)\,dx" />,
@@ -29,8 +29,8 @@ const ROWS: WorkingRow[] = [
     reason: <>The <Katex tex="\tfrac1k" /> multiplies the <em>whole</em> antiderivative, so the bracket matters — option B applies it to the first term only.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{option C}}" />,
-    reason: <>Option A multiplies by <Katex tex="k" /> instead of dividing; option D replaces the integral with <Katex tex="\sin(x)" />, which is its derivative, not its antiderivative.</>,
+    working: <Katex display tex="\boxed{\frac1k\left(x\cdot\sin(x)-\int\sin(x)\,dx\right)+c}" />,
+    reason: <>Matches option <b>C</b>. Option A multiplies by <Katex tex="k" /> instead of dividing; option D replaces <Katex tex="\int\sin(x)\,dx" /> with the integrand <Katex tex="\sin(x)" />.</>,
   },
 ]
 

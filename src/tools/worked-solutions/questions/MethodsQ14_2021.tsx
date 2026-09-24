@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac1\pi\int_0^\pi\sin(x)\,dx = \frac1\pi\left[-\cos(x)\right]_0^\pi = \frac{2}{\pi}" />,
-    reason: 'The target value.',
+    reason: <>The target value.</>,
   },
   {
     working: <Katex display tex="\frac1\pi\int_0^\pi\cos\!\left(kx-\tfrac\pi2\right)dx = \frac{1}{k\pi}\left[\sin\!\left(kx-\tfrac\pi2\right)\right]_0^\pi" />,

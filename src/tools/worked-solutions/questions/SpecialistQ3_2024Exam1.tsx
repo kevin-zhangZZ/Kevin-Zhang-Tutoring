@@ -1,7 +1,8 @@
 // 2024 Specialist Mathematics — Exam 1 Question 3 (6 marks). Rewriting a rational function
 // in partial-fraction form, then its turning point and a full sketch. Question text
 // transcribed from the original paper (2024 papers are image-only, so read from rendered
-// pages); the graph is our own drawing of the answer. Answers checked with sympy and
+// pages); the part c. graph is our own drawing of the answer on VCAA's exact grid (x from
+// −6.6 to 4.6, y from −2.45 to 6.5, gridlines every 0.5). Answers checked with sympy and
 // against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -11,7 +12,16 @@ import sketchSrc from './spec-2024e1-q3c-sketch.png'
 const EXAM_A: SAExaminerStats = {
   marks: [37, 63],
   average: 0.7,
-  comment: <>Some students made errors in manipulating the rational functions.</>,
+  comment: (
+    <>
+      Various methods could be applied here. Although not necessarily efficient, a common
+      approach was to perform the division, showing that{' '}
+      <Katex tex="f(x)=1+\dfrac{-4x}{(x+1)^2}" />. Partial fractions could then be applied to
+      the rational function <Katex tex="\dfrac{-4x}{(x+1)^2}" /> to obtain the desired result.
+      <br />
+      Some students made errors in manipulating the rational functions.
+    </>
+  ),
 }
 
 const EXAM_B: SAExaminerStats = {
@@ -19,8 +29,14 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Some students gave the answer with little or no evidence of working. Additional
-      incorrect coordinates were sometimes given.
+      Students needed to solve <Katex tex="f'(x)=0" />. Many students achieved this by applying
+      the quotient rule to <Katex tex="f(x)=\dfrac{(x-1)^2}{(x+1)^2}" />. To avoid using the
+      quotient rule, students could simply differentiate the expanded form of the rational
+      function <Katex tex="f(x)=1-\dfrac{4}{x+1}+\dfrac{4}{(x+1)^2}" /> to obtain{' '}
+      <Katex tex="f'(x)=\dfrac{4}{(x+1)^2}-\dfrac{8}{(x+1)^3}" />.
+      <br />
+      Some students gave the answer <Katex tex="(1,0)" /> with little or no evidence of working.
+      Additional incorrect coordinates were sometimes given.
     </>
   ),
 }
@@ -30,10 +46,14 @@ const EXAM_C: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      The graph sketching was not done well, and many students gave no clear indication of
-      the correct behaviour of the graph. Additional or incorrect asymptotes were submitted,
-      and some students with reasonable-looking graphs did not label asymptotes or axis
-      intercepts. Some students only drew the right-hand branch.
+      The graph sketching was not done well, and many students gave no clear indication of the
+      correct behaviour of the graph. Additional or incorrect asymptotes were submitted, and some
+      students who did have reasonable-looking graphs did not label asymptotes or axis intercepts
+      appropriately.
+      <br />
+      Some students only drew the right-hand branch of the graph. Students were much more
+      successful in showing the correct behaviour of the graph on the left-hand side if they
+      evaluated the function at several points.
     </>
   ),
 }
@@ -41,34 +61,34 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{let } u = x+1 \implies x-1 = u-2" />,
-    reason: 'A substitution turns the rewrite into an expansion, which is far less error-prone than comparing coefficients.',
+    reason: <>A substitution turns the rewrite into an expansion, which is far less error-prone than comparing coefficients.</>,
   },
   {
     working: <Katex display tex="(x-1)^2 = (u-2)^2 = u^2-4u+4" />,
-    reason: 'Expanding in the new variable.',
+    reason: <>Expanding in the new variable.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{u^2-4u+4}{u^2} = 1-\frac4u+\frac{4}{u^2}" />,
-    reason: 'Dividing term by term.',
+    reason: <>Dividing term by term.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = 1-\frac{4}{x+1}+\frac{4}{(x+1)^2}, \quad A=1,\ B=-4,\ C=4}" />,
-    reason: <>Substituting <Katex tex="u=x+1" /> back. Check at <Katex tex="x=0" />: <Katex tex="1-4+4=1" />, and <Katex tex="f(0)=\tfrac{1}{1}=1" /> ✓.</>,
+    reason: <>Substituting <Katex tex="u=x+1" /> back. Check at <Katex tex="x=0" />: <Katex tex="1-4+4=1" />, and <Katex tex="f(0)=\tfrac{1}{1}=1" />, which agree. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 1-4(x+1)^{-1}+4(x+1)^{-2}" />,
-    reason: 'Differentiating the part-fraction form avoids the quotient rule entirely.',
+    reason: <>Differentiating the part-fraction form avoids the quotient rule entirely.</>,
   },
   {
     working: <Katex display tex="f'(x) = 4(x+1)^{-2}-8(x+1)^{-3}" />,
-    reason: 'Chain rule on each power.',
+    reason: <>Chain rule on each power.</>,
   },
   {
     working: <Katex display tex="= \frac{4(x+1)-8}{(x+1)^3} = \frac{4x-4}{(x+1)^3}" />,
-    reason: 'Over a common denominator.',
+    reason: <>Over a common denominator.</>,
   },
   {
     working: <Katex display tex="f'(x) = 0 \implies 4x-4 = 0 \implies x = 1" />,
@@ -76,7 +96,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(1) = \frac{(1-1)^2}{(1+1)^2} = 0" />,
-    reason: 'Substituting back into the original rule.',
+    reason: <>Substituting back into the original rule.</>,
   },
   {
     working: <Katex display tex="\boxed{(1,\ 0)}" />,
@@ -87,11 +107,11 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x+1 = 0 \implies \text{vertical asymptote } x = -1" />,
-    reason: 'The one excluded value of the domain.',
+    reason: <>The one excluded value of the domain.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty \implies \frac{4}{x+1},\ \frac{4}{(x+1)^2} \to 0 \implies \text{horizontal asymptote } y = 1" />,
-    reason: 'Read straight off the part-fraction form from part a. There are no others — extra asymptotes were a listed error.',
+    reason: <>Read straight off the part-fraction form from part a. There are no others — the report notes additional or incorrect asymptotes were submitted.</>,
   },
   {
     working: <Katex display tex="\text{intercepts: } (1,0) \text{ from part b., and } f(0) = 1 \implies (0,1)" />,
@@ -99,15 +119,23 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x<-1: \quad f(-2)=9,\ f(-3)=4,\ f(-6)=\tfrac{49}{25}\approx2.0" />,
-    reason: <>Evaluating a few points is the reliable way to get the left branch right: it falls from <Katex tex="+\infty" /> towards <Katex tex="y=1" /> from <em>above</em> as <Katex tex="x\to-\infty" />. Half the cohort drew only the right branch.</>,
+    reason: <>Evaluating a few points is the reliable way to get the left branch right: it falls from <Katex tex="+\infty" /> towards <Katex tex="y=1" /> from <em>above</em> as <Katex tex="x\to-\infty" />. The report notes some students only drew the right-hand branch, and that students were much more successful on the left-hand side if they evaluated the function at several points.</>,
   },
   {
     working: <Katex display tex="x>-1: \quad f\to+\infty \ \text{at } x\to-1^+, \ \text{ down through } (0,1) \text{ to } (1,0), \text{ then up towards } y=1" />,
     reason: <>Always below <Katex tex="y=1" /> after the crossing, since <Katex tex="f(x)<1" /> for all <Katex tex="x>0" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{see the graph below}}" />,
-    reason: 'Asymptotes labelled with their equations and both intercepts with their coordinates, as required.',
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's grid (x from about −6.6 to 4.6, y from about −2.4 to 6.5): two branches either side of the dashed asymptote x = −1, both approaching the dashed asymptote y = 1 far out; the left branch rises from about 1.8 at the left edge to +∞ at x = −1, the right branch falls from +∞ through the labelled point (0, 1) to the labelled minimum (1, 0) and then rises back towards y = 1"
+          className="w-full max-w-[540px]"
+        />
+      </div>
+    ),
+    reason: <>Asymptotes labelled with their equations and both intercepts with their coordinates, as the question asks.</>,
   },
 ]
 
@@ -117,11 +145,13 @@ export default function SpecialistQ3_2024Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 3 (6 marks)</p>
         <p>
-          Let <Katex tex="f:\mathbb{R}\setminus\{-1\}\to\mathbb{R}" />,{' '}
-          <Katex tex="f(x)=\dfrac{(x-1)^2}{(x+1)^2}" />. The rule <Katex tex="f(x)" /> can be
-          written in the form{' '}
+          Let <Katex tex="f:R\setminus\{-1\}\to R" />,{' '}
+          <Katex tex="f(x)=\dfrac{(x-1)^2}{(x+1)^2}" />.
+        </p>
+        <p>
+          The rule <Katex tex="f(x)" /> can be written in the form{' '}
           <Katex tex="f(x)=A+\dfrac{B}{x+1}+\dfrac{C}{(x+1)^2}" />, where{' '}
-          <Katex tex="A,B,C\in\mathbb{Z}" />.
+          <Katex tex="A,B,C\in Z" />.
         </p>
       </div>
 
@@ -144,6 +174,7 @@ export default function SpecialistQ3_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Partial Fractions"
         marks={1}
         statement={<>Show that <Katex tex="A=1" />, <Katex tex="B=-4" /> and <Katex tex="C=4" />.</>}
         examinerReport={EXAM_A}
@@ -153,11 +184,13 @@ export default function SpecialistQ3_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Turning Point"
         marks={2}
         statement={
           <>
-            The graph of <Katex tex="f" /> has one turning point. Find the coordinates of this
-            turning point.
+            The graph of <Katex tex="f" /> has one turning point.
+            <br />
+            Find the coordinates of this turning point.
           </>
         }
         examinerReport={EXAM_B}
@@ -167,23 +200,17 @@ export default function SpecialistQ3_2024Exam1() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=f(x)" />. Label the asymptotes with their
-            equations and the axial intercepts with their coordinates.
+            Sketch the graph of <Katex tex="y=f(x)" /> on the set of axes below. Label the
+            asymptotes with their equations and the axial intercepts with their coordinates.
           </>
         }
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="Two branches either side of the dashed asymptote x = −1, both approaching the dashed asymptote y = 1 far out; the left branch falls from +∞ towards y = 1, the right branch falls from +∞ through the labelled point (0, 1) to the labelled minimum (1, 0) and then rises back towards y = 1"
-            className="w-full max-w-[540px]"
-          />
-        </div>
       </PartCard>
     </div>
   )

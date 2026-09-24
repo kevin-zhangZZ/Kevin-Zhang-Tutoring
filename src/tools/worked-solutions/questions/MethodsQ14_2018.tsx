@@ -49,7 +49,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(A) = 0.2}" />,
-    reason: <>Matches option <b>B</b>. Check it: <Katex tex="\Pr(B)=0.4" />, <Katex tex="\Pr(A\cap B)=0.08" />, and <Katex tex="0.2+0.4-0.08=0.52" /> ✓. Option <b>C</b> <Katex tex="(0.3)" />, chosen by <Katex tex="16\%" />, is roughly what comes out if the intersection term is dropped: <Katex tex="3p=0.52" /> gives <Katex tex="p\approx0.17" />, and rounding or mis-solving lands nearby.</>,
+    reason: <>Matches option <b>B</b>. Check it: <Katex tex="\Pr(B)=0.4" />, <Katex tex="\Pr(A\cap B)=0.08" />, and <Katex tex="0.2+0.4-0.08=0.52" /> ✓. Option <b>D</b> <Katex tex="(0.4)" /> is <Katex tex="\Pr(B)" />, not <Katex tex="\Pr(A)" />.</>,
   },
 ]
 

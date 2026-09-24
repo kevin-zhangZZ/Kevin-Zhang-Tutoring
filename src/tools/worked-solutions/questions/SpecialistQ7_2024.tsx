@@ -9,6 +9,23 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 15, C: 72, D: 6 },
   answer: 'C',
+  comment: (
+    <>
+      <Katex tex="\cos(x-y)-\cos(x+y)" />
+      <br />
+      <Katex tex="=\big(\cos(x)\cos(y)+\sin(x)\sin(y)\big)-\big(\cos(x)\cos(y)-\sin(x)\sin(y)\big)" />
+      <br />
+      <Katex tex="=2\sin(x)\sin(y)" />
+      <br />
+      <Katex tex="\dfrac{dy}{dx}=e^{x-y}\big(\cos(x-y)-\cos(x+y)\big)" />
+      <br />
+      <Katex tex="=e^{x-y}\times2\sin(x)\sin(y)" />
+      <br />
+      <Katex tex="=\big(2e^x\sin(x)\big)\left(\dfrac{\sin(y)}{e^y}\right)" />
+      <br />
+      <Katex tex="\displaystyle\int\frac{e^y}{\sin(y)}\,dy=\int2e^x\sin(x)\,dx" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -18,11 +35,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="e^{x-y} = e^x e^{-y}" />,
-    reason: 'Splitting the exponential is the other half of the separation.',
+    reason: <>Splitting the exponential is the other half of the separation.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 2e^x e^{-y}\sin(x)\sin(y)" />,
-    reason: 'Now every factor belongs to one variable or the other.',
+    reason: <>Now every factor belongs to one variable or the other.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{e^{-y}\sin(y)} = 2e^x\sin(x)\,dx" />,
@@ -30,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int\frac{e^{y}}{\sin(y)}\,dy = 2\int e^x\sin(x)\,dx}" />,
-    reason: <>Option <b>C</b>, since <Katex tex="\tfrac{1}{e^{-y}}=e^{y}" />. Option <b>B</b> makes the same start but flips the sign of the exponent on the right, and option <b>A</b> uses <Katex tex="\cos" /> where the identity gives <Katex tex="\sin" />.</>,
+    reason: <>Matches option <b>C</b>, since <Katex tex="\tfrac{1}{e^{-y}}=e^{y}" />. Option <b>B</b> makes the same start but flips the sign of the exponent on the right, and option <b>A</b> uses <Katex tex="\cos" /> where the identity gives <Katex tex="\sin" />.</>,
   },
 ]
 
@@ -40,8 +57,9 @@ export default function SpecialistQ7_2024() {
       question={
         <div className="flex flex-col gap-2">
           <p>A solution to the differential equation</p>
-          <Katex display tex="\frac{dy}{dx} = e^{x-y}\bigl(\cos(x-y)-\cos(x+y)\bigr)" />
-          <p>can be found using</p>
+          <p>
+            <Katex tex="\dfrac{dy}{dx} = e^{x-y}\bigl(\cos(x-y)-\cos(x+y)\bigr)" /> can be found using
+          </p>
         </div>
       }
       options={[

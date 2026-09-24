@@ -26,6 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = \dfrac{x}{2}+2+\dfrac{17}{2x-8}" />,
+    reason: <>Dividing the identity above through by <Katex tex="2x-8" />.</>,
   },
   {
     working: <Katex display tex="\text{As } x\to\pm\infty: \ \dfrac{17}{2x-8}\to0 \implies f(x)\to\dfrac{x}{2}+2" />,
@@ -33,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x=4 \ \text{ and } \ y=\dfrac{x}{2}+2}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b> drops the <Katex tex="+2" /> — the result of dividing only the leading terms instead of doing the full division.</>,
+    reason: <>Matches option <b>C</b>. Option <b>B</b> drops the <Katex tex="+2" /> — the result of dividing only the leading terms instead of doing the full division; <b>A</b> misses the oblique asymptote entirely; <b>D</b> and <b>E</b> put the vertical asymptote at <Katex tex="x=8" />, where the denominator is <Katex tex="8\ne0" />.</>,
   },
 ]
 

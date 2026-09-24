@@ -13,11 +13,12 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Most students recognised that the graph was a rectangular hyperbola and presented a
-      neatly drawn curve with branches correctly positioned. Asymptotes were sometimes
-      correctly positioned but labelled inaccurately or not at all. The axial intercepts were
-      generally given as coordinates with occasional errors, seeing the{' '}
-      <Katex tex="x" />-intercept labelled <Katex tex="(4,0)" /> but positioned at{' '}
-      <Katex tex="(3,0)" />, or the <Katex tex="y" />-intercept given as{' '}
+      neatly drawn curve with branches correctly positioned. Students generally paid attention
+      to curvature and asymptotic behaviour. Asymptotes were sometimes correctly positioned but
+      labelled inaccurately or not at all. The axial intercepts were generally given as
+      coordinates with occasional errors seeing the <Katex tex="x" />-intercept labelled{' '}
+      <Katex tex="(4,0)" /> but positioned at <Katex tex="(3,0)" /> or the{' '}
+      <Katex tex="y" />-intercept given as{' '}
       <Katex tex="(0,3)" />.
     </>
   ),
@@ -30,7 +31,7 @@ const EXAM_B: SAExaminerStats = {
     <>
       This question, while well attempted, was not done well. Most students attempted to
       solve algebraically instead of using the graph, and only obtained the lower bound of
-      the inequality. Other errors saw students write the interval as{' '}
+      inequality. Other errors saw students write the interval as{' '}
       <Katex tex="(2,1]" />. Others had the values but incorrect brackets.
     </>
   ),
@@ -43,7 +44,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{vertical asymptote: } x = 2" />,
-    reason: 'Where the denominator vanishes.',
+    reason: <>Where the denominator vanishes.</>,
   },
   {
     working: <Katex display tex="\text{horizontal asymptote: } y = 1" />,
@@ -62,12 +63,12 @@ const ROWS_A: WorkingRow[] = [
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={sketchSrc}
-          alt="A rectangular hyperbola with asymptotes x = 2 and y = 1, passing through (0, 2) and (4, 0), with one branch below-left of the asymptotes and one above-right"
+          alt="The answer on VCAA's axes (−6 to 6): a rectangular hyperbola with dashed asymptotes x = 2 and y = 1, passing through (0, 2) and (4, 0), one branch above-left of the asymptotes' crossing and one below-right"
           className="w-full max-w-[380px]"
         />
       </div>
     ),
-    reason: <>Because of the minus sign, the branches sit lower-left and upper-right of the asymptote crossing at <Katex tex="(2,1)" /> — the opposite of <Katex tex="y=\tfrac1x" /> shifted there.</>,
+    reason: <>Because of the minus sign, the branches sit upper-left and lower-right of the asymptote crossing at <Katex tex="(2,1)" /> — the opposite of <Katex tex="y=\tfrac1x" /> shifted there.</>,
   },
 ]
 
@@ -78,11 +79,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{the curve only reaches } y=3 \text{ on the left branch}" />,
-    reason: <>On the right branch <Katex tex="y<1" /> throughout, so it never gets near 3. This is the half of the answer most students missed.</>,
+    reason: <>On the right branch <Katex tex="y<1" /> throughout, so it never gets near 3. The report notes most students solved algebraically instead of using the graph, and only obtained the lower bound.</>,
   },
   {
     working: <Katex display tex="1-\frac{2}{x-2} = 3 \implies \frac{-2}{x-2} = 2 \implies x-2 = -1 \implies x = 1" />,
-    reason: 'The one crossing point.',
+    reason: <>The one crossing point.</>,
   },
   {
     working: <Katex display tex="\text{left branch is increasing towards } +\infty \text{ as } x\to2^-" />,
@@ -103,10 +104,11 @@ export default function MethodsQ4_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sketch Hyperbola"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=1-\dfrac{2}{x-2}" /> on the axes provided.
+            Sketch the graph of <Katex tex="y=1-\dfrac{2}{x-2}" /> on the axes below.
             Label asymptotes with their equations and axis intercepts with their coordinates.
           </>
         }
@@ -117,6 +119,7 @@ export default function MethodsQ4_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Inequality"
         marks={1}
         statement={
           <>

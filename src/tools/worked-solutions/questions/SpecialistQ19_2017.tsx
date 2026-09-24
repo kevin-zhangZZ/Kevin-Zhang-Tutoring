@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1/\sqrt{n_{\text{new}}}}{1/\sqrt{n_{\text{old}}}} = 0.25" />,
-    reason: 'Set the ratio of new to old width equal to 0.25.',
+    reason: <>Set the ratio of new to old width equal to <Katex tex="0.25" />.</>,
   },
   {
     working: (
@@ -33,11 +33,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; \frac{n_{\text{old}}}{n_{\text{new}}} = 0.0625" />
       </>
     ),
-    reason: 'Square both sides to clear the square root.',
+    reason: <>Square both sides to clear the square root.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{n_{\text{new}}}{n_{\text{old}}} = \frac{1}{0.0625} = 16}" />,
-    reason: <>Matches option <b>D</b> — the sample size must be multiplied by <Katex tex="16" />, since halving the width alone would need a factor of 4, and this is a further halving again.</>,
+    reason: <>Matches option <b>D</b> — the sample size must be multiplied by <Katex tex="16" />, since halving the width alone would need a factor of 4, and this is a further halving again. Option B (18%) is that single halving.</>,
   },
 ]
 
@@ -47,7 +47,9 @@ export default function SpecialistQ19_2017() {
       question={
         <p>
           A confidence interval is to be used to estimate the population mean <Katex tex="\mu" /> based on a
-          sample mean <Katex tex="\bar x" />. To decrease the width of a confidence interval by 75%, the
+          sample mean <Katex tex="\bar x" />.
+          <br />
+          To decrease the width of a confidence interval by 75%, the
           sample size must be multiplied by a factor of
         </p>
       }

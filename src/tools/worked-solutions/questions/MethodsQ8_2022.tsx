@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_a^b f = \int_0^b f-\int_0^a f" />,
-    reason: 'Rearranging.',
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="= 10-(-4)" />,
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{14}" />,
-    reason: <>Matches option <b>E</b>. Option A, <Katex tex="-6" />, comes from adding the two values; option D from ignoring the second.</>,
+    reason: <>Matches option <b>E</b>. Option D ignores the second integral.</>,
   },
 ]
 

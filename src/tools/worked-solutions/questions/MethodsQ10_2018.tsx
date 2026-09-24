@@ -16,11 +16,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x \implies f\bigl(x+f(x)\bigr) = f(x+x) = f(2x) \ \checkmark" />,
-    reason: <>Option <b>C</b>. With the identity function the inner bracket collapses to <Katex tex="2x" /> immediately, and both sides are <Katex tex="2x" />. The equation holds for every <Katex tex="x" />, not just some.</>,
-  },
-  {
-    working: <Katex display tex="\boxed{f(x) = x}" />,
-    reason: <>Matches option <b>C</b>. The remaining options fail, and each can be dismissed in one substitution.</>,
+    reason: <>Try option <b>C</b> first. With the identity function the inner bracket collapses to <Katex tex="2x" /> immediately, and both sides are <Katex tex="2x" />. The equation holds for every <Katex tex="x" />, not just some.</>,
   },
   {
     working: <Katex display tex="\textbf{A}: \ f\bigl(x+(1-x)\bigr) = f(1) = 0, \quad f(2x) = 1-2x" />,
@@ -37,6 +33,10 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\textbf{E}: \ f\!\left(x+\tfrac{1-x}{2}\right) = \tfrac{1-x}{4}, \quad f(2x) = \tfrac{1-2x}{2}" />,
     reason: <>Ruling out <b>E</b>: different gradients, so no agreement beyond a single crossing.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{f(x) = x}" />,
+    reason: <>Matches option <b>C</b> — the only option for which the two sides agree for every non-zero <Katex tex="x" />.</>,
   },
 ]
 

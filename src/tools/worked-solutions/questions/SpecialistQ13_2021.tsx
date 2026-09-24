@@ -9,6 +9,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 22, B: 9, C: 14, D: 8, E: 46 },
   answer: 'E',
+  comment: <Katex tex="-4\hat{\underset{\sim}{b}}=-4\left(-\underset{\sim}{i}\right)=4\underset{\sim}{i}" />,
 }
 
 const ROWS: WorkingRow[] = [
@@ -17,12 +18,12 @@ const ROWS: WorkingRow[] = [
     reason: <>The scalar resolute tells you <em>how far</em> along; the unit vector tells you <em>which way</em>.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{b} = -3\underset{\sim}{i} \implies \hat{\underset{\sim}{b}} = \frac{-3\underset{\sim}{i}}{3} = -\underset{\sim}{i}" />,
-    reason: <>Dividing by the magnitude 3. The unit vector points in the <em>negative</em> <Katex tex="\underset{\sim}{i}" /> direction — this is the step that flips the sign.</>,
+    working: <Katex display tex="\underset{\sim}{b} = -\sqrt3\underset{\sim}{i} \implies \hat{\underset{\sim}{b}} = \frac{-\sqrt3\underset{\sim}{i}}{\sqrt3} = -\underset{\sim}{i}" />,
+    reason: <>Dividing by the magnitude <Katex tex="\sqrt3" />. The unit vector points in the <em>negative</em> <Katex tex="\underset{\sim}{i}" /> direction — this is the step that flips the sign.</>,
   },
   {
     working: <Katex display tex="-4\times\left(-\underset{\sim}{i}\right) = 4\underset{\sim}{i}" />,
-    reason: 'Two negatives.',
+    reason: <>Two negatives.</>,
   },
   {
     working: <Katex display tex="\boxed{4\underset{\sim}{i}}" />,
@@ -36,8 +37,9 @@ export default function SpecialistQ13_2021() {
       question={
         <p>
           The scalar resolute of vector <Katex tex="\underset{\sim}{a}" /> in the direction
-          of vector <Katex tex="\underset{\sim}{b}" /> is <Katex tex="-4" />. If{' '}
-          <Katex tex="\underset{\sim}{b}=-3\underset{\sim}{i}" />, the vector resolute of{' '}
+          of vector <Katex tex="\underset{\sim}{b}" /> is <Katex tex="-4" />.
+          <br />
+          If <Katex tex="\underset{\sim}{b}=-\sqrt3\underset{\sim}{i}" />, the vector resolute of{' '}
           <Katex tex="\underset{\sim}{a}" /> in the direction of{' '}
           <Katex tex="\underset{\sim}{b}" /> is
         </p>
@@ -45,7 +47,7 @@ export default function SpecialistQ13_2021() {
       options={[
         { letter: 'A', content: <Katex tex="-4\underset{\sim}{i}" /> },
         { letter: 'B', content: <Katex tex="-3\underset{\sim}{i}" /> },
-        { letter: 'C', content: <Katex tex="\tfrac13\underset{\sim}{i}" /> },
+        { letter: 'C', content: <Katex tex="\tfrac{1}{\sqrt3}\underset{\sim}{i}" /> },
         { letter: 'D', content: <Katex tex="3\underset{\sim}{i}" /> },
         { letter: 'E', content: <Katex tex="4\underset{\sim}{i}" />, isAnswer: true },
       ]}

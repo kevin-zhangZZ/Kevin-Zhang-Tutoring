@@ -12,10 +12,12 @@ const EXAM_A: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      This was a "show that" question, so those students who simply stated{' '}
-      <Katex tex="f(1)=9" /> without explaining the relevance of this were not awarded the
-      mark. Some students found the discriminant of the quadratic to be negative but did not
-      relate this to the question.
+      There were several ways to complete this question. Most students chose to show that the
+      point <Katex tex="(1,0)" /> was not on the graph through the use of substitution as
+      indicated above. This was a 'show that' question, so those students who simply stated{' '}
+      <Katex tex="f(1)=9" /> without explaining the relevance of this were not awarded the mark.
+      Some students found the discriminant of the quadratic to be negative or simply stated it
+      was negative without evidence but did not relate this to the question.
     </>
   ),
 }
@@ -37,8 +39,8 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Most students recognised that an evaluation of the derivative was required. Some
-      incorrectly assumed the question required the <em>equation</em> of the tangent at{' '}
+      Most students recognised that an evaluation of the derivative was required. Some students
+      incorrectly assumed the question required the equation of the tangent at{' '}
       <Katex tex="x=a" />.
     </>
   ),
@@ -60,8 +62,8 @@ const EXAM_BIV: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      The most common error was students assuming that their value of <Katex tex="a" /> was
-      the gradient of the line, instead of substituting into <Katex tex="f'(a)" />.
+      The most common error was students assuming that their value of 'a' was the gradient of
+      the line instead of substituting into <Katex tex="f'(a)" />.
     </>
   ),
 }
@@ -71,9 +73,9 @@ const EXAM_C: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Many students used the distance formula and then attempted to differentiate and equate
-      to zero, often with limited success. Students who used a geometric approach tended to
-      score more highly.
+      Many students used the distance formula and then attempted to differentiate and equate to
+      zero (often with limited success due to error in differentiation or algebra). Students who
+      used a geometric approach tended to score more highly.
     </>
   ),
 }
@@ -84,8 +86,12 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Substituting the <Katex tex="x" />-coordinate of <Katex tex="P" />.</>,
   },
   {
-    working: <Katex display tex="9 \ne 0" />,
-    reason: <>The point <Katex tex="P" /> has <Katex tex="y=0" />, but the curve is at <Katex tex="y=9" /> when <Katex tex="x=1" />, so <Katex tex="P" /> is not on the graph. Stating <Katex tex="f(1)=9" /> alone does not earn the mark — the comparison is the argument.</>,
+    working: <Katex display tex="f(1) = 9 \ne 0" />,
+    reason: <>The point <Katex tex="P" /> has <Katex tex="y=0" />, but the curve is at <Katex tex="y=9" /> when <Katex tex="x=1" />. The report notes students who simply stated <Katex tex="f(1)=9" /> without explaining its relevance were not awarded the mark — the comparison is the argument.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{P(1,0) \text{ is not on the graph of } y=f(x)}" />,
+    reason: <>As required.</>,
   },
 ]
 
@@ -118,7 +124,7 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{a^2+3a+5}{a-1} = 2a+3" />,
-    reason: <>If the tangent at <Katex tex="Q" /> passes through <Katex tex="P" />, the line <Katex tex="PQ" /> <em>is</em> the tangent, so parts b(i) and b(ii) must agree. Equating gradients is the short route.</>,
+    reason: <>If the tangent at <Katex tex="Q" /> passes through <Katex tex="P" />, the line <Katex tex="PQ" /> <em>is</em> the tangent, so parts b.i. and b.ii. must agree. Equating gradients is the short route.</>,
   },
   {
     working: <Katex display tex="a^2+3a+5 = (2a+3)(a-1)" />,
@@ -141,7 +147,7 @@ const ROWS_BIII: WorkingRow[] = [
 const ROWS_BIV: WorkingRow[] = [
   {
     working: <Katex display tex="a = -2: \quad f(-2) = 4-6+5 = 3, \qquad f'(-2) = -4+3 = -1" />,
-    reason: <>The point and the gradient. The gradient is <Katex tex="f'(a)" />, not <Katex tex="a" /> — the report's headline error.</>,
+    reason: <>The point and the gradient. The gradient is <Katex tex="f'(a)" />, not <Katex tex="a" /> — the report's most common error was using the value of <Katex tex="a" /> as the gradient.</>,
   },
   {
     working: <Katex display tex="y-3 = -1(x+2)" />,
@@ -164,7 +170,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{distance to } P(1,0) \text{ is least when the vertex is directly above } P" />,
-    reason: <>The geometric argument the report recommends: the parabola's lowest point is its closest approach to a point directly below it, and moving the vertex off that vertical only lengthens the gap.</>,
+    reason: <>A geometric argument — the report notes students who used one tended to score more highly. Every point on the translated graph has <Katex tex="y\ge f\!\left(-\tfrac32\right)=\tfrac{11}4" />, so every point is at least <Katex tex="\tfrac{11}4" /> from <Katex tex="P" />, which is on the <Katex tex="x" />-axis; that distance is achieved only when the vertex sits directly above <Katex tex="P" />.</>,
   },
   {
     working: <Katex display tex="-\tfrac32+k = 1" />,
@@ -196,6 +202,7 @@ export default function MethodsQ7_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Point Off Curve"
         marks={1}
         statement={<>Show that point <Katex tex="P" /> is not on the graph of <Katex tex="y=f(x)" />.</>}
         examinerReport={EXAM_A}
@@ -203,13 +210,16 @@ export default function MethodsQ7_2020Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
-        Consider a point <Katex tex="Q\bigl(a,f(a)\bigr)" /> to be a point on the graph of{' '}
-        <Katex tex="f" />.
+<div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          Consider a point <Katex tex="Q\bigl(a,f(a)\bigr)" /> to be a point on the graph of{' '}
+          <Katex tex="f" />.
+        </p>
       </div>
 
       <PartCard
         letter="b.i"
+        topic="Gradient"
         marks={1}
         statement={
           <>
@@ -224,6 +234,7 @@ export default function MethodsQ7_2020Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Tangent Gradient"
         marks={1}
         statement={
           <>
@@ -238,6 +249,7 @@ export default function MethodsQ7_2020Exam1() {
 
       <PartCard
         letter="b.iii"
+        topic="Tangent Through Point"
         marks={2}
         statement={
           <>
@@ -252,6 +264,7 @@ export default function MethodsQ7_2020Exam1() {
 
       <PartCard
         letter="b.iv"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -266,6 +279,7 @@ export default function MethodsQ7_2020Exam1() {
 
       <PartCard
         letter="c"
+        topic="Minimum Distance"
         marks={2}
         statement={
           <>

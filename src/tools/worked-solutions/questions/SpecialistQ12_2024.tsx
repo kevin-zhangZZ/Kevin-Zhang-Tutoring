@@ -9,6 +9,19 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 5, B: 30, C: 50, D: 13 },
   answer: 'C',
+  comment: (
+    <>
+      <Katex tex="a=\dfrac{d^2x}{dt^2}" />
+      <br />
+      <Katex tex="=(k-1)^2e^{(k-1)t}" />
+      <br />
+      Substitute <Katex tex="x=e^{(k-1)t}=k+1" />
+      <br />
+      <Katex tex="\therefore a=(k-1)^2(k+1)" />
+      <br />
+      <Katex tex="=\left(k^2-1\right)(k+1)" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -18,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v = \frac{dx}{dt} = (k-1)e^{(k-1)t}" />,
-    reason: 'Chain rule.',
+    reason: <>Chain rule.</>,
   },
   {
     working: <Katex display tex="a = \frac{dv}{dt} = (k-1)^2e^{(k-1)t} = (k-1)^2 x" />,
@@ -26,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = k+1 \implies a = (k-1)^2(k+1)" />,
-    reason: 'Substituting the given position.',
+    reason: <>Substituting the given position.</>,
   },
   {
     working: <Katex display tex="(k-1)^2(k+1) = (k-1)\bigl[(k-1)(k+1)\bigr] = (k-1)\left(k^2-1\right)" />,
@@ -34,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(k^2-1\right)(k-1)}" />,
-    reason: <>Option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. (The report's comment ends with <Katex tex="=\left(k^2-1\right)(k+1)" />, which is option <b>B</b> — a slip: <Katex tex="(k-1)^2(k+1)=\left(k^2-1\right)(k-1)" />.)</>,
   },
 ]
 

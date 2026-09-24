@@ -11,9 +11,12 @@ const EXAM: SAExaminerStats = {
   average: 2.2,
   comment: (
     <>
-      It was common for students to use the same parameter for both lines. This did not
-      result in viable equations to solve, and in this case students were ineligible for full
-      marks.
+      Students needed to express the two lines in parametric form using different parameters for
+      each line and solving the resulting equations for the parameters. Substituting back gave the
+      point of intersection of the lines.
+      <br />
+      It was common for students to use the same parameter for both lines. This did not result in
+      viable equations to solve. In this case, students were ineligible for full marks.
     </>
   ),
 }
@@ -29,19 +32,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2+s = 1-u, \qquad 3+2s = 3-u, \qquad 1-s = 2+u" />,
-    reason: 'Equating components gives three equations in two unknowns.',
+    reason: <>Equating components gives three equations in two unknowns.</>,
   },
   {
     working: <Katex display tex="\text{from the } \underset{\sim}{j} \text{ equation: } 2s = -u \implies u = -2s" />,
-    reason: 'The simplest of the three.',
+    reason: <>The simplest of the three.</>,
   },
   {
     working: <Katex display tex="\text{substituting into } 2+s=1-u: \quad 2+s = 1+2s \implies s = 1, \ u = -2" />,
-    reason: 'Any two of the three equations determine the parameters.',
+    reason: <>Any two of the three equations determine the parameters.</>,
   },
   {
     working: <Katex display tex="\text{check the third: } 1-1 = 0 \ \text{ and } \ 2+(-2) = 0 \ \checkmark" />,
-    reason: 'The third equation must hold too — that is what confirms the lines really intersect rather than being skew.',
+    reason: <>The third equation must hold too — that is what confirms the lines really intersect rather than being skew.</>,
   },
   {
     working: <Katex display tex="\boxed{(3,\,5,\,0)}" />,
@@ -74,9 +77,9 @@ export default function SpecialistQ2_2025Exam1() {
         <Background>
           <p>
             Two lines in space meet at a single <em>point</em>, but the two parameters at that
-            point are generally different. Using one letter for both is the single mistake
-            that cost most of the marks here: it asks the two lines to reach the point at the
-            same parameter value, which they do not.
+            point are generally different. Using one letter for both asks the two lines to
+            reach the point at the same parameter value, which they do not — the report notes
+            it was common, and those students were ineligible for full marks.
           </p>
           <p>
             Three equations for two unknowns means the system is overdetermined. Solving two

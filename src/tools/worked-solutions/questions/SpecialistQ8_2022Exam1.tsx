@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac12v^2 = \int -4x\,dx = -2x^2+c" />,
-    reason: 'Antidifferentiate both sides with respect to x.',
+    reason: <>Antidifferentiate both sides with respect to x.</>,
   },
   {
     working: <Katex display tex="x=0,\ v=-2: \quad \frac12(-2)^2 = 0+c \implies c = 2" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac12v^2 = -2x^2+2 \implies v^2 = 4-4x^2 = 4\left(1-x^2\right)" />,
-    reason: 'Multiplying through by 2.',
+    reason: <>Multiplying through by 2.</>,
   },
   {
     working: <Katex display tex="v = \pm2\sqrt{1-x^2}" />,
@@ -46,7 +46,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{v = -2\sqrt{1-x^2}, \quad -1\le x\le1}" />,
-    reason: <>The negative root throughout — the sign is the mark the report says students most often lost. Check: at <Katex tex="x=0" />, <Katex tex="v=-2" /> ✓.</>,
+    reason: <>The negative root throughout — the report notes a number of students chose the incorrect sign. Check: at <Katex tex="x=0" />, <Katex tex="v=-2" />.</>,
   },
 ]
 

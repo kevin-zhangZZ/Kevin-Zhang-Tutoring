@@ -27,15 +27,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\tan(60^\circ) = \frac{r}{h} \;\implies\; r = h\tan(60^\circ) = h\sqrt3" />,
-    reason: 'The semi-vertex angle relates the base radius to the height of the cone at every instant.',
+    reason: <>The semi-vertex angle relates the base radius to the height of the cone at every instant.</>,
   },
   {
     working: <Katex display tex="V = \frac13\pi r^2 h = \frac13\pi (h\sqrt3)^2 h = \pi h^3" />,
-    reason: 'Substitute r into the cone volume formula, expressing V purely in terms of h.',
+    reason: <>Substitute r into the cone volume formula, expressing V purely in terms of h.</>,
   },
   {
     working: <Katex display tex="\frac{dV}{dt} = 3\pi h^2 \frac{dh}{dt}" />,
-    reason: 'Differentiate with respect to t (chain rule).',
+    reason: <>Differentiate with respect to t (chain rule).</>,
   },
   {
     working: <Katex display tex="1.5 = 3\pi (0.5)^2 \frac{dh}{dt} = 0.75\pi\,\frac{dh}{dt}" />,
@@ -43,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dh}{dt} = \frac{1.5}{0.75\pi} = \frac{2}{\pi} \approx 0.64}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b>, <Katex tex="\tfrac{2}{3\pi}\approx0.21" />, is what you get by leaving the <Katex tex="\tfrac13" /> out of the cone's volume.</>,
   },
 ]
 

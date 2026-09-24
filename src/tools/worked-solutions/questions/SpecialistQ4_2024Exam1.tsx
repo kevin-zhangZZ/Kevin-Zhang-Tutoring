@@ -12,10 +12,10 @@ const EXAM_A: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      While many students successfully found{' '}
-      <Katex tex="\cos(\theta)=-\tfrac{1}{\sqrt2}" />, not all were able to find the correct
+      While many students successfully found that{' '}
+      <Katex tex="\cos(\theta)=-\dfrac{1}{\sqrt2}" />, not all were able to find the correct
       angle (in degrees or radians) between the vectors. The result{' '}
-      <Katex tex="\tfrac{\pi}{4}" /> was frequently seen.
+      <Katex tex="\theta=\dfrac{\pi}{4}" /> was frequently seen.
     </>
   ),
 }
@@ -25,8 +25,11 @@ const EXAM_B: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      This question was answered well. Occasional transcription errors were observed, as were
-      algebraic errors. Some students did not give both values of <Katex tex="n" />.
+      This question was answered well, with many students making good progress towards finding{' '}
+      <Katex tex="\left|\underset{\sim}{a}\times\underset{\sim}{c}\right|" />.
+      <br />
+      Occasional transcription errors were observed, as were algebraic errors. Some students
+      did not give both values of <Katex tex="n" />.
     </>
   ),
 }
@@ -38,15 +41,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{a}\right| = \sqrt{0+9+9} = 3\sqrt2, \qquad \left|\underset{\sim}{b}\right| = \sqrt{4+1+4} = 3" />,
-    reason: 'Both magnitudes.',
+    reason: <>Both magnitudes.</>,
   },
   {
     working: <Katex display tex="\cos(\theta) = \frac{-9}{3\sqrt2\times3} = \frac{-9}{9\sqrt2} = -\frac{1}{\sqrt2}" />,
-    reason: 'The standard formula. A negative cosine means an obtuse angle — the sign is the thing to hold onto.',
+    reason: <>The standard formula. A negative cosine means an obtuse angle — the sign is the thing to hold onto.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = \frac{3\pi}{4} \ \left(=135^\circ\right)}" />,
-    reason: <>Not <Katex tex="\tfrac{\pi}{4}" />, which is what dropping the minus sign gives and was the report's named error. The angle between two vectors is taken in <Katex tex="[0,\pi]" />.</>,
+    reason: <>Not <Katex tex="\tfrac{\pi}{4}" />, which is what dropping the minus sign gives — the report notes that result was frequently seen. The angle between two vectors is taken in <Katex tex="[0,\pi]" />.</>,
   },
 ]
 
@@ -62,23 +65,23 @@ const ROWS_B: WorkingRow[] = [
         tex="\underset{\sim}{a}\times\underset{\sim}{c} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\0 & 3 & 3\\n & 2 & 1\end{vmatrix}"
       />
     ),
-    reason: 'Setting up the determinant.',
+    reason: <>Setting up the determinant.</>,
   },
   {
     working: <Katex display tex="= (3-6)\underset{\sim}{i} - (0-3n)\underset{\sim}{j} + (0-3n)\underset{\sim}{k} = -3\underset{\sim}{i}+3n\underset{\sim}{j}-3n\underset{\sim}{k}" />,
-    reason: 'Watch the middle sign — the j component carries a minus in front of its minor.',
+    reason: <>Watch the middle sign — the j component carries a minus in front of its minor.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{a}\times\underset{\sim}{c}\right| = \sqrt{9+9n^2+9n^2} = 3\sqrt{1+2n^2}" />,
-    reason: 'Taking the factor of 3 out from under the root.',
+    reason: <>Taking the factor of 3 out from under the root.</>,
   },
   {
     working: <Katex display tex="9 = 3\sqrt{1+2n^2} \implies 3 = \sqrt{1+2n^2} \implies 9 = 1+2n^2" />,
-    reason: 'Setting the dot product equal to the magnitude and squaring.',
+    reason: <>Setting the dot product equal to the magnitude and squaring.</>,
   },
   {
     working: <Katex display tex="\boxed{n^2 = 4 \implies n = \pm2}" />,
-    reason: <>Both values, and both are integers as required. Giving only <Katex tex="n=2" /> cost a mark.</>,
+    reason: <>Both values, and both are integers as required. The report notes some students did not give both values of <Katex tex="n" />.</>,
   },
 ]
 
@@ -93,7 +96,7 @@ export default function SpecialistQ4_2024Exam1() {
           <Katex tex="\underset{\sim}{b}=2\underset{\sim}{i}-\underset{\sim}{j}-2\underset{\sim}{k}" />{' '}
           and{' '}
           <Katex tex="\underset{\sim}{c}=n\underset{\sim}{i}+2\underset{\sim}{j}+\underset{\sim}{k}" />,
-          where <Katex tex="n\in\mathbb{Z}" />.
+          where <Katex tex="n\in Z" />.
         </p>
       </div>
 
@@ -101,9 +104,8 @@ export default function SpecialistQ4_2024Exam1() {
         <Background>
           <p>
             Both parts hinge on signs. In part a. the dot product is negative, so the angle
-            is obtuse — the single most common loss of marks was quoting{' '}
-            <Katex tex="\tfrac{\pi}{4}" /> after finding{' '}
-            <Katex tex="\cos\theta=-\tfrac{1}{\sqrt2}" />.
+            is obtuse — the report notes <Katex tex="\tfrac{\pi}{4}" /> was frequently seen,
+            even from students who had found <Katex tex="\cos\theta=-\tfrac{1}{\sqrt2}" />.
           </p>
           <p>
             In part b., squaring produces <Katex tex="n^2=4" />, and a squared unknown has{' '}
@@ -114,6 +116,7 @@ export default function SpecialistQ4_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Angle Between Vectors"
         marks={2}
         statement={
           <>
@@ -128,6 +131,7 @@ export default function SpecialistQ4_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Dot & Cross Product"
         marks={2}
         statement={
           <>

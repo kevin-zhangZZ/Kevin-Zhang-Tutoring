@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac29\int_0^\infty x^2e^{-x^2/9}\,dx" />,
-    reason: 'Collecting the powers of x.',
+    reason: <>Collecting the powers of x.</>,
   },
   {
     working: <Katex display tex="\int_0^\infty x^2e^{-bx^2}dx = \frac14\sqrt{\frac{\pi}{b^3}}, \quad b = \tfrac19" />,
@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="E(X) = \frac29\cdot\frac{27\sqrt\pi}{4} = \frac{3\sqrt\pi}{2}" />,
-    reason: 'A surprisingly clean exact form.',
+    reason: <>A surprisingly clean exact form.</>,
   },
   {
     working: <Katex display tex="\boxed{2.659}" />,
@@ -47,7 +47,7 @@ export default function MethodsQ14_2022() {
           <p className="py-1">
             <Katex
               display
-              tex="f(x)=\begin{cases}\dfrac29xe^{-\frac19x^2}, & x\ge0\\[6pt] 0, & x<0\end{cases}"
+              tex="f(x)=\begin{cases}\dfrac29xe^{-\frac19x^2} & x\ge0\\[6pt] 0 & x<0\end{cases}"
             />
           </p>
           <p>

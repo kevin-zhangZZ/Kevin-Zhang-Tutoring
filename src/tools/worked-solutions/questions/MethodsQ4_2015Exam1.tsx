@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import cubicSrc from './meth-2015exam1-q4b-cubic.png'
+import cubicSrc from './meth-2015e1-q4b-cubic.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [14, 24, 62],
@@ -28,6 +28,8 @@ const EXAM_B: SAExaminerStats = {
     <>
       This question was generally answered well. Students were wary of the restricted
       domain, though errors occurred with the calculation or the placement of the endpoints.
+      While labelling of intercepts and turning points was not required by this question, a
+      correct graph was required to be awarded full marks.
     </>
   ),
 }
@@ -38,9 +40,11 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       Most students recalled the average value definition, which was not stated on the
-      formula sheet, but then did not integrate correctly. The main error was the
-      misplacement of <Katex tex="\tfrac12" /> in the integrand. Some students confused
-      average value with average rate of change, instead finding a gradient.
+      formula sheet, but then did not integrate correctly. The main error in student
+      responses was the misplacement of <Katex tex="\tfrac12" /> in the integrand. Some
+      students split the integration; for example,{' '}
+      <Katex tex="\tfrac12\left(\int_0^1 f(x)\,dx+\int_1^2 f(x)\,dx\right)" />. Some students
+      confused average value with average rate of change, instead finding a gradient.
     </>
   ),
 }
@@ -119,6 +123,7 @@ export default function MethodsQ4_2015Exam1() {
 
       <PartCard
         letter="a"
+        topic="Stationary Points"
         marks={2}
         statement={<>Find the coordinates of the stationary points of the function.</>}
         examinerReport={EXAM_A}
@@ -126,15 +131,19 @@ export default function MethodsQ4_2015Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
+      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+        The rule for <Katex tex="f" /> can also be expressed as{' '}
+        <Katex tex="f(x)=\tfrac12(x-1)(x+2)^2" />.
+      </div>
+
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={2}
         statement={
           <>
-            The rule for <Katex tex="f" /> can also be expressed as{' '}
-            <Katex tex="f(x)=\tfrac12(x-1)(x+2)^2" />. Sketch the graph of{' '}
-            <Katex tex="f" />, clearly indicating axis intercepts and turning points. Label
-            the end points with their coordinates.
+            On the axes below, sketch the graph of <Katex tex="f" />, clearly indicating axis
+            intercepts and turning points. Label the end points with their coordinates.
           </>
         }
         examinerReport={EXAM_B}
@@ -143,7 +152,7 @@ export default function MethodsQ4_2015Exam1() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={cubicSrc}
-            alt="The cubic y = ½(x−1)(x+2)² drawn only on [−3, 2]: starting at (−3, −2), rising to touch the x-axis at the maximum (−2, 0), falling to the minimum (0, −2), then rising through (1, 0) to the endpoint (2, 8)"
+            alt="This site's sketch, on VCAA's −8 to 8 grid, of the cubic y = ½(x−1)(x+2)² drawn only on [−3, 2]: starting at (−3, −2), rising to touch the x-axis at the maximum (−2, 0), falling to the minimum (0, −2), then rising through (1, 0) to the endpoint (2, 8)"
             className="w-full max-w-[400px]"
           />
         </div>
@@ -151,6 +160,7 @@ export default function MethodsQ4_2015Exam1() {
 
       <PartCard
         letter="c"
+        topic="Average Value"
         marks={2}
         statement={
           <>

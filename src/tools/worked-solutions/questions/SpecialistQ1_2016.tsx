@@ -10,21 +10,21 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 11, B: 12, C: 11, D: 4, E: 61 },
   answer: 'E',
   noAnswer: 1,
-  comment: <>Write <Katex tex="\dfrac{x}{3}=\mathrm{cosec}^2(t)" />, <Katex tex="\dfrac{y+1}{4}=\cot(t)" />, then eliminate <Katex tex="t" />.</>,
+  comment: <><Katex tex="\dfrac{x}{3}=\mathrm{cosec}^2(t),\ \dfrac{y+1}{4}=\cot(t)" /> then eliminate <Katex tex="t" /></>,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{x}{3} = \mathrm{cosec}^2(t), \qquad \frac{y+1}{4} = \cot(t)" />,
-    reason: 'Isolate the two trig expressions from the given parametric equations.',
+    reason: <>Isolate the two trig expressions from the given parametric equations.</>,
   },
   {
     working: <Katex display tex="\mathrm{cosec}^2(t) - \cot^2(t) = 1" />,
-    reason: 'The Pythagorean identity that links cosec and cot — the natural way to eliminate t.',
+    reason: <>The Pythagorean identity linking <Katex tex="\mathrm{cosec}" /> and <Katex tex="\cot" /> (divide <Katex tex="\sin^2+\cos^2=1" /> by <Katex tex="\sin^2" />) — the natural way to eliminate <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\frac{x}{3} - \left(\frac{y+1}{4}\right)^2 = 1" />,
-    reason: 'Substitute both expressions in.',
+    reason: <>Substitute both expressions in.</>,
   },
   {
     working: (
@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(y+1)^2 = \dfrac{16(x-3)}{3}}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>, a parabola. Option B (12%) has the sign slip <Katex tex="x+3" />; options A and C both contain <Katex tex="\tfrac{x^2}{9}" />, as if <Katex tex="x" /> were <Katex tex="3\,\mathrm{cosec}(t)" /> — but <Katex tex="x" /> is already <Katex tex="3\,\mathrm{cosec}^2(t)" />, so it appears unsquared.</>,
   },
 ]
 

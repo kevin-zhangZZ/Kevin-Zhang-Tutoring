@@ -25,7 +25,11 @@ const EXAM_B: SAExaminerStats = {
       The majority of students realised that this was a separable differential equation, but
       many made errors in the subsequent integration with the arbitrary constant of
       integration frequently missing. Some students made transcription errors that
-      fundamentally changed the problem.
+      fundamentally changed the problem. Others encountered arithmetic or algebraic issues.
+      Many students took the common factor of <Katex tex="2" /> from the{' '}
+      <Katex tex="16+2t" /> expression and evaluated{' '}
+      <Katex tex="\dfrac12\displaystyle\int\dfrac{1}{8+t}\,dt" />. This unnecessary
+      manipulation made subsequent calculations more difficult for these students.
     </>
   ),
 }
@@ -37,7 +41,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Rate in} = 0 \ \text{kg/min}" />,
-    reason: <>Pure water flows in, so it carries no salt — the inflow rate of <em>salt</em> is zero even though the inflow rate of liquid is <Katex tex="5" /> L/min. The report says failing to state this explicitly was the single most common reason for losing the mark.</>,
+    reason: <>Pure water flows in, so it carries no salt — the inflow rate of <em>salt</em> is zero even though the inflow rate of liquid is <Katex tex="5" /> L/min. The report says the most common error was failing to note this explicitly.</>,
   },
   {
     working: <Katex display tex="V(t) = 16 + (5-3)t = 16+2t \ \text{ litres}" />,
@@ -52,7 +56,7 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Concentration times the outflow rate of <Katex tex="3" /> L/min.</>,
   },
   {
-    working: <Katex display tex="\boxed{\frac{dQ}{dt} = 0 - \frac{3Q}{16+2t} = -\frac{3Q}{16+2t}} \ \checkmark" />,
+    working: <Katex display tex="\boxed{\frac{dQ}{dt} = 0 - \frac{3Q}{16+2t} = -\frac{3Q}{16+2t}}" />,
     reason: <>As required. Negative throughout, which is right — with no salt coming in, the amount can only fall.</>,
   },
 ]
@@ -68,7 +72,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e(Q) = -\frac32\log_e(16+2t) + c" />,
-    reason: <>The <Katex tex="\tfrac12" /> comes from the chain rule on <Katex tex="16+2t" />, giving <Katex tex="-3\times\tfrac12=-\tfrac32" />. Keep the constant — the report says it was frequently missing, and without it the initial condition cannot be applied.</>,
+    reason: <>The <Katex tex="\tfrac12" /> comes from the chain rule on <Katex tex="16+2t" />, giving <Katex tex="-3\times\tfrac12=-\tfrac32" />. There is no need to take out the common factor of <Katex tex="2" /> first — the report says that made the later steps harder for many students. Keep the constant — the report says it was frequently missing, and without it the initial condition cannot be applied.</>,
   },
   {
     working: <Katex display tex="Q = e^c(16+2t)^{-3/2} = \frac{A}{(16+2t)^{3/2}}" />,
@@ -101,12 +105,12 @@ export default function SpecialistQ8_2018Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Show that the differential equation for <Katex tex="Q" />, the number of kilograms of salt in the tank after <Katex tex="t" /> minutes, is given by <Katex tex="\dfrac{dQ}{dt}=-\dfrac{3Q}{16+2t}" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Mixing Problem" marks={1} statement={<>Show that the differential equation for <Katex tex="Q" />, the number of kilograms of salt in the tank after <Katex tex="t" /> minutes, is given by <Katex tex="\dfrac{dQ}{dt}=-\dfrac{3Q}{16+2t}" />.</>} examinerReport={EXAM_A}>
         <Background>
           <p>
             Two details make this problem the shape it is. The water coming in is{' '}
-            <em>pure</em>, so the rate of salt entering is zero — say so, because that is the
-            mark. And the inflow exceeds the outflow, so the volume grows steadily rather
+            <em>pure</em>, so the rate of salt entering is zero — say so explicitly; the report
+            says leaving it out was the most common error. And the inflow exceeds the outflow, so the volume grows steadily rather
             than staying at <Katex tex="16" /> L; that growing denominator is what puts the{' '}
             <Katex tex="16+2t" /> into the equation.
           </p>
@@ -114,7 +118,7 @@ export default function SpecialistQ8_2018Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={3} statement={<>Solve the differential equation given in part a. to find <Katex tex="Q" /> as a function of <Katex tex="t" />. Express your answer in the form <Katex tex="Q=\dfrac{a}{(16+2t)^{b/c}}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are positive integers.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Separable DE" marks={3} statement={<>Solve the differential equation given in part a. to find <Katex tex="Q" /> as a function of <Katex tex="t" />. Express your answer in the form <Katex tex="Q=\dfrac{a}{(16+2t)^{b/c}}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are positive integers.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>

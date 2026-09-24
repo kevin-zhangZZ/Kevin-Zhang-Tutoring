@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={graphSrc} alt="Graph of y = eˣ/(x−1): a left branch hugging y = 0 and falling to −∞ at x = 1, and a right branch dropping from +∞ to a minimum at (2, e²) then rising" className="w-full max-w-[360px]" />
+        <img src={graphSrc} alt="Graph of y = eˣ/(x − 1): a left branch approaching the asymptote y = 0, passing through (0, −1) and falling to −∞ at the asymptote x = 1, and a right branch dropping from +∞ to a minimum at (2, e²) then rising — this site's own explanatory figure" className="w-full max-w-[360px]" />
       </div>
     ),
     reason: <>Four of the five features are visible immediately; the question is which one is missing.</>,
@@ -58,7 +58,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Option E}}" />,
-    reason: <>The only feature the graph does not have.</>,
+    reason: <>The only feature the graph does not have. Matches option <b>E</b>. Options <b>A</b>, <b>B</b> and <b>D</b> are all present, and so is <b>C</b> — the popular distractor — since, as the report notes, there is a local minimum at <Katex tex="x=2" />.</>,
   },
 ]
 

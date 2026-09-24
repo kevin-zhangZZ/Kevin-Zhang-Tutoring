@@ -7,8 +7,8 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import cubicSrc from './meth-2017exam2-q1-cubic.png'
-import shadedSrc from './meth-2017exam2-q1d-shaded.png'
+import cubicSrc from './meth-2017e2-q1-cubic.png'
+import shadedSrc from './meth-2017e2-q1d-shaded.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 19, 74],
@@ -53,10 +53,10 @@ const EXAM_CI: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      As in Question 1b.ii. some students did their solutions by hand and made arithmetic
+      As in Question 1bii. some students did their solutions by hand and made arithmetic
       errors, especially sign errors. This would have been time consuming.{' '}
       <Katex tex="\sqrt{2^2+(2-2k)^2}=2+2-2k" /> was sometimes given. Some incorrect answers
-      contained <Katex tex="\pm" />. When defining <Katex tex="g(x)=x^3-kx" /> on the
+      contained <Katex tex="x" />. When defining <Katex tex="g(x)=x^3-kx" /> on the
       technology, a multiplication sign must be inserted between <Katex tex="k" /> and{' '}
       <Katex tex="x" />.
     </>
@@ -68,7 +68,7 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Students who answered Question 1c.i. correctly were generally able to answer this
+      Students who answered Question 1ci. correctly were generally able to answer this
       question. Some students gave only one value for <Katex tex="k" />.
     </>
   ),
@@ -79,7 +79,7 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      A common incorrect answer was <Katex tex="a=-\sqrt{k+1}" />. By inspection of the graph,
+      A common incorrect answer was <Katex tex="a=\pm\sqrt{k+1}" />. By inspection of the graph,
       the answer was positive. Some students found <Katex tex="k" /> in terms of{' '}
       <Katex tex="a" />, instead of <Katex tex="a" /> in terms of <Katex tex="k" />.
     </>
@@ -91,12 +91,14 @@ const EXAM_DII: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      <Katex tex="\int_0^{\sqrt{k+1}}x-x^3-kx\,dx" /> was a common error, leaving out the
-      brackets. To avoid these errors it would have been better to use the expression{' '}
+      <Katex tex="\int_0^{\sqrt{k+1}}\left(x-x^3-kx\right)dx" /> was a common error, leaving
+      out the brackets in <Katex tex="\int_0^{\sqrt{k+1}}\left(x-(x^3-kx)\right)dx" />. To avoid
+      these errors it would have been better to use the expression{' '}
       <Katex tex="\int_0^{\sqrt{k+1}}\bigl(x-g(x)\bigr)dx" />. Some students overcomplicated
       the question by breaking up the areas into different sections. The easiest approach was
-      to use "upper function subtract lower function". There was evidence that students
-      substituted <Katex tex="\sqrt{k-1}" /> instead of <Katex tex="\sqrt{k+1}" />.
+      to use 'upper function subtract lower function'. There was evidence that students
+      substituted <Katex tex="k+1" /> instead of <Katex tex="\sqrt{k+1}" /> and this resulted
+      in the answer of <Katex tex="\dfrac{-(k-3)(k+1)}{4}" />.
     </>
   ),
 }
@@ -108,7 +110,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3x^2-5=0 \implies x=\pm\sqrt{\frac53}=\pm\frac{\sqrt{15}}{3}" />,
-    reason: <>Rationalising: <Katex tex="\sqrt{\tfrac53}=\tfrac{\sqrt5}{\sqrt3}=\tfrac{\sqrt{15}}{3}" />. Exact form is required — the report notes decimals scored zero.</>,
+    reason: <>Rationalising: <Katex tex="\sqrt{\tfrac53}=\tfrac{\sqrt5}{\sqrt3}=\tfrac{\sqrt{15}}{3}" />. Exact form is required — the report says exact answers were needed for full marks.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{\sqrt{15}}{3}\right) = \frac{15\sqrt{15}}{27}-\frac{5\sqrt{15}}{3} = \frac{5\sqrt{15}}{9}-\frac{15\sqrt{15}}{9}" />,
@@ -200,7 +202,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k=1 \text{ or } k=\frac73}" />,
-    reason: <>Both are positive, so both are valid. The report notes that many students found only one of them — always check whether a quadratic has a second usable root.</>,
+    reason: <>Both are positive, so both are valid. The report notes that some students found only one of them — always check whether a quadratic has a second usable root.</>,
   },
 ]
 
@@ -219,7 +221,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \sqrt{k+1}}" />,
-    reason: <>The diagram puts <Katex tex="(a,a)" /> in the first quadrant, so take the positive root. The report lists <Katex tex="-\sqrt{k+1}" /> as the common error.</>,
+    reason: <>The diagram puts <Katex tex="(a,a)" /> in the first quadrant, so take the positive root. The report lists <Katex tex="\pm\sqrt{k+1}" /> as a common incorrect answer.</>,
   },
 ]
 
@@ -245,12 +247,12 @@ const ROWS_DII: WorkingRow[] = [
     reason: <>Because <Katex tex="\left(\sqrt{k+1}\right)^2=k+1" /> and <Katex tex="\left(\sqrt{k+1}\right)^4=(k+1)^2" /> — the surd disappears completely.</>,
   },
   {
-    working: <Katex display tex="\boxed{A = \frac{(k+1)^2}{4}}" />,
-    reason: <>Check with the original <Katex tex="f" />, where <Katex tex="k=5" />: the area would be <Katex tex="\tfrac{36}{4}=9" />, which is a plausible size for that region.</>,
-  },
-  {
     working: <Cas fn="define">Define g(x) = x^3 - k·x</Cas>,
     reason: <>On CAS, store <Katex tex="g" /> first and then integrate <Katex tex="x-g(x)" /> with the integral template. The report warns that the multiplication sign between <Katex tex="k" /> and <Katex tex="x" /> is not optional — without it the CAS reads <Katex tex="kx" /> as a single new variable.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{A = \frac{(k+1)^2}{4}}" />,
+    reason: <>Check with the original <Katex tex="f" />, where <Katex tex="k=5" />: the area would be <Katex tex="\tfrac{36}{4}=9" />, which is a plausible size for that region.</>,
   },
 ]
 
@@ -272,12 +274,13 @@ export default function MethodsQ1_2017Exam2() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the coordinates of the turning points.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Turning Points" marks={2} statement={<>Find the coordinates of the turning points.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b.i"
+        topic="Line Equation"
         marks={2}
         statement={
           <>
@@ -291,7 +294,7 @@ export default function MethodsQ1_2017Exam2() {
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={1} statement={<>Find the distance <Katex tex="AB" />.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Distance" marks={1} statement={<>Find the distance <Katex tex="AB" />.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
@@ -303,6 +306,7 @@ export default function MethodsQ1_2017Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Distance"
         marks={2}
         statement={
           <>
@@ -327,6 +331,7 @@ export default function MethodsQ1_2017Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Find Parameter"
         marks={1}
         statement={
           <>
@@ -356,6 +361,7 @@ export default function MethodsQ1_2017Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Find Parameter"
         marks={1}
         statement={
           <>
@@ -369,6 +375,7 @@ export default function MethodsQ1_2017Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Area Between Curves"
         marks={2}
         statement={
           <>

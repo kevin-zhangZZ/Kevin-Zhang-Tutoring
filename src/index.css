@@ -10,7 +10,7 @@
   }
 
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Aptos', 'Inter', system-ui, sans-serif;
   }
 
   body {
@@ -25,6 +25,32 @@
 /* KaTeX override for dark mode */
 .dark .katex {
   color: inherit;
+}
+
+/* The worked solutions' Questions sheet on phones slides up as it opens. */
+@keyframes sheet-in {
+  from { transform: translateY(40px); opacity: 0.5; }
+  to { transform: none; opacity: 1; }
+}
+/* The sidebar's "Start here: choose a year" bubble bobs towards the year control. */
+@keyframes bob-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+@keyframes bob-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*='animate-[sheet-in'], [class*='animate-[bob-'] { animation: none !important; }
+}
+
+/* Worked solutions on phones: display maths a little smaller (KaTeX's default is 1.21em), so
+   more working lines fit the screen without a sideways scroll. */
+@media (max-width: 639px) {
+  .ws-detail .katex-display > .katex {
+    font-size: 1.1em;
+  }
 }
 
 /* Smooth toggle transitions */

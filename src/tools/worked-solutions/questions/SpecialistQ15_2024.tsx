@@ -10,16 +10,33 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 36, B: 12, C: 44, D: 8 },
   answer: 'A',
+  comment: (
+    <>
+      <Katex tex="x=\sin(t)" /> period is <Katex tex="2\pi" />
+      <br />
+      <Katex tex="y=\cos(2t)" /> period is <Katex tex="\pi" />
+      <br />
+      <Katex tex="=1-2\sin^2(t)" />
+      <br />
+      <Katex tex="=1-2x^2" />
+      <br />
+      The motion has period <Katex tex="2\pi" />. Starting at <Katex tex="(0,1)" /> at{' '}
+      <Katex tex="t=0" />, after visiting <Katex tex="(1,-1)" /> at{' '}
+      <Katex tex="t=\dfrac{\pi}{2}" /> and <Katex tex="(-1,-1)" /> at{' '}
+      <Katex tex="t=\dfrac{3\pi}{2}" />, the body returns to <Katex tex="(0,1)" /> at{' '}
+      <Katex tex="t=2\pi" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}(t) = \sin(t)\underset{\sim}{i} + \cos(2t)\underset{\sim}{j},\quad x=\sin(t),\ y=\cos(2t)" />,
-    reason: 'Position vector — read off the Cartesian coordinates.',
+    reason: <>Position vector — read off the Cartesian coordinates.</>,
   },
   {
     working: <Katex display tex="y = \cos(2t) = 1-2\sin^2(t) = 1-2x^2" />,
-    reason: 'Double-angle identity eliminates the parameter — a parabola opening downward.',
+    reason: <>Double-angle identity eliminates the parameter — a parabola opening downward.</>,
   },
   {
     working: (

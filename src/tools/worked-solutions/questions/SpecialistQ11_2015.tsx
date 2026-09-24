@@ -5,7 +5,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
-import vtSrc from './spec-2015e2-mcq11-vt.png'
+import vtSrc from './spec-2015-mcq11-vt.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 2, B: 5, C: 18, D: 66, E: 8 },
@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(2.5,\ 3.5)}" />,
-    reason: <>Option D: the areas balance near <Katex tex="t=3" />. By <Katex tex="t=3.5" /> the negative area clearly exceeds the positive, and the graph is steepest near <Katex tex="t=3" />, so it cannot be as late as option E either.</>,
+    reason: <>Matches option <b>D</b>: the areas balance near <Katex tex="t=3" />. By <Katex tex="t=3.5" /> the negative area clearly exceeds the positive, so it cannot be as late as option E. Option C (18%) is the change of direction at <Katex tex="t=2" />, not the return.</>,
   },
 ]
 

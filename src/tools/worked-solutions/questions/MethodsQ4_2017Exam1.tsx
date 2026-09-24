@@ -14,8 +14,8 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       Most students identified the correct formula; however, many were unable to correctly
-      transpose the inequality to solve for <Katex tex="n" />, or to correctly manipulate the
-      arithmetic involving rational numbers. Some students had poor use of notation, in that
+      transpose the inequality to solve for <Katex tex="n" /> or to correctly manipulate the
+      arithmetic involving rational numbers. Some students had poor use of notation work, in that
       they did not extend the square root sign to include <Katex tex="n" />.
     </>
   ),

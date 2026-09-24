@@ -5,7 +5,7 @@
 // against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 
 const EXAM_A: SAExaminerStats = {
@@ -14,7 +14,8 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Some students attempted to factorise by hand and obtained two correct linear factors but
-      an incorrect quadratic factor. Others used their technology to factorise appropriately.
+      an incorrect quadratic factor such as <Katex tex="x(x-2)\left(x^2-2x+4\right)" />. Others
+      used their technology to factorise appropriately.
     </>
   ),
 }
@@ -24,7 +25,7 @@ const EXAM_B: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Some students did not make the connection between part a. and part b. Others described
+      Some students did not make the connection between Question 5a. and Question 5b. Others described
       the translation as one unit in the <em>positive</em> direction of the{' '}
       <Katex tex="x" />-axis.
     </>
@@ -47,7 +48,7 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.1,
   comment: (
     <>
-      Some students used incorrect notation such as <Katex tex="(1,\infty)" />.
+      Some students used incorrect notation such as <Katex tex="(1,-\infty)" />.
     </>
   ),
 }
@@ -68,8 +69,9 @@ const EXAM_EI: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      A number of different approaches could be used. Many students were unable to set up the
-      two equations. Most students who were able to set them up answered correctly.
+      A number of different approaches could be used to answer this question. Many students
+      were unable to set up the two equations. Most students who were able to set up the two
+      equations were able to answer the question correctly.
     </>
   ),
 }
@@ -79,7 +81,7 @@ const EXAM_EII: SAExaminerStats = {
   average: 0.1,
   comment: (
     <>
-      Many students gave two solutions when only one was required, as <Katex tex="m>0" />.
+      Many students gave two solutions when only one was required as <Katex tex="m>0" />.
       Some did not give exact answers.
     </>
   ),
@@ -88,7 +90,13 @@ const EXAM_EII: SAExaminerStats = {
 const EXAM_FI: SAExaminerStats = {
   marks: [78, 22],
   average: 0.2,
-  comment: <>Some students omitted the brackets.</>,
+  comment: (
+    <>
+      Some students omitted the brackets.{' '}
+      <Katex tex="y-\left(p^4-8p\right)=4p^3-8(x-p)" /> and{' '}
+      <Katex tex="y-p^4-8p=4p^3-8(x-p)" /> were often given.
+    </>
+  ),
 }
 
 const EXAM_FII: SAExaminerStats = {
@@ -97,9 +105,11 @@ const EXAM_FII: SAExaminerStats = {
   comment: (
     <>
       Many students did not read the question carefully and tried to find the equation of the
-      tangent to <Katex tex="g(x)" /> at <Katex tex="x=\tfrac32" />;{' '}
+      tangent to <Katex tex="g(x)" /> at <Katex tex="x=\tfrac32" />.{' '}
       <Katex tex="\left(\tfrac32,-12\right)" /> was not a point on <Katex tex="g(x)" />. Some
-      did not realise that they could use their answer from the previous question.
+      did not realise that they could use their answer from the previous question. Others
+      obtained <Katex tex="p=0" /> by incorrect working. The correct answers had to be
+      obtained by correct working.
     </>
   ),
 }
@@ -176,7 +186,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d \in (-\infty,1)}" />,
-    reason: <>Equivalently <Katex tex="d<1" />. Writing <Katex tex="(1,\infty)" /> reverses it.</>,
+    reason: <>Equivalently <Katex tex="d<1" />. An interval is written smaller endpoint first — the report's example of incorrect notation, <Katex tex="(1,-\infty)" />, has them the wrong way round. Check with <Katex tex="d=0" />: the intercepts 1 and 3 are both positive ✓.</>,
   },
 ]
 
@@ -241,7 +251,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m>0 \implies 4u^3-8>0 \implies u > \sqrt[3]2 \approx 1.26" />,
-    reason: <>This is what decides which root is which — the report says most students gave both pairs.</>,
+    reason: <>This is what decides which root is which — the report says many students gave both pairs when only one was required.</>,
   },
   {
     working: <Katex display tex="\boxed{u = \frac{1+\sqrt5}{2}, \qquad v = \frac{1-\sqrt5}{2}}" />,
@@ -305,15 +315,11 @@ export default function MethodsQ5_2014Exam2() {
           <Katex tex="f(x)=(x-3)(x-1)\left(x^2+3\right)" /> and <Katex tex="g:R\to R" />,{' '}
           <Katex tex="g(x)=x^4-8x" />.
         </p>
-        <p>
-          The factorisation in part a. is not busy-work: it is what reveals that{' '}
-          <Katex tex="g" /> is simply <Katex tex="f" /> shifted sideways, and parts b. and c.
-          both depend on seeing that.
-        </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Factorisation"
         marks={2}
         statement={
           <>
@@ -323,11 +329,19 @@ export default function MethodsQ5_2014Exam2() {
         }
         examinerReport={EXAM_A}
       >
+        <Background>
+          <p>
+            The factorisation in part a. is not busy-work: it is what reveals that{' '}
+            <Katex tex="g" /> is simply <Katex tex="f" /> shifted sideways, and parts b. and c.
+            both depend on seeing that.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Translation"
         marks={1}
         statement={
           <>
@@ -342,6 +356,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Intercepts"
         marks={1}
         statement={
           <>
@@ -356,6 +371,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Intercepts"
         marks={1}
         statement={
           <>
@@ -370,6 +386,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="d"
+        topic="Number of Solutions"
         marks={1}
         statement={
           <>
@@ -391,6 +408,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Algebraic Identity"
         marks={2}
         statement={<>Find the value of <Katex tex="u^3+v^3" />.</>}
         examinerReport={EXAM_EI}
@@ -400,6 +418,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Simultaneous Equations"
         marks={1}
         statement={<>Find <Katex tex="u" /> and <Katex tex="v" /> if <Katex tex="u+v=1" />.</>}
         examinerReport={EXAM_EII}
@@ -409,6 +428,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="f.i"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -423,6 +443,7 @@ export default function MethodsQ5_2014Exam2() {
 
       <PartCard
         letter="f.ii"
+        topic="Tangent Through Point"
         marks={3}
         statement={
           <>

@@ -40,10 +40,11 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Chain rule on the log. The <Katex tex="3" /> from the inside cancels the{' '}
-        <Katex tex="3" /> in the denominator — which is why the two wrong answers the report
-        lists, <Katex tex="+3" /> and <Katex tex="+\tfrac13" />, both come from stopping one
-        step early. Equivalently <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" />, and the
-        constant differentiates away.
+        <Katex tex="3" /> in the denominator. The report's two common wrong answers each keep
+        only one of those threes: <Katex tex="+\tfrac13" /> uses <Katex tex="\tfrac{1}{3x}" />{' '}
+        without the chain-rule factor, and <Katex tex="+3" /> multiplies by <Katex tex="3" />{' '}
+        but drops the <Katex tex="3" /> underneath. Equivalently{' '}
+        <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" />, and the constant differentiates away.
       </>
     ),
   },
@@ -79,12 +80,20 @@ const ROWS_B: WorkingRow[] = [
 export default function MethodsQ2_2017Exam1() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (4 marks)</p>
+        <p>
+          Let <Katex tex="y = x\log_e(3x)" />.
+        </p>
+      </div>
+
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={2}
         statement={
           <>
-            Let <Katex tex="y = x\log_e(3x)" />. Find <Katex tex="\dfrac{dy}{dx}" />.
+            Find <Katex tex="\dfrac{dy}{dx}" />.
           </>
         }
         examinerReport={EXAM_A}
@@ -94,6 +103,7 @@ export default function MethodsQ2_2017Exam1() {
 
       <PartCard
         letter="b"
+        topic="Integral Recognition"
         marks={2}
         statement={
           <>
@@ -114,7 +124,8 @@ export default function MethodsQ2_2017Exam1() {
           <p>
             Whenever an exam question differentiates something in one part and integrates
             something similar in the next, the answer to the first part is the tool for the
-            second. Over a third of students tried to integrate from scratch and scored zero.
+            second. The report says students generally did not form the integral from their
+            previous answer, and over a third scored zero here.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />

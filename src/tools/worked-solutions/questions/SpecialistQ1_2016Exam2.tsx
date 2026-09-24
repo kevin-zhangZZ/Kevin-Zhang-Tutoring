@@ -2,12 +2,17 @@
 // f(x) = (4 + x² + x³)/x: stationary point, inflection, sketch, arc length, and setting up
 // a volume of revolution about the y-axis. Question text transcribed from the original
 // paper; VCAA supplied blank grid axes for part (c), so the sketch below is our own
-// matplotlib figure. Answers verified with scipy. Solution is original.
+// matplotlib figure, drawn on the same grid (x from −3 to 3 in halves, y from −14 to 14 in
+// twos). Answers verified with scipy. Solution is original.
+//
+// Part d.ii. (evaluating arc length from a Cartesian rule) is no longer on the study design —
+// the skip guide lists 2016 Exam 2 SAQ1d(ii) — so its statement is shown, marked as such, with
+// no worked solution (KZ's decision, Sept 2026).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import graphSrc from './spec-2016exam2-q1c-graph.png'
+import graphSrc from './spec-2016e2-q1c-graph.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 93],
@@ -39,7 +44,9 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       Students missed out on marks for ignoring the domain of the function or a lack of
-      accuracy in the placement of the endpoints. Students generally followed the
+      accuracy in the placement of the endpoints. Students are advised to use their
+      technology as a tool to support the sketching of an accurate graph rather than simply
+      copying a roughly correct shape from a screen. Students generally followed the
       instruction to label particular points but these points were not always plotted with
       appropriate accuracy. Careful attention to the axes scale is required.
     </>
@@ -51,33 +58,25 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      A variety of equivalent correct forms were presented. A common error was an integrand
+      This question was answered fairly well. A variety of equivalent correct forms were
+      presented. A common error was an integrand
       containing the square of <Katex tex="f(x)" /> rather than the square of{' '}
       <Katex tex="f'(x)" />. Other errors included incorrect terminals, sign errors within
-      the integrand, and expressions that appeared to represent the volume of a solid of
+      the integrand and expressions that appeared to represent the volume of a solid of
       revolution.
     </>
   ),
 }
 
-const EXAM_DII: SAExaminerStats = {
-  marks: [26, 74],
-  average: 0.8,
-  comment: (
-    <>
-      The majority of students who answered Question 1d.i. correctly were able to answer
-      this question correctly.
-    </>
-  ),
-}
 
 const EXAM_E: SAExaminerStats = {
   marks: [66, 34],
   average: 0.4,
   comment: (
     <>
-      This question was not answered well. A number of students incorrectly gave decimal
-      approximations for the value of <Katex tex="b" />. Some students interchanged the
+      Question 1e. was not answered well. A number of students incorrectly gave decimal
+      approximations for the value of <Katex tex="b" />. Students must note and follow the
+      general instructions given at the start of Section B. Some students interchanged the
       values of <Katex tex="b" /> and <Katex tex="c" />, but this would only be correct if
       they wrote <Katex tex="a=-\pi" />.
     </>
@@ -141,7 +140,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(-3) = \tfrac{14}{3}\approx4.67, \qquad f(3) = \tfrac{40}{3}\approx13.33" />,
-    reason: <>The two endpoints. The report says inaccurate endpoint placement was a common loss — plot them carefully against the printed scale.</>,
+    reason: <>The two endpoints. The report notes marks lost for inaccurate endpoint placement — plot them carefully against the printed scale (the right-hand endpoint sits just below the top gridline, <Katex tex="y=14" />).</>,
   },
   {
     working: <Katex display tex="\text{label } (1.11,5.95) \text{ and } (-1.59,-1.59)" />,
@@ -160,16 +159,6 @@ const ROWS_DI: WorkingRow[] = [
   },
 ]
 
-const ROWS_DII: WorkingRow[] = [
-  {
-    working: <Cas fn="nInt">nInt(√(1 + ((2x³+x²-4)/x²)²), x, -3, -0.5)</Cas>,
-    reason: <>Straight evaluation of part (d)(i).</>,
-  },
-  {
-    working: <Katex display tex="\boxed{\approx 13.18}" />,
-    reason: <>Two decimal places. Sensible: the curve runs from <Katex tex="(-3,4.67)" /> to <Katex tex="(-0.5,-8.25)" />, a straight-line distance of about <Katex tex="13.2" /> — and the curve is almost straight over that stretch.</>,
-  },
-]
 
 const ROWS_E: WorkingRow[] = [
   {
@@ -194,20 +183,19 @@ export default function SpecialistQ1_2016Exam2() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 1 (9 marks)</p>
-        <p>
-          Consider <Katex tex="f(x)=\dfrac{4+x^2+x^3}{x}" />,{' '}
-          <Katex tex="x\in R\setminus\{0\}" />.
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 1 (9 marks)</p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Stationary Point"
         marks={1}
         statement={
           <>
-            Find the stationary point of the graph of <Katex tex="f" />. Express your answer
-            in coordinate form, giving values correct to two decimal places.
+            Find the stationary point of the graph of{' '}
+            <Katex tex="f(x)=\dfrac{4+x^2+x^3}{x}" />, <Katex tex="x\in R\setminus\{0\}" />.
+            Express your answer in coordinate form, giving values correct to two decimal
+            places.
           </>
         }
         examinerReport={EXAM_A}
@@ -224,6 +212,7 @@ export default function SpecialistQ1_2016Exam2() {
 
       <PartCard
         letter="b"
+        topic="Point of Inflection"
         marks={2}
         statement={
           <>
@@ -238,6 +227,7 @@ export default function SpecialistQ1_2016Exam2() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
@@ -268,6 +258,7 @@ export default function SpecialistQ1_2016Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Arc Length"
         marks={1}
         statement={
           <>
@@ -282,15 +273,22 @@ export default function SpecialistQ1_2016Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Arc Length"
         marks={1}
         statement={<>Find the length of this curve, correct to two decimal places.</>}
-        examinerReport={EXAM_DII}
       >
-        <WorkingTable rows={ROWS_DII} />
+        <Background title="Not in the Current Study Design">
+          <p>
+            Finding the length of a curve given in Cartesian form is no longer on the Specialist
+            Mathematics study design (arc length along a vector or parametric curve still is), so
+            this part is left without a worked solution. The skip guide lists it as one to skip.
+          </p>
+        </Background>
       </PartCard>
 
       <PartCard
         letter="e"
+        topic="Volume of Revolution"
         marks={1}
         statement={
           <>

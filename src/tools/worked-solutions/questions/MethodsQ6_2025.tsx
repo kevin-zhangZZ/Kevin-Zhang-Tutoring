@@ -5,28 +5,37 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2025-mcq6-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 18, B: 50, C: 19, D: 11 },
   answer: 'B',
+  noAnswer: 1,
+  comment: (
+    <>
+      The graph of <Katex tex="f(x)=x^3+1" /> is shown below with two trapeziums. The area of the
+      trapeziums is larger than the exact area, <Katex tex="\displaystyle\int_0^1 f(x)\,dx" />.
+      <img src={reportGraphSrc} alt="The report's graph of y = x³ + 1 on [0, 1] with the two trapeziums shaded, their top edges lying above the curve" className="w-full max-w-[360px] mt-1" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{each trapezium replaces the curve by the chord joining its endpoints}" />,
-    reason: 'So the estimate is too big exactly when the chord lies above the curve — that is, when the curve is concave up.',
+    reason: <>So the estimate is too big exactly when the chord lies above the curve — that is, when the curve is concave up.</>,
   },
   {
     working: <Katex display tex="\text{overestimate} \iff f''(x) \ge 0 \ \text{ on } [0,1]" />,
-    reason: 'Concave up. Sketching the two trapezia is an equally good way to see it.',
+    reason: <>Concave up. Sketching the two trapezia is an equally good way to see it.</>,
   },
   {
     working: <Katex display tex="\text{A: } f'' = -e^x < 0; \qquad \text{C: } f'' = -3\sin(x) \le 0 \text{ on } [0,1]" />,
-    reason: 'Both concave down, so both underestimate.',
+    reason: <>Both concave down, so both underestimate.</>,
   },
   {
     working: <Katex display tex="\text{D: } f'' = \frac{-1}{(x+3)^2} < 0" />,
-    reason: 'Every logarithm is concave down, so this one underestimates too.',
+    reason: <>Every logarithm is concave down, so this one underestimates too.</>,
   },
   {
     working: <Katex display tex="\text{B: } f = x^3+1 \implies f'' = 6x \ge 0 \ \text{ on } [0,1]" />,
@@ -34,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = x^3+1}" />,
-    reason: <>Option <b>B</b>. Checking numerically: the trapezium estimate is <Katex tex="1.3125" /> against an exact <Katex tex="1.25" /> ✓.</>,
+    reason: <>Matches option <b>B</b>. Checking numerically: the trapezium estimate is <Katex tex="1.3125" /> against an exact <Katex tex="1.25" /> ✓.</>,
   },
 ]
 

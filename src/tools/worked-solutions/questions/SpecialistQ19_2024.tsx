@@ -9,16 +9,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 68, B: 8, C: 8, D: 15 },
   answer: 'A',
+  comment: (
+    <>
+      <Katex tex="\Pr\big(\text{Type II error}\big)=\Pr\big(H_0\text{ is not rejected}\,\big|\,H_1\text{ is true}\big)" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Type I: reject } H_0 \text{ when } H_0 \text{ is true}" />,
-    reason: 'A false alarm. Its probability is the significance level — option B.',
+    reason: <>A false alarm. Its probability is the significance level — option B.</>,
   },
   {
     working: <Katex display tex="\text{Type II: do not reject } H_0 \text{ when } H_0 \text{ is false}" />,
-    reason: 'A missed detection. The two errors are the two ways the decision can disagree with reality.',
+    reason: <>A missed detection. The two errors are the two ways the decision can disagree with reality.</>,
   },
   {
     working: <Katex display tex="H_0 \text{ false} \iff H_1 \text{ true}" />,
@@ -26,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{a null hypothesis is not rejected when the alternative hypothesis is true}}" />,
-    reason: <>Option <b>A</b>. Option <b>C</b> is the correct <em>decision</em> in that situation, not an error; option <b>D</b> is not a definition at all, since "doubtful" is not a statistical state — it was chosen by 15%.</>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b> is the correct <em>decision</em> in that situation, not an error; option <b>D</b> is not a definition at all, since "doubtful" is not a statistical state — it was chosen by 15%.</>,
   },
 ]
 

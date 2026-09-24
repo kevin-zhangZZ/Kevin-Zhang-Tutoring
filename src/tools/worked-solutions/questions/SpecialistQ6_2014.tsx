@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{i^{2n+3} = -ip^2}" />,
-    reason: <>Option D. Option E drops the minus sign; options A and B add <Katex tex="i" /> instead of multiplying by it.</>,
+    reason: <>Matches option <b>D</b>. Option E drops the minus sign; options A and B add <Katex tex="i" /> instead of multiplying by it.</>,
   },
 ]
 

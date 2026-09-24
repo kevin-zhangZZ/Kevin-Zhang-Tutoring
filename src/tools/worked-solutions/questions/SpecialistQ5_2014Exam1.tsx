@@ -4,7 +4,7 @@
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [19, 81],
@@ -12,7 +12,8 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was answered well, with most students understanding that a double-angle
-      formula was required. Some applied it incorrectly. Common incorrect answers were{' '}
+      formula was required. Some applied the double-angle formula incorrectly. Common
+      incorrect answers were{' '}
       <Katex tex="16" />, <Katex tex="96" /> and <Katex tex="192" />.
     </>
   ),
@@ -23,11 +24,17 @@ const EXAM_B: SAExaminerStats = {
   average: 2,
   comment: (
     <>
-      The result from part a. was often not used. There were many errors in notation, with{' '}
-      <Katex tex="dx" /> and <Katex tex="du" /> often missing. Several students used{' '}
-      <Katex tex="u=\sin(6x)" />, <Katex tex="u=\sin(3x)" />, <Katex tex="u=\cos(3x)" /> or{' '}
-      <Katex tex="u=\cos^2(6x)" /> rather than <Katex tex="u=\cos(6x)" />. Others failed to
-      change the terminals.
+      This question was answered reasonably well, but the result from Question 5a. was often
+      not used. There were many errors in notation, with <Katex tex="dx" /> and{' '}
+      <Katex tex="du" /> often missing. When performing the required substitution, several
+      students used <Katex tex="u=\sin(6x)" />, <Katex tex="u=\sin(3x)" />,{' '}
+      <Katex tex="u=\cos(3x)" /> or <Katex tex="u=\cos^2(6x)" /> rather than{' '}
+      <Katex tex="u=\cos(6x)" />. These attempts led to a more complicated solution and were
+      rarely successful. Many who used <Katex tex="u=\cos(6x)" /> then stated{' '}
+      <Katex tex="\tfrac{du}{dx}=-\sin(6x)" />, <Katex tex="6\sin(6x)" /> and sometimes{' '}
+      <Katex tex="-6\sin(x)" /> or hybrids of these. Others failed to change the terminals.
+      Many students made simplification errors and errors in exact values for circular
+      functions.
     </>
   ),
 }
@@ -37,10 +44,11 @@ const EXAM_C: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      This question was answered well by students who completed part b. successfully. Some
-      students correctly obtained <Katex tex="\sqrt3" /> but then stated{' '}
-      <Katex tex="k=\sqrt3" />. Typical errors included substituting the terminals in the
-      incorrect order.
+      This question was answered well by students who completed Question 5b. successfully.
+      There were some instances of poor arithmetic. Some students correctly obtained{' '}
+      <Katex tex="\sqrt3" /> but then stated <Katex tex="k=\sqrt3" />. Typical errors included
+      substituting the terminals in the incorrect order or being unable to correctly evaluate{' '}
+      <Katex tex="\left(\tfrac{\sqrt3}{2}\right)^3" />.
     </>
   ),
 }
@@ -114,15 +122,12 @@ export default function SpecialistQ5_2014Exam1() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (5 marks)</p>
-        <p>
-          Part a. is not a warm-up — it is what turns the integrand of parts b. and c. into
-          something a single substitution can handle.
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 5 (5 marks)</p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Double Angle"
         marks={1}
         statement={
           <>
@@ -132,11 +137,18 @@ export default function SpecialistQ5_2014Exam1() {
         }
         examinerReport={EXAM_A}
       >
+        <Background>
+          <p>
+            Part a. is not a warm-up — it is what turns the integrand of parts b. and c. into
+            something a single substitution can handle.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Substitution"
         marks={3}
         statement={
           <>
@@ -153,6 +165,7 @@ export default function SpecialistQ5_2014Exam1() {
 
       <PartCard
         letter="c"
+        topic="Definite Integral"
         marks={1}
         statement={
           <>

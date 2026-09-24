@@ -1,5 +1,5 @@
 // 2017 Mathematical Methods — Exam 2, MCQ 17. VCAA examination report: 21% correct —
-// the third-hardest MCQ in the 2017-2018 Methods Exam 2 papers.
+// the hardest MCQ on this paper.
 // Express the total area under an even function's graph, over 4 x-intercepts, as a single
 // integral expression. Question text transcribed from the original paper; the diagram is the
 // actual VCAA figure (cropped from the official exam PDF), not a redrawing. Solution is
@@ -22,18 +22,20 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="\text{Area} = \int_a^b f(x)\,dx - \int_b^c f(x)\,dx + \int_c^d f(x)\,dx = 2\int_a^b f(x)\,dx - \int_b^c f(x)\,dx" />
+      <Katex tex="\text{Area}=\int_a^b f(x)\,dx-\int_b^c f(x)\,dx+\int_c^d f(x)\,dx" />
       <br />
-      <Katex tex="= 2\int_a^b f(x)\,dx - 2\int_b^{b+c} f(x)\,dx" />, as <Katex tex="b+c=0" />, since{' '}
-      <Katex tex="f(-x)=f(x)" />.
+      <Katex tex="=2\int_a^b f(x)\,dx-\int_b^c f(x)\,dx" />
+      <br />
+      <Katex tex="=2\int_a^b f(x)\,dx-2\int_b^{b+c} f(x)\,dx" />, as <Katex tex="b+c=0" />, since{' '}
+      <Katex tex="f(-x)=f(x)" />
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: DIAGRAM,
-    reason: <>Since <Katex tex="f" /> is even, its graph is symmetric about the <Katex tex="y" />-axis, so <Katex tex="a=-d" /> and <Katex tex="b=-c" />.</>,
+    working: <Katex display tex="a=-d, \qquad b=-c" />,
+    reason: <>Since <Katex tex="f" /> is even, its graph is symmetric about the <Katex tex="y" />-axis, so the intercepts come in opposite pairs.</>,
   },
   {
     working: <Katex display tex="\text{Area} = \int_a^b f(x)\,dx \;-\; \int_b^c f(x)\,dx \;+\; \int_c^d f(x)\,dx" />,
@@ -52,7 +54,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = 2\int_a^b f(x)\,dx - 2\int_b^{b+c} f(x)\,dx}" />,
-    reason: <>Matches option <b>D</b> exactly.</>,
+    reason: <>Matches option <b>D</b>. Option B (37%, the most popular) looks right, but <Katex tex="-\int_c^b f(x)\,dx=+\int_b^c f(x)\,dx" />, so B is just <Katex tex="\int_a^d f(x)\,dx" /> — option A in disguise — and counts the region below the axis as negative.</>,
   },
 ]
 

@@ -13,8 +13,13 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="c=f(0)=18" />. Testing <Katex tex="c=17,16,\dots" />: <Katex tex="f(3)=0" />,{' '}
-      <Katex tex="f(-3)=0" />, <Katex tex="f(2)=0" /> — printed in that order: <Katex tex="3,\ {-3},\ 2" />.
+      <Katex tex="c=f(0)=18" />, <Katex tex="f(18)\ne0" />
+      <br />
+      <Katex tex="c=17,\ 16,\ \ldots\ 3" />
+      <br />
+      <Katex tex="f(3)=0" />, <Katex tex="f(-3)=0" />, <Katex tex="f(2)=0" />
+      <br />
+      <Katex tex="3,\ -3,\ 2" />
     </>
   ),
 }
@@ -22,7 +27,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^3-2x^2-9x+18" />,
-    reason: 'The polynomial the algorithm searches.',
+    reason: <>The polynomial the algorithm searches.</>,
   },
   {
     working: <Katex display tex="f(2) = 8-8-18+18=0 \;\implies\; f(x) = (x-2)(x^2-9) = (x-2)(x-3)(x+3)" />,
@@ -30,11 +35,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="c \leftarrow f(0) = 18 \qquad (18\geq0,\text{ so the negation step is skipped})" />,
-    reason: 'Initialise c.',
+    reason: <>Initialise c.</>,
   },
   {
     working: <>The loop tests <Katex tex="c=18,17,16,\dots" />, decreasing by 1 each pass, checking <Katex tex="f(c)=0" /> then <Katex tex="f(-c)=0" /> at each value.</>,
-    reason: 'Trace the while loop.',
+    reason: <>Trace the while loop.</>,
   },
   {
     working: <Katex display tex="c=3:\quad f(3)=0 \;\implies\; \text{print } 3 \qquad f(-3)=0 \;\implies\; \text{print } {-3}" />,
@@ -42,11 +47,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="c=2:\quad f(2)=0 \;\implies\; \text{print } 2 \qquad f(-2)=20\neq0" />,
-    reason: 'The next value of c to trigger a print.',
+    reason: <>The next value of c to trigger a print.</>,
   },
   {
     working: <Katex display tex="\boxed{3,\ -3,\ 2}" />,
-    reason: <>No other <Katex tex="c" /> between 18 and 1 matches — matches option <b>D</b>.</>,
+    reason: <>No other <Katex tex="c" /> between 18 and 1 prints anything. Matches option <b>D</b>.</>,
   },
 ]
 

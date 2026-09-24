@@ -31,11 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d = -14}" />,
-    reason: <>Option C. Check: <Katex tex="4\underset{\sim}{b}-\underset{\sim}{c}=4\underset{\sim}{i}+4\underset{\sim}{j}-16\underset{\sim}{k}-2\underset{\sim}{i}-\underset{\sim}{j}+2\underset{\sim}{k}=2\underset{\sim}{i}+3\underset{\sim}{j}-14\underset{\sim}{k}" /> ✓.</>,
-  },
-  {
-    working: <Katex display tex="\begin{vmatrix}2&3&d\\1&1&-4\\2&1&-2\end{vmatrix} = -14-d = 0" />,
-    reason: <>The determinant route gets there in one line if you are comfortable with it: three vectors are dependent exactly when the determinant of their components is zero.</>,
+    reason: <>Matches option <b>C</b>. Option B is the condition for independence. Check: <Katex tex="4\underset{\sim}{b}-\underset{\sim}{c}=4\underset{\sim}{i}+4\underset{\sim}{j}-16\underset{\sim}{k}-2\underset{\sim}{i}-\underset{\sim}{j}+2\underset{\sim}{k}=2\underset{\sim}{i}+3\underset{\sim}{j}-14\underset{\sim}{k}" /> ✓.</>,
   },
 ]
 

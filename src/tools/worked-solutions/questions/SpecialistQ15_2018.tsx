@@ -42,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{P = 102.4 \text{ newtons}}" />,
-    reason: <>Matches option <b>E</b>. Option <b>C</b> <Katex tex="(12.8)" />, chosen by <Katex tex="17\%" />, stops at the acceleration and forgets to multiply by the mass. Option <b>A</b> <Katex tex="(9.8)" /> is just <Katex tex="g" />, which plays no part here — the motion is horizontal and gravity is irrelevant.</>,
+    reason: <>Matches option <b>E</b>. Option <b>C</b> <Katex tex="(12.8)" />, chosen by <Katex tex="17\%" />, stops at the acceleration and forgets to multiply by the mass. Option <b>A</b> <Katex tex="(9.8)" /> is just <Katex tex="g" />, which plays no part here.</>,
   },
 ]
 

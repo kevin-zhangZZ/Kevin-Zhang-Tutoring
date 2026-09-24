@@ -12,8 +12,8 @@ const EXAM_A: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      This question was answered very well. A majority of students used the scalar product
-      formula. Some arithmetic errors were observed.
+      This question was answered very well. A majority of students utilised the approach
+      shown above. Some arithmetic errors were observed.
     </>
   ),
 }
@@ -38,11 +38,11 @@ const EXAM_BII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(\theta) = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{|\underset{\sim}{a}|\,|\underset{\sim}{b}|}" />,
-    reason: 'The definition of the scalar product, rearranged.',
+    reason: <>The definition of the scalar product, rearranged.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = (2)(1)+(-3)(2)+(6)(2) = 2-6+12 = 8" />,
-    reason: 'Multiply matching components and add. The one negative term is where arithmetic slips happen.',
+    reason: <>Multiply matching components and add. The one negative term is where arithmetic slips happen.</>,
   },
   {
     working: <Katex display tex="|\underset{\sim}{a}| = \sqrt{4+9+36} = \sqrt{49} = 7" />,
@@ -50,7 +50,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="|\underset{\sim}{b}| = \sqrt{1+4+4} = \sqrt{9} = 3" />,
-    reason: 'And another whole number, which is a hint the arithmetic is right.',
+    reason: <>And another whole number, which is a hint the arithmetic is right.</>,
   },
   {
     working: <Katex display tex="\boxed{\cos(\theta) = \frac{8}{21}}" />,
@@ -73,7 +73,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\overrightarrow{QP} = \overrightarrow{OP}-\overrightarrow{OQ} = (x-2a)\underset{\sim}{i}+y\underset{\sim}{j}" />,
-    reason: <>"Head minus tail". The report's "occasional sign errors" are students writing <Katex tex="(2a-x)" /> here — that is <Katex tex="\overrightarrow{PQ}" />.</>,
+    reason: <>"Head minus tail". Writing <Katex tex="(2a-x)" /> here gives <Katex tex="\overrightarrow{PQ}" /> instead — the report notes occasional sign errors.</>,
   },
   {
     working: <Katex display tex="\boxed{\overrightarrow{QP} = (x-2a)\underset{\sim}{i}+\sqrt{a^2-(x-a)^2}\,\underset{\sim}{j}}" />,
@@ -84,7 +84,7 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\overrightarrow{OP}\cdot\overrightarrow{QP} = x(x-2a)+y\cdot y" />,
-    reason: 'Two perpendicular vectors are exactly those with zero scalar product, so compute it and see.',
+    reason: <>Two perpendicular vectors are exactly those with zero scalar product, so compute it and see.</>,
   },
   {
     working: <Katex display tex="= x^2-2ax+\left(a^2-(x-a)^2\right)" />,
@@ -96,7 +96,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= x^2-2ax+a^2-x^2+2ax-a^2 = 0" />,
-    reason: 'Every term cancels — and it does so for every x, not just one special position of P.',
+    reason: <>Every term cancels — and it does so for every x, not just one special position of P.</>,
   },
   {
     working: <Katex display tex="\boxed{\overrightarrow{OP}\cdot\overrightarrow{QP} = 0, \text{ so } \overrightarrow{OP} \perp \overrightarrow{QP}}" />,
@@ -113,6 +113,7 @@ export default function SpecialistQ6_2022Exam1() {
 
       <PartCard
         letter="a"
+        topic="Angle Between Vectors"
         marks={2}
         statement={
           <>
@@ -163,6 +164,7 @@ export default function SpecialistQ6_2022Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Vector Expression"
         marks={1}
         statement={
           <>
@@ -182,6 +184,7 @@ export default function SpecialistQ6_2022Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Scalar Product"
         marks={3}
         statement={
           <>

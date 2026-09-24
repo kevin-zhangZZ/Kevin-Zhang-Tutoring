@@ -1,7 +1,7 @@
-// 2014 Mathematical Methods — Exam 2, MCQ 22.
-// John throws 4 darts (P(hit)=1/4 each), Rebecca throws 2 darts (P(hit)=1/2 each) —
-// find the ratio P(Rebecca hits at least once) : P(John hits at least once).
-// Question text transcribed from the original paper; solution is original.
+// 2014 Mathematical Methods (CAS) — Exam 2, MCQ 22. VCAA examination report: 37% correct.
+// John throws 4 darts (Pr(hit) = 1/4 each), Rebecca throws 2 (Pr(hit) = 1/2 each) — the ratio
+// Pr(Rebecca hits at least once) : Pr(John hits at least once). Question text transcribed
+// from the original paper; solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -20,24 +20,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned} P(\text{John misses all 4}) &= \left(\dfrac34\right)^4 \\ &= \dfrac{81}{256} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} \Pr(\text{John misses all 4}) &= \left(\dfrac34\right)^4 \\ &= \dfrac{81}{256} \end{aligned}" />,
     reason: <>John hits with probability <Katex tex="\tfrac14" />, so misses with probability <Katex tex="\tfrac34" />, independently on each of 4 throws.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} P(\text{John} \ge 1) &= 1-\dfrac{81}{256} \\ &= \dfrac{175}{256} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} \Pr(\text{John} \ge 1) &= 1-\dfrac{81}{256} \\ &= \dfrac{175}{256} \end{aligned}" />,
     reason: '"At least one hit" is the complement of "no hits".',
   },
   {
-    working: <Katex display tex="\begin{aligned} P(\text{Rebecca misses both}) &= \left(\dfrac12\right)^2 \\ &= \dfrac14 \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} \Pr(\text{Rebecca misses both}) &= \left(\dfrac12\right)^2 \\ &= \dfrac14 \end{aligned}" />,
     reason: <>Rebecca hits with probability <Katex tex="\tfrac12" /> on each of 2 throws.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} P(\text{Rebecca} \ge 1) &= 1-\dfrac14 \\ &= \dfrac34 \\ &= \dfrac{192}{256} \end{aligned}" />,
+    working: <Katex display tex="\begin{aligned} \Pr(\text{Rebecca} \ge 1) &= 1-\dfrac14 \\ &= \dfrac34 \\ &= \dfrac{192}{256} \end{aligned}" />,
     reason: <>Written over a denominator of 256 so it can be compared directly with John's result.</>,
   },
   {
-    working: <Katex display tex="\boxed{P(\text{Rebecca}\ge 1) : P(\text{John}\ge 1) = 192:175}" />,
-    reason: <>Ratio of the two numerators (common denominator cancels). Matches option <b>E</b>.</>,
+    working: <Katex display tex="\boxed{\Pr(\text{Rebecca}\ge 1) : \Pr(\text{John}\ge 1) = 192:175}" />,
+    reason: <>Ratio of the two numerators (common denominator cancels). Matches option <b>E</b>. Option A (1:1) compares the expected numbers of hits, <Katex tex="2\times\tfrac12=4\times\tfrac14=1" />; option B (32:27) is the ratio for <em>exactly</em> one hit each; option D (2:1) compares single-throw probabilities. Sanity check: Rebecca's better aim outweighs John's extra throws only slightly, so a ratio just above 1 is plausible.</>,
   },
 ]
 

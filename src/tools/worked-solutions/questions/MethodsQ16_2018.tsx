@@ -20,17 +20,18 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Area of the rectangles <Katex tex="=\dfrac{\pi}{6}\Bigl[f(\tfrac{\pi}{6})+f(\tfrac{\pi}{3})+f(\tfrac{\pi}{2})\Bigr]" />.
-      Actual area <Katex tex="=\displaystyle\int_0^{\pi/2} f(x)\,dx" />.
+      Area of the rectangles =
+      <br />
+      <Katex tex="\dfrac{\pi}{6}\left(f\left(\dfrac{\pi}{6}\right)+f\left(\dfrac{\pi}{3}\right)+f\left(\dfrac{\pi}{2}\right)\right)=\dfrac{7\pi}{6}" />
+      <br />
+      Actual area = <Katex tex="\displaystyle\int_0^{\frac{\pi}{2}} f(x)\,dx=\frac{3\pi}{2}" />
+      <br />
+      <Katex tex="\dfrac{\;\frac{7\pi}{6}\;}{\frac{3\pi}{2}}=\dfrac79" />
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
-  {
-    working: DIAGRAM,
-    reason: <>Three rectangles of equal width <Katex tex="\tfrac{\pi}{6}" />, each using the function's value at its <em>right</em> edge as the height.</>,
-  },
   {
     working: (
       <>
@@ -39,10 +40,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\begin{aligned} f\!\left(\tfrac{\pi}{2}\right) &= 2\cos(\pi)+3 \\ &= 2(-1)+3 \\ &= 1 \end{aligned}" />
       </>
     ),
-    reason: 'The heights of the three rectangles.',
+    reason: <>Three rectangles of equal width <Katex tex="\tfrac{\pi}{6}" />, each using the function's value at its <em>right</em> edge as the height.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \text{Jamie's area} &= \frac{\pi}{6}(4+2+1) \\ &= \frac{7\pi}{6} \end{aligned}" />,
+    reason: <>Width times the sum of the heights.</>,
   },
   {
     working: (
@@ -51,14 +53,15 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \Bigl[\sin(2x)+3x\Bigr]_0^{\pi/2} = \bigl(\sin\pi+\tfrac{3\pi}{2}\bigr)-0 = \frac{3\pi}{2}" />
       </>
     ),
+    reason: <>The exact area is the definite integral. The approximation is an underestimate, as it should be: the curve is decreasing, so every right-endpoint rectangle sits below it.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \text{ratio} &= \frac{7\pi/6}{3\pi/2} \\ &= \frac{7}{6}\times\frac{2}{3} \\ &= \frac{14}{18} \end{aligned}" />,
-    reason: "Jamie's approximation, as a fraction of the exact area.",
+    reason: <>Jamie's approximation, as a fraction of the exact area.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{7}{9}}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option <b>E</b> <Katex tex="\left(\tfrac73\right)" /> divides by <Katex tex="\tfrac{\pi}{2}" />, the width of the interval, rather than by the exact area — and a fraction bigger than <Katex tex="1" /> is impossible for an underestimate.</>,
   },
 ]
 
@@ -67,12 +70,12 @@ export default function MethodsQ16_2018() {
     <MCQShell
       question={
         <>
-          <div className="mb-3">{DIAGRAM}</div>
-          <p className="mb-2">
+          <p className="mb-3">
             Jamie approximates the area between the <Katex tex="x" />-axis and the graph of{' '}
             <Katex tex="y=2\cos(2x)+3" />, over the interval <Katex tex="\left[0,\tfrac{\pi}{2}\right]" />,
-            using the three rectangles shown above.
+            using the three rectangles shown below.
           </p>
+          <div className="mb-3">{DIAGRAM}</div>
           <p>Jamie's approximation as a fraction of the exact area is</p>
         </>
       }

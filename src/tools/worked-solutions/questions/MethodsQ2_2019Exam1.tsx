@@ -3,7 +3,7 @@
 // that carries f onto f⁻¹. Question text transcribed from the original paper (no diagram
 // given).
 //
-// Part (c) writes its transformation in column-vector form, and was left out when this file
+// Part c. writes its transformation in column-vector form, and was left out when this file
 // was first written. It is back: the matrix here is the identity, so T is a plain translation
 // and the part reduces to ordinary function-transformation work with no matrix algebra in it
 // at all. The guide's test (§13.7) is the question's mathematics, not its vocabulary. The
@@ -30,7 +30,7 @@ const EXAM_A: SAExaminerStats = {
 const EXAM_B: SAExaminerStats = {
   marks: [36, 64],
   average: 0.7,
-  comment: <>In general, students knew that the domain of <Katex tex="f^{-1}" /> equals the range of <Katex tex="f" />.</>,
+  comment: <>In general students knew that the domain of <Katex tex="f^{-1}=\operatorname{range}\text{ of }f" />.</>,
 }
 
 const EXAM_C: SAExaminerStats = {
@@ -48,6 +48,7 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = \dfrac{1}{3x-1}" />,
+    reason: <>Write the rule with <Katex tex="y" /> for <Katex tex="f(x)" />.</>,
   },
   {
     working: <Katex display tex="y(3x-1) = 1 \;\implies\; 3xy - y = 1 \;\implies\; 3xy = 1+y" />,
@@ -55,6 +56,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \dfrac{1+y}{3y}" />,
+    reason: <>Dividing by <Katex tex="3y" />. The report notes errors in this transposition.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \dfrac{1+x}{3x} = \dfrac13\left(\dfrac1x+1\right)}" />,
@@ -68,11 +70,12 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Standard inverse-function fact.</>,
   },
   {
-    working: <Katex display tex="f:\mathbb{R}\setminus\{\tfrac13\}\to\mathbb{R},\ f(x)=\dfrac{1}{3x-1}" />,
+    working: <Katex display tex="f:R\setminus\{\tfrac13\}\to R,\ f(x)=\dfrac{1}{3x-1}" />,
     reason: <>As <Katex tex="x" /> ranges over all reals except <Katex tex="\tfrac13" />, <Katex tex="3x-1" /> ranges over all reals except <Katex tex="0" />, so <Katex tex="f(x)=\dfrac{1}{3x-1}" /> takes every nonzero real value (and never equals <Katex tex="0" />, since a fraction with numerator <Katex tex="1" /> is never <Katex tex="0" />).</>,
   },
   {
-    working: <Katex display tex="\boxed{\operatorname{dom}(f^{-1}) = \mathbb{R}\setminus\{0\}}" />,
+    working: <Katex display tex="\boxed{\operatorname{dom}(f^{-1}) = R\setminus\{0\}}" />,
+    reason: <>Consistent with the rule from part a.: <Katex tex="\tfrac{1+x}{3x}" /> is undefined only at <Katex tex="x=0" />.</>,
   },
 ]
 
@@ -83,11 +86,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(x) = f(x-c)+d = \dfrac{1}{3(x-c)-1}+d" />,
-    reason: <>Applying a translation to a <em>graph</em> reverses the sign on the <Katex tex="x" /> side: moving the curve <Katex tex="c" /> to the right replaces <Katex tex="x" /> by <Katex tex="x-c" />, while the <Katex tex="d" /> is simply added on the outside. This sign flip is what the report says most students got wrong.</>,
+    reason: <>Applying a translation to a <em>graph</em> reverses the sign on the <Katex tex="x" /> side: moving the curve <Katex tex="c" /> to the right replaces <Katex tex="x" /> by <Katex tex="x-c" />, while the <Katex tex="d" /> is simply added on the outside. The report says some students had the incorrect sign for <Katex tex="c" /> and <Katex tex="d" />.</>,
   },
   {
     working: <Katex display tex="f^{-1}(x) = \dfrac{1+x}{3x} = \dfrac{1}{3x}+\dfrac13" />,
-    reason: <>Rewriting part (a)'s answer as "a hyperbola plus a constant" makes the comparison possible: the target is <Katex tex="\tfrac{1}{3x}" /> shifted up by <Katex tex="\tfrac13" />.</>,
+    reason: <>Rewriting part a.'s answer as "a hyperbola plus a constant" makes the comparison possible: the target is <Katex tex="\tfrac{1}{3x}" /> shifted up by <Katex tex="\tfrac13" />.</>,
   },
   {
     working: <Katex display tex="\dfrac{1}{3(x-c)-1}+d \;=\; \dfrac{1}{3x}+\dfrac13" />,
@@ -112,28 +115,26 @@ export default function MethodsQ2_2019Exam1() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (4 marks)</p>
-        <p>
-          Let <Katex tex="f:\mathbb{R}\setminus\left\{\tfrac13\right\}\to\mathbb{R},\ f(x)=\dfrac{1}{3x-1}" />.
-        </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Find the rule of <Katex tex="f^{-1}" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Inverse Function" marks={2} statement={<>Let <Katex tex="f:R\setminus\left\{\tfrac13\right\}\to R,\ f(x)=\dfrac{1}{3x-1}" />.<br />Find the rule of <Katex tex="f^{-1}" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>State the domain of <Katex tex="f^{-1}" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Domain" marks={1} statement={<>State the domain of <Katex tex="f^{-1}" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
       <PartCard
         letter="c"
+        topic="Transformations"
         marks={1}
         statement={
           <>
             Let <Katex tex="g" /> be the function obtained by applying the transformation{' '}
             <Katex tex="T" /> to the function <Katex tex="f" />, where{' '}
             <Katex tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}x\\y\end{bmatrix} + \begin{bmatrix}c\\d\end{bmatrix}" />{' '}
-            and <Katex tex="c,d\in\mathbb{R}" />. Find the values of <Katex tex="c" /> and{' '}
+            and <Katex tex="c,d\in R" />. Find the values of <Katex tex="c" /> and{' '}
             <Katex tex="d" /> given that <Katex tex="g=f^{-1}" />.
           </>
         }
@@ -148,7 +149,7 @@ export default function MethodsQ2_2019Exam1() {
             are used to, <Katex tex="g(x) = f(x-c)+d" />.
           </p>
           <p>
-            The VCAA report singles out transformations as the hardest topic on this paper,
+            The VCAA report says transformation questions were challenging on this paper,
             "whether they are presented in matrix form (as in Question 2c.) or presented using
             functional notation (as in Question 4b.)" — the two look different on the page but
             ask for exactly the same thinking.

@@ -26,11 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 2.168294+0.1(2.168294)(0.891207) = 2.361534\ldots" />,
-    reason: 'Carrying full precision through.',
+    reason: <>Carrying full precision through.</>,
   },
   {
     working: <Katex display tex="\boxed{2.362}" />,
-    reason: <>To three decimal places. Matches option <b>C</b>. Options B and E come from using the gradient at the <em>end</em> of each step instead of the start; option A stops one step short.</>,
+    reason: <>To three decimal places. Matches option <b>C</b>. Options B and E come from using the gradient at the <em>end</em> of each step instead of the start (B after one step, E after two); option A stops one step short.</>,
   },
 ]
 
@@ -40,7 +40,9 @@ export default function SpecialistQ8_2021() {
       question={
         <p>
           Euler's method, with a step size of 0.1, is used to approximate the solution of the
-          differential equation <Katex tex="\dfrac{dy}{dx}=y\sin(x)" />. Given that{' '}
+          differential equation <Katex tex="\dfrac{dy}{dx}=y\sin(x)" />.
+          <br />
+          Given that{' '}
           <Katex tex="y=2" /> when <Katex tex="x=1" />, the value of <Katex tex="y" />,
           correct to three decimal places, when <Katex tex="x=1.2" /> is
         </p>

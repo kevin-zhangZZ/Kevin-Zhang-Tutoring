@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = 2\sqrt{2x-3}-2}" />,
-    reason: <>Option C. Option A omits the constant; option D loses the factor of 2 from the antiderivative.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b> omits the constant (it gives <Katex tex="f(6)=6" />); options <b>B</b>, <b>D</b> and <b>E</b> have lost the factor of <Katex tex="2" />, and none of them gives <Katex tex="f(6)=4" />.</>,
   },
 ]
 

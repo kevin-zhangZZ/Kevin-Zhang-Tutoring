@@ -15,7 +15,7 @@ const EXAM_A: SAExaminerStats = {
     <>
       Many students made arithmetic errors finding the resolutes, and a significant number
       omitted the final line, where <Katex tex="\underset{\sim}{a}" /> was to be expressed as
-      the <em>sum</em> of the two vector resolutes. A significant number of students
+      the sum of the two vector resolutes. A significant number of students
       unsuccessfully attempted to find the resolutes from first principles, instead of
       applying the standard formulas.
     </>
@@ -27,7 +27,8 @@ const EXAM_BI: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      The main error was to use{' '}
+      The majority of students answered this question well. However, the main error was to
+      use{' '}
       <Katex tex="\alpha\left(\underset{\sim}{c}+\tfrac12\underset{\sim}{a}\right)" />,
       brought about by confusion of the direction of <Katex tex="\underset{\sim}{a}" />. A
       small number of students did not realise that they needed to work with{' '}
@@ -162,10 +163,11 @@ export default function SpecialistQ3_2014Exam2() {
 
       <PartCard
         letter="a"
+        topic="Vector Resolutes"
         marks={5}
         statement={
           <>
-            Express <Katex tex="\underset{\sim}{a}" /> as the sum of two vector resolutes, one
+            Express <Katex tex="\underset{\sim}{a}" /> as the <b>sum</b> of two vector resolutes, one
             of which is parallel to <Katex tex="\underset{\sim}{b}" /> and the other of which
             is perpendicular to <Katex tex="\underset{\sim}{b}" />. Identify clearly the
             parallel vector resolute and the perpendicular vector resolute.
@@ -194,6 +196,7 @@ export default function SpecialistQ3_2014Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Vector Expression"
         marks={2}
         statement={
           <>
@@ -210,6 +213,7 @@ export default function SpecialistQ3_2014Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Vector Expression"
         marks={1}
         statement={
           <>
@@ -226,10 +230,11 @@ export default function SpecialistQ3_2014Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Solve Vector Equation"
         marks={2}
         statement={
           <>
-            Hence deduce the values of <Katex tex="\alpha" /> and <Katex tex="\beta" />.
+            <b>Hence</b> deduce the values of <Katex tex="\alpha" /> and <Katex tex="\beta" />.
           </>
         }
         examinerReport={EXAM_BIII}

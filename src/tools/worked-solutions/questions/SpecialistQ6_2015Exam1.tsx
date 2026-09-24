@@ -13,12 +13,14 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       The majority of students understood the need to use the relevant form for the
-      acceleration. Quite a few integrated <Katex tex="\tfrac1{4v}" /> to get{' '}
-      <Katex tex="\log_e(4v)" />, omitting the coefficient of <Katex tex="\tfrac14" />. A
-      relatively small number of students forgot the constant of integration, while others
-      made arithmetical slips in finding it. Some used a modulus at the integration step and
-      then gave the final answer as <Katex tex="\pm e^5" />. A few were unable to simplify.
-      Others integrated with respect to <Katex tex="v" /> to obtain a cubic.
+      acceleration <Katex tex="a" />. Some used an incorrect form. Quite a few integrated{' '}
+      <Katex tex="\tfrac1{4v}" /> to get <Katex tex="\log_e(4v)" />, omitting the coefficient
+      of <Katex tex="\tfrac14" />. A relatively small number of students forgot the constant of
+      integration, while others made arithmetical slips in finding the constant of integration
+      or a simplification slip in working with it. Some used modulus at the integration step
+      and then gave the final answer as <Katex tex="\pm e^5" />. A few were unable to simplify{' '}
+      <Katex tex="\sqrt{e^{10}}" />. Others integrated with respect to <Katex tex="v" /> to
+      obtain a cubic.
     </>
   ),
 }
@@ -42,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \tfrac14\log_e(v)+c" />,
-    reason: <>The coefficient <Katex tex="\tfrac14" /> is the step the report says was most often dropped.</>,
+    reason: <>Keep the coefficient <Katex tex="\tfrac14" /> — the report says quite a few students dropped it, integrating to <Katex tex="\log_e(4v)" />.</>,
   },
   {
     working: <Katex display tex="1 = \tfrac14\log_e(e)+c = \tfrac14+c \implies c = \tfrac34" />,
@@ -76,6 +78,8 @@ export default function SpecialistQ6_2015Exam1() {
           the displacement of the body in metres, find the velocity of the body when{' '}
           <Katex tex="x=2" />.
         </p>
+      </Background>
+      <Background>
         <p>
           Acceleration has four standard forms —{' '}
           <Katex tex="\tfrac{dv}{dt}" />, <Katex tex="v\tfrac{dv}{dx}" />,{' '}

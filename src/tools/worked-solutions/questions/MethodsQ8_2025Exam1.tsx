@@ -11,11 +11,20 @@ const EXAM_A: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Most students were able to form a definite integral and integrate correctly to obtain
-      a quadratic equation. Some students who integrated the bracketed term raised the power
-      to 2 but then divided by 2 instead of 6. Some students did not convert fractional
-      coefficients into integers before solving. Students who obtained the two possible
-      solutions were mostly aware of rejecting the larger one.
+      Students could either set up the integral{' '}
+      <Katex tex="\displaystyle\int_k^{\frac{4}{3}}\frac{3}{8}(4-3x)\,dx=\frac{9}{16}" />, the
+      integral <Katex tex="\displaystyle\int_0^k\frac{3}{8}(4-3x)\,dx=\frac{7}{16}" /> or form an
+      area equation using a triangle or trapezium. Most students were able to form a definite
+      integral and integrate correctly to obtain a quadratic equation. Some students who chose to
+      integrate the <Katex tex="(4-3x)" /> term as a bracketed term (as in method 1), raised the
+      power to 2 but then divided by 2 instead of 6. Some students were unable to form the correct
+      quadratic equation or solve it correctly. The quadratic expression was readily factorised by
+      inspection, but a large proportion of students used the quadratic formula or other techniques
+      such as splitting the middle term and grouping. Some students did not convert fractional
+      coefficients into integers before solving; for example, using{' '}
+      <Katex tex="\dfrac{3}{2}k^2-4k+\dfrac{7}{6}=0" /> instead of the simpler{' '}
+      <Katex tex="9k^2-24k+7=0" />. Students who obtained the two possible solutions were mostly
+      aware of rejecting <Katex tex="\dfrac{7}{3}" />.
     </>
   ),
 }
@@ -25,10 +34,11 @@ const EXAM_B: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      This question was not responded to well. Many students incorrectly proceeded to factor
-      out <Katex tex="m" /> from the entire integral without noticing that this was not
-      algebraically valid. The students who recognised that the total probability is equal
-      to 1 were generally successful.
+      This question was not responded to well. Most students correctly rewrote{' '}
+      <Katex tex="h(x)" /> as <Katex tex="m\left(\dfrac{3}{8}(4-3x)\right)+n" />. However, many
+      students incorrectly proceeded to factor out <Katex tex="m" /> from the entire integral
+      without noticing that this was not algebraically valid. The students who recognised that the
+      total probability is equal to 1 and applied it, were generally successful.
     </>
   ),
 }
@@ -40,7 +50,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int\frac38(4-3x)\,dx = -\frac{(4-3x)^2}{16}" />,
-    reason: <>By the reverse chain rule: raising the power gives <Katex tex="(4-3x)^2" />, then divide by both the new power 2 and the inner derivative <Katex tex="-3" /> — so <Katex tex="\tfrac38\div(-6)=-\tfrac{1}{16}" />. Dividing by 2 alone was a listed error.</>,
+    reason: <>By the reverse chain rule: raising the power gives <Katex tex="(4-3x)^2" />, then divide by both the new power 2 and the inner derivative <Katex tex="-3" /> — so <Katex tex="\tfrac38\div(-6)=-\tfrac{1}{16}" />. The report notes some students divided by 2 instead of 6.</>,
   },
   {
     working: <Katex display tex="\left[-\frac{(4-3x)^2}{16}\right]_k^{4/3} = 0+\frac{(4-3k)^2}{16}" />,
@@ -48,7 +58,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{(4-3k)^2}{16} = \frac{9}{16} \implies (4-3k)^2 = 9" />,
-    reason: 'The 16s cancel.',
+    reason: <>The 16s cancel.</>,
   },
   {
     working: <Katex display tex="4-3k = \pm3 \implies k = \frac13 \ \text{ or } \ k = \frac73" />,
@@ -63,11 +73,11 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{4/3}h(x)\,dx = \int_0^{4/3}\bigl(mf(x)+n\bigr)\,dx" />,
-    reason: 'Substituting the transformation.',
+    reason: <>Substituting the transformation.</>,
   },
   {
     working: <Katex display tex="= m\int_0^{4/3}f(x)\,dx+\int_0^{4/3}n\,dx" />,
-    reason: <>Only the constant <Katex tex="m" /> comes out of the first integral — the <Katex tex="n" /> is a separate term, not a factor. Factoring <Katex tex="m" /> out of the whole thing was the error over half the cohort made.</>,
+    reason: <>Only the constant <Katex tex="m" /> comes out of the first integral — the <Katex tex="n" /> is a separate term, not a factor. The report notes many students incorrectly factored <Katex tex="m" /> out of the entire integral.</>,
   },
   {
     working: <Katex display tex="\int_0^{4/3}f(x)\,dx = 1" />,
@@ -75,7 +85,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^{4/3}n\,dx = n\times\frac43" />,
-    reason: 'A rectangle of height n and width 4/3.',
+    reason: <>A rectangle of height n and width 4/3.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^{4/3}h(x)\,dx = m+\frac{4n}{3}}" />,
@@ -118,11 +128,14 @@ export default function MethodsQ8_2025Exam1() {
 
       <PartCard
         letter="a"
+        topic="Continuous PDF"
         marks={3}
         statement={
           <>
             The continuous random variable <Katex tex="X" /> has probability density function{' '}
-            <Katex tex="f(x)" />. Find <Katex tex="k" /> such that{' '}
+            <Katex tex="f(x)" />.
+            <br />
+            Find <Katex tex="k" /> such that{' '}
             <Katex tex="\Pr(X>k)=\dfrac{9}{16}" />.
           </>
         }
@@ -133,13 +146,17 @@ export default function MethodsQ8_2025Exam1() {
 
       <PartCard
         letter="b"
+        topic="Transformed PDF"
         marks={2}
         statement={
           <>
             The function <Katex tex="h(x)" /> is a transformation of <Katex tex="f(x)" /> such
-            that <Katex tex="h(x)=mf(x)+n" />, where <Katex tex="m" /> and <Katex tex="n" />{' '}
-            are real numbers. Find <Katex tex="\displaystyle\int_0^{4/3}h(x)\,dx" /> in terms
-            of <Katex tex="m" /> and <Katex tex="n" />.
+            that
+            <Katex display tex="h(x)=mf(x)+n" />
+            where <Katex tex="m" /> and <Katex tex="n" /> are real numbers.
+            <br />
+            Find <Katex tex="\displaystyle\int_0^{\frac43}h(x)\,dx" /> in terms of{' '}
+            <Katex tex="m" /> and <Katex tex="n" />.
           </>
         }
         examinerReport={EXAM_B}

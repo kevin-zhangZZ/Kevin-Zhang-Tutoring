@@ -1,8 +1,9 @@
 // 2025 Mathematical Methods — Exam 2, Section B Question 1 (13 marks). A quartic with a
 // stationary point of inflection: sketch, gradient table, average value, transformations,
 // and finally the same rule as a binomial probability. Question text transcribed from the
-// original paper; the graph is our own drawing of the answer. Answers checked with sympy
-// and against the VCAA examination report. Solution is original.
+// original paper; the part b. graph is our own drawing of the answer on VCAA's axes (x and y
+// from −2.5 to 2.5, ticks at the integers). Answers checked with sympy and against the VCAA
+// examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
@@ -15,7 +16,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Some students, however, only gave the{' '}
-      <Katex tex="x" />-values; both coordinates were required.
+      <Katex tex="x" />-values. Both coordinates were required.
     </>
   ),
 }
@@ -25,10 +26,11 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Some students did not include all the coordinates. Other students did not scale their
-      graphs well on the axes — the <Katex tex="x" />-intercept <Katex tex="\tfrac43" /> was
-      often drawn closer to 2 than 1. Some students did not draw the stationary point of
-      inflection correctly.
+      Some students did not include all the coordinates.{' '}
+      <Katex tex="\left(0,\dfrac{4}{3}\right)" /> was sometimes seen. Other students did not scale
+      their graphs well on the axes. The <Katex tex="x" />-intercept <Katex tex="\dfrac{4}{3}" />{' '}
+      was often closer to 2 than 1. Some students did not draw the stationary point of inflection
+      correctly.
     </>
   ),
 }
@@ -38,9 +40,11 @@ const EXAM_C: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Many students put a coordinate pair in the third column. Some students did not enter
-      values in the second row. Others used <Katex tex="x" />-values greater than or equal to
-      1 in the fourth column. Some students incorrectly assumed symmetry in their table.
+      Many students had <Katex tex="(0,0)" /> in the third column. Some students did not enter
+      values in the second row. Others used <Katex tex="x" />-values which were greater than or
+      equal to 1 in the fourth column. Some gave the values for <Katex tex="g(x)" /> instead of{' '}
+      <Katex tex="g'(x)" /> in the second row. Some students incorrectly assumed symmetry in their
+      table of values.
     </>
   ),
 }
@@ -50,8 +54,11 @@ const EXAM_D: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Some students worked out the average rate of change instead of the average value.
-      Students should check the values they enter into their CAS.
+      Some students worked out the average rate of change instead of the average value. Others
+      evaluated <Katex tex="\displaystyle\int_0^2 g(x)\,dx" /> or{' '}
+      <Katex tex="\displaystyle\frac{-1}{2-0}\int_0^2 g(x)\,dx" />. Students should check the
+      values they enter into their CAS as some students had the correct definite integral but
+      ended up with an incorrect answer.
     </>
   ),
 }
@@ -62,8 +69,8 @@ const EXAM_E: SAExaminerStats = {
   comment: (
     <>
       Most students were able to describe the reflection. Students were required to use the
-      correct wording and the transformations had to be in the correct order. Some students
-      had the dilation factor as <Katex tex="\tfrac12" /> instead of 2.
+      correct wording in their descriptions and the transformations had to be in the correct
+      order. Some students had the dilation factor as <Katex tex="\dfrac{1}{2}" /> instead of 2.
     </>
   ),
 }
@@ -73,8 +80,11 @@ const EXAM_F: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      This was a "show that" question and appropriate working needed to be shown. Some
-      students worked out <Katex tex="\Pr(X=3)" /> instead of <Katex tex="\Pr(X\ge3)" />.
+      This was a ‘show that’ question and appropriate working needed to be shown. Some students
+      worked out <Katex tex="\Pr(X\le3)" /> instead of <Katex tex="\Pr(X\ge3)" />.{' '}
+      <Katex tex="\Pr(X=4)" /> was sometimes omitted. Others attempted to find{' '}
+      <Katex tex="1-\big(\Pr(X=0)+\Pr(X=1)+\Pr(X=2)\big)" /> but often left it incomplete or had
+      ineffective use of brackets.
     </>
   ),
 }
@@ -82,7 +92,7 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = 4x^3-3x^4 \implies g'(x) = 12x^2-12x^3" />,
-    reason: 'Differentiating term by term.',
+    reason: <>Differentiating term by term.</>,
   },
   {
     working: <Katex display tex="= 12x^2(1-x) = 0 \implies x = 0 \ \text{(twice)} \ \text{ or } \ x = 1" />,
@@ -90,18 +100,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(0) = 0, \qquad g(1) = 4-3 = 1" />,
-    reason: 'Substituting back into g, not g′.',
+    reason: <>Substituting back into g, not g′.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,\,0) \ \text{ and } \ (1,\,1)}" />,
-    reason: <>Both coordinates were required — listing only <Katex tex="x=0,1" /> lost a mark.</>,
+    reason: <>Both coordinates were required — the report notes some students only gave the <Katex tex="x" />-values.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="4x^3-3x^4 = x^3(4-3x) = 0 \implies x = 0, \ x = \tfrac43" />,
-    reason: <>The <Katex tex="x" />-intercepts. Note <Katex tex="\tfrac43\approx1.33" />, which sits just past 1 — the examiner noted graphs that drew it near 2.</>,
+    reason: <>The <Katex tex="x" />-intercepts. Note <Katex tex="\tfrac43\approx1.33" />, which sits just past 1 — the report notes it was often drawn closer to 2 than 1.</>,
   },
   {
     working: <Katex display tex="g'(x) = 12x^2(1-x) \ge 0 \text{ near } x=0 \text{ on both sides}" />,
@@ -109,41 +119,82 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{leading term } -3x^4 \implies y\to-\infty \text{ as } x\to\pm\infty" />,
-    reason: 'A negative quartic, so both ends fall away.',
+    reason: <>A negative quartic, so both ends fall away.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{see the sketch below}}" />,
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's axes (x and y from about −2.5 to 2.5): a negative quartic rising from below, flattening through the labelled stationary point of inflection (0, 0), peaking at the labelled local maximum (1, 1), then crossing the axis at the labelled (4/3, 0) and falling steeply"
+          className="w-full max-w-[420px]"
+        />
+      </div>
+    ),
     reason: <>Stationary point of inflection at <Katex tex="(0,0)" />, local maximum at <Katex tex="(1,1)" />, and the <Katex tex="x" />-intercept at <Katex tex="\left(\tfrac43,0\right)" /> — all labelled with their coordinates.</>,
   },
 ]
 
+const GRADIENT_TABLE = (
+  <div className="overflow-x-auto">
+    <table className="text-[13.5px] border-collapse">
+      <tbody>
+        <tr>
+          <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal">
+            <Katex tex="x" />
+          </th>
+          {['-1', '0', '\\frac12'].map((v) => (
+            <td key={v} className="border border-gray-300 dark:border-gray-700 px-5 py-1.5 text-center">
+              <Katex tex={v} />
+            </td>
+          ))}
+        </tr>
+        <tr>
+          <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal">
+            <Katex tex="g'(x)" />
+          </th>
+          {['24', '0', '\\frac32'].map((v) => (
+            <td key={v} className="border border-gray-300 dark:border-gray-700 px-5 py-1.5 text-center">
+              <Katex tex={v} />
+            </td>
+          ))}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+)
+
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{a gradient table needs a point either side of } x=0, \text{ and } x=0 \text{ itself}" />,
-    reason: 'Three columns of x-values, with the derivative underneath each.',
+    reason: <>Three columns of x-values, with the derivative underneath each.</>,
   },
   {
     working: <Katex display tex="\text{the right-hand value must satisfy } 0<x<1" />,
-    reason: <>Beyond <Katex tex="x=1" /> the derivative turns negative because of the other stationary point, which would destroy the argument. Using <Katex tex="x\ge1" /> was the listed error.</>,
+    reason: <>Beyond <Katex tex="x=1" /> the derivative turns negative because of the other stationary point, which would destroy the argument. The report notes some students used <Katex tex="x" />-values greater than or equal to 1 in the fourth column.</>,
   },
   {
     working: <Katex display tex="g'(-1) = 12(1)(2) = 24, \qquad g'(0) = 0, \qquad g'\!\left(\tfrac12\right) = 12\!\left(\tfrac14\right)\!\left(\tfrac12\right) = \tfrac32" />,
-    reason: 'Any values of this shape will do; these are the tidiest.',
+    reason: <>Any values of this shape will do; these are the tidiest.</>,
   },
   {
     working: <Katex display tex="\text{positive} \to 0 \to \text{positive}" />,
     reason: <>No sign change, so <Katex tex="x=0" /> is a stationary point of inflection. That sentence is the point of the table.</>,
+  },
+  {
+    working: GRADIENT_TABLE,
+    reason: <>One possible completed table.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average value} = \frac{1}{b-a}\int_a^b g(x)\,dx" />,
-    reason: <>Not the average <em>rate of change</em>, which is <Katex tex="\tfrac{g(b)-g(a)}{b-a}" /> — the two were confused by a quarter of the cohort.</>,
+    reason: <>Not the average <em>rate of change</em>, which is <Katex tex="\tfrac{g(b)-g(a)}{b-a}" /> — the report notes some students worked that out instead.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{2}\int_0^{2}\left(4x^3-3x^4\right)dx" />,
-    reason: 'Setting it up with the given terminals.',
+    reason: <>Setting it up with the given terminals.</>,
   },
   {
     working: <Katex display tex="= \frac12\left[x^4-\frac{3x^5}{5}\right]_0^2 = \frac12\left(16-\frac{96}{5}\right)" />,
@@ -158,11 +209,11 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="g: \ \text{SPI } (0,0), \ \text{local max } (1,1) \qquad h: \ \text{SPI } (1,0), \ \text{local max } (-1,1)" />,
-    reason: 'Comparing the two feature pairs. The y-values are unchanged, so only the horizontal behaviour matters.',
+    reason: <>Comparing the two feature pairs. The y-values are unchanged, so only the horizontal behaviour matters.</>,
   },
   {
     working: <Katex display tex="0 \mapsto 1 \ \text{ and } \ 1 \mapsto -1" />,
-    reason: 'The two x-values that must move.',
+    reason: <>The two x-values that must move.</>,
   },
   {
     working: <Katex display tex="x \mapsto 1-2x" />,
@@ -170,7 +221,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1-2x = -2x+1: \ \text{reflect, then dilate, then translate}" />,
-    reason: 'Reading the composition from the inside out.',
+    reason: <>Reading the composition from the inside out.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{1. reflect in the } y\text{-axis} \quad \text{2. dilate by factor 2 from the } y\text{-axis} \quad \text{3. translate 1 unit right}}" />,
@@ -181,7 +232,7 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="X\sim\text{Bi}(4,p) \implies \Pr(X\ge3) = \Pr(X=3)+\Pr(X=4)" />,
-    reason: <>Two terms. Computing <Katex tex="\Pr(X=3)" /> alone was the listed error.</>,
+    reason: <>Two terms. The report notes some students worked out <Katex tex="\Pr(X\le3)" /> instead, and <Katex tex="\Pr(X=4)" /> was sometimes omitted.</>,
   },
   {
     working: <Katex display tex="\Pr(X=3) = \binom{4}{3}p^3(1-p)^1 = 4p^3(1-p)" />,
@@ -189,11 +240,11 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X=4) = \binom{4}{4}p^4 = p^4" />,
-    reason: 'No failure factor.',
+    reason: <>No failure factor.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = 4p^3-4p^4+p^4 = 4p^3-3p^4" />,
-    reason: 'Expanding and collecting — every line of this is needed in a "show that".',
+    reason: <>Expanding and collecting — every line of this is needed in a "show that".</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X\ge3) = g(p) \ \text{ for all } p\in[0,1]}" />,
@@ -207,7 +258,7 @@ export default function MethodsQ1_2025Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 1 (13 marks)</p>
         <p>
-          Let <Katex tex="g:\mathbb{R}\to\mathbb{R}" /> be defined by{' '}
+          Let <Katex tex="g:R\to R" /> be defined by{' '}
           <Katex tex="g(x)=4x^3-3x^4" />.
         </p>
       </div>
@@ -232,6 +283,7 @@ export default function MethodsQ1_2025Exam2() {
 
       <PartCard
         letter="a"
+        topic="Stationary Points"
         marks={2}
         statement={<>Find the coordinates of both stationary points of <Katex tex="g" />.</>}
         examinerReport={EXAM_A}
@@ -241,68 +293,54 @@ export default function MethodsQ1_2025Exam2() {
 
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={2}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=g(x)" />, labelling the stationary points and
-            axial intercepts with their coordinates.
+            Sketch the graph of <Katex tex="y=g(x)" /> on the axes below, labelling the
+            stationary points and axial intercepts with their coordinates.
           </>
         }
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="A negative quartic rising from below the axis, flattening through the labelled stationary point of inflection (0, 0), peaking at the labelled local maximum (1, 1), then crossing the axis at (4/3, 0) and falling steeply"
-            className="w-full max-w-[500px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="c"
+        topic="Gradient Table"
         marks={2}
         statement={
-          <>
-            Complete the following gradient table with appropriate values of <Katex tex="x" />{' '}
-            and <Katex tex="g'(x)" /> to show that <Katex tex="g" /> has a stationary point of
-            inflection.
-          </>
+          <div className="flex flex-col gap-3">
+            <p>
+              Complete the following gradient table with appropriate values of <Katex tex="x" />{' '}
+              and <Katex tex="g'(x)" /> to show that <Katex tex="g" /> has a stationary point of
+              inflection.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="text-[13.5px] border-collapse">
+                <tbody>
+                  <tr>
+                    <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal"><Katex tex="x" /></th>
+                    {[0, 1, 2].map((i) => <td key={i} className="border border-gray-300 dark:border-gray-700 px-8 py-1.5" />)}
+                  </tr>
+                  <tr>
+                    <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal"><Katex tex="g'(x)" /></th>
+                    {[0, 1, 2].map((i) => <td key={i} className="border border-gray-300 dark:border-gray-700 px-8 py-1.5" />)}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         }
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
-        <div className="overflow-x-auto">
-          <table className="text-[13.5px] border-collapse">
-            <tbody>
-              <tr>
-                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal">
-                  <Katex tex="x" />
-                </th>
-                {['-1', '0', '\\frac12'].map((v) => (
-                  <td key={v} className="border border-gray-300 dark:border-gray-700 px-5 py-1.5 text-center">
-                    <Katex tex={v} />
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-normal">
-                  <Katex tex="g'(x)" />
-                </th>
-                {['24', '0', '\\frac32'].map((v) => (
-                  <td key={v} className="border border-gray-300 dark:border-gray-700 px-5 py-1.5 text-center">
-                    <Katex tex={v} />
-                  </td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </PartCard>
 
       <PartCard
         letter="d"
+        topic="Average Value"
         marks={2}
         statement={
           <>
@@ -317,14 +355,17 @@ export default function MethodsQ1_2025Exam2() {
 
       <PartCard
         letter="e"
+        topic="Transformations"
         marks={3}
         statement={
           <>
             Let <Katex tex="h" /> be the result after applying a sequence of transformations
             to <Katex tex="g" />, such that <Katex tex="h" /> has a stationary point of
             inflection at <Katex tex="(1,0)" /> and a local maximum at{' '}
-            <Katex tex="(-1,1)" />. Write down a possible sequence of three transformations to
-            map from <Katex tex="g" /> to <Katex tex="h" />.
+            <Katex tex="(-1,1)" />.
+            <br />
+            Write down a possible sequence of three transformations to map from{' '}
+            <Katex tex="g" /> to <Katex tex="h" />.
           </>
         }
         examinerReport={EXAM_E}
@@ -334,10 +375,13 @@ export default function MethodsQ1_2025Exam2() {
 
       <PartCard
         letter="f"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
-            Let <Katex tex="X\sim\text{Bi}(4,p)" /> be a binomial random variable. Show that{' '}
+            Let <Katex tex="X\sim\text{Bi}(4,p)" /> be a binomial random variable.
+            <br />
+            Show that{' '}
             <Katex tex="\Pr(X\ge3)=g(p)" /> for all <Katex tex="p\in[0,1]" />.
           </>
         }

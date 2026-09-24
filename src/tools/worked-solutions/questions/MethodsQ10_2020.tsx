@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 2^k-1, \quad k\in Z^+}" />,
-    reason: <>Option B, giving <Katex tex="n=1,3,7,15,\ldots" />. Option D, <Katex tex="2k-1" />, is the odd numbers — a different set, and <Katex tex="\log_2(6)" /> is not an integer.</>,
+    reason: <>Matches option <b>B</b>, giving <Katex tex="n=1,3,7,15,\ldots" />. Options <b>A</b> and <b>C</b> forget the <Katex tex="-1" /> (e.g. <Katex tex="n=2" /> gives <Katex tex="\log_2(3)" />), and options <b>D</b> and <b>E</b> are linear: <Katex tex="n=5" /> from <b>D</b> gives <Katex tex="\log_2(6)" />, which is not an integer.</>,
   },
 ]
 

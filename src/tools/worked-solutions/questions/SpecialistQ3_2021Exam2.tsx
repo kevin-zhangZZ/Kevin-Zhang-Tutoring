@@ -16,8 +16,8 @@ const EXAM_AII: SAExaminerStats = {
   comment: (
     <>
       A variety of equivalent forms were accepted. A common error concerned notation, such
-      as incorrectly placing the 32 outside the bracket, or using <Katex tex="h" /> rather
-      than <Katex tex="H" />.
+      as incorrectly placing 32 outside the bracket or using <Katex tex="h" /> rather than{' '}
+      <Katex tex="H" />.
     </>
   ),
 }
@@ -41,7 +41,17 @@ const EXAM_BIII: SAExaminerStats = {
   ),
 }
 
-const EXAM_C: SAExaminerStats = { marks: [77, 9, 2, 12], average: 0.5 }
+const EXAM_C: SAExaminerStats = {
+  marks: [77, 9, 2, 12],
+  average: 0.5,
+  comment: (
+    <>
+      Obtaining this answer required an appreciation of the physical situation, sound
+      calculus skills and careful use of a CAS. Relatively few students made a productive
+      start. Of those who did, about half reached the correct answer.
+    </>
+  ),
+}
 
 const ROWS_AI: WorkingRow[] = [
   {
@@ -61,30 +71,30 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V = \pi\left[\tfrac35(y+8)^{5/3}\right]_0^H = \tfrac{3\pi}{5}\left((H+8)^{5/3}-8^{5/3}\right)" />,
-    reason: 'Substituting the terminals.',
+    reason: <>Substituting the terminals.</>,
   },
   {
     working: <Katex display tex="8^{5/3} = \left(\sqrt[3]{8}\right)^5 = 2^5 = 32" />,
-    reason: 'Cube root first, then fifth power.',
+    reason: <>Cube root first, then fifth power.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{3\pi}{5}\left((H+8)^{5/3}-32\right)}" />,
-    reason: <>The 32 stays <em>inside</em> the bracket — the report's named notation error.</>,
+    reason: <>The 32 stays <em>inside</em> the bracket — the report notes placing it outside as a common notation error.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dh}{dt} = \frac{dV}{dt}\times\frac{dh}{dV}" />,
-    reason: 'The chain rule, linking the given leak rate to the depth.',
+    reason: <>The chain rule, linking the given leak rate to the depth.</>,
   },
   {
     working: <Katex display tex="V(h) = \frac{3\pi}{5}\left((h+8)^{5/3}-32\right) \implies \frac{dV}{dh} = \pi(h+8)^{2/3}" />,
-    reason: <>Differentiating part a(ii) with <Katex tex="H" /> replaced by the current depth <Katex tex="h" />. The <Katex tex="\tfrac35" /> and the <Katex tex="\tfrac53" /> cancel.</>,
+    reason: <>Differentiating part a.ii. with <Katex tex="H" /> replaced by the current depth <Katex tex="h" />. The <Katex tex="\tfrac35" /> and the <Katex tex="\tfrac53" /> cancel.</>,
   },
   {
-    working: <Katex display tex="\frac{dh}{dt} = \frac{-4\sqrt h}{\pi(h+8)^{2/3}} \ \checkmark" />,
-    reason: <>Dividing the given <Katex tex="\tfrac{dV}{dt}=-4\sqrt h" /> by <Katex tex="\tfrac{dV}{dh}" />. Negative, as it must be for a leak.</>,
+    working: <Katex display tex="\boxed{\frac{dh}{dt} = \frac{-4\sqrt h}{\pi(h+8)^{2/3}}}" />,
+    reason: <>Dividing the given <Katex tex="\tfrac{dV}{dt}=-4\sqrt h" /> by <Katex tex="\tfrac{dV}{dh}" />. Negative, as it must be for a leak. As required.</>,
   },
 ]
 
@@ -110,11 +120,11 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{full vessel} \implies h = H = 50" />,
-    reason: 'The water is already at the brim, so any net inflow would overflow it.',
+    reason: <>The water is already at the brim, so any net inflow would overflow it.</>,
   },
   {
     working: <Katex display tex="\text{leak rate at } h=50: \ 4\sqrt{50}" />,
-    reason: 'Substituting into the given rate.',
+    reason: <>Substituting into the given rate.</>,
   },
   {
     working: <Katex display tex="\boxed{20\sqrt2 \approx 28.28\ \text{cm}^3\text{ per minute}}" />,
@@ -125,11 +135,11 @@ const ROWS_BIII: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dV}{dt} = 40\sqrt2-4\sqrt h" />,
-    reason: 'Inflow minus outflow. The inflow is constant; the outflow shrinks as the level falls, so the net rate is positive throughout the refill.',
+    reason: <>Inflow minus outflow. The inflow is constant; the outflow shrinks as the level falls, so the net rate is positive throughout the refill.</>,
   },
   {
     working: <Katex display tex="\frac{dh}{dt} = \frac{40\sqrt2-4\sqrt h}{\pi(h+8)^{2/3}}" />,
-    reason: <>Same chain rule as part b(i), with the new <Katex tex="\tfrac{dV}{dt}" />.</>,
+    reason: <>Same chain rule as part b.i., with the new <Katex tex="\tfrac{dV}{dt}" />.</>,
   },
   {
     working: <Katex display tex="t = \int_{25}^{50}\frac{\pi(h+8)^{2/3}}{40\sqrt2-4\sqrt h}\,dh" />,
@@ -153,7 +163,9 @@ export default function SpecialistQ3_2021Exam2() {
         <p>
           A thin-walled vessel is produced by rotating the graph of{' '}
           <Katex tex="y=x^3-8" /> about the <Katex tex="y" />-axis for{' '}
-          <Katex tex="0\le y\le H" />. All lengths are measured in centimetres.
+          <Katex tex="0\le y\le H" />.
+          <br />
+          All lengths are measured in centimetres.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -166,6 +178,7 @@ export default function SpecialistQ3_2021Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Volume of Revolution"
         marks={1}
         statement={
           <>
@@ -180,6 +193,7 @@ export default function SpecialistQ3_2021Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Volume of Revolution"
         marks={1}
         statement={
           <>
@@ -192,7 +206,7 @@ export default function SpecialistQ3_2021Exam2() {
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Water is poured into the vessel. However, due to a crack in the base, water leaks
           out at a rate proportional to the square root of the depth <Katex tex="h" /> of
@@ -204,6 +218,7 @@ export default function SpecialistQ3_2021Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Related Rates"
         marks={2}
         statement={
           <>
@@ -217,6 +232,7 @@ export default function SpecialistQ3_2021Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Maximum Rate"
         marks={2}
         statement={
           <>
@@ -232,12 +248,15 @@ export default function SpecialistQ3_2021Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Maximum Rate"
         marks={1}
         statement={
           <>
             Let <Katex tex="H=50" /> for a particular vessel. The vessel is initially full
             and water continues to leak out at a rate of{' '}
-            <Katex tex="4\sqrt h\ \text{cm}^3\text{ min}^{-1}" />. Find the maximum rate at
+            <Katex tex="4\sqrt h\ \text{cm}^3\text{ min}^{-1}" />.
+            <br />
+            Find the maximum rate at
             which water can be added, in cubic centimetres per minute, without the vessel
             overflowing.
           </>
@@ -249,13 +268,16 @@ export default function SpecialistQ3_2021Exam2() {
 
       <PartCard
         letter="c"
+        topic="Time Integral"
         marks={3}
         statement={
           <>
             The vessel is initially full where <Katex tex="H=50" /> and water leaks out at a
             rate of <Katex tex="4\sqrt h\ \text{cm}^3\text{ min}^{-1}" />. When the depth of
             the water drops to 25 cm, extra water is poured in at a rate of{' '}
-            <Katex tex="40\sqrt2\ \text{cm}^3\text{ min}^{-1}" />. Find how long it takes for
+            <Katex tex="40\sqrt2\ \text{cm}^3\text{ min}^{-1}" />.
+            <br />
+            Find how long it takes for
             the vessel to refill completely from a depth of 25 cm. Give your answer in
             minutes, correct to one decimal place.
           </>

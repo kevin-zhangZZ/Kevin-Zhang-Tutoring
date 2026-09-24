@@ -5,7 +5,7 @@
 // and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [13, 87],
@@ -13,7 +13,7 @@ const EXAM_AI: SAExaminerStats = {
   comment: (
     <>
       Most students answered this question well. A number of students attempted to solve{' '}
-      <Katex tex="\left|\underset{\sim}{r}(t)\right|=60" />, failing to realise that only the{' '}
+      <Katex tex="\underset{\sim}{r}(t)=60" />, failing to realise that only the{' '}
       <Katex tex="\underset{\sim}{k}" /> component was 60.
     </>
   ),
@@ -25,8 +25,10 @@ const EXAM_AII: SAExaminerStats = {
   comment: (
     <>
       A significant number of students seemed not to know what "angle of elevation" meant. A
-      number found the complementary angle — the angle with the vertical. A common error was
-      to assume that the helicopter, when at an altitude of 60 m, was directly above its
+      number found the complementary angle – the angle with the vertical. Others found angles
+      made with the <Katex tex="\underset{\sim}{i}" /> or <Katex tex="\underset{\sim}{j}" />{' '}
+      directions. A small number of students tried to find the angle of elevation using the
+      velocity vector. A common error was to assume that the helicopter, when at an altitude of 60 m, was directly above its
       initial location.
     </>
   ),
@@ -51,8 +53,11 @@ const EXAM_C: SAExaminerStats = {
       A significant number of students gave answers with <Katex tex="x" /> as the variable
       instead of <Katex tex="t" />. Some students differentiated using CAS technology in
       degree mode, and a significant number omitted the <Katex tex="\underset{\sim}{k}" />{' '}
-      component from the velocity. Some students simply asserted that the scalar product was
-      zero without setting it out.
+      component from the velocity. Often, <Katex tex="\underset{\sim}{i}" />,{' '}
+      <Katex tex="\underset{\sim}{j}" /> or <Katex tex="\underset{\sim}{k}" /> were just
+      dropped in the midst of working. Some students simply asserted that{' '}
+      <Katex tex="\dot{\underset{\sim}{r}}(t).\ddot{\underset{\sim}{r}}(t)=0" />, without
+      setting out the scalar product to show it.
     </>
   ),
 }
@@ -65,7 +70,9 @@ const EXAM_D: SAExaminerStats = {
       Most students knew that they needed to find{' '}
       <Katex tex="\left|\dot{\underset{\sim}{r}}(t)\right|" />. Leaving out the{' '}
       <Katex tex="\underset{\sim}{k}" /> component was a common error. Some students could not
-      simplify using the Pythagorean identity.
+      simplify{' '}
+      <Katex tex="\left(-\tfrac{5\pi}{6}\sin\!\left(\tfrac{\pi t}{30}\right)\right)^2+\left(\tfrac{5\pi}{6}\cos\!\left(\tfrac{\pi t}{30}\right)\right)^2" />{' '}
+      using the Pythagorean identity.
     </>
   ),
 }
@@ -75,7 +82,7 @@ const EXAM_E: SAExaminerStats = {
   average: 1.9,
   comment: (
     <>
-      Frequent errors occurred in finding <Katex tex="\underset{\sim}{r}(45)" />, and many
+      This question was moderately well answered. Frequent errors occurred in finding <Katex tex="\underset{\sim}{r}(45)" />, and many
       students attempted to find the distance using{' '}
       <Katex tex="\left|\underset{\sim}{r}(45)\right|-\left|\underset{\sim}{r}_{\text{tree}}\right|" />{' '}
       instead of{' '}
@@ -154,11 +161,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 0" />,
-    reason: <>The two terms are identical and opposite in sign. Writing the scalar product out is required — the report says asserting it was not accepted.</>,
+    reason: <>The two terms are identical and opposite in sign. Write the scalar product out in full — the report singles out students who simply asserted it was zero.</>,
   },
   {
     working: <Katex display tex="\therefore\ \dot{\underset{\sim}{r}}\perp\ddot{\underset{\sim}{r}} \text{ for all } t" />,
-    reason: <>Neither vector is ever the zero vector, so a zero dot product means perpendicular. (Geometrically: the speed is constant, so the acceleration can only turn the velocity, never lengthen it.)</>,
+    reason: <>Neither vector is ever the zero vector, so a zero scalar product means the velocity is perpendicular to the acceleration, as required. (Geometrically: the speed is constant, so the acceleration can only turn the velocity, never lengthen it.)</>,
   },
 ]
 
@@ -230,16 +237,22 @@ export default function SpecialistQ4_2015Exam2() {
           <Katex tex="\underset{\sim}{k}" /> is a unit vector vertically up. Displacement
           components are measured in metres.
         </p>
-        <p>
-          The path is a helix: a circle of radius 25 about <Katex tex="(50,50)" /> in plan
-          view, climbing steadily. Two facts do most of the work — the take-off point is{' '}
-          <Katex tex="(75,50,0)" />, not the origin, and the horizontal motion has period 60
-          seconds.
-        </p>
+      </div>
+
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+        <Background>
+          <p>
+            The path is a helix: a circle of radius 25 about <Katex tex="(50,50)" /> in plan
+            view, climbing steadily. Two facts do most of the work — the take-off point is{' '}
+            <Katex tex="(75,50,0)" />, not the origin, and the horizontal motion has period 60
+            seconds.
+          </p>
+        </Background>
       </div>
 
       <PartCard
         letter="a.i"
+        topic="Vector Kinematics"
         marks={1}
         statement={<>Find the time, in seconds, required for the helicopter to gain an altitude of 60 m.</>}
         examinerReport={EXAM_AI}
@@ -249,6 +262,7 @@ export default function SpecialistQ4_2015Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Angle of Elevation"
         marks={2}
         statement={
           <>
@@ -263,6 +277,7 @@ export default function SpecialistQ4_2015Exam2() {
 
       <PartCard
         letter="b"
+        topic="Period"
         marks={1}
         statement={<>After how many seconds will the helicopter first be directly above the point of take-off?</>}
         examinerReport={EXAM_B}
@@ -272,6 +287,7 @@ export default function SpecialistQ4_2015Exam2() {
 
       <PartCard
         letter="c"
+        topic="Perpendicular Vectors"
         marks={3}
         statement={<>Show that the velocity of the helicopter is perpendicular to its acceleration.</>}
         examinerReport={EXAM_C}
@@ -281,6 +297,7 @@ export default function SpecialistQ4_2015Exam2() {
 
       <PartCard
         letter="d"
+        topic="Speed"
         marks={2}
         statement={
           <>
@@ -295,6 +312,7 @@ export default function SpecialistQ4_2015Exam2() {
 
       <PartCard
         letter="e"
+        topic="Distance"
         marks={3}
         statement={
           <>

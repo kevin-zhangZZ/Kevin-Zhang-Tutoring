@@ -18,7 +18,7 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Many students were unable to create the quadratic
-      equation evolved from manipulating <Katex tex="e^t" />. Many students solved via the
+      equation evolved from manipulating <Katex tex="e^{-t}" />. Many students solved via the
       quadratic formula rather than using simpler factorising techniques. The feasibility of
       only one answer was generally well handled.
     </>
@@ -51,7 +51,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3e^{2t}-5e^t-8 = 0" />,
-    reason: <>Since <Katex tex="e^t\cdot e^{-t}=1" />. This is a quadratic in <Katex tex="e^t" />, which is the step the report says most students missed.</>,
+    reason: <>Since <Katex tex="e^t\cdot e^{-t}=1" />. This is a quadratic in <Katex tex="e^t" />, which is the step the report says many students missed.</>,
   },
   {
     working: <Katex display tex="\text{let } a = e^t: \quad 3a^2-5a-8 = 0" />,
@@ -67,15 +67,20 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \log_e\!\left(\frac83\right)}" />,
-    reason: <>About <Katex tex="0.98" />. Check: <Katex tex="3(2.667)=8" /> and <Katex tex="5+8(0.375)=8" /> ✓.</>,
+    reason: <>Check: <Katex tex="e^t=\tfrac83" /> and <Katex tex="e^{-t}=\tfrac38" />, so <Katex tex="3\times\tfrac83=8" /> and <Katex tex="5+8\times\tfrac38=8" /> ✓.</>,
   },
 ]
 
 export default function MethodsQ7_2015Exam1() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p className="font-semibold text-gray-900 dark:text-white">Question 7 (5 marks)</p>
+      </div>
+
       <PartCard
         letter="a"
+        topic="Log Equation"
         marks={2}
         statement={
           <>
@@ -90,6 +95,7 @@ export default function MethodsQ7_2015Exam1() {
 
       <PartCard
         letter="b"
+        topic="Exponential Equation"
         marks={3}
         statement={
           <>

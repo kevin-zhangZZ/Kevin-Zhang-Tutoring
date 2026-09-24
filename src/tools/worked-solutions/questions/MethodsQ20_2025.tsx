@@ -13,8 +13,16 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Dilating by <Katex tex="a" /> from the <Katex tex="x" />-axis, then <Katex tex="\tfrac12" /> from the{' '}
-      <Katex tex="y" />-axis, then translating right gives <Katex tex="f_3(x)=a^{2x-1}\neq a^{2x+2}" />.
+      <Katex tex="f:R\to R,\ f(x)=a^x" /> and <Katex tex="g:R\to R,\ g(x)=a^{2x+2}" />
+      <br />
+      Dilation by a factor of <Katex tex="a" /> from the <Katex tex="x" />-axis gives{' '}
+      <Katex tex="f_1(x)=a\times a^x=a^{x+1}" />.
+      <br />
+      Dilation by a factor of <Katex tex="\dfrac{1}{2}" /> from the <Katex tex="y" />-axis gives{' '}
+      <Katex tex="f_2(x)=a^{2x+1}" />.
+      <br />
+      Translating by 1 unit in the positive direction of the <Katex tex="x" />-axis gives{' '}
+      <Katex tex="f_3(x)=a^{2\left(x+\frac{1}{2}-1\right)}=a^{2\left(x-\frac{1}{2}\right)}=a^{2x-1}\ne a^{2x+2}" />.
     </>
   ),
 }
@@ -22,7 +30,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)=a^x \qquad g(x)=a^{2x+2}" />,
-    reason: 'The starting function and the target.',
+    reason: <>The starting function and the target.</>,
   },
   {
     working: <Katex display tex="\text{Option A: } x\to2x \;\implies\; a^{2x};\quad x\to x+1 \;\implies\; a^{2(x+1)}=a^{2x+2}\ \checkmark" />,
@@ -42,11 +50,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to x-1 \;\implies\; a^{2(x-1)+1} = a^{2x-1}" />,
-    reason: 'Then translate 1 unit right.',
+    reason: <>Then translate 1 unit right.</>,
   },
   {
     working: <Katex display tex="\boxed{a^{2x-1} \neq a^{2x+2} = g(x)}" />,
-    reason: <>This sequence does <b>not</b> produce <Katex tex="g" /> — matches option <b>C</b>. (Option D can be checked the same way and does work: <Katex tex="a^x\to a^{x+3}\to a^{x+2}\to a^{2x+2}" />.)</>,
+    reason: <>This sequence does <b>not</b> produce <Katex tex="g" />. Matches option <b>C</b>. (Option D can be checked the same way and does work: <Katex tex="a^x\to a^{x+3}\to a^{x+2}\to a^{2x+2}" />.)</>,
   },
 ]
 
@@ -59,9 +67,10 @@ export default function MethodsQ20_2025() {
             Let <Katex tex="a>1" />, and consider the functions <Katex tex="f" /> and <Katex tex="g" /> defined
             below.
           </p>
-          <p className="mb-2">
-            <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=a^x \qquad g:\mathbb{R}\to\mathbb{R},\ g(x)=a^{2x+2}" />
-          </p>
+          <div className="mb-2 pl-5 flex flex-col gap-1">
+            <Katex tex="f:R\to R,\ f(x)=a^x" />
+            <Katex tex="g:R\to R,\ g(x)=a^{2x+2}" />
+          </div>
           <p>
             Which one of the following sequences of transformations, when applied to <Katex tex="f(x)" />, does{' '}
             <b>not</b> produce <Katex tex="g(x)" />?
@@ -69,10 +78,10 @@ export default function MethodsQ20_2025() {
         </>
       }
       options={[
-        { letter: 'A', content: <>dilation by a factor of <Katex tex="\tfrac12" /> from the y-axis, then translation by 1 unit in the negative direction of the x-axis</> },
-        { letter: 'B', content: <>dilation by a factor of <Katex tex="\tfrac12" /> from the y-axis, then dilation by a factor of <Katex tex="a^2" /> from the x-axis</> },
-        { letter: 'C', content: <>dilation by a factor of <Katex tex="a" /> from the x-axis, then dilation by a factor of <Katex tex="\tfrac12" /> from the y-axis, then translation by 1 unit in the positive direction of the x-axis</>, isAnswer: true },
-        { letter: 'D', content: <>dilation by a factor of <Katex tex="a^3" /> from the x-axis, then translation by 1 unit in the positive direction of the x-axis, then dilation by a factor of <Katex tex="\tfrac12" /> from the y-axis</> },
+        { letter: 'A', content: <>dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis, then<br />translation by 1 unit in the negative direction of the <Katex tex="x" />-axis</> },
+        { letter: 'B', content: <>dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis, then<br />dilation by a factor of <Katex tex="a^2" /> from the <Katex tex="x" />-axis</> },
+        { letter: 'C', content: <>dilation by a factor of <Katex tex="a" /> from the <Katex tex="x" />-axis, then<br />dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis, then<br />translation by 1 unit in the positive direction of the <Katex tex="x" />-axis</>, isAnswer: true },
+        { letter: 'D', content: <>dilation by a factor of <Katex tex="a^3" /> from the <Katex tex="x" />-axis, then<br />translation by 1 unit in the positive direction of the <Katex tex="x" />-axis, then<br />dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis</> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

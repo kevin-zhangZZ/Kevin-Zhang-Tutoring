@@ -11,8 +11,12 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       Most students understood that they needed to write the integrand as the sum of two
-      rational functions. Use of a substitution was unnecessary in this situation and, in
-      attempting to use a substitution, some students introduced errors into their working.
+      rational functions:
+      <br />
+      <Katex tex="\displaystyle\int_0^1\frac{2x}{x^2+1}\,dx+\int_0^1\frac{1}{x^2+1}\,dx=\Bigl[\log_e\left(x^2+1\right)\Bigr]_0^1+\Bigl[\arctan(x)\Bigr]_0^1" />
+      <br />
+      Use of a substitution was unnecessary in this situation and in attempting to use a
+      substitution, some students introduced errors into their working.
     </>
   ),
 }

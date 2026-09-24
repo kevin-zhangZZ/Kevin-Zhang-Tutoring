@@ -23,8 +23,16 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="\int_1^2f - \int_1^3f > 0 \;\iff\; \int_2^3 f(x)\,dx < 0" />. The only graph for which this
-      integral is negative is Option A.
+      <Katex tex="\displaystyle\int_1^2 f(x)\,dx>\int_1^3 f(x)\,dx" />
+      <br />
+      <Katex tex="\displaystyle\int_1^2 f(x)\,dx-\int_1^3 f(x)\,dx>0" />
+      <br />
+      <Katex tex="\displaystyle\int_1^2 f(x)\,dx-\left(\int_1^2 f(x)\,dx+\int_2^3 f(x)\,dx\right)>0" />
+      <br />
+      <Katex tex="\displaystyle\int_2^3 f(x)\,dx<0" />
+      <br />
+      The only graph for which the integral <Katex tex="\displaystyle\int_2^3 f(x)\,dx" /> is
+      negative is Option A.
     </>
   ),
 }
@@ -32,7 +40,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_1^2 f(x)\,dx > \int_1^3 f(x)\,dx" />,
-    reason: 'The given condition.',
+    reason: <>The given condition.</>,
   },
   {
     working: <Katex display tex="\int_1^2 f(x)\,dx - \left(\int_1^2 f(x)\,dx + \int_2^3 f(x)\,dx\right) > 0" />,
@@ -44,7 +52,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Check each option for whether <Katex tex="f" /> is negative on <Katex tex="[2,3]" />:</>,
-    reason: 'The graph shape everywhere else is irrelevant.',
+    reason: <>The graph shape everywhere else is irrelevant.</>,
   },
   {
     working: OPT_A,
@@ -64,7 +72,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Option A}}" />,
-    reason: <>The only graph negative throughout <Katex tex="[2,3]" />.</>,
+    reason: <>The only graph negative throughout <Katex tex="[2,3]" />. Matches option <b>A</b>.</>,
   },
 ]
 
@@ -73,7 +81,7 @@ export default function MethodsQ17_2025() {
     <MCQShell
       question={
         <p>
-          Given that <Katex tex="f:\mathbb{R}\to\mathbb{R}" /> satisfies{' '}
+          Given that <Katex tex="f:R\to R" /> satisfies{' '}
           <Katex tex="\displaystyle\int_1^2 f(x)\,dx > \int_1^3 f(x)\,dx" />, the graph of <Katex tex="y=f(x)" />{' '}
           could be
         </p>

@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos^{-1}(u) \text{ needs } -1 \le u \le 1" />,
-    reason: 'The domain of inverse cosine is the binding constraint.',
+    reason: <>The domain of inverse cosine is the binding constraint.</>,
   },
   {
     working: <Katex display tex="-1 \le \log_e(bx) \le 1" />,
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left[\frac{1}{be},\ \frac{e}{b}\right]}" />,
-    reason: <>Dividing by <Katex tex="b>0" /> keeps the order. Matches option <b>E</b>; option C uses <Katex tex="\tfrac1b" /> instead of <Katex tex="\tfrac{1}{be}" />, forgetting that <Katex tex="e^{-1}\ne1" />.</>,
+    reason: <>Dividing by <Katex tex="b>0" /> keeps the order. Matches option <b>E</b>; option C starts the band at <Katex tex="\log_e(bx)=0" /> instead of <Katex tex="-1" />, giving <Katex tex="\tfrac1b" /> instead of <Katex tex="\tfrac{1}{be}" />.</>,
   },
 ]
 

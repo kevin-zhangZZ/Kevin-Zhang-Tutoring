@@ -1,13 +1,13 @@
 // 2018 Specialist Mathematics — Exam 1, Question 5 (4 marks). Sketch f(x) = (x+1)/(x²−4).
 // Question text transcribed from the original paper. VCAA supplied only blank axes, so the
 // finished curve is this site's own answer-sketch (matplotlib), drawn to VCAA's exact
-// printed range (−4 to 4 on both axes, labels every 2) and living in the solution rather
+// printed grid (−4 to 4 on both axes, gridlines every 0.5, labels every 2) and living in the solution rather
 // than the stem (guide §7). Features checked with sympy and against the VCAA examination
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import sketchSrc from './spec-2018exam1-q5-sketch.png'
+import sketchSrc from './spec-2018e1-q5-sketch.png'
 
 const EXAM: SAExaminerStats = {
   marks: [9, 21, 35, 20, 15],
@@ -64,7 +64,7 @@ export default function SpecialistQ5_2018Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (4 marks)</p>
         <p>
-          Sketch the graph of <Katex tex="f(x)=\dfrac{x+1}{x^2-4}" /> on the axes provided,
+          Sketch the graph of <Katex tex="f(x)=\dfrac{x+1}{x^2-4}" /> on the axes provided below,
           labelling any asymptotes with their equations and any intercepts with their
           coordinates.
         </p>

@@ -24,10 +24,8 @@ import MethodsQ12_2015 from './questions/MethodsQ12_2015'
 import MethodsQ13_2015 from './questions/MethodsQ13_2015'
 import MethodsQ14_2015 from './questions/MethodsQ14_2015'
 import MethodsQ15_2015 from './questions/MethodsQ15_2015'
-import MethodsQ18_2015 from './questions/MethodsQ18_2015'
 import MethodsQ19_2015 from './questions/MethodsQ19_2015'
 import MethodsQ20_2015 from './questions/MethodsQ20_2015'
-import MethodsQ22_2015 from './questions/MethodsQ22_2015'
 import MethodsQ21_2014 from './questions/MethodsQ21_2014'
 import MethodsQ22_2014 from './questions/MethodsQ22_2014'
 import MethodsQ1_2014 from './questions/MethodsQ1_2014'
@@ -262,7 +260,6 @@ import SpecialistQ3_2016Exam1 from './questions/SpecialistQ3_2016Exam1'
 import SpecialistQ4_2016Exam1 from './questions/SpecialistQ4_2016Exam1'
 import SpecialistQ5_2016Exam1 from './questions/SpecialistQ5_2016Exam1'
 import SpecialistQ6_2016Exam1 from './questions/SpecialistQ6_2016Exam1'
-import SpecialistQ7_2016Exam1 from './questions/SpecialistQ7_2016Exam1'
 import SpecialistQ8_2016Exam1 from './questions/SpecialistQ8_2016Exam1'
 import SpecialistQ9_2016Exam1 from './questions/SpecialistQ9_2016Exam1'
 import SpecialistQ10_2016Exam1 from './questions/SpecialistQ10_2016Exam1'
@@ -461,6 +458,7 @@ import SpecialistQ13_2022 from './questions/SpecialistQ13_2022'
 import SpecialistQ14_2022 from './questions/SpecialistQ14_2022'
 import SpecialistQ16_2022 from './questions/SpecialistQ16_2022'
 import SpecialistQ17_2022 from './questions/SpecialistQ17_2022'
+import SpecialistQ20_2022 from './questions/SpecialistQ20_2022'
 import SpecialistQ1_2022Exam2 from './questions/SpecialistQ1_2022Exam2'
 import SpecialistQ2_2022Exam2 from './questions/SpecialistQ2_2022Exam2'
 import SpecialistQ3_2022Exam2 from './questions/SpecialistQ3_2022Exam2'
@@ -834,6 +832,8 @@ import ChemistryQ15_2020 from './questions/ChemistryQ15_2020'
 import ChemistryQ10_2020 from './questions/ChemistryQ10_2020'
 import ChemistryQ9_2020 from './questions/ChemistryQ9_2020'
 import ChemistryQ25_2021 from './questions/ChemistryQ25_2021'
+import ChemistryQ27_2021 from './questions/ChemistryQ27_2021'
+import ChemistryQ10_2021 from './questions/ChemistryQ10_2021'
 import ChemistryQ28_2021 from './questions/ChemistryQ28_2021'
 import ChemistryQ21_2021 from './questions/ChemistryQ21_2021'
 import ChemistryQ22_2021 from './questions/ChemistryQ22_2021'
@@ -893,10 +893,8 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'meth-q13-2015': MethodsQ13_2015,
   'meth-q14-2015': MethodsQ14_2015,
   'meth-q15-2015': MethodsQ15_2015,
-  'meth-q18-2015': MethodsQ18_2015,
   'meth-q19-2015': MethodsQ19_2015,
   'meth-q20-2015': MethodsQ20_2015,
-  'meth-q22-2015': MethodsQ22_2015,
   'meth-q21-2014': MethodsQ21_2014,
   'meth-q22-2014': MethodsQ22_2014,
   'meth-q1-2014': MethodsQ1_2014,
@@ -1057,7 +1055,6 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q4-2016-e1': SpecialistQ4_2016Exam1,
   'spec-q5-2016-e1': SpecialistQ5_2016Exam1,
   'spec-q6-2016-e1': SpecialistQ6_2016Exam1,
-  'spec-q7-2016-e1': SpecialistQ7_2016Exam1,
   'spec-q8-2016-e1': SpecialistQ8_2016Exam1,
   'spec-q9-2016-e1': SpecialistQ9_2016Exam1,
   'spec-q10-2016-e1': SpecialistQ10_2016Exam1,
@@ -1342,6 +1339,7 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
   'spec-q14-2022': SpecialistQ14_2022,
   'spec-q16-2022': SpecialistQ16_2022,
   'spec-q17-2022': SpecialistQ17_2022,
+  'spec-q20-2022': SpecialistQ20_2022,
   'spec-q1-2022-e2': SpecialistQ1_2022Exam2,
   'spec-q2-2022-e2': SpecialistQ2_2022Exam2,
   'spec-q3-2022-e2': SpecialistQ3_2022Exam2,
@@ -1741,6 +1739,8 @@ export const QUESTION_DETAILS: Partial<Record<string, ComponentType>> = {
 
   // Hardest-6 Chemistry MCQs, 2021 Exam (see data.ts percentCorrect)
   'chem-q25-2021': ChemistryQ25_2021,
+  'chem-q27-2021': ChemistryQ27_2021,
+  'chem-q10-2021': ChemistryQ10_2021,
   'chem-q28-2021': ChemistryQ28_2021,
   'chem-q21-2021': ChemistryQ21_2021,
   'chem-q22-2021': ChemistryQ22_2021,

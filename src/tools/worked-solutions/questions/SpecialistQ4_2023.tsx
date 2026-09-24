@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z = -(2a+1)+2ai \implies \bar z = -(2a+1)-2ai" />,
-    reason: 'The conjugate flips the sign of the imaginary part only. The question asks about z̄, not z.',
+    reason: <>The conjugate flips the sign of the imaginary part only. The question asks about z̄, not z.</>,
   },
   {
     working: <Katex display tex="1+\bar z = 1-2a-1-2ai = -2a-2ai = -2a(1+i)" />,
@@ -26,15 +26,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{-2(1-i)}{(1+i)(1-i)} = \frac{-2(1-i)}{2} = -1+i" />,
-    reason: 'Multiply above and below by the conjugate of the denominator.',
+    reason: <>Multiply above and below by the conjugate of the denominator.</>,
   },
   {
     working: <Katex display tex="|-1+i| = \sqrt2, \qquad \arg(-1+i) = \frac{3\pi}{4}" />,
-    reason: 'Second quadrant, so the argument is obtuse and positive.',
+    reason: <>Second quadrant, so the argument is obtuse and positive.</>,
   },
   {
     working: <Katex display tex="\boxed{\sqrt2\,\mathrm{cis}\!\left(\frac{3\pi}{4}\right)}" />,
-    reason: <>Option <b>B</b>. Option <b>D</b> has the same modulus with the argument in the wrong quadrant — that is what using <Katex tex="z" /> instead of <Katex tex="\bar z" /> produces.</>,
+    reason: <>Matches option <b>B</b>. Option <b>D</b> has the same modulus with the argument in the wrong quadrant — that is what using <Katex tex="z" /> instead of <Katex tex="\bar z" /> produces.</>,
   },
 ]
 

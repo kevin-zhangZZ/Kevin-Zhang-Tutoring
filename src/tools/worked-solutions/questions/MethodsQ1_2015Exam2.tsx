@@ -59,9 +59,10 @@ const EXAM_D: SAExaminerStats = {
   average: 1.9,
   comment: (
     <>
-      The <Katex tex="dx" /> was often missing and brackets were used poorly. Many students
+      The ‘<Katex tex="dx" />’ was often missing and brackets were used poorly; for example,{' '}
+      <Katex tex="\int_1^7\left(f(x)-\tfrac{-9}{5}x+\tfrac{13}{5}\right)dx" />. Many students
       split the areas up rather than just using{' '}
-      <Katex tex="\int_a^b(\text{upper}-\text{lower})\,dx" />. Some students completed the
+      <Katex tex="\int_a^b(\text{upper function}-\text{lower function})\,dx" />. Some students completed the
       solution by hand rather than using technology.
     </>
   ),
@@ -77,8 +78,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Term by term.</>,
   },
   {
-    working: <Katex display tex="f'(x) = -\tfrac35(x-2)(x-4)" />,
-    reason: <>Factorising is worth the extra line — it hands you the stationary points at <Katex tex="x=2" /> and <Katex tex="x=4" /> free of charge, which is what the graph's shape reflects.</>,
+    working: <Katex display tex="\boxed{f'(x) = -\tfrac35(x-2)(x-4)}" />,
+    reason: <>Factorising is worth the extra line — it hands you the stationary points at <Katex tex="x=2" /> and <Katex tex="x=4" /> free of charge, matching the graph's minimum on the <Katex tex="x" />-axis and maximum just beyond it. VCAA also accepted the unfactorised form.</>,
   },
 ]
 
@@ -96,8 +97,8 @@ const ROWS_BI: WorkingRow[] = [
     reason: <>Expanding.</>,
   },
   {
-    working: <Katex display tex="y = -\tfrac95x + \tfrac{13}5" />,
-    reason: <>Write it as an equation, not just an expression — the mark is for <Katex tex="y=\dots" />.</>,
+    working: <Katex display tex="\boxed{y = -\tfrac95x + \tfrac{13}5}" />,
+    reason: <>Write it as an equation, not just an expression — the report notes students who left it as <Katex tex="-\tfrac95x+\tfrac{13}5" />. Check: <Katex tex="-\tfrac95+\tfrac{13}5=\tfrac45" /> at <Katex tex="x=1" /> ✓.</>,
   },
 ]
 
@@ -115,8 +116,8 @@ const ROWS_BII: WorkingRow[] = [
     reason: <><Katex tex="Q" /> is where it cuts the <Katex tex="x" />-axis. Multiply through by 5, then divide by 9.</>,
   },
   {
-    working: <Katex display tex="Q = \left(\tfrac{13}9,\ 0\right)" />,
-    reason: <>Leave it as a fraction — <Katex tex="1.44" /> is not exact.</>,
+    working: <Katex display tex="\boxed{Q = \left(\tfrac{13}9,\ 0\right), \quad S = \left(0,\ \tfrac{13}5\right)}" />,
+    reason: <>As coordinates, and exact — <Katex tex="1.44" /> for <Katex tex="\tfrac{13}9" /> was marked wrong. Consistent with the diagram: <Katex tex="Q" /> just right of the origin, <Katex tex="S" /> a little below 4 on the <Katex tex="y" />-axis.</>,
   },
 ]
 
@@ -134,8 +135,8 @@ const ROWS_C: WorkingRow[] = [
     reason: <>Squaring kills the sign.</>,
   },
   {
-    working: <Katex display tex="= \sqrt{\tfrac{106}{25}} = \frac{\sqrt{106}}{5}" />,
-    reason: <>So <Katex tex="b=106" /> and <Katex tex="c=5" />. Since <Katex tex="106=2\times53" /> has no square factor, the surd cannot be simplified further.</>,
+    working: <Katex display tex="\boxed{PS = \sqrt{\tfrac{106}{25}} = \frac{\sqrt{106}}{5}}" />,
+    reason: <>So <Katex tex="b=106" /> and <Katex tex="c=5" />. Since <Katex tex="106=2\times53" /> has no square factor, the surd cannot be simplified further. About 2.06 — a bit longer than the unit horizontal step from <Katex tex="S" /> to <Katex tex="P" />, as it should be.</>,
   },
 ]
 
@@ -157,8 +158,8 @@ const ROWS_D: WorkingRow[] = [
     reason: <>By hand the integrand factorises as <Katex tex="-\tfrac15(x-1)^2(x-7)" />, which is positive on <Katex tex="(1,7)" /> — confirming the curve really is above the line throughout.</>,
   },
   {
-    working: <Katex display tex="A = \frac{108}{5}" />,
-    reason: <>An exact answer, as Section 2 requires unless a decimal is specified.</>,
+    working: <Katex display tex="\boxed{A = \frac{108}{5}}" />,
+    reason: <>An exact answer, as Section 2 requires unless a decimal is specified. By hand, with <Katex tex="u=x-1" />: <Katex tex="-\tfrac15\int_0^6u^2(u-6)\,du=-\tfrac15\left[\tfrac{u^4}4-2u^3\right]_0^6=-\tfrac15(324-432)=\tfrac{108}5" /> ✓.</>,
   },
 ]
 
@@ -182,12 +183,13 @@ export default function MethodsQ1_2015Exam2() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Write down the derivative <Katex tex="f'(x)" /> of <Katex tex="f(x)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Derivative" marks={1} statement={<>Write down the derivative <Katex tex="f'(x)" /> of <Katex tex="f(x)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b.i"
+        topic="Tangent Line"
         marks={1}
         statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at the point <Katex tex="P\left(1,\tfrac45\right)" />.</>}
         examinerReport={EXAM_BI}
@@ -197,6 +199,7 @@ export default function MethodsQ1_2015Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Intersections"
         marks={2}
         statement={<>Find the coordinates of points <Katex tex="Q" /> and <Katex tex="S" />.</>}
         examinerReport={EXAM_BII}
@@ -206,6 +209,7 @@ export default function MethodsQ1_2015Exam2() {
 
       <PartCard
         letter="c"
+        topic="Distance"
         marks={2}
         statement={
           <>
@@ -220,7 +224,6 @@ export default function MethodsQ1_2015Exam2() {
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
-        <p>The shaded region referred to in part d. is the one below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={shadedSrc}
@@ -230,7 +233,7 @@ export default function MethodsQ1_2015Exam2() {
         </div>
       </div>
 
-      <PartCard letter="d" marks={3} statement={<>Find the area of the shaded region in the graph above.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Area Between Curves" marks={3} statement={<>Find the area of the shaded region in the graph above.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
     </div>

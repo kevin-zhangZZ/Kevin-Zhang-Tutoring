@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^a\bigl(3f(x)+2\bigr)dx = 3\int_0^a f(x)\,dx+\int_0^a 2\,dx" />,
-    reason: 'Split the integral and pull the constant multiple out.',
+    reason: <>Split the integral and pull the constant multiple out.</>,
   },
   {
     working: <Katex display tex="3\int_0^a f(x)\,dx = 3k" />,
-    reason: 'Using the given value.',
+    reason: <>Using the given value.</>,
   },
   {
     working: <Katex display tex="\int_0^a 2\,dx = \left[2x\right]_0^a = 2a" />,

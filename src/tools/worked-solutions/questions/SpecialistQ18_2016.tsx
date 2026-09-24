@@ -20,7 +20,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \mathrm{E}(S) &= 3(204) + 2(76) \\ &= 612+152 \\ &= 764 \end{aligned}" />,
-    reason: 'Expectation is linear, so it adds regardless of independence.',
+    reason: <>Expectation is linear, so it adds regardless of independence.</>,
   },
   {
     working: (
@@ -33,11 +33,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \mathrm{sd}(S) &= \sqrt{261} \\ &= \sqrt{9\times29} \\ &= 3\sqrt{29} \end{aligned}" />,
-    reason: 'Standard deviation is the square root of variance.',
+    reason: <>Standard deviation is the square root of variance.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(S)=764, \ \mathrm{sd}(S) = 3\sqrt{29}}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Option C (22%), <Katex tex="\sqrt{33}" />, adds the standard deviations as if they were variances (<Katex tex="3\times9+2\times3=33" />); options B, D and E have the wrong mean, <Katex tex="636" />.</>,
   },
 ]
 
@@ -49,18 +49,19 @@ export default function SpecialistQ18_2016() {
           <p className="mb-2">
             Oranges grown on a citrus farm have a mean mass of 204 grams with a standard deviation of 9
             grams. Lemons grown on the same farm have a mean mass of 76 grams with a standard deviation
-            of 3 grams. The masses of the lemons are independent of the masses of the oranges.
+            of 3 grams.
           </p>
+          <p className="mb-2">The masses of the lemons are independent of the masses of the oranges.</p>
           <p>
-            The mean mass and standard deviation, in grams respectively, of a set of three of these oranges
-            and two of these lemons are
+            The mean mass and standard deviation, in grams, respectively of a set of three of these
+            oranges and two of these lemons are
           </p>
         </>
       }
       options={[
         { letter: 'A', content: <Katex tex="764, \ 3\sqrt{29}" />, isAnswer: true },
         { letter: 'B', content: <Katex tex="636, \ 12" /> },
-        { letter: 'C', content: <Katex tex="764, \ 33" /> },
+        { letter: 'C', content: <Katex tex="764, \ \sqrt{33}" /> },
         { letter: 'D', content: <Katex tex="636, \ 3\sqrt{10}" /> },
         { letter: 'E', content: <Katex tex="636, \ 33" /> },
       ]}

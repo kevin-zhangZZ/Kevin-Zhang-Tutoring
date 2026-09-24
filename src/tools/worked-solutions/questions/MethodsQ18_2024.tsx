@@ -11,12 +11,13 @@ import figSrc from './meth-2024-mcq18-trapezium.png'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 18, B: 58, C: 12, D: 10 },
   answer: 'B',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h = \sqrt{10^2-x^2} = \sqrt{100-x^2}" />,
-    reason: 'Pythagoras in one of the right triangles the dashed heights cut off. This is the only unmarked length.',
+    reason: <>Pythagoras in one of the right triangles the dashed heights cut off. This is the only unmarked length.</>,
   },
   {
     working: <Katex display tex="A = \frac12\left(x+3x\right)h = 2x\sqrt{100-x^2}, \quad 0<x<10" />,
@@ -28,11 +29,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d\left(A^2\right)}{dx} = 800x-16x^3 = 16x\left(50-x^2\right) = 0" />,
-    reason: 'Factorising rather than expanding keeps the roots visible.',
+    reason: <>Factorising rather than expanding keeps the roots visible.</>,
   },
   {
     working: <Katex display tex="x^2 = 50 \implies \boxed{x = 5\sqrt2}" />,
-    reason: <>Option <b>B</b>; <Katex tex="x=0" /> is rejected. Or go straight at it on CAS with <Cas fn="fMax" /> applied to <Katex tex="2x\sqrt{100-x^2}" />.</>,
+    reason: <>Matches option <b>B</b>; <Katex tex="x=0" /> is rejected. Or go straight at it on CAS with <Cas fn="fMax" /> applied to <Katex tex="2x\sqrt{100-x^2}" />.</>,
   },
   {
     working: <Katex display tex="h = \sqrt{100-50} = 5\sqrt2 = x" />,

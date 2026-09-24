@@ -11,11 +11,12 @@ const EXAM: SAExaminerStats = {
   average: 2.2,
   comment: (
     <>
+      A small number of students correctly separated and integrated to find an answer in
+      terms of inverse cosine leading to the result{' '}
+      <Katex tex="y=2\cos\left(\tfrac12x^2+\tfrac\pi2-2\right)" />.
+      <br />
       This question was answered well with most students recognising and attempting to solve
-      the separable differential equation. A small number of students correctly separated and
-      integrated to find an answer in terms of inverse cosine. Quite a few students set up
-      the differential equation as a definite integral; while the method is sound, students
-      need to use a "dummy" variable in such problems.
+      the separable differential equation.
     </>
   ),
 }
@@ -27,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int\frac{1}{\sqrt{4-y^2}}\,dy = \int -x\,dx" />,
-    reason: 'Integrate both sides. One arbitrary constant is enough.',
+    reason: <>Integrate both sides. One arbitrary constant is enough.</>,
   },
   {
     working: <Katex display tex="\arcsin\!\left(\frac{y}{2}\right) = -\frac{x^2}{2}+c" />,
@@ -35,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y(2)=0: \quad \arcsin(0) = -\frac{4}{2}+c \implies 0 = -2+c \implies c = 2" />,
-    reason: 'Apply the condition now, before rearranging — much less algebra than doing it last.',
+    reason: <>Apply the condition now, before rearranging — much less algebra than doing it last.</>,
   },
   {
     working: <Katex display tex="\arcsin\!\left(\frac{y}{2}\right) = 2-\frac{x^2}{2} \implies \frac{y}{2} = \sin\!\left(2-\frac{x^2}{2}\right)" />,
@@ -43,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = 2\sin\!\left(2-\frac{x^2}{2}\right)}" />,
-    reason: <>In the required form <Katex tex="y=f(x)" />. Check: at <Katex tex="x=2" />, <Katex tex="y=2\sin(0)=0" /> ✓.</>,
+    reason: <>In the required form <Katex tex="y=f(x)" />. Check: at <Katex tex="x=2" />, <Katex tex="y=2\sin(0)=0" />. (The report's sample answer writes the condition as "y(0) = 2"; the paper's is <Katex tex="y(2)=0" />, which is what gives <Katex tex="c=2" />.)</>,
   },
 ]
 
@@ -73,8 +74,9 @@ export default function SpecialistQ2_2022Exam1() {
             Setting the problem up as definite integrals{' '}
             <Katex tex="\int_0^y\!\cdots dy=\int_2^x\!\cdots dx" /> also works, but only if
             the integration variables are renamed to something other than{' '}
-            <Katex tex="x" /> and <Katex tex="y" />; reusing the terminal as the variable is
-            the slip the report singles out.
+            <Katex tex="x" /> and <Katex tex="y" /> — the report's general comments note that
+            students who set this question up as definite integrals need to use a 'dummy'
+            variable.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

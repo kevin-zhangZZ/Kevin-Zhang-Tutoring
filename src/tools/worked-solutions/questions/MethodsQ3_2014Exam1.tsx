@@ -13,7 +13,7 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       Many students were unsure of exact values and did not ascertain the correct basic angle
-      of <Katex tex="\tfrac\pi6" />, or produced solutions beyond the specified domain.
+      of <Katex tex="\tfrac\pi6" /> or produced solutions beyond the specified domain.
     </>
   ),
 }

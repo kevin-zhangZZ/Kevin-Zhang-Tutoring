@@ -8,18 +8,26 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import argandSrc from './spec-2019exam1-q7-argand.png'
+import argandSrc from './spec-2019e1-q7-argand.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [19, 81],
   average: 0.8,
-  comment: <>Students were required to show the given result and generally did this quite well. Some particular errors with the modulus and argument were noted.</>,
+  comment: (
+    <>
+      Students were required to show that{' '}
+      <Katex tex="3-\sqrt3i=2\sqrt3\operatorname{cis}\left(-\dfrac{\pi}{6}\right)" /> and students
+      generally did this quite well. Some particular errors were noted. Some students wrote such
+      things as <Katex tex="\tan\left(\dfrac{\sqrt3}{3}\right)" /> or{' '}
+      <Katex tex="\tan^{-1}\left(\dfrac{\sqrt3}{3}\right)=\dfrac{\pi}{6}=-\dfrac{\pi}{6}" />.
+    </>
+  ),
 }
 
 const EXAM_B: SAExaminerStats = {
   marks: [6, 23, 72],
   average: 1.7,
-  comment: <>The efficient method was to use de Moivre's theorem, although some students attempted to expand the bracket directly. Students who chose the latter approach generally did not score as well.</>,
+  comment: <>The efficient method was to use de Moivre's theorem although some students attempted to expand <Katex tex="\left(3-\sqrt3i\right)^3" />. Students who chose the latter approach generally did not score as well.</>,
 }
 
 const EXAM_C: SAExaminerStats = {
@@ -29,8 +37,9 @@ const EXAM_C: SAExaminerStats = {
     <>
       There were several ways to answer this question. Some students realised that if{' '}
       <Katex tex="n" /> was a positive or negative multiple of <Katex tex="6" /> then{' '}
-      <Katex tex="z^n" /> was real, but were unable to express this mathematically. Some
-      students did not indicate that <Katex tex="n" /> was a member of <Katex tex="\mathbb{Z}" />.
+      <Katex tex="\left(3-\sqrt3i\right)^n" /> was real, but were unable to express this
+      mathematically. Some students did not indicate that <Katex tex="k" /> was a member of{' '}
+      <Katex tex="Z" />, the set of integers.
     </>
   ),
 }
@@ -38,7 +47,7 @@ const EXAM_C: SAExaminerStats = {
 const EXAM_D: SAExaminerStats = {
   marks: [74, 26],
   average: 0.3,
-  comment: <>This question was answered poorly. There were a number of equivalent correct answers, but many students were unable to find a general solution.</>,
+  comment: <>This question was answered poorly. There were a number of equivalent correct answers but many students were unable to find a general solution.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
@@ -52,7 +61,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3-\sqrt3\,i \text{ lies in the fourth quadrant } (x>0,\ y<0) \implies \theta = -\dfrac{\pi}{6}" />,
-    reason: <>The base angle for <Katex tex="\tfrac{1}{\sqrt3}" /> is <Katex tex="\tfrac{\pi}{6}" />; the fourth quadrant makes the principal argument negative. Checking the quadrant matters — <Katex tex="\tan" /> alone can't tell <Katex tex="-\tfrac{\pi}{6}" /> from <Katex tex="\tfrac{5\pi}{6}" />.</>,
+    reason: <>The base angle for <Katex tex="\tfrac{1}{\sqrt3}" /> is <Katex tex="\tfrac{\pi}{6}" />; the fourth quadrant makes the principal argument negative. Checking the quadrant matters — <Katex tex="\tan" /> alone can't tell <Katex tex="-\tfrac{\pi}{6}" /> from <Katex tex="\tfrac{5\pi}{6}" />. The report notes errors such as <Katex tex="\tan^{-1}\left(\tfrac{\sqrt3}{3}\right)=\tfrac{\pi}{6}=-\tfrac{\pi}{6}" />, a chain of equalities that cannot all be true.</>,
   },
   {
     working: (
@@ -64,7 +73,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{3-\sqrt3\,i = 2\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{6}\right)}" />,
-    reason: <>For a "show that", both the modulus and the argument need to be seen — a final line alone isn't enough evidence.</>,
+    reason: <>As required. For a "show that", both the modulus and the argument need to be seen — a final line alone isn't enough evidence.</>,
   },
 ]
 
@@ -75,6 +84,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left(2\sqrt3\right)^3 = 2^3\left(\sqrt3\right)^3 = 8\times3\sqrt3 = 24\sqrt3" />,
+    reason: <>The modulus cubed, using <Katex tex="\left(\sqrt3\right)^3=\sqrt3\times\sqrt3\times\sqrt3=3\sqrt3" />; and the argument tripled is <Katex tex="3\times-\tfrac{\pi}{6}=-\tfrac{\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="= 24\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{2}\right) = 24\sqrt3\left(\cos\!\left(-\tfrac{\pi}{2}\right)+i\sin\!\left(-\tfrac{\pi}{2}\right)\right)" />,
@@ -82,28 +92,30 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos\!\left(-\tfrac{\pi}{2}\right)=0, \qquad \sin\!\left(-\tfrac{\pi}{2}\right)=-1" />,
+    reason: <>Exact values: <Katex tex="-\tfrac{\pi}{2}" /> points straight down the negative imaginary axis.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(3-\sqrt3\,i\right)^3 = -24\sqrt3\,i}" />,
-    reason: <>So <Katex tex="x=0" /> and <Katex tex="y=-24\sqrt3" /> — the cube happens to land exactly on the negative imaginary axis, which is the clue that parts (c) and (d) are about where powers land.</>,
+    reason: <>So <Katex tex="x=0" /> and <Katex tex="y=-24\sqrt3" /> — the cube happens to land exactly on the negative imaginary axis, which is the clue that parts c. and d. are about where powers land.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="z^n = \left(2\sqrt3\right)^n\text{cis}\!\left(-\dfrac{n\pi}{6}\right)" />,
-    reason: <>de Moivre again. The modulus is always positive, so whether <Katex tex="z^n" /> is real depends only on the angle.</>,
+    working: <Katex display tex="\left(3-\sqrt3\,i\right)^n = \left(2\sqrt3\right)^n\text{cis}\!\left(-\dfrac{n\pi}{6}\right)" />,
+    reason: <>de Moivre again. The modulus is always positive, so whether the power is real depends only on the angle. Write <Katex tex="z=3-\sqrt3\,i" /> for short.</>,
   },
   {
     working: <Katex display tex="z^n \text{ is real} \iff \sin\!\left(-\dfrac{n\pi}{6}\right)=0" />,
     reason: <>A complex number is real exactly when its imaginary part vanishes. Geometrically: <Katex tex="z^n" /> must sit on the real axis, i.e. at an angle of <Katex tex="0" /> or <Katex tex="\pi" /> (or any whole number of <Katex tex="\pi" />).</>,
   },
   {
-    working: <Katex display tex="\dfrac{n\pi}{6} = k\pi, \ k\in\mathbb{Z} \implies n = 6k" />,
+    working: <Katex display tex="\dfrac{n\pi}{6} = k\pi, \ k\in Z \implies n = 6k" />,
+    reason: <><Katex tex="\sin\theta=0" /> exactly when <Katex tex="\theta" /> is a whole multiple of <Katex tex="\pi" />; the minus sign makes no difference, since <Katex tex="k" /> ranges over all integers.</>,
   },
   {
-    working: <Katex display tex="\boxed{n = 6k, \ k\in\mathbb{Z}}" />,
-    reason: <>That is, <Katex tex="n" /> is any integer multiple of <Katex tex="6" />: <Katex tex="\ldots,-12,-6,0,6,12,\ldots" />. Each power turns the point a further <Katex tex="\tfrac{\pi}{6}" /> clockwise, so it takes six steps to reach the real axis. Say explicitly that <Katex tex="k" /> is an integer — the report notes marks were lost for leaving that out.</>,
+    working: <Katex display tex="\boxed{n = 6k, \ k\in Z}" />,
+    reason: <>That is, <Katex tex="n" /> is any integer multiple of <Katex tex="6" />: <Katex tex="\ldots,-12,-6,0,6,12,\ldots" />. Each power turns the point a further <Katex tex="\tfrac{\pi}{6}" /> clockwise, so it takes six steps to reach the real axis. Say explicitly that <Katex tex="k" /> is an integer — the report notes some students did not indicate that <Katex tex="k" /> was a member of <Katex tex="Z" />.</>,
   },
 ]
 
@@ -113,15 +125,16 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Purely imaginary means <Katex tex="z^n" /> lies on the imaginary axis — at an angle of <Katex tex="\pm\tfrac{\pi}{2}" />, or any odd multiple of <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
-    working: <Katex display tex="\dfrac{n\pi}{6} = \dfrac{\pi}{2}+k\pi, \ k\in\mathbb{Z}" />,
+    working: <Katex display tex="\dfrac{n\pi}{6} = \dfrac{\pi}{2}+k\pi, \ k\in Z" />,
+    reason: <><Katex tex="\cos\theta=0" /> exactly when <Katex tex="\theta" /> is an odd multiple of <Katex tex="\tfrac{\pi}{2}" />. Again the sign is absorbed by <Katex tex="k" />.</>,
   },
   {
-    working: <Katex display tex="n = 3+6k, \ k\in\mathbb{Z}" />,
+    working: <Katex display tex="n = 3+6k, \ k\in Z" />,
     reason: <>Multiply through by <Katex tex="\tfrac{6}{\pi}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{n = 3+6k, \ k\in\mathbb{Z} \quad\text{(equivalently, } n \text{ is an odd multiple of } 3)}" />,
-    reason: <>Check against part (b): <Katex tex="n=3" /> gave <Katex tex="-24\sqrt3\,i" />, which is indeed purely imaginary ✓. The values are <Katex tex="\ldots,-9,-3,3,9,15,\ldots" /> — halfway between consecutive "real" powers from part (c), exactly as the quarter-turn picture suggests.</>,
+    working: <Katex display tex="\boxed{n = 3+6k, \ k\in Z \quad\text{(equivalently, } n \text{ is an odd multiple of } 3)}" />,
+    reason: <>Check against part b.: <Katex tex="n=3" /> gave <Katex tex="-24\sqrt3\,i" />, which is indeed purely imaginary ✓. The values are <Katex tex="\ldots,-9,-3,3,9,15,\ldots" /> — halfway between consecutive "real" powers from part c., exactly as the quarter-turn picture suggests.</>,
   },
 ]
 
@@ -129,10 +142,7 @@ export default function SpecialistQ7_2019Exam1() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 7 (5 marks)</p>
-        <p>
-          Consider the complex number <Katex tex="3-\sqrt3\,i" />.
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 7 (5 marks)</p>
       </div>
 
       <div className="text-[13px] leading-relaxed">
@@ -146,26 +156,26 @@ export default function SpecialistQ7_2019Exam1() {
           </p>
           <p>
             Here <Katex tex="\theta=-\tfrac{\pi}{6}" />, so each successive power rotates the
-            point another <Katex tex="30^\circ" /> clockwise. Parts (c) and (d) then just ask:
+            point another <Katex tex="30^\circ" /> clockwise. Parts c. and d. then just ask:
             after how many such turns does the point land on the real axis, and on the imaginary
             axis?
           </p>
         </Background>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Show that <Katex tex="3-\sqrt3\,i = 2\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{6}\right)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Polar Form" marks={1} statement={<>Show that <Katex tex="3-\sqrt3\,i = 2\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{6}\right)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Find <Katex tex="\left(3-\sqrt3\,i\right)^3" />, expressing your answer in the form <Katex tex="x+iy" />, where <Katex tex="x,y\in\mathbb{R}" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="De Moivre's Theorem" marks={2} statement={<>Find <Katex tex="\left(3-\sqrt3\,i\right)^3" />, expressing your answer in the form <Katex tex="x+iy" />, where <Katex tex="x,y\in R" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={1} statement={<>Find the integer values of <Katex tex="n" /> for which <Katex tex="\left(3-\sqrt3\,i\right)^n" /> is real.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Real Powers" marks={1} statement={<>Find the integer values of <Katex tex="n" /> for which <Katex tex="\left(3-\sqrt3\,i\right)^n" /> is real.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={1} statement={<>Find the integer values of <Katex tex="n" /> for which <Katex tex="\left(3-\sqrt3\,i\right)^n = ai" />, where <Katex tex="a" /> is a real number.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Imaginary Powers" marks={1} statement={<>Find the integer values of <Katex tex="n" /> for which <Katex tex="\left(3-\sqrt3\,i\right)^n = ai" />, where <Katex tex="a" /> is a real number.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
     </div>

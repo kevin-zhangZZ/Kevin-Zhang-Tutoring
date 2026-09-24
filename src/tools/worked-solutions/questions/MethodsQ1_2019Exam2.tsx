@@ -13,9 +13,9 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import curveSrc from './meth-2019exam2-q1-curve.png'
-import areaSrc from './meth-2019exam2-q1-area.png'
-import distanceSrc from './meth-2019exam2-q1-distance.png'
+import curveSrc from './meth-2019e2-q1-curve.png'
+import areaSrc from './meth-2019e2-q1-area.png'
+import distanceSrc from './meth-2019e2-q1-distance.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [6, 94],
@@ -63,8 +63,9 @@ const EXAM_BIII: SAExaminerStats = {
     <>
       This question was not answered well. Common incorrect answers were{' '}
       <Katex tex="d=-\tfrac1e" />, <Katex tex="d\le-\tfrac1e" />, <Katex tex="d>\tfrac1e" />,{' '}
-      <Katex tex="d\ge-\tfrac1e" /> and <Katex tex="d<\tfrac1e" />. Some students wrote{' '}
-      <Katex tex="-\tfrac1e" /> alone, with no inequality. Others did not attempt the question.
+      <Katex tex="d>-\tfrac1e" />, <Katex tex="d<\tfrac1e" /> or{' '}
+      <Katex tex="d<-x^2e^{-x^2}" />. Some students wrote{' '}
+      <Katex tex="\left(-\tfrac1e,-\infty\right)" />. Others did not attempt the question.
     </>
   ),
 }
@@ -81,8 +82,10 @@ const EXAM_CII: SAExaminerStats = {
   comment: (
     <>
       Most students were able to subtract <Katex tex="f" /> from their tangent. Common
-      incorrect methods integrated <Katex tex="f" /> on its own, or used the wrong terminals —
-      for example <Katex tex="\int_0^1" /> instead of <Katex tex="\int_{-1}^{1}" />.
+      incorrect methods were{' '}
+      <Katex tex="\displaystyle\int_0^1\left(\frac1e-x^2e^{-x^2}\right)dx" /> and{' '}
+      <Katex tex="\displaystyle\int_{-1}^1\left(x^2e^{-x^2}\right)dx" /> and{' '}
+      <Katex tex="\displaystyle\int_{-1}^1\left(x^2e^{-x^2}-\frac1e\right)dx" />.
     </>
   ),
 }
@@ -105,6 +108,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="u=x^2 \implies u'=2x" />,
+    reason: <>Power rule.</>,
   },
   {
     working: <Katex display tex="v=e^{-x^2} \implies v'=-2x\,e^{-x^2}" />,
@@ -115,11 +119,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Substitute into <Katex tex="u'v+uv'" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(x) = 2xe^{-x^2}-2x^3e^{-x^2}}" />,
-  },
-  {
-    working: <Katex display tex="= 2x\left(1-x^2\right)e^{-x^2}" />,
-    reason: <>Any equivalent form scores the mark, but take the factorised version forward — it makes the stationary points in part (b) readable straight off.</>,
+    working: <Katex display tex="\boxed{f'(x) = 2xe^{-x^2}-2x^3e^{-x^2} = 2x\left(1-x^2\right)e^{-x^2}}" />,
+    reason: <>The report accepted equivalent forms, but take the factorised version forward — it makes the stationary points in part b. readable straight off. If you use technology, copy its output carefully: the report notes transcription errors such as <Katex tex="2x^3e^{-x^2}-2xe^{-x^2}" />.</>,
   },
 ]
 
@@ -150,6 +151,7 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Stationary points at } x=-1,\ 0,\ 1 \quad \text{(part b.i)}" />,
+    reason: <>From solving <Katex tex="f'(x)=0" /> in part b.i. — the report notes some students gave only one of <Katex tex="x=\pm1" />, or included <Katex tex="x=0" />.</>,
   },
   {
     working: (
@@ -174,14 +176,14 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum value } \dfrac1e, \text{ at } x=-1 \text{ and } x=1}" />,
-    reason: <>Both pieces are needed for the two marks: the <em>value</em> and the <em>x</em>-values. Leave it as <Katex tex="\tfrac1e" /> — an exact answer was required, so <Katex tex="0.368" /> would not score.</>,
+    reason: <>Both pieces are needed for the two marks: the <em>value</em> and the <em>x</em>-values. Leave it as <Katex tex="\tfrac1e" /> — the report says an exact answer was required, and some students gave the approximation.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Range of } f = \left[0,\ \dfrac1e\right]" />,
-    reason: <>From part (b)(ii): the smallest value <Katex tex="f" /> takes is <Katex tex="0" /> (at the origin) and the largest is <Katex tex="\tfrac1e" /> (at <Katex tex="x=\pm1" />).</>,
+    reason: <>From part b.ii.: the smallest value <Katex tex="f" /> takes is <Katex tex="0" /> (at the origin) and the largest is <Katex tex="\tfrac1e" /> (at <Katex tex="x=\pm1" />).</>,
   },
   {
     working: <Katex display tex="f(x)+d<0 \ \text{ for every } x \iff d < -f(x) \ \text{ for every } x" />,
@@ -193,21 +195,22 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d<-\dfrac1e}" />,
-    reason: <>Strictly less than: at <Katex tex="d=-\tfrac1e" /> the peaks land exactly on the axis, giving <Katex tex="f(x)+d=0" /> at <Katex tex="x=\pm1" /> — zero isn't negative, so that value of <Katex tex="d" /> fails. This is why <Katex tex="d\le-\tfrac1e" /> was marked wrong.</>,
+    reason: <>Strictly less than: at <Katex tex="d=-\tfrac1e" /> the peaks land exactly on the axis, giving <Katex tex="f(x)+d=0" /> at <Katex tex="x=\pm1" /> — zero isn't negative, so that value of <Katex tex="d" /> fails. The report lists <Katex tex="d\le-\tfrac1e" /> among the common incorrect answers.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="f'(-1) = 2(-1)\bigl(1-(-1)^2\bigr)e^{-1} = -2\times 0\times e^{-1} = 0" />,
-    reason: <><Katex tex="x=-1" /> is one of the stationary points from part (b), so the gradient there is zero — the tangent is <b>horizontal</b>.</>,
+    reason: <><Katex tex="x=-1" /> is one of the stationary points from part b., so the gradient there is zero — the tangent is <b>horizontal</b>.</>,
   },
   {
     working: <Katex display tex="f(-1) = \dfrac1e \implies \text{the tangent passes through } \left(-1,\ \dfrac1e\right)" />,
+    reason: <>The point of contact, from part b.ii.</>,
   },
   {
     working: <Katex display tex="\boxed{y=\dfrac1e}" />,
-    reason: <>A horizontal line through a point takes the <Katex tex="y" />-value of that point. Write it as an <em>equation</em> — the report notes that answers of just "<Katex tex="\tfrac1e" />" did not score.</>,
+    reason: <>A horizontal line through a point takes the <Katex tex="y" />-value of that point. Write it as an <em>equation</em> — the report says an equation was required.</>,
   },
 ]
 
@@ -222,6 +225,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Area} = \int_{-1}^{1}\left(\dfrac1e - x^2e^{-x^2}\right)dx" />,
+    reason: <>Upper minus lower, between the two points of contact. The report's common incorrect set-ups used <Katex tex="\int_0^1" />, or integrated <Katex tex="f" /> alone, or had the subtraction the wrong way round.</>,
   },
   {
     working: (
@@ -264,7 +268,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Minimum distance} \approx 2.511, \text{ at } m\approx0.783}" />,
-    reason: <>Both values are asked for, each to three decimal places — the report notes that many students found <Katex tex="m" /> but stopped before the distance.</>,
+    reason: <>Both values are asked for, each to three decimal places — the report notes some students found <Katex tex="m" /> but not the distance, and some gave answers to two decimal places.</>,
   },
 ]
 
@@ -274,21 +278,22 @@ export default function MethodsQ1_2019Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 1 (11 marks)</p>
         <p>
-          Let <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=x^2e^{-x^2}" />.
+          Let <Katex tex="f:R\to R,\ f(x)=x^2e^{-x^2}" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Derivative" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b.i" marks={1} statement={<>State the nature of the stationary point on the graph of <Katex tex="f" /> at the origin.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Nature of Point" marks={1} statement={<>State the nature of the stationary point on the graph of <Katex tex="f" /> at the origin.</>} examinerReport={EXAM_BI}>
         <Background>
           <p>
             The <b>nature</b> of a stationary point means <em>which kind</em> it is: a local
             minimum, a local maximum, or a stationary point of inflection. The question is
-            asking for that word, not for coordinates — the report notes that students who
-            answered "<Katex tex="(0,0)" />" or "turning point" scored nothing.
+            asking for that word, not for coordinates — the report lists "point of inflection",
+            "stationary points", "turning points" and the coordinates{' '}
+            <Katex tex="(0,0)" /> among the common incorrect answers.
           </p>
           <p>
             You find it by checking the sign of <Katex tex="f'" /> either side of the point:
@@ -299,11 +304,11 @@ export default function MethodsQ1_2019Exam2() {
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={2} statement={<>Find the maximum value of the function <Katex tex="f" /> and the values of <Katex tex="x" /> for which the maximum occurs.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Maximum Value" marks={2} statement={<>Find the maximum value of the function <Katex tex="f" /> and the values of <Katex tex="x" /> for which the maximum occurs.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
-      <PartCard letter="b.iii" marks={1} statement={<>Find the values of <Katex tex="d\in\mathbb{R}" /> for which <Katex tex="f(x)+d" /> is always negative.</>} examinerReport={EXAM_BIII}>
+      <PartCard letter="b.iii" topic="Vertical Translation" marks={1} statement={<>Find the values of <Katex tex="d\in R" /> for which <Katex tex="f(x)+d" /> is always negative.</>} examinerReport={EXAM_BIII}>
         <Background>
           <p>
             Adding a constant <Katex tex="d" /> to a function slides its whole graph up (if{' '}
@@ -316,11 +321,11 @@ export default function MethodsQ1_2019Exam2() {
         <WorkingTable rows={ROWS_BIII} />
       </PartCard>
 
-      <PartCard letter="c.i" marks={1} statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=-1" />.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Tangent Line" marks={1} statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=-1" />.</>} examinerReport={EXAM_CI}>
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
-      <PartCard letter="c.ii" marks={2} statement={<>Find the area enclosed by the graph of <Katex tex="f" /> and the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=-1" />, correct to four decimal places.</>} examinerReport={EXAM_CII}>
+      <PartCard letter="c.ii" topic="Area Between Curves" marks={2} statement={<>Find the area enclosed by the graph of <Katex tex="f" /> and the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=-1" />, correct to four decimal places.</>} examinerReport={EXAM_CII}>
         <Background>
           <p>
             The area of a region trapped between two graphs is{' '}
@@ -335,6 +340,7 @@ export default function MethodsQ1_2019Exam2() {
 
       <PartCard
         letter="d"
+        topic="Minimum Distance"
         marks={3}
         statement={<>Let <Katex tex="M(m,n)" /> be a point on the graph of <Katex tex="f" />, where <Katex tex="m\in[0,1]" />. Find the minimum distance between <Katex tex="M" /> and the point <Katex tex="(0,e)" />, and the value of <Katex tex="m" /> for which this occurs, correct to three decimal places.</>}
         examinerReport={EXAM_D}

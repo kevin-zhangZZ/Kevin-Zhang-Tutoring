@@ -27,7 +27,8 @@ const EXAM_AII: SAExaminerStats = {
       A small proportion of students gained full marks for this question. While poor
       notation was a contributing factor, students appeared to experience difficulty in
       determining the range of the composite function <Katex tex="h" />. A quick sketch over
-      the given domain would have been helpful.
+      the given domain would have been helpful. Students are reminded that the domain and
+      range of a function are key aspects of a function.
     </>
   ),
 }
@@ -37,11 +38,10 @@ const EXAM_AIII: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Many students were unsure of how to present their working. Operating on both sides
-      separately to arrive at the same expression, and then concluding that one side is
-      equivalent to the other, is a clear way to set it out. Poor notation was again
-      evident, in particular <Katex tex="\log_e(-x^2+1)" /> for{' '}
-      <Katex tex="\log_e((-x)^2+1)" />.
+      Many students were unsure of how to present their working. In the sample working above,
+      both sides were operated on separately to arrive at the same expression and the
+      conclusion that one side was in fact equivalent to the other. Poor notation was again
+      evident, in particular <Katex tex="\log_e(-x^2+1)\ne\log_e((-x)^2+1)" />.
     </>
   ),
 }
@@ -65,8 +65,8 @@ const EXAM_BI: SAExaminerStats = {
   comment: (
     <>
       Students appeared quite adept at the mechanics of determining the rule for the
-      inverse: swap <Katex tex="x" /> and <Katex tex="y" />, then rearrange. However, few
-      students took care to determine the range of the inverse function and select the
+      inverse: swap <Katex tex="x" /> and <Katex tex="y" /> then rearrange. However, few
+      students took care to determine the range of the inverse function and select for the
       negative root of their expression.
     </>
   ),
@@ -78,8 +78,8 @@ const EXAM_BII: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Most students utilised the fact that{' '}
-      <Katex tex="\text{ran}(k^{-1})=\text{dom}(k)" /> but found stating the domain of the
-      inverse function more difficult.
+      <Katex tex="\text{Range}_{k^{-1}}=\text{Domain}_k" /> but found stating the domain of
+      the inverse function more difficult. Again, poor notation was evident.
     </>
   ),
 }
@@ -133,7 +133,7 @@ const ROWS_AIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{LHS} = \text{RHS}}" />,
-    reason: <>Both sides reduce to the same expression, so the identity holds. The report recommends exactly this two-column layout for "show that" questions.</>,
+    reason: <>Both sides reduce to the same expression, so <Katex tex="h(x)+h(-x)=f\!\left(\bigl(g(x)\bigr)^2\right)" />, as required. This is how the report's sample working is set out: each side simplified separately, then the conclusion stated.</>,
   },
 ]
 
@@ -179,7 +179,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k^{-1}(x) = -\sqrt{e^{x}-1}}" />,
-    reason: <>The report says few students made this choice deliberately — most left a <Katex tex="\pm" /> or took the positive root by habit.</>,
+    reason: <>The report says few students took care over this choice: leaving the <Katex tex="\pm" />, or taking the positive root, does not give the inverse of <Katex tex="k" />.</>,
   },
 ]
 
@@ -215,6 +215,7 @@ export default function MethodsQ5_2016Exam1() {
 
       <PartCard
         letter="a.i"
+        topic="Composite Function"
         marks={1}
         statement={
           <>
@@ -228,6 +229,7 @@ export default function MethodsQ5_2016Exam1() {
 
       <PartCard
         letter="a.ii"
+        topic="Domain & Range"
         marks={2}
         statement={<>State the domain and range of <Katex tex="h" />.</>}
         examinerReport={EXAM_AII}
@@ -240,8 +242,9 @@ export default function MethodsQ5_2016Exam1() {
             <Katex tex="[0,\infty)" />.
           </p>
           <p>
-            Trying to read the range off <Katex tex="\log_e(x^2+1)" /> directly is where most
-            of the state came unstuck — only <Katex tex="15\%" /> got full marks.
+            The report says the range is where students struggled (only{' '}
+            <Katex tex="15\%" /> got full marks), and suggests a quick sketch over the given
+            domain.
           </p>
         </Background>
         <WorkingTable rows={ROWS_AII} />
@@ -249,6 +252,7 @@ export default function MethodsQ5_2016Exam1() {
 
       <PartCard
         letter="a.iii"
+        topic="Log Laws"
         marks={2}
         statement={
           <>
@@ -262,6 +266,7 @@ export default function MethodsQ5_2016Exam1() {
 
       <PartCard
         letter="a.iv"
+        topic="Stationary Point"
         marks={2}
         statement={
           <>
@@ -283,6 +288,7 @@ export default function MethodsQ5_2016Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Inverse Function"
         marks={2}
         statement={<>Find the rule for <Katex tex="k^{-1}" />.</>}
         examinerReport={EXAM_BI}
@@ -304,6 +310,7 @@ export default function MethodsQ5_2016Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Domain & Range"
         marks={2}
         statement={<>State the domain and range of <Katex tex="k^{-1}" />.</>}
         examinerReport={EXAM_BII}

@@ -31,6 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sigma = \dfrac{-10}{-1.8808} \approx 5.317" />,
+    reason: <>Solving for <Katex tex="\sigma" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 5.3 \text{ g}}" />,

@@ -11,9 +11,25 @@ const EXAM: SAExaminerStats = {
   average: 2.6,
   comment: (
     <>
-      Common errors included not properly verifying the base case, misstating the
-      assumption, and assuming equality at the beginning of the inductive step rather than
-      deriving it.
+      This question was not answered well. Some common errors included:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Not properly verifying the base case <Katex tex="P(1)" />.
+        </li>
+        <li>
+          Misstating the assumption. For example,
+          <div className="pl-5 my-1">
+            Suppose the proposition is true for <Katex tex="n=k" />. Then{' '}
+            <Katex tex="(k+1)^2=\dfrac{1}{6}k\left(2k^2+9k+1\right)" />.
+          </div>
+        </li>
+        <li>
+          Assuming equality at the beginning of the inductive step
+          <div className="pl-5 my-1">
+            <Katex tex="2^2+3^2+4^2+\ldots+(k+1)^2+(k+2)^2=\dfrac{1}{6}(k+1)\left(2(k+1)^2+9(k+1)+13\right)" />.
+          </div>
+        </li>
+      </ul>
     </>
   ),
 }
@@ -21,7 +37,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P(n): \quad \sum_{i=1}^{n}(i+1)^2 = \tfrac16 n\left(2n^2+9n+13\right)" />,
-    reason: 'Naming the proposition explicitly is part of the expected structure.',
+    reason: <>Naming the proposition explicitly is part of the expected structure.</>,
   },
   {
     working: <Katex display tex="P(1): \ \text{LHS} = (1+1)^2 = 4; \quad \text{RHS} = \tfrac16(1)(2+9+13) = \tfrac{24}{6} = 4" />,
@@ -29,23 +45,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\therefore P(1) \text{ is true}" />,
-    reason: 'The base case, stated as a conclusion.',
+    reason: <>The base case, stated as a conclusion.</>,
   },
   {
-    working: <Katex display tex="\text{Assume } P(k) \text{ true for some } k\in\mathbb{N}: \quad \sum_{i=1}^{k}(i+1)^2 = \tfrac16 k\left(2k^2+9k+13\right)" />,
-    reason: <>"Assume true for some <Katex tex="k" />", not "for all <Katex tex="k" />" — the misstatement the report singles out.</>,
+    working: <Katex display tex="\text{Assume } P(k) \text{ true for some } k\in N: \quad \sum_{i=1}^{k}(i+1)^2 = \tfrac16 k\left(2k^2+9k+13\right)" />,
+    reason: <>State the assumption exactly — the report's example of a misstated one is <Katex tex="(k+1)^2=\tfrac16k\left(2k^2+9k+1\right)" />, which drops the sum and changes a coefficient.</>,
   },
   {
     working: <Katex display tex="\sum_{i=1}^{k+1}(i+1)^2 = \sum_{i=1}^{k}(i+1)^2+\bigl((k+1)+1\bigr)^2" />,
-    reason: <>Start from the left side of <Katex tex="P(k+1)" /> and work forwards. Starting from an equation you are trying to prove is the error that cost most marks.</>,
+    reason: <>Start from the left side of <Katex tex="P(k+1)" /> and work forwards. The report lists assuming equality at the beginning of the inductive step among the common errors.</>,
   },
   {
     working: <Katex display tex="= \tfrac16 k\left(2k^2+9k+13\right)+(k+2)^2" />,
-    reason: 'Using the assumption — the only place it is allowed.',
+    reason: <>Using the assumption — the only place it is allowed.</>,
   },
   {
     working: <Katex display tex="= \tfrac16\left[2k^3+9k^2+13k+6\left(k^2+4k+4\right)\right] = \tfrac16\left[2k^3+15k^2+37k+24\right]" />,
-    reason: 'Common denominator, then expand and collect.',
+    reason: <>Common denominator, then expand and collect.</>,
   },
   {
     working: <Katex display tex="= \tfrac16(k+1)\left(2k^2+13k+24\right)" />,
@@ -56,8 +72,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Checking that this bracket is exactly the one <Katex tex="P(k+1)" /> requires.</>,
   },
   {
-    working: <Katex display tex="\boxed{\therefore P(k) \text{ true} \implies P(k+1) \text{ true; with } P(1) \text{ true}, \ P(n) \text{ holds for all } n\in\mathbb{N}}" />,
-    reason: 'The closing statement completes the induction.',
+    working: <Katex display tex="\boxed{\therefore P(k) \text{ true} \implies P(k+1) \text{ true; with } P(1) \text{ true}, \ P(n) \text{ holds for all } n\in N}" />,
+    reason: <>The closing statement completes the induction.</>,
   },
 ]
 
@@ -68,7 +84,7 @@ export default function SpecialistQ7_2025Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 7 (4 marks)</p>
         <p>Use mathematical induction to prove that</p>
         <div className="py-1">
-          <Katex display tex="\sum_{i=1}^{n}(i+1)^2 = \frac16 n\left(2n^2+9n+13\right) \ \text{ for } n\in\mathbb{N}," />
+          <Katex display tex="\sum_{i=1}^{n}(i+1)^2 = \frac16 n\left(2n^2+9n+13\right) \ \text{ for } n\in N," />
         </div>
         <p>
           where{' '}

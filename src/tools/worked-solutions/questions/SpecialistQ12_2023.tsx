@@ -22,19 +22,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t=0,\ v=0: \quad 0 = \log_e(1)+c \implies c = 0" />,
-    reason: '"Starts from rest".',
+    reason: <>"Starts from rest".</>,
   },
   {
     working: <Katex display tex="t = \log_e(1+v) \implies v = e^t-1" />,
-    reason: 'Rearranging.',
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="t = \log_e(e+1): \quad v = e^{\log_e(e+1)}-1 = (e+1)-1" />,
     reason: <>The exponential and the log undo each other exactly — which is why the question chose that time.</>,
   },
   {
-    working: <Katex display tex="\boxed{v = e \ \mathrm{ms^{-1}}}" />,
-    reason: <>Option <b>A</b>; about <Katex tex="2.72" />. Option <b>B</b> is what you get by forgetting the <Katex tex="-1" />.</>,
+    working: <Katex display tex="\boxed{v = e \ \mathrm{m\,s^{-1}}}" />,
+    reason: <>Matches option <b>A</b>; about <Katex tex="2.72" />. Option <b>B</b> is what you get by forgetting the <Katex tex="-1" />.</>,
   },
 ]
 
@@ -43,9 +43,10 @@ export default function SpecialistQ12_2023() {
     <MCQShell
       question={
         <p>
-          The acceleration, <Katex tex="a\ \mathrm{ms^{-2}}" />, of a particle that starts
+          The acceleration, <Katex tex="a\ \mathrm{m\,s^{-2}}" />, of a particle that starts
           from rest and moves in a straight line is described by <Katex tex="a=1+v" />, where{' '}
-          <Katex tex="v\ \mathrm{ms^{-1}}" /> is its velocity after <Katex tex="t" /> seconds.
+          <Katex tex="v\ \mathrm{m\,s^{-1}}" /> is its velocity after <Katex tex="t" /> seconds.
+          <br />
           The velocity of the particle after <Katex tex="\log_e(e+1)" /> seconds is
         </p>
       }
@@ -54,7 +55,7 @@ export default function SpecialistQ12_2023() {
         { letter: 'B', content: <Katex tex="e+1" /> },
         { letter: 'C', content: <Katex tex="e^2+1" /> },
         { letter: 'D', content: <Katex tex="\log_e(1+e)+1" /> },
-        { letter: 'E', content: <Katex tex="\log_e\bigl(\log_e(1+e)+1\bigr)" /> },
+        { letter: 'E', content: <Katex tex="\log_e\bigl(\log_e(1+e)-1\bigr)" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

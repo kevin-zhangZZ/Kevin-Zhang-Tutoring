@@ -26,11 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(x-1)(1-x) = -(x-1)^2" />,
-    reason: 'A quantity times its own negative — this minus sign is the point of the question.',
+    reason: <>A quantity times its own negative — this minus sign is the point of the question.</>,
   },
   {
     working: <Katex display tex="\boxed{-\frac{(x-1)^2}{2\left(1+x^2\right)}}" />,
-    reason: <>Never positive, because the two angles always sit on opposite sides of <Katex tex="90^\circ" />. Matches option <b>D</b>; option C's <Katex tex="(x+1)^2" /> would come from <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+\underset{\sim}{j}" />.</>,
+    reason: <>Never positive, because the two angles always sit on opposite sides of <Katex tex="90^\circ" />. Matches option <b>D</b>.</>,
   },
 ]
 
@@ -42,8 +42,9 @@ export default function SpecialistQ12_2021() {
           Consider the vectors{' '}
           <Katex tex="\underset{\sim}{a}=x\underset{\sim}{i}+\underset{\sim}{j}" />,{' '}
           <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}-\underset{\sim}{j}" /> and{' '}
-          <Katex tex="\underset{\sim}{c}=\underset{\sim}{i}+x\underset{\sim}{j}" />. Given
-          that <Katex tex="\theta" /> is the angle between{' '}
+          <Katex tex="\underset{\sim}{c}=\underset{\sim}{i}+x\underset{\sim}{j}" />.
+          <br />
+          Given that <Katex tex="\theta" /> is the angle between{' '}
           <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, and{' '}
           <Katex tex="\phi" /> is the angle between <Katex tex="\underset{\sim}{b}" /> and{' '}
           <Katex tex="\underset{\sim}{c}" />, <Katex tex="\cos(\theta)\cos(\phi)" /> is

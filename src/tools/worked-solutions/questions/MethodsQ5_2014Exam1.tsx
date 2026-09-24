@@ -40,8 +40,10 @@ const EXAM_C: SAExaminerStats = {
     <>
       Most students knew to seek a difference of two areas and were adept with basic
       integration; however, quite often arithmetic errors in evaluations or the incorrect use
-      of negative signs marred their progress. Some students unnecessarily "overworked" the
-      problem by creating three or four integrations, increasing the likelihood of an error.
+      of negative signs marred their progress towards acquiring full marks. Some students
+      unnecessarily ‘overworked’ the problem by creating three or four integrations,
+      increasing the likelihood of an error. A few students took a more direct route that
+      involved symmetry of the curve.
     </>
   ),
 }
@@ -61,7 +63,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(0,0) \text{ and } (2,4)}" />,
-    reason: <>As <em>coordinates</em> — the report is emphatic that bare <Katex tex="x" /> values scored nothing.</>,
+    reason: <>As <em>coordinates</em> — the question asks for the stationary points, and the report stresses that bare <Katex tex="x" /> values do not answer it.</>,
   },
 ]
 
@@ -140,6 +142,7 @@ export default function MethodsQ5_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Stationary Points"
         marks={2}
         statement={<>Find the coordinates of the stationary points of the function.</>}
         examinerReport={EXAM_A}
@@ -149,6 +152,7 @@ export default function MethodsQ5_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={2}
         statement={
           <>
@@ -163,6 +167,7 @@ export default function MethodsQ5_2014Exam1() {
 
       <PartCard
         letter="c"
+        topic="Area Between Curves"
         marks={3}
         statement={
           <>

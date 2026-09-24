@@ -9,21 +9,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 18, C: 43, D: 15, E: 14 },
   answer: 'C',
-  comment: <Katex tex="\Pr\big(|T_1-T_2|<3\big) = \Pr\big(-3<T_1-T_2<3\big)" />,
+  comment: <Katex tex="\Pr\left|T_1-T_2\right|<3=-3<\Pr\left(T_1-T_2\right)<3" />,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="T_1,T_2 \sim N(30,5^2),\ \text{independent}" />,
-    reason: 'Each machine’s coffee time.',
+    reason: <>Each machine’s coffee time.</>,
   },
   {
     working: <Katex display tex="D = T_1-T_2" />,
-    reason: 'Let D be the difference in times.',
+    reason: <>Let D be the difference in times.</>,
   },
   {
     working: <Katex display tex="E(D) = E(T_1)-E(T_2) = 30-30 = 0" />,
-    reason: 'Mean of a difference.',
+    reason: <>Mean of a difference.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(D) = \mathrm{Var}(T_1)+\mathrm{Var}(T_2) = 25+25 = 50" />,
@@ -31,15 +31,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="D \sim N(0,\ 50) \;\implies\; \mathrm{sd}(D) = \sqrt{50} = 5\sqrt2" />,
-    reason: 'Distribution of the difference.',
+    reason: <>Distribution of the difference.</>,
   },
   {
     working: <Katex display tex="\Pr(|D|<3) = \Pr(-3<D<3)" />,
-    reason: '"Differ by less than 3 seconds" means the difference lies strictly between −3 and 3.',
+    reason: <>"Differ by less than 3 seconds" means the difference lies strictly between −3 and 3.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(-3<D<3) \approx 0.329}" />,
-    reason: <>Standardising with <Katex tex="Z=D/(5\sqrt2)" /> and evaluating on CAS — matches option <b>C</b>.</>,
+    reason: <>Standardising with <Katex tex="Z=\tfrac{D}{5\sqrt2}" /> and evaluating on CAS. Matches option <b>C</b>. Option A is only <Katex tex="\Pr(0<D<3)" />; option B adds the standard deviations (sd 10); option D uses sd 5; option E is the complement.</>,
   },
 ]
 

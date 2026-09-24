@@ -27,11 +27,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(3) = 4: \ \tfrac13(27)+1(9)+(-3)(3)+p = 4" />,
-    reason: 'The third condition, which fixes the constant.',
+    reason: <>The third condition, which fixes the constant.</>,
   },
   {
     working: <Katex display tex="9+9-9+p = 4 \implies p = -5" />,
-    reason: 'Arithmetic.',
+    reason: <>Arithmetic.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 1, \ n = -3, \ p = -5}" />,
@@ -46,8 +46,9 @@ export default function MethodsQ16_2022() {
         <p>
           The function <Katex tex="f(x)=\tfrac13x^3+mx^2+nx+p" />, for{' '}
           <Katex tex="m,n,p\in R" />, has turning points at <Katex tex="x=-3" /> and{' '}
-          <Katex tex="x=1" /> and passes through the point <Katex tex="(3,4)" />. The values
-          of <Katex tex="m" />, <Katex tex="n" /> and <Katex tex="p" /> respectively are
+          <Katex tex="x=1" /> and passes through the point <Katex tex="(3,4)" />.
+          <br />
+          The values of <Katex tex="m" />, <Katex tex="n" /> and <Katex tex="p" /> respectively are
         </p>
       }
       options={[

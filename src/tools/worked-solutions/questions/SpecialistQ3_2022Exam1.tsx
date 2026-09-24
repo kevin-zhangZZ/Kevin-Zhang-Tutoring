@@ -12,8 +12,9 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       A large number of students did not find the correct standard deviation and so were
-      unable to move towards evaluating <Katex tex="\Pr(Z>-2)" />, while others were unable to
-      determine <Katex tex="\Pr(Z>-2)" />. Students who successfully evaluated it often drew
+      unable to move towards evaluating <Katex tex="\Pr(Z>-2)" /> while others were unable to
+      determine <Katex tex="\Pr(Z>-2)" />. Students who successfully evaluated{' '}
+      <Katex tex="\Pr(Z>-2)" /> often drew
       diagrams of the probability density function and were aware of the approximate
       probabilities for a normal distribution.
     </>
@@ -23,27 +24,27 @@ const EXAM_A: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X_i \sim \mathrm{N}\!\left(10,\,1.5^2\right), \quad T = X_1+X_2+X_3+X_4" />,
-    reason: 'One cup at a time; the total for four cups is the sum of four independent copies.',
+    reason: <>One cup at a time; the total for four cups is the sum of four independent copies.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(T) = 4\times10 = 40" />,
-    reason: 'Means add.',
+    reason: <>Means add.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(T) = 4\times1.5^2 = 9 \implies \mathrm{sd}(T) = 3" />,
-    reason: <><strong>Variances</strong> add, not standard deviations. The answer is <Katex tex="3" />, not <Katex tex="4\times1.5=6" /> — this is the error the report says most students made.</>,
+    reason: <><strong>Variances</strong> add, not standard deviations. The answer is <Katex tex="3" />, not <Katex tex="4\times1.5=6" /> — the report notes a large number of students did not find the correct standard deviation.</>,
   },
   {
     working: <Katex display tex="\Pr(T>34) = \Pr\!\left(Z > \frac{34-40}{3}\right) = \Pr(Z>-2)" />,
-    reason: 'Standardising. Thirty-four seconds is two standard deviations below the mean.',
+    reason: <>Standardising. Thirty-four seconds is two standard deviations below the mean.</>,
   },
   {
     working: <Katex display tex="\Pr(-2<Z<2) \approx 0.95 \implies \Pr(Z<-2) \approx \frac{1-0.95}{2} = 0.025" />,
-    reason: 'No technology is allowed, so the 68–95–99.7 rule plus the symmetry of the curve is the only route.',
+    reason: <>No technology is allowed, so the 68–95–99.7 rule plus the symmetry of the curve is the only route.</>,
   },
   {
     working: <Katex display tex="\Pr(Z>-2) = 1-0.025 = 0.975" />,
-    reason: 'The complement of the small left tail.',
+    reason: <>The complement of the small left tail.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(T>34) \approx 0.98}" />,
@@ -82,6 +83,7 @@ export default function SpecialistQ3_2022Exam1() {
 
       <PartCard
         letter="a"
+        topic="Sum of Normals"
         marks={2}
         statement={
           <>

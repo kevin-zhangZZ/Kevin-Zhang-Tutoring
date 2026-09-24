@@ -10,25 +10,37 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 68, B: 8, C: 13, D: 11 },
   answer: 'A',
-  comment: <>The given expression can be expanded using CAS, which allows the student to equate coefficients with the given oblique asymptote. In addition, they should equate <Katex tex="y(0)" />, the <Katex tex="y" />-intercept, to <Katex tex="-2" />.</>,
+  comment: (
+    <>
+      The given expression can be expanded using CAS, which allows the student to equate
+      coefficients with the given oblique asymptote. In addition, they should equate{' '}
+      <Katex tex="y(0)" />, the <Katex tex="y" /> intercept, to <Katex tex="-2" />.
+      <br />
+      <Katex tex="\dfrac{x^2+a}{bx+c}=\dfrac{ab^2+c^2}{b^2(bx+c)}+\dfrac{x}{b}-\dfrac{c}{b^2}" />
+      <br />
+      <Katex tex="\dfrac{x}{b}-\dfrac{c}{b^2}=-\dfrac{1}{2}x+\dfrac{1}{4}" />
+      <br />
+      <Katex tex="\dfrac{a}{c}=-2" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{x^2+a}{bx+c} = \frac{x}{b}-\frac{c}{b^2}+\frac{a+\frac{c^2}{b^2}}{bx+c}" />,
-    reason: 'Long division. The remainder term vanishes as x grows, so the first two terms are the oblique asymptote.',
+    reason: <>Long division. The remainder term vanishes as x grows, so the first two terms are the oblique asymptote.</>,
   },
   {
     working: <Katex display tex="y = \frac{x}{b}-\frac{c}{b^2} \quad \text{must be} \quad y = -\frac{1}{2}x+\frac{1}{4}" />,
-    reason: 'Equate the asymptote found by division with the one given.',
+    reason: <>Equate the asymptote found by division with the one given.</>,
   },
   {
     working: <Katex display tex="\frac{1}{b} = -\frac{1}{2} \implies b = -2" />,
-    reason: 'Comparing the gradients.',
+    reason: <>Comparing the gradients.</>,
   },
   {
     working: <Katex display tex="-\frac{c}{b^2} = \frac{1}{4} \implies -\frac{c}{4} = \frac{1}{4} \implies c = -1" />,
-    reason: 'Comparing the intercepts, now that b is known.',
+    reason: <>Comparing the intercepts, now that b is known.</>,
   },
   {
     working: <Katex display tex="y(0) = \frac{0+a}{0+c} = \frac{a}{c} = -2 \implies a = -2c = 2" />,
@@ -36,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 2,\ b = -2,\ c = -1}" />,
-    reason: <>Option <b>A</b>. Checking: <Katex tex="\frac{x^2+2}{-2x-1}" /> does have y-intercept <Katex tex="-2" />.</>,
+    reason: <>Matches option <b>A</b>. Checking: <Katex tex="\frac{x^2+2}{-2x-1}" /> does have y-intercept <Katex tex="-2" />.</>,
   },
 ]
 

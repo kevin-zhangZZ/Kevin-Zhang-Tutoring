@@ -3,7 +3,7 @@
 // f(g(x))=0 and finding its stationary point (parts d-e), then the number of solutions to
 // g(f(x))+f(g(x))=0 (part f). Question text transcribed from the original paper (no diagram
 // given). Cross-checked against the VCAA examination report and itute's independent
-// solutions — both agree with the derivation below (part (f) reasons the count directly
+// solutions — both agree with the derivation below (part f. reasons the count directly
 // from monotonicity rather than a rough addition-of-ordinates sketch, but reaches the same
 // answer). Solution is original.
 
@@ -21,10 +21,11 @@ const EXAM_B: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Students generally applied the chain rule; however, poor expression resulted in
-      incorrect answers. The expression <Katex tex="(2-2x)e^{3+2x-x^2}" /> is not equivalent
-      to <Katex tex="2-2xe^{3+2x-x^2}" />. Some students found the correct answer but without
-      correct supporting reasoning.
+      Students generally applied the chain rule to find the derivative; however, poor
+      expression resulted in incorrect answers. The expression{' '}
+      <Katex tex="(2-2x)e^{3+2x-x^2}" /> is <b>not</b> equivalent to{' '}
+      <Katex tex="2-2xe^{3+2x-x^2}" />. Some students did find the correct answer; however, it
+      was not supported by correct reasoning.
     </>
   ),
 }
@@ -32,7 +33,7 @@ const EXAM_B: SAExaminerStats = {
 const EXAM_C: SAExaminerStats = {
   marks: [14, 86],
   average: 0.9,
-  comment: <>This question was done well. Some students incorrectly stated <Katex tex="f(g(x))=3+2x-x^2" />.</>,
+  comment: <>This question was done well. Some students incorrectly stated <Katex tex="f(g(x))=3+2e^x-e^{x^2}" />.</>,
 }
 
 const EXAM_D: SAExaminerStats = {
@@ -41,7 +42,7 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Most students were able to form a quadratic equation. Some faltered with the correct
-      factorisation. Including <Katex tex="x=\ln_e(-1)" /> was a common error.
+      factorisation. The inclusion of <Katex tex="x=\log_e(-1)" /> was a common error.
     </>
   ),
 }
@@ -49,21 +50,23 @@ const EXAM_D: SAExaminerStats = {
 const EXAM_E: SAExaminerStats = {
   marks: [42, 28, 30],
   average: 0.9,
-  comment: <>This question was well attempted but not so well done. Common errors included an incorrect derivative, and omitting the <Katex tex="y" />-coordinate of the stationary point.</>,
+  comment: <>This question was well attempted but not so well done. Common errors included an incorrect derivative and omitting the <Katex tex="y" />-coordinate of the stationary point.</>,
 }
 
 const EXAM_F: SAExaminerStats = {
   marks: [81, 19],
   average: 0.2,
-  comment: <>This question was not well done. Few students attempted to reason about the two composite functions' behaviour to pin down the count.</>,
+  comment: <>This question was not well done. Few students attempted to draw a rough sketch of each equation and use addition of ordinates.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(f(x)) = e^{f(x)}" />,
+    reason: <><Katex tex="g" /> exponentiates whatever it receives.</>,
   },
   {
     working: <Katex display tex="\boxed{g(f(x)) = e^{3+2x-x^2}}" />,
+    reason: <>Substituting <Katex tex="f(x)" />.</>,
   },
 ]
 
@@ -74,27 +77,33 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="e^{3+2x-x^2}>0 \text{ always} \;\implies\; \text{sign matches } (2-2x)" />,
+    reason: <>This is the reasoning the report says was often missing. Keep the brackets: <Katex tex="(2-2x)e^{3+2x-x^2}" /> is not <Katex tex="2-2xe^{3+2x-x^2}" />.</>,
   },
   {
     working: <Katex display tex="(2-2x)<0 \;\iff\; x>1" />,
+    reason: <>Solving the linear inequality.</>,
   },
   {
     working: <Katex display tex="\boxed{x>1}" />,
+    reason: <>Equivalently <Katex tex="x\in(1,\infty)" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(g(x)) = 3+2g(x)-g(x)^2 = 3+2e^x-(e^x)^2" />,
+    reason: <>Replace every <Katex tex="x" /> in <Katex tex="f" /> by <Katex tex="e^x" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f(g(x)) = 3+2e^x-e^{2x}}" />,
+    reason: <><Katex tex="(e^x)^2=e^{2x}" />, not <Katex tex="e^{x^2}" /> — the report notes that error.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="3+2e^x-e^{2x}=0" />,
+    reason: <>From part c.</>,
   },
   {
     working: <Katex display tex="\text{Let } u=e^x: \quad -u^2+2u+3=0 \;\implies\; u^2-2u-3=0" />,
@@ -102,27 +111,34 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(u-3)(u+1) = 0 \;\implies\; u=3 \text{ or } u=-1" />,
+    reason: <>Factorising.</>,
   },
   {
-    working: <Katex display tex="e^x = -1 \text{ is impossible } (e^x>0 \text{ always}); \quad e^x=3 \;\implies\; x=\ln_e3" />,
+    working: <Katex display tex="e^x = -1 \text{ is impossible } (e^x>0 \text{ always}); \quad e^x=3 \;\implies\; x=\log_e(3)" />,
+    reason: <>The report says including <Katex tex="x=\log_e(-1)" /> was a common error.</>,
   },
   {
-    working: <Katex display tex="\boxed{x=\ln_e3}" />,
+    working: <Katex display tex="\boxed{x=\log_e(3)}" />,
+    reason: <>The only solution.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\dfrac{d}{dx}f(g(x)) = 2e^x-2e^{2x} = 2e^x(1-e^x)" />,
+    reason: <>The derivative of <Katex tex="e^{2x}" /> is <Katex tex="2e^{2x}" />.</>,
   },
   {
     working: <Katex display tex="2e^x(1-e^x)=0 \;\implies\; e^x=0 \text{ (impossible) or } e^x=1 \;\implies\; x=0" />,
+    reason: <>Stationary where the derivative is zero.</>,
   },
   {
     working: <Katex display tex="f(g(0)) = 3+2e^0-e^0 = 3+2-1 = 4" />,
+    reason: <>The <Katex tex="y" />-coordinate — the report says omitting it was a common error.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,4)}" />,
+    reason: <>The only stationary point.</>,
   },
 ]
 
@@ -132,33 +148,34 @@ const ROWS_F: WorkingRow[] = [
     reason: <>An exponential is never zero or negative, so any solution of <Katex tex="g(f(x))+f(g(x))=0" /> needs <Katex tex="f(g(x))<0" />.</>,
   },
   {
-    working: <Katex display tex="f(g(x)) = -(e^x-1)^2+4 < 0 \;\iff\; (e^x-1)^2>4 \;\iff\; e^x>3 \;\iff\; x>\ln_e3" />,
-    reason: <>Completing the square in <Katex tex="u=e^x" /> (part (d)'s substitution); <Katex tex="e^x<-1" /> is impossible.</>,
+    working: <Katex display tex="f(g(x)) = -(e^x-1)^2+4 < 0 \;\iff\; (e^x-1)^2>4 \;\iff\; e^x>3 \;\iff\; x>\log_e(3)" />,
+    reason: <>Completing the square in <Katex tex="u=e^x" /> (part d.'s substitution); <Katex tex="e^x<-1" /> is impossible.</>,
   },
   {
     working: <Katex display tex="\text{For } x>1\text{: } g(f(x)) \text{ is strictly decreasing from } g(f(1))=e^4 \text{ to } 0 \text{ (part b)}" />,
-    reason: <>In particular this holds on <Katex tex="x>\ln_e3" />, since <Katex tex="\ln_e3\approx1.10>1" />.</>,
+    reason: <>In particular this holds on <Katex tex="x>\log_e(3)" />, since <Katex tex="\log_e(3)\approx1.10>1" />.</>,
   },
   {
     working: <Katex display tex="\text{For } x>0\text{: } f(g(x)) \text{ is strictly decreasing from } 4 \text{ to } -\infty \text{ (part e)}" />,
-    reason: <>In particular this also holds on <Katex tex="x>\ln_e3" />, since <Katex tex="\ln_e3>0" />.</>,
+    reason: <>In particular this also holds on <Katex tex="x>\log_e(3)" />, since <Katex tex="\log_e(3)>0" />.</>,
   },
   {
     working: (
       <>
-        At <Katex tex="x=\ln_e3" />: <Katex tex="g(f(x))>0=-f(g(x))" />, so <Katex tex="g(f(x))-\bigl(-f(g(x))\bigr)>0" />.
+        At <Katex tex="x=\log_e(3)" />: <Katex tex="g(f(x))>0=-f(g(x))" />, so <Katex tex="g(f(x))-\bigl(-f(g(x))\bigr)>0" />.
         <br />
         As <Katex tex="x\to\infty" />: <Katex tex="g(f(x))\to0" /> but <Katex tex="-f(g(x))\to\infty" />, so the difference <Katex tex="\to-\infty" />.
       </>
     ),
-    reason: <>One curve (strictly decreasing) starts above the other (strictly increasing) at <Katex tex="x=\ln_e3" />, and ends below it as <Katex tex="x\to\infty" />.</>,
+    reason: <>One curve (strictly decreasing) starts above the other (strictly increasing) at <Katex tex="x=\log_e(3)" />, and ends below it as <Katex tex="x\to\infty" />.</>,
   },
   {
-    working: <Katex display tex="\implies g(f(x))+f(g(x)) = 0 \text{ has exactly one solution, in } (\ln_e3,\infty)" />,
-    reason: <>By continuity (Intermediate Value Theorem), <Katex tex="g(f(x))-\bigl(-f(g(x))\bigr)" /> — the difference of one strictly decreasing and one strictly increasing continuous function — crosses zero exactly once. For <Katex tex="x\le\ln_e3" />, <Katex tex="f(g(x))\ge0" /> so <Katex tex="g(f(x))+f(g(x))>0" /> always (a positive plus a non-negative number), giving no solutions there.</>,
+    working: <Katex display tex="\implies g(f(x))+f(g(x)) = 0 \text{ has exactly one solution, in } (\log_e(3),\infty)" />,
+    reason: <>Both functions are continuous, so <Katex tex="g(f(x))-\bigl(-f(g(x))\bigr)" /> — the difference of one strictly decreasing and one strictly increasing continuous function — crosses zero exactly once. For <Katex tex="x\le\log_e(3)" />, <Katex tex="f(g(x))\ge0" /> so <Katex tex="g(f(x))+f(g(x))>0" /> always (a positive plus a non-negative number), giving no solutions there.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{exactly one solution}}" />,
+    reason: <>The report's route is a rough sketch of each graph and addition of ordinates; the argument above is the same picture made precise.</>,
   },
 ]
 
@@ -168,32 +185,32 @@ export default function MethodsQ9_2019Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 9 (9 marks)</p>
         <p>
-          Consider the functions <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=3+2x-x^2" /> and{' '}
-          <Katex tex="g:\mathbb{R}\to\mathbb{R},\ g(x)=e^x" />.
+          Consider the functions <Katex tex="f:R\to R,\ f(x)=3+2x-x^2" /> and{' '}
+          <Katex tex="g:R\to R,\ g(x)=e^x" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State the rule of <Katex tex="g(f(x))" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Composite Function" marks={1} statement={<>State the rule of <Katex tex="g(f(x))" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Find the values of <Katex tex="x" /> for which the derivative of <Katex tex="g(f(x))" /> is negative.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Decreasing Derivative" marks={2} statement={<>Find the values of <Katex tex="x" /> for which the derivative of <Katex tex="g(f(x))" /> is negative.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={1} statement={<>State the rule of <Katex tex="f(g(x))" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Composite Function" marks={1} statement={<>State the rule of <Katex tex="f(g(x))" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={2} statement={<>Solve <Katex tex="f(g(x))=0" />.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Exponential Equation" marks={2} statement={<>Solve <Katex tex="f(g(x))=0" />.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<>Find the coordinates of the stationary point of the graph of <Katex tex="f(g(x))" />.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Stationary Point" marks={2} statement={<>Find the coordinates of the stationary point of the graph of <Katex tex="f(g(x))" />.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
-      <PartCard letter="f" marks={1} statement={<>State the number of solutions to <Katex tex="g(f(x)) + f(g(x)) = 0" />.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Number of Solutions" marks={1} statement={<>State the number of solutions to <Katex tex="g(f(x)) + f(g(x)) = 0" />.</>} examinerReport={EXAM_F}>
         <WorkingTable rows={ROWS_F} />
       </PartCard>
     </div>

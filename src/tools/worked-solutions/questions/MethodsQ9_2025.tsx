@@ -9,28 +9,41 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 57, B: 19, C: 16, D: 7 },
   answer: 'A',
+  noAnswer: 1,
+  comment: (
+    <>
+      Let <Katex tex="W" /> be the event that a randomly selected student walks to school, and{' '}
+      <Katex tex="L" /> be the event that the student takes at least 30 minutes.
+      <br />
+      <Katex tex="\Pr(W\mid L)=\dfrac{\Pr(W\cap L)}{\Pr(L)}" />
+      <br />
+      <Katex tex="=\dfrac{\left(\dfrac{0.2m}{m+n}\right)}{\left(\dfrac{0.2m}{m+n}\right)+\left(\dfrac{0.4n}{m+n}\right)}" />
+      <br />
+      <Katex tex="=\dfrac{m}{m+2n}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="W: \text{walked}, \qquad L: \text{took at least 30 minutes}" />,
-    reason: 'Naming the two events makes the conditional probability readable.',
+    reason: <>Naming the two events makes the conditional probability readable.</>,
   },
   {
     working: <Katex display tex="\text{walkers who were late} = 0.2m" />,
-    reason: 'Counts, not proportions — there are m walkers in total.',
+    reason: <>Counts, not proportions — there are m walkers in total.</>,
   },
   {
     working: <Katex display tex="\text{others who were late} = 0.4n" />,
-    reason: 'The other branch.',
+    reason: <>The other branch.</>,
   },
   {
     working: <Katex display tex="\Pr(W\mid L) = \frac{0.2m}{0.2m+0.4n}" />,
-    reason: 'Out of everyone who took at least 30 minutes, the fraction who walked.',
+    reason: <>Out of everyone who took at least 30 minutes, the fraction who walked.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{m}{m+2n}}" />,
-    reason: <>Option <b>A</b>: divide numerator and denominator by 0.2. Option <b>B</b> is the complement <Katex tex="\Pr(\text{not }W\mid L)" />, and <b>C</b> is <Katex tex="\Pr(W\cap L)" /> without conditioning.</>,
+    reason: <>Matches option <b>A</b>: divide numerator and denominator by 0.2. Option <b>B</b> is the complement <Katex tex="\Pr(\text{not }W\mid L)" />, and <b>C</b> is <Katex tex="\Pr(W\cap L)" /> without conditioning.</>,
   },
 ]
 
@@ -46,8 +59,11 @@ export default function MethodsQ9_2025() {
           </p>
           <p>
             Of the <Katex tex="m" /> students who walked, 20% took at least 30 minutes to get
-            to school. Of the <Katex tex="n" /> students who used a different form of
-            transport, 40% took at least 30 minutes to get to school.
+            to school.
+          </p>
+          <p>
+            Of the <Katex tex="n" /> students who used a different form of transport, 40% took
+            at least 30 minutes to get to school.
           </p>
           <p>
             Given that a randomly selected student took at least 30 minutes to get to school,

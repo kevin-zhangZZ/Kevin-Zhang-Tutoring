@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -2}" />,
-    reason: <>Option E. Check: <Katex tex="p(-2)=-8+16-2-1=5" /> ✓.</>,
+    reason: <>Matches option <b>E</b>. Check: <Katex tex="p(-2)=-8+16-2-1=5" /> ✓. Option <b>C</b> (<Katex tex="\tfrac12" />) comes from substituting <Katex tex="x=2" /> instead of <Katex tex="-2" />; option <b>A</b> (<Katex tex="2" />) from writing <Katex tex="-2a(-2)^2" /> as <Katex tex="+8a" />.</>,
   },
 ]
 

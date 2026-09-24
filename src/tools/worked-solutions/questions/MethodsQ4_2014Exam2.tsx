@@ -1,13 +1,13 @@
 // 2014 Mathematical Methods (CAS) — Exam 2, Section 2 Question 4 (14 marks). A nursery:
 // normal-distribution heights, a sine probability density function, a binomial "at least
 // one", and a two-state chain of smooth and rough pots. Question text transcribed from the
-// original paper (no diagram given). Part g. is a transition-matrix question in the original
-// paper, but the same answer falls out of a four-step recursion with no matrices at all, so
-// it is included — see the note above that part. Answers checked with sympy/scipy and against
-// the VCAA examination report. Solution is original.
+// original paper (no diagram given). Part g. is a transition-matrix (Markov chain) question,
+// which is no longer on the Mathematical Methods study design: its statement is shown, marked
+// as such, with no worked solution (KZ's decision, Sept 2026; the skip guide lists it). Answers
+// checked with sympy/scipy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 
 const EXAM_A: SAExaminerStats = {
@@ -27,10 +27,12 @@ const EXAM_B: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Some students used <Katex tex="\Pr(X<8.9)" /> or <Katex tex="\Pr(X<8)" />. Some rounded
-      incorrectly. Some used technology syntax in their working — correct mathematical
-      notation was required. Other students complicated the question by using{' '}
-      <Katex tex="z" /> values.
+      Some students had incorrect working, such as{' '}
+      <Katex tex="\Pr(X<9)=0.10565\ldots=0.10565\ldots\times2000=211" /> basil plants. Some
+      students used <Katex tex="\Pr(X<8.9)" /> or <Katex tex="\Pr(X<8)" />. Some rounded
+      incorrectly. Some used technology syntax in their working. Correct mathematical notation
+      was required. Other students complicated the question by using <Katex tex="z" /> values.
+      Many of these attempts were unsuccessful.
     </>
   ),
 }
@@ -63,8 +65,8 @@ const EXAM_E: SAExaminerStats = {
   comment: (
     <>
       Many students did not know to use the binomial distribution and others used the
-      inequality sign incorrectly. Many different approaches were used, including trial and
-      error.
+      inequality sign incorrectly. Many different approaches could have been used. Many
+      different approaches were used, including trial and error.
     </>
   ),
 }
@@ -74,9 +76,12 @@ const EXAM_FI: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Students who used a tree diagram often gave the correct answer. Brackets were sometimes
-      omitted, giving the incorrect answer{' '}
-      <Katex tex="0.7\times0.7+0.3\times1-p=0.79-p" />.
+      Students who used a tree diagram often gave the correct answer.{' '}
+      <Katex tex="\begin{bmatrix}0.7&1-p\\0.3&p\end{bmatrix}^3\begin{bmatrix}1\\0\end{bmatrix}" />{' '}
+      or{' '}
+      <Katex tex="\begin{bmatrix}0.7&p\\0.3&1-p\end{bmatrix}^2\begin{bmatrix}1\\0\end{bmatrix}" />{' '}
+      were common incorrect formulations. Brackets were sometimes omitted, giving the
+      incorrect answer <Katex tex="0.7\times0.7+0.3\times1-p=0.79-p" />
     </>
   ),
 }
@@ -86,16 +91,6 @@ const EXAM_FII: SAExaminerStats = {
   average: 1.2,
 }
 
-const EXAM_G: SAExaminerStats = {
-  marks: [49, 8, 43],
-  average: 1,
-  comment: (
-    <>
-      Some students used a tree diagram but were unsuccessful as there were too many
-      branches.
-    </>
-  ),
-}
 
 const ROWS_A: WorkingRow[] = [
   {
@@ -250,36 +245,6 @@ const ROWS_FII: WorkingRow[] = [
   },
 ]
 
-const ROWS_G: WorkingRow[] = [
-  {
-    working: <Katex display tex="s_{n+1} = 0.7\,s_n + (1-p)(1-s_n)" />,
-    reason: <>Writing <Katex tex="s_n=\Pr(S_n)" />: pot <Katex tex="n+1" /> is smooth either after a smooth pot or after a rough one. This is the same one-step argument as part f(i), applied repeatedly.</>,
-  },
-  {
-    working: <Katex display tex="p = 0.8 \implies s_{n+1} = 0.7s_n+0.2(1-s_n) = 0.2+0.5\,s_n" />,
-    reason: <>A single recursion — no matrices, and no 16-branch tree.</>,
-  },
-  {
-    working: <Katex display tex="s_1 = 1" />,
-    reason: <>The first pot each week is always smooth.</>,
-  },
-  {
-    working: <Katex display tex="s_2 = 0.2+0.5(1) = 0.7" />,
-    reason: <>Matching part f(i) with <Katex tex="p=0.8" />: <Katex tex="0.79-0.24=0.55" /> for <Katex tex="s_3" /> — the next line.</>,
-  },
-  {
-    working: <Katex display tex="s_3 = 0.2+0.5(0.7) = 0.55" />,
-    reason: <>✓ agrees with <Katex tex="0.79-0.3(0.8)" />, a useful check that the recursion is right.</>,
-  },
-  {
-    working: <Katex display tex="s_4 = 0.2+0.5(0.55) = 0.475" />,
-    reason: <>One more step.</>,
-  },
-  {
-    working: <Katex display tex="\boxed{s_5 = 0.2+0.5(0.475) = 0.4375 = \tfrac7{16}}" />,
-    reason: <>The probabilities are settling towards the long-run value <Katex tex="0.4" />, which is what <Katex tex="s=0.2+0.5s" /> gives — a sanity check on the arithmetic.</>,
-  },
-]
 
 export default function MethodsQ4_2014Exam2() {
   return (
@@ -299,6 +264,7 @@ export default function MethodsQ4_2014Exam2() {
 
       <PartCard
         letter="a"
+        topic="Inverse Normal"
         marks={1}
         statement={
           <>
@@ -320,6 +286,7 @@ export default function MethodsQ4_2014Exam2() {
 
       <PartCard
         letter="b"
+        topic="Normal Distribution"
         marks={2}
         statement={
           <>
@@ -347,6 +314,7 @@ export default function MethodsQ4_2014Exam2() {
 
       <PartCard
         letter="c"
+        topic="Mean of PDF"
         marks={1}
         statement={<>State the mean height of the coriander plants.</>}
         examinerReport={EXAM_C}
@@ -361,6 +329,7 @@ export default function MethodsQ4_2014Exam2() {
 
       <PartCard
         letter="d"
+        topic="PDF Quantile"
         marks={2}
         statement={
           <>
@@ -381,6 +350,7 @@ export default function MethodsQ4_2014Exam2() {
 
       <PartCard
         letter="e"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -405,16 +375,11 @@ export default function MethodsQ4_2014Exam2() {
           time, but can vary from week to week. The first pot made each week is always a
           smooth pot.
         </p>
-        <p>
-          In the working below, <Katex tex="S_n" /> denotes the event that the{' '}
-          <Katex tex="n" />th pot made in a week is smooth, and <Katex tex="R_n" /> that it is
-          rough. Note these trials are <em>not</em> independent, so nothing here is binomial —
-          each pot depends on the one before it.
-        </p>
       </div>
 
       <PartCard
         letter="f.i"
+        topic="Markov Chain"
         marks={2}
         statement={
           <>
@@ -424,11 +389,20 @@ export default function MethodsQ4_2014Exam2() {
         }
         examinerReport={EXAM_FI}
       >
+        <Background>
+          <p>
+            In the working below, <Katex tex="S_n" /> denotes the event that the{' '}
+            <Katex tex="n" />th pot made in a week is smooth, and <Katex tex="R_n" /> that it is
+            rough. These trials are <em>not</em> independent, so nothing here is binomial — each
+            pot depends on the one before it.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_FI} />
       </PartCard>
 
       <PartCard
         letter="f.ii"
+        topic="Markov Chain"
         marks={2}
         statement={
           <>
@@ -441,15 +415,9 @@ export default function MethodsQ4_2014Exam2() {
         <WorkingTable rows={ROWS_FII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
-        The original paper's own solution to part g. uses a transition matrix, which is no
-        longer on the study design. It is still worth doing: the one-step argument from part
-        f(i) turns into a short recursion, and four lines of arithmetic finish it — no
-        matrices and no 16-branch tree.
-      </div>
-
       <PartCard
         letter="g"
+        topic="Transition Matrix"
         marks={2}
         statement={
           <>
@@ -457,9 +425,15 @@ export default function MethodsQ4_2014Exam2() {
             pot made that week is smooth.
           </>
         }
-        examinerReport={EXAM_G}
       >
-        <WorkingTable rows={ROWS_G} />
+        <Background title="Not in the Current Study Design">
+          <p>
+            Part g. is a transition-matrix (Markov chain) question — VCAA&rsquo;s report solves it
+            with a transition matrix — and transition matrices are no longer on the Mathematical
+            Methods study design. It is left without a worked solution; the skip guide lists it
+            as one to skip.
+          </p>
+        </Background>
       </PartCard>
     </div>
   )

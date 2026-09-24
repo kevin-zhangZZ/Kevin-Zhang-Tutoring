@@ -15,7 +15,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Some students only gave the domain and not the range. Others gave the domain as{' '}
-      <Katex tex="(-\infty,1)" /> or <Katex tex="(-1,\infty)" />.
+      <Katex tex="(-\infty,1)" /> or <Katex tex="(-\infty,1]" /> or <Katex tex="(-1,-\infty)" />.
     </>
   ),
 }
@@ -42,9 +42,9 @@ const EXAM_C: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Some students wrote that there exist two <Katex tex="x" />-values for{' '}
-      <em>every</em> <Katex tex="y" />-value, which is not the case, or that{' '}
-      <Katex tex="p" /> fails the vertical line test. Others gave the meaning of a
+      Some students wrote that there exists two <Katex tex="x" />-values for every{' '}
+      <Katex tex="y" />-value, which is not the case, or <Katex tex="p" /> fails the vertical
+      line test. Others gave the meaning of a
       one-to-one function without relating it to the question.
     </>
   ),
@@ -88,11 +88,11 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x^2-1>0 \implies x<-1 \text{ or } x>1" />,
-    reason: 'Each logarithm needs a positive argument, and both conditions must hold at once.',
+    reason: <>Each logarithm needs a positive argument, and both conditions must hold at once.</>,
   },
   {
     working: <Katex display tex="1-x>0 \implies x<1" />,
-    reason: 'The second condition.',
+    reason: <>The second condition.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{domain } (-\infty,-1)}" />,
@@ -104,18 +104,18 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to-1^-: \ -x-1\to0^+ \Rightarrow q\to-\infty; \quad x\to-\infty: \ q\to\infty" />,
-    reason: 'The inner expression sweeps over all positive values.',
+    reason: <>The inner expression sweeps over all positive values.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{range } R}" />,
-    reason: 'Both parts are asked for, and over a third of students gave only the domain.',
+    reason: <>Both parts are asked for — the report notes some students gave only the domain.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="q(x) = \log_e(-x-1) \implies q'(x) = \frac{-1}{-x-1} = \frac{1}{x+1}" />,
-    reason: 'Chain rule on the simplified form — far quicker than differentiating the difference of two logs.',
+    reason: <>Chain rule on the simplified form — far quicker than differentiating the difference of two logs.</>,
   },
   {
     working: <Katex display tex="q'(-2) = \frac{1}{-1} = -1, \quad q(-2) = \log_e(1) = 0" />,
@@ -130,7 +130,7 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="m_{\perp} = \frac{-1}{-1} = 1" />,
-    reason: 'The negative reciprocal of the tangent gradient from part b(i).',
+    reason: <>The negative reciprocal of the tangent gradient from part b.i.</>,
   },
   {
     working: <Katex display tex="y-0 = 1\left(x-(-2)\right)" />,
@@ -145,7 +145,7 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="p(x) = e^{-2x}-2e^{-x}+1 = \left(e^{-x}-1\right)^2" />,
-    reason: 'Recognising the perfect square makes everything about this function obvious at once.',
+    reason: <>Recognising the perfect square makes everything about this function obvious at once.</>,
   },
   {
     working: <Katex display tex="p(x) \ge 0, \text{ with } p(0) = 0" />,
@@ -153,18 +153,18 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p'(x) = 2e^{-x}\left(1-e^{-x}\right): \ \text{negative for } x<0, \text{ positive for } x>0" />,
-    reason: 'So the graph falls to a minimum at the origin and then rises — a shape that must repeat values.',
+    reason: <>So the graph falls to a minimum at the origin and then rises — a shape that must repeat values.</>,
   },
   {
     working: <Katex display tex="\boxed{p \text{ is many-to-one: it fails the horizontal line test}}" />,
-    reason: <>For example <Katex tex="p(-\log_e2)=p(\log_e2)=\tfrac14" />. Note it is <em>some</em> <Katex tex="y" />-values that have two <Katex tex="x" />-values, not every one — and the <em>vertical</em> line test is about being a function at all, which <Katex tex="p" /> passes.</>,
+    reason: <>For example <Katex tex="p\left(\log_e\left(\tfrac23\right)\right)=p(\log_e(2))=\tfrac14" />. Note it is <em>some</em> <Katex tex="y" />-values that have two <Katex tex="x" />-values, not every one — and the <em>vertical</em> line test is about being a function at all, which <Katex tex="p" /> passes.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="p(x) = e^{-2x}-2e^{-x}+1" />,
-    reason: 'Differentiating the expanded form is easiest here.',
+    reason: <>Differentiating the expanded form is easiest here.</>,
   },
   {
     working: <Katex display tex="p'(x) = -2e^{-2x}+2e^{-x}" />,
@@ -206,7 +206,7 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(e^(−2x) − 2e^(−x) + 1 = x + 2, x)</Cas>,
-    reason: 'Where the line meets the curve. There is exactly one crossing, on the left of the origin.',
+    reason: <>Where the line meets the curve. There is exactly one crossing, on the left of the origin.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -0.750}" />,
@@ -218,7 +218,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A = \int_{-2}^{-0.7504}(x+2)\,dx+\int_{-0.7504}^{0}p(x)\,dx" />,
-    reason: 'Two integrals, split at the intersection — using the stored root, not the rounded one.',
+    reason: <>Two integrals, split at the intersection — using the stored root, not the rounded one.</>,
   },
   {
     working: <Katex display tex="= 0.78075\ldots+0.25734\ldots" />,
@@ -226,7 +226,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 1.038}" />,
-    reason: 'To three decimal places, as asked.',
+    reason: <>To three decimal places, as asked.</>,
   },
 ]
 
@@ -242,6 +242,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="a"
+        topic="Domain & Range"
         marks={2}
         statement={<>State the maximal domain and the range of <Katex tex="q" />.</>}
         examinerReport={EXAM_A}
@@ -251,6 +252,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -265,6 +267,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Normal Line"
         marks={1}
         statement={
           <>
@@ -278,7 +281,7 @@ export default function MethodsQ3_2021Exam2() {
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Let <Katex tex="p(x)=e^{-2x}-2e^{-x}+1" />.
         </p>
@@ -286,6 +289,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="c"
+        topic="One-to-One"
         marks={1}
         statement={<>Explain why <Katex tex="p" /> is not a one-to-one function.</>}
         examinerReport={EXAM_C}
@@ -295,6 +299,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="d"
+        topic="Tangent Gradient"
         marks={1}
         statement={
           <>
@@ -325,6 +330,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="e"
+        topic="Angle Between Lines"
         marks={3}
         statement={
           <>
@@ -339,6 +345,7 @@ export default function MethodsQ3_2021Exam2() {
 
       <PartCard
         letter="f"
+        topic="Area Between Curves"
         marks={3}
         statement={
           <>

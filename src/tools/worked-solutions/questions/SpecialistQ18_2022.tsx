@@ -13,7 +13,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       <Katex tex="D = T_1-T_2,\ E(D)=0,\ \mathrm{Var}(D)=1^2\mathrm{Var}(T_1)+(-1)^2\mathrm{Var}(T_2)=12.5" />
       <br />
-      <Katex tex="1-\Pr(-6\leq D\leq6) = 0.0897" />
+      <Katex tex="1-\Pr(-6<D<6)=0.0897" />
     </>
   ),
 }
@@ -21,19 +21,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="T_1,T_2 \sim N(30,2.5^2),\ \text{independent}" />,
-    reason: 'Each student’s travel time.',
+    reason: <>Two independent travel times.</>,
   },
   {
     working: <Katex display tex="D = T_1-T_2 \;\implies\; E(D)=0" />,
-    reason: 'Let D be the difference in travel times.',
+    reason: <>Let D be the difference in travel times.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(D) = 2.5^2+2.5^2 = 12.5 \;\implies\; \mathrm{sd}(D)=\sqrt{12.5}\approx3.536" />,
-    reason: 'Variances add for independent variables, even when subtracting them.',
+    reason: <>Variances add for independent variables, even when subtracting them.</>,
   },
   {
     working: <Katex display tex="\Pr(|D|>6) = 1 - \Pr(-6\leq D\leq6)" />,
-    reason: '"Differ by more than 6 minutes" is the complement of the difference lying within ±6.',
+    reason: <>"Differ by more than 6 minutes" is the complement of the difference lying within ±6.</>,
   },
   {
     working: <Katex display tex="\Pr(-6\leq D\leq6) \approx 0.9103" />,
@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{1-0.9103 = 0.0897}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option A, 0.0448, is only one tail, <Katex tex="\Pr(D>6)" />; option E is the complement.</>,
   },
 ]
 

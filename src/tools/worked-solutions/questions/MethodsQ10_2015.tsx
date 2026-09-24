@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{6\times\frac13\times\left(\frac23\right)^5}" />,
-    reason: <>Option D, about <Katex tex="0.263" />. Option E swaps the roles of <Katex tex="p" /> and <Katex tex="1-p" />; options A and B drop the binomial coefficient entirely.</>,
+    reason: <>Matches option <b>D</b>, about <Katex tex="0.263" />. Option E swaps the roles of <Katex tex="p" /> and <Katex tex="1-p" />; options A and B are <Katex tex="\Pr(X=6)" /> and <Katex tex="\Pr(X=0)" />.</>,
   },
 ]
 

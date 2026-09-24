@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k < -2 \ \text{ or } \ k > 6}" />,
-    reason: <>Option B. Option C is the reverse inequality — the values for which the line <em>misses</em> the parabola; <Katex tex="k=6" /> and <Katex tex="k=-2" /> are the two tangent cases.</>,
+    reason: <>Matches option <b>B</b>. Option C is the reverse — the values for which the line misses the parabola, together with the two tangent cases <Katex tex="k=6" /> and <Katex tex="k=-2" /> (options A and E), which give one point, not two.</>,
   },
 ]
 

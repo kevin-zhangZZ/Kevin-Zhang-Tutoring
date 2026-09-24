@@ -1,4 +1,4 @@
-// 2015 Chemistry Exam, MCQ 29. VCAA examination report: 38% correct — the hardest MCQ on the
+// 2015 Chemistry Exam, MCQ 29. VCAA examination report: 31% correct — the hardest MCQ on the
 // 2015 paper (VCAA's own report names it first in its "most challenging questions" list).
 // Electrorefining of blister copper: identify the cathode half-equation and the polarity of
 // the impure-copper electrode. Question text transcribed from the original paper; the diagram

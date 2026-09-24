@@ -9,6 +9,19 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 15, C: 72, D: 3 },
   answer: 'C',
+  comment: (
+    <>
+      <Katex tex="n=17,\ k=5,\ n>k" />
+      <br />
+      <Katex tex="n=12,\ k=5,\ \text{print }12,\ n>k" />
+      <br />
+      <Katex tex="n=7,\ k=5,\ \text{print }7,\ n>k" />
+      <br />
+      <Katex tex="n=2,\ k=5,\ \text{print }2,\ n<k" /> end while
+      <br />
+      The printed values are 12, 7 and 2.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -18,15 +31,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="17>5 \ \checkmark \implies n = 12, \ \text{print } 12" />,
-    reason: 'The test happens before the body, and the print happens after the subtraction.',
+    reason: <>The test happens before the body, and the print happens after the subtraction.</>,
   },
   {
     working: <Katex display tex="12>5 \ \checkmark \implies n = 7, \ \text{print } 7" />,
-    reason: 'Second pass.',
+    reason: <>Second pass.</>,
   },
   {
     working: <Katex display tex="7>5 \ \checkmark \implies n = 2, \ \text{print } 2" />,
-    reason: 'Third pass.',
+    reason: <>Third pass.</>,
   },
   {
     working: <Katex display tex="2>5 \ \times \implies \text{loop ends}" />,
@@ -34,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{12,\ 7,\ 2}" />,
-    reason: <>Option <b>C</b>. Note 17 itself is never printed, because the print statement sits after the subtraction.</>,
+    reason: <>Matches option <b>C</b>. Note 17 itself is never printed, because the print statement sits after the subtraction.</>,
   },
 ]
 

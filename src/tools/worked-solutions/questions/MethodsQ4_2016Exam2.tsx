@@ -8,11 +8,11 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import biiSrc from './meth-2016exam2-q4bii-shaded.png'
-import biiiSrc from './meth-2016exam2-q4biii-shaded.png'
-import pointSrc from './meth-2016exam2-q4c-point.png'
-import triangleSrc from './meth-2016exam2-q4eiii-triangle.png'
-import regionSrc from './meth-2016exam2-q4f-region.png'
+import biiSrc from './meth-2016e2-q4bii-shaded.png'
+import biiiSrc from './meth-2016e2-q4biii-shaded.png'
+import pointSrc from './meth-2016e2-q4c-point.png'
+import triangleSrc from './meth-2016e2-q4eiii-triangle.png'
+import regionSrc from './meth-2016e2-q4f-region.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [42, 6, 52],
@@ -60,7 +60,7 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Some students did not consider the domain and
-      gave two sets of values for <Katex tex="c" /> and <Katex tex="d" />, or chose the
+      gave two sets of values for <Katex tex="c" /> and <Katex tex="d" /> or chose the
       incorrect value for <Katex tex="c" />. Others had the correct answers for{' '}
       <Katex tex="c" /> and <Katex tex="d" /> but did not work out the minimum distance.
       Some did not give exact values.
@@ -122,7 +122,8 @@ const EXAM_FI: SAExaminerStats = {
       Most students were able to set up the integral.{' '}
       <Katex tex="A(k)=\int_{-1}^{1}\bigl(f(x)-x\bigr)dx" />, which was independent of{' '}
       <Katex tex="k" />, was sometimes given. Other students tried to use{' '}
-      <Katex tex="\int_{1}^{\infty}" />.
+      <Katex tex="A(k)=\int_{1}^{\infty}\bigl(f(x)-x\bigr)dx" />. Some broke the area up into
+      different sections and were successful, but this would have been time consuming.
     </>
   ),
 }
@@ -163,7 +164,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{dom}(f^{-1}) = \text{ran}(f) = R\setminus\{2\}}" />,
-    reason: <>The horizontal asymptote of <Katex tex="f" /> is <Katex tex="y=2" />, so <Katex tex="2" /> is the one output <Katex tex="f" /> never produces. Half the marks were for stating this.</>,
+    reason: <>The horizontal asymptote of <Katex tex="f" /> is <Katex tex="y=2" />, so <Katex tex="2" /> is the one output <Katex tex="f" /> never produces. The report notes students who left the domain out.</>,
   },
 ]
 
@@ -267,7 +268,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g(x_2)-g(x_1)>0 \implies g(x_1)<g(x_2)}" />,
-    reason: <>Positive over positive. Only <Katex tex="10\%" /> of students scored anything here, but the argument is four lines of algebra and three sign checks.</>,
+    reason: <>Positive over positive, so <Katex tex="x_1<x_2" /> implies <Katex tex="g(x_1)<g(x_2)" />, as required. Only <Katex tex="10\%" /> of students scored anything here, but the argument is four lines of algebra and three sign checks.</>,
   },
 ]
 
@@ -286,7 +287,7 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x>-k \implies x = -k+\sqrt{k^2-1}" />,
-    reason: <>The domain of <Katex tex="g" /> is <Katex tex="(-k,\infty)" />, which rules out the negative root. The report says ignoring this, or giving both, was the usual error.</>,
+    reason: <>The domain of <Katex tex="g" /> is <Katex tex="(-k,\infty)" />, which rules out the negative root. The report notes students who ignored the domain or gave both points.</>,
   },
   {
     working: <Katex display tex="\boxed{X = \left(-k+\sqrt{k^2-1},\ k-\sqrt{k^2-1}\right)}" />,
@@ -316,15 +317,15 @@ const ROWS_EII: WorkingRow[] = [
 const ROWS_EIII: WorkingRow[] = [
   {
     working: <Katex display tex="YZ = \sqrt{2^2+2^2} = 2\sqrt2" />,
-    reason: <>From <Katex tex="Z(-1,-1)" /> to <Katex tex="Y(1,1)" />. Take this as the base — it lies along the line <Katex tex="y=x" />, which makes the height easy.</>,
+    reason: <>From <Katex tex="Z(-1,-1)" /> to <Katex tex="Y(1,1)" />. Take this as the base.</>,
   },
   {
-    working: <Katex display tex="\text{height} = \frac{|x_X-y_X|}{\sqrt2} = \frac{\left|\left(-k+\sqrt{k^2-1}\right)-\left(k-\sqrt{k^2-1}\right)\right|}{\sqrt2}" />,
-    reason: <>The perpendicular distance from <Katex tex="X" /> to the line <Katex tex="y=x" />.</>,
+    working: <Katex display tex="\text{height} = OX" />,
+    reason: <><Katex tex="X" /> lies on <Katex tex="y=-x" />, which is perpendicular to <Katex tex="y=x" /> and meets it at the origin — the midpoint of <Katex tex="YZ" />. So the perpendicular height from <Katex tex="X" /> to <Katex tex="YZ" /> is just the distance from <Katex tex="O" /> to <Katex tex="X" />.</>,
   },
   {
-    working: <Katex display tex="= \frac{2\left(k-\sqrt{k^2-1}\right)}{\sqrt2} = \sqrt2\left(k-\sqrt{k^2-1}\right)" />,
-    reason: <><Katex tex="k>\sqrt{k^2-1}" /> for <Katex tex="k>1" />, so the modulus opens this way.</>,
+    working: <Katex display tex="OX = \sqrt{\left(-k+\sqrt{k^2-1}\right)^2+\left(k-\sqrt{k^2-1}\right)^2} = \sqrt2\left(k-\sqrt{k^2-1}\right)" />,
+    reason: <>The two coordinates from part e.i. have the same size, and <Katex tex="k>\sqrt{k^2-1}" /> for <Katex tex="k>1" />, so the root opens to a positive value.</>,
   },
   {
     working: <Katex display tex="\text{Area} = \frac12\times2\sqrt2\times\sqrt2\left(k-\sqrt{k^2-1}\right) = 2\left(k-\sqrt{k^2-1}\right)" />,
@@ -340,7 +341,7 @@ const ROWS_EIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt{k^2-1}\le k-\frac12 \implies k^2-1\le k^2-k+\frac14 \implies k\le\frac54" />,
-    reason: <>The same cancellation as part (e)(ii).</>,
+    reason: <>Squaring is safe because <Katex tex="k-\tfrac12>0" />. The same cancellation as part e.ii.</>,
   },
   {
     working: <Katex display tex="\boxed{1<k\le\frac54}" />,
@@ -390,7 +391,7 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0<A(k)<2 \text{ for all } k>1}" />,
-    reason: <>The inequality is strict at the top because the curve is strictly below <Katex tex="y=1" /> except at the single point <Katex tex="x=1" />. Only <Katex tex="6\%" /> of students scored anything here — and the argument needs no integration at all.</>,
+    reason: <>As required. The inequality is strict at the top because the curve is strictly below <Katex tex="y=1" /> except at the single point <Katex tex="x=1" />. Only <Katex tex="6\%" /> of students scored anything here — and the argument needs no integration at all.</>,
   },
 ]
 
@@ -398,16 +399,23 @@ export default function MethodsQ4_2016Exam2() {
   return (
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
-        <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 4 (21 marks)</p>
-        <p>
-          The longest question on the paper, built in two halves: parts (a)–(c) on the single
-          hyperbola <Katex tex="f(x)=\tfrac{2x+1}{x+2}" />, then parts (d)–(f) on the whole
-          family <Katex tex="g(x)=\tfrac{kx+1}{x+k}" /> that contains it.
-        </p>
+        <p className="font-semibold text-gray-900 dark:text-white">Question 4 (21 marks)</p>
+      </div>
+
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+        <Background title="How this question is built">
+          <p>
+            The longest question on the paper, in two halves: parts a.–c. on the single
+            hyperbola <Katex tex="f(x)=\tfrac{2x+1}{x+2}" />, then parts d.–f. on the whole
+            family <Katex tex="g(x)=\tfrac{kx+1}{x+k}" /> that contains it (<Katex tex="f" /> is
+            the case <Katex tex="k=2" />).
+          </p>
+        </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Rational Function"
         marks={2}
         statement={
           <>
@@ -434,6 +442,7 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Inverse Function"
         marks={2}
         statement={
           <>
@@ -461,7 +470,7 @@ export default function MethodsQ4_2016Exam2() {
         </div>
       </div>
 
-      <PartCard letter="b.ii" marks={1} statement={<>Find the area of the shaded region.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Area Between Curves" marks={1} statement={<>Find the area of the shaded region.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
@@ -479,7 +488,7 @@ export default function MethodsQ4_2016Exam2() {
         </div>
       </div>
 
-      <PartCard letter="b.iii" marks={1} statement={<>Find the area of the shaded region.</>} examinerReport={EXAM_BIII}>
+      <PartCard letter="b.iii" topic="Area Between Curves" marks={1} statement={<>Find the area of the shaded region.</>} examinerReport={EXAM_BIII}>
         <WorkingTable rows={ROWS_BIII} />
       </PartCard>
 
@@ -499,6 +508,7 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard
         letter="c"
+        topic="Minimum Distance"
         marks={3}
         statement={
           <>
@@ -521,6 +531,7 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard
         letter="d"
+        topic="Increasing Function"
         marks={2}
         statement={
           <>
@@ -548,6 +559,7 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Intersections"
         marks={2}
         statement={
           <>
@@ -563,6 +575,7 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Find Parameter"
         marks={2}
         statement={
           <>
@@ -592,6 +605,7 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard
         letter="e.iii"
+        topic="Inequality"
         marks={2}
         statement={
           <>
@@ -606,9 +620,7 @@ export default function MethodsQ4_2016Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="mb-3">
           The graph of <Katex tex="g" /> and the line <Katex tex="y=x" /> enclose a region of
-          the plane, shown shaded below. Let <Katex tex="A(k)" /> be the rule of the function{' '}
-          <Katex tex="A" /> that gives the area of this enclosed region. The domain of{' '}
-          <Katex tex="A" /> is <Katex tex="(1,\infty)" />.
+          the plane. The region is shown shaded in the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -617,14 +629,20 @@ export default function MethodsQ4_2016Exam2() {
             className="w-full max-w-[300px]"
           />
         </div>
+        <p className="mt-3">
+          Let <Katex tex="A(k)" /> be the rule of the function <Katex tex="A" /> that gives the
+          area of this enclosed region. The domain of <Katex tex="A" /> is{' '}
+          <Katex tex="(1,\infty)" />.
+        </p>
       </div>
 
-      <PartCard letter="f.i" marks={2} statement={<>Give the rule for <Katex tex="A(k)" />.</>} examinerReport={EXAM_FI}>
+      <PartCard letter="f.i" topic="Area Function" marks={2} statement={<>Give the rule for <Katex tex="A(k)" />.</>} examinerReport={EXAM_FI}>
         <WorkingTable rows={ROWS_FI} />
       </PartCard>
 
       <PartCard
         letter="f.ii"
+        topic="Bounding an Area"
         marks={2}
         statement={
           <>

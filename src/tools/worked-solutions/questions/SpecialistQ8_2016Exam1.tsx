@@ -14,10 +14,13 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Most students answered this question very well. There were errors seen in the
-      derivative, usually involving sign but sometimes mixing up sin and cos. The most
-      frequent error was not attempting to find the modulus. A small number of students
-      removed the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> in
-      an attempt to convert from velocity to speed.
+      derivative, usually involving sign but sometimes mixing up sin and cos. Occasionally
+      the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> were left
+      out at this stage. The most frequent error was not attempting to find the modulus. A
+      small number of students removed the <Katex tex="\underset{\sim}{i}" /> and{' '}
+      <Katex tex="\underset{\sim}{j}" /> in an attempt to convert from velocity and speed. A
+      few correctly found an expression for the speed but then made errors in trying to
+      simplify it.
     </>
   ),
 }
@@ -40,11 +43,18 @@ const EXAM_C: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      A broad spread of levels of achievement was seen. The most common errors involved sign
-      errors in the derivative, using velocity rather than acceleration, or making errors in
-      differentiation when attempting to find a maximum. Others used{' '}
+      A broad spread of levels of achievement was seen for this question. Most students were
+      able to make an attempt but the majority encountered some difficulty. The most common
+      errors involved sign errors in the derivative, using velocity rather than acceleration
+      or making errors in differentiation when attempting to find a maximum. Several students
+      found the correct expression for either acceleration or force but were then unable to
+      progress. Some chose a value for <Katex tex="t" />, while others used{' '}
       <Katex tex="\sin(2t)=1" /> and <Katex tex="\cos(2t)=1" /> simultaneously to find the
-      maximum force.
+      maximum force. A small number of students attempted to use an ellipse to solve this
+      question but most were unsuccessful. Some substituted{' '}
+      <Katex tex="t=\tfrac{\pi}{12}" />. A few made the incorrect assumption that to find the
+      maximum value for acceleration, one or both of the components of acceleration must
+      equate to zero.
     </>
   ),
 }
@@ -125,6 +135,7 @@ export default function SpecialistQ8_2016Exam1() {
 
       <PartCard
         letter="a"
+        topic="Speed"
         marks={2}
         statement={
           <>
@@ -139,6 +150,7 @@ export default function SpecialistQ8_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="Speed"
         marks={1}
         statement={
           <>
@@ -153,6 +165,7 @@ export default function SpecialistQ8_2016Exam1() {
 
       <PartCard
         letter="c"
+        topic="Maximum Force"
         marks={3}
         statement={<>Find the maximum magnitude of the net force acting on the body in newtons.</>}
         examinerReport={EXAM_C}

@@ -19,7 +19,11 @@ const EXAM: SAExaminerStats = {
       that the arc length formula needed to be applied, but some had difficulty
       differentiating <Katex tex="\arcsin(t)+t\sqrt{1-t^2}" />. A number of students applied
       the product and chain rule correctly to the <Katex tex="t\sqrt{1-t^2}" /> term and
-      ignored the <Katex tex="\arcsin(t)" /> term.
+      ignored the <Katex tex="\arcsin(t)" /> term. Many students had difficulty simplifying{' '}
+      <Katex tex="\left(\tfrac{dx}{dt}\right)^2+\left(\tfrac{dy}{dt}\right)^2" /> and were
+      unable to proceed further. Of those students who were able to find that{' '}
+      <Katex tex="d=\displaystyle\int_0^{\frac34}\sqrt{\left(t^2-2\right)^2}\,dt" />, only a small
+      number recognised the significance of the domain <Katex tex="0\le t\le1" />.
     </>
   ),
 }
@@ -63,7 +67,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt{\left(t^2-2\right)^2} = \left|t^2-2\right| = 2-t^2 \quad \text{for } 0\le t\le1" />,
-    reason: <>The absolute value matters: on the given domain <Katex tex="t^2\le1<2" />, so <Katex tex="t^2-2" /> is negative and the square root is its <em>negative</em>. Writing <Katex tex="t^2-2" /> instead would give a negative distance.</>,
+    reason: <>The absolute value matters — the report says only a small number of students recognised the significance of the domain here. On the given domain <Katex tex="t^2\le1<2" />, so <Katex tex="t^2-2" /> is negative and the square root is its <em>negative</em>. Writing <Katex tex="t^2-2" /> instead would give a negative distance.</>,
   },
   {
     working: <Katex display tex="d = \int_0^{3/4}\left(-t^2+0\cdot t+2\right)dt" />,
@@ -71,7 +75,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -1, \quad b = 0, \quad c = 2}" />,
-    reason: <>All integers, as required. Do not omit <Katex tex="b=0" /> — the question asks for all three. (For interest the distance itself is <Katex tex="\tfrac{87}{64}\approx1.36" /> m, though the question stops at the coefficients.) Only <Katex tex="2\%" /> of the state scored full marks.</>,
+    reason: <>All integers, as required. Do not omit <Katex tex="b=0" /> — the question asks for all three. (For interest the distance itself is <Katex tex="\tfrac{87}{64}\approx1.36" /> m, though the question stops at the coefficients.) Only <Katex tex="2\%" /> of students scored full marks.</>,
   },
 ]
 
@@ -91,7 +95,7 @@ export default function SpecialistQ10_2018Exam1() {
           three-quarters of a second is given by{' '}
           <Katex tex="d=\displaystyle\int_0^{3/4}\left(at^2+bt+c\right)dt" />. Find{' '}
           <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" />, where{' '}
-          <Katex tex="a,b,c\in\mathbb{Z}" />.
+          <Katex tex="a,b,c\in Z" />.
         </p>
       </div>
 

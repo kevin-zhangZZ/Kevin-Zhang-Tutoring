@@ -18,8 +18,14 @@ const EXAM_B: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Students who recognised this as a related rates question managed it well. Some students
-      did not convert the depth measurement to metres.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Students who recognised this as a related rates question managed this well.
+        </li>
+        <li>
+          Some students did not convert the depth measurement to metres.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -40,8 +46,15 @@ const EXAM_D: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Many students skipped this question without making an attempt. As the depth of the pond
-      is constant, the surface area can be found by dividing the volume by the depth.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Many students skipped this question without making an attempt to answer it.
+        </li>
+        <li>
+          As the depth of the pond is constant, the surface area can be found by dividing the
+          volume by the depth.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -51,8 +64,14 @@ const EXAM_E: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Many students skipped this question without attempting to answer it. The most common
-      error was not taking the five-day delay into account.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Many students skipped this question without attempting to answer it.
+        </li>
+        <li>
+          The most common error was not taking the 5-day delay into account.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -60,42 +79,42 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dt}\left(\frac{8t}{240+5t^4}\right) = \frac{8\left(240+5t^4\right)-8t\left(20t^3\right)}{\left(240+5t^4\right)^2}" />,
-    reason: 'Quotient rule on the given rate — this is a maximum of the rate, not of the volume.',
+    reason: <>Quotient rule on the given rate — this is a maximum of the rate, not of the volume.</>,
   },
   {
     working: <Katex display tex="= \frac{8\left(240-15t^4\right)}{\left(240+5t^4\right)^2} = 0 \implies t^4 = 16" />,
-    reason: <><Katex tex="1920 - 160t^4 = 8(240-15t^4)" />. The denominator is never zero.</>,
+    reason: <><Katex tex="1920+40t^4-160t^4 = 1920-120t^4 = 8\left(240-15t^4\right)" />. The denominator is never zero.</>,
   },
   {
     working: <Katex display tex="t = 2 \ \text{ (rejecting } t=-2 \text{ and the complex roots)}" />,
-    reason: 'Time is non-negative.',
+    reason: <>Time is non-negative.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dV}{dt} = \frac{16}{240+80} = \frac{16}{320} = 0.05 \ \text{m}^3\text{/day at } t=2}" />,
-    reason: <>Worth noting for part e.: this maximum inflow of <Katex tex="0.05" /> m³/day is exactly the clean-up rate, so the pond can never lose ground once the clean-up starts.</>,
+    reason: <>Worth noting for part e.: this maximum inflow of <Katex tex="0.05" /> m³/day is exactly the clean-up rate, so once the clean-up starts the removal always outpaces the inflow.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{depth} = 1 \text{ mm} = 0.001 \text{ m}" />,
-    reason: <>Everything else is in metres, so this conversion has to happen first — skipping it was the listed error.</>,
+    reason: <>Everything else is in metres, so this conversion has to happen first — the report notes some students did not convert the depth to metres.</>,
   },
   {
     working: <Katex display tex="V = \pi r^2 h = 0.001\pi r^2" />,
-    reason: 'The pollutant is a thin disc of constant depth.',
+    reason: <>The pollutant is a thin disc of constant depth.</>,
   },
   {
     working: <Katex display tex="\frac{dV}{dr} = 0.002\pi r" />,
-    reason: 'Differentiating with respect to the radius.',
+    reason: <>Differentiating with respect to the radius.</>,
   },
   {
     working: <Katex display tex="\frac{dr}{dt} = \frac{dV}{dt}\div\frac{dV}{dr} = \frac{dV}{dt}\times\frac{1}{0.002\pi r}" />,
-    reason: 'The chain rule in related-rates form.',
+    reason: <>The chain rule in related-rates form.</>,
   },
   {
     working: <Katex display tex="t = 4: \quad \frac{dV}{dt} = \frac{32}{240+5(256)} = \frac{32}{1520} = \frac{2}{95}" />,
-    reason: 'Substituting into the given rate.',
+    reason: <>Substituting into the given rate.</>,
   },
   {
     working: <Katex display tex="\frac{dr}{dt} = \frac{2}{95}\times\frac{1}{0.002\pi(6.54)} = 0.51232\ldots" />,
@@ -103,7 +122,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.51 \ \text{m/day}}" />,
-    reason: 'Two decimal places, as asked.',
+    reason: <>Two decimal places, as asked.</>,
   },
 ]
 
@@ -114,11 +133,11 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="5t^4 = \left(\sqrt5\,t^2\right)^2 = u^2" />,
-    reason: 'The point of the √5: it turns the quartic into a perfect square, which is what produces an arctan.',
+    reason: <>The point of the √5: it turns the quartic into a perfect square, which is what produces an arctan.</>,
   },
   {
     working: <Katex display tex="\int\frac{8t}{240+5t^4}\,dt = \int\frac{8}{240+u^2}\cdot\frac{du}{2\sqrt5}" />,
-    reason: 'Substituting both pieces.',
+    reason: <>Substituting both pieces.</>,
   },
   {
     working: <Katex display tex="\boxed{\int\frac{4}{\sqrt5\left(240+u^2\right)}\,du}" />,
@@ -141,7 +160,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V(0) = 0 \implies c = 0" />,
-    reason: 'The pond starts unpolluted, which is what fixes the constant.',
+    reason: <>The pond starts unpolluted, which is what fixes the constant.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{1}{5\sqrt3}\arctan\!\left(\frac{t^2}{4\sqrt3}\right)}" />,
@@ -156,15 +175,15 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V\to\frac{1}{5\sqrt3}\cdot\frac{\pi}{2} = \frac{\pi}{10\sqrt3}" />,
-    reason: 'The limiting volume in cubic metres.',
+    reason: <>The limiting volume in cubic metres.</>,
   },
   {
     working: <Katex display tex="\text{volume} = \text{surface area}\times\text{depth} \implies A = \frac{V}{0.001} = 1000V" />,
-    reason: 'The depth is constant, so dividing by it converts the volume straight into an area.',
+    reason: <>The depth is constant, so dividing by it converts the volume straight into an area.</>,
   },
   {
     working: <Katex display tex="A \to \frac{1000\pi}{10\sqrt3} = \frac{100\pi}{\sqrt3} = \frac{100\sqrt3\,\pi}{3}" />,
-    reason: 'Rationalising.',
+    reason: <>Rationalising.</>,
   },
   {
     working: <Katex display tex="\boxed{181.38 \ \text{m}^2}" />,
@@ -175,15 +194,15 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="V(5) = \frac{1}{5\sqrt3}\arctan\!\left(\frac{25}{4\sqrt3}\right) = 0.150163\ldots" />,
-    reason: <>The volume already in the pond when the clean-up starts. Ignoring this five-day head start was the error the examiner named.</>,
+    reason: <>The volume already in the pond when the clean-up starts. The report's most common error was not taking the 5-day delay into account.</>,
   },
   {
     working: <Katex display tex="\text{net rate for } t>5: \quad \frac{8t}{240+5t^4}-0.05" />,
-    reason: 'Inflow minus removal. The pollutant keeps arriving throughout.',
+    reason: <>Inflow minus removal. The pollutant keeps arriving throughout.</>,
   },
   {
     working: <Katex display tex="V(5)+\int_5^{T}\left(\frac{8t}{240+5t^4}-0.05\right)dt = 0" />,
-    reason: 'The pond is clear when the accumulated total reaches zero.',
+    reason: <>The pond is clear when the accumulated total reaches zero.</>,
   },
   {
     working: <Katex display tex="T = 8.4016\ldots" />,
@@ -191,7 +210,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{T-5 = 3.4 \ \text{days from the start of the clean-up}}" />,
-    reason: <>The question asks for the time measured <em>from the start of the clean-up</em>, not from <Katex tex="t=0" /> — answering 8.4 loses the mark.</>,
+    reason: <>The question asks for the time measured <em>from the start of the clean-up</em>, not from <Katex tex="t=0" /> — 8.4 would answer a different question.</>,
   },
 ]
 
@@ -217,8 +236,8 @@ export default function SpecialistQ3_2024Exam2() {
         <Background>
           <p>
             The depth is 1 <em>millimetre</em> and everything else is in metres. Converting it
-            to 0.001 m before part b. and carrying that through to part d. is the single
-            detail the whole question rests on.
+            to 0.001 m before part b. and carrying that through to part d. matters — the
+            report notes some students did not convert the depth to metres.
           </p>
           <p>
             The <Katex tex="\sqrt5" /> in the substitution is not decoration. Writing{' '}
@@ -232,6 +251,7 @@ export default function SpecialistQ3_2024Exam2() {
 
       <PartCard
         letter="a"
+        topic="Maximum Rate"
         marks={1}
         statement={
           <>
@@ -246,12 +266,14 @@ export default function SpecialistQ3_2024Exam2() {
 
       <PartCard
         letter="b"
+        topic="Related Rates"
         marks={3}
         statement={
           <>
             At what rate is the radius of the disc increasing after <Katex tex="t=4" /> days,
-            where it may be assumed that the radius of the disc is 6.54 m? Give your answer in
-            metres per day correct to two decimal places.
+            where it may be assumed that the radius of the disc is 6.54 m?
+            <br />
+            Give your answer in metres per day correct to two decimal places.
           </>
         }
         examinerReport={EXAM_B}
@@ -261,6 +283,7 @@ export default function SpecialistQ3_2024Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Substitution"
         marks={1}
         statement={
           <>
@@ -276,14 +299,17 @@ export default function SpecialistQ3_2024Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Arctan Integral"
         marks={1}
         statement={
           <>
             Hence, or otherwise, find, in terms of <Katex tex="t" />, the total volume{' '}
             <Katex tex="V" /> m<Katex tex="^3" /> of pollutant that has entered the pond after{' '}
-            <Katex tex="t" /> days. Give your answer in the form{' '}
+            <Katex tex="t" /> days.
+            <br />
+            Give your answer in the form{' '}
             <Katex tex="\dfrac{1}{a\sqrt b}\arctan\!\left(\dfrac{t^c}{d\sqrt b}\right)" />,
-            where <Katex tex="a,b,c,d\in\mathbb{Z}^+" />.
+            where <Katex tex="a,b,c,d\in Z^+" />.
           </>
         }
         examinerReport={EXAM_CII}
@@ -293,11 +319,13 @@ export default function SpecialistQ3_2024Exam2() {
 
       <PartCard
         letter="d"
+        topic="Limiting Area"
         marks={2}
         statement={
           <>
-            What surface area of the pond would the coverage of the pollutant approach? Give
-            your answer in square metres correct to two decimal places.
+            What surface area of the pond would the coverage of the pollutant approach?
+            <br />
+            Give your answer in square metres correct to two decimal places.
           </>
         }
         examinerReport={EXAM_D}
@@ -307,6 +335,7 @@ export default function SpecialistQ3_2024Exam2() {
 
       <PartCard
         letter="e"
+        topic="Clean-Up Time"
         marks={2}
         statement={
           <>
@@ -314,8 +343,12 @@ export default function SpecialistQ3_2024Exam2() {
             a constant rate of 0.05 cubic metres per day until the pond is free of pollutant.
             However, efforts to stem the flow are unsuccessful and the pollutant continues to
             enter the pond at a rate of <Katex tex="\dfrac{8t}{240+5t^4}" /> cubic metres per
-            day. After how many days, from the start of the clean-up, will the pond be free of
-            pollutant? Give your answer in days correct to one decimal place.
+            day.
+            <br />
+            After how many days, from the start of the clean-up, will the pond be free of
+            pollutant?
+            <br />
+            Give your answer in days correct to one decimal place.
           </>
         }
         examinerReport={EXAM_E}

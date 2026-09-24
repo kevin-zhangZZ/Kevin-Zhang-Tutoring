@@ -20,15 +20,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{F}\cdot\underset{\sim}{d} = (1)(2)+(6)(-3)+(-18)(-6)" />,
-    reason: 'Component by component.',
+    reason: <>Component by component.</>,
   },
   {
     working: <Katex display tex="= 2-18+108 = 92" />,
-    reason: 'The two negatives in the last term make it positive.',
+    reason: <>The two negatives in the last term make it positive.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{d}\right| = \sqrt{2^2+3^2+6^2} = \sqrt{49} = 7" />,
-    reason: <>A 2–3–6–7 Pythagorean quadruple. Option A uses 19, which is <Katex tex="\left|\underset{\sim}{F}\right|" />-flavoured rather than <Katex tex="\left|\underset{\sim}{d}\right|" />.</>,
+    reason: <>A 2–3–6–7 Pythagorean quadruple. Option <b>A</b> divides by <Katex tex="\left|\underset{\sim}{F}\right|=\sqrt{361}=19" /> instead of <Katex tex="\left|\underset{\sim}{d}\right|" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{92}{7}}" />,

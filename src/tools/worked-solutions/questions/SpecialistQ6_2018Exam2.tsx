@@ -13,9 +13,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      The question was answered well. Common errors included poor notation such as{' '}
+      The question was answered well. Common errors included: poor notation such as{' '}
       <Katex tex="H_0=150" /> or similar, and not understanding the nature of a one-tailed
-      test.
+      test, evidenced by answers such as <Katex tex="H_1:\mu\ne150" />.
     </>
   ),
 }
@@ -33,7 +33,9 @@ const EXAM_C: SAExaminerStats = {
     <>
       Most students obtained the correct value of <Katex tex="p" />. A small number of these
       did not write <Katex tex="p" /> to the required four decimal places. Some students
-      inappropriately used calculator syntax in place of correct working or notation.
+      inappropriately used calculator syntax in place of correct working or notation. Students
+      must take care with notation as some responses incorrectly stated that{' '}
+      <Katex tex="p=\Pr(X<145\mid\mu=150)" />.
     </>
   ),
 }
@@ -44,7 +46,9 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Most students were able to draw the appropriate conclusion. Some students did not
-      supply a reason for their conclusion as required by the question.
+      supply a reason for their conclusion as required by the question. Occasional errors
+      caused some students to miss out on the mark. For example, some responses incorrectly
+      stated that <Katex tex="0.0092>0.05" />.
     </>
   ),
 }
@@ -52,7 +56,7 @@ const EXAM_D: SAExaminerStats = {
 const EXAM_E: SAExaminerStats = {
   marks: [52, 48],
   average: 0.5,
-  comment: <>In this instance, both values were accepted.</>,
+  comment: <>In this instance, both values above were accepted.</>,
 }
 
 const EXAM_F: SAExaminerStats = {
@@ -69,7 +73,8 @@ const EXAM_G: SAExaminerStats = {
       While many students answered this correctly and concisely, arithmetic errors caused
       some students to miss out on the mark. Some students appeared to use a{' '}
       <Katex tex="95\%" /> confidence interval rather than the required{' '}
-      <Katex tex="99\%" /> one.
+      <Katex tex="99\%" /> confidence interval. It is important for students to read
+      questions carefully.
     </>
   ),
 }
@@ -77,14 +82,14 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_0: \mu = 150 \qquad H_1: \mu < 150}" />,
-    reason: <>Hypotheses are always about the <em>population</em> mean <Katex tex="\mu" />, never about <Katex tex="\overline{X}" /> or a number on its own — the report names <Katex tex="H_0=150" /> as poor notation. One-tailed, and pointing <em>downwards</em> because the sample mean of <Katex tex="145" /> fell below the claim.</>,
+    reason: <>Hypotheses are always about the <em>population</em> mean <Katex tex="\mu" />, never about <Katex tex="\overline{X}" /> or a number on its own — the report names <Katex tex="H_0=150" /> as poor notation. One-tailed, and pointing <em>downwards</em> because the sample mean of <Katex tex="145" /> fell below the claim — the report notes answers such as <Katex tex="H_1:\mu\ne150" />, which is two-tailed.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{sd}\!\left(\overline{X}\right) = \frac{\sigma}{\sqrt n} = \frac{15}{\sqrt{50}}" />,
-    reason: <>The standard deviation of a sample mean shrinks with sample size — this is the single most important formula in the topic.</>,
+    reason: <>The standard deviation of a sample mean shrinks with sample size.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{15}{\sqrt{50}} = \frac{3}{\sqrt2} = \frac{3\sqrt2}{2} \approx 2.1213}" />,
@@ -95,11 +100,11 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="p = \Pr\!\left(\overline{X} \le 145 \mid \mu = 150\right)" />,
-    reason: <>The <Katex tex="p" /> value is the probability of a result at least this extreme <em>assuming <Katex tex="H_0" /> is true</em>. One tail only, because <Katex tex="H_1" /> is one-sided — no doubling. Write this expression down: the report notes calculator syntax being offered in place of it.</>,
+    reason: <>The <Katex tex="p" /> value is the probability of a result at least this extreme <em>assuming <Katex tex="H_0" /> is true</em>. One tail only, because <Katex tex="H_1" /> is one-sided — no doubling. Write this expression down, with <Katex tex="\overline{X}" /> rather than <Katex tex="X" /> — the report notes both calculator syntax offered in its place and <Katex tex="\Pr(X<145\mid\mu=150)" /> written by mistake.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(-∞, 145, 150, 15/√50)</Cas>,
-    reason: <>The last argument is the standard deviation of the <em>sample mean</em> from part (b), not the population's <Katex tex="15" />.</>,
+    reason: <>The last argument is the standard deviation of the <em>sample mean</em> from part b., not the population's <Katex tex="15" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.0092}" />,
@@ -110,7 +115,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="p \approx 0.0092 < 0.05" />,
-    reason: <>Compare the <Katex tex="p" /> value with the significance level. The comparison <em>is</em> the reason, and the report says a conclusion without one did not score.</>,
+    reason: <>Compare the <Katex tex="p" /> value with the significance level. The comparison <em>is</em> the reason — the report says some students did not supply one, and some wrote <Katex tex="0.0092>0.05" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Reject } H_0 \text{ at the } 5\% \text{ level}}" />,
@@ -133,7 +138,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\overline{x} \approx 146.51 \text{ cm}}" />,
-    reason: <>Two decimal places. (Equivalently <Katex tex="150-1.6449\times2.1213" />.) Consistent with part (d): the observed <Katex tex="145" /> is below this boundary, which is exactly why <Katex tex="H_0" /> was rejected.</>,
+    reason: <>Two decimal places. (Equivalently <Katex tex="150-1.6449\times2.1213" />; the report accepted <Katex tex="146.51" /> or <Katex tex="146.52" />.) Consistent with part d.: the observed <Katex tex="145" /> is below this boundary, which is exactly why <Katex tex="H_0" /> was rejected.</>,
   },
 ]
 
@@ -144,7 +149,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\!\left(H_0 \text{ accepted}\right) = \Pr\!\left(\overline{X} > 146.51\right)" />,
-    reason: <>Using the boundary from part (e): <Katex tex="H_0" /> survives whenever the sample mean lands above it. This is the probability of a Type II error — failing to reject a false <Katex tex="H_0" />.</>,
+    reason: <>Using the boundary from part e.: <Katex tex="H_0" /> survives whenever the sample mean lands above it. This is the probability of a Type II error — failing to reject a false <Katex tex="H_0" />.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(146.51, ∞, 145, 15/√50)</Cas>,
@@ -152,7 +157,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.24}" />,
-    reason: <>Two decimal places. So even when the true mean really is <Katex tex="145" />, this test misses it about a quarter of the time. Only <Katex tex="11\%" /> of the state attempted it.</>,
+    reason: <>Two decimal places. So even when the true mean really is <Katex tex="145" />, this test misses it about a quarter of the time. Only <Katex tex="11\%" /> of students scored this mark, and the report says only a small number attempted it.</>,
   },
 ]
 
@@ -198,27 +203,27 @@ export default function SpecialistQ6_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State suitable hypotheses <Katex tex="H_0" /> and <Katex tex="H_1" /> for the statistical test.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Hypotheses" marks={1} statement={<>State suitable hypotheses <Katex tex="H_0" /> and <Katex tex="H_1" /> for the statistical test.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Find the standard deviation of <Katex tex="\overline{X}" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Standard Deviation" marks={1} statement={<>Find the standard deviation of <Katex tex="\overline{X}" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Write down an expression for the <Katex tex="p" /> value of the statistical test and evaluate your answer correct to four decimal places.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="p-Value" marks={2} statement={<>Write down an expression for the <Katex tex="p" /> value of the statistical test and evaluate your answer correct to four decimal places.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={1} statement={<>State with a reason whether <Katex tex="H_0" /> should be rejected at the <Katex tex="5\%" /> level of significance.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Conclusion" marks={1} statement={<>State with a reason whether <Katex tex="H_0" /> should be rejected at the <Katex tex="5\%" /> level of significance.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={1} statement={<>What is the smallest value of the sample mean height that could be observed for <Katex tex="H_0" /> to be not rejected? Give your answer in centimetres, correct to two decimal places.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Critical Value" marks={1} statement={<>What is the smallest value of the sample mean height that could be observed for <Katex tex="H_0" /> to be <b>not</b> rejected? Give your answer in centimetres, correct to two decimal places.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
-      <PartCard letter="f" marks={1} statement={<>If the true mean height of all mature water buffaloes in northern Australia is in fact <Katex tex="145" /> cm, what is the probability that <Katex tex="H_0" /> will be accepted at the <Katex tex="5\%" /> level of significance? Give your answer correct to two decimal places.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Type II Error" marks={1} statement={<>If the true mean height of all mature water buffaloes in northern Australia is in fact <Katex tex="145" /> cm, what is the probability that <Katex tex="H_0" /> will be accepted at the <Katex tex="5\%" /> level of significance? Give your answer correct to two decimal places.</>} examinerReport={EXAM_F}>
         <Background title="The question changes which distribution you are in">
           <p>
             Every part up to here assumed <Katex tex="H_0" /> was true and worked with{' '}
@@ -228,7 +233,7 @@ export default function SpecialistQ6_2018Exam2() {
           </p>
           <p>
             What does <em>not</em> change is the decision rule: the test still rejects{' '}
-            <Katex tex="H_0" /> below the boundary found in part (e), because that boundary
+            <Katex tex="H_0" /> below the boundary found in part e., because that boundary
             was fixed in advance. So the answer is the area above that boundary under the new
             distribution — the probability of a Type II error.
           </p>
@@ -236,7 +241,7 @@ export default function SpecialistQ6_2018Exam2() {
         <WorkingTable rows={ROWS_F} />
       </PartCard>
 
-      <PartCard letter="g" marks={1} statement={<>Using the observed sample mean of <Katex tex="145" /> cm, find a <Katex tex="99\%" /> confidence interval for the mean height of all mature water buffaloes in northern Australia. Express the values in your confidence interval in centimetres, correct to one decimal place.</>} examinerReport={EXAM_G}>
+      <PartCard letter="g" topic="Confidence Interval" marks={1} statement={<>Using the observed sample mean of <Katex tex="145" /> cm, find a <b><Katex tex="99\%" /> confidence interval</b> for the mean height of all mature water buffaloes in northern Australia. Express the values in your confidence interval in centimetres, correct to one decimal place.</>} examinerReport={EXAM_G}>
         <WorkingTable rows={ROWS_G} />
       </PartCard>
     </div>

@@ -1,7 +1,8 @@
 // 2021 Specialist Mathematics — Exam 2, Section B Question 1 (10 marks). A rational
 // function: partial-fraction form, asymptotes, a sketch, then a parameter that changes how
 // many asymptotes and stationary points it has. Question text transcribed from the original
-// paper; the sketch is our own matplotlib drawing of the answer. Answers checked with sympy
+// paper; the sketch is this site's own matplotlib drawing of the answer, on VCAA's grid
+// (x −11 to 11, y −6 to 16, gridlines every 1). Answers checked with sympy
 // and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -28,8 +29,9 @@ const EXAM_C: SAExaminerStats = {
     <>
       A significant number of responses did not include the middle branch. Setting the
       calculator screen to match the grid provided would help avoid this error. Many
-      responses lacked at least one of the required details, such as the coordinates of the
-      point of inflection or of one of the axial intercepts.
+      responses lacked at least one of the required details such as coordinates of the
+      point of inflection or coordinates of one of the axial intercepts. Students need to
+      read the question carefully and fully address the requirements of the question.
     </>
   ),
 }
@@ -39,7 +41,7 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Very few students gave all three values. Many responses included only one value,{' '}
+      Very few students gave all three values. Many responses included only one value:{' '}
       <Katex tex="k=-2" />.
     </>
   ),
@@ -59,7 +61,7 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{(2x-3)(x+5)}{(x-1)(x+2)} = \frac{2x^2+7x-15}{x^2+x-2}" />,
-    reason: 'Expanding both products so the division can be done.',
+    reason: <>Expanding both products so the division can be done.</>,
   },
   {
     working: <Katex display tex="2x^2+7x-15 = 2\left(x^2+x-2\right)+5x-11" />,
@@ -74,15 +76,15 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(x-1)(x+2) = 0 \implies x = 1, \ x = -2" />,
-    reason: 'Neither factor cancels against the numerator, so both give genuine vertical asymptotes.',
+    reason: <>Neither factor cancels against the numerator, so both give genuine vertical asymptotes.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty: \ \frac{5x-11}{(x-1)(x+2)}\to0" />,
-    reason: 'Degree 1 over degree 2, so the fractional part dies away.',
+    reason: <>Degree 1 over degree 2, so the fractional part dies away.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 1, \quad x = -2, \quad y = 2}" />,
-    reason: <>Three asymptotes. The horizontal one is the <Katex tex="A" /> from part a., and it is the one most students forgot.</>,
+    reason: <>Three asymptotes. The horizontal one is the <Katex tex="A" /> from part a. — the report's most common error was leaving it out.</>,
   },
 ]
 
@@ -101,19 +103,19 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f''(x) = 0 \implies x = 6.788 \implies (6.79,\ 2.45)" />,
-    reason: 'The only real point of inflection.',
+    reason: <>The only real point of inflection.</>,
   },
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={sketchSrc}
-          alt="Three branches of a rational function with vertical asymptotes at x = −2 and x = 1 and horizontal asymptote y = 2, the middle branch a valley above y = 7.5 and the right branch rising to a maximum at (4.44, 2.51)"
+          alt="On VCAA's grid: three branches of the graph of f with dashed asymptotes x = −2, x = 1 and y = 2; the left branch through (−5, 0), the middle branch a valley with its minimum near (0, 7.5), and the right branch through (1.5, 0) rising to the maximum (4.44, 2.51) with the point of inflection at (6.79, 2.45)"
           className="w-full max-w-[440px]"
         />
       </div>
     ),
-    reason: 'All three branches must appear — the middle one, sitting entirely above the grid\u2019s top in a narrow window, is the one most often left out.',
+    reason: <>All three branches must appear — the report notes a significant number of responses left out the middle branch, and that setting the calculator screen to match the grid helps.</>,
   },
 ]
 
@@ -124,15 +126,15 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{horizontal asymptote } y=2 \text{ always}" />,
-    reason: 'Degree 2 over degree 2 with leading coefficients 2 and 1 — this one never goes away.',
+    reason: <>Degree 2 over degree 2 with leading coefficients 2 and 1 — this one never goes away.</>,
   },
   {
     working: <Katex display tex="\text{so two asymptotes} \iff \text{only one vertical asymptote}" />,
-    reason: 'Which happens in one of two ways: the two vertical asymptotes coincide, or one of them cancels.',
+    reason: <>Which happens in one of two ways: the two vertical asymptotes coincide, or one of them cancels.</>,
   },
   {
     working: <Katex display tex="k = -2: \ (x+2)^2 \text{ in the denominator} \implies \text{one vertical asymptote}" />,
-    reason: 'The repeated factor.',
+    reason: <>The repeated factor.</>,
   },
   {
     working: <Katex display tex="k = \tfrac32 \text{ or } k = -5: \ (x-k) \text{ cancels against a numerator factor}" />,
@@ -140,26 +142,26 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = -5, \ -2, \ \tfrac32}" />,
-    reason: <>All three. Six per cent of students found all of them.</>,
+    reason: <>All three. Only 6% of students scored full marks.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="g_k'(x) = 0 \iff -(2k+3)x^2+(30-8k)x+(30-29k) = 0" />,
-    reason: 'Only the numerator of the derivative matters; the squared denominator is never zero on the domain.',
+    reason: <>Only the numerator of the derivative matters; the squared denominator is never zero on the domain.</>,
   },
   {
     working: <Katex display tex="\Delta = (30-8k)^2+4(2k+3)(30-29k) = -84(k+5)(2k-3)" />,
-    reason: 'It factorises, which is the sign the question was designed this way.',
+    reason: <>It factorises, which is the sign the question was designed this way.</>,
   },
   {
     working: <Katex display tex="\text{no stationary points} \iff \Delta<0 \iff (k+5)(2k-3)>0" />,
-    reason: 'A negative discriminant means the derivative never vanishes.',
+    reason: <>A negative discriminant means the derivative never vanishes.</>,
   },
   {
     working: <Katex display tex="\boxed{k < -5 \ \text{ or } \ k > \tfrac32}" />,
-    reason: <>The endpoints <Katex tex="k=-5" /> and <Katex tex="k=\tfrac32" /> are excluded anyway by the "more than two asymptotes" condition from part d(i) — and at those values a stationary point does exist.</>,
+    reason: <>The endpoints <Katex tex="k=-5" /> and <Katex tex="k=\tfrac32" /> are excluded anyway by the "more than two asymptotes" condition from part d.i.</>,
   },
 ]
 
@@ -175,6 +177,7 @@ export default function SpecialistQ1_2021Exam2() {
 
       <PartCard
         letter="a"
+        topic="Partial Fractions"
         marks={1}
         statement={
           <>
@@ -190,6 +193,7 @@ export default function SpecialistQ1_2021Exam2() {
 
       <PartCard
         letter="b"
+        topic="Asymptotes"
         marks={2}
         statement={<>State the equations of the asymptotes of the graph of <Katex tex="f" />.</>}
         examinerReport={EXAM_B}
@@ -199,10 +203,11 @@ export default function SpecialistQ1_2021Exam2() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="f" /> on the set of axes provided. Label the
+            Sketch the graph of <Katex tex="f" /> on the set of axes below. Label the
             asymptotes with their equations, and label the maximum turning point and the
             point of inflection with their coordinates, correct to two decimal places. Label
             the intercepts with the coordinate axes.
@@ -213,7 +218,7 @@ export default function SpecialistQ1_2021Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Let <Katex tex="g_k(x)=\dfrac{(2x-3)(x+5)}{(x-k)(x+2)}" />, where <Katex tex="k" />{' '}
           is a real constant.
@@ -222,6 +227,7 @@ export default function SpecialistQ1_2021Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Asymptote Count"
         marks={2}
         statement={
           <>
@@ -236,6 +242,7 @@ export default function SpecialistQ1_2021Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Stationary Points"
         marks={2}
         statement={
           <>

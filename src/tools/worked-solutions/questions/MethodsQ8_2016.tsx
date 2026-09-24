@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{at } t=0,\ y=0 \text{ (a minimum)}" />,
-    reason: <>Read it off the graph. A curve that <em>starts at its minimum</em> is <Katex tex="-\cos" />, not <Katex tex="+\cos" /> — that alone rules out options A, C and E.</>,
+    reason: <>Read it off the graph. A curve that <em>starts at its minimum</em> is <Katex tex="-\cos" />, not <Katex tex="+\cos" />. That rules out options A and C (which start at their maximum, <Katex tex="10" />) and E (which starts at <Katex tex="5" />).</>,
   },
   {
     working: <Katex display tex="\text{period} = 14" />,
@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = 5-5\cos\!\left(\frac{\pi t}{7}\right)}" />,
-    reason: <>Option B. Check at <Katex tex="t=7" />: <Katex tex="5-5\cos(\pi)=5+5=10" /> ✓, the peak — which the graph puts at <Katex tex="t=7" />, or 1 pm.</>,
+    reason: <>Matches option <b>B</b>. Check at <Katex tex="t=7" />: <Katex tex="5-5\cos(\pi)=5+5=10" /> ✓, the peak — which the graph puts at <Katex tex="t=7" />, or 1 pm.</>,
   },
 ]
 

@@ -11,8 +11,9 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'B',
   comment: (
     <>
-      Use transformations on <Katex tex="g(x)=\cos^{-1}(x)" />: dilate by <Katex tex="b" />, translate down by{' '}
-      <Katex tex="a" />, then reflect any negative part up.
+      Use transformations on <Katex tex="g(x)=\cos^{-1}(x)" />.
+      <br />
+      <Katex tex="a<\dfrac{b\pi}{2}\Rightarrow b\pi>2a" />
     </>
   ),
 }
@@ -24,7 +25,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b\cos^{-1}(x) - a \text{ has range } [-a,\ b\pi-a]" />,
-    reason: 'Shift down by a.',
+    reason: <>Shift down by a.</>,
   },
   {
     working: <Katex display tex="-a < 0 < b\pi - a" />,
@@ -32,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\big|{-a}\big| = a, \qquad \big|b\pi-a\big| = b\pi - a" />,
-    reason: 'The two candidate endpoints of |b·cos⁻¹(x) − a|, once the interval is folded at zero.',
+    reason: <>The two candidate endpoints of |b·cos⁻¹(x) − a|, once the interval is folded at zero.</>,
   },
   {
     working: <Katex display tex="a < \tfrac{b\pi}{2} \;\implies\; b\pi - a > \tfrac{b\pi}{2} > a" />,
@@ -40,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Range} = [0,\ b\pi-a]}" />,
-    reason: <>The minimum <Katex tex="0" /> is attained where <Katex tex="b\cos^{-1}(x)-a=0" />; matches option <b>B</b>.</>,
+    reason: <>The minimum <Katex tex="0" /> is attained where <Katex tex="b\cos^{-1}(x)-a=0" />. Matches option <b>B</b>. Option <b>A</b> is the range before the absolute value is taken, and option <b>C</b> misses that the graph reaches <Katex tex="0" />.</>,
   },
 ]
 

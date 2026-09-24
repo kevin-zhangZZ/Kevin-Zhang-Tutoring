@@ -22,15 +22,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="E(S) = mE(X)+n \implies 30 = \tfrac76(25)+n" />,
-    reason: 'Now the mean fixes the shift.',
+    reason: <>Now the mean fixes the shift.</>,
   },
   {
     working: <Katex display tex="n = 30-\frac{175}{6} = \frac{180-175}{6} = \frac56" />,
-    reason: 'A small positive shift.',
+    reason: <>A small positive shift.</>,
   },
   {
     working: <Katex display tex="S(32) = \frac76(32)+\frac56 = \frac{224+5}{6} = \frac{229}{6} = 38.1\overline6" />,
-    reason: 'Substituting the score.',
+    reason: <>Substituting the score.</>,
   },
   {
     working: <Katex display tex="\boxed{38}" />,
@@ -46,7 +46,9 @@ export default function SpecialistQ19_2021() {
           The mean unscaled score for a certain assessment task is 25 and the variance is 36.
           The scores are scaled so that the mean score is 30 and the variance is 49. Let{' '}
           <Katex tex="S" /> be the scaled scores, to the nearest integer, and let{' '}
-          <Katex tex="X" /> be the unscaled scores. If the scaling function takes the form{' '}
+          <Katex tex="X" /> be the unscaled scores.
+          <br />
+          If the scaling function takes the form{' '}
           <Katex tex="S=mX+n" />, where <Katex tex="m\in R^+" /> and <Katex tex="n\in R" />,
           then a score of 32 would be scaled to
         </p>

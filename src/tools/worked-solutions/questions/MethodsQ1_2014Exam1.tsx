@@ -24,7 +24,7 @@ const EXAM_B: SAExaminerStats = {
     <>
       Many students only gave the expression for <Katex tex="f'(x)" />, not the specific value
       of <Katex tex="f'(1)" />. Students should also note that{' '}
-      <Katex tex="\tfrac{1}{\sqrt4}=\tfrac12" />.
+      <Katex tex="\tfrac{1}{\sqrt4}\ne\pm\tfrac12" />, <Katex tex="\tfrac{1}{\sqrt4}=\tfrac12" />.
     </>
   ),
 }
@@ -63,7 +63,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(1) = \tfrac12}" />,
-    reason: <><Katex tex="\sqrt4=2" />, so the answer is <Katex tex="\tfrac12" /> — not <Katex tex="\tfrac1{42}" />, which the report lists as a transcription slip.</>,
+    reason: <><Katex tex="\sqrt4" /> means the positive square root, 2, so the answer is <Katex tex="\tfrac12" /> — not <Katex tex="\pm\tfrac12" />, which the report specifically warns against. Sanity check: <Katex tex="\sqrt{x^2+3}" /> is increasing gently at <Katex tex="x=1" />, and <Katex tex="\tfrac12" /> is a gentle positive slope ✓.</>,
   },
 ]
 
@@ -76,6 +76,7 @@ export default function MethodsQ1_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Product Rule"
         marks={2}
         statement={<>If <Katex tex="y=x^2\sin(x)" />, find <Katex tex="\tfrac{dy}{dx}" />.</>}
         examinerReport={EXAM_A}
@@ -85,6 +86,7 @@ export default function MethodsQ1_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Chain Rule"
         marks={3}
         statement={<>If <Katex tex="f(x)=\sqrt{x^2+3}" />, find <Katex tex="f'(1)" />.</>}
         examinerReport={EXAM_B}

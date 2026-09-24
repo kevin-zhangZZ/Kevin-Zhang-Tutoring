@@ -63,7 +63,7 @@ const EXAM_EII: SAExaminerStats = {
   comment: (
     <>
       Some students left their answer as 18.43 or rounded down to 18. A common incorrect
-      answer was 2, due to students solving <Katex tex="1-0.15^n\ge0.95" />.
+      answer was 2, due to students solving <Katex tex="1-0.15^n>0.95" />.
     </>
   ),
 }
@@ -140,7 +140,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{option 2: } k-2 = -4.5 \text{ and } k+3 = 0.5 \implies k = -2.5" />,
-    reason: <>A normal curve is symmetric, so the mirror-image placement captures the same area. This is the value most students missed.</>,
+    reason: <>A normal curve is symmetric, so the mirror-image placement captures the same area. The report notes many students did not find this value.</>,
   },
   {
     working: <Cas fn="solve">solve(normCdf(−4.5, 0.5, k, 4) = 0.4648, k)</Cas>,
@@ -189,7 +189,7 @@ const ROWS_EI: WorkingRow[] = [
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="1-0.85^n \ge 0.95 \implies 0.85^n \le 0.05" />,
-    reason: <>From part e(i).</>,
+    reason: <>From part e.i.</>,
   },
   {
     working: <Katex display tex="n \ge \frac{\log_e(0.05)}{\log_e(0.85)} = 18.433\ldots" />,
@@ -197,7 +197,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 19}" />,
-    reason: <>Round <em>up</em>, not to the nearest integer: 18 deliveries leave the probability just under 0.95.</>,
+    reason: <>Round <em>up</em>, not to the nearest integer: 18 deliveries leave the probability just under 0.95. The report notes some students left their answer as 18.43 or rounded down to 18.</>,
   },
 ]
 
@@ -228,7 +228,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y_{\min} = \tfrac{2}{11}, \quad y_{\max} = \tfrac{2}{3}}" />,
-    reason: <>Exact values, as the report insists — about 0.18 and 0.67. Only 3% of students earned both marks.</>,
+    reason: <>Exact values — the report notes some students gave approximate answers when exact answers were required. About 0.18 and 0.67. Only 3% of students earned both marks, and the report notes students who used a tree diagram were generally successful.</>,
   },
 ]
 
@@ -255,6 +255,7 @@ export default function MethodsQ3_2020Exam2() {
 
       <PartCard
         letter="a"
+        topic="Inverse Normal"
         marks={1}
         statement={
           <>
@@ -268,6 +269,7 @@ export default function MethodsQ3_2020Exam2() {
 
       <PartCard
         letter="b"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>
@@ -283,13 +285,17 @@ export default function MethodsQ3_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Normal Distribution"
         marks={3}
         statement={
           <>
             Using the model described above, the transport company can make 46.48% of its
-            deliveries over the interval <Katex tex="-3\le t\le2" />. It has an improved
-            delivery model with a mean of <Katex tex="k" /> and a standard deviation of four
-            minutes. Find the values of <Katex tex="k" />, correct to one decimal place, so
+            deliveries over the interval <Katex tex="-3\le t\le2" />.
+            <br />
+            It has an improved delivery model with a mean of <Katex tex="k" /> and a standard
+            deviation of four minutes.
+            <br />
+            Find the values of <Katex tex="k" />, correct to one decimal place, so
             that 46.48% of the transport company's deliveries can be made over the interval{' '}
             <Katex tex="-4.5\le t\le0.5" />.
           </>
@@ -299,16 +305,19 @@ export default function MethodsQ3_2020Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+<div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
-          A rival transport company claims that there is a 0.85 probability that each delivery
-          it makes will arrive on time or earlier. Assume that whether each delivery is on
-          time or earlier is independent of other deliveries.
+          A rival transport company claims that there is a 0.85 probability that each delivery it
+          makes will arrive on time or earlier.
+          <br />
+          Assume that whether each delivery is on time or earlier is independent of other
+          deliveries.
         </p>
       </div>
 
       <PartCard
         letter="d"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -322,13 +331,20 @@ export default function MethodsQ3_2020Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          Assuming that the rival company's claim is true, consider a day in which it makes{' '}
+          <Katex tex="n" /> deliveries.
+        </p>
+      </div>
+
       <PartCard
         letter="e.i"
+        topic="At Least One"
         marks={1}
         statement={
           <>
-            Assuming that the rival company's claim is true, consider a day in which it makes{' '}
-            <Katex tex="n" /> deliveries. Express, in terms of <Katex tex="n" />, the
+            Express, in terms of <Katex tex="n" />, the
             probability that one or more deliveries will not arrive on time or earlier.
           </>
         }
@@ -339,6 +355,7 @@ export default function MethodsQ3_2020Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Minimum Sample Size"
         marks={1}
         statement={
           <>
@@ -354,17 +371,22 @@ export default function MethodsQ3_2020Exam2() {
 
       <PartCard
         letter="f"
+        topic="Total Probability"
         marks={2}
         statement={
           <>
             An analyst from a government department believes the rival transport company's
             claim is only true for deliveries made before 4 pm. For deliveries made after 4
             pm, the analyst believes the probability of a delivery arriving on time or earlier
-            is <Katex tex="x" />, where <Katex tex="0.3\le x\le0.7" />. After observing a
-            large number of the rival transport company's deliveries, the analyst believes
-            that the overall probability that a delivery arrives on time or earlier is
-            actually 0.75. Let the probability that a delivery is made after 4 pm be{' '}
-            <Katex tex="y" />. Assuming that the analyst's beliefs are true, find the minimum
+            is <Katex tex="x" />, where <Katex tex="0.3\le x\le0.7" />
+            <br />
+            After observing a large number of the rival transport company's deliveries, the
+            analyst believes that the overall probability that a delivery arrives on time or
+            earlier is actually 0.75
+            <br />
+            Let the probability that a delivery is made after 4 pm be <Katex tex="y" />.
+            <br />
+            Assuming that the analyst's beliefs are true, find the minimum
             and maximum values of <Katex tex="y" />.
           </>
         }

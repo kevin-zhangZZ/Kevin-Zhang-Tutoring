@@ -1,7 +1,9 @@
 // 2020 Specialist Mathematics — Exam 2, Section B Question 4 (14 marks). An aeroplane on an
 // elliptical path and a drone on a parabolic one: maximum speed, the cartesian equation,
 // both sketches, and whether the two ever meet. Question text transcribed from the original
-// paper; the sketch is our own matplotlib drawing of the answer. Answers checked with sympy
+// paper; the sketch is this site's own matplotlib drawing of the answer, on VCAA's axes
+// (x 0 to 1400, y 0 to 800, gridlines every 50). Note on part d.: the report's values 348.73 and
+// 219.03 come from rounding t to 12.84 first; with t = 12.849… they are 348.87 and 219.45. Answers checked with sympy
 // and scipy, and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -39,7 +41,7 @@ const EXAM_BII: SAExaminerStats = {
     <>
       Most students drew a correct ellipse, but the required information was not always
       correctly shown. The starting position and coordinates may have been missing or not
-      made explicit, or the direction of travel was not always indicated.
+      made explicit or the direction of travel was not always indicated.
     </>
   ),
 }
@@ -60,7 +62,8 @@ const EXAM_D: SAExaminerStats = {
   average: 1.8,
   comment: (
     <>
-      Students attempted a variety of satisfactory approaches. Many students listed all
+      Students attempted a variety of satisfactory approaches. In addition to the approach
+      above, many students listed all
       solutions within the domain for each equation, correctly noting that they had no
       solutions in common. It was not sufficient to simply assert that the pair of equations
       had no solution.
@@ -79,7 +82,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{speed}^2 = 625\pi^2\cos^2\!\left(\tfrac{\pi t}{6}\right)+\tfrac{10000\pi^2}{9}\sin^2\!\left(\tfrac{\pi t}{6}\right)" />,
-    reason: 'Speed is the magnitude of velocity, so square, add, square-root. Maximising the square is the same as maximising the speed.',
+    reason: <>Speed is the magnitude of velocity, so square, add, square-root. Maximising the square is the same as maximising the speed.</>,
   },
   {
     working: <Katex display tex="\tfrac{10000}{9} = 1111.1\ldots > 625" />,
@@ -87,26 +90,26 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{maximum speed} = \frac{100\pi}{3} \approx 104.72\ \text{m s}^{-1}}" />,
-    reason: <>At the ends of the vertical axis of the ellipse, <Katex tex="t=3,9,15,\ldots" />. The report says most students found the velocity and then stopped short of this.</>,
+    reason: <>At the ends of the horizontal axis of the ellipse, <Katex tex="t=3,9,15,\ldots" />. The report notes that of those who found the speed, quite a few were unable to find the maximum speed.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="x = 450-150\sin\!\left(\tfrac{\pi t}{6}\right) \implies \sin\!\left(\tfrac{\pi t}{6}\right) = \frac{x-450}{-150}" />,
-    reason: 'Isolate the trigonometric function in each component.',
+    reason: <>Isolate the trigonometric function in each component.</>,
   },
   {
     working: <Katex display tex="y = 400-200\cos\!\left(\tfrac{\pi t}{6}\right) \implies \cos\!\left(\tfrac{\pi t}{6}\right) = \frac{y-400}{-200}" />,
-    reason: 'Same again.',
+    reason: <>Same again.</>,
   },
   {
     working: <Katex display tex="\sin^2\!\left(\tfrac{\pi t}{6}\right)+\cos^2\!\left(\tfrac{\pi t}{6}\right) = 1" />,
     reason: <>The Pythagorean identity is what eliminates <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="\frac{(x-450)^2}{22\,500}+\frac{(y-400)^2}{40\,000} = 1 \ \checkmark" />,
-    reason: <>The minus signs vanish under the squares: <Katex tex="(-150)^2=22\,500" /> and <Katex tex="(-200)^2=40\,000" />. A "show that", so every line must be written down.</>,
+    working: <Katex display tex="\boxed{\frac{(x-450)^2}{22\,500}+\frac{(y-400)^2}{40\,000} = 1}" />,
+    reason: <>The minus signs vanish under the squares: <Katex tex="(-150)^2=22\,500" /> and <Katex tex="(-200)^2=40\,000" />. As required.</>,
   },
 ]
 
@@ -117,15 +120,15 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t=0: \ x = 450-150\sin(0) = 450, \quad y = 400-200\cos(0) = 200" />,
-    reason: 'The bottom of the ellipse — a coordinate the question explicitly asks to be labelled.',
+    reason: <>The bottom of the ellipse — a coordinate the question explicitly asks to be labelled.</>,
   },
   {
     working: <Katex display tex="\left.\frac{dx}{dt}\right|_{t=0} = -25\pi\cos(0) = -25\pi < 0" />,
-    reason: 'Moving left at the bottom of the ellipse means the motion is clockwise. Checking the sign of one derivative beats guessing at the arrow.',
+    reason: <>Moving left at the bottom of the ellipse means the motion is clockwise. Checking the sign of one derivative beats guessing at the arrow.</>,
   },
   {
     working: <Katex display tex="\text{see the blue ellipse in the diagram in part c.}" />,
-    reason: 'With the starting point, its coordinates, and a direction arrow — the three details the report says were most often missing.',
+    reason: <>With the starting point, its coordinates, and a direction arrow — the report notes these were not always shown.</>,
   },
 ]
 
@@ -140,7 +143,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(((x−450)²/22500 + (y−400)²/40000 = 1) and (y = −x²/900 + 4x/3), x, y)</Cas>,
-    reason: 'Intersecting the two cartesian paths — no need to match times here, which is part d.',
+    reason: <>Intersecting the two cartesian paths — no need to match times here, which is part d.</>,
   },
   {
     working: <Katex display tex="\boxed{(316,\ 310) \ \text{ and } \ (600,\ 400)}" />,
@@ -151,12 +154,12 @@ const ROWS_C: WorkingRow[] = [
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <img
           src={pathsSrc}
-          alt="The aeroplane's ellipse centred at (450, 400) with a clockwise arrow from its lowest point (450, 200), and the drone's parabola from (0, 0) to (1200, 0), crossing the ellipse at (316, 310) and touching it at (600, 400)"
+          alt="On VCAA's axes: the aeroplane's ellipse centred at (450, 400) with a clockwise arrow from its lowest point, labelled t = 0: (450, 200), and the drone's parabola from (0, 0) to (1200, 0), crossing the ellipse at (316, 310) and touching it at (600, 400)"
           className="w-full max-w-[520px]"
         />
       </div>
     ),
-    reason: 'Both parts b(ii) and c. on one set of axes, as the question intends.',
+    reason: <>Both parts b.ii. and c. on one set of axes, as the question intends.</>,
   },
 ]
 
@@ -167,23 +170,23 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x: \ 30t = 450-150\sin\!\left(\tfrac{\pi t}{6}\right)" />,
-    reason: 'Match the horizontal positions first — it has a single solution, which pins the only candidate time.',
+    reason: <>Match the horizontal positions first — it has a single solution, which pins the only candidate time.</>,
   },
   {
     working: <Cas fn="solve">solve(30t = 450 − 150·sin(πt/6), t) | 0 ≤ t ≤ 40</Cas>,
     reason: <>Gives <Katex tex="t=12.84\ldots" />, the only time the two are at the same <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="t = 12.84: \ y_{\text{drone}} = -t^2+40t = 348.9" />,
-    reason: 'The drone at that instant.',
+    working: <Katex display tex="t = 12.849\ldots: \ y_{\text{drone}} = -t^2+40t = 348.87\ldots" />,
+    reason: <>The drone at that instant. (The report rounds <Katex tex="t" /> to 12.84 first and gets 348.73; the conclusion is the same.)</>,
   },
   {
-    working: <Katex display tex="t = 12.84: \ y_{\text{plane}} = 400-200\cos\!\left(\tfrac{\pi t}{6}\right) = 219.4" />,
-    reason: 'The aeroplane at the same instant.',
+    working: <Katex display tex="t = 12.849\ldots: \ y_{\text{plane}} = 400-200\cos\!\left(\tfrac{\pi t}{6}\right) = 219.45\ldots" />,
+    reason: <>The aeroplane at the same instant.</>,
   },
   {
-    working: <Katex display tex="\boxed{348.9 \ne 219.4, \text{ so the drone does not make contact with the aeroplane}}" />,
-    reason: <>About 130 m apart vertically. The reasoning is the mark: the report says asserting "the equations have no solution" without showing it earns nothing.</>,
+    working: <Katex display tex="\boxed{348.87 \ne 219.45, \text{ so the drone does not make contact with the aeroplane}}" />,
+    reason: <>About 130 m apart vertically. Show the reasoning — the report notes it was not sufficient to simply assert that the pair of equations had no solution.</>,
   },
 ]
 
@@ -205,6 +208,7 @@ export default function SpecialistQ4_2020Exam2() {
 
       <PartCard
         letter="a"
+        topic="Maximum Speed"
         marks={3}
         statement={
           <>
@@ -219,6 +223,7 @@ export default function SpecialistQ4_2020Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Cartesian Equation"
         marks={2}
         statement={
           <>
@@ -234,10 +239,11 @@ export default function SpecialistQ4_2020Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Sketch Path"
         marks={3}
         statement={
           <>
-            Sketch the path of the aeroplane on the axes provided. Label the position of the
+            Sketch the path of the aeroplane on the axes provided below. Label the position of the
             aeroplane when <Katex tex="t=0" />, using coordinates, and use an arrow to show
             the direction of motion of the aeroplane.
           </>
@@ -247,7 +253,7 @@ export default function SpecialistQ4_2020Exam2() {
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           A friend of the pilot launches an experimental jet-powered drone to take
           photographs of the air show. The position of the drone at time <Katex tex="t" />{' '}
@@ -262,10 +268,11 @@ export default function SpecialistQ4_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Path Intersections"
         marks={3}
         statement={
           <>
-            Sketch the path of the drone on the axes provided in part b(ii). Using
+            Sketch the path of the drone on the axes provided in <b>part b.ii.</b> Using
             coordinates, label the points where the path of the drone crosses the path of the
             aeroplane, correct to the nearest metre.
           </>
@@ -277,6 +284,7 @@ export default function SpecialistQ4_2020Exam2() {
 
       <PartCard
         letter="d"
+        topic="Collision"
         marks={3}
         statement={
           <>

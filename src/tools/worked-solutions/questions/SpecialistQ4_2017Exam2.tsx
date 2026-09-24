@@ -1,12 +1,13 @@
 // 2017 Specialist Mathematics — Exam 2, Section B, Question 4 (10 marks).
 // z² + 4z + 16 = 0: polar form, the roots, a locus, the Argand sketch, and the major
 // segment. Part (f) was answered correctly by 1% of the state. Question text transcribed
-// from the original paper; VCAA supplied blank Argand axes for part (e), so the sketch
-// below is our own matplotlib figure. Answers verified with sympy. Solution is original.
+// from the original paper; VCAA supplied blank Argand axes for part e. (−5 to 5 on both
+// axes), so the sketch is our own matplotlib figure on that grid. Answers verified with
+// sympy. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import argandSrc from './spec-2017exam2-q4e-argand.png'
+import argandSrc from './spec-2017e2-q4e-argand.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [26, 74],
@@ -27,9 +28,10 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Correct solutions were obtained by using the quadratic formula or completing the
-      square. Some students did not correctly follow the "show that" instruction either by
+      square. Some students did not correctly follow the 'show that' instruction either by
       not showing key steps in their solution or by solely verifying the solutions given by
-      substitution. Some students confused factors with solutions.
+      substitution. Some students confused factors with solutions or did not proceed beyond
+      factorising the quadratic.
     </>
   ),
 }
@@ -39,7 +41,8 @@ const EXAM_C: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Misunderstanding of the question was apparent in student responses. Many attempts at
+      Misunderstanding of the question was apparent in student responses to this question.
+      Many attempts at
       solutions were not expressed in terms of <Katex tex="2-2\sqrt3i" /> as required.
     </>
   ),
@@ -50,8 +53,8 @@ const EXAM_D: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Squaring both moduli was the most common correct approach. A smaller proportion of
-      students correctly applied a perpendicular bisector approach. The "show that"
+      The solution shown above was the most common correct approach. A smaller proportion
+      of students correctly applied a perpendicular bisector approach. The 'show that'
       instruction was generally followed.
     </>
   ),
@@ -129,7 +132,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z = \frac{-4\pm4\sqrt3i}{2} = -2\pm2\sqrt3i}" />,
-    reason: <>As required. In a "show that", every one of these lines is needed — the report is explicit that substituting the given answers back in earns nothing.</>,
+    reason: <>As required. In a "show that", every one of these lines is needed — the report says solely verifying the given roots by substitution did not follow the instruction.</>,
   },
 ]
 
@@ -148,7 +151,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z = -w \ \text{ and }\ z = -\bar w, \quad\text{where } w = 2-2\sqrt3i}" />,
-    reason: <>The question wanted the roots written <em>in terms of</em> <Katex tex="2-2\sqrt3i" />, not recomputed — which is why 69% scored zero despite knowing the roots from part (b).</>,
+    reason: <>The question wanted the roots written <em>in terms of</em> <Katex tex="2-2\sqrt3i" />, not recomputed. The report says many attempts were not expressed in terms of <Katex tex="2-2\sqrt3i" /> as required.</>,
   },
 ]
 
@@ -186,7 +189,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{plot } -2+2\sqrt3i \approx -2+3.46i \text{ and } -2-2\sqrt3i \approx -2-3.46i" />,
-    reason: <>Both roots sit on the vertical line <Katex tex="\operatorname{Re}(z)=-2" />, one above and one below the real axis.</>,
+    reason: <>Both roots sit on the vertical line <Katex tex="\operatorname{Re}(z)=-2" />, one above and one below the real axis. The lower root lies exactly on the line — <Katex tex="-2-\sqrt3\left(-2\sqrt3\right)-4=0" /> — so plot it carefully; the report says inaccurate plotting was the most common error.</>,
   },
 ]
 
@@ -228,7 +231,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{minor arc} = \frac{2\pi}{3}, \qquad \text{major arc} = 2\pi-\frac{2\pi}{3} = \frac{4\pi}{3}" />,
-    reason: <>The report says using <Katex tex="\tfrac{2\pi}{3}" /> here — the <em>minor</em> angle — was the main error. The question asks for the major segment.</>,
+    reason: <>The report says using <Katex tex="\tfrac{2\pi}{3}" /> here — the <em>minor</em> angle — was a common error. The question asks for the major segment.</>,
   },
   {
     working: <Katex display tex="A = \frac12 r^2\bigl(\theta-\sin\theta\bigr) = \frac12(16)\left(\frac{4\pi}{3}-\sin\frac{4\pi}{3}\right)" />,
@@ -249,18 +252,15 @@ export default function SpecialistQ4_2017Exam2() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 4 (10 marks)</p>
-        <p>
-          Seven short parts, all hanging off the single quadratic{' '}
-          <Katex tex="z^2+4z+16=0" /> and its two roots <Katex tex="-2\pm2\sqrt3i" />.
-        </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Express <Katex tex="-2-2\sqrt3i" /> in polar form.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Polar Form" marks={1} statement={<>Express <Katex tex="-2-2\sqrt3i" /> in polar form.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Complex Quadratic"
         marks={1}
         statement={
           <>
@@ -275,6 +275,7 @@ export default function SpecialistQ4_2017Exam2() {
 
       <PartCard
         letter="c"
+        topic="Roots"
         marks={1}
         statement={
           <>
@@ -289,6 +290,7 @@ export default function SpecialistQ4_2017Exam2() {
 
       <PartCard
         letter="d"
+        topic="Line Locus"
         marks={2}
         statement={
           <>
@@ -304,11 +306,12 @@ export default function SpecialistQ4_2017Exam2() {
 
       <PartCard
         letter="e"
+        topic="Sketch Loci"
         marks={2}
         statement={
           <>
             Sketch the line represented by <Katex tex="x-\sqrt3y-4=0" /> and plot the roots
-            of <Katex tex="z^2+4z+16=0" /> on the Argand diagram.
+            of <Katex tex="z^2+4z+16=0" /> on the Argand diagram below.
           </>
         }
         examinerReport={EXAM_E}
@@ -317,7 +320,7 @@ export default function SpecialistQ4_2017Exam2() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={argandSrc}
-            alt="Argand diagram with the line x − √3y − 4 = 0 rising gently through (4, 0), the two roots −2 ± 2√3 i plotted on the vertical line Re(z) = −2, and the circle |z| = 4 shown dashed"
+            alt="Argand diagram from −5 to 5 on both axes with the line x − √3y − 4 = 0 rising gently through (4, 0), and the two roots −2 ± 2√3 i plotted, the lower one lying on the line"
             className="w-full max-w-[380px]"
           />
         </div>
@@ -325,6 +328,7 @@ export default function SpecialistQ4_2017Exam2() {
 
       <PartCard
         letter="f"
+        topic="Line Locus"
         marks={1}
         statement={
           <>
@@ -338,9 +342,8 @@ export default function SpecialistQ4_2017Exam2() {
       >
         <Background title="Running a locus backwards">
           <p>
-            Every other locus question in this paper goes forwards: you are given{' '}
-            <Katex tex="a" /> and <Katex tex="b" /> and asked for the line. This one runs
-            backwards — the line is known, and you have to say which pairs of points produce
+            Part d. went forwards: given a relation of the form{' '}
+            <Katex tex="|z-a|=|z-b|" />, find the line. This one runs backwards — the line is known, and you have to say which pairs of points produce
             it.
           </p>
           <p>
@@ -351,8 +354,8 @@ export default function SpecialistQ4_2017Exam2() {
             <Katex tex="-2" />.
           </p>
           <p>
-            Only <Katex tex="1\%" /> of the state answered this. It is not hard once you see
-            what is being asked — the difficulty is entirely in reading the question.
+            Only <Katex tex="1\%" /> of students scored this mark. It is not hard once you see
+            what is being asked — the difficulty is in reading the question.
           </p>
         </Background>
         <WorkingTable rows={ROWS_F} />
@@ -360,6 +363,7 @@ export default function SpecialistQ4_2017Exam2() {
 
       <PartCard
         letter="g"
+        topic="Segment Area"
         marks={2}
         statement={
           <>

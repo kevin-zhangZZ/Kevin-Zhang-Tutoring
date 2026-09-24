@@ -1,15 +1,53 @@
 // 2025 Specialist Mathematics — Exam 2, Section B Question 4 (10 marks). An epitrochoid
 // traced by a particle: starting point, direction, period, a "show that" for the speed using
 // the compound-angle formula, maximum speed, and arc length. Question text transcribed from
-// the original paper; the path is the actual VCAA figure, cropped from the official exam PDF,
-// and the marked-up version is our own drawing of the answer. Answers checked with
+// the original paper; the path is the actual VCAA figure, cropped from the official exam PDF
+// at 300 dpi, and the part b. and f. answers are drawn over it (origin at (531.5, 575.5) in
+// the crop, 47.25 px per unit, read from the gridlines; the traced arc was checked against
+// the printed curve with a PIL composite). Answers checked with
 // sympy/scipy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import pathSrc from './spec-2025e2-q4-path.png'
-import sketchSrc from './spec-2025e2-q4-sketch.png'
+
+const OX = 531.5
+const OY = 575.5
+const U = 47.25
+const ORANGE = '#f97316'
+const TRACE = Array.from({ length: 241 }, (_, k) => {
+  const t = (Math.PI * k) / 240
+  const x = 5 * Math.cos(t) - 4 * Math.cos(2.5 * t)
+  const y = 5 * Math.sin(t) - 4 * Math.sin(2.5 * t)
+  return `${(OX + U * x).toFixed(1)},${(OY - U * y).toFixed(1)}`
+}).join(' ')
+const AX9 = OX + 9 * U
+
+const ALT = {
+  b: "VCAA's graph of the path with the answer drawn over it: an arrow at (9, 0) pointing straight up",
+  f: "VCAA's graph of the path with the arc for t in [0, π] traced over it: from (1, 0) it dips below the x-axis, swings anticlockwise round the large outer loop and stops at (−5, −4)",
+} as const
+
+function PathAnswer({ part }: { part: 'b' | 'f' }) {
+  return (
+    <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+      <div className="relative w-full max-w-[440px]">
+        <img src={pathSrc} alt={ALT[part]} className="w-full block" />
+        <svg viewBox="0 0 1096 1082" className="absolute inset-0 w-full h-full" aria-hidden="true">
+          {part === 'b' ? (
+            <g>
+              <line x1={AX9} y1={OY} x2={AX9} y2={OY - 1.45 * U} stroke={ORANGE} strokeWidth={8} />
+              <polygon points={`${AX9},${OY - 2 * U} ${AX9 - 16},${OY - 1.4 * U} ${AX9 + 16},${OY - 1.4 * U}`} fill={ORANGE} />
+            </g>
+          ) : (
+            <polyline points={TRACE} fill="none" stroke={ORANGE} strokeWidth={8} strokeLinejoin="round" strokeLinecap="round" />
+          )}
+        </svg>
+      </div>
+    </div>
+  )
+}
 
 const EXAM_A: SAExaminerStats = {
   marks: [6.56, 93.44],
@@ -28,8 +66,10 @@ const EXAM_C: SAExaminerStats = {
   average: 0.52,
   comment: (
     <>
-      Finding the lowest common multiple of the two periods was the simplest method. Many
-      responses quoted the answer as a decimal rather than in exact form.
+      Finding the lowest common multiple of the two periods <Katex tex="2\pi" /> and{' '}
+      <Katex tex="\dfrac{4\pi}{5}" /> was the simplest method to find this.
+      <br />
+      Many responses quoted the answer as a decimal rather than exact form.
     </>
   ),
 }
@@ -39,10 +79,13 @@ const EXAM_D: SAExaminerStats = {
   average: 1.73,
   comment: (
     <>
-      Another &ldquo;show that&rdquo; question which required working that shows the use of
-      trigonometric identities given on the formula sheet. Speed is the magnitude of the
-      velocity vector. The main reason some responses were not awarded full marks was taking
-      short cuts and not showing the development of the solution.
+      Another &lsquo;show that&rsquo; question which required working that shows the use of
+      trigonometric identities that are given on the formula sheet.
+      <br />
+      Speed = magnitude of the velocity vector.
+      <br />
+      The main reason some responses were not awarded full marks was taking short cuts and not
+      showing the development of the solution.
     </>
   ),
 }
@@ -50,63 +93,81 @@ const EXAM_D: SAExaminerStats = {
 const EXAM_E: SAExaminerStats = {
   marks: [27.06, 72.94],
   average: 0.72,
-  comment: <>Students could use the given result from part d. to find this.</>,
+  comment: (
+    <>
+      Students could use the given result from part d to find this.
+    </>
+  ),
 }
 
 const EXAM_F: SAExaminerStats = {
   marks: [34.22, 65.78],
   average: 0.65,
-  comment: <>Some students did not take care to finish their drawing at the point with coordinates (−5, −4).</>,
+  comment: (
+    <>
+      Some students did not take care to finish their drawing at the point with coordinates{' '}
+      <Katex tex="(-5,-4)" />.
+    </>
+  ),
 }
 
 const EXAM_G: SAExaminerStats = {
   marks: [27.2, 9.1, 63.7],
   average: 1.36,
-  comment: <>Several responses only included the answer without stating how it was found. The definite integral was required.</>,
+  comment: (
+    <>
+      Several responses only included the answer without stating how it was found. The definite
+      integral was required.
+    </>
+  ),
 }
 
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="t = 0: \quad x = 5\cos(0)-4\cos(0) = 5-4 = 1" />,
-    reason: 'Substituting t = 0 into the i-component.',
+    reason: <>Substituting t = 0 into the i-component.</>,
   },
   {
     working: <Katex display tex="t = 0: \quad y = 5\sin(0)-4\sin(0) = 0" />,
-    reason: 'And into the j-component.',
+    reason: <>And into the j-component.</>,
   },
   {
     working: <Katex display tex="\boxed{(1,\,0)}" />,
-    reason: 'In coordinate form, as asked — a bare pair of values did not score.',
+    reason: <>In coordinate form — the report notes a common error was not presenting the answer this way.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="t = 2\pi: \quad x = 5\cos(2\pi)-4\cos(5\pi) = 5-4(-1) = 9, \qquad y = 0-0 = 0" />,
-    reason: 'So (9, 0) is where the particle sits after one full turn of the slower pair of terms — the point the arrow must be drawn at.',
+    reason: <>So (9, 0) is where the particle sits after one full turn of the slower pair of terms — the point the arrow must be drawn at.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}(t) = \left(-5\sin(t)+10\sin\left(\tfrac{5t}{2}\right)\right)\underset{\sim}{i}+\left(5\cos(t)-10\cos\left(\tfrac{5t}{2}\right)\right)\underset{\sim}{j}" />,
-    reason: 'Differentiating each component.',
+    reason: <>Differentiating each component.</>,
   },
   {
     working: <Katex display tex="t = 2\pi: \quad \underset{\sim}{v} = (0)\underset{\sim}{i}+\big(5-10(-1)\big)\underset{\sim}{j} = 15\,\underset{\sim}{j}" />,
-    reason: 'Straight up, with no horizontal component.',
+    reason: <>Straight up, with no horizontal component.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{anticlockwise}}" />,
-    reason: 'At the rightmost reach of the path, moving upward means turning anticlockwise. The arrow had to be drawn at (9, 0) specifically.',
+    working: <Katex display tex="\text{moving up at } (9,\,0) \implies \text{anticlockwise}" />,
+    reason: <>At the rightmost reach of the path, moving upward means turning anticlockwise.</>,
+  },
+  {
+    working: <PathAnswer part="b" />,
+    reason: <>The arrow drawn from <Katex tex="(9,0)" />, as the question asks — the report notes many responses did not follow the instruction to base the arrow on that point.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(t), \sin(t) \text{ have period } 2\pi" />,
-    reason: 'The first pair of terms repeats every 2π.',
+    reason: <>The first pair of terms repeats every 2π.</>,
   },
   {
     working: <Katex display tex="\cos\left(\tfrac{5t}{2}\right), \sin\left(\tfrac{5t}{2}\right) \text{ have period } \frac{2\pi}{\frac52} = \frac{4\pi}{5}" />,
-    reason: 'The second pair repeats five times as often — but over a shorter interval.',
+    reason: <>The second pair has the shorter period, repeating two and a half times as often as the first.</>,
   },
   {
     working: <Katex display tex="\text{need } t = 2\pi k = \frac{4\pi}{5}m \implies 10k = 4m \implies m = \frac{5k}{2}" />,
@@ -114,22 +175,22 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k = 2 \implies \boxed{t = 4\pi}" />,
-    reason: <>The lowest common multiple of <Katex tex="2\pi" /> and <Katex tex="\tfrac{4\pi}{5}" />. Exact form was required — 12.57 did not score. At <Katex tex="t=2\pi" /> the particle is at (9, 0), not back at the start.</>,
+    reason: <>The lowest common multiple of <Katex tex="2\pi" /> and <Katex tex="\tfrac{4\pi}{5}" />. The report notes many responses gave a decimal rather than the exact form. At <Katex tex="t=2\pi" /> the particle is at (9, 0), not back at the start.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\dot x = -5\sin(t)+10\sin\left(\tfrac{5t}{2}\right), \qquad \dot y = 5\cos(t)-10\cos\left(\tfrac{5t}{2}\right)" />,
-    reason: 'Differentiating the position vector component by component.',
+    reason: <>Differentiating the position vector component by component.</>,
   },
   {
     working: <Katex display tex="\text{speed}^2 = 25\sin^2(t)-100\sin(t)\sin\left(\tfrac{5t}{2}\right)+100\sin^2\left(\tfrac{5t}{2}\right)" />,
-    reason: 'Expanding the square of the i-component.',
+    reason: <>Expanding the square of the i-component.</>,
   },
   {
     working: <Katex display tex="\qquad\quad +\;25\cos^2(t)-100\cos(t)\cos\left(\tfrac{5t}{2}\right)+100\cos^2\left(\tfrac{5t}{2}\right)" />,
-    reason: 'And of the j-component.',
+    reason: <>And of the j-component.</>,
   },
   {
     working: <Katex display tex="= 25+100-100\left(\cos(t)\cos\left(\tfrac{5t}{2}\right)+\sin(t)\sin\left(\tfrac{5t}{2}\right)\right)" />,
@@ -137,26 +198,26 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(A)\cos(B)+\sin(A)\sin(B) = \cos(A-B)" />,
-    reason: 'The compound-angle formula from the formula sheet — naming it is what earns the method marks here.',
+    reason: <>The compound-angle formula from the formula sheet — the report says the working must show the use of these identities.</>,
   },
   {
     working: <Katex display tex="\text{speed}^2 = 125-100\cos\left(\tfrac{5t}{2}-t\right) = 125-100\cos\left(\tfrac{3t}{2}\right)" />,
-    reason: 'Subtracting the angles.',
+    reason: <>Subtracting the angles.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{speed} = \sqrt{125-100\cos\left(\tfrac{3t}{2}\right)}}" />,
-    reason: <>Positive root, since speed is a magnitude. <Katex tex="\blacksquare" /></>,
+    reason: <>Positive root, since speed is a magnitude. As required.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{speed} = \sqrt{125-100\cos\left(\tfrac{3t}{2}\right)}" />,
-    reason: 'The result of part d.',
+    reason: <>The result of part d.</>,
   },
   {
     working: <Katex display tex="-1 \le \cos\left(\tfrac{3t}{2}\right) \le 1" />,
-    reason: 'The speed is largest when the cosine is most negative, since it is being subtracted.',
+    reason: <>The speed is largest when the cosine is most negative, since it is being subtracted.</>,
   },
   {
     working: <Katex display tex="\cos\left(\tfrac{3t}{2}\right) = -1 \implies \text{speed} = \sqrt{125+100} = \sqrt{225}" />,
@@ -164,14 +225,14 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{15 \text{ m s}^{-1}}" />,
-    reason: 'No calculus needed — the bound on the cosine does all the work.',
+    reason: <>No calculus needed — the bound on the cosine does all the work.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="t = 0 \implies (1,\,0)" />,
-    reason: 'The starting point from part a.',
+    reason: <>The starting point from part a.</>,
   },
   {
     working: <Katex display tex="t = \pi: \quad x = 5\cos(\pi)-4\cos\left(\tfrac{5\pi}{2}\right) = -5-0 = -5" />,
@@ -182,19 +243,19 @@ const ROWS_F: WorkingRow[] = [
     reason: <><Katex tex="\sin\left(\tfrac{5\pi}{2}\right)=1" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{the arc from } (1,\,0) \text{ anticlockwise to } (-5,\,-4)}" />,
-    reason: 'Just over half of one large loop. Stopping short of (−5, −4) — or running past it — was the listed error.',
+    working: <PathAnswer part="f" />,
+    reason: <>From <Katex tex="(1,0)" /> the arc dips below the <Katex tex="x" />-axis, swings anticlockwise round the large outer loop and stops at <Katex tex="(-5,-4)" /> — the report notes some students did not take care to finish their drawing there.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="L = \int_{t_1}^{t_2}\left|\underset{\sim}{v}(t)\right|dt" />,
-    reason: 'Arc length is the integral of the speed. Stating the integral was required for the method mark.',
+    reason: <>Arc length is the integral of the speed. The report says the definite integral was required.</>,
   },
   {
     working: <Katex display tex="L = \int_0^{\pi}\sqrt{125-100\cos\left(\tfrac{3t}{2}\right)}\,dt" />,
-    reason: 'Using the speed from part d. over the interval traced in part f.',
+    reason: <>Using the speed from part d. over the interval traced in part f.</>,
   },
   {
     working: <Katex display tex="= 36.6078\ldots" />,
@@ -202,7 +263,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{36.6 \text{ metres}}" />,
-    reason: 'One decimal place, as asked.',
+    reason: <>One decimal place, as asked.</>,
   },
 ]
 
@@ -218,14 +279,12 @@ export default function SpecialistQ4_2025Exam2() {
             tex="\underset{\sim}{r}(t) = \left(5\cos(t)-4\cos\left(\frac{5t}{2}\right)\right)\underset{\sim}{i}+\left(5\sin(t)-4\sin\left(\frac{5t}{2}\right)\right)\underset{\sim}{j}"
           />
         </div>
-        <p>
-          is shown below for time <Katex tex="t\ge0" />. All lengths are in metres and time is
-          measured in seconds.
-        </p>
+        <p>is shown below for time <Katex tex="t\ge0" />.</p>
+        <p>All lengths are in metres and time is measured in seconds.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={pathSrc}
-            alt="A five-petalled looping closed curve on axes from −10 to 10, passing through (1, 0) and reaching as far right as (9, 0)"
+            alt="VCAA's graph of the path on a grid from −10 to 10: a closed curve of large outer loops and three small inner loops, passing through (1, 0) and reaching as far right as (9, 0)"
             className="w-full max-w-[440px]"
           />
         </div>
@@ -250,6 +309,7 @@ export default function SpecialistQ4_2025Exam2() {
 
       <PartCard
         letter="a"
+        topic="Starting Point"
         marks={1}
         statement={<>Write down the coordinates of the particle&rsquo;s starting point.</>}
         examinerReport={EXAM_A}
@@ -259,6 +319,7 @@ export default function SpecialistQ4_2025Exam2() {
 
       <PartCard
         letter="b"
+        topic="Direction of Motion"
         marks={1}
         statement={
           <>
@@ -273,6 +334,7 @@ export default function SpecialistQ4_2025Exam2() {
 
       <PartCard
         letter="c"
+        topic="Period"
         marks={1}
         statement={
           <>
@@ -287,6 +349,7 @@ export default function SpecialistQ4_2025Exam2() {
 
       <PartCard
         letter="d"
+        topic="Speed"
         marks={3}
         statement={
           <>
@@ -302,6 +365,7 @@ export default function SpecialistQ4_2025Exam2() {
 
       <PartCard
         letter="e"
+        topic="Maximum Speed"
         marks={1}
         statement={
           <>
@@ -315,6 +379,7 @@ export default function SpecialistQ4_2025Exam2() {
 
       <PartCard
         letter="f"
+        topic="Sketch Path"
         marks={1}
         statement={
           <>
@@ -325,17 +390,11 @@ export default function SpecialistQ4_2025Exam2() {
         examinerReport={EXAM_F}
       >
         <WorkingTable rows={ROWS_F} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="The same looping path in grey with the arc for t between 0 and π highlighted: it leaves (1, 0), sweeps anticlockwise around the large outer loop and finishes at (−5, −4), with an upward arrow at (9, 0)"
-            className="w-full max-w-[460px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="g"
+        topic="Arc Length"
         marks={2}
         statement={
           <>

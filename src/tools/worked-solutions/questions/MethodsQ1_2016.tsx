@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{D = (0,9]}" />,
-    reason: <>Option A. Option E has the right numbers but the wrong bracket at each end — the trap for anyone who copies the bracket pattern across without thinking about the reversal.</>,
+    reason: <>Matches option <b>A</b>. Option D, <Katex tex="[-9,0)" />, comes from rearranging <Katex tex="y=5-x" /> as <Katex tex="x=y-5" /> (a sign slip), and option C, <Katex tex="[5,-4)" />, is not a valid interval at all.</>,
   },
 ]
 

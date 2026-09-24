@@ -12,6 +12,13 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 3, B: 4, C: 41, D: 9, E: 42 },
   answer: 'C',
   noAnswer: 1,
+  comment: (
+    <>
+      Area =
+      <br />
+      <Katex tex="\displaystyle\int_0^{\frac13}\bigl(f(x)-g(x)\bigr)dx-2\int_{\frac13}^{1}\bigl(f(x)-g(x)\bigr)dx-\int_{\frac53}^{3}\bigl(f(x)-g(x)\bigr)dx" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -21,6 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos\!\left(\frac{\pi x}{2}\right)\left[1-2\sin\!\left(\frac{\pi x}{2}\right)\right] = 0" />,
+    reason: <>Taking out the common factor.</>,
   },
   {
     working: <Katex display tex="\cos\!\left(\frac{\pi x}{2}\right)=0 \implies x=1,3 \qquad \sin\!\left(\frac{\pi x}{2}\right)=\tfrac12 \implies x=\tfrac13,\ \tfrac53" />,
@@ -41,6 +49,7 @@ const ROWS: WorkingRow[] = [
         tex="h(0)=\tfrac1\pi,\quad h\!\left(\tfrac13\right)=\tfrac{3}{2\pi},\quad h(1)=\tfrac1\pi,\quad h\!\left(\tfrac53\right)=\tfrac{3}{2\pi},\quad h(3)=-\tfrac3\pi"
       />
     ),
+    reason: <>Evaluating the antiderivative at each crossing.</>,
   },
   {
     working: (
@@ -53,18 +62,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="R_3 = -R_2 \quad \left(\text{both} = \tfrac{1}{2\pi}\text{ in size}\right)" />,
-    reason: <>A genuine symmetry of this particular pair of curves, not a coincidence — it's exactly what lets the total collapse to a 3-term expression instead of 4.</>,
+    reason: <>Not a coincidence: <Katex tex="f(2-x)=-f(x)" /> and <Katex tex="g(2-x)=-g(x)" />, so <Katex tex="f-g" /> has point symmetry about <Katex tex="(1,0)" /> and the regions on <Katex tex="\left(\tfrac13,1\right)" /> and <Katex tex="\left(1,\tfrac53\right)" /> are congruent. That is what lets the total collapse to three terms instead of four.</>,
   },
   {
     working: <Katex display tex="\text{Total area} = R_1 - R_2 + R_3 - R_4 = R_1 - R_2 + (-R_2) - R_4 = R_1 - 2R_2 - R_4" />,
-    reason: <>Flip the sign of the two regions where <Katex tex="g>f" /> (subtracting a negative <Katex tex="R_2" /> and <Katex tex="R_4" />), then use <Katex tex="R_3=-R_2" /> to combine terms — this is exactly option C's expression: <Katex tex="\int_0^{1/3}\!(f-g) - 2\!\int_{1/3}^{1}\!(f-g) - \int_{5/3}^{3}\!(f-g)" />.</>,
+    reason: <>Flip the sign of the two regions where <Katex tex="g>f" /> (subtracting the negative <Katex tex="R_2" /> and <Katex tex="R_4" />), then use <Katex tex="R_3=-R_2" /> to combine terms.</>,
   },
   {
-    working: <Katex display tex="= \tfrac{1}{2\pi} - 2\!\left(-\tfrac{1}{2\pi}\right) - \left(-\tfrac{9}{2\pi}\right) = \tfrac{1}{2\pi}+\tfrac{1}{\pi}+\tfrac{9}{2\pi}" />,
+    working: <Katex display tex="= \tfrac{1}{2\pi} - 2\!\left(-\tfrac{1}{2\pi}\right) - \left(-\tfrac{9}{2\pi}\right) = \tfrac{6}{\pi}" />,
+    reason: <>Not asked for, but a positive total confirms every sign. Option <b>E</b>, the most popular answer at <Katex tex="42\%" />, has the last integral the wrong way round (<Katex tex="f-g" /> where <Katex tex="g>f" />): its value is <Katex tex="\tfrac{1}{2\pi}+\tfrac{1}{\pi}-\tfrac{9}{2\pi}=-\tfrac{3}{\pi}" />, which cannot be an area.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Total area} = \dfrac{6}{\pi}}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    working: <Katex display tex="\boxed{\int_0^{1/3}\!(f-g)\,dx - 2\!\int_{1/3}^{1}\!(f-g)\,dx - \int_{5/3}^{3}\!(f-g)\,dx}" />,
+    reason: <>With <Katex tex="f-g=\cos\left(\tfrac{\pi x}{2}\right)-\sin(\pi x)" />. Matches option <b>C</b>.</>,
   },
 ]
 
@@ -74,8 +84,8 @@ export default function MethodsQ19_2018() {
       question={
         <>
           <p className="mb-2">
-            The graphs <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=\cos\!\left(\tfrac{\pi x}{2}\right)" />{' '}
-            and <Katex tex="g:\mathbb{R}\to\mathbb{R},\ g(x)=\sin(\pi x)" /> are shown in the
+            The graphs <Katex tex="f:R\to R,\ f(x)=\cos\!\left(\tfrac{\pi x}{2}\right)" />{' '}
+            and <Katex tex="g:R\to R,\ g(x)=\sin(\pi x)" /> are shown in the
             diagram below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">

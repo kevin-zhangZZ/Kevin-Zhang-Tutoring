@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x=0 \text{ and } y=x \text{ only}}" />,
-    reason: <>Option C. Option D treats <Katex tex="\pm\sqrt a" /> — the <Katex tex="x" />-intercepts, where <Katex tex="x^2=a" /> — as asymptotes, which is the opposite of what they are.</>,
+    reason: <>Matches option <b>C</b>. Option A (12%) misses the oblique asymptote; option D treats <Katex tex="\pm\sqrt a" /> — the <Katex tex="x" />-intercepts, where <Katex tex="x^2=a" /> — as asymptotes, which is the opposite of what they are.</>,
   },
 ]
 

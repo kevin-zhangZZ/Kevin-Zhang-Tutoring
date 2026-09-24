@@ -16,14 +16,19 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      An equation was required. The most common errors were <Katex tex="y=0" />, 0,{' '}
-      <Katex tex="(0,0)" />, "the <Katex tex="y" />-axis" and{' '}
+      This question only required students to find the axis of symmetry of the graph of a
+      quadratic function, but it was not answered well. An equation was required. The most
+      common errors were <Katex tex="y=0" />, 0, (0, 0), <Katex tex="y" />-axis and{' '}
       <Katex tex="-\tfrac{b}{2a}=0" />.
     </>
   ),
 }
 
-const EXAM_B: SAExaminerStats = { marks: [4, 96], average: 1 }
+const EXAM_B: SAExaminerStats = {
+  marks: [4, 96],
+  average: 1,
+  comment: <>This question was answered well.</>,
+}
 
 const EXAM_C: SAExaminerStats = {
   marks: [21, 5, 73],
@@ -31,8 +36,11 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       An equation was required. Some students wrote only the expression{' '}
-      <Katex tex="-2x-12" />. Several students found <Katex tex="f(-2)" /> rather than
-      solving <Katex tex="f'(x)=-2" />.
+      <Katex tex="-2x-12" />. Others did not use their technology and often algebraic errors
+      were seen in responses.
+      <br />
+      Several students found <Katex tex="f'(-2)" /> rather than solving{' '}
+      <Katex tex="f'(x)=-2" />.
     </>
   ),
 }
@@ -42,7 +50,8 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      An equation was required. The most common incorrect answer was{' '}
+      An equation was required for this question. As in Question 1c., those who did not use
+      their technology tended to make algebraic errors. The most common incorrect answer was{' '}
       <Katex tex="y=\tfrac{x}{2}+12" />.
     </>
   ),
@@ -53,9 +62,10 @@ const EXAM_DII: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Most were able to subtract <Katex tex="f(x)" /> from their perpendicular line. Some
-      subtracted the perpendicular line from <Katex tex="f(x)" />. Others used the tangent
-      line, and some had incorrect terminals.
+      Students who attempted this question generally did well. Most were able to subtract{' '}
+      <Katex tex="f(x)" /> from their perpendicular line. Some subtracted the perpendicular
+      line from <Katex tex="f(x)" />. Others used the tangent line and some had incorrect
+      terminals.
     </>
   ),
 }
@@ -65,9 +75,12 @@ const EXAM_E: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Many students were unable to find the equation of the perpendicular line. Some did not
-      subtract <Katex tex="g(x)" />. Others had incorrect terminals. A common incorrect
-      answer was <Katex tex="b=-2a^2" />.
+      Many students were unable to find the equation of the perpendicular line. Some students
+      did not subtract <Katex tex="g(x)" /> and evaluated{' '}
+      <Katex tex="\displaystyle\int_{-b}^{\frac{8a^4+b^2}{b}}\left(y_n\right)dx" />. Others had
+      incorrect terminals.
+      <br />
+      A common incorrect answer was <Katex tex="b=-2a^2" />.
     </>
   ),
 }
@@ -86,18 +99,18 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \tfrac{1}{12}x^2 \implies f'(x) = \tfrac{2x}{12}" />,
-    reason: 'Power rule with the constant factor carried through.',
+    reason: <>Power rule with the constant factor carried through.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \frac{x}{6}}" />,
-    reason: 'Simplified.',
+    reason: <>Simplified.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = -2 \implies \frac{x}{6} = -2 \implies x = -12" />,
-    reason: <>Solve <Katex tex="f'(x)=-2" />, not <Katex tex="f(-2)" /> — the report names that confusion.</>,
+    reason: <>Solve <Katex tex="f'(x)=-2" />, rather than evaluating <Katex tex="f'(-2)" /> — the report notes several students did that.</>,
   },
   {
     working: <Katex display tex="f(-12) = \frac{144}{12} = 12 \implies M(-12,\ 12)" />,
@@ -105,18 +118,18 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y-12 = -2(x+12)" />,
-    reason: 'Point–gradient form.',
+    reason: <>Point–gradient form.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -2x-12}" />,
-    reason: 'An equation, not just the expression.',
+    reason: <>An equation, not just the expression.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="m_\perp = \frac{-1}{-2} = \frac12" />,
-    reason: 'The negative reciprocal of the tangent gradient.',
+    reason: <>The negative reciprocal of the tangent gradient.</>,
   },
   {
     working: <Katex display tex="y-12 = \tfrac12\bigl(x-(-12)\bigr) = \tfrac12x+6" />,
@@ -124,14 +137,14 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = \frac{x}{2}+18}" />,
-    reason: <><Katex tex="12+6=18" /> — the report's common wrong answer <Katex tex="\tfrac x2+12" /> forgets to add the 6.</>,
+    reason: <><Katex tex="12+6=18" />. The report notes <Katex tex="y=\tfrac x2+12" /> as the most common incorrect answer.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{x^2}{12} = \frac{x}{2}+18 \implies x^2-6x-216 = 0" />,
-    reason: 'Where the perpendicular line meets the parabola again.',
+    reason: <>Where the perpendicular line meets the parabola again.</>,
   },
   {
     working: <Katex display tex="(x-18)(x+12) = 0 \implies x = -12 \text{ or } x = 18" />,
@@ -143,26 +156,26 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \left[\frac{x^2}{4}+18x-\frac{x^3}{36}\right]_{-12}^{18}" />,
-    reason: 'Antidifferentiating.',
+    reason: <>Antidifferentiating.</>,
   },
   {
     working: <Katex display tex="\boxed{A = 375}" />,
-    reason: 'Square units.',
+    reason: <>Square units.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = \frac{x^2}{4a^2} \implies g'(x) = \frac{x}{2a^2}, \quad g'(-b) = -\frac{b}{2a^2}" />,
-    reason: 'The tangent gradient at the given point.',
+    reason: <>The tangent gradient at the given point.</>,
   },
   {
     working: <Katex display tex="m_\perp = \frac{2a^2}{b}, \quad g(-b) = \frac{b^2}{4a^2}" />,
-    reason: 'The perpendicular gradient and the point it passes through.',
+    reason: <>The perpendicular gradient and the point it passes through.</>,
   },
   {
     working: <Katex display tex="y_n = \frac{2a^2}{b}(x+b)+\frac{b^2}{4a^2} = \frac{2a^2}{b}x+2a^2+\frac{b^2}{4a^2}" />,
-    reason: 'The perpendicular line — the step the report says most students could not get past.',
+    reason: <>The perpendicular line — the report notes many students were unable to find it.</>,
   },
   {
     working: <Katex display tex="y_n = g(x) \implies x = -b \text{ or } x = \frac{8a^4}{b}+b" />,
@@ -170,7 +183,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A(b) = \int_{-b}^{\,8a^4/b+b}\bigl(y_n-g(x)\bigr)dx = \frac{64a^{10}}{3b^3}+\frac{16a^6}{b}+4a^2b+\frac{b^3}{3a^2}" />,
-    reason: <>Equivalently <Katex tex="\tfrac{64a^{12}+48a^8b^2+12a^4b^4+b^6}{3a^2b^3}" />. Subtracting <Katex tex="g" /> is essential — integrating <Katex tex="y_n" /> alone is the report's named omission.</>,
+    reason: <>Equivalently <Katex tex="\tfrac{64a^{12}+48a^8b^2+12a^4b^4+b^6}{3a^2b^3}" />. Subtracting <Katex tex="g" /> is essential — the report notes some students integrated <Katex tex="y_n" /> alone.</>,
   },
   {
     working: <Cas fn="solve">solve(d/db(A(b)) = 0, b) | b &gt; 0</Cas>,
@@ -178,7 +191,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = 2a^2}" />,
-    reason: <>The question states <Katex tex="b>0" />, which rules out <Katex tex="b=-2a^2" /> — the report's named wrong answer.</>,
+    reason: <>The question states <Katex tex="b>0" />, which rules out <Katex tex="b=-2a^2" />, a common incorrect answer in the report.</>,
   },
 ]
 
@@ -194,7 +207,7 @@ export default function MethodsQ1_2022Exam2() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={parabolaSrc}
-            alt="Part of the parabola y = x²/12 with a point M marked on its left branch — from the original 2022 VCAA exam paper"
+            alt="Part of the parabola y = x²/12 with the tangent at a point M on its left branch — from the original 2022 VCAA exam paper"
             className="w-full max-w-[300px]"
           />
         </div>
@@ -202,6 +215,7 @@ export default function MethodsQ1_2022Exam2() {
 
       <PartCard
         letter="a"
+        topic="Axis of Symmetry"
         marks={1}
         statement={
           <>
@@ -215,6 +229,7 @@ export default function MethodsQ1_2022Exam2() {
 
       <PartCard
         letter="b"
+        topic="Derivative"
         marks={1}
         statement={
           <>
@@ -226,13 +241,20 @@ export default function MethodsQ1_2022Exam2() {
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          The tangent to <Katex tex="f" /> at point <Katex tex="M" /> has gradient{' '}
+          <Katex tex="-2" />.
+        </p>
+      </div>
+
       <PartCard
         letter="c"
+        topic="Tangent Line"
         marks={2}
         statement={
           <>
-            The tangent to <Katex tex="f" /> at point <Katex tex="M" /> has gradient{' '}
-            <Katex tex="-2" />. Find the equation of the tangent to <Katex tex="f" /> at
+            Find the equation of the tangent to <Katex tex="f" /> at
             point <Katex tex="M" />.
           </>
         }
@@ -241,7 +263,7 @@ export default function MethodsQ1_2022Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
           The diagram below shows part of the graph of <Katex tex="y=f(x)" />, the tangent to{' '}
           <Katex tex="f" /> at point <Katex tex="M" /> and the line perpendicular to the
@@ -258,6 +280,7 @@ export default function MethodsQ1_2022Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Normal Line"
         marks={1}
         statement={
           <>
@@ -272,12 +295,14 @@ export default function MethodsQ1_2022Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Area Between Curves"
         marks={2}
         statement={
           <>
             The line perpendicular to the tangent at point <Katex tex="M" /> also cuts{' '}
-            <Katex tex="f" /> at point <Katex tex="N" />. Find the area enclosed by this line
-            and the curve <Katex tex="y=f(x)" />.
+            <Katex tex="f" /> at point <Katex tex="N" />, as shown in the diagram above.
+            <br />
+            Find the area enclosed by this line and the curve <Katex tex="y=f(x)" />.
           </>
         }
         examinerReport={EXAM_DII}
@@ -285,30 +310,31 @@ export default function MethodsQ1_2022Exam2() {
         <WorkingTable rows={ROWS_DII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
-        <p>
-          Another parabola is defined by the rule{' '}
-          <Katex tex="g(x)=\dfrac{x^2}{4a^2}" />, where <Katex tex="a>0" />. A tangent to{' '}
-          <Katex tex="g" /> and the line perpendicular to the tangent at{' '}
-          <Katex tex="x=-b" />, where <Katex tex="b>0" />, are shown below.
-        </p>
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={shadedSrc}
-            alt="A parabola with a tangent and a perpendicular line at x = −b, the region between the perpendicular line and the parabola shaded — from the original 2022 VCAA exam paper"
-            className="w-full max-w-[420px]"
-          />
-        </div>
-      </div>
-
       <PartCard
         letter="e"
+        topic="Optimisation"
         marks={4}
         statement={
-          <>
-            Find the value of <Katex tex="b" />, in terms of <Katex tex="a" />, such that the
-            shaded area is a minimum.
-          </>
+          <div className="flex flex-col gap-3">
+            <p>
+              Another parabola is defined by the rule <Katex tex="g(x)=\dfrac{x^2}{4a^2}" />,
+              where <Katex tex="a>0" />.
+              <br />
+              A tangent to <Katex tex="g" /> and the line perpendicular to the tangent at{' '}
+              <Katex tex="x=-b" />, where <Katex tex="b>0" />, are shown below.
+            </p>
+            <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img
+                src={shadedSrc}
+                alt="The parabola g(x) = x²/(4a²) with the tangent and the perpendicular line at x = −b, the region between the perpendicular line and the parabola shaded — from the original 2022 VCAA exam paper"
+                className="w-full max-w-[420px]"
+              />
+            </div>
+            <p>
+              Find the value of <Katex tex="b" />, in terms of <Katex tex="a" />, such that the
+              shaded area is a minimum.
+            </p>
+          </div>
         }
         examinerReport={EXAM_E}
       >

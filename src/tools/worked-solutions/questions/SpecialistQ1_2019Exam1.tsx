@@ -13,10 +13,22 @@ const EXAMINER: SAExaminerStats = {
   comment: (
     <>
       Most students recognised that they needed to separate and integrate in order to solve the
-      differential equation, although not all were then able to obtain the correct equation.
-      Students who failed to recognise the <Katex tex="\tfrac{f'(x)}{f(x)}" /> form did not score
-      highly, and some spent time using a substitution that was not necessary. Some students who
-      correctly found the constant of integration did not use log or index laws correctly.
+      differential equation although not all were then able to obtain the correct equation.
+      Common errors were{' '}
+      <Katex tex="\displaystyle\int2y\,dy=\int\frac{e^{2x}}{1+e^{2x}}\,dx" /> and{' '}
+      <Katex tex="\displaystyle\int2ye^{2x}\,dx=\int\frac{1}{1+e^{2x}}\,dx" />. Students who
+      failed to recognise that <Katex tex="\dfrac{d}{dx}\left(1+e^{2x}\right)=2e^{2x}" /> did not
+      score highly. Some students spent time using a substitution to determine{' '}
+      <Katex tex="\displaystyle\int\frac{2e^{2x}}{1+e^{2x}}\,dx" />, which was not necessary. Some
+      students who managed to correctly find the value of the constant of integration did not
+      use log or index laws correctly, presenting incorrect solutions such as{' '}
+      <Katex tex="y=e^{2x}+1+\dfrac{\pi}{2}" />.
+      <br />
+      An alternative approach was to solve{' '}
+      <Katex tex="\displaystyle\int_{\pi}^{y}\frac1t\,dt=\int_0^x\frac{2e^{2t}}{1+e^{2t}}\,dt" />. Note
+      that a different variable of integration must be used. Students using this method
+      typically retained <Katex tex="x" /> and <Katex tex="y" /> as the variables of integration and
+      thus did not obtain full marks.
     </>
   ),
 }
@@ -24,6 +36,7 @@ const EXAMINER: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\dfrac{dy}{dx} = \dfrac{2ye^{2x}}{1+e^{2x}}" />,
+    reason: <>The given differential equation.</>,
   },
   {
     working: <Katex display tex="\dfrac{1}{y}\,dy = \dfrac{2e^{2x}}{1+e^{2x}}\,dx" />,
@@ -35,18 +48,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dfrac{d}{dx}\left(1+e^{2x}\right) = 2e^{2x}" />,
-    reason: <>The key observation: the numerator on the right is <em>exactly</em> the derivative of the denominator, so the integrand is in the form <Katex tex="\tfrac{f'(x)}{f(x)}" /> and integrates straight to a logarithm. No substitution is needed — the report notes that students who reached for one lost time and sometimes marks.</>,
+    reason: <>The key observation: the numerator on the right is <em>exactly</em> the derivative of the denominator, so the integrand is in the form <Katex tex="\tfrac{f'(x)}{f(x)}" /> and integrates straight to a logarithm. No substitution is needed — the report notes some students spent time using a substitution, which was not necessary.</>,
   },
   {
     working: <Katex display tex="\log_e|y| = \log_e\left(1+e^{2x}\right)+c" />,
     reason: <><Katex tex="1+e^{2x}>0" /> always, so no absolute value is needed on the right.</>,
   },
   {
-    working: <Katex display tex="\log_e\left(\dfrac{y}{1+e^{2x}}\right) = c \implies \dfrac{y}{1+e^{2x}} = e^{c} = A" />,
-    reason: <>Subtract the logs and exponentiate. Writing the arbitrary constant as a single new constant <Katex tex="A=e^c" /> keeps the algebra clean.</>,
+    working: <Katex display tex="\log_e\left(\dfrac{|y|}{1+e^{2x}}\right) = c \implies \dfrac{y}{1+e^{2x}} = \pm e^{c} = A" />,
+    reason: <>Subtract the logs and exponentiate. Writing the arbitrary constant as a single new constant <Katex tex="A=\pm e^c" /> absorbs the sign from the absolute value and keeps the algebra clean.</>,
   },
   {
     working: <Katex display tex="y = A\left(1+e^{2x}\right)" />,
+    reason: <>Multiplying through. Use log and index laws carefully here: the report notes incorrect solutions such as <Katex tex="y=e^{2x}+1+\tfrac{\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="y(0)=\pi: \quad \pi = A\left(1+e^{0}\right) = 2A \implies A = \dfrac{\pi}{2}" />,

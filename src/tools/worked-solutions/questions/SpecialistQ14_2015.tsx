@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2y}{dx^2}+y = 2\cos(x)}" />,
-    reason: <>Option E. Option A would need <Katex tex="y=\sin(x)" /> or <Katex tex="\cos(x)" /> without the <Katex tex="x" />; option D has the sign wrong.</>,
+    reason: <>Matches option <b>E</b>. Option A would need <Katex tex="y=\sin(x)" /> or <Katex tex="\cos(x)" /> without the <Katex tex="x" />; option D has the sign wrong.</>,
   },
 ]
 

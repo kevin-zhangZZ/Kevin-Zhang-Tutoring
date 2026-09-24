@@ -1,29 +1,29 @@
 // 2019 Mathematical Methods — Exam 2, Question 5 (12 marks).
 // f(x) = 1-x³ — the tangent at x = a and where it meets the curve again at P and the axis at
-// Q (parts a-c), the area of the two shaded regions bounded by f, its tangent, and the axis,
-// minimised over a (parts d-e), the mirror problem for f⁻¹ (part f), and the acute angle
-// between the two curves' tangents at x = 1 (part g). The question's own diagram is VCAA's,
-// cropped directly from the exam paper; the graph of f alongside f⁻¹ in part (f) is this
-// site's own explanatory figure (matplotlib) — parts (f) and (g) were the two worst-answered
-// parts of the whole paper at 95% scoring zero, and the reflection picture is what makes (f)
-// a two-line problem instead of a fresh integration. Question text transcribed from the
+// Q (parts a.–c.), the area of the two shaded regions bounded by f, its tangent, and the axis,
+// minimised over a (parts d.–e.), the mirror problem for f⁻¹ (part f.), and the acute angle
+// between the two curves' tangents at x = 1 (part g.). The question's own diagram is VCAA's,
+// cropped directly from the exam paper and shown in the stem; the graph of f alongside f⁻¹ in
+// part f. is this site's own explanatory figure (matplotlib) — parts f. and g. were the two
+// worst-answered parts of the whole paper at 95% scoring zero, and the reflection picture is
+// what makes f. a two-line problem instead of a fresh integration. Question text transcribed from the
 // original paper. Cross-checked against the VCAA examination report and itute's independent
 // solutions, and independently re-derived (the area rule and every minimisation confirmed
 // exactly by computer algebra). Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import diagramSrc from './meth-2019exam2-q5-tangent-diagram.png'
-import inverseSrc from './meth-2019exam2-q5-inverse.png'
+import diagramSrc from './meth-2019e2-q5-tangent-diagram.png'
+import inverseSrc from './meth-2019e2-q5-inverse.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [35, 65],
   average: 0.7,
   comment: (
     <>
-      This question was done reasonably well. An equation was required — some students
-      substituted <Katex tex="x=a" /> into the tangent's rule, giving just{' '}
-      <Katex tex="y=1-a^3" /> (the point, not the line). There appeared to be some
+      This question was done reasonably well. An equation was required. Some students
+      substituted <Katex tex="x=a" /> into <Katex tex="y=-3a^2x+2a^3+1" />, giving{' '}
+      <Katex tex="y=1-a^3" /> as the equation of the tangent. There appeared to be some
       transcription errors: <Katex tex="y=3a^2x+2a^3+1" /> was sometimes seen.
     </>
   ),
@@ -32,7 +32,7 @@ const EXAM_A: SAExaminerStats = {
 const EXAM_B: SAExaminerStats = {
   marks: [37, 63],
   average: 0.7,
-  comment: <>This question was done reasonably well. There appeared to be some transcription errors, such as <Katex tex="x=\tfrac{1+2a^2}{3a^2}" />.</>,
+  comment: <>This question was done reasonably well. There appeared to be some transcription errors: <Katex tex="x=\dfrac{1+2a^2}{3a^2}" /> was sometimes seen.</>,
 }
 
 const EXAM_C: SAExaminerStats = {
@@ -42,7 +42,7 @@ const EXAM_C: SAExaminerStats = {
     <>
       This question was answered well. Most students were able to equate their tangent line
       with <Katex tex="f(x)" />. Some students gave the answer without showing any working.
-      Other students unsuccessfully tried to solve the cubic by hand.
+      Other students unsuccessfully tried to solve <Katex tex="1+2a^3-3a^2x=f(x)" /> by hand.
     </>
   ),
 }
@@ -52,10 +52,9 @@ const EXAM_D: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      A common incorrect definite integral used the wrong terminals or the wrong pair of
-      functions on part of the interval — for example integrating{' '}
-      <Katex tex="(\text{tangent}-f)" /> all the way from <Katex tex="-2a" /> to{' '}
-      <Katex tex="x_Q" />, which double-counts the region below the axis.
+      A common incorrect definite integral was{' '}
+      <Katex tex="\displaystyle\int_{-2a}^{\frac{1+2a^3}{3a^2}}\left(1+2a^3-3a^2x-f(x)\right)dx" /> and{' '}
+      <Katex tex="\displaystyle\int_{-2a}^{a}\left(1+2a^3-3a^2x-f(x)\right)dx+\int_{a}^{\frac{1+2a^3}{3a^2}}\left(1+2a^3-3a^2x\right)dx" />.
     </>
   ),
 }
@@ -75,7 +74,7 @@ const EXAM_E: SAExaminerStats = {
 const EXAM_F: SAExaminerStats = {
   marks: [95, 1, 4],
   average: 0.1,
-  comment: <>This question was not answered well. Many students attempted a direct (non-symmetry) method but were not successful.</>,
+  comment: <>This question was not answered well. Many students attempted the second method but were not successful.</>,
 }
 
 const EXAM_G: SAExaminerStats = {
@@ -103,7 +102,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = -3a^2x+2a^3+1}" />,
-    reason: <>Collect the <Katex tex="a^3" /> terms. Write it as an equation (starting "<Katex tex="y=" />") — the report notes that answers giving only a value did not score.</>,
+    reason: <>Collect the <Katex tex="a^3" /> terms. Write it as an equation — the report says an equation was required, and notes some students substituted <Katex tex="x=a" />, giving <Katex tex="y=1-a^3" /> as the equation of the tangent.</>,
   },
 ]
 
@@ -114,6 +113,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3a^2x = 2a^3+1" />,
+    reason: <>Moving the <Katex tex="x" /> term across.</>,
   },
   {
     working: <Katex display tex="\boxed{x_Q = \dfrac{2a^3+1}{3a^2}}" />,
@@ -136,6 +136,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=a \text{ (twice, the point of contact)} \quad\text{or}\quad x=-2a" />,
+    reason: <>Null factor law. Technology gives the same: solving <Katex tex="1+2a^3-3a^2x=1-x^3" /> for <Katex tex="x" /> returns <Katex tex="x=a" /> and <Katex tex="x=-2a" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x_P = -2a}" />,
@@ -145,20 +146,12 @@ const ROWS_C: WorkingRow[] = [
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={diagramSrc} alt="Graph of f(x)=1−x³ with the tangent at (a, 1−a³), meeting the curve again at P and the x-axis at Q, and the two shaded regions between them" className="w-full max-w-[440px]" />
-      </div>
-    ),
-    reason: <>Trace the boundary of the shaded area: it starts at <Katex tex="P" />, runs along the tangent to <Katex tex="Q" />, comes back along the <Katex tex="x" />-axis to where the curve cuts it at <Katex tex="x=1" />, then follows the curve back up to <Katex tex="P" />.</>,
-  },
-  {
     working: <Katex display tex="\text{tangent}-f = \left(2a^3+1-3a^2x\right)-\left(1-x^3\right) = (x-a)^2(x+2a)\ \ge 0 \ \text{ for } x\ge-2a" />,
-    reason: <>Part (c)'s factorisation, reused. A squared factor can't be negative and <Katex tex="x+2a>0" /> to the right of <Katex tex="P" />, so the tangent lies <em>above</em> the curve all the way from <Katex tex="P" /> onwards — touching it only at <Katex tex="x=a" />. That's why the two shaded pieces join up into one continuous strip rather than swapping over at <Katex tex="x=a" />.</>,
+    reason: <>Part c.'s factorisation, reused. A squared factor can't be negative and <Katex tex="x+2a>0" /> to the right of <Katex tex="P" />, so the tangent lies <em>above</em> the curve all the way from <Katex tex="P" /> onwards — touching it only at <Katex tex="x=a" />. That's why the two shaded pieces join up into one continuous strip rather than swapping over at <Katex tex="x=a" />.</>,
   },
   {
     working: <Katex display tex="A = \underbrace{\int_{-2a}^{1}\Bigl[\left(2a^3+1-3a^2x\right)-\left(1-x^3\right)\Bigr]dx}_{\text{lower boundary is the curve}} \;+\; \underbrace{\int_{1}^{x_Q}\left(2a^3+1-3a^2x\right)dx}_{\text{lower boundary is the axis}}" />,
-    reason: <>The split happens at <Katex tex="x=1" />, where the curve crosses the axis. Left of <Katex tex="1" /> the region's floor is the curve; right of <Katex tex="1" /> the curve has dropped below the axis, so the floor becomes the axis itself.</>,
+    reason: <>Trace the boundary of the shaded area in the diagram: it starts at <Katex tex="P" />, runs along the tangent to <Katex tex="Q" />, comes back along the <Katex tex="x" />-axis to where the curve cuts it at <Katex tex="x=1" />, then follows the curve back up to <Katex tex="P" />. So the split happens at <Katex tex="x=1" />, where the curve crosses the axis. Left of <Katex tex="1" /> the region's floor is the curve; right of <Katex tex="1" /> the curve has dropped below the axis, so the floor becomes the axis itself.</>,
   },
   {
     working: (
@@ -179,7 +172,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \dfrac{20a^4}{3}+\dfrac{2a}{3}-\dfrac34+\dfrac{1}{6a^2}" />,
-    reason: <>The same rule, split term by term. This version is worth writing down: part (e) needs <Katex tex="A'(a)" />, and differentiating these four simple terms is far easier than quotient-ruling the fraction.</>,
+    reason: <>The same rule, split term by term. This version is worth writing down: part e. needs <Katex tex="A'(a)" />, and differentiating these four simple terms is far easier than quotient-ruling the fraction.</>,
   },
 ]
 
@@ -202,10 +195,11 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="u=\dfrac{1}{10} \quad\text{or}\quad u=-\dfrac18" />,
+    reason: <>Null factor law.</>,
   },
   {
     working: <Katex display tex="a^3=-\dfrac18 \implies a=-\dfrac12 \ \text{ — rejected, since } 0<a<1" />,
-    reason: <>This is precisely the report's most common wrong answer: the algebra is right but the domain restriction was ignored.</>,
+    reason: <>The report lists <Katex tex="a=-\tfrac12" /> and <Katex tex="a=\tfrac12" /> as common incorrect answers. <Katex tex="a=-\tfrac12" /> does solve <Katex tex="A'(a)=0" />, but it is outside <Katex tex="0<a<1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a^3=\dfrac{1}{10} \implies a=\dfrac{1}{\sqrt[3]{10}} = \dfrac{\sqrt[3]{100}}{10} \approx 0.4642}" />,
@@ -234,7 +228,7 @@ const ROWS_F: WorkingRow[] = [
         <Katex display tex="x\text{-axis} \ \longmapsto \ y\text{-axis}" />
       </>
     ),
-    reason: <>Every single feature of part (d)'s picture has a mirror image in this part's picture. So the new regions are just the old regions flipped over — same shapes, same areas.</>,
+    reason: <>Every single feature of part d.'s picture has a mirror image in this part's picture. So the new regions are just the old regions flipped over — same shapes, same areas.</>,
   },
   {
     working: (
@@ -243,7 +237,7 @@ const ROWS_F: WorkingRow[] = [
         <Katex display tex="\text{where } b=1-a^3" />
       </>
     ),
-    reason: <>Reflection doesn't stretch or squash anything, so it preserves area exactly. That means the two optimisation problems are the <em>same</em> problem — whatever <Katex tex="a" /> minimised part (e)'s area, its mirror partner <Katex tex="b=1-a^3" /> minimises this one. No new integration is needed.</>,
+    reason: <>Reflection doesn't stretch or squash anything, so it preserves area exactly. That means the two optimisation problems are the <em>same</em> problem — whatever <Katex tex="a" /> minimised part e.'s area, its mirror partner <Katex tex="b=1-a^3" /> minimises this one. No new integration is needed.</>,
   },
   {
     working: <Katex display tex="b = 1-a^3 \quad\text{with}\quad a^3=\dfrac{1}{10} \ \text{ (part e)}" />,
@@ -251,7 +245,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = 1-\dfrac{1}{10} = \dfrac{9}{10}}" />,
-    reason: <>Notice how little work this needed once the symmetry was spotted; the report notes that students who instead set up a fresh integral for <Katex tex="f^{-1}" /> were generally unsuccessful.</>,
+    reason: <>Notice how little work this needed once the symmetry was spotted. The report's second method sets up the area directly as an integral of the tangent minus <Katex tex="f^{-1}(x)" />, then solves <Katex tex="A'(b)=0" />; it notes many students attempted that method but were not successful.</>,
   },
 ]
 
@@ -266,6 +260,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(0) = -3(0)^2 = 0 \implies \text{the tangent to } f \text{ at } x=0 \text{ is horizontal}" />,
+    reason: <>The matching point on <Katex tex="f" /> is <Katex tex="(0,1)" />, and its tangent there is flat.</>,
   },
   {
     working: <Katex display tex="\implies \text{the tangent to } f^{-1} \text{ at } x=1 \text{ is vertical}" />,
@@ -281,7 +276,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tan^{-1}\!\left(\dfrac13\right) \approx 18.43^\circ}" />,
-    reason: <>Exact form required — the report notes that answers rounded to <Katex tex="18^\circ" /> did not score.</>,
+    reason: <>Exact form — the report says an exact answer was required, and notes some students rounded to <Katex tex="18^\circ" />. In radians this is <Katex tex="\tfrac{\pi}{2}-\tan^{-1}(3)=\tan^{-1}\!\left(\tfrac13\right)" />, the report's form.</>,
   },
 ]
 
@@ -291,13 +286,16 @@ export default function MethodsQ5_2019Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (12 marks)</p>
         <p>
-          Let <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=1-x^3" />. The tangent to the graph of{' '}
+          Let <Katex tex="f:R\to R,\ f(x)=1-x^3" />. The tangent to the graph of{' '}
           <Katex tex="f" /> at <Katex tex="x=a" />, where <Katex tex="0<a<1" />, intersects the
           graph of <Katex tex="f" /> again at <Katex tex="P" /> and intersects the horizontal
           axis at <Katex tex="Q" />. The shaded regions shown in the diagram below are bounded
           by the graph of <Katex tex="f" />, its tangent at <Katex tex="x=a" /> and the
           horizontal axis.
         </p>
+        <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+          <img src={diagramSrc} alt="Graph of y = f(x) = 1 − x³ with its tangent at (a, 1 − a³), meeting the curve again at P and the x-axis at Q, and the two shaded regions bounded by the curve, the tangent and the x-axis, from the original 2019 VCAA exam paper" className="w-full max-w-[440px]" />
+        </div>
       </div>
 
       <div className="text-[13px] leading-relaxed">
@@ -305,22 +303,22 @@ export default function MethodsQ5_2019Exam2() {
           <p>
             Everything here is written in terms of the unknown <Katex tex="a" />, which is
             unusual but not harder — treat <Katex tex="a" /> as a fixed number you simply don't
-            know yet, and do the ordinary algebra. Parts (a)–(c) build the picture, (d)–(e) turn
-            it into an optimisation, and (f)–(g) exploit the fact that an inverse function is
+            know yet, and do the ordinary algebra. Parts a.–c. build the picture, d.–e. turn it
+            into an optimisation, and f.–g. exploit the fact that an inverse function is
             just a reflection.
           </p>
         </Background>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=a" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Tangent Line" marks={1} statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=a" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Find the <Katex tex="x" />-coordinate of <Katex tex="Q" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Intersections" marks={1} statement={<>Find the <Katex tex="x" />-coordinate of <Katex tex="Q" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Find the <Katex tex="x" />-coordinate of <Katex tex="P" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Intersections" marks={2} statement={<>Find the <Katex tex="x" />-coordinate of <Katex tex="P" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
             Key idea: when a <b>tangent</b> meets a curve, the corresponding solution is a{' '}
@@ -333,7 +331,14 @@ export default function MethodsQ5_2019Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
-      <PartCard letter="d" marks={3} statement={<>Let <Katex tex="A" /> be the function that determines the total area of the shaded regions. Find the rule of <Katex tex="A" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_D}>
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>
+          Let <Katex tex="A" /> be the function that determines the total area of the shaded
+          regions.
+        </p>
+      </div>
+
+      <PartCard letter="d" topic="Area Function" marks={3} statement={<>Find the rule of <Katex tex="A" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_D}>
         <Background>
           <p>
             The shaded area is bounded by <em>three</em> different things — the curve, the tangent
@@ -347,32 +352,32 @@ export default function MethodsQ5_2019Exam2() {
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<>Find the value of <Katex tex="a" /> for which <Katex tex="A" /> is a minimum.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Optimisation" marks={2} statement={<>Find the value of <Katex tex="a" /> for which <Katex tex="A" /> is a minimum.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Consider the regions bounded by the graph of <Katex tex="f^{-1}" />, the tangent to
-          the graph of <Katex tex="f^{-1}" /> at <Katex tex="x=b" />, where <Katex tex="0<b<1" />
-          , and the <Katex tex="y" />-axis.
+          the graph of <Katex tex="f^{-1}" /> at <Katex tex="x=b" />, where{' '}
+          <Katex tex="0<b<1" />, and the vertical axis.
         </p>
       </div>
 
-      <PartCard letter="f" marks={2} statement={<>Find the value of <Katex tex="b" /> for which the total area of these regions is a minimum.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Optimisation" marks={2} statement={<>Find the value of <Katex tex="b" /> for which the total area of these regions is a minimum.</>} examinerReport={EXAM_F}>
         <Background>
           <p>
             Read the new set-up next to the old one, item by item: <Katex tex="f" /> becomes{' '}
             <Katex tex="f^{-1}" />, the tangent becomes the tangent to <Katex tex="f^{-1}" />, and
             the <Katex tex="x" />-axis becomes the <Katex tex="y" />-axis. Those are exactly the
-            three swaps that a reflection in <Katex tex="y=x" /> performs — so this is part (e)'s
+            three swaps that a reflection in <Katex tex="y=x" /> performs — so this is part e.'s
             problem seen in a mirror, and it can be answered without integrating anything.
           </p>
         </Background>
         <WorkingTable rows={ROWS_F} />
       </PartCard>
 
-      <PartCard letter="g" marks={1} statement={<>Find the value of the acute angle between the tangent to the graph of <Katex tex="f" /> and the tangent to the graph of <Katex tex="f^{-1}" /> at <Katex tex="x=1" />.</>} examinerReport={EXAM_G}>
+      <PartCard letter="g" topic="Angle Between Tangents" marks={1} statement={<>Find the value of the acute angle between the tangent to the graph of <Katex tex="f" /> and the tangent to the graph of <Katex tex="f^{-1}" /> at <Katex tex="x=1" />.</>} examinerReport={EXAM_G}>
         <Background>
           <p>
             To turn gradients into angles, use <Katex tex="\tan\theta=m" />: a line of gradient{' '}

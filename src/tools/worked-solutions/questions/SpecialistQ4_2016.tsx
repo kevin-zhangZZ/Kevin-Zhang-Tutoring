@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b=-6,\ c=13}" />,
-    reason: <>Option E. Option A has the sign of <Katex tex="b" /> wrong — remember the coefficient of <Katex tex="z" /> is <em>minus</em> the sum of the roots.</>,
+    reason: <>Matches option <b>E</b>. Option A has the sign of <Katex tex="b" /> wrong — remember the coefficient of <Katex tex="z" /> is <em>minus</em> the sum of the roots.</>,
   },
 ]
 

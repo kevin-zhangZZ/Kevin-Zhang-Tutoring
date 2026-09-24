@@ -11,7 +11,23 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 13, C: 19, D: 20, E: 35 },
   answer: 'E',
   noAnswer: 1,
-  comment: <>For <Katex tex="f(x)=\begin{cases}4x+1 & x<0\\(2x+1)^2 & x\geq0\end{cases}" />, both pieces meet with the same value <b>and</b> the same gradient at <Katex tex="x=0" />.</>,
+  comment: (
+    <>
+      <Katex tex="f(x)=\begin{cases}4x+1 & x<0\\(2x+1)^2 & x\ge0\end{cases}" />
+      <br />
+      <Katex tex="\lim\limits_{x\to0^-}\bigl(f(x)\bigr)=\lim\limits_{x\to0^+}\bigl(f(x)\bigr)=1" />
+      <br />
+      The graph of <Katex tex="f" /> is continuous over the interval <Katex tex="(-\infty,\infty)" />.
+      <br />
+      <Katex tex="f'(x)=\begin{cases}4 & x<0\\8x+4 & x\ge0\end{cases}" />
+      <br />
+      <Katex tex="\lim\limits_{x\to0^-}\bigl(f'(x)\bigr)=\lim\limits_{x\to0^+}\bigl(f'(x)\bigr)=4" />
+      <br />
+      The graph of <Katex tex="f" /> is smooth at <Katex tex="x=0" />.
+      <br />
+      The function <Katex tex="f" /> where <Katex tex="f(x)=\begin{cases}4x+1 & x<0\\(2x+1)^2 & x\ge0\end{cases}" /> is differentiable for all real values of <Katex tex="x" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -29,7 +45,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{D: } 2(0)+1=1 = (2(0)+1)^2=1 \quad\checkmark \text{ continuous}" />,
-    reason: 'Check continuity for D.',
+    reason: <>Check continuity for D.</>,
   },
   {
     working: <Katex display tex="\text{D's gradients: } \frac{d}{dx}(2x+1)=2 \quad\text{vs}\quad \frac{d}{dx}(2x+1)^2\Big|_{x=0} = 4(2x+1)\big|_{x=0}=4" />,
@@ -37,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{E: } 4(0)+1=1 = (2(0)+1)^2=1 \quad\checkmark \text{ continuous}" />,
-    reason: 'Check continuity for E.',
+    reason: <>Check continuity for E.</>,
   },
   {
     working: <Katex display tex="\text{E's gradients: } \frac{d}{dx}(4x+1)=4 \quad\text{vs}\quad 4(2x+1)\big|_{x=0}=4 \quad\checkmark" />,

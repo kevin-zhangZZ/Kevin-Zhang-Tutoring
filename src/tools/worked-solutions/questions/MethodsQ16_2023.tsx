@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)\,g(x) = e^{(x-1)^2} \implies g(x) = \frac{e^{(x-1)^2}}{e^{x-1}}" />,
-    reason: 'Divide both sides by f(x). Both are exponentials, so the division is an index subtraction.',
+    reason: <>Divide both sides by f(x). Both are exponentials, so the division is an index subtraction.</>,
   },
   {
     working: <Katex display tex="g(x) = e^{(x-1)^2-(x-1)}" />,
@@ -26,11 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= (x-1)(x-2)" />,
-    reason: 'Simplifying the bracket.',
+    reason: <>Simplifying the bracket.</>,
   },
   {
     working: <Katex display tex="\boxed{g(x) = e^{(x-2)(x-1)}}" />,
-    reason: <>Option <b>B</b>. Check at <Katex tex="x=0" />: <Katex tex="f(0)g(0)=e^{-1}\cdot e^{2}=e" /> and <Katex tex="e^{(0-1)^2}=e" /> ✓.</>,
+    reason: <>Matches option <b>B</b>. Check at <Katex tex="x=0" />: <Katex tex="f(0)g(0)=e^{-1}\cdot e^{2}=e" /> and <Katex tex="e^{(0-1)^2}=e" /> ✓.</>,
   },
 ]
 
@@ -39,9 +39,10 @@ export default function MethodsQ16_2023() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f(x)=e^{x-1}" />. Given that the product function{' '}
-          <Katex tex="f(x)\cdot g(x)=e^{(x-1)^2}" />, the rule for the function{' '}
-          <Katex tex="g" /> is
+          Let <Katex tex="f(x)=e^{x-1}" />.
+          <br />
+          Given that the product function <Katex tex="f(x)\times g(x)=e^{(x-1)^2}" />, the rule
+          for the function <Katex tex="g" /> is
         </p>
       }
       options={[

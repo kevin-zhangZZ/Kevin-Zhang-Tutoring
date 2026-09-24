@@ -13,7 +13,7 @@ const EXAM: SAExaminerStats = {
     <>
       Students appeared to manage this question confidently. However, some students did not
       handle the algebraic manipulation correctly and others used incorrect notation, stating
-      their final answer as <Katex tex="y" /> or omitting the domain.
+      their final answer or in stating the domain.
     </>
   ),
 }
@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x-2 = \pm\frac{1}{\sqrt{y}}" />,
-    reason: <>Square-rooting produces two branches. Exactly one survives the domain restriction, and choosing between them is the step the report calls the algebraic manipulation.</>,
+    reason: <>Square-rooting produces two branches, and exactly one survives the domain restriction.</>,
   },
   {
     working: <Katex display tex="x>2 \implies x-2>0 \implies x-2 = +\frac{1}{\sqrt{y}}" />,
@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = 2+\frac{1}{\sqrt{x}}}" />,
-    reason: <>Relabel <Katex tex="y\to x" />. Write it as <Katex tex="f^{-1}(x)=\dots" />, not <Katex tex="y=\dots" /> — the report names that notation slip.</>,
+    reason: <>Relabel <Katex tex="y\to x" />. Write it as <Katex tex="f^{-1}(x)=\dots" />, not <Katex tex="y=\dots" /> — the report notes incorrect notation in stating the final answer.</>,
   },
   {
     working: <Katex display tex="\operatorname{ran}(f) = (0,\infty) \implies \boxed{\operatorname{dom}\left(f^{-1}\right) = (0,\infty)}" />,
@@ -55,7 +55,7 @@ export default function MethodsQ5_2018Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 5 (3 marks)</p>
         <p>
-          Let <Katex tex="f:(2,\infty)\to\mathbb{R}" />, where{' '}
+          Let <Katex tex="f:(2,\infty)\to R" />, where{' '}
           <Katex tex="f(x)=\dfrac{1}{(x-2)^2}" />. State the rule and domain of{' '}
           <Katex tex="f^{-1}" />.
         </p>

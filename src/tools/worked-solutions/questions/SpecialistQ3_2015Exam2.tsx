@@ -13,11 +13,15 @@ const EXAM_A: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Many students attempted a chain rule relation, but a number of these had{' '}
-      <Katex tex="x" /> instead of <Katex tex="t" /> in what otherwise would have been a
-      correct answer. Some students gave <Katex tex="\tfrac{dy}{dt}" /> as their answer, while
-      others first eliminated <Katex tex="t" /> to get <Katex tex="y" /> in terms of{' '}
-      <Katex tex="x" />; the latter method was lengthy and more prone to errors.
+      This question was reasonably well answered. Many students attempted a chain rule
+      relation, but a number of these had <Katex tex="x" /> instead of <Katex tex="t" /> in
+      what otherwise would have been a correct answer. Some students gave{' '}
+      <Katex tex="\tfrac{dy}{dt}" /> as their answer, while others first eliminated{' '}
+      <Katex tex="t" /> to get <Katex tex="y" /> in terms of <Katex tex="x" />, found{' '}
+      <Katex tex="\tfrac{dy}{dx}" />, and then expressed their answer in terms of{' '}
+      <Katex tex="t" />. The latter method was lengthy and more prone to errors. Some students
+      did unnecessary further working out, attempted to simplify a correct answer and changed
+      it to an incorrect answer.
     </>
   ),
 }
@@ -25,7 +29,7 @@ const EXAM_A: SAExaminerStats = {
 const EXAM_B: SAExaminerStats = {
   marks: [36, 64],
   average: 0.7,
-  comment: <>This question was managed quite well by students who answered part a. correctly.</>,
+  comment: <>This question was managed quite well by students who answered Question 3a. correctly.</>,
 }
 
 const EXAM_CI: SAExaminerStats = {
@@ -44,7 +48,8 @@ const EXAM_CII: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Common errors included <Katex tex="\left[-\tfrac{\sqrt3}2,\tfrac{\sqrt3}2\right]" />,{' '}
+      This question was answered reasonably well. Common errors included{' '}
+      <Katex tex="\left(-\tfrac{\sqrt3}2,\tfrac{\sqrt3}2\right)" />,{' '}
       <Katex tex="(-1,1)" /> and <Katex tex="\left(-\tfrac\pi3,\tfrac\pi3\right)" />.
     </>
   ),
@@ -55,7 +60,8 @@ const EXAM_D: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Students were asked to simplify the right-hand side. However, some students attempted
+      Students were asked to simplify the right-hand side of the equation in this question.
+      However, some students attempted
       to work on both sides of the given equation, usually integrating both sides. The
       second-last step of putting the two square root terms over a common denominator was
       occasionally omitted.
@@ -174,7 +180,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\bigl(\arcsin(x)\bigr) = \frac{1}{\sqrt{1-x^2}} = \text{RHS} \ \checkmark" />,
-    reason: <>Which is the standard derivative, so the identity holds.</>,
+    reason: <>The simplified right-hand side is the standard derivative of <Katex tex="\arcsin(x)" />, as required.</>,
   },
 ]
 
@@ -201,7 +207,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = \frac\pi3-\frac{\sqrt3}{4}}" />,
-    reason: <>Since <Katex tex="\arcsin\!\left(\tfrac{\sqrt3}2\right)=\tfrac\pi3" /> and <Katex tex="\tfrac{\sqrt3}2\times\tfrac12=\tfrac{\sqrt3}4" />. Numerically <Katex tex="0.614" />, which is plausible for a shape spanning <Katex tex="1.73" /> by about <Katex tex="1.7" /> that is mostly empty near the middle.</>,
+    reason: <>Since <Katex tex="\arcsin\!\left(\tfrac{\sqrt3}2\right)=\tfrac\pi3" /> and <Katex tex="\tfrac{\sqrt3}2\times\tfrac12=\tfrac{\sqrt3}4" />. Numerically <Katex tex="0.614" />. Sanity check: the logo fits in a box <Katex tex="\sqrt3\approx1.73" /> wide and <Katex tex="1.5" /> tall (at the edges <Katex tex="y=\pm\tfrac34" />), about <Katex tex="2.6" /> square units, and it pinches to nothing at the middle, so a quarter of the box is about right.</>,
   },
 ]
 
@@ -229,6 +235,7 @@ export default function SpecialistQ3_2015Exam2() {
 
       <PartCard
         letter="a"
+        topic="Parametric Derivative"
         marks={2}
         statement={<>Find an expression for <Katex tex="\tfrac{dy}{dx}" /> in terms of <Katex tex="t" />.</>}
         examinerReport={EXAM_A}
@@ -238,6 +245,7 @@ export default function SpecialistQ3_2015Exam2() {
 
       <PartCard
         letter="b"
+        topic="Gradient"
         marks={1}
         statement={
           <>
@@ -253,6 +261,7 @@ export default function SpecialistQ3_2015Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Cartesian Equation"
         marks={1}
         statement={
           <>
@@ -267,6 +276,7 @@ export default function SpecialistQ3_2015Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Domain"
         marks={1}
         statement={<>State the domain for <Katex tex="x" /> of the upper boundary curve.</>}
         examinerReport={EXAM_CII}
@@ -276,6 +286,7 @@ export default function SpecialistQ3_2015Exam2() {
 
       <PartCard
         letter="d"
+        topic="Derivative Identity"
         marks={2}
         statement={
           <>
@@ -291,6 +302,7 @@ export default function SpecialistQ3_2015Exam2() {
 
       <PartCard
         letter="e"
+        topic="Area Enclosed"
         marks={3}
         statement={
           <>

@@ -14,8 +14,7 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was generally answered well. The most common errors included solving for{' '}
       <Katex tex="\Pr(B)" />, and incorrectly transposing{' '}
-      <Katex tex="\tfrac{p}{\Pr(A)}=\tfrac14" /> to yield{' '}
-      <Katex tex="\tfrac{p}{4}" />.
+      <Katex tex="\tfrac{p}{\Pr(A)}" /> to yield <Katex tex="\tfrac14" />.
     </>
   ),
 }
@@ -27,9 +26,9 @@ const EXAM_B: SAExaminerStats = {
     <>
       Students who scored highly usually used a table or a Venn diagram to arrive at their
       answer. There were various misconceptions of the connection between conditional
-      probabilities and <Katex tex="\Pr(A\cap B)" />. Many students assumed that events{' '}
+      probabilities and <Katex tex="\Pr(A'\cap B')" />. Many students assumed that events{' '}
       <Katex tex="A" /> and <Katex tex="B" /> were independent, hence incorrectly used{' '}
-      <Katex tex="\Pr(A\cap B)=\Pr(A)\times\Pr(B)" />.
+      <Katex tex="\Pr(A'\cap B')=\Pr(A')\times\Pr(B')" />.
     </>
   ),
 }
@@ -41,7 +40,7 @@ const EXAM_C: SAExaminerStats = {
     <>
       Most students identified that <Katex tex="\Pr(A\cup B)=8p" />. Only a few students
       identified the correct interval because students did not consider that in this case{' '}
-      <Katex tex="p>0" />. Common incorrect answers included{' '}
+      <Katex tex="p\ne0" />. Common incorrect answers included{' '}
       <Katex tex="p=\tfrac1{40}" /> or <Katex tex="p\le\tfrac1{40}" /> (allowing negative
       probabilities) and <Katex tex="0\le p\le\tfrac1{40}" />.
     </>
@@ -78,7 +77,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 4p+5p-p = 8p" />,
-    reason: <>Note this uses no independence assumption — the report says many students wrongly multiplied <Katex tex="\Pr(A)\Pr(B)" /> here, which would give <Katex tex="20p^2" /> and is simply not what <Katex tex="\Pr(A\cap B)" /> means unless the events are independent.</>,
+    reason: <>This uses no independence assumption. The report says many students wrongly used <Katex tex="\Pr(A'\cap B')=\Pr(A')\times\Pr(B')" />, which would give <Katex tex="(1-4p)(1-5p)" /> — true only if the events were independent, and nothing in the question says they are.</>,
   },
   {
     working: <Katex display tex="A'\cap B' = (A\cup B)'" />,
@@ -101,7 +100,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p>0" />,
-    reason: <>This is the mark almost everyone dropped. If <Katex tex="p=0" /> then <Katex tex="\Pr(B)=5p=0" />, and <Katex tex="\Pr(A\mid B)" /> would be a division by zero — so the given <Katex tex="\Pr(A\mid B)=\tfrac15" /> already rules <Katex tex="p=0" /> out. Negative <Katex tex="p" /> is impossible for a probability.</>,
+    reason: <>This is the mark most students dropped. If <Katex tex="p=0" /> then <Katex tex="\Pr(B)=5p=0" />, and <Katex tex="\Pr(A\mid B)" /> would be a division by zero — so the given <Katex tex="\Pr(A\mid B)=\tfrac15" /> already rules <Katex tex="p=0" /> out. Negative <Katex tex="p" /> is impossible for a probability.</>,
   },
   {
     working: <Katex display tex="\boxed{0<p\le\frac{1}{40}}" />,
@@ -121,11 +120,11 @@ export default function MethodsQ8_2017Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find <Katex tex="\Pr(A)" /> in terms of <Katex tex="p" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Conditional Probability" marks={1} statement={<>Find <Katex tex="\Pr(A)" /> in terms of <Katex tex="p" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Find <Katex tex="\Pr(A'\cap B')" /> in terms of <Katex tex="p" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Complement" marks={2} statement={<>Find <Katex tex="\Pr(A'\cap B')" /> in terms of <Katex tex="p" />.</>} examinerReport={EXAM_B}>
         <Background title="The whole question on one table">
           <p>
             Once you know <Katex tex="\Pr(A)=4p" />, <Katex tex="\Pr(B)=5p" /> and{' '}
@@ -203,6 +202,7 @@ export default function MethodsQ8_2017Exam1() {
 
       <PartCard
         letter="c"
+        topic="Probability Bounds"
         marks={2}
         statement={
           <>

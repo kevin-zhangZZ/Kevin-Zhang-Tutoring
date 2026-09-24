@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{55}{15} = \frac{11}{3}}" />,
-    reason: <>About <Katex tex="3.67" />. Sensible: the larger values carry the larger probabilities, so the mean should sit above the middle value <Katex tex="3" />.</>,
+    reason: <>Matches option <b>D</b>. About <Katex tex="3.67" /> — sensible: the larger values carry the larger probabilities, so the mean should sit above the middle value 3, which is option B (the mean if all five values were equally likely).</>,
   },
 ]
 
@@ -85,8 +85,8 @@ export default function MethodsQ14_2015() {
       }
       options={[
         { letter: 'A', content: <Katex tex="2" /> },
-        { letter: 'B', content: <Katex tex="\dfrac73" /> },
-        { letter: 'C', content: <Katex tex="\dfrac{11}{2}" /> },
+        { letter: 'B', content: <Katex tex="3" /> },
+        { letter: 'C', content: <Katex tex="\dfrac72" /> },
         { letter: 'D', content: <Katex tex="\dfrac{11}{3}" />, isAnswer: true },
         { letter: 'E', content: <Katex tex="4" /> },
       ]}

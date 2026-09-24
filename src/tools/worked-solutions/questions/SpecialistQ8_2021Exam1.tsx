@@ -25,8 +25,10 @@ const EXAM_B: SAExaminerStats = {
       Students who were successful let <Katex tex="z=x+iy" />, leading to{' '}
       <Katex tex="x^2-y^2+2xyi+2(x-iy)+2=0" />. Algebraic errors were often seen in attempts
       to solve the resulting equations. A number of students assumed that the solutions to
-      part a. were also solutions to part b., and some students confused the complex
-      conjugate with the reciprocal.
+      part a. were also solutions to part b. and some students confused the complex conjugate
+      with the reciprocal. While it is possible to solve the equation beginning with the
+      polar form <Katex tex="z=r\operatorname{cis}(\theta)" />, few students took this
+      approach and those who did rarely made any significant progress.
     </>
   ),
 }
@@ -34,7 +36,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="z^2+2z+2 = 0" />,
-    reason: 'A quadratic with real coefficients, so the usual tools apply.',
+    reason: <>A quadratic with real coefficients, so the usual tools apply.</>,
   },
   {
     working: <Katex display tex="(z+1)^2+1 = 0" />,
@@ -46,7 +48,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z = -1\pm i}" />,
-    reason: 'A conjugate pair, as real coefficients require.',
+    reason: <>A conjugate pair, as real coefficients require.</>,
   },
 ]
 
@@ -57,15 +59,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = x+iy \implies z^2 = x^2-y^2+2xyi, \quad \bar z = x-iy" />,
-    reason: 'Going to components is the only reliable route.',
+    reason: <>Going to components is the reliable route — the report notes the few who began with polar form rarely made significant progress.</>,
   },
   {
     working: <Katex display tex="\left(x^2-y^2+2x+2\right)+i\left(2xy-2y\right) = 0" />,
-    reason: 'Collecting real and imaginary parts.',
+    reason: <>Collecting real and imaginary parts.</>,
   },
   {
     working: <Katex display tex="\text{imaginary: } 2y(x-1) = 0 \implies y = 0 \text{ or } x = 1" />,
-    reason: 'A complex number is zero only when both parts are, so this gives two cases.',
+    reason: <>A complex number is zero only when both parts are, so this gives two cases.</>,
   },
   {
     working: <Katex display tex="y = 0: \ x^2+2x+2 = 0 \implies \Delta = -4 < 0, \text{ no real } x" />,
@@ -73,7 +75,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 1: \ 1-y^2+2+2 = 0 \implies y^2 = 5" />,
-    reason: 'The surviving case.',
+    reason: <>The surviving case.</>,
   },
   {
     working: <Katex display tex="\boxed{z = 1\pm\sqrt5\,i}" />,
@@ -90,6 +92,7 @@ export default function SpecialistQ8_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Complex Quadratic"
         marks={1}
         statement={
           <>
@@ -104,6 +107,7 @@ export default function SpecialistQ8_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conjugate Equation"
         marks={3}
         statement={
           <>

@@ -1,17 +1,17 @@
-// 2020 Specialist Mathematics — Exam 2, MCQ 7. VCAA examination report: only 2% correct — the
-// hardest MCQ on this entire paper. Partial-fraction form of 1/(ax(x²+b)) with b < 0. Question
+// 2020 Specialist Mathematics — Exam 2, MCQ 7. VCAA examination report: 26% correct — the
+// hardest MCQ on this paper. Partial-fraction form of 1/(ax(x²+b)) with b < 0. Question
 // text transcribed from the original paper. Solution is original.
 //
 // Note: a third-party solutions PDF for this year gives B as the answer, but that option uses
 // √b as a literal radical — invalid since b < 0 makes √b non-real. The VCAA examination report's
-// own %-correct table (option D at just 2%) confirms D, independently verified below.
+// table shades D (26%; A was the most popular choice at 39%), independently verified below.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
-  percentages: { A: 19, B: 70, C: 5, D: 2, E: 5 },
+  percentages: { A: 39, B: 18, C: 12, D: 26, E: 5 },
   answer: 'D',
   comment: <>Option A results from not considering that <Katex tex="b<0" />.</>,
 }
@@ -23,7 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1}{ax(x^2+b)} = \frac{1}{ax\big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)}" />,
-    reason: 'Three distinct linear factors in the denominator, so three partial-fraction terms are needed.',
+    reason: <>Three distinct linear factors in the denominator, so three partial-fraction terms are needed.</>,
   },
   {
     working: <Katex display tex="= \frac{A}{x} + \frac{B}{x+\sqrt{|b|}} + \frac{C}{x-\sqrt{|b|}}" />,
@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{A}{x} + \frac{B}{x+\sqrt{|b|}} + \frac{C}{x-\sqrt{|b|}}}" />,
-    reason: <>Matches option <b>D</b>. (Options B and E use the literal radical <Katex tex="\sqrt{b}" />, which isn't real since <Katex tex="b<0" /> — the trap that caught 70% of students, who picked B.)</>,
+    reason: <>Matches option <b>D</b>. Option <b>A</b>, the most popular choice (39%), treats <Katex tex="x^2+b" /> as irreducible — the report notes it results from not considering that <Katex tex="b<0" />. Options <b>B</b> and <b>E</b> use <Katex tex="\sqrt{b}" />, which is not real since <Katex tex="b<0" />, and option <b>C</b> scales the roots by <Katex tex="a" />.</>,
   },
 ]
 

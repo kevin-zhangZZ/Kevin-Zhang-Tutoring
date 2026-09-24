@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = \frac{12.5-12}{0.25} = \frac{0.5}{0.25} = 2" />,
-    reason: <>Dividing by <Katex tex="0.25" /> is multiplying by <Katex tex="4" />. Getting <Katex tex="1.5" /> or <Katex tex="-4" /> instead accounts for three of the wrong options.</>,
+    reason: <>Dividing by <Katex tex="0.25" /> is multiplying by <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X>12.5) = \Pr(Z>2)" />,
@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>2)}" />,
-    reason: <>Option E, about <Katex tex="0.023" />. Sanity check: <Katex tex="12.5" /> is two standard deviations above the mean, so by the <Katex tex="95\%" /> rule about <Katex tex="2.5\%" /> of the distribution lies beyond it.</>,
+    reason: <>Matches option <b>E</b>, about <Katex tex="0.023" />. Sanity check: <Katex tex="12.5" /> is two standard deviations above the mean, so by the <Katex tex="95\%" /> rule about <Katex tex="2.5\%" /> of the distribution lies beyond it.</>,
   },
 ]
 

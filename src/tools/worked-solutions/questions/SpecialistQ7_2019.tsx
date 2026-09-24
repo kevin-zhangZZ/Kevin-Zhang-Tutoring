@@ -20,6 +20,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dfrac{dx}{dt} = 3\cos(t), \qquad \dfrac{dy}{dt} = -4\sin(t)" />,
+    reason: <>Differentiating each parametric equation with respect to <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\left(\dfrac{dx}{dt}\right)^2+\left(\dfrac{dy}{dt}\right)^2 = 9\cos^2(t)+16\sin^2(t)" />,
@@ -31,10 +32,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 9-9\sin^2(t)+16\sin^2(t) = 9+7\sin^2(t)" />,
+    reason: <>Collecting the <Katex tex="\sin^2(t)" /> terms.</>,
   },
   {
     working: <Katex display tex="\boxed{L = \int_0^{\pi}\sqrt{9+7\sin^2(t)}\ dt}" />,
-    reason: <>Matches option <b>B</b>. Option <b>A</b> subtracts instead of adds inside the root (and would go negative), and option <b>E</b> forgets to square the coefficients.</>,
+    reason: <>Matches option <b>B</b>. Option <b>A</b> subtracts instead of adds inside the root (and would go negative), option <b>E</b> forgets to square the coefficients, option <b>D</b> has no square root at all, and option <b>C</b> has the shape of the cartesian formula <Katex tex="\sqrt{1+\left(\tfrac{dy}{dx}\right)^2}" />, which does not apply to a parametric curve.</>,
   },
 ]
 

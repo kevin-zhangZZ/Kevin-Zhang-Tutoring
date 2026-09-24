@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\hat p = 0.080}" />,
-    reason: <>Option A. The margin of error is then <Katex tex="0.041" />, which is option B — the trap for anyone who computes half the width instead of the midpoint.</>,
+    reason: <>Matches option <b>A</b>. The margin of error is then <Katex tex="0.041" />, which is option B — the trap for anyone who computes half the width instead of the midpoint.</>,
   },
 ]
 

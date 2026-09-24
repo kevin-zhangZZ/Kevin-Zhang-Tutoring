@@ -10,33 +10,43 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 18, B: 59, C: 14, D: 8 },
   answer: 'B',
-  comment: <>The axis intercepts of the plane are <Katex tex="(a,0,0)" />, <Katex tex="(0,a,0)" /> and <Katex tex="(0,0,a)" />. Connecting these points forms an equilateral triangle, whose side length gives the area.</>,
+  comment: (
+    <>
+      The axis intercepts of the plane are <Katex tex="(a,0,0)" />, <Katex tex="(0,a,0)" />,{' '}
+      <Katex tex="(0,0,a)" />. Connecting these points forms an equilateral triangle of side length{' '}
+      <Katex tex="\sqrt{2}a" />, which allows us to find the area using
+      <br />
+      <Katex tex="\dfrac{1}{2}ab\sin(C)=\dfrac{1}{2}\left(\sqrt{2}a\right)^2\sin(60)" />
+      <br />
+      <Katex tex="=\dfrac{1}{2}\times2a^2\times\dfrac{\sqrt{3}}{2}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = z = 0 \implies x = a \implies A(a,0,0)" />,
-    reason: 'Setting the other two variables to zero gives each axis intercept in turn.',
+    reason: <>Setting the other two variables to zero gives each axis intercept in turn.</>,
   },
   {
     working: <Katex display tex="B(0,a,0), \qquad C(0,0,a)" />,
-    reason: 'By the same reasoning — the equation is symmetric in the three variables.',
+    reason: <>By the same reasoning — the equation is symmetric in the three variables.</>,
   },
   {
     working: <Katex display tex="|AB| = \sqrt{(a-0)^2+(0-a)^2+0^2} = |a|\sqrt2" />,
-    reason: 'The distance between two of the vertices.',
+    reason: <>The distance between two of the vertices.</>,
   },
   {
     working: <Katex display tex="|AB| = |BC| = |CA| = |a|\sqrt2" />,
-    reason: 'The symmetry makes all three sides equal, so the triangle is equilateral.',
+    reason: <>The symmetry makes all three sides equal, so the triangle is equilateral.</>,
   },
   {
     working: <Katex display tex="\text{area} = \frac{\sqrt3}{4}\,\ell^2 \quad \text{for an equilateral triangle of side } \ell" />,
-    reason: 'The standard formula for an equilateral triangle — half the base times the height.',
+    reason: <>The standard formula for an equilateral triangle — half the base times the height.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{\sqrt3}{4}\left(|a|\sqrt2\right)^2 = \frac{\sqrt3}{4}\cdot 2a^2 = \frac{a^2\sqrt3}{2}}" />,
-    reason: <>Option <b>B</b>. Squaring removes the modulus, so the answer holds for negative a too.</>,
+    reason: <>Matches option <b>B</b>. Squaring removes the modulus, so the answer holds for negative a too.</>,
   },
 ]
 
@@ -45,7 +55,7 @@ export default function SpecialistQ19_2025() {
     <MCQShell
       question={
         <p>
-          The plane with equation <Katex tex="x+y+z = a" />, where <Katex tex="a\in\mathbb{R}" />,
+          The plane with equation <Katex tex="x+y+z = a" />, where <Katex tex="a\in R" />,
           intersects the coordinate axes at three points that form the vertices of a triangle.
           <br />
           The area of this triangle is given by

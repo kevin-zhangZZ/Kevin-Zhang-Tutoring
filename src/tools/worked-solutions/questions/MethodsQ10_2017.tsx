@@ -15,10 +15,19 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="x'=2x" /> so <Katex tex="x=\tfrac{x'}{2}" />, and{' '}
-      <Katex tex="y'=\tfrac13y" /> so <Katex tex="y=3y'" />. Then{' '}
-      <Katex tex="3y'=3\sin\!\left(2\left(\tfrac{x'}{2}+\tfrac{\pi}{4}\right)\right)" />, so{' '}
-      <Katex tex="y'=\sin\!\left(x'+\tfrac{\pi}{2}\right)=\cos(x')" />.
+      <Katex tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right)=\begin{bmatrix}2&0\\0&\tfrac13\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}" />
+      <br />
+      <Katex tex="x'=2x,\ x=\tfrac{x'}{2}" />
+      <br />
+      <Katex tex="y'=\tfrac13y,\ y=3y'" />
+      <br />
+      <Katex tex="y=3\sin\!\left(2\left(x+\tfrac{\pi}{4}\right)\right)" />
+      <br />
+      <Katex tex="3y'=3\sin\!\left(2\left(\tfrac{x'}{2}+\tfrac{\pi}{4}\right)\right)" />
+      <br />
+      <Katex tex="y'=\sin\!\left(x'+\tfrac{\pi}{2}\right)" />
+      <br />
+      <Katex tex="y'=\cos(x')" />
     </>
   ),
 }
@@ -30,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=\frac{x'}{2}, \qquad y=3y'" />,
-    reason: <>Invert, so the <em>old</em> variables are expressed in terms of the new ones. This is the step that gets reversed most often — the substitution needs old in terms of new, not the other way round.</>,
+    reason: <>Invert, so the <em>old</em> variables are expressed in terms of the new ones. It is an easy step to get backwards — the substitution needs old in terms of new, not the other way round.</>,
   },
   {
     working: <Katex display tex="3y' = 3\sin\!\left(2\left(\frac{x'}{2}+\frac{\pi}{4}\right)\right)" />,
@@ -46,7 +55,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y=\cos(x)}" />,
-    reason: <>Since <Katex tex="\sin\!\left(\theta+\tfrac{\pi}{2}\right)=\cos(\theta)" /> — a sine shifted a quarter-period left is a cosine. Option E, <Katex tex="\cos\!\left(x-\tfrac{\pi}{2}\right)" />, is <Katex tex="\sin(x)" /> in disguise and is what you get from shifting the wrong way.</>,
+    reason: <>Since <Katex tex="\sin\!\left(\theta+\tfrac{\pi}{2}\right)=\cos(\theta)" /> — a sine shifted a quarter-period left is a cosine. Matches option <b>D</b>. Option B (23%), <Katex tex="\sin\!\left(x-\tfrac{\pi}{2}\right)" />, shifts the wrong way; option E, <Katex tex="\cos\!\left(x-\tfrac{\pi}{2}\right)" />, is <Katex tex="\sin(x)" /> in disguise.</>,
   },
 ]
 

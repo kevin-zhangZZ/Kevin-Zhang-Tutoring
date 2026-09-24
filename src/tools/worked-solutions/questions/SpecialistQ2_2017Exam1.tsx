@@ -14,12 +14,20 @@ const EXAM: SAExaminerStats = {
     <>
       This question tended to be answered well by students who knew that partial fractions
       were required and which form of partial fractions to use. A large number of students
-      did not use partial fractions, which meant that no progress could be made. Several
-      students used partial fractions of the form{' '}
-      <Katex tex="\tfrac{A}{x}+\tfrac{B}{1+x^2}" />, often getting correct partial fractions
-      with incorrect working. A number of students found the correct antiderivative but made
-      errors in final arithmetic simplification. Others did not put the answer in the correct
-      form.
+      did not use partial fractions, which meant that no progress could be made. Students gave
+      answers such as <Katex tex="\log_e\!\left(x(1+x^2)\right)" /> and{' '}
+      <Katex tex="\log_e\!\left(x\times\tan^{-1}(x)\right)" /> using this approach. Several
+      students used partial fractions of the form <Katex tex="\tfrac{A}{x}+\tfrac{B}{1+x^2}" />,
+      often getting correct partial fractions with incorrect working, or{' '}
+      <Katex tex="\tfrac{A}{x}+\tfrac{Bx}{1+x^2}" />, which led to correct partial fractions
+      since the value of <Katex tex="C" /> was zero. Some used a substitution such as{' '}
+      <Katex tex="u=x^2" /> or <Katex tex="u=1+x^2" />, which led to an alternative partial
+      fractions form that was sometimes handled successfully but often terminals were not
+      adjusted. Occasionally <Katex tex="x=\tan(u)" /> was used but this was rarely followed
+      through correctly. A number of students found the correct antiderivative but made errors
+      in final arithmetic simplification work, which frequently gave the incorrect answer{' '}
+      <Katex tex="\log_e\!\left(\sqrt{\tfrac34}\right)" />. Others did not put the answer in the
+      correct form, often giving <Katex tex="\log_e\!\left(\tfrac{\sqrt6}{2}\right)" />.
     </>
   ),
 }
@@ -76,6 +84,8 @@ export default function SpecialistQ2_2017Exam1() {
           your answer in the form <Katex tex="\log_e\!\sqrt{\tfrac{a}{b}}" />, where{' '}
           <Katex tex="a" /> and <Katex tex="b" /> are positive integers.
         </p>
+      </Background>
+      <Background>
         <p>
           <strong>Which partial-fraction form?</strong> Match the numerator to the factor: a{' '}
           <em>linear</em> factor gets a constant on top, an <em>irreducible quadratic</em>{' '}

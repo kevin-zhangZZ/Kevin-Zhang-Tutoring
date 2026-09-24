@@ -17,9 +17,11 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Students needed to recognise that the dot product of the two velocity vectors was zero,
-      and that the <Katex tex="\underset{\sim}{j}" /> component of{' '}
-      <Katex tex="\underset{\sim}{v_Q}" /> vanishes at <Katex tex="t=1" />.
+      Students needed to recognise that the dot (scalar) product of the two velocity vectors was
+      zero and that <Katex tex="b+2=1+a" /> when <Katex tex="t=1" />.
+      <br />
+      A common incorrect response to the equation <Katex tex="(3+2a)(1+a)=0" /> was{' '}
+      <Katex tex="a=-\dfrac{2}{3}" /> in addition to <Katex tex="a=-1" />.
     </>
   ),
 }
@@ -29,8 +31,8 @@ const EXAM_C: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Some students gave <Katex tex="a=-5" /> and <Katex tex="b=-6" /> in addition to the
-      correct solution. In this case, students were not awarded the mark.
+      Some students gave <Katex tex="a=-5" /> and <Katex tex="b=-6" /> in addition to the correct
+      solution. In this case, students were not awarded the mark for this question.
     </>
   ),
 }
@@ -38,7 +40,7 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{collision at } t=1 \implies \underset{\sim}{r_P}(1) = \underset{\sim}{r_Q}(1)" />,
-    reason: 'Both components must match — but only the j components involve c.',
+    reason: <>Both components must match — but only the j components involve c.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{j}: \quad -1 = 2(1)^2+c(1)+1" />,
@@ -46,7 +48,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-1 = 3+c" />,
-    reason: 'Evaluating the right side.',
+    reason: <>Evaluating the right side.</>,
   },
   {
     working: <Katex display tex="\boxed{c = -4}" />,
@@ -56,24 +58,24 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{v_P}(t) = \left(3t^2+2at\right)\underset{\sim}{i}, \qquad \underset{\sim}{v_Q}(t) = (b+2)\underset{\sim}{i}+(4t+c)\underset{\sim}{j}" />,
+    working: <Katex display tex="\underset{\sim}{v_P}(t) = \left(3t^2+2at\right)\underset{\sim}{i}, \qquad \underset{\sim}{v_Q}(t) = (b+2)\underset{\sim}{i}+(4t+c+1)\underset{\sim}{j}" />,
     reason: <>Differentiating each position vector. <Katex tex="\underset{\sim}{r_P}" /> has a constant <Katex tex="\underset{\sim}{j}" /> component, so <Katex tex="\underset{\sim}{v_P}" /> has none.</>,
   },
   {
-    working: <Katex display tex="t=1, \ c=-4: \quad 4t+c = 0 \implies \underset{\sim}{v_Q}(1) = (b+2)\underset{\sim}{i}" />,
-    reason: <>The key observation: at the moment of collision <em>both</em> velocities point along <Katex tex="\underset{\sim}{i}" />.</>,
+    working: <Katex display tex="t=1, \ c=-4: \quad \underset{\sim}{v_P}(1) = (3+2a)\underset{\sim}{i}, \qquad \underset{\sim}{v_Q}(1) = (b+2)\underset{\sim}{i}+\underset{\sim}{j}" />,
+    reason: <>The <Katex tex="\underset{\sim}{j}" /> component of <Katex tex="\underset{\sim}{v_Q}" /> is <Katex tex="4t-3" />, which is 1 at <Katex tex="t=1" />.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{v_P}(1)\cdot\underset{\sim}{v_Q}(1) = 0 \implies (3+2a)(b+2) = 0" />,
-    reason: <>Perpendicular means zero dot product. Two parallel vectors can only be perpendicular if one of them is the zero vector — which is exactly what this factorised equation says.</>,
+    working: <Katex display tex="\underset{\sim}{v_P}(1)\cdot\underset{\sim}{v_Q}(1) = (3+2a)(b+2)+0 = 0" />,
+    reason: <>Perpendicular means zero dot product. <Katex tex="\underset{\sim}{v_P}(1)" /> has no <Katex tex="\underset{\sim}{j}" /> component, so only the <Katex tex="\underset{\sim}{i}" /> components contribute.</>,
   },
   {
     working: <Katex display tex="b = a-1 \implies (3+2a)(a+1) = 0" />,
-    reason: 'Substituting the relation from part a.',
+    reason: <>Substituting the relation from part a.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\tfrac32 \ \text{ or } \ a = -1}" />,
-    reason: <>The first makes <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{0}" />, the second makes <Katex tex="\underset{\sim}{v_Q}(1)=\underset{\sim}{0}" />. Both were required.</>,
+    reason: <>The first makes <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{0}" />; the second makes <Katex tex="\underset{\sim}{v_Q}(1)=\underset{\sim}{j}" />, at right angles to <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{i}" />. Both were required.</>,
   },
 ]
 
@@ -84,11 +86,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t=1: \quad \left|\underset{\sim}{a_P}\right| = |6+2a|, \qquad \left|\underset{\sim}{a_Q}\right| = 4" />,
-    reason: 'The magnitudes to equate.',
+    reason: <>The magnitudes to equate.</>,
   },
   {
     working: <Katex display tex="|6+2a| = 4 \implies 6+2a = \pm4 \implies a = -1 \ \text{ or } \ a = -5" />,
-    reason: 'Two candidates from this condition alone.',
+    reason: <>Two candidates from this condition alone.</>,
   },
   {
     working: <Katex display tex="\text{part b. also requires } a\in\left\{-\tfrac32,\,-1\right\}" />,
@@ -116,20 +118,21 @@ export default function SpecialistQ5_2025Exam1() {
           />
         </div>
         <p>
-          where <Katex tex="t\ge0" /> and <Katex tex="a,b,c\in\mathbb{R}" />. The particles
-          collide when <Katex tex="t=1" />.
+          where <Katex tex="t\ge0" /> and <Katex tex="a,b,c\in R" />.
+          <br />
+          The particles collide when <Katex tex="t=1" />.
         </p>
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
         <Background>
           <p>
-            Once <Katex tex="c=-4" />, the <Katex tex="\underset{\sim}{j}" /> component of{' '}
-            <Katex tex="\underset{\sim}{v_Q}" /> is <Katex tex="4t-4" />, which is zero
-            exactly at <Katex tex="t=1" />. So at the moment of collision <em>both</em>{' '}
-            velocities lie along <Katex tex="\underset{\sim}{i}" /> — and the only way two
-            parallel vectors can be perpendicular is if one of them vanishes. That is what
-            makes part b. a factorised equation rather than a genuine angle calculation.
+            Particle <Katex tex="P" /> only ever moves along <Katex tex="\underset{\sim}{i}" />,
+            so its velocity has no <Katex tex="\underset{\sim}{j}" /> component. The dot product
+            of the two velocities at <Katex tex="t=1" /> is therefore just the product of their{' '}
+            <Katex tex="\underset{\sim}{i}" /> components, <Katex tex="(3+2a)(b+2)" />, and the
+            collision condition <Katex tex="b+2=1+a" /> from part a. turns it into a factorised
+            quadratic in <Katex tex="a" />.
           </p>
           <p>
             Part c. adds a condition rather than replacing one. The perpendicularity from
@@ -141,6 +144,7 @@ export default function SpecialistQ5_2025Exam1() {
 
       <PartCard
         letter="a"
+        topic="Collision"
         marks={1}
         statement={
           <>
@@ -153,12 +157,16 @@ export default function SpecialistQ5_2025Exam1() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
+        <p>When the particles collide, their velocities are at right angles to each other.</p>
+      </div>
+
       <PartCard
         letter="b"
+        topic="Perpendicular Velocities"
         marks={2}
         statement={
           <>
-            When the particles collide, their velocities are at right angles to each other.
             Find the two possible values of <Katex tex="a" /> for collision to occur when{' '}
             <Katex tex="t=1" />.
           </>
@@ -170,11 +178,14 @@ export default function SpecialistQ5_2025Exam1() {
 
       <PartCard
         letter="c"
+        topic="Acceleration"
         marks={1}
         statement={
           <>
             When the particles collide at <Katex tex="t=1" />, the magnitudes of their
-            accelerations are equal. Find the values of <Katex tex="a" /> and{' '}
+            accelerations are equal.
+            <br />
+            Find the values of <Katex tex="a" /> and{' '}
             <Katex tex="b" /> for collision to occur when <Katex tex="t=1" />.
           </>
         }

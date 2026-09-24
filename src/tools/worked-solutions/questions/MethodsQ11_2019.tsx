@@ -10,12 +10,23 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 30, B: 23, C: 16, D: 12, E: 19 },
   answer: 'A',
   noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="\Pr(A)=p" />
+      <br />
+      <Katex tex="\Pr(B\mid A)=\dfrac{\Pr(A\cap B)}{\Pr(A)}=\dfrac{\Pr(A)\times\Pr(B)}{\Pr(A)}=\Pr(B)=m" />
+      <br />
+      <Katex tex="\Pr(B\mid A')=\dfrac{\Pr(A'\cap B)}{\Pr(A')}=\dfrac{\Pr(A')\times\Pr(B)}{\Pr(A')}=\Pr(B)=n" />
+      <br />
+      Hence <Katex tex="m=n" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(A)=p,\quad \Pr(B\mid A)=m,\quad \Pr(B\mid A')=n" />,
-    reason: 'Given information.',
+    reason: <>Given information.</>,
   },
   {
     working: <Katex display tex="A,B \text{ independent} \iff \Pr(B\mid A)=\Pr(B)" />,

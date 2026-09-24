@@ -12,8 +12,8 @@ const EXAM: SAExaminerStats = {
     <>
       A large number of students used a trigonometric identity to expand{' '}
       <Katex tex="\cos(x+y)" /> before differentiating. Only a minority of students who used
-      this approach were able to find the correct answer, with many finding themselves
-      overwhelmed by the large number of terms produced.
+      this approach were able to find the correct answer, with many students finding
+      themselves overwhelmed by the large number of terms produced using this method.
     </>
   ),
 }
@@ -21,7 +21,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x\cos(x+y) = \frac{\pi}{48}" />,
-    reason: 'Differentiate both sides with respect to x, as it stands — no expansion.',
+    reason: <>Differentiate both sides with respect to x, as it stands — no expansion.</>,
   },
   {
     working: <Katex display tex="\cos(x+y)+x\cdot\left(-\sin(x+y)\right)\left(1+\frac{dy}{dx}\right) = 0" />,
@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x+y = \frac{\pi}{24}+\frac{7\pi}{24} = \frac{8\pi}{24} = \frac{\pi}{3}" />,
-    reason: 'Work this out before substituting — it is the whole reason the given point was chosen.',
+    reason: <>Work this out before substituting — it is the whole reason the given point was chosen.</>,
   },
   {
     working: <Katex display tex="\frac{1}{2}-\frac{\pi}{24}\cdot\frac{\sqrt3}{2}\left(1+\frac{dy}{dx}\right) = 0" />,
@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{\sqrt3\,\pi}{48}\left(1+\frac{dy}{dx}\right) = \frac{1}{2} \implies 1+\frac{dy}{dx} = \frac{48}{2\sqrt3\,\pi} = \frac{24}{\sqrt3\,\pi}" />,
-    reason: 'Isolating the bracket.',
+    reason: <>Isolating the bracket.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = \frac{24}{\sqrt3\,\pi}-1 = \frac{24\sqrt3}{3\pi}-1 = \frac{8\sqrt3}{\pi}-1" />,
@@ -61,7 +61,7 @@ export default function SpecialistQ7_2022Exam1() {
           Find the gradient of the curve at the point{' '}
           <Katex tex="\left(\dfrac{\pi}{24},\dfrac{7\pi}{24}\right)" />. Give your answer in
           the form <Katex tex="\dfrac{a\sqrt b-\pi}{\pi}" />, where{' '}
-          <Katex tex="a,b\in\mathbb{Z}" />.
+          <Katex tex="a,b\in Z" />.
         </p>
       </div>
 
@@ -70,8 +70,8 @@ export default function SpecialistQ7_2022Exam1() {
           <p>
             Leave <Katex tex="\cos(x+y)" /> alone. Expanding it with the compound-angle
             formula turns one clean product rule into four terms, each needing its own
-            product and chain rule — the report is explicit that almost everyone who did
-            this got lost. Differentiate the expression exactly as printed, then substitute.
+            product and chain rule — the report notes only a minority of students who did
+            this found the correct answer. Differentiate the expression exactly as printed, then substitute.
           </p>
           <p>
             Substituting numbers <em>after</em> differentiating, rather than trying to make{' '}

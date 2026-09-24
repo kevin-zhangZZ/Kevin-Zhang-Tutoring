@@ -1,5 +1,5 @@
 // 2016 Specialist Mathematics — Exam 2, MCQ 7. VCAA examination report: 37% correct —
-// the hardest MCQ in the 2014-2016 Specialist Exam 2 papers.
+// the hardest MCQ on this paper.
 // Parametric differentiation: find dy/dx in terms of the parameter t.
 // Question text transcribed from the original paper; solution is original.
 
@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <Katex
       display
-      tex="\begin{aligned} \frac{dy}{dx} &= \frac{dy/dt}{dx/dt} \\ &= \frac{\cos(2t)}{\cos(t)+\sin(t)} \\ &= \frac{\cos^2(t)-\sin^2(t)}{\cos(t)+\sin(t)} \\ &= \cos(t)-\sin(t) \end{aligned}"
+      tex="\begin{aligned} \frac{dy}{dx} &= \frac{dy}{dt}\,\frac{dt}{dx} = \frac{\cos(2t)}{\cos(t)+\sin(t)} \\ &= \frac{\cos^2(t)-\sin^2(t)}{\cos(t)+\sin(t)} \\ &= \cos(t)-\sin(t) \end{aligned}"
     />
   ),
 }
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \frac{dy}{dx} &= \frac{dy/dt}{dx/dt} \\ &= \frac{\cos(2t)}{\cos(t)+\sin(t)} \end{aligned}" />,
-    reason: 'Chain rule for a parametric curve.',
+    reason: <>Chain rule for a parametric curve.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \cos(2t) &= \cos^2(t)-\sin^2(t) \\ &= \bigl(\cos(t)-\sin(t)\bigr)\bigl(\cos(t)+\sin(t)\bigr) \end{aligned}" />,
@@ -37,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \cos(t)-\sin(t)}" />,
-    reason: <>The <Katex tex="\bigl(\cos(t)+\sin(t)\bigr)" /> factor cancels. Matches option <b>A</b>.</>,
+    reason: <>The <Katex tex="\bigl(\cos(t)+\sin(t)\bigr)" /> factor cancels. Matches option <b>A</b>. Option E (21%) has <Katex tex="\cos(t)-\sin(t)" /> in the denominator — a sign slip in <Katex tex="\tfrac{d}{dt}\bigl(-\cos(t)\bigr)=+\sin(t)" /> — and never simplifies.</>,
   },
 ]
 

@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\tan^2(x)+1 = \sec^2(x) = \frac{1}{\cos^2(x)}" />,
-    reason: 'Pythagorean identity.',
+    reason: <>Pythagorean identity.</>,
   },
   {
     working: <Katex display tex="\frac{4\sin^2(x)}{\tan^2(x)+1} = 4\sin^2(x)\cos^2(x)" />,
-    reason: 'Dividing by 1/cos²(x) is the same as multiplying by cos²(x).',
+    reason: <>Dividing by <Katex tex="\tfrac{1}{\cos^2(x)}" /> is the same as multiplying by <Katex tex="\cos^2(x)" />.</>,
   },
   {
     working: <Katex display tex="4\sin^2(x)\cos^2(x) = \big(2\sin(x)\cos(x)\big)^2 = \sin^2(2x)" />,
@@ -26,11 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1 - \sin^2(2x)" />,
-    reason: 'Substitute back into the original expression.',
+    reason: <>Substitute back into the original expression.</>,
   },
   {
     working: <Katex display tex="\boxed{1-\sin^2(2x) = \cos^2(2x)}" />,
-    reason: <>Pythagorean identity again — matches option <b>E</b>.</>,
+    reason: <>Pythagorean identity again. Matches option <b>E</b>.</>,
   },
 ]
 

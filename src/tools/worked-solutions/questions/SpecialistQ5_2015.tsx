@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left|z^5\right| = 4\sqrt2,\quad \mathrm{Arg}\!\left(z^5\right) = \tfrac{5\pi}{12}}" />,
-    reason: <>Option B, since <Katex tex="\left(\sqrt2\right)^5=4\sqrt2" />. The argument <Katex tex="\tfrac{5\pi}{12}" /> is already in <Katex tex="(-\pi,\pi]" />, so no adjustment is needed.</>,
+    reason: <>Matches option <b>B</b>, since <Katex tex="\left(\sqrt2\right)^5=4\sqrt2" />. The argument <Katex tex="\tfrac{5\pi}{12}" /> is already in <Katex tex="(-\pi,\pi]" />, so no adjustment is needed.</>,
   },
 ]
 

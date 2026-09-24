@@ -6,6 +6,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2020-mcq17-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 10, B: 21, C: 42, D: 17, E: 9 },
@@ -13,6 +14,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
+      <img src={reportGraphSrc} alt="The report's graph of y = −ln(x + 2) with its vertical asymptote x = −2" className="w-full max-w-[360px] my-1" />
       The maximum value of <Katex tex="c" /> occurs when the tangent to <Katex tex="f" /> is at <Katex tex="x=0" />.{' '}
       <Katex tex="c=f(0)=-\log_e(2)" />.
     </>
@@ -22,7 +24,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = -\log_e(x+2) \;\implies\; f'(x) = -\frac{1}{x+2}" />,
-    reason: 'Differentiate.',
+    reason: <>Differentiate.</>,
   },
   {
     working: <Katex display tex="\text{Tangent at } x_0:\quad y = f(x_0) + f'(x_0)(x-x_0)" />,
@@ -46,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{c = f(0) = -\log_e(0+2) = -\log_e(2)}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b> (<Katex tex="-1" />) is the intercept of the tangent at <Katex tex="x=-1" />, which is smaller; option <b>E</b> has the sign of <Katex tex="f(0)" /> wrong.</>,
   },
 ]
 

@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(R_1 \cap W_2) = \frac26 \times \frac25 = \frac{4}{30}" />,
-    reason: <>The other order: red from Box 1, white from Box 2. Missing this second case is the main way marks are lost here.</>,
+    reason: <>The other order: red from Box 1, white from Box 2. Missing this second case leaves you on option C.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{score}=+1) = \frac{12}{30}+\frac{4}{30} = \frac{16}{30}" />,

@@ -81,7 +81,7 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{1-p}{2p+1} = 0.3" />,
-    reason: <>Straight from part (b)(i) — the report says most students did not make the connection.</>,
+    reason: <>Straight from part (b)(i) — the report says many students missed that connection.</>,
   },
   {
     working: <Katex display tex="1-p = 0.3(2p+1) = 0.6p+0.3" />,
@@ -114,6 +114,7 @@ export default function MethodsQ9_2015Exam1() {
 
       <PartCard
         letter="a"
+        topic="Total Probability"
         marks={1}
         statement={
           <>
@@ -140,6 +141,7 @@ export default function MethodsQ9_2015Exam1() {
 
       <PartCard
         letter="b.i"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>
@@ -155,6 +157,7 @@ export default function MethodsQ9_2015Exam1() {
 
       <PartCard
         letter="b.ii"
+        topic="Solve for p"
         marks={1}
         statement={
           <>

@@ -16,7 +16,9 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was answered very well. However, a significant number of students
       expressed <Katex tex="f(x)" /> in partial fraction form before differentiating and this
-      sometimes introduced errors.
+      sometimes introduced errors. Other errors involved incorrect results for{' '}
+      <Katex tex="f'(x)" />. A small number of students isolated the quadratic denominator and
+      used it to find the turning point.
     </>
   ),
 }
@@ -37,9 +39,9 @@ const EXAM_C: SAExaminerStats = {
   average: 2.5,
   comment: (
     <>
-      Some gained only partial marks where graphs were not drawn over the correct domain,
-      where the <Katex tex="y" />-intercept was not found, or where the curve swung away from
-      an asymptote.
+      Many students answered this question well; however, some gained only partial marks
+      where graphs were not drawn over the correct domain, where the <Katex tex="y" />-intercept
+      was not found or where the curve swung away from an asymptote.
     </>
   ),
 }
@@ -117,7 +119,7 @@ const ROWS_C: WorkingRow[] = [
       <div className="flex flex-col gap-2">
         <img
           src={graphSrc}
-          alt="Three branches of y = 9/((x+2)(x-4)) on −6 ≤ x ≤ 6: two positive branches outside the dashed vertical asymptotes x = −2 and x = 4 falling towards y = 0, and a middle branch below the axis with a maximum at (1, −1) and y-intercept (0, −9/8)"
+          alt="This site's sketch of the three branches of y = 9/((x+2)(x-4)) on VCAA's −6 ≤ x ≤ 6 grid: two positive branches outside the dashed vertical asymptotes x = −2 and x = 4 falling towards y = 0, and a middle branch below the axis with a maximum at (1, −1) and y-intercept (0, −9/8)"
           className="w-full max-w-[380px]"
         />
       </div>
@@ -152,7 +154,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V \approx 12.85}" />,
-    reason: <>To two decimal places, as asked.</>,
+    reason: <>To two decimal places, as asked. Sanity check: <Katex tex="|f|" /> runs from <Katex tex="\tfrac98" /> down to 1 and back to <Katex tex="\tfrac95" /> over <Katex tex="[0,3]" />, so the solid is roughly a cylinder of radius a little over 1 and length 3 — <Katex tex="\pi\times1.2^2\times3\approx13.6" />, close ✓.</>,
   },
 ]
 
@@ -169,6 +171,7 @@ export default function SpecialistQ1_2014Exam2() {
 
       <PartCard
         letter="a"
+        topic="Stationary Points"
         marks={3}
         statement={<>Find the coordinates of the stationary point(s).</>}
         examinerReport={EXAM_A}
@@ -178,6 +181,7 @@ export default function SpecialistQ1_2014Exam2() {
 
       <PartCard
         letter="b"
+        topic="Asymptotes"
         marks={2}
         statement={<>State the equations of all asymptotes of the graph of <Katex tex="f" />.</>}
         examinerReport={EXAM_B}
@@ -187,6 +191,7 @@ export default function SpecialistQ1_2014Exam2() {
 
       <PartCard
         letter="c"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
@@ -202,12 +207,13 @@ export default function SpecialistQ1_2014Exam2() {
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
         The region bounded by the coordinate axes, the graph of <Katex tex="f" /> and the line{' '}
-        <Katex tex="x=3" /> is rotated about the <Katex tex="x" />-axis to form a solid of
+        <Katex tex="x=3" />, is rotated about the <Katex tex="x" />-axis to form a solid of
         revolution.
       </div>
 
       <PartCard
         letter="d.i"
+        topic="Volume of Revolution"
         marks={2}
         statement={
           <>
@@ -222,6 +228,7 @@ export default function SpecialistQ1_2014Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Volume of Revolution"
         marks={1}
         statement={<>Find the volume of this solid, correct to two decimal places.</>}
         examinerReport={EXAM_DII}

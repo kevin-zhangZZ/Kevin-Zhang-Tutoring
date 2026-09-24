@@ -12,8 +12,6 @@ const EXAM_A: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Line perpendicular to <Katex tex="y=2x-4" /> and passing through the origin is{' '}
-      <Katex tex="y=-\tfrac{x}{2}" />. <Katex tex="P" /> is the point of intersection.
       Students who solved this problem using Method 1 were generally successful. Students who
       tackled this question by finding an expression for <Katex tex="OP" /> in terms of{' '}
       <Katex tex="x" />, then setting the derivative to zero, often had difficulty finding the
@@ -69,7 +67,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="OP = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2} = \sqrt{\left(\frac85-0\right)^2+\left(-\frac45-0\right)^2}" />,
-    reason: <>Distance from the origin to <Katex tex="P" />. The report notes marks lost to a misquoted distance formula, so write it out before substituting.</>,
+    reason: <>Distance from the origin to <Katex tex="P" />. The report notes some students misquoted the distance formula, so write it out before substituting.</>,
   },
   {
     working: <Katex display tex="= \sqrt{\frac{64}{25}+\frac{16}{25}} = \sqrt{\frac{80}{25}}" />,
@@ -81,7 +79,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{OP = \frac{4\sqrt{5}}{5}}" />,
-    reason: <>This is the required form <Katex tex="\tfrac{a\sqrt b}{b}" /> with <Katex tex="a=4" /> and <Katex tex="b=5" />, both positive integers — check the answer against the format the question prescribes before moving on. (<Katex tex="\tfrac{4\sqrt5}{5}\approx1.79" />, which is believable: the line passes about two units from the origin at its closest.)</>,
+    reason: <>This is the required form <Katex tex="\tfrac{a\sqrt b}{b}" /> with <Katex tex="a=4" /> and <Katex tex="b=5" />, both positive integers — check the answer against the format the question prescribes before moving on. (<Katex tex="\tfrac{4\sqrt5}{5}\approx1.79" />, a little less than the distance <Katex tex="2" /> from <Katex tex="O" /> to the line's <Katex tex="x" />-intercept <Katex tex="(2,0)" /> — as it must be, since that point is on the line but is not the closest one.)</>,
   },
 ]
 
@@ -97,19 +95,20 @@ export default function MethodsQ7_2018Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={3} statement={<>Find the coordinates of <Katex tex="P" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Closest Point" marks={3} statement={<>Find the coordinates of <Katex tex="P" />.</>} examinerReport={EXAM_A}>
         <Background>
           <p>
             "Minimise a distance" looks like a calculus problem, and it can be done that way:
             minimise <Katex tex="OP^2=x^2+(2x-4)^2" />, differentiate, set to zero. That route
-            works and gives the same answer, but the report records that most students who
-            took it mis-differentiated somewhere along the way.
+            works and gives the same answer (it is the report's Method 2), but the report says
+            students who took it often had difficulty finding the derivative correctly.
           </p>
           <p>
             The geometry is shorter and safer. The closest point on a line to any given point
             is the foot of the perpendicular from it — so drop a perpendicular from the origin
-            and find where it crosses. No calculus at all, which is exactly the kind of
-            recognition Exam 1 rewards.
+            and find where it crosses. That is the report's Method 1, and the working below
+            follows it. No calculus at all, which is exactly the kind of recognition Exam 1
+            rewards.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -117,6 +116,7 @@ export default function MethodsQ7_2018Exam1() {
 
       <PartCard
         letter="b"
+        topic="Distance"
         marks={2}
         statement={<>Find the distance <Katex tex="OP" />. Express your answer in the form <Katex tex="\dfrac{a\sqrt{b}}{b}" />, where <Katex tex="a" /> and <Katex tex="b" /> are positive integers.</>}
         examinerReport={EXAM_B}

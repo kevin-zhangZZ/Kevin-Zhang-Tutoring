@@ -14,12 +14,11 @@ const EXAMINER: SAExaminerStats = {
   comment: (
     <>
       Most students were able to differentiate implicitly correctly. It made little difference
-      whether students substituted the values of <Katex tex="x" /> and <Katex tex="y" /> into
-      their equation before or after obtaining an expression for <Katex tex="\tfrac{dy}{dx}" />.
-      Although various arithmetic and algebraic errors were seen, many students knew the exact
-      values required. Some students were unable to express the answer in the required form.
-      Using the product and chain rules in implicit differentiation was an area of strength;
-      algebra was an area of weakness.
+      if students substituted the values of <Katex tex="x" /> and <Katex tex="y" /> into their
+      equation before or after obtaining an expression for <Katex tex="\dfrac{dy}{dx}" />. Although
+      various arithmetic and algebraic errors were seen, many students knew the exact values for{' '}
+      <Katex tex="\cos\left(\dfrac{\pi}{6}\right)" /> and <Katex tex="\sin\left(\dfrac{\pi}{3}\right)" />.
+      Some students were unable to express the answer in the required form.
     </>
   ),
 }
@@ -43,6 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2x\cos\left(x^2\right)-2y\sin\left(y^2\right)\dfrac{dy}{dx} = \dfrac{3\sqrt2}{\pi}\left(y+x\dfrac{dy}{dx}\right)" />,
+    reason: <>The three derivatives assembled.</>,
   },
   {
     working: <Katex display tex="x = \dfrac{\sqrt\pi}{\sqrt6} \implies x^2 = \dfrac{\pi}{6}, \qquad y = \dfrac{\sqrt\pi}{\sqrt3} \implies y^2 = \dfrac{\pi}{3}" />,
@@ -102,7 +102,7 @@ export default function SpecialistQ10_2019Exam1() {
         <p>
           Give your answer in the form{' '}
           <Katex tex="\dfrac{\pi-a\sqrt b}{\sqrt a\left(\pi+\sqrt b\right)}" />, where{' '}
-          <Katex tex="a,b\in\mathbb{Z}^+" />.
+          <Katex tex="a,b\in Z^+" />.
         </p>
       </div>
 
@@ -118,9 +118,10 @@ export default function SpecialistQ10_2019Exam1() {
           </p>
           <p>
             Then it is an algebra problem: gather the <Katex tex="\tfrac{dy}{dx}" /> terms on one
-            side, factor, and divide. The report flags algebra — not the calculus — as where most
-            marks were lost, so it's worth substituting the given point early to keep the
-            expressions small.
+            side, factor, and divide. The report's general comments list algebra in this question
+            as an area of weakness, so it's worth substituting the given point early to keep the
+            expressions small (the report says it made little difference whether students
+            substituted before or after finding <Katex tex="\tfrac{dy}{dx}" />).
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

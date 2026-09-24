@@ -9,7 +9,15 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 3, B: 15, C: 39, D: 40, E: 3 },
   answer: 'C',
-  comment: <>For the maximal domain, solve <Katex tex="\dfrac{x+a}{x-a}>0" /> for <Katex tex="x" />. The maximal domain is <Katex tex="\mathbb{R}\setminus[-a,a]" />.</>,
+  comment: (
+    <>
+      <Katex tex="f(x)=\log_e\left(\dfrac{x+a}{x-a}\right),\ a>0" />
+      <br />
+      For the maximal domain solve <Katex tex="\dfrac{x+a}{x-a}>0" /> for <Katex tex="x" />.
+      <br />
+      The maximal domain is <Katex tex="R\setminus[-a,a]" />.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -19,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Critical points: } x=-a,\ x=a" />,
-    reason: 'Where the numerator or denominator is zero.',
+    reason: <>Where the numerator or denominator is zero.</>,
   },
   {
     working: (
@@ -32,8 +40,8 @@ const ROWS: WorkingRow[] = [
     reason: <>Test the sign of <Katex tex="\dfrac{x+a}{x-a}" /> on each of the three intervals created by the critical points (recall <Katex tex="a>0" />).</>,
   },
   {
-    working: <Katex display tex="\boxed{(-\infty,-a)\cup(a,\infty) = \mathbb{R}\setminus[-a,a]}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    working: <Katex display tex="\boxed{(-\infty,-a)\cup(a,\infty) = R\setminus[-a,a]}" />,
+    reason: <>Matches option <b>C</b>. Option D wrongly includes <Katex tex="x=\pm a" />, where the fraction is zero or undefined.</>,
   },
 ]
 
@@ -49,9 +57,9 @@ export default function MethodsQ13_2022() {
       options={[
         { letter: 'A', content: <Katex tex="[-a,a]" /> },
         { letter: 'B', content: <Katex tex="(-a,a)" /> },
-        { letter: 'C', content: <Katex tex="\mathbb{R}\setminus[-a,a]" />, isAnswer: true },
-        { letter: 'D', content: <Katex tex="\mathbb{R}\setminus(-a,a)" /> },
-        { letter: 'E', content: <Katex tex="\mathbb{R}" /> },
+        { letter: 'C', content: <Katex tex="R\setminus[-a,a]" />, isAnswer: true },
+        { letter: 'D', content: <Katex tex="R\setminus(-a,a)" /> },
+        { letter: 'E', content: <Katex tex="R" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

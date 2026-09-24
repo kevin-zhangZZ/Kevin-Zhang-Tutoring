@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{2622.676\ldots-2500}{12} = \frac{122.676\ldots}{12}" />,
-    reason: <>The 122.68 is the total growth over the year; dividing by 12 is the step options D and E skip.</>,
+    reason: <>The 122.68 is the total growth over the year; the average rate divides it by the 12 months.</>,
   },
   {
     working: <Katex display tex="\boxed{\$10.22 \approx \$10.20 \text{ per month}}" />,
@@ -34,19 +34,26 @@ export default function MethodsQ13_2021() {
   return (
     <MCQShell
       question={
-        <p>
-          The value of an investment, in dollars, after <Katex tex="n" /> months can be
-          modelled by the function <Katex tex="f(n)=2500\times(1.004)^n" /> where{' '}
-          <Katex tex="n\in\{0,1,2,\ldots\}" />. The average rate of change of the value of
-          the investment over the first 12 months is closest to
-        </p>
+        <>
+          <p>
+            The value of an investment, in dollars, after <Katex tex="n" /> months can be
+            modelled by the function
+          </p>
+          <Katex display tex="f(n)=2500\times(1.004)^n" />
+          <p>
+            where <Katex tex="n\in\{0,1,2,\ldots\}" />.
+            <br />
+            The average rate of change of the value of the investment over the first 12 months
+            is closest to
+          </p>
+        </>
       }
       options={[
-        { letter: 'A', content: <>$10.00 per month</> },
-        { letter: 'B', content: <>$10.20 per month</>, isAnswer: true },
-        { letter: 'C', content: <>$10.50 per month</> },
-        { letter: 'D', content: <>$125.00 per month</> },
-        { letter: 'E', content: <>$127.00 per month</> },
+        { letter: 'A', content: <>$10.00 per month.</> },
+        { letter: 'B', content: <>$10.20 per month.</>, isAnswer: true },
+        { letter: 'C', content: <>$10.50 per month.</> },
+        { letter: 'D', content: <>$125.00 per month.</> },
+        { letter: 'E', content: <>$127.00 per month.</> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

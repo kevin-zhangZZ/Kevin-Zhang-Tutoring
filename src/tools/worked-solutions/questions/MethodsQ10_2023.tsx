@@ -9,20 +9,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 60, C: 14, D: 13, E: 5 },
   answer: 'B',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_1^{6}\frac{x-1}{20}\,dx = \left[\frac{(x-1)^2}{40}\right]_1^{6} = \frac{25}{40} = \frac58" />,
-    reason: 'How much probability the first piece carries. Work this out before anything else.',
+    reason: <>How much probability the first piece carries. Work this out before anything else.</>,
   },
   {
     working: <Katex display tex="0.35 < \tfrac58 = 0.625 \implies k \text{ lies in } [1,6)" />,
-    reason: 'So only the first rule matters — using the second piece is what produces the other options.',
+    reason: <>So only the first rule matters.</>,
   },
   {
     working: <Katex display tex="\Pr(X<k) = \int_1^{k}\frac{x-1}{20}\,dx = \frac{(k-1)^2}{40}" />,
-    reason: 'The cumulative area from the left endpoint.',
+    reason: <>The cumulative area from the left endpoint.</>,
   },
   {
     working: <Katex display tex="\frac{(k-1)^2}{40} = 0.35 \implies (k-1)^2 = 14" />,
@@ -34,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \sqrt{14}+1}" />,
-    reason: <>Option <b>B</b>; about <Katex tex="4.74" />, comfortably inside <Katex tex="[1,6)" /> ✓.</>,
+    reason: <>Matches option <b>B</b>; about <Katex tex="4.74" />, comfortably inside <Katex tex="[1,6)" /> ✓. Option <b>A</b>, <Katex tex="\sqrt{14}-1" />, would come from <Katex tex="(k+1)^2=14" /> — the shift the wrong way.</>,
   },
 ]
 

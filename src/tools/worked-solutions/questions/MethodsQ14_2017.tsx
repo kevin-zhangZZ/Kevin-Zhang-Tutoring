@@ -39,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{6p-16p^2}" />,
-    reason: <>Option D. Sanity check at <Katex tex="p=\tfrac14" />: the distribution is <Katex tex="\tfrac14,\tfrac12,\tfrac14" /> on <Katex tex="-1,0,1" />, variance <Katex tex="\tfrac12" />, and <Katex tex="6(\tfrac14)-16(\tfrac1{16})=\tfrac32-1=\tfrac12" /> ✓.</>,
+    reason: <>Matches option <b>D</b>. Sanity check at <Katex tex="p=\tfrac14" />: the distribution is <Katex tex="\tfrac14,\tfrac12,\tfrac14" /> on <Katex tex="-1,0,1" />, variance <Katex tex="\tfrac12" />, and <Katex tex="6(\tfrac14)-16(\tfrac1{16})=\tfrac32-1=\tfrac12" /> ✓.</>,
   },
 ]
 

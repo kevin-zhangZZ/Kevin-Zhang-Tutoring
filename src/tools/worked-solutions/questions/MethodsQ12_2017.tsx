@@ -6,10 +6,25 @@ import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
+const EXAMINER_COMMENT = (
+  <>
+    <Katex tex="\sin(2x)=\dfrac{\sqrt3}{2}" />
+    <br />
+    <Katex tex="2x=\dfrac{\pi}{3},\dfrac{2\pi}{3}\ldots" />
+    <br />
+    <Katex tex="x=\dfrac{\pi}{6},\dfrac{\pi}{3}\ldots" />
+    <br />
+    <Katex tex="x=-\dfrac{5\pi}{6},-\dfrac{2\pi}{3},\dfrac{\pi}{6},\dfrac{\pi}{3}" />
+    <br />
+    <Katex tex="\text{sum: }-\dfrac{5\pi}{6}+-\dfrac{2\pi}{3}+\dfrac{\pi}{6}+\dfrac{\pi}{3}=-\pi" />
+  </>
+)
+
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 11, B: 18, C: 45, D: 15, E: 11 },
   answer: 'C',
   noAnswer: 1,
+  comment: EXAMINER_COMMENT,
 }
 
 const ROWS: WorkingRow[] = [
@@ -24,7 +39,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; x = \frac{\pi}{6}+k\pi \quad \text{or} \quad x = \frac{\pi}{3}+k\pi" />
       </>
     ),
-    reason: 'Sine is positive in the first and second quadrants.',
+    reason: <>Sine is positive in the first and second quadrants.</>,
   },
   {
     working: (
@@ -44,12 +59,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Try summing just the first four solutions — up to and including <Katex tex="\tfrac{\pi}{3}" />, before the next one at <Katex tex="\tfrac{7\pi}{6}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{-\pi} \ \checkmark" />,
+    working: <Katex display tex="-\pi \ \checkmark" />,
     reason: <>This already matches the target sum of <Katex tex="-\pi" /> — so <Katex tex="d" /> must sit between the 4th solution <Katex tex="\tfrac{\pi}{3}" /> and the 5th, <Katex tex="\tfrac{7\pi}{6}" />, without including the 5th.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \frac{3\pi}{4}} \qquad \left(\frac{\pi}{3} \le \frac{3\pi}{4} < \frac{7\pi}{6}\right)" />,
-    reason: <>Matches option <b>C</b> — the only listed value in that range.</>,
+    reason: <>Matches option <b>C</b> — the only listed value in that range. Option B (18%), <Katex tex="\tfrac{\pi}{6}" />, stops one solution short (sum <Katex tex="-\tfrac{4\pi}{3}" />); option D includes the fifth solution <Katex tex="\tfrac{7\pi}{6}" /> itself.</>,
   },
 ]
 

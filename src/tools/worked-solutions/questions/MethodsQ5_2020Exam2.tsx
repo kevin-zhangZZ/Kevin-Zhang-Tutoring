@@ -15,8 +15,9 @@ const EXAM_A: SAExaminerStats = {
   average: 1.7,
   comment: (
     <>
-      Most students were able to find the equation of the tangent. When finding it, many left
-      out brackets when multiplying <Katex tex="(x-a)" /> by the gradient, writing{' '}
+      Most students were able to find the equation of the tangent. When finding the equation of
+      the tangent, many students left out brackets when multiplying <Katex tex="(x-a)" /> by the
+      gradient <Katex tex="\left(3a^2-1\right)" />, writing{' '}
       <Katex tex="3a^2-1(x-a)" /> instead of <Katex tex="\left(3a^2-1\right)(x-a)" />. Some
       students did not show suitable steps.
     </>
@@ -28,8 +29,11 @@ const EXAM_B: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Some students wrote down only one solution. Other incorrect answers involved set
-      notation or interval notation. Some gave approximate answers.
+      Some students wrote down only one solution, generally <Katex tex="a=\dfrac{1}{\sqrt3}" /> or{' '}
+      <Katex tex="\dfrac{\sqrt3}{3}" />. Other incorrect answers were{' '}
+      <Katex tex="a=R\setminus\left\{\pm\dfrac1{\sqrt3}\right\}" />,{' '}
+      <Katex tex="\left[-\dfrac1{\sqrt3},\dfrac1{\sqrt3}\right]" /> and{' '}
+      <Katex tex="a<-\dfrac{\sqrt3}{3},\ a>\dfrac{\sqrt3}{3}" />. Some gave approximate answers.
     </>
   ),
 }
@@ -52,7 +56,9 @@ const EXAM_DI: SAExaminerStats = {
   comment: (
     <>
       There were some decimal place errors such as <Katex tex="a=-0.5051" />,{' '}
-      <Katex tex="a=1.3467" /> or <Katex tex="a=1.347" />. Sometimes{' '}
+      <Katex tex="a=1.3467" /> or <Katex tex="a=1.347" />.
+      <br />
+      Sometimes{' '}
       <Katex tex="a=-0.5052" /> was written as <Katex tex="a=0.5052" />.
     </>
   ),
@@ -74,7 +80,9 @@ const EXAM_E: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      Many students did not use <Katex tex="b=\dfrac{2a^3}{3a^2-1}" />. Others did not
+      Many students did not use <Katex tex="b=\dfrac{2a^3}{3a^2-1}" />.
+      <br />
+      Others did not
       eliminate the values where <Katex tex="a=b" /> and included <Katex tex="a=-1" />,{' '}
       <Katex tex="0" /> and <Katex tex="1" />.
     </>
@@ -110,7 +118,8 @@ const EXAM_H: SAExaminerStats = {
     <>
       This question was attempted by only a small number of students. When the correct answer
       was given, it was sometimes accompanied with incorrect values of <Katex tex="m" /> and{' '}
-      <Katex tex="n" />. The key word in this part is <em>restrictions</em>. There were no
+      <Katex tex="n" />: for example, <Katex tex="m,n\in R" />. The key word in this part is{' '}
+      <b>restrictions</b>. There were no
       restrictions on <Katex tex="m" />, <Katex tex="n" /> or <Katex tex="k" />.
     </>
   ),
@@ -123,7 +132,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g_a: \ y-\left(a^3-a\right) = \left(3a^2-1\right)(x-a)" />,
-    reason: <>Point–gradient form through <Katex tex="\bigl(a,f(a)\bigr)" />. The brackets around <Katex tex="3a^2-1" /> are what the report says most students dropped.</>,
+    reason: <>Point–gradient form through <Katex tex="\bigl(a,f(a)\bigr)" />. The brackets around <Katex tex="3a^2-1" /> matter — the report notes many students left them out.</>,
   },
   {
     working: <Katex display tex="\text{at } (b,0): \ -\left(a^3-a\right) = \left(3a^2-1\right)(b-a)" />,
@@ -138,8 +147,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>The <Katex tex="+a" /> cancels from both sides; collect the <Katex tex="b" /> terms.</>,
   },
   {
-    working: <Katex display tex="\boxed{b = \frac{2a^3}{3a^2-1}} \ \checkmark" />,
-    reason: <>Every line shown — this is a "show that", so the steps are the marks.</>,
+    working: <Katex display tex="\boxed{b = \frac{2a^3}{3a^2-1}}" />,
+    reason: <>Dividing by <Katex tex="3a^2-1" />. As required — the report notes some students did not show suitable steps.</>,
   },
 ]
 
@@ -150,7 +159,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a^2 = \tfrac13 \implies a = \pm\frac{1}{\sqrt3}" />,
-    reason: <>Both signs — writing only one costs the mark.</>,
+    reason: <>Both signs — the report notes some students wrote down only one solution.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \pm\frac{\sqrt3}{3}}" />,
@@ -202,7 +211,7 @@ const ROWS_DII: WorkingRow[] = [
     reason: <>These are the open ends, since <Katex tex="b<1.1" /> is strict.</>,
   },
   {
-    working: <Katex display tex="\text{branch } a<\tfrac{-\sqrt3}{3}\text{--}\tfrac{\sqrt3}{3}: \ b \text{ falls from } 1.1 \text{ to } 1 \text{ across } (-0.5052,-0.5]" />,
+    working: <Katex display tex="\text{branch } -\tfrac{\sqrt3}{3}<a<0: \ b \text{ falls from } 1.1 \text{ to } 1 \text{ across } (-0.5052,-0.5]" />,
     reason: <>Test a point: <Katex tex="a=-0.502" /> gives <Katex tex="b=1.037" /> ✓. The closed end is where <Katex tex="b=1" /> exactly.</>,
   },
   {
@@ -226,7 +235,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b = -a: \ \frac{2a^3}{3a^2-1} = -a \implies 2a^3 = -3a^3+a" />,
-    reason: <>Using the part a. formula, as the report says most students failed to do.</>,
+    reason: <>Using the part a. formula — the report notes many students did not use it.</>,
   },
   {
     working: <Katex display tex="5a^3-a = 0 \implies a\left(5a^2-1\right) = 0" />,
@@ -245,7 +254,7 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="p(-x) = (-x)^3+w(-x)" />,
-    reason: <>Substitute <Katex tex="-x" /> everywhere <Katex tex="x" /> appears — brackets included, which is where the report says marks went.</>,
+    reason: <>Substitute <Katex tex="-x" /> everywhere <Katex tex="x" /> appears, in brackets — the report notes some students did not expand the expression in brackets correctly.</>,
   },
   {
     working: <Katex display tex="= -x^3-wx" />,
@@ -256,8 +265,8 @@ const ROWS_F: WorkingRow[] = [
     reason: <>Factor out <Katex tex="-1" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{= -p(x) \ \text{ for all } w\in R} \ \checkmark" />,
-    reason: <>Note <Katex tex="w" /> was never given a value, so the argument holds for every <Katex tex="w" /> — testing one number would not prove it.</>,
+    working: <Katex display tex="\boxed{p(-x) = -p(x) \ \text{ for all } w\in R}" />,
+    reason: <>As required. Note <Katex tex="w" /> was never given a value, so the argument holds for every <Katex tex="w" /> — the report notes some students tried to show the result by substitution, which would not prove it.</>,
   },
 ]
 
@@ -284,7 +293,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{w<0}" />,
-    reason: <>The question asks for the values of <Katex tex="w" />, not a formula: as <Katex tex="t" /> runs over all positives, <Katex tex="-5t^2" /> runs over every negative number. This last step is what the 3% who scored the mark did.</>,
+    reason: <>The question asks for the values of <Katex tex="w" />, not a formula: as <Katex tex="t" /> runs over all positives, <Katex tex="-5t^2" /> runs over every negative number. The report notes some students found <Katex tex="w=-5t^2" /> but were unable to write down the values of <Katex tex="w" />.</>,
   },
 ]
 
@@ -321,16 +330,19 @@ export default function MethodsQ5_2020Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">Question 5 (13 marks)</p>
         <p>
-          Let <Katex tex="f:R\to R" />, <Katex tex="f(x)=x^3-x" />. Let{' '}
-          <Katex tex="g_a:R\to R" /> be the function representing the tangent to the graph of{' '}
-          <Katex tex="f" /> at <Katex tex="x=a" />, where <Katex tex="a\in R" />. Let{' '}
-          <Katex tex="(b,0)" /> be the <Katex tex="x" />-intercept of the graph of{' '}
+          Let <Katex tex="f:R\to R" />, <Katex tex="f(x)=x^3-x" />.
+          <br />
+          Let <Katex tex="g_a:R\to R" /> be the function representing the tangent to the graph
+          of <Katex tex="f" /> at <Katex tex="x=a" />, where <Katex tex="a\in R" />.
+          <br />
+          Let <Katex tex="(b,0)" /> be the <Katex tex="x" />-intercept of the graph of{' '}
           <Katex tex="g_a" />.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Tangent Intercept"
         marks={3}
         statement={<>Show that <Katex tex="b=\dfrac{2a^3}{3a^2-1}" />.</>}
         examinerReport={EXAM_A}
@@ -340,6 +352,7 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="b"
+        topic="Undefined Values"
         marks={1}
         statement={<>State the values of <Katex tex="a" /> for which <Katex tex="b" /> does not exist.</>}
         examinerReport={EXAM_B}
@@ -349,6 +362,7 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="c"
+        topic="Nature of Graph"
         marks={1}
         statement={
           <>
@@ -363,6 +377,7 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Solve Equation"
         marks={1}
         statement={
           <>
@@ -377,11 +392,14 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Parameter Range"
         marks={1}
         statement={
           <>
             The graph of <Katex tex="f" /> has an <Katex tex="x" />-intercept at{' '}
-            <Katex tex="(1,0)" />. State the values of <Katex tex="a" /> for which{' '}
+            <Katex tex="(1,0)" />.
+            <br />
+            State the values of <Katex tex="a" /> for which{' '}
             <Katex tex="1\le b<1.1" />. Give your answers correct to three decimal places.
           </>
         }
@@ -390,10 +408,12 @@ export default function MethodsQ5_2020Exam2() {
         <WorkingTable rows={ROWS_DII} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
+<div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>
           The coordinate <Katex tex="(b,0)" /> is the horizontal axis intercept of{' '}
-          <Katex tex="g_a" />. Let <Katex tex="g_b" /> be the function representing the
+          <Katex tex="g_a" />.
+          <br />
+          Let <Katex tex="g_b" /> be the function representing the
           tangent to the graph of <Katex tex="f" /> at <Katex tex="x=b" />, as shown in the
           graph below.
         </p>
@@ -408,6 +428,7 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="e"
+        topic="Parallel Tangents"
         marks={3}
         statement={
           <>
@@ -421,7 +442,7 @@ export default function MethodsQ5_2020Exam2() {
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Let <Katex tex="p:R\to R" />, <Katex tex="p(x)=x^3+wx" />, where{' '}
           <Katex tex="w\in R" />.
@@ -430,6 +451,7 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="f"
+        topic="Odd Function"
         marks={1}
         statement={
           <>
@@ -441,7 +463,7 @@ export default function MethodsQ5_2020Exam2() {
         <WorkingTable rows={ROWS_F} />
       </PartCard>
 
-      <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           A property of the graphs of <Katex tex="p" /> is that two distinct parallel tangents
           will always occur at <Katex tex="\bigl(t,p(t)\bigr)" /> and{' '}
@@ -451,6 +473,7 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="g"
+        topic="Tangent Intercept"
         marks={1}
         statement={
           <>
@@ -467,13 +490,15 @@ export default function MethodsQ5_2020Exam2() {
 
       <PartCard
         letter="h"
+        topic="Transformations"
         marks={1}
         statement={
           <>
             Let{' '}
             <Katex tex="T:R^2\to R^2,\ T\!\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}m&0\\0&n\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}h\\k\end{bmatrix}" />
-            , where <Katex tex="m,n\in R\setminus\{0\}" /> and <Katex tex="h,k\in R" />. State
-            any restrictions on the values of <Katex tex="m" />, <Katex tex="n" />,{' '}
+            , where <Katex tex="m,n\in R\setminus\{0\}" /> and <Katex tex="h,k\in R" />.
+            <br />
+            State any restrictions on the values of <Katex tex="m" />, <Katex tex="n" />,{' '}
             <Katex tex="h" /> and <Katex tex="k" />, given that the image of <Katex tex="p" />{' '}
             under the transformation <Katex tex="T" /> always has the property that parallel
             tangents occur at <Katex tex="x=-t" /> and <Katex tex="x=t" /> for all{' '}

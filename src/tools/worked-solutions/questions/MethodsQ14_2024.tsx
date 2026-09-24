@@ -9,20 +9,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 53, C: 30, D: 7 },
   answer: 'B',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{-3}^{0}\left(\frac{x}{6}+k\right)dx+\int_{0}^{1}\left(-\frac{x}{2}+k\right)dx = 1" />,
-    reason: 'Total area under any density is 1 — this is what fixes k.',
+    reason: <>Total area under any density is 1 — this is what fixes k.</>,
   },
   {
     working: <Katex display tex="\left[\frac{x^2}{12}+kx\right]_{-3}^{0}+\left[-\frac{x^2}{4}+kx\right]_{0}^{1} = \left(-\frac34+3k\right)+\left(-\frac14+k\right)" />,
-    reason: 'Two straight-line pieces, so this is just two trapezium areas if you prefer to do it geometrically.',
+    reason: <>Two straight-line pieces, so this is just two trapezium areas if you prefer to do it geometrically.</>,
   },
   {
     working: <Katex display tex="4k-1 = 1 \implies k = \frac12" />,
-    reason: 'Positive, as required.',
+    reason: <>Positive, as required.</>,
   },
   {
     working: <Katex display tex="\Pr(X<0.5) = \int_{-3}^{0}\left(\frac{x}{6}+\frac12\right)dx+\int_{0}^{0.5}\left(-\frac{x}{2}+\frac12\right)dx" />,
@@ -30,11 +31,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \left(-\frac34+\frac32\right)+\left(-\frac{1}{16}+\frac14\right) = \frac34+\frac{3}{16}" />,
-    reason: 'The most common error is to stop after the second piece and answer 3/16 — option C, chosen by 30%.',
+    reason: <>Stopping after the second piece gives <Katex tex="\tfrac{3}{16}" /> — option <b>C</b>, chosen by 30%.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{12}{16}+\frac{3}{16} = \frac{15}{16}}" />,
-    reason: <>Option <b>B</b>. A sanity check: the interval <Katex tex="[-3,0)" /> is six times as wide as <Katex tex="[0,0.5)" />, so a probability well above <Katex tex="\tfrac12" /> is exactly what to expect.</>,
+    reason: <>Matches option <b>B</b>. A sanity check: the interval <Katex tex="[-3,0)" /> is six times as wide as <Katex tex="[0,0.5)" />, so a probability well above <Katex tex="\tfrac12" /> is exactly what to expect.</>,
   },
 ]
 

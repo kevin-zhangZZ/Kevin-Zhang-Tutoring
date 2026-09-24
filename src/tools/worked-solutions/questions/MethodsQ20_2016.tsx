@@ -15,11 +15,17 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Reflect the graph of <Katex tex="f" /> in the <Katex tex="y" />-axis:{' '}
-      <Katex tex="\int_0^3 f(x)\,dx=\int_{-3}^{0}f(-x)\,dx=5" />. Then dilate by a factor of{' '}
-      <Katex tex="3" /> from the <Katex tex="x" />-axis:{' '}
-      <Katex tex="3\int_{-3}^{0}f(-x)\,dx=15" />. Then translate <Katex tex="5" /> units up:{' '}
-      <Katex tex="3\int_{-3}^{0}f(-x)\,dx+3\times5=30" />.
+      Reflect the graph of <Katex tex="f" /> in the <Katex tex="y" />-axis.
+      <br />
+      <Katex tex="\displaystyle\int_0^3 f(x)\,dx=\int_{-3}^{0}f(-x)\,dx=5" />
+      <br />
+      Then dilate the graph by a factor of 3 from the <Katex tex="x" />-axis.
+      <br />
+      <Katex tex="\displaystyle 3\int_{-3}^{0}f(-x)\,dx=15" />
+      <br />
+      Then translate the graph 5 units up.
+      <br />
+      <Katex tex="\displaystyle 3\int_{-3}^{0}\bigl(f(-x)\bigr)dx+3\times5=30" />
     </>
   ),
 }
@@ -51,7 +57,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{3(5)+15 = 30}" />,
-    reason: <>Option E. Three effects, in order: reflection changes nothing, the dilation multiplies by <Katex tex="3" />, the translation adds <Katex tex="15" />. Stopping after the dilation lands on option B; treating the translation as adding <Katex tex="5" /> rather than <Katex tex="5\times3" /> lands on option C, the most popular wrong answer.</>,
+    reason: <>Matches option <b>E</b>. Three effects, in order: reflection changes nothing, the dilation multiplies by <Katex tex="3" />, the translation adds <Katex tex="15" />. Stopping after the dilation lands on option B; treating the translation as adding <Katex tex="5" /> rather than <Katex tex="5\times3" /> lands on option C, the most popular wrong answer.</>,
   },
 ]
 
@@ -94,8 +100,8 @@ export default function MethodsQ20_2016() {
           <p>
             Each does something different to an area. Reflection leaves it alone. A vertical
             dilation multiplies it by the factor. A vertical translation adds{' '}
-            <Katex tex="(\text{shift})\times(\text{width})" /> — and it is that width that
-            most of the state forgot.
+            <Katex tex="(\text{shift})\times(\text{width})" /> — and it is that width that the
+            most popular wrong answer (C, 30%) forgot.
           </p>
         </>
       }

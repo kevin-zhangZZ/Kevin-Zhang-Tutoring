@@ -22,19 +22,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y_2 = (2+2h)+h\cdot2(1+h)^2 = 2.976" />,
-    reason: <>The second step uses <Katex tex="x_1=1+h" />, not <Katex tex="x_0" /> — forgetting to advance <Katex tex="x" /> is the usual slip.</>,
+    reason: <>The second step uses <Katex tex="x_1=1+h" />, not <Katex tex="x_0" /> — the <Katex tex="x" /> value must be advanced.</>,
   },
   {
     working: <Katex display tex="2h^3+4h^2+4h+2 = 2.976" />,
-    reason: 'Expanding. A cubic, but a CAS solves it instantly — or just test the five options.',
+    reason: <>Expanding. A cubic, but a CAS solves it instantly — or just test the five options.</>,
   },
   {
-    working: <Katex display tex="h = 0.2: \ 2+0.4+0.4(1.2)^2 = 2+0.4+0.576 = 2.976 \ \checkmark" />,
-    reason: 'Substituting is faster than solving and gives the same certainty.',
+    working: <Katex display tex="h = 0.2: \ 2+0.4+0.4(1.2)^2 = 2+0.4+0.576 = 2.976" />,
+    reason: <>Substituting is faster than solving and gives the same certainty.</>,
   },
   {
     working: <Katex display tex="\boxed{h = 0.2}" />,
-    reason: <>Option <b>B</b>; the cubic's only real root.</>,
+    reason: <>The cubic's only real root (it is strictly increasing). Matches option <b>B</b>.</>,
   },
 ]
 
@@ -44,7 +44,9 @@ export default function SpecialistQ9_2022() {
       question={
         <p>
           Euler's method is used to find an approximate solution to the differential equation{' '}
-          <Katex tex="\dfrac{dy}{dx}=2x^2" />. Given that <Katex tex="x_0=1" />,{' '}
+          <Katex tex="\dfrac{dy}{dx}=2x^2" />.
+          <br />
+          Given that <Katex tex="x_0=1" />,{' '}
           <Katex tex="y_0=2" /> and <Katex tex="y_2=2.976" />, the value of the step size{' '}
           <Katex tex="h" /> is
         </p>

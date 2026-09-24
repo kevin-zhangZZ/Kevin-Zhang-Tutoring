@@ -11,12 +11,15 @@ const EXAM: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      This question divided the cohort. Typical errors included finding an area rather than a
+      This question divided the cohort, with several students answering it very well but
+      others having some difficulty. Typical errors included finding an area rather than a
       volume and rotating about the incorrect axis. Several students who rotated about the
-      correct axis integrated from <Katex tex="0" /> to <Katex tex="5" /> rather than{' '}
-      <Katex tex="-3" /> to <Katex tex="5" />. A number of students made mistakes when trying
-      to put <Katex tex="x^2" /> in terms of <Katex tex="y" />. Some omitted{' '}
-      <Katex tex="\pi" /> or included <Katex tex="\pi^2" /> instead of <Katex tex="\pi" />.
+      correct axis integrated from 0 to 5 rather than –3 to 5. A number of students made
+      mistakes when trying to put <Katex tex="x^2" /> in terms of <Katex tex="y" />. Many
+      students made arithmetic and transcription errors in their calculation of the
+      integrand. Others rotated about the wrong axis. Some omitted <Katex tex="\pi" /> or
+      included <Katex tex="2\pi" /> instead of <Katex tex="\pi" />. There were many
+      arithmetical slips in the final substitution and evaluation.
     </>
   ),
 }
@@ -61,6 +64,8 @@ export default function SpecialistQ5_2015Exam1() {
           <Katex tex="y=2x^2-3" />, the line <Katex tex="y=5" /> and the{' '}
           <Katex tex="y" />-axis is rotated about the <Katex tex="y" />-axis.
         </p>
+      </Background>
+      <Background>
         <p>
           No diagram is given, so sketch one: the parabola has its vertex at{' '}
           <Katex tex="(0,-3)" /> and reaches <Katex tex="y=5" /> at <Katex tex="x=\pm2" />.

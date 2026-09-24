@@ -25,7 +25,8 @@ const EXAM_AII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Many students did not express their answer as an angle in the interval{' '}
+      This question was answered reasonably well, but many students did not express their
+      answer as an angle in the interval{' '}
       <Katex tex="(-\pi,\pi]" />. A number of students gave the entire expression for{' '}
       <Katex tex="z_1^4" /> as an answer.
     </>
@@ -37,7 +38,8 @@ const EXAM_AIII: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Most students could find the conjugate root, but a number could not obtain{' '}
+      This question was answered reasonably well. Most students could find the conjugate
+      root, but a number could not obtain{' '}
       <Katex tex="-2\sqrt3" />, often omitting the negative sign. A number of students gave
       factors instead of the roots.
     </>
@@ -47,7 +49,7 @@ const EXAM_AIII: SAExaminerStats = {
 const EXAM_BI: SAExaminerStats = {
   marks: [15, 85],
   average: 0.9,
-  comment: <>The majority of students answered quite well. A number obtained incorrect answers involving <Katex tex="i" />.</>,
+  comment: <>The majority of students answered quite well. A number of students obtained incorrect answers involving <Katex tex="i" />.</>,
 }
 
 const EXAM_BII: SAExaminerStats = {
@@ -55,10 +57,11 @@ const EXAM_BII: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Most students could express the relation in terms of <Katex tex="x" /> and{' '}
-      <Katex tex="y" />, but a large number could not follow through with enough mathematical
-      detail to show the given result. Some students substituted the incorrect forms{' '}
-      <Katex tex="z=x-y" /> and <Katex tex="\bar z=x+y" />.
+      This ‘show that’ question was only moderately well done. Most students could express
+      the relation in terms of <Katex tex="x" /> and <Katex tex="y" />, but a large number could
+      not follow through with enough mathematical detail to show the given result. Some
+      students substituted the incorrect forms <Katex tex="z=x+y" /> and{' '}
+      <Katex tex="\bar z=x-y" />.
     </>
   ),
 }
@@ -82,7 +85,10 @@ const EXAM_C: SAExaminerStats = {
     <>
       Most students struggled with this question. Students needed to equate the gradient of
       the tangent to 1 in order to proceed. Most students attempted to differentiate the
-      equation of the circle implicitly, but ended up with too many variables.
+      equation to the circle implicitly, but ended up with too many variables. Other more
+      successful attempts involved finding the equation of the tangent and equating
+      expressions for the <Katex tex="y" />-intercept, and setting up to solve the line and
+      circle equations simultaneously, then equating the discriminant to zero.
     </>
   ),
 }
@@ -109,7 +115,7 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\tfrac{4\pi}{3} \notin (-\pi,\pi]" />,
-    reason: <>So it is not yet the <em>principal</em> argument — the step the report says a third of students missed.</>,
+    reason: <>So it is not yet the <em>principal</em> argument — the step the report says many students missed.</>,
   },
   {
     working: <Katex display tex="\boxed{-\tfrac{4\pi}{3}+2\pi = \tfrac{2\pi}{3}}" />,
@@ -166,7 +172,7 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="z = x+iy \implies \bar z = x-iy" />,
-    reason: <>The standard substitution. <Katex tex="z=x-y" /> is not a thing — the report notes students writing that.</>,
+    reason: <>The standard substitution — the imaginary part carries an <Katex tex="i" />. The report notes students writing <Katex tex="z=x+y" /> and <Katex tex="\bar z=x-y" />, which drops it.</>,
   },
   {
     working: <Katex display tex="z+2i = x+i(y+2), \qquad \bar z-2i = x-i(y+2)" />,
@@ -181,8 +187,8 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>Since <Katex tex="-i^2=+1" />. This is the line of detail the report says was usually missing.</>,
   },
   {
-    working: <Katex display tex="\therefore\ (z+2i)\left(\bar z-2i\right) = 4 \iff x^2+(y+2)^2 = 4 \ \checkmark" />,
-    reason: <>As required.</>,
+    working: <Katex display tex="\therefore\ (z+2i)\left(\bar z-2i\right) = 4 \iff x^2+(y+2)^2 = 4 \quad \text{as required}" />,
+    reason: <>A "show that" is marked on the expansion above — the report says the missing mathematical detail was what cost marks.</>,
   },
 ]
 
@@ -200,7 +206,7 @@ const ROWS_BIII: WorkingRow[] = [
       <div className="flex flex-col gap-2">
         <img
           src={circleSrc}
-          alt="A circle of radius 2 centred at (0, −2) on an Argand diagram, passing through the origin and through (0, −4), (2, −2) and (−2, −2)"
+          alt="This site's sketch, on VCAA's −6 to 6 Argand grid, of the circle of radius 2 centred at (0, −2), passing through the origin and through (0, −4), (2, −2) and (−2, −2)"
           className="w-full max-w-[360px]"
         />
       </div>
@@ -219,24 +225,20 @@ const ROWS_C: WorkingRow[] = [
     reason: <>The gradient is 1 whatever <Katex tex="k" /> is — the observation the report says students needed.</>,
   },
   {
-    working: <Katex display tex="y = x-(2+k) \implies x-y-(2+k) = 0" />,
-    reason: <>Through <Katex tex="B(0,-(2+k))" /> with gradient 1.</>,
+    working: <Katex display tex="C = (0,-2): \quad CA = CB = -k" />,
+    reason: <>With the centre <Katex tex="C" />, triangle <Katex tex="ACB" /> has a right angle at <Katex tex="C" /> (one side horizontal, one vertical) and two equal sides of length <Katex tex="-k" /> (positive, since <Katex tex="k<0" />). So the angle at <Katex tex="B" /> is <Katex tex="45^\circ" />.</>,
   },
   {
-    working: <Katex display tex="d = \frac{\left|0-(-2)-(2+k)\right|}{\sqrt{1^2+(-1)^2}} = \frac{|-k|}{\sqrt2}" />,
-    reason: <>Distance from the centre <Katex tex="(0,-2)" /> to the line.</>,
+    working: <Katex display tex="\frac{2}{CB} = \cos(45^\circ) \implies \frac{2}{-k} = \frac{1}{\sqrt2}" />,
+    reason: <>The tangent touches the circle at <Katex tex="T" />, where the radius <Katex tex="CT=2" /> is perpendicular to <Katex tex="AB" />. In the right-angled triangle <Katex tex="CTB" />, the angle at <Katex tex="C" /> is also <Katex tex="45^\circ" />, so <Katex tex="CT=CB\cos(45^\circ)" /> — the report's route.</>,
   },
   {
-    working: <Katex display tex="\text{tangent} \iff d = 2 \implies \frac{|k|}{\sqrt2} = 2" />,
-    reason: <>A line touches a circle exactly when its distance from the centre equals the radius.</>,
-  },
-  {
-    working: <Katex display tex="|k| = 2\sqrt2" />,
-    reason: <>Multiplying through.</>,
+    working: <Katex display tex="-k = 2\sqrt2" />,
+    reason: <>Rearranging. (Substituting the line into the circle and setting the discriminant to zero, the report's other successful method, gives the same.)</>,
   },
   {
     working: <Katex display tex="\boxed{k = -2\sqrt2}" />,
-    reason: <>Negative, as the question specifies.</>,
+    reason: <>Negative, as the question specifies. Check: the line is then <Katex tex="y=x+2\sqrt2-2" />, which touches the circle at <Katex tex="\left(-\sqrt2,\sqrt2-2\right)" /> — the point on the report's own diagram ✓.</>,
   },
 ]
 
@@ -250,16 +252,17 @@ export default function SpecialistQ2_2014Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a.i" marks={2} statement={<>Express <Katex tex="z_1" /> in polar form.</>} examinerReport={EXAM_AI}>
+      <PartCard letter="a.i" topic="Polar Form" marks={2} statement={<>Express <Katex tex="z_1" /> in polar form.</>} examinerReport={EXAM_AI}>
         <WorkingTable rows={ROWS_AI} />
       </PartCard>
 
-      <PartCard letter="a.ii" marks={1} statement={<>Find <Katex tex="\mathrm{Arg}\!\left(z_1^4\right)" />.</>} examinerReport={EXAM_AII}>
+      <PartCard letter="a.ii" topic="Argument" marks={1} statement={<>Find <Katex tex="\mathrm{Arg}\!\left(z_1^4\right)" />.</>} examinerReport={EXAM_AII}>
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
       <PartCard
         letter="a.iii"
+        topic="Cube Roots"
         marks={2}
         statement={
           <>
@@ -275,6 +278,7 @@ export default function SpecialistQ2_2014Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Conjugates"
         marks={1}
         statement={
           <>
@@ -289,6 +293,7 @@ export default function SpecialistQ2_2014Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Circle Locus"
         marks={2}
         statement={
           <>
@@ -303,6 +308,7 @@ export default function SpecialistQ2_2014Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Sketch Circle"
         marks={2}
         statement={
           <>
@@ -317,6 +323,7 @@ export default function SpecialistQ2_2014Exam2() {
 
       <PartCard
         letter="c"
+        topic="Tangent to Circle"
         marks={3}
         statement={
           <>

@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f^{-1}:(4,\infty)\to R,\ f^{-1}(x) = \tfrac{1}{(x-4)^2}}" />,
-    reason: <>Option A. Option E has the same rule with the domain <Katex tex="(-\infty,4)" />, which was the most popular wrong answer at 15%.</>,
+    reason: <>Matches option <b>A</b>. Option E has the same rule with the domain <Katex tex="(-\infty,4)" />, which was the most popular wrong answer at 15%.</>,
   },
 ]
 

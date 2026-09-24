@@ -11,10 +11,16 @@ const EXAM_A: SAExaminerStats = {
   average: 0.4,
   comment: (
     <>
-      This was a "show that" question, so students were expected to be explicit and clear with
-      their workings, and to arrive at the expected result in a logical, step-by-step manner.
-      Common errors involved omitting the <Katex tex="dt" /> in the integral statement or
-      writing <Katex tex="dx" /> instead.
+      There were two approaches students used to 'show that' <Katex tex="k=\tfrac{1}{64}" />.
+      <br />
+      They either formed an integral equation equal to 1, antidifferentiated, and then solved
+      to find <Katex tex="k" />, or they evaluated the integral (without <Katex tex="k" />) and
+      then solved an equation equal to 1 and involving <Katex tex="k" />. Both used the fact
+      that the total probability is equal to 1. This was a 'show that' question, so students
+      were expected to be explicit and clear with their workings, and to arrive at the expected
+      result in a logical, step-by-step manner. Common errors involved omitting the{' '}
+      <Katex tex="dt" /> in the integral statement or writing <Katex tex="dx" /> instead.
+      Students are reminded to be consistent in their use of variables.
     </>
   ),
 }
@@ -24,9 +30,10 @@ const EXAM_B: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Most students knew to set up the integral{' '}
-      <Katex tex="\mathrm{E}(T)=\int_0^4 t\,f(t)\,dt" />. Some students incorrectly wrote{' '}
-      <Katex tex="dx" />, mixing their variables.
+      This question was well attempted. Most students knew to set up the integral{' '}
+      <Katex tex="E(T)=\int_0^4 tf(t)\,dt" />. Some students incorrectly wrote{' '}
+      <Katex tex="E(T)=\int_0^4 tf(t)\,dx" />, mixing their variables; students are reminded
+      to pay attention to mathematical nomenclature.
     </>
   ),
 }
@@ -36,10 +43,15 @@ const EXAM_C: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Common errors included writing the conditional probability as{' '}
-      <Katex tex="\Pr(T>2\mid T=1)" />, incorrectly interpreting "already queued for one
-      minute" as <Katex tex="\Pr(T=1)" />. There were also errors with the terminals of
-      integration, and the arithmetic manipulation of fractions presented a challenge.
+      Most students recognised this question as a conditional probability question and
+      indicated this as the starting point of their working. Sometimes, however, the
+      formulation was incorrect. Common errors included writing the conditional probability as{' '}
+      <Katex tex="\Pr(T>2\mid T=1)" />, where students had incorrectly interpreted the
+      mathematical meaning of 'already queued for one minute' as <Katex tex="\Pr(T=1)" />.
+      There were also errors where students incorrectly identified the terminals of
+      integration. The arithmetic manipulation of fractions presented a challenge for some
+      students. Students are encouraged to look for ways to cancel factors in their fractions
+      to assist with the arithmetic calculations.
     </>
   ),
 }
@@ -51,7 +63,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k\int_0^4\left(16t-t^3\right)dt = 1" />,
-    reason: 'Expand before integrating; the constant comes out the front.',
+    reason: <>Expand before integrating; the constant comes out the front.</>,
   },
   {
     working: <Katex display tex="k\left[8t^2-\frac{t^4}{4}\right]_0^4 = 1" />,
@@ -62,8 +74,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <><Katex tex="4^2=16" /> and <Katex tex="4^4=256" />. The lower terminal contributes nothing.</>,
   },
   {
-    working: <Katex display tex="\boxed{k = \frac{1}{64}} \ \checkmark" />,
-    reason: 'Every line must be present — in a "show that", arriving at the given answer without the steps earns nothing.',
+    working: <Katex display tex="\boxed{k = \frac{1}{64}}" />,
+    reason: <>Every line must be present — the report expects a "show that" to be explicit and clear, reaching the result in a logical, step-by-step manner. As required.</>,
   },
 ]
 
@@ -78,7 +90,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{1}{64}\left[\frac{16t^3}{3}-\frac{t^5}{5}\right]_0^4" />,
-    reason: 'Antidifferentiating term by term.',
+    reason: <>Antidifferentiating term by term.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{64}\left(\frac{1024}{3}-\frac{1024}{5}\right) = \frac{1}{64}\cdot\frac{2048}{15}" />,
@@ -93,11 +105,11 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T>2\mid T>1) = \frac{\Pr(T>2 \cap T>1)}{\Pr(T>1)} = \frac{\Pr(T>2)}{\Pr(T>1)}" />,
-    reason: <>"Already queued for one minute" means <Katex tex="T>1" />, not <Katex tex="T=1" /> — the report's named misreading. And <Katex tex="T>2" /> already implies <Katex tex="T>1" />, so the intersection collapses.</>,
+    reason: <>"Already queued for one minute" means <Katex tex="T>1" />, not <Katex tex="T=1" /> — the report notes some students read it as <Katex tex="\Pr(T=1)" />. And <Katex tex="T>2" /> already implies <Katex tex="T>1" />, so the intersection collapses.</>,
   },
   {
     working: <Katex display tex="\Pr(T>2) = \frac{1}{64}\int_2^4\left(16t-t^3\right)dt = \frac{1}{64}\left[8t^2-\frac{t^4}{4}\right]_2^4" />,
-    reason: 'Same antiderivative as part a., new terminals.',
+    reason: <>Same antiderivative as part a., new terminals.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{64}\bigl(64-(32-4)\bigr) = \frac{36}{64} = \frac{9}{16}" />,
@@ -133,7 +145,7 @@ export default function MethodsQ8_2023Exam1() {
           />
         </div>
         <p>
-          for some <Katex tex="k\in\mathbb{R}" />.
+          for some <Katex tex="k\in R" />.
         </p>
       </div>
 
@@ -157,6 +169,7 @@ export default function MethodsQ8_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Continuous PDF"
         marks={1}
         statement={<>Show that <Katex tex="k=\dfrac{1}{64}" />.</>}
         examinerReport={EXAM_A}
@@ -166,6 +179,7 @@ export default function MethodsQ8_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Mean of PDF"
         marks={2}
         statement={<>Find <Katex tex="\mathrm{E}(T)" />.</>}
         examinerReport={EXAM_B}
@@ -175,6 +189,7 @@ export default function MethodsQ8_2023Exam1() {
 
       <PartCard
         letter="c"
+        topic="Conditional Probability"
         marks={3}
         statement={
           <>

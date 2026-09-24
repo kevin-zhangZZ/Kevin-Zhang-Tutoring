@@ -43,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = 3+e^{-(x-2)/3}}" />,
-    reason: <>Option B. Check both conditions: <Katex tex="y(2)=3+1=4" /> ✓, and <Katex tex="\tfrac{dy}{dx}=-\tfrac13e^{-(x-2)/3}" /> while <Katex tex="1-\tfrac y3 = -\tfrac13e^{-(x-2)/3}" /> ✓.</>,
+    reason: <>Matches option <b>B</b>. Check both conditions: <Katex tex="y(2)=3+1=4" /> ✓, and <Katex tex="\tfrac{dy}{dx}=-\tfrac13e^{-(x-2)/3}" /> while <Katex tex="1-\tfrac y3 = -\tfrac13e^{-(x-2)/3}" /> ✓.</>,
   },
 ]
 

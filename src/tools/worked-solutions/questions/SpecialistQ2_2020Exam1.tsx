@@ -11,13 +11,19 @@ const EXAM: SAExaminerStats = {
   average: 2.1,
   comment: (
     <>
-      The most straightforward way to evaluate this integral was to use the linear
-      substitution <Katex tex="u=1-x" />. Other substitutions were possible (for example,{' '}
-      <Katex tex="u=\sqrt{1-x}" />) but were not often carried out correctly by students. A
-      number of students split the integral into two, which does not simplify the problem —
-      a substitution is still required in that case. Various errors with exponents and with
-      arithmetic were observed. Students are reminded to include a <Katex tex="dx" /> or{' '}
-      <Katex tex="du" /> as appropriate in the integral.
+      The most straightforward way to evaluate this integral was to use the linear substitution{' '}
+      <Katex tex="u=1-x" /> leading to the integral{' '}
+      <Katex tex="\displaystyle-\int_2^1\frac{2-u}{\sqrt u}\,du=\int_1^2\frac{2-u}{\sqrt u}\,du" />
+      <br />
+      Other substitutions were possible (for example, <Katex tex="u=\sqrt{1-x}" />) but were not
+      often carried out correctly by students.
+      <br />
+      A number of students split the integral into two:{' '}
+      <Katex tex="\displaystyle\int_{-1}^0\frac{1}{\sqrt{1-x}}\,dx+\int_{-1}^0\frac{x}{\sqrt{1-x}}\,dx" />.
+      <br />
+      This does not simplify the problem and a substitution is still required in this case.
+      Various errors with exponents and with arithmetic were observed. Students are reminded to include a '<Katex tex="dx" />' or{' '}
+      '<Katex tex="du" />' as appropriate in the integral.
     </>
   ),
 }

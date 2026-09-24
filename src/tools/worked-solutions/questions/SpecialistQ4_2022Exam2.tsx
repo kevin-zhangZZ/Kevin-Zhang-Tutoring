@@ -15,9 +15,11 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Other successful approaches involved using the parametric expressions to find{' '}
-      <Katex tex="\tfrac{dy}{dx}" /> using the chain rule, or the scalar product{' '}
-      <Katex tex="\underset{\sim}{v}\cdot\underset{\sim}{j}" />. The complementary angle,{' '}
-      <Katex tex="\theta=78.9" />, was the most frequent incorrect response.
+      <Katex tex="\tfrac{dy}{dx}" /> using the chain rule.
+      <br />
+      Some students successfully used the scalar product{' '}
+      <Katex tex="\underset{\sim}{v}.\underset{\sim}{j}" />. The complementary angle,{' '}
+      <Katex tex="\theta=78.9" /> was the most frequent incorrect response.
     </>
   ),
 }
@@ -28,7 +30,7 @@ const EXAM_BI: SAExaminerStats = {
   comment: (
     <>
       This question was well responded to, including by some students who did not find the
-      velocity in part a.
+      velocity in Question 4a.
     </>
   ),
 }
@@ -55,7 +57,8 @@ const EXAM_D: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      A number of incorrect student responses found the straight-line distance between the
+      A number of incorrect student responses incorrectly found the straight-line distance
+      between the
       endpoints of the travel. Some students used the Cartesian form of the curve to find the
       integrand, but very few of these used the correct limits, incorrectly using the time
       values.
@@ -74,7 +77,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\tan(\theta) = \frac{\text{sideways}}{\text{forward}} = \frac{\pi/8}{2} = \frac{\pi}{16}" />,
-    reason: <>The angle is measured from the <em>forward</em> direction <Katex tex="\underset{\sim}{j}" />, so the <Katex tex="\underset{\sim}{j}" /> component is the adjacent side. Putting them the other way up gives <Katex tex="78.9^\circ" />, the report's most common wrong answer.</>,
+    reason: <>The angle is measured from the <em>forward</em> direction <Katex tex="\underset{\sim}{j}" />, so the <Katex tex="\underset{\sim}{j}" /> component is the adjacent side. Putting them the other way up gives <Katex tex="78.9^\circ" />, the report's most frequent incorrect response.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta \approx 11.1^\circ}" />,
@@ -85,7 +88,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\left|\underset{\sim}{\dot r}(0)\right| = \sqrt{\left(\frac{\pi}{8}\right)^2+2^2}" />,
-    reason: 'Speed is the magnitude of velocity.',
+    reason: <>Speed is the magnitude of velocity.</>,
   },
   {
     working: <Katex display tex="= \sqrt{\frac{\pi^2}{64}+4} = \sqrt{4.1542\ldots}" />,
@@ -93,7 +96,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2.04 \ \mathrm{ms^{-1}}}" />,
-    reason: 'Correct to two decimal places.',
+    reason: <>Correct to two decimal places.</>,
   },
 ]
 
@@ -104,15 +107,15 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{minimised when } \cos^2\!\left(\frac{\pi t}{4}\right) = 0" />,
-    reason: 'No calculus needed: the expression under the root is smallest when the squared term vanishes.',
+    reason: <>No calculus needed: the expression under the root is smallest when the squared term vanishes.</>,
   },
   {
     working: <Katex display tex="\frac{\pi t}{4} = \frac\pi2 \implies t = 2 \quad\left(\text{or } \frac{3\pi}{2}\implies t=6 \notin[0,5]\right)" />,
-    reason: <>The domain <Katex tex="t\in[0,5]" /> rules out the second solution — this is where the report says students gave other values of <Katex tex="t" />.</>,
+    reason: <>The domain <Katex tex="t\in[0,5]" /> rules out the second solution — the report notes some students with a correct minimum speed gave other incorrect values of <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{minimum speed } 2\ \mathrm{ms^{-1}}, \text{ at } t = 2\ \text{seconds}}" />,
-    reason: <>Both parts must be stated; the report lists the missing time as one of the paper's recurring "didn't answer every aspect" slips. At <Katex tex="t=2" /> the ball is momentarily travelling straight forward.</>,
+    reason: <>Both parts must be stated — the report's general comments note some students did not give the required time. At <Katex tex="t=2" /> the ball is momentarily travelling straight forward.</>,
   },
 ]
 
@@ -123,7 +126,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="d(t) = \sqrt{\left(\frac12\sin\!\left(\frac{\pi t}{4}\right)\right)^2+\left(2t-7\right)^2}" />,
-    reason: 'The distance from ball to hole at time t.',
+    reason: <>The distance from ball to hole at time t.</>,
   },
   {
     working: (
@@ -146,7 +149,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="L = \int_{t_1}^{t_2}\left|\underset{\sim}{\dot r}(t)\right|dt" />,
-    reason: <>Distance travelled is arc length — the integral of <em>speed</em>, not the straight-line gap between start and finish, which is the report's named wrong approach.</>,
+    reason: <>Distance travelled is arc length — the integral of <em>speed</em>, not the straight-line gap between start and finish, which the report notes a number of students found instead.</>,
   },
   {
     working: <Katex display tex="L = \int_0^4\sqrt{\frac{\pi^2}{64}\cos^2\!\left(\frac{\pi t}{4}\right)+4}\;dt" />,
@@ -158,7 +161,7 @@ const ROWS_D: WorkingRow[] = [
         nInt(√((π²/64)·cos(πt/4)²+4), t, 0, 4)
       </Cas>
     ),
-    reason: 'No elementary antiderivative exists, so a numerical integral is the intended route.',
+    reason: <>No elementary antiderivative exists, so a numerical integral is the intended route.</>,
   },
   {
     working: <Katex display tex="\boxed{8.077 \ \text{metres}}" />,
@@ -220,6 +223,7 @@ export default function SpecialistQ4_2022Exam2() {
 
       <PartCard
         letter="a"
+        topic="Launch Angle"
         marks={2}
         statement={<>Find <Katex tex="\theta" /> correct to one decimal place.</>}
         examinerReport={EXAM_A}
@@ -229,6 +233,7 @@ export default function SpecialistQ4_2022Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Speed"
         marks={2}
         statement={
           <>
@@ -243,6 +248,7 @@ export default function SpecialistQ4_2022Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Minimum Speed"
         marks={2}
         statement={
           <>
@@ -257,6 +263,7 @@ export default function SpecialistQ4_2022Exam2() {
 
       <PartCard
         letter="c"
+        topic="Minimum Distance"
         marks={3}
         statement={
           <>
@@ -271,6 +278,7 @@ export default function SpecialistQ4_2022Exam2() {
 
       <PartCard
         letter="d"
+        topic="Distance Travelled"
         marks={2}
         statement={
           <>

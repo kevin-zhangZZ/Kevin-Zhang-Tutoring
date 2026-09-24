@@ -11,8 +11,9 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'E',
   comment: (
     <>
-      If <Katex tex="c=0" />, <Katex tex="y = 1+\dfrac{2x+4}{(x-2)(x+2)} = 1+\dfrac{2}{x-2}" /> so only one vertical
-      asymptote in this instance.
+      If <Katex tex="c=0,\ y = 1+\dfrac{2x+4}{(x-2)(x+2)} = 1+\dfrac{2}{x-2}" />
+      <br />
+      so only one vertical asymptote in this instance.
     </>
   ),
 }
@@ -20,7 +21,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = \frac{x^2+2x+c}{x^2-4} = \frac{x^2+2x+c}{(x-2)(x+2)}" />,
-    reason: 'Numerator and denominator have the same degree, and the denominator factorises into two distinct linear factors.',
+    reason: <>Numerator and denominator have the same degree, and the denominator factorises into two distinct linear factors.</>,
   },
   {
     working: <Katex display tex="\text{As } x\to\pm\infty,\ y\to\frac{x^2}{x^2}=1" />,
@@ -49,7 +50,7 @@ export default function SpecialistQ3_2022() {
     <MCQShell
       question={
         <p>
-          The graph of <Katex tex="y=\dfrac{x^2+2x+c}{x^2-4}" />, where <Katex tex="c\in\mathbb{R}" />, will{' '}
+          The graph of <Katex tex="y=\dfrac{x^2+2x+c}{x^2-4}" />, where <Katex tex="c\in R" />, will{' '}
           <b>always</b> have
         </p>
       }

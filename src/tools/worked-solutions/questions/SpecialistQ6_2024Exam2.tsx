@@ -40,8 +40,16 @@ const EXAM_C: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Common errors were: not finding the critical value for when <Katex tex="H_0" /> is
-      true, and using the wrong tail.
+      Common errors were:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          students sometimes did not find the critical value for when <Katex tex="H_0" /> is
+          true
+        </li>
+        <li>
+          students used the wrong tail.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -70,7 +78,7 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="H_0: \ \mu = 1000" />,
-    reason: 'The null hypothesis is always the status quo — here, the machine working properly.',
+    reason: <>The null hypothesis is always the status quo — here, the machine working properly.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \ \mu < 1000}" />,
@@ -100,15 +108,15 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.037 < 0.05" />,
-    reason: 'Comparing the p value with the stated significance level.',
+    reason: <>Comparing the p value with the stated significance level.</>,
   },
   {
     working: <Katex display tex="\implies \text{reject } H_0 \text{ at the 5\% level}" />,
-    reason: 'A p value below the significance level means the evidence against the null is strong enough.',
+    reason: <>A p value below the significance level means the evidence against the null is strong enough.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{yes — the machine should be paused and adjusted}}" />,
-    reason: <>A conclusion in the context of the question was required, not just "reject <Katex tex="H_0" />" — a quarter of students stopped one line short.</>,
+    reason: <>Answer the question asked, not just "reject <Katex tex="H_0" />" — the report notes some students did not fully answer whether or not the machine should be paused.</>,
   },
 ]
 
@@ -119,7 +127,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{critical value: } \Pr\!\left(\overline{X}<c\mid\mu=1000\right) = 0.05" />,
-    reason: <>The rejection region is found under <Katex tex="H_0" />, using the <em>true</em> mean 1000 — not 997. This was the most common error.</>,
+    reason: <>The rejection region is found under <Katex tex="H_0" />, using the hypothesised mean 1000 — not 997. The report lists not finding the critical value for when <Katex tex="H_0" /> is true among the common errors.</>,
   },
   {
     working: <Katex display tex="c = \text{invNorm}(0.05,\,1000,\,1.4) = 997.697" />,
@@ -127,11 +135,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{Type II}) = \Pr\!\left(\overline{X}\ge997.697\mid\mu=997\right)" />,
-    reason: <>The <em>upper</em> tail now, since failing to reject means the sample mean came out too high to trigger the alarm. Using the lower tail was the other listed error.</>,
+    reason: <>The <em>upper</em> tail now, since failing to reject means the sample mean came out too high to trigger the alarm. The report lists using the wrong tail as the other common error.</>,
   },
   {
     working: <Katex display tex="= 1-\text{normCdf}(-\infty,\,997.697,\,997,\,1.4) = 0.3092" />,
-    reason: 'Same standard deviation 1.4, different mean.',
+    reason: <>Same standard deviation 1.4, different mean.</>,
   },
   {
     working: <Katex display tex="\boxed{0.31}" />,
@@ -142,11 +150,11 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\overline{X}\sim\mathrm{N}\!\left(1000,\,1.4^2\right)" />,
-    reason: 'Same sample-mean distribution as part b.i.',
+    reason: <>Same sample-mean distribution as part b.i.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(\overline{X}<a\right) = 0.01 \implies a = \text{invNorm}(0.01,\,1000,\,1.4)" />,
-    reason: 'The lower control limit.',
+    reason: <>The lower control limit.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(\overline{X}>b\right) = 0.01 \implies b = \text{invNorm}(0.99,\,1000,\,1.4)" />,
@@ -161,7 +169,7 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\bar{x} = 1005, \quad \sigma = 4, \quad n = 50" />,
-    reason: 'The new machine, with the population standard deviation given.',
+    reason: <>The new machine, with the population standard deviation given.</>,
   },
   {
     working: <Katex display tex="\bar{x}\pm z\frac{\sigma}{\sqrt n} = 1005\pm1.96\times\frac{4}{\sqrt{50}}" />,
@@ -169,7 +177,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1.96\times0.56569 = 1.1087" />,
-    reason: 'The margin of error.',
+    reason: <>The margin of error.</>,
   },
   {
     working: <Katex display tex="\boxed{(1003.9,\ 1006.1)}" />,
@@ -180,15 +188,15 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\text{a 95\% confidence interval captures } \mu \text{ in 95\% of samples}" />,
-    reason: 'That frequency is the meaning of the confidence level — nothing to compute beyond a percentage.',
+    reason: <>That frequency is the meaning of the confidence level — nothing to compute beyond a percentage.</>,
   },
   {
     working: <Katex display tex="0.95\times40 = 38" />,
-    reason: <>Forty samples, not fifty. The 50 is the number of <em>bottles</em> in each sample, and mixing them up was the listed error.</>,
+    reason: <>Forty samples, not fifty. The 50 is the number of <em>bottles</em> in each sample — the report notes some students incorrectly used 50.</>,
   },
   {
     working: <Katex display tex="\boxed{38 \text{ of the confidence intervals}}" />,
-    reason: 'Expected value, so a whole number here by coincidence rather than by rounding.',
+    reason: <>Expected value, so a whole number here by coincidence rather than by rounding.</>,
   },
 ]
 
@@ -199,7 +207,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1.96\times\frac{4}{\sqrt n} \le 1 \implies \sqrt n \ge 7.84" />,
-    reason: 'Rearranging.',
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="n \ge 61.46\ldots" />,
@@ -224,37 +232,38 @@ export default function SpecialistQ6_2024Exam2() {
         </p>
         <p>
           The volume dispensed is monitored regularly by taking a random sample of nine
-          bottles and finding the mean volume dispensed. The machine will be paused and
-          adjusted if the mean volume of olive oil in the nine bottles is significantly less
-          than 1000 mL at the 5% level of significance.
+          bottles and finding the mean volume dispensed.
         </p>
         <p>
-          When checked, a random sample of nine bottles gave a mean volume of 997.5 mL. A
-          one-sided statistical test is to be performed.
+          The machine will be paused and adjusted if the mean volume of olive oil in the nine
+          bottles is significantly less than 1000 mL at the 5% level of significance.
         </p>
+        <p>When checked, a random sample of nine bottles gave a mean volume of 997.5 mL.</p>
+        <p>A one-sided statistical test is to be performed.</p>
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
         <Background>
           <p>
-            Every part of a. to d. uses the same distribution:{' '}
+            Parts b. to d. all use the same distribution:{' '}
             <Katex tex="\overline{X}\sim\mathrm{N}\!\left(\mu,\left(\tfrac{4.2}{3}\right)^2\right)" />.
-            The <Katex tex="\sqrt9=3" /> is the whole difficulty — leaving the standard
-            deviation at 4.2 changes the p value from 0.037 to 0.276 and flips the
-            conclusion.
+            The <Katex tex="\sqrt9=3" /> matters — leaving the standard deviation at 4.2
+            changes the p value from 0.037 to 0.276 and flips the conclusion, and the report
+            notes some students did not divide by 3.
           </p>
           <p>
             Part c. needs <em>two</em> different means. The critical value comes from{' '}
             <Katex tex="\mu=1000" /> (that is where the 5% rule lives), but the probability of
             missing the fault is computed with <Katex tex="\mu=997" /> (that is what is
-            actually happening). Using one mean for both is why this part split the cohort in
-            half.
+            actually happening). The report's common errors were not finding the critical
+            value under <Katex tex="H_0" /> and using the wrong tail.
           </p>
         </Background>
       </div>
 
       <PartCard
         letter="a"
+        topic="Hypotheses"
         marks={1}
         statement={
           <>
@@ -269,6 +278,7 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="p-Value"
         marks={1}
         statement={
           <>
@@ -282,10 +292,11 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Conclusion"
         marks={1}
         statement={
           <>
-            Using the <Katex tex="p" /> value found in <b>part b.i.</b>, state with a reason
+            Using the <Katex tex="p" /> value found in <b>part b.i</b>, state with a reason
             whether the machine should be paused.
           </>
         }
@@ -296,6 +307,7 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="c"
+        topic="Type II Error"
         marks={2}
         statement={
           <>
@@ -312,6 +324,7 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="d"
+        topic="Critical Value"
         marks={1}
         statement={
           <>
@@ -319,9 +332,12 @@ export default function SpecialistQ6_2024Exam2() {
             bottles. As a quality-control measure, the machine will be paused if{' '}
             <Katex tex="\overline{X}<a" /> or if <Katex tex="\overline{X}>b" />, where{' '}
             <Katex tex="\Pr\!\left(\overline{X}<a\right)=0.01" /> and{' '}
-            <Katex tex="\Pr\!\left(\overline{X}>b\right)=0.01" />. Assume{' '}
-            <Katex tex="\mu=1000" /> mL and <Katex tex="\sigma=4.2" /> mL. Find the values of{' '}
-            <Katex tex="a" /> and <Katex tex="b" /> correct to one decimal place.
+            <Katex tex="\Pr\!\left(\overline{X}>b\right)=0.01" />.
+            <br />
+            Assume <Katex tex="\mu=1000" /> mL and <Katex tex="\sigma=4.2" /> mL.
+            <br />
+            Find the values of <Katex tex="a" /> and <Katex tex="b" /> correct to one decimal
+            place.
           </>
         }
         examinerReport={EXAM_D}
@@ -339,6 +355,7 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="e"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
@@ -354,12 +371,14 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="f"
+        topic="Confidence Interval"
         marks={1}
         statement={
           <>
             Forty samples, each consisting of 50 randomly chosen bottles, are taken, and a 95%
-            confidence interval is calculated for each sample. In how many of these confidence
-            intervals would the population mean volume dispensed by the machine be expected to
+            confidence interval is calculated for each sample.
+            <br />
+            In how many of these confidence intervals would the population mean volume dispensed by the machine be expected to
             lie?
           </>
         }
@@ -370,6 +389,7 @@ export default function SpecialistQ6_2024Exam2() {
 
       <PartCard
         letter="g"
+        topic="Sample Size"
         marks={1}
         statement={
           <>

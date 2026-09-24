@@ -13,8 +13,12 @@ const EXAM: SAExaminerStats = {
     <>
       A small number of students drew diagrams of skew lines and parallel planes to help
       motivate an appropriate formula for the distance between two skew lines. Other students
-      tried to work from memory with varying results. Some students considered only one case
-      and so did not find both values of <Katex tex="m" />.
+      tried to work from memory with varying results.
+      <br />
+      Some students considered only{' '}
+      <Katex tex="\dfrac{4+5m}{\sqrt{35}}=\dfrac{14}{\sqrt{35}}" /> or{' '}
+      <Katex tex="\dfrac{-4-5m}{\sqrt{35}}=\dfrac{14}{\sqrt{35}}" /> and so did not find both
+      values of <Katex tex="m" />.
     </>
   ),
 }
@@ -22,7 +26,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{d_1} = \underset{\sim}{i}+2\underset{\sim}{j}+\underset{\sim}{k}, \qquad \underset{\sim}{d_2} = -\underset{\sim}{i}+3\underset{\sim}{j}+2\underset{\sim}{k}" />,
-    reason: 'The direction vectors — the parts multiplied by λ and μ.',
+    reason: <>The direction vectors — the parts multiplied by λ and μ.</>,
   },
   {
     working: (
@@ -31,7 +35,7 @@ const ROWS: WorkingRow[] = [
         tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 2 & 1\\-1 & 3 & 2\end{vmatrix} = \underset{\sim}{i}-3\underset{\sim}{j}+5\underset{\sim}{k}"
       />
     ),
-    reason: 'A vector perpendicular to both lines — the direction along which the shortest gap is measured.',
+    reason: <>A vector perpendicular to both lines — the direction along which the shortest gap is measured.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right| = \sqrt{1+9+25} = \sqrt{35}" />,
@@ -39,23 +43,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{a_1} = \underset{\sim}{i}+m\underset{\sim}{k}, \qquad \underset{\sim}{a_2} = 2\underset{\sim}{i}-\underset{\sim}{k} \implies \underset{\sim}{a_2}-\underset{\sim}{a_1} = \underset{\sim}{i}+(-1-m)\underset{\sim}{k}" />,
-    reason: 'Any vector joining a point of one line to a point of the other will do — the formula projects away whatever part runs along the lines.',
+    reason: <>Any vector joining a point of one line to a point of the other will do — the formula projects away whatever part runs along the lines.</>,
   },
   {
     working: <Katex display tex="d = \frac{\left|\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\left(\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right)\right|}{\left|\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right|}" />,
-    reason: <>The scalar resolute of the joining vector in the common-perpendicular direction. It is not on the formula sheet, so it has to be recalled or rebuilt — which is why most of the cohort scored zero here.</>,
+    reason: <>The scalar resolute of the joining vector in the common-perpendicular direction. It is not on the formula sheet, so it has to be recalled or rebuilt — the report notes students who tried to work from memory had varying results.</>,
   },
   {
     working: <Katex display tex="\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\left(\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right) = (1)(1)+(0)(-3)+(-1-m)(5) = -4-5m" />,
-    reason: 'The triple product.',
+    reason: <>The triple product.</>,
   },
   {
     working: <Katex display tex="\frac{\left|-4-5m\right|}{\sqrt{35}} = \frac{14}{\sqrt{35}} \implies \left|5m+4\right| = 14" />,
-    reason: <>The <Katex tex="\sqrt{35}" /> cancels. The absolute value is what produces two answers, not one.</>,
+    reason: <>The <Katex tex="\sqrt{35}" /> cancels. The absolute value is what produces two answers, not one — the report notes some students considered only one case.</>,
   },
   {
     working: <Katex display tex="5m+4 = 14 \ \text{ or } \ 5m+4 = -14" />,
-    reason: 'Both branches.',
+    reason: <>Both branches.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 2 \quad \text{or} \quad m = -\frac{18}{5}}" />,
@@ -68,21 +72,16 @@ export default function SpecialistQ10_2024Exam1() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 10 (3 marks)</p>
-        <p>Let the lines <Katex tex="l_1" /> and <Katex tex="l_2" /> be defined by</p>
-        <div className="py-1">
-          <Katex
-            display
-            tex="l_1:\ \underset{\sim}{r_1}(\lambda) = \underset{\sim}{i}+m\underset{\sim}{k}+\lambda\left(\underset{\sim}{i}+2\underset{\sim}{j}+\underset{\sim}{k}\right)"
-          />
-          <Katex
-            display
-            tex="l_2:\ \underset{\sim}{r_2}(\mu) = 2\underset{\sim}{i}-\underset{\sim}{k}+\mu\left(-\underset{\sim}{i}+3\underset{\sim}{j}+2\underset{\sim}{k}\right)"
-          />
-        </div>
         <p>
-          where <Katex tex="m\in\mathbb{R}\setminus\left\{-\tfrac45\right\}" /> and{' '}
-          <Katex tex="\lambda,\mu\in\mathbb{R}" />. If the shortest distance between the two
-          skew lines <Katex tex="l_1" /> and <Katex tex="l_2" /> is{' '}
+          Let the lines <Katex tex="l_1" /> and <Katex tex="l_2" /> be defined by
+          <br />
+          <Katex tex="l_1:\underset{\sim}{r_1}(\lambda) = \underset{\sim}{i}+m\underset{\sim}{k}+\lambda\left(\underset{\sim}{i}+2\underset{\sim}{j}+\underset{\sim}{k}\right)" />{' '}
+          and{' '}
+          <Katex tex="l_2:\underset{\sim}{r_2}(\mu) = 2\underset{\sim}{i}-\underset{\sim}{k}+\mu\left(-\underset{\sim}{i}+3\underset{\sim}{j}+2\underset{\sim}{k}\right)" />,
+          where <Katex tex="m\in R\setminus\left\{-\dfrac45\right\}" /> and{' '}
+          <Katex tex="\lambda,\mu\in R" />.
+          <br />
+          If the shortest distance between the two skew lines <Katex tex="l_1" /> and <Katex tex="l_2" /> is{' '}
           <Katex tex="\dfrac{14}{\sqrt{35}}" />, find the values of <Katex tex="m" />.
         </p>
       </div>

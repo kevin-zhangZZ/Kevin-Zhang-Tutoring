@@ -1,19 +1,22 @@
-// 2015 Mathematical Methods — Exam 2, Section 2 Question 3 (11 marks).
-// Mani the fruit grower: a continuous pdf for medium-orange diameter (parts a, b), a normal
-// model for large-orange juice volume (part c), and a binomial model for underweight lemons
-// (part d). Question text transcribed from the original paper (no diagram given — purely
-// algebraic/probabilistic). Solution is original.
+// 2015 Mathematical Methods (CAS) — Exam 2, Section 2 Question 3 (11 marks). A continuous pdf
+// for medium-orange diameter (parts a, b), a normal model for large-orange juice volume (part c),
+// and a binomial model for underweight lemons (part d). Question text transcribed from the
+// original paper (no diagram given). Answers checked with sympy/scipy and against the VCAA
+// examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [17, 3, 80],
   average: 1.7,
   comment: (
     <>
-      Some students omitted the <Katex tex="dx" />. Some had incorrect terminals, or gave the
-      answer without showing any working.
+      Some students omitted the <Katex tex="dx" />. Some had incorrect terminals such as{' '}
+      <Katex tex="\int_6^7 f(x)\,dx" />, <Katex tex="\int_{7.0001}^8 f(x)\,dx" /> or{' '}
+      <Katex tex="\int_{6.9999}^8 f(x)\,dx" />. Others gave the answer without showing any
+      working.
     </>
   ),
 }
@@ -24,7 +27,8 @@ const EXAM_AII: SAExaminerStats = {
   comment: (
     <>
       Many students were able to identify the binomial distribution with the correct{' '}
-      <Katex tex="n" /> and <Katex tex="p" /> values.
+      <Katex tex="n" /> and <Katex tex="p" /> values. A common incorrect answer was{' '}
+      <Katex tex="\tfrac{11}{16}\times\left(\tfrac5{16}\right)^2=\tfrac{275}{4096}" />.
     </>
   ),
 }
@@ -34,9 +38,9 @@ const EXAM_B: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Some students worked out the median (solving <Katex tex="\int_6^x f=0.5" />) instead of
-      the mean. Others evaluated <Katex tex="\int_6^8 f(x)\,dx" />, leaving out the{' '}
-      <Katex tex="x" />.
+      Some students worked out the median, solving{' '}
+      <Katex tex="\int_6^8 f(x)\,dx=0.5" /> for <Katex tex="x" />, instead of the mean. Others
+      evaluated <Katex tex="\int_6^8\bigl(f(x)\bigr)dx" />, leaving out <Katex tex="x" />.
     </>
   ),
 }
@@ -44,7 +48,13 @@ const EXAM_B: SAExaminerStats = {
 const EXAM_C: SAExaminerStats = {
   marks: [37, 13, 50],
   average: 1.1,
-  comment: <>Many students were able to recognise that the problem involved conditional probability.</>,
+  comment: (
+    <>
+      Many students were able to recognise that the problem involved conditional probability.
+      Some students evaluated <Katex tex="\tfrac{0.38918\ldots}{0.49999}" /> or{' '}
+      <Katex tex="\tfrac{0.889188\ldots}{0.5}" />.
+    </>
+  ),
 }
 
 const EXAM_DI: SAExaminerStats = {
@@ -52,8 +62,9 @@ const EXAM_DI: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      Some students wrote 3% as 0.3. Others used the incorrect value for <Katex tex="n" />.
-      Some attempted to use the normal distribution instead.
+      Some students wrote 3% as 0.3. Others had the incorrect value for <Katex tex="n" />,
+      using <Katex tex="\text{Lemons}\sim\text{Bi}(3,0.03)" />. Some gave the answer without
+      showing any working, while others attempted to use the normal distribution.
     </>
   ),
 }
@@ -63,8 +74,9 @@ const EXAM_DII: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      Some students rounded their answer to 22 instead of rounding up. Trial-and-error methods
-      were accepted, provided working was shown.
+      Some students rounded their answer to 22. Others did not state the minimum value, leaving
+      their answer as <Katex tex="n>22.7566" />. Some students used the trial and error methods
+      and this was acceptable. Some students did not show any working.
     </>
   ),
 }
@@ -86,6 +98,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>7) = \tfrac{11}{16}}" />,
+    reason: <>Exact, though <Katex tex="0.6875" /> was also accepted. More than a half, which fits the density: it rises to a peak near <Katex tex="x=7.3" /> before falling to zero at 8, so most of its area lies above 7. On CAS, <Cas fn="nInt">∫(3/4(x-6)^2(8-x), x, 7, 8)</Cas>.</>,
   },
 ]
 
@@ -100,16 +113,18 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 3\cdot\frac{11}{16}\cdot\frac{25}{256} = \frac{825}{4096}" />,
+    reason: <>The factor of 3 counts which of the three oranges is the large one — leaving it out gives the report's common wrong answer <Katex tex="\tfrac{275}{4096}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(Y=1) = \dfrac{825}{4096}}" />,
+    reason: <>In the form <Katex tex="\tfrac ab" />, as required. About 0.20 — small, because a large orange is the likely outcome, so exactly one in three is uncommon.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="E(X) = \int_6^8 x\cdot\tfrac34(x-6)^2(8-x)\,dx" />,
-    reason: <>The mean of a continuous random variable.</>,
+    working: <Katex display tex="\mathrm{E}(X) = \int_6^8 x\cdot\tfrac34(x-6)^2(8-x)\,dx" />,
+    reason: <>The mean of a continuous random variable — the integrand has an extra factor of <Katex tex="x" />, the step the report says some students left out.</>,
   },
   {
     working: <Katex display tex="u=x-6 \;\implies\; x=u+6,\ 8-x=2-u,\quad u:0\to2" />,
@@ -125,7 +140,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= \tfrac34\cdot\tfrac{48}{5} = \tfrac{36}{5}" />,
   },
   {
-    working: <Katex display tex="\boxed{E(X) = \tfrac{36}{5} = 7.2\text{ cm}}" />,
+    working: <Katex display tex="\boxed{\mathrm{E}(X) = \tfrac{36}{5} = 7.2\text{ cm}}" />,
+    reason: <>Above 7, consistent with part (a)(i)'s finding that more than half the oranges are over 7 cm.</>,
   },
 ]
 
@@ -143,15 +159,15 @@ const ROWS_C: WorkingRow[] = [
     reason: <>74 mL is exactly the mean of the normal distribution.</>,
   },
   {
-    working: <Katex display tex="\Pr(74<O<85) \approx 0.38918\ldots" />,
-    reason: <>Evaluated directly (by CAS/normal CDF) — the region from the mean up to 85 mL.</>,
+    working: <Katex display tex="\Pr(74<O<85) = 0.38918\ldots" />,
+    reason: <>The region from the mean up to 85 mL, on CAS: <Cas fn="normCdf">normCdf(74, 85, 74, 9)</Cas>.</>,
   },
   {
     working: <Katex display tex="\dfrac{0.38918\ldots}{0.5} \approx 0.77836\ldots" />,
   },
   {
     working: <Katex display tex="\boxed{\Pr(O<85\mid O>74) \approx 0.778}" />,
-    reason: <>Correct to three decimal places.</>,
+    reason: <>Correct to three decimal places. Sensible: 85 mL is a little over one standard deviation above the mean, so most of the upper half lies below it.</>,
   },
 ]
 
@@ -168,7 +184,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(\text{rejected}) \approx 0.1147}" />,
-    reason: <>Correct to four decimal places.</>,
+    reason: <>Correct to four decimal places. On CAS, <Cas fn="binomCdf">1 − binomCdf(4, 0.03, 0, 0)</Cas>.</>,
   },
 ]
 
@@ -181,12 +197,12 @@ const ROWS_DII: WorkingRow[] = [
     working: <Katex display tex="(0.97)^n < 0.5" />,
   },
   {
-    working: <Katex display tex="n > \dfrac{\ln(0.5)}{\ln(0.97)} \approx 22.7566\ldots" />,
-    reason: <>Take logs — dividing by <Katex tex="\ln(0.97)" /> (negative) flips the inequality.</>,
+    working: <Katex display tex="n > \dfrac{\log_e(0.5)}{\log_e(0.97)} = 22.7566\ldots" />,
+    reason: <>Take logs — dividing by <Katex tex="\log_e(0.97)" /> (negative) flips the inequality.</>,
   },
   {
     working: <Katex display tex="\boxed{n=23}" />,
-    reason: <>The smallest integer strictly greater than <Katex tex="22.76\ldots" />.</>,
+    reason: <>The smallest integer strictly greater than <Katex tex="22.76\ldots" /> — round up, not to 22, which the report says some did. Check: <Katex tex="1-0.97^{22}\approx0.488" /> (not enough) and <Katex tex="1-0.97^{23}\approx0.504" /> ✓.</>,
   },
 ]
 
@@ -210,12 +226,13 @@ export default function MethodsQ3_2015Exam2() {
         />
       </div>
 
-      <PartCard letter="a.i" marks={2} statement={<>Find the probability that a randomly selected medium orange has a diameter greater than 7 cm.</>} examinerReport={EXAM_AI}>
+      <PartCard letter="a.i" topic="Continuous PDF" marks={2} statement={<>Find the probability that a randomly selected medium orange has a diameter greater than 7 cm.</>} examinerReport={EXAM_AI}>
         <WorkingTable rows={ROWS_AI} />
       </PartCard>
 
       <PartCard
         letter="a.ii"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -230,7 +247,7 @@ export default function MethodsQ3_2015Exam2() {
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Find the mean diameter of medium oranges, in centimetres.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Mean of PDF" marks={1} statement={<>Find the mean diameter of medium oranges, in centimetres.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
@@ -242,6 +259,7 @@ export default function MethodsQ3_2015Exam2() {
 
       <PartCard
         letter="c"
+        topic="Normal Distribution"
         marks={2}
         statement={
           <>
@@ -262,12 +280,13 @@ export default function MethodsQ3_2015Exam2() {
         is accepted. It is known that 3% of Mani's lemons are underweight.
       </div>
 
-      <PartCard letter="d.i" marks={2} statement={<>Find the probability that a particular load of lemons will be rejected. Express the answer correct to four decimal places.</>} examinerReport={EXAM_DI}>
+      <PartCard letter="d.i" topic="Binomial Distribution" marks={2} statement={<>Find the probability that a particular load of lemons will be rejected. Express the answer correct to four decimal places.</>} examinerReport={EXAM_DI}>
         <WorkingTable rows={ROWS_DI} />
       </PartCard>
 
       <PartCard
         letter="d.ii"
+        topic="Minimum Sample Size"
         marks={2}
         statement={
           <>

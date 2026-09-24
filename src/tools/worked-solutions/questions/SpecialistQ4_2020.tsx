@@ -19,16 +19,16 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(g(x)) = \frac{\sqrt{g(x)-1}}{g(x)} = \frac{\sqrt{\csc^2(x)-1}}{\csc^2(x)}" />,
-    reason: <>Substitute <Katex tex="g(x)=\csc^2(x)" /> into <Katex tex="f(x)=\dfrac{\sqrt{x-1}}{x}" />.</>,
+    working: <Katex display tex="f(g(x)) = \frac{\sqrt{g(x)-1}}{g(x)} = \frac{\sqrt{\operatorname{cosec}^2(x)-1}}{\operatorname{cosec}^2(x)}" />,
+    reason: <>Substitute <Katex tex="g(x)=\operatorname{cosec}^2(x)" /> into <Katex tex="f(x)=\dfrac{\sqrt{x-1}}{x}" />.</>,
   },
   {
-    working: <Katex display tex="\csc^2(x)-1 = \cot^2(x) \;\implies\; \sqrt{\csc^2(x)-1} = |\cot(x)| = \cot(x)" />,
+    working: <Katex display tex="\operatorname{cosec}^2(x)-1 = \cot^2(x) \;\implies\; \sqrt{\operatorname{cosec}^2(x)-1} = |\cot(x)| = \cot(x)" />,
     reason: <>Pythagorean identity; <Katex tex="\cot(x)>0" /> on <Katex tex="0<x<\tfrac{\pi}{2}" />, so the absolute value drops.</>,
   },
   {
-    working: <Katex display tex="f(g(x)) = \frac{\cot(x)}{\csc^2(x)} = \frac{\cos(x)/\sin(x)}{1/\sin^2(x)} = \sin(x)\cos(x) = \tfrac12\sin(2x)" />,
-    reason: 'Rewrite in terms of sin and cos and simplify — rules out options A and B, which never simplify away the cosec² form.',
+    working: <Katex display tex="f(g(x)) = \frac{\cot(x)}{\operatorname{cosec}^2(x)} = \frac{\cos(x)/\sin(x)}{1/\sin^2(x)} = \sin(x)\cos(x) = \tfrac12\sin(2x)" />,
+    reason: <>Rewrite in terms of sin and cos and simplify — rules out options A and B, which compose the functions in the wrong order.</>,
   },
   {
     working: <Katex display tex="x\in\big(0,\tfrac{\pi}{2}\big) \;\implies\; 2x\in(0,\pi)" />,
@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac12\sin(2x) \in \big(0,\tfrac12\big]}" />,
-    reason: <>Matches option <b>E</b> exactly — the range is half-open, including <Katex tex="\tfrac12" /> but not <Katex tex="0" />.</>,
+    reason: <>Matches option <b>E</b> exactly — the range is half-open, including <Katex tex="\tfrac12" /> but not <Katex tex="0" />. Option <b>D</b>, the most popular choice (50%), has the right rule but excludes <Katex tex="\tfrac12" />; option <b>C</b> includes negative values.</>,
   },
 ]
 
@@ -49,16 +49,18 @@ export default function SpecialistQ4_2020() {
     <MCQShell
       question={
         <p>
-          Let <Katex tex="f(x) = \dfrac{\sqrt{x-1}}{x}" /> over its implied domain and <Katex tex="g(x) = \csc^2(x)" /> for{' '}
+          Let <Katex tex="f(x) = \dfrac{\sqrt{x-1}}{x}" /> over its implied domain and <Katex tex="g(x) = \operatorname{cosec}^2(x)" /> for{' '}
           <Katex tex="0<x<\tfrac{\pi}{2}" />.
+          <br />
+          The rule for <Katex tex="f\bigl(g(x)\bigr)" /> and the range, respectively, are given by
         </p>
       }
       options={[
-        { letter: 'A', content: <>{'f(g(x)) = '}<Katex tex="\csc^2\!\left(\dfrac{\sqrt{x-1}}{x}\right)" />, <Katex tex="[1,\infty)" /></> },
-        { letter: 'B', content: <>{'f(g(x)) = '}<Katex tex="\csc^2\!\left(\dfrac{\sqrt{x-1}}{x}\right)" />, <Katex tex="[2,\infty)" /></> },
-        { letter: 'C', content: <>{'f(g(x)) = sin(x)cos(x), '}<Katex tex="[-0.5,0.5]\setminus\{0\}" /></> },
-        { letter: 'D', content: <>{'f(g(x)) = sin(x)cos(x), '}<Katex tex="\big(0,\tfrac12\big)" /></> },
-        { letter: 'E', content: <>{'f(g(x)) = '}<Katex tex="\tfrac12\sin(2x)" />, <Katex tex="\big(0,\tfrac12\big]" /></>, isAnswer: true },
+        { letter: 'A', content: <Katex tex="f\bigl(g(x)\bigr)=\operatorname{cosec}^2\!\left(\dfrac{\sqrt{x-1}}{x}\right),\ [1,\infty)" /> },
+        { letter: 'B', content: <Katex tex="f\bigl(g(x)\bigr)=\operatorname{cosec}^2\!\left(\dfrac{\sqrt{x-1}}{x}\right),\ [2,\infty)" /> },
+        { letter: 'C', content: <Katex tex="f\bigl(g(x)\bigr)=\sin(x)\cos(x),\ [-0.5,0.5]\setminus\{0\}" /> },
+        { letter: 'D', content: <Katex tex="f\bigl(g(x)\bigr)=\sin(x)\cos(x),\ \left(0,\tfrac12\right)" /> },
+        { letter: 'E', content: <Katex tex="f\bigl(g(x)\bigr)=\tfrac12\sin(2x),\ \left(0,\tfrac12\right]" />, isAnswer: true },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

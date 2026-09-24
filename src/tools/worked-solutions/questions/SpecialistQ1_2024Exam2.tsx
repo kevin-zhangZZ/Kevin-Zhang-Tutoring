@@ -2,8 +2,9 @@
 // function with two vertical asymptotes: sketch, a volume of revolution about the y-axis,
 // then counting the stationary points of a parametrised relative. Question text transcribed
 // from the original paper (2024 papers are image-only, so read from rendered pages); the
-// graph is our own drawing of the answer. Answers checked with sympy and against the VCAA
-// examination report. Solution is original.
+// part a. graph is our own drawing of the answer on VCAA's exact grid (x from −2.26 to 2.3,
+// gridlines every 0.2; y from −9 to 9, gridlines every 1). Answers checked with sympy and
+// against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
@@ -15,9 +16,21 @@ const EXAM_A: SAExaminerStats = {
   average: 2.0,
   comment: (
     <>
-      Many students did not draw this graph accurately. The graph must be flatter near the{' '}
-      <Katex tex="y" />-intercept, with turning points and endpoints precisely positioned.
-      Students generally succeeded in drawing and labelling the asymptotes.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Many students did not draw this graph accurately. To improve accuracy, students can
+          sketch the function on their CAS calculator and set the domain, range and scale to match
+          those provided in the question.
+        </li>
+        <li>
+          The graph must be flatter near the <Katex tex="y" />-intercept, with turning points and
+          end points precisely positioned.
+        </li>
+        <li>
+          Students generally succeeded in drawing and labelling the asymptotes and demonstrated
+          asymptotic behaviour effectively.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -27,9 +40,16 @@ const EXAM_BI: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Students were expected to write an expression for <Katex tex="x^2" /> within the
-      definite integral instead of stating the generic formula. Many students made
-      transcription errors when transferring their answer from their CAS.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Students were expected to write an expression for <Katex tex="x^2" /> within the
+          definite integral instead of stating the generic formula.
+        </li>
+        <li>
+          Many students made transcription errors when transferring their answer from their CAS
+          to the script.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -37,7 +57,7 @@ const EXAM_BI: SAExaminerStats = {
 const EXAM_BII: SAExaminerStats = {
   marks: [44, 56],
   average: 0.6,
-  comment: <>Success in part b.i. generally resulted in an accurate answer in this part.</>,
+  comment: <>Success in part i generally resulted in an accurate answer in this part.</>,
 }
 
 const EXAM_C: SAExaminerStats = {
@@ -74,11 +94,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1-x^2 = 0 \implies \text{vertical asymptotes } x = -1 \text{ and } x = 1" />,
-    reason: 'Both must be labelled with their equations.',
+    reason: <>Both must be labelled with their equations.</>,
   },
   {
     working: <Katex display tex="f'(x) = -2x+\frac{2x}{\left(1-x^2\right)^2} = 2x\left[\frac{1}{\left(1-x^2\right)^2}-1\right]" />,
-    reason: 'Factorising the 2x out is what makes the zeros readable.',
+    reason: <>Factorising the 2x out is what makes the zeros readable.</>,
   },
   {
     working: <Katex display tex="f'(x) = 0 \implies x = 0 \ \text{ or } \ \left(1-x^2\right)^2 = 1 \implies x = 0,\ \pm\sqrt2" />,
@@ -93,8 +113,16 @@ const ROWS_A: WorkingRow[] = [
     reason: <>On the middle branch <Katex tex="1-x^2>0" />, so the reciprocal term is positive and dominates near the asymptotes; on the outer branches it is negative, and far out the <Katex tex="-x^2" /> takes over.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{see the graph below}}" />,
-    reason: <>The middle branch is a wide, flat-bottomed valley touching its minimum at <Katex tex="(0,1)" /> — getting that flatness right was where most of the drawing marks were lost.</>,
+    working: (
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+        <img
+          src={sketchSrc}
+          alt="The answer on VCAA's grid (x from about −2.3 to 2.3, y from about −9 to 9): three branches either side of the dashed asymptotes x = −1 and x = 1 — a flat-bottomed middle valley with minimum (0, 1) rising to +∞ at both asymptotes, and two outer branches each with a maximum at (±√2, −3) falling away to −∞"
+          className="w-full max-w-[480px]"
+        />
+      </div>
+    ),
+    reason: <>The middle branch is a wide, flat-bottomed valley with its minimum at <Katex tex="(0,1)" />. The report stresses the graph must be flatter near the <Katex tex="y" />-intercept, with turning points and end points precisely positioned.</>,
   },
 ]
 
@@ -121,7 +149,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_1^{6}\frac{1-y+\sqrt{y^2+2y-3}}{2}\,dy}" />,
-    reason: <>An expression for <Katex tex="x^2" /> inside the integral was required, not the generic formula.</>,
+    reason: <>The report says students were expected to write an expression for <Katex tex="x^2" /> within the definite integral instead of stating the generic formula.</>,
   },
 ]
 
@@ -136,7 +164,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{11.2 \text{ cubic units}}" />,
-    reason: 'One decimal place, as required.',
+    reason: <>One decimal place, as required.</>,
   },
 ]
 
@@ -151,7 +179,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b = -1: \quad g(x) = \frac{x^4-1}{1-x^2} = \frac{\left(x^2-1\right)\left(x^2+1\right)}{-\left(x^2-1\right)} = -\left(x^2+1\right)" />,
-    reason: 'Both factors cancel at once, leaving a polynomial.',
+    reason: <>Both factors cancel at once, leaving a polynomial.</>,
   },
   {
     working: <Katex display tex="\boxed{b = -1}" />,
@@ -170,11 +198,11 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b+1<0 \implies \left(x^2-1\right)^2 = b+1 \text{ has no real solutions}" />,
-    reason: 'A square cannot be negative.',
+    reason: <>A square cannot be negative.</>,
   },
   {
     working: <Katex display tex="b+1=0 \implies \left(x^2-1\right)^2 = 0 \implies x = \pm1" />,
-    reason: <>These are outside the domain, so they are not stationary points either — which is why <Katex tex="b=-1" /> must be included. This is the boundary case most students missed.</>,
+    reason: <>These are outside the domain, so they are not stationary points either — which is why <Katex tex="b=-1" /> must be included.</>,
   },
   {
     working: <Katex display tex="\boxed{b \le -1}" />,
@@ -185,15 +213,15 @@ const ROWS_DI: WorkingRow[] = [
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\left(x^2-1\right)^2 = b+1 \implies x^2 = 1\pm\sqrt{b+1} \quad (b\ge-1)" />,
-    reason: 'Taking square roots twice, keeping both signs at the first step.',
+    reason: <>Taking square roots twice, keeping both signs at the first step.</>,
   },
   {
     working: <Katex display tex="x^2 = 1+\sqrt{b+1} \ \text{ always gives two solutions } \pm\sqrt{1+\sqrt{b+1}}" />,
-    reason: 'This value is at least 1, so it is always positive.',
+    reason: <>This value is at least 1, so it is always positive.</>,
   },
   {
     working: <Katex display tex="x^2 = 1-\sqrt{b+1} \ \text{ gives two more only if } 1-\sqrt{b+1}>0 \iff b<0" />,
-    reason: 'So for −1 < b < 0 there are four extra stationary points, not two.',
+    reason: <>So for <Katex tex="-1<b<0" /> there are four extra stationary points, not two.</>,
   },
   {
     working: <Katex display tex="b\ge0 \implies 1-\sqrt{b+1}\le0 \implies \text{no solutions from that branch}" />,
@@ -201,7 +229,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b \ge 0}" />,
-    reason: <>The three points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1+\sqrt{b+1}}" />. Omitting the equality was the listed error.</>,
+    reason: <>The three points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1+\sqrt{b+1}}" />. The report notes many students did not include the equality sign.</>,
   },
 ]
 
@@ -256,23 +284,18 @@ export default function SpecialistQ1_2024Exam2() {
 
       <PartCard
         letter="a"
+        topic="Sketch Graph"
         marks={3}
         statement={
           <>
-            Sketch the graph of <Katex tex="y=f(x)" />. Label the vertical asymptotes with
-            their equations and label the stationary points with their coordinates.
+            Sketch the graph of <Katex tex="y=f(x)" /> on the set of axes below. Label the
+            vertical asymptotes with their equations and label the stationary points with their
+            coordinates.
           </>
         }
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="Three branches between the dashed asymptotes x = −1 and x = 1: a flat-bottomed middle valley with minimum (0, 1) rising to +∞ at both asymptotes, and two outer branches each with a maximum at (±√2, −3) falling away to −∞"
-            className="w-full max-w-[520px]"
-          />
-        </div>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
@@ -286,6 +309,7 @@ export default function SpecialistQ1_2024Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Volume of Revolution"
         marks={2}
         statement={
           <>
@@ -300,6 +324,7 @@ export default function SpecialistQ1_2024Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Volume of Revolution"
         marks={1}
         statement={<>Find the volume of the solid, correct to one decimal place.</>}
         examinerReport={EXAM_BII}
@@ -309,11 +334,13 @@ export default function SpecialistQ1_2024Exam2() {
 
       <PartCard
         letter="c"
+        topic="Asymptotes"
         marks={1}
         statement={
           <>
             Now consider the function <Katex tex="g" /> with rule{' '}
-            <Katex tex="g(x)=\dfrac{x^4+b}{1-x^2}" />, where <Katex tex="b\in\mathbb{R}" />.
+            <Katex tex="g(x)=\dfrac{x^4+b}{1-x^2}" />, where <Katex tex="b\in R" />.
+            <br />
             For what value of <Katex tex="b" /> will the graph of <Katex tex="g" /> have no
             asymptotes?
           </>
@@ -328,19 +355,20 @@ export default function SpecialistQ1_2024Exam2() {
         <p>
           The gradient function of <Katex tex="g" /> is given by{' '}
           <Katex tex="g'(x)=\dfrac{-2x\left(\left(x^2-1\right)^2-(b+1)\right)}{\left(1-x^2\right)^2}" />.
+          <br />
           For what values of <Katex tex="b" /> will the graph of <Katex tex="g" /> have exactly
         </p>
       </div>
 
-      <PartCard letter="d.i" marks={1} statement={<>one stationary point?</>} examinerReport={EXAM_DI}>
+      <PartCard letter="d.i" topic="Stationary Points" marks={1} statement={<>one stationary point?</>} examinerReport={EXAM_DI}>
         <WorkingTable rows={ROWS_DI} />
       </PartCard>
 
-      <PartCard letter="d.ii" marks={1} statement={<>three stationary points?</>} examinerReport={EXAM_DII}>
+      <PartCard letter="d.ii" topic="Stationary Points" marks={1} statement={<>three stationary points?</>} examinerReport={EXAM_DII}>
         <WorkingTable rows={ROWS_DII} />
       </PartCard>
 
-      <PartCard letter="d.iii" marks={1} statement={<>five stationary points?</>} examinerReport={EXAM_DIII}>
+      <PartCard letter="d.iii" topic="Stationary Points" marks={1} statement={<>five stationary points?</>} examinerReport={EXAM_DIII}>
         <WorkingTable rows={ROWS_DIII} />
       </PartCard>
     </div>

@@ -35,6 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dfrac{0.12354}{0.82662} \approx 0.1494" />,
+    reason: <>Dividing, then rounding to four decimal places as asked.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.1494}" />,

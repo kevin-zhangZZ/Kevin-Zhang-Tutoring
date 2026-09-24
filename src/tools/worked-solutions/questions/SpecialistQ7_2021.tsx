@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{arc length} = r\times\Delta(2t) = 5\times\tfrac{\pi}{2} = \tfrac{5\pi}{2}}" />,
-    reason: <>A quarter of the circle's circumference is shorter than going the other way round (three-quarters) — matches option <b>E</b>.</>,
+    reason: <>A quarter of the circle's circumference is shorter than going the other way round (three-quarters). Matches option <b>E</b>. Option D, <Katex tex="\tfrac{5\pi}{4}" />, multiplies the radius by the change in <Katex tex="t" /> rather than the change in the angle <Katex tex="2t" />.</>,
   },
 ]
 

@@ -60,6 +60,8 @@ export default function SpecialistQ9_2016Exam1() {
           Given that <Katex tex="\cos(x-y)=\tfrac35" /> and{' '}
           <Katex tex="\tan(x)\tan(y)=2" />, find <Katex tex="\cos(x+y)" />.
         </p>
+      </Background>
+      <Background>
         <p>
           There is not enough information to find <Katex tex="x" /> and <Katex tex="y" />{' '}
           separately, and you do not need to. Both compound-angle identities are built from

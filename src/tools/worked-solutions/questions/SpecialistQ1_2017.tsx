@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(-\infty,-1]\cup[1,\infty)}" />,
-    reason: <>Option C. Note <Katex tex="x=0" /> is excluded automatically — <Katex tex="|0|\ge1" /> is false — so no separate exclusion is needed. Spot-check: <Katex tex="x=2" /> gives <Katex tex="2\arccos(0.5)" />, fine; <Katex tex="x=0.5" /> gives <Katex tex="\arccos(2)" />, undefined.</>,
+    reason: <>Matches option <b>C</b>. Option E (12%) applies the <Katex tex="[-1,1]" /> restriction to <Katex tex="x" /> instead of to <Katex tex="\tfrac1x" />. Note <Katex tex="x=0" /> is excluded automatically — <Katex tex="|0|\ge1" /> is false — so no separate exclusion is needed. Spot-check: <Katex tex="x=2" /> gives <Katex tex="2\arccos(0.5)" />, fine; <Katex tex="x=0.5" /> gives <Katex tex="\arccos(2)" />, undefined.</>,
   },
 ]
 

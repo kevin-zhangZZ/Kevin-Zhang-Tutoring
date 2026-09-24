@@ -9,7 +9,7 @@ import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
-  percentages: { A: 13, B: 48, C: 17, D: 22 },
+  percentages: {},
   answer: ['A', 'B', 'C', 'D'],
   flawed: (
     <>

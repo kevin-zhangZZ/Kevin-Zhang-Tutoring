@@ -13,21 +13,20 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 37, C: 21, D: 15, E: 9 },
   answer: 'B',
   noAnswer: 1,
-  comment: <>Solve <Katex tex="\int_2^a \tfrac16\,dx=1" /> for <Katex tex="a" />: <Katex tex="a=8" />. Then <Katex tex="\mathrm{E}(X) = \int_2^8 \tfrac{x}{6}\,dx = 5" />.</>,
+  comment: (
+    <>
+      Solve <Katex tex="\int_2^a\left(\tfrac16\right)dx=1" />, for <Katex tex="a" />,{' '}
+      <Katex tex="a=8" />; <Katex tex="\mathrm{E}(X)=\int_2^8\left(\tfrac{x}{6}\right)dx=5" /> or Area of
+      the rectangle <Katex tex="=\tfrac16(a-2)=1" />, <Katex tex="a=8" />. Since it is a uniform
+      distribution, the expected value is halfway between 2 and 8, which is 5.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-        <img src={diagramSrc} alt="Uniform probability density function, constant at 1/6 from x=2 to x=a, from the original 2015 VCAA exam paper" className="w-full max-w-[300px]" />
-      </div>
-    ),
-    reason: <>The graph shows a constant density <Katex tex="\tfrac16" /> from <Katex tex="x=2" /> to some unknown <Katex tex="x=a" />.</>,
-  },
-  {
     working: <Katex display tex="\int_2^a \frac16\,dx = 1" />,
-    reason: 'Total area under any probability density function must equal 1.',
+    reason: <>The graph shows a constant density <Katex tex="\tfrac16" /> from <Katex tex="x=2" /> to some unknown <Katex tex="x=a" />, and the total area under any probability density function must equal 1.</>,
   },
   {
     working: (
@@ -43,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(X) = 5}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option A (16%) is <Katex tex="a" /> itself, not the mean; option E is the lower endpoint.</>,
   },
 ]
 

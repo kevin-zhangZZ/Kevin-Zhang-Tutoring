@@ -34,8 +34,8 @@ const ROWS: WorkingRow[] = [
     reason: <>The factor that survives in the denominator is the one that blows up.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{D}}" />,
-    reason: <>Option B has both as asymptotes; option E swaps them. The <Katex tex="x" />-intercept <Katex tex="x=1" /> is not a feature either option A or C describes correctly.</>,
+    working: <Katex display tex="\boxed{\text{asymptote } x=-2, \text{ point of discontinuity at } x=3}" />,
+    reason: <>Matches option <b>D</b>. Option B (20%) treats both factors as asymptotes, missing the cancellation; option E swaps them. Options A and C put an asymptote at <Katex tex="x=1" />, which is where the graph crosses the <Katex tex="x" />-axis (the surviving factor is in the numerator), not an asymptote.</>,
   },
 ]
 

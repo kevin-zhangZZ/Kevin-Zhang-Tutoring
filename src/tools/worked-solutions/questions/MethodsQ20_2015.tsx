@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = x^2+2}" />,
-    reason: <>Option B. Check: <Katex tex="f(x-1)=(x-1)^2+2=x^2-2x+3" /> ✓. A faster route: complete the square, <Katex tex="x^2-2x+3=(x-1)^2+2" />, so <Katex tex="f(\square)=\square^2+2" /> by inspection.</>,
+    reason: <>Matches option <b>B</b>. Option E substitutes <Katex tex="x-1" /> a second time — it is <Katex tex="f(x-2)" />, a shift the wrong way. Check: <Katex tex="f(x-1)=(x-1)^2+2=x^2-2x+3" /> ✓. A faster route: complete the square, <Katex tex="x^2-2x+3=(x-1)^2+2" />, so <Katex tex="f(\square)=\square^2+2" /> by inspection.</>,
   },
 ]
 

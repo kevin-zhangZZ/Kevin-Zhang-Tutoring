@@ -18,11 +18,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="S = 2\pi\int x\sqrt{1+\left(\frac{dx}{dy}\right)^2}\,dy" />,
-    reason: 'Surface-of-revolution formula about the y-axis, integrating with respect to y.',
+    reason: <>Surface-of-revolution formula about the y-axis, integrating with respect to y.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dy} = -\sin(y) \;\implies\; 1+\left(\frac{dx}{dy}\right)^2 = 1+\sin^2(y)" />,
-    reason: 'Differentiate x = cos(y).',
+    reason: <>Differentiate x = cos(y).</>,
   },
   {
     working: <Katex display tex="S = 2\pi\int_0^{\pi/2} \cos(y)\sqrt{1+\sin^2(y)}\,dy" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{S = 2\pi\int_0^1\sqrt{1+u^2}\,du}" />,
-    reason: <>Limits become <Katex tex="u=\sin(0)=0" /> to <Katex tex="u=\sin(\pi/2)=1" /> — matches option <b>E</b>.</>,
+    reason: <>Limits become <Katex tex="u=\sin(0)=0" /> to <Katex tex="u=\sin(\pi/2)=1" />. Matches option <b>E</b>; option <b>D</b> forgets to change the terminals.</>,
   },
 ]
 
@@ -52,8 +52,8 @@ export default function SpecialistQ11_2023() {
         { letter: 'A', content: <Katex tex="2\pi\displaystyle\int_0^{\pi/2}\cos^{-1}(x)\sqrt{1+\dfrac{1}{x^2-1}}\,dx" /> },
         { letter: 'B', content: <Katex tex="2\pi\displaystyle\int_0^1\cos^{-1}(x)\sqrt{1+\dfrac{1}{x^2-1}}\,dx" /> },
         { letter: 'C', content: <Katex tex="2\pi\displaystyle\int_0^{\pi/2}\cos(y)\sqrt{1-\sin^2(y)}\,dy" /> },
-        { letter: 'D', content: <Katex tex="2\pi\displaystyle\int_0^{\pi/2}\sqrt{1+u^2}\,du,\ \ u=\sin(y)" /> },
-        { letter: 'E', content: <Katex tex="2\pi\displaystyle\int_0^1\sqrt{1+u^2}\,du,\ \ u=\sin(y)" />, isAnswer: true },
+        { letter: 'D', content: <Katex tex="2\pi\displaystyle\int_0^{\pi/2}\sqrt{1+u^2}\,du,\ \text{where } u=\sin(y)" /> },
+        { letter: 'E', content: <Katex tex="2\pi\displaystyle\int_0^1\sqrt{1+u^2}\,du,\ \text{where } u=\sin(y)" />, isAnswer: true },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = \pm\frac{b}{a}(x-h) = \pm\tfrac23(x-3)" />,
-    reason: <>The asymptotes pass through the centre with gradients <Katex tex="\pm\tfrac ba=\pm\tfrac23" /> — not <Katex tex="\pm\tfrac94" />, which is where options A and D come from.</>,
+    reason: <>The asymptotes pass through the centre with gradients <Katex tex="\pm\tfrac ba=\pm\tfrac23" />. Inverting this to <Katex tex="\pm\tfrac32" /> gives <Katex tex="y" />-intercepts <Katex tex="\mp4.5" /> — options A and D.</>,
   },
   {
     working: <Katex display tex="y = 0 \implies x = 3 \text{ for both}" />,
@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(0,2),\ (0,-2),\ (3,0)}" />,
-    reason: <>Option B. Option C has the <Katex tex="x" />-intercept at <Katex tex="-3" />, which would be the centre of a hyperbola in <Katex tex="(x+3)^2" />.</>,
+    reason: <>Matches option <b>B</b>. Option C has the <Katex tex="x" />-intercept at <Katex tex="-3" />, which would be the centre of a hyperbola in <Katex tex="(x+3)^2" />.</>,
   },
 ]
 

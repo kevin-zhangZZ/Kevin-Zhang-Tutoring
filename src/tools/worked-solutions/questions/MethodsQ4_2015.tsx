@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(3,8)}" />,
-    reason: <>The others fail: <Katex tex="(1,-4)" /> needs <Katex tex="y=0" />, <Katex tex="(-2,6)" /> needs <Katex tex="-12" />, <Katex tex="(1,8)" /> needs <Katex tex="0" />, and <Katex tex="(4,-4)" /> needs <Katex tex="12" />.</>,
+    reason: <>Matches option <b>B</b>. The others fail: <Katex tex="(1,-4)" /> needs <Katex tex="y=0" />, <Katex tex="(-2,6)" /> needs <Katex tex="-12" />, <Katex tex="(1,8)" /> needs <Katex tex="0" />, and <Katex tex="(4,-4)" /> needs <Katex tex="12" />.</>,
   },
 ]
 

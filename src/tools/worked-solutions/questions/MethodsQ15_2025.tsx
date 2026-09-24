@@ -12,9 +12,15 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'B',
   comment: (
     <>
-      Reflect <Katex tex="(1,3)" /> in the <Katex tex="x" />-axis gives <Katex tex="(1,-3)" />. Dilate by{' '}
-      <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis gives <Katex tex="\left(\tfrac12,-3\right)" />.
-      Translate 1 unit up and <Katex tex="\tfrac32" /> units right gives <Katex tex="(2,-2)" />.
+      <Katex tex="y=1-g(2x-3)=-g\left(2\left(x-\dfrac{3}{2}\right)\right)+1" />
+      <br />
+      Reflect <Katex tex="(1,3)" /> in the <Katex tex="x" />-axis gives <Katex tex="(1,-3)" />.
+      <br />
+      Dilate <Katex tex="(1,-3)" /> by a factor of <Katex tex="\dfrac{1}{2}" /> from the{' '}
+      <Katex tex="y" />-axis gives <Katex tex="\left(\dfrac{1}{2},-3\right)" />.
+      <br />
+      Translate 1 unit up and <Katex tex="\dfrac{3}{2}" /> units to the right gives{' '}
+      <Katex tex="(2,-2)" />.
     </>
   ),
 }
@@ -26,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Reading the transformed rule: reflect in the <Katex tex="x" />-axis, dilate by <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis, translate <Katex tex="\tfrac32" /> right, translate <Katex tex="1" /> up.</>,
-    reason: 'Track a known point through each transformation, in order.',
+    reason: <>Track a known point through each transformation, in order.</>,
   },
   {
     working: <Katex display tex="(1,3) \xrightarrow{\text{reflect in }x\text{-axis}} (1,-3)" />,
@@ -38,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left(\tfrac12,-3\right) \xrightarrow{\text{shift }\tfrac32\text{ right, }1\text{ up}} \left(\tfrac12+\tfrac32,\ -3+1\right)" />,
-    reason: 'Apply the remaining shift.',
+    reason: <>Apply the remaining shift.</>,
   },
   {
     working: <Katex display tex="\boxed{(2,-2)}" />,

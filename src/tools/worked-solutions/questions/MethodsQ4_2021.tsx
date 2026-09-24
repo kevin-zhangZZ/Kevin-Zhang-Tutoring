@@ -14,15 +14,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = (x-2)e^x \implies h'(x) = e^x+(x-2)e^x = (x-1)e^x" />,
-    reason: 'Product rule, then factor out the exponential.',
+    reason: <>Product rule, then factor out the exponential.</>,
   },
   {
     working: <Katex display tex="h'(x) = 0 \implies x = 1 \ \left(e^x>0 \text{ always}\right)" />,
-    reason: 'The only stationary point, and it lies inside the interval.',
+    reason: <>The only stationary point, and it lies inside the interval.</>,
   },
   {
     working: <Katex display tex="h(1) = (-1)e = -e" />,
-    reason: <>Negative — so this is a <em>minimum</em>, not the maximum. Option A takes it as the answer.</>,
+    reason: <><Katex tex="h'(x)" /> changes from negative to positive at <Katex tex="x=1" />, so this is a <em>minimum</em>, not the maximum. Option A takes it as the answer.</>,
   },
   {
     working: <Katex display tex="h(0) = -2, \quad h(2) = 0" />,

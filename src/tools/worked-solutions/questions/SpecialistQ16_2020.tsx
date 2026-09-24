@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = (1)(2)+(2)(-4)+(2)(4) = 2" />,
-    reason: 'The dot product.',
+    reason: <>The dot product.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{a}\right| = \sqrt{1+4+4} = 3, \quad \left|\underset{\sim}{b}\right| = \sqrt{4+16+16} = 6" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{8\sqrt5}{81}}" />,
-    reason: <>Matches option <b>D</b>. Option C drops the factor of 2.</>,
+    reason: <>Matches option <b>D</b>. Option <b>C</b> drops the factor of 2, and option <b>A</b> is <Katex tex="\cos\theta" />.</>,
   },
 ]
 
@@ -47,8 +47,9 @@ export default function SpecialistQ16_2020() {
           <Katex tex="\underset{\sim}{a}=\underset{\sim}{i}+2\underset{\sim}{j}+2\underset{\sim}{k}" />{' '}
           and{' '}
           <Katex tex="\underset{\sim}{b}=2\underset{\sim}{i}-4\underset{\sim}{j}+4\underset{\sim}{k}" />
-          , where the acute angle between these vectors is <Katex tex="\theta" />. The value
-          of <Katex tex="\sin(2\theta)" /> is
+          , where the acute angle between these vectors is <Katex tex="\theta" />.
+          <br />
+          The value of <Katex tex="\sin(2\theta)" /> is
         </p>
       }
       options={[

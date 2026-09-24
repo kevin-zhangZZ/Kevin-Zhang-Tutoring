@@ -1,13 +1,13 @@
 // 2015 Mathematical Methods (CAS) — Exam 1, Question 10 (7 marks).
 // A tangent to a circle in parametric form, then minimising the area of a trapezium. The
-// hardest question on the paper: 80% scored zero on part (a) and 68% on part (d).
+// hardest question on the paper: 80% scored zero on part (a), 84% on part (b) and 68% on part (d).
 // Question text transcribed from the original paper; the figure is a crop of VCAA's own
 // artwork. Answers checked with sympy and against the VCAA examination report. Solution
 // is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import circleSrc from './meth-2015exam1-q10-circle.png'
+import circleSrc from './meth-2015e1-q10-circle.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [80, 20],
@@ -25,11 +25,11 @@ const EXAM_B: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Equivalent expressions such as <Katex tex="m_{XY}=-\tfrac{\cos\theta}{\sin\theta}" />{' '}
-      were accepted. Some students included the variables <Katex tex="b" /> or{' '}
+      Equivalent expressions such as <Katex tex="m_{XY}=-\tfrac{\cos(\theta)}{\sin(\theta)}" />{' '}
+      were accepted. Some students included the variables of <Katex tex="b" /> or{' '}
       <Katex tex="d" /> in their final answer. Many students found the gradient of the
       radius <Katex tex="CT" /> rather than the gradient of the line segment{' '}
-      <Katex tex="XY" />.
+      <Katex tex="XT" />.
     </>
   ),
 }
@@ -39,8 +39,8 @@ const EXAM_CI: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Many students who had no success with parts a. and b. managed to attain full marks
-      here. The most efficient method was to substitute the relevant points into the given
+      Many students who had no success with parts a. and b. managed to attain full marks for
+      this question. The most efficient method was to substitute the relevant points into the given
       equation then transpose for the variable specified.
     </>
   ),
@@ -69,7 +69,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{T = \bigl(2+2\cos(\theta),\ 2\sin(\theta)\bigr)}" />,
-    reason: <>The <Katex tex="+2" /> on the <Katex tex="x" />-coordinate is the translation from the origin to <Katex tex="C" />, and forgetting it is the report's single named error — four-fifths of the state.</>,
+    reason: <>The <Katex tex="+2" /> on the <Katex tex="x" />-coordinate is the translation from the origin to <Katex tex="C" />; forgetting it was the report's most common error, and 80% of students scored zero on this part. Check: at <Katex tex="\theta=0" /> this gives <Katex tex="(4,0)" />, the point <Katex tex="E" /> ✓.</>,
   },
 ]
 
@@ -103,7 +103,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = \frac{2}{\sin(\theta)}}" />,
-    reason: <>Defined because <Katex tex="0<\theta<\tfrac{\pi}{2}" />, so <Katex tex="\sin\theta>0" />.</>,
+    reason: <>Defined because <Katex tex="0<\theta\le\tfrac{\pi}{2}" />, so <Katex tex="\sin\theta>0" />.</>,
   },
 ]
 
@@ -141,7 +141,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2-4\cos\theta = 0 \implies \cos\theta = \frac12 \implies \boxed{\theta = \frac{\pi}{3}}" />,
-    reason: <>The only solution in <Katex tex="\left(0,\tfrac{\pi}{2}\right)" />. The denominator is positive throughout, so the sign of <Katex tex="A'" /> is the numerator's: negative before <Katex tex="\tfrac{\pi}{3}" />, positive after — a minimum.</>,
+    reason: <>The only solution in <Katex tex="\left(0,\tfrac{\pi}{2}\right]" />. The denominator is positive throughout, so the sign of <Katex tex="A'" /> is the numerator's: negative before <Katex tex="\tfrac{\pi}{3}" />, positive after — a minimum. At the endpoint <Katex tex="\theta=\tfrac\pi2" />, <Katex tex="A=\tfrac{4-0}{1}=4" />, which is larger, so the minimum really is at <Katex tex="\tfrac\pi3" />.</>,
   },
   {
     working: <Katex display tex="A\!\left(\frac{\pi}{3}\right) = \frac{4-2\times\frac12}{\frac{\sqrt3}{2}} = \frac{3}{\frac{\sqrt3}{2}} = \frac{6}{\sqrt3}" />,
@@ -159,13 +159,10 @@ export default function MethodsQ10_2015Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 10 (7 marks)</p>
         <p className="mb-3">
-          The diagram below shows a point <Katex tex="T" /> on a circle. The circle has
+          The diagram below shows a point, <Katex tex="T" />, on a circle. The circle has
           radius <Katex tex="2" /> and centre at the point <Katex tex="C" /> with
           coordinates <Katex tex="(2,0)" />. The angle <Katex tex="ECT" /> is{' '}
-          <Katex tex="\theta" />, where <Katex tex="0<\theta<\tfrac{\pi}{2}" />. The diagram
-          also shows the tangent to the circle at <Katex tex="T" />. This tangent is
-          perpendicular to <Katex tex="CT" /> and intersects the <Katex tex="x" />-axis at
-          point <Katex tex="X" /> and the <Katex tex="y" />-axis at point <Katex tex="Y" />.
+          <Katex tex="\theta" />, where <Katex tex="0<\theta\le\tfrac{\pi}{2}" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -174,10 +171,16 @@ export default function MethodsQ10_2015Exam1() {
             className="w-full max-w-[420px]"
           />
         </div>
+        <p className="mt-3">
+          The diagram also shows the tangent to the circle at <Katex tex="T" />. This tangent
+          is perpendicular to <Katex tex="CT" /> and intersects the <Katex tex="x" />-axis at
+          point <Katex tex="X" /> and the <Katex tex="y" />-axis at point <Katex tex="Y" />.
+        </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Coordinates"
         marks={1}
         statement={
           <>
@@ -190,8 +193,8 @@ export default function MethodsQ10_2015Exam1() {
           <p>
             A circle of radius <Katex tex="r" /> centred at <Katex tex="(h,k)" /> has points{' '}
             <Katex tex="(h+r\cos\theta,\ k+r\sin\theta)" />. The centre's coordinates are
-            added, not forgotten — and here <Katex tex="h=2" /> is exactly what four-fifths
-            of the state left out.
+            added, not forgotten — and here <Katex tex="h=2" /> is exactly what the report
+            says was most commonly left out.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -199,6 +202,7 @@ export default function MethodsQ10_2015Exam1() {
 
       <PartCard
         letter="b"
+        topic="Tangent Gradient"
         marks={1}
         statement={
           <>
@@ -220,6 +224,7 @@ export default function MethodsQ10_2015Exam1() {
 
       <PartCard
         letter="c.i"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -235,6 +240,7 @@ export default function MethodsQ10_2015Exam1() {
 
       <PartCard
         letter="c.ii"
+        topic="Tangent Line"
         marks={1}
         statement={
           <>
@@ -250,6 +256,7 @@ export default function MethodsQ10_2015Exam1() {
 
       <PartCard
         letter="d"
+        topic="Optimisation"
         marks={3}
         statement={
           <>
@@ -274,9 +281,8 @@ export default function MethodsQ10_2015Exam1() {
             identity does the heavy lifting in the numerator.
           </p>
           <p>
-            Finally evaluate. The report notes that many students who derived the area
-            function correctly then stopped before the last step — the question asks for
-            both <Katex tex="\theta" /> and the area.
+            Finally evaluate — the question asks for both <Katex tex="\theta" /> and the
+            minimum area.
           </p>
         </Background>
         <WorkingTable rows={ROWS_D} />

@@ -1,50 +1,59 @@
 // 2019 Specialist Mathematics — Exam 2, Section B, Question 1 (11 marks).
 // A parametric curve x = sec(t)+1, y = tan(t) — converting to cartesian form, its domain and
 // range, dy/dx in terms of sin(t) and its limiting value, a sketch, and a volume of revolution
-// integral. Question text transcribed from the original paper. VCAA's axes for part (d) were
-// blank, so the sketched curve is this site's own answer, plotted with matplotlib; it matches
-// the sketch published in the examination report. Cross-checked against the VCAA examination
+// integral. Question text transcribed from the original paper (the rule is y = √(x² − 2x)
+// throughout, not y² = x² − 2x). VCAA's axes for part d. were blank, so the sketched curve is
+// this site's own answer, plotted with matplotlib on VCAA's grid (−4 to 4, gridlines every
+// 0.5); it matches the sketch published in the examination report. Cross-checked against the VCAA examination
 // report and itute's independent solutions, and verified by computer algebra.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import sketchSrc from './spec-2019exam2-q1d-sketch.png'
+import sketchSrc from './spec-2019e2-q1d-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [17, 7, 76],
   average: 1.6,
-  comment: <>Most students used the Pythagorean identity to eliminate the parameter. Some did not show enough working for a "show that" question.</>,
+  comment: <>This question was generally done well. Some students took unnecessarily convoluted approaches with the relationships between the trigonometric expressions. Students were required to work from the parametric forms to reach the cartesian form.</>,
 }
 
 const EXAM_B: SAExaminerStats = {
   marks: [20, 42, 38],
   average: 1.2,
-  comment: <>Many students gave the domain and range of the full relation rather than of the curve traced out by the given parameter restriction.</>,
+  comment: <>While most students stated the correct range, a significant number gave a domain which did not account for the restriction on <Katex tex="t" />.</>,
 }
 
 const EXAM_CI: SAExaminerStats = {
   marks: [27, 12, 61],
   average: 1.4,
-  comment: <>Most students used the chain rule correctly. The answer had to be expressed in terms of <Katex tex="\sin(t)" />.</>,
+  comment: <>Students who differentiated the parametric functions with respect to <Katex tex="t" /> and then applied the chain rule were generally successful. Students who differentiated <Katex tex="y" /> in terms of <Katex tex="x" /> directly were less successful; some left their answer in terms of <Katex tex="x" />, others had difficulty with the subsequent substitution and simplification.</>,
 }
 
 const EXAM_CII: SAExaminerStats = {
   marks: [39, 61],
   average: 0.6,
-  comment: <>Students who had part (c)(i) correct generally obtained this mark.</>,
 }
 
 const EXAM_D: SAExaminerStats = {
   marks: [4, 12, 84],
   average: 1.8,
-  comment: <>This was generally well done, with most students labelling the endpoints with coordinates as required. Students are advised to set viewing windows on technology to a scale that closely matches the scale provided on the examination.</>,
+  comment: <>This was generally well done with most students labelling the endpoints with coordinates as required. Students are advised to set viewing windows on technology to a scale that closely matches the scale provided on the examination.</>,
 }
 
 const EXAM_E: SAExaminerStats = {
   marks: [79, 19, 3],
   average: 0.3,
-  comment: <>This question was not well done. Many students did not convert the terminals to values of <Katex tex="t" />, or used <Katex tex="dx" /> rather than <Katex tex="dy" /> when rotating about the <Katex tex="y" />-axis.</>,
+  comment: (
+    <>
+      Correct alternatives for the upper terminal of the definite integral include{' '}
+      <Katex tex="\arccos\left(\tfrac13\right)" />.
+      <br />
+      Very few students answered this question correctly. The most common incorrect answer was
+      an integral in terms of <Katex tex="x" />. Of those that attempted to give an integral in
+      terms of <Katex tex="t" />, most simply replaced <Katex tex="dx" /> with <Katex tex="dt" />.
+    </>
+  ),
 }
 
 const ROWS_A: WorkingRow[] = [
@@ -61,11 +70,16 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Substitute both into the identity.</>,
   },
   {
-    working: <Katex display tex="y^2 = (x-1)^2-1 = x^2-2x+1-1" />,
+    working: <Katex display tex="y^2 = (x-1)^2-1 = x^2-2x+1-1 = x^2-2x" />,
+    reason: <>Rearrange for <Katex tex="y^2" /> and expand.</>,
   },
   {
-    working: <Katex display tex="\boxed{y^2 = x^2-2x}" />,
-    reason: <>As required. For a "show that", every line above needs to be visible — jumping from the identity to the answer doesn't earn the marks.</>,
+    working: <Katex display tex="t\in\left[0,\tfrac{\pi}{2}\right) \implies y=\tan(t)\ge0" />,
+    reason: <>The parameter's restriction decides which square root to take: <Katex tex="\tan" /> is non-negative on this interval.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{y = \sqrt{x^2-2x}}" />,
+    reason: <>As required. The report notes students were required to work from the parametric forms to reach the cartesian form — so start from <Katex tex="x" /> and <Katex tex="t" />, not from the answer.</>,
   },
 ]
 
@@ -76,6 +90,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \sec(t)+1 \in [2,\infty)" />,
+    reason: <>Adding <Katex tex="1" /> shifts the interval.</>,
   },
   {
     working: <Katex display tex="y = \tan(t) \in [0,\infty)" />,
@@ -83,7 +98,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{domain } [2,\infty), \qquad \text{range } [0,\infty)}" />,
-    reason: <>Note this is the domain and range of the piece of the curve the <em>parameter</em> traces out — only the upper half of the full relation <Katex tex="y^2=x^2-2x" />, and only its right-hand branch. The report notes many students gave the whole relation's domain and range instead.</>,
+    reason: <>Note this is the domain and range of the curve the <em>parameter</em> traces out. The rule <Katex tex="y=\sqrt{x^2-2x}" /> on its own would also allow <Katex tex="x\le0" />; the restriction on <Katex tex="t" /> removes that branch. The report notes a significant number gave a domain which did not account for the restriction on <Katex tex="t" />.</>,
   },
 ]
 
@@ -109,6 +124,7 @@ const ROWS_CI: WorkingRow[] = [
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{As } t\to\dfrac{\pi}{2}^-: \quad \sin(t)\to1" />,
+    reason: <><Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" />, and <Katex tex="\tfrac{1}{\sin(t)}" /> is continuous there.</>,
   },
   {
     working: <Katex display tex="\boxed{\dfrac{dy}{dx} \to 1}" />,
@@ -118,8 +134,8 @@ const ROWS_CII: WorkingRow[] = [
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="y^2 = x^2-2x \ \text{ with } y\ge0 \implies y = \sqrt{x^2-2x}" />,
-    reason: <>From part (b) the range is <Katex tex="[0,\infty)" />, so only the <em>upper</em> branch is drawn — not both halves of the full relation.</>,
+    working: <Katex display tex="y = \sqrt{x^2-2x}, \quad x\in[2,4]" />,
+    reason: <>Only non-negative <Katex tex="y" />-values (part b.), and only the stretch of the curve from <Katex tex="x=2" /> to <Katex tex="x=4" />.</>,
   },
   {
     working: (
@@ -133,21 +149,21 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={sketchSrc} alt="Upper branch of y² = x² − 2x from (2,0) rising to (4, 2√2), drawn on axes from −4 to 4" className="w-full max-w-[340px]" />
+        <img src={sketchSrc} alt="The curve y = √(x² − 2x) from (2, 0), where it starts with a vertical tangent, rising to (4, 2√2), drawn on VCAA's grid from −4 to 4" className="w-full max-w-[340px]" />
       </div>
     ),
-    reason: <>Starting at <Katex tex="(2,0)" /> with a vertical tangent (the gradient <Katex tex="\tfrac{1}{\sin t}" /> is undefined at <Katex tex="t=0" />) and flattening towards gradient <Katex tex="1" /> as it climbs — exactly what parts (c)(i) and (c)(ii) predicted.</>,
+    reason: <>Starting at <Katex tex="(2,0)" /> with a vertical tangent (the gradient <Katex tex="\tfrac{1}{\sin t}" /> is undefined at <Katex tex="t=0" />) and flattening towards gradient <Katex tex="1" /> as it climbs — exactly what parts c.i. and c.ii. predicted.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_{y_1}^{y_2} x^2\,dy" />,
-    reason: <>Rotation about the <Katex tex="y" />-axis, so the radius of each circular slice is <Katex tex="x" /> and the slices stack along <Katex tex="y" />. Using <Katex tex="dx" /> here is the most common error.</>,
+    reason: <>Rotation about the <Katex tex="y" />-axis, so the radius of each circular slice is <Katex tex="x" /> and the slices stack along <Katex tex="y" />. The report says the most common incorrect answer was an integral in terms of <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="dy = \dfrac{dy}{dt}\,dt = \sec^2(t)\,dt" />,
-    reason: <>Change the variable of integration from <Katex tex="y" /> to <Katex tex="t" />, since the question wants the answer in terms of <Katex tex="t" />.</>,
+    reason: <>Change the variable of integration from <Katex tex="y" /> to <Katex tex="t" />, since the question wants the answer in terms of <Katex tex="t" />. The report notes that of those who attempted an integral in terms of <Katex tex="t" />, most simply replaced <Katex tex="dx" /> with <Katex tex="dt" />.</>,
   },
   {
     working: (
@@ -156,7 +172,7 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="x=4 \implies \sec(t)=3 \implies t=\cos^{-1}\!\left(\tfrac13\right)" />
       </>
     ),
-    reason: <>The terminals must be converted to <Katex tex="t" /> values too. Equivalently the upper terminal is <Katex tex="\tan^{-1}\!\left(2\sqrt2\right)" />, since <Katex tex="\sec t=3" /> gives <Katex tex="\tan t=\sqrt{9-1}=2\sqrt2" />.</>,
+    reason: <>The terminals must be converted to <Katex tex="t" /> values too. Equivalently the upper terminal is <Katex tex="\tan^{-1}\!\left(2\sqrt2\right)" /> (the report's form), since <Katex tex="\sec t=3" /> gives <Katex tex="\tan t=\sqrt{9-1}=2\sqrt2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_0^{\cos^{-1}(1/3)} \bigl(\sec(t)+1\bigr)^2\sec^2(t)\,dt}" />,
@@ -175,7 +191,7 @@ export default function SpecialistQ1_2019Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Show that the curve can be represented in cartesian form by the rule <Katex tex="y^2=x^2-2x" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Cartesian Equation" marks={2} statement={<>Show that the curve can be represented in cartesian form by the rule <Katex tex="y=\sqrt{x^2-2x}" />.</>} examinerReport={EXAM_A}>
         <Background>
           <p>
             Converting a parametric curve to cartesian form means <b>eliminating the
@@ -189,11 +205,11 @@ export default function SpecialistQ1_2019Exam2() {
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>State the domain and range of the relation given by <Katex tex="y^2=x^2-2x" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Domain & Range" marks={2} statement={<>State the domain and range of the relation given by <Katex tex="y=\sqrt{x^2-2x}" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c.i" marks={2} statement={<>Express <Katex tex="\dfrac{dy}{dx}" /> in terms of <Katex tex="\sin(t)" />.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Parametric Derivative" marks={2} statement={<>Express <Katex tex="\dfrac{dy}{dx}" /> in terms of <Katex tex="\sin(t)" />.</>} examinerReport={EXAM_CI}>
         <Background>
           <p>
             For a parametric curve you never need the cartesian rule to differentiate — use{' '}
@@ -204,15 +220,15 @@ export default function SpecialistQ1_2019Exam2() {
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
-      <PartCard letter="c.ii" marks={1} statement={<>State the limiting value of <Katex tex="\dfrac{dy}{dx}" /> as <Katex tex="t" /> approaches <Katex tex="\dfrac{\pi}{2}" />.</>} examinerReport={EXAM_CII}>
+      <PartCard letter="c.ii" topic="Limiting Gradient" marks={1} statement={<>State the limiting value of <Katex tex="\dfrac{dy}{dx}" /> as <Katex tex="t" /> approaches <Katex tex="\dfrac{\pi}{2}" />.</>} examinerReport={EXAM_CII}>
         <WorkingTable rows={ROWS_CII} />
       </PartCard>
 
-      <PartCard letter="d" marks={2} statement={<>Sketch the curve <Katex tex="y^2=x^2-2x" /> on the axes below for <Katex tex="x\in[2,4]" />, labelling the endpoints with their coordinates.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Sketch Graph" marks={2} statement={<>Sketch the curve <Katex tex="y=\sqrt{x^2-2x}" /> on the axes below for <Katex tex="x\in[2,4]" />, labelling the endpoints with their coordinates.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<>The portion of the curve given by <Katex tex="y^2=x^2-2x" /> for <Katex tex="x\in[2,4]" /> is rotated about the <Katex tex="y" />-axis to form a solid of revolution. Write down, but do not evaluate, a definite integral in terms of <Katex tex="t" /> that gives the volume of the solid formed.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Volume of Revolution" marks={2} statement={<>The portion of the curve given by <Katex tex="y=\sqrt{x^2-2x}" /> for <Katex tex="x\in[2,4]" /> is rotated about the <Katex tex="y" />-axis to form a solid of revolution.<br />Write down, but do not evaluate, a definite integral in terms of <Katex tex="t" /> that gives the volume of the solid formed.</>} examinerReport={EXAM_E}>
         <Background>
           <p>
             Two things change when you rotate about the <Katex tex="y" />-axis instead of the{' '}

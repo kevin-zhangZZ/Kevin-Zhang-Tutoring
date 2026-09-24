@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Start: } x_0 = 0,\ y_0 = 0" />,
-    reason: 'Both initialised to zero.',
+    reason: <>Both initialised to zero.</>,
   },
   {
     working: <Katex display tex="\text{Pass 1: } y = 0+0.5e^{0\times0} = 0.5, \quad x = 0.5" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{3 \text{ iterations}}" />,
-    reason: <>Option <b>C</b>. The growth is explosive — a fourth pass gives <Katex tex="31.8" /> — so there is no ambiguity about which iteration produced the printed value.</>,
+    reason: <>Matches option <b>C</b>. The growth is explosive — a fourth pass gives <Katex tex="31.8" /> — so there is no ambiguity about which iteration produced the printed value.</>,
   },
 ]
 

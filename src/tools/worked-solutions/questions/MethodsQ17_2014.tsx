@@ -15,14 +15,14 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="ax-3y = 5, \qquad 3x-ay = 8-a" />,
-    reason: <>Two lines. "No solution" means they are parallel <em>and distinct</em> — which is why the determinant on its own is not the whole answer.</>,
+    reason: <>Two lines. "No solution" means they are parallel <em>and distinct</em> — equal gradients alone are not the whole answer.</>,
   },
   {
-    working: <Katex display tex="\det = a(-a)-(-3)(3) = 9-a^2" />,
-    reason: <>A unique solution exists exactly when this is non-zero, so the candidates are where it vanishes.</>,
+    working: <Katex display tex="y = \tfrac a3x-\tfrac53, \qquad y = \tfrac3ax-\tfrac{8-a}{a}" />,
+    reason: <>Rearrange each into <Katex tex="y=mx+c" /> form to read off the gradients. (<Katex tex="a=0" /> can't give parallel lines: the first becomes horizontal, the second vertical.)</>,
   },
   {
-    working: <Katex display tex="9-a^2 = 0 \implies a = 3 \text{ or } a = -3" />,
+    working: <Katex display tex="\tfrac a3 = \tfrac3a \implies a^2 = 9 \implies a = 3 \text{ or } a = -3" />,
     reason: <>Both must now be tested separately — this is the step that splits options A, B and C.</>,
   },
   {
@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -3}" />,
-    reason: <>Option B. Option C includes <Katex tex="a=3" />, where the system is consistent; option A is the case that gives infinitely many solutions.</>,
+    reason: <>Matches option <b>B</b>. Option C includes <Katex tex="a=3" />, where the system is consistent; option A is the case that gives infinitely many solutions.</>,
   },
 ]
 
@@ -45,7 +45,7 @@ export default function MethodsQ17_2014() {
       question={
         <p>
           The simultaneous linear equations <Katex tex="ax-3y=5" /> and{' '}
-          <Katex tex="3x-ay=8-a" /> have no solution for
+          <Katex tex="3x-ay=8-a" /> have <b>no solution</b> for
         </p>
       }
       options={[

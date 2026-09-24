@@ -6,6 +6,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2022-mcq17-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 39, B: 25, C: 16, D: 11, E: 8 },
@@ -13,8 +14,20 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="\dfrac{g(b)-g(a)}{b-a}>0 \;\implies\; g(b)>g(a)" />, but <Katex tex="g'\!\left(\dfrac{a+b}{2}\right)<0" /> —
-      so <Katex tex="g" /> is a many-to-one function (e.g. <Katex tex="g(x)=(x-1)(x-2)(x-2.5)" />).
+      <Katex tex="\dfrac{g(b)-g(a)}{b-a}>0,\ g(b)>g(a)" />
+      <br />
+      <Katex tex="g'(x)<0" /> at <Katex tex="x=\dfrac{a+b}{2}" />
+      <br />
+      <Katex tex="g" /> is a many-to-one function.
+      <br />
+      An example is shown below using <Katex tex="g(x)=(x-1)(x-2)(x-2.5)" />.
+      <br />
+      Let <Katex tex="a" /> = 1 and <Katex tex="b" /> = 3. The average rate of change is 0.5.
+      <br />
+      The gradient at <Katex tex="x" /> = 2 is negative.
+      <br />
+      So, <Katex tex="g" /> is a many-to-one function.
+      <img src={reportGraphSrc} alt="The report's example: g(x) = (x − 1)(x − 2)(x − 5/2) and the chord y = ½(x − 1) from (1, 0) to (3, 1)" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
@@ -22,7 +35,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{g(b)-g(a)}{b-a} > 0 \;\implies\; g(b) > g(a)" />,
-    reason: 'The function ends higher than it starts, over [a, b].',
+    reason: <>The function ends higher than it starts, over [a, b].</>,
   },
   {
     working: <Katex display tex="g'\!\left(\frac{a+b}{2}\right) < 0" />,
@@ -30,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Since <Katex tex="g" /> is a well-defined function, it can never be one-to-many.</>,
-    reason: 'Rules out option B on definitional grounds alone.',
+    reason: <>Rules out option B on definitional grounds alone.</>,
   },
   {
     working: <>If <Katex tex="g" /> were strictly increasing, one-to-one, or (obviously) strictly decreasing, it could never have a negative derivative partway through while still ending higher than it started.</>,

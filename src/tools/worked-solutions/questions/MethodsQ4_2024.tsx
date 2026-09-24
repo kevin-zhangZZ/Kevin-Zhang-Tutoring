@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3 = -5+\int_b^{c}f(x)\,dx" />,
-    reason: 'Substituting the two given integrals.',
+    reason: <>Substituting the two given integrals.</>,
   },
   {
     working: <Katex display tex="\int_b^{c}f(x)\,dx = 8" />,
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_b^{c}2f(x)\,dx = 2\times8 = 16}" />,
-    reason: <>Option <b>B</b>. A constant factor pulls straight out of an integral; forgetting to double it gives 8, and getting the subtraction the wrong way round gives <Katex tex="-4" /> (option <b>C</b>).</>,
+    reason: <>Matches option <b>B</b>. A constant factor pulls straight out of an integral. Getting the subtraction the wrong way round, <Katex tex="-5-3=-8" />, gives <Katex tex="-16" /> (option <b>A</b>); adding the two given integrals, <Katex tex="-2" />, gives <Katex tex="-4" /> (option <b>C</b>).</>,
   },
 ]
 

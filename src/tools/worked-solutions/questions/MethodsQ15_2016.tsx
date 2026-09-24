@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{7}{15}}" />,
-    reason: <>Dividing by <Katex tex="6" />. About <Katex tex="0.47" /> — just under half, so "different colours" is the slightly more likely outcome, which fits a <Katex tex="6" />–<Katex tex="4" /> split.</>,
+    reason: <>Dividing by <Katex tex="6" />. Matches option <b>C</b>. About <Katex tex="0.47" /> — just under half, so "different colours" is the slightly more likely outcome, which fits a <Katex tex="6" />–<Katex tex="4" /> split.</>,
   },
 ]
 

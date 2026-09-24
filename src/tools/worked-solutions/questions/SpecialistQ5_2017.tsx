@@ -26,12 +26,12 @@ const ROWS: WorkingRow[] = [
     reason: <>The midpoint always lies on the bisector — and here it is option A, so no line equation is needed at all.</>,
   },
   {
-    working: <Katex display tex="\boxed{\left(3,-\tfrac12\right)}" />,
-    reason: <>Option A. Direct check: <Katex tex="\left|3-\tfrac12i-(2-i)\right| = \left|1+\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> and <Katex tex="\left|3-\tfrac12i-4\right| = \left|-1-\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> ✓.</>,
-  },
-  {
     working: <Katex display tex="\text{full line: } y = -2x+\frac{11}{2}" />,
     reason: <>If the midpoint had not been one of the options: gradient of the segment is <Katex tex="\tfrac12" />, so the bisector's gradient is <Katex tex="-2" />, through <Katex tex="\left(3,-\tfrac12\right)" />. Substituting the other four options shows none of them satisfies this.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\left(3,-\tfrac12\right)}" />,
+    reason: <>Matches option <b>A</b>. Direct check: <Katex tex="\left|3-\tfrac12i-(2-i)\right| = \left|1+\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> and <Katex tex="\left|3-\tfrac12i-4\right| = \left|-1-\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> ✓.</>,
   },
 ]
 

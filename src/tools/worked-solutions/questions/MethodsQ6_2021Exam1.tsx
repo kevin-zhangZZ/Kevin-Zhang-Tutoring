@@ -11,9 +11,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Generally this question was well answered. A common incorrect answer came from falsely
-      assuming independence and calculating{' '}
-      <Katex tex="\Pr(C)\times\Pr(G')=\tfrac12\times\tfrac{7}{10}=\tfrac{7}{20}" />.
+      Generally, this question was well answered. A common incorrect answer was obtained by
+      falsely assuming independence and calculating{' '}
+      <Katex tex="\Pr(C\cap G')=\Pr(C)\times\Pr(G')=\tfrac12\times\tfrac{7}{10}=\tfrac{7}{20}" />
     </>
   ),
 }
@@ -25,9 +25,9 @@ const EXAM_B: SAExaminerStats = {
     <>
       This question was not well answered. Many students did not use <Katex tex="g" /> as
       stated in the question; few could find <Katex tex="6-g" />. Some used{' '}
-      <Katex tex="6-g" /> as a probability instead of <Katex tex="\tfrac{6-g}{10}" />. Those
-      who drew a probability diagram, either a tree diagram or a Karnaugh table, tended to
-      have better success.
+      <Katex tex="6-g" /> as a probability instead of <Katex tex="\tfrac{6-g}{10}" /> and
+      multiplied it by <Katex tex="\tfrac12" />. Those who drew a probability diagram, either a
+      tree diagram or Karnaugh table, tended to have better success.
     </>
   ),
 }
@@ -38,8 +38,10 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       This question was well attempted. Students were generally able to identify the binomial
-      distribution with parameters <Katex tex="n=5" />, <Katex tex="p=\tfrac12" />. Common
-      errors involved incorrect identification of the parameters as <Katex tex="n=4" /> or{' '}
+      distribution with parameters <Katex tex="n=5" />, <Katex tex="p=\tfrac12" />. Brackets,
+      or lack thereof, caused a problem for some, but generally students were able to
+      manipulate the fractions to obtain <Katex tex="\tfrac{3}{16}" />. Common
+      errors involved incorrect identification of parameters as <Katex tex="n=4" /> or{' '}
       <Katex tex="p=0.8" />.
     </>
   ),
@@ -48,11 +50,11 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{with custard} = \tfrac12\times20 = 10" />,
-    reason: 'Turning fractions into counts out of 20 makes the two-way table trivial.',
+    reason: <>Turning fractions into counts out of 20 makes the two-way table trivial.</>,
   },
   {
     working: <Katex display tex="\text{glazed, with custard} = \tfrac{1}{10}\times20 = 2" />,
-    reason: 'The only cell given directly.',
+    reason: <>The only cell given directly.</>,
   },
   {
     working: <Katex display tex="\text{not glazed, with custard} = 10-2 = 8" />,
@@ -71,7 +73,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Box A has } g \text{ glazed} \implies \text{Box B has } 6-g" />,
-    reason: 'The six glazed doughnuts are split between the two boxes — this is the step the report says few students reached.',
+    reason: <>The six glazed doughnuts are split between the two boxes — this is the step the report says few students reached.</>,
   },
   {
     working: <Katex display tex="\Pr(A\cap G) = \tfrac12\times\tfrac{g}{10}, \quad \Pr(B\cap G) = \tfrac12\times\tfrac{6-g}{10}" />,
@@ -79,7 +81,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(B\mid G) = \frac{\Pr(B\cap G)}{\Pr(A\cap G)+\Pr(B\cap G)}" />,
-    reason: 'Conditional probability, with the denominator built from the two ways of being glazed.',
+    reason: <>Conditional probability, with the denominator built from the two ways of being glazed.</>,
   },
   {
     working: <Katex display tex="= \frac{\tfrac{6-g}{20}}{\tfrac{g}{20}+\tfrac{6-g}{20}} = \frac{6-g}{g+(6-g)}" />,
@@ -123,24 +125,31 @@ export default function MethodsQ6_2021Exam1() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 6 (6 marks)</p>
-        <p>
-          An online shopping site sells boxes of doughnuts. A box contains 20 doughnuts.
-          There are only four types of doughnuts in the box. They are: glazed, with custard;
-          glazed, with no custard; not glazed, with custard; and not glazed, with no custard.
-        </p>
-        <p>
-          It is known that, in the box, <Katex tex="\tfrac12" /> of the doughnuts are with
-          custard, <Katex tex="\tfrac{7}{10}" /> of the doughnuts are not glazed, and{' '}
-          <Katex tex="\tfrac{1}{10}" /> of the doughnuts are glazed, with custard.
-        </p>
+        <p>An online shopping site sells boxes of doughnuts.</p>
+        <p>A box contains 20 doughnuts. There are only four types of doughnuts in the box. They are:</p>
+        <ul className="list-disc pl-6">
+          <li>glazed, with custard</li>
+          <li>glazed, with no custard</li>
+          <li>not glazed, with custard</li>
+          <li>not glazed, with no custard.</li>
+        </ul>
+        <p>It is known that, in the box:</p>
+        <ul className="list-disc pl-6">
+          <li><Katex tex="\tfrac12" /> of the doughnuts are with custard</li>
+          <li><Katex tex="\tfrac{7}{10}" /> of the doughnuts are not glazed</li>
+          <li><Katex tex="\tfrac{1}{10}" /> of the doughnuts are glazed, with custard.</li>
+        </ul>
       </div>
 
       <PartCard
         letter="a"
+        topic="Two-Way Table"
         marks={1}
         statement={
           <>
-            A doughnut is chosen at random from the box. Find the probability that it is not
+            A doughnut is chosen at random from the box.
+            <br />
+            Find the probability that it is not
             glazed, with custard.
           </>
         }
@@ -151,14 +160,21 @@ export default function MethodsQ6_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conditional Probability"
         marks={2}
         statement={
           <>
-            The 20 doughnuts in the box are randomly allocated to two new boxes, Box A and
-            Box B. Each new box contains 10 doughnuts. One of the two new boxes is chosen at
-            random and then a doughnut from that box is chosen at random. Let{' '}
-            <Katex tex="g" /> be the number of glazed doughnuts in Box A. Find the
-            probability, in terms of <Katex tex="g" />, that the doughnut comes from Box B
+            The 20 doughnuts in the box are randomly allocated to two new boxes, Box <i>A</i> and
+            Box <i>B</i>.
+            <br />
+            Each new box contains 10 doughnuts.
+            <br />
+            One of the two new boxes is chosen at random and then a doughnut from that box is
+            chosen at random.
+            <br />
+            Let <Katex tex="g" /> be the number of glazed doughnuts in Box <i>A</i>.
+            <br />
+            Find the probability, in terms of <Katex tex="g" />, that the doughnut comes from Box B
             given that it is glazed.
           </>
         }
@@ -169,13 +185,18 @@ export default function MethodsQ6_2021Exam1() {
 
       <PartCard
         letter="c"
+        topic="Sample Proportion"
         marks={3}
         statement={
           <>
-            The online shopping site has over one million visitors per day. It is known that
-            half of these visitors are less than 25 years old. Let <Katex tex="\hat P" /> be
-            the random variable representing the proportion of visitors who are less than 25
-            years old in a random sample of five visitors. Find{' '}
+            The online shopping site has over one million visitors per day.
+            <br />
+            It is known that half of these visitors are less than 25 years old.
+            <br />
+            Let <Katex tex="\hat P" /> be the random variable representing the proportion of
+            visitors who are less than 25 years old in a random sample of five visitors.
+            <br />
+            Find{' '}
             <Katex tex="\Pr\!\left(\hat P\ge0.8\right)" />. Do not use a normal
             approximation.
           </>

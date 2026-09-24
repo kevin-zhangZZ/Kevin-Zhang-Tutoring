@@ -17,7 +17,13 @@ const EXAM: SAExaminerStats = {
       <Katex tex="2x^2" />, <Katex tex="4x^2" /> or more commonly <Katex tex="x^3" />. There
       was some confusion with <Katex tex="t" /> and <Katex tex="x" />, which resulted in a
       denominator <Katex tex="(1+x^2)" /> rather than <Katex tex="(1+t^2)" />. Some found the
-      correct derivative using the chain rule but then did not continue by substituting.
+      correct derivative using the chain rule but then did not continue by substituting for{' '}
+      <Katex tex="t" /> and/or <Katex tex="x" />. Some students did not use the chain rule. A
+      few wrote <Katex tex="t=\tan(x)" /> and some progressed successfully from there. Other
+      methods were seen, including some students converting completely to the variable{' '}
+      <Katex tex="x" />. Some students wrote <Katex tex="\arctan(t)" /> as{' '}
+      <Katex tex="\tan^{-1}(t)" /> and then converted this to{' '}
+      <Katex tex="\tfrac{1}{\tan(t)}" />.
     </>
   ),
 }
@@ -33,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dA}{dx} = 12x, \qquad \frac{dx}{dt} = \frac{1}{1+t^2}" />,
-    reason: <>Note the derivative of <Katex tex="\arctan(t)" /> has <Katex tex="t" /> in it, not <Katex tex="x" /> — the report's other flagged confusion.</>,
+    reason: <>Note the derivative of <Katex tex="\arctan(t)" /> has <Katex tex="t" /> in it, not <Katex tex="x" /> — the report's other flagged confusion. And <Katex tex="\arctan(t)" /> is the inverse of <Katex tex="\tan" />, not <Katex tex="\tfrac{1}{\tan(t)}" />.</>,
   },
   {
     working: <Katex display tex="\frac{dA}{dt} = \frac{12x}{1+t^2} = \frac{12\arctan(t)}{1+t^2}" />,

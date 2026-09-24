@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a-1=8 \implies \boxed{a=9}" />,
-    reason: <>Option A. Check: <Katex tex="f(9)=81-18=63" /> and <Katex tex="f(1)=-1" />, so the chord gradient is <Katex tex="\tfrac{63-(-1)}{9-1}=\tfrac{64}{8}=8" />.</>,
+    reason: <>Matches option <b>A</b>. Check: <Katex tex="f(9)=81-18=63" /> and <Katex tex="f(1)=-1" />, so the chord gradient is <Katex tex="\tfrac{63-(-1)}{9-1}=\tfrac{64}{8}=8" />.</>,
   },
 ]
 
@@ -55,7 +55,7 @@ export default function MethodsQ9_2017() {
         { letter: 'B', content: <Katex tex="8" /> },
         { letter: 'C', content: <Katex tex="7" /> },
         { letter: 'D', content: <Katex tex="4" /> },
-        { letter: 'E', content: <Katex tex="1+2\sqrt{2}" /> },
+        { letter: 'E', content: <Katex tex="1+\sqrt{2}" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

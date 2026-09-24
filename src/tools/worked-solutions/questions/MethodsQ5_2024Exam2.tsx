@@ -48,9 +48,9 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      This question was not answered well. It was a "show that" question. Many students were
-      not able to find <Katex tex="\cos^{-1}(0)" />, giving <Katex tex="0" /> or{' '}
-      <Katex tex="\pi" />.
+      This question was not answered well. It was a 'show that' question. Many students were not
+      able to find <Katex tex="\cos^{-1}(0)" />, giving <Katex tex="\cos^{-1}(0)=0" /> or{' '}
+      <Katex tex="\cos^{-1}(0)=\pi" />.
     </>
   ),
 }
@@ -102,7 +102,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\sin\bigl(2\sin(x)\bigr) = 2\cos(x)\cos\bigl(2\sin(x)\bigr) = 0" />,
-    reason: 'Chain rule, then set to zero.',
+    reason: <>Chain rule, then set to zero.</>,
   },
   {
     working: <Katex display tex="\cos\bigl(2\sin(x)\bigr) = 0 \implies 2\sin(x) = \tfrac{\pi}{2} \implies \sin(x) = \tfrac{\pi}{4}" />,
@@ -110,22 +110,22 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \sin^{-1}\!\left(\tfrac{\pi}{4}\right) = 0.9033\ldots" />,
-    reason: <>The other solution <Katex tex="\pi-0.9033=2.238" /> lies outside <Katex tex="\left[0,\tfrac{\pi}{2}\right]" /> and was the extra answer the examiner flagged.</>,
+    reason: <>The other solution <Katex tex="\pi-0.9033=2.238" /> lies outside <Katex tex="\left[0,\tfrac{\pi}{2}\right]" /> — the report notes some students gave it as an extra solution.</>,
   },
   {
     working: <Katex display tex="y = \sin\!\left(2\times\tfrac{\pi}{4}\right) = \sin\!\left(\tfrac{\pi}{2}\right) = 1" />,
-    reason: 'Exactly 1 — the composition reaches the full height of a sine curve.',
+    reason: <>Exactly 1 — the composition reaches the full height of a sine curve.</>,
   },
   {
     working: <Katex display tex="\boxed{(0.9,\ 1.0)}" />,
-    reason: 'One decimal place, as asked.',
+    reason: <>One decimal place, as asked.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="x\in[0,2\pi] \implies \sin(x)\in[-1,1] \implies 2\sin(x)\in[-2,2]" />,
-    reason: 'Working outwards through the composition.',
+    reason: <>Working outwards through the composition.</>,
   },
   {
     working: <Katex display tex="\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]\subset[-2,2]" />,
@@ -133,29 +133,29 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(g\circ f) = [-1,1]}" />,
-    reason: <>Closed brackets, and in increasing order — <Katex tex="[1,-1]" /> was the common way to lose the mark. Part a.i. already produced the value 1 at <Katex tex="x=0.9" />, which confirms the upper end.</>,
+    reason: <>Closed brackets, and in increasing order — the report notes many students wrote <Katex tex="[1,-1]" />. Part a.i. already produced the value 1 at <Katex tex="x=0.9" />, which confirms the upper end.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="(f\circ g)(x) = f\bigl(g(x)\bigr) = \sin\bigl(\sin(2x)\bigr)" />,
-    reason: 'The other order of composition.',
+    reason: <>The other order of composition.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\sin\bigl(\sin(2x)\bigr) = \cos\bigl(\sin(2x)\bigr)\times\frac{d}{dx}\sin(2x)" />,
-    reason: 'Chain rule, outer function first.',
+    reason: <>Chain rule, outer function first.</>,
   },
   {
     working: <Katex display tex="\boxed{(f\circ g)'(x) = 2\cos(2x)\cos\bigl(\sin(2x)\bigr)}" />,
-    reason: <>Writing <Katex tex="\cos(x)" /> in place of <Katex tex="\cos(2x)" /> was the usual transcription slip.</>,
+    reason: <>Writing <Katex tex="\cos(x)" /> in place of <Katex tex="\cos(2x)" /> is a transcription slip the report notes.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(\theta) = 0 \implies \theta = \tfrac{\pi}{2}+k\pi = \pm\tfrac{\pi}{2},\ \pm\tfrac{3\pi}{2},\ \ldots" />,
-    reason: <>The general solution. Answering <Katex tex="\cos^{-1}(0)=0" /> or <Katex tex="\pi" /> was what sank most attempts.</>,
+    reason: <>The general solution. The report notes many students gave <Katex tex="\cos^{-1}(0)=0" /> or <Katex tex="\pi" />.</>,
   },
   {
     working: <Katex display tex="\text{so we would need } \sin(2x) = \tfrac{\pi}{2} \ \text{ or } \ \tfrac{3\pi}{2},\ \ldots \ \text{(or their negatives)}" />,
@@ -163,30 +163,30 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{ran}\bigl(\sin(2x)\bigr) = [-1,1] \quad\text{but}\quad \left|\tfrac{\pi}{2}\right| \approx 1.571 > 1" />,
-    reason: 'Every candidate value lies outside the range of a sine function — and the ones further out are further outside still.',
+    reason: <>Every candidate value lies outside the range of a sine function — and the ones further out are further outside still.</>,
   },
   {
     working: <Katex display tex="\boxed{\therefore \cos\bigl(\sin(2x)\bigr) = 0 \text{ has no real solutions}}" />,
-    reason: <>Equivalently: <Katex tex="\sin(2x)\in[-1,1]\subset\left(-\tfrac{\pi}{2},\tfrac{\pi}{2}\right)" />, on which the cosine is strictly positive — it never drops below <Katex tex="\cos(1)\approx0.54" />.</>,
+    reason: <>Equivalently: <Katex tex="\sin(2x)\in[-1,1]\subset\left(-\tfrac{\pi}{2},\tfrac{\pi}{2}\right)" />, on which the cosine is strictly positive — it never drops below <Katex tex="\cos(1)\approx0.54" />. As required.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="(f\circ g)'(x) = 2\cos(2x)\cos\bigl(\sin(2x)\bigr) = 0" />,
-    reason: 'From part b.i.',
+    reason: <>From part b.i.</>,
   },
   {
     working: <Katex display tex="\cos\bigl(\sin(2x)\bigr) \ne 0 \ \text{ (part b.ii.)} \implies \cos(2x) = 0" />,
-    reason: 'This is why b.ii. came first — it removes one factor entirely and leaves an ordinary trigonometric equation.',
+    reason: <>This is why b.ii. came first — it removes one factor entirely and leaves an ordinary trigonometric equation.</>,
   },
   {
     working: <Katex display tex="2x = \tfrac{\pi}{2},\ \tfrac{3\pi}{2},\ \tfrac{5\pi}{2},\ \tfrac{7\pi}{2} \quad (0\le 2x\le 4\pi)" />,
-    reason: <>Doubling the domain means four solutions, not two — giving fewer than four was the common error.</>,
+    reason: <>Doubling the domain means four solutions, not two — the report notes some students did not give four values.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac{\pi}{4},\ \tfrac{3\pi}{4},\ \tfrac{5\pi}{4},\ \tfrac{7\pi}{4}}" />,
-    reason: 'Exact values were required.',
+    reason: <>Exact values were required.</>,
   },
 ]
 
@@ -197,7 +197,7 @@ const ROWS_BIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(\theta) \text{ is increasing on } [-1,1] \subset \left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]" />,
-    reason: 'So the outer sine preserves the order of the endpoints — no turning point is met on the way.',
+    reason: <>So the outer sine preserves the order of the endpoints — no turning point is met on the way.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(f\circ g) = \left[-\sin(1),\ \sin(1)\right]}" />,
@@ -208,7 +208,7 @@ const ROWS_BIV: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="(g\circ f)(x)-(f\circ g)(x) = 0 \text{ at } x = 0,\ \pi,\ 2\pi \text{ only}" />,
-    reason: 'From the diagram: the two curves meet just three times, so the region has exactly two pieces.',
+    reason: <>From the diagram: the two curves meet just three times, so the region has exactly two pieces.</>,
   },
   {
     working: <Katex display tex="\text{on } (0,\pi): \ g\circ f > f\circ g; \qquad \text{on } (\pi,2\pi): \ f\circ g > g\circ f" />,
@@ -216,7 +216,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = 2\int_0^{\pi}\left[\sin\bigl(2\sin(x)\bigr)-\sin\bigl(\sin(2x)\bigr)\right]dx}" />,
-    reason: <>A single integral, as required. Writing the two pieces as two separate integrals was the marked-down answer. The absolute-value form <Katex tex="\int_0^{2\pi}\left|(g\circ f)-(f\circ g)\right|dx" /> is equally acceptable.</>,
+    reason: <>A single integral, as required. The report notes many students wrote two definite integrals. The absolute-value form <Katex tex="\int_0^{2\pi}\left|(g\circ f)-(f\circ g)\right|dx" /> is equally acceptable.</>,
   },
   {
     working: <Katex display tex="\int_0^{\pi}\sin\bigl(\sin(2x)\bigr)dx = 0 \implies \text{Area} = 2\int_0^{\pi}\sin\bigl(2\sin(x)\bigr)dx" />,
@@ -235,14 +235,14 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4.97 \text{ square units}}" />,
-    reason: 'Two decimal places, as asked.',
+    reason: <>Two decimal places, as asked.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f_1\circ g \text{ is defined} \iff \text{ran}(g)\subseteq\text{dom}(f_1)" />,
-    reason: 'The standard existence condition for a composition — the inner outputs must be legal inner inputs for the outer function.',
+    reason: <>The standard existence condition for a composition — the inner outputs must be legal inner inputs for the outer function.</>,
   },
   {
     working: <Katex display tex="\text{dom}(f_1) = (0,2\pi), \qquad g(x) = \sin(2x) \in [-1,1]" />,
@@ -254,7 +254,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(2x) > 0 \implies 2x \in (0,\pi)\cup(2\pi,3\pi) \quad (0<2x<4\pi)" />,
-    reason: 'Where a sine is positive, over two full periods.',
+    reason: <>Where a sine is positive, over two full periods.</>,
   },
   {
     working: <Katex display tex="\boxed{x \in \left(0,\tfrac{\pi}{2}\right)\cup\left(\pi,\tfrac{3\pi}{2}\right)}" />,
@@ -303,13 +303,15 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Composite Function"
         marks={1}
         statement={
           <>
             The graph of <Katex tex="y=(g\circ f)(x)" /> has a local maximum whose{' '}
             <Katex tex="x" />-value lies in the interval{' '}
-            <Katex tex="\left[0,\tfrac{\pi}{2}\right]" />. Find the coordinates of this local
-            maximum, correct to one decimal place.
+            <Katex tex="\left[0,\tfrac{\pi}{2}\right]" />.
+            <br />
+            Find the coordinates of this local maximum, correct to one decimal place.
           </>
         }
         examinerReport={EXAM_AI}
@@ -319,6 +321,7 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Range"
         marks={1}
         statement={
           <>
@@ -330,12 +333,13 @@ export default function MethodsQ5_2024Exam2() {
         <WorkingTable rows={ROWS_AII} />
       </PartCard>
 
-      <PartCard letter="b.i" marks={1} statement={<>Find the derivative of <Katex tex="f\circ g" />.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Chain Rule" marks={1} statement={<>Find the derivative of <Katex tex="f\circ g" />.</>} examinerReport={EXAM_BI}>
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
       <PartCard
         letter="b.ii"
+        topic="Trig Equation"
         marks={2}
         statement={
           <>
@@ -350,6 +354,7 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="b.iii"
+        topic="Stationary Points"
         marks={1}
         statement={
           <>
@@ -364,6 +369,7 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="b.iv"
+        topic="Range"
         marks={1}
         statement={
           <>
@@ -377,6 +383,7 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Definite Integral"
         marks={1}
         statement={
           <>
@@ -392,6 +399,7 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Area Between Curves"
         marks={1}
         statement={
           <>
@@ -407,11 +415,13 @@ export default function MethodsQ5_2024Exam2() {
 
       <PartCard
         letter="d"
+        topic="Composite Domain"
         marks={2}
         statement={
           <>
-            Let <Katex tex="f_1:(0,2\pi)\to\mathbb{R}" />, <Katex tex="f_1(x)=\sin(x)" />. Find
-            all values of <Katex tex="x" /> in the interval <Katex tex="(0,2\pi)" /> for which
+            Let <Katex tex="f_1:(0,2\pi)\to R" />, <Katex tex="f_1(x)=\sin(x)" />.
+            <br />
+            Find all values of <Katex tex="x" /> in the interval <Katex tex="(0,2\pi)" /> for which
             the composition <Katex tex="f_1\circ g" /> is defined.
           </>
         }

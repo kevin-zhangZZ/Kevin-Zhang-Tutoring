@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{2x}{y}}" />,
-    reason: <>Option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>.</>,
   },
 ]
 

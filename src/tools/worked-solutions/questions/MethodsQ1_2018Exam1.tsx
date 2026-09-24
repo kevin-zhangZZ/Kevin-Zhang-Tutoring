@@ -14,8 +14,8 @@ const EXAM_A: SAExaminerStats = {
       Students generally recognised the need to deploy the chain rule; however, a significant
       number of students could not be awarded the mark. Poor use of brackets (or lack of
       brackets) resulted in an incorrect expression. For example, the expression{' '}
-      <Katex tex="3\left(-3x^3+x^2-64\right)^2\,9x^2-2x" /> is not equivalent to{' '}
-      <Katex tex="3\left(-3x^3+x^2-64\right)^2\left(-9x^2+2x\right)" />. Transcription errors
+      <Katex tex="3\left(-3x^3+x^2-64\right)^2\left(-9x^2+2x\right)" /> is not equivalent to{' '}
+      <Katex tex="3\left(-3x^3+x^2-64\right)^2-9x^2+2x" />. Transcription errors
       (especially with exponents) and arithmetic errors with unnecessary expansions were also
       observed.
     </>
@@ -31,7 +31,7 @@ const EXAM_B: SAExaminerStats = {
       the required evaluation, often omitting it completely. Students who opted to use the
       product and chain rules tended to make little progress due to confusion with negative
       signs or negative exponents. Students should take care with legibility, for example, to
-      distinguish clearly the variable <Katex tex="x" /> and the multiplication sign.
+      distinguishing clearly the variable <Katex tex="x" /> and the constant <Katex tex="\pi" />.
     </>
   ),
 }
@@ -47,7 +47,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = 3\left(-3x^3+x^2-64\right)^2\left(-9x^2+2x\right)}" />,
-    reason: <>Leave it factorised — expanding is not asked for and, as the report notes, is where the arithmetic errors crept in. The brackets around <Katex tex="-9x^2+2x" /> are not optional: without them the expression means something else entirely, and that alone cost the mark for many students.</>,
+    reason: <>Leave it factorised — expanding is not asked for and, as the report notes, is where the arithmetic errors crept in. The brackets around <Katex tex="-9x^2+2x" /> are not optional: without them the expression means something else entirely — the report says poor use of brackets cost a significant number of students the mark.</>,
   },
 ]
 
@@ -58,7 +58,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = \frac{u'v-uv'}{v^2} = \frac{e^x\cos(x)-e^x\bigl(-\sin(x)\bigr)}{\cos^2(x)}" />,
-    reason: <>The derivative of <Katex tex="\cos(x)" /> is <Katex tex="-\sin(x)" />, and subtracting it flips the sign — this double negative is the step most often mishandled.</>,
+    reason: <>The derivative of <Katex tex="\cos(x)" /> is <Katex tex="-\sin(x)" />, and subtracting it flips the sign — take care with this double negative.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{e^x\bigl(\cos(x)+\sin(x)\bigr)}{\cos^2(x)}" />,
@@ -70,7 +70,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(\pi) = -e^{\pi}}" />,
-    reason: <>The question says <em>evaluate</em>, so stopping at the derivative scores nothing — the report notes this omission was common. (<Katex tex="-e^{\pi}\approx-23.1" />: strongly negative, which fits a curve whose denominator is near its most negative value at <Katex tex="x=\pi" />.)</>,
+    reason: <>The question says <em>evaluate</em>, so stopping at the derivative loses a mark — the report says many students omitted the evaluation completely. A quick check: <Katex tex="\cos(x)" /> is stationary at <Katex tex="x=\pi" />, so there the quotient rule reduces to <Katex tex="\tfrac{e^{\pi}\cos(\pi)}{\cos^2(\pi)}=\tfrac{e^{\pi}}{\cos(\pi)}=-e^{\pi}" /> ✓.</>,
   },
 ]
 
@@ -83,6 +83,7 @@ export default function MethodsQ1_2018Exam1() {
 
       <PartCard
         letter="a"
+        topic="Chain Rule"
         marks={1}
         statement={<>If <Katex tex="y=\left(-3x^3+x^2-64\right)^3" />, find <Katex tex="\dfrac{dy}{dx}" />.</>}
         examinerReport={EXAM_A}
@@ -92,6 +93,7 @@ export default function MethodsQ1_2018Exam1() {
 
       <PartCard
         letter="b"
+        topic="Quotient Rule"
         marks={2}
         statement={<>Let <Katex tex="f(x)=\dfrac{e^x}{\cos(x)}" />. Evaluate <Katex tex="f'(\pi)" />.</>}
         examinerReport={EXAM_B}

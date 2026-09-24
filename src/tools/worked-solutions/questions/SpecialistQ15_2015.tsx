@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{F}\cdot\hat{\underset{\sim}{w}} = \frac{(a)(1)+(b)(1)}{\sqrt2} = \frac{a+b}{\sqrt2}" />,
-    reason: <>The scalar resolute. On its own this is a <em>number</em>, not a vector — option E stops one step early.</>,
+    reason: <>The scalar resolute — a <em>number</em>, not yet a vector.</>,
   },
   {
     working: <Katex display tex="\left(\underset{\sim}{F}\cdot\hat{\underset{\sim}{w}}\right)\hat{\underset{\sim}{w}} = \frac{a+b}{\sqrt2}\times\frac{\underset{\sim}{w}}{\sqrt2}" />,
@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(\frac{a+b}{2}\right)\underset{\sim}{w}}" />,
-    reason: <>Option A, since <Katex tex="\sqrt2\times\sqrt2=2" />. Dividing by <Katex tex="\sqrt2" /> only once gives option E, which 29% of students chose.</>,
+    reason: <>Matches option <b>A</b>, since <Katex tex="\sqrt2\times\sqrt2=2" />. Dividing by <Katex tex="\sqrt2" /> only once gives option E, which 29% of students chose.</>,
   },
 ]
 

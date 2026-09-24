@@ -1,4 +1,4 @@
-// 2015 Mathematical Methods — Exam 2, MCQ 16.
+// 2015 Mathematical Methods (CAS) — Exam 2, MCQ 16. VCAA examination report: 22% correct.
 // f(x) = ax^m, g(x) = bx^n; f'(x) is an antiderivative of g(x) — what must be true?
 // Question text transcribed from the original paper; solution is original.
 
@@ -58,8 +58,10 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\dfrac{b}{a} = m(m-1)}" />,
     reason: (
       <>
-        A product of two consecutive positive integers (<Katex tex="m \ge 2" />) — always an integer. So{' '}
-        <Katex tex="b/a" /> is an integer: <b>D</b>.
+        Matches option <b>D</b>: <Katex tex="m(m-1)" /> is a product of two positive integers (<Katex tex="m=n+2\ge3" />),
+        so <Katex tex="\tfrac ba" /> is always an integer. The others can fail — with <Katex tex="n=3" />,{' '}
+        <Katex tex="m=5" />: <Katex tex="\tfrac mn=\tfrac53" /> (A) and <Katex tex="\tfrac nm=\tfrac35" /> (B) are not
+        integers, <Katex tex="\tfrac ab=\tfrac1{20}" /> (C) is not, and <Katex tex="n-m=-2" />, not 2 (E).
       </>
     ),
   },
@@ -73,7 +75,7 @@ export default function MethodsQ16_2015() {
           <p>
             Let <Katex tex="f(x) = ax^m" /> and <Katex tex="g(x) = bx^n" />, where <Katex tex="a, b, m" /> and{' '}
             <Katex tex="n" /> are positive integers. The domain of <Katex tex="f" /> = domain of{' '}
-            <Katex tex="g" /> = <Katex tex="\mathbb{R}" />.
+            <Katex tex="g" /> = <Katex tex="R" />.
           </p>
           <p className="mt-2">
             If <Katex tex="f'(x)" /> is an antiderivative of <Katex tex="g(x)" />, then which one of the

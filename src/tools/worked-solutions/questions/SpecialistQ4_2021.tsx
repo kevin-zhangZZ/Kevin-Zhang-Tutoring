@@ -11,7 +11,9 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'A',
   comment: (
     <>
-      <Katex tex="\mathrm{Arg}\!\left(\dfrac{z\bar z}{z-\bar z}\right) = \mathrm{Arg}\!\left(\dfrac{a^2+b^2}{2bi}\right) = \mathrm{Arg}\!\left(-\dfrac{a^2+b^2}{2b}i\right) = -\dfrac{\pi}{2}" />
+      <Katex tex="\mathrm{Arg}\!\left(\dfrac{z\bar z}{z-\bar z}\right) = \mathrm{Arg}\!\left(\dfrac{a^2+b^2}{2bi}\times\dfrac ii\right)" />
+      <br />
+      <Katex tex="= \mathrm{Arg}\!\left(-\dfrac{a^2+b^2}{2b}i\right) = -\dfrac{\pi}{2}" />
     </>
   ),
 }
@@ -19,7 +21,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z = a+bi,\quad b>0 \;(\text{since } \mathrm{Im}(z)>0)" />,
-    reason: 'Write z in Cartesian form.',
+    reason: <>Write z in Cartesian form.</>,
   },
   {
     working: <Katex display tex="z\bar z = a^2+b^2 \qquad z - \bar z = 2bi" />,
@@ -35,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{Arg}\!\left(\frac{z\bar z}{z-\bar z}\right) = -\frac{\pi}{2}}" />,
-    reason: <>Any negative purely imaginary number sits at angle <Katex tex="-\pi/2" /> — matches option <b>A</b>.</>,
+    reason: <>Any negative purely imaginary number sits at angle <Katex tex="-\tfrac\pi2" />. Matches option <b>A</b>. Option D, <Katex tex="\tfrac\pi2" />, comes from taking <Katex tex="\tfrac1i=i" /> instead of <Katex tex="-i" />.</>,
   },
 ]
 
@@ -44,7 +46,7 @@ export default function SpecialistQ4_2021() {
     <MCQShell
       question={
         <p>
-          For <Katex tex="z\in\mathbb{C}" />, if <Katex tex="\mathrm{Im}(z)>0" />, then{' '}
+          For <Katex tex="z\in C" />, if <Katex tex="\mathrm{Im}(z)>0" />, then{' '}
           <Katex tex="\mathrm{Arg}\!\left(\dfrac{z\bar z}{z-\bar z}\right)" /> is
         </p>
       }

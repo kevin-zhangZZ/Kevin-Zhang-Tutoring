@@ -1,5 +1,5 @@
 // 2017 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 6% correct —
-// by far the hardest MCQ in the 2017-2018 Specialist Exam 2 papers.
+// by far the hardest MCQ on this paper.
 // Find the inflection point(s) of |f(x)| given properties of f, f' and f''.
 // Question text transcribed from the original paper; solution is original.
 
@@ -11,7 +11,7 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 31, B: 9, C: 45, D: 7, E: 6 },
   answer: 'E',
   noAnswer: 1,
-  comment: <>f&Prime;(x) does not change sign at a.</>,
+  comment: <><Katex tex="f''(x)" /> does not change sign at <Katex tex="a" />.</>,
 }
 
 const ROWS: WorkingRow[] = [
@@ -53,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{|f(x)| \text{ has its only inflection point at } (b,\,-f(b)) = (b,\,1)}" />,
-    reason: <>Since <Katex tex="f''" /> doesn't change sign at <Katex tex="-a" />, neither does <Katex tex="-f''" /> — so <Katex tex="x=-a" /> is not an inflection point of <Katex tex="|f|" /> either. Only <Katex tex="(b,1)" /> qualifies. Matches option <b>E</b>.</>,
+    reason: <>Since <Katex tex="f''" /> doesn't change sign at <Katex tex="-a" />, neither does <Katex tex="-f''" /> — so <Katex tex="x=-a" /> is not an inflection point of <Katex tex="|f|" /> either. Only <Katex tex="(b,1)" /> qualifies. Matches option <b>E</b>. Option C (45%) gives points of <Katex tex="f" />, not <Katex tex="|f|" />, and includes <Katex tex="x=-a" />; option A (31%) also wrongly includes <Katex tex="x=-a" />, where the squared factor means <Katex tex="f''" /> does not change sign.</>,
   },
 ]
 
@@ -64,7 +64,7 @@ export default function SpecialistQ10_2017() {
         <>
           <p className="mb-2">
             A function <Katex tex="f" />, its derivative <Katex tex="f'" /> and its second derivative{' '}
-            <Katex tex="f''" /> are defined for <Katex tex="x\in\mathbb{R}" /> with the following properties.
+            <Katex tex="f''" /> are defined for <Katex tex="x\in R" /> with the following properties.
           </p>
           <Katex display tex="f(a)=1,\ f(-a)=-1" className="my-1" />
           <Katex display tex="f(b)=-1,\ f(-b)=1" className="my-1" />

@@ -13,11 +13,14 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. A large proportion of students were unable to
-      find the mean mass, dividing <Katex tex="2625" /> by <Katex tex="25" /> and giving{' '}
-      <Katex tex="15" /> instead of <Katex tex="105" />. Many students seemed to
-      misunderstand the question wording, "integer multiple of the standard deviation",
-      using <Katex tex="\pm1.96" /> instead of <Katex tex="\pm2" />. Some took the standard
-      deviation to be <Katex tex="4" /> rather than <Katex tex="\tfrac45" />.
+      find the mean mass, dividing 2625 by 25 and giving 15 instead of 105. An estimation of
+      the mean would have been helpful with this. A smaller number of students gave 150,
+      while some used the total for the bag, 2625. Many students seemed to misunderstand the
+      question wording, 'integer multiple of the standard deviation …', using{' '}
+      <Katex tex="\pm1.96" /> instead of <Katex tex="\pm2" />. Some took the standard
+      deviation to be four rather than <Katex tex="\tfrac45" />. Occasionally students used{' '}
+      <Katex tex="\tfrac{16}{5}" />, while a small number rounded <Katex tex="\tfrac45" /> to
+      1 (misinterpreting the 'integer multiple' phrase).
     </>
   ),
 }
@@ -25,7 +28,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\bar x = \frac{2625}{25} = 105 \text{ g}" />,
-    reason: <>The sample mean. A quick sanity check stops the report's most common error: a peach weighing <Katex tex="15" /> g would be the size of a grape.</>,
+    reason: <>The sample mean. The report suggests estimating it first, which stops its most common error: a peach weighing <Katex tex="15" /> g would be the size of a grape.</>,
   },
   {
     working: <Katex display tex="\sigma = \sqrt{16} = 4, \qquad n = 25" />,
@@ -33,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{sd}(\bar X) = \frac{\sigma}{\sqrt n} = \frac{4}{5}" />,
-    reason: <>The interval is for the <em>mean</em>, so the standard deviation shrinks by <Katex tex="\sqrt{25}=5" />. Using <Katex tex="4" /> here is the other flagged error.</>,
+    reason: <>The interval is for the <em>mean</em>, so the standard deviation shrinks by <Katex tex="\sqrt{25}=5" />. Using <Katex tex="4" /> (or <Katex tex="\tfrac{16}{5}" />) here is another flagged error, and so is rounding <Katex tex="\tfrac45" /> to <Katex tex="1" /> — it is the multiplier, not the standard deviation, that must be an integer.</>,
   },
   {
     working: <Katex display tex="95\% \implies z \approx 2" />,

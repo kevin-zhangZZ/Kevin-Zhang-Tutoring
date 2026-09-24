@@ -10,18 +10,28 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 33, B: 10, C: 23, D: 7, E: 25 },
   answer: 'A',
   comment: (
-    <Katex tex="u=(1-x)^n,\ dv=e^x\,dx,\quad du=-n(1-x)^{n-1}dx,\ v=e^x" />
+    <>
+      <Katex tex="u=(1-x)^n" />, <Katex tex="\tfrac{dv}{dx}=e^x" />
+      <br />
+      <Katex tex="\tfrac{du}{dx}=-n(1-x)^{n-1}" />, <Katex tex="v=e^x" />
+      <br />
+      <Katex tex="\int_0^1\left((1-x)^ne^x\right)dx=\left[(1-x)^ne^x\right]_0^1-\int_0^1\left(-n(1-x)^{n-1}e^x\right)dx" />
+      <br />
+      <Katex tex="=\left(0\times e^1\right)-\left(1\times e^0\right)+n\int_0^1\left((1-x)^{n-1}e^x\right)dx" />
+      <br />
+      <Katex tex="=-1+nI_{n-1}" />
+    </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="I_n = \int_0^1 (1-x)^n e^x\,dx" />,
-    reason: 'The given integral, for n ≥ 1.',
+    reason: <>The given integral, for n ≥ 1.</>,
   },
   {
     working: <Katex display tex="u=(1-x)^n,\quad dv=e^x\,dx \;\implies\; du=-n(1-x)^{n-1}dx,\quad v=e^x" />,
-    reason: 'Set up integration by parts, differentiating the polynomial factor.',
+    reason: <>Set up integration by parts, differentiating the polynomial factor.</>,
   },
   {
     working: <Katex display tex="I_n = \Big[(1-x)^ne^x\Big]_0^1 - \int_0^1 e^x\cdot\big(-n(1-x)^{n-1}\big)dx" />,
@@ -46,7 +56,7 @@ export default function SpecialistQ10_2023() {
     <MCQShell
       question={
         <p>
-          If <Katex tex="I_n = \displaystyle\int_0^1 (1-x)^n e^x\,dx" />, where <Katex tex="n\in\mathbb{N}" />, then for{' '}
+          If <Katex tex="I_n = \displaystyle\int_0^1 (1-x)^n e^x\,dx" />, where <Katex tex="n\in N" />, then for{' '}
           <Katex tex="n\geq1" />, <Katex tex="I_n" /> equals
         </p>
       }

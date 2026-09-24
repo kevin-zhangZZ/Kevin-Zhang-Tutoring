@@ -11,13 +11,17 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 40, C: 10, D: 37 },
   answer: 'B',
   noAnswer: 1,
-  comment: <Katex tex="\dfrac{\binom{7}{2}\binom{5}{1}}{\binom{12}{3}} = \dfrac{21}{44}" />,
+  comment: (
+    <>
+      <Katex tex="\dfrac{\binom{7}{2}\binom{5}{1}}{\binom{12}{3}}=\dfrac{21}{44}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="12 \text{ students total: } 7 \text{ in row 1},\ 5 \text{ in row 2}" />,
-    reason: 'Given information.',
+    reason: <>Given information.</>,
   },
   {
     working: <Katex display tex="\binom{7}{2}\binom{5}{1}" />,
@@ -25,19 +29,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\binom{7}{2}=21,\qquad \binom{5}{1}=5" />,
-    reason: 'Evaluate each combination.',
+    reason: <>Evaluate each combination.</>,
   },
   {
     working: <Katex display tex="\binom{12}{3} = 220" />,
-    reason: 'Total ways to choose any 3 students from all 12.',
+    reason: <>Total ways to choose any 3 students from all 12.</>,
   },
   {
     working: <Katex display tex="\Pr = \frac{21\times5}{220} = \frac{105}{220}" />,
-    reason: 'Favourable outcomes over total outcomes.',
+    reason: <>Favourable outcomes over total outcomes.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{105}{220} = \frac{21}{44}}" />,
-    reason: <>Simplify (divide by 5) — matches option <b>B</b>.</>,
+    reason: <>Simplify (divide by 5). Matches option <b>B</b>. Option <b>D</b>, <Katex tex="\tfrac{245}{576}" />, treats the three choices as independent (a binomial, as if with replacement); option <b>A</b>, <Katex tex="\tfrac{7}{44}" />, is the probability that all three are in the first row.</>,
   },
 ]
 

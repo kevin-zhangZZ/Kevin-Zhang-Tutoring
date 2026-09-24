@@ -16,7 +16,7 @@ const EXAM: SAExaminerStats = {
       angle formula. A number of students used <Katex tex="\sin" /> and <Katex tex="\cos" />{' '}
       but were less successful than those who used the more direct approach. A number of
       students thought that <Katex tex="\cot(2x)" /> was equal to{' '}
-      <Katex tex="\tfrac12\cot(x)" />. Some students gave their final answer as{' '}
+      <Katex tex="\tfrac{1}{\cos(2x)}" />. Some students gave their final answer as{' '}
       <Katex tex="a=2" />.
     </>
   ),
@@ -25,7 +25,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cot(2x) = \frac{1}{\tan(2x)}" />,
-    reason: <>Start by writing everything in terms of <Katex tex="\tan" />, since the other term already is. Note <Katex tex="\cot(2x)\ne\tfrac12\cot(x)" /> — the report records that as a common false step.</>,
+    reason: <>Start by writing everything in terms of <Katex tex="\tan" />, since the other term already is. Note <Katex tex="\cot(2x)\ne\tfrac{1}{\cos(2x)}" /> — the report says a number of students made that mistake.</>,
   },
   {
     working: <Katex display tex="\tan(2x) = \frac{2\tan(x)}{1-\tan^2(x)}" />,
@@ -53,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \frac12}" />,
-    reason: <>The report notes <Katex tex="a=2" /> being given — that is the reciprocal, and comes from comparing <Katex tex="\tfrac{1}{2\tan(x)}" /> with <Katex tex="\cot(x)" /> the wrong way round. Spot-check at <Katex tex="x=\tfrac{\pi}{4}" />: <Katex tex="\cot\!\left(\tfrac{\pi}{2}\right)+\tfrac12\tan\!\left(\tfrac{\pi}{4}\right)=0+\tfrac12" />, and <Katex tex="\tfrac12\cot\!\left(\tfrac{\pi}{4}\right)=\tfrac12" /> ✓</>,
+    reason: <>The report notes <Katex tex="a=2" /> being given — the reciprocal of the correct value. Spot-check at <Katex tex="x=\tfrac{\pi}{4}" />: <Katex tex="\cot\!\left(\tfrac{\pi}{2}\right)+\tfrac12\tan\!\left(\tfrac{\pi}{4}\right)=0+\tfrac12" />, and <Katex tex="\tfrac12\cot\!\left(\tfrac{\pi}{4}\right)=\tfrac12" /> ✓</>,
   },
 ]
 
@@ -64,7 +64,7 @@ export default function SpecialistQ7_2018Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 7 (3 marks)</p>
         <p>
           Given that <Katex tex="\cot(2x)+\dfrac12\tan(x)=a\cot(x)" />, use a suitable double
-          angle formula to find the value of <Katex tex="a" />, <Katex tex="a\in\mathbb{R}" />.
+          angle formula to find the value of <Katex tex="a" />, <Katex tex="a\in R" />.
         </p>
       </div>
 
@@ -79,8 +79,8 @@ export default function SpecialistQ7_2018Exam1() {
           </p>
           <p>
             The report confirms this is the efficient path: students who expanded into{' '}
-            <Katex tex="\sin" /> and <Katex tex="\cos" /> could get there, but were markedly
-            less successful.
+            <Katex tex="\sin" /> and <Katex tex="\cos" /> could get there, but were less
+            successful.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

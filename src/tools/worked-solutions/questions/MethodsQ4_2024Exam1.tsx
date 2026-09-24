@@ -11,8 +11,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Some students found the variance instead of the standard deviation. Some made
-      arithmetic errors in calculating the product of the decimals.
+      This question was well attempted. Some students found the variance instead of the
+      standard deviation. Some students made arithmetic errors in calculating the product of
+      the decimals.
     </>
   ),
 }
@@ -22,12 +23,12 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Many students correctly stated the binomial expansion with appropriate probability
-      values and powers. However, some struggled to expand{' '}
+      Many students correctly stated the binomial expansion with appropriate probability values
+      and powers. However, some students struggled to expand{' '}
       <Katex tex="\left(\tfrac{1}{10}\right)^3" /> and{' '}
       <Katex tex="\left(\tfrac{1}{10}\right)^4" /> into the correct decimal or fraction form;
-      some responses included an extra zero or missed a zero. Some students only gave{' '}
-      <Katex tex="\Pr(X=1)" />.
+      some responses either included an extra zero or missed a zero. Some students only gave
+      the <Katex tex="\Pr(X=1)" />.
     </>
   ),
 }
@@ -35,15 +36,15 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}\!\left(4,\ \tfrac{9}{10}\right) \implies n = 4, \ p = \tfrac{9}{10}, \ 1-p = \tfrac{1}{10}" />,
-    reason: 'Read off the two parameters.',
+    reason: <>Read off the two parameters.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = np(1-p) = 4\cdot\frac{9}{10}\cdot\frac{1}{10} = \frac{36}{100}" />,
-    reason: 'The binomial variance, from the formula sheet.',
+    reason: <>The binomial variance, from the formula sheet.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{\frac{36}{100}} = \frac{6}{10} = \frac35}" />,
-    reason: <>The square root is the last step and the one the report says students forgot — <Katex tex="0.36" /> is the variance, not the standard deviation.</>,
+    reason: <>The square root is the last step — the report notes some students gave the variance, <Katex tex="0.36" />, instead.</>,
   },
 ]
 
@@ -92,6 +93,7 @@ export default function MethodsQ4_2024Exam1() {
 
       <PartCard
         letter="a"
+        topic="Binomial Distribution"
         marks={1}
         statement={<>Find the standard deviation of <Katex tex="X" />.</>}
         examinerReport={EXAM_A}
@@ -101,6 +103,7 @@ export default function MethodsQ4_2024Exam1() {
 
       <PartCard
         letter="b"
+        topic="Binomial Distribution"
         marks={2}
         statement={<>Find <Katex tex="\Pr(X<2)" />.</>}
         examinerReport={EXAM_B}

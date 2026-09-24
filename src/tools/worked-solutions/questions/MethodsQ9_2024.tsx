@@ -9,28 +9,29 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 4, B: 18, C: 66, D: 11 },
   answer: 'C',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(L\cap P) = 0.45\times0.30 = 0.135" />,
-    reason: 'Limousine, then photo — the product along that branch of the tree.',
+    reason: <>Limousine, then photo — the product along that branch of the tree.</>,
   },
   {
     working: <Katex display tex="\Pr(D\cap P) = 0.55\times0.60 = 0.33" />,
-    reason: 'Driven by a parent, then photo.',
+    reason: <>Driven by a parent, then photo.</>,
   },
   {
     working: <Katex display tex="\Pr(P) = 0.135+0.33 = 0.465" />,
-    reason: 'Every student took one route or the other, so the two branches cover all the photos.',
+    reason: <>Every student took one route or the other, so the two branches cover all the photos.</>,
   },
   {
     working: <Katex display tex="\Pr(L\mid P) = \frac{\Pr(L\cap P)}{\Pr(P)} = \frac{0.135}{0.465}" />,
-    reason: 'The conditional probability formula — the question reverses the conditioning, which is what makes it a Bayes problem.',
+    reason: <>The conditional probability formula — the question reverses the conditioning, which is what makes it a Bayes problem.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{135}{465} = \frac{9}{31}}" />,
-    reason: <>Option <b>C</b>; about <Katex tex="0.29" />. Sensible: limousine riders are both fewer and less likely to be photographed, so among photographed students they are well under half.</>,
+    reason: <>Matches option <b>C</b>; about <Katex tex="0.29" />. Option <b>B</b>, <Katex tex="\tfrac{27}{200}=0.135" />, is the joint probability, not the conditional one. Sensible: limousine riders are both fewer and less likely to be photographed, so among photographed students they are well under half.</>,
   },
 ]
 
@@ -43,11 +44,8 @@ export default function MethodsQ9_2024() {
             At a Year 12 formal, 45% of the students travelled to the event in a hired
             limousine, while the remaining 55% were driven to the event by a parent.
           </p>
-          <p>
-            Of the students who travelled in a hired limousine, 30% had a professional photo
-            taken. Of the students who were driven by a parent, 60% had a professional photo
-            taken.
-          </p>
+          <p>Of the students who travelled in a hired limousine, 30% had a professional photo taken.</p>
+          <p>Of the students who were driven by a parent, 60% had a professional photo taken.</p>
           <p>
             Given that a student had a professional photo taken, what is the probability that
             the student travelled to the event in a hired limousine?

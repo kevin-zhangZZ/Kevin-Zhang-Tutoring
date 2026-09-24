@@ -8,9 +8,9 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import bridge1Src from './meth-2018exam2-q3-bridge1.png'
-import shadedSrc from './meth-2018exam2-q3-shaded.png'
-import bridge2Src from './meth-2018exam2-q3-bridge2.png'
+import bridge1Src from './meth-2018e2-q3-bridge1.png'
+import shadedSrc from './meth-2018e2-q3-shaded.png'
+import bridge2Src from './meth-2018e2-q3-bridge2.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [5, 95],
@@ -24,8 +24,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Some students wrote <Katex tex="35" /> m to the right,
-      omitting the word translation. A few wrote to the left, or <Katex tex="5" /> m to the
-      left or right.
+      omitting translation. A few wrote to the left or <Katex tex="5" /> m to the left or
+      right. Some students had a correct statement followed by an incorrect expression{' '}
+      <Katex tex="x\to x-35" />.
     </>
   ),
 }
@@ -35,8 +36,7 @@ const EXAM_C: SAExaminerStats = {
   average: 2.4,
   comment: (
     <>
-      <Katex tex="5\times110-3\displaystyle\int_5^{35}h_1(x)\,dx = 264\ \text{m}^2" />, correct
-      to the nearest square metre. This question was answered reasonably well. There were some
+      This question was answered reasonably well. There were some
       rounding errors. Some students had the correct expression but the incorrect answer.
       Others had incorrect terminals for the area of the arch, for example{' '}
       <Katex tex="\int_0^{30}h_1(x)\,dx" />. Some students left their answer as{' '}
@@ -50,8 +50,7 @@ const EXAM_D: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      <Katex tex="\tan\!\left(\tfrac{\pi}{90}\right)\approx0.035" />, correct to three decimal
-      places. This question was generally well answered. Some students evaluated{' '}
+      This question was generally well answered. Some students evaluated{' '}
       <Katex tex="\tfrac{\pi}{90}" /> or <Katex tex="\sin\!\left(\tfrac{\pi}{90}\right)" />.
       There were some rounding errors and <Katex tex="0.036" /> was sometimes given.
     </>
@@ -63,12 +62,10 @@ const EXAM_E: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      <Katex tex="h_2'(x)=\tan\!\left(\tfrac{\pi}{90}\right)" />,{' '}
-      <Katex tex="x=54.36\ldots" />, <Katex tex="h_2(54.3626\ldots)=4.99\ldots" />,{' '}
-      <Katex tex="P(54.36,\ 4.99)" />, correct to two decimal places. Many students were able
-      to equate their answer to Question 3d. to <Katex tex="h_2'(x)" />. Some students were
-      possibly estimating values for the coordinates from the graph, as{' '}
-      <Katex tex="P(54,5)" /> was sometimes given.
+      Many students were able to equate their answer to Question 3d. to{' '}
+      <Katex tex="h_2'(x)" />. Some students were possibly estimating values for the
+      coordinates from the graph as <Katex tex="P\,(54,5)" /> was sometimes given without
+      working.
     </>
   ),
 }
@@ -78,8 +75,7 @@ const EXAM_F: SAExaminerStats = {
   average: 0.9,
   comment: (
     <>
-      Distance <Katex tex="PQ = \sqrt{(54.36\ldots-54.29\ldots)^2+(4.98\ldots-6.896\ldots)^2} \approx 1.91" />{' '}
-      m, correct to two decimal places. There were a number of other approaches to this
+      There were a number of other approaches to this
       question. Many students were able to get the negative reciprocal of their answer to
       Question 3d. Other students incorrectly thought <Katex tex="P" /> was on the line{' '}
       <Katex tex="y=5" /> and used a trigonometric ratio to find the distance.
@@ -113,7 +109,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{A translation of } 35 \text{ units in the positive } x \text{ direction}}" />,
-    reason: <>Use the word <em>translation</em> — the report notes that "<Katex tex="35" /> m to the right" without it did not score. Subtracting inside the bracket moves the graph <em>right</em>, not left, which is the other error recorded.</>,
+    reason: <>Use the word <em>translation</em> — the report notes some students wrote "<Katex tex="35" /> m to the right", omitting it. Subtracting inside the bracket moves the graph <em>right</em>, not left, which is the other error recorded.</>,
   },
 ]
 
@@ -124,7 +120,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_5^{35} 5\sin\!\left(\frac{(x-5)\pi}{30}\right)dx = \frac{300}{\pi}" />,
-    reason: <>One arch opening. Use the arch's <em>own</em> terminals — the report flags <Katex tex="\int_0^{30}" /> as a common wrong choice, which integrates the right shape over the wrong interval.</>,
+    reason: <>One arch opening. Use the arch's <em>own</em> terminals — the report gives <Katex tex="\int_0^{30}" /> as an example of incorrect terminals, which integrates the rule over the wrong interval.</>,
   },
   {
     working: <Katex display tex="\text{Shaded} = 550 - 3\times\frac{300}{\pi} = 550-\frac{900}{\pi}" />,
@@ -132,7 +128,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 264 \text{ m}^2}" />,
-    reason: <>The question asks for a number to the nearest square metre, so <Katex tex="550-\tfrac{900}{\pi}" /> on its own is not the answer — the report records that as a frequent omission. (<Katex tex="\tfrac{900}{\pi}\approx286.5" />, so a little over half the rectangle is stone.)</>,
+    reason: <>The question asks for a number to the nearest square metre, so <Katex tex="550-\tfrac{900}{\pi}" /> on its own is not the answer — the report notes some students left their answer in that form. (<Katex tex="\tfrac{900}{\pi}\approx286.5" />, so a little under half the rectangle is stone.)</>,
   },
 ]
 
@@ -158,42 +154,42 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{\pi}{6}\cos\!\left(\frac{(x-40)\pi}{30}\right) = \tan\!\left(\frac{\pi}{90}\right)" />,
-    reason: <>"The tangent to Arch 5 at <Katex tex="P" /> has the same gradient as the second bridge" — set the arch's gradient equal to part (d)'s value.</>,
+    reason: <>"The tangent to Arch 5 at <Katex tex="P" /> has the same gradient as the second bridge" — set the arch's gradient equal to part d.'s value.</>,
   },
   {
     working: <Cas fn="solve">solve(π/6*cos((x-40)π/30) = tan(π/90), x) | 40&lt;=x&lt;=70</Cas>,
-    reason: <>Restrict to Arch 5's domain. Two solutions exist in general; the one just past the crest is the one the diagram marks.</>,
+    reason: <>Restrict to Arch 5's domain. The required gradient is positive, so <Katex tex="P" /> is on the rising side of the arch, and there is only one such solution in <Katex tex="[40,70]" />.</>,
   },
   {
     working: <Katex display tex="\boxed{P \approx (54.36,\ 4.99)}" />,
-    reason: <>Two decimal places for both coordinates. Note <Katex tex="P" /> is <em>not</em> at the top of the arch: the bridge slopes gently upwards, so the matching point sits slightly past the crest at <Katex tex="x=55" />, and its height is a shade under <Katex tex="5" />. The report notes <Katex tex="(54,5)" /> being read off the graph instead of computed.</>,
+    reason: <>Two decimal places for both coordinates. Note <Katex tex="P" /> is <em>not</em> at the top of the arch: the bridge slopes gently upwards, so the matching point sits just before the crest at <Katex tex="x=55" />, and its height (<Katex tex="4.9889\ldots" />) is a shade under <Katex tex="5" />. The report notes <Katex tex="(54,5)" /> was sometimes given without working, possibly estimated from the graph.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Second bridge: } y = 5 + \tan\!\left(\frac{\pi}{90}\right)x" />,
-    reason: <>Height <Katex tex="5" /> m at its left-most point (<Katex tex="x=0" />) and the gradient from part (d).</>,
+    reason: <>Height <Katex tex="5" /> m at its left-most point (<Katex tex="x=0" />) and the gradient from part d.</>,
   },
   {
     working: <Katex display tex="m_{PQ} = -\frac{1}{\tan\!\left(\frac{\pi}{90}\right)} \approx -28.64" />,
     reason: <>The rod runs perpendicular to the bridge, and perpendicular gradients multiply to <Katex tex="-1" />. Nearly vertical, as the diagram shows.</>,
   },
   {
-    working: <Katex display tex="PQ: \ y - 4.9861\ldots = -28.636\ldots\,(x - 54.3626\ldots)" />,
-    reason: <>The rod's line, through <Katex tex="P" /> from part (e). Keep the unrounded coordinates — rounding here shows up in the third decimal of the final answer.</>,
+    working: <Katex display tex="PQ: \ y - 4.9889\ldots = -28.636\ldots\,(x - 54.3626\ldots)" />,
+    reason: <>The rod's line, through <Katex tex="P" /> from part e. Keep the unrounded coordinates — rounding here shows up in the third decimal of the final answer.</>,
   },
   {
-    working: <Cas fn="solve">solve(5+tan(π/90)x = -28.636(x-54.3626)+4.9861, x)</Cas>,
-    reason: <>Where the rod meets the bridge gives <Katex tex="Q\approx(54.2957,\ 6.8961)" />.</>,
+    working: <Cas fn="solve">solve(5+tan(π/90)x = -28.636(x-54.3626)+4.9889, x)</Cas>,
+    reason: <>Where the rod meets the bridge gives <Katex tex="Q\approx(54.2960,\ 6.8961)" />.</>,
   },
   {
-    working: <Katex display tex="PQ = \sqrt{(54.3626-54.2957)^2+(4.9861-6.8961)^2}" />,
+    working: <Katex display tex="PQ = \sqrt{(54.3626-54.2960)^2+(4.9889-6.8961)^2}" />,
     reason: <>Ordinary distance formula between the two points.</>,
   },
   {
     working: <Katex display tex="\boxed{PQ \approx 1.91 \text{ m}}" />,
-    reason: <>Two decimal places. A useful check: the vertical gap between <Katex tex="P" /> and the bridge is <Katex tex="6.8984-4.9861\approx1.912" />, and because the bridge is almost horizontal the perpendicular distance is barely shorter than the vertical one. The report notes students who assumed <Katex tex="P" /> lay on <Katex tex="y=5" /> and used a trigonometric ratio — that assumption is what part (e) exists to disprove.</>,
+    reason: <>Two decimal places. A useful check: the vertical gap between <Katex tex="P" /> and the bridge is <Katex tex="6.8984-4.9889\approx1.910" />, and because the bridge is almost horizontal the perpendicular distance is barely shorter than the vertical one. The report notes students who assumed <Katex tex="P" /> lay on <Katex tex="y=5" /> and used a trigonometric ratio — part e. shows <Katex tex="P" /> is not on that line.</>,
   },
 ]
 
@@ -216,17 +212,17 @@ export default function MethodsQ3_2018Exam2() {
           <img src={bridge1Src} alt="A horizontal bridge at height 5 m spanning three identical sine arches labelled Arch 1, Arch 2 and Arch 3, on axes running to x = 110, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
         <div className="mt-3 space-y-1">
-          <p>Arch 1: <Katex tex="h_1:[5,35]\to\mathbb{R},\ h_1(x)=5\sin\!\left(\dfrac{(x-5)\pi}{30}\right)" /></p>
-          <p>Arch 2: <Katex tex="h_2:[40,70]\to\mathbb{R},\ h_2(x)=5\sin\!\left(\dfrac{(x-40)\pi}{30}\right)" /></p>
-          <p>Arch 3: <Katex tex="h_3:[a,105]\to\mathbb{R},\ h_3(x)=5\sin\!\left(\dfrac{(x-a)\pi}{30}\right)" /></p>
+          <p>Arch 1 can be modelled by the function <Katex tex="h_1:[5,35]\to R,\ h_1(x)=5\sin\!\left(\dfrac{(x-5)\pi}{30}\right)" />.</p>
+          <p>Arch 2 can be modelled by the function <Katex tex="h_2:[40,70]\to R,\ h_2(x)=5\sin\!\left(\dfrac{(x-40)\pi}{30}\right)" />.</p>
+          <p>Arch 3 can be modelled by the function <Katex tex="h_3:[a,105]\to R,\ h_3(x)=5\sin\!\left(\dfrac{(x-a)\pi}{30}\right)" />.</p>
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>State the value of <Katex tex="a" />, where <Katex tex="a\in\mathbb{R}" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Find Parameter" marks={1} statement={<>State the value of <Katex tex="a" />, where <Katex tex="a\in R" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Describe the transformation that maps the graph of <Katex tex="y=h_2(x)" /> to <Katex tex="y=h_3(x)" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Transformations" marks={1} statement={<>Describe the transformation that maps the graph of <Katex tex="y=h_2(x)" /> to <Katex tex="y=h_3(x)" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
@@ -240,7 +236,7 @@ export default function MethodsQ3_2018Exam2() {
         </div>
       </div>
 
-      <PartCard letter="c" marks={3} statement={<>Find the total area of the shaded regions, correct to the nearest square metre.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Area Between Curves" marks={3} statement={<>Find the total area of the shaded regions, correct to the nearest square metre.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
             Do not integrate the shaded shape directly — it has an awkward outline. Take the
@@ -270,15 +266,15 @@ export default function MethodsQ3_2018Exam2() {
         </div>
       </div>
 
-      <PartCard letter="d" marks={1} statement={<>State the gradient of the second bridge, correct to three decimal places.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Gradient" marks={1} statement={<>State the gradient of the second bridge, correct to three decimal places.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<><Katex tex="P" /> is a point on Arch 5. The tangent to Arch 5 at point <Katex tex="P" /> has the same gradient as the second bridge. Find the coordinates of <Katex tex="P" />, correct to two decimal places.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Tangent Line" marks={2} statement={<><Katex tex="P" /> is a point on Arch 5. The tangent to Arch 5 at point <Katex tex="P" /> has the same gradient as the second bridge. Find the coordinates of <Katex tex="P" />, correct to two decimal places.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
-      <PartCard letter="f" marks={3} statement={<>A supporting rod connects a point <Katex tex="Q" /> on the second bridge to point <Katex tex="P" /> on Arch 5. The rod follows a straight line and runs perpendicular to the second bridge. Find the distance <Katex tex="PQ" />, in metres, correct to two decimal places.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Perpendicular Distance" marks={3} statement={<>A supporting rod connects a point <Katex tex="Q" /> on the second bridge to point <Katex tex="P" /> on Arch 5. The rod follows a straight line and runs perpendicular to the second bridge, as shown in the diagram above. Find the distance <Katex tex="PQ" />, in metres, correct to two decimal places.</>} examinerReport={EXAM_F}>
         <Background>
           <p>
             <Katex tex="56\%" /> scored zero. The rod is <em>perpendicular to the bridge</em>,
@@ -289,9 +285,8 @@ export default function MethodsQ3_2018Exam2() {
           <p>
             The tempting shortcut — treating <Katex tex="P" /> as sitting on{' '}
             <Katex tex="y=5" /> and using a trigonometric ratio — is exactly what the report
-            warns against. Part (e) has already established that <Katex tex="P" /> is at
-            height <Katex tex="4.99" />, not <Katex tex="5" />, and slightly right of the
-            crest.
+            describes. Part e. has already established that <Katex tex="P" /> is at height{' '}
+            <Katex tex="4.99" />, not <Katex tex="5" />, and slightly left of the crest.
           </p>
         </Background>
         <WorkingTable rows={ROWS_F} />

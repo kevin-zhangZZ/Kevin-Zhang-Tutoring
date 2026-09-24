@@ -1,14 +1,42 @@
 // 2023 Specialist Mathematics — Exam 2, Section B Question 1 (10 marks). A piecewise walking
 // track joined smoothly, and an elliptical return path whose arc length is wanted. Question
 // text transcribed from the original paper; the stem figure is a crop of VCAA's own artwork
-// and the completed sketch is ours. Answers checked with sympy and against the VCAA
+// (300 dpi), and the part e. answer is an SVG overlay on that crop (never a redrawing of it).
+// Calibration measured from the crop's own gridlines: origin at (286.5, 796.5), 354.75 px per
+// unit across and 635.5 px per unit up; checked with a PIL composite — the calibrated
+// f(x) lies exactly on VCAA's printed track. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import trackSrc from './spec-2023e2-q1-track.png'
-import sketchSrc from './spec-2023e2-q1e-sketch.png'
+
+const OX = 286.5
+const OY = 796.5
+const SX = 354.75
+const SY = 635.5
+const toX = (x: number) => OX + x * SX
+const toY = (y: number) => OY - y * SY
+const ORANGE = '#f97316'
+const ELLIPSE = Array.from({ length: 241 }, (_, i) => {
+  const t = Math.PI / 2 + (Math.PI / 2) * (i / 240)
+  return `${i === 0 ? 'M' : 'L'} ${toX(2 * Math.cos(t) + 2)} ${toY((Math.E - 2) * Math.sin(t))}`
+}).join(' ')
+
+// Part e.: the elliptical return path drawn on VCAA's own diagram of the track.
+function EllipseOverlay() {
+  return (
+    <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+      <div className="relative w-full max-w-[460px]">
+        <img src={trackSrc} alt="VCAA's diagram of the track, with the answer drawn over it: the quarter ellipse from D(2, e − 2) arcing back to the origin, leaving D horizontally and arriving at O vertically" className="w-full block" />
+        <svg viewBox="0 0 1320 1036" className="absolute inset-0 w-full h-full" aria-hidden="true">
+          <path d={ELLIPSE} fill="none" stroke={ORANGE} strokeWidth={6} />
+        </svg>
+      </div>
+    </div>
+  )
+}
 
 const EXAM_A: SAExaminerStats = { marks: [22, 78], average: 0.8, comment: <>This question was answered well.</> }
 
@@ -44,8 +72,8 @@ const EXAM_E: SAExaminerStats = {
   comment: (
     <>
       The quarter ellipse was often sketched without sufficient accuracy. While the curves
-      drawn mostly connected point <Katex tex="D" /> to the origin, they were often not
-      vertical at the origin and horizontal at <Katex tex="D" />.
+      drawn mostly connected point <Katex tex="D" /> to the origin, the quarter ellipse curves
+      were often not vertical at the origin and horizontal at <Katex tex="D" />.
     </>
   ),
 }
@@ -55,30 +83,34 @@ const EXAM_FI: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      The most frequent error was to use terminals 0 and <Katex tex="2\pi" />. A variety of
-      correct equivalent forms of the integrand were seen.
+      The most frequent error was to use terminals 0 and 2. A variety of correct equivalent
+      forms of the integrand were seen.
     </>
   ),
 }
 
-const EXAM_FII: SAExaminerStats = { marks: [34, 66], average: 0.7 }
+const EXAM_FII: SAExaminerStats = {
+  marks: [34, 66],
+  average: 0.7,
+  comment: <>Most students who answered Question 1fi. correctly were successful here.</>,
+}
 
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="C(1,0) \text{ lies on } y = -x(x+a)^2: \quad 0 = -1(1+a)^2" />,
-    reason: 'The first branch must pass through C.',
+    reason: <>The first branch must pass through C.</>,
   },
   {
-    working: <Katex display tex="(1+a)^2 = 0 \implies \boxed{a = -1} \ \checkmark" />,
-    reason: 'A repeated root, which is also why the curve touches the axis at C rather than crossing it.',
+    working: <Katex display tex="(1+a)^2 = 0 \implies \boxed{a = -1}" />,
+    reason: <>A repeated root, which is also why the curve touches the axis at C rather than crossing it.</>,
   },
   {
     working: <Katex display tex="C(1,0) \text{ lies on } y = e^{x-1}-x+b: \quad 0 = e^0-1+b" />,
-    reason: 'And so must the second branch, or the track would have a gap.',
+    reason: <>And so must the second branch, or the track would have a gap.</>,
   },
   {
-    working: <Katex display tex="0 = 1-1+b \implies \boxed{b = 0} \ \checkmark" />,
-    reason: 'Both constants follow from the single point C.',
+    working: <Katex display tex="0 = 1-1+b \implies \boxed{b = 0}" />,
+    reason: <>Both constants follow from the single point C. As required.</>,
   },
 ]
 
@@ -90,23 +122,23 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\text{the two gradients must agree at } x=1" />
       </>
     ),
-    reason: 'The functions already meet there (part a.); showing that is not enough on its own, and the report says many students stopped there.',
+    reason: <>The functions already meet there (part a.); showing that is not enough on its own — the report notes some students showed only that the functions met.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left[-x(x-1)^2\right] = -(x-1)^2-2x(x-1) = -(x-1)(3x-1)" />,
-    reason: 'Product rule, then factorising out the common (x − 1).',
+    reason: <>Product rule, then factorising out the common (x − 1).</>,
   },
   {
     working: <Katex display tex="\text{At } x=1: \quad -(0)(2) = 0" />,
-    reason: 'The left branch arrives flat.',
+    reason: <>The left branch arrives flat.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left[e^{x-1}-x\right] = e^{x-1}-1, \quad \text{at } x=1: \ e^0-1 = 0" />,
-    reason: 'And the right branch leaves flat.',
+    reason: <>And the right branch leaves flat.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Both gradients are } 0 \text{ at } C, \text{ so the curves join smoothly.}}" />,
-    reason: 'State the conclusion — the two zeros are the evidence, not the answer.',
+    reason: <>State the conclusion — the two zeros are the evidence, not the answer. As required.</>,
   },
 ]
 
@@ -117,7 +149,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f\!\left(\frac13\right) = -\frac13\left(\frac13-1\right)^2 = -\frac13\cdot\frac49" />,
-    reason: 'Substituting back.',
+    reason: <>Substituting back.</>,
   },
   {
     working: <Katex display tex="\boxed{A\left(\tfrac13,\ -\tfrac{4}{27}\right)}" />,
@@ -128,7 +160,7 @@ const ROWS_CI: WorkingRow[] = [
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = -x(x-1)^2 = -x^3+2x^2-x" />,
-    reason: 'Expanding makes the second derivative immediate.',
+    reason: <>Expanding makes the second derivative immediate.</>,
   },
   {
     working: <Katex display tex="f''(x) = -6x+4 = 0 \implies x = \frac23" />,
@@ -136,7 +168,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f\!\left(\frac23\right) = -\frac23\left(-\frac13\right)^2 = -\frac23\cdot\frac19" />,
-    reason: 'Substituting.',
+    reason: <>Substituting.</>,
   },
   {
     working: <Katex display tex="\boxed{B\left(\tfrac23,\ -\tfrac{2}{27}\right)}" />,
@@ -147,15 +179,15 @@ const ROWS_CII: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="x = 2\cos(t)+2 \implies \cos(t) = \frac{x-2}{2}" />,
-    reason: 'Isolate each trigonometric function.',
+    reason: <>Isolate each trigonometric function.</>,
   },
   {
     working: <Katex display tex="y = (e-2)\sin(t) \implies \sin(t) = \frac{y}{e-2}" />,
-    reason: 'Same for the other component.',
+    reason: <>Same for the other component.</>,
   },
   {
     working: <Katex display tex="\cos^2(t)+\sin^2(t) = 1" />,
-    reason: 'The Pythagorean identity is what eliminates the parameter.',
+    reason: <>The Pythagorean identity is what eliminates the parameter.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{(x-2)^2}{4}+\frac{y^2}{(e-2)^2} = 1}" />,
@@ -174,22 +206,26 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t\to\pi: \ \frac{dy}{dx}\to\infty" />,
-    reason: <>And it arrives at <Katex tex="O" /> <em>vertically</em>, the left end of the major axis. The report says most sketches got neither of these right.</>,
+    reason: <>And it arrives at <Katex tex="O" /> <em>vertically</em>, the left end of the major axis. The report notes the curves drawn were often not vertical at the origin and horizontal at D.</>,
+  },
+  {
+    working: <EllipseOverlay />,
+    reason: <>Drawn on the printed diagram, as the question asks: from <Katex tex="D" /> round to <Katex tex="O" />, horizontal at <Katex tex="D" /> and vertical at <Katex tex="O" />.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="L = \int_{t_1}^{t_2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\;dt" />,
-    reason: 'The parametric arc-length formula.',
+    reason: <>The parametric arc-length formula.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = -2\sin(t), \qquad \frac{dy}{dt} = (e-2)\cos(t)" />,
-    reason: 'Differentiating each component.',
+    reason: <>Differentiating each component.</>,
   },
   {
     working: <Katex display tex="\boxed{L = \int_{\frac\pi2}^{\pi}\sqrt{4\sin^2(t)+(e-2)^2\cos^2(t)}\;dt}" />,
-    reason: <>The terminals are the <em>parameter</em> values that give D and O — not 0 and <Katex tex="2\pi" />, which would trace the whole ellipse.</>,
+    reason: <>The terminals are the <em>parameter</em> values that give D and O. The report notes the most frequent error was terminals 0 and 2 — the <Katex tex="x" />-values of O and D, not the <Katex tex="t" />-values.</>,
   },
 ]
 
@@ -200,7 +236,7 @@ const ROWS_FII: WorkingRow[] = [
         nInt(√(4·sin(t)²+(e−2)²·cos(t)²), t, π/2, π)
       </Cas>
     ),
-    reason: 'No elementary antiderivative — elliptic arc length never has one — so integrate numerically.',
+    reason: <>Elliptic arc length has no elementary antiderivative in general, so integrate numerically.</>,
   },
   {
     working: <Katex display tex="\boxed{L \approx 2.255 \ \text{km}}" />,
@@ -220,7 +256,7 @@ export default function SpecialistQ1_2023Exam2() {
         <div className="py-1">
           <Katex
             display
-            tex="f(x)=\begin{cases}-x(x+a)^2 & 0\le x\le1\\[2pt]e^{x-1}-x+b & 1<x\le2\end{cases}"
+            tex="f(x)=\begin{cases}-x(x+a)^2, & 0\le x\le1\\[2pt]e^{x-1}-x+b, & 1<x\le2.\end{cases}"
           />
         </div>
         <p>
@@ -256,6 +292,7 @@ export default function SpecialistQ1_2023Exam2() {
 
       <PartCard
         letter="a"
+        topic="Find Parameters"
         marks={1}
         statement={<>Show that <Katex tex="a=-1" /> and <Katex tex="b=0" />.</>}
         examinerReport={EXAM_A}
@@ -265,8 +302,9 @@ export default function SpecialistQ1_2023Exam2() {
 
       <PartCard
         letter="b"
+        topic="Smooth Join"
         marks={2}
-        statement={<>Verify that the two curves meet smoothly at point <Katex tex="C" />.</>}
+        statement={<>Verify that the two curves meet <b>smoothly</b> at point <Katex tex="C" />.</>}
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
@@ -274,6 +312,7 @@ export default function SpecialistQ1_2023Exam2() {
 
       <PartCard
         letter="c.i"
+        topic="Coordinates"
         marks={1}
         statement={<>Find the coordinates of point <Katex tex="A" />.</>}
         examinerReport={EXAM_CI}
@@ -283,6 +322,7 @@ export default function SpecialistQ1_2023Exam2() {
 
       <PartCard
         letter="c.ii"
+        topic="Coordinates"
         marks={1}
         statement={<>Find the coordinates of point <Katex tex="B" />.</>}
         examinerReport={EXAM_CII}
@@ -293,14 +333,14 @@ export default function SpecialistQ1_2023Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           The return track from point <Katex tex="D" /> to point <Katex tex="O" /> follows an
-          elliptical path given by <Katex tex="x=2\cos(t)+2" />,{' '}
-          <Katex tex="y=(e-2)\sin(t)" />, where{' '}
-          <Katex tex="t\in\left[\dfrac\pi2,\pi\right]" />.
+          elliptical path given by
         </p>
+        <Katex display tex="x=2\cos(t)+2,\ y=(e-2)\sin(t), \ \text{where } t\in\left[\frac\pi2,\pi\right]." />
       </div>
 
       <PartCard
         letter="d"
+        topic="Cartesian Equation"
         marks={2}
         statement={<>Find the Cartesian equation of the elliptical path.</>}
         examinerReport={EXAM_D}
@@ -310,6 +350,7 @@ export default function SpecialistQ1_2023Exam2() {
 
       <PartCard
         letter="e"
+        topic="Sketch Path"
         marks={1}
         statement={
           <>
@@ -320,17 +361,11 @@ export default function SpecialistQ1_2023Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
-        <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={sketchSrc}
-            alt="The walking track in blue dipping below the axis through A and B to C(1, 0) and rising to D(2, e − 2), with the orange quarter ellipse arcing back from D horizontally, over the top and down vertically into the origin"
-            className="w-full max-w-[500px]"
-          />
-        </div>
       </PartCard>
 
       <PartCard
         letter="f.i"
+        topic="Arc Length"
         marks={1}
         statement={
           <>
@@ -345,11 +380,14 @@ export default function SpecialistQ1_2023Exam2() {
 
       <PartCard
         letter="f.ii"
+        topic="Arc Length"
         marks={1}
         statement={
           <>
             Find the length of the elliptical path from <Katex tex="D" /> to{' '}
-            <Katex tex="O" />. Give your answer in kilometres correct to three decimal places.
+            <Katex tex="O" />.
+            <br />
+            Give your answer in kilometres correct to three decimal places.
           </>
         }
         examinerReport={EXAM_FII}

@@ -4,25 +4,25 @@
 // in a sample of 36 (part f), and a confidence interval used to back out a sample size from
 // Town B (part g). Question text transcribed from the original paper. VCAA printed no diagram;
 // the graph of the probability density function is this site's own explanatory figure
-// (matplotlib), since almost every part of (a)-(c) is an area under it. Cross-checked against
+// (matplotlib), since parts a.–c. are areas under it. Cross-checked against
 // the VCAA examination report and itute's independent solutions, and independently re-derived
 // (every numeric part confirmed by computer algebra; the exact fractions behind the rounded
-// answers in (b) and (c) are shown). Solution is original.
+// answers in b. and c. are shown). Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import pdfSrc from './meth-2019exam2-q4-pdf.png'
+import pdfSrc from './meth-2019e2-q4-pdf.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [17, 4, 78],
   average: 1.6,
   comment: (
     <>
-      This question was done well. Some students worked out the median instead of the mean, or
-      evaluated <Katex tex="\displaystyle\int_0^5\tfrac{4}{625}(5x^3-x^4)\,dx" /> (forgetting the{' '}
-      <Katex tex="x" /> weighting). Other students gave an approximate answer. Some students
-      tried to treat <Katex tex="f" /> as a discrete random variable.
+      This question was done well. Some students worked out the median instead of the mean or
+      evaluated <Katex tex="\displaystyle\int_0^5\left(\frac{4}{625}\left(5x^3-x^4\right)\right)dx" />.
+      Other students gave an approximate answer. Some students tried to treat <Katex tex="f" /> as
+      a discrete random variable.
     </>
   ),
 }
@@ -34,8 +34,9 @@ const EXAM_B: SAExaminerStats = {
     <>
       Some students found the probability but did not multiply by <Katex tex="80" />. Other
       students used a discrete random variable or the normal distribution. Some students
-      evaluated <Katex tex="\displaystyle80\int_0^2\tfrac{4}{625}(5x^3-x^4)\,dx" /> (the
-      complementary region) and others rounded to <Katex tex="74" />.
+      evaluated <Katex tex="\displaystyle80\int_0^2\left(\frac{4}{625}\left(5x^3-x^4\right)\right)dx" /> or{' '}
+      <Katex tex="\displaystyle80\int_3^5\left(\frac{4}{625}\left(5x^3-x^4\right)\right)dx" />. Other
+      students rounded to 74.
     </>
   ),
 }
@@ -45,9 +46,8 @@ const EXAM_C: SAExaminerStats = {
   average: 1.3,
   comment: (
     <>
-      Many students used conditional probability correctly. Some students used{' '}
-      <Katex tex="\Pr(X\ge2\mid X\ge4)" /> instead. Other students rounded their intermediate
-      answers too early.
+      Many students used conditional probability. Some students used{' '}
+      <Katex tex="\Pr(X\le4\mid X\le2)" />. Other students rounded answers too early.
     </>
   ),
 }
@@ -73,25 +73,25 @@ const EXAM_FI: SAExaminerStats = {
 const EXAM_FII: SAExaminerStats = {
   marks: [58, 19, 23],
   average: 0.7,
-  comment: <>A common incorrect answer was <Katex tex="n=6" />. Some students gave an answer without any working — trial and error is an acceptable method, but the working must still be shown.</>,
+  comment: <>A common incorrect answer was <Katex tex="n=6" />. Some students gave an answer without any working. Trial and error is an acceptable method.</>,
 }
 
 const EXAM_FIII: SAExaminerStats = {
   marks: [45, 13, 42],
   average: 1.0,
-  comment: <>Some students found <Katex tex="E(X)=36\times0.0527=1.8972" /> instead of <Katex tex="E(\hat P)" />. Many students were able to find the standard deviation.</>,
+  comment: <>Some students found <Katex tex="E(X)=36\times0.0527=1.8972" />. Many students were able to find the standard deviation.</>,
 }
 
 const EXAM_FIV: SAExaminerStats = {
   marks: [70, 11, 19],
   average: 0.5,
-  comment: <>Many students were able to find the first interval (for <Katex tex="\hat P" />). Some students used the normal distribution instead. Others rounded their final answer to <Katex tex="0.738" />.</>,
+  comment: <>Many students were able to find the first interval. Some students used the normal distribution. Others rounded their answer to 0.738.</>,
 }
 
 const EXAM_G: SAExaminerStats = {
   marks: [69, 6, 25],
   average: 0.6,
-  comment: <>Many students had the sample proportion as <Katex tex="0.0527" /> or <Katex tex="0.55" /> instead of <Katex tex="0.055" /> (the midpoint of the given interval). Others did not include the <Katex tex="1.96" />.</>,
+  comment: <>Many students had the proportion as 0.0527 or 0.55 instead of 0.055. Others did not include the 1.96.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
@@ -105,6 +105,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \dfrac{4}{625}\left[x^5-\dfrac{x^6}{6}\right]_0^5 = \dfrac{4}{625}\left(3125-\dfrac{15\,625}{6}\right)" />,
+    reason: <>Antidifferentiate term by term, then substitute the terminals (the lower one gives <Katex tex="0" />).</>,
   },
   {
     working: <Katex display tex="= \dfrac{4}{625}\times\dfrac{3125}{6} = \dfrac{20}{6}" />,
@@ -112,7 +113,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{E(X) = \dfrac{10}{3} \text{ weeks}}" />,
-    reason: <>Exact form — the report notes approximate answers such as <Katex tex="3.33" /> lost the mark. Sanity check: <Katex tex="\tfrac{10}{3}\approx3.3" /> weeks sits sensibly inside the <Katex tex="0" />–<Katex tex="5" /> week range, a bit left of the density's peak. ✓</>,
+    reason: <>Exact form: Section B needs exact answers unless told otherwise, and the report notes some students gave an approximate answer. Sanity check: <Katex tex="\tfrac{10}{3}\approx3.3" /> weeks sits sensibly inside the <Katex tex="0" />–<Katex tex="5" /> week range, a bit left of the density's peak at <Katex tex="x=\tfrac{15}{4}" />.</>,
   },
 ]
 
@@ -120,13 +121,14 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={pdfSrc} alt="Graph of the probability density function on 0 ≤ x ≤ 5, with the region right of x = 2 shaded to show Pr(X > 2) ≈ 0.913 and the region right of x = 4 shaded more darkly" className="w-full max-w-[400px]" />
+        <img src={pdfSrc} alt="Graph of the probability density function on 0 ≤ x ≤ 5, peaking near x = 3.75, with the region from x = 2 to x = 5 shaded to show Pr(X > 2) ≈ 0.913 — this site's own explanatory figure" className="w-full max-w-[400px]" />
       </div>
     ),
     reason: <>"Lives longer than two weeks" is the shaded area to the right of <Katex tex="x=2" /> — clearly most of the total area, so the answer should come out well above half.</>,
   },
   {
     working: <Katex display tex="\Pr(X>2) = \int_2^5 \dfrac{4}{625}\left(5x^3-x^4\right)dx = \dfrac{4}{625}\left[\dfrac{5x^4}{4}-\dfrac{x^5}{5}\right]_2^5" />,
+    reason: <>The area under the density from <Katex tex="2" /> to the end of its domain at <Katex tex="5" />.</>,
   },
   {
     working: (
@@ -135,9 +137,11 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\text{At } x=2:\ \dfrac{5(16)}{4}-\dfrac{32}{5} = \dfrac{68}{5}" />
       </>
     ),
+    reason: <>Evaluating the antiderivative at each terminal.</>,
   },
   {
     working: <Katex display tex="\Pr(X>2) = \dfrac{4}{625}\left(\dfrac{625}{4}-\dfrac{68}{5}\right) = \dfrac{2853}{3125} = 0.91296" />,
+    reason: <>Upper minus lower. The fraction is exact, so nothing has been rounded yet.</>,
   },
   {
     working: <Katex display tex="\text{Expected number} = 80\times0.91296 = 73.0368" />,
@@ -145,7 +149,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{73 \text{ butterflies}}" />,
-    reason: <>To the nearest whole butterfly. The report notes that stopping at the probability, or rounding up to <Katex tex="74" />, both lost marks.</>,
+    reason: <>To the nearest whole butterfly. The report notes some students found the probability but did not multiply by <Katex tex="80" />, and others rounded to <Katex tex="74" />.</>,
   },
 ]
 
@@ -156,7 +160,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\ge4) = \int_4^5 \dfrac{4}{625}\left(5x^3-x^4\right)dx = \dfrac{821}{3125} = 0.26272" />,
-    reason: <>Same antiderivative as part (b), evaluated from <Katex tex="4" /> to <Katex tex="5" />.</>,
+    reason: <>Same antiderivative as part b., evaluated from <Katex tex="4" /> to <Katex tex="5" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge4 \mid X\ge2) = \dfrac{821/3125}{2853/3125} = \dfrac{821}{2853}" />,
@@ -194,7 +198,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\ell \approx 10.6 \text{ cm}}" />,
-    reason: <>One decimal place. The common wrong answer <Katex tex="9.9" /> comes from using <Katex tex="0.05" /> in the upper tail, or from working with <Katex tex="2" /> standard deviations instead of <Katex tex="1.645" />.</>,
+    reason: <>One decimal place. The report's common incorrect answer <Katex tex="9.9" /> is <Katex tex="14.1-2\times2.1" />: two standard deviations below the mean, which cuts off about <Katex tex="2.5\%" /> in the lower tail, not <Katex tex="5\%" />.</>,
   },
 ]
 
@@ -229,7 +233,7 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n=7}" />,
-    reason: <><Katex tex="n=6" /> was the common wrong answer — it comes from stopping at the first value below <Katex tex="0.01" /> on a mis-set calculator, or from checking <Katex tex="\Pr(X>n)" /> rather than <Katex tex="\Pr(X\ge n)" />.</>,
+    reason: <>The report's common incorrect answer <Katex tex="n=6" /> is what testing <Katex tex="\Pr(X>n)" /> instead of <Katex tex="\Pr(X\ge n)" /> gives, because <Katex tex="\Pr(X>6)=\Pr(X\ge7)\approx0.0024" />. "<Katex tex="n" /> or more" includes <Katex tex="n" /> itself.</>,
   },
 ]
 
@@ -251,10 +255,11 @@ const ROWS_FIII: WorkingRow[] = [
 const ROWS_FIV: WorkingRow[] = [
   {
     working: <Katex display tex="0.0527-0.0372 < \hat P < 0.0527+0.0372" />,
-    reason: <>"Within one standard deviation of <Katex tex="0.0527" />" — the centre from part (f)(iii), plus and minus the standard deviation from the same part.</>,
+    reason: <>"Within one standard deviation of <Katex tex="0.0527" />" — the centre from part f.iii., plus and minus the standard deviation from the same part.</>,
   },
   {
     working: <Katex display tex="0.01546\ldots < \hat P < 0.08993\ldots" />,
+    reason: <>Use the unrounded standard deviation, <Katex tex="0.03723\ldots" />, so the endpoints are accurate.</>,
   },
   {
     working: <Katex display tex="\hat P = \dfrac{X}{36} \implies 36\times0.01546 < X < 36\times0.08993" />,
@@ -262,14 +267,15 @@ const ROWS_FIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0.5566\ldots < X < 3.2378\ldots \implies X\in\{1,2,3\}" />,
-    reason: <>Butterflies come in whole numbers, so only the integers strictly inside the interval are possible — this rounding step is what the instruction "do not use a normal approximation" is pointing at.</>,
+    reason: <>Butterflies come in whole numbers, so only the integers strictly inside the interval are possible.</>,
   },
   {
     working: <Katex display tex="\Pr(1\le X\le3) \text{ where } X\sim\operatorname{Bi}(36,\ 0.0527)" />,
+    reason: <>The exact binomial distribution from part f.i., as the question instructs, rather than a normal approximation to <Katex tex="\hat P" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.7380}" />,
-    reason: <><Cas fn="binomCdf">binomCdf(36, 0.0527, 1, 3)</Cas> covers it, both bounds inclusive — exactly what <Katex tex="X\in\{1,2,3\}" /> needs. Four decimal places, and write the trailing zero: <Katex tex="0.738" /> was marked down.</>,
+    reason: <><Cas fn="binomCdf">binomCdf(36, 0.0527, 1, 3)</Cas> covers it, both bounds inclusive — exactly what <Katex tex="X\in\{1,2,3\}" /> needs. Four decimal places, so write the trailing zero — the report notes some students rounded to <Katex tex="0.738" />.</>,
   },
 ]
 
@@ -280,7 +286,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\hat p = \dfrac{0.0234+0.0866}{2} = 0.055" />,
-    reason: <>The sample proportion is the <em>midpoint</em> of the interval. (The report notes many students used <Katex tex="0.0527" /> here — but that is Town A's probability, and this sample is from Town B.)</>,
+    reason: <>The sample proportion is the <em>midpoint</em> of the interval. The report notes many students had the proportion as <Katex tex="0.0527" /> or <Katex tex="0.55" />: <Katex tex="0.0527" /> is Town A's probability, and this sample is from Town B.</>,
   },
   {
     working: <Katex display tex="1.96\sqrt{\dfrac{\hat p(1-\hat p)}{n}} = \dfrac{0.0866-0.0234}{2} = 0.0316" />,
@@ -297,6 +303,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = \dfrac{0.051975}{0.00025993\ldots} \approx 199.96" />,
+    reason: <>Solving for <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 200}" />,
@@ -309,12 +316,12 @@ export default function MethodsQ4_2019Exam2() {
     <div className="flex flex-col gap-8">
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 4 (17 marks)</p>
-        <p>
-          The Lorenz birdwing is the largest butterfly in Town A. The probability density
-          function that describes its life span, <Katex tex="X" />, in weeks, is given by{' '}
-          <Katex tex="f(x) = \dfrac{4}{625}(5x^3-x^4)" /> for <Katex tex="0\le x\le5" />, and{' '}
-          <Katex tex="f(x)=0" /> elsewhere.
+        <p>The Lorenz birdwing is the largest butterfly in Town A.</p>
+        <p className="mt-2">
+          The probability density function that describes its life span, <Katex tex="X" />, in
+          weeks, is given by
         </p>
+        <Katex display tex="f(x)=\begin{cases}\dfrac{4}{625}\left(5x^3-x^4\right) & 0\le x\le5\\[4pt] 0 & \text{elsewhere}\end{cases}" />
       </div>
 
       <div className="text-[13px] leading-relaxed">
@@ -324,17 +331,17 @@ export default function MethodsQ4_2019Exam2() {
             skill being tested is noticing which one is in play:
           </p>
           <p>
-            <b>Parts (a)–(c): a continuous random variable</b> given by a probability density
+            <b>Parts a.–c.: a continuous random variable</b> given by a probability density
             function. Probabilities are <em>areas</em> under the density curve, so every question
             is an integral. The mean is <Katex tex="\displaystyle\int x\,f(x)\,dx" /> — note the
             extra factor of <Katex tex="x" />, which weights each value by how likely it is.
           </p>
           <p>
-            <b>Parts (d)–(e): a normal distribution</b> for the wingspans — technology
+            <b>Parts d.–e.: a normal distribution</b> for the wingspans — technology
             (normalCdf and invNorm) does the work.
           </p>
           <p>
-            <b>Parts (f)–(g): counting and proportions.</b> Each butterfly either is or isn't
+            <b>Parts f.–g.: counting and proportions.</b> Each butterfly either is or isn't
             "very large", so counting them across a sample of <Katex tex="36" /> is a{' '}
             <em>binomial</em> problem, and the proportion <Katex tex="\hat P = \tfrac{X}{36}" />{' '}
             is a sample proportion.
@@ -342,15 +349,15 @@ export default function MethodsQ4_2019Exam2() {
         </Background>
       </div>
 
-      <PartCard letter="a" marks={2} statement="Find the mean life span of the Lorenz birdwing butterfly." examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Mean of PDF" marks={2} statement="Find the mean life span of the Lorenz birdwing butterfly." examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement="In a sample of 80 Lorenz birdwing butterflies, how many butterflies are expected to live longer than two weeks, correct to the nearest integer?" examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Expected Number" marks={2} statement="In a sample of 80 Lorenz birdwing butterflies, how many butterflies are expected to live longer than two weeks, correct to the nearest integer?" examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement="What is the probability that a Lorenz birdwing butterfly lives for at least four weeks, given that it lives for at least two weeks, correct to four decimal places?" examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Conditional Probability" marks={2} statement="What is the probability that a Lorenz birdwing butterfly lives for at least four weeks, given that it lives for at least two weeks, correct to four decimal places?" examinerReport={EXAM_C}>
         <Background>
           <p>
             "Given that" signals conditional probability:{' '}
@@ -369,33 +376,33 @@ export default function MethodsQ4_2019Exam2() {
         </p>
       </div>
 
-      <PartCard letter="d" marks={1} statement="Find the probability that a randomly selected Lorenz birdwing butterfly in Town A has a wingspan between 16 cm and 18 cm, correct to four decimal places." examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Normal Distribution" marks={1} statement="Find the probability that a randomly selected Lorenz birdwing butterfly in Town A has a wingspan between 16 cm and 18 cm, correct to four decimal places." examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={1} statement="A Lorenz birdwing butterfly is considered to be very small if its wingspan is in the smallest 5% of all the Lorenz birdwing butterflies in Town A. Find the greatest possible wingspan, in centimetres, for a very small Lorenz birdwing butterfly in Town A, correct to one decimal place." examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Inverse Normal" marks={1} statement={<>A Lorenz birdwing butterfly is considered to be very small if its wingspan is in the smallest 5% of all the Lorenz birdwing butterflies in Town A.<br />Find the greatest possible wingspan, in centimetres, for a very small Lorenz birdwing butterfly in Town A, correct to one decimal place.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           Each year, a detailed study is conducted on a random sample of <Katex tex="36" />{' '}
-          Lorenz birdwing butterflies in Town A. A butterfly is considered very large if its
-          wingspan is greater than <Katex tex="17.5" /> cm. The probability that the wingspan of
+          Lorenz birdwing butterflies in Town A. A Lorenz birdwing butterfly is considered to be
+          very large if its wingspan is greater than <Katex tex="17.5" /> cm. The probability that the wingspan of
           any Lorenz birdwing butterfly in Town A is greater than <Katex tex="17.5" /> cm is{' '}
           <Katex tex="0.0527" />, correct to four decimal places.
         </p>
       </div>
 
-      <PartCard letter="f.i" marks={1} statement="Find the probability that three or more of the butterflies, in a random sample of 36 Lorenz birdwing butterflies from Town A, are very large, correct to four decimal places." examinerReport={EXAM_FI}>
+      <PartCard letter="f.i" topic="Binomial Distribution" marks={1} statement="Find the probability that three or more of the butterflies, in a random sample of 36 Lorenz birdwing butterflies from Town A, are very large, correct to four decimal places." examinerReport={EXAM_FI}>
         <WorkingTable rows={ROWS_FI} />
       </PartCard>
 
-      <PartCard letter="f.ii" marks={2} statement="The probability that n or more butterflies, in a random sample of 36 Lorenz birdwing butterflies from Town A, are very large is less than 1%. Find the smallest value of n, where n is an integer." examinerReport={EXAM_FII}>
+      <PartCard letter="f.ii" topic="Binomial Distribution" marks={2} statement={<>The probability that <Katex tex="n" /> or more butterflies, in a random sample of 36 Lorenz birdwing butterflies from Town A, are very large is less than 1%.<br />Find the smallest value of <Katex tex="n" />, where <Katex tex="n" /> is an integer.</>} examinerReport={EXAM_FII}>
         <WorkingTable rows={ROWS_FII} />
       </PartCard>
 
-      <PartCard letter="f.iii" marks={2} statement={<>For random samples of <Katex tex="36" /> Lorenz birdwing butterflies in Town A, <Katex tex="\hat P" /> is the random variable that represents the proportion of butterflies that are very large. Find the expected value and the standard deviation of <Katex tex="\hat P" />, correct to four decimal places.</>} examinerReport={EXAM_FIII}>
+      <PartCard letter="f.iii" topic="Sample Proportion" marks={2} statement={<>For random samples of <Katex tex="36" /> Lorenz birdwing butterflies in Town A, <Katex tex="\hat P" /> is the random variable that represents the proportion of butterflies that are very large.<br />Find the expected value and the standard deviation of <Katex tex="\hat P" />, correct to four decimal places.</>} examinerReport={EXAM_FIII}>
         <Background>
           <p>
             <Katex tex="\hat P" /> (read "p-hat") is the <em>sample</em> proportion: take a sample
@@ -408,7 +415,7 @@ export default function MethodsQ4_2019Exam2() {
         <WorkingTable rows={ROWS_FIII} />
       </PartCard>
 
-      <PartCard letter="f.iv" marks={2} statement="What is the probability that a sample proportion of butterflies that are very large lies within one standard deviation of 0.0527, correct to four decimal places? Do not use a normal approximation." examinerReport={EXAM_FIV}>
+      <PartCard letter="f.iv" topic="Sample Proportion" marks={2} statement="What is the probability that a sample proportion of butterflies that are very large lies within one standard deviation of 0.0527, correct to four decimal places? Do not use a normal approximation." examinerReport={EXAM_FIV}>
         <Background>
           <p>
             "Do not use a normal approximation" is the instruction that makes this part work. It
@@ -421,7 +428,7 @@ export default function MethodsQ4_2019Exam2() {
         <WorkingTable rows={ROWS_FIV} />
       </PartCard>
 
-      <PartCard letter="g" marks={2} statement="The Lorenz birdwing butterfly also lives in Town B. In a particular sample of Lorenz birdwing butterflies from Town B, an approximate 95% confidence interval for the proportion of butterflies that are very large was calculated to be (0.0234, 0.0866), correct to four decimal places. Determine the sample size used in the calculation of this confidence interval." examinerReport={EXAM_G}>
+      <PartCard letter="g" topic="Confidence Interval" marks={2} statement={<>The Lorenz birdwing butterfly also lives in Town B.<br />In a particular sample of Lorenz birdwing butterflies from Town B, an approximate 95% confidence interval for the proportion of butterflies that are very large was calculated to be (0.0234, 0.0866), correct to four decimal places.<br />Determine the sample size used in the calculation of this confidence interval.</>} examinerReport={EXAM_G}>
         <Background>
           <p>
             This part runs the confidence-interval formula <em>backwards</em>: normally you are

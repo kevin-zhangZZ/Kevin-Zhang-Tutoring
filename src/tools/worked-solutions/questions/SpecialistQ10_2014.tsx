@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V(t) = 1500+(8-10)t = 1500-2t" />,
-    reason: <>The tank is <em>losing</em> volume at 2 L/min, so the concentration inside keeps changing. Treating the volume as constant is what produces option E.</>,
+    reason: <>The tank is <em>losing</em> volume at 2 L/min, so the concentration inside keeps changing — the volume must appear as a function of <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\text{concentration} = \frac{Q}{1500-2t}\ \tfrac{\text{kg}}{\text{L}}" />,
@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dQ}{dt} = 16-\frac{5Q}{750-t}}" />,
-    reason: <>Option A. Option B has <Katex tex="750+t" />, which would be a tank filling up; option C adds the outflow instead of subtracting it.</>,
+    reason: <>Matches option <b>A</b>. Option B (18%) has <Katex tex="750+t" />, which would be a tank filling up; option C adds the outflow instead of subtracting it; option E uses the flow rates in litres rather than kilograms of salt — 8 in instead of <Katex tex="2\times8=16" />, and the concentration alone out instead of 10 times it. Check at <Katex tex="t=0" />: the tank holds 100 kg in 1500 L, so salt leaves at <Katex tex="\tfrac{100}{1500}\times10\approx0.67" /> kg/min, and option A gives <Katex tex="\tfrac{5\times100}{750}\approx0.67" /> ✓.</>,
   },
 ]
 

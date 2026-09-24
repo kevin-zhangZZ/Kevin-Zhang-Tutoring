@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(2,2): \ \text{A}: 6, \ \text{B}: 2, \ \text{C}: 2, \ \text{D}: -2, \ \text{E}: 6" />,
-    reason: 'The top-right corner.',
+    reason: <>The top-right corner.</>,
   },
   {
     working: <Katex display tex="\text{the field there slopes steeply } down \text{ to the right}" />,
@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(-2,-2): \ \text{A}: -6, \ \text{B}: -2, \ \text{C}: -2, \ \text{D}: 2, \ \text{E}: -6" />,
-    reason: 'The bottom-left corner, as a second check.',
+    reason: <>The bottom-left corner, as a second check.</>,
   },
   {
     working: <Katex display tex="\text{the field there slopes } up \text{ to the right} \implies \text{positive}" />,
@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = y-2x}" />,
-    reason: <>Confirming with the zero-slope locus: <Katex tex="y=2x" />, the line through the origin of gradient 2 — and that is where the near-horizontal dashes run.</>,
+    reason: <>Confirming with the zero-slope locus: <Katex tex="y=2x" />, the line through the origin of gradient 2 — and that is where the near-horizontal dashes run. Matches option <b>D</b>.</>,
   },
 ]
 

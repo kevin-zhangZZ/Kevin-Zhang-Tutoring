@@ -12,7 +12,9 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Most students recognised use of the binomial distribution, clearly specifying the
-      parameters <Katex tex="n=4" /> and <Katex tex="p=\tfrac35" />. Common errors included
+      distribution with the parameters <Katex tex="n=4" /> and <Katex tex="p=\tfrac35" />.
+      <br />
+      Common errors included
       finding <Katex tex="\Pr(X=3)" /> only, use of an incorrect formula, or arithmetic
       errors in evaluation.
     </>
@@ -26,8 +28,10 @@ const EXAM_B: SAExaminerStats = {
     <>
       Students were generally able to identify that conditional probability was involved.
       However, they need to be aware that simply quoting a rule or formula is not sufficient;
-      they are required to demonstrate how it is used within the context of the question.
-      Many students did not present their answer in the required form.
+      they are required to demonstrate how it is used within the context of the question (i.e.
+      in this case, give evaluations of <Katex tex="\Pr(X=2)" /> and{' '}
+      <Katex tex="\Pr(X\ge1)" />). Many students did not present their answer in the required
+      form.
     </>
   ),
 }
@@ -35,7 +39,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}\!\left(4,\tfrac35\right)" />,
-    reason: <>Four independent people, each with the gene with probability <Katex tex="\tfrac35" />. State the distribution — the report expects it.</>,
+    reason: <>Four independent people, each with the gene with probability <Katex tex="\tfrac35" />. State the distribution — the report notes most students clearly specified it with its parameters.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = \Pr(X=3)+\Pr(X=4)" />,
@@ -58,7 +62,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X=2\mid X\ge1) = \frac{\Pr(X=2\cap X\ge1)}{\Pr(X\ge1)}" />,
-    reason: <>The conditional formula. Quoting it is not enough — the report wants both probabilities evaluated.</>,
+    reason: <>The conditional formula. Quoting it is not enough — the report says students need to give evaluations of <Katex tex="\Pr(X=2)" /> and <Katex tex="\Pr(X\ge1)" />.</>,
   },
   {
     working: <Katex display tex="X=2 \implies X\ge1, \quad\text{so}\quad \Pr(X=2\cap X\ge1) = \Pr(X=2)" />,
@@ -96,6 +100,7 @@ export default function MethodsQ5_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -110,6 +115,7 @@ export default function MethodsQ5_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conditional Binomial"
         marks={2}
         statement={
           <>

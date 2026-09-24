@@ -11,12 +11,12 @@ const EXAM_A: SAExaminerStats = {
   average: 1.6,
   comment: (
     <>
-      Most students were able to antidifferentiate to get the correct powers, but often with
+      Most students were able to anti-differentiate to get the correct powers, but often with
       incorrect coefficients. Some students lost the <Katex tex="(x+6)" /> term and just had{' '}
       <Katex tex="x" />. Students who had included the constant of integration knew to
       substitute <Katex tex="\left(3,\tfrac{29}{4}\right)" /> in to find <Katex tex="c" />.
       Solving to find <Katex tex="c" /> caused problems; students encountered difficulties
-      evaluating terms like <Katex tex="9^{3/2}" />.
+      evaluating terms like <Katex tex="\sqrt{9^3}" />.
     </>
   ),
 }
@@ -27,7 +27,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Most students knew that they had to consider the slope of the curve on either side of{' '}
-      <Katex tex="x=3" />. Most students had a valid approach, but not all provided
+      <Katex tex="x=3" />. Appropriate <Katex tex="x" /> values were chosen. The most common{' '}
+      <Katex tex="x" /> values used were −6, −2, 0, 2, 4 and 10. Most students had a valid
+      approach, but not all provided
       convincing arguments that showed the working out of substituting suitable{' '}
       <Katex tex="x" /> values. Those who tried a second derivative approach met with mixed
       success.
@@ -38,7 +40,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = \int\left(\sqrt{x+6}-\frac{x}{2}-\frac32\right)dx" />,
-    reason: 'Antidifferentiating the gradient function.',
+    reason: <>Antidifferentiating the gradient function.</>,
   },
   {
     working: <Katex display tex="\int(x+6)^{1/2}dx = \frac{(x+6)^{3/2}}{3/2} = \frac{2(x+6)^{3/2}}{3}" />,
@@ -46,7 +48,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = \frac{2(x+6)^{3/2}}{3}-\frac{x^2}{4}-\frac{3x}{2}+c" />,
-    reason: 'The other two terms are straightforward power rules.',
+    reason: <>The other two terms are straightforward power rules.</>,
   },
   {
     working: <Katex display tex="9^{3/2} = \left(\sqrt9\right)^3 = 27" />,
@@ -69,7 +71,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d^2y}{dx^2} = \frac{1}{2\sqrt{x+6}}-\frac12" />,
-    reason: 'Differentiating the given gradient function — quicker and more convincing than a sign table, provided it is evaluated properly.',
+    reason: <>Differentiating the given gradient function — quicker and more convincing than a sign table, provided it is evaluated properly.</>,
   },
   {
     working: <Katex display tex="\text{at } x=3: \ \frac{1}{2\sqrt9}-\frac12 = \frac16-\frac12" />,
@@ -77,7 +79,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -\frac13 < 0" />,
-    reason: 'Concave down at the stationary point.',
+    reason: <>Concave down at the stationary point.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(3,\tfrac{29}{4}\right) \text{ is a local maximum}}" />,
@@ -92,18 +94,20 @@ export default function MethodsQ8_2021Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 8 (5 marks)</p>
         <p>
           The gradient of a function is given by{' '}
-          <Katex tex="\dfrac{dy}{dx}=\sqrt{x+6}-\dfrac{x}{2}-\dfrac32" />. The graph of the
-          function has a single stationary point at{' '}
+          <Katex tex="\dfrac{dy}{dx}=\sqrt{x+6}-\dfrac{x}{2}-\dfrac32" />.
+          <br />
+          The graph of the function has a single stationary point at{' '}
           <Katex tex="\left(3,\tfrac{29}{4}\right)" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={3} statement={<>Find the rule of the function.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Antidifferentiation" marks={3} statement={<>Find the rule of the function.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Nature of Point"
         marks={2}
         statement={<>Determine the nature of the stationary point.</>}
         examinerReport={EXAM_B}

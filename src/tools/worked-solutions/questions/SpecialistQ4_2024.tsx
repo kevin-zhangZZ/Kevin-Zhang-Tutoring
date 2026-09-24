@@ -12,9 +12,20 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'A',
   comment: (
     <>
-      <Katex tex="\cos^2\!\big(\tfrac{x}{2}\big) = \tfrac{1+\cos(x)}{2}" />; take the negative root since{' '}
-      <Katex tex="x\in\big(\tfrac{3\pi}{2},2\pi\big) \implies \tfrac{x}{2}\in\big(\tfrac{3\pi}{4},\pi\big)" />, where
-      cosine is negative.
+      <Katex tex="\cos^2(x)+\sin^2(x)=1" />
+      <br />
+      <Katex tex="\Rightarrow \cos(x)=\sqrt{1-a^2}" />
+      <br />
+      <Katex tex="\cos(x)=2\cos^2\left(\dfrac{x}{2}\right)-1" />
+      <br />
+      <Katex tex="\sqrt{1-a^2}=2\cos^2\left(\dfrac{x}{2}\right)-1" />
+      <br />
+      <Katex tex="\cos\left(\dfrac{x}{2}\right)=\pm\sqrt{\dfrac{\sqrt{1-a^2}+1}{2}}" />
+      <br />
+      <Katex tex="x\in\left(\dfrac{3\pi}{2},2\pi\right)\ \therefore \dfrac{x}{2}\in\left(\dfrac{3\pi}{4},\pi\right)\ \therefore \cos\left(\dfrac{x}{2}\right)<0\ \therefore \text{take negative root}" />
+      <br />
+      Take positive root since <Katex tex="x\in\left(\dfrac{3\pi}{2},2\pi\right)" /> so{' '}
+      <Katex tex="\cos x>0" />
     </>
   ),
 }
@@ -26,15 +37,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos^2(x)+\sin^2(x)=1 \;\implies\; \cos(x) = \sqrt{1-a^2}" />,
-    reason: 'Pythagorean identity.',
+    reason: <>Pythagorean identity.</>,
   },
   {
     working: <Katex display tex="\cos(x) = 2\cos^2\!\big(\tfrac{x}{2}\big)-1" />,
-    reason: 'Double-angle (half-angle) identity for cosine.',
+    reason: <>Double-angle (half-angle) identity for cosine.</>,
   },
   {
     working: <Katex display tex="\cos^2\!\big(\tfrac{x}{2}\big) = \frac{1+\sqrt{1-a^2}}{2}" />,
-    reason: 'Rearrange, substituting the value of cos(x) found above.',
+    reason: <>Rearrange, substituting the value of cos(x) found above.</>,
   },
   {
     working: <Katex display tex="\frac{x}{2}\in\big(\tfrac{3\pi}{4},\pi\big)" />,
@@ -42,7 +53,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>In the second quadrant, cosine is <b>negative</b>.</>,
-    reason: <>So <Katex tex="\cos(x/2)" /> must take the <b>negative</b> square root — the trap most students miss.</>,
+    reason: <>So <Katex tex="\cos(x/2)" /> must take the <b>negative</b> square root. Option <b>C</b>, chosen by 38%, is the positive root.</>,
   },
   {
     working: <Katex display tex="\boxed{\cos\!\big(\tfrac{x}{2}\big) = -\sqrt{\frac{1+\sqrt{1-a^2}}{2}} = -\frac{\sqrt{1+\sqrt{1-a^2}}}{\sqrt2}}" />,

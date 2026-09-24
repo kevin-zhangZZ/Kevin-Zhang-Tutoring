@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(206.9,\ 213.1)}" />,
-    reason: <>Option B. Option D uses <Katex tex="z=3" />; option C uses <Katex tex="\tfrac{s}{n}" /> instead of <Katex tex="\tfrac{s}{\sqrt n}" />.</>,
+    reason: <>Matches option <b>B</b>. Option D uses <Katex tex="z=3" />; option E is just one standard deviation either side, <Katex tex="210\pm16" />.</>,
   },
 ]
 

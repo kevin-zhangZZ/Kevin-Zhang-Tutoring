@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\pi \text{ and } [-6,4]}" />,
-    reason: <>Option C. A useful check: the midpoint of the range, <Katex tex="\tfrac{-6+4}{2}=-1" />, is the vertical shift, and the half-width, <Katex tex="5" />, is the amplitude.</>,
+    reason: <>Matches option <b>C</b>. Option A forgets to multiply the band by the amplitude. A useful check: the midpoint of the range, <Katex tex="\tfrac{-6+4}{2}=-1" />, is the vertical shift, and the half-width, <Katex tex="5" />, is the amplitude.</>,
   },
 ]
 

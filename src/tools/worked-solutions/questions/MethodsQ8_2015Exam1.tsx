@@ -24,7 +24,8 @@ const EXAM_C: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Many students made little headway due to their lack of understanding of independent
+      Many students made little headway into solving this problem due to their lack of
+      understanding of independent
       events. The addition rule was then applied using an incorrect value for{' '}
       <Katex tex="\Pr(A)" />, resulting in final answers well outside the interval{' '}
       <Katex tex="[0,1]" />. Students must note that a probability must lie within{' '}
@@ -93,12 +94,13 @@ export default function MethodsQ8_2015Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Calculate <Katex tex="\Pr(A\cap B)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Conditional Probability" marks={1} statement={<>Calculate <Katex tex="\Pr(A\cap B)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Complement"
         marks={1}
         statement={
           <>
@@ -113,6 +115,7 @@ export default function MethodsQ8_2015Exam1() {
 
       <PartCard
         letter="c"
+        topic="Independence"
         marks={1}
         statement={
           <>
@@ -130,9 +133,10 @@ export default function MethodsQ8_2015Exam1() {
             <em>is</em> <Katex tex="\Pr(A)" />.
           </p>
           <p>
-            That single line supplies the missing piece of the addition rule. Nearly
-            three-quarters of the state could not find <Katex tex="\Pr(A)" /> and ended up
-            with answers outside <Katex tex="[0,1]" />.
+            That single line supplies the missing piece of the addition rule. 72% of students
+            scored zero on this part; the report says many applied the addition rule with a
+            wrong value for <Katex tex="\Pr(A)" /> and ended up with answers outside{' '}
+            <Katex tex="[0,1]" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />

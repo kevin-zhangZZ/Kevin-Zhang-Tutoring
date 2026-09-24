@@ -15,34 +15,40 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'B',
   noAnswer: 1,
   comment: (
-    <Katex tex="\text{Average value} = \frac{1}{3a}\left(\int_{-2a}^0\!\left(-\tfrac32x-a\right)dx + \int_0^a(2x-a)\,dx\right) = \frac{a}{3}" />
+    <>
+      <Katex tex="\text{The average value} = \dfrac{1}{a-(-2a)}\displaystyle\int_{-2a}^{a}f(x)\,dx" />
+      <br />
+      <Katex tex="= \dfrac{1}{3a}\left(\displaystyle\int_{-2a}^0\left(-\tfrac32x-a\right)dx + \int_0^a(2x-a)\,dx\right)" />
+      <br />
+      <Katex tex="= \dfrac{a}{3}" />
+    </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Left segment } (-2a,2a)\to(0,-a):\ \text{gradient} = \frac{-a-2a}{0-(-2a)} = -\tfrac32" />,
-    reason: 'Find the gradient of each linear piece.',
+    reason: <>Find the gradient of each linear piece.</>,
   },
   {
     working: <Katex display tex="y = -\tfrac32x - a,\quad x\in[-2a,0]" />,
-    reason: 'Point-gradient form through (0, −a).',
+    reason: <>Point-gradient form through (0, −a).</>,
   },
   {
     working: <Katex display tex="\text{Right segment } (0,-a)\to(a,a):\ \text{gradient} = \frac{a-(-a)}{a-0} = 2" />,
-    reason: 'Gradient of the second piece.',
+    reason: <>Gradient of the second piece.</>,
   },
   {
     working: <Katex display tex="y = 2x-a,\quad x\in[0,a]" />,
-    reason: 'Point-gradient form through (0, −a) again.',
+    reason: <>Point-gradient form through (0, −a) again.</>,
   },
   {
     working: <Katex display tex="\int_{-2a}^0\left(-\tfrac32x-a\right)dx = \Big[-\tfrac34x^2-ax\Big]_{-2a}^0 = 0-(-3a^2+2a^2) = a^2" />,
-    reason: 'Integrate the left piece.',
+    reason: <>Integrate the left piece.</>,
   },
   {
     working: <Katex display tex="\int_0^a(2x-a)\,dx = \Big[x^2-ax\Big]_0^a = (a^2-a^2)-0 = 0" />,
-    reason: 'Integrate the right piece.',
+    reason: <>Integrate the right piece.</>,
   },
   {
     working: <Katex display tex="\text{Average} = \frac{1}{a-(-2a)}\big(a^2+0\big) = \frac{a^2}{3a}" />,
@@ -50,7 +56,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{a}{3}}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option <b>E</b> divides the total <Katex tex="a^2" /> by <Katex tex="a" /> instead of the interval's width <Katex tex="3a" />, and option <b>A</b> is the integral of the right-hand piece alone.</>,
   },
 ]
 
@@ -62,12 +68,12 @@ export default function MethodsQ15_2020() {
           <p className="mb-2">
             Part of the graph of a function <Katex tex="f" />, where <Katex tex="a>0" />, is shown below.
           </p>
+          <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">{DIAGRAM}</div>
           <p>
             The average value of the function <Katex tex="f" /> over the interval <Katex tex="[-2a,a]" /> is
           </p>
         </>
       }
-      diagram={DIAGRAM}
       options={[
         { letter: 'A', content: <Katex tex="0" /> },
         { letter: 'B', content: <Katex tex="\tfrac{a}{3}" />, isAnswer: true },

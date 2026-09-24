@@ -14,7 +14,8 @@ const EXAM_A: SAExaminerStats = {
       Students who scored the mark generally used a Venn diagram or a table. The most common
       incorrect answer was <Katex tex="\tfrac{9}{400}" />, obtained by incorrectly assuming
       that the events <Katex tex="F" /> (air filter change) and <Katex tex="O'" /> (without an
-      oil change) were independent.
+      oil change) were independent, thus using{' '}
+      <Katex tex="\Pr(F\cap O')=\Pr(F)\times\Pr(O')" />.
     </>
   ),
 }
@@ -24,9 +25,10 @@ const EXAM_B: SAExaminerStats = {
   average: 1,
   comment: (
     <>
-      While many students saw the connection to part a., many did not set up the correct
-      equation or did not correctly transpose it to make <Katex tex="m" /> the subject. Many
-      did not go further than stating a rule.
+      While many students saw the connection to part a. of the question, many did not set up the
+      correct equation or did not correctly transpose their equation to make 'm' the subject.
+      Students generally recognised the conditional probability. Many did not go further than
+      stating a rule.
     </>
   ),
 }
@@ -53,7 +55,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(F) = \frac{n}{m+n}, \qquad \Pr(F\cap O) = \frac{1}{m+n}" />,
-    reason: <>The same structure as part a., with the numbers replaced by expressions.</>,
+    reason: <>The same structure as part a., with the numbers replaced by expressions. The report notes students who obtained both marks typically used a Venn diagram or a table.</>,
   },
   {
     working: <Katex display tex="\Pr(F\cap O') = \frac{n}{m+n}-\frac{1}{m+n} = \frac{n-1}{m+n}" />,
@@ -93,6 +95,7 @@ export default function MethodsQ2_2020Exam1() {
 
       <PartCard
         letter="a"
+        topic="Venn Diagram"
         marks={1}
         statement={
           <>
@@ -107,6 +110,7 @@ export default function MethodsQ2_2020Exam1() {
 
       <PartCard
         letter="b"
+        topic="Probability Algebra"
         marks={2}
         statement={
           <>
@@ -115,7 +119,9 @@ export default function MethodsQ2_2020Exam1() {
             will be <Katex tex="\tfrac{m}{m+n}" />, the probability of model Y requiring an
             air filter change will be <Katex tex="\tfrac{n}{m+n}" /> and the probability of
             model Y requiring both will be <Katex tex="\tfrac{1}{m+n}" />, where{' '}
-            <Katex tex="m,n\in Z^+" />. Determine <Katex tex="m" /> in terms of{' '}
+            <Katex tex="m,n\in Z^+" />.
+            <br />
+            Determine <Katex tex="m" /> in terms of{' '}
             <Katex tex="n" /> if the probability of model Y requiring an air filter change
             without an oil change at any given six-month service is 0.05.
           </>

@@ -109,6 +109,7 @@ export default function MethodsQ4_2016Exam1() {
 
       <PartCard
         letter="a"
+        topic="Selection Probability"
         marks={1}
         statement={<>What is the probability that the number of tagged sheep selected on a given day is zero?</>}
         examinerReport={EXAM_A}
@@ -130,6 +131,7 @@ export default function MethodsQ4_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="At Least One"
         marks={1}
         statement={<>What is the probability that at least one tagged sheep is selected on a given day?</>}
         examinerReport={EXAM_B}
@@ -139,6 +141,7 @@ export default function MethodsQ4_2016Exam1() {
 
       <PartCard
         letter="c"
+        topic="Independent Trials"
         marks={1}
         statement={
           <>

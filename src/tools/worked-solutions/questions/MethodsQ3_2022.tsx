@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = e^{3x} \implies \frac{dy}{dx} = 3e^{3x}" />,
-    reason: 'Chain rule.',
+    reason: <>Chain rule.</>,
   },
   {
     working: <Katex display tex="\text{the vertical axis is } x = 0" />,

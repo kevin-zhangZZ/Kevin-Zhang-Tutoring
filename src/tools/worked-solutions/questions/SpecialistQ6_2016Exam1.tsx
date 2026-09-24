@@ -12,10 +12,12 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       This question was well answered overall. Those students who used polar form tended to
-      have greater success than those who tried to solve the equation in cartesian form and
+      have greater success than those who tried to solve the equation in Cartesian form and
       often made algebraic or arithmetical errors. It was common for the incorrect argument
       to be used, usually due to the incorrect quadrant but sometimes due to not knowing
-      exact values. A sketch may have been helpful.
+      exact values. A sketch may have been helpful. Many sign errors were seen. An elegant
+      solution used the fact that the numerator turns out to be four times the square of the
+      denominator.
     </>
   ),
 }
@@ -23,7 +25,7 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\left|1-\sqrt3i\right| = \sqrt{1+3} = 2, \qquad \operatorname{Arg} = -\frac{\pi}{3}" />,
-    reason: <>Fourth quadrant: positive real part, negative imaginary part. Sketching the point first is what the report recommends against quadrant errors.</>,
+    reason: <>Fourth quadrant: positive real part, negative imaginary part. The report says a sketch may have helped with the quadrant errors it saw.</>,
   },
   {
     working: <Katex display tex="1-\sqrt3i = 2\operatorname{cis}\!\left(-\frac{\pi}{3}\right), \qquad 1+\sqrt3i = 2\operatorname{cis}\!\left(\frac{\pi}{3}\right)" />,
@@ -47,7 +49,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4+4\sqrt3\,i}" />,
-    reason: <>So <Katex tex="a=4" /> and <Katex tex="b=4\sqrt3" />. The report mentions an elegant shortcut: <Katex tex="\left(1-\sqrt3i\right)^2 = -2-2\sqrt3i = -2\left(1+\sqrt3i\right)" />, so the quotient is <Katex tex="4\left(1+\sqrt3i\right)^2/\left(1+\sqrt3i\right)\ldots" /> — worth spotting, but polar form is the reliable route.</>,
+    reason: <>So <Katex tex="a=4" /> and <Katex tex="b=4\sqrt3" />. The report's elegant shortcut: <Katex tex="\left(1-\sqrt3i\right)^2 = -2-2\sqrt3i = -2\left(1+\sqrt3i\right)" />, so the numerator is <Katex tex="4\left(1+\sqrt3i\right)^2" />, four times the square of the denominator, and the quotient is <Katex tex="4\left(1+\sqrt3i\right)" /> in one line. Worth spotting, but polar form is the reliable route.</>,
   },
 ]
 
@@ -60,6 +62,8 @@ export default function SpecialistQ6_2016Exam1() {
           <Katex tex="a+bi" />, where <Katex tex="a" /> and <Katex tex="b" /> are real
           constants.
         </p>
+      </Background>
+      <Background>
         <p>
           Expanding the fourth power in cartesian form works, but it is four binomial
           expansions and then a realisation of the denominator. Polar form turns the whole

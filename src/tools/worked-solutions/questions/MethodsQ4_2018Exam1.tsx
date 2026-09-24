@@ -25,7 +25,7 @@ const EXAM_B: SAExaminerStats = {
       Most students understood what was required as evident by the sketch graphs of the normal
       distribution and relevant areas. Some students did not standardise and left their answer
       as <Katex tex="5" /> or mistook the variance to be the standard deviation, resulting in
-      an answer of <Katex tex="-1" />.
+      an answer of <Katex tex="-\tfrac14" />.
     </>
   ),
 }
@@ -33,7 +33,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim N\!\left(6,\ 4\right) \implies \mu = 6" />,
-    reason: <>The mean is <Katex tex="6" />. (The <Katex tex="4" /> is the <em>variance</em>, so the standard deviation is <Katex tex="\sqrt4=2" /> — that matters in part (b), not here.)</>,
+    reason: <>The mean is <Katex tex="6" />. (The <Katex tex="4" /> is the <em>variance</em>, so the standard deviation is <Katex tex="\sqrt4=2" /> — that matters in part b., not here.)</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>6) = \frac12}" />,
@@ -44,7 +44,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\sigma = \sqrt{\operatorname{Var}(X)} = \sqrt4 = 2" />,
-    reason: <>The question gives the variance. Using <Katex tex="4" /> as the standard deviation is the error the report attributes to the wrong answer <Katex tex="b=-1" />.</>,
+    reason: <>The question gives the variance. Using <Katex tex="4" /> as the standard deviation gives <Katex tex="\Pr\left(Z>\tfrac14\right)" /> and the wrong answer <Katex tex="b=-\tfrac14" /> that the report describes.</>,
   },
   {
     working: <Katex display tex="Z = \frac{X-\mu}{\sigma} = \frac{X-6}{2}" />,
@@ -52,7 +52,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X>7) = \Pr\!\left(Z > \frac{7-6}{2}\right) = \Pr\!\left(Z>\frac12\right)" />,
-    reason: <><Katex tex="7" /> sits half a standard deviation above the mean. Skipping this step and answering <Katex tex="b=5" /> — the raw gap <Katex tex="7-\mu" /> doubled, or just <Katex tex="7" /> mishandled — is the other error named in the report.</>,
+    reason: <><Katex tex="7" /> sits half a standard deviation above the mean. Skipping this step is the report's other error: symmetry alone gives <Katex tex="\Pr(X>7)=\Pr(X<5)" />, and some students left their answer as <Katex tex="5" /> — but that is still a value of <Katex tex="X" />, not of <Katex tex="Z" />.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(Z>\tfrac12\right) = \Pr\!\left(Z<-\tfrac12\right)" />,
@@ -76,12 +76,13 @@ export default function MethodsQ4_2018Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find <Katex tex="\Pr(X>6)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Normal Symmetry" marks={1} statement={<>Find <Katex tex="\Pr(X>6)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Standardising"
         marks={1}
         statement={<>Find <Katex tex="b" /> such that <Katex tex="\Pr(X>7)=\Pr(Z<b)" />.</>}
         examinerReport={EXAM_B}

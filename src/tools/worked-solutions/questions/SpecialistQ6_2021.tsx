@@ -22,12 +22,12 @@ const ROWS: WorkingRow[] = [
     reason: <>De Moivre — modulus squares, argument doubles.</>,
   },
   {
-    working: <Katex display tex="z^2\in\mathbb{R} \;\iff\; 2\theta = k\pi \text{ for some } k\in\mathbb{Z}" />,
+    working: <Katex display tex="z^2\in R \;\iff\; 2\theta = k\pi \text{ for some } k\in Z" />,
     reason: <><Katex tex="\mathrm{cis}(\phi)" /> is real exactly when <Katex tex="\phi" /> is a multiple of <Katex tex="\pi" /> (giving <Katex tex="\pm1" />).</>,
   },
   {
-    working: <Katex display tex="\boxed{\theta = \frac{k\pi}{2},\quad k\in\mathbb{Z}}" />,
-    reason: <>Solve for <Katex tex="\theta" /> — matches option <b>A</b>. This includes both the axes: <Katex tex="\theta=0,\pi" /> (z real, so <Katex tex="z^2" /> real) and <Katex tex="\theta=\pm\tfrac{\pi}{2}" /> (z purely imaginary, so <Katex tex="z^2" /> real and negative). Option C only captures the purely-imaginary half of these.</>,
+    working: <Katex display tex="\boxed{\theta = \frac{k\pi}{2},\quad k\in Z}" />,
+    reason: <>Solve for <Katex tex="\theta" />. Matches option <b>A</b>. This includes both the axes: <Katex tex="\theta=0,\pi" /> (z real, so <Katex tex="z^2" /> real) and <Katex tex="\theta=\pm\tfrac{\pi}{2}" /> (z purely imaginary, so <Katex tex="z^2" /> real and negative). Option B captures only the real half of these, option C only the purely imaginary half.</>,
   },
 ]
 
@@ -36,16 +36,16 @@ export default function SpecialistQ6_2021() {
     <MCQShell
       question={
         <p>
-          If <Katex tex="z\in\mathbb{C}" />, <Katex tex="z\neq0" /> and <Katex tex="z^2\in\mathbb{R}" />, then the possible
+          If <Katex tex="z\in C" />, <Katex tex="z\neq0" /> and <Katex tex="z^2\in R" />, then the possible
           values of <Katex tex="\arg(z)" /> are
         </p>
       }
       options={[
-        { letter: 'A', content: <><Katex tex="\dfrac{k\pi}{2}" />, <Katex tex="k\in\mathbb{Z}" /></>, isAnswer: true },
-        { letter: 'B', content: <><Katex tex="k\pi" />, <Katex tex="k\in\mathbb{Z}" /></> },
-        { letter: 'C', content: <><Katex tex="\dfrac{(2k+1)\pi}{2}" />, <Katex tex="k\in\mathbb{Z}" /></> },
-        { letter: 'D', content: <><Katex tex="\dfrac{(4k+1)\pi}{2}" />, <Katex tex="k\in\mathbb{Z}" /></> },
-        { letter: 'E', content: <><Katex tex="\dfrac{(4k-1)\pi}{2}" />, <Katex tex="k\in\mathbb{Z}" /></> },
+        { letter: 'A', content: <><Katex tex="\dfrac{k\pi}{2}" />, <Katex tex="k\in Z" /></>, isAnswer: true },
+        { letter: 'B', content: <><Katex tex="k\pi" />, <Katex tex="k\in Z" /></> },
+        { letter: 'C', content: <><Katex tex="\dfrac{(2k+1)\pi}{2}" />, <Katex tex="k\in Z" /></> },
+        { letter: 'D', content: <><Katex tex="\dfrac{(4k+1)\pi}{2}" />, <Katex tex="k\in Z" /></> },
+        { letter: 'E', content: <><Katex tex="\dfrac{(4k-1)\pi}{2}" />, <Katex tex="k\in Z" /></> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

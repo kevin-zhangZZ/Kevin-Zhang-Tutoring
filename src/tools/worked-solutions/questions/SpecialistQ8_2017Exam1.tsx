@@ -1,13 +1,13 @@
 // 2017 Specialist Mathematics — Exam 1, Question 8 (4 marks). A slope field, the solution
 // curve through (−1, 1), and the separable equation behind it. Question text transcribed
-// from the original paper; the slope-field figure is a crop of VCAA's own artwork and the
-// answer sketch is our own matplotlib version. Answers checked with sympy and against the
+// from the original paper; the slope-field figure is a crop of VCAA's own artwork, and the
+// answer sketch overlays the solution curve on that same crop (calibrated to its axis ticks:
+// origin (456, 461) px, 166 px per unit) rather than redrawing the field. Answers checked with sympy and against the
 // VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import fieldSrc from './spec-2017exam1-q8-slopefield.png'
-import solutionSrc from './spec-2017exam1-q8-solution.png'
+import fieldSrc from './spec-2017e1-q8-slopefield.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [54, 29, 17],
@@ -15,12 +15,22 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Several curves crossed the slope ticks rather than
-      following them. Errors included the final curve not being symmetrical, the curve not
-      passing through <Katex tex="(-1,1)" />, and finding an approximate value from the
-      solution in part b. even though this was inconsistent with the student's graph (part a.
-      used the word "hence"). Many graphs were almost flat between{' '}
-      <Katex tex="x=-0.5" /> and <Katex tex="x=0.5" />, resulting in missing the desired{' '}
-      <Katex tex="y" />-intercept.
+      following them. Errors included:
+      <ul className="list-disc pl-5 my-1">
+        <li>the final curve not being symmetrical</li>
+        <li>
+          the curve not passing through <Katex tex="(-1,1)" />, giving the value for{' '}
+          <Katex tex="x" /> as around 1.2 (the value of the <Katex tex="y" /> intercept)
+        </li>
+        <li>
+          finding an approximate value from the solution in part b. even though this was
+          inconsistent with the student's graph (part a. used the word 'hence').
+        </li>
+      </ul>
+      Many graphs were almost flat between <Katex tex="x=-0.5" /> and <Katex tex="x=0.5" />,
+      resulting in missing the desired <Katex tex="y" />-intercept. Some drew the graph just to
+      the <Katex tex="x" />-intercepts rather than for the whole domain. Several graphs were not
+      drawn smoothly with sufficient care.
     </>
   ),
 }
@@ -32,9 +42,11 @@ const EXAM_B: SAExaminerStats = {
     <>
       This question was answered reasonably well. Most students were able to separate the
       variables (though some algebraic errors occurred) but several arrived at an incorrect
-      value of the constant of integration, of which <Katex tex="\tfrac56" /> was most
-      common. Most students had the correct integration after separating variables but made
-      no attempt to express the answer with integers as required.
+      value of the constant of integration <Katex tex="c" />, of which{' '}
+      <Katex tex="\tfrac56" /> was most common. Most students had the correct integration after
+      separating variables but made no attempt to express the answer with integers as
+      required. Some students who attempted to express the answer in the form requested made
+      arithmetic errors, finishing with +11 on the left side.
     </>
   ),
 }
@@ -81,11 +93,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2y^3+6y+3x^2-11 = 0}" />,
-    reason: <>Multiplying through by <Katex tex="6" /> gives integer coefficients as required: <Katex tex="a=2" />, <Katex tex="b=6" />, <Katex tex="c=3" />, <Katex tex="d=-11" />. Check the initial condition: <Katex tex="2+6+3-11=0" /> ✓.</>,
-  },
-  {
-    working: <Katex display tex="y=0 \implies 3x^2=11 \implies x=\sqrt{\tfrac{11}{3}}\approx1.915" />,
-    reason: <>Confirms the estimate in part (a) — though part (a) had to be read off the field, since it said "hence".</>,
+    reason: <>Multiplying through by <Katex tex="6" /> gives integer coefficients as required: <Katex tex="a=2" />, <Katex tex="b=6" />, <Katex tex="c=3" />, <Katex tex="d=-11" />. Check the initial condition: <Katex tex="2+6+3-11=0" /> ✓. Setting <Katex tex="y=0" /> gives <Katex tex="x=\sqrt{\tfrac{11}{3}}\approx1.915" />, confirming the estimate in part a. — though part a. had to be read off the field, since it said "hence".</>,
   },
 ]
 
@@ -109,6 +117,7 @@ export default function SpecialistQ8_2017Exam1() {
 
       <PartCard
         letter="a"
+        topic="Slope Field"
         marks={2}
         statement={
           <>
@@ -136,16 +145,13 @@ export default function SpecialistQ8_2017Exam1() {
         </Background>
         <WorkingTable rows={ROWS_A} />
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
-            src={solutionSrc}
-            alt="The same slope field with the solution curve drawn: a symmetric arch through (−1, 1), peaking just above y = 1 on the y-axis and crossing the x-axis near x = 1.91"
-            className="w-full max-w-[380px]"
-          />
+          <SolutionOverlay />
         </div>
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Separable DE"
         marks={2}
         statement={
           <>
@@ -162,3 +168,41 @@ export default function SpecialistQ8_2017Exam1() {
     </div>
   )
 }
+
+// The solution curve 2y³ + 6y + 3x² − 11 = 0 (part b.) drawn over the real cropped VCAA slope
+// field, not a redrawing of it. Calibration measured from spec-2017e1-q8-slopefield.png
+// (923×873 px): axes cross at (456, 461); the ticks at x = ±1, ±2 and y = ±1, ±2 are 166 px
+// apart. For each x the cubic in y has exactly one real root (Cardano, since 6y² + 6 > 0).
+const OX = 456
+const OY = 461
+const S = 166
+function solY(x: number) {
+  const q = (3 * x * x - 11) / 2 // y³ + 3y + q = 0
+  const r = Math.sqrt((q * q) / 4 + 1)
+  return Math.cbrt(-q / 2 + r) + Math.cbrt(-q / 2 - r)
+}
+const CURVE_PTS = Array.from({ length: 93 }, (_, i) => {
+  const x = -2.3 + (4.6 * i) / 92
+  return `${(OX + x * S).toFixed(1)},${(OY - solY(x) * S).toFixed(1)}`
+}).join(' ')
+const X_INT = Math.sqrt(11 / 3)
+
+function SolutionOverlay() {
+  return (
+    <div className="relative w-full max-w-[380px]">
+      <img
+        src={fieldSrc}
+        alt="The slope field with the solution curve through (−1, 1) drawn over it: a symmetric arch peaking on the y-axis just above y = 1 and crossing the x-axis near x = 1.9"
+        className="w-full block"
+      />
+      <svg viewBox="0 0 923 873" className="absolute inset-0 w-full h-full">
+        <polyline points={CURVE_PTS} fill="none" stroke="#0ea5e9" strokeWidth={7} strokeLinejoin="round" />
+        <circle cx={OX - S} cy={OY - S} r={11} fill="#dc2626" />
+        <text x={OX - S - 20} y={OY - S - 22} fontSize={34} textAnchor="end" className="fill-rose-600">(−1, 1)</text>
+        <circle cx={OX + X_INT * S} cy={OY} r={11} fill="#16a34a" />
+        <text x={OX + X_INT * S - 14} y={OY + 70} fontSize={34} textAnchor="end" className="fill-emerald-600">x ≈ 1.9</text>
+      </svg>
+    </div>
+  )
+}
+

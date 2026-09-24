@@ -20,7 +20,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = 2x - p\,x^{-2} = 2x - \frac{p}{x^2}" />,
-    reason: <>The derivative of <Katex tex="p\,x^{-1}" /> is <Katex tex="-p\,x^{-2}" /> — the negative sign is where most of the lost marks live.</>,
+    reason: <>The derivative of <Katex tex="p\,x^{-1}" /> is <Katex tex="-p\,x^{-2}" /> — lose that negative sign and you land on option E.</>,
   },
   {
     working: <Katex display tex="\text{Stationary at } x=-2 \implies f'(-2) = 0" />,
@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p = -16}" />,
-    reason: <>Matches option <b>A</b>. Option <b>E</b> <Katex tex="(16)" />, chosen by <Katex tex="15\%" />, is this answer with the sign lost — either from differentiating <Katex tex="p x^{-1}" /> as <Katex tex="+p x^{-2}" />, or from mishandling <Katex tex="(-2)^2" />. A quick check: with <Katex tex="p=-16" />, <Katex tex="f'(x)=2x+\tfrac{16}{x^2}" />, and <Katex tex="f'(-2)=-4+4=0" /> ✓.</>,
+    reason: <>Matches option <b>A</b>. Option <b>E</b> <Katex tex="(16)" />, chosen by <Katex tex="15\%" />, is this answer with the sign lost — either from differentiating <Katex tex="p x^{-1}" /> as <Katex tex="+p x^{-2}" />, or from mishandling <Katex tex="(-2)^2" />. Option <b>D</b> <Katex tex="(8)" /> comes from differentiating <Katex tex="\tfrac{p}{x}" /> as <Katex tex="-\tfrac{p}{x}" />, forgetting to square the <Katex tex="x" />. A quick check: with <Katex tex="p=-16" />, <Katex tex="f'(x)=2x+\tfrac{16}{x^2}" />, and <Katex tex="f'(-2)=-4+4=0" /> ✓.</>,
   },
 ]
 
@@ -45,7 +45,7 @@ export default function MethodsQ5_2018() {
     <MCQShell
       question={
         <p>
-          Consider <Katex tex="f(x)=x^2+\dfrac{p}{x},\ x\ne0,\ p\in\mathbb{R}" />. There is a
+          Consider <Katex tex="f(x)=x^2+\dfrac{p}{x},\ x\ne0,\ p\in R" />. There is a
           stationary point on the graph of <Katex tex="f" /> when <Katex tex="x=-2" />. The
           value of <Katex tex="p" /> is
         </p>

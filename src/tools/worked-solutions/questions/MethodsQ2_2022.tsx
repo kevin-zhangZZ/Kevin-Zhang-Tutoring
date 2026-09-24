@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to\pm\infty \implies \frac{1}{(x+3)^2}\to0" />,
-    reason: 'The fractional part dies away; only the constant survives.',
+    reason: <>The fractional part dies away; only the constant survives.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 4}" />,

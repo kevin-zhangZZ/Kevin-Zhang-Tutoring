@@ -1,7 +1,7 @@
 // 2020 Specialist Mathematics — Exam 2, MCQ 9. VCAA examination report: 35% correct.
 // Matching a described curve to its slope field — all five options are diagrams. Question
 // text and diagrams transcribed from the original paper (each is the actual VCAA figure,
-// cropped from the official exam PDF, not a redrawing). Solution is original.
+// cropped from the official exam PDF, not a redrawing, with its option letter masked). Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -29,15 +29,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Set } Y=0:\quad X = x - \frac{y}{m}" />,
-    reason: 'The X-intercept of that tangent line.',
+    reason: <>The X-intercept of that tangent line.</>,
   },
   {
     working: <Katex display tex="x - \frac{y}{m} = y" />,
-    reason: 'Given: this X-intercept equals the y-value at P.',
+    reason: <>Given: this X-intercept equals the y-value at P.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = m = \frac{y}{x-y}}" />,
-    reason: 'Solve for m — this is the differential equation the correct slope field must satisfy.',
+    reason: <>Solve for m — this is the differential equation the correct slope field must satisfy.</>,
   },
   {
     working: (
@@ -46,11 +46,11 @@ const ROWS: WorkingRow[] = [
         <span>On the y-axis (x = 0, y ≠ 0): <Katex tex="m = \dfrac{y}{-y} = -1" /> — gradient −1 marks, the same on both halves of the axis.</span>
       </div>
     ),
-    reason: 'Two easy diagnostic lines to read straight off each diagram.',
+    reason: <>Two easy diagnostic lines to read straight off each diagram.</>,
   },
   {
-    working: <SlopeField src={optBSrc} letter="B" />,
-    reason: <>Option <b>B</b> is the only diagram with flat marks along the whole <Katex tex="x" />-axis <i>and</i> uniform gradient <Katex tex="-1" /> marks along the whole <Katex tex="y" />-axis — matches option <b>B</b>.</>,
+    working: <Katex display tex="\boxed{\dfrac{dy}{dx}=\dfrac{y}{x-y}:\ \text{flat on the } x\text{-axis, gradient } -1 \text{ on the } y\text{-axis}}" />,
+    reason: <>Option <b>B</b> is the only diagram with flat marks along the whole <Katex tex="x" />-axis <i>and</i> uniform gradient <Katex tex="-1" /> marks along the whole <Katex tex="y" />-axis. Matches option <b>B</b>.</>,
   },
 ]
 

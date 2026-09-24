@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{15-12 = 3}" />,
-    reason: <>Option A. Note the answer does not depend on what <Katex tex="f" /> actually is.</>,
+    reason: <>Matches option <b>A</b>. Note the answer does not depend on what <Katex tex="f" /> actually is.</>,
   },
 ]
 

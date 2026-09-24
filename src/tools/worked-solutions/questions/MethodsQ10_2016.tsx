@@ -19,11 +19,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \text{gradient of chord} &= \frac{-5-0}{0-\sqrt5} \\ &= \sqrt5 \end{aligned}" />,
-    reason: 'The line connecting the two intercepts.',
+    reason: <>The gradient of the line connecting the two intercepts.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 2x" />,
-    reason: 'The gradient of the tangent to the curve at any point x.',
+    reason: <>The gradient of the tangent at any point <Katex tex="x" />.</>,
   },
   {
     working: (
@@ -32,11 +32,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; x = \frac{\sqrt5}{2}" />
       </>
     ),
-    reason: 'Set the tangent gradient equal to the chord gradient, since parallel lines share a gradient.',
+    reason: <>Parallel lines have the same gradient.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \dfrac{\sqrt5}{2}}" />,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option A (23%), <Katex tex="\sqrt5" />, is the gradient itself — the question asks for the <Katex tex="x" />-value where the tangent has that gradient. (A parabola's tangent is parallel to a chord at the midpoint of the chord's <Katex tex="x" />-values, <Katex tex="\tfrac{0+\sqrt5}{2}" />, which confirms it.)</>,
   },
 ]
 
@@ -51,9 +51,9 @@ export default function MethodsQ10_2016() {
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="5" /> },
-        { letter: 'B', content: <Katex tex="\sqrt5" /> },
-        { letter: 'C', content: <Katex tex="-\sqrt5" /> },
+        { letter: 'A', content: <Katex tex="\sqrt5" /> },
+        { letter: 'B', content: <Katex tex="5" /> },
+        { letter: 'C', content: <Katex tex="-5" /> },
         { letter: 'D', content: <Katex tex="\dfrac{\sqrt5}{2}" />, isAnswer: true },
         { letter: 'E', content: <Katex tex="\dfrac{1}{\sqrt5}" /> },
       ]}

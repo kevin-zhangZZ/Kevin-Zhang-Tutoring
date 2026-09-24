@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, WorkingTable, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import regionSrc from './spec-2019exam1-q8-region.png'
+import regionSrc from './spec-2019e1-q8-region.png'
 
 const EXAMINER: SAExaminerStats = {
   marks: [13, 16, 10, 9, 52],
@@ -16,9 +16,11 @@ const EXAMINER: SAExaminerStats = {
     <>
       Most students were able to write down the correct integral to find the volume of the solid
       of revolution. Some students did not recognise the way in which the integrand split
-      naturally and had difficulty proceeding; some attempted partial fractions. Many students
-      who did split the integrand used a substitution to integrate the second piece — this was
-      unnecessary and resulted in a loss of marks if not done correctly.
+      naturally and had difficulty proceeding further with the question. Some attempted
+      solutions using partial fractions were seen. Many students who were able to successfully
+      split the integrand used a substitution method to integrate{' '}
+      <Katex tex="\displaystyle\int_0^1\frac{2x}{1+x^2}\,dx" />. This was unnecessary and resulted
+      in a loss of marks if not done correctly.
     </>
   ),
 }
@@ -30,6 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V = \pi\int_0^1 \dfrac{1+2x}{1+x^2}\,dx" />,
+    reason: <>Squaring removes the root; the fraction is positive on <Katex tex="[0,1]" />, so nothing else changes.</>,
   },
   {
     working: (
@@ -41,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dfrac{1+2x}{1+x^2} = \dfrac{1}{1+x^2} + \dfrac{2x}{1+x^2}" />,
-    reason: <>The key move: split the fraction over its two numerator terms. Each piece is then a standard form — no substitution and no partial fractions needed, which is precisely where the report says marks were lost.</>,
+    reason: <>The key move: split the fraction over its two numerator terms. Each piece is then a standard form — no substitution and no partial fractions needed. The report notes some students attempted partial fractions, and that a substitution for the second piece was unnecessary and resulted in a loss of marks if not done correctly.</>,
   },
   {
     working: <Katex display tex="\int\dfrac{1}{1+x^2}\,dx = \tan^{-1}(x)" />,
@@ -53,6 +56,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V = \pi\Bigl[\tan^{-1}(x)+\log_e\left(1+x^2\right)\Bigr]_0^1" />,
+    reason: <>Both antiderivatives together, ready for the terminals.</>,
   },
   {
     working: (
@@ -61,11 +65,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \pi\left[\left(\dfrac{\pi}{4}+\log_e 2\right)-(0+0)\right]" />
       </>
     ),
-    reason: <>Using <Katex tex="\tan^{-1}(1)=\tfrac{\pi}{4}" /> and <Katex tex="\log_e1=0" />.</>,
+    reason: <>Using <Katex tex="\tan^{-1}(1)=\tfrac{\pi}{4}" /> and <Katex tex="\log_e(1)=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \dfrac{\pi^2}{4}+\pi\log_e(2) \ \text{ cubic units}}" />,
-    reason: <>Equivalently <Katex tex="\tfrac{\pi}{4}\bigl(\pi+4\log_e2\bigr)" />. Numerically this is about <Katex tex="4.64" />, matching the rough estimate from the picture ✓.</>,
+    reason: <>Equivalently <Katex tex="\tfrac{\pi}{4}\bigl(\pi+4\log_e(2)\bigr)" />. Numerically this is about <Katex tex="4.64" />, matching the rough estimate from the picture ✓.</>,
   },
 ]
 

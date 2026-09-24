@@ -39,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2+10x+25 = 2x+18" />,
-    reason: <>Multiplying out. Taking these steps one line at a time is what the report recommends.</>,
+    reason: <>Multiplying out. The report's general comments advise against doing several manipulations in one line, particularly here.</>,
   },
   {
     working: <Katex display tex="x^2+8x+7 = 0 \implies (x+1)(x+7) = 0" />,
@@ -51,7 +51,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = -7: \quad \log_2(-7+5) = \log_2(-2) \text{ is undefined}" />,
-    reason: <>Rejecting it. This is the mark the report says students most often lost.</>,
+    reason: <>Rejecting it. The report notes students who reached the quadratic did not always check the validity of their answers, and so failed to reject <Katex tex="x=-7" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -1}" />,

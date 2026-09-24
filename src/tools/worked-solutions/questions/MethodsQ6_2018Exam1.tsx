@@ -11,12 +11,23 @@ const EXAM_A: SAExaminerStats = {
   average: 1.7,
   comment: (
     <>
-      Several approaches were possible using a tree diagram or a counting argument. Since
-      choosing either box is equally likely and choosing any stone is equally likely and there
-      are eight stones, six of which are black,{' '}
-      <Katex tex="\Pr(\text{Black}) = \tfrac68 = \tfrac34" />. This question was generally
-      well answered. Many students showed their reasoning via a tree diagram or some written
-      explanation.
+      Several approaches were possible using a tree diagram or a counting argument.
+      <ul className="list-disc pl-5 my-1">
+        <li>
+          <Katex tex="\Pr(\text{Black})=\tfrac12\times1+\tfrac12\times\tfrac12=\tfrac34" />
+        </li>
+        <li>
+          <Katex tex="1-\Pr(\text{White})=1-\tfrac14=\tfrac34" />
+        </li>
+        <li>
+          Since choosing either box is equally likely and choosing any stone is equally likely
+          and there are <Katex tex="8" /> stones, <Katex tex="6" /> of which are black,{' '}
+          <Katex tex="\Pr(\text{Black})=\tfrac68=\tfrac34" />
+        </li>
+      </ul>
+      This question was generally well answered. Many students showed their reasoning via a
+      tree diagram or some written explanation. Some students overworked the problem by trying
+      to use the binomial distribution.
     </>
   ),
 }
@@ -59,15 +70,15 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(B_1\mid K) = \frac{\Pr(B_1\cap K)}{\Pr(K)}" />,
-    reason: <>The question reverses the conditioning: part (a) went box <Katex tex="\to" /> colour, this goes colour <Katex tex="\to" /> box. Note which event is given — the report flags students who computed <Katex tex="\Pr(K\mid B_1)" /> instead and got an answer above <Katex tex="1" />, which is impossible for a probability and should be caught immediately.</>,
+    reason: <>The question reverses the conditioning: part a. went box <Katex tex="\to" /> colour, this goes colour <Katex tex="\to" /> box. Note which event is given — the report flags students who computed <Katex tex="\Pr(K\mid B_1)" /> instead and got an answer above <Katex tex="1" />, which is impossible for a probability and should be caught immediately.</>,
   },
   {
     working: <Katex display tex="\Pr(B_1\cap K) = \Pr(K\mid B_1)\Pr(B_1) = 1\times\frac12 = \frac12" />,
-    reason: <>The numerator is the single branch "Box 1 <em>and</em> black", already computed in part (a).</>,
+    reason: <>The numerator is the single branch "Box 1 <em>and</em> black", already computed in part a.</>,
   },
   {
     working: <Katex display tex="\Pr(B_1\mid K) = \frac{1/2}{3/4} = \frac12\times\frac43" />,
-    reason: <>Dividing by the total from part (a). Knowing the stone is black shrinks the sample space to the black outcomes only.</>,
+    reason: <>Dividing by the total from part a. Knowing the stone is black shrinks the sample space to the black outcomes only.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(B_1\mid K) = \frac23}" />,
@@ -91,6 +102,7 @@ export default function MethodsQ6_2018Exam1() {
 
       <PartCard
         letter="a"
+        topic="Total Probability"
         marks={2}
         statement={<>What is the probability that the randomly drawn stone is black?</>}
         examinerReport={EXAM_A}
@@ -100,14 +112,15 @@ export default function MethodsQ6_2018Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conditional Probability"
         marks={2}
         statement={<>It is not known from which box the stone has been drawn. Given that the stone that is drawn is black, what is the probability that it was drawn from Box 1?</>}
         examinerReport={EXAM_B}
       >
         <Background>
           <p>
-            Part (a) asked "given the box, how likely is black?". Part (b) asks the question
-            backwards: "given black, how likely is the box?". These are different numbers, and
+            Part a. was built from "given the box, how likely is black?". Part b. asks the
+            question backwards: "given black, how likely is the box?". These are different numbers, and
             the order inside <Katex tex="\Pr(A\mid B)" /> is what distinguishes them — the bar
             means "given", and what follows it is what you already know.
           </p>

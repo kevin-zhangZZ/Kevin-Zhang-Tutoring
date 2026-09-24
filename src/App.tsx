@@ -21,8 +21,10 @@ export default function App() {
       <Layout dark={dark} onToggleDark={() => setDark(d => !d)}>
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* `/*` lets a tool keep its own state in the URL below its route (the worked
+              solutions put subject/year/question there so links open straight to a question). */}
           {tools.map(tool => (
-            <Route key={tool.id} path={tool.route} element={<tool.component />} />
+            <Route key={tool.id} path={`${tool.route}/*`} element={<tool.component />} />
           ))}
         </Routes>
       </Layout>

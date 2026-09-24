@@ -13,7 +13,8 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was well answered by students who knew what a vector resolute was and
       used the correct formula. Some found the scalar resolute and several had an incorrect
-      formula for the vector resolute (sometimes not using the unit vector). A number of
+      formula for the vector resolute (sometimes not using the unit vector, occasionally
+      finding the vector resolute in the direction of <Katex tex="\underset{\sim}{i}" />). A number of
       students did not show the dot in the dot product.
     </>
   ),
@@ -27,7 +28,7 @@ const EXAM_B: SAExaminerStats = {
       Most students performed well on this question. The main issues were due to algebraic
       errors in the solution of the simultaneous equations. Some insightful solutions were
       seen using the fact that <Katex tex="2\underset{\sim}{a}+\underset{\sim}{b}" />{' '}
-      eliminated <Katex tex="\underset{\sim}{j}" />. Others used the determinant of a{' '}
+      eliminated <Katex tex="\underset{\sim}{j}" />. Others used the discriminant of a{' '}
       <Katex tex="3\times3" /> matrix, with varied success.
     </>
   ),
@@ -71,11 +72,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d = 1}" />,
-    reason: <>Check: <Katex tex="\tfrac{2}{11}\underset{\sim}{a}+\tfrac{5}{11}\underset{\sim}{b} = \tfrac{1}{11}\left(6+5,\ 10-10,\ -4+15\right) = \left(1,0,1\right)" /> ✓.</>,
-  },
-  {
-    working: <Katex display tex="\begin{vmatrix}3&5&-2\\1&-2&3\\1&0&d\end{vmatrix} = -11d+11 = 0" />,
-    reason: <>The determinant route in one line, if you are comfortable with it: three vectors are dependent exactly when the determinant of their components vanishes.</>,
+    reason: <>Check: <Katex tex="\tfrac{2}{11}\underset{\sim}{a}+\tfrac{5}{11}\underset{\sim}{b} = \tfrac{1}{11}\left(6+5,\ 10-10,\ -4+15\right) = \left(1,0,1\right)" /> ✓. Equivalently <Katex tex="2\underset{\sim}{a}+5\underset{\sim}{b}=11\underset{\sim}{i}+11\underset{\sim}{k}" />, which has no <Katex tex="\underset{\sim}{j}" /> — the shortcut the report praises (it prints <Katex tex="2\underset{\sim}{a}+\underset{\sim}{b}" />, but it is <Katex tex="2\underset{\sim}{a}+5\underset{\sim}{b}" /> that eliminates <Katex tex="\underset{\sim}{j}" />).</>,
   },
 ]
 
@@ -96,6 +93,7 @@ export default function SpecialistQ5_2016Exam1() {
 
       <PartCard
         letter="a"
+        topic="Vector Resolute"
         marks={2}
         statement={
           <>
@@ -110,6 +108,7 @@ export default function SpecialistQ5_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="Linear Dependence"
         marks={2}
         statement={
           <>

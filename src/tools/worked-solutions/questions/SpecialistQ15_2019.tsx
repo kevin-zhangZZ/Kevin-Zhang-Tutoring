@@ -21,26 +21,26 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{a}(t) = \lambda\underset{\sim}{j} \quad (\lambda<0, \text{ constant})" />,
+    working: <Katex display tex="\underset{\sim}{a}(t) = \alpha\underset{\sim}{j} \quad (\alpha<0, \text{ constant})" />,
     reason: <>The acceleration is entirely in the <Katex tex="\underset{\sim}{j} " /> direction — perpendicular to the initial motion, which is along the <Katex tex="x" />-axis.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{v}(t) = \int\underset{\sim}{a}\,dt = \lambda t\,\underset{\sim}{j} + \underset{\sim}{c}, \qquad \underset{\sim}{v}(0)=u\underset{\sim}{i} \implies \underset{\sim}{c}=u\underset{\sim}{i}" />,
+    working: <Katex display tex="\underset{\sim}{v}(t) = \int\underset{\sim}{a}\,dt = \alpha t\,\underset{\sim}{j} + \underset{\sim}{c}, \qquad \underset{\sim}{v}(0)=u\underset{\sim}{i} \implies \underset{\sim}{c}=u\underset{\sim}{i}" />,
     reason: <>Antidifferentiate component by component, using the given initial velocity to fix the constant vector.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{v}(t) = u\,\underset{\sim}{i} + \lambda t\,\underset{\sim}{j}" />,
+    working: <Katex display tex="\underset{\sim}{v}(t) = u\,\underset{\sim}{i} + \alpha t\,\underset{\sim}{j}" />,
     reason: <>The <Katex tex="\underset{\sim}{i} " /> component never changes — nothing accelerates the particle horizontally — while the <Katex tex="\underset{\sim}{j} " /> component grows steadily negative.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{r}(t) = ut\,\underset{\sim}{i} + \dfrac{\lambda t^2}{2}\,\underset{\sim}{j}" />,
+    working: <Katex display tex="\underset{\sim}{r}(t) = ut\,\underset{\sim}{i} + \dfrac{\alpha t^2}{2}\,\underset{\sim}{j}" />,
     reason: <>Antidifferentiate again, taking the particle to start at the origin.</>,
   },
   {
     working: (
       <>
         <Katex display tex="x = ut \implies t = \dfrac{x}{u}" />
-        <Katex display tex="y = \dfrac{\lambda}{2}\left(\dfrac{x}{u}\right)^2 = \dfrac{\lambda}{2u^2}x^2" />
+        <Katex display tex="y = \dfrac{\alpha}{2}\left(\dfrac{x}{u}\right)^2 = \dfrac{\alpha}{2u^2}x^2" />
       </>
     ),
     reason: <>Eliminate <Katex tex="t" /> to get the cartesian path. <Katex tex="y" /> is a constant multiple of <Katex tex="x^2" /> — a parabola.</>,
@@ -48,14 +48,14 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={pathSrc} alt="Parabolic path: the particle starts at the origin moving right along the x-axis and curves downward under a constant downward acceleration" className="w-full max-w-[320px]" />
+        <img src={pathSrc} alt="Parabolic path: the particle starts at the origin moving right along the x-axis with velocity u i and curves downward under the constant acceleration α j, α < 0 — this site's own explanatory figure" className="w-full max-w-[320px]" />
       </div>
     ),
     reason: <>Exactly the projectile picture: constant horizontal velocity, constant vertical acceleration.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Option E — the particle moves along a parabola}}" />,
-    reason: <>Checking the others: the speed <Katex tex="\sqrt{u^2+\lambda^2t^2}" /> <em>increases</em>, so A and B are out; the particle leaves the <Katex tex="x" />-axis but never travels parallel to the <Katex tex="y" />-axis, ruling out C; and a circular arc needs the acceleration direction to keep turning, whereas here it is fixed, ruling out D.</>,
+    reason: <>Matches option <b>E</b>. Checking the others: the speed <Katex tex="\sqrt{u^2+\alpha^2t^2}" /> <em>increases</em>, so A and B are out; the particle leaves the <Katex tex="x" />-axis but never travels parallel to the <Katex tex="y" />-axis, ruling out C; and a circular arc needs the acceleration direction to keep turning, whereas here it is fixed, ruling out D.</>,
   },
 ]
 
@@ -67,10 +67,12 @@ export default function SpecialistQ15_2019() {
           <p className="mb-2">
             A particle is moving along the <Katex tex="x" />-axis with velocity{' '}
             <Katex tex="\underset{\sim}{v}=u\underset{\sim}{i}" />, where <Katex tex="u" /> is a
-            real constant. At time <Katex tex="t=0" />, a force acts on the particle, causing it
+            real constant.
+            <br />
+            At time <Katex tex="t=0" />, a force acts on the particle, causing it
             to accelerate with acceleration{' '}
-            <Katex tex="\underset{\sim}{a}=\lambda\underset{\sim}{j}" />, where{' '}
-            <Katex tex="\lambda" /> is a negative real constant.
+            <Katex tex="\underset{\sim}{a}=\alpha\underset{\sim}{j}" />, where{' '}
+            <Katex tex="\alpha" /> is a negative real constant.
           </p>
           <p>Which one of the following statements correctly describes the motion of the particle for <Katex tex="t>0" />?</p>
         </>

@@ -9,6 +9,12 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 6, B: 76, C: 13, D: 5 },
   answer: 'B',
+  comment: (
+    <>
+      <Katex tex="\{(-1,3),(2,2),(3,1)\}" /> is a <Katex tex="1:1" /> function and hence has an
+      inverse function.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -18,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{an inverse: each } y \text{ appears once (one-to-one)}" />,
-    reason: 'The inverse swaps the coordinates, so repeated outputs would become repeated inputs.',
+    reason: <>The inverse swaps the coordinates, so repeated outputs would become repeated inputs.</>,
   },
   {
     working: <Katex display tex="\text{C: } \{(-1,3),(0,1),(1,3)\} \ \text{ has } y=3 \text{ twice}" />,
@@ -26,11 +32,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{B: } \{(-1,3),(2,2),(3,1)\}: \ x\text{-values } -1,2,3 \ \text{ and } y\text{-values } 3,2,1" />,
-    reason: 'All three inputs distinct and all three outputs distinct.',
+    reason: <>All three inputs distinct and all three outputs distinct.</>,
   },
   {
     working: <Katex display tex="\boxed{\{(-1,3),(2,2),(3,1)\}}" />,
-    reason: <>Option <b>B</b>. Its inverse is <Katex tex="\{(3,-1),(2,2),(1,3)\}" />, which is itself a function.</>,
+    reason: <>Matches option <b>B</b>. Its inverse is <Katex tex="\{(3,-1),(2,2),(1,3)\}" />, which is itself a function.</>,
   },
 ]
 

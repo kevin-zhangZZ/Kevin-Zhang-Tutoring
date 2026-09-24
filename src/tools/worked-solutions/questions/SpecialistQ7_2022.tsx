@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="dx = \frac{du}{u-1}" />,
-    reason: 'Rearranging.',
+    reason: <>Rearranging.</>,
   },
   {
     working: <Katex display tex="\int\frac{1}{1+e^x}\,dx = \int\frac{1}{u}\cdot\frac{du}{u-1} = \int\frac{1}{u(u-1)}\,du" />,
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1}{u(u-1)} = \frac{A}{u}+\frac{B}{u-1} \implies 1 = A(u-1)+Bu" />,
-    reason: 'Partial fractions on the new integrand.',
+    reason: <>Partial fractions on the new integrand.</>,
   },
   {
     working: <Katex display tex="u=0: \ A=-1; \quad u=1: \ B=1 \implies \frac{1}{u-1}-\frac{1}{u}" />,
@@ -34,11 +34,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=0 \implies u = 1+e^0 = 2; \qquad x=\log_e(2) \implies u = 1+2 = 3" />,
-    reason: <>The terminals must change too — leaving them as <Katex tex="0" /> and <Katex tex="\log_e2" /> is the trap in <b>A</b> and <b>C</b>.</>,
+    reason: <>The terminals must change too — leaving them as <Katex tex="0" /> and <Katex tex="\log_e(2)" /> is the trap in <b>A</b>; <b>C</b> starts at <Katex tex="1=e^0" />, dropping the <Katex tex="1+" />, and <b>E</b> substitutes <Katex tex="x=2" /> for the upper terminal.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_2^3\left(\frac{1}{u-1}-\frac{1}{u}\right)du}" />,
-    reason: <>Option <b>D</b>. Its value is <Katex tex="\left[\log_e\left|\tfrac{u-1}{u}\right|\right]_2^3=\log_e\tfrac43" />, matching the original integral.</>,
+    reason: <>Matches option <b>D</b>. Its value is <Katex tex="\left[\log_e\left|\tfrac{u-1}{u}\right|\right]_2^3=\log_e\tfrac43" />, matching the original integral.</>,
   },
 ]
 

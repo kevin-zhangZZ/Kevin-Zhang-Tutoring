@@ -10,6 +10,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 17, B: 48, C: 30, D: 5 },
   answer: 'B',
+  comment: (
+    <>
+      Use the definitions of vectors
+      <br />
+      <Katex tex="\underset{\sim}{a}\cdot \underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos(\theta)" />
+      <br />
+      <Katex tex="\underset{\sim}{a}\times \underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\sin(\theta)" />
+      <br />
+      <em>Equating gives</em>
+      <br />
+      <Katex tex="\cos(\theta)=|\sin(\theta)|" />
+      <br />
+      <Katex tex="\tan(\theta)=1" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -19,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta = |\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta" />,
-    reason: 'Set the two given quantities equal.',
+    reason: <>Set the two given quantities equal.</>,
   },
   {
     working: <Katex display tex="\cos\theta = \sin\theta \;\implies\; \tan\theta = 1" />,
@@ -27,7 +42,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\theta = \tfrac{\pi}{4}}" />,
-    reason: <>The only solution in <Katex tex="[0,\pi]" /> with <Katex tex="\cos\theta=\sin\theta" /> and both positive — matches option <b>B</b>.</>,
+    reason: <>The only solution in <Katex tex="[0,\pi]" /> with <Katex tex="\cos\theta=\sin\theta" /> and both positive . Matches option <b>B</b>.</>,
   },
 ]
 

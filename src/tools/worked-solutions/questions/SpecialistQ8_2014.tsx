@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{11\pi}{12}}" />,
-    reason: <>Option C.</>,
+    reason: <>Matches option <b>C</b>. Option A (4%) is the unadjusted <Katex tex="-\tfrac{13\pi}{12}" />; option E (11%) has the right size with the wrong sign. Check: <Katex tex="\tfrac{11\pi}{12}" /> is in the second quadrant, and the quotient <Katex tex="\tfrac{(-3\sqrt2-\sqrt6 i)(2-2i)}{8}" /> has a negative real part and a positive imaginary part ✓.</>,
   },
 ]
 

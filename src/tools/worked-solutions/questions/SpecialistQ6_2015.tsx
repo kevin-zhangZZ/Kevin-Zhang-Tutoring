@@ -1,5 +1,4 @@
-// 2015 Specialist Mathematics — Exam 2, MCQ 6. VCAA examination report: 43% correct
-// (tied for fourth-hardest in the 2014-2016 Specialist Exam 2 papers).
+// 2015 Specialist Mathematics — Exam 2, MCQ 6. VCAA examination report: 43% correct.
 // Identify which relation's graph in the complex plane passes through a given point.
 // Question text transcribed from the original paper; solution is original.
 
@@ -45,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z+\bar z = 2}" />,
-    reason: <>Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. Option C (21%, the most popular wrong answer) fails because <Katex tex="1+2i" /> is 2 from <Katex tex="1" /> but only 1 from <Katex tex="2i" />.</>,
   },
 ]
 

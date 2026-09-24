@@ -11,9 +11,10 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      Maximum height <Katex tex="=13" /> m, so <Katex tex="2\times13=26" /> m of travel from
-      ground level — but the ball was released from a height of 1.5 m, so the total vertical
-      distance travelled is <Katex tex="26.0-1.5=24.5" /> m.
+      Max. height = 13 m; 2 × 13 = 26 m
+      <br />
+      Ball thrown from a height of 1.5 m (<Katex tex="t=0" />), so total vertical distance
+      travelled is 26.0 − 1.5 = 24.5 m
     </>
   ),
 }
@@ -25,23 +26,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z(0) = 1.5 \ \text{m}" />,
-    reason: 'The release height — the ball starts above the ground, which is the crux of the question.',
+    reason: <>The release height — the ball starts above the ground, which is the crux of the question.</>,
   },
   {
     working: <Katex display tex="\dot z(t) = 15-9.8t = 0 \implies t = \frac{15}{9.8} = 1.5306" />,
-    reason: 'The ball is momentarily at rest vertically at the top of its flight.',
+    reason: <>The ball is momentarily at rest vertically at the top of its flight.</>,
   },
   {
     working: <Katex display tex="z_{\max} = 15(1.5306)-4.9(1.5306)^2+1.5 = 12.98 \approx 13.0 \ \text{m}" />,
-    reason: 'The highest point above the ground.',
+    reason: <>The highest point above the ground.</>,
   },
   {
     working: <Katex display tex="\text{up} = 13.0-1.5 = 11.5 \ \text{m}; \qquad \text{down} = 13.0 \ \text{m}" />,
-    reason: 'Distance travelled adds the two legs; displacement would subtract them.',
+    reason: <>Distance travelled adds the two legs; displacement would subtract them.</>,
   },
   {
     working: <Katex display tex="\boxed{11.5+13.0 = 24.5 \ \text{m}}" />,
-    reason: <>Option <b>D</b>. Option <b>E</b>, <Katex tex="26.0" />, is <Katex tex="2\times13" /> — right for a ball released at ground level, which this one was not.</>,
+    reason: <>Matches option <b>D</b>. Option <b>E</b>, <Katex tex="26.0" />, is <Katex tex="2\times13" /> — right for a ball released at ground level, which this one was not.</>,
   },
 ]
 
@@ -57,9 +58,10 @@ export default function SpecialistQ16_2023() {
           . Displacement components are measured in metres, where{' '}
           <Katex tex="\underset{\sim}{i}" /> is a unit vector to the east,{' '}
           <Katex tex="\underset{\sim}{j}" /> is a unit vector to the north and{' '}
-          <Katex tex="\underset{\sim}{k}" /> is a unit vector vertically up. The total
-          vertical distance, in metres, travelled by the ball before it hits the ground is
-          closest to
+          <Katex tex="\underset{\sim}{k}" /> is a unit vector vertically up.
+          <br />
+          The total <b>vertical</b> distance, in metres, travelled by the ball before it hits
+          the ground is closest to
         </p>
       }
       options={[

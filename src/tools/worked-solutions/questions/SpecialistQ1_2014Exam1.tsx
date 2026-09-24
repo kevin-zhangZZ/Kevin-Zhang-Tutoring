@@ -11,10 +11,11 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      The most common errors involved finding the magnitude but not going on to find the unit
-      vector. Some students made arithmetic errors and, finding the magnitude to be{' '}
-      <Katex tex="\sqrt5" /> or <Katex tex="\sqrt7" />, obtained the correct form but then
-      incorrectly rationalised the denominators.
+      Students answered this question well. The most common errors involved finding the
+      magnitude to be 6 or <Katex tex="\sqrt6" /> but not finding the unit vector. Some
+      students made arithmetic errors and, finding the magnitude to be <Katex tex="\sqrt5" />{' '}
+      or <Katex tex="\sqrt7" />, obtained the correct unit vector but then incorrectly
+      rationalised the denominators.
     </>
   ),
 }
@@ -25,10 +26,10 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Common errors included not using the dot product or direction cosines, but instead
-      using a "tan" argument from a right-angled triangle. Many students simplified surds
-      incorrectly, the most common error being{' '}
-      <Katex tex="\tfrac{\sqrt3}{\sqrt6}=\tfrac12" />. Several errors were made with exact
-      trigonometric values.
+      using a ‘tan’ argument from a right-angled triangle to get <Katex tex="\pm\tfrac\pi6" />{' '}
+      or <Katex tex="\pm\tfrac\pi3" />. Many students simplified surds incorrectly, with the
+      most common error being <Katex tex="\tfrac{\sqrt3}{\sqrt6}=\tfrac12" />. Several errors
+      were made with exact trigonometric values.
     </>
   ),
 }
@@ -114,6 +115,7 @@ export default function SpecialistQ1_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Unit Vector"
         marks={1}
         statement={<>Find the unit vector in the direction of <Katex tex="\underset{\sim}{a}" />.</>}
         examinerReport={EXAM_A}
@@ -123,6 +125,7 @@ export default function SpecialistQ1_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Angle with Axis"
         marks={2}
         statement={
           <>
@@ -137,6 +140,7 @@ export default function SpecialistQ1_2014Exam1() {
 
       <PartCard
         letter="c"
+        topic="Perpendicular Vectors"
         marks={2}
         statement={
           <>

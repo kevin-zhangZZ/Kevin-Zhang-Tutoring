@@ -22,6 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dfrac{1+b}{2} = \dfrac32 \implies 1+b=3 \implies b=2" />,
+    reason: <>The <Katex tex="y" />-coordinates, in the same way.</>,
   },
   {
     working: <Katex display tex="\dfrac{-2+(-1)}{2} = c \implies c = -\dfrac32" />,
@@ -29,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a=-7,\quad b=2,\quad c=-\dfrac32}" />,
-    reason: <>Matches option <b>E</b>. Option <b>C</b> has the right <Katex tex="a" /> and <Katex tex="c" /> but <Katex tex="b=-2" />; option <b>A</b> comes from doubling instead of halving.</>,
+    reason: <>Matches option <b>E</b>. Option <b>C</b> has the right <Katex tex="a" /> and <Katex tex="c" /> but <Katex tex="b=-2" />. Option <b>A</b>'s <Katex tex="a=-13" /> and <Katex tex="c=-\tfrac12" /> come from subtracting <Katex tex="N" />'s coordinates instead of adding them. Options <b>B</b> and <b>D</b> leave out the factor of <Katex tex="2" /> (for example <Katex tex="-5-(-3)=-2" /> for <Katex tex="a" />, and <Katex tex="-2+(-1)=-3" /> for <Katex tex="c" />).</>,
   },
 ]
 

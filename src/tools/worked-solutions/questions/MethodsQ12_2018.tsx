@@ -65,7 +65,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X<\mu) = \frac{7}{10}}" />,
-    reason: <>Matches option <b>E</b>. (<Katex tex="\tfrac{14}{20}=\tfrac{7}{10}=0.7" />.) Option <b>C</b> <Katex tex="\left(\tfrac{17}{20}\right)" /> adds <Katex tex="\Pr(X=2)" /> as well — that would be <Katex tex="\Pr(X<3)" />. Option <b>A</b> <Katex tex="\left(\tfrac12\right)" /> assumes the mean splits the distribution in half, which is true of a <em>median</em>, not a mean.</>,
+    reason: <>Matches option <b>E</b>. (<Katex tex="\tfrac{14}{20}=\tfrac{7}{10}=0.7" />.) Option <b>D</b> <Katex tex="\left(\tfrac45=\tfrac{16}{20}\right)" /> adds <Katex tex="\Pr(X=2)" /> as well — that is <Katex tex="\Pr(X\le2)" /> — and option <b>C</b> <Katex tex="\left(\tfrac{17}{20}\right)" /> is <Katex tex="\Pr(X\le3)" />. Option <b>A</b> <Katex tex="\left(\tfrac12\right)" /> assumes the mean splits the distribution in half, which is true of a <em>median</em>, not a mean.</>,
   },
 ]
 

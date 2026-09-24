@@ -16,7 +16,8 @@ const EXAM: SAExaminerStats = {
       expression for <Katex tex="\tfrac{dy}{dx}" /> in terms of <Katex tex="x" /> and{' '}
       <Katex tex="y" />. This was not necessary, with a more effective approach being to
       substitute <Katex tex="x=\tfrac{\pi}{6}" /> and <Katex tex="y=\tfrac{\pi}{6}" />{' '}
-      immediately following the implicit differentiation.
+      immediately following the implicit differentiation. Some students had difficulty with
+      arithmetic.
     </>
   ),
 }

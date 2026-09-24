@@ -82,12 +82,13 @@ export default function MethodsQ5_2015Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find the minimum depth of the water in the river.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Minimum Value" marks={1} statement={<>Find the minimum depth of the water in the river.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Trig Equation"
         marks={2}
         statement={
           <>

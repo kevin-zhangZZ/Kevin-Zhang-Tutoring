@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k = -\frac1a: \quad |k|\le1 \iff |a|\ge1" />,
-    reason: 'Outside this there are no intercepts at all.',
+    reason: <>Outside this there are no intercepts at all.</>,
   },
   {
     working: <Katex display tex="k = 1 \iff a = -1 \ \text{(one solution only — excluded)}" />,
@@ -30,11 +30,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k = -1 \iff a = 1 \ \text{(two solutions, } x=\pm\pi\text{ — included)}" />,
-    reason: 'Both endpoints of the closed interval count, which is why the answer has a closed bracket on one side only.',
+    reason: <>Both endpoints of the closed interval count, which is why the answer has a closed bracket on one side only.</>,
   },
   {
     working: <Katex display tex="\boxed{a < -1 \ \text{ or } \ a \ge 1}" />,
-    reason: <>Option <b>E</b>. The asymmetry is the whole question: <Katex tex="a=1" /> works and <Katex tex="a=-1" /> does not.</>,
+    reason: <>Matches option <b>E</b>. The asymmetry is the whole question: <Katex tex="a=1" /> works and <Katex tex="a=-1" /> does not. Option <b>C</b> has the brackets the other way round.</>,
   },
 ]
 
@@ -44,7 +44,7 @@ export default function SpecialistQ3_2023() {
       question={
         <p>
           In the interval <Katex tex="-\pi\le x\le\pi" />, the graph of{' '}
-          <Katex tex="y=a+\sec(x)" />, where <Katex tex="a\in\mathbb{R}" />, has two{' '}
+          <Katex tex="y=a+\sec(x)" />, where <Katex tex="a\in R" />, has two{' '}
           <Katex tex="x" />-intercepts when
         </p>
       }

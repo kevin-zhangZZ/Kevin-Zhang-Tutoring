@@ -14,9 +14,9 @@ const EXAM_A: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      This was a "show that" question and students were required to show the algebraic steps.
-      Many students were able to set up the two simultaneous equations, but some
-      unnecessarily solved for values that were already on the diagram. Some used a
+      This was a ‘show that’ question and students were required to show the algebraic steps.
+      Many students were able to set up the two simultaneous equations; but some unnecessarily
+      solved <Katex tex="f(x)=g(x)" /> when the values were on the diagram. Some used a
       combination of their CAS and algebraic steps and were unable to gain full marks.
     </>
   ),
@@ -25,6 +25,12 @@ const EXAM_A: SAExaminerStats = {
 const EXAM_B: SAExaminerStats = {
   marks: [45, 55],
   average: 0.6,
+  comment: (
+    <>
+      Common incorrect responses were <Katex tex="b=\dfrac{3}{4}" /> and{' '}
+      <Katex tex="b=\dfrac{3}{4}\ln(2)" />.
+    </>
+  ),
 }
 
 const EXAM_C: SAExaminerStats = {
@@ -44,8 +50,10 @@ const EXAM_DI: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      This question was answered well. However, some students wrote the expression for{' '}
-      <Katex tex="h(x)" />, not <Katex tex="h'(x)" />.
+      This question was answered well. However, some students just wrote <Katex tex="h'(x)" /> or{' '}
+      <Katex tex="\dfrac{d}{dx}\big(f(x)-g(x)\big)" />. Others wrote the expression for{' '}
+      <Katex tex="h(x)" />, not <Katex tex="h'(x)" />. There were also some transcription
+      errors.
     </>
   ),
 }
@@ -55,8 +63,10 @@ const EXAM_DII: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Some students just gave the <Katex tex="x" />-value. Others gave the coordinates of the
-      turning point without stating the maximum value.
+      This question was answered reasonably well. Some students just gave the{' '}
+      <Katex tex="x" />-value, <Katex tex="-3.8\ldots" /> Others gave the coordinates of the
+      turning point without stating the maximum value. <Katex tex="0.35" /> was a common incorrect
+      answer.
     </>
   ),
 }
@@ -67,7 +77,7 @@ const EXAM_E: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Some students, however, just gave the{' '}
-      <Katex tex="x" />-values or the equation for the inverse function.
+      <Katex tex="x" />-values or the equation for the inverse function <Katex tex="g^{-1}" />.
     </>
   ),
 }
@@ -77,9 +87,10 @@ const EXAM_FI: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Some students substituted the points incorrectly, obtaining the wrong{' '}
-      <Katex tex="c" /> values. Others found both values of <Katex tex="c" /> but then did
-      not draw the conclusion.
+      A common incorrect answer was <Katex tex="F(x)=\dfrac{1}{4}x^2+7x" />. Some students
+      substituted <Katex tex="-12" /> and <Katex tex="2" /> incorrectly into <Katex tex="F(x)" />,
+      obtaining the wrong <Katex tex="c" /> values. Others found{' '}
+      <Katex tex="F(x)=\dfrac{1}{4}x^2+7x+c" /> but then assumed <Katex tex="c=0" />.
     </>
   ),
 }
@@ -89,8 +100,11 @@ const EXAM_FII: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      Some students multiplied by the wrong quantity. Others attempted to solve their
-      equations by hand and made algebraic errors.
+      Some students multiplied by <Katex tex="\dfrac{1}{m}" /> instead of <Katex tex="m" />.
+      Others did not multiple their <Katex tex="c" /> values by <Katex tex="m" />, using{' '}
+      <Katex tex="mF(x)=\dfrac{m}{4}x^2+7mx+c" />. Some attempted to solve their equations by hand
+      and made algebraic errors giving incorrect answers; <Katex tex="m=9" /> was a common
+      incorrect answer.
     </>
   ),
 }
@@ -98,11 +112,11 @@ const EXAM_FII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="(-12,1) \text{ on } g: \quad Ae^{-12k} = 1 \qquad (1)" />,
-    reason: 'The two intersection points are given on the diagram, so there is nothing to solve for first.',
+    reason: <>The two intersection points are given on the diagram, so there is nothing to solve for first — the report notes some students unnecessarily solved <Katex tex="f(x)=g(x)" />.</>,
   },
   {
     working: <Katex display tex="(2,8) \text{ on } g: \quad Ae^{2k} = 8 \qquad (2)" />,
-    reason: 'The second simultaneous equation.',
+    reason: <>The second simultaneous equation.</>,
   },
   {
     working: <Katex display tex="\frac{(2)}{(1)}: \quad e^{14k} = 8" />,
@@ -129,11 +143,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2^{bx} = e^{bx\log_e(2)} \implies kx = bx\log_e(2)" />,
-    reason: 'Rewriting base 2 as base e.',
+    reason: <>Rewriting base 2 as base e.</>,
   },
   {
     working: <Katex display tex="b = \frac{k}{\log_e(2)} = \frac{\tfrac{3}{14}\log_e(2)}{\log_e(2)}" />,
-    reason: 'The logarithms cancel — which is exactly why the given k was written in that form.',
+    reason: <>The logarithms cancel — which is exactly why the given k was written in that form.</>,
   },
   {
     working: <Katex display tex="\boxed{b = \frac{3}{14}}" />,
@@ -152,22 +166,22 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 15.87196\ldots" />,
-    reason: 'One evaluation.',
+    reason: <>One evaluation.</>,
   },
   {
     working: <Katex display tex="\boxed{15.87 \text{ square units}}" />,
-    reason: 'Two decimal places, as asked.',
+    reason: <>Two decimal places, as asked.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = f(x)-g(x) = \frac{x}{2}+7-Ae^{kx}" />,
-    reason: 'The vertical gap between the line and the curve.',
+    reason: <>The vertical gap between the line and the curve.</>,
   },
   {
     working: <Katex display tex="\boxed{h'(x) = \frac12-Ake^{kx}}" />,
-    reason: <>Chain rule on the exponential. With the values from part a., <Katex tex="Ak = 2^{18/7}\times\tfrac{3}{14}\log_e 2 \approx 0.8827" />. The question asked for the <em>derivative</em> — writing <Katex tex="h(x)" /> again was the listed error.</>,
+    reason: <>Chain rule on the exponential. With the values from part a., <Katex tex="Ak = 2^{18/7}\times\tfrac{3}{14}\log_e 2 \approx 0.8827" />. The question asked for the <em>derivative</em> — the report notes some students wrote the expression for <Katex tex="h(x)" />, not <Katex tex="h'(x)" />.</>,
   },
 ]
 
@@ -182,11 +196,11 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(-3.8279) = 1.71974\ldots" />,
-    reason: 'Substituting back into h, not h′.',
+    reason: <>Substituting back into h, not h′.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{maximum value } 1.72}" />,
-    reason: <>The <em>value</em> was asked for, not the <Katex tex="x" />-coordinate or the coordinate pair — a distinction that cost 44% of students the mark.</>,
+    reason: <>The <em>value</em> was asked for, not the <Katex tex="x" />-coordinate or the coordinate pair — the report notes some students gave just the <Katex tex="x" />-value, or the coordinates of the turning point.</>,
   },
 ]
 
@@ -197,11 +211,11 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g^{-1}(x) = f^{-1}(x) \iff \text{reflecting } g(x)=f(x) \text{ in } y=x" />,
-    reason: 'Both graphs are reflected in the same line, so their intersections are too.',
+    reason: <>Both graphs are reflected in the same line, so their intersections are too.</>,
   },
   {
     working: <Katex display tex="f \text{ and } g \text{ meet at } (-12,1) \text{ and } (2,8)" />,
-    reason: 'Given in the stem.',
+    reason: <>Given in the stem.</>,
   },
   {
     working: <Katex display tex="\boxed{(1,\,-12) \ \text{ and } \ (8,\,2)}" />,
@@ -216,19 +230,19 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="F(-12) = 1: \quad \frac{144}{4}-84+c = 1 \implies 36-84+c = 1" />,
-    reason: 'Substituting the first point.',
+    reason: <>Substituting the first point.</>,
   },
   {
     working: <Katex display tex="c = 49" />,
-    reason: 'One value of c.',
+    reason: <>One value of c.</>,
   },
   {
     working: <Katex display tex="F(2) = 8: \quad \frac44+14+c = 8 \implies 15+c = 8 \implies c = -7" />,
-    reason: 'Substituting the second point.',
+    reason: <>Substituting the second point.</>,
   },
   {
     working: <Katex display tex="\boxed{49 \ne -7, \ \text{so no single } c \text{ works and } F \text{ cannot pass through both}}" />,
-    reason: <>The conclusion is the second mark — finding the two values of <Katex tex="c" /> without saying what they prove was the listed error.</>,
+    reason: <>A single constant cannot take two different values, so no antiderivative of <Katex tex="f" /> passes through both points. As required.</>,
   },
 ]
 
@@ -251,7 +265,7 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="7c = 399 \implies c = 57" />,
-    reason: 'Solving the linear equation.',
+    reason: <>Solving the linear equation.</>,
   },
   {
     working: <Katex display tex="\boxed{m = \frac{1}{57-48} = \frac19, \qquad c = 57}" />,
@@ -265,11 +279,18 @@ export default function MethodsQ2_2025Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 2 (14 marks)</p>
         <p>Let</p>
-        <div className="py-1">
-          <Katex display tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=\frac{x}{2}+7 \qquad\text{and}\qquad g:\mathbb{R}\to\mathbb{R},\ g(x)=Ae^{kx}" />
+        <div className="pl-5">
+          <Katex tex="f:R\to R,\ f(x)=\dfrac{x}{2}+7" />
+        </div>
+        <p>and</p>
+        <div className="pl-5">
+          <Katex tex="g:R\to R,\ g(x)=Ae^{kx}" />
         </div>
         <p>
-          where <Katex tex="A,k\in\mathbb{R}" />. The graphs of <Katex tex="y=f(x)" /> and{' '}
+          where <Katex tex="A,k\in R" />.
+        </p>
+        <p>
+          The graphs of <Katex tex="y=f(x)" /> and{' '}
           <Katex tex="y=g(x)" /> intersect at the points <Katex tex="(-12,1)" /> and{' '}
           <Katex tex="(2,8)" />, as shown below.
         </p>
@@ -302,11 +323,14 @@ export default function MethodsQ2_2025Exam2() {
 
       <PartCard
         letter="a"
+        topic="Simultaneous Equations"
         marks={3}
         statement={
           <>
             Write down two simultaneous equations in terms of <Katex tex="A" /> and{' '}
-            <Katex tex="k" />. Solve them, using algebra, to show that{' '}
+            <Katex tex="k" />.
+            <br />
+            Solve them, using algebra, to show that{' '}
             <Katex tex="A=2^{\frac{18}{7}}" /> and{' '}
             <Katex tex="k=\frac{3}{14}\log_e(2)" />.
           </>
@@ -318,10 +342,11 @@ export default function MethodsQ2_2025Exam2() {
 
       <PartCard
         letter="b"
+        topic="Index Laws"
         marks={1}
         statement={
           <>
-            Find the value of <Katex tex="b" />, where <Katex tex="b\in\mathbb{R}" />, such
+            Find the value of <Katex tex="b" />, where <Katex tex="b\in R" />, such
             that <Katex tex="g(x)" /> can be expressed in the form{' '}
             <Katex tex="g(x)=A\times2^{bx}" />.
           </>
@@ -333,12 +358,15 @@ export default function MethodsQ2_2025Exam2() {
 
       <PartCard
         letter="c"
+        topic="Area Between Curves"
         marks={2}
         statement={
           <>
             Use a definite integral to evaluate the area bounded by the graphs of{' '}
             <Katex tex="y=f(x)" /> and <Katex tex="y=g(x)" />, where{' '}
-            <Katex tex="x\in[-12,2]" />. Give the area correct to two decimal places.
+            <Katex tex="x\in[-12,2]" />.
+            <br />
+            Give the area correct to two decimal places.
           </>
         }
         examinerReport={EXAM_C}
@@ -346,15 +374,18 @@ export default function MethodsQ2_2025Exam2() {
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
+      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
+        <p className="font-semibold text-gray-900 dark:text-white">d.</p>
+        <p>
+          Let <Katex tex="h(x)=f(x)-g(x)" />.
+        </p>
+      </div>
+
       <PartCard
         letter="d.i"
+        topic="Derivative"
         marks={1}
-        statement={
-          <>
-            Let <Katex tex="h(x)=f(x)-g(x)" />. Write down an expression for the derivative of{' '}
-            <Katex tex="h(x)" />.
-          </>
-        }
+        statement={<>Write down an expression for the derivative of <Katex tex="h(x)" />.</>}
         examinerReport={EXAM_DI}
       >
         <WorkingTable rows={ROWS_DI} />
@@ -362,11 +393,14 @@ export default function MethodsQ2_2025Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Maximum Value"
         marks={1}
         statement={
           <>
             Find the maximum value of <Katex tex="h(x)" />, where{' '}
-            <Katex tex="x\in[-12,2]" />. Give your answer correct to two decimal places.
+            <Katex tex="x\in[-12,2]" />.
+            <br />
+            Give your answer correct to two decimal places.
           </>
         }
         examinerReport={EXAM_DII}
@@ -376,10 +410,13 @@ export default function MethodsQ2_2025Exam2() {
 
       <PartCard
         letter="e"
+        topic="Inverse Intersections"
         marks={2}
         statement={
           <>
-            Let <Katex tex="g^{-1}" /> be the inverse of <Katex tex="g" />. Find the points
+            Let <Katex tex="g^{-1}" /> be the inverse of <Katex tex="g" />.
+            <br />
+            Find the points
             where the graph of <Katex tex="y=g^{-1}(x)" /> intersects with the graph of{' '}
             <Katex tex="y=2(x-7)" />.
           </>
@@ -393,12 +430,13 @@ export default function MethodsQ2_2025Exam2() {
         <p>
           <span className="font-semibold text-gray-900 dark:text-white">f.</span> Let{' '}
           <Katex tex="F" /> be an anti-derivative of <Katex tex="f" /> that passes through{' '}
-          <Katex tex="(0,c)" />, where <Katex tex="c\in\mathbb{R}" />.
+          <Katex tex="(0,c)" />, where <Katex tex="c\in R" />.
         </p>
       </div>
 
       <PartCard
         letter="f.i"
+        topic="Antiderivative"
         marks={2}
         statement={
           <>
@@ -413,13 +451,15 @@ export default function MethodsQ2_2025Exam2() {
 
       <PartCard
         letter="f.ii"
+        topic="Dilation"
         marks={2}
         statement={
           <>
             The graph of <Katex tex="y=F(x)" /> can be dilated by a factor of{' '}
             <Katex tex="m" /> from the <Katex tex="x" />-axis such that its image passes
-            through both <Katex tex="(-12,1)" /> and <Katex tex="(2,8)" />. Find the values of{' '}
-            <Katex tex="m" /> and <Katex tex="c" />.
+            through both <Katex tex="(-12,1)" /> and <Katex tex="(2,8)" />.
+            <br />
+            Find the values of <Katex tex="m" /> and <Katex tex="c" />.
           </>
         }
         examinerReport={EXAM_FII}

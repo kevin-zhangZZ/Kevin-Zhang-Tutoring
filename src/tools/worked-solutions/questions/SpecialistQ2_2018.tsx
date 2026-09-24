@@ -23,7 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin^{-1}(cx+d) > 0" />,
-    reason: <>Second: the square root needs a non-negative argument, and the whole thing is in a <em>denominator</em>, so zero is excluded too. Strictly greater than zero — this is the restriction most often missed.</>,
+    reason: <>Second: the square root needs a non-negative argument, and the whole thing is in a <em>denominator</em>, so zero is excluded too. Strictly greater than zero — the restriction option C misses.</>,
   },
   {
     working: <Katex display tex="\sin^{-1}(u) > 0 \iff u > 0" />,
@@ -50,7 +50,7 @@ export default function SpecialistQ2_2018() {
         <p>
           Consider the function <Katex tex="f" /> with rule{' '}
           <Katex tex="f(x)=\dfrac{1}{\sqrt{\sin^{-1}(cx+d)}}" />, where{' '}
-          <Katex tex="c,d\in\mathbb{R}" /> and <Katex tex="c>0" />. The domain of{' '}
+          <Katex tex="c,d\in R" /> and <Katex tex="c>0" />. The domain of{' '}
           <Katex tex="f" /> is
         </p>
       }
@@ -58,8 +58,8 @@ export default function SpecialistQ2_2018() {
         { letter: 'A', content: <Katex tex="x>-\dfrac{d}{c}" /> },
         { letter: 'B', content: <Katex tex="-\dfrac{d}{c}<x\le\dfrac{1-d}{c}" />, isAnswer: true },
         { letter: 'C', content: <Katex tex="\dfrac{-1-d}{c}\le x\le\dfrac{1-d}{c}" /> },
-        { letter: 'D', content: <Katex tex="x\in\mathbb{R}\setminus\left\{-\dfrac{d}{c}\right\}" /> },
-        { letter: 'E', content: <Katex tex="x\in\mathbb{R}" /> },
+        { letter: 'D', content: <Katex tex="x\in R\setminus\left\{-\dfrac{d}{c}\right\}" /> },
+        { letter: 'E', content: <Katex tex="x\in R" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

@@ -13,8 +13,10 @@ const EXAM_A: SAExaminerStats = {
     <>
       Most students identified the need to use the conjugate root theorem but some then gave{' '}
       <Katex tex="z^2-1" /> as their answer. Confusion between solutions and factors was
-      often evident. Some quoted <Katex tex="z=\pm1" /> as solutions rather than{' '}
-      <Katex tex="z=\pm i" />.
+      often evident. Several students gave the conjugate root or factor and then did no
+      further work. Some students seemed not to realise that they had completed what was
+      required and found the second quadratic factor. Some quoted <Katex tex="z=\pm1" /> as
+      solutions rather than <Katex tex="z=\pm i" />.
     </>
   ),
 }
@@ -26,8 +28,9 @@ const EXAM_B: SAExaminerStats = {
     <>
       Students made many sign errors and other algebraic errors in finding the second
       quadratic factor. Some students, having found this factor, gave{' '}
-      <Katex tex="2\pm2\sqrt2 i" />, <Katex tex="-2\pm\sqrt2 i" /> or{' '}
-      <Katex tex="2\pm\sqrt{10}i" /> as the solution.
+      <Katex tex="-2\pm\sqrt2 i" />, <Katex tex="2\pm2i" /> or{' '}
+      <Katex tex="2\pm\sqrt{10}i" /> as the solution. Some confusion between solutions and
+      factors was evident.
     </>
   ),
 }
@@ -91,6 +94,7 @@ export default function SpecialistQ3_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Conjugate Root"
         marks={2}
         statement={
           <>
@@ -105,6 +109,7 @@ export default function SpecialistQ3_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Factorise Quartic"
         marks={3}
         statement={
           <>

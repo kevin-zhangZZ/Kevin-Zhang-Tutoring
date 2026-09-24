@@ -10,8 +10,8 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import graphSrc from './meth-2017exam2-q4-graph.png'
-import pairSrc from './meth-2017exam2-q4d-pair.png'
+import graphSrc from './meth-2017e2-q4-graph.png'
+import pairSrc from './meth-2017e2-q4d-pair.png'
 
 // Dropbox share links for the tutor's video walkthrough of every part, converted to
 // `raw=1` so the browser can stream them directly. All were already H.264/AAC — just
@@ -55,8 +55,10 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       <Katex tex="\int_{-1}^{0}\bigl(f(x)-f^{-1}(x)\bigr)dx" /> and{' '}
-      <Katex tex="\int_{-1}^{0}f^{-1}(x)-2^{x+1}-2\,dx" /> were common incorrect expressions.
-      To avoid this type of error it is better to use the expression{' '}
+      <Katex tex="\int_{-1}^{0}\left(f^{-1}(x)-2^{x+1}-2\right)dx" /> were common incorrect
+      expressions. <Katex tex="\int_{-1}^{0}\left(f^{-1}(x)-2^{x+1}-2\right)dx" /> should be written
+      as <Katex tex="\int_{-1}^{0}\left(f^{-1}(x)-(2^{x+1}-2)\right)dx" />. To avoid this type of
+      error it is better to use the expression{' '}
       <Katex tex="\int_{-1}^{0}\bigl(f^{-1}(x)-f(x)\bigr)dx" />. An exact answer was
       required. <Katex tex="0.1196" /> was often given.
     </>
@@ -92,8 +94,8 @@ const EXAM_GI: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      Many students were unable to describe the transformation correctly, for example
-      "dilation of a factor of <Katex tex="\tfrac1k" /> in the <Katex tex="y" />-axis".
+      Many students were unable to describe the transformation correctly, for example,
+      'dilation of a factor <Katex tex="\tfrac1k" /> in the <Katex tex="y" />-axis'.
       Others put their answer in terms of <Katex tex="\log_e(2)" /> instead of{' '}
       <Katex tex="k" />. Some gave two transformations.
     </>
@@ -103,7 +105,7 @@ const EXAM_GI: SAExaminerStats = {
 const EXAM_GII: SAExaminerStats = {
   marks: [70, 30],
   average: 0.3,
-  comment: <>Students who answered Question 4g.i. correctly tended to answer this question well.</>,
+  comment: <>Students who answered Question 4gi. correctly tended to answer this question well.</>,
 }
 
 const EXAM_H: SAExaminerStats = {
@@ -126,16 +128,7 @@ const EXAM_II: SAExaminerStats = {
 const EXAM_IIII: SAExaminerStats = {
   marks: [98, 2],
   average: 0.0,
-  comment: (
-    <>
-      As the graphs of <Katex tex="g_k" /> and <Katex tex="g_k^{-1}" /> will intersect in the
-      third quadrant, <Katex tex="\lim_{k\to\infty}\int_{-2}^{0}f(x)\,dx=4" />, so{' '}
-      <Katex tex="b=4" />, as <Katex tex="g_k^{-1}" /> has a vertical asymptote with equation{' '}
-      <Katex tex="x=-2" /> and <Katex tex="g_k" /> has a horizontal asymptote with equation{' '}
-      <Katex tex="y=-2" />; the area will approach <Katex tex="4" /> as <Katex tex="k" />{' '}
-      increases. This question was not answered well.
-    </>
-  ),
+  comment: <>This question was not answered well.</>,
 }
 
 const ROWS_A: WorkingRow[] = [
@@ -157,7 +150,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{c=-1, \qquad d=-2}" />,
-    reason: <><Katex tex="-c=1" /> gives <Katex tex="c=-1" />: one unit <em>left</em>, two units <em>down</em>. The minus on <Katex tex="c" /> is the sign error the report flags — a translation left is a <Katex tex="+1" /> inside the function but a <Katex tex="-1" /> in the transformation.</>,
+    reason: <><Katex tex="-c=1" /> gives <Katex tex="c=-1" />: one unit <em>left</em>, two units <em>down</em>. The minus on <Katex tex="c" /> is where the report's sign errors creep in — a translation left is a <Katex tex="+1" /> inside the function but a <Katex tex="-1" /> in the transformation.</>,
   },
 ]
 
@@ -180,7 +173,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{dom}(f^{-1}) = \text{ran}(f) = (-2,\infty)}" />,
-    reason: <>The domain of an inverse is always the range of the original, and <Katex tex="2^{x+1}>0" /> means <Katex tex="f(x)>-2" /> without ever reaching it. Half the marks here were for remembering to state this.</>,
+    reason: <>The domain of an inverse is always the range of the original, and <Katex tex="2^{x+1}>0" /> means <Katex tex="f(x)>-2" /> without ever reaching it. The report notes students who gave the rule but not the domain.</>,
   },
 ]
 
@@ -211,7 +204,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 3-\frac{2}{\log_e 2}}" />,
-    reason: <>About <Katex tex="0.1146" />. An exact answer was required — the decimal earned nothing. The report notes <Katex tex="0.1196" /> was often given, which is a rounding-in-the-middle error.</>,
+    reason: <>About <Katex tex="0.1146" />, but an exact answer was required — the report notes the decimal <Katex tex="0.1196" /> was often given. VCAA writes this as <Katex tex="\tfrac{-2}{\log_e(2)}+3" />.</>,
   },
 ]
 
@@ -317,7 +310,7 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="|\beta-\gamma| = |2\beta-90^\circ| = 30^\circ" />,
-    reason: <>The angle between them. The absolute value is what produces two answers — missing it is why the report says most students found only one.</>,
+    reason: <>The angle between them. The absolute value is what produces two answers — missing it is why the report says some students found only one answer.</>,
   },
   {
     working: <Katex display tex="\beta=60^\circ \text{ or } \beta=30^\circ" />,
@@ -395,6 +388,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="a"
+        topic="Translation"
         marks={2}
         statement={
           <>
@@ -422,6 +416,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="b"
+        topic="Inverse Function"
         marks={2}
         statement={
           <>
@@ -437,6 +432,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="c"
+        topic="Area Between Curves"
         marks={3}
         statement={
           <>
@@ -481,6 +477,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="d"
+        topic="Gradient"
         marks={2}
         statement={
           <>
@@ -503,6 +500,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="e"
+        topic="Find Parameter"
         marks={1}
         statement={
           <>
@@ -517,6 +515,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="f"
+        topic="Inverse Function"
         marks={1}
         statement={
           <>
@@ -532,6 +531,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="g.i"
+        topic="Transformations"
         marks={1}
         statement={
           <>
@@ -547,6 +547,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="g.ii"
+        topic="Transformations"
         marks={1}
         statement={
           <>
@@ -562,6 +563,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="h"
+        topic="Angle Between Lines"
         marks={2}
         statement={
           <>
@@ -579,6 +581,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="i.i"
+        topic="Intersections"
         marks={2}
         statement={
           <>
@@ -602,6 +605,7 @@ export default function MethodsQ4_2017Exam2() {
 
       <PartCard
         letter="i.ii"
+        topic="Area Bound"
         marks={1}
         statement={
           <>

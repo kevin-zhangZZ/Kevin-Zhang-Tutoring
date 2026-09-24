@@ -9,12 +9,24 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 14, C: 21, D: 43, E: 14 },
   answer: 'D',
+  noAnswer: 0,
+  comment: (
+    <>
+      Let <Katex tex="R" /> represent a red marble and <Katex tex="G" /> a green marble.
+      <br />
+      <Katex tex="\Pr(RR)+\Pr(GG)" />
+      <br />
+      <Katex tex="=\dfrac{k}{n}\times\dfrac{k-1}{n-1}+\dfrac{n-k}{n}\times\dfrac{n-k-1}{n-1}" />
+      <br />
+      <Katex tex="=\dfrac{k(k-1)+(n-k)(n-k-1)}{n(n-1)}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="n \text{ marbles total: } k \text{ red},\ n-k \text{ green}" />,
-    reason: 'Set-up.',
+    reason: <>Set-up.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{both red}) = \frac{k}{n}\cdot\frac{k-1}{n-1}" />,
@@ -22,19 +34,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{both green}) = \frac{n-k}{n}\cdot\frac{n-k-1}{n-1}" />,
-    reason: 'Same reasoning for two greens.',
+    reason: <>Same reasoning for two greens.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{same colour}) = \Pr(\text{RR})+\Pr(\text{GG})" />,
-    reason: '"Same colour" means either both red or both green — mutually exclusive outcomes, so add.',
+    reason: <>"Same colour" means either both red or both green — mutually exclusive outcomes, so add.</>,
   },
   {
     working: <Katex display tex="= \frac{k(k-1)}{n(n-1)} + \frac{(n-k)(n-k-1)}{n(n-1)}" />,
-    reason: 'Combine the two products from above.',
+    reason: <>Combine the two products from above.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{k(k-1)+(n-k)(n-k-1)}{n(n-1)}}" />,
-    reason: <>Common denominator — matches option <b>D</b>.</>,
+    reason: <>Over a common denominator. Matches option <b>D</b>. Option <b>A</b> is the with-replacement answer, and option <b>E</b> is a binomial expression, which would need replacement (and <Katex tex="n" /> draws rather than two). Option <b>C</b> (<Katex tex="21\%" />) resembles the probability of <em>different</em> colours, <Katex tex="\tfrac{2k(n-k)}{n(n-1)}" />, with one factor wrong.</>,
   },
 ]
 

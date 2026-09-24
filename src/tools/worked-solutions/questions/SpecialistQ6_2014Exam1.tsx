@@ -24,12 +24,16 @@ const EXAM_B: SAExaminerStats = {
   average: 2.2,
   comment: (
     <>
-      Many students did not use the result from part a. Those who did generally answered well.
-      Those who did not commonly attempted the incorrect partial fractions{' '}
+      Many students did not use the result from Question 6a. Those who used the result from
+      Question 6a. generally answered this question well. Those who did not answer this
+      question well commonly used partial fractions, incorrectly attempting{' '}
       <Katex tex="\tfrac{x^2}{x^2-4}=\tfrac{A}{x-2}+\tfrac{B}{x+2}" />. Students are reminded
-      that it is often necessary to use the results from earlier parts. Most students
-      remembered to include <Katex tex="\pi" />, but some did not square the expression for{' '}
-      <Katex tex="y" />.
+      that it is often necessary or beneficial to use the results from earlier parts of a
+      question in the latter parts. Many students performed the division in this part, missing
+      the prompt given. Several did not use partial fractions at all, giving the log of the
+      denominator as their answer. A number of arithmetic and simplification errors were
+      seen. Most students remembered to include <Katex tex="\pi" /> in their integral, but some
+      did not square the expression for <Katex tex="y" />.
     </>
   ),
 }
@@ -44,8 +48,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>A common denominator.</>,
   },
   {
-    working: <Katex display tex="= \frac{a-4+4}{a-4} = \frac{a}{a-4} = \text{LHS} \ \checkmark" />,
-    reason: <>The <Katex tex="-4" /> and <Katex tex="+4" /> cancel. Showing <Katex tex="a=a" /> proves nothing, which is the report's criticism.</>,
+    working: <Katex display tex="= \frac{a-4+4}{a-4} = \frac{a}{a-4} = \text{LHS} \quad \text{as required}" />,
+    reason: <>The <Katex tex="-4" /> and <Katex tex="+4" /> cancel. A verification is marked on these steps, not on the last line; ending at <Katex tex="a=a" /> proves nothing, which is the report's criticism.</>,
   },
 ]
 
@@ -97,6 +101,7 @@ export default function SpecialistQ6_2014Exam1() {
 
       <PartCard
         letter="a"
+        topic="Algebraic Identity"
         marks={1}
         statement={
           <>
@@ -123,6 +128,7 @@ export default function SpecialistQ6_2014Exam1() {
 
       <PartCard
         letter="b"
+        topic="Volume of Revolution"
         marks={4}
         statement={
           <>

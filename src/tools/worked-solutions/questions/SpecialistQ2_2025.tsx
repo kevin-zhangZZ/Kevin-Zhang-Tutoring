@@ -12,8 +12,10 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      To show a point of inflection exists at <Katex tex="x=0" />, the second derivative must equal zero at{' '}
-      <Katex tex="x=0" /> <b>and change sign</b> there — option D's <Katex tex="f''" /> doesn't.
+      To show a point of inflection exists at <Katex tex="x=0" />, the second derivative must equal
+      zero at <Katex tex="x=0" /> and there must be a change of sign of the second derivative
+      either side of <Katex tex="x=0" />. CAS can be used to determine this in the algebra menu, or
+      students could use the graphing menu to see the shape of the graph.
     </>
   ),
 }
@@ -21,15 +23,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>A point of inflection needs <Katex tex="f''(x)" /> to equal zero <i>and change sign</i> — not merely touch zero.</>,
-    reason: 'The statement to disprove conflates the two — a counter-example needs f″(0)=0 with no actual sign change.',
+    reason: <>The statement to disprove conflates the two — a counter-example needs f″(0)=0 with no actual sign change.</>,
   },
   {
     working: <Katex display tex="f(x) = x^4-x \;\implies\; f'(x)=4x^3-1 \;\implies\; f''(x)=12x^2" />,
-    reason: 'Differentiate option D twice.',
+    reason: <>Differentiate option D twice.</>,
   },
   {
     working: <Katex display tex="f''(0) = 12(0)^2 = 0" />,
-    reason: 'The premise of the statement is satisfied.',
+    reason: <>The premise of the statement is satisfied.</>,
   },
   {
     working: <Katex display tex="f''(x) = 12x^2 \geq 0 \text{ for all } x" />,
@@ -37,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x)=x^4-x \text{ has no inflection point at } x=0}" />,
-    reason: <>This genuinely contradicts the statement — matches option <b>D</b>. (By contrast, <Katex tex="f(x)=\sin^{-1}(x)" /> in option A really does have an inflection at <Katex tex="x=0" />, so it doesn't disprove anything.)</>,
+    reason: <>This genuinely contradicts the statement. Matches option <b>D</b>. (By contrast, <Katex tex="f(x)=\sin^{-1}(x)" /> in option A really does have an inflection at <Katex tex="x=0" />, so it doesn't disprove anything.)</>,
   },
 ]
 

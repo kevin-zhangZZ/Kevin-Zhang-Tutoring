@@ -27,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2\sqrt2}" />,
-    reason: <>Option C, since <Katex tex="\sqrt8=\sqrt4\sqrt2" />. Option D has the sign wrong — the integrand <Katex tex="\sqrt{t^2+4}" /> is positive everywhere, so its value at any point must be too.</>,
+    reason: <>Matches option <b>C</b>, since <Katex tex="\sqrt8=\sqrt4\sqrt2" />. Option D has the sign wrong — the integrand <Katex tex="\sqrt{t^2+4}" /> is positive everywhere, so its value at any point must be too.</>,
   },
 ]
 

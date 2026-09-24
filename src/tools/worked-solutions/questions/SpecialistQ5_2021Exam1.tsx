@@ -14,9 +14,11 @@ const EXAM: SAExaminerStats = {
       This question was answered well, with the majority of students performing implicit
       differentiation correctly. Common errors involved not differentiating the constant term
       to give zero and substituting <Katex tex="x=2" />, <Katex tex="y=1" /> incorrectly.
+      <br />
       Students are reminded that if an expression for <Katex tex="\tfrac{dy}{dx}" /> in terms
       of <Katex tex="x" /> and <Katex tex="y" /> is not required, then it may be advantageous
-      to substitute the values immediately following differentiation.
+      to substitute the values for <Katex tex="x" /> and <Katex tex="y" /> immediately
+      following differentiation.
     </>
   ),
 }
@@ -36,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left(2e^4\right) = 0" />,
-    reason: <><Katex tex="2e^4" /> is a constant — the report notes students who differentiated it to something non-zero.</>,
+    reason: <><Katex tex="2e^4" /> is a constant — the report notes not differentiating it to zero as a common error.</>,
   },
   {
     working: <Katex display tex="\text{at } (2,1): \ e^4+2e^4\frac{dy}{dx}+8e^4\frac{dy}{dx} = 0" />,
@@ -48,7 +50,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{1}{10}}" />,
-    reason: 'The gradient at that point.',
+    reason: <>The gradient at that point.</>,
   },
 ]
 

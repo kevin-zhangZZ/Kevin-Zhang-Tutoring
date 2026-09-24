@@ -11,8 +11,14 @@ const EXAM_A: SAExaminerStats = {
   average: 2,
   comment: (
     <>
-      Students who factorised to solve the quadratic equation were generally more successful
-      than those who used the quadratic formula.
+      Using the formula for the vector resolute, it is found that{' '}
+      <Katex tex="\dfrac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\underset{\sim}{b}\cdot\underset{\sim}{b}}=\dfrac{-3m+1}{m^2+2}=-\dfrac{11}{18}" />.
+      This resulted in the quadratic equation{' '}
+      <Katex tex="11m^2-54m+40=0,\ (11m-10)(m-4)=0" /> giving <Katex tex="m=4" /> as the solution
+      (<Katex tex="m" /> is an integer).
+      <br />
+      Students who factorised to solve the quadratic equation were generally more successful than
+      those who used the quadratic formula.
     </>
   ),
 }
@@ -23,8 +29,8 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Some students did not attempt this question as they were unable to find an integer
-      value of <Katex tex="m" /> in part a. to use in their calculation. Of those who did
-      attempt it, arithmetic errors often caused them not to be awarded the mark.
+      value of <Katex tex="m" /> in Question 5a. to use in their calculation. Of those who did
+      attempt this question, arithmetic errors often caused them not to be awarded the mark.
     </>
   ),
 }
@@ -56,7 +62,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(11m-10)(m-4) = 0 \implies m = \tfrac{10}{11} \text{ or } m = 4" />,
-    reason: <>Factorising beats the quadratic formula here, and the report says so too — the numbers 11 and 40 make the split findable.</>,
+    reason: <>Factorising — the report notes students who factorised were generally more successful than those who used the quadratic formula.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 4}" />,
@@ -75,7 +81,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \left(\tfrac{36}{18}+\tfrac{11}{18}\right)\underset{\sim}{i}+\left(-\tfrac{54}{18}+\tfrac{44}{18}\right)\underset{\sim}{j}+\left(\tfrac{18}{18}-\tfrac{11}{18}\right)\underset{\sim}{k}" />,
-    reason: <>Put everything over 18 before adding — the single mark here was most often lost to arithmetic.</>,
+    reason: <>Put everything over 18 before adding — the report notes arithmetic errors often cost the mark here.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac{47}{18}\underset{\sim}{i}-\tfrac{5}{9}\underset{\sim}{j}+\tfrac{7}{18}\underset{\sim}{k}}" />,
@@ -91,18 +97,21 @@ export default function SpecialistQ5_2020Exam1() {
         <p>
           Let <Katex tex="\underset{\sim}{a}=2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" /> and{' '}
           <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+m\underset{\sim}{j}-\underset{\sim}{k}" />, where{' '}
-          <Katex tex="m" /> is an integer. The vector resolute of <Katex tex="\underset{\sim}{a}" />{' '}
+          <Katex tex="m" /> is an integer.
+          <br />
+          The vector resolute of <Katex tex="\underset{\sim}{a}" />{' '}
           in the direction of <Katex tex="\underset{\sim}{b}" /> is{' '}
           <Katex tex="-\dfrac{11}{18}\left(\underset{\sim}{i}+m\underset{\sim}{j}-\underset{\sim}{k}\right)" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={3} statement={<>Find the value of <Katex tex="m" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Vector Resolute" marks={3} statement={<>Find the value of <Katex tex="m" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Perpendicular Part"
         marks={1}
         statement={
           <>

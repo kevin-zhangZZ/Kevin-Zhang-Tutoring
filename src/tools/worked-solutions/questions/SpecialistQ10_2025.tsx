@@ -11,25 +11,31 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 12, C: 11, D: 69 },
   answer: 'D',
-  comment: <>Equate the formula for the volume of revolution to the given expression.</>,
+  comment: (
+    <>
+      Equate the formula for the volume of revolution to the given expression.
+      <br />
+      <Katex tex="\pi\displaystyle\int_0^a\cos^2\left(\frac{y}{3}\right)dy=\frac{\pi\left(4\pi+3\sqrt{3}\right)}{8}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = 3\cos^{-1}(x) \implies x = \cos\left(\frac{y}{3}\right)" />,
-    reason: 'Rotation is about the y-axis, so x must be written as a function of y.',
+    reason: <>Rotation is about the y-axis, so x must be written as a function of y.</>,
   },
   {
     working: <Katex display tex="V = \pi\int_0^{a} x^2\,dy = \pi\int_0^{a}\cos^2\left(\frac{y}{3}\right)dy" />,
-    reason: 'The disc formula in y. The line x = 0 is the axis of rotation itself, and y runs from 0 to a.',
+    reason: <>The disc formula in y. The line x = 0 is the axis of rotation itself, and y runs from 0 to a.</>,
   },
   {
     working: <Katex display tex="\cos^2\left(\frac{y}{3}\right) = \frac{1+\cos\left(\frac{2y}{3}\right)}{2}" />,
-    reason: 'The double-angle identity from the formula sheet, so the integral can be done by hand.',
+    reason: <>The double-angle identity from the formula sheet, so the integral can be done by hand.</>,
   },
   {
     working: <Katex display tex="V = \frac{\pi}{2}\left[y+\frac{3}{2}\sin\left(\frac{2y}{3}\right)\right]_0^{a} = \frac{\pi}{2}\left(a+\frac{3}{2}\sin\left(\frac{2a}{3}\right)\right)" />,
-    reason: 'Antidifferentiating and substituting. The lower terminal contributes nothing.',
+    reason: <>Antidifferentiating and substituting. The lower terminal contributes nothing.</>,
   },
   {
     working: <Katex display tex="\frac{\pi}{2}\left(a+\frac{3}{2}\sin\left(\frac{2a}{3}\right)\right) = \frac{\pi\left(4\pi+3\sqrt3\right)}{8}" />,
@@ -41,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \pi}" />,
-    reason: <>Option <b>D</b>. Note <Katex tex="y=3\cos^{-1}(x)" /> has range <Katex tex="[0,3\pi]" />, so <Katex tex="a=\pi" /> is inside it.</>,
+    reason: <>Matches option <b>D</b>. Note <Katex tex="y=3\cos^{-1}(x)" /> has range <Katex tex="[0,3\pi]" />, so <Katex tex="a=\pi" /> is inside it.</>,
   },
 ]
 

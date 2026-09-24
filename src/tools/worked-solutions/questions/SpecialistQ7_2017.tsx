@@ -34,12 +34,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Substituting everything at once, <Katex tex="dx=-du" /> included.</>,
   },
   {
-    working: <Katex display tex="\boxed{-\int_1^0\left(4u^{\frac12}-4u^{\frac32}+u^{\frac52}\right)du}" />,
-    reason: <>Option D — the minus pulled out the front, terminals left as <Katex tex="1" /> to <Katex tex="0" />. Option C is the same value written with the terminals swapped, but it also flipped every sign inside, which reverses it twice and makes it the negative of the truth.</>,
-  },
-  {
     working: <Katex display tex="\text{value} = \frac{8}{3}-\frac85+\frac27 = \frac{142}{105}\approx1.35" />,
     reason: <>Not asked for, but a quick numerical check settles any doubt between C and D: the original integrand is positive on <Katex tex="[1,2]" />, so the answer must be positive, and only D is.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{-\int_1^0\left(4u^{\frac12}-4u^{\frac32}+u^{\frac52}\right)du}" />,
+    reason: <>Matches option <b>D</b> — the minus pulled out the front, terminals left as <Katex tex="1" /> to <Katex tex="0" />. Option C (20%) swaps the terminals <em>and</em> flips every sign inside, which reverses it twice and makes it the negative of the truth.</>,
   },
 ]
 

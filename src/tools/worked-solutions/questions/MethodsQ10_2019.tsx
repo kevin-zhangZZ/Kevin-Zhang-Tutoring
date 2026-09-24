@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Adding <Katex tex="1" /> to the whole range of <Katex tex="\cos" /> shifts it to <Katex tex="[0,2]" />, which never dips below zero.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(x)\ge0 \text{ for all } x\in\mathbb{R}}" />,
+    working: <Katex display tex="\boxed{f'(x)\ge0 \text{ for all } x\in R}" />,
     reason: <>Matches option <b>D</b>. The gradient touches zero at <Katex tex="x=\pm\pi,\pm3\pi,\dots" /> (where <Katex tex="\cos x=-1" />) — those are the flat spots visible on the graph — but it is never negative, so the curve never falls.</>,
   },
   {
@@ -60,14 +60,14 @@ export default function MethodsQ10_2019() {
     <MCQShell
       question={
         <p>
-          Which one of the following statements is true for <Katex tex="f:\mathbb{R}\to\mathbb{R},\ f(x)=x+\sin(x)" />?
+          Which one of the following statements is true for <Katex tex="f:R\to R,\ f(x)=x+\sin(x)" />?
         </p>
       }
       options={[
         { letter: 'A', content: <>The graph of <Katex tex="f" /> has a horizontal asymptote</> },
         { letter: 'B', content: <>There are infinitely many solutions to <Katex tex="f(x)=4" /></> },
         { letter: 'C', content: <><Katex tex="f" /> has a period of <Katex tex="2\pi" /></> },
-        { letter: 'D', content: <><Katex tex="f'(x)\ge0" /> for <Katex tex="x\in\mathbb{R}" /></>, isAnswer: true },
+        { letter: 'D', content: <><Katex tex="f'(x)\ge0" /> for <Katex tex="x\in R" /></>, isAnswer: true },
         { letter: 'E', content: <><Katex tex="f'(x)=\cos(x)" /></> },
       ]}
       rows={ROWS}

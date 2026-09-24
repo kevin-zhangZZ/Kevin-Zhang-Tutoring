@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2^{\frac{1}{2n}}\operatorname{cis}\!\left(\frac{\pi}{4n}+\frac{2k\pi}{n}\right),\ k\in Z}" />,
-    reason: <>Option E. The final detail is <Katex tex="k\in Z" />, not <Katex tex="k\in R" /> — only whole turns give solutions, which is what separates E from A.</>,
+    reason: <>Matches option <b>E</b>. The final detail is <Katex tex="k\in Z" />, not <Katex tex="k\in R" /> — only whole turns give solutions, which is what separates E from A.</>,
   },
 ]
 

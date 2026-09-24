@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{48\ \text{metres}}" />,
-    reason: <>Option B. Distance <em>from the starting point</em> is the magnitude of the displacement. It is not the distance travelled: the object went forward <Katex tex="12.5" /> m before turning at <Katex tex="t=5" />, so the path length is <Katex tex="12.5+60.5=73" /> m — option C, the trap.</>,
+    reason: <>Matches option <b>B</b>. Distance <em>from the starting point</em> is the magnitude of the displacement. It is not the distance travelled: the object went forward <Katex tex="12.5" /> m before turning at <Katex tex="t=5" />, so the path length is <Katex tex="12.5+60.5=73" /> m — option C, the trap.</>,
   },
 ]
 
@@ -52,8 +52,8 @@ export default function SpecialistQ20_2015() {
         <>
           <p className="mb-2">
             An object is moving in a straight line, initially at 5 ms<sup>−1</sup>. Sixteen
-            seconds later, it is moving at 11 ms<sup>−1</sup> in the opposite direction to its
-            initial velocity.
+            seconds later, it is moving at 11 ms<sup>−1</sup> in the <b>opposite</b> direction to
+            its initial velocity.
           </p>
           <p>
             Assuming that the acceleration of the object is constant, after 16 seconds the

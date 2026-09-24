@@ -9,6 +9,25 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 23, C: 60, D: 9 },
   answer: 'C',
+  comment: (
+    <>
+      <Katex tex="x_{n+1}=x_n+h \qquad y_{n+1}=y_n+hx_ny_n^{\,2}" />
+      <br />
+      <Katex tex="x_0=0, \qquad y_0=1" />
+      <br />
+      <Katex tex="x_1=h, \qquad y_1=1+h\cdot0\cdot1^2=1" />
+      <br />
+      <Katex tex="x_2=2h, \qquad y_2=1+h\cdot h\cdot1^2=1+h^2" />
+      <br />
+      <Katex tex="x_3=3h, \qquad y_3=1+h^2+h\cdot2h\cdot\left(1+h^2\right)^2" />
+      <br />
+      <Katex tex="=1+h^2+2h^2\left(1+2h^2+h^4\right)=1+3h^2+4h^4+2h^6" />
+      <br />
+      Solve <Katex tex="1+3h^2+4h^4+2h^6=1.126528" /> for <Katex tex="h>0" />
+      <br />
+      <Katex tex="h=0.2" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -30,11 +49,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h=0.2: \quad 1.04+2(0.04)(1.04)^2 = 1.04+0.086528" />,
-    reason: 'A single substitution settles it.',
+    reason: <>A single substitution settles it.</>,
   },
   {
     working: <Katex display tex="\boxed{h = 0.20}" />,
-    reason: <>Option <b>C</b>: <Katex tex="1.126528" /> exactly. The smaller steps <Katex tex="0.01" /> and <Katex tex="0.02" /> barely move <Katex tex="y" /> from 1 at all, so the two leading digits of the target already rule them out.</>,
+    reason: <>Matches option <b>C</b>: <Katex tex="1.126528" /> exactly. The smaller steps <Katex tex="0.01" /> and <Katex tex="0.02" /> barely move <Katex tex="y" /> from 1 at all, so the two leading digits of the target already rule them out.</>,
   },
 ]
 
@@ -48,9 +67,11 @@ export default function SpecialistQ8_2024() {
             <Katex tex="y_0=y(0)=1" />.
           </p>
           <p>
-            When the Euler method is applied using a step size of <Katex tex="h" />, where{' '}
-            <Katex tex="h>0" />, <Katex tex="y_3=1.126528" />. The value of{' '}
-            <Katex tex="h" /> is
+            When Euler’s method is applied using a step size of <Katex tex="h" />, where{' '}
+            <Katex tex="h>0" />, <Katex tex="y_3=1.126528" />
+          </p>
+          <p>
+            The value of <Katex tex="h" /> is
           </p>
         </div>
       }

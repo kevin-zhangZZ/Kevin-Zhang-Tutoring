@@ -10,9 +10,9 @@ const EXAM: SAExaminerStats = {
   average: 1.8,
   comment: (
     <>
-      Students were required to demonstrate appropriate use of the product and/or chain rule.
-      This was often not done well. Students who performed the implicit differentiation well
-      were often able to proceed through to the answer.
+      Students were required to demonstrate appropriate use of the product and/or chain rule
+      (depending on the approach taken). This was often not done well. Students who performed
+      the implicit differentiation well were often able to proceed through to the answer.
     </>
   ),
 }
@@ -24,7 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dx}\left[x\arcsin\left(y^2\right)\right] = \arcsin\left(y^2\right)+x\cdot\frac{d}{dx}\arcsin\left(y^2\right)" />,
-    reason: 'Product rule. The right-hand side is a constant, so it differentiates to 0.',
+    reason: <>Product rule. The right-hand side is a constant, so it differentiates to 0.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\arcsin\left(y^2\right) = \frac{1}{\sqrt{1-y^4}}\cdot2y\frac{dy}{dx}" />,
@@ -32,15 +32,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\arcsin\left(y^2\right)+\frac{2xy}{\sqrt{1-y^4}}\cdot\frac{dy}{dx} = 0" />,
-    reason: 'The differentiated relation.',
+    reason: <>The differentiated relation.</>,
   },
   {
     working: <Katex display tex="\text{At } \left(6,\tfrac{1}{\sqrt2}\right): \ y^2 = \tfrac12, \ y^4 = \tfrac14 \implies \arcsin\!\left(\tfrac12\right) = \tfrac\pi6, \ \sqrt{1-\tfrac14} = \tfrac{\sqrt3}{2}" />,
-    reason: 'Work out every piece before substituting — the numbers are chosen to be exact.',
+    reason: <>Work out every piece before substituting — the numbers are chosen to be exact.</>,
   },
   {
     working: <Katex display tex="\frac\pi6+\frac{2(6)\left(\tfrac{1}{\sqrt2}\right)}{\tfrac{\sqrt3}{2}}\cdot\frac{dy}{dx} = 0" />,
-    reason: 'Substituting.',
+    reason: <>Substituting.</>,
   },
   {
     working: <Katex display tex="\frac{12/\sqrt2}{\sqrt3/2} = \frac{24}{\sqrt2\sqrt3} = \frac{24}{\sqrt6} = 4\sqrt6" />,
@@ -48,7 +48,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = -\frac{\pi}{6\cdot4\sqrt6} = -\frac{\pi}{24\sqrt6}" />,
-    reason: 'Isolating the derivative.',
+    reason: <>Isolating the derivative.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{\pi\sqrt6}{144}}" />,
@@ -62,18 +62,21 @@ export default function SpecialistQ4_2023Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-2">
         <p className="font-semibold text-gray-900 dark:text-white">Question 4 (3 marks)</p>
         <p>
-          Consider the relation <Katex tex="x\arcsin\left(y^2\right)=\pi" />. Use implicit
-          differentiation to find <Katex tex="\dfrac{dy}{dx}" /> at the point{' '}
-          <Katex tex="\left(6,\dfrac{1}{\sqrt2}\right)" />. Give your answer in the form{' '}
-          <Katex tex="-\dfrac{\pi\sqrt a}{b}" />, where <Katex tex="a,b\in\mathbb{Z}^+" />.
+          Consider the relation <Katex tex="x\arcsin\left(y^2\right)=\pi" />.
+          <br />
+          Use implicit differentiation to find <Katex tex="\dfrac{dy}{dx}" /> at the point{' '}
+          <Katex tex="\left(6,\dfrac{1}{\sqrt2}\right)" />.
+          <br />
+          Give your answer in the form{' '}
+          <Katex tex="-\dfrac{\pi\sqrt a}{b}" />, where <Katex tex="a,b\in Z^+" />.
         </p>
       </div>
 
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Two rules have to work together here, and the report says that is where it went
-            wrong for most students: the <em>product</em> rule on{' '}
+            Two rules have to work together here, and the report notes this was often not
+            done well: the <em>product</em> rule on{' '}
             <Katex tex="x\cdot\arcsin\left(y^2\right)" />, and a <em>double</em> chain rule
             inside it, because <Katex tex="y^2" /> is a function of <Katex tex="y" /> which is
             a function of <Katex tex="x" />.

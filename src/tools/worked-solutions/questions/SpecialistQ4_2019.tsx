@@ -9,7 +9,7 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 18, B: 8, C: 44, D: 17, E: 13 },
   answer: 'C',
-  comment: <>For <Katex tex="n\geq4" />, <Katex tex="n!" /> is a multiple of 4, so <Katex tex="i^{n!}=1" />.</>,
+  comment: <><Katex tex="n!" /> is a multiple of 4 for <Katex tex="n\geq4,\ n\in N" />.</>,
 }
 
 const ROWS: WorkingRow[] = [
@@ -19,15 +19,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="i^{1!}=i^1=i" />,
-    reason: 'First term.',
+    reason: <>First term: <Katex tex="1!=1" />.</>,
   },
   {
     working: <Katex display tex="i^{2!}=i^2=-1" />,
-    reason: 'Second term.',
+    reason: <>Second term: <Katex tex="2!=2" />.</>,
   },
   {
     working: <Katex display tex="i^{3!}=i^6=i^{6\bmod4}=i^2=-1" />,
-    reason: 'Third term.',
+    reason: <>Third term: <Katex tex="3!=6" />, and <Katex tex="6" /> leaves remainder <Katex tex="2" /> on division by <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="i^{n!}=1 \text{ for } n=4,5,\dots,100" />,
@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{i+(-1)+(-1)+97(1) = 95+i}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. The other options come from miscounting the terms equal to <Katex tex="1" /> (there are <Katex tex="97" />, for <Katex tex="n=4" /> to <Katex tex="100" />) or mis-evaluating the first three powers.</>,
   },
 ]
 

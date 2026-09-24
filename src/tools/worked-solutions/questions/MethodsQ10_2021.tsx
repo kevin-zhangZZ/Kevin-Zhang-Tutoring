@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{dom}(f+g) = \text{dom}(f)\cap\text{dom}(g)" />,
-    reason: <>A sum only exists where <em>both</em> pieces do — an intersection, not a union, which is what option C takes.</>,
+    reason: <>A sum only exists where <em>both</em> pieces do — the intersection of the two domains.</>,
   },
   {
     working: <Katex display tex="\boxed{\left[-2,\ \tfrac12\right]}" />,
@@ -36,8 +36,9 @@ export default function MethodsQ10_2021() {
       question={
         <p>
           Consider the functions <Katex tex="f(x)=\sqrt{x+2}" /> and{' '}
-          <Katex tex="g(x)=\sqrt{1-2x}" />, defined over their maximal domains. The maximal
-          domain of the function <Katex tex="h=f+g" /> is
+          <Katex tex="g(x)=\sqrt{1-2x}" />, defined over their maximal domains.
+          <br />
+          The maximal domain of the function <Katex tex="h=f+g" /> is
         </p>
       }
       options={[

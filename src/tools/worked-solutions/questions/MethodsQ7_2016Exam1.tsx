@@ -11,7 +11,7 @@ const EXAM_A: SAExaminerStats = {
   average: 1.1,
   comment: (
     <>
-      While a tree was not required to answer the question, it may have assisted some
+      While a tree was not a required to answer the question, it may have assisted some
       students to determine the two required cases. Many students stated probabilities
       greater than <Katex tex="1" />.
     </>
@@ -88,6 +88,7 @@ export default function MethodsQ7_2016Exam1() {
 
       <PartCard
         letter="a"
+        topic="Total Probability"
         marks={2}
         statement={
           <>
@@ -115,6 +116,7 @@ export default function MethodsQ7_2016Exam1() {
 
       <PartCard
         letter="b"
+        topic="Conditional Probability"
         marks={1}
         statement={
           <>

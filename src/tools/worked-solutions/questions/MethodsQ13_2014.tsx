@@ -43,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left[1,\ a^{\pi/2}\right]}" />,
-    reason: <>Option C. Options A, D and E all give <Katex tex="u\in\left(-\tfrac\pi2,\tfrac\pi2\right)" /> or similar, which straddles 0 — and <Katex tex="\cos(-u)=\cos(u)" /> then repeats values. Option B uses <Katex tex="\pi" /> as an <Katex tex="x" />-value, which has nothing to do with the base <Katex tex="a" />.</>,
+    reason: <>Matches option <b>C</b>. Options A, D and E all give <Katex tex="u\in\left(-\tfrac\pi2,\tfrac\pi2\right)" /> or similar, which straddles 0 — and <Katex tex="\cos(-u)=\cos(u)" /> then repeats values. Option B uses <Katex tex="\pi" /> as an <Katex tex="x" />-value, which has nothing to do with the base <Katex tex="a" />.</>,
   },
 ]
 

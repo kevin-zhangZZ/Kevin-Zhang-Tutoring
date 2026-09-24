@@ -9,20 +9,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 15, C: 68, D: 9 },
   answer: 'C',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(\text{at least one six in } n \text{ rolls}) = 1-\left(\frac56\right)^n" />,
-    reason: 'The complement of "no sixes at all", which is the only tractable route.',
+    reason: <>The complement of "no sixes at all", which is the only tractable route.</>,
   },
   {
     working: <Katex display tex="1-\left(\frac56\right)^n > 0.95 \implies \left(\frac56\right)^n < 0.05" />,
-    reason: 'Rearranging. Note the inequality flips direction.',
+    reason: <>Rearranging. Note the inequality flips direction.</>,
   },
   {
     working: <Katex display tex="n\log_e\!\left(\frac56\right) < \log_e(0.05)" />,
-    reason: 'Taking logs of both sides.',
+    reason: <>Taking logs of both sides.</>,
   },
   {
     working: <Katex display tex="n > \frac{\log_e(0.05)}{\log_e(5/6)} = \frac{-2.9957}{-0.18232} = 16.43" />,
@@ -30,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 17}" />,
-    reason: <>Option <b>C</b>: the smallest integer above <Katex tex="16.43" />. Check: <Katex tex="1-(5/6)^{16}=0.9457<0.95" /> but <Katex tex="1-(5/6)^{17}=0.9548>0.95" /> ✓.</>,
+    reason: <>Matches option <b>C</b>: the smallest integer above <Katex tex="16.43" />. Check: <Katex tex="1-(5/6)^{16}=0.9457<0.95" /> but <Katex tex="1-(5/6)^{17}=0.9548>0.95" /> ✓.</>,
   },
 ]
 

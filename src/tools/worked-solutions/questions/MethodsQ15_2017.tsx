@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 6\sqrt[3]{2}}" />,
-    reason: <>Option B, about <Katex tex="7.56" />. Sanity check against the picture: the rectangle sits inside a <Katex tex="2\times8" /> box, so an area under <Katex tex="16" /> is right, and option C is that whole box.</>,
+    reason: <>Matches option <b>B</b>, about <Katex tex="7.56" />. Sanity check against the picture: the rectangle sits inside a <Katex tex="2\times8" /> box, so an area under <Katex tex="16" /> is right, and option C is that whole box.</>,
   },
 ]
 

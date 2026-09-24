@@ -11,7 +11,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was well answered. Common errors were writing the interval as{' '}
-      <Katex tex="(-2,2)" />, as a set, or simply writing 2.
+      <Katex tex="(-2,2)" />, <Katex tex="[-2,2]" />, or simply just writing 2.
     </>
   ),
 }
@@ -30,9 +30,11 @@ const EXAM_C: SAExaminerStats = {
       Most students attempted to find more than one solution. Those who could find the
       initial reference angle generally knew they needed to find multiple angles. Some gave
       only specific solutions within a period. The construction of a general solution, while
-      attempted, was not done well. Common errors included writing <Katex tex="k\in R" /> or{' '}
-      <Katex tex="k\in R^+" /> rather than <Katex tex="k\in Z" />, or leaving{' '}
-      <Katex tex="k" /> uncategorised.
+      attempted, was not done well.
+      <br />
+      Common errors include: <Katex tex="+2k\pi" />, <Katex tex="k\in R" />,{' '}
+      <Katex tex="k\in R^+" />, <Katex tex="k\in Z^+" /> or lacked a correct number
+      categorisation of <Katex tex="k" />.
     </>
   ),
 }
@@ -44,11 +46,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-2 \le 2\sin(2x) \le 2" />,
-    reason: 'The amplitude 2 scales the output.',
+    reason: <>The amplitude 2 scales the output.</>,
   },
   {
     working: <Katex display tex="\boxed{[-2,\ 2]}" />,
-    reason: <>A closed interval: a sine <em>attains</em> its extremes, so round brackets are wrong.</>,
+    reason: <>A closed interval: a sine <em>attains</em> its extremes, so round brackets are wrong — the report lists <Katex tex="(-2,2)" /> and just "2" among the common errors.</>,
   },
 ]
 
@@ -59,18 +61,18 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\pi}" />,
-    reason: 'The amplitude 2 has no effect on the period.',
+    reason: <>The amplitude 2 has no effect on the period.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="2\sin(2x) = \sqrt3 \implies \sin(2x) = \frac{\sqrt3}{2}" />,
-    reason: 'Divide by the amplitude first.',
+    reason: <>Divide by the amplitude first.</>,
   },
   {
     working: <Katex display tex="\text{reference angle: } \sin^{-1}\!\left(\tfrac{\sqrt3}{2}\right) = \tfrac\pi3" />,
-    reason: 'An exact value worth knowing without a calculator.',
+    reason: <>An exact value worth knowing without a calculator.</>,
   },
   {
     working: <Katex display tex="2x = \tfrac\pi3+2k\pi \ \text{ or } \ 2x = \pi-\tfrac\pi3+2k\pi = \tfrac{2\pi}{3}+2k\pi, \quad k\in Z" />,
@@ -78,7 +80,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi" />,
-    reason: <>Dividing everything by 2 — including the <Katex tex="2k\pi" />, which becomes <Katex tex="k\pi" />.</>,
+    reason: <>Dividing everything by 2 — including the <Katex tex="2k\pi" />, which becomes <Katex tex="k\pi" />. The report lists leaving <Katex tex="+2k\pi" /> here among the common errors.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi, \quad k\in Z}" />,
@@ -98,6 +100,7 @@ export default function MethodsQ3_2021Exam1() {
 
       <PartCard
         letter="a"
+        topic="Range"
         marks={1}
         statement={<>State the range of <Katex tex="g" />.</>}
         examinerReport={EXAM_A}
@@ -107,6 +110,7 @@ export default function MethodsQ3_2021Exam1() {
 
       <PartCard
         letter="b"
+        topic="Period"
         marks={1}
         statement={<>State the period of <Katex tex="g" />.</>}
         examinerReport={EXAM_B}
@@ -116,6 +120,7 @@ export default function MethodsQ3_2021Exam1() {
 
       <PartCard
         letter="c"
+        topic="General Solution"
         marks={3}
         statement={
           <>

@@ -32,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_0^{1/\sqrt3} u^2\,du}" />,
-    reason: <>Matches option <b>E</b>. Option <b>A</b>, chosen by <Katex tex="14\%" />, has integrand <Katex tex="u^4+u^2" /> — that is what appears if <Katex tex="\sec^2=1+\tan^2" /> is expanded before substituting, and then <Katex tex="\sec^2(x)\,dx" /> is still replaced by <Katex tex="du" />, double-counting it. Option <b>C</b> loses a power.</>,
+    reason: <>Matches option <b>E</b>. Option <b>A</b>, chosen by <Katex tex="14\%" />, rewrites <Katex tex="\sec^2(x)" /> as <Katex tex="1+\tan^2(x)=1+u^2" /> but then also treats <Katex tex="dx" /> as <Katex tex="du" />, so the <Katex tex="\sec^2(x)" /> is used twice. Option <b>C</b> loses a power.</>,
   },
 ]
 

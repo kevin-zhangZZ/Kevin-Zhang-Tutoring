@@ -15,8 +15,7 @@ const EXAM_A: SAExaminerStats = {
   average: 0.8,
   comment: (
     <>
-      Similar triangles, or other, gives <Katex tex="r=\tfrac12h" />. A number of students
-      substituted <Katex tex="r=\tfrac12" /> to try to show the result.
+      A number of students substituted <Katex tex="r=\tfrac12" /> to try to show the result.
     </>
   ),
 }
@@ -53,7 +52,9 @@ const EXAM_D: SAExaminerStats = {
     <>
       Many students managed the early steps of working, but only a minority could find{' '}
       <Katex tex="x" /> correctly in terms of <Katex tex="t" />. Students who did not express{' '}
-      <Katex tex="\tfrac{dh}{dV}" /> as a complete square had more difficulty.
+      <Katex tex="\tfrac{dh}{dV}" /> as a complete square had more difficulty in ultimately
+      expressing <Katex tex="x" /> in terms of <Katex tex="t" />. A number of equivalent
+      technology-derived results for <Katex tex="x(t)" /> were also accepted.
     </>
   ),
 }
@@ -72,8 +73,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>The cone volume formula, with <Katex tex="r" /> written in terms of <Katex tex="h" />.</>,
   },
   {
-    working: <Katex display tex="= \tfrac13\pi\cdot\tfrac{h^2}{4}\cdot h = \frac{\pi}{12}h^3 \ \checkmark" />,
-    reason: <>As required.</>,
+    working: <Katex display tex="= \tfrac13\pi\cdot\tfrac{h^2}{4}\cdot h = \frac{\pi}{12}h^3 \quad \text{as required}" />,
+    reason: <>The mark is for the similar-triangles step and the substitution above, not for restating the given result.</>,
   },
 ]
 
@@ -190,6 +191,7 @@ export default function SpecialistQ4_2014Exam2() {
 
       <PartCard
         letter="a"
+        topic="Cone Volume"
         marks={1}
         statement={
           <>
@@ -205,6 +207,7 @@ export default function SpecialistQ4_2014Exam2() {
 
       <PartCard
         letter="b"
+        topic="Related Rates"
         marks={4}
         statement={
           <>
@@ -223,6 +226,7 @@ export default function SpecialistQ4_2014Exam2() {
 
       <PartCard
         letter="c"
+        topic="Time to Fill"
         marks={2}
         statement={
           <>
@@ -257,6 +261,7 @@ export default function SpecialistQ4_2014Exam2() {
 
       <PartCard
         letter="d"
+        topic="Separable DE"
         marks={5}
         statement={
           <>

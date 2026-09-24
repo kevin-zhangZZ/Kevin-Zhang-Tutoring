@@ -8,6 +8,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2025-mcq13-report-graph.png'
 import stemSrc from './meth-2025-mcq13-stem.png'
 import optASrc from './meth-2025-mcq13-optA.png'
 import optBSrc from './meth-2025-mcq13-optB.png'
@@ -25,9 +26,18 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'C',
   comment: (
     <>
-      Try sensible functions with similar characteristic curves, e.g. <Katex tex="g(x)=x(x+1)(x-1)(x-2)" /> and{' '}
-      <Katex tex="f(x)=-x" />, then sketch <Katex tex="y=(g\circ f)(x) = x(x-1)(x+1)(x+2)" />. Option C is the only
-      graph developed through these transformations.
+      <Katex tex="(g\circ f)(x)=g(f(x))=g(-kx)" />, where <Katex tex="k\in R^+" />
+      <br />
+      The graph of <Katex tex="g" /> has been reflected in the <Katex tex="y" />-axis and dilated
+      by a factor of <Katex tex="\dfrac{1}{k}" /> from the <Katex tex="y" />-axis. Option C is the
+      only graph developed through these transformations.
+      <br />
+      OR
+      <br />
+      Try sensible functions with similar characteristic curves for the rules; for example, let{' '}
+      <Katex tex="g(x)=x(x+1)(x-1)(x-2)" /> and <Katex tex="f(x)=-x" /> and then sketch{' '}
+      <Katex tex="y=(g\circ f)(x)=x(x-1)(x+1)(x+2)" />.
+      <img src={reportGraphSrc} alt="The report's graph of y = x(x − 1)(x + 1)(x + 2): a W-shaped quartic crossing the x-axis at −2, −1, 0 and 1" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
@@ -39,11 +49,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Since only the <i>shapes</i> are given (not formulas), pick concrete functions with matching shapes: let <Katex tex="g(x)=x(x+1)(x-1)(x-2)" /> (roots at <Katex tex="-1,0,1,2" />, a W-shape through the origin) and <Katex tex="f(x)=-x" /> (a line through the origin with negative gradient).</>,
-    reason: 'Standard technique for "identify the composite from a sketch" questions — the specific choice doesn\'t matter as long as the qualitative shape matches.',
+    reason: <>Standard technique for "identify the composite from a sketch" questions — the specific choice doesn't matter as long as the qualitative shape matches.</>,
   },
   {
     working: <Katex display tex="(g\circ f)(x) = g(-x) = (-x)(-x+1)(-x-1)(-x-2)" />,
-    reason: 'Substitute f(x) = −x into g.',
+    reason: <>Substitute f(x) = −x into g.</>,
   },
   {
     working: <Katex display tex="= (-x)(1-x)(x+1)(x+2)" />,

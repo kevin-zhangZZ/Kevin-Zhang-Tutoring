@@ -63,8 +63,7 @@ const EXAM_CIV: SAExaminerStats = {
   comment: (
     <>
       This question was answered reasonably well. A common incorrect answer was{' '}
-      <Katex tex="\left(\tfrac12,\tfrac{81}{16}\right)" /> — the local maximum rather than the
-      point where the tangents meet.
+      <Katex tex="\left(\tfrac12,\tfrac{81}{16}\right)" />.
     </>
   ),
 }
@@ -75,8 +74,8 @@ const EXAM_DI: SAExaminerStats = {
   comment: (
     <>
       Some students incorrectly translated to the left and down. Others had an incorrect value
-      for the vertical translation, such as <Katex tex="\tfrac{81}{16}" />. Exact answers were
-      required; <Katex tex="1.06" /> was sometimes seen.
+      for the vertical translation such as <Katex tex="\tfrac{81}{16}" />. Exact answers were
+      required. <Katex tex="1.06" /> was sometimes seen.
     </>
   ),
 }
@@ -86,8 +85,8 @@ const EXAM_DII: SAExaminerStats = {
   average: 0.3,
   comment: (
     <>
-      This question was not done well. The vertical translation could be completed at any
-      stage in the sequence; the other transformations had to be in the correct order.
+      This question was not done well. The vertical translation could be completed at any stage
+      in the sequence. The other transformations had to be in the correct order.
     </>
   ),
 }
@@ -95,7 +94,7 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = (x+1)(x+a)(x-2)(x-2a) = 0" />,
-    reason: 'Already fully factorised — the null factor law is all that is needed.',
+    reason: <>Already fully factorised — the null factor law is all that is needed.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -1,\ -a,\ 2,\ 2a}" />,
@@ -106,11 +105,11 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\{-1,\ -a,\ 2,\ 2a\}" />,
-    reason: 'Four roots are listed, so three intercepts means exactly one coincidence among them — and no more than one.',
+    reason: <>Four roots are listed, so three intercepts means exactly one coincidence among them — and no more than one.</>,
   },
   {
     working: <Katex display tex="-a = 2 \implies a = -2: \quad \{-1,\,2,\,2,\,-4\} \to \text{3 distinct}" />,
-    reason: 'Pair off the four roots two at a time and test each equation.',
+    reason: <>Pair off the four roots two at a time and test each equation.</>,
   },
   {
     working: <Katex display tex="-a = 2a \implies a = 0: \quad \{-1,\,0,\,2,\,0\} \to \text{3 distinct}" />,
@@ -118,7 +117,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2a = -1 \implies a = -\tfrac12: \quad \{-1,\,\tfrac12,\,2,\,-1\} \to \text{3 distinct}" />,
-    reason: 'Three found so far.',
+    reason: <>Three found so far.</>,
   },
   {
     working: <Katex display tex="-a = -1 \text{ or } 2a = 2 \implies a = 1: \quad \{-1,\,-1,\,2,\,2\} \to \text{2 distinct}" />,
@@ -133,15 +132,15 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Four intercepts} \iff \text{all four roots distinct}" />,
-    reason: 'So exclude every value of a that makes any two of them coincide.',
+    reason: <>So exclude every value of a that makes any two of them coincide.</>,
   },
   {
     working: <Katex display tex="\text{Excluded: } a = -2,\ -\tfrac12,\ 0 \ \text{(three roots)}; \quad a = 1 \ \text{(two roots)}" />,
-    reason: <>Part b.i. found the first three; <Katex tex="a=1" /> is the fourth, and it is the one most often forgotten.</>,
+    reason: <>Part b.i. found the first three; <Katex tex="a=1" /> is the fourth — the report notes some students did not exclude it.</>,
   },
   {
-    working: <Katex display tex="\boxed{a \in \mathbb{R}\setminus\left\{-2,\,-\tfrac12,\,0,\,1\right\}}" />,
-    reason: 'Every other value of a leaves four separate roots.',
+    working: <Katex display tex="\boxed{a \in R\setminus\left\{-2,\,-\tfrac12,\,0,\,1\right\}}" />,
+    reason: <>Every other value of a leaves four separate roots.</>,
   },
 ]
 
@@ -152,22 +151,22 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g'(x) = 2(x+1)(x-2)^2 + (x+1)^2\cdot 2(x-2)" />,
-    reason: 'Product rule, with the chain rule on each squared bracket.',
+    reason: <>Product rule, with the chain rule on each squared bracket.</>,
   },
   {
     working: <Katex display tex="= 2(x+1)(x-2)\bigl[(x-2)+(x+1)\bigr]" />,
-    reason: 'Taking out the common factor rather than expanding — the factorised form is what parts c.ii. and c.iii. need.',
+    reason: <>Taking out the common factor rather than expanding — the factorised form is what parts c.ii. and c.iii. need.</>,
   },
   {
     working: <Katex display tex="\boxed{g'(x) = 2(x+1)(x-2)(2x-1) = 4x^3-6x^2-6x+4}" />,
-    reason: 'Either form is accepted.',
+    reason: <>Either form is accepted.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = 0 \implies x = -1,\ 2,\ \tfrac12" />,
-    reason: 'The three stationary points, straight from the factorised derivative.',
+    reason: <>The three stationary points, straight from the factorised derivative.</>,
   },
   {
     working: <Katex display tex="g(-1) = 0, \quad g(2) = 0" />,
@@ -175,7 +174,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g\!\left(\tfrac12\right) = \left(\tfrac32\right)^2\left(-\tfrac32\right)^2 = \tfrac94\cdot\tfrac94" />,
-    reason: 'The middle stationary point is the only candidate left, so it is the local maximum.',
+    reason: <>The middle stationary point is the only candidate left, so it is the local maximum.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(\tfrac12,\ \tfrac{81}{16}\right)}" />,
@@ -190,7 +189,7 @@ const ROWS_CIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{sign of } g': \quad - \ \big|_{-1} \ + \ \big|_{1/2} \ - \ \big|_{2} \ +" />,
-    reason: 'The sign alternates across each simple zero, and the rightmost region is positive.',
+    reason: <>The sign alternates across each simple zero, and the rightmost region is positive.</>,
   },
   {
     working: <Katex display tex="\boxed{x\in\left(-1,\tfrac12\right)\cup(2,\infty)}" />,
@@ -201,7 +200,7 @@ const ROWS_CIII: WorkingRow[] = [
 const ROWS_CIV: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = (x+1)^2(x-2)^2 = \left[(x+1)(x-2)\right]^2 = \left(x^2-x-2\right)^2" />,
-    reason: 'Writing g as a perfect square exposes the symmetry.',
+    reason: <>Writing g as a perfect square exposes the symmetry.</>,
   },
   {
     working: <Katex display tex="x^2-x-2 = \left(x-\tfrac12\right)^2-\tfrac94 \implies g \text{ is symmetric about } x = \tfrac12" />,
@@ -217,7 +216,7 @@ const ROWS_CIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y - \tfrac94 = -3\sqrt3\left(x-\tfrac12-\tfrac{\sqrt3}{2}\right)" />,
-    reason: 'The tangent at the right-hand point, in point–gradient form.',
+    reason: <>The tangent at the right-hand point, in point–gradient form.</>,
   },
   {
     working: <Katex display tex="x = \tfrac12: \quad y = \tfrac94 + 3\sqrt3\cdot\tfrac{\sqrt3}{2} = \tfrac94+\tfrac92" />,
@@ -225,7 +224,7 @@ const ROWS_CIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(\tfrac12,\ \tfrac{27}{4}\right)}" />,
-    reason: <>Equivalently <Katex tex="(0.5,\,6.75)" />. The two given <Katex tex="x" />-values are in fact the points of inflection of <Katex tex="g" />, which is why the tangents are the steepest ones available.</>,
+    reason: <>Equivalently <Katex tex="(0.5,\,6.75)" />. The two given <Katex tex="x" />-values are in fact the points of inflection of <Katex tex="g" />, which is why the tangents there are the steepest between the two minima.</>,
   },
 ]
 
@@ -244,7 +243,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\tfrac12-0 = \tfrac12, \qquad \tfrac{81}{16}-4 = \tfrac{81}{16}-\tfrac{64}{16} = \tfrac{17}{16}" />,
-    reason: 'Subtract to get each translation. Both are positive, so both are in the positive direction.',
+    reason: <>Subtract to get each translation. Both are positive, so both are in the positive direction.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{translate } \tfrac12 \text{ unit right and } \tfrac{17}{16} \text{ units up}}" />,
@@ -271,7 +270,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\pm\tfrac32 \to -1 \text{ and } 2: \ \text{ right } \tfrac12; \qquad -\tfrac94 \to 0: \ \text{ up } \tfrac94" />,
-    reason: 'The midpoint moves from 0 to ½, and the common height from −9/4 to 0.',
+    reason: <>The midpoint moves from 0 to ½, and the common height from −9/4 to 0.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{dilate by } \tfrac{3\sqrt{10}}{10} \text{ from the } y\text{-axis, then } \tfrac12 \text{ right and } \tfrac94 \text{ up}}" />,
@@ -285,8 +284,8 @@ export default function MethodsQ1_2024Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">Question 1 (12 marks)</p>
         <p>
-          Consider the function <Katex tex="f:\mathbb{R}\to\mathbb{R}" />,{' '}
-          <Katex tex="f(x)=(x+1)(x+a)(x-2)(x-2a)" /> where <Katex tex="a\in\mathbb{R}" />.
+          Consider the function <Katex tex="f:R\to R" />,{' '}
+          <Katex tex="f(x)=(x+1)(x+a)(x-2)(x-2a)" /> where <Katex tex="a\in R" />.
         </p>
       </div>
 
@@ -311,6 +310,7 @@ export default function MethodsQ1_2024Exam2() {
 
       <PartCard
         letter="a"
+        topic="Solve Equation"
         marks={1}
         statement={
           <>
@@ -331,29 +331,31 @@ export default function MethodsQ1_2024Exam2() {
         </p>
       </div>
 
-      <PartCard letter="b.i" marks={2} statement={<>exactly three <Katex tex="x" />-intercepts.</>} examinerReport={EXAM_BI}>
+      <PartCard letter="b.i" topic="Intercepts" marks={2} statement={<>exactly three <Katex tex="x" />-intercepts.</>} examinerReport={EXAM_BI}>
         <WorkingTable rows={ROWS_BI} />
       </PartCard>
 
-      <PartCard letter="b.ii" marks={1} statement={<>exactly four <Katex tex="x" />-intercepts.</>} examinerReport={EXAM_BII}>
+      <PartCard letter="b.ii" topic="Intercepts" marks={1} statement={<>exactly four <Katex tex="x" />-intercepts.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">c.</p>
         <p>
-          Let <Katex tex="g" /> be the function <Katex tex="g:\mathbb{R}\to\mathbb{R}" />,{' '}
-          <Katex tex="g(x)=(x+1)^2(x-2)^2" />, which is the function <Katex tex="f" /> where{' '}
-          <Katex tex="a=1" />.
+          Let <Katex tex="g" /> be the function <Katex tex="g:R\to R" />,{' '}
+          <Katex tex="g(x)=(x+1)^2(x-2)^2" />,
+          <br />
+          which is the function <Katex tex="f" /> where <Katex tex="a=1" />.
         </p>
       </div>
 
-      <PartCard letter="c.i" marks={1} statement={<>Find <Katex tex="g'(x)" />.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Derivative" marks={1} statement={<>Find <Katex tex="g'(x)" />.</>} examinerReport={EXAM_CI}>
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
       <PartCard
         letter="c.ii"
+        topic="Local Maximum"
         marks={1}
         statement={<>Find the coordinates of the local maximum of <Katex tex="g" />.</>}
         examinerReport={EXAM_CII}
@@ -363,6 +365,7 @@ export default function MethodsQ1_2024Exam2() {
 
       <PartCard
         letter="c.iii"
+        topic="Increasing Interval"
         marks={1}
         statement={<>Find the values of <Katex tex="x" /> for which <Katex tex="g'(x)>0" />.</>}
         examinerReport={EXAM_CIII}
@@ -372,11 +375,15 @@ export default function MethodsQ1_2024Exam2() {
 
       <PartCard
         letter="c.iv"
+        topic="Tangent Lines"
         marks={2}
         statement={
           <>
             Consider the two tangent lines to the graph of <Katex tex="y=g(x)" /> at the points
-            where <Katex tex="x=\dfrac{-\sqrt3+1}{2}" /> and <Katex tex="x=\dfrac{\sqrt3+1}{2}" />.
+            where
+            <br />
+            <Katex tex="x=\dfrac{-\sqrt3+1}{2}" /> and <Katex tex="x=\dfrac{\sqrt3+1}{2}" />.
+            <br />
             Determine the coordinates of the point of intersection of these two tangent lines.
           </>
         }
@@ -388,19 +395,22 @@ export default function MethodsQ1_2024Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">d.</p>
         <p>
-          Let <Katex tex="g" /> remain as the function <Katex tex="g:\mathbb{R}\to\mathbb{R}" />,{' '}
-          <Katex tex="g(x)=(x+1)^2(x-2)^2" />, which is the function <Katex tex="f" /> where{' '}
-          <Katex tex="a=1" />.
+          Let <Katex tex="g" /> remain as the function <Katex tex="g:R\to R" />,{' '}
+          <Katex tex="g(x)=(x+1)^2(x-2)^2" />,
+          <br />
+          which is the function <Katex tex="f" /> where <Katex tex="a=1" />.
         </p>
         <p>
-          Let <Katex tex="h" /> be the function <Katex tex="h:\mathbb{R}\to\mathbb{R}" />,{' '}
-          <Katex tex="h(x)=(x+1)(x-1)(x+2)(x-2)" />, which is the function <Katex tex="f" />{' '}
-          where <Katex tex="a=-1" />.
+          Let <Katex tex="h" /> be the function <Katex tex="h:R\to R" />,{' '}
+          <Katex tex="h(x)=(x+1)(x-1)(x+2)(x-2)" />,
+          <br />
+          which is the function <Katex tex="f" /> where <Katex tex="a=-1" />.
         </p>
       </div>
 
       <PartCard
         letter="d.i"
+        topic="Transformations"
         marks={1}
         statement={
           <>
@@ -416,6 +426,7 @@ export default function MethodsQ1_2024Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Transformations"
         marks={2}
         statement={
           <>

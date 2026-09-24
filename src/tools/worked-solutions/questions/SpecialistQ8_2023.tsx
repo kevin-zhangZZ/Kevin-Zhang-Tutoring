@@ -10,7 +10,9 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 37, B: 6, C: 13, D: 14, E: 29 },
   answer: 'A',
   comment: (
-    <Katex tex="\frac{dQ}{dt} = 15(0) - 20\cdot\frac{Q}{8000-5t} = \frac{-20Q}{8000-5t} = \frac{4Q}{t-1600}" />
+    <>
+      <Katex tex="\tfrac{dQ}{dt}=15\times0-20\times\tfrac{Q}{8000-5t}=\tfrac{-20Q}{8000-5t}=\tfrac{4Q}{t-1600}" />
+    </>
   ),
 }
 
@@ -21,7 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dQ}{dt} = (\text{rate in})(\text{conc. in}) - (\text{rate out})(\text{conc. out})" />,
-    reason: 'Standard mixing-problem setup.',
+    reason: <>Standard mixing-problem setup.</>,
   },
   {
     working: <Katex display tex="\frac{dQ}{dt} = 15(0) - 20\cdot\frac{Q}{V(t)}" />,
@@ -29,15 +31,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dQ}{dt} = \frac{-20Q}{8000-5t}" />,
-    reason: 'Substitute V(t).',
+    reason: <>Substitute V(t).</>,
   },
   {
     working: <Katex display tex="\frac{-20Q}{8000-5t} = \frac{-20Q}{5(1600-t)} = \frac{-4Q}{1600-t}" />,
-    reason: 'Factor out 5 from the denominator and simplify.',
+    reason: <>Factor out 5 from the denominator and simplify.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dQ}{dt} = \frac{4Q}{t-1600}}" />,
-    reason: <>Flip the sign of numerator and denominator together — matches option <b>A</b>.</>,
+    reason: <>Flip the sign of numerator and denominator together. Matches option <b>A</b>; option <b>E</b> has the sign reversed.</>,
   },
 ]
 
@@ -59,7 +61,7 @@ export default function SpecialistQ8_2023() {
       }
       options={[
         { letter: 'A', content: <Katex tex="\dfrac{dQ}{dt}=\dfrac{4Q}{t-1600}" />, isAnswer: true },
-        { letter: 'B', content: <Katex tex="\dfrac{dQ}{dt}=\dfrac{Q}{400}" /> },
+        { letter: 'B', content: <Katex tex="\dfrac{dQ}{dt}=\dfrac{-Q}{400}" /> },
         { letter: 'C', content: <Katex tex="\dfrac{dQ}{dt}=\dfrac{3Q}{t-1600}" /> },
         { letter: 'D', content: <Katex tex="\dfrac{dQ}{dt}=\dfrac{3Q}{1600-t}" /> },
         { letter: 'E', content: <Katex tex="\dfrac{dQ}{dt}=\dfrac{4Q}{1600-t}" /> },

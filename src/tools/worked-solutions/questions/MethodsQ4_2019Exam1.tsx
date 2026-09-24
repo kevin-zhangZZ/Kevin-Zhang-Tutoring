@@ -8,7 +8,7 @@
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { functionToPath } from '../graphUtils'
-import fAxesSrc from './meth-2019exam1-q4b-f-axes.png'
+import fAxesSrc from './meth-2019e1-q4b-f-axes.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [23, 29, 48],
@@ -16,7 +16,7 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       Most students were able to rearrange to form a correct expression. Some students did not
-      identify the correct reference angle, and many did not account for the restricted
+      identify the correct reference angle. Many students did not account for the restricted
       domain.
     </>
   ),
@@ -27,10 +27,12 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      Students who were successful made a connection between part (a) and what was expected
-      in part (b). Most students generated a horizontally reflected version of the given
-      graph; however, some dilated it or did not correctly reflect every section. Some
-      students forgot the translation, or did not label the points specified by the question.
+      Students who were successful with this question made a connection between part a. and
+      what was expected in part b. Most students were able to generate a horizontally
+      reflected version of the given graph; however, some students dilated it or did not
+      correctly reflect it in every section. Some students forgot the translation or did not
+      label the points specified by the question. Students are advised to practise sketching
+      graphs, with attention to curvature.
     </>
   ),
 }
@@ -38,9 +40,11 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="1-\cos\!\left(\tfrac{x}{2}\right) = \cos\!\left(\tfrac{x}{2}\right)" />,
+    reason: <>Collect the cosines on one side.</>,
   },
   {
     working: <Katex display tex="1 = 2\cos\!\left(\tfrac{x}{2}\right) \;\implies\; \cos\!\left(\tfrac{x}{2}\right) = \tfrac12" />,
+    reason: <>Reference angle <Katex tex="\tfrac{\pi}{3}" /> — the report notes some students did not identify it correctly.</>,
   },
   {
     working: <Katex display tex="x\in[-2\pi,\pi] \;\implies\; \tfrac{x}{2}\in[-\pi,\tfrac{\pi}{2}]" />,
@@ -52,6 +56,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = -\dfrac{2\pi}{3},\ \dfrac{2\pi}{3}}" />,
+    reason: <>Doubling each value of <Katex tex="\tfrac x2" />. Both lie in <Katex tex="[-2\pi,\pi]" />, and there are no others — the report says many students did not account for the restricted domain.</>,
   },
 ]
 
@@ -65,9 +70,9 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="g(x)=1-f(x)" /> is <Katex tex="f" /> reflected in the <Katex tex="x" />-axis
-        then translated <Katex tex="1" /> unit up (orange, overlaid on the real exam figure).
+        then translated <Katex tex="1" /> unit up (orange, drawn over the real exam figure).
         Endpoints: <Katex tex="g(-2\pi)=1-(-1)=2" /> and <Katex tex="g(\pi)=1-0=1" />.
-        Intersections with <Katex tex="f" /> (from part (a), where <Katex tex="f=\tfrac12" />):{' '}
+        Intersections with <Katex tex="f" /> (from part a., where <Katex tex="f=\tfrac12" />):{' '}
         <Katex tex="\left(-\tfrac{2\pi}{3},\ \tfrac12\right)" /> and{' '}
         <Katex tex="\left(\tfrac{2\pi}{3},\ \tfrac12\right)" />.
       </>
@@ -84,6 +89,7 @@ export default function MethodsQ4_2019Exam1() {
 
       <PartCard
         letter="a"
+        topic="Trig Equation"
         marks={2}
         statement={<>Solve <Katex tex="1-\cos\!\left(\tfrac{x}{2}\right) = \cos\!\left(\tfrac{x}{2}\right)" /> for <Katex tex="x\in[-2\pi,\pi]" />.</>}
         examinerReport={EXAM_A}
@@ -93,11 +99,12 @@ export default function MethodsQ4_2019Exam1() {
 
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={2}
         statement={
           <>
             <p className="mb-2">
-              The function <Katex tex="f:[-2\pi,\pi]\to\mathbb{R},\ f(x)=\cos\!\left(\tfrac{x}{2}\right)" /> is shown on the axes below.
+              The function <Katex tex="f:[-2\pi,\pi]\to R,\ f(x)=\cos\!\left(\tfrac{x}{2}\right)" /> is shown on the axes below.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
               <img
@@ -107,7 +114,7 @@ export default function MethodsQ4_2019Exam1() {
               />
             </div>
             <p>
-              Let <Katex tex="g:[-2\pi,\pi]\to\mathbb{R},\ g(x)=1-f(x)" />. Sketch the graph of{' '}
+              Let <Katex tex="g:[-2\pi,\pi]\to R,\ g(x)=1-f(x)" />. Sketch the graph of{' '}
               <Katex tex="g" /> on the axes above. Label all points of intersection of the
               graphs of <Katex tex="f" /> and <Katex tex="g" />, and the endpoints of{' '}
               <Katex tex="g" />, with their coordinates.
@@ -126,7 +133,8 @@ export default function MethodsQ4_2019Exam1() {
 // *real* cropped VCAA figure, which already has f(x)=cos(x/2) drawn on it — rather than
 // redrawing f itself. Pixel calibration (ox, oy, scaleX, scaleY) was measured directly off
 // the real image's own gridlines (10 vertical gridlines at intervals of π/3, spanning
-// -2π to π; 5 horizontal gridlines at intervals of 1, spanning -2 to 2).
+// -2π to π; 5 horizontal gridlines at intervals of 1, spanning -2 to 2), and re-checked
+// against a PIL composite: the curve meets f exactly at x = ±2π/3.
 function GOverlay() {
   const ox = 1406.5
   const oy = 472.5
@@ -148,6 +156,10 @@ function GOverlay() {
         <circle cx={toSvgX(Math.PI)} cy={toSvgY(1)} r={9} className="fill-orange-500" />
         <circle cx={toSvgX((-2 * Math.PI) / 3)} cy={toSvgY(0.5)} r={9} fill="#16a34a" />
         <circle cx={toSvgX((2 * Math.PI) / 3)} cy={toSvgY(0.5)} r={9} fill="#16a34a" />
+        <text x={toSvgX(-2 * Math.PI) + 20} y={toSvgY(2) - 22} fontSize={60} fill="#c2410c" stroke="white" strokeWidth={10} paintOrder="stroke">(−2π, 2)</text>
+        <text x={toSvgX(Math.PI)} y={toSvgY(1) - 40} fontSize={60} textAnchor="end" fill="#c2410c" stroke="white" strokeWidth={10} paintOrder="stroke">(π, 1)</text>
+        <text x={toSvgX((-2 * Math.PI) / 3) - 40} y={toSvgY(0.5) + 130} fontSize={60} textAnchor="start" fill="#15803d" stroke="white" strokeWidth={10} paintOrder="stroke">(−2π/3, 1/2)</text>
+        <text x={toSvgX((2 * Math.PI) / 3) + 40} y={toSvgY(0.5) + 130} fontSize={60} textAnchor="end" fill="#15803d" stroke="white" strokeWidth={10} paintOrder="stroke">(2π/3, 1/2)</text>
       </svg>
     </div>
   )

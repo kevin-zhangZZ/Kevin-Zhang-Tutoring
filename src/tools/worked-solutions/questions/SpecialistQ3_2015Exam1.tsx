@@ -16,8 +16,9 @@ const EXAM: SAExaminerStats = {
       incorrect antiderivative vector, forgetting to include a constant (vector) of
       integration, finding the incorrect constant of integration, or a sign error in
       consolidating the vector answer. A large proportion of these errors were caused by
-      incorrect use (or lack) of brackets. Several students left the displacement vector as
-      the answer. Some assumed that the distance from the origin was given by the modulus of{' '}
+      incorrect use (or lack) of brackets. Some students added <Katex tex="5t" /> to 2 and got{' '}
+      <Katex tex="7t" />. Several students left the displacement vector as the answer, and
+      many made arithmetic errors in calculating the modulus of the vector. Some assumed that the distance from the origin was given by the modulus of{' '}
       <Katex tex="\underset{\sim}{r}(2)-\underset{\sim}{r}(0)" />. Some were unable to
       recognise that <Katex tex="\sqrt{169}=13" />.
     </>
@@ -31,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{r}(t) = (2t^2-3t)\underset{\sim}{i}+t^2\underset{\sim}{j}-5t\,\underset{\sim}{k}+\underset{\sim}{c}" />,
-    reason: <>The constant of integration is a <em>vector</em>, not a scalar — that is the step the report flags most often.</>,
+    reason: <>The constant of integration is a <em>vector</em>, not a scalar — forgetting it, or finding it wrongly, is among the report's common errors.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r}(0) = \underset{\sim}{c} = \underset{\sim}{i}-2\underset{\sim}{k}" />,
@@ -69,6 +70,8 @@ export default function SpecialistQ3_2015Exam1() {
           <Katex tex="t=2" />, given that{' '}
           <Katex tex="\underset{\sim}{r}(0)=\underset{\sim}{i}-2\underset{\sim}{k}" />.
         </p>
+      </Background>
+      <Background>
         <p>
           Two traps sit between the velocity and the answer: the constant of integration is a
           vector, and the question asks for a distance from the <em>origin</em>, so the final

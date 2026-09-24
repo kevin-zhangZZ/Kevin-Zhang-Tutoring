@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = 2 \implies \text{period} = \frac{2\pi}{2}" />,
-    reason: 'Reading the coefficient inside the cosine.',
+    reason: <>Reading the coefficient inside the cosine.</>,
   },
   {
     working: <Katex display tex="\boxed{\pi}" />,

@@ -43,7 +43,9 @@ const EXAM_C: SAExaminerStats = {
       the volume of a solid of revolution correctly. Many students made algebraic or
       arithmetic errors. A small number of students realised that the volume required could
       be found by finding the volume obtained by rotating the region bounded by the
-      hyperbola.
+      hyperbola, the <Katex tex="x" />-axis and the lines <Katex tex="x=1" /> and{' '}
+      <Katex tex="x=3" /> about the <Katex tex="x" />-axis and then subtracting the volume of
+      an appropriate cone.
     </>
   ),
 }
@@ -62,8 +64,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <><Katex tex="\left(\tfrac{\sqrt2}{2}\right)^2=\tfrac12" />, so squaring <Katex tex="y" /> and multiplying by <Katex tex="2" /> recovers <Katex tex="\tan^2(t)" />.</>,
   },
   {
-    working: <Katex display tex="x^2 - 2y^2 = \sec^2(t)-\tan^2(t) = 1 \ \checkmark" />,
-    reason: <>Substituting both into the identity. On a "show that", write the final line explicitly rather than stopping at the substitution.</>,
+    working: <Katex display tex="\boxed{x^2 - 2y^2 = \sec^2(t)-\tan^2(t) = 1}" />,
+    reason: <>As required, substituting both into the identity. On a "show that", write the final line explicitly rather than stopping at the substitution.</>,
   },
 ]
 
@@ -97,7 +99,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V = \pi\int_1^3\left(\frac{x^2-1}{2} - (x-1)^2\right)dx" />,
-    reason: <>From part (a), <Katex tex="x^2-2y^2=1" /> rearranges to <Katex tex="y^2=\tfrac{x^2-1}{2}" /> — there is no need to solve for <Katex tex="y" /> itself, since only <Katex tex="y^2" /> appears.</>,
+    reason: <>From part a., <Katex tex="x^2-2y^2=1" /> rearranges to <Katex tex="y^2=\tfrac{x^2-1}{2}" /> — there is no need to solve for <Katex tex="y" /> itself, since only <Katex tex="y^2" /> appears.</>,
   },
   {
     working: <Katex display tex="\frac{x^2-1}{2}-(x-1)^2 = \frac{x^2-1-2x^2+4x-2}{2} = \frac{-x^2+4x-3}{2}" />,
@@ -113,7 +115,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = \frac{2\pi}{3}}" />,
-    reason: <>Positive, as any volume must be. (<Katex tex="\approx2.09" /> cubic units.) Only <Katex tex="19\%" /> of the state scored both marks.</>,
+    reason: <>Positive, as any volume must be. (<Katex tex="\approx2.09" /> cubic units.) The report mentions another route: rotate the region under the hyperbola from <Katex tex="x=1" /> to <Katex tex="x=3" />, then subtract the cone made by the line. Only <Katex tex="19\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -124,30 +126,29 @@ export default function SpecialistQ9_2018Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 9 (5 marks)</p>
         <p>
           A curve is specified parametrically by{' '}
-          <Katex tex="\underset{\sim}{r}(t)=\sec(t)\,\underset{\sim}{i}+\dfrac{\sqrt2}{2}\tan(t)\,\underset{\sim}{j},\ t\in\mathbb{R}" />.
+          <Katex tex="\underset{\sim}{r}(t)=\sec(t)\,\underset{\sim}{i}+\dfrac{\sqrt2}{2}\tan(t)\,\underset{\sim}{j},\ t\in R" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Show that the cartesian equation of the curve is <Katex tex="x^2-2y^2=1" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Cartesian Equation" marks={2} statement={<>Show that the cartesian equation of the curve is <Katex tex="x^2-2y^2=1" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={1} statement={<>Find the <Katex tex="x" />-coordinates of the points of intersection of the curve <Katex tex="x^2-2y^2=1" /> and the line <Katex tex="y=x-1" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Intersections" marks={1} statement={<>Find the <Katex tex="x" />-coordinates of the points of intersection of the curve <Katex tex="x^2-2y^2=1" /> and the line <Katex tex="y=x-1" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Find the volume of the solid of revolution formed when the region bounded by the curve and the line is rotated about the <Katex tex="x" />-axis.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Volume of Revolution" marks={2} statement={<>Find the volume of the solid of revolution formed when the region bounded by the curve and the line is rotated about the <Katex tex="x" />-axis.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
             Two things make this manageable. First, the formula needs{' '}
-            <Katex tex="y^2" />, not <Katex tex="y" />, and part (a) hands you{' '}
+            <Katex tex="y^2" />, not <Katex tex="y" />, and part a. hands you{' '}
             <Katex tex="y^2=\tfrac{x^2-1}{2}" /> directly — no square roots ever appear.
           </p>
           <p>
             Second, decide which curve is <em>outer</em> before writing the integral. Test one
             interior point. If the answer comes out negative, the order was wrong: a volume
-            cannot be negative, so that is a free check the report suggests students did not
-            always make.
+            cannot be negative, so that is a free check.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />

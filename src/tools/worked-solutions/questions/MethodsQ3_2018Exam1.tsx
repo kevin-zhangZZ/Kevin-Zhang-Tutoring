@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import sketchSrc from './meth-2018exam1-q3-cosine.png'
+import sketchSrc from './meth-2018e1-q3-cosine.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [11, 17, 72],
@@ -15,8 +15,8 @@ const EXAM_A: SAExaminerStats = {
   comment: (
     <>
       This question was well answered. However, some students gave solutions beyond the given
-      domain or incorrect values (confusing <Katex tex="\tfrac{\pi}{3}" /> with{' '}
-      <Katex tex="\tfrac{\pi}{6}" /> as the reference angle).
+      domain or incorrect values (confusing <Katex tex="\tfrac{\pi}{6}" /> with{' '}
+      <Katex tex="\tfrac{\pi}{3}" /> as the reference angle).
     </>
   ),
 }
@@ -53,7 +53,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = \frac{2\pi}{3} \ \text{ or } \ x = \frac{4\pi}{3}}" />,
-    reason: <>Both lie inside the required <Katex tex="0\le x\le 2\pi" />, and there are no others — the report notes marks lost to extra solutions outside the domain.</>,
+    reason: <>Both lie inside the required <Katex tex="0\le x\le 2\pi" />, and there are no others — the report notes some students gave solutions beyond the given domain.</>,
   },
 ]
 
@@ -67,8 +67,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The local minimum, the third labelled point. Amplitude <Katex tex="2" /> about the line <Katex tex="y=1" /> puts the range at <Katex tex="[-1,3]" />.</>,
   },
   {
-    working: <Katex display tex="x\text{-intercepts at } x=\frac{2\pi}{3},\ \frac{4\pi}{3} \quad \text{(part a)}" />,
-    reason: <>Part (a) is not a separate question — it hands you exactly where the curve crosses the axis. The report singles out students who connected the two parts as the ones who did well.</>,
+    working: <Katex display tex="x\text{-intercepts at } x=\frac{2\pi}{3},\ \frac{4\pi}{3} \quad \text{(part a.)}" />,
+    reason: <>Part a. is not a separate question — it hands you exactly where the curve crosses the axis. The report singles out students who connected the two parts as the ones who did well.</>,
   },
   {
     working: (
@@ -86,12 +86,13 @@ export default function MethodsQ3_2018Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 3 (5 marks)</p>
         <p>
-          Let <Katex tex="f:[0,2\pi]\to\mathbb{R},\ f(x)=2\cos(x)+1" />.
+          Let <Katex tex="f:[0,2\pi]\to R,\ f(x)=2\cos(x)+1" />.
         </p>
       </div>
 
       <PartCard
         letter="a"
+        topic="Trig Equation"
         marks={2}
         statement={<>Solve the equation <Katex tex="2\cos(x)+1=0" /> for <Katex tex="0\le x\le 2\pi" />.</>}
         examinerReport={EXAM_A}
@@ -110,6 +111,7 @@ export default function MethodsQ3_2018Exam1() {
 
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={3}
         statement={<>Sketch the graph of the function <Katex tex="f" /> on the axes below. Label the endpoints and local minimum point with their coordinates.</>}
         examinerReport={EXAM_B}

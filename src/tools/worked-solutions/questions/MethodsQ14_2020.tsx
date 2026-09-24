@@ -10,6 +10,19 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 44, B: 8, C: 18, D: 18, E: 11 },
   answer: 'A',
   noAnswer: 1,
+  comment: (
+    <>
+      <Katex tex="X\sim\mathrm{N}\left(2\sigma,\sigma^2\right)" />
+      <br />
+      <Katex tex="\Pr(X>5.2)=0.9" />
+      <br />
+      <Katex tex="\Pr\left(Z<\dfrac{5.2-2\sigma}{\sigma}\right)=0.1" />
+      <br />
+      Solve <Katex tex="\dfrac{5.2-2\sigma}{\sigma}=-1.281\ldots" />
+      <br />
+      <Katex tex="\sigma=7.238" /> correct to three decimal places
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -39,7 +52,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 7.238}" />,
-    reason: <>Option A. Using <Katex tex="z=+1.2816" /> instead gives <Katex tex="1.585" />, option D — the sign of <Katex tex="z" /> is the whole question.</>,
+    reason: <>Matches option <b>A</b>. Using <Katex tex="z=+1.2816" /> instead gives <Katex tex="1.585" />, option <b>D</b> — the sign of <Katex tex="z" /> is the whole question. Option <b>B</b>, <Katex tex="14.476" />, is the mean <Katex tex="2\sigma" />, not <Katex tex="\sigma" />.</>,
   },
 ]
 
@@ -48,9 +61,9 @@ export default function MethodsQ14_2020() {
     <MCQShell
       question={
         <>
+          <p className="mb-2">The random variable <Katex tex="X" /> is normally distributed.</p>
           <p className="mb-2">
-            The random variable <Katex tex="X" /> is normally distributed. The mean of{' '}
-            <Katex tex="X" /> is twice the standard deviation of <Katex tex="X" />.
+            The mean of <Katex tex="X" /> is twice the standard deviation of <Katex tex="X" />.
           </p>
           <p>
             If <Katex tex="\Pr(X>5.2)=0.9" />, then the standard deviation of{' '}

@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k\in(-1,\infty)}" />,
-    reason: <>Matches option <b>B</b>. The round bracket does the excluding; option <b>E</b>, <Katex tex="[-1,\infty)" />, is the same set but wrongly includes the one-solution case.</>,
+    reason: <>Matches option <b>B</b>. The round bracket does the excluding; option <b>E</b>, <Katex tex="[-1,\infty)" />, wrongly includes <Katex tex="k=-1" />, the one-solution case. Option <b>C</b> (<Katex tex="15\%" />) has the inequality the wrong way round — what comes of taking <Katex tex="c=+k" />.</>,
   },
 ]
 

@@ -13,8 +13,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <Katex tex="\mathrm{E}(\bar X)=20" />,{' '}
-      <Katex tex="\mathrm{sd}(\bar X)=\tfrac{2}{\sqrt{25}}=\tfrac25" />.
+      <Katex tex="\mathrm{E}(\bar X)=20,\ \mathrm{sd}(\bar X)=\tfrac{2}{\sqrt{25}}=\tfrac25" />
     </>
   ),
 }
@@ -26,7 +25,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{E}(\bar X) = 20, \qquad \mathrm{sd}(\bar X) = \frac{2}{\sqrt{25}} = \frac25" />,
-    reason: <>Averaging leaves the centre alone and shrinks the spread by <Katex tex="\sqrt{n}" />. Using <Katex tex="2" /> here instead gives option C.</>,
+    reason: <>Averaging leaves the centre alone and shrinks the spread by <Katex tex="\sqrt{n}" />.</>,
   },
   {
     working: <Katex display tex="\Pr(\bar X>19.3) = \Pr\!\left(Z>\frac{19.3-20}{0.4}\right) = \Pr(Z>-1.75)" />,
@@ -38,7 +37,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.9599}" />,
-    reason: <>Option E. Sensible: <Katex tex="19.3" /> is below the mean, so the probability of exceeding it must be well over a half — options A and B fail that check on sight.</>,
+    reason: <>Matches option <b>E</b>. Option A is the complement, <Katex tex="\Pr(\bar X<19.3)" />. Sensible: <Katex tex="19.3" /> is below the mean, so the probability of exceeding it must be well over a half — options A and B fail that check on sight.</>,
   },
 ]
 

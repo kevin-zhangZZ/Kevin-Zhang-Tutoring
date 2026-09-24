@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{[-\pi,\ 0]}" />,
-    reason: <>Option A. Option B is the range of <Katex tex="\arcsin" /> on its own, and option C is not a set of numbers at all — its endpoints still contain <Katex tex="x" />.</>,
+    reason: <>Matches option <b>A</b>. Option B is the range of <Katex tex="\arcsin" /> on its own, and option C is not a set of numbers at all — its endpoints still contain <Katex tex="x" />.</>,
   },
 ]
 

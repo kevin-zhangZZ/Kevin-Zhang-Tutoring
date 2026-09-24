@@ -43,7 +43,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \frac{14\pi}{3}}" />,
-    reason: <>Option B. Check it lies in <Katex tex="[3\pi,5\pi]=[9.42,15.71]" />: <Katex tex="\tfrac{14\pi}{3}\approx14.66" /> ✓.</>,
+    reason: <>Matches option <b>B</b>. Check it lies in <Katex tex="[3\pi,5\pi]=[9.42,15.71]" />: <Katex tex="\tfrac{14\pi}{3}\approx14.66" /> ✓.</>,
   },
 ]
 

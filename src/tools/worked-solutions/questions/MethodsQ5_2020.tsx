@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 5, \quad y = -3}" />,
-    reason: <>Option E. Option D has the sign of the horizontal asymptote wrong — the most common slip on this question.</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b>, the most popular wrong answer, has the sign of the horizontal asymptote wrong; <b>A</b> and <b>B</b> misplace the vertical asymptote, and <b>C</b> uses the zero of the numerator instead of the denominator.</>,
   },
 ]
 

@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{N}\!\left(1.26,\ 0.01^2\right)" />,
-    reason: 'One bottle.',
+    reason: <>One bottle.</>,
   },
   {
     working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(1.26,\ \frac{0.01^2}{6}\right) \implies \mathrm{sd}\!\left(\bar X\right) = \frac{0.01}{\sqrt6}" />,
@@ -37,8 +37,9 @@ export default function SpecialistQ17_2021() {
         <p>
           Bottles of a particular brand of soft drink are labelled as having a volume of 1.25
           L. The machines filling the bottles deliver a volume that is normally distributed
-          with a mean of 1.26 L and a standard deviation of 0.01 L. The probability that six
-          bottles have a mean volume that is at least the labelled volume of 1.25 L is
+          with a mean of 1.26 L and a standard deviation of 0.01 L.
+          <br />
+          The probability that six bottles have a mean volume that is at least the labelled volume of 1.25 L is
           closest to
         </p>
       }

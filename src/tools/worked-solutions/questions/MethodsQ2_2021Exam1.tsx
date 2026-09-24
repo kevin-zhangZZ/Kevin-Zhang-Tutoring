@@ -14,7 +14,7 @@ const EXAM: SAExaminerStats = {
       constant could not complete the question. It is worth recognising that this question is
       not the usual "find an antiderivative" question and that the constant of integration,{' '}
       <Katex tex="c" />, was required to identify the correct antiderivative. Students need
-      to take care with writing fractions.
+      to take care with writing fractions; <Katex tex="1/4x^4+1/2x^2" /> can be misinterpreted.
     </>
   ),
 }
@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = \frac{x^4}{4}+\frac{x^2}{2}+c" />,
-    reason: 'The constant is the whole point of this question — without it there is nothing for the given condition to fix.',
+    reason: <>The constant is the whole point of this question — without it there is nothing for the given condition to fix.</>,
   },
   {
     working: <Katex display tex="f(1) = \frac14+\frac12+c = 2" />,
@@ -38,7 +38,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = \frac{x^4}{4}+\frac{x^2}{2}+\frac54}" />,
-    reason: <>Check: <Katex tex="f(1)=\tfrac14+\tfrac12+\tfrac54=2" /> ✓. Write the fractions clearly — the report warns that <Katex tex="\tfrac{x^4}{4}" /> squashed up can read as <Katex tex="x^{4/4}" />.</>,
+    reason: <>Check: <Katex tex="f(1)=\tfrac14+\tfrac12+\tfrac54=2" /> ✓. Write the fractions clearly — the report warns that <Katex tex="1/4x^4+1/2x^2" /> can be misinterpreted (as <Katex tex="\tfrac{1}{4x^4}" />, for instance).</>,
   },
 ]
 
@@ -48,7 +48,9 @@ export default function MethodsQ2_2021Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (2 marks)</p>
         <p>
-          Let <Katex tex="f'(x)=x^3+x" />. Find <Katex tex="f(x)" /> given that{' '}
+          Let <Katex tex="f'(x)=x^3+x" />.
+          <br />
+          Find <Katex tex="f(x)" /> given that{' '}
           <Katex tex="f(1)=2" />.
         </p>
       </div>

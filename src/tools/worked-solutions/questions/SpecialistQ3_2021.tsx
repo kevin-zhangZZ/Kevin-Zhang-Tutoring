@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y \text{ is largest when the denominator is smallest}" />,
-    reason: 'A positive reciprocal turns a maximisation into a minimisation.',
+    reason: <>A positive reciprocal turns a maximisation into a minimisation.</>,
   },
   {
     working: <Katex display tex="\bigl(\cos(ax)+1\bigr)^2 \ge 0, \text{ with equality when } \cos(ax) = -1" />,

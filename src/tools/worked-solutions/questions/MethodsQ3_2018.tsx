@@ -13,9 +13,11 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="f:[a,b)\to\mathbb{R},\ f(x)=\tfrac{1}{x}" />,{' '}
-      <Katex tex="f(a)=\tfrac{1}{a}" />, <Katex tex="f(b)=\tfrac{1}{b}" />,{' '}
-      <Katex tex="f(a)>f(b)" />. Range <Katex tex="\left(\tfrac{1}{b},\ \tfrac{1}{a}\right]" />.
+      <Katex tex="f:[a,b)\to R,\ f(x)=\dfrac{1}{x}" />,
+      <br />
+      <Katex tex="f(a)=\dfrac{1}{a},\ f(b)=\dfrac{1}{b},\ f(a)>f(b)" />,
+      <br />
+      Range <Katex tex="\left(\dfrac{1}{b},\ \dfrac{1}{a}\right]" />
     </>
   ),
 }
@@ -38,16 +40,16 @@ const ROWS: WorkingRow[] = [
     reason: <>The domain excludes its right endpoint. The outputs get arbitrarily close to <Katex tex="\tfrac1b" /> without ever reaching it — the range is <em>open</em> at that end.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Range} = \left(\frac1b,\ \frac1a\right]}" />,
-    reason: <>Matches option <b>D</b>. Both features have to be right: the order (<Katex tex="\tfrac1b" /> first because <Katex tex="f" /> decreases) <em>and</em> the bracket types (open where the domain was open, closed where it was closed).</>,
-  },
-  {
     working: <Katex display tex="\left[\frac1a,\ \frac1b\right) \ \text{ is empty when } \frac1a > \frac1b" />,
     reason: <>Ruling out <b>A</b>, chosen by <Katex tex="34\%" /> — nearly as many as got it right. It carries the endpoints across in the <em>same</em> order as the domain, forgetting that <Katex tex="f" /> is decreasing. Written as an interval it is back-to-front, so it describes no values at all.</>,
   },
   {
     working: <Katex display tex="\textbf{C}: \left[\frac1b,\frac1a\right) \ \text{ has the brackets the wrong way round}" />,
     reason: <>Ruling out <b>C</b>: right order, wrong ends. It closes the interval at the value that is never attained and opens it at the value that is. <b>B</b> makes both errors at once, and <b>E</b> simply repeats the domain.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\text{Range} = \left(\frac1b,\ \frac1a\right]}" />,
+    reason: <>Matches option <b>D</b>. Both features have to be right: the order (<Katex tex="\tfrac1b" /> first because <Katex tex="f" /> decreases) <em>and</em> the bracket types (open where the domain was open, closed where it was closed).</>,
   },
 ]
 
@@ -56,7 +58,7 @@ export default function MethodsQ3_2018() {
     <MCQShell
       question={
         <p>
-          Consider the function <Katex tex="f:[a,b)\to\mathbb{R},\ f(x)=\dfrac{1}{x}" />, where{' '}
+          Consider the function <Katex tex="f:[a,b)\to R,\ f(x)=\dfrac{1}{x}" />, where{' '}
           <Katex tex="a" /> and <Katex tex="b" /> are positive real numbers. The range of{' '}
           <Katex tex="f" /> is
         </p>

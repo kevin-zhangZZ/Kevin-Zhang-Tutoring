@@ -1,20 +1,9 @@
 // 2016 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 65% correct.
-// Trace a solution curve of dy/dx = -x - y through a given direction field, starting at
-// (0, -1) and following the field lines by eye. Three methods are worth distinguishing here:
-// (1) solving dy/dx + y = -x exactly via an integrating factor — not a VCE Specialist
-// Mathematics technique (only separable differential equations are solved analytically in
-// this course); (2) Euler's method — genuinely in the course and fully rigorous, but more
-// machinery than a multiple-choice question calls for; (3) the actual best approach for an
-// MCQ like this: start at the given point and simply follow the arrows already drawn on the
-// field to sketch the curve's approximate path. The solution below leads with (3), notes (1)
-// and (2) only as context, and uses light numerical readings (which happen to coincide with
-// an Euler's-method trace, since that's exactly what "stepping along the arrows" means made
-// precise) only to distinguish between the five candidate points. Question text transcribed
-// from the original paper; the direction field diagram — both in the question and in the
-// worked solution below — is the actual VCAA diagram (cropped from the official exam PDF),
-// not a redrawing. The worked solution overlays the traced path and the two marked points on
-// top of that same real image (calibrated to its gridlines), rather than redrawing the field
-// itself. Solution is original.
+// Trace a solution curve of dy/dx = −x − y through a given direction field, starting at
+// (0, −1) and following the arrows. Question text transcribed from the original paper; the
+// direction field — in the question and in the worked solution — is VCAA's own diagram,
+// cropped from the exam PDF. The worked solution overlays the traced path on that real
+// image (calibrated to its gridlines) rather than redrawing the field. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -66,16 +55,12 @@ const STEPS_TABLE = (
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Rearranged, <Katex tex="\dfrac{dy}{dx}+y=-x" /> is a first-order linear differential equation — it <em>can</em> be solved exactly using an <b>integrating factor</b> (<Katex tex="e^{\int 1\,dx}=e^x" />), giving the closed form <Katex tex="y=1-x-2e^{-x}" /> through <Katex tex="(0,-1)" />.</>,
-    reason: <>This technique is <b>not</b> in the VCE Specialist Mathematics study design — only separable differential equations are solved analytically in this course. It's mentioned only for context; it isn't the intended (or fastest) way to answer this question.</>,
-  },
-  {
-    working: <>The fully rigorous graphical technique here is <b>Euler's method</b> — stepping along the local slope repeatedly and re-reading it at each new point — which <em>is</em> genuinely in the course.</>,
-    reason: <>For a multiple-choice question, computing Euler steps by hand is more machinery than is actually needed. The practical approach: start at the given point and simply <b>follow the arrows already drawn</b> on the field.</>,
+    working: <Katex display tex="\frac{dy}{dx} = -x-y" />,
+    reason: <>The slope at each point. At <Katex tex="(0,-1)" /> it is <Katex tex="+1" />, so the solution curve starts off rising. The quickest route on a multiple-choice question is to start at the given point and <b>follow the arrows already drawn</b> on the field (Euler's method with the field's own grid spacing, in effect).</>,
   },
   {
     working: (
-      <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
+      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
         <DirectionFieldDiagram />
       </div>
     ),
@@ -95,11 +80,11 @@ const ROWS: WorkingRow[] = [
         E: at <Katex tex="x=2.5" />, the curve sits at <Katex tex="y\approx-1.56" /> — not even the right sign for <Katex tex="+1" />.
       </>
     ),
-    reason: 'Each of these sits well away from the traced curve — ruled out.',
+    reason: <>Each of these sits well away from the traced curve — ruled out.</>,
   },
   {
     working: <>C: following the arrows <em>backward</em> from <Katex tex="(0,-1)" /> instead, the curve drops away sharply — by <Katex tex="x=-1.5" /> it's already well below <Katex tex="-4" />, nowhere near <Katex tex="-2" />.</>,
-    reason: 'Ruled out.',
+    reason: <>Ruled out.</>,
   },
   {
     working: <Katex display tex="\boxed{y(3.5) \approx -2.52 \ \approx \ (3.5,\,-2.5)}" />,

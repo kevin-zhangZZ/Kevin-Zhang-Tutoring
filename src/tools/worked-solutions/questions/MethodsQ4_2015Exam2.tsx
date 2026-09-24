@@ -1,8 +1,9 @@
-// 2015 Mathematical Methods — Exam 2, Section 2 Question 4 (9 marks).
+// 2015 Mathematical Methods (CAS) — Exam 2, Section 2 Question 4 (9 marks).
 // f(x)=2sin(x), g(x)=(1/2)sin(2x), h(x)=(1/3)sin(3x) on [0,2π] — areas between curves,
 // graphing, transformations, and a generalisation to k(x)=m·sin(x), q(x)=(1/n)sin(nx).
-// Question text transcribed from the original paper; both diagrams are cropped directly
-// from the original VCAA exam PDF, not redrawings. Solution is original.
+// Question text transcribed from the original paper; both diagrams are cropped from the
+// original VCAA exam PDF, and part b.'s answer is an SVG overlay on the cropped figure.
+// Answers checked with sympy and against the VCAA examination report. Solution is original.
 //
 // (Recatalogued from an earlier, incorrect "2014 Exam 1 Q4" attribution — the real 2014
 // Exam 1 Q4 is an unrelated 2-mark "solve 2^(3x-3)=8^(2-x)" question, confirmed against
@@ -12,8 +13,8 @@
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { functionToPath } from '../graphUtils'
-import shadedGraphSrc from './meth-2015exam2-q4-shaded-region.png'
-import fAxesSrc from './meth-2015exam2-q4b-f-axes.png'
+import shadedGraphSrc from './meth-2015e2-q4-shaded-region.png'
+import fAxesSrc from './meth-2015e2-q4b-f-axes.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [64, 36],
@@ -45,8 +46,7 @@ const EXAM_DI: SAExaminerStats = {
   comment: (
     <>
       This question was not answered well. Many students evaluated{' '}
-      <Katex tex="\int_0^{2\pi}\bigl(k(x)-q(x)\bigr)dx" /> instead of splitting into the two
-      symmetric halves. Many did not realise that when <Katex tex="n" /> is even,{' '}
+      <Katex tex="\int_0^{2\pi}k(x)-q(x)\,dx" />. Many did not realise that when <Katex tex="n" /> is even,{' '}
       <Katex tex="\cos(n\pi)=1" />.
     </>
   ),
@@ -100,6 +100,7 @@ const rowsA: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2a=8 \implies a=4}" />,
+    reason: <>The common wrong answer <Katex tex="a=2" /> gives an area of 4 — only one of the two shaded regions. A sanity check on the size: each region sits inside a <Katex tex="\pi\times2" /> box of area about 6.3, and covers well over half of it.</>,
   },
 ]
 
@@ -172,6 +173,7 @@ const rowsDii: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = 4m - \dfrac{4}{n^2} \quad (b=-4)}" />,
+    reason: <>Check with <Katex tex="m=2" />, <Katex tex="n=3" /> (the design from part b.): <Katex tex="8-\tfrac49\approx7.6" />, a little less than part a.'s 8 because <Katex tex="h" /> now bulges slightly into the region above the axis on <Katex tex="(0,\pi)" />.</>,
   },
 ]
 
@@ -204,6 +206,7 @@ export default function MethodsQ4_2015Exam2() {
 
       <PartCard
         letter="a"
+        topic="Definite Integral"
         marks={1}
         statement={
           <>
@@ -225,6 +228,7 @@ export default function MethodsQ4_2015Exam2() {
 
       <PartCard
         letter="b"
+        topic="Sketch Graph"
         marks={2}
         statement={
           <>
@@ -246,7 +250,7 @@ export default function MethodsQ4_2015Exam2() {
         <WorkingTable rows={rowsB} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>State a sequence of two transformations that maps the graph of <Katex tex="y=f(x)" /> to the graph of <Katex tex="y=h(x)" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Transformations" marks={2} statement={<>State a sequence of two transformations that maps the graph of <Katex tex="y=f(x)" /> to the graph of <Katex tex="y=h(x)" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={rowsC} />
       </PartCard>
 
@@ -259,6 +263,7 @@ export default function MethodsQ4_2015Exam2() {
 
       <PartCard
         letter="d.i"
+        topic="Area Between Curves"
         marks={2}
         statement={
           <>
@@ -274,6 +279,7 @@ export default function MethodsQ4_2015Exam2() {
 
       <PartCard
         letter="d.ii"
+        topic="Area Between Curves"
         marks={2}
         statement={
           <>

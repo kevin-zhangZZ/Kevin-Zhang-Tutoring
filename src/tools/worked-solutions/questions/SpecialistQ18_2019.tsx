@@ -28,13 +28,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{margin of error} = 2.3263\times0.6667 \approx 1.5509" />,
+    reason: <>The half-width of the interval: <Katex tex="z\times\tfrac{\sigma}{\sqrt n}" />.</>,
   },
   {
     working: <Katex display tex="\text{CI} \approx (65-1.551,\ 65+1.551) = (63.449,\ 66.551)" />,
+    reason: <>Centred on the sample mean.</>,
   },
   {
     working: <Katex display tex="\boxed{(63.4,\ 66.6)}" />,
-    reason: <>Matches option <b>D</b>. Option <b>B</b> uses <Katex tex="z\approx1.96" /> (a 95% interval) and option <b>A</b> forgets to divide by <Katex tex="\sqrt n" /> — both classic slips.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> uses <Katex tex="z=\operatorname{invNorm}(0.98)\approx2.054" /> — the slip warned about above — and option <b>C</b> uses <Katex tex="z\approx2.576" />, the <Katex tex="99\%" /> value. Option <b>A</b> is far too wide to be an interval for a mean.</>,
   },
 ]
 
@@ -45,7 +47,9 @@ export default function SpecialistQ18_2019() {
         <p>
           The masses of a random sample of <Katex tex="36" /> track athletes have a mean of{' '}
           <Katex tex="65" /> kg. The standard deviation of the masses of all track athletes is
-          known to be <Katex tex="4" /> kg. A <Katex tex="98\%" /> confidence interval for the
+          known to be <Katex tex="4" /> kg.
+          <br />
+          A <Katex tex="98\%" /> confidence interval for the
           mean of the masses of all track athletes, correct to one decimal place, would be
           closest to
         </p>

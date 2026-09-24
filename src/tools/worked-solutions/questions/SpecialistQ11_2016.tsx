@@ -13,7 +13,6 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       <Katex tex="\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}=\tfrac{10+\alpha^3}{\sqrt{17+\alpha^4}}=\tfrac{74}{\sqrt{273}}" />
-      .
     </>
   ),
 }
@@ -41,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\alpha = 4}" />,
-    reason: <>Option D. On a multiple-choice question, checking candidates against a messy equation is almost always faster than solving it.</>,
+    reason: <>Matches option <b>D</b>. On a multiple-choice question, checking candidates against a messy equation is almost always faster than solving it.</>,
   },
 ]
 

@@ -33,6 +33,11 @@ const EXAM_C: SAExaminerStats = {
       tree diagram to find the two required cases. Common errors included use of conditional
       probability, use of binomial theorem or not realising that once Jac logged in, there was
       no need to keep attempting (three cases).
+      <br />
+      <br />
+      A small number of students recognised that Pr(success on second or third attempt) =
+      Pr(success) – Pr(success on the first attempt) ={' '}
+      <Katex tex="\tfrac{98}{125}-\tfrac25=\tfrac{48}{125}" />
     </>
   ),
 }
@@ -108,6 +113,7 @@ export default function MethodsQ5_2017Exam1() {
 
       <PartCard
         letter="a"
+        topic="Independent Events"
         marks={1}
         statement={<>What is the probability that Jac does not log on to the computer successfully?</>}
         examinerReport={EXAM_A}
@@ -130,6 +136,7 @@ export default function MethodsQ5_2017Exam1() {
 
       <PartCard
         letter="b"
+        topic="Complement"
         marks={1}
         statement={
           <>
@@ -145,6 +152,7 @@ export default function MethodsQ5_2017Exam1() {
 
       <PartCard
         letter="c"
+        topic="Independent Events"
         marks={2}
         statement={
           <>

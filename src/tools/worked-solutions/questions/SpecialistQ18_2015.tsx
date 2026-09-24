@@ -36,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{6\underset{\sim}{i}+5\underset{\sim}{j}}" />,
-    reason: <>Option B. The question asks <em>where</em>, so the answer is the position vector, not <Katex tex="t=1" />.</>,
+    reason: <>Matches option <b>B</b>. Options A and C are the two particles' positions at <Katex tex="t=\tfrac12" />, when their <Katex tex="\underset{\sim}{i}" /> components agree but their <Katex tex="\underset{\sim}{j}" /> components do not — paths crossing without a collision. The question asks <em>where</em>, so the answer is the position vector, not <Katex tex="t=1" />.</>,
   },
 ]
 

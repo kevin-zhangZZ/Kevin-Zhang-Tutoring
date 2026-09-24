@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2+3x-10" />,
-    reason: 'A parabola is two-to-one, so it becomes one-to-one only once the domain is cut at the turning point.',
+    reason: <>A parabola is two-to-one, so it becomes one-to-one only once the domain is cut at the turning point.</>,
   },
   {
     working: <Katex display tex="x_{\text{vertex}} = -\frac{b}{2a} = -\frac{3}{2}" />,

@@ -1,5 +1,5 @@
 // 2017 Specialist Mathematics — Exam 1, Question 4 (3 marks). Distribution of a sample
-// mean of four bottles. 42% scored zero, almost all by using the population standard
+// mean of four bottles. 42% scored zero; the report says many used the population standard
 // deviation instead of the standard deviation of the mean. Question text transcribed from
 // the original paper (no diagram given). Answer checked with scipy and against the VCAA
 // examination report. Solution is original. No lettered parts, so this uses the plain card
@@ -14,13 +14,25 @@ const EXAM: SAExaminerStats = {
   comment: (
     <>
       This question was answered well by students who found the standard deviation of the
-      sample mean, but many used the standard deviation of the population. Students' notation
-      was often not clear and did not distinguish between the standard deviation of{' '}
-      <Katex tex="X" /> and the standard deviation of <Katex tex="\bar{X}" />. Other typical
-      errors included not working with the mean, leading to finding{' '}
-      <Katex tex="\Pr(X<295)" />; using the total volume and taking the standard deviation to
-      be <Katex tex="12" /> rather than <Katex tex="6" />; and finding the probability that
-      the mean was greater than <Katex tex="295" />.
+      sample, but many used the standard deviation of the population. Students' notation was
+      often not clear and did not distinguish between the standard deviation of{' '}
+      <Katex tex="X" /> and <em>the standard deviation of</em> <Katex tex="\bar{X}" />. Some
+      arithmetic errors were made when dividing by <Katex tex="\tfrac32" />. Other typical
+      errors included:
+      <ul className="list-disc pl-5 my-1">
+        <li>not working with the mean leading to finding <Katex tex="\Pr(X<295)" /></li>
+        <li>using the total volume and taking the standard deviation to be 12 rather than 6</li>
+        <li>working with the mean but using <Katex tex="\tfrac34" /> as the standard deviation</li>
+        <li>finding the probability that the mean was greater than 295</li>
+        <li>
+          finding <Katex tex="z=+2" /> by incorrect standardisation using{' '}
+          <Katex tex="\Pr\!\left(Z<\tfrac{298-295}{1.5}\right)" />
+        </li>
+        <li>an inability to obtain the value of <Katex tex="\Pr(Z<-2)" /> due to arithmetic mistakes.</li>
+      </ul>
+      Some used the 68% or 99.7% approximation instead of 95%, while others made attempts to
+      find a confidence interval. Others used the 0.16 as a <Katex tex="p" />-value in a
+      binomial distribution.
     </>
   ),
 }
@@ -32,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{E}(\bar X)=298, \qquad \mathrm{sd}(\bar X)=\frac{\sigma}{\sqrt{n}}=\frac{3}{\sqrt4}=\frac32" />,
-    reason: <>Averaging shrinks the spread by <Katex tex="\sqrt n" />, but leaves the centre alone. This single line is what 42% of students missed.</>,
+    reason: <>Averaging shrinks the spread by <Katex tex="\sqrt n" />, but leaves the centre alone. The report says many students used the population standard deviation, 3, instead.</>,
   },
   {
     working: <Katex display tex="\Pr(\bar X<295) = \Pr\!\left(Z<\frac{295-298}{1.5}\right)" />,
@@ -66,11 +78,13 @@ export default function SpecialistQ4_2017Exam1() {
           randomly selected four-bottle pack is less than <Katex tex="295" /> mL. Give your
           answer correct to three decimal places.
         </p>
+      </Background>
+      <Background>
         <p>
           <strong>The whole question in one idea.</strong> A sample mean is less variable than
           a single observation: <Katex tex="\mathrm{sd}(\bar X)=\tfrac{\sigma}{\sqrt n}" />.
-          Reading "mean volume per bottle" as "volume of one bottle" costs every mark, and it
-          is the single most common error on this question.
+          Reading "mean volume per bottle" as "volume of one bottle" is the error the report
+          describes most often.
         </p>
       </Background>
       <WorkingTable rows={ROWS} />

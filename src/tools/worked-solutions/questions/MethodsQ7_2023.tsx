@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Need } x\in\mathrm{dom}(g) \ \text{ and } \ g(x)\in\mathrm{dom}(f)" />,
-    reason: 'Both conditions, in that order — the standard test for a composite to exist.',
+    reason: <>Both conditions, in that order — the standard test for a composite to exist.</>,
   },
   {
     working: <Katex display tex="\mathrm{dom}(g) = (-\infty,1); \qquad \sqrt{1-x} > 0 \iff x < 1" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x\in(-\infty,1)}" />,
-    reason: <>…but a derivative can never have a larger domain than its function, so the answer is still <Katex tex="(-\infty,1)" /> — option <b>C</b>. Writing <Katex tex="\tfrac{-1}{2(1-x)}" /> and then reading off its natural domain is how students reached the wrong options.</>,
+    reason: <>…but a derivative can never have a larger domain than its function, so the answer is still <Katex tex="(-\infty,1)" />. Matches option <b>C</b>. Option <b>E</b>, <Katex tex="(0,1)" />, intersects the two given domains — but it is <Katex tex="g(x)" />, not <Katex tex="x" />, that must be positive.</>,
   },
 ]
 
@@ -44,12 +44,13 @@ export default function MethodsQ7_2023() {
       question={
         <p>
           Let <Katex tex="f(x)=\log_e x" />, where <Katex tex="x>0" />, and{' '}
-          <Katex tex="g(x)=\sqrt{1-x}" />, where <Katex tex="x<1" />. The domain of the
-          derivative of <Katex tex="(f\circ g)(x)" /> is
+          <Katex tex="g(x)=\sqrt{1-x}" />, where <Katex tex="x<1" />.
+          <br />
+          The domain of the derivative of <Katex tex="(f\circ g)(x)" /> is
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="x\in\mathbb{R}" /> },
+        { letter: 'A', content: <Katex tex="x\in R" /> },
         { letter: 'B', content: <Katex tex="x\in(-\infty,1]" /> },
         { letter: 'C', content: <Katex tex="x\in(-\infty,1)" />, isAnswer: true },
         { letter: 'D', content: <Katex tex="x\in(0,\infty)" /> },

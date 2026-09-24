@@ -12,9 +12,10 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      Nearly half the cohort chose <b>C</b>, the average of 7 and 17. Velocity is linear in{' '}
-      <em>time</em>, not in distance, so the midpoint of <Katex tex="AB" /> is not reached at
-      the midpoint of the journey in time.
+      <Katex tex="17^2=7^2+2as,\ as=120." /> Displacement at midpoint{' '}
+      <Katex tex="=\dfrac s2" />.
+      <br />
+      <Katex tex="v^2=7^2+2a\times\dfrac s2=49+as=49+120=169,\ v=13" />
     </>
   ),
 }
@@ -30,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="as = 120" />,
-    reason: 'This single product is all the information the question actually supplies.',
+    reason: <>This single product is all the information the question actually supplies.</>,
   },
   {
     working: <Katex display tex="v_M^2 = 7^2+2a\left(\frac s2\right) = 49+as" />,
@@ -38,11 +39,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v_M^2 = 49+120 = 169" />,
-    reason: 'The unknown product drops straight in.',
+    reason: <>The unknown product drops straight in.</>,
   },
   {
     working: <Katex display tex="\boxed{v_M = 13\ \mathrm{ms^{-1}}}" />,
-    reason: <>Option <b>D</b>. Note it is <em>not</em> <Katex tex="\tfrac{7+17}{2}=12" />: the particle spends longer in the slow half, so it is past halfway in time when it reaches halfway in distance, and has picked up more than half the extra speed.</>,
+    reason: <>Matches option <b>D</b>. Option C, 12, is <em>not</em> the answer: <Katex tex="\tfrac{7+17}{2}=12" />: the particle spends longer in the slow half, so it is past halfway in time when it reaches halfway in distance, and has picked up more than half the extra speed.</>,
   },
 ]
 
@@ -53,8 +54,9 @@ export default function SpecialistQ14_2022() {
         <p>
           A particle moving in a straight line with constant acceleration has a velocity of{' '}
           <Katex tex="7\ \mathrm{ms^{-1}}" /> at point <Katex tex="A" /> and{' '}
-          <Katex tex="17\ \mathrm{ms^{-1}}" /> at point <Katex tex="B" />. The velocity of the
-          particle, in metres per second, at the midpoint of <Katex tex="AB" /> is
+          <Katex tex="17\ \mathrm{ms^{-1}}" /> at point <Katex tex="B" />.
+          <br />
+          The velocity of the particle, in metres per second, at the midpoint of <Katex tex="AB" /> is
         </p>
       }
       background={

@@ -12,8 +12,11 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      <Katex tex="A(3,2)" />, <Katex tex="g(x)=\tfrac12 f(x-1)" />. Dilate by a factor of <Katex tex="\tfrac12" />{' '}
-      from the <Katex tex="x" />-axis: <Katex tex="(3,1)" />. Translate 1 unit to the right: <Katex tex="(4,1)" />.
+      <Katex tex="A(3,2),\ g(x)=\tfrac12 f(x-1)" />,
+      <br />
+      Dilate by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="x" />-axis: <Katex tex="(3,1)" />
+      <br />
+      Translate 1 unit to the right: <Katex tex="(4,1)" />
     </>
   ),
 }
@@ -38,10 +41,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(3,\,1) \xrightarrow{\text{translate right 1}} (4,\,1)" />,
+    reason: <>Then the translation: add <Katex tex="1" /> to the <Katex tex="x" />-coordinate.</>,
   },
   {
     working: <Katex display tex="\boxed{P = (4,\,1)}" />,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option A <Katex tex="(2,1)" />, chosen by <Katex tex="18\%" />, translates to the <em>left</em> — reading <Katex tex="x-1" /> as a shift of <Katex tex="-1" />. Option D <Katex tex="(4,2)" /> forgets the dilation, and option E <Katex tex="(4,4)" /> doubles instead of halving.</>,
   },
 ]
 

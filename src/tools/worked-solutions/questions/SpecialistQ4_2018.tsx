@@ -24,6 +24,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \mathrm{cosec}(x) &= \frac{1}{\sin(x)} \\ &= \frac{1}{-a/b} \\ &= -\frac{b}{a} \end{aligned}" />,
+    reason: <>Cosecant is the reciprocal of sine.</>,
   },
   {
     working: <Katex display tex="\mathrm{cosec}(-x) = -\mathrm{cosec}(x)" />,
@@ -31,7 +32,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{cosec}(-x) = -\left(-\frac{b}{a}\right) = \frac{b}{a}}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Option <b>B</b> (<Katex tex="22\%" />), <Katex tex="-\tfrac{b}{a}" />, is <Katex tex="\mathrm{cosec}(x)" /> — it misses the final sign change for <Katex tex="-x" />.</>,
   },
 ]
 

@@ -14,11 +14,12 @@ const EXAM: SAExaminerStats = {
     <>
       This question was not answered well. Some students confused the inverse function with
       the reciprocal function. The most common incorrect derivatives were{' '}
-      <Katex tex="\tfrac{1}{\sqrt{1-x^2}}" /> and{' '}
-      <Katex tex="\log_e(\sin^{-1}x)" />. Common errors for the domain included{' '}
-      <Katex tex="R" />, <Katex tex="R\setminus\{-1,0,1\}" />, <Katex tex="[-1,1]" />,{' '}
-      <Katex tex="(-1,1)" /> and <Katex tex="[-1,1]\setminus\{0\}" />. Many students did not
-      exclude zero.
+      <Katex tex="\sqrt{1-x^2}" /> and <Katex tex="\dfrac{\log_e(\sin^{-1}x)}{\sqrt{1-x^2}}" />,
+      while some had <Katex tex="\dfrac{d(\arcsin x)}{dx}=\log_e(\arcsin x)" />. Common errors
+      for the domain included <Katex tex="R" />, <Katex tex="R\setminus\{-1,0,1\}" />,{' '}
+      <Katex tex="[-1,1]" />, <Katex tex="(-1,1)" /> and <Katex tex="[-1,1]\setminus\{0\}" />.
+      Many students did not exclude zero. The incorrect answer{' '}
+      <Katex tex="(-\infty,0)\cup(0,\infty)" /> was also relatively common.
     </>
   ),
 }
@@ -46,7 +47,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\arcsin(x)\ne0 \implies x\ne0" />,
-    reason: <>The other factor in the denominator. <Katex tex="\arcsin(0)=0" />, and that is the condition most students forgot.</>,
+    reason: <>The other factor in the denominator. <Katex tex="\arcsin(0)=0" />, and the report says many students did not exclude it.</>,
   },
   {
     working: <Katex display tex="\boxed{(-1,0)\cup(0,1)}" />,
@@ -63,6 +64,8 @@ export default function SpecialistQ6_2017Exam1() {
           the largest set of values of <Katex tex="x" /> for which <Katex tex="f'(x)" /> is
           defined.
         </p>
+      </Background>
+      <Background>
         <p>
           The second half is worth as much as the first, and it needs two separate conditions:
           one from the square root in the denominator of{' '}

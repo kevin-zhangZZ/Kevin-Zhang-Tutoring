@@ -15,7 +15,12 @@ const EXAM: SAExaminerStats = {
       equations <Katex tex="2a+2b=10" />, <Katex tex="2a^2+4b^2=44" /> and then solve for{' '}
       <Katex tex="a" /> and <Katex tex="b" />. Common problems included failing to reject the
       non-integer solution and only stating the solution with minimal or no working. Students
-      are reminded that in a question worth more than one mark, working must be shown.
+      are reminded that in a question worth more than one mark, appropriate working must be
+      shown.
+      <br />
+      Algebraic errors were common, with some students having difficulty solving a quadratic
+      equation. Quite a few students 'squared' both sides of the first equation to obtain{' '}
+      <Katex tex="4a^2+4b^2=100" />.
     </>
   ),
 }
@@ -35,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Var}(aX+bY) = a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y) = 2a^2+4b^2 = 44" />,
-    reason: <>Here independence <em>is</em> needed: without it there would be a covariance term. Note the coefficients are <em>squared</em>, which is what makes the second equation quadratic.</>,
+    reason: <>Here independence <em>is</em> needed: without it there would be a covariance term. Note the coefficients are <em>squared</em>, which is what makes the second equation quadratic — not the result of squaring the first equation, which the report says quite a few students did to get <Katex tex="4a^2+4b^2=100" />.</>,
   },
   {
     working: <Katex display tex="a^2+2b^2 = 22" />,
@@ -59,7 +64,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 2, \quad b = 3}" />,
-    reason: <>Check both conditions: <Katex tex="2(2)+2(3)=10" /> ✓ and <Katex tex="2(4)+4(9)=8+36=44" /> ✓. The report also warns that an answer stated with no working scores poorly on a four-mark question, however right it is.</>,
+    reason: <>Check both conditions: <Katex tex="2(2)+2(3)=10" /> ✓ and <Katex tex="2(4)+4(9)=8+36=44" /> ✓. The report reminds students that in a question worth more than one mark, appropriate working must be shown.</>,
   },
 ]
 

@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import cubicSketchSrc from './meth-2017exam1-q3-cubic-sketch.png'
+import cubicSketchSrc from './meth-2017e1-q3-cubic-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [21, 79],
@@ -16,8 +16,8 @@ const EXAM_A: SAExaminerStats = {
     <>
       This question was answered well, although some students either did not fully expand the
       cubic or made notational errors by omitting the brackets on the quadratic. It should be
-      noted that <Katex tex="(x^2+4x+4)(x-1)" /> is not equivalent to{' '}
-      <Katex tex="x^3+4x^2+4x-x^2-4x-4" /> written without the grouping brackets.
+      noted that <Katex tex="x^2+4x+4(x-1)" /> is not equivalent to{' '}
+      <Katex tex="x^3+4x^2+4x-x^2-4x-4" />.
     </>
   ),
 }
@@ -28,9 +28,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Some very good graphs were drawn by students. Common errors included using{' '}
-      <Katex tex="\mathbb{R}" /> as the domain, or graphs that looked more like an inverted
-      parabola rather than a cubic, due to a lack of recognition that there is a second
-      stationary point located at the <Katex tex="y" />-intercept.
+      <Katex tex="R" /> as the domain or graphs that looked more like an inverted parabola
+      rather than a cubic, due to lack of recognition of a stationary point located at the{' '}
+      <Katex tex="y" />-intercept.
     </>
   ),
 }
@@ -46,7 +46,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{= x^3+3x^2-4}" />,
-    reason: 'The middle x-terms (−4x and +4x) cancel.',
+    reason: <>Collect like terms: <Katex tex="-x^2+4x^2=3x^2" />, and <Katex tex="-4x+4x=0" />. This is the given expression, as required. Keep the brackets on <Katex tex="(x^2+4x+4)" /> in the first line — the report flags the version without them.</>,
   },
 ]
 
@@ -91,16 +91,17 @@ export default function MethodsQ3_2017Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 3 (4 marks)</p>
         <p>
-          Let <Katex tex="f:[-3,0]\to\mathbb{R},\ f(x)=(x+2)^2(x-1)" />.
+          Let <Katex tex="f:[-3,0]\to R,\ f(x)=(x+2)^2(x-1)" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Show that <Katex tex="(x+2)^2(x-1) = x^3+3x^2-4" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Expansion" marks={1} statement={<>Show that <Katex tex="(x+2)^2(x-1) = x^3+3x^2-4" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Sketch Cubic"
         marks={3}
         statement={<>Sketch the graph of <Katex tex="f" /> on the axes below. Label the axis intercepts and any stationary points with their coordinates.</>}
         examinerReport={EXAM_B}

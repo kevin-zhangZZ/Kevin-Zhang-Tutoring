@@ -40,11 +40,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = \tfrac12(1-2x)^{-\frac12}\times(-2)" />,
-    reason: <>Chain rule. The derivative of the inside is <Katex tex="-2" />, and that minus is what the report says most students dropped.</>,
+    reason: <>Chain rule. The derivative of the inside is <Katex tex="-2" />, and that minus is what the report says many students dropped.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \frac{-1}{\sqrt{1-2x}}}" />,
-    reason: <>The <Katex tex="\tfrac12" /> and the <Katex tex="-2" /> combine to <Katex tex="-1" />. Negative everywhere on the domain, as it must be: <Katex tex="f" /> is a decreasing function.</>,
+    reason: <>The <Katex tex="\tfrac12" /> and the <Katex tex="-2" /> combine to <Katex tex="-1" />. Negative wherever it is defined (every <Katex tex="x<\tfrac12" />), as it must be: <Katex tex="f" /> is a decreasing function.</>,
   },
 ]
 
@@ -67,7 +67,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\theta = \pi-\frac{\pi}{6} = \frac{5\pi}{6} \ \left(=150^\circ\right)}" />,
-    reason: <>Second quadrant, so subtract the reference angle from <Katex tex="\pi" />. A shallow downhill slope of <Katex tex="-0.58" /> corresponds to a little past <Katex tex="90^\circ" /> — exactly where <Katex tex="150^\circ" /> sits.</>,
+    reason: <>Second quadrant, so subtract the reference angle from <Katex tex="\pi" />. Check: a gentle downhill slope (gradient about <Katex tex="-0.58" />) makes an angle a little short of <Katex tex="180^\circ" />, which is where <Katex tex="150^\circ" /> sits. A steep downhill slope would be just past <Katex tex="90^\circ" />.</>,
   },
 ]
 
@@ -77,17 +77,18 @@ export default function MethodsQ2_2016Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white mb-2">Question 2 (3 marks)</p>
         <p>
-          Let <Katex tex="f:\left(-\infty,\tfrac12\right)\to R" />, where{' '}
+          Let <Katex tex="f:\left(-\infty,\tfrac12\right]\to R" />, where{' '}
           <Katex tex="f(x)=\sqrt{1-2x}" />.
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Chain Rule" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Tangent Angle"
         marks={2}
         statement={
           <>

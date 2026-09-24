@@ -14,10 +14,11 @@ const EXAMINER: SAExaminerStats = {
   average: 2.2,
   comment: (
     <>
-      Most students attempted to equate the components of the two position vectors in order to
+      Most students attempted to equate the <Katex tex="\underset{\sim}{i}" /> components of{' '}
+      <Katex tex="\underset{\sim}{r}_A(t)" /> and <Katex tex="\underset{\sim}{r}_B(t)" /> in order to
       determine the value of <Katex tex="t" /> when the particles collided. Various algebraic and
-      transcription errors were made, which meant they could not be awarded full marks. Finding
-      the time when two particles are in the same position was noted as an area of strength.
+      transcription errors were made by students, which meant they could not be awarded full
+      marks for the question.
     </>
   ),
 }

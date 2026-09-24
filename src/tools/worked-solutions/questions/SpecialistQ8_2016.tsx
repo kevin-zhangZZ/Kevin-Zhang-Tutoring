@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac14\int_{a^4}^{b^4} e^{2u}\,du}" />,
-    reason: <>Option D. Note the exponent stays <Katex tex="2u" /> — option E's <Katex tex="e^u" /> would need <Katex tex="u=2x^4" />, which changes the constant to <Katex tex="\tfrac18" /> and the terminals to <Katex tex="2a^4" /> and <Katex tex="2b^4" />, not <Katex tex="8a^3" />.</>,
+    reason: <>Matches option <b>D</b>. Note the exponent stays <Katex tex="2u" /> — option E's <Katex tex="e^u" /> would need <Katex tex="u=2x^4" />, which changes the constant to <Katex tex="\tfrac18" /> and the terminals to <Katex tex="2a^4" /> and <Katex tex="2b^4" />, not <Katex tex="8a^3" />.</>,
   },
 ]
 

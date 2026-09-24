@@ -6,6 +6,7 @@
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import reportGraphSrc from './meth-2024-mcq13-report-graph.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 45, B: 24, C: 17, D: 14 },
@@ -13,9 +14,18 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 0,
   comment: (
     <>
-      Dilate by a factor of 3 from the <Katex tex="y" />-axis: <Katex tex="f_1(x)=\tfrac{x}{6}+\tfrac6x" />. Translate
-      1 unit down: <Katex tex="g(x)=\tfrac{x}{6}+\tfrac6x-1" />. The local minimum of <Katex tex="g" /> is at{' '}
-      <Katex tex="(6,1)" />.
+      <Katex tex="f(x)=\tfrac{x}{2}+\tfrac{2}{x}" />
+      <br />
+      Dilate by a factor of 3 from the <Katex tex="y" />-axis:
+      <br />
+      <Katex tex="f_1(x)=\tfrac{x}{6}+\tfrac{6}{x}" />.
+      <br />
+      Translate 1 unit down:
+      <br />
+      <Katex tex="g(x)=\tfrac{x}{6}+\tfrac{6}{x}-1" />.
+      <br />
+      The local minimum of <Katex tex="g" /> is at <Katex tex="(6,1)" />.
+      <img src={reportGraphSrc} alt="The report's graph of y = g(x) for x from 0 to 10, a curve falling to its local minimum at (6, 1) and then rising slowly" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }
@@ -23,7 +33,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{x}{2}+\frac{2}{x},\quad x>0" />,
-    reason: 'Given function.',
+    reason: <>Given function.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac12-\frac{2}{x^2} = 0 \;\implies\; x^2=4 \;\implies\; x=2\ (x>0)" />,
@@ -31,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(2) = 1+1 = 2 \;\implies\; \text{local min at } (2,2)" />,
-    reason: 'Evaluate f there.',
+    reason: <>Evaluate f there.</>,
   },
   {
     working: <Katex display tex="\text{Dilation by 3 from the } y\text{-axis: } (x,y)\to(3x,y)" />,
@@ -39,15 +49,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(2,2) \;\to\; (6,2)" />,
-    reason: 'Apply the dilation to the minimum point.',
+    reason: <>Apply the dilation to the minimum point.</>,
   },
   {
     working: <Katex display tex="\text{Translation 1 unit down: } (x,y)\to(x,y-1)" />,
-    reason: 'Apply the second transformation.',
+    reason: <>Apply the second transformation.</>,
   },
   {
     working: <Katex display tex="\boxed{(6,2) \;\to\; (6,1)}" />,
-    reason: <>Matches option <b>A</b>. (Since dilations and translations preserve the "local minimum" nature of a point, there's no need to re-derive <Katex tex="g" />'s formula and re-differentiate — just track the point through each transformation.)</>,
+    reason: <>Matches option <b>A</b>; option <b>B</b>'s <Katex tex="\tfrac23" /> comes from dividing the <Katex tex="x" />-coordinate by 3 instead of multiplying. (Since dilations and translations preserve the "local minimum" nature of a point, there's no need to re-derive <Katex tex="g" />'s formula and re-differentiate — just track the point through each transformation.)</>,
   },
 ]
 
@@ -57,7 +67,7 @@ export default function MethodsQ13_2024() {
       question={
         <>
           <p className="mb-2">
-            The function <Katex tex="f:(0,\infty)\to\mathbb{R}" />, <Katex tex="f(x)=\dfrac{x}{2}+\dfrac{2}{x}" /> is
+            The function <Katex tex="f:(0,\infty)\to R" />, <Katex tex="f(x)=\dfrac{x}{2}+\dfrac{2}{x}" /> is
             mapped to the function <Katex tex="g" /> with the following sequence of transformations:
           </p>
           <ol className="list-decimal pl-5 mb-2 space-y-1">

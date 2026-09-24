@@ -7,7 +7,7 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import densitySrc from './meth-2017exam2-q3a-density.png'
+import densitySrc from './meth-2017e2-q3a-density.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [15, 12, 44, 29],
@@ -28,7 +28,8 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       This question was answered well. Some students had the incorrect terminals.{' '}
-      <Katex tex="44" /> instead of <Katex tex="45" /> was occasionally given. Others used{' '}
+      <Katex tex="44" /> instead of <Katex tex="45" /> was occasionally given, for example,{' '}
+      <Katex tex="\int_{25}^{44}\bigl(f(t)\bigr)dt+\int_{44}^{55}\bigl(f(t)\bigr)dt" />. Others used{' '}
       <Katex tex="20" /> as the lower limit instead of <Katex tex="25" />.
     </>
   ),
@@ -51,8 +52,9 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       A number of correct approaches were used. <Katex tex="\int_{20}^a f(t)\,dt=0.7" />,{' '}
-      <Katex tex="a=50.6351" />, was a common incorrect answer. Some students attempted to
-      use the inverse normal as a method.
+      <Katex tex="a=50.6351" /> was a common incorrect answer.{' '}
+      <Katex tex="\int_a^{75}\tfrac{1}{625}(70-t)\,dt=0.7" /> was occasionally given. Some students
+      attempted to use the inverse normal as a method.
     </>
   ),
 }
@@ -108,8 +110,9 @@ const EXAM_GII: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Some students used <Katex tex="q" /> instead of <Katex tex="p" /> in their equation.
-      Others solved <Katex tex="\int_{20}^{d}f(t)\,dt=0.35388\ldots" />, obtaining{' '}
+      Some students used <Katex tex="q" /> instead of <Katex tex="p" /> in their equation,
+      solving <Katex tex="\int_d^{70}f(t)\,dt=0.56646\ldots" /> for <Katex tex="d" />. Others
+      solved <Katex tex="\int_{20}^{d}f(t)\,dt=0.35388\ldots" />, obtaining{' '}
       <Katex tex="d=41" /> minutes.
     </>
   ),
@@ -122,7 +125,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(t)=0 \text{ for } t<20 \text{ and } t>70" />,
-    reason: <>Draw these stretches along the axis too — leaving them out was the single most common error, and one of the three marks was for them.</>,
+    reason: <>Draw these stretches along the axis too — the report says many students left them out.</>,
   },
   {
     working: <Katex display tex="\text{closed point at } \left(45,\tfrac{1}{25}\right)" />,
@@ -159,24 +162,24 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\Pr(T\ge25\mid T\le55) = \frac{\Pr(25\le T\le55)}{\Pr(T\le55)}" />,
-    reason: <>The conditional probability formula. The numerator is exactly part (b) — the question is built so nothing is wasted.</>,
+    working: <Katex display tex="\Pr(T\le25\mid T\le55) = \frac{\Pr(T\le25)}{\Pr(T\le55)}" />,
+    reason: <>The conditional probability formula. <Katex tex="\{T\le25\}" /> lies entirely inside <Katex tex="\{T\le55\}" />, so the intersection is just <Katex tex="\{T\le25\}" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(T\le55) = \int_{20}^{45}f(t)\,dt + \int_{45}^{55}f(t)\,dt = \frac12+\frac{200}{625}" />,
-    reason: <>The first branch contributes exactly half the total area, by symmetry of the triangle.</>,
+    working: <Katex display tex="\Pr(T\le25) = \int_{20}^{25}\frac{t-20}{625}\,dt = \frac{1}{625}\left[\frac{(t-20)^2}{2}\right]_{20}^{25} = \frac{25}{1250} = \frac{1}{50}" />,
+    reason: <>Only the rising branch is involved, and the density is zero below <Katex tex="20" />, so the lower terminal is <Katex tex="20" />.</>,
   },
   {
-    working: <Katex display tex="= \frac{1}{2}+\frac{8}{25} = \frac{41}{50}" />,
-    reason: <>Common denominator <Katex tex="50" />.</>,
+    working: <Katex display tex="\Pr(T\le55) = \int_{20}^{45}f(t)\,dt + \int_{45}^{55}f(t)\,dt = \frac12+\frac{200}{625} = \frac{41}{50}" />,
+    reason: <>The first branch contributes exactly half the total area, by symmetry of the triangle; the second piece was found in part b.</>,
   },
   {
-    working: <Katex display tex="\frac{4/5}{41/50} = \frac{4}{5}\times\frac{50}{41}" />,
-    reason: <>Dividing by a fraction.</>,
+    working: <Katex display tex="\frac{1/50}{41/50}" />,
+    reason: <>The fiftieths cancel.</>,
   },
   {
-    working: <Katex display tex="\boxed{\frac{40}{41}}" />,
-    reason: <>About <Katex tex="0.976" />. Very close to <Katex tex="1" />, which makes sense: almost all of the "at most 55 minutes" probability already sits above 25 minutes.</>,
+    working: <Katex display tex="\boxed{\frac{1}{41}}" />,
+    reason: <>Small, as it should be: a time of at most 25 minutes is a thin sliver at the far left of the triangle. The report's common wrong answer, <Katex tex="\tfrac{1}{40}" />, comes from getting the denominator slightly wrong.</>,
   },
 ]
 
@@ -199,7 +202,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a \approx 39.3649}" />,
-    reason: <>Four decimal places, and it is indeed below <Katex tex="45" /> ✓. The report's popular wrong answer, <Katex tex="50.6351" />, comes from solving <Katex tex="\Pr(T\le a)=0.7" /> by mistake — note it is the mirror image of this one about <Katex tex="45" />.</>,
+    reason: <>Four decimal places, and it is indeed below <Katex tex="45" /> ✓. The report's common wrong answer, <Katex tex="50.6351" />, comes from solving <Katex tex="\Pr(T\le a)=0.7" /> by mistake — note it is the mirror image of this one about <Katex tex="45" />.</>,
   },
 ]
 
@@ -330,7 +333,7 @@ export default function MethodsQ3_2017Exam2() {
         />
       </div>
 
-      <PartCard letter="a" marks={3} statement={<>Sketch the graph of <Katex tex="f" /> on the axes provided.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Sketch PDF" marks={3} statement={<>Sketch the graph of <Katex tex="f" /> on the axes provided.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
@@ -341,16 +344,17 @@ export default function MethodsQ3_2017Exam2() {
         </div>
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Find <Katex tex="\Pr(25\le T\le55)" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Continuous PDF" marks={2} statement={<>Find <Katex tex="\Pr(25\le T\le55)" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
-      <PartCard letter="c" marks={2} statement={<>Find <Katex tex="\Pr(T\ge25\mid T\le55)" />.</>} examinerReport={EXAM_C}>
+      <PartCard letter="c" topic="Conditional Probability" marks={2} statement={<>Find <Katex tex="\Pr(T\le25\mid T\le55)" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
       <PartCard
         letter="d"
+        topic="PDF Quantile"
         marks={2}
         statement={
           <>
@@ -374,6 +378,7 @@ export default function MethodsQ3_2017Exam2() {
 
       <PartCard
         letter="e.i"
+        topic="Binomial Distribution"
         marks={2}
         statement={
           <>
@@ -401,6 +406,7 @@ export default function MethodsQ3_2017Exam2() {
 
       <PartCard
         letter="e.ii"
+        topic="Conditional Binomial"
         marks={2}
         statement={
           <>
@@ -428,6 +434,7 @@ export default function MethodsQ3_2017Exam2() {
 
       <PartCard
         letter="f"
+        topic="Probability Expression"
         marks={2}
         statement={
           <>
@@ -441,6 +448,7 @@ export default function MethodsQ3_2017Exam2() {
 
       <PartCard
         letter="g.i"
+        topic="Optimisation"
         marks={2}
         statement={
           <>
@@ -456,6 +464,7 @@ export default function MethodsQ3_2017Exam2() {
 
       <PartCard
         letter="g.ii"
+        topic="Find Parameter"
         marks={2}
         statement={
           <>

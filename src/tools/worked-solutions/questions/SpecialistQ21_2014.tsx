@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{8\ \text{ms}^{-1}}" />,
-    reason: <>Option A. (The motion is simple harmonic with amplitude 5 and <Katex tex="n=2" />, so the maximum speed is <Katex tex="10" /> at the origin — and <Katex tex="8" /> at <Katex tex="x=3" /> fits the <Katex tex="3" />–<Katex tex="4" />–<Katex tex="5" /> pattern exactly.)</>,
+    reason: <>Matches option <b>A</b>. Sanity check: <Katex tex="v^2=4\left(25-x^2\right)" />, so the speed is 0 at <Katex tex="x=\pm5" /> and greatest, 10, at the origin — 8 at <Katex tex="x=3" /> sits sensibly between.</>,
   },
 ]
 

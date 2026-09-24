@@ -23,7 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 1}" />,
-    reason: <>Check: <Katex tex="27-9-12+4=10" /> ✓.</>,
+    reason: <>Matches option <b>C</b>. Check: <Katex tex="27-9-12+4=10" /> ✓. Option B comes from treating the <Katex tex="-ax^2" /> as <Katex tex="+ax^2" />.</>,
   },
 ]
 

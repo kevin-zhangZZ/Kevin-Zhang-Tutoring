@@ -15,8 +15,8 @@
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import curveSrc from './meth-2018exam1-q9-xsinx.png'
-import tangentsSrc from './meth-2018exam1-q9d-tangents.png'
+import curveSrc from './meth-2018e1-q9-xsinx.png'
+import tangentsSrc from './meth-2018e1-q9d-tangents.png'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [55, 27, 17],
@@ -67,9 +67,7 @@ const EXAM_D: SAExaminerStats = {
   average: 0.2,
   comment: (
     <>
-      Area under large triangle formed by tangents. Shaded Area{' '}
-      <Katex tex="= 9\pi^2 - 18\pi" /> square units. Many students had difficulty with this
-      question. Students who recognised that the graph for this question was simply a
+      Many students had difficulty with this question. Students who recognised that the graph for this question was simply a
       combination of translations and reflections of an earlier simpler graph were able to use
       symmetry to determine the areas under the curves. Some students were able to see that
       the shaded area was simply the areas under the curves subtracted from the area of two
@@ -95,7 +93,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n \text{ even} \implies \cos(n\pi) = 1, \quad \cos\bigl((n+1)\pi\bigr) = -1" />,
-    reason: <>Consecutive integer multiples of <Katex tex="\pi" /> always give opposite cosines: <Katex tex="+1" /> at even multiples, <Katex tex="-1" /> at odd ones. Keeping <Katex tex="n" /> as a letter is the whole point — the report says most students substituted a number instead and produced one case rather than the general rule.</>,
+    reason: <>Consecutive integer multiples of <Katex tex="\pi" /> always give opposite cosines: <Katex tex="+1" /> at even multiples, <Katex tex="-1" /> at odd ones. Keeping <Katex tex="n" /> as a letter is the whole point — the report says many students substituted a value instead and produced a specific solution rather than the general one.</>,
   },
   {
     working: <Katex display tex="= -(n+1)\pi(-1) + n\pi(1) = (n+1)\pi + n\pi" />,
@@ -118,7 +116,7 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-(2n+1)\pi}" />,
-    reason: <>The same magnitude as part (i) with the sign reversed — only <Katex tex="19\%" /> of the state saw this. It makes sense from the figure: on an odd interval the curve lies <em>below</em> the axis, so the signed area is negative. Recognising that part (ii) is part (i) with one sign flipped is the intended one-line answer.</>,
+    reason: <>The same magnitude as part a.i. with the sign reversed — only <Katex tex="19\%" /> of students scored this mark. It makes sense from the figure: on an odd interval the curve lies <em>below</em> the axis, so the signed area is negative. Recognising that part a.ii. is part a.i. with one sign flipped is the intended one-line answer.</>,
   },
 ]
 
@@ -164,22 +162,18 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 3\pi}" />,
-    reason: <>Positive: the graph moves to the <em>right</em>. The report names <Katex tex="-3\pi" /> as the common wrong answer — the sign inside the bracket is not the sign of the translation.</>,
+    reason: <>Positive: the graph moves to the <em>right</em>. The report names <Katex tex="-3\pi" /> as a common incorrect answer — the sign inside the bracket is not the sign of the translation.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={tangentsSrc} alt="VCAA's figure: the curves f and g between the tangent lines l1 and l2, forming a triangle with the y-axis; three white lens-shaped lobes between the curves sit inside an otherwise shaded triangle" className="w-full max-w-[300px]" />
-      </div>
-    ),
+    working: <Katex display tex="\text{Shaded} = \text{triangle} - \text{three lenses}" />,
     reason: <>Read the shading carefully before computing anything. The grey region is the <em>whole triangle</em> with three white lens shapes cut out of it — each lens being a region enclosed between <Katex tex="f" /> and <Katex tex="g" />. So the answer is a triangle area minus lobe areas, not an area between a tangent and a curve.</>,
   },
   {
     working: <Katex display tex="f'(x) = -\sin(x)+(3\pi-x)\cos(x), \quad f'\!\left(\tfrac{\pi}{2}\right) = -1" />,
-    reason: <>Product rule, then <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" /> and <Katex tex="\cos\left(\tfrac{\pi}{2}\right)=0" />. The same gradient as part (b), because this curve <em>is</em> part (b)'s curve translated.</>,
+    reason: <>Product rule, then <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" /> and <Katex tex="\cos\left(\tfrac{\pi}{2}\right)=0" />. The same gradient as part b., because this curve <em>is</em> part b.'s curve translated by part c.'s <Katex tex="T" /> — so <Katex tex="l_1" /> is part b.'s tangent <Katex tex="y=-x" /> translated <Katex tex="3\pi" /> to the right.</>,
   },
   {
     working: <Katex display tex="l_1: \ y = 3\pi - x, \qquad l_2: \ y = x - 3\pi" />,
@@ -195,7 +189,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^{\pi}\! f = 5\pi, \quad \int_{\pi}^{2\pi}\! f = -3\pi, \quad \int_{2\pi}^{3\pi}\! f = \pi" />,
-    reason: <>These are part (a) in disguise: <Katex tex="f(x)=(3\pi-x)\sin(x)" /> is the reflected, shifted version of <Katex tex="x\sin(x)" />, so its humps have the same sizes running the other way. This is the symmetry the report says successful students exploited.</>,
+    reason: <>These are part a. in disguise: <Katex tex="f(x)=(3\pi-x)\sin(x)" /> is the reflected, shifted version of <Katex tex="x\sin(x)" />, so its humps have the same sizes running the other way. This is the symmetry the report says successful students exploited.</>,
   },
   {
     working: <Katex display tex="\int_0^{3\pi}\!\left|f\right| = 5\pi+3\pi+\pi = 9\pi" />,
@@ -207,7 +201,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Shaded} = 9\pi^2 - 18\pi = 9\pi(\pi-2)}" />,
-    reason: <>Triangle minus lenses. (<Katex tex="\approx32.3" /> square units — about a third of the triangle's <Katex tex="9\pi^2\approx88.8" />, which matches how much white the figure shows.) Only <Katex tex="4\%" /> of the state scored both marks; the report notes that going after the area between each tangent and its curve directly, while valid, led to calculations too long to finish.</>,
+    reason: <>Triangle minus lenses. (<Katex tex="\approx32.3" /> square units — about a third of the triangle's <Katex tex="9\pi^2\approx88.8" />, which matches how much white the figure shows.) Only <Katex tex="4\%" /> of students scored both marks; the report says students who found the area between each tangent and the curve directly, while using a valid method, had lengthy calculations and were rarely successful.</>,
   },
 ]
 
@@ -226,6 +220,7 @@ export default function MethodsQ9_2018Exam1() {
 
       <PartCard
         letter="a.i"
+        topic="Definite Integral"
         marks={2}
         statement={<>Given that <Katex tex="\int\bigl(x\sin(x)\bigr)dx = \sin(x)-x\cos(x)+c" />, evaluate <Katex tex="\int_{n\pi}^{(n+1)\pi}\bigl(x\sin(x)\bigr)dx" /> when <Katex tex="n" /> is a positive <b>even</b> integer or <Katex tex="0" />. Give your answer in simplest form.</>}
         examinerReport={EXAM_AI}
@@ -234,7 +229,7 @@ export default function MethodsQ9_2018Exam1() {
           <p>
             The only thing that makes this hard is that <Katex tex="n" /> stays a letter. Keep
             it that way: substituting <Katex tex="n=2" /> gives you one number, not the rule
-            the question asks for, and the report says that is what most students did.
+            the question asks for, and the report says many students did exactly that.
           </p>
           <p>
             Two facts do all the work. <Katex tex="\sin(k\pi)=0" /> for every integer{' '}
@@ -250,8 +245,9 @@ export default function MethodsQ9_2018Exam1() {
 
       <PartCard
         letter="a.ii"
+        topic="Definite Integral"
         marks={1}
-        statement={<>Given the same antiderivative, evaluate <Katex tex="\int_{n\pi}^{(n+1)\pi}\bigl(x\sin(x)\bigr)dx" /> when <Katex tex="n" /> is a positive <b>odd</b> integer. Give your answer in simplest form.</>}
+        statement={<>Given that <Katex tex="\int\bigl(x\sin(x)\bigr)dx = \sin(x)-x\cos(x)+c" />, evaluate <Katex tex="\int_{n\pi}^{(n+1)\pi}\bigl(x\sin(x)\bigr)dx" /> when <Katex tex="n" /> is a positive <b>odd</b> integer. Give your answer in simplest form.</>}
         examinerReport={EXAM_AII}
       >
         <WorkingTable rows={ROWS_AII} />
@@ -259,6 +255,7 @@ export default function MethodsQ9_2018Exam1() {
 
       <PartCard
         letter="b"
+        topic="Tangent Line"
         marks={2}
         statement={<>Find the equation of the tangent to <Katex tex="y=x\sin(x)" /> at the point <Katex tex="\left(-\dfrac{5\pi}{2},\ \dfrac{5\pi}{2}\right)" />.</>}
         examinerReport={EXAM_B}
@@ -268,8 +265,9 @@ export default function MethodsQ9_2018Exam1() {
 
       <PartCard
         letter="c"
+        topic="Translation"
         marks={1}
-        statement={<>The translation <Katex tex="T" /> maps the graph of <Katex tex="y=x\sin(x)" /> onto the graph of <Katex tex="y=(3\pi-x)\sin(x)" />, where <Katex tex="T:\mathbb{R}^2\to\mathbb{R}^2,\ T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right)=\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}a\\0\end{bmatrix}" /> and <Katex tex="a" /> is a real constant. State the value of <Katex tex="a" />.</>}
+        statement={<>The translation <Katex tex="T" /> maps the graph of <Katex tex="y=x\sin(x)" /> onto the graph of <Katex tex="y=(3\pi-x)\sin(x)" />, where <Katex tex="T:R^2\to R^2,\ T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right)=\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}a\\0\end{bmatrix}" /> and <Katex tex="a" /> is a real constant. State the value of <Katex tex="a" />.</>}
         examinerReport={EXAM_C}
       >
         <Background>
@@ -285,21 +283,37 @@ export default function MethodsQ9_2018Exam1() {
 
       <PartCard
         letter="d"
+        topic="Shaded Area"
         marks={2}
-        statement={<>Let <Katex tex="f:[0,3\pi]\to\mathbb{R},\ f(x)=(3\pi-x)\sin(x)" /> and <Katex tex="g:[0,3\pi]\to\mathbb{R},\ g(x)=(x-3\pi)\sin(x)" />. The line <Katex tex="l_1" /> is the tangent to the graph of <Katex tex="f" /> at the point <Katex tex="\left(\dfrac{\pi}{2},\dfrac{5\pi}{2}\right)" /> and the line <Katex tex="l_2" /> is the tangent to the graph of <Katex tex="g" /> at <Katex tex="\left(\dfrac{\pi}{2},-\dfrac{5\pi}{2}\right)" />, as shown in the diagram. Find the total area of the shaded regions.</>}
+        statement={
+          <>
+            Let <Katex tex="f:[0,3\pi]\to R,\ f(x)=(3\pi-x)\sin(x)" /> and{' '}
+            <Katex tex="g:[0,3\pi]\to R,\ g(x)=(x-3\pi)\sin(x)" />. The line{' '}
+            <Katex tex="l_1" /> is the tangent to the graph of <Katex tex="f" /> at the point{' '}
+            <Katex tex="\left(\dfrac{\pi}{2},\dfrac{5\pi}{2}\right)" /> and the line{' '}
+            <Katex tex="l_2" /> is the tangent to the graph of <Katex tex="g" /> at{' '}
+            <Katex tex="\left(\dfrac{\pi}{2},-\dfrac{5\pi}{2}\right)" />, as shown in the
+            diagram below.
+            <div className="my-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+              <img src={tangentsSrc} alt="The curves f and g on [0, 3π] between the tangent lines l1 and l2, which form a triangle with the y-axis; the regions inside the triangle outside the three lens shapes enclosed by f and g are shaded — from the original 2018 VCAA exam paper" className="w-full max-w-[300px]" />
+            </div>
+            Find the total area of the shaded regions shown in the diagram above.
+          </>
+        }
         examinerReport={EXAM_D}
       >
         <Background>
           <p>
-            Hardest part on the paper — <Katex tex="89\%" /> scored zero. The trap is reaching
-            straight for <Katex tex="\int(\text{tangent}-\text{curve})" />; the report
-            confirms that route is valid but almost never finished in time.
+            Jointly the hardest part on the paper with 8b. — <Katex tex="89\%" /> scored zero.
+            The trap is reaching straight for{' '}
+            <Katex tex="\int(\text{tangent}-\text{curve})" />; the report says that route,
+            while valid, involved lengthy calculations and was rarely successful.
           </p>
           <p>
             Look at what is actually shaded instead. The two tangents and the{' '}
             <Katex tex="y" />-axis bound a triangle, and everything in it is grey <em>except</em>{' '}
             three lens-shaped holes where the two curves enclose a region between them. So:
-            triangle, minus lenses. The triangle is elementary, and the lenses are part (a)'s
+            triangle, minus lenses. The triangle is elementary, and the lenses are part a.'s
             integrals reused, because <Katex tex="f" /> is nothing but the original{' '}
             <Katex tex="x\sin(x)" /> translated and reflected.
           </p>

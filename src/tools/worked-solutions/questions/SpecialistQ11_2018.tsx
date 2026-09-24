@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m = \sqrt3 \ \text{ or } \ m = \frac{1}{\sqrt3}}" />,
-    reason: <><Katex tex="\tfrac{6}{2\sqrt3}=\tfrac{3}{\sqrt3}=\sqrt3" /> and <Katex tex="\tfrac{2}{2\sqrt3}=\tfrac{1}{\sqrt3}" />. Matches option <b>C</b>. <em>Both</em> are valid — the two are reciprocals, which makes sense: swapping <Katex tex="m" /> for <Katex tex="\tfrac1m" /> just interchanges the roles of <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, leaving the angle between them unchanged.</>,
+    reason: <><Katex tex="\tfrac{6}{2\sqrt3}=\tfrac{3}{\sqrt3}=\sqrt3" /> and <Katex tex="\tfrac{2}{2\sqrt3}=\tfrac{1}{\sqrt3}" />. Matches option <b>C</b>. <em>Both</em> are valid — the two are reciprocals, which makes sense: swapping <Katex tex="m" /> for <Katex tex="\tfrac1m" /> just interchanges the roles of <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, leaving the angle between them unchanged. Option <b>B</b> (<Katex tex="2\pm\sqrt3" />) makes <Katex tex="\tfrac{2m}{m^2+1}=\tfrac12" />, an angle of <Katex tex="60^\circ" /> — what using <Katex tex="\sin(30^\circ)" /> instead of <Katex tex="\cos(30^\circ)" /> gives.</>,
   },
 ]
 
@@ -52,7 +52,7 @@ export default function SpecialistQ11_2018() {
           Consider the vectors given by{' '}
           <Katex tex="\underset{\sim}{a}=m\underset{\sim}{i}+\underset{\sim}{j}" /> and{' '}
           <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+m\underset{\sim}{j}" />, where{' '}
-          <Katex tex="m\in\mathbb{R}" />. If the acute angle between{' '}
+          <Katex tex="m\in R" />. If the acute angle between{' '}
           <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> is{' '}
           <Katex tex="30^\circ" />, then <Katex tex="m" /> equals
         </p>

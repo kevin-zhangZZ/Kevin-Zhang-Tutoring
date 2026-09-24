@@ -18,19 +18,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="|2x-1| = 2x-1" />,
-    reason: 'An absolute value of a non-negative quantity leaves it alone.',
+    reason: <>An absolute value of a non-negative quantity leaves it alone.</>,
   },
   {
     working: <Katex display tex="\tfrac12 \le x \le 3 \implies x-3 \le 0 \implies |x-3| = 3-x" />,
-    reason: 'The second bracket is never positive on this interval, so the absolute value flips its sign.',
+    reason: <>The second bracket is never positive on this interval, so the absolute value flips its sign.</>,
   },
   {
     working: <Katex display tex="y = (2x-1)-(3-x)" />,
-    reason: 'Substituting both. The minus sign in front of the second absolute value must be distributed carefully.',
+    reason: <>Substituting both. The minus sign in front of the second absolute value must be distributed carefully.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 3x-4}" />,
-    reason: <>Matches option <b>B</b>. Spot-check <Katex tex="x=1" />: <Katex tex="|1|-|-2|=-1" />, and <Katex tex="3(1)-4=-1" /> ✓.</>,
+    reason: <>Matches option <b>B</b>. Spot-check <Katex tex="x=1" />: <Katex tex="|1|-|-2|=-1" />, and <Katex tex="3(1)-4=-1" />.</>,
   },
 ]
 

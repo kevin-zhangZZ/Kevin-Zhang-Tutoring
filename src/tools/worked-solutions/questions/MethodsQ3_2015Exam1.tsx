@@ -42,13 +42,15 @@ export default function MethodsQ3_2015Exam1() {
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
       <Background title="Question 3 (2 marks)">
         <p>
-          Evaluate <Katex tex="\displaystyle\int_1^4\frac{1}{\sqrt x}\,dx" />.
+          Evaluate <Katex tex="\displaystyle\int_1^4\left(\frac{1}{\sqrt x}\right)dx" />.
         </p>
+      </Background>
+      <Background>
         <p>
           <Katex tex="\int\frac1x\,dx=\log_e|x|+c" /> is the exception, not the rule. Every
           other power — <Katex tex="x^{-1/2}" /> included — follows the ordinary
-          "add one, divide by the new index" recipe. Nearly two-fifths of students reached
-          for the logarithm here.
+          "add one, divide by the new index" recipe. 38% of students scored zero here, and the
+          report says most of the wrong antiderivatives involved a logarithm.
         </p>
       </Background>
       <WorkingTable rows={ROWS} />

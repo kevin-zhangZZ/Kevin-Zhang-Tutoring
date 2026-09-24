@@ -1,4 +1,4 @@
-// 2022 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 38% correct.
+// 2022 Specialist Mathematics — Exam 2, MCQ 10. VCAA examination report: 21% correct.
 // Implicit differentiation: for which m does the tangent at (1, m) have negative gradient —
 // where (1, m) must itself lie on the curve. Question text transcribed from the original
 // paper. Solution is original.
@@ -12,8 +12,10 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'E',
   comment: (
     <>
-      At <Katex tex="(1,m)" />, <Katex tex="5m-3m+m^2=10 \;\implies\; m=-1\pm\sqrt{11}" />. Both of these, with{' '}
-      <Katex tex="x=1" />, lead to a negative value of <Katex tex="dy/dx" />.
+      At <Katex tex="(1,m)" />, <Katex tex="5m-3m+m^2=10,\quad m=-1\pm\sqrt{11}" />.
+      <br />
+      Both of these, with <Katex tex="x=1" /> lead to a negative value of{' '}
+      <Katex tex="\dfrac{dy}{dx}" />.
     </>
   ),
 }
@@ -37,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{At } x=1:\quad y' = \frac{3m-10m}{5-3+2m} = \frac{-7m}{2(1+m)}" />,
-    reason: 'Substitute x = 1.',
+    reason: <>Substitute x = 1.</>,
   },
   {
     working: (
@@ -50,7 +52,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m=-\sqrt{11}-1 \text{ or } m=\sqrt{11}-1}" />,
-    reason: <>Both possible points give a negative gradient — matches option <b>E</b>. (The trap: options A and C treat <Katex tex="m" /> as if it could be any real number, rather than one of only two values forced by the curve.)</>,
+    reason: <>Both possible points give a negative gradient. Matches option <b>E</b>. (The trap: options A and C treat <Katex tex="m" /> as if it could be any real number, rather than one of only two values forced by the curve.)</>,
   },
 ]
 
@@ -66,9 +68,9 @@ export default function SpecialistQ10_2022() {
         </p>
       }
       options={[
-        { letter: 'A', content: <Katex tex="m\in\mathbb{R}\setminus[-1,0]" /> },
+        { letter: 'A', content: <Katex tex="m\in R\setminus[-1,0]" /> },
         { letter: 'B', content: <Katex tex="m=-\sqrt{11}-1 \text{ only}" /> },
-        { letter: 'C', content: <Katex tex="m\in\mathbb{R}\setminus(-1,0]" /> },
+        { letter: 'C', content: <Katex tex="m\in R\setminus(-1,0]" /> },
         { letter: 'D', content: <Katex tex="m=\sqrt{11}-1 \text{ only}" /> },
         { letter: 'E', content: <Katex tex="m=-\sqrt{11}-1 \text{ or } m=\sqrt{11}-1" />, isAnswer: true },
       ]}

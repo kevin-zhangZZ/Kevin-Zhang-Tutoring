@@ -10,7 +10,22 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 23, C: 19, D: 49 },
   answer: 'D',
-  comment: <>Knowing the lines intersect at the point <Katex tex="(4,3,t)" /> allows simultaneous equations to be solved.</>,
+  comment: (
+    <>
+      Knowing the lines intersect at the point <Katex tex="(4,3,t)" /> allows simultaneous
+      equations to be developed and solved.
+      <br />
+      <Katex tex="4=2+\lambda\ \Rightarrow\ \lambda=2" />
+      <br />
+      <Katex tex="3=r-\lambda\ \Rightarrow\ r=5" />
+      <br />
+      <Katex tex="t=-3+4\lambda\ \Rightarrow\ t=5" />
+      <br />
+      <Katex tex="4=1+\mu\ \Rightarrow\ \mu=3" />
+      <br />
+      <Katex tex="t=s-\mu\ \Rightarrow\ 5=s-3\ \Rightarrow\ s=8" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -40,7 +55,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{s-\mu = t \;\implies\; s = t+\mu = 5+3 = 8}" />,
-    reason: <>Match the <Katex tex="z" />-coordinate — so <Katex tex="r=5" />, <Katex tex="s=8" />, <Katex tex="t=5" />, matching option <b>D</b>.</>,
+    reason: <>Match the <Katex tex="z" />-coordinate — so <Katex tex="r=5" />, <Katex tex="s=8" />, <Katex tex="t=5" />. Matches option <b>D</b>.</>,
   },
 ]
 
@@ -51,7 +66,7 @@ export default function SpecialistQ18_2025() {
         <p>
           The lines given by <Katex tex="\underset{\sim}{r_1}(\lambda) = 2\underset{\sim}{i}+r\underset{\sim}{j}-3\underset{\sim}{k}+\lambda(\underset{\sim}{i}-\underset{\sim}{j}+4\underset{\sim}{k})" />{' '}
           and <Katex tex="\underset{\sim}{r_2}(\mu) = \underset{\sim}{i}+s\underset{\sim}{k}+\mu(\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k})" /> intersect at the point{' '}
-          <Katex tex="(4,3,t)" />, where <Katex tex="\lambda,\mu\in\mathbb{R}" /> and <Katex tex="r" />, <Katex tex="s" />{' '}
+          <Katex tex="(4,3,t)" />, where <Katex tex="\lambda,\mu\in R" /> and <Katex tex="r" />, <Katex tex="s" />{' '}
           and <Katex tex="t" /> are real constants.
           <br />
           The values of <Katex tex="r" />, <Katex tex="s" /> and <Katex tex="t" /> respectively are

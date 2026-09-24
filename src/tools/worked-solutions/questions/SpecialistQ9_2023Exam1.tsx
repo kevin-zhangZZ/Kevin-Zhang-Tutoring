@@ -23,8 +23,9 @@ const EXAM_C: SAExaminerStats = {
   comment: (
     <>
       Most students realised that a cross product could be used to find a vector
-      perpendicular to the plane. Some arithmetic errors were seen, both in the cross product
-      and in substituting a point to find the Cartesian equation.
+      perpendicular to the plane. Some arithmetic errors were seen, both in the calculation of
+      the cross product and in the substitution of a point to find the Cartesian equation of
+      the plane.
     </>
   ),
 }
@@ -35,7 +36,8 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       This question was answered well, with students realising that they needed to substitute
-      the coordinates of <Katex tex="C" /> into the equation of the plane.
+      the coordinates of <Katex tex="C" /> into the equation of the plane and solve the
+      resulting linear equation.
     </>
   ),
 }
@@ -45,9 +47,10 @@ const EXAM_E: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      A small number of students gave the area of <Katex tex="\triangle ABD" /> rather than
-      the parallelogram. A common error was to compute{' '}
-      <Katex tex="\left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|" />.
+      A small number of students gave the area of <Katex tex="\Delta ABD" /> rather than of
+      the parallelogram. A common error was to calculate the area of the parallelogram by
+      computing the product{' '}
+      <Katex tex="\left|\overrightarrow{AB}\right|\times\left|\overrightarrow{AD}\right|" />.
     </>
   ),
 }
@@ -55,21 +58,21 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{A } y\text{-axis intercept has } x = 0 \text{ and } z = 0" />,
-    reason: 'A point on the y-axis has both other coordinates zero.',
+    reason: <>A point on the y-axis has both other coordinates zero.</>,
   },
   {
     working: <Katex display tex="\boxed{D(0,\,2,\,0)}" />,
-    reason: 'The intercept value 2 goes in the y slot.',
+    reason: <>The intercept value 2 goes in the y slot.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\overrightarrow{AB} = \underset{\sim}{b}-\underset{\sim}{a} = \left(-\underset{\sim}{i}-2\underset{\sim}{j}+4\underset{\sim}{k}\right)-\left(\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\right)" />,
-    reason: 'Head minus tail, component by component.',
+    reason: <>Head minus tail, component by component.</>,
   },
   {
-    working: <Katex display tex="\boxed{\overrightarrow{AB} = -2\underset{\sim}{i}-5\underset{\sim}{j}+6\underset{\sim}{k}} \ \checkmark" />,
+    working: <Katex display tex="\boxed{\overrightarrow{AB} = -2\underset{\sim}{i}-5\underset{\sim}{j}+6\underset{\sim}{k}}" />,
     reason: <><Katex tex="-1-1=-2" />, <Katex tex="-2-3=-5" />, <Katex tex="4-(-2)=6" />.</>,
   },
   {
@@ -77,19 +80,19 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Using <Katex tex="D" /> from part a. — if this does not come out as stated, part a. was wrong.</>,
   },
   {
-    working: <Katex display tex="\boxed{\overrightarrow{AD} = -\underset{\sim}{i}-\underset{\sim}{j}+2\underset{\sim}{k}} \ \checkmark" />,
-    reason: <><Katex tex="0-1=-1" />, <Katex tex="2-3=-1" />, <Katex tex="0-(-2)=2" />.</>,
+    working: <Katex display tex="\boxed{\overrightarrow{AD} = -\underset{\sim}{i}-\underset{\sim}{j}+2\underset{\sim}{k}}" />,
+    reason: <><Katex tex="0-1=-1" />, <Katex tex="2-3=-1" />, <Katex tex="0-(-2)=2" />. As required.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n} = \overrightarrow{AB}\times\overrightarrow{AD} = \begin{vmatrix}\underset{\sim}{i}&\underset{\sim}{j}&\underset{\sim}{k}\\-2&-5&6\\-1&-1&2\end{vmatrix}" />,
-    reason: 'The cross product of two vectors in the plane is normal to it.',
+    reason: <>The cross product of two vectors in the plane is normal to it.</>,
   },
   {
     working: <Katex display tex="= \underset{\sim}{i}\bigl((-5)(2)-(6)(-1)\bigr)-\underset{\sim}{j}\bigl((-2)(2)-(6)(-1)\bigr)+\underset{\sim}{k}\bigl((-2)(-1)-(-5)(-1)\bigr)" />,
-    reason: <>Expanding along the first row. The minus in front of the <Katex tex="\underset{\sim}{j}" /> term is the usual casualty.</>,
+    reason: <>Expanding along the first row. The minus in front of the <Katex tex="\underset{\sim}{j}" /> term is easy to drop.</>,
   },
   {
     working: <Katex display tex="= -4\underset{\sim}{i}-2\underset{\sim}{j}-3\underset{\sim}{k}" />,
@@ -108,11 +111,11 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="C(a,-1,5) \text{ lies on the plane} \implies 4a+2(-1)+3(5) = 4" />,
-    reason: 'Substitute and solve — that is the whole question.',
+    reason: <>Substitute and solve — that is the whole question.</>,
   },
   {
     working: <Katex display tex="4a-2+15 = 4 \implies 4a = -9" />,
-    reason: 'Collecting.',
+    reason: <>Collecting.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\frac94}" />,
@@ -127,11 +130,11 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \left|-4\underset{\sim}{i}-2\underset{\sim}{j}-3\underset{\sim}{k}\right| = \sqrt{16+4+9}" />,
-    reason: 'The cross product is already sitting there from part c.',
+    reason: <>The cross product is already sitting there from part c.</>,
   },
   {
     working: <Katex display tex="\boxed{\sqrt{29} \ \text{square units}}" />,
-    reason: <>About <Katex tex="5.39" />. The triangle <Katex tex="ABD" /> would be half this — the report's other named error.</>,
+    reason: <>About <Katex tex="5.39" />. The triangle <Katex tex="ABD" /> would be half this — the report notes a small number of students gave that instead.</>,
   },
 ]
 
@@ -166,6 +169,7 @@ export default function SpecialistQ9_2023Exam1() {
 
       <PartCard
         letter="a"
+        topic="Coordinates"
         marks={1}
         statement={<>Write down the coordinates of point <Katex tex="D" />.</>}
         examinerReport={EXAM_A}
@@ -175,6 +179,7 @@ export default function SpecialistQ9_2023Exam1() {
 
       <PartCard
         letter="b"
+        topic="Vectors"
         marks={1}
         statement={
           <>
@@ -192,6 +197,7 @@ export default function SpecialistQ9_2023Exam1() {
 
       <PartCard
         letter="c"
+        topic="Plane Equation"
         marks={2}
         statement={<>Hence find the equation of the plane in Cartesian form.</>}
         examinerReport={EXAM_C}
@@ -201,6 +207,7 @@ export default function SpecialistQ9_2023Exam1() {
 
       <PartCard
         letter="d"
+        topic="Point in Plane"
         marks={1}
         statement={<>Find <Katex tex="a" />.</>}
         examinerReport={EXAM_D}
@@ -210,11 +217,12 @@ export default function SpecialistQ9_2023Exam1() {
 
       <PartCard
         letter="e"
+        topic="Parallelogram Area"
         marks={1}
         statement={
           <>
-            <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AD}" /> are
-            adjacent sides of a parallelogram. Find the area of this parallelogram.
+            <Katex tex="\overline{AB}" /> and <Katex tex="\overline{AD}" /> are adjacent
+            sides of a parallelogram. Find the area of this parallelogram.
           </>
         }
         examinerReport={EXAM_E}

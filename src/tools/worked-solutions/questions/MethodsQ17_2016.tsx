@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.6482}" />,
-    reason: <>Option A. Sensible: the expected count is <Katex tex="16\times0.2=3.2" />, so "at least 3" should be a bit over half — and it is.</>,
+    reason: <>Matches option <b>A</b>. Option B (13%), <Katex tex="0.8593" />, is <Katex tex="\Pr(X\ge2)" /> — an off-by-one on the count. Sensible: the expected count is <Katex tex="16\times0.2=3.2" />, so "at least 3" should be a bit over half — and it is.</>,
   },
 ]
 

@@ -12,9 +12,9 @@ const EXAM_A: SAExaminerStats = {
   average: 0.7,
   comment: (
     <>
-      The most common errors involved finding the magnitude to be <Katex tex="a=1" /> or{' '}
-      <Katex tex="a=-\sqrt3" /> (even though the question stated that <Katex tex="a" /> was
-      positive). Another common error was <Katex tex="a=3" />. A small number of students
+      This question was answered reasonably well by students. The most common errors involved
+      finding the magnitude to be <Katex tex="a=1" /> or <Katex tex="a=\pm\sqrt3" /> (even
+      though the question stated that <Katex tex="a" /> was positive). Another common error was <Katex tex="a=3" />. A small number of students
       gave the answer <Katex tex="a=0" />.
     </>
   ),
@@ -25,9 +25,11 @@ const EXAM_B: SAExaminerStats = {
   average: 1.4,
   comment: (
     <>
-      Students needed to show the given result, using{' '}
-      <Katex tex="\overrightarrow{OB}\cdot\overrightarrow{CA}=2-1-1=0" />. The main errors
-      were sign errors in finding the diagonal vectors and sign errors in the dot product.
+      This question was quite well answered. The main errors were sign errors in finding the
+      diagonal vectors and sign errors in the dot product. A few students found{' '}
+      <Katex tex="\overrightarrow{OM}" /> and <Katex tex="\overrightarrow{AM}" /> where{' '}
+      <Katex tex="M" /> is the point of intersection of the diagonals. Some students proved
+      that the diagonals in a rhombus intersect at right angles using general vector methods.
       Brackets were often omitted and the notation used with vectors was often poor. There
       were some unconvincing arguments, often due to insufficient steps shown.
     </>
@@ -75,8 +77,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The difference of two squares does the work: <Katex tex="(\sqrt3+1)(\sqrt3-1)=3-1=2" />.</>,
   },
   {
-    working: <Katex display tex="\therefore\ \overrightarrow{OB}\perp\overrightarrow{CA}" />,
-    reason: <>A zero dot product between two non-zero vectors means they are perpendicular — say so explicitly, since the question asks you to <em>show</em> the result.</>,
+    working: <Katex display tex="\therefore\ \overrightarrow{OB}\perp\overrightarrow{CA} \quad \text{as required}" />,
+    reason: <>A zero dot product between two non-zero vectors means they are perpendicular — say so explicitly, since the question asks you to <em>show</em> the result. The report criticises arguments with too few steps.</>,
   },
 ]
 
@@ -100,12 +102,13 @@ export default function SpecialistQ1_2015Exam1() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find <Katex tex="a" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Magnitude" marks={1} statement={<>Find <Katex tex="a" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Perpendicular Diagonals"
         marks={2}
         statement={<>Show that the diagonals of the rhombus <Katex tex="OABC" /> are perpendicular.</>}
         examinerReport={EXAM_B}

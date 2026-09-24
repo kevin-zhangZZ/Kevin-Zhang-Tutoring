@@ -9,12 +9,13 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 55, C: 10, D: 14, E: 4 },
   answer: 'B',
+  noAnswer: 1,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{pmatrix}k&5\\4&k+1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}k+5\\0\end{pmatrix}" />,
-    reason: 'Matrix form. A unique solution exists exactly when the determinant is non-zero.',
+    reason: <>Matrix form. A unique solution exists exactly when the determinant is non-zero.</>,
   },
   {
     working: <Katex display tex="\det = k(k+1)-20 = k^2+k-20 = (k+5)(k-4)" />,
@@ -22,7 +23,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k=4: \quad 4x+5y = 9 \ \text{ and } \ 4x+5y = 0" />,
-    reason: 'Same left-hand sides, different right-hand sides: parallel lines that never meet. No solutions at all.',
+    reason: <>Same left-hand sides, different right-hand sides: parallel lines that never meet. No solutions at all.</>,
   },
   {
     working: <Katex display tex="k=-5: \quad -5x+5y = 0 \ \text{ and } \ 4x-4y = 0" />,
@@ -30,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k \in \{-5\}}" />,
-    reason: <>Option <b>B</b>. A zero determinant means "no unique solution"; whether that is <em>none</em> or <em>infinitely many</em> has to be checked case by case.</>,
+    reason: <>Matches option <b>B</b>. A zero determinant means "no unique solution"; whether that is <em>none</em> or <em>infinitely many</em> has to be checked case by case.</>,
   },
 ]
 
@@ -54,8 +55,8 @@ export default function MethodsQ4_2023() {
         { letter: 'A', content: <Katex tex="k\in\{-5,4\}" /> },
         { letter: 'B', content: <Katex tex="k\in\{-5\}" />, isAnswer: true },
         { letter: 'C', content: <Katex tex="k\in\{4\}" /> },
-        { letter: 'D', content: <Katex tex="k\in\mathbb{R}\setminus\{-5,4\}" /> },
-        { letter: 'E', content: <Katex tex="k\in\mathbb{R}\setminus\{-5\}" /> },
+        { letter: 'D', content: <Katex tex="k\in R\setminus\{-5,4\}" /> },
+        { letter: 'E', content: <Katex tex="k\in R\setminus\{-5\}" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

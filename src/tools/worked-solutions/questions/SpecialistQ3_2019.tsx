@@ -17,19 +17,20 @@ const ROWS: WorkingRow[] = [
     reason: <>So <Katex tex="\sec" /> is undefined exactly where <Katex tex="\cos" /> is zero — that is the only restriction here, since nothing else in the rule (no square root, no logarithm, no other fraction) can fail.</>,
   },
   {
-    working: <Katex display tex="\cos\!\left(x+\dfrac{\pi}{4}\right)=0 \implies x+\dfrac{\pi}{4} = \dfrac{\pi}{2}+n\pi, \ n\in\mathbb{Z}" />,
+    working: <Katex display tex="\cos\!\left(x+\dfrac{\pi}{4}\right)=0 \implies x+\dfrac{\pi}{4} = \dfrac{\pi}{2}+n\pi, \ n\in Z" />,
     reason: <><Katex tex="\cos" /> is zero at every odd multiple of <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="x = \dfrac{\pi}{2}-\dfrac{\pi}{4}+n\pi = \dfrac{\pi}{4}+n\pi" />,
+    reason: <>Subtract <Katex tex="\tfrac{\pi}{4}" /> from both sides.</>,
   },
   {
     working: <Katex display tex="= \dfrac{\pi}{4}+\dfrac{4n\pi}{4} = \dfrac{(4n+1)\pi}{4}" />,
     reason: <>Putting it over a common denominator of <Katex tex="4" /> to match the form of the options.</>,
   },
   {
-    working: <Katex display tex="\boxed{\mathbb{R}\setminus\left\{\dfrac{(4n+1)\pi}{4}\right\},\ n\in\mathbb{Z}}" />,
-    reason: <>Matches option <b>D</b>. Sanity-check by listing a few: <Katex tex="n=0" /> gives <Katex tex="\tfrac{\pi}{4}" />, <Katex tex="n=1" /> gives <Katex tex="\tfrac{5\pi}{4}" />, <Katex tex="n=-1" /> gives <Katex tex="-\tfrac{3\pi}{4}" /> — each is <Katex tex="\pi" /> apart, as it should be. Option <b>C</b>, <Katex tex="\tfrac{(4n-1)\pi}{4}" />, gives <Katex tex="-\tfrac{\pi}{4},\ \tfrac{3\pi}{4},\dots" />, which is the set where <Katex tex="\cos\left(x+\tfrac{\pi}{4}\right)" /> equals <Katex tex="\pm1" />, not zero.</>,
+    working: <Katex display tex="\boxed{R\setminus\left\{\dfrac{(4n+1)\pi}{4}\right\},\ n\in Z}" />,
+    reason: <>Matches option <b>D</b>. Sanity-check by listing a few: <Katex tex="n=0" /> gives <Katex tex="\tfrac{\pi}{4}" />, <Katex tex="n=1" /> gives <Katex tex="\tfrac{5\pi}{4}" />, <Katex tex="n=-1" /> gives <Katex tex="-\tfrac{3\pi}{4}" /> — each is <Katex tex="\pi" /> apart, as it should be. Option <b>C</b>, <Katex tex="\tfrac{(4n-1)\pi}{4}" />, gives <Katex tex="-\tfrac{\pi}{4},\ \tfrac{3\pi}{4},\dots" />, which is the set where <Katex tex="\cos\left(x+\tfrac{\pi}{4}\right)" /> equals <Katex tex="\pm1" />, not zero. Option <b>E</b> excludes the zeros of <Katex tex="\cos(x)" />, forgetting the shift of <Katex tex="\tfrac{\pi}{4}" />; <b>A</b> ignores the restriction altogether, and <b>B</b> is not a domain of this function at all.</>,
   },
 ]
 
@@ -38,11 +39,11 @@ export default function SpecialistQ3_2019() {
     <MCQShell
       question={<p>The implied domain of the function with rule <Katex tex="f(x)=1-\sec\!\left(x+\dfrac{\pi}{4}\right)" /> is</p>}
       options={[
-        { letter: 'A', content: <Katex tex="\mathbb{R}" /> },
+        { letter: 'A', content: <Katex tex="R" /> },
         { letter: 'B', content: <Katex tex="[0,2]" /> },
-        { letter: 'C', content: <Katex tex="\mathbb{R}\setminus\left\{\tfrac{(4n-1)\pi}{4}\right\},\ n\in\mathbb{Z}" /> },
-        { letter: 'D', content: <Katex tex="\mathbb{R}\setminus\left\{\tfrac{(4n+1)\pi}{4}\right\},\ n\in\mathbb{Z}" />, isAnswer: true },
-        { letter: 'E', content: <Katex tex="\mathbb{R}\setminus\left\{\tfrac{(2n-1)\pi}{2}\right\},\ n\in\mathbb{Z}" /> },
+        { letter: 'C', content: <Katex tex="R\setminus\left\{\tfrac{(4n-1)\pi}{4}\right\},\ n\in Z" /> },
+        { letter: 'D', content: <Katex tex="R\setminus\left\{\tfrac{(4n+1)\pi}{4}\right\},\ n\in Z" />, isAnswer: true },
+        { letter: 'E', content: <Katex tex="R\setminus\left\{\tfrac{(2n-1)\pi}{2}\right\},\ n\in Z" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

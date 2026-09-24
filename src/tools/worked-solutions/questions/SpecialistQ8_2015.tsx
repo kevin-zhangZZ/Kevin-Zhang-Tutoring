@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{B: } |z+3i| = 2|z-i|" />,
-    reason: <>Distances to two fixed points in a fixed ratio other than <Katex tex="1:1" /> — an <em>Apollonius circle</em>. Substituting <Katex tex="z=x+yi" /> and squaring gives <Katex tex="x^2+(y+3)^2=4\bigl(x^2+(y-1)^2\bigr)" />, which rearranges to a circle.</>,
+    reason: <>Distances to two fixed points in a fixed ratio other than <Katex tex="1:1" />. Substituting <Katex tex="z=x+yi" /> and squaring gives <Katex tex="x^2+(y+3)^2=4\bigl(x^2+(y-1)^2\bigr)" />, which rearranges to a circle.</>,
   },
   {
     working: <Katex display tex="\text{C: } |z-i| = |z+2|" />,
@@ -38,15 +38,15 @@ const ROWS: WorkingRow[] = [
     reason: <>A circle of radius <Katex tex="\tfrac43" /> centred at the origin, because <Katex tex="|\bar z|=|z|" />. This was the most popular wrong answer at 17%.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{C}}" />,
-    reason: <>The one relation whose graph is a line.</>,
+    working: <Katex display tex="\boxed{|z-i| = |z+2|}" />,
+    reason: <>Matches option <b>C</b>, the one relation whose graph is a line.</>,
   },
 ]
 
 export default function SpecialistQ8_2015() {
   return (
     <MCQShell
-      question={<p>A relation that does not represent a circle in the complex plane is</p>}
+      question={<p>A relation that does <b>not</b> represent a circle in the complex plane is</p>}
       background={
         <p>
           Two shapes come out of modulus equations: <Katex tex="|z-a|=r" /> is a circle, and{' '}

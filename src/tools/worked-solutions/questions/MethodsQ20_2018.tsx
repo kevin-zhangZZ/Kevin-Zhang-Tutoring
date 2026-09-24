@@ -1,6 +1,5 @@
-// 2018 Mathematical Methods — Exam 2, MCQ 20. VCAA examination report: 20% correct — the
-// hardest question on the paper, and the correct option was not the most popular (B drew
-// 26%). Which diagonal transformation carries one probability density function to another
+// 2018 Mathematical Methods — Exam 2, MCQ 20. VCAA examination report: 20% correct, and the
+// correct option was not the most popular (B drew 26%). Which diagonal transformation carries one probability density function to another
 // with a prescribed derivative at the median.
 //
 // The options are written as matrices, but a diagonal matrix is just two dilations, and the
@@ -22,11 +21,18 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      Gradient <Katex tex="= m = 4" />; reflect in the <Katex tex="y" />-axis:{' '}
-      <Katex tex="m=-4" />. Dilate by a factor of <Katex tex="2" /> from the{' '}
-      <Katex tex="y" />-axis: <Katex tex="m=-\tfrac42=-2" />. Dilate by a factor of{' '}
-      <Katex tex="\tfrac12" /> from the <Katex tex="x" />-axis: <Katex tex="m=-1" />. The
-      matrix <Katex tex="\begin{bmatrix}-2&0\\0&\tfrac12\end{bmatrix}" /> represents this
+      Gradient = <Katex tex="m=4" />
+      <br />
+      reflect in the <Katex tex="y" />-axis: <Katex tex="m=-4" />.
+      <br />
+      Dilate by a factor of <Katex tex="2" /> from the <Katex tex="y" />-axis:
+      <br />
+      <Katex tex="m=-\tfrac42=-2" />.
+      <br />
+      Dilate by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="x" />-axis:{' '}
+      <Katex tex="m=-1" />.
+      <br />
+      The matrix <Katex tex="\begin{bmatrix}-2&0\\0&\tfrac12\end{bmatrix}" /> represents this
       transformation.
     </>
   ),
@@ -51,7 +57,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_{-\infty}^{\infty} g(x)\,dx = |P|\,Q = 1" />,
-    reason: <>The second condition, and the one most students never wrote down: <Katex tex="g" /> must itself be a probability density function, so it still encloses unit area. Scaling horizontally by <Katex tex="|P|" /> and vertically by <Katex tex="Q" /> multiplies the area by <Katex tex="|P|Q" />, and that product has to stay <Katex tex="1" />.</>,
+    reason: <>The second condition, and the one that separates A from B: <Katex tex="g" /> must itself be a probability density function, so it still encloses unit area. Scaling horizontally by <Katex tex="|P|" /> and vertically by <Katex tex="Q" /> multiplies the area by <Katex tex="|P|Q" />, and that product has to stay <Katex tex="1" />.</>,
   },
   {
     working: <Katex display tex="g(x)\ge0 \implies Q>0 \implies P<0" />,
@@ -66,16 +72,16 @@ const ROWS: WorkingRow[] = [
     reason: <>Both conditions satisfied simultaneously.</>,
   },
   {
-    working: <Katex display tex="\boxed{T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}-2&0\\[2pt]0&\tfrac12\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}}" />,
-    reason: <>Matches option <b>A</b>.</>,
-  },
-  {
     working: <Katex display tex="\textbf{B}: \ \frac{Q}{P} = \frac{-1/2}{2} = -\frac14 \ \checkmark, \quad |P|Q = -1 \ \times" />,
     reason: <>Ruling out <b>B</b>, the most popular answer at <Katex tex="26\%" /> — more than chose the correct option. It gets the gradient exactly right and fails the area test: a negative <Katex tex="Q" /> turns the density upside down, so <Katex tex="g" /> is not a pdf at all. Anyone who checked only the derivative condition landed here.</>,
   },
   {
     working: <Katex display tex="\textbf{C}, \textbf{D}, \textbf{E}: \ \frac{Q}{P} = \frac14, \ -4, \ -4" />,
     reason: <>Ruling out the rest: none gives <Katex tex="\tfrac{Q}{P}=-\tfrac14" />. <b>C</b> has no reflection at all; <b>D</b> and <b>E</b> have the two scale factors the wrong way round, dividing where they should multiply.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}-2&0\\[2pt]0&\tfrac12\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}}" />,
+    reason: <>Matches option <b>A</b>.</>,
   },
 ]
 
@@ -85,15 +91,15 @@ export default function MethodsQ20_2018() {
       question={
         <>
           <p className="mb-2">
-            The differentiable function <Katex tex="f:\mathbb{R}\to\mathbb{R}" /> is a
+            The differentiable function <Katex tex="f:R\to R" /> is a
             probability density function. It is known that the median of the probability
             density function <Katex tex="f" /> is at <Katex tex="x=0" /> and{' '}
             <Katex tex="f'(0)=4" />.
           </p>
           <p className="mb-2">
-            The transformation <Katex tex="T:\mathbb{R}^2\to\mathbb{R}^2" /> maps the graph of{' '}
+            The transformation <Katex tex="T:R^2\to R^2" /> maps the graph of{' '}
             <Katex tex="f" /> to the graph of <Katex tex="g" />, where{' '}
-            <Katex tex="g:\mathbb{R}\to\mathbb{R}" /> is a probability density function with a
+            <Katex tex="g:R\to R" /> is a probability density function with a
             median at <Katex tex="x=0" /> and <Katex tex="g'(0)=-1" />.
           </p>
           <p>The transformation <Katex tex="T" /> could be given by</p>

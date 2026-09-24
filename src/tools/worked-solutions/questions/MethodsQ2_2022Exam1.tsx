@@ -11,11 +11,14 @@ const EXAM_A: SAExaminerStats = {
   average: 0.5,
   comment: (
     <>
-      Incorrect answers of <Katex tex="3\log_e(2x-3)" /> and{' '}
-      <Katex tex="6\log_e(2x-3)" /> were common. Some students treated the values in the
-      domain as terminal values in a definite integral. It was fine to name the
-      antiderivative <Katex tex="G(x)" /> or give it no name at all, but some students
-      incorrectly labelled it <Katex tex="g'(x)" />.
+      This question asked for an antiderivative of the function <Katex tex="g(x)" />, and it
+      was fine to name this function <Katex tex="\int g(x)\,dx" /> or <Katex tex="G(x)" /> or
+      give no name at all; however, some students chose to incorrectly label the function as{' '}
+      <Katex tex="g'(x)" />. Students are reminded to pay attention to the nomenclature they
+      use to identify functions or equations. Incorrect answers of{' '}
+      <Katex tex="3\log_e(2x-3)" /> and <Katex tex="6\log_e(2x-3)" /> were common. Some
+      students treated the values in the domain of <Katex tex="\left(\tfrac32,\infty\right)" />{' '}
+      as terminal values in a definite integral.
     </>
   ),
 }
@@ -25,10 +28,11 @@ const EXAM_B: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Some students incorrectly tried to expand the expression as a product of two
-      integrals, while others erroneously substituted <Katex tex="\tfrac13" /> for{' '}
-      <Katex tex="f(x)" /> and then arrived at an integral of constant terms. Brackets were
-      commonly missing.
+      This question was not answered well by many students. Some students incorrectly tried
+      to expand the expression as a product of two integrals, while other students
+      erroneously substituted <Katex tex="\tfrac13" /> for <Katex tex="f(x)" /> and then
+      arrived at an integral of constant terms that they then tried to integrate. Brackets
+      were commonly missing.
     </>
   ),
 }
@@ -36,7 +40,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\int\frac{3}{2x-3}\,dx = 3\int\frac{1}{2x-3}\,dx" />,
-    reason: 'Pull the constant out first so the standard form is visible.',
+    reason: <>Pull the constant out first so the standard form is visible.</>,
   },
   {
     working: <Katex display tex="\int\frac{1}{ax+b}\,dx = \frac{1}{a}\log_e|ax+b|+c, \quad a = 2" />,
@@ -51,7 +55,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)\bigl(2f(x)-3\bigr) = 2\bigl[f(x)\bigr]^2-3f(x)" />,
-    reason: <>Expand <em>inside</em> the integral. An integral of a product is not the product of the integrals, which is the report's first named error.</>,
+    reason: <>Expand <em>inside</em> the integral. An integral of a product is not the product of the integrals — the report notes some students tried this.</>,
   },
   {
     working: <Katex display tex="\int_0^1\Bigl(2\bigl[f(x)\bigr]^2-3f(x)\Bigr)dx = 2\int_0^1\bigl[f(x)\bigr]^2dx-3\int_0^1 f(x)\,dx" />,
@@ -59,7 +63,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 2\left(\frac15\right)-3\left(\frac13\right)" />,
-    reason: 'Substituting the given values.',
+    reason: <>Substituting the given values.</>,
   },
   {
     working: <Katex display tex="= \frac25-1 = \boxed{-\frac35}" />,
@@ -76,11 +80,14 @@ export default function MethodsQ2_2022Exam1() {
 
       <PartCard
         letter="a"
+        topic="Antiderivative"
         marks={1}
         statement={
           <>
             Let <Katex tex="g:\left(\tfrac32,\infty\right)\to R" />,{' '}
-            <Katex tex="g(x)=\dfrac{3}{2x-3}" />. Find the rule for an antiderivative of{' '}
+            <Katex tex="g(x)=\dfrac{3}{2x-3}" />.
+            <br />
+            Find the rule for an antiderivative of{' '}
             <Katex tex="g(x)" />.
           </>
         }
@@ -91,6 +98,7 @@ export default function MethodsQ2_2022Exam1() {
 
       <PartCard
         letter="b"
+        topic="Integral Properties"
         marks={3}
         statement={
           <>

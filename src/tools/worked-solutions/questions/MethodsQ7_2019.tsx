@@ -18,6 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="16a=1 \implies a=\dfrac{1}{16}" />,
+    reason: <>Collecting like terms.</>,
   },
   {
     working: <Katex display tex="E(X) = \sum x\Pr(X=x) = 0(a)+1(3a)+2(5a)+3(7a)" />,
@@ -25,10 +26,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= (0+3+10+21)a = 34a" />,
+    reason: <>Simplifying.</>,
   },
   {
     working: <Katex display tex="\boxed{E(X) = \dfrac{34}{16} = \dfrac{17}{8}}" />,
-    reason: <>Matches option <b>D</b>. Sanity check: <Katex tex="\tfrac{17}{8}=2.125" />, which sits between <Katex tex="0" /> and <Katex tex="3" /> and leans towards the larger values — right, since they carry the bigger probabilities. Option <b>A</b> <Katex tex="\left(\tfrac{1}{16}\right)" /> is just <Katex tex="a" />, and option <b>C</b> <Katex tex="(16)" /> is <Katex tex="\tfrac1a" />.</>,
+    reason: <>Matches option <b>D</b>. Sanity check: <Katex tex="\tfrac{17}{8}=2.125" />, which sits between <Katex tex="0" /> and <Katex tex="3" /> and leans towards the larger values — right, since they carry the bigger probabilities. Option <b>A</b> <Katex tex="\left(\tfrac{1}{16}\right)" /> is just <Katex tex="a" />, and option <b>C</b> <Katex tex="\left(\tfrac{35}{16}\right)" /> gives the <Katex tex="x=0" /> column a weight of <Katex tex="1" /> instead of <Katex tex="0" />.</>,
   },
 ]
 
@@ -63,8 +65,8 @@ export default function MethodsQ7_2019() {
       }
       options={[
         { letter: 'A', content: <Katex tex="\dfrac{1}{16}" /> },
-        { letter: 'B', content: <Katex tex="\dfrac{1}{35}" /> },
-        { letter: 'C', content: <Katex tex="16" /> },
+        { letter: 'B', content: <Katex tex="1" /> },
+        { letter: 'C', content: <Katex tex="\dfrac{35}{16}" /> },
         { letter: 'D', content: <Katex tex="\dfrac{17}{8}" />, isAnswer: true },
         { letter: 'E', content: <Katex tex="2" /> },
       ]}

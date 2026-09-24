@@ -25,16 +25,16 @@ const ROWS: WorkingRow[] = [
     reason: <>Cube roots are defined for negative inputs too — the vertical tangent at 0 is not a discontinuity.</>,
   },
   {
-    working: <Katex display tex="\text{D: } \tan\!\left(\frac{\pi x}{3}\right) \ \text{ breaks where } \frac{\pi x}{3} = \frac\pi2+k\pi" />,
-    reason: <>That is <Katex tex="x=\tfrac32+3k" />.</>,
+    working: <Katex display tex="\text{D: } \tan\!\left(\frac{x}{3}\right) \ \text{ breaks where } \frac{x}{3} = \frac\pi2+k\pi" />,
+    reason: <>That is <Katex tex="x=\tfrac{3\pi}{2}+3k\pi" />.</>,
   },
   {
-    working: <Katex display tex="x = \tfrac32 \in [0,5] \ \text{ and } \ x = \tfrac92 \in [0,5]" />,
-    reason: <>Two asymptotes inside the interval, so <Katex tex="\tan" /> is the one that fails.</>,
+    working: <Katex display tex="x = \tfrac{3\pi}{2} \approx 4.71 \in [0,5]" />,
+    reason: <>An asymptote inside the interval, so <Katex tex="\tan" /> is the one that fails.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{D}}" />,
-    reason: <>Option E, <Katex tex="\sin^2\!\left(\tfrac{\pi x}{3}\right)" />, is continuous everywhere — squaring does not introduce breaks.</>,
+    reason: <>Matches option <b>D</b>. Option E, <Katex tex="\sin^2\!\left(\tfrac{x}{3}\right)" />, is continuous everywhere — squaring does not introduce breaks.</>,
   },
 ]
 
@@ -43,7 +43,7 @@ export default function MethodsQ4_2022() {
     <MCQShell
       question={
         <p>
-          Which one of the following functions is <b>not</b> continuous over the interval{' '}
+          Which one of the following functions is not continuous over the interval{' '}
           <Katex tex="x\in[0,5]" />?
         </p>
       }
@@ -51,8 +51,8 @@ export default function MethodsQ4_2022() {
         { letter: 'A', content: <Katex tex="f(x)=\frac{1}{(x+3)^2}" /> },
         { letter: 'B', content: <Katex tex="f(x)=\sqrt{x+3}" /> },
         { letter: 'C', content: <Katex tex="f(x)=x^{1/3}" /> },
-        { letter: 'D', content: <Katex tex="f(x)=\tan\!\left(\tfrac{\pi x}{3}\right)" />, isAnswer: true },
-        { letter: 'E', content: <Katex tex="f(x)=\sin^2\!\left(\tfrac{\pi x}{3}\right)" /> },
+        { letter: 'D', content: <Katex tex="f(x)=\tan\!\left(\tfrac{x}{3}\right)" />, isAnswer: true },
+        { letter: 'E', content: <Katex tex="f(x)=\sin^2\!\left(\tfrac{x}{3}\right)" /> },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

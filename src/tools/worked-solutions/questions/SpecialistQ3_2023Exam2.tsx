@@ -19,7 +19,7 @@ const EXAM_AII: SAExaminerStats = {
   comment: (
     <>
       Some students did not include <Katex tex="\pi" /> in their answer, despite it being
-      present in their integral expression in part a.i.
+      present in their integral expression in Question 3ai.
     </>
   ),
 }
@@ -27,7 +27,12 @@ const EXAM_AII: SAExaminerStats = {
 const EXAM_BI: SAExaminerStats = {
   marks: [13, 25, 62],
   average: 1.5,
-  comment: <>This was quite well done. Of those who set up the integral correctly, most obtained the correct form.</>,
+  comment: (
+    <>
+      This was quite well done. Of those students who set up the integral correctly, most
+      obtained the correct form.
+    </>
+  ),
 }
 
 const EXAM_BII: SAExaminerStats = {
@@ -35,8 +40,8 @@ const EXAM_BII: SAExaminerStats = {
   average: 0.6,
   comment: (
     <>
-      Incorrect rounding to <Katex tex="30.847" /> was a frequent final response. Students are
-      reminded to set their calculators to display sufficient decimal places.
+      Incorrect rounding to 30.847 was a frequent final response. Students are reminded to set
+      their calculators to display sufficient decimal places.
     </>
   ),
 }
@@ -57,8 +62,10 @@ const EXAM_D: SAExaminerStats = {
   average: 1.5,
   comment: (
     <>
-      Most students were successful in obtaining a value for <Katex tex="k" />. Omission of
-      the ends of the solid, and ends with incorrect radii, were the most frequent errors.
+      Most students were successful in obtaining a value for <Katex tex="k" />. Omission of the
+      ends of the solid, and ends with incorrect radii, were the most frequent errors. Some
+      errors in the final value appeared to be due to a lack of brackets when entering
+      expressions into a calculator.
     </>
   ),
 }
@@ -66,7 +73,7 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_a^b y^2\,dx" />,
-    reason: 'Rotation about the x-axis, straight off the formula sheet.',
+    reason: <>Rotation about the x-axis, straight off the formula sheet.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_2^5 (x-1)\,dx}" />,
@@ -81,22 +88,22 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = \frac{15\pi}{2} \ \text{cubic units}}" />,
-    reason: <>About <Katex tex="23.56" />. Keep the <Katex tex="\pi" /> — dropping it between the integral and the answer was the report's named slip.</>,
+    reason: <>About <Katex tex="23.56" />. Keep the <Katex tex="\pi" /> — the report notes some students did not include it, despite it being in their integral.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="S = 2\pi\int_a^b y\sqrt{1+\left(\frac{dy}{dx}\right)^2}\;dx" />,
-    reason: 'The curved surface area of a solid of revolution about the x-axis.',
+    reason: <>The curved surface area of a solid of revolution about the x-axis.</>,
   },
   {
     working: <Katex display tex="y = \sqrt{x-1} \implies \frac{dy}{dx} = \frac{1}{2\sqrt{x-1}}" />,
-    reason: 'Taking the positive root for the upper half, which is what generates the surface.',
+    reason: <>Taking the positive root for the upper half, which is what generates the surface.</>,
   },
   {
     working: <Katex display tex="1+\left(\frac{dy}{dx}\right)^2 = 1+\frac{1}{4(x-1)} = \frac{4(x-1)+1}{4(x-1)} = \frac{4x-3}{4(x-1)}" />,
-    reason: 'A common denominator makes the next cancellation visible.',
+    reason: <>A common denominator makes the next cancellation visible.</>,
   },
   {
     working: <Katex display tex="y\sqrt{1+\left(\frac{dy}{dx}\right)^2} = \sqrt{x-1}\cdot\frac{\sqrt{4x-3}}{2\sqrt{x-1}} = \frac{\sqrt{4x-3}}{2}" />,
@@ -119,30 +126,30 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{S \approx 30.846 \ \text{square units}}" />,
-    reason: <>The unrounded value is <Katex tex="30.84649\ldots" />, so the third decimal is a 6 — the report notes many students wrote <Katex tex="30.847" /> from a truncated display.</>,
+    reason: <>The unrounded value is <Katex tex="30.84649\ldots" />, so the third decimal is a 6 — the report notes incorrect rounding to <Katex tex="30.847" /> was a frequent final response.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{efficiency ratio} = \frac{\text{total surface area}}{\text{volume}}" />,
-    reason: 'The definition the question supplies.',
+    reason: <>The definition the question supplies.</>,
   },
   {
     working: <Katex display tex="x=2: \ y = \sqrt{1} = 1; \qquad x=5: \ y = \sqrt{4} = 2" />,
-    reason: <>The radii of the two flat ends. These are <Katex tex="y" /> values, not <Katex tex="x" /> values — the report's "incorrect radius" error.</>,
+    reason: <>The radii of the two flat ends. These are <Katex tex="y" /> values, not <Katex tex="x" /> values — the report notes errors with an incorrect radius were frequent.</>,
   },
   {
     working: <Katex display tex="\text{ends} = \pi(1)^2+\pi(2)^2 = 5\pi \approx 15.708" />,
-    reason: 'Two circular discs.',
+    reason: <>Two circular discs.</>,
   },
   {
     working: <Katex display tex="\text{total SA} = 30.846+15.708 = 46.554" />,
-    reason: 'Curved surface plus both ends — omitting them was the single most common loss of marks.',
+    reason: <>Curved surface plus both ends — the report notes many students found the curved surface area only.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{46.554}{15\pi/2} = \frac{46.554}{23.562} \approx 1.98}" />,
-    reason: 'Two decimal places.',
+    reason: <>Two decimal places.</>,
   },
 ]
 
@@ -161,7 +168,7 @@ const ROWS_D: WorkingRow[] = [
         π·nInt(√(4x−3), x, 2, 8)
       </Cas>
     ),
-    reason: 'The curved surface area over the longer interval, from part b.i.',
+    reason: <>The curved surface area over the longer interval, from part b.i.</>,
   },
   {
     working: <Katex display tex="S = \frac{\pi}{6}\left(29^{3/2}-5^{3/2}\right) \approx 75.916" />,
@@ -207,6 +214,7 @@ export default function SpecialistQ3_2023Exam2() {
 
       <PartCard
         letter="a.i"
+        topic="Volume of Revolution"
         marks={1}
         statement={
           <>
@@ -221,6 +229,7 @@ export default function SpecialistQ3_2023Exam2() {
 
       <PartCard
         letter="a.ii"
+        topic="Volume of Revolution"
         marks={1}
         statement={<>Find the volume of the solid of revolution.</>}
         examinerReport={EXAM_AII}
@@ -230,6 +239,7 @@ export default function SpecialistQ3_2023Exam2() {
 
       <PartCard
         letter="b.i"
+        topic="Surface Area"
         marks={2}
         statement={
           <>
@@ -245,6 +255,7 @@ export default function SpecialistQ3_2023Exam2() {
 
       <PartCard
         letter="b.ii"
+        topic="Surface Area"
         marks={1}
         statement={
           <>
@@ -260,13 +271,16 @@ export default function SpecialistQ3_2023Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           The total surface area of the solid consists of the curved surface area plus the
-          areas of the two circular discs at each end. The "efficiency ratio" of a body is
-          defined as its total surface area divided by the enclosed volume.
+          areas of the two circular discs at each end.
+          <br />
+          The 'efficiency ratio' of a body is defined as its total surface area divided by the
+          enclosed volume.
         </p>
       </div>
 
       <PartCard
         letter="c"
+        topic="Efficiency Ratio"
         marks={2}
         statement={
           <>
@@ -281,14 +295,17 @@ export default function SpecialistQ3_2023Exam2() {
 
       <PartCard
         letter="d"
+        topic="Volume of Revolution"
         marks={3}
         statement={
           <>
             Another solid of revolution is formed by rotating the curve given by{' '}
             <Katex tex="y^2=x-1" /> about the <Katex tex="x" />-axis for{' '}
-            <Katex tex="2\le x\le k" />, where <Katex tex="k\in\mathbb{R}" />. This solid has
-            a volume of <Katex tex="24\pi" />. Find the efficiency ratio for this solid,
-            giving your answer correct to two decimal places.
+            <Katex tex="2\le x\le k" />, where <Katex tex="k\in R" />. This solid has
+            a volume of <Katex tex="24\pi" />.
+            <br />
+            Find the efficiency ratio for this solid, giving your answer correct to two
+            decimal places.
           </>
         }
         examinerReport={EXAM_D}

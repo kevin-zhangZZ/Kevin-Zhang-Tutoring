@@ -10,33 +10,45 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 33, B: 13, C: 20, D: 33 },
   answer: 'D',
-  comment: <>Use the constant acceleration formulas to find the velocity at the midpoint.</>,
+  comment: (
+    <>
+      Use the constant acceleration formulas to find the velocity at the midpoint.
+      <br />
+      <em>u = initial velocity, v = final velocity at B, s = distance between points A and B.</em>
+      <br />
+      <Katex tex="v_m" /> <em>= velocity at midpoint between A and B</em>
+      <br />
+      <Katex tex="v^2=u^2+2as\ \Rightarrow 2as=v^2-u^2" />
+      <br />
+      <Katex tex="{v_m}^2=u^2+2a\dfrac{s}{2}" />
+      <br />
+      <Katex tex="{v_m}^2=u^2+\dfrac{v^2-u^2}{2}" />
+      <br />
+      <Katex tex="{v_m}^2=\dfrac{u^2+v^2}{2}" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="v^2 = u^2+2as" />,
-    reason: 'The constant-acceleration formula that links the two velocities to the distance, with s the length of AB.',
+    reason: <>The constant-acceleration formula that links the two velocities to the distance, with s the length of AB.</>,
   },
   {
     working: <Katex display tex="as = \frac{v^2-u^2}{2}" />,
-    reason: 'Rearranged — this combination is what the midpoint calculation needs.',
+    reason: <>Rearranged — this combination is what the midpoint calculation needs.</>,
   },
   {
     working: <Katex display tex="v_m^2 = u^2+2a\left(\frac{s}{2}\right) = u^2+as" />,
-    reason: 'The same formula applied from A to the midpoint, where the distance travelled is half of s.',
+    reason: <>The same formula applied from A to the midpoint, where the distance travelled is half of s.</>,
   },
   {
     working: <Katex display tex="v_m^2 = u^2+\frac{v^2-u^2}{2} = \frac{u^2+v^2}{2}" />,
-    reason: 'Substituting. The unknown acceleration and distance both disappear.',
+    reason: <>Substituting. The unknown acceleration and distance both disappear.</>,
   },
   {
     working: <Katex display tex="\boxed{v_m = \sqrt{\frac{u^2+v^2}{2}}}" />,
-    reason: <>Option <b>D</b>.</>,
-  },
-  {
-    working: <Katex display tex="\frac{u+v}{2} \text{ is the average over } \textit{time}, \text{ not over distance}" />,
-    reason: 'That is why a third of the cohort chose A. The midpoint of AB is halfway in distance, and the particle spends longer on the slow half, so the midpoint speed exceeds the time-average.',
+    reason: <>Matches option <b>D</b>. Option <b>A</b>, <Katex tex="\tfrac{u+v}{2}" />, is the velocity halfway through the <em>time</em>, not halfway along <Katex tex="AB" />: the particle spends longer on the slow half, so the velocity at the midpoint in distance is larger.</>,
   },
 ]
 

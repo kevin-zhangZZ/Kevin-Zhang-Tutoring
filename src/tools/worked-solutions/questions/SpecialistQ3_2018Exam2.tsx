@@ -8,7 +8,7 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
-import fountainSrc from './spec-2018exam2-q3-fountain.png'
+import fountainSrc from './spec-2018e2-q3-fountain.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [40, 27, 32],
@@ -17,8 +17,8 @@ const EXAM_A: SAExaminerStats = {
     <>
       Approximately half of the students were able to either set up an appropriate definite
       integral or find an antiderivative and attempt to evaluate the constant of integration.
-      Of these, many did not explicitly show that the first part of their response led to the
-      required result.
+      Of these, many did not explicitly show that the first part of their response yielded the
+      required volume.
     </>
   ),
 }
@@ -26,7 +26,12 @@ const EXAM_A: SAExaminerStats = {
 const EXAM_B: SAExaminerStats = {
   marks: [28, 17, 56],
   average: 1.3,
-  comment: <>A common error was to fail to halve the volume.</>,
+  comment: (
+    <>
+      While the approach above was the most common, other correct approaches were used. A
+      common error was to fail to halve the volume.
+    </>
+  ),
 }
 
 const EXAM_CI: SAExaminerStats = {
@@ -35,9 +40,13 @@ const EXAM_CI: SAExaminerStats = {
   comment: (
     <>
       Most students were able to correctly state <Katex tex="\tfrac{dV}{dt}" /> and find{' '}
-      <Katex tex="\tfrac{dV}{dh}" /> and then use this to find <Katex tex="\tfrac{dh}{dt}" />{' '}
+      <Katex tex="\tfrac{dV}{dh}" /> and then use this to find <Katex tex="\tfrac{dh}{dV}" />{' '}
       before proceeding. A few students did not understand the importance of brackets when
-      multiplying.
+      multiplying the derivative expressions.
+      <br />
+      Many students moved directly from the product of the derivatives to the required
+      expression, without explicitly showing that their product led to the final (given)
+      answer.
     </>
   ),
 }
@@ -60,7 +69,7 @@ const EXAM_D: SAExaminerStats = {
   comment: (
     <>
       Most students were able to set up a correct definite integral. Transcription errors
-      were occasionally seen.
+      were occasionally present in the integrand.
     </>
   ),
 }
@@ -103,8 +112,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Antidifferentiating.</>,
   },
   {
-    working: <Katex display tex="\boxed{V = \frac{\pi}{4}\left(\frac{4h^3}{3}+h\right)} \ \checkmark" />,
-    reason: <>The lower terminal contributes nothing. On a "show that", write this last line explicitly — the report says many students set the integral up correctly and then never connected it to the required result.</>,
+    working: <Katex display tex="\boxed{V = \frac{\pi}{4}\left(\frac{4h^3}{3}+h\right)}" />,
+    reason: <>As required — the lower terminal contributes nothing. On a "show that", write this last line explicitly: the report says many students did not explicitly show that their working yielded the required volume.</>,
   },
 ]
 
@@ -115,11 +124,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V_{\text{full}} = \frac{\pi}{4}\left(\frac{4}{3}\left(\frac{\sqrt3}{2}\right)^3+\frac{\sqrt3}{2}\right)" />,
-    reason: <>Substituting the full depth into part (a).</>,
+    reason: <>Substituting the full depth into part a.</>,
   },
   {
     working: <Cas fn="solve">solve(π/4*(4h^3/3+h) = V_full/2, h) | 0&lt;h&lt;√3/2</Cas>,
-    reason: <>Halve the volume, then solve for the depth. The report names failing to halve as the common error — the question asks for half the <em>volume</em>, not half the depth.</>,
+    reason: <>Halve the volume, then solve for the depth. The report names failing to halve as a common error — the question asks for half the <em>volume</em>, not half the depth.</>,
   },
   {
     working: <Katex display tex="\boxed{h \approx 0.59 \text{ m}}" />,
@@ -134,7 +143,7 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dV}{dh} = \frac{\pi}{4}\left(4h^2+1\right)" />,
-    reason: <>Differentiating part (a) with respect to <Katex tex="h" />: <Katex tex="\tfrac{\pi}{4}\left(\tfrac{12h^2}{3}+1\right)" />. Brackets matter here — the report says so explicitly.</>,
+    reason: <>Differentiating part a. with respect to <Katex tex="h" />: <Katex tex="\tfrac{\pi}{4}\left(\tfrac{12h^2}{3}+1\right)" />. Brackets matter here — the report says so explicitly.</>,
   },
   {
     working: <Katex display tex="\frac{dh}{dt} = \frac{dV}{dt}\div\frac{dV}{dh} = \frac{0.04-0.05\sqrt h}{\frac{\pi}{4}\left(4h^2+1\right)}" />,
@@ -145,8 +154,8 @@ const ROWS_CI: WorkingRow[] = [
     reason: <>Multiplying numerator and denominator by <Katex tex="4" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\frac{dh}{dt} = \frac{4-5\sqrt h}{25\pi\left(4h^2+1\right)}} \ \checkmark" />,
-    reason: <>Multiplying top and bottom by <Katex tex="25" /> clears the decimals: <Katex tex="25\times0.16=4" /> and <Katex tex="25\times0.2=5" />. Matches the required form.</>,
+    working: <Katex display tex="\boxed{\frac{dh}{dt} = \frac{4-5\sqrt h}{25\pi\left(4h^2+1\right)}}" />,
+    reason: <>As required. Multiplying top and bottom by <Katex tex="25" /> clears the decimals: <Katex tex="25\times0.16=4" /> and <Katex tex="25\times0.2=5" />. Show this step — the report says many students jumped from the product of the derivatives straight to the given answer.</>,
   },
 ]
 
@@ -176,14 +185,14 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t \approx 9.8 \text{ seconds}}" />,
-    reason: <>To the nearest tenth. Rough check against part (c)(ii): at <Katex tex="h=0.25" /> the depth is rising at <Katex tex="0.0153" /> m s<Katex tex="^{-1}" />, and it was rising faster earlier, so a shade under <Katex tex="\tfrac{0.25}{0.0153}\approx16" /> seconds is the right order. ✓</>,
+    reason: <>To the nearest tenth. Rough check: <Katex tex="\tfrac{dh}{dt}" /> falls from <Katex tex="\tfrac{4}{25\pi}\approx0.051" /> at <Katex tex="h=0" /> to <Katex tex="0.0153" /> at <Katex tex="h=0.25" /> (part c.ii.), so the time must lie between <Katex tex="\tfrac{0.25}{0.051}\approx4.9" /> and <Katex tex="\tfrac{0.25}{0.0153}\approx16" /> seconds. ✓</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="h_{n+1} = h_n + \delta\,\frac{dh}{dt}\bigg|_{h_n}" />,
-    reason: <>Euler's method: step forward along the tangent. The report says many students never showed this formula, which is itself worth a mark.</>,
+    reason: <>Euler's method: step forward along the tangent. Write it out — the report says many students did not explicitly demonstrate their use of Euler's method, and a number substituted incorrectly.</>,
   },
   {
     working: <Katex display tex="h_0 = 0.4 \ \text{ at } t=25, \qquad \delta = 5" />,
@@ -199,7 +208,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{h \approx 0.43 \text{ m}}" />,
-    reason: <>Two decimal places. Note how little the depth moves in five seconds — the inflow and outflow are nearly balanced by now, which part (f) makes precise.</>,
+    reason: <>Two decimal places. Note how little the depth moves in five seconds — the inflow and outflow are nearly balanced by now, which part f. makes precise.</>,
   },
 ]
 
@@ -214,15 +223,15 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Top of the fountain at } y = \frac{\sqrt3}{2} \approx 0.8660" />,
-    reason: <>From the figure, as in part (b).</>,
+    reason: <>From the figure, as in part b.</>,
   },
   {
     working: <Katex display tex="\frac{\sqrt3}{2} - 0.64 \approx 0.2260" />,
-    reason: <>The question asks how far <em>from the top</em> the level settles, not what the depth is. The report says many students found <Katex tex="0.64" /> and stopped there, which is the mark lost.</>,
+    reason: <>The question asks how far <em>from the top</em> the level settles, not what the depth is. The report says many students who correctly found <Katex tex="h" /> did not subtract it from the height of the top of the fountain.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.23 \text{ m below the top}}" />,
-    reason: <>Two decimal places. So the fountain never quite fills — it stabilises about <Katex tex="23" /> cm short of the rim. Only <Katex tex="24\%" /> of the state scored both marks.</>,
+    reason: <>Two decimal places. So the fountain never quite fills — it stabilises about <Katex tex="23" /> cm short of the rim. Only <Katex tex="24\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -243,11 +252,11 @@ export default function SpecialistQ3_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={2} statement={<>Show that the volume, <Katex tex="V" /> cubic metres, of water in the fountain when it is filled to a depth of <Katex tex="h" /> metres is given by <Katex tex="V=\dfrac{\pi}{4}\left(\dfrac{4h^3}{3}+h\right)" />.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Volume of Revolution" marks={2} statement={<>Show that the volume, <Katex tex="V" /> cubic metres, of water in the fountain when it is filled to a depth of <Katex tex="h" /> metres is given by <Katex tex="V=\dfrac{\pi}{4}\left(\dfrac{4h^3}{3}+h\right)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={2} statement={<>Find the depth <Katex tex="h" /> when the fountain is filled to half its volume. Give your answer in metres, correct to two decimal places.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Solve Equation" marks={2} statement={<>Find the depth <Katex tex="h" /> when the fountain is filled to half its volume. Give your answer in metres, correct to two decimal places.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
 
@@ -261,32 +270,32 @@ export default function SpecialistQ3_2018Exam2() {
         </p>
       </div>
 
-      <PartCard letter="c.i" marks={2} statement={<>Show that <Katex tex="\dfrac{dh}{dt}=\dfrac{4-5\sqrt h}{25\pi\left(4h^2+1\right)}" />.</>} examinerReport={EXAM_CI}>
+      <PartCard letter="c.i" topic="Related Rates" marks={2} statement={<>Show that <Katex tex="\dfrac{dh}{dt}=\dfrac{4-5\sqrt h}{25\pi\left(4h^2+1\right)}" />.</>} examinerReport={EXAM_CI}>
         <Background>
           <p>
             The rates given are <em>volume</em> rates, but the question wants a{' '}
             <em>depth</em> rate. The chain rule bridges them:{' '}
             <Katex tex="\tfrac{dh}{dt}=\tfrac{dh}{dV}\times\tfrac{dV}{dt}" />, and{' '}
-            <Katex tex="\tfrac{dh}{dV}" /> is the reciprocal of what part (a) differentiates
+            <Katex tex="\tfrac{dh}{dV}" /> is the reciprocal of what part a. differentiates
             to.
           </p>
         </Background>
         <WorkingTable rows={ROWS_CI} />
       </PartCard>
 
-      <PartCard letter="c.ii" marks={1} statement={<>Find the rate, in metres per second, correct to four decimal places, at which the depth is increasing when the depth is <Katex tex="0.25" /> m.</>} examinerReport={EXAM_CII}>
+      <PartCard letter="c.ii" topic="Related Rates" marks={1} statement={<>Find the rate, in metres per second, correct to four decimal places, at which the depth is increasing when the depth is <Katex tex="0.25" /> m.</>} examinerReport={EXAM_CII}>
         <WorkingTable rows={ROWS_CII} />
       </PartCard>
 
-      <PartCard letter="d" marks={2} statement={<>Express the time taken for the depth to reach <Katex tex="0.25" /> m as a definite integral and evaluate this integral correct to the nearest tenth of a second.</>} examinerReport={EXAM_D}>
+      <PartCard letter="d" topic="Time Integral" marks={2} statement={<>Express the time taken for the depth to reach <Katex tex="0.25" /> m as a definite integral and evaluate this integral correct to the nearest tenth of a second.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
 
-      <PartCard letter="e" marks={2} statement={<>After <Katex tex="25" /> seconds the depth has risen to <Katex tex="0.4" /> m. Using Euler's method with a step size of five seconds, find an estimate of the depth <Katex tex="30" /> seconds after the fountain began to fill. Give your answer in metres, correct to two decimal places.</>} examinerReport={EXAM_E}>
+      <PartCard letter="e" topic="Euler's Method" marks={2} statement={<>After <Katex tex="25" /> seconds the depth has risen to <Katex tex="0.4" /> m.<br />Using Euler's method with a step size of five seconds, find an estimate of the depth <Katex tex="30" /> seconds after the fountain began to fill. Give your answer in metres, correct to two decimal places.</>} examinerReport={EXAM_E}>
         <WorkingTable rows={ROWS_E} />
       </PartCard>
 
-      <PartCard letter="f" marks={2} statement={<>How far from the top of the fountain does the water level ultimately stabilise? Give your answer in metres, correct to two decimal places.</>} examinerReport={EXAM_F}>
+      <PartCard letter="f" topic="Equilibrium" marks={2} statement={<>How far from the top of the fountain does the water level ultimately stabilise? Give your answer in metres, correct to two decimal places.</>} examinerReport={EXAM_F}>
         <Background>
           <p>
             "Stabilises" means the depth stops changing, so set{' '}
@@ -295,8 +304,8 @@ export default function SpecialistQ3_2018Exam2() {
           </p>
           <p>
             Then read the question again: it asks how far <em>from the top</em>, not what the
-            final depth is. Those are different numbers, and the report says the gap between
-            them is where most of the remaining marks went.
+            final depth is. Those are different numbers, and the report says many students who
+            found <Katex tex="h" /> did not take this last step.
           </p>
         </Background>
         <WorkingTable rows={ROWS_F} />

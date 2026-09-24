@@ -10,7 +10,13 @@ const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 20, C: 30, D: 37, E: 5 },
   answer: 'D',
   noAnswer: 1,
-  comment: <>Solve <Katex tex="m^2+4ac<0" /> for <Katex tex="c" />.</>,
+  comment: (
+    <>
+      <Katex tex="mx+c=ax^2" />, <Katex tex="ax^2-mx-c=0" />. The discriminant will be negative for
+      no real solutions. Solve <Katex tex="m^2+4ac<0" /> for <Katex tex="c" />.{' '}
+      <Katex tex="c<-\tfrac{m^2}{4a},\ a>0" /> and <Katex tex="c>-\tfrac{m^2}{4a},\ a<0" />
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [

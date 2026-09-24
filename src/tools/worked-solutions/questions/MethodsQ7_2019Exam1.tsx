@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
-import diagramSrc from './meth-2019exam1-q7-semicircle.png'
+import diagramSrc from './meth-2019e1-q7-semicircle.png'
 
 const EXAM_A: SAExaminerStats = {
   marks: [42, 58],
@@ -20,10 +20,13 @@ const EXAM_B: SAExaminerStats = {
   average: 1.0,
   comment: (
     <>
-      The majority of students used calculus; some used geometry and trigonometry instead.
-      Most found an expression for the area in terms of <Katex tex="x" />, but many who used
-      calculus found the differentiation difficult, generally from poor setting out —
-      particularly a lack of brackets, or mishandling negative terms.
+      The majority of students used calculus to solve this problem. Some students used
+      geometry and trigonometry to obtain a correct solution. Most students managed to find an
+      expression for the area in terms of <Katex tex="x" />. Many of those who used calculus
+      found the differentiation of the expression difficult, generally as a result of poor
+      setting out, particularly with lack of brackets, or dealing with negative terms. Students
+      are encouraged to practice differentiations involving combinations of product and chain
+      rules.
     </>
   ),
 }
@@ -35,6 +38,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{PB = \sqrt{1-x^2}}" />,
+    reason: <>Simplified — the report notes some answers were left as an incorrect, unsimplified distance formula.</>,
   },
 ]
 
@@ -57,13 +61,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A'(x)=0 \;\implies\; 1-2x^2-x=0 \;\implies\; 2x^2+x-1=0 \;\implies\; (2x-1)(x+1)=0" />,
+    reason: <>A fraction is zero only when its numerator is.</>,
   },
   {
     working: <Katex display tex="x=\tfrac12 \text{ or } x=-1 \text{ (excluded — makes the area 0)}" />,
-    reason: <>Maximum area occurs at <Katex tex="x=\tfrac12" />.</>,
+    reason: <>The area is <Katex tex="0" /> at both ends, <Katex tex="x=-1" /> and <Katex tex="x=1" />, and positive in between, so the only stationary point inside, <Katex tex="x=\tfrac12" />, is the maximum.</>,
   },
   {
     working: <Katex display tex="A\!\left(\tfrac12\right) = \tfrac12\left(\tfrac32\right)\sqrt{1-\tfrac14} = \tfrac12\left(\tfrac32\right)\left(\tfrac{\sqrt3}{2}\right)" />,
+    reason: <>Substituting back into the area.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum area} = \dfrac{3\sqrt3}{8}}" />,
@@ -90,11 +96,11 @@ export default function MethodsQ7_2019Exam1() {
         </div>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>Find an expression for the length <Katex tex="PB" /> in terms of <Katex tex="x" /> only.</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Length Expression" marks={1} statement={<>Find an expression for the length <Katex tex="PB" /> in terms of <Katex tex="x" /> only.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
-      <PartCard letter="b" marks={3} statement={<>Find the maximum area of the triangle <Katex tex="ABP" />.</>} examinerReport={EXAM_B}>
+      <PartCard letter="b" topic="Optimisation" marks={3} statement={<>Find the maximum area of the triangle <Katex tex="ABP" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
       </PartCard>
     </div>

@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L \approx 12.1944 \approx 12.2}" />,
-    reason: <>Matches option <b>C</b>. Option <b>D</b> <Katex tex="(12.5)" />, chosen by <Katex tex="12\%" />, is close enough that rounding or a slightly wrong integrand lands on it — so carry enough decimals to separate the two. Option <b>E</b> <Katex tex="(38.3)" /> is roughly <Katex tex="2\pi" /> times bigger, the signature of integrating <Katex tex="\left(\tfrac{dx}{dt}\right)^2+\left(\tfrac{dy}{dt}\right)^2" /> without the square root.</>,
+    reason: <>Matches option <b>C</b>. Option <b>D</b> <Katex tex="(12.5)" />, chosen by <Katex tex="12\%" />, is what the same integral gives with the calculator in degree mode (<Katex tex="12.49" />). Option <b>B</b> <Katex tex="(9.5)" /> takes <Katex tex="\tfrac{dx}{dt}" /> as <Katex tex="\cos(2t)" />, forgetting the chain-rule factor <Katex tex="2" />.</>,
   },
 ]
 

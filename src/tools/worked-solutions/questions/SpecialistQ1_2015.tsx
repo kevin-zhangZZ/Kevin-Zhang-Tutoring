@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 2+3\cos(t),\quad y = 3+2\sin(t)}" />,
-    reason: <>Option E. Option D has the centre and the axes swapped; option B parametrises a hyperbola, since <Katex tex="\sec^2-\tan^2=1" /> carries a minus sign.</>,
+    reason: <>Matches option <b>E</b>. Option D has the centre and the axes swapped; option B parametrises a hyperbola, since <Katex tex="\sec^2-\tan^2=1" /> carries a minus sign.</>,
   },
 ]
 

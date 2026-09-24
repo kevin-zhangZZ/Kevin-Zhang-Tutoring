@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2-4x = (x-2)^2-4 \ \text{ on } (1,\infty)" />,
-    reason: 'Complete the square to locate the vertex at (2, −4).',
+    reason: <>Complete the square to locate the vertex at (2, −4).</>,
   },
   {
     working: <Katex display tex="\text{ran}(f) = [-4,\infty)" />,
@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(u) = e^{-u} \ \text{ on } u\in[-4,\infty)" />,
-    reason: 'Now feed that range through the outer function.',
+    reason: <>Now feed that range through the outer function.</>,
   },
   {
     working: <Katex display tex="e^{-u} \text{ is decreasing}: \ u=-4 \mapsto e^{4}; \quad u\to\infty \mapsto 0^+" />,
@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(0,\ e^4\right]}" />,
-    reason: <>Option <b>D</b>. Both details matter: the bracket at <Katex tex="e^4" /> is closed because the vertex is in the domain, and the exponent is 4 (not 3, which is what using <Katex tex="f(1)=-3" /> as the minimum would give).</>,
+    reason: <>Matches option <b>D</b>. Both details matter: the bracket at <Katex tex="e^4" /> is closed because the vertex is in the domain, and the exponent is 4 (not 3, which is what using <Katex tex="f(1)=-3" /> as the minimum would give).</>,
   },
 ]
 
@@ -39,9 +39,11 @@ export default function MethodsQ5_2024() {
     <MCQShell
       question={
         <p>
-          Consider the functions <Katex tex="f:(1,\infty)\to\mathbb{R}" />,{' '}
-          <Katex tex="f(x)=x^2-4x" /> and <Katex tex="g:\mathbb{R}\to\mathbb{R}" />,{' '}
-          <Katex tex="g(x)=e^{-x}" />. The range of the composite function{' '}
+          Consider the functions <Katex tex="f:(1,\infty)\to R" />,{' '}
+          <Katex tex="f(x)=x^2-4x" /> and <Katex tex="g:R\to R" />,{' '}
+          <Katex tex="g(x)=e^{-x}" />.
+          <br />
+          The range of the composite function{' '}
           <Katex tex="g\bigl(f(x)\bigr)" /> is
         </p>
       }

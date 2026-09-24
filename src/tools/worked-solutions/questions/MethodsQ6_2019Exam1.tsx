@@ -20,9 +20,9 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Most students recognised this as a binomial distribution; however, few managed to
-      correctly find the two component expressions, and even fewer successfully manipulated
-      them into the format specified by the question. Another common error was to apply the
-      standard deviation formula instead.
+      correctly find the two component expressions. Even fewer successfully managed to
+      manipulate these expressions to the format specified by the question. Another common
+      error was to apply the standard deviation formula.
     </>
   ),
 }
@@ -30,10 +30,11 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{proportion} = \dfrac{\text{faulty}}{\text{sample size}} = \dfrac{8}{41}" />,
+    reason: <>Eight faulty pegs out of <Katex tex="41" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\dfrac{8}{41}}" />,
-    reason: <>Leave it as a fraction: the question asks for a proportion and sets no rounding. (<Katex tex="\tfrac{8}{41}\approx0.195" /> — a shade under one peg in five was faulty in this particular sample. Part (b) then tells you the company's <em>actual</em> long-run rate is <Katex tex="\tfrac16\approx0.167" />, so this sample happened to run slightly faulty; a sample proportion is an estimate, not the true value.)</>,
+    reason: <>Leave it as a fraction: the question asks for a proportion and sets no rounding. (<Katex tex="\tfrac{8}{41}\approx0.195" /> — a shade under one peg in five was faulty in this particular sample. Part b. then tells you the company's <em>actual</em> long-run rate is <Katex tex="\tfrac16\approx0.167" />, so this sample happened to run slightly faulty; a sample proportion is an estimate, not the true value.)</>,
   },
 ]
 
@@ -44,9 +45,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\!\left(\hat P<\tfrac16\right) = \Pr(X<2) = \Pr(X=0)+\Pr(X=1)" />,
+    reason: <>Only the counts <Katex tex="0" /> and <Katex tex="1" /> qualify.</>,
   },
   {
     working: <Katex display tex="\Pr(X=0) = \left(\tfrac56\right)^{12}, \qquad \Pr(X=1) = \binom{12}{1}\left(\tfrac16\right)\left(\tfrac56\right)^{11} = 12\left(\tfrac16\right)\left(\tfrac56\right)^{11}" />,
+    reason: <>The two binomial terms — the report says few students found both correctly.</>,
   },
   {
     working: <Katex display tex="\Pr(X<2) = \left(\tfrac56\right)^{11}\left[\tfrac56 + 12\left(\tfrac16\right)\right] = \left(\tfrac56\right)^{11}\left[\tfrac56+2\right]" />,
@@ -54,7 +57,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr\!\left(\hat P<\tfrac16\right) = \dfrac{17}{6}\left(\dfrac56\right)^{11}}" />,
-    reason: <>Matches the required form <Katex tex="a(b)^n" />, with <Katex tex="a=\tfrac{17}{6}" />, <Katex tex="b=\tfrac56" />, <Katex tex="n=11" />.</>,
+    reason: <><Katex tex="\tfrac56+2=\tfrac{17}{6}" />. This matches the required form <Katex tex="a(b)^n" />, with <Katex tex="a=\tfrac{17}{6}" />, <Katex tex="b=\tfrac56" />, <Katex tex="n=11" />.</>,
   },
 ]
 
@@ -69,12 +72,13 @@ export default function MethodsQ6_2019Exam1() {
         </p>
       </div>
 
-      <PartCard letter="a" marks={1} statement={<>What is the proportion of faulty pegs in this sample?</>} examinerReport={EXAM_A}>
+      <PartCard letter="a" topic="Sample Proportion" marks={1} statement={<>What is the proportion of faulty pegs in this sample?</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
       </PartCard>
 
       <PartCard
         letter="b"
+        topic="Sample Proportion"
         marks={2}
         statement={
           <>
