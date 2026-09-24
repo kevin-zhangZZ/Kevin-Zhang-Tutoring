@@ -11,7 +11,10 @@ import type { ListSort, ListView, SidebarPrefs } from './sidebarPrefs'
 import {
   EXAMS,
   HARD_BELOW,
+  EASY_FROM,
   difficulty,
+  difficultyBand,
+  type DifficultyBand,
   examItems,
   examTypes,
   mainCode,
@@ -366,14 +369,41 @@ function YearContent({
   )
 }
 
+// Difficulty colours: grey → amber, deeper amber = harder. Numbers stay grey apart from the
+// hardest band, which is amber and bold.
+const BAND_FILL: Record<DifficultyBand, string> = {
+  hard: 'bg-amber-600 dark:bg-amber-400',
+  medium: 'bg-amber-300 dark:bg-amber-700',
+  easy: 'bg-gray-300 dark:bg-gray-600',
+}
+const BAND_NUMBER: Record<DifficultyBand, string> = {
+  hard: 'font-extrabold text-amber-700 dark:text-amber-400',
+  medium: 'font-bold text-gray-500 dark:text-gray-400',
+  easy: 'font-bold text-gray-500 dark:text-gray-400',
+}
+const BAND_LABEL: Record<DifficultyBand, string> = {
+  hard: `under ${HARD_BELOW}%`,
+  medium: `${HARD_BELOW}–${EASY_FROM - 1}%`,
+  easy: `${EASY_FROM}% or more`,
+}
+
 // The key to the percentages — only once there are percentages on screen (a year, or a
 // topic, is open).
 function Legend({ prefs }: { prefs: SidebarPrefs }) {
   return (
-    <p className="text-[10.5px] text-gray-400 dark:text-gray-500 leading-snug px-1 mt-3 pt-2 border-t border-gray-100 dark:border-gray-800">
-      {prefs.diff === 'pips' && 'Pips: ●●● under 40%, ●● 40–64%, ● 65% or more. '}
-      Percentages are students who got an MCQ right, or the average mark on a short answer or part, from VCAA’s reports.
-    </p>
+    <div className="text-[10.5px] text-gray-400 dark:text-gray-500 leading-snug px-1 mt-3 pt-2 border-t border-gray-100 dark:border-gray-800">
+      {prefs.diff !== 'pct' && (
+        <p className="flex flex-wrap gap-x-3 gap-y-1 mb-1.5">
+          {(['hard', 'medium', 'easy'] as DifficultyBand[]).map(b => (
+            <span key={b} className="inline-flex items-center gap-1">
+              <span className={`w-2 h-2 rounded-sm ${BAND_FILL[b]}`} aria-hidden />
+              {BAND_LABEL[b]}
+            </span>
+          ))}
+        </p>
+      )}
+      <p>Percentages are students who got an MCQ right, or the average mark on a short answer or part, from VCAA’s reports.</p>
+    </div>
   )
 }
 
@@ -544,12 +574,21 @@ function SourceLinks({ paper, report, style }: { paper: string; report: string; 
 
 function OmittedRow({ o }: { o: OmittedQuestion }) {
   const redacted = /redacted/i.test(o.reason)
+  // The Skip Guide explains why, and opens on this paper.
+  const why = `/exam-skip-guide/${o.subject}/${o.year}/${o.exam.trim().toLowerCase().replace(/\s+/g, '-')}`
   return (
     <div className="flex items-center gap-2 px-2 py-1.5 ml-2.5">
       <span className="flex-none w-[52px] font-display text-[11.5px] font-bold text-gray-300 dark:text-gray-600">{o.code}</span>
       <span className="flex-1 min-w-0 text-[11.5px] text-gray-400 dark:text-gray-500 italic leading-snug">
         {o.reason}
-        {!redacted && ' · not in the current study design'}
+        {!redacted && (
+          <>
+            {' · not in the current study design · '}
+            <Link to={why} className="not-italic font-semibold text-sky-700 dark:text-sky-400 hover:underline whitespace-nowrap">
+              Why?
+            </Link>
+          </>
+        )}
       </span>
     </div>
   )
@@ -705,7 +744,7 @@ function QuestionRow({
           {parts.map(p => {
             const on = activePart === p.l
             const pct = p.a !== undefined ? Math.round((p.a / p.m) * 100) : null
-            const hard = pct !== null && pct < HARD_BELOW
+            const hard = pct !== null && difficultyBand(pct) === 'hard'
             return (
               <button
                 key={p.l}
@@ -724,7 +763,7 @@ function QuestionRow({
                 </span>
                 {pct !== null && (
                   <span
-                    className={`flex-none w-8 text-right font-display text-[10.5px] font-bold tabular-nums ${hard ? 'text-amber-700 dark:text-amber-400' : 'text-gray-400 dark:text-gray-500'}`}
+                    className={`flex-none w-8 text-right font-display text-[10.5px] tabular-nums ${hard ? BAND_NUMBER.hard : 'font-bold text-gray-400 dark:text-gray-500'}`}
                     title={`VCAA average ${p.a} out of ${p.m}`}
                   >
                     {pct}%
@@ -743,12 +782,10 @@ function Difficulty({ q, mode }: { q: QuestionMeta; mode: SidebarPrefs['diff'] }
   const d = difficulty(q)
   const width = mode === 'bar' ? 'w-[62px]' : mode === 'pct' ? 'w-8' : 'w-[26px]'
   if (d === null) return <span className={`flex-none ${width}`} />
-  const hard = d < HARD_BELOW
+  const band = difficultyBand(d)
   const title = q.type === 'mc' ? `${d}% of students answered correctly` : `Students averaged ${d}% of the marks`
   const number = (
-    <span
-      className={`text-[10.5px] font-display font-bold tabular-nums ${hard ? 'text-amber-700 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}
-    >
+    <span className={`text-[10.5px] font-display tabular-nums ${BAND_NUMBER[band]}`}>
       {d}%
     </span>
   )
@@ -756,7 +793,7 @@ function Difficulty({ q, mode }: { q: QuestionMeta; mode: SidebarPrefs['diff'] }
     return (
       <span className={`flex-none ${width} flex items-center gap-1.5`} title={title}>
         <span className="flex-1 h-1 rounded-full bg-gray-100 dark:bg-gray-800">
-          <span className={`block h-1 rounded-full ${hard ? 'bg-amber-400' : 'bg-gray-300 dark:bg-gray-600'}`} style={{ width: `${d}%` }} />
+          <span className={`block h-1 rounded-full ${BAND_FILL[band]}`} style={{ width: `${d}%` }} />
         </span>
         <span className="w-7 text-right">{number}</span>
       </span>
@@ -769,7 +806,7 @@ function Difficulty({ q, mode }: { q: QuestionMeta; mode: SidebarPrefs['diff'] }
       </span>
     )
   }
-  const level = d < HARD_BELOW ? 3 : d < 65 ? 2 : 1
+  const level = band === 'hard' ? 3 : band === 'medium' ? 2 : 1
   return (
     <span className={`flex-none ${width} flex items-center justify-end gap-[3px]`} title={title}>
       <span className="sr-only">{title}</span>
@@ -777,7 +814,7 @@ function Difficulty({ q, mode }: { q: QuestionMeta; mode: SidebarPrefs['diff'] }
         <span
           key={i}
           className={`w-1.5 h-1.5 rounded-full ${
-            i <= level ? (level === 3 ? 'bg-amber-500' : 'bg-gray-500 dark:bg-gray-400') : 'bg-gray-200 dark:bg-gray-700'
+            i <= level ? BAND_FILL[band] : 'bg-gray-200 dark:bg-gray-700'
           }`}
         />
       ))}

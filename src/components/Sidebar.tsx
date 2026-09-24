@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { tools } from '../tools/registry'
+import { tools, contactTool } from '../tools/registry'
 
 // Home + Tools nav links — shared between the desktop rail (collapsible) and
 // the mobile dropdown banner in Layout.tsx, so both stay in sync.
@@ -31,7 +31,7 @@ export function NavLinks({ collapsed, onNavigate }: { collapsed?: boolean; onNav
         </div>
       )}
 
-      {tools.map(tool => (
+      {tools.filter(tool => tool.section !== 'contact').map(tool => (
         <NavLink
           key={tool.id}
           to={tool.route}
@@ -41,8 +41,6 @@ export function NavLinks({ collapsed, onNavigate }: { collapsed?: boolean; onNav
             `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${collapsed ? 'justify-center' : ''} ${
               isActive
                 ? 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
-                : tool.id === 'contact-me'
-                ? 'bg-emerald-50 dark:bg-emerald-950/40 text-gray-600 dark:text-gray-300 hover:bg-emerald-100 dark:hover:bg-emerald-950/70 hover:text-gray-900 dark:hover:text-white'
                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
             }`
           }
@@ -52,6 +50,43 @@ export function NavLinks({ collapsed, onNavigate }: { collapsed?: boolean; onNav
         </NavLink>
       ))}
     </>
+  )
+}
+
+// Getting in touch isn't a tool, so it sits apart from the list: a small prompt pinned to the
+// bottom of the menu (the desktop rail, and the phone dropdown). Collapsed, it's just an icon.
+export function ContactPrompt({ collapsed, onNavigate }: { collapsed?: boolean; onNavigate?: () => void }) {
+  if (!contactTool) return null
+  if (collapsed) {
+    return (
+      <NavLink
+        to={contactTool.route}
+        onClick={onNavigate}
+        title={contactTool.name}
+        aria-label={contactTool.name}
+        className={({ isActive }) =>
+          `flex items-center justify-center px-3 py-2 rounded-md text-sm transition-colors ${
+            isActive
+              ? 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
+              : 'text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/50'
+          }`
+        }
+      >
+        <span className="text-sm leading-none">{contactTool.icon}</span>
+      </NavLink>
+    )
+  }
+  return (
+    <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950/40 p-3">
+      <p className="text-xs text-gray-600 dark:text-gray-400 leading-snug">Want help with Methods, Specialist or Chemistry?</p>
+      <NavLink
+        to={contactTool.route}
+        onClick={onNavigate}
+        className="mt-2 block text-center text-[13px] font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-md py-1.5 transition-colors"
+      >
+        Contact me
+      </NavLink>
+    </div>
   )
 }
 
@@ -70,13 +105,13 @@ export default function Sidebar({ dark, onToggleDark, collapsed, onToggleCollaps
       }`}
     >
       {/* Header */}
-      <div className={`flex items-center border-b border-gray-200 dark:border-gray-800 ${collapsed ? 'flex-col gap-2 px-2 py-4' : 'justify-between px-5 py-4'}`}>
+      <div className={`flex items-center border-b border-gray-200 dark:border-gray-800 ${collapsed ? 'flex-col gap-2 px-2 py-4' : 'justify-between gap-2 pl-4 pr-3 py-4'}`}>
         {!collapsed && (
-          <span className="font-semibold text-gray-900 dark:text-white text-sm tracking-tight leading-tight">
+          <span className="font-semibold text-gray-900 dark:text-white text-[13px] tracking-tight leading-tight whitespace-nowrap">
             Kevin Zhang Tutoring
           </span>
         )}
-        <div className={`flex items-center gap-2 ${collapsed ? 'flex-col' : ''}`}>
+        <div className={`flex items-center gap-1 ${collapsed ? 'flex-col' : ''}`}>
           <button
             onClick={onToggleCollapse}
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
@@ -107,6 +142,10 @@ export default function Sidebar({ dark, onToggleDark, collapsed, onToggleCollaps
       {/* Nav items */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden py-3 px-3">
         <NavLinks collapsed={collapsed} />
+      </div>
+
+      <div className={collapsed ? 'px-3 pb-3' : 'p-3'}>
+        <ContactPrompt collapsed={collapsed} />
       </div>
     </nav>
   )

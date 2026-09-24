@@ -3,7 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  /* Trig value colours. Light mode needs darker shades to read on white (pink-600, sky-700 and
+     emerald-700 are 4.6:1, 5.9:1 and 5.5:1); the lighter originals are kept for dark mode. */
   :root {
+    --color-sin: #db2777;
+    --color-cos: #0369a1;
+    --color-tan: #047857;
+  }
+  .dark {
     --color-sin: #e879a0;
     --color-cos: #38bdf8;
     --color-tan: #34d399;

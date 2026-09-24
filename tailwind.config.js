@@ -13,10 +13,10 @@ export default {
         display: ['"Aptos Display"', 'Aptos', '"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // Trig ratio colors (accessible in both light and dark)
-        sin: '#e879a0',   // rose-pink
-        cos: '#38bdf8',   // sky-blue
-        tan: '#34d399',   // emerald-green
+        // Trig ratio colors — CSS variables in index.css, with a darker shade in light mode
+        sin: 'var(--color-sin)',   // pink
+        cos: 'var(--color-cos)',   // sky blue
+        tan: 'var(--color-tan)',   // emerald green
       },
       transitionProperty: {
         'opacity-transform': 'opacity, transform',

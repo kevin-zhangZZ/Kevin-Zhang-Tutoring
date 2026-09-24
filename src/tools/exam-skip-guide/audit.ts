@@ -9,6 +9,15 @@
 // translating it into non-matrix, non-mechanics, or otherwise current-syllabus terms. Those
 // workarounds are kept as a note on the relevant row.
 //
+// Specialist 2020–2022 come from the worked-solutions review of every question in those papers
+// (Sept 2026): the Mechanics questions it left out (worked-solutions/omitted.ts) are the skips,
+// and the questions it kept despite force or momentum wording (noted in worked-solutions/data.ts)
+// are the tips. Keep the two files in step when either changes.
+//
+// Each row is either a skip or a tip ("doable with a tip"). The page works it out from the note
+// (a note that says "doable" makes a tip); set `status` when that would get it wrong. A question
+// that is partly skipped and partly doable is two rows (e.g. 2016 Specialist Exam 2 Q5).
+//
 // Years not listed here haven't been reviewed yet — that's not a claim they're clean, just
 // that nobody has been through them question-by-question. Extend this file's `rows` (and, if
 // a whole new topic needs explaining, `data.ts`'s `items`) as more years get reviewed.
@@ -19,6 +28,8 @@ export interface AuditRow {
   question: string // e.g. "Q12", "Section B Q4"
   topic: string
   note?: string
+  /** Skip it, or do it with the note's tip. Left out, a note mentioning "doable" means a tip. */
+  status?: 'skip' | 'tip'
 }
 
 export interface NotFound {
@@ -39,7 +50,7 @@ export const audits: SubjectAudit[] = [
       { year: 2014, exam: 'Exam 2', question: 'MCQ 7', topic: 'Modulus graph' },
       { year: 2014, exam: 'Exam 2', question: 'MCQ 12', topic: 'Matrix transformation' },
       { year: 2014, exam: 'Exam 2', question: 'MCQ 19', topic: 'Approximation of area using rectangles' },
-      { year: 2014, exam: 'Exam 2', question: 'SAQ4g', topic: 'Transition matrix (Markov chain)', note: 'Technically doable with a full 16-branch tree diagram — feasible but impractical. (SAQ4f is a similar transition-matrix question but only needs a 4-branch tree, so it’s worth attempting; note that 4f and 4g are both not binomial, since the trials aren’t independent of each other.)' },
+      { year: 2014, exam: 'Exam 2', question: 'SAQ4g', topic: 'Transition matrix (Markov chain)', status: 'skip', note: 'Technically doable with a full 16-branch tree diagram — feasible but impractical. (SAQ4f is a similar transition-matrix question but only needs a 4-branch tree, so it’s worth attempting; note that 4f and 4g are both not binomial, since the trials aren’t independent of each other.)' },
       { year: 2015, exam: 'Exam 2', question: 'MCQ 18', topic: 'Modulus function' },
       { year: 2015, exam: 'Exam 2', question: 'MCQ 22', topic: 'Modulus function' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 20', topic: 'Matrix transformation', note: 'Doable if you read the matrix as: dilation by factor 3 from the x-axis, reflection in the y-axis, then translation 5 units up.' },
@@ -73,7 +84,9 @@ export const audits: SubjectAudit[] = [
       { year: 2015, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis' },
       { year: 2015, exam: 'Exam 2', question: 'MCQ 19', topic: 'Dynamics and force analysis' },
       { year: 2015, exam: 'Exam 2', question: 'MCQ 21', topic: 'Dynamics and force analysis' },
-      { year: 2015, exam: 'Exam 2', question: 'SAQ5a,b,c', topic: 'Dynamics and force analysis', note: 'SAQ5d is still doable — just use the differential equation given right before part (d).\nAlso: MCQ15 in this exam is still doable, since it has nothing to do with actual forces content.' },
+      { year: 2015, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', status: 'tip', note: 'Still doable, since it has nothing to do with actual forces content.' },
+      { year: 2015, exam: 'Exam 2', question: 'SAQ5a,b,c', topic: 'Dynamics and force analysis', status: 'skip' },
+      { year: 2015, exam: 'Exam 2', question: 'SAQ5d', topic: 'Dynamics and force analysis', status: 'tip', note: 'Still doable — just use the differential equation given right before part (d).' },
       { year: 2016, exam: 'Exam 1', question: 'Entire Q1', topic: 'Dynamics and force analysis' },
       { year: 2016, exam: 'Exam 1', question: 'Q7', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 13', topic: 'Dynamics and force analysis' },
@@ -83,7 +96,8 @@ export const audits: SubjectAudit[] = [
       { year: 2016, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis' },
       { year: 2016, exam: 'Exam 2', question: 'SAQ1di', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
       { year: 2016, exam: 'Exam 2', question: 'SAQ1dii', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
-      { year: 2016, exam: 'Exam 2', question: 'SAQ5a', topic: 'Dynamics and force analysis', note: 'The rest of SAQ5 is doable using the differential equation given in part (a).' },
+      { year: 2016, exam: 'Exam 2', question: 'SAQ5a', topic: 'Dynamics and force analysis', status: 'skip' },
+      { year: 2016, exam: 'Exam 2', question: 'SAQ5b,c,d,e', topic: 'Dynamics and force analysis', status: 'tip', note: 'Doable using the differential equation given in part (a).' },
       { year: 2017, exam: 'Exam 1', question: 'Entire Q9', topic: 'Dynamics and force analysis' },
       { year: 2017, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis' },
       { year: 2017, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis' },
@@ -94,12 +108,33 @@ export const audits: SubjectAudit[] = [
       { year: 2018, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', note: 'Doable — use v^2 = u^2 + 2as to get the acceleration (12.8), then accept one substitution, force = mass x acceleration, for P = 8 x 12.8 = 102.4 N. Stopping at the acceleration lands on option C, which is the trap.' },
       { year: 2018, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis', note: 'A mass held in equilibrium by five coplanar forces — resolve horizontally and vertically. Pure statics, no workaround: skip it.' },
       { year: 2018, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis', note: 'Doable — no forces at all, just constant acceleration under gravity. Take up as positive, u = +2, a = -9.8, s = -50, and solve the quadratic. The whole difficulty is remembering the camera starts moving upwards with the balloon; ignoring that gives option D.' },
-      { year: 2018, exam: 'Exam 2', question: 'SAQ5a,b', topic: 'Dynamics and force analysis', note: 'Parts (a) and (b) are a force diagram and resolving forces along the ramp — skip them. Part (b)(ii) gives you the acceleration a = (g - 2v)/2, and parts (c), (d) and (e) are ordinary differential-equation work from there, so attempt those. Same shape as 2015 SAQ5 and 2016 SAQ5.' },
+      { year: 2018, exam: 'Exam 2', question: 'SAQ5a,b', topic: 'Dynamics and force analysis', status: 'skip', note: 'A force diagram and resolving forces along the ramp.' },
+      { year: 2018, exam: 'Exam 2', question: 'SAQ5c,d,e', topic: 'Dynamics and force analysis', status: 'tip', note: 'Part (b)(ii) gives you the acceleration a = (g - 2v)/2, and parts (c), (d) and (e) are ordinary differential-equation work from there, so attempt those. Same shape as 2015 SAQ5 and 2016 SAQ5.' },
       { year: 2019, exam: 'Exam 1', question: 'Entire Q9', topic: 'Dynamics and force analysis', note: 'Both parts are statics: a mass hanging in equilibrium from a smooth ring on a string, resolving the tension (a) and then adding a horizontal force (b). Nothing salvageable — skip the whole question. The other nine questions on this paper are all current.' },
       { year: 2019, exam: 'Exam 2', question: 'MCQ 13', topic: 'Dynamics and force analysis', note: 'Doable if you accept one substitution: net force = mass × acceleration, so F₁ + F₂ = 3(√3 i + j). Everything after that is ordinary vector work — subtract to get F₂, then use the dot product for the angle.' },
       { year: 2019, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis', note: 'Connected masses over a pulley with tension in the string — no workaround, skip it.' },
       { year: 2019, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis', note: 'A particle held in equilibrium by three coplanar forces (Lami / triangle of forces) — skip it.' },
       { year: 2019, exam: 'Exam 2', question: 'Entire SAQ5', topic: 'Dynamics and force analysis', note: 'Masses on a smooth inclined plane connected over a pulley: label the weight/normal/tension forces, show a condition for equilibrium, find the acceleration and the distance travelled. Every part needs force analysis — skip the whole question.' },
+      { year: 2020, exam: 'Exam 1', question: 'Entire Q1', topic: 'Dynamics and force analysis', note: 'All three parts resolve forces on a mass to find a normal reaction and an acceleration.' },
+      { year: 2020, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses force or momentum wording, but the mathematics is still on the course.' },
+      { year: 2020, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses force or momentum wording, but the mathematics is still on the course.' },
+      { year: 2020, exam: 'Exam 2', question: 'MCQ 18', topic: 'Dynamics and force analysis', note: 'Tension in a string holding a mass in equilibrium.' },
+      { year: 2020, exam: 'Exam 2', question: 'MCQ 19', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses force or momentum wording, but the mathematics is still on the course.' },
+      { year: 2020, exam: 'Exam 2', question: 'MCQ 20', topic: 'Dynamics and force analysis', note: 'A spring balance in a lift.' },
+      { year: 2020, exam: 'Exam 2', question: 'Entire SAQ5', topic: 'Dynamics and force analysis', note: 'A connected-masses pulley problem with friction.' },
+      { year: 2021, exam: 'Exam 1', question: 'Q1', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses F = ma and p = mv, but everything else in it is vector calculus.' },
+      { year: 2021, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis', status: 'tip', note: 'Force wording over what is really rectilinear kinematics.' },
+      { year: 2021, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', note: 'Four forces on a stationary body.' },
+      { year: 2021, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis', note: 'A mass on a smooth slope.' },
+      { year: 2021, exam: 'Exam 2', question: 'SAQ4', topic: 'Projectile motion', status: 'tip', note: 'The question hands you the projectile’s position vector, so all the mathematics in it is current.' },
+      { year: 2021, exam: 'Exam 2', question: 'Entire SAQ5', topic: 'Dynamics and force analysis', note: 'Two masses connected over a pulley on a rough inclined plane.' },
+      { year: 2022, exam: 'Exam 1', question: 'Entire Q5', topic: 'Dynamics and force analysis', note: 'Both parts resolve forces on a mass sliding down an inclined plane.' },
+      { year: 2022, exam: 'Exam 2', question: 'MCQ 14', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses force, equilibrium or momentum wording, but the mathematics is still on the course.' },
+      { year: 2022, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', note: 'Three forces on an inclined plane.' },
+      { year: 2022, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses force, equilibrium or momentum wording, but the mathematics is still on the course.' },
+      { year: 2022, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis', status: 'tip', note: 'Uses force, equilibrium or momentum wording, but the mathematics is still on the course.' },
+      { year: 2022, exam: 'Exam 2', question: 'MCQ 20', topic: 'Pulley and masses', status: 'tip', note: 'Really a Statistics question: the only physics is that the heavier side falls, and what it asks is the probability that a combination of normally distributed masses is positive.' },
+      { year: 2022, exam: 'Exam 2', question: 'Entire SAQ5', topic: 'Dynamics and force analysis', note: 'An object driven by two angled forces and a resistance, then pushed up a rough incline.' },
     ],
     notFound: [
       {
@@ -124,7 +159,7 @@ export const audits: SubjectAudit[] = [
       { year: 2016, exam: 'Exam', question: 'SAQ4d', topic: 'Condensation polymerisation' },
       { year: 2016, exam: 'Exam', question: 'Entire SAQ6', topic: 'AAS (atomic absorption spectroscopy)', note: 'Technically doable, since it doesn’t directly examine AAS content — treat the calibration curve as you would for HPLC, and "absorbance" on the vertical axis as you would "peak area". For part (c), the first three exam-report options are also no longer on the study design, but you should still identify volumetric analysis (titration) as a possible technique.' },
       { year: 2016, exam: 'Exam', question: 'SAQ7b', topic: 'Synthesis of aspirin', note: 'Used to require memorising a specific pathway — no longer required.' },
-      { year: 2017, exam: 'Exam', question: 'MCQ 8', topic: 'Coenzymes', note: 'Coenzymes and the shape-changing nature of enzymes aren’t examined anymore, but both options A and B are still true — option A (the lock-and-key model and inactive enantiomers) is what matters for the current study design.' },
+      { year: 2017, exam: 'Exam', question: 'MCQ 8', topic: 'Coenzymes', status: 'tip', note: 'Coenzymes and the shape-changing nature of enzymes aren’t examined anymore, but both options A and B are still true — option A (the lock-and-key model and inactive enantiomers) is what matters for the current study design.' },
       { year: 2017, exam: 'Exam', question: 'MCQ 9', topic: 'Energy content of foods', note: 'Doable — food energy only comes from macronutrients (protein, fats, carbohydrates) using the Databook values; ignore dietary fibre and sodium, they don’t provide energy.' },
       { year: 2017, exam: 'Exam', question: 'MCQ 12', topic: 'Oxidative rancidity' },
       { year: 2017, exam: 'Exam', question: 'MCQ 16', topic: 'Vitamins' },

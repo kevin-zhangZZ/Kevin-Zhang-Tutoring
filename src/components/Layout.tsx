@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useEffect, useRef } from 'react'
-import Sidebar, { NavLinks } from './Sidebar'
+import { useLocation } from 'react-router-dom'
+import Sidebar, { NavLinks, ContactPrompt } from './Sidebar'
+import { tools } from '../tools/registry'
 
 // Lets a tool move the shared back-to-top button out of the way of its own controls:
 // `hideAtLg` hides it on large screens (where the tool has its own "back to top", e.g. the
@@ -30,7 +32,12 @@ interface LayoutProps {
 // it, not the window) has been scrolled down past this many pixels.
 const BACK_TO_TOP_THRESHOLD = 400
 
+const SITE_TITLE = 'Kevin Zhang Tutoring — VCE Tools'
+
 export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
+  const { pathname } = useLocation()
+  // The tool this page belongs to: the first path segment ("/unit-circle/locate" → "unit-circle").
+  const toolSegment = pathname.split('/')[1] ?? ''
   const [menuOpen, setMenuOpen] = useState(false)
   const [collapsed, setCollapsed] = useState<boolean>(() => localStorage.getItem('sidebarCollapsed') === 'true')
   const [showBackToTop, setShowBackToTop] = useState(false)
@@ -40,6 +47,19 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
   useEffect(() => {
     localStorage.setItem('sidebarCollapsed', String(collapsed))
   }, [collapsed])
+
+  // Every page shares one scroll container, so moving to another tool would otherwise open it
+  // at the last page's scroll depth. Moves inside a tool (e.g. between worked solutions, which
+  // handle their own scrolling) keep their position.
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 })
+  }, [toolSegment])
+
+  // One tab title per tool, so several open tabs or bookmarks can be told apart.
+  useEffect(() => {
+    const tool = tools.find(t => t.route === `/${toolSegment}`)
+    document.title = tool ? `${tool.name} · VCE Tools` : SITE_TITLE
+  }, [toolSegment])
 
   // The button only shows while scrolling back up: on a phone it sits over the text, so while
   // reading down the page it gets out of the way.
@@ -109,6 +129,9 @@ export default function Layout({ dark, onToggleDark, children }: LayoutProps) {
           <nav className="flex-shrink-0 md:hidden border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 max-h-[70vh] overflow-y-auto">
             <div className="py-2 px-3">
               <NavLinks onNavigate={() => setMenuOpen(false)} />
+            </div>
+            <div className="px-3 pb-3">
+              <ContactPrompt onNavigate={() => setMenuOpen(false)} />
             </div>
           </nav>
         )}

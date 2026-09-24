@@ -58,7 +58,18 @@ export function difficulty(q: QuestionMeta): number | null {
   return marks ? Math.round((avg / marks) * 100) : null
 }
 
+// Three difficulty bands, shaded grey → amber (deeper amber = harder):
+//   hard   — under HARD_BELOW
+//   medium — HARD_BELOW up to EASY_FROM
+//   easy   — EASY_FROM and up
 export const HARD_BELOW = 40
+export const EASY_FROM = 65
+
+export type DifficultyBand = 'hard' | 'medium' | 'easy'
+
+export function difficultyBand(d: number): DifficultyBand {
+  return d < HARD_BELOW ? 'hard' : d < EASY_FROM ? 'medium' : 'easy'
+}
 
 export function yearsFor(subject: SubjectId): number[] {
   const years = new Set(SOURCED_YEARS)

@@ -21,9 +21,9 @@ export interface SubjectGuide {
 }
 
 export const CONFIDENCE_LABEL: Record<Confidence, string> = {
-  skip: 'Skip — no longer on the course',
-  note: 'Note — technique or emphasis changed',
-  new: 'New content — old papers won’t cover it',
+  skip: 'Skip — No Longer on the Course',
+  note: 'Note — Technique or Emphasis Changed',
+  new: 'New Content — Old Papers Won’t Cover It',
 }
 
 export const guides: SubjectGuide[] = [
