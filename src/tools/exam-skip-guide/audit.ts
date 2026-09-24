@@ -81,6 +81,7 @@ export const audits: SubjectAudit[] = [
       { year: 2016, exam: 'Exam 2', question: 'MCQ 15', topic: 'Dynamics and force analysis', note: 'Doable if you substitute F = 3a into each option and treat it as converting v = f(x) into a = g(x).' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 16', topic: 'Dynamics and force analysis', note: 'Doable as a challenge — analyse the vertical and horizontal components separately: use the vertical motion (gravity only) to find the time to return to the ground, then substitute into the horizontal motion to find the distance travelled.' },
       { year: 2016, exam: 'Exam 2', question: 'MCQ 17', topic: 'Dynamics and force analysis' },
+      { year: 2016, exam: 'Exam 2', question: 'SAQ1di', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
       { year: 2016, exam: 'Exam 2', question: 'SAQ1dii', topic: 'Arc length from Cartesian form', note: 'No longer required.' },
       { year: 2016, exam: 'Exam 2', question: 'SAQ5a', topic: 'Dynamics and force analysis', note: 'The rest of SAQ5 is doable using the differential equation given in part (a).' },
       { year: 2017, exam: 'Exam 1', question: 'Entire Q9', topic: 'Dynamics and force analysis' },

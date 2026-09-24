@@ -11,13 +11,21 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 14, B: 35, C: 24, D: 26 },
   answer: 'D',
+  noAnswer: 1,
   comment: (
     <>
-      From the Data Book: MnO₄⁻(aq) + 8H⁺(aq) + 5e⁻ → Mn²⁺(aq) + 4H₂O(l). Therefore, the reaction
-      between MnO₄⁻ and C₂H₂O₄ has a 2:5 stoichiometric ratio. n(MnO₄⁻) = 0.001 mol, therefore
-      n(C₂H₂O₄) = 0.0025 mol, and V(C₂H₂O₄) = 0.0025/0.100 = 0.025 L = 25 mL. Many students did
-      not identify and apply the second half-equation and hence establish the stoichiometry
-      needed for this question.
+      From the Data Book:
+      <br />
+      <Chem eq="MnO4-(aq) + 8H+(aq) + 5e- <=> Mn2+(aq) + 4H2O(l)" />
+      <br />
+      Therefore, the reaction between MnO₄⁻ and C₂H₂O₄ will have a 2:5 stoichiometric ratio.
+      <br />
+      <i>n</i>(MnO₄⁻) = 0.001 mol, therefore <i>n</i>(C₂H₂O₄) = 0.0025 mol
+      <br />
+      <i>V</i>(C₂H₂O₄) = 0.0025/0.1 = 0.025 L = 25 mL
+      <br />
+      Many students did not identify and apply the second half-equation and hence establish the
+      stoichiometry needed for this question.
     </>
   ),
 }
@@ -25,27 +33,31 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>The question only gives the oxidation half-equation, <Chem eq="C2H2O4 -> 2CO2 + 2H+ + 2e-" />. The reduction half-equation for permanganate, <Chem eq="MnO4- + 8H+ + 5e- -> Mn2+ + 4H2O" />, has to be recalled from the Data Book to balance the electrons.</>,
-    reason: 'Both half-equations are needed — the question only hands you half of what you need.',
+    reason: <>Both half-equations are needed — the question only hands you half of what you need.</>,
   },
   {
     working: <>Oxalic acid releases <b>2 electrons</b> per molecule; permanganate accepts <b>5 electrons</b> per ion. The lowest common multiple of 2 and 5 is 10, so multiply the oxalic acid equation by 5 and the permanganate equation by 2 to balance electrons.</>,
-    reason: 'Standard redox-titration balancing step.',
+    reason: <>Standard redox-titration balancing step.</>,
   },
   {
     working: <>This gives the mole ratio <Chem eq="MnO4- : C2H2O4" /> = 2 : 5.</>,
-    reason: 'For every 2 mol of permanganate reduced, 5 mol of oxalic acid must be oxidised.',
+    reason: <>For every 2 mol of permanganate reduced, 5 mol of oxalic acid must be oxidised.</>,
   },
   {
     working: <>n(MnO₄⁻) = 0.100 M × 0.0100 L = <b>0.00100 mol</b>.</>,
-    reason: 'From the given concentration and volume of KMnO₄.',
+    reason: <>From the given concentration and volume of KMnO₄.</>,
   },
   {
     working: <>Using the 2:5 ratio: n(C₂H₂O₄) = 0.00100 mol × 5/2 = <b>0.00250 mol</b>.</>,
-    reason: 'Scaling by the mole ratio found from the balanced half-equations.',
+    reason: <>Scaling by the mole ratio found from the balanced half-equations.</>,
   },
   {
     working: <>V(C₂H₂O₄) = n/c = 0.00250 mol ÷ 0.100 M = 0.0250 L = <b>25.0 mL</b>.</>,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Divide by the concentration of the oxalic acid.</>,
+  },
+  {
+    working: <b>25.0 mL of C₂H₂O₄ is needed to reach the equivalence point.</b>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b>, 10.0 mL, the most popular answer, assumes a 1:1 ratio — the report notes many students missed the second half-equation; option <b>A</b>, 4.0 mL, uses the ratio the wrong way round (0.00100 × 2/5 mol).</>,
   },
 ]
 

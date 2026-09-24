@@ -10,12 +10,33 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 6, B: 6, C: 49, D: 40 },
   answer: 'C',
+  comment: (
+    <>
+      Students could have eliminated the following answers:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>Option A: Fuel cell electrodes are not reactive.</li>
+        <li>
+          Option B: The porosity and catalyst impregnation make fuel cell electrodes more expensive
+          to produce than solid electrodes such as graphite.
+        </li>
+        <li>
+          Option D: Fuel cell electrodes do not allow <Chem eq="H2" /> and <Chem eq="O2" /> to react
+          directly. The function of a fuel cell is to convert chemical energy into electrical
+          energy. If the <Chem eq="H2" /> and <Chem eq="O2" /> were able to directly react together,
+          no electrical energy would be produced since chemical energy would be converted directly
+          to thermal energy.
+        </li>
+      </ul>
+      Hence, option C was the best alternative because fuel cell electrodes have significantly
+      higher surface area than solid electrodes.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Chem eq="2H2(g) + O2(g) -> 2H2O(l)" className="block text-[13.5px]" />,
-    reason: 'The overall cell reaction — but a fuel cell must split this into two separate half-reactions, one at each electrode, with electrons forced through an external circuit rather than transferring directly.',
+    reason: <>The overall cell reaction — but a fuel cell must split this into two separate half-reactions, one at each electrode, with electrons forced through an external circuit rather than transferring directly.</>,
   },
   {
     working: <>D — "provide a surface for H₂ and O₂ to directly react together": this describes ordinary <b>combustion</b>, which a fuel cell is specifically designed to <em>avoid</em>.</>,
@@ -25,7 +46,7 @@ const ROWS: WorkingRow[] = [
     working: <>A — "highly reactive": porosity is a physical/structural property, not a measure of chemical reactivity. <b>False</b> (and not really relevant to why porous electrodes specifically help).</>,
   },
   {
-    working: <>B — "cheap and readily available": doesn't explain why <em>porosity</em> specifically matters — cost has nothing to do with pore structure. <b>False.</b></>,
+    working: <>B — &ldquo;cheap and readily available&rdquo;: the reverse is true — the report notes porosity and catalyst impregnation make these electrodes <em>more</em> expensive than solid ones such as graphite. <b>False.</b></>,
   },
   {
     working: <>C — "more efficient than solid electrodes at moving charges and reactants": porous electrodes have far greater surface area, giving gas, electrolyte and electrode more contact points — the "three-phase boundary" where the actual electrode reaction happens.</>,
@@ -33,7 +54,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Porous electrodes are used because they move charges and reactants more efficiently than a solid electrode could.</b>,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option <b>D</b>, chosen by 40%, describes direct reaction — which would turn the chemical energy straight into heat and produce no electricity, the opposite of what a fuel cell is for.</>,
   },
 ]
 

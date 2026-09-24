@@ -8,24 +8,38 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 8, C: 37, D: 47 },
   answer: 'D',
-  comment: 'Reaction of water with the glycosidic bond in maltose produces two glucose molecules.',
+  comment: (
+    <>
+      A hydrolytic reaction involves the reaction of water with a compound to produce two or more
+      molecules smaller than the original compound. This is also commonly referred to as the
+      process of hydrolysis.
+      <br />
+      The formation of a dipeptide or a triglyceride is an example of a condensation reaction.
+      Condensation reactions produce water.
+      <br />
+      Reaction of water with the glycosidic bond in maltose produces two glucose molecules.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: 'A hydrolytic reaction: water reacts WITH a compound, breaking it into two or more smaller molecules.',
-    reason: 'This is the definition to test each option against.',
+    reason: <>This is the definition to test each option against.</>,
   },
   {
     working: <>A — forming a dipeptide, and B — forming a triglyceride: both are examples of <b>condensation</b>, the opposite process (two small molecules join, <em>releasing</em> water).</>,
-    reason: 'Condensation and hydrolysis are reverses of each other — mixing them up is the classic trap here.',
+    reason: <>Condensation and hydrolysis are reverses of each other — mixing them up is the classic trap here.</>,
   },
   {
     working: <>C — "water is a reaction product": this also describes <b>condensation</b> (water is released), not hydrolysis (where water is <em>consumed</em>, not produced).</>,
   },
   {
     working: <>D — glucose formed from maltose: maltose is a disaccharide of two glucose units joined by a glycosidic bond. Breaking that bond by reacting it with water — releasing two separate glucose molecules — is exactly hydrolysis.</>,
-    reason: <>Matches option <b>D</b>.</>,
+  },
+  {
+    working: <b>A hydrolytic reaction occurs when glucose is formed from maltose.</b>,
+    reason: <>Matches option <b>D</b>. Options A, B and C all describe condensation, the reverse process, in which water is a product.</>,
   },
 ]
 

@@ -12,9 +12,21 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'C',
   comment: (
     <>
-      On the electrochemical series, <Chem eq="Br2(l) + 2e- <=> 2Br-(aq)" /> (E° = 1.09 V) is a
-      <em> stronger</em> oxidant than <Chem eq="I2(s) + 2e- <=> 2I-(aq)" /> (E° = 0.55 V) — both stronger
-      than <Chem eq="Cu2+(aq) + 2e- <=> Cu(s)" /> (E° = 0.34 V).
+      On the electrochemical series,
+      <br />
+      <Chem eq="Br2(l) + 2e- <=> 2Br-(aq)" /> &nbsp; <i>E</i>° = 1.09 V
+      <br />
+      <Chem eq="I2(s) + 2e- <=> 2I-(aq)" /> &nbsp; <i>E</i>° = 0.55 V
+      <br />
+      <Chem eq="Cu2+(aq) + 2e- <=> Cu(s)" /> &nbsp; <i>E</i>° = 0.34 V
+      <br />
+      Since <Chem eq="Br2(aq)" /> is a stronger oxidant than <Chem eq="I2" />, the accidental use of
+      bromine solution in place of the iodine solution could not explain the &lsquo;no apparent
+      change&rsquo; observation.
+      <br />
+      Slow reaction, equilibrium and a greasy surface, which would prevent effective electrolytic
+      conduction in the electrolyte, could all explain the &lsquo;no apparent change&rsquo;
+      observation.
     </>
   ),
 }
@@ -26,19 +38,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: 'Observed: no apparent change over 10 minutes.',
-    reason: 'The task: find which hypothesis could NOT explain this discrepancy.',
+    reason: <>The task: find which hypothesis could NOT explain this discrepancy.</>,
   },
   {
     working: <>A — reaction rate too slow for the time allowed: entirely plausible; some reactions are just slow, even when thermodynamically favourable.</>,
-    reason: 'This could genuinely explain it — rule it out as the answer.',
+    reason: <>This could genuinely explain it — rule it out as the answer.</>,
   },
   {
     working: <>B — an equilibrium was established with <Chem eq="[Cu2+]" /> too low to see: also plausible — a small extent of reaction wouldn't visibly change the colour.</>,
-    reason: 'This could also genuinely explain it.',
+    reason: <>This could also genuinely explain it.</>,
   },
   {
     working: <>D — greasy copper surface: plausible — a layer of grease would physically block contact between the metal and the solution.</>,
-    reason: 'This could also genuinely explain a lack of reaction.',
+    reason: <>This could also genuinely explain a lack of reaction.</>,
   },
   {
     working: <>C — bromine solution accidentally used instead of iodine: but <Chem eq="Br2" /> is a <b>stronger</b> oxidant than <Chem eq="I2" /> (and copper reduces both readily).</>,
@@ -46,7 +58,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Only option C is genuinely impossible as an explanation.</b>,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Options A, B and D are all real reasons a thermodynamically favourable reaction can show no visible change.</>,
   },
 ]
 
@@ -57,9 +69,37 @@ export default function ChemistryQ25_2016() {
         <>
           <p className="mb-2">
             A class of Chemistry students investigated the reaction of copper metal and iodine
-            solution. A copper strip was placed into an iodine solution. A reaction was predicted
-            (products <Chem eq="Cu2+" /> and <Chem eq="I-" />, colour change brown → blue, copper
-            visibly corroded), but over 10 minutes, no apparent change was observed.
+            solution. After making predictions about the reaction, they placed a copper strip into
+            an iodine solution and compared their predictions with their observations.
+          </p>
+          <p className="mb-2">A number of groups recorded the following.</p>
+          <table className="mb-3 text-[13.5px] border-collapse">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-semibold">Reactants</th>
+                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-semibold">Prediction</th>
+                <th className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 font-semibold">Observation over 10 minutes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 text-center align-top">
+                  Cu metal
+                  <br />+<br />
+                  <Chem eq="I2" /> solution
+                </td>
+                <td className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 align-top">
+                  A reaction should occur. The expected products are <Chem eq="Cu2+" /> and{' '}
+                  <Chem eq="I-" />. The solution should turn from brown to blue as <Chem eq="I2" /> is
+                  consumed and <Chem eq="Cu2+" /> is formed. The Cu metal should look corroded.
+                </td>
+                <td className="border border-gray-300 dark:border-gray-700 px-3 py-1.5 align-top">no apparent change</td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="mb-2">
+            The predicted results were not observed. The class was asked to suggest some hypotheses
+            to explain the unexpected result.
           </p>
           <p>Which one of the following hypotheses could <b>not</b> explain the unexpected result?</p>
         </>

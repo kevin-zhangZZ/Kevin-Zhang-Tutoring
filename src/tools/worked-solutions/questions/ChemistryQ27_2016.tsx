@@ -16,8 +16,57 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'C',
   comment: (
     <>
-      Using 0.5 M <Chem eq="H2SO4" /> increases both the rate of reaction — <Chem eq="c(H+)" /> is
-      doubled — and the mass of <Chem eq="CO2" /> produced — <Chem eq="n(H+)" /> is doubled.
+      The mass–time graphs show that:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          more <Chem eq="CO2" /> is produced in Trial 2 (the overall decrease in the mass of the
+          flask is greater than in Trial 1)
+        </li>
+        <li>
+          the intial rate of reaction is higher in Trial 2 (the gradient of the mass–time graph is
+          steeper than in Trial 1)
+        </li>
+      </ul>
+      The larger m(<Chem eq="CO2" />) produced in Trial 2 could be due to a higher{' '}
+      m(<Chem eq="CaCO3" />) or a higher <i>c</i>(<Chem eq="H+" />). The reaction can be simplified to
+      <br />
+      <Chem eq="CaCO3(s) + 2H+(aq) -> Ca2+(aq) + H2O(l) + CO2(g)" />
+      <br />
+      For more <Chem eq="CO2" /> to be produced, the <i>n</i>(<Chem eq="CaCO3" />) or{' '}
+      <i>n</i>(<Chem eq="H+" />) reacting has to increase.
+      <br />
+      In trial 1
+      <br />
+      <i>n</i>(<Chem eq="CaCO3" />) = 20/100.1 = 0.20 mol
+      <br />
+      <i>n</i>(<Chem eq="H+" />) = 0.5 × 0.100 = 0.05 mol
+      <br />
+      <Chem eq="CaCO3" /> is in excess since 0.20 mol <Chem eq="CaCO2" /> requires 0.40 mol{' '}
+      <Chem eq="H+(aq)" /> for complete reaction.
+      <br />
+      Both options B (200 mL of 0.5 M HCl) and C (100 mL of 0.5 M <Chem eq="H2SO4" />) provide more{' '}
+      <Chem eq="H+(aq)" />, 0.1 mol in both cases, to react with <Chem eq="CaCO3" /> and so more{' '}
+      <Chem eq="CO2(g)" /> is produced and the mass of the flask decreases.
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>
+          Option A: heating the 0.5 M HCl increases the reaction rate of the reaction but has no
+          effect on <i>m</i>(<Chem eq="CO2" />) produced.
+        </li>
+        <li>
+          Option B: doubling the volume of HCl does not affect the rate of reaction, because the{' '}
+          <i>c</i>(<Chem eq="H+" />) is not altered, although is does increase the{' '}
+          <i>m</i>(<Chem eq="CO2" />).
+        </li>
+        <li>
+          Option C: using 0.5 M <Chem eq="H2SO4" /> increases both the rate of reaction – the{' '}
+          <i>c</i>(<Chem eq="H+" />) is doubled – and the <i>m</i>(<Chem eq="CO2" />) produced – the{' '}
+          <i>n</i>(<Chem eq="H+" />) is doubled.
+        </li>
+        <li>
+          Option D: using crushed <Chem eq="CaCO3" /> increases the rate of reaction, due to the
+          greater surface area, but has no effect on the <i>m</i>(<Chem eq="CO2" />) produced.
+        </li>
+      </ul>
     </>
   ),
 }
@@ -25,7 +74,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Chem eq="2HCl(aq) + CaCO3(s) -> CaCl2(aq) + CO2(g) + H2O(l)" className="block text-[13.5px]" />,
-    reason: 'Trial 1: 100 mL of 0.5 M HCl added to 20 g of marble chips (CaCO3).',
+    reason: <>Trial 1: 100 mL of 0.5 M HCl added to 20 g of marble chips (CaCO3).</>,
   },
   {
     working: (
@@ -54,7 +103,7 @@ const ROWS: WorkingRow[] = [
         D — crushed marble: faster rate (more surface area), but same n(H⁺) → same final mass. ✗ (explains rate only)
       </>
     ),
-    reason: 'Each of these changes only one of the two things Trial 2 actually shows.',
+    reason: <>Each of these changes only one of the two things Trial 2 actually shows.</>,
   },
   {
     working: (
@@ -64,7 +113,7 @@ const ROWS: WorkingRow[] = [
         <Chem eq="n(H+) = 0.100 x 1.0 = 0.10" /> mol — <b>double</b> the moles (more CO₂).
       </>
     ),
-    reason: <>Matches option <b>C</b> — the only change that affects both concentration and total moles of <Chem eq="H+" /> at once.</>,
+    reason: <>Matches option <b>C</b> — the only change that raises both the concentration and the total amount of <Chem eq="H+" />. Option <b>D</b>, crushing the marble, speeds the reaction up but leaves the mass of <Chem eq="CO2" /> unchanged. (The report&rsquo;s &ldquo;0.20 mol CaCO₂&rdquo; is a slip for CaCO₃, and its 0.40 mol is what 0.20 mol CaCO₃ would need — far more than the 0.05 mol present, which is the point.)</>,
   },
 ]
 
@@ -80,19 +129,17 @@ export default function ChemistryQ27_2016() {
               <Chem eq="CaCO3" />). In each trial, the mass of the flask and its contents was
               measured every 30 seconds, from the instant the reactants were mixed.
             </p>
-            <p className="mb-2">
-              <b>Trial 1</b>: 100 mL of 0.5 M hydrochloric acid, HCl, was added to 20 g of marble
-              chips. The equation for the reaction is <Chem eq="2HCl(aq) + CaCO3(s) -> CaCl2(aq) + CO2(g) + H2O(l)" />.
-            </p>
-            <p className="mb-2">
-              <b>Trial 2</b>: one change to the reaction conditions was made and the experiment was
-              repeated.
-            </p>
+            <p className="mb-1"><b>Trial 1</b></p>
+            <p className="mb-1">The strong acid used was hydrochloric acid, HCl.</p>
+            <p className="mb-1">The equation for the reaction is as follows.</p>
+            <Chem eq="2HCl(aq) + CaCO3(s) -> CaCl2(aq) + CO2(g) + H2O(l)" className="block text-[14px] mb-2" />
             <div className="flex justify-center mb-2">
               <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
                 <img src={apparatusSrc} alt="Trial 1 apparatus: an Erlenmeyer flask with 100 mL 0.5 M HCl and 20 g marble chips, plugged with cottonwool and releasing CO2, sitting on digital scales, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
               </div>
             </div>
+            <p className="mb-1"><b>Trial 2</b></p>
+            <p className="mb-2">One change to the reaction conditions was made and the experiment was repeated.</p>
             <p className="mb-2">The results of the two trials were graphed on the same axes and are shown below.</p>
             <div className="flex justify-center">
               <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">

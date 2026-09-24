@@ -14,12 +14,19 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       Statistically, the probability of successful collisions occurring between the combined
-      products of a combustion reaction colliding in the correct orientation with sufficient
-      energy is so small that, in practice, it can never happen. Therefore the reverse reaction
-      of a combustion equation of C4-based compounds or larger never occurs. The forward reaction
-      is exothermic, but all equilibrium processes involve both an exothermic and an endothermic
-      reaction, and combustion is not an equilibrium process, so Le Chatelier's principle does not
-      apply.
+      products of a combustion reaction colliding in the correct orientation with sufficient energy
+      is so small that, in practice, it can never happen. Therefore, the reverse reaction of a
+      combustion equation of C₄-based compounds or larger never occurs.
+      <br />
+      The forward reaction is exothermic, but all equilibrium processes involve both an exothermic
+      and endothermic reaction.
+      <br />
+      The products are more stable than the reactants in an exothermic process.
+      <br />
+      Combustion is not an equilibrium process, so LCP does not apply.
+      <br />
+      A significant number of students selected &lsquo;D&rsquo; as an option, which is not a valid
+      response as to why the reaction is considered irreversible.
     </>
   ),
 }
@@ -27,27 +34,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>Combustion of <Chem eq="C4H10" /> produces many small, highly dispersed product molecules (CO₂ and H₂O gas) — for the reverse reaction to occur, an enormous number of these scattered molecules would all need to collide simultaneously, in exactly the right orientation, with enough energy.</>,
-    reason: 'Sets up why the reverse reaction is practically never observed, regardless of energetics.',
+    reason: <>Sets up why the reverse reaction is practically never observed, regardless of energetics.</>,
   },
   {
     working: <>A: being exothermic only describes the energy released — plenty of reversible equilibrium reactions are also exothermic in the forward direction (e.g. the Haber process), so exothermicity alone doesn't make a reaction irreversible.</>,
-    reason: 'Exothermic ≠ irreversible. Ruled out.',
+    reason: <>Exothermic ≠ irreversible. Ruled out.</>,
   },
   {
     working: <>B: products being less stable than reactants would actually make the forward reaction <i>endothermic</i>, not exothermic — this gets the energetics of combustion backwards. Combustion products (CO₂, H₂O) are lower in energy (more stable) than the fuel and O₂.</>,
-    reason: 'Factually backwards. Ruled out.',
+    reason: <>Factually backwards. Ruled out.</>,
   },
   {
     working: <>C: the reverse reaction requires many product molecules to collide together at once, in a very specific arrangement — the probability of this happening is astronomically small, so in practice the reverse reaction simply never occurs.</>,
-    reason: 'The genuine, correct reason — a kinetic (collision-probability) argument, not a thermodynamic one. Correct.',
+    reason: <>The genuine, correct reason — a kinetic (collision-probability) argument, not a thermodynamic one. Correct.</>,
   },
   {
     working: <>D: combustion is not treated as an equilibrium system at all, so Le Chatelier's principle (which describes how equilibria shift in response to changes like reactant supply) doesn't apply here — there's no equilibrium position to "favour".</>,
-    reason: 'Misapplies an equilibrium concept to a non-equilibrium reaction. Ruled out.',
+    reason: <>Misapplies an equilibrium concept to a non-equilibrium reaction. Ruled out.</>,
   },
   {
-    working: <b>Only the collision-probability argument correctly explains why combustion of C4+ compounds is irreversible.</b>,
-    reason: <>Matches option <b>C</b>.</>,
+    working: <b>Only the collision-probability argument correctly explains why the combustion of butane is irreversible.</b>,
+    reason: <>Matches option <b>C</b>. Option <b>D</b>, chosen by as many students as <b>C</b>, applies Le Chatelier&rsquo;s principle to a reaction that isn&rsquo;t an equilibrium (the report&rsquo;s point).</>,
   },
 ]
 

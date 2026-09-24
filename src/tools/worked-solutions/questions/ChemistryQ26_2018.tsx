@@ -11,12 +11,23 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 11, B: 23, C: 30, D: 34 },
   answer: 'D',
+  noAnswer: 1,
+  comment: (
+    <>
+      Both the acid-base titration (to determine total acid concentration) and the redox-titration
+      (to determine ascorbic acid concentration) are required.
+      <br />
+      In the acid-base titration, the pH at the equivalence point will be above 7 since the weak
+      acid is usually titrated with a strong base. Hence, the phenolphthalein is the most
+      appropriate indicator from those suggested. Therefore, the best reponse was option D.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: 'Two separate titrations are needed: an acid-base titration finds the total concentration of every weak acid present (organic acids + vitamin C together); a redox titration with iodine finds vitamin C alone (only it reacts with I2).',
-    reason: 'Subtracting one result from the other then gives the organic acids on their own.',
+    reason: <>Subtracting one result from the other then gives the organic acids on their own.</>,
   },
   {
     working: <>Acid-base titration: needs a <b>strong</b> base (for a sharp, well-defined endpoint against weak acids) and an indicator matching a <b>basic</b> equivalence point.</>,
@@ -30,7 +41,7 @@ const ROWS: WorkingRow[] = [
         Methyl orange changes around pH 3.1–4.4 — matches an <em>acidic</em> equivalence point instead (wrong for this titration).
       </>
     ),
-    reason: 'This is exactly where options using methyl orange go wrong.',
+    reason: <>This is exactly where options using methyl orange go wrong.</>,
   },
   {
     working: <>Redox titration: titrate with <Chem eq="I2" />, using <b>starch</b> as the indicator (starch forms an intense blue-black complex with iodine, giving a sharp endpoint).</>,
@@ -46,11 +57,11 @@ const ROWS: WorkingRow[] = [
         C: sodium hydroxide is fine, but methyl orange is the wrong indicator for this equivalence point. ✗
       </>
     ),
-    reason: 'Each of the other three options gets exactly one piece wrong.',
+    reason: <>Each of the other three options gets exactly one piece wrong.</>,
   },
   {
     working: <b>D: KOH (strong base) + phenolphthalein for the acid-base titration, and I₂ + starch for the redox titration.</b>,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>C</b>, the most common wrong answer, has the right redox titration but methyl orange, which changes colour well below the basic equivalence point of a weak acid–strong base titration.</>,
   },
 ]
 

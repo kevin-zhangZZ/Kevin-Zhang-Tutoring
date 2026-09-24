@@ -8,13 +8,27 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 21, C: 21, D: 42 },
   answer: 'D',
-  comment: 'The spread of selected alternatives suggests a significant lack of understanding of the link between chromatography and chemical bonding.',
+  comment: (
+    <>
+      Polar molecules will be more attracted to the polar mobile phase by dipole-dipole
+      attraction. Non-polar molecules will be more attracted to the non-polar stationary phase by
+      dispersion forces. The polar molecules are more attracted to the polar solvent (mobile phase)
+      and so will travel through the column faster than the non-polar molecules, which are more
+      attracted to the non-polar stationary phase.
+      <br />
+      The spread of selected alternatives suggests a significant lack of understanding of the link
+      between chromatography and chemical bonding. Selection of alternatives B and C suggests
+      issues with the nature of dipole-dipole attraction and/or dispersion forces, or a mistaken
+      view of the relationship between the structure of the components and the polarity (or lack
+      thereof) of the mobile and stationary phases.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: 'Column: polar mobile phase (the solvent) + non-polar stationary phase.',
-    reason: 'Set the scene — HPLC separates molecules based on how strongly each is attracted to the two competing phases.',
+    reason: <>Set the scene — HPLC separates molecules based on how strongly each is attracted to the two competing phases.</>,
   },
   {
     working: 'Statement I: polar molecules ↔ solvent, by dipole-dipole attraction.',
@@ -30,7 +44,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>All three statements are true.</b>,
-    reason: <>Matches option <b>D</b> — a molecule's overall retention time comes down to which phase it's more attracted to, and by which kind of force.</>,
+    reason: <>Matches option <b>D</b>. A molecule&rsquo;s retention time comes down to which phase it is more attracted to, and by which kind of force; options <b>B</b> and <b>C</b> each drop a true statement, which the report links to confusion about dipole-dipole attraction and dispersion forces.</>,
   },
 ]
 

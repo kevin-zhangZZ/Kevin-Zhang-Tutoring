@@ -8,11 +8,13 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 38, C: 3, D: 42 },
   answer: 'D',
+  noAnswer: 1,
   comment: (
     <>
-      All three statements are properties of coenzymes. Coenzymes assist enzymes to catalyse a
-      reaction, by binding loosely to the active site of the enzymes and supporting the transfer
-      of electrons and atoms during the reaction.
+      All three statements are properties of coenzymes.
+      <br />
+      Coenzymes assist enzymes to catalyse a reaction, by binding loosely to the active site of the
+      enzymes and supporting the transfer of electrons and atoms during the reaction.
     </>
   ),
 }
@@ -20,19 +22,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>I: coenzymes are small organic (often vitamin-derived) molecules that work <i>alongside</i> an enzyme's active site to help it catalyse its reaction — without the coenzyme present, many enzymes can't function at all.</>,
-    reason: 'True — this is the defining role of a coenzyme.',
+    reason: <>True — this is the defining role of a coenzyme.</>,
   },
   {
     working: <>II: coenzymes bind <i>loosely</i> (non-covalently, reversibly) to the active site, rather than being a permanent part of the enzyme's structure — this is what lets them detach, diffuse away, and be reused by other enzyme molecules.</>,
-    reason: 'True — loose, reversible binding is a genuine defining feature that distinguishes coenzymes from prosthetic groups.',
+    reason: <>True — loose, reversible binding is a genuine defining feature that distinguishes coenzymes from prosthetic groups.</>,
   },
   {
     working: <>III: coenzymes commonly shuttle electrons and/or atoms (e.g. hydrogen atoms) between different reactions — NAD⁺/NADH is the standard example, carrying electrons and H atoms from one enzyme-catalysed reaction to another.</>,
-    reason: 'True — this carrier role is exactly why coenzymes matter in metabolic pathways.',
+    reason: <>True — this carrier role is exactly why coenzymes matter in metabolic pathways.</>,
   },
   {
-    working: <b>All three statements — I, II, and III — are genuine, correct properties of coenzymes.</b>,
-    reason: <>Matches option <b>D</b>.</>,
+    working: <b>All three statements — I, II and III — are correct properties of coenzymes.</b>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b>, chosen by 38%, leaves out statement II.</>,
   },
 ]
 

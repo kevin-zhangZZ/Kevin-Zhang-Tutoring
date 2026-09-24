@@ -7,24 +7,54 @@
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import isoleucineSrc from './chem-2015-mcq15-report-isoleucine.png'
+import glucoseSrc from './chem-2015-mcq15-report-glucose.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 14, C: 30, D: 40 },
   answer: 'D',
-  comment: 'Required using the structures of isoleucine and glucose given in the data book, together with an understanding of fatty acids and polyethene, to count C-H bonds per residue.',
+  noAnswer: 1,
+  comment: (
+    <>
+      Isoleucine:
+      <img src={isoleucineSrc} alt="The report's structure of isoleucine: H2N–CH–COOH with the side chain CH3CHCH2CH3 drawn below the alpha carbon" className="w-full max-w-[260px] mt-1" />
+      Each molecule has 10 C–H bonds, hence 40 C–H bonds in total.
+      <br />
+      Lignoceric acid: Saturated fatty acid with 24 C atoms
+      <br />
+      <Chem eq="C24H48O2" /> or <Chem eq="C23H47COOH" />
+      <br />
+      47 C–H bonds
+      <br />
+      Polyethene: –(<Chem eq="CH2" />–<Chem eq="CH2" />)–₁₂
+      <br />
+      12 × 4 = 48 C–H bonds
+      <br />
+      Maltotetraose: 4 glucose residues
+      <br />
+      Glucose, <Chem eq="C6H12O6" />, has 6 C–H bonds, as evident in:
+      <img src={glucoseSrc} alt="The report's ring structure of glucose with six of its hydrogen atoms boxed" className="w-full max-w-[230px] mt-1" />
+      4 glucose residues will provide 4 × 6 = 24 C–H bonds
+      <br />
+      The selection of alternative C may reflect the fact that it was the only option where the
+      number of C–H bonds could be determined easily. Some students may also have selected the
+      alternative with the greatest number of C–H bonds.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: 'Every option describes a compound built from 24 carbon atoms — so this is a fair comparison of C-H bond density, not just total size.',
-    reason: 'Count the C-H bonds contributed by one repeating residue of each compound, then scale up.',
+    reason: <>Count the C-H bonds contributed by one repeating residue of each compound, then scale up.</>,
   },
   {
     working: (
       <>
         <b>A — tetrapeptide of isoleucine</b> (4 residues × 6 C each = 24 C): each residue has 1 H on
-        the α-carbon, 0 on the carbonyl C, and 3+2+3 = 8 H across the branched side chain — 10 C-H
-        bonds per residue.
+        the α-carbon, none on the carbonyl carbon, and 1 + 3 + 2 + 3 = 9 H across the branched side
+        chain <Chem eq="CH(CH3)CH2CH3" /> — 10 C–H bonds per residue. Forming the peptide bonds
+        removes only N–H and O–H hydrogens, so the C–H count is unchanged.
       </>
     ),
     reason: <>Total: 4 × 10 = <b>40</b> C-H bonds.</>,
@@ -57,14 +87,15 @@ const ROWS: WorkingRow[] = [
         group, not a second H.
       </>
     ),
-    reason: <>7 C-H bonds per glucose residue — total for maltotetraose: 4 × 7 = <b>28</b>.</>,
+    reason: <>7 C–H bonds per glucose residue — total for maltotetraose: 4 × 7 = <b>28</b>. (The report counts 6 per glucose and 24 in total: its diagram boxes only one of the two hydrogens on the CH₂OH carbon. The answer is the same either way — D has by far the fewest.)</>,
   },
   {
     working: 'A: 40    B: 47    C: 48    D: 28',
     reason: <>Sugars pack far more oxygen (as -OH groups) onto their carbon skeleton than proteins, fats, or plain hydrocarbons do — so maltotetraose has the <b>fewest</b> C-H bonds by a wide margin.</>,
   },
   {
-    working: <b>Matches option D.</b>,
+    working: <b>Maltotetraose has the fewest C–H bonds.</b>,
+    reason: <>Matches option <b>D</b>. Option <b>C</b>, the polyethene segment, actually has the <em>most</em>; the report suggests it was chosen because it was the only option that was easy to count.</>,
   },
 ]
 

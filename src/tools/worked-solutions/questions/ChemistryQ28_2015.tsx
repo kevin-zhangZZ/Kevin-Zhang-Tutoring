@@ -15,9 +15,37 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      At Electrode I, Cu, and any metals that are stronger reductants than copper, are oxidised into
-      solution as ions. Metals that are weaker reductants than copper are not oxidised, and fall away
-      as solid sludge.
+      The relative positions in the electrochemical series of the metals present in the impure Cu
+      was a key reference in this question:
+      <br />
+      <Chem eq="Au+(aq) + e- <=> Au(s)" /> &nbsp; <i>E</i>⁰ = 1.68 V
+      <br />
+      <Chem eq="Ag+(aq) + e- <=> Ag(s)" /> &nbsp; <i>E</i>⁰ = 0.80 V
+      <br />
+      <Chem eq="Cu2+(aq) + 2e- <=> Cu(s)" /> &nbsp; <i>E</i>⁰ = 0.34 V
+      <br />
+      <Chem eq="Ni2+(aq) + 2e- <=> Ni(s)" /> &nbsp; <i>E</i>⁰ = –0.23 V
+      <br />
+      <Chem eq="Co2+(aq) + 2e- <=> Co(s)" /> &nbsp; <i>E</i>⁰ = –0.28 V
+      <br />
+      <Chem eq="Fe2+(aq) + 2e- <=> Fe(s)" /> &nbsp; <i>E</i>⁰ = –0.44 V
+      <br />
+      <Chem eq="Zn2+(aq) + 2e- <=> Zn(s)" /> &nbsp; <i>E</i>⁰ = –0.76 V
+      <br />
+      Since pure copper is deposited at Electrode II it must be the site of reduction, i.e.{' '}
+      <Chem eq="Cu2+(aq) + 2e- -> Cu(s)" />
+      <br />
+      At Electrode I, Cu, and any metals that are stronger reductants than Cu (Zn, Co, Ni and Fe)
+      will be oxidised; half-equation <Chem eq="Cu(s) -> Cu2+(aq) + 2e-" />
+      <br />
+      Metals that are weaker reductants than Cu (Ag and Au) will not be oxidised and will collect
+      under Electrode I in the sludge. It is essential that Ag and Au are not oxidised at Electrode
+      I, because their ions would be reduced in preference to <Chem eq="Cu2+(aq)" /> and would
+      impact on the purity of the Cu collected at Electrode II.
+      <br />
+      The selection of alternative B ignores the fact that Co, Ni and Fe cannot be present as
+      solids if Cu(s) has been oxidised because they are stronger reductants than Cu and, under a
+      voltage high enough to oxidise Cu, would also be oxidised.
     </>
   ),
 }
@@ -25,11 +53,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: 'Impurities in the blister copper: zinc, cobalt, silver, gold, nickel and iron.',
-    reason: 'Electrode I is the anode — everything on it is exposed to oxidising conditions, but not everything actually gets oxidised.',
+    reason: <>Electrode I is the anode — everything on it is exposed to oxidising conditions, but not everything actually gets oxidised.</>,
   },
   {
     working: <>A metal only dissolves as an ion if it's a <b>stronger</b> reductant than copper — i.e. more reactive, sitting above <Chem eq="Cu2+/Cu" /> in the electrochemical series.</>,
-    reason: 'Copper itself is being deliberately oxidised at this electrode — so anything that oxidises even more easily will too.',
+    reason: <>Copper itself is being deliberately oxidised at this electrode — so anything that oxidises even more easily will too.</>,
   },
   {
     working: (
@@ -43,7 +71,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Sludge contains: silver and gold.</b>,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> lists the three metals that <em>are</em> oxidised along with copper — at a voltage that oxidises Cu, Co, Ni and Fe cannot stay solid.</>,
   },
 ]
 
@@ -53,10 +81,13 @@ export default function ChemistryQ28_2015() {
       question={
         <>
           <div className="bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-4 py-3 mb-3 text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300">
+            <p className="mb-2 italic">Use the following information to answer Questions 28–30.</p>
             <p className="mb-2">
               An electrolytic cell is set up to obtain pure copper from an impure piece of copper
-              called "blister copper". The electrolyte solution contains both copper(II) sulfate and
-              sulfuric acid. The blister copper, Electrode I, contains impurities such as zinc,
+              called &lsquo;blister copper&rsquo;.
+            </p>
+            <p className="mb-2">
+              The electrolyte solution contains both copper(II) sulfate and sulfuric acid. The blister copper, Electrode I, contains impurities such as zinc,
               cobalt, silver, gold, nickel and iron. The cell voltage is adjusted so that only copper
               is deposited on Electrode II. Sludge, which contains some of the solid metal impurities
               present in the blister copper, forms beneath Electrode I. The other impurities remain

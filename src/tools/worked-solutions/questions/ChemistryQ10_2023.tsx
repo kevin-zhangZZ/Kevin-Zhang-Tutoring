@@ -3,47 +3,69 @@
 // temperature, by elimination against genuine equilibrium principles. Question text transcribed
 // from the original paper. Solution is original.
 
+import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 26, B: 47, C: 18, D: 8 },
   answer: 'A',
+  noAnswer: 1,
   comment: (
     <>
-      A higher value of the equilibrium expression means a higher proportion of products —
-      hence a higher yield. An increase in reactant concentration does not always increase
-      yield (e.g. compressing H₂(g) + Cl₂(g) ⇌ 2HCl(g) changes nothing), a decrease in
-      activation energy only speeds up reaching equilibrium, and a pressure increase does
-      nothing when mol of gas is equal on both sides.
+      A. A higher value for the equilibrium expression suggests a higher proportion of products /
+      increased product concentration compared to reactants, and hence a higher yield.
+      <br />
+      B. An increase in reactant concentration will increase the yield in any equilibrium where the
+      concentration fraction (reaction quotient) increases, as a result of a change that favours
+      the forward reaction. The system moves to compensate for the change by favouring the forward
+      reaction.
+      <br />
+      However, if the concentration increase occurs by decreasing the volume of an equilibrium
+      mixture in which there are the same number of mol of particles on both sides, as in the
+      equilibrium
+      <br />
+      <Chem eq="H2(g) + Cl2(g) <=> 2HCl(g)" />,
+      <br />
+      the value of the concentration fraction (reaction quotient) [HCl]²/[H₂][Cl₂] does not change
+      and there is no change in the yield.
+      <br />
+      C. A decrease in activation energy increases the reaction rate and allows the system to get
+      to equilibrium faster but has no effect on the equilibrium yield.
+      <br />
+      D. A pressure increase will cause the reaction to favour the side of the equilibrium with the
+      lower number of mol of particles. However, it has no impact on the yield of an equilibrium
+      system with the same number of particles on both sides, as in
+      <br />
+      <Chem eq="H2(g) + Cl2(g) <=> 2HCl(g)" />
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>The question asks for what is <b>always</b> true "at constant temperature" — since <i>K</i> itself only changes with temperature, any option that would change <i>K</i> is automatically wrong, and any option that doesn't guarantee a yield increase in <i>every</i> equilibrium is also wrong.</>,
-    reason: 'The word "always" is the trap — three of the four options are true only sometimes.',
+    working: <>The question asks what <b>always</b> corresponds to a higher yield — an option fails if there is even one equilibrium where it doesn&rsquo;t raise the yield.</>,
+    reason: <>The word "always" is the trap — three of the four options are true only sometimes.</>,
   },
   {
-    working: <>A: the equilibrium expression is <i>K</i> = [products]/[reactants] (raised to their coefficients). A <b>higher value</b> of this expression directly means a higher proportion of products relative to reactants at equilibrium — by definition, that <i>is</i> a higher yield.</>,
-    reason: 'This is true by definition, not by circumstance — always holds. Correct.',
+    working: <>A: the equilibrium expression is the concentration fraction [products]/[reactants], each concentration raised to the power of its coefficient. A <b>higher value</b> of it means a higher proportion of products relative to reactants — by definition, a higher yield.</>,
+    reason: <>True by definition, whatever the reaction. Correct.</>,
   },
   {
     working: <>B: increasing reactant concentration shifts most equilibria toward products, increasing yield. But for a reaction like H₂(g) + Cl₂(g) ⇌ 2HCl(g), where the mol of gas particles is the same on both sides, the reaction quotient [HCl]²/[H₂][Cl₂] is unaffected by a concentration change from compressing the mixture — the yield doesn't change.</>,
-    reason: 'A genuine counter-example exists, so this is not always true. Ruled out.',
+    reason: <>A genuine counter-example exists, so this is not always true. Ruled out.</>,
   },
   {
     working: <>C: a lower activation energy (e.g. from a catalyst) increases the <i>rate</i> the system reaches equilibrium — it speeds up both the forward and reverse reactions equally, so it has no effect on where equilibrium actually sits.</>,
-    reason: 'Rate and yield are different things — activation energy affects rate only. Ruled out.',
+    reason: <>Rate and yield are different things — activation energy affects rate only. Ruled out.</>,
   },
   {
     working: <>D: an increase in pressure shifts equilibrium toward the side with fewer mol of gas particles — but if both sides have the same mol of gas particles (again, as in H₂(g) + Cl₂(g) ⇌ 2HCl(g)), a pressure increase has no effect on yield at all.</>,
-    reason: 'Another genuine counter-example. Ruled out.',
+    reason: <>Another genuine counter-example. Ruled out.</>,
   },
   {
     working: <b>Only the definition of the equilibrium expression itself guarantees a higher yield in every case.</b>,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Option <b>B</b>, chosen by 47%, fails for an equilibrium like <Chem eq="H2(g) + Cl2(g) <=> 2HCl(g)" /> compressed to raise the concentrations (the report&rsquo;s example).</>,
   },
 ]
 

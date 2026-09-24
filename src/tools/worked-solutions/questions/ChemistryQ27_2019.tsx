@@ -5,15 +5,25 @@
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import structuresSrc from './chem-2019-mcq27-report-structures.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 34, C: 35, D: 22 },
   answer: 'C',
+  noAnswer: 1,
   comment: (
     <>
-      Both butan-1-ol (<Chem eq="C4H10O" />) and 2-methylbutan-2-ol (<Chem eq="C5H12O" />) will
-      show four distinct peaks on their ¹³C NMR spectra — but only one of them has the right
-      molar mass.
+      <img src={structuresSrc} alt="The report's structural formulas for the four options, labelled A 4 carbon environments, B 5, C 4 and D 3" className="w-full max-w-[420px] mt-1" />
+      Both butan-1-ol (<Chem eq="C4H10O" />) and 2-methylbutan-2-ol (<Chem eq="C5H12O" />) will show
+      four distinct peaks on their ¹³C NMR spectra.
+      <br />
+      <i>M</i>(<Chem eq="C4H10O" />) = 74.0 g mol⁻¹
+      <br />
+      <i>M</i>(<Chem eq="C5H12O" />) = 88.0 g mol⁻¹
+      <br />
+      Students who selected Options B or D did not accurately identify the number of carbon
+      environments in the associated molecules. This may been due to not referring to, or
+      inaccurate, structural formulae.
     </>
   ),
 }
@@ -41,7 +51,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Only 2-methylbutan-2-ol has both M = 88 g mol⁻¹ and exactly 4 distinct ¹³C environments.</b>,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option <b>B</b>, chosen by 34%, has five carbon environments, not four. (The report&rsquo;s drawing for D shows only four carbons — 2-methylpropan-1-ol — but 2,2-dimethylpropan-1-ol also has three environments, so its label stands.)</>,
   },
 ]
 
@@ -50,17 +60,18 @@ export default function ChemistryQ27_2019() {
     <MCQShell
       question={
         <p>
-          An organic compound has a molar mass of 88 g mol⁻¹. The ¹³C NMR spectrum of the organic
-          compound shows four distinct peaks.
+          An organic compound has a molar mass of 88 g mol⁻¹.
+          <br />
+          The ¹³C NMR spectrum of the organic compound shows four distinct peaks.
           <br />
           The organic compound is most likely
         </p>
       }
       options={[
         { letter: 'A', content: 'butan-1-ol.' },
-        { letter: 'B', content: '2-methylbutan-1-ol.' },
-        { letter: 'C', content: '2-methylbutan-2-ol.', isAnswer: true },
-        { letter: 'D', content: '2,2-dimethylpropan-1-ol.' },
+        { letter: 'B', content: '2-methyl-butan-1-ol.' },
+        { letter: 'C', content: '2-methyl-butan-2-ol.', isAnswer: true },
+        { letter: 'D', content: '2,2-dimethyl-propan-1-ol.' },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

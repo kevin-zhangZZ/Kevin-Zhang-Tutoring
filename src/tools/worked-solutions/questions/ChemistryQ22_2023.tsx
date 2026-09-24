@@ -12,29 +12,41 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'B',
   comment: (
     <>
-      The amounts of greenhouse gas per mol of fuel are the same — 1 mol CO₂ and 2 mol H₂O — for
-      both CH₄ and CH₃OH. The numbers of electrons per mol of fuel are different for the two
-      fuels: 8 mol for CH₄ and 6 mol for CH₃OH.
+      The relevant equations and half equations are:
+      <br />
+      <Chem eq="CH4 + 2O2 -> CO2 + 2H2O" />
+      <br />
+      <Chem eq="CH4 + 2H2O -> CO2 + 8H+ + 8e-" />
+      <br />
+      <Chem eq="CH3OH + 1½O2 -> CO2 + 2H2O" />
+      <br />
+      <Chem eq="CH3OH + H2O -> CO2 + 6H+ + 6e-" />
+      <br />
+      The amounts of greenhouse gas per mol of fuel are the same – 1 mol CO₂ and 2 mol H₂O – for
+      both CH₄ and CH₃OH.
+      <br />
+      The numbers of electrons per mol of fuel are different for the two fuels: 8 mol for CH₄ and 6
+      mol for CH₃OH.
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>Overall combustion equations: <Chem eq="CH4 + 2O2 -> CO2 + 2H2O" /> and <Chem eq="CH3OH + 1.5O2 -> CO2 + 2H2O" />.</>,
-    reason: 'Both fuels produce exactly 1 mol CO₂ and 2 mol H₂O per mol of fuel — the same amount of greenhouse gas.',
+    working: <>Overall combustion equations: <Chem eq="CH4 + 2O2 -> CO2 + 2H2O" /> and <Chem eq="CH3OH + 1½O2 -> CO2 + 2H2O" />.</>,
+    reason: <>Both fuels produce exactly 1 mol CO₂ and 2 mol H₂O per mol of fuel — the same amount of greenhouse gas.</>,
   },
   {
     working: <>Anode half-equations (oxidation, releasing electrons to the external circuit): <Chem eq="CH4 + 2H2O -> CO2 + 8H+ + 8e-" /> and <Chem eq="CH3OH + H2O -> CO2 + 6H+ + 6e-" />.</>,
-    reason: 'Balancing each half-equation by conserving atoms and charge gives the electrons released per mol of fuel.',
+    reason: <>Balancing each half-equation by conserving atoms and charge gives the electrons released per mol of fuel.</>,
   },
   {
-    working: <>Carbon in CH₄ starts at oxidation state −4 and ends at +4 in CO₂ — an 8-electron change. Carbon in CH₃OH starts at −2 (already partly oxidised, since it has an O–H bond) and ends at +4 in CO₂ — only a 6-electron change.</>,
-    reason: 'Methanol is already partially oxidised compared to methane, so it releases fewer electrons per mol when fully oxidised to CO₂.',
+    working: <>Carbon in CH₄ starts at oxidation state −4 and ends at +4 in CO₂ — an 8-electron change. Carbon in CH₃OH starts at −2 (already partly oxidised, since it is bonded to an O atom) and ends at +4 in CO₂ — only a 6-electron change.</>,
+    reason: <>Methanol is already partially oxidised compared to methane, so it releases fewer electrons per mol when fully oxidised to CO₂.</>,
   },
   {
     working: <>Greenhouse gas output: <b>the same</b> (1 mol CO₂ + 2 mol H₂O each). Electrons per mol of fuel: <b>different</b> (8 mol for CH₄ vs. 6 mol for CH₃OH).</>,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option <b>D</b>, chosen by 37%, misses that both fuels give the same products per mol, 1 mol CO₂ and 2 mol H₂O.</>,
   },
 ]
 

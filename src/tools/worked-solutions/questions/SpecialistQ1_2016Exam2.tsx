@@ -1,13 +1,13 @@
 // 2016 Specialist Mathematics — Exam 2, Section B, Question 1 (9 marks).
-// f(x) = (4 + x² + x³)/x: stationary point, inflection, sketch, arc length, and setting up
+// f(x) = (4 + x² + x³)/x: stationary point, inflection, sketch, (arc length), and setting up
 // a volume of revolution about the y-axis. Question text transcribed from the original
 // paper; VCAA supplied blank grid axes for part (c), so the sketch below is our own
 // matplotlib figure, drawn on the same grid (x from −3 to 3 in halves, y from −14 to 14 in
 // twos). Answers verified with scipy. Solution is original.
 //
-// Part d.ii. (evaluating arc length from a Cartesian rule) is no longer on the study design —
-// the skip guide lists 2016 Exam 2 SAQ1d(ii) — so its statement is shown, marked as such, with
-// no worked solution (KZ's decision, Sept 2026).
+// Parts d.i. and d.ii. (arc length from a Cartesian rule) are no longer on the study design —
+// the skip guide lists both — so their statements are shown, marked as such, with no worked
+// solution (KZ's decision, Sept 2026).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -53,20 +53,6 @@ const EXAM_C: SAExaminerStats = {
   ),
 }
 
-const EXAM_DI: SAExaminerStats = {
-  marks: [27, 73],
-  average: 0.8,
-  comment: (
-    <>
-      This question was answered fairly well. A variety of equivalent correct forms were
-      presented. A common error was an integrand
-      containing the square of <Katex tex="f(x)" /> rather than the square of{' '}
-      <Katex tex="f'(x)" />. Other errors included incorrect terminals, sign errors within
-      the integrand and expressions that appeared to represent the volume of a solid of
-      revolution.
-    </>
-  ),
-}
 
 
 const EXAM_E: SAExaminerStats = {
@@ -148,16 +134,6 @@ const ROWS_C: WorkingRow[] = [
   },
 ]
 
-const ROWS_DI: WorkingRow[] = [
-  {
-    working: <Katex display tex="L = \int_a^b\sqrt{1+\left(f'(x)\right)^2}\,dx" />,
-    reason: <>The cartesian arc-length formula. It is <Katex tex="f'" /> that gets squared, not <Katex tex="f" /> — the report's main flagged error.</>,
-  },
-  {
-    working: <Katex display tex="\boxed{\int_{-3}^{-0.5}\sqrt{1+\left(\frac{2x^3+x^2-4}{x^2}\right)^2}\,dx}" />,
-    reason: <>Using <Katex tex="f'" /> from part (a) and the terminals given in the stem. Any equivalent form was accepted.</>,
-  },
-]
 
 
 const ROWS_E: WorkingRow[] = [
@@ -266,9 +242,14 @@ export default function SpecialistQ1_2016Exam2() {
             length of the curve to be rotated.
           </>
         }
-        examinerReport={EXAM_DI}
       >
-        <WorkingTable rows={ROWS_DI} />
+        <Background title="Not in the Current Study Design">
+          <p>
+            Arc length for a curve given in Cartesian form is no longer on the Specialist
+            Mathematics study design (arc length along a vector or parametric curve still is), so
+            this part is left without a worked solution. The skip guide lists it as one to skip.
+          </p>
+        </Background>
       </PartCard>
 
       <PartCard

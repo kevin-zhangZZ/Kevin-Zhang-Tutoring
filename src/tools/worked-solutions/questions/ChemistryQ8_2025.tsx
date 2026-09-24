@@ -1,47 +1,63 @@
 // 2025 Chemistry Exam, MCQ 8. VCAA examination report: 29% correct — the hardest MCQ on this
 // paper. Comparing the potential difference of four different metal–air cells by combining each
 // metal's standard reduction potential with the air electrode's potential in the given
-// electrolyte. Question text transcribed from the original paper. Solution is original.
+// electrolyte. Question text transcribed from the original paper; the zinc–air cell diagram and
+// the four cell diagrams (options) are cropped from the original VCAA exam PDF. Solution is
+// original.
 
+import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import cellSrc from './chem-2025-mcq8-zinc-air-cell.png'
+import optASrc from './chem-2025-mcq8-optA.png'
+import optBSrc from './chem-2025-mcq8-optB.png'
+import optCSrc from './chem-2025-mcq8-optC.png'
+import optDSrc from './chem-2025-mcq8-optD.png'
+
+const opt = (src: string, alt: string) => (
+  <img src={src} alt={`${alt} — from the original 2025 VCAA exam paper`} className="w-full max-w-[230px] bg-white rounded" />
+)
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 29, B: 7, C: 53, D: 11 },
   answer: 'A',
   comment: (
     <>
-      Circuit A generates 3.60 V, Circuit B generates 2.06 V, Circuit C generates 3.10 V, and
-      Circuit D generates 1.99 V — found by combining the metal's standard reduction potential
-      with the air electrode's potential in the relevant electrolyte (acidic or alkaline).
+      Circuit A generates 3.60 V
+      <br />
+      Circuit B generates 2.06 V
+      <br />
+      Circuit C generates 3.10 V
+      <br />
+      Circuit D generates 1.99 V
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>In each cell, the metal electrode is <b>oxidised</b> (anode) and the air (O₂) electrode is <b>reduced</b> (cathode) — cell potential = <i>E</i>°(cathode) − <i>E</i>°(anode), using the metal's reduction potential as written for the anode.</>,
-    reason: 'The O₂ half-reaction depends on whether the electrolyte is acidic or alkaline, from the Data Book: O₂ + 4H⁺ + 4e⁻ → 2H₂O, E° = +1.23 V (acidic); O₂ + 2H₂O + 4e⁻ → 4OH⁻, E° = +0.40 V (alkaline).',
+    working: <>In each cell the metal is <b>oxidised</b> at the metal electrode (anode) and O₂ is <b>reduced</b> at the air electrode (cathode), so the potential difference = <i>E</i>°(O₂ half-cell) − <i>E</i>°(metal half-cell).</>,
+    reason: <>The O₂ half-equation depends on the electrolyte (Data Book): <Chem eq="O2(g) + 4H+(aq) + 4e- <=> 2H2O(l)" />, +1.23 V (acidic); <Chem eq="O2(g) + 2H2O(l) + 4e- <=> 4OH-(aq)" />, +0.40 V (alkaline).</>,
   },
   {
-    working: <>Circuit A — Mg electrode, acidic electrolyte: <i>E</i>°(Mg²⁺/Mg) = −2.36 V. Cell potential = 1.23 − (−2.36) = <b>3.60 V</b>.</>,
-    reason: 'Magnesium is the most reactive metal here, and pairing it with the higher-potential acidic O₂ half-cell gives the largest gap.',
+    working: <>A — Mg, acidic electrolyte: <i>E</i>°(Mg²⁺/Mg) = −2.37 V, so 1.23 − (−2.37) = <b>3.60 V</b>.</>,
+    reason: <>A strong reducing agent paired with the higher-potential acidic air electrode.</>,
   },
   {
-    working: <>Circuit B — Al electrode, alkaline electrolyte: <i>E</i>°(Al³⁺/Al) = −1.68 V. Cell potential = 0.40 − (−1.68) = <b>2.06 V</b> (≈2.08 V from Data Book values, rounding).</>,
-    reason: 'Aluminium is reactive, but paired with the lower-potential alkaline O₂ half-cell.',
+    working: <>B — Al, alkaline electrolyte: <i>E</i>°(Al³⁺/Al) = −1.66 V, so 0.40 − (−1.66) = <b>2.06 V</b>.</>,
+    reason: <>A weaker reducing agent than Mg, with the lower-potential alkaline air electrode.</>,
   },
   {
-    working: <>Circuit C — Na electrode, alkaline electrolyte: <i>E</i>°(Na⁺/Na) = −2.71 V. Cell potential = 0.40 − (−2.71) = <b>3.10 V</b>.</>,
-    reason: 'Sodium is even more reactive than magnesium, but it loses out to Circuit A by being paired with the lower-potential alkaline O₂ half-cell rather than acidic.',
+    working: <>C — Na, alkaline electrolyte: <i>E</i>°(Na⁺/Na) = −2.71 V, so 0.40 − (−2.71) = <b>3.11 V</b> (the report gives 3.10 V).</>,
+    reason: <>Na is the strongest reducing agent of the four, but the alkaline air electrode is 0.83 V lower than the acidic one.</>,
   },
   {
-    working: <>Circuit D — Zn electrode, acidic electrolyte: <i>E</i>°(Zn²⁺/Zn) = −0.76 V. Cell potential = 1.23 − (−0.76) = <b>1.99 V</b>.</>,
-    reason: 'Zinc is the least reactive metal of the four, giving the smallest cell potential despite the favourable acidic electrolyte.',
+    working: <>D — Zn, acidic electrolyte: <i>E</i>°(Zn²⁺/Zn) = −0.76 V, so 1.23 − (−0.76) = <b>1.99 V</b>.</>,
+    reason: <>The weakest reducing agent of the four gives the smallest potential difference.</>,
   },
   {
-    working: <b>3.60 V (Circuit A) is the largest of the four — the most reactive metal (Mg) combined with the higher-potential acidic air electrode.</b>,
-    reason: <>Matches option <b>A</b>.</>,
+    working: <b>Cell A, 3.60 V, has the highest potential difference.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b>, chosen by 53%, has the strongest reducing agent, Na, but the alkaline air electrode costs it 0.83 V.</>,
   },
 ]
 
@@ -49,17 +65,53 @@ export default function ChemistryQ8_2025() {
   return (
     <MCQShell
       question={
-        <p>
-          Which one of the following cells being investigated for use in flexible applications
-          has the highest potential difference? Each is a metal–air cell with a metal electrode,
-          an air electrode, and the stated electrolyte, connected through a load.
-        </p>
+        <>
+          <p className="mb-2 italic">Use the following information to answer Questions 7–9.</p>
+          <div className="mb-1 border border-gray-300 dark:border-gray-700 rounded-lg p-3 text-[13.5px]">
+            <p className="mb-2 text-[12.5px] text-gray-500 dark:text-gray-400">
+              [Image — due to copyright restrictions, this material is not supplied.]
+            </p>
+            <p className="mb-2">
+              The rapid popularization of wearable electronics, soft robots and implanted medical
+              devices has stimulated extensive research in flexible batteries, which are bendable,
+              foldable, knittable, wearable, and/or stretchable …
+            </p>
+            <p>
+              Different from the conventional batteries that utilize rigid and bulky electrodes,
+              current collectors, metal anodes, liquid electrolytes, and packages, flexible
+              batteries require the flexibility of each component to accommodate diverse shapes or
+              sizes.
+            </p>
+          </div>
+          <p className="mb-3 text-right text-[11.5px] text-gray-500 dark:text-gray-400">
+            Sources: Xiao Zhu et al., &lsquo;Recent progress of flexible rechargeable batteries&rsquo;,{' '}
+            <i>Science Bulletin</i>, vol. 69, issue 23, 2024 (extract); tradeKorea,
+            &lt;www.tradekorea.com/main.do&gt; (image)
+          </p>
+          <p className="mb-2">
+            Metal–air batteries are considered a suitable option for flexible batteries. Oxygen,
+            O₂, in the air reacts with a metal electrode in all cells. Sodium, Na, magnesium, Mg,
+            aluminium, Al, and zinc, Zn, are being investigated using polymer and gel electrolytes.
+          </p>
+          <p className="mb-2">A diagram of one of the cells in a flexible zinc–air battery is shown below.</p>
+          <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
+            <img
+              src={cellSrc}
+              alt="A curved, flexible zinc–air cell in layers: a porous positive current collector (+), the air electrode, a solid-state electrolyte, the zinc electrode and a negative current collector (−) — from the original 2025 VCAA exam paper"
+              className="w-full max-w-[460px]"
+            />
+          </div>
+          <p>
+            Which one of the following cells being investigated for use in flexible applications
+            has the highest potential difference?
+          </p>
+        </>
       }
       options={[
-        { letter: 'A', content: 'Mg electrode, acidic electrolyte, air electrode.', isAnswer: true },
-        { letter: 'B', content: 'Al electrode, alkaline electrolyte, air electrode.' },
-        { letter: 'C', content: 'Na electrode, alkaline electrolyte, air electrode.' },
-        { letter: 'D', content: 'Zn electrode, acidic electrolyte, air electrode.' },
+        { letter: 'A', content: opt(optASrc, 'A cell of a Mg electrode, an acidic electrolyte and an air electrode, connected to a load'), isAnswer: true },
+        { letter: 'B', content: opt(optBSrc, 'A cell of an Al electrode, an alkaline electrolyte and an air electrode, connected to a load') },
+        { letter: 'C', content: opt(optCSrc, 'A cell of a Na electrode, an alkaline electrolyte and an air electrode, connected to a load') },
+        { letter: 'D', content: opt(optDSrc, 'A cell of a Zn electrode, an acidic electrolyte and an air electrode, connected to a load') },
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}

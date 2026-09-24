@@ -4,15 +4,25 @@
 
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import structureSrc from './chem-2019-mcq15-report-structure.png'
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 32, C: 35, D: 18 },
   answer: 'C',
   comment: (
     <>
-      Aspartame has two chiral centres. Associated with each chiral centre are two optical
-      isomers, so aspartame has four optical isomers. The maximum number of stereoisomers of a
-      molecule is 2ⁿ, where n is the number of chiral centres.
+      Aspartame has two chiral centres:
+      <img src={structureSrc} alt="The report's structure of aspartame with its two chiral carbons circled" className="w-full max-w-[280px] mt-1" />
+      Associated with each chiral centre are two optical isomers. Hence, aspartame has four optical
+      isomers. Optical isomers are stereoisomers and a molecule with two chiral centres can have four
+      stereoisomers. The maximum number of stereoisomers of a molecule is 2<sup><i>n</i></sup> where{' '}
+      <i>n</i> is the number of chiral centres.
+      <br />
+      The selection of Option B suggested many students were not aware of the relationship between
+      chiral centres and stereoisomers.
+      <br />
+      The selection of Option D suggests that some students were not aware that there is a
+      significant difference between structural isomers and stereoisomers.
     </>
   ),
 }
@@ -24,19 +34,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Each chiral centre independently can be one of two configurations (R or S).</>,
-    reason: 'This is what generates optical isomers.',
+    reason: <>This is what generates optical isomers.</>,
   },
   {
     working: <>Maximum number of stereoisomers = 2ⁿ, where n = number of chiral centres.</>,
-    reason: 'General rule for molecules built from independent chiral centres.',
+    reason: <>General rule for molecules built from independent chiral centres.</>,
   },
   {
     working: <>2² = 4 stereoisomers — and since aspartame's stereoisomers all arise from these chiral centres (not from geometric/cis-trans isomerism), all four are <b>optical</b> isomers.</>,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>This is option C.</>,
   },
   {
-    working: <>A: "one chiral centre" undercounts — there are two. B: "two stereoisomers" only accounts for one chiral centre's worth. D: stereoisomers are <i>not</i> structural isomers — they share the same connectivity, differing only in 3D arrangement.</>,
-    reason: 'Why the other three options are wrong.',
+    working: <>A: &ldquo;one chiral centre&rdquo; undercounts — there are two. B: &ldquo;two stereoisomers&rdquo; only accounts for one chiral centre&rsquo;s worth. D: stereoisomers are <i>not</i> structural isomers — they share the same connectivity, differing only in 3D arrangement.</>,
+    reason: <>Why the other three options are wrong.</>,
+  },
+  {
+    working: <b>Aspartame has only four optical isomers.</b>,
+    reason: <>Matches option <b>C</b>. Option <b>B</b>, the most common wrong answer, counts two stereoisomers, as if there were one chiral centre; the report says many students did not relate the number of chiral centres to the number of stereoisomers.</>,
   },
 ]
 
@@ -44,10 +58,7 @@ export default function ChemistryQ15_2019() {
   return (
     <MCQShell
       question={
-        <p>
-          Aspartame — the artificial sweetener, built from an aspartic acid unit and a
-          phenylalanine methyl ester unit joined by a peptide bond — has only
-        </p>
+        <p>Aspartame has only</p>
       }
       options={[
         { letter: 'A', content: 'one chiral centre.' },

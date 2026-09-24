@@ -12,10 +12,13 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       In artificial photosynthesis, water is converted into hydrogen and oxygen gas by the sole
-      application of sunlight as the energy source. Water is oxidised to produce oxygen gas and
-      at the same time water is reduced to form hydrogen gas. Natural photosynthesis produces
-      oxygen gas and glucose. When hydrogen ions gain electrons to form hydrogen gas, this can
-      only occur at the cathode.
+      application of sunlight as the energy source. In this process, water is oxidised to produce
+      oxygen gas and at the same time water is reduced to form hydrogen gas. Option A aligns with
+      this.
+      <br />
+      Natural photosynthesis produces oxygen gas and glucose.
+      <br />
+      When hydrogen ions gain electrons to form hydrogen gas, this can only occur at the cathode.
     </>
   ),
 }
@@ -23,27 +26,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>Artificial photosynthesis splits water directly into H₂ and O₂ using <b>sunlight alone</b> as the energy source — it's essentially solar-driven electrolysis of water, not a carbon-fixing process.</>,
-    reason: 'The key distinction from natural photosynthesis to keep in mind for every option.',
+    reason: <>The key distinction from natural photosynthesis to keep in mind for every option.</>,
   },
   {
     working: <>A: <Chem eq="2H2O -> O2 + 4H+ + 4e-" /> (oxidation, at the anode) paired with <Chem eq="4H+ + 4e- -> 2H2" /> (reduction, at the cathode) — water is oxidised to O₂ while, simultaneously, water (via H⁺) is reduced to H₂.</>,
-    reason: 'Both halves of the process — genuinely correct. Matches option A.',
+    reason: <>Water is oxidised and H₂ is produced. Correct.</>,
   },
   {
     working: <>B: natural photosynthesis produces <b>glucose</b> and O₂ from CO₂ and H₂O; artificial photosynthesis produces <b>H₂</b> and O₂ from H₂O alone — the products are different, not the same.</>,
-    reason: 'Confuses two genuinely different processes that happen to both use sunlight. Ruled out.',
+    reason: <>Confuses two genuinely different processes that happen to both use sunlight. Ruled out.</>,
   },
   {
     working: <>C: hydrogen ions gaining electrons to form H₂ is a <b>reduction</b> half-reaction, and reduction always occurs at the <b>cathode</b>, never the anode.</>,
-    reason: "Gets the electrode backwards — the anode is where oxidation happens. Ruled out.",
+    reason: <>Gets the electrode backwards — the anode is where oxidation happens. Ruled out.</>,
   },
   {
     working: <>D: the entire point of artificial photosynthesis is that <b>sunlight</b>, not an external power supply, drives the water-splitting reaction — that's what makes it a solar-energy technology rather than ordinary electrolysis.</>,
-    reason: 'Contradicts the defining feature of the process. Ruled out.',
+    reason: <>Contradicts the defining feature of the process. Ruled out.</>,
   },
   {
-    working: <b>Only the description of water being simultaneously oxidised (to O₂) and reduced (to H₂) is correct.</b>,
-    reason: <>Matches option <b>A</b>.</>,
+    working: <b>Only the description of water being oxidised (to O₂) while H₂ is produced is correct.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>D</b>, chosen by 23%, contradicts the report&rsquo;s description: sunlight is the sole energy source.</>,
   },
 ]
 

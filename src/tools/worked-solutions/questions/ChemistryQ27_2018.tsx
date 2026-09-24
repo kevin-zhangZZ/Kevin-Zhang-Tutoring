@@ -10,12 +10,28 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 15, B: 20, C: 59, D: 6 },
   answer: 'C',
+  comment: (
+    <>
+      <Chem eq="Br2(g) + I2(g) <=> 2IBr(g)" /> &nbsp; <i>K</i><sub>c</sub> = 1.2 × 10²
+      <br />
+      Reverse equation – take reciprocal of the value of the equilibrium constant
+      <br />
+      <Chem eq="2IBr(g) <=> Br2(g) + I2(g)" /> &nbsp; <i>K</i><sub>c</sub> = 1 / 1.2 × 10²
+      <br />
+      Double coefficients – square the value of the equilibrium constant
+      <br />
+      <Chem eq="4IBr(g) <=> 2Br2(g) + 2I2(g)" /> &nbsp; <i>K</i><sub>c</sub> = (1 / 1.2 × 10²)² = 6.9 × 10⁻⁵
+      <br />
+      Option B was incorrect because it was consistent with dividing by 2 rather that raising to the
+      power of 2.
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Chem eq="Br2(g) + I2(g) <=> 2IBr(g), Kc = 1.2 × 10²" className="block text-[13.5px]" />,
-    reason: 'The given equilibrium and its equilibrium constant, at 150°C.',
+    working: <><Chem eq="Br2(g) + I2(g) <=> 2IBr(g)" /> &nbsp; <i>K</i><sub>c</sub> = 1.2 × 10²</>,
+    reason: <>The given equilibrium and its equilibrium constant, at 150°C.</>,
   },
   {
     working: <Chem eq="2Br2(g) + 2I2(g) <=> 4IBr(g)" className="block text-[13.5px]" />,
@@ -33,7 +49,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Kc(target) ≈ 6.9 × 10⁻⁵</b>,
-    reason: <>Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. Option <b>B</b>, 4.1 × 10⁻³, is 1/(1.2 × 10²) ÷ 2 — halving instead of squaring when the coefficients double, as the report notes.</>,
   },
 ]
 
@@ -43,11 +59,11 @@ export default function ChemistryQ27_2018() {
       question={
         <>
           <p className="mb-2">
-            <Chem eq="Br2(g) + I2(g) <=> 2IBr(g), Kc = 1.2 × 10²" /> at 150°C.
+            <Chem eq="Br2(g) + I2(g) <=> 2IBr(g)" /> &nbsp;&nbsp; <i>K</i><sub>c</sub> = 1.2 × 10² at 150 °C
           </p>
           <p>
-            Given the information above, what is Kc for the reaction{' '}
-            <Chem eq="4IBr(g) <=> 2Br2(g) + 2I2(g)" /> at 150°C?
+            Given the information above, what is <i>K</i><sub>c</sub> for the reaction{' '}
+            <Chem eq="4IBr(g) <=> 2Br2(g) + 2I2(g)" /> at 150 °C?
           </p>
         </>
       }

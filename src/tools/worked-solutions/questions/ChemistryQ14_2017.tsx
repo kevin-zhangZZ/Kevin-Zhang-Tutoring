@@ -12,8 +12,12 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      Impact on environment = fuel consumption (L/100 km) × <Chem eq="m(CO2)" /> per L of fuel. The
-      large number of students who selected option A overlooked the "100 km" specification.
+      Impact on environment, i.e. <i>m</i>(<Chem eq="CO2" />) produced per 100 km
+      <br />
+      = fuel consumption (L/100 km) × <i>m</i>(<Chem eq="CO2" />) per L of fuel
+      <br />
+      The large number of students who selected option A overlooked the 100 km specification in
+      the question.
     </>
   ),
 }
@@ -23,10 +27,10 @@ const TABLE = (
     <table className="w-full text-[13px] text-center border-collapse">
       <thead>
         <tr className="bg-gray-50 dark:bg-gray-800/60">
-          <th className="px-2 py-1.5 text-left">Vehicle</th>
+          <th className="px-2 py-1.5 text-left">Vehicle model</th>
           <th className="px-2 py-1.5">Fuel</th>
-          <th className="px-2 py-1.5">L / 100 km</th>
-          <th className="px-2 py-1.5">g CO₂ / L</th>
+          <th className="px-2 py-1.5">Fuel consumption (L/100 km)</th>
+          <th className="px-2 py-1.5">CO₂ produced (g CO₂/L of fuel)</th>
         </tr>
       </thead>
       <tbody className="[&>tr]:border-t [&>tr]:border-gray-100 dark:[&>tr]:border-gray-800">
@@ -41,8 +45,8 @@ const TABLE = (
 
 const ROWS: WorkingRow[] = [
   {
-    working: TABLE,
-    reason: 'Neither column alone gives grams of CO2 per 100 km — that needs both, multiplied together.',
+    working: <>Grams of CO₂ per 100 km needs both numeric columns: litres burnt per 100 km, and grams of CO₂ per litre.</>,
+    reason: <>Neither column alone answers the question.</>,
   },
   {
     working: <Chem eq="g CO2 per 100 km = (L per 100 km) x (g CO2 per L)" className="block text-[13.5px]" />,
@@ -59,11 +63,11 @@ const ROWS: WorkingRow[] = [
         Vehicle 4: 9.2 × 2640 = <b>24 288</b>
       </>
     ),
-    reason: <>Vehicle 1 has the lowest fuel-consumption <em>figure</em>, which is why so many students picked option A — but it doesn't have the lowest emission factor to go with it.</>,
+    reason: <>Vehicle 1 produces the least CO₂ per <em>litre</em> (1665 g), but it burns the most fuel per 100 km, so per 100 km it is no better than vehicles 2 and 3.</>,
   },
   {
     working: <b>Vehicle model 4 has by far the smallest environmental impact.</b>,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>A</b> is vehicle 1, the lowest CO₂ per litre — the report says the many students who chose it overlooked the &ldquo;100 km&rdquo; in the question.</>,
   },
 ]
 
@@ -72,11 +76,12 @@ export default function ChemistryQ14_2017() {
     <MCQShell
       question={
         <>
+          <p className="mb-2 italic">Use the following information to answer Questions 13 and 14.</p>
           <p className="mb-2">
-            Four identical vehicle models were tested for fuel efficiency using LPG, petrol
-            (unleaded, 91 octane), E10 (petrol with 10% ethanol added) and petrodiesel.{' '}
-            <Chem eq="CO2" /> emissions per litre of fuel burnt were also determined, as shown
-            below.
+            Four identical vehicle models, 1, 2, 3 and 4, were tested for fuel efficiency using LPG,
+            petrol (unleaded, 91 octane), E10 (petrol with 10% ethanol added) and petrodiesel.
+            Carbon dioxide, <Chem eq="CO2" />, emissions per litre of fuel burnt were also
+            determined. The following table summarises the results.
           </p>
           <div className="mb-2">{TABLE}</div>
           <p>

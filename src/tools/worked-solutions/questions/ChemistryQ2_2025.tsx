@@ -10,9 +10,11 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      Energy from 65 g = (16 × 45) + (17 × 10) + (37 × 10) = 1260 kJ. Energy from 100 g =
-      1260 × 100/65 = 1938 kJ ≈ 1.9 × 10⁶ J. The most common error among the responses was a
-      unit error.
+      Energy from 65 g = (16 x 45) + (17 x 10) + (37 x 10) = 1260 kJ
+      <br />
+      Energy from 100 g = 1260 x 100/65 = 1938 kJ = 1.9 x 10⁶ J
+      <br />
+      The most common error among the responses was unit error.
     </>
   ),
 }
@@ -20,19 +22,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>From the Data Book, the energy content per gram of each macronutrient is: carbohydrate = 16 kJ g⁻¹, protein = 17 kJ g⁻¹, fat = 37 kJ g⁻¹.</>,
-    reason: 'Standard reference values needed for any food-energy calculation.',
+    reason: <>Standard reference values needed for any food-energy calculation.</>,
   },
   {
     working: <>Energy in the 65.0 g bar = (16 kJ g⁻¹ × 45.0 g) + (17 kJ g⁻¹ × 10.0 g) + (37 kJ g⁻¹ × 10.0 g) = 720 + 170 + 370 = <b>1260 kJ</b>.</>,
-    reason: 'Multiplying each macronutrient mass by its energy content and summing gives the total energy in the whole bar.',
+    reason: <>Multiplying each macronutrient mass by its energy content and summing gives the total energy in the whole bar.</>,
   },
   {
     working: <>Scaling to 100 g: energy per 100 g = 1260 kJ × (100 g / 65.0 g) = <b>1938 kJ</b> ≈ 1900 kJ.</>,
-    reason: "The question asks for energy per 100 g, not per 65 g bar — this scaling step is the one most students missed or got the ratio backwards on.",
+    reason: <>The question asks for the energy per 100 g, not per 65.0 g bar.</>,
   },
   {
     working: <>Converting to joules: 1938 kJ × 1000 J/kJ = <b>1.9 × 10⁶ J</b>.</>,
-    reason: <>Matches option <b>D</b> — the most common wrong answer (B, 1.9 × 10³ J) comes from forgetting to convert kJ to J.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b>, 1.9 × 10³ J, the most popular answer, leaves the energy in kJ — the unit error the report describes; option <b>C</b>, 1.3 × 10⁶ J, is the energy of the 65.0 g bar, not of 100 g.</>,
   },
 ]
 

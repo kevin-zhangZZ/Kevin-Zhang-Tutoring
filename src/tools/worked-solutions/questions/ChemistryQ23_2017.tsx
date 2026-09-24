@@ -11,12 +11,27 @@ import apparatusSrc from './chem-2017-mcq23-bomb-calorimeter.png'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 49, B: 18, C: 28, D: 5 },
   answer: 'A',
-  comment: 'Option A is correct, since this removes the error inherent in reading a thermometer.',
+  comment: (
+    <>
+      Consider the options:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>Option A – correct, since this removes the error inherent in reading a thermometer</li>
+        <li>
+          Option B – incorrect, energy per mole is inappropriate because crude oil is a mixture
+        </li>
+        <li>
+          Option C – incorrect, accuracy is dependent on technique, not the oil source. Also,
+          different sources may have significantly different compositions
+        </li>
+        <li>Option D – incorrect, the uncertainty may be directly linked to the procedure followed</li>
+      </ul>
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>A — precision, digital thermometer (±0.2°C): a digital reading removes the human error of reading a scale, so repeated measurements cluster more tightly together.</>,
+    working: <>A — precision, digital thermometer ± 0.2 °C: a digital reading removes the human error of reading a scale, so repeated measurements cluster more tightly together.</>,
     reason: <><b>Precision</b> is about how close repeated measurements are to <em>each other</em> — exactly what a more reliable reading method improves. <b>Correct.</b></>,
   },
   {
@@ -28,12 +43,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Different crude-oil sources can have genuinely different compositions and heats of combustion — sampling more sources changes <em>what</em> is being measured, not how close to the truth any one measurement is.</>,
   },
   {
-    working: <>D — "maximise uncertainty" by following the same procedure: this is backwards — a controlled, consistent procedure across the class would <em>reduce</em> uncertainty, not increase it.</>,
-    reason: 'This option is self-contradictory as worded.',
+    working: <>D — &ldquo;maximise uncertainty&rdquo; by following the same procedure: a controlled, consistent procedure would, if anything, <em>reduce</em> uncertainty — and nobody sets out to maximise it.</>,
+    reason: <>The report&rsquo;s point: uncertainty may be linked directly to the procedure followed.</>,
   },
   {
     working: <b>Only option A correctly matches its named concept to what actually improves it.</b>,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b>, the most common wrong answer, confuses accuracy (closeness to the true value, set by technique) with sampling more sources — which, as the report notes, may simply have different compositions.</>,
   },
 ]
 
@@ -56,7 +71,7 @@ export default function ChemistryQ23_2017() {
         </>
       }
       options={[
-        { letter: 'A', content: 'precision by using a digital thermometer (±0.2°C).', isAnswer: true },
+        { letter: 'A', content: 'precision by using a digital thermometer ± 0.2 °C.', isAnswer: true },
         { letter: 'B', content: 'validity by calculating the heat of combustion per mole.' },
         { letter: 'C', content: 'accuracy by taking samples from three different sources.' },
         { letter: 'D', content: 'uncertainty by having all students closely follow the same experimental procedure.' },

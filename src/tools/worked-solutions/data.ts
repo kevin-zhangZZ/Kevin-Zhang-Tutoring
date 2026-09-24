@@ -81,7 +81,7 @@ export const SUBJECT_COLOR: Record<SubjectId, { text: string; bg: string; border
 export const QUESTIONS: QuestionMeta[] = [
   { id: 'spec-q6-2016', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'MCQ 6', topic: 'Complex numbers — Argand diagram parallelogram', type: 'mc', hasDetail: true, hasVideo: true, percentCorrect: 57 },
   { id: 'spec-q2-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q2(a–f)', topic: 'Complex numbers — line and circle loci in the Argand plane', type: 'sa', hasDetail: true, hasVideo: true },
-  { id: 'spec-q1-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q1(a–e)', topic: 'Calculus — a stationary point, an inflection, arc length and a volume set-up', type: 'sa', hasDetail: true },
+  { id: 'spec-q1-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q1(a–e)', topic: 'Calculus — a stationary point, an inflection, a sketch and a volume set-up', type: 'sa', hasDetail: true },
   { id: 'spec-q5-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q5(b–e)', topic: 'Vectors — a model rocket under a decaying thrust, then free flight', type: 'sa', hasDetail: true },
   { id: 'spec-q6-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q6(a–e)', topic: 'Statistics — a one-sided test, its boundary, and a Type II error', type: 'sa', hasDetail: true },
   { id: 'spec-q3-2016-e2', subject: 'specialist', year: 2016, exam: 'Exam 2', code: 'Q3(a–e)', topic: 'Differential equations — rates of mixing (two-tank problem)', type: 'sa', hasDetail: true, hasVideo: true },

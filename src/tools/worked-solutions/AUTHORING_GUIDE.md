@@ -3,7 +3,8 @@
 Reference for adding a new worked-solution question (MCQ or short-answer) to this tool, or
 editing an existing one. Consolidates every formatting, structure, and content requirement
 established while building out the 2014–2025 Methods / Specialist / Chemistry question bank
-and while auditing the whole maths archive against the papers and reports (Sept 2026). Read
+and while auditing the whole archive, maths and Chemistry, against the papers and reports
+(Sept 2026). Read
 this before writing a new question file — it exists so every question stays consistent
 without re-deriving these rules from scratch each session.
 
@@ -18,7 +19,9 @@ for the two maths subjects, one Exam for Chemistry. Currently populated:
   settled are written into §12–§13.
 - **Chemistry**: the 6 hardest multiple-choice questions (by VCAA-reported % correct) per
   year, 2015–2025, plus a small set of "bonus" VCAA-flagged questions with no single correct
-  answer (§8).
+  answer (§8). All of them were audited in Sept 2026 to the same standard as the maths —
+  stems, options and figures against the paper, percentages and comments against the
+  report, every answer and distractor re-derived (§14.3).
 
 ## 2. File, ID and image naming
 
@@ -727,12 +730,12 @@ the explanation is the product, not the number at the end.
     (`'Q5(c–e)'`), and a question-level `<Background title="Why only parts c.–e.">`
     explains, quoting any result the remaining parts rely on.
   - *A single part inside an otherwise current question* (2014 Methods Exam 2 Q4g; 2016
-    Specialist Exam 2 Q1d.ii): the `PartCard` keeps its statement and marks, with a
+    Specialist Exam 2 Q1d.i and d.ii): the `PartCard` keeps its statement and marks, with a
     `<Background title="Not in the Current Study Design">` saying what removed content it needs
     in place of the working, and no examiner report.
 - **KZ's rulings on borderline cases (Sept 2026)** — follow these rather than re-litigating:
   2014 Methods Exam 2 Q4g (transition matrix) is out; 2015 Methods Exam 2 MCQ 18 and 22
-  (standalone modulus functions) are out; 2016 Specialist Exam 1 Q7 and Exam 2 Q1d.ii
+  (standalone modulus functions) are out; 2016 Specialist Exam 1 Q7 and Exam 2 Q1d.i–ii
   (Cartesian arc length) are out; 2014 Specialist Exam 1 Q8 is out entirely, part b.'s
   trigonometry included; 2022 Specialist Exam 2 MCQ 20 is **in**, as Statistics — its pulley
   is scene-setting, and the question is the probability that a combination of normally
@@ -968,6 +971,25 @@ MCQs get a self-made explanation, following the §12 rules and these conventions
 - **Distractors are explained by misconception**, not arithmetic ("B assumes the strong
   acid is also concentrated"; "D reverses the anode and cathode"), because Chemistry
   distractors are written around misconceptions.
+- **Audit conventions (Sept 2026)** — the §12 rules apply unchanged, and these came up
+  often enough in Chemistry to spell out:
+  - The report's comment goes in `comment` verbatim and complete, paragraph breaks as
+    `<br />`, bullets as a list, and any graph or structure it prints cropped as
+    `-report-graph`/`-report-structure`. Flagged questions get the report's words in
+    `comment` too, not only in `flawed`.
+  - Shared "Use the following information to answer Questions X and Y." stems appear on
+    every question they cover, in italics, with their figures; a figure lives in the stem
+    only and is never repeated as a working row.
+  - Figures are cropped, never summarised in words ("a peak area of 0.35 corresponds
+    to…" is not a stem). Options that are diagrams or structures are cropped as
+    `-optA`…`-optD`; table-style options are written "Column: value · Column: value".
+    Material the paper withholds for copyright is noted as the paper prints it.
+  - Report slips (a mass given in mol, "C₆C₁₂", µg L⁻¹ for µg mL⁻¹, a paper's
+    Co(NO₂)₂ label) stay verbatim in `comment` and are explained in the working's final
+    row, and the file's top comment mentions them.
+  - A distractor is named only when its slip is verified: by the report, by arithmetic
+    that lands exactly on the option, or as a plain fact about what the option leaves
+    out.
 
 ### 14.4 Data Book changes between years
 

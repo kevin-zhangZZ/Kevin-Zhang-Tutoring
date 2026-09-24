@@ -19,9 +19,24 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'B',
   comment: (
     <>
-      Since the forward reaction is exothermic, a temperature increase will favour the reverse
-      (endothermic) reaction. The position of equilibrium shifts to the left, and as the
-      concentration of NO₂ increases, the colour of the mixture will darken.
+      Subjecting an equilibrium system to a temperature change impacts on both reaction rates and
+      position of equilibrium.
+      <br />
+      The rate-time graph provided indicates that the rate of the forward reaction increased because
+      of the change imposed at <i>t</i>₁. The implication in the alternative responses is that this
+      was due to a temperature change and so must have been a temperature increase.
+      <br />
+      Since the forward reaction is exothermic, the temperature increase will favour the reverse
+      (endothermic) reaction. Hence the position of equilibrium shifts to the left and as
+      concentration of <Chem eq="NO2" /> increases, the colour of the mixture will darken.
+      <br />
+      Hence option B was the correct answer.
+      <br />
+      The majority of students selected option C. Perhaps these students assumed that since the rate
+      of the forward reaction was increased, the forward reaction must be favoured, which would be a
+      natural consequence of a decrease in temperature at <i>t</i>₁. However, if the temperature
+      decreases, the immediate impact should mean that the rates of both the forward and reverse
+      reactions decrease. This is not indicated in the graph.
     </>
   ),
 }
@@ -32,28 +47,28 @@ const ROWS: WorkingRow[] = [
     reason: <>ΔH = −57.2 kJ mol⁻¹: the <b>forward</b> reaction (making colourless N₂O₄) is exothermic.</>,
   },
   {
-    working: RATE_GRAPH,
+    working: <>Read the rate–time graph from <i>t</i>₁ to <i>t</i>₂.</>,
     reason: <>The graph shows the forward reaction's rate genuinely <b>increasing</b> from t₁ to a new, higher steady rate at t₂.</>,
   },
   {
     working: <>A change in temperature affects the rate of <i>every</i> reaction, forward and reverse alike — a rate increase can only come from a temperature <b>increase</b> (a decrease would slow every reaction down, including the forward one).</>,
-    reason: 'This is the key reasoning that rules out a concentration or catalyst change too — only temperature affects both the forward and reverse rate constants.',
+    reason: <>This is the key reasoning that rules out a concentration or catalyst change too — only temperature affects both the forward and reverse rate constants.</>,
   },
   {
     working: <>This rules out options C and D, both of which claim the temperature <b>decreased</b>.</>,
-    reason: 'Narrows the choice to A or B — both "temperature increased", differing only in the colour change.',
+    reason: <>Narrows the choice to A or B — both "temperature increased", differing only in the colour change.</>,
   },
   {
     working: <>Since the forward reaction is exothermic, adding heat (raising the temperature) shifts the equilibrium <b>away</b> from the exothermic direction — favouring the reverse, endothermic reaction instead.</>,
-    reason: "Le Chatelier's principle.",
+    reason: <>Le Chatelier's principle.</>,
   },
   {
     working: <>The reverse reaction, <Chem eq="N2O4(g) -> 2NO2(g)" />, produces more of the brown gas, NO₂.</>,
-    reason: 'This is the direction favoured after the temperature rise.',
+    reason: <>This is the direction favoured after the temperature rise.</>,
   },
   {
     working: <b>More NO₂ present at the new equilibrium means the mixture's colour darkens.</b>,
-    reason: <>Matches option <b>B</b>: temperature increased, colour darkened.</>,
+    reason: <>Matches option <b>B</b>: temperature increased, colour darkened. Option <b>C</b>, chosen by the majority, assumes a faster forward reaction means the forward reaction is favoured; but a temperature decrease would slow both reactions straight away, which the graph does not show.</>,
   },
 ]
 
@@ -63,20 +78,22 @@ export default function ChemistryQ19_2020() {
       question={
         <>
           <p className="mb-2">
-            Nitrogen dioxide, NO₂ (brown), and dinitrogen tetroxide, N₂O₄ (colourless), form an
-            equilibrium mixture:
+            Nitrogen dioxide, NO₂, and dinitrogen tetroxide, N₂O₄, form an equilibrium mixture
+            represented by the following equation.
           </p>
-          <Chem eq="2NO2(g) <=> N2O4(g)" className="block text-[14px] my-2" />
-          <p className="mb-2">ΔH = −57.2 kJ mol⁻¹</p>
+          <p className="text-[14px]">
+            <Chem eq="2NO2(g) <=> N2O4(g)" /> &nbsp;&nbsp; Δ<i>H</i> = −57.2 kJ mol⁻¹
+          </p>
+          <p className="mb-2 text-[12px]">(<Chem eq="NO2" /> brown; <Chem eq="N2O4" /> colourless)</p>
           <p className="mb-2">
-            A change was made at time t₁ to an equilibrium mixture of NO₂ and N₂O₄, which achieved
-            a new equilibrium at time t₂. A graph showing the rate of the forward reaction is shown
-            below.
+            A change was made at time <i>t</i>₁ to an equilibrium mixture of NO₂ and N₂O₄, which
+            achieved a new equilibrium at time <i>t</i>₂. A graph showing the rate of the forward
+            reaction is shown below.
           </p>
           <div className="mb-2">{RATE_GRAPH}</div>
           <p>
-            Which one of the following describes the change made and the colour change that
-            occurred between t₁ and t₂?
+            Which one of the following describes the change that was made to the initial equilibrium
+            system and the colour change that occurred between <i>t</i>₁ and <i>t</i>₂?
           </p>
         </>
       }

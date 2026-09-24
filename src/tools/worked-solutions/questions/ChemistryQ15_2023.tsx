@@ -11,11 +11,16 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'A',
   comment: (
     <>
-      Petrol-powered drones convert chemical energy into thermal and mechanical energy, with
-      products CO₂(g) and H₂O(g). Hydrogen-fuel-cell-powered drones convert chemical energy into
-      electrical and thermal energy, with product H₂O(g). Since energy is released during the
-      reaction in both, both reactions are exothermic — and both CO₂(g) and H₂O(g) are
-      greenhouse gases.
+      Petrol-powered drones convert chemical energy into thermal energy and mechanical energy. The
+      reaction products are CO₂(g) and H₂O(g).
+      <br />
+      Hydrogen-powered drones convert chemical energy into electrical energy and thermal energy.
+      The reaction product is H₂O (g).
+      <br />
+      Since energy is released during the reaction in both types of drones, both reactions are
+      exothermic.
+      <br />
+      Both CO₂(g) and H₂O(g) are greenhouse gases.
     </>
   ),
 }
@@ -23,27 +28,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>Petrol-powered drones burn petrol (combustion) to release <b>thermal + mechanical energy</b>, producing CO₂(g) and H₂O(g). Hydrogen-fuel-cell drones react H₂ with O₂ in a fuel cell to release <b>electrical + thermal energy</b>, producing only H₂O(g).</>,
-    reason: 'Lays out what each drone actually converts energy into and what each produces — the basis for checking every option.',
+    reason: <>Lays out what each drone actually converts energy into and what each produces — the basis for checking every option.</>,
   },
   {
     working: <>A: CO₂(g) is a greenhouse gas, and H₂O(g) (water vapour) is also a recognised greenhouse gas. Petrol drones produce both; hydrogen drones produce H₂O(g) — so both types produce at least one greenhouse gas.</>,
-    reason: 'True for both drone types. Correct.',
+    reason: <>True for both drone types. Correct.</>,
   },
   {
     working: <>B: a fuel cell is never 100% efficient — some energy is always lost as heat in the hydrogen drone too, exactly as in the petrol drone's combustion.</>,
-    reason: 'Both produce heat, not just the petrol drone. Ruled out.',
+    reason: <>Both produce heat, not just the petrol drone. Ruled out.</>,
   },
   {
     working: <>C: petrol drones convert chemical energy into thermal <i>and mechanical</i> energy (the engine directly drives motion), while hydrogen drones convert chemical energy into electrical <i>and thermal</i> energy (which then powers an electric motor) — mechanical vs. electrical is a genuinely different transformation pathway.</>,
-    reason: 'The energy transformations are different, not the same. Ruled out.',
+    reason: <>The energy transformations are different, not the same. Ruled out.</>,
   },
   {
     working: <>D: energy is released (not absorbed) in both reactions — combustion of petrol and the H₂/O₂ fuel-cell reaction are both <b>exothermic</b>, not endothermic.</>,
-    reason: 'Backwards — both reactions release energy. Ruled out.',
+    reason: <>Backwards — both reactions release energy. Ruled out.</>,
   },
   {
-    working: <b>Only "they both produce greenhouse gases" holds for both drone types.</b>,
-    reason: <>Matches option <b>A</b>.</>,
+    working: <b>Only &ldquo;they both produce greenhouse gases&rdquo; holds for both drone types.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b>, chosen by 35%, misses that one drone turns chemical energy into mechanical energy and the other into electrical energy.</>,
   },
 ]
 

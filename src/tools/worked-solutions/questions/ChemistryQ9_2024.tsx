@@ -10,12 +10,17 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 20, B: 27, C: 23, D: 29 },
   answer: 'D',
+  noAnswer: 1,
   comment: (
     <>
-      The negative electrode is the anode, where oxidation occurs: C₂H₆O + 3H₂O → 2CO₂ + 12H⁺ +
-      12e⁻ (in acidic conditions), or C₂H₆O + 12OH⁻ → 2CO₂ + 9H₂O + 12e⁻ (in alkaline conditions).
-      In general this question was not well answered; the use of alkaline conditions for
-      balancing half-equations was not well understood.
+      The negative electrode is the anode, where oxidation occurs:
+      <br />
+      <Chem eq="C2H6O + 3H2O -> 2CO2 + 12H+ + 12e-" /> (in acidic conditions)
+      <br />
+      <Chem eq="C2H6O + 12OH- -> 2CO2 + 9H2O + 12e-" /> (in alkaline conditions)
+      <br />
+      In general this question was not well answered; the use of alkaline conditions for balancing
+      half-equations was not well understood.
     </>
   ),
 }
@@ -23,15 +28,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>Start from the acidic-conditions oxidation half-equation, balancing C, H, and charge directly: <Chem eq="C2H6O + 3H2O -> 2CO2 + 12H+ + 12e-" />.</>,
-    reason: 'Ethanol has 2 carbons (→ 2 CO₂) and its H/O atoms need 3 extra H₂O on the left to balance oxygen; the 12H⁺ + 12e⁻ then balances hydrogen and charge.',
+    reason: <>Ethanol has 2 carbons (→ 2 CO₂) and its H/O atoms need 3 extra H₂O on the left to balance oxygen; the 12H⁺ + 12e⁻ then balances hydrogen and charge.</>,
   },
   {
     working: <>To convert to alkaline conditions, add 12 OH⁻ to <i>both</i> sides — enough to neutralise all 12 H⁺ into 12 H₂O: <Chem eq="C2H6O + 3H2O + 12OH- -> 2CO2 + 12H2O + 12e-" />.</>,
-    reason: 'Standard acidic-to-alkaline conversion: cancel H⁺ with OH⁻ to form water on the product side.',
+    reason: <>Standard acidic-to-alkaline conversion: cancel H⁺ with OH⁻ to form water on the product side.</>,
   },
   {
     working: <>Simplify the water: 3H₂O on the left and 12H₂O on the right leave a net 9H₂O on the right after cancelling: <Chem eq="C2H6O + 12OH- -> 2CO2 + 9H2O + 12e-" />.</>,
-    reason: 'Subtracting the smaller water amount from both sides gives the fully reduced alkaline half-equation.',
+    reason: <>Subtracting the smaller water amount from both sides gives the fully reduced alkaline half-equation.</>,
   },
   {
     working: <>Reading directly off this balanced equation: <b>12 mol</b> of OH⁻ reacts for every 1 mol of ethanol oxidised.</>,

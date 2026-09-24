@@ -10,7 +10,18 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 6, B: 44, C: 30, D: 19 },
   answer: 'B',
-  comment: <>n(CO₂) = n(Na₂CO₃) = 0.142 mol, then p(CO₂) = nRT/V using the final temperature, 24.1°C.</>,
+  noAnswer: 1,
+  comment: (
+    <>
+      Additional pressure due to the production of <Chem eq="CO2(g)" /> in the reaction depends on{' '}
+      <i>n</i>(<Chem eq="CO2" />) produced, in a 2.0 L vessel, at 24.1 °C
+      <br />
+      <i>n</i>(<Chem eq="CO2" />) = <i>n</i>(<Chem eq="Na2CO3" />) = 0.142 mol
+      <br />
+      <i>p</i>(<Chem eq="CO2" />) = <i>n</i>(<Chem eq="CO2" />) × <i>RT</i>/<i>V</i> = 0.142 × 8.31 ×
+      (24.1 + 273.0)/2.00 = 175 kPa
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -38,7 +49,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>p(CO₂) ≈ 175 kPa</b>,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option <b>D</b>, 14.2 kPa, is what the same calculation gives with the temperature left in degrees Celsius (24.1 instead of 297.1 K).</>,
   },
 ]
 
@@ -55,11 +66,13 @@ export default function ChemistryQ26_2016() {
           <p className="mb-2">
             In an experiment, 0.142 mol anhydrous <Chem eq="Na2CO3" /> powder was added to excess{' '}
             <Chem eq="HNO3" /> in solution, in a 2.00 L reinforced, sealed, metal vessel. Pressure
-            and temperature sensors were used to monitor the reaction. The vessel was initially at
-            101.3 kPa and 22.0°C. When the reaction was complete, the final temperature was 24.1°C.
+            and temperature sensors were used to monitor the reaction.
+            <br />
+            The vessel was initially at
+            101.3 kPa and 22.0 °C. When the reaction was complete, the final temperature was 24.1 °C.
           </p>
           <p>
-            What is the additional pressure, in kPa, inside the vessel due to the carbon dioxide gas
+            What is the <b>additional</b> pressure, in kPa, inside the vessel due to the carbon dioxide gas
             after the completion of the reaction? (Assume that the volume of the solution in the
             vessel is negligible.)
           </p>

@@ -20,47 +20,63 @@ const EXAMINER: MCQExaminerStats = {
   ),
   comment: (
     <>
-      Water in the burette will dilute the liquid being added from the burette and cause a
-      larger titre for a particular indicator. For a specific titration, different indicators
-      will show different endpoints and result in different titre volumes. Using methyl red
-      (pH 4.4–6.2) rather than phenolphthalein (pH 8.3–10) for the titration of CH₃COOH(aq) by
-      NaOH(aq) will require a smaller titre volume and lead to a less accurate result — both
-      indicators may lead to precise results, but only the correct indicator produces an
-      accurate result. Water in the pipette reduces the concentration of the aliquot in the
-      titration flask, causing a smaller titre to be used — so, in the titration of a base (in
-      the aliquot) by an acid, the smaller titre volume leads to an overestimation of the acid
-      concentration. According to the RACI's "A Guide to Titration", the pipette tip should
-      touch (not be tapped against) the flask wall — the distinction between touch and tap was
-      considered too fine for students to make, and since there should be some contact between
-      the burette tip and the flask, option D was also considered incorrect.
+      There was no correct or best answer to this question and all students were awarded the
+      mark.
+      <br />
+      Water in the burette will dilute the liquid being added from the burette and cause a larger
+      titre for a particular indicator.
+      <br />
+      For a specific titration, different indicators will show different endpoints and result in
+      different titre volumes.
+      <br />
+      Using methyl red (pH 4.4–6.2) rather phenolphthalein (pH 8.3–10) for the titration of
+      CH₃COOH(aq) by NaOH(aq) will require a smaller titre volume and lead to a less accurate
+      result. Both indicators may lead to precise results but only the use of the correct indicator
+      will produce an accurate result.
+      <br />
+      Water in the pipette reduces the concentration of the aliquot in the titration flask, causing
+      a smaller titre to be used. So, in the titration of a base – in the aliquot – by an acid, the
+      smaller titre volume will lead to an overestimation of the acid concentration.
+      <br />
+      According to the Royal Australian Chemical Institute (RACI; www.raci.org.au) – &lsquo;A Guide
+      to Titration&rsquo;:
+      <br />
+      &lsquo;Insert the tip of the pipette well inside the titration flask, remove the filler, and
+      allow the solution to drain with the pipette held vertically. Then touch the tip of the
+      pipette against the side of the flask at the liquid/air interface for 10 seconds to complete
+      the draining.&rsquo;
+      <br />
+      The distinction between touch and tap was considered too fine a distinction for students to
+      make, and since there should be some contact between the tip of the burette and the inside of
+      the conical flask, alternative D was also considered incorrect.
     </>
   ),
 }
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>The question asks what is <b>always</b> correct — a strong word. For an option to survive, it has to hold in <i>every</i> accurate acid-base titration, not just the specific scenario VCAA had in mind when writing it.</>,
-    reason: 'This is ultimately why the question fell apart: each option is true in a narrower sense than "always", or is simply wrong as worded.',
+    working: <>The question asks what is <b>always</b> correct — a strong word. For an option to survive, it has to hold in <i>every</i> accurate acid-base titration.</>,
+    reason: <>Each option is either true only in some set-ups or false as worded — which is why VCAA found no correct answer.</>,
   },
   {
-    working: <>A: "Water in the burette will dilute the aliquot." The <b>aliquot</b> is the measured volume sitting in the conical flask — it's entirely unaffected by anything happening inside the burette. Water in the burette dilutes the <b>titrant</b> (what's being added from the burette), not the aliquot.</>,
-    reason: 'A factual mix-up between "titrant" and "aliquot" — the statement names the wrong solution. As worded, it is simply false, which is presumably why only 28% picked it despite the underlying titration-error idea being a genuinely common exam topic.',
+    working: <>A: &ldquo;Water in the burette will dilute the aliquot.&rdquo; The <b>aliquot</b> is the measured volume in the conical flask; water in the burette dilutes the <b>titrant</b>, the solution being added from the burette.</>,
+    reason: <>False as worded: the report says water in the burette dilutes the liquid being added from the burette, making the titre larger.</>,
   },
   {
-    working: <>B: "Any acid-base indicator will give an accurate result." An indicator's colour-change range needs to sit close to the titration's equivalence-point pH — a mismatched indicator (e.g. methyl red for a titration whose equivalence point is strongly basic) gives a systematically wrong titre, even if it changes colour crisply every time.</>,
-    reason: 'Clearly false on its face — indicator choice is one of the most commonly tested sources of titration error. Only 2% of students picked it, consistent with it being the most obviously wrong option.',
+    working: <>B: &ldquo;Any acid-base indicator will give an accurate result.&rdquo; An indicator&rsquo;s colour-change range has to suit the pH at the equivalence point. The report&rsquo;s example: methyl red (pH 4.4–6.2) instead of phenolphthalein (pH 8.3–10) for CH₃COOH(aq) titrated with NaOH(aq) gives a smaller titre.</>,
+    reason: <>False: a poorly chosen indicator can give precise but inaccurate results.</>,
   },
   {
-    working: <>C: "Water in the pipette causes an underestimate of the acid concentration." This is only true for a <i>specific</i> arrangement (e.g. a base in the pipette, titrated by an acid, where the diluted aliquot needs a smaller titre, leading to an <i>over</i>estimate of the acid's concentration, per VCAA's own worked example). Whether water in the pipette over- or under-estimates a concentration depends on which solution is in the pipette and which is the titrant.</>,
-    reason: "Directionally inconsistent once you consider more than one titration setup — not something that's \"always\" true the way the stem demands.",
+    working: <>C: &ldquo;Water in the pipette causes an underestimate of the acid concentration.&rdquo; Water left in the pipette dilutes the aliquot, so it holds fewer mol and needs a smaller titre. If the aliquot is the acid being analysed, its concentration is <i>under</i>estimated; but if the aliquot is a base titrated with the acid (the report&rsquo;s example), the smaller titre leads to an <i>over</i>estimate of the acid concentration.</>,
+    reason: <>True in some set-ups and false in others, so not &ldquo;always&rdquo; correct.</>,
   },
   {
-    working: <>D: "The pipette is not tapped against the conical flask to ensure accurate volume delivery." Correct laboratory technique (RACI's own guide) says to <i>touch</i> the pipette tip against the flask wall to complete delivery — not to avoid contact altogether. The touch-vs-tap distinction is real but far too fine for students to be expected to draw, and some contact between pipette and flask is actually required.</>,
-    reason: "Technically closest to correct procedure, but VCAA judged the wording too easily misread as \"no contact at all\", which isn't accurate technique either.",
+    working: <>D: &ldquo;The pipette is not tapped against the conical flask to ensure accurate volume delivery.&rdquo; The RACI guide the report quotes says to <i>touch</i> the tip of the pipette against the side of the flask to complete the draining.</>,
+    reason: <>The report judged the touch/tap distinction too fine for students, and since some contact is needed, it considered D incorrect too. (Its comment says &ldquo;the tip of the burette&rdquo; in that sentence; the RACI quote and option D are about the pipette.)</>,
   },
   {
-    working: <b>Every option contains a genuine flaw once checked carefully — none is defensibly "always correct". VCAA agreed and awarded the mark to everyone regardless of their answer.</b>,
-    reason: 'This is a real example of a VCAA exam question being retracted after the fact, not a case of one "best" answer among four.',
+    working: <b>No option is always correct, so VCAA awarded the mark to every student.</b>,
+    reason: <>All four options are marked as accepted.</>,
   },
 ]
 

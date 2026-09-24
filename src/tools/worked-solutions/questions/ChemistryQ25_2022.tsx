@@ -10,10 +10,19 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'D',
   comment: (
     <>
-      Biodiesel is more hygroscopic because of the polar ester groups in the molecules (I is
-      incorrect); biodiesel's stronger dipole-dipole attraction means it solidifies at a higher
-      temperature (II correct); biodiesel comes from plants/animals while petrodiesel is a fossil
-      fuel (III correct); petrodiesel contains more sulfur, producing more SO₂ (IV correct).
+      I Incorrect – biodiesel is more hydroscopic because of the polar ester groups in the
+      molecules.
+      <br />
+      II Correct – biodiesel molecules have stronger intermolecular attraction due to dipole-dipole
+      forces and so biodiesel solidifies at a higher temperature than petrodiesel.
+      <br />
+      III Correct – biodiesel is produced from vegetable oils and animal fats; petrodiesel is a
+      fossil fuel extracted from oil produced from decomposing plant and animal material over
+      millions of years.
+      <br />
+      IV Correct – sulfur deposits from decomposing animal protein in crude oil mean that
+      petrodiesel contains more sulfur than biodiesel. This means that more SO₂ will be produced in
+      the combustion of petrodiesel compared with biodiesel.
     </>
   ),
 }
@@ -25,11 +34,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>II: Biodiesel's polar ester groups give it dipole-dipole attraction on top of dispersion forces, stronger than petrodiesel's dispersion-forces-only attraction.</>,
-    reason: 'Stronger intermolecular attraction means more energy is needed to keep it liquid — it solidifies (freezes) at a higher temperature. Correct.',
+    reason: <>Stronger intermolecular attraction means the molecules settle into a solid at a higher temperature: biodiesel forms crystals (solidifies) at a higher temperature than petrodiesel. Correct.</>,
   },
   {
     working: <>III: Biodiesel is produced from recently-living plant oils and animal fats; petrodiesel is a fossil fuel, formed from decomposing organic material over millions of years.</>,
-    reason: 'Correct — this is exactly the distinction between a biofuel and a fossil fuel.',
+    reason: <>Correct — this is exactly the distinction between a biofuel and a fossil fuel.</>,
   },
   {
     working: <>IV: Petrodiesel, being derived from long-decomposed organic (protein-containing) matter, contains sulfur impurities that biodiesel — made from fresh oils/fats — largely lacks.</>,
@@ -37,7 +46,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <b>Statements II, III and IV are correct; only I is wrong.</b>,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b>, the most popular wrong answer, leaves out statement II.</>,
   },
 ]
 

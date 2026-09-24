@@ -20,10 +20,22 @@ const EXAMINER: MCQExaminerStats = {
   ),
   comment: (
     <>
-      2SO₃(g) ⇌ 2SO₂(g) + O₂(g). When this system reaches equilibrium at any temperature, the
-      only facts we can establish are: [SO₂] will be twice as high as [O₂]; therefore, n(SO₂)
-      will be twice as high as n(O₂); therefore, m(SO₂) will be four times as high as m(O₂), due
-      to Mr(SO₂) = 64 and Mr(O₂) = 32.
+      <Chem eq="2SO3(g) <=> 2SO2(g) + O2(g)" />
+      <br />
+      When this system reaches equilibrium at any temperature, the only facts we can establish
+      are:
+      <ul className="list-disc pl-5 flex flex-col gap-1">
+        <li>[SO₂] will be twice as high as [O₂]</li>
+        <li>therefore, the <i>n</i>(SO₂) will be twice as high as <i>n</i>(O₂)</li>
+        <li>
+          therefore, the <i>m</i>(SO₂) will be four times as high as <i>m</i>(O₂) due to the
+          M<sub>r</sub>(SO₂) = 64 and M<sub>r</sub>(O₂) = 32
+        </li>
+      </ul>
+      Given that the wording for option D could have been interpreted as stating that, no matter
+      how the temperature of an equilibrium is altered, the sum of <i>n</i>(SO₂) and <i>n</i>(SO₃)
+      will always equal the same value, this response was subsequently awarded as being correct in
+      addition to option A.
     </>
   ),
 }
@@ -31,35 +43,35 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>The reaction is <Chem eq="2SO3(g) <=> 2SO2(g) + O2(g)" />, starting from <b>pure SO₃</b> in a sealed, empty container — no SO₂ or O₂ present at the start.</>,
-    reason: 'Because everything starts as SO₃, every mole of SO₂ and O₂ that ever appears comes from the same decomposition reaction, in the fixed 2:2:1 ratio the equation demands.',
+    reason: <>Because everything starts as SO₃, every mole of SO₂ and O₂ that ever appears comes from the same decomposition reaction, in the fixed 2:2:1 ratio the equation demands.</>,
   },
   {
     working: <>For every 2 mol of SO₃ that decomposes, exactly 2 mol of SO₂ and 1 mol of O₂ are produced — so <b>n(SO₂) = 2 × n(O₂)</b>, always, regardless of temperature or how far the reaction proceeds.</>,
-    reason: 'This ratio comes purely from reaction stoichiometry starting from pure SO₃ — it holds no matter what K happens to be at a given temperature.',
+    reason: <>This ratio comes purely from reaction stoichiometry starting from pure SO₃ — it holds no matter what K happens to be at a given temperature.</>,
   },
   {
     working: <>Converting to mass: m(SO₂) = n(SO₂) × 64 g mol⁻¹, and m(O₂) = n(O₂) × 32 g mol⁻¹ = (n(SO₂)/2) × 32 g mol⁻¹ = n(SO₂) × 16 g mol⁻¹. So m(SO₂)/m(O₂) = 64/16 = <b>4.0</b>.</>,
-    reason: 'A: "the mass of SO₂(g) is 4.0 times the mass of O₂(g)" — true at every temperature. This is the answer VCAA originally intended.',
+    reason: <>A: "the mass of SO₂(g) is 4.0 times the mass of O₂(g)" — true at every temperature. This is the answer VCAA originally intended.</>,
   },
   {
-    working: <>B: the fraction of SO₃ that has decomposed changes with temperature (since <i>K</i> is temperature-dependent) — so the mass ratio of SO₂ to remaining SO₃ isn't fixed, and 80.0% is only one possible value among many.</>,
-    reason: 'Not true at every temperature — the extent of decomposition genuinely varies with T. Ruled out.',
+    working: <>B: 80.0% = 64/80, the ratio of the molar masses of SO₂ and SO₃ — so B holds only when n(SO₂) = n(SO₃). The fraction of SO₃ that has decomposed changes with temperature (since <i>K</i> is temperature-dependent), so the mass ratio of SO₂ to remaining SO₃ isn't fixed.</>,
+    reason: <>Not true at every temperature — the extent of decomposition genuinely varies with T. Ruled out.</>,
   },
   {
     working: <>C: n(SO₂) and n(O₂) are never equal — the 2:1 stoichiometric ratio between them is fixed by the balanced equation, and this ratio isn't 1:1.</>,
-    reason: 'A basic stoichiometry mismatch. Ruled out.',
+    reason: <>A basic stoichiometry mismatch. Ruled out.</>,
   },
   {
     working: <>D, read <b>literally</b> ("the amount in mol of SO₂ and SO₃ are the same"): this depends on how far the reaction has proceeded, which changes with temperature — so a literal reading makes D false, just like B.</>,
-    reason: "Under the most natural, literal reading, D looks wrong — this is presumably why it wasn't the original intended answer.",
+    reason: <>Read literally, D is false.</>,
   },
   {
     working: <>D, read the way VCAA subsequently accepted: every mole of SO₃ that decomposes becomes exactly one mole of SO₂ (the 2SO₃ → 2SO₂ step is 1:1 for the sulfur-containing species) — so <b>n(SO₂) + n(SO₃)</b> stays fixed at the original moles of SO₃ placed in the container, no matter the temperature or extent of decomposition.</>,
-    reason: 'Under this "total sulfur-containing species" reading, D expresses a genuinely true, always-true equilibrium fact — just not quite the literal words on the page. VCAA judged this reading defensible enough to accept D as correct too.',
+    reason: <>Under this "total sulfur-containing species" reading, D expresses a genuinely true, always-true equilibrium fact — just not quite the literal words on the page. VCAA judged this reading defensible enough to accept D as correct too.</>,
   },
   {
     working: <b>A is true under any reading. D is false read literally, but true under a defensible alternative reading of its wording — VCAA accepted both.</b>,
-    reason: 'A real case of ambiguous question wording being retroactively resolved by accepting two answers rather than one.',
+    reason: <>Both <b>A</b> and <b>D</b> are marked as accepted.</>,
   },
 ]
 

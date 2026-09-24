@@ -10,7 +10,20 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 3, B: 15, C: 33, D: 49 },
   answer: 'D',
-  comment: <>Many students ignored the fact that <Chem eq="[OH-] = 2 x [Ba(OH)2]" />.</>,
+  comment: (
+    <>
+      <Chem eq="Ba(OH)2(aq) -> Ba2+(aq) + 2OH-(aq)" />
+      <br />
+      [<Chem eq="OH-" />] = 2 × [<Chem eq="Ba(OH)2" />] = 2 × 0.0500 M = 0.100 M
+      <br />
+      [<Chem eq="H3O+" />] = 10⁻¹⁴/[<Chem eq="OH-" />] = 10⁻¹³/0.100 = 10⁻¹³ M
+      <br />
+      pH = 13
+      <br />
+      Alternative C did not allow for the fact that each 1 mol <Chem eq="Ba(OH)2(aq)" /> releases
+      2 mol <Chem eq="OH-" /> (aq).
+    </>
+  ),
 }
 
 const ROWS: WorkingRow[] = [
@@ -20,18 +33,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>[OH⁻] = 2 × 0.0500 = 0.100 M</>,
-    reason: 'This factor of 2 is exactly what the wrong answers (calculated as if it were a 1:1 base) miss.',
+    reason: <>This factor of 2 is exactly what the wrong answers (calculated as if it were a 1:1 base) miss.</>,
   },
   {
     working: <>pOH = −log₁₀(0.100) = 1.00</>,
   },
   {
     working: <>pH = 14.00 − pOH = 14.00 − 1.00 = 13.0</>,
-    reason: 'At 25°C, pH + pOH = 14.',
+    reason: <>At 25°C, pH + pOH = 14.</>,
   },
   {
     working: <b>pH = 13.0</b>,
-    reason: <>Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>C</b>, 12.7, uses [OH⁻] = 0.0500 M — one hydroxide per formula unit, the error the report names; option <b>B</b>, 1.30, is −log(0.0500) taken as the pH, and option <b>A</b>, 1.00, is the pOH. (The report&rsquo;s middle line reads 10⁻¹³/0.100 where it means 10⁻¹⁴/0.100; its answer, 10⁻¹³ M, is right.)</>,
   },
 ]
 
