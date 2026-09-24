@@ -7,6 +7,7 @@
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import electrorefiningSrc from './chem-2015-mcq29-electrorefining.png'
 
@@ -56,7 +57,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Electrode I is the anode — everything on it is exposed to oxidising conditions, but not everything actually gets oxidised.</>,
   },
   {
-    working: <>A metal only dissolves as an ion if it's a <b>stronger</b> reductant than copper — i.e. more reactive, sitting above <Chem eq="Cu2+/Cu" /> in the electrochemical series.</>,
+    working: <>A metal only dissolves as an ion if it's a <b>stronger</b> reductant than copper — i.e. more reactive, its half-equation sitting below <Chem eq="Cu2+/Cu" /> in the electrochemical series.</>,
     reason: <>Copper itself is being deliberately oxidised at this electrode — so anything that oxidises even more easily will too.</>,
   },
   {
@@ -67,7 +68,7 @@ const ROWS: WorkingRow[] = [
         Less reactive than copper (stay solid, fall as sludge): <b>Ag, Au</b>
       </>
     ),
-    reason: <>Silver and gold are famously unreactive "noble" metals — both sit well below <Chem eq="Cu2+/Cu" /> in the electrochemical series, so copper's oxidation can't drag them into solution too.</>,
+    reason: <>Silver and gold are famously unreactive &ldquo;noble&rdquo; metals — both sit well above <Chem eq="Cu2+/Cu" /> in the electrochemical series, so copper&rsquo;s oxidation can&rsquo;t drag them into solution too.<DataBookNote>the report&rsquo;s values come from the 2015 Data Book. The 2026 Data Book gives −0.24 V for Ni²⁺/Ni (the report has −0.23 V) and no longer lists Au⁺/Au (+1.68 V in the report). The order of the metals is the same, so the answer is unchanged.</DataBookNote></>,
   },
   {
     working: <b>Sludge contains: silver and gold.</b>,

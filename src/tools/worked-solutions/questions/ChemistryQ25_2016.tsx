@@ -5,6 +5,7 @@
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -33,8 +34,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: 'Predicted: Cu + I2 → Cu2+ + I-, with visible colour change (brown → blue) and a corroded copper strip.',
-    reason: <>Copper is a stronger reductant than iodide, so it should reduce <Chem eq="I2" />.</>,
+    working: <>Predicted: <Chem eq="Cu(s) + I2(aq) -> Cu2+(aq) + 2I-(aq)" />, with a visible colour change (brown → blue) and a corroded copper strip.</>,
+    reason: <>I₂/I⁻ (+0.54 V) is higher on the electrochemical series than Cu²⁺/Cu (+0.34 V): copper is a stronger reductant than iodide, so it should reduce <Chem eq="I2" />.<DataBookNote>the report quotes 0.55 V for I₂/I⁻ and 1.09 V for Br₂/Br⁻; the 2026 Data Book gives +0.54 V and +1.08 V. The order — Br₂ above I₂ above Cu²⁺ — is the same, so the answer is unchanged.</DataBookNote></>,
   },
   {
     working: 'Observed: no apparent change over 10 minutes.',

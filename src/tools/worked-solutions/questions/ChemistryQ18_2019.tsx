@@ -1,10 +1,12 @@
 // 2019 Chemistry Exam, MCQ 18. VCAA examination report: 24% correct. Which galvanic cell
 // produces the largest cell voltage under standard laboratory conditions, comparing four
-// candidate half-cell pairs. Question text transcribed from the original paper. Solution is
-// original.
+// candidate half-cell pairs. Question text transcribed from the original paper. The working uses
+// the 2026 Data Book's E° values; where they differ from the report's (Ni²⁺/Ni), a note says so.
+// Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import optASrc from './chem-2019-mcq18-optA.png'
 import optBSrc from './chem-2019-mcq18-optB.png'
@@ -51,12 +53,12 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        A: <Chem eq="Ni2+/Ni" /> (−0.25 V) and <Chem eq="Zn2+/Zn" /> (−0.76 V)
+        A: <Chem eq="Ni2+/Ni" /> (−0.24 V) and <Chem eq="Zn2+/Zn" /> (−0.76 V)
         <br />
-        <Chem eq="E_cell = -0.25 - (-0.76) = 0.51" /> V
+        <Chem eq="E_cell = -0.24 - (-0.76) = 0.52" /> V
       </>
     ),
-    reason: <>Ni²⁺/Ni is the stronger oxidising agent of the pair, so it drives the reaction.</>,
+    reason: <>Ni²⁺/Ni is the stronger oxidising agent of the pair, so it drives the reaction.<DataBookNote>the 2026 Data Book gives <i>E</i>°(Ni²⁺/Ni) = −0.24 V; the 2019 Data Book, used by the paper and the report, gave −0.25 V, which is why the report has 0.51 V. Cell A is still the largest, so the answer is unchanged.</DataBookNote></>,
   },
   {
     working: (
@@ -81,11 +83,11 @@ const ROWS: WorkingRow[] = [
     reason: <>Not a genuine candidate — this rules D out immediately.</>,
   },
   {
-    working: <Chem eq="0.51 > 0.46 > 0.44 > 0 " />,
+    working: <Chem eq="0.52 > 0.46 > 0.44 > 0 " />,
     reason: <>Compare the three genuine candidates.</>,
   },
   {
-    working: <b>Cell A produces the largest voltage, 0.51 V.</b>,
+    working: <b>Cell A produces the largest voltage, 0.52 V.</b>,
     reason: <>Matches option <b>A</b>. Option <b>B</b>, the most common choice, gives only 0.44 V with the <Chem eq="H+/H2" /> half-cell; the report suggests students paired the HCl half-cell with the chlorine or oxygen half-cells instead. (The report&rsquo;s line for C reads −0.80 V − (−0.34 V); it means 0.80 V − 0.34 V = 0.46 V.)</>,
   },
 ]

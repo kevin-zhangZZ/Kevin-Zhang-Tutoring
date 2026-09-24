@@ -1001,6 +1001,19 @@ MCQs get a self-made explanation, following the §12 rules and these conventions
   the original paper and report used, what the current Data Book gives, and what the answer
   becomes with the current value — so a student working with today's Data Book isn't
   confused by a mismatch with the report.
+- **The reference is the 2026 Data Book** (`_Tutoring/2026 Material/Chem/2026-ChemistryDataBook.pdf`).
+  Its electrochemical series differs in places from the values the old reports quote:
+  Ni²⁺/Ni −0.24 V (2019 report −0.25, 2015 report −0.23), Mg²⁺/Mg −2.36 and Al³⁺/Al −1.68
+  (the 2025 report's 3.60 V and 2.06 V imply −2.37 and −1.66), Br₂/Br⁻ +1.08 and I₂/I⁻
+  +0.54 (2016 report 1.09 and 0.55); Au⁺/Au (+1.68 in the 2015 report) is no longer listed.
+  Check any other quoted E° against the 2026 table before relying on it.
+- **The working uses the current value; the report's `comment` keeps its own.** At the
+  calculation, the reason ends with a `<DataBookNote>` (from `QuestionParts`): a yellow
+  callout with a warning sign that adds the **Data Book update:** label itself. The note
+  gives the current value, the value the paper and report used, and the resulting difference
+  (0.51 V becomes 0.52 V), and says the answer is unchanged. If a revised value ever changes the
+  answer, say so plainly in the same note and in the `flawed`-style banner. Examples: 2015
+  MCQ 28, 2016 MCQ 25, 2019 MCQ 18, 2025 MCQ 8.
 
 ### 14.5 Diagrams and data
 

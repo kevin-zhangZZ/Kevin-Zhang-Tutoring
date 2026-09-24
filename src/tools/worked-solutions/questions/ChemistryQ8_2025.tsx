@@ -2,11 +2,13 @@
 // paper. Comparing the potential difference of four different metal–air cells by combining each
 // metal's standard reduction potential with the air electrode's potential in the given
 // electrolyte. Question text transcribed from the original paper; the zinc–air cell diagram and
-// the four cell diagrams (options) are cropped from the original VCAA exam PDF. Solution is
-// original.
+// the four cell diagrams (options) are cropped from the original VCAA exam PDF. The working uses
+// the 2026 Data Book's E° values; where they differ from the report's (Mg²⁺/Mg, Al³⁺/Al), a note
+// says so. Solution is original.
 
 import Chem from '../Chem'
 import { MCQShell } from '../MCQShell'
+import { DataBookNote } from '../QuestionParts'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import cellSrc from './chem-2025-mcq8-zinc-air-cell.png'
 import optASrc from './chem-2025-mcq8-optA.png'
@@ -40,12 +42,12 @@ const ROWS: WorkingRow[] = [
     reason: <>The O₂ half-equation depends on the electrolyte (Data Book): <Chem eq="O2(g) + 4H+(aq) + 4e- <=> 2H2O(l)" />, +1.23 V (acidic); <Chem eq="O2(g) + 2H2O(l) + 4e- <=> 4OH-(aq)" />, +0.40 V (alkaline).</>,
   },
   {
-    working: <>A — Mg, acidic electrolyte: <i>E</i>°(Mg²⁺/Mg) = −2.37 V, so 1.23 − (−2.37) = <b>3.60 V</b>.</>,
-    reason: <>A strong reducing agent paired with the higher-potential acidic air electrode.</>,
+    working: <>A — Mg, acidic electrolyte: <i>E</i>°(Mg²⁺/Mg) = −2.36 V, so 1.23 − (−2.36) = <b>3.59 V</b>.</>,
+    reason: <>A strong reducing agent paired with the higher-potential acidic air electrode.<DataBookNote>the 2026 Data Book gives −2.36 V for Mg²⁺/Mg; the Data Book used for the 2025 exam gave −2.37 V, which is why the report has 3.60 V.</DataBookNote></>,
   },
   {
-    working: <>B — Al, alkaline electrolyte: <i>E</i>°(Al³⁺/Al) = −1.66 V, so 0.40 − (−1.66) = <b>2.06 V</b>.</>,
-    reason: <>A weaker reducing agent than Mg, with the lower-potential alkaline air electrode.</>,
+    working: <>B — Al, alkaline electrolyte: <i>E</i>°(Al³⁺/Al) = −1.68 V, so 0.40 − (−1.68) = <b>2.08 V</b>.</>,
+    reason: <>A weaker reducing agent than Mg, with the lower-potential alkaline air electrode.<DataBookNote>the 2026 Data Book gives −1.68 V for Al³⁺/Al; the Data Book used for the 2025 exam gave −1.66 V, which is why the report has 2.06 V.</DataBookNote></>,
   },
   {
     working: <>C — Na, alkaline electrolyte: <i>E</i>°(Na⁺/Na) = −2.71 V, so 0.40 − (−2.71) = <b>3.11 V</b> (the report gives 3.10 V).</>,
@@ -56,8 +58,8 @@ const ROWS: WorkingRow[] = [
     reason: <>The weakest reducing agent of the four gives the smallest potential difference.</>,
   },
   {
-    working: <b>Cell A, 3.60 V, has the highest potential difference.</b>,
-    reason: <>Matches option <b>A</b>. Option <b>C</b>, chosen by 53%, has the strongest reducing agent, Na, but the alkaline air electrode costs it 0.83 V.</>,
+    working: <b>Cell A, 3.59 V, has the highest potential difference.</b>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b>, chosen by 53%, has the strongest reducing agent, Na, but the alkaline air electrode costs it 0.83 V. (With the report&rsquo;s older values the order is the same — 3.60 &gt; 3.10 &gt; 2.06 &gt; 1.99 V — so the answer doesn&rsquo;t depend on which Data Book is used.)</>,
   },
 ]
 

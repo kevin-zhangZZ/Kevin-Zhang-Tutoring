@@ -152,6 +152,24 @@ export function Background({ children, title = 'Background' }: { children: React
   )
 }
 
+// A note that the current Chemistry Data Book gives a different value from the one the paper
+// and report used (AUTHORING_GUIDE §14.4). Sits inside a working row's `reason`, after the
+// reasoning itself, as a yellow callout with a warning sign so it isn't missed.
+export function DataBookNote({ children }: { children: ReactNode }) {
+  return (
+    <span className="mt-2 flex gap-2 items-start rounded-lg border border-amber-300 dark:border-amber-700/70 bg-amber-50 dark:bg-amber-950/40 px-3 py-2 text-amber-900 dark:text-amber-100">
+      <svg viewBox="0 0 24 24" className="flex-none w-[18px] h-[18px] mt-px" role="img" aria-label="Warning">
+        <path d="M12 2.8 1.6 20.8h20.8L12 2.8Z" fill="#FACC15" stroke="#A16207" strokeWidth="1.4" strokeLinejoin="round" />
+        <rect x="10.95" y="8.6" width="2.1" height="6.9" rx="1.05" fill="#422006" />
+        <circle cx="12" cy="17.9" r="1.2" fill="#422006" />
+      </svg>
+      <span>
+        <b>Data Book update:</b> {children}
+      </span>
+    </span>
+  )
+}
+
 // Marks-distribution table + comment for one part of a short-answer question, as published
 // in the VCAA examination report (e.g. "Marks 0 1 2 | % 7 15 78 | Average 1.7"). On phones the
 // table becomes a small bar chart, one column per mark, so no column (usually Average) gets
