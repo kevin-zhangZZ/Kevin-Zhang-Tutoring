@@ -41,8 +41,14 @@
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(-3px); }
 }
+/* Speed Maths: a wrong answer shakes the question card. */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
 @media (prefers-reduced-motion: reduce) {
-  [class*='animate-[sheet-in'], [class*='animate-[bob-'] { animation: none !important; }
+  [class*='animate-[sheet-in'], [class*='animate-[bob-'], [class*='animate-[shake'] { animation: none !important; }
 }
 
 /* Worked solutions on phones: display maths a little smaller (KaTeX's default is 1.21em), so
