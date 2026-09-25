@@ -489,6 +489,12 @@ Every new question file needs two more edits, always together:
    file), which the sidebar uses to list a question's parts and show how hard it was. Commit
    the regenerated file with the question. It reports any short-answer question it couldn't
    read, and any multi-part question with a `PartCard` missing its `topic`.
+4. **Methods and Specialist — `npm run topic-check -- <subject> <subtopic prefix>`.** The
+   Exam Analysis page files every MCQ and short-answer part under a subtopic, by rules that read
+   the `data.ts` category and description and each part's `topic`
+   (`src/tools/exam-analysis/taxonomy.ts`). New questions are filed automatically; look them up
+   in the listing, and if one lands somewhere wrong, add an entry to `OVERRIDES` there (the
+   question id, or `id:letter` for one part).
 
 Exam paper/report links (Paper / Report / Report (PDF)) are wired automatically from
 `examSources.ts` by subject+year+exam — no per-question edit needed there, as long as the

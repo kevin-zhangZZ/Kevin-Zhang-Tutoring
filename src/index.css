@@ -102,3 +102,28 @@
 .dark .scrollbar-quiet::-webkit-scrollbar-thumb:hover {
   background-color: theme('colors.gray.600');
 }
+
+/* Exam analysis charts. Topic colours are a colour-blind-checked categorical set (validated
+   against white and gray-900 cards); --ea-seq-* and --ea-heat-* are the two ends of the marks
+   (blue) and difficulty (amber) scales; the band fills match the worked-solutions sidebar's
+   difficulty bars. */
+:root {
+  --ea-t1: #2a78d6; --ea-t2: #eb6834; --ea-t3: #1baf7a; --ea-t4: #eda100;
+  --ea-t5: #e87ba4; --ea-t6: #008300; --ea-t7: #4a3aa7; --ea-t8: #e34948;
+  --ea-seq-lo: #e8f1fc; --ea-seq-hi: #184f95;
+  --ea-heat-lo: #f3f4f6; --ea-heat-hi: #b45309;
+  --ea-hard: #d97706; --ea-medium: #fcd34d; --ea-easy: #d1d5db;
+  --ea-missing: #e5e7eb;
+  --ea-grid: #eceef1; --ea-axis: #d1d5db;
+  --ea-surface: #ffffff;
+}
+.dark {
+  --ea-t1: #3987e5; --ea-t2: #d95926; --ea-t3: #199e70; --ea-t4: #c98500;
+  --ea-t5: #d55181; --ea-t6: #008300; --ea-t7: #9085e9; --ea-t8: #e66767;
+  --ea-seq-lo: #172033; --ea-seq-hi: #6da7ec;
+  --ea-heat-lo: #1f2937; --ea-heat-hi: #fbbf24;
+  --ea-hard: #fbbf24; --ea-medium: #b45309; --ea-easy: #4b5563;
+  --ea-missing: #374151;
+  --ea-grid: #1f2937; --ea-axis: #374151;
+  --ea-surface: #111827;
+}

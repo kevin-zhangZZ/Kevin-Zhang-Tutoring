@@ -3,6 +3,7 @@ import UnitCircle from './unit-circle'
 import SpeedMaths from './speed-maths'
 import ExamSkipGuide from './exam-skip-guide'
 import WorkedSolutions from './worked-solutions'
+import ExamAnalysis from './exam-analysis'
 import ContactMe from './contact-me'
 
 export interface Tool {
@@ -29,6 +30,15 @@ export const tools: Tool[] = [
     route: '/worked-solutions',
     component: WorkedSolutions,
     icon: '🎬',
+  },
+  {
+    id: 'exam-analysis',
+    name: 'Exam Analysis',
+    description: 'How the 2014–2025 Methods and Specialist exams split their marks across topics, which topics students find hardest, and what’s being examined more or less.',
+    tagline: 'Topics, marks and difficulty, 2014–2025',
+    route: '/exam-analysis',
+    component: ExamAnalysis,
+    icon: '📊',
   },
   {
     id: 'exam-skip-guide',
