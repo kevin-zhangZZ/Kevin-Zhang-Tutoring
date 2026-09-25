@@ -6,7 +6,8 @@
 // Run after adding or editing a short-answer question:   npm run part-stats
 //
 // It reads, per question file registered in details.ts:
-//   - each <PartCard letter="…" topic="…" marks={n} examinerReport={NAME}>, in order, or for a
+//   - each <PartCard letter="…" topic="…" marks={n} examinerReport={NAME} videoSrc={…}>, in
+//     order (videoSrc marks a part with a recorded video walkthrough), or for a
 //     single-part question the <SAExaminerReport stats={NAME} maxMarks={n} /> instead;
 //   - each `const NAME: SAExaminerStats = { marks: [...], average: x, ... }`.
 
@@ -57,6 +58,7 @@ for (const id of saIds) {
     const part = { l: letter[1], m: Number(marks[1]) }
     if (topic) part.t = topic[1]
     if (report && averages[report[1]] !== undefined) part.a = averages[report[1]]
+    if (/\bvideoSrc=/.test(props)) part.v = true
     parts.push(part)
   }
   if (parts.length === 0) {
@@ -83,13 +85,14 @@ writeFileSync(
 //
 // Per short-answer question: its parts in order — l = letter ('' for a single-part
 // question), t = the part's subtopic (PartCard's topic), m = marks, a = VCAA's average mark
-// (absent if the report has none).
+// (absent if the report has none), v = the part has a video walkthrough.
 
 export interface PartStat {
   l: string
   t?: string
   m: number
   a?: number
+  v?: true
 }
 
 export const PART_STATS: Record<string, PartStat[]> = {

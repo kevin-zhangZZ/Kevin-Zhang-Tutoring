@@ -3,21 +3,22 @@
 //
 // Per short-answer question: its parts in order — l = letter ('' for a single-part
 // question), t = the part's subtopic (PartCard's topic), m = marks, a = VCAA's average mark
-// (absent if the report has none).
+// (absent if the report has none), v = the part has a video walkthrough.
 
 export interface PartStat {
   l: string
   t?: string
   m: number
   a?: number
+  v?: true
 }
 
 export const PART_STATS: Record<string, PartStat[]> = {
-  'spec-q2-2016-e2': [{l:"a",m:2,t:"Line Locus",a:1.6},{l:"b",m:2,t:"Line & Circle",a:1.5},{l:"c",m:2,t:"Sketch Loci",a:1.7},{l:"d",m:2,t:"Segment Area",a:0.9},{l:"e",m:1,t:"Ray Locus",a:0.4},{l:"f",m:2,t:"Ray Intersections",a:0.3}],
-  'spec-q1-2016-e2': [{l:"a",m:1,t:"Stationary Point",a:1},{l:"b",m:2,t:"Point of Inflection",a:1.7},{l:"c",m:3,t:"Sketch Graph",a:2.2},{l:"d.i",m:1,t:"Arc Length",a:0.8},{l:"d.ii",m:1,t:"Arc Length"},{l:"e",m:1,t:"Volume of Revolution",a:0.4}],
+  'spec-q2-2016-e2': [{l:"a",m:2,t:"Line Locus",a:1.6},{l:"b",m:2,t:"Line & Circle",a:1.5},{l:"c",m:2,t:"Sketch Loci",a:1.7},{l:"d",m:2,t:"Segment Area",a:0.9,v:true},{l:"e",m:1,t:"Ray Locus",a:0.4,v:true},{l:"f",m:2,t:"Ray Intersections",a:0.3,v:true}],
+  'spec-q1-2016-e2': [{l:"a",m:1,t:"Stationary Point",a:1},{l:"b",m:2,t:"Point of Inflection",a:1.7},{l:"c",m:3,t:"Sketch Graph",a:2.2},{l:"d.i",m:1,t:"Arc Length"},{l:"d.ii",m:1,t:"Arc Length"},{l:"e",m:1,t:"Volume of Revolution",a:0.4}],
   'spec-q5-2016-e2': [{l:"b",m:2,t:"Velocity",a:1.7},{l:"c",m:2,t:"Displacement",a:1.3},{l:"d",m:2,t:"Maximum Height",a:0.9},{l:"e",m:3,t:"Time of Flight",a:1.1}],
   'spec-q6-2016-e2': [{l:"a",m:2,t:"Sample Mean",a:1.7},{l:"b",m:2,t:"Hypotheses",a:1.6},{l:"c.i",m:2,t:"p-Value",a:1.4},{l:"c.ii",m:1,t:"Conclusion",a:0.7},{l:"d",m:1,t:"Critical Value",a:0.5},{l:"e",m:1,t:"Type II Error",a:0.5}],
-  'spec-q3-2016-e2': [{l:"a",m:3,t:"Separable DE",a:1.7},{l:"b",m:1,t:"Concentration",a:0.4},{l:"c",m:2,t:"Mixing Problem",a:0.9},{l:"d",m:3,t:"Verify Solution",a:1.2},{l:"e",m:2,t:"Solve Equation",a:0.6}],
+  'spec-q3-2016-e2': [{l:"a",m:3,t:"Separable DE",a:1.7,v:true},{l:"b",m:1,t:"Concentration",a:0.4,v:true},{l:"c",m:2,t:"Mixing Problem",a:0.9,v:true},{l:"d",m:3,t:"Verify Solution",a:1.2,v:true},{l:"e",m:2,t:"Solve Equation",a:0.6,v:true}],
   'spec-q4-2016-e2': [{l:"a",m:2,t:"Collision",a:1.4},{l:"b",m:3,t:"Sketch Paths",a:1.7},{l:"c",m:2,t:"Angle Between Paths",a:0.6},{l:"d.i",m:2,t:"Closest Approach",a:0.7},{l:"d.ii",m:1,t:"Minimum Distance",a:0.3}],
   'meth-q2-2014-e2': [{l:"a",m:2,t:"Modelling",a:1.6},{l:"b",m:1,t:"Surface Area",a:0.6},{l:"c",m:2,t:"Optimisation",a:1.3},{l:"d",m:1,t:"Optimisation",a:0.4},{l:"e",m:1,t:"Modelling",a:0.6},{l:"f",m:3,t:"Related Rates",a:1.6},{l:"g",m:1,t:"Related Rates",a:0.4},{l:"h",m:2,t:"Solve Equation",a:0.3}],
   'meth-q1-2014-e2': [{l:"a",m:2,t:"Period & Amplitude",a:1.8},{l:"b",m:2,t:"Max & Min",a:1.8},{l:"c",m:1,t:"Function Value",a:0.9},{l:"d",m:2,t:"Trig Inequality",a:1}],
@@ -103,9 +104,9 @@ export const PART_STATS: Record<string, PartStat[]> = {
   'meth-q8-2017-e1': [{l:"a",m:1,t:"Conditional Probability",a:0.6},{l:"b",m:2,t:"Complement",a:0.3},{l:"c",m:2,t:"Probability Bounds",a:0.4}],
   'meth-q9-2017-e1': [{l:"a",m:2,t:"Area Under Curve",a:0.6},{l:"b",m:1,t:"Derivative",a:0.3},{l:"c",m:2,t:"Line Equation",a:0.2},{l:"d",m:4,t:"Coordinates",a:0.2}],
   'meth-q1-2017-e2': [{l:"a",m:2,t:"Turning Points",a:1.7},{l:"b.i",m:2,t:"Line Equation",a:1.6},{l:"b.ii",m:1,t:"Distance",a:0.8},{l:"c.i",m:2,t:"Distance",a:1.5},{l:"c.ii",m:1,t:"Find Parameter",a:0.7},{l:"d.i",m:1,t:"Find Parameter",a:0.6},{l:"d.ii",m:2,t:"Area Between Curves",a:1}],
-  'meth-q2-2017-e2': [{l:"a",m:1,t:"Max & Min",a:0.9},{l:"b",m:1,t:"Period",a:0.9},{l:"c",m:2,t:"Rate of Change",a:1},{l:"d",m:1,t:"Trig Ratio",a:0.4},{l:"e",m:1,t:"Derivative",a:0.9},{l:"f",m:3,t:"Tangent Line",a:0.5},{l:"g",m:1,t:"Angle",a:0.1},{l:"h",m:2,t:"Time Interval",a:0.1}],
+  'meth-q2-2017-e2': [{l:"a",m:1,t:"Max & Min",a:0.9},{l:"b",m:1,t:"Period",a:0.9},{l:"c",m:2,t:"Rate of Change",a:1},{l:"d",m:1,t:"Trig Ratio",a:0.4,v:true},{l:"e",m:1,t:"Derivative",a:0.9},{l:"f",m:3,t:"Tangent Line",a:0.5,v:true},{l:"g",m:1,t:"Angle",a:0.1,v:true},{l:"h",m:2,t:"Time Interval",a:0.1,v:true}],
   'meth-q3-2017-e2': [{l:"a",m:3,t:"Sketch PDF",a:1.9},{l:"b",m:2,t:"Continuous PDF",a:1.5},{l:"c",m:2,t:"Conditional Probability",a:1.3},{l:"d",m:2,t:"PDF Quantile",a:0.7},{l:"e.i",m:2,t:"Binomial Distribution",a:1.3},{l:"e.ii",m:2,t:"Conditional Binomial",a:1.3},{l:"f",m:2,t:"Probability Expression",a:0.7},{l:"g.i",m:2,t:"Optimisation",a:0.6},{l:"g.ii",m:2,t:"Find Parameter",a:0.2}],
-  'meth-q4-2017-e2': [{l:"a",m:2,t:"Translation",a:1.3},{l:"b",m:2,t:"Inverse Function",a:1.5},{l:"c",m:3,t:"Area Between Curves",a:2},{l:"d",m:2,t:"Gradient",a:1.4},{l:"e",m:1,t:"Find Parameter",a:0.7},{l:"f",m:1,t:"Inverse Function",a:0.6},{l:"g.i",m:1,t:"Transformations",a:0.3},{l:"g.ii",m:1,t:"Transformations",a:0.3},{l:"h",m:2,t:"Angle Between Lines",a:0.3},{l:"i.i",m:2,t:"Intersections",a:0.1},{l:"i.ii",m:1,t:"Area Bound",a:0}],
+  'meth-q4-2017-e2': [{l:"a",m:2,t:"Translation",a:1.3,v:true},{l:"b",m:2,t:"Inverse Function",a:1.5,v:true},{l:"c",m:3,t:"Area Between Curves",a:2,v:true},{l:"d",m:2,t:"Gradient",a:1.4,v:true},{l:"e",m:1,t:"Find Parameter",a:0.7,v:true},{l:"f",m:1,t:"Inverse Function",a:0.6,v:true},{l:"g.i",m:1,t:"Transformations",a:0.3,v:true},{l:"g.ii",m:1,t:"Transformations",a:0.3,v:true},{l:"h",m:2,t:"Angle Between Lines",a:0.3,v:true},{l:"i.i",m:2,t:"Intersections",a:0.1,v:true},{l:"i.ii",m:1,t:"Area Bound",a:0,v:true}],
   'spec-q1-2017-e1': [{l:"",m:3,a:2.1}],
   'spec-q2-2017-e1': [{l:"",m:4,a:1.9}],
   'spec-q3-2017-e1': [{l:"",m:3,a:2.1}],

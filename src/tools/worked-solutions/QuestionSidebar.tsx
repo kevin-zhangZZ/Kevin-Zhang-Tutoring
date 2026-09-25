@@ -761,6 +761,17 @@ function QuestionRow({
                 <span className="flex-1 min-w-0 truncate" title={p.t}>
                   {p.t ?? `${p.m} mark${p.m === 1 ? '' : 's'}`}
                 </span>
+                {p.v && (
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="flex-none w-3.5 h-3.5 text-violet-600 dark:text-violet-400"
+                    aria-label="Has a video walkthrough"
+                  >
+                    <title>Has a video walkthrough</title>
+                    <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+                  </svg>
+                )}
                 {pct !== null && (
                   <span
                     className={`flex-none w-8 text-right font-display text-[10.5px] tabular-nums ${hard ? BAND_NUMBER.hard : 'font-bold text-gray-400 dark:text-gray-500'}`}
