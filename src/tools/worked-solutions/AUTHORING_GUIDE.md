@@ -1116,7 +1116,17 @@ One idea per widget. Two small widgets in two parts beat one crowded widget.
   the function sky blue `C.f`, a second function orange `C.g`, agreement green `C.good`, a
   line that belongs to no curve red `C.bad`, guides grey `C.guide`.
 - `Plane` takes the x/y ranges and grid steps; pass `equalScale` whenever angles,
-  perpendicularity, circles or reflection in `y = x` matter.
+  perpendicularity, circles or reflection in `y = x` matter (the plane then sizes its height
+  to its width; `height` is the maximum). `xLabels`/`yLabels` override the tick numbers on one
+  axis (`yLabels={false}` when a steep curve runs over them). `xLabel=""`/`yLabel=""` hide an
+  axis name.
+- Put text on the plane with `Label` — `attach` is the side of the point the text sits on
+  ('n' above, 's' below, 'e' right, 'ne' above-right, 'c' centred), `gap` its distance in px.
+  Don't use mafs's raw `Text` for labels: in mafs 0.21 its 'n'/'s' are upside down.
+- Controls: `Slider`, `Toggle` (on/off), `ActionButton` (a one-shot "Go to x = b"), `PlayButton`
+  with `usePlayer`, `StepNav` with `useSteps` for a picture built up in steps.
+- A helper that only one question's widgets share may live in one of that question's widget
+  files and be imported by its siblings; anything more general belongs in the kit.
 - Draggable points: `MovablePoint` with `onMove` snapping to the curve (nearest sampled point,
   as in `meth-2020e1-q6b-mirror.tsx`). Animations: `usePlayer` driving a slider's state; stop
   it when the student grabs the slider.
