@@ -4,6 +4,7 @@
 import { Children, Fragment, cloneElement, createContext, isValidElement, useContext, useEffect, useState, type ReactNode } from 'react'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 import { useStudyMode } from './studyMode'
+import { Explore } from './Explore'
 
 // VCAA examination-report stats for one part of a short-answer question: the percentage
 // of students who scored each mark (index = mark value, e.g. marks[0] = % who scored 0),
@@ -59,6 +60,7 @@ function gateChildren(children: ReactNode, show: boolean): ReactNode {
   return Children.map(children, child => {
     if (!isValidElement(child)) return show ? child : null
     if (child.type === WorkingTable || child.type === Background) return child
+    if (child.type === Explore && (child.props as { spoilerFree?: boolean }).spoilerFree) return child
     if (child.type === Fragment) {
       return cloneElement(child, undefined, gateChildren((child.props as { children?: ReactNode }).children, show))
     }
@@ -147,6 +149,46 @@ export function Background({ children, title = 'Background' }: { children: React
   return (
     <div className="rounded-xl border border-sky-100 dark:border-sky-900/50 bg-sky-50/70 dark:bg-sky-950/20 px-4 py-3">
       <p className="text-[11px] font-bold tracking-wider text-sky-700 dark:text-sky-300 mb-1.5">{title}</p>
+      <div className="text-[13px] leading-relaxed text-gray-600 dark:text-gray-300 space-y-2">{children}</div>
+    </div>
+  )
+}
+
+// A tempting wrong method and exactly where it breaks — what a teacher says after marking a pile
+// of scripts: "a lot of you did this; here's why it doesn't work." Sits after the working
+// (AUTHORING_GUIDE §15.4). `working` is the wrong working as a student would write it; the
+// children say where and why it goes wrong, and how to catch it next time.
+export function WrongMethod({
+  title,
+  source,
+  working,
+  children,
+}: {
+  /** The wrong idea, in the words a student would think it: "Integrate f − f⁻¹ from 0 to 1". */
+  title: ReactNode
+  /** How we know it's common: "Examiner's report", "31% chose A". */
+  source?: ReactNode
+  working?: ReactNode
+  children: ReactNode
+}) {
+  return (
+    <div data-wrong-method className="rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3">
+      <div className="flex items-start justify-between gap-3 mb-1.5">
+        <p className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-rose-700 dark:text-rose-300">
+          <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.15" />
+            <path d="M5.2 5.2l5.6 5.6M10.8 5.2l-5.6 5.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+          Common Mistake
+        </p>
+        {source && <span className="flex-none text-[11px] text-rose-700/80 dark:text-rose-300/80">{source}</span>}
+      </div>
+      <p className="text-[13.5px] font-semibold text-gray-800 dark:text-gray-100 mb-2">{title}</p>
+      {working && (
+        <div className="mb-2.5 rounded-lg bg-white dark:bg-gray-900 border-l-[3px] border-rose-300 dark:border-rose-700 px-3 py-2 text-[13.5px] text-gray-700 dark:text-gray-200 space-y-1">
+          {working}
+        </div>
+      )}
       <div className="text-[13px] leading-relaxed text-gray-600 dark:text-gray-300 space-y-2">{children}</div>
     </div>
   )

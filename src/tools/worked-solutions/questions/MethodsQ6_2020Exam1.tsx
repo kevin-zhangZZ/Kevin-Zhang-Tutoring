@@ -5,12 +5,19 @@
 // on that crop (never a redrawing of it). Calibration measured from the crop's own gridlines
 // (300 dpi): origin at (234.5, 889.5), 315 px per unit on both axes; checked with a PIL
 // composite — the calibrated f(x) = √(x/2) lies exactly on VCAA's printed curve. Answers checked with sympy and against the VCAA examination
-// report. Solution is original.
+// report. Solution is original. Interactive diagrams (§15): part b. drags a point along f to
+// trace its mirror image f⁻¹ (interactives/meth-2020e1-q6b-mirror.tsx); part c. sweeps a strip
+// across both regions, with a toggle showing a single unsplit integral going negative
+// (interactives/meth-2020e1-q6c-strips.tsx).
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import { functionToPath } from '../graphUtils'
 import axesSrc from './meth-2020e1-q6-graph.png'
+
+const MirrorWidget = lazyWidget(() => import('../interactives/meth-2020e1-q6b-mirror'))
+const StripsWidget = lazyWidget(() => import('../interactives/meth-2020e1-q6c-strips'))
 
 const OX = 234.5
 const OY = 889.5
@@ -152,7 +159,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = f^{-1}(x) \iff f(x) = x \implies \frac{\sqrt x}{\sqrt2} = x" />,
-    reason: <>Reflections in <Katex tex="y=x" /> meet on that line, so solve <Katex tex="f(x)=x" /> rather than <Katex tex="f=f^{-1}" />.</>,
+    reason: <>A point where the two graphs meet is on both a curve and its own mirror image. For an <em>increasing</em> function like this one, that can only happen on the mirror line <Katex tex="y=x" /> itself (drag the point in the diagram below to see it), so solve <Katex tex="f(x)=x" /> — a quadratic after squaring — rather than <Katex tex="\tfrac{\sqrt x}{\sqrt2}=2x^2" />. Careful: a <em>decreasing</em> function can meet its inverse off the line, e.g. <Katex tex="y=-x^3" /> meets its inverse at <Katex tex="(1,-1)" />.</>,
   },
   {
     working: <Katex display tex="\frac{x}{2} = x^2 \implies x\left(x-\tfrac12\right) = 0 \implies x = 0,\ \tfrac12" />,
@@ -261,6 +268,9 @@ export default function MethodsQ6_2020Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Why the inverse is a mirror image, and why the curves meet on y = x">
+          <MirrorWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -279,6 +289,19 @@ export default function MethodsQ6_2020Exam1() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="An area is a sum of strips — and here the top curve changes halfway">
+          <StripsWidget />
+        </Explore>
+        <WrongMethod
+          title="Integrate f − f⁻¹ from 0 to 1 in one go"
+          working={<Katex display tex="\int_0^1\left(\frac{\sqrt x}{\sqrt2}-2x^2\right)dx = \frac{\sqrt2}{3}-\frac23 = \frac{\sqrt2-2}{3}" />}
+        >
+          The answer is negative, which no area can be — that is the giveaway. Right of{' '}
+          <Katex tex="x=\tfrac12" /> the curve <Katex tex="f^{-1}" /> is on top, so there{' '}
+          <Katex tex="f-f^{-1}<0" /> and the integral <em>subtracts</em> region B instead of adding it:
+          you get <Katex tex="A_1-A_2" />, not <Katex tex="A_1+A_2" />. Whenever the curves cross inside the
+          interval, split at the crossing and take top minus bottom in each piece.
+        </WrongMethod>
       </PartCard>
     </div>
   )

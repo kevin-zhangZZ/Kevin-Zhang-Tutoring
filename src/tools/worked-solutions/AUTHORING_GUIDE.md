@@ -1050,3 +1050,136 @@ MCQs get a self-made explanation, following the §12 rules and these conventions
   stated change and with K; a concentration or yield is physically plausible (not > 100%,
   not negative); stoichiometric amounts stay in proportion; a pH is in range for the acid
   strength described.
+
+## 15. Teaching like a teacher — interactive diagrams and common mistakes
+
+Added Sept 2026 at KZ's request: *"I really want interactive tools where possible to help
+students visualise why equations/relationships are the way they are … teach it like a teacher
+will teach it to them."* A solution should do what a good teacher does at the whiteboard: show
+the picture, make the student *see* why the relationship holds, then write the algebra — and,
+after marking a pile of scripts, say "a lot of you did this; here's why it doesn't work."
+
+### 15.1 When to build an interactive diagram
+
+Build one wherever manipulating something makes the *reason* visible — not as decoration. The
+test: after two minutes with it, does a student who got this wrong understand something they
+didn't before? Priorities, in order:
+
+1. **Low-accuracy parts** (MCQ under 40% correct; short-answer parts averaging under 40% of
+   their marks). Ask what exactly made most students fail, and build the picture that fixes it.
+2. **Any relationship that is really a picture**: area as a sum of strips (and signed area);
+   a function against its inverse (reflection in `y = x`, areas that swap); the derivative as
+   the gradient of a tangent you can slide; stationary points and the sign of `f′`; a family of
+   curves as a parameter changes (the number of solutions jumping at a critical `k`);
+   transformations built up one step at a time; the unit circle behind a trig equation's
+   solutions; normal/binomial probabilities as areas/bars that respond to the parameters;
+   sampling distributions and confidence intervals; vectors (resolutes, parallelograms, dot
+   product sign); the Argand plane (multiplication as rotate-and-scale, roots of unity, loci);
+   direction fields with a draggable initial condition; Euler's method stepping; motion on a
+   line (position, velocity, area under v–t); volumes of revolution as stacked discs; related
+   rates.
+3. Skip it for pure manipulation (an index law, expanding brackets) where a picture adds
+   nothing. Never force one — a clear static figure (§7) or a better sentence may be the right
+   tool.
+
+One idea per widget. Two small widgets in two parts beat one crowded widget.
+
+### 15.2 How a widget teaches
+
+- **The title is the insight**, as a claim or question: "Why the inverse is a mirror image, and
+  why the curves meet on y = x"; "An area is a sum of strips — and here the top curve changes
+  halfway".
+- **Start in an informative state**: the default slider value or point position should already
+  show something worth noticing, and the range must include the key moment (the crossing, the
+  critical `k`, the endpoint).
+- **The `Notice` text follows what the student is looking at.** Change the message with the
+  state ("P is above y = x, so …"; "At x = 1/2 the strip has zero height — split here"). Tell
+  them what to try next ("Now drag P towards the origin"). Two to four sentences each; maths
+  in `<M>`.
+- **Connect to the working**: name the equation or step the picture justifies, using the same
+  symbols as the working.
+- **Show the wrong idea failing** when there is a common one: a toggle ("What if I don't
+  split?") that makes the wrong method's result appear and visibly go wrong.
+- Use the question's own functions and numbers. Readouts are rounded and marked `≈`; exact
+  values belong in the working.
+- It must be right. Every curve, point and readout is computed from the question's actual
+  rule, and the numbers a readout lands on must agree with the working — check them.
+
+### 15.3 Mechanics
+
+- **One file per widget** in `interactives/`, named like an image (§2) with a `.tsx`
+  extension: `meth-2020e1-q6c-strips.tsx`, `spec-2017-mcq10-abs-inflection.tsx`. Default
+  export a component with no props; the top comment says what it shows and why.
+- Import only from `./kit`. It re-exports what's needed from mafs, plus `Plane`, `Label`,
+  `Region`, `Slider`, `Toggle`, `Buttons`, `PlayButton`/`usePlayer`, `Readout(s)`, `Notice`,
+  `M`, `useSteps`/`StepNav`, `integrate`, `clamp` and the colours `C`. Colours follow §12.10:
+  the function sky blue `C.f`, a second function orange `C.g`, agreement green `C.good`, a
+  line that belongs to no curve red `C.bad`, guides grey `C.guide`.
+- `Plane` takes the x/y ranges and grid steps; pass `equalScale` whenever angles,
+  perpendicularity, circles or reflection in `y = x` matter.
+- Draggable points: `MovablePoint` with `onMove` snapping to the curve (nearest sampled point,
+  as in `meth-2020e1-q6b-mirror.tsx`). Animations: `usePlayer` driving a slider's state; stop
+  it when the student grabs the slider.
+- A widget is our own explanatory figure (§7, third category): it may plot the question's
+  functions from their rules, but it never replaces the cropped VCAA figure in the stem, and
+  it never appears in the stem.
+- Hook it in with `lazyWidget` so mafs stays out of the main bundle:
+  ```tsx
+  import { Explore, lazyWidget } from '../Explore'
+  const StripsWidget = lazyWidget(() => import('../interactives/meth-2020e1-q6c-strips'))
+  …
+  <WorkingTable rows={ROWS_C} />
+  <Explore title="An area is a sum of strips — and here the top curve changes halfway">
+    <StripsWidget />
+  </Explore>
+  ```
+  In a `PartCard`, put it after the `WorkingTable` ("now see why"), or before it with
+  `spoilerFree` when it builds intuition without giving the answer away. In an MCQ, pass it
+  (and any `WrongMethod`) in `MCQShell`'s `extras` prop. Mention the widget in the question
+  file's top comment.
+- It must work on a phone: `Plane` height about 300–340, controls that wrap, nothing wider
+  than 390 px, and a finger-sized drag target.
+- **Verify by looking.** With the dev server running,
+  `node C:/Users/Kevin/AppData/Local/Temp/ws-harness/shot.mjs <route>` (the route is the part
+  of the address after `#/worked-solutions/`) prints console and KaTeX errors and saves
+  screenshots of each Explore block in light mode (desktop) and dark mode (phone). Open them
+  and check that labels don't collide, curves sit where they should, and the text reads well.
+  `--click "Button text" --wait 7000` presses a widget button first (e.g. to see the end of an
+  animation).
+
+### 15.4 Common mistakes — `WrongMethod`
+
+Where there is evidence that students go wrong in a particular way — the report's comments,
+the MCQ distractor percentages, forum discussion of the exam — add a `WrongMethod` box (from
+`QuestionParts`) after the working:
+
+```tsx
+<WrongMethod
+  title="Integrate f − f⁻¹ from 0 to 1 in one go"
+  working={<Katex display tex="\int_0^1 \left(f(x)-f^{-1}(x)\right)dx = \tfrac{\sqrt2-2}{3}" />}
+>
+  Right of x = ½ the orange curve is on top, so every strip there counts as negative and
+  cancels part of the left region. Split at the intersection and take top − bottom in each piece.
+</WrongMethod>
+```
+
+- `title` is the wrong idea in the words a student would think it; `working` is the wrong
+  working as they'd write it; the children say exactly where it breaks and how to catch it
+  next time (a check, a sketch, a sign).
+- **Verify it**: compute the wrong method and confirm it produces the stated wrong answer
+  (for an MCQ, exactly which option). `source` names the real evidence ("Examiner's report",
+  "31% chose A") or is left out; never attribute a mistake to the report that it doesn't
+  describe (§12.7).
+- One to three per part at most — the ones that are genuinely common or instructive.
+
+### 15.5 Teacher-voice explanations
+
+- Every `reason` should answer the question a student would ask at that line: *why this step,
+  and how would I have known to do it?* ("The curves swap over at x = ½, so one integral would
+  let the right-hand piece cancel the left — split there.")
+- Say what a symbol or condition *means* before relying on it ("`f` increasing means a bigger
+  input always gives a bigger output — so a point and its reflection can only coincide on
+  y = x").
+- Where a picture carries the idea, point to it ("drag P in the diagram below").
+- Keep the Working column exam-style (§12.5); the teaching goes in the Reasoning column,
+  `Background`, `Explore` and `WrongMethod`.

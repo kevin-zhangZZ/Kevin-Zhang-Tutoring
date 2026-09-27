@@ -27,6 +27,7 @@ export function MCQShell({
   options,
   rows,
   background,
+  extras,
   examinerReport,
   videoSrc,
   videoIsExternal,
@@ -42,6 +43,11 @@ export function MCQShell({
    * question leans on an idea the reader may not have met, not to restate the question.
    */
   background?: ReactNode
+  /**
+   * Teaching material after the working, in the Worked Solution tab: an `<Explore>` interactive
+   * diagram, `<WrongMethod>` boxes for the popular wrong answers (AUTHORING_GUIDE §15).
+   */
+  extras?: ReactNode
   examinerReport?: MCQExaminerStats
   videoSrc?: string
   videoIsExternal?: boolean
@@ -185,6 +191,7 @@ export function MCQShell({
             <div className="flex flex-col gap-4">
               {background}
               <WorkingTable rows={rows} alwaysShow hideLabel={tabs.length > 1} />
+              {extras}
             </div>
           ) : tab === 'report' && examinerReport ? (
             <ExaminerReport stats={examinerReport} />
