@@ -8,9 +8,11 @@
 import 'mafs/core.css'
 import './kit.css'
 import { useEffect, useRef, useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
-import { Coordinates, Mafs, Polygon, Text, type vec } from 'mafs'
+import { Coordinates, Mafs, Polygon, useTransformContext, vec } from 'mafs'
 import Katex from '../../../components/Katex'
 
+// `Text` is mafs's own: beware that its attach 'n'/'s' are upside down (mafs 0.21 puts 'n' BELOW
+// the point). Use `Label` below, which places n/s/e/w the right way round.
 export { Circle, Line, MovablePoint, Plot, Point, Polygon, Polyline, Text, Vector, Transform, vec } from 'mafs'
 export { default as Katex } from '../../../components/Katex'
 /** Inline maths inside a Notice: <M>x = \tfrac12</M>, or <M>{'f^{-1}(x)'}</M> when the TeX has
@@ -46,16 +48,38 @@ export function tick(v: number): string {
   return v.toFixed(2)
 }
 
+/** Tick labels: a formatter, or false for none. */
+type TickLabels = ((v: number) => string) | false
+
+/** Track an element's width (for sizing an equal-scale plane to fit its column). */
+function useWidth() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [width, setWidth] = useState(0)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    setWidth(el.getBoundingClientRect().width)
+    if (typeof ResizeObserver === 'undefined') return
+    const ro = new ResizeObserver(entries => setWidth(entries[0]?.contentRect.width ?? 0))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+  return [ref, width] as const
+}
+
 export function Plane({
   x,
   y,
   xStep = 1,
   yStep = 1,
   height = 320,
+  minHeight = 200,
   equalScale = false,
   xLabel = 'x',
   yLabel = 'y',
   labels = tick,
+  xLabels,
+  yLabels,
   children,
 }: {
   /** The x-range to show. */
@@ -64,41 +88,56 @@ export function Plane({
   y: vec.Vector2
   xStep?: number
   yStep?: number
+  /** The plane's height in px. With `equalScale` this is the maximum: the plane takes the
+   *  height that fits the ranges to its width exactly (never below `minHeight`). */
   height?: number
-  /** Keep one unit the same length on both axes — needed whenever angles or reflections in
-   *  y = x matter. Otherwise the ranges are stretched to fill the box. */
+  minHeight?: number
+  /** Keep one unit the same length on both axes — needed whenever angles, circles,
+   *  perpendicularity or reflection in y = x matter. Otherwise the ranges are stretched to fill
+   *  the box. */
   equalScale?: boolean
+  /** Axis names, drawn just past the positive end of each axis. '' for none. */
   xLabel?: string
   yLabel?: string
-  labels?: ((v: number) => string) | false
+  /** Tick-number formatter for both axes (default `tick`), or false for none. */
+  labels?: TickLabels
+  /** Override the tick numbers on one axis only — e.g. `yLabels={false}` when a steep curve runs
+   *  over the y-axis numbers, or a formatter that skips a value that collides. */
+  xLabels?: TickLabels
+  yLabels?: TickLabels
   children?: ReactNode
 }) {
-  const fmt = labels === false ? false : (v: number) => (Math.abs(v) < 1e-9 ? '' : labels(v))
+  const wrap = (f: TickLabels) => (f === false ? false : (v: number) => (Math.abs(v) < 1e-9 ? '' : f(v)))
+  const fx = wrap(xLabels === undefined ? labels : xLabels)
+  const fy = wrap(yLabels === undefined ? labels : yLabels)
+
+  // Pad the view in proportion to each range, so the axis names past the positive ends and the
+  // last tick numbers always have room, whatever the scale.
+  const px = 0.07 * (x[1] - x[0])
+  const py = 0.08 * (y[1] - y[0])
+  const vx: vec.Vector2 = [x[0] - px, x[1] + px]
+  const vy: vec.Vector2 = [y[0] - py, y[1] + py]
+
+  const [ref, width] = useWidth()
+  const h = equalScale && width > 0
+    ? clamp(Math.round((width * (vy[1] - vy[0])) / (vx[1] - vx[0])), minHeight, height)
+    : height
+
   return (
-    <div className="ws-plane">
-      <Mafs
-        height={height}
-        viewBox={{ x, y, padding: 0.2 }}
-        preserveAspectRatio={equalScale ? 'contain' : false}
-        pan={false}
-        zoom={false}
-      >
-        <Coordinates.Cartesian
-          xAxis={{ lines: xStep, labels: fmt }}
-          yAxis={{ lines: yStep, labels: fmt }}
-          subdivisions={false}
-        />
-        {/* Axis names on the side away from the tick numbers (mafs puts those below the x-axis
-            and right of the y-axis), so they never collide with the last tick. */}
-        {y[0] <= 0 && y[1] >= 0 && (
-          <Text x={x[1]} y={0} attach="n" attachDistance={8} color={C.ink} size={14} svgTextProps={{ fontStyle: 'italic', className: 'ws-label' }}>
+    <div className="ws-plane" ref={ref}>
+      <Mafs height={h} viewBox={{ x: vx, y: vy, padding: 0 }} preserveAspectRatio={equalScale ? 'contain' : false} pan={false} zoom={false}>
+        <Coordinates.Cartesian xAxis={{ lines: xStep, labels: fx }} yAxis={{ lines: yStep, labels: fy }} subdivisions={false} />
+        {/* Axis names past the positive end of each axis, clear of the tick numbers (mafs puts
+            those below the x-axis and to the right of the y-axis). */}
+        {xLabel && y[0] <= 0 && y[1] >= 0 && (
+          <Label at={[x[1], 0]} attach="e" size={14} italic>
             {xLabel}
-          </Text>
+          </Label>
         )}
-        {x[0] <= 0 && x[1] >= 0 && (
-          <Text x={0} y={y[1]} attach="w" attachDistance={8} color={C.ink} size={14} svgTextProps={{ fontStyle: 'italic', className: 'ws-label' }}>
+        {yLabel && x[0] <= 0 && x[1] >= 0 && (
+          <Label at={[0, y[1]]} attach="n" size={14} italic>
             {yLabel}
-          </Text>
+          </Label>
         )}
         {children}
       </Mafs>
@@ -106,24 +145,68 @@ export function Plane({
   )
 }
 
-/** A text label on the plane with a halo, so it reads over the grid and curves. */
+export type Attach = 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw' | 'c'
+
+/** A text label on the plane, with a halo so it reads over the grid and curves. `attach` says
+ *  which side of the point the text sits on: 'n' above, 's' below, 'e' right, 'w' left, 'ne'
+ *  above-right, …, 'c' centred on it. `gap` is the distance from the point in px. */
 export function Label({
   at,
   children,
   color = C.ink,
   attach = 'ne',
   size = 13,
+  gap = 7,
+  italic = false,
+  bold = true,
 }: {
   at: vec.Vector2
-  children: string
+  children: string | number | (string | number)[]
   color?: string
-  attach?: 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'nw'
+  attach?: Attach
   size?: number
+  gap?: number
+  italic?: boolean
+  bold?: boolean
 }) {
+  const { viewTransform, userTransform } = useTransformContext()
+  const [px, py] = vec.transform(at, vec.matrixMult(viewTransform, userTransform))
+  let dx = 0
+  let dy = 0
+  let anchor: 'start' | 'middle' | 'end' = 'middle'
+  let baseline: 'central' | 'alphabetic' | 'hanging' = 'central'
+  if (attach === 'e' || attach === 'ne' || attach === 'se') {
+    dx = gap
+    anchor = 'start'
+  } else if (attach === 'w' || attach === 'nw' || attach === 'sw') {
+    dx = -gap
+    anchor = 'end'
+  }
+  if (attach === 'n' || attach === 'ne' || attach === 'nw') {
+    dy = -gap
+    baseline = 'alphabetic'
+  } else if (attach === 's' || attach === 'se' || attach === 'sw') {
+    dy = gap
+    baseline = 'hanging'
+  }
+  if (dx && dy) {
+    dx *= 0.75
+    dy *= 0.75
+  }
   return (
-    <Text x={at[0]} y={at[1]} attach={attach} attachDistance={14} color={color} size={size} svgTextProps={{ className: 'ws-label' }}>
-      {children}
-    </Text>
+    <text
+      x={px + dx}
+      y={py + dy}
+      fontSize={size}
+      textAnchor={anchor}
+      dominantBaseline={baseline}
+      fontStyle={italic ? 'italic' : undefined}
+      fontWeight={bold ? 600 : 400}
+      className="ws-label"
+      style={{ fill: color }}
+    >
+      {Array.isArray(children) ? children.join('') : children}
+    </text>
   )
 }
 
@@ -217,6 +300,19 @@ export function Toggle({ label, checked, onChange }: { label: ReactNode; checked
           ? 'bg-emerald-600 border-emerald-600 text-white dark:bg-emerald-500 dark:border-emerald-500 dark:text-gray-950'
           : 'bg-white border-gray-300 text-gray-600 hover:border-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300'
       }`}
+    >
+      {label}
+    </button>
+  )
+}
+
+/** A one-shot action — "Go to x = b", "Reset" — styled like an unpressed Toggle. */
+export function ActionButton({ label, onClick }: { label: ReactNode; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="text-[12.5px] font-semibold px-3 py-1.5 rounded-full border bg-white border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-800 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500"
     >
       {label}
     </button>

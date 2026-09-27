@@ -1,7 +1,8 @@
 /* House theme for the mafs planes used by the interactive diagrams (kit.tsx). Loaded only with
    the lazy widget chunk. Light: black axes on white with pale grid; dark: the same inverted. */
 .ws-plane .MafsView {
-  --mafs-bg: transparent;
+  /* The Explore card's own colour, so mafs's text halos (tick numbers) mask the grid behind them. */
+  --mafs-bg: #ffffff;
   --mafs-fg: #111827;
   --mafs-origin-color: #111827;
   --mafs-line-color: #e5e7eb;
@@ -16,6 +17,7 @@
 }
 
 .dark .ws-plane .MafsView {
+  --mafs-bg: #111827;
   --mafs-fg: #e5e7eb;
   --mafs-origin-color: #e5e7eb;
   --mafs-line-color: #374151;
