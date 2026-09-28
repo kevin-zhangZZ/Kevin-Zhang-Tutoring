@@ -9,13 +9,29 @@
 // examination report and itute's independent solutions, and independently re-derived (the
 // numeric parts of b, c and d by computer algebra, matching both sources exactly).
 // Solution is original.
+// Interactive widgets (after the working): b.i — slide a tangent along f and read the sign of f′
+// either side of each stationary point (meth-2019e2-q1bi-sign); b.iii — slide the graph down by d
+// until even the peaks are below the axis, with d = −1/e exactly as the failing boundary case
+// (meth-2019e2-q1biii-shift); c.ii — what each integral set-up (the correct one, the report's
+// rectangle method and its three listed incorrect set-ups) actually measures
+// (meth-2019e2-q1cii-which-area); d — drag M along the curve with the link to (0, e), the tangent
+// at M and a graph of D(m): the minimum is where the link meets the curve at 90°, and m = 0 is the
+// other (maximum) solution of D′(m) = 0 (meth-2019e2-q1d-closest).
+// Note: the examination report's part d answer line writes "d(0.738...) = 2.511", a digit swap
+// for m = 0.783 (the report's own stated m value); we follow 0.783.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import curveSrc from './meth-2019e2-q1-curve.png'
 import areaSrc from './meth-2019e2-q1-area.png'
 import distanceSrc from './meth-2019e2-q1-distance.png'
+
+const SignWidget = lazyWidget(() => import('../interactives/meth-2019e2-q1bi-sign'))
+const ShiftWidget = lazyWidget(() => import('../interactives/meth-2019e2-q1biii-shift'))
+const WhichAreaWidget = lazyWidget(() => import('../interactives/meth-2019e2-q1cii-which-area'))
+const ClosestWidget = lazyWidget(() => import('../interactives/meth-2019e2-q1d-closest'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [6, 94],
@@ -130,7 +146,7 @@ const ROWS_BI: WorkingRow[] = [
     reason: <>Stationary points are where the gradient is zero.</>,
   },
   {
-    working: <Katex display tex="e^{-x^2}>0 \text{ for every } x \implies 2x(1-x^2)=0 \implies x=-1,\ 0 \text{ or } 1" />,
+    working: <Katex display tex="\begin{aligned} &e^{-x^2}>0 \text{ for every } x \\ &\implies 2x(1-x^2)=0 \\ &\implies x=-1,\ 0 \text{ or } 1 \end{aligned}" />,
     reason: <>An exponential is never zero, so it can be divided out — only the polynomial factor can make <Katex tex="f'" /> vanish.</>,
   },
   {
@@ -163,7 +179,7 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>Evaluate <Katex tex="f" /> at each one. <Katex tex="f(-1)=f(1)" /> because <Katex tex="f" /> only ever sees <Katex tex="x^2" />, so it's an <b>even</b> function — its graph is symmetric about the <Katex tex="y" />-axis.</>,
   },
   {
-    working: <Katex display tex="f(x)=x^2e^{-x^2}\ge0 \text{ for every } x, \qquad f(x)\to0 \text{ as } x\to\pm\infty" />,
+    working: <Katex display tex="\begin{gathered} f(x)=x^2e^{-x^2}\ge0 \text{ for every } x \\ f(x)\to0 \text{ as } x\to\pm\infty \end{gathered}" />,
     reason: <>A square times a positive exponential can't be negative, and <Katex tex="e^{-x^2}" /> collapses far faster than <Katex tex="x^2" /> grows. So the curve sits on or above the axis and flattens towards it at both ends — the two turning points at <Katex tex="x=\pm1" /> are therefore the highest the graph ever gets, not just locally.</>,
   },
   {
@@ -186,11 +202,11 @@ const ROWS_BIII: WorkingRow[] = [
     reason: <>From part b.ii.: the smallest value <Katex tex="f" /> takes is <Katex tex="0" /> (at the origin) and the largest is <Katex tex="\tfrac1e" /> (at <Katex tex="x=\pm1" />).</>,
   },
   {
-    working: <Katex display tex="f(x)+d<0 \ \text{ for every } x \iff d < -f(x) \ \text{ for every } x" />,
+    working: <Katex display tex="\begin{aligned} &f(x)+d<0 \ \text{ for every } x \\ &\iff d < -f(x) \ \text{ for every } x \end{aligned}" />,
     reason: <>Rearrange. The condition has to hold at <em>every</em> <Katex tex="x" />, so <Katex tex="d" /> must beat the hardest case.</>,
   },
   {
-    working: <Katex display tex="\text{Hardest case: } x=\pm1, \text{ where } f(x) \text{ is largest} \implies d<-\dfrac1e" />,
+    working: <Katex display tex="\begin{aligned} &\text{Hardest case: } x=\pm1, \text{ where } f(x) \text{ is largest} \\ &\implies d<-\dfrac1e \end{aligned}" />,
     reason: <>The graph of <Katex tex="f(x)+d" /> is the graph of <Katex tex="f" /> shifted down by <Katex tex="|d|" />. To push the whole curve below the axis, the shift has to clear the <em>highest</em> point of the curve.</>,
   },
   {
@@ -205,7 +221,7 @@ const ROWS_CI: WorkingRow[] = [
     reason: <><Katex tex="x=-1" /> is one of the stationary points from part b., so the gradient there is zero — the tangent is <b>horizontal</b>.</>,
   },
   {
-    working: <Katex display tex="f(-1) = \dfrac1e \implies \text{the tangent passes through } \left(-1,\ \dfrac1e\right)" />,
+    working: <Katex display tex="\begin{aligned} &f(-1) = \dfrac1e \\ &\implies \text{the tangent passes through } \left(-1,\ \dfrac1e\right) \end{aligned}" />,
     reason: <>The point of contact, from part b.ii.</>,
   },
   {
@@ -225,7 +241,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Area} = \int_{-1}^{1}\left(\dfrac1e - x^2e^{-x^2}\right)dx" />,
-    reason: <>Upper minus lower, between the two points of contact. The report's common incorrect set-ups used <Katex tex="\int_0^1" />, or integrated <Katex tex="f" /> alone, or had the subtraction the wrong way round.</>,
+    reason: <>Upper minus lower, between the two points of contact: each thin vertical strip of the region has height <Katex tex="\tfrac1e-f(x)" />, and the integral adds the strips up. The report's other method gives the same number: the rectangle under the tangent, <Katex tex="2\times\tfrac1e" />, minus the area under the curve, <Katex tex="\int_{-1}^{1}x^2e^{-x^2}dx" />.</>,
   },
   {
     working: (
@@ -260,7 +276,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Minimise } D(m) \text{ for } m\in[0,1]" />,
-    reason: <>Technology does this one. Store the rule first with <Cas fn="define">Define dist(m)=√(m^2+(m^2*e^(-m^2)-e)^2)</Cas> and then ask for <Cas fn="fMin">fMin(dist(m), m) | 0&lt;=m&lt;=1</Cas> to get the minimising value. Graphing <Katex tex="D" /> against <Katex tex="m" /> and reading off the minimum works just as well, as does solving <Katex tex="D'(m)=0" />. (Minimising <Katex tex="D^2" /> instead gives the same <Katex tex="m" /> and avoids the square root, which is handy by hand.)</>,
+    reason: <>Technology does this one. Store the rule first with <Cas fn="define">Define dist(m)=√(m^2+(m^2*e^(-m^2)-e)^2)</Cas> and then ask for <Cas fn="fMin">fMin(dist(m), m) | 0&lt;=m&lt;=1</Cas> to get the minimising value. Graphing <Katex tex="D" /> against <Katex tex="m" /> and reading off the minimum works just as well. If you solve <Katex tex="D'(m)=0" /> instead, you get <em>two</em> solutions in <Katex tex="[0,1]" />: <Katex tex="m\approx0.783" /> and <Katex tex="m=0" />. At <Katex tex="m=0" /> the curve is flat and <Katex tex="(0,e)" /> is directly above it, so <Katex tex="D" /> is stationary there too, but <Katex tex="D(0)=e" /> is the <em>largest</em> distance on the interval, so discard it.</>,
   },
   {
     working: <Katex display tex="D(0)=e\approx2.718, \qquad D(1)\approx2.554" />,
@@ -302,10 +318,25 @@ export default function MethodsQ1_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_BI} />
+        <Explore title="Falling then rising: the sign of f′ tells you the nature">
+          <SignWidget />
+        </Explore>
       </PartCard>
 
       <PartCard letter="b.ii" topic="Maximum Value" marks={2} statement={<>Find the maximum value of the function <Katex tex="f" /> and the values of <Katex tex="x" /> for which the maximum occurs.</>} examinerReport={EXAM_BII}>
         <WorkingTable rows={ROWS_BII} />
+        <WrongMethod
+          title="Every solution of f′(x) = 0 is where the maximum occurs"
+          source="Examiner's report"
+          working={<Katex display tex="\begin{aligned} &f'(x)=0 \implies x=-1,\ 0,\ 1 \\ &\implies \text{maximum at } x=-1,\ 0,\ 1 \end{aligned}" />}
+        >
+          Solving <Katex tex="f'(x)=0" /> finds <em>every</em> stationary point, and part b.i already showed
+          that <Katex tex="x=0" /> is the minimum: <Katex tex="f(0)=0" />, well below{' '}
+          <Katex tex="\tfrac1e" />. Evaluate <Katex tex="f" /> at each solution and keep only the ones that
+          give the largest value. The report also saw students give only one of <Katex tex="x=\pm1" />; because{' '}
+          <Katex tex="f" /> is even, a peak at <Katex tex="x=1" /> always has a mirror-image twin at{' '}
+          <Katex tex="x=-1" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="b.iii" topic="Vertical Translation" marks={1} statement={<>Find the values of <Katex tex="d\in R" /> for which <Katex tex="f(x)+d" /> is always negative.</>} examinerReport={EXAM_BIII}>
@@ -319,6 +350,30 @@ export default function MethodsQ1_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_BIII} />
+        <Explore title="Slide the graph down until even the peaks are below the axis">
+          <ShiftWidget />
+        </Explore>
+        <WrongMethod
+          title="d ≤ −1/e: shifting the peaks down onto the axis is enough"
+          source="Examiner's report"
+          working={<Katex display tex="d=-\tfrac1e:\quad f(\pm1)+d=\tfrac1e-\tfrac1e=0" />}
+        >
+          Zero isn&apos;t negative. &ldquo;Always negative&rdquo; means strictly below the axis at every{' '}
+          <Katex tex="x" />, and at <Katex tex="d=-\tfrac1e" /> the two peaks sit exactly on it. Whenever a
+          question says &ldquo;negative&rdquo; (not &ldquo;non-positive&rdquo;), test the boundary value
+          itself: here it fails, so the inequality is strict.
+        </WrongMethod>
+        <WrongMethod
+          title="Rearrange and stop: d < −x²e^(−x²)"
+          source="Examiner's report"
+          working={<Katex display tex="x^2e^{-x^2}+d<0 \implies d<-x^2e^{-x^2}" />}
+        >
+          That is the condition at <em>one</em> value of <Katex tex="x" />, and its right-hand side changes
+          as <Katex tex="x" /> changes. But <Katex tex="d" /> is a single number that has to work for every{' '}
+          <Katex tex="x" /> at once, so it must sit below <Katex tex="-x^2e^{-x^2}" /> at its lowest,
+          which is <Katex tex="-\tfrac1e" /> (at <Katex tex="x=\pm1" />). An answer for &ldquo;the values of{' '}
+          <Katex tex="d" />&rdquo; can&apos;t contain <Katex tex="x" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="c.i" topic="Tangent Line" marks={1} statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=-1" />.</>} examinerReport={EXAM_CI}>
@@ -336,6 +391,37 @@ export default function MethodsQ1_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_CII} />
+        <Explore title="What each integral actually measures">
+          <WhichAreaWidget />
+        </Explore>
+        <WrongMethod
+          title="Integrate the curve alone from −1 to 1"
+          source="Examiner's report"
+          working={<Katex display tex="\int_{-1}^{1}x^2e^{-x^2}\,dx\approx0.3789" />}
+        >
+          That is the area between the curve and the <Katex tex="x" />-axis; the tangent never appears in
+          it. The region is bounded by the curve <em>and the tangent</em>, so the line has to be in the
+          integrand: line minus curve. (Or take this <Katex tex="0.3789" /> away from the rectangle{' '}
+          <Katex tex="2\times\tfrac1e" />, which is the report&apos;s other method.)
+        </WrongMethod>
+        <WrongMethod
+          title="Integrate from 0 to 1"
+          source="Examiner's report"
+          working={<Katex display tex="\int_{0}^{1}\left(\tfrac1e-x^2e^{-x^2}\right)dx\approx0.1784" />}
+        >
+          The limits are where the tangent meets the curve, <Katex tex="x=-1" /> and <Katex tex="x=1" />,
+          not the minimum at the origin. Starting at 0 collects only the right half of the region; by
+          symmetry this is exactly half the answer.
+        </WrongMethod>
+        <WrongMethod
+          title="Curve minus line"
+          source="Examiner's report"
+          working={<Katex display tex="\int_{-1}^{1}\left(x^2e^{-x^2}-\tfrac1e\right)dx\approx-0.3568" />}
+        >
+          The curve is <em>below</em> the line on <Katex tex="(-1,1)" />, so every strip height{' '}
+          <Katex tex="f(x)-\tfrac1e" /> is negative and so is the integral. A negative &ldquo;area&rdquo; is the
+          sign that the subtraction is upside down: it&apos;s always upper minus lower.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -353,8 +439,18 @@ export default function MethodsQ1_2019Exam2() {
             the curve, so its <Katex tex="y" />-coordinate is forced to be <Katex tex="f(m)" />.
             Then minimise that function.
           </p>
+          <p>
+            There is also a picture behind it, which the report gives as a second method: at the
+            closest point, the segment from <Katex tex="M" /> to <Katex tex="(0,e)" /> is{' '}
+            <b>perpendicular</b> to the tangent at <Katex tex="M" />, so their gradients multiply to{' '}
+            <Katex tex="-1" />. If the segment met the curve at any other angle, sliding{' '}
+            <Katex tex="M" /> a little along the curve would bring it closer.
+          </p>
         </Background>
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The shortest link meets the curve at right angles">
+          <ClosestWidget />
+        </Explore>
       </PartCard>
     </div>
   )

@@ -3,19 +3,29 @@
 // a-b), the cable's rule where it runs 3 m above the hill (part c), where the cable's gradient
 // matches the hill's average gradient (part d), and the join point A where the straight and
 // curved sections meet smoothly (part e). Both graphs of the situation are VCAA's own,
-// cropped directly from the exam paper and shown in the stem where the paper prints them; the extra graph of dy/dx in part b. is this
-// site's own explanatory figure (matplotlib) of a function VCAA never printed — part b. was
-// the worst-answered part of the paper at 3% correct, and the gradient graph is what makes it
-// obvious. Question text transcribed from the original paper. Cross-checked against the VCAA
+// cropped directly from the exam paper and shown in the stem where the paper prints them.
+// Interactive widgets (our own, never in the stem): part b. walks a tangent along the hill beside
+// the graph of dy/dx, so the gradient visibly falls on (0, 20] while the hill falls on [10, 30]
+// (part b. was the worst-answered part of the paper at 3% correct); part d. shows the average
+// gradient as the chord from (10, 6) to (30, 0) and the answers as the two tangents parallel to it;
+// part e.ii. slides the join point A until the corner disappears (the tangent at A passes through
+// the pole top), with toggles for both gradient expressions graphed against a and the report's
+// f(a) slip. Wrong-method boxes are all taken from the examiner's report's comments and each was
+// recomputed. Question text transcribed from the original paper. Cross-checked against the VCAA
 // examination report and itute's independent solutions, and independently re-derived (all
-// numeric parts by computer algebra, matching both sources exactly). Solution is original.
+// numeric parts by computer algebra, matching both sources exactly; itute gives [0, 20] for part
+// b. where VCAA gives (0, 20] — see the endpoint note in part b.). Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import { Cas } from '../CasRef'
 import hillSrc from './meth-2019e2-q2-hill.png'
 import hillCableSrc from './meth-2019e2-q2-hill-cable.png'
-import gradientSrc from './meth-2019e2-q2-gradient.png'
+
+const GradientFallsWidget = lazyWidget(() => import('../interactives/meth-2019e2-q2b-gradient-falls'))
+const ParallelTangentWidget = lazyWidget(() => import('../interactives/meth-2019e2-q2d-parallel-tangent'))
+const SmoothJoinWidget = lazyWidget(() => import('../interactives/meth-2019e2-q2e-smooth-join'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 93],
@@ -107,7 +117,7 @@ const EXAM_EIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = \dfrac{3}{2000}\Bigl[\underbrace{x}_{u}\cdot\underbrace{(x-30)^2}_{v}\Bigr]" />,
-    reason: <>Pull the constant <Katex tex="\tfrac{3}{2000}" /> out first — it just rides along — and differentiate the product that's left.</>,
+    reason: <>On Exam 2 you may simply let technology do this (<Cas fn="derivative">d/dx(3x(x-30)^2/2000)</Cas>, then factor the result), but it is quick by hand. Pull the constant <Katex tex="\tfrac{3}{2000}" /> out first — it just rides along — and differentiate the product that's left. Aim for the factorised form either way: parts b. and d. both lean on it.</>,
   },
   {
     working: <Katex display tex="u'=1, \qquad v' = 2(x-30)" />,
@@ -138,25 +148,21 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The graph of the hill in the question tells you where the <em>hill</em> is decreasing (from <Katex tex="x=10" /> onwards) — which is the trap. The question asks about the <em>gradient</em>, so work with the gradient function from part a. This is an upright parabola in <Katex tex="x" /> (positive <Katex tex="x^2" /> coefficient) with roots at <Katex tex="x=10" /> and <Katex tex="x=30" />.</>,
   },
   {
-    working: (
-      <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={gradientSrc} alt="Graph of dy/dx against x: an upright parabola with roots at 10 and 30, falling from 1.35 at x=0 to a minimum of −9/20 at x=20, then rising back to 0 at x=30" className="w-full max-w-[400px]" />
-      </div>
-    ),
-    reason: <>Its vertex sits halfway between the roots, at <Katex tex="x=\tfrac{10+30}{2}=20" />. The gradient falls all the way from <Katex tex="x=0" /> to the vertex, then climbs again — so "gradient strictly decreasing" is the stretch to the <em>left</em> of the vertex.</>,
+    working: <Katex display tex="\text{Vertex: } x=\dfrac{10+30}{2}=20" />,
+    reason: <>A parabola's vertex sits halfway between its roots. For an upright parabola, the values fall all the way down to the vertex and climb after it — so "gradient strictly decreasing" is the stretch to the <em>left</em> of <Katex tex="x=20" />. At the vertex the gradient is <Katex tex="-\tfrac{9}{20}" />: this is where the descent is steepest.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="\dfrac{d}{dx}\!\left(\dfrac{dy}{dx}\right) = \dfrac{d^2y}{dx^2} = \dfrac{9(2x-40)}{2000}" />
-        <Katex display tex="\dfrac{9(2x-40)}{2000}<0 \iff x<20" />
+        <Katex display tex="\dfrac{d}{dx}\!\left(\dfrac{dy}{dx}\right) = \dfrac{d^2y}{dx^2} = \dfrac{9(x-20)}{1000}" />
+        <Katex display tex="\dfrac{9(x-20)}{1000}<0 \iff x<20" />
       </>
     ),
-    reason: <>The algebraic version of the same statement: the gradient is decreasing exactly where the <em>derivative of the gradient</em> is negative.</>,
+    reason: <>The algebraic version of the same statement. How would you know to do this? Whenever a question asks where some quantity is increasing or decreasing, differentiate <em>that quantity</em>. Here the quantity is the gradient, so you differentiate the gradient function — a second derivative.</>,
   },
   {
     working: <Katex display tex="\boxed{x\in(0,20]}" />,
-    reason: <>Restricted to the hill's own domain <Katex tex="x\in[0,30]" />.</>,
+    reason: <>Restricted to the hill's own domain <Katex tex="x\in[0,30]" />, with <Katex tex="20" /> included: for any <Katex tex="x_1<x_2\le20" /> the gradient at <Katex tex="x_2" /> is lower than at <Katex tex="x_1" />, which is exactly what "strictly decreasing" means. A single point where <Katex tex="\tfrac{d^2y}{dx^2}=0" /> does not break that, and VCAA's convention is to include such endpoints.</>,
   },
 ]
 
@@ -186,7 +192,12 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Rise over run between the two endpoints. Negative, as it must be — over <Katex tex="[10,30]" /> the hill drops from <Katex tex="6" /> m to ground level.</>,
   },
   {
-    working: <Katex display tex="\text{Gradient of the cable} = h'(x) = \dfrac{dy}{dx} = \dfrac{9(x-30)(x-10)}{2000}" />,
+    working: (
+      <>
+        <Katex display tex="\text{Gradient of the cable} = h'(x)" />
+        <Katex display tex="= \dfrac{dy}{dx} = \dfrac{9(x-30)(x-10)}{2000}" />
+      </>
+    ),
     reason: <>On <Katex tex="[a,30]" /> the cable is the hill shifted up <Katex tex="3" /> m, and a vertical shift doesn't change any gradient — so the cable's gradient function is the same as the hill's.</>,
   },
   {
@@ -210,7 +221,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 20-\dfrac{10\sqrt3}{3} \ \text{ or } \ x=20+\dfrac{10\sqrt3}{3}}" />,
-    reason: <>Both lie inside <Katex tex="[10,30]" /> (<Katex tex="\approx14.23" /> and <Katex tex="\approx25.77" />), so both are valid. Keep the surd form — Section B requires exact values unless told otherwise, and the report notes some students gave the approximations. It also notes bracket errors in writing these, such as <Katex tex="\tfrac{\pm10(\sqrt3+6)}{3}" />.</>,
+    reason: <>Both lie inside <Katex tex="[10,30]" /> (<Katex tex="\approx14.23" /> and <Katex tex="\approx25.77" />), so both are valid — one on each side of the steepest point <Katex tex="x=20" />, as they must be. (Part e.ii. later finds <Katex tex="a\approx11.12" />, so both also lie on the curved section, where <Katex tex="h" /> is the cable's rule.) Keep the surd form — Section B requires exact values unless told otherwise, and the report notes some students gave the approximations. It also notes bracket errors in writing these, such as <Katex tex="\tfrac{\pm10(\sqrt3+6)}{3}" />.</>,
   },
 ]
 
@@ -247,7 +258,12 @@ const ROWS_EII: WorkingRow[] = [
     reason: <>The one solution in <Katex tex="[10,20]" />.</>,
   },
   {
-    working: <Katex display tex="b = h(a) = \dfrac{3(11.1157\ldots)(11.1157\ldots-30)^2}{2000}+3 \approx 8.9461" />,
+    working: (
+      <>
+        <Katex display tex="b = h(a) = \dfrac{3(11.1157\ldots)(11.1157\ldots-30)^2}{2000}+3" />
+        <Katex display tex="\approx 8.9461" />
+      </>
+    ),
     reason: <>Substitute the <em>unrounded</em> value of <Katex tex="a" /> back into <Katex tex="h" />. The report notes incorrectly rounded answers, <Katex tex="(11.11,8.94)" />, and students who found <Katex tex="a" /> but not <Katex tex="b" />.</>,
   },
   {
@@ -258,16 +274,21 @@ const ROWS_EII: WorkingRow[] = [
 
 const ROWS_EIII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Gradient at } A = \dfrac{9(a-30)(a-10)}{2000} \quad \text{with } a\approx11.1157" />,
+    working: (
+      <>
+        <Katex display tex="\text{Gradient at } A = \dfrac{9(a-30)(a-10)}{2000}" />
+        <Katex display tex="\text{with } a\approx11.1157\ldots" />
+      </>
+    ),
     reason: <>Use part e.i.'s rule with part e.ii.'s value of <Katex tex="a" /> — again, the unrounded one.</>,
   },
   {
     working: <Katex display tex="= \dfrac{9(11.1157-30)(11.1157-10)}{2000} \approx -0.0948" />,
-    reason: <>Substituting.</>,
+    reason: <>Either expression from part e.i. gives this, because at this value of <Katex tex="a" /> the join is smooth and the two are equal — that is how <Katex tex="a" /> was found. The derivative form is the simpler one to evaluate; on CAS, substitute the stored solution for <Katex tex="a" /> rather than retyping a rounded value.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx -0.1}" />,
-    reason: <>Correct to one decimal place. The sign makes sense: at <Katex tex="A" /> the cable has just started its gentle descent, so the gradient is small and negative.</>,
+    reason: <>Correct to one decimal place. The sign makes sense: at <Katex tex="A" /> the cable has just started its gentle descent, so the gradient is small and negative. The smooth-join explorer in part e.ii. shows the same number in its readout once the corner disappears.</>,
   },
 ]
 
@@ -318,6 +339,20 @@ export default function MethodsQ2_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="The hill falls on [10, 30], but its gradient falls on (0, 20]">
+          <GradientFallsWidget />
+        </Explore>
+        <WrongMethod
+          title="The gradient is decreasing where the hill is going down"
+          source="Examiner's report"
+          working={<Katex display tex="\dfrac{dy}{dx}\le 0 \implies x\in[10,30]" />}
+        >
+          This finds where the gradient is <em>negative</em> (where the hill is decreasing), not where the gradient is{' '}
+          <em>decreasing</em>. On <Katex tex="(20,30]" /> the gradient is negative but climbing, from{' '}
+          <Katex tex="-\tfrac{9}{20}" /> back up to <Katex tex="0" />, as the descent eases off; and on{' '}
+          <Katex tex="(0,10)" /> it is positive but falling. To catch it, ask whose behaviour the question is about:
+          &ldquo;the gradient &hellip; is decreasing&rdquo; means differentiate the gradient.
+        </WrongMethod>
         <Background title="A Note On The Endpoints">
           <p>
             VCAA's published answer is <Katex tex="(0,20]" />. itute's solutions give{' '}
@@ -345,6 +380,16 @@ export default function MethodsQ2_2019Exam2() {
 
       <PartCard letter="c" topic="Rule of Function" marks={1} statement={<>State the rule, in terms of <Katex tex="x" />, for the height of the cable above the horizontal axis for <Katex tex="x\in[a,30]" />.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
+        <WrongMethod
+          title="The cable starts at the 10 m pole, so add 10"
+          source="Examiner's report"
+          working={<Katex display tex="h(x)=\dfrac{3x(x-30)^2}{2000}+10" />}
+        >
+          The <Katex tex="10" /> m is the height of the pole at <Katex tex="x=0" />, which is on the <em>straight</em>{' '}
+          section; the curved section's rule comes from the &ldquo;<Katex tex="3" /> m vertically above&rdquo;
+          condition. A one-point check exposes it: at <Katex tex="x=30" /> the hill is at ground level and the figure
+          marks the cable <Katex tex="3" /> m up, but this rule gives <Katex tex="10" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="d" topic="Average Gradient" marks={3} statement={<>Find the values of <Katex tex="x" /> for which the gradient of the cable is equal to the average gradient of the hill for <Katex tex="x\in[10,30]" />.</>} examinerReport={EXAM_D}>
@@ -362,6 +407,25 @@ export default function MethodsQ2_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_D} />
+        <Explore title="Average gradient is a chord; the answers are where a tangent runs parallel to it">
+          <ParallelTangentWidget />
+        </Explore>
+        <WrongMethod
+          title="Average gradient = (6 − 0)/(30 − 10) = 3/10"
+          source="Examiner's report"
+          working={
+            <>
+              <Katex display tex="\dfrac{9(x-30)(x-10)}{2000}=\dfrac{3}{10}" />
+              <Katex display tex="x=20\pm\sqrt{\tfrac{500}{3}}\approx 7.09 \text{ or } 32.91" />
+            </>
+          }
+        >
+          Subtracting the heights in the wrong order flips the sign. The hill <em>falls</em> from{' '}
+          <Katex tex="6" /> m to <Katex tex="0" /> m over <Katex tex="[10,30]" />, so its average gradient must be
+          negative — the report's own advice is to check this against the graph. The follow-through gives it away
+          too: both solutions lie outside <Katex tex="[10,30]" />, because on that interval the cable's gradient is
+          never positive.
+        </WrongMethod>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -383,10 +447,55 @@ export default function MethodsQ2_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_EI} />
+        <WrongMethod
+          title="A is on the hill, so its height is f(a)"
+          source="Examiner's report"
+          working={
+            <>
+              <Katex display tex="\dfrac{f(a)-10}{a}=\dfrac{3a(a-30)^2-20000}{2000a}" />
+              <Katex display tex="=\dfrac{3a^2}{2000}-\dfrac{9a}{100}+\dfrac{27}{20}-\dfrac{10}{a}" />
+            </>
+          }
+        >
+          Both of these forms appear among the report's common incorrect answers. <Katex tex="A" /> is on the{' '}
+          <em>cable</em>, which is <Katex tex="3" /> m above the hill there, so its height is{' '}
+          <Katex tex="h(a)=f(a)+3" />. The tell-tale sign is the <Katex tex="-\tfrac{10}{a}" /> term: with the correct
+          height it is <Katex tex="\tfrac{3-10}{a}=-\tfrac{7}{a}" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e.ii" topic="Smooth Join" marks={3} statement={<>Find the coordinates of <Katex tex="A" />, with each value correct to two decimal places.</>} examinerReport={EXAM_EII}>
+        <Background>
+          <p>
+            A <b>smooth join</b> means no corner: the straight section arrives at <Katex tex="A" /> with exactly the
+            gradient the curve leaves with. Picture it the other way round — the straight section is then a piece
+            of the <em>tangent</em> to the curve at <Katex tex="A" />, and since it starts at the pole top, that
+            tangent must pass through <Katex tex="(0,10)" />.
+          </p>
+          <p>
+            That gives two equivalent equations, and the report accepts either: equate the two gradients from part
+            e.i., or require the tangent at <Katex tex="A" /> to pass through <Katex tex="(0,10)" />,{' '}
+            <Katex tex="a\,h'(a)+10=h(a)" />. Each has one unknown, <Katex tex="a" />.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_EII} />
+        <Explore title="Slide A until the corner disappears">
+          <SmoothJoinWidget />
+        </Explore>
+        <WrongMethod
+          title="Copy the first two decimal places off the screen"
+          source="Examiner's report"
+          working={
+            <>
+              <Katex display tex="a=11.1157\ldots\to11.11" />
+              <Katex display tex="b=8.9461\ldots\to8.94" />
+            </>
+          }
+        >
+          That truncates rather than rounds, and it produces exactly the report's incorrect{' '}
+          <Katex tex="(11.11,\ 8.94)" />. Look at the third decimal place: <Katex tex="11.115\ldots" /> and{' '}
+          <Katex tex="8.946\ldots" /> both round <em>up</em>, to <Katex tex="11.12" /> and <Katex tex="8.95" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e.iii" topic="Gradient" marks={1} statement={<>Find the value of the gradient at <Katex tex="A" />, correct to one decimal place.</>} examinerReport={EXAM_EIII}>
