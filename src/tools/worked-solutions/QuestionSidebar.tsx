@@ -522,8 +522,9 @@ function ExamSection({
           {types.map(type => {
             const typeKey = `${examKey}-${type}`
             const foldable = prefs.typeFold === 'fold' && types.length > 1
-            // With a question open in this exam, its group starts open and the other folded.
-            const typeDefaultOpen = selectedHere ? selectedHere.type === type : true
+            // Groups start folded, so a year opens as a short list of Multiple Choice / Short
+            // Answer headers; with a question open in this exam, its own group starts open.
+            const typeDefaultOpen = selectedHere ? selectedHere.type === type : false
             const typeOpen = !foldable || !(folded[typeKey] ?? !typeDefaultOpen)
             const items = examItems(subject, year, exam, type, sort, showOmittedRows)
             return (
