@@ -390,15 +390,31 @@ const BAND_LABEL: Record<DifficultyBand, string> = {
 
 // The key to the percentages — only once there are percentages on screen (a year, or a
 // topic, is open).
-// The marker for a question or part with an interactive diagram — the same two-slider icon
-// as the "Try It Yourself" box it leads to.
+// The marker for a question or part with an interactive diagram — a pointing hand (Tabler's
+// "hand-click", MIT), the same icon as the "Try It Yourself" box it leads to. KZ picked it from
+// seven options in Sept 2026.
 function ExploreMark({ className = 'w-3.5 h-3.5' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 20 20" className={`flex-none text-emerald-600 dark:text-emerald-400 ${className}`} role="img" aria-label="Has an interactive diagram">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`flex-none text-emerald-600 dark:text-emerald-400 ${className}`}
+      role="img"
+      aria-label="Has an interactive diagram"
+    >
       <title>Has an interactive diagram</title>
-      <path d="M2 6h9M15 6h3M2 14h3M9 14h9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <circle cx="13" cy="6" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
-      <circle cx="7" cy="14" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
+      <path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
+      <path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5" />
+      <path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7l-.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47" />
+      <path d="M5 3l-1 -1" />
+      <path d="M4 7h-1" />
+      <path d="M14 3l1 -1" />
+      <path d="M15 6h1" />
     </svg>
   )
 }

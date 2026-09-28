@@ -62,10 +62,26 @@ export function Explore({
       className="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-white dark:bg-gray-900 overflow-hidden"
     >
       <header className="flex items-center gap-2.5 px-4 py-2.5 bg-emerald-50/80 dark:bg-emerald-950/30 border-b border-emerald-100 dark:border-emerald-900/50">
-        <svg viewBox="0 0 20 20" className="flex-none w-4 h-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true">
-          <path d="M2 6h9M15 6h3M2 14h3M9 14h9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <circle cx="13" cy="6" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
-          <circle cx="7" cy="14" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        {/* Tabler "hand-click" (MIT) — the same pointing hand the sidebar uses to mark questions
+            and parts that have one of these boxes. */}
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="flex-none w-[18px] h-[18px] text-emerald-600 dark:text-emerald-400"
+          aria-hidden="true"
+        >
+          <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
+          <path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
+          <path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5" />
+          <path d="M17 11.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7l-.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47" />
+          <path d="M5 3l-1 -1" />
+          <path d="M4 7h-1" />
+          <path d="M14 3l1 -1" />
+          <path d="M15 6h1" />
         </svg>
         <div className="min-w-0">
           <p className="text-[10.5px] font-bold tracking-wider text-emerald-700 dark:text-emerald-400 leading-none mb-1">Try It Yourself</p>
