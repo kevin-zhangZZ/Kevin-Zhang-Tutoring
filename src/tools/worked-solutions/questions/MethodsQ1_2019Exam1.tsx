@@ -3,10 +3,20 @@
 // sin(πx)/(x+1) — evaluate g'(1) via the quotient rule (part b). Question text transcribed
 // from the original paper (no diagram given — purely algebraic). Cross-checked against the
 // VCAA examination report and itute's independent solutions — both agree with the
-// derivation below. Solution is original.
+// derivation below (the report also accepts ⅓logₑ(x − ⅓) in a.ii; it differs from ⅓logₑ(3x − 1)
+// by a constant). Solution is original; all answers re-derived with sympy.
+// Widgets: a.i meth-2019e1-q1ai-tangent (sliding tangent, with the "forget the ×3" line);
+// a.ii meth-2019e1-q1aii-check (differentiate each candidate antiderivative back and compare with
+// f); b meth-2019e1-q1b-tangent (g′(1) as the gradient at x = 1, the numerator's tangent, and the
+// cos π = 1 slip). WrongMethod boxes: a.ii missing ⅓; b cos π = 1 and missing brackets.
 
 import Katex from '../../../components/Katex'
-import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const TangentAI = lazyWidget(() => import('../interactives/meth-2019e1-q1ai-tangent'))
+const CheckAII = lazyWidget(() => import('../interactives/meth-2019e1-q1aii-check'))
+const TangentB = lazyWidget(() => import('../interactives/meth-2019e1-q1b-tangent'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [33, 67],
@@ -45,44 +55,124 @@ const EXAM_B: SAExaminerStats = {
   ),
 }
 
+
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = (3x-1)^{-1}" />,
-    reason: <>Rewrite the fraction as a power so the chain rule applies directly.</>,
+    reason: (
+      <>
+        One over something is that something to the power <Katex tex="-1" />. Rewriting the fraction as a
+        bracket to a power lets the chain rule do it in one line, with no quotient rule needed.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{f'(x) = -3(3x-1)^{-2} = \dfrac{-3}{(3x-1)^2}}" />,
-    reason: <>Chain rule: derivative of the "outside" power times the derivative of the "inside" linear expression <Katex tex="(3\cdot)" />.</>,
+    working: <Katex display tex="f'(x) = -1\times(3x-1)^{-2}\times 3" />,
+    reason: (
+      <>
+        Chain rule with <Katex tex="u = 3x-1" />. First differentiate the outside power as if the bracket
+        were a single letter: bring down the <Katex tex="-1" />, and the power drops by one to{' '}
+        <Katex tex="-1-1=-2" /> (not <Katex tex="0" />; the report notes slips with the negative
+        exponent). Then multiply by the inside&apos;s derivative, <Katex tex="\tfrac{du}{dx}=3" />. How would I
+        know to? Whenever the inside is anything other than plain <Katex tex="x" />, its derivative goes on
+        the end. The formula sheet&apos;s <Katex tex="\tfrac{d}{dx}(ax+b)^n = an(ax+b)^{n-1}" />, with{' '}
+        <Katex tex="a=3,\ n=-1" />, says the same thing.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\boxed{f'(x) = \dfrac{-3}{(3x-1)^2}}" />,
+    reason: (
+      <>
+        Move the negative power back to the denominator. Sense-check the sign: <Katex tex="f" /> falls all
+        the way from its asymptote <Katex tex="x=\tfrac13" /> towards <Katex tex="0" />, so{' '}
+        <Katex tex="f'(x)" /> should be negative for every <Katex tex="x>\tfrac13" />, and it is (a square is
+        never negative).
+      </>
+    ),
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="\int \frac{1}{3x-1}\,dx = \tfrac13\log_e(3x-1) + c" />,
-    reason: <>Reverse the chain rule — dividing by the inside function's own coefficient, <Katex tex="3" />. Since the domain is <Katex tex="x>\tfrac13" />, <Katex tex="3x-1>0" /> always, so no absolute value is needed.</>,
+    reason: (
+      <>
+        The formula sheet only gives <Katex tex="\int\tfrac1x\,dx=\log_e(x)+c" /> for plain{' '}
+        <Katex tex="x" />. With <Katex tex="3x-1" /> inside, guess <Katex tex="\log_e(3x-1)" /> and
+        differentiate it: the chain rule gives <Katex tex="\tfrac{3}{3x-1}" />, three times too big. So divide
+        by the inside&apos;s coefficient and put <Katex tex="\tfrac13" /> in front. The domain is{' '}
+        <Katex tex="x>\tfrac13" />, so <Katex tex="3x-1>0" /> always and no absolute value is needed.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{\text{an antiderivative of } f \text{ is } \tfrac13\log_e(3x-1)}" />,
-    reason: <>Any antiderivative will do, so take <Katex tex="c=0" />. Check by differentiating, as the report suggests: <Katex tex="\tfrac13\times\tfrac{3}{3x-1}=\tfrac{1}{3x-1}" /> ✓. The report's most common error was a <Katex tex="3" /> or <Katex tex="1" /> in front instead of <Katex tex="\tfrac13" />.</>,
+    working: <Katex display tex="\boxed{\tfrac13\log_e(3x-1)}" />,
+    reason: (
+      <>
+        Any antiderivative will do, so take <Katex tex="c=0" />. Check by differentiating, as the report
+        suggests: <Katex tex="\tfrac13\times\tfrac{3}{3x-1}=\tfrac{1}{3x-1}" /> ✓. The report also accepts{' '}
+        <Katex tex="\tfrac13\log_e\!\left(x-\tfrac13\right)" />, which is this answer minus the constant{' '}
+        <Katex tex="\tfrac13\log_e 3" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="g(x) = \dfrac{\sin(\pi x)}{x+1}" />,
-    reason: <>A quotient, so use the quotient rule (on the formula sheet).</>,
+    working: (
+      <>
+        <Katex display tex="u = \sin(\pi x),\quad \dfrac{du}{dx} = \pi\cos(\pi x)" />
+        <Katex display tex="v = x+1,\quad \dfrac{dv}{dx} = 1" />
+      </>
+    ),
+    reason: (
+      <>
+        <Katex tex="g" /> is one function divided by another, so use the quotient rule from the formula
+        sheet, <Katex tex="\tfrac{d}{dx}\left(\tfrac uv\right)=\tfrac{v\frac{du}{dx}-u\frac{dv}{dx}}{v^2}" />.
+        Writing <Katex tex="u" />, <Katex tex="v" /> and their derivatives out first is the surest way to
+        avoid the bracket errors the report mentions. <Katex tex="\tfrac{du}{dx}" /> needs the chain rule:
+        the inside <Katex tex="\pi x" /> has derivative <Katex tex="\pi" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="g'(x) = \dfrac{\pi\cos(\pi x)\,(x+1) - \sin(\pi x)\cdot 1}{(x+1)^2}" />,
-    reason: <>Quotient rule, with <Katex tex="\dfrac{d}{dx}\sin(\pi x)=\pi\cos(\pi x)" /> by the chain rule.</>,
+    working: <Katex display tex="g'(x) = \dfrac{(x+1)\,\pi\cos(\pi x) - \sin(\pi x)\cdot 1}{(x+1)^2}" />,
+    reason: (
+      <>
+        Substitute in the formula&apos;s order: <Katex tex="v\tfrac{du}{dx}" /> first, minus{' '}
+        <Katex tex="u\tfrac{dv}{dx}" />. The brackets around <Katex tex="x+1" /> matter, because it multiplies
+        the whole of <Katex tex="\pi\cos(\pi x)" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="g'(1) = \dfrac{\pi\cos(\pi)\,(2) - \sin(\pi)\cdot1}{2^2} = \dfrac{\pi(-1)(2) - 0}{4}" />,
-    reason: <><Katex tex="\cos(\pi)=-1" /> and <Katex tex="\sin(\pi)=0" />.</>,
+    working: (
+      <>
+        <Katex display tex="g'(1) = \dfrac{(2)\,\pi\cos(\pi) - \sin(\pi)\cdot 1}{2^2}" />
+        <Katex display tex="= \dfrac{2\pi(-1) - 0}{4}" />
+      </>
+    ),
+    reason: (
+      <>
+        Now substitute <Katex tex="x=1" />, as the question asks. Angle <Katex tex="\pi" /> is half a turn,
+        the point <Katex tex="(-1,0)" /> on the unit circle, so <Katex tex="\cos(\pi)=-1" /> and{' '}
+        <Katex tex="\sin(\pi)=0" /> (the report notes some students used <Katex tex="\cos(\pi)=1" />). Because{' '}
+        <Katex tex="\sin(\pi)=0" />, the whole second term drops out.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{g'(1) = -\dfrac{\pi}{2}}" />,
-    reason: <>The question says <em>evaluate</em>, so finish with the number — the report notes some students stopped at <Katex tex="g'(x)" />, and others took <Katex tex="\cos(\pi)=1" />.</>,
+    reason: (
+      <>
+        The question says <em>evaluate</em>, so finish with the number; the report notes some students
+        stopped at <Katex tex="g'(x)" />. Sense check: <Katex tex="\sin(\pi x)" /> crosses zero going down at{' '}
+        <Katex tex="x=1" /> and <Katex tex="x+1=2>0" />, so <Katex tex="g" /> is decreasing there and{' '}
+        <Katex tex="g'(1)" /> must be negative.
+      </>
+    ),
   },
 ]
 
@@ -98,10 +188,36 @@ export default function MethodsQ1_2019Exam1() {
 
       <PartCard letter="a.i" topic="Chain Rule" marks={1} statement={<>Find <Katex tex="f'(x)" />.</>} examinerReport={EXAM_AI}>
         <WorkingTable rows={ROWS_AI} />
+        <Explore title="Where the 3 in f′(x) comes from: slide the tangent">
+          <TangentAI />
+        </Explore>
       </PartCard>
 
       <PartCard letter="a.ii" topic="Antiderivative" marks={1} statement={<>Find an antiderivative of <Katex tex="f(x)" />.</>} examinerReport={EXAM_AII}>
+        <Background title="What “an antiderivative” means">
+          <p>
+            <Katex tex="F" /> is an antiderivative of <Katex tex="f" /> when <Katex tex="F'(x)=f(x)" />: the
+            gradient of <Katex tex="F" /> at every <Katex tex="x" /> equals the height of <Katex tex="f" />.
+            If <Katex tex="F" /> works, so does <Katex tex="F+c" /> for any constant <Katex tex="c" />, because
+            shifting a graph up or down changes none of its gradients. There are infinitely many, and the
+            question asks for <em>an</em> antiderivative, so any one of them will do.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_AII} />
+        <Explore title="Differentiate your answer: does it land back on f?">
+          <CheckAII />
+        </Explore>
+        <WrongMethod
+          title="∫ 1/(3x − 1) dx = logₑ(3x − 1), just like ∫ 1/x dx"
+          source="Examiner's report"
+          working={<Katex display tex="\int\frac{1}{3x-1}\,dx = \log_e(3x-1)" />}
+        >
+          Differentiate it back: the chain rule gives <Katex tex="\tfrac{3}{3x-1}" />, which is{' '}
+          <Katex tex="3f(x)" />, not <Katex tex="f(x)" />. The other common answer,{' '}
+          <Katex tex="3\log_e(3x-1)" />, is worse: it differentiates to <Katex tex="\tfrac{9}{3x-1}" />.
+          Differentiating brings the inside&apos;s <Katex tex="3" /> out, so antidifferentiating has to divide
+          by it: <Katex tex="\tfrac13" />. A ten-second derivative check catches both.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -118,6 +234,35 @@ export default function MethodsQ1_2019Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="g′(1) is the gradient where the graph crosses x = 1">
+          <TangentB />
+        </Explore>
+        <WrongMethod
+          title="cos(π) = 1"
+          source="Examiner's report"
+          working={<Katex display tex="g'(1) = \dfrac{2\pi(1) - 0}{4} = \dfrac{\pi}{2}" />}
+        >
+          Right size, wrong sign. Angle <Katex tex="\pi" /> is half a turn round the unit circle, the point{' '}
+          <Katex tex="(-1,0)" />, so <Katex tex="\cos(\pi)=-1" />. A positive answer should set off an alarm:{' '}
+          <Katex tex="\sin(\pi x)" /> goes from positive to negative through <Katex tex="x=1" />, so{' '}
+          <Katex tex="g" /> is falling there and its gradient must be negative.
+        </WrongMethod>
+        <WrongMethod
+          title="Leave out the brackets around x + 1"
+          source="Examiner's report"
+          working={
+            <>
+              <Katex display tex="g'(x) = \dfrac{x+1\times\pi\cos(\pi x) - \sin(\pi x)}{(x+1)^2}" />
+              <Katex display tex="g'(1) = \dfrac{1+\pi(-1) - 0}{4} = \dfrac{1-\pi}{4}" />
+            </>
+          }
+        >
+          Without brackets, only the <Katex tex="1" /> is multiplied by <Katex tex="\pi\cos(\pi x)" />, not the
+          whole <Katex tex="x+1" />. The rule&apos;s <Katex tex="v\tfrac{du}{dx}" /> is a product of the whole of{' '}
+          <Katex tex="v" /> with the whole of <Katex tex="\tfrac{du}{dx}" />, so write{' '}
+          <Katex tex="(x+1)\,\pi\cos(\pi x)" />. Listing <Katex tex="u,\ v,\ \tfrac{du}{dx},\ \tfrac{dv}{dx}" />{' '}
+          first and substituting each one in brackets prevents this.
+        </WrongMethod>
       </PartCard>
     </div>
   )

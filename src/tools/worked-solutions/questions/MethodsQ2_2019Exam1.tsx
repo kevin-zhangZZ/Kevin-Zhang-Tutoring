@@ -9,11 +9,27 @@
 // at all. The guide's test (§13.7) is the question's mathematics, not its vocabulary. The
 // skip guide records the same reading.
 //
+// Interactives: part b. has a mirror widget (interactives/meth-2019e1-q2b-swap.tsx) — slide P
+// along f and watch its reflection P' on f⁻¹, with P's height becoming P''s across-position,
+// so ran f = dom f⁻¹ and the missing 0 is visible. Part c. (24% correct) has a slide widget
+// (interactives/meth-2019e1-q2c-slide.tsx) — drag the centre of f's asymptote cross onto
+// f⁻¹'s and see c = −1/3, d = 1/3, with a toggle drawing the report's sign slip y + d = f(x + c).
+// Part a. is pure transposition, so it has no widget; its reflection picture is in part b.
+// WrongMethod boxes: a. f⁻¹ read as the reciprocal 1/f (no source: instructive because f is
+// itself a reciprocal); c. the sign slip c = 1/3, d = −1/3 (examiner's report).
+//
+// Part a.'s working now swaps x and y first and frees y by taking reciprocals (the report's
+// own route), instead of expanding and collecting; the answer is unchanged.
+//
 // Cross-checked against the VCAA examination report and itute's independent solutions —
-// both agree with the derivations below. Solution is original.
+// both agree with the derivations below (confirmed again with sympy). Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const SwapWidget = lazyWidget(() => import('../interactives/meth-2019e1-q2b-swap'))
+const SlideWidget = lazyWidget(() => import('../interactives/meth-2019e1-q2c-slide'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [6, 37, 57],
@@ -47,66 +63,157 @@ const EXAM_C: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="y = \dfrac{1}{3x-1}" />,
-    reason: <>Write the rule with <Katex tex="y" /> for <Katex tex="f(x)" />.</>,
+    working: <Katex display tex="\text{Let } y = \dfrac{1}{3x-1}" />,
+    reason: <>Write the rule with <Katex tex="y" /> for <Katex tex="f(x)" />, so the next step has something to swap.</>,
   },
   {
-    working: <Katex display tex="y(3x-1) = 1 \;\implies\; 3xy - y = 1 \;\implies\; 3xy = 1+y" />,
-    reason: <>Swap <Katex tex="x" /> and <Katex tex="y" />'s roles — rearrange for <Katex tex="x" /> in terms of <Katex tex="y" />.</>,
+    working: <Katex display tex="\text{Inverse: swap } x \text{ and } y\text{:}\quad x = \dfrac{1}{3y-1}" />,
+    reason: (
+      <>
+        The inverse undoes <Katex tex="f" />: every point <Katex tex="(a,b)" /> on <Katex tex="f" /> becomes{' '}
+        <Katex tex="(b,a)" /> on <Katex tex="f^{-1}" />, so swapping <Katex tex="x" /> and <Katex tex="y" /> in the
+        equation gives the equation of <Katex tex="f^{-1}" />. Write the words &ldquo;swap <Katex tex="x" /> and{' '}
+        <Katex tex="y" />&rdquo;: going straight from <Katex tex="y=\tfrac{1}{3x-1}" /> to{' '}
+        <Katex tex="x=\tfrac{1}{3y-1}" /> looks as if you claim they are the same equation, which is the kind of
+        poor notation the report says held students back.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="x = \dfrac{1+y}{3y}" />,
-    reason: <>Dividing by <Katex tex="3y" />. The report notes errors in this transposition.</>,
+    working: <Katex display tex="3y-1 = \dfrac1x" />,
+    reason: (
+      <>
+        The <Katex tex="y" /> is trapped in a denominator. Take the reciprocal of both sides (neither side can be{' '}
+        <Katex tex="0" />): one move frees it, with no expanding or collecting where a transposition slip could
+        creep in.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{f^{-1}(x) = \dfrac{1+x}{3x} = \dfrac13\left(\dfrac1x+1\right)}" />,
-    reason: <>Relabel <Katex tex="y\to x" /> for the inverse rule.</>,
+    working: <Katex display tex="y = \dfrac{1}{3x}+\dfrac13" />,
+    reason: (
+      <>
+        Add <Katex tex="1" />, then divide <em>every</em> term by <Katex tex="3" />:{' '}
+        <Katex tex="\tfrac1x \div 3 = \tfrac{1}{3x}" /> and <Katex tex="1\div 3=\tfrac13" />.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\boxed{f^{-1}(x) = \dfrac{1}{3x}+\dfrac13 = \dfrac{1+x}{3x}}" />,
+    reason: (
+      <>
+        The question asks for the rule of <Katex tex="f^{-1}" />, so answer with{' '}
+        <Katex tex="f^{-1}(x) = " />, not <Katex tex="y=" />. Quick check that it really undoes <Katex tex="f" />:{' '}
+        <Katex tex="f(1)=\tfrac12" />, and <Katex tex="f^{-1}\!\left(\tfrac12\right)=\tfrac23+\tfrac13=1" /> ✓.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{dom}(f^{-1}) = \operatorname{ran}(f)" />,
-    reason: <>Standard inverse-function fact.</>,
+    reason: (
+      <>
+        <Katex tex="f^{-1}" /> swaps inputs and outputs, so the numbers <Katex tex="f^{-1}" /> accepts are exactly
+        the numbers <Katex tex="f" /> can produce. The question is really &ldquo;what is the range of{' '}
+        <Katex tex="f" />?&rdquo;
+      </>
+    ),
   },
   {
     working: <Katex display tex="f:R\setminus\{\tfrac13\}\to R,\ f(x)=\dfrac{1}{3x-1}" />,
-    reason: <>As <Katex tex="x" /> ranges over all reals except <Katex tex="\tfrac13" />, <Katex tex="3x-1" /> ranges over all reals except <Katex tex="0" />, so <Katex tex="f(x)=\dfrac{1}{3x-1}" /> takes every nonzero real value (and never equals <Katex tex="0" />, since a fraction with numerator <Katex tex="1" /> is never <Katex tex="0" />).</>,
+    reason: (
+      <>
+        As <Katex tex="x" /> ranges over all reals except <Katex tex="\tfrac13" />, <Katex tex="3x-1" /> ranges over
+        all reals except <Katex tex="0" />, so <Katex tex="f(x)=\tfrac{1}{3x-1}" /> takes every nonzero real value.
+        It never equals <Katex tex="0" />, since a fraction with numerator <Katex tex="1" /> is never{' '}
+        <Katex tex="0" />. On the graph, that is the horizontal asymptote <Katex tex="y=0" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\operatorname{dom}(f^{-1}) = R\setminus\{0\}}" />,
-    reason: <>Consistent with the rule from part a.: <Katex tex="\tfrac{1+x}{3x}" /> is undefined only at <Katex tex="x=0" />.</>,
+    reason: (
+      <>
+        Consistent with part a.: <Katex tex="\tfrac{1}{3x}+\tfrac13" /> is undefined only at <Katex tex="x=0" />.
+        Reading the domain off the rule only works because <Katex tex="f" /> here has its largest possible
+        domain. In Question 1, with <Katex tex="f" /> restricted to <Katex tex="\left(\tfrac13,\infty\right)" />, the
+        same rule would still accept <Katex tex="x=-5" />, but the range of <Katex tex="f" /> (so the domain of{' '}
+        <Katex tex="f^{-1}" />) would be <Katex tex="(0,\infty)" />. Go via the range.
+      </>
+    ),
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}x\\y\end{bmatrix} + \begin{bmatrix}c\\d\end{bmatrix} \implies \begin{cases} x' = x+c \\ y' = y+d \end{cases}" />,
-    reason: <>Read the column-vector statement one row at a time. There is no dilation or reflection here — the point simply moves <Katex tex="c" /> across and <Katex tex="d" /> up, so <Katex tex="T" /> is a translation and nothing else.</>,
+    working: <Katex display tex="x' = x+c,\quad y' = y+d" />,
+    reason: (
+      <>
+        Read the column vectors one row at a time: the point <Katex tex="(x,y)" /> on <Katex tex="f" /> is sent to{' '}
+        <Katex tex="(x',y')" />. Nothing multiplies <Katex tex="x" /> or <Katex tex="y" />, so there is no dilation
+        (the report says some students tried dilations): <Katex tex="T" /> is a translation, <Katex tex="c" />{' '}
+        across and <Katex tex="d" /> up.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="g(x) = f(x-c)+d = \dfrac{1}{3(x-c)-1}+d" />,
-    reason: <>Applying a translation to a <em>graph</em> reverses the sign on the <Katex tex="x" /> side: moving the curve <Katex tex="c" /> to the right replaces <Katex tex="x" /> by <Katex tex="x-c" />, while the <Katex tex="d" /> is simply added on the outside. The report says some students had the incorrect sign for <Katex tex="c" /> and <Katex tex="d" />.</>,
+    working: <Katex display tex="\implies x = x'-c,\quad y = y'-d" />,
+    reason: (
+      <>
+        The old point satisfies <Katex tex="y=f(x)" />, so to get the equation of the image we need the old{' '}
+        <Katex tex="x" /> and <Katex tex="y" /> in terms of the new ones. Solving backwards is where the minus signs
+        come from, and it is the step behind the sign errors the report mentions.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="f^{-1}(x) = \dfrac{1+x}{3x} = \dfrac{1}{3x}+\dfrac13" />,
-    reason: <>Rewriting part a.'s answer as "a hyperbola plus a constant" makes the comparison possible: the target is <Katex tex="\tfrac{1}{3x}" /> shifted up by <Katex tex="\tfrac13" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} y'-d &= \dfrac{1}{3(x'-c)-1} \\ g(x) &= \dfrac{1}{3(x-c)-1}+d \end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        Substitute into <Katex tex="y=\tfrac{1}{3x-1}" />, make <Katex tex="y'" /> the subject, then drop the dashes.
+        This is the familiar &ldquo;<Katex tex="c" /> to the right means <Katex tex="x-c" />&rdquo; rule, now with a
+        reason behind it.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\dfrac{1}{3(x-c)-1}+d \;=\; \dfrac{1}{3x}+\dfrac13" />,
-    reason: <>Setting <Katex tex="g=f^{-1}" />, as the question requires. Two expressions of this shape match only if their denominators match and their constants match, so the equation splits into two easy ones.</>,
+    working: <Katex display tex="\dfrac{1}{3x-3c-1}+d = \dfrac{1}{3x}+\dfrac13" />,
+    reason: (
+      <>
+        Set <Katex tex="g=f^{-1}" />, using part a.&rsquo;s answer in its &ldquo;fraction plus a constant&rdquo;
+        form. Two curves of this shape are equal only if their vertical asymptotes match (the denominators are{' '}
+        <Katex tex="0" /> at the same <Katex tex="x" />) and their horizontal asymptotes match (the same constant is
+        added). So the equation splits into two easy ones.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="3(x-c)-1 = 3x \implies -3c-1 = 0 \implies c = -\dfrac13" />,
+    working: <Katex display tex="3x-3c-1 = 3x \implies c = -\dfrac13" />,
     reason: <>Comparing denominators. The <Katex tex="3x" /> terms cancel, leaving a one-line equation in <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="d = \dfrac13" />,
-    reason: <>Comparing the constants left outside the fraction.</>,
+    reason: <>Comparing the constants added outside the fraction.</>,
   },
   {
     working: <Katex display tex="\boxed{c = -\dfrac13, \qquad d = \dfrac13}" />,
-    reason: <>So <Katex tex="f" /> becomes its own inverse under a shift of <Katex tex="\tfrac13" /> unit <em>left</em> and <Katex tex="\tfrac13" /> unit <em>up</em>. Worth checking: <Katex tex="f\!\left(x+\tfrac13\right)+\tfrac13 = \dfrac{1}{3x+1-1}+\tfrac13 = \dfrac{1}{3x}+\tfrac13" /> ✓. The negative <Katex tex="c" /> is the sign the report flags — a leftward shift needs <Katex tex="c<0" />.</>,
+    reason: (
+      <>
+        So <Katex tex="f" /> slides <Katex tex="\tfrac13" /> <em>left</em> and <Katex tex="\tfrac13" /> <em>up</em>{' '}
+        onto its inverse. Two checks: substituting,{' '}
+        <Katex tex="f\!\left(x+\tfrac13\right)+\tfrac13 = \tfrac{1}{3x}+\tfrac13" /> ✓; and the asymptote crossing
+        of <Katex tex="f" />, <Katex tex="\left(\tfrac13,0\right)" />, moves to{' '}
+        <Katex tex="\left(\tfrac13+c,\ d\right) = \left(0,\tfrac13\right)" />, which is where{' '}
+        <Katex tex="f^{-1}" />&rsquo;s asymptotes cross ✓.
+      </>
+    ),
   },
 ]
 
@@ -119,10 +226,23 @@ export default function MethodsQ2_2019Exam1() {
 
       <PartCard letter="a" topic="Inverse Function" marks={2} statement={<>Let <Katex tex="f:R\setminus\left\{\tfrac13\right\}\to R,\ f(x)=\dfrac{1}{3x-1}" />.<br />Find the rule of <Katex tex="f^{-1}" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
+        <WrongMethod
+          title="f⁻¹ means 1 over f, so f⁻¹(x) = 3x − 1"
+          working={<Katex display tex="f^{-1}(x) = \dfrac{1}{f(x)} = 3x-1" />}
+        >
+          The <Katex tex="-1" /> in <Katex tex="f^{-1}" /> is not a power. <Katex tex="f^{-1}" /> is the function that
+          undoes <Katex tex="f" />; the reciprocal would be written <Katex tex="\tfrac{1}{f(x)}" /> or{' '}
+          <Katex tex="[f(x)]^{-1}" />. It is especially tempting here because <Katex tex="f" /> is itself a reciprocal.
+          Catch it with one point: <Katex tex="f(1)=\tfrac12" />, so <Katex tex="f^{-1}\!\left(\tfrac12\right)" /> must
+          be <Katex tex="1" />, but <Katex tex="3\left(\tfrac12\right)-1=\tfrac12" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="b" topic="Domain" marks={1} statement={<>State the domain of <Katex tex="f^{-1}" />.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Why the range of f becomes the domain of f⁻¹">
+          <SwapWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -149,6 +269,12 @@ export default function MethodsQ2_2019Exam1() {
             are used to, <Katex tex="g(x) = f(x-c)+d" />.
           </p>
           <p>
+            Why can a translation turn <Katex tex="f" /> into its inverse at all? Both graphs are the
+            hyperbola <Katex tex="y=\tfrac{1}{3x}" />, just centred at different points: <Katex tex="f" /> is
+            it moved <Katex tex="\tfrac13" /> right, and <Katex tex="f^{-1}(x)=\tfrac{1}{3x}+\tfrac13" /> is it
+            moved <Katex tex="\tfrac13" /> up. So a slide from one centre to the other is all it takes.
+          </p>
+          <p>
             The VCAA report says transformation questions were challenging on this paper,
             "whether they are presented in matrix form (as in Question 2c.) or presented using
             functional notation (as in Question 4b.)" — the two look different on the page but
@@ -156,6 +282,26 @@ export default function MethodsQ2_2019Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
+        <Explore title="Slide f onto f⁻¹: which way do c and d go?">
+          <SlideWidget />
+        </Explore>
+        <WrongMethod
+          title="T adds c to x, so I replace x with x + c (and y with y + d)"
+          source="Examiner's report"
+          working={
+            <Katex
+              display
+              tex="\begin{aligned} y+d &= \dfrac{1}{3(x+c)-1} \\ 3c-1 &= 0,\ -d = \tfrac13 \\ c &= \tfrac13,\ d = -\tfrac13 \end{aligned}"
+            />
+          }
+        >
+          This substitutes the new coordinates where the old ones belong, so the curve moves the opposite way
+          to <Katex tex="T" />. The algebra matches <Katex tex="f^{-1}" /> perfectly, which is why the slip is
+          convincing. But <Katex tex="T" /> with these values moves every point <Katex tex="\tfrac13" /> right and{' '}
+          <Katex tex="\tfrac13" /> down, so <Katex tex="f" />&rsquo;s centre <Katex tex="\left(\tfrac13,0\right)" />{' '}
+          lands at <Katex tex="\left(\tfrac23,-\tfrac13\right)" />, not at <Katex tex="\left(0,\tfrac13\right)" />.
+          Catch it by moving one point, such as the asymptote crossing, with <Katex tex="T" /> itself.
+        </WrongMethod>
       </PartCard>
     </div>
   )
