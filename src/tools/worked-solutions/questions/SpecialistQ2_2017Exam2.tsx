@@ -3,11 +3,25 @@
 // time and distance to reach 30 m/s. No force analysis is required anywhere — the
 // acceleration is supplied — so the whole question is current differential-equation work
 // and it is not in the skip guide. Question text transcribed from the original paper (no
-// diagram given). Answers verified with scipy. Solution is original.
+// diagram given). Answers verified with scipy (closed forms and an ODE solve agree: 5.80 s,
+// 120.0 m). itute agrees on every part. Solution is original.
+//
+// Interactive widgets: c — the v–t curve with a sliding tangent and gravity-vs-resistance
+// bars, flattening onto v = 14√5 as a → 0 (spec-2017e2-q2c-terminal); d — the two phases on
+// the v–t graph, target speed slider, 2 s + ∫_{19.6}^{V} (toggle: the model applied from the
+// start, ∫_0^{30} ≈ 6.15 s) (spec-2017e2-q2d-two-phases); e — distance as area under the v–t
+// graph, phase 2 sliced by speed so each strip has width Δv/a and area vΔv/a (toggle: ∫_0^{30}
+// ≈ 125.3 m) (spec-2017e2-q2e-slices). WrongMethod boxes: c (decimal instead of exact), d.i
+// and e (the report's two misreadings of where the model starts).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const TerminalWidget = lazyWidget(() => import('../interactives/spec-2017e2-q2c-terminal'))
+const TwoPhasesWidget = lazyWidget(() => import('../interactives/spec-2017e2-q2d-two-phases'))
+const SlicesWidget = lazyWidget(() => import('../interactives/spec-2017e2-q2e-slices'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [7, 5, 88],
@@ -68,11 +82,11 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="a = g = 9.8,\qquad u = 0,\qquad t = 2" />,
-    reason: <>Air resistance is negligible for the first two seconds, so the acceleration is constant and the standard formulas apply. Down is positive, so <Katex tex="g" /> is positive.</>,
+    reason: <>Air resistance is negligible for the first two seconds, so the only acceleration is gravity — constant — and the constant-acceleration formulas apply. &ldquo;Falls from rest&rdquo; gives <Katex tex="u=0" />, and down is positive, so <Katex tex="a=+g" />.</>,
   },
   {
     working: <Katex display tex="s = ut+\tfrac12at^2 = 0+\tfrac12(9.8)(2)^2" />,
-    reason: <>Or integrate twice from <Katex tex="\ddot x=9.8" /> with <Katex tex="\dot x(0)=x(0)=0" />; both routes are one line.</>,
+    reason: <>We know <Katex tex="u" />, <Katex tex="a" />, <Katex tex="t" /> and want <Katex tex="s" />, so pick the formula without <Katex tex="v" />. Or integrate twice from <Katex tex="\ddot x=9.8" /> with <Katex tex="\dot x(0)=x(0)=0" />; the report notes both routes were used successfully.</>,
   },
   {
     working: <Katex display tex="\boxed{s = 19.6 \text{ m}}" />,
@@ -83,22 +97,22 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="v = u+at = 0+9.8\times2" />,
-    reason: <>Same constant acceleration, same two seconds.</>,
+    reason: <>Same constant acceleration, same two seconds; now we want <Katex tex="v" />, so use the formula with <Katex tex="v" /> in it. State the formula and the values you substitute — that line is the mark in a &ldquo;show that&rdquo;.</>,
   },
   {
     working: <Katex display tex="\boxed{v = 19.6 \text{ m s}^{-1}}" />,
-    reason: <>As required. In a "show that", write the substitution line out — the report says the majority of students demonstrated the key steps.</>,
+    reason: <>Note <Katex tex="19.6 = 2g" />: this speed, and the <Katex tex="19.6" /> m from part a., are where the air-resistance model starts in parts d. and e. As required.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="a = g-0.01v^2 = 0" />,
-    reason: <>Terminal velocity is where the acceleration stops: the speed at which resistance exactly balances gravity, so the skydiver stops speeding up.</>,
+    reason: <>Terminal velocity is the speed the skydiver settles at, so it is the speed at which the speed stops changing: <Katex tex="\tfrac{dv}{dt}=0" />. Physically, the resistance <Katex tex="0.01v^2" /> has grown until it exactly cancels <Katex tex="g" />.</>,
   },
   {
     working: <Katex display tex="0.01v^2 = 9.8 \implies v^2 = 980" />,
-    reason: <>Dividing by <Katex tex="0.01" /> multiplies by <Katex tex="100" />.</>,
+    reason: <>Dividing by <Katex tex="0.01" /> multiplies by <Katex tex="100" />. Take the positive root: down is positive and the skydiver is falling.</>,
   },
   {
     working: <Katex display tex="\boxed{v = \sqrt{980} = 14\sqrt5 \text{ m s}^{-1}}" />,
@@ -109,11 +123,11 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{dv}{dt} = g-0.01v^2" />,
-    reason: <>A <em>time</em> is wanted, so use the form of acceleration that involves <Katex tex="t" />.</>,
+    reason: <>List what you have and what you want: <Katex tex="a" /> is given in terms of <Katex tex="v" />, and a <em>time</em> is wanted. The form of acceleration that links <Katex tex="v" /> and <Katex tex="t" /> is <Katex tex="\tfrac{dv}{dt}" />.</>,
   },
   {
     working: <Katex display tex="\frac{dt}{dv} = \frac{1}{9.8-0.01v^2}" />,
-    reason: <>Inverting turns it into a straightforward integration with respect to <Katex tex="v" />.</>,
+    reason: <>The right side has no <Katex tex="t" /> in it, so we cannot integrate with respect to <Katex tex="t" />. Flip both sides instead: now <Katex tex="\tfrac{dt}{dv}" /> is a function of <Katex tex="v" />, and integrating it from one speed to another gives the time that passes between those speeds. Each small speed step <Katex tex="\Delta v" /> takes <Katex tex="\Delta t\approx\tfrac{\Delta v}{a}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{t = \int_{19.6}^{30}\frac{1}{9.8-0.01v^2}\,dv + 2}" />,
@@ -124,7 +138,7 @@ const ROWS_DI: WorkingRow[] = [
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Cas fn="nInt">nInt(1/(9.8-0.01v²), v, 19.6, 30) + 2</Cas>,
-    reason: <>Evaluating the expression from part d.i.</>,
+    reason: <>&ldquo;Hence&rdquo; means use the expression from part d.i., and &ldquo;nearest tenth&rdquo; tells you a numerical answer is expected, so numerical integration is fine. Type the whole expression, including the <Katex tex="+2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{t \approx 5.8 \text{ seconds}}" />,
@@ -135,19 +149,19 @@ const ROWS_DII: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="a = v\frac{dv}{dx} = g-0.01v^2" />,
-    reason: <>A <em>distance</em> as a function of speed, with no time in it, calls for this form of acceleration.</>,
+    reason: <>Now a <em>distance</em> is wanted, and we know the speeds (<Katex tex="19.6" /> to <Katex tex="30" />), not the times. So use the form of acceleration that links <Katex tex="v" /> and <Katex tex="x" />. It comes from the chain rule: <Katex tex="\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}" />.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dv} = \frac{v}{9.8-0.01v^2}" />,
-    reason: <>Inverting. Note the extra <Katex tex="v" /> on top compared with part d. — that single factor is the whole difference between a time and a distance.</>,
+    reason: <>Flip, as in part d. Compared with part d. there is an extra <Katex tex="v" /> on top, and it has a meaning: a speed step <Katex tex="\Delta v" /> takes time <Katex tex="\tfrac{\Delta v}{a}" />, and at speed <Katex tex="v" /> you fall <Katex tex="v\times\tfrac{\Delta v}{a}" /> in that time.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \int_{19.6}^{30}\frac{v}{9.8-0.01v^2}\,dv + 19.6}" />,
-    reason: <>Same two details as before: start at <Katex tex="19.6" /> m s<Katex tex="^{-1}" />, and add the <Katex tex="19.6" /> m already fallen from part a.</>,
+    reason: <>Same two details as before: start at <Katex tex="19.6" /> m s<Katex tex="^{-1}" />, because that is the speed when the model takes over, and add the <Katex tex="19.6" /> m already fallen in free fall (part a.). The report says this part repeated part d.i.&apos;s error of not taking the first 2 seconds into account.</>,
   },
   {
     working: <Cas fn="nInt">nInt(v/(9.8-0.01v²), v, 19.6, 30) + 19.6</Cas>,
-    reason: <>Evaluating.</>,
+    reason: <>The integral alone is about <Katex tex="100.4" /> m, the fall during the resistance phase.</>,
   },
   {
     working: <Katex display tex="\boxed{x \approx 120 \text{ m}}" />,
@@ -207,6 +221,19 @@ export default function SpecialistQ2_2017Exam2() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="Why setting a = 0 finds the terminal velocity">
+          <TerminalWidget />
+        </Explore>
+        <WrongMethod
+          title="Give the terminal velocity as 31.3 m/s"
+          source="Examiner's report"
+          working={<Katex display tex="v=\sqrt{980}\approx 31.3" />}
+        >
+          The value is right but the form is not: the question gives no rounding instruction, so an
+          exact answer is expected, and the report notes some answers were not given in exact form.
+          When a surd like <Katex tex="\sqrt{980}" /> appears, simplify it (<Katex tex="980=196\times5" />)
+          and stop at <Katex tex="14\sqrt5" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -240,6 +267,29 @@ export default function SpecialistQ2_2017Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_DI} />
+        <Explore title="The model only takes over at 2 s and 19.6 m/s — so the time comes in two pieces">
+          <TwoPhasesWidget />
+        </Explore>
+        <WrongMethod
+          title="Use the model from the moment the skydiver jumps"
+          source="Examiner's report"
+          working={<Katex display tex="t=\int_{0}^{30}\frac{1}{9.8-0.01v^2}\,dv\approx 6.1" />}
+        >
+          This integral describes a skydiver who meets air resistance from the start. Ours has none for
+          the first 2 seconds, so starts faster and reaches <Katex tex="30" /> m s
+          <Katex tex="^{-1}" /> sooner (<Katex tex="5.8" /> s). Before you write the lower terminal, ask:
+          what is the speed at the moment this rule starts to apply? Here it is{' '}
+          <Katex tex="19.6" />, from part b.
+        </WrongMethod>
+        <WrongMethod
+          title="Give just the integral from 19.6 to 30"
+          source="Examiner's report"
+          working={<Katex display tex="t=\int_{19.6}^{30}\frac{1}{9.8-0.01v^2}\,dv\approx 3.8" />}
+        >
+          The lower terminal is right, but this is only the time spent <em>after</em> the first 2
+          seconds. &ldquo;The time taken&rdquo; is measured from when the skydiver leaves the
+          helicopter, so the 2 seconds of free fall must be added back on.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -272,6 +322,28 @@ export default function SpecialistQ2_2017Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="Distance is the area under the v–t graph — slice it by speed and the integrand appears">
+          <SlicesWidget />
+        </Explore>
+        <WrongMethod
+          title="Integrate from 0 to 30 again"
+          source="Examiner's report"
+          working={<Katex display tex="x=\int_{0}^{30}\frac{v}{9.8-0.01v^2}\,dv\approx 125" />}
+        >
+          The same misreading as in part d.i.: the first <Katex tex="19.6" /> m were fallen with{' '}
+          <Katex tex="a=9.8" />, not <Katex tex="a=9.8-0.01v^2" />, so this integral describes a different
+          fall. Adding <Katex tex="19.6" /> to it (about <Katex tex="145" /> m) counts the first two
+          seconds twice.
+        </WrongMethod>
+        <WrongMethod
+          title="Stop after the integral from 19.6 to 30"
+          source="Examiner's report"
+          working={<Katex display tex="x=\int_{19.6}^{30}\frac{v}{9.8-0.01v^2}\,dv\approx 100" />}
+        >
+          This is only the distance fallen after the first 2 seconds. The question asks how far the
+          skydiver falls to reach <Katex tex="30" /> m s<Katex tex="^{-1}" />, measured from the
+          helicopter, so add the <Katex tex="19.6" /> m from part a.
+        </WrongMethod>
       </PartCard>
     </div>
   )
