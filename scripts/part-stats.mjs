@@ -7,9 +7,12 @@
 //
 // It reads, per question file registered in details.ts:
 //   - each <PartCard letter="…" topic="…" marks={n} examinerReport={NAME} videoSrc={…}>, in
-//     order (videoSrc marks a part with a recorded video walkthrough), or for a
-//     single-part question the <SAExaminerReport stats={NAME} maxMarks={n} /> instead;
+//     order (videoSrc marks a part with a recorded video walkthrough; an <Explore> between it
+//     and its </PartCard> marks a part with an interactive diagram), or for a single-part
+//     question the <SAExaminerReport stats={NAME} maxMarks={n} /> instead;
 //   - each `const NAME: SAExaminerStats = { marks: [...], average: x, ... }`.
+// It also lists every question — multiple choice included — whose file has an <Explore>, so
+// the sidebar can mark a question row that has no part rows of its own.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -22,6 +25,13 @@ const details = readFileSync(join(root, 'details.ts'), 'utf8')
 const importOf = Object.fromEntries([...details.matchAll(/import (\w+) from '\.\/questions\/([\w.-]+)'/g)].map(m => [m[1], m[2]]))
 const componentOf = Object.fromEntries([...details.matchAll(/'([\w-]+)':\s*(\w+),/g)].map(m => [m[1], m[2]]))
 const saIds = [...data.matchAll(/\{ id: '([^']+)',[^\n]*?type: 'sa'/g)].map(m => m[1])
+const allIds = [...data.matchAll(/\{ id: '([^']+)',[^\n]*?type: '(?:sa|mc)'/g)].map(m => m[1])
+
+// Questions whose worked solution has at least one interactive diagram.
+const exploreIds = allIds.filter(id => {
+  const file = importOf[componentOf[id]]
+  return file && /<Explore\b/.test(readFileSync(join(root, 'questions', `${file}.tsx`), 'utf8'))
+})
 
 // The props of a JSX opening tag run to the first '>' outside any {…} expression.
 function propsAfter(src, start) {
@@ -59,6 +69,8 @@ for (const id of saIds) {
     if (topic) part.t = topic[1]
     if (report && averages[report[1]] !== undefined) part.a = averages[report[1]]
     if (/\bvideoSrc=/.test(props)) part.v = true
+    const end = src.indexOf('</PartCard>', m.index)
+    if (/<Explore\b/.test(src.slice(m.index, end === -1 ? undefined : end))) part.x = true
     parts.push(part)
   }
   if (parts.length === 0) {
@@ -66,6 +78,7 @@ for (const id of saIds) {
     if (single) {
       const part = { l: '', m: Number(single[2]) }
       if (averages[single[1]] !== undefined) part.a = averages[single[1]]
+      if (/<Explore\b/.test(src)) part.x = true
       parts.push(part)
     }
   }
@@ -85,7 +98,8 @@ writeFileSync(
 //
 // Per short-answer question: its parts in order — l = letter ('' for a single-part
 // question), t = the part's subtopic (PartCard's topic), m = marks, a = VCAA's average mark
-// (absent if the report has none), v = the part has a video walkthrough.
+// (absent if the report has none), v = the part has a video walkthrough, x = the part has an
+// interactive diagram (an <Explore> in its PartCard).
 
 export interface PartStat {
   l: string
@@ -93,13 +107,19 @@ export interface PartStat {
   m: number
   a?: number
   v?: true
+  x?: true
 }
 
 export const PART_STATS: Record<string, PartStat[]> = {
 ${body}
 }
+
+// Questions (multiple choice included) whose worked solution has an interactive diagram.
+export const HAS_EXPLORE: Record<string, true> = {
+${exploreIds.map(id => `  '${id}': true,`).join('\n')}
+}
 `,
 )
 
-console.log(`partStats.ts: ${Object.keys(out).length} of ${saIds.length} short-answer questions`)
+console.log(`partStats.ts: ${Object.keys(out).length} of ${saIds.length} short-answer questions; ${exploreIds.length} questions with interactive diagrams`)
 if (problems.length) console.log(`Skipped:\n  ${problems.join('\n  ')}`)

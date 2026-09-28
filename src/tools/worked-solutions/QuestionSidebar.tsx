@@ -20,6 +20,7 @@ import {
   mainCode,
   omittedFor,
   partsOf,
+  hasExplore,
   topicGroups,
   topicOf,
   topicQuestions,
@@ -389,6 +390,19 @@ const BAND_LABEL: Record<DifficultyBand, string> = {
 
 // The key to the percentages — only once there are percentages on screen (a year, or a
 // topic, is open).
+// The marker for a question or part with an interactive diagram — the same two-slider icon
+// as the "Try It Yourself" box it leads to.
+function ExploreMark({ className = 'w-3.5 h-3.5' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" className={`flex-none text-emerald-600 dark:text-emerald-400 ${className}`} role="img" aria-label="Has an interactive diagram">
+      <title>Has an interactive diagram</title>
+      <path d="M2 6h9M15 6h3M2 14h3M9 14h9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="13" cy="6" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="7" cy="14" r="2.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+    </svg>
+  )
+}
+
 function Legend({ prefs }: { prefs: SidebarPrefs }) {
   return (
     <div className="text-[10.5px] text-gray-400 dark:text-gray-500 leading-snug px-1 mt-3 pt-2 border-t border-gray-100 dark:border-gray-800">
@@ -403,6 +417,10 @@ function Legend({ prefs }: { prefs: SidebarPrefs }) {
         </p>
       )}
       <p>Percentages are students who got an MCQ right, or the average mark on a short answer or part, from VCAA’s reports.</p>
+      <p className="flex items-center gap-1 mt-1.5">
+        <ExploreMark className="w-3 h-3" />
+        has an interactive diagram
+      </p>
     </div>
   )
 }
@@ -734,6 +752,7 @@ function QuestionRow({
             Video
           </span>
         )}
+        {hasExplore(q) && <ExploreMark />}
         <Difficulty q={q} mode={prefs.diff} />
       </NavItem>
 
@@ -772,6 +791,7 @@ function QuestionRow({
                     <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
                   </svg>
                 )}
+                {p.x && <ExploreMark />}
                 {pct !== null && (
                   <span
                     className={`flex-none w-8 text-right font-display text-[10.5px] tabular-nums ${hard ? BAND_NUMBER.hard : 'font-bold text-gray-400 dark:text-gray-500'}`}

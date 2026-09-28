@@ -2,7 +2,7 @@
 // phone's previous/next bar, the desktop pager and the settings preview all agree on it.
 
 import { QUESTIONS, type QuestionMeta, type QuestionType, type SubjectId } from './data'
-import { PART_STATS, type PartStat } from './partStats'
+import { HAS_EXPLORE, PART_STATS, type PartStat } from './partStats'
 import { OMITTED, type OmittedQuestion } from './omitted'
 import type { ListSort, ListView } from './sidebarPrefs'
 
@@ -44,6 +44,11 @@ export function topicOf(q: QuestionMeta): string {
 
 export function partsOf(q: QuestionMeta): PartStat[] {
   return PART_STATS[q.id] ?? []
+}
+
+/** Whether the question's worked solution has an interactive diagram (an Explore block). */
+export function hasExplore(q: QuestionMeta): boolean {
+  return HAS_EXPLORE[q.id] === true
 }
 
 /** How students did, as a percentage: an MCQ's % correct, or a short answer's average mark
