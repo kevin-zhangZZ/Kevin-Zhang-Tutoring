@@ -1,11 +1,16 @@
 // 2018 Mathematical Methods — Exam 2, MCQ 2. VCAA examination report: 88% correct. Which rule
 // has maximal domain R\{1}. Question text transcribed from the original paper; VCAA printed no
 // diagram and neither does the stem here (guide §7). Every option's excluded set checked with
-// sympy. Solution is original.
+// sympy; itute also gives A. Solution is original. Widget (meth-2018-mcq2-gaps): each option's
+// graph with its domain coloured along the x-axis — only A has a single gap, at x = 1; E keeps 1 and
+// loses everything below it. WrongMethod box for E (5%, the most popular wrong answer).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import { Background, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Background, WrongMethod, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const GapsWidget = lazyWidget(() => import('../interactives/meth-2018-mcq2-gaps'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 88, B: 3, C: 2, D: 2, E: 5 },
@@ -15,7 +20,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Maximal domain} = R\setminus\{1\} \implies \text{only } x=1 \text{ is excluded}" />,
+    working: (
+      <>
+        <Katex display tex="\text{Maximal domain} = R\setminus\{1\}" />
+        <Katex display tex="\implies \text{only } x=1 \text{ is excluded}" />
+      </>
+    ),
     reason: <>So the rule must fail at <Katex tex="x=1" /> and be perfectly well defined at every other real number. Two things can exclude a value: a zero denominator, or a negative under a square root.</>,
   },
   {
@@ -62,6 +72,30 @@ export default function MethodsQ2_2018() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      extras={
+        <>
+          <Explore title="A gap in the domain is an asymptote: only A has its one gap at x = 1">
+            <GapsWidget />
+          </Explore>
+          <WrongMethod
+            title="E has x − 1 in it, so x = 1 must be the value it can't take"
+            source="5% chose E"
+            working={
+              <>
+                <Katex display tex="\sqrt{x-1}: \quad x-1\ge 0 \implies x\ge 1" />
+                <Katex display tex="\text{maximal domain} = [1,\infty)" />
+              </>
+            }
+          >
+            Seeing <Katex tex="x-1" /> is not the test; what matters is <em>where</em> it sits. In a
+            denominator, <Katex tex="x-1" /> must not be <Katex tex="0" />, which removes one point.
+            Under a square root it must not be <em>negative</em>, which removes every number
+            below <Katex tex="1" /> and keeps <Katex tex="x=1" /> itself, since{' '}
+            <Katex tex="\sqrt0=0" />. To catch it, ask of each option &ldquo;which values of{' '}
+            <Katex tex="x" /> break this rule?&rdquo; rather than hunting for the number <Katex tex="1" />.
+          </WrongMethod>
+        </>
+      }
       background={
         <Background title="What a maximal domain is">
           <p>

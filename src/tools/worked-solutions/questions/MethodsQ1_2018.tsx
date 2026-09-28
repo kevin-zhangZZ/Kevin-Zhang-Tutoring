@@ -1,11 +1,15 @@
 // 2018 Mathematical Methods — Exam 2, MCQ 1. VCAA examination report: 95% correct. The period
 // of a scaled cosine. Question text transcribed from the original paper; VCAA printed no
-// diagram and neither does the stem here (guide §7). Answer checked with sympy.
-// Solution is original.
+// diagram and neither does the stem here (guide §7). Answer checked with sympy; itute also gives
+// C. Solution is original. Widget (meth-2018-mcq1-cycle): the angle 2πx/3 turning once round the
+// unit circle as the graph is traced, with the first full turn finishing at x = 3.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const CycleWidget = lazyWidget(() => import('../interactives/meth-2018-mcq1-cycle'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 2, B: 2, C: 95, D: 2, E: 0 },
@@ -20,11 +24,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Period} = \frac{2\pi}{n} \ \text{ for } \ \cos(nx), \qquad n = \frac{2\pi}{3}" />,
-    reason: <>The standard result: a cosine completes one cycle when its argument advances by <Katex tex="2\pi" />.</>,
+    reason: <>Why <Katex tex="\tfrac{2\pi}{n}" />: cosine repeats every time the angle it is fed goes up by <Katex tex="2\pi" /> (once round the unit circle). The angle here is <Katex tex="nx" />, so <Katex tex="x" /> only has to go up by <Katex tex="\tfrac{2\pi}{n}" /> for <Katex tex="nx" /> to go up by <Katex tex="2\pi" />.</>,
   },
   {
     working: <Katex display tex="\text{Period} = \frac{2\pi}{\ \frac{2\pi}{3}\ } = 2\pi \times \frac{3}{2\pi}" />,
-    reason: <>Dividing by a fraction is multiplying by its reciprocal.</>,
+    reason: <>Dividing by a fraction is multiplying by its reciprocal. A quick check that skips the formula: one full cycle ends when the angle reaches <Katex tex="2\pi" />, and <Katex tex="\tfrac{2\pi x}{3} = 2\pi" /> gives <Katex tex="x = 3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Period} = 3}" />,
@@ -50,6 +54,11 @@ export default function MethodsQ1_2018() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      extras={
+        <Explore title="The period is how far x moves while the angle 2πx/3 goes once round">
+          <CycleWidget />
+        </Explore>
+      }
     />
   )
 }

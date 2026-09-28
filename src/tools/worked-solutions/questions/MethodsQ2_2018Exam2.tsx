@@ -10,14 +10,31 @@
 // SX = (1219−252)/12 = 80.5833 px per hour; six horizontal rules give the t-axis at y = 631
 // and SY = (631−79)/500 = 1.1040 px per mg.
 //
-// Answers re-derived independently in sympy/numpy and checked against the VCAA report.
-// Solution is original.
+// Answers re-derived independently in sympy/numpy and checked against the VCAA report and itute
+// (all agree: (10/7)log_e(9/2), −33.5, 256, 455.82 mg at t = 7.78). One discrepancy in the report's
+// comment on (d)(ii): it quotes the single-tablet peak as 324.34 mg (and 324.34 + 6 = 330.34), but
+// b((10/7)log_e(9/2)) = 325.34 to two decimal places; we quote 325.34 in our own working and keep the
+// report's comment verbatim. Solution is original.
+//
+// Interactive widgets (interactives/meth-2018e2-q2*): (a) b(t) as the gap between a slow and a fast
+// exponential, largest where their tangents are parallel; (b) the steady rate that lands on b(6) is
+// the chord gradient, with the report's "average of the two gradients" failing; (c) the average value
+// as the level where the curve above balances the gaps below, vs the hourly-readings method; (d)(i)
+// addition of ordinates as stacked bars (the join at t = 6, the crossing, the peak); (d)(ii) the total
+// peaks where Tablet 2's rise cancels Tablet 1's fall — before Tablet 2's own peak at 8.15.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import oneTabletSrc from './meth-2018e2-q2-onetablet.png'
 import twoTabletsSrc from './meth-2018e2-q2-twotablets.png'
+
+const GapWidget = lazyWidget(() => import('../interactives/meth-2018e2-q2a-gap'))
+const ChordWidget = lazyWidget(() => import('../interactives/meth-2018e2-q2b-chord'))
+const HeightWidget = lazyWidget(() => import('../interactives/meth-2018e2-q2c-height'))
+const StackWidget = lazyWidget(() => import('../interactives/meth-2018e2-q2di-stack'))
+const SlopesWidget = lazyWidget(() => import('../interactives/meth-2018e2-q2dii-slopes'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [19, 8, 73],
@@ -110,15 +127,15 @@ const OVERLAY = (
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="b(t) = \frac{4500}{7}\left(e^{-t/5}-e^{-9t/10}\right)" />,
-    reason: <>A difference of two decaying exponentials: the slower one (<Katex tex="e^{-t/5}" />) is absorption holding the level up, the faster one (<Katex tex="e^{-9t/10}" />) pulls it down early. The peak is where the two rates balance.</>,
+    reason: <>A difference of two decaying exponentials: <Katex tex="b(t)" /> is the <em>gap</em> between a slow one (<Katex tex="e^{-t/5}" />) and a fast one (<Katex tex="e^{-9t/10}" />). The fast one dies away first, so the gap opens up and then closes again. The widget below shows the gap is widest when the two are falling equally fast.</>,
   },
   {
     working: <Katex display tex="b'(t) = \frac{4500}{7}\left(-\frac15 e^{-t/5}+\frac{9}{10}e^{-9t/10}\right) = 0" />,
-    reason: <>Differentiate and set to zero for the maximum.</>,
+    reason: <>&ldquo;Maximum amount&rdquo; means a stationary point: the graph rises then falls, so the peak is where <Katex tex="b'(t)=0" />. Each term uses <Katex tex="\frac{d}{dt}e^{kt}=ke^{kt}" />, so the constants <Katex tex="-\frac15" /> and <Katex tex="-\frac{9}{10}" /> come down in front.</>,
   },
   {
     working: <Katex display tex="\frac{9}{10}e^{-9t/10} = \frac15 e^{-t/5}" />,
-    reason: <>Rearranging so each side has one exponential.</>,
+    reason: <>The factor <Katex tex="\frac{4500}{7}" /> isn't zero, so the bracket must be. Move one term across so each side is a single exponential; one division then leaves <em>one</em> exponential equal to a number, which a log can undo.</>,
   },
   {
     working: <Katex display tex="e^{-9t/10+t/5} = \frac{1/5}{9/10} = \frac{2}{9} \implies e^{-7t/10} = \frac29" />,
@@ -126,7 +143,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\frac{7t}{10} = \log_e\!\left(\frac29\right) \implies t = -\frac{10}{7}\log_e\!\left(\frac29\right)" />,
-    reason: <>Taking natural logarithms.</>,
+    reason: <>Take <Katex tex="\log_e" /> of both sides: it undoes <Katex tex="e^{(\ldots)}" /> and brings the index down.</>,
   },
   {
     working: <Katex display tex="\boxed{t = \frac{10}{7}\log_e\!\left(\frac92\right)}" />,
@@ -174,12 +191,16 @@ const ROWS_C: WorkingRow[] = [
 
 const ROWS_DI: WorkingRow[] = [
   {
-    working: <Katex display tex="b_{\text{total}}(t) = b(t) + b(t-6) \ \text{ for } \ 6\le t\le 12" />,
-    reason: <>Tablet 2 is the same function started six hours later, so its contribution is <Katex tex="b" /> with <Katex tex="t" /> replaced by <Katex tex="t-6" />. Before <Katex tex="t=6" /> it contributes nothing.</>,
+    working: <Katex display tex="0\le t<6: \ b_{\text{total}}(t) = b(t)" />,
+    reason: <>Before <Katex tex="t=6" /> Tablet 2 hasn't been taken, so the total simply traces Tablet 1's curve. The report says many students traced this part correctly.</>,
   },
   {
-    working: <Katex display tex="0\le t<6: \ b_{\text{total}}(t) = b(t)" />,
-    reason: <>The total curve simply traces Tablet 1's curve over the first six hours. The report says many students traced this part, but some did not <em>join</em> the two sections at <Katex tex="t=6" /> — the sketch must be one continuous curve, not two pieces.</>,
+    working: <Katex display tex="6\le t\le 12: \ b_{\text{total}}(t) = b(t) + b(t-6)" />,
+    reason: <>Tablet 2 is the same curve started six hours later, so its contribution is <Katex tex="b" /> with <Katex tex="t" /> replaced by <Katex tex="t-6" /> (a translation 6 units right). The body holds both at once, so the heights <em>add</em>.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} t=6&: \ b(6)+b(0)\approx190.72 \\ \text{max}&: \ (7.78,\ 455.82) \\ t=12&: \ b(12)+b(6)\approx249.03 \end{aligned}" />,
+    reason: <>Three points pin the sketch down. At <Katex tex="t=6" /> Tablet 2 adds <Katex tex="b(0)=0" />, so the second piece starts exactly where the first ends: the report says some students did not <em>join</em> the two sections there. The graph turns a sharp corner at the join, since Tablet 2 arrives rising steeply. The maximum comes from d.ii.</>,
   },
   {
     working: OVERLAY,
@@ -202,7 +223,7 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum} \approx 455.82 \text{ mg at } t \approx 7.78 \text{ hours}}" />,
-    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. Watch the two traps it names: <Katex tex="324.34" /> mg is the report's figure for the single-tablet peak (which is actually <Katex tex="325.34" /> mg), and <Katex tex="330.34" /> comes from adding <Katex tex="6" /> to a milligram figure, which mixes up the units entirely. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
+    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. The time is before Tablet 2's own peak at <Katex tex="8.15" />, for the reason in the Background above. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
   },
 ]
 
@@ -224,6 +245,9 @@ export default function MethodsQ2_2018Exam2() {
 
       <PartCard letter="a" topic="Maximum Time" marks={2} statement={<>Find the time, in hours, it takes for drug <Katex tex="X" /> to reach a maximum amount in the bloodstream after one tablet is consumed. Express your answer in the form <Katex tex="a\log_e(c)" />, where <Katex tex="a,c\in R" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
+        <Explore title="Why the peak is where both exponentials fall equally fast">
+          <GapWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -246,10 +270,48 @@ export default function MethodsQ2_2018Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="The average rate is the one steady rate that lands on b(6)">
+          <ChordWidget />
+        </Explore>
+        <WrongMethod
+          title="Average the gradients at t = 2 and t = 6"
+          source="Examiner's report"
+          working={<Katex display tex="\frac{b'(2)+b'(6)}{2}\approx\frac{9.45+(-36.11)}{2}\approx-13.3" />}
+        >
+          Each derivative is the rate at a single instant, and two instants say nothing about what the
+          curve does in between. Test it: <Katex tex="-13.3" /> mg/h for 4 hours from{' '}
+          <Katex tex="b(2)\approx324.7" /> would leave about <Katex tex="271.3" /> mg, but{' '}
+          <Katex tex="b(6)\approx190.7" />. An average rate of change must reproduce the actual change,
+          which is why it is <Katex tex="\frac{b(6)-b(2)}{6-2}" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="c" topic="Average Value" marks={2} statement={<>Find the average amount of drug <Katex tex="X" /> in the bloodstream, in milligrams, during the first six hours after one tablet is consumed. Give your answer correct to the nearest milligram.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
+        <Explore title="The average value is the level where the curve balances">
+          <HeightWidget />
+        </Explore>
+        <WrongMethod
+          title="Add up the readings at t = 0, 1, 2, …, 6 and divide by 6"
+          source="Examiner's report"
+          working={<Katex display tex="\frac{b(0)+b(1)+\dots+b(6)}{6}\approx265.1" />}
+        >
+          That is seven readings divided by six, and even a proper mean of the seven readings,{' '}
+          <Katex tex="\approx227.2" />, only samples seven instants of a curve that changes all the
+          time. The average value of a function over an interval uses every instant: the integral
+          adds them all up, and dividing by the width <Katex tex="6-0" /> turns that total back into a
+          height.
+        </WrongMethod>
+        <WrongMethod
+          title="Reuse the interval [2, 6] from part b"
+          source="Examiner's report"
+          working={<Katex display tex="\frac{1}{4}\int_2^6 b(t)\,dt\approx267.9" />}
+        >
+          Each part sets its own interval. &ldquo;The first six hours after one tablet is
+          consumed&rdquo; starts the clock at the tablet, <Katex tex="t=0" />, and runs to{' '}
+          <Katex tex="t=6" />. Starting at <Katex tex="t=2" /> leaves out the low early values while the
+          drug is still being absorbed, which is why this answer comes out too high.
+        </WrongMethod>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -266,6 +328,19 @@ export default function MethodsQ2_2018Exam2() {
 
       <PartCard letter="d.i" topic="Sketch Graph" marks={2} statement={<>On the graph above, sketch the total amount of drug <Katex tex="X" /> in the bloodstream during the first 12 hours after Tablet 1 is consumed.</>} examinerReport={EXAM_DI}>
         <WorkingTable rows={ROWS_DI} />
+        <Explore title="Adding the two tablets, height by height">
+          <StackWidget />
+        </Explore>
+        <WrongMethod
+          title="Start the total curve where the two dashed curves cross"
+          source="Examiner's report"
+          working={<Katex display tex="\begin{aligned} t\approx6.51&: \ b(t)=b(t-6)\approx173.2 \\ &\phantom{:}\ \text{total}\approx346.3 \end{aligned}" />}
+        >
+          The crossing is where the two tablets contribute <em>equal</em> amounts, not where the total
+          is. Every point on the total is a sum of the two dashed heights, so at the crossing it sits
+          twice as high. The total is also already <Katex tex="190.72" /> mg at <Katex tex="t=6" />:
+          it never drops to the crossing point.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="d.ii" topic="Maximum Value" marks={2} statement={<>Find the maximum amount of drug <Katex tex="X" /> in the bloodstream in the first 12 hours and the time at which this maximum occurs. Give your answers correct to two decimal places.</>} examinerReport={EXAM_DII}>
@@ -283,8 +358,38 @@ export default function MethodsQ2_2018Exam2() {
             single-tablet curve, which is where the report's <Katex tex="324.34" /> mg comes
             from.
           </p>
+          <p>
+            Where will the peak be? The total's gradient is{' '}
+            <Katex tex="b'(t)+b'(t-6)" />: Tablet 2's rise plus Tablet 1's fall. At Tablet 2's own
+            peak (<Katex tex="t\approx8.15" />) its rise has already stopped while Tablet 1 is still
+            falling, so the total is already going down. The total peaks a little earlier, where
+            the rise and the fall cancel.
+          </p>
         </Background>
         <WorkingTable rows={ROWS_DII} />
+        <Explore title="Why the total peaks before Tablet 2 does">
+          <SlopesWidget />
+        </Explore>
+        <WrongMethod
+          title="Solve b′(t) = 0, and add 6 for the second tablet"
+          source="Examiner's report"
+          working={<Katex display tex="b'(t)=0 \implies t\approx2.15, \ b\approx325.34" />}
+        >
+          That is the peak of <em>one</em> tablet on its own, and it ignores the drug still left from
+          Tablet 1 (the report quotes this figure as <Katex tex="324.34" />). Adding <Katex tex="6" /> to it
+          adds hours to milligrams, which is meaningless. The question is about the total, so
+          maximise the total&apos;s rule <Katex tex="b(t)+b(t-6)" />.
+        </WrongMethod>
+        <WrongMethod
+          title="The second peak is six hours after the first, so t = 8"
+          source="Examiner's report"
+          working={<Katex display tex="\begin{aligned} b(8)+b(2)&\approx453.97 \\ b(8.149)+b(2.149)&\approx450.91 \end{aligned}" />}
+        >
+          Both are less than <Katex tex="455.82" />. Tablet 2 on its own peaks at{' '}
+          <Katex tex="t\approx8.15" />, but Tablet 1 is still falling then, so the total has already
+          started to drop. Evaluating at a guessed time never proves a maximum: use the maximum
+          feature on the combined rule.
+        </WrongMethod>
       </PartCard>
     </div>
   )

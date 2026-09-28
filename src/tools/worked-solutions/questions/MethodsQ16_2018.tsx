@@ -2,11 +2,20 @@
 // Compare a right-endpoint rectangle approximation of an area to the exact integral.
 // Question text transcribed from the original paper; the diagram is the actual VCAA figure
 // (cropped from the official exam PDF), not a redrawing. Solution is original.
+// Answer B checked with sympy: right-endpoint sum 7π/6, exact area 3π/2, ratio 7/9; itute agrees.
+// Distractor verified: E (7/3) is 7π/6 ÷ π/2, dividing by the interval's width instead of the
+// exact area. No single clean slip lands on A, C or D (C is exact ÷ left-endpoint sum, two slips),
+// so they are not named.
+// Interactive (§15): interactives/meth-2018-mcq16-underestimate.tsx draws Jamie's rectangles
+// under the falling curve with the missed slivers in red; slide n or switch to left endpoints.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import { Background, WrongMethod, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import rectanglesSrc from './meth-2018-mcq16-rectangles.png'
+
+const UnderestimateWidget = lazyWidget(() => import('../interactives/meth-2018-mcq16-underestimate'))
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
@@ -40,11 +49,18 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\begin{aligned} f\!\left(\tfrac{\pi}{2}\right) &= 2\cos(\pi)+3 \\ &= 2(-1)+3 \\ &= 1 \end{aligned}" />
       </>
     ),
-    reason: <>Three rectangles of equal width <Katex tex="\tfrac{\pi}{6}" />, each using the function's value at its <em>right</em> edge as the height.</>,
+    reason: (
+      <>
+        First read the picture: the interval <Katex tex="\left[0,\tfrac{\pi}{2}\right]" /> is cut into three equal widths
+        of <Katex tex="\tfrac{\pi}{6}" />, and each rectangle&apos;s <em>top-right</em> corner touches the curve. So the
+        heights are <Katex tex="f" /> at the right edges <Katex tex="\tfrac{\pi}{6},\tfrac{\pi}{3},\tfrac{\pi}{2}" />. These
+        are exact values you know, so no CAS is needed (and it avoids a degree-mode slip).
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned} \text{Jamie's area} &= \frac{\pi}{6}(4+2+1) \\ &= \frac{7\pi}{6} \end{aligned}" />,
-    reason: <>Width times the sum of the heights.</>,
+    reason: <>Each rectangle is width <Katex tex="\times" /> height, and all three share the width <Katex tex="\tfrac{\pi}{6}" />, so factor it out and add the heights.</>,
   },
   {
     working: (
@@ -53,15 +69,21 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \Bigl[\sin(2x)+3x\Bigr]_0^{\pi/2} = \bigl(\sin\pi+\tfrac{3\pi}{2}\bigr)-0 = \frac{3\pi}{2}" />
       </>
     ),
-    reason: <>The exact area is the definite integral. The approximation is an underestimate, as it should be: the curve is decreasing, so every right-endpoint rectangle sits below it.</>,
+    reason: (
+      <>
+        The exact area is the definite integral. Sanity check before dividing: the curve is decreasing, so every
+        right-endpoint rectangle sits below it and Jamie&apos;s <Katex tex="\tfrac{7\pi}{6}" /> must be <em>less</em> than{' '}
+        <Katex tex="\tfrac{3\pi}{2}" />. It is.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned} \text{ratio} &= \frac{7\pi/6}{3\pi/2} \\ &= \frac{7}{6}\times\frac{2}{3} \\ &= \frac{14}{18} \end{aligned}" />,
-    reason: <>Jamie's approximation, as a fraction of the exact area.</>,
+    reason: <>&ldquo;As a fraction of the exact area&rdquo; means approximation <Katex tex="\div" /> exact. The <Katex tex="\pi" />s cancel, and the result is less than <Katex tex="1" />, as it must be for an underestimate.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{7}{9}}" />,
-    reason: <>Matches option <b>B</b>. Option <b>E</b> <Katex tex="\left(\tfrac73\right)" /> divides by <Katex tex="\tfrac{\pi}{2}" />, the width of the interval, rather than by the exact area — and a fraction bigger than <Katex tex="1" /> is impossible for an underestimate.</>,
+    reason: <>Matches option <b>B</b>. Option <b>E</b> <Katex tex="\left(\tfrac73\right)" /> divides <Katex tex="\tfrac{7\pi}{6}" /> by <Katex tex="\tfrac{\pi}{2}" />, the width of the interval, rather than by the exact area; a fraction bigger than <Katex tex="1" /> is impossible for an underestimate.</>,
   },
 ]
 
@@ -87,6 +109,36 @@ export default function MethodsQ16_2018() {
         { letter: 'E', content: <Katex tex="\dfrac73" /> },
       ]}
       rows={ROWS}
+      background={
+        <Background title="Left or right endpoints: over or under?">
+          <p>
+            A rectangle approximation takes one height per strip. If the function is <em>decreasing</em>, the right edge
+            of each strip is its lowest point, so right-endpoint rectangles sit under the curve and underestimate the area;
+            left endpoints do the opposite. For an increasing function the roles swap. Knowing which way the error goes
+            lets you reject impossible options before calculating.
+          </p>
+        </Background>
+      }
+      extras={
+        <>
+          <Explore title="Why Jamie's rectangles fall short of the exact area">
+            <UnderestimateWidget />
+          </Explore>
+          <WrongMethod
+            title="Divide Jamie's area by the width of the interval"
+            source="15% chose E"
+            working={<Katex display tex="\frac{7\pi/6}{\pi/2} = \frac{7}{6}\times 2 = \frac73 \quad \text{(option E)}" />}
+          >
+            <p>
+              <Katex tex="\tfrac{\pi}{2}" /> is a length along the <Katex tex="x" />-axis, not the exact area. Dividing an
+              area by a width gives the rectangles&apos; <em>average height</em>{' '}
+              (<Katex tex="\tfrac{4+2+1}{3}=\tfrac73" />), not a fraction of the true area. The check that catches it:
+              every rectangle sits under the curve, so the fraction must be less than <Katex tex="1" />, and{' '}
+              <Katex tex="\tfrac73" /> isn&apos;t. Divide by <Katex tex="\int_0^{\pi/2} f(x)\,dx=\tfrac{3\pi}{2}" /> instead.
+            </p>
+          </WrongMethod>
+        </>
+      }
       examinerReport={EXAMINER}
     />
   )

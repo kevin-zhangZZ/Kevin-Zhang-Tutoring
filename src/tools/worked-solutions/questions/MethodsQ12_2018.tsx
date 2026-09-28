@@ -1,11 +1,18 @@
 // 2018 Mathematical Methods — Exam 2, MCQ 12. VCAA examination report: 58% correct. The mean
 // of a discrete random variable, then a strict inequality against it. Question text and the
 // probability table transcribed from the original paper; VCAA printed no diagram and neither
-// does the stem here (guide §7). Answer checked with sympy. Solution is original.
+// does the stem here (guide §7). Answer checked with sympy; E agrees with the report and itute.
+// Solution is original. Interactive: meth-2018-mcq12-balance (the bars on a beam; it balances only
+// at the pivot c = 1.7 = μ, where the bars below hold 7/10 of the probability; buttons for the
+// tallest bar c = 1 and the plain average c = 2.4). WrongMethods: A (the mean halves the
+// probability) and D (unweighted average of the x-values), both computed to give those options.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import { Background, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Background, WrongMethod, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const BalanceWidget = lazyWidget(() => import('../interactives/meth-2018-mcq12-balance'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 13, B: 8, C: 13, D: 9, E: 58 },
@@ -41,7 +48,7 @@ const TABLE = (
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\mu = E(X) = \sum x\Pr(X=x)" />,
-    reason: <>The mean of a discrete random variable: multiply each value by its probability and add.</>,
+    reason: <>The mean of a discrete random variable: multiply each value by its probability and add. Each value is weighted by how likely it is, so this is <em>not</em> the plain average of the five <Katex tex="x" />-values.</>,
   },
   {
     working: <Katex display tex="= 0\!\left(\tfrac14\right) + 1\!\left(\tfrac{9}{20}\right) + 2\!\left(\tfrac{1}{10}\right) + 3\!\left(\tfrac{1}{20}\right) + 6\!\left(\tfrac{3}{20}\right)" />,
@@ -65,7 +72,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X<\mu) = \frac{7}{10}}" />,
-    reason: <>Matches option <b>E</b>. (<Katex tex="\tfrac{14}{20}=\tfrac{7}{10}=0.7" />.) Option <b>D</b> <Katex tex="\left(\tfrac45=\tfrac{16}{20}\right)" /> adds <Katex tex="\Pr(X=2)" /> as well — that is <Katex tex="\Pr(X\le2)" /> — and option <b>C</b> <Katex tex="\left(\tfrac{17}{20}\right)" /> is <Katex tex="\Pr(X\le3)" />. Option <b>A</b> <Katex tex="\left(\tfrac12\right)" /> assumes the mean splits the distribution in half, which is true of a <em>median</em>, not a mean.</>,
+    reason: <>Matches option <b>E</b> (<Katex tex="\tfrac{14}{20}=\tfrac{7}{10}" />). Option <b>A</b> <Katex tex="\left(\tfrac12\right)" /> assumes the mean splits the probability in half, which is what a <em>median</em> does; option <b>D</b> <Katex tex="\left(\tfrac45\right)" /> comes from averaging the five <Katex tex="x" />-values, <Katex tex="\tfrac{12}{5}=2.4" />, and then taking <Katex tex="\Pr(X<2.4)" />; option <b>B</b> <Katex tex="\left(\tfrac14\right)" /> is <Katex tex="\Pr(X<1)" />, using the most likely value <Katex tex="1" /> in place of the mean.</>,
   },
 ]
 
@@ -94,6 +101,48 @@ export default function MethodsQ12_2018() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      extras={
+        <>
+          <Explore title="The mean is the balance point, not the halfway point">
+            <BalanceWidget />
+          </Explore>
+          <WrongMethod
+            title="The mean is in the middle, so half the probability is below it"
+            source="13% chose A"
+            working={<Katex display tex="\Pr(X<\mu)=\tfrac12" />}
+          >
+            <p>
+              Splitting the probability in half is what the <em>median</em> does. The mean
+              balances the distribution by leverage: a value far from the centre pulls hard even
+              with a small probability. Here the lone value <Katex tex="6" /> drags{' '}
+              <Katex tex="\mu" /> up to <Katex tex="1.7" />, past the bars at <Katex tex="0" /> and{' '}
+              <Katex tex="1" />, which already hold <Katex tex="\tfrac{7}{10}" /> of the
+              probability. Never assume a value for <Katex tex="\Pr(X<\mu)" />: find{' '}
+              <Katex tex="\mu" />, then add up the probabilities of the values strictly below it.
+            </p>
+          </WrongMethod>
+          <WrongMethod
+            title="The mean is the average of the x-values"
+            source="9% chose D"
+            working={
+              <>
+                <Katex display tex="\mu=\frac{0+1+2+3+6}{5}=2.4" />
+                <Katex display tex="\Pr(X<2.4)=\tfrac14+\tfrac{9}{20}+\tfrac{1}{10}=\tfrac45" />
+              </>
+            }
+          >
+            <p>
+              Dividing by <Katex tex="5" /> treats every value as equally likely, each with
+              probability <Katex tex="\tfrac15" />. They are not: <Katex tex="x=1" /> has{' '}
+              <Katex tex="\tfrac{9}{20}" /> and <Katex tex="x=3" /> only <Katex tex="\tfrac{1}{20}" />.
+              Weight each value by its own probability,{' '}
+              <Katex tex="E(X)=\sum x\Pr(X=x)" />. A quick sense check: the mean should sit
+              towards the tall bars, but <Katex tex="2.4" /> has four-fifths of
+              the probability to its left.
+            </p>
+          </WrongMethod>
+        </>
+      }
       background={
         <Background title="Mean is not median">
           <p>
