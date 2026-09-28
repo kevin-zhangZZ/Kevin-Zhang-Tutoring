@@ -5,12 +5,28 @@
 // throughout, not y² = x² − 2x). VCAA's axes for part d. were blank, so the sketched curve is
 // this site's own answer, plotted with matplotlib on VCAA's grid (−4 to 4, gridlines every
 // 0.5); it matches the sketch published in the examination report. Cross-checked against the VCAA examination
-// report and itute's independent solutions, and verified by computer algebra.
+// report and itute's independent solutions, and verified by computer algebra (the part e.
+// integral ≈ 73.66 = π(46√2/3 + sinh⁻¹(2√2)), matching π∫₀^{2√2} x² dy).
 // Solution is original.
+// Interactive widgets: b. a t-slider tracing the point on y² = x² − 2x, showing only the
+// upper-right piece is reached (domain [2, ∞)), with the rule-alone domain x ≤ 0 as a toggle;
+// c.ii. a sliding tangent whose gradient 1/sin t falls from vertical to the asymptote's 1;
+// e. the solid cut into discs one Δt apart, whose thicknesses Δy ≈ sec²(t)Δt grow up the solid,
+// with the report's "replaced dx with dt" slip shown as a squashed stack.
+// Wording notes (not changing VCAA's answers): b. asks for the domain of "the relation given by
+// y = √(x² − 2x)", which on its own is (−∞, 0] ∪ [2, ∞); the published [2, ∞) presumes the
+// parametric restriction on t. e. says the portion of the curve is rotated "to form a solid";
+// strictly a curve sweeps out a surface — the intended solid is the region between the curve and
+// the y-axis (0 ≤ y ≤ 2√2), which is what the report's π∫x² dy integral gives.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './spec-2019e2-q1d-sketch.png'
+
+const TracedWidget = lazyWidget(() => import('../interactives/spec-2019e2-q1b-traced'))
+const GradientWidget = lazyWidget(() => import('../interactives/spec-2019e2-q1c-gradient'))
+const DiscsWidget = lazyWidget(() => import('../interactives/spec-2019e2-q1e-discs'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [17, 7, 76],
@@ -63,7 +79,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \sec(t)+1 \implies \sec(t) = x-1, \qquad y=\tan(t)" />,
-    reason: <>Make each trigonometric function the subject.</>,
+    reason: <>Make each trigonometric function the subject, so each can be replaced by an expression in <Katex tex="x" /> or <Katex tex="y" /> inside the identity.</>,
   },
   {
     working: <Katex display tex="(x-1)^2 = 1+y^2" />,
@@ -86,7 +102,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="t\in\left[0,\dfrac{\pi}{2}\right) \implies \sec(t)\in[1,\infty)" />,
-    reason: <><Katex tex="\cos(t)" /> falls from <Katex tex="1" /> to <Katex tex="0^+" /> across this interval, so its reciprocal climbs from <Katex tex="1" /> without bound.</>,
+    reason: <>The curve is the set of points the parameter actually reaches, so start from the <Katex tex="t" />-interval, not from the cartesian rule. <Katex tex="\cos(t)" /> falls from <Katex tex="1" /> to <Katex tex="0^+" /> across this interval, so its reciprocal climbs from <Katex tex="1" /> without bound.</>,
   },
   {
     working: <Katex display tex="x = \sec(t)+1 \in [2,\infty)" />,
@@ -124,7 +140,7 @@ const ROWS_CI: WorkingRow[] = [
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{As } t\to\dfrac{\pi}{2}^-: \quad \sin(t)\to1" />,
-    reason: <><Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" />, and <Katex tex="\tfrac{1}{\sin(t)}" /> is continuous there.</>,
+    reason: <><Katex tex="t" /> never actually equals <Katex tex="\tfrac{\pi}{2}" /> (the interval is open there), which is why the question asks for a <em>limiting</em> value. But <Katex tex="\tfrac{1}{\sin(t)}" /> is continuous at <Katex tex="\tfrac{\pi}{2}" /> and <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" />, so the limit is found by substituting. Don&apos;t be put off by <Katex tex="x" /> and <Katex tex="y" /> both going to infinity: the gradient can still settle.</>,
   },
   {
     working: <Katex display tex="\boxed{\dfrac{dy}{dx} \to 1}" />,
@@ -144,7 +160,7 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="x=4: \ y=\sqrt{16-8}=\sqrt8=2\sqrt2" />
       </>
     ),
-    reason: <>The two endpoints, which the question requires to be labelled with their coordinates.</>,
+    reason: <>The two endpoints, which the question requires to be labelled with their coordinates. Leave <Katex tex="2\sqrt2" /> exact in the label, but use <Katex tex="2\sqrt2\approx2.83" /> to place the point just below the <Katex tex="y=3" /> gridline.</>,
   },
   {
     working: (
@@ -158,24 +174,25 @@ const ROWS_D: WorkingRow[] = [
 
 const ROWS_E: WorkingRow[] = [
   {
-    working: <Katex display tex="V = \pi\int_{y_1}^{y_2} x^2\,dy" />,
-    reason: <>Rotation about the <Katex tex="y" />-axis, so the radius of each circular slice is <Katex tex="x" /> and the slices stack along <Katex tex="y" />. The report says the most common incorrect answer was an integral in terms of <Katex tex="x" />.</>,
+    working: <Katex display tex="V = \pi\int_0^{2\sqrt2} x^2\,dy" />,
+    reason: <>Picture the solid first: the region between the curve and the <Katex tex="y" />-axis spun about the <Katex tex="y" />-axis, a vase of radius <Katex tex="2" /> at the base and <Katex tex="4" /> at the top. Slice it horizontally: each slice is a disc at height <Katex tex="y" /> with radius <Katex tex="x" /> (the distance from the axis out to the curve) and thickness <Katex tex="dy" />, so its volume is <Katex tex="\pi x^2\,dy" />. The discs run from <Katex tex="y=0" /> to <Katex tex="y=2\sqrt2" /> (part d.). The report says the most common incorrect answer was an integral in terms of <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="dy = \dfrac{dy}{dt}\,dt = \sec^2(t)\,dt" />,
-    reason: <>Change the variable of integration from <Katex tex="y" /> to <Katex tex="t" />, since the question wants the answer in terms of <Katex tex="t" />. The report notes that of those who attempted an integral in terms of <Katex tex="t" />, most simply replaced <Katex tex="dx" /> with <Katex tex="dt" />.</>,
+    reason: <>The question wants <Katex tex="t" />, so the variable of integration changes from <Katex tex="y" /> to <Katex tex="t" /> — and whenever the variable changes, the differential changes with it, exactly as <Katex tex="du=u'(x)\,dx" /> in a substitution. A step <Katex tex="dt" /> in the parameter moves <Katex tex="y" /> by <Katex tex="\tfrac{dy}{dt}\,dt" />, not by <Katex tex="dt" />. The report notes that of those who attempted an integral in terms of <Katex tex="t" />, most simply replaced <Katex tex="dx" /> with <Katex tex="dt" />.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="x=2 \implies \sec(t)=1 \implies t=0" />
-        <Katex display tex="x=4 \implies \sec(t)=3 \implies t=\cos^{-1}\!\left(\tfrac13\right)" />
+        <Katex display tex="y=0 \implies \tan(t)=0 \implies t=0" />
+        <Katex display tex="y=2\sqrt2 \implies \tan(t)=2\sqrt2 \implies t=\tan^{-1}\!\left(2\sqrt2\right)" />
+        <Katex display tex="\tan^{-1}\!\left(2\sqrt2\right)=\cos^{-1}\!\left(\tfrac13\right)" />
       </>
     ),
-    reason: <>The terminals must be converted to <Katex tex="t" /> values too. Equivalently the upper terminal is <Katex tex="\tan^{-1}\!\left(2\sqrt2\right)" /> (the report's form), since <Katex tex="\sec t=3" /> gives <Katex tex="\tan t=\sqrt{9-1}=2\sqrt2" />.</>,
+    reason: <>The terminals are <Katex tex="y" />-values, so they must be converted to <Katex tex="t" />-values too, using <Katex tex="y=\tan(t)" /> with <Katex tex="t\in\left[0,\tfrac{\pi}{2}\right)" />. The report gives <Katex tex="\tan^{-1}\!\left(2\sqrt2\right)" /> and accepts <Katex tex="\cos^{-1}\!\left(\tfrac13\right)" />: at the top <Katex tex="x=4" />, so <Katex tex="\sec(t)=3" /> and <Katex tex="\cos(t)=\tfrac13" /> — the same angle.</>,
   },
   {
-    working: <Katex display tex="\boxed{V = \pi\int_0^{\cos^{-1}(1/3)} \bigl(\sec(t)+1\bigr)^2\sec^2(t)\,dt}" />,
+    working: <Katex display tex="\boxed{V = \pi\int_0^{\tan^{-1}(2\sqrt2)} \bigl(\sec(t)+1\bigr)^2\sec^2(t)\,dt}" />,
     reason: <>The question says to write it down but not evaluate it, so stop here — substituting <Katex tex="x=\sec(t)+1" /> and <Katex tex="dy=\sec^2(t)\,dt" /> is the whole task.</>,
   },
 ]
@@ -206,7 +223,32 @@ export default function SpecialistQ1_2019Exam2() {
       </PartCard>
 
       <PartCard letter="b" topic="Domain & Range" marks={2} statement={<>State the domain and range of the relation given by <Katex tex="y=\sqrt{x^2-2x}" />.</>} examinerReport={EXAM_B}>
+        <Background>
+          <p>
+            A parametric curve is the path traced by the point{' '}
+            <Katex tex="\bigl(x(t),y(t)\bigr)" /> as <Katex tex="t" /> runs through its interval. So
+            its domain is the set of values <Katex tex="x(t)" /> takes over that interval, and its
+            range is the set of values <Katex tex="y(t)" /> takes. The cartesian rule from part a.
+            describes the same points, but on its own it can allow extra ones the parameter never
+            reaches.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="The parameter traces only one piece, so the domain starts at x = 2">
+          <TracedWidget />
+        </Explore>
+        <WrongMethod
+          title="Get the domain from x² − 2x ≥ 0"
+          source="Examiner's report"
+          working={<Katex display tex="x^2-2x\ge0 \implies x\le0 \text{ or } x\ge2" />}
+        >
+          The report notes a significant number gave a domain which did not account for the restriction
+          on <Katex tex="t" />. This is how that happens: it finds where the square root is defined, not
+          where the curve actually is. With <Katex tex="t\in\left[0,\tfrac{\pi}{2}\right)" />,{' '}
+          <Katex tex="\sec(t)\ge1" />, so <Katex tex="x=\sec(t)+1\ge2" /> and the branch{' '}
+          <Katex tex="x\le0" /> is never traced. To catch it, read the domain and range off{' '}
+          <Katex tex="x(t)" /> and <Katex tex="y(t)" /> over the given <Katex tex="t" />-interval.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="c.i" topic="Parametric Derivative" marks={2} statement={<>Express <Katex tex="\dfrac{dy}{dx}" /> in terms of <Katex tex="\sin(t)" />.</>} examinerReport={EXAM_CI}>
@@ -218,10 +260,27 @@ export default function SpecialistQ1_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_CI} />
+        <WrongMethod
+          title="Differentiate y = √(x² − 2x) and leave it in x"
+          source="Examiner's report"
+          working={<Katex display tex="\dfrac{dy}{dx}=\dfrac{2x-2}{2\sqrt{x^2-2x}}=\dfrac{x-1}{\sqrt{x^2-2x}}" />}
+        >
+          This derivative is correct, but it is not what was asked. The report says students who
+          differentiated <Katex tex="y" /> in terms of <Katex tex="x" /> directly were less successful:
+          some left their answer in terms of <Katex tex="x" />, others had difficulty with the
+          substitution and simplification. To finish, substitute <Katex tex="x-1=\sec(t)" /> and{' '}
+          <Katex tex="\sqrt{x^2-2x}=\tan(t)" /> (part a.) to get{' '}
+          <Katex tex="\tfrac{\sec(t)}{\tan(t)}=\tfrac{1}{\sin(t)}" />, the long way round. When{' '}
+          <Katex tex="x" /> and <Katex tex="y" /> are both given in terms of <Katex tex="t" />,{' '}
+          <Katex tex="\tfrac{dy/dt}{dx/dt}" /> lands in <Katex tex="t" /> directly.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="c.ii" topic="Limiting Gradient" marks={1} statement={<>State the limiting value of <Katex tex="\dfrac{dy}{dx}" /> as <Katex tex="t" /> approaches <Katex tex="\dfrac{\pi}{2}" />.</>} examinerReport={EXAM_CII}>
         <WorkingTable rows={ROWS_CII} />
+        <Explore title="Why the gradient starts vertical and settles at 1">
+          <GradientWidget />
+        </Explore>
       </PartCard>
 
       <PartCard letter="d" topic="Sketch Graph" marks={2} statement={<>Sketch the curve <Katex tex="y=\sqrt{x^2-2x}" /> on the axes below for <Katex tex="x\in[2,4]" />, labelling the endpoints with their coordinates.</>} examinerReport={EXAM_D}>
@@ -240,6 +299,37 @@ export default function SpecialistQ1_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />
+        <Explore title="Why dy becomes sec²(t) dt: equal steps in t give unequal discs">
+          <DiscsWidget />
+        </Explore>
+        <WrongMethod
+          title="Just swap the d-variable for dt"
+          source="Examiner's report"
+          working={<Katex display tex="V=\pi\int_0^{\tan^{-1}(2\sqrt2)}\bigl(\sec(t)+1\bigr)^2\,dt\approx23.8" />}
+        >
+          The report says that of those who attempted an integral in terms of <Katex tex="t" />, most
+          simply replaced <Katex tex="dx" /> with <Katex tex="dt" />. Whichever differential is swapped,
+          the slip treats a step in <Katex tex="t" /> as if it were a step of the same size in the
+          slicing variable. Here <Katex tex="y=\tan(t)" />, so <Katex tex="dy=\sec^2(t)\,dt" />, and{' '}
+          <Katex tex="\sec^2(t)" /> grows from <Katex tex="1" /> to <Katex tex="9" /> up the solid.
+          Dropping it gives about <Katex tex="23.8" /> instead of the true <Katex tex="73.7" /> — in the
+          widget, the red discs only stack up to height <Katex tex="1.23" />. To catch it, change the
+          differential every time you change the variable, as in any substitution.
+        </WrongMethod>
+        <WrongMethod
+          title="Write the volume as an integral in x"
+          source="Examiner's report"
+          working={<Katex display tex="V=\pi\int_2^4 y^2\,dx=\pi\int_2^4\left(x^2-2x\right)dx" />}
+        >
+          The report says the most common incorrect answer was an integral in terms of{' '}
+          <Katex tex="x" />. Any <Katex tex="x" />-integral misses the instruction &ldquo;in terms
+          of <Katex tex="t" />&rdquo;. The familiar one shown here is also the wrong solid:{' '}
+          <Katex tex="\pi\int y^2\,dx" /> stacks discs of radius <Katex tex="y" /> along the{' '}
+          <Katex tex="x" />-axis, which is rotation about the <Katex tex="x" />-axis (it gives{' '}
+          <Katex tex="\tfrac{20\pi}{3}\approx20.9" />). About the <Katex tex="y" />-axis the discs are
+          horizontal, so start from <Katex tex="\pi\int x^2\,dy" />, then convert everything to{' '}
+          <Katex tex="t" />.
+        </WrongMethod>
       </PartCard>
     </div>
   )

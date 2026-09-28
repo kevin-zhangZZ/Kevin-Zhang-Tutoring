@@ -2,12 +2,26 @@
 // Sample means of packets of noodles: the distribution of a sample mean, the difference of two
 // independent sample means, and a two-tailed hypothesis test. Question text transcribed from
 // the original paper (no diagram given). Cross-checked against the VCAA examination report and
-// itute's independent solutions, and every probability verified numerically.
+// itute's independent solutions, and every probability verified numerically (scipy): 0.741,
+// 0.495, p = 0.0455, x̄ = 372.06 → 372.1. All three sources agree.
+// Interactive widgets: part a — the sample-mean curve narrowing as n grows (why 15/√50, not 15),
+// and a unit square of the two samples' outcomes (why "at least one" is 1 − (1 − p)², not p + p);
+// part b — a simulated cloud of (x̄₁, x̄₂) pairs with the strip |D| < 2 on both sides of the
+// diagonal, and the report's Pr(D < 2) half-plane as a toggle; part d — the p value as two mirror
+// tails of N(375, 1.5²); part f — the 2.5% + 2.5% rejection region, with the report's one-tail
+// 372.5 as a toggle and 372.0 vs 372.1 as buttons.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const NarrowWidget = lazyWidget(() => import('../interactives/spec-2019e2-q6a-narrow'))
+const AtLeastWidget = lazyWidget(() => import('../interactives/spec-2019e2-q6a-atleast'))
+const StripWidget = lazyWidget(() => import('../interactives/spec-2019e2-q6b-strip'))
+const TailsWidget = lazyWidget(() => import('../interactives/spec-2019e2-q6d-tails'))
+const CutoffWidget = lazyWidget(() => import('../interactives/spec-2019e2-q6f-cutoff'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [40, 31, 29],
@@ -46,8 +60,8 @@ const EXAM_F: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\overline{X} \sim N\!\left(375,\ \dfrac{15^2}{50}\right), \qquad \text{sd}\left(\overline{X}\right) = \dfrac{15}{\sqrt{50}} = \dfrac{3}{\sqrt2} \approx 2.1213" />,
-    reason: <>The sample mean of <Katex tex="n" /> observations is itself normally distributed, centred on the population mean but with standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" /> — narrower than the population, because averaging cancels out extremes.</>,
+    working: <Katex display tex="\begin{aligned} \overline{X} &\sim N\!\left(375,\ \dfrac{15^2}{50}\right) \\ \text{sd}\left(\overline{X}\right) &= \dfrac{15}{\sqrt{50}} = \dfrac{3}{\sqrt2} \approx 2.1213 \end{aligned}" />,
+    reason: <>The question is about the <em>mean</em> of each sample of <Katex tex="50" />, not about one packet, so first find how a sample mean is distributed. It is normal, centred on the population mean, but with standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" />: narrower than the population, because heavy and light packets in the same sample cancel out. The first diagram below shows the curve narrowing as <Katex tex="n" /> grows.</>,
   },
   {
     working: <Katex display tex="\Pr\left(370<\overline{X}<375\right) \approx 0.490789" />,
@@ -55,60 +69,60 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{at least one of two}) = 1-\Pr(\text{neither})" />,
-    reason: <>This is a binomial situation: two independent samples, each "succeeding" with probability <Katex tex="0.4908" />, so the number that succeed is <Katex tex="\operatorname{Bi}(2,\ 0.4908)" />. "At least one" means take the complement of "neither". The report notes that about half of the students who found the standard deviation of the sample mean went on to use a binomial distribution successfully.</>,
+    reason: <>Now there are two samples, and each one independently either lands in <Katex tex="370" />–<Katex tex="375" /> or doesn&apos;t, with the same chance <Katex tex="0.4908" />. A fixed number of independent tries with the same chance of success is binomial: the number of samples that land in the band is <Katex tex="\operatorname{Bi}(2,\ 0.4908)" />. &ldquo;At least one&rdquo; is every outcome except &ldquo;neither&rdquo;, so take the complement. The report notes that about half of the students who found the standard deviation of the sample mean went on to use a binomial distribution successfully.</>,
   },
   {
     working: <Katex display tex="= 1-(1-0.490789)^2 = 1-(0.509211)^2" />,
-    reason: <>The probability neither succeeds is the product of the two individual failure probabilities.</>,
+    reason: <>&ldquo;Neither&rdquo; means both samples miss the band. Each misses with probability <Katex tex="1-0.4908" />, and the samples are independent, so multiply. In the square diagram below this is the grey corner.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.741}" />,
-    reason: <>Three decimal places, as asked.</>,
+    reason: <>Three decimal places, as asked. Sensible size: bigger than one sample&apos;s <Katex tex="0.491" /> (two chances beat one), but well short of <Katex tex="1" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Let } D = \overline{X}_1-\overline{X}_2" />,
-    reason: <>Turn "the two means differ by less than 2" into a statement about a single new random variable — the difference. The report notes many students did not make a reasonable start to this question.</>,
+    reason: <>&ldquo;Differ by&rdquo; is a statement about a difference, so make the difference a single new random variable. Once you know how <Katex tex="D" /> is distributed, the question is an ordinary normal probability. The report notes many students did not make a reasonable start to this question.</>,
   },
   {
     working: <Katex display tex="E(D) = E\left(\overline{X}_1\right)-E\left(\overline{X}_2\right) = 375-375 = 0" />,
-    reason: <>Expected values subtract as the variables do.</>,
+    reason: <>Expected values subtract as the variables do. Both samples are centred on <Katex tex="375" />, so on average the difference is <Katex tex="0" />.</>,
   },
   {
-    working: <Katex display tex="\operatorname{Var}(D) = \operatorname{Var}\left(\overline{X}_1\right)+\operatorname{Var}\left(\overline{X}_2\right) = \dfrac{225}{50}+\dfrac{225}{50} = 9" />,
-    reason: <>Variances <em>add</em> for independent variables, even when you subtract the variables themselves — subtracting doesn't make things less variable. The report notes many students were unable to find this variance correctly.</>,
+    working: <Katex display tex="\begin{aligned} \operatorname{Var}(D) &= \operatorname{Var}\left(\overline{X}_1\right)+\operatorname{Var}\left(\overline{X}_2\right) \\ &= \dfrac{225}{50}+\dfrac{225}{50} = 9 \end{aligned}" />,
+    reason: <>Variances <em>add</em> for independent variables, even when you subtract the variables: <Katex tex="\operatorname{Var}(aX+bY) = a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)" />, and with <Katex tex="b=-1" /> the <Katex tex="(-1)^2" /> is <Katex tex="+1" />. Think of the extremes: a heavy first sample with a light second one makes <Katex tex="D" /> large and positive, the reverse makes it large and negative, so <Katex tex="D" /> swings more than either mean. The report notes many students were unable to find this variance correctly.</>,
   },
   {
     working: <Katex display tex="\text{sd}(D) = \sqrt9 = 3, \qquad D \sim N(0,\ 3^2)" />,
-    reason: <>A difference of independent normal variables is normal.</>,
+    reason: <>A difference of independent normal variables is normal. The simulated pairs in the diagram below agree: their differences have a standard deviation close to <Katex tex="3" />, not <Katex tex="2.12" />.</>,
   },
   {
     working: <Katex display tex="\Pr\left(|D|<2\right) = \Pr(-2<D<2)" />,
-    reason: <>"Differ by less than 2 grams" means the difference is between <Katex tex="-2" /> and <Katex tex="2" /> — the sign doesn't matter, only the size. The report notes very few students allowed for a negative difference; finding only <Katex tex="\Pr(D<2)" /> misses the lower bound.</>,
+    reason: <>&ldquo;Differ by less than 2 grams&rdquo; means the difference is between <Katex tex="-2" /> and <Katex tex="2" />. <Katex tex="D" /> is negative whenever the second mean is the bigger one, and those pairs count too: only the size of the gap matters. The report notes very few students allowed for a negative difference; finding only <Katex tex="\Pr(D<2)" /> misses the lower bound. In the diagram this is the green strip on <em>both</em> sides of the diagonal.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.495}" />,
-    reason: <><Cas fn="normCdf">normCdf(-2, 2, 0, 3)</Cas> finishes it. Sanity check: <Katex tex="2" /> g is only two-thirds of a standard deviation, so a shade under half is the right size of answer.</>,
+    reason: <><Cas fn="normCdf">normCdf(-2, 2, 0, 3)</Cas> finishes it. Sanity check: <Katex tex="2" /> g is only two-thirds of a standard deviation of <Katex tex="D" />, so a shade under half is the right size of answer.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_0: \mu = 375 \qquad H_1: \mu \ne 375}" />,
-    reason: <>The null hypothesis is always the "nothing has changed" claim — the machine still produces a mean of <Katex tex="375" /> g. Because the question asks whether the machine is working properly (not specifically whether it under-fills), the alternative is two-sided. Both must be about the <em>population</em> mean <Katex tex="\mu" />, never the sample mean. The report notes answers indicating a one-tailed test were relatively frequent — the question specifies a two-tailed test.</>,
+    reason: <>The null hypothesis is always the &ldquo;nothing has changed&rdquo; claim: the machine still produces a mean of <Katex tex="375" /> g. The alternative is two-sided because the question says two-tailed, and because a machine that isn&apos;t working properly could be over-filling <em>or</em> under-filling. Both hypotheses are about the <em>population</em> mean <Katex tex="\mu" />, never the sample mean <Katex tex="372" />. The report notes answers indicating a one-tailed test were relatively frequent.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{sd}\left(\overline{X}\right) = \dfrac{15}{\sqrt{100}} = 1.5" />,
-    reason: <>The combined sample has <Katex tex="n=100" />, so the sample mean is more tightly concentrated than in part a.</>,
+    reason: <>The test uses the two samples combined, so <Katex tex="n" /> is now <Katex tex="100" />, not <Katex tex="50" />. The mean of <Katex tex="100" /> packets is even more tightly concentrated than in part a.</>,
   },
   {
     working: <Katex display tex="p = 2\times\Pr\left(\overline{X}<372 \mid \mu=375\right)" />,
-    reason: <>The <Katex tex="p" /> value is the probability of a result at least this extreme <em>if <Katex tex="H_0" /> is true</em>. For a two-tailed test the "equally extreme in the other direction" tail counts too, hence the factor of <Katex tex="2" />.</>,
+    reason: <>The <Katex tex="p" /> value is the probability of a sample mean at least as extreme as the one observed, <em>assuming <Katex tex="H_0" /> is true</em>. <Katex tex="372" /> is <Katex tex="3" /> g below <Katex tex="375" />; for a two-tailed test a mean <Katex tex="3" /> g above (<Katex tex="378" />) is just as extreme, so both tails count, hence the factor of <Katex tex="2" />. The diagram below shows the two tails.</>,
   },
   {
     working: <Katex display tex="= 2\times0.02275 \approx 0.0455" />,
@@ -123,34 +137,34 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="p \approx 0.046 < 0.05" />,
-    reason: <>Compare the <Katex tex="p" /> value with the significance level. A small <Katex tex="p" /> means a result this far from <Katex tex="375" /> g would be unlikely if the machine were fine.</>,
+    reason: <>Compare the <Katex tex="p" /> value with the significance level. <Katex tex="p" /> is the chance of a sample mean this far from <Katex tex="375" /> g <em>if the machine were working properly</em>; at under <Katex tex="5\%" />, that is too unlikely to put down to chance.</>,
   },
   {
     working: <Katex display tex="\implies \text{reject } H_0" />,
-    reason: <>The result is significant at the <Katex tex="5\%" /> level.</>,
+    reason: <>The result is significant at the <Katex tex="5\%" /> level, so we reject the claim <Katex tex="\mu = 375" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{No — there is evidence at the } 5\% \text{ level that the machine is not working properly.}}" />,
-    reason: <>The conclusion must be in context and justified by the comparison, not just "reject <Katex tex="H_0" />". Note it is a close call: <Katex tex="0.046" /> only just clears <Katex tex="0.05" />.</>,
+    working: <Katex display tex="\boxed{\begin{gathered} \text{No: there is evidence at the } 5\% \text{ level} \\ \text{that the machine is not} \\ \text{working properly.} \end{gathered}}" />,
+    reason: <>The conclusion must be in context and justified by the comparison, not just &ldquo;reject <Katex tex="H_0" />&rdquo;. It is evidence, not proof, and a close call: <Katex tex="0.046" /> only just clears <Katex tex="0.05" />. In the part d diagram, the observed <Katex tex="372" /> sits just inside the shaded tails.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
-    working: <Katex display tex="H_0 \text{ not rejected} \iff p\ge0.05 \iff \overline{x} \text{ inside the two-tailed acceptance region}" />,
-    reason: <>Rather than testing values one at a time, find the boundary directly — the smallest sample mean that is <em>not</em> far enough from <Katex tex="375" /> to be rejected.</>,
+    working: <Katex display tex="H_0 \text{ not rejected} \iff p \ge 0.05" />,
+    reason: <>Rather than testing values one at a time, find the boundary directly: the sample mean below <Katex tex="375" /> whose <Katex tex="p" /> value is exactly <Katex tex="0.05" />. Anything closer to <Katex tex="375" /> than that is not rejected.</>,
   },
   {
-    working: <Katex display tex="2\times\Pr\left(\overline{X}<\overline{x}\right) = 0.05 \implies \Pr\left(\overline{X}<\overline{x}\right)=0.025" />,
-    reason: <>Split the <Katex tex="5\%" /> evenly between the two tails.</>,
+    working: <Katex display tex="2\Pr\left(\overline{X}<\overline{x}\right) = 0.05 \implies \Pr\left(\overline{X}<\overline{x}\right)=0.025" />,
+    reason: <>Two-tailed: the <Katex tex="5\%" /> is shared between a too-light tail and a too-heavy tail, <Katex tex="2.5\%" /> each. The lower cut-off has only <Katex tex="2.5\%" /> of the area below it.</>,
   },
   {
     working: <Katex display tex="\overline{x} \approx 372.06" />,
-    reason: <>Run the distribution backwards from the area: <Cas fn="invNorm">invNorm(0.025, 375, 1.5)</Cas> does it. Equivalently by hand, <Katex tex="375-1.96\times1.5 = 372.06" /> — the boundary sits <Katex tex="1.96" /> standard deviations below the claimed mean.</>,
+    reason: <>Run the distribution backwards from the area: <Cas fn="invNorm">invNorm(0.025, 375, 1.5)</Cas> does it. Equivalently by hand, <Katex tex="375-1.96\times1.5 = 372.06" />: the boundary sits <Katex tex="1.96" /> standard deviations below the claimed mean.</>,
   },
   {
     working: <Katex display tex="\boxed{\overline{x} \approx 372.1 \text{ grams}}" />,
-    reason: <>One decimal place. Consistent with part e.: the observed <Katex tex="372" /> g sits just below this boundary, which is exactly why <Katex tex="H_0" /> was (narrowly) rejected. The report's most frequent incorrect response, <Katex tex="372.5" />, comes from <Katex tex="\Pr\left(\overline{X}<x_c\right)=0.05" /> — putting the whole <Katex tex="5\%" /> in one tail.</>,
+    reason: <>One decimal place. Check the direction: <Katex tex="372.0" /> is below <Katex tex="372.06" /> and would be rejected (its <Katex tex="p" /> is the <Katex tex="0.046" /> of part d), while <Katex tex="372.1" /> is not, so <Katex tex="372.1" /> is the smallest one-decimal value that survives. Consistent with part e: the observed <Katex tex="372" /> g sits just below this boundary, which is exactly why <Katex tex="H_0" /> was (narrowly) rejected.</>,
   },
 ]
 
@@ -187,6 +201,30 @@ export default function SpecialistQ6_2019Exam2() {
 
       <PartCard letter="a" topic="Sample Mean" marks={2} statement="Assume that the machine is working properly. Find the probability that at least one random sample will have a mean mass between 370 grams and 375 grams. Give your answer correct to three decimal places." examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
+        <Explore title="Why the mean of 50 packets is far more likely to land in 370–375 g than one packet">
+          <NarrowWidget />
+        </Explore>
+        <Explore title="“At least one of two” is everything except “neither”, and why adding p + p double counts">
+          <AtLeastWidget />
+        </Explore>
+        <WrongMethod
+          title="Use the population standard deviation, 15"
+          working={<Katex display tex="\begin{aligned} \Pr(370<X<375) &\approx 0.1306 \\ 1-(0.8694)^2 &\approx 0.244 \end{aligned}" />}
+        >
+          That is the probability for <em>one packet</em>, not for the mean of <Katex tex="50" />. A sample mean
+          varies far less than a single packet, so its standard deviation is{' '}
+          <Katex tex="\tfrac{15}{\sqrt{50}}" />. Catch it by reading the question again: &ldquo;mean mass of the{' '}
+          <Katex tex="50" /> packets&rdquo; is your cue to divide by <Katex tex="\sqrt n" />.
+        </WrongMethod>
+        <WrongMethod
+          title="Two samples, so double the probability"
+          working={<Katex display tex="0.4908+0.4908 \approx 0.982" />}
+        >
+          Adding counts the outcome where <em>both</em> samples land in the band twice (the red square in the
+          diagram), so it overshoots by <Katex tex="0.4908^2 \approx 0.241" />. The size is a warning too: two
+          tries at a <Katex tex="49\%" /> chance can&apos;t make success almost certain, and with three samples
+          &ldquo;adding&rdquo; would give more than <Katex tex="1" />. Use <Katex tex="1-\Pr(\text{neither})" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="b" topic="Difference of Means" marks={3} statement="Assume that the machine is working properly. Find the probability that the means of the two random samples differ by less than 2 grams. Give your answer correct to three decimal places." examinerReport={EXAM_B}>
@@ -200,6 +238,28 @@ export default function SpecialistQ6_2019Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="“Differ by less than 2” is a strip on both sides of the diagonal">
+          <StripWidget />
+        </Explore>
+        <WrongMethod
+          title="“Less than 2” means D < 2"
+          source="Examiner's report"
+          working={<Katex display tex="\Pr(D<2) \approx 0.748" />}
+        >
+          This counts every pair where the second mean is bigger, however big the gap: <Katex tex="D=-8" /> (the
+          means differ by <Katex tex="8" /> g) satisfies <Katex tex="D<2" />. &ldquo;Differ by&rdquo; is about the
+          size of the gap, so it needs both bounds, <Katex tex="-2<D<2" />. Check: a sample-to-sample gap of less
+          than <Katex tex="2" /> g when the gaps have sd <Katex tex="3" /> should be about a coin flip, not{' '}
+          <Katex tex="75\%" />.
+        </WrongMethod>
+        <WrongMethod
+          title="The variables are subtracted, so subtract the variances"
+          working={<Katex display tex="\operatorname{Var}(D) = \tfrac{225}{50}-\tfrac{225}{50} = 0" />}
+        >
+          A variance of <Katex tex="0" /> would mean the two sample means are always identical, which is plainly
+          false. Variances never cancel: the <Katex tex="-1" /> in front of <Katex tex="\overline{X}_2" /> gets squared,
+          so its variance is added.
+        </WrongMethod>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -215,10 +275,32 @@ export default function SpecialistQ6_2019Exam2() {
 
       <PartCard letter="c" topic="Hypotheses" marks={1} statement={<>Write down suitable hypotheses <Katex tex="H_0" /> and <Katex tex="H_1" /> for this test.</>} examinerReport={EXAM_C}>
         <WorkingTable rows={ROWS_C} />
+        <WrongMethod
+          title="The sample came out light, so H₁: μ < 375"
+          source="Examiner's report"
+          working={<Katex display tex="H_0: \mu = 375 \qquad H_1: \mu < 375" />}
+        >
+          That is a one-tailed test. The direction of <Katex tex="H_1" /> comes from the question, not from the
+          data: here it says two-tailed, and &ldquo;working properly&rdquo; can fail by over-filling as well as
+          under-filling. It also changes part d, where a one-tailed <Katex tex="p" /> value would be half the
+          correct one.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="d" topic="p-Value" marks={1} statement={<>Find the <Katex tex="p" /> value for the test, correct to three decimal places.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The p value is both tails: everything at least as far from 375 as 372">
+          <TailsWidget />
+        </Explore>
+        <WrongMethod
+          title="Keep using 15/√50 from part a"
+          working={<Katex display tex="2\Pr\left(\overline{X}<372\right) \text{ with sd } \tfrac{15}{\sqrt{50}} \approx 0.157" />}
+        >
+          The samples have been combined, so the mean is of <Katex tex="100" /> packets and its sd is{' '}
+          <Katex tex="\tfrac{15}{\sqrt{100}} = 1.5" />. With the old sd the <Katex tex="p" /> value is more than three
+          times too big and the conclusion in part e flips. Whenever <Katex tex="n" /> changes mid-question,
+          recompute <Katex tex="\tfrac{\sigma}{\sqrt n}" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e" topic="Conclusion" marks={1} statement={<>Does the mean mass of the sample of 100 packets suggest that the machine is working properly at the <Katex tex="5\%" /> level of significance for a two-tailed test? Justify your answer.</>} examinerReport={EXAM_E}>
@@ -227,6 +309,19 @@ export default function SpecialistQ6_2019Exam2() {
 
       <PartCard letter="f" topic="Critical Value" marks={1} statement={<>What is the smallest value of the mean mass of the sample of 100 packets for <Katex tex="H_0" /> to be not rejected? Give your answer correct to one decimal place.</>} examinerReport={EXAM_F}>
         <WorkingTable rows={ROWS_F} />
+        <Explore title="Why the cut-off has 2.5% below it, not 5%">
+          <CutoffWidget />
+        </Explore>
+        <WrongMethod
+          title="5% level, so 5% in the tail"
+          source="Examiner's report"
+          working={<Katex display tex="\Pr\left(\overline{X}<x_c\right)=0.05 \implies x_c \approx 372.5" />}
+        >
+          That puts the whole <Katex tex="5\%" /> in the lower tail, which is the rule for a one-tailed test. A
+          two-tailed test also rejects means that are too heavy, so the upper tail needs its <Katex tex="2.5\%" />{' '}
+          too. Check with part d: <Katex tex="\overline{x}=372.5" /> has <Katex tex="p \approx 0.096" />, well above{' '}
+          <Katex tex="0.05" />, so it can&apos;t be the edge of the rejection region.
+        </WrongMethod>
       </PartCard>
     </div>
   )

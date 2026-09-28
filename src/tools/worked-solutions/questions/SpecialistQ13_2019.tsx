@@ -9,11 +9,20 @@
 //
 // Question text transcribed from the original paper; VCAA printed no diagram and neither
 // does the stem here (guide §7). Answers checked with sympy and against the VCAA examination
-// report. Solution is original.
+// report (itute also gives D). Solution is original.
+//
+// Extras: interactives/spec-2019-mcq13-force-triangle.tsx builds the force triangle
+// F₁ + F₂ = ma, slides F₂ tail-to-tail with F₁ to show where θ is measured, and toggles the
+// reversed subtraction F₁ − ma (the obtuse angle, option E). WrongMethod: that reversed
+// subtraction, checked in sympy to give exactly π − arccos(1/(2√7)) (13% chose E). No verified
+// slip was found that produces A (9%) or B (16%), so neither is attributed to a particular mistake.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import { Background, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Background, WrongMethod, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const TriangleWidget = lazyWidget(() => import('../interactives/spec-2019-mcq13-force-triangle'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 16, C: 11, D: 51, E: 13 },
@@ -29,7 +38,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{F}_1+\underset{\sim}{F}_2 = m\underset{\sim}{a} = 3\left(\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}\right)" />,
-    reason: <>The one substitution the question needs: the <em>net</em> force is mass times acceleration. Everything from here is vector algebra.</>,
+    reason: <>How would I know to start here? The question gives forces and an acceleration, and the only link between them is that the <em>net</em> force is mass times acceleration. &ldquo;Net&rdquo; means the forces added as vectors. That is the one substitution the question needs; everything from here is vector algebra.</>,
   },
   {
     working: <Katex display tex="= 3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}" />,
@@ -37,7 +46,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{F}_2 = \left(3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}\right)-2\underset{\sim}{j}" />,
-    reason: <>Subtracting the given <Katex tex="\underset{\sim}{F}_1=2\underset{\sim}{j}" />. The forces add as vectors, so the second one is the difference.</>,
+    reason: <>Take the given <Katex tex="\underset{\sim}{F}_1=2\underset{\sim}{j}" /> away from both sides. Drawn tip-to-tail, <Katex tex="\underset{\sim}{F}_2" /> is the side that closes the triangle from the tip of <Katex tex="\underset{\sim}{F}_1" /> to the tip of <Katex tex="m\underset{\sim}{a}" /> (see the diagram below). Check the order by adding back: <Katex tex="\underset{\sim}{F}_1" /> plus your answer must give <Katex tex="m\underset{\sim}{a}" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{F}_2 = 3\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" />,
@@ -53,7 +62,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(\theta) = \frac{\underset{\sim}{F}_1\cdot\underset{\sim}{F}_2}{\left|\underset{\sim}{F}_1\right|\left|\underset{\sim}{F}_2\right|} = \frac{2}{2\times2\sqrt7} = \frac{1}{2\sqrt7}" />,
-    reason: <>Positive, so the angle is already acute — no adjustment by <Katex tex="\pi" /> is needed.</>,
+    reason: <>The angle between two vectors is measured tail-to-tail and lies between <Katex tex="0" /> and <Katex tex="\pi" />. A positive cosine means it is under <Katex tex="\tfrac{\pi}{2}" />, so it is already the acute angle and no adjustment by <Katex tex="\pi" /> is needed. Had the dot product been negative, the acute angle would have been <Katex tex="\pi-\theta" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = \arccos\!\left(\frac{1}{2\sqrt7}\right)}" />,
@@ -92,6 +101,13 @@ export default function SpecialistQ13_2019() {
             <Katex tex="\underset{\sim}{F}_2" />, then use the dot product for the angle. The
             same reading applies to 2018 Exam 2 MCQ 15.
           </p>
+          <p>
+            The angle between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> comes from{' '}
+            <Katex tex="\cos(\theta)=\dfrac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{|\underset{\sim}{a}||\underset{\sim}{b}|}" />,
+            with the vectors placed tail-to-tail, so <Katex tex="0\le\theta\le\pi" />. Two lines meet at two angles,{' '}
+            <Katex tex="\theta" /> and <Katex tex="\pi-\theta" />; &ldquo;the acute angle&rdquo; is whichever is under{' '}
+            <Katex tex="\tfrac{\pi}{2}" />.
+          </p>
         </Background>
       }
       options={[
@@ -103,6 +119,37 @@ export default function SpecialistQ13_2019() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      extras={
+        <>
+          <Explore title="F₂ closes the force triangle, and the angle is measured tail-to-tail">
+            <TriangleWidget />
+          </Explore>
+          <WrongMethod
+            title="Move ma across: F₂ = F₁ − ma"
+            source="13% chose E"
+            working={
+              <>
+                <Katex display tex="\underset{\sim}{F}_2=2\underset{\sim}{j}-\left(3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}\right)=-3\sqrt3\,\underset{\sim}{i}-\underset{\sim}{j}" />
+                <Katex display tex="\cos(\theta)=\frac{(2)(-1)}{2\times2\sqrt7}=-\frac{1}{2\sqrt7}" />
+                <Katex display tex="\theta=\pi-\arccos\left(\tfrac{1}{2\sqrt7}\right)\quad\text{(option E)}" />
+              </>
+            }
+          >
+            <p>
+              Two slips. From <Katex tex="\underset{\sim}{F}_1+\underset{\sim}{F}_2=m\underset{\sim}{a}" />, taking{' '}
+              <Katex tex="\underset{\sim}{F}_1" /> from both sides leaves{' '}
+              <Katex tex="\underset{\sim}{F}_2=m\underset{\sim}{a}-\underset{\sim}{F}_1" />. Check by adding back:{' '}
+              <Katex tex="\underset{\sim}{F}_1+\left(-3\sqrt3\,\underset{\sim}{i}-\underset{\sim}{j}\right)=-3\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" />,
+              which is not <Katex tex="m\underset{\sim}{a}" />.
+            </p>
+            <p>
+              Second, even with a negative cosine, the question asks for the <em>acute</em> angle. The obtuse{' '}
+              <Katex tex="\pi-\arccos\left(\tfrac{1}{2\sqrt7}\right)\approx101^\circ" /> can&apos;t be it; the acute angle
+              between those lines is <Katex tex="\arccos\left(\tfrac{1}{2\sqrt7}\right)" />, which is D again.
+            </p>
+          </WrongMethod>
+        </>
+      }
     />
   )
 }
