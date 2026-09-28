@@ -1,10 +1,19 @@
 // 2017 Mathematical Methods — Exam 1, Question 5 (4 marks).
 // Repeated independent attempts at a password, at most three. Question text transcribed
-// from the original paper (no diagram given). Answers verified with sympy. Solution is
-// original.
+// from the original paper (no diagram given). Answers verified with sympy; itute agrees
+// (27/125, 98/125, 48/125). Solution is original.
+// Widgets: part a. "125 Jacs" stepped through the three attempts (still locked out
+// 125 → 75 → 45 → 27, so (3/5)³; interactives/meth-2017e1-q5a-attempts.tsx); part c. the same
+// dots with the event highlighted and the two wrong ideas from the report — conditioning on
+// the first failure (48/75 = 16/25) and forcing a third attempt (FSF + FFS = 36/125)
+// (interactives/meth-2017e1-q5c-count.tsx). WrongMethod boxes in part c. for both.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const AttemptsWidget = lazyWidget(() => import('../interactives/meth-2017e1-q5a-attempts'))
+const CountWidget = lazyWidget(() => import('../interactives/meth-2017e1-q5c-count'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [24, 76],
@@ -44,46 +53,90 @@ const EXAM_C: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\Pr(\text{fail}) = 1-\tfrac25 = \tfrac35" />,
-    reason: <>One attempt fails with probability <Katex tex="\tfrac35" />.</>,
+    working: <Katex display tex="\Pr(F) = 1-\tfrac25 = \tfrac35" />,
+    reason: (
+      <>
+        Not logging on means Jac never types the right password, so the building block is the
+        chance that <em>one</em> attempt fails — the complement of <Katex tex="\tfrac25" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\Pr(\text{no success}) = \left(\frac35\right)^{3}" />,
-    reason: <>All three attempts must fail, and the attempts are independent, so the probabilities multiply.</>,
+    working: <Katex display tex="\Pr(\text{not log on}) = \Pr(FFF) = \left(\frac35\right)^{3}" />,
+    reason: (
+      <>
+        The only way to miss out is wrong, wrong, wrong — a single path down the tree. Along a
+        path we multiply, and &ldquo;independent&rdquo; is what allows it: the third attempt still
+        fails with probability <Katex tex="\tfrac35" />, whatever happened before.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{27}{125}}" />,
-    reason: <>About <Katex tex="0.216" /> — roughly a one-in-five chance of being locked out, which is plausible for three shots at a <Katex tex="40\%" /> chance each.</>,
+    reason: (
+      <>
+        <Katex tex="3^3=27" /> and <Katex tex="5^3=125" /> — the report says the slips here were
+        in the arithmetic, so check the powers. About <Katex tex="0.216" />: roughly a one-in-five
+        chance of being locked out, sensible for three tries at <Katex tex="40\%" /> each.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\Pr(\text{success}) = 1 - \Pr(\text{no success})" />,
-    reason: <>Success and no success are complements, so this is just part (a) subtracted from <Katex tex="1" />. There is no need to add the three separate success cases.</>,
+    working: <Katex display tex="\Pr(\text{log on}) = 1 - \Pr(\text{not log on})" />,
+    reason: (
+      <>
+        How would I know to use the complement? Logging on has three routes (<Katex tex="S" />,{' '}
+        <Katex tex="FS" />, <Katex tex="FFS" />) but not logging on has only one (
+        <Katex tex="FFF" />), and part (a) has already found it. When the event you want has
+        several routes and its opposite has one, subtract from <Katex tex="1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= 1 - \frac{27}{125}" />,
-    reason: <>Directly from part (a).</>,
+    reason: <>Directly from part (a); think of <Katex tex="1" /> as <Katex tex="\tfrac{125}{125}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{98}{125}}" />,
-    reason: <>In the required form <Katex tex="\tfrac{a}{b}" /> with <Katex tex="a=98" /> and <Katex tex="b=125" /> both positive integers.</>,
+    reason: (
+      <>
+        In the form <Katex tex="\tfrac{a}{b}" /> with <Katex tex="a=98" /> and{' '}
+        <Katex tex="b=125" />. Check by adding the three routes:{' '}
+        <Katex tex="\tfrac25+\tfrac{6}{25}+\tfrac{18}{125}" />{' '}
+        <Katex tex="=\tfrac{50+30+18}{125}=\tfrac{98}{125}" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(FS) = \frac35\times\frac25 = \frac{6}{25}" />,
-    reason: <>Success on the second attempt means fail then succeed — and then Jac stops, so there is no third factor.</>,
+    reason: (
+      <>
+        &ldquo;Logs on at the second attempt&rdquo; is one route: wrong first, right second — and
+        then Jac stops, so there is no third factor. Nothing is &ldquo;given&rdquo; in the question,
+        so this is an ordinary path from the start of the tree, not a conditional probability: the{' '}
+        <Katex tex="\tfrac35" /> for the first failure belongs in it.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(FFS) = \frac35\times\frac35\times\frac25 = \frac{18}{125}" />,
-    reason: <>Success on the third attempt means fail, fail, succeed.</>,
+    reason: <>Logging on at the third attempt is wrong, wrong, right.</>,
   },
   {
     working: <Katex display tex="\Pr(FS)+\Pr(FFS) = \frac{30}{125}+\frac{18}{125}" />,
-    reason: <>The two cases are mutually exclusive, so add. Common denominator <Katex tex="125" />.</>,
+    reason: (
+      <>
+        The two routes can&apos;t both happen — Jac can only get in for the first time once — so
+        add. Write <Katex tex="\tfrac{6}{25}" /> as <Katex tex="\tfrac{30}{125}" /> for a common
+        denominator.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{48}{125}}" />,
@@ -118,20 +171,34 @@ export default function MethodsQ5_2017Exam1() {
         statement={<>What is the probability that Jac does not log on to the computer successfully?</>}
         examinerReport={EXAM_A}
       >
-        <Background title="Why this is not a binomial question">
+        <Background title="A process that stops at the first success">
           <p>
-            It looks binomial — repeated independent trials with a fixed success probability —
-            but it is not, because Jac <em>stops</em> as soon as the password works. There is
-            no such thing as "two successes in three attempts" here.
+            It looks binomial — three independent attempts, each with probability{' '}
+            <Katex tex="\tfrac25" /> — but Jac <em>stops</em> as soon as the password works. So the
+            tree does not have eight three-letter branches; it has four routes, each ending where
+            Jac stops:
+          </p>
+          <Katex
+            display
+            tex="\underbrace{S}_{\frac{50}{125}},\quad \underbrace{FS}_{\frac{30}{125}},\quad \underbrace{FFS}_{\frac{18}{125}},\quad \underbrace{FFF}_{\frac{27}{125}}"
+          />
+          <p>
+            They add to <Katex tex="\tfrac{125}{125}=1" />, as the routes of a tree must. Stopping a
+            branch loses nothing: if Jac typed on after getting in, <Katex tex="FS" /> would just
+            split into <Katex tex="FSS" /> and <Katex tex="FSF" />, and{' '}
+            <Katex tex="\tfrac{6}{25}\cdot\tfrac25+\tfrac{6}{25}\cdot\tfrac35=\tfrac{6}{25}" /> again.
           </p>
           <p>
-            The outcomes are really <Katex tex="S" />, <Katex tex="FS" />,{' '}
-            <Katex tex="FFS" /> and <Katex tex="FFF" /> — four branches of a tree, not four
-            terms of a binomial expansion. The report lists "use of binomial theorem" as a
-            common error in part (c) for exactly this reason.
+            &ldquo;All three attempts fail&rdquo; is <Katex tex="FFF" /> either way, which is why
+            the report can write parts (a) and (b) with <Katex tex="\Pr(X=0)" />. Part (c) is about{' '}
+            <em>when</em> Jac first gets in, which a count of successes can&apos;t describe — the
+            report lists &ldquo;use of binomial theorem&rdquo; as a common error there.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
+        <Explore title="Why it's (3/5)³: each attempt leaves 3 in 5 still locked out">
+          <AttemptsWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -165,6 +232,37 @@ export default function MethodsQ5_2017Exam1() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="Count out of all 125 Jacs, not just the 75 who failed first">
+          <CountWidget />
+        </Explore>
+        <WrongMethod
+          title="Jac has already failed once, so from there it's Pr(S) + Pr(FS)"
+          source="Examiner's report"
+          working={<Katex display tex="\frac25+\frac35\times\frac25=\frac{16}{25}" />}
+        >
+          This treats the first failure as <em>given</em> — the conditional probability the report
+          lists as a common error. It equals <Katex tex="\tfrac{48}{125}\div\tfrac35" />: the chance of
+          getting in later <em>among the Jacs who failed first</em>. But the question is asked from the
+          start, before Jac types anything, and says nothing like &ldquo;given&rdquo;. A size check
+          catches it: <Katex tex="\tfrac{16}{25}=\tfrac{80}{125}" />, yet Jac logs on at all with
+          probability <Katex tex="\tfrac{98}{125}" /> and <Katex tex="\tfrac{50}{125}" /> of that is the
+          first attempt, so at most <Katex tex="\tfrac{48}{125}" /> is left for the second or third.
+        </WrongMethod>
+        <WrongMethod
+          title="Three attempts, so the routes are F S F and F F S"
+          source="Examiner's report"
+          working={<Katex display tex="\Pr(FSF)+\Pr(FFS)=\tfrac{18}{125}+\tfrac{18}{125}=\tfrac{36}{125}" />}
+        >
+          Giving every route three letters is the binomial habit (the same{' '}
+          <Katex tex="\tfrac{36}{125}" /> comes from <Katex tex="\Pr(X=1)-\Pr(SFF)" />), and it is one
+          form of what the report describes as &ldquo;not realising that once Jac logged in, there was
+          no need to keep attempting&rdquo;. After <Katex tex="FS" /> Jac is in and stops, so{' '}
+          <Katex tex="FS" /> is a complete route worth <Katex tex="\tfrac{30}{125}" />. Forcing a third
+          letter splits it into <Katex tex="FSF" /> (<Katex tex="\tfrac{18}{125}" />) and{' '}
+          <Katex tex="FSS" /> (<Katex tex="\tfrac{12}{125}" />), and keeping only <Katex tex="FSF" />{' '}
+          throws away <Katex tex="\tfrac{12}{125}" /> of genuine second-attempt log-ons. A branch of a
+          tree ends when the process ends.
+        </WrongMethod>
       </PartCard>
     </div>
   )
