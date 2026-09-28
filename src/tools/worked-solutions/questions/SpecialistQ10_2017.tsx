@@ -105,7 +105,12 @@ const ROWS: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="f(b)=-1<0 \implies |f(x)|=-f(x) \ \text{ for } x \text{ near } b" />,
+    working: (
+      <>
+        <Katex display tex="f(b)=-1<0" />
+        <Katex display tex="\implies |f(x)|=-f(x) \ \text{ for } x \text{ near } b" />
+      </>
+    ),
     reason: (
       <>
         <Katex tex="|f|" /> leaves the graph alone where <Katex tex="f\ge0" /> and reflects it in the{' '}
@@ -175,7 +180,8 @@ export default function SpecialistQ10_2017() {
           </p>
           <Katex display tex="f(a)=1,\ f(-a)=-1" className="my-1" />
           <Katex display tex="f(b)=-1,\ f(-b)=1" className="my-1" />
-          <Katex display tex="\text{and} \quad f''(x)=\frac{(x+a)^2(x-b)}{g(x)}, \quad \text{where } g(x)<0" className="my-1" />
+          <Katex display tex="\text{and} \quad f''(x)=\frac{(x+a)^2(x-b)}{g(x)}," className="my-1" />
+          <Katex display tex="\text{where } g(x)<0" className="my-1" />
           <p className="mt-2">The coordinates of any points of inflection of <Katex tex="|f(x)|" /> are</p>
         </>
       }
