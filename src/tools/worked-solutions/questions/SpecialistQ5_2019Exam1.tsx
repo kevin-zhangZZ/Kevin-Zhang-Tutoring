@@ -6,12 +6,26 @@
 // gridlines themselves: the grid was measured programmatically from the crop, giving x = 0 at
 // column 346, y = 0 at row 684.5, 190 px per π/2 horizontally and 142.25 px per unit vertically.
 // Each predicted gridline position was checked back against the measured one to within ~1.5 px.
-// Cross-checked against the VCAA examination report and itute's independent solutions.
+// Cross-checked against the VCAA examination report and itute's independent solutions; all three
+// answers re-derived and confirmed with sympy.
+// Interactives: a.ii. slides a tangent along f with f'(x) = −sin x (2cos x + 1) drawn underneath,
+// so the three flat spots line up with the zeros of the two factors, and a toggle extends the curve
+// past the domain to show why x = 0 and 2π (where sin x = 0 too) are excluded; b. traces y = 1/f(x)
+// point by point on VCAA's grid (fifths of a unit), with a toggle testing the "flip f over y = 1"
+// idea (y = 2 − f) against it.
+// Report note: in 5b. the report lists "the intersection points (π/2, 1) and (4π/3, 4/3)". Only
+// the first is a crossing of the two graphs — (4π/3, 4/3) is a turning point of the new graph —
+// so the reasoning below quotes both as points the graph must pass through, without guessing
+// what was meant.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './spec-2019e1-q5-graph.png'
+
+const FlatTangentWidget = lazyWidget(() => import('../interactives/spec-2019e1-q5aii-flat-tangent'))
+const ReciprocalWidget = lazyWidget(() => import('../interactives/spec-2019e1-q5b-reciprocal'))
 
 // y = 1/f(x) sampled at 97 points across [0, 2π] and mapped into the cropped image's pixel
 // grid with the calibration above. Sits on top of the real VCAA figure as the part b. answer.
@@ -101,7 +115,12 @@ const ROWS_AI: WorkingRow[] = [
     reason: <>Writing <Katex tex="\cos^2(x)" /> as a square makes the chain rule visible: it is "something squared", where the something is <Katex tex="\cos(x)" />.</>,
   },
   {
-    working: <Katex display tex="\dfrac{d}{dx}\bigl(\cos(x)\bigr)^2 = 2\cos(x)\times\bigl(-\sin(x)\bigr) = -2\cos(x)\sin(x)" />,
+    working: (
+      <>
+        <Katex display tex="\dfrac{d}{dx}\bigl(\cos(x)\bigr)^2 = 2\cos(x)\times\bigl(-\sin(x)\bigr)" />
+        <Katex display tex="= -2\cos(x)\sin(x)" />
+      </>
+    ),
     reason: <>Chain rule: bring the power down, keep the inside, times the derivative of the inside.</>,
   },
   {
@@ -109,19 +128,19 @@ const ROWS_AI: WorkingRow[] = [
     reason: <>Adding the derivative of <Katex tex="\cos(x)" />, which is <Katex tex="-\sin(x)" />; the constant <Katex tex="1" /> differentiates to zero.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(x) = -2\cos(x)\sin(x)-\sin(x) = -\sin(x)\bigl(2\cos(x)+1\bigr)}" />,
-    reason: <>Both terms share a factor of <Katex tex="-\sin(x)" />. Factorising is optional for this mark but makes part a.ii. much easier — a product is zero exactly when one of its factors is. The report also accepts <Katex tex="-\sin(2x)-\sin(x)" />, but notes that using a double angle formula was not always done correctly nor helpful for the next part.</>,
+    working: <Katex display tex="\boxed{f'(x) = -\sin(x)\bigl(2\cos(x)+1\bigr)}" />,
+    reason: <>Both terms share a factor of <Katex tex="-\sin(x)" />. Factorising is optional for this mark (the unfactorised line above is already a full answer) but makes part a.ii. much easier — a product is zero exactly when one of its factors is. The report also accepts <Katex tex="-\sin(2x)-\sin(x)" />, but notes that using a double angle formula was not always done correctly nor helpful for the next part.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 0 \implies -\sin(x)\bigl(2\cos(x)+1\bigr)=0" />,
-    reason: <>Turning points occur where the gradient is zero.</>,
+    reason: <>At a turning point the curve stops going down and starts going up (or the reverse), so for that instant the tangent is flat: gradient zero. &ldquo;Hence&rdquo; is the cue to use part a.i., and its factorised form is exactly what you want here.</>,
   },
   {
     working: <Katex display tex="\sin(x)=0 \quad \text{or} \quad \cos(x)=-\dfrac12" />,
-    reason: <>Set each factor to zero separately.</>,
+    reason: <>Null factor law: a product is zero only when one of its factors is zero. This is why factorising in part a.i. pays off: one hard equation becomes two easy ones.</>,
   },
   {
     working: (
@@ -144,13 +163,18 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(\dfrac{2\pi}{3},\ \dfrac34\right),\quad (\pi,\ 1),\quad \left(\dfrac{4\pi}{3},\ \dfrac34\right)}" />,
-    reason: <>Two minimums either side of a small local maximum — exactly the shape drawn in the given graph, which is a free check on the answer.</>,
+    reason: <>Which is which? Read it off the given graph: two dips a little below <Katex tex="1" /> (height <Katex tex="\tfrac34" />, at <Katex tex="x\approx2.1" /> and <Katex tex="4.2" />) either side of a small bump at <Katex tex="(\pi,1)" />. The question only asks for coordinates, but checking that each one sits on a flat spot of the graph is a free check.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x)\ge\dfrac34>0 \ \text{ for all } x \implies \dfrac{1}{f(x)} \text{ is defined everywhere, with no asymptotes}" />,
+    working: (
+      <>
+        <Katex display tex="f(x)\ge\dfrac34>0 \ \text{ for all } x" />
+        <Katex display tex="\implies \dfrac{1}{f(x)} \text{ has no asymptotes}" />
+      </>
+    ),
     reason: <>The first thing to settle for any reciprocal graph: does the original ever hit zero? Here it doesn't — its smallest value is <Katex tex="\tfrac34" /> — so the reciprocal graph is a single unbroken curve.</>,
   },
   {
@@ -172,16 +196,31 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Invert each <Katex tex="y" />-coordinate from part a.ii. The two minimums of <Katex tex="f" /> become maximums at height <Katex tex="\tfrac43" />, and the local maximum at <Katex tex="(\pi,1)" /> becomes a local minimum — still at height <Katex tex="1" />, since <Katex tex="1" /> is its own reciprocal.</>,
   },
   {
-    working: <Katex display tex="f(0)=f(2\pi)=3 \implies \text{endpoints } \left(0,\ \tfrac13\right) \text{ and } \left(2\pi,\ \tfrac13\right)" />,
+    working: (
+      <>
+        <Katex display tex="f(0)=f(2\pi)=3" />
+        <Katex display tex="\implies \text{endpoints } \left(0,\ \tfrac13\right),\ \left(2\pi,\ \tfrac13\right)" />
+      </>
+    ),
     reason: <>The endpoints must be labelled too, and they are <em>closed</em> (filled) dots — the domain includes them, so no open circles.</>,
   },
   {
-    working: <Katex display tex="f(x)=1 \iff \cos^2(x)+\cos(x)=0 \iff \cos(x)\bigl(\cos(x)+1\bigr)=0" />,
+    working: (
+      <>
+        <Katex display tex="f(x)=1 \iff \cos^2(x)+\cos(x)=0" />
+        <Katex display tex="\iff \cos(x)\bigl(\cos(x)+1\bigr)=0" />
+      </>
+    ),
     reason: <>Where does the new graph cross the old one? Exactly where <Katex tex="f=\tfrac1f" />, i.e. where <Katex tex="f=1" /> (since <Katex tex="f>0" />).</>,
   },
   {
-    working: <Katex display tex="\cos(x)=0 \implies x=\tfrac{\pi}{2},\ \tfrac{3\pi}{2}; \qquad \cos(x)=-1 \implies x=\pi" />,
-    reason: <>So the two curves meet at <Katex tex="\left(\tfrac{\pi}{2},1\right)" />, <Katex tex="(\pi,1)" /> and <Katex tex="\left(\tfrac{3\pi}{2},1\right)" /> — a useful accuracy check when drawing. The report notes graphs not passing through "the intersection points <Katex tex="\left(\tfrac{\pi}{2},1\right)" /> and <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" />"; the second is a slip for <Katex tex="\left(\tfrac{3\pi}{2},1\right)" />, since <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" /> is a turning point of the new graph, not a crossing.</>,
+    working: (
+      <>
+        <Katex display tex="\cos(x)=0 \implies x=\tfrac{\pi}{2},\ \tfrac{3\pi}{2}" />
+        <Katex display tex="\cos(x)=-1 \implies x=\pi" />
+      </>
+    ),
+    reason: <>So the two curves meet at <Katex tex="\left(\tfrac{\pi}{2},1\right)" />, <Katex tex="(\pi,1)" /> and <Katex tex="\left(\tfrac{3\pi}{2},1\right)" /> — a useful accuracy check when drawing, because these are points you can place exactly. The report notes graphs not passing through <Katex tex="\left(\tfrac{\pi}{2},1\right)" /> and <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" />, calling both &ldquo;intersection points&rdquo;; strictly, only the first is a crossing of the two graphs (the second is a turning point of the new graph), but a correct sketch must pass through both.</>,
   },
   {
     working: <ReciprocalOverlay />,
@@ -193,7 +232,11 @@ const ROWS_B: WorkingRow[] = [
         between <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> — much flatter than{' '}
         <Katex tex="f" />, because taking reciprocals squashes the tall value <Katex tex="3" /> down
         to <Katex tex="\tfrac13" />. The report notes poor estimation of the heights{' '}
-        <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> against the given scale.
+        <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> against the given scale. The trick is
+        to read the grid first: VCAA's has five lines per unit, so each line is <Katex tex="0.2" />.
+        Then <Katex tex="\tfrac13\approx0.33" /> is two-thirds of the way from <Katex tex="0.2" /> to{' '}
+        <Katex tex="0.4" />, and <Katex tex="\tfrac43\approx1.33" /> two-thirds of the way from{' '}
+        <Katex tex="1.2" /> to <Katex tex="1.4" />.
       </>
     ),
   },
@@ -218,7 +261,43 @@ export default function SpecialistQ5_2019Exam1() {
       </PartCard>
 
       <PartCard letter="a.ii" topic="Turning Points" marks={2} statement={<>Hence, find the coordinates of the turning points of the graph in the interval <Katex tex="(0,2\pi)" />.</>} examinerReport={EXAM_AII}>
+        <Background>
+          <p>
+            A <b>turning point</b> is where a graph changes from increasing to decreasing (a local
+            maximum) or from decreasing to increasing (a local minimum). On a smooth curve the
+            tangent there is horizontal, so <Katex tex="f'(x)=0" />.
+          </p>
+          <p>
+            Brackets matter: <Katex tex="(0,2\pi)" /> is an <em>open</em> interval, meaning{' '}
+            <Katex tex="0<x<2\pi" /> — the endpoints are not included. Compare the domain{' '}
+            <Katex tex="0\le x\le2\pi" />, which does include them.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_AII} />
+        <Explore title="A turning point is where the tangent goes flat">
+          <FlatTangentWidget />
+        </Explore>
+        <WrongMethod
+          title="sin(x) = 0 gives x = 0, π, 2π, so there are five turning points"
+          source="Examiner's report"
+          working={<Katex display tex="(0,3),\ \left(\tfrac{2\pi}{3},\tfrac34\right),\ (\pi,1),\ \left(\tfrac{4\pi}{3},\tfrac34\right),\ (2\pi,3)" />}
+        >
+          The question asks about the open interval <Katex tex="(0,2\pi)" />, and round brackets
+          leave out <Katex tex="0" /> and <Katex tex="2\pi" />. They are also the ends of the domain:
+          the graph starts and stops there rather than turning around. Before solving, write the
+          interval next to your equation, then cross off any solution outside it.
+        </WrongMethod>
+        <WrongMethod
+          title="Factorise as −sin(x)(2cos(x) − 1)"
+          working={<Katex display tex="\cos(x)=\tfrac12 \implies x=\tfrac{\pi}{3},\ \tfrac{5\pi}{3},\quad f\!\left(\tfrac{\pi}{3}\right)=\tfrac74" />}
+        >
+          A sign slip when taking out <Katex tex="-\sin(x)" />: expanding{' '}
+          <Katex tex="-\sin(x)\bigl(2\cos(x)-1\bigr)" /> gives{' '}
+          <Katex tex="-2\sin(x)\cos(x)+\sin(x)" />, which is not <Katex tex="f'(x)" />. Two
+          checks catch it: expand your factorised form back out, and look at the given graph — at{' '}
+          <Katex tex="x=\tfrac{\pi}{3}\approx1.05" /> it is plunging steeply at height{' '}
+          <Katex tex="\tfrac74" />, nowhere near flat.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -246,6 +325,23 @@ export default function SpecialistQ5_2019Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Build 1/f one height at a time: big becomes small, and 1 stays put">
+          <ReciprocalWidget />
+        </Explore>
+        <WrongMethod title="(π, 1) doesn't move, so it doesn't need a label" source="Examiner's report">
+          It is still a turning point of the new graph — a local <em>minimum</em> now, because
+          either side of <Katex tex="\pi" /> the values of <Katex tex="f" /> are just below{' '}
+          <Katex tex="1" />, so their reciprocals are just above <Katex tex="1" />. The question
+          asks for every turning point to be labelled, so <Katex tex="(\pi,1)" /> needs its
+          coordinates too.
+        </WrongMethod>
+        <WrongMethod title="Draw the endpoints as open circles" source="Examiner's report">
+          The domain is <Katex tex="0\le x\le2\pi" /> — &ldquo;less than or <em>equal to</em>&rdquo; —
+          and <Katex tex="f(0)=f(2\pi)=3" /> is not zero, so <Katex tex="\tfrac1f" /> exists at both
+          ends: <Katex tex="\left(0,\tfrac13\right)" /> and <Katex tex="\left(2\pi,\tfrac13\right)" />{' '}
+          belong on the graph as filled dots, matching the filled dots on VCAA's own curve. Open
+          circles are only for a point the graph approaches but doesn't include.
+        </WrongMethod>
       </PartCard>
     </div>
   )
