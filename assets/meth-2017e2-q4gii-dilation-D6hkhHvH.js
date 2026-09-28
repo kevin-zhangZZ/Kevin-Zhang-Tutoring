@@ -1,0 +1,1 @@
+import{j as i}from"./index-CjKE8x54.js";import{DilationView as r}from"./meth-2017e2-q4gi-dilation-BSqMGlzB.js";import"./kit-gkxBZxDA.js";function m(){return i.jsx(r,{inverse:!0})}export{m as default};

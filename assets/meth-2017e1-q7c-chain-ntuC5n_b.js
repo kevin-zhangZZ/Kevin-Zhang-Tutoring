@@ -1,0 +1,1 @@
+import{j as r}from"./index-CjKE8x54.js";import{Chain as t}from"./meth-2017e1-q7bii-chain-CS846wE5.js";import"./kit-gkxBZxDA.js";function m(){return r.jsx(t,{start:"h",compare:!0})}export{m as default};
