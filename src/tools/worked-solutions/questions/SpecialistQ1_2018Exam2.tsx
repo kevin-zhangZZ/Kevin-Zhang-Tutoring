@@ -4,13 +4,28 @@
 // supplied blank axes for parts b. and e.iii. (−4.5 to 4.5 on both axes, gridlines every 0.5),
 // so both curves are this site's own answer-sketches (matplotlib), drawn to VCAA's printed
 // grid and living in the solution
-// rather than the stem (guide §7). Answers checked in sympy and against the VCAA
-// examination report. Solution is original.
+// rather than the stem (guide §7). Answers checked in sympy (f′(±1/2) = ±8√7/7 from both the
+// chain rule and the A/√(2−x²) forms; one-sided derivative limits ±2√2 at x = 0) and against
+// the VCAA examination report and itute. Solution is original.
+//
+// Interactives: a. the parabola u = x² − 1 inside arcsin's band −1 ≤ u ≤ 1 (domain closed at
+// ±√2, range [−π, π]); b. zoom in on (0, −π) and (√2, π) against a smooth U through the same
+// points — the corner never flattens, the ends are vertical; e.i. a tangent sliding along f,
+// splitting into two at x = 0 and turning vertical at ±√2, with dom f′ drawn as a strip;
+// e.iii. g = f′·√(2 − x²) read off as a product at any x, with f′ toggled on to show it is a
+// different graph. WrongMethod boxes carry the report's named errors (round brackets in a.,
+// the turning point in b., the form in c., x = 0 and ±√2 in e.i., sketching f′ in e.iii.).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import arcsinSrc from './spec-2018e2-q1b-arcsin.png'
 import piecewiseSrc from './spec-2018e2-q1e-piecewise.png'
+
+const BandWidget = lazyWidget(() => import('../interactives/spec-2018e2-q1a-band'))
+const CornerWidget = lazyWidget(() => import('../interactives/spec-2018e2-q1b-corner'))
+const TangentWidget = lazyWidget(() => import('../interactives/spec-2018e2-q1ei-tangent'))
+const ProductWidget = lazyWidget(() => import('../interactives/spec-2018e2-q1eiii-product'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [16, 16, 68],
@@ -90,19 +105,19 @@ const EXAM_EIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le x^2-1 \le 1" />,
-    reason: <><Katex tex="\sin^{-1}(u)" /> is only defined for <Katex tex="-1\le u\le1" />, and here <Katex tex="u=x^2-1" />.</>,
+    reason: <>For a composite, the domain comes from what the <em>outer</em> function will accept. <Katex tex="\sin^{-1}(u)" /> asks &ldquo;which angle has sine <Katex tex="u" />?&rdquo;, and sine never leaves <Katex tex="[-1,1]" />, so the input must lie in <Katex tex="-1\le u\le1" />. Here that input is <Katex tex="u=x^2-1" />.</>,
   },
   {
     working: <Katex display tex="0 \le x^2 \le 2 \implies -\sqrt2 \le x \le \sqrt2" />,
-    reason: <>Adding <Katex tex="1" /> throughout. The left inequality <Katex tex="x^2\ge0" /> is automatic, so only <Katex tex="x^2\le2" /> bites.</>,
+    reason: <>Adding <Katex tex="1" /> throughout. The left inequality <Katex tex="x^2\ge0" /> is automatic — the parabola <Katex tex="x^2-1" /> never dips below <Katex tex="-1" /> — so only <Katex tex="x^2\le2" /> bites. Picture <Katex tex="y=x^2" /> under the line <Katex tex="y=2" /> rather than &ldquo;square-rooting both sides&rdquo;, which is where signs get lost.</>,
   },
   {
     working: <Katex display tex="\boxed{D = \left[-\sqrt2,\ \sqrt2\right]}" />,
     reason: <><em>Closed</em> brackets: <Katex tex="x=\pm\sqrt2" /> gives <Katex tex="\sin^{-1}(1)" />, which is perfectly defined. The report names round brackets here as a common error, along with writing <Katex tex="\pm1.41" /> instead of the exact surd.</>,
   },
   {
-    working: <Katex display tex="x^2-1 \text{ covers } [-1,1] \implies \sin^{-1}(x^2-1) \text{ covers } \left[-\frac{\pi}{2},\frac{\pi}{2}\right]" />,
-    reason: <>As <Katex tex="x" /> runs across the domain, the inner expression sweeps the whole of <Katex tex="[-1,1]" />, so the inverse sine sweeps its whole range.</>,
+    working: <Katex display tex="\begin{aligned} &x^2-1 \text{ covers } [-1,1] \\ \implies\ &\sin^{-1}(x^2-1) \text{ covers } \left[-\frac{\pi}{2},\frac{\pi}{2}\right] \end{aligned}" />,
+    reason: <>Range comes from the inside out. As <Katex tex="x" /> goes from <Katex tex="0" /> to <Katex tex="\sqrt2" />, the inner value climbs continuously from <Katex tex="-1" /> to <Katex tex="1" /> — the whole of <Katex tex="[-1,1]" /> — and <Katex tex="\sin^{-1}" /> is increasing, so it sweeps its whole range from <Katex tex="-\tfrac{\pi}{2}" /> to <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Range} = \left[-\pi,\ \pi\right]}" />,
@@ -113,7 +128,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(0) = 2\sin^{-1}(-1) = 2\left(-\frac{\pi}{2}\right) = -\pi" />,
-    reason: <>The <Katex tex="y" />-intercept, and also the minimum: <Katex tex="x^2-1" /> is smallest at <Katex tex="x=0" />.</>,
+    reason: <>The <Katex tex="y" />-intercept, and also the minimum: <Katex tex="x^2-1" /> is smallest at <Katex tex="x=0" />, and <Katex tex="\sin^{-1}" /> is increasing, so <Katex tex="f" /> is smallest where its input is. Also worth a moment: <Katex tex="f(\pm1)=2\sin^{-1}(0)=0" />, so the graph crosses the <Katex tex="x" />-axis at <Katex tex="x=\pm1" /> — two more points to place on the grid.</>,
   },
   {
     working: <Katex display tex="f\!\left(\pm\sqrt2\right) = 2\sin^{-1}(1) = \pi" />,
@@ -135,7 +150,7 @@ const ROWS_C: WorkingRow[] = [
     reason: <>Chain rule, with <Katex tex="\tfrac{d}{du}\sin^{-1}(u)=\tfrac{1}{\sqrt{1-u^2}}" /> and <Katex tex="\tfrac{du}{dx}=2x" />.</>,
   },
   {
-    working: <Katex display tex="1-\left(x^2-1\right)^2 = 1-\left(x^4-2x^2+1\right) = 2x^2-x^4 = x^2\left(2-x^2\right)" />,
+    working: <Katex display tex="\begin{aligned} 1-\left(x^2-1\right)^2 &= 1-\left(x^4-2x^2+1\right) \\ &= 2x^2-x^4 \\ &= x^2\left(2-x^2\right) \end{aligned}" />,
     reason: <>Expanding and factorising the expression under the root. Pulling out the <Katex tex="x^2" /> is the key step.</>,
   },
   {
@@ -155,7 +170,7 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="x<0 \implies |x| = -x" />,
-    reason: <>The only thing that changes.</>,
+    reason: <>Everything in part c. up to <Katex tex="\tfrac{4x}{|x|\sqrt{2-x^2}}" /> holds for any <Katex tex="x\ne0" />; only the absolute value changes. For negative <Katex tex="x" />, <Katex tex="|x|" /> is the positive number <Katex tex="-x" /> — e.g. <Katex tex="|-0.5|=0.5=-(-0.5)" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{4x}{-x\sqrt{2-x^2}}" />,
@@ -170,11 +185,11 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = \frac{4x}{|x|\sqrt{2-x^2}}" />,
-    reason: <>The single expression covering both sides.</>,
+    reason: <>Parts c. and d. in one expression. The question splitting them into <Katex tex="x>0" /> and <Katex tex="x<0" /> is itself a hint that <Katex tex="x=0" /> needs separate thought. Now list every <Katex tex="x" /> at which this fails to be a real number.</>,
   },
   {
     working: <Katex display tex="|x| \ne 0 \implies x \ne 0" />,
-    reason: <>The derivative does not exist at <Katex tex="x=0" />: the left and right limits are <Katex tex="-2\sqrt2" /> and <Katex tex="+2\sqrt2" />, which disagree. The report says including <Katex tex="x=0" /> was the most common error.</>,
+    reason: <>The derivative does not exist at <Katex tex="x=0" />. Let <Katex tex="x\to0" /> in parts d. and c.: the slope from the left tends to <Katex tex="\tfrac{-4}{\sqrt2}=-2\sqrt2" /> and from the right to <Katex tex="2\sqrt2" />. They disagree, so there is no single tangent — that is the corner in part b. (<Katex tex="f" /> itself is fine there: <Katex tex="f(0)=-\pi" />.) The report says including <Katex tex="x=0" /> was the most common error.</>,
   },
   {
     working: <Katex display tex="2-x^2 > 0 \implies -\sqrt2 < x < \sqrt2" />,
@@ -182,14 +197,18 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(-\sqrt2,\ 0\right)\cup\left(0,\ \sqrt2\right)}" />,
-    reason: <>Only <Katex tex="21\%" /> of students got this mark. The domain of a derivative is always a subset of the function's own domain, and here it is strictly smaller at three separate points.</>,
+    reason: <>Only <Katex tex="21\%" /> of students got this mark. The domain of a derivative is always a subset of the function's own domain, and here it is strictly smaller at three separate points. The routine for next time: start from dom <Katex tex="f" />, then remove every point where the graph has a corner or a vertical tangent — you can see both on the graph from part b.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
-    working: <Katex display tex="f'(x) = \frac{g(x)}{\sqrt{2-x^2}}" />,
-    reason: <>Comparing with parts c. and d., where the numerators were <Katex tex="4" /> and <Katex tex="-4" />.</>,
+    working: <Katex display tex="g(x) = f'(x)\sqrt{2-x^2} = \frac{4x}{|x|}" />,
+    reason: <><Katex tex="g" /> is whatever sits on top once <Katex tex="f'" /> is written over <Katex tex="\sqrt{2-x^2}" />, so multiply the root back. That cancels the root in <Katex tex="\tfrac{4x}{|x|\sqrt{2-x^2}}" /> and leaves <Katex tex="\tfrac{4x}{|x|}" />: <Katex tex="4" /> times the sign of <Katex tex="x" />.</>,
+  },
+  {
+    working: <Katex display tex="x>0: \ \frac{4x}{x} = 4, \qquad x<0: \ \frac{4x}{-x} = -4" />,
+    reason: <>These are exactly the numerators <Katex tex="A=4" /> and <Katex tex="B=-4" /> from parts c. and d.</>,
   },
   {
     working: <Katex display tex="\boxed{g(x) = \begin{cases} 4 & 0<x<\sqrt2 \\[2pt] -4 & -\sqrt2<x<0 \end{cases}}" />,
@@ -221,10 +240,40 @@ export default function SpecialistQ1_2018Exam2() {
 
       <PartCard letter="a" topic="Domain & Range" marks={2} statement={<>Determine the maximal domain <Katex tex="D" /> and the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
+        <Explore title="Why the domain stops at ±√2 — and includes it">
+          <BandWidget />
+        </Explore>
+        <WrongMethod
+          title="Use round brackets: D = (−√2, √2)"
+          source="Examiner's report"
+          working={<Katex display tex="D = \left(-\sqrt2,\ \sqrt2\right)" />}
+        >
+          Round brackets say <Katex tex="x=\pm\sqrt2" /> is left out. But there the input is{' '}
+          <Katex tex="(\sqrt2)^2-1=1" />, on the edge of <Katex tex="[-1,1]" />, not outside it:{' '}
+          <Katex tex="\sin^{-1}(1)=\tfrac{\pi}{2}" /> exists, so <Katex tex="f(\pm\sqrt2)=\pi" />. The
+          inequality was <Katex tex="\le" />, so the brackets are square. Check an endpoint by
+          substituting it: if the function gives a real number there, it belongs.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="b" topic="Sketch Graph" marks={3} statement={<>Sketch the graph of <Katex tex="y=f(x)" /> on the axes below, labelling any endpoints and the <Katex tex="y" />-intercept with their coordinates.</>} examinerReport={EXAM_B}>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Zoom in: a corner never flattens into a turning point">
+          <CornerWidget />
+        </Explore>
+        <WrongMethod
+          title="It's a U shape, so draw a smooth turning point at (0, −π)"
+          source="Examiner's report"
+          working={<Katex display tex="f'(0)=0 \implies \text{smooth minimum}" />}
+        >
+          A turning point needs a slope of <Katex tex="0" />, but the slopes either side of{' '}
+          <Katex tex="x=0" /> tend to <Katex tex="-2\sqrt2" /> and <Katex tex="2\sqrt2" /> (parts d. and
+          c.), nowhere near <Katex tex="0" />. The curve comes down to <Katex tex="(0,-\pi)" /> and goes
+          straight back up: a sharp point. The same check fixes the ends, where the slope blows up
+          and the curve meets <Katex tex="x=\pm\sqrt2" /> vertically. On CAS, set the window to the
+          exam's scale (the report's advice), then zoom in on the <Katex tex="y" />-intercept: a smooth
+          minimum flattens out, a corner never does.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="c" topic="Chain Rule" marks={1} statement={<>Find <Katex tex="f'(x)" /> for <Katex tex="x>0" />, expressing your answer in the form <Katex tex="f'(x)=\dfrac{A}{\sqrt{2-x^2}}" />, <Katex tex="A\in R" />.</>} examinerReport={EXAM_C}>
@@ -242,22 +291,100 @@ export default function SpecialistQ1_2018Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
+        <WrongMethod
+          title="Stop once the chain rule is done"
+          source="Examiner's report"
+          working={<Katex display tex="f'(x)=\frac{4x}{\sqrt{2x^2-x^4}}" />}
+        >
+          Correct, but not in the form <Katex tex="\tfrac{A}{\sqrt{2-x^2}}" /> with a real number on
+          top, which the report notes some students did not reach. The form tells you the{' '}
+          <Katex tex="x" /> on top must cancel, so factor <Katex tex="x^2" /> out of the root:{' '}
+          <Katex tex="\sqrt{x^2(2-x^2)}=|x|\sqrt{2-x^2}" />, and for <Katex tex="x>0" /> that{' '}
+          <Katex tex="|x|" /> is just <Katex tex="x" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="d" topic="Derivative" marks={1} statement={<>Write down <Katex tex="f'(x)" /> for <Katex tex="x<0" />, expressing your answer in the form <Katex tex="f'(x)=\dfrac{B}{\sqrt{2-x^2}}" />, <Katex tex="B\in R" />.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
+        <WrongMethod
+          title="√(x²) = x, so the answer is the same as part c."
+          working={<Katex display tex="f'(x)=\frac{4x}{x\sqrt{2-x^2}}=\frac{4}{\sqrt{2-x^2}}" />}
+        >
+          That gives a positive slope for every negative <Katex tex="x" />, but the graph in part b. is{' '}
+          <em>falling</em> to the left of the <Katex tex="y" />-axis — your sketch catches the slip.{' '}
+          <Katex tex="\sqrt{x^2}" /> is never negative, so here it equals <Katex tex="|x|=-x" />, and{' '}
+          <Katex tex="B=-4" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e.i" topic="Maximal Domain" marks={1} statement={<>The derivative <Katex tex="f'(x)" /> can be expressed in the form <Katex tex="f'(x)=\dfrac{g(x)}{\sqrt{2-x^2}}" /> over its maximal domain. Find the maximal domain of <Katex tex="f'" />.</>} examinerReport={EXAM_EI}>
+        <Background>
+          <p>
+            <Katex tex="f'(a)" /> is the slope of the single tangent line at <Katex tex="x=a" />, so it
+            exists only when the slopes approaching from the left and from the right settle on the{' '}
+            <em>same, finite</em> number. Two things break this: a <b>corner</b>, where the two sides
+            give different slopes, and a <b>vertical tangent</b>, where the slope grows without bound.
+            By VCE convention a derivative is also not defined at an endpoint of the function's domain;
+            at <Katex tex="x=\pm\sqrt2" /> both reasons apply.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_EI} />
+        <Explore title="The derivative exists only where there is one non-vertical tangent">
+          <TangentWidget />
+        </Explore>
+        <WrongMethod
+          title="The only danger is the square root, so the domain is (−√2, √2)"
+          source="Examiner's report"
+          working={<Katex display tex="2-x^2>0 \implies \left(-\sqrt2,\ \sqrt2\right)" />}
+        >
+          The most common error. The form <Katex tex="\tfrac{g(x)}{\sqrt{2-x^2}}" /> shows only the
+          root, but <Katex tex="g(x)=\tfrac{4x}{|x|}" /> hides a division by <Katex tex="|x|" />. At{' '}
+          <Katex tex="x=0" /> the graph has a corner — slopes <Katex tex="-2\sqrt2" /> and{' '}
+          <Katex tex="2\sqrt2" /> either side — so there is no single value of <Katex tex="f'(0)" />.
+          Catch it by noticing that parts c. and d. needed <em>different</em> formulas either side of{' '}
+          <Katex tex="x=0" />: whenever that happens, check the join separately.
+        </WrongMethod>
+        <WrongMethod
+          title="The derivative has the same domain as f: [−√2, √2]"
+          source="Examiner's report"
+          working={<Katex display tex="\text{dom}\, f' = \text{dom}\, f = \left[-\sqrt2,\ \sqrt2\right]" />}
+        >
+          The report's other common error was including <Katex tex="x=\pm\sqrt2" />. The function
+          value <Katex tex="f(\pm\sqrt2)=\pi" /> exists, but <Katex tex="f'(\pm\sqrt2)=\tfrac{\pm4}{\sqrt0}" />{' '}
+          does not: the tangent there is vertical. A function can be defined at a point where its
+          derivative is not — dom <Katex tex="f'" /> is never bigger than dom <Katex tex="f" />, and often
+          smaller.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e.ii" topic="Hybrid Function" marks={1} statement={<>Find <Katex tex="g(x)" />, expressing your answer as a piecewise (hybrid) function.</>} examinerReport={EXAM_EII}>
         <WorkingTable rows={ROWS_EII} />
+        <WrongMethod
+          title="Put x = 0 in both branches"
+          working={<Katex display tex="g(x)=\begin{cases}4 & 0\le x<\sqrt2\\ -4 & -\sqrt2<x\le0\end{cases}" />}
+        >
+          Now <Katex tex="g(0)" /> is both <Katex tex="4" /> and <Katex tex="-4" />, so this is not a
+          function — and <Katex tex="0" /> was never in the domain anyway (part e.i.). Each branch's
+          interval should match the domain of <Katex tex="f'" /> exactly: strict at <Katex tex="0" /> and
+          at <Katex tex="\pm\sqrt2" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e.iii" topic="Sketch Graph" marks={2} statement={<>Sketch the graph of <Katex tex="g" /> on the axes below.</>} examinerReport={EXAM_EIII}>
         <WorkingTable rows={ROWS_EIII} />
+        <Explore title="g is f′ with the root multiplied back: only the sign survives">
+          <ProductWidget />
+        </Explore>
+        <WrongMethod
+          title="Sketch the derivative"
+          source="Examiner's report"
+          working={<Katex display tex="y=\frac{\pm4}{\sqrt{2-x^2}}" />}
+        >
+          That is the graph of <Katex tex="f'" />, which the report says was frequently sketched instead
+          of <Katex tex="g" />. It starts from open circles at <Katex tex="(0,\pm2\sqrt2)" /> and curves
+          away to vertical asymptotes at <Katex tex="x=\pm\sqrt2" />. Reread what is being graphed:{' '}
+          <Katex tex="g=f'\sqrt{2-x^2}" /> is just <Katex tex="\pm4" /> — two flat segments.
+        </WrongMethod>
       </PartCard>
     </div>
   )

@@ -9,12 +9,26 @@
 // work. The skip guide already treats 2015 Exam 2 SAQ5 and 2016 Exam 2 SAQ5 the same way:
 // skip the force-resolution parts, keep the rest using the supplied equation.
 //
-// Question text transcribed from the original paper. Answers verified numerically.
+// Question text transcribed from the original paper. Answers verified numerically (sympy/scipy,
+// Sept 2026: x(15) solved to v = 4.8141; ∫₀^4.5 2/(9.8 − 2v) dv = logₑ(12.25) = 2.5055, and a
+// direct numerical solution of dv/dt = 4.9 − v agrees). Agrees with the report and itute.
 // Solution is original.
+//
+// Interactives: (c) spec-2018e2-q5c-chain — slide along part c.'s v–x curve: slope dv/dx is per
+// metre, times v metres per second gives a = 4.9 − v; (d) spec-2018e2-q5d-terminal — the gap up to
+// v = 4.9 is the acceleration, so the speed at x = 15 is just under 4.9; (e.i) spec-2018e2-q5e-time-
+// area — the time is the area under 1/a, with a toggle integrating a (the report's reciprocal error).
+// WrongMethod boxes: (c) not in the required form, (e.i) the reciprocal integrand — both from the
+// examiner's report.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const ChainWidget = lazyWidget(() => import('../interactives/spec-2018e2-q5c-chain'))
+const TerminalWidget = lazyWidget(() => import('../interactives/spec-2018e2-q5d-terminal'))
+const TimeAreaWidget = lazyWidget(() => import('../interactives/spec-2018e2-q5e-time-area'))
 
 const EXAM_C: SAExaminerStats = {
   marks: [28, 49, 23],
@@ -54,7 +68,7 @@ const EXAM_EII: SAExaminerStats = {
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="a = v\frac{dv}{dx}" />,
-    reason: <>The question wants distance as a function of <em>speed</em>, so choose the form of acceleration that involves <Katex tex="x" /> and <Katex tex="v" /> and no <Katex tex="t" />. The report says most students chose the appropriate form.</>,
+    reason: <>How would I know? The answer has to link <Katex tex="x" /> and <Katex tex="v" /> with no <Katex tex="t" />, and <Katex tex="v\tfrac{dv}{dx}" /> is the form of acceleration containing exactly those two. It is the chain rule, <Katex tex="\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}" />: speed gained per metre, times metres travelled per second. The report says most students chose the appropriate form.</>,
   },
   {
     working: <Katex display tex="v\frac{dv}{dx} = \frac{g-2v}{2}" />,
@@ -62,15 +76,15 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dx}{dv} = \frac{2v}{g-2v}" />,
-    reason: <>Inverting. This is now a straightforward integration with respect to <Katex tex="v" />.</>,
+    reason: <>Why flip? You can&apos;t integrate <Katex tex="\tfrac{dv}{dx}=\tfrac{g-2v}{2v}" /> with respect to <Katex tex="x" />, because you don&apos;t yet know <Katex tex="v" /> in terms of <Katex tex="x" />. The right-hand side involves only <Katex tex="v" />, so write <Katex tex="\tfrac{dx}{dv}" /> instead and integrate with respect to <Katex tex="v" />: that gives <Katex tex="x" /> as a function of <Katex tex="v" />, which is exactly what is asked for.</>,
   },
   {
     working: <Katex display tex="\frac{2v}{g-2v} = -1 + \frac{g}{g-2v}" />,
-    reason: <>Polynomial division, in effect: <Katex tex="\tfrac{2v}{g-2v}=\tfrac{-(g-2v)+g}{g-2v}" />. Without this split the integral is not obviously doable by hand.</>,
+    reason: <>Top and bottom have the same degree in <Katex tex="v" />, so divide first: <Katex tex="\tfrac{2v}{g-2v}=\tfrac{-(g-2v)+g}{g-2v}" />. Without this split the integral is not obviously doable by hand.</>,
   },
   {
     working: <Katex display tex="x = -v - \frac{g}{2}\log_e(g-2v) + c" />,
-    reason: <>Integrating. The <Katex tex="-\tfrac{g}{2}" /> comes from <Katex tex="g\times\tfrac{1}{-2}" /> by the chain rule on <Katex tex="g-2v" />.</>,
+    reason: <>Integrating. The <Katex tex="-\tfrac{g}{2}" /> comes from <Katex tex="g\times\tfrac{1}{-2}" /> by the chain rule on <Katex tex="g-2v" />. No absolute value is needed: starting from rest, <Katex tex="g-2v>0" /> throughout, since the speed never reaches <Katex tex="\tfrac{g}{2}" /> (see part d.).</>,
   },
   {
     working: <Katex display tex="x=0 \text{ when } v=0 \implies c = \frac{g}{2}\log_e(g)" />,
@@ -78,7 +92,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = -v + \frac{g}{2}\log_e\!\left(\frac{g}{g-2v}\right)" />,
-    reason: <>Combining the two logarithms.</>,
+    reason: <>Combining the two logarithms with <Katex tex="\log_e A-\log_e B=\log_e\tfrac{A}{B}" />, because the required form has a single log.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -v + 4.9\log_e\!\left(\frac{4.9}{4.9-v}\right)}" />,
@@ -89,37 +103,37 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="15 = -v + 4.9\log_e\!\left(\frac{4.9}{4.9-v}\right)" />,
-    reason: <>The ramp is <Katex tex="15" /> m long, so set <Katex tex="x=15" /> and solve for the speed there.</>,
+    reason: <><Katex tex="x" /> is the distance slid from the top, so the end of the <Katex tex="15" /> m ramp is <Katex tex="x=15" />. Part c. gives <Katex tex="x" /> in terms of <Katex tex="v" />; now run it backwards and ask which <Katex tex="v" /> gives <Katex tex="x=15" />. That is why this part depended so heavily on part c.</>,
   },
   {
     working: <Cas fn="solve">solve(-v+4.9ln(4.9/(4.9-v)) = 15, v) | 0&lt;v&lt;4.9</Cas>,
-    reason: <>Restrict to <Katex tex="0<v<4.9" />: the logarithm is undefined at <Katex tex="v=4.9" /> and beyond, and <Katex tex="4.9" /> is the terminal speed the suitcase approaches but never reaches.</>,
+    reason: <>A mix of <Katex tex="v" /> and <Katex tex="\log_e" /> can&apos;t be rearranged by hand, so solve numerically. Restrict to <Katex tex="0<v<4.9" />: the logarithm is undefined at <Katex tex="v=4.9" /> and beyond, and <Katex tex="4.9" /> is the terminal speed the suitcase approaches but never reaches.</>,
   },
   {
     working: <Katex display tex="\boxed{v \approx 4.81 \text{ m s}^{-1}}" />,
-    reason: <>Two decimal places. Sensible: just under the terminal speed of <Katex tex="\tfrac{g}{2}=4.9" /> m s<Katex tex="^{-1}" />, which is exactly what you would expect after <Katex tex="15" /> m of a ramp where resistance is catching up with gravity.</>,
+    reason: <>Two decimal places. Sensible: just under the terminal speed of <Katex tex="\tfrac{g}{2}=4.9" /> m s<Katex tex="^{-1}" />, which is what you would expect after <Katex tex="15" /> m of a ramp where resistance is catching up with gravity.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{dv}{dt} = \frac{g-2v}{2}" />,
-    reason: <>For a <em>time</em>, use the acceleration form involving <Katex tex="t" />.</>,
+    reason: <>For a <em>time</em>, use the form of acceleration that contains <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\frac{dt}{dv} = \frac{2}{g-2v}" />,
-    reason: <>Inverting. The report notes the reciprocal of this — <Katex tex="\tfrac{g-2v}{2}" /> — being integrated instead, which the report says was common.</>,
+    reason: <>Flip both sides, for the same reason as in part c.: the right-hand side involves only <Katex tex="v" />. Read <Katex tex="\tfrac{dt}{dv}=\tfrac1a" /> as &ldquo;seconds per unit of speed gained&rdquo;, which is large when the acceleration is small. The report says integrating the reciprocal, <Katex tex="\tfrac{g-2v}{2}" />, was common.</>,
   },
   {
     working: <Katex display tex="\boxed{t = \int_0^{4.5}\frac{2}{9.8-2v}\,dv}" />,
-    reason: <>From rest (<Katex tex="v=0" />) to the required <Katex tex="4.5" /> m s<Katex tex="^{-1}" />.</>,
+    reason: <>Integrate from rest (<Katex tex="v=0" /> when <Katex tex="t=0" />) up to the required <Katex tex="4.5" /> m s<Katex tex="^{-1}" />, with <Katex tex="g=9.8" />. The integrand is defined on the whole interval because <Katex tex="4.5<4.9" />.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\int\frac{2}{9.8-2v}\,dv = -\log_e(9.8-2v)" />,
-    reason: <>The <Katex tex="2" /> on top and the <Katex tex="-2" /> from the chain rule cancel to <Katex tex="-1" />.</>,
+    reason: <>The <Katex tex="2" /> on top and the <Katex tex="-2" /> from the chain rule cancel to <Katex tex="-1" />. (On CAS, just evaluate the integral from e.i.)</>,
   },
   {
     working: <Katex display tex="t = \Bigl[-\log_e(9.8-2v)\Bigr]_0^{4.5} = -\log_e(0.8)+\log_e(9.8)" />,
@@ -131,7 +145,7 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t \approx 2.51 \text{ seconds}}" />,
-    reason: <>Two decimal places. Consistent with part d.: the suitcase reaches <Katex tex="4.5" /> m s<Katex tex="^{-1}" /> in about two and a half seconds, then spends the rest of the ramp creeping the last <Katex tex="0.3" /> m s<Katex tex="^{-1}" /> towards its terminal speed.</>,
+    reason: <>Two decimal places. Consistent with part d.: putting <Katex tex="v=4.5" /> into part c. shows the suitcase has slid only about <Katex tex="7.8" /> m by then, so it spends the remaining <Katex tex="7.2" /> m (about another <Katex tex="1.5" /> s) gaining just <Katex tex="0.31" /> m s<Katex tex="^{-1}" /> more, reaching <Katex tex="4.81" /> m s<Katex tex="^{-1}" /> at the bottom.</>,
   },
 ]
 
@@ -179,14 +193,46 @@ export default function SpecialistQ5_2018Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
+        <Explore title="Why a = v dv/dx: speed per metre, times metres per second">
+          <ChainWidget />
+        </Explore>
+        <WrongMethod
+          title="I've solved the DE, so any correct expression for x will do"
+          source="Examiner's report"
+          working={<Katex display tex="x = -v - 4.9\log_e(9.8-2v) + 4.9\log_e(9.8)" />}
+        >
+          This is a correct solution, but it is not in the form{' '}
+          <Katex tex="x=bv+c\log_e\!\left(\tfrac{c}{c-v}\right)" /> the question asked for, and the report says many
+          students who solved the equation did not give the solution in the required form. Combine the logs into one, then divide top and bottom
+          inside it by <Katex tex="2" /> so the number in the log matches the number in front. Check: you should be
+          able to read <Katex tex="b=-1" /> and <Katex tex="c=4.9" /> straight off your final line.
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="d" topic="Velocity" marks={1} statement={<>Find the velocity of the suitcase just before it reaches the end of the ramp. Give your answer in m s<Katex tex="^{-1}" />, correct to two decimal places.</>} examinerReport={EXAM_D}>
         <WorkingTable rows={ROWS_D} />
+        <Explore title="Why the speed at the bottom is just under 4.9">
+          <TerminalWidget />
+        </Explore>
       </PartCard>
 
       <PartCard letter="e.i" topic="Time Integral" marks={1} statement={<>Write down a definite integral that gives the time taken for the suitcase to reach a speed of <Katex tex="4.5" /> m s<Katex tex="^{-1}" />.</>} examinerReport={EXAM_EI}>
         <WorkingTable rows={ROWS_EI} />
+        <Explore title="Time is the area under 1/a, not under a">
+          <TimeAreaWidget />
+        </Explore>
+        <WrongMethod
+          title="Time comes from integrating the acceleration"
+          source="Examiner's report"
+          working={<Katex display tex="t = \int_0^{4.5}\frac{9.8-2v}{2}\,dv = 11.925" />}
+        >
+          This integrates <Katex tex="a=\tfrac{dv}{dt}" /> itself, the reciprocal of the right integrand, which the
+          report says was common. Integrating with respect to <Katex tex="v" /> needs{' '}
+          <Katex tex="\tfrac{dt}{dv}" />, and <Katex tex="\tfrac{dt}{dv}=\tfrac{1}{dv/dt}=\tfrac1a" />. Two quick checks
+          catch it: units (<Katex tex="\text{m s}^{-2}\times\text{m s}^{-1}" /> is not seconds), and behaviour
+          (the integrand should be <em>large</em> near <Katex tex="v=4.9" />, where speed is gained slowly, not largest
+          at the start).
+        </WrongMethod>
       </PartCard>
 
       <PartCard letter="e.ii" topic="Time Integral" marks={1} statement={<>Find the time taken for the suitcase to reach a speed of <Katex tex="4.5" /> m s<Katex tex="^{-1}" />. Give your answer in seconds, correct to two decimal places.</>} examinerReport={EXAM_EII}>
