@@ -1,10 +1,20 @@
 // 2018 Mathematical Methods — Exam 1, Question 4 (2 marks). Symmetry of the normal
 // distribution, then standardising a tail probability into the standard normal. Question text
-// transcribed from the original paper (no diagram given). Answers checked against the VCAA
-// examination report. Solution is original.
+// transcribed from the original paper (no diagram given). Answers checked with scipy and against
+// the VCAA examination report (itute agrees: ½ and −½). Solution is original. Interactive
+// diagrams (§15): part a. slides σ to show the mean always splits the bell into two halves
+// (interactives/meth-2018e1-q4a-half.tsx); part b. draws the bell once with a z-ruler under the
+// x-axis so x = 7 lines up with z = ½, with a toggle for dividing by the variance
+// (interactives/meth-2018e1-q4b-rulers.tsx), then finds b by matching a lower tail to the upper
+// tail, with the report's wrong answers −¼ and 5 as buttons (interactives/meth-2018e1-q4b-flip.tsx).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const HalfWidget = lazyWidget(() => import('../interactives/meth-2018e1-q4a-half'))
+const RulersWidget = lazyWidget(() => import('../interactives/meth-2018e1-q4b-rulers'))
+const FlipWidget = lazyWidget(() => import('../interactives/meth-2018e1-q4b-flip'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [21, 79],
@@ -37,30 +47,33 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>6) = \frac12}" />,
-    reason: <>A normal distribution is symmetric about its mean, so exactly half the area lies above <Katex tex="\mu" />. No standardising, no calculator — <Katex tex="6" /> <em>is</em> the mean.</>,
+    reason: <>How would I know? The cut-off <Katex tex="6" /> <em>is</em> the mean. A normal curve is a mirror image of itself about its mean, so exactly half the area lies above <Katex tex="\mu" />, whatever <Katex tex="\sigma" /> is. No standardising, no calculator.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\sigma = \sqrt{\operatorname{Var}(X)} = \sqrt4 = 2" />,
-    reason: <>The question gives the variance. Using <Katex tex="4" /> as the standard deviation gives <Katex tex="\Pr\left(Z>\tfrac14\right)" /> and the wrong answer <Katex tex="b=-\tfrac14" /> that the report describes.</>,
+    reason: <>Read the stem carefully: it gives the <em>variance</em>, <Katex tex="\sigma^2 = 4" />. Standardising divides by <Katex tex="\sigma" />, the spread measured in the same units as <Katex tex="X" />, so take the square root first. The report&apos;s general comments single this out: in Question 4 &ldquo;the variance and not the standard deviation was given&rdquo;.</>,
   },
   {
     working: <Katex display tex="Z = \frac{X-\mu}{\sigma} = \frac{X-6}{2}" />,
-    reason: <>Standardising converts any normal variable into the standard normal <Katex tex="Z" />, which is what the question's right-hand side is written in.</>,
+    reason: <>Why standardise? The right-hand side, <Katex tex="\Pr(Z<b)" />, is about <Katex tex="Z" />, so the left-hand side must be turned into a statement about <Katex tex="Z" /> too. <Katex tex="\frac{x-\mu}{\sigma}" /> counts how many standard deviations <Katex tex="x" /> is from the mean.</>,
   },
   {
     working: <Katex display tex="\Pr(X>7) = \Pr\!\left(Z > \frac{7-6}{2}\right) = \Pr\!\left(Z>\frac12\right)" />,
-    reason: <><Katex tex="7" /> sits half a standard deviation above the mean. Skipping this step is the report's other error: symmetry alone gives <Katex tex="\Pr(X>7)=\Pr(X<5)" />, and some students left their answer as <Katex tex="5" /> — but that is still a value of <Katex tex="X" />, not of <Katex tex="Z" />.</>,
+    reason: <><Katex tex="7" /> is <Katex tex="1" /> above the mean, and <Katex tex="1" /> is half of <Katex tex="\sigma=2" />, so <Katex tex="7" /> sits at <Katex tex="z=\tfrac12" />. The shaded area is unchanged; standardising only relabels the axis (first widget below).</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(Z>\tfrac12\right) = \Pr\!\left(Z<-\tfrac12\right)" />,
-    reason: <>The standard normal is symmetric about <Katex tex="0" />, so an upper tail beyond <Katex tex="\tfrac12" /> has the same area as the lower tail below <Katex tex="-\tfrac12" />. The question wants the probability written as <Katex tex="\Pr(Z<b)" />, which forces this flip.</>,
+    reason: <>
+      Now match the form <Katex tex="\Pr(Z<b)" />, a <em>lower</em> tail. The standard normal is symmetric about <Katex tex="0" />, so the upper tail beyond <Katex tex="\tfrac12" /> has the same area as the lower tail below <Katex tex="-\tfrac12" />. The report does the flip first instead: <Katex tex="\Pr(X>7)=\Pr(X<5)" /> by symmetry about <Katex tex="6" />, then{' '}
+      <Katex tex="\frac{5-6}{2}=-\tfrac12" />. Either order works, as long as you standardise.
+    </>,
   },
   {
     working: <Katex display tex="\boxed{b = -\frac12}" />,
-    reason: <>Negative, as it must be: <Katex tex="\Pr(X>7)<\tfrac12" />, so the matching left tail has to sit below the mean of <Katex tex="Z" />. (<Katex tex="\Pr(Z<-0.5)\approx0.309" />.)</>,
+    reason: <>Sign check: <Katex tex="7" /> is above the mean, so <Katex tex="\Pr(X>7)<\tfrac12" />, and a lower tail with less than half the area must end below <Katex tex="Z" />&apos;s mean of <Katex tex="0" />. So <Katex tex="b" /> must be negative. (<Katex tex="\Pr(Z<-0.5)\approx0.309" />.)</>,
   },
 ]
 
@@ -78,6 +91,9 @@ export default function MethodsQ4_2018Exam1() {
 
       <PartCard letter="a" topic="Normal Symmetry" marks={1} statement={<>Find <Katex tex="\Pr(X>6)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />
+        <Explore title="Why the mean always cuts the bell in half, whatever the spread">
+          <HalfWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -96,11 +112,49 @@ export default function MethodsQ4_2018Exam1() {
             <Katex tex="\Pr(X>7)" /> is an upper one).
           </p>
           <p>
-            A quick sketch of the bell curve with both tails shaded makes the sign of{' '}
-            <Katex tex="b" /> obvious and is what the report says most students drew.
+            Standardising doesn&apos;t move any area. The same bell can be read on two rulers: the{' '}
+            <Katex tex="x" />-scale, and the <Katex tex="z" />-scale that counts standard deviations from
+            the mean. So <Katex tex="\Pr(X>x) = \Pr\!\left(Z>\frac{x-\mu}{\sigma}\right)" />.
+          </p>
+          <p>
+            Sketch the bell curve with both tails shaded before calculating: it makes the sign of{' '}
+            <Katex tex="b" /> obvious.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Standardising only relabels the axis: 7 sits half a standard deviation above 6">
+          <RulersWidget />
+        </Explore>
+        <Explore title="Why b is negative: the upper tail has to be flipped to a lower tail">
+          <FlipWidget />
+        </Explore>
+        <WrongMethod
+          title="“A variance of 4”, so I divide by 4"
+          source="Examiner's report"
+          working={
+            <>
+              <Katex display tex="\Pr(X>7) = \Pr\!\left(Z>\tfrac{7-6}{4}\right) = \Pr\!\left(Z>\tfrac14\right)" />
+              <Katex display tex="= \Pr\!\left(Z<-\tfrac14\right) \implies b=-\tfrac14" />
+            </>
+          }
+        >
+          The <Katex tex="4" /> is <Katex tex="\sigma^2" />, not <Katex tex="\sigma" />. Dividing by{' '}
+          <Katex tex="4" /> standardises a different, wider distribution, <Katex tex="N(6,\,4^2)" />, whose
+          tail beyond <Katex tex="7" /> is about <Katex tex="0.401" /> instead of <Katex tex="0.309" />. Catch
+          it by circling &ldquo;variance&rdquo; as you read the stem and making{' '}
+          <Katex tex="\sigma=\sqrt4=2" /> your first line.
+        </WrongMethod>
+        <WrongMethod
+          title="Pr(X > 7) = Pr(X < 5), so b = 5"
+          source="Examiner's report"
+          working={<Katex display tex="\Pr(X>7) = \Pr(X<5) \implies b=5" />}
+        >
+          The reflection is right, but <Katex tex="b" /> belongs to <Katex tex="Z" />, and <Katex tex="5" /> is
+          still on the <Katex tex="X" /> scale. As a <Katex tex="z" />-value, <Katex tex="5" /> would mean five
+          standard deviations above the mean: <Katex tex="\Pr(Z<5)\approx1" />, nowhere near{' '}
+          <Katex tex="0.309" />. The sign check catches it (<Katex tex="b" /> must be negative); finish by
+          standardising the <Katex tex="5" />: <Katex tex="\frac{5-6}{2}=-\tfrac12" />.
+        </WrongMethod>
       </PartCard>
     </div>
   )

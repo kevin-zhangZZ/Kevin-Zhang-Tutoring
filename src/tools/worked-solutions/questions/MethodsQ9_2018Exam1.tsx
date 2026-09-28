@@ -12,11 +12,28 @@
 // Part (c) writes its transformation in column-vector form, but the matrix is the identity,
 // so T is a plain translation and the part is ordinary transformation work (guide §13.7 —
 // judge the mathematics, not the vocabulary). Solution is original.
+//
+// Interactives: a.i — each hump of x sin(x) has area (2n+1)π, and a sine hump of height
+// (n + ½)π balances it exactly; a.ii — the antiderivative at kπ lands on y = ±x, so the integral
+// jumps between the two lines, up for even n and down for odd n (toggle: a.i's cosines kept);
+// b — slide the point of contact, the intercept is −t²cos(t), so the tangent passes through O
+// exactly where the curve touches y = ±x; c — slide the translation a onto the target (a = −3π
+// shown failing); d — triangle minus lenses in steps, with the ∫(l₁ − f) double count as a
+// toggle. Common Mistake boxes: a.i (substituting a value of n — report; writing the even
+// integer as 2n — no source, a forum thread reported it), a.ii (keeping a.i's cosines — report),
+// c (−3π — report), d (∫(l₁ − f), no source). All wrong values checked in sympy.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import curveSrc from './meth-2018e1-q9-xsinx.png'
 import tangentsSrc from './meth-2018e1-q9d-tangents.png'
+
+const HumpWidget = lazyWidget(() => import('../interactives/meth-2018e1-q9ai-hump'))
+const EndpointsWidget = lazyWidget(() => import('../interactives/meth-2018e1-q9aii-endpoints'))
+const TangentWidget = lazyWidget(() => import('../interactives/meth-2018e1-q9b-tangent'))
+const TranslateWidget = lazyWidget(() => import('../interactives/meth-2018e1-q9c-translate'))
+const LensesWidget = lazyWidget(() => import('../interactives/meth-2018e1-q9d-lenses'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [55, 27, 17],
@@ -89,7 +106,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -(n+1)\pi\cos\bigl((n+1)\pi\bigr) + n\pi\cos(n\pi)" />,
-    reason: <>What is left after the sines go.</>,
+    reason: <>What is left after the sines go. Keep <Katex tex="(n+1)\pi" /> and <Katex tex="n\pi" /> exactly as they are — the next step only needs to know which kind of multiple of <Katex tex="\pi" /> each one is.</>,
   },
   {
     working: <Katex display tex="n \text{ even} \implies \cos(n\pi) = 1, \quad \cos\bigl((n+1)\pi\bigr) = -1" />,
@@ -97,7 +114,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -(n+1)\pi(-1) + n\pi(1) = (n+1)\pi + n\pi" />,
-    reason: <>Both terms come out positive.</>,
+    reason: <>Both terms come out positive: the minus sign in front of <Katex tex="(n+1)\pi" /> meets <Katex tex="\cos\bigl((n+1)\pi\bigr)=-1" />, and the two minuses cancel.</>,
   },
   {
     working: <Katex display tex="\boxed{(2n+1)\pi}" />,
@@ -139,30 +156,38 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = -x}" />,
-    reason: <>The two <Katex tex="\tfrac{5\pi}{2}" /> terms cancel exactly. A tangent through the origin is a striking result, and worth checking the given point satisfies it: <Katex tex="-\left(-\tfrac{5\pi}{2}\right)=\tfrac{5\pi}{2}" /> ✓.</>,
+    reason: <>The two <Katex tex="\tfrac{5\pi}{2}" /> terms cancel exactly. A tangent through the origin is a striking result, and worth checking the given point satisfies it: <Katex tex="-\left(-\tfrac{5\pi}{2}\right)=\tfrac{5\pi}{2}" /> ✓. It is no accident. Because <Katex tex="\left|\sin(x)\right|\le1" />, the graph is trapped between the lines <Katex tex="y=x" /> and <Katex tex="y=-x" />, and at <Katex tex="x=-\tfrac{5\pi}{2}" />, where <Katex tex="\sin(x)=-1" />, it just touches <Katex tex="y=-x" />. A line the curve touches without crossing is its tangent.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}x\\y\end{bmatrix} + \begin{bmatrix}a\\0\end{bmatrix} \implies \begin{cases} x' = x+a \\ y' = y \end{cases}" />,
-    reason: <>Read the column-vector statement one row at a time. Nothing is multiplied, so <Katex tex="T" /> is a horizontal translation by <Katex tex="a" /> and nothing else.</>,
+    working: <Katex display tex="x' = x + a, \qquad y' = y" />,
+    reason: <>Read the column-vector statement one row at a time. Nothing is multiplied, so <Katex tex="T" /> adds <Katex tex="a" /> to every <Katex tex="x" />-coordinate and leaves <Katex tex="y" /> alone: a horizontal translation by <Katex tex="a" />.</>,
   },
   {
-    working: <Katex display tex="x = x'-a, \quad y = y' \implies y' = (x'-a)\sin(x'-a)" />,
-    reason: <>Substituting the inverse relation into <Katex tex="y=x\sin(x)" /> gives the equation of the image curve.</>,
+    working: <Katex display tex="x = x'-a, \quad y = y'" />,
+    reason: <>To find the image's equation, make the old coordinates the subject. This is the step that decides the sign: the rule uses <Katex tex="x'-a" />, not <Katex tex="x'+a" />.</>,
+  },
+  {
+    working: <Katex display tex="y' = (x'-a)\sin(x'-a)" />,
+    reason: <>Substitute into <Katex tex="y=x\sin(x)" />. Dropping the dashes, the image is <Katex tex="y=(x-a)\sin(x-a)" />.</>,
   },
   {
     working: <Katex display tex="(x-a)\sin(x-a) = (3\pi-x)\sin(x)" />,
-    reason: <>This must match the target rule for every <Katex tex="x" />.</>,
+    reason: <>This must match the target rule for every <Katex tex="x" />. How would I know what to try? The target's first factor is <Katex tex="3\pi-x=-(x-3\pi)" />, which looks like <Katex tex="x-a" /> with <Katex tex="a=3\pi" /> apart from a stray minus sign. So try <Katex tex="a=3\pi" /> and see whether the sine supplies that minus.</>,
   },
   {
-    working: <Katex display tex="a = 3\pi: \ \sin(x-3\pi) = -\sin(x) \implies (x-3\pi)\bigl(-\sin(x)\bigr) = (3\pi-x)\sin(x) \ \checkmark" />,
-    reason: <>Shifting a sine by an odd multiple of <Katex tex="\pi" /> flips its sign, and that flip is exactly what converts <Katex tex="(x-3\pi)" /> into <Katex tex="(3\pi-x)" />. Both sign changes have to happen together, which is what pins <Katex tex="a" />.</>,
+    working: <Katex display tex="a = 3\pi: \ (x-3\pi)\sin(x-3\pi)" />,
+    reason: <>Substitute the candidate.</>,
+  },
+  {
+    working: <Katex display tex="= (x-3\pi)\bigl(-\sin(x)\bigr) = (3\pi-x)\sin(x) \ \checkmark" />,
+    reason: <>Shifting a sine by an odd multiple of <Katex tex="\pi" /> flips its sign, <Katex tex="\sin(x-3\pi)=-\sin(x)" />, and that flip is exactly what turns <Katex tex="(x-3\pi)" /> into <Katex tex="(3\pi-x)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 3\pi}" />,
-    reason: <>Positive: the graph moves to the <em>right</em>. The report names <Katex tex="-3\pi" /> as a common incorrect answer — the sign inside the bracket is not the sign of the translation.</>,
+    reason: <>Positive: the graph moves to the <em>right</em>. Picture check: <Katex tex="y=x\sin(x)" /> touches the <Katex tex="x" />-axis at the origin (both factors are zero there), and the target touches it at <Katex tex="x=3\pi" /> (both <Katex tex="3\pi-x" /> and <Katex tex="\sin(x)" /> are zero), so the origin has moved <Katex tex="3\pi" /> right. The report names <Katex tex="-3\pi" /> as a common incorrect answer.</>,
   },
 ]
 
@@ -201,7 +226,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Shaded} = 9\pi^2 - 18\pi = 9\pi(\pi-2)}" />,
-    reason: <>Triangle minus lenses. (<Katex tex="\approx32.3" /> square units — about a third of the triangle's <Katex tex="9\pi^2\approx88.8" />, which matches how much white the figure shows.) Only <Katex tex="4\%" /> of students scored both marks; the report says students who found the area between each tangent and the curve directly, while using a valid method, had lengthy calculations and were rarely successful.</>,
+    reason: <>Triangle minus lenses. (<Katex tex="\approx32.3" /> square units — about a third of the triangle's <Katex tex="9\pi^2\approx88.8" />, which matches how much grey the figure shows.) Only <Katex tex="4\%" /> of students scored both marks; the report says students who found the area between each tangent and the curve directly, while using a valid method, had lengthy calculations and were rarely successful.</>,
   },
 ]
 
@@ -229,7 +254,8 @@ export default function MethodsQ9_2018Exam1() {
           <p>
             The only thing that makes this hard is that <Katex tex="n" /> stays a letter. Keep
             it that way: substituting <Katex tex="n=2" /> gives you one number, not the rule
-            the question asks for, and the report says many students did exactly that.
+            the question asks for, and the report says many students substituted a value of{' '}
+            <Katex tex="n" /> and ended up with a specific solution.
           </p>
           <p>
             Two facts do all the work. <Katex tex="\sin(k\pi)=0" /> for every integer{' '}
@@ -241,6 +267,31 @@ export default function MethodsQ9_2018Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_AI} />
+        <Explore title="Why each hump has area (2n + 1)π">
+          <HumpWidget />
+        </Explore>
+        <WrongMethod
+          title="Pick an even value, say n = 2, and evaluate that integral"
+          source="Examiner's report"
+          working={<Katex display tex="\int_{2\pi}^{3\pi}\! x\sin(x)\,dx = 5\pi" />}
+        >
+          <Katex tex="5\pi" /> is correct for <Katex tex="n=2" />, but it is one hump, not the rule. The
+          question says &ldquo;when <Katex tex="n" /> is a positive even integer or 0&rdquo;, so the
+          answer has to work for every such <Katex tex="n" /> at once, which means it must still contain{' '}
+          <Katex tex="n" />. Use a substituted value the other way round, as a check:{' '}
+          <Katex tex="(2n+1)\pi" /> gives <Katex tex="\pi" /> for <Katex tex="n=0" /> and{' '}
+          <Katex tex="5\pi" /> for <Katex tex="n=2" />, matching the humps in the widget.
+        </WrongMethod>
+        <WrongMethod
+          title="n is even, so write it as 2n before integrating"
+          working={<Katex display tex="\int_{2n\pi}^{(2n+1)\pi}\! x\sin(x)\,dx = (4n+1)\pi" />}
+        >
+          The letter <Katex tex="n" /> already <em>is</em> the even integer, so renaming it{' '}
+          <Katex tex="2n" /> quietly changes the question: this <Katex tex="n" /> is half of the
+          question&apos;s <Katex tex="n" />. The answer <Katex tex="(4n+1)\pi" /> is right for the new
+          letter and wrong for the question&apos;s. Use the fact that <Katex tex="n" /> is even directly:{' '}
+          <Katex tex="\cos(n\pi)=1" /> and <Katex tex="\cos\bigl((n+1)\pi\bigr)=-1" />.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -250,7 +301,31 @@ export default function MethodsQ9_2018Exam1() {
         statement={<>Given that <Katex tex="\int\bigl(x\sin(x)\bigr)dx = \sin(x)-x\cos(x)+c" />, evaluate <Katex tex="\int_{n\pi}^{(n+1)\pi}\bigl(x\sin(x)\bigr)dx" /> when <Katex tex="n" /> is a positive <b>odd</b> integer. Give your answer in simplest form.</>}
         examinerReport={EXAM_AII}
       >
+        <Background>
+          <p>
+            The report&apos;s diagnosis is that students did not relate this part to part a.i. The
+            working is identical line for line; the only thing that changes is which cosine is{' '}
+            <Katex tex="+1" /> and which is <Katex tex="-1" />. Odd multiples of{' '}
+            <Katex tex="\pi" /> sit at <Katex tex="(-1,0)" /> on the unit circle and even multiples at{' '}
+            <Katex tex="(1,0)" />, so when <Katex tex="n" /> is odd, <Katex tex="\cos(n\pi)=-1" /> and{' '}
+            <Katex tex="\cos\bigl((n+1)\pi\bigr)=1" />.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_AII} />
+        <Explore title="Why the sign flips when n is odd">
+          <EndpointsWidget />
+        </Explore>
+        <WrongMethod
+          title="Same working as a.i, same cosines, so the answer is (2n + 1)π again"
+          source="Examiner's report"
+          working={<Katex display tex="-(n+1)\pi(-1) + n\pi(1) = (2n+1)\pi" />}
+        >
+          <Katex tex="\cos(n\pi)=1" /> and <Katex tex="\cos\bigl((n+1)\pi\bigr)=-1" /> are only true for
+          even <Katex tex="n" />. For odd <Katex tex="n" /> they swap, which is the fact the report says
+          many students overlooked. Catch it with the figure: the hump from <Katex tex="\pi" /> to{' '}
+          <Katex tex="2\pi" /> (<Katex tex="n=1" />) lies <em>below</em> the <Katex tex="x" />-axis, so
+          its integral must be negative, and <Katex tex="(2n+1)\pi" /> never is.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -261,6 +336,9 @@ export default function MethodsQ9_2018Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Why this tangent passes through the origin">
+          <TangentWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -279,6 +357,24 @@ export default function MethodsQ9_2018Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
+        <Explore title="A positive a moves the graph right, onto the target at a = 3π">
+          <TranslateWidget />
+        </Explore>
+        <WrongMethod
+          title="Replace x with x + a and match it to the target"
+          source="Examiner's report"
+          working={<Katex display tex="\begin{aligned}&(x+a)\sin(x+a) = (3\pi-x)\sin(x)\\ &\implies a = -3\pi\end{aligned}" />}
+        >
+          The algebra matches, but the substitution runs the wrong way. <Katex tex="T" /> sends a point{' '}
+          <Katex tex="(x,y)" /> to <Katex tex="(x+a,\,y)" />, so the image equation comes from replacing{' '}
+          <Katex tex="x" /> with <Katex tex="x-a" />; using <Katex tex="x+a" /> flips the sign of{' '}
+          <Katex tex="a" />. Catch it by moving one point: <Katex tex="\left(\tfrac{\pi}{2},\tfrac{\pi}{2}\right)" />{' '}
+          is on <Katex tex="y=x\sin(x)" />. With <Katex tex="a=-3\pi" /> it goes to{' '}
+          <Katex tex="\left(-\tfrac{5\pi}{2},\tfrac{\pi}{2}\right)" />, but the target there gives{' '}
+          <Katex tex="\tfrac{11\pi}{2}\sin\left(-\tfrac{5\pi}{2}\right)=-\tfrac{11\pi}{2}" />. With{' '}
+          <Katex tex="a=3\pi" /> it goes to <Katex tex="\left(\tfrac{7\pi}{2},\tfrac{\pi}{2}\right)" />, and{' '}
+          <Katex tex="\left(-\tfrac{\pi}{2}\right)\sin\left(\tfrac{7\pi}{2}\right)=\tfrac{\pi}{2}" /> ✓.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -319,6 +415,22 @@ export default function MethodsQ9_2018Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The shaded area is a triangle with part a.'s humps cut out">
+          <LensesWidget />
+        </Explore>
+        <WrongMethod
+          title="The grey is between l₁ and f, so integrate l₁ − f from 0 to 3π and double it"
+          working={<Katex display tex="2\int_0^{3\pi}\!\bigl((3\pi-x)-f(x)\bigr)dx = 9\pi^2-6\pi" />}
+        >
+          On <Katex tex="[\pi,2\pi]" /> the curve <Katex tex="f" /> dips below the axis and becomes the{' '}
+          <em>lower</em> edge of the middle lens, so <Katex tex="l_1-f" /> measures straight through the
+          unshaded middle lens, and the doubled copy measures through it again. The upper grey region's lower
+          edge is always the higher of <Katex tex="f" /> and <Katex tex="g" />, which is{' '}
+          <Katex tex="\left|f\right|" />, not <Katex tex="f" />. Done
+          directly, it is <Katex tex="2\int_0^{3\pi}\bigl(l_1-\left|f\right|\bigr)dx" />, split at{' '}
+          <Katex tex="\pi" /> and <Katex tex="2\pi" /> — the lengthy route the report warns about. Step
+          5 of the widget shades the double count.
+        </WrongMethod>
       </PartCard>
     </div>
   )
