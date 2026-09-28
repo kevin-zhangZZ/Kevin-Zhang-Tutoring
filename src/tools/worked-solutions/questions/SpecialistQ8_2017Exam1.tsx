@@ -2,12 +2,24 @@
 // curve through (−1, 1), and the separable equation behind it. Question text transcribed
 // from the original paper; the slope-field figure is a crop of VCAA's own artwork, and the
 // answer sketch overlays the solution curve on that same crop (calibrated to its axis ticks:
-// origin (456, 461) px, 166 px per unit) rather than redrawing the field. Answers checked with sympy and against the
-// VCAA examination report. Solution is original.
+// origin (456, 461) px, 166 px per unit) rather than redrawing the field. Answers checked with
+// sympy (c = 11/6; x-intercept √(11/3) ≈ 1.915; y-intercept ≈ 1.223) and against the VCAA
+// examination report and itute (both 2y³ + 6y + 3x² − 11 = 0, x ≈ 1.9). Solution is original.
+//
+// Interactives: part a. — a pencil traced from (−1, 1) along the field, carrying its tangent,
+// with a mirror toggle for the symmetry and markers at the y-intercept (the report's misread
+// 1.2) and the x-intercept (interactives/spec-2017e1-q8a-trace.tsx); part b. — the constant c
+// choosing one curve from the family, with the report's two slips c = 5/6 and "+11" as buttons
+// (interactives/spec-2017e1-q8b-constant.tsx). Wrong-method boxes: reading the y-intercept 1.2
+// as the answer, taking the estimate from part b. instead of the sketch, c = 5/6, and +11.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import fieldSrc from './spec-2017e1-q8-slopefield.png'
+
+const TraceWidget = lazyWidget(() => import('../interactives/spec-2017e1-q8a-trace'))
+const ConstantWidget = lazyWidget(() => import('../interactives/spec-2017e1-q8b-constant'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [54, 29, 17],
@@ -53,47 +65,51 @@ const EXAM_B: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{start at }(-1,1)" />,
-    reason: <>The initial condition <Katex tex="y(-1)=1" /> fixes one point the curve must pass through. Everything else follows the ticks.</>,
+    working: <Katex display tex="\text{At }(-1,1):\ \frac{dy}{dx}=\frac{-(-1)}{1+1^2}=\frac12" />,
+    reason: <>The condition <Katex tex="y(-1)=1" /> is the point <Katex tex="x=-1" />, <Katex tex="y=1" />: put your pencil there. The equation gives the gradient at every point, and here it is <Katex tex="\tfrac12" />, so the curve leaves gently uphill to the right. Check that this matches the tick at <Katex tex="(-1,1)" /> before you draw anything.</>,
   },
   {
-    working: <Katex display tex="\frac{dy}{dx}=\frac{-x}{1+y^2}" />,
-    reason: <>The denominator is always positive, so the sign of the gradient is the sign of <Katex tex="-x" />: uphill to the left of the <Katex tex="y" />-axis, flat on it, downhill to the right. The curve therefore has a maximum on the <Katex tex="y" />-axis.</>,
+    working: <Katex display tex="\frac{dy}{dx}\ \begin{cases}>0, & x<0\\ =0, & x=0\\ <0, & x>0\end{cases}" />,
+    reason: <>How do you know the shape before drawing? Look at the signs. <Katex tex="1+y^2>0" /> always, so <Katex tex="\tfrac{dy}{dx}" /> has the sign of <Katex tex="-x" />: uphill left of the <Katex tex="y" />-axis, flat on it, downhill to the right. So the curve has a single maximum, on the <Katex tex="y" />-axis.</>,
   },
   {
     working: <Katex display tex="x\to-x \implies \frac{dy}{dx}\to-\frac{dy}{dx}" />,
-    reason: <>The field is symmetric about the <Katex tex="y" />-axis, so the solution curve must be too. The report says non-symmetric curves were a common error.</>,
+    reason: <>Swapping <Katex tex="x" /> for <Katex tex="-x" /> changes the gradient&apos;s sign but not its size, so every tick on the right is the mirror image of one on the left. The curve&apos;s mirror image in the <Katex tex="y" />-axis therefore follows the ticks too, and it passes through the same peak on the axis. Only one solution curve passes through a point, so the curve is its own mirror image. The report lists a non-symmetric curve among the errors.</>,
+  },
+  {
+    working: <Katex display tex="\text{peak: }(0,\ \approx 1.2)" />,
+    reason: <>The ticks flatten as you near the <Katex tex="y" />-axis: gradient <Katex tex="\tfrac12" /> at <Katex tex="x=-1" />, about <Katex tex="0.2" /> at <Katex tex="x=-0.5" />, <Katex tex="0" /> at <Katex tex="x=0" />. So the curve keeps rising, more and more gently, and peaks only about <Katex tex="0.2" /> above its start. The report says many graphs went almost flat between <Katex tex="x=-0.5" /> and <Katex tex="x=0.5" /> and missed this <Katex tex="y" />-intercept. This height is not the answer.</>,
   },
   {
     working: <Katex display tex="\boxed{x\approx 1.9}" />,
-    reason: <>Reading off where the curve crosses the <Katex tex="x" />-axis on the right. VCAA accepted <Katex tex="1.7\le x\le1.9" />. Part (b) confirms it exactly: <Katex tex="\sqrt{\tfrac{11}{3}}\approx1.915" />.</>,
+    reason: <>Past the peak, follow the ticks down: they steepen, to a gradient of about <Katex tex="-1.9" /> where the curve meets the <Katex tex="x" />-axis. Read the positive <Katex tex="x" />-intercept off your own sketch, because &ldquo;hence&rdquo; means the estimate comes from the graph. The report gives <Katex tex="1.7\le x\le1.9" />. Draw the curve right across the field on both sides, not just to the intercepts. Part b. confirms the estimate: <Katex tex="y=0" /> gives <Katex tex="x=\sqrt{\tfrac{11}{3}}\approx1.915" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(1+y^2)\,dy = -x\,dx" />,
-    reason: <>Separating variables: all the <Katex tex="y" />s on one side, all the <Katex tex="x" />s on the other.</>,
+    reason: <>The right side is a function of <Katex tex="x" /> divided by a function of <Katex tex="y" />, which is the signal to separate variables. Multiply both sides by <Katex tex="1+y^2" /> so every <Katex tex="y" /> sits with <Katex tex="dy" /> and every <Katex tex="x" /> with <Katex tex="dx" />.</>,
   },
   {
     working: <Katex display tex="y+\frac{y^3}{3} = -\frac{x^2}{2}+c" />,
-    reason: <>Integrating both sides. One constant is enough.</>,
+    reason: <>Integrate each side with respect to its own variable. A constant from each side would combine into one, so a single <Katex tex="+c" /> is enough. Every value of <Katex tex="c" /> is a different curve in the slope field; the next step picks the one through <Katex tex="(-1,1)" />.</>,
   },
   {
-    working: <Katex display tex="1+\frac13 = -\frac12+c" />,
-    reason: <>Substituting <Katex tex="x=-1" />, <Katex tex="y=1" />. Note <Katex tex="(-1)^2=+1" />, so the right-hand side is <Katex tex="-\tfrac12" /> — the sign slip behind the report's popular wrong constant <Katex tex="\tfrac56" />.</>,
+    working: <Katex display tex="1+\frac13 = -\frac{(-1)^2}{2}+c" />,
+    reason: <>Substitute <Katex tex="x=-1" />, <Katex tex="y=1" />. Square first, <Katex tex="(-1)^2=1" />, and the minus sign in front still applies, so the right side is <Katex tex="-\tfrac12+c" />. Getting <Katex tex="+\tfrac12" /> here is what produces the report&apos;s most common wrong constant, <Katex tex="\tfrac56" />.</>,
   },
   {
     working: <Katex display tex="c = \frac43+\frac12 = \frac{11}{6}" />,
-    reason: <>Common denominator <Katex tex="6" />.</>,
+    reason: <>Add <Katex tex="\tfrac12" /> to both sides, over the common denominator <Katex tex="6" />: <Katex tex="\tfrac86+\tfrac36=\tfrac{11}{6}" />.</>,
   },
   {
     working: <Katex display tex="y+\frac{y^3}{3}+\frac{x^2}{2}-\frac{11}{6} = 0" />,
-    reason: <>Everything on one side, ready to clear denominators.</>,
+    reason: <>The required form has everything on one side equal to <Katex tex="0" />. Moving <Katex tex="\tfrac{11}{6}" /> across makes it <Katex tex="-\tfrac{11}{6}" />; moving <Katex tex="-\tfrac{x^2}{2}" /> across makes it <Katex tex="+\tfrac{x^2}{2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{2y^3+6y+3x^2-11 = 0}" />,
-    reason: <>Multiplying through by <Katex tex="6" /> gives integer coefficients as required: <Katex tex="a=2" />, <Katex tex="b=6" />, <Katex tex="c=3" />, <Katex tex="d=-11" />. Check the initial condition: <Katex tex="2+6+3-11=0" /> ✓. Setting <Katex tex="y=0" /> gives <Katex tex="x=\sqrt{\tfrac{11}{3}}\approx1.915" />, confirming the estimate in part a. — though part a. had to be read off the field, since it said "hence".</>,
+    reason: <>Multiply through by <Katex tex="6" />, the lowest common denominator, to clear the fractions and get the integer coefficients asked for: <Katex tex="a=2" />, <Katex tex="b=6" />, <Katex tex="c=3" />, <Katex tex="d=-11" />. The report says many students stopped before this step. Check with the initial condition: <Katex tex="2+6+3-11=0" /> ✓.</>,
   },
 ]
 
@@ -147,6 +163,28 @@ export default function SpecialistQ8_2017Exam1() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <SolutionOverlay />
         </div>
+        <Explore title="Let the ticks steer the pencil from (−1, 1)">
+          <TraceWidget />
+        </Explore>
+        <WrongMethod
+          title="The curve crosses an axis at about 1.2, so x ≈ 1.2"
+          source="Examiner's report"
+          working={<Katex display tex="y\text{-intercept}\approx1.2\ \Rightarrow\ x\approx1.2" />}
+        >
+          The report says some students gave <Katex tex="x" /> as around <Katex tex="1.2" />, the value of the{' '}
+          <Katex tex="y" />-intercept. That is the height of the peak, where <Katex tex="x=0" />. The question asks for{' '}
+          <Katex tex="x" /> when <Katex tex="y=0" />, which is where the curve meets the <Katex tex="x" />-axis. Before
+          reading a value off a graph, say which axis you are on: <Katex tex="y=0" /> means the <Katex tex="x" />-axis.
+        </WrongMethod>
+        <WrongMethod
+          title="Solve part b. first and use its equation for the estimate"
+          source="Examiner's report"
+          working={<Katex display tex="3x^2-11=0\ \Rightarrow\ x\approx1.9" />}
+        >
+          The number is right, but &ldquo;hence&rdquo; asks for the estimate from <em>your sketch</em>. The report notes
+          answers taken from part b. that were inconsistent with the student&apos;s own graph. If your curve and your
+          algebra disagree, that is a signal to redraw the curve along the ticks, not to quote the algebra.
+        </WrongMethod>
       </PartCard>
 
       <PartCard
@@ -163,7 +201,39 @@ export default function SpecialistQ8_2017Exam1() {
         }
         examinerReport={EXAM_B}
       >
+        <Background title="Separable differential equations">
+          <p>
+            When <Katex tex="\tfrac{dy}{dx}" /> is a function of <Katex tex="x" /> times (or divided by) a function
+            of <Katex tex="y" />, move all the <Katex tex="y" />-terms to the <Katex tex="dy" /> side and integrate
+            both sides: <Katex tex="\tfrac{dy}{dx}=\tfrac{f(x)}{g(y)}" /> gives{' '}
+            <Katex tex="\int g(y)\,dy=\int f(x)\,dx" />. The result is usually an implicit equation, and its
+            constant <Katex tex="c" /> labels the whole family of solution curves; an initial condition picks one.
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title="The constant c chooses which curve passes through (−1, 1)">
+          <ConstantWidget />
+        </Explore>
+        <WrongMethod
+          title="Substitute (−1, 1) and get c = 5/6"
+          source="Examiner's report"
+          working={<Katex display tex="1+\tfrac13 = \tfrac12+c\ \Rightarrow\ c=\tfrac56" />}
+        >
+          The report names <Katex tex="\tfrac56" /> as the most common wrong constant. It needs the right side at{' '}
+          <Katex tex="x=-1" /> to be <Katex tex="+\tfrac12" />, but{' '}
+          <Katex tex="-\tfrac{(-1)^2}{2}=-\tfrac12" />. Catch it by substituting the point into your final
+          equation: <Katex tex="2y^3+6y+3x^2-5=0" /> gives <Katex tex="2+6+3-5=6\ne0" />.
+        </WrongMethod>
+        <WrongMethod
+          title="Move the constant across and finish with +11"
+          source="Examiner's report"
+          working={<Katex display tex="2y^3+6y+3x^2+11=0" />}
+        >
+          From <Katex tex="y+\tfrac{y^3}{3}+\tfrac{x^2}{2}=\tfrac{11}{6}" />, subtracting{' '}
+          <Katex tex="\tfrac{11}{6}" /> from both sides leaves <Katex tex="-\tfrac{11}{6}" />, so times 6 it is{' '}
+          <Katex tex="-11" />. The same check exposes it: <Katex tex="2+6+3+11=22\ne0" />, so this curve misses{' '}
+          <Katex tex="(-1,1)" /> entirely.
+        </WrongMethod>
       </PartCard>
     </div>
   )
