@@ -27,23 +27,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{dom}(p+q) = \mathrm{dom}(p)\cap\mathrm{dom}(q)" />,
-    reason: <>To add two outputs you need <em>both</em> to exist, so the domains intersect. Option <b>A</b> takes the union instead.</>,
+    reason: <>The sum function is <Katex tex="(p+q)(x)=p(x)+q(x)" />, so it can only be evaluated where <em>both</em> <Katex tex="p(x)" /> and <Katex tex="q(x)" /> exist. That means <Katex tex="x" /> must lie in both domains: their intersection.</>,
   },
   {
-    working: <Katex display tex="[-2,3)\cap(-1,5]" />,
-    reason: <>Substituting the two given domains.</>,
+    working: <Katex display tex="\begin{aligned} [-2,3) &: \ -2 \le x < 3 \\ (-1,5] &: \ -1 < x \le 5 \end{aligned}" />,
+    reason: <>Write each domain as an inequality. A square bracket means the endpoint is included (<Katex tex="\le" />); a round bracket means it is excluded (<Katex tex="<" />).</>,
   },
   {
-    working: <Katex display tex="\text{lower end: } \max(-2,-1) = -1, \text{ excluded (open in } q)" />,
-    reason: <>Where the two intervals disagree about a bracket, the stricter one wins: <Katex tex="q" /> excludes <Katex tex="-1" />, so the intersection does too.</>,
-  },
-  {
-    working: <Katex display tex="\text{upper end: } \min(3,5) = 3, \text{ excluded (open in } p)" />,
-    reason: <>Same reasoning at the other end.</>,
+    working: <Katex display tex="\text{both hold when } -1 < x < 3" />,
+    reason: <>Take the stricter condition at each end. On the left, any <Katex tex="x>-1" /> already satisfies <Katex tex="x\ge-2" />, and <Katex tex="x=-1" /> is out because <Katex tex="q(-1)" /> does not exist. On the right, any <Katex tex="x<3" /> already satisfies <Katex tex="x\le5" />, and <Katex tex="x=3" /> is out because <Katex tex="p(3)" /> does not exist.</>,
   },
   {
     working: <Katex display tex="\boxed{(-1,\,3)}" />,
-    reason: <>Matches option <b>E</b>. Option <b>D</b> has the right numbers with the wrong brackets — at <Katex tex="x=3" />, <Katex tex="p(3)" /> does not exist, so neither does the sum.</>,
+    reason: <>Matches option <b>E</b>. Option <b>A</b> (chosen by 22%) is the union <Katex tex="[-2,3)\cup(-1,5]" />, which includes values such as <Katex tex="x=4" /> where <Katex tex="p" /> is undefined. Option <b>D</b> has the right endpoints with the wrong brackets: <Katex tex="q(-1)" /> and <Katex tex="p(3)" /> do not exist. Options <b>B</b> and <b>C</b> include <Katex tex="x=-2" />, where <Katex tex="q" /> is undefined. The word &lsquo;continuous&rsquo; in the stem does not affect the answer.</>,
   },
 ]
 

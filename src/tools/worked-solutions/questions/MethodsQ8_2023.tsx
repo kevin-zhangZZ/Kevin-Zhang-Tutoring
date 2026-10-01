@@ -26,23 +26,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(\text{green on one draw}) = \frac{n}{n+m}" />,
-    reason: <>There are <Katex tex="n+m" /> balls in total, and the ball is replaced, so every draw is identical and independent.</>,
+    reason: <>There are <Katex tex="n+m" /> balls in total and <Katex tex="n" /> of them are green. The ball is replaced, so every draw has this same chance and the draws are independent.</>,
   },
   {
-    working: <Katex display tex="\Pr(\text{at least one green}) = 1-\Pr(\text{no greens in 8 draws})" />,
-    reason: <>"At least one" almost always wants the complement — the alternative is summing eight separate binomial terms.</>,
+    working: <Katex display tex="X\sim\text{Bi}\left(8,\ \frac{n}{n+m}\right)" />,
+    reason: <>Let <Katex tex="X" /> be the number of green balls in the 8 draws. A fixed number of independent draws, each with the same chance of green, is a binomial setting.</>,
   },
   {
-    working: <Katex display tex="\Pr(\text{red on one draw}) = \frac{m}{n+m}" />,
-    reason: <>Note the numerator is <Katex tex="m" />, not <Katex tex="n" /> — option <b>B</b> is this slip.</>,
+    working: <Katex display tex="\Pr(X\ge1) = 1-\Pr(X=0)" />,
+    reason: <>"At least once" fails in only one way: no greens at all. The complement needs one term instead of adding the eight terms <Katex tex="\Pr(X=1)+\dots+\Pr(X=8)" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(\text{8 reds}) = \left(\frac{m}{n+m}\right)^{8}" />,
-    reason: <>Independence lets the probabilities multiply.</>,
+    working: <Katex display tex="\Pr(\text{red on one draw}) = 1-\frac{n}{n+m} = \frac{m}{n+m}" />,
+    reason: <>Every ball is either green or red. The numerator is <Katex tex="m" />, the number of red balls.</>,
   },
   {
-    working: <Katex display tex="\boxed{1-\left(\frac{m}{n+m}\right)^{8}}" />,
-    reason: <>Matches option <b>C</b>. Options <b>A</b> and <b>E</b> are built on the binomial probability of <em>exactly one</em> green, <Katex tex="8\left(\tfrac{n}{n+m}\right)\left(\tfrac{m}{n+m}\right)^7" /> (and <b>D</b> drops its factor of 8) — they answer a different question.</>,
+    working: <Katex display tex="\Pr(X=0) = \left(\frac{m}{n+m}\right)^{8}" />,
+    reason: <>No greens means all eight draws are red, and independence lets the eight probabilities multiply.</>,
+  },
+  {
+    working: <Katex display tex="\Pr(X\ge1) = \boxed{1-\left(\frac{m}{n+m}\right)^{8}}" />,
+    reason: <>Matches option <b>C</b>. Option <b>B</b> uses green's probability where red's belongs: it is <Katex tex="1-\Pr(\text{all eight green})" />, the chance of at least one <em>red</em>. Option <b>A</b> is <Katex tex="\Pr(X=1)=8\left(\tfrac{n}{n+m}\right)\left(\tfrac{m}{n+m}\right)^7" />, the chance of <em>exactly</em> one green, and option <b>E</b> is <Katex tex="1-\Pr(X=1)" />. Option <b>D</b> is <b>E</b> without the factor 8, which counts the 8 positions the single green could be in.</>,
   },
 ]
 

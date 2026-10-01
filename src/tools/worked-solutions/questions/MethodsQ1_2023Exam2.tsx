@@ -2,13 +2,19 @@
 // form: intercepts, stationary points, the area it cuts with a line, and the shift that gives
 // it a repeated root. Question text transcribed from the original paper; the stem figure is a
 // crop of VCAA's own artwork and the region figure is this site's own explanatory graph. Answers checked with sympy and
-// against the VCAA examination report. Solution is original.
+// against the VCAA examination report. Solution is original. Part d. has an interactive
+// (interactives/meth-2023e2-q1d-touch.tsx): slide k to move f up or down and see that a repeated
+// root needs a turning point on the x-axis — two ways, giving the two sets of a and b — with a
+// toggle showing the sign slip k = f(b).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2023e2-q1-graph.png'
 import regionSrc from './meth-2023e2-q1c-region.png'
+
+const TouchWidget = lazyWidget(() => import('../interactives/meth-2023e2-q1d-touch'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [9, 91],
@@ -98,7 +104,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = 3x^2-2x-2 = 0" />,
-    reason: <>Stationary points.</>,
+    reason: <>Stationary points are where the gradient is zero, so solve <Katex tex="f'(x)=0" />.</>,
   },
   {
     working: <Katex display tex="x = \frac{2\pm\sqrt{4+24}}{6} = \frac{2\pm2\sqrt7}{6} = \frac{1\pm\sqrt7}{3}" />,
@@ -106,7 +112,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f\!\left(\frac{1-\sqrt7}{3}\right) = \frac{14\sqrt7-20}{27} = \frac{2\left(7\sqrt7-10\right)}{27}" />,
-    reason: <>About <Katex tex="0.631" /> — the local maximum. Exact values are required, so keep the surds rather than reading decimals off the screen.</>,
+    reason: <>Substitute each <Katex tex="x" />-value back into <Katex tex="f" /> to get the <Katex tex="y" />-coordinate (on CAS, define <Katex tex="f(x)" /> first, then evaluate <Katex tex="f\!\left(\tfrac{1-\sqrt7}{3}\right)" />). About <Katex tex="0.631" />, the local maximum. Exact values are required, so keep the surds rather than reading decimals off the screen.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{1+\sqrt7}{3}\right) = \frac{-14\sqrt7-20}{27} = -\frac{2\left(7\sqrt7+10\right)}{27}" />,
@@ -114,7 +120,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(\tfrac{1-\sqrt7}{3},\ \tfrac{2\left(7\sqrt7-10\right)}{27}\right) \ \text{ and } \ \left(\tfrac{1+\sqrt7}{3},\ -\tfrac{2\left(7\sqrt7+10\right)}{27}\right)}" />,
-    reason: <>Both coordinates of both points — the report notes some students only gave the <Katex tex="x" /> values. Its general comments also flag transcription slips here, such as writing <Katex tex="-\tfrac{\sqrt7}{3}+1" /> for <Katex tex="\tfrac{-\sqrt7+1}{3}" />.</>,
+    reason: <>Both coordinates of both points — the report notes some students only gave the <Katex tex="x" /> values. Its general comments also flag transcription slips here, such as writing <Katex tex="-\tfrac{\sqrt7+1}{3}" /> for <Katex tex="\tfrac{-\sqrt7+1}{3}" />: only the <Katex tex="\sqrt7" /> is negative, not the whole fraction.</>,
   },
 ]
 
@@ -125,11 +131,11 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x=2: \ 8-4-6+2 = 0 \implies (x-2) \text{ is a factor}" />,
-    reason: <>Spotted by inspection, or straight from a CAS.</>,
+    reason: <>The factor theorem: try small whole numbers that divide the constant term <Katex tex="2" /> (<Katex tex="\pm1" />, <Katex tex="\pm2" />) until one gives zero. On CAS, solve(f(x) = g(x), x) gives all three solutions at once.</>,
   },
   {
     working: <Katex display tex="x^3-x^2-3x+2 = (x-2)\left(x^2+x-1\right)" />,
-    reason: <>Dividing out the known factor.</>,
+    reason: <>Divide by <Katex tex="(x-2)" /> (long division, or by matching coefficients) to leave a quadratic.</>,
   },
   {
     working: <Katex display tex="x^2+x-1 = 0 \implies x = \frac{-1\pm\sqrt5}{2}" />,
@@ -166,10 +172,10 @@ const ROWS_CII: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\boxed{A = \int_{\frac{-1-\sqrt5}{2}}^{\frac{-1+\sqrt5}{2}}\bigl(f(x)-g(x)\bigr)dx+\int_{\frac{-1+\sqrt5}{2}}^{2}\bigl(g(x)-f(x)\bigr)dx}"
+        tex="\boxed{\begin{aligned} A &= \int_{\frac{-1-\sqrt5}{2}}^{\frac{-1+\sqrt5}{2}}\bigl(f(x)-g(x)\bigr)dx \\ &\quad+\int_{\frac{-1+\sqrt5}{2}}^{2}\bigl(g(x)-f(x)\bigr)dx \end{aligned}}"
       />
     ),
-    reason: <>Upper minus lower on each piece. Both integrals are needed — the report notes some students only gave one.</>,
+    reason: <>Upper minus lower on each piece. Both integrals are needed — the report notes some students only gave one. Split only where the curves cross <em>each other</em> (part c.i.), not where they cross the <Katex tex="x" />-axis: upper minus lower is the height of the region whichever side of the axis it lies on. The report notes some students unsuccessfully split the integrals into extra parts.</>,
   },
   {
     working: <Katex display tex="\text{or } A = \int_{\frac{-1-\sqrt5}{2}}^{2}\bigl|f(x)-g(x)\bigr|\,dx" />,
@@ -188,42 +194,56 @@ const ROWS_CIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A = 5.94604\ldots" />,
-    reason: <>The unrounded value.</>,
+    reason: <>The unrounded value (the two integrals separately are <Katex tex="4.658\ldots" /> and <Katex tex="1.287\ldots" />).</>,
   },
   {
     working: <Katex display tex="\boxed{A \approx 5.95 \ \text{square units}}" />,
-    reason: <>Correct to two decimal places: <Katex tex="5.946\ldots" /> rounds up. The report notes <Katex tex="5.94" /> was a common incorrect answer.</>,
+    reason: <>Correct to two decimal places: the third decimal place of <Katex tex="5.946\ldots" /> is <Katex tex="6" />, so round up. Cutting the number off after two decimal places instead gives <Katex tex="5.94" />, which the report notes was a common incorrect answer.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="(x-a)(x-b)^2 = x^3-(a+2b)x^2+\left(2ab+b^2\right)x-ab^2" />,
-    reason: <>Expand the target form so its coefficients can be compared.</>,
+    working: <Katex display tex="\begin{aligned} (x-a)(x-b)^2 &= x^3-(a+2b)x^2 \\ &\quad+\left(2ab+b^2\right)x-ab^2 \end{aligned}" />,
+    reason: <><Katex tex="h(x)=f(x)+k" /> holds for <em>every</em> <Katex tex="x" />, so the two sides are the same polynomial and their coefficients must match term by term (equating coefficients). Expand <Katex tex="h" /> first so there are coefficients to compare.</>,
   },
   {
     working: <Katex display tex="f(x)+k = x^3-x^2-2x+k" />,
-    reason: <>Adding <Katex tex="k" /> moves the graph vertically, so only the constant term changes.</>,
+    reason: <>Using the expanded <Katex tex="f" /> from part b. Adding <Katex tex="k" /> moves the graph vertically, so only the constant term changes.</>,
   },
   {
     working: <Katex display tex="x^2: \ -(a+2b) = -1 \implies a+2b = 1" />,
-    reason: <>The <Katex tex="x^3" /> coefficients already match, so start here.</>,
+    reason: <>The <Katex tex="x^3" /> coefficients are both <Katex tex="1" /> already, so start with <Katex tex="x^2" />.</>,
   },
   {
     working: <Katex display tex="x^1: \ 2ab+b^2 = -2" />,
-    reason: <>The second equation. The constant term only determines <Katex tex="k" />, which the question does not ask for.</>,
+    reason: <>The second equation. The constant terms give <Katex tex="-ab^2=k" />, but <Katex tex="k" /> can be any real number, so that equation only tells us <Katex tex="k" /> once <Katex tex="a" /> and <Katex tex="b" /> are known. It puts no condition on <Katex tex="a" /> or <Katex tex="b" />, so these two equations are all we need.</>,
   },
   {
-    working: <Katex display tex="a = 1-2b \implies 2b(1-2b)+b^2 = -2 \implies 3b^2-2b-2 = 0" />,
-    reason: <>Substituting and tidying: <Katex tex="2b-4b^2+b^2+2=0" />.</>,
+    working: <Katex display tex="\begin{aligned} &a = 1-2b \\ &\implies 2b(1-2b)+b^2 = -2 \\ &\implies 3b^2-2b-2 = 0 \end{aligned}" />,
+    reason: <>Make <Katex tex="a" /> the subject of the first equation and substitute into the second: <Katex tex="2b-4b^2+b^2+2=0" />, i.e. <Katex tex="-3b^2+2b+2=0" />, then multiply by <Katex tex="-1" />.</>,
   },
   {
     working: <Katex display tex="b = \frac{2\pm\sqrt{4+24}}{6} = \frac{1\pm\sqrt7}{3}" />,
-    reason: <>The same surds as part b. — and that is no accident: a repeated root of <Katex tex="h" /> is a turning point of <Katex tex="f" /> shifted onto the <Katex tex="x" />-axis.</>,
+    reason: <>Both values are real, so both are valid. They are the same surds as part b., and that is no accident: <Katex tex="(x-b)^2" /> means the graph of <Katex tex="h" /> touches the <Katex tex="x" />-axis at <Katex tex="x=b" />, which can only happen at a turning point. So <Katex tex="b" /> is a stationary point of <Katex tex="f" />, and <Katex tex="k" /> lifts or drops it onto the axis: <Katex tex="f(b)+k=0" />, so <Katex tex="k=-f(b)" />. That is the report's other method, and it notes students using it often had sign errors in <Katex tex="k" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{a = \frac{1-2\sqrt7}{3},\ b = \frac{1+\sqrt7}{3} \quad\text{or}\quad a = \frac{1+2\sqrt7}{3},\ b = \frac{1-\sqrt7}{3}}" />,
-    reason: <>From <Katex tex="a=1-2b" />. Both sets — the report notes some students only gave one set of values for <Katex tex="a" /> and <Katex tex="b" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} b=\tfrac{1+\sqrt7}{3}&: \ a = 1-\tfrac{2+2\sqrt7}{3} = \tfrac{1-2\sqrt7}{3} \\ b=\tfrac{1-\sqrt7}{3}&: \ a = 1-\tfrac{2-2\sqrt7}{3} = \tfrac{1+2\sqrt7}{3} \end{aligned}"
+      />
+    ),
+    reason: <>Substitute each <Katex tex="b" /> into <Katex tex="a=1-2b" />. Each <Katex tex="a" /> goes with its own <Katex tex="b" />, so the answers come in pairs. (They match <Katex tex="k=-ab^2\approx2.113" />, the minimum lifted onto the axis, and <Katex tex="k\approx-0.631" />, the maximum dropped onto it.)</>,
+  },
+  {
+    working: (
+      <Katex
+        display
+        tex="\boxed{\begin{aligned} &a = \tfrac{1-2\sqrt7}{3},\ b = \tfrac{1+\sqrt7}{3} \\ \text{or } &a = \tfrac{1+2\sqrt7}{3},\ b = \tfrac{1-\sqrt7}{3} \end{aligned}}"
+      />
+    ),
+    reason: <>Both sets — the report notes some students only gave one set of values for <Katex tex="a" /> and <Katex tex="b" />. Its general comments also flag transcription errors with brackets and vinculums in this part, so keep each whole numerator over <Katex tex="3" />.</>,
   },
 ]
 
@@ -345,6 +365,9 @@ export default function MethodsQ1_2023Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
+        <Explore title="A repeated root is a turning point sitting on the x-axis — and there are two to choose from">
+          <TouchWidget />
+        </Explore>
       </PartCard>
     </div>
   )

@@ -3,12 +3,18 @@
 // version after the wheel stops and speeds up. Question text transcribed from the original
 // paper; the stem figure is a crop of VCAA's own artwork and the graph is our own drawing of
 // the answer. Answers checked with sympy and against the VCAA examination report. Solution is
-// original.
+// original. Interactives: d.ii meth-2023e2-q2dii-join (slide n until the third piece joins the
+// stationary piece at t = 20; the solutions repeat every 30); d.iii meth-2023e2-q2diii-wheel
+// (turn the wheel beside the graph to see why w is curved, with a straight-line-sketch toggle).
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import wheelSrc from './meth-2023e2-q2-wheel.png'
 import sketchSrc from './meth-2023e2-q2diii-sketch.png'
+
+const JoinWidget = lazyWidget(() => import('../interactives/meth-2023e2-q2dii-join'))
+const WheelWidget = lazyWidget(() => import('../interactives/meth-2023e2-q2diii-wheel'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [16, 18, 66],
@@ -81,7 +87,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = \frac{2\pi}{30} = \frac{\pi}{15}}" />,
-    reason: <>Rearranging.</>,
+    reason: <>Rearranging. Take <Katex tex="b" /> positive: a negative <Katex tex="b" /> gives the same model anyway, because <Katex tex="\cos(-x)=\cos(x)" />.</>,
   },
   {
     working: <Katex display tex="t=0 \text{ is at } A \implies h(0) = 15" />,
@@ -100,23 +106,23 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="A \text{ to } B \text{ is a quarter turn} \implies t \text{ from } 0 \text{ to } 7.5" />,
-    reason: <><Katex tex="B" /> is level with the centre, so the pod has gone a quarter of the way round: <Katex tex="\tfrac{30}{4}=7.5" /> minutes.</>,
+    reason: <>Turning anticlockwise from the lowest point <Katex tex="A" />, the pod reaches <Katex tex="B" /> (level with the centre <Katex tex="P" />) after a quarter turn, <Katex tex="90^\circ" /> of <Katex tex="360^\circ" />. A quarter of 30 minutes is <Katex tex="\tfrac{30}{4}=7.5" /> minutes.</>,
   },
   {
     working: <Katex display tex="\text{average value} = \frac{1}{b-a}\int_a^b h(t)\,dt = \frac{1}{7.5}\int_0^{7.5}h(t)\,dt" />,
     reason: <>The <em>average value of a function</em> — not the average rate of change, which is part c. The report notes <Katex tex="\tfrac{1}{60}\int_0^{60}h(t)\,dt" /> was often seen — the wrong interval entirely.</>,
   },
   {
-    working: <Katex display tex="\int_0^{7.5}\left(-60\cos\!\left(\frac{\pi t}{15}\right)+75\right)dt = \left[-\frac{900}{\pi}\sin\!\left(\frac{\pi t}{15}\right)+75t\right]_0^{7.5}" />,
-    reason: <><Katex tex="\int\cos(kt)dt=\tfrac{1}{k}\sin(kt)" /> with <Katex tex="k=\tfrac{\pi}{15}" />, so the factor is <Katex tex="\tfrac{15}{\pi}" />.</>,
+    working: <Katex display tex="\begin{aligned}&\int_0^{7.5}\left(-60\cos\!\left(\frac{\pi t}{15}\right)+75\right)dt\\ &= \left[-\frac{900}{\pi}\sin\!\left(\frac{\pi t}{15}\right)+75t\right]_0^{7.5}\end{aligned}" />,
+    reason: <><Katex tex="\int\cos(kt)\,dt=\tfrac{1}{k}\sin(kt)" /> with <Katex tex="k=\tfrac{\pi}{15}" />, so <Katex tex="\tfrac1k=\tfrac{15}{\pi}" /> and the cosine term becomes <Katex tex="-60\times\tfrac{15}{\pi}=-\tfrac{900}{\pi}" /> times the sine.</>,
   },
   {
     working: <Katex display tex="= -\frac{900}{\pi}+562.5 = 276.02\ldots" />,
-    reason: <><Katex tex="\sin\!\left(\tfrac\pi2\right)=1" />.</>,
+    reason: <>At the upper terminal <Katex tex="\sin\!\left(\tfrac\pi2\right)=1" /> and <Katex tex="75\times7.5=562.5" />; at the lower terminal both terms are 0. Keep the unrounded value for the last step.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{276.02\ldots}{7.5} \approx 36.80 \ \text{metres}}" />,
-    reason: <>Comfortably below the halfway height of 75 m, which is right: the pod spends the first part of the quarter-turn crawling up from the bottom.</>,
+    reason: <>Correct to two decimal places, as asked (exactly <Katex tex="75-\tfrac{120}{\pi}" />). Check: the pod climbs from 15 m to 75 m, and the answer is below the half-way height of 45 m because near the bottom the pod moves mostly sideways, so it spends longer at low heights.</>,
   },
 ]
 
@@ -131,68 +137,76 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{75-15}{7.5} = 8 \ \mathrm{m/min}}" />,
-    reason: <>Positive, because the pod is rising. The report notes <Katex tex="-8" />, with the sign reversed, was a common incorrect answer.</>,
+    reason: <>Positive, because the pod is rising. Subtract in the order later minus earlier, <Katex tex="h(7.5)-h(0)" />: the report notes <Katex tex="-8" />, with the sign reversed, was a common incorrect answer.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="k = h(15) = -60\cos(\pi)+75 = 60+75" />,
-    reason: <>The wheel stops after 15 minutes — half a rotation, so the pod is at the very top.</>,
+    reason: <><Katex tex="k" /> is the height while the wheel is stopped, which is where the pod was at <Katex tex="t=15" />. Fifteen minutes is half of a 30-minute rotation, so the pod is at the very top.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 135}" />,
     reason: <>Which is <Katex tex="15+120" />: the bottom of the wheel plus a full diameter ✓.</>,
   },
   {
-    working: <Katex display tex="\text{double speed} \implies \text{half the period} \implies \text{time runs twice as fast}" />,
-    reason: <>Inside the function, doubling the speed means replacing <Katex tex="t" /> by <Katex tex="2t" />.</>,
+    working: <Katex display tex="\text{period of } h(mt+n) = \frac{2\pi}{m\times\frac{\pi}{15}} = \frac{30}{m}" />,
+    reason: <>Multiplying <Katex tex="t" /> by <Katex tex="m" /> inside the cosine divides the period by <Katex tex="m" />, just as the period of <Katex tex="\cos(bt)" /> is <Katex tex="\tfrac{2\pi}{b}" /> in part a.</>,
+  },
+  {
+    working: <Katex display tex="\text{double speed} \implies \frac{30}{m} = 15" />,
+    reason: <>Twice as fast means one full rotation takes half as long: 15 minutes instead of 30.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 2}" />,
-    reason: <>A dilation of factor <Katex tex="\tfrac12" /> from the vertical axis, which is <Katex tex="m=2" /> inside the bracket. The report notes <Katex tex="m=\tfrac12" /> was often seen — that would halve the speed.</>,
+    reason: <>The graph is dilated by a factor of <Katex tex="\tfrac12" /> from the vertical axis. The report notes <Katex tex="m=\tfrac12" /> was often seen: that would make the period <Katex tex="\tfrac{30}{1/2}=60" /> minutes, which halves the speed instead of doubling it.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
-    working: <Katex display tex="w \text{ continuous at } t=20 \implies h(m(20)+n) = k = 135" />,
-    reason: <>The pod restarts from wherever it stopped, so the third piece must begin at height 135.</>,
+    working: <Katex display tex="\begin{aligned}&w \text{ continuous at } t=20\\ &\implies h(m(20)+n) = k = 135\end{aligned}" />,
+    reason: <>The pod restarts from wherever it stopped, so the third piece must begin at height <Katex tex="k=135" /> (part d.i). Whenever a piecewise model describes one object moving, its pieces must join up, so set them equal at the join, <Katex tex="t=20" />.</>,
   },
   {
-    working: <Katex display tex="h(40+n) = 135 \implies -60\cos\!\left(\frac{\pi(40+n)}{15}\right)+75 = 135" />,
-    reason: <>Substituting <Katex tex="m=2" />.</>,
+    working: <Katex display tex="\begin{aligned}&h(40+n) = 135\\ &\implies -60\cos\!\left(\frac{\pi(40+n)}{15}\right)+75 = 135\end{aligned}" />,
+    reason: <>Substituting <Katex tex="m=2" /> from part d.i, then the rule for <Katex tex="h" />.</>,
   },
   {
-    working: <Katex display tex="\cos\!\left(\frac{\pi(40+n)}{15}\right) = -1 \implies \frac{\pi(40+n)}{15} = \pi+2p\pi, \ p\in Z" />,
-    reason: <>Cosine equals <Katex tex="-1" /> at every odd multiple of <Katex tex="\pi" />. A <em>general</em> solution is required, and <Katex tex="p" /> must be an integer.</>,
+    working: <Katex display tex="\cos\!\left(\frac{\pi(40+n)}{15}\right) = -1" />,
+    reason: <>Subtracting 75, then dividing by <Katex tex="-60" />.</>,
+  },
+  {
+    working: <Katex display tex="\frac{\pi(40+n)}{15} = \pi+2p\pi, \ p\in Z" />,
+    reason: <>Cosine equals <Katex tex="-1" /> at <Katex tex="\ldots,-\pi,\ \pi,\ 3\pi,\ldots" />, every odd multiple of <Katex tex="\pi" />. The question asks for <b>all</b> values of <Katex tex="n" />, so write this <em>general</em> solution. <Katex tex="p" /> must be an integer (the report notes some students wrote <Katex tex="p\in R" />): <Katex tex="p=\tfrac12" /> would give <Katex tex="2\pi" />, where cosine is <Katex tex="+1" />.</>,
   },
   {
     working: <Katex display tex="40+n = 15+30p \implies n = -25+30p" />,
-    reason: <>Multiplying by 15/π.</>,
+    reason: <>Multiplying both sides by <Katex tex="\tfrac{15}{\pi}" />, then subtracting 40.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 5+30p, \ p\in Z}" />,
-    reason: <>The same set written from a different starting point (<Katex tex="-25=5-30" />). Taking <Katex tex="n=5" />: at <Katex tex="t=27.5" />, <Katex tex="h(60)=15" />, so the pod is back at the bottom ✓.</>,
+    reason: <>The same set written from a different starting point (<Katex tex="-25=5-30" />). There are infinitely many answers because adding 30 to <Katex tex="n" /> moves <Katex tex="h" /> along one whole period, giving exactly the same third piece. Check <Katex tex="n=5" />: at <Katex tex="t=27.5" />, <Katex tex="h(2(27.5)+5)=h(60)=15" />, so the pod is back at the bottom ✓.</>,
   },
 ]
 
 const ROWS_DIII: WorkingRow[] = [
   {
     working: <Katex display tex="0\le t<15: \ w = -60\cos\!\left(\frac{\pi t}{15}\right)+75" />,
-    reason: <>Half a cosine wave from <Katex tex="(0,15)" /> up to <Katex tex="(15,135)" />, flat at both ends — not a straight line; the report notes linear graphs were sometimes seen.</>,
+    reason: <>Half a cosine wave from <Katex tex="(0,15)" /> up to <Katex tex="(15,135)" />: flat at both ends and steepest in the middle (<Katex tex="t=7.5" />), because near the bottom and top of the wheel the pod moves mostly sideways. So it is a curve, not a straight line; the report notes linear graphs were sometimes seen.</>,
   },
   {
     working: <Katex display tex="15\le t<20: \ w = 135" />,
-    reason: <>A horizontal segment while the wheel is stationary.</>,
+    reason: <><Katex tex="k=135" /> from part d.i: a horizontal segment while the wheel is stationary.</>,
   },
   {
     working: <Katex display tex="20\le t\le27.5: \ w = h(2t+5)" />,
-    reason: <>The same shape running down, but horizontally compressed by <Katex tex="\tfrac12" /> — it takes 7.5 minutes instead of 15.</>,
+    reason: <>Using <Katex tex="m=2" /> and <Katex tex="n=5" /> (any <Katex tex="n=5+30p" /> gives this same piece). It starts at <Katex tex="h(45)=135" /> and ends at <Katex tex="h(60)=15" />: the first piece's shape running down, squeezed horizontally by a factor of <Katex tex="\tfrac12" />. It takes 7.5 minutes instead of 15, so it is twice as steep, steepest at <Katex tex="t=23.75" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,15),\ (15,135),\ (20,135),\ (27.5,15)}" />,
-    reason: <>The endpoints of the three pieces, all labelled with coordinates — the report notes these were missing on some graphs.</>,
+    reason: <>The endpoints of the three pieces, all labelled with coordinates — the report notes these were missing on some graphs. The pieces join up, so the graph is one unbroken curve: no open circles are needed at <Katex tex="t=15" /> or <Katex tex="t=20" />.</>,
   },
   {
     working: (
@@ -338,6 +352,9 @@ export default function MethodsQ2_2023Exam2() {
         examinerReport={EXAM_DII}
       >
         <WorkingTable rows={ROWS_DII} />
+        <Explore title="Why w(20) = 135 pins down n, and why every n = 5 + 30p works">
+          <JoinWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -353,6 +370,9 @@ export default function MethodsQ2_2023Exam2() {
         examinerReport={EXAM_DIII}
       >
         <WorkingTable rows={ROWS_DIII} />
+        <Explore title="Why the graph curves: the pod's height changes slowly at the top and bottom of the wheel">
+          <WheelWidget />
+        </Explore>
       </PartCard>
     </div>
   )

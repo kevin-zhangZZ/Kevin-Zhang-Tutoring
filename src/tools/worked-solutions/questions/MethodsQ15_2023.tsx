@@ -29,23 +29,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\mu_Y = 80 < 100 = \mu_X" />,
-    reason: <>The <Katex tex="Y" /> curve (solid, per the key) is centred to the <em>left</em> of the <Katex tex="X" /> curve (dashed).</>,
+    reason: <>The key shows <Katex tex="X" /> dashed and <Katex tex="Y" /> solid. A normal curve peaks at its mean, so the solid curve must peak to the <em>left</em> of the dashed curve.</>,
   },
   {
     working: <Katex display tex="\sigma_Y = 10 < 20 = \sigma_X" />,
-    reason: <><Katex tex="Y" /> is the narrower of the two.</>,
+    reason: <>The standard deviation measures spread: a smaller one keeps the values closer to the mean. So the solid curve must be the narrower of the two.</>,
   },
   {
     working: <Katex display tex="\text{area under each} = 1 \implies \text{narrower} \Rightarrow \text{taller}" />,
-    reason: <>Every density encloses area 1, so halving the spread roughly doubles the peak: <Katex tex="Y" /> must be both narrow and tall.</>,
+    reason: <>Every probability density function encloses a total area of 1. A curve half as wide must be twice as tall to hold the same area, so the solid curve must also be the taller one.</>,
   },
   {
-    working: <Katex display tex="\text{Want: solid tall and narrow, on the left; dashed low and wide, on the right}" />,
-    reason: <>Three features to check — centre order, width order, and height order. Only one diagram has all three.</>,
+    working: <Katex display tex="\begin{aligned}\text{A}&:\ \text{all three}\ \checkmark\\ \text{B}&:\ \text{solid on right}\ \times\\ \text{C}&:\ \text{solid wider}\ \times\\ \text{D}&:\ \text{same width}\ \times\\ \text{E}&:\ \text{solid wider}\ \times\end{aligned}" />,
+    reason: <>Check the solid curve in each diagram against the three features: left of, narrower than and taller than the dashed curve. One failed feature rules a diagram out.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{A}}" />,
-    reason: <>Matches option <b>A</b>. Option <b>C</b> reverses which curve is narrow; <b>B</b> puts the solid curve on the right; <b>D</b> gives the two curves the same spread; <b>E</b> swaps the two curves entirely.</>,
+    reason: <>Matches option <b>A</b>, the only diagram with all three features. Option <b>C</b> has the centres in the right order but gives the solid curve the larger spread; <b>B</b> puts the solid curve on the right; <b>D</b> gives the two curves the same spread; <b>E</b> swaps the two curves entirely.</>,
   },
 ]
 

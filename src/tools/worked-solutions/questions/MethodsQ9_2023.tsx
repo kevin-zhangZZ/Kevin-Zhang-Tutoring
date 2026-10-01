@@ -32,28 +32,32 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Continuous at } x=2\pi: \quad \tan\!\left(\frac{2\pi}{2}\right) = \sin(2\pi a)" />,
-    reason: <>The two branches must agree in value at the join.</>,
+    working: <Katex display tex="\begin{gathered}\text{Continuous at } x=2\pi:\\ \tan\!\left(\frac{2\pi}{2}\right) = \sin(2\pi a)\end{gathered}" />,
+    reason: <>Continuous means no jump: the value the left branch approaches as <Katex tex="x\to2\pi" /> must equal <Katex tex="f(2\pi)" />, which comes from the right branch. The left branch has no asymptote on its interval (<Katex tex="\tfrac x2" /> runs from 2 to <Katex tex="\pi" />, and tan's asymptote at <Katex tex="\tfrac\pi2\approx1.57" /> is below 2), so substitute <Katex tex="x=2\pi" />.</>,
   },
   {
-    working: <Katex display tex="\tan(\pi) = 0 \implies \sin(2\pi a) = 0 \implies 2\pi a = k\pi \implies a = \frac k2, \ k\in Z" />,
-    reason: <>Continuity alone leaves infinitely many candidates, including every option except <Katex tex="-\tfrac\pi2" /> — so it cannot decide the question on its own.</>,
+    working: <Katex display tex="\begin{aligned}\sin(2\pi a) &= \tan(\pi) = 0\\ 2\pi a &= k\pi\\ a &= \frac k2, \ k\in Z\end{aligned}" />,
+    reason: <><Katex tex="\sin" /> is zero exactly at the integer multiples of <Katex tex="\pi" />. Continuity alone leaves infinitely many candidates, including every option except <Katex tex="-\tfrac\pi2" />, so it cannot decide the question on its own.</>,
   },
   {
-    working: <Katex display tex="\text{Smooth at } x=2\pi: \quad \frac{d}{dx}\tan\!\left(\frac x2\right) = \frac{d}{dx}\sin(ax)" />,
-    reason: <>"Smooth" means the gradients match too — the second condition.</>,
+    working: <Katex display tex="\begin{gathered}\text{Smooth at } x=2\pi:\\ \frac{d}{dx}\tan\!\left(\frac x2\right) = \frac{d}{dx}\sin(ax)\end{gathered}" />,
+    reason: <>Smooth means no corner: the gradients from the two sides must match at the join too. This is the second condition.</>,
   },
   {
-    working: <Katex display tex="\frac12\sec^2\!\left(\frac{2\pi}{2}\right) = \frac12\sec^2(\pi) = \frac12" />,
-    reason: <><Katex tex="\sec(\pi)=\tfrac{1}{\cos\pi}=-1" />, and squaring makes it 1.</>,
+    working: <Katex display tex="\begin{aligned}\frac{d}{dx}\tan\!\left(\frac x2\right) &= \frac{1}{2\cos^2\!\left(\frac x2\right)}\\ \text{At } x=2\pi: \quad \frac{1}{2\cos^2(\pi)} &= \frac12\end{aligned}" />,
+    reason: <>Left gradient. The formula sheet gives the derivative of <Katex tex="\tan(bx)" /> as <Katex tex="\tfrac{b}{\cos^2(bx)}" />, here with <Katex tex="b=\tfrac12" />. <Katex tex="\cos(\pi)=-1" />, and squaring makes it 1.</>,
   },
   {
-    working: <Katex display tex="a\cos(2\pi a) = \frac12 \ \text{ with } \ a = \frac k2 \implies \frac k2(-1)^k = \frac12" />,
-    reason: <><Katex tex="\cos(k\pi)=(-1)^k" />. So <Katex tex="k(-1)^k=1" />, which forces <Katex tex="k=-1" /> — the positive <Katex tex="k=1" /> gives <Katex tex="-1" />.</>,
+    working: <Katex display tex="\begin{aligned}\frac{d}{dx}\sin(ax) &= a\cos(ax)\\ \text{At } x=2\pi: \quad a\cos(2\pi a) &= \frac12\end{aligned}" />,
+    reason: <>Right gradient, set equal to the left gradient of <Katex tex="\tfrac12" />.</>,
+  },
+  {
+    working: <Katex display tex="a = \frac k2: \quad \frac k2\cos(k\pi) = \frac12 \implies k(-1)^k = 1" />,
+    reason: <>Only the continuity candidates need testing. <Katex tex="\cos(k\pi)=(-1)^k" />: it is 1 at even multiples of <Katex tex="\pi" /> and <Katex tex="-1" /> at odd ones. Since <Katex tex="(-1)^k" /> is <Katex tex="\pm1" />, the equation needs <Katex tex="k=\pm1" />, and <Katex tex="k=1" /> gives <Katex tex="-1" />, so <Katex tex="k=-1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\frac12}" />,
-    reason: <>Matches option <b>C</b>. Check: <Katex tex="\sin(-\pi)=0" /> ✓ and <Katex tex="-\tfrac12\cos(-\pi)=\tfrac12" /> ✓. Option <b>D</b>, <Katex tex="+\tfrac12" />, is continuous but has gradient <Katex tex="-\tfrac12" /> — a corner, not a smooth join.</>,
+    reason: <>Matches option <b>C</b>. Check: <Katex tex="\sin(-\pi)=0" /> ✓ and <Katex tex="-\tfrac12\cos(-\pi)=\tfrac12" /> ✓. Option <b>D</b>, <Katex tex="\tfrac12" />, is continuous but its gradient at <Katex tex="x=2\pi" /> is <Katex tex="\tfrac12\cos(\pi)=-\tfrac12" />, not <Katex tex="\tfrac12" />: the graph turns a corner, so the join is not smooth. Options <b>A</b> and <b>E</b>, <Katex tex="-2" /> and 2, are also continuous, but their gradients there are <Katex tex="-2" /> and 2. Option <b>B</b> fails even continuity: <Katex tex="\sin(-\pi^2)\approx0.43\ne0" />.</>,
   },
 ]
 

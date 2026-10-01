@@ -13,20 +13,20 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = -\tfrac12\sin(3x+2\pi) = a\sin\bigl(n(x+b)\bigr)" />,
-    reason: <>Compare with the general form: <Katex tex="a=-\tfrac12" /> and <Katex tex="n=3" />.</>,
+    working: <Katex display tex="f(x) = -\tfrac12\sin(3x+2\pi) = -\tfrac12\sin\!\Bigl(3\bigl(x+\tfrac{2\pi}{3}\bigr)\Bigr)" />,
+    reason: <>Factorise the coefficient of <Katex tex="x" /> out of the bracket so the rule matches the form <Katex tex="a\sin\bigl(n(x+b)\bigr)" />: here <Katex tex="a=-\tfrac12" />, <Katex tex="n=3" /> and <Katex tex="b=\tfrac{2\pi}{3}" />.</>,
   },
   {
     working: <Katex display tex="A = |a| = \left|-\tfrac12\right| = \tfrac12" />,
-    reason: <>Amplitude is the distance from the centre line to a peak, so it is never negative. Three of the five options offer <Katex tex="-\tfrac12" />, which is the trap.</>,
+    reason: <>Amplitude is the distance from the centre line (here <Katex tex="y=0" />) to a maximum, and a distance is never negative. The minus sign only reflects the graph in the <Katex tex="x" />-axis: it still reaches <Katex tex="\tfrac12" /> above and <Katex tex="\tfrac12" /> below the centre line.</>,
   },
   {
     working: <Katex display tex="P = \frac{2\pi}{n} = \frac{2\pi}{3}" />,
-    reason: <>The <Katex tex="+2\pi" /> inside is a translation of a full period, so it changes neither the amplitude nor the period — in fact <Katex tex="\sin(3x+2\pi)=\sin(3x)" />.</>,
+    reason: <><Katex tex="\sin(nx)" /> completes one cycle as <Katex tex="nx" /> runs through <Katex tex="2\pi" />, that is, as <Katex tex="x" /> runs through <Katex tex="\tfrac{2\pi}{n}" />. The <Katex tex="+\tfrac{2\pi}{3}" /> inside is only a horizontal translation, and translations change neither the amplitude nor the period. (It is exactly one period, so in fact <Katex tex="\sin(3x+2\pi)=\sin(3x)" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{A = \tfrac12, \quad P = \tfrac{2\pi}{3}}" />,
-    reason: <>Matches option <b>E</b>. Option <b>D</b> pairs the right amplitude with the period of <Katex tex="\sin(6x)" />.</>,
+    reason: <>Matches option <b>E</b>. Option <b>B</b> (chosen by 16%) has the right period but keeps the minus sign in the amplitude. Option <b>D</b> has the right amplitude, but its period <Katex tex="\tfrac{\pi}{3}=\tfrac{\pi}{n}" /> is the rule for <Katex tex="\tan(nx)" />, not <Katex tex="\sin(nx)" />. Options <b>A</b> and <b>C</b> pair the negative amplitude with a wrong period.</>,
   },
 ]
 

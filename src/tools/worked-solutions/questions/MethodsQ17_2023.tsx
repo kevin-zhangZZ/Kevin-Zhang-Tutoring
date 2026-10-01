@@ -2,6 +2,10 @@
 // a cylinder rolled from a rectangular sheet with two circular end-caps cut from it. Question
 // text transcribed from the original paper; the diagram is cropped directly from the original
 // VCAA exam PDF, not a redrawing. Solution is original.
+// Checked in sympy: r = y/(2π), h = x − 4r = x − 2y/π, V = πr²h = (πxy² − 2y³)/(4π²) (B), agreeing
+// with the report. C = −B, D = πrh (r not squared), E = −D.
+// No interactive: the wrong options are sign-flipped (C, E) or have r unsquared (D, E), which a
+// positivity and units check in the working catches better than a manipulable picture.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -32,31 +36,36 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: DIAGRAM,
-    reason: <>The shaded middle strip (width <Katex tex="h" />, height <Katex tex="y" />) rolls up into the cylinder's curved surface; the two circles of radius <Katex tex="r" /> become its top and bottom.</>,
+    reason: <>Picture the build: the shaded middle strip (<Katex tex="h" /> wide, <Katex tex="y" /> tall) rolls up into the cylinder&apos;s curved side, and the two circles of radius <Katex tex="r" /> become its top and bottom.</>,
   },
   {
     working: <Katex display tex="y = 2\pi r \;\implies\; r = \frac{y}{2\pi}" />,
-    reason: <>The height <Katex tex="y" /> of the sheet becomes the circumference of the circular cross-section once rolled.</>,
+    reason: <>The cylinder&apos;s height is <Katex tex="h" />, so the strip is rolled the other way: its side of length <Katex tex="y" /> curls round into a circle. The circular lid of radius <Katex tex="r" /> must fit that circle exactly, so <Katex tex="y" /> equals the lid&apos;s circumference, <Katex tex="2\pi r" />.</>,
   },
   {
-    working: <Katex display tex="h = x - 4r" />,
-    reason: <>The two end circles (diameter <Katex tex="2r" /> each) are cut from the two ends of the length <Katex tex="x" />, leaving <Katex tex="h" /> for the middle strip.</>,
+    working: <Katex display tex="x = 2r + h + 2r \;\implies\; h = x - 4r" />,
+    reason: <>Each circle fits exactly across its end piece (it touches the sheet&apos;s edge and the dashed line), so each end piece is one diameter, <Katex tex="2r" />, wide. Across the sheet: end piece, strip, end piece.</>,
   },
   {
-    working: <Katex display tex="h = x - \frac{4y}{2\pi} = x - \frac{2y}{\pi}" />,
-    reason: <>Substitute r in terms of y.</>,
+    working: <Katex display tex="h = x - 4\cdot\frac{y}{2\pi} = x - \frac{2y}{\pi}" />,
+    reason: <>Substitute <Katex tex="r=\tfrac{y}{2\pi}" />, since the answer must be in terms of <Katex tex="x" /> and <Katex tex="y" /> only.</>,
   },
   {
     working: <Katex display tex="V = \pi r^2 h = \pi\left(\frac{y}{2\pi}\right)^2\left(x-\frac{2y}{\pi}\right)" />,
-    reason: <>Standard cylinder volume formula.</>,
+    reason: <>Volume of a cylinder: area of the circular base, <Katex tex="\pi r^2" />, times the height <Katex tex="h" />.</>,
   },
   {
-    working: <Katex display tex="= \frac{y^2}{4\pi}\left(x - \frac{2y}{\pi}\right) = \frac{xy^2}{4\pi} - \frac{2y^3}{4\pi^2}" />,
-    reason: <>Expand.</>,
+    working: (
+      <>
+        <Katex display tex="= \pi\cdot\frac{y^2}{4\pi^2}\left(x - \frac{2y}{\pi}\right) = \frac{y^2}{4\pi}\left(x - \frac{2y}{\pi}\right)" />
+        <Katex display tex="= \frac{xy^2}{4\pi} - \frac{2y^3}{4\pi^2}" />
+      </>
+    ),
+    reason: <>Square the bracket (square both the top and the bottom), cancel one <Katex tex="\pi" />, then expand.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{\pi xy^2 - 2y^3}{4\pi^2}}" />,
-    reason: <>Common denominator <Katex tex="4\pi^2" />. Matches option <b>B</b>; option <b>C</b> is its negative.</>,
+    reason: <>Matches option <b>B</b>, after writing <Katex tex="\tfrac{xy^2}{4\pi}=\tfrac{\pi xy^2}{4\pi^2}" /> over the common denominator. Two quick checks rule out the rest. A volume must be positive: <Katex tex="h=x-\tfrac{2y}{\pi}>0" /> for a real cylinder, so B is positive and C (its negative) is not. A volume is length &times; length &times; length: D and E only have two lengths multiplied on top (<Katex tex="xy" />, <Katex tex="y^2" />), so they are areas; D is <Katex tex="\pi r h" />, what you get if you forget to square <Katex tex="r" />.</>,
   },
 ]
 

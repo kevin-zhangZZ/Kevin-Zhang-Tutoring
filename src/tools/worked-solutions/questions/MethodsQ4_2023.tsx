@@ -1,5 +1,6 @@
 // 2023 Mathematical Methods — Exam 2, MCQ 4. VCAA examination report: 55% correct.
-// A zero determinant is necessary but not sufficient for infinite solutions. Question text transcribed from the original paper.
+// Equal gradients are necessary but not sufficient for infinite solutions; each candidate k is checked by substitution
+// (gradient method, since matrices/determinants are not in the current Methods course). Question text transcribed from the original paper.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -14,24 +15,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{pmatrix}k&5\\4&k+1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}k+5\\0\end{pmatrix}" />,
-    reason: <>Matrix form. A unique solution exists exactly when the determinant is non-zero.</>,
+    working: <Katex display tex="\begin{aligned}\text{Eq. 1: } y &= -\tfrac{k}{5}x+\tfrac{k+5}{5}\\ \text{Eq. 2: } y &= -\tfrac{4}{k+1}x \quad (k\ne-1)\end{aligned}" />,
+    reason: <>Each equation is a straight line, and two lines share infinitely many points only when they are the <em>same</em> line: equal gradients <em>and</em> equal <Katex tex="y" />-intercepts. Rearrange each into <Katex tex="y=mx+c" /> form to read both off. (Dividing by <Katex tex="k+1" /> needs <Katex tex="k\ne-1" />. At <Katex tex="k=-1" /> the second equation is <Katex tex="4x=0" />, the vertical line <Katex tex="x=0" />, which the first line crosses exactly once.)</>,
   },
   {
-    working: <Katex display tex="\det = k(k+1)-20 = k^2+k-20 = (k+5)(k-4)" />,
-    reason: <>So the determinant vanishes at <Katex tex="k=-5" /> and <Katex tex="k=4" /> — the only two candidates. Stopping here gives option <b>A</b>.</>,
+    working: <Katex display tex="\begin{aligned}-\tfrac{k}{5} &= -\tfrac{4}{k+1}\\ k(k+1) &= 20\\ k^2+k-20 &= 0\\ (k+5)(k-4) &= 0\\ k &= -5 \ \text{ or } \ k=4\end{aligned}" />,
+    reason: <>Set the gradients equal and cross-multiply. These are the only two values where the lines are parallel; for every other <Katex tex="k" /> they cross at exactly one point, so <Katex tex="k\in R\setminus\{-5,4\}" /> (option <b>D</b>) is the unique-solution case. Equal gradients alone don't settle it: stopping here gives option <b>A</b>.</>,
   },
   {
     working: <Katex display tex="k=4: \quad 4x+5y = 9 \ \text{ and } \ 4x+5y = 0" />,
-    reason: <>Same left-hand sides, different right-hand sides: parallel lines that never meet. No solutions at all.</>,
+    reason: <>Substitute each value back into the original equations. Same left-hand sides, different right-hand sides: <Katex tex="4x+5y" /> can't equal both <Katex tex="9" /> and <Katex tex="0" />, so these are parallel lines that never meet. No solutions at all, so <Katex tex="k=4" /> (option <b>C</b>) is the no-solution case.</>,
   },
   {
     working: <Katex display tex="k=-5: \quad -5x+5y = 0 \ \text{ and } \ 4x-4y = 0" />,
-    reason: <>Both reduce to <Katex tex="y=x" /> — the same line twice.</>,
+    reason: <>Divide the first by <Katex tex="5" /> and the second by <Katex tex="4" />: they become <Katex tex="-x+y=0" /> and <Katex tex="x-y=0" />, which both rearrange to <Katex tex="y=x" />. The same line twice, so every point on it satisfies both equations: infinitely many solutions.</>,
   },
   {
     working: <Katex display tex="\boxed{k \in \{-5\}}" />,
-    reason: <>Matches option <b>B</b>. A zero determinant means "no unique solution"; whether that is <em>none</em> or <em>infinitely many</em> has to be checked case by case.</>,
+    reason: <>Matches option <b>B</b>. Equal gradients only tell you there is no <em>unique</em> solution; whether there are <em>none</em> (parallel lines) or <em>infinitely many</em> (the same line) has to be checked by substituting each value back.</>,
   },
 ]
 
