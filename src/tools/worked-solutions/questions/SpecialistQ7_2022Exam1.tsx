@@ -1,6 +1,8 @@
 // 2022 Specialist Mathematics — Exam 1 Question 7 (3 marks). Implicit differentiation of
 // a product containing cos(x + y). Question text transcribed from the original paper.
 // Answer checked with sympy and against the VCAA examination report. Solution is original.
+// No widget (34% full marks): the report says marks were lost by expanding cos(x + y) and
+// drowning in terms — a pure-algebra method choice that a picture would not fix.
 
 import Katex from '../../../components/Katex'
 import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -21,31 +23,69 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x\cos(x+y) = \frac{\pi}{48}" />,
-    reason: <>Differentiate both sides with respect to x, as it stands — no expansion.</>,
+    reason: (
+      <>
+        The <Katex tex="y" /> is stuck inside the cosine with <Katex tex="x" />, so find{' '}
+        <Katex tex="\tfrac{dy}{dx}" /> by implicit differentiation: differentiate both sides
+        with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of{' '}
+        <Katex tex="x" />. Differentiate the left side exactly as printed — don't expand{' '}
+        <Katex tex="\cos(x+y)" /> first.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\cos(x+y)+x\cdot\left(-\sin(x+y)\right)\left(1+\frac{dy}{dx}\right) = 0" />,
-    reason: <>Product rule on the left; the chain rule on <Katex tex="\cos(x+y)" /> contributes <Katex tex="\tfrac{d}{dx}(x+y)=1+\tfrac{dy}{dx}" />. The right side is constant, so it differentiates to 0.</>,
+    working: <Katex display tex="\cos(x+y)-x\sin(x+y)\left(1+\frac{dy}{dx}\right) = 0" />,
+    reason: (
+      <>
+        Product rule with <Katex tex="u=x" /> and <Katex tex="v=\cos(x+y)" />. For{' '}
+        <Katex tex="v'" />, the chain rule gives <Katex tex="-\sin(x+y)" /> times the
+        derivative of the inside, <Katex tex="\tfrac{d}{dx}(x+y)=1+\tfrac{dy}{dx}" /> — the 1
+        comes from <Katex tex="x" /> and the <Katex tex="\tfrac{dy}{dx}" /> from{' '}
+        <Katex tex="y" />. The right side is a constant, so its derivative is 0.
+      </>
+    ),
   },
   {
     working: <Katex display tex="x+y = \frac{\pi}{24}+\frac{7\pi}{24} = \frac{8\pi}{24} = \frac{\pi}{3}" />,
-    reason: <>Work this out before substituting — it is the whole reason the given point was chosen.</>,
+    reason: (
+      <>
+        Add the coordinates before substituting: <Katex tex="x+y" /> is the only angle in the
+        equation, and at this point it is <Katex tex="\tfrac\pi3" />, whose cos and sin are
+        exact values.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{1}{2}-\frac{\pi}{24}\cdot\frac{\sqrt3}{2}\left(1+\frac{dy}{dx}\right) = 0" />,
     reason: <><Katex tex="\cos\!\left(\tfrac\pi3\right)=\tfrac12" /> and <Katex tex="\sin\!\left(\tfrac\pi3\right)=\tfrac{\sqrt3}{2}" />, with <Katex tex="x=\tfrac{\pi}{24}" />.</>,
   },
   {
-    working: <Katex display tex="\frac{\sqrt3\,\pi}{48}\left(1+\frac{dy}{dx}\right) = \frac{1}{2} \implies 1+\frac{dy}{dx} = \frac{48}{2\sqrt3\,\pi} = \frac{24}{\sqrt3\,\pi}" />,
-    reason: <>Isolating the bracket.</>,
+    working: <Katex display tex="\frac{\sqrt3\,\pi}{48}\left(1+\frac{dy}{dx}\right) = \frac{1}{2}" />,
+    reason: (
+      <>
+        <Katex tex="\tfrac{\pi}{24}\times\tfrac{\sqrt3}{2}=\tfrac{\sqrt3\,\pi}{48}" />; move
+        that term to the right side. Keep <Katex tex="1+\tfrac{dy}{dx}" /> together as one
+        bracket — there is no need to expand it.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = \frac{24}{\sqrt3\,\pi}-1 = \frac{24\sqrt3}{3\pi}-1 = \frac{8\sqrt3}{\pi}-1" />,
-    reason: <>Rationalising: <Katex tex="\tfrac{24}{\sqrt3}=\tfrac{24\sqrt3}{3}=8\sqrt3" />.</>,
+    working: <Katex display tex="1+\frac{dy}{dx} = \frac{1}{2}\times\frac{48}{\sqrt3\,\pi} = \frac{24}{\sqrt3\,\pi}" />,
+    reason: <>Divide both sides by <Katex tex="\tfrac{\sqrt3\,\pi}{48}" />, i.e. multiply by <Katex tex="\tfrac{48}{\sqrt3\,\pi}" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned}\frac{dy}{dx} &= \frac{24}{\sqrt3\,\pi}-1 \\ &= \frac{8\sqrt3}{\pi}-1\end{aligned}" />,
+    reason: <>Subtract 1, then rationalise: <Katex tex="\tfrac{24}{\sqrt3}=\tfrac{24\sqrt3}{3}=8\sqrt3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{8\sqrt3-\pi}{\pi}}" />,
-    reason: <>The required form with <Katex tex="a=8" /> and <Katex tex="b=3" />; about <Katex tex="3.41" />.</>,
+    reason: (
+      <>
+        Write <Katex tex="1" /> as <Katex tex="\tfrac{\pi}{\pi}" /> to combine over the
+        common denominator <Katex tex="\pi" />. This is the required form with{' '}
+        <Katex tex="a=8" /> and <Katex tex="b=3" />, both integers.
+      </>
+    ),
   },
 ]
 
@@ -69,9 +109,10 @@ export default function SpecialistQ7_2022Exam1() {
         <Background>
           <p>
             Leave <Katex tex="\cos(x+y)" /> alone. Expanding it with the compound-angle
-            formula turns one clean product rule into four terms, each needing its own
-            product and chain rule — the report notes only a minority of students who did
-            this found the correct answer. Differentiate the expression exactly as printed, then substitute.
+            formula gives <Katex tex="x\cos x\cos y-x\sin x\sin y" />: two products of three
+            factors, which differentiate into six separate terms instead of two — the report
+            notes only a minority of students who did this found the correct answer.
+            Differentiate the expression exactly as printed, then substitute.
           </p>
           <p>
             Substituting numbers <em>after</em> differentiating, rather than trying to make{' '}

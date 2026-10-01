@@ -2,10 +2,17 @@
 // full period-and-a-bit, then a volume of revolution needing tan(π/12). Question text
 // transcribed from the original paper; the sketch is our own drawing of the answer.
 // Answers checked with sympy and against the VCAA examination report. Solution is original.
+// Widget: interactives/spec-2022e1-q10a-reciprocal.tsx (part a, 13% full marks) — sweep x and
+// read each point of sec(4x) as 1 ÷ cos(4x), for the shape errors the report describes. No
+// widget for part b (25%): the marks went on the exact value of tan(π/12) and surd arithmetic,
+// which a picture doesn't help with.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import sketchSrc from './spec-2022e1-q10a-sketch.png'
+
+const ReciprocalWidget = lazyWidget(() => import('../interactives/spec-2022e1-q10a-reciprocal'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [23, 17, 46, 13],
@@ -48,27 +55,37 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \sec(4x) = \frac{1}{\cos(4x)}" />,
-    reason: <>Sketch the cosine underneath in your head; the secant is its reciprocal.</>,
+    reason: <>Sketch <Katex tex="y=\cos(4x)" /> lightly first. Each <Katex tex="y" />-value of the secant is 1 divided by the cosine&apos;s, so every feature below comes from the cosine.</>,
   },
   {
-    working: <Katex display tex="\cos(4x) = 0 \implies 4x = \pm\frac\pi2 \implies x = \pm\frac\pi8" />,
-    reason: <>Asymptotes where the cosine is zero. These are the only two in <Katex tex="\left[-\tfrac\pi4,\tfrac\pi4\right]" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} &x\in\left[-\tfrac\pi4,\tfrac\pi4\right] \implies 4x\in[-\pi,\pi] \\ &\cos(4x) = 0 \implies 4x = \pm\tfrac\pi2 \implies x = \pm\tfrac\pi8 \end{aligned}"
+      />
+    ),
+    reason: <>Asymptotes are where the cosine is zero, because <Katex tex="1\div0" /> is undefined. Multiplying the domain by 4 gives the interval that <Katex tex="4x" /> lies in, and in <Katex tex="[-\pi,\pi]" /> cosine is zero only at <Katex tex="\pm\tfrac\pi2" />, so there are exactly two asymptotes.</>,
   },
   {
     working: <Katex display tex="\cos(4x) = 1 \text{ at } x=0 \implies f(0) = 1" />,
-    reason: <>Where the cosine peaks, the secant bottoms out: a local <em>minimum</em> at <Katex tex="(0,1)" />.</>,
+    reason: <>Where the cosine is at its highest, 1, the secant is at its lowest, <Katex tex="\tfrac11=1" />: a local <em>minimum</em> at <Katex tex="(0,1)" />. Either side of it the cosine shrinks towards 0, so the secant grows: a U-shape. This is the only turning point.</>,
   },
   {
     working: <Katex display tex="x = \pm\frac\pi4: \ \cos(\pm\pi) = -1 \implies f\!\left(\pm\frac\pi4\right) = -1" />,
-    reason: <>The two endpoints, which are also the local maxima of the outer branches.</>,
+    reason: <>The two endpoints. Here the cosine is at its lowest, <Katex tex="-1" />, so the secant reaches the top of each outer branch, <Katex tex="\tfrac{1}{-1}=-1" />. The curve levels off as it arrives, but the domain ends there, so these are endpoints, not turning points.</>,
   },
   {
     working: <Katex display tex="\text{no horizontal asymptote; range } (-\infty,-1]\cup[1,\infty)" />,
-    reason: <>The report notes some students implied one. The curve runs off to <Katex tex="\pm\infty" /> at the vertical asymptotes and never flattens out.</>,
+    reason: <>A horizontal asymptote describes what happens as <Katex tex="x\to\pm\infty" />, but here <Katex tex="x" /> stays in <Katex tex="\left[-\tfrac\pi4,\tfrac\pi4\right]" />, so there isn&apos;t one: the outer branches simply stop at the endpoints. The report notes a horizontal asymptote was occasionally implied. Nothing lies between <Katex tex="-1" /> and <Katex tex="1" />, because the reciprocal of a number between <Katex tex="-1" /> and <Katex tex="1" /> is at least 1 in size.</>,
   },
   {
-    working: <Katex display tex="\text{Even function: } \sec(-4x)=\sec(4x) \implies \text{symmetric about the } y\text{-axis}" />,
-    reason: <>A free accuracy check — the report notes some graphs failed to be symmetric around the vertical axis.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} &\text{Even function: } \sec(-4x)=\sec(4x) \\ &\implies \text{symmetric about the } y\text{-axis} \end{aligned}"
+      />
+    ),
+    reason: <>Because <Katex tex="\cos(-\theta)=\cos(\theta)" />. The report notes some graphs failed to be symmetric around the vertical axis, so check that the asymptotes, branches and endpoints on the left mirror those on the right.</>,
   },
   {
     working: (
@@ -87,31 +104,59 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_a^b y^2\,dx = \pi\int_{-\pi/24}^{\pi/48}\sec^2(4x)\,dx" />,
-    reason: <>Rotation about the <Katex tex="x" />-axis, straight off the formula sheet. Squaring <Katex tex="\sec(4x)" /> is what makes this integrable at all.</>,
+    reason: <>Rotating about the <Katex tex="x" />-axis, each thin slice is a disc of radius <Katex tex="y" />, so <Katex tex="V=\pi\int y^2\,dx" /> (learn it: it isn&apos;t on the formula sheet). The interval sits between the asymptotes <Katex tex="x=\pm\tfrac\pi8" />, inside the middle branch, so the solid is finite. Squaring <Katex tex="\sec(4x)" /> is what makes this integrable: <Katex tex="\sec^2(4x)" /> has a standard antiderivative, <Katex tex="\sec(4x)" /> on its own doesn&apos;t.</>,
   },
   {
     working: <Katex display tex="= \pi\left[\frac{\tan(4x)}{4}\right]_{-\pi/24}^{\pi/48}" />,
-    reason: <>Since <Katex tex="\tfrac{d}{dx}\tan(4x)=4\sec^2(4x)" />, the antiderivative carries a <Katex tex="\tfrac14" />.</>,
+    reason: <>The formula sheet gives <Katex tex="\int\sec^2(ax)\,dx=\tfrac1a\tan(ax)+c" />; here <Katex tex="a=4" />. (Check: <Katex tex="\tfrac{d}{dx}\tan(4x)=4\sec^2(4x)" />.)</>,
   },
   {
     working: <Katex display tex="= \frac{\pi}{4}\left(\tan\!\left(\frac{\pi}{12}\right)-\tan\!\left(-\frac{\pi}{6}\right)\right)" />,
-    reason: <><Katex tex="4\times\tfrac{\pi}{48}=\tfrac{\pi}{12}" /> and <Katex tex="4\times\left(-\tfrac{\pi}{24}\right)=-\tfrac\pi6" />.</>,
+    reason: <><Katex tex="4\times\tfrac{\pi}{48}=\tfrac{\pi}{12}" /> and <Katex tex="4\times\left(-\tfrac{\pi}{24}\right)=-\tfrac\pi6" />. The <Katex tex="\tfrac14" /> comes out the front.</>,
   },
   {
-    working: <Katex display tex="\tan\!\left(\frac{\pi}{12}\right) = \tan\!\left(\frac\pi3-\frac\pi4\right) = \frac{\sqrt3-1}{1+\sqrt3} = \frac{\left(\sqrt3-1\right)^2}{2} = 2-\sqrt3" />,
-    reason: <>The difference formula, then rationalising with <Katex tex="\sqrt3-1" />. The double angle route <Katex tex="t^2+2\sqrt3\,t-1=0" /> gives <Katex tex="t=-\sqrt3\pm2" />, and only <Katex tex="2-\sqrt3" /> is positive — the report notes some students chose the wrong solution.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} \tan\!\left(\frac{\pi}{12}\right) &= \tan\!\left(\frac\pi3-\frac\pi4\right) \\ &= \frac{\tan\frac\pi3-\tan\frac\pi4}{1+\tan\frac\pi3\tan\frac\pi4} \\ &= \frac{\sqrt3-1}{1+\sqrt3} \end{aligned}"
+      />
+    ),
+    reason: <><Katex tex="\tfrac{\pi}{12}" /> isn&apos;t an angle with a known exact value, but it is the difference of two that are: <Katex tex="\tfrac\pi3-\tfrac\pi4=\tfrac{4\pi}{12}-\tfrac{3\pi}{12}=\tfrac{\pi}{12}" />. Then use the <Katex tex="\tan(x-y)" /> formula from the formula sheet, with <Katex tex="\tan\tfrac\pi3=\sqrt3" /> and <Katex tex="\tan\tfrac\pi4=1" />.</>,
+  },
+  {
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} &= \frac{\sqrt3-1}{\sqrt3+1}\times\frac{\sqrt3-1}{\sqrt3-1} = \frac{3-2\sqrt3+1}{3-1} \\ &= \frac{4-2\sqrt3}{2} = 2-\sqrt3 \end{aligned}"
+      />
+    ),
+    reason: <>Rationalise the denominator: multiplying top and bottom by <Katex tex="\sqrt3-1" /> turns the bottom into <Katex tex="\left(\sqrt3\right)^2-1^2=2" />, and the top is <Katex tex="\left(\sqrt3-1\right)^2=3-2\sqrt3+1" />. The report notes students who used the difference formula often ran into arithmetic difficulties, so go one step at a time. Check: <Katex tex="2-\sqrt3\approx0.27" /> is positive and less than <Katex tex="\tan\tfrac\pi6\approx0.58" />, as it must be for an angle smaller than <Katex tex="\tfrac\pi6" />.</>,
+  },
+  {
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} &\text{Or: } t=\tan\tfrac{\pi}{12},\ \ \tan\tfrac\pi6=\frac{2t}{1-t^2}=\frac{1}{\sqrt3} \\ &\implies t^2+2\sqrt3\,t-1=0 \\ &\implies t=\frac{-2\sqrt3\pm\sqrt{12+4}}{2}=-\sqrt3\pm2 \\ &t>0 \implies t=2-\sqrt3 \end{aligned}"
+      />
+    ),
+    reason: <>The double angle route, using <Katex tex="2\times\tfrac{\pi}{12}=\tfrac\pi6" /> and the <Katex tex="\tan(2x)" /> formula from the formula sheet. Cross-multiplying gives <Katex tex="2\sqrt3\,t=1-t^2" />, a quadratic in <Katex tex="t" />; solve it with the quadratic formula. Reject <Katex tex="-\sqrt3-2" />: <Katex tex="\tfrac{\pi}{12}" /> is in the first quadrant, so its tangent is positive. (The rejected root is <Katex tex="\tan\tfrac{7\pi}{12}" />, since doubling <Katex tex="\tfrac{7\pi}{12}" /> gives <Katex tex="\tfrac{7\pi}{6}" />, which has the same tangent as <Katex tex="\tfrac\pi6" />.) The report notes some students had difficulty solving this quadratic or chose the wrong solution.</>,
   },
   {
     working: <Katex display tex="\tan\!\left(-\frac\pi6\right) = -\frac{1}{\sqrt3} = -\frac{\sqrt3}{3}" />,
-    reason: <>An exact value worth knowing cold.</>,
+    reason: <>Tangent is odd, <Katex tex="\tan(-\theta)=-\tan(\theta)" />, and <Katex tex="\tan\tfrac\pi6=\tfrac{1}{\sqrt3}" />. Rationalising makes it easy to combine with <Katex tex="2-\sqrt3" />.</>,
   },
   {
-    working: <Katex display tex="V = \frac{\pi}{4}\left(2-\sqrt3+\frac{\sqrt3}{3}\right) = \frac{\pi}{4}\cdot\frac{6-3\sqrt3+\sqrt3}{3} = \frac{\pi\left(6-2\sqrt3\right)}{12}" />,
-    reason: <>Common denominator 3, then combining the surd terms.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} V &= \frac{\pi}{4}\left(2-\sqrt3-\left(-\frac{\sqrt3}{3}\right)\right) \\ &= \frac{\pi}{4}\left(2-\sqrt3+\frac{\sqrt3}{3}\right) \\ &= \frac{\pi}{4}\cdot\frac{6-3\sqrt3+\sqrt3}{3} \\ &= \frac{\pi\left(6-2\sqrt3\right)}{12} \end{aligned}"
+      />
+    ),
+    reason: <>Subtracting a negative becomes adding. Then use a common denominator of 3: <Katex tex="2=\tfrac63" /> and <Katex tex="\sqrt3=\tfrac{3\sqrt3}{3}" />, and <Katex tex="-3\sqrt3+\sqrt3=-2\sqrt3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{\left(3-\sqrt3\right)\pi}{6} \text{ cubic units}}" />,
-    reason: <>Dividing numerator and denominator by 2 puts it in the required form with <Katex tex="a=3" />, <Katex tex="b=3" />, <Katex tex="c=6" />; about <Katex tex="0.664" />. The report accepted equivalent answers in the correct form, such as <Katex tex="\tfrac{\left(6-\sqrt{12}\right)\pi}{12}" />.</>,
+    reason: <>Dividing numerator and denominator by 2 puts it in the required form with <Katex tex="a=3" />, <Katex tex="b=3" />, <Katex tex="c=6" /> (about <Katex tex="0.664" /> cubic units). The report accepted equivalent answers in the correct form, such as <Katex tex="\tfrac{\left(6-\sqrt{12}\right)\pi}{12}" />.</>,
   },
 ]
 
@@ -159,6 +204,16 @@ export default function SpecialistQ10_2022Exam1() {
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
+        <Explore
+          title={
+            <>
+              Each point of <Katex tex="y=\sec(4x)" /> is <Katex tex="1\div\cos(4x)" />: a small cosine makes a huge
+              secant, and the cosine&apos;s sign decides which side of the axis
+            </>
+          }
+        >
+          <ReciprocalWidget />
+        </Explore>
       </PartCard>
 
       <PartCard

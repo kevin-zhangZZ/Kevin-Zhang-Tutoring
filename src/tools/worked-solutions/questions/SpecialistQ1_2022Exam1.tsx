@@ -30,16 +30,16 @@ const EXAM_B: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="(z+ai)^2+b = z^2+2aiz+a^2i^2+b = z^2+2aiz-a^2+b" />,
-    reason: <>Expand the target form first, then match it to <Katex tex="p(z)" />. Remember <Katex tex="i^2=-1" />, so the <Katex tex="a^2" /> term arrives negative.</>,
+    working: <Katex display tex="\begin{aligned}(z+ai)^2+b &= z^2+2aiz+a^2i^2+b \\ &= z^2+2aiz-a^2+b\end{aligned}" />,
+    reason: <>The question hands you the target form, so expand it and match it to <Katex tex="p(z)" /> term by term (equating coefficients). Remember <Katex tex="i^2=-1" />, so the <Katex tex="a^2" /> term arrives negative.</>,
   },
   {
     working: <Katex display tex="2ai = 6i \implies a = 3" />,
-    reason: <>Matching the coefficient of <Katex tex="z" />.</>,
+    reason: <>Both sides are the same polynomial, so their coefficients of <Katex tex="z" /> must agree; divide both sides by <Katex tex="2i" />. (This is the usual completing-the-square step: <Katex tex="3i" /> is half of <Katex tex="6i" />.)</>,
   },
   {
     working: <Katex display tex="-a^2+b = -25 \implies -9+b = -25 \implies b = -16" />,
-    reason: <>Matching the constant term.</>,
+    reason: <>Matching the constant term, using <Katex tex="a=3" /> from the line above.</>,
   },
   {
     working: <Katex display tex="\boxed{p(z) = (z+3i)^2-16}" />,
@@ -50,15 +50,15 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(z+3i)^2-16 = 0 \implies (z+3i)^2 = 16" />,
-    reason: <>Part a. has already done the hard work.</>,
+    reason: <>&lsquo;Hence&rsquo; points to part a.: set its form equal to <Katex tex="0" /> and move the <Katex tex="16" /> across. (Otherwise, the quadratic formula gives <Katex tex="z=\frac{-6i\pm\sqrt{-36+100}}{2}=\frac{-6i\pm 8}{2}" />, the same two answers.)</>,
   },
   {
     working: <Katex display tex="z+3i = \pm4" />,
-    reason: <>Both square roots — dropping the negative one loses a solution, and a quadratic over <Katex tex="C" /> always has two.</>,
+    reason: <><Katex tex="16" /> is a positive real number, so its two square roots are <Katex tex="4" /> and <Katex tex="-4" />. Keep both: a quadratic always has two solutions over <Katex tex="C" /> (a repeated root counts twice), so dropping <Katex tex="-4" /> loses one.</>,
   },
   {
     working: <Katex display tex="\boxed{z = 4-3i \quad\text{or}\quad z = -4-3i}" />,
-    reason: <>Note these are <em>not</em> conjugates of each other. Sub back: <Katex tex="(4-3i)^2=7-24i" /> and <Katex tex="6i(4-3i)=18+24i" />, and <Katex tex="7-24i+18+24i-25=0" />.</>,
+    reason: <>Subtract <Katex tex="3i" /> from both sides. These are <em>not</em> conjugates of each other, as expected, because <Katex tex="p(z)" /> has a non-real coefficient. Check <Katex tex="z=4-3i" />: <Katex tex="(4-3i)^2=7-24i" /> and <Katex tex="6i(4-3i)=18+24i" />, and <Katex tex="7-24i+18+24i-25=0" />. The root <Katex tex="-4-3i" /> checks the same way.</>,
   },
 ]
 
@@ -76,7 +76,7 @@ export default function SpecialistQ1_2022Exam1() {
         <Background>
           <p>
             The coefficients here are <em>not</em> all real — there is a <Katex tex="6i" /> in
-            the middle. That single fact kills the habit most students bring to quadratics
+            the middle. That single fact breaks a common habit with quadratics
             over <Katex tex="C" />: the conjugate root theorem only applies when
             every coefficient is real, so there is no reason to expect the two solutions to
             be conjugates, and indeed they are not. Completing the square, or the quadratic
