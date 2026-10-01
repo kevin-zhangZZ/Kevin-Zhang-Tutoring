@@ -24,23 +24,49 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{2x+1}{x^2+1} = \frac{2x}{x^2+1}+\frac{1}{x^2+1}" />,
-    reason: <>Splitting the numerator is the whole idea: the first piece is an <Katex tex="\tfrac{f'}{f}" /> log, the second a standard arctan. No substitution is needed for either.</>,
+    reason: (
+      <>
+        How would I know to split? The derivative of the denominator <Katex tex="x^2+1" /> is{' '}
+        <Katex tex="2x" />, and <Katex tex="2x" /> is sitting in the numerator. Splitting the
+        fraction leaves one piece with <Katex tex="2x" /> on top (a logarithm) and one with just a
+        constant on top (an arctan). Both are standard forms, so no substitution is needed.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\int_0^1\frac{2x}{x^2+1}\,dx = \left[\log_e\left(x^2+1\right)\right]_0^1" />,
-    reason: <>The numerator is exactly the derivative of the denominator, so the antiderivative is the log with no extra factor. <Katex tex="x^2+1>0" />, so no absolute value.</>,
+    working: <Katex display tex="\int_0^1\frac{2x}{x^2+1}\,dx = \Bigl[\log_e\left(x^2+1\right)\Bigr]_0^1" />,
+    reason: (
+      <>
+        The numerator is exactly the derivative of the denominator, so use{' '}
+        <Katex tex="\int\tfrac{f'(x)}{f(x)}\,dx=\log_e|f(x)|+c" /> with{' '}
+        <Katex tex="f(x)=x^2+1" />. The absolute value bars can go because{' '}
+        <Katex tex="x^2+1>0" /> for every <Katex tex="x" />. (If you substitute{' '}
+        <Katex tex="u=x^2+1" /> instead, change the terminals too: <Katex tex="x=0" /> gives{' '}
+        <Katex tex="u=1" /> and <Katex tex="x=1" /> gives <Katex tex="u=2" />.)
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \log_e(2)-\log_e(1) = \log_e(2)" />,
-    reason: <><Katex tex="\log_e(1)=0" />.</>,
+    reason: <>At <Katex tex="x=1" />, <Katex tex="x^2+1=2" />; at <Katex tex="x=0" />, <Katex tex="x^2+1=1" />. And <Katex tex="\log_e(1)=0" />.</>,
   },
   {
-    working: <Katex display tex="\int_0^1\frac{1}{x^2+1}\,dx = \left[\arctan(x)\right]_0^1 = \frac{\pi}{4}" />,
-    reason: <>Straight off the formula sheet with <Katex tex="a=1" />; <Katex tex="\arctan(1)=\tfrac\pi4" />.</>,
+    working: <Katex display tex="\int_0^1\frac{1}{x^2+1}\,dx = \Bigl[\arctan(x)\Bigr]_0^1" />,
+    reason: (
+      <>
+        Formula sheet: <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\!\left(\tfrac{x}{a}\right)+c" />.
+        Here <Katex tex="a=1" />, so the antiderivative is <Katex tex="\tan^{-1}(x)" />, also
+        written <Katex tex="\arctan(x)" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{\log_e(2)+\frac{\pi}{4}}" />,
-    reason: <>About <Katex tex="1.478" />. Exact, as the instructions require.</>,
+    working: <Katex display tex="= \arctan(1)-\arctan(0) = \frac{\pi}{4}-0 = \frac{\pi}{4}" />,
+    reason: <><Katex tex="\arctan(1)=\tfrac\pi4" /> because <Katex tex="\tan\left(\tfrac\pi4\right)=1" />, and <Katex tex="\arctan(0)=0" /> because <Katex tex="\tan(0)=0" />.</>,
+  },
+  {
+    working: <Katex display tex="\int_0^1\frac{2x+1}{x^2+1}\,dx = \boxed{\log_e(2)+\frac{\pi}{4}}" />,
+    reason: <>Add the two pieces. Leave it exact, as this is the technology-free exam (it is about <Katex tex="1.479" />).</>,
   },
 ]
 
@@ -57,10 +83,14 @@ export default function SpecialistQ2_2021Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            A rational integrand whose denominator is an irreducible quadratic almost always
-            wants splitting, not substituting. Ask whether the numerator can be written as{' '}
-            <em>(a multiple of the denominator's derivative) plus (a constant)</em> — here it
-            already is, which makes the whole integral two standard forms.
+            When the denominator is a quadratic that doesn't factorise, like{' '}
+            <Katex tex="x^2+1" />, look at the numerator before reaching for a substitution. Ask
+            whether it can be written as{' '}
+            <em>(a multiple of the denominator's derivative) plus (a constant)</em>. The first part
+            integrates to a logarithm and the second to an arctan (after completing the square if the
+            denominator has an <Katex tex="x" /> term). Here the numerator{' '}
+            <Katex tex="2x+1" /> is already in that form, so the integral is two standard forms
+            added together.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

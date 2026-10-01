@@ -2,11 +2,16 @@
 // ellipse one of them traces, where they collide, and an area under the ellipse's upper
 // arc. Question text transcribed from the original paper; the figure is a crop of VCAA's
 // own artwork. Answers checked with sympy and against the VCAA examination report.
-// Solution is original.
+// Solution is original. Interactive: c.ii has spec-2021e1-q9cii-sector-triangle (c.i's antiderivative
+// as a sector plus a triangle, so the triangles cancel at the two limits). c.i (15% full marks) has
+// none: it is a pure-algebra "show that", where students lost marks for missed steps.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import regionSrc from './spec-2021e1-q9c-region.png'
+
+const SectorTriangle = lazyWidget(() => import('../interactives/spec-2021e1-q9cii-sector-triangle'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [17, 83],
@@ -66,7 +71,7 @@ const EXAM_CI: SAExaminerStats = {
       to obtain the required result. For example:
       <Katex
         display
-        tex="\begin{aligned}&\frac{d}{dx}\left(8\arcsin\left(\frac{x+1}{4}\right)+\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\right)\\&=\frac84\cdot\frac{1}{\sqrt{1-\left(\frac{x+1}{4}\right)^2}}+\frac12\sqrt{-x^2-2x+15}+\frac{\frac12(x+1)\cdot\frac12(-2x-2)}{\sqrt{-x^2-2x+15}}\\&=8\cdot\frac{1}{\sqrt{-x^2-2x+15}}+\frac12\sqrt{-x^2-2x+15}-\frac12\,\frac{x^2+2x+1}{\sqrt{-x^2-2x+15}}\\&=\frac12\sqrt{-x^2-2x+15}-\frac12\,\frac{x^2+2x-15}{\sqrt{-x^2-2x+15}}\\&=\sqrt{-x^2-2x+15}\end{aligned}"
+        tex="\begin{aligned}&\frac{d}{dx}\Bigl(8\arcsin\left(\frac{x+1}{4}\right)\\&\qquad+\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\Bigr)\\&=\frac84\cdot\frac{1}{\sqrt{1-\left(\frac{x+1}{4}\right)^2}}+\frac12\sqrt{-x^2-2x+15}\\&\qquad+\frac{\frac12(x+1)\cdot\frac12(-2x-2)}{\sqrt{-x^2-2x+15}}\\&=8\cdot\frac{1}{\sqrt{-x^2-2x+15}}+\frac12\sqrt{-x^2-2x+15}\\&\qquad-\frac12\,\frac{x^2+2x+1}{\sqrt{-x^2-2x+15}}\\&=\frac12\sqrt{-x^2-2x+15}-\frac12\,\frac{x^2+2x-15}{\sqrt{-x^2-2x+15}}\\&=\sqrt{-x^2-2x+15}\end{aligned}"
       />
       Students are reminded that in a 'show that' question, sufficient evidence must be
       presented in order for full marks to be awarded. Many students missed steps or made
@@ -83,7 +88,7 @@ const EXAM_CII: SAExaminerStats = {
       A majority of students realised that the result of Question 9ci. should be used:
       <Katex
         display
-        tex="\begin{aligned}&\frac{\sqrt3}{6}\left[8\arcsin\left(\frac{x+1}{4}\right)+\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\right]_1^{2\sqrt3-1}\\&=\frac{\sqrt3}{6}\left(8\arcsin\left(\frac{\sqrt3}{2}\right)+\sqrt3\sqrt{-\left(12-4\sqrt3+1\right)-2\left(2\sqrt3-1\right)+15}-8\arcsin\left(\frac12\right)-\sqrt{12}\right)\\&=\frac{\sqrt3}{6}\left(\frac{8\pi}{3}+\sqrt{12}-\frac{8\pi}{6}-\sqrt{12}\right)\\&=\frac{\sqrt3}{6}\left(\frac{16\pi}{6}-\frac{8\pi}{6}\right)\\&=\frac{8\sqrt3\pi}{36}=\frac{2\sqrt3\pi}{9}\end{aligned}"
+        tex="\begin{aligned}&\frac{\sqrt3}{6}\Bigl[8\arcsin\left(\frac{x+1}{4}\right)\\&\qquad+\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\Bigr]_1^{2\sqrt3-1}\\&=\frac{\sqrt3}{6}\Bigl(8\arcsin\left(\frac{\sqrt3}{2}\right)\\&\qquad+\sqrt3\sqrt{-\left(12-4\sqrt3+1\right)-2\left(2\sqrt3-1\right)+15}\\&\qquad-8\arcsin\left(\frac12\right)-\sqrt{12}\Bigr)\\&=\frac{\sqrt3}{6}\left(\frac{8\pi}{3}+\sqrt{12}-\frac{8\pi}{6}-\sqrt{12}\right)\\&=\frac{\sqrt3}{6}\left(\frac{16\pi}{6}-\frac{8\pi}{6}\right)\\&=\frac{8\sqrt3\pi}{36}=\frac{2\sqrt3\pi}{9}\end{aligned}"
       />
       Many found the resulting arithmetic to be challenging and were unable to arrive at the
       correct answer.
@@ -94,15 +99,15 @@ const EXAM_CII: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="x = -1+4\cos(t) \implies \cos(t) = \frac{x+1}{4}" />,
-    reason: <>Isolating the trigonometric function in each component.</>,
+    reason: <>A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> with no <Katex tex="t" />, so <Katex tex="t" /> must be eliminated. The <Katex tex="\underset{\sim}{i}" /> component of <Katex tex="\underset{\sim}{r}(t)" /> is <Katex tex="x" />, and it contains <Katex tex="t" /> only through <Katex tex="\cos(t)" />, so make <Katex tex="\cos(t)" /> the subject.</>,
   },
   {
     working: <Katex display tex="y = \frac{2}{\sqrt3}\sin(t) \implies \sin(t) = \frac{\sqrt3\,y}{2}" />,
-    reason: <>Same for the other.</>,
+    reason: <>Same for the <Katex tex="\underset{\sim}{j}" /> component: multiply both sides by <Katex tex="\tfrac{\sqrt3}{2}" />.</>,
   },
   {
-    working: <Katex display tex="\cos^2(t)+\sin^2(t) = 1 \implies \left(\frac{x+1}{4}\right)^2+\left(\frac{\sqrt3\,y}{2}\right)^2 = 1" />,
-    reason: <>The Pythagorean identity is what eliminates <Katex tex="t" />.</>,
+    working: <Katex display tex="\begin{aligned}&\cos^2(t)+\sin^2(t) = 1\\ \implies &\left(\frac{x+1}{4}\right)^2+\left(\frac{\sqrt3\,y}{2}\right)^2 = 1\end{aligned}" />,
+    reason: <>With <Katex tex="\cos(t)" /> and <Katex tex="\sin(t)" /> each written in terms of <Katex tex="x" /> or <Katex tex="y" />, the Pythagorean identity removes <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{(x+1)^2}{16}+\frac{3y^2}{4} = 1}" />,
@@ -113,123 +118,140 @@ const ROWS_AI: WorkingRow[] = [
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{3y^2}{4} = 1-\frac{(x+1)^2}{16}" />,
-    reason: <>Rearranging part a.i.</>,
+    reason: <>Start from part a.i. and make the <Katex tex="y^2" /> term the subject.</>,
   },
   {
-    working: <Katex display tex="12y^2 = 16-(x+1)^2 = 16-x^2-2x-1 = -x^2-2x+15" />,
-    reason: <>Multiplying through by 16, then expanding.</>,
+    working: <Katex display tex="\begin{aligned}12y^2 &= 16-(x+1)^2\\ &= 16-x^2-2x-1 = -x^2-2x+15\end{aligned}" />,
+    reason: <>Multiplying both sides by 16 (<Katex tex="16\times\tfrac{3y^2}{4}=12y^2" />), then expanding <Katex tex="(x+1)^2=x^2+2x+1" />.</>,
   },
   {
-    working: <Katex display tex="y = \pm\frac{\sqrt{-x^2-2x+15}}{2\sqrt3}" />,
-    reason: <>Both signs appear when the square root is taken — which is why a justification is needed.</>,
+    working: <Katex display tex="y^2 = \frac{-x^2-2x+15}{12} \implies y = \pm\frac{\sqrt{-x^2-2x+15}}{2\sqrt3}" />,
+    reason: <>Dividing by 12 and taking the square root, with <Katex tex="\sqrt{12}=2\sqrt3" />. A square root gives two signs, so a reason is needed to keep only one.</>,
   },
   {
-    working: <Katex display tex="\text{first quadrant} \implies y>0, \text{ so take the positive root}" />,
-    reason: <>The report notes a common error was not justifying the choice of sign.</>,
+    working: <Katex display tex="\text{first quadrant} \implies y\ge 0, \text{ so take the positive root}" />,
+    reason: <>The first quadrant is on or above the <Katex tex="x" />-axis, so <Katex tex="y" /> cannot be negative. Write this reason down: the report says a common error was not justifying the choice of sign.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \frac{\sqrt3}{6}\sqrt{-x^2-2x+15}}" />,
-    reason: <>Rationalising: <Katex tex="\tfrac{1}{2\sqrt3}=\tfrac{\sqrt3}{6}" />. As required.</>,
+    reason: <>Rationalising: <Katex tex="\tfrac{1}{2\sqrt3}=\tfrac{\sqrt3}{2\sqrt3\cdot\sqrt3}=\tfrac{\sqrt3}{6}" />. As required.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{i}: \ -1+4\cos(t) = 3\sec(t)-1 \implies 4\cos(t) = \frac{3}{\cos(t)}" />,
-    reason: <>The <Katex tex="-1" /> cancels from both sides, and <Katex tex="\sec(t)=\tfrac{1}{\cos(t)}" />.</>,
+    working: <Katex display tex="\begin{aligned}\underset{\sim}{i}: \ -1+4\cos(t) &= 3\sec(t)-1\\ 4\cos(t) &= \frac{3}{\cos(t)}\end{aligned}" />,
+    reason: <>Two particles collide when they are at the same point at the <em>same</em> time, so set the <Katex tex="\underset{\sim}{i}" /> components equal and the <Katex tex="\underset{\sim}{j}" /> components equal, using one <Katex tex="t" />. Here the <Katex tex="-1" /> cancels from both sides, and <Katex tex="\sec(t)=\tfrac{1}{\cos(t)}" />.</>,
   },
   {
     working: <Katex display tex="4\cos^2(t) = 3 \implies \cos(t) = \pm\frac{\sqrt3}{2}" />,
-    reason: <>The x components agree at these times.</>,
+    reason: <>Multiplying both sides by <Katex tex="\cos(t)" />, which is not zero because <Katex tex="\sec(t)" /> must be defined. The <Katex tex="x" /> coordinates agree only at these times.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{j}: \ \frac{2}{\sqrt3}\sin(t) = \tan(t) = \frac{\sin(t)}{\cos(t)}" />,
-    reason: <>Now the y components.</>,
+    reason: <>Now the <Katex tex="y" /> coordinates, using <Katex tex="\tan(t)=\tfrac{\sin(t)}{\cos(t)}" />.</>,
   },
   {
-    working: <Katex display tex="\sin(t)\left(\frac{2}{\sqrt3}-\frac{1}{\cos(t)}\right) = 0 \implies \cos(t) = \frac{\sqrt3}{2}" />,
-    reason: <>Taking <Katex tex="\sin(t)=0" /> would force <Katex tex="\cos(t)=\pm1" />, contradicting the first equation — so only the positive root survives.</>,
+    working: <Katex display tex="\sin(t)\left(\frac{2}{\sqrt3}-\frac{1}{\cos(t)}\right) = 0" />,
+    reason: <>Move everything to one side and factorise out <Katex tex="\sin(t)" />. Don&apos;t divide by <Katex tex="\sin(t)" />: that would lose any solution with <Katex tex="\sin(t)=0" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{both components agree when } \cos(t) = \tfrac{\sqrt3}{2}, \text{ so the particles collide}}" />,
-    reason: <>Colliding needs the same position at the <em>same</em> <Katex tex="t" />, which is exactly what one shared solution provides. As required.</>,
+    working: <Katex display tex="\sin(t) = 0 \ \text{ or } \ \cos(t) = \frac{\sqrt3}{2}" />,
+    reason: <>If <Katex tex="\sin(t)=0" /> then <Katex tex="\cos(t)=\pm1" />, so <Katex tex="4\cos^2(t)=4\ne3" /> and the <Katex tex="x" /> coordinates don&apos;t match: reject it. Of the two values from the <Katex tex="x" /> coordinates, only <Katex tex="\cos(t)=\tfrac{\sqrt3}{2}" /> also makes the <Katex tex="y" /> coordinates match.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\begin{gathered}\text{both components agree}\\ \text{when } \cos(t) = \tfrac{\sqrt3}{2}\ \left(t=\tfrac\pi6\right),\\ \text{so the particles collide}\end{gathered}}" />,
+    reason: <>At <Katex tex="t=\tfrac\pi6" /> both particles are at the same point at the same moment, which is exactly what a collision is. As required.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
-    working: <Katex display tex="\cos(t) = \frac{\sqrt3}{2} \implies t = \frac{\pi}{6} \ \text{(taking the first such time)}" />,
-    reason: <><Katex tex="t" /> is the <em>parameter</em>, not a coordinate — the report notes some students confused the two.</>,
+    working: <Katex display tex="\cos(t) = \frac{\sqrt3}{2} \implies t = \frac{\pi}{6}" />,
+    reason: <>Particle <Katex tex="B" />&apos;s position uses <Katex tex="\sec(t)" /> and <Katex tex="\tan(t)" />, which are undefined at <Katex tex="t=\tfrac\pi2" />, so its motion from <Katex tex="t=0" /> must stop before <Katex tex="\tfrac\pi2" />. The only solution in that interval is <Katex tex="t=\tfrac\pi6" />.</>,
   },
   {
-    working: <Katex display tex="x = -1+4\cdot\frac{\sqrt3}{2} = -1+2\sqrt3" />,
-    reason: <>Substituting into the first component.</>,
+    working: <Katex display tex="x = -1+4\cos\!\left(\frac\pi6\right) = -1+4\cdot\frac{\sqrt3}{2} = -1+2\sqrt3" />,
+    reason: <><Katex tex="t=\tfrac\pi6" /> is a time, not a coordinate: substitute it into particle <Katex tex="A" />&apos;s position to get the point. The report notes some students gave <Katex tex="\tfrac\pi6" /> as the <Katex tex="x" />-value.</>,
   },
   {
-    working: <Katex display tex="y = \frac{2}{\sqrt3}\sin\!\left(\frac\pi6\right) = \frac{2}{\sqrt3}\cdot\frac12 = \frac{\sqrt3}{3}" />,
-    reason: <>Or from particle B: <Katex tex="\tan\left(\tfrac\pi6\right)=\tfrac{1}{\sqrt3}" /> — the same value, confirming the collision.</>,
+    working: <Katex display tex="y = \frac{2}{\sqrt3}\sin\!\left(\frac\pi6\right) = \frac{2}{\sqrt3}\cdot\frac12 = \frac{1}{\sqrt3} = \frac{\sqrt3}{3}" />,
+    reason: <>Check with particle <Katex tex="B" />: <Katex tex="3\sec\left(\tfrac\pi6\right)-1=\tfrac{6}{\sqrt3}-1=2\sqrt3-1" /> and <Katex tex="\tan\left(\tfrac\pi6\right)=\tfrac{1}{\sqrt3}" />, the same point.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(-1+2\sqrt3,\ \tfrac{\sqrt3}{3}\right)}" />,
-    reason: <>About <Katex tex="(2.46,0.58)" />.</>,
+    reason: <>The answer is a point <Katex tex="(x,y)" />, about <Katex tex="(2.46,0.58)" />.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\left[8\arcsin\!\left(\frac{x+1}{4}\right)\right] = \frac{8\cdot\tfrac14}{\sqrt{1-\left(\tfrac{x+1}{4}\right)^2}}" />,
-    reason: <>The arcsin derivative with a chain rule; the inner derivative is <Katex tex="\tfrac14" />.</>,
+    reason: <>Differentiate the two terms separately. For the first, use the formula-sheet derivative of <Katex tex="\arcsin" /> with the chain rule: <Katex tex="\tfrac{d}{dx}\arcsin(u)=\tfrac{u'}{\sqrt{1-u^2}}" />, where <Katex tex="u=\tfrac{x+1}{4}" /> and <Katex tex="u'=\tfrac14" />.</>,
   },
   {
-    working: <Katex display tex="= \frac{2}{\tfrac14\sqrt{16-(x+1)^2}} = \frac{8}{\sqrt{-x^2-2x+15}}" />,
-    reason: <>Pulling <Katex tex="\tfrac14" /> out of the square root, then using <Katex tex="16-(x+1)^2=-x^2-2x+15" /> from part a.ii.</>,
+    working: <Katex display tex="= \frac{2}{\sqrt{\dfrac{16-(x+1)^2}{16}}} = \frac{2}{\tfrac14\sqrt{16-(x+1)^2}}" />,
+    reason: <><Katex tex="8\times\tfrac14=2" />. Under the root, write 1 as <Katex tex="\tfrac{16}{16}" /> to combine into one fraction; then <Katex tex="\sqrt{16}=4" /> comes out of the root as <Katex tex="\tfrac14" />.</>,
   },
   {
-    working: <Katex display tex="\frac{d}{dx}\left[\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\right] = \frac{\sqrt{-x^2-2x+15}}{2}+\frac{(x+1)(-2x-2)}{4\sqrt{-x^2-2x+15}}" />,
-    reason: <>Product rule, with a chain rule on the square root.</>,
+    working: <Katex display tex="= \frac{8}{\sqrt{16-(x+1)^2}} = \frac{8}{\sqrt{-x^2-2x+15}}" />,
+    reason: <><Katex tex="2\div\tfrac14=8" />, and <Katex tex="16-(x+1)^2=-x^2-2x+15" /> (expanded in part a.ii.).</>,
+  },
+  {
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&\frac{d}{dx}\left[\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\right]\\&= \frac{\sqrt{-x^2-2x+15}}{2}+\frac{(x+1)(-2x-2)}{4\sqrt{-x^2-2x+15}}\end{aligned}"
+      />
+    ),
+    reason: <>Product rule on <Katex tex="\tfrac{x+1}{2}" /> times <Katex tex="\sqrt{-x^2-2x+15}" />. The derivative of <Katex tex="\tfrac{x+1}{2}" /> is <Katex tex="\tfrac12" />. By the chain rule, the derivative of <Katex tex="\sqrt{-x^2-2x+15}" /> is <Katex tex="\tfrac{-2x-2}{2\sqrt{-x^2-2x+15}}" />, which is then multiplied by <Katex tex="\tfrac{x+1}{2}" />.</>,
   },
   {
     working: <Katex display tex="= \frac{\sqrt{-x^2-2x+15}}{2}-\frac{(x+1)^2}{2\sqrt{-x^2-2x+15}}" />,
-    reason: <><Katex tex="-2x-2=-2(x+1)" />, so the second term simplifies neatly.</>,
+    reason: <><Katex tex="-2x-2=-2(x+1)" />, so the numerator is <Katex tex="-2(x+1)^2" />, and <Katex tex="\tfrac{-2}{4}=-\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\text{total} = \frac{16-(x+1)^2+\left(-x^2-2x+15\right)}{2\sqrt{-x^2-2x+15}}" />,
-    reason: <>Putting all three pieces over the common denominator.</>,
+    reason: <>Add all three pieces over the common denominator <Katex tex="2\sqrt{-x^2-2x+15}" />. Writing <Katex tex="\sqrt{\cdots}" /> for that root: <Katex tex="\tfrac{8}{\sqrt{\cdots}}=\tfrac{16}{2\sqrt{\cdots}}" />, and <Katex tex="\tfrac{\sqrt{\cdots}}{2}=\tfrac{-x^2-2x+15}{2\sqrt{\cdots}}" /> (multiply top and bottom by the root).</>,
   },
   {
     working: <Katex display tex="= \frac{2\left(-x^2-2x+15\right)}{2\sqrt{-x^2-2x+15}} = \boxed{\sqrt{-x^2-2x+15}}" />,
-    reason: <>The two numerator terms are equal, since <Katex tex="16-(x+1)^2=-x^2-2x+15" />. Write out every step — this is a "show that". As required.</>,
+    reason: <>Since <Katex tex="16-(x+1)^2=-x^2-2x+15" />, the numerator is twice <Katex tex="-x^2-2x+15" />. Cancel the 2s; a quantity divided by its own square root is the square root. This is a "show that", so every one of these lines needs to be written: the report says many students missed steps. As required.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="A = \int_1^{2\sqrt3-1}\frac{\sqrt3}{6}\sqrt{-x^2-2x+15}\,dx" />,
-    reason: <>The curve from part a.ii., over the strip shown.</>,
+    reason: <>The curve is on or above the <Katex tex="x" />-axis (<Katex tex="y\ge0" />) for the whole strip, so the area is the definite integral of <Katex tex="y" /> from <Katex tex="x=1" /> to <Katex tex="x=2\sqrt3-1" />, with no splitting needed.</>,
   },
   {
-    working: <Katex display tex="= \frac{\sqrt3}{6}\left[8\arcsin\!\left(\frac{x+1}{4}\right)+\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\right]_1^{2\sqrt3-1}" />,
-    reason: <>Part c.i. supplies the antiderivative — that is the whole reason it was set.</>,
+    working: <Katex display tex="\begin{aligned}= \frac{\sqrt3}{6}\Bigg[&8\arcsin\!\left(\frac{x+1}{4}\right)\\ &+\frac{(x+1)\sqrt{-x^2-2x+15}}{2}\Bigg]_1^{2\sqrt3-1}\end{aligned}" />,
+    reason: <>"Hence" points to part c.i.: the bracketed expression has derivative <Katex tex="\sqrt{-x^2-2x+15}" />, so it is an antiderivative of <Katex tex="\sqrt{-x^2-2x+15}" />. The constant <Katex tex="\tfrac{\sqrt3}{6}" /> stays out in front.</>,
   },
   {
-    working: <Katex display tex="x = 2\sqrt3-1: \ \frac{x+1}{4} = \frac{\sqrt3}{2}, \quad -x^2-2x+15 = 4" />,
-    reason: <><Katex tex="(2\sqrt3-1)^2=13-4\sqrt3" />, and the rest cancels to 4.</>,
+    working: <Katex display tex="x = 2\sqrt3-1: \quad x+1 = 2\sqrt3, \quad \frac{x+1}{4} = \frac{\sqrt3}{2}" />,
+    reason: <>Work with <Katex tex="x+1" /> rather than <Katex tex="x" />: every part of the antiderivative depends on <Katex tex="x" /> only through <Katex tex="x+1" />.</>,
+  },
+  {
+    working: <Katex display tex="-x^2-2x+15 = 16-(x+1)^2 = 16-\left(2\sqrt3\right)^2 = 4" />,
+    reason: <>Using <Katex tex="-x^2-2x+15=16-(x+1)^2" /> (part a.ii.) avoids expanding <Katex tex="\left(2\sqrt3-1\right)^2" />: the report says many students found this arithmetic challenging.</>,
   },
   {
     working: <Katex display tex="\text{upper} = 8\cdot\frac\pi3+\frac{2\sqrt3\cdot2}{2} = \frac{8\pi}{3}+2\sqrt3" />,
-    reason: <><Katex tex="\arcsin\!\left(\tfrac{\sqrt3}{2}\right)=\tfrac\pi3" />.</>,
+    reason: <><Katex tex="\arcsin\!\left(\tfrac{\sqrt3}{2}\right)=\tfrac\pi3" /> and <Katex tex="\sqrt4=2" />.</>,
   },
   {
-    working: <Katex display tex="x = 1: \ \frac{x+1}{4} = \frac12, \quad -1-2+15 = 12" />,
-    reason: <><Katex tex="\sqrt{12}=2\sqrt3" />.</>,
+    working: <Katex display tex="\begin{aligned}x = 1: \quad &x+1 = 2, \quad \frac{x+1}{4} = \frac12,\\ &16-(x+1)^2 = 12\end{aligned}" />,
+    reason: <>The same shortcut: <Katex tex="16-2^2=12" />, and <Katex tex="\sqrt{12}=2\sqrt3" />.</>,
   },
   {
     working: <Katex display tex="\text{lower} = 8\cdot\frac\pi6+\frac{2\cdot2\sqrt3}{2} = \frac{4\pi}{3}+2\sqrt3" />,
     reason: <><Katex tex="\arcsin\!\left(\tfrac12\right)=\tfrac\pi6" />.</>,
   },
   {
-    working: <Katex display tex="\text{difference} = \frac{8\pi}{3}-\frac{4\pi}{3} = \frac{4\pi}{3}" />,
-    reason: <>The <Katex tex="2\sqrt3" /> terms cancel exactly — a sign the arithmetic is on track.</>,
+    working: <Katex display tex="\text{upper}-\text{lower} = \frac{8\pi}{3}-\frac{4\pi}{3} = \frac{4\pi}{3}" />,
+    reason: <>The <Katex tex="2\sqrt3" /> terms cancel exactly, a good sign the arithmetic is right. The interactive below shows why: each is the area of a triangle, and the two triangles have the same area.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{\sqrt3}{6}\cdot\frac{4\pi}{3} = \frac{2\sqrt3\,\pi}{9}}" />,
@@ -354,6 +376,9 @@ export default function SpecialistQ9_2021Exam1() {
         examinerReport={EXAM_CII}
       >
         <WorkingTable rows={ROWS_CII} />
+        <Explore title="Why the 2√3 terms cancel: each limit is a sector plus a triangle">
+          <SectorTriangle />
+        </Explore>
       </PartCard>
     </div>
   )

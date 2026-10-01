@@ -2,9 +2,14 @@
 // same quadratic with the conjugate in place of z — which is a different problem entirely.
 // Question text transcribed from the original paper. Answers checked with sympy and against
 // the VCAA examination report. Solution is original.
+// Interactive (b): interactives/spec-2021e1-q8b-two-curves.tsx — drag z; the solutions are where the
+// curve Re(w) = 0 crosses the lines Im(w) = 0, and part a.'s answers sit on the curve but off the line.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const TwoCurves = lazyWidget(() => import('../interactives/spec-2021e1-q8b-two-curves'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [30, 70],
@@ -36,50 +41,107 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="z^2+2z+2 = 0" />,
-    reason: <>A quadratic with real coefficients, so the usual tools apply.</>,
+    reason: <>Every coefficient is real, so this is an ordinary quadratic: complete the square or use the quadratic formula.</>,
   },
   {
     working: <Katex display tex="(z+1)^2+1 = 0" />,
-    reason: <>Completing the square is quickest here: <Katex tex="z^2+2z+1=(z+1)^2" />, leaving <Katex tex="+1" />.</>,
+    reason: <>Complete the square: half the coefficient of <Katex tex="z" /> is 1, and <Katex tex="z^2+2z+1=(z+1)^2" />, so <Katex tex="z^2+2z+2=(z+1)^2+1" />.</>,
   },
   {
     working: <Katex display tex="(z+1)^2 = -1 \implies z+1 = \pm i" />,
-    reason: <>The square roots of <Katex tex="-1" />.</>,
+    reason: <>The two square roots of <Katex tex="-1" /> are <Katex tex="i" /> and <Katex tex="-i" />, since <Katex tex="i^2=(-i)^2=-1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{z = -1\pm i}" />,
-    reason: <>A conjugate pair, as real coefficients require.</>,
+    reason: <>The roots are a conjugate pair, as they must be when every coefficient is real.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="z^2+2\bar z+2 = 0" />,
-    reason: <>The conjugate makes this <em>not</em> a polynomial equation — the answers to part a. will not work here, and no amount of factorising will help.</>,
+    reason: (
+      <>
+        The middle term is <Katex tex="2\bar z" />, not <Katex tex="2z" />. The conjugate <Katex tex="\bar z" /> is not a
+        power of <Katex tex="z" />, so this is not a polynomial equation: the quadratic formula and the conjugate root
+        theorem do not apply, and part a.&apos;s answers do not work. For example, <Katex tex="z=-1+i" /> gives{' '}
+        <Katex tex="(-1+i)^2+2(-1-i)+2 = -2i-2-2i+2 = -4i \neq 0" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="z = x+iy \implies z^2 = x^2-y^2+2xyi, \quad \bar z = x-iy" />,
-    reason: <>Going to components is the reliable route — the report notes the few who began with polar form rarely made significant progress.</>,
+    working: <Katex display tex="\text{Let } z = x+iy, \text{ where } x, y \in R" />,
+    reason: (
+      <>
+        When an equation mixes <Katex tex="z" /> and <Katex tex="\bar z" />, write <Katex tex="z" /> in Cartesian form:
+        then both are written in the same two real unknowns, <Katex tex="x" /> and <Katex tex="y" />. (Starting from
+        polar form is possible, but the report notes that those who tried it rarely made significant progress.)
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\left(x^2-y^2+2x+2\right)+i\left(2xy-2y\right) = 0" />,
-    reason: <>Collecting real and imaginary parts.</>,
+    working: <Katex display tex="\begin{aligned} z^2 &= x^2-y^2+2xyi \\ \bar z &= x-iy \end{aligned}" />,
+    reason: (
+      <>
+        Expand <Katex tex="(x+iy)^2 = x^2+2xyi+i^2y^2" /> and use <Katex tex="i^2=-1" />. The conjugate{' '}
+        <Katex tex="\bar z" /> just changes the sign of the imaginary part; it is <em>not</em> the reciprocal{' '}
+        <Katex tex="\tfrac{1}{z}" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\text{imaginary: } 2y(x-1) = 0 \implies y = 0 \text{ or } x = 1" />,
-    reason: <>A complex number is zero only when both parts are, so this gives two cases.</>,
+    working: <Katex display tex="x^2-y^2+2xyi+2(x-iy)+2 = 0" />,
+    reason: <>Substitute both into the equation.</>,
   },
   {
-    working: <Katex display tex="y = 0: \ x^2+2x+2 = 0 \implies \Delta = -4 < 0, \text{ no real } x" />,
-    reason: <>So there are no purely real solutions — note this is exactly part a.'s equation, which is why its answers do not carry over.</>,
+    working: <Katex display tex="\left(x^2-y^2+2x+2\right)+(2xy-2y)\,i = 0" />,
+    reason: <>Group the terms without <Katex tex="i" /> (the real part) and the terms with <Katex tex="i" /> (the imaginary part). Watch the sign: <Katex tex="2(x-iy)=2x-2yi" />.</>,
   },
   {
-    working: <Katex display tex="x = 1: \ 1-y^2+2+2 = 0 \implies y^2 = 5" />,
-    reason: <>The surviving case.</>,
+    working: <Katex display tex="\begin{aligned} x^2-y^2+2x+2 &= 0 \quad (1) \\ 2xy-2y &= 0 \quad (2) \end{aligned}" />,
+    reason: (
+      <>
+        A complex number is <Katex tex="0" /> only when its real part and its imaginary part are both <Katex tex="0" />.
+        So the one complex equation becomes two real equations, and <Katex tex="x" /> and <Katex tex="y" /> must satisfy
+        both.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="(2):\ 2y(x-1) = 0 \implies y = 0 \text{ or } x = 1" />,
+    reason: (
+      <>
+        Equation (2) is the simpler one, so start there. Factorise rather than dividing by <Katex tex="y" />, which would
+        throw away the case <Katex tex="y=0" />. The null factor law gives two cases; test each one in (1). In the diagram
+        below, the solutions are where the orange curve (1) crosses the blue lines (2).
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\begin{gathered} y = 0 \text{ in } (1){:}\ x^2+2x+2 = 0 \\ \Delta = 2^2-4(1)(2) = -4 < 0 \end{gathered}" />,
+    reason: (
+      <>
+        Substitute <Katex tex="y=0" /> into (1). Now <Katex tex="x" /> is the real part of <Katex tex="z" />, so it must be
+        a real number, and a negative discriminant means
+        there is no real <Katex tex="x" />, so this case gives no solutions. (It is part a.&apos;s equation again, but its
+        roots <Katex tex="-1\pm i" /> are not real, so they cannot be values of <Katex tex="x" />.)
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\begin{gathered} x = 1 \text{ in } (1){:}\ 1-y^2+2+2 = 0 \\ y^2 = 5 \implies y = \pm\sqrt5 \end{gathered}" />,
+    reason: <>Substitute <Katex tex="x=1" /> into (1). Both values of <Katex tex="y" /> are real, so both give solutions.</>,
   },
   {
     working: <Katex display tex="\boxed{z = 1\pm\sqrt5\,i}" />,
-    reason: <>Check: <Katex tex="z^2=1-5+2\sqrt5i=-4+2\sqrt5i" />, and <Katex tex="2\bar z=2-2\sqrt5i" />, so the sum is <Katex tex="-4+2+0i=-2" />, and adding 2 gives 0 ✓.</>,
+    reason: (
+      <>
+        Put <Katex tex="x=1" /> and <Katex tex="y=\pm\sqrt5" /> back into <Katex tex="z=x+iy" />. Check{' '}
+        <Katex tex="z=1+\sqrt5\,i" />: <Katex tex="z^2=1-5+2\sqrt5\,i=-4+2\sqrt5\,i" /> and{' '}
+        <Katex tex="2\bar z=2-2\sqrt5\,i" />. Adding these and 2, the imaginary parts cancel and the real parts give{' '}
+        <Katex tex="-4+2+2=0" /> ✓. The other root checks the same way.
+      </>
+    ),
   },
 ]
 
@@ -118,6 +180,9 @@ export default function SpecialistQ8_2021Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Both parts zero at once: where the real-part curve crosses the imaginary-part lines">
+          <TwoCurves />
+        </Explore>
       </PartCard>
     </div>
   )

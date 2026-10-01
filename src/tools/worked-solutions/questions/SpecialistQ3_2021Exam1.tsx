@@ -57,64 +57,64 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="H_0: \mu = 200" />,
-    reason: <>The null hypothesis always asserts the claimed value, with an equals sign.</>,
+    reason: <>Here <Katex tex="\mu" /> is the mean lifetime of <em>all</em> Shiny globes (the population mean) — hypotheses are always about <Katex tex="\mu" />, never about the sample mean 195. The null hypothesis is the company's claim, written with an equals sign.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \mu < 200}" />,
-    reason: <>The complaint is that globes last <em>less</em> than 200 weeks, so the test is one-tailed to the left — not <Katex tex="\ne" /> (two-tailed) and not <Katex tex=">" />.</>,
+    reason: <>The alternative hypothesis is what the investigation looks for evidence of: the customers' complaint that globes last <em>less</em> than 200 weeks. So the test is one-tailed to the left — not <Katex tex="\mu\ne200" /> (that would be two-tailed) and not <Katex tex="\mu>200" /> (nobody is claiming the globes last longer).</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(200,\ \frac{10^2}{36}\right) \implies \mathrm{sd}\!\left(\bar X\right) = \frac{10}{6} = \frac53" />,
-    reason: <>The <em>sample mean</em> has standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" />, not <Katex tex="\sigma" />.</>,
+    reason: <>A <Katex tex="p" /> value is always worked out assuming <Katex tex="H_0" /> is true, so take <Katex tex="\mu = 200" />. The lifetimes are normal, so the sample mean <Katex tex="\bar X" /> of <Katex tex="n = 36" /> globes is normal with mean <Katex tex="\mu" /> and standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" /> — not <Katex tex="\sigma" />, because averages vary less than single globes.</>,
   },
   {
-    working: <Katex display tex="p = \Pr\!\left(\bar X \le 195 \mid \mu = 200\right) = \Pr\!\left(Z \le \frac{195-200}{5/3}\right)" />,
-    reason: <>Standardising the observed sample mean.</>,
+    working: <Katex display tex="\begin{aligned} p &= \Pr\!\left(\bar X \le 195 \mid \mu = 200\right) \\ &= \Pr\!\left(Z \le \frac{195-200}{5/3}\right) \end{aligned}" />,
+    reason: <>The <Katex tex="p" /> value is the chance, if <Katex tex="H_0" /> were true, of a sample mean at least as extreme as the one observed. Because <Katex tex="H_1" /> says <Katex tex="\mu < 200" />, &ldquo;extreme&rdquo; means <em>as low as or lower than</em> 195, so we want the left tail. Standardise with <Katex tex="z = \tfrac{\bar x - \mu}{\sigma/\sqrt n}" /> to use the given <Katex tex="Z" /> facts.</>,
   },
   {
     working: <Katex display tex="= \Pr(Z \le -3)" />,
-    reason: <><Katex tex="\tfrac{-5}{5/3}=-3" /> exactly — which is why the question supplies <Katex tex="\Pr(-3<Z<3)" />.</>,
+    reason: <><Katex tex="\tfrac{-5}{5/3} = -5\times\tfrac35 = -3" /> exactly — which is why the question supplies <Katex tex="\Pr(-3<Z<3)" />.</>,
   },
   {
     working: <Katex display tex="\Pr(Z\le-3) = \frac{1-0.9973}{2} = 0.00135" />,
-    reason: <>The two tails outside ±3 share the leftover probability equally.</>,
+    reason: <>The middle region <Katex tex="-3<Z<3" /> holds 0.9973, so the two tails together hold <Katex tex="1-0.9973=0.0027" />. The normal curve is symmetric about 0, so each tail holds half of that. Only the left tail is wanted, since the test is one-tailed — 0.0027 would be the answer to a two-tailed test.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.001}" />,
-    reason: <>To three decimal places.</>,
+    reason: <>0.00135 rounded to three decimal places.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
-    working: <Katex display tex="p = 0.001 < 0.01" />,
-    reason: <>Compare the <Katex tex="p" /> value with the significance level — the report notes students who confused the two, since 0.001 and 0.01 look alike.</>,
+    working: <Katex display tex="p \approx 0.001 < 0.01" />,
+    reason: <>The 1% level of significance is the cut-off <Katex tex="0.01" />. The rule: if <Katex tex="p" /> is less than the significance level, reject <Katex tex="H_0" />. Here a sample mean as low as 195 would happen only about 0.14% of the time (<Katex tex="p = 0.00135" />) if <Katex tex="\mu" /> really were 200 — rarer than the 1% cut-off, so we stop believing <Katex tex="H_0" />. Keep the two numbers apart: 0.001 is the <Katex tex="p" /> value, 0.01 is the significance level.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{reject } H_0 \text{ at the } 1\% \text{ level}}" />,
-    reason: <>There is significant evidence that the mean lifetime is less than 200 weeks, so the company should be told the complaints are supported.</>,
+    working: <Katex display tex="\boxed{\begin{array}{c} \text{Reject } H_0 \text{ at the } 1\% \text{ level.} \\ \text{There is evidence that the mean} \\ \text{lifetime is less than 200 weeks.} \end{array}}" />,
+    reason: <>The question asks what the company should be told, so state the decision and then say what it means in context: the complaints are supported.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\bar x \pm z\frac{\sigma}{\sqrt n} \ \text{ with } \bar x = 250, \ \sigma = 10, \ n = 25" />,
-    reason: <>This is the <em>new</em> globe, so the sample mean is 250 — the report notes students frequently used 200.</>,
+    working: <Katex display tex="\begin{gathered} \left(\bar x - z\frac{\sigma}{\sqrt n},\ \bar x + z\frac{\sigma}{\sqrt n}\right) \\ \bar x = 250, \ \sigma = 10, \ n = 25 \end{gathered}" />,
+    reason: <>A confidence interval estimates the unknown <Katex tex="\mu" /> of the <em>new</em> globes, so it is always centred on this sample's mean, 250 — the report notes students frequently used 200, which was the old claim about Shiny globes and plays no part here. Likewise <Katex tex="n = 25" />, not the 36 Shiny globes from part b.</>,
   },
   {
-    working: <Katex display tex="\frac{\sigma}{\sqrt n} = \frac{10}{5} = 2" />,
-    reason: <>The standard error.</>,
+    working: <Katex display tex="\frac{\sigma}{\sqrt n} = \frac{10}{\sqrt{25}} = \frac{10}{5} = 2" />,
+    reason: <>The standard deviation of the sample mean.</>,
   },
   {
     working: <Katex display tex="250 \pm 1.96\times2 = 250 \pm 3.92" />,
-    reason: <>The question tells you to use <Katex tex="1.96" /> via <Katex tex="\Pr(-1.96<Z<1.96)=0.95" />, so rounding it to 2 is not acceptable.</>,
+    reason: <>For 95% confidence, <Katex tex="z" /> is the value with 95% of the standard normal between <Katex tex="-z" /> and <Katex tex="z" />. The question gives <Katex tex="\Pr(-1.96<Z<1.96)=0.95" />, so <Katex tex="z = 1.96" /> — rounding it to 2 is not acceptable.</>,
   },
   {
     working: <Katex display tex="\boxed{(246.08,\ 253.92)}" />,
-    reason: <>To two decimal places.</>,
+    reason: <><Katex tex="250 - 3.92 = 246.08" /> and <Katex tex="250 + 3.92 = 253.92" />, already exact to two decimal places.</>,
   },
 ]
 
