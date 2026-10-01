@@ -18,16 +18,16 @@ const ROWS: WorkingRow[] = [
     reason: <>Differentiating <Katex tex="\tfrac13x^3+mx^2+nx+p" />. The leading coefficient is 1, which makes the next step easy.</>,
   },
   {
-    working: <Katex display tex="\text{turning points at } -3 \text{ and } 1 \implies f'(x) = (x+3)(x-1)" />,
-    reason: <>A monic quadratic with those two roots — no scaling factor is needed.</>,
+    working: <Katex display tex="\begin{gathered}f'(-3)=0,\ f'(1)=0\\ \implies f'(x) = (x+3)(x-1)\end{gathered}" />,
+    reason: <>At a turning point the gradient is zero, so <Katex tex="x=-3" /> and <Katex tex="x=1" /> are the solutions of <Katex tex="f'(x)=0" />. A quadratic with those roots is <Katex tex="k(x+3)(x-1)" />, and <Katex tex="k=1" /> because the <Katex tex="x^2" /> coefficient of <Katex tex="f'(x)" /> is 1.</>,
   },
   {
-    working: <Katex display tex="(x+3)(x-1) = x^2+2x-3 \implies 2m = 2, \ n = -3" />,
-    reason: <>So <Katex tex="m=1" />. Equivalently, sum of roots <Katex tex="=-2m=-2" /> and product <Katex tex="=n=-3" />.</>,
+    working: <Katex display tex="\begin{gathered}(x+3)(x-1) = x^2+2x-3\\ \implies 2m = 2, \ n = -3\end{gathered}" />,
+    reason: <>Equating the <Katex tex="x" /> coefficients and the constant terms with <Katex tex="x^2+2mx+n" />, so <Katex tex="m=1" />. (Alternatively, solve <Katex tex="f'(-3)=0" /> and <Katex tex="f'(1)=0" />, that is <Katex tex="9-6m+n=0" /> and <Katex tex="1+2m+n=0" />, simultaneously.)</>,
   },
   {
     working: <Katex display tex="f(3) = 4: \ \tfrac13(27)+1(9)+(-3)(3)+p = 4" />,
-    reason: <>The third condition, which fixes the constant.</>,
+    reason: <>The graph passes through <Katex tex="(3,4)" />, so <Katex tex="f(3)=4" />. Substitute <Katex tex="m=1" /> and <Katex tex="n=-3" />; this fixes the constant <Katex tex="p" />.</>,
   },
   {
     working: <Katex display tex="9+9-9+p = 4 \implies p = -5" />,
@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m = 1, \ n = -3, \ p = -5}" />,
-    reason: <>Matches option <b>B</b>. Option C has the right <Katex tex="n" /> but the wrong sign on <Katex tex="m" />, which would put the turning points at 3 and −1.</>,
+    reason: <>Matches option <b>B</b>. Option C has the right <Katex tex="n" /> but the wrong sign on <Katex tex="m" />, which would put the turning points at 3 and −1. Option A comes from treating −3 and 1 as <Katex tex="x" />-intercepts instead of turning points: it solves <Katex tex="f(-3)=0" />, <Katex tex="f(1)=0" /> and <Katex tex="f(3)=4" />.</>,
   },
 ]
 

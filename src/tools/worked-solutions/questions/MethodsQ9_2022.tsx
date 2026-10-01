@@ -14,24 +14,28 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="d = \sqrt{x^2+y^2} \ \text{ with } y = \sqrt{2x+1}" />,
-    reason: <>The distance from the origin to a general point on the curve.</>,
+    working: <Katex display tex="d = \sqrt{x^2+y^2}" />,
+    reason: <>The shortest distance between two points is the straight line joining them, so <Katex tex="d" /> is the length of the dashed segment from <Katex tex="O" /> to <Katex tex="(x,y)" />. By Pythagoras (horizontal side <Katex tex="x" />, vertical side <Katex tex="y" />) it is <Katex tex="\sqrt{x^2+y^2}" />. Nothing needs minimising: the options are all formulas in <Katex tex="x" />, so <Katex tex="d" /> just needs writing in terms of <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="y^2 = 2x+1 \implies d = \sqrt{x^2+2x+1}" />,
-    reason: <>Squaring the square root removes it. Option A drops the outer square root; option C has the wrong sign on <Katex tex="2x" />.</>,
+    working: <Katex display tex="y = \sqrt{2x+1} \implies y^2 = 2x+1" />,
+    reason: <>The point is on the graph of <Katex tex="f" />, so <Katex tex="y=f(x)" />. Squaring removes the square root, and only <Katex tex="y^2" /> is needed.</>,
+  },
+  {
+    working: <Katex display tex="d = \sqrt{x^2+2x+1}" />,
+    reason: <>Substituting <Katex tex="y^2=2x+1" />.</>,
   },
   {
     working: <Katex display tex="x^2+2x+1 = (x+1)^2" />,
-    reason: <>A perfect square, which is the point of the question.</>,
+    reason: <>None of the options has this form, so try to simplify it. Under a square root, check for a perfect square: <Katex tex="x^2+2x+1" /> fits <Katex tex="a^2+2ab+b^2=(a+b)^2" /> with <Katex tex="a=x" /> and <Katex tex="b=1" />.</>,
   },
   {
-    working: <Katex display tex="\sqrt{(x+1)^2} = |x+1| = x+1 \ \text{ since } x\ge0" />,
-    reason: <>The domain <Katex tex="[0,\infty)" /> makes the absolute value unnecessary.</>,
+    working: <Katex display tex="\begin{aligned}d &= \sqrt{(x+1)^2} = |x+1| \\ &= x+1 \ \text{ since } x\ge0\end{aligned}" />,
+    reason: <>In general <Katex tex="\sqrt{u^2}=|u|" />, not <Katex tex="u" />. Here the domain of <Katex tex="f" /> is <Katex tex="[0,\infty)" />, so <Katex tex="x+1" /> is positive and the absolute value can be dropped.</>,
   },
   {
     working: <Katex display tex="\boxed{d = x+1}" />,
-    reason: <>Matches option <b>D</b>. Check at <Katex tex="x=0" />: the point is <Katex tex="(0,1)" />, distance 1.</>,
+    reason: <>Matches option <b>D</b>. Option A is <Katex tex="d^2" /> (the square root left off), E is <Katex tex="y^2" /> on its own, B adds <Katex tex="x^2" /> to <Katex tex="y" /> instead of to <Katex tex="y^2" />, and C has <Katex tex="-2x" /> where <Katex tex="y^2=2x+1" /> gives <Katex tex="+2x" />. Testing <Katex tex="x=0" /> cannot separate the options (every one gives 1 there), but <Katex tex="x=4" /> can: the point is <Katex tex="(4,3)" />, a 3-4-5 triangle, so <Katex tex="d=5" />. D gives 5, while A gives 25, B gives 19, C gives 3 and E gives 9.</>,
   },
 ]
 

@@ -2,9 +2,16 @@
 // unknown inner function, worked entirely from a table of values. Question text
 // transcribed from the original paper. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
+// Interactives: d meth-2022e2-q5d-same-area (every possible g′ has area −2, so the same
+// average −48/π; g′ at the ends says nothing about it); e meth-2022e2-q5e-two-factors (each
+// factor of g′ gives two zeros in [0, π]; the next ones are past π).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const SameAreaWidget = lazyWidget(() => import('../interactives/meth-2022e2-q5d-same-area'))
+const TwoFactorsWidget = lazyWidget(() => import('../interactives/meth-2022e2-q5e-two-factors'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [36, 64],
@@ -81,15 +88,15 @@ const ROWS_A: WorkingRow[] = [
     reason: <>This is the <em>input</em> to <Katex tex="f" />, not the output — the report notes <Katex tex="g\left(\tfrac\pi6\right)=\tfrac{\sqrt3}{2}" /> as a common incorrect answer.</>,
   },
   {
-    working: <Katex display tex="\boxed{f\!\left(\tfrac{\sqrt3}{2}\right) = 3}" />,
-    reason: <>Read straight off the table's third column.</>,
+    working: <Katex display tex="\boxed{g\!\left(\tfrac\pi6\right) = f\!\left(\tfrac{\sqrt3}{2}\right) = 3}" />,
+    reason: <>Read off the table: in the column <Katex tex="x=\tfrac{\sqrt3}{2}" />, the <Katex tex="f(x)" /> row gives <Katex tex="3" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = 2\cos(2x)\,f'\bigl(\sin(2x)\bigr)" />,
-    reason: <>The chain rule, as given in the stem.</>,
+    reason: <>Given in the stem (it is the chain rule applied to <Katex tex="f\bigl(\sin(2x)\bigr)" />).</>,
   },
   {
     working: <Katex display tex="g'\!\left(\tfrac\pi6\right) = 2\cos\!\left(\tfrac\pi3\right)f'\!\left(\sin\!\left(\tfrac\pi3\right)\right)" />,
@@ -108,61 +115,61 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{point } \left(\tfrac\pi6,\ 3\right), \quad \text{gradient } \tfrac19" />,
-    reason: <>The point comes from part a., the gradient from part b. The report notes some used <Katex tex="\left(\tfrac\pi6,\tfrac19\right)" />.</>,
+    reason: <>The point on <Katex tex="g" /> is <Katex tex="\left(\tfrac\pi6,\ g\left(\tfrac\pi6\right)\right)" />, with <Katex tex="g\left(\tfrac\pi6\right)=3" /> from part a.; the gradient is <Katex tex="g'\left(\tfrac\pi6\right)=\tfrac19" /> from part b. The report notes some used <Katex tex="\left(\tfrac\pi6,\tfrac{\sqrt3}{2}\right)" /> or <Katex tex="\left(\tfrac\pi6,\tfrac19\right)" />, but <Katex tex="\tfrac{\sqrt3}{2}" /> is the input to <Katex tex="f" /> and <Katex tex="\tfrac19" /> is the gradient, not the <Katex tex="y" />-value.</>,
   },
   {
     working: <Katex display tex="y-3 = \tfrac19\left(x-\tfrac\pi6\right)" />,
-    reason: <>Point–gradient form.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \frac{x}{9}-\frac{\pi}{54}+3}" />,
-    reason: <><Katex tex="\tfrac{1}{9}\times\tfrac\pi6=\tfrac{\pi}{54}" />. An equation, as required.</>,
+    reason: <>Expand: <Katex tex="\tfrac{1}{9}\times\tfrac\pi6=\tfrac{\pi}{54}" />, then add 3 to both sides. Over a common denominator this is <Katex tex="y=\tfrac x9+\tfrac{162-\pi}{54}" />; take care with the signs if you combine the constants. The question asks for the equation, so write <Katex tex="y=\dots" />, not just the point and gradient.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average value of } g' = \frac{1}{\tfrac\pi6-\tfrac\pi8}\int_{\pi/8}^{\pi/6}g'(x)\,dx" />,
-    reason: <>Average <em>value</em> of the derivative, not the average rate of change of <Katex tex="g" />.</>,
+    reason: <>The average value of a function <Katex tex="h" /> on <Katex tex="[a,b]" /> is <Katex tex="\tfrac{1}{b-a}\int_a^b h(x)\,dx" />; here <Katex tex="h=g'" />. It is <em>not</em> <Katex tex="\tfrac{g'(\pi/6)-g'(\pi/8)}{\pi/6-\pi/8}" />, which the report says was occasionally seen: that is the average rate of change of <Katex tex="g'" />, a different quantity.</>,
   },
   {
-    working: <Katex display tex="\int_{\pi/8}^{\pi/6}g'(x)\,dx = g\!\left(\tfrac\pi6\right)-g\!\left(\tfrac\pi8\right)" />,
-    reason: <>The fundamental theorem turns the integral into two table look-ups.</>,
+    working: <Katex display tex="\int_{\pi/8}^{\pi/6}g'(x)\,dx = \Bigl[g(x)\Bigr]_{\pi/8}^{\pi/6} = g\!\left(\tfrac\pi6\right)-g\!\left(\tfrac\pi8\right)" />,
+    reason: <>We can't integrate <Katex tex="g'" /> directly, because <Katex tex="f" /> is unknown. But an antiderivative of <Katex tex="g'" /> is <Katex tex="g" /> itself, so by the fundamental theorem the integral is <Katex tex="g" />, not <Katex tex="g'" />, evaluated at the ends — two table look-ups.</>,
   },
   {
     working: <Katex display tex="g\!\left(\tfrac\pi8\right) = f\!\left(\sin\!\left(\tfrac\pi4\right)\right) = f\!\left(\tfrac{\sqrt2}{2}\right) = 5" />,
-    reason: <>The middle column of the table.</>,
+    reason: <>Double the input (<Katex tex="2\times\tfrac\pi8=\tfrac\pi4" />), then read the column <Katex tex="x=\tfrac{\sqrt2}{2}" /> of the table. Also <Katex tex="g\left(\tfrac\pi6\right)=3" /> from part a.</>,
   },
   {
     working: <Katex display tex="\tfrac\pi6-\tfrac\pi8 = \tfrac{4\pi-3\pi}{24} = \tfrac{\pi}{24}" />,
-    reason: <>The width of the interval.</>,
+    reason: <>The width of the interval, so <Katex tex="\tfrac{1}{\pi/24}=\tfrac{24}{\pi}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{24}{\pi}(3-5) = -\frac{48}{\pi}}" />,
-    reason: <>About <Katex tex="-15.3" />. Negative, since <Katex tex="g" /> falls from 5 to 3 across the interval.</>,
+    reason: <>The <Katex tex="\tfrac{24}{\pi}" /> multiplies the whole bracket: <Katex tex="\tfrac{24}{\pi}\times(-2)" />, not <Katex tex="\tfrac{24}{\pi}-2" /> (a common incorrect answer in the report). About <Katex tex="-15.3" />: negative, since <Katex tex="g" /> falls from 5 to 3 across the interval.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = 2\cos(2x)\,f'\bigl(\sin(2x)\bigr) = 0" />,
-    reason: <>A product is zero when either factor is — both cases must be solved; the report notes some students solved only one.</>,
+    reason: <>A product is zero when either factor is zero, so both cases must be solved. The report notes some students solved only one.</>,
   },
   {
     working: <Katex display tex="\text{case 1: } \cos(2x) = 0, \ x\in[0,\pi] \implies 2x = \tfrac\pi2,\ \tfrac{3\pi}{2}" />,
-    reason: <><Katex tex="2x" /> ranges over <Katex tex="[0,2\pi]" />.</>,
+    reason: <>Since <Katex tex="x\in[0,\pi]" />, <Katex tex="2x\in[0,2\pi]" />: one full turn of the unit circle, where cosine is zero at <Katex tex="\tfrac\pi2" /> and <Katex tex="\tfrac{3\pi}{2}" /> only.</>,
   },
   {
     working: <Katex display tex="x = \tfrac\pi4, \ \tfrac{3\pi}{4}" />,
-    reason: <>Two solutions from the cosine factor.</>,
+    reason: <>Halve each angle. These are genuine solutions: <Katex tex="f" /> is differentiable everywhere, so <Katex tex="f'\bigl(\sin(2x)\bigr)" /> is some number, and zero times a number is zero.</>,
   },
   {
     working: <Katex display tex="\text{case 2: } f'\bigl(\sin(2x)\bigr) = 0 \implies \sin(2x) = \tfrac{\sqrt2}{2}" />,
-    reason: <>The table gives <Katex tex="f'\!\left(\tfrac{\sqrt2}{2}\right)=0" /> — the only zero of <Katex tex="f'" /> we know about.</>,
+    reason: <>The table gives <Katex tex="f'\!\left(\tfrac{\sqrt2}{2}\right)=0" />, so we need the input <Katex tex="\sin(2x)" /> to be <Katex tex="\tfrac{\sqrt2}{2}" />. Since <Katex tex="f" /> is unknown, this is the only zero of <Katex tex="f'" /> we know about, which is why the question asks for four solutions rather than all of them.</>,
   },
   {
     working: <Katex display tex="2x = \tfrac\pi4,\ \tfrac{3\pi}{4} \implies x = \tfrac\pi8, \ \tfrac{3\pi}{8}" />,
-    reason: <>Two more solutions.</>,
+    reason: <>For <Katex tex="2x\in[0,2\pi]" />, sine is <Katex tex="\tfrac{\sqrt2}{2}" /> in the first and second quadrants. The next angles, <Katex tex="\tfrac{9\pi}{4}" /> and <Katex tex="\tfrac{11\pi}{4}" />, are past <Katex tex="2\pi" /> and would give <Katex tex="x" /> outside <Katex tex="[0,\pi]" />; the report notes some students gave values outside the domain.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac\pi8,\ \tfrac\pi4,\ \tfrac{3\pi}{8},\ \tfrac{3\pi}{4}}" />,
@@ -240,7 +247,7 @@ export default function MethodsQ5_2022Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p>
           The derivative of <Katex tex="g" /> with respect to <Katex tex="x" /> is given by{' '}
-          <Katex tex="g'(x)=2\cos(2x)\,f'\bigl(\sin(2x)\bigr)" />.
+          <Katex tex="g'(x)=2\cdot\cos(2x)\cdot f'\bigl(\sin(2x)\bigr)" />.
         </p>
       </div>
 
@@ -286,6 +293,9 @@ export default function MethodsQ5_2022Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
+        <Explore title="Whatever g′ looks like, its area is g(π/6) − g(π/8) = −2, so its average is fixed">
+          <SameAreaWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -294,13 +304,16 @@ export default function MethodsQ5_2022Exam2() {
         marks={3}
         statement={
           <>
-            Find four solutions to the equation <Katex tex="g'(x)=0" /> for the interval{' '}
+            Find <b>four</b> solutions to the equation <Katex tex="g'(x)=0" /> for the interval{' '}
             <Katex tex="x\in[0,\pi]" />.
           </>
         }
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="g′(x) is zero when either factor is — and each factor gives two solutions in [0, π]">
+          <TwoFactorsWidget />
+        </Explore>
       </PartCard>
     </div>
   )

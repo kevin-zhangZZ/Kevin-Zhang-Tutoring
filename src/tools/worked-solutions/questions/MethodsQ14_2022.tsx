@@ -4,6 +4,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -14,24 +15,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="E(X) = \int_{-\infty}^{\infty}x\,f(x)\,dx = \int_0^\infty x\cdot\frac29xe^{-x^2/9}\,dx" />,
-    reason: <>The density is zero for <Katex tex="x<0" />, so the integral starts at 0. Note the extra factor of <Katex tex="x" /> — without it the integral is 1, which is option A.</>,
+    working: <Katex display tex="E(X) = \int_{-\infty}^{\infty}x\,f(x)\,dx" />,
+    reason: <>The expected value of a continuous random variable: multiply the density by <Katex tex="x" /> and integrate over every possible value of <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="= \frac29\int_0^\infty x^2e^{-x^2/9}\,dx" />,
-    reason: <>Collecting the powers of x.</>,
+    working: <Katex display tex="= \int_0^\infty x\cdot\frac29xe^{-\frac19x^2}\,dx" />,
+    reason: <>The density is zero for <Katex tex="x<0" />, so that part adds nothing and the integral starts at 0. Note the extra factor of <Katex tex="x" /> — without it you are integrating <Katex tex="f(x)" /> itself, which always gives 1 (the total probability), option A.</>,
   },
   {
-    working: <Katex display tex="\int_0^\infty x^2e^{-bx^2}dx = \frac14\sqrt{\frac{\pi}{b^3}}, \quad b = \tfrac19" />,
-    reason: <>A CAS handles this directly; by hand it is a standard Gaussian moment. With <Katex tex="b=\tfrac19" /> it gives <Katex tex="\tfrac{27\sqrt\pi}{4}" />.</>,
+    working: <Katex display tex="= \frac29\int_0^\infty x^2e^{-\frac19x^2}\,dx" />,
+    reason: <>Collecting the powers of <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="E(X) = \frac29\cdot\frac{27\sqrt\pi}{4} = \frac{3\sqrt\pi}{2}" />,
-    reason: <>A surprisingly clean exact form.</>,
+    working: <><Cas fn="nInt">nInt(2/9*x^2*e^(-x^2/9), x, 0, ∞)</Cas> <Katex tex="= 2.65868\ldots" /></>,
+    reason: <><Katex tex="x^2e^{-\frac19x^2}" /> has no antiderivative you can find by hand in this course, so this is a technology step (Exam 2 allows it). Type <Katex tex="\infty" /> as the upper terminal. The integral template in exact mode gives <Katex tex="\tfrac{3\sqrt\pi}{2}" />, the same number.</>,
   },
   {
-    working: <Katex display tex="\boxed{2.659}" />,
-    reason: <>Matches option <b>B</b>. Sanity check: the density peaks near <Katex tex="x=2.1" />, so a mean just under 3 is plausible.</>,
+    working: <Katex display tex="\boxed{E(X) \approx 2.659}" />,
+    reason: <>Matches option <b>B</b>. Option E, 9, is <Katex tex="\int_0^\infty x^2f(x)\,dx = E(X^2)" /> — multiplying <Katex tex="f(x)" /> by <Katex tex="x^2" /> instead of <Katex tex="x" />. Sanity check: the density peaks at <Katex tex="x=\tfrac{3}{\sqrt2}\approx2.12" /> and has a long tail to the right, which pulls the mean a little to the right of the peak.</>,
   },
 ]
 

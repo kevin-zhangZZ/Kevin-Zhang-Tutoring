@@ -1065,7 +1065,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q8-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 8', topic: 'Calculus — splitting a definite integral at an interior point', type: 'mc', hasDetail: true, percentCorrect: 78 },
   { id: 'meth-q9-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 9', topic: 'Functions — a distance to the origin that collapses to a perfect square', type: 'mc', hasDetail: true, percentCorrect: 50 },
   { id: 'meth-q10-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 10', topic: 'Statistics — a 95% confidence interval quoted as a percentage', type: 'mc', hasDetail: true, percentCorrect: 78 },
-  { id: 'meth-q11-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — integration by parts in disguise, from a given derivative', type: 'mc', hasDetail: true, percentCorrect: 66 },
+  { id: 'meth-q11-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — integration by recognition, from a given derivative', type: 'mc', hasDetail: true, percentCorrect: 66 },
   { id: 'meth-q12-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 12', topic: 'Probability — drawing one of each colour without replacement', type: 'mc', hasDetail: true, percentCorrect: 52 },
   { id: 'meth-q14-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 14', topic: 'Probability — the mean of a density function built from x·e^(−x²/9)', type: 'mc', hasDetail: true, percentCorrect: 75 },
   { id: 'meth-q15-2022', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'MCQ 15', topic: 'Functions — the maximal domain of a square root of a quadratic', type: 'mc', hasDetail: true, percentCorrect: 88 },

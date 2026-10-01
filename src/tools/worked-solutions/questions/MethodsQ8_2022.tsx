@@ -13,20 +13,20 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\int_0^b f = \int_0^a f+\int_a^b f" />,
-    reason: <>The additivity of definite integrals over adjoining intervals, valid because <Katex tex="0<a<b" />.</>,
+    working: <Katex display tex="\begin{aligned}\int_0^b f(x)\,dx &= \int_0^a f(x)\,dx \\ &\quad +\int_a^b f(x)\,dx\end{aligned}" />,
+    reason: <>Since <Katex tex="0<a<b" />, the interval from 0 to <Katex tex="b" /> splits at <Katex tex="a" /> into two pieces, and the integral over the whole interval is the sum of the integrals over the two pieces.</>,
   },
   {
-    working: <Katex display tex="\int_a^b f = \int_0^b f-\int_0^a f" />,
-    reason: <>Rearranging.</>,
+    working: <Katex display tex="10 = -4+\int_a^b f(x)\,dx" />,
+    reason: <>Substituting the two given values.</>,
   },
   {
-    working: <Katex display tex="= 10-(-4)" />,
-    reason: <>Subtracting a negative — the step that turns 10 into something <em>larger</em>, not smaller.</>,
+    working: <Katex display tex="\int_a^b f(x)\,dx = 10-(-4)" />,
+    reason: <>Subtracting <Katex tex="-4" /> from both sides. Subtracting a negative makes the answer <em>larger</em> than 10: the integral from 0 to <Katex tex="a" /> is negative, so the piece from <Katex tex="a" /> to <Katex tex="b" /> must be more than 10 to bring the total back up to 10.</>,
   },
   {
     working: <Katex display tex="\boxed{14}" />,
-    reason: <>Matches option <b>E</b>. Option D ignores the second integral.</>,
+    reason: <>Matches option <b>E</b>. Check: <Katex tex="-4+14=10" />. Options B and D are just the two given integrals, the one from 0 to <Katex tex="a" /> and the one from 0 to <Katex tex="b" />.</>,
   },
 ]
 

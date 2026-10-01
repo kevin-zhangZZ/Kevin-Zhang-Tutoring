@@ -1,5 +1,5 @@
 // 2022 Mathematical Methods — Exam 2, MCQ 11. VCAA examination report: 66% correct.
-// Integration by parts in disguise, from a given derivative. Question text transcribed from the
+// Integration by recognition, from a given derivative. Question text transcribed from the
 // original paper. Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -14,23 +14,32 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\bigl(x\sin(x)\bigr) = \sin(x)+x\cos(x)" />,
-    reason: <>The given result — read it as an antiderivative statement.</>,
+    reason: <>The question gives a derivative so you can use it backwards (integration by recognition). Differentiating <Katex tex="x\sin(x)" /> gives <Katex tex="\sin(x)+x\cos(x)" />, so <Katex tex="x\sin(x)" /> is an antiderivative of <Katex tex="\sin(x)+x\cos(x)" />, and the <Katex tex="x\cos(x)" /> you need is part of it.</>,
   },
   {
     working: <Katex display tex="\int\bigl(\sin(x)+x\cos(x)\bigr)dx = x\sin(x)+c" />,
-    reason: <>Integrating both sides.</>,
+    reason: <>Antidifferentiate both sides of the given result.</>,
+  },
+  {
+    working: <Katex display tex="\int\sin(x)\,dx+\int x\cos(x)\,dx = x\sin(x)+c" />,
+    reason: <>The integral of a sum is the sum of the integrals.</>,
   },
   {
     working: <Katex display tex="\int x\cos(x)\,dx = x\sin(x)-\int\sin(x)\,dx" />,
-    reason: <>Splitting the left side and moving the <Katex tex="\int\sin" /> across. The <Katex tex="\int\sin(x)\,dx" /> is left unevaluated because the options keep it that way.</>,
+    reason: <>Subtract <Katex tex="\int\sin(x)\,dx" /> from both sides to get the integral you want on its own. Leave <Katex tex="\int\sin(x)\,dx" /> unevaluated, because every option keeps it that way. It already stands for a family of antiderivatives, so the <Katex tex="c" /> is not needed here; it goes back in at the end, as in the options.</>,
   },
   {
-    working: <Katex display tex="\frac{1}{k}\int x\cos(x)\,dx = \frac1k\left(x\sin(x)-\int\sin(x)\,dx\right)+c" />,
-    reason: <>The <Katex tex="\tfrac1k" /> multiplies the <em>whole</em> antiderivative, so the bracket matters — option B applies it to the first term only.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&\frac{1}{k}\int x\cos(x)\,dx\\ &= \frac1k\left(x\sin(x)-\int\sin(x)\,dx\right)+c\end{aligned}"
+      />
+    ),
+    reason: <>Multiply both sides by <Katex tex="\tfrac1k" />. It multiplies the <em>whole</em> right side, so the brackets are needed.</>,
   },
   {
-    working: <Katex display tex="\boxed{\frac1k\left(x\cdot\sin(x)-\int\sin(x)\,dx\right)+c}" />,
-    reason: <>Matches option <b>C</b>. Option A multiplies by <Katex tex="k" /> instead of dividing; option D replaces <Katex tex="\int\sin(x)\,dx" /> with the integrand <Katex tex="\sin(x)" />.</>,
+    working: <Katex display tex="\boxed{\frac1k\left(x\sin(x)-\int\sin(x)\,dx\right)+c}" />,
+    reason: <>Matches option <b>C</b>. Option A multiplies by <Katex tex="k" /> instead of dividing by <Katex tex="k" />. Option B applies the <Katex tex="\tfrac1k" /> to the <Katex tex="x\sin(x)" /> term only. Option D replaces <Katex tex="\int\sin(x)\,dx" /> with <Katex tex="\sin(x)" />, but the antiderivative of <Katex tex="\sin(x)" /> is <Katex tex="-\cos(x)" />, not <Katex tex="\sin(x)" />. Option E puts <Katex tex="x\sin(x)" /> back inside an integral, but <Katex tex="x\sin(x)" /> is already the antiderivative.</>,
   },
 ]
 

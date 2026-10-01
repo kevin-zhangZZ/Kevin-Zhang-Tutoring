@@ -4,11 +4,17 @@
 // Question text transcribed from the original paper; both figures are crops of VCAA's own
 // artwork. Answers checked with sympy and against the VCAA examination report. Solution is
 // original.
+// Interactive: e(i) meth-2022e2-q4ei-second-crossing (slide k: h and h⁻¹ only enclose area once
+// h'(0) = 4/k < 1, and there is no upper limit on k).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2022e2-q4-graph.png'
 import areaSrc from './meth-2022e2-q4e-area.png'
+
+const CrossingWidget = lazyWidget(() => import('../interactives/meth-2022e2-q4ei-second-crossing'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [18, 82],
@@ -92,114 +98,129 @@ const EXAM_EI: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \log_e\!\left(x+\tfrac12\right)-\log_e\!\left(\tfrac12-x\right)" />,
-    reason: <>Defined on <Katex tex="\left(-\tfrac12,\tfrac12\right)" />, where both arguments are positive.</>,
+    reason: <>Defined on <Katex tex="\left(-\tfrac12,\tfrac12\right)" />, where both arguments are positive. That interval is the <em>domain</em>; the question asks for the range, the set of <Katex tex="y" />-values.</>,
   },
   {
-    working: <Katex display tex="x\to\tfrac12^-: \ \log_e\!\left(\tfrac12-x\right)\to-\infty \implies f\to+\infty" />,
-    reason: <>The second logarithm is subtracted, so it drives the function up.</>,
+    working: <Katex display tex="x\to\tfrac12^-: \ \log_e\!\left(\tfrac12-x\right)\to-\infty \implies f(x)\to+\infty" />,
+    reason: <>The first logarithm just approaches <Katex tex="\log_e 1 = 0" />. The second one heads to <Katex tex="-\infty" />, and it is subtracted, so it drives <Katex tex="f" /> up without limit.</>,
   },
   {
-    working: <Katex display tex="x\to-\tfrac12^+: \ f\to-\infty" />,
-    reason: <>The first logarithm dives.</>,
+    working: <Katex display tex="x\to-\tfrac12^+: \ \log_e\!\left(x+\tfrac12\right)\to-\infty \implies f(x)\to-\infty" />,
+    reason: <>Now the first logarithm heads to <Katex tex="-\infty" /> while the second approaches <Katex tex="\log_e 1 = 0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{range } R}" />,
-    reason: <>Continuous and unbounded both ways. The report notes <Katex tex="(-26.2,26.2)" /> as a common error.</>,
+    reason: <><Katex tex="f" /> is continuous and goes from <Katex tex="-\infty" /> to <Katex tex="+\infty" />, so it takes every real value, as the graph shows. It has no largest or smallest value, so a finite interval such as <Katex tex="(-26.2,26.2)" />, which the report notes as a common error, cannot be right.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
-    working: <Katex display tex="f'(x) = \frac{1}{x+\tfrac12}-\frac{-1}{\tfrac12-x} = \frac{1}{x+\tfrac12}+\frac{1}{\tfrac12-x}" />,
-    reason: <>The inner derivative of <Katex tex="\tfrac12-x" /> is <Katex tex="-1" />, and it meets the minus sign in front — two negatives.</>,
+    working: <Katex display tex="\begin{aligned} f'(x) &= \frac{1}{x+\tfrac12}-\frac{-1}{\tfrac12-x} \\ &= \frac{1}{x+\tfrac12}+\frac{1}{\tfrac12-x} \end{aligned}" />,
+    reason: <>Using <Katex tex="\tfrac{d}{dx}\log_e(u) = \tfrac{u'}{u}" /> on each term. The inner derivative of <Katex tex="\tfrac12-x" /> is <Katex tex="-1" />, and it meets the minus sign in front: two negatives make a plus.</>,
   },
   {
-    working: <Katex display tex="= \frac{2}{2x+1}+\frac{2}{1-2x} = \frac{-4}{4x^2-1}" />,
-    reason: <>Combining over a common denominator.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} &= \frac{2}{2x+1}+\frac{2}{1-2x} \\ &= \frac{2(1-2x)+2(2x+1)}{(2x+1)(1-2x)} = \frac{4}{1-4x^2} \end{aligned}"
+      />
+    ),
+    reason: <>Multiply the top and bottom of each fraction by 2 to clear the halves, then use the common denominator <Katex tex="(2x+1)(1-2x) = 1-4x^2" />. CAS may show this as <Katex tex="\tfrac{-4}{4x^2-1}" />, which is the same thing.</>,
   },
   {
-    working: <Katex display tex="f'(0) = \frac{-4}{-1} = \boxed{4}" />,
-    reason: <>Substituting. Or directly: <Katex tex="2+2=4" /> from the first form. The report notes students who found <Katex tex="f'" /> and then forgot to evaluate it.</>,
+    working: <Katex display tex="f'(0) = \frac{4}{1-0} = \boxed{4}" />,
+    reason: <>The report notes students who found <Katex tex="f'(x)" /> and then did not substitute <Katex tex="x=0" />. Also, <Katex tex="f(0) = \log_e\tfrac12-\log_e\tfrac12 = 0" /> (the graph passes through <Katex tex="O" />), but <Katex tex="f'(0)" /> is the <em>gradient</em> there, and the graph is clearly rising at <Katex tex="O" />, so <Katex tex="f'(0)=0" /> cannot be right.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
-    working: <Katex display tex="f'(x) = \frac{-4}{4x^2-1} = \frac{4}{1-4x^2}" />,
-    reason: <>Rewriting with a positive numerator.</>,
+    working: <Katex display tex="f'(x) = \frac{4}{1-4x^2}" />,
+    reason: <>From part b.i.</>,
   },
   {
     working: <Katex display tex="x \in \left(-\tfrac12,\tfrac12\right) \implies 4x^2<1 \implies 1-4x^2>0" />,
-    reason: <>So <Katex tex="f'(x)>0" /> everywhere on the domain.</>,
+    reason: <>The numerator 4 and the denominator are both positive, so <Katex tex="f'(x)>0" /> at every <Katex tex="x" /> in the domain, including <Katex tex="x=0" />, where <Katex tex="f'(0)=4" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(-\tfrac12,\ \tfrac12\right)}" />,
-    reason: <>The whole maximal domain: <Katex tex="f" /> is strictly increasing throughout. It cannot be <Katex tex="R" />, because <Katex tex="f" /> is not defined outside the interval.</>,
+    reason: <><Katex tex="f" /> is strictly increasing on its whole domain, so that is the maximal set. There is no need to remove <Katex tex="x=0" /> or to start the interval at <Katex tex="0" />: <Katex tex="O" /> is not a turning point, since the gradient is 4. The endpoints <Katex tex="\pm\tfrac12" /> cannot be included (square brackets are wrong) because <Katex tex="f" /> is not defined there, and the answer cannot be <Katex tex="R" />, because <Katex tex="f" /> is not defined outside the interval.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(-x) = \log_e\!\left(-x+\tfrac12\right)-\log_e\!\left(\tfrac12+x\right)" />,
-    reason: <>Substituting <Katex tex="-x" /> into both logarithms — carefully, since it swaps them.</>,
+    reason: <>Replace every <Katex tex="x" /> with <Katex tex="(-x)" />: <Katex tex="x+\tfrac12" /> becomes <Katex tex="-x+\tfrac12" /> and <Katex tex="\tfrac12-x" /> becomes <Katex tex="\tfrac12+x" />.</>,
   },
   {
     working: <Katex display tex="= \log_e\!\left(\tfrac12-x\right)-\log_e\!\left(x+\tfrac12\right)" />,
-    reason: <>Reordering the two terms shows they are exactly the negatives of f’s.</>,
+    reason: <>Writing <Katex tex="-x+\tfrac12" /> as <Katex tex="\tfrac12-x" /> and <Katex tex="\tfrac12+x" /> as <Katex tex="x+\tfrac12" /> shows these are the same two logarithms as in <Katex tex="f(x)" />, with the signs swapped.</>,
   },
   {
-    working: <Katex display tex="f(x)+f(-x) = \left[\log_e\!\left(x+\tfrac12\right)-\log_e\!\left(\tfrac12-x\right)\right]+\left[\log_e\!\left(\tfrac12-x\right)-\log_e\!\left(x+\tfrac12\right)\right]" />,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} f(x)+f(-x) &= \log_e\!\left(x+\tfrac12\right)-\log_e\!\left(\tfrac12-x\right) \\ &\quad +\log_e\!\left(\tfrac12-x\right)-\log_e\!\left(x+\tfrac12\right) \end{aligned}"
+      />
+    ),
     reason: <>Adding.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x)+f(-x) = 0}" />,
-    reason: <>Everything cancels in pairs, so <Katex tex="f" /> is odd. Testing one value proves nothing — the report notes some students substituted a value for <Katex tex="x" />. As required.</>,
+    reason: <>The terms cancel in pairs. This must be shown for every <Katex tex="x" />: substituting one value, which the report notes some students did, proves nothing. If you combine the logarithms instead, you get <Katex tex="\log_e" /> of a product that equals 1, and <Katex tex="\log_e 1 = 0" />; it is the logarithm that is 0, not the product inside it. As required.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{domain of } f^{-1} = \text{range of } f = \boxed{R}" />,
-    reason: <>From part a. — the report notes some students did not find the domain.</>,
+    reason: <>The domain of an inverse is the range of the original function, found in part a. The question asks for the domain as well as the rule, and the report notes some students did not find it.</>,
   },
   {
-    working: <Katex display tex="x = \log_e\!\left(\frac{y+\tfrac12}{\tfrac12-y}\right)" />,
-    reason: <>Swap x and y, then combine the two logarithms into one.</>,
+    working: <Katex display tex="\begin{aligned} x &= \log_e\!\left(y+\tfrac12\right)-\log_e\!\left(\tfrac12-y\right) \\ &= \log_e\!\left(\frac{y+\tfrac12}{\tfrac12-y}\right) \end{aligned}" />,
+    reason: <><Katex tex="f^{-1}" /> is the inverse function, not the reciprocal <Katex tex="\tfrac{1}{f(x)}" />: swap <Katex tex="x" /> and <Katex tex="y" /> in <Katex tex="y=f(x)" /> and solve for <Katex tex="y" />. On CAS, <Cas fn="solve">solve(x = ln(y+1/2) - ln(1/2-y), y)</Cas> does this in one step; by hand, first combine the logarithms using <Katex tex="\log_e a-\log_e b = \log_e\tfrac ab" />.</>,
   },
   {
     working: <Katex display tex="e^x = \frac{y+\tfrac12}{\tfrac12-y} = \frac{2y+1}{1-2y}" />,
-    reason: <>Exponentiating and clearing the halves.</>,
+    reason: <>Write both sides as powers of <Katex tex="e" />, since <Katex tex="e^{\log_e A} = A" />, then multiply the top and bottom by 2 to clear the halves.</>,
   },
   {
-    working: <Katex display tex="e^x(1-2y) = 2y+1 \implies e^x-1 = 2y\left(e^x+1\right)" />,
-    reason: <>Collecting the y terms on one side.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} e^x-2ye^x &= 2y+1 \\ e^x-1 &= 2y\left(e^x+1\right) \end{aligned}"
+      />
+    ),
+    reason: <>Multiply both sides by <Katex tex="1-2y" />, then move the terms with <Katex tex="y" /> to one side and factorise out <Katex tex="2y" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \frac{e^x-1}{2\left(e^x+1\right)}}" />,
-    reason: <>Both the rule and the domain <Katex tex="R" /> are needed. Its range is <Katex tex="\left(-\tfrac12,\tfrac12\right)" />, matching <Katex tex="f" />'s domain. Equivalently <Katex tex="\tfrac12\tanh\left(\tfrac x2\right)" />, which some CAS output gives.</>,
+    reason: <>Dividing by <Katex tex="2\left(e^x+1\right)" />. Both the rule and the domain <Katex tex="R" /> are needed. CAS may give the rule in an equivalent form, such as <Katex tex="\tfrac12\tanh\!\left(\tfrac x2\right)" />. Copy it exactly: <Katex tex="\tanh" /> is not <Katex tex="\tan" />, a slip the report notes.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
-    working: <Katex display tex="h(x) = \tfrac1kf(x) \implies h'(0) = \tfrac{f'(0)}{k} = \tfrac4k" />,
-    reason: <>Using part b.i. The factor <Katex tex="\tfrac1k" /> flattens the graph.</>,
+    working: <Katex display tex="\begin{aligned} h'(x) &= \tfrac1k f'(x) = \frac{4}{k\left(1-4x^2\right)} \\ h'(0) &= \frac4k \end{aligned}" />,
+    reason: <>Using <Katex tex="f'(x)" /> from part b.i. Since <Katex tex="k>0" />, <Katex tex="h'(x)>0" />, so <Katex tex="h" /> is strictly increasing, and <Katex tex="h(0) = \tfrac1k f(0) = 0" />.</>,
   },
   {
-    working: <Katex display tex="h^{-1} \text{ is the reflection of } h \text{ in } y=x, \text{ and } h(0)=0" />,
-    reason: <>So the two curves always meet at the origin — the question is whether they meet anywhere <em>else</em>, because only then is there an enclosed area.</>,
+    working: <Katex display tex="h(x) = h^{-1}(x) \iff h(x) = x" />,
+    reason: <><Katex tex="h^{-1}" /> is the reflection of <Katex tex="h" /> in <Katex tex="y=x" />, and because <Katex tex="h" /> is strictly increasing the two graphs can only meet on that line. They always meet at <Katex tex="O" />. An area is enclosed only if they meet somewhere <em>else</em> as well, so the question is when <Katex tex="h(x) = x" /> has a solution other than <Katex tex="x=0" />.</>,
   },
   {
-    working: <Katex display tex="h'(0)<1 \iff \tfrac4k<1 \iff k>4" />,
-    reason: <>If <Katex tex="h" /> leaves the origin more slowly than <Katex tex="y=x" />, it must cross back over the line before it runs off to <Katex tex="+\infty" /> at <Katex tex="x=\tfrac12" />.</>,
+    working: <Katex display tex="k>4: \ h'(0) = \tfrac4k<1" />,
+    reason: <>Just to the right of <Katex tex="O" />, <Katex tex="h" /> rises more slowly than <Katex tex="y=x" />, so it sits below the line. But <Katex tex="h(x)\to+\infty" /> as <Katex tex="x\to\tfrac12^-" />, so it must cross back over <Katex tex="y=x" /> at some <Katex tex="x_0" /> in <Katex tex="\left(0,\tfrac12\right)" />, and, because <Katex tex="h=\tfrac1kf" /> is odd (part c), also at <Katex tex="-x_0" />. Two regions are enclosed, so <Katex tex="A(k)>0" />, however large <Katex tex="k" /> is.</>,
   },
   {
-    working: <Katex display tex="k>4 \implies h \text{ cuts } y=x \text{ at } \pm x_0 \ne 0" />,
-    reason: <>By oddness, symmetric about the origin — giving two enclosed regions, so <Katex tex="A(k)>0" />.</>,
+    working: <Katex display tex="\begin{aligned} &0<k\le4,\ x\ne0: \\ &h'(x) = \frac{4}{k\left(1-4x^2\right)} > \frac4k \ge 1 \end{aligned}" />,
+    reason: <>For <Katex tex="x\ne0" /> in the domain, <Katex tex="0<1-4x^2<1" />, and dividing by a positive number less than 1 makes a fraction bigger. So <Katex tex="h" /> starts at <Katex tex="O" /> with <Katex tex="y=x" /> and always climbs faster than it: <Katex tex="h(x)>x" /> on <Katex tex="\left(0,\tfrac12\right)" />, and by oddness <Katex tex="h(x)<x" /> on <Katex tex="\left(-\tfrac12,0\right)" />. The only meeting point is <Katex tex="O" />, so <Katex tex="A(k)=0" />. This includes <Katex tex="k=4" />, where <Katex tex="h" /> just touches <Katex tex="y=x" /> at <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k > 4}" />,
-    reason: <>For <Katex tex="0<k\le4" /> the curve stays above <Katex tex="y=x" /> on <Katex tex="\left(0,\tfrac12\right)" />, the only meeting point is the origin, and the enclosed area is zero. Six per cent of students scored this mark.</>,
+    reason: <>So the answer is not every <Katex tex="k>0" />, and there is no upper limit on <Katex tex="k" />: as <Katex tex="k" /> grows, <Katex tex="x_0" /> gets very close to <Katex tex="\tfrac12" /> but the crossing never disappears.</>,
   },
 ]
 
@@ -311,6 +332,9 @@ export default function MethodsQ4_2022Exam2() {
         examinerReport={EXAM_EI}
       >
         <WorkingTable rows={ROWS_EI} />
+        <Explore title="The curves only trap area once h leaves O flatter than y = x">
+          <CrossingWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded-2xl px-5 py-4">

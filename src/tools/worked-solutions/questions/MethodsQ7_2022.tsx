@@ -28,24 +28,28 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>The graph of <Katex tex="f" /> rises to a local maximum near the origin, falls to a local minimum, then rises steeply.</>,
-    reason: <>Reading the stem graph: two turning points, and increasing on either side of them.</>,
+    working: <>The graph of <Katex tex="f" /> rises to a local maximum just right of the origin, falls to a local minimum, then rises steeply.</>,
+    reason: <>Reading the stem graph: two turning points, with <Katex tex="f" /> increasing before the first, decreasing between them, and increasing after the second.</>,
   },
   {
     working: <Katex display tex="f' > 0, \ \text{then } f' < 0, \ \text{then } f' > 0" />,
-    reason: <>Where <Katex tex="f" /> increases <Katex tex="f'" /> is positive, and where it decreases <Katex tex="f'" /> is negative. So <Katex tex="f'" /> has exactly two <Katex tex="x" />-intercepts, at the turning points of <Katex tex="f" />.</>,
+    reason: <>The derivative is the gradient of <Katex tex="f" />: positive where <Katex tex="f" /> is increasing, negative where it is decreasing. At each turning point the gradient is zero, so the graph of <Katex tex="f'" /> crosses the <Katex tex="x" />-axis exactly twice, at the <Katex tex="x" />-values of the turning points.</>,
+  },
+  {
+    working: <>Large and positive at both ends; a minimum between the two <Katex tex="x" />-intercepts.</>,
+    reason: <>The graph of <Katex tex="f" /> is steep at both ends, so its gradient is large there. Between the turning points <Katex tex="f" /> is falling, and it falls fastest partway between them, so that is where <Katex tex="f'" /> is most negative.</>,
   },
   {
     working: <>A: negative, positive, negative, positive (three intercepts). B: negative, positive, negative. C: positive, negative, positive, negative.</>,
-    reason: <>Each has the wrong sign pattern.</>,
+    reason: <>Each has the wrong sign pattern. A has the same shape as <Katex tex="f" /> itself, and B has the opposite signs to the ones needed.</>,
   },
   {
     working: <>D: vertical asymptotes.</>,
-    reason: <>The graph of <Katex tex="f" /> is smooth, so <Katex tex="f'" /> cannot blow up anywhere.</>,
+    reason: <>D does go positive, negative, positive, but it switches sign at vertical asymptotes instead of crossing the <Katex tex="x" />-axis. The graph of <Katex tex="f" /> is smooth with no vertical tangents, so its gradient is a finite number at every <Katex tex="x" /> and <Katex tex="f'" /> has no asymptotes. At the turning points <Katex tex="f'(x)=0" />, so <Katex tex="f'" /> must actually cross the axis.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{E}}" />,
-    reason: <>Positive, then negative between its two intercepts, then positive and rising steeply — every property of <Katex tex="f'" /> above. Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. It is positive, then negative between its two <Katex tex="x" />-intercepts (the first just right of the origin, like the local maximum of <Katex tex="f" />), then positive again, with a minimum in between and steep at both ends — every property found above.</>,
   },
 ]
 

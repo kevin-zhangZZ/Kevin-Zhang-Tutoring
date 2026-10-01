@@ -13,8 +13,12 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
+    working: <>Look for a break with <Katex tex="x\in[0,5]" /></>,
+    reason: <>A function is continuous over an interval when it is defined at every point of the interval and its graph has no breaks there (it can be drawn without lifting the pen). Breaks come from a denominator of zero, a square root of a negative, or an asymptote of <Katex tex="\tan" />, so find where each of those happens and check whether it lies inside <Katex tex="[0,5]" />.</>,
+  },
+  {
     working: <Katex display tex="\text{A: } \frac{1}{(x+3)^2} \ \text{ breaks only at } x=-3" />,
-    reason: <>Outside <Katex tex="[0,5]" />, so continuous there.</>,
+    reason: <>The denominator is zero only at <Katex tex="x=-3" />, which is outside <Katex tex="[0,5]" />, so A is continuous there.</>,
   },
   {
     working: <Katex display tex="\text{B: } \sqrt{x+3} \ \text{ needs } x\ge-3" />,
@@ -22,19 +26,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{C: } x^{1/3} \ \text{ is continuous everywhere}" />,
-    reason: <>Cube roots are defined for negative inputs too — the vertical tangent at 0 is not a discontinuity.</>,
+    reason: <>A cube root is defined for every real number (negatives too), with no gaps. Its graph has a vertical tangent at <Katex tex="x=0" />, so it is not <em>differentiable</em> there, but it is still continuous.</>,
   },
   {
-    working: <Katex display tex="\text{D: } \tan\!\left(\frac{x}{3}\right) \ \text{ breaks where } \frac{x}{3} = \frac\pi2+k\pi" />,
-    reason: <>That is <Katex tex="x=\tfrac{3\pi}{2}+3k\pi" />.</>,
+    working: <Katex display tex="\begin{gathered}\text{D: } \tan\!\left(\frac{x}{3}\right) \ \text{ breaks where} \\ \frac{x}{3} = \frac\pi2+k\pi,\ k\in Z\end{gathered}" />,
+    reason: <><Katex tex="\tan\theta=\frac{\sin\theta}{\cos\theta}" /> has a vertical asymptote wherever <Katex tex="\cos\theta=0" />, that is at <Katex tex="\theta=\tfrac\pi2+k\pi" />. Multiplying by 3 gives <Katex tex="x=\tfrac{3\pi}{2}+3k\pi" />.</>,
   },
   {
-    working: <Katex display tex="x = \tfrac{3\pi}{2} \approx 4.71 \in [0,5]" />,
-    reason: <>An asymptote inside the interval, so <Katex tex="\tan" /> is the one that fails.</>,
+    working: <Katex display tex="k=0:\ x = \tfrac{3\pi}{2} \approx 4.71 \in [0,5]" />,
+    reason: <>An asymptote inside the interval, so <Katex tex="\tan\!\left(\tfrac{x}{3}\right)" /> is the one that fails. (The neighbouring asymptotes, from <Katex tex="k=-1" /> and <Katex tex="k=1" />, are at about <Katex tex="-4.71" /> and <Katex tex="14.14" />, both outside.)</>,
   },
   {
     working: <Katex display tex="\boxed{\text{D}}" />,
-    reason: <>Matches option <b>D</b>. Option E, <Katex tex="\sin^2\!\left(\tfrac{x}{3}\right)" />, is continuous everywhere — squaring does not introduce breaks.</>,
+    reason: <>Matches option <b>D</b>. Option E, <Katex tex="\sin^2\!\left(\tfrac{x}{3}\right)" />, is continuous everywhere: sine has no breaks, and squaring a continuous function cannot create one.</>,
   },
 ]
 

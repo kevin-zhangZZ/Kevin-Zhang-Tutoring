@@ -14,19 +14,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2+3x-10" />,
-    reason: <>A parabola is two-to-one, so it becomes one-to-one only once the domain is cut at the turning point.</>,
+    reason: <>A parabola is not one-to-one: every horizontal line above the turning point cuts it twice, once on each side of the axis of symmetry. It becomes one-to-one only when the domain keeps just one side of the turning point.</>,
   },
   {
-    working: <Katex display tex="x_{\text{vertex}} = -\frac{b}{2a} = -\frac{3}{2}" />,
-    reason: <>Or from the roots <Katex tex="-5" /> and <Katex tex="2" />, whose midpoint is <Katex tex="-1.5" />.</>,
+    working: <Katex display tex="f(x) = \left(x+\tfrac32\right)^2-\tfrac{49}{4}" />,
+    reason: <>Complete the square: half of <Katex tex="3" /> is <Katex tex="\tfrac32" />, and <Katex tex="\tfrac94+10=\tfrac{49}{4}" />. So the turning point is <Katex tex="\left(-\tfrac32,-\tfrac{49}{4}\right)" />. (Or: the <Katex tex="x" />-intercepts are <Katex tex="-5" /> and <Katex tex="2" />, and the axis of symmetry is halfway between them, at <Katex tex="-1.5" />.)</>,
   },
   {
     working: <Katex display tex="f \text{ is decreasing on } \left(-\infty,-\tfrac32\right]" />,
-    reason: <>The domain is <Katex tex="(-\infty,a]" />, so the cut must be at or before the vertex — and "largest" means exactly at it.</>,
+    reason: <>The domain <Katex tex="(-\infty,a]" /> keeps the left-hand branch. Points equally far either side of the axis give the same output, for example <Katex tex="f(-3)=f(0)=-10" />. If <Katex tex="a" /> went even slightly past <Katex tex="-\tfrac32" />, the domain would contain such a pair just either side of <Katex tex="-\tfrac32" />. So <Katex tex="a" /> can be at most <Katex tex="-\tfrac32" />, and "largest" means exactly that.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -1.5}" />,
-    reason: <>Matches option <b>C</b>. Option A, <Katex tex="-12.25" />, is the <em>minimum value</em> <Katex tex="f\!\left(-\tfrac32\right)" />; options B and E are the <Katex tex="x" />-intercepts.</>,
+    reason: <>Matches option <b>C</b>. Option A, <Katex tex="-12.25" />, is the <em>minimum value</em> <Katex tex="f\!\left(-\tfrac32\right)" />, a <Katex tex="y" />-value rather than an <Katex tex="x" />-value. Options B and E are the <Katex tex="x" />-intercepts: <Katex tex="a=-5" /> does make <Katex tex="f" /> one-to-one but is not the largest such value, while <Katex tex="a=2" /> (like option D, <Katex tex="a=0" />) lies past the turning point.</>,
   },
 ]
 

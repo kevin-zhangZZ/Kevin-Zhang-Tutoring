@@ -1,9 +1,10 @@
 // 2022 Mathematical Methods — Exam 2, MCQ 18. VCAA examination report: 47% correct. Finding a
-// from a binomial conditional-probability equation, by testing the given options. Question
+// from a binomial conditional-probability equation, by testing the given options on CAS. Question
 // text transcribed from the original paper. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -34,23 +35,27 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\geq16\mid X\geq a) = \frac{\Pr(X\geq16 \cap X\geq a)}{\Pr(X\geq a)}" />,
-    reason: <>Definition of conditional probability.</>,
+    reason: <>Definition of conditional probability: <Katex tex="\Pr(A\mid B)=\dfrac{\Pr(A\cap B)}{\Pr(B)}" />.</>,
   },
   {
-    working: <>Every option for <Katex tex="a" /> is at most <Katex tex="16" />, so <Katex tex="\{X\geq16\}" /> is always a <i>subset</i> of <Katex tex="\{X\geq a\}" />.</>,
-    reason: <>This means <Katex tex="\{X\geq16\}\cap\{X\geq a\} = \{X\geq16\}" /> — the intersection simplifies away.</>,
+    working: <Katex display tex="a<16:\ \Pr(X\geq16\cap X\geq a)=\Pr(X\geq16)" />,
+    reason: <>When <Katex tex="a" /> is below 16, any outcome with <Katex tex="X\geq16" /> automatically has <Katex tex="X\geq a" />, so "<Katex tex="X\geq16" /> and <Katex tex="X\geq a" />" is just <Katex tex="X\geq16" />. And <Katex tex="a" /> must be below 16: if <Katex tex="a\geq16" />, then <Katex tex="X\geq a" /> forces <Katex tex="X\geq16" /> and the conditional probability would be 1, not 0.9175. All five options are below 16 anyway.</>,
   },
   {
-    working: <Katex display tex="\Pr(X\geq16\mid X\geq a) = \frac{\Pr(X\geq16)}{\Pr(X\geq a)} = 0.9175" />,
-    reason: <>Simplified equation to solve for a.</>,
+    working: <Katex display tex="\frac{\Pr(X\geq16)}{\Pr(X\geq a)} \approx 0.9175" />,
+    reason: <>An equation in <Katex tex="a" /> alone. <Katex tex="a" /> is a whole number and <Katex tex="\Pr(X\geq a)" /> is a sum of binomial terms, so there is no algebra to solve it — test the options instead.</>,
   },
   {
-    working: <>Try each candidate value of <Katex tex="a" /> on CAS, computing <Katex tex="\Pr(X\geq a)" /> from the binomial distribution and checking the ratio.</>,
-    reason: <>With <Katex tex="\Pr(X\geq16)" /> fixed, only one value of <Katex tex="a" /> gives the required ratio.</>,
+    working: <><Cas fn="binomCdf">binomCdf(20, 0.88, 16, 20)</Cas> <Katex tex="= 0.91728\ldots" /></>,
+    reason: <>The numerator, <Katex tex="\Pr(X\geq16)" />: lower bound 16, upper bound 20, both included.</>,
+  },
+  {
+    working: <Katex display tex="\begin{array}{c|c} a & \dfrac{\Pr(X\geq16)}{\Pr(X\geq a)} \\ \hline 11 & 0.9173 \\ 12 & 0.9175 \\ 13 & 0.9186 \\ 14 & 0.9235 \\ 15 & 0.9418 \end{array}" />,
+    reason: <>Divide by <Cas fn="binomCdf">binomCdf(20, 0.88, a, 20)</Cas> for each option. Only <Katex tex="a=12" /> gives 0.9175. The values for 11 and 12 differ only in the fourth decimal place, because <Katex tex="\Pr(X=11)" /> is tiny (about 0.0002), so compare all four decimal places.</>,
   },
   {
     working: <Katex display tex="\boxed{a=12}" />,
-    reason: <>The ratio is 0.91751 at <Katex tex="a=12" />; at <Katex tex="a=11" /> it is 0.91731. Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option A, 11, comes from an off-by-one lower bound: <Cas fn="binomCdf">binomCdf(20, 0.88, a + 1, 20)</Cas> is <Katex tex="\Pr(X>a)" />, not <Katex tex="\Pr(X\geq a)" />, and with it <Katex tex="a=11" /> gives 0.9175.</>,
   },
 ]
 

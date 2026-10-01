@@ -1,11 +1,20 @@
 // 2022 Mathematical Methods — Exam 2, MCQ 19. VCAA examination report: 34% correct. Where the
 // maximum-volume open box occurs when squares of side x are cut from a rectangular sheet.
 // Question text transcribed from the original paper. Solution is original.
+// Checked in sympy: V'(x) = 12x² − 4(a+b)x + ab = 0 at x = (a + b ∓ √(a² − ab + b²))/6. For a ≤ b the
+// − root lies in 0 < x < a/2 and the + root in a/2 ≤ x < b/2 (equal to a/2 only when a = b), where
+// V ≤ 0. 34% chose B, the + root.
+// Interactive: meth-2022-mcq19-plus-root (sliders for a and b; the B point always sits past the edge
+// of the box's domain, on the cubic's local minimum).
 
 import Katex from '../../../components/Katex'
+import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import reportGraphSrc from './meth-2022-mcq19-report-graph.png'
+
+const PlusRootWidget = lazyWidget(() => import('../interactives/meth-2022-mcq19-plus-root'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 8, B: 34, C: 13, D: 34, E: 9 },
@@ -33,35 +42,48 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="V(x) = x(b-2x)(a-2x)" />,
-    reason: <>Cutting squares of side <Katex tex="x" /> from each corner and folding up gives a box of height <Katex tex="x" />, and base sides <Katex tex="b-2x" /> and <Katex tex="a-2x" />.</>,
+    reason: <>Each folded-up square side becomes the height, <Katex tex="x" />. A square is cut from both ends of each edge, so the base is <Katex tex="a-2x" /> by <Katex tex="b-2x" />. Volume = height × width × length.</>,
+  },
+  {
+    working: <Katex display tex="0 < x < \tfrac{a}{2} \ \text{ and } \ x < \tfrac{b}{2}" />,
+    reason: <>Every length of the box must be positive: <Katex tex="x>0" />, <Katex tex="a-2x>0" /> and <Katex tex="b-2x>0" />. So <Katex tex="x" /> is less than half the shorter side. This domain is what decides between the two stationary points later.</>,
   },
   {
     working: <Katex display tex="V(x) = 4x^3 - 2(a+b)x^2 + abx" />,
-    reason: <>Expand the product.</>,
+    reason: <>Expand, so the volume can be differentiated term by term.</>,
   },
   {
     working: <Katex display tex="V'(x) = 12x^2 - 4(a+b)x + ab" />,
-    reason: <>Differentiate.</>,
+    reason: <>The maximum is at a stationary point, so solve <Katex tex="V'(x)=0" />. It's a quadratic in <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="x = \frac{4(a+b)\pm\sqrt{16(a+b)^2-48ab}}{24}" />,
-    reason: <>Quadratic formula on V′(x) = 0.</>,
+    reason: <>Quadratic formula with <Katex tex="12" />, <Katex tex="-4(a+b)" /> and <Katex tex="ab" /> as the coefficients. On CAS, <Cas fn="solve">solve(d/dx(V(x)) = 0, x)</Cas> gives the two solutions directly; they may come out arranged differently, so simplify to compare with the options.</>,
   },
   {
-    working: <Katex display tex="16(a+b)^2 - 48ab = 16\big(a^2+2ab+b^2-3ab\big) = 16(a^2-ab+b^2)" />,
-    reason: <>Simplify inside the square root.</>,
+    working: <Katex display tex="16(a+b)^2 - 48ab = 16(a^2-ab+b^2)" />,
+    reason: <>Simplify inside the square root: <Katex tex="16(a^2+2ab+b^2) - 48ab = 16(a^2+2ab+b^2-3ab)" />.</>,
   },
   {
-    working: <Katex display tex="x = \frac{4(a+b)\pm4\sqrt{a^2-ab+b^2}}{24} = \frac{(a+b)\pm\sqrt{a^2-ab+b^2}}{6}" />,
-    reason: <>Factor out <Katex tex="4" /> and simplify.</>,
+    working: (
+      <>
+        <Katex display tex="x = \frac{4(a+b)\pm4\sqrt{a^2-ab+b^2}}{24}" />
+        <Katex display tex="x = \frac{a+b\pm\sqrt{a^2-ab+b^2}}{6}" />
+      </>
+    ),
+    reason: <>Take the <Katex tex="\sqrt{16}=4" /> out of the root, then divide top and bottom by <Katex tex="4" />. Options B and D are these two solutions, so you must decide which one is the maximum.</>,
   },
   {
-    working: <>Of the two stationary points, the <b>smaller</b> <Katex tex="x" /> is the local maximum of <Katex tex="V" /> (the larger one makes one side length negative or is a local minimum).</>,
-    reason: <>A cubic <Katex tex="V(x)" /> with positive leading coefficient rises, has a local max, then a local min, then rises again — the earlier turning point is the maximum.</>,
+    working: <>The smaller solution (with <Katex tex="-\sqrt{\phantom{a}}" />) is the local maximum; the larger (with <Katex tex="+\sqrt{\phantom{a}}" />) is the local minimum.</>,
+    reason: <>The leading term of <Katex tex="V" /> is <Katex tex="4x^3" />, a positive cubic, so its graph rises to a local maximum, falls to a local minimum, then rises again. The first stationary point (smaller <Katex tex="x" />) is the maximum. The square root is positive, so the <Katex tex="-" /> version is the smaller one.</>,
+  },
+  {
+    working: <Katex display tex="V(x) = 0 \text{ at } x = 0,\ \tfrac{a}{2},\ \tfrac{b}{2}" />,
+    reason: <>Check against the domain. Between <Katex tex="x=0" /> and the first of <Katex tex="\tfrac a2" />, <Katex tex="\tfrac b2" />, <Katex tex="V>0" />: that hump is the whole domain, and the local maximum is on top of it. The local minimum lies between <Katex tex="\tfrac a2" /> and <Katex tex="\tfrac b2" />, where one base side is negative and <Katex tex="V<0" /> (or exactly at <Katex tex="\tfrac a2" />, with <Katex tex="V=0" />, if the sheet is square). It is not a box at all.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \frac{a+b-\sqrt{a^2-ab+b^2}}{6}}" />,
-    reason: <>Matches option <b>D</b>. Option B, the larger root, gives the local minimum.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b> is the larger solution of <Katex tex="V'(x)=0" />, the local minimum outside the domain. Options A, C and E don't solve <Katex tex="V'(x)=0" /> in general (A and C start with <Katex tex="a-b" />; E has <Katex tex="a^2-2ab+b^2" /> under the root). Check with the report's <Katex tex="a=1" />, <Katex tex="b=2" />: D gives <Katex tex="x\approx0.21" />, inside <Katex tex="0<x<0.5" />, while B gives <Katex tex="x\approx0.79" />, past <Katex tex="x=0.5" />.</>,
   },
 ]
 
@@ -85,6 +107,11 @@ export default function MethodsQ19_2022() {
         { letter: 'E', content: <Katex tex="\dfrac{a+b-\sqrt{a^2-2ab+b^2}}{6}" /> },
       ]}
       rows={ROWS}
+      extras={
+        <Explore title="The + root lands where the box no longer exists">
+          <PlusRootWidget />
+        </Explore>
+      }
       examinerReport={EXAMINER}
     />
   )

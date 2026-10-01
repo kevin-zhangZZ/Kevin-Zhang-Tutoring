@@ -14,19 +14,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\sqrt{u} \text{ needs } u \ge 0 \implies x^2-2x-3 \ge 0" />,
-    reason: <>Greater than <em>or equal to</em> — unlike a logarithm, a square root is fine at zero, so the endpoints are included.</>,
+    reason: <>The maximal domain is every <Katex tex="x" /> for which the rule gives a real number, and the square root of a negative number is not real. Greater than <em>or equal to</em> — unlike a logarithm, a square root is fine at zero, so the endpoints are included.</>,
   },
   {
     working: <Katex display tex="x^2-2x-3 = (x-3)(x+1)" />,
-    reason: <>Factorising.</>,
+    reason: <>Factorising: <Katex tex="-3" /> and <Katex tex="1" /> multiply to <Katex tex="-3" /> and add to <Katex tex="-2" />. So the roots are <Katex tex="x=3" /> and <Katex tex="x=-1" />.</>,
   },
   {
     working: <Katex display tex="(x-3)(x+1) \ge 0 \iff x \le -1 \text{ or } x \ge 3" />,
-    reason: <>A positive parabola is on or above the axis outside its roots.</>,
+    reason: <><Katex tex="y=x^2-2x-3" /> is an upright parabola (positive <Katex tex="x^2" /> coefficient) crossing the <Katex tex="x" />-axis at <Katex tex="-1" /> and <Katex tex="3" />, so it is on or above the axis outside the roots and below it between them. Check with <Katex tex="x=0" />: <Katex tex="-3<0" />, so the middle is excluded.</>,
   },
   {
     working: <Katex display tex="\boxed{(-\infty,-1]\cup[3,\infty)}" />,
-    reason: <>Matches option <b>E</b>. Option C is the region <em>between</em> the roots, where the quadratic is negative.</>,
+    reason: <>Matches option <b>E</b>. Option C is the region <em>between</em> the roots, where the quadratic is negative. Options B and D use <Katex tex="-3" /> and <Katex tex="1" />, the roots of <Katex tex="(x+3)(x-1)=x^2+2x-3" /> — a sign slip in the factorising.</>,
   },
 ]
 
