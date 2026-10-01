@@ -1,0 +1,127 @@
+/* Misc Demonstrations — scoped styles. Every rule here is scoped under a .md-* class so nothing
+   leaks into other tools. Several pages add to this file: keep each page's rules in its own
+   clearly marked section. */
+
+/* ============================================================================================
+   Gallery (Gallery.tsx, gallery/*) — live card thumbnails
+   ============================================================================================ */
+.md-gallery-thumb {
+  --mg-pyr: #10b981;
+  --mg-pyr-edge: #065f46;
+  --mg-slice: #f97316;
+  --mg-slice-edge: #c2410c;
+  --mg-fold: #6b7280;
+  /* Nets faces and taped-edge pairs: NETS_PALETTE.light in lib/nets.ts (same as the Nets demo). */
+  --mg-face-1: #bfdbfe; --mg-face-2: #fde68a; --mg-face-3: #a7f3d0; --mg-face-4: #fecdd3;
+  --mg-face-5: #ddd6fe; --mg-face-6: #fed7aa; --mg-face-7: #99f6e4; --mg-face-8: #d9f99d;
+  --mg-pair-1: #1d4ed8; --mg-pair-2: #c2410c; --mg-pair-3: #0f766e; --mg-pair-4: #be185d;
+  --mg-pair-5: #a16207; --mg-pair-6: #6d28d9; --mg-pair-7: #b91c1c; --mg-pair-8: #15803d;
+}
+.dark .md-gallery-thumb {
+  --mg-pyr: #34d399;
+  --mg-pyr-edge: #6ee7b7;
+  --mg-slice: #fb923c;
+  --mg-slice-edge: #fdba74;
+  --mg-fold: #9ca3af;
+  /* NETS_PALETTE.dark */
+  --mg-face-1: #1e40af; --mg-face-2: #92400e; --mg-face-3: #065f46; --mg-face-4: #9f1239;
+  --mg-face-5: #5b21b6; --mg-face-6: #9a3412; --mg-face-7: #115e59; --mg-face-8: #3f6212;
+  --mg-pair-1: #93c5fd; --mg-pair-2: #fdba74; --mg-pair-3: #5eead4; --mg-pair-4: #f9a8d4;
+  --mg-pair-5: #fde047; --mg-pair-6: #c4b5fd; --mg-pair-7: #fca5a5; --mg-pair-8: #86efac;
+}
+.md-gallery-thumb .mg-pyr-face { fill: var(--mg-pyr); fill-opacity: 0.3; }
+.md-gallery-thumb .mg-pyr-face.s3d-back { fill-opacity: 0.16; }
+.md-gallery-thumb .mg-pyr-edge { stroke: var(--mg-pyr-edge); stroke-width: 1.5px; }
+.md-gallery-thumb .mg-slice-face { fill: var(--mg-slice); fill-opacity: 0.55; }
+.md-gallery-thumb .mg-slice-edge { stroke: var(--mg-slice-edge); stroke-width: 1.6px; }
+.md-gallery-thumb .mg-net-face { fill-opacity: 0.95; stroke: none; }
+.md-gallery-thumb .mg-net-face.s3d-back { fill-opacity: 0.75; }
+.dark .md-gallery-thumb .mg-net-face { fill-opacity: 0.9; }
+.dark .md-gallery-thumb .mg-net-face.s3d-back { fill-opacity: 0.6; }
+/* The whole card is the link: the thumbnail never takes the pointer. */
+.md-gallery-thumb, .md-gallery-thumb * { pointer-events: none; }
+
+/* ============================ end Gallery ============================ */
+
+/* ============================================================================================
+   Nets of 3D Shapes (nets/*) — colours are NETS_PALETTE in lib/nets.ts (the mockups' values)
+   ============================================================================================ */
+.md-nets {
+  --nets-stage: #f9fafb; --nets-stage-border: #f3f4f6; --nets-ink: #111827; --nets-fold: #6b7280;
+  --nets-edge3d: #374151; --nets-dot: #374151; --nets-letter: #1f2937; --nets-face-text: #111827;
+  --nets-tag-text: #ffffff; --nets-paper: #9ca3af; --nets-focus: #2563eb;
+  --nets-face-1: #bfdbfe; --nets-face-2: #fde68a; --nets-face-3: #a7f3d0; --nets-face-4: #fecdd3;
+  --nets-face-5: #ddd6fe; --nets-face-6: #fed7aa; --nets-face-7: #99f6e4; --nets-face-8: #d9f99d;
+  --nets-pair-1: #1d4ed8; --nets-pair-2: #c2410c; --nets-pair-3: #0f766e; --nets-pair-4: #be185d;
+  --nets-pair-5: #a16207; --nets-pair-6: #6d28d9; --nets-pair-7: #b91c1c; --nets-pair-8: #15803d;
+}
+.dark .md-nets {
+  --nets-stage: #030712; --nets-stage-border: #1f2937; --nets-ink: #f9fafb; --nets-fold: #9ca3af;
+  --nets-edge3d: #d1d5db; --nets-dot: #d1d5db; --nets-letter: #f3f4f6; --nets-face-text: #ffffff;
+  --nets-tag-text: #030712; --nets-paper: #4b5563; --nets-focus: #60a5fa;
+  --nets-face-1: #1e40af; --nets-face-2: #92400e; --nets-face-3: #065f46; --nets-face-4: #9f1239;
+  --nets-face-5: #5b21b6; --nets-face-6: #9a3412; --nets-face-7: #115e59; --nets-face-8: #3f6212;
+  --nets-pair-1: #93c5fd; --nets-pair-2: #fdba74; --nets-pair-3: #5eead4; --nets-pair-4: #f9a8d4;
+  --nets-pair-5: #fde047; --nets-pair-6: #c4b5fd; --nets-pair-7: #fca5a5; --nets-pair-8: #86efac;
+}
+
+/* Layout: one DOM order (solid, info, net); side by side from 1024 px with the info panel under the solid. */
+.md-nets .nets-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "solid" "info" "net"; }
+@media (min-width: 1024px) {
+  .md-nets .nets-grid { gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto 1fr; grid-template-areas: "solid net" "info net"; }
+  .md-nets .nets-area-info { align-self: start; }
+}
+.md-nets .nets-area-solid { grid-area: solid; }
+.md-nets .nets-area-net { grid-area: net; }
+.md-nets .nets-area-info { grid-area: info; }
+
+/* Stages. Phones: the solid stays short enough to scroll past; the net gets enough height that
+   a cube net's squares are well over 40 px. */
+.md-nets .nets-stage { background: var(--nets-stage); border: 1px solid var(--nets-stage-border); height: 280px; }
+.md-nets .nets-stage-net { height: min(360px, max(300px, calc(100vw - 40px)), 60vh); }
+@media (min-width: 640px) { .md-nets .nets-stage, .md-nets .nets-stage-net { height: 320px; } }
+@media (min-width: 1024px) { .md-nets .nets-stage, .md-nets .nets-stage-net { height: 400px; } }
+
+/* 3D stage */
+.md-nets .s3d-svg { --s3d-halo: var(--nets-stage); }
+.md-nets .s3d-svg:focus { outline: none; }
+.md-nets .s3d-svg:focus-visible { outline: 2px solid var(--nets-focus); outline-offset: -2px; border-radius: 8px; }
+.md-nets .s3d-label.f-label { font-size: 11.5px; font-weight: 600; fill: var(--nets-face-text); stroke: none; }
+.md-nets .s3d-label.v-letter { font-size: 12px; font-style: italic; font-weight: 600; fill: var(--nets-letter); stroke: var(--nets-stage); stroke-width: 3px; font-family: ui-serif, Georgia, serif; }
+.md-nets .s3d-label.v-letter.apex { font-style: normal; font-family: inherit; }
+.md-nets .s3d-label.is-sel { font-size: 14px; font-weight: 700; }
+.md-nets .s3d-label.is-dim { opacity: .3; }
+.md-nets .s3d-label.f-label.is-dim { opacity: .35; }
+.md-nets .s3d-label.callout { font-size: 12px; font-weight: 700; fill: var(--nets-ink); stroke: var(--nets-stage); stroke-width: 3px; }
+
+/* Net stage (plain SVG) */
+.md-nets .nets-net-svg { display: block; width: 100%; height: 100%; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; cursor: pointer; }
+.md-nets .nets-net-svg:focus { outline: none; }
+.md-nets .nets-net-svg:focus-visible { outline: 2px solid var(--nets-focus); outline-offset: -2px; border-radius: 8px; }
+.md-nets .nets-face-label { font-size: 11.5px; font-weight: 600; fill: var(--nets-face-text); pointer-events: none; dominant-baseline: central; text-anchor: middle; }
+.md-nets .nets-letter { font-size: 12px; font-style: italic; font-weight: 600; fill: var(--nets-letter); paint-order: stroke; stroke: var(--nets-stage); stroke-width: 3px; stroke-linejoin: round; dominant-baseline: central; text-anchor: middle; pointer-events: none; font-family: ui-serif, Georgia, serif; }
+.md-nets .nets-letter.apex { font-style: normal; font-family: inherit; }
+.md-nets .nets-letter.is-sel { font-size: 14px; font-weight: 700; }
+.md-nets .nets-tag-num { font-size: 10.5px; font-weight: 700; fill: var(--nets-tag-text); dominant-baseline: central; text-anchor: middle; pointer-events: none; font-family: ui-sans-serif, system-ui, sans-serif; }
+.md-nets .nets-badge-num { font-size: 11px; font-weight: 700; fill: var(--nets-stage); dominant-baseline: central; text-anchor: middle; pointer-events: none; }
+.md-nets .nets-dim-label { font-size: 12px; font-weight: 700; fill: var(--nets-ink); paint-order: stroke; stroke: var(--nets-stage); stroke-width: 3px; stroke-linejoin: round; dominant-baseline: central; text-anchor: middle; pointer-events: none; }
+.md-nets .nets-ang-label { font-size: 10.5px; font-weight: 700; fill: var(--nets-ink); paint-order: stroke; stroke: var(--nets-stage); stroke-width: 3px; dominant-baseline: central; text-anchor: middle; pointer-events: none; }
+.md-nets .nets-ping { fill: none; stroke: var(--nets-ink); stroke-width: 2px; transform-box: fill-box; transform-origin: center; animation: nets-ping 600ms ease-out forwards; pointer-events: none; }
+@keyframes nets-ping { from { transform: scale(.2727); opacity: .6; } to { transform: scale(1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .md-nets .nets-ping { display: none; } }
+
+/* Pick a Net thumbnails */
+.md-nets .nets-thumb polygon, .md-nets .nets-thumb path { stroke: #9ca3af; stroke-width: .75px; vector-effect: non-scaling-stroke; }
+.dark .md-nets .nets-thumb polygon, .dark .md-nets .nets-thumb path { stroke: #6b7280; }
+.md-nets .nets-strip-fade { -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); }
+@media (min-width: 640px) { .md-nets .nets-strip-fade { -webkit-mask-image: none; mask-image: none; } }
+
+/* Phones and tablets: Surface Area rows and the mode tabs reach the 44 px touch size. */
+@media (pointer: coarse) {
+  .md-nets .nets-sa-row td { padding-top: 12px; padding-bottom: 12px; }
+  .md-nets [role="tab"] { min-height: 44px; }
+  /* Tablets get the chip row (not the phone select): keep every pill and the slider 44 px tall. */
+  .md-nets button, .md-nets select, .md-nets input[type="range"] { min-height: 44px; }
+}
+
+/* ============================ end Nets ============================ */

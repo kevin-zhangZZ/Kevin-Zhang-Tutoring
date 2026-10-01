@@ -1,0 +1,163 @@
+/* Pyramids & Prisms: colours for the 3D stage and the 2D inset. Everything is scoped under .md-pp
+   (the demo's root element), so nothing leaks into other tools. The stage and inset read these
+   variables, so switching theme re-colours instantly with no redraw. */
+.md-pp {
+  --pyr: #10b981;
+  --pyr-edge: #065f46;
+  --slice: #f97316;
+  --slice-edge: #c2410c;
+  --layer: #fb923c;
+  --prism: #0ea5e9;
+  --prism-edge: #0284c7;
+  --slant: #7c3aed;
+  --ink: #374151;
+  --grid: #e5e7eb;
+  --grid-strong: #d1d5db;
+  --card: #ffffff;
+  --ray: #9ca3af;
+  --p1: #10b981; --p1-edge: #047857;
+  --p2: #0ea5e9; --p2-edge: #0369a1;
+  --p3: #8b5cf6; --p3-edge: #6d28d9;
+}
+.dark .md-pp {
+  --pyr: #34d399;
+  --pyr-edge: #6ee7b7;
+  --slice: #fb923c;
+  --slice-edge: #fdba74;
+  --layer: #fb923c;
+  --prism: #38bdf8;
+  --prism-edge: #38bdf8;
+  --slant: #a78bfa;
+  --ink: #d1d5db;
+  --grid: #1f2937;
+  --grid-strong: #374151;
+  --card: #111827;
+  --ray: #6b7280;
+  --p1: #34d399; --p1-edge: #6ee7b7;
+  --p2: #38bdf8; --p2-edge: #7dd3fc;
+  --p3: #a78bfa; --p3-edge: #c4b5fd;
+}
+/* The site fades colours on every element (index.css: * { transition-colors }). The 3D engine reuses
+   its SVG nodes from frame to frame, so that fade smears one part's fill into another's (a slice's
+   orange into a pyramid face) while the picture turns or animates. Drawings switch instantly. */
+.md-pp svg, .md-pp svg * { transition: none; }
+
+.md-pp .s3d-svg {
+  --s3d-ink: var(--ink);
+  --s3d-grid: var(--grid-strong);
+  --s3d-grid-axis: var(--grid-strong);
+  --s3d-halo: var(--card);
+}
+
+/* Stage parts */
+.md-pp .s3d-line.s3d-hid { stroke-dasharray: 4 3; stroke-width: 1px; opacity: .55; }
+.md-pp .f-pyr { fill: var(--pyr); fill-opacity: .28; }
+.md-pp .f-pyr.s3d-back { fill-opacity: .16; }
+.md-pp .f-pyr-base { fill: var(--pyr); fill-opacity: .18; }
+.md-pp .f-faint { fill-opacity: .06; }
+.md-pp .e-pyr { stroke: var(--pyr-edge); stroke-width: 1.5px; }
+.md-pp .e-gen { stroke: var(--pyr-edge); stroke-width: 1px; opacity: .3; }
+.md-pp .f-prism { fill: var(--prism); fill-opacity: .16; }
+.md-pp .f-prism.s3d-back { fill-opacity: .1; }
+.md-pp .f-prism.f-faint { fill-opacity: .06; }
+.md-pp .e-prism { stroke: var(--prism-edge); stroke-width: 1.5px; }
+.md-pp .e-ghost { stroke: var(--prism-edge); stroke-width: 1.3px; stroke-dasharray: 5 3; }
+.md-pp .f-slice { fill: var(--slice); fill-opacity: .55; }
+.md-pp .e-slice { stroke: var(--slice-edge); stroke-width: 2px; }
+.md-pp .f-layer { fill: var(--layer); fill-opacity: .35; }
+.md-pp .e-layer { stroke: var(--slice-edge); stroke-width: 1px; opacity: .8; }
+.md-pp .g-h { stroke: var(--ink); stroke-width: 1.3px; stroke-dasharray: 5 4; }
+.md-pp .g-ra { stroke: var(--ink); stroke-width: 1.1px; }
+.md-pp .g-tick { stroke: var(--slice-edge); stroke-width: 3px; }
+.md-pp .g-slant { stroke: var(--slant); stroke-width: 2.4px; }
+.md-pp .g-slant-ext { stroke: var(--slant); stroke-width: 1.2px; stroke-dasharray: 3 3; opacity: .8; }
+.md-pp .p-apex { fill: var(--pyr-edge); }
+.md-pp .p-apex.is-slice { fill: var(--slice); }
+.md-pp .p-slant { fill: var(--slant); }
+.md-pp .l-h { fill: var(--ink); font-size: 15px; }
+.md-pp .l-z { fill: var(--slice-edge); font-size: 15px; }
+.md-pp .l-slant { fill: var(--slant); font-size: 15px; }
+.md-pp .l-small { font-size: 12.5px; }
+
+/* Lesson step 2: the side-on bracket */
+.md-pp .g-brk { stroke: var(--ink); stroke-width: 1.6px; }
+.md-pp .g-brk-z { stroke: var(--slice-edge); stroke-width: 2px; }
+.md-pp .l-ink { fill: var(--ink); font-size: 15px; }
+
+/* Lesson step 5: three pyramids */
+.md-pp .p1-face { fill: var(--p1); fill-opacity: .3; }
+.md-pp .p2-face { fill: var(--p2); fill-opacity: .3; }
+.md-pp .p3-face { fill: var(--p3); fill-opacity: .3; }
+.md-pp .p1-edge { stroke: var(--p1-edge); stroke-width: 1.5px; }
+.md-pp .p2-edge { stroke: var(--p2-edge); stroke-width: 1.5px; }
+.md-pp .p3-edge { stroke: var(--p3-edge); stroke-width: 1.5px; }
+.md-pp .p1-face.is-hl, .md-pp .p2-face.is-hl, .md-pp .p3-face.is-hl { fill-opacity: .7; }
+.md-pp .hl-edge { stroke-width: 2.6px; }
+.md-pp .is-dim { opacity: .3; }
+.md-pp .badge { fill: var(--card); stroke-width: 2px; }
+.md-pp .badge.b1 { stroke: var(--p1-edge); }
+.md-pp .badge.b2 { stroke: var(--p2-edge); }
+.md-pp .badge.b3 { stroke: var(--p3-edge); }
+.md-pp .badge-num { fill: var(--ink); font-size: 12px; font-weight: 700; stroke-width: 0; }
+.md-pp .l-vtx { fill: var(--ink); font-size: 13px; font-weight: 700; }
+.md-pp .sw-p1 { background: var(--p1); }
+.md-pp .sw-p2 { background: var(--p2); }
+.md-pp .sw-p3 { background: var(--p3); }
+
+/* Inset */
+.md-pp .i-grid, .md-pp .i-ray, .md-pp .i-axis, .md-pp .i-z { fill: none; }
+.md-pp .i-grid { stroke: var(--grid); stroke-width: 1; }
+.md-pp .i-grid-strong { stroke: var(--grid-strong); }
+.md-pp .i-base { stroke: var(--pyr-edge); stroke-width: 2; fill: var(--pyr); fill-opacity: .1; stroke-linejoin: round; }
+.md-pp .i-slice { stroke: var(--slice-edge); stroke-width: 2; fill: var(--slice); fill-opacity: .35; stroke-linejoin: round; }
+.md-pp .i-ray { stroke: var(--ray); stroke-width: 1; stroke-dasharray: 3 3; }
+.md-pp .i-ink { fill: var(--ink); }
+.md-pp .i-axis { stroke: var(--ink); stroke-width: 1.2; }
+.md-pp .i-prism { stroke: var(--prism-edge); stroke-width: 1.8; stroke-dasharray: 6 4; fill: none; }
+.md-pp .i-curve { stroke: var(--pyr-edge); stroke-width: 2; fill: none; }
+.md-pp .i-under { fill: var(--pyr); fill-opacity: .2; }
+.md-pp .i-z { stroke: var(--slice-edge); stroke-width: 1.6; }
+.md-pp .i-dot { fill: var(--slice); stroke: var(--card); stroke-width: 1.5; }
+.md-pp .i-rect { fill: var(--layer); fill-opacity: .35; stroke: var(--slice-edge); stroke-width: .8; }
+.md-pp .i-text { fill: var(--ink); font-size: 11.5px; }
+.md-pp .i-label { fill: var(--ink); font-size: 10.5px; paint-order: stroke; stroke: var(--card); stroke-width: 3px; stroke-linejoin: round; }
+
+/* KaTeX's default 1.21em is large next to 14px copy */
+.md-pp .pp-working .katex { font-size: 1.08em; }
+
+/* Swatches in the stage legend */
+.md-pp .sw-pyr { background: var(--pyr); opacity: .7; }
+.md-pp .sw-slice { background: var(--slice); }
+.md-pp .sw-prism { border: 1.5px dashed var(--prism-edge); }
+.md-pp .sw-prism-solid { background: var(--prism); opacity: .55; border: 1px solid var(--prism-edge); }
+.md-pp .sw-layer { background: var(--layer); opacity: .55; }
+.md-pp .sw-slant { background: var(--slant); }
+
+/* The site's kit slider colour */
+.md-pp .pp-slider { accent-color: #059669; }
+.dark .md-pp .pp-slider { accent-color: #34d399; }
+
+/* Focus rings on the demo's own controls */
+.md-pp button:focus-visible, .md-pp summary:focus-visible, .md-pp input:focus-visible, .md-pp a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3b82f6;
+}
+.dark .md-pp button:focus-visible, .dark .md-pp summary:focus-visible, .dark .md-pp input:focus-visible, .dark .md-pp a:focus-visible {
+  box-shadow: 0 0 0 2px #111827, 0 0 0 4px #3b82f6;
+}
+
+/* The stage fills its card edge to edge and the card clips (overflow: hidden), so draw the stage's
+   focus ring inside it rather than 2px outside, where only the bottom edge would show. */
+.md-pp .s3d-svg:focus-visible { outline: 2px solid #3b82f6; outline-offset: -4px; }
+
+.md-pp details > summary { list-style: none; }
+.md-pp details > summary::-webkit-details-marker { display: none; }
+.md-pp details[open] .pp-chev { transform: rotate(180deg); }
+.md-pp details[open] .pp-chev-r { transform: rotate(90deg); }
+.md-pp .pp-chev-r { transition: transform .15s; }
+.md-pp .pp-tile { transition: opacity .25s, box-shadow .25s, border-color .25s; }
+.md-pp .pp-chev { transition: transform .15s; }
+.md-pp .pp-hint-flash { transition: color .2s, background-color .2s; }
+@media (prefers-reduced-motion: reduce) {
+  .md-pp .pp-chev, .md-pp .pp-chev-r, .md-pp .pp-hint-flash, .md-pp .pp-tile { transition: none; }
+}

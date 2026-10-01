@@ -5,6 +5,7 @@ import ExamSkipGuide from './exam-skip-guide'
 import WorkedSolutions from './worked-solutions'
 import ExamAnalysis from './exam-analysis'
 import ContactMe from './contact-me'
+import MiscDemonstrations from './misc-demonstrations'
 
 export interface Tool {
   id: string
@@ -66,6 +67,15 @@ export const tools: Tool[] = [
     route: '/speed-maths',
     component: SpeedMaths,
     icon: '⚡',
+  },
+  {
+    id: 'misc-demonstrations',
+    name: 'Misc Demonstrations',
+    description: 'Interactive 3D models: slice pyramids and prisms to see where V = Ah and V = ⅓Ah come from, and fold nets into solids.',
+    tagline: 'Pyramids, prisms and nets in 3D',
+    route: '/misc-demonstrations',
+    component: MiscDemonstrations,
+    icon: '📐',
   },
   // Monte Carlo hidden from nav/routing for now — code kept at ./monte-carlo, unregister
   // above and re-add this block to bring it back.
