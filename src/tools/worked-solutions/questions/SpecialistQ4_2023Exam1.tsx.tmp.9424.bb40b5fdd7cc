@@ -52,7 +52,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Substituting <Katex tex="x=6" />, <Katex tex="y=\tfrac{1}{\sqrt2}" /> and the values above.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}\frac{12/\sqrt2}{\sqrt3/2} &= \frac{24}{\sqrt2\sqrt3} \\ &= \frac{24}{\sqrt6} = 4\sqrt6 \\ \therefore\ \frac\pi6+4\sqrt6\,\frac{dy}{dx} &= 0\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}\frac{12/\sqrt2}{\sqrt3/2} &= \frac{24}{\sqrt2\sqrt3} = \frac{24}{\sqrt6} = 4\sqrt6 \ \therefore\ \frac\pi6+4\sqrt6\,\frac{dy}{dx} &= 0\end{aligned}" />,
     reason: <>Simplify the coefficient of <Katex tex="\tfrac{dy}{dx}" />: dividing by <Katex tex="\tfrac{\sqrt3}{2}" /> is multiplying by <Katex tex="\tfrac{2}{\sqrt3}" />, then rationalise, <Katex tex="\tfrac{24}{\sqrt6}=\tfrac{24\sqrt6}{6}=4\sqrt6" />.</>,
   },
   {

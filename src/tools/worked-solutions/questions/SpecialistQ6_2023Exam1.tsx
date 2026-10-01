@@ -36,46 +36,46 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X = X_c+X_w+X_t" />,
-    reason: <>The total journey is the sum of the three independent legs.</>,
+    reason: <>Let <Katex tex="X" /> be the total time. The trip is the drive, then the wait, then the train ride, so the total is the sum of the three times.</>,
   },
   {
-    working: <Katex display tex="\mathrm{E}(X) = 20+8+12 = 40 \ \text{minutes}" />,
-    reason: <>Means always add, independent or not.</>,
+    working: <Katex display tex="\mathrm{E}(X) = 20+8+12 = 40" />,
+    reason: <>The mean of a sum is the sum of the means. This holds whether or not the variables are independent.</>,
   },
   {
-    working: <Katex display tex="\mathrm{Var}(X) = 6^2+\left(\sqrt3\right)^2+5^2 = 36+3+25 = 64" />,
-    reason: <><strong>Variances</strong> add — and only because the three times are independent, which the question states explicitly. Note <Katex tex="\left(\sqrt3\right)^2=3" />, not 9.</>,
+    working: <Katex display tex="\begin{aligned}\mathrm{Var}(X) &= 6^2+\left(\sqrt3\right)^2+5^2 \\ &= 36+3+25 = 64\end{aligned}" />,
+    reason: <>For <strong>independent</strong> variables, <strong>variances</strong> add — that is why the question tells you the three times are independent. Each variance is the standard deviation squared, so square each one first. Note <Katex tex="\left(\sqrt3\right)^2=3" />, not 9.</>,
   },
   {
-    working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{64} = 8 \ \text{minutes}}" />,
-    reason: <>The deliberately clean answer. Adding the standard deviations gives <Katex tex="6+\sqrt3+5=11+\sqrt3\approx12.7" />, which the report notes a large number of students gave. It is always too big.</>,
+    working: <Katex display tex="\mathrm{sd}(X) = \sqrt{64} = 8" />,
+    reason: <>The standard deviation is the square root of the variance. Standard deviations do <em>not</em> add: <Katex tex="6+\sqrt3+5=11+\sqrt3\approx12.7" /> is the answer the report notes a large number of students gave. A square root does not split over a sum (<Katex tex="\sqrt{36+3+25}\ne\sqrt{36}+\sqrt3+\sqrt{25}" />), so the sd must come from the total variance. Adding the sds always gives too big a value.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\mathrm{E}(X) = 40, \quad \mathrm{sd}(X) = 8}" />,
+    reason: <>Both in minutes. The question asks for the mean <em>and</em> the standard deviation, so state both.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\overline{X}_w \sim \mathrm{N}\!\left(8,\ \frac{\left(\sqrt3\right)^2}{12}\right) = \mathrm{N}\!\left(8,\ \frac{3}{12}\right)" />,
-    reason: <>The distribution of a <em>sample mean</em> of 12 days: the variance is divided by <Katex tex="n" />.</>,
+    working: <Katex display tex="\overline{X}_w \sim \mathrm{N}\!\left(8,\ \frac{\left(\sqrt3\right)^2}{12}\right) = \mathrm{N}\!\left(8,\ \frac{1}{4}\right)" />,
+    reason: <>Let <Katex tex="\overline{X}_w" /> be Josie's average (sample mean) waiting time over <Katex tex="n=12" /> independent days. Its mean is still 8, but its <strong>variance</strong> is <Katex tex="\tfrac{\sigma^2}{n}" />: the total of 12 independent days has variance <Katex tex="12\times3" /> (variances add), and dividing that total by 12 divides the variance by <Katex tex="12^2" />, leaving <Katex tex="\tfrac{12\times3}{144}=\tfrac{3}{12}=\tfrac14" />. It is normal because each day's wait is normal. In <Katex tex="\mathrm{N}(\mu,\sigma^2)" /> the second number is the variance.</>,
   },
   {
     working: <Katex display tex="\mathrm{sd}\!\left(\overline{X}_w\right) = \sqrt{\frac14} = \frac12" />,
-    reason: <>Equivalently <Katex tex="\tfrac{\sqrt3}{\sqrt{12}}=\tfrac{\sqrt3}{2\sqrt3}=\tfrac12" />. The report notes <Katex tex="\sqrt3" /> and <Katex tex="\tfrac{\sqrt3}{12}" /> were seen frequently — not dividing by <Katex tex="\sqrt{12}" /> at all, and dividing by 12 instead.</>,
+    reason: <>Square-root the variance. In standard deviation form this is <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac{\sqrt3}{\sqrt{12}}=\tfrac{\sqrt3}{2\sqrt3}=\tfrac12" />: divide the sd by <Katex tex="\sqrt{12}" />, not by 12. The report notes <Katex tex="\sqrt3" /> and <Katex tex="\tfrac{\sqrt3}{12}" /> were seen frequently — the first uses one day's sd unchanged, the second divides the sd by 12 instead of <Katex tex="\sqrt{12}" />.</>,
   },
   {
-    working: <Katex display tex="7\ \text{min } 45\ \text{s} = 7.75, \qquad 8\ \text{min } 30\ \text{s} = 8.5" />,
-    reason: <>Convert the times to minutes first — seconds over 60, not over 100.</>,
+    working: <Katex display tex="\begin{aligned}7\ \text{min } 45\ \text{s} &= 7+\tfrac{45}{60} = 7.75 \\ 8\ \text{min } 30\ \text{s} &= 8+\tfrac{30}{60} = 8.5\end{aligned}" />,
+    reason: <>The distribution is in minutes, so convert the times to minutes first — seconds over 60, not over 100 (7 min 45 s is not 7.45).</>,
   },
   {
-    working: <Katex display tex="Z = \frac{\overline{X}_w-8}{\tfrac12}" />,
-    reason: <>Standardising.</>,
-  },
-  {
-    working: <Katex display tex="a = \frac{7.75-8}{\tfrac12} = \frac{-0.25}{0.5}, \qquad b = \frac{8.5-8}{\tfrac12} = \frac{0.5}{0.5}" />,
-    reason: <>Both endpoints through the same transformation.</>,
+    working: <Katex display tex="\begin{aligned}&\Pr\left(7.75<\overline{X}_w<8.5\right) \\ &= \Pr\left(\frac{7.75-8}{\tfrac12}<Z<\frac{8.5-8}{\tfrac12}\right) \\ &= \Pr\left(-\tfrac12<Z<1\right)\end{aligned}" />,
+    reason: <>To turn <Katex tex="\overline{X}_w" /> into <Katex tex="Z" />, subtract its mean and divide by its standard deviation: <Katex tex="Z=\tfrac{\overline{X}_w-8}{1/2}" />. Use the sd of the <em>average</em>, <Katex tex="\tfrac12" />, not one day's <Katex tex="\sqrt3" />. Do the same to both ends of the interval. Dividing by <Katex tex="\tfrac12" /> doubles: <Katex tex="-0.25\to-\tfrac12" /> and <Katex tex="0.5\to1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\frac12, \quad b = 1}" />,
-    reason: <>The interval is not symmetric about the mean, so <Katex tex="a\ne-b" />. By the symmetry of <Katex tex="Z" />, <Katex tex="a=-1" />, <Katex tex="b=\tfrac12" /> is equally valid — the report notes that symmetric result was not often seen.</>,
+    reason: <>The interval is not centred on the mean (it runs 0.25 below 8 and 0.5 above), so <Katex tex="a\ne-b" />. Because the standard normal curve is symmetric about 0, <Katex tex="\Pr\left(-\tfrac12<Z<1\right)=\Pr\left(-1<Z<\tfrac12\right)" />, so <Katex tex="a=-1" />, <Katex tex="b=\tfrac12" /> is equally valid — the report notes that symmetric result was not often seen.</>,
   },
 ]
 
@@ -102,11 +102,13 @@ export default function SpecialistQ6_2023Exam1() {
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
         <Background>
           <p>
-            One rule covers both parts: <strong>variances</strong> add, standard deviations do
-            not. In part a. that turns <Katex tex="36+3+25" /> into a tidy{' '}
-            <Katex tex="\sqrt{64}=8" />; in part b. it turns{' '}
-            <Katex tex="\tfrac{3}{12}" /> into <Katex tex="\tfrac12" />. Any answer involving{' '}
-            <Katex tex="6+\sqrt3+5" /> has added the wrong things.
+            One rule drives both parts: for independent variables, <strong>variances</strong> add;
+            standard deviations do not. So work with variances (each sd squared) and take the
+            square root only at the end. In part a. that gives <Katex tex="36+3+25=64" />, so the
+            sd is 8; in part b. the average of 12 days has variance{' '}
+            <Katex tex="\tfrac{3}{12}=\tfrac14" />, so its sd is <Katex tex="\tfrac12" />.
+            Answers like <Katex tex="6+\sqrt3+5" />, or <Katex tex="\sqrt3" /> divided by 12,
+            come from doing the arithmetic on the standard deviations instead.
           </p>
         </Background>
       </div>

@@ -68,16 +68,24 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\overrightarrow{AB} = \underset{\sim}{b}-\underset{\sim}{a} = \left(-\underset{\sim}{i}-2\underset{\sim}{j}+4\underset{\sim}{k}\right)-\left(\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\right)" />,
-    reason: <>Head minus tail, component by component.</>,
+    working: <Katex display tex="\begin{aligned}\overrightarrow{AB} &= \overrightarrow{OB}-\overrightarrow{OA}\\ &= \left(-\underset{\sim}{i}-2\underset{\sim}{j}+4\underset{\sim}{k}\right)-\left(\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\right)\end{aligned}" />,
+    reason: <>
+      The vector from <Katex tex="A" /> to <Katex tex="B" /> is <Katex tex="B" />'s position
+      vector minus <Katex tex="A" />'s (end point minus start point), subtracted component by
+      component.
+    </>,
   },
   {
     working: <Katex display tex="\boxed{\overrightarrow{AB} = -2\underset{\sim}{i}-5\underset{\sim}{j}+6\underset{\sim}{k}}" />,
     reason: <><Katex tex="-1-1=-2" />, <Katex tex="-2-3=-5" />, <Katex tex="4-(-2)=6" />.</>,
   },
   {
-    working: <Katex display tex="\overrightarrow{AD} = \underset{\sim}{d}-\underset{\sim}{a} = 2\underset{\sim}{j}-\left(\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\right)" />,
-    reason: <>Using <Katex tex="D" /> from part a. — if this does not come out as stated, part a. was wrong.</>,
+    working: <Katex display tex="\begin{aligned}\overrightarrow{AD} &= \overrightarrow{OD}-\overrightarrow{OA}\\ &= 2\underset{\sim}{j}-\left(\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\right)\end{aligned}" />,
+    reason: <>
+      <Katex tex="D(0,2,0)" /> from part a. has position vector{' '}
+      <Katex tex="2\underset{\sim}{j}" />. If this does not come out as the vector given in
+      the question, part a. was wrong.
+    </>,
   },
   {
     working: <Katex display tex="\boxed{\overrightarrow{AD} = -\underset{\sim}{i}-\underset{\sim}{j}+2\underset{\sim}{k}}" />,
@@ -88,53 +96,109 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n} = \overrightarrow{AB}\times\overrightarrow{AD} = \begin{vmatrix}\underset{\sim}{i}&\underset{\sim}{j}&\underset{\sim}{k}\\-2&-5&6\\-1&-1&2\end{vmatrix}" />,
-    reason: <>The cross product of two vectors in the plane is normal to it.</>,
+    reason: <>
+      To write a plane's Cartesian equation you need a normal vector (one perpendicular to
+      the plane). The cross product of two vectors is perpendicular to both of them, and{' '}
+      <Katex tex="\overrightarrow{AB}" />, <Katex tex="\overrightarrow{AD}" /> both lie in the
+      plane and are not parallel (neither is a multiple of the other), so their cross product
+      is normal to the plane. "Hence" points you to part b.'s vectors.
+    </>,
   },
   {
-    working: <Katex display tex="= \underset{\sim}{i}\bigl((-5)(2)-(6)(-1)\bigr)-\underset{\sim}{j}\bigl((-2)(2)-(6)(-1)\bigr)+\underset{\sim}{k}\bigl((-2)(-1)-(-5)(-1)\bigr)" />,
-    reason: <>Expanding along the first row. The minus in front of the <Katex tex="\underset{\sim}{j}" /> term is easy to drop.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&= \underset{\sim}{i}\bigl((-5)(2)-(6)(-1)\bigr)-\underset{\sim}{j}\bigl((-2)(2)-(6)(-1)\bigr)\\ &\qquad+\underset{\sim}{k}\bigl((-2)(-1)-(-5)(-1)\bigr)\end{aligned}"
+      />
+    ),
+    reason: <>
+      Expanding along the first row: each bracket is the <Katex tex="2\times2" /> determinant
+      left when you cover that letter's row and column. The minus in front of the{' '}
+      <Katex tex="\underset{\sim}{j}" /> term is easy to drop.
+    </>,
   },
   {
     working: <Katex display tex="= -4\underset{\sim}{i}-2\underset{\sim}{j}-3\underset{\sim}{k}" />,
-    reason: <><Katex tex="-10+6=-4" />; <Katex tex="-(-4+6)=-2" />; <Katex tex="2-5=-3" />.</>,
+    reason: <>
+      <Katex tex="-10+6=-4" />; <Katex tex="-(-4+6)=-2" />; <Katex tex="2-5=-3" />. Check
+      before moving on: the dot product with <Katex tex="\overrightarrow{AB}" /> gives{' '}
+      <Katex tex="8+10-18=0" /> ✓ and with <Katex tex="\overrightarrow{AD}" /> gives{' '}
+      <Katex tex="4+2-6=0" /> ✓. A non-zero answer here would mean an arithmetic slip in the
+      cross product.
+    </>,
   },
   {
     working: <Katex display tex="-4x-2y-3z = -4(1)-2(3)-3(-2) = -4" />,
-    reason: <>Substituting <Katex tex="A(1,3,-2)" /> to find the constant.</>,
+    reason: <>
+      The normal's components are the coefficients of <Katex tex="x" />,{' '}
+      <Katex tex="y" /> and <Katex tex="z" /> (see Background). The constant on the right is
+      the same for every point in the plane, so substitute a known point,{' '}
+      <Katex tex="A(1,3,-2)" />: <Katex tex="-4-6+6=-4" />.
+    </>,
   },
   {
     working: <Katex display tex="\boxed{4x+2y+3z = 4}" />,
-    reason: <>Multiplying by <Katex tex="-1" /> for tidiness. Check with <Katex tex="D(0,2,0)" />: <Katex tex="0+4+0=4" /> ✓ and <Katex tex="B(-1,-2,4)" />: <Katex tex="-4-4+12=4" /> ✓.</>,
+    reason: <>
+      Multiplying both sides by <Katex tex="-1" /> for tidiness; the report gives both forms.
+      Check with the other two points: <Katex tex="D(0,2,0)" /> gives{' '}
+      <Katex tex="0+4+0=4" /> ✓ and <Katex tex="B(-1,-2,4)" /> gives{' '}
+      <Katex tex="-4-4+12=4" /> ✓.
+    </>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="C(a,-1,5) \text{ lies on the plane} \implies 4a+2(-1)+3(5) = 4" />,
-    reason: <>Substitute and solve — that is the whole question.</>,
+    working: <Katex display tex="\begin{aligned}&C(a,-1,5) \text{ lies on the plane}\\ &\implies 4a+2(-1)+3(5) = 4\end{aligned}" />,
+    reason: <>
+      The plane contains <Katex tex="C" />, so its coordinates must satisfy the equation from
+      part c. Substitute <Katex tex="x=a" />, <Katex tex="y=-1" />, <Katex tex="z=5" />.
+    </>,
   },
   {
     working: <Katex display tex="4a-2+15 = 4 \implies 4a = -9" />,
-    reason: <>Collecting.</>,
+    reason: <><Katex tex="-2+15=13" />, so <Katex tex="4a=4-13=-9" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\frac94}" />,
-    reason: <>Check: <Katex tex="4\left(-\tfrac94\right)-2+15=-9+13=4" /> ✓.</>,
+    reason: <>
+      Check: <Katex tex="4\left(-\tfrac94\right)-2+15=-9+13=4" /> ✓. A wrong plane equation in
+      part c. carries straight into this answer, which is why the checks with{' '}
+      <Katex tex="B" /> and <Katex tex="D" /> there are worth the time.
+    </>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Area} = \left|\overrightarrow{AB}\times\overrightarrow{AD}\right|" />,
-    reason: <>The magnitude of the cross product <em>is</em> the area of the parallelogram — not the product of the two lengths, which would be the area only if they were perpendicular.</>,
+    reason: <>
+      A parallelogram's area is base <Katex tex="\times" /> perpendicular height,{' '}
+      <Katex tex="\left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|\sin\theta" />{' '}
+      where <Katex tex="\theta" /> is the angle between the sides, and that is exactly{' '}
+      <Katex tex="\left|\overrightarrow{AB}\times\overrightarrow{AD}\right|" />. Multiplying
+      the two lengths alone leaves out the <Katex tex="\sin\theta" />, so it is only right when
+      the sides are perpendicular.
+    </>,
   },
   {
     working: <Katex display tex="= \left|-4\underset{\sim}{i}-2\underset{\sim}{j}-3\underset{\sim}{k}\right| = \sqrt{16+4+9}" />,
-    reason: <>The cross product is already sitting there from part c.</>,
+    reason: <>
+      The cross product was found in part c.; its magnitude is{' '}
+      <Katex tex="\sqrt{(-4)^2+(-2)^2+(-3)^2}" />.
+    </>,
   },
   {
     working: <Katex display tex="\boxed{\sqrt{29} \ \text{square units}}" />,
-    reason: <>About <Katex tex="5.39" />. The triangle <Katex tex="ABD" /> would be half this — the report notes a small number of students gave that instead.</>,
+    reason: <>
+      About <Katex tex="5.39" />. The common error,{' '}
+      <Katex tex="\left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|=\sqrt{65}\sqrt{6}=\sqrt{390}\approx19.7" />,
+      is almost four times too big: these sides are far from perpendicular{' '}
+      (<Katex tex="\overrightarrow{AB}\cdot\overrightarrow{AD}=2+5+12=19" />, not 0; the angle
+      between them is only about <Katex tex="16^\circ" />). Triangle <Katex tex="ABD" /> is
+      half the parallelogram (diagonal <Katex tex="BD" /> cuts it in two), so{' '}
+      <Katex tex="\tfrac{\sqrt{29}}{2}" /> answers a different question.
+    </>,
   },
 ]
 
@@ -158,6 +222,18 @@ export default function SpecialistQ9_2023Exam1() {
             is the standard sequence: two vectors in the plane, their cross product as a
             normal, one known point to fix the constant. Everything after that is
             substitution.
+          </p>
+          <p>
+            Why the normal gives the equation: take a normal vector{' '}
+            <Katex tex="\underset{\sim}{n} = n_1\underset{\sim}{i}+n_2\underset{\sim}{j}+n_3\underset{\sim}{k}" />{' '}
+            and a known point <Katex tex="A" /> in the plane. For any point{' '}
+            <Katex tex="P(x,y,z)" /> in the plane, <Katex tex="\overrightarrow{AP}" /> lies in the
+            plane, so it is perpendicular to <Katex tex="\underset{\sim}{n}" /> and{' '}
+            <Katex tex="\underset{\sim}{n}\cdot\overrightarrow{AP}=0" />, which rearranges to{' '}
+            <Katex tex="\underset{\sim}{n}\cdot\overrightarrow{OP}=\underset{\sim}{n}\cdot\overrightarrow{OA}" />.
+            That is the Cartesian equation{' '}
+            <Katex tex="n_1x+n_2y+n_3z=k" />: the normal's components are the coefficients, and
+            the constant <Katex tex="k" /> comes from substituting any point in the plane.
           </p>
           <p>
             The cross product earns its keep twice over — once as the normal in part c., and
