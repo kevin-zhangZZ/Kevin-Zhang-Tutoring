@@ -1,8 +1,9 @@
 // 2023 Specialist Mathematics — Exam 2, MCQ 20. VCAA examination report: 63% correct.
 // A confidence interval read backwards for the population standard deviation. Question text transcribed from the original paper.
-// Solution is original.
+// Answer and distractor values checked with scipy. Solution is original.
 
 import Katex from '../../../components/Katex'
+import { Cas } from '../CasRef'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
@@ -13,24 +14,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Interval } (10\,500,\ 15\,500) \implies \bar x = \frac{10\,500+15\,500}{2} = 13\,000" />,
-    reason: <>The sample mean is the centre — not that it is needed, but it confirms the interval is symmetric.</>,
+    working: <Katex display tex="\bar x = \frac{10\,500+15\,500}{2} = 13\,000" />,
+    reason: <>A confidence interval for <Katex tex="\mu" /> has the form <Katex tex="\left(\bar x-E,\ \bar x+E\right)" />: the sample mean <Katex tex="\bar x" /> sits in the middle, with the margin of error <Katex tex="E" /> on either side.</>,
   },
   {
     working: <Katex display tex="E = 15\,500-13\,000 = 2500" />,
-    reason: <>Half the width: the margin of error.</>,
+    reason: <>The margin of error is half the width of the interval. Using the whole width, 5000, instead doubles <Katex tex="\sigma" /> to about <Katex tex="19\,411" />, closest to option <b>E</b>.</>,
   },
   {
-    working: <Katex display tex="E = z\frac{\sigma}{\sqrt n} \ \text{ with } z = 2.5758 \text{ for } 99\%" />,
-    reason: <>A 99% interval leaves 0.5% in each tail, so <Katex tex="z=\mathrm{invNorm}(0.995)" />. Using <Katex tex="1.96" /> (95%) instead gives <Katex tex="12\,755" />, option <b>C</b>.</>,
+    working: <Katex display tex="\begin{gathered}E = z\frac{\sigma}{\sqrt n}\\ z = 2.5758\ldots \text{ for } 99\%\end{gathered}" />,
+    reason: <>For 99%, the middle 99% of the standard normal lies between <Katex tex="-z" /> and <Katex tex="z" />, leaving 0.5% in each tail, so <Katex tex="z" /> has area 0.995 to its left: <Cas fn="invNorm" /> with area 0.995, μ = 0, σ = 1. Using area 0.99 instead (all 1% in one tail, <Katex tex="z=2.3263\ldots" />) gives <Katex tex="10\,746" />, closest to option <b>B</b>; using the 95% value <Katex tex="1.96" /> gives <Katex tex="12\,755" />, closest to option <b>C</b>.</>,
   },
   {
-    working: <Katex display tex="2500 = 2.5758\cdot\frac{\sigma}{\sqrt{100}} = \frac{2.5758\,\sigma}{10}" />,
-    reason: <><Katex tex="\sqrt{100}=10" />.</>,
+    working: <Katex display tex="2500 = 2.5758\ldots\times\frac{\sigma}{\sqrt{100}} = \frac{2.5758\ldots\times\sigma}{10}" />,
+    reason: <>Substitute <Katex tex="E=2500" /> and <Katex tex="n=100" />, so <Katex tex="\sqrt{n}=10" />.</>,
   },
   {
-    working: <Katex display tex="\sigma = \frac{25\,000}{2.5758} = 9705.6\ldots" />,
-    reason: <>Solving.</>,
+    working: <Katex display tex="\sigma = \frac{25\,000}{2.5758\ldots} = 9705.6\ldots" />,
+    reason: <>Multiply both sides by 10, then divide by <Katex tex="2.5758\ldots" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 9710}" />,

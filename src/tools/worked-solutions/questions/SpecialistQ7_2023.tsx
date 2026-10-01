@@ -15,23 +15,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Start at } (-1,\,2)" />,
-    reason: <>The given point. Put a finger on it and follow the strokes.</>,
+    reason: <>Each short stroke shows the gradient <Katex tex="\tfrac{dy}{dx}" /> of the solution curve through that point, so a solution curve runs along the strokes it passes. Start at the given point and sketch the curve as <Katex tex="x" /> increases, keeping it parallel to the nearby strokes.</>,
   },
   {
-    working: <Katex display tex="\text{Left of the } y\text{-axis the slopes are steeply negative}" />,
-    reason: <>So the curve falls sharply as <Katex tex="x" /> increases from <Katex tex="-1" /> towards 0.</>,
+    working: <Katex display tex="\begin{gathered} \text{Left of the } y\text{-axis:} \\ \text{slopes steeply negative} \end{gathered}" />,
+    reason: <>At <Katex tex="(-1,\,2)" /> the strokes are almost vertical, pointing down to the right, so the curve falls sharply: it is down to about <Katex tex="y=0.8" /> by <Katex tex="x=-0.5" />.</>,
   },
   {
-    working: <Katex display tex="\text{Near the } y\text{-axis the strokes flatten out}" />,
-    reason: <>The curve levels off — it bottoms out just right of the <Katex tex="y" />-axis, at about <Katex tex="y=0.5" />.</>,
+    working: <Katex display tex="\begin{gathered} \text{Near the } y\text{-axis:} \\ \text{strokes flatten out} \end{gathered}" />,
+    reason: <>The curve crosses the <Katex tex="y" />-axis at about <Katex tex="y=0.5" /> and levels off. It bottoms out just right of the <Katex tex="y" />-axis, still at about <Katex tex="y=0.5" />.</>,
   },
   {
-    working: <Katex display tex="\text{Right of the } y\text{-axis the slopes turn positive and steepen}" />,
-    reason: <>The curve turns and climbs again.</>,
+    working: <Katex display tex="\begin{gathered} \text{Right of the } y\text{-axis:} \\ \text{slopes turn positive} \end{gathered}" />,
+    reason: <>The curve turns and climbs steadily: about <Katex tex="y=0.7" /> at <Katex tex="x=1" />, and just below <Katex tex="y=1" /> at <Katex tex="x=1.5" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y \approx 1.0 \text{ when } x = 1.5}" />,
-    reason: <>Matches option <b>D</b>. A sketch drawn on the field reaches <Katex tex="x=1.5" /> just below <Katex tex="y=1" />. (The field is consistent with <Katex tex="\tfrac{dy}{dx}=x-y^2" /> — zero slope along <Katex tex="x=y^2" />, the same above and below the <Katex tex="x" />-axis — and solving that numerically from <Katex tex="(-1,2)" /> gives <Katex tex="y(1.5)\approx0.97" />.)</>,
+    reason: <>Matches option <b>D</b>. Option <b>C</b>, 0.5, is about the height of the curve's lowest point near the <Katex tex="y" />-axis, not its value at <Katex tex="x=1.5" />; by then the curve has climbed back up. (A check, not needed in the exam: the field is consistent with <Katex tex="\tfrac{dy}{dx}=x-y^2" />, which is zero along <Katex tex="x=y^2" /> and the same above and below the <Katex tex="x" />-axis. Solving that numerically from <Katex tex="(-1,\,2)" /> gives a lowest point of about <Katex tex="(0.21,\,0.46)" /> and <Katex tex="y(1.5)\approx0.97" />.)</>,
   },
 ]
 

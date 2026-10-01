@@ -3,10 +3,16 @@
 // peaks, and a harvesting term. Question text transcribed from the original paper; the graph
 // is our own drawing of the answer. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
+// Interactive (e.i, 21% full marks): spec-2023e2-q4ei-chain — the growth rate dQ/dt plotted against
+// t with the tangent at a chosen t; its slope d²Q/dt² equals d/dQ(dQ/dt) × dQ/dt, and a toggle shows
+// the no-chain-rule answer d/dQ(dQ/dt) alone missing it badly. Flat tangent at t ≈ 2, Q = 500 (e.ii).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './spec-2023e2-q4f-sketch.png'
+
+const ChainWidget = lazyWidget(() => import('../interactives/spec-2023e2-q4ei-chain'))
 
 const EXAM_A: SAExaminerStats = { marks: [52, 48], average: 0.5 }
 const EXAM_B: SAExaminerStats = { marks: [43, 57], average: 0.6 }
@@ -56,23 +62,31 @@ const EXAM_G: SAExaminerStats = { marks: [60, 40], average: 0.4 }
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{1}{P\left(1-\frac{P}{1000}\right)} = \frac AP+\frac{B}{1-\frac{P}{1000}}" />,
-    reason: <>Separating the logistic equation puts this on the left; partial fractions is how it gets integrated.</>,
+    reason: <>Separating the variables turns the differential equation into <Katex tex="\int\tfrac{1}{P(1-P/1000)}\,dP=\int dt" />, so the given integrand must equal this fraction. Splitting it into two simpler fractions is partial fractions.</>,
   },
   {
     working: <Katex display tex="1 = A\left(1-\frac{P}{1000}\right)+BP" />,
-    reason: <>Multiplying through by the denominator.</>,
+    reason: <>Multiplying both sides by the left-hand denominator, <Katex tex="P\left(1-\tfrac{P}{1000}\right)" />.</>,
   },
   {
     working: <Katex display tex="P=0: \ 1 = A \implies A = 1" />,
-    reason: <>The convenient substitution.</>,
+    reason: <>Choose <Katex tex="P=0" /> because it makes the <Katex tex="BP" /> term vanish, leaving <Katex tex="A" /> on its own.</>,
   },
   {
     working: <Katex display tex="P=1000: \ 1 = 1000B \implies B = \frac{1}{1000}" />,
-    reason: <>The other one.</>,
+    reason: <>Choose <Katex tex="P=1000" /> because it makes <Katex tex="1-\tfrac{P}{1000}=0" />, so the <Katex tex="A" /> term vanishes.</>,
   },
   {
     working: <Katex display tex="\boxed{A = 1, \quad B = \frac{1}{1000}}" />,
-    reason: <>Check by combining: <Katex tex="\tfrac1P+\tfrac{1/1000}{1-P/1000}" /> does return the original ✓.</>,
+    reason: (
+      <>
+        Check by combining: <Katex tex="\tfrac1P+\tfrac{1/1000}{1-P/1000}" /> does return the original ✓. Watch
+        the form: the second denominator is <Katex tex="1-\tfrac{P}{1000}" />, not <Katex tex="1000-P" />. If you
+        found <Katex tex="\tfrac1P+\tfrac{1}{1000-P}" />, rewrite{' '}
+        <Katex tex="\tfrac{1}{1000-P}=\tfrac{1/1000}{1-P/1000}" /> before reading off <Katex tex="B" />, so{' '}
+        <Katex tex="B=\tfrac{1}{1000}" />, not 1.
+      </>
+    ),
   },
 ]
 
@@ -83,10 +97,10 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t=0: \ P = 200 \implies \frac{1000}{1+D} = 200" />,
-    reason: <>"200 fish into a pond that originally contained no fish" — the release happens at t = 0.</>,
+    reason: <>"200 fish into a pond that originally contained no fish": the release happens at <Katex tex="t=0" />, and <Katex tex="e^{0}=1" />.</>,
   },
   {
-    working: <Katex display tex="1+D = 5 \implies \boxed{D = 4}" />,
+    working: <Katex display tex="1+D = \frac{1000}{200} = 5 \implies \boxed{D = 4}" />,
     reason: <>Note the pattern: <Katex tex="D=\tfrac{1000}{P_0}-1" />, which part c. reuses.</>,
   },
 ]
@@ -94,7 +108,7 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="Q = \frac{1000}{1+9e^{-1.1t}}" />,
-    reason: <>The model for pond 2.</>,
+    reason: <>The model for pond 2. The <Katex tex="n" /> fish are released at <Katex tex="t=0" />, so <Katex tex="n" /> is the population then.</>,
   },
   {
     working: <Katex display tex="t=0: \ Q = \frac{1000}{1+9e^{0}} = \frac{1000}{10}" />,
@@ -109,64 +123,84 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="Q(6) = \frac{1000}{1+9e^{-1.1(6)}} = \frac{1000}{1+9e^{-6.6}}" />,
-    reason: <>Substituting.</>,
+    reason: <>Substituting <Katex tex="t=6" />.</>,
   },
   {
-    working: <Katex display tex="e^{-6.6} = 0.001360\ldots \implies Q = \frac{1000}{1.012245}" />,
-    reason: <>The exponential is already tiny, so the population is close to its ceiling.</>,
+    working: <Katex display tex="e^{-6.6} = 0.001360\ldots \implies Q = \frac{1000}{1.012245\ldots}" />,
+    reason: <>The exponential is already tiny, so the population is close to its ceiling of 1000.</>,
   },
   {
-    working: <Katex display tex="\boxed{Q \approx 988}" />,
-    reason: <>To the nearest integer. Six years in, pond 2 is within 2% of its carrying capacity of 1000.</>,
+    working: <Katex display tex="Q = 987.90\ldots \implies \boxed{Q \approx 988}" />,
+    reason: <>To the nearest integer, as asked. Six years in, pond 2 is within 2% of its carrying capacity of 1000.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dQ}{dt} = \frac{11}{10}Q\left(1-\frac{Q}{1000}\right)" />,
-    reason: <>Given.</>,
+    reason: <>Given. It is a function of <Katex tex="Q" />, not of <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="\frac{d^2Q}{dt^2} = \frac{d}{dQ}\left[\frac{dQ}{dt}\right]\cdot\frac{dQ}{dt}" />,
-    reason: <>The chain rule — <Katex tex="\tfrac{dQ}{dt}" /> is a function of <Katex tex="Q" />, and <Katex tex="Q" /> is a function of <Katex tex="t" />. The report notes a common error was not recognising the need for the chain rule.</>,
+    working: <Katex display tex="\frac{d^2Q}{dt^2} = \frac{d}{dQ}\left(\frac{dQ}{dt}\right)\times\frac{dQ}{dt}" />,
+    reason: (
+      <>
+        <Katex tex="\tfrac{d^2Q}{dt^2}" /> means differentiate <Katex tex="\tfrac{dQ}{dt}" /> with respect to{' '}
+        <Katex tex="t" />. It contains only <Katex tex="Q" />, and <Katex tex="Q" /> depends on <Katex tex="t" />,
+        so the chain rule applies: differentiate with respect to <Katex tex="Q" />, then multiply by{' '}
+        <Katex tex="\tfrac{dQ}{dt}" />. It is the same step as <Katex tex="a=v\tfrac{dv}{dx}" /> in kinematics.
+        The report notes a common error was not recognising the need for the chain rule.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\frac{d}{dQ}\left[\frac{11}{10}Q-\frac{11Q^2}{10\,000}\right] = \frac{11}{10}-\frac{11Q}{5000} = \frac{11}{10}\left(1-\frac{Q}{500}\right)" />,
-    reason: <>Differentiating the quadratic in Q.</>,
+    working: <Katex display tex="\frac{d}{dQ}\left(\frac{11}{10}Q-\frac{11Q^2}{10\,000}\right) = \frac{11}{10}-\frac{11Q}{5000}" />,
+    reason: <>Expand first, then differentiate term by term.</>,
+  },
+  {
+    working: <Katex display tex="= \frac{11}{10}\left(1-\frac{Q}{500}\right)" />,
+    reason: <>This is not yet the answer. It is how fast the growth rate changes per extra fish; multiplying by <Katex tex="\tfrac{dQ}{dt}" /> (fish per year) turns it into a change per year.</>,
+  },
+  {
+    working: <Katex display tex="\frac{d^2Q}{dt^2} = \frac{11}{10}\left(1-\frac{Q}{500}\right)\times\frac{11}{10}Q\left(1-\frac{Q}{1000}\right)" />,
+    reason: <>Multiplying the two factors from the chain rule.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2Q}{dt^2} = \frac{121}{100}\,Q\left(1-\frac{Q}{500}\right)\left(1-\frac{Q}{1000}\right)}" />,
-    reason: <>Equivalently <Katex tex="\tfrac{121\,Q(Q-1000)(Q-500)}{5\times10^7}" />. In terms of <Katex tex="Q" /> only, as asked.</>,
+    reason: <>Equivalently <Katex tex="\tfrac{121\,Q(Q-1000)(Q-500)}{5\times10^7}" />. Leave it in terms of <Katex tex="Q" />, as the question asks: don&apos;t substitute the formula for <Katex tex="Q" /> in terms of <Katex tex="t" />. The report notes some students did not express their answers in terms of <Katex tex="Q" />.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d^2Q}{dt^2} = 0 \implies Q = 0, \ 500 \ \text{ or } \ 1000" />,
-    reason: <>The rate of growth is greatest where its derivative vanishes.</>,
+    reason: <>The rate of growth is <Katex tex="\tfrac{dQ}{dt}" />, so it is greatest where its derivative, <Katex tex="\tfrac{d^2Q}{dt^2}" />, is zero. &ldquo;Hence&rdquo; points to the factorised answer from part e.i.: each factor gives one value.</>,
   },
   {
     working: <Katex display tex="Q=0 \text{ and } Q=1000 \text{ give } \frac{dQ}{dt} = 0" />,
-    reason: <>Both are equilibria, where the population is not growing at all — minima of the growth rate, not maxima. (The report prints "eliminated <Katex tex="Q=1" /> and 1000"; the equilibrium is <Katex tex="Q=0" />.)</>,
+    reason: <>At both the population is not growing at all, so they are where the growth rate is smallest, not largest. Besides, <Katex tex="Q" /> starts at 100 and only approaches 1000, so neither value occurs. (The report prints &ldquo;eliminated <Katex tex="Q=1" /> and 1000&rdquo;; the value is <Katex tex="Q=0" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{Q = 500}" />,
-    reason: <>Half the carrying capacity — always where a logistic model grows fastest.</>,
+    reason: <>It is a maximum: <Katex tex="\tfrac{dQ}{dt}=\tfrac{11}{10}Q\left(1-\tfrac{Q}{1000}\right)" /> is an upside-down parabola in <Katex tex="Q" /> with roots 0 and 1000, so it peaks midway, at half the carrying capacity.</>,
   },
   {
-    working: <Katex display tex="\frac{1000}{1+9e^{-1.1t}} = 500 \implies 9e^{-1.1t} = 1" />,
-    reason: <>Now find when it happens.</>,
+    working: <Katex display tex="\frac{1000}{1+9e^{-1.1t}} = 500 \implies 1+9e^{-1.1t} = 2" />,
+    reason: <>Now find when it happens: set the pond-2 model equal to 500.</>,
+  },
+  {
+    working: <Katex display tex="e^{-1.1t} = \frac19 \implies -1.1t = \log_e\left(\frac19\right) = -\log_e(9)" />,
+    reason: <>Take <Katex tex="\log_e" /> of both sides.</>,
   },
   {
     working: <Katex display tex="t = \frac{\log_e(9)}{1.1} = 1.997\ldots \implies \boxed{t \approx 2 \text{ years}}" />,
-    reason: <>To the nearest year. The question asks for both the population and the time, so give both — the report notes some students gave the maximum <em>rate</em> as their final answer.</>,
+    reason: <>To the nearest year. Give both answers: the population is 500 when <Katex tex="t\approx2" />. The report notes some students gave the maximum rate as their final answer; that rate is <Katex tex="\tfrac{dQ}{dt}=275" /> fish per year, which is neither of the things asked for.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="Q(0) = 100 \implies \text{intercept } (0,\,100)" />,
-    reason: <>From part c. — and the question asks for the coordinates, not just a mark on the axis.</>,
+    reason: <>From part c. Time starts at the release, <Katex tex="t\ge0" />, so the curve starts on the <Katex tex="Q" />-axis. The question asks for the coordinates, not just a mark on the axis.</>,
   },
   {
     working: <Katex display tex="t\to\infty \implies 9e^{-1.1t}\to0 \implies Q\to1000" />,
@@ -174,11 +208,11 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Asymptote: } Q = 1000" />,
-    reason: <>The vertical variable here is <Katex tex="Q" />, not <Katex tex="y" /> — the report notes many students incorrectly labelled it <Katex tex="y=1000" />.</>,
+    reason: <>The vertical variable here is <Katex tex="Q" />, not <Katex tex="y" />. The report notes many students incorrectly labelled it <Katex tex="y=1000" />.</>,
   },
   {
-    working: <Katex display tex="\text{Inflection at } (2,\,500) \text{ from part e.ii}" />,
-    reason: <>The curve is concave up below 500 and concave down above it — the S-shape.</>,
+    working: <Katex display tex="\text{Inflection at } (\approx2,\,500) \text{ from part e.ii}" />,
+    reason: <>The curve is concave up below 500 and concave down above it, which gives the S-shape.</>,
   },
   {
     working: (
@@ -190,7 +224,7 @@ const ROWS_F: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Only what the question asks is labelled: the <Katex tex="Q" />-intercept with its coordinates and the asymptote with its equation.</>,
+    reason: <>Only what the question asks is labelled: the <Katex tex="Q" />-intercept with its coordinates and the asymptote with its equation. Check: the curve passes close to <Katex tex="(6,\,988)" /> from part d.</>,
   },
 ]
 
@@ -200,20 +234,20 @@ const ROWS_G: WorkingRow[] = [
     reason: <>The modified model: logistic growth less a 5.5% annual harvest.</>,
   },
   {
-    working: <Katex display tex="\text{Maximum sustainable population} \iff \frac{dQ}{dt} = 0" />,
-    reason: <>The new equilibrium — the level the population settles at, and cannot exceed.</>,
+    working: <Katex display tex="\text{Maximum population} \iff \frac{dQ}{dt} = 0" />,
+    reason: <>Where <Katex tex="\tfrac{dQ}{dt}=0" /> the population stops changing. Below that level <Katex tex="\tfrac{dQ}{dt}>0" />, so the population grows up to it; above it <Katex tex="\tfrac{dQ}{dt}<0" />, so the population falls back. So it is the most fish the pond can support.</>,
   },
   {
-    working: <Katex display tex="Q\left[\frac{11}{10}-\frac{11Q}{10\,000}-0.055\right] = 0" />,
-    reason: <>Factorising out <Katex tex="Q" />. The root <Katex tex="Q=0" /> is extinction, not a maximum.</>,
+    working: <Katex display tex="Q\left(\frac{11}{10}-\frac{11Q}{10\,000}-0.055\right) = 0" />,
+    reason: <>Factorising out <Katex tex="Q" />. The root <Katex tex="Q=0" /> is an empty pond, not a maximum.</>,
   },
   {
     working: <Katex display tex="1.045 = \frac{11Q}{10\,000} \implies Q = \frac{10\,450}{11}" />,
-    reason: <><Katex tex="1.1-0.055=1.045" />.</>,
+    reason: <><Katex tex="1.1-0.055=1.045" />, then solve for <Katex tex="Q" />.</>,
   },
   {
     working: <Katex display tex="\boxed{Q = 950}" />,
-    reason: <>Harvesting 5.5% a year costs the pond 50 fish of capacity — a 5% reduction, close to the harvest rate itself.</>,
+    reason: <>Check: the modified equation rearranges to <Katex tex="\tfrac{dQ}{dt}=1.045\,Q\left(1-\tfrac{Q}{950}\right)" />, another logistic model, with carrying capacity 950. Harvesting lowers the carrying capacity from 1000 to 950.</>,
   },
 ]
 
@@ -335,6 +369,9 @@ export default function SpecialistQ4_2023Exam2() {
         examinerReport={EXAM_EI}
       >
         <WorkingTable rows={ROWS_EI} />
+        <Explore title="Per fish × fish per year = per year: why d²Q/dt² needs the chain rule">
+          <ChainWidget />
+        </Explore>
       </PartCard>
 
       <PartCard

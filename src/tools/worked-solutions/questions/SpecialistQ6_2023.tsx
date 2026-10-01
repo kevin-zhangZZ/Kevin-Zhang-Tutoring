@@ -13,8 +13,8 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="y \leftarrow y+h\,f(x,y), \qquad x \leftarrow x+h, \qquad h = 0.5,\ f(x,y) = e^{xy}" />,
-    reason: <>Euler's method. The loop updates <Katex tex="y" /> <em>first</em>, using the old <Katex tex="x" />, and only then advances <Katex tex="x" />.</>,
+    working: <Katex display tex="\begin{aligned} &y \leftarrow y+h\,f(x,y), \quad x \leftarrow x+h \\ &h = 0.5,\quad f(x,y) = e^{xy} \end{aligned}" />,
+    reason: <>Each pass through the loop is one step of Euler's method. The loop updates <Katex tex="y" /> <em>first</em>, using the current <Katex tex="x" /> and <Katex tex="y" />, and only then advances <Katex tex="x" />. <code>print y</code> comes before <code>end while</code>, so the new <Katex tex="y" /> is printed at the end of every pass; we need the pass that prints 2.709.</>,
   },
   {
     working: <Katex display tex="\text{Start: } x_0 = 0,\ y_0 = 0" />,
@@ -22,19 +22,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Pass 1: } y = 0+0.5e^{0\times0} = 0.5, \quad x = 0.5" />,
-    reason: <><Katex tex="e^0=1" />.</>,
+    reason: <>The exponent uses the old values <Katex tex="x=0" />, <Katex tex="y=0" />, and <Katex tex="e^0=1" />. Prints 0.5.</>,
   },
   {
-    working: <Katex display tex="\text{Pass 2: } y = 0.5+0.5e^{0.5\times0.5} = 0.5+0.5e^{0.25} = 1.1420, \quad x = 1" />,
-    reason: <><Katex tex="e^{0.25}\approx1.2840" />.</>,
+    working: <Katex display tex="\begin{aligned} \text{Pass 2: } y &= 0.5+0.5e^{0.5\times0.5} \\ &\approx 1.1420, \quad x = 1 \end{aligned}" />,
+    reason: <>Now <Katex tex="x=0.5" /> and <Katex tex="y=0.5" /> (the values left by pass 1), and <Katex tex="e^{0.25}\approx1.2840" />. Prints 1.142. Keep the unrounded value in the calculator for the next pass.</>,
   },
   {
-    working: <Katex display tex="\text{Pass 3: } y = 1.1420+0.5e^{1\times1.1420} = 1.1420+1.5665 = 2.7085" />,
-    reason: <>Rounds to <Katex tex="2.709" />.</>,
+    working: <Katex display tex="\begin{aligned} \text{Pass 3: } y &\approx 1.1420+0.5e^{1\times1.1420} \\ &\approx 2.7085, \quad x = 1.5 \end{aligned}" />,
+    reason: <>Now <Katex tex="x=1" /> and <Katex tex="y\approx1.1420" />, so <Katex tex="0.5e^{1.1420}\approx0.5\times3.1331\approx1.5665" /> and <Katex tex="y\approx1.1420+1.5665" />. To three decimal places this is 2.709, printed at the end of the third pass.</>,
   },
   {
     working: <Katex display tex="\boxed{3 \text{ iterations}}" />,
-    reason: <>Matches option <b>C</b>. The growth is explosive — a fourth pass gives <Katex tex="31.8" /> — so there is no ambiguity about which iteration produced the printed value.</>,
+    reason: <>Matches option <b>C</b>. The printed values are 0.5, 1.142, 2.709, then about 31.8 on a fourth pass, so 2.709 is printed only once, after the third iteration. The order of the lines matters: updating <Katex tex="x" /> before <Katex tex="y" /> would print 0.5, 1.324, 4.969, and never 2.709.</>,
   },
 ]
 

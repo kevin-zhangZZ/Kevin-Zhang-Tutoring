@@ -1,13 +1,17 @@
 // 2023 Specialist Mathematics — Exam 2, MCQ 15. VCAA examination report: 18% correct — the
 // hardest MCQ on this paper. If the sum of two unit vectors is a unit vector, find the
 // magnitude of their difference. Question text transcribed from the original paper. Solution
-// is original.
+// is original. Interactive: spec-2023-mcq15-unit-sum (turn b until |a + b| = 1: only 120° works,
+// and then |a − b| = √3; at 90°, option C's √2, the sum is √2 too).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import sumSrc from './spec-2023-mcq15-report-sum.png'
 import diffSrc from './spec-2023-mcq15-report-diff.png'
+import { Explore, lazyWidget } from '../Explore'
+
+const UnitSumWidget = lazyWidget(() => import('../interactives/spec-2023-mcq15-unit-sum'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 22, B: 24, C: 32, D: 18, E: 3 },
@@ -28,23 +32,65 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|\underset{\sim}{a}| = |\underset{\sim}{b}| = |\underset{\sim}{a}+\underset{\sim}{b}| = 1" />,
-    reason: <>Two unit vectors whose sum is also a unit vector.</>,
+    reason: (
+      <>
+        &ldquo;Unit vector&rdquo; means magnitude 1. We know only lengths, not components or the angle between the
+        vectors, so we need a rule that links the length of a sum to the two vectors.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2 = |\underset{\sim}{a}|^2+2\underset{\sim}{a}\cdot\underset{\sim}{b}+|\underset{\sim}{b}|^2 = 2+2\underset{\sim}{a}\cdot\underset{\sim}{b}" />,
-    reason: <>Expand the square of the sum.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}|\underset{\sim}{a}+\underset{\sim}{b}|^2 &= (\underset{\sim}{a}+\underset{\sim}{b})\cdot(\underset{\sim}{a}+\underset{\sim}{b})\\ &= |\underset{\sim}{a}|^2+2\underset{\sim}{a}\cdot\underset{\sim}{b}+|\underset{\sim}{b}|^2\\ &= 2+2\underset{\sim}{a}\cdot\underset{\sim}{b}\end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        That rule is the dot product: a vector dotted with itself is its magnitude squared,{' '}
+        <Katex tex="\underset{\sim}{v}\cdot\underset{\sim}{v} = |\underset{\sim}{v}|^2" />. Expand like brackets
+        (<Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = \underset{\sim}{b}\cdot\underset{\sim}{a}" />), then
+        use <Katex tex="|\underset{\sim}{a}| = |\underset{\sim}{b}| = 1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="1 = 2+2\underset{\sim}{a}\cdot\underset{\sim}{b} \;\implies\; \underset{\sim}{a}\cdot\underset{\sim}{b} = -\tfrac12" />,
-    reason: <>Set equal to <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=1^2=1" /> and solve.</>,
+    reason: (
+      <>
+        Set equal to <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=1^2=1" /> and solve. Since{' '}
+        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta = \cos\theta" />,
+        this says <Katex tex="\cos\theta=-\tfrac12" />, and since the angle between two vectors lies
+        in <Katex tex="[0^\circ,180^\circ]" />, the angle between them is <Katex tex="120^\circ" />. (You don&apos;t
+        actually need the angle: <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}" /> is enough for the next
+        step.)
+      </>
+    ),
   },
   {
-    working: <Katex display tex="|\underset{\sim}{a}-\underset{\sim}{b}|^2 = |\underset{\sim}{a}|^2-2\underset{\sim}{a}\cdot\underset{\sim}{b}+|\underset{\sim}{b}|^2 = 2-2\left(-\tfrac12\right) = 3" />,
-    reason: <>Expand the square of the difference using the same dot product.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}|\underset{\sim}{a}-\underset{\sim}{b}|^2 &= (\underset{\sim}{a}-\underset{\sim}{b})\cdot(\underset{\sim}{a}-\underset{\sim}{b})\\ &= |\underset{\sim}{a}|^2-2\underset{\sim}{a}\cdot\underset{\sim}{b}+|\underset{\sim}{b}|^2\\ &= 2-2\left(-\tfrac12\right) = 3\end{aligned}"
+      />
+    ),
+    reason: <>The same expansion for the difference; only the sign of the middle term changes.</>,
   },
   {
     working: <Katex display tex="\boxed{|\underset{\sim}{a}-\underset{\sim}{b}| = \sqrt3}" />,
-    reason: <>Matches option <b>D</b>. (Geometrically, as in the report: <Katex tex="\underset{\sim}{a}" />, <Katex tex="\underset{\sim}{b}" /> and <Katex tex="\underset{\sim}{a}+\underset{\sim}{b}" /> form an equilateral triangle, so <Katex tex="\underset{\sim}{a}" /> and <Katex tex="-\underset{\sim}{b}" /> meet at <Katex tex="120^\circ" />, and the cosine rule gives <Katex tex="\sqrt3" />.)</>,
+    reason: (
+      <>
+        Matches option <b>D</b> (a magnitude is never negative, so take the positive root). Option C,{' '}
+        <Katex tex="\sqrt2" />, is the length of the difference of two <em>perpendicular</em> unit vectors, but their
+        sum also has length <Katex tex="\sqrt2" />, not 1, so perpendicular vectors don&apos;t fit the question. Option
+        A, 0, would need <Katex tex="\underset{\sim}{a}=\underset{\sim}{b}" />, and then the sum has length 2.
+        Geometrically, as in the report: <Katex tex="\underset{\sim}{a}" />, <Katex tex="\underset{\sim}{b}" /> and{' '}
+        <Katex tex="\underset{\sim}{a}+\underset{\sim}{b}" /> form an equilateral triangle, so{' '}
+        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="-\underset{\sim}{b}" /> meet at <Katex tex="120^\circ" />, and
+        the cosine rule gives <Katex tex="\sqrt3" />.
+      </>
+    ),
   },
 ]
 
@@ -61,6 +107,11 @@ export default function SpecialistQ15_2023() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      extras={
+        <Explore title="Only a 120° angle makes the sum of two unit vectors a unit vector">
+          <UnitSumWidget />
+        </Explore>
+      }
     />
   )
 }

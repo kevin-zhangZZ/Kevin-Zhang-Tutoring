@@ -17,19 +17,19 @@ const ROWS: WorkingRow[] = [
     reason: <>The question links acceleration to <em>velocity</em> and asks about <em>time</em>, so this is the form to use — <Katex tex="v\tfrac{dv}{dx}" /> would bring in a displacement nobody asked for.</>,
   },
   {
-    working: <Katex display tex="\frac{dt}{dv} = \frac{1}{1+v} \implies t = \int\frac{1}{1+v}\,dv = \log_e|1+v|+c" />,
-    reason: <>Inverting and integrating. Since <Katex tex="v\ge0" /> here, the absolute value can be dropped.</>,
+    working: <Katex display tex="\begin{aligned} \frac{dt}{dv} &= \frac{1}{1+v} \\ t &= \int\frac{1}{1+v}\,dv = \log_e|1+v|+c \end{aligned}" />,
+    reason: <><Katex tex="1+v" /> is in terms of <Katex tex="v" />, not <Katex tex="t" />, so it can't be integrated with respect to <Katex tex="t" />. Flip both sides to get <Katex tex="\tfrac{dt}{dv}" />, a function of <Katex tex="v" /> alone, and integrate with respect to <Katex tex="v" />.</>,
   },
   {
     working: <Katex display tex="t=0,\ v=0: \quad 0 = \log_e(1)+c \implies c = 0" />,
-    reason: <>"Starts from rest".</>,
+    reason: <>"Starts from rest" means <Katex tex="v=0" /> when <Katex tex="t=0" />.</>,
   },
   {
-    working: <Katex display tex="t = \log_e(1+v) \implies v = e^t-1" />,
-    reason: <>Rearranging.</>,
+    working: <Katex display tex="\begin{aligned} t &= \log_e(1+v) \\ 1+v &= e^t \\ v &= e^t-1 \end{aligned}" />,
+    reason: <>The particle starts at <Katex tex="v=0" />, and while <Katex tex="v\ge0" /> the acceleration <Katex tex="a=1+v\ge1" /> is positive, so <Katex tex="v" /> keeps increasing and never becomes negative. Then <Katex tex="1+v>0" />, so the absolute value can be dropped. Rearrange for <Katex tex="v" />.</>,
   },
   {
-    working: <Katex display tex="t = \log_e(e+1): \quad v = e^{\log_e(e+1)}-1 = (e+1)-1" />,
+    working: <Katex display tex="\begin{aligned} t = \log_e(e+1): \quad v &= e^{\log_e(e+1)}-1 \\ &= (e+1)-1 \end{aligned}" />,
     reason: <>The exponential and the log undo each other exactly — which is why the question chose that time.</>,
   },
   {

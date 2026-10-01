@@ -14,27 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = \cos^{-1}(x) \;\implies\; x = \cos(y),\quad y\in\big[0,\tfrac{\pi}{2}\big]" />,
-    reason: <>Revolving about the <Katex tex="y" />-axis is easiest with <Katex tex="x" /> written as a function of <Katex tex="y" />.</>,
+    reason: <>Spinning about the <Katex tex="y" />-axis, each point of the curve traces a circle whose radius is its distance from the <Katex tex="y" />-axis, which is <Katex tex="x" />. So write <Katex tex="x" /> as a function of <Katex tex="y" /> and integrate along the <Katex tex="y" />-axis. The endpoints <Katex tex="(1,0)" /> and <Katex tex="\big(0,\tfrac{\pi}{2}\big)" /> give <Katex tex="y" /> from <Katex tex="0" /> to <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
-    working: <Katex display tex="S = 2\pi\int x\sqrt{1+\left(\frac{dx}{dy}\right)^2}\,dy" />,
-    reason: <>Surface-of-revolution formula about the y-axis, integrating with respect to y.</>,
+    working: <Katex display tex="S = 2\pi\int_0^{\pi/2} x\sqrt{1+\left(\frac{dx}{dy}\right)^2}\,dy" />,
+    reason: <>Curved surface area about the <Katex tex="y" />-axis: radius <Katex tex="x" />, integrating with respect to <Katex tex="y" />.</>,
   },
   {
-    working: <Katex display tex="\frac{dx}{dy} = -\sin(y) \;\implies\; 1+\left(\frac{dx}{dy}\right)^2 = 1+\sin^2(y)" />,
-    reason: <>Differentiate x = cos(y).</>,
+    working: <Katex display tex="\begin{aligned} \frac{dx}{dy} &= -\sin(y) \\ 1+\left(\frac{dx}{dy}\right)^2 &= 1+\sin^2(y) \end{aligned}" />,
+    reason: <>Differentiate <Katex tex="x=\cos(y)" />. Squaring removes the minus sign, <Katex tex="(-\sin(y))^2=\sin^2(y)" />, so the square root holds <Katex tex="1+\sin^2(y)" />.</>,
   },
   {
     working: <Katex display tex="S = 2\pi\int_0^{\pi/2} \cos(y)\sqrt{1+\sin^2(y)}\,dy" />,
-    reason: <>Substitute in <Katex tex="x=\cos(y)" /> and the limits <Katex tex="y=0" /> to <Katex tex="y=\tfrac{\pi}{2}" /> (matching the given endpoints).</>,
+    reason: <>Substitute <Katex tex="x=\cos(y)" /> for the radius.</>,
   },
   {
-    working: <Katex display tex="u=\sin(y) \;\implies\; du = \cos(y)\,dy" />,
-    reason: <>Substitute — conveniently, the leading <Katex tex="\cos(y)" /> factor becomes exactly <Katex tex="du" />.</>,
+    working: <Katex display tex="\begin{aligned} u&=\sin(y), \quad \frac{du}{dy} = \cos(y) \\ y=0 &\implies u=0, \quad y=\tfrac{\pi}{2} \implies u=1 \end{aligned}" />,
+    reason: <>Options <b>D</b> and <b>E</b> use <Katex tex="u=\sin(y)" />, so make that substitution. The <Katex tex="\cos(y)\,dy" /> in the integral becomes exactly <Katex tex="du" />, and the terminals must change to <Katex tex="u" />-values.</>,
   },
   {
     working: <Katex display tex="\boxed{S = 2\pi\int_0^1\sqrt{1+u^2}\,du}" />,
-    reason: <>Limits become <Katex tex="u=\sin(0)=0" /> to <Katex tex="u=\sin(\pi/2)=1" />. Matches option <b>E</b>; option <b>D</b> forgets to change the terminals.</>,
+    reason: <>Matches option <b>E</b>. Option <b>D</b> keeps the <Katex tex="y" />-terminals <Katex tex="0" /> and <Katex tex="\tfrac{\pi}{2}" /> after changing to <Katex tex="u" />. Option <b>C</b> has <Katex tex="1-\sin^2(y)" /> under the square root instead of <Katex tex="1+\sin^2(y)" />. Options <b>A</b> and <b>B</b> use <Katex tex="\cos^{-1}(x)=y" />, the distance from the <Katex tex="x" />-axis, as the radius, which is revolution about the wrong axis. Their square root is also of <Katex tex="1+\tfrac{1}{x^2-1}=\tfrac{x^2}{x^2-1}" />, which is negative for <Katex tex="0<x<1" />, and <b>A</b> runs <Katex tex="x" /> up to <Katex tex="\tfrac{\pi}{2}" />, outside the domain of <Katex tex="\cos^{-1}" />.</>,
   },
 ]
 

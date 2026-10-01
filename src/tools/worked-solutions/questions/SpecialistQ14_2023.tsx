@@ -21,7 +21,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n} = x\underset{\sim}{i} + y\underset{\sim}{j} + z\underset{\sim}{k}" />,
-    reason: <>General form of the unknown vector.</>,
+    reason: <>Give the unknown vector unknown components; the two dot-product conditions will become equations in <Katex tex="x" />, <Katex tex="y" /> and <Katex tex="z" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{n} = x+y = 0 \qquad \underset{\sim}{b}\cdot\underset{\sim}{n} = x-y = 0" />,
@@ -29,11 +29,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x+y=0 \text{ and } x-y=0 \;\implies\; x=0,\ y=0" />,
-    reason: <>Add and subtract the two equations.</>,
+    reason: <>Adding the equations gives <Katex tex="2x=0" />; subtracting them gives <Katex tex="2y=0" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{n} = z\underset{\sim}{k},\quad |\underset{\sim}{n}|=1 \;\implies\; z=\pm1" />,
-    reason: <>Only the <Katex tex="\underset{\sim}{k}" /> component survives; the unit-length condition pins down <Katex tex="z" /> up to sign.</>,
+    reason: <>Neither condition restricts <Katex tex="z" />, so only the <Katex tex="\underset{\sim}{k}" /> component survives. Unit length means <Katex tex="\sqrt{z^2}=1" />, so <Katex tex="z=\pm1" /> and <Katex tex="\underset{\sim}{n}=\pm\underset{\sim}{k}" />. This makes sense: <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> both lie flat in the <Katex tex="xy" />-plane, so the only directions perpendicular to both are straight up or straight down.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{c}\cdot\underset{\sim}{n} = \left(\underset{\sim}{i}+2\underset{\sim}{j}+3\underset{\sim}{k}\right)\cdot\left(\pm\underset{\sim}{k}\right) = \pm3" />,
@@ -41,7 +41,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left|\underset{\sim}{c}\cdot\underset{\sim}{n}\right| = 3}" />,
-    reason: <>Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. The cross product <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}=-2\underset{\sim}{k}" /> is also perpendicular to both vectors, but its length is 2, not 1; using it without dividing by 2 gives <Katex tex="\left|\underset{\sim}{c}\cdot(-2\underset{\sim}{k})\right|=6" />, option <b>E</b>.</>,
   },
 ]
 

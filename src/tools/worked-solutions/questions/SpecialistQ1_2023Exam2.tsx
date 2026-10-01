@@ -6,11 +6,17 @@
 // unit across and 635.5 px per unit up; checked with a PIL composite — the calibrated
 // f(x) lies exactly on VCAA's printed track. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
+// Interactive: part e. (22% full marks) — spec-2023e2-q1e-tangents: slide t from π/2 to π and watch
+// the direction of motion (dx/dt, dy/dt) go flat at D and vertical at O, with a toggle comparing a
+// hump that meets O on a slant.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import trackSrc from './spec-2023e2-q1-track.png'
+
+const TangentsWidget = lazyWidget(() => import('../interactives/spec-2023e2-q1e-tangents'))
 
 const OX = 286.5
 const OY = 796.5
@@ -98,19 +104,19 @@ const EXAM_FII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="C(1,0) \text{ lies on } y = -x(x+a)^2: \quad 0 = -1(1+a)^2" />,
-    reason: <>The first branch must pass through C.</>,
+    reason: <><Katex tex="C(1,0)" /> is on the track and <Katex tex="x=1" /> is in the first rule&apos;s domain <Katex tex="0\le x\le1" />, so substitute <Katex tex="x=1,\ y=0" />.</>,
   },
   {
     working: <Katex display tex="(1+a)^2 = 0 \implies \boxed{a = -1}" />,
-    reason: <>A repeated root, which is also why the curve touches the axis at C rather than crossing it.</>,
+    reason: <>A square is zero only when the bracket itself is zero: <Katex tex="1+a=0" />.</>,
   },
   {
     working: <Katex display tex="C(1,0) \text{ lies on } y = e^{x-1}-x+b: \quad 0 = e^0-1+b" />,
-    reason: <>And so must the second branch, or the track would have a gap.</>,
+    reason: <>The curves meet at C, so the second rule must also give <Katex tex="y=0" /> at <Katex tex="x=1" />, where that section of track starts. Otherwise the track would have a gap.</>,
   },
   {
     working: <Katex display tex="0 = 1-1+b \implies \boxed{b = 0}" />,
-    reason: <>Both constants follow from the single point C. As required.</>,
+    reason: <>Using <Katex tex="e^0=1" />. Both values come from the single point C. As required.</>,
   },
 ]
 
@@ -125,8 +131,8 @@ const ROWS_B: WorkingRow[] = [
     reason: <>The functions already meet there (part a.); showing that is not enough on its own — the report notes some students showed only that the functions met.</>,
   },
   {
-    working: <Katex display tex="\frac{d}{dx}\left[-x(x-1)^2\right] = -(x-1)^2-2x(x-1) = -(x-1)(3x-1)" />,
-    reason: <>Product rule, then factorising out the common (x − 1).</>,
+    working: <Katex display tex="\begin{aligned}\frac{d}{dx}\left[-x(x-1)^2\right] &= -(x-1)^2-2x(x-1)\\ &= -(x-1)(3x-1)\end{aligned}" />,
+    reason: <>With <Katex tex="a=-1" /> from part a. Product rule on <Katex tex="-x" /> times <Katex tex="(x-1)^2" />, then take out the common factor <Katex tex="(x-1)" />.</>,
   },
   {
     working: <Katex display tex="\text{At } x=1: \quad -(0)(2) = 0" />,
@@ -137,23 +143,23 @@ const ROWS_B: WorkingRow[] = [
     reason: <>And the right branch leaves flat.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Both gradients are } 0 \text{ at } C, \text{ so the curves join smoothly.}}" />,
-    reason: <>State the conclusion — the two zeros are the evidence, not the answer. As required.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}\text{Both curves pass through } C \text{ and both}\\ \text{have gradient } 0 \text{ there, so they meet smoothly.}\end{gathered}}" />,
+    reason: <>State the conclusion with both conditions: the same point (part a.) and the same gradient. The two zeros are the evidence, not the answer. As required.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = -(x-1)(3x-1) = 0 \implies x = \frac13 \ \text{ or } \ x = 1" />,
-    reason: <>From part b. <Katex tex="x=1" /> is the smooth join at C, so the turning point A is the other one.</>,
+    reason: <>A turning point has <Katex tex="f'(x)=0" />, and part b. already gave <Katex tex="f'(x)" /> in factorised form. <Katex tex="x=1" /> is point C, so A is at <Katex tex="x=\tfrac13" />.</>,
   },
   {
-    working: <Katex display tex="f\!\left(\frac13\right) = -\frac13\left(\frac13-1\right)^2 = -\frac13\cdot\frac49" />,
+    working: <Katex display tex="f\!\left(\frac13\right) = -\frac13\left(\frac13-1\right)^2 = -\frac13\cdot\frac49 = -\frac{4}{27}" />,
     reason: <>Substituting back.</>,
   },
   {
     working: <Katex display tex="\boxed{A\left(\tfrac13,\ -\tfrac{4}{27}\right)}" />,
-    reason: <>About <Katex tex="(0.33,-0.15)" />, matching the dip in the printed diagram.</>,
+    reason: <>It is below the axis while <Katex tex="f(0)=f(1)=0" />, so it is the minimum. About <Katex tex="(0.33,-0.15)" />, matching the dip in the printed diagram.</>,
   },
 ]
 
@@ -167,7 +173,7 @@ const ROWS_CII: WorkingRow[] = [
     reason: <>A point of inflection needs <Katex tex="f''=0" /> and a change of concavity; since <Katex tex="f''" /> is linear, it changes sign here.</>,
   },
   {
-    working: <Katex display tex="f\!\left(\frac23\right) = -\frac23\left(-\frac13\right)^2 = -\frac23\cdot\frac19" />,
+    working: <Katex display tex="f\!\left(\frac23\right) = -\frac23\left(-\frac13\right)^2 = -\frac23\cdot\frac19 = -\frac{2}{27}" />,
     reason: <>Substituting.</>,
   },
   {
@@ -179,38 +185,50 @@ const ROWS_CII: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="x = 2\cos(t)+2 \implies \cos(t) = \frac{x-2}{2}" />,
-    reason: <>Isolate each trigonometric function.</>,
+    reason: <>Make <Katex tex="\cos(t)" /> and <Katex tex="\sin(t)" /> the subjects, ready for the identity below.</>,
   },
   {
     working: <Katex display tex="y = (e-2)\sin(t) \implies \sin(t) = \frac{y}{e-2}" />,
-    reason: <>Same for the other component.</>,
+    reason: <>Same for the <Katex tex="y" />-component.</>,
   },
   {
     working: <Katex display tex="\cos^2(t)+\sin^2(t) = 1" />,
-    reason: <>The Pythagorean identity is what eliminates the parameter.</>,
+    reason: <>The Pythagorean identity is what eliminates the parameter <Katex tex="t" />: it links <Katex tex="\cos(t)" /> and <Katex tex="\sin(t)" /> with no <Katex tex="t" /> left over.</>,
+  },
+  {
+    working: <Katex display tex="\left(\frac{x-2}{2}\right)^2+\left(\frac{y}{e-2}\right)^2 = 1" />,
+    reason: <>Substituting the two expressions above.</>,
+  },
+  {
+    working: <Katex display tex="t\in\left[\tfrac\pi2,\pi\right]: \quad 0\le x\le2, \quad 0\le y\le e-2" />,
+    reason: <>The path is only part of this ellipse: as <Katex tex="t" /> goes from <Katex tex="\tfrac\pi2" /> to <Katex tex="\pi" />, <Katex tex="\cos(t)" /> falls from 0 to −1 (so <Katex tex="x" /> falls from 2 to 0) and <Katex tex="\sin(t)" /> falls from 1 to 0 (so <Katex tex="y\ge0" />).</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{(x-2)^2}{4}+\frac{y^2}{(e-2)^2} = 1}" />,
-    reason: <>An ellipse centred at <Katex tex="(2,0)" /> with semi-axes 2 and <Katex tex="e-2\approx0.718" />.</>,
+    reason: <>An ellipse centred at <Katex tex="(2,0)" />, reaching 2 across and <Katex tex="e-2\approx0.718" /> up from its centre. This is VCAA&apos;s answer; the report notes some students correctly gave <Katex tex="y" /> explicitly for this first-quadrant piece instead, <Katex tex="y=(e-2)\sqrt{1-\tfrac{(x-2)^2}{4}}" />.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
-    working: <Katex display tex="t = \frac\pi2: \ (x,y) = (2,\ e-2) = D; \qquad t = \pi: \ (x,y) = (0,\ 0) = O" />,
-    reason: <>The domain <Katex tex="\left[\tfrac\pi2,\pi\right]" /> traces exactly the second quadrant of the ellipse — a quarter, from D round to O.</>,
+    working: <Katex display tex="\begin{aligned} t = \tfrac\pi2&: \ (x,y) = (2,\ e-2) = D\\ t = \pi&: \ (x,y) = (0,\ 0) = O \end{aligned}" />,
+    reason: <>The path starts at <Katex tex="D" /> and ends at <Katex tex="O" />. From part d. the ellipse is centred at <Katex tex="(2,0)" />, reaching 2 across and <Katex tex="e-2" /> up, so <Katex tex="D" /> is its top point and <Katex tex="O" /> its leftmost point: the path is the upper-left quarter of the ellipse.</>,
   },
   {
-    working: <Katex display tex="\frac{dy}{dx}\bigg|_{t=\pi/2} = \frac{(e-2)\cos(t)}{-2\sin(t)}\bigg|_{t=\pi/2} = 0" />,
-    reason: <>So the path leaves <Katex tex="D" /> <em>horizontally</em> — it is the top of the ellipse.</>,
+    working: <Katex display tex="\frac{dx}{dt} = -2\sin(t), \qquad \frac{dy}{dt} = (e-2)\cos(t)" />,
+    reason: <>For the shape at each end, find the direction of travel <Katex tex="\left(\tfrac{dx}{dt},\tfrac{dy}{dt}\right)" />. Where one of these is zero, the tangent is horizontal or vertical.</>,
   },
   {
-    working: <Katex display tex="t\to\pi: \ \frac{dy}{dx}\to\infty" />,
-    reason: <>And it arrives at <Katex tex="O" /> <em>vertically</em>, the left end of the major axis. The report notes the curves drawn were often not vertical at the origin and horizontal at D.</>,
+    working: <Katex display tex="t = \tfrac\pi2: \quad \frac{dx}{dt} = -2, \quad \frac{dy}{dt} = 0" />,
+    reason: <>No vertical movement, so the path leaves <Katex tex="D" /> <em>horizontally</em>, as it must at the top of an ellipse.</>,
+  },
+  {
+    working: <Katex display tex="t = \pi: \quad \frac{dx}{dt} = 0, \quad \frac{dy}{dt} = -(e-2)" />,
+    reason: <>No horizontal movement, so the path reaches <Katex tex="O" /> <em>vertically</em> (<Katex tex="\tfrac{dy}{dx}" /> is undefined there), as it must at the leftmost point. The report notes the curves drawn were often not vertical at the origin and horizontal at D.</>,
   },
   {
     working: <EllipseOverlay />,
-    reason: <>Drawn on the printed diagram, as the question asks: from <Katex tex="D" /> round to <Katex tex="O" />, horizontal at <Katex tex="D" /> and vertical at <Katex tex="O" />.</>,
+    reason: <>Drawn on the printed diagram, as the question asks: from <Katex tex="D" /> round to <Katex tex="O" />, above the track, horizontal at <Katex tex="D" /> and vertical at <Katex tex="O" />.</>,
   },
 ]
 
@@ -225,7 +243,7 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L = \int_{\frac\pi2}^{\pi}\sqrt{4\sin^2(t)+(e-2)^2\cos^2(t)}\;dt}" />,
-    reason: <>The terminals are the <em>parameter</em> values that give D and O. The report notes the most frequent error was terminals 0 and 2 — the <Katex tex="x" />-values of O and D, not the <Katex tex="t" />-values.</>,
+    reason: <>The integral is with respect to <Katex tex="t" />, so the terminals are the <em>parameter</em> values at the ends of the path: <Katex tex="t=\tfrac\pi2" /> at D and <Katex tex="t=\pi" /> at O (part e.). The report notes the most frequent error was terminals 0 and 2; those are the <Katex tex="x" />-coordinates of O and D, not values of <Katex tex="t" />.</>,
   },
 ]
 
@@ -236,11 +254,11 @@ const ROWS_FII: WorkingRow[] = [
         nInt(√(4·sin(t)²+(e−2)²·cos(t)²), t, π/2, π)
       </Cas>
     ),
-    reason: <>Elliptic arc length has no elementary antiderivative in general, so integrate numerically.</>,
+    reason: <>This integral cannot be found exactly by hand (the integrand has no antiderivative you can write down), and the question asks for a decimal, so integrate numerically on CAS.</>,
   },
   {
     working: <Katex display tex="\boxed{L \approx 2.255 \ \text{km}}" />,
-    reason: <>Three decimal places. A quarter of a circle of radius 2 would be <Katex tex="\pi\approx3.14" /> km, and this ellipse is much flatter, so 2.255 is the right order.</>,
+    reason: <>Correct to three decimal places. Check: the path must be longer than the straight line <Katex tex="OD=\sqrt{4+(e-2)^2}\approx2.125" /> but shorter than going straight up from O and then straight across to D, <Katex tex="(e-2)+2=e\approx2.718" />.</>,
   },
 ]
 
@@ -335,7 +353,7 @@ export default function SpecialistQ1_2023Exam2() {
           The return track from point <Katex tex="D" /> to point <Katex tex="O" /> follows an
           elliptical path given by
         </p>
-        <Katex display tex="x=2\cos(t)+2,\ y=(e-2)\sin(t), \ \text{where } t\in\left[\frac\pi2,\pi\right]." />
+        <Katex display tex="\begin{gathered}x=2\cos(t)+2,\ y=(e-2)\sin(t),\\ \text{where } t\in\left[\frac\pi2,\pi\right].\end{gathered}" />
       </div>
 
       <PartCard
@@ -361,6 +379,9 @@ export default function SpecialistQ1_2023Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="The path leaves D flat and reaches O vertically">
+          <TangentsWidget />
+        </Explore>
       </PartCard>
 
       <PartCard

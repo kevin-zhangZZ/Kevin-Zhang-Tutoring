@@ -14,23 +14,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx} = \frac{dy/dt}{dx/dt}" />,
-    reason: <>The parametric chain rule — never differentiate one with respect to the other directly.</>,
+    reason: <>Both <Katex tex="x" /> and <Katex tex="y" /> are given in terms of <Katex tex="t" />, so differentiate each with respect to <Katex tex="t" /> and divide (the chain rule). There is no need to find the Cartesian equation first.</>,
   },
   {
     working: <Katex display tex="x = \frac{6t}{t+1} \implies \frac{dx}{dt} = \frac{6(t+1)-6t}{(t+1)^2} = \frac{6}{(t+1)^2}" />,
     reason: <>Quotient rule; the numerator collapses to a constant.</>,
   },
   {
-    working: <Katex display tex="y = \frac{-8}{t^2+4} = -8\left(t^2+4\right)^{-1} \implies \frac{dy}{dt} = \frac{16t}{\left(t^2+4\right)^2}" />,
-    reason: <>Chain rule: <Katex tex="8\left(t^2+4\right)^{-2}\cdot2t" />. The two minus signs cancel.</>,
+    working: <Katex display tex="\begin{aligned} y &= -8\left(t^2+4\right)^{-1} \\ \frac{dy}{dt} &= \frac{16t}{\left(t^2+4\right)^2} \end{aligned}" />,
+    reason: <>Write <Katex tex="y" /> as a power, then use the chain rule: <Katex tex="-8\times(-1)\left(t^2+4\right)^{-2}\times2t" />. The two minus signs cancel, so the derivative is positive.</>,
   },
   {
     working: <Katex display tex="t=2: \quad \frac{dx}{dt} = \frac{6}{9} = \frac23, \qquad \frac{dy}{dt} = \frac{32}{64} = \frac12" />,
-    reason: <>Substituting.</>,
+    reason: <>Substitute <Katex tex="t=2" />: <Katex tex="(t+1)^2=9" /> and <Katex tex="\left(t^2+4\right)^2=8^2=64" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{1/2}{2/3} = \frac34}" />,
-    reason: <>Matches option <b>D</b>. Dividing the other way round gives <Katex tex="\tfrac43" />, option <b>E</b>.</>,
+    reason: <>Matches option <b>D</b>. Dividing the other way round (<Katex tex="\tfrac{dx}{dt}\div\tfrac{dy}{dt}" />) gives <Katex tex="\tfrac43" />, option <b>E</b>. Option <b>B</b>, <Katex tex="-\tfrac14" />, is <Katex tex="y\div x" /> at the particle's position <Katex tex="(4,-1)" />: the slope of the line from the origin to the particle, not the slope of the tangent.</>,
   },
 ]
 

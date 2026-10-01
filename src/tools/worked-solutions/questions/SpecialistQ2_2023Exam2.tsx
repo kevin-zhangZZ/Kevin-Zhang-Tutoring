@@ -6,11 +6,19 @@
 // radius 330.5 px; checked with a PIL composite — the calibrated unit circle and the rays at
 // multiples of π/7 lie exactly on VCAA's printed ones. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
+// Widgets: d.ii spec-2023e2-q2dii-ray-angle (turn the ray from z = 1 in steps of π/14: Arg is
+// measured from the positive real direction, so the triangle's 5π/14 misses and 9π/14 hits);
+// f.ii spec-2023e2-q2fii-conjugate-pairs (step through pairing each power of w with its conjugate,
+// each pair summing to 2cos(2kπ/7) on the real axis, the three sums reaching −1).
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import type { ReactNode } from 'react'
 import argandSrc from './spec-2023e2-q2-argand.png'
+
+const RayAngle = lazyWidget(() => import('../interactives/spec-2023e2-q2dii-ray-angle'))
+const ConjugatePairs = lazyWidget(() => import('../interactives/spec-2023e2-q2fii-conjugate-pairs'))
 
 const AX = 512
 const AY = 535.5
@@ -156,148 +164,158 @@ const EXAM_FII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="w^7 = \left[\mathrm{cis}\!\left(\frac{2\pi}{7}\right)\right]^7 = \mathrm{cis}\!\left(\frac{14\pi}{7}\right)" />,
-    reason: <>De Moivre's theorem: raise the modulus (1) to the power and multiply the argument.</>,
+    reason: <>De Moivre's theorem: <Katex tex="\left[\mathrm{cis}(\theta)\right]^n = \mathrm{cis}(n\theta)" />, so multiply the argument by 7.</>,
   },
   {
     working: <Katex display tex="= \mathrm{cis}(2\pi) = \cos(2\pi)+i\sin(2\pi) = 1" />,
-    reason: <>A full revolution returns to 1.</>,
+    reason: <>An argument of <Katex tex="2\pi" /> is one full turn, which lands back on 1.</>,
   },
   {
     working: <Katex display tex="\boxed{w^7-1 = 1-1 = 0}" />,
-    reason: <>A verification, so the conclusion line matters as much as the algebra. As required.</>,
+    reason: <>Substituting <Katex tex="z=w" /> makes <Katex tex="z^7-1" /> equal 0, so <Katex tex="w" /> is a root. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="z^7 = 1 \implies z = \mathrm{cis}\!\left(\frac{2k\pi}{7}\right), \ k = 0,1,\ldots,6" />,
-    reason: <>Seven roots, evenly spaced by 2π/7 around the unit circle.</>,
+    working: <Katex display tex="\begin{aligned}z^7 &= 1 = \mathrm{cis}(2k\pi)\\ \implies z &= \mathrm{cis}\!\left(\frac{2k\pi}{7}\right),\\ k &= 0,1,\ldots,6\end{aligned}" />,
+    reason: <>Write 1 in polar form: modulus 1, argument 0 plus any number of full turns, <Katex tex="2k\pi" />. Taking the 7th root (De Moivre) keeps the modulus at 1 and divides the argument by 7. <Katex tex="k=0" /> to <Katex tex="6" /> give seven different roots, evenly spaced by <Katex tex="\tfrac{2\pi}{7}" />; <Katex tex="k=7" /> would repeat <Katex tex="k=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{1,\ \mathrm{cis}\!\left(\tfrac{4\pi}{7}\right),\ \mathrm{cis}\!\left(\tfrac{6\pi}{7}\right),\ \mathrm{cis}\!\left(\tfrac{8\pi}{7}\right),\ \mathrm{cis}\!\left(\tfrac{10\pi}{7}\right),\ \mathrm{cis}\!\left(\tfrac{12\pi}{7}\right)}" />,
-    reason: <>The six besides <Katex tex="w" /> itself. The report notes omitting <Katex tex="z=1" />, the <Katex tex="k=0" /> case, was a common error.</>,
+    reason: <>The six besides <Katex tex="w" /> itself (<Katex tex="k=1" />). The report notes omitting <Katex tex="z=1" />, the <Katex tex="k=0" /> case, was a common error.</>,
   },
   {
-    working: <Katex display tex="\text{Equivalently } \mathrm{cis}\!\left(\pm\tfrac{2\pi}{7}\right),\ \mathrm{cis}\!\left(\pm\tfrac{4\pi}{7}\right),\ \mathrm{cis}\!\left(\pm\tfrac{6\pi}{7}\right),\ 1" />,
-    reason: <>Using principal arguments in <Katex tex="(-\pi,\pi]" />. Either listing was accepted, and this one makes the conjugate pairing visible — which part f. needs.</>,
+    working: <Katex display tex="\begin{aligned}&\text{Equivalently } 1,\ \mathrm{cis}\!\left(-\tfrac{2\pi}{7}\right),\\ &\mathrm{cis}\!\left(\pm\tfrac{4\pi}{7}\right),\ \mathrm{cis}\!\left(\pm\tfrac{6\pi}{7}\right)\end{aligned}" />,
+    reason: <>The same six roots with principal arguments in <Katex tex="(-\pi,\pi]" />: for example <Katex tex="\tfrac{12\pi}{7}-2\pi=-\tfrac{2\pi}{7}" />. The report notes a range of equivalent polar forms were accepted. Together with <Katex tex="w=\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)" />, this listing shows the roots in conjugate pairs, which part f. needs.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="|z| = 1 \text{ for every root} \implies \text{all seven lie on the unit circle}" />,
-    reason: <>Each has modulus 1.</>,
+    working: <Katex display tex="\begin{aligned}&|z| = 1 \text{ for every root}\\ &\implies \text{all on the unit circle}\end{aligned}" />,
+    reason: <>Each root has modulus 1, from part b.</>,
   },
   {
-    working: <Katex display tex="\text{Consecutive arguments differ by } \frac{2\pi}{7}" />,
-    reason: <>The printed grid divides the plane into sectors of <Katex tex="\tfrac\pi7" />, so each root sits two sector-lines from the next — the report notes some students failed to recognise these sectors.</>,
+    working: <Katex display tex="\text{Consecutive arguments differ by } \frac{2\pi}{7} = 2\times\frac{\pi}{7}" />,
+    reason: <>Count the printed lines through <Katex tex="O" />: they make 14 equal sectors round the full turn, so each sector is <Katex tex="\tfrac{2\pi}{14}=\tfrac{\pi}{7}" />. Each root is therefore two lines round from the one before. The report notes some students failed to recognise these <Katex tex="\tfrac{\pi}{7}" /> sectors and incorrectly estimated the positions.</>,
   },
   {
-    working: <Katex display tex="\text{Start at } 1 \text{ and step round: } \tfrac{2\pi}{7},\ \tfrac{4\pi}{7},\ \ldots" />,
-    reason: <>A regular heptagon inscribed in the unit circle, with one vertex on the positive real axis. Label each point.</>,
+    working: <Katex display tex="\text{Start at } 1 \text{ and step round: } \tfrac{2\pi}{7},\ \tfrac{4\pi}{7},\ \ldots,\ \tfrac{12\pi}{7}" />,
+    reason: <>The points form a regular heptagon inscribed in the unit circle, with one vertex at 1. Label every point with the root it represents: the report&apos;s general comments note some students did not label the points meaningfully.</>,
   },
   {
     working: <RootsOverlay />,
-    reason: <>Plotted and labelled on the printed diagram: every root sits exactly on one of its rays.</>,
+    reason: <>Plotted and labelled on the printed diagram: every root sits exactly where one of the printed lines meets the circle.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="\text{The real root is } z = 1" />,
-    reason: <>The only root with zero imaginary part — the others come in conjugate pairs.</>,
+    reason: <>From part b., the only root on the real axis. (<Katex tex="z=-1" /> is not a root, since <Katex tex="(-1)^7-1=-2" />.)</>,
   },
   {
-    working: <Katex display tex="\text{Ray from } (1,0) \text{ through } \mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)" />,
-    reason: <>It starts at 1 (open circle, since z = 1 gives Arg(0), which is undefined) and passes through the next root anticlockwise.</>,
+    working: <Katex display tex="\text{Ray from } 1 \text{ through } \mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)" />,
+    reason: <>It starts at 1, drawn as an open circle: at <Katex tex="z=1" />, <Katex tex="z-1=0" /> and <Katex tex="\mathrm{Arg}(0)" /> is undefined, so the starting point is not on the ray. It then passes through the next root anticlockwise.</>,
   },
   {
     working: <RayOverlay />,
-    reason: <>Drawn on the printed diagram. The ray continues beyond <Katex tex="\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)" />, up and to the left.</>,
+    reason: <>Drawn on the printed diagram. A ray does not stop at <Katex tex="\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)" />: it continues beyond it, up and to the left.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
-    working: <Katex display tex="\mathrm{Arg}(z-z_0) = \theta \ \text{ describes a ray from } z_0" />,
-    reason: <>So <Katex tex="z_0=1" />, the point the ray starts at.</>,
+    working: <Katex display tex="\mathrm{Arg}(z-z_0) = \theta \ \text{ is a ray starting at } z_0 \implies z_0 = 1" />,
+    reason: <>The ray in part d.i. starts at the real root, 1. Here <Katex tex="\theta" /> is the direction of the ray, measured anticlockwise from the positive real direction (pointing right) at <Katex tex="z_0" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{cis}\!\left(\frac{2\pi}{7}\right)-1 = \left(\cos\tfrac{2\pi}{7}-1\right)+i\sin\tfrac{2\pi}{7}" />,
-    reason: <>The direction of the ray. Note <Katex tex="\cos\tfrac{2\pi}{7}-1<0" /> and the imaginary part is positive, so <Katex tex="\theta" /> is in the second quadrant — already ruling out <Katex tex="\tfrac{5\pi}{14}" />.</>,
+    reason: <>The step from 1 to <Katex tex="\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)" /> gives the direction of the ray. Its real part is negative (<Katex tex="\cos\tfrac{2\pi}{7}<1" />) and its imaginary part is positive, so the ray points up and to the left: <Katex tex="\tfrac{\pi}{2}<\theta<\pi" />.</>,
   },
   {
-    working: <Katex display tex="\text{Geometrically: the chord from } 1 \text{ to } \mathrm{cis}\!\left(\tfrac{2\pi}{7}\right) \text{ subtends } \tfrac{2\pi}{7} \text{ at } O" />,
-    reason: <>The triangle formed with the centre is isosceles (both radii are 1).</>,
+    working: <Katex display tex="\begin{aligned}&\text{Triangle } O,\ 1,\ \mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)\text{:}\\ &\text{two sides of length 1,}\\ &\text{angle } \tfrac{2\pi}{7} \text{ at } O\end{aligned}" />,
+    reason: <>To find the exact angle, draw in the centre <Katex tex="O" />. Both sides from <Katex tex="O" /> are radii, so the triangle is isosceles and its other two angles are equal.</>,
   },
   {
-    working: <Katex display tex="\text{Base angles} = \frac{\pi-\tfrac{2\pi}{7}}{2} = \frac{5\pi}{14}" />,
-    reason: <>So the chord makes an angle of <Katex tex="\tfrac{5\pi}{14}" /> with the radius <Katex tex="O\text{-to-}1" />, i.e. with the positive real direction measured <em>at</em> the point 1 looking back towards O.</>,
+    working: <Katex display tex="\text{Angle at } 1 = \frac{\pi-\tfrac{2\pi}{7}}{2} = \frac{5\pi}{14}" />,
+    reason: <>The angles of a triangle add to <Katex tex="\pi" />. This is the angle between the ray and the segment from 1 back to <Katex tex="O" />, which points in the <em>negative</em> real direction.</>,
   },
   {
     working: <Katex display tex="\theta = \pi-\frac{5\pi}{14} = \frac{9\pi}{14}" />,
-    reason: <>Measured from the positive real direction at <Katex tex="z=1" />, the ray points up and to the <em>left</em>. The report notes <Katex tex="\tfrac{5\pi}{14}" /> was a common incorrect angle — it skips this last step.</>,
+    reason: <>Arg is measured from the <em>positive</em> real direction. That direction and the one back to <Katex tex="O" /> form a straight line (<Katex tex="\pi" />), so <Katex tex="\theta" /> is what is left of <Katex tex="\pi" />. The report notes <Katex tex="\tfrac{5\pi}{14}" /> was a common incorrect angle: that is the triangle&apos;s angle, measured from the wrong side, and it is less than <Katex tex="\tfrac{\pi}{2}" />, which row 2 already rules out.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{Arg}(z-1) = \frac{9\pi}{14}}" />,
-    reason: <>Check numerically: <Katex tex="\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)-1=-0.377+0.782i" />, whose argument is <Katex tex="2.020=\tfrac{9\pi}{14}" /> ✓.</>,
+    reason: <>Check numerically: <Katex tex="\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)-1=-0.377+0.782i" />, a second-quadrant number with argument <Katex tex="\pi-\tan^{-1}\!\left(\tfrac{0.782}{0.377}\right)\approx2.020" />, and <Katex tex="\tfrac{9\pi}{14}\approx2.020" /> ✓.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="(z-1)\left(z^6+z^5+z^4+z^3+z^2+z+1\right)" />,
-    reason: <>Expand — the report notes many who attempted long division did not see it through to completion.</>,
+    reason: <>Expand the left side and simplify it to <Katex tex="z^7-1" />. Expanding is quicker and safer than long division: the report notes many who attempted long division did not see it through to completion.</>,
   },
   {
-    working: <Katex display tex="= \left(z^7+z^6+z^5+z^4+z^3+z^2+z\right)-\left(z^6+z^5+z^4+z^3+z^2+z+1\right)" />,
-    reason: <>Multiplying by <Katex tex="z" />, then subtracting the bracket.</>,
+    working: <Katex display tex="\begin{aligned}&= z^7+z^6+z^5+z^4+z^3+z^2+z\\ &\quad-z^6-z^5-z^4-z^3-z^2-z-1\end{aligned}" />,
+    reason: <>Multiply every term of the bracket by <Katex tex="z" /> (first line), then by <Katex tex="-1" /> (second line).</>,
   },
   {
     working: <Katex display tex="\boxed{= z^7-1}" />,
-    reason: <>Everything between telescopes away, leaving the two end terms. As required.</>,
+    reason: <>Each of <Katex tex="z^6,z^5,\ldots,z" /> appears once with a plus and once with a minus, so they cancel, leaving <Katex tex="z^7-1" />. So <Katex tex="z^7-1=0" /> can be written as <Katex tex="(z-1)\left(z^6+\cdots+z+1\right)=0" />. As required.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{cis}\!\left(\frac{12\pi}{7}\right) = \mathrm{cis}\!\left(\frac{12\pi}{7}-2\pi\right) = \mathrm{cis}\!\left(-\frac{2\pi}{7}\right)" />,
-    reason: <>Reduce to a principal argument, and the pairing becomes visible.</>,
+    reason: <>Taking away a full turn (<Katex tex="2\pi" />) does not move the point. Now the two terms have arguments <Katex tex="\pm\tfrac{2\pi}{7}" />: they are conjugates.</>,
   },
   {
-    working: <Katex display tex="\mathrm{cis}(\theta)+\mathrm{cis}(-\theta) = \bigl(\cos\theta+i\sin\theta\bigr)+\bigl(\cos\theta-i\sin\theta\bigr)" />,
-    reason: <>Conjugates: the imaginary parts cancel.</>,
+    working: <Katex display tex="\begin{aligned}&\mathrm{cis}(\theta)+\mathrm{cis}(-\theta)\\ &= \cos\theta+i\sin\theta\\ &\quad+\cos\theta-i\sin\theta\\ &= 2\cos\theta\end{aligned}" />,
+    reason: <>Using <Katex tex="\cos(-\theta)=\cos\theta" /> and <Katex tex="\sin(-\theta)=-\sin\theta" />, the imaginary parts cancel.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{cis}\!\left(\frac{2\pi}{7}\right)+\mathrm{cis}\!\left(\frac{12\pi}{7}\right) = 2\cos\!\left(\frac{2\pi}{7}\right)}" />,
-    reason: <>In the form <Katex tex="A\cos(B\pi)" />: <Katex tex="A=2" /> and <Katex tex="B=\tfrac27" />, both positive as required.</>,
+    reason: <>With <Katex tex="\theta=\tfrac{2\pi}{7}" />, this is <Katex tex="A\cos(B\pi)" /> with <Katex tex="A=2" /> and <Katex tex="B=\tfrac27" />, both positive as required. The report notes students who appeared to use technology were sometimes unsuccessful in converting <Katex tex="2\sin\!\left(\tfrac{3\pi}{14}\right)" /> to a cosine: use <Katex tex="\sin x=\cos\!\left(\tfrac{\pi}{2}-x\right)" />, so <Katex tex="\sin\tfrac{3\pi}{14}=\cos\tfrac{4\pi}{14}=\cos\tfrac{2\pi}{7}" />.</>,
   },
 ]
 
 const ROWS_FII: WorkingRow[] = [
   {
     working: <Katex display tex="w \ne 1 \implies w^6+w^5+w^4+w^3+w^2+w+1 = 0" />,
-    reason: <>From part e.: since <Katex tex="w^7-1=0" /> and the first factor <Katex tex="w-1\ne0" />, the second factor must vanish.</>,
+    reason: <>We are given <Katex tex="(w-1)\left(w^6+\cdots+w+1\right)=0" />. Since <Katex tex="w=\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)\ne1" />, the first factor is not 0, so by the null factor law the second factor is 0.</>,
   },
   {
-    working: <Katex display tex="w^k = \mathrm{cis}\!\left(\frac{2k\pi}{7}\right) \ \text{ by De Moivre}" />,
-    reason: <>Turning the powers into the six non-real roots.</>,
+    working: <Katex display tex="w^k = \left[\mathrm{cis}\!\left(\frac{2\pi}{7}\right)\right]^k = \mathrm{cis}\!\left(\frac{2k\pi}{7}\right)" />,
+    reason: <>De Moivre's theorem, as the question asks: this turns each power of <Katex tex="w" /> into a cis expression.</>,
   },
   {
-    working: <Katex display tex="\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{4\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{6\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{8\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{10\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{12\pi}{7}\right)+1 = 0" />,
-    reason: <>The seven roots sum to zero — which is the whole content of the identity.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&\mathrm{cis}\!\left(\tfrac{12\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{10\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{8\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{6\pi}{7}\right)\\&\quad+\mathrm{cis}\!\left(\tfrac{4\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)+1 = 0\end{aligned}"
+      />
+    ),
+    reason: <>Substituting <Katex tex="k=6,5,\ldots,1" /> into the equation from row 1.</>,
   },
   {
-    working: <Katex display tex="\left[\mathrm{cis}\tfrac{2\pi}{7}+\mathrm{cis}\tfrac{12\pi}{7}\right]+\left[\mathrm{cis}\tfrac{4\pi}{7}+\mathrm{cis}\tfrac{10\pi}{7}\right]+\left[\mathrm{cis}\tfrac{6\pi}{7}+\mathrm{cis}\tfrac{8\pi}{7}\right] = -1" />,
-    reason: <>Pairing each root with its conjugate, exactly as in part f.i.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&\left[\mathrm{cis}\!\left(\tfrac{2\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{12\pi}{7}\right)\right]+\left[\mathrm{cis}\!\left(\tfrac{4\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{10\pi}{7}\right)\right]\\&\quad+\left[\mathrm{cis}\!\left(\tfrac{6\pi}{7}\right)+\mathrm{cis}\!\left(\tfrac{8\pi}{7}\right)\right] = -1\end{aligned}"
+      />
+    ),
+    reason: <>Group each root with its conjugate: <Katex tex="\tfrac{12\pi}{7}=2\pi-\tfrac{2\pi}{7}" />, <Katex tex="\tfrac{10\pi}{7}=2\pi-\tfrac{4\pi}{7}" /> and <Katex tex="\tfrac{8\pi}{7}=2\pi-\tfrac{6\pi}{7}" />. Move the 1 to the right side.</>,
   },
   {
     working: <Katex display tex="2\cos\!\left(\frac{2\pi}{7}\right)+2\cos\!\left(\frac{4\pi}{7}\right)+2\cos\!\left(\frac{6\pi}{7}\right) = -1" />,
-    reason: <>Each bracket collapses by part f.i.</>,
+    reason: <>Each bracket is <Katex tex="\mathrm{cis}(\theta)+\mathrm{cis}(2\pi-\theta)=\mathrm{cis}(\theta)+\mathrm{cis}(-\theta)=2\cos\theta" />, the same working as part f.i.</>,
   },
   {
     working: <Katex display tex="\boxed{\cos\!\left(\frac{2\pi}{7}\right)+\cos\!\left(\frac{4\pi}{7}\right)+\cos\!\left(\frac{6\pi}{7}\right) = -\frac12}" />,
-    reason: <>Dividing by 2. Numerically <Katex tex="0.6235-0.2225-0.9010=-0.5" /> ✓ — but a numerical check is not a proof: the report notes most students did not show the result through a series of logical steps. As required.</>,
+    reason: <>Divide both sides by 2. A numerical check (<Katex tex="0.6235-0.2225-0.9010=-0.5" />) is not a proof: the report notes most students did not show the result arising through a series of logical steps, as rows 1 to 5 do. As required.</>,
   },
 ]
 
@@ -314,16 +332,19 @@ export default function SpecialistQ2_2023Exam2() {
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
         <Background>
           <p>
-            The <Katex tex="n" />th roots of unity sit at the vertices of a regular{' '}
-            <Katex tex="n" />-gon on the unit circle, one of them at <Katex tex="z=1" />. Two
-            consequences drive this question: they come in conjugate pairs (except{' '}
-            <Katex tex="z=1" />), and they sum to zero — the coefficient of{' '}
-            <Katex tex="z^6" /> in <Katex tex="z^7-1" /> is 0.
+            The solutions of <Katex tex="z^n=1" /> (the <Katex tex="n" />th roots of unity) sit
+            at the corners of a regular <Katex tex="n" />-sided polygon on the unit circle, one
+            of them at <Katex tex="z=1" />. Two facts drive this question. They come in
+            conjugate pairs, mirror images in the real axis (except <Katex tex="z=1" />). And
+            for <Katex tex="z^7=1" /> they add to zero: part e. shows every root other than 1
+            satisfies <Katex tex="z^6+z^5+\cdots+z+1=0" />, and with <Katex tex="z=w" /> the
+            terms <Katex tex="1,w,w^2,\ldots,w^6" /> are exactly the seven roots (part b.), so
+            the seven roots add to zero.
           </p>
           <p>
-            Part f. is those two facts put together: pair each root with its conjugate, each
-            pair gives <Katex tex="2\cos" /> of something, and the total must be{' '}
-            <Katex tex="-1" /> once the root <Katex tex="z=1" /> is taken across.
+            Part f. puts the two facts together: pair each root with its conjugate, each pair
+            adds to <Katex tex="2\cos" /> of an angle, and the three pairs total{' '}
+            <Katex tex="-1" /> once the root <Katex tex="z=1" /> is moved across.
           </p>
         </Background>
       </div>
@@ -416,6 +437,9 @@ export default function SpecialistQ2_2023Exam2() {
         examinerReport={EXAM_DII}
       >
         <WorkingTable rows={ROWS_DII} />
+        <Explore title="Arg is measured from the positive real direction, not from the line back to O">
+          <RayAngle />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -466,6 +490,9 @@ export default function SpecialistQ2_2023Exam2() {
         examinerReport={EXAM_FII}
       >
         <WorkingTable rows={ROWS_FII} />
+        <Explore title="Each root plus its conjugate is real: the three pairs add to −1">
+          <ConjugatePairs />
+        </Explore>
       </PartCard>
     </div>
   )

@@ -13,20 +13,20 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{n_1} = 2\underset{\sim}{i}-k\underset{\sim}{j}+3\underset{\sim}{k}, \qquad \underset{\sim}{n_2} = 2k\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}" />,
-    reason: <>The coefficients of <Katex tex="x" />, <Katex tex="y" />, <Katex tex="z" /> in a Cartesian equation <em>are</em> the normal vector.</>,
+    working: <Katex display tex="\begin{aligned}\underset{\sim}{n_1} &= 2\underset{\sim}{i}-k\underset{\sim}{j}+3\underset{\sim}{k}\\ \underset{\sim}{n_2} &= 2k\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\end{aligned}" />,
+    reason: <>In a Cartesian equation <Katex tex="ax+by+cz=d" />, the coefficients <Katex tex="a" />, <Katex tex="b" />, <Katex tex="c" /> are the components of a normal vector — a vector at right angles to the plane. (The number <Katex tex="k" /> in the question has nothing to do with the unit vector <Katex tex="\underset{\sim}{k}" />.)</>,
   },
   {
     working: <Katex display tex="\text{Planes perpendicular} \iff \underset{\sim}{n_1}\cdot\underset{\sim}{n_2} = 0" />,
-    reason: <>The angle between two planes is the angle between their normals.</>,
+    reason: <>Each normal sticks straight out of its own plane, so the two planes meet at right angles exactly when their normals do. Two vectors are perpendicular when their dot product is 0.</>,
   },
   {
     working: <Katex display tex="(2)(2k)+(-k)(3)+(3)(-2) = 0" />,
-    reason: <>Component by component.</>,
+    reason: <>Multiply the matching <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" />, <Katex tex="\underset{\sim}{k}" /> components and add.</>,
   },
   {
     working: <Katex display tex="4k-3k-6 = 0 \implies k-6 = 0" />,
-    reason: <>The <Katex tex="k" /> terms very nearly cancel, leaving a linear equation.</>,
+    reason: <>Collect the <Katex tex="k" /> terms: <Katex tex="4k-3k=k" />, so the equation is linear in <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 6}" />,

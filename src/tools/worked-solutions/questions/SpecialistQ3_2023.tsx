@@ -13,28 +13,28 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="a+\sec(x) = 0 \implies \sec(x) = -a \implies \cos(x) = -\frac1a" />,
-    reason: <>Turning the secant into a cosine makes the counting easy. Note <Katex tex="a\ne0" /> is forced, since <Katex tex="\sec(x)" /> is never 0.</>,
+    working: <Katex display tex="\begin{aligned} a+\sec(x) &= 0 \\ \sec(x) &= -a \\ \cos(x) &= -\frac1a \end{aligned}" />,
+    reason: <><Katex tex="x" />-intercepts are where <Katex tex="y=0" />. Since <Katex tex="\sec(x)=\tfrac{1}{\cos(x)}" />, taking reciprocals turns this into a cosine equation, whose solutions are easier to count. This needs <Katex tex="a\ne0" />, but <Katex tex="a=0" /> gives no intercepts anyway, since <Katex tex="\sec(x)" /> is never 0.</>,
   },
   {
-    working: <Katex display tex="\text{On } [-\pi,\pi]: \ \cos(x) = k \text{ has 2 solutions if } -1\le k<1, \ 1 \text{ if } k=1, \ 0 \text{ if } |k|>1" />,
-    reason: <>Cosine is even, so solutions come in pairs <Katex tex="\pm x_0" /> — except at <Katex tex="k=1" />, where the pair collapses to <Katex tex="x=0" />. At <Katex tex="k=-1" /> the two endpoints <Katex tex="\pm\pi" /> are both included.</>,
+    working: <Katex display tex="\begin{gathered} \cos(x)=k \text{ on } [-\pi,\pi]: \\ \begin{aligned} -1\le k<1 &:\ \text{2 solutions} \\ k=1 &:\ \text{1 solution} \\ |k|>1 &:\ \text{none} \end{aligned} \end{gathered}" />,
+    reason: <>Picture <Katex tex="y=\cos(x)" />: it rises from <Katex tex="-1" /> at <Katex tex="x=-\pi" /> to 1 at <Katex tex="x=0" />, then falls back to <Katex tex="-1" /> at <Katex tex="x=\pi" />. Cosine is even, so solutions come in pairs <Katex tex="\pm x_0" />, except at <Katex tex="k=1" />, where the pair collapses to <Katex tex="x=0" />. At <Katex tex="k=-1" /> the pair is the two endpoints <Katex tex="\pm\pi" />, and both are included. (<Katex tex="k=0" /> would give <Katex tex="x=\pm\tfrac\pi2" />, where <Katex tex="\sec(x)" /> isn't defined, but <Katex tex="k=-\tfrac1a" /> is never 0.)</>,
   },
   {
     working: <Katex display tex="k = -\frac1a: \quad |k|\le1 \iff |a|\ge1" />,
-    reason: <>Outside this there are no intercepts at all.</>,
+    reason: <>For any intercepts at all we need <Katex tex="-1\le k\le1" />. Since <Katex tex="|k|=\tfrac{1}{|a|}" />, this means <Katex tex="|a|\ge1" />. For <Katex tex="-1<a<1" /> there are no intercepts.</>,
   },
   {
-    working: <Katex display tex="k = 1 \iff a = -1 \ \text{(one solution only — excluded)}" />,
-    reason: <>The single tangential crossing at <Katex tex="x=0" />.</>,
+    working: <Katex display tex="\begin{gathered} a=-1 \implies k=1: \\ \text{one solution } (x=0) \end{gathered}" />,
+    reason: <>Excluded. The graph of <Katex tex="y=-1+\sec(x)" /> just touches the <Katex tex="x" />-axis at <Katex tex="x=0" />, the bottom of its middle branch, so there is only one intercept.</>,
   },
   {
-    working: <Katex display tex="k = -1 \iff a = 1 \ \text{(two solutions, } x=\pm\pi\text{ — included)}" />,
-    reason: <>Both endpoints of the closed interval count, which is why the answer has a closed bracket on one side only.</>,
+    working: <Katex display tex="\begin{gathered} a=1 \implies k=-1: \\ \text{two solutions } (x=\pm\pi) \end{gathered}" />,
+    reason: <>Included. <Katex tex="\sec(\pm\pi)=-1" />, so <Katex tex="y=1+\sec(x)" /> is 0 exactly at the two endpoints. The interval <Katex tex="-\pi\le x\le\pi" /> is closed, so both count.</>,
   },
   {
     working: <Katex display tex="\boxed{a < -1 \ \text{ or } \ a \ge 1}" />,
-    reason: <>Matches option <b>E</b>. The asymmetry is the whole question: <Katex tex="a=1" /> works and <Katex tex="a=-1" /> does not. Option <b>C</b> has the brackets the other way round.</>,
+    reason: <>Matches option <b>E</b>: take <Katex tex="|a|\ge1" /> and remove <Katex tex="a=-1" />. The asymmetry is the whole question: <Katex tex="a=1" /> works and <Katex tex="a=-1" /> does not. Option <b>C</b> has the brackets the other way round, and option <b>B</b> is exactly the set of values that give no intercepts at all.</>,
   },
 ]
 

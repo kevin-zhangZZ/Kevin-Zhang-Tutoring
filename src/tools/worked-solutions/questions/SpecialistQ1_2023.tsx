@@ -14,11 +14,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P \implies Q \quad\text{has contrapositive}\quad \lnot Q \implies \lnot P" />,
-    reason: <>Negate both statements and reverse the arrow. The contrapositive is always logically equivalent to the original.</>,
+    reason: <>The contrapositive negates both parts and swaps them (<Katex tex="\lnot P" /> means "not <Katex tex="P" />"). It always says the same thing as the original: if <Katex tex="Q" /> is false, then <Katex tex="P" /> can't have happened, because <Katex tex="P" /> would have forced <Katex tex="Q" />.</>,
   },
   {
-    working: <Katex display tex="P: \text{my team plays badly}; \qquad Q: \text{they are not training enough}" />,
-    reason: <>Name the two parts before touching them.</>,
+    working: <Katex display tex="\begin{aligned} P&: \text{my team plays badly} \\ Q&: \text{they are not training enough} \end{aligned}" />,
+    reason: <>Name the "if" part <Katex tex="P" /> and the "then" part <Katex tex="Q" /> before negating anything.</>,
   },
   {
     working: <Katex display tex="\lnot Q: \text{they } \textbf{are} \text{ training enough}" />,
@@ -29,8 +29,8 @@ const ROWS: WorkingRow[] = [
     reason: <>And the negation of the first part.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{If they are training enough, then my football team does not play badly.}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> is the <em>converse</em> (swapped, not negated) and option <b>D</b> is the <em>inverse</em> (negated, not swapped); neither is equivalent to the original.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}\text{If they are training enough, then my} \\ \text{football team does not play badly.}\end{gathered}}" />,
+    reason: <>Matches option <b>C</b>. Option <b>A</b> is the <em>converse</em> (swapped, not negated) and option <b>D</b> is the <em>inverse</em> (negated, not swapped); neither is equivalent to the original. Option <b>B</b> just restates the original (needing more training means not training enough), and <b>E</b> brings in winning, which the original never mentions.</>,
   },
 ]
 

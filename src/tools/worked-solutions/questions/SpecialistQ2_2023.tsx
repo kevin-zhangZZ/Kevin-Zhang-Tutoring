@@ -13,28 +13,28 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\frac{x^3}{ax^2+bx+c} = \frac{x}{a}-\frac{b}{a^2}+\frac{\text{remainder}}{ax^2+bx+c}" />,
-    reason: <>Long division: a cubic over a quadratic gives a linear quotient, which is the oblique asymptote.</>,
+    working: <Katex display tex="\frac{x^3}{ax^2+bx+c} = 2x+1+\frac{px+q}{ax^2+bx+c}" />,
+    reason: <>An oblique asymptote is the quotient you get when you divide the numerator by the denominator. What's left over is a remainder fraction whose numerator (at most linear, <Katex tex="px+q" />) has lower degree than its quadratic denominator, so it <Katex tex="\to 0" /> as <Katex tex="x\to\pm\infty" />. So the function must be <Katex tex="2x+1" /> plus such a fraction, for some constants <Katex tex="p" /> and <Katex tex="q" />.</>,
   },
   {
-    working: <Katex display tex="\frac{x}{a}-\frac{b}{a^2} = 2x+1" />,
-    reason: <>Match the quotient to the given asymptote.</>,
+    working: <Katex display tex="\begin{aligned} x^3 &= (2x+1)(ax^2+bx+c) \\ &\qquad +px+q \\ &= 2ax^3+(a+2b)x^2 \\ &\qquad +(b+2c+p)x+c+q \end{aligned}" />,
+    reason: <>Multiply both sides by <Katex tex="ax^2+bx+c" /> to clear the fractions, then expand. This avoids long division with unknown coefficients.</>,
   },
   {
-    working: <Katex display tex="\frac1a = 2 \implies a = \frac12" />,
-    reason: <>The gradient.</>,
+    working: <Katex display tex="\begin{aligned} 2a &= 1, & a &= \tfrac12 \\ a+2b &= 0, & b &= -\tfrac14 \end{aligned}" />,
+    reason: <>Both sides are the same polynomial, so equate coefficients. The left side has <Katex tex="1x^3" /> and <Katex tex="0x^2" />, so the <Katex tex="x^3" /> terms give <Katex tex="2a=1" /> and the <Katex tex="x^2" /> terms give <Katex tex="a+2b=0" />. The <Katex tex="x" /> and constant terms only fix <Katex tex="p" /> and <Katex tex="q" />, so they can't give <Katex tex="c" />; that has to come from the vertical asymptote.</>,
   },
   {
-    working: <Katex display tex="-\frac{b}{a^2} = -\frac{b}{1/4} = -4b = 1 \implies b = -\frac14" />,
-    reason: <>The intercept: <Katex tex="a^2=\tfrac14" />, not <Katex tex="\tfrac12" />.</>,
+    working: <Katex display tex="\begin{aligned} a(1)^2+b(1)+c &= 0 \\ \tfrac12-\tfrac14+c &= 0 \\ c &= -\tfrac14 \end{aligned}" />,
+    reason: <>A vertical asymptote of a rational function is where the denominator is zero (and the numerator isn't), so the denominator must be 0 at <Katex tex="x=1" />.</>,
   },
   {
-    working: <Katex display tex="x=1 \text{ is a vertical asymptote} \implies a+b+c = 0" />,
-    reason: <>The denominator must vanish there.</>,
+    working: <Katex display tex="\tfrac12x^2-\tfrac14x-\tfrac14 = \tfrac14(2x+1)(x-1)" />,
+    reason: <>Check: the denominator is 0 at <Katex tex="x=1" /> while the numerator <Katex tex="1^3=1" /> isn't, so <Katex tex="x=1" /> really is an asymptote (not a hole). The graph also has a second vertical asymptote, <Katex tex="x=-\tfrac12" />; the question only needs <Katex tex="x=1" /> to be one of them.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \frac12, \quad b = -\frac14, \quad c = -\frac14}" />,
-    reason: <>Matches option <b>B</b>: <Katex tex="\tfrac12-\tfrac14+c=0" />. Check: the denominator factorises as <Katex tex="\tfrac14(2x+1)(x-1)" />, so <Katex tex="x=1" /> really is an asymptote.</>,
+    reason: <>Matches option <b>B</b>. Options <b>A</b> and <b>E</b> have <Katex tex="a=2" />, which gives the oblique asymptote <Katex tex="y=\tfrac x2+1" /> (gradient <Katex tex="\tfrac12" />, not 2). Option <b>C</b> has the sign of <Katex tex="b" /> flipped, which gives <Katex tex="y=2x-1" />. Option <b>D</b> has the right <Katex tex="a" /> and <Katex tex="b" />, but its denominator <Katex tex="\tfrac14(x+1)(2x-3)" /> is zero at <Katex tex="x=-1" />, not <Katex tex="x=1" />.</>,
   },
 ]
 
