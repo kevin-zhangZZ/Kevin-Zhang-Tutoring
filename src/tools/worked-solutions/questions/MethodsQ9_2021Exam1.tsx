@@ -3,12 +3,25 @@
 // out. The hardest question on the paper: parts b.i. and b.ii. averaged 0.1 marks each.
 // Question text transcribed from the original paper; both figures are crops of VCAA's own
 // artwork. Answers checked with sympy and against the VCAA examination report. Solution is
-// original.
+// original. Methods-only methods throughout: b.i. uses the discriminant of the intersection
+// quadratic (not the point–line distance formula) and b.ii. the y-intercept of h (not sum/product
+// of roots). Interactive diagrams (§15): b.i. drags q so h pivots about A, with Δ = 36(1 − q²)
+// deciding the intersections (meth-2021e1-q9bi-pivot); b.ii. finds where both intersections are in
+// the first quadrant via h(0) against 1 (meth-2021e1-q9bii-first-quadrant); c.i. sweeps q to show θ
+// filling (0, π/3] (meth-2021e1-q9ci-theta-range); c.ii. graphs g on its domain against the
+// g′(θ) = 0 trap (meth-2021e1-q9cii-endpoint-max). Part a. has none: its marks were lost on
+// setting out.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
 import circleSrc from './meth-2021e1-q9-circle.png'
 import triangleSrc from './meth-2021e1-q9c-triangle.png'
+
+const PivotWidget = lazyWidget(() => import('../interactives/meth-2021e1-q9bi-pivot'))
+const FirstQuadrantWidget = lazyWidget(() => import('../interactives/meth-2021e1-q9bii-first-quadrant'))
+const ThetaRangeWidget = lazyWidget(() => import('../interactives/meth-2021e1-q9ci-theta-range'))
+const EndpointMaxWidget = lazyWidget(() => import('../interactives/meth-2021e1-q9cii-endpoint-max'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [78, 9, 13],
@@ -81,124 +94,128 @@ const EXAM_CII: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="OP \perp AP \ \text{ (a tangent is perpendicular to the radius at the point of contact)}" />,
-    reason: <>So <Katex tex="OPA" /> is a right-angled triangle, with the right angle at <Katex tex="P" /> — the diagram marks it.</>,
+    working: <Katex display tex="OP \perp AP \quad \text{(tangent} \perp \text{radius)}" />,
+    reason: <>A tangent always meets the radius at the point of contact at right angles, and the diagram marks this at <Katex tex="P" />. So triangle <Katex tex="OPA" /> is right-angled at <Katex tex="P" />, and right-angle trigonometry can find the angle at <Katex tex="O" />. Draw the triangle and label its sides and angle: the report notes that most students did not.</>,
   },
   {
-    working: <Katex display tex="OP = 1, \quad OA = 2 \implies \cos(\angle AOP) = \tfrac{OP}{OA} = \tfrac12" />,
-    reason: <>The radius over the hypotenuse. Treating this as trigonometry beats differentiating <Katex tex="y=\sqrt{1-x^2}" />, whose derivative does not even exist at <Katex tex="x=2" />.</>,
+    working: <Katex display tex="OP = 1, \quad OA = 2 \implies \cos(\angle AOP) = \frac{OP}{OA} = \frac12" />,
+    reason: <><Katex tex="OP" /> is a radius of the unit circle, so <Katex tex="OP=1" />, and <Katex tex="OA=2" /> because <Katex tex="A" /> is <Katex tex="(2,0)" />. Seen from the angle at <Katex tex="O" />, <Katex tex="OP" /> is the adjacent side and <Katex tex="OA" /> (opposite the right angle) is the hypotenuse, so use cosine.</>,
   },
   {
-    working: <Katex display tex="\angle AOP = \tfrac\pi3" />,
-    reason: <>The angle <Katex tex="OP" /> makes with the positive <Katex tex="x" />-axis.</>,
+    working: <Katex display tex="\angle AOP = \cos^{-1}\!\left(\tfrac12\right) = \tfrac\pi3" />,
+    reason: <>An exact value. Since <Katex tex="OA" /> lies along the positive <Katex tex="x" />-axis, this is the angle <Katex tex="OP" /> makes with the positive <Katex tex="x" />-axis.</>,
   },
   {
     working: <Katex display tex="P = \left(\cos\tfrac\pi3,\ \sin\tfrac\pi3\right) = \left(\tfrac12,\ \tfrac{\sqrt3}{2}\right)" />,
-    reason: <><Katex tex="P" /> is on the unit circle, so its coordinates are just the cosine and sine of that angle.</>,
+    reason: <>A point on the unit circle at angle <Katex tex="\theta" /> from the positive <Katex tex="x" />-axis has coordinates <Katex tex="(\cos\theta,\sin\theta)" />.</>,
   },
   {
     working: <Katex display tex="m_{AP} = \frac{\tfrac{\sqrt3}{2}-0}{\tfrac12-2} = \frac{\tfrac{\sqrt3}{2}}{-\tfrac32} = -\frac{1}{\sqrt3}" />,
-    reason: <>Or, since <Katex tex="m_{OP}=\tan\tfrac\pi3=\sqrt3" /> and <Katex tex="AP\perp OP" />, take the negative reciprocal.</>,
+    reason: <>The gradient formula with <Katex tex="A(2,0)" /> and <Katex tex="P" />. (Or: <Katex tex="m_{OP}=\tan\tfrac\pi3=\sqrt3" />, and <Katex tex="AP\perp OP" />, so take the negative reciprocal.) Don't differentiate <Katex tex="y=\sqrt{1-x^2}" /> and substitute <Katex tex="x=2" />: its derivative only exists for <Katex tex="-1<x<1" />, and the gradient you want is at <Katex tex="P" />, not at <Katex tex="A" />. The report flags this error.</>,
   },
   {
     working: <Katex display tex="y-0 = -\frac{1}{\sqrt3}(x-2)" />,
-    reason: <>Point–gradient form through <Katex tex="A(2,0)" />.</>,
+    reason: <>Point–gradient form, <Katex tex="y-y_1=m(x-x_1)" />, through <Katex tex="A(2,0)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -\frac{x}{\sqrt3}+\frac{2}{\sqrt3}}" />,
-    reason: <>As required. Write every step out, with the angle named — the report notes many students did not show how they found the angle or <Katex tex="P" />, and that angles were rarely defined or labelled on diagrams.</>,
+    reason: <>Expanding the bracket. Every step is written out, with the angle named and found: the report notes many students did not show how they found the angle or <Katex tex="P" />. As required.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="T\!\begin{bmatrix}x\\y\end{bmatrix} = \begin{bmatrix}x\\qy\end{bmatrix}" />,
-    reason: <>A dilation by factor <Katex tex="q" /> from the <Katex tex="x" />-axis; horizontal positions are untouched.</>,
+    reason: <>Multiplying out the matrix: the <Katex tex="x" />-coordinate is unchanged and the <Katex tex="y" />-coordinate is multiplied by <Katex tex="q" />. This is a dilation by factor <Katex tex="q" /> from the <Katex tex="x" />-axis.</>,
   },
   {
-    working: <Katex display tex="Y = qy = q\left(-\frac{X}{\sqrt3}+\frac{2}{\sqrt3}\right) \implies h(x) = \frac{q}{\sqrt3}(2-x)" />,
-    reason: <>Every image point still satisfies <Katex tex="Y=0" /> at <Katex tex="X=2" />, so the line pivots about <Katex tex="A(2,0)" /> as <Katex tex="q" /> changes. That is the picture to hold.</>,
+    working: <Katex display tex="x' = x,\ \ y' = qy \implies x = x',\ \ y = \frac{y'}{q}" />,
+    reason: <>Call the image point <Katex tex="(x',y')" />, then make the original <Katex tex="x" /> and <Katex tex="y" /> the subjects: they are what satisfy the line's equation. Dividing by <Katex tex="q" /> is fine because <Katex tex="q\ne0" />.</>,
   },
   {
-    working: <Katex display tex="\text{distance from } O \text{ to } h = \frac{\left|\tfrac{2q}{\sqrt3}\right|}{\sqrt{\tfrac{q^2}{3}+1}} = \frac{2|q|}{\sqrt{q^2+3}}" />,
-    reason: <>Writing <Katex tex="h" /> as <Katex tex="\tfrac{q}{\sqrt3}x+y-\tfrac{2q}{\sqrt3}=0" /> and using the point–line distance formula.</>,
+    working: <Katex display tex="\frac{y'}{q} = -\frac{x'}{\sqrt3}+\frac{2}{\sqrt3} \implies h(x) = \frac{q}{\sqrt3}(2-x)" />,
+    reason: <>Substitute into the line from part a, make <Katex tex="y'" /> the subject, then drop the dashes. Notice <Katex tex="h(2)=0" /> for every <Katex tex="q" />: <Katex tex="A(2,0)" /> never moves, so as <Katex tex="q" /> changes the line <b>pivots about <Katex tex="A" /></b>. Drag <Katex tex="q" /> in the diagram below to see it.</>,
   },
   {
-    working: <Katex display tex="\text{at least one intersection} \iff \text{distance} \le 1" />,
-    reason: <>The line meets the unit circle exactly when it comes within one unit of the centre.</>,
+    working: <Katex display tex="x^2+\frac{q^2}{3}(2-x)^2 = 1" />,
+    reason: <>An intersection is a point on both graphs, so substitute <Katex tex="y=h(x)" /> into <Katex tex="x^2+y^2=1" />.</>,
   },
   {
-    working: <Katex display tex="\frac{4q^2}{q^2+3} \le 1 \implies 4q^2 \le q^2+3 \implies q^2 \le 1" />,
-    reason: <>Squaring is safe — both sides are non-negative.</>,
+    working: <Katex display tex="\begin{aligned} 3x^2+q^2\left(4-4x+x^2\right) &= 3 \\ \left(3+q^2\right)x^2-4q^2x+\left(4q^2-3\right) &= 0 \end{aligned}" />,
+    reason: <>Multiply both sides by 3, expand <Katex tex="(2-x)^2" /> and collect powers of <Katex tex="x" />. This is a quadratic in <Katex tex="x" />, and each real solution gives one intersection point.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} \Delta &= \left(-4q^2\right)^2-4\left(3+q^2\right)\left(4q^2-3\right) \\ &= 16q^4-4\left(4q^4+9q^2-9\right) \\ &= 36\left(1-q^2\right) \end{aligned}" />,
+    reason: <>The discriminant <Katex tex="b^2-4ac" /> with <Katex tex="a=3+q^2" />, <Katex tex="b=-4q^2" /> and <Katex tex="c=4q^2-3" />. The <Katex tex="q^4" /> terms cancel.</>,
+  },
+  {
+    working: <Katex display tex="\Delta \ge 0 \iff 1-q^2 \ge 0 \iff -1 \le q \le 1" />,
+    reason: <>A quadratic has at least one real solution exactly when <Katex tex="\Delta\ge0" />. In the picture: <Katex tex="q=\pm1" /> gives gradient <Katex tex="\mp\tfrac{1}{\sqrt3}" />, the tangent from part a and its reflection in the <Katex tex="x" />-axis. Any steeper line through <Katex tex="A" /> misses the circle.</>,
   },
   {
     working: <Katex display tex="\boxed{q \in [-1,0) \cup (0,1]}" />,
-    reason: <>Zero must be excluded: the question says <Katex tex="q\in R\setminus\{0\}" />, and <Katex tex="q=0" /> would collapse the line onto the <Katex tex="x" />-axis anyway. Writing <Katex tex="[-1,1]" /> is the report's named slip.</>,
+    reason: <>The question says <Katex tex="q\in R\setminus\{0\}" />, so <Katex tex="0" /> must be removed from <Katex tex="[-1,1]" />. Leaving it in is the slip the report names.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
-    working: <Katex display tex="x^2+\frac{q^2}{3}(2-x)^2 = 1" />,
-    reason: <>Substituting <Katex tex="h" /> into the unit circle.</>,
+    working: <Katex display tex="x \le 1 \text{ on the circle} \implies 2-x > 0 \implies q > 0" />,
+    reason: <>For the <Katex tex="y" />-coordinates <Katex tex="h(x)=\tfrac{q}{\sqrt3}(2-x)" /> to be positive: every point on the unit circle has <Katex tex="x\le1" />, so <Katex tex="2-x" /> is positive there, and the sign of <Katex tex="h(x)" /> is the sign of <Katex tex="q" />.</>,
   },
   {
-    working: <Katex display tex="\left(3+q^2\right)x^2-4q^2x+\left(4q^2-3\right) = 0" />,
-    reason: <>Clearing the fraction and collecting. A quadratic, so at most two intersections.</>,
+    working: <Katex display tex="\text{two intersections} \iff \Delta > 0 \iff -1 < q < 1" />,
+    reason: <>From part b.i. At <Katex tex="q=1" />, <Katex tex="\Delta=0" />: the line is the tangent at <Katex tex="P" />, which meets the circle only once. So far, <Katex tex="0<q<1" />.</>,
   },
   {
-    working: <Katex display tex="\text{two intersections} \iff \Delta = 36\left(1-q^2\right) > 0 \iff |q| < 1" />,
-    reason: <>At <Katex tex="|q|=1" /> the line is tangent, giving only one point.</>,
+    working: <Katex display tex="h(0) = \frac{2q}{\sqrt3}" />,
+    reason: <>Now the <Katex tex="x" />-coordinates. Look at where the line crosses the <Katex tex="y" />-axis. If <Katex tex="h(0)<1" />, that crossing is inside the circle, so heading left the line must leave the circle at a point with <Katex tex="x<0" />. If <Katex tex="h(0)>1" />, then (since <Katex tex="h" /> is decreasing) <Katex tex="h(x)>1" /> for every <Katex tex="x\le0" />, so the line is above the circle there and both intersections have <Katex tex="x>0" />.</>,
   },
   {
-    working: <Katex display tex="x_1x_2 = \frac{4q^2-3}{3+q^2} > 0 \iff q^2 > \tfrac34 \iff |q| > \tfrac{\sqrt3}{2}" />,
-    reason: <>Both <Katex tex="x" />-coordinates positive means their product is positive; their sum <Katex tex="\tfrac{4q^2}{3+q^2}" /> is automatically positive.</>,
-  },
-  {
-    working: <Katex display tex="y = \frac{q}{\sqrt3}(2-x) \text{ with } x\le1 \implies \operatorname{sign}(y) = \operatorname{sign}(q)" />,
-    reason: <>On the unit circle <Katex tex="x\le1" />, so <Katex tex="2-x>0" /> always — the <Katex tex="y" />-coordinates are positive exactly when <Katex tex="q>0" />.</>,
+    working: <Katex display tex="h(0) > 1 \iff \frac{2q}{\sqrt3} > 1 \iff q > \frac{\sqrt3}{2}" />,
+    reason: <>Multiply both sides by <Katex tex="\tfrac{\sqrt3}{2}" />. At <Katex tex="q=\tfrac{\sqrt3}{2}" /> exactly, <Katex tex="h(0)=1" />: the line passes through <Katex tex="(0,1)" />, an intersection with <Katex tex="x=0" />, which is not positive. (Check: <Katex tex="q^2=\tfrac34" /> makes <Katex tex="c=4q^2-3=0" />, so <Katex tex="x=0" /> solves the quadratic.)</>,
   },
   {
     working: <Katex display tex="\boxed{q \in \left(\tfrac{\sqrt3}{2},\ 1\right)}" />,
-    reason: <>Both ends open: at <Katex tex="q=\tfrac{\sqrt3}{2}" /> one intersection slides onto <Katex tex="x=0" /> (not positive), and at <Katex tex="q=1" /> the two collapse into one.</>,
+    reason: <>Combining <Katex tex="q>\tfrac{\sqrt3}{2}" /> with <Katex tex="0<q<1" />. Both ends are open: at <Katex tex="q=\tfrac{\sqrt3}{2}" /> one intersection is <Katex tex="(0,1)" />, and at <Katex tex="q=1" /> there is only one intersection. The report says some students found these endpoints but wrote the wrong interval, so test each endpoint like this.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="P' = (\cos\theta,\ \sin\theta)" />,
-    reason: <><Katex tex="P'" /> is on the unit circle, and <Katex tex="\theta" /> is the angle it makes at <Katex tex="O" /> with the positive <Katex tex="x" />-axis.</>,
+    reason: <><Katex tex="P'" /> is on the unit circle, and <Katex tex="\theta" /> is the angle <Katex tex="OP'" /> makes with the positive <Katex tex="x" />-axis (marked on the diagram), just as for <Katex tex="P" /> in part a.</>,
   },
   {
-    working: <Katex display tex="\text{area} = \tfrac12\times OA\times\text{height} = \tfrac12\times2\times\sin\theta" />,
-    reason: <>Taking <Katex tex="OA" /> along the <Katex tex="x" />-axis as the base, the height is just the <Katex tex="y" />-coordinate of <Katex tex="P'" />.</>,
+    working: <Katex display tex="\text{area} = \tfrac12\times OA\times\text{height} = \tfrac12\times2\times\sin\theta = \sin\theta" />,
+    reason: <>Take <Katex tex="OA" /> (along the <Katex tex="x" />-axis, length 2) as the base. The perpendicular height is the distance from <Katex tex="P'" /> down to the <Katex tex="x" />-axis, which is its <Katex tex="y" />-coordinate, <Katex tex="\sin\theta" />.</>,
   },
   {
-    working: <Katex display tex="\text{area} = \sin\theta" />,
-    reason: <>The 2 and the <Katex tex="\tfrac12" /> cancel exactly.</>,
+    working: <Katex display tex="q\to0^+:\ P'\to(1,0),\ \theta\to0" />,
+    reason: <>The domain is every value <Katex tex="\theta" /> can take while <Katex tex="0<q\le1" />, so check the two ends of the range of <Katex tex="q" />. As <Katex tex="q\to0^+" /> the line flattens toward the <Katex tex="x" />-axis. But <Katex tex="q=0" /> is not allowed, so <Katex tex="\theta=0" /> is never reached: open bracket.</>,
   },
   {
-    working: <Katex display tex="q\to0^+ \Rightarrow P'\to(1,0) \Rightarrow \theta\to0; \quad q=1 \Rightarrow P'=P \Rightarrow \theta = \tfrac\pi3" />,
-    reason: <>Tracking the endpoints of <Katex tex="0<q\le1" /> gives the domain — the report notes very few students stated it.</>,
+    working: <Katex display tex="q=1:\ P'=P,\ \theta=\tfrac\pi3" />,
+    reason: <>At <Katex tex="q=1" />, <Katex tex="h" /> is the original tangent, so <Katex tex="P'=P" /> from part a. <Katex tex="q=1" /> is allowed, so <Katex tex="\tfrac\pi3" /> is included: closed bracket. In between, as <Katex tex="q" /> increases the line steepens about <Katex tex="A" /> and <Katex tex="P'" /> slides up the arc from <Katex tex="(1,0)" /> to <Katex tex="P" />, so <Katex tex="\theta" /> takes every value between.</>,
   },
   {
     working: <Katex display tex="\boxed{g:\left(0,\tfrac\pi3\right]\to R, \ g(\theta) = \sin(\theta)}" />,
-    reason: <>A <em>function</em> needs its domain. Note the variable is <Katex tex="\theta" />, not <Katex tex="x" />.</>,
+    reason: <>Defining a function means giving its domain, codomain and rule: the report notes very few students stated the domain. Keep <Katex tex="\theta" /> as the variable throughout. <Katex tex="g(x)=\sin\theta" /> is another error the report names.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="g'(\theta) = \cos\theta > 0 \ \text{ for } \theta\in\left(0,\tfrac\pi3\right]" />,
-    reason: <>Strictly increasing across the whole domain, so there is no interior turning point — solving <Katex tex="\cos\theta=0" /> gives <Katex tex="\theta=\tfrac\pi2" />, which is outside it.</>,
+    reason: <><Katex tex="\cos\theta" /> is positive for every <Katex tex="\theta" /> between <Katex tex="0" /> and <Katex tex="\tfrac\pi2" />, which covers the whole domain from part c.i. So <Katex tex="g" /> is strictly increasing on its domain and has no stationary point inside it. (Solving <Katex tex="\cos\theta=0" /> gives <Katex tex="\theta=\tfrac\pi2" />, which is outside the domain.)</>,
   },
   {
     working: <Katex display tex="\text{maximum at the right endpoint } \theta = \tfrac\pi3" />,
-    reason: <>An increasing function on a half-open interval attains its maximum at the closed end.</>,
+    reason: <>An increasing function is largest at the largest <Katex tex="\theta" /> in its domain, and <Katex tex="\tfrac\pi3" /> is included (closed bracket).</>,
   },
   {
     working: <Katex display tex="\boxed{\text{maximum area} = \sin\!\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}}" />,
-    reason: <>About 0.866 square units. Differentiating blindly produces <Katex tex="A=1" />, the report's common wrong answer — and it corresponds to <Katex tex="P'" /> at the top of the circle, which this family of lines never reaches.</>,
+    reason: <>About 0.866 square units. Solving <Katex tex="g'(\theta)=0" /> instead gives <Katex tex="\theta=\tfrac\pi2" /> and <Katex tex="A=1" />, the report's common wrong answer: that would need <Katex tex="P'" /> at the top of the circle, <Katex tex="(0,1)" />, but <Katex tex="P'" /> never gets past <Katex tex="P" />.</>,
   },
 ]
 
@@ -259,6 +276,9 @@ export default function MethodsQ9_2021Exam1() {
         examinerReport={EXAM_BI}
       >
         <WorkingTable rows={ROWS_BI} />
+        <Explore title="Why |q| stops at 1: the line pivots about A">
+          <PivotWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -276,6 +296,9 @@ export default function MethodsQ9_2021Exam1() {
         examinerReport={EXAM_BII}
       >
         <WorkingTable rows={ROWS_BII} />
+        <Explore title="Where both intersections are in the first quadrant">
+          <FirstQuadrantWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
@@ -306,6 +329,9 @@ export default function MethodsQ9_2021Exam1() {
         examinerReport={EXAM_CI}
       >
         <WorkingTable rows={ROWS_CI} />
+        <Explore title="Where θ can go: the domain of g">
+          <ThetaRangeWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -320,6 +346,9 @@ export default function MethodsQ9_2021Exam1() {
         examinerReport={EXAM_CII}
       >
         <WorkingTable rows={ROWS_CII} />
+        <Explore title="Why the maximum is at the endpoint, not where g′(θ) = 0">
+          <EndpointMaxWidget />
+        </Explore>
       </PartCard>
     </div>
   )

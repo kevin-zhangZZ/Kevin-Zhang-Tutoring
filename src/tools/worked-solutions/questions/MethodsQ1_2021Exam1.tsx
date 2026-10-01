@@ -33,42 +33,113 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = 2e^{-3x}" />,
-    reason: <>The 2 is just a multiplier; the chain rule acts on the exponent.</>,
+    reason: (
+      <>
+        The 2 is a constant multiplier, so it just stays in front. The power of{' '}
+        <Katex tex="e" /> is <Katex tex="-3x" />, not plain <Katex tex="x" />, so the chain rule
+        applies: <Katex tex="e^{-3x}" /> differentiates to itself times the derivative of its
+        power.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = 2\cdot(-3)e^{-3x}" />,
-    reason: <><Katex tex="\frac{d}{dx}e^{ax}=ae^{ax}" />, with <Katex tex="a=-3" />.</>,
+    working: <Katex display tex="\frac{dy}{dx} = 2\times(-3)e^{-3x}" />,
+    reason: (
+      <>
+        The rule <Katex tex="\frac{d}{dx}e^{ax}=ae^{ax}" /> (on the formula sheet), with{' '}
+        <Katex tex="a=-3" />, the derivative of the power <Katex tex="-3x" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -6e^{-3x}}" />,
-    reason: <>Equivalently <Katex tex="-\dfrac{6}{e^{3x}}" />.</>,
+    reason: (
+      <>
+        <Katex tex="2\times(-3)=-6" />. The report also accepts the equivalent form{' '}
+        <Katex tex="-\dfrac{6}{e^{3x}}" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = x\sqrt{2x+1} = x(2x+1)^{1/2}" />,
-    reason: <>A product of x and a square root, so the product rule — with a chain rule inside the second factor.</>,
+    working: <Katex display tex="f(x) = x\sqrt{2x+1} = x(2x+1)^{\frac12}" />,
+    reason: (
+      <>
+        <Katex tex="f" /> is <Katex tex="x" /> multiplied by <Katex tex="\sqrt{2x+1}" />: two
+        functions of <Katex tex="x" /> multiplied together, so use the product rule (on the
+        formula sheet). Rewriting the square root as a power of <Katex tex="\tfrac12" /> lets
+        you differentiate it with the power rule.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="f'(x) = (2x+1)^{1/2}+x\cdot\tfrac12(2x+1)^{-1/2}\cdot 2" />,
-    reason: <>The trailing <Katex tex="\times2" /> is the derivative of the inside. The report notes a common error was not differentiating the <Katex tex="2x" /> within <Katex tex="\sqrt{2x+1}" />.</>,
+    working: (
+      <>
+        <Katex display tex="u=x,\quad v=(2x+1)^{\frac12}" />
+        <Katex display tex="u'=1,\quad v'=\tfrac12(2x+1)^{-\frac12}\times 2" />
+        <Katex display tex="v'=(2x+1)^{-\frac12}" />
+      </>
+    ),
+    reason: (
+      <>
+        Name the two factors and differentiate each <em>before</em> substituting. Inside{' '}
+        <Katex tex="v" /> is <Katex tex="2x+1" />, not plain <Katex tex="x" />, so use the chain
+        rule: bring down the <Katex tex="\tfrac12" />, lower the power by 1, then multiply by
+        the derivative of the inside, <Katex tex="2" />. The report notes a common error was not
+        differentiating the <Katex tex="2x" /> within <Katex tex="\sqrt{2x+1}" />. Dropping
+        that <Katex tex="\times2" /> leaves an extra <Katex tex="\tfrac12" /> in{' '}
+        <Katex tex="v'" /> and leads to <Katex tex="\tfrac{11}{3}" /> instead of the correct
+        answer.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="= \sqrt{2x+1}+\frac{x}{\sqrt{2x+1}}" />,
-    reason: <>The <Katex tex="\tfrac12" /> and the 2 cancel.</>,
+    working: (
+      <>
+        <Katex display tex="f'(x) = u'v+uv' = (2x+1)^{\frac12}+x(2x+1)^{-\frac12}" />
+        <Katex display tex="= \sqrt{2x+1}+\frac{x}{\sqrt{2x+1}}" />
+      </>
+    ),
+    reason: (
+      <>
+        The formula sheet writes the product rule as{' '}
+        <Katex tex="u\frac{dv}{dx}+v\frac{du}{dx}" />, the same two terms in a different order.
+        A power of <Katex tex="-\tfrac12" /> means one over the square root.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="= \frac{(2x+1)+x}{\sqrt{2x+1}} = \frac{3x+1}{\sqrt{2x+1}}" />,
-    reason: <>A common denominator makes substitution cleaner, though it is not required.</>,
+    working: (
+      <>
+        <Katex display tex="= \frac{(2x+1)+x}{\sqrt{2x+1}}" />
+        <Katex display tex="= \frac{3x+1}{\sqrt{2x+1}}" />
+      </>
+    ),
+    reason: (
+      <>
+        An optional tidy-up, giving the form in the report. Put the first term over{' '}
+        <Katex tex="\sqrt{2x+1}" /> too: multiply it top and bottom by{' '}
+        <Katex tex="\sqrt{2x+1}" />, and a square root times itself is just what is inside,{' '}
+        <Katex tex="2x+1" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="f'(4) = \frac{13}{\sqrt{9}} = \frac{13}{3}" />,
-    reason: <><Katex tex="2(4)+1=9" />, whose square root is exactly 3 — the numbers are chosen to come out neatly.</>,
+    working: <Katex display tex="f'(4) = \frac{3(4)+1}{\sqrt{2(4)+1}} = \frac{13}{\sqrt9} = \frac{13}{3}" />,
+    reason: (
+      <>
+        Work out the inside of the square root first: <Katex tex="2(4)+1=9" />, and{' '}
+        <Katex tex="\sqrt9=3" /> exactly. The report says evaluating the square roots caused
+        problems for some. Check with the untidied line instead:{' '}
+        <Katex tex="\sqrt9+\tfrac{4}{\sqrt9}=3+\tfrac43=\tfrac{13}{3}" /> ✓.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{f'(4) = \tfrac{13}{3}}" />,
-    reason: <>About <Katex tex="4.33" />, but the exact fraction is what is wanted.</>,
+    reason: <>An exact value, as Exam 1 requires (not the decimal <Katex tex="4.33" />).</>,
   },
 ]
 
