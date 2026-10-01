@@ -4,6 +4,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -14,19 +15,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{N}\!\left(1.26,\ 0.01^2\right)" />,
-    reason: <>One bottle.</>,
+    reason: <>Let <Katex tex="X" /> be the volume, in litres, of one bottle.</>,
   },
   {
-    working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(1.26,\ \frac{0.01^2}{6}\right) \implies \mathrm{sd}\!\left(\bar X\right) = \frac{0.01}{\sqrt6}" />,
-    reason: <>The question asks about the <em>mean</em> of six bottles, so the standard deviation shrinks by <Katex tex="\sqrt6" />. Using 0.01 unchanged gives option B, the second most popular answer.</>,
+    working: <Katex display tex="\begin{gathered}\bar X \sim \mathrm{N}\!\left(1.26,\ \frac{0.01^2}{6}\right)\\ \mathrm{sd}\!\left(\bar X\right) = \frac{0.01}{\sqrt6}\end{gathered}" />,
+    reason: <>The question is about the <em>mean</em> volume of six bottles, <Katex tex="\bar X" />, not one bottle. The mean of a random sample of size <Katex tex="n" /> has the same mean <Katex tex="\mu" />, but its standard deviation is <Katex tex="\frac{\sigma}{\sqrt n}" />: in an average of six bottles, high and low volumes partly cancel, so the sample mean varies less than a single bottle does.</>,
   },
   {
-    working: <Katex display tex="\Pr\!\left(\bar X \ge 1.25\right) = \Pr\!\left(Z \ge \frac{1.25-1.26}{0.01/\sqrt6}\right) = \Pr\!\left(Z \ge -\sqrt6\right)" />,
-    reason: <>The numbers are chosen so the <Katex tex="z" />-score is exactly <Katex tex="-\sqrt6\approx-2.449" />.</>,
+    working: <Katex display tex="\begin{aligned}\Pr\!\left(\bar X \ge 1.25\right) &= \Pr\!\left(Z \ge \frac{1.25-1.26}{0.01/\sqrt6}\right)\\ &= \Pr\!\left(Z \ge -\sqrt6\right)\end{aligned}" />,
+    reason: <>Standardise: subtract the mean and divide by the standard deviation of <Katex tex="\bar X" />. The <Katex tex="z" />-score simplifies exactly, since <Katex tex="-0.01 \div \frac{0.01}{\sqrt6} = -\sqrt6 \approx -2.449" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{0.9928}" />,
-    reason: <>Matches option <b>E</b>. Note the mean is <em>above</em> the labelled volume, so a probability near 1 is what to expect.</>,
+    working: <Katex display tex="= 0.99284\ldots" />,
+    reason: <>By <Cas fn="normCdf" /> with lower 1.25, upper ∞, μ = 1.26, σ = 0.01/√6. A probability close to 1 makes sense: 1.25 L is about 2.4 standard deviations below the mean of <Katex tex="\bar X" />.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\Pr\!\left(\bar X \ge 1.25\right) \approx 0.9928}" />,
+    reason: <>Matches option <b>E</b>. Option <b>B</b>, 0.8413, uses the standard deviation of a single bottle, 0.01, instead of <Katex tex="\frac{0.01}{\sqrt6}" /> (giving <Katex tex="\Pr(Z\ge-1)" />); option <b>A</b>, 0.5968, uses 0.1 in place of 0.01.</>,
   },
 ]
 

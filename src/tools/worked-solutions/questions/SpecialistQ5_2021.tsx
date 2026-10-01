@@ -2,11 +2,16 @@
 // Maximum |z| on a given circle in the Argand plane. Question text transcribed from the
 // original paper; the diagram is cropped directly from the original VCAA exam PDF, not a
 // redrawing. Solution is original.
+// Interactive: spec-2021-mcq5-farthest-point (drag P round the circle; |z| vs Im(z), greatest |z| at the far
+// end of the line from O through the centre).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Explore, lazyWidget } from '../Explore'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import circleSrc from './spec-2021-mcq5-argand-circle.png'
+
+const FarthestWidget = lazyWidget(() => import('../interactives/spec-2021-mcq5-farthest-point'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 42, B: 6, C: 18, D: 32, E: 2 },
@@ -17,19 +22,47 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|z - (2+\sqrt3i)| = 1" />,
-    reason: <>A circle of radius <Katex tex="1" /> centred at <Katex tex="(2,\sqrt3)" />.</>,
+    reason: (
+      <>
+        <Katex tex="|z-w|" /> is the distance from <Katex tex="z" /> to <Katex tex="w" />, so this is every point at
+        distance <Katex tex="1" /> from <Katex tex="2+\sqrt3i" />: a circle with centre <Katex tex="C(2,\sqrt3)" /> and
+        radius <Katex tex="1" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\text{Distance from origin to centre} = \sqrt{2^2+(\sqrt3)^2} = \sqrt{4+3} = \sqrt7" />,
-    reason: <>Distance formula from the origin to the centre of the circle.</>,
+    working: <>For a point <Katex tex="P" /> on the circle, <Katex tex="|z| = OP" />.</>,
+    reason: (
+      <>
+        <Katex tex="|z|" /> is the distance from the origin to <Katex tex="z" />, so we want the point of the circle{' '}
+        <i>farthest from</i> <Katex tex="O" />, not the highest point.
+      </>
+    ),
   },
   {
-    working: <>The farthest point on a circle from an external point lies on the line through that point and the centre, on the far side.</>,
-    reason: <>Maximising <Katex tex="|z|" /> means finding the point on the circle farthest from the origin.</>,
+    working: <Katex display tex="OC = \sqrt{2^2+(\sqrt3)^2} = \sqrt{4+3} = \sqrt7" />,
+    reason: <>Distance from the origin to the centre, by Pythagoras.</>,
+  },
+  {
+    working: <Katex display tex="OP \le OC + CP = \sqrt7 + 1" />,
+    reason: (
+      <>
+        In triangle <Katex tex="OCP" />, side <Katex tex="OP" /> can&rsquo;t be longer than the other two sides
+        together. It equals <Katex tex="OC+CP" /> only when the triangle flattens into a straight line with{' '}
+        <Katex tex="C" /> between <Katex tex="O" /> and <Katex tex="P" />: the point where the line from{' '}
+        <Katex tex="O" /> through the centre meets the circle on the far side.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{|z|_{\max} = \sqrt7 + 1}" />,
-    reason: <>Distance to the centre, plus the radius. Matches option <b>D</b>. Option A, <Katex tex="\sqrt3+1" />, is the greatest <em>imaginary part</em> on the circle, not the greatest modulus.</>,
+    reason: (
+      <>
+        Matches option <b>D</b>. Option A, <Katex tex="\sqrt3+1" />, is the greatest <em>imaginary part</em> on the
+        circle (its top point, <Katex tex="2+(\sqrt3+1)i" />), where <Katex tex="|z| = \sqrt{8+2\sqrt3} \approx 3.39" />,
+        less than <Katex tex="\sqrt7+1\approx3.65" />. Option B, <Katex tex="3" />, is the greatest <em>real part</em>.
+      </>
+    ),
   },
 ]
 
@@ -59,6 +92,11 @@ export default function SpecialistQ5_2021() {
       ]}
       rows={ROWS}
       examinerReport={EXAMINER}
+      extras={
+        <Explore title="The farthest point is through the centre, not at the top">
+          <FarthestWidget />
+        </Explore>
+      }
     />
   )
 }

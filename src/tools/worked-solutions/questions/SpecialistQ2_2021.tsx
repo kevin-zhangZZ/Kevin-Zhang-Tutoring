@@ -14,19 +14,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos^{-1}(u) \text{ needs } -1 \le u \le 1" />,
-    reason: <>The domain of inverse cosine is the binding constraint.</>,
+    reason: <>The implied domain is every <Katex tex="x" /> for which the rule gives a real value. Inverse cosine only accepts inputs from <Katex tex="-1" /> to <Katex tex="1" /> (its domain is <Katex tex="[-1,\ 1]" />), and here its input is <Katex tex="u=\log_e(bx)" />.</>,
   },
   {
     working: <Katex display tex="-1 \le \log_e(bx) \le 1" />,
-    reason: <>The log's own requirement <Katex tex="bx>0" /> is automatically satisfied by this band.</>,
+    reason: <>The logarithm also needs <Katex tex="bx>0" />. The next line gives <Katex tex="bx\ge e^{-1}>0" />, so that condition is met automatically.</>,
   },
   {
     working: <Katex display tex="e^{-1} \le bx \le e^1" />,
-    reason: <>Exponentiating is safe because <Katex tex="e^u" /> is increasing, so the inequalities keep their direction.</>,
+    reason: <>Raise <Katex tex="e" /> to the power of all three parts to undo the log. This is safe because <Katex tex="e^u" /> is increasing, so the inequalities keep their direction.</>,
+  },
+  {
+    working: <Katex display tex="\frac{1}{be} \le x \le \frac{e}{b}" />,
+    reason: <>Divide all three parts by <Katex tex="b" />; it is positive, so the inequalities keep their direction. Note <Katex tex="\tfrac{e^{-1}}{b}=\tfrac{1}{be}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\left[\frac{1}{be},\ \frac{e}{b}\right]}" />,
-    reason: <>Dividing by <Katex tex="b>0" /> keeps the order. Matches option <b>E</b>; option C starts the band at <Katex tex="\log_e(bx)=0" /> instead of <Katex tex="-1" />, giving <Katex tex="\tfrac1b" /> instead of <Katex tex="\tfrac{1}{be}" />.</>,
+    reason: <>Matches option <b>E</b>. Option C, <Katex tex="\left[\tfrac1b,\ \tfrac eb\right]" />, is what <Katex tex="0\le\log_e(bx)\le1" /> gives: it starts the band at <Katex tex="0" /> instead of <Katex tex="-1" />. Option D, <Katex tex="\left[\tfrac1b,\ \tfrac{e^\pi}b\right]" />, is what <Katex tex="0\le\log_e(bx)\le\pi" /> gives: the range of <Katex tex="\cos^{-1}" />, <Katex tex="[0,\ \pi]" />, used in place of its domain.</>,
   },
 ]
 

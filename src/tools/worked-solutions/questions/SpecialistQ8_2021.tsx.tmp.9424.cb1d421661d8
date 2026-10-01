@@ -30,7 +30,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y \approx 2.362} \ \text{(3 d.p.)}" />,
-    reason: <>Matches option <b>C</b>. Option A (2.168) is <Katex tex="y_1" />, stopping one step short. Options B and E come from putting the <em>end</em> of each step's <Katex tex="x" /> into <Katex tex="\sin(x)" /> (1.1 in the first step, 1.2 in the second) instead of the start: B after one step, E after two. Option D uses <Katex tex="x=1.2" /> instead of <Katex tex="x=1.1" /> in the second step.</>,
+    reason: <>Matches option <b>C</b>. Option A (2.168) is <Katex tex="y_1" />, stopping one step short. Options B and E come from using the gradient at the <em>end</em> of each step instead of the start (B after one step, E after two). Option D uses <Katex tex="x=1.2" /> instead of <Katex tex="x=1.1" /> in the second step.</>,
   },
 ]
 

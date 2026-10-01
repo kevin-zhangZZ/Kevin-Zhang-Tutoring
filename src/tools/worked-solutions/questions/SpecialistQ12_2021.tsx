@@ -14,23 +14,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(\theta) = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{b}\right|} = \frac{x-1}{\sqrt{x^2+1}\cdot\sqrt2}" />,
-    reason: <><Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=x(1)+1(-1)=x-1" />, and <Katex tex="\left|\underset{\sim}{b}\right|=\sqrt2" />.</>,
+    reason: <><Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=x(1)+1(-1)=x-1" />, <Katex tex="\left|\underset{\sim}{a}\right|=\sqrt{x^2+1^2}=\sqrt{x^2+1}" /> and <Katex tex="\left|\underset{\sim}{b}\right|=\sqrt{1^2+(-1)^2}=\sqrt2" />.</>,
   },
   {
     working: <Katex display tex="\cos(\phi) = \frac{\underset{\sim}{b}\cdot\underset{\sim}{c}}{\left|\underset{\sim}{b}\right|\left|\underset{\sim}{c}\right|} = \frac{1-x}{\sqrt2\cdot\sqrt{1+x^2}}" />,
-    reason: <><Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{c}=1(1)+(-1)(x)=1-x" /> — the <em>negative</em> of the first dot product, and the two magnitudes are identical.</>,
+    reason: <><Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{c}=1(1)+(-1)(x)=1-x" />, the <em>negative</em> of <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}" />. Also <Katex tex="\left|\underset{\sim}{c}\right|=\sqrt{1+x^2}=\left|\underset{\sim}{a}\right|" />, so the denominator is the same and <Katex tex="\cos(\phi)=-\cos(\theta)" />.</>,
   },
   {
     working: <Katex display tex="\cos(\theta)\cos(\phi) = \frac{(x-1)(1-x)}{2\left(1+x^2\right)}" />,
-    reason: <>Both denominators are <Katex tex="\sqrt2\sqrt{1+x^2}" />, so they combine to <Katex tex="2\left(1+x^2\right)" />.</>,
+    reason: <>Multiply the two fractions. Both denominators are <Katex tex="\sqrt2\sqrt{1+x^2}" />, and <Katex tex="\left(\sqrt2\sqrt{1+x^2}\right)^2=2\left(1+x^2\right)" />.</>,
   },
   {
     working: <Katex display tex="(x-1)(1-x) = -(x-1)^2" />,
-    reason: <>A quantity times its own negative — this minus sign is the point of the question.</>,
+    reason: <>Write <Katex tex="1-x" /> as <Katex tex="-(x-1)" />. A quantity times its own negative is minus its square, so the product is never positive.</>,
   },
   {
     working: <Katex display tex="\boxed{-\frac{(x-1)^2}{2\left(1+x^2\right)}}" />,
-    reason: <>Never positive, because the two angles always sit on opposite sides of <Katex tex="90^\circ" />. Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Check with <Katex tex="x=1" />: then <Katex tex="\underset{\sim}{a}=\underset{\sim}{i}+\underset{\sim}{j}" /> is perpendicular to <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}-\underset{\sim}{j}" />, so <Katex tex="\cos(\theta)=0" /> and the product must be 0. Option D gives 0, but option C gives <Katex tex="-1" />.</>,
   },
 ]
 

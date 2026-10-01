@@ -14,23 +14,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\bar x = \frac{70.2+75.8}{2} = 73" />,
-    reason: <>The sample mean sits exactly at the centre of a symmetric confidence interval.</>,
+    reason: <>A 95% confidence interval for the population mean is <Katex tex="\bar x \pm 1.96\frac{\sigma}{\sqrt n}" />. It is centred on the sample mean, so <Katex tex="\bar x" /> is the midpoint of the interval.</>,
   },
   {
-    working: <Katex display tex="\text{half-width} = \frac{75.8-70.2}{2} = 2.8 = 1.96\times\frac{\sigma}{\sqrt{100}}" />,
-    reason: <>A 95% interval uses <Katex tex="z=1.96" />, and <Katex tex="\sqrt{100}=10" />.</>,
+    working: <Katex display tex="\begin{aligned}\text{half-width} &= \frac{75.8-70.2}{2} = 2.8\\ 1.96\times\frac{\sigma}{\sqrt{100}} &= 2.8\end{aligned}" />,
+    reason: <>Each end of the interval is <Katex tex="1.96\frac{\sigma}{\sqrt n}" /> from the centre, so this margin is <em>half</em> the width. The 1.96 is the <Katex tex="z" />-value with 95% of the standard normal distribution between <Katex tex="-1.96" /> and <Katex tex="1.96" />. Here <Katex tex="n=100" />, so <Katex tex="\sqrt n = 10" />.</>,
   },
   {
     working: <Katex display tex="\sigma = \frac{2.8\times10}{1.96} = \frac{28}{1.96} = 14.2857\ldots" />,
-    reason: <>Rearranging for the population standard deviation.</>,
+    reason: <>Rearranging for the population standard deviation: multiply both sides by 10, then divide by 1.96.</>,
   },
   {
-    working: <Katex display tex="\frac{\bar x}{\sigma} = \frac{73}{14.2857\ldots}" />,
+    working: <Katex display tex="\frac{\bar x}{\sigma} = \frac{73}{14.2857\ldots} = 5.11" />,
     reason: <>The question asks for the sample mean <em>divided by</em> the population standard deviation — an unusual combination, so read it carefully.</>,
   },
   {
-    working: <Katex display tex="\boxed{5.1}" />,
-    reason: <>Matches option <b>C</b>. Option B, 2.6, uses the full width 5.6 in place of the half-width.</>,
+    working: <Katex display tex="\boxed{\frac{\bar x}{\sigma} \approx 5.1}" />,
+    reason: <>Matches option <b>C</b>. Option <b>B</b>, 2.6, comes from using the full width 5.6 as the margin <Katex tex="1.96\frac{\sigma}{10}" /> (giving 2.56), or from leaving out the 1.96 (<Katex tex="\sigma = 28" />, giving 2.61); option <b>E</b>, 13.0, divides 73 by the width of the interval, 5.6.</>,
   },
 ]
 

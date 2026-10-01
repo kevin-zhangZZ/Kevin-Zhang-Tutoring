@@ -3,10 +3,21 @@
 // value and the probability of a Type II error. Question text transcribed from the original
 // paper. Answers checked with scipy and against the VCAA examination report. Solution is
 // original.
+// Interactives: spec-2021e2-q6a-total-spread (step n; the total mass's curve widens as 8√n and
+// the tail past 1000 kg jumps at n = 13; toggle the report's σ = 8/√n error), spec-2021e2-q6b-
+// four-drinks (simulated queues: four separate drinks vs one drink × 4), spec-2021e2-q6d-reject-
+// region (drag x̄; p = 0.01 at 63 108.7 and every larger x̄ rejects), spec-2021e2-q6e-type-two
+// (the H₀ curve sets the cut-off, the μ = 63 000 curve gives the Type II probability; slide α).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const TotalSpreadWidget = lazyWidget(() => import('../interactives/spec-2021e2-q6a-total-spread'))
+const FourDrinksWidget = lazyWidget(() => import('../interactives/spec-2021e2-q6b-four-drinks'))
+const RejectRegionWidget = lazyWidget(() => import('../interactives/spec-2021e2-q6d-reject-region'))
+const TypeTwoWidget = lazyWidget(() => import('../interactives/spec-2021e2-q6e-type-two'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [73, 13, 14],
@@ -79,117 +90,148 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="W_n = X_1+X_2+\cdots+X_n \sim \mathrm{N}\!\left(75n,\ 8^2n\right)" />,
-    reason: <>The <em>total</em> mass of <Katex tex="n" /> people, not their mean — so the variances add and the standard deviation is <Katex tex="8\sqrt n" />, not <Katex tex="\tfrac{8}{\sqrt n}" />. The report notes this as a common error.</>,
+    reason: <>The lift carries the <em>total</em> mass <Katex tex="W_n" /> of the <Katex tex="n" /> people, not their average. Treating the masses <Katex tex="X_1, \ldots, X_n" /> as independent, the means add (<Katex tex="75n" />) and the variances add (<Katex tex="n\times8^2" />), and a sum of independent normal variables is normal. So the standard deviation is <Katex tex="8\sqrt n" />. Using <Katex tex="\tfrac{8}{\sqrt n}" />, the standard deviation of a sample <em>mean</em>, is the common error the report describes.</>,
   },
   {
     working: <Katex display tex="\Pr(W_n>1000) < 0.01" />,
-    reason: <>The lift exceeds its load only if the total mass does.</>,
+    reason: <>The lift exceeds its maximum load exactly when the total mass is over 1000 kg. We want the largest <Katex tex="n" /> that keeps this chance under 1%.</>,
   },
   {
-    working: <Katex display tex="n=13: \ \Pr(W_{13}>1000) = 0.193" />,
-    reason: <>Far too big — the mean total for 13 people is 975 kg, already close to the limit.</>,
+    working: <Cas fn="normCdf">normCdf(1000, ∞, 975, 8√13) = 0.193…</Cas>,
+    reason: <>Where to start: <Katex tex="1000 \div 75 \approx 13.3" />, so 13 people have a mean total of <Katex tex="75\times13 = 975" /> kg, just under the limit. Try <Katex tex="n = 13" />: <Katex tex="\Pr(W_{13}>1000) \approx 0.193" />, far more than 1%, so 13 is too many.</>,
   },
   {
-    working: <Katex display tex="n=12: \ \Pr(W_{12}>1000) = 0.00015" />,
-    reason: <>Comfortably under 1%. The mean is 900 kg with a standard deviation of <Katex tex="8\sqrt{12}\approx27.7" />, so 1000 kg is 3.6 standard deviations out.</>,
+    working: <Cas fn="normCdf">normCdf(1000, ∞, 900, 8√12) = 0.00015…</Cas>,
+    reason: <>Try <Katex tex="n = 12" />: the mean is 900 kg and the standard deviation <Katex tex="8\sqrt{12}\approx27.7" /> kg, so 1000 kg is 3.6 standard deviations above the mean. <Katex tex="\Pr(W_{12}>1000) \approx 0.00015 < 0.01" />, so 12 people is allowed.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 12}" />,
-    reason: <>The maximum possible value — trial and error is the practical route, because n sits inside both the mean and the standard deviation.</>,
+    reason: <>The maximum, because 12 works and 13 does not; for <Katex tex="n \ge 14" /> the mean total alone (1050 kg or more) is over the limit, so those are even worse. Trial and error is the practical route because <Katex tex="n" /> appears in both the mean and the standard deviation. The other route the report mentions is a standardised value: solve <Katex tex="\tfrac{1000-75n}{8\sqrt n} = 2.3263" /> (the <Katex tex="z" /> with 1% above it, from invNorm(0.99, 0, 1)) with CAS solve to get <Katex tex="n \approx 12.46" />, then round down.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{available time} = 9{:}00-8{:}52-0.5 = 7.5 \text{ minutes}" />,
-    reason: <>Eight minutes until the meeting, less the half minute to walk there.</>,
+    reason: <>From 8.52 am to 9.00 am is 8 minutes, and the last half minute is needed to walk to the meeting room. So her drink must be finished within 7.5 minutes of 8.52 am.</>,
   },
   {
-    working: <Katex display tex="T_4 = D_1+D_2+D_3+D_4 \sim \mathrm{N}\!\left(4\times2,\ 4\times0.5^2\right) = \mathrm{N}(8,\ 1)" />,
-    reason: <>Fourth in the queue means four drinks must be dispensed, with dispensing times <Katex tex="D_1,\ldots,D_4" />. Summing four independent variables adds the variances — it is not the same as <Katex tex="4T" />, which would have variance 4.</>,
+    working: (
+      <>
+        <Katex display tex="T_4 = D_1+D_2+D_3+D_4" />
+        <Katex display tex="T_4 \sim \mathrm{N}\!\left(4\times2,\ 4\times0.5^2\right) = \mathrm{N}(8,\ 1^2)" />
+      </>
+    ),
+    reason: <>Fourth in the queue: the three people ahead of her get their drinks first, then hers is made, so four drinks are dispensed, with independent times <Katex tex="D_1,\ldots,D_4" />, each <Katex tex="\mathrm{N}(2,\ 0.5^2)" />. For a sum of independent normal variables the means add (<Katex tex="4\times2=8" />) and the variances add (<Katex tex="4\times0.5^2=1" />), so the standard deviation is 1. This is <em>not</em> <Katex tex="4D" />, one drink's time multiplied by 4, whose variance is <Katex tex="4^2\times0.5^2=4" />: the confusion the report describes.</>,
   },
   {
-    working: <Katex display tex="\Pr(T_4 \le 7.5) = \Pr\!\left(Z \le \frac{7.5-8}{1}\right) = \Pr(Z\le-0.5)" />,
-    reason: <>The standard deviation is <Katex tex="\sqrt{4\times0.25}=1" />, which makes this clean.</>,
+    working: <Katex display tex="\Pr(\text{on time}) = \Pr(T_4 \le 7.5)" />,
+    reason: <>She is on time when all four drinks are done within the 7.5 minutes.</>,
+  },
+  {
+    working: <Cas fn="normCdf">normCdf(−∞, 7.5, 8, 1)</Cas>,
+    reason: <>Lower bound <Katex tex="-\infty" />, upper bound 7.5, mean 8, standard deviation 1 (not the variance).</>,
   },
   {
     working: <Katex display tex="\boxed{0.3085}" />,
-    reason: <>To four decimal places. Less than a one-in-three chance — the mean wait alone is 8 minutes, already over her budget.</>,
+    reason: <>Correct to four decimal places. Less than a one-in-three chance, because her expected wait of 8 minutes is already longer than the 7.5 minutes she has.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_0: \mu = 60\,000}" />,
-    reason: <>The pre-campaign mean, stated with an equals sign.</>,
+    reason: <>Let <Katex tex="\mu" /> be the mean daily sales after the campaign. The null hypothesis says the campaign changed nothing: <Katex tex="\mu" /> is still 60 000, written with an equals sign.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \mu > 60\,000}" />,
-    reason: <>"Whether the campaign was effective" means sales <em>increased</em>, so the test is one-sided to the right.</>,
+    reason: <>"Effective" means sales <em>went up</em>, so the alternative is <Katex tex="\mu > 60\,000" />: the one-sided test the question asks for, looking only at the right-hand tail.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
-    working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(60\,000,\ \frac{5000^2}{14}\right) \implies \mathrm{sd} = \frac{5000}{\sqrt{14}} = 1336.3" />,
-    reason: <>A sample of 14 days, so divide by <Katex tex="\sqrt{14}" />.</>,
+    working: (
+      <>
+        <Katex display tex="\bar X \sim \mathrm{N}\!\left(60\,000,\ \left(\tfrac{5000}{\sqrt{14}}\right)^{\!2}\right)" />
+        <Katex display tex="\mathrm{sd}(\bar X) = \frac{5000}{\sqrt{14}} \approx 1336.3" />
+      </>
+    ),
+    reason: <>Assume <Katex tex="H_0" /> is true, so daily sales are <Katex tex="\mathrm{N}(60\,000,\ 5000^2)" />. The mean <Katex tex="\bar X" /> of 14 randomly selected days is then normal with the same mean and standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n} = \tfrac{5000}{\sqrt{14}}" />.</>,
+  },
+  {
+    working: <Katex display tex="p = \Pr\!\left(\bar X \ge 63\,500 \mid \mu = 60\,000\right)" />,
+    reason: <>The <Katex tex="p" /> value is the probability, assuming <Katex tex="H_0" />, of a sample mean at least as large as the 63 500 observed. "At least as large" because <Katex tex="H_1" /> is <Katex tex="\mu > 60\,000" />.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(63500, ∞, 60000, 5000/√14)</Cas>,
-    reason: <>The <Katex tex="p" /> value is the chance of a sample mean at least as extreme as the one observed, <em>assuming</em> <Katex tex="H_0" />.</>,
+    reason: <>Lower bound 63 500, upper bound <Katex tex="\infty" />, mean 60 000, standard deviation <Katex tex="\tfrac{5000}{\sqrt{14}}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.0044}" />,
-    reason: <>To four decimal places. The observed mean is about 2.6 standard errors above 60 000.</>,
+    reason: <>Correct to four decimal places. 63 500 is about 2.6 standard deviations of <Katex tex="\bar X" /> above 60 000, far out in the tail.</>,
   },
 ]
 
 const ROWS_CIII: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.0044 < 0.01" />,
-    reason: <>Compare against the stated significance level.</>,
+    reason: <>Compare the <Katex tex="p" /> value with the 1% significance level. If the campaign had changed nothing, a sample mean as high as 63 500 would happen less than 1% of the time.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{reject } H_0: \text{ there is evidence that the campaign was effective}}" />,
-    reason: <>Give the <Katex tex="p" />-value comparison as the reason — the report notes some students stated a correct conclusion without it.</>,
+    working: (
+      <>
+        <Katex display tex="\text{reject } H_0" />
+        <Katex display tex="\boxed{\text{there is evidence that the campaign was effective}}" />
+      </>
+    ),
+    reason: <>State the conclusion in context <em>and</em> the reason, <Katex tex="p < 0.01" />. The report notes that some students stated a correct conclusion without referencing the <Katex tex="p" /> value.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{reject } H_0 \iff p \le 0.01 \iff \bar x \ge \text{the } 99\text{th percentile of } \bar X" />,
-    reason: <>Working backwards from the significance level to a critical value for <Katex tex="\bar x" />.</>,
+    working: <Katex display tex="\text{reject } H_0 \iff p \le 0.01" />,
+    reason: <>The same test as part c (<Katex tex="H_0: \mu = 60\,000" />, <Katex tex="H_1: \mu > 60\,000" />, under <Katex tex="H_0" /> <Katex tex="\bar X \sim \mathrm{N}\big(60\,000,\ (\tfrac{5000}{\sqrt{14}})^2\big)" />). Now we want every sample mean that would lead to rejecting <Katex tex="H_0" />.</>,
   },
   {
-    working: <Cas fn="invNorm">invNorm(0.99, 60000, 5000/√14)</Cas>,
-    reason: <>Gives <Katex tex="63\,108.71\ldots" />.</>,
+    working: <Katex display tex="\Pr\!\left(\bar X \ge c \mid \mu = 60\,000\right) = 0.01" />,
+    reason: <>The <Katex tex="p" /> value of a sample mean <Katex tex="\bar x" /> is the area to its right under the <Katex tex="H_0" /> curve. That area shrinks as <Katex tex="\bar x" /> moves right, so <Katex tex="p \le 0.01" /> exactly when <Katex tex="\bar x" /> is at or beyond the critical value <Katex tex="c" /> with 1% to its right (the 99th percentile).</>,
+  },
+  {
+    working: <Cas fn="invNorm">invNorm(0.99, 60000, 5000/√14) = 63108.71…</Cas>,
+    reason: <>invNorm takes the area to the <em>left</em> of <Katex tex="c" />, so enter <Katex tex="1-0.01 = 0.99" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\bar x \ge 63\,109}" />,
-    reason: <>To the nearest integer, and stated as a <em>range</em> — the report notes students who found 63 108.7 and stopped there.</>,
+    reason: <>Correct to the nearest integer, and given as a <em>range</em>: every sample mean of 63 109 or more rejects <Katex tex="H_0" />, not just one value. The report notes students who calculated 63 108.7 but did not go on to give the range.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{5\% level} \implies \text{critical value} = \text{the } 95\text{th percentile under } H_0" />,
-    reason: <>"Incorrectly accepted" means the sample mean falls <em>below</em> the critical value even though <Katex tex="H_0" /> is false — a Type II error.</>,
+    working: <Katex display tex="H_0: \mu = 60\,000, \quad H_1: \mu > 60\,000" />,
+    reason: <>The same one-sided test as part c, now at the 5% level. The rule for rejecting is always worked out assuming <Katex tex="H_0" />, whatever the true mean is.</>,
   },
   {
-    working: <Cas fn="invNorm">invNorm(0.95, 60000, 5000/√14)</Cas>,
-    reason: <>Gives <Katex tex="\bar x_{\text{crit}} = 62\,198.03" />.</>,
+    working: <Cas fn="invNorm">invNorm(0.95, 60000, 5000/√14) = 62198.03…</Cas>,
+    reason: <>Reject <Katex tex="H_0" /> when <Katex tex="\bar x" /> lands in the top 5% of the <Katex tex="H_0" /> distribution <Katex tex="\bar X \sim \mathrm{N}\big(60\,000,\ (\tfrac{5000}{\sqrt{14}})^2\big)" />, so the critical value is its 95th percentile: found with 60 000 (not 63 000) and with 5% (not part d's 1%).</>,
+  },
+  {
+    working: <Katex display tex="H_0 \text{ accepted} \iff \bar x < 62\,198.03" />,
+    reason: <>"Incorrectly accepted" is a Type II error: <Katex tex="H_0" /> is false (the true mean is now 63 000), but the sample mean falls below the critical value, so <Katex tex="H_0" /> is not rejected.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(\bar X < 62\,198.03 \mid \mu = 63\,000\right)" />,
-    reason: <>Now recompute the probability under the <em>true</em> mean of 63 000, not under <Katex tex="H_0" />.</>,
+    reason: <>This probability uses the <em>true</em> distribution, <Katex tex="\bar X \sim \mathrm{N}\big(63\,000,\ (\tfrac{5000}{\sqrt{14}})^2\big)" />: the new mean, with the same standard deviation because the question says to assume <Katex tex="\sigma = 5000" />.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(−∞, 62198.03, 63000, 5000/√14)</Cas>,
-    reason: <>The same standard error, a different centre.</>,
+    reason: <>Lower bound <Katex tex="-\infty" />, upper bound the critical value, mean 63 000.</>,
   },
   {
     working: <Katex display tex="\boxed{0.274}" />,
-    reason: <>To three decimal places. Roughly a one-in-four chance of missing a real effect of this size with only 14 days of data.</>,
+    reason: <>Correct to three decimal places. With only 14 days of data there is about a one-in-four chance of missing a real rise to 63 000.</>,
   },
 ]
 
@@ -219,6 +261,9 @@ export default function SpecialistQ6_2021Exam2() {
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
+        <Explore title="The total mass spreads out as n grows, so 13 people is one too many">
+          <TotalSpreadWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -249,6 +294,9 @@ export default function SpecialistQ6_2021Exam2() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Four separate drinks, not one drink four times">
+          <FourDrinksWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -319,6 +367,9 @@ export default function SpecialistQ6_2021Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
+        <Explore title="Every x̄ past the critical value rejects too, so the answer is a range">
+          <RejectRegionWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -340,6 +391,9 @@ export default function SpecialistQ6_2021Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="Type II error: the cut-off comes from H₀, the probability from the true mean">
+          <TypeTwoWidget />
+        </Explore>
       </PartCard>
     </div>
   )

@@ -14,27 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="S = mX+n \implies \mathrm{Var}(S) = m^2\mathrm{Var}(X)" />,
-    reason: <>Adding <Katex tex="n" /> shifts but does not spread, so the variance fixes <Katex tex="m" /> on its own.</>,
+    reason: <>For a linear transformation, <Katex tex="\mathrm{Var}(aX+b) = a^2\,\mathrm{Var}(X)" />. Multiplying every score by <Katex tex="m" /> stretches the spread; adding <Katex tex="n" /> moves every score by the same amount, which does not change the spread. So the variances fix <Katex tex="m" /> on their own.</>,
   },
   {
-    working: <Katex display tex="49 = 36m^2 \implies m = \frac76 \ \left(m\in R^+\right)" />,
-    reason: <>Take the positive root, as the question specifies. Note this uses the <em>variances</em>, not the standard deviations directly — though <Katex tex="\tfrac76=\tfrac{\sqrt{49}}{\sqrt{36}}" /> either way.</>,
+    working: <Katex display tex="49 = 36m^2 \implies m^2 = \frac{49}{36} \implies m = \frac76" />,
+    reason: <>The square root gives <Katex tex="m=\pm\frac76" />; reject <Katex tex="-\frac76" /> because the question says <Katex tex="m\in R^+" />. So <Katex tex="m" /> is the ratio of the standard deviations, <Katex tex="\frac{\sqrt{49}}{\sqrt{36}}=\frac76" /> — not the ratio of the variances, <Katex tex="\frac{49}{36}" />.</>,
   },
   {
     working: <Katex display tex="E(S) = mE(X)+n \implies 30 = \tfrac76(25)+n" />,
-    reason: <>Now the mean fixes the shift.</>,
+    reason: <>Using <Katex tex="E(aX+b) = aE(X)+b" />. With <Katex tex="m" /> known, the means fix <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="n = 30-\frac{175}{6} = \frac{180-175}{6} = \frac56" />,
-    reason: <>A small positive shift.</>,
+    reason: <>Solving for <Katex tex="n" />.</>,
   },
   {
-    working: <Katex display tex="S(32) = \frac76(32)+\frac56 = \frac{224+5}{6} = \frac{229}{6} = 38.1\overline6" />,
-    reason: <>Substituting the score.</>,
+    working: <Katex display tex="\begin{aligned}S &= \frac76(32)+\frac56 = \frac{224+5}{6}\\ &= \frac{229}{6} = 38.1\overline6\end{aligned}" />,
+    reason: <>Substitute <Katex tex="X=32" />. The question defines <Katex tex="S" /> as the scaled score to the nearest integer, so <Katex tex="38.1\overline6" /> becomes 38.</>,
   },
   {
     working: <Katex display tex="\boxed{38}" />,
-    reason: <>"To the nearest integer", as the question says the scaled scores are. Matches option <b>D</b>.</>,
+    reason: <>Matches option <b>D</b>. Option <b>C</b>, 36, comes from turning the ratio upside down (<Katex tex="m=\frac67" />, which gives exactly 36); option <b>E</b>, 40, from using the ratio of the variances, <Katex tex="m=\frac{49}{36}" /> (giving 39.53, which rounds to 40).</>,
   },
 ]
 

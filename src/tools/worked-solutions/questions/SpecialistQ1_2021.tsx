@@ -4,6 +4,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -13,24 +14,33 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = \frac{1}{\sec(3x)+\tfrac32}" />,
-    reason: <>A vertical asymptote needs the <em>denominator</em> to vanish — and where <Katex tex="\sec(3x)" /> itself blows up, <Katex tex="f\to0" />, so those points are not asymptotes.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} f(x) &= \frac{1}{\frac{1}{\cos(3x)}+\frac32} \\ &= \frac{2\cos(3x)}{2+3\cos(3x)} \end{aligned}"
+      />
+    ),
+    reason: <>Write <Katex tex="\sec(3x)=\tfrac{1}{\cos(3x)}" /> and multiply top and bottom by <Katex tex="2\cos(3x)" /> to clear the fraction inside the fraction. Now the only way <Katex tex="f" /> can shoot off to infinity is for the denominator <Katex tex="2+3\cos(3x)" /> to reach zero, which makes a vertical asymptote. <Katex tex="f" /> is periodic (it repeats every <Katex tex="	frac{2pi}{3}" />), so it has no horizontal asymptote: only vertical ones are counted.</>,
   },
   {
-    working: <Katex display tex="\sec(3x)+\tfrac32 = 0 \implies \sec(3x) = -\tfrac32 \implies \cos(3x) = -\tfrac23" />,
-    reason: <><Katex tex="\sec" /> is the reciprocal of <Katex tex="\cos" />, so invert both sides.</>,
+    working: <Katex display tex="2+3\cos(3x) = 0 \implies \cos(3x) = -\tfrac23" />,
+    reason: <>At these points the numerator is <Katex tex="2\cos(3x)=-\tfrac43\neq0" />, so they are genuine asymptotes. Where <Katex tex="\cos(3x)=0" /> instead, <Katex tex="\sec(3x)" /> is undefined so <Katex tex="f" /> is too, but <Katex tex="f\to0" /> there: the graph just has a hole (one missing point), not an asymptote.</>,
   },
   {
-    working: <Katex display tex="x \in \left[-\tfrac\pi6,\ \pi\right] \implies 3x \in \left[-\tfrac\pi2,\ 3\pi\right]" />,
-    reason: <>Transform the interval before counting.</>,
+    working: <Katex display tex="-\tfrac\pi6 \le x \le \pi \implies -\tfrac\pi2 \le 3x \le 3\pi" />,
+    reason: <>Solve for <Katex tex="3x" /> first, so multiply both ends of the interval by 3 to find the values <Katex tex="3x" /> covers.</>,
   },
   {
-    working: <Katex display tex="\cos(u) = -\tfrac23, \ u\in\left[-\tfrac\pi2,3\pi\right]: \ u = 2.30,\ 3.98,\ 8.58" />,
-    reason: <><Katex tex="\arccos\!\left(-\tfrac23\right)=2.3005" />; the others are <Katex tex="2\pi-2.3005" /> and <Katex tex="2\pi+2.3005" />. The fourth candidate <Katex tex="-2.30" /> falls below <Katex tex="-\tfrac\pi2" />.</>,
+    working: <Katex display tex="3x \approx 2.30,\ 3.98,\ 8.58" />,
+    reason: <>Cosine is negative in the second and third quadrants. <Katex tex="\cos^{-1}\!\left(-\tfrac23\right)\approx2.30" /> is the second-quadrant angle; the third-quadrant one is <Katex tex="2\pi-2.30\approx3.98" />; adding <Katex tex="2\pi" /> gives the next cycle's <Katex tex="8.58" /> and <Katex tex="10.27" />. Check both ends: <Katex tex="10.27" /> is past <Katex tex="3\pi\approx9.42" />, and the solution before <Katex tex="2.30" /> is <Katex tex="3.98-2\pi\approx-2.30" />, below <Katex tex="-\tfrac\pi2\approx-1.57" />. So exactly three solutions lie in the interval. On CAS, <Cas fn="solve">solve(cos(3x) = −2/3, x) | −π/6 ≤ x ≤ π</Cas> lists the three <Katex tex="x" />-values directly.</>,
+  },
+  {
+    working: <Katex display tex="x \approx 0.77,\ 1.33,\ 2.86" />,
+    reason: <>Divide each value of <Katex tex="3x" /> by 3. Each is a vertical asymptote of <Katex tex="f" />.</>,
   },
   {
     working: <Katex display tex="\boxed{3 \text{ asymptotes}}" />,
-    reason: <>At <Katex tex="x\approx0.77,\ 1.33,\ 2.86" />. Matches option <b>B</b>.</>,
+    reason: <>Matches option <b>B</b>. Option C (4) is the number of points in the interval where <Katex tex="\cos(3x)=0" />, namely <Katex tex="x=-\tfrac\pi6,\ \tfrac\pi6,\ \tfrac\pi2,\ \tfrac{5\pi}6" />. Those are the asymptotes of <Katex tex="\sec(3x)" />, but on the graph of <Katex tex="f" /> they are holes, not asymptotes.</>,
   },
 ]
 

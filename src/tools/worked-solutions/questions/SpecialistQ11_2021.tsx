@@ -13,11 +13,15 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{S}30^\circ\text{W}: \ 30^\circ \text{ measured from due south, towards the west}" />,
-    reason: <>So the displacement is mostly south with a smaller west part — the <Katex tex="\sin" /> goes with the east–west component, not the other way round.</>,
+    working: <Katex display tex="\text{S}30^\circ\text{W}: \ 30^\circ \text{ from due south, towards the west}" />,
+    reason: <>In a compass direction like S30°W, the first letter is the direction you measure from and the last letter is the direction you turn towards: face south, then turn 30° towards west.</>,
   },
   {
-    working: <Katex display tex="5\left(-\sin(30^\circ)\underset{\sim}{i}-\cos(30^\circ)\underset{\sim}{j}\right) = -\tfrac52\underset{\sim}{i}-\tfrac{5\sqrt3}{2}\underset{\sim}{j}" />,
+    working: <Katex display tex="\begin{aligned} \text{west part} &= 5\sin(30^\circ) = \tfrac52 \\ \text{south part} &= 5\cos(30^\circ) = \tfrac{5\sqrt3}{2} \end{aligned}" />,
+    reason: <>Sketch a right-angled triangle with the 5 km path as the hypotenuse and the 30° angle at the start, between the path and the south line. The south side is adjacent to the 30° (so <Katex tex="\cos" />) and the west side is opposite it (so <Katex tex="\sin" />). Sense check: the path is only 30° off south, so the south part should be the bigger one, and <Katex tex="\tfrac{5\sqrt3}{2}\approx4.33" /> is bigger than <Katex tex="2.5" />.</>,
+  },
+  {
+    working: <Katex display tex="\text{first leg: } -\tfrac52\underset{\sim}{i}-\tfrac{5\sqrt3}{2}\underset{\sim}{j}" />,
     reason: <>Both components negative: west is <Katex tex="-\underset{\sim}{i}" />, south is <Katex tex="-\underset{\sim}{j}" />.</>,
   },
   {
@@ -25,8 +29,12 @@ const ROWS: WorkingRow[] = [
     reason: <>Due north, so no east–west change at all.</>,
   },
   {
+    working: <Katex display tex="\underset{\sim}{a} = \left(-\tfrac52\underset{\sim}{i}-\tfrac{5\sqrt3}{2}\underset{\sim}{j}\right)+10\underset{\sim}{j}" />,
+    reason: <>The position vector relative to the start is the sum of the two displacements: add the <Katex tex="\underset{\sim}{i}" /> parts and the <Katex tex="\underset{\sim}{j}" /> parts separately.</>,
+  },
+  {
     working: <Katex display tex="\boxed{\underset{\sim}{a} = -\tfrac52\underset{\sim}{i}+\left(10-\tfrac{5\sqrt3}{2}\right)\underset{\sim}{j}}" />,
-    reason: <>Adding the two displacements: about 2.5 km west and 5.67 km north of the start. Matches option <b>B</b>. Option A leaves out the second leg; option D swaps sine and cosine in the first.</>,
+    reason: <>Matches option <b>B</b>: about 2.5 km west and 5.67 km north of the start. Option A is the first leg only, leaving out the walk north. Option D swaps sine and cosine in the first leg (measuring the 30° from west instead of south). Option C leaves out the first leg's south part. Option E reverses the first leg, as if the hikers had walked N30°E.</>,
   },
 ]
 

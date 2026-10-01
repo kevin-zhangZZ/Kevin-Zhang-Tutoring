@@ -15,11 +15,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="v = 3+2x \implies \frac{dv}{dx} = 2" />,
-    reason: <>Velocity is given as a function of <em>position</em>, not time, which is the signal to use <Katex tex="a=v\tfrac{dv}{dx}" />.</>,
+    reason: <>Velocity is given as a function of <em>position</em> <Katex tex="x" />, not time <Katex tex="t" />, which is the signal to use <Katex tex="a=v\tfrac{dv}{dx}" />.</>,
   },
   {
     working: <Katex display tex="a = v\frac{dv}{dx} = (3+2x)(2) = 6+4x" />,
-    reason: <>The chain-rule form from the formula sheet. Differentiating with respect to <Katex tex="t" /> directly is not possible here.</>,
+    reason: <>By the chain rule, <Katex tex="a=\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}" /> (this is on the formula sheet). You can't differentiate <Katex tex="v" /> with respect to <Katex tex="t" /> directly, because it is written in terms of <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="x = 2: \ a = 6+8 = 14\ \text{m s}^{-2}" />,
@@ -27,11 +27,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="F = ma = 5\times14" />,
-    reason: <>Now the mass enters.</>,
+    reason: <>Newton's second law: net force = mass × acceleration. With mass in kg and acceleration in <Katex tex="\text{m s}^{-2}" />, the force is in newtons.</>,
   },
   {
     working: <Katex display tex="\boxed{F = 70\ \text{N}}" />,
-    reason: <>Matches option <b>D</b>. Option A, 10, uses <Katex tex="a=\tfrac{dv}{dx}" /> and drops the factor <Katex tex="v" />; option C, 35, is <Katex tex="mv" />, the momentum.</>,
+    reason: <>Matches option <b>D</b>. Option A, 10, is <Katex tex="5\times2" />: it uses <Katex tex="a=\tfrac{dv}{dx}" /> and drops the factor <Katex tex="v" />. Option C, 35, is <Katex tex="5\times7=mv" /> (the momentum) rather than <Katex tex="ma" />.</>,
   },
 ]
 
@@ -52,10 +52,11 @@ export default function SpecialistQ14_2021() {
       background={
         <Background title="Force wording, rectilinear kinematics">
           <p>
-            Mechanics is off the current Specialist study design, but the mathematics here is
-            not: <Katex tex="a=v\tfrac{dv}{dx}" /> is standard rectilinear motion, still on
-            the course. Only the very last line, <Katex tex="F=ma" />, is Mechanics, and the
-            units in the question hand it to you.
+            Mechanics (force analysis) is off the current Specialist study design, but the
+            mathematics here is not: <Katex tex="a=v\tfrac{dv}{dx}" /> is standard
+            rectilinear motion, still on the course. The only force idea needed is the very
+            last line, Newton's second law: net force = mass × acceleration,{' '}
+            <Katex tex="F=ma" />.
           </p>
         </Background>
       }
