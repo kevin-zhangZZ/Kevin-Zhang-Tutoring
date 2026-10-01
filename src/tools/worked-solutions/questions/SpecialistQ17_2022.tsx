@@ -15,19 +15,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="s = ut+\tfrac12at^2" />,
-    reason: <>The constant-acceleration formula that uses distance and time, which is what the question gives.</>,
+    reason: <>The constant-acceleration formula linking the initial velocity <Katex tex="u" />, time <Katex tex="t" /> and displacement <Katex tex="s" />, which is what the question gives.</>,
   },
   {
     working: <Katex display tex="30 = 3(6)+\tfrac12a(6)^2 = 18+18a" />,
     reason: <>Substituting <Katex tex="u=3" />, <Katex tex="t=6" />, <Katex tex="s=30" />.</>,
   },
   {
-    working: <Katex display tex="a = \frac{12}{18} = \frac23\ \mathrm{ms^{-2}}" />,
-    reason: <>A tidy value, which is a sign the substitutions were right.</>,
+    working: <Katex display tex="18a = 12 \implies a = \frac23\ \mathrm{ms^{-2}}" />,
+    reason: <>Subtract 18 from both sides, then divide by 18. Check: <Katex tex="u" /> and <Katex tex="a" /> are both positive, so the particle never turns around, which confirms the 30 m distance travelled is the displacement <Katex tex="s" /> used above.</>,
   },
   {
     working: <Katex display tex="v = u+at = 3+\frac23(6) = 7\ \mathrm{ms^{-1}}" />,
-    reason: <>The final velocity after the 6 seconds.</>,
+    reason: <>Momentum needs the final velocity, so use the formula linking <Katex tex="v" />, <Katex tex="u" />, <Katex tex="a" /> and <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\Delta p = mv-mu = m(v-u) = 7(7-3)" />,
@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Delta p = 28\ \mathrm{kg\,ms^{-1}}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>D</b>, <Katex tex="49=7\times7" />, is the final momentum rather than the change.</>,
+    reason: <>Matches option <b>C</b>. Option <b>D</b>, <Katex tex="49=7\times7" />, is the final momentum rather than the change; option <b>B</b>, <Katex tex="4=7-3" />, is the change in velocity without multiplying by the mass.</>,
   },
 ]
 

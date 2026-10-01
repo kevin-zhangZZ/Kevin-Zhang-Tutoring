@@ -3,11 +3,18 @@
 // Question text transcribed from the original paper; the figure is a crop of VCAA's own
 // artwork. Answers checked with sympy/scipy and against the VCAA examination report.
 // Solution is original.
+// Widgets: a. interactives/spec-2022e2-q4a-launch-angle (the velocity arrow along the path, θ
+// measured from forward vs the 78.9° complement); c. interactives/spec-2022e2-q4c-closest (the
+// ball-to-hole distance near the hole: level with the hole at t = 3.5 is not the minimum).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import diagramSrc from './spec-2022e2-q4-diagram.png'
+
+const LaunchAngleWidget = lazyWidget(() => import('../interactives/spec-2022e2-q4a-launch-angle'))
+const ClosestWidget = lazyWidget(() => import('../interactives/spec-2022e2-q4c-closest'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [44, 21, 35],
@@ -69,19 +76,19 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(t) = \frac{\pi}{8}\cos\!\left(\frac{\pi t}{4}\right)\underset{\sim}{i}+2\underset{\sim}{j}" />,
-    reason: <>Differentiating each component; <Katex tex="\tfrac12\cdot\tfrac\pi4=\tfrac\pi8" />.</>,
+    reason: <>The direction of the path is the direction of motion, which is the velocity, so differentiate each component. Chain rule on the sine: <Katex tex="\tfrac12\cdot\tfrac\pi4=\tfrac\pi8" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(0) = \frac{\pi}{8}\underset{\sim}{i}+2\underset{\sim}{j}" />,
-    reason: <><Katex tex="\cos(0)=1" />. This vector points along the path as the ball leaves O.</>,
+    reason: <><Katex tex="\cos(0)=1" />. The velocity always points the way the ball is moving, along the path, so this vector gives the direction of the path at <Katex tex="O" />. (The position <Katex tex="\underset{\sim}{r}(0)" /> is the zero vector, so it gives no direction.)</>,
   },
   {
     working: <Katex display tex="\tan(\theta) = \frac{\text{sideways}}{\text{forward}} = \frac{\pi/8}{2} = \frac{\pi}{16}" />,
-    reason: <>The angle is measured from the <em>forward</em> direction <Katex tex="\underset{\sim}{j}" />, so the <Katex tex="\underset{\sim}{j}" /> component is the adjacent side. Putting them the other way up gives <Katex tex="78.9^\circ" />, the report's most frequent incorrect response.</>,
+    reason: <>Draw the velocity as a right-angled triangle: 2 forward and <Katex tex="\tfrac\pi8" /> sideways. The angle is measured from the <em>forward</em> direction <Katex tex="\underset{\sim}{j}" />, so the <Katex tex="\underset{\sim}{j}" /> component is the adjacent side. Putting them the other way up gives <Katex tex="78.9^\circ" />, the angle from the <Katex tex="x" />-axis, which the report says was the most frequent incorrect response.</>,
   },
   {
-    working: <Katex display tex="\boxed{\theta \approx 11.1^\circ}" />,
-    reason: <><Katex tex="\arctan\!\left(\tfrac{\pi}{16}\right)=0.1939" /> radians. Degrees are asked for, and the diagram confirms a small angle off the <Katex tex="y" />-axis.</>,
+    working: <Katex display tex="\boxed{\theta = \tan^{-1}\!\left(\frac{\pi}{16}\right) \approx 11.1^\circ}" />,
+    reason: <>Degrees are asked for, so use degree mode (or, in radian mode, <Katex tex="\tan^{-1}\!\left(\tfrac{\pi}{16}\right)\approx0.1939" /> and <Katex tex="0.1939\times\tfrac{180}{\pi}\approx11.1^\circ" />). The diagram confirms a small angle off the <Katex tex="y" />-axis.</>,
   },
 ]
 
@@ -107,14 +114,14 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{minimised when } \cos^2\!\left(\frac{\pi t}{4}\right) = 0" />,
-    reason: <>No calculus needed: the expression under the root is smallest when the squared term vanishes.</>,
+    reason: <>No calculus needed: a square can't be negative, so the expression under the root is at least <Katex tex="4" />, and it equals <Katex tex="4" /> exactly when the squared term is zero.</>,
   },
   {
     working: <Katex display tex="\frac{\pi t}{4} = \frac\pi2 \implies t = 2 \quad\left(\text{or } \frac{3\pi}{2}\implies t=6 \notin[0,5]\right)" />,
-    reason: <>The domain <Katex tex="t\in[0,5]" /> rules out the second solution — the report notes some students with a correct minimum speed gave other incorrect values of <Katex tex="t" />.</>,
+    reason: <>For <Katex tex="t\in[0,5]" />, <Katex tex="\tfrac{\pi t}{4}\in\left[0,\tfrac{5\pi}{4}\right]" />, and cosine is zero only at <Katex tex="\tfrac\pi2" /> in that interval, so the domain rules out the second solution. The report notes some students with a correct minimum speed gave other incorrect values of <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{minimum speed } 2\ \mathrm{ms^{-1}}, \text{ at } t = 2\ \text{seconds}}" />,
+    working: <Katex display tex="\boxed{\text{minimum speed } \sqrt4 = 2\ \mathrm{ms^{-1}}, \text{ at } t = 2\ \text{seconds}}" />,
     reason: <>Both parts must be stated — the report's general comments note some students did not give the required time. At <Katex tex="t=2" /> the ball is momentarily travelling straight forward.</>,
   },
 ]
@@ -126,7 +133,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="d(t) = \sqrt{\left(\frac12\sin\!\left(\frac{\pi t}{4}\right)\right)^2+\left(2t-7\right)^2}" />,
-    reason: <>The distance from ball to hole at time t.</>,
+    reason: <>The distance from ball to hole at time <Katex tex="t" /> is the magnitude of that vector: subtract 7 from the <Katex tex="\underset{\sim}{j}" /> component, then use Pythagoras.</>,
   },
   {
     working: (
@@ -134,15 +141,19 @@ const ROWS_C: WorkingRow[] = [
         fMin(√((sin(πt/4)/2)²+(2t−7)²), t) | 0 ≤ t ≤ 5
       </Cas>
     ),
-    reason: <>Minimising the distance directly. Minimising <Katex tex="d^2" /> instead gives the same <Katex tex="t" /> and avoids the square root, if you prefer.</>,
+    reason: <>The distance is a function of one variable, <Katex tex="t" />, so minimise it over the domain. Minimising <Katex tex="d^2" /> instead gives the same <Katex tex="t" /> and avoids the square root, if you prefer.</>,
   },
   {
     working: <Katex display tex="t \approx 3.5169 \ \text{seconds}" />,
-    reason: <>Note it is <em>not</em> <Katex tex="t=3.5" />, where <Katex tex="2t=7" /> — the sideways term shifts the minimum slightly.</>,
+    reason: <>Note it is <em>not</em> <Katex tex="t=3.5" />, where <Katex tex="2t=7" /> and the ball is level with the hole: the path is slanting back towards the <Katex tex="y" />-axis, so the ball keeps getting closer for a moment longer. At the true minimum the line from hole to ball is perpendicular to the path, <Katex tex="\left(\underset{\sim}{r}(t)-7\underset{\sim}{j}\right)\cdot\underset{\sim}{\dot r}(t)=0" />, which gives the same <Katex tex="t" />.</>,
+  },
+  {
+    working: <Katex display tex="d(3.5169\ldots) = 0.18825\ldots" />,
+    reason: <>fMin gives the time, not the distance, so substitute back. (The endpoints are far away: <Katex tex="d(0)=7" /> and <Katex tex="d(5)\approx3.02" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{0.188 \ \text{metres}}" />,
-    reason: <>Three decimal places, as asked. The ball misses the hole by under 19 cm.</>,
+    reason: <>Three decimal places, as asked. Using <Katex tex="t=3.5" /> would give <Katex tex="0.191" />, which is wrong at this accuracy.</>,
   },
 ]
 
@@ -153,7 +164,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="L = \int_0^4\sqrt{\frac{\pi^2}{64}\cos^2\!\left(\frac{\pi t}{4}\right)+4}\;dt" />,
-    reason: <>The speed from part b.ii., over the first four seconds. The terminals are <em>times</em> because the variable of integration is <Katex tex="t" />.</>,
+    reason: <>The speed from part b.ii., over the first four seconds. The terminals are <em>times</em>, 0 and 4, because the variable of integration is <Katex tex="t" />. (If you use the Cartesian form <Katex tex="x=\tfrac12\sin\!\left(\tfrac{\pi y}{8}\right)" /> instead, the variable is <Katex tex="y" />, so the terminals become <Katex tex="y=0" /> to <Katex tex="y=8" />; the report notes very few students who used the Cartesian form used the correct limits.)</>,
   },
   {
     working: (
@@ -161,11 +172,11 @@ const ROWS_D: WorkingRow[] = [
         nInt(√((π²/64)·cos(πt/4)²+4), t, 0, 4)
       </Cas>
     ),
-    reason: <>No elementary antiderivative exists, so a numerical integral is the intended route.</>,
+    reason: <>This can't be integrated by hand, so a numerical integral is the intended route.</>,
   },
   {
     working: <Katex display tex="\boxed{8.077 \ \text{metres}}" />,
-    reason: <>Three decimal places. Sanity check: the forward displacement alone is <Katex tex="2\times4=8" /> m, and the weaving adds only a few centimetres — exactly what the answer shows.</>,
+    reason: <>Three decimal places. Sanity check: <Katex tex="\underset{\sim}{r}(4)=8\underset{\sim}{j}" />, so the straight-line distance from <Katex tex="O" /> is exactly 8 m. The ball weaves sideways on the way, so the distance travelled must be a little more than that.</>,
   },
 ]
 
@@ -186,7 +197,7 @@ export default function SpecialistQ4_2022Exam2() {
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
           <img
             src={diagramSrc}
-            alt="A curved path leaving the origin at a small angle θ to the y-axis, bulging to the right and returning to cross near the point (0, 7) marked on the y-axis — from the original 2022 VCAA exam paper"
+            alt="A curved path leaving the origin at a small angle θ to the y-axis, bulging to the right and returning to cross the y-axis just above the point (0, 7) marked on it — from the original 2022 VCAA exam paper"
             className="w-full max-w-[320px]"
           />
         </div>
@@ -213,8 +224,9 @@ export default function SpecialistQ4_2022Exam2() {
             of the work.
           </p>
           <p>
-            The one trap is the direction the angle is measured from. Here the{' '}
-            <Katex tex="\underset{\sim}{j}" /> direction is "forward", not the{' '}
+            The one trap is the direction the angle is measured from. Here{' '}
+            <Katex tex="\theta" /> is measured from the forward direction{' '}
+            <Katex tex="\underset{\sim}{j}" /> (the <Katex tex="y" />-axis), not from the{' '}
             <Katex tex="x" />-axis, so <Katex tex="\theta" /> is small. A quick look at the
             diagram settles it before any arithmetic.
           </p>
@@ -229,6 +241,9 @@ export default function SpecialistQ4_2022Exam2() {
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
+        <Explore title="The path's direction is the velocity, and θ is measured from forward, not from the x-axis">
+          <LaunchAngleWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -274,6 +289,9 @@ export default function SpecialistQ4_2022Exam2() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="The closest approach isn't when the ball is level with the hole">
+          <ClosestWidget />
+        </Explore>
       </PartCard>
 
       <PartCard

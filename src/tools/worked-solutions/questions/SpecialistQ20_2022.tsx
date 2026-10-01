@@ -36,18 +36,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}D = R_1+R_2-L\\ \operatorname{E}(D) = 1.980+1.980-3.940 = 0.020\end{gathered}" />,
-    reason: <>A linear combination of independent normal variables is itself normal, so it is enough to find its mean and variance.</>,
+    reason: <>Collect everything into one variable: the 4 kg mass moves up exactly when <Katex tex="D>0" />. A linear combination of independent normal variables is itself normal, so it is enough to find the mean and variance of <Katex tex="D" />.</>,
   },
   {
-    working: <Katex display tex="\operatorname{Var}(D) = 0.015^2+0.015^2+0.002^2 = 0.000454" />,
+    working: <Katex display tex="\begin{aligned}\operatorname{Var}(D) &= 0.015^2+0.015^2+0.002^2\\ &= 0.000454\end{aligned}" />,
     reason: <>Variances add for independent variables — including the one being subtracted. <Katex tex="R_1+R_2" /> is two separate masses, so its variance is <Katex tex="2(0.015^2)" />; it is not <Katex tex="2R_1" />, whose variance would be <Katex tex="4(0.015^2)" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}\Pr(D>0) &= \Pr\left(Z>\frac{0-0.020}{\sqrt{0.000454}}\right)\\ &= \Pr(Z>-0.9387\ldots)\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}\Pr(D>0) &= \Pr\left(Z>\frac{0-0.020}{\sqrt{0.000454}}\right)\\ &= \Pr(Z>-0.9386\ldots)\end{aligned}" />,
     reason: <>Standardising: subtract the mean and divide by the standard deviation, <Katex tex="\sqrt{0.000454}\approx0.0213" />.</>,
   },
   {
-    working: <Katex display tex="= 0.82606\ldots" />,
+    working: <Katex display tex="= 0.82604\ldots" />,
     reason: <>By <Cas fn="normCdf" /> with lower 0, upper ∞, μ = 0.020, σ = √0.000454.</>,
   },
   {

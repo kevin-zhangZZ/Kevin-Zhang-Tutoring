@@ -14,27 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z-i = x + (y-1)i" />,
-    reason: <>Write <Katex tex="z=x+yi" /> and subtract <Katex tex="i" />.</>,
+    reason: <>Write <Katex tex="z=x+yi" /> and subtract <Katex tex="i" />, collecting the real part <Katex tex="x" /> and the imaginary part <Katex tex="y-1" />.</>,
   },
   {
-    working: <>This is a ray starting at <Katex tex="(0,1)" /> in the direction of angle <Katex tex="\tfrac{3\pi}{4}=135^\circ" /> (up and to the left).</>,
-    reason: <><Katex tex="\mathrm{Arg}(z-i)=\tfrac{3\pi}{4}" /> fixes both the gradient <i>and</i> which half of the line.</>,
+    working: <Katex display tex="x<0 \ \text{ and } \ y-1>0" />,
+    reason: <><Katex tex="\tfrac{3\pi}{4}" /> lies between <Katex tex="\tfrac{\pi}{2}" /> and <Katex tex="\pi" />, so the complex number <Katex tex="z-i" /> is in the second quadrant of the Argand plane: negative real part and positive imaginary part. Write this down now: the gradient alone cannot tell options A and B apart, but the quadrant can.</>,
   },
   {
-    working: <Katex display tex="\text{gradient} = \tan\!\big(\tfrac{3\pi}{4}\big) = -1" />,
-    reason: <>Gradient from the angle.</>,
+    working: <Katex display tex="\frac{y-1}{x} = \tan\!\left(\tfrac{3\pi}{4}\right) = -1" />,
+    reason: <>For a complex number <Katex tex="a+bi" /> with <Katex tex="a\ne0" />, <Katex tex="\tan(\mathrm{Arg})=\tfrac{b}{a}" /> (rise over run from the origin). Here <Katex tex="a=x" /> and <Katex tex="b=y-1" />.</>,
   },
   {
-    working: <Katex display tex="y - 1 = -1\cdot(x-0) \;\implies\; y = 1-x" />,
-    reason: <>Point-gradient form through (0, 1).</>,
+    working: <Katex display tex="y-1=-x \;\implies\; y = 1-x" />,
+    reason: <>Multiply both sides by <Katex tex="x" /> (allowed, since <Katex tex="x\ne0" />).</>,
   },
   {
-    working: <>Since the ray points up-and-left (second-quadrant direction from its start), every point on it has <Katex tex="x<0" />.</>,
-    reason: <>This restriction is what separates option A from option B, which takes the other half of the line. Options C–E have the wrong gradient.</>,
+    working: <Katex display tex="y-1>0 \iff -x>0 \iff x<0" />,
+    reason: <>With <Katex tex="y=1-x" />, both quadrant conditions reduce to the single restriction <Katex tex="x<0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 1-x,\ \ x<0}" />,
-    reason: <>Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>. Geometrically this is the ray from the point <Katex tex="(0,1)" /> (that is, <Katex tex="i" />) heading up and to the left at <Katex tex="135^\circ" />, with <Katex tex="(0,1)" /> itself left out because <Katex tex="\mathrm{Arg}(0)" /> is undefined. Option B is the other half of the same line: there <Katex tex="z-i=x-xi" /> with <Katex tex="x>0" />, whose argument is <Katex tex="-\tfrac{\pi}{4}" />. Options C–E have gradient <Katex tex="1" />, not <Katex tex="-1" />: D is the ray <Katex tex="\mathrm{Arg}(z-i)=\tfrac{\pi}{4}" />, E is the ray <Katex tex="\mathrm{Arg}(z-i)=-\tfrac{3\pi}{4}" />, and C is the whole line through both.</>,
   },
 ]
 

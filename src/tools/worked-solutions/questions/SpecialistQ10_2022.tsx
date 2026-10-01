@@ -2,10 +2,15 @@
 // Implicit differentiation: for which m does the tangent at (1, m) have negative gradient —
 // where (1, m) must itself lie on the curve. Question text transcribed from the original
 // paper. Solution is original.
+// Interactive: spec-2022-mcq10-on-curve (slide (1, m) along x = 1: the gradient formula is negative
+// for a whole interval of m, but the point is only on the curve at m = -1 +/- sqrt(11)).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const OnCurveWidget = lazyWidget(() => import('../interactives/spec-2022-mcq10-on-curve'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 38, B: 7, C: 23, D: 10, E: 21 },
@@ -22,37 +27,90 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="(1,m) \text{ lies on the curve:}\quad 5(1)^2m - 3(1)m + m^2 = 10" />,
-    reason: <>Before differentiating anything, notice <Katex tex="m" /> isn't a free parameter — the point must actually satisfy the curve's equation.</>,
-  },
-  {
-    working: <Katex display tex="m^2+2m-10=0 \;\implies\; m = \frac{-2\pm\sqrt{4+40}}{2} = -1\pm\sqrt{11}" />,
-    reason: <>Solve the resulting quadratic in <Katex tex="m" /> — only these <b>two</b> discrete values of <Katex tex="m" /> are possible, not a continuous range.</>,
-  },
-  {
-    working: <Katex display tex="10xy + 5x^2y' - 3y - 3xy' + 2yy' = 0" />,
-    reason: <>Differentiate <Katex tex="5x^2y-3xy+y^2=10" /> implicitly with respect to <Katex tex="x" />.</>,
-  },
-  {
-    working: <Katex display tex="y' = \frac{3y-10xy}{5x^2-3x+2y}" />,
-    reason: <>Collect the <Katex tex="y'" /> terms and solve.</>,
-  },
-  {
-    working: <Katex display tex="\text{At } x=1:\quad y' = \frac{3m-10m}{5-3+2m} = \frac{-7m}{2(1+m)}" />,
-    reason: <>Substitute x = 1.</>,
+    working: (
+      <>
+        <Katex tex="(1,m)" /> is on the curve:
+        <Katex display tex="5(1)^2m - 3(1)m + m^2 = 10" />
+      </>
+    ),
+    reason: (
+      <>
+        A tangent &quot;at the point <Katex tex="(1,m)" />&quot; only exists if <Katex tex="(1,m)" /> is on the curve.
+        So <Katex tex="m" /> is not free: it must satisfy the curve&apos;s equation. Do this before differentiating,
+        because it limits which values of <Katex tex="m" /> are possible at all.
+      </>
+    ),
   },
   {
     working: (
       <>
-        <Katex display tex="m=\sqrt{11}-1\approx2.32:\quad y'=\dfrac{-7(2.32)}{2(3.32)}\approx-2.45<0" />
-        <Katex display tex="m=-\sqrt{11}-1\approx-4.32:\quad y'=\dfrac{-7(-4.32)}{2(-3.32)}\approx-4.56<0" />
+        <Katex display tex="m^2+2m-10=0" />
+        <Katex display tex="m = \frac{-2\pm\sqrt{4+40}}{2} = -1\pm\sqrt{11}" />
       </>
     ),
-    reason: <>Test both of the only two valid <Katex tex="m" /> values — both give a negative gradient.</>,
+    reason: (
+      <>
+        Quadratic formula, with <Katex tex="\sqrt{44}=2\sqrt{11}" />. So there are only <b>two</b> possible points,{' '}
+        <Katex tex="m=\sqrt{11}-1" /> and <Katex tex="m=-\sqrt{11}-1" />, not a whole interval of <Katex tex="m" />.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="10xy + 5x^2\frac{dy}{dx} - 3y - 3x\frac{dy}{dx} + 2y\frac{dy}{dx} = 0" />,
+    reason: (
+      <>
+        Differentiate both sides with respect to <Katex tex="x" />. Use the product rule on <Katex tex="5x^2y" /> and{' '}
+        <Katex tex="3xy" />, and the chain rule on <Katex tex="y^2" /> to get <Katex tex="2y\frac{dy}{dx}" />. The
+        right side, <Katex tex="10" />, differentiates to <Katex tex="0" />.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\frac{dy}{dx} = \frac{3y-10xy}{5x^2-3x+2y}" />,
+    reason: (
+      <>
+        Keep the <Katex tex="\frac{dy}{dx}" /> terms on the left, move the rest to the right, then factorise and
+        divide.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\text{At } (1,m):\quad \frac{dy}{dx} = \frac{3m-10m}{5-3+2m} = \frac{-7m}{2(1+m)}" />,
+    reason: (
+      <>
+        Substitute <Katex tex="x=1" /> and <Katex tex="y=m" />.
+      </>
+    ),
+  },
+  {
+    working: (
+      <>
+        <Katex display tex="m=\sqrt{11}-1:\ \ 1+m=\sqrt{11}" />
+        <Katex display tex="\frac{dy}{dx}=\frac{-7m}{2\sqrt{11}}<0" />
+        <Katex display tex="m=-\sqrt{11}-1:\ \ 1+m=-\sqrt{11}" />
+        <Katex display tex="\frac{dy}{dx}=\frac{-7m}{-2\sqrt{11}}<0" />
+      </>
+    ),
+    reason: (
+      <>
+        Only the sign matters, and <Katex tex="1+m=\pm\sqrt{11}" /> makes it easy to see. For{' '}
+        <Katex tex="m=\sqrt{11}-1>0" />, the numerator <Katex tex="-7m" /> is negative and the denominator positive. For{' '}
+        <Katex tex="m=-\sqrt{11}-1<0" />, the numerator is positive and the denominator negative. Both gradients are
+        negative (about <Katex tex="-2.44" /> and <Katex tex="-4.56" />).
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{m=-\sqrt{11}-1 \text{ or } m=\sqrt{11}-1}" />,
-    reason: <>Both possible points give a negative gradient. Matches option <b>E</b>. (The trap: options A and C treat <Katex tex="m" /> as if it could be any real number, rather than one of only two values forced by the curve.)</>,
+    reason: (
+      <>
+        Matches option <b>E</b>. Option A (chosen by 38%) is where <Katex tex="\frac{-7m}{2(1+m)}<0" />, that is{' '}
+        <Katex tex="m<-1" /> or <Katex tex="m>0" />. It treats <Katex tex="m" /> as free, but for every other value of{' '}
+        <Katex tex="m" /> the point <Katex tex="(1,m)" /> is not on the curve, so there is no tangent. Option C is that
+        set plus <Katex tex="m=-1" />, where the gradient is undefined. Options B and D each keep only one of the two
+        points, but both give a negative gradient.
+      </>
+    ),
   },
 ]
 
@@ -75,6 +133,11 @@ export default function SpecialistQ10_2022() {
         { letter: 'E', content: <Katex tex="m=-\sqrt{11}-1 \text{ or } m=\sqrt{11}-1" />, isAnswer: true },
       ]}
       rows={ROWS}
+      extras={
+        <Explore title="Is (1, m) even on the curve? Only two values of m give a tangent at all">
+          <OnCurveWidget />
+        </Explore>
+      }
       examinerReport={EXAMINER}
     />
   )

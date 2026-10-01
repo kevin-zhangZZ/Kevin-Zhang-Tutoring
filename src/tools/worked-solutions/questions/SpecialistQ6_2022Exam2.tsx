@@ -52,8 +52,8 @@ const EXAM_E: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="H_0: \ \mu = 15" />,
-    reason: <>The null hypothesis is always the supplier’s claim — the status quo being tested.</>,
+    working: <Katex display tex="\boxed{H_0: \ \mu = 15}" />,
+    reason: <>Let <Katex tex="\mu" /> be the mean mass (in grams) of aluminium in <em>all</em> the supplier’s cans. The null hypothesis is the claim being tested — the supplier’s mean of 15 g — and it always states an exact value. Hypotheses are about <Katex tex="\mu" />, never about the sample mean 14.94.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \ \mu < 15}" />,
@@ -63,12 +63,16 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(15,\ \frac{0.25^2}{64}\right), \qquad \mathrm{sd}\left(\bar X\right) = \frac{0.25}{8} = 0.03125" />,
-    reason: <>The distribution of the sample <em>mean</em>, not of a single can. Dividing by <Katex tex="\sqrt{64}=8" /> is what makes the test sensitive.</>,
+    working: <Katex display tex="\bar X \sim \mathrm{N}\!\left(15,\ \frac{0.25^2}{64}\right)" />,
+    reason: <>The test is about the mean of 64 cans, so use the distribution of the sample <em>mean</em> <Katex tex="\bar X" />, assuming <Katex tex="H_0" /> is true (<Katex tex="\mu=15" />). Its variance is <Katex tex="\tfrac{\sigma^2}{n}" />.</>,
+  },
+  {
+    working: <Katex display tex="\mathrm{sd}\left(\bar X\right) = \frac{0.25}{\sqrt{64}} = 0.03125" />,
+    reason: <>The square root of that variance: <Katex tex="\tfrac{\sigma}{\sqrt n}" />. Using 0.25, the standard deviation of a <em>single</em> can, instead would give <Katex tex="p\approx0.405" /> — far too big.</>,
   },
   {
     working: <Katex display tex="p = \Pr\!\left(\bar X \le 14.94 \ \middle|\ \mu = 15\right)" />,
-    reason: <>The <Katex tex="p" /> value is the chance of a sample this extreme <em>if</em> the claim is true. One tail only, matching <Katex tex="H_1" />.</>,
+    reason: <>The <Katex tex="p" /> value is the probability of a sample mean at least as extreme as the one observed, assuming <Katex tex="H_0" /> is true. <Katex tex="H_1" /> is <Katex tex="\mu<15" />, so “extreme” means <em>low</em>: only the lower tail counts.</>,
   },
   {
     working: (
@@ -76,29 +80,34 @@ const ROWS_B: WorkingRow[] = [
         normCdf(−∞, 14.94, 15, 0.25/8)
       </Cas>
     ),
-    reason: <>Or standardise by hand: <Katex tex="z=\tfrac{14.94-15}{0.03125}=-1.92" />.</>,
+    reason: <>Equivalently, standardise first: <Katex tex="z=\tfrac{14.94-15}{0.03125}=-1.92" /> and find <Katex tex="\Pr(Z\le-1.92)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.027}" />,
-    reason: <>Correct to three decimal places.</>,
+    reason: <><Katex tex="p=0.0274\ldots" />, correct to three decimal places.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.027 < 0.05" />,
-    reason: <>Compare the p value with the stated significance level. That comparison is the entire argument.</>,
+    reason: <>The decision rule: if the <Katex tex="p" /> value is less than the significance level (here 0.05), reject <Katex tex="H_0" />; otherwise do not reject it. That comparison is the justification the question asks for.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Reject } H_0 \text{: the sample does not support the supplier's claim.}}" />,
-    reason: <>A sample mean this low would arise under the claim less than 5% of the time. The reason must cite the <Katex tex="p" /> value — the report notes some students did not justify their response this way.</>,
+    working: (
+      <Katex
+        display
+        tex="\boxed{\begin{gathered}\text{No. As } p < 0.05, \text{ reject } H_0\text{:} \\ \text{the claim is not supported.}\end{gathered}}"
+      />
+    ),
+    reason: <>If the claim were true, a sample mean of 14.94 g or lower would happen only about 2.7% of the time — rarer than the 5% cut-off — so the sample is evidence against the claim. The answer must cite the <Katex tex="p" /> value — the report notes some students did not justify their response this way.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="H_0 \text{ stands} \iff p \ge 0.05 \iff \bar x \ge c, \ \text{ where } \Pr\!\left(\bar X<c\right) = 0.05" />,
-    reason: <>The critical value: the boundary sample mean whose p value is exactly 0.05.</>,
+    working: <Katex display tex="\Pr\!\left(\bar X < c \ \middle|\ \mu = 15\right) = 0.05" />,
+    reason: <><Katex tex="H_0" /> is not rejected when <Katex tex="p\ge0.05" />. The lower the sample mean, the smaller its <Katex tex="p" /> value, so there is a cut-off <Katex tex="c" /> (the <em>critical value</em>): every sample mean at or above <Katex tex="c" /> keeps <Katex tex="H_0" />. At the cut-off itself the <Katex tex="p" /> value is exactly 0.05.</>,
   },
   {
     working: (
@@ -106,30 +115,30 @@ const ROWS_D: WorkingRow[] = [
         invNorm(0.05, 15, 0.25/8)
       </Cas>
     ),
-    reason: <>Working backwards from the area. By hand: <Katex tex="c=15-1.6449\times0.03125" />.</>,
+    reason: <>invNorm works backwards from a lower-tail area to the value. It is the lower tail because <Katex tex="H_1" /> is <Katex tex="\mu<15" />; invNorm(0.95, …) would give 15.05, the cut-off for the other direction.</>,
   },
   {
     working: <Katex display tex="c = 14.9486\ldots" />,
-    reason: <>Anything at or above this leaves the null hypothesis standing.</>,
+    reason: <>Equivalently, <Katex tex="c=15-1.6449\times0.03125" />, where <Katex tex="\Pr(Z<-1.6449)=0.05" />.</>,
   },
   {
     working: <Katex display tex="\boxed{14.95 \ \text{grams}}" />,
-    reason: <>Two decimal places. Note how fine the margin is — the observed 14.94 misses by a hundredth of a gram. (The report notes students who transposed digits and wrote 14.59.)</>,
+    reason: <>Two decimal places. Note how fine the margin is — the observed 14.94 falls short by about a hundredth of a gram, which is why <Katex tex="H_0" /> was rejected in part c. (The report notes transcription errors giving 14.59.)</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="M_1, M_2 \sim \mathrm{N}\!\left(406,\ 5^2\right) \ \text{ independent}" />,
-    reason: <>Two randomly selected filled cans.</>,
+    reason: <>The masses of the two randomly selected filled cans. Selected at random, so they are independent — which is what lets us add their variances below.</>,
   },
   {
     working: <Katex display tex="D = M_1-M_2 \implies \mathrm{E}(D) = 406-406 = 0" />,
-    reason: <>The difference of two normal variables is normal, and the means subtract.</>,
+    reason: <>Let <Katex tex="D" /> be the difference. A linear combination of independent normal variables is also normal, and <Katex tex="\mathrm{E}(M_1-M_2)=\mathrm{E}(M_1)-\mathrm{E}(M_2)" />.</>,
   },
   {
-    working: <Katex display tex="\mathrm{Var}(D) = 1^2\mathrm{Var}(M_1)+(-1)^2\mathrm{Var}(M_2) = 25+25 = 50" />,
-    reason: <>Variances <strong>add</strong> even for a difference, because the coefficient is squared. <Katex tex="\mathrm{sd}(D)=\sqrt{50}\approx7.07" />.</>,
+    working: <Katex display tex="\begin{aligned}\mathrm{Var}(D) &= 1^2\mathrm{Var}(M_1)+(-1)^2\mathrm{Var}(M_2) \\ &= 25+25 = 50\end{aligned}" />,
+    reason: <>Variances <strong>add</strong> even for a difference, because each coefficient is squared: <Katex tex="(-1)^2=1" />. So <Katex tex="D\sim\mathrm{N}(0,\,50)" /> and <Katex tex="\mathrm{sd}(D)=\sqrt{50}\approx7.07" />. Adding the standard deviations instead (<Katex tex="5+5=10" />) would give 0.236.</>,
   },
   {
     working: (
@@ -138,7 +147,7 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="|D|\le3 \implies -3\le D\le3" />
       </>
     ),
-    reason: <>Either can could be the heavier one, so both tails count.</>,
+    reason: <>“Differ by” doesn’t say which can is heavier, so <Katex tex="D" /> may be negative or positive — the difference must lie within 3 on either side of 0. For a continuous variable, <Katex tex="\le" /> and <Katex tex="<" /> give the same probability.</>,
   },
   {
     working: (
@@ -146,11 +155,11 @@ const ROWS_E: WorkingRow[] = [
         normCdf(−3, 3, 0, √50)
       </Cas>
     ),
-    reason: <>One call with both terminals.</>,
+    reason: <>One call with both bounds. The last entry is the standard deviation <Katex tex="\sqrt{50}" />, not the variance 50.</>,
   },
   {
     working: <Katex display tex="\boxed{0.329}" />,
-    reason: <>Three decimal places. Only about a third of pairs are that close — reasonable, since a spread of 7 g dwarfs a 3 g window.</>,
+    reason: <>Three decimal places. Only about a third of pairs are that close — reasonable, since differences typically spread about 7 g either side of 0, much wider than the ±3 g window.</>,
   },
 ]
 
@@ -186,10 +195,10 @@ export default function SpecialistQ6_2022Exam2() {
             the stated level. Part d. simply runs the last line backwards.
           </p>
           <p>
-            Part e. is a different animal — the report's general comments list working with
-            random variables that are functions of other variables as an area of weakness: a{' '}
-            <em>difference</em> of two random variables, not a sample mean. Its variance is{' '}
-            <Katex tex="25+25=50" /> — adding, never subtracting.
+            Part e. is a different kind of question: a <em>difference</em> of two random
+            variables, not a sample mean. Its variance is <Katex tex="25+25=50" /> — variances
+            add, never subtract. (The report's general comments list working with random
+            variables that are functions of other variables as an area of weakness.)
           </p>
         </Background>
       </div>

@@ -14,27 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{u}\cdot\underset{\sim}{v} = 0 \ \text{ for perpendicular vectors}" />,
-    reason: <>The only condition available, and it turns the question into trigonometry.</>,
+    reason: <>Perpendicular vectors have a dot product of zero, and this turns the question into a trigonometric equation.</>,
   },
   {
     working: <Katex display tex="\bigl(-\operatorname{cosec}(x)\bigr)\bigl(\cos(x)\bigr)+\sqrt3\cdot1 = 0" />,
-    reason: <>Matching components and adding.</>,
+    reason: <>Multiply the <Katex tex="\underset{\sim}{i}" /> components, multiply the <Katex tex="\underset{\sim}{j}" /> components, and add.</>,
   },
   {
     working: <Katex display tex="-\frac{\cos(x)}{\sin(x)}+\sqrt3 = 0 \implies \cot(x) = \sqrt3" />,
-    reason: <><Katex tex="\operatorname{cosec}(x)=\tfrac{1}{\sin(x)}" />, so the product is exactly <Katex tex="\cot(x)" />.</>,
+    reason: <>Since <Katex tex="\operatorname{cosec}(x)=\tfrac{1}{\sin(x)}" />, the product <Katex tex="\operatorname{cosec}(x)\cos(x)" /> is <Katex tex="\tfrac{\cos(x)}{\sin(x)}=\cot(x)" />. Note <Katex tex="\sin(x)\ne0" />, otherwise <Katex tex="\operatorname{cosec}(x)" /> would be undefined.</>,
   },
   {
     working: <Katex display tex="\tan(x) = \frac{1}{\sqrt3}" />,
-    reason: <>Easier to solve in this form. Note <Katex tex="\sin(x)\ne0" /> automatically, since <Katex tex="\operatorname{cosec}(x)" /> would be undefined.</>,
+    reason: <>Taking the reciprocal of both sides, since <Katex tex="\tan(x)=\tfrac{1}{\cot(x)}" />. The exact values you know are for <Katex tex="\tan" />, so this form is easier to solve.</>,
   },
   {
-    working: <Katex display tex="x = \frac\pi6 \ \text{ or } \ x = \frac\pi6+\pi = \frac{7\pi}{6}" />,
-    reason: <>Tangent has period <Katex tex="\pi" />, so solutions come a half-turn apart, both in the quadrants where it is positive (1st and 3rd).</>,
+    working: <Katex display tex="x = \frac\pi6 + k\pi, \ k\in Z" />,
+    reason: <><Katex tex="\tan\bigl(\tfrac\pi6\bigr)=\tfrac{1}{\sqrt3}" />, and <Katex tex="\tan" /> has period <Katex tex="\pi" />, so the solutions are a half-turn apart, in the quadrants where <Katex tex="\tan" /> is positive (1st and 3rd). No domain is given, so any two of these are possible values.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \frac\pi6 \ \text{ and } \ \frac{7\pi}{6}}" />,
-    reason: <>Matches option <b>A</b>. Option <b>E</b> pairs <Katex tex="\tfrac\pi6" /> with <Katex tex="\tfrac{5\pi}{6}" />, which is where <Katex tex="\tan" /> is <em>negative</em>.</>,
+    reason: <>Matches option <b>A</b> (<Katex tex="k=0" /> and <Katex tex="k=1" />). Option <b>C</b> solves <Katex tex="\cot(x)=-\sqrt3" />, which is what you get if the minus sign on <Katex tex="\operatorname{cosec}(x)" /> is dropped. Option <b>B</b> solves <Katex tex="\tan(x)=\sqrt3" />, which mixes up <Katex tex="\cot" /> and <Katex tex="\tan" />. Option <b>E</b> pairs <Katex tex="\tfrac\pi6" /> with <Katex tex="\tfrac{5\pi}{6}" />, where <Katex tex="\tan" /> is <em>negative</em>.</>,
   },
 ]
 

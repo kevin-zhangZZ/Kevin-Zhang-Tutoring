@@ -13,35 +13,32 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="|z-5|=2" />,
-    reason: <>A circle of radius 2 centred at (5, 0).</>,
+    working: <Katex display tex="|z-5|=2 \iff (x-5)^2+y^2=4" />,
+    reason: <><Katex tex="|z-5|" /> is the distance from <Katex tex="z" /> to the point <Katex tex="5" />, so this is the circle of radius 2 centred at (5, 0). Its Cartesian form is handy for testing the lines below. Now check each option against this circle in turn.</>,
   },
   {
-    working: (
-      <>
-        <p>A. <Katex tex="\mathrm{Arg}(z-3)=\tfrac{\pi}{2}" /> — vertical ray from (3, 0); the vertical line touches the circle only at (3, 0), which is not on the ray: 0 points.</p>
-        <p>B. <Katex tex="|z-1|=2" /> — circle centred (1, 0) r = 2; centre distance 4 = sum of radii: externally tangent, 1 point.</p>
-        <p>C. <Katex tex="\mathrm{Im}(z)=2" /> — line y = 2; distance from (5, 0) is 2 = radius: tangent, 1 point.</p>
-        <p>D. <Katex tex="\mathrm{Re}(z)+\mathrm{Im}(z)=2" /> — line x+y=2; distance from (5, 0) is <Katex tex="3/\sqrt2\approx2.12>2" />: no intersection.</p>
-      </>
-    ),
-    reason: <>Check each option against the circle in turn — each of A–D gives 0 or 1 points, not 2.</>,
+    working: <Katex display tex="\begin{aligned}\text{A: } x=3,\ y&>0\\ x=3 \implies (3-5)^2+y^2&=4\\ y&=0 \ \text{(excluded)}\end{aligned}" />,
+    reason: <><Katex tex="\mathrm{Arg}(z-3)=\tfrac{\pi}{2}" /> means <Katex tex="z-3" /> points straight up, so <Katex tex="z" /> lies on the vertical half-line above (3, 0). The point (3, 0) itself is not on it, because <Katex tex="\mathrm{Arg}(0)" /> is undefined. The line <Katex tex="x=3" /> touches the circle only at (3, 0), the excluded endpoint, so A meets the circle at 0 points.</>,
   },
   {
-    working: <Katex display tex="|z-5-5i|=4" />,
-    reason: <>Option E: a circle of radius 4 centred at (5, 5).</>,
+    working: <Katex display tex="\begin{aligned}\text{B: centre } (1,0),\ r&=2\\ \text{distance between centres}&=5-1\\ &=4=2+2\end{aligned}" />,
+    reason: <>Another circle of radius 2. Two circles whose centres are exactly the sum of their radii apart touch from outside at one point, here (3, 0). B: 1 point.</>,
   },
   {
-    working: <Katex display tex="\text{Centre distance} = |(5,5)-(5,0)| = 5" />,
-    reason: <>Distance between the two circles’ centres.</>,
+    working: <Katex display tex="\text{C: } y=2 \implies (x-5)^2+4=4 \implies x=5" />,
+    reason: <><Katex tex="\mathrm{Im}(z)=2" /> is the horizontal line <Katex tex="y=2" />. It meets the circle only at its top point (5, 2), so it is a tangent. C: 1 point.</>,
   },
   {
-    working: <Katex display tex="|4-2| < 5 < 4+2 \;\implies\; 2 < 5 < 6" />,
-    reason: <>Two circles intersect at exactly two points precisely when the centre distance is strictly between the difference and the sum of the radii.</>,
+    working: <Katex display tex="\begin{aligned}\text{D: } y&=2-x\\ (x-5)^2+(2-x)^2&=4\\ 2x^2-14x+25&=0\\ \Delta=(-14)^2-4(2)(25)&=-4<0\end{aligned}" />,
+    reason: <><Katex tex="\mathrm{Re}(z)+\mathrm{Im}(z)=2" /> is the line <Katex tex="x+y=2" />. Substitute it into the circle’s Cartesian equation: each real solution for <Katex tex="x" /> gives an intersection point, and a negative discriminant means there are none. D: 0 points.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned}\text{E: centre } (5,5),\ r&=4\\ \text{distance between centres}&=5\\ 4-2<5&<4+2\end{aligned}" />,
+    reason: <><Katex tex="|z-(5+5i)|=4" /> is the circle of radius 4 centred at (5, 5). Compare the distance between the centres with the radii 2 and 4: more than <Katex tex="4+2=6" /> and the circles miss; exactly 6 and they touch once; less than <Katex tex="4-2=2" /> and the small circle sits inside the big one. Strictly in between, as here, they cross at two points. (Solving the two Cartesian equations together confirms it: <Katex tex="y=1.3" />, <Katex tex="x=5\pm\sqrt{2.31}" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{|z-5-5i|=4}" />,
-    reason: <>The condition holds. Matches option <b>E</b>.</>,
+    reason: <>Matches option <b>E</b>. Options A–D each meet the circle at most once.</>,
   },
 ]
 

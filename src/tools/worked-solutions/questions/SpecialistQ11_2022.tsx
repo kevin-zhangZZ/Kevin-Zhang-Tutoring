@@ -1,5 +1,5 @@
 // 2022 Specialist Mathematics — Exam 2, MCQ 11. VCAA examination report: 66% correct.
-// Linear dependence of three vectors as a single determinant condition. Question text transcribed from the original paper.
+// Linear dependence of three vectors: write c as a combination of a and b, then match components. Question text transcribed from the original paper.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -14,19 +14,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{c} = m\underset{\sim}{a}+n\underset{\sim}{b} \ \text{ for some } m,n\in R" />,
-    reason: <>Three vectors are linearly dependent exactly when one is a combination of the other two.</>,
+    reason: <>Three vectors are linearly dependent when one of them can be written as a combination of the other two. Here <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> can never be parallel (their <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components, <Katex tex="2,\,-3" /> and <Katex tex="1,\,2" />, are not in proportion), so it must be <Katex tex="\underset{\sim}{c}" /> that is the combination.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \ 2m+n = -3; \qquad \underset{\sim}{j}: \ -3m+2n = 2" />,
-    reason: <>The two components that do not involve <Katex tex="p" /> or <Katex tex="q" /> fix <Katex tex="m" /> and <Katex tex="n" /> on their own.</>,
+    reason: <>Matching components. The <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components do not involve <Katex tex="p" /> or <Katex tex="q" />, so these two equations fix <Katex tex="m" /> and <Katex tex="n" /> on their own.</>,
   },
   {
     working: <Katex display tex="m = -\frac{8}{7}, \qquad n = -\frac{5}{7}" />,
-    reason: <>Solving: <Katex tex="4m+2n=-6" /> minus <Katex tex="-3m+2n=2" /> gives <Katex tex="7m=-8" />.</>,
+    reason: <>Doubling the first equation, <Katex tex="4m+2n=-6" />, then subtracting <Katex tex="-3m+2n=2" /> gives <Katex tex="7m=-8" />. Then <Katex tex="n=-3-2m=-\tfrac57" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{k}: \ 5 = mp+n(-q) = -\frac{8p}{7}+\frac{5q}{7}" />,
-    reason: <>The third component is the condition the question is after.</>,
+    reason: <>The <Katex tex="\underset{\sim}{k}" /> components must match too. This is the only equation involving <Katex tex="p" /> and <Katex tex="q" />, so it is the condition the question asks for.</>,
   },
   {
     working: <Katex display tex="35 = -8p+5q" />,
@@ -34,7 +34,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{8p = 5q-35}" />,
-    reason: <>Matches option <b>A</b>. The determinant route is quicker on a CAS: <Katex tex="\det\begin{pmatrix}2&-3&p\\1&2&-q\\-3&2&5\end{pmatrix}=8p-5q+35=0" /> gives the same line.</>,
+    reason: <>Matches option <b>A</b>. Option <b>C</b> is what you get if the minus sign in <Katex tex="-q\underset{\sim}{k}" /> is lost: the <Katex tex="q" /> term changes sign, giving <Katex tex="8p=-5q-35" />.</>,
   },
 ]
 

@@ -1,11 +1,17 @@
 // 2022 Specialist Mathematics — Exam 2, MCQ 14. VCAA examination report: 28% correct.
 // The velocity halfway along, which is not the average of the two velocities. Question text transcribed from the original paper.
 // Solution is original.
+// Interactive: spec-2022-mcq14-halfway (a velocity–time graph with the distance covered shaded:
+// halfway through the time v = 12 but only 9.5 of 24 m is covered; the midpoint comes at 60% of
+// the time, where v = 13).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import { Background } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const HalfwayWidget = lazyWidget(() => import('../interactives/spec-2022-mcq14-halfway'))
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 9, B: 7, C: 49, D: 28, E: 7 },
@@ -23,10 +29,10 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="v^2 = u^2+2as" />,
-    reason: <>The constant-acceleration formula that links velocity to <em>distance</em> — the right tool, because the question is about a point halfway along <Katex tex="AB" />.</>,
+    reason: <>The constant-acceleration formula that links velocity to <em>distance</em>. It is the right tool because the question is about a point halfway along <Katex tex="AB" />, and no time is given or asked for.</>,
   },
   {
-    working: <Katex display tex="17^2 = 7^2+2as \implies 289 = 49+2as \implies 2as = 240" />,
+    working: <Katex display tex="\begin{aligned}17^2 &= 7^2+2as\\ 2as &= 289-49 = 240\end{aligned}" />,
     reason: <>Taking <Katex tex="s" /> as the whole distance <Katex tex="AB" />. Neither <Katex tex="a" /> nor <Katex tex="s" /> can be found separately, and neither needs to be.</>,
   },
   {
@@ -39,11 +45,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v_M^2 = 49+120 = 169" />,
-    reason: <>The unknown product drops straight in.</>,
+    reason: <>Substitute <Katex tex="as=120" />. Take the positive root: the velocity rises steadily from 7 to 17, so it is positive all the way from <Katex tex="A" /> to <Katex tex="B" />.</>,
   },
   {
     working: <Katex display tex="\boxed{v_M = 13\ \mathrm{ms^{-1}}}" />,
-    reason: <>Matches option <b>D</b>. Option C, 12, is <em>not</em> the answer: <Katex tex="\tfrac{7+17}{2}=12" />: the particle spends longer in the slow half, so it is past halfway in time when it reaches halfway in distance, and has picked up more than half the extra speed.</>,
+    reason: <>Matches option <b>D</b>. Option C, <Katex tex="\tfrac{7+17}{2}=12" />, is the velocity halfway through the <em>time</em>, because velocity grows evenly with time. But the particle moves slowly at first, so the first half of <Katex tex="AB" /> takes more than half the time. By the midpoint it has been speeding up for longer, so its velocity is more than 12.</>,
   },
 ]
 
@@ -76,6 +82,11 @@ export default function SpecialistQ14_2022() {
         { letter: 'E', content: <Katex tex="\sqrt{240}" /> },
       ]}
       rows={ROWS}
+      extras={
+        <Explore title="Halfway through the time is not halfway along AB">
+          <HalfwayWidget />
+        </Explore>
+      }
       examinerReport={EXAMINER}
     />
   )

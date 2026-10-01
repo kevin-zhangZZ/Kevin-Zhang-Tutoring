@@ -4,11 +4,18 @@
 // paper; the sketch is this site's own matplotlib drawing of the answer, on VCAA's grid
 // (x −4.5 to 4.5 with gridlines every 0.5; y about −8 to 8 with gridlines every 1). Answers checked with sympy and
 // against the VCAA examination report. Solution is original.
+//
+// Interactive widget: d.ii. a slice of the solid as a washer, side view and face-on, sweeping
+// across the region to 51.42, with a toggle for the report's "square of the difference" disc
+// (spec-2022e2-q1dii-washer).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './spec-2022e2-q1b-sketch.png'
+
+const WasherWidget = lazyWidget(() => import('../interactives/spec-2022e2-q1dii-washer'))
 
 const EXAM_A: SAExaminerStats = { marks: [2, 18, 81], average: 1.8, comment: <>Generally well done.</> }
 
@@ -79,8 +86,8 @@ const ROWS_A: WorkingRow[] = [
     reason: <>The denominator vanishes and the numerator does not (<Katex tex="1^2=1\ne0" />), so this really is an asymptote and not a hole.</>,
   },
   {
-    working: <Katex display tex="\frac{x^2}{x-1} = x+1+\frac{1}{x-1}" />,
-    reason: <>Polynomial division. The degree of the numerator is one more than the denominator, so expect an oblique asymptote, not a horizontal one.</>,
+    working: <Katex display tex="\frac{x^2}{x-1} = \frac{(x-1)(x+1)+1}{x-1} = x+1+\frac{1}{x-1}" />,
+    reason: <>The numerator's degree is one more than the denominator's, so divide: expect an oblique asymptote, not a horizontal one. Writing <Katex tex="x^2=(x-1)(x+1)+1" /> does the division in one line (long division gives the same).</>,
   },
   {
     working: <Katex display tex="\boxed{x=1 \quad\text{and}\quad y=x+1}" />,
@@ -99,15 +106,19 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(0)=0, \quad f(2)=\frac41=4" />,
-    reason: <>So <Katex tex="(0,0)" /> — a local maximum on the left branch — and <Katex tex="(2,4)" />, a local minimum on the right.</>,
+    reason: <>The sign of <Katex tex="f'" /> is the sign of <Katex tex="x(x-2)" />: positive for <Katex tex="x<0" />, negative for <Katex tex="0<x<2" /> (<Katex tex="x\ne1" />), positive for <Katex tex="x>2" />. So <Katex tex="(0,0)" /> is a local maximum on the left branch and <Katex tex="(2,4)" /> a local minimum on the right.</>,
   },
   {
     working: <Katex display tex="x<1 \implies f(x)\le0; \qquad x>1 \implies f(x)>0" />,
     reason: <>Since <Katex tex="x^2\ge0" />, the sign of <Katex tex="f" /> follows the sign of <Katex tex="x-1" />. The left branch lies entirely on or below the <Katex tex="x" />-axis.</>,
   },
   {
-    working: <Katex display tex="\text{Draw both asymptotes first, then hang the branches on them}" />,
-    reason: <>The report notes the oblique asymptote was occasionally sketched hastily. Plot the line <Katex tex="y=x+1" /> accurately, then make each branch approach it.</>,
+    working: <Katex display tex="f(x)-(x+1)=\frac{1}{x-1}" />,
+    reason: <>This is positive for <Katex tex="x>1" /> and negative for <Katex tex="x<1" />, so the right branch approaches the oblique asymptote from above and the left branch from below, never crossing it: the asymptotic behaviour the report says some responses did not show.</>,
+  },
+  {
+    working: <Katex display tex="y=x+1 \text{ passes through } (-1,0) \text{ and } (0,1)" />,
+    reason: <>The report notes the oblique asymptote was occasionally sketched hastily, without regard to its position. Two grid points pin it down: rule it through them, draw <Katex tex="x=1" /> dashed, then hang each branch on the asymptotes. Setting the CAS graph window to match the printed grid (the report's tip) lets you copy the shape square by square.</>,
   },
   {
     working: (
@@ -126,11 +137,11 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="x-k = 0 \implies x = k" />,
-    reason: <>The vertical asymptote, for every non-zero k.</>,
+    reason: <>At <Katex tex="x=k" /> the numerator is <Katex tex="k^2\ne0" /> (because <Katex tex="k\ne0" />), so only the denominator vanishes: a vertical asymptote, not a hole.</>,
   },
   {
     working: <Katex display tex="\frac{x^2}{x-k} = x+k+\frac{k^2}{x-k}" />,
-    reason: <>The same polynomial division as in part a., carrying k through.</>,
+    reason: <>The same division as in part a., using <Katex tex="x^2=(x-k)(x+k)+k^2" />. As <Katex tex="x\to\pm\infty" />, <Katex tex="\tfrac{k^2}{x-k}\to0" />, leaving the line.</>,
   },
   {
     working: <Katex display tex="\boxed{x=k \quad\text{and}\quad y=x+k}" />,
@@ -145,14 +156,14 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = 0 \implies x = 0 \ \text{ or } \ x = 2k" />,
-    reason: <>Two turning points for every non-zero k — which is why the question can ask for the distance between them.</>,
+    reason: <>Since <Katex tex="k\ne0" />, these are two different values, and <Katex tex="f'" /> changes sign at each (each is a single root of the numerator), so both are genuine turning points.</>,
   },
   {
     working: <Katex display tex="f(0) = 0, \qquad f(2k) = \frac{4k^2}{2k-k} = 4k" />,
     reason: <>So the turning points are <Katex tex="(0,0)" /> and <Katex tex="(2k,4k)" />.</>,
   },
   {
-    working: <Katex display tex="d = \sqrt{(2k-0)^2+(4k-0)^2} = \sqrt{4k^2+16k^2} = \sqrt{20k^2}" />,
+    working: <Katex display tex="\begin{aligned} d &= \sqrt{(2k-0)^2+(4k-0)^2} \\ &= \sqrt{4k^2+16k^2} = \sqrt{20k^2} \end{aligned}" />,
     reason: <>The distance formula.</>,
   },
   {
@@ -163,7 +174,7 @@ const ROWS_CII: WorkingRow[] = [
 
 const ROWS_DI: WorkingRow[] = [
   {
-    working: <Katex display tex="x<1 \implies \frac{x^2}{x-1}\le0 \implies g(x) = \left|\frac{x^2}{x-1}\right| = \frac{x^2}{1-x}" />,
+    working: <Katex display tex="\begin{aligned} x<1 &\implies \frac{x^2}{x-1}\le0 \\ &\implies g(x) = \left|\frac{x^2}{x-1}\right| = \frac{x^2}{1-x} \end{aligned}" />,
     reason: <>The absolute value reflects the whole left branch above the axis, which is what creates a closed region with the line.</>,
   },
   {
@@ -172,19 +183,19 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-x^2-2x+3 = x^2 \implies 2x^2+2x-3 = 0" />,
-    reason: <>Expanding and collecting. A genuine quadratic, so two intersections — unlike the right branch, which the line meets only once and so bounds nothing.</>,
+    reason: <>Expanding and collecting. The discriminant is <Katex tex="2^2-4(2)(-3)=28>0" />, so the line crosses this branch twice. (On the right branch, <Katex tex="x+3=\tfrac{x^2}{x-1}" /> gives <Katex tex="2x-3=0" />: only one crossing, so no closed region there.)</>,
   },
   {
-    working: <Katex display tex="x = \frac{-2\pm\sqrt{4+24}}{4} = \frac{-1\pm\sqrt7}{2}" />,
+    working: <Katex display tex="x = \frac{-2\pm\sqrt{28}}{4} = \frac{-2\pm2\sqrt7}{4} = \frac{-1\pm\sqrt7}{2}" />,
     reason: <>About <Katex tex="-1.82" /> and <Katex tex="0.82" />, both safely to the left of the asymptote <Katex tex="x=1" />.</>,
   },
   {
-    working: <Katex display tex="h(x)\ge g(x) \ \text{ on this interval} \implies h \text{ is the outer radius}" />,
-    reason: <>At <Katex tex="x=0" />, <Katex tex="h=3" /> and <Katex tex="g=0" />. Washers, not discs.</>,
+    working: <Katex display tex="\begin{aligned} &h(x)\ge g(x) \ \text{ on this interval} \\ &\implies h \text{ is the outer radius} \end{aligned}" />,
+    reason: <>Test a point inside: at <Katex tex="x=0" />, <Katex tex="h=3" /> and <Katex tex="g=0" />. Both curves are on or above the <Katex tex="x" />-axis here (<Katex tex="x+3>0" /> for <Katex tex="x>-3" />), so each thin slice of the region spins into a <em>washer</em>: a disc of radius <Katex tex="h(x)" /> with a hole of radius <Katex tex="g(x)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_{\frac{-1-\sqrt7}{2}}^{\frac{-1+\sqrt7}{2}}\left(\bigl(x+3\bigr)^2-\left(\frac{x^2}{x-1}\right)^2\right)dx}" />,
-    reason: <>The <em>difference of the squares</em>, not the square of the difference — the report notes a significant number of responses had the latter. Squaring removes the absolute value, so <Katex tex="g^2" /> can be written without it.</>,
+    reason: <>A washer's area is the whole disc minus the hole, <Katex tex="\pi h^2-\pi g^2" />, and the integral adds the washers from one intersection to the other. That is the <em>difference of the squares</em>, not the square of the difference — the report notes a significant number of responses had the latter. Squaring removes the absolute value, so <Katex tex="g^2" /> can be written without it.</>,
   },
 ]
 
@@ -331,6 +342,9 @@ export default function SpecialistQ1_2022Exam2() {
         examinerReport={EXAM_DII}
       >
         <WorkingTable rows={ROWS_DII} />
+        <Explore title="Each slice is a disc of radius h with a hole of radius g">
+          <WasherWidget />
+        </Explore>
       </PartCard>
     </div>
   )

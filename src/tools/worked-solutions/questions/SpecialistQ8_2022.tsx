@@ -1,5 +1,5 @@
 // 2022 Specialist Mathematics — Exam 2, MCQ 8. VCAA examination report: 74% correct.
-// Reading a direction field: closed curves, and which way the slopes lean. Question text transcribed from the original paper.
+// Reading a direction field: which way the slopes lean, how steep they are, and the closed solution curves. Question text transcribed from the original paper.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -14,24 +14,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{The slopes form closed loops around } O" />,
-    reason: <>Closed orbits come from <Katex tex="\tfrac{dy}{dx}" /> being a ratio like <Katex tex="-\tfrac{\text{something in }x}{\text{something in }y}" />; options <b>D</b> and <b>E</b> are sums of squares, which are never negative, so their fields would lean one way everywhere. Rule both out immediately.</>,
+    working: <Katex display tex="\begin{aligned}\text{Quadrants 1 and 3: }&\frac{dy}{dx}<0\\ \text{Quadrants 2 and 4: }&\frac{dy}{dx}>0\\ \text{On } x=0\text{: }&\frac{dy}{dx}=0\\ \text{On } y=0\text{: }&\text{vertical}\end{aligned}" />,
+    reason: <>Read the field before looking at the options. In the first and third quadrants the segments fall from left to right; in the second and fourth they rise. Along the <Katex tex="y" />-axis they are horizontal, and along the <Katex tex="x" />-axis they are vertical. Now test each option against these features.</>,
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = \frac{2x}{y} \implies y\,dy = 2x\,dx \implies \frac{y^2}{2}-x^2 = c" />,
-    reason: <>Option <b>A</b> gives hyperbolas, not loops. Out.</>,
+    working: <Katex display tex="\begin{aligned}\text{D: } \frac{y^2}{2}+x^2&\ge0\\ \text{E: } \frac{x^2}{2}+y^2&\ge0\end{aligned}" />,
+    reason: <>Squares are never negative, so <b>D</b> and <b>E</b> never give a falling segment, but the first and third quadrants are full of them. D and E are out.</>,
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = -\frac{2x}{y} \implies y\,dy = -2x\,dx \implies 2x^2+y^2 = c" />,
-    reason: <>Option <b>C</b>: ellipses taller than they are wide, since the <Katex tex="x" /> term carries the bigger coefficient.</>,
+    working: <Katex display tex="\text{A at } (1,1): \ \frac{dy}{dx} = \frac{2(1)}{1} = 2 > 0" />,
+    reason: <><b>A</b> gives rising segments in the first quadrant, where the field falls. A is out (it is C without the minus sign).</>,
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = -\frac{x}{2y} \implies x^2+2y^2 = c" />,
-    reason: <>Option <b>B</b>: also ellipses, but wider than they are tall — the opposite of the picture.</>,
+    working: <Katex display tex="\begin{aligned}\text{B at } (1,1)&: \ \frac{dy}{dx} = -\frac{1}{2(1)} = -\frac12\\ \text{C at } (1,1)&: \ \frac{dy}{dx} = -\frac{2(1)}{1} = -2\end{aligned}" />,
+    reason: <><b>B</b> and <b>C</b> both fit every feature in the first row: negative in quadrants 1 and 3, zero when <Katex tex="x=0" />, undefined (a vertical segment) when <Katex tex="y=0" />. So compare how steep they are at one point. The segment at (1, 1) is steep, well past 45°, which fits <Katex tex="-2" /> and not the gentle <Katex tex="-\tfrac12" />.</>,
   },
   {
-    working: <Katex display tex="\text{At } (1,1): \ \frac{dy}{dx} = -\frac{2(1)}{1} = -2" />,
-    reason: <>A final check on the steepness. The strokes near <Katex tex="(1,1)" /> in the field fall steeply, matching <Katex tex="-2" /> rather than <b>B</b>'s <Katex tex="-\tfrac12" />.</>,
+    working: <Katex display tex="\begin{aligned}\int y\,dy &= \int -2x\,dx\\ \frac{y^2}{2} &= -x^2+c\\ 2x^2+y^2 &= 2c\end{aligned}" />,
+    reason: <>A final check with C’s solution curves: separate the variables and integrate both sides. Each curve is a closed loop around <Katex tex="O" /> that crosses the <Katex tex="y" />-axis at <Katex tex="\pm\sqrt{2c}" /> but the <Katex tex="x" />-axis only at <Katex tex="\pm\sqrt{c}" />, so it is taller than it is wide, just as the segments curl in the picture. B’s curves, <Katex tex="x^2+2y^2=2c" />, would be wider than tall.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{2x}{y}}" />,

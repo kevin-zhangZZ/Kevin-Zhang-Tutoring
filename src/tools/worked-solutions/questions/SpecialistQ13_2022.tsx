@@ -14,23 +14,39 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(t) = \int\underset{\sim}{\ddot r}(t)\,dt = \int\bigl(\sin(t)\underset{\sim}{i}+2\cos(t)\underset{\sim}{j}\bigr)dt" />,
-    reason: <>Velocity is the antiderivative of acceleration; each component integrates separately.</>,
+    reason: <>Velocity is the antiderivative of acceleration, and each component is antidifferentiated separately.</>,
   },
   {
     working: <Katex display tex="= -\cos(t)\underset{\sim}{i}+2\sin(t)\underset{\sim}{j}+\underset{\sim}{c}" />,
-    reason: <>The constant of integration is a <em>vector</em>, with a component in each direction. Option <b>A</b> is what you get by forgetting it.</>,
+    reason: <>
+      <Katex tex="\int\sin(t)\,dt=-\cos(t)" /> (watch the minus sign) and{' '}
+      <Katex tex="\int2\cos(t)\,dt=2\sin(t)" />. The constant of integration is a{' '}
+      <em>vector</em> <Katex tex="\underset{\sim}{c}" />, with a component in each direction.
+    </>,
   },
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(0) = -\cos(0)\underset{\sim}{i}+2\sin(0)\underset{\sim}{j}+\underset{\sim}{c} = -\underset{\sim}{i}+\underset{\sim}{c}" />,
-    reason: <>Substituting the given initial velocity time.</>,
+    reason: <>Substitute <Katex tex="t=0" />, the time at which the velocity is given, using <Katex tex="\cos(0)=1" /> and <Katex tex="\sin(0)=0" />.</>,
   },
   {
     working: <Katex display tex="-\underset{\sim}{i}+\underset{\sim}{c} = 2\underset{\sim}{i}+\underset{\sim}{j} \implies \underset{\sim}{c} = 3\underset{\sim}{i}+\underset{\sim}{j}" />,
-    reason: <>Equating components fixes both pieces of the constant at once.</>,
+    reason: <>Set this equal to the given <Katex tex="\underset{\sim}{\dot r}(0)" /> and add <Katex tex="\underset{\sim}{i}" /> to both sides. One vector equation fixes both components of the constant at once.</>,
+  },
+  {
+    working: <Katex display tex="\underset{\sim}{\dot r}(t) = -\cos(t)\underset{\sim}{i}+2\sin(t)\underset{\sim}{j}+3\underset{\sim}{i}+\underset{\sim}{j}" />,
+    reason: <>Substitute <Katex tex="\underset{\sim}{c}" /> back, then collect the <Katex tex="\underset{\sim}{i}" /> terms and the <Katex tex="\underset{\sim}{j}" /> terms.</>,
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{\dot r}(t) = \bigl(3-\cos(t)\bigr)\underset{\sim}{i}+\bigl(2\sin(t)+1\bigr)\underset{\sim}{j}}" />,
-    reason: <>Matches option <b>B</b>. Check at <Katex tex="t=0" />: <Katex tex="(3-1)\underset{\sim}{i}+(0+1)\underset{\sim}{j}=2\underset{\sim}{i}+\underset{\sim}{j}" />.</>,
+    reason: <>
+      Matches option <b>B</b>. Check at <Katex tex="t=0" />:{' '}
+      <Katex tex="(3-1)\underset{\sim}{i}+(0+1)\underset{\sim}{j}=2\underset{\sim}{i}+\underset{\sim}{j}" />.
+      Option <b>A</b> leaves out the constant <Katex tex="\underset{\sim}{c}" />. Option{' '}
+      <b>C</b> antidifferentiates <Katex tex="\sin(t)" /> to <Katex tex="+\cos(t)" />, the
+      sign slip. Options <b>D</b> and <b>E</b> don&rsquo;t antidifferentiate at all: D keeps
+      the acceleration&rsquo;s components and E differentiates them, each with a constant
+      chosen to fit <Katex tex="\underset{\sim}{\dot r}(0)" />.
+    </>,
   },
 ]
 
