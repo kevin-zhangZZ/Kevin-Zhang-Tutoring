@@ -56,9 +56,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}3x+(k+8)y &= -1\\ (k+8)y &= -3x-1\\ y &= -\frac{3}{k+8}x-\frac{1}{k+8}\end{aligned}" />,
     reason: (
       <>
-        Same again: subtract <Katex tex="3x" />, then divide by <Katex tex="k+8" />. So{' '}
-        <Katex tex="m_2=-\tfrac{3}{k+8}" /> and <Katex tex="c_2=-\tfrac{1}{k+8}" />. Dividing by{' '}
-        <Katex tex="k+8" /> needs <Katex tex="k\ne-8" />. At <Katex tex="k=-8" /> this equation is <Katex tex="3x=-1" />, a
+        So <Katex tex="m_2=-\tfrac{3}{k+8}" /> and <Katex tex="c_2=-\tfrac{1}{k+8}" />. Dividing by{' '}
+        <Katex tex="k+8" /> needs{' '}
+        <Katex tex="k\ne-8" />. At <Katex tex="k=-8" /> this equation is <Katex tex="3x=-1" />, a
         vertical line, while the first line is never vertical (its <Katex tex="y" /> coefficient is
         always <Katex tex="-5" />). They cross once, so <Katex tex="k=-8" /> gives one solution and
         can be set aside.
@@ -79,7 +79,7 @@ const ROWS: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="\begin{aligned}c_1 &= c_2\\ -\frac{4+k}{5} &= -\frac{1}{k+8}\\ (4+k)(k+8) &= 5\\ k^2+12k+27 &= 0\end{aligned}" />,
+    working: <Katex display tex="\begin{aligned}\text{equal } y\text{-intercepts: } -\frac{4+k}{5} &= -\frac{1}{k+8}\ (4+k)(k+8) &= 5\ k^2+12k+27 &= 0\end{aligned}" />,
     reason: (
       <>
         The second condition. Multiply both sides by <Katex tex="-5(k+8)" />, then expand:{' '}

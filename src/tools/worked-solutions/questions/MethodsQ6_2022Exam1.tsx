@@ -6,11 +6,15 @@
 // origin at (119.5, 497), 118.7 px per unit on both axes; checked with a PIL composite — the
 // calibrated f(x) = 2sin(2x) − 1 lies exactly on VCAA's printed curve. Answers checked with
 // sympy and against the VCAA examination report. Solution is original.
+// Interactive: c.iii — meth-2022e1-q6ciii-domain (slide D, translate, see where the image lands).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { functionToPath } from '../graphUtils'
+import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2022e1-q6-graph.png'
+
+const DomainWidget = lazyWidget(() => import('../interactives/meth-2022e1-q6ciii-domain'))
 
 const OX = 119.5
 const OY = 497
@@ -25,7 +29,7 @@ function ReflectionOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[380px]">
-        <img src={graphSrc} alt="VCAA's axes with y = f(x), and the answer y = g(x) = 1 − 2sin(2x) drawn over them on [0, 2π]: starting at (0, 1), peaking at 3 and dipping to −1, ending at (2π, 1), crossing f at the four x-intercepts" className="w-full block" />
+        <img src={graphSrc} alt="VCAA's axes with y = f(x), and the answer y = g(x) = 1 − 2sin(2x) drawn over them on [0, 2π]: starting at (0, 1), dipping to −1 at x = π/4 and 5π/4, peaking at 3 at x = 3π/4 and 7π/4, ending at (2π, 1), crossing f at the four x-intercepts" className="w-full block" />
         <svg viewBox="0 0 1024 952" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={functionToPath(g, 0, 2 * Math.PI, toX, toY)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <text x={toX(3.25)} y={toY(2.4)} fontSize={44} fill="#c2410c" stroke="white" strokeWidth={10} paintOrder="stroke">y = g(x)</text>
@@ -109,99 +113,99 @@ const EXAM_CIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = -f(x) = -\bigl(2\sin(2x)-1\bigr) = 1-2\sin(2x)" />,
-    reason: <>Reflection in the <em>horizontal axis</em> negates the whole output, including the <Katex tex="-1" />. Reflecting in the centre line <Katex tex="y=-1" /> instead would leave the graph oscillating about <Katex tex="y=-1" /> — the report notes many students did this.</>,
+    reason: <>Reflecting in the <em>horizontal axis</em> sends each point <Katex tex="(x,y)" /> to <Katex tex="(x,-y)" />, so the whole output is negated, including the <Katex tex="-1" />. Reflecting in the centre line <Katex tex="y=-1" /> instead would leave the graph oscillating about <Katex tex="y=-1" />; the report notes many students did this.</>,
   },
   {
     working: <Katex display tex="\text{range } [-3,1] \to [-1,3]; \quad \text{maxima become minima}" />,
-    reason: <>Every point flips: <Katex tex="f" /> peaks at 1 and troughs at <Katex tex="-3" />, so <Katex tex="g" /> troughs at <Katex tex="-1" /> and peaks at 3.</>,
+    reason: <>Every <Katex tex="y" />-value changes sign: <Katex tex="f" /> peaks at 1 and troughs at <Katex tex="-3" />, so <Katex tex="g" /> troughs at <Katex tex="-1" /> and peaks at 3. The centre line moves from <Katex tex="y=-1" /> to <Katex tex="y=1" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned}&\text{min: } \left(\tfrac\pi4,-1\right),\ \left(\tfrac{5\pi}4,-1\right)\\&\text{max: } \left(\tfrac{3\pi}4,3\right),\ \left(\tfrac{7\pi}4,3\right)\end{aligned}" />,
+    reason: <>Read <Katex tex="f" />&apos;s turning points off the grid: maxima of 1 at <Katex tex="x=\tfrac\pi4,\tfrac{5\pi}4" /> and minima of <Katex tex="-3" /> at <Katex tex="x=\tfrac{3\pi}4,\tfrac{7\pi}4" />. The reflection keeps each <Katex tex="x" />-coordinate and flips the <Katex tex="y" />-value. Plotting these first fixes the curvature: <Katex tex="g" /> goes <em>down</em> from <Katex tex="(0,1)" />.</>,
   },
   {
     working: <Katex display tex="x\text{-intercepts are unchanged}" />,
-    reason: <>A reflection in the <Katex tex="x" />-axis fixes every point on that axis — so the four zeros from part b. are shared.</>,
+    reason: <>A reflection in the <Katex tex="x" />-axis fixes every point on that axis, so <Katex tex="g" /> crosses at the same four places as <Katex tex="f" />: <Katex tex="x=\tfrac{\pi}{12},\tfrac{5\pi}{12},\tfrac{13\pi}{12},\tfrac{17\pi}{12}" /> (found in part b.). Use the grid to place them exactly.</>,
   },
   {
     working: <ReflectionOverlay />,
-    reason: <>Drawn on the printed axes, as the question asks. <Katex tex="g" /> starts at <Katex tex="(0,1)" /> and ends at <Katex tex="(2\pi,1)" />, matching the domain of <Katex tex="f" />.</>,
+    reason: <>Drawn on the printed axes, as the question asks. <Katex tex="g" /> starts at <Katex tex="(0,1)" /> and ends at <Katex tex="(2\pi,1)" />, because it has the same domain <Katex tex="[0,2\pi]" /> as <Katex tex="f" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="2\sin(2k)-1 = 0 \implies \sin(2k) = \tfrac12" />,
-    reason: <>Solving for k, not x — the question is explicit about that.</>,
+    reason: <>Set <Katex tex="f(k)=0" /> and make the sine the subject. The question names the variable <Katex tex="k" />, so the answers are values of <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="k\in[0,2\pi] \implies 2k\in[0,4\pi]" />,
-    reason: <>Doubling the interval is what produces four solutions instead of two.</>,
+    reason: <>The angle inside the sine is <Katex tex="2k" />, so double both ends of the interval. Two full revolutions are why there are four solutions instead of two.</>,
   },
   {
-    working: <Katex display tex="\text{reference angle } \tfrac\pi6; \quad 2k = \tfrac\pi6,\ \tfrac{5\pi}{6} \ \text{in the first revolution}" />,
-    reason: <>Sine is positive in the first and second quadrants. <Katex tex="\sin\tfrac\pi6=\tfrac12" /> is the exact value to know.</>,
+    working: <Katex display tex="\begin{aligned}&\text{reference angle } \tfrac\pi6\\ &2k = \tfrac\pi6,\ \tfrac{5\pi}{6} \ \text{(first revolution)}\end{aligned}" />,
+    reason: <><Katex tex="\sin\tfrac\pi6=\tfrac12" /> is an exact value to know (<Katex tex="\sin\tfrac\pi4=\tfrac{\sqrt2}2" /> and <Katex tex="\sin\tfrac\pi3=\tfrac{\sqrt3}2" />, so not those). Sine is positive in the first and second quadrants: <Katex tex="\tfrac\pi6" /> and <Katex tex="\pi-\tfrac\pi6=\tfrac{5\pi}6" />.</>,
   },
   {
     working: <Katex display tex="2k = \tfrac\pi6,\ \tfrac{5\pi}{6},\ \tfrac{13\pi}{6},\ \tfrac{17\pi}{6}" />,
-    reason: <>Adding <Katex tex="2\pi=\tfrac{12\pi}{6}" /> to each of the first two gives the second revolution, still inside <Katex tex="[0,4\pi]" />.</>,
+    reason: <>Add <Katex tex="2\pi=\tfrac{12\pi}{6}" /> to each of the first two for the second revolution; both are still inside <Katex tex="[0,4\pi]" />. Adding <Katex tex="2\pi" /> again gives at least <Katex tex="\tfrac{25\pi}6" />, which is past <Katex tex="4\pi" />, so there are no more.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac{\pi}{12},\ \tfrac{5\pi}{12},\ \tfrac{13\pi}{12},\ \tfrac{17\pi}{12}}" />,
-    reason: <>Halving. The report notes errors included not finding the third and fourth correctly.</>,
+    reason: <>Halve each value; all four lie in <Katex tex="[0,2\pi]" />. The report notes errors included not finding the third and fourth correctly.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{translated } h: \ y = h(x-a)+b = 2\sin\bigl(2(x-a)\bigr)-1+b" />,
-    reason: <>Right by <Katex tex="a" />, up by <Katex tex="b" />.</>,
+    working: <Katex display tex="\begin{aligned}y &= h(x-a)+b\\ &= 2\sin\bigl(2(x-a)\bigr)-1+b\end{aligned}" />,
+    reason: <>Replacing <Katex tex="x" /> with <Katex tex="x-a" /> moves a graph right by <Katex tex="a" />; adding <Katex tex="b" /> moves it up by <Katex tex="b" />.</>,
   },
   {
-    working: <Katex display tex="\text{this must equal } g(x) = -2\sin(2x)+1" />,
-    reason: <>Comparing the two rules term by term.</>,
-  },
-  {
-    working: <Katex display tex="\text{constant terms: } -1+b = 1" />,
-    reason: <>The sine term can supply the sign flip, but only the translation can move the centre line from <Katex tex="y=-1" /> to <Katex tex="y=+1" />.</>,
+    working: <Katex display tex="\text{centre line } y=-1+b \ \text{ must be } \ y=1" />,
+    reason: <>The term <Katex tex="2\sin\bigl(2(x-a)\bigr)" /> oscillates between <Katex tex="-2" /> and 2 whatever <Katex tex="a" /> is, so a horizontal shift never moves the centre line. Only <Katex tex="b" /> can lift it from <Katex tex="y=-1" /> (for <Katex tex="h" />) to <Katex tex="y=1" /> (for <Katex tex="g(x)=1-2\sin(2x)" />).</>,
   },
   {
     working: <Katex display tex="\boxed{b = 2}" />,
-    reason: <>Positive, as required — the centre line rises by 2. <Katex tex="b=-2" /> would push it to <Katex tex="y=-3" />.</>,
+    reason: <>Positive, as required: the graph moves up 2. <Katex tex="b=-2" /> would push the centre line down to <Katex tex="y=-3" />, and <Katex tex="\tfrac\pi2" /> is the horizontal shift <Katex tex="a" /> (part c.ii.), not the vertical one.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
-    working: <Katex display tex="\sin\bigl(2(x-a)\bigr) = -\sin(2x) \ \text{ for all } x" />,
-    reason: <>What is left once <Katex tex="b=2" /> is fixed: the horizontal shift must flip the sine.</>,
+    working: <Katex display tex="\begin{aligned}2\sin\bigl(2(x-a)\bigr)+1 &= 1-2\sin(2x)\\ \sin\bigl(2(x-a)\bigr) &= -\sin(2x)\end{aligned}" />,
+    reason: <>Put <Katex tex="b=2" /> into the translated rule and set it equal to <Katex tex="g(x)" />. The 1s cancel, so the horizontal shift alone must turn <Katex tex="\sin(2x)" /> into <Katex tex="-\sin(2x)" />.</>,
   },
   {
-    working: <Katex display tex="-\sin(\theta) = \sin(\theta+\pi) \implies 2x-2a = 2x+\pi+2k\pi" />,
-    reason: <>A half-period shift is what negates a sine — so <Katex tex="a" /> is a multiple of a half period, not a quarter.</>,
+    working: <Katex display tex="-\sin(2x) = \sin(2x-\pi) = \sin\bigl(2\bigl(x-\tfrac\pi2\bigr)\bigr)" />,
+    reason: <>The symmetry property <Katex tex="\sin(\theta-\pi)=-\sin\theta" /> (the angles <Katex tex="\theta" /> and <Katex tex="\theta-\pi" /> are on opposite sides of the unit circle). Taking the 2 out as a factor shows the shift: <Katex tex="x-\tfrac\pi2" />.</>,
   },
   {
-    working: <Katex display tex="-2a = \pi+2k\pi \implies a = -\tfrac\pi2-k\pi" />,
-    reason: <>The period of <Katex tex="\sin(2x)" /> is <Katex tex="\pi" />, so successive values of <Katex tex="a" /> differ by <Katex tex="\pi" />.</>,
+    working: <Katex display tex="a = \tfrac\pi2+n\pi,\ n\in Z" />,
+    reason: <>The period of <Katex tex="\sin(2x)" /> is <Katex tex="\tfrac{2\pi}2=\pi" />, so shifting by any further whole number of periods also works. A shift of half a period is what flips a sine wave upside down.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac\pi2}" />,
-    reason: <>Taking <Katex tex="k=-1" />. Half of the period <Katex tex="\pi" /> — <Katex tex="\tfrac\pi4" /> is a quarter period, the report's named error, and shifts the sine into a cosine instead.</>,
+    reason: <>The smallest positive value (<Katex tex="n=0" />). Check with a turning point: <Katex tex="h" />&apos;s maximum <Katex tex="\left(\tfrac\pi4,1\right)" /> moves to <Katex tex="\left(\tfrac{3\pi}4,3\right)" />, a maximum of <Katex tex="g" />. The report&apos;s common error <Katex tex="a=\tfrac\pi4" /> is only a quarter period: <Katex tex="\sin\bigl(2\bigl(x-\tfrac\pi4\bigr)\bigr)=-\cos(2x)" />, not <Katex tex="-\sin(2x)" />.</>,
   },
 ]
 
 const ROWS_CIII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{the translation maps } D \to \text{dom}(g) = [0,2\pi]" />,
-    reason: <>Mapping "onto" <Katex tex="g" /> means the image must have exactly <Katex tex="g" />'s domain.</>,
+    working: <Katex display tex="\text{the translation maps } D \text{ onto dom}(g) = [0,2\pi]" />,
+    reason: <><Katex tex="g" /> is <Katex tex="f" /> reflected, so it has <Katex tex="f" />&apos;s domain <Katex tex="[0,2\pi]" />. &ldquo;Mapped onto the graph of <Katex tex="y=g(x)" />&rdquo; means the image is all of <Katex tex="g" /> and nothing more, so the translated domain must be exactly <Katex tex="[0,2\pi]" />.</>,
   },
   {
     working: <Katex display tex="x \to x+a = x+\tfrac\pi2" />,
-    reason: <>The domain moves right along with the graph.</>,
+    reason: <>The translation adds <Katex tex="a=\tfrac\pi2" /> to every <Katex tex="x" />-coordinate (the vertical shift does not change <Katex tex="x" />), so the domain moves right with the graph.</>,
   },
   {
-    working: <Katex display tex="D+\tfrac\pi2 = [0,2\pi] \implies D = \left[0-\tfrac\pi2,\ 2\pi-\tfrac\pi2\right]" />,
-    reason: <>Subtract, do not add: the <em>starting</em> domain is the target shifted <em>back</em>. Adding gives <Katex tex="\left[\tfrac\pi2,\tfrac{5\pi}{2}\right]" />, the report's named wrong answer.</>,
+    working: <Katex display tex="\begin{aligned}D+\tfrac\pi2 &= [0,2\pi]\\ \implies D &= \left[0-\tfrac\pi2,\ 2\pi-\tfrac\pi2\right]\end{aligned}" />,
+    reason: <><Katex tex="D" /> is where <Katex tex="h" /> sits <em>before</em> the shift, so undo the shift: subtract <Katex tex="\tfrac\pi2" />. Adding instead (translating in the wrong direction) gives <Katex tex="\left[\tfrac\pi2,\tfrac{5\pi}{2}\right]" />, the report&apos;s common wrong answer.</>,
   },
   {
     working: <Katex display tex="\boxed{D = \left[-\tfrac\pi2,\ \tfrac{3\pi}{2}\right]}" />,
-    reason: <>Only 12% of students scored this mark.</>,
+    reason: <>Check: <Katex tex="-\tfrac\pi2+\tfrac\pi2=0" /> and <Katex tex="\tfrac{3\pi}2+\tfrac\pi2=2\pi" />.</>,
   },
 ]
 
@@ -300,6 +304,9 @@ export default function MethodsQ6_2022Exam1() {
         examinerReport={EXAM_CIII}
       >
         <WorkingTable rows={ROWS_CIII} />
+        <Explore title="D is g's domain moved back π/2, not forward">
+          <DomainWidget />
+        </Explore>
       </PartCard>
     </div>
   )

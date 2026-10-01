@@ -40,30 +40,39 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\int\frac{3}{2x-3}\,dx = 3\int\frac{1}{2x-3}\,dx" />,
-    reason: <>Pull the constant out first so the standard form is visible.</>,
+    reason: <>An antiderivative of <Katex tex="g(x)" /> is a function whose derivative is <Katex tex="g(x)" />. Pull the constant 3 out first so the standard form <Katex tex="\tfrac{1}{ax+b}" /> is visible.</>,
   },
   {
     working: <Katex display tex="\int\frac{1}{ax+b}\,dx = \frac{1}{a}\log_e|ax+b|+c, \quad a = 2" />,
-    reason: <>Dividing by the inner coefficient is the step that produces the <Katex tex="\tfrac12" /> — leaving it out gives the report's <Katex tex="3\log_e(2x-3)" />.</>,
+    reason: <>Standard antiderivative: divide by the inner coefficient <Katex tex="a=2" />. Leaving that step out gives the report's common wrong answer <Katex tex="3\log_e(2x-3)" />; <em>multiplying</em> by 2 instead (as you would when differentiating) gives the other one, <Katex tex="6\log_e(2x-3)" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\frac{3}{2}\log_e(2x-3)}" />,
-    reason: <>The domain <Katex tex="\left(\tfrac32,\infty\right)" /> makes <Katex tex="2x-3>0" />, so no absolute value is needed — that is what the domain is there for, not to act as terminals.</>,
+    working: <Katex display tex="= 3\times\frac12\log_e(2x-3)" />,
+    reason: <>The domain <Katex tex="\left(\tfrac32,\infty\right)" /> makes <Katex tex="2x-3>0" />, so the absolute value bars can be dropped. That is all the domain is for here — <Katex tex="\tfrac32" /> and <Katex tex="\infty" /> are not terminals to substitute into a definite integral.</>,
+  },
+  {
+    working: <Katex display tex="G(x) = \boxed{\frac{3}{2}\log_e(2x-3)}" />,
+    reason: <>The question asks for <em>an</em> antiderivative, so any one will do: take <Katex tex="c=0" />. Name it <Katex tex="G(x)" /> (or <Katex tex="\int g(x)\,dx" />), never <Katex tex="g'(x)" />, which means the derivative of <Katex tex="g" />. Check: <Katex tex="G'(x)=\tfrac32\times\tfrac{2}{2x-3}=\tfrac{3}{2x-3}" />. The report's other answer, <Katex tex="\tfrac32\log_e\left(x-\tfrac32\right)" />, differs from this only by the constant <Katex tex="\tfrac32\log_e 2" />, so it is also an antiderivative.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)\bigl(2f(x)-3\bigr) = 2\bigl[f(x)\bigr]^2-3f(x)" />,
-    reason: <>Expand <em>inside</em> the integral. An integral of a product is not the product of the integrals — the report notes some students tried this.</>,
+    reason: <>You are given the integrals of <Katex tex="\bigl[f(x)\bigr]^2" /> and <Katex tex="f(x)" />, not <Katex tex="f(x)" /> itself — so expand the integrand <em>inside</em> the integral to get exactly those two pieces. The integral of a product is not the product of the integrals; the report notes some students tried this.</>,
   },
   {
-    working: <Katex display tex="\int_0^1\Bigl(2\bigl[f(x)\bigr]^2-3f(x)\Bigr)dx = 2\int_0^1\bigl[f(x)\bigr]^2dx-3\int_0^1 f(x)\,dx" />,
-    reason: <>Linearity splits it into exactly the two integrals the question supplies. Note <Katex tex="f" /> itself is never needed — substituting <Katex tex="f(x)=\tfrac13" /> confuses the <em>value of an integral</em> with the function.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}\int_0^1\Bigl(2\bigl[f(x)\bigr]^2-3f(x)\Bigr)dx &= 2\int_0^1\bigl[f(x)\bigr]^2dx\\ &\quad-3\int_0^1 f(x)\,dx\end{aligned}"
+      />
+    ),
+    reason: <>The integral of a difference is the difference of the integrals, and constants (the 2 and the 3) come outside. Keep the brackets around the whole integrand so the <Katex tex="dx" /> covers both terms — the report notes brackets were commonly missing. Don't replace <Katex tex="f(x)" /> by <Katex tex="\tfrac13" />: that number is the value of an <em>integral</em> of <Katex tex="f" />, not the function.</>,
   },
   {
     working: <Katex display tex="= 2\left(\frac15\right)-3\left(\frac13\right)" />,
-    reason: <>Substituting the given values.</>,
+    reason: <>Substitute the two given values.</>,
   },
   {
     working: <Katex display tex="= \frac25-1 = \boxed{-\frac35}" />,

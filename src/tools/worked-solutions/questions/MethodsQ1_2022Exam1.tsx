@@ -38,34 +38,42 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = 3x\,e^{2x}" />,
-    reason: <>A product of <Katex tex="3x" /> and <Katex tex="e^{2x}" />, so the product rule.</>,
+    reason: <><Katex tex="y" /> is <Katex tex="3x" /> multiplied by <Katex tex="e^{2x}" />: two functions of <Katex tex="x" /> multiplied together, so use the product rule <Katex tex="(uv)'=u'v+uv'" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} u&=3x, & u'&=3 \\ v&=e^{2x}, & v'&=2e^{2x} \end{aligned}" />,
+    reason: <>Differentiate each factor on its own first. For <Katex tex="e^{2x}" />, use <Katex tex="\tfrac{d}{dx}e^{kx}=ke^{kx}" /> (the chain rule), which brings down the 2.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 3e^{2x}+3x\cdot2e^{2x}" />,
-    reason: <>The chain rule supplies the 2 in <Katex tex="\tfrac{d}{dx}e^{2x}=2e^{2x}" />.</>,
+    reason: <>Substitute into <Katex tex="u'v+uv'" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = 6xe^{2x}+3e^{2x}}" />,
-    reason: <>The multiplication <Katex tex="3x\times2" /> must actually be carried out — the report calls leaving it unmultiplied an incomplete answer. Factorising to <Katex tex="3e^{2x}(2x+1)" /> is fine but not required; the report notes many who factorised did so incorrectly.</>,
+    reason: <>Carry out the multiplication <Katex tex="3x\times2=6x" />: the report calls leaving <Katex tex="3x2e^{2x}" /> unmultiplied an incomplete answer. Factorising to <Katex tex="3e^{2x}(2x+1)" /> is correct but not required, and the report warns that a wrong factorisation written after a correct answer still loses the mark. If you factorise, expand it back to check.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{\cos(x)}{e^x}" />,
-    reason: <>A quotient — though writing it as a product with <Katex tex="e^{-x}" /> works just as well.</>,
+    reason: <>One function divided by another, so use the quotient rule <Katex tex="\left(\tfrac{u}{v}\right)'=\tfrac{u'v-uv'}{v^2}" />. (Writing <Katex tex="f(x)=e^{-x}\cos(x)" /> and using the product rule works just as well.)</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} u&=\cos(x), & u'&=-\sin(x) \\ v&=e^x, & v'&=e^x \end{aligned}" />,
+    reason: <>Differentiate the top and the bottom separately first.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{-\sin(x)\cdot e^x-\cos(x)\cdot e^x}{\left(e^x\right)^2}" />,
-    reason: <>Quotient rule. Note <Katex tex="\tfrac{d}{dx}e^x=e^x" />, so the second term keeps its sign from the rule's minus.</>,
+    reason: <>Substitute into <Katex tex="\tfrac{u'v-uv'}{v^2}" />. Both terms on top come out negative: the first because the derivative of <Katex tex="\cos(x)" /> is <Katex tex="-\sin(x)" />, the second from the minus sign in the rule.</>,
   },
   {
     working: <Katex display tex="= \frac{-e^x\bigl(\sin(x)+\cos(x)\bigr)}{e^{2x}}" />,
-    reason: <>Factoring <Katex tex="-e^x" /> out of the numerator.</>,
+    reason: <>Both terms on top contain <Katex tex="e^x" />, so take out <Katex tex="-e^x" /> as a common factor. On the bottom, <Katex tex="(e^x)^2=e^{2x}" /> by index laws.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = -\frac{\sin(x)+\cos(x)}{e^x}}" />,
-    reason: <>Both exponentials cancel down: <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. The report notes some students cancelled only one. Equivalently <Katex tex="-e^{-x}\bigl(\sin x+\cos x\bigr)" />.</>,
+    reason: <>&ldquo;Simplify&rdquo; here means cancel the common factor <Katex tex="e^x" />: <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. You can only cancel a factor of the <em>whole</em> numerator, which is why we factorised first. The report notes some students cancelled only one of the <Katex tex="e^x" /> terms; cancelling from one term of a sum is not allowed. Equivalently, <Katex tex="f'(x)=-e^{-x}\bigl(\sin(x)+\cos(x)\bigr)" />.</>,
   },
 ]
 

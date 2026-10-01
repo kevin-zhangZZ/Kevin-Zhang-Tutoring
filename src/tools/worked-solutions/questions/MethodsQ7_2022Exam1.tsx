@@ -2,12 +2,18 @@
 // split a square in half and line up edge to edge. Question text transcribed from the
 // original paper; all three figures are crops of VCAA's own artwork. Answers checked with
 // sympy and against the VCAA examination report. Solution is original.
+// Part c has an Explore widget (interactives/meth-2022e1-q7c-joins.tsx): a row of tiles you can
+// switch between Type A and Type B, showing that every join pairs one tile's right end with the
+// next tile's left end (so all four endpoints are needed), and that the gradients need not match.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import patternSrc from './meth-2022e1-q7-pattern.png'
 import typeASrc from './meth-2022e1-q7-type-a.png'
 import typeBSrc from './meth-2022e1-q7-type-b.png'
+
+const JoinsWidget = lazyWidget(() => import('../interactives/meth-2022e1-q7c-joins'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [33, 67],
@@ -75,69 +81,77 @@ const ROWS_AI: WorkingRow[] = [
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 4\sin\!\left(\frac{\pi x}{10}\right)+a" />,
-    reason: <>The dividing curve. Its <Katex tex="\sin" /> part has period <Katex tex="\tfrac{2\pi}{\pi/10}=20" />, exactly the tile width.</>,
+    reason: <>Condition 1 needs the region below this curve to cover half the tile, 200 cm². Its <Katex tex="\sin" /> part has period <Katex tex="\tfrac{2\pi}{\pi/10}=20" />, exactly the tile width, so each tile holds one full wave.</>,
   },
   {
     working: <Katex display tex="\int_0^{20}\sin\!\left(\frac{\pi x}{10}\right)dx = 0" />,
-    reason: <>One complete period of a sine encloses equal area above and below its axis, so it contributes nothing — this is the observation the question is built on.</>,
+    reason: <>Over one full period a sine wave has equal area above and below its axis, so this part adds nothing. (Check: an antiderivative is <Katex tex="-\tfrac{10}{\pi}\cos\!\left(\tfrac{\pi x}{10}\right)" />, and <Katex tex="\cos(2\pi)=\cos(0)=1" />, so the two ends cancel.)</>,
   },
   {
     working: <Katex display tex="\text{area below } f = \int_0^{20}f(x)\,dx = 0+20a = 20a" />,
-    reason: <>The curve behaves, for area purposes, exactly like the horizontal line <Katex tex="y=a" />.</>,
+    reason: <>The constant <Katex tex="a" /> integrates to <Katex tex="20a" />. So the area below the wave is the same as the area below the flat line <Katex tex="y=a" />: the bumps above <Katex tex="y=a" /> exactly fill the dips below it.</>,
   },
   {
     working: <Katex display tex="20a = 200 \implies \boxed{a = 10}" />,
-    reason: <>Half of 400. The shortcut: <Katex tex="a" /> is simply the mid-height of the tile. The report notes some students found <Katex tex="a=6" />, erroneously writing <Katex tex="\sin(0)" /> or <Katex tex="\sin(2\pi)=1" />.</>,
+    reason: <>Half of the 400 cm² from part a.i. So <Katex tex="a" /> is just the mid-height of the tile — for a 1-mark question this picture is all the working needed. The report notes some students found <Katex tex="a=6" />, erroneously writing <Katex tex="\sin(0)" /> or <Katex tex="\sin(2\pi)=1" />: in fact both are 0 (sine is 0 at every multiple of <Katex tex="\pi" />; it is <Katex tex="\cos(0)" /> that equals 1).</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="g(x) = -\frac{x^3}{100}+\frac{3x^2}{10}-2x+10" />,
-    reason: <>The Type B dividing curve.</>,
+    working: <Katex display tex="\text{shaded area} = \int_0^{20}g(x)\,dx" />,
+    reason: <>One colour is the region under <Katex tex="y=g(x)" /> from the left edge <Katex tex="x=0" /> to the right edge <Katex tex="x=20" />. The figure shows the curve stays inside the tile (above the bottom edge, below the top), so this integral is exactly that colour's area.</>,
   },
   {
-    working: <Katex display tex="\int_0^{20}g(x)\,dx = \left[-\frac{x^4}{400}+\frac{x^3}{10}-x^2+10x\right]_0^{20}" />,
-    reason: <>Term by term, with the <Katex tex="dx" /> in the integral statement.</>,
+    working: <Katex display tex="= \int_0^{20}\left(-\frac{x^3}{100}+\frac{3x^2}{10}-2x+10\right)dx" />,
+    reason: <>Write the rule out in full, and keep the <Katex tex="dx" /> — the report notes the need to include it in the integral statement.</>,
+  },
+  {
+    working: <Katex display tex="= \left[-\frac{x^4}{400}+\frac{x^3}{10}-x^2+10x\right]_0^{20}" />,
+    reason: <>Antidifferentiate term by term: add 1 to the power and divide by the new power. So <Katex tex="-\tfrac{x^3}{100}" /> becomes <Katex tex="-\tfrac{x^4}{4\times100}=-\tfrac{x^4}{400}" />, and <Katex tex="\tfrac{3x^2}{10}" /> becomes <Katex tex="\tfrac{3x^3}{30}=\tfrac{x^3}{10}" />.</>,
   },
   {
     working: <Katex display tex="= \left(-\frac{160\,000}{400}+\frac{8000}{10}-400+200\right)-0" />,
-    reason: <><Katex tex="20^4=160\,000" /> and <Katex tex="20^3=8000" />.</>,
+    reason: <>Substitute <Katex tex="x=20" />, then subtract the value at <Katex tex="x=0" />, which is 0 because every term has a factor of <Katex tex="x" />. Here <Katex tex="20^4=160\,000" />, <Katex tex="20^3=8000" /> and <Katex tex="20^2=400" />.</>,
   },
   {
     working: <Katex display tex="= -400+800-400+200 = 200\ \text{cm}^2" />,
-    reason: <>The area under the curve, in square centimetres.</>,
+    reason: <>The shaded colour covers 200 cm². The other colour covers the rest of the tile: <Katex tex="400-200=200" /> cm².</>,
   },
   {
-    working: <Katex display tex="\boxed{200 = \tfrac12\times400, \text{ so each colour covers half the tile}}" />,
-    reason: <>Link 200 back to half of the 400 cm² from part a.i. — the report notes students needed to explicitly demonstrate this link. Showing <Katex tex="\int g=\tfrac12" /> would be showing the wrong thing entirely. As required.</>,
+    working: <Katex display tex="\boxed{200 = \tfrac12\times400 = \tfrac12\ \text{area of tile}}" />,
+    reason: <>The marks hang on this last link: compare 200 with the tile's area of 400 cm² from part a.i — the report notes students needed to explicitly demonstrate this link. Both colours cover half the tile, so a Type B tile meets Condition 1. The <Katex tex="\tfrac12" /> is a fraction of the tile, not an area, so trying to show <Katex tex="\int_0^{20}g(x)\,dx=\tfrac12" /> (which the report notes some students did) proves the wrong thing. As required.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(0) = 4\sin(0)+10 = 10" />,
-    reason: <>The left edge of a Type A tile.</>,
+    reason: <>'Endpoints' means both ends of each curve: the left edge <Katex tex="x=0" /> and the right edge <Katex tex="x=20" />. Use <Katex tex="a=10" /> from part a.ii, and <Katex tex="\sin(0)=0" />.</>,
   },
   {
     working: <Katex display tex="f(20) = 4\sin(2\pi)+10 = 10" />,
-    reason: <>The right edge. Both are 10 because the period is exactly 20 and <Katex tex="\sin" /> starts and ends a period at zero.</>,
+    reason: <><Katex tex="\tfrac{\pi\times20}{10}=2\pi" />, and <Katex tex="\sin(2\pi)=0" />: one full period after <Katex tex="x=0" />, the sine is back where it started.</>,
   },
   {
-    working: <Katex display tex="g(0) = 10" />,
-    reason: <>The constant term, since every other term has a factor of x.</>,
+    working: <Katex display tex="g(0) = -0+0-0+10 = 10" />,
+    reason: <>Every term except the constant has a factor of <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="g(20) = -80+120-40+10 = 10" />,
-    reason: <><Katex tex="-\tfrac{8000}{100}+\tfrac{3(400)}{10}-40+10" />.</>,
+    working: <Katex display tex="g(20) = -\frac{8000}{100}+\frac{3(400)}{10}-2(20)+10" />,
+    reason: <><Katex tex="20^3=8000" /> and <Katex tex="20^2=400" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{f(0) = f(20) = g(0) = g(20) = 10}" />,
-    reason: <>All four endpoints sit at the same height, so the curve leaves every tile exactly where the next one picks it up — AA, AB, BA and BB all line up. That is Condition 2.</>,
+    working: <Katex display tex="= -80+120-40+10 = 10" />,
+    reason: <>So both curves start and finish at height 10.</>,
   },
   {
-    working: <Katex display tex="\text{gradients need not match}" />,
-    reason: <>Worth saying: <Katex tex="f'(0)=\tfrac{2\pi}{5}" /> while <Katex tex="g'(0)=-2" />, so the pattern can have a kink at a join. The condition is continuity of the colour boundary, not smoothness — the report notes students who tried to prove the stronger claim.</>,
+    working: <Katex display tex="\begin{aligned}\text{AA}&: f(20)=f(0)\\ \text{AB}&: f(20)=g(0)\\ \text{BA}&: g(20)=f(0)\\ \text{BB}&: g(20)=g(0)\end{aligned}" />,
+    reason: <>Why all four values are needed: at every join the right edge (<Katex tex="x=20" />) of one tile meets the left edge (<Katex tex="x=0" />) of the next, and either tile could be Type A or Type B. That gives four kinds of join, and each compares a right endpoint with a left endpoint. The report notes some students found only <Katex tex="f(20)" /> and <Katex tex="g(20)" /> — that shows where each tile finishes, but not where the next one starts.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\begin{gathered}f(0)=f(20)=g(0)=g(20)=10\\ \text{so the tiles join up in any order}\end{gathered}}" />,
+    reason: <>All four values are equal, so every join in the list above holds: the boundary leaves one tile at height 10 and enters the next at height 10, with no jump. Inside each tile the curve has no breaks (sine and polynomial graphs are continuous), so Type A and Type B tiles can go in any order and the colours form a continuous pattern — Condition 2 is met. The gradients don't have to match: at an AB join <Katex tex="f'(20)=\tfrac{2\pi}{5}" /> but <Katex tex="g'(0)=-2" />, so there is a corner but no gap. The report notes that proving the derivatives equal was not the intention of the question.</>,
   },
 ]
 
@@ -249,6 +263,9 @@ export default function MethodsQ7_2022Exam1() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="Every join pairs one tile's right end with the next tile's left end">
+          <JoinsWidget />
+        </Explore>
       </PartCard>
     </div>
   )
