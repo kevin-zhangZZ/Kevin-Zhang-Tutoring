@@ -40,43 +40,123 @@ const EXAM_B: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="y = \frac{x^2-x}{e^x}" />,
-    reason: <>A quotient — though rewriting it as (x² − x)e^(−x) and using the product rule works just as well.</>,
+    working: (
+      <>
+        <Katex display tex="u=x^2-x,\quad v=e^x" />
+        <Katex display tex="u'=2x-1,\quad v'=e^x" />
+      </>
+    ),
+    reason: (
+      <>
+        <Katex tex="y" /> is one expression divided by another, so reach for the quotient rule
+        (it&apos;s on the formula sheet). Name the top <Katex tex="u" /> and the bottom{' '}
+        <Katex tex="v" />, and write their derivatives down first. (Rewriting{' '}
+        <Katex tex="y=\left(x^2-x\right)e^{-x}" /> and using the product rule works just as
+        well.)
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = \frac{(2x-1)e^x-\left(x^2-x\right)e^x}{\left(e^x\right)^2}" />,
-    reason: <>Quotient rule. Keep the bracket around x² − x; dropping it is where the sign errors start.</>,
+    reason: (
+      <>
+        <Katex tex="\dfrac{dy}{dx}=\dfrac{v\,u'-u\,v'}{v^2}" />. Keep the bracket around{' '}
+        <Katex tex="x^2-x" />: the minus sign in front applies to the whole of{' '}
+        <Katex tex="u\,v'" />, both of its terms.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \frac{e^x\left(2x-1-x^2+x\right)}{e^{2x}}" />,
-    reason: <>Factoring <Katex tex="e^x" /> out of the numerator so it can cancel.</>,
+    reason: (
+      <>
+        Take out the common factor <Katex tex="e^x" /> on top so it can cancel later, and{' '}
+        <Katex tex="\left(e^x\right)^2=e^{2x}" />. Inside the bracket,{' '}
+        <Katex tex="-\left(x^2-x\right)=-x^2+x" /> — the minus multiplies both terms. Writing{' '}
+        <Katex tex="-x^2-x" /> instead gives <Katex tex="2x-1-x^2-x=-x^2+x-1" />, which is
+        exactly the common incorrect response the report quotes.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{-x^2+3x-1}{e^x}}" />,
-    reason: <>Collecting <Katex tex="2x+x=3x" />, and <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. Leaving <Katex tex="\tfrac{e^x(\ldots)}{e^{2x}}" /> is not simplified; nor is <Katex tex="\tfrac{-x^2+x-1}{e^x}" />, which the report notes was a common incorrect response. Equivalently <Katex tex="\left(-x^2+3x-1\right)e^{-x}" />.</>,
+    reason: (
+      <>
+        Collect like terms, <Katex tex="2x+x=3x" />, and cancel one <Katex tex="e^x" />:{' '}
+        <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. &ldquo;Simplify&rdquo; includes
+        this cancellation — stopping at <Katex tex="\tfrac{e^x(\ldots)}{e^{2x}}" /> leaves the
+        exponential terms unsimplified, which the report says many students did. Equivalent
+        answers: <Katex tex="\tfrac{-\left(x^2-3x+1\right)}{e^x}" /> or{' '}
+        <Katex tex="\left(-x^2+3x-1\right)e^{-x}" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = \sin(x)e^{2x}" />,
-    reason: <>A product of two functions.</>,
+    working: (
+      <>
+        <Katex display tex="u=\sin(x),\quad v=e^{2x}" />
+        <Katex display tex="u'=\cos(x),\quad v'=2e^{2x}" />
+      </>
+    ),
+    reason: (
+      <>
+        <Katex tex="f" /> is one function multiplied by another, so use the product rule.{' '}
+        <Katex tex="\tfrac{d}{dx}e^{kx}=ke^{kx}" /> (formula sheet) gives{' '}
+        <Katex tex="\tfrac{d}{dx}e^{2x}=2e^{2x}" />: the exponent stays <Katex tex="2x" /> and
+        the 2 comes out front as a multiplier. A correct derivative has <Katex tex="e^{2x}" />{' '}
+        in every term and no <Katex tex="e^x" /> anywhere — the report says some students mixed
+        the two.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="f'(x) = \cos(x)e^{2x}+\sin(x)\cdot2e^{2x}" />,
-    reason: <>Product rule; the chain rule supplies the 2 in <Katex tex="\tfrac{d}{dx}e^{2x}=2e^{2x}" />. It stays <Katex tex="e^{2x}" /> throughout — no <Katex tex="e^x" /> appears anywhere.</>,
+    working: <Katex display tex="f'(x) = \cos(x)e^{2x}+2\sin(x)e^{2x}" />,
+    reason: <>Product rule: <Katex tex="f'(x)=u'v+uv'" />.</>,
   },
   {
-    working: <Katex display tex="f'\!\left(\frac\pi4\right) = \cos\!\left(\frac\pi4\right)e^{\frac\pi2}+2\sin\!\left(\frac\pi4\right)e^{\frac\pi2}" />,
-    reason: <><Katex tex="2\times\tfrac\pi4=\tfrac\pi2" /> in the exponent.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}f'\!\left(\tfrac\pi4\right) &= \cos\!\left(\tfrac\pi4\right)e^{\frac\pi2}\\&\quad+2\sin\!\left(\tfrac\pi4\right)e^{\frac\pi2}\end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        Substitute <Katex tex="x=\tfrac\pi4" /> everywhere. In the exponent,{' '}
+        <Katex tex="2\times\tfrac\pi4=\tfrac\pi2" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \frac{\sqrt2}{2}e^{\frac\pi2}+2\cdot\frac{\sqrt2}{2}e^{\frac\pi2}" />,
-    reason: <>Both <Katex tex="\cos\!\left(\tfrac\pi4\right)" /> and <Katex tex="\sin\!\left(\tfrac\pi4\right)" /> equal <Katex tex="\tfrac{\sqrt2}{2}" />, which is why the surds collect so easily.</>,
+    reason: (
+      <>
+        Exact values: <Katex tex="\cos\!\left(\tfrac\pi4\right)=\sin\!\left(\tfrac\pi4\right)=\tfrac{\sqrt2}{2}" />{' '}
+        (the same as <Katex tex="\tfrac{1}{\sqrt2}" />).
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="= \frac{\sqrt2}{2}e^{\frac\pi2}\,(1+2)" />,
+    reason: (
+      <>
+        Both terms contain the same block <Katex tex="\tfrac{\sqrt2}{2}e^{\frac\pi2}" />, so
+        treat it as a common factor — one lot of it plus two lots of it. There&apos;s no need to
+        multiply out the surd or the <Katex tex="e^{\frac\pi2}" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{f'\!\left(\frac\pi4\right) = \frac{3\sqrt2}{2}e^{\frac\pi2}}" />,
-    reason: <>One lot plus two lots is three lots. About <Katex tex="10.2" />. Any equivalent exact form was accepted.</>,
+    reason: (
+      <>
+        The report notes there was no requirement to give a particular form; it also lists{' '}
+        <Katex tex="\tfrac{3e^{\frac\pi2}}{\sqrt2}" />.
+      </>
+    ),
   },
 ]
 

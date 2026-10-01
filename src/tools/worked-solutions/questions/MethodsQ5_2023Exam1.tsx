@@ -1,10 +1,15 @@
 // 2023 Mathematical Methods — Exam 1 Question 5 (4 marks). An exact definite integral, then
 // all values of a terminal that make a second integral match it. Question text transcribed
 // from the original paper. Answers checked with sympy and against the VCAA examination
-// report. Solution is original.
+// report. Solution is original. Interactive diagram (§15): part b. steps n through the general
+// solutions against the shaded domain −3π < k < 2π, with a toggle showing part a.'s cos slip
+// giving sin(k) = 3/2 (interactives/meth-2023e1-q5b-crossings.tsx).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const CrossingsWidget = lazyWidget(() => import('../interactives/meth-2023e1-q5b-crossings'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [34, 66],
@@ -44,38 +49,38 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -\cos\!\left(\frac\pi3\right)+\cos(0) = -\frac12+1" />,
-    reason: <><Katex tex="\cos\!\left(\tfrac\pi3\right)=\tfrac12" /> (it is <Katex tex="\sin\!\left(\tfrac\pi3\right)" /> that is <Katex tex="\tfrac{\sqrt3}{2}" />).</>,
+    reason: <>Upper terminal minus lower: <Katex tex="-\cos\!\left(\tfrac\pi3\right)-\bigl(-\cos(0)\bigr)" />. Then <Katex tex="\cos\!\left(\tfrac\pi3\right)=\tfrac12" /> (it is <Katex tex="\sin\!\left(\tfrac\pi3\right)" /> that is <Katex tex="\tfrac{\sqrt3}{2}" />) and <Katex tex="\cos(0)=1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac12}" />,
-    reason: <>A clean value, which part b. then has to match.</>,
+    reason: <><Katex tex="-\tfrac12+1=\tfrac12" />. Part b. uses this value.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\int_k^{\frac\pi2}\cos(x)\,dx = \Bigl[\sin(x)\Bigr]_k^{\frac\pi2} = \sin\!\left(\frac\pi2\right)-\sin(k)" />,
-    reason: <>The unknown is the <em>lower</em> terminal, so it appears with a minus sign.</>,
+    reason: <>The antiderivative of <Katex tex="\cos" /> is <Katex tex="\sin" />. The unknown <Katex tex="k" /> is the <em>lower</em> terminal, so <Katex tex="\sin(k)" /> is the term subtracted.</>,
   },
   {
     working: <Katex display tex="= 1-\sin(k)" />,
-    reason: <>One expression in k, which is all that is needed.</>,
+    reason: <><Katex tex="\sin\!\left(\tfrac\pi2\right)=1" />.</>,
   },
   {
     working: <Katex display tex="1-\sin(k) = \frac12 \implies \sin(k) = \frac12" />,
-    reason: <>Using part a. — the "hence". A value outside <Katex tex="[-1,1]" /> here would mean an arithmetic slip, not a hard equation.</>,
+    reason: <>The "hence": the left-hand integral is part a., which is <Katex tex="\tfrac12" />. Rearrange for <Katex tex="\sin(k)" />, then check the value is in <Katex tex="[-1,1]" />, the range of sine. If it isn't (using <Katex tex="\cos(x)" /> as the antiderivative in part a. gives <Katex tex="-\tfrac12" />, so <Katex tex="\sin(k)=\tfrac32" />), there is no solution, which means part a. needs fixing.</>,
   },
   {
-    working: <Katex display tex="\text{Reference angle } \frac\pi6; \quad \sin>0 \text{ in the 1st and 2nd quadrants}" />,
-    reason: <>So within one revolution, <Katex tex="k=\tfrac\pi6" /> and <Katex tex="k=\pi-\tfrac\pi6=\tfrac{5\pi}{6}" />.</>,
+    working: <Katex display tex="\begin{gathered}\text{Reference angle } \frac\pi6 \\ \sin(k)>0 \text{ in quadrants 1 and 2}\end{gathered}" />,
+    reason: <>The reference angle is <Katex tex="\tfrac\pi6" /> because <Katex tex="\sin\!\left(\tfrac\pi6\right)=\tfrac12" /> is an exact value. Sine is positive, so <Katex tex="k" /> is in the 1st or 2nd quadrant: within one revolution, <Katex tex="k=\tfrac\pi6" /> and <Katex tex="k=\pi-\tfrac\pi6=\tfrac{5\pi}{6}" />.</>,
   },
   {
-    working: <Katex display tex="\text{General solutions: } k = \frac\pi6+2n\pi \ \text{ or } \ k = \frac{5\pi}{6}+2n\pi, \ n\in Z" />,
-    reason: <>The domain <Katex tex="-3\pi<k<2\pi" /> spans two and a half revolutions, so more than two answers are expected — that width is the hint.</>,
+    working: <Katex display tex="\begin{aligned} k &= \frac\pi6+2n\pi \\ \text{or } k &= \frac{5\pi}{6}+2n\pi, \quad n\in Z\end{aligned}" />,
+    reason: <>The general solutions: sine repeats every <Katex tex="2\pi" />, so adding or subtracting whole revolutions gives more solutions. The domain <Katex tex="-3\pi<k<2\pi" /> spans two and a half revolutions, so more than two answers are expected — that width is the hint.</>,
   },
   {
     working: <Katex display tex="n=0: \ \frac\pi6,\ \frac{5\pi}{6}; \qquad n=-1: \ -\frac{11\pi}{6},\ -\frac{7\pi}{6}" />,
-    reason: <>Subtracting <Katex tex="2\pi" /> from each. The next ones down, <Katex tex="-\tfrac{23\pi}{6}" />, and the next ones up, <Katex tex="\tfrac{13\pi}{6}" />, both fall outside the domain.</>,
+    reason: <>Write the ends over 6: <Katex tex="-3\pi=-\tfrac{18\pi}{6}" /> and <Katex tex="2\pi=\tfrac{12\pi}{6}" />. <Katex tex="n=-1" /> subtracts <Katex tex="2\pi" /> from each, and both are still inside. <Katex tex="n=-2" /> gives <Katex tex="-\tfrac{23\pi}{6}" /> and <Katex tex="-\tfrac{19\pi}{6}" />, both less than <Katex tex="-\tfrac{18\pi}{6}" />; <Katex tex="n=1" /> gives <Katex tex="\tfrac{13\pi}{6}" /> and <Katex tex="\tfrac{17\pi}{6}" />, both more than <Katex tex="\tfrac{12\pi}{6}" />. So only <Katex tex="n=0" /> and <Katex tex="n=-1" /> work. (The extra half revolution, <Katex tex="-3\pi<k<-2\pi" />, adds nothing: sine is negative there.)</>,
   },
   {
     working: <Katex display tex="\boxed{k = -\frac{11\pi}{6},\ -\frac{7\pi}{6},\ \frac\pi6,\ \frac{5\pi}{6}}" />,
@@ -129,6 +134,9 @@ export default function MethodsQ5_2023Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Two answers per revolution — so four values of k fit in −3π < k < 2π">
+          <CrossingsWidget />
+        </Explore>
       </PartCard>
     </div>
   )

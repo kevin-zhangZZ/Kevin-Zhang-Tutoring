@@ -28,27 +28,72 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="e^{2x}-12 = 4e^x \implies e^{2x}-4e^x-12 = 0" />,
-    reason: <>Everything to one side first. The equation is now recognisably quadratic.</>,
+    reason: (
+      <>
+        Subtract <Katex tex="4e^x" /> from both sides so the right side is <Katex tex="0" /> —
+        factorising and the null factor law only work on an equation equal to zero. The terms
+        are now <Katex tex="e^{2x}" />, <Katex tex="e^x" /> and a constant: the pattern of a
+        quadratic.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{Let } m = e^x: \quad m^2-4m-12 = 0" />,
-    reason: <><Katex tex="e^{2x}=\left(e^x\right)^2=m^2" />. Naming the substitution makes the structure visible.</>,
+    reason: (
+      <>
+        <Katex tex="e^{2x}=\left(e^x\right)^2" /> by the index law{' '}
+        <Katex tex="\left(a^p\right)^q=a^{pq}" />, so <Katex tex="e^{2x}=m^2" />. The
+        substitution turns the equation into an ordinary quadratic in <Katex tex="m" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="(m-6)(m+2) = 0 \implies m = 6 \ \text{ or } \ m = -2" />,
-    reason: <>Two numbers multiplying to <Katex tex="-12" /> and adding to <Katex tex="-4" />.</>,
+    reason: (
+      <>
+        Factorise: <Katex tex="-6" /> and <Katex tex="2" /> multiply to <Katex tex="-12" /> and
+        add to <Katex tex="-4" />. Then the null factor law: one bracket must equal zero.
+        Factorising is quicker and safer here than the quadratic formula.
+      </>
+    ),
   },
   {
     working: <Katex display tex="e^x = 6 \quad\text{or}\quad e^x = -2" />,
-    reason: <>Undoing the substitution.</>,
+    reason: (
+      <>
+        Replace <Katex tex="m" /> with <Katex tex="e^x" /> again — <Katex tex="m" /> was only a
+        stand-in, and the question asks for <Katex tex="x" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="e^x > 0 \text{ for all } x \implies e^x = -2 \text{ has no solution}" />,
-    reason: <>This rejection must be written down — the report notes some students gave both <Katex tex="x=\log_e(6)" /> and <Katex tex="x=\log_e(-2)" /> without discarding <Katex tex="\log_e(-2)" />, which does not exist.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&e^x > 0 \text{ for all } x,\\ &\text{so } e^x = -2 \text{ has no solution}\end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        The graph of <Katex tex="y=e^x" /> lies entirely above the <Katex tex="x" />-axis (its
+        range is <Katex tex="(0,\infty)" />), so <Katex tex="e^x" /> can never equal a negative
+        number. Equivalently, <Katex tex="\log_e(-2)" /> does not exist, since{' '}
+        <Katex tex="\log_e(a)" /> only exists for <Katex tex="a>0" />. This rejection must be
+        written down — the report notes some students gave both <Katex tex="x=\log_e(6)" /> and{' '}
+        <Katex tex="x=\log_e(-2)" /> without discarding <Katex tex="\log_e(-2)" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{x = \log_e(6)}" />,
-    reason: <>About <Katex tex="1.79" />. Check: <Katex tex="e^{2x}=36" /> and <Katex tex="36-12=24=4\times6" /> ✓.</>,
+    working: <Katex display tex="e^x = 6 \implies \boxed{x = \log_e(6)}" />,
+    reason: (
+      <>
+        Take <Katex tex="\log_e" /> of both sides: <Katex tex="\log_e" /> undoes{' '}
+        <Katex tex="e^x" />, since <Katex tex="\log_e\left(e^x\right)=x" />. Check in the
+        original equation: <Katex tex="e^{2x}=\left(e^x\right)^2=36" />, and{' '}
+        <Katex tex="36-12=24=4\times6" /> ✓.
+      </>
+    ),
   },
 ]
 
@@ -65,8 +110,9 @@ export default function MethodsQ2_2023Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Whenever an equation contains <Katex tex="e^{2x}" /> and <Katex tex="e^{x}" /> and
-            nothing else, it is a quadratic wearing a disguise. Substitute{' '}
+            Whenever an equation contains only <Katex tex="e^{2x}" />, <Katex tex="e^{x}" /> and
+            constants, it is a quadratic in disguise, because{' '}
+            <Katex tex="e^{2x}=\left(e^x\right)^2" />. Substitute{' '}
             <Katex tex="m=e^x" />, solve as usual, then undo the substitution — and check each
             root, because <Katex tex="e^x" /> can never be zero or negative. A negative root
             for <Katex tex="m" /> is not an answer to discard quietly; say why it goes.

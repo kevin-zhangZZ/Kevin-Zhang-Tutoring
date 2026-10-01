@@ -2,9 +2,14 @@
 // backwards: the sample proportion, the sample size, and how the width scales. Question text
 // transcribed from the original paper. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
+// Widget: part c — interactives/meth-2023e1-q6c-sqrt-width (multiply n by k; the interval's width
+// is divided by √k, with a toggle showing the common wrong answer of 1/4).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+
+const SqrtWidthWidget = lazyWidget(() => import('../interactives/meth-2023e1-q6c-sqrt-width'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [48, 52],
@@ -63,42 +68,46 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="E = \hat p-0.04 = 0.16-\hat p = 0.06" />,
-    reason: <>Half the width of the interval — the margin of error.</>,
+    reason: <>The margin of error <Katex tex="E" /> is the distance from the centre <Katex tex="\hat p=0.1" /> to either end — half the width of the interval.</>,
   },
   {
-    working: <Katex display tex="E = z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}} \implies 0.06 = 2\sqrt{\frac{0.1\times0.9}{n}}" />,
-    reason: <>Using <Katex tex="z=2" /> as the question directs, with <Katex tex="\hat p=0.1" /> from part a.</>,
+    working: <Katex display tex="\begin{aligned}E &= z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}}\\ 0.06 &= 2\sqrt{\frac{0.1\times0.9}{n}}\end{aligned}" />,
+    reason: <>The formula sheet gives the interval as <Katex tex="\hat p\pm z\sqrt{\frac{\hat p(1-\hat p)}{n}}" />, so <Katex tex="E" /> is the part after the <Katex tex="\pm" />. Use <Katex tex="z=2" /> as the question directs, with <Katex tex="\hat p=0.1" /> from part a.</>,
   },
   {
     working: <Katex display tex="0.03 = \sqrt{\frac{0.09}{n}}" />,
-    reason: <>Dividing by 2 first keeps the numbers small; <Katex tex="0.1\times0.9=0.09" />.</>,
+    reason: <>Divide both sides by 2, and <Katex tex="0.1\times0.9=0.09" />.</>,
   },
   {
-    working: <Katex display tex="0.0009 = \frac{0.09}{n}" />,
-    reason: <>Squaring both sides. <Katex tex="0.03^2=0.0009" />, not <Katex tex="0.009" /> — the report notes arithmetic manipulation led to the most common errors, <Katex tex="n=10" /> or <Katex tex="n=1000" />.</>,
+    working: <Katex display tex="0.03 = \frac{\sqrt{0.09}}{\sqrt n} = \frac{0.3}{\sqrt n}" />,
+    reason: <><Katex tex="0.09" /> is a perfect square (<Katex tex="0.3^2=0.09" />), so take its square root instead of squaring <Katex tex="0.03" /> — fewer decimal places to keep track of. The report says arithmetic manipulation led to the most common errors, <Katex tex="n=10" /> or <Katex tex="n=1000" />; each is what one misplaced decimal place gives (for example, <Katex tex="0.03^2" /> taken as <Katex tex="0.009" /> instead of <Katex tex="0.0009" /> gives <Katex tex="n=10" />).</>,
   },
   {
-    working: <Katex display tex="\boxed{n = \frac{0.09}{0.0009} = 100}" />,
-    reason: <>Check: <Katex tex="2\sqrt{\tfrac{0.09}{100}}=2(0.03)=0.06" /> ✓.</>,
+    working: <Katex display tex="\sqrt n = \frac{0.3}{0.03} = 10" />,
+    reason: <>Multiply both sides by <Katex tex="\sqrt n" /> and divide by <Katex tex="0.03" />. Multiplying top and bottom by 100 gives <Katex tex="\tfrac{30}{3}=10" />.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{n = 10^2 = 100}" />,
+    reason: <>Check: <Katex tex="2\sqrt{\tfrac{0.09}{100}}=2\sqrt{0.0009}=2(0.03)=0.06" />, the margin of error from the first step ✓.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{width} = 2z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}}" />,
-    reason: <>With <Katex tex="\hat p" /> and <Katex tex="z" /> both unchanged, everything except <Katex tex="n" /> is a constant.</>,
+    working: <Katex display tex="\text{width} = 2E = 2z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}}" />,
+    reason: <>The interval runs from <Katex tex="\hat p-E" /> to <Katex tex="\hat p+E" />, so its width is <Katex tex="2E" />. The new sample has the same <Katex tex="\hat p" /> and the same <Katex tex="z" />, so only <Katex tex="n" /> changes.</>,
   },
   {
-    working: <Katex display tex="\text{width} \propto \frac{1}{\sqrt n}" />,
-    reason: <>The <Katex tex="n" /> sits <em>inside</em> a square root. Forgetting the root gives <Katex tex="\tfrac14" />, which the report notes was a common incorrect answer.</>,
+    working: <Katex display tex="\begin{aligned}\text{new width} &= 2z\sqrt{\frac{\hat p\left(1-\hat p\right)}{4n}}\\ &= \frac{1}{\sqrt4}\times2z\sqrt{\frac{\hat p\left(1-\hat p\right)}{n}}\end{aligned}" />,
+    reason: <>Replace <Katex tex="n" /> with <Katex tex="4n" />. The 4 is <em>inside</em> the square root, so it comes out as <Katex tex="\sqrt4" />, not 4.</>,
   },
   {
-    working: <Katex display tex="n \to 4n \implies \sqrt{4n} = 2\sqrt n" />,
-    reason: <>Quadrupling the sample doubles the square root.</>,
+    working: <Katex display tex="\text{new width} = \tfrac12\times\text{original width}" />,
+    reason: <><Katex tex="\sqrt4=2" />. Forgetting the square root gives <Katex tex="\tfrac14" />, which the report notes was a common incorrect answer.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{the width is halved — a factor of } \tfrac12}" />,
-    reason: <>Concretely: <Katex tex="n=100" /> gave a width of <Katex tex="0.12" />; <Katex tex="n=400" /> gives <Katex tex="2\times2\sqrt{\tfrac{0.09}{400}}=0.06" /> ✓. Quadrupling the effort buys only half the width — the usual bargain in sampling.</>,
+    reason: <>Check with numbers: <Katex tex="n=100" /> gave a width of <Katex tex="0.16-0.04=0.12" />; <Katex tex="n=400" /> gives <Katex tex="2\times2\sqrt{\tfrac{0.09}{400}}=4\times0.015=0.06" />, half of <Katex tex="0.12" /> ✓.</>,
   },
 ]
 
@@ -120,16 +129,17 @@ export default function MethodsQ6_2023Exam1() {
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
         <Background>
           <p>
-            Every confidence interval is <Katex tex="\hat p\pm E" />, so two numbers are
+            Every approximate confidence interval for <Katex tex="p" /> is{' '}
+            <Katex tex="\hat p\pm E" /> (formula sheet), so two numbers are
             hiding in the pair <Katex tex="(0.04,0.16)" />: its <em>centre</em> is{' '}
-            <Katex tex="\hat p" /> and its <em>half-width</em> is{' '}
+            <Katex tex="\hat p" /> and its <em>half-width</em>, the margin of error, is{' '}
             <Katex tex="E=z\sqrt{\hat p(1-\hat p)/n}" />. Read both off, and the whole
             question is arithmetic.
           </p>
           <p>
-            Part c. is the one worth remembering: the width goes like{' '}
-            <Katex tex="1/\sqrt n" />, so shrinking it by a factor <Katex tex="m" /> costs{' '}
-            <Katex tex="m^2" /> times the sample. Only 23% of the state got this.
+            Part c. is the one worth remembering: <Katex tex="n" /> sits under a square root, so
+            dividing the width by <Katex tex="m" /> takes <Katex tex="m^2" /> times the sample.
+            Only 23% of students got this mark.
           </p>
         </Background>
       </div>
@@ -191,6 +201,9 @@ export default function MethodsQ6_2023Exam1() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="Four times the sample, only half the width — because n sits under a square root">
+          <SqrtWidthWidget />
+        </Explore>
       </PartCard>
     </div>
   )

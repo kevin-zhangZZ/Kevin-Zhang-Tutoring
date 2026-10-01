@@ -1,12 +1,17 @@
 // 2023 Mathematical Methods — Exam 1 Question 9 (6 marks). Two walking tracks sharing a
 // turning point, then the largest triangle that fits under one of them. Question text
 // transcribed from the original paper; the figures are crops of VCAA's own artwork. Answers
-// checked with sympy and against the VCAA examination report. Solution is original.
+// checked with sympy and against the VCAA examination report. Solution is original. Part c. has an
+// interactive (interactives/meth-2023e1-q9c-past-the-peak.tsx): slide B along track 2 to see the
+// triangle's area A(k) rise past the peak P and top out at k = 8/3, not at k = 2.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import tracksSrc from './meth-2023e1-q9-tracks.png'
 import triangleSrc from './meth-2023e1-q9c-triangle.png'
+
+const PastThePeakWidget = lazyWidget(() => import('../interactives/meth-2023e1-q9c-past-the-peak'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [10, 90],
@@ -71,7 +76,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(1) = 12(1)+b(1)^2 = 12+b" />,
-    reason: <>Substituting x = 1 into track 2's rule.</>,
+    reason: <>Substituting <Katex tex="x=1" /> into track 2's rule.</>,
   },
   {
     working: <Katex display tex="12+b = 9 \implies \boxed{b = -3}" />,
@@ -81,63 +86,82 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = 12-x(x-2)^2 = 12-x\left(x^2-4x+4\right) = -x^3+4x^2-4x+12" />,
-    reason: <>Expand before differentiating — the report notes some students incorrectly used the product rule and gave <Katex tex="f'(x)=x(x-2)^2" />.</>,
+    working: <Katex display tex="g(x) = 12x-3x^2 \implies g'(x) = 12-6x" />,
+    reason: <>Start with track 2 (using <Katex tex="b=-3" /> from part a.). It is a parabola, so it has only one turning point: find it first, then check that track 1 turns at the same point.</>,
+  },
+  {
+    working: <Katex display tex="g'(x) = 0 \implies 12-6x = 0 \implies x = 2" />,
+    reason: <>So track 2 turns at <Katex tex="x=2" />. Now check that track 1 is also stationary at <Katex tex="x=2" /> — the report notes some students showed this only for <Katex tex="g(x)" />, not addressing <Katex tex="f(x)" />.</>,
+  },
+  {
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} f(x) &= 12-x(x-2)^2 = 12-x\left(x^2-4x+4\right) \\ &= -x^3+4x^2-4x+12 \end{aligned}"
+      />
+    ),
+    reason: <>Expand first, so only the power rule is needed. (The product rule also works if it is applied to both factors and the minus sign is kept; the report notes some students incorrectly used it and gave <Katex tex="f'(x)=x(x-2)^2" />.)</>,
   },
   {
     working: <Katex display tex="f'(x) = -3x^2+8x-4 = -(3x-2)(x-2)" />,
-    reason: <>Factorising makes the roots visible.</>,
+    reason: <>Differentiate term by term, then factorise to see where <Katex tex="f'(x)=0" />.</>,
   },
   {
     working: <Katex display tex="f'(2) = -3(4)+16-4 = 0" />,
-    reason: <>So track 1 has a stationary point at <Katex tex="x=2" />. (The other, <Katex tex="x=\tfrac23" />, is the small dip on the left of the diagram.)</>,
+    reason: <>So track 1 is stationary at <Katex tex="x=2" /> as well. (Its other stationary point, <Katex tex="x=\tfrac23" />, is the small dip on the left of the diagram.)</>,
   },
   {
-    working: <Katex display tex="g(x) = 12x-3x^2 \implies g'(x) = 12-6x" />,
-    reason: <>Track 2.</>,
-  },
-  {
-    working: <Katex display tex="g'(2) = 12-12 = 0" />,
-    reason: <>Both curves are stationary at <Katex tex="x=2" /> — the report notes some students showed this only for <Katex tex="g(x)" />, not addressing <Katex tex="f(x)" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} f'(1) &= 1 > 0, & f'(3) &= -7 < 0 \\ g'(1) &= 6 > 0, & g'(3) &= -6 < 0 \end{aligned}"
+      />
+    ),
+    reason: <>A stationary point is a <em>turning point</em> only if the gradient changes sign there (otherwise it is a stationary point of inflection). Test a value either side of <Katex tex="x=2" />: <Katex tex="x=1" /> lies between track 1's two stationary points, so no other one gets in the way. Positive then negative, so both curves have a local maximum at <Katex tex="x=2" />.</>,
   },
   {
     working: <Katex display tex="f(2) = 12-2(0)^2 = 12, \qquad g(2) = 24-12 = 12" />,
-    reason: <>Equal heights as well, so it really is the same point.</>,
+    reason: <>Equal heights as well, so the two turning points are the same point — the shared peak in the diagram.</>,
   },
   {
     working: <Katex display tex="\boxed{P = (2,\,12)}" />,
-    reason: <>A maximum for both — <Katex tex="f'" /> and <Katex tex="g'" /> each change from positive to negative there, matching the peak in the diagram.</>,
+    reason: <>Both tracks reach their peak at <Katex tex="P" />, and the question asks for its co-ordinates.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="OA = k \ \text{ (along the } x\text{-axis)}, \qquad AB = g(k) = 12k-3k^2" />,
-    reason: <><Katex tex="A" /> is at <Katex tex="(k,0)" /> and <Katex tex="B" /> is directly above it on track 2, so <Katex tex="AB" /> is vertical and the triangle is right-angled at <Katex tex="A" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} OA &= k \ \text{ (along the } x\text{-axis)} \\ AB &= g(k) = 12k-3k^2 \end{aligned}"
+      />
+    ),
+    reason: <><Katex tex="A" /> is at <Katex tex="(k,0)" /> and <Katex tex="B" /> is directly above it on track 2, so <Katex tex="AB" /> is vertical and the triangle is right-angled at <Katex tex="A" />. Since <Katex tex="g(k)=3k(4-k)>0" /> for <Katex tex="0<k<4" />, <Katex tex="B" /> is above the axis and <Katex tex="g(k)" /> is the height.</>,
   },
   {
     working: <Katex display tex="A(k) = \frac12\,k\left(12k-3k^2\right) = 6k^2-\frac32k^3" />,
-    reason: <>Half base times height. Name the function in the variable the question uses — <Katex tex="A(k)" />, not <Katex tex="A(x)" />.</>,
+    reason: <>Half base times height, written as a function of <Katex tex="k" /> so it can be maximised. Keep the variable consistent: the report notes some students wrote <Katex tex="A'(x)" /> when the variable they were using was <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="A'(k) = 12k-\frac92k^2 = \frac{3k}{2}\left(8-3k\right)" />,
-    reason: <>Differentiate and factorise.</>,
+    reason: <>Differentiate term by term, then take out the common factor <Katex tex="\tfrac{3k}{2}" /> so <Katex tex="A'(k)=0" /> is easy to solve.</>,
   },
   {
     working: <Katex display tex="A'(k) = 0 \implies k = 0 \ \text{ or } \ k = \frac83" />,
-    reason: <><Katex tex="k=0" /> gives a degenerate triangle and is outside <Katex tex="(0,4)" /> anyway.</>,
+    reason: <>Reject <Katex tex="k=0" />: it is outside <Katex tex="(0,4)" /> (and gives no triangle). <Katex tex="k=\tfrac83\approx2.67" /> is inside it.</>,
   },
   {
     working: <Katex display tex="A''(k) = 12-9k, \quad A''\!\left(\tfrac83\right) = 12-24 = -12 < 0" />,
-    reason: <>Confirming a maximum rather than a minimum.</>,
+    reason: <>A negative second derivative means <Katex tex="A" /> is concave down there, so <Katex tex="k=\tfrac83" /> gives a maximum, not a minimum.</>,
   },
   {
-    working: <Katex display tex="A\!\left(\frac83\right) = 6\cdot\frac{64}{9}-\frac32\cdot\frac{512}{27} = \frac{384}{9}-\frac{768}{27}" />,
-    reason: <><Katex tex="\left(\tfrac83\right)^2=\tfrac{64}{9}" /> and <Katex tex="\left(\tfrac83\right)^3=\tfrac{512}{27}" />. The report notes many arithmetic mistakes occurred at this substitution.</>,
+    working: <Katex display tex="g\!\left(\frac83\right) = 12\cdot\frac83-3\cdot\frac{64}{9} = 32-\frac{64}{3} = \frac{32}{3}" />,
+    reason: <>The report notes many arithmetic mistakes occurred when substituting <Katex tex="k=\tfrac83" /> into <Katex tex="A(k)" />. Finding the height first and then using half base times height keeps the fractions small.</>,
   },
   {
-    working: <Katex display tex="\boxed{A_{\max} = \frac{1152-768}{27} = \frac{384}{27} = \frac{128}{9} \ \mathrm{km^2}}" />,
-    reason: <>About <Katex tex="14.2\ \mathrm{km^2}" />. Sanity check: <Katex tex="g\!\left(\tfrac83\right)=\tfrac{32}{3}\approx10.7" />, so the triangle is roughly <Katex tex="\tfrac12\times2.67\times10.7" /> ✓.</>,
+    working: <Katex display tex="\boxed{A_{\max} = \frac12\cdot\frac83\cdot\frac{32}{3} = \frac{128}{9} \ \mathrm{km^2}}" />,
+    reason: <>About <Katex tex="14.2\ \mathrm{km^2}" />. Check with the expanded form: <Katex tex="6\cdot\tfrac{64}{9}-\tfrac32\cdot\tfrac{512}{27}=\tfrac{384}{9}-\tfrac{256}{9}=\tfrac{128}{9}" /> ✓.</>,
   },
 ]
 
@@ -170,7 +194,9 @@ export default function MethodsQ9_2023Exam1() {
             is given and the marks are for the working that produces it — and in part b. that
             means showing <Katex tex="f'(2)=0" /> <em>and</em> <Katex tex="g'(2)=0" />, not
             just that the curves meet. Solving <Katex tex="f(x)=g(x)" /> only finds where the
-            curves meet, which is not what was asked.
+            curves meet, which is not what was asked: here it gives{' '}
+            <Katex tex="(x-2)^2(x-3)=0" />, and at the second meeting point <Katex tex="(3,9)" />{' '}
+            neither curve is turning (<Katex tex="f'(3)=-7" />, <Katex tex="g'(3)=-6" />).
           </p>
           <p>
             Part c. is an ordinary optimisation once the triangle is read correctly:{' '}
@@ -240,6 +266,9 @@ export default function MethodsQ9_2023Exam1() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="The biggest triangle is past the peak, not at it">
+          <PastThePeakWidget />
+        </Explore>
       </PartCard>
     </div>
   )
