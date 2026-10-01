@@ -14,19 +14,19 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average rate of change} = \frac{f(12)-f(0)}{12-0}" />,
-    reason: <>A gradient between two points, not a derivative — <Katex tex="f" /> is only defined on the integers anyway.</>,
+    reason: <>The average rate of change is the gradient between the start and end points: change in value ÷ change in <Katex tex="n" />. The first 12 months run from <Katex tex="n=0" /> (the starting value) to <Katex tex="n=12" />.</>,
   },
   {
-    working: <Katex display tex="f(0) = 2500, \quad f(12) = 2500(1.004)^{12} = 2622.67\ldots" />,
-    reason: <><Katex tex="1.004^{12}=1.04907\ldots" />.</>,
+    working: <Katex display tex="\begin{aligned} f(0) &= 2500 \\ f(12) &= 2500(1.004)^{12} \\ &= 2622.676\ldots \end{aligned}" />,
+    reason: <>On CAS, <Katex tex="1.004^{12}=1.04907\ldots" />. Keep the unrounded value until the end.</>,
   },
   {
     working: <Katex display tex="\frac{2622.676\ldots-2500}{12} = \frac{122.676\ldots}{12}" />,
-    reason: <>The 122.68 is the total growth over the year; the average rate divides it by the 12 months.</>,
+    reason: <>The 122.68 is the total growth over the year; the average rate shares it out over the 12 months. Forgetting to divide by 12 leaves about $123, nearest option D.</>,
   },
   {
     working: <Katex display tex="\boxed{\$10.22 \approx \$10.20 \text{ per month}}" />,
-    reason: <>Matches option <b>B</b>. Option A, <Katex tex="\$10.00" />, is <Katex tex="0.004\times2500" /> — the growth in the <em>first</em> month only.</>,
+    reason: <>Matches option <b>B</b>. Option A, <Katex tex="\$10.00" />, is <Katex tex="0.004\times2500" /> — the growth in the <em>first</em> month only. A derivative is the wrong tool too: it gives the rate at a single instant, and on CAS <Katex tex="f'(12)\approx10.47" />, nearest option C.</>,
   },
 ]
 

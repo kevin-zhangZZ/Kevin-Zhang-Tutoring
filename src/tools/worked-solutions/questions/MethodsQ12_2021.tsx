@@ -14,20 +14,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\mathrm{sd}\!\left(\hat P\right) = \sqrt{\frac{p(1-p)}{n}}" />,
-    reason: <>The population proportion is known here, so use <Katex tex="p=\tfrac35" />, not a sample estimate.</>,
+    working: <Katex display tex="\mathrm{sd}\!\left(\hat P\right) = \sqrt{\frac{p(1-p)}{n}}, \quad p=\tfrac35" />,
+    reason: <>The standard deviation of the sample proportion, from the formula sheet. The population proportion is known here, so use <Katex tex="p=\tfrac35" /> itself, not a sample estimate.</>,
   },
   {
     working: <Katex display tex="\sqrt{\frac{0.6\times0.4}{n}} < 0.08 \implies \sqrt{\frac{0.24}{n}} < 0.08" />,
-    reason: <><Katex tex="\tfrac35\times\tfrac25=\tfrac{6}{25}=0.24" />.</>,
+    reason: <>Set up the condition in the question. <Katex tex="p(1-p)=\tfrac35\times\tfrac25=\tfrac{6}{25}=0.24" />.</>,
   },
   {
     working: <Katex display tex="\frac{0.24}{n} < 0.0064 \implies n > \frac{0.24}{0.0064} = 37.5" />,
-    reason: <>Squaring both sides is safe — both are positive.</>,
+    reason: <>Squaring both sides is safe because both are positive. Then multiply both sides by <Katex tex="n" /> (positive, so the sign stays) and divide by 0.0064.</>,
+  },
+  {
+    working: <Katex display tex="\sqrt{\tfrac{0.24}{37}}\approx0.0805, \qquad \sqrt{\tfrac{0.24}{38}}\approx0.0795" />,
+    reason: <>A sample size is a whole number, so the smallest one above 37.5 is 38. Checking the whole numbers on either side confirms it: for <Katex tex="n=37" /> the standard deviation is still above 0.08, and for <Katex tex="n=38" /> it is below.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 38}" />,
-    reason: <>Round <em>up</em>: <Katex tex="n=37" /> gives a standard deviation of <Katex tex="0.0805" />, still too big. Matches option <b>D</b>. Option C takes 37.5 down instead of up.</>,
+    reason: <>Matches option <b>D</b>. Option C rounds 37.5 down, but <Katex tex="n=37" /> leaves the standard deviation just above 0.08 (previous row). Option A puts <Katex tex="n" /> outside the square root: <Katex tex="\tfrac{\sqrt{0.24}}{n}<0.08" /> gives <Katex tex="n>6.1" />, so 7.</>,
   },
 ]
 

@@ -4,6 +4,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -14,15 +15,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(10,\ 0.25)" />,
-    reason: <>Ten independent games, each won with probability 0.25.</>,
+    reason: <>Let <Katex tex="X" /> be the number of games Ben wins. It is binomial: a fixed number of trials (10 games), each either a win or not, independent of each other (given), with the same probability of a win, 0.25, every game.</>,
   },
   {
     working: <Katex display tex="\Pr(X=4) = \binom{10}{4}(0.25)^4(0.75)^6" />,
-    reason: <>"Exactly four times", so a single term — not a cumulative probability.</>,
+    reason: (
+      <>
+        "Exactly four times" is a single value of <Katex tex="X" />, so it is one term of{' '}
+        <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" />, not a cumulative probability.{' '}
+        <Katex tex="\binom{10}{4}" /> counts the ways to choose which 4 of the 10 games are wins; each win has
+        probability 0.25 and each of the 6 losses 0.75. On CAS,{' '}
+        <Cas fn="binomPdf">binomPdf(10, 0.25, 4)</Cas> gives it directly.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="= 210\times0.00390625\times0.177978\ldots" />,
-    reason: <><Katex tex="\binom{10}{4}=210" />.</>,
+    working: <Katex display tex="\begin{aligned} &= 210\times0.00390625\times0.177978\ldots \\ &= 0.14599\ldots \end{aligned}" />,
+    reason: <><Katex tex="\binom{10}{4}=\dfrac{10\times9\times8\times7}{4\times3\times2\times1}=210" />.</>,
   },
   {
     working: <Katex display tex="\boxed{0.1460}" />,

@@ -1,6 +1,7 @@
 // 2021 Mathematical Methods — Exam 2, MCQ 20. VCAA examination report: 39% correct. Finding
 // Pr(A' ∪ B) for two independent events with Pr(A) + Pr(B) = 1. Question text transcribed
-// from the original paper. Solution is original.
+// from the original paper. Solution is original. No widget: the probability table in the
+// working already shows every region, and p is fixed, so there is nothing to manipulate.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -27,32 +28,55 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\Pr(A)=p,\quad \Pr(B)=p^2,\quad \Pr(A)+\Pr(B)=1" />,
-    reason: <>The given information. The condition <Katex tex="p+p^2=1" /> is not needed for this answer.</>,
+    working: <Katex display tex="\Pr(A)=p,\quad \Pr(B)=p^2" />,
+    reason: (
+      <>
+        Every option is written in terms of <Katex tex="p" />, so these are all we need. The condition{' '}
+        <Katex tex="\Pr(A)+\Pr(B)=1" /> only fixes the value of <Katex tex="p" />. It does <i>not</i> mean{' '}
+        <Katex tex="B" /> is <Katex tex="A'" />: as the next line shows, the events overlap.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="(A'\cup B)' = A\cap B'" />,
-    reason: <>De Morgan's law: the complement of "<Katex tex="A" /> doesn't happen or <Katex tex="B" /> does" is "<Katex tex="A" /> happens and <Katex tex="B" /> doesn't".</>,
+    working: <Katex display tex="\Pr(A\cap B)=\Pr(A)\times\Pr(B)=p\times p^2=p^3" />,
+    reason: <>The events are independent, so the probability that both happen is the product.</>,
   },
   {
-    working: <Katex display tex="\Pr(A'\cup B) = 1 - \Pr(A\cap B')" />,
-    reason: <>Complement rule.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{array}{c|c|c|c} & B & B' & \\ \hline A & p^3 & p-p^3 & p \\ \hline A' & p^2-p^3 & 1-p-p^2+p^3 & 1-p \\ \hline & p^2 & 1-p^2 & 1\end{array}"
+      />
+    ),
+    reason: (
+      <>
+        A probability table keeps track of the four regions. The totals come from the given probabilities (and{' '}
+        <Katex tex="\Pr(A')=1-p" />, <Katex tex="\Pr(B')=1-p^2" />); each other cell is a total minus the cell beside it,
+        e.g. <Katex tex="\Pr(A\cap B')=p-p^3" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\Pr(A\cap B') = \Pr(A)\Pr(B')" />,
-    reason: <>Since <Katex tex="A" /> and <Katex tex="B" /> are independent, so are <Katex tex="A" /> and <Katex tex="B'" />.</>,
-  },
-  {
-    working: <Katex display tex="\Pr(B') = 1-\Pr(B) = 1-p^2" />,
-    reason: <>Complement rule for <Katex tex="B" />.</>,
-  },
-  {
-    working: <Katex display tex="\Pr(A\cap B') = p(1-p^2) = p-p^3" />,
-    reason: <>Multiply out.</>,
+    working: <Katex display tex="\Pr(A'\cup B)=1-\Pr(A\cap B')" />,
+    reason: (
+      <>
+        <Katex tex="A'\cup B" /> means &ldquo;<Katex tex="A" /> doesn&apos;t happen, or <Katex tex="B" /> does&rdquo;: every
+        cell in row <Katex tex="A'" /> or column <Katex tex="B" />. That is three of the four cells, so it is quicker to
+        take the one cell left out, <Katex tex="A\cap B'" /> (in <Katex tex="A" /> but not in <Katex tex="B" />), away
+        from <Katex tex="1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\Pr(A'\cup B) = 1-(p-p^3) = 1-p+p^3}" />,
-    reason: <>Matches option <b>D</b>. Option C is <Katex tex="\Pr(A\cap B')" />, the complement of the event asked for.</>,
+    reason: (
+      <>
+        Matches option <b>D</b>. Options B, C and E are single cells of the table: B is <Katex tex="\Pr(A'\cap B)" />, C
+        is <Katex tex="\Pr(A\cap B')" /> (the one cell <Katex tex="A'\cup B" /> leaves out) and E is{' '}
+        <Katex tex="\Pr(A'\cap B')" />. Option A is <Katex tex="1-\Pr(A)-\Pr(B)" />, which the given condition makes{' '}
+        <Katex tex="0" />.
+      </>
+    ),
   },
 ]
 

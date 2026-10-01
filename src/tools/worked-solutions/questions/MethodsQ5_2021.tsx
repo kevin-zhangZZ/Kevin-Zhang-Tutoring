@@ -14,27 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x \implies f(-x) = -x, \quad f\!\left(x^2\right) = x^2" />,
-    reason: <>Write down the three things every relation will need, then test each in turn.</>,
+    reason: <>Substitute into the rule: replacing <Katex tex="x" /> by <Katex tex="-x" />, then by <Katex tex="x^2" />. These are the only inputs the four relations use, so now test each relation in turn.</>,
   },
   {
     working: <Katex display tex="f(x) = f(-x): \ x = -x \ \text{ only at } x=0 \quad \times" />,
-    reason: <>A relation must hold for <em>all</em> <Katex tex="x" />, so one point is not enough. This says <Katex tex="f" /> is even; <Katex tex="f(x)=x" /> is odd.</>,
+    reason: <>"Satisfied by the function" means true for <em>every</em> <Katex tex="x" /> in the domain <Katex tex="R" />, so holding at one point is not enough. This is the rule for an even function (graph symmetric about the <Katex tex="y" />-axis), and <Katex tex="y=x" /> is not symmetric about the <Katex tex="y" />-axis.</>,
   },
   {
     working: <Katex display tex="-f(x) = f(-x): \ -x = -x \ \text{ for all } x \quad \checkmark" />,
-    reason: <>The definition of an odd function, which <Katex tex="f(x)=x" /> is.</>,
+    reason: <>This is the rule for an odd function, and <Katex tex="f(x)=x" /> is one.</>,
   },
   {
     working: <Katex display tex="f(x) = -f(x): \ x = -x \ \text{ only at } x=0 \quad \times" />,
-    reason: <>This would force <Katex tex="f" /> to be identically zero.</>,
+    reason: <>Rearranging gives <Katex tex="2f(x)=0" />, so only the function that is 0 for every <Katex tex="x" /> satisfies this relation.</>,
   },
   {
-    working: <Katex display tex="\bigl(f(x)\bigr)^2 = f\!\left(x^2\right): \ x^2 = x^2 \quad \checkmark" />,
-    reason: <>True for every real <Katex tex="x" />.</>,
+    working: <Katex display tex="\bigl(f(x)\bigr)^2 = f\!\left(x^2\right): \ x^2 = x^2 \ \text{ for all } x \quad \checkmark" />,
+    reason: <>Squaring the output <Katex tex="x" /> and putting <Katex tex="x^2" /> into <Katex tex="f" /> both give <Katex tex="x^2" />, for every real <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="\boxed{2}" />,
-    reason: <>The second and fourth relations hold. Matches option <b>C</b>.</>,
+    reason: <>Matches option <b>C</b>. The second and fourth relations hold for every <Katex tex="x" />; the first and third hold only at <Katex tex="x=0" />.</>,
   },
 ]
 
@@ -44,12 +44,12 @@ export default function MethodsQ5_2021() {
       question={
         <>
           <p>Consider the following four functional relations.</p>
-          <p className="py-1">
-            <Katex
-              display
-              tex="f(x)=f(-x) \qquad -f(x)=f(-x) \qquad f(x)=-f(x) \qquad \bigl(f(x)\bigr)^2=f\!\left(x^2\right)"
-            />
-          </p>
+          <div className="flex flex-wrap justify-center gap-x-10 gap-y-2 py-2">
+            <Katex tex="f(x)=f(-x)" />
+            <Katex tex="-f(x)=f(-x)" />
+            <Katex tex="f(x)=-f(x)" />
+            <Katex tex="\bigl(f(x)\bigr)^2=f\!\left(x^2\right)" />
+          </div>
           <p>
             The number of these functional relations that are satisfied by the function{' '}
             <Katex tex="f:R\to R" />, <Katex tex="f(x)=x" /> is

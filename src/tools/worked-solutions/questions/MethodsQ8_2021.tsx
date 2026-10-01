@@ -37,7 +37,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <>The graph of <Katex tex="f" /> exists only for <Katex tex="x>a" />, falls to <Katex tex="-\infty" /> as <Katex tex="x\to a^+" />, and is increasing and concave down.</>,
-    reason: <>Reading the stem graph: always increasing, but with a <b>decreasing</b> gradient — a log-like shape.</>,
+    reason: <>Reading the stem graph from left to right: it is always rising, but it gets less steep as <Katex tex="x" /> increases (this is what concave down means) — the shape of a log graph.</>,
   },
   {
     working: <>Since <Katex tex="f" /> is only defined for <Katex tex="x>a" />, so is <Katex tex="f'" />.</>,
@@ -48,16 +48,16 @@ const ROWS: WorkingRow[] = [
     reason: <>Rules out option C, which lies below the <Katex tex="x" />-axis.</>,
   },
   {
-    working: <>Since <Katex tex="f" /> is concave down (its steepness eases off as <Katex tex="x" /> increases), <Katex tex="f'" /> must be <b>decreasing</b>.</>,
-    reason: <>Option C fails this too: its curve is <i>increasing</i>.</>,
+    working: <>Since <Katex tex="f" /> gets less steep as <Katex tex="x" /> increases, <Katex tex="f'" /> must be <b>decreasing</b>.</>,
+    reason: <>The value of <Katex tex="f'(x)" /> is the steepness of <Katex tex="f" /> at <Katex tex="x" />, so steepness easing off means <Katex tex="f'" /> falls. Option C fails this too: its curve is <i>increasing</i>.</>,
   },
   {
     working: <Katex display tex="f'(x)\to\infty \text{ as } x\to a^+" />,
-    reason: <>The steep near-vertical drop of <Katex tex="f" /> just right of the asymptote means its gradient is very large there.</>,
+    reason: <>Just right of the asymptote the graph of <Katex tex="f" /> rises almost vertically, so its gradient is very large there. Further right <Katex tex="f" /> flattens out, so <Katex tex="f'" /> gets close to <Katex tex="0" />. For example, <Katex tex="f(x)=\log_e(x-a)" /> has this shape, and <Katex tex="f'(x)=\frac{1}{x-a}" /> for <Katex tex="x>a" /> is exactly this kind of graph.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{E}}" />,
-    reason: <>The only graph that is positive, decreasing, restricted to <Katex tex="x>a" />, and shoots up sharply as <Katex tex="x\to a^+" />. Matches option <b>E</b>. Option D has the same branch for <Katex tex="x>a" /> but adds a second branch where <Katex tex="f" /> is not defined.</>,
+    reason: <>Matches option <b>E</b>: the only graph that is positive, decreasing, drawn only for <Katex tex="x>a" />, and very large just right of <Katex tex="x=a" />. Option D has the same branch for <Katex tex="x>a" /> but adds a second branch for <Katex tex="x<a" />, where <Katex tex="f" /> (and so <Katex tex="f'" />) does not exist. Option A is drawn for all <Katex tex="x" />, ignoring the restriction <Katex tex="x>a" />, and it is increasing rather than decreasing.</>,
   },
 ]
 

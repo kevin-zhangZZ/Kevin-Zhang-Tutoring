@@ -3,12 +3,17 @@
 // and for a square sheet. Question text transcribed from the original paper; both figures
 // are crops of VCAA's own artwork. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
+// Interactives: f.ii meth-2021e2-q1fii-two-roots (only one root of V' = 0 is a box; the other
+// gives V < 0).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import sheetSrc from './meth-2021e2-q1-sheet.png'
 import boxSrc from './meth-2021e2-q1-box.png'
+
+const TwoRootsWidget = lazyWidget(() => import('../interactives/meth-2021e2-q1fii-two-roots'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [29, 71],
@@ -108,88 +113,104 @@ const EXAM_G: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{base dimensions: } (h-2x) \text{ by } (2h-2x), \ \text{height } x" />,
-    reason: <>Each dimension loses <Katex tex="x" /> from <em>both</em> ends, hence <Katex tex="-2x" /> twice; the cut squares become the walls, so the height is <Katex tex="x" />.</>,
+    working: <Katex display tex="\text{width } h-2x, \quad \text{length } 2h-2x, \quad \text{height } x" />,
+    reason: <>A square of side <Katex tex="x" /> is cut from <em>both</em> ends of every side, so the width and the length each lose <Katex tex="2x" />. The flaps that fold up are <Katex tex="x" /> deep, so that is the box's height.</>,
   },
   {
     working: <Katex display tex="h = 25: \ V = x(25-2x)(50-2x)" />,
-    reason: <>The length is <Katex tex="2h=50" />.</>,
+    reason: <>Volume = length × width × height, with <Katex tex="h=25" /> and so length <Katex tex="2h=50" />. Keep each dimension in its own brackets: the report notes students who left them out.</>,
   },
   {
     working: <Katex display tex="50-2x = 2(25-x)" />,
-    reason: <>Factoring the 2 out is what turns the expression into the required form.</>,
+    reason: <>The target form has a 2 out the front, so take the common factor 2 out of the length. There is no need to expand and refactorise (the report says so).</>,
   },
   {
     working: <Katex display tex="\boxed{V_{\text{box}}(x) = 2x(25-2x)(25-x)}" />,
-    reason: <>Note <Katex tex="(25-2x)" /> and <Katex tex="(25-x)" /> are <em>different</em> brackets — they come from the width and the halved length. As required.</>,
+    reason: <>Move the 2 to the front. <Katex tex="(25-2x)" /> and <Katex tex="(25-x)" /> are <em>different</em> brackets: the width, and half the length. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x > 0 \ \text{ (given)}" />,
-    reason: <>A square of zero side is not a cut.</>,
+    reason: <>Given in the question. <Katex tex="V_{\text{box}}>0" /> means every dimension of the box must be positive.</>,
   },
   {
-    working: <Katex display tex="25-2x > 0 \implies x < 12.5" />,
-    reason: <>The <em>width</em> is the binding constraint: it runs out first, at <Katex tex="12.5" />, while the length only runs out at 25. That is why <Katex tex="(0,25)" /> is wrong.</>,
+    working: <Katex display tex="\text{width: } 25-2x > 0 \implies x < 12.5" />,
+    reason: <>The width must be positive.</>,
+  },
+  {
+    working: <Katex display tex="\text{length: } 50-2x > 0 \implies x < 25" />,
+    reason: <>Already guaranteed by <Katex tex="x<12.5" />: the width runs out first. Using only this condition gives the common wrong answer <Katex tex="(0,25)" />, but at <Katex tex="x=20" /> the width would be <Katex tex="25-40=-15" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,\ 12.5)}" />,
-    reason: <>Both ends open, since <Katex tex="V_{\text{box}}>0" /> is assumed and the volume is zero at each end.</>,
+    reason: <>Round brackets at both ends: at <Katex tex="x=0" /> and <Katex tex="x=12.5" /> the volume is 0, and <Katex tex="V_{\text{box}}>0" /> is assumed. So <Katex tex="(0,12.5]" /> is wrong.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="V = 2x(25-2x)(25-x) = 2x\left(625-75x+2x^2\right)" />,
-    reason: <>Expanding the two brackets first is safer than a double product rule.</>,
+    reason: <>Expanding first turns <Katex tex="V" /> into a polynomial you can differentiate term by term, with no product rule. <Katex tex="(25-2x)(25-x)=625-25x-50x+2x^2" />.</>,
   },
   {
     working: <Katex display tex="V = 4x^3-150x^2+1250x" />,
-    reason: <>Distributing the <Katex tex="2x" />.</>,
+    reason: <>Multiply each term by <Katex tex="2x" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{V' = 12x^2-300x+1250}" />,
-    reason: <>The constant term is <Katex tex="1250" />, not <Katex tex="12\,500" /> — the report's named slip.</>,
+    working: <Katex display tex="\boxed{V'(x) = 12x^2-300x+1250}" />,
+    reason: <>Differentiate term by term. The constant term is <Katex tex="1250" />, not <Katex tex="12\,500" />: the slip the report names.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="12x^2-300x+1250 = 0 \implies 6x^2-150x+625 = 0" />,
-    reason: <>Halving keeps the numbers manageable.</>,
+    working: <Katex display tex="V'(x) = 0: \ 12x^2-300x+1250 = 0" />,
+    reason: <>The maximum is at a stationary point, where the gradient <Katex tex="V'(x)" /> is zero.</>,
   },
   {
-    working: <Katex display tex="x = \frac{150\pm\sqrt{22\,500-15\,000}}{12} = \frac{150\pm50\sqrt3}{12} = \frac{25}{2}\pm\frac{25\sqrt3}{6}" />,
-    reason: <><Katex tex="\sqrt{7500}=50\sqrt3" />.</>,
+    working: <Katex display tex="6x^2-150x+625 = 0" />,
+    reason: <>Divide by 2 to keep the numbers smaller.</>,
   },
   {
-    working: <Katex display tex="x = \tfrac{25}{2}+\tfrac{25\sqrt3}{6} \approx 19.7 \ \text{ is outside } (0,12.5)" />,
-    reason: <>Part b. is what rules it out — the report notes some students used this <Katex tex="x" />-value to find the volume.</>,
+    working: <Katex display tex="x = \frac{150\pm\sqrt{22\,500-15\,000}}{12} = \frac{150\pm50\sqrt3}{12}" />,
+    reason: <>Quadratic formula with <Katex tex="a=6" />, <Katex tex="b=-150" />, <Katex tex="c=625" />, and <Katex tex="\sqrt{7500}=\sqrt{2500\times3}=50\sqrt3" />. CAS solve gives the same pair.</>,
   },
   {
-    working: <Katex display tex="x = \tfrac{25}{2}-\tfrac{25\sqrt3}{6} = \tfrac{25\left(3-\sqrt3\right)}{6} \approx 5.28\ \text{cm}" />,
-    reason: <>The only stationary point in the domain, so it must be the maximum.</>,
+    working: <Katex display tex="x = \tfrac{25}{2}\pm\tfrac{25\sqrt3}{6}" />,
+    reason: <>Divide each term by 12.</>,
+  },
+  {
+    working: <Katex display tex="x = \tfrac{25}{2}+\tfrac{25\sqrt3}{6} \approx 19.7 \notin (0,\ 12.5)" />,
+    reason: <>Reject: it is outside the domain from part b. At this <Katex tex="x" /> the width <Katex tex="25-2x" /> would be about <Katex tex="-14" />, so there is no box. The report notes some students used this <Katex tex="x" />-value to find the volume.</>,
+  },
+  {
+    working: <Katex display tex="x = \tfrac{25}{2}-\tfrac{25\sqrt3}{6} = \tfrac{25\left(3-\sqrt3\right)}{6} \approx 5.28" />,
+    reason: <>The only stationary point in <Katex tex="(0,12.5)" />. <Katex tex="V=0" /> at both ends of the domain and <Katex tex="V>0" /> in between, so <Katex tex="V" /> rises to a maximum and falls again, and this stationary point is that maximum. Copy the CAS form carefully: the report often saw <Katex tex="\tfrac{-25(\sqrt3+3)}{6}" />, which is negative.</>,
   },
   {
     working: <Cas fn="fMax">fMax(4x³ − 150x² + 1250x, x) | 0 &lt; x &lt; 12.5</Cas>,
-    reason: <>Or read both off the CAS directly.</>,
+    reason: <>A CAS check: fMax with the domain restriction returns this <Katex tex="x" />-value directly.</>,
   },
   {
-    working: <Katex display tex="\boxed{V_{\max} = \frac{15\,625\sqrt3}{9}\ \text{cm}^3 \approx 3007\ \text{cm}^3 \ \text{ at } x = \frac{25\left(3-\sqrt3\right)}{6}}" />,
-    reason: <>Exact values were required — and the question asks for <em>both</em> the volume and the <Katex tex="x" /> at which it occurs.</>,
+    working: <Katex display tex="V\!\left(\tfrac{25\left(3-\sqrt3\right)}{6}\right) = \tfrac{15\,625\sqrt3}{9}" />,
+    reason: <>Substitute the <Katex tex="x" />-value into <Katex tex="V" /> (define <Katex tex="V" /> on CAS first). The report says some students found the <Katex tex="x" />-value but not the maximum volume.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\begin{gathered} V_{\max} = \tfrac{15\,625\sqrt3}{9}\ \text{cm}^3 \\ \text{at } x = \tfrac{25\left(3-\sqrt3\right)}{6} \end{gathered}}" />,
+    reason: <>The question asks for <em>both</em> the volume and the <Katex tex="x" />-value, and exact values were required. Decimals (about <Katex tex="3007\ \text{cm}^3" /> at <Katex tex="x\approx5.28" />) are only a check.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{waste} = 4x^2 = 4(5)^2 = 100\ \text{cm}^2" />,
-    reason: <>Four corner squares of side 5.</>,
+    reason: <>Four corner squares of side 5 are cut out.</>,
   },
   {
     working: <Katex display tex="\text{sheet area} = 25\times50 = 1250\ \text{cm}^2" />,
-    reason: <>Area, not volume — the denominator the report says some students got wrong.</>,
+    reason: <>The percentage is of the sheet's <em>area</em>, not the box's volume: the denominator the report says some students got wrong.</>,
   },
   {
     working: <Katex display tex="\frac{100}{1250}\times100\% = \boxed{8\%}" />,
@@ -200,65 +221,77 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="V = x(h-2x)(2h-2x), \quad x>0" />,
-    reason: <>The same construction, with the width left as h.</>,
+    reason: <>The same construction as part a., with the width left as <Katex tex="h" />.</>,
   },
   {
     working: <Katex display tex="h-2x > 0 \implies x < \tfrac{h}{2}" />,
-    reason: <>Again the width binds before the length.</>,
+    reason: <>The width must be positive. The length <Katex tex="2h-2x" /> stays positive until <Katex tex="x=h" />, so the width runs out first, as in part b.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(0,\ \tfrac{h}{2}\right)}" />,
-    reason: <>The <em>domain</em>, not the rule — a distinction two-thirds of students missed.</>,
+    reason: <>The question asks for the <em>domain</em>, an interval, not the rule for <Katex tex="V" /> (which the report says some students gave). Round brackets because <Katex tex="V=0" /> at both ends. Check: <Katex tex="h=25" /> gives <Katex tex="(0,12.5)" />, part b.'s answer.</>,
   },
 ]
 
 const ROWS_FII: WorkingRow[] = [
   {
     working: <Katex display tex="V = x(h-2x)(2h-2x) = 4x^3-6hx^2+2h^2x" />,
-    reason: <>Expanding with h as a constant.</>,
+    reason: <>Treat <Katex tex="h" /> as a constant: <Katex tex="(h-2x)(2h-2x)=2h^2-6hx+4x^2" />, then multiply by <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="V' = 12x^2-12hx+2h^2 = 0 \implies 6x^2-6hx+h^2 = 0" />,
-    reason: <>A quadratic in x with h as a parameter.</>,
+    working: <Katex display tex="V'(x) = 12x^2-12hx+2h^2 = 0" />,
+    reason: <>Differentiate with respect to <Katex tex="x" /> (<Katex tex="h" /> is a constant) and set <Katex tex="V'(x)=0" /> to find the stationary points.</>,
+  },
+  {
+    working: <Katex display tex="6x^2-6hx+h^2 = 0" />,
+    reason: <>Divide by 2.</>,
   },
   {
     working: <Katex display tex="x = \frac{6h\pm\sqrt{36h^2-24h^2}}{12} = \frac{h\left(3\pm\sqrt3\right)}{6}" />,
-    reason: <><Katex tex="\sqrt{12h^2}=2h\sqrt3" />.</>,
+    reason: <>Quadratic formula with <Katex tex="a=6" />, <Katex tex="b=-6h" />, <Katex tex="c=h^2" />. <Katex tex="\sqrt{12h^2}=2\sqrt3\,h" /> because <Katex tex="h>0" />; then divide top and bottom by 2. CAS solve gives the same pair.</>,
   },
   {
-    working: <Katex display tex="\frac{3-\sqrt3}{6} \approx 0.211 < \tfrac12 \ \checkmark; \qquad \frac{3+\sqrt3}{6} \approx 0.789 > \tfrac12 \ \times" />,
-    reason: <>The domain from part f.i. picks the first root — exactly as <Katex tex="h=25" /> did in part d.</>,
+    working: <Katex display tex="x = \frac{3+\sqrt3}{6}h \approx 0.789h > \tfrac{h}{2} \ \text{(reject)}" />,
+    reason: <>Reject: it is outside the domain from part f.i., and the width <Katex tex="h-2x" /> would be negative. Substituting it gives <Katex tex="V=-\tfrac{\sqrt3\,h^3}{9}" />, the negative volume the report saw. The interactive below shows where it lands.</>,
   },
   {
-    working: <Katex display tex="V\!\left(\tfrac{h\left(3-\sqrt3\right)}{6}\right) = \boxed{\frac{\sqrt3\,h^3}{9}}" />,
-    reason: <>Check against part d.: <Katex tex="h=25" /> gives <Katex tex="\tfrac{15\,625\sqrt3}{9}" /> ✓.</>,
+    working: <Katex display tex="x = \frac{3-\sqrt3}{6}h \approx 0.211h < \tfrac{h}{2} \ \checkmark" />,
+    reason: <>The only stationary point in <Katex tex="\left(0,\tfrac h2\right)" />. <Katex tex="V=0" /> at both ends and <Katex tex="V>0" /> in between, so this stationary point is the maximum, exactly as in part d.</>,
+  },
+  {
+    working: <Katex display tex="V\!\left(\tfrac{h\left(3-\sqrt3\right)}{6}\right) = \boxed{\frac{\sqrt3\,h^3}{9}\ \text{cm}^3}" />,
+    reason: <>Substitute into <Katex tex="V" /> (CAS). Check against part d.: <Katex tex="h=25" /> gives <Katex tex="\tfrac{15\,625\sqrt3}{9}" /> ✓.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{square sheet: base } (h-2x) \text{ by } (h-2x), \text{ height } x" />,
-    reason: <>Both sides are now <Katex tex="h" />, so the base is a square.</>,
+    working: <Katex display tex="\text{base } (h-2x) \text{ by } (h-2x), \ \text{height } x" />,
+    reason: <>The sheet is now square, side <Katex tex="h" />, so both sides of the base lose <Katex tex="2x" />, and the base is a square.</>,
   },
   {
-    working: <Katex display tex="V = x(h-2x)^2" />,
-    reason: <>The formula that must be written down before anything else.</>,
+    working: <Katex display tex="V = x(h-2x)^2, \quad 0 < x < \tfrac{h}{2}" />,
+    reason: <>Volume = base area × height. The domain is the same as in part f.i., since the base side <Katex tex="h-2x" /> must be positive. Write the formula and domain down first: they are the start of the "show that".</>,
   },
   {
-    working: <Katex display tex="V' = (h-2x)^2+x\cdot2(h-2x)(-2)" />,
-    reason: <>Product rule; the chain rule supplies the inner derivative −2.</>,
+    working: <Katex display tex="V'(x) = (h-2x)^2+x\cdot2(h-2x)(-2)" />,
+    reason: <>Product rule with <Katex tex="u=x" /> and <Katex tex="v=(h-2x)^2" />. The chain rule gives <Katex tex="v'=2(h-2x)\times(-2)" />.</>,
   },
   {
     working: <Katex display tex="= (h-2x)\bigl[(h-2x)-4x\bigr] = (h-2x)(h-6x)" />,
-    reason: <>Factoring out <Katex tex="(h-2x)" /> avoids expanding a cubic.</>,
+    reason: <>Both terms contain <Katex tex="(h-2x)" />, so take it out as a common factor instead of expanding.</>,
   },
   {
-    working: <Katex display tex="V' = 0 \implies x = \tfrac{h}{2} \text{ or } x = \tfrac{h}{6}" />,
-    reason: <><Katex tex="x=\tfrac h2" /> is the excluded endpoint of the domain <Katex tex="\left(0,\tfrac h2\right)" />, where the box has zero base.</>,
+    working: <Katex display tex="V'(x) = 0 \implies x = \tfrac{h}{2} \ \text{ or } \ x = \tfrac{h}{6}" />,
+    reason: <>Null factor law.</>,
+  },
+  {
+    working: <Katex display tex="x = \tfrac{h}{2} \notin \left(0,\ \tfrac{h}{2}\right)" />,
+    reason: <>Reject: at <Katex tex="x=\tfrac h2" /> the base side <Katex tex="h-2x" /> is 0, so there is no box (<Katex tex="V=0" />). The report says the domain needed to be considered in this question.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac{h}{6}}" />,
-    reason: <>The only stationary point inside the domain, so it gives the maximum. Saying why <Katex tex="\tfrac h2" /> is rejected is part of the "show that". As required.</>,
+    reason: <>The only stationary point in the domain. <Katex tex="V=0" /> at both ends of <Katex tex="\left(0,\tfrac h2\right)" /> and <Katex tex="V>0" /> in between, so this stationary point gives the maximum volume. As required.</>,
   },
 ]
 
@@ -411,6 +444,9 @@ export default function MethodsQ1_2021Exam2() {
         examinerReport={EXAM_FII}
       >
         <WorkingTable rows={ROWS_FII} />
+        <Explore title="Only one root of V′ = 0 is a box: the other is past h/2, where the width is negative">
+          <TwoRootsWidget />
+        </Explore>
       </PartCard>
 
       <PartCard

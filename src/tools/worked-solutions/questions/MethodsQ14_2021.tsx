@@ -19,11 +19,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac1\pi\int_0^\pi\sin(x)\,dx = \frac1\pi\left[-\cos(x)\right]_0^\pi = \frac{2}{\pi}" />,
-    reason: <>The target value.</>,
+    reason: <><Katex tex="-\cos(\pi)+\cos(0)=1+1=2" />. This is the value the other average must match.</>,
   },
   {
     working: <Katex display tex="\frac1\pi\int_0^\pi\cos\!\left(kx-\tfrac\pi2\right)dx = \frac{1}{k\pi}\left[\sin\!\left(kx-\tfrac\pi2\right)\right]_0^\pi" />,
-    reason: <>The chain rule contributes the <Katex tex="\tfrac1k" />.</>,
+    reason: <>An antiderivative of <Katex tex="\cos(kx+b)" /> is <Katex tex="\tfrac1k\sin(kx+b)" />: divide by the coefficient of <Katex tex="x" /> (the chain rule in reverse).</>,
   },
   {
     working: <Katex display tex="= \frac{1}{k\pi}\left(\sin\!\left(k\pi-\tfrac\pi2\right)+1\right)" />,
@@ -35,11 +35,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k = \tfrac12: \ 2\left(\sin(0)+1\right) = 2 \ \checkmark" />,
-    reason: <>Substituting <Katex tex="k=\tfrac12" /> makes the argument <Katex tex="\tfrac\pi2-\tfrac\pi2=0" />. With five numeric options, testing beats solving.</>,
+    reason: <>The unknown <Katex tex="k" /> appears both outside and inside the sine, so this equation can't be rearranged for <Katex tex="k" /> by hand. With five numbers to choose from, substitute them instead: <Katex tex="k=\tfrac12" /> makes the argument <Katex tex="\tfrac\pi2-\tfrac\pi2=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac12}" />,
-    reason: <>Matches option <b>E</b>. At <Katex tex="k=\tfrac12" /> the curve is <Katex tex="\cos\!\left(\tfrac x2-\tfrac\pi2\right)=\sin\!\left(\tfrac x2\right)" />, and no other option satisfies the equation.</>,
+    reason: <>Matches option <b>E</b>. The other options make the left side about 0.80, 0.95, 1.17 and 1.5, not 2. (At <Katex tex="k=\tfrac12" /> the curve is <Katex tex="\cos\!\left(\tfrac x2-\tfrac\pi2\right)=\sin\!\left(\tfrac x2\right)" />.)</>,
   },
 ]
 
