@@ -5,7 +5,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [26.49, 73.51],
@@ -212,22 +212,24 @@ export default function SpecialistQ5_2025Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Almost everything here comes from the normal vectors. Two planes meet in a line
-            whose direction is perpendicular to both normals, so the cross product supplies it;
-            a point&rsquo;s distance from a plane is measured along the normal; and two planes
-            are parallel exactly when their normals are scalar multiples.
-          </p>
-          <p>
-            Part d.ii. is the one that separated the cohort. Scaling{' '}
-            <Katex tex="\Pi_1" /> to match the family&rsquo;s left-hand side turns the question
-            into <Katex tex="|24-m|=23" /> — and that modulus has <em>two</em> solutions. Only
-            about a third of students scored full marks.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Almost everything here comes from the normal vectors. Two planes meet in a line
+              whose direction is perpendicular to both normals, so the cross product supplies it;
+              a point&rsquo;s distance from a plane is measured along the normal; and two planes
+              are parallel exactly when their normals are scalar multiples.
+            </p>
+            <p>
+              Part d.ii. is the one that separated the cohort. Scaling{' '}
+              <Katex tex="\Pi_1" /> to match the family&rsquo;s left-hand side turns the question
+              into <Katex tex="|24-m|=23" /> — and that modulus has <em>two</em> solutions. Only
+              about a third of students scored full marks.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

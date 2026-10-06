@@ -16,7 +16,7 @@
 
 import { useState, type ReactNode } from 'react'
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import { useStudyMode } from '../studyMode'
 import reportGraphSrc from './spec-2020e1-q4-report-graph.png'
@@ -160,8 +160,9 @@ const ROWS: WorkingRow[] = [
 // has been revealed. This question has no parts, so there is no PartCard to do that: keep them
 // behind a button instead, so a student having a go first doesn't scroll straight onto the answer.
 function AfterWorking({ children }: { children: ReactNode }) {
-  const { hideAnswers } = useStudyMode()
+  const { hideAnswers, detailed } = useStudyMode()
   const [open, setOpen] = useState(false)
+  if (!detailed) return null
   if (!hideAnswers || open) return <>{children}</>
   return (
     <div>
@@ -208,64 +209,66 @@ export default function SpecialistQ4_2020Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
-        <AfterWorking>
-          <Explore title="Where is the line above the curve — and why can nothing right of x = 3 work?">
-            <LineCurveWidget />
-          </Explore>
-          <WrongMethod
-            title="Solve x² − 7x + 11 > 0 and keep both branches"
-            working={
-              <>
-                <Katex display tex="(3-x)(4-x) > 1" />
-                <Katex display tex="\implies x^2-7x+11>0" />
-                <Katex display tex="x < \tfrac{7-\sqrt5}{2} \ \text{ or } \ x > \tfrac{7+\sqrt5}{2}" />
-                <Katex display tex="x \in \left(-\infty,\tfrac{7-\sqrt5}{2}\right)\cup\left(\tfrac{7+\sqrt5}{2},\infty\right)" />
-              </>
-            }
-          >
-            <p>
-              The quadratic was only derived for <Katex tex="x<3" />: that is what made{' '}
-              <Katex tex="|x-4|=4-x" /> and what made multiplying by <Katex tex="4-x" /> safe. So its
-              solutions have to be filtered through <Katex tex="x<3" />, and the right-hand branch
-              fails the filter. One test value exposes it: at <Katex tex="x=5" />,{' '}
-              <Katex tex="3-x=-2" /> is not bigger than <Katex tex="\tfrac{1}{|5-4|}=1" />.
-            </p>
-            <p>
-              Squaring both sides to get rid of the modulus lands on exactly the same wrong answer,
-              because squaring throws away the fact that <Katex tex="3-x" /> is negative out there.
-              Turn on &ldquo;What if I square both sides?&rdquo; in the diagram above to see where the
-              phantom interval comes from.
-            </p>
-          </WrongMethod>
-          <WrongMethod
-            title="Do the case x > 4 as well, and change every sign to tidy it up"
-            working={
-              <>
-                <Katex display tex="x>4: \quad 3-x > \frac{1}{x-4}" />
-                <Katex display tex="(3-x)(x-4) > 1" />
-                <Katex display tex="\implies -x^2+7x-13 > 0" />
-                <Katex display tex="x^2-7x+13 > 0, \ \text{true for every } x" />
-                <Katex display tex="x \in \left(-\infty,\tfrac{7-\sqrt5}{2}\right)\cup(4,\infty)" />
-              </>
-            }
-          >
-            <p>
-              Multiplying an inequality by <Katex tex="-1" /> reverses it:{' '}
-              <Katex tex="-x^2+7x-13>0" /> becomes <Katex tex="x^2-7x+13<0" />, which is never true
-              (the discriminant <Katex tex="49-52" /> is negative and the parabola is upright). So
-              this case has no solutions at all; forgetting the flip turns &ldquo;never&rdquo; into
-              &ldquo;always&rdquo; and adds the whole of <Katex tex="(4,\infty)" />. A test value
-              catches it: <Katex tex="x=5" /> gives <Katex tex="3-5=-2" />, which is not bigger
-              than <Katex tex="1" />.
-            </p>
-            <p>
-              Better still, skip this case. For <Katex tex="x>4" /> the left-hand side is negative
-              and the right-hand side positive (the line is below the axis in the diagram), so it
-              can&apos;t have solutions. This is one way the report&apos;s &ldquo;unsure how to deal
-              with the inequality signs&rdquo; plays out.
-            </p>
-          </WrongMethod>
-        </AfterWorking>
+        <DetailOnly>
+          <AfterWorking>
+            <Explore title="Where is the line above the curve — and why can nothing right of x = 3 work?">
+              <LineCurveWidget />
+            </Explore>
+            <WrongMethod
+              title="Solve x² − 7x + 11 > 0 and keep both branches"
+              working={
+                <>
+                  <Katex display tex="(3-x)(4-x) > 1" />
+                  <Katex display tex="\implies x^2-7x+11>0" />
+                  <Katex display tex="x < \tfrac{7-\sqrt5}{2} \ \text{ or } \ x > \tfrac{7+\sqrt5}{2}" />
+                  <Katex display tex="x \in \left(-\infty,\tfrac{7-\sqrt5}{2}\right)\cup\left(\tfrac{7+\sqrt5}{2},\infty\right)" />
+                </>
+              }
+            >
+              <p>
+                The quadratic was only derived for <Katex tex="x<3" />: that is what made{' '}
+                <Katex tex="|x-4|=4-x" /> and what made multiplying by <Katex tex="4-x" /> safe. So its
+                solutions have to be filtered through <Katex tex="x<3" />, and the right-hand branch
+                fails the filter. One test value exposes it: at <Katex tex="x=5" />,{' '}
+                <Katex tex="3-x=-2" /> is not bigger than <Katex tex="\tfrac{1}{|5-4|}=1" />.
+              </p>
+              <p>
+                Squaring both sides to get rid of the modulus lands on exactly the same wrong answer,
+                because squaring throws away the fact that <Katex tex="3-x" /> is negative out there.
+                Turn on &ldquo;What if I square both sides?&rdquo; in the diagram above to see where the
+                phantom interval comes from.
+              </p>
+            </WrongMethod>
+            <WrongMethod
+              title="Do the case x > 4 as well, and change every sign to tidy it up"
+              working={
+                <>
+                  <Katex display tex="x>4: \quad 3-x > \frac{1}{x-4}" />
+                  <Katex display tex="(3-x)(x-4) > 1" />
+                  <Katex display tex="\implies -x^2+7x-13 > 0" />
+                  <Katex display tex="x^2-7x+13 > 0, \ \text{true for every } x" />
+                  <Katex display tex="x \in \left(-\infty,\tfrac{7-\sqrt5}{2}\right)\cup(4,\infty)" />
+                </>
+              }
+            >
+              <p>
+                Multiplying an inequality by <Katex tex="-1" /> reverses it:{' '}
+                <Katex tex="-x^2+7x-13>0" /> becomes <Katex tex="x^2-7x+13<0" />, which is never true
+                (the discriminant <Katex tex="49-52" /> is negative and the parabola is upright). So
+                this case has no solutions at all; forgetting the flip turns &ldquo;never&rdquo; into
+                &ldquo;always&rdquo; and adds the whole of <Katex tex="(4,\infty)" />. A test value
+                catches it: <Katex tex="x=5" /> gives <Katex tex="3-5=-2" />, which is not bigger
+                than <Katex tex="1" />.
+              </p>
+              <p>
+                Better still, skip this case. For <Katex tex="x>4" /> the left-hand side is negative
+                and the right-hand side positive (the line is below the axis in the diagram), so it
+                can&apos;t have solutions. This is one way the report&apos;s &ldquo;unsure how to deal
+                with the inequality signs&rdquo; plays out.
+              </p>
+            </WrongMethod>
+          </AfterWorking>
+        </DetailOnly>
         <SAExaminerReport stats={EXAM} maxMarks={4} />
         <div>
           <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">

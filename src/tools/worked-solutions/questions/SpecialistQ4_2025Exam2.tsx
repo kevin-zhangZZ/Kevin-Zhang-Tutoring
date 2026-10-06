@@ -9,7 +9,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import pathSrc from './spec-2025e2-q4-path.png'
 
 const OX = 531.5
@@ -290,22 +290,24 @@ export default function SpecialistQ4_2025Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The two angles <Katex tex="t" /> and <Katex tex="\tfrac{5t}{2}" /> are what make
-            this curve loop. They also make part d. work: squaring and adding the two velocity
-            components leaves a pair of cross terms in exactly the shape of{' '}
-            <Katex tex="\cos(A)\cos(B)+\sin(A)\sin(B)" />, which collapses to{' '}
-            <Katex tex="\cos\!\left(\tfrac{5t}{2}-t\right)" />.
-          </p>
-          <p>
-            Once the speed is in that closed form, parts e. and g. are short: the maximum comes
-            from the range of the cosine, with no calculus at all, and the path length is one
-            numerical integral.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The two angles <Katex tex="t" /> and <Katex tex="\tfrac{5t}{2}" /> are what make
+              this curve loop. They also make part d. work: squaring and adding the two velocity
+              components leaves a pair of cross terms in exactly the shape of{' '}
+              <Katex tex="\cos(A)\cos(B)+\sin(A)\sin(B)" />, which collapses to{' '}
+              <Katex tex="\cos\!\left(\tfrac{5t}{2}-t\right)" />.
+            </p>
+            <p>
+              Once the speed is in that closed form, parts e. and g. are short: the maximum comes
+              from the range of the cosine, with no calculus at all, and the path length is one
+              numerical integral.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

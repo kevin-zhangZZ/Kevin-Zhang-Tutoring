@@ -20,7 +20,7 @@
 // it is the contrast the question is built on).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import parabolaSrc from './meth-2017e1-q7-parabola.png'
 
@@ -198,24 +198,26 @@ export default function MethodsQ7_2017Exam1() {
         </p>
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            Picture a composite as two machines in a row: <Katex tex="x" /> goes into{' '}
-            <Katex tex="g" />, and whatever comes out is fed into <Katex tex="f" />. So{' '}
-            <Katex tex="f(g(x))" /> exists only when{' '}
-            <Katex tex="\text{ran}(g)\subseteq\text{dom}(f)" />: every output of the inner
-            function has to be something the outer function can accept.
-          </p>
-          <p>
-            The range of the composite then depends on <em>how much</em> of{' '}
-            <Katex tex="\text{dom}(f)" /> the inner function delivers. If it hands over all of
-            it, the composite has the same range as <Katex tex="f" /> (part b.ii). If it hands
-            over only part of it, the composite reaches less (part c). The whole question is that
-            one distinction, asked twice.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              Picture a composite as two machines in a row: <Katex tex="x" /> goes into{' '}
+              <Katex tex="g" />, and whatever comes out is fed into <Katex tex="f" />. So{' '}
+              <Katex tex="f(g(x))" /> exists only when{' '}
+              <Katex tex="\text{ran}(g)\subseteq\text{dom}(f)" />: every output of the inner
+              function has to be something the outer function can accept.
+            </p>
+            <p>
+              The range of the composite then depends on <em>how much</em> of{' '}
+              <Katex tex="\text{dom}(f)" /> the inner function delivers. If it hands over all of
+              it, the composite has the same range as <Katex tex="f" /> (part b.ii). If it hands
+              over only part of it, the composite reaches less (part c). The whole question is that
+              one distinction, asked twice.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Range" marks={1} statement={<>State the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

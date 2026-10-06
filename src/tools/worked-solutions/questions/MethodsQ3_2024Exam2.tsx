@@ -10,7 +10,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import chartSrc from './meth-2024e2-q3-chart.png'
 import graphSrc from './meth-2024e2-q3b-graph.png'
 import { functionToPath } from '../graphUtils'
@@ -267,23 +267,25 @@ export default function MethodsQ3_2024Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Part a. is a four-condition fit. A turning point given as a coordinate pair is
-            always <em>two</em> pieces of information — the point is on the curve{' '}
-            <em>and</em> the derivative is zero there — so two stated turning points supply
-            exactly the four equations a cubic needs.
-          </p>
-          <p>
-            Part b. turns on periods. The two cosines have periods 12 and 6 months, so both
-            repeat exactly over any 12-month step: the model is a straight line with an
-            annual pattern bolted on. That single fact answers b.i. (the next year is last
-            year lifted), b.ii. (only the linear term survives a 12-month difference) and
-            b.iv. (three identical peaks, not one).
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Part a. is a four-condition fit. A turning point given as a coordinate pair is
+              always <em>two</em> pieces of information — the point is on the curve{' '}
+              <em>and</em> the derivative is zero there — so two stated turning points supply
+              exactly the four equations a cubic needs.
+            </p>
+            <p>
+              Part b. turns on periods. The two cosines have periods 12 and 6 months, so both
+              repeat exactly over any 12-month step: the model is a straight line with an
+              annual pattern bolted on. That single fact answers b.i. (the next year is last
+              year lifted), b.ii. (only the linear term survives a 12-month difference) and
+              b.iv. (three identical peaks, not one).
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p className="font-semibold text-gray-900 dark:text-white">a.</p>

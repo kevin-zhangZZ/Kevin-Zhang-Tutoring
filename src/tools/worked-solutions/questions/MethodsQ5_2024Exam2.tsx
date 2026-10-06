@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import graphSrc from './meth-2024e2-q5-graph.png'
 
 const EXAM_AI: SAExaminerStats = {
@@ -281,25 +281,27 @@ export default function MethodsQ5_2024Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The whole question is a contrast between the two orders of composition.{' '}
-            <Katex tex="(g\circ f)(x)=\sin\bigl(2\sin x\bigr)" /> has inner values spanning{' '}
-            <Katex tex="[-2,2]" />, which is wide enough to contain{' '}
-            <Katex tex="\pm\tfrac{\pi}{2}" />, so it reaches the full height{' '}
-            <Katex tex="\pm1" /> and has extra turning points.{' '}
-            <Katex tex="(f\circ g)(x)=\sin\bigl(\sin 2x\bigr)" /> has inner values only in{' '}
-            <Katex tex="[-1,1]" />, which never reaches <Katex tex="\tfrac{\pi}{2}" /> — so it
-            peaks at only <Katex tex="\sin(1)" />, and the factor{' '}
-            <Katex tex="\cos\bigl(\sin 2x\bigr)" /> in its derivative can never vanish.
-          </p>
-          <p>
-            That one inequality, <Katex tex="1<\tfrac{\pi}{2}<2" />, drives parts a.ii., b.ii.
-            and b.iv. alike.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The whole question is a contrast between the two orders of composition.{' '}
+              <Katex tex="(g\circ f)(x)=\sin\bigl(2\sin x\bigr)" /> has inner values spanning{' '}
+              <Katex tex="[-2,2]" />, which is wide enough to contain{' '}
+              <Katex tex="\pm\tfrac{\pi}{2}" />, so it reaches the full height{' '}
+              <Katex tex="\pm1" /> and has extra turning points.{' '}
+              <Katex tex="(f\circ g)(x)=\sin\bigl(\sin 2x\bigr)" /> has inner values only in{' '}
+              <Katex tex="[-1,1]" />, which never reaches <Katex tex="\tfrac{\pi}{2}" /> — so it
+              peaks at only <Katex tex="\sin(1)" />, and the factor{' '}
+              <Katex tex="\cos\bigl(\sin 2x\bigr)" /> in its derivative can never vanish.
+            </p>
+            <p>
+              That one inequality, <Katex tex="1<\tfrac{\pi}{2}<2" />, drives parts a.ii., b.ii.
+              and b.iv. alike.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

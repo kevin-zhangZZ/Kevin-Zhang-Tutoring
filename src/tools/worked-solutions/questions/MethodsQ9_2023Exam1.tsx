@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import tracksSrc from './meth-2023e1-q9-tracks.png'
 import triangleSrc from './meth-2023e1-q9c-triangle.png'
 
@@ -187,24 +187,26 @@ export default function MethodsQ9_2023Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The command words here do real work. "Verify" (parts a. and b.) means the answer
-            is given and the marks are for the working that produces it — and in part b. that
-            means showing <Katex tex="f'(2)=0" /> <em>and</em> <Katex tex="g'(2)=0" />, not
-            just that the curves meet. Solving <Katex tex="f(x)=g(x)" /> only finds where the
-            curves meet, which is not what was asked: here it gives{' '}
-            <Katex tex="(x-2)^2(x-3)=0" />, and at the second meeting point <Katex tex="(3,9)" />{' '}
-            neither curve is turning (<Katex tex="f'(3)=-7" />, <Katex tex="g'(3)=-6" />).
-          </p>
-          <p>
-            Part c. is an ordinary optimisation once the triangle is read correctly:{' '}
-            <Katex tex="B" /> sits directly above <Katex tex="A" /> on track 2, so the base is{' '}
-            <Katex tex="k" /> and the height is <Katex tex="g(k)" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The command words here do real work. "Verify" (parts a. and b.) means the answer
+              is given and the marks are for the working that produces it — and in part b. that
+              means showing <Katex tex="f'(2)=0" /> <em>and</em> <Katex tex="g'(2)=0" />, not
+              just that the curves meet. Solving <Katex tex="f(x)=g(x)" /> only finds where the
+              curves meet, which is not what was asked: here it gives{' '}
+              <Katex tex="(x-2)^2(x-3)=0" />, and at the second meeting point <Katex tex="(3,9)" />{' '}
+              neither curve is turning (<Katex tex="f'(3)=-7" />, <Katex tex="g'(3)=-6" />).
+            </p>
+            <p>
+              Part c. is an ordinary optimisation once the triangle is read correctly:{' '}
+              <Katex tex="B" /> sits directly above <Katex tex="A" /> on track 2, so the base is{' '}
+              <Katex tex="k" /> and the height is <Katex tex="g(k)" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

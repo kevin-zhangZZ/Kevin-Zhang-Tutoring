@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [30, 23, 23, 24],
@@ -107,24 +107,26 @@ export default function MethodsQ8_2025Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The density is a straight line falling to zero at <Katex tex="x=\tfrac43" />, so
-            the region beyond <Katex tex="k" /> is a triangle — area{' '}
-            <Katex tex="\tfrac12\times\left(\tfrac43-k\right)\times\tfrac38(4-3k)" />, which
-            gives the same quadratic as the integral with no antidifferentiation at all.
-            Either route is accepted.
-          </p>
-          <p>
-            Part b. needs no integration either, but for a different reason:{' '}
-            <Katex tex="f" /> is a probability density on exactly the interval being
-            integrated over, so <Katex tex="\int_0^{4/3}f=1" /> by definition. The trap is
-            treating <Katex tex="n" /> as though it were part of a common factor —{' '}
-            <Katex tex="mf(x)+n" /> is a sum, not a product.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The density is a straight line falling to zero at <Katex tex="x=\tfrac43" />, so
+              the region beyond <Katex tex="k" /> is a triangle — area{' '}
+              <Katex tex="\tfrac12\times\left(\tfrac43-k\right)\times\tfrac38(4-3k)" />, which
+              gives the same quadratic as the integral with no antidifferentiation at all.
+              Either route is accepted.
+            </p>
+            <p>
+              Part b. needs no integration either, but for a different reason:{' '}
+              <Katex tex="f" /> is a probability density on exactly the interval being
+              integrated over, so <Katex tex="\int_0^{4/3}f=1" /> by definition. The trap is
+              treating <Katex tex="n" /> as though it were part of a common factor —{' '}
+              <Katex tex="mf(x)+n" /> is a sum, not a product.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

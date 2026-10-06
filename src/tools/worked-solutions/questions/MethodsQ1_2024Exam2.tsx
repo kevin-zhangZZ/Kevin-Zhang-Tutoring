@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [15, 85],
@@ -289,24 +289,26 @@ export default function MethodsQ1_2024Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Parts a. and b. are about <em>distinct</em> roots. The four bracket-roots{' '}
-            <Katex tex="-1,\,-a,\,2,\,2a" /> are a list, not a set: whenever two of them are
-            equal the quartic loses an intercept. So the whole of part b. is the bookkeeping
-            exercise of pairing them off six ways and seeing which equations have solutions.
-          </p>
-          <p>
-            Parts c. and d. both turn on the same hidden symmetry. Writing{' '}
-            <Katex tex="g(x)=\left[(x+1)(x-2)\right]^2=\left(x^2-x-2\right)^2" /> shows that{' '}
-            <Katex tex="g" /> is a perfect square, and completing the square inside puts its
-            axis of symmetry at <Katex tex="x=\tfrac12" />. That single observation gives the
-            local maximum, the tangent intersection, and the target coordinates for the
-            transformations — all without expanding anything.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Parts a. and b. are about <em>distinct</em> roots. The four bracket-roots{' '}
+              <Katex tex="-1,\,-a,\,2,\,2a" /> are a list, not a set: whenever two of them are
+              equal the quartic loses an intercept. So the whole of part b. is the bookkeeping
+              exercise of pairing them off six ways and seeing which equations have solutions.
+            </p>
+            <p>
+              Parts c. and d. both turn on the same hidden symmetry. Writing{' '}
+              <Katex tex="g(x)=\left[(x+1)(x-2)\right]^2=\left(x^2-x-2\right)^2" /> shows that{' '}
+              <Katex tex="g" /> is a perfect square, and completing the square inside puts its
+              axis of symmetry at <Katex tex="x=\tfrac12" />. That single observation gives the
+              local maximum, the tangent intersection, and the target coordinates for the
+              transformations — all without expanding anything.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

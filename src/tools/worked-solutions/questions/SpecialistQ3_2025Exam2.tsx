@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [79.57, 20.43],
@@ -256,21 +256,23 @@ export default function SpecialistQ3_2025Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Inflow and outflow being equal is what keeps this manageable: the volume stays at
-            3000 litres, so the concentration draining out is always{' '}
-            <Katex tex="\tfrac{Q}{3000}" /> and the differential equation is linear.
-          </p>
-          <p>
-            Part g. quietly removes that assumption. With the tap shut the tank keeps filling,
-            so both the salt <em>and</em> the volume grow with time — and the answer 25, which
-            comes from holding the volume at 3000, was the error the report singled out. Only
-            18% of the cohort scored this mark.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Inflow and outflow being equal is what keeps this manageable: the volume stays at
+              3000 litres, so the concentration draining out is always{' '}
+              <Katex tex="\tfrac{Q}{3000}" /> and the differential equation is linear.
+            </p>
+            <p>
+              Part g. quietly removes that assumption. With the tap shut the tank keeps filling,
+              so both the salt <em>and</em> the volume grow with time — and the answer 25, which
+              comes from holding the volume at 3000, was the error the report singled out. Only
+              18% of the cohort scored this mark.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

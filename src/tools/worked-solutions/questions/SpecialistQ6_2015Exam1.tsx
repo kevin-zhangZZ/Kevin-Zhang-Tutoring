@@ -67,7 +67,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ6_2015Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 6 (4 marks)">
+      <Background title="Question 6 (4 marks)" always>
         <p>
           The acceleration <Katex tex="a" /> ms<sup>−2</sup> of a body moving in a straight
           line in terms of the velocity <Katex tex="v" /> ms<sup>−1</sup> is given by{' '}

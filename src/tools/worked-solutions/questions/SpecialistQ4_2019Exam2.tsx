@@ -14,7 +14,7 @@
 // the base (every base point gives 36/√65; O gives 61/√65), with edge-on and from-above views.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const VertexOrderWidget = lazyWidget(() => import('../interactives/spec-2019e2-q4a-vertex-order'))
@@ -184,20 +184,22 @@ export default function SpecialistQ4_2019Exam2() {
         </p>
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            Every part here runs on the same two tools. The <b>scalar (dot) product</b>{' '}
-            <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />{' '}
-            measures how much two vectors point the same way — it gives angles, and it is zero
-            exactly when they are perpendicular. The <b>scalar resolute</b>{' '}
-            <Katex tex="\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}" /> measures how far{' '}
-            <Katex tex="\underset{\sim}{a}" /> reaches in the direction of{' '}
-            <Katex tex="\underset{\sim}{b}" />, which is exactly what "perpendicular height above
-            a plane" means.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              Every part here runs on the same two tools. The <b>scalar (dot) product</b>{' '}
+              <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />{' '}
+              measures how much two vectors point the same way — it gives angles, and it is zero
+              exactly when they are perpendicular. The <b>scalar resolute</b>{' '}
+              <Katex tex="\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}" /> measures how far{' '}
+              <Katex tex="\underset{\sim}{a}" /> reaches in the direction of{' '}
+              <Katex tex="\underset{\sim}{b}" />, which is exactly what "perpendicular height above
+              a plane" means.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Vector Coordinates" marks={2} statement={<>Find the values of <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

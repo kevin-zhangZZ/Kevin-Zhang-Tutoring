@@ -6,7 +6,7 @@ import ComingSoon from './ComingSoon'
 import { examSourceFor } from './examSources'
 import { LightboxProvider } from './Lightbox'
 import { RevealScope } from './QuestionParts'
-import { StudyModeProvider, useStudyMode } from './studyMode'
+import { AlwaysDetailed, StudyModeProvider, useStudyMode } from './studyMode'
 import { TOOL_PATH, parsePath, questionPath, subjectPath, yearPath } from './routes'
 import { SidebarPrefsProvider, useSidebarPrefs } from './sidebarPrefs'
 import { QuestionSidebar, type SidebarNav } from './QuestionSidebar'
@@ -74,6 +74,27 @@ function AnswersSwitch({ compact }: { compact?: boolean }) {
       </button>
       <button type="button" onClick={() => setHideAnswers(true)} aria-pressed={hideAnswers} className={switchButtonClass(hideAnswers)}>
         Hide answers
+      </button>
+    </div>
+  )
+}
+
+// Concise (the default): just the exam working, its reasoning, the report and the video.
+// Detailed: also the Background notes, interactive diagrams and Common Mistake boxes.
+function DetailSwitch({ compact }: { compact?: boolean }) {
+  const { detailed, setDetailed } = useStudyMode()
+  return (
+    <div
+      className={compact ? 'grid grid-flow-col auto-cols-fr gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl p-1' : `${SWITCH_CLASS} w-full sm:w-auto`}
+      role="group"
+      aria-label="Solution detail"
+      title="Concise shows the exam working only; Detailed adds background notes, interactive diagrams and common mistakes"
+    >
+      <button type="button" onClick={() => setDetailed(false)} aria-pressed={!detailed} className={switchButtonClass(!detailed)}>
+        Concise
+      </button>
+      <button type="button" onClick={() => setDetailed(true)} aria-pressed={detailed} className={switchButtonClass(detailed)}>
+        Detailed
       </button>
     </div>
   )
@@ -210,6 +231,7 @@ function QuestionsPage({ rest }: { rest: string }) {
               ))}
             </div>
             <AnswersSwitch />
+            {subject !== 'chemistry' && <DetailSwitch />}
           </div>
         </div>
 
@@ -300,7 +322,17 @@ function QuestionsPage({ rest }: { rest: string }) {
                   {selected.topic}
                 </h2>
                 <RevealScope key={`question-${selected.id}`}>
-                  {Detail ? <Detail key={selected.id} /> : <ComingSoon topic={selected.topic} />}
+                  {Detail ? (
+                    selected.subject === 'chemistry' ? (
+                      <AlwaysDetailed>
+                        <Detail key={selected.id} />
+                      </AlwaysDetailed>
+                    ) : (
+                      <Detail key={selected.id} />
+                    )
+                  ) : (
+                    <ComingSoon topic={selected.topic} />
+                  )}
                 </RevealScope>
                 {prefs.pager === 'end' && <EndPager prev={prev} next={next} current={selected} />}
               </div>
@@ -697,8 +729,9 @@ function QuestionsSheet({
           </button>
         </div>
         <div ref={scrollRef} className="relative flex-1 overflow-y-auto scrollbar-quiet px-3 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          <div className="mb-3">
+          <div className="mb-3 flex flex-col gap-2">
             <AnswersSwitch compact />
+            {!selectedId.startsWith('chem') && <DetailSwitch compact />}
           </div>
           {children}
         </div>

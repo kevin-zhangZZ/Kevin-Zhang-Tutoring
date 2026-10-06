@@ -116,7 +116,7 @@ const ROWS_DOMAIN: WorkingRow[] = [
 export default function SpecialistQ6_2017Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 6 (3 marks)">
+      <Background title="Question 6 (3 marks)" always>
         <p>
           Let <Katex tex="f(x)=\dfrac{1}{\arcsin(x)}" />. Find <Katex tex="f'(x)" /> and state
           the largest set of values of <Katex tex="x" /> for which <Katex tex="f'(x)" /> is

@@ -9,7 +9,7 @@
 // sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { functionToPath } from '../graphUtils'
 import graphSrc from './meth-2024e1-q7-graph.png'
 import axesSrc from './meth-2024e1-q7c-axes.png'
@@ -284,21 +284,23 @@ export default function MethodsQ7_2024Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            <Katex tex="f(x)=x\sin(x)" /> is an <em>even</em> function — two odd factors
-            multiplied — which is why the printed graph is symmetric about the{' '}
-            <Katex tex="y" />-axis. Its derivative is therefore odd, and that single fact
-            settles most of the shape in part c.
-          </p>
-          <p>
-            Part b.iii. says "hence, verify". That rules out solving{' '}
-            <Katex tex="f'(x)=0" />: the marks are for quoting the two <em>specific</em>{' '}
-            values from part b.ii., noting they have opposite signs, and invoking continuity.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              <Katex tex="f(x)=x\sin(x)" /> is an <em>even</em> function — two odd factors
+              multiplied — which is why the printed graph is symmetric about the{' '}
+              <Katex tex="y" />-axis. Its derivative is therefore odd, and that single fact
+              settles most of the shape in part c.
+            </p>
+            <p>
+              Part b.iii. says "hence, verify". That rules out solving{' '}
+              <Katex tex="f'(x)=0" />: the marks are for quoting the two <em>specific</em>{' '}
+              values from part b.ii., noting they have opposite signs, and invoking continuity.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

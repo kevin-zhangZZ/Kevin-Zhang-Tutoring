@@ -134,7 +134,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ4_2017Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 4 (3 marks)">
+      <Background title="Question 4 (3 marks)" always>
         <p>
           The volume of soft drink dispensed by a machine into bottles varies normally with a
           mean of <Katex tex="298" /> mL and a standard deviation of <Katex tex="3" /> mL. The

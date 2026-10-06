@@ -4,7 +4,7 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [41, 59],
@@ -78,18 +78,20 @@ export default function MethodsQ4_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Two formula-sheet facts, both done by hand:{' '}
-            <Katex tex="\mathrm{sd}=\sqrt{np(1-p)}" /> and{' '}
-            <Katex tex="\Pr(X=k)=\binom nk p^k(1-p)^{n-k}" />. The numbers are chosen so that
-            the variance is a perfect square and every probability is a whole number of
-            ten-thousandths — so an answer that is not tidy is a signal to check the
-            arithmetic.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Two formula-sheet facts, both done by hand:{' '}
+              <Katex tex="\mathrm{sd}=\sqrt{np(1-p)}" /> and{' '}
+              <Katex tex="\Pr(X=k)=\binom nk p^k(1-p)^{n-k}" />. The numbers are chosen so that
+              the variance is a perfect square and every probability is a whole number of
+              ten-thousandths — so an answer that is not tidy is a signal to check the
+              arithmetic.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

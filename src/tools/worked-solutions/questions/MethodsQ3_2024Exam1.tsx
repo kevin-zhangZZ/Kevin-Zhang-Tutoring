@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './meth-2024e1-q3a-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -118,20 +118,22 @@ export default function MethodsQ3_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The squared denominator is the whole character of this graph. It forces{' '}
-            <Katex tex="\tfrac{1}{(x+3)^2}>0" />, so both branches sit <em>above</em> the
-            horizontal asymptote and the curve is symmetric about <Katex tex="x=-3" />. A
-            hyperbola would have one branch above and one below.
-          </p>
-          <p>
-            That symmetry also explains why part a. has two <Katex tex="x" />-intercepts
-            rather than one, and why they come out as <Katex tex="-3\pm\tfrac{\sqrt2}{2}" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The squared denominator is the whole character of this graph. It forces{' '}
+              <Katex tex="\tfrac{1}{(x+3)^2}>0" />, so both branches sit <em>above</em> the
+              horizontal asymptote and the curve is symmetric about <Katex tex="x=-3" />. A
+              hyperbola would have one branch above and one below.
+            </p>
+            <p>
+              That symmetry also explains why part a. has two <Katex tex="x" />-intercepts
+              rather than one, and why they come out as <Katex tex="-3\pm\tfrac{\sqrt2}{2}" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

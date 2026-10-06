@@ -6,7 +6,7 @@
 // against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './spec-2024e1-q3c-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -155,22 +155,24 @@ export default function SpecialistQ3_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Part a. is worth doing properly because it pays for the rest of the question. In
-            the form <Katex tex="1-\tfrac{4}{x+1}+\tfrac{4}{(x+1)^2}" /> the horizontal
-            asymptote <Katex tex="y=1" /> is visible at a glance, and differentiating two
-            powers beats the quotient rule on the original.
-          </p>
-          <p>
-            The graph in part c. has an unusual feature worth noticing: since{' '}
-            <Katex tex="f(x)=1" /> has the single solution <Katex tex="x=0" />, the curve{' '}
-            <em>crosses</em> its own horizontal asymptote at the <Katex tex="y" />-intercept.
-            There is no rule against that — the asymptote only governs behaviour far out.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Part a. is worth doing properly because it pays for the rest of the question. In
+              the form <Katex tex="1-\tfrac{4}{x+1}+\tfrac{4}{(x+1)^2}" /> the horizontal
+              asymptote <Katex tex="y=1" /> is visible at a glance, and differentiating two
+              powers beats the quotient rule on the original.
+            </p>
+            <p>
+              The graph in part c. has an unusual feature worth noticing: since{' '}
+              <Katex tex="f(x)=1" /> has the single solution <Katex tex="x=0" />, the curve{' '}
+              <em>crosses</em> its own horizontal asymptote at the <Katex tex="y" />-intercept.
+              There is no rule against that — the asymptote only governs behaviour far out.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

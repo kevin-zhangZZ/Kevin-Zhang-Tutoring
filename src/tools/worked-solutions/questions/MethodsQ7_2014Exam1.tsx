@@ -52,7 +52,7 @@ const ROWS: WorkingRow[] = [
 export default function MethodsQ7_2014Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 7 (3 marks)">
+      <Background title="Question 7 (3 marks)" always>
         <p>
           If <Katex tex="f'(x)=2\cos(x)-\sin(2x)" /> and{' '}
           <Katex tex="f\!\left(\tfrac\pi2\right)=\tfrac12" />, find <Katex tex="f(x)" />.

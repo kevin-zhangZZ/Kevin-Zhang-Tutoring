@@ -9,7 +9,7 @@
 // one crossing is on y = x).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2023e2-q5-graph.png'
@@ -310,25 +310,27 @@ export default function MethodsQ5_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            <Katex tex="f(x)=e^x+e^{-x}" /> is an <em>even</em> function — a catenary,
-            symmetric about the <Katex tex="y" />-axis with minimum <Katex tex="(0,2)" />.
-            That single fact makes part a. slightly generous (a reflection in the{' '}
-            <Katex tex="y" />-axis changes nothing), and it makes every later part a question
-            about a U-shaped curve with one turning point and two monotone branches.
-          </p>
-          <p>
-            A strictly increasing function and its own inverse can only meet on{' '}
-            <Katex tex="y=x" />. Part f. is
-            different: <Katex tex="h" /> is the full curve while <Katex tex="h_1" /> is only its
-            right branch, so the left branch of <Katex tex="h" /> can cross the inverse of{' '}
-            <Katex tex="h_1" /> away from <Katex tex="y=x" />, and the intersections have to be
-            found directly.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              <Katex tex="f(x)=e^x+e^{-x}" /> is an <em>even</em> function — a catenary,
+              symmetric about the <Katex tex="y" />-axis with minimum <Katex tex="(0,2)" />.
+              That single fact makes part a. slightly generous (a reflection in the{' '}
+              <Katex tex="y" />-axis changes nothing), and it makes every later part a question
+              about a U-shaped curve with one turning point and two monotone branches.
+            </p>
+            <p>
+              A strictly increasing function and its own inverse can only meet on{' '}
+              <Katex tex="y=x" />. Part f. is
+              different: <Katex tex="h" /> is the full curve while <Katex tex="h_1" /> is only its
+              right branch, so the left branch of <Katex tex="h" /> can cross the inverse of{' '}
+              <Katex tex="h_1" /> away from <Katex tex="y=x" />, and the intersections have to be
+              found directly.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

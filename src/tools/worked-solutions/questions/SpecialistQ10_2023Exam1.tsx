@@ -8,7 +8,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const ArcWidget = lazyWidget(() => import('../interactives/spec-2023e1-q10c-arc'))
 const PerpendicularWidget = lazyWidget(() => import('../interactives/spec-2023e1-q10d-perpendicular'))
@@ -165,17 +165,19 @@ export default function SpecialistQ10_2023Exam1() {
         />
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Both components hide a double angle. Rewriting them as{' '}
-            <Katex tex="2+3\cos(2t)" /> and <Katex tex="1+3\sin(2t)" /> turns an awkward
-            vector function into a circle of radius 3 about <Katex tex="(2,1)" />, traced at
-            constant speed 6. Every later part becomes easy once that is done — which is why
-            part a. is set first.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Both components hide a double angle. Rewriting them as{' '}
+              <Katex tex="2+3\cos(2t)" /> and <Katex tex="1+3\sin(2t)" /> turns an awkward
+              vector function into a circle of radius 3 about <Katex tex="(2,1)" />, traced at
+              constant speed 6. Every later part becomes easy once that is done — which is why
+              part a. is set first.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

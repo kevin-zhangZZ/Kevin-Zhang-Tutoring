@@ -6,7 +6,7 @@
 // giving sin(k) = 3/2 (interactives/meth-2023e1-q5b-crossings.tsx).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const CrossingsWidget = lazyWidget(() => import('../interactives/meth-2023e1-q5b-crossings'))
@@ -95,16 +95,18 @@ export default function MethodsQ5_2023Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 5 (4 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The wide domain <Katex tex="-3\pi<k<2\pi" /> is the question telling you it wants
-            more than the obvious answer. Solve for the reference angle, write the general
-            solution, then step through the values of <Katex tex="n" /> until you leave the
-            interval — checking both ends.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The wide domain <Katex tex="-3\pi<k<2\pi" /> is the question telling you it wants
+              more than the obvious answer. Solve for the reference angle, write the general
+              solution, then step through the values of <Katex tex="n" /> until you leave the
+              interval — checking both ends.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

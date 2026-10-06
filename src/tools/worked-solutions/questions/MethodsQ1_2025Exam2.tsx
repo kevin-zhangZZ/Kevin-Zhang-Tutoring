@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './meth-2025e2-q1b-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -263,23 +263,25 @@ export default function MethodsQ1_2025Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Everything follows from the factorisation{' '}
-            <Katex tex="g'(x)=12x^2(1-x)" />. The squared factor means the gradient touches
-            zero at <Katex tex="x=0" /> without changing sign — a stationary point of
-            inflection — while the simple factor at <Katex tex="x=1" /> gives an ordinary
-            local maximum.
-          </p>
-          <p>
-            Part f. is the twist: the same quartic is the binomial probability{' '}
-            <Katex tex="\Pr(X\ge3)" /> for <Katex tex="X\sim\text{Bi}(4,p)" />. That is why
-            the local maximum sits at exactly <Katex tex="(1,1)" /> — a certainty when{' '}
-            <Katex tex="p=1" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Everything follows from the factorisation{' '}
+              <Katex tex="g'(x)=12x^2(1-x)" />. The squared factor means the gradient touches
+              zero at <Katex tex="x=0" /> without changing sign — a stationary point of
+              inflection — while the simple factor at <Katex tex="x=1" /> gives an ordinary
+              local maximum.
+            </p>
+            <p>
+              Part f. is the twist: the same quartic is the binomial probability{' '}
+              <Katex tex="\Pr(X\ge3)" /> for <Katex tex="X\sim\text{Bi}(4,p)" />. That is why
+              the local maximum sits at exactly <Katex tex="(1,1)" /> — a certainty when{' '}
+              <Katex tex="p=1" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

@@ -6,7 +6,7 @@
 // velocity change per metre; scaling the gradient triangle by v gives the change per second, a.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const PerMetre = lazyWidget(() => import('../interactives/spec-2023e1-q3a-per-metre'))
@@ -104,21 +104,23 @@ export default function SpecialistQ3_2023Exam1() {
         <Katex display tex="v=\frac{3x+2}{2x-1}, \ \text{where } x\ge1." />
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Acceleration has three interchangeable forms —{' '}
-            <Katex tex="\tfrac{dv}{dt}" />, <Katex tex="v\tfrac{dv}{dx}" /> and{' '}
-            <Katex tex="\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> — and the one to reach for
-            is whichever matches the variable you have. Here <Katex tex="v" /> is given in terms
-            of <Katex tex="x" />, so it is the second or the third (both come from the chain
-            rule). Watch out: <Katex tex="\tfrac{dv}{dx}" /> on its own is not acceleration. It
-            measures how much the velocity changes per metre travelled, whereas acceleration is
-            the change per second. Working out <Katex tex="\tfrac{dv}{dx}" /> and stopping is
-            the slip the report describes.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Acceleration has three interchangeable forms —{' '}
+              <Katex tex="\tfrac{dv}{dt}" />, <Katex tex="v\tfrac{dv}{dx}" /> and{' '}
+              <Katex tex="\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> — and the one to reach for
+              is whichever matches the variable you have. Here <Katex tex="v" /> is given in terms
+              of <Katex tex="x" />, so it is the second or the third (both come from the chain
+              rule). Watch out: <Katex tex="\tfrac{dv}{dx}" /> on its own is not acceleration. It
+              measures how much the velocity changes per metre travelled, whereas acceleration is
+              the change per second. Working out <Katex tex="\tfrac{dv}{dx}" /> and stopping is
+              the slip the report describes.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

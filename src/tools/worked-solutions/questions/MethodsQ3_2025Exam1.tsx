@@ -6,7 +6,7 @@
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './meth-2025e1-q3c-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -142,22 +142,24 @@ export default function MethodsQ3_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The inner 2 halves the period to <Katex tex="\pi" />, which is the fact behind
-            both b. and c.: over <Katex tex="[0,2\pi]" /> there are four periods and so four
-            zeros, and the window <Katex tex="\left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right]" />{' '}
-            in part c. is exactly one of them.
-          </p>
-          <p>
-            The reliable way to handle part b. is to transform the domain before solving:
-            substitute <Katex tex="\theta=2x" />, find every <Katex tex="\theta" /> in{' '}
-            <Katex tex="[0,4\pi]" />, then halve. The report notes some students gave only
-            two of the solutions, not taking into account the period of the function.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The inner 2 halves the period to <Katex tex="\pi" />, which is the fact behind
+              both b. and c.: over <Katex tex="[0,2\pi]" /> there are four periods and so four
+              zeros, and the window <Katex tex="\left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right]" />{' '}
+              in part c. is exactly one of them.
+            </p>
+            <p>
+              The reliable way to handle part b. is to transform the domain before solving:
+              substitute <Katex tex="\theta=2x" />, find every <Katex tex="\theta" /> in{' '}
+              <Katex tex="[0,4\pi]" />, then halve. The report notes some students gave only
+              two of the solutions, not taking into account the period of the function.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Range" marks={1} statement={<>State the range of <Katex tex="f" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

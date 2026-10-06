@@ -14,7 +14,7 @@
 // (z⁶ = −1728 real; z⁹ = (2√3)⁹ i imaginary; z⁻³ = (√3/72) i).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import argandSrc from './spec-2019e1-q7-argand.png'
 
@@ -157,23 +157,25 @@ export default function SpecialistQ7_2019Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 7 (5 marks)</p>
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            All four parts run on one idea: a complex number written as{' '}
-            <Katex tex="r\,\text{cis}\,\theta" /> is described by a <em>distance</em> from the
-            origin and an <em>angle</em>, and raising it to a power scales the distance while
-            spinning the angle. Formally that is <b>de Moivre's theorem</b>,{' '}
-            <Katex tex="\bigl(r\,\text{cis}\,\theta\bigr)^n = r^n\,\text{cis}(n\theta)" />.
-          </p>
-          <p>
-            Here <Katex tex="\theta=-\tfrac{\pi}{6}" />, so each successive power rotates the
-            point another <Katex tex="30^\circ" /> clockwise. Parts c. and d. then just ask:
-            after how many such turns does the point land on the real axis, and on the imaginary
-            axis?
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              All four parts run on one idea: a complex number written as{' '}
+              <Katex tex="r\,\text{cis}\,\theta" /> is described by a <em>distance</em> from the
+              origin and an <em>angle</em>, and raising it to a power scales the distance while
+              spinning the angle. Formally that is <b>de Moivre's theorem</b>,{' '}
+              <Katex tex="\bigl(r\,\text{cis}\,\theta\bigr)^n = r^n\,\text{cis}(n\theta)" />.
+            </p>
+            <p>
+              Here <Katex tex="\theta=-\tfrac{\pi}{6}" />, so each successive power rotates the
+              point another <Katex tex="30^\circ" /> clockwise. Parts c. and d. then just ask:
+              after how many such turns does the point land on the real axis, and on the imaginary
+              axis?
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Polar Form" marks={1} statement={<>Show that <Katex tex="3-\sqrt3\,i = 2\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{6}\right)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

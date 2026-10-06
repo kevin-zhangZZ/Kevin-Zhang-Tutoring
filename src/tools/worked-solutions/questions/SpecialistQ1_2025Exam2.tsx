@@ -8,7 +8,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './spec-2025e2-q1a-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -257,23 +257,25 @@ export default function SpecialistQ1_2025Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 1 (10 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Everything in this question turns on the denominator. Its real zeros give the
-            vertical asymptotes; its degree being higher than the numerator&rsquo;s gives the
-            horizontal asymptote <Katex tex="y=0" />; and, once the quotient rule is applied,
-            the <Katex tex="ax" /> term cancels out of the numerator of{' '}
-            <Katex tex="y'" /> altogether.
-          </p>
-          <p>
-            That last cancellation is the key to part d.: whatever <Katex tex="a" /> is, the
-            only stationary point sits at <Katex tex="x=1" />. So &ldquo;no stationary
-            points&rdquo; can only mean that <Katex tex="x=1" /> has been removed from the
-            domain — which pins <Katex tex="a" /> down immediately.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Everything in this question turns on the denominator. Its real zeros give the
+              vertical asymptotes; its degree being higher than the numerator&rsquo;s gives the
+              horizontal asymptote <Katex tex="y=0" />; and, once the quotient rule is applied,
+              the <Katex tex="ax" /> term cancels out of the numerator of{' '}
+              <Katex tex="y'" /> altogether.
+            </p>
+            <p>
+              That last cancellation is the key to part d.: whatever <Katex tex="a" /> is, the
+              only stationary point sits at <Katex tex="x=1" />. So &ldquo;no stationary
+              points&rdquo; can only mean that <Katex tex="x=1" /> has been removed from the
+              domain — which pins <Katex tex="a" /> down immediately.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

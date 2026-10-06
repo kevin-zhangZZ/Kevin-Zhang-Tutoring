@@ -5,7 +5,7 @@
 // VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [21, 79],
@@ -165,23 +165,25 @@ export default function SpecialistQ6_2024Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            One rule runs through all three parts:{' '}
-            <Katex tex="\mathrm{Var}(aX+bY) = a^2\mathrm{Var}(X)+b^2\mathrm{Var}(Y)" /> for
-            independent <Katex tex="X" /> and <Katex tex="Y" />. Everything squares — the
-            coefficients and the standard deviations alike — and the coefficients square
-            away their signs, so variances add even when the variables are subtracted.
-          </p>
-          <p>
-            Part c. is the one to read carefully. "Stage 2 takes less time than Stage 1" is
-            not a statement about either distribution on its own; it is{' '}
-            <Katex tex="\Pr(W_2-W_1<0)" />, and the numbers are chosen so that the answer
-            lands exactly on the given <Katex tex="\Pr(-1<Z<1)=0.68" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              One rule runs through all three parts:{' '}
+              <Katex tex="\mathrm{Var}(aX+bY) = a^2\mathrm{Var}(X)+b^2\mathrm{Var}(Y)" /> for
+              independent <Katex tex="X" /> and <Katex tex="Y" />. Everything squares — the
+              coefficients and the standard deviations alike — and the coefficients square
+              away their signs, so variances add even when the variables are subtracted.
+            </p>
+            <p>
+              Part c. is the one to read carefully. "Stage 2 takes less time than Stage 1" is
+              not a statement about either distribution on its own; it is{' '}
+              <Katex tex="\Pr(W_2-W_1<0)" />, and the numbers are chosen so that the answer
+              lands exactly on the given <Katex tex="\Pr(-1<Z<1)=0.68" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

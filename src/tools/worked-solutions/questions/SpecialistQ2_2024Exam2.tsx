@@ -7,7 +7,7 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import circleSrc from './spec-2024e2-q2c-circle.png'
 import raySrc from './spec-2024e2-q2d-ray.png'
 
@@ -255,23 +255,25 @@ export default function SpecialistQ2_2024Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 2 (10 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Each part is a standard complex locus read as ordinary geometry:{' '}
-            <Katex tex="|z-z_1|=|z-z_2|" /> is a perpendicular bisector,{' '}
-            <Katex tex="|z-z_c|=r" /> is a circle, and{' '}
-            <Katex tex="\text{Arg}(z-z_0)=\theta" /> is a ray from <Katex tex="z_0" />.
-            Translating first and calculating second keeps the algebra short.
-          </p>
-          <p>
-            Two circles appear and they are different. Part b. builds one on{' '}
-            <Katex tex="z_1z_2" /> as a diameter (centre <Katex tex="\tfrac52+i" />, radius{' '}
-            <Katex tex="\tfrac{\sqrt{13}}{2}" />); parts c. to e. use a second one, centred at{' '}
-            <Katex tex="1+2i" /> with radius 2. Only the second one is drawn or cut.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Each part is a standard complex locus read as ordinary geometry:{' '}
+              <Katex tex="|z-z_1|=|z-z_2|" /> is a perpendicular bisector,{' '}
+              <Katex tex="|z-z_c|=r" /> is a circle, and{' '}
+              <Katex tex="\text{Arg}(z-z_0)=\theta" /> is a ray from <Katex tex="z_0" />.
+              Translating first and calculating second keeps the algebra short.
+            </p>
+            <p>
+              Two circles appear and they are different. Part b. builds one on{' '}
+              <Katex tex="z_1z_2" /> as a diameter (centre <Katex tex="\tfrac52+i" />, radius{' '}
+              <Katex tex="\tfrac{\sqrt{13}}{2}" />); parts c. to e. use a second one, centred at{' '}
+              <Katex tex="1+2i" /> with radius 2. Only the second one is drawn or cut.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

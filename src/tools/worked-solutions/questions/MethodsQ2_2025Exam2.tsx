@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import graphSrc from './meth-2025e2-q2-graph.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -303,23 +303,25 @@ export default function MethodsQ2_2025Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Dividing one equation by another is the move that appears twice. In part a. it
-            eliminates <Katex tex="A" /> and leaves <Katex tex="e^{14k}=8" />; in part f.ii.
-            it eliminates <Katex tex="m" /> and leaves a linear equation in{' '}
-            <Katex tex="c" />. Both are far quicker than substitution.
-          </p>
-          <p>
-            Part e. has a shortcut worth spotting: <Katex tex="y=2(x-7)" /> is precisely{' '}
-            <Katex tex="f^{-1}(x)" />. Reflecting <Katex tex="f" /> and <Katex tex="g" /> in{' '}
-            <Katex tex="y=x" /> sends their intersections to the intersections of the
-            inverses, so the answer is the two given points with their coordinates swapped —
-            no new equation to solve.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Dividing one equation by another is the move that appears twice. In part a. it
+              eliminates <Katex tex="A" /> and leaves <Katex tex="e^{14k}=8" />; in part f.ii.
+              it eliminates <Katex tex="m" /> and leaves a linear equation in{' '}
+              <Katex tex="c" />. Both are far quicker than substitution.
+            </p>
+            <p>
+              Part e. has a shortcut worth spotting: <Katex tex="y=2(x-7)" /> is precisely{' '}
+              <Katex tex="f^{-1}(x)" />. Reflecting <Katex tex="f" /> and <Katex tex="g" /> in{' '}
+              <Katex tex="y=x" /> sends their intersections to the intersections of the
+              inverses, so the answer is the two given points with their coordinates swapped —
+              no new equation to solve.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

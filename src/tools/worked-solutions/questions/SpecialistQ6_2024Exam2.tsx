@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [9, 91],
@@ -242,24 +242,26 @@ export default function SpecialistQ6_2024Exam2() {
         <p>A one-sided statistical test is to be performed.</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Parts b. to d. all use the same distribution:{' '}
-            <Katex tex="\overline{X}\sim\mathrm{N}\!\left(\mu,\left(\tfrac{4.2}{3}\right)^2\right)" />.
-            The <Katex tex="\sqrt9=3" /> matters — leaving the standard deviation at 4.2
-            changes the p value from 0.037 to 0.276 and flips the conclusion, and the report
-            notes some students did not divide by 3.
-          </p>
-          <p>
-            Part c. needs <em>two</em> different means. The critical value comes from{' '}
-            <Katex tex="\mu=1000" /> (that is where the 5% rule lives), but the probability of
-            missing the fault is computed with <Katex tex="\mu=997" /> (that is what is
-            actually happening). The report's common errors were not finding the critical
-            value under <Katex tex="H_0" /> and using the wrong tail.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Parts b. to d. all use the same distribution:{' '}
+              <Katex tex="\overline{X}\sim\mathrm{N}\!\left(\mu,\left(\tfrac{4.2}{3}\right)^2\right)" />.
+              The <Katex tex="\sqrt9=3" /> matters — leaving the standard deviation at 4.2
+              changes the p value from 0.037 to 0.276 and flips the conclusion, and the report
+              notes some students did not divide by 3.
+            </p>
+            <p>
+              Part c. needs <em>two</em> different means. The critical value comes from{' '}
+              <Katex tex="\mu=1000" /> (that is where the 5% rule lives), but the probability of
+              missing the fault is computed with <Katex tex="\mu=997" /> (that is what is
+              actually happening). The report's common errors were not finding the critical
+              value under <Katex tex="H_0" /> and using the wrong tail.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

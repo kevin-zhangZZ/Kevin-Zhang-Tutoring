@@ -6,7 +6,7 @@
 // of VCAA's own artwork. Answers verified with sympy. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import biiSrc from './meth-2016e2-q4bii-shaded.png'
 import biiiSrc from './meth-2016e2-q4biii-shaded.png'
@@ -402,16 +402,18 @@ export default function MethodsQ4_2016Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 4 (21 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background title="How this question is built">
-          <p>
-            The longest question on the paper, in two halves: parts a.–c. on the single
-            hyperbola <Katex tex="f(x)=\tfrac{2x+1}{x+2}" />, then parts d.–f. on the whole
-            family <Katex tex="g(x)=\tfrac{kx+1}{x+k}" /> that contains it (<Katex tex="f" /> is
-            the case <Katex tex="k=2" />).
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background title="How this question is built">
+            <p>
+              The longest question on the paper, in two halves: parts a.–c. on the single
+              hyperbola <Katex tex="f(x)=\tfrac{2x+1}{x+2}" />, then parts d.–f. on the whole
+              family <Katex tex="g(x)=\tfrac{kx+1}{x+k}" /> that contains it (<Katex tex="f" /> is
+              the case <Katex tex="k=2" />).
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

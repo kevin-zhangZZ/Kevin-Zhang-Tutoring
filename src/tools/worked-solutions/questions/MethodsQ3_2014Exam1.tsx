@@ -48,7 +48,7 @@ const ROWS: WorkingRow[] = [
 export default function MethodsQ3_2014Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 3 (2 marks)">
+      <Background title="Question 3 (2 marks)" always>
         <p>
           Solve <Katex tex="2\cos(2x)=-\sqrt3" /> for <Katex tex="x" />, where{' '}
           <Katex tex="0\le x\le\pi" />.

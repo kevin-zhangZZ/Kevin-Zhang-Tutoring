@@ -12,7 +12,7 @@
 // now eliminates u by hand ((1) − 8×(2)), as the report suggests; part e shows the combined equation.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import trackSrc from './spec-2021e2-q4-track.png'
 import { Explore, lazyWidget } from '../Explore'
@@ -236,21 +236,23 @@ export default function SpecialistQ4_2021Exam2() {
         </div>
       </div>
 
-      <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
-        <Background title="Projectile wording, current mathematics">
-          <p>
-            Working out a projectile&apos;s path from the forces on it was Mechanics, which is
-            no longer in Specialist Mathematics — but here the position vector is{' '}
-            <em>given</em> to you, so no forces are ever needed.
-          </p>
-          <p>
-            Parts a. to c. are then parametric-to-cartesian conversion and a tangency
-            condition; parts d. and e. are rectilinear motion with{' '}
-            <Katex tex="a=v\tfrac{dv}{ds}" />, which is current content. Worth doing in
-            full.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
+          <Background title="Projectile wording, current mathematics">
+            <p>
+              Working out a projectile&apos;s path from the forces on it was Mechanics, which is
+              no longer in Specialist Mathematics — but here the position vector is{' '}
+              <em>given</em> to you, so no forces are ever needed.
+            </p>
+            <p>
+              Parts a. to c. are then parametric-to-cartesian conversion and a tangency
+              condition; parts d. and e. are rectilinear motion with{' '}
+              <Katex tex="a=v\tfrac{dv}{ds}" />, which is current content. Worth doing in
+              full.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

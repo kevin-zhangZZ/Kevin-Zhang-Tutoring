@@ -5,7 +5,7 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [10, 45, 45],
@@ -100,19 +100,21 @@ export default function SpecialistQ4_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Both parts hinge on signs. In part a. the dot product is negative, so the angle
-            is obtuse — the report notes <Katex tex="\tfrac{\pi}{4}" /> was frequently seen,
-            even from students who had found <Katex tex="\cos\theta=-\tfrac{1}{\sqrt2}" />.
-          </p>
-          <p>
-            In part b., squaring produces <Katex tex="n^2=4" />, and a squared unknown has{' '}
-            <em>two</em> solutions. Both are integers, so both belong in the answer.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Both parts hinge on signs. In part a. the dot product is negative, so the angle
+              is obtuse — the report notes <Katex tex="\tfrac{\pi}{4}" /> was frequently seen,
+              even from students who had found <Katex tex="\cos\theta=-\tfrac{1}{\sqrt2}" />.
+            </p>
+            <p>
+              In part b., squaring produces <Katex tex="n^2=4" />, and a squared unknown has{' '}
+              <em>two</em> solutions. Both are integers, so both belong in the answer.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

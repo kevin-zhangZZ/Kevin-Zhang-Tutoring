@@ -4,7 +4,7 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [12, 88],
@@ -85,17 +85,19 @@ export default function MethodsQ1_2025Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 1 (3 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Two standard derivatives, one each way. Presentation matters as well as method:
-            brackets around <Katex tex="\bigl(-\sin(x)\bigr)" /> while you write
-            the product rule, and a final answer tidied to{' '}
-            <Katex tex="2x\cos(x)-x^2\sin(x)" /> rather than left with a stray double
-            negative.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Two standard derivatives, one each way. Presentation matters as well as method:
+              brackets around <Katex tex="\bigl(-\sin(x)\bigr)" /> while you write
+              the product rule, and a final answer tidied to{' '}
+              <Katex tex="2x\cos(x)-x^2\sin(x)" /> rather than left with a stray double
+              negative.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

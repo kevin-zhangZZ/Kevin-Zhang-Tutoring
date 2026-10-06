@@ -8,7 +8,7 @@
 // fraction arithmetic.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const NewWholeWidget = lazyWidget(() => import('../interactives/meth-2023e1-q8c-new-whole'))
@@ -192,23 +192,25 @@ export default function MethodsQ8_2023Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Three standard facts, one per part: the area under a density is 1, the mean is{' '}
-            <Katex tex="\int t\,f(t)\,dt" />, and{' '}
-            <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. The same antiderivative{' '}
-            <Katex tex="8t^2-\tfrac{t^4}{4}" /> serves parts a. and c., so work it out once
-            and reuse it.
-          </p>
-          <p>
-            In part c., <Katex tex="\{T>2\}" /> is contained in <Katex tex="\{T>1\}" />, so
-            the intersection is just <Katex tex="\{T>2\}" />. And because the constant{' '}
-            <Katex tex="\tfrac{1}{64}" /> appears in both the numerator and the denominator,
-            it cancels — you can leave it out of both integrals entirely.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Three standard facts, one per part: the area under a density is 1, the mean is{' '}
+              <Katex tex="\int t\,f(t)\,dt" />, and{' '}
+              <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. The same antiderivative{' '}
+              <Katex tex="8t^2-\tfrac{t^4}{4}" /> serves parts a. and c., so work it out once
+              and reuse it.
+            </p>
+            <p>
+              In part c., <Katex tex="\{T>2\}" /> is contained in <Katex tex="\{T>1\}" />, so
+              the intersection is just <Katex tex="\{T>2\}" />. And because the constant{' '}
+              <Katex tex="\tfrac{1}{64}" /> appears in both the numerator and the denominator,
+              it cancels — you can leave it out of both integrals entirely.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

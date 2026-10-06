@@ -8,7 +8,7 @@
 // shows the wrong-side point 6 units along +n).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const HeightWidget = lazyWidget(() => import('../interactives/spec-2023e2-q5b-height'))
@@ -249,25 +249,27 @@ export default function SpecialistQ5_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Parts a. and b. are about triangle <Katex tex="ABC" /> in the plane{' '}
-            <Katex tex="\Pi" />: a cross product gives its area, and that area gives the height
-            in part b. Parts c.–f. are about the second plane <Katex tex="\psi" />, and almost
-            everything there comes from its normal{' '}
-            <Katex tex="\underset{\sim}{n}=2\underset{\sim}{i}-2\underset{\sim}{j}-\underset{\sim}{k}" />,
-            read straight off the coefficients of <Katex tex="2x-2y-z=-18" />. It is in the angle
-            in part c., the direction of the line <Katex tex="L" /> in part d., and the denominator
-            of the distance in part e.
-          </p>
-          <p>
-            The one thing to watch is part c. The dot product gives the angle between the line
-            and the <em>normal</em>; the angle with the <em>plane</em> is its complement. The
-            report notes a significant number of students stopped at <Katex tex="64^\circ" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Parts a. and b. are about triangle <Katex tex="ABC" /> in the plane{' '}
+              <Katex tex="\Pi" />: a cross product gives its area, and that area gives the height
+              in part b. Parts c.–f. are about the second plane <Katex tex="\psi" />, and almost
+              everything there comes from its normal{' '}
+              <Katex tex="\underset{\sim}{n}=2\underset{\sim}{i}-2\underset{\sim}{j}-\underset{\sim}{k}" />,
+              read straight off the coefficients of <Katex tex="2x-2y-z=-18" />. It is in the angle
+              in part c., the direction of the line <Katex tex="L" /> in part d., and the denominator
+              of the distance in part e.
+            </p>
+            <p>
+              The one thing to watch is part c. The dot product gives the angle between the line
+              and the <em>normal</em>; the angle with the <em>plane</em> is its complement. The
+              report notes a significant number of students stopped at <Katex tex="64^\circ" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

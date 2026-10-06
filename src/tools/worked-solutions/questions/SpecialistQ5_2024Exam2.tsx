@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [45, 55],
@@ -206,24 +206,26 @@ export default function SpecialistQ5_2024Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Three of the five parts turn on a cross product. Point to line:{' '}
-            <Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|\div\left|\underset{\sim}{d}\right|" />.
-            Plane through three points: the cross product of two side vectors is the normal.
-            Area of a triangle:{' '}
-            <Katex tex="\tfrac12\left|\underset{\sim}{u}\times\underset{\sim}{v}\right|" />.
-            Knowing which divisor belongs to which is most of the question.
-          </p>
-          <p>
-            Two traps. Part b. gives its own line <Katex tex="L_1" />, which has nothing to do
-            with the line through <Katex tex="A" /> and <Katex tex="B" /> from part a. And in
-            part d.ii. the two spanning vectors must both start at the same vertex — the
-            three intercept position vectors are not sides of the triangle.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Three of the five parts turn on a cross product. Point to line:{' '}
+              <Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|\div\left|\underset{\sim}{d}\right|" />.
+              Plane through three points: the cross product of two side vectors is the normal.
+              Area of a triangle:{' '}
+              <Katex tex="\tfrac12\left|\underset{\sim}{u}\times\underset{\sim}{v}\right|" />.
+              Knowing which divisor belongs to which is most of the question.
+            </p>
+            <p>
+              Two traps. Part b. gives its own line <Katex tex="L_1" />, which has nothing to do
+              with the line through <Katex tex="A" /> and <Katex tex="B" /> from part a. And in
+              part d.ii. the two spanning vectors must both start at the same vertex — the
+              three intercept position vectors are not sides of the triangle.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

@@ -15,6 +15,7 @@
 // builds intuition (it then shows straight away, like a Background).
 
 import { Component, lazy, Suspense, type ComponentType, type ReactNode } from 'react'
+import { useStudyMode } from './studyMode'
 
 export function lazyWidget(load: () => Promise<{ default: ComponentType }>) {
   return lazy(load)
@@ -56,6 +57,9 @@ export function Explore({
   /** Only builds intuition and gives nothing away — show it before the working is revealed. */
   spoilerFree?: boolean
 }) {
+  // Interactive diagrams are teaching, not exam working: Detailed view only (studyMode.tsx).
+  const { detailed } = useStudyMode()
+  if (!detailed) return null
   return (
     <section
       data-explore

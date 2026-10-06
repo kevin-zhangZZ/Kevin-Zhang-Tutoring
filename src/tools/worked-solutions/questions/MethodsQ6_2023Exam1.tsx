@@ -6,7 +6,7 @@
 // is divided by √k, with a toggle showing the common wrong answer of 1/4).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const SqrtWidthWidget = lazyWidget(() => import('../interactives/meth-2023e1-q6c-sqrt-width'))
@@ -126,23 +126,25 @@ export default function MethodsQ6_2023Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Every approximate confidence interval for <Katex tex="p" /> is{' '}
-            <Katex tex="\hat p\pm E" /> (formula sheet), so two numbers are
-            hiding in the pair <Katex tex="(0.04,0.16)" />: its <em>centre</em> is{' '}
-            <Katex tex="\hat p" /> and its <em>half-width</em>, the margin of error, is{' '}
-            <Katex tex="E=z\sqrt{\hat p(1-\hat p)/n}" />. Read both off, and the whole
-            question is arithmetic.
-          </p>
-          <p>
-            Part c. is the one worth remembering: <Katex tex="n" /> sits under a square root, so
-            dividing the width by <Katex tex="m" /> takes <Katex tex="m^2" /> times the sample.
-            Only 23% of students got this mark.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Every approximate confidence interval for <Katex tex="p" /> is{' '}
+              <Katex tex="\hat p\pm E" /> (formula sheet), so two numbers are
+              hiding in the pair <Katex tex="(0.04,0.16)" />: its <em>centre</em> is{' '}
+              <Katex tex="\hat p" /> and its <em>half-width</em>, the margin of error, is{' '}
+              <Katex tex="E=z\sqrt{\hat p(1-\hat p)/n}" />. Read both off, and the whole
+              question is arithmetic.
+            </p>
+            <p>
+              Part c. is the one worth remembering: <Katex tex="n" /> sits under a square root, so
+              dividing the width by <Katex tex="m" /> takes <Katex tex="m^2" /> times the sample.
+              Only 23% of students got this mark.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

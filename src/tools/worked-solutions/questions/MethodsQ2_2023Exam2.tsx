@@ -9,7 +9,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import wheelSrc from './meth-2023e2-q2-wheel.png'
 import sketchSrc from './meth-2023e2-q2diii-sketch.png'
 
@@ -249,24 +249,26 @@ export default function MethodsQ2_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Parts b. and c. ask for two things that sound alike and are not. The{' '}
-            <em>average value</em> of a function is{' '}
-            <Katex tex="\tfrac{1}{b-a}\int_a^b h" /> — the height of the rectangle with the
-            same area. The <em>average rate of change</em> is{' '}
-            <Katex tex="\tfrac{h(b)-h(a)}{b-a}" /> — the gradient of the chord. One is an
-            integral, the other is not.
-          </p>
-          <p>
-            In part d., "double its previous speed" acts <em>inside</em> the function. A
-            dilation of factor <Katex tex="\tfrac12" /> from the vertical axis is written{' '}
-            <Katex tex="h(2t+n)" />, so <Katex tex="m=2" />, and <Katex tex="n" /> is then
-            whatever makes the pod restart from the top.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Parts b. and c. ask for two things that sound alike and are not. The{' '}
+              <em>average value</em> of a function is{' '}
+              <Katex tex="\tfrac{1}{b-a}\int_a^b h" /> — the height of the rectangle with the
+              same area. The <em>average rate of change</em> is{' '}
+              <Katex tex="\tfrac{h(b)-h(a)}{b-a}" /> — the gradient of the chord. One is an
+              integral, the other is not.
+            </p>
+            <p>
+              In part d., "double its previous speed" acts <em>inside</em> the function. A
+              dilation of factor <Katex tex="\tfrac12" /> from the vertical axis is written{' '}
+              <Katex tex="h(2t+n)" />, so <Katex tex="m=2" />, and <Katex tex="n" /> is then
+              whatever makes the pod restart from the top.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

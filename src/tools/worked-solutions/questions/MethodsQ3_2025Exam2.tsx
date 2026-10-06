@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [13, 87],
@@ -328,24 +328,26 @@ export default function MethodsQ3_2025Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Three different distributions appear in one question and the transitions are what
-            the marks are for. <Katex tex="T" /> is continuous (part a. and b.i.); the number
-            of late days in a week is <em>binomial</em> with that integral as its{' '}
-            <Katex tex="p" /> (parts b.ii.–b.iv.); the wait at a light is <em>normal</em>{' '}
-            (part c.); and the number of red lights in part d. is none of these, because the
-            three lights have different probabilities.
-          </p>
-          <p>
-            Part b.iv. has no closed-form route: <Katex tex="k" /> appears inside an integral
-            that then goes through a binomial. Working backwards to the required daily
-            probability and then testing integers is a reliable method — the report notes
-            some students correctly used trial and error.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Three different distributions appear in one question and the transitions are what
+              the marks are for. <Katex tex="T" /> is continuous (part a. and b.i.); the number
+              of late days in a week is <em>binomial</em> with that integral as its{' '}
+              <Katex tex="p" /> (parts b.ii.–b.iv.); the wait at a light is <em>normal</em>{' '}
+              (part c.); and the number of red lights in part d. is none of these, because the
+              three lights have different probabilities.
+            </p>
+            <p>
+              Part b.iv. has no closed-form route: <Katex tex="k" /> appears inside an integral
+              that then goes through a binomial. Working backwards to the required daily
+              probability and then testing integers is a reliable method — the report notes
+              some students correctly used trial and error.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

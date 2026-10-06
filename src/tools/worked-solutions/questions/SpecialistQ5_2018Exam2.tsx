@@ -164,7 +164,7 @@ export default function SpecialistQ5_2018Exam2() {
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background title="Why only parts c.–e.">
+        <Background title="Why only parts c.–e." always>
           <p>
             Parts a. and b. ask for a force diagram and an equation of motion by resolving
             forces — force analysis, which is not part of the current study design. Part b.ii.

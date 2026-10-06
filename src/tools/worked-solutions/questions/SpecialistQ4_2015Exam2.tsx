@@ -5,7 +5,7 @@
 // and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [13, 87],
@@ -239,16 +239,18 @@ export default function SpecialistQ4_2015Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The path is a helix: a circle of radius 25 about <Katex tex="(50,50)" /> in plan
-            view, climbing steadily. Two facts do most of the work — the take-off point is{' '}
-            <Katex tex="(75,50,0)" />, not the origin, and the horizontal motion has period 60
-            seconds.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The path is a helix: a circle of radius 25 about <Katex tex="(50,50)" /> in plan
+              view, climbing steadily. Two facts do most of the work — the take-off point is{' '}
+              <Katex tex="(75,50,0)" />, not the origin, and the horizontal motion has period 60
+              seconds.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

@@ -1059,6 +1059,16 @@ will teach it to them."* A solution should do what a good teacher does at the wh
 the picture, make the student *see* why the relationship holds, then write the algebra — and,
 after marking a pile of scripts, say "a lot of you did this; here's why it doesn't work."
 
+**Concise / Detailed (Oct 2026).** The page defaults to a *Concise* view (studyMode.tsx) for Methods
+and Specialist: only the WorkingTable (working + reasoning), the examiner's report and the video.
+`Background`, `Explore`, `WrongMethod`, an MCQ's `background`/`extras`, and anything wrapped in
+`<DetailOnly>` appear only in the *Detailed* view. So keep everything a student must write in the
+WorkingTable; wrap any other teaching aside (a CAS note, a card around a question-level Background)
+in `<DetailOnly>` so Concise doesn't show an empty box. A Background that isn't teaching — a
+single-part question's stem, or a "Not in the Current Study Design" / "Why only parts …" notice —
+takes `always`. Chemistry always shows everything. `node scripts/detail-check.mjs` lists anything beside
+a PartCard/WorkingTable that might need `DetailOnly`.
+
 ### 15.1 When to build an interactive diagram
 
 Build one wherever manipulating something makes the *reason* visible — not as decoration. The

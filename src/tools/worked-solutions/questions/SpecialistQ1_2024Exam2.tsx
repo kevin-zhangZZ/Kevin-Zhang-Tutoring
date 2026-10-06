@@ -8,7 +8,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './spec-2024e2-q1a-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -263,24 +263,26 @@ export default function SpecialistQ1_2024Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Dividing first is worth the thirty seconds it takes:{' '}
-            <Katex tex="f(x) = -x^2+\tfrac{1}{1-x^2}" />. The sketch, the derivative and the
-            inversion in part b. all come out of that form, and none of them is pleasant from
-            the original quotient.
-          </p>
-          <p>
-            Part d. is really one calculation asked three ways. Every stationary point comes
-            from <Katex tex="x=0" /> (always) or from{' '}
-            <Katex tex="x^2 = 1\pm\sqrt{b+1}" />, and the count depends only on how many of
-            those two values are positive. Work that out once and all three answers —{' '}
-            <Katex tex="b\le-1" />, <Katex tex="b\ge0" />, <Katex tex="-1<b<0" /> — fall out
-            together, which is also a check that they partition the real line.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Dividing first is worth the thirty seconds it takes:{' '}
+              <Katex tex="f(x) = -x^2+\tfrac{1}{1-x^2}" />. The sketch, the derivative and the
+              inversion in part b. all come out of that form, and none of them is pleasant from
+              the original quotient.
+            </p>
+            <p>
+              Part d. is really one calculation asked three ways. Every stationary point comes
+              from <Katex tex="x=0" /> (always) or from{' '}
+              <Katex tex="x^2 = 1\pm\sqrt{b+1}" />, and the count depends only on how many of
+              those two values are positive. Work that out once and all three answers —{' '}
+              <Katex tex="b\le-1" />, <Katex tex="b\ge0" />, <Katex tex="-1<b<0" /> — fall out
+              together, which is also a check that they partition the real line.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

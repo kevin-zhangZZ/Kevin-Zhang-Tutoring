@@ -13,7 +13,7 @@
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 
@@ -186,18 +186,20 @@ export default function SpecialistQ6_2019Exam2() {
         </p>
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            The whole question rests on one fact: if individual packets are{' '}
-            <Katex tex="N(\mu,\sigma^2)" />, then the <em>mean of a sample of n</em> is{' '}
-            <Katex tex="N\!\left(\mu,\tfrac{\sigma^2}{n}\right)" />. Same centre, but the spread
-            shrinks by a factor of <Katex tex="\sqrt n" /> — which is why a sample of{' '}
-            <Katex tex="100" /> (parts c–f) detects a problem that a sample of <Katex tex="50" />{' '}
-            might not.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              The whole question rests on one fact: if individual packets are{' '}
+              <Katex tex="N(\mu,\sigma^2)" />, then the <em>mean of a sample of n</em> is{' '}
+              <Katex tex="N\!\left(\mu,\tfrac{\sigma^2}{n}\right)" />. Same centre, but the spread
+              shrinks by a factor of <Katex tex="\sqrt n" /> — which is why a sample of{' '}
+              <Katex tex="100" /> (parts c–f) detects a problem that a sample of <Katex tex="50" />{' '}
+              might not.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Sample Mean" marks={2} statement="Assume that the machine is working properly. Find the probability that at least one random sample will have a mean mass between 370 grams and 375 grams. Give your answer correct to three decimal places." examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

@@ -158,7 +158,7 @@ export default function SpecialistQ5_2015Exam2() {
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background title="Why only part d.">
+        <Background title="Why only part d." always>
           <p>
             Parts a., b. and c. of this question resolve the weight force on a 250 kg trailer
             held on a ramp inclined at <Katex tex="10^\circ" />. Mechanics is no longer an area

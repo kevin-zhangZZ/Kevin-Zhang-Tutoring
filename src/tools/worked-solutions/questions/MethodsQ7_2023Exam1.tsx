@@ -15,7 +15,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { functionToPath } from '../graphUtils'
 import graphSrc from './meth-2023e1-q7-graph.png'
 import regionSrc from './meth-2023e1-q7d-region.png'
@@ -245,21 +245,23 @@ export default function MethodsQ7_2023Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Everything in this question comes out of one picture: <Katex tex="f" /> and{' '}
-            <Katex tex="f^{-1}" /> are mirror images in <Katex tex="y=x" />. That swaps the
-            domain and range (part a. feeds part c.), it fixes which square root to keep in
-            part c., and in part d. it means the two regions are congruent, so only one
-            integral is needed.
-          </p>
-          <p>
-            The line <Katex tex="y=-x" /> is perpendicular to <Katex tex="y=x" /> and so is
-            its own mirror image — which is why it cuts a matching piece off each curve.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Everything in this question comes out of one picture: <Katex tex="f" /> and{' '}
+              <Katex tex="f^{-1}" /> are mirror images in <Katex tex="y=x" />. That swaps the
+              domain and range (part a. feeds part c.), it fixes which square root to keep in
+              part c., and in part d. it means the two regions are congruent, so only one
+              integral is needed.
+            </p>
+            <p>
+              The line <Katex tex="y=-x" /> is perpendicular to <Katex tex="y=x" /> and so is
+              its own mirror image — which is why it cuts a matching piece off each curve.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

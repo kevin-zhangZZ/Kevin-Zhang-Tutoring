@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [39, 61],
@@ -155,23 +155,25 @@ export default function MethodsQ8_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            A cube-root curve <Katex tex="y=\sqrt[3]{x-k}+m" /> has a point of inflection at{' '}
-            <Katex tex="(k,m)" /> and is symmetric about it. Its gradient function{' '}
-            <Katex tex="g'(x)=\tfrac13(x-k)^{-2/3}" /> is therefore symmetric about the{' '}
-            <em>line</em> <Katex tex="x=k" /> — and that is the whole of part d.: if{' '}
-            <Katex tex="P" /> is at <Katex tex="x=0" />, the other point with the same
-            gradient must be at <Katex tex="x=2k" />.
-          </p>
-          <p>
-            Watch the signs. The cube root of a negative is negative, so{' '}
-            <Katex tex="\sqrt[3]{-k}=-\sqrt[3]{k}" />; but the <Katex tex="-\tfrac23" /> power
-            squares first, so <Katex tex="(-k)^{-2/3}=k^{-2/3}" /> is positive.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              A cube-root curve <Katex tex="y=\sqrt[3]{x-k}+m" /> has a point of inflection at{' '}
+              <Katex tex="(k,m)" /> and is symmetric about it. Its gradient function{' '}
+              <Katex tex="g'(x)=\tfrac13(x-k)^{-2/3}" /> is therefore symmetric about the{' '}
+              <em>line</em> <Katex tex="x=k" /> — and that is the whole of part d.: if{' '}
+              <Katex tex="P" /> is at <Katex tex="x=0" />, the other point with the same
+              gradient must be at <Katex tex="x=2k" />.
+            </p>
+            <p>
+              Watch the signs. The cube root of a negative is negative, so{' '}
+              <Katex tex="\sqrt[3]{-k}=-\sqrt[3]{k}" />; but the <Katex tex="-\tfrac23" /> power
+              squares first, so <Katex tex="(-k)^{-2/3}=k^{-2/3}" /> is positive.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

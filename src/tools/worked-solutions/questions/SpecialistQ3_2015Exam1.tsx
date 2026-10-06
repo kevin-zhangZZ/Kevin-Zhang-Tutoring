@@ -59,7 +59,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ3_2015Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 3 (4 marks)">
+      <Background title="Question 3 (4 marks)" always>
         <p>
           The velocity of a particle at time <Katex tex="t" /> seconds is given by{' '}
           <Katex tex="\dot{\underset{\sim}{r}}(t)=(4t-3)\underset{\sim}{i}+2t\,\underset{\sim}{j}-5\underset{\sim}{k}" />

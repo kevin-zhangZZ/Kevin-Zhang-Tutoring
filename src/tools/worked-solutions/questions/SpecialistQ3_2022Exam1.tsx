@@ -6,7 +6,7 @@
 // and watch the totals fit an sd-3 curve, not the wrong sd-6 (4 × 1.5) curve.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const FourCupsWidget = lazyWidget(() => import('../interactives/spec-2022e1-q3a-four-cups'))
@@ -111,23 +111,25 @@ export default function SpecialistQ3_2022Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            "A total of four cups" means the <em>sum</em> of four separate cup times, which we treat as
-            independent normal variables. A sum of independent normal variables is itself normal: add the
-            means, and add the <em>variances</em>. So the standard deviation of the total is{' '}
-            <Katex tex="\sqrt{4\times1.5^2}=3" />, not <Katex tex="4\times1.5=6" />. Why smaller? Four separate
-            cups are rarely all slow together: a slow cup is usually offset by a faster one, so the total strays
-            less than four times one cup's spread.
-          </p>
-          <p>
-            This is Exam 1, so there is no <Katex tex="\mathrm{normCdf}" /> available. The question is set up so
-            the <Katex tex="z" />-score is a whole number, and the 68–95–99.7 rule finishes it: about 68%, 95% and
-            99.7% of a normal distribution lies within 1, 2 and 3 standard deviations of the mean.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              "A total of four cups" means the <em>sum</em> of four separate cup times, which we treat as
+              independent normal variables. A sum of independent normal variables is itself normal: add the
+              means, and add the <em>variances</em>. So the standard deviation of the total is{' '}
+              <Katex tex="\sqrt{4\times1.5^2}=3" />, not <Katex tex="4\times1.5=6" />. Why smaller? Four separate
+              cups are rarely all slow together: a slow cup is usually offset by a faster one, so the total strays
+              less than four times one cup's spread.
+            </p>
+            <p>
+              This is Exam 1, so there is no <Katex tex="\mathrm{normCdf}" /> available. The question is set up so
+              the <Katex tex="z" />-score is a whole number, and the 68–95–99.7 rule finishes it: about 68%, 95% and
+              99.7% of a normal distribution lies within 1, 2 and 3 standard deviations of the mean.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

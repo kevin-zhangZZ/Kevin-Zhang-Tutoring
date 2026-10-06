@@ -5,7 +5,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 
 const EXAM_A: SAExaminerStats = {
@@ -184,24 +184,26 @@ export default function SpecialistQ6_2022Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Every hypothesis test in this course runs on the same three lines: the sample mean
-            has distribution{' '}
-            <Katex tex="\mathrm{N}\!\left(\mu,\tfrac{\sigma^2}{n}\right)" />, the{' '}
-            <Katex tex="p" /> value is the probability of a sample at least this extreme
-            assuming <Katex tex="H_0" />, and the verdict is a comparison of that number with
-            the stated level. Part d. simply runs the last line backwards.
-          </p>
-          <p>
-            Part e. is a different kind of question: a <em>difference</em> of two random
-            variables, not a sample mean. Its variance is <Katex tex="25+25=50" /> — variances
-            add, never subtract. (The report's general comments list working with random
-            variables that are functions of other variables as an area of weakness.)
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Every hypothesis test in this course runs on the same three lines: the sample mean
+              has distribution{' '}
+              <Katex tex="\mathrm{N}\!\left(\mu,\tfrac{\sigma^2}{n}\right)" />, the{' '}
+              <Katex tex="p" /> value is the probability of a sample at least this extreme
+              assuming <Katex tex="H_0" />, and the verdict is a comparison of that number with
+              the stated level. Part d. simply runs the last line backwards.
+            </p>
+            <p>
+              Part e. is a different kind of question: a <em>difference</em> of two random
+              variables, not a sample mean. Its variance is <Katex tex="25+25=50" /> — variances
+              add, never subtract. (The report's general comments list working with random
+              variables that are functions of other variables as an area of weakness.)
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

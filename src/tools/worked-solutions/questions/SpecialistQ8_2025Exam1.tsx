@@ -5,7 +5,7 @@
 // is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import argandSrc from './spec-2025e1-q8a-argand.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -127,22 +127,24 @@ export default function SpecialistQ8_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The coefficients are real, so every non-real root drags its conjugate along. One
-            given root therefore hands you a second for free, and their product is a real
-            quadratic factor — which is the whole of part b.
-          </p>
-          <p>
-            For part c., comparing coefficients beats division: the missing{' '}
-            <Katex tex="z^3" /> term gives <Katex tex="b" /> immediately and the constant
-            gives <Katex tex="c" />, with the <Katex tex="z^2" /> coefficient left over as a
-            check. The four roots turn out to be <Katex tex="\pm1\pm2i" /> — a rectangle
-            centred at the origin.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The coefficients are real, so every non-real root drags its conjugate along. One
+              given root therefore hands you a second for free, and their product is a real
+              quadratic factor — which is the whole of part b.
+            </p>
+            <p>
+              For part c., comparing coefficients beats division: the missing{' '}
+              <Katex tex="z^3" /> term gives <Katex tex="b" /> immediately and the constant
+              gives <Katex tex="c" />, with the <Katex tex="z^2" /> coefficient left over as a
+              check. The four roots turn out to be <Katex tex="\pm1\pm2i" /> — a rectangle
+              centred at the origin.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

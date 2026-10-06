@@ -9,7 +9,7 @@
 // the curve on VCAA's grid and read the gap to the asymptote in grid squares).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './spec-2022e2-q3b-sketch.png'
 import { Explore, lazyWidget } from '../Explore'
 
@@ -238,23 +238,25 @@ export default function SpecialistQ3_2022Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            A <Katex tex="1+4t^2" /> in a denominator usually integrates to a{' '}
-            <Katex tex="\tan^{-1}" />, and <Katex tex="\tan^{-1}" /> is bounded: its values always
-            lie between <Katex tex="-\tfrac\pi2" /> and <Katex tex="\tfrac\pi2" />. That single
-            observation drives parts b.i., b.ii. and c. The particle can never travel further than{' '}
-            <Katex tex="\log_e\!\left(\tfrac\pi2+1\right)\approx0.944" /> metres, no matter how
-            long it runs.
-          </p>
-          <p>
-            Rewriting <Katex tex="\tfrac{2}{1+4t^2}" /> as{' '}
-            <Katex tex="\tfrac{1/2}{(1/2)^2+t^2}" /> before integrating is worth the extra line; the
-            report notes errors involving fractions in the initial integration.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              A <Katex tex="1+4t^2" /> in a denominator usually integrates to a{' '}
+              <Katex tex="\tan^{-1}" />, and <Katex tex="\tan^{-1}" /> is bounded: its values always
+              lie between <Katex tex="-\tfrac\pi2" /> and <Katex tex="\tfrac\pi2" />. That single
+              observation drives parts b.i., b.ii. and c. The particle can never travel further than{' '}
+              <Katex tex="\log_e\!\left(\tfrac\pi2+1\right)\approx0.944" /> metres, no matter how
+              long it runs.
+            </p>
+            <p>
+              Rewriting <Katex tex="\tfrac{2}{1+4t^2}" /> as{' '}
+              <Katex tex="\tfrac{1/2}{(1/2)^2+t^2}" /> before integrating is worth the extra line; the
+              report notes errors involving fractions in the initial integration.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

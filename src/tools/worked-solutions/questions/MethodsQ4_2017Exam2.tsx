@@ -21,7 +21,7 @@
 // The stem follows the paper exactly, including its "f : R → R : f(x)" and "The functions of gₖ".
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2017e2-q4-graph.png'
@@ -734,14 +734,16 @@ export default function MethodsQ4_2017Exam2() {
           <em>touch</em>. They always meet at the origin, so make their tangents there equal:{' '}
           <Katex tex="2k=\tfrac{1}{2k}" />.
         </WrongMethod>
-        <div>
-          <p className="text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300">
-            On CAS the whole part is one line once you have set it up:
-          </p>
-          <div className="mt-2">
-            <Cas fn="solve">solve(2k = 1/(2k), k) | k&gt;0</Cas>
+        <DetailOnly>
+          <div>
+            <p className="text-[13.5px] leading-relaxed text-gray-700 dark:text-gray-300">
+              On CAS the whole part is one line once you have set it up:
+            </p>
+            <div className="mt-2">
+              <Cas fn="solve">solve(2k = 1/(2k), k) | k&gt;0</Cas>
+            </div>
           </div>
-        </div>
+        </DetailOnly>
       </PartCard>
 
       <PartCard

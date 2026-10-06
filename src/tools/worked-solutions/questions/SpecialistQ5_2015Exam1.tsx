@@ -58,7 +58,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ5_2015Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 5 (3 marks)">
+      <Background title="Question 5 (3 marks)" always>
         <p>
           Find the volume generated when the region bounded by the graph of{' '}
           <Katex tex="y=2x^2-3" />, the line <Katex tex="y=5" /> and the{' '}

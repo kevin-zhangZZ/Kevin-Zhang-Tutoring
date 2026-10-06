@@ -3,7 +3,7 @@
 // Answers checked against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [20, 80],
@@ -167,25 +167,27 @@ export default function SpecialistQ1_2021Exam1() {
         </p>
       </div>
 
-      <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
-        <Background title="Force and momentum wording, vector calculus">
-          <p>
-            Mechanics is no longer an area of study in Specialist Mathematics, and this
-            question uses two of its formulas: Newton's second law{' '}
-            <Katex tex="\underset{\sim}{F}=m\underset{\sim}{a}" /> in part a. and momentum{' '}
-            <Katex tex="\underset{\sim}{p}=m\underset{\sim}{v}" /> in part c. You can rebuild
-            both from the units: a newton is <Katex tex="\text{kg m s}^{-2}" />, so force
-            (N) <Katex tex="\div" /> mass (kg) gives acceleration (<Katex tex="\text{m s}^{-2}" />),
-            and <Katex tex="\text{kg m s}^{-1}" /> is mass (kg) <Katex tex="\times" /> velocity
-            (<Katex tex="\text{m s}^{-1}" />).
-          </p>
-          <p>
-            Everything else — dividing a vector by a number, antidifferentiating a constant
-            vector using an initial condition, and substituting into the result — is current
-            vector calculus, so the question is well worth doing.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6">
+          <Background title="Force and momentum wording, vector calculus">
+            <p>
+              Mechanics is no longer an area of study in Specialist Mathematics, and this
+              question uses two of its formulas: Newton's second law{' '}
+              <Katex tex="\underset{\sim}{F}=m\underset{\sim}{a}" /> in part a. and momentum{' '}
+              <Katex tex="\underset{\sim}{p}=m\underset{\sim}{v}" /> in part c. You can rebuild
+              both from the units: a newton is <Katex tex="\text{kg m s}^{-2}" />, so force
+              (N) <Katex tex="\div" /> mass (kg) gives acceleration (<Katex tex="\text{m s}^{-2}" />),
+              and <Katex tex="\text{kg m s}^{-1}" /> is mass (kg) <Katex tex="\times" /> velocity
+              (<Katex tex="\text{m s}^{-1}" />).
+            </p>
+            <p>
+              Everything else — dividing a vector by a number, antidifferentiating a constant
+              vector using an initial condition, and substituting into the result — is current
+              vector calculus, so the question is well worth doing.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

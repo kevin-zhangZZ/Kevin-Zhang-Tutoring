@@ -4,7 +4,7 @@
 // the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [6, 94],
@@ -124,23 +124,25 @@ export default function SpecialistQ5_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Particle <Katex tex="P" /> only ever moves along <Katex tex="\underset{\sim}{i}" />,
-            so its velocity has no <Katex tex="\underset{\sim}{j}" /> component. The dot product
-            of the two velocities at <Katex tex="t=1" /> is therefore just the product of their{' '}
-            <Katex tex="\underset{\sim}{i}" /> components, <Katex tex="(3+2a)(b+2)" />, and the
-            collision condition <Katex tex="b+2=1+a" /> from part a. turns it into a factorised
-            quadratic in <Katex tex="a" />.
-          </p>
-          <p>
-            Part c. adds a condition rather than replacing one. The perpendicularity from
-            part b. still holds, so the answer must satisfy both — which is why{' '}
-            <Katex tex="a=-5" /> is rejected even though it solves part c.'s equation.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Particle <Katex tex="P" /> only ever moves along <Katex tex="\underset{\sim}{i}" />,
+              so its velocity has no <Katex tex="\underset{\sim}{j}" /> component. The dot product
+              of the two velocities at <Katex tex="t=1" /> is therefore just the product of their{' '}
+              <Katex tex="\underset{\sim}{i}" /> components, <Katex tex="(3+2a)(b+2)" />, and the
+              collision condition <Katex tex="b+2=1+a" /> from part a. turns it into a factorised
+              quadratic in <Katex tex="a" />.
+            </p>
+            <p>
+              Part c. adds a condition rather than replacing one. The perpendicularity from
+              part b. still holds, so the answer must satisfy both — which is why{' '}
+              <Katex tex="a=-5" /> is rejected even though it solves part c.'s equation.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

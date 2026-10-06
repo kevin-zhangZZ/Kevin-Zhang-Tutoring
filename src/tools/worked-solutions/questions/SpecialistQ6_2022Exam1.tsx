@@ -4,7 +4,7 @@
 // checked with sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import semicircleSrc from './spec-2022e1-q6b-semicircle.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -140,23 +140,25 @@ export default function SpecialistQ6_2022Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            This is Thales' theorem — the angle in a semicircle is a right angle — which you
-            may have met in circle geometry in earlier years. Part b. asks you to prove it with
-            vectors, and the algebra is set up to cancel completely: the whole point is that{' '}
-            <Katex tex="y^2=a^2-(x-a)^2" /> is exactly what is needed to cancel{' '}
-            <Katex tex="x^2-2ax" />.
-          </p>
-          <p>
-            Read the diagram before writing anything. The semicircle runs from{' '}
-            <Katex tex="O" /> at the origin to <Katex tex="Q" />, with the marked point{' '}
-            <Katex tex="a" /> its centre — so <Katex tex="Q" /> is at{' '}
-            <Katex tex="(2a,0)" />, not <Katex tex="(a,0)" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              This is Thales' theorem — the angle in a semicircle is a right angle — which you
+              may have met in circle geometry in earlier years. Part b. asks you to prove it with
+              vectors, and the algebra is set up to cancel completely: the whole point is that{' '}
+              <Katex tex="y^2=a^2-(x-a)^2" /> is exactly what is needed to cancel{' '}
+              <Katex tex="x^2-2ax" />.
+            </p>
+            <p>
+              Read the diagram before writing anything. The semicircle runs from{' '}
+              <Katex tex="O" /> at the origin to <Katex tex="Q" />, with the marked point{' '}
+              <Katex tex="a" /> its centre — so <Katex tex="Q" /> is at{' '}
+              <Katex tex="(2a,0)" />, not <Katex tex="(a,0)" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="b.i"

@@ -10,7 +10,7 @@
 // (spec-2022e2-q1dii-washer).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './spec-2022e2-q1b-sketch.png'
@@ -225,22 +225,24 @@ export default function SpecialistQ1_2022Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Whenever the numerator's degree is exactly one more than the denominator's, divide
-            — the quotient is the oblique asymptote and the remainder is what dies away. Doing
-            the division once with a general <Katex tex="k" /> answers parts a. and c.i. in one
-            go.
-          </p>
-          <p>
-            Part d. is the only place the absolute value matters. Without it{' '}
-            <Katex tex="\tfrac{x^2}{x-1}" /> sits below the axis on the left of{' '}
-            <Katex tex="x=1" /> and never encloses anything with <Katex tex="y=x+3" />; the
-            modulus flips that branch up and creates the bounded region the question rotates.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Whenever the numerator's degree is exactly one more than the denominator's, divide
+              — the quotient is the oblique asymptote and the remainder is what dies away. Doing
+              the division once with a general <Katex tex="k" /> answers parts a. and c.i. in one
+              go.
+            </p>
+            <p>
+              Part d. is the only place the absolute value matters. Without it{' '}
+              <Katex tex="\tfrac{x^2}{x-1}" /> sits below the axis on the left of{' '}
+              <Katex tex="x=1" /> and never encloses anything with <Katex tex="y=x+3" />; the
+              modulus flips that branch up and creates the bounded region the question rotates.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

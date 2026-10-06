@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_AI: SAExaminerStats = {
   marks: [13.82, 86.18],
@@ -269,22 +269,24 @@ export default function SpecialistQ6_2025Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            One quantity runs through the whole question: the standard error{' '}
-            <Katex tex="\tfrac{\sigma}{\sqrt{n}}" />. It sets the spread of the sampling
-            distribution in part a., the width of the confidence interval in part b., the sample
-            size in part d., and the scale of the hypothesis test in parts f. to h.
-          </p>
-          <p>
-            Part h. is the only place where the distribution changes. Parts e. to g. all work
-            under <Katex tex="H_0" />, with <Katex tex="\mu=750" />; part h. asks what happens
-            when the true mean is 747.5, so the same critical value is now measured against a
-            different centre. That is a Type II error — failing to detect a real shift.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              One quantity runs through the whole question: the standard error{' '}
+              <Katex tex="\tfrac{\sigma}{\sqrt{n}}" />. It sets the spread of the sampling
+              distribution in part a., the width of the confidence interval in part b., the sample
+              size in part d., and the scale of the hypothesis test in parts f. to h.
+            </p>
+            <p>
+              Part h. is the only place where the distribution changes. Parts e. to g. all work
+              under <Katex tex="H_0" />, with <Katex tex="\mu=750" />; part h. asks what happens
+              when the true mean is 747.5, so the same critical value is now measured against a
+              different centre. That is a Type II error — failing to detect a real shift.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

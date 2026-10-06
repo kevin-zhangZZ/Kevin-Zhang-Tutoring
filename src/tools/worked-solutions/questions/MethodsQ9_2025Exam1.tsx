@@ -4,7 +4,7 @@
 // checked with sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [47, 25, 10, 19],
@@ -154,23 +154,25 @@ export default function MethodsQ9_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            One observation carries the whole question. Clearing the denominator turns{' '}
-            <Katex tex="f(x)=g(x)" /> into{' '}
-            <Katex tex="\bigl[(x-1)(x-w)\bigr]^2 = w^2" />, a difference of squares. Taking
-            square roots replaces a quartic with the pair of quadratics{' '}
-            <Katex tex="P(x)=\pm w" />, where <Katex tex="P(x)=(x-1)(x-w)" />.
-          </p>
-          <p>
-            That is also why part b.i. is asked: <Katex tex="P" /> is exactly the parabola
-            whose minimum you find there. Counting solutions of{' '}
-            <Katex tex="f(x)=g(x)" /> becomes counting where two horizontal lines cut a
-            parabola, and three solutions means one of those lines is tangent at the vertex.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              One observation carries the whole question. Clearing the denominator turns{' '}
+              <Katex tex="f(x)=g(x)" /> into{' '}
+              <Katex tex="\bigl[(x-1)(x-w)\bigr]^2 = w^2" />, a difference of squares. Taking
+              square roots replaces a quartic with the pair of quadratics{' '}
+              <Katex tex="P(x)=\pm w" />, where <Katex tex="P(x)=(x-1)(x-w)" />.
+            </p>
+            <p>
+              That is also why part b.i. is asked: <Katex tex="P" /> is exactly the parabola
+              whose minimum you find there. Counting solutions of{' '}
+              <Katex tex="f(x)=g(x)" /> becomes counting where two horizontal lines cut a
+              parabola, and three solutions means one of those lines is tangent at the vertex.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

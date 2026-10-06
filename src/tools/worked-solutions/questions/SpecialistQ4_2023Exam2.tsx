@@ -8,7 +8,7 @@
 // the no-chain-rule answer d/dQ(dQ/dt) alone missing it badly. Flat tangent at t ≈ 2, Q = 500 (e.ii).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './spec-2023e2-q4f-sketch.png'
 
@@ -264,22 +264,24 @@ export default function SpecialistQ4_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            A logistic curve always has the same three features, and this question walks
-            through all of them: a carrying capacity (the horizontal asymptote), an{' '}
-            <Katex tex="S" />-shape, and an inflection at exactly <em>half</em> the
-            carrying capacity, where growth is fastest.
-          </p>
-          <p>
-            Part e.i. is the one that catches people. <Katex tex="\tfrac{dQ}{dt}" /> is given
-            as a function of <Katex tex="Q" />, so differentiating it with respect to{' '}
-            <Katex tex="t" /> needs the chain rule:{' '}
-            <Katex tex="\tfrac{d^2Q}{dt^2}=\tfrac{d}{dQ}\!\left(\tfrac{dQ}{dt}\right)\cdot\tfrac{dQ}{dt}" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              A logistic curve always has the same three features, and this question walks
+              through all of them: a carrying capacity (the horizontal asymptote), an{' '}
+              <Katex tex="S" />-shape, and an inflection at exactly <em>half</em> the
+              carrying capacity, where growth is fastest.
+            </p>
+            <p>
+              Part e.i. is the one that catches people. <Katex tex="\tfrac{dQ}{dt}" /> is given
+              as a function of <Katex tex="Q" />, so differentiating it with respect to{' '}
+              <Katex tex="t" /> needs the chain rule:{' '}
+              <Katex tex="\tfrac{d^2Q}{dt^2}=\tfrac{d}{dQ}\!\left(\tfrac{dQ}{dt}\right)\cdot\tfrac{dQ}{dt}" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

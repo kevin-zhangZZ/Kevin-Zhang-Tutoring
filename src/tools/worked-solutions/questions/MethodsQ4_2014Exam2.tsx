@@ -426,7 +426,7 @@ export default function MethodsQ4_2014Exam2() {
           </>
         }
       >
-        <Background title="Not in the Current Study Design">
+        <Background title="Not in the Current Study Design" always>
           <p>
             Part g. is a transition-matrix (Markov chain) question — VCAA&rsquo;s report solves it
             with a transition matrix — and transition matrices are no longer on the Mathematical

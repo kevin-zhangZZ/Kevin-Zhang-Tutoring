@@ -57,7 +57,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ3_2016Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 3 (4 marks)">
+      <Background title="Question 3 (4 marks)" always>
         <p>
           Find the equation of the line perpendicular to the graph of{' '}
           <Katex tex="\cos(y)+y\sin(x)=x^2" /> at{' '}

@@ -165,7 +165,7 @@ export default function SpecialistQ5_2016Exam2() {
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background title="Why only parts b.–e.">
+        <Background title="Why only parts b.–e." always>
           <p>
             Part a. reads: "Let <Katex tex="v" /> ms<sup>−1</sup> be the velocity of the rocket{' '}
             <Katex tex="t" /> seconds after it is launched. Write down an equation of motion for

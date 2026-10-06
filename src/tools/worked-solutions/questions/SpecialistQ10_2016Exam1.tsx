@@ -75,7 +75,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ10_2016Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 10 (5 marks)">
+      <Background title="Question 10 (5 marks)" always>
         <p>
           Solve the differential equation{' '}
           <Katex tex="\sqrt{2-x^2}\,\dfrac{dy}{dx}=\dfrac{1}{2-y}" />, given that{' '}

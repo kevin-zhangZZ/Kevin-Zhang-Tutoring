@@ -21,7 +21,7 @@
 // 0.2878.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import pdfSrc from './meth-2019e2-q4-pdf.png'
@@ -365,30 +365,32 @@ export default function MethodsQ4_2019Exam2() {
         <Katex display tex="f(x)=\begin{cases}\dfrac{4}{625}\left(5x^3-x^4\right) & 0\le x\le5\\[4pt] 0 & \text{elsewhere}\end{cases}" />
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            This question runs through three different probability models in turn, and the main
-            skill being tested is noticing which one is in play:
-          </p>
-          <p>
-            <b>Parts a.–c.: a continuous random variable</b> given by a probability density
-            function. Probabilities are <em>areas</em> under the density curve, so every question
-            is an integral. The mean is <Katex tex="\displaystyle\int x\,f(x)\,dx" /> — note the
-            extra factor of <Katex tex="x" />, which weights each value by how likely it is.
-          </p>
-          <p>
-            <b>Parts d.–e.: a normal distribution</b> for the wingspans — technology
-            (normCdf and invNorm) does the work.
-          </p>
-          <p>
-            <b>Parts f.–g.: counting and proportions.</b> Each butterfly either is or isn't
-            "very large", so counting them across a sample of <Katex tex="36" /> is a{' '}
-            <em>binomial</em> problem, and the proportion <Katex tex="\hat P = \tfrac{X}{36}" />{' '}
-            is a sample proportion.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              This question runs through three different probability models in turn, and the main
+              skill being tested is noticing which one is in play:
+            </p>
+            <p>
+              <b>Parts a.–c.: a continuous random variable</b> given by a probability density
+              function. Probabilities are <em>areas</em> under the density curve, so every question
+              is an integral. The mean is <Katex tex="\displaystyle\int x\,f(x)\,dx" /> — note the
+              extra factor of <Katex tex="x" />, which weights each value by how likely it is.
+            </p>
+            <p>
+              <b>Parts d.–e.: a normal distribution</b> for the wingspans — technology
+              (normCdf and invNorm) does the work.
+            </p>
+            <p>
+              <b>Parts f.–g.: counting and proportions.</b> Each butterfly either is or isn't
+              "very large", so counting them across a sample of <Katex tex="36" /> is a{' '}
+              <em>binomial</em> problem, and the proportion <Katex tex="\hat P = \tfrac{X}{36}" />{' '}
+              is a sample proportion.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Mean of PDF" marks={2} statement="Find the mean life span of the Lorenz birdwing butterfly." examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

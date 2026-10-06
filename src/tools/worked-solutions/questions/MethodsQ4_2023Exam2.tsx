@@ -7,7 +7,7 @@
 // j — interactives/meth-2023e2-q4j-dilate (area ab = 1 and mean b·E(V)).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 
@@ -384,22 +384,24 @@ export default function MethodsQ4_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Parts a. to g. are a tour of the whole probability course on one context: a normal
-            calculation, its inverse, a binomial built on a normal probability, a conditional
-            probability, an inverse normal in the standard deviation, and a confidence
-            interval read backwards for its <Katex tex="z" /> value.
-          </p>
-          <p>
-            Keep the unrounded <Katex tex="\Pr(D<6.95)=0.993790\ldots" /> from part c.: parts
-            d. and e. both need it. Here rounding to <Katex tex="0.9938" /> first happens not to
-            change either answer, but rounding a value part-way through can shift the fourth
-            decimal place of a later answer, so always carry the stored value.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Parts a. to g. are a tour of the whole probability course on one context: a normal
+              calculation, its inverse, a binomial built on a normal probability, a conditional
+              probability, an inverse normal in the standard deviation, and a confidence
+              interval read backwards for its <Katex tex="z" /> value.
+            </p>
+            <p>
+              Keep the unrounded <Katex tex="\Pr(D<6.95)=0.993790\ldots" /> from part c.: parts
+              d. and e. both need it. Here rounding to <Katex tex="0.9938" /> first happens not to
+              change either answer, but rounding a value part-way through can shift the fourth
+              decimal place of a later answer, so always carry the stored value.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

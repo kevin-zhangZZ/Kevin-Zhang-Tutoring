@@ -6,7 +6,7 @@
 // gap to y = x + 2 is −4/(x − 1), so each branch closes in on its asymptotes and never retreats.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './spec-2023e1-q1b-sketch.png'
 
@@ -109,19 +109,21 @@ export default function SpecialistQ1_2023Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            A rational function whose numerator is one degree higher than its denominator has
-            an <em>oblique</em> asymptote: a slanted straight line the graph approaches as{' '}
-            <Katex tex="x\to\pm\infty" />. Division is what reveals it. Part a. does the
-            division; part b. then follows, because{' '}
-            <Katex tex="f(x)=x+2-\tfrac{4}{x-1}" /> says "the line <Katex tex="y=x+2" />, plus
-            an extra piece <Katex tex="-\tfrac{4}{x-1}" /> that shrinks to nothing as{' '}
-            <Katex tex="x" /> gets large".
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              A rational function whose numerator is one degree higher than its denominator has
+              an <em>oblique</em> asymptote: a slanted straight line the graph approaches as{' '}
+              <Katex tex="x\to\pm\infty" />. Division is what reveals it. Part a. does the
+              division; part b. then follows, because{' '}
+              <Katex tex="f(x)=x+2-\tfrac{4}{x-1}" /> says "the line <Katex tex="y=x+2" />, plus
+              an extra piece <Katex tex="-\tfrac{4}{x-1}" /> that shrinks to nothing as{' '}
+              <Katex tex="x" /> gets large".
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

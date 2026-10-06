@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [5, 95],
@@ -143,23 +143,25 @@ export default function MethodsQ5_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Part b. is a transformation question hiding a calculus question. "Decreases at
-            half the rate" is a condition on <Katex tex="h'" />, so differentiate, halve,
-            antidifferentiate, and then use <Katex tex="h_1(0)=h(0)" /> to pin the constant.
-            Only then are the transformations visible — and a halved derivative does{' '}
-            <em>not</em> mean a halved function, because the constant has to come back.
-          </p>
-          <p>
-            The wording matters as much as the mathematics. VCAA accepts "dilation by factor{' '}
-            <Katex tex="\tfrac12" /> from the <Katex tex="t" />-axis" or "parallel to the{' '}
-            <Katex tex="h" />-axis" — the two describe the same thing. The report notes the
-            incorrect axis or direction was frequently specified.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Part b. is a transformation question hiding a calculus question. "Decreases at
+              half the rate" is a condition on <Katex tex="h'" />, so differentiate, halve,
+              antidifferentiate, and then use <Katex tex="h_1(0)=h(0)" /> to pin the constant.
+              Only then are the transformations visible — and a halved derivative does{' '}
+              <em>not</em> mean a halved function, because the constant has to come back.
+            </p>
+            <p>
+              The wording matters as much as the mathematics. VCAA accepts "dilation by factor{' '}
+              <Katex tex="\tfrac12" /> from the <Katex tex="t" />-axis" or "parallel to the{' '}
+              <Katex tex="h" />-axis" — the two describe the same thing. The report notes the
+              incorrect axis or direction was frequently specified.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

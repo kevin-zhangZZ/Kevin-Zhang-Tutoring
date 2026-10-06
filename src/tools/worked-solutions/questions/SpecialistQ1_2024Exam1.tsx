@@ -9,7 +9,7 @@
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import argandSrc from './spec-2024e1-q1c-argand.png'
 
 const AX = 876.5
@@ -169,21 +169,23 @@ export default function SpecialistQ1_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The cubic is built to be grouped:{' '}
-            <Katex tex="3z^3+2iz^2+3z+2i = z^2(3z+2i)+(3z+2i)" />. Spotting that answers
-            parts a. and b. at once, and it is quicker than the substitution the factor
-            theorem asks for.
-          </p>
-          <p>
-            One warning. The coefficients here are <em>not</em> all real, so the conjugate
-            root theorem does not apply — a root can appear without its conjugate, and{' '}
-            <Katex tex="-\tfrac{2}{3}i" /> does exactly that.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The cubic is built to be grouped:{' '}
+              <Katex tex="3z^3+2iz^2+3z+2i = z^2(3z+2i)+(3z+2i)" />. Spotting that answers
+              parts a. and b. at once, and it is quicker than the substitution the factor
+              theorem asks for.
+            </p>
+            <p>
+              One warning. The coefficients here are <em>not</em> all real, so the conjugate
+              root theorem does not apply — a root can appear without its conjugate, and{' '}
+              <Katex tex="-\tfrac{2}{3}i" /> does exactly that.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

@@ -6,7 +6,7 @@
 // 1 < x ≤ 4 puts the curve on or below y = 1, with a toggle testing the common wrong answer (−∞, 4].
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './meth-2023e1-q3a-sketch.png'
 
@@ -173,18 +173,20 @@ export default function MethodsQ3_2023Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 3 (4 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Part b. is worth one mark, and 62% of students scored 0 on it. The key is the first
-            word of part a.: <em>sketch</em>. Solving{' '}
-            <Katex tex="f(x)=1" /> gives the single value <Katex tex="x=4" />; only the
-            picture tells you which side of it — and which branch — actually satisfies the
-            inequality. A hyperbola has two branches, and an inequality can hold on one and fail
-            on the other.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Part b. is worth one mark, and 62% of students scored 0 on it. The key is the first
+              word of part a.: <em>sketch</em>. Solving{' '}
+              <Katex tex="f(x)=1" /> gives the single value <Katex tex="x=4" />; only the
+              picture tells you which side of it — and which branch — actually satisfies the
+              inequality. A hyperbola has two branches, and an inequality can hold on one and fail
+              on the other.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

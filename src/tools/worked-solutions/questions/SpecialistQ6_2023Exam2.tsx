@@ -8,7 +8,7 @@
 // area is under the true curve, on the keep-H₀ side of the cut-off).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import curvesSrc from './spec-2023e2-q6h-curves.png'
@@ -236,21 +236,23 @@ export default function SpecialistQ6_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Two ideas carry the whole question. First, the width of a confidence interval goes
-            like <Katex tex="1/\sqrt n" />, so shrinking it to a fraction <Katex tex="k" />{' '}
-            costs <Katex tex="1/k^2" /> times the sample — that is part c., which the report
-            notes was challenging for students.
-          </p>
-          <p>
-            Second, a Type II error is computed under the <em>alternative</em>, not the null.
-            Find the critical value from <Katex tex="H_0" /> (part f.), then ask how likely a
-            sample from the true distribution is to land on the wrong side of it (part g.).
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Two ideas carry the whole question. First, the width of a confidence interval goes
+              like <Katex tex="1/\sqrt n" />, so shrinking it to a fraction <Katex tex="k" />{' '}
+              costs <Katex tex="1/k^2" /> times the sample — that is part c., which the report
+              notes was challenging for students.
+            </p>
+            <p>
+              Second, a Type II error is computed under the <em>alternative</em>, not the null.
+              Find the critical value from <Katex tex="H_0" /> (part f.), then ask how likely a
+              sample from the true distribution is to land on the wrong side of it (part g.).
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

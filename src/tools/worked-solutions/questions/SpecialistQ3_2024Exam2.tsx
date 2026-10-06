@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [24, 76],
@@ -232,22 +232,24 @@ export default function SpecialistQ3_2024Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The depth is 1 <em>millimetre</em> and everything else is in metres. Converting it
-            to 0.001 m before part b. and carrying that through to part d. matters — the
-            report notes some students did not convert the depth to metres.
-          </p>
-          <p>
-            The <Katex tex="\sqrt5" /> in the substitution is not decoration. Writing{' '}
-            <Katex tex="5t^4=\left(\sqrt5\,t^2\right)^2" /> turns the denominator into{' '}
-            <Katex tex="240+u^2" />, which is the one shape that antidifferentiates to an
-            arctan — and because arctan is bounded, the total pollutant is finite. That is
-            what makes part d. answerable at all.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The depth is 1 <em>millimetre</em> and everything else is in metres. Converting it
+              to 0.001 m before part b. and carrying that through to part d. matters — the
+              report notes some students did not convert the depth to metres.
+            </p>
+            <p>
+              The <Katex tex="\sqrt5" /> in the substitution is not decoration. Writing{' '}
+              <Katex tex="5t^4=\left(\sqrt5\,t^2\right)^2" /> turns the denominator into{' '}
+              <Katex tex="240+u^2" />, which is the one shape that antidifferentiates to an
+              arctan — and because arctan is bounded, the total pollutant is finite. That is
+              what makes part d. answerable at all.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

@@ -145,13 +145,26 @@ export function PartCard({
 // inverse function's tangent is the reflected one, and so on. The worked solutions assume a
 // student is reading alone with no teacher to ask, so anything the question quietly relies
 // on gets stated here rather than left implicit in the algebra.
-export function Background({ children, title = 'Background' }: { children: ReactNode; title?: string }) {
+//
+// Teaching, so Detailed view only (studyMode.tsx) — except with `always`, for the few that aren't
+// teaching: a single-part question's stem, or a notice that some parts are left out.
+export function Background({ children, title = 'Background', always }: { children: ReactNode; title?: string; always?: boolean }) {
+  const { detailed } = useStudyMode()
+  if (!detailed && !always) return null
   return (
     <div className="rounded-xl border border-sky-100 dark:border-sky-900/50 bg-sky-50/70 dark:bg-sky-950/20 px-4 py-3">
       <p className="text-[11px] font-bold tracking-wider text-sky-700 dark:text-sky-300 mb-1.5">{title}</p>
       <div className="text-[13px] leading-relaxed text-gray-600 dark:text-gray-300 space-y-2">{children}</div>
     </div>
   )
+}
+
+// Teaching material that isn't one of the shared boxes — a wrapper card around a question-level
+// Background, a CAS aside, and so on. Shown only in the Detailed view (studyMode.tsx); Background,
+// WrongMethod and Explore already hide themselves in the Concise view.
+export function DetailOnly({ children }: { children: ReactNode }) {
+  const { detailed } = useStudyMode()
+  return detailed ? <>{children}</> : null
 }
 
 // A tempting wrong method and exactly where it breaks — what a teacher says after marking a pile
@@ -171,6 +184,8 @@ export function WrongMethod({
   working?: ReactNode
   children: ReactNode
 }) {
+  const { detailed } = useStudyMode()
+  if (!detailed) return null
   return (
     <div data-wrong-method className="rounded-xl border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/20 px-4 py-3">
       <div className="flex items-start justify-between gap-3 mb-1.5">

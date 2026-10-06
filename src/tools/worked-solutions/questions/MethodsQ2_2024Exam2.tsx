@@ -6,7 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import powerSrc from './meth-2024e2-q2f-power.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -297,24 +297,26 @@ export default function MethodsQ2_2024Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The whole question runs on knowing which branch you are in. The join is at{' '}
-            <Katex tex="t=\tfrac13" /> for the temperature and at <Katex tex="t=0.4" /> for the
-            power, and using the wrong rule is the easiest way to go astray: part b. asks
-            about <Katex tex="t=\tfrac12" />, which is past the join; part f.ii. asks for a
-            time that turns out to be before it.
-          </p>
-          <p>
-            Parts d. and e. sound similar and are not. Part d. is{' '}
-            <Katex tex="f(t)=g(t)" />; part e. maximises <Katex tex="\left|f(t)-g(t)\right|" />.
-            Because <Katex tex="f-g" /> is negative before they cross, the maximum <em>gap</em>{' '}
-            occurs at a <em>minimum</em> of the signed difference — the sign trap behind the
-            report's common incorrect answer to part e.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The whole question runs on knowing which branch you are in. The join is at{' '}
+              <Katex tex="t=\tfrac13" /> for the temperature and at <Katex tex="t=0.4" /> for the
+              power, and using the wrong rule is the easiest way to go astray: part b. asks
+              about <Katex tex="t=\tfrac12" />, which is past the join; part f.ii. asks for a
+              time that turns out to be before it.
+            </p>
+            <p>
+              Parts d. and e. sound similar and are not. Part d. is{' '}
+              <Katex tex="f(t)=g(t)" />; part e. maximises <Katex tex="\left|f(t)-g(t)\right|" />.
+              Because <Katex tex="f-g" /> is negative before they cross, the maximum <em>gap</em>{' '}
+              occurs at a <em>minimum</em> of the signed difference — the sign trap behind the
+              report's common incorrect answer to part e.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

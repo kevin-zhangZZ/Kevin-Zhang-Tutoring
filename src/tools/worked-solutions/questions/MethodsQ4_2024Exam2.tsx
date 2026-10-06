@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [21, 79],
@@ -334,25 +334,27 @@ export default function MethodsQ4_2024Exam2() {
         <p>A piece of luggage is labelled as heavy if its mass exceeds 23 kg.</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The question moves through three different objects that all describe the same
-            luggage. <Katex tex="X" /> is the mass of <em>one</em> bag (continuous);{' '}
-            <Katex tex="W" /> is the number of heavy bags <em>one traveller</em> checks in
-            (discrete, and not binomial, because how many bags they bring is itself random);{' '}
-            <Katex tex="\hat{P}" /> is the proportion of heavy bags in a <em>sample</em>{' '}
-            (binomial, scaled). Deciding which one a part is about is most of the work.
-          </p>
-          <p>
-            Two boundary details carry marks. In d.i., <Katex tex="0.2\times35=7" /> exactly,
-            so <Katex tex="\hat{P}>0.2" /> means <Katex tex="Y\ge8" />, not{' '}
-            <Katex tex="Y\ge7" />. In d.ii., the interval of <Katex tex="\hat{P}" /> values
-            converts to <Katex tex="5.685<Y<10.695" />, which for a whole number means{' '}
-            <Katex tex="6\le Y\le10" /> — rounding inwards, not outwards.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The question moves through three different objects that all describe the same
+              luggage. <Katex tex="X" /> is the mass of <em>one</em> bag (continuous);{' '}
+              <Katex tex="W" /> is the number of heavy bags <em>one traveller</em> checks in
+              (discrete, and not binomial, because how many bags they bring is itself random);{' '}
+              <Katex tex="\hat{P}" /> is the proportion of heavy bags in a <em>sample</em>{' '}
+              (binomial, scaled). Deciding which one a part is about is most of the work.
+            </p>
+            <p>
+              Two boundary details carry marks. In d.i., <Katex tex="0.2\times35=7" /> exactly,
+              so <Katex tex="\hat{P}>0.2" /> means <Katex tex="Y\ge8" />, not{' '}
+              <Katex tex="Y\ge7" />. In d.ii., the interval of <Katex tex="\hat{P}" /> values
+              converts to <Katex tex="5.685<Y<10.695" />, which for a whole number means{' '}
+              <Katex tex="6\le Y\le10" /> — rounding inwards, not outwards.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

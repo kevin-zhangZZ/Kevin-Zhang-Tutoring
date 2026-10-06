@@ -23,7 +23,7 @@
 // means ∫ f(x) dx (the next line evaluates ∫ (1 − x³) dx); it is only mentioned, not quoted, here.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import { Cas } from '../CasRef'
 import diagramSrc from './meth-2019e2-q5-tangent-diagram.png'
@@ -362,17 +362,19 @@ export default function MethodsQ5_2019Exam2() {
         </div>
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            Everything here is written in terms of the unknown <Katex tex="a" />, which is
-            unusual but not harder — treat <Katex tex="a" /> as a fixed number you simply don't
-            know yet, and do the ordinary algebra. Parts a.–c. build the picture, d.–e. turn it
-            into an optimisation, and f.–g. exploit the fact that an inverse function is
-            just a reflection.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              Everything here is written in terms of the unknown <Katex tex="a" />, which is
+              unusual but not harder — treat <Katex tex="a" /> as a fixed number you simply don't
+              know yet, and do the ordinary algebra. Parts a.–c. build the picture, d.–e. turn it
+              into an optimisation, and f.–g. exploit the fact that an inverse function is
+              just a reflection.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Tangent Line" marks={1} statement={<>Find the equation of the tangent to the graph of <Katex tex="f" /> at <Katex tex="x=a" />, in terms of <Katex tex="a" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

@@ -87,7 +87,7 @@ const ROWS: WorkingRow[] = [
 export default function MethodsQ4_2020Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 4 (3 marks)">
+      <Background title="Question 4 (3 marks)" always>
         <p>
           Solve the equation <Katex tex="2\log_2(x+5)-\log_2(x+9)=1" />.
         </p>

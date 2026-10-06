@@ -13,7 +13,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import type { ReactNode } from 'react'
 import argandSrc from './spec-2023e2-q2-argand.png'
 
@@ -329,25 +329,27 @@ export default function SpecialistQ2_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The solutions of <Katex tex="z^n=1" /> (the <Katex tex="n" />th roots of unity) sit
-            at the corners of a regular <Katex tex="n" />-sided polygon on the unit circle, one
-            of them at <Katex tex="z=1" />. Two facts drive this question. They come in
-            conjugate pairs, mirror images in the real axis (except <Katex tex="z=1" />). And
-            for <Katex tex="z^7=1" /> they add to zero: part e. shows every root other than 1
-            satisfies <Katex tex="z^6+z^5+\cdots+z+1=0" />, and with <Katex tex="z=w" /> the
-            terms <Katex tex="1,w,w^2,\ldots,w^6" /> are exactly the seven roots (part b.), so
-            the seven roots add to zero.
-          </p>
-          <p>
-            Part f. puts the two facts together: pair each root with its conjugate, each pair
-            adds to <Katex tex="2\cos" /> of an angle, and the three pairs total{' '}
-            <Katex tex="-1" /> once the root <Katex tex="z=1" /> is moved across.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The solutions of <Katex tex="z^n=1" /> (the <Katex tex="n" />th roots of unity) sit
+              at the corners of a regular <Katex tex="n" />-sided polygon on the unit circle, one
+              of them at <Katex tex="z=1" />. Two facts drive this question. They come in
+              conjugate pairs, mirror images in the real axis (except <Katex tex="z=1" />). And
+              for <Katex tex="z^7=1" /> they add to zero: part e. shows every root other than 1
+              satisfies <Katex tex="z^6+z^5+\cdots+z+1=0" />, and with <Katex tex="z=w" /> the
+              terms <Katex tex="1,w,w^2,\ldots,w^6" /> are exactly the seven roots (part b.), so
+              the seven roots add to zero.
+            </p>
+            <p>
+              Part f. puts the two facts together: pair each root with its conjugate, each pair
+              adds to <Katex tex="2\cos" /> of an angle, and the three pairs total{' '}
+              <Katex tex="-1" /> once the root <Katex tex="z=1" /> is moved across.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

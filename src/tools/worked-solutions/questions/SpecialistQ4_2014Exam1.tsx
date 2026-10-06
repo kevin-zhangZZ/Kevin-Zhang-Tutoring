@@ -62,7 +62,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ4_2014Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 4 (3 marks)">
+      <Background title="Question 4 (3 marks)" always>
         <p>
           Find the gradient of the normal to the curve defined by{' '}
           <Katex tex="y=-3e^{3x}e^y" /> at the point <Katex tex="(1,-3)" />.

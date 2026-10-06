@@ -9,7 +9,7 @@
 // d. spec-2022e2-q2d-segment (minor segment = sector minus triangle, step by step).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import argandSrc from './spec-2022e2-q2-argand.png'
 
@@ -221,18 +221,20 @@ export default function SpecialistQ2_2022Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Once the values are known, the geometry takes over: <Katex tex="u" /> and{' '}
-            <Katex tex="v" /> both have modulus 2, so they sit on the same circle. Two points
-            on a circle make an isosceles triangle with the centre, and that single fact
-            supplies part c. (the line from the centre to the midpoint of the chord bisects the angle at the centre) and part d. (the chord
-            subtends <Katex tex="\mathrm{Arg}(u)-\mathrm{Arg}(v)" /> at the centre) without any
-            coordinate algebra at all.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Once the values are known, the geometry takes over: <Katex tex="u" /> and{' '}
+              <Katex tex="v" /> both have modulus 2, so they sit on the same circle. Two points
+              on a circle make an isosceles triangle with the centre, and that single fact
+              supplies part c. (the line from the centre to the midpoint of the chord bisects the angle at the centre) and part d. (the chord
+              subtends <Katex tex="\mathrm{Arg}(u)-\mathrm{Arg}(v)" /> at the centre) without any
+              coordinate algebra at all.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

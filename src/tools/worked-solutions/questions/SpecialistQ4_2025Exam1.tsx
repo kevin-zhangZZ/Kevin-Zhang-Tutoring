@@ -4,7 +4,7 @@
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [32, 23, 9, 37],
@@ -113,21 +113,23 @@ export default function SpecialistQ4_2025Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The mean integrand is <Katex tex="\tfrac{t}{(t+1)(2-t)}" />, and the numerator{' '}
-            <Katex tex="t" /> is not a multiple of the derivative of the denominator — so
-            there is no reverse-chain-rule shortcut and partial fractions are unavoidable. The
-            report notes a small number of students did not realise this and could not progress.
-          </p>
-          <p>
-            The constant <Katex tex="\tfrac{3}{2\log_e 2}" /> looks forbidding but is chosen
-            to cancel: the integral comes out as <Katex tex="\tfrac13\log_e 2" />, leaving{' '}
-            <Katex tex="\tfrac12" /> exactly.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The mean integrand is <Katex tex="\tfrac{t}{(t+1)(2-t)}" />, and the numerator{' '}
+              <Katex tex="t" /> is not a multiple of the derivative of the denominator — so
+              there is no reverse-chain-rule shortcut and partial fractions are unavoidable. The
+              report notes a small number of students did not realise this and could not progress.
+            </p>
+            <p>
+              The constant <Katex tex="\tfrac{3}{2\log_e 2}" /> looks forbidding but is chosen
+              to cancel: the integral comes out as <Katex tex="\tfrac13\log_e 2" />, leaving{' '}
+              <Katex tex="\tfrac12" /> exactly.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

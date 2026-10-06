@@ -3,7 +3,7 @@
 // checked with sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [9, 91],
@@ -215,33 +215,35 @@ export default function SpecialistQ9_2023Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Planes and the cross product arrived with the 2023 study design, and this question
-            is the standard sequence: two vectors in the plane, their cross product as a
-            normal, one known point to fix the constant. Everything after that is
-            substitution.
-          </p>
-          <p>
-            Why the normal gives the equation: take a normal vector{' '}
-            <Katex tex="\underset{\sim}{n} = n_1\underset{\sim}{i}+n_2\underset{\sim}{j}+n_3\underset{\sim}{k}" />{' '}
-            and a known point <Katex tex="A" /> in the plane. For any point{' '}
-            <Katex tex="P(x,y,z)" /> in the plane, <Katex tex="\overrightarrow{AP}" /> lies in the
-            plane, so it is perpendicular to <Katex tex="\underset{\sim}{n}" /> and{' '}
-            <Katex tex="\underset{\sim}{n}\cdot\overrightarrow{AP}=0" />, which rearranges to{' '}
-            <Katex tex="\underset{\sim}{n}\cdot\overrightarrow{OP}=\underset{\sim}{n}\cdot\overrightarrow{OA}" />.
-            That is the Cartesian equation{' '}
-            <Katex tex="n_1x+n_2y+n_3z=k" />: the normal's components are the coefficients, and
-            the constant <Katex tex="k" /> comes from substituting any point in the plane.
-          </p>
-          <p>
-            The cross product earns its keep twice over — once as the normal in part c., and
-            again in part e., where its <em>magnitude</em> is the area of the parallelogram
-            the two vectors span.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Planes and the cross product arrived with the 2023 study design, and this question
+              is the standard sequence: two vectors in the plane, their cross product as a
+              normal, one known point to fix the constant. Everything after that is
+              substitution.
+            </p>
+            <p>
+              Why the normal gives the equation: take a normal vector{' '}
+              <Katex tex="\underset{\sim}{n} = n_1\underset{\sim}{i}+n_2\underset{\sim}{j}+n_3\underset{\sim}{k}" />{' '}
+              and a known point <Katex tex="A" /> in the plane. For any point{' '}
+              <Katex tex="P(x,y,z)" /> in the plane, <Katex tex="\overrightarrow{AP}" /> lies in the
+              plane, so it is perpendicular to <Katex tex="\underset{\sim}{n}" /> and{' '}
+              <Katex tex="\underset{\sim}{n}\cdot\overrightarrow{AP}=0" />, which rearranges to{' '}
+              <Katex tex="\underset{\sim}{n}\cdot\overrightarrow{OP}=\underset{\sim}{n}\cdot\overrightarrow{OA}" />.
+              That is the Cartesian equation{' '}
+              <Katex tex="n_1x+n_2y+n_3z=k" />: the normal's components are the coefficients, and
+              the constant <Katex tex="k" /> comes from substituting any point in the plane.
+            </p>
+            <p>
+              The cross product earns its keep twice over — once as the normal in part c., and
+              again in part e., where its <em>magnitude</em> is the area of the parallelogram
+              the two vectors span.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

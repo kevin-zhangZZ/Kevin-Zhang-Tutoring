@@ -140,7 +140,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ3_2017Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 3 (3 marks)">
+      <Background title="Question 3 (3 marks)" always>
         <p>
           Let <Katex tex="z^3+az^2+6z+a=0" />, <Katex tex="z\in C" />, where{' '}
           <Katex tex="a" /> is a real constant. Given that <Katex tex="z=1-i" /> is a solution

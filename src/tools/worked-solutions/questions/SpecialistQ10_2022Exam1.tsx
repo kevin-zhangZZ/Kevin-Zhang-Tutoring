@@ -9,7 +9,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './spec-2022e1-q10a-sketch.png'
 
 const ReciprocalWidget = lazyWidget(() => import('../interactives/spec-2022e1-q10a-reciprocal'))
@@ -170,24 +170,26 @@ export default function SpecialistQ10_2022Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Every feature of a secant graph is inherited from the cosine underneath it. Where{' '}
-            <Katex tex="\cos" /> crosses zero, <Katex tex="\sec" /> has an asymptote; where{' '}
-            <Katex tex="\cos" /> peaks at 1, <Katex tex="\sec" /> has a minimum of 1; where{' '}
-            <Katex tex="\cos" /> troughs at <Katex tex="-1" />, <Katex tex="\sec" /> has a
-            maximum of <Katex tex="-1" />. Nothing lies between{' '}
-            <Katex tex="-1" /> and <Katex tex="1" />.
-          </p>
-          <p>
-            The dilation factor <Katex tex="\tfrac14" /> from the <Katex tex="y" />-axis
-            compresses the period from <Katex tex="2\pi" /> to <Katex tex="\tfrac\pi2" />, so
-            the interval <Katex tex="\left[-\tfrac\pi4,\tfrac\pi4\right]" /> is exactly one
-            full period.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Every feature of a secant graph is inherited from the cosine underneath it. Where{' '}
+              <Katex tex="\cos" /> crosses zero, <Katex tex="\sec" /> has an asymptote; where{' '}
+              <Katex tex="\cos" /> peaks at 1, <Katex tex="\sec" /> has a minimum of 1; where{' '}
+              <Katex tex="\cos" /> troughs at <Katex tex="-1" />, <Katex tex="\sec" /> has a
+              maximum of <Katex tex="-1" />. Nothing lies between{' '}
+              <Katex tex="-1" /> and <Katex tex="1" />.
+            </p>
+            <p>
+              The dilation factor <Katex tex="\tfrac14" /> from the <Katex tex="y" />-axis
+              compresses the period from <Katex tex="2\pi" /> to <Katex tex="\tfrac\pi2" />, so
+              the interval <Katex tex="\left[-\tfrac\pi4,\tfrac\pi4\right]" /> is exactly one
+              full period.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

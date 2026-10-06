@@ -41,11 +41,13 @@ export function MCQShell({
    * Optional context to read before the working — the MCQ equivalent of a `<Background>`
    * inside a PartCard. Renders at the top of the Worked Solution tab. Use it when the
    * question leans on an idea the reader may not have met, not to restate the question.
+   * Detailed view only (studyMode.tsx).
    */
   background?: ReactNode
   /**
    * Teaching material after the working, in the Worked Solution tab: an `<Explore>` interactive
    * diagram, `<WrongMethod>` boxes for the popular wrong answers (AUTHORING_GUIDE §15).
+   * Detailed view only (studyMode.tsx).
    */
   extras?: ReactNode
   examinerReport?: MCQExaminerStats
@@ -61,7 +63,7 @@ export function MCQShell({
    */
   flawed?: ReactNode
 }) {
-  const { hideAnswers } = useStudyMode()
+  const { hideAnswers, detailed } = useStudyMode()
   const [picked, setPicked] = useState<string | null>(null)
   const [tab, setTab] = useState<Tab>('solution')
   const revealed = !hideAnswers || picked !== null
@@ -189,9 +191,9 @@ export function MCQShell({
 
           {tab === 'solution' || tabs.length === 1 ? (
             <div className="flex flex-col gap-4">
-              {background}
+              {detailed && background}
               <WorkingTable rows={rows} alwaysShow hideLabel={tabs.length > 1} />
-              {extras}
+              {detailed && extras}
             </div>
           ) : tab === 'report' && examinerReport ? (
             <ExaminerReport stats={examinerReport} />

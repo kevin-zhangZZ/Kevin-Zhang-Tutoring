@@ -8,7 +8,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import pathSrc from './spec-2024e2-q4b-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -302,23 +302,25 @@ export default function SpecialistQ4_2024Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            One identity, <Katex tex="\sec^2 t-\tan^2 t = 1" />, does the work twice: in part
-            a. it eliminates <Katex tex="t" /> to give the Cartesian equation, and in part
-            c.i. it turns the speed squared into a polynomial in{' '}
-            <Katex tex="\sec(t)" /> alone.
-          </p>
-          <p>
-            Part c. is a chain of four one-mark parts, and each asks for a different object:
-            the <em>square</em> of the speed, the <em>time</em>, the <em>speed</em>, then the{' '}
-            <em>position</em>. The report notes students leaving the speed squared, 4, in
-            place of the speed in c.iii., and a velocity or speed in place of its square in
-            c.i.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              One identity, <Katex tex="\sec^2 t-\tan^2 t = 1" />, does the work twice: in part
+              a. it eliminates <Katex tex="t" /> to give the Cartesian equation, and in part
+              c.i. it turns the speed squared into a polynomial in{' '}
+              <Katex tex="\sec(t)" /> alone.
+            </p>
+            <p>
+              Part c. is a chain of four one-mark parts, and each asks for a different object:
+              the <em>square</em> of the speed, the <em>time</em>, the <em>speed</em>, then the{' '}
+              <em>position</em>. The report notes students leaving the speed squared, 4, in
+              place of the speed in c.iii., and a velocity or speed in place of its square in
+              c.i.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

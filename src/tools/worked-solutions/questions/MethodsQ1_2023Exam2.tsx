@@ -8,7 +8,7 @@
 // toggle showing the sign slip k = f(b).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2023e2-q1-graph.png'
@@ -266,22 +266,24 @@ export default function MethodsQ1_2023Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The surds <Katex tex="\tfrac{1\pm\sqrt7}{3}" /> show up in part b. and again in
-            part d., and that is the structure of the question. Adding <Katex tex="k" /> to{' '}
-            <Katex tex="f" /> slides the curve up or down; it has a repeated root exactly when
-            a turning point lands on the <Katex tex="x" />-axis, so the repeated root{' '}
-            <Katex tex="b" /> <em>is</em> a stationary <Katex tex="x" />-value.
-          </p>
-          <p>
-            Every numerical answer here except part c.iii. must be exact — the report repeats
-            "Exact answers were required" for parts b., c.i. and d. Reading a decimal off the
-            CAS and stopping there costs the mark.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The surds <Katex tex="\tfrac{1\pm\sqrt7}{3}" /> show up in part b. and again in
+              part d., and that is the structure of the question. Adding <Katex tex="k" /> to{' '}
+              <Katex tex="f" /> slides the curve up or down; it has a repeated root exactly when
+              a turning point lands on the <Katex tex="x" />-axis, so the repeated root{' '}
+              <Katex tex="b" /> <em>is</em> a stationary <Katex tex="x" />-value.
+            </p>
+            <p>
+              Every numerical answer here except part c.iii. must be exact — the report repeats
+              "Exact answers were required" for parts b., c.i. and d. Reading a decimal off the
+              CAS and stopping there costs the mark.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

@@ -4,7 +4,7 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [6, 19, 75],
@@ -99,19 +99,21 @@ export default function SpecialistQ6_2023Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            One rule drives both parts: for independent variables, <strong>variances</strong> add;
-            standard deviations do not. So work with variances (each sd squared) and take the
-            square root only at the end. In part a. that gives <Katex tex="36+3+25=64" />, so the
-            sd is 8; in part b. the average of 12 days has variance{' '}
-            <Katex tex="\tfrac{3}{12}=\tfrac14" />, so its sd is <Katex tex="\tfrac12" />.
-            Answers like <Katex tex="6+\sqrt3+5" />, or <Katex tex="\sqrt3" /> divided by 12,
-            come from doing the arithmetic on the standard deviations instead.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              One rule drives both parts: for independent variables, <strong>variances</strong> add;
+              standard deviations do not. So work with variances (each sd squared) and take the
+              square root only at the end. In part a. that gives <Katex tex="36+3+25=64" />, so the
+              sd is 8; in part b. the average of 12 days has variance{' '}
+              <Katex tex="\tfrac{3}{12}=\tfrac14" />, so its sd is <Katex tex="\tfrac12" />.
+              Answers like <Katex tex="6+\sqrt3+5" />, or <Katex tex="\sqrt3" /> divided by 12,
+              come from doing the arithmetic on the standard deviations instead.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

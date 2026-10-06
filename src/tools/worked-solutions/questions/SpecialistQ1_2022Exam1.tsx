@@ -4,7 +4,7 @@
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [21, 79],
@@ -72,18 +72,20 @@ export default function SpecialistQ1_2022Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The coefficients here are <em>not</em> all real — there is a <Katex tex="6i" /> in
-            the middle. That single fact breaks a common habit with quadratics
-            over <Katex tex="C" />: the conjugate root theorem only applies when
-            every coefficient is real, so there is no reason to expect the two solutions to
-            be conjugates, and indeed they are not. Completing the square, or the quadratic
-            formula, still works exactly as usual.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The coefficients here are <em>not</em> all real — there is a <Katex tex="6i" /> in
+              the middle. That single fact breaks a common habit with quadratics
+              over <Katex tex="C" />: the conjugate root theorem only applies when
+              every coefficient is real, so there is no reason to expect the two solutions to
+              be conjugates, and indeed they are not. Completing the square, or the quadratic
+              formula, still works exactly as usual.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

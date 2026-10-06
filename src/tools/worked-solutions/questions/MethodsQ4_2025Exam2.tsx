@@ -9,7 +9,7 @@
 
 import Katex from '../../../components/Katex'
 import { Cas } from '../CasRef'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import graphSrc from './meth-2025e2-q4-graph.png'
 import tangentSrc from './meth-2025e2-q4d-tangent.png'
 import tSrc from './meth-2025e2-q4f-tangent.png'
@@ -481,23 +481,25 @@ export default function MethodsQ4_2025Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The curve touches the axis rather than crossing it: <Katex tex="f(x)=0" /> only at{' '}
-            <Katex tex="x=\tfrac{3\pi}{2}" />, where the curve also has its minimum. That
-            single fact runs through the second half of the question — it is why Newton's
-            method converges so slowly in part e., and why part f.iii. has to exclude{' '}
-            <Katex tex="p=\tfrac{3\pi}{2}" />, where the tangent lies flat along the{' '}
-            <Katex tex="x" />-axis and has infinitely many intercepts.
-          </p>
-          <p>
-            Part f.ii. rewards doing the algebra before the calculus: differentiating{' '}
-            <Katex tex="-p\cos(p)+\sin(p)+1" /> gives simply <Katex tex="p\sin(p)" />, because
-            the product rule throws up a <Katex tex="\cos(p)" /> that cancels.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The curve touches the axis rather than crossing it: <Katex tex="f(x)=0" /> only at{' '}
+              <Katex tex="x=\tfrac{3\pi}{2}" />, where the curve also has its minimum. That
+              single fact runs through the second half of the question — it is why Newton's
+              method converges so slowly in part e., and why part f.iii. has to exclude{' '}
+              <Katex tex="p=\tfrac{3\pi}{2}" />, where the tangent lies flat along the{' '}
+              <Katex tex="x" />-axis and has infinitely many intercepts.
+            </p>
+            <p>
+              Part f.ii. rewards doing the algebra before the calculus: differentiating{' '}
+              <Katex tex="-p\cos(p)+\sin(p)+1" /> gives simply <Katex tex="p\sin(p)" />, because
+              the product rule throws up a <Katex tex="\cos(p)" /> that cancels.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Function Value" marks={1} statement={<>Evaluate <Katex tex="f\!\left(\tfrac{2\pi}{3}\right)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

@@ -5,7 +5,7 @@
 // original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [15, 31, 54],
@@ -96,24 +96,26 @@ export default function SpecialistQ8_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The relation is secretly a quadratic in <Katex tex="u=xy" />:{' '}
-            <Katex tex="u^2+u-2=0" /> gives <Katex tex="u=1" /> or <Katex tex="u=-2" />, so
-            the graph is really the pair of hyperbolas <Katex tex="xy=1" /> and{' '}
-            <Katex tex="xy=-2" />. The factor <Katex tex="2xy+1" /> that cancels in part a.
-            is never zero on either of them, which is why the excluded case never actually
-            arises.
-          </p>
-          <p>
-            Part b. needs two conditions, not one. <Katex tex="y=x" /> says where the
-            gradient is right; <Katex tex="x^2y^2+xy=2" /> says where the point is on the
-            curve. The report notes some students recognised <Katex tex="y=x" /> but
-            neglected to consider that the points lay on the graph.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The relation is secretly a quadratic in <Katex tex="u=xy" />:{' '}
+              <Katex tex="u^2+u-2=0" /> gives <Katex tex="u=1" /> or <Katex tex="u=-2" />, so
+              the graph is really the pair of hyperbolas <Katex tex="xy=1" /> and{' '}
+              <Katex tex="xy=-2" />. The factor <Katex tex="2xy+1" /> that cancels in part a.
+              is never zero on either of them, which is why the excluded case never actually
+              arises.
+            </p>
+            <p>
+              Part b. needs two conditions, not one. <Katex tex="y=x" /> says where the
+              gradient is right; <Katex tex="x^2y^2+xy=2" /> says where the point is on the
+              curve. The report notes some students recognised <Katex tex="y=x" /> but
+              neglected to consider that the points lay on the graph.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

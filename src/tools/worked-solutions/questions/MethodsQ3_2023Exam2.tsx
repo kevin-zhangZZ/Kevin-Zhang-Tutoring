@@ -9,7 +9,7 @@
 // of nˣ − xⁿ lands on the x-axis at n = e (interactives/meth-2023e2-q3h-touch.tsx).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2023e2-q3-graph.png'
@@ -357,24 +357,26 @@ export default function MethodsQ3_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Most parts turn on differentiating an exponential whose base isn't <Katex tex="e" />:
-            writing <Katex tex="a^x=e^{x\log_e(a)}" /> gives{' '}
-            <Katex tex="\tfrac{d}{dx}a^x=\log_e(a)\,a^x" /> (part b.). Parts
-            d. to g. all concern the same function <Katex tex="h(x)=2^x-x^2" />, so it is
-            worth graphing it once and keeping the picture: two turning points at{' '}
-            <Katex tex="x\approx0.49" /> and <Katex tex="3.21" />, an inflection between them,
-            and three <Katex tex="x" />-intercepts (one near <Katex tex="-0.77" />, then
-            exactly 2 and 4).
-          </p>
-          <p>
-            Part g. is the payoff: Newton's method divides by <Katex tex="h'(x_0)" />, so the
-            turning points found in part e. are precisely the starting values that break it.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Most parts turn on differentiating an exponential whose base isn't <Katex tex="e" />:
+              writing <Katex tex="a^x=e^{x\log_e(a)}" /> gives{' '}
+              <Katex tex="\tfrac{d}{dx}a^x=\log_e(a)\,a^x" /> (part b.). Parts
+              d. to g. all concern the same function <Katex tex="h(x)=2^x-x^2" />, so it is
+              worth graphing it once and keeping the picture: two turning points at{' '}
+              <Katex tex="x\approx0.49" /> and <Katex tex="3.21" />, an inflection between them,
+              and three <Katex tex="x" />-intercepts (one near <Katex tex="-0.77" />, then
+              exactly 2 and 4).
+            </p>
+            <p>
+              Part g. is the payoff: Newton's method divides by <Katex tex="h'(x_0)" />, so the
+              turning points found in part e. are precisely the starting values that break it.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

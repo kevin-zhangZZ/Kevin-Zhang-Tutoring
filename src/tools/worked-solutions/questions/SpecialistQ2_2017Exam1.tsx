@@ -167,7 +167,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ2_2017Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 2 (4 marks)">
+      <Background title="Question 2 (4 marks)" always>
         <p>
           Find <Katex tex="\displaystyle\int_1^{\sqrt3}\frac{1}{x\left(1+x^2\right)}\,dx" />, expressing
           your answer in the form <Katex tex="\log_e\!\left(\sqrt{\tfrac{a}{b}}\right)" />, where{' '}

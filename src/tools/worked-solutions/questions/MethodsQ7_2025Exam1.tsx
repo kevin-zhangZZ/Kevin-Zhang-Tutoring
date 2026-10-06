@@ -6,7 +6,7 @@
 // checked with sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import graphSrc from './meth-2025e1-q7c-graph.png'
 
 const BLANK = { fontSize: 46, fill: '#c2410c', fontFamily: '"Times New Roman", Times, serif', textAnchor: 'middle' } as const
@@ -204,22 +204,24 @@ export default function MethodsQ7_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Part b. pays for everything after it. Once <Katex tex="f(x)=(x+2)^2(x-5)" /> is
-            in hand, part c. is reading off roots, and part d. is noticing that{' '}
-            <Katex tex="g(x)=x+2" /> is <em>already one of the factors</em>, so the product
-            is <Katex tex="(x+2)^3(x-5)" /> without any expanding.
-          </p>
-          <p>
-            That triple factor is the point of part d.i.: an odd multiplicity of three or
-            more means the curve flattens to a stationary point but still crosses — a
-            stationary point of inflection. And because both multiplicities are odd, the sign
-            of the product flips at each root, which settles part d.ii.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Part b. pays for everything after it. Once <Katex tex="f(x)=(x+2)^2(x-5)" /> is
+              in hand, part c. is reading off roots, and part d. is noticing that{' '}
+              <Katex tex="g(x)=x+2" /> is <em>already one of the factors</em>, so the product
+              is <Katex tex="(x+2)^3(x-5)" /> without any expanding.
+            </p>
+            <p>
+              That triple factor is the point of part d.i.: an odd multiplicity of three or
+              more means the curve flattens to a stationary point but still crosses — a
+              stationary point of inflection. And because both multiplicities are odd, the sign
+              of the product flips at each root, which settles part d.ii.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

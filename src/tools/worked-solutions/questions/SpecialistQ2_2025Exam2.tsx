@@ -7,7 +7,7 @@
 // sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import argandSrc from './spec-2025e2-q2a-argand.png'
 import pqSrc from './spec-2025e2-q2-pq.png'
 
@@ -257,24 +257,26 @@ export default function SpecialistQ2_2025Exam2() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 2 (10 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Two loci meet here. <Katex tex="z\overline{z}=4" /> is a circle in disguise, since{' '}
-            <Katex tex="z\overline{z}" /> is always <Katex tex="|z|^2" />. And an equation of
-            the form <Katex tex="|z-w_1| = |z-w_2|" /> always describes the perpendicular
-            bisector of the segment joining <Katex tex="w_1" /> and <Katex tex="w_2" /> — here
-            both of those points happen to be distance 2 from the origin, so the bisector runs
-            through the centre of the circle and the two intersection points end up
-            diametrically opposite.
-          </p>
-          <p>
-            Part d. relies on reading <Katex tex="\operatorname{Arg}(z-z_0)=\theta" /> correctly:
-            the ray <em>starts</em> at <Katex tex="z_0" /> and <Katex tex="\theta" /> is the
-            direction it travels, measured as a principal value.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Two loci meet here. <Katex tex="z\overline{z}=4" /> is a circle in disguise, since{' '}
+              <Katex tex="z\overline{z}" /> is always <Katex tex="|z|^2" />. And an equation of
+              the form <Katex tex="|z-w_1| = |z-w_2|" /> always describes the perpendicular
+              bisector of the segment joining <Katex tex="w_1" /> and <Katex tex="w_2" /> — here
+              both of those points happen to be distance 2 from the origin, so the bisector runs
+              through the centre of the circle and the two intersection points end up
+              diametrically opposite.
+            </p>
+            <p>
+              Part d. relies on reading <Katex tex="\operatorname{Arg}(z-z_0)=\theta" /> correctly:
+              the ray <em>starts</em> at <Katex tex="z_0" /> and <Katex tex="\theta" /> is the
+              direction it travels, measured as a principal value.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

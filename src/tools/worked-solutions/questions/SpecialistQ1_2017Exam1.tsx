@@ -72,7 +72,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ1_2017Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 1 (3 marks)">
+      <Background title="Question 1 (3 marks)" always>
         <p>
           Find the equation of the tangent to the curve given by{' '}
           <Katex tex="3xy^2+2y=x" /> at the point <Katex tex="(1,-1)" />.

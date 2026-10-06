@@ -18,7 +18,7 @@
 // slip shown is ours, so no source is given).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import cylinderSrc from './spec-2019e1-q3-cylinder.png'
 
@@ -120,28 +120,30 @@ export default function SpecialistQ3_2019Exam1() {
         </div>
       </div>
 
-      <div className="text-[13px] leading-relaxed">
-        <Background title="Before You Start">
-          <p>
-            Only the <b>length</b> varies — the radius is fixed at <Katex tex="0.5" /> cm. So the
-            first move in every part is to write the quantity being asked about as a formula in
-            the random length <Katex tex="L" />, and then apply the two rules for a linear
-            function of a random variable:
-          </p>
-          <p>
-            <Katex tex="E(aL+b) = aE(L)+b" /> &nbsp;and&nbsp;{' '}
-            <Katex tex="\operatorname{Var}(aL+b) = a^2\operatorname{Var}(L)" />.
-          </p>
-          <p>
-            The two differ in an important way: a multiplier gets <em>squared</em> in the
-            variance, and an added constant vanishes from it entirely (shifting every value by
-            the same amount doesn't change how spread out they are). The squaring comes from what
-            variance is — the average <em>squared</em> distance from the mean. Multiply every value
-            by <Katex tex="a" /> and every distance from the mean is multiplied by{' '}
-            <Katex tex="a" />, so every squared distance is multiplied by <Katex tex="a^2" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="text-[13px] leading-relaxed">
+          <Background title="Before You Start">
+            <p>
+              Only the <b>length</b> varies — the radius is fixed at <Katex tex="0.5" /> cm. So the
+              first move in every part is to write the quantity being asked about as a formula in
+              the random length <Katex tex="L" />, and then apply the two rules for a linear
+              function of a random variable:
+            </p>
+            <p>
+              <Katex tex="E(aL+b) = aE(L)+b" /> &nbsp;and&nbsp;{' '}
+              <Katex tex="\operatorname{Var}(aL+b) = a^2\operatorname{Var}(L)" />.
+            </p>
+            <p>
+              The two differ in an important way: a multiplier gets <em>squared</em> in the
+              variance, and an added constant vanishes from it entirely (shifting every value by
+              the same amount doesn't change how spread out they are). The squaring comes from what
+              variance is — the average <em>squared</em> distance from the mean. Multiply every value
+              by <Katex tex="a" /> and every distance from the mean is multiplied by{' '}
+              <Katex tex="a" />, so every squared distance is multiplied by <Katex tex="a^2" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Expected Value" marks={1} statement={<>Find the expected volume of a piece of chocolate in cm³.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

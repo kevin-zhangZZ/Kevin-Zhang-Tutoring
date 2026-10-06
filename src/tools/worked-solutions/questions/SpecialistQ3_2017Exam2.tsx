@@ -196,7 +196,7 @@ export default function SpecialistQ3_2017Exam2() {
       </div>
 
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background title="Why only parts a.–d.">
+        <Background title="Why only parts a.–d." always>
           <p>
             Part e. asks for the length of the gold border around the brooch, which is arc
             length from a cartesian rule — no longer required by the study design, so it is

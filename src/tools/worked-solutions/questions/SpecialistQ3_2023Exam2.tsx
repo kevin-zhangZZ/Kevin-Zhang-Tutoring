@@ -8,7 +8,7 @@
 // while a radius of k − 1 overshoots it).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 
@@ -203,23 +203,25 @@ export default function SpecialistQ3_2023Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Giving the curve as <Katex tex="y^2=x-1" /> is a kindness for the volume — the
-            integrand is handed to you — and a trap for the surface area, where you do need{' '}
-            <Katex tex="y" /> and <Katex tex="\tfrac{dy}{dx}" /> separately. The{' '}
-            <Katex tex="\sqrt{x-1}" /> then cancels, which is why the answer is so clean.
-          </p>
-          <p>
-            "Total surface area" in parts c. and d. means the curved surface <em>plus</em> the
-            two flat discs at <Katex tex="x=2" /> and at the far end. The curve only meets the
-            axis at <Katex tex="x=1" />, so neither end closes to a point. The discs&apos; radii
-            are the <Katex tex="y" /> values there, so squaring them undoes the square root: the
-            disc at <Katex tex="x=k" /> has area <Katex tex="\pi(k-1)" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Giving the curve as <Katex tex="y^2=x-1" /> is a kindness for the volume — the
+              integrand is handed to you — and a trap for the surface area, where you do need{' '}
+              <Katex tex="y" /> and <Katex tex="\tfrac{dy}{dx}" /> separately. The{' '}
+              <Katex tex="\sqrt{x-1}" /> then cancels, which is why the answer is so clean.
+            </p>
+            <p>
+              "Total surface area" in parts c. and d. means the curved surface <em>plus</em> the
+              two flat discs at <Katex tex="x=2" /> and at the far end. The curve only meets the
+              axis at <Katex tex="x=1" />, so neither end closes to a point. The discs&apos; radii
+              are the <Katex tex="y" /> values there, so squaring them undoes the square root: the
+              disc at <Katex tex="x=k" /> has area <Katex tex="\pi(k-1)" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a.i"

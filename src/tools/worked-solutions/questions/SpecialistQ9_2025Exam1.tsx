@@ -5,7 +5,7 @@
 // and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import sketchSrc from './spec-2025e1-q9c-sketch.png'
 
 const EXAM_A: SAExaminerStats = {
@@ -132,21 +132,23 @@ export default function SpecialistQ9_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Both excluded values behave differently, and the whole question turns on that. At{' '}
-            <Katex tex="x=-1" /> the denominator vanishes and the numerator does not, giving
-            a genuine vertical asymptote. At <Katex tex="x=1" /> both vanish, the factor
-            cancels, and what is left is a <em>hole</em> — no asymptote at all.
-          </p>
-          <p>
-            The form <Katex tex="-x-1+\tfrac{1}{x+1}" /> then hands you the rest: the oblique
-            asymptote <Katex tex="y=-x-1" /> is the polynomial part, and the sign of{' '}
-            <Katex tex="\tfrac{1}{x+1}" /> tells you which side of it each branch lies on.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Both excluded values behave differently, and the whole question turns on that. At{' '}
+              <Katex tex="x=-1" /> the denominator vanishes and the numerator does not, giving
+              a genuine vertical asymptote. At <Katex tex="x=1" /> both vanish, the factor
+              cancels, and what is left is a <em>hole</em> — no asymptote at all.
+            </p>
+            <p>
+              The form <Katex tex="-x-1+\tfrac{1}{x+1}" /> then hands you the rest: the oblique
+              asymptote <Katex tex="y=-x-1" /> is the polynomial part, and the sign of{' '}
+              <Katex tex="\tfrac{1}{x+1}" /> tells you which side of it each branch lies on.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

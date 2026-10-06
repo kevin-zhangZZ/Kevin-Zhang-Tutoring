@@ -11,7 +11,7 @@
 // hump that meets O on a slant.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import trackSrc from './spec-2023e2-q1-track.png'
@@ -291,22 +291,24 @@ export default function SpecialistQ1_2023Exam2() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            "Meet smoothly" is two conditions, not one: the same value <em>and</em> the same
-            gradient. Part a. supplies the first; part b. exists entirely to make you check
-            the second.
-          </p>
-          <p>
-            The return path is a quarter of an ellipse, and the parameter interval{' '}
-            <Katex tex="\left[\tfrac\pi2,\pi\right]" /> is doing real work — it decides the
-            terminals in part f. and the shape in part e. Sketching it well means getting the
-            tangents right at both ends: horizontal at <Katex tex="D" />, vertical at{' '}
-            <Katex tex="O" />.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              "Meet smoothly" is two conditions, not one: the same value <em>and</em> the same
+              gradient. Part a. supplies the first; part b. exists entirely to make you check
+              the second.
+            </p>
+            <p>
+              The return path is a quarter of an ellipse, and the parameter interval{' '}
+              <Katex tex="\left[\tfrac\pi2,\pi\right]" /> is doing real work — it decides the
+              terminals in part f. and the shape in part e. Sketching it well means getting the
+              tangents right at both ends: horizontal at <Katex tex="D" />, vertical at{' '}
+              <Katex tex="O" />.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

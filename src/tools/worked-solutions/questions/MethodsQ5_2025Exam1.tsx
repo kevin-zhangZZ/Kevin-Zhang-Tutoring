@@ -4,7 +4,7 @@
 // examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [14, 25, 61],
@@ -90,22 +90,24 @@ export default function MethodsQ5_2025Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 5 (4 marks)</p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Both parts use the substitution <Katex tex="u=e^x" />, and both have the same
-            trap at the end: <Katex tex="u" /> is not the answer. In part a.{' '}
-            <Katex tex="u=1" /> means <Katex tex="x=0" />, and in part b.{' '}
-            <Katex tex="u=4" /> means <Katex tex="x=\log_e(4)" />. The report notes both
-            slips.
-          </p>
-          <p>
-            Part b. is a domain-restriction question in disguise. A function has an inverse
-            exactly when it is one-to-one, so the largest left-hand domain runs up to — and
-            includes — the turning point, and no further.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Both parts use the substitution <Katex tex="u=e^x" />, and both have the same
+              trap at the end: <Katex tex="u" /> is not the answer. In part a.{' '}
+              <Katex tex="u=1" /> means <Katex tex="x=0" />, and in part b.{' '}
+              <Katex tex="u=4" /> means <Katex tex="x=\log_e(4)" />. The report notes both
+              slips.
+            </p>
+            <p>
+              Part b. is a domain-restriction question in disguise. A function has an inverse
+              exactly when it is one-to-one, so the largest left-hand domain runs up to — and
+              includes — the turning point, and no further.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

@@ -243,7 +243,7 @@ export default function SpecialistQ1_2016Exam2() {
           </>
         }
       >
-        <Background title="Not in the Current Study Design">
+        <Background title="Not in the Current Study Design" always>
           <p>
             Arc length for a curve given in Cartesian form is no longer on the Specialist
             Mathematics study design (arc length along a vector or parametric curve still is), so
@@ -258,7 +258,7 @@ export default function SpecialistQ1_2016Exam2() {
         marks={1}
         statement={<>Find the length of this curve, correct to two decimal places.</>}
       >
-        <Background title="Not in the Current Study Design">
+        <Background title="Not in the Current Study Design" always>
           <p>
             Finding the length of a curve given in Cartesian form is no longer on the Specialist
             Mathematics study design (arc length along a vector or parametric curve still is), so

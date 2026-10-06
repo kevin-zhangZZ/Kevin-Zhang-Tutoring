@@ -4,7 +4,7 @@
 // sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [29, 71],
@@ -132,21 +132,23 @@ export default function SpecialistQ3_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The velocity is exactly the derivative of <Katex tex="\sqrt{t^2+k}" />, which is
-            why part a. needs no substitution or by-parts work — just the reverse chain rule,
-            plus the constant fixed by <Katex tex="x(0)=0" />.
-          </p>
-          <p>
-            Part c. reduces to <Katex tex="\sqrt{9+k}-\sqrt{k}=2" />. The reliable way to
-            clear two square roots is to isolate one of them <em>before</em> squaring;
-            squaring the difference as it stands leaves a <Katex tex="\sqrt{k(9+k)}" /> term
-            that needs a second round of squaring.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The velocity is exactly the derivative of <Katex tex="\sqrt{t^2+k}" />, which is
+              why part a. needs no substitution or by-parts work — just the reverse chain rule,
+              plus the constant fixed by <Katex tex="x(0)=0" />.
+            </p>
+            <p>
+              Part c. reduces to <Katex tex="\sqrt{9+k}-\sqrt{k}=2" />. The reliable way to
+              clear two square roots is to isolate one of them <em>before</em> squaring;
+              squaring the difference as it stands leaves a <Katex tex="\sqrt{k(9+k)}" /> term
+              that needs a second round of squaring.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

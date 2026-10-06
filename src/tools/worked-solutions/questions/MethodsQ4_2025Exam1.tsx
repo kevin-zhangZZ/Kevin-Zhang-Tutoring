@@ -4,7 +4,7 @@
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [26, 18, 56],
@@ -138,22 +138,24 @@ export default function MethodsQ4_2025Exam1() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Only one property of a probability distribution is needed here: the entries sum
-            to 1. Setting that up and clearing the denominators gives a quadratic in{' '}
-            <Katex tex="k" />, and both of its roots are positive — which is why the question
-            can offer two answers.
-          </p>
-          <p>
-            In part b., putting every probability over 15 up front turns the rest into
-            counting. The four values become{' '}
-            <Katex tex="\tfrac{4}{15},\tfrac{6}{15},\tfrac{3}{15},\tfrac{2}{15}" />, and both
-            remaining answers follow without any fraction arithmetic.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Only one property of a probability distribution is needed here: the entries sum
+              to 1. Setting that up and clearing the denominators gives a quadratic in{' '}
+              <Katex tex="k" />, and both of its roots are positive — which is why the question
+              can offer two answers.
+            </p>
+            <p>
+              In part b., putting every probability over 15 up front turns the rest into
+              counting. The four values become{' '}
+              <Katex tex="\tfrac{4}{15},\tfrac{6}{15},\tfrac{3}{15},\tfrac{2}{15}" />, and both
+              remaining answers follow without any fraction arithmetic.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

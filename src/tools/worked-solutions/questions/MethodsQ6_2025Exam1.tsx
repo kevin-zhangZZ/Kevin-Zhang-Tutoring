@@ -4,7 +4,7 @@
 // Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [27, 73],
@@ -85,16 +85,18 @@ export default function MethodsQ6_2025Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            The requested form <Katex tex="\tfrac{a}{2^b}" /> is a hint, not decoration. With{' '}
-            <Katex tex="p=\tfrac14" /> every probability has a power of 4 underneath, and{' '}
-            <Katex tex="4^6=2^{12}" /> — so keeping everything over 4096 rather than
-            simplifying term by term makes the last step a single rewrite.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              The requested form <Katex tex="\tfrac{a}{2^b}" /> is a hint, not decoration. With{' '}
+              <Katex tex="p=\tfrac14" /> every probability has a power of 4 underneath, and{' '}
+              <Katex tex="4^6=2^{12}" /> — so keeping everything over 4096 rather than
+              simplifying term by term makes the last step a single rewrite.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard letter="a" topic="Binomial Variance" marks={1} statement={<>Find <Katex tex="\text{var}(X)" />.</>} examinerReport={EXAM_A}>
         <WorkingTable rows={ROWS_A} />

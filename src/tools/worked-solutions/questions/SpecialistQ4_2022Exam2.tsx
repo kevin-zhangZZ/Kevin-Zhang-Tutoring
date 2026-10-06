@@ -8,7 +8,7 @@
 // ball-to-hole distance near the hole: level with the hole at t = 3.5 is not the minimum).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
 import { Explore, lazyWidget } from '../Explore'
 import diagramSrc from './spec-2022e2-q4-diagram.png'
@@ -212,26 +212,28 @@ export default function SpecialistQ4_2022Exam2() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Every part of this question is one of the four standard things you do to a
-            position vector: differentiate it (a.), take the magnitude of that (b.), minimise
-            a distance (c.), and integrate the speed (d.). Knowing which of{' '}
-            <Katex tex="\underset{\sim}{r}" />, <Katex tex="\left|\underset{\sim}{r}\right|" />,{' '}
-            <Katex tex="\underset{\sim}{\dot r}" /> and{' '}
-            <Katex tex="\left|\underset{\sim}{\dot r}\right|" /> a phrase is asking for is most
-            of the work.
-          </p>
-          <p>
-            The one trap is the direction the angle is measured from. Here{' '}
-            <Katex tex="\theta" /> is measured from the forward direction{' '}
-            <Katex tex="\underset{\sim}{j}" /> (the <Katex tex="y" />-axis), not from the{' '}
-            <Katex tex="x" />-axis, so <Katex tex="\theta" /> is small. A quick look at the
-            diagram settles it before any arithmetic.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Every part of this question is one of the four standard things you do to a
+              position vector: differentiate it (a.), take the magnitude of that (b.), minimise
+              a distance (c.), and integrate the speed (d.). Knowing which of{' '}
+              <Katex tex="\underset{\sim}{r}" />, <Katex tex="\left|\underset{\sim}{r}\right|" />,{' '}
+              <Katex tex="\underset{\sim}{\dot r}" /> and{' '}
+              <Katex tex="\left|\underset{\sim}{\dot r}\right|" /> a phrase is asking for is most
+              of the work.
+            </p>
+            <p>
+              The one trap is the direction the angle is measured from. Here{' '}
+              <Katex tex="\theta" /> is measured from the forward direction{' '}
+              <Katex tex="\underset{\sim}{j}" /> (the <Katex tex="y" />-axis), not from the{' '}
+              <Katex tex="x" />-axis, so <Katex tex="\theta" /> is small. A quick look at the
+              diagram settles it before any arithmetic.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

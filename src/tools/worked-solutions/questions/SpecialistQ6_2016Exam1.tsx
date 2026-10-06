@@ -56,7 +56,7 @@ const ROWS: WorkingRow[] = [
 export default function SpecialistQ6_2016Exam1() {
   return (
     <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
-      <Background title="Question 6 (3 marks)">
+      <Background title="Question 6 (3 marks)" always>
         <p>
           Write <Katex tex="\dfrac{\left(1-\sqrt3i\right)^4}{1+\sqrt3i}" /> in the form{' '}
           <Katex tex="a+bi" />, where <Katex tex="a" /> and <Katex tex="b" /> are real

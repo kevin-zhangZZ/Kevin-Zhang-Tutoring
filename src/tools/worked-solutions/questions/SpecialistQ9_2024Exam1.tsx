@@ -5,7 +5,7 @@
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
   marks: [68, 32],
@@ -127,21 +127,23 @@ export default function SpecialistQ9_2024Exam1() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-        <Background>
-          <p>
-            Velocity is given against <em>position</em>, not time, so the right tool is{' '}
-            <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> from the formula sheet.
-            It takes the given expression directly — there is no need to find{' '}
-            <Katex tex="v" />, let alone <Katex tex="x(t)" />.
-          </p>
-          <p>
-            Part a. is a reading question as much as a mathematical one. The report notes
-            many students treated "10% or more above the speed limit" as though it meant
-            "above the speed limit", and so never reached the 44 the question turns on.
-          </p>
-        </Background>
-      </div>
+      <DetailOnly>
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
+          <Background>
+            <p>
+              Velocity is given against <em>position</em>, not time, so the right tool is{' '}
+              <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> from the formula sheet.
+              It takes the given expression directly — there is no need to find{' '}
+              <Katex tex="v" />, let alone <Katex tex="x(t)" />.
+            </p>
+            <p>
+              Part a. is a reading question as much as a mathematical one. The report notes
+              many students treated "10% or more above the speed limit" as though it meant
+              "above the speed limit", and so never reached the 44 the question turns on.
+            </p>
+          </Background>
+        </div>
+      </DetailOnly>
 
       <PartCard
         letter="a"

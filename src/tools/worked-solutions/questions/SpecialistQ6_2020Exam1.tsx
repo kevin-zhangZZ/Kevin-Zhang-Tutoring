@@ -14,7 +14,7 @@
 // too-short sketch (interactives/spec-2020e1-q6c-build.tsx).
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './spec-2020e1-q6c-sketch.png'
 import blankAxesSrc from './spec-2020e1-q6c-blank-axes.png'
@@ -228,24 +228,26 @@ export default function SpecialistQ6_2020Exam1() {
         </Explore>
         {/* In a div so that "Hide answers" mode holds it back with the working: a bare Background
             is always shown, and this one is an answer. */}
-        <div>
-        <Background title="Another Way, Straight From Part a">
-          <p>
-            Complete the square in part a.&apos;s answer:
-          </p>
-          <Katex display tex="f'(x)=\frac{3}{9(x-2)^2+1}" />
-          <p>
-            The denominator is 1 at <Katex tex="x=2" /> and bigger everywhere else, so the gradient
-            is largest at <Katex tex="x=2" />, where <Katex tex="f'(2)=3" />. As <Katex tex="x" />{' '}
-            increases towards 2, <Katex tex="(x-2)^2" /> shrinks, so the gradient rises (concave up);
-            past 2 it grows, so the gradient falls (concave down). A gradient that rises to a maximum
-            and then falls is a change of concavity, which is the point of inflection. This reads
-            the answer straight off part a., which is what &ldquo;Hence&rdquo; suggests; the
-            report&apos;s answer uses the sign of <Katex tex="f''" /> instead. Either way, the
-            change of concavity has to be stated explicitly.
-          </p>
-        </Background>
-        </div>
+        <DetailOnly>
+          <div>
+          <Background title="Another Way, Straight From Part a">
+            <p>
+              Complete the square in part a.&apos;s answer:
+            </p>
+            <Katex display tex="f'(x)=\frac{3}{9(x-2)^2+1}" />
+            <p>
+              The denominator is 1 at <Katex tex="x=2" /> and bigger everywhere else, so the gradient
+              is largest at <Katex tex="x=2" />, where <Katex tex="f'(2)=3" />. As <Katex tex="x" />{' '}
+              increases towards 2, <Katex tex="(x-2)^2" /> shrinks, so the gradient rises (concave up);
+              past 2 it grows, so the gradient falls (concave down). A gradient that rises to a maximum
+              and then falls is a change of concavity, which is the point of inflection. This reads
+              the answer straight off part a., which is what &ldquo;Hence&rdquo; suggests; the
+              report&apos;s answer uses the sign of <Katex tex="f''" /> instead. Either way, the
+              change of concavity has to be stated explicitly.
+            </p>
+          </Background>
+          </div>
+        </DetailOnly>
         <WrongMethod
           title="f″(2) = 0, so there is a point of inflection at x = 2"
           source="Examiner's report"
