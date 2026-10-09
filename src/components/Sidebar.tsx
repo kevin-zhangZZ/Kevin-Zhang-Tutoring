@@ -1,57 +1,81 @@
 import { NavLink } from 'react-router-dom'
-import { tools, contactTool } from '../tools/registry'
+import { Fragment } from 'react'
+import { tools, toolGroups, contactTool } from '../tools/registry'
+import ToolIcon, { ToolIconName } from './ToolIcon'
 
-// Home + Tools nav links — shared between the desktop rail (collapsible) and
-// the mobile dropdown banner in Layout.tsx, so both stay in sync.
+// One menu row. Icons sit muted until the row is hovered or current, so the names lead and
+// the current page is the one thing in colour.
+function NavItem({ to, end, icon, label, collapsed, onNavigate }: {
+  to: string
+  end?: boolean
+  icon: ToolIconName
+  label: string
+  collapsed?: boolean
+  onNavigate?: () => void
+}) {
+  return (
+    <NavLink
+      to={to}
+      end={end}
+      onClick={onNavigate}
+      title={collapsed ? label : undefined}
+      aria-label={collapsed ? label : undefined}
+      className={({ isActive }) =>
+        `group flex items-center gap-3 h-9 [@media(pointer:coarse)]:h-11 px-2.5 rounded-lg text-[13.5px] transition-colors ${collapsed ? 'justify-center' : ''} ${
+          isActive
+            ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-200 font-semibold'
+            : 'text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-100 dark:hover:bg-gray-800/70 hover:text-gray-950 dark:hover:text-white'
+        }`
+      }
+    >
+      {({ isActive }) => (
+        <>
+          <ToolIcon
+            name={icon}
+            className={`transition-colors ${
+              isActive
+                ? 'text-blue-600 dark:text-blue-400'
+                : 'text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-200'
+            }`}
+          />
+          {!collapsed && <span className="truncate">{label}</span>}
+        </>
+      )}
+    </NavLink>
+  )
+}
+
+// Home + the tools, grouped by what they're for — shared between the desktop rail
+// (collapsible) and the mobile dropdown banner in Layout.tsx, so both stay in sync.
 export function NavLinks({ collapsed, onNavigate }: { collapsed?: boolean; onNavigate?: () => void }) {
   return (
-    <>
-      <NavLink
-        to="/"
-        end
-        onClick={onNavigate}
-        title={collapsed ? 'Home' : undefined}
-        aria-label={collapsed ? 'Home' : undefined}
-        className={({ isActive }) =>
-          `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${collapsed ? 'justify-center' : ''} ${
-            isActive
-              ? 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
-              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
-          }`
-        }
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="flex-shrink-0">
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        {!collapsed && 'Home'}
-      </NavLink>
+    <div className="flex flex-col gap-0.5">
+      <NavItem to="/" end icon="home" label="Home" collapsed={collapsed} onNavigate={onNavigate} />
 
-      {!collapsed && (
-        <div className="mt-3 mb-1 px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider">
-          Tools
-        </div>
-      )}
-
-      {tools.filter(tool => tool.section !== 'contact').map(tool => (
-        <NavLink
-          key={tool.id}
-          to={tool.route}
-          onClick={onNavigate}
-          title={collapsed ? tool.name : undefined}
-          aria-label={collapsed ? tool.name : undefined}
-          className={({ isActive }) =>
-            `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${collapsed ? 'justify-center' : ''} ${
-              isActive
-                ? 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
-                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
-            }`
-          }
-        >
-          <span aria-hidden="true" className="w-[15px] flex-shrink-0 inline-flex items-center justify-center text-sm leading-none">{tool.icon}</span>
-          {!collapsed && tool.name}
-        </NavLink>
-      ))}
-    </>
+      {toolGroups.map(group => {
+        const items = tools.filter(t => t.group === group)
+        if (!items.length) return null
+        return (
+          <Fragment key={group}>
+            {collapsed ? (
+              <div className="my-2 mx-2 border-t border-gray-200 dark:border-gray-800" aria-hidden="true" />
+            ) : (
+              <div className="mt-5 mb-1 px-2.5 text-xs font-semibold text-gray-500 dark:text-gray-400">{group}</div>
+            )}
+            {items.map(tool => (
+              <NavItem
+                key={tool.id}
+                to={tool.route}
+                icon={tool.icon}
+                label={tool.navName ?? tool.name}
+                collapsed={collapsed}
+                onNavigate={onNavigate}
+              />
+            ))}
+          </Fragment>
+        )
+      })}
+    </div>
   )
 }
 
@@ -74,7 +98,7 @@ export function ContactPrompt({ collapsed, onNavigate }: { collapsed?: boolean; 
           }`
         }
       >
-        <span className="text-sm leading-none" aria-hidden="true">{contactTool.icon}</span>
+        <ToolIcon name={contactTool.icon} />
       </NavLink>
     )
   }

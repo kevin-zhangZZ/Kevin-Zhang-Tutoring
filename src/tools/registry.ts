@@ -1,4 +1,5 @@
 import { ComponentType, lazy } from 'react'
+import type { ToolIconName } from '../components/ToolIcon'
 
 // Each tool's code loads only when its page is opened (App.tsx wraps the routes in Suspense),
 // so Home and the light tools never download the worked solutions or the 3D demos.
@@ -7,8 +8,12 @@ const SpeedMaths = lazy(() => import('./speed-maths'))
 const ExamSkipGuide = lazy(() => import('./exam-skip-guide'))
 const WorkedSolutions = lazy(() => import('./worked-solutions'))
 const ExamAnalysis = lazy(() => import('./exam-analysis'))
+const StudyScore = lazy(() => import('./study-score'))
 const ContactMe = lazy(() => import('./contact-me'))
 const MiscDemonstrations = lazy(() => import('./misc-demonstrations'))
+
+export type ToolGroup = 'Exams' | 'Practice' | 'Explore'
+export const toolGroups: ToolGroup[] = ['Exams', 'Practice', 'Explore']
 
 export interface Tool {
   id: string
@@ -18,7 +23,11 @@ export interface Tool {
   tagline: string
   route: string
   component: ComponentType
-  icon: string
+  icon: ToolIconName
+  /** Shorter name for the side menu, where the full one would wrap. */
+  navName?: string
+  /** Which heading the tool sits under in the side menu. */
+  group?: ToolGroup
   /** 'contact' pages get their own place in the menu and on Home instead of a tool card. */
   section?: 'contact'
 }
@@ -33,7 +42,9 @@ export const tools: Tool[] = [
     tagline: 'Every Methods & Specialist question, 2014–2025',
     route: '/worked-solutions',
     component: WorkedSolutions,
-    icon: '🎬',
+    icon: 'explanations',
+    group: 'Exams',
+    navName: 'Exam Explanations',
   },
   {
     id: 'exam-analysis',
@@ -42,7 +53,18 @@ export const tools: Tool[] = [
     tagline: 'Topics, marks and difficulty, 2014–2025',
     route: '/exam-analysis',
     component: ExamAnalysis,
-    icon: '📊',
+    icon: 'analysis',
+    group: 'Exams',
+  },
+  {
+    id: 'study-score',
+    name: 'Study Score Projection',
+    description: 'Enter your Methods or Specialist Exam 1 and Exam 2 marks and see the study score they would have earned in each year from 2016 to 2025.',
+    tagline: 'Your exam marks as a study score, 2016–2025',
+    route: '/study-score',
+    component: StudyScore,
+    icon: 'study-score',
+    group: 'Exams',
   },
   {
     id: 'exam-skip-guide',
@@ -51,7 +73,9 @@ export const tools: Tool[] = [
     tagline: 'What to skip in 2014–2022 papers',
     route: '/exam-skip-guide',
     component: ExamSkipGuide,
-    icon: '📋',
+    icon: 'skip-guide',
+    group: 'Exams',
+    navName: 'Skip Guide',
   },
   {
     id: 'unit-circle',
@@ -60,7 +84,8 @@ export const tools: Tool[] = [
     tagline: 'Learn and test the 16 key angles',
     route: '/unit-circle',
     component: UnitCircle,
-    icon: '◎',
+    icon: 'unit-circle',
+    group: 'Practice',
   },
   {
     id: 'speed-maths',
@@ -69,7 +94,8 @@ export const tools: Tool[] = [
     tagline: 'Mental arithmetic against the clock',
     route: '/speed-maths',
     component: SpeedMaths,
-    icon: '⚡',
+    icon: 'speed-maths',
+    group: 'Practice',
   },
   {
     id: 'misc-demonstrations',
@@ -78,7 +104,9 @@ export const tools: Tool[] = [
     tagline: 'Pyramids, prisms and nets in 3D',
     route: '/misc-demonstrations',
     component: MiscDemonstrations,
-    icon: '📐',
+    icon: 'demonstrations',
+    group: 'Explore',
+    navName: 'Demonstrations',
   },
   // Monte Carlo hidden from nav/routing for now — code kept at ./monte-carlo, unregister
   // above and re-add this block to bring it back.
@@ -89,7 +117,7 @@ export const tools: Tool[] = [
     tagline: 'Email or WeChat',
     route: '/contact-me',
     component: ContactMe,
-    icon: '✉️',
+    icon: 'contact',
     section: 'contact',
   },
 ]

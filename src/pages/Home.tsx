@@ -8,6 +8,7 @@ import { SUBJECTS, SUBJECT_NAME } from '../tools/worked-solutions/subjects'
 import { QUESTION_COUNT } from '../tools/worked-solutions/catalogCounts'
 import { questionPath, subjectPath } from '../tools/worked-solutions/paths'
 import type { QuestionMeta } from '../tools/worked-solutions/data'
+import ToolIcon from '../components/ToolIcon'
 
 // Set by the worked solutions (worked-solutions/index.tsx) each time a question is opened.
 const LAST_QUESTION_KEY = 'ws-last-question'
@@ -72,7 +73,7 @@ export default function Home() {
         <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl divide-y divide-gray-100 dark:divide-gray-800">
           {tools.map(tool => (
             <Link key={tool.id} to={tool.route} className="flex items-center gap-3 px-4 py-3">
-              <span aria-hidden="true" className="text-xl leading-none w-6 text-center">{tool.icon}</span>
+              <ToolIcon name={tool.icon} size={22} className="text-gray-500 dark:text-gray-400" />
               <span className="flex-1 min-w-0">
                 <span className="block text-[15px] font-semibold text-gray-900 dark:text-white">{tool.name}</span>
                 <span className="block text-[13px] text-gray-500 dark:text-gray-400">{tool.tagline}</span>
@@ -88,7 +89,7 @@ export default function Home() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6">
           <Link to={featured.route} className="group block">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              <span aria-hidden="true" className="mr-2">{featured.icon}</span>{featured.name}
+              <ToolIcon name={featured.icon} size={20} className="inline-block align-[-3px] mr-2 text-blue-600 dark:text-blue-400" />{featured.name}
             </h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-1 max-w-2xl">{featured.description}</p>
           </Link>
@@ -125,7 +126,7 @@ export default function Home() {
               to={tool.route}
               className="group rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md dark:hover:shadow-none transition-all duration-200"
             >
-              <div aria-hidden="true" className="text-2xl mb-3 leading-none">{tool.icon}</div>
+              <ToolIcon name={tool.icon} size={24} className="mb-3 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
               <h2 className="font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {tool.name}
               </h2>
