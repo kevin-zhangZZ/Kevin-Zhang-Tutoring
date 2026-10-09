@@ -3,6 +3,12 @@
 // original paper. Result checked with sympy and against the VCAA examination report.
 // Solution is original. Interactive (21% full marks): spec-2023e1-q8-next-derivative — the
 // tangent to y = f^(k)(x) has gradient f^(k+1), with a toggle showing f^(k) × f′ failing.
+// Concise/Detailed review (Oct 2026): working now states "true for n = 1" and "true for n = k + 1"
+// as the report's sample proof does, and labels the inductive step; the index-law trap and the
+// report's "differentiated incorrectly" comment are addressed in the `more` of rows 4 and 5.
+// Final review: row 4's reason states the target (the formula at n = k + 1) before the algebra,
+// row 6's reason says why the lone 2^k lands in the bracket, and repeats were trimmed (Background's
+// "differentiate once more" sentence, row 3's second mention of the report's sample proof).
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
@@ -29,40 +35,54 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&\textbf{Base step } (n=1): \\ &f'(x) = e^{2x}+2xe^{2x} = (2x+1)e^{2x}\end{aligned}" />,
-    reason: <>Product rule with <Katex tex="u=x" /> and <Katex tex="v=e^{2x}" />, so <Katex tex="u'=1" /> and{' '}
+    reason: <>For <Katex tex="n=1" /> the left-hand side <Katex tex="f^{(1)}(x)" /> is just <Katex tex="f'(x)" />. Product
+      rule with <Katex tex="u=x" /> and <Katex tex="v=e^{2x}" />, so <Katex tex="u'=1" /> and{' '}
       <Katex tex="v'=2e^{2x}" />. Then take out the common factor <Katex tex="e^{2x}" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&\text{Formula at } n=1: \\ &\left(2^1x+1\cdot2^{0}\right)e^{2x} = (2x+1)e^{2x}\end{aligned}" />,
-    reason: <>The two agree, so the statement is true for <Katex tex="n=1" />. Say so explicitly.</>,
+    working: <Katex display tex="\begin{aligned}&\text{Formula at } n=1: \\ &\left(2^1x+1\cdot2^{0}\right)e^{2x} = (2x+1)e^{2x} \\ &\text{so the statement is true for } n=1\end{aligned}" />,
+    reason: <>Substitute <Katex tex="n=1" /> into the right-hand side of the formula. It matches the <Katex tex="f'(x)" /> just
+      found, so write down that the statement is true for <Katex tex="n=1" />: that sentence is part of the base step.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\textbf{Inductive hypothesis:} \\ &\text{assume true for } n=k, \ k\in Z^+, \\ &\text{i.e. } f^{(k)}(x) = \left(2^kx+k\,2^{k-1}\right)e^{2x}\end{aligned}" />,
-    reason: <>State the assumption in full, as the report&apos;s sample proof does: it is the expression you will differentiate in the next step.</>,
+    reason: <>Assume the statement holds for some positive integer <Katex tex="k" />, and write out in full what that says:
+      it is the expression you differentiate in the next step.</>,
+    more: <>The letter changes on purpose: <Katex tex="n" /> stands for every positive integer in the statement you are proving, while{' '}
+      <Katex tex="k" /> is one particular value you assume it already works for.</>,
   },
   {
-    working: <Katex display tex="f^{(k+1)}(x) = \frac{d}{dx}\left[\left(2^kx+k\,2^{k-1}\right)e^{2x}\right]" />,
-    reason: <>The <Katex tex="(k+1)" />th derivative is the derivative of the <Katex tex="k" />th: differentiate the assumed
-      expression once more. The <Katex tex="(k)" /> counts differentiations; it is not a power, so{' '}
-      <Katex tex="f^{(k+1)}(x)" /> is <em>not</em> <Katex tex="f^{(k)}(x)\times f'(x)" />, which the report notes many students
-      assumed.</>,
+    working: <Katex display tex="\begin{aligned}&\textbf{Inductive step } (n=k+1): \\ &f^{(k+1)}(x) = \frac{d}{dx}\left[\left(2^kx+k\,2^{k-1}\right)e^{2x}\right]\end{aligned}" />,
+    reason: <>The <Katex tex="(k+1)" />th derivative is the derivative of the <Katex tex="k" />th, so differentiate the
+      assumed expression for <Katex tex="f^{(k)}(x)" /> once more. The aim is the formula with <Katex tex="n" /> replaced
+      by <Katex tex="k+1" />: <Katex tex="\left(2^{k+1}x+(k+1)2^{k}\right)e^{2x}" />.</>,
+    more: <>The <Katex tex="(k)" /> in <Katex tex="f^{(k)}" /> is not a power, so{' '}
+      <Katex tex="f^{(k+1)}(x)" /> is <em>not</em> <Katex tex="f^{(k)}(x)\times f'(x)" />, the index-law shortcut the
+      report says many students used. That product contains <Katex tex="e^{2x}\times e^{2x}=e^{4x}" />, which can never
+      match the <Katex tex="e^{2x}" /> in the formula, so it cannot finish the proof.</>,
   },
   {
     working: <Katex display tex="= 2^ke^{2x}+2\left(2^kx+k\,2^{k-1}\right)e^{2x}" />,
     reason: <>Product rule again, with <Katex tex="u=2^kx+k\,2^{k-1}" /> and <Katex tex="v=e^{2x}" />. Here{' '}
       <Katex tex="k" /> is a fixed number, so <Katex tex="2^k" /> and <Katex tex="k\,2^{k-1}" /> are constants:{' '}
       <Katex tex="u'=2^k" /> and <Katex tex="v'=2e^{2x}" />.</>,
+    more: <>The report notes that a number of students differentiated incorrectly at this point. Two easy slips: losing
+      the factor <Katex tex="2" /> from differentiating <Katex tex="e^{2x}" />, and treating <Katex tex="2^k" /> or{' '}
+      <Katex tex="k" /> as if they changed. Only <Katex tex="x" /> varies, so <Katex tex="u" /> is just a straight line
+      in <Katex tex="x" /> with gradient <Katex tex="2^k" />, and the constant <Katex tex="k\,2^{k-1}" /> differentiates to{' '}
+      <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="= \left(2^{k+1}x+k\,2^{k}+2^{k}\right)e^{2x}" />,
     reason: <>Take out <Katex tex="e^{2x}" /> and use index laws: <Katex tex="2\cdot2^kx=2^{k+1}x" /> and{' '}
-      <Katex tex="2\cdot k\,2^{k-1}=k\,2^{k}" />. The <Katex tex="2^k" /> from the first term joins them.</>,
+      <Katex tex="2\cdot k\,2^{k-1}=k\,2^{k}" />. The first term <Katex tex="2^ke^{2x}" /> also has the factor <Katex tex="e^{2x}" />, so it
+      leaves <Katex tex="+2^k" /> inside the bracket.</>,
   },
   {
-    working: <Katex display tex="= \left(2^{k+1}x+(k+1)2^{(k+1)-1}\right)e^{2x}" />,
+    working: <Katex display tex="\begin{aligned}&= \left(2^{k+1}x+(k+1)2^{(k+1)-1}\right)e^{2x} \\ &\text{so the statement is true for } n=k+1\end{aligned}" />,
     reason: <>Factorise <Katex tex="k\,2^k+2^k=(k+1)2^k" />, and write <Katex tex="2^k" /> as{' '}
-      <Katex tex="2^{(k+1)-1}" /> so the match is plain to see. This is the formula with <Katex tex="n=k+1" />, so the
-      statement is true for <Katex tex="n=k+1" />.</>,
+      <Katex tex="2^{(k+1)-1}" /> so the match is plain to see: this is the formula with <Katex tex="n" /> replaced
+      by <Katex tex="k+1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{aligned}&\text{True for } n=1, \text{ and} \\ &\text{true for } n=k \implies \text{true for } n=k+1, \\ &\text{so by mathematical induction} \\ &\text{it is true for all } n\in Z^+.\end{aligned}}" />,
@@ -98,10 +118,9 @@ export default function SpecialistQ8_2023Exam1() {
             proof has all four parts, so write each even when it is a single line.
           </p>
           <p>
-            The inductive step here is a single product rule. The one thing to watch is that
-            "the next derivative" means <em>differentiate what you assumed</em> — the report
-            notes many students assumed <Katex tex="f^{(k+1)}(x)=f^{(k)}(x)\times f'(x)" />, as
-            if the <Katex tex="(k)" /> were a power.
+            The notation: the bracketed number in <Katex tex="f^{(n)}(x)" /> says how many times{' '}
+            <Katex tex="f" /> has been differentiated, so <Katex tex="f^{(1)}(x)=f'(x)" />,{' '}
+            <Katex tex="f^{(2)}(x)=f''(x)" />, and so on.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

@@ -3,7 +3,9 @@
 // triangle under the tangent has run 1 m and rise dv/dx. The particle covers v metres each second,
 // so the big (violet) triangle with run v has rise v·dv/dx = a: the same shape scaled up by v. At
 // x = 2 that is −7/9 per metre against −56/27 per second — the report's common slip was stopping at
-// −7/9.
+// −7/9. The slider stops at x = 2.5: beyond that the triangles flatten and their run labels collide;
+// the view stops at x = 6, past the violet triangle's widest reach (x + v = 4.875 at x = 2.5) and clear
+// of where the x = 2 tangent meets the axis (x ≈ 5.43), so the axis label isn't crossed.
 
 import { useState } from 'react'
 import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Polygon, Readout, Readouts, Slider, num } from './kit'
@@ -38,21 +40,19 @@ export default function PerMetre() {
   } else {
     notice = (
       <Notice>
-        At <M>{['x = ', x0.toFixed(2)]}</M> the velocity drops <M>{num(-dv)}</M> m s⁻¹ per metre, and the particle covers{' '}
-        <M>{num(v0)}</M> m each second, so per second it drops{' '}
-        <M>{[num(v0), ' \\times ', num(-dv), ' = ', num(-a)]}</M> m s⁻¹. That is why <M>{'a = v\\tfrac{dv}{dx}'}</M>, not{' '}
-        <M>{'\\tfrac{dv}{dx}'}</M>.{' '}
-        {x0 > 3.5
-          ? 'Far out, the curve flattens towards v = 1.5 (part b), so both drops, per metre and per second, shrink towards 0.'
-          : 'Move back to x = 2 for the exam’s case.'}
+        At <M>{['x = ', x0.toFixed(2)]}</M> the velocity drops <M>{[num(-dv), '\\ \\text{m s}^{-1}']}</M> per metre, and the
+        particle covers <M>{num(v0)}</M> m each second, so per second it drops{' '}
+        <M>{[num(v0), ' \\times ', num(-dv), ' \\approx ', num(-a), '\\ \\text{m s}^{-1}']}</M>. The violet triangle is still the
+        orange one scaled up by <M>v</M>, which is why <M>{'a = v\\tfrac{dv}{dx}'}</M>, not <M>{'\\tfrac{dv}{dx}'}</M>. Move
+        back to <M>x = 2</M> for the exam&apos;s case.
       </Notice>
     )
   }
 
   return (
     <div>
-      <Plane x={[0.4, 8]} y={[-1.6, 5.6]} xStep={1} yStep={1} height={360} xLabel="x" yLabel="v">
-        <Plot.OfX y={vel} domain={[1, 8]} color={C.f} weight={3} />
+      <Plane x={[0.4, 6]} y={[-1.6, 5.6]} xStep={1} yStep={1} height={360} xLabel="x" yLabel="v">
+        <Plot.OfX y={vel} domain={[1, 6]} color={C.f} weight={3} />
         <Line.ThroughPoints point1={[x0, v0]} point2={[x0 + 1, v0 + dv]} color={C.guide} style="dashed" weight={1.5} />
         <Polygon points={big} color={C.violet} fillOpacity={0.14} weight={2} />
         <Polygon points={small} color={C.g} fillOpacity={0.35} weight={2.5} />
@@ -70,10 +70,10 @@ export default function PerMetre() {
         <Label at={[1.15, vel(1.15)]} color={C.f} attach="e">v = (3x + 2)/(2x − 1)</Label>
       </Plane>
       <Controls>
-        <Slider label="x" value={x0} onChange={setX0} min={1.7} max={6} step={0.01} />
+        <Slider label="x" value={x0} onChange={setX0} min={1.7} max={2.5} step={0.01} />
         <Readouts>
           <Readout tex={`v = ${num(v0)}\\ \\text{m s}^{-1}`} />
-          <Readout color={C.g} tex={`\\tfrac{dv}{dx} = ${num(dv)}\\ \\text{per metre}`} />
+          <Readout color={C.g} tex={`\\tfrac{dv}{dx} = ${num(dv)}\\ \\text{m s}^{-1}\\text{ per metre}`} />
           <Readout color={C.violet} tex={`a = v\\tfrac{dv}{dx} = ${num(a)}\\ \\text{m s}^{-2}`} />
         </Readouts>
         {notice}

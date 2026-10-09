@@ -1,6 +1,9 @@
 // 2023 Specialist Mathematics — Exam 1 Question 9 (6 marks). Planes and cross products, new
 // to the 2023 study design. Question text transcribed from the original paper. Answers
 // checked with sympy and against the VCAA examination report. Solution is original.
+// Oct 2026 review: no part under 40% full marks (91/91/56/62/57), so no interactives. Rows
+// split into a short `reason` (Concise) and `more` (Detailed: checks, the report's traps).
+// 9b comment corrected to the report's own wording, "from part 9a.".
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -14,7 +17,7 @@ const EXAM_A: SAExaminerStats = {
 const EXAM_B: SAExaminerStats = {
   marks: [9, 91],
   average: 0.9,
-  comment: <>This question was also answered well and allowed students to confirm their answer from part a.</>,
+  comment: <>This question was also answered well and allowed students to confirm their answer from part 9a.</>,
 }
 
 const EXAM_C: SAExaminerStats = {
@@ -82,9 +85,13 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\overrightarrow{AD} &= \overrightarrow{OD}-\overrightarrow{OA}\\ &= 2\underset{\sim}{j}-\left(\underset{\sim}{i}+3\underset{\sim}{j}-2\underset{\sim}{k}\right)\end{aligned}" />,
     reason: <>
-      <Katex tex="D(0,2,0)" /> from part a. has position vector{' '}
-      <Katex tex="2\underset{\sim}{j}" />. If this does not come out as the vector given in
-      the question, part a. was wrong.
+      Same method, end point minus start point. <Katex tex="D(0,2,0)" /> from part a. has
+      position vector <Katex tex="2\underset{\sim}{j}" />.
+    </>,
+    more: <>
+      The question gives you <Katex tex="\overrightarrow{AD}" />, so this line doubles as a check
+      on part a.: if your <Katex tex="D" /> does not produce the given vector, part a. was wrong.
+      The report makes the same point.
     </>,
   },
   {
@@ -97,11 +104,16 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n} = \overrightarrow{AB}\times\overrightarrow{AD} = \begin{vmatrix}\underset{\sim}{i}&\underset{\sim}{j}&\underset{\sim}{k}\\-2&-5&6\\-1&-1&2\end{vmatrix}" />,
     reason: <>
-      To write a plane's Cartesian equation you need a normal vector (one perpendicular to
-      the plane). The cross product of two vectors is perpendicular to both of them, and{' '}
-      <Katex tex="\overrightarrow{AB}" />, <Katex tex="\overrightarrow{AD}" /> both lie in the
-      plane and are not parallel (neither is a multiple of the other), so their cross product
-      is normal to the plane. "Hence" points you to part b.'s vectors.
+      A plane's Cartesian equation needs a normal vector (one perpendicular to the plane).
+      "Hence" points to part b.: <Katex tex="\overrightarrow{AB}" /> and{' '}
+      <Katex tex="\overrightarrow{AD}" /> both lie in the plane, and their cross product is
+      perpendicular to both, so it is normal to the plane.
+    </>,
+    more: <>
+      This only works because the two vectors are not parallel: neither is a multiple of the
+      other (the <Katex tex="\underset{\sim}{i}" /> components are in ratio 2 but the{' '}
+      <Katex tex="\underset{\sim}{j}" /> components in ratio 5). Two parallel vectors would give
+      the zero vector, which is no use as a normal.
     </>,
   },
   {
@@ -113,36 +125,54 @@ const ROWS_C: WorkingRow[] = [
     ),
     reason: <>
       Expanding along the first row: each bracket is the <Katex tex="2\times2" /> determinant
-      left when you cover that letter's row and column. The minus in front of the{' '}
-      <Katex tex="\underset{\sim}{j}" /> term is easy to drop.
+      (<Katex tex="ad-bc" />) left when you cover that letter's row and column. The signs
+      alternate <Katex tex="+,\,-,\,+" />, so the <Katex tex="\underset{\sim}{j}" /> term
+      carries a minus sign.
+    </>,
+    more: <>
+      The report saw arithmetic errors in the cross product. Dropping that minus is the easiest
+      one to make: it turns <Katex tex="-2\underset{\sim}{j}" /> into{' '}
+      <Katex tex="+2\underset{\sim}{j}" />, and the plane equation and part d. are then wrong. The
+      other trap is the double negatives inside the brackets, such as{' '}
+      <Katex tex="-(6)(-1)=+6" />.
     </>,
   },
   {
     working: <Katex display tex="= -4\underset{\sim}{i}-2\underset{\sim}{j}-3\underset{\sim}{k}" />,
     reason: <>
-      <Katex tex="-10+6=-4" />; <Katex tex="-(-4+6)=-2" />; <Katex tex="2-5=-3" />. Check
-      before moving on: the dot product with <Katex tex="\overrightarrow{AB}" /> gives{' '}
-      <Katex tex="8+10-18=0" /> ✓ and with <Katex tex="\overrightarrow{AD}" /> gives{' '}
-      <Katex tex="4+2-6=0" /> ✓. A non-zero answer here would mean an arithmetic slip in the
-      cross product.
+      <Katex tex="-10+6=-4" />; <Katex tex="-(-4+6)=-2" />; <Katex tex="2-5=-3" />.
+    </>,
+    more: <>
+      Check before moving on: a normal must be perpendicular to both vectors. Its dot product
+      with <Katex tex="\overrightarrow{AB}" /> is <Katex tex="8+10-18=0" /> ✓ and with{' '}
+      <Katex tex="\overrightarrow{AD}" /> is <Katex tex="4+2-6=0" /> ✓. A non-zero answer means
+      a slip in the cross product, and it is worth fixing now because parts d. and e. both use
+      this vector.
     </>,
   },
   {
     working: <Katex display tex="-4x-2y-3z = -4(1)-2(3)-3(-2) = -4" />,
     reason: <>
-      The normal's components are the coefficients of <Katex tex="x" />,{' '}
-      <Katex tex="y" /> and <Katex tex="z" /> (see Background). The constant on the right is
-      the same for every point in the plane, so substitute a known point,{' '}
-      <Katex tex="A(1,3,-2)" />: <Katex tex="-4-6+6=-4" />.
+      A plane with normal <Katex tex="n_1\underset{\sim}{i}+n_2\underset{\sim}{j}+n_3\underset{\sim}{k}" />{' '}
+      has equation <Katex tex="n_1x+n_2y+n_3z=k" />. The constant <Katex tex="k" /> is the same
+      for every point in the plane, so substitute a known point, <Katex tex="A(1,3,-2)" />:{' '}
+      <Katex tex="-4-6+6=-4" />.
+    </>,
+    more: <>
+      The report also saw arithmetic errors in this substitution. The sign to watch is the last
+      term: <Katex tex="-3\times(-2)=+6" />, not <Katex tex="-6" />.
     </>,
   },
   {
     working: <Katex display tex="\boxed{4x+2y+3z = 4}" />,
     reason: <>
-      Multiplying both sides by <Katex tex="-1" /> for tidiness; the report gives both forms.
+      Multiply both sides by <Katex tex="-1" /> for tidiness; the report gives both forms.
+    </>,
+    more: <>
       Check with the other two points: <Katex tex="D(0,2,0)" /> gives{' '}
       <Katex tex="0+4+0=4" /> ✓ and <Katex tex="B(-1,-2,4)" /> gives{' '}
-      <Katex tex="-4-4+12=4" /> ✓.
+      <Katex tex="-4-4+12=4" /> ✓. A slip in either the normal or the constant would show up
+      here as a point that fails.
     </>,
   },
 ]
@@ -161,7 +191,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -\frac94}" />,
-    reason: <>
+    reason: <>Divide both sides by 4.</>,
+    more: <>
       Check: <Katex tex="4\left(-\tfrac94\right)-2+15=-9+13=4" /> ✓. A wrong plane equation in
       part c. carries straight into this answer, which is why the checks with{' '}
       <Katex tex="B" /> and <Katex tex="D" /> there are worth the time.
@@ -176,9 +207,27 @@ const ROWS_E: WorkingRow[] = [
       A parallelogram's area is base <Katex tex="\times" /> perpendicular height,{' '}
       <Katex tex="\left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|\sin\theta" />{' '}
       where <Katex tex="\theta" /> is the angle between the sides, and that is exactly{' '}
-      <Katex tex="\left|\overrightarrow{AB}\times\overrightarrow{AD}\right|" />. Multiplying
-      the two lengths alone leaves out the <Katex tex="\sin\theta" />, so it is only right when
-      the sides are perpendicular.
+      <Katex tex="\left|\overrightarrow{AB}\times\overrightarrow{AD}\right|" />.
+    </>,
+    more: <>
+      <p>
+        A common error, the report says, was the product{' '}
+        <Katex tex="\left|\overrightarrow{AB}\right|\times\left|\overrightarrow{AD}\right|" />.
+        That leaves out the <Katex tex="\sin\theta" />: it treats the parallelogram as a
+        rectangle, so it is only right when the sides are perpendicular. With{' '}
+        <Katex tex="AB" /> as the base, the height is{' '}
+        <Katex tex="\left|\overrightarrow{AD}\right|\sin\theta" />, not the full slanted side{' '}
+        <Katex tex="\left|\overrightarrow{AD}\right|" />.
+      </p>
+      <p>
+        Here <Katex tex="\left|\overrightarrow{AB}\right|=\sqrt{4+25+36}=\sqrt{65}" /> and{' '}
+        <Katex tex="\left|\overrightarrow{AD}\right|=\sqrt{1+1+4}=\sqrt{6}" />, so that product
+        is <Katex tex="\sqrt{390}\approx19.7" />, about 3.7 times the true area of{' '}
+        <Katex tex="\sqrt{29}\approx5.39" /> found below. These sides are far from
+        perpendicular: <Katex tex="\overrightarrow{AB}\cdot\overrightarrow{AD}=2+5+12=19" />,
+        not 0, and the angle between them is only about <Katex tex="16^\circ" />, so{' '}
+        <Katex tex="\sin\theta\approx0.27" /> shrinks the area a lot.
+      </p>
     </>,
   },
   {
@@ -191,13 +240,14 @@ const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{\sqrt{29} \ \text{square units}}" />,
     reason: <>
-      About <Katex tex="5.39" />. The common error,{' '}
-      <Katex tex="\left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|=\sqrt{65}\sqrt{6}=\sqrt{390}\approx19.7" />,
-      is almost four times too big: these sides are far from perpendicular{' '}
-      (<Katex tex="\overrightarrow{AB}\cdot\overrightarrow{AD}=2+5+12=19" />, not 0; the angle
-      between them is only about <Katex tex="16^\circ" />). Triangle <Katex tex="ABD" /> is
-      half the parallelogram (diagonal <Katex tex="BD" /> cuts it in two), so{' '}
-      <Katex tex="\tfrac{\sqrt{29}}{2}" /> answers a different question.
+      The whole parallelogram, not triangle <Katex tex="ABD" />, so no{' '}
+      <Katex tex="\tfrac12" />.
+    </>,
+    more: <>
+      A small number of students gave the area of triangle <Katex tex="ABD" /> instead. The
+      diagonal <Katex tex="BD" /> cuts the parallelogram into two equal triangles, so{' '}
+      <Katex tex="\tfrac{\sqrt{29}}{2}" /> is the triangle's area and answers a different
+      question.
     </>,
   },
 ]
@@ -221,7 +271,7 @@ export default function SpecialistQ9_2023Exam1() {
             <p>
               Planes and the cross product arrived with the 2023 study design, and this question
               is the standard sequence: two vectors in the plane, their cross product as a
-              normal, one known point to fix the constant. Everything after that is
+              normal, one known point to fix the constant. Part d. is then one more
               substitution.
             </p>
             <p>

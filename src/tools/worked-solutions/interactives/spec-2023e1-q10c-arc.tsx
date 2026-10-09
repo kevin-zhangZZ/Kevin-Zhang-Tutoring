@@ -2,7 +2,9 @@
 // of the circle (x − 2)² + (y − 1)² = 9 from part b. Because x − 2 = 3cos(2t) and y − 1 = 3sin(2t),
 // the particle sits at angle 2t about the centre C(2, 1), so by time a it has turned 2a (not a) and
 // the arc is radius × angle = 3 × 2a = 6a — the same as speed 6 × time a. A slider moves a over one
-// full lap (0 to π); the arc readout reaches 3π/4 ≈ 2.36 at a = π/8, where the angle ACB is π/4.
+// full lap (0 to π); the arc readout reaches 3π/4 ≈ 2.36 at a = π/8, where the angle ACB is π/4. A second
+// button jumps to the trap a = π/4 (what you get by taking the angle as a): the particle has turned π/2,
+// so the arc is 3π/2, twice the required distance.
 
 import { useState } from 'react'
 import { ActionButton, Buttons, C, Circle, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, num } from './kit'
@@ -11,6 +13,7 @@ const CX = 2
 const CY = 1
 const R = 3
 const TARGET = Math.PI / 8
+const TRAP = Math.PI / 4
 const pos = (th: number): [number, number] => [CX + R * Math.cos(th), CY + R * Math.sin(th)]
 
 /** The side of a point on the circle that faces outward, for its label. */
@@ -23,13 +26,13 @@ function outward(th: number): 'e' | 'ne' | 'n' | 'nw' | 'w' | 'sw' | 's' | 'se' 
 export default function ArcWidget() {
   const [a, setA] = useState(0.55)
   const move = (v: number) =>
-    setA(Math.abs(v - TARGET) < 0.012 ? TARGET : Math.abs(v - Math.PI / 2) < 0.012 ? Math.PI / 2 : v)
+    setA(Math.abs(v - TARGET) < 0.012 ? TARGET : Math.abs(v - TRAP) < 0.012 ? TRAP : v)
 
   const angle = 2 * a
   const arc = R * angle
   const B = pos(angle)
   const atTarget = Math.abs(a - TARGET) < 1e-9
-  const atHalf = Math.abs(a - Math.PI / 2) < 1e-9
+  const atTrap = Math.abs(a - TRAP) < 1e-9
   const wedgeR = 0.65
 
   let notice
@@ -40,27 +43,29 @@ export default function ArcWidget() {
           <M>{'a = \\tfrac{\\pi}{8}'}</M>: the particle has turned <M>{'2a = \\tfrac{\\pi}{4}'}</M> about the centre
         </b>
         , so the arc is <M>{'3\\times\\tfrac{\\pi}{4} = \\tfrac{3\\pi}{4}'}</M>, as required. It is the same number as
-        speed <M>{'\\times'}</M> time, <M>{'6\\times\\tfrac{\\pi}{8}'}</M>. Now press the halfway button to see how quickly
-        the double angle takes the particle round.
+        speed <M>{'\\times'}</M> time, <M>{'6\\times\\tfrac{\\pi}{8}'}</M>. Now press the <M>{'a = \\tfrac{\\pi}{4}'}</M>{' '}
+        button to see the answer you get if you take the angle as <M>{'a'}</M>.
       </Notice>
     )
-  } else if (atHalf) {
+  } else if (atTrap) {
     notice = (
-      <Notice>
+      <Notice tone="warn">
         <b>
-          Only <M>{'a = \\tfrac{\\pi}{2}'}</M> and the particle is already halfway round
+          <M>{'a = \\tfrac{\\pi}{4}'}</M> overshoots
         </b>
-        : the angle is <M>{'2a = \\pi'}</M>, not <M>{'\\tfrac{\\pi}{2}'}</M>. The <M>{'2t'}</M> inside{' '}
-        <M>{'\\cos(2t)'}</M> and <M>{'\\sin(2t)'}</M> makes it lap the circle every <M>{'\\pi'}</M> seconds. If you treat
-        the angle as <M>{'a'}</M>, every arc length comes out half its true size.
+        : it solves <M>{'3a = \\tfrac{3\\pi}{4}'}</M>, which takes the angle as <M>{'a'}</M>. But the particle has
+        turned <M>{'2a = \\tfrac{\\pi}{2}'}</M>, a quarter of the circle, so the arc is{' '}
+        <M>{'3\\times\\tfrac{\\pi}{2} = \\tfrac{3\\pi}{2}'}</M>, twice the required <M>{'\\tfrac{3\\pi}{4}'}</M>. The{' '}
+        <M>{'2t'}</M> inside <M>{'\\cos(2t)'}</M> and <M>{'\\sin(2t)'}</M> doubles the angle, so halve <M>{'a'}</M>.
       </Notice>
     )
   } else {
     notice = (
       <Notice>
-        <M>{'B'}</M> is where the particle is at time <M>{'a'}</M>. Since <M>{'x-2=3\\cos(2a)'}</M> and{' '}
-        <M>{'y-1=3\\sin(2a)'}</M>, the angle <M>{'ACB'}</M> at the centre is <M>{'2a'}</M>, twice <M>{'a'}</M>. So the
-        distance along the curve is the arc, radius <M>{'\\times'}</M> angle <M>{'= 3\\times 2a'}</M>. Slide{' '}
+        <M>{'B'}</M> is where the particle is at time <M>{'a'}</M>. Since <M>{'{x-2=3\\cos(2a)}'}</M> and{' '}
+        <M>{'{y-1=3\\sin(2a)}'}</M>, the particle has turned through <M>{'2a'}</M> about the centre <M>{'C'}</M>, twice{' '}
+        <M>{'a'}</M>. So the distance along the curve is the arc, radius <M>{'\\times'}</M> angle{' '}
+        <M>{'= 3\\times 2a'}</M>. Slide{' '}
         <M>{'a'}</M> until the arc is <M>{'\\tfrac{3\\pi}{4}\\approx 2.36'}</M>.
       </Notice>
     )
@@ -113,16 +118,16 @@ export default function ArcWidget() {
           min={0}
           max={Math.PI}
           step={0.001}
-          format={v => (Math.abs(v - TARGET) < 1e-9 ? 'π/8' : Math.abs(v - Math.PI / 2) < 1e-9 ? 'π/2' : num(v, 3))}
+          format={v => (Math.abs(v - TARGET) < 1e-9 ? 'π/8' : Math.abs(v - TRAP) < 1e-9 ? 'π/4' : num(v, 3))}
         />
         <Buttons>
           <ActionButton label={<>Arc <M>{'= \\tfrac{3\\pi}{4}'}</M></>} onClick={() => setA(TARGET)} />
-          <ActionButton label={<>Halfway: <M>{'a = \\tfrac{\\pi}{2}'}</M></>} onClick={() => setA(Math.PI / 2)} />
+          <ActionButton label={<>Try <M>{'a = \\tfrac{\\pi}{4}'}</M></>} onClick={() => setA(TRAP)} />
         </Buttons>
         <Readouts>
-          <Readout tex={`\\angle ACB = 2a \\approx ${num(angle, 2)}`} color={C.g} />
+          <Readout tex={`\\text{angle turned} = 2a \\approx ${num(angle, 2)}`} color={C.g} />
           <Readout tex={`\\text{arc } AB = 3\\times 2a \\approx ${num(arc, 2)}`} color={atTarget ? C.good : C.f} />
-          <Readout tex={`\\tfrac{3\\pi}{4}\\approx 2.36`} />
+          <Readout tex={`\\text{target } \\tfrac{3\\pi}{4}\\approx 2.36`} />
         </Readouts>
         {notice}
       </Controls>

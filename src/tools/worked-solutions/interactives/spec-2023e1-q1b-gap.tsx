@@ -26,8 +26,13 @@ const Y: [number, number] = [-8, 14]
 const LEFT_END = 8 - Math.sqrt(53)
 const RIGHT_START = Math.sqrt(53) - 6
 
-// Number only every second grid line, and nothing outside the ranges (a phone pads the view).
-const fours = (v: number) => (v % 4 === 0 && v !== 0 && v >= X[0] && v <= X[1] ? String(v) : '')
+// Number only every second x grid line, and nothing outside the range (a phone pads the view).
+// −4 is skipped: the curve and y = x + 2 cross the x-axis right there and run over it on a phone;
+// 12 is skipped: it sits hard against the axis's own x label at the right edge.
+// No y numbers: the steep branches hug the y-axis between x = 0 and x = 1, running over every
+// y-axis number on a phone — the readouts give the heights instead.
+const xTicks = (v: number) =>
+  v % 4 === 0 && v !== 0 && v !== -4 && v !== 12 && v >= X[0] && v <= X[1] ? String(v) : ''
 
 export default function GapToAsymptote() {
   const [x, setX] = useState(-2)
@@ -51,7 +56,7 @@ export default function GapToAsymptote() {
   } else if (showWrong) {
     notice = (
       <Notice tone="warn">
-        The red sketch goes through the right intercepts but drifts <b>away</b> from <M>y = x + 2</M> at both ends.
+        The red sketch goes through the right intercepts but drifts <b>away</b> from <M>y = x + 2</M> at its outer ends.
         That can&apos;t happen: the gap from <M>f</M> to the line is exactly <M>{'-\\frac{4}{x-1}'}</M>, and the
         further <M>x</M> is from <M>1</M>, the closer that gets to <M>0</M> (here it is <M>{num(g)}</M>). Drag <M>x</M> out
         to <M>-10</M> or <M>12</M>: the green gap only ever gets shorter, so the real curve keeps closing in on the line.
@@ -94,7 +99,7 @@ export default function GapToAsymptote() {
 
   return (
     <div className="space-y-3">
-      <Plane x={X} y={Y} xStep={2} yStep={2} height={340} labels={fours}>
+      <Plane x={X} y={Y} xStep={2} yStep={2} height={340} xLabels={xTicks} yLabels={false}>
         <Line.ThroughPoints point1={[1, 0]} point2={[1, 1]} color={C.guide} style="dashed" />
         <Label at={[1, 10.6]} attach="e" color={C.guide} size={12}>
           x = 1

@@ -4,6 +4,8 @@
 // and against the VCAA examination report. Solution is original.
 // Widget (part b): interactives/spec-2023e1-q1b-gap.tsx — slide a probe along the curve to see the
 // gap to y = x + 2 is −4/(x − 1), so each branch closes in on its asymptotes and never retreats.
+// Concise/Detailed pass (Oct 2026): alternative methods, checks and the report's two errors
+// (retreating branches, missing y = x + 2) sit in each row's `more`; reasons stand alone.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -43,30 +45,34 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x^2+x-6 = x(x-1)+2(x-1)-4" />,
-    reason: <>To divide by <Katex tex="x-1" />, write the numerator as multiples of <Katex tex="(x-1)" />. To get the <Katex tex="x^2" /> term use <Katex tex="x(x-1)=x^2-x" />; to then reach <Katex tex="+x" /> you need <Katex tex="2x" /> more, so add <Katex tex="2(x-1)=2x-2" />. That makes <Katex tex="x^2+x-2" />, which is <Katex tex="4" /> more than <Katex tex="x^2+x-6" />, so subtract <Katex tex="4" />.</>,
+    reason: <>To divide by <Katex tex="x-1" />, rewrite the numerator using multiples of <Katex tex="(x-1)" />. Start with <Katex tex="x(x-1)=x^2-x" /> for the <Katex tex="x^2" /> term; you need <Katex tex="+x" />, not <Katex tex="-x" />, which is <Katex tex="2x" /> more, so add <Katex tex="2(x-1)=2x-2" />. That gives <Katex tex="x^2+x-2" />, which is <Katex tex="4" /> more than <Katex tex="x^2+x-6" />, so subtract <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{x(x-1)}{x-1}+\frac{2(x-1)}{x-1}-\frac{4}{x-1}" />,
-    reason: <>Split into three fractions over <Katex tex="x-1" />: the first two cancel to <Katex tex="x" /> and <Katex tex="2" />. Long division gives the same result.</>,
+    reason: <>Divide each piece by <Katex tex="x-1" />, giving three fractions.</>,
+    more: <>Long division (or synthetic division) gives the same result: quotient <Katex tex="x+2" />, remainder <Katex tex="-4" />, so <Katex tex="f(x)=x+2+\tfrac{-4}{x-1}" />. Use whichever method you are fastest and most accurate with.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = x+2-\frac{4}{x-1}}" />,
-    reason: <>Check by recombining over <Katex tex="x-1" />: <Katex tex="(x+2)(x-1)-4=x^2+x-2-4=x^2+x-6" /> ✓. The quotient <Katex tex="x+2" /> becomes the oblique asymptote in part b. As required.</>,
+    reason: <>The first two fractions cancel to <Katex tex="x" /> and <Katex tex="2" />. As required.</>,
+    more: <>The report notes some students made algebraic or arithmetic errors, so check by recombining over <Katex tex="x-1" />: <Katex tex="(x+2)(x-1)-4=x^2+x-2-4=x^2+x-6" /> ✓.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x-1 = 0 \implies x = 1 \ \text{(vertical asymptote)}" />,
-    reason: <><Katex tex="f" /> is undefined where the denominator is <Katex tex="0" />. At <Katex tex="x=1" /> the numerator is <Katex tex="1+1-6=-4\ne0" />, so the graph has a vertical asymptote there (not just a hole).</>,
+    reason: <><Katex tex="f" /> is undefined where the denominator is <Katex tex="0" />. At <Katex tex="x=1" /> the numerator is <Katex tex="1+1-6=-4\ne0" />, so the graph has a vertical asymptote there.</>,
+    more: <>If the numerator had also been <Katex tex="0" /> at <Katex tex="x=1" />, the factor <Katex tex="(x-1)" /> would cancel, and the graph would just have a hole (one missing point) instead of an asymptote.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&x\to\pm\infty \implies \tfrac{4}{x-1}\to0\\&\implies y = x+2 \ \text{(oblique asymptote)}\end{aligned}" />,
-    reason: <>From part a, <Katex tex="f(x)" /> is <Katex tex="x+2" /> plus the extra piece <Katex tex="-\tfrac{4}{x-1}" />. As <Katex tex="x" /> gets large in either direction that piece shrinks to <Katex tex="0" />, so the graph gets closer and closer to the line <Katex tex="y=x+2" />. Both asymptotes must be drawn and labelled with their equations; the report notes the oblique asymptote was sometimes missing.</>,
+    reason: <>From part a, <Katex tex="f(x)" /> is <Katex tex="x+2" /> plus the extra piece <Katex tex="-\tfrac{4}{x-1}" />. As <Katex tex="x" /> gets large in either direction that piece shrinks to <Katex tex="0" />, so the graph gets closer and closer to the line <Katex tex="y=x+2" />.</>,
+    more: <>The report notes <Katex tex="y=x+2" /> was sometimes missing, even on graphs with reasonable asymptotic behaviour. The question asks for any asymptotes, and a slanted line counts. Draw it as a dashed line labelled with its equation, just like <Katex tex="x=1" />, before you draw the curve: then each branch has a line to close in on.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}f(x) = 0 &\implies x^2+x-6 = 0\\ &\implies (x+3)(x-2) = 0\\ &\implies x = -3 \ \text{or} \ x = 2\end{aligned}" />,
-    reason: <>A fraction is <Katex tex="0" /> only when its numerator is <Katex tex="0" /> (and its denominator is not). Neither <Katex tex="-3" /> nor <Katex tex="2" /> is <Katex tex="1" />, so both are valid. One intercept on each branch: <Katex tex="x=-3" /> is left of the asymptote <Katex tex="x=1" />, and <Katex tex="x=2" /> is right of it.</>,
+    reason: <>A fraction is <Katex tex="0" /> only when its numerator is <Katex tex="0" /> (and its denominator is not); neither <Katex tex="-3" /> nor <Katex tex="2" /> is <Katex tex="1" />, so both count. <Katex tex="x=-3" /> is left of the asymptote <Katex tex="x=1" /> and <Katex tex="x=2" /> is right of it: one intercept on each branch.</>,
   },
   {
     working: <Katex display tex="f(0) = \frac{-6}{-1} = 6 \implies (0,\,6)" />,
@@ -74,15 +80,17 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x) = 1+\frac{4}{(x-1)^2} > 0 \ \text{ for all } x\ne1" />,
-    reason: <>Differentiate the part a form: the derivative of <Katex tex="-4(x-1)^{-1}" /> is <Katex tex="4(x-1)^{-2}" />, which is positive because <Katex tex="(x-1)^2>0" />. So <Katex tex="f'(x)>0" />: there are no stationary points, and each branch is increasing from left to right.</>,
+    reason: <>Differentiate the part a form: the derivative of <Katex tex="-4(x-1)^{-1}" /> is <Katex tex="4(x-1)^{-2}" />, which is positive because <Katex tex="(x-1)^2>0" />. So there are no stationary points, and each branch is increasing from left to right.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}x<1&: \ -\tfrac{4}{x-1}>0 \implies \textbf{above} \ y=x+2\\ x>1&: \ -\tfrac{4}{x-1}<0 \implies \textbf{below} \ y=x+2\end{aligned}" />,
-    reason: <>The gap from the curve to the line is <Katex tex="f(x)-(x+2)=-\tfrac{4}{x-1}" />. For <Katex tex="x<1" /> the denominator is negative, so the gap is positive; for <Katex tex="x>1" /> it is negative. The gap is never <Katex tex="0" />, so neither branch crosses the line, and its size shrinks as <Katex tex="x" /> moves away from <Katex tex="1" />, so each branch keeps closing in on the line. The report notes some graphs instead retreated from the asymptotes.</>,
+    reason: <>The gap from the curve to the line is <Katex tex="f(x)-(x+2)=-\tfrac{4}{x-1}" />: positive for <Katex tex="x<1" /> (the denominator is negative), negative for <Katex tex="x>1" />. It is never <Katex tex="0" />, and its size shrinks as <Katex tex="x" /> moves away from <Katex tex="1" />, so each branch closes in on the line without crossing it.</>,
+    more: <>The report notes some graphs retreated from the asymptotes instead: picture a branch that bends away from <Katex tex="y=x+2" /> as it heads to the edge of the axes. The gap rules that out: the curve is <Katex tex="1" /> above the line at <Katex tex="x=-3" /> but only <Katex tex="0.5" /> above at <Katex tex="x=-7" />, and <Katex tex="1" /> below at <Katex tex="x=5" /> but only <Katex tex="0.5" /> below at <Katex tex="x=9" />. Draw each outer end so its distance to the dashed line visibly keeps shrinking. The interactive below lets you slide along the curve and watch the gap.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}x\to1^-&: \ f(x)\to+\infty\\ x\to1^+&: \ f(x)\to-\infty\end{aligned}" />,
-    reason: <>Near <Katex tex="x=1" /> the denominator <Katex tex="x-1" /> is tiny, so <Katex tex="-\tfrac{4}{x-1}" /> is huge. Just left of <Katex tex="1" /> it is large and positive (for example, <Katex tex="f(0.9)=42.9" />); just right of <Katex tex="1" /> it is large and negative. So the left branch climbs up beside <Katex tex="x=1" /> and the right branch drops down beside it.</>,
+    reason: <>Near <Katex tex="x=1" /> the denominator <Katex tex="x-1" /> is tiny, so <Katex tex="-\tfrac{4}{x-1}" /> is huge: large and positive just left of <Katex tex="1" /> (where <Katex tex="x-1<0" />), large and negative just right of it. So the left branch climbs up beside <Katex tex="x=1" /> and the right branch drops down beside it.</>,
+    more: <>For example, <Katex tex="f(0.9)=2.9+40=42.9" /> and <Katex tex="f(1.1)=3.1-40=-36.9" />. Each branch runs alongside <Katex tex="x=1" />, getting ever closer to it without touching it; a branch that curves away from <Katex tex="x=1" /> would also be retreating from an asymptote.</>,
   },
   {
     working: (
@@ -94,7 +102,7 @@ const ROWS_B: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Both asymptotes labelled with their equations. The intercepts did not need labels, the report notes, but the curve must pass through them.</>,
+    reason: <>Both asymptotes drawn and labelled with their equations. Each branch passes through its intercepts (these need not be labelled) and closes in on both asymptotes.</>,
   },
 ]
 
@@ -115,11 +123,9 @@ export default function SpecialistQ1_2023Exam1() {
             <p>
               A rational function whose numerator is one degree higher than its denominator has
               an <em>oblique</em> asymptote: a slanted straight line the graph approaches as{' '}
-              <Katex tex="x\to\pm\infty" />. Division is what reveals it. Part a. does the
-              division; part b. then follows, because{' '}
-              <Katex tex="f(x)=x+2-\tfrac{4}{x-1}" /> says "the line <Katex tex="y=x+2" />, plus
-              an extra piece <Katex tex="-\tfrac{4}{x-1}" /> that shrinks to nothing as{' '}
-              <Katex tex="x" /> gets large".
+              <Katex tex="x\to\pm\infty" />. Dividing the numerator by the denominator reveals
+              it: the quotient is the line, and the remainder over the denominator is the part that
+              dies away. Part a does the division; part b sketches from it.
             </p>
           </Background>
         </div>

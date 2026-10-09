@@ -6,7 +6,9 @@
 // Per unit of x these become arcsin(y²)·1 and −x·d/dx[arcsin(y²)], the two product-rule terms,
 // both → π/6 as Δx → 0; so the height falls at π/36 per unit of x, and the chain rule
 // (d/dy arcsin(y²) = 2y/√(1 − y⁴) = 2√6/3 at P) gives dy/dx = −π√6/144 ≈ −0.0534, which the
-// Δy/Δx readout closes in on. A toggle leaves out the arcsin(y²) term: that method says
+// Δy/Δx readout closes in on. The vertical axis is arcsin(y²), not y (P sits at height π/6), so
+// the opening Notice says so and the Δy/Δx readout is labelled as y's slope, not drawn.
+// A toggle drops the arcsin(y²)·1 term: that method says
 // dy/dx = 0, the height never drops, and the rectangle's area grows to π + Δx·π/6.
 
 import { useState } from 'react'
@@ -45,14 +47,23 @@ export default function ProductRuleRectangle() {
   const extra = dx * H0 // wrong method: height stays π/6, so the side strip is pure extra area
 
   let notice
-  if (wrong) {
+  if (wrong && atP) {
     notice = (
       <Notice tone="warn">
-        Without the <M>{'\\arcsin(y^2)'}</M> term the equation is{' '}
+        Without the <M>{'\\arcsin(y^2)\\cdot 1'}</M> term the equation is{' '}
+        <M>{'x\\cdot\\tfrac{2y}{\\sqrt{1-y^4}}\\tfrac{dy}{dx} = 0'}</M>, so <M>{'\\tfrac{dy}{dx} = 0'}</M>: that method
+        says the height never drops. Slide <M>{'\\Delta x'}</M> up to see what that does to the area.
+      </Notice>
+    )
+  } else if (wrong) {
+    notice = (
+      <Notice tone="warn">
+        Without the <M>{'\\arcsin(y^2)\\cdot 1'}</M> term the equation is{' '}
         <M>{'x\\cdot\\tfrac{2y}{\\sqrt{1-y^4}}\\tfrac{dy}{dx} = 0'}</M>, so <M>{'\\tfrac{dy}{dx} = 0'}</M> and the height
         never drops. Then widening by <M>{'\\Delta x'}</M> adds the red strip with nothing taken off the top, and the area
-        becomes <M>{`\\pi + ${num(extra, 3)}`}</M>, not <M>{'\\pi'}</M>: that corner is not on the relation. The term you
-        left out is exactly the area the side strip adds per unit of <M>x</M>.
+        becomes about <M>{`\\pi + ${num(extra, 3)}`}</M>, not <M>{'\\pi'}</M>: that corner is not on the relation. The term you
+        left out is exactly the area the side strip adds per unit of <M>x</M> (substituting <M>{'x = 6'}</M> before
+        differentiating loses it the same way, by freezing the width).
       </Notice>
     )
   } else if (atP) {
@@ -63,7 +74,8 @@ export default function ProductRuleRectangle() {
         cancel: <M>{'\\tfrac{\\pi}{6} + 6\\tfrac{d}{dx}\\left[\\arcsin(y^2)\\right] = 0'}</M>, so the height falls at{' '}
         <M>{'\\tfrac{\\pi}{36}'}</M> per unit of <M>x</M>. Since <M>{'\\arcsin(y^2)'}</M> changes{' '}
         <M>{'\\tfrac{2y}{\\sqrt{1-y^4}} = \\tfrac{2\\sqrt6}{3}'}</M> times as fast as <M>y</M> (the chain rule),{' '}
-        <M>{'\\tfrac{dy}{dx} = -\\tfrac{\\pi}{36} \\div \\tfrac{2\\sqrt6}{3} = -\\tfrac{\\pi\\sqrt6}{144}'}</M>.
+        <M>{'\\tfrac{dy}{dx} = -\\tfrac{\\pi}{36} \\div \\tfrac{2\\sqrt6}{3} = -\\tfrac{\\pi\\sqrt6}{144}'}</M>. Now switch on{' '}
+        <b>Drop the <M>{'\\arcsin(y^2)\\cdot 1'}</M> term</b> and slide <M>{'\\Delta x'}</M> up again.
       </Notice>
     )
   } else if (near) {
@@ -78,12 +90,13 @@ export default function ProductRuleRectangle() {
   } else {
     notice = (
       <Notice>
-        Moving from P to Q along the relation, the width <M>x</M> grows, so the height <M>{'\\arcsin(y^2)'}</M> must drop
-        to keep the area <M>{'\\pi'}</M>. The <b style={{ color: C.violet }}>side strip gained</b> (
-        <M>{num(gain, 3)}</M>) exactly equals the <b style={{ color: C.g }}>top strip lost</b> (<M>{num(loss, 3)}</M>). The
-        product rule is this balance per unit of <M>x</M>: the first term, <M>{'\\arcsin(y^2)\\cdot 1'}</M>, is the side
-        strip and the second, <M>{'x\\tfrac{d}{dx}\\left[\\arcsin(y^2)\\right]'}</M>, is minus the top strip (it is negative
-        because the height drops). Drag Q towards P.
+        The height here is <M>{'\\arcsin(y^2)'}</M>, not <M>y</M>: P is the point{' '}
+        <M>{'\\left(6, \\tfrac{1}{\\sqrt2}\\right)'}</M>, drawn at height <M>{'\\tfrac{\\pi}{6}'}</M>. Moving from P to Q along
+        the relation, the width <M>x</M> grows, so the height must drop to keep the area <M>{'\\pi'}</M>: the{' '}
+        <b style={{ color: C.violet }}>side strip gained</b> exactly equals the <b style={{ color: C.g }}>top strip lost</b>.
+        The product rule is this balance per unit of <M>x</M>: the first term, <M>{'\\arcsin(y^2)\\cdot 1'}</M>, is the side
+        strip and the second, <M>{'x\\tfrac{d}{dx}\\left[\\arcsin(y^2)\\right]'}</M>, is minus the top strip (negative,
+        as the height drops). Drag Q towards P.
       </Notice>
     )
   }
@@ -149,7 +162,7 @@ export default function ProductRuleRectangle() {
         <Slider label="\Delta x" value={dx} onChange={setDx} min={0} max={DX_MAX} step={0.01} format={v => num(v, 2)} />
         <Buttons>
           <Toggle
-            label={<>Leave out the <M>{'\\arcsin(y^2)'}</M> term</>}
+            label={<>Drop the <M>{'\\arcsin(y^2)\\cdot 1'}</M> term</>}
             checked={wrong}
             onChange={setWrong}
           />
@@ -158,7 +171,7 @@ export default function ProductRuleRectangle() {
           {wrong ? (
             <>
               <Readout color={C.bad} tex={`\\text{that method's } \\tfrac{dy}{dx} = 0`} />
-              <Readout color={C.bad} tex={`\\text{area} = \\pi + ${num(extra, 3)} = ${num(PI + extra, 3)}`} />
+              <Readout color={C.bad} tex={`\\text{area} \\approx \\pi + ${num(extra, 3)} \\approx ${num(PI + extra, 3)}`} />
             </>
           ) : atP ? (
             <>
@@ -167,14 +180,14 @@ export default function ProductRuleRectangle() {
             </>
           ) : (
             <>
-              <Readout color={C.violet} tex={`\\text{gained} = \\Delta x \\times \\text{height} = ${num(gain, 3)}`} />
-              <Readout color={C.g} tex={`\\text{lost} = 6 \\times \\text{drop} = ${num(loss, 3)}`} />
+              <Readout color={C.violet} tex={`\\text{gained} = \\Delta x \\times \\text{height} \\approx ${num(gain, 3)}`} />
+              <Readout color={C.g} tex={`\\text{lost} = 6 \\times \\text{drop} \\approx ${num(loss, 3)}`} />
             </>
           )}
           {!wrong && (
             <Readout
               color={atP ? C.good : undefined}
-              tex={atP ? `\\tfrac{dy}{dx} = -\\tfrac{\\pi\\sqrt6}{144} \\approx ${num(ANS, 4)}` : `\\tfrac{\\Delta y}{\\Delta x} = ${num(slope, 4)}`}
+              tex={atP ? `\\tfrac{dy}{dx} = -\\tfrac{\\pi\\sqrt6}{144} \\approx ${num(ANS, 4)}` : `y\\text{ (not drawn): } \\tfrac{\\Delta y}{\\Delta x} \\approx ${num(slope, 4)}`}
             />
           )}
         </Readouts>

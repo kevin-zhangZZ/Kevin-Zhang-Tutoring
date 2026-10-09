@@ -29,7 +29,7 @@ const unit = (v: [number, number]): [number, number] => {
 }
 
 export default function PerpendicularWidget() {
-  const [t, setT] = useState(1.2)
+  const [t, setT] = useState(0.9)
   const [fromCentre, setFromCentre] = useState(false)
 
   const move = (v: number) => {

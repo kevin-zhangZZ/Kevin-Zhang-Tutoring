@@ -30,6 +30,15 @@ function attachFor(a: number): Attach {
 
 const pt = (r: number, a: number): [number, number] => [r * Math.cos(a), r * Math.sin(a)]
 
+/** Distance from p to the segment from s to e. */
+function distToSegment(p: [number, number], s: [number, number], e: [number, number]) {
+  const dx = e[0] - s[0]
+  const dy = e[1] - s[1]
+  const len2 = dx * dx + dy * dy
+  const t = len2 ? Math.max(0, Math.min(1, ((p[0] - s[0]) * dx + (p[1] - s[1]) * dy) / len2)) : 0
+  return Math.hypot(p[0] - s[0] - t * dx, p[1] - s[1] - t * dy)
+}
+
 function Arc({ r, a, color }: { r: number; a: number; color: string }) {
   if (Math.abs(a) < 1e-3) return null
   return <Plot.Parametric xy={t => pt(r, t)} domain={[Math.min(0, a), Math.max(0, a)]} color={color} weight={2.5} />
@@ -47,16 +56,31 @@ export default function CubeAngle() {
   const mod = (b * b + 1) ** 1.5
   const zCol = at ? C.good : C.g
   const tip = pt(ARROW, three)
-  // Put the "3θ" label on the orange arc where it is furthest from the three lines that cross it:
-  // b − i (angle θ), the downward target (−π/2) and z itself (3θ).
-  let labelA = 0.5 * three
-  let best = -1
+  // Centre the "3θ" label just outside or just inside the orange arc, at whichever spot is furthest
+  // from everything else drawn: the b − i, −π/2 and z lines, the Im = −1 line, the two arrowheads
+  // (big on a phone, so treated as discs) and the θ label.
+  const others: [[number, number], [number, number]][] = [
+    [[0, 0], [b, -1]],
+    [[0, 0], [0, -1.75]],
+    [[0, 0], tip],
+    [[0, -1], [B_MAX, -1]],
+  ]
+  const heads = [pt(Math.hypot(b, 1) - 0.2, theta), pt(ARROW - 0.2, three)]
+  const thetaLab = pt(0.55, theta / 2)
+  let labelAt = pt(0.92, 0.5 * three)
+  let best = -Infinity
   for (let f = 0.4; f <= 0.9001; f += 0.05) {
-    const a = f * three
-    const gap = Math.min(Math.abs(a - theta), Math.abs(a + Math.PI / 2), Math.abs(a - three))
-    if (gap > best) {
-      best = gap
-      labelA = a
+    for (const r of [0.92, 0.48]) {
+      const p = pt(r, f * three)
+      const clear = Math.min(
+        ...others.map(([s, e]) => distToSegment(p, s, e)),
+        ...heads.map(h => Math.hypot(p[0] - h[0], p[1] - h[1]) - 0.25),
+        Math.hypot(p[0] - thetaLab[0], p[1] - thetaLab[1]) - 0.1,
+      )
+      if (clear > best) {
+        best = clear
+        labelAt = p
+      }
     }
   }
 
@@ -121,9 +145,13 @@ export default function CubeAngle() {
 
   return (
     <div>
-      <Plane x={[-2, B_MAX]} y={[-2, 2]} xStep={1} yStep={1} height={340} equalScale xLabel="" yLabel="Im" yLabels={v => (Math.abs(v - 1) < 1e-9 ? "1" : "")}>
+      <Plane x={[-2, B_MAX]} y={[-2, 2]} xStep={1} yStep={1} height={340} equalScale xLabel="" yLabel="" yLabels={v => (Math.abs(v - 1) < 1e-9 ? "1" : "")}>
         <Label at={[B_MAX, 0]} attach="n" size={14} italic>
           Re
+        </Label>
+        {/* Beside the top of the imaginary axis rather than on it, so the axis doesn't strike it through. */}
+        <Label at={[0, 2]} attach="e" size={14} italic>
+          Im
         </Label>
         {/* Where b − i can be: the horizontal line Im = −1, right of the imaginary axis since b > 0. */}
         <Line.Segment point1={[0, -1]} point2={[B_MAX, -1]} color={C.guide} weight={2} />
@@ -150,7 +178,7 @@ export default function CubeAngle() {
               −π/2
             </Label>
             <Arc r={0.7} a={three} color={zCol} />
-            <Label at={pt(0.7, labelA)} attach={attachFor(labelA)} color={zCol} size={12}>
+            <Label at={labelAt} attach="c" color={zCol} size={12}>
               3θ
             </Label>
             <Vector tail={[0, 0]} tip={tip} color={zCol} weight={3} />
