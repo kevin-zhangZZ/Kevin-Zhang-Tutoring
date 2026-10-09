@@ -1,8 +1,11 @@
 // 2022 Specialist Mathematics — Exam 1 Question 7 (3 marks). Implicit differentiation of
 // a product containing cos(x + y). Question text transcribed from the original paper.
 // Answer checked with sympy and against the VCAA examination report. Solution is original.
-// No widget (34% full marks): the report says marks were lost by expanding cos(x + y) and
-// drowning in terms — a pure-algebra method choice that a picture would not fix.
+// No widget (34% full marks; re-audited 9 Oct 2026): the report says marks were lost by
+// expanding cos(x + y) and drowning in terms — a pure-algebra method choice that a picture
+// would not fix. Concise: each row's reason is the one-line "why"; Detailed adds the
+// expansion trap (Background: six terms, and pi/24, 7pi/24 are not known angles so the terms
+// must be regrouped) and row-level `more` (product rule in full; the dy/dx-subject-first route).
 
 import Katex from '../../../components/Katex'
 import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -28,8 +31,8 @@ const ROWS: WorkingRow[] = [
         The <Katex tex="y" /> is stuck inside the cosine with <Katex tex="x" />, so find{' '}
         <Katex tex="\tfrac{dy}{dx}" /> by implicit differentiation: differentiate both sides
         with respect to <Katex tex="x" />, treating <Katex tex="y" /> as a function of{' '}
-        <Katex tex="x" />. Differentiate the left side exactly as printed — don't expand{' '}
-        <Katex tex="\cos(x+y)" /> first.
+        <Katex tex="x" />. Leave <Katex tex="\cos(x+y)" /> unexpanded — expanding it first only
+        creates more terms.
       </>
     ),
   },
@@ -44,14 +47,33 @@ const ROWS: WorkingRow[] = [
         <Katex tex="y" />. The right side is a constant, so its derivative is 0.
       </>
     ),
+    more: (
+      <>
+        Written out: <Katex tex="u'=1" /> and{' '}
+        <Katex tex="v'=-\sin(x+y)\left(1+\tfrac{dy}{dx}\right)" />, so{' '}
+        <Katex tex="u'v+uv'=\cos(x+y)+x\cdot\big(-\sin(x+y)\big)\left(1+\tfrac{dy}{dx}\right)" />,
+        which tidies to the working line. A quick check: if no <Katex tex="\tfrac{dy}{dx}" /> appears
+        after differentiating, a chain-rule factor has been missed (<Katex tex="y" /> was treated
+        as a constant) and there is nothing left to solve for.
+      </>
+    ),
   },
   {
     working: <Katex display tex="x+y = \frac{\pi}{24}+\frac{7\pi}{24} = \frac{8\pi}{24} = \frac{\pi}{3}" />,
     reason: (
       <>
-        Add the coordinates before substituting: <Katex tex="x+y" /> is the only angle in the
-        equation, and at this point it is <Katex tex="\tfrac\pi3" />, whose cos and sin are
-        exact values.
+        Only the gradient at this one point is wanted, so substitute the point now, before
+        rearranging — the trig terms become plain numbers. Start with <Katex tex="x+y" />: it is
+        the only angle in the equation, and here it equals <Katex tex="\tfrac\pi3" />, whose cos
+        and sin are exact values.
+      </>
+    ),
+    more: (
+      <>
+        You could make <Katex tex="\tfrac{dy}{dx}" /> the subject first, giving{' '}
+        <Katex tex="\tfrac{dy}{dx}=\tfrac{\cos(x+y)}{x\sin(x+y)}-1" />, and then substitute — the
+        answer is the same, but you carry the trig expressions through the rearranging instead of
+        working with numbers.
       </>
     ),
   },
@@ -108,17 +130,24 @@ export default function SpecialistQ7_2022Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Leave <Katex tex="\cos(x+y)" /> alone. Expanding it with the compound-angle
-            formula gives <Katex tex="x\cos x\cos y-x\sin x\sin y" />: two products of three
-            factors, which differentiate into six separate terms instead of two — the report
-            notes only a minority of students who did this found the correct answer.
-            Differentiate the expression exactly as printed, then substitute.
+            The trap here is expanding <Katex tex="\cos(x+y)" /> with the compound-angle formula
+            before differentiating. That turns the left side into{' '}
+            <Katex tex="x\cos x\cos y-x\sin x\sin y" />: two products of three factors. Each
+            product gives three terms (the product rule applied twice, with a chain-rule{' '}
+            <Katex tex="\tfrac{dy}{dx}" /> on each <Katex tex="y" /> factor) — six terms instead
+            of two. Left as it is,{' '}
+            <Katex tex="x\cos(x+y)" /> is a product of just two factors, so the product rule
+            gives only two terms.
           </p>
           <p>
-            Substituting numbers <em>after</em> differentiating, rather than trying to make{' '}
-            <Katex tex="\tfrac{dy}{dx}" /> the subject first, also saves a great deal of
-            algebra: once <Katex tex="x+y=\tfrac\pi3" /> is known, everything becomes
-            arithmetic.
+            The six terms are also hard to evaluate: <Katex tex="\tfrac{\pi}{24}" /> and{' '}
+            <Katex tex="\tfrac{7\pi}{24}" /> on their own are not angles whose sine and cosine
+            you know. To finish, you would have to regroup the terms with the compound-angle
+            formulas in reverse (<Katex tex="\cos x\cos y-\sin x\sin y=\cos(x+y)" /> and{' '}
+            <Katex tex="\sin x\cos y+\cos x\sin y=\sin(x+y)" />), which lands back on{' '}
+            <Katex tex="\cos(x+y)-x\sin(x+y)\left(1+\tfrac{dy}{dx}\right)=0" /> — the equation the
+            working below reaches in one step. Only the combined angle{' '}
+            <Katex tex="x+y=\tfrac\pi3" /> has known exact values.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

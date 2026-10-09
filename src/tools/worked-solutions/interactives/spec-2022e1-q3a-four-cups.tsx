@@ -120,9 +120,10 @@ export default function FourCups() {
       <Notice tone="good">
         Each round pours four <b>separate</b> cups. Some run slow and some fast, so their differences from{' '}
         <M>{'10\\text{ s}'}</M> partly cancel (look at the last round), and the totals stay within a few seconds of{' '}
-        <M>40</M>. The sd of the poured totals is close to <M>{'\\sqrt{4\\times1.5^2}=3'}</M>, so <M>34</M> is two
-        sds below <M>40</M> and about 98% of totals are above it. Press <b>Pour 1 round</b> a few times, then turn on
-        the wrong idea.
+        <M>40</M>. The sd of the poured totals is close to <M>{'{\\sqrt{4\\times1.5^2}=3}'}</M>, so <M>34</M> is two
+        sds below <M>40</M> and about 98% of totals are above it (the sd-3 curve gives 97.7%; the 68–95–99.7
+        rule&apos;s estimate is 97.5%; both round to 0.98). Press <b>Pour 1 round</b> a few times, then turn on the
+        wrong idea.
       </Notice>
     )
   } else {
@@ -191,7 +192,7 @@ export default function FourCups() {
             <Readout color={C.violet} tex={`\\text{last round: } ${last.map(r1).join(' + ')} = ${r1(lastTotal)}`} />
           )}
           {last && (
-            <Readout tex={`\\text{vs 10 s each: } {${last.map(v => signed(v - MU)).join(' ')}} = {${signed(lastTotal - TOTAL_MU)}}`} />
+            <Readout color={C.violet} tex={`\\text{vs 10 s each: } {${last.map(v => signed(v - MU)).join(' ')}} = {${signed(lastTotal - TOTAL_MU)}}`} />
           )}
           {last && wrong && <Readout color={C.g} tex={`\\text{one cup} \\times 4 = 4 \\times ${r1(last[0])} = ${r1(4 * last[0])}`} />}
           <Readout color={C.good} tex={`\\text{sd of the ${total} totals} \\approx ${total > 1 ? stats.sd.toFixed(2) : '?'}`} />

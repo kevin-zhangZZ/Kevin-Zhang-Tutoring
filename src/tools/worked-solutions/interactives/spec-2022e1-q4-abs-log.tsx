@@ -5,6 +5,8 @@
 // everywhere. The toggle drops the absolute value: 3 log_e(x) + 2 tan⁻¹(x/2) has no graph at all
 // for x < 0, where the integrand still has values. That missing |x| is a mark the report says
 // students lost. On the right, the note that shifting F up or down changes no slope explains + c.
+// Opens at x = −2.5; only even x ticks and positive y ticks are numbered, so the steep curve near
+// x = 0, the point and the tangent stay clear of the tick numbers on a phone.
 
 import { useState } from 'react'
 import { C, Controls, Label, Line, M, MovablePoint, Notice, Plane, Plot, Readout, Readouts, Slider, Toggle, clamp, tick } from './kit'
@@ -21,7 +23,7 @@ const snap = (v: number) => {
 }
 
 export default function AbsLog() {
-  const [a, setA] = useState(-2)
+  const [a, setA] = useState(-2.5)
   const [noAbs, setNoAbs] = useState(false)
 
   const exists = !noAbs || a > 0 // is the candidate antiderivative defined at x = a?
@@ -46,7 +48,8 @@ export default function AbsLog() {
       <Notice tone="good">
         <b>The green line just touches the curve wherever you put the point</b>, so <M>{'F\'(x)'}</M> is the
         integrand here too. Moving the whole curve up or down wouldn&apos;t change a single slope, so{' '}
-        <M>{'F(x) + c'}</M> passes this test for every <M>c</M>. That is why the answer needs the <M>+c</M>.
+        <M>{'F(x) + c'}</M> passes this test for every <M>c</M>. That is why the answer needs the <M>+c</M>. Now
+        slide the point left of the y-axis.
       </Notice>
     )
   } else if (a < 0) {
@@ -75,8 +78,8 @@ export default function AbsLog() {
         xStep={1}
         yStep={2}
         height={330}
-        xLabels={v => (Math.abs(v) > 6 ? '' : tick(v))}
-        yLabels={v => (v > 9 ? '' : tick(v))}
+        xLabels={v => (Math.round(v) % 2 === 0 ? tick(v) : '')}
+        yLabels={v => (v < 0 || v > 9 ? '' : tick(v))}
       >
         {!noAbs && <Plot.OfX y={F} domain={[-6, -0.15]} color={C.f} weight={3} />}
         <Plot.OfX y={F} domain={[0.15, 6]} color={C.f} weight={3} />

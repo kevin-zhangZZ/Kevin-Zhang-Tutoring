@@ -98,7 +98,7 @@ export default function Reciprocal() {
       <Notice>
         Outside the asymptotes the cosine is <b>negative</b>, between <M>-1</M> and <M>0</M>, so the secant is{' '}
         <M>-1</M> or less: here <M>{`\\tfrac{1}{${c.toFixed(3)}} \\approx ${s.toFixed(2)}`}</M>. The outer branches sit
-        below <M>y = -1</M>, never between <M>-1</M> and <M>1</M>. Drag to the endpoint{' '}
+        at or below <M>y = -1</M>, never between <M>-1</M> and <M>1</M>. Drag to the endpoint{' '}
         <M>{`x = ${side}\\tfrac{\\pi}{4}`}</M> to find the top of this branch.
       </Notice>
     )
@@ -124,7 +124,11 @@ export default function Reciprocal() {
         <Point x={0} y={1} color={C.ink} />
         <Point x={Q} y={-1} color={C.ink} />
         <Point x={-Q} y={-1} color={C.ink} />
-        <Label at={[0, 1]} attach="ne" gap={5}>(0, 1)</Label>
+        {/* Above the minimum, clear of both arms of the U; the endpoint labels hang below their dots,
+            nudged in from the plane's edge, under the outer branches (which stay above y ≈ −1.3 there). */}
+        <Label at={[0, 1]} attach="n" gap={10}>(0, 1)</Label>
+        <Label at={[Q - 0.05, -1]} attach="s" gap={15} size={12}>(π/4, −1)</Label>
+        <Label at={[-Q + 0.05, -1]} attach="s" gap={15} size={12}>(−π/4, −1)</Label>
 
         {!atAsym && <Line.Segment point1={[x0, c]} point2={[x0, top]} color={C.violet} style="dashed" weight={1.5} />}
         <Point x={x0} y={atAsym ? 0 : c} color={C.g} />

@@ -3,7 +3,8 @@
 // Independent Review. Question text transcribed from the original paper. Answer checked
 // with scipy and against the VCAA examination report. Solution is original.
 // Widget (part a): interactives/spec-2022e1-q3a-four-cups — pour rounds of four separate cups
-// and watch the totals fit an sd-3 curve, not the wrong sd-6 (4 × 1.5) curve.
+// and watch the totals fit an sd-3 curve, not the wrong sd-6 (4 × 1.5) curve. Audited and kept
+// in the 9 Oct 2026 Concise/Detailed pass; teacher asides moved from reasons into rows' `more`.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -31,10 +32,18 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="X_i \sim \mathrm{N}\!\left(10,\,1.5^2\right), \quad T = X_1+X_2+X_3+X_4" />,
     reason: (
       <>
-        Let <Katex tex="X_i" /> be the time for cup <Katex tex="i" /> and <Katex tex="T" /> the total. Assume
-        the four cups are independent: one cup's time doesn't affect the next. Write <Katex tex="T" /> as a sum of
-        four separate cups, <strong>not</strong> <Katex tex="4X" />, which would mean one cup's time multiplied by
-        four (all four cups taking exactly the same time).
+        Let <Katex tex="X_i" /> be the time for cup <Katex tex="i" /> and <Katex tex="T" /> the total. The four
+        cups are separate, so assume they are independent (one cup's time doesn't affect the next) and
+        write <Katex tex="T" /> as a sum, <strong>not</strong> as <Katex tex="4X" /> (one cup's time multiplied
+        by four).
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="4X" /> would mean all four cups took exactly the same time: all slow together or all fast
+        together. It has the same mean, <Katex tex="40" />, so the mean can't tell the two models apart, but its
+        spread is far larger. That model is what leads to the wrong standard deviation of <Katex tex="6" /> two
+        lines down.
       </>
     ),
   },
@@ -46,10 +55,16 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\mathrm{Var}(T) = 4\times1.5^2 = 9 \implies \mathrm{sd}(T) = 3" />,
     reason: (
       <>
-        For independent variables, <strong>variances</strong> add, not standard deviations, so take the square
-        root at the end. The answer is <Katex tex="3" />, not <Katex tex="4\times1.5=6" /> — the report notes a
-        large number of students did not find the correct standard deviation. <Katex tex="6" /> is the sd
-        of <Katex tex="4X" />, since <Katex tex="\mathrm{Var}(4X)=4^2\times1.5^2=36" />.
+        For independent variables, <strong>variances</strong> add, not standard deviations: add the four
+        variances <Katex tex="1.5^2" />, then take the square root at the end.
+      </>
+    ),
+    more: (
+      <>
+        The tempting answer is <Katex tex="4\times1.5=6" />, and the report notes a large number of students
+        did not find the correct standard deviation. <Katex tex="6" /> is the sd of <Katex tex="4X" /> from the
+        first line, since <Katex tex="\mathrm{Var}(4X)=4^2\times1.5^2=36" /> (multiplying a variable by 4
+        multiplies its variance by <Katex tex="4^2" />).
       </>
     ),
   },
@@ -61,7 +76,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\Pr(T>34) = \Pr\!\left(Z > \frac{34-40}{3}\right) = \Pr(Z>-2)" />,
     reason: (
       <>
-        Standardise with <Katex tex="z=\frac{x-\mu}{\sigma}" />: <Katex tex="34" /> seconds is exactly two
+        Standardise to <Katex tex="Z\sim\mathrm{N}(0,1)" /> with <Katex tex="z=\frac{x-\mu}{\sigma}" />,
+        using <Katex tex="\mu=40" /> and <Katex tex="\sigma=3" />: <Katex tex="34" /> seconds is exactly two
         standard deviations below the mean.
       </>
     ),
@@ -79,22 +95,41 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\Pr(Z<-2) \approx \frac{1-0.95}{2} = 0.025" />,
     reason: (
       <>
-        The other 5% is split equally between the two tails (the curve is symmetric), so each tail holds 2.5%. A
-        quick sketch of the bell curve with the region right of <Katex tex="-2" /> shaded makes this clear.
+        The other 5% is split equally between the two tails (the curve is symmetric), so each tail holds 2.5%.
+      </>
+    ),
+    more: (
+      <>
+        Sketch it: a bell curve centred at <Katex tex="0" />, with <Katex tex="-2" /> and <Katex tex="2" /> marked,
+        the middle 95% between them and a 2.5% tail beyond each. The report notes that students who
+        evaluated <Katex tex="\Pr(Z>-2)" /> successfully often drew a diagram of the probability density
+        function.
       </>
     ),
   },
   {
     working: <Katex display tex="\Pr(Z>-2) = 1-0.025 = 0.975" />,
-    reason: <>Everything except the small left tail.</>,
+    reason: <>Everything except the small left tail below <Katex tex="-2" />.</>,
+    more: (
+      <>
+        Equivalently, the middle 95% plus the right tail: <Katex tex="0.95+0.025=0.975" />. Check it makes
+        sense: <Katex tex="-2" /> is far below the mean, so almost all of the curve lies to its right and the
+        answer must be close to <Katex tex="1" />. So don't stop at <Katex tex="0.025" /> (that is the left
+        tail itself) or at <Katex tex="0.95" /> (the middle only).
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\Pr(T>34) \approx 0.98}" />,
     reason: (
       <>
-        Correct to two decimal places, as asked: <Katex tex="0.975" /> rounds up to <Katex tex="0.98" />. The
-        rule's 95% is really about 95.45%, so the exact value is <Katex tex="0.9772\ldots" />, which also rounds
-        to <Katex tex="0.98" />.
+        Correct to two decimal places, as asked: <Katex tex="0.975" /> rounds up to <Katex tex="0.98" />.
+      </>
+    ),
+    more: (
+      <>
+        The rule's 95% is really about 95.45%, so the exact value is <Katex tex="0.9772\ldots" />, which also
+        rounds to <Katex tex="0.98" />: the approximation doesn't change the answer.
       </>
     ),
   },
@@ -115,17 +150,15 @@ export default function SpecialistQ3_2022Exam1() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              "A total of four cups" means the <em>sum</em> of four separate cup times, which we treat as
-              independent normal variables. A sum of independent normal variables is itself normal: add the
-              means, and add the <em>variances</em>. So the standard deviation of the total is{' '}
-              <Katex tex="\sqrt{4\times1.5^2}=3" />, not <Katex tex="4\times1.5=6" />. Why smaller? Four separate
-              cups are rarely all slow together: a slow cup is usually offset by a faster one, so the total strays
-              less than four times one cup's spread.
+              "A total of four cups" means the <em>sum</em> of four separate cup times, each normal and
+              independent of the others. The idea behind the working is that this total spreads out{' '}
+              <em>less</em> than four times one cup's spread. Four separate cups are rarely all slow together: a
+              slow cup is usually offset by a faster one, so their differences from 10 seconds partly cancel.
             </p>
             <p>
-              This is Exam 1, so there is no <Katex tex="\mathrm{normCdf}" /> available. The question is set up so
-              the <Katex tex="z" />-score is a whole number, and the 68–95–99.7 rule finishes it: about 68%, 95% and
-              99.7% of a normal distribution lies within 1, 2 and 3 standard deviations of the mean.
+              The 68–95–99.7 rule says about 68%, 95% and 99.7% of a normal distribution lies within 1, 2 and 3
+              standard deviations of the mean. A technology-free question like this one is set up so the{' '}
+              <Katex tex="z" />-score is a whole number and the rule can finish it.
             </p>
           </Background>
         </div>

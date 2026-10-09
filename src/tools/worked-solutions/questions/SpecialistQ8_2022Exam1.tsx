@@ -31,11 +31,24 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{d}{dx}\!\left(\frac12v^2\right) = -4x" />,
-    reason: <>Acceleration is given in terms of <Katex tex="x" />, not <Katex tex="t" />, so use the form of <Katex tex="a" /> that differentiates with respect to <Katex tex="x" />: by the chain rule <Katex tex="a=\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" />. (Starting from <Katex tex="v\tfrac{dv}{dx}=-4x" /> and separating variables gives the same next line.)</>,
+    reason: <>Acceleration is given in terms of <Katex tex="x" />, and we want <Katex tex="v" /> in terms of <Katex tex="x" />, so use the formula-sheet form <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" />. It has no <Katex tex="t" /> in it.</>,
+    more: <>
+      <p>
+        Why this form works: by the chain rule{' '}
+        <Katex tex="a=\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}" />, and differentiating{' '}
+        <Katex tex="\tfrac12v^2" /> with respect to <Katex tex="x" /> (chain rule again) also gives{' '}
+        <Katex tex="v\tfrac{dv}{dx}" />.
+      </p>
+      <p>
+        The report lists either form as an appropriate acceleration equivalent. Starting from{' '}
+        <Katex tex="v\tfrac{dv}{dx}=-4x" /> and separating variables,{' '}
+        <Katex tex="\int v\,dv=\int -4x\,dx" />, gives the same next line.
+      </p>
+    </>,
   },
   {
     working: <Katex display tex="\frac12v^2 = \int -4x\,dx = -2x^2+c" />,
-    reason: <>Antidifferentiate both sides with respect to <Katex tex="x" />. One constant <Katex tex="c" /> covers both sides.</>,
+    reason: <>Antidifferentiate both sides with respect to <Katex tex="x" />: the left side is already the derivative of <Katex tex="\tfrac12v^2" />, so it just gives back <Katex tex="\tfrac12v^2" />. One constant <Katex tex="c" /> covers both sides.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &x=0,\ v=-2:\\ &\frac12(-2)^2 = 0+c\\ &c = 2 \end{aligned}" />,
@@ -47,15 +60,34 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v = \pm2\sqrt{1-x^2}" />,
-    reason: <>Taking the square root gives two possibilities. The equation <Katex tex="v^2=4\left(1-x^2\right)" /> is true whichever way the body is moving, so it cannot decide the sign; the direction of motion on this interval must.</>,
+    reason: <>Taking the square root gives two possibilities. <Katex tex="v^2" /> is the same whichever way the body is moving, so the sign has to come from the direction of motion on this interval.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &v = 0 \iff x = \pm1\\ &v=-2<0 \text{ at } x=0 \end{aligned}" />,
-    reason: <>The body is at rest only where <Katex tex="v=0" />, so the interval runs between <Katex tex="x=1" /> and <Katex tex="x=-1" />. It starts at <Katex tex="x=1" />: there <Katex tex="a=-4" />, which pushes it in the negative direction, towards <Katex tex="O" />. Between the two rests <Katex tex="v" /> is never 0, so it cannot change sign, and it is <Katex tex="-2" /> at <Katex tex="x=0" />. So <Katex tex="v<0" /> for the whole interval.</>,
+    reason: <>The body starts from rest and ends at rest, and <Katex tex="v=0" /> only at <Katex tex="x=\pm1" />, so the interval runs between these two points. Between them <Katex tex="v" /> is never 0, so it can't change sign: it keeps the negative sign it has at <Katex tex="x=0" />.</>,
+    more: <>
+      This agrees with how the motion starts. <Katex tex="v=-2" /> at <Katex tex="O" /> means the body is moving in
+      the negative direction, so it came from the positive side: it started from rest at <Katex tex="x=1" />,
+      where <Katex tex="a=-4(1)=-4" /> pushes it towards <Katex tex="O" />. Had it started from rest at{' '}
+      <Katex tex="x=-1" /> instead, <Katex tex="a=+4" /> would push it the other way and it would reach{' '}
+      <Katex tex="O" /> with <Katex tex="v=+2" />, which is not the body described.
+    </>,
   },
   {
     working: <Katex display tex="\boxed{v = -2\sqrt{1-x^2}, \quad -1\le x\le1}" />,
-    reason: <>Take the negative root. The report notes that a number of students chose the incorrect sign. Check: at <Katex tex="x=0" /> this gives <Katex tex="v=-2" />.</>,
+    reason: <>Take the negative root, since <Katex tex="v<0" /> on this interval. The domain is the interval between the two rests.</>,
+    more: <>
+      <p>
+        Check: at <Katex tex="x=0" /> this gives <Katex tex="v=-2\sqrt{1}=-2" />, as given.
+      </p>
+      <p>
+        The sign is the step the report singles out: a number of students chose the incorrect sign. The
+        positive root, <Katex tex="v=+2\sqrt{1-x^2}" />, describes the body after this interval: having come
+        to rest at <Katex tex="x=-1" />, it heads back
+        towards <Katex tex="x=1" /> with <Katex tex="v>0" />. Play the motion in the diagram below to watch both
+        halves.
+      </p>
+    </>,
   },
 ]
 
@@ -80,18 +112,20 @@ export default function SpecialistQ8_2022Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Match the form of <Katex tex="a" /> to the variable you are given. Here{' '}
-            <Katex tex="a" /> is a function of <Katex tex="x" /> and the answer wants{' '}
-            <Katex tex="v" /> in terms of <Katex tex="x" />, so neither{' '}
-            <Katex tex="\tfrac{dv}{dt}" /> nor <Katex tex="\tfrac{d^2x}{dt^2}" /> helps —{' '}
-            <Katex tex="a=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" /> turns the problem into
-            a single antiderivative.
+            The formula sheet gives acceleration four ways:{' '}
+            <Katex tex="a=\tfrac{d^2x}{dt^2}=\tfrac{dv}{dt}=v\tfrac{dv}{dx}=\tfrac{d}{dx}\!\left(\tfrac12v^2\right)" />.
+            They are the same quantity, so choose the one whose variables match the question.
+            When <Katex tex="a" /> is given as a function of displacement <Katex tex="x" /> rather
+            than time <Katex tex="t" />, the first two bring in <Katex tex="t" />, which the
+            question never mentions; the last two involve only <Katex tex="v" /> and{' '}
+            <Katex tex="x" />.
           </p>
           <p>
-            Taking the square root at the end produces two answers and only one of them is
-            the body being described. Every question like this needs a sentence justifying
-            the sign, and here the justification is that <Katex tex="v" /> is continuous and
-            only vanishes at <Katex tex="x=\pm1" />, the two ends of the interval.
+            Squaring throws away direction, so taking a square root to find <Katex tex="v" /> gives
+            a <Katex tex="\pm" />, and only one sign describes the body. Every question like this
+            needs a sentence justifying the sign, usually from a known velocity at one point
+            together with the fact that <Katex tex="v" /> can only change sign by passing through 0,
+            where the body is momentarily at rest.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

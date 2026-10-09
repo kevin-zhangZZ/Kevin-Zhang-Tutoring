@@ -7,7 +7,7 @@
 // x = cos 2t, which satisfies a = −4x, x = 1 and v = 0 at t = 0, and v = −2 at x = 0 (t = π/4).
 
 import { useState } from 'react'
-import { Buttons, C, Controls, Label, Line, M, Notice, Plane, PlayButton, Plot, Point, Readout, Readouts, Slider, Vector, usePlayer } from './kit'
+import { Buttons, C, Controls, Label, Line, M, Notice, Plane, PlayButton, Plot, Point, Readout, Readouts, Slider, Vector, tick, usePlayer } from './kit'
 
 const T_END = Math.PI
 const lower = (x: number) => -2 * Math.sqrt(Math.max(0, 1 - x * x))
@@ -57,9 +57,11 @@ export default function TwoHalves() {
             Here <M>x = {fmt(x)}</M> and <M>v = {fmt(v)}</M>, which is negative.{' '}
           </>
         )}
-        On this trip the body moves in the negative direction, so its point sits on the blue lower half. To switch to
-        the upper half <M>v</M> would have to pass through <M>0</M>, and that only happens at <M>x = \pm 1</M>, the
-        two ends of the interval. Drag <M>t</M> past <M>{'\\tfrac{\\pi}{2} \\approx 1.57'}</M>.
+        The dot on the horizontal axis is the body (arrow = velocity); the coloured dot plots its velocity{' '}
+        <M>v</M> against its position <M>x</M>. Moving in the negative direction puts it on the blue lower half, and
+        switching to the upper half needs <M>v = 0</M>, which only happens at <M>x = \pm 1</M>, the ends of the
+        interval. Drag <M>t</M> (time since the start) past <M>{'\\tfrac{\\pi}{2} \\approx 1.57'}</M>, when the body
+        comes to rest at <M>x = -1</M>.
       </Notice>
     )
   } else if (backHome) {
@@ -83,7 +85,17 @@ export default function TwoHalves() {
 
   return (
     <div>
-      <Plane x={[-1.7, 1.7]} y={[-3, 3]} xStep={0.5} yStep={1} height={340} xLabel="x" yLabel="v">
+      <Plane
+        x={[-1.7, 1.7]}
+        y={[-3, 3]}
+        xStep={0.5}
+        yStep={1}
+        height={340}
+        xLabel="x"
+        yLabel="v"
+        xLabels={false}
+        yLabels={val => (Math.abs(Math.abs(val) - 2) < 1e-9 ? '' : tick(val))}
+      >
         <Plot.OfX y={lower} domain={[-1, 1]} color={C.f} weight={3} />
         <Plot.OfX y={upper} domain={[-1, 1]} color={C.g} weight={2.5} style="dashed" />
         <Label at={[0.5, lower(0.5)]} color={C.f} attach="se">v = −2√(1 − x²)</Label>
@@ -91,7 +103,9 @@ export default function TwoHalves() {
         <Point x={0} y={-2} color={C.f} opacity={0.6} />
         <Label at={[0, -2]} color={C.f} attach="sw" size={12}>given: v = −2 at O</Label>
         <Label at={[1, 0]} attach="ne" size={12}>rest</Label>
+        <Label at={[1, 0]} attach="se" size={12}>x = 1</Label>
         <Label at={[-1, 0]} attach="nw" size={12}>rest</Label>
+        <Label at={[-1, 0]} attach="sw" size={12}>x = −1</Label>
         <Line.Segment point1={[x, 0]} point2={[x, v]} color={C.guide} style="dashed" weight={1.5} />
         {Math.abs(v) > 0.05 && <Vector tail={[x, 0]} tip={[x + 0.3 * v, 0]} color={C.ink} weight={3} />}
         <Point x={x} y={0} color={C.ink} />
