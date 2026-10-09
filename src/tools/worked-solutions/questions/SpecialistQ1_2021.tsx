@@ -20,7 +20,7 @@ const ROWS: WorkingRow[] = [
         tex="\begin{aligned} f(x) &= \frac{1}{\frac{1}{\cos(3x)}+\frac32} \\ &= \frac{2\cos(3x)}{2+3\cos(3x)} \end{aligned}"
       />
     ),
-    reason: <>Write <Katex tex="\sec(3x)=\tfrac{1}{\cos(3x)}" /> and multiply top and bottom by <Katex tex="2\cos(3x)" /> to clear the fraction inside the fraction. Now the only way <Katex tex="f" /> can shoot off to infinity is for the denominator <Katex tex="2+3\cos(3x)" /> to reach zero, which makes a vertical asymptote. <Katex tex="f" /> is periodic (it repeats every <Katex tex="	frac{2pi}{3}" />), so it has no horizontal asymptote: only vertical ones are counted.</>,
+    reason: <>Write <Katex tex="\sec(3x)=\tfrac{1}{\cos(3x)}" /> and multiply top and bottom by <Katex tex="2\cos(3x)" /> to clear the fraction inside the fraction. Now the only way <Katex tex="f" /> can shoot off to infinity is for the denominator <Katex tex="2+3\cos(3x)" /> to reach zero, which makes a vertical asymptote. <Katex tex="f" /> is periodic (it repeats every <Katex tex="\tfrac{2\pi}{3}" />), so it has no horizontal asymptote: only vertical ones are counted.</>,
   },
   {
     working: <Katex display tex="2+3\cos(3x) = 0 \implies \cos(3x) = -\tfrac23" />,

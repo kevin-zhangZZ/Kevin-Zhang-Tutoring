@@ -95,7 +95,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_1^{\sqrt3}\left(\frac{1}{u-2}-\frac{1}{u-1}\right)du}" />,
-    reason: <>Matches option <b>C</b>. Option D (19%) is the same two fractions with the signs swapped; option B (16%) is what the wrong identity <Katex tex="\sec^2(x)=\tan^2(x)-1" /> produces; option E keeps the <Katex tex="x" />-terminals (and its two fractions add up to <Katex tex="	frac{1}{(u-1)(u+2)}" />, the wrong quadratic); option A swaps the signs and uses <Katex tex="\tfrac1{\sqrt3}" /> as the upper terminal.</>,
+    reason: <>Matches option <b>C</b>. Option D (19%) is the same two fractions with the signs swapped; option B (16%) is what the wrong identity <Katex tex="\sec^2(x)=\tan^2(x)-1" /> produces; option E keeps the <Katex tex="x" />-terminals (and its two fractions add up to <Katex tex="\tfrac{1}{(u-1)(u+2)}" />, the wrong quadratic); option A swaps the signs and uses <Katex tex="\tfrac1{\sqrt3}" /> as the upper terminal.</>,
   },
 ]
 
