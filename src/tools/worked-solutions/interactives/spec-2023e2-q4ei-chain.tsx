@@ -6,7 +6,7 @@
 // (Q = 500) both are 0: the growth rate peaks, which is part e.ii.
 
 import { useState } from 'react'
-import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, Buttons, num } from './kit'
+import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, Buttons, num, tick } from './kit'
 
 const Qof = (t: number) => 1000 / (1 + 9 * Math.exp(-1.1 * t))
 const rateOfQ = (q: number) => 1.1 * q * (1 - q / 1000)
@@ -46,7 +46,7 @@ export default function Chain() {
   } else if (noChain) {
     notice = (
       <Notice tone="warn">
-        The red line has slope <M>{num(fp, 3)}</M>, the answer you get by differentiating with respect to{' '}
+        The red dashed line has slope <M>{num(fp, 3)}</M>, the answer you get by differentiating with respect to{' '}
         <M>Q</M> and stopping. It is nowhere near the curve&apos;s slope of <M>{num(measured, 1)}</M>, because{' '}
         <M>{num(fp, 3)}</M> is the change in growth rate <b>per extra fish</b>, not per year. Right now the population is growing by about{' '}
         <M>{num(r, 0)}</M> fish per year (that is <M>{'\\tfrac{dQ}{dt}'}</M>), so multiply by it. That
@@ -58,8 +58,8 @@ export default function Chain() {
       <Notice>
         The green tangent&apos;s slope is <M>{'\\tfrac{d^2Q}{dt^2}'}</M>: how fast the growth rate is changing{' '}
         <b>per year</b>. The chain rule <M>{'\\tfrac{d}{dQ}\\big(\\tfrac{dQ}{dt}\\big)\\times\\tfrac{dQ}{dt}'}</M> gives{' '}
-        <M>{num(d2, 1)}</M>, matching the slope measured from the curve. Turn on &ldquo;No chain rule&rdquo; to see the
-        answer most students gave, then drag <M>t</M> to about 2.
+        <M>{num(d2, 1)}</M>, matching the slope measured from the curve. Turn on &ldquo;No chain rule&rdquo; to see what
+        you get by stopping at <M>{'\\tfrac{d}{dQ}'}</M>, the common error the report describes, then drag <M>t</M> to about 2.
       </Notice>
     )
   } else {
@@ -75,7 +75,9 @@ export default function Chain() {
 
   return (
     <div>
-      <Plane x={[0, 6]} y={[0, 315]} xStep={1} yStep={50} height={320} xLabel="t" yLabel="dQ/dt">
+      <Plane x={[0, 6]} y={[0, 315]} xStep={1} yStep={50} height={320} xLabel="t" yLabel="dQ/dt"
+        // Tick numbers sit just right of the axis; 100 and 150 would lie under the curve and the early tangents.
+        yLabels={v => (v === 100 || v === 150 ? '' : tick(v))}>
         <Plot.OfX y={rate} domain={[0, 6]} color={C.f} weight={3} />
         <Label at={[4.3, rate(4.3)]} color={C.f} attach="ne">dQ/dt</Label>
         <Line.Segment point1={[a, tangent(a)]} point2={[b, tangent(b)]} color={C.good} weight={3} />
@@ -83,7 +85,7 @@ export default function Chain() {
           <>
             <Line.Segment point1={[a, wrong(a)]} point2={[b, wrong(b)]} color={C.bad} style="dashed" weight={2.5} />
             {/* Kept in the empty top-right corner: next to the line it would cross the hump. */}
-            <Label at={[6, 300]} color={C.bad} attach="w">{`dashed: slope ${num(fp, 2)}?`}</Label>
+            <Label at={[6, 300]} color={C.bad} attach="w">{`no chain rule: slope ${num(fp, 2)}`}</Label>
           </>
         )}
         <Point x={t0} y={r} color={C.ink} />

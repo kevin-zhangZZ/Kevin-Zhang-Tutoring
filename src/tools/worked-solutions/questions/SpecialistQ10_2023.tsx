@@ -76,8 +76,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         At <Katex tex="x=1" />, <Katex tex="(1-1)^n = 0" /> (this needs <Katex tex="n\geq1" />, as the question
-        says). At <Katex tex="x=0" />, both factors are 1. The result is a number, as it must be:{' '}
-        <Katex tex="I_n" /> is a definite integral, so it can&apos;t contain <Katex tex="x" />.
+        says). At <Katex tex="x=0" />, both factors are 1.
+      </>
+    ),
+    more: (
+      <>
+        This boundary term is a number, as it must be: <Katex tex="I_n" /> is a definite integral, so the final answer
+        can&apos;t contain <Katex tex="x" />.
       </>
     ),
   },
@@ -94,16 +99,24 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Cas fn="nInt">nInt((1-x)*e^x, x, 0, 1)</Cas> <Katex tex="\approx 0.718" />,{' '}
-        <Cas fn="nInt">nInt(e^x, x, 0, 1)</Cas> <Katex tex="\approx 1.718" />
+        <Katex tex="I_1=" /> <Cas fn="nInt">nInt((1-x)*e^x, x, 0, 1)</Cas> <Katex tex="\approx 0.718" />,{' '}
+        <Katex tex="I_0=" /> <Cas fn="nInt">nInt(e^x, x, 0, 1)</Cas> <Katex tex="\approx 1.718" />
         <Katex display tex="n=1:\quad -1+1\times1.718 = 0.718 = I_1\ \checkmark" />
       </>
     ),
     reason: (
       <>
-        A quick check with <Katex tex="n=1" />: CAS gives <Katex tex="I_1" /> and <Katex tex="I_0" />, and only option A
-        turns <Katex tex="I_0" /> into <Katex tex="I_1" /> (B gives 1.718, C gives <Katex tex="-2.718" />, D gives{' '}
-        <Katex tex="-1.718" />).
+        A quick check with <Katex tex="n=1" />: CAS gives <Katex tex="I_1" /> and <Katex tex="I_0" /> (with{' '}
+        <Katex tex="n=0" />, <Katex tex="(1-x)^0=1" /> leaves just <Katex tex="e^x" />). Only option A turns{' '}
+        <Katex tex="I_0" /> into <Katex tex="I_1" />.
+      </>
+    ),
+    more: (
+      <>
+        From <Katex tex="I_0\approx1.718" />, option B gives 1.718, C gives <Katex tex="-2.718" /> and D gives{' '}
+        <Katex tex="-1.718" />, none of them <Katex tex="I_1\approx0.718" />. E is out on sight, since it contains{' '}
+        <Katex tex="x" />, so on a multiple-choice question this check alone is enough to pick A, without doing the
+        integration by parts.
       </>
     ),
   },
@@ -111,12 +124,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{I_n = -1+nI_{n-1}}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Option E keeps <Katex tex="(1-x)^ne^x" /> without evaluating it at 0 and 1, so it
-        still contains <Katex tex="x" />. Option C is what you get if <Katex tex="(1-x)^n" /> is differentiated
+        Matches option <b>A</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option E, the most common wrong answer, never evaluates the boundary term: it keeps{' '}
+        <Katex tex="(1-x)^ne^x" /> as it is instead of substituting 1 and 0. Option C is what you get if <Katex tex="(1-x)^n" /> is differentiated
         as <Katex tex="n(1-x)^{n-1}" />, missing the chain rule&apos;s <Katex tex="-1" />. Option B drops the boundary
-        term <Katex tex="-1" />, and D makes both slips. C and D are also impossible on sight: they are negative,
-        but <Katex tex="I_n" /> is the area under a curve that lies above the x-axis for{' '}
-        <Katex tex="0<x<1" />, so <Katex tex="I_n>0" />.
+        term <Katex tex="\Big[uv\Big]_0^1=-1" />, and D makes both slips. C and D are also impossible on sight: they
+        are negative, but <Katex tex="I_n" /> is the area under a curve that lies above the <Katex tex="x" />-axis
+        for <Katex tex="0<x<1" />, so <Katex tex="I_n>0" />.
       </>
     ),
   },

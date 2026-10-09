@@ -31,7 +31,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y \approx 1.0 \text{ when } x = 1.5}" />,
-    reason: <>Matches option <b>D</b>. Option <b>C</b>, 0.5, is about the height of the curve's lowest point near the <Katex tex="y" />-axis, not its value at <Katex tex="x=1.5" />; by then the curve has climbed back up. (A check, not needed in the exam: the field is consistent with <Katex tex="\tfrac{dy}{dx}=x-y^2" />, which is zero along <Katex tex="x=y^2" /> and the same above and below the <Katex tex="x" />-axis. Solving that numerically from <Katex tex="(-1,\,2)" /> gives a lowest point of about <Katex tex="(0.21,\,0.46)" /> and <Katex tex="y(1.5)\approx0.97" />.)</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
+      <>
+        Option <b>C</b>, 0.5, is about the height of the curve&apos;s lowest point near the <Katex tex="y" />-axis, not
+        its value at <Katex tex="x=1.5" />; by then the curve has climbed back up. Option <b>E</b>, 1.5, has the curve
+        climbing far too fast: at the curve&apos;s height the strokes right of the <Katex tex="y" />-axis rise only
+        gently (gradient at most about 0.5), and near <Katex tex="(1.5,\,1.5)" /> they slope <em>downwards</em>, so a curve
+        climbing from about <Katex tex="y=0.5" /> cannot get there. A check, not needed in the exam: the
+        field is consistent with <Katex tex="\tfrac{dy}{dx}=x-y^2" />, which is zero along <Katex tex="x=y^2" /> and the
+        same above and below the <Katex tex="x" />-axis. Solving that numerically from <Katex tex="(-1,\,2)" /> gives a
+        lowest point of about <Katex tex="(0.21,\,0.46)" /> and <Katex tex="y(1.5)\approx0.97" />.
+      </>
+    ),
   },
 ]
 

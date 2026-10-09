@@ -64,10 +64,8 @@ export default function EndDiscs() {
   if (left && right) {
     notice = (
       <Notice tone="good">
-        <b>Curved surface plus both discs.</b> Each disc&apos;s radius is the curve&apos;s height at that end:{' '}
-        <M>{'y=\\sqrt{2-1}=1'}</M> and <M>{'y=\\sqrt{5-1}=2'}</M>, so the ends add <M>\pi + 4\pi = 5\pi</M>. Then{' '}
-        <M>{'(30.846+5\\pi)\\div\\tfrac{15\\pi}{2}\\approx1.98'}</M>, the answer. Switch a disc off to see the ratio you
-        get when it is left out.
+        <b>Curved surface plus both discs</b> gives the answer, <M>\approx 1.98</M>. The labelled radii, 1 and 2, are
+        the curve&apos;s heights at the two ends. Switch a disc off to see the ratio you get when it is left out.
       </Notice>
     )
   } else if (!left && !right) {

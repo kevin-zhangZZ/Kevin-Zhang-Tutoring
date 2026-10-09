@@ -25,7 +25,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{n} = x+y = 0 \qquad \underset{\sim}{b}\cdot\underset{\sim}{n} = x-y = 0" />,
-    reason: <>Apply the two orthogonality conditions with <Katex tex="\underset{\sim}{a}=\underset{\sim}{i}+\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}-\underset{\sim}{j}" />.</>,
+    reason: <>Perpendicular (orthogonal) vectors have a dot product of zero. Dot <Katex tex="\underset{\sim}{n}" /> with <Katex tex="\underset{\sim}{a}=\underset{\sim}{i}+\underset{\sim}{j}" /> and with <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}-\underset{\sim}{j}" />.</>,
   },
   {
     working: <Katex display tex="x+y=0 \text{ and } x-y=0 \;\implies\; x=0,\ y=0" />,
@@ -33,15 +33,40 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{n} = z\underset{\sim}{k},\quad |\underset{\sim}{n}|=1 \;\implies\; z=\pm1" />,
-    reason: <>Neither condition restricts <Katex tex="z" />, so only the <Katex tex="\underset{\sim}{k}" /> component survives. Unit length means <Katex tex="\sqrt{z^2}=1" />, so <Katex tex="z=\pm1" /> and <Katex tex="\underset{\sim}{n}=\pm\underset{\sim}{k}" />. This makes sense: <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> both lie flat in the <Katex tex="xy" />-plane, so the only directions perpendicular to both are straight up or straight down.</>,
+    reason: <>Neither condition involves <Katex tex="z" />, so <Katex tex="z" /> is free and only the <Katex tex="\underset{\sim}{k}" /> component survives. Unit length means <Katex tex="\sqrt{z^2}=1" />, so <Katex tex="z=\pm1" /> and <Katex tex="\underset{\sim}{n}=\pm\underset{\sim}{k}" />.</>,
+    more: (
+      <>
+        <p>
+          This makes sense geometrically: <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> both
+          lie flat in the <Katex tex="xy" />-plane (neither has a <Katex tex="\underset{\sim}{k}" /> component), so the only directions perpendicular to both are straight up or
+          straight down.
+        </p>
+        <p>
+          Another route: <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}" /> is perpendicular to both{' '}
+          <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />. Here{' '}
+          <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}=-2\underset{\sim}{k}" />, which has length 2, so dividing
+          by 2 gives the unit vector <Katex tex="-\underset{\sim}{k}" />; its negative <Katex tex="\underset{\sim}{k}" />{' '}
+          works too.
+        </p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="\underset{\sim}{c}\cdot\underset{\sim}{n} = \left(\underset{\sim}{i}+2\underset{\sim}{j}+3\underset{\sim}{k}\right)\cdot\left(\pm\underset{\sim}{k}\right) = \pm3" />,
-    reason: <>Only the <Katex tex="\underset{\sim}{k}" /> component of <Katex tex="\underset{\sim}{c}" /> contributes. The sign depends on which unit normal is taken — which is why the question asks for the modulus.</>,
+    reason: <>Only the <Katex tex="\underset{\sim}{k}" /> component of <Katex tex="\underset{\sim}{c}" /> contributes. The sign depends on which of the two unit vectors is taken, which is why the question asks for the modulus.</>,
   },
   {
     working: <Katex display tex="\boxed{\left|\underset{\sim}{c}\cdot\underset{\sim}{n}\right| = 3}" />,
-    reason: <>Matches option <b>B</b>. The cross product <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}=-2\underset{\sim}{k}" /> is also perpendicular to both vectors, but its length is 2, not 1; using it without dividing by 2 gives <Katex tex="\left|\underset{\sim}{c}\cdot(-2\underset{\sim}{k})\right|=6" />, option <b>E</b>.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: (
+      <>
+        Option <b>E</b>, the most common wrong answer (19%), is twice the answer. It comes from the cross-product
+        route above with the division skipped: using <Katex tex="-2\underset{\sim}{k}" /> itself as{' '}
+        <Katex tex="\underset{\sim}{n}" /> gives <Katex tex="\left|\underset{\sim}{c}\cdot(-2\underset{\sim}{k})\right|=6" />.
+        Whenever a question asks for a{' '}
+        <em>unit</em> vector, divide by the length before using it.
+      </>
+    ),
   },
 ]
 

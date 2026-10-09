@@ -4,7 +4,7 @@
 // cancel so each pair adds to a real number 2cos(2kπ/7); then the three pair sums laid end to end
 // reach −1, and the unpaired root 1 brings the total back to 0. Every value from cis(2kπ/7).
 
-import { C, Circle, Controls, Label, Line, M, Notice, Plane, Point, Readout, Readouts, StepNav, Vector, useSteps } from './kit'
+import { C, Circle, Controls, Label, Line, M, Notice, Plane, Point, Readout, Readouts, StepNav, Vector, useSteps, type Attach } from './kit'
 
 const SUP = ['', '', '²', '³', '⁴', '⁵', '⁶']
 const NAME = (k: number) => (k === 0 ? '1' : `w${SUP[k]}`)
@@ -15,6 +15,9 @@ const PAIRS = [
   { k: 3, color: C.violet },
 ] as const
 const SUM = (k: number) => 2 * Math.cos((2 * k * Math.PI) / 7)
+// Each root's label sits just outside the circle on its own side, a fixed few px from the dot
+// (1 sits below-left, clear of the w + w⁶ arrowhead at 1.247).
+const ROOT_ATTACH: Attach[] = ['sw', 'ne', 'n', 'w', 'w', 's', 'se']
 const STEPS = 5
 
 const PAIR_TEX = [
@@ -33,9 +36,10 @@ export default function ConjugatePairs() {
   const s1 = SUM(1)
   const s2 = s1 + SUM(2)
   const s3 = s2 + SUM(3)
-  const ARROWS: { from: number; to: number; y: number; color: string; text: string }[] = [
+  // The short w² + w⁵ arrow's label sits up-left of its tip, clear of the dashed guide at s1.
+  const ARROWS: { from: number; to: number; y: number; color: string; text: string; lx?: number; la?: Attach }[] = [
     { from: 0, to: s1, y: 0.95, color: C.f, text: 'w + w⁶' },
-    { from: s1, to: s2, y: 0.6, color: C.g, text: 'w² + w⁵' },
+    { from: s1, to: s2, y: 0.6, color: C.g, text: 'w² + w⁵', lx: s2, la: 'nw' },
     { from: s2, to: s3, y: 0.25, color: C.violet, text: 'w³ + w⁴' },
     { from: s3, to: s3 + 1, y: -0.35, color: C.good, text: '1' },
   ]
@@ -95,7 +99,7 @@ export default function ConjugatePairs() {
             {ARROWS.map(a => (
               <g key={a.y}>
                 <Vector tail={[a.from, a.y]} tip={[a.to, a.y]} color={a.color} weight={2.5} />
-                <Label at={[(a.from + a.to) / 2, a.y]} attach={a.y < 0 ? 's' : 'n'} color={a.color} size={13} gap={5} italic={a.y > 0}>
+                <Label at={[a.lx ?? (a.from + a.to) / 2, a.y]} attach={a.la ?? (a.y < 0 ? 's' : 'n')} color={a.color} size={13} gap={5} italic={a.y > 0}>
                   {a.text}
                 </Label>
               </g>
@@ -121,7 +125,7 @@ export default function ConjugatePairs() {
           return (
             <g key={k}>
               <Point x={x} y={y} color={color} />
-              <Label at={k === 0 ? [1, 0] : [1.25 * x, 1.25 * y]} attach={k === 0 ? 'se' : 'c'} size={14} color={color} italic={k > 0}>
+              <Label at={[x, y]} attach={ROOT_ATTACH[k]} gap={8} size={16} color={color} italic={k > 0}>
                 {NAME(k)}
               </Label>
             </g>

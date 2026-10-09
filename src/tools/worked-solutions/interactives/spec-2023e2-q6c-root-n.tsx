@@ -32,12 +32,10 @@ export default function RootN() {
   } else if (n === 50) {
     notice = (
       <Notice tone="warn">
-        <M>n = 50</M> is the guess <M>{'20 \\div 0.4'}</M>: 2.5 times the sample. But the width only falls to{' '}
-        <M>{'\\sqrt{20/50} \\approx 63\\%'}</M> of the original, not 40%, because <M>n</M> sits under a square root.
+        The guess <M>n = 50</M> leaves the width at 63% of the original, well above the green line.{' '}
         {linear
-          ? ' The dashed red curve is what that guess assumes, a width that falls like 1/n: it hits the green line at 50, but the real blue curve flattens out.'
-          : ' Turn on the toggle to see the curve that guess assumes.'}{' '}
-        Keep sliding.
+          ? 'The dashed red curve is the width that guess assumes, falling like 1/n: it reaches the green line at 50, but the real blue curve flattens out. Slide n right until the blue point reaches the green line.'
+          : 'Turn on the toggle to see the curve that guess assumes, or slide n right until the blue point reaches the green line.'}
       </Notice>
     )
   } else if (n >= 55 && n <= 57) {
@@ -74,7 +72,8 @@ export default function RootN() {
 
   return (
     <div>
-      <Plane x={[0, 160]} y={[0, 1]} xStep={20} yStep={0.2} xLabel="n" yLabel="width" yLabels={v => (v < 0.99 ? v.toFixed(1) : '')} height={320}>
+      <Plane x={[0, 160]} y={[0, 1]} xStep={20} yStep={0.2} xLabel="" yLabel="width" yLabels={v => (v < 0.99 ? v.toFixed(1) : '')} height={320}>
+        <Label at={[160, 0]} attach="nw" size={14} italic>n</Label>
         <Line.Segment point1={[0, W20]} point2={[160, W20]} color={C.guide} style="dashed" weight={1.5} />
         <Label at={[30, W20]} attach="ne" color={C.guide} size={12}>original width 0.877</Label>
         <Line.Segment point1={[0, TARGET]} point2={[160, TARGET]} color={C.good} style="dashed" weight={2} />

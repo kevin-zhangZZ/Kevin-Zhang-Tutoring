@@ -27,7 +27,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{sd}(T) = \sqrt{640\,000} = 800" />,
-    reason: <>Take the square root to get back to a standard deviation. Treating <Katex tex="T" /> as <Katex tex="16X" /> — one invoice multiplied by 16 — gives standard deviation <Katex tex="16\times200=3200" /> and probability <Katex tex="0.413" />, option <b>C</b>. But <Katex tex="16X" /> would mean all 16 invoices owe exactly the same amount; 16 separate invoices partly cancel each other&rsquo;s highs and lows, so the spread grows only by <Katex tex="\sqrt{16}=4" />.</>,
+    reason: <>Take the square root to get back to a standard deviation. Adding 16 invoices multiplies the spread by <Katex tex="\sqrt{16}=4" />, not by 16.</>,
+    more: (
+      <>
+        The tempting shortcut is to treat <Katex tex="T" /> as <Katex tex="16X" />, one invoice multiplied by 16. That
+        gives <Katex tex="\mathrm{sd}=16\times200=3200" /> and a probability of <Katex tex="0.413" />, option{' '}
+        <b>C</b>, the most common wrong answer (17%). But <Katex tex="16X" /> would mean all 16 invoices owe exactly the
+        same amount, so every high or low is repeated 16 times. Sixteen separate invoices partly cancel each
+        other&rsquo;s highs and lows, which is why the spread of the total grows only by a factor of 4.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned}z &= \frac{13\,500-12\,800}{800}\\ &= 0.875\end{aligned}" />,
@@ -35,11 +44,21 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(T>13\,500) &= \Pr(Z>0.875)\\ &= 0.19078\ldots\end{aligned}" />,
-    reason: <>By <Cas fn="normCdf" /> with lower 0.875, upper ∞, μ = 0, σ = 1 (or straight from <Katex tex="T" />: lower 13 500, upper ∞, μ = 12 800, σ = 800).</>,
+    reason: <>By <Cas fn="normCdf" /> with lower 0.875, upper ∞, μ = 0, σ = 1.</>,
+    more: <>You can skip standardising: <Cas fn="normCdf" /> straight from <Katex tex="T" />, with lower 13 500, upper ∞, μ = 12 800, σ = 800, gives the same value.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(T>13\,500)\approx0.191}" />,
-    reason: <>Matches option <b>B</b>, to three decimal places. Option <b>E</b>, <Katex tex="0.809" />, is the complement — the probability of owing <em>less</em> than $13 500.</>,
+    reason: <>Matches option <b>B</b>, to three decimal places.</>,
+    more: (
+      <>
+        Option <b>C</b>, <Katex tex="0.413" />, comes from the <Katex tex="16X" /> shortcut described at the{' '}
+        <Katex tex="\mathrm{sd}(T)" /> step, and <b>D</b>, <Katex tex="0.587" />, is the complement of <b>C</b>.{' '}
+        <b>E</b>, <Katex tex="0.809" />, is the complement of the right answer: the probability of owing{' '}
+        <em>less</em> than $13 500. <b>A</b>, <Katex tex="0.087" />, is <Katex tex="0.5-0.413" />: under that same{' '}
+        <Katex tex="16X" /> model, the probability that the total lands between the mean, $12 800, and $13 500.
+      </>
+    ),
   },
 ]
 

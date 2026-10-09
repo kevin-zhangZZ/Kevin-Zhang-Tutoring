@@ -55,10 +55,10 @@ export default function Foot() {
 
   return (
     <div>
-      <Plane x={[-3.2, 3.2]} y={[-0.9, 1.4]} xStep={1} yStep={5} height={240} xLabel="t" yLabel="" yLabels={false}
+      <Plane x={[-3.2, 3.2]} y={[-0.9, 1.4]} xStep={1} yStep={5} height={240} xLabel="" yLabel="" yLabels={false}
         xLabels={v => (Math.abs(v + 2) < 1e-9 ? '' : tick(v))}>
         <Line.Segment point1={[-2, -0.9]} point2={[-2, TOP]} color={C.violet} weight={4} />
-        <Label at={[-2, TOP]} color={C.violet} attach="n">ψ</Label>
+        <Label at={[-2, TOP]} color={C.violet} attach="n">ψ (t = −2)</Label>
         {wrong && (
           <>
             <Line.Segment point1={[2, -0.9]} point2={[2, TOP]} color={C.bad} weight={2} style="dashed" />
@@ -68,7 +68,8 @@ export default function Foot() {
           </>
         )}
         <Line.Segment point1={[-3.2, 0]} point2={[3.2, 0]} color={C.f} weight={3} />
-        <Label at={[-3.2, 0]} color={C.f} attach="ne">L</Label>
+        <Label at={[-2.6, 0]} color={C.f} attach="n">L</Label>
+        <Label at={[3.2, 0]} attach="ne" size={14} italic>t</Label>
         <Vector tail={[0, 0.45]} tip={[1, 0.45]} color={C.ink} />
         <Label at={[0.5, 0.45]} attach="n">n</Label>
         <Point x={0} y={0} color={C.ink} />

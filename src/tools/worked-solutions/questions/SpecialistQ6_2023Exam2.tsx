@@ -5,7 +5,9 @@
 // own artwork. Answers checked with scipy and against the VCAA examination report. Solution
 // is original. Widgets: part c. (spec-2023e2-q6c-root-n — the width falls like 1/√n, so 40% of
 // the width needs 6.25 times the sample) and part g. (spec-2023e2-q6g-type-two — the Type II
-// area is under the true curve, on the keep-H₀ side of the cut-off).
+// area is under the true curve, on the keep-H₀ side of the cut-off). Concise/Detailed review
+// (Oct 2026): checks, traps and longer explanations moved into rows' `more`; part g. working
+// now shows the decision rule and Pr(X̄ ≥ 11.632) as their own lines.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -66,7 +68,8 @@ const EXAM_G: SAExaminerStats = { marks: [61, 39], average: 0.4 }
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\left(\bar x - z\frac{\sigma}{\sqrt n},\ \bar x + z\frac{\sigma}{\sqrt n}\right),\quad z = 1.96" />,
-    reason: <>The formula sheet&apos;s interval for <Katex tex="\mu" />, with the known <Katex tex="\sigma = 1" /> in place of <Katex tex="s" />. For 95% confidence <Katex tex="z=1.96" />, because the middle 95% of the standard normal lies between <Katex tex="-1.96" /> and <Katex tex="1.96" />. Here <Katex tex="\bar x = 11.39" /> and <Katex tex="n = 20" />.</>,
+    reason: <>The formula sheet&apos;s interval for <Katex tex="\mu" />, with the known <Katex tex="\sigma = 1" /> in place of <Katex tex="s" />. For 95% confidence <Katex tex="z=1.96" />. Here <Katex tex="\bar x = 11.39" /> and <Katex tex="n = 20" />.</>,
+    more: <>Why 1.96: the middle 95% of the standard normal lies between <Katex tex="-1.96" /> and <Katex tex="1.96" />, leaving 2.5% in each tail.</>,
   },
   {
     working: <Katex display tex="1.96\times\frac{1}{\sqrt{20}} \approx 0.4383" />,
@@ -86,6 +89,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(\text{interval contains } \mu) = 0.95" />,
     reason: <>The true mean <Katex tex="\mu" /> is one fixed number, but every sample gives a different interval. &ldquo;95% confidence&rdquo; means that 95% of intervals built this way contain <Katex tex="\mu" />, so 95% of the 60 intervals are expected to.</>,
+    more: <>Why not &ldquo;a 95% chance that <Katex tex="\mu" /> is in my interval&rdquo;? Once one interval has been calculated, <Katex tex="\mu" /> is either in it or not, because <Katex tex="\mu" /> is not random. The 95% describes the method: over many samples, about 95% of the intervals it produces catch <Katex tex="\mu" />. That long-run reading is exactly what this question asks about.</>,
   },
   {
     working: <Katex display tex="0.95\times60 = 57" />,
@@ -101,6 +105,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{width} = 2\times1.96\times\frac{1}{\sqrt n}" />,
     reason: <>The interval runs from <Katex tex="\bar x - 1.96\tfrac{\sigma}{\sqrt n}" /> to <Katex tex="\bar x + 1.96\tfrac{\sigma}{\sqrt n}" />, so its width is twice the margin of error, with <Katex tex="\sigma = 1" />. Only <Katex tex="n" /> can change, and it sits under a square root.</>,
+    more: <>1.96 is fixed by the 95% level and <Katex tex="\sigma = 1" /> is known. The sample mean <Katex tex="\bar x" /> does not appear in the width at all: it only moves where the interval sits, not how wide it is.</>,
   },
   {
     working: (
@@ -109,7 +114,8 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="\text{new width} = 0.4\times\text{old width}" />
       </>
     ),
-    reason: <>Decreasing by 60% leaves 40%, not 60% — the phrasing is the first hurdle.</>,
+    reason: <>Decreasing by 60% leaves 40% of the width, not 60%.</>,
+    more: <>The phrasing is the first hurdle. Reading it as &ldquo;new width <Katex tex="= 0.6\times" /> old width&rdquo; is a decrease <em>by 40%</em>, and leads to <Katex tex="n = \tfrac{20}{0.6^2} \approx 55.6" />, so 56 koalas: the right method aimed at the wrong target.</>,
   },
   {
     working: (
@@ -122,18 +128,33 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = \frac{20}{0.4^2} = \frac{20}{0.16} = 125" />,
-    reason: <>Square both sides. Because <Katex tex="n" /> is under a square root, multiplying the width by <Katex tex="0.4" /> needs <Katex tex="1/0.4^2 = 6.25" /> times the sample, not <Katex tex="1/0.4 = 2.5" /> times (which would give 50).</>,
+    reason: <>Square both sides. Because <Katex tex="n" /> is under a square root, multiplying the width by <Katex tex="0.4" /> needs <Katex tex="1/0.4^2 = 6.25" /> times the sample.</>,
+    more: (
+      <>
+        <p>
+          The tempting shortcut is <Katex tex="20 \div 0.4 = 50" />, which is 2.5 times the sample. That treats the
+          width as if it fell like <Katex tex="\tfrac{1}{n}" />. With <Katex tex="n = 50" /> the width only falls to{' '}
+          <Katex tex="\sqrt{20/50} \approx 63\%" /> of the original, nowhere near 40%.
+        </p>
+        <p>
+          A quick way to set the whole thing up: <Katex tex="\tfrac{\text{new width}}{\text{old width}} = \sqrt{\tfrac{20}{n}}" />,
+          so <Katex tex="\sqrt{\tfrac{20}{n}} = 0.4" /> gives <Katex tex="\tfrac{20}{n} = 0.16" /> and <Katex tex="n = 125" />.
+        </p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{n = 125 \text{ koalas}}" />,
-    reason: <>More than six times the original sample for an interval less than half as wide — the usual price of precision.</>,
+    reason: <>125 is already a whole number, so no rounding is needed.</>,
+    more: <>Had it not been whole, round <em>up</em>: a smaller sample would leave the interval slightly wider than the target.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_0: \ \mu = 12}" />,
-    reason: <>The hypothesis being tested is about the population mean <Katex tex="\mu" />, so write <Katex tex="\mu=12" /> — the report notes responses such as '<Katex tex="H_0=12" />' were occasionally seen.</>,
+    reason: <>Hypotheses are statements about the population mean <Katex tex="\mu" />, so <Katex tex="\mu" /> must appear: <Katex tex="H_0" /> gives the claimed value, 12 kg.</>,
+    more: <>Writing &lsquo;<Katex tex="H_0=12,\ H_1<12" />&rsquo;, the incorrect response the report mentions, leaves out <Katex tex="\mu" />, so it never says <em>what</em> equals 12.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \ \mu < 12}" />,
@@ -156,7 +177,8 @@ const ROWS_EI: WorkingRow[] = [
         normCdf(−∞, 11.6, 12, 1/√40)
       </Cas>
     ),
-    reason: <>As a check, <Katex tex="z=\tfrac{11.6-12}{0.1581}\approx-2.530" />.</>,
+    reason: <>Lower bound <Katex tex="-\infty" />, upper bound 11.6, then the <Katex tex="H_0" /> mean 12 and the standard deviation <Katex tex="\tfrac{1}{\sqrt{40}}" /> from the first line.</>,
+    more: <>As a check, <Katex tex="z=\tfrac{11.6-12}{0.1581}\approx-2.530" />, and <Katex tex="\Pr(Z<-2.530)\approx0.0057" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.0057}" />,
@@ -167,11 +189,12 @@ const ROWS_EI: WorkingRow[] = [
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="p = 0.0057 < 0.01" />,
-    reason: <>Compare the p value with the stated significance level — that comparison is the whole argument.</>,
+    reason: <>Compare the <Katex tex="p" /> value with the 1% significance level, 0.01.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{As } p < 0.01, \text{ reject } H_0.}" />,
-    reason: <>If the mean really were 12 kg, a sample mean this low would happen less than 1% of the time, so <Katex tex="H_0" /> is rejected: there is evidence the mean mass is less than 12 kg. Write the reason (the <Katex tex="p" /> value is below 0.01) in the answer itself — the report notes some students stated a correct conclusion without referencing the <Katex tex="p" /> value.</>,
+    reason: <>The question asks for a reason, so write the comparison <Katex tex="p < 0.01" /> in the answer, not just the conclusion.</>,
+    more: <>What it means: if the mean really were 12 kg, a sample mean as low as 11.6 kg would happen less than 1% of the time. That is strong enough evidence (at the 1% level) that the mean mass is less than 12 kg.</>,
   },
 ]
 
@@ -191,22 +214,35 @@ const ROWS_F: WorkingRow[] = [
         invNorm(0.01, 12, 1/√40)
       </Cas>
     ),
-    reason: <>Still assuming <Katex tex="H_0" />: <Katex tex="\overline{X}\sim\mathrm{N}\!\left(12,\ \tfrac{1}{40}\right)" /> as in part e.i. As a check, <Katex tex="c=12-2.3263\times0.15811" />.</>,
+    reason: <>Still assuming <Katex tex="H_0" />: <Katex tex="\overline{X}\sim\mathrm{N}\!\left(12,\ \tfrac{1}{40}\right)" /> as in part e.i. invNorm gives the value with area 0.01 to its left.</>,
+    more: <>As a check, the standard normal has 1% below <Katex tex="-2.3263" />, so <Katex tex="c=12-2.3263\times0.15811\approx11.632" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\bar x \approx 11.632 \ \text{kg}}" />,
-    reason: <>Three decimal places; <Katex tex="11.633" /> was also accepted. The observed <Katex tex="11.6" /> is below it, agreeing with part e.ii ✓</>,
+    working: <Katex display tex="\boxed{c \approx 11.632 \ \text{kg}}" />,
+    reason: <>Three decimal places; <Katex tex="11.633" /> was also accepted.</>,
+    more: <>Check: the observed <Katex tex="11.6" /> is below 11.632, so <Katex tex="H_0" /> is rejected, agreeing with part e.ii ✓</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Type II error} = \text{not rejecting } H_0 \text{ when } H_0 \text{ is false}" />,
-    reason: <>Here <Katex tex="H_0" /> is false, because the true mean is 11.4, not 12. From part f., <Katex tex="H_0" /> is not rejected when <Katex tex="\bar x \ge 11.632" />. That decision rule was set using <Katex tex="H_0" />, so it stays the same whatever the true mean is.</>,
+    reason: <>Here <Katex tex="H_0" /> is false, because the true mean is 11.4, not 12.</>,
+  },
+  {
+    working: <Katex display tex="H_0 \text{ not rejected when } \bar x \ge 11.632" />,
+    reason: <>The decision rule from part f. It was set using <Katex tex="H_0" />, so it stays the same whatever the true mean is.</>,
+    more: <>The critical value 11.632 is the cut-off between keeping and rejecting <Katex tex="H_0" />. The ranger never knows the true mean, so the cut-off can only come from <Katex tex="H_0" /> and the 1% level. What the true mean of 11.4 changes is how likely a sample mean is to land on each side of it.</>,
   },
   {
     working: <Katex display tex="\overline{X} \sim \mathrm{N}\!\left(11.4,\ \frac{1}{40}\right) \ \text{ under the true mean}" />,
     reason: <>Same sample size and standard deviation; only the centre moves. The probability is worked out with the <em>true</em> mean, not with <Katex tex="H_0" />&apos;s mean of 12.</>,
+    more: <>Keeping <Katex tex="H_0" />&apos;s distribution <Katex tex="\mathrm{N}\!\left(12,\ \tfrac{1}{40}\right)" /> here would give <Katex tex="\Pr\!\left(\overline{X} \ge 11.632\right) = 0.990" />: the chance of keeping <Katex tex="H_0" /> when it is <em>true</em>, which is a correct decision, not an error. A Type II error can only happen when <Katex tex="H_0" /> is false, so it must use the true distribution.</>,
+  },
+  {
+    working: <Katex display tex="\Pr(\text{Type II error}) = \Pr\!\left(\overline{X} \ge 11.632\right)" />,
+    reason: <>The upper tail, because <Katex tex="H_0" /> is kept when <Katex tex="\bar x \ge 11.632" />.</>,
+    more: <>The other side, <Katex tex="\Pr\!\left(\overline{X} < 11.632\right) \approx 0.929" /> under the true mean, is the chance the test correctly rejects <Katex tex="H_0" />. The Type II probability is what is left: <Katex tex="1 - 0.929 = 0.071" />.</>,
   },
   {
     working: (
@@ -214,11 +250,13 @@ const ROWS_G: WorkingRow[] = [
         normCdf(11.632, ∞, 11.4, 1/√40)
       </Cas>
     ),
-    reason: <><Katex tex="\Pr\!\left(\overline{X} \ge 11.632\right)" />: the upper tail, where <Katex tex="H_0" /> is kept. As a check, <Katex tex="z=\tfrac{11.632-11.4}{0.15811}\approx1.467" />.</>,
+    reason: <>Lower bound 11.632, upper bound <Katex tex="\infty" />, now with the true mean 11.4; the standard deviation is still <Katex tex="\tfrac{1}{\sqrt{40}}" />.</>,
+    more: <>As a check, <Katex tex="z=\tfrac{11.632-11.4}{0.15811}\approx1.467" />, and <Katex tex="\Pr(Z\ge1.467)\approx0.071" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(\text{Type II error}) \approx 0.071}" />,
-    reason: <>Three decimal places; <Katex tex="0.070" /> was also accepted (it is what <Katex tex="11.633" /> from part f. gives).</>,
+    reason: <>Three decimal places; <Katex tex="0.070" /> was also accepted.</>,
+    more: <>The unrounded critical value from part f. gives 0.0710 and 11.632 gives 0.0711, both 0.071; the accepted 0.070 is what 11.633 gives.</>,
   },
 ]
 
@@ -246,9 +284,9 @@ export default function SpecialistQ6_2023Exam2() {
               notes was challenging for students.
             </p>
             <p>
-              Second, a Type II error is computed under the <em>alternative</em>, not the null.
-              Find the critical value from <Katex tex="H_0" /> (part f.), then ask how likely a
-              sample from the true distribution is to land on the wrong side of it (part g.).
+              Second, a Type II error needs two distributions. <Katex tex="H_0" />&apos;s
+              (mean 12) fixes the critical value in part f.; the <em>true</em> one (mean 11.4)
+              gives the probability, in part g., that a sample mean lands on the wrong side of it.
             </p>
           </Background>
         </div>
@@ -432,7 +470,7 @@ export default function SpecialistQ6_2023Exam2() {
           Every student was awarded the mark. Had it stood, the answer would
           have been to mark <Katex tex="11.632" /> from part f. on the axis and shade the area
           under the <Katex tex="H_1" /> curve to the <em>right</em> of it — the 0.071 computed
-          in part g., and the region the part g. widget shades.
+          in part g.
         </p>
       </div>
     </div>

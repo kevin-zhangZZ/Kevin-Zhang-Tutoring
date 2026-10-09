@@ -69,7 +69,7 @@ export default function EndRadius() {
         <b>At k = 8 the volume is 24π</b>, the value found in the working. The disc closing this end has radius
         equal to the curve&apos;s height there, <M>{'y=\\sqrt{8-1}=\\sqrt7\\approx2.65'}</M>, so its area is{' '}
         <M>{'\\pi(\\sqrt7)^2=7\\pi'}</M>. With the left disc&apos;s <M>\pi</M>, the ratio is{' '}
-        <M>{'(75.916+8\\pi)\\div24\\pi\\approx1.34'}</M>. Now try the wrong radius.
+        <M>{'(75.916+8\\pi)\\div(24\\pi)\\approx1.34'}</M>. Now try the wrong radius.
       </Notice>
     )
   } else {

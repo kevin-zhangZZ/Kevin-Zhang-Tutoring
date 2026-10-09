@@ -78,11 +78,12 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 1, \quad B = \frac{1}{1000}}" />,
-    reason: (
+    reason: <>These are the values in the question&apos;s form, where <Katex tex="B" /> sits over <Katex tex="1-\tfrac{P}{1000}" />, not over <Katex tex="1000-P" />.</>,
+    more: (
       <>
-        Check by combining: <Katex tex="\tfrac1P+\tfrac{1/1000}{1-P/1000}" /> does return the original ✓. Watch
-        the form: the second denominator is <Katex tex="1-\tfrac{P}{1000}" />, not <Katex tex="1000-P" />. If you
-        found <Katex tex="\tfrac1P+\tfrac{1}{1000-P}" />, rewrite{' '}
+        Check by combining: <Katex tex="\tfrac1P+\tfrac{1/1000}{1-P/1000}" /> recombines to{' '}
+        <Katex tex="\tfrac{1}{P(1-P/1000)}" /> ✓. If you split the fraction your own way and found{' '}
+        <Katex tex="\tfrac1P+\tfrac{1}{1000-P}" />, rewrite{' '}
         <Katex tex="\tfrac{1}{1000-P}=\tfrac{1/1000}{1-P/1000}" /> before reading off <Katex tex="B" />, so{' '}
         <Katex tex="B=\tfrac{1}{1000}" />, not 1.
       </>
@@ -101,7 +102,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1+D = \frac{1000}{200} = 5 \implies \boxed{D = 4}" />,
-    reason: <>Note the pattern: <Katex tex="D=\tfrac{1000}{P_0}-1" />, which part c. reuses.</>,
+    reason: <>Solve for <Katex tex="D" />.</>,
+    more: <>The pattern: <Katex tex="D=\tfrac{1000}{P_0}-1" />, where <Katex tex="P_0" /> is the starting population. The constant in the denominator is fixed by how many fish there are at <Katex tex="t=0" />, which part c. uses in reverse.</>,
   },
 ]
 
@@ -116,7 +118,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 100}" />,
-    reason: <>Consistent with part b.: <Katex tex="9=\tfrac{1000}{100}-1" /> ✓.</>,
+    reason: <>So the farmer released 100 fish into pond 2.</>,
+    more: <>Check: <Katex tex="9=\tfrac{1000}{100}-1" /> ✓, the same pattern as in part b.</>,
   },
 ]
 
@@ -126,12 +129,13 @@ const ROWS_D: WorkingRow[] = [
     reason: <>Substituting <Katex tex="t=6" />.</>,
   },
   {
-    working: <Katex display tex="e^{-6.6} = 0.001360\ldots \implies Q = \frac{1000}{1.012245\ldots}" />,
+    working: <Katex display tex="e^{-6.6} = 0.001360\ldots \implies Q = \frac{1000}{1.012243\ldots}" />,
     reason: <>The exponential is already tiny, so the population is close to its ceiling of 1000.</>,
   },
   {
     working: <Katex display tex="Q = 987.90\ldots \implies \boxed{Q \approx 988}" />,
-    reason: <>To the nearest integer, as asked. Six years in, pond 2 is within 2% of its carrying capacity of 1000.</>,
+    reason: <>To the nearest integer, as asked.</>,
+    more: <>Six years in, pond 2 is within 2% of its carrying capacity of 1000: a quick check that the answer is sensible.</>,
   },
 ]
 
@@ -146,9 +150,17 @@ const ROWS_EI: WorkingRow[] = [
       <>
         <Katex tex="\tfrac{d^2Q}{dt^2}" /> means differentiate <Katex tex="\tfrac{dQ}{dt}" /> with respect to{' '}
         <Katex tex="t" />. It contains only <Katex tex="Q" />, and <Katex tex="Q" /> depends on <Katex tex="t" />,
-        so the chain rule applies: differentiate with respect to <Katex tex="Q" />, then multiply by{' '}
-        <Katex tex="\tfrac{dQ}{dt}" />. It is the same step as <Katex tex="a=v\tfrac{dv}{dx}" /> in kinematics.
-        The report notes a common error was not recognising the need for the chain rule.
+        so use the chain rule: differentiate with respect to <Katex tex="Q" />, then multiply by{' '}
+        <Katex tex="\tfrac{dQ}{dt}" />.
+      </>
+    ),
+    more: (
+      <>
+        This is the step the report says was commonly missed. Differentiating with respect to <Katex tex="t" /> as
+        if <Katex tex="Q" /> were a constant would give 0, and differentiating with respect to <Katex tex="Q" /> and
+        stopping gives only <Katex tex="\tfrac{11}{10}\left(1-\tfrac{Q}{500}\right)" />, which is not the answer. It is the same move as{' '}
+        <Katex tex="a=v\tfrac{dv}{dx}" /> in kinematics, where the acceleration (a rate per unit of time) is found
+        from <Katex tex="v" /> written in terms of <Katex tex="x" />.
       </>
     ),
   },
@@ -158,7 +170,8 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{11}{10}\left(1-\frac{Q}{500}\right)" />,
-    reason: <>This is not yet the answer. It is how fast the growth rate changes per extra fish; multiplying by <Katex tex="\tfrac{dQ}{dt}" /> (fish per year) turns it into a change per year.</>,
+    reason: <>This is <Katex tex="\tfrac{d}{dQ}\left(\tfrac{dQ}{dt}\right)" />, not yet <Katex tex="\tfrac{d^2Q}{dt^2}" />: the chain rule still needs the factor <Katex tex="\tfrac{dQ}{dt}" />.</>,
+    more: <>Think about units. This factor is how fast the growth rate changes <em>per extra fish</em>. Multiplying by <Katex tex="\tfrac{dQ}{dt}" />, in fish per year, turns it into a change <em>per year</em>, which is what a derivative with respect to <Katex tex="t" /> measures.</>,
   },
   {
     working: <Katex display tex="\frac{d^2Q}{dt^2} = \frac{11}{10}\left(1-\frac{Q}{500}\right)\times\frac{11}{10}Q\left(1-\frac{Q}{1000}\right)" />,
@@ -166,22 +179,25 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2Q}{dt^2} = \frac{121}{100}\,Q\left(1-\frac{Q}{500}\right)\left(1-\frac{Q}{1000}\right)}" />,
-    reason: <>Equivalently <Katex tex="\tfrac{121\,Q(Q-1000)(Q-500)}{5\times10^7}" />. Leave it in terms of <Katex tex="Q" />, as the question asks: don&apos;t substitute the formula for <Katex tex="Q" /> in terms of <Katex tex="t" />. The report notes some students did not express their answers in terms of <Katex tex="Q" />.</>,
+    reason: <>Leave it in terms of <Katex tex="Q" />, as the question asks: don&apos;t substitute the formula for <Katex tex="Q" /> in terms of <Katex tex="t" />.</>,
+    more: <>The report notes some students did not express their answers in terms of <Katex tex="Q" />. Equivalent forms are fine, such as <Katex tex="\tfrac{121\,Q(Q-1000)(Q-500)}{5\times10^7}" />, but the factorised form is the useful one: part e.ii reads its zeros straight off.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d^2Q}{dt^2} = 0 \implies Q = 0, \ 500 \ \text{ or } \ 1000" />,
-    reason: <>The rate of growth is <Katex tex="\tfrac{dQ}{dt}" />, so it is greatest where its derivative, <Katex tex="\tfrac{d^2Q}{dt^2}" />, is zero. &ldquo;Hence&rdquo; points to the factorised answer from part e.i.: each factor gives one value.</>,
+    reason: <>The rate of growth is <Katex tex="\tfrac{dQ}{dt}" />, so it is greatest where its derivative, <Katex tex="\tfrac{d^2Q}{dt^2}" />, is zero. &ldquo;Hence&rdquo; points back to part e.i. Each factor of its factorised answer gives one value.</>,
   },
   {
     working: <Katex display tex="Q=0 \text{ and } Q=1000 \text{ give } \frac{dQ}{dt} = 0" />,
-    reason: <>At both the population is not growing at all, so they are where the growth rate is smallest, not largest. Besides, <Katex tex="Q" /> starts at 100 and only approaches 1000, so neither value occurs. (The report prints &ldquo;eliminated <Katex tex="Q=1" /> and 1000&rdquo;; the value is <Katex tex="Q=0" />.)</>,
+    reason: <>At both the population is not growing at all, so the growth rate is smallest there, not largest. Eliminate them.</>,
+    more: <>Besides, <Katex tex="Q" /> starts at 100 and only approaches 1000, so neither value ever occurs. (The report prints &ldquo;eliminated <Katex tex="Q=1" /> and 1000&rdquo;; the value is <Katex tex="Q=0" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{Q = 500}" />,
-    reason: <>It is a maximum: <Katex tex="\tfrac{dQ}{dt}=\tfrac{11}{10}Q\left(1-\tfrac{Q}{1000}\right)" /> is an upside-down parabola in <Katex tex="Q" /> with roots 0 and 1000, so it peaks midway, at half the carrying capacity.</>,
+    reason: <>It is a maximum: <Katex tex="\tfrac{dQ}{dt}=\tfrac{11}{10}Q\left(1-\tfrac{Q}{1000}\right)" /> is an upside-down parabola in <Katex tex="Q" /> with roots 0 and 1000, so it peaks midway between them.</>,
+    more: <>The sign of <Katex tex="\tfrac{d^2Q}{dt^2}" /> from part e.i. confirms it is a maximum: positive for <Katex tex="Q" /> below 500 (growth speeding up) and negative above it (growth slowing).</>,
   },
   {
     working: <Katex display tex="\frac{1000}{1+9e^{-1.1t}} = 500 \implies 1+9e^{-1.1t} = 2" />,
@@ -193,26 +209,29 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = \frac{\log_e(9)}{1.1} = 1.997\ldots \implies \boxed{t \approx 2 \text{ years}}" />,
-    reason: <>To the nearest year. Give both answers: the population is 500 when <Katex tex="t\approx2" />. The report notes some students gave the maximum rate as their final answer; that rate is <Katex tex="\tfrac{dQ}{dt}=275" /> fish per year, which is neither of the things asked for.</>,
+    reason: <>To the nearest year. Give both things asked for, the population (500) and the time (<Katex tex="t\approx2" />), not the maximum rate itself.</>,
+    more: <>The report notes some students gave the maximum rate as their final answer. That rate is <Katex tex="\tfrac{dQ}{dt}=\tfrac{11}{10}(500)\left(1-\tfrac{500}{1000}\right)=275" /> fish per year, which is neither of the things asked for.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="Q(0) = 100 \implies \text{intercept } (0,\,100)" />,
-    reason: <>From part c. Time starts at the release, <Katex tex="t\ge0" />, so the curve starts on the <Katex tex="Q" />-axis. The question asks for the coordinates, not just a mark on the axis.</>,
+    reason: <>From part c. Time starts at the release (<Katex tex="t\ge0" />), so the curve starts on the <Katex tex="Q" />-axis: label the point with its coordinates.</>,
+    more: <>The question says to label intercepts; the report notes some students did not label the <Katex tex="Q" />-intercept with its coordinate. Write it as the point <Katex tex="(0,\,100)" />, as the report&apos;s sample sketch does.</>,
   },
   {
     working: <Katex display tex="t\to\infty \implies 9e^{-1.1t}\to0 \implies Q\to1000" />,
-    reason: <>The carrying capacity.</>,
+    reason: <>The exponential term dies away, so the population levels off at 1000, the carrying capacity.</>,
   },
   {
     working: <Katex display tex="\text{Asymptote: } Q = 1000" />,
-    reason: <>The vertical variable here is <Katex tex="Q" />, not <Katex tex="y" />. The report notes many students incorrectly labelled it <Katex tex="y=1000" />.</>,
+    reason: <>The vertical axis is <Katex tex="Q" />, so the equation is <Katex tex="Q=1000" />, not <Katex tex="y=1000" />.</>,
+    more: <>The report notes many students incorrectly labelled the asymptote <Katex tex="y=1000" />. An asymptote&apos;s equation uses the names of the axes on the graph.</>,
   },
   {
     working: <Katex display tex="\text{Inflection at } (\approx2,\,500) \text{ from part e.ii}" />,
-    reason: <>The curve is concave up below 500 and concave down above it, which gives the S-shape.</>,
+    reason: <>The factorised answer to part e.i. shows <Katex tex="\tfrac{d^2Q}{dt^2}" /> is positive for <Katex tex="Q" /> below 500 and negative above it, so the curve is concave up, then concave down: the S-shape.</>,
   },
   {
     working: (
@@ -224,7 +243,8 @@ const ROWS_F: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Only what the question asks is labelled: the <Katex tex="Q" />-intercept with its coordinates and the asymptote with its equation. Check: the curve passes close to <Katex tex="(6,\,988)" /> from part d.</>,
+    reason: <>Only what the question asks is labelled: the <Katex tex="Q" />-intercept with its coordinates and the asymptote with its equation.</>,
+    more: <>Check: just under the asymptote, the curve passes close to <Katex tex="(6,\,988)" />, found in part d.</>,
   },
 ]
 
@@ -234,8 +254,16 @@ const ROWS_G: WorkingRow[] = [
     reason: <>The modified model: logistic growth less a 5.5% annual harvest.</>,
   },
   {
-    working: <Katex display tex="\text{Maximum population} \iff \frac{dQ}{dt} = 0" />,
-    reason: <>Where <Katex tex="\tfrac{dQ}{dt}=0" /> the population stops changing. Below that level <Katex tex="\tfrac{dQ}{dt}>0" />, so the population grows up to it; above it <Katex tex="\tfrac{dQ}{dt}<0" />, so the population falls back. So it is the most fish the pond can support.</>,
+    working: <Katex display tex="\text{Maximum population: } \frac{dQ}{dt} = 0" />,
+    reason: <>Where <Katex tex="\tfrac{dQ}{dt}=0" /> the population stops changing. A population below that level grows up to it and one above it falls back, so it is the most fish the pond can support.</>,
+    more: (
+      <>
+        The factorised form in the next line shows why: for <Katex tex="Q" /> between 0 and 950,{' '}
+        <Katex tex="\tfrac{dQ}{dt}>0" />, and above 950, <Katex tex="\tfrac{dQ}{dt}<0" />. Don&apos;t confuse this with part e.ii: setting the{' '}
+        <em>derivative</em> of the right-hand side to zero gives <Katex tex="Q=475" />, where the harvested population
+        grows fastest, not the most fish the pond can hold.
+      </>
+    ),
   },
   {
     working: <Katex display tex="Q\left(\frac{11}{10}-\frac{11Q}{10\,000}-0.055\right) = 0" />,
@@ -247,7 +275,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{Q = 950}" />,
-    reason: <>Check: the modified equation rearranges to <Katex tex="\tfrac{dQ}{dt}=1.045\,Q\left(1-\tfrac{Q}{950}\right)" />, another logistic model, with carrying capacity 950. Harvesting lowers the carrying capacity from 1000 to 950.</>,
+    reason: <>The harvest lowers the population&apos;s limit from 1000 to 950.</>,
+    more: <>Check: the modified equation rearranges to <Katex tex="\tfrac{dQ}{dt}=1.045\,Q\left(1-\tfrac{Q}{950}\right)" />, another logistic model, with carrying capacity 950.</>,
   },
 ]
 
@@ -274,10 +303,11 @@ export default function SpecialistQ4_2023Exam2() {
               carrying capacity, where growth is fastest.
             </p>
             <p>
-              Part e.i. is the one that catches people. <Katex tex="\tfrac{dQ}{dt}" /> is given
-              as a function of <Katex tex="Q" />, so differentiating it with respect to{' '}
-              <Katex tex="t" /> needs the chain rule:{' '}
-              <Katex tex="\tfrac{d^2Q}{dt^2}=\tfrac{d}{dQ}\!\left(\tfrac{dQ}{dt}\right)\cdot\tfrac{dQ}{dt}" />.
+              Part e.i. is the one that catches people (only 21% scored the mark). It needs the
+              chain rule for any expression <Katex tex="f(Q)" /> written in terms of{' '}
+              <Katex tex="Q" /> when <Katex tex="Q" /> itself changes with <Katex tex="t" />:{' '}
+              <Katex tex="\tfrac{d}{dt}f(Q)=f'(Q)\,\tfrac{dQ}{dt}" />. In part e.i. the expression
+              being differentiated is <Katex tex="\tfrac{dQ}{dt}" /> itself.
             </p>
           </Background>
         </div>

@@ -19,11 +19,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="E = 15\,500-13\,000 = 2500" />,
-    reason: <>The margin of error is half the width of the interval. Using the whole width, 5000, instead doubles <Katex tex="\sigma" /> to about <Katex tex="19\,411" />, closest to option <b>E</b>.</>,
+    reason: <>The margin of error is half the width of the interval: the distance from the centre to either end.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}E = z\frac{\sigma}{\sqrt n}\\ z = 2.5758\ldots \text{ for } 99\%\end{gathered}" />,
-    reason: <>For 99%, the middle 99% of the standard normal lies between <Katex tex="-z" /> and <Katex tex="z" />, leaving 0.5% in each tail, so <Katex tex="z" /> has area 0.995 to its left: <Cas fn="invNorm" /> with area 0.995, μ = 0, σ = 1. Using area 0.99 instead (all 1% in one tail, <Katex tex="z=2.3263\ldots" />) gives <Katex tex="10\,746" />, closest to option <b>B</b>; using the 95% value <Katex tex="1.96" /> gives <Katex tex="12\,755" />, closest to option <b>C</b>.</>,
+    reason: <>The margin of error is <Katex tex="z" /> standard errors, each <Katex tex="\tfrac{\sigma}{\sqrt n}" />. For 99%, the middle 99% of the standard normal lies between <Katex tex="-z" /> and <Katex tex="z" />, leaving 0.5% in each tail, so <Katex tex="z" /> has area 0.995 to its left: <Cas fn="invNorm" /> with area 0.995, μ = 0, σ = 1.</>,
+    more: (
+      <>
+        A quick sense check: the familiar 95% value is <Katex tex="1.96" />, and a 99% interval has to be wider, so its{' '}
+        <Katex tex="z" /> must be bigger than <Katex tex="1.96" />. Entering area 0.99 instead of 0.995 is the other
+        slip to avoid: that puts the whole 1% in one tail and gives <Katex tex="z=2.3263\ldots" />, which is too small.
+      </>
+    ),
   },
   {
     working: <Katex display tex="2500 = 2.5758\ldots\times\frac{\sigma}{\sqrt{100}} = \frac{2.5758\ldots\times\sigma}{10}" />,
@@ -36,6 +43,16 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{\sigma \approx 9710}" />,
     reason: <>Matches option <b>A</b>, the closest of the five.</>,
+    more: (
+      <>
+        Each wrong option is close to the <Katex tex="\sigma" /> that one slip in <Katex tex="E" /> or{' '}
+        <Katex tex="z" /> produces: <b>B</b> (<Katex tex="10\,746" />) comes from area 0.99;{' '}
+        <b>C</b> (<Katex tex="12\,755" />) uses the 95% value <Katex tex="z=1.96" />;{' '}
+        <b>D</b> (<Katex tex="15\,199" />) uses the 90% value <Katex tex="z=1.6449\ldots" />; and{' '}
+        <b>E</b> (<Katex tex="19\,411" />) uses the whole width, 5000, as <Katex tex="E" />, which doubles{' '}
+        <Katex tex="\sigma" />.
+      </>
+    ),
   },
 ]
 

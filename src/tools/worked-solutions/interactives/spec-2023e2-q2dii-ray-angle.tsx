@@ -48,9 +48,8 @@ export default function RayAngle() {
   } else if (k === WRONG) {
     notice = (
       <Notice tone="warn">
-        <M>{'\\theta = \\tfrac{5\\pi}{14}'}</M> was the common wrong answer. It is the triangle&apos;s angle at{' '}
-        <M>z = 1</M>, but that angle is measured from the direction <em>back towards</em> <M>O</M> (pointing left). Arg
-        is measured from the positive real direction (pointing right), so this ray heads up and to the right and misses
+        <M>{'\\theta = \\tfrac{5\\pi}{14}'}</M> was the common wrong answer: the violet angle, measured from the
+        wrong side. Measured from the positive real direction instead, it sends the ray up and to the right, missing
         the point. Slide <M>\theta</M> until the ray hits it.
       </Notice>
     )
@@ -66,7 +65,8 @@ export default function RayAngle() {
   } else {
     notice = (
       <Notice>
-        At <M>{`\\theta = ${piOver14(k, true)}`}</M> the ray points up and to the left, but it passes{' '}
+        At <M>{`\\theta = ${piOver14(k, true)}`}</M> the ray points{' '}
+        {k === 14 ? <>straight left, back along the real axis through <M>O</M></> : 'up and to the left'}, but it passes{' '}
         {k < HIT ? 'above' : 'below'} the point. The ray hits the point only when the orange and violet angles
         together make a straight angle <M>\pi</M>. {k < HIT ? 'Increase' : 'Decrease'} <M>\theta</M> to find it.
       </Notice>
@@ -75,7 +75,7 @@ export default function RayAngle() {
 
   return (
     <div>
-      <Plane x={[-1.15, 1.75]} y={[-1.1, 1.35]} xStep={1} yStep={1} equalScale height={360} xLabel="" yLabel="Im(z)">
+      <Plane x={[-1.15, 1.75]} y={[-1.1, 1.35]} xStep={1} yStep={1} equalScale height={360} labels={false} xLabel="" yLabel="Im(z)">
         <Label at={[1.62, 0]} attach="n" size={13} italic gap={5}>
           Re(z)
         </Label>
@@ -104,6 +104,11 @@ export default function RayAngle() {
         <Point x={0} y={0} color={C.ink} />
         <Label at={[0, 0]} attach="sw" size={12} italic>
           O
+        </Label>
+        {/* The tick numbers would sit under the unit circle and the open circle at 1, so the start
+            of the ray is labelled directly instead. */}
+        <Label at={[1, 0]} attach="se" size={12} gap={12}>
+          1
         </Label>
         <Point x={WX} y={WY} color={C.f} />
         <Label at={[WX, WY]} attach="e" color={C.f} size={12}>

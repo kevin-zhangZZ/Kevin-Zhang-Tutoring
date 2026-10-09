@@ -8,7 +8,8 @@
 // examination report. Solution is original.
 // Interactive: part e. (22% full marks) — spec-2023e2-q1e-tangents: slide t from π/2 to π and watch
 // the direction of motion (dx/dt, dy/dt) go flat at D and vertical at O, with a toggle comparing a
-// hump that meets O on a slant.
+// hump that meets O on a slant. Re-audited 9 Oct 2026 (numbers rechecked with sympy) and kept; no
+// other part qualifies (all others 61% or more full marks).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -125,10 +126,11 @@ const ROWS_B: WorkingRow[] = [
     working: (
       <>
         <p className="text-[13.5px] mb-1">“Smoothly” means:</p>
-        <Katex display tex="\text{the two gradients must agree at } x=1" />
+        <Katex display tex="\begin{gathered}\text{same point (part a.) and}\\ \text{same gradient at } x=1\end{gathered}" />
       </>
     ),
-    reason: <>The functions already meet there (part a.); showing that is not enough on its own — the report notes some students showed only that the functions met.</>,
+    reason: <>Meeting at C is not enough on its own: a smooth join also has no corner, so the two curves must point the same way there. Part a. already showed they meet, so the gradients are what is left to check.</>,
+    more: <>Showing only that the functions meet is not enough: the report notes some students did just that, which leaves out the gradient condition this part is really testing.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\frac{d}{dx}\left[-x(x-1)^2\right] &= -(x-1)^2-2x(x-1)\\ &= -(x-1)(3x-1)\end{aligned}" />,
@@ -144,7 +146,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\begin{gathered}\text{Both curves pass through } C \text{ and both}\\ \text{have gradient } 0 \text{ there, so they meet smoothly.}\end{gathered}}" />,
-    reason: <>State the conclusion with both conditions: the same point (part a.) and the same gradient. The two zeros are the evidence, not the answer. As required.</>,
+    reason: <>Conclude with both conditions: the same point (part a.) and the same gradient. As required.</>,
+    more: <>The two zeros are the evidence, not the answer. In a &ldquo;verify&rdquo; question the final line should say in words what the calculations have shown.</>,
   },
 ]
 
@@ -159,7 +162,8 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A\left(\tfrac13,\ -\tfrac{4}{27}\right)}" />,
-    reason: <>It is below the axis while <Katex tex="f(0)=f(1)=0" />, so it is the minimum. About <Katex tex="(0.33,-0.15)" />, matching the dip in the printed diagram.</>,
+    reason: <>It is below the axis while <Katex tex="f(0)=f(1)=0" />, so it is the minimum.</>,
+    more: <>Check: about <Katex tex="(0.33,-0.15)" />, which matches the dip in the printed figure.</>,
   },
 ]
 
@@ -178,7 +182,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{B\left(\tfrac23,\ -\tfrac{2}{27}\right)}" />,
-    reason: <>Between A and C, as the diagram shows.</>,
+    reason: <>It lies between A and C, matching the printed figure.</>,
   },
 ]
 
@@ -205,14 +209,16 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{(x-2)^2}{4}+\frac{y^2}{(e-2)^2} = 1}" />,
-    reason: <>An ellipse centred at <Katex tex="(2,0)" />, reaching 2 across and <Katex tex="e-2\approx0.718" /> up from its centre. This is VCAA&apos;s answer; the report notes some students correctly gave <Katex tex="y" /> explicitly for this first-quadrant piece instead, <Katex tex="y=(e-2)\sqrt{1-\tfrac{(x-2)^2}{4}}" />.</>,
+    reason: <>An ellipse centred at <Katex tex="(2,0)" /> that reaches 2 to the left and right of its centre and <Katex tex="e-2\approx0.718" /> above and below it.</>,
+    more: <>This is VCAA&apos;s answer. The report notes some students correctly gave <Katex tex="y" /> explicitly instead, which works because this piece of the path has <Katex tex="y\ge0" />: <Katex tex="y=(e-2)\sqrt{1-\tfrac{(x-2)^2}{4}}" />, taking the positive square root.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} t = \tfrac\pi2&: \ (x,y) = (2,\ e-2) = D\\ t = \pi&: \ (x,y) = (0,\ 0) = O \end{aligned}" />,
-    reason: <>The path starts at <Katex tex="D" /> and ends at <Katex tex="O" />. From part d. the ellipse is centred at <Katex tex="(2,0)" />, reaching 2 across and <Katex tex="e-2" /> up, so <Katex tex="D" /> is its top point and <Katex tex="O" /> its leftmost point: the path is the upper-left quarter of the ellipse.</>,
+    reason: <>The path runs from <Katex tex="D" /> to <Katex tex="O" />. The ellipse from part d. is centred at <Katex tex="(2,0)" />, so <Katex tex="D" /> (directly above the centre) is its top point and <Katex tex="O" /> (2 to the left) its leftmost point: the path is the upper-left quarter.</>,
+    more: <>An ellipse&apos;s four extreme points are its centre plus or minus each semi-axis (here 2 horizontally and <Katex tex="e-2" /> vertically): <Katex tex="(2\pm2,\ 0)" /> and <Katex tex="(2,\ \pm(e-2))" />. At the top and bottom of an ellipse the tangent is horizontal; at the left and right ends it is vertical.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = -2\sin(t), \qquad \frac{dy}{dt} = (e-2)\cos(t)" />,
@@ -224,11 +230,13 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = \pi: \quad \frac{dx}{dt} = 0, \quad \frac{dy}{dt} = -(e-2)" />,
-    reason: <>No horizontal movement, so the path reaches <Katex tex="O" /> <em>vertically</em> (<Katex tex="\tfrac{dy}{dx}" /> is undefined there), as it must at the leftmost point. The report notes the curves drawn were often not vertical at the origin and horizontal at D.</>,
+    reason: <>No horizontal movement, so the path reaches <Katex tex="O" /> <em>vertically</em> (<Katex tex="\tfrac{dy}{dx}" /> is undefined there), as it must at the leftmost point.</>,
+    more: <>This is where most students lost the mark: the report notes the curves drawn were often not vertical at the origin and horizontal at D. A rounded hump from <Katex tex="D" /> down to <Katex tex="O" /> looks close, but if it meets the <Katex tex="x" />-axis on a slant it is not this ellipse. Near <Katex tex="O" /> the path should rise almost straight up before curving across towards <Katex tex="D" />.</>,
   },
   {
     working: <EllipseOverlay />,
     reason: <>Drawn on the printed diagram, as the question asks: from <Katex tex="D" /> round to <Katex tex="O" />, above the track, horizontal at <Katex tex="D" /> and vertical at <Katex tex="O" />.</>,
+    more: <>Other checks on your sketch, from part d.: it never goes higher than <Katex tex="D" /> or further left than <Katex tex="O" /> (<Katex tex="0\le x\le2" />, <Katex tex="0\le y\le e-2" />), and it bulges up and to the left of the straight line from <Katex tex="O" /> to <Katex tex="D" />, never dipping below it.</>,
   },
 ]
 
@@ -243,7 +251,8 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L = \int_{\frac\pi2}^{\pi}\sqrt{4\sin^2(t)+(e-2)^2\cos^2(t)}\;dt}" />,
-    reason: <>The integral is with respect to <Katex tex="t" />, so the terminals are the <em>parameter</em> values at the ends of the path: <Katex tex="t=\tfrac\pi2" /> at D and <Katex tex="t=\pi" /> at O (part e.). The report notes the most frequent error was terminals 0 and 2; those are the <Katex tex="x" />-coordinates of O and D, not values of <Katex tex="t" />.</>,
+    reason: <>The integral is with respect to <Katex tex="t" />, so the terminals are the <em>parameter</em> values at the ends of the path: <Katex tex="t=\tfrac\pi2" /> at D and <Katex tex="t=\pi" /> at O (part e.).</>,
+    more: <>The report notes the most frequent error was terminals 0 and 2. Those are the <Katex tex="x" />-coordinates of O and D, not values of <Katex tex="t" />. With <Katex tex="t" /> running from 0 to 2 instead, the same integrand measures a different stretch of the ellipse: it starts at <Katex tex="(4,0)" />, where <Katex tex="t=0" />, not at D.</>,
   },
 ]
 
@@ -258,7 +267,8 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L \approx 2.255 \ \text{km}}" />,
-    reason: <>Correct to three decimal places. Check: the path must be longer than the straight line <Katex tex="OD=\sqrt{4+(e-2)^2}\approx2.125" /> but shorter than going straight up from O and then straight across to D, <Katex tex="(e-2)+2=e\approx2.718" />.</>,
+    reason: <>Correct to three decimal places.</>,
+    more: <>Check: the path must be longer than the straight line <Katex tex="OD=\sqrt{4+(e-2)^2}\approx2.125" /> but shorter than going straight up from O and then straight across to D, <Katex tex="(e-2)+2=e\approx2.718" />.</>,
   },
 ]
 
@@ -295,16 +305,16 @@ export default function SpecialistQ1_2023Exam2() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              "Meet smoothly" is two conditions, not one: the same value <em>and</em> the same
-              gradient. Part a. supplies the first; part b. exists entirely to make you check
-              the second.
+              Picture walking the track. If the two sections met at <Katex tex="C" /> with
+              different gradients, the track would have a corner there and you would have to
+              turn sharply. &ldquo;Meet smoothly&rdquo; rules out that corner, which is why it asks
+              for more than the sections simply joining up.
             </p>
             <p>
-              The return path is a quarter of an ellipse, and the parameter interval{' '}
-              <Katex tex="\left[\tfrac\pi2,\pi\right]" /> is doing real work — it decides the
-              terminals in part f. and the shape in part e. Sketching it well means getting the
-              tangents right at both ends: horizontal at <Katex tex="D" />, vertical at{' '}
-              <Katex tex="O" />.
+              From part d. on, the walker returns along a quarter of an ellipse given by
+              parametric equations. Keep an eye on the parameter interval{' '}
+              <Katex tex="\left[\tfrac\pi2,\pi\right]" />: it decides which quarter is walked
+              (part e.) and the terminals of the arc-length integral (part f.).
             </p>
           </Background>
         </div>

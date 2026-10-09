@@ -2,7 +2,7 @@
 // hardest MCQ on this paper. If the sum of two unit vectors is a unit vector, find the
 // magnitude of their difference. Question text transcribed from the original paper. Solution
 // is original. Interactive: spec-2023-mcq15-unit-sum (turn b until |a + b| = 1: only 120° works,
-// and then |a − b| = √3; at 90°, option C's √2, the sum is √2 too).
+// and then |a − b| = √3; at 90°, option C's √2, the sum is √2 too; at 0°, option A's 0, it is 2).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -59,12 +59,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="1 = 2+2\underset{\sim}{a}\cdot\underset{\sim}{b} \;\implies\; \underset{\sim}{a}\cdot\underset{\sim}{b} = -\tfrac12" />,
     reason: (
       <>
-        Set equal to <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=1^2=1" /> and solve. Since{' '}
-        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta = \cos\theta" />,
+        Set equal to <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=1^2=1" /> and solve.
+      </>
+    ),
+    more: (
+      <>
+        Since <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta = \cos\theta" />,
         this says <Katex tex="\cos\theta=-\tfrac12" />, and since the angle between two vectors lies
-        in <Katex tex="[0^\circ,180^\circ]" />, the angle between them is <Katex tex="120^\circ" />. (You don&apos;t
+        in <Katex tex="[0^\circ,180^\circ]" />, the angle between them is <Katex tex="120^\circ" />. You don&apos;t
         actually need the angle: <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}" /> is enough for the next
-        step.)
+        step.
       </>
     ),
   },
@@ -81,14 +85,40 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{|\underset{\sim}{a}-\underset{\sim}{b}| = \sqrt3}" />,
     reason: (
       <>
-        Matches option <b>D</b> (a magnitude is never negative, so take the positive root). Option C,{' '}
-        <Katex tex="\sqrt2" />, is the length of the difference of two <em>perpendicular</em> unit vectors, but their
-        sum also has length <Katex tex="\sqrt2" />, not 1, so perpendicular vectors don&apos;t fit the question. Option
-        A, 0, would need <Katex tex="\underset{\sim}{a}=\underset{\sim}{b}" />, and then the sum has length 2.
-        Geometrically, as in the report: <Katex tex="\underset{\sim}{a}" />, <Katex tex="\underset{\sim}{b}" /> and{' '}
-        <Katex tex="\underset{\sim}{a}+\underset{\sim}{b}" /> form an equilateral triangle, so{' '}
-        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="-\underset{\sim}{b}" /> meet at <Katex tex="120^\circ" />, and
-        the cosine rule gives <Katex tex="\sqrt3" />.
+        Matches option <b>D</b>; a magnitude is never negative, so take the positive root.
+      </>
+    ),
+    more: (
+      <>
+        <p>
+          Every option can be tested. Adding the two expansions gives{' '}
+          <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2+|\underset{\sim}{a}-\underset{\sim}{b}|^2=4" /> for any
+          two unit vectors. So whichever length an option gives the difference also fixes the length of the sum, and
+          only D makes the sum 1:
+        </p>
+        <ul className="list-disc pl-5 space-y-0.5">
+          <li>
+            C, <Katex tex="\sqrt2" />, the most common wrong answer, is the length of the difference when the unit
+            vectors are <em>perpendicular</em>, but then <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=2" />: the sum has length{' '}
+            <Katex tex="\sqrt2" />, not 1.
+          </li>
+          <li>
+            B, <Katex tex="\tfrac{1}{\sqrt2}" />, gives <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=\tfrac72" />,
+            a sum of length about 1.87.
+          </li>
+          <li>
+            A, 0, needs <Katex tex="\underset{\sim}{a}=\underset{\sim}{b}" />, and then the sum has length 2.
+          </li>
+          <li>
+            E, <Katex tex="\sqrt5" />, would make <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2=-1" />, which is
+            impossible.
+          </li>
+        </ul>
+        <p>
+          The examiner&apos;s report reaches the same answer geometrically: its equilateral triangle is another way to
+          see the <Katex tex="120^\circ" /> angle between <Katex tex="\underset{\sim}{a}" /> and{' '}
+          <Katex tex="\underset{\sim}{b}" />, and the cosine rule then gives <Katex tex="\sqrt3" />.
+        </p>
       </>
     ),
   },

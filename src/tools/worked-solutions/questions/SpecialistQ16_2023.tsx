@@ -9,6 +9,7 @@ import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
+import { Cas } from '../CasRef'
 
 const UpDownWidget = lazyWidget(() => import('../interactives/spec-2023-mcq16-up-and-down'))
 
@@ -31,9 +32,15 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Call the <Katex tex="\underset{\sim}{k}" /> component <Katex tex="z(t)" />: it is the ball&apos;s height above the
-        ground. Vertical distance depends only on height, and the <Katex tex="\underset{\sim}{i}" /> and{' '}
-        <Katex tex="\underset{\sim}{j}" /> components (east and north) move the ball sideways without changing its height,
-        so ignore them.
+        ground, since <Katex tex="O" /> is at ground level. Vertical distance depends only on height, so ignore the{' '}
+        <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components (east and north) move
+        the ball sideways. They would count towards the length of the ball&apos;s curved path through the air, but the
+        question asks for the <b>vertical</b> distance only.
       </>
     ),
   },
@@ -41,19 +48,26 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z(0) = 1.5 \ \text{m}" />,
     reason: (
       <>
-        <Katex tex="O" /> is at ground level, so the ball is released <Katex tex="1.5" /> m <b>above</b> the ground — it
-        does not start at height <Katex tex="0" />. This is the detail that separates <b>D</b> from <b>E</b>.
+        The ball is released <Katex tex="1.5" /> m <b>above</b> the ground, not from height <Katex tex="0" />.
       </>
     ),
+    more: <>Keep this in mind: it makes the climb shorter than the fall, and it is the detail that separates <b>D</b> from <b>E</b>.</>,
   },
   {
     working: <Katex display tex="\dot z(t) = 15-9.8t = 0 \implies t = \frac{15}{9.8} \approx 1.531" />,
     reason: (
       <>
-        At the top of its flight the ball stops rising and starts falling, so its vertical velocity{' '}
-        <Katex tex="\dot z" /> is <Katex tex="0" /> there. Before this time <Katex tex="\dot z > 0" /> (rising, e.g.{' '}
-        <Katex tex="\dot z(0) = 15" />); after it <Katex tex="\dot z < 0" /> (falling), so the ball goes up once and then
-        comes down once.
+        <b>Distance</b> travelled counts every metre moved, up or down, so find the climb and the fall separately and
+        add them. They meet at the top, where the ball stops rising, so its vertical velocity <Katex tex="\dot z" /> is{' '}
+        <Katex tex="0" />.
+      </>
+    ),
+    more: (
+      <>
+        Before this time <Katex tex="\dot z > 0" /> (rising, e.g. <Katex tex="\dot z(0) = 15" />); after it{' '}
+        <Katex tex="\dot z < 0" /> (falling). So the ball goes up once and then comes down once, and there are just two
+        legs to add. On CAS, <Cas fn="fMax">fMax(15t-4.9t^2+1.5, t)</Cas> gives the same <Katex tex="t" />; it returns the
+        time, not the height, so you still substitute back.
       </>
     ),
   },
@@ -70,27 +84,34 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned} \text{up} &= 12.98-1.5 = 11.48 \ \text{m} \\ \text{down} &= 12.98-0 = 12.98 \ \text{m} \end{aligned}"
+        tex="\begin{aligned} \text{up} &= 12.98-1.5 \\ &= 11.48 \ \text{m} \\[4pt] \text{down} &= 12.98-0 \\ &= 12.98 \ \text{m} \end{aligned}"
       />
     ),
     reason: (
       <>
-        Going up, the ball rises from its release height <Katex tex="1.5" /> m to the top. Coming down, it falls from the
-        top all the way to the ground, height <Katex tex="0" />. <b>Distance</b> travelled counts every metre moved,
-        whichever direction, so the two legs are added; <b>displacement</b> (final height minus starting height) would
-        let the fall cancel the climb.
+        The climb runs from the release height <Katex tex="1.5" /> m up to the top; the fall runs from the top all the
+        way down to the ground, height <Katex tex="0" />.
+      </>
+    ),
+    more: (
+      <>
+        Adding the legs gives <Katex tex="2z_{\max}-1.5" />, which is how the examiner&apos;s report sets it out:{' '}
+        <Katex tex="2\times13=26" />, then subtract the <Katex tex="1.5" /> m the ball never climbs because it was thrown
+        from that height.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{11.48+12.98 \approx 24.5 \ \text{m}}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Option <b>E</b>, <Katex tex="26.0" />, is <Katex tex="2\times13" />: it counts the climb
-        as the full <Katex tex="13" /> m, which is only right for a ball released at ground level. <b>C</b>,{' '}
-        <Katex tex="13.0" />, is the maximum height, which is the fall alone, and <b>B</b>, <Katex tex="11.5" />, is the
-        climb alone. <b>A</b>, <Katex tex="1.5" />, is the size of the vertical displacement: the ball starts{' '}
-        <Katex tex="1.5" /> m up and ends at <Katex tex="0" />, so <Katex tex="11.48-12.98=-1.5" />.
+        Option <b>E</b>, <Katex tex="26.0" />, is <Katex tex="2\times13" />: it counts the climb as the full{' '}
+        <Katex tex="13" /> m, which is only right for a ball released at ground level. <b>C</b>, <Katex tex="13.0" />, is
+        the maximum height, which is the fall alone, and <b>B</b>, <Katex tex="11.5" />, is the climb alone. <b>A</b>,{' '}
+        <Katex tex="1.5" />, is the size of the vertical <b>displacement</b> (final height minus starting height): the
+        ball starts <Katex tex="1.5" /> m up and ends at <Katex tex="0" />, so the fall undoes the whole climb and
+        then drops a further <Katex tex="1.5" /> m, giving <Katex tex="11.48-12.98=-1.5" />.
       </>
     ),
   },

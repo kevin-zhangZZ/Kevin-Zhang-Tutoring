@@ -23,6 +23,14 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="(2)(2k)+(-k)(3)+(3)(-2) = 0" />,
     reason: <>Multiply the matching <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" />, <Katex tex="\underset{\sim}{k}" /> components and add.</>,
+    more: (
+      <>
+        Watch the signs: the <Katex tex="\underset{\sim}{j}" /> components are <Katex tex="-k" /> and{' '}
+        <Katex tex="3" />, giving <Katex tex="-3k" />; the <Katex tex="\underset{\sim}{k}" /> components are{' '}
+        <Katex tex="3" /> and <Katex tex="-2" />, giving <Katex tex="-6" />. Losing either minus sign changes the
+        equation, and the <Katex tex="k" /> it gives is not among the options.
+      </>
+    ),
   },
   {
     working: <Katex display tex="4k-3k-6 = 0 \implies k-6 = 0" />,
@@ -30,7 +38,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = 6}" />,
-    reason: <>Matches option <b>C</b>. Check: <Katex tex="(2,-6,3)\cdot(12,3,-2)=24-18-6=0" /> ✓.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
+      <>
+        Check: with <Katex tex="k=6" /> the normals are <Katex tex="(2,-6,3)" /> and <Katex tex="(12,3,-2)" />, and{' '}
+        <Katex tex="24-18-6=0" /> ✓. Because the dot product simplifies to <Katex tex="k-6" />, the other options give{' '}
+        <Katex tex="-4" /> (<b>A</b>), <Katex tex="-2" /> (<b>B</b>), <Katex tex="2" /> (<b>D</b>) and{' '}
+        <Katex tex="4" /> (<b>E</b>). None of these is zero, so for those values the planes meet at some other angle.
+      </>
+    ),
   },
 ]
 

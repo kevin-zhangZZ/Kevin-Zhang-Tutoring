@@ -70,8 +70,8 @@ export default function UpAndDown() {
     notice = (
       <Notice>
         The ball is <b>falling</b> (<M>{'\\dot z < 0'}</M>). The orange down bar grows, so the distance keeps increasing,
-        but the displacement shrinks because the fall undoes the climb. Press play or drag to <M>t \approx 3.16</M>, when
-        the ball hits the ground.
+        but the displacement shrinks because the fall undoes the climb. Press <b>Throw the ball</b> or drag to{' '}
+        <M>{'{t \\approx 3.16}'}</M>, when the ball hits the ground.
       </Notice>
     )
   }

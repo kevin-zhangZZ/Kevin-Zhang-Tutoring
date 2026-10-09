@@ -14,7 +14,17 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} &y \leftarrow y+h\,f(x,y), \quad x \leftarrow x+h \\ &h = 0.5,\quad f(x,y) = e^{xy} \end{aligned}" />,
-    reason: <>Each pass through the loop is one step of Euler's method. The loop updates <Katex tex="y" /> <em>first</em>, using the current <Katex tex="x" /> and <Katex tex="y" />, and only then advances <Katex tex="x" />. <code>print y</code> comes before <code>end while</code>, so the new <Katex tex="y" /> is printed at the end of every pass; we need the pass that prints 2.709.</>,
+    reason: <>Each pass updates <Katex tex="y" /> <em>first</em>, using the current <Katex tex="x" /> and <Katex tex="y" />, and only then advances <Katex tex="x" />. <code>print y</code> comes before <code>end while</code>, so it is inside the loop: the new <Katex tex="y" /> is printed at the end of every pass, and we need the pass that prints 2.709.</>,
+    more: (
+      <>
+        Each pass is one step of Euler&apos;s method with step size <Katex tex="h=0.5" />:{' '}
+        <Katex tex="y_{n+1}=y_n+h\,f(x_n,\,y_n)" /> and <Katex tex="x_{n+1}=x_n+h" />. The condition{' '}
+        <Katex tex="n\geq0" /> is always true (<Katex tex="n" /> starts at 0 and only goes up), so the loop never stops
+        by itself; it just keeps printing one new <Katex tex="y" /> per pass. The order of the two update lines matters:
+        updating <Katex tex="x" /> before <Katex tex="y" /> would put the new <Katex tex="x" /> into{' '}
+        <Katex tex="f" /> and print 0.5, 1.324, 4.969, never 2.709.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{Start: } x_0 = 0,\ y_0 = 0" />,
@@ -34,7 +44,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{3 \text{ iterations}}" />,
-    reason: <>Matches option <b>C</b>. The printed values are 0.5, 1.142, 2.709, then about 31.8 on a fourth pass, so 2.709 is printed only once, after the third iteration. The order of the lines matters: updating <Katex tex="x" /> before <Katex tex="y" /> would print 0.5, 1.324, 4.969, and never 2.709.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
+      <>
+        The printed values are 0.5, 1.142, 2.709, then about 31.8 on a fourth pass, so 2.709 is printed only once.
+        Option <b>B</b> (2) is the value of <Katex tex="n" /> at the <em>start</em> of the pass that prints 2.709, but
+        the line <code>n ← n + 1</code> runs before <code>print y</code>, so three passes are complete when it prints.
+        Option <b>D</b> (4) counts the start as well: there are four <Katex tex="x" />-values, 0, 0.5, 1 and 1.5, but
+        only three steps between them, and the starting values are never printed.
+      </>
+    ),
   },
 ]
 

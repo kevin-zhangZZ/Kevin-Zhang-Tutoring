@@ -7,6 +7,9 @@
 // Interactive diagram (§15): interactives/spec-2023-mcq8-moment.tsx drains the pool with a time
 // slider and, for a pool holding 10 kg at that moment, compares the physical rate -20Q/V with each
 // option's value; only A agrees at every t, and B agrees only at t = 0.
+// Concise/Detailed (Oct 2026): reasons trimmed to the step's "why"; the varying-volume note, the
+// current-not-starting-volume note and the option-by-option analysis moved into rows' `more`
+// (Detailed only); the sign check is now the final row's one short clause.
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
@@ -30,8 +33,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="V = 8000 + 15t - 20t = 8000 - 5t" />,
     reason: (
       <>
-        Each minute 15 L come in and 20 L go out, so the pool loses 5 L a minute from its starting 8000 L. The volume
-        changes because the two flow rates are different. The model works while <Katex tex="V > 0" />, i.e. for{' '}
+        Each minute 15 L come in and 20 L go out, so the pool loses 5 L a minute from its starting 8000 L.
+      </>
+    ),
+    more: (
+      <>
+        The volume is not constant because the two flow rates are different. The model works while{' '}
+        <Katex tex="V > 0" />, i.e. for{' '}
         <Katex tex="0 \le t < 1600" />.
       </>
     ),
@@ -53,9 +61,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{out: } 20 \times \frac{Q}{8000-5t}" />,
     reason: (
       <>
-        The pool is well mixed, so every litre holds the same amount, <Katex tex="\tfrac{Q}{V}" /> kg. It is the 20 L
-        leaving each minute (not the 15 L arriving) that carry chemical out, and <Katex tex="V" /> is the current volume{' '}
-        <Katex tex="8000 - 5t" />, not the starting 8000 L.
+        Well mixed means every litre holds the same amount, <Katex tex="\tfrac{Q}{V}" /> kg, where{' '}
+        <Katex tex="V = 8000 - 5t" /> is the current volume. Chemical leaves with the 20 L pumped out each minute.
+      </>
+    ),
+    more: (
+      <>
+        Dividing by the current volume, not the starting 8000 L, matters: as the pool shrinks, the same{' '}
+        <Katex tex="Q" /> kg is packed into fewer litres, so each litre pumped out carries more chemical. The 15 L coming
+        in add volume but no chemical.
       </>
     ),
   },
@@ -66,20 +80,15 @@ const ROWS: WorkingRow[] = [
         tex="\begin{aligned} \frac{dQ}{dt} &= 0 - \frac{20Q}{8000-5t} \\ &= \frac{-20Q}{5(1600-t)} = \frac{-4Q}{1600-t} \end{aligned}"
       />
     ),
-    reason: (
-      <>
-        Take 5 out of the denominator as a common factor and cancel it with the 20. Nothing in the options matches this
-        form yet, but A and C have <Katex tex="t - 1600" /> in the denominator.
-      </>
-    ),
+    reason: <>Take 5 out of the denominator as a common factor and cancel it with the 20.</>,
   },
   {
     working: <Katex display tex="\frac{-4Q}{1600-t} = \frac{4Q}{-(1600-t)} = \frac{4Q}{t-1600}" />,
     reason: (
       <>
-        Move the minus sign from the numerator into the denominator: <Katex tex="-(1600 - t) = t - 1600" />. Sign check:
-        for <Katex tex="0 \le t < 1600" />, <Katex tex="t - 1600 < 0" />, so <Katex tex="\tfrac{dQ}{dt} < 0" />. The
-        amount of chemical is falling, as it must when only fresh water comes in.
+        No option has a minus sign in the numerator, but A and C have <Katex tex="t - 1600" /> in the denominator. So move
+        the minus sign down: <Katex tex="-(1600 - t) = t - 1600" />. Dropping the minus sign instead would give E, a
+        different (positive) rate.
       </>
     ),
   },
@@ -87,11 +96,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\frac{dQ}{dt} = \frac{4Q}{t-1600}}" />,
     reason: (
       <>
-        Matches option <b>A</b>. E (<Katex tex="\tfrac{4Q}{1600-t} = \tfrac{20Q}{8000-5t}" />) is the outflow term with
-        its minus sign lost, so it says the chemical is increasing. C (<Katex tex="\tfrac{3Q}{t-1600} = \tfrac{-15Q}{8000-5t}" />)
-        uses the 15 L/min flowing in instead of the 20 L/min flowing out, and D (<Katex tex="\tfrac{3Q}{1600-t}" />) does
-        that and also loses the minus sign. B (<Katex tex="\tfrac{-Q}{400} = \tfrac{-20Q}{8000}" />) treats the volume as
-        fixed at 8000 L, so it is right only at <Katex tex="t = 0" />.
+        Matches option <b>A</b>, which is negative while the pool still holds water (<Katex tex="t < 1600" />): the
+        chemical decreases.
+      </>
+    ),
+    more: (
+      <>
+        A negative rate is what we expect, as only fresh water comes in. E (
+        <Katex tex="\tfrac{4Q}{1600-t} = \tfrac{20Q}{8000-5t}" />) is positive, so it says the chemical is increasing.
+        C (<Katex tex="\tfrac{3Q}{t-1600} = \tfrac{-15Q}{8000-5t}" />) uses the 15 L/min
+        flowing in instead of the 20 L/min flowing out, and D (<Katex tex="\tfrac{3Q}{1600-t}" />) does that and also
+        loses the minus sign. B (<Katex tex="\tfrac{-Q}{400} = \tfrac{-20Q}{8000}" />) treats the volume as fixed at 8000
+        L, so it is right only at <Katex tex="t = 0" />.
       </>
     ),
   },

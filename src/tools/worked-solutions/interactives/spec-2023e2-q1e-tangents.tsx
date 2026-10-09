@@ -9,7 +9,7 @@
 import { useState } from 'react'
 import {
   Buttons, C, Controls, Label, Line, M, Notice, Plane, PlayButton, Plot, Point, Readout, Readouts, Slider, Toggle, Vector,
-  num, usePlayer,
+  num, tick, usePlayer,
 } from './kit'
 
 const K = Math.E - 2
@@ -75,7 +75,7 @@ export default function Tangents() {
 
   return (
     <div>
-      <Plane x={[-0.45, 2.85]} y={[-0.82, 1.05]} xStep={1} yStep={0.5} height={300}>
+      <Plane x={[-0.45, 2.85]} y={[-0.82, 1.05]} xStep={1} yStep={0.5} height={300} xLabels={v => (v > 2.5 ? '' : tick(v))}>
         <Plot.Parametric xy={s => [ex(s), ey(s)]} domain={[0, 2 * PI]} color={C.guide} style="dashed" weight={1.5} />
         <Plot.Parametric xy={s => [ex(s), ey(s)]} domain={[PI / 2, PI]} color={C.f} weight={3} />
         {compare && (

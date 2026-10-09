@@ -75,9 +75,8 @@ export default function MomentWidget() {
     notice = (
       <Notice tone="good">
         Only A matches at every <M>t</M>. B divides by 8000 L, but the pool now holds {Math.round(V)} L, so the same 10 kg
-        is more concentrated and leaves faster than B says. C uses the 15 L/min coming in (fresh water, which carries no
-        chemical) instead of the 20 L/min going out. D and E are positive: they say chemical is being added. Drag{' '}
-        <M>t</M> back to 0 to see where B agrees.
+        is more concentrated and leaves faster than B says. C, D and E miss at every <M>t</M>, and D and E even have the
+        wrong sign. Drag <M>t</M> back to 0 to see where B agrees.
       </Notice>
     )
   }

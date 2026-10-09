@@ -2,12 +2,12 @@
 // y = (1 − x)ⁿeˣ (blue), and the extra area up to y = n(1 − x)ⁿ⁻¹eˣ (orange), whose total is
 // nIₙ₋₁. The orange gap is always exactly 1: by the product rule its height at each x is the rate
 // the blue curve is falling, and the blue curve falls from 1 at x = 0 to 0 at x = 1 (violet dots,
-// the boundary term [uv]₀¹ = −1). Areas are computed numerically (Simpson), not from the
+// a fall of 1 = −[uv]₀¹, minus the boundary term). Areas are computed numerically (Simpson), not from the
 // recurrence. A toggle shows option C (the chain-rule minus sign lost) giving a negative value
 // for a positive area.
 
 import { useState } from 'react'
-import { C, Controls, Label, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, Toggle, integrate } from './kit'
+import { C, Controls, Label, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, Toggle, integrate, tick } from './kit'
 
 const SUB = '₀₁₂₃₄₅₆₇₈₉'
 const sub = (k: number) => String(k).split('').map(d => SUB[Number(d)]).join('')
@@ -42,17 +42,27 @@ export default function Gap() {
     </Notice>
   ) : (
     <Notice>
-      The blue area is <M>{`I_${n} \\approx ${In.toFixed(3)}`}</M>; the whole area under the orange curve is{' '}
-      <M>{`${nI} \\approx ${nIprev.toFixed(3)}`}</M>. Step <M>n</M> from 1 to 4: the orange gap between them is always
-      exactly 1, so <M>{'I_n = nI_{n-1} - 1'}</M>. That 1 is the boundary term: the blue curve falls from height 1
-      at <M>x = 0</M> to 0 at <M>x = 1</M> (violet dots), so <M>{'\\left[(1-x)^ne^x\\right]_0^1 = -1'}</M>, a number, unlike
-      option E. Then turn on option C.
+      The blue area is <M>{`I_${n} \\approx ${In.toFixed(3)}`}</M>; the whole area under the orange curve,{' '}
+      <M>{`y = ${coef}${pow(n - 1)}e^x`}</M>, is <M>{`${nI} \\approx ${nIprev.toFixed(3)}`}</M>. Step <M>n</M> from 1
+      to 4: the orange gap between them is always exactly 1, so <M>{'I_n = nI_{n-1} - 1'}</M>. Why 1? By the product
+      rule, the orange height minus the blue height is <M>{'-\\tfrac{d}{dx}\\left[(1-x)^ne^x\\right]'}</M>, the rate
+      the blue curve is falling. The area under a rate of change is the total change, so the gap is the blue
+      curve&apos;s total fall, from height 1 at <M>x = 0</M> to 0 at <M>x = 1</M> (violet dots). That fall of 1 is
+      minus the boundary term <M>{'\\left[(1-x)^ne^x\\right]_0^1 = -1'}</M>, a number, unlike option E. Then turn on
+      option C.
     </Notice>
   )
 
   return (
     <div>
-      <Plane x={[-0.08, 1.08]} y={[-0.25, 4.4]} xStep={0.25} yStep={1} height={320}>
+      {/* y tick numbers sit left of the axis: on the right, the violet dot covers "1" and the
+          orange curve starts on "2" at n = 2. */}
+      <Plane x={[-0.12, 1.08]} y={[-0.25, 4.4]} xStep={0.25} yStep={1} height={320} yLabels={false} xLabels={v => (v < 0 ? '' : tick(v))}>
+        {[1, 2, 3, 4].map(k => (
+          <Label key={k} at={[0, k]} attach="w" gap={12} size={12} bold={false}>
+            {k}
+          </Label>
+        ))}
         <Region top={orange} bottom={blue} from={0} to={1} color={C.g} opacity={0.25} />
         <Region top={blue} bottom={() => 0} from={0} to={1} color={C.f} opacity={0.3} />
         <Plot.OfX y={orange} domain={[0, 1]} color={C.g} weight={3} />

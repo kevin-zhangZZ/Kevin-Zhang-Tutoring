@@ -33,9 +33,9 @@ const OPTS: Record<
   E: { expr: '-4\\bar z', tip: Z2, block: 'nzb', mod: 16, argTex: '\\tfrac{2\\pi}{3}', modOk: true, argOk: true, attach: 'n' },
 }
 
-// Number only the gridlines at ±8 and ±16: the ±4 numbers would crowd the labels on z and z̄, and the
-// equal-scale plane shows gridlines beyond the circle that need no numbers.
-const tickLabel = (v: number) => ([8, 16].some(k => Math.abs(Math.abs(v) - k) < 1e-9) ? String(v).replace('-', '−') : '')
+// Number only the gridlines at ±8: the ±4 numbers would crowd the labels on z and z̄, the dashed circle
+// would run through ±16 numbers (it carries its own |w| = 16 label), and the gridlines beyond it need none.
+const tickLabel = (v: number) => (Math.abs(Math.abs(v) - 8) < 1e-9 ? String(v).replace('-', '−') : '')
 
 const LABEL: Record<Letter, string> = { A: 'A: 4z', B: 'B: −2z̄', C: 'C: 3z', D: 'D: z̄²', E: 'E: −4z̄ = z²' }
 
@@ -102,8 +102,8 @@ export default function OptionsWidget() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Plane x={[-17, 17]} y={[-17, 17]} xStep={4} yStep={4} height={340} equalScale xLabel="" yLabel="Im" labels={tickLabel}>
-        <Label at={[17, 0]} attach="sw" size={14} gap={4} italic>
+      <Plane x={[-17, 19]} y={[-17, 17]} xStep={4} yStep={4} height={340} equalScale xLabel="" yLabel="Im" labels={tickLabel}>
+        <Label at={[19, 0]} attach="sw" size={14} gap={4} italic>
           Re
         </Label>
         {/* every number with the modulus of z² */}

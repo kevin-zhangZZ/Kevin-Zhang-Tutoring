@@ -68,18 +68,17 @@ export default function TypeTwo() {
   } else if (mode === 'h0') {
     notice = (
       <Notice tone="warn">
-        This red area is under <M>{'H_0'}</M>&apos;s curve: <M>{'0.990 = 1 - 0.01'}</M>, the chance of keeping{' '}
-        <M>{'H_0'}</M> when <M>{'H_0'}</M> is true. That is a correct decision, not an error. A Type II error can only
-        happen when <M>{'H_0'}</M> is false, so its probability must come from the true curve, centred at{' '}
-        <M>11.4</M>.
+        This red area is under <M>{'H_0'}</M>&apos;s blue curve: <M>{'0.990 = 1 - 0.01'}</M>, the chance of keeping{' '}
+        <M>{'H_0'}</M> when <M>{'H_0'}</M> is true. That is a correct decision, not an error. Compare it with the
+        orange curve, which is where the sample means really come from, then press <b>Type II area</b>.
       </Notice>
     )
   } else {
     notice = (
       <Notice tone="warn">
-        Left of <M>11.632</M> is where <M>{'H_0'}</M> is rejected. Under the true mean that happens with probability{' '}
-        <M>0.929</M>: the test correctly detects that the mean is below 12. A Type II error is the opposite (keeping{' '}
-        <M>{'H_0'}</M>), so it is <M>{'1 - 0.929 = 0.071'}</M>.
+        Left of <M>11.632</M> is the <i>reject</i> side. Under the true mean, <M>0.929</M> of the orange area lies
+        here: the test usually catches that the mean is below 12. A Type II error is the leftover orange area on the
+        keep side, <M>{'1 - 0.929 = 0.071'}</M>. Press <b>Type II area</b> to see it.
       </Notice>
     )
   }
@@ -117,9 +116,9 @@ export default function TypeTwo() {
         </Buttons>
         <Readouts>
           <Readout color={C.violet} tex={`\\text{cut-off} = \\operatorname{invNorm}\\!\\left(0.01,\\ 12,\\ \\tfrac{1}{\\sqrt{40}}\\right) \\approx ${CUT.toFixed(3)}`} />
-          {mode === 'right' && <Readout color={C.g} tex={`\\Pr(\\bar X \\ge 11.632 \\mid \\mu = 11.4) \\approx ${beta.toFixed(3)}`} />}
-          {mode === 'h0' && <Readout color={C.bad} tex={`\\Pr(\\bar X \\ge 11.632 \\mid \\mu = 12) \\approx ${keepTrue.toFixed(3)}`} />}
-          {mode === 'left' && <Readout color={C.bad} tex={`\\Pr(\\bar X < 11.632 \\mid \\mu = 11.4) \\approx ${power.toFixed(3)}`} />}
+          {mode === 'right' && <Readout color={C.g} tex={`\\mu = 11.4\\text{:}\\ \\ \\Pr(\\overline{X} \\ge 11.632) \\approx ${beta.toFixed(3)}`} />}
+          {mode === 'h0' && <Readout color={C.bad} tex={`\\mu = 12\\text{:}\\ \\ \\Pr(\\overline{X} \\ge 11.632) \\approx ${keepTrue.toFixed(3)}`} />}
+          {mode === 'left' && <Readout color={C.bad} tex={`\\mu = 11.4\\text{:}\\ \\ \\Pr(\\overline{X} < 11.632) \\approx ${power.toFixed(3)}`} />}
         </Readouts>
         {notice}
       </Controls>

@@ -3,7 +3,8 @@
 // diagonal a + b (violet), the one below has diagonal a − b = a + (−b) (green), as in the report's
 // second diagram. The dashed circle is every unit vector's tip, so |a + b| = 1 exactly when the
 // violet tip lands on it: 2 + 2cos θ = 1, θ = 120°, and then |a − b| = √(2 − 2cos θ) = √3.
-// It starts at 90°, where |a − b| = √2 (option C) but |a + b| = √2 as well, breaking the condition.
+// It starts at 90°, where |a − b| = √2 (option C) but |a + b| = √2 as well, breaking the condition;
+// at 0°, b = a gives |a − b| = 0 (option A) but |a + b| = 2.
 
 import { useState } from 'react'
 import {
@@ -26,6 +27,7 @@ export default function UnitSum() {
   const diffLen = Math.sqrt(2 - 2 * c)
   const at120 = Math.abs(deg - 120) < 0.5
   const at90 = Math.abs(deg - 90) < 0.5
+  const at0 = deg < 0.5
 
   let notice
   if (at120) {
@@ -36,6 +38,13 @@ export default function UnitSum() {
         <M>{'\\theta = 120^\\circ'}</M>: <M>{V('a')}</M>, <M>{V('b')}</M> and <M>{`${V('a')}+${V('b')}`}</M> make an
         equilateral triangle. Then <M>{`|${V('a')}-${V('b')}| = \\sqrt{2 - 2\\left(-\\tfrac12\\right)} = \\sqrt3 \\approx 1.73`}</M>,
         option D.
+      </Notice>
+    )
+  } else if (at0) {
+    notice = (
+      <Notice tone="warn">
+        At <M>{'0^\\circ'}</M>,{' '}<M>{`${V('b')} = ${V('a')}`}</M>, so the difference has length 0, option A. But then{' '}
+        <M>{`${V('a')}+${V('b')} = 2${V('a')}`}</M> has length 2, far outside the dashed unit circle. Open the angle.
       </Notice>
     )
   } else if (at90) {
@@ -72,22 +81,23 @@ export default function UnitSum() {
         <Line.Segment point1={B} point2={S} color={C.guide} weight={1.5} style="dashed" />
         <Line.Segment point1={A} point2={D} color={C.guide} weight={1.5} style="dashed" />
         <Line.Segment point1={negB} point2={D} color={C.guide} weight={1.5} style="dashed" />
-        <Plot.Parametric xy={u => [0.22 * Math.cos(u), 0.22 * Math.sin(u)]} t={[0, t]} color={C.ink} weight={1.5} />
+        {t > 0.05 && <Plot.Parametric xy={u => [0.22 * Math.cos(u), 0.22 * Math.sin(u)]} t={[0, t]} color={C.ink} weight={1.5} />}
         <Vector tail={[0, 0]} tip={negB} color={C.g} weight={2} style="dashed" />
         <Vector tail={[0, 0]} tip={A} color={C.f} weight={3} />
         <Vector tail={[0, 0]} tip={B} color={C.g} weight={3} />
         {sumLen > 0.05 && <Vector tail={[0, 0]} tip={S} color={C.violet} weight={3.5} />}
-        <Vector tail={[0, 0]} tip={D} color={C.good} weight={3.5} />
+        {diffLen > 0.05 && <Vector tail={[0, 0]} tip={D} color={C.good} weight={3.5} />}
         {/* a + b bisects the angle (rhombus), so θ sits nearer a to keep clear of it. */}
-        <Label at={[0.4 * Math.cos(Math.max(0.28 * t, 0.3)), 0.4 * Math.sin(Math.max(0.28 * t, 0.3))]} attach="c" size={12} italic>θ</Label>
+        {t > 0.05 && <Label at={[0.4 * Math.cos(Math.max(0.28 * t, 0.3)), 0.4 * Math.sin(Math.max(0.28 * t, 0.3))]} attach="c" size={12} italic>θ</Label>}
         <Label at={[0.6, 0]} color={C.f} attach="s" size={13} italic>a</Label>
-        <Label at={[B[0] + 0.14 * nb[0], B[1] + 0.14 * nb[1]]} color={C.g} attach="c" size={13} italic>b</Label>
+        {/* b sits off its tip both sideways and outwards, clear of the dashed circle through the tip. */}
+        <Label at={[B[0] + 0.13 * (nb[0] + B[0]), B[1] + 0.13 * (nb[1] + B[1])]} color={C.g} attach="c" size={13} italic>b</Label>
         <Label at={negB} color={C.g} attach={deg < 135 ? 'sw' : 's'} size={13} italic>−b</Label>
-        {sumLen > 0.05 && <Label at={S} color={C.violet} attach="ne" size={13} italic>a + b</Label>}
-        <Label at={D} color={C.good} attach={D[0] > 1.6 ? 's' : 'se'} size={13} italic>a − b</Label>
+        {sumLen > 0.05 && <Label at={S} color={C.violet} attach={S[0] > 1.7 ? 'n' : 'ne'} size={13} italic>a + b</Label>}
+        {diffLen > 0.05 && <Label at={D} color={C.good} attach={D[0] > 1.6 ? 's' : 'se'} size={13} italic>a − b</Label>}
       </Plane>
       <Controls>
-        <Slider label="\theta" value={deg} onChange={setDeg} min={45} max={180} step={1} format={v => `${v.toFixed(0)}°`} />
+        <Slider label="\theta" value={deg} onChange={setDeg} min={0} max={180} step={1} format={v => `${v.toFixed(0)}°`} />
         <Buttons>
           <ActionButton label="Make a + b a unit vector" onClick={() => setDeg(120)} />
         </Buttons>

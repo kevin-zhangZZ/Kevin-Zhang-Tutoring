@@ -14,7 +14,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P \implies Q \quad\text{has contrapositive}\quad \lnot Q \implies \lnot P" />,
-    reason: <>The contrapositive negates both parts and swaps them (<Katex tex="\lnot P" /> means "not <Katex tex="P" />"). It always says the same thing as the original: if <Katex tex="Q" /> is false, then <Katex tex="P" /> can't have happened, because <Katex tex="P" /> would have forced <Katex tex="Q" />.</>,
+    reason: <>The contrapositive negates both parts and swaps them (<Katex tex="\lnot P" /> means "not <Katex tex="P" />").</>,
+    more: <>It always says the same thing as the original: if <Katex tex="Q" /> is false, then <Katex tex="P" /> can't have happened, because <Katex tex="P" /> would have forced <Katex tex="Q" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} P&: \text{my team plays badly} \\ Q&: \text{they are not training enough} \end{aligned}" />,
@@ -22,15 +23,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\lnot Q: \text{they } \textbf{are} \text{ training enough}" />,
-    reason: <>The negation of "are not training enough".</>,
+    reason: <>Negating "they are not training enough" removes the "not".</>,
   },
   {
     working: <Katex display tex="\lnot P: \text{my team does } \textbf{not} \text{ play badly}" />,
-    reason: <>And the negation of the first part.</>,
+    reason: <>Negating "my team plays badly" adds a "not".</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{gathered}\text{If they are training enough, then my} \\ \text{football team does not play badly.}\end{gathered}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> is the <em>converse</em> (swapped, not negated) and option <b>D</b> is the <em>inverse</em> (negated, not swapped); neither is equivalent to the original. Option <b>B</b> just restates the original (needing more training means not training enough), and <b>E</b> brings in winning, which the original never mentions.</>,
+    reason: <>Matches option <b>C</b>: <Katex tex="\lnot Q" /> first, then <Katex tex="\lnot P" />.</>,
+    more: <>Option <b>A</b> is the <em>converse</em>, <Katex tex="Q \implies P" /> (swapped, not negated), and option <b>D</b>, the most common wrong answer, is the <em>inverse</em>, <Katex tex="\lnot P \implies \lnot Q" /> (negated, not swapped). Neither says the same thing as the original: a team that plays well but doesn't train enough is allowed by the original, yet breaks both <b>A</b> and <b>D</b>. Option <b>B</b> just restates the original (needing more training means not training enough), and <b>E</b> brings in winning, which the original never mentions.</>,
   },
 ]
 

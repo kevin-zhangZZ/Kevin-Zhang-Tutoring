@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} 1+\bar z &= 1-2a-1-2ai \\ &= -2a-2ai = -2a(1+i) \end{aligned}" />,
-    reason: <>The 1s cancel, leaving <Katex tex="-2a" /> as a common factor. Factorising it out sets up the cancellation in the next line.</>,
+    reason: <>Expand the bracket, <Katex tex="-(2a+1)=-2a-1" />, and the 1s cancel, leaving <Katex tex="-2a" /> as a common factor. Factorising it out sets up the cancellation in the next line.</>,
   },
   {
     working: <Katex display tex="\frac{4a}{1+\bar z} = \frac{4a}{-2a(1+i)} = \frac{-2}{1+i}" />,
@@ -34,11 +34,30 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\arg(-1+i) = \pi-\frac{\pi}{4} = \frac{3\pi}{4}" />,
-    reason: <>The point <Katex tex="(-1,\,1)" /> is in the second quadrant. Its angle with the negative real axis is <Katex tex="\tan^{-1}\!\left(\tfrac11\right)=\tfrac\pi4" />, so the argument is <Katex tex="\pi-\tfrac\pi4" />. Plain <Katex tex="\tan^{-1}\!\left(\tfrac{1}{-1}\right)=-\tfrac\pi4" /> would point into the fourth quadrant, so always place the point first.</>,
+    reason: <>The point <Katex tex="(-1,\,1)" /> is in the second quadrant. Its angle with the negative real axis is <Katex tex="\tan^{-1}\!\left(\tfrac11\right)=\tfrac\pi4" />, so the argument is <Katex tex="\pi-\tfrac\pi4" />.</>,
+    more: (
+      <>
+        Always place the point before finding the angle. Typing <Katex tex="\tan^{-1}\!\left(\tfrac{y}{x}\right)" />{' '}
+        straight in gives <Katex tex="\tan^{-1}\!\left(\tfrac{1}{-1}\right)=-\tfrac\pi4" />, an angle pointing into the
+        fourth quadrant, not towards <Katex tex="(-1,\,1)" />: the calculator cannot tell <Katex tex="\tfrac{1}{-1}" />{' '}
+        from <Katex tex="\tfrac{-1}{1}" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\sqrt2\,\mathrm{cis}\!\left(\frac{3\pi}{4}\right)}" />,
-    reason: <>Matches option <b>B</b>. Option <b>D</b>, <Katex tex="\sqrt2\,\mathrm{cis}\!\left(-\tfrac{3\pi}{4}\right)=-1-i" />, is what using <Katex tex="z" /> instead of <Katex tex="\bar z" /> gives: <Katex tex="1+z=-2a(1-i)" />, so <Katex tex="\tfrac{4a}{1+z}=\tfrac{-2}{1-i}=-1-i" />. Option <b>A</b> has the right modulus but the argument <Katex tex="\tfrac\pi4" />, which points into the first quadrant.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: (
+      <>
+        Option <b>D</b>, <Katex tex="\sqrt2\,\mathrm{cis}\!\left(-\tfrac{3\pi}{4}\right)=-1-i" />, is what using{' '}
+        <Katex tex="z" /> instead of <Katex tex="\bar z" /> gives: <Katex tex="1+z=-2a(1-i)" />, so{' '}
+        <Katex tex="\tfrac{4a}{1+z}=\tfrac{-2}{1-i}=-1-i" />, the conjugate of the right answer. Option <b>A</b>,{' '}
+        <Katex tex="\sqrt2\,\mathrm{cis}\!\left(\tfrac\pi4\right)=1+i" />, has the right modulus but takes the
+        argument to be <Katex tex="\tfrac\pi4" />, the angle measured from the <em>negative</em> real axis, so it points
+        into the first quadrant. Options{' '}
+        <b>C</b> and <b>E</b> have modulus 1, but <Katex tex="|-1+i|=\sqrt2" />.
+      </>
+    ),
   },
 ]
 
