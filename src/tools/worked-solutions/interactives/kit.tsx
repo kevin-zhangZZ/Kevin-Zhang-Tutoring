@@ -127,15 +127,16 @@ export function Plane({
     <div className="ws-plane" ref={ref}>
       <Mafs height={h} viewBox={{ x: vx, y: vy, padding: 0 }} preserveAspectRatio={equalScale ? 'contain' : false} pan={false} zoom={false}>
         <Coordinates.Cartesian xAxis={{ lines: xStep, labels: fx }} yAxis={{ lines: yStep, labels: fy }} subdivisions={false} />
-        {/* Axis names past the positive end of each axis, clear of the tick numbers (mafs puts
-            those below the x-axis and to the right of the y-axis). */}
+        {/* Axis names past the positive end of each axis, set just off the axis line (which runs
+            on into the padding) and clear of the tick numbers (mafs puts those below the x-axis
+            and to the right of the y-axis): x above its axis, y to the left of its axis. */}
         {xLabel && y[0] <= 0 && y[1] >= 0 && (
-          <Label at={[x[1], 0]} attach="e" size={14} italic>
+          <Label at={[x[1], 0]} attach="ne" size={14} italic>
             {xLabel}
           </Label>
         )}
         {yLabel && x[0] <= 0 && x[1] >= 0 && (
-          <Label at={[0, y[1]]} attach="n" size={14} italic>
+          <Label at={[0, y[1]]} attach="nw" size={14} italic>
             {yLabel}
           </Label>
         )}
