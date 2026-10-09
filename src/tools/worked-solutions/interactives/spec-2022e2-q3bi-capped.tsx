@@ -191,7 +191,7 @@ export default function Capped() {
         />
         <Toggle label="Test x = 1 as the asymptote" checked={wrong} onChange={setWrong} />
         <Readouts>
-          <Readout tex={`2t = ${tTex(2 * t)}`} />
+          <Readout tex={`\\text{input to } \\tan^{-1}\\text{:}\\ \\ 2t = ${tTex(2 * t)}`} />
           {wrong && <Readout color={C.bad} tex={`1 - x = ${(1 - x).toFixed(4)}`} />}
         </Readouts>
         {notice}

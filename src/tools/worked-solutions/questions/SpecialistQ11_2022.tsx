@@ -14,11 +14,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{c} = m\underset{\sim}{a}+n\underset{\sim}{b} \ \text{ for some } m,n\in R" />,
-    reason: <>Three vectors are linearly dependent when one of them can be written as a combination of the other two. Here <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> can never be parallel (their <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components, <Katex tex="2,\,-3" /> and <Katex tex="1,\,2" />, are not in proportion), so it must be <Katex tex="\underset{\sim}{c}" /> that is the combination.</>,
+    reason: <>Three vectors are linearly dependent when one of them can be written as a combination of the other two. Since <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> are not parallel, this means <Katex tex="\underset{\sim}{c}" /> is a combination of <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />.</>,
+    more: <>How we know <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> are not parallel: their <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components, <Katex tex="2,\,-3" /> and <Katex tex="1,\,2" />, are not in proportion, whatever <Katex tex="p" /> and <Katex tex="q" /> are. That matters, because two parallel vectors would make the set dependent on their own, with no condition on <Katex tex="p" /> and <Katex tex="q" /> at all. As they are not parallel, the combinations <Katex tex="m\underset{\sim}{a}+n\underset{\sim}{b}" /> fill out a plane, and the three vectors are dependent exactly when <Katex tex="\underset{\sim}{c}" /> lies in that plane. Writing <Katex tex="\underset{\sim}{c}" /> in terms of the other two is also the convenient choice: <Katex tex="\underset{\sim}{c}" /> has no unknowns, so its <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components give <Katex tex="m" /> and <Katex tex="n" /> straight away.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \ 2m+n = -3; \qquad \underset{\sim}{j}: \ -3m+2n = 2" />,
-    reason: <>Matching components. The <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components do not involve <Katex tex="p" /> or <Katex tex="q" />, so these two equations fix <Katex tex="m" /> and <Katex tex="n" /> on their own.</>,
+    reason: <>Equating the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components on each side. Neither involves <Katex tex="p" /> or <Katex tex="q" />, so these two equations fix <Katex tex="m" /> and <Katex tex="n" /> on their own.</>,
   },
   {
     working: <Katex display tex="m = -\frac{8}{7}, \qquad n = -\frac{5}{7}" />,
@@ -26,7 +27,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{k}: \ 5 = mp+n(-q) = -\frac{8p}{7}+\frac{5q}{7}" />,
-    reason: <>The <Katex tex="\underset{\sim}{k}" /> components must match too. This is the only equation involving <Katex tex="p" /> and <Katex tex="q" />, so it is the condition the question asks for.</>,
+    reason: <>The <Katex tex="\underset{\sim}{k}" /> components must match too, remembering that the <Katex tex="\underset{\sim}{k}" /> component of <Katex tex="\underset{\sim}{b}" /> is <Katex tex="-q" />. This is the only equation involving <Katex tex="p" /> and <Katex tex="q" />, so it is the condition the question asks for.</>,
   },
   {
     working: <Katex display tex="35 = -8p+5q" />,
@@ -34,7 +35,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{8p = 5q-35}" />,
-    reason: <>Matches option <b>A</b>. Option <b>C</b> is what you get if the minus sign in <Katex tex="-q\underset{\sim}{k}" /> is lost: the <Katex tex="q" /> term changes sign, giving <Katex tex="8p=-5q-35" />.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option <b>C</b> is what you get if the minus sign in <Katex tex="-q\underset{\sim}{k}" /> is lost: the <Katex tex="q" /> term changes sign, giving <Katex tex="8p=-5q-35" />. Options <b>B</b> and <b>E</b> have the <Katex tex="8" /> and <Katex tex="5" /> swapped, which is what mixing up the values of <Katex tex="m" /> and <Katex tex="n" /> gives. Options <b>D</b> and <b>E</b> have the wrong sign on <Katex tex="35" />, which comes from a slip when rearranging, or from getting the signs of <Katex tex="m" /> and <Katex tex="n" /> wrong.</>,
   },
 ]
 

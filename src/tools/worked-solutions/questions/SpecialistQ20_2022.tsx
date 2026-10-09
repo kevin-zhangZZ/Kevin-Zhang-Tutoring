@@ -32,7 +32,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{the 4 kg mass moves up} \iff R_1+R_2>L" />,
-    reason: <>Both 2 kg blocks hang from the right-hand string, so that side carries <Katex tex="R_1+R_2" />, and the heavier side of a pulley falls. That is the only physics needed — exactly the report&rsquo;s comment: the total mass on the right must exceed the total on the left.</>,
+    reason: <>Both 2 kg blocks hang from the right-hand string, so that side carries <Katex tex="R_1+R_2" />, and the heavier side of a pulley falls.</>,
+    more: <>The second string is inextensible, so the two right-hand blocks move together as one body of mass <Katex tex="R_1+R_2" />. The sides balancing exactly, <Katex tex="R_1+R_2=L" />, has probability 0 for continuous variables, so it doesn&rsquo;t matter whether the inequality is strict.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}D = R_1+R_2-L\\ \operatorname{E}(D) = 1.980+1.980-3.940 = 0.020\end{gathered}" />,
@@ -40,7 +41,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\operatorname{Var}(D) &= 0.015^2+0.015^2+0.002^2\\ &= 0.000454\end{aligned}" />,
-    reason: <>Variances add for independent variables — including the one being subtracted. <Katex tex="R_1+R_2" /> is two separate masses, so its variance is <Katex tex="2(0.015^2)" />; it is not <Katex tex="2R_1" />, whose variance would be <Katex tex="4(0.015^2)" />.</>,
+    reason: <>Variances add for independent variables, including the one being subtracted. <Katex tex="R_1" /> and <Katex tex="R_2" /> are two separate masses, so each contributes its own <Katex tex="0.015^2" />.</>,
+    more: <><Katex tex="R_1+R_2" /> is not <Katex tex="2R_1" /> (one mass counted twice), whose variance would be <Katex tex="2^2(0.015^2)=4(0.015^2)" />. Doubling one mass doubles its error too, but two separate masses often err in opposite directions and partly cancel, so their total varies less than one mass doubled.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(D>0) &= \Pr\left(Z>\frac{0-0.020}{\sqrt{0.000454}}\right)\\ &= \Pr(Z>-0.9386\ldots)\end{aligned}" />,
@@ -48,11 +50,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 0.82604\ldots" />,
-    reason: <>By <Cas fn="normCdf" /> with lower 0, upper ∞, μ = 0.020, σ = √0.000454.</>,
+    reason: <>By <Cas fn="normCdf" /> with lower 0, upper <Katex tex="\infty" />, <Katex tex="\mu=0.020" />, <Katex tex="\sigma=\sqrt{0.000454}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(\text{the 4 kg mass moves up}) \approx 0.826}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b>, 0.747, comes from treating the two blocks as one mass doubled (variance <Katex tex="4(0.015^2)" /> instead of <Katex tex="2(0.015^2)" />); option <b>E</b>, 1.000, from ignoring the variation — on average the right side (3.960 kg) is heavier than the left (3.940 kg), but not every time.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>B</b>, 0.747, the most common wrong answer, comes from treating the two blocks as one mass doubled: <Katex tex="\mathrm{Var}(D)=4(0.015^2)+0.002^2=0.000904" /> instead of 0.000454. Option <b>E</b>, 1.000, comes from ignoring the variation: on average the right side (3.960 kg) is heavier than the left (3.940 kg), but not every time. The spread of <Katex tex="D" />, about 0.021 kg, is as big as that 0.020 kg average gap, so the left side is the heavier one about 17% of the time. Options <b>A</b>, 0.546, and <b>D</b>, 0.998, don&rsquo;t match any single common slip, and the same comparison rules them out: with the gap just under one standard deviation, the answer must be a little under <Katex tex="\Pr(Z>-1)\approx0.84" />. A probability near 0.5, like option <b>A</b>, would need a spread many times the gap (using the standard deviations as if they were variances gives 0.545, for instance); one near 1, like option <b>D</b>, would need a spread about a third of the true one.</>,
   },
 ]
 

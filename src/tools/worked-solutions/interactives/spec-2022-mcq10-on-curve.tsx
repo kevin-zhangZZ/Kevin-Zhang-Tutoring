@@ -7,7 +7,7 @@
 // A toggle shades option A's set of m on the line x = 1.
 
 import { useState } from 'react'
-import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, num } from './kit'
+import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, num, tick } from './kit'
 
 const XR: [number, number] = [-1, 2.5]
 const YR: [number, number] = [-7, 5]
@@ -40,9 +40,17 @@ export default function OnCurve() {
 
   return (
     <div>
-      <Plane x={XR} y={YR} xStep={0.5} yStep={1} height={330}>
+      <Plane
+        x={XR}
+        y={YR}
+        xStep={0.5}
+        yStep={1}
+        height={330}
+        // Skip the half-cut ticks past the range, and −3, which the lower branch runs over.
+        yLabels={v => (v > 5.01 || v < -7.01 || Math.abs(v + 3) < 1e-6 ? '' : tick(v))}
+      >
         <Line.ThroughPoints point1={[1, 0]} point2={[1, 1]} color={C.guide} style="dashed" weight={1.5} />
-        <Label at={[1, 4.6]} color={C.guide} attach="e">x = 1</Label>
+        <Label at={[1, 4.55]} color={C.guide} attach="w">x = 1</Label>
         {showA && (
           <>
             <Line.Segment point1={[1, YR[0]]} point2={[1, -1]} color={C.g} weight={9} opacity={0.35} />
@@ -52,7 +60,7 @@ export default function OnCurve() {
         )}
         <Plot.OfX y={upper} domain={XR} color={C.f} weight={3} />
         <Plot.OfX y={lower} domain={XR} color={C.f} weight={3} />
-        <Label at={[-0.95, 4.5]} color={C.f} attach="e">5x²y − 3xy + y² = 10</Label>
+        <Label at={[1, 4.55]} color={C.f} attach="e">5x²y − 3xy + y² = 10</Label>
         {!undef && (
           <Line.Segment
             point1={[1 - dx, m - dx * s]}

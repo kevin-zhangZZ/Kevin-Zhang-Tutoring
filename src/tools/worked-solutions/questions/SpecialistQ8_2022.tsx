@@ -15,7 +15,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\text{Quadrants 1 and 3: }&\frac{dy}{dx}<0\\ \text{Quadrants 2 and 4: }&\frac{dy}{dx}>0\\ \text{On } x=0\text{: }&\frac{dy}{dx}=0\\ \text{On } y=0\text{: }&\text{vertical}\end{aligned}" />,
-    reason: <>Read the field before looking at the options. In the first and third quadrants the segments fall from left to right; in the second and fourth they rise. Along the <Katex tex="y" />-axis they are horizontal, and along the <Katex tex="x" />-axis they are vertical. Now test each option against these features.</>,
+    reason: <>Each segment’s gradient is the value of <Katex tex="\tfrac{dy}{dx}" /> at that point. Read the field before the options: segments fall (left to right) in quadrants 1 and 3 and rise in quadrants 2 and 4; they are horizontal along the <Katex tex="y" />-axis and vertical along the <Katex tex="x" />-axis.</>,
+    more: <>These features already hint at the form of the answer. Horizontal segments all along <Katex tex="x=0" /> mean <Katex tex="\tfrac{dy}{dx}=0" /> whenever <Katex tex="x=0" />, so expect a factor of <Katex tex="x" /> on top. Vertical segments all along <Katex tex="y=0" /> mean <Katex tex="\tfrac{dy}{dx}" /> is undefined whenever <Katex tex="y=0" />, so expect <Katex tex="y" /> underneath, as in A, B and C.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{D: } \frac{y^2}{2}+x^2&\ge0\\ \text{E: } \frac{x^2}{2}+y^2&\ge0\end{aligned}" />,
@@ -23,15 +24,32 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{A at } (1,1): \ \frac{dy}{dx} = \frac{2(1)}{1} = 2 > 0" />,
-    reason: <><b>A</b> gives rising segments in the first quadrant, where the field falls. A is out (it is C without the minus sign).</>,
+    reason: <><b>A</b> gives rising segments in the first quadrant, where the field falls. A is out.</>,
+    more: <>A is C without the minus sign: at every point it has the same steepness as C, but leans the wrong way.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{B at } (1,1)&: \ \frac{dy}{dx} = -\frac{1}{2(1)} = -\frac12\\ \text{C at } (1,1)&: \ \frac{dy}{dx} = -\frac{2(1)}{1} = -2\end{aligned}" />,
-    reason: <><b>B</b> and <b>C</b> both fit every feature in the first row: negative in quadrants 1 and 3, zero when <Katex tex="x=0" />, undefined (a vertical segment) when <Katex tex="y=0" />. So compare how steep they are at one point. The segment at (1, 1) is steep, well past 45°, which fits <Katex tex="-2" /> and not the gentle <Katex tex="-\tfrac12" />.</>,
-  },
-  {
-    working: <Katex display tex="\begin{aligned}\int y\,dy &= \int -2x\,dx\\ \frac{y^2}{2} &= -x^2+c\\ 2x^2+y^2 &= 2c\end{aligned}" />,
-    reason: <>A final check with C’s solution curves: separate the variables and integrate both sides. Each curve is a closed loop around <Katex tex="O" /> that crosses the <Katex tex="y" />-axis at <Katex tex="\pm\sqrt{2c}" /> but the <Katex tex="x" />-axis only at <Katex tex="\pm\sqrt{c}" />, so it is taller than it is wide, just as the segments curl in the picture. B’s curves, <Katex tex="x^2+2y^2=2c" />, would be wider than tall.</>,
+    reason: <><b>B</b> and <b>C</b> both match all four features in the first row, so compare how steep they are at one point. The segment at (1, 1) is steeper than 45°, which fits <Katex tex="-2" />, not the gentle <Katex tex="-\tfrac12" />.</>,
+    more: (
+      <>
+        <p>
+          B was the most popular wrong answer (13%). Its sign pattern is identical to C’s, so only steepness separates
+          them: a gradient of <Katex tex="-2" /> is about 63° below the horizontal, while <Katex tex="-\tfrac12" /> is
+          only about 27°.
+        </p>
+        <p>
+          You can also see this steepness difference in the solution curves. Separate the variables in C and integrate
+          both sides:
+        </p>
+        <Katex display tex="\begin{aligned}\int y\,dy &= \int -2x\,dx\\ \frac{y^2}{2} &= -x^2+c\\ 2x^2+y^2 &= 2c\end{aligned}" />
+        <p>
+          Each curve is a closed loop around <Katex tex="O" /> that crosses the <Katex tex="y" />-axis at{' '}
+          <Katex tex="\pm\sqrt{2c}" /> but the <Katex tex="x" />-axis only at <Katex tex="\pm\sqrt{c}" />, so it is taller
+          than it is wide, just as the segments curl in the picture. B’s curves, <Katex tex="x^2+2y^2=2c" />, would be
+          wider than tall.
+        </p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{2x}{y}}" />,

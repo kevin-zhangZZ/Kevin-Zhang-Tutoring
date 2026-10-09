@@ -3,7 +3,8 @@
 // (π/8)cos(πt/4) sideways. θ is the angle from the FORWARD direction j, so tan θ = sideways/forward;
 // at t = 0 that is π/16, θ ≈ 11.1°. Slide t to see the arrow stay along the curve. A toggle shows the
 // report's most frequent incorrect response: the angle from the x-axis, 78.9°, the complement.
-// The view follows the ball (y-range moves with it) so the triangle stays large.
+// The view follows the ball (y-range moves with it) so the triangle stays large. θ is only the
+// angle at O, so for t > 0 the green angle is read out as "angle to forward", unlabelled on the plane.
 
 import { useState } from 'react'
 import { Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Polyline, Readout, Readouts, Slider, Toggle, Vector } from './kit'
@@ -49,11 +50,10 @@ export default function LaunchAngle() {
   } else if (atStart) {
     notice = (
       <Notice tone="good">
-        At <M>t = 0</M> the ball is at <M>O</M>, and its velocity{' '}
-        <M>{'\\underset{\\sim}{\\dot r}(0) = \\tfrac{\\pi}{8}\\underset{\\sim}{i} + 2\\underset{\\sim}{j}'}</M> points exactly
-        along the path. <M>\theta</M> is the angle between this arrow and the forward direction, so the forward 2 is the
-        adjacent side: <M>{'\\tan\\theta = \\tfrac{\\pi/8}{2}'}</M>, <M>{'\\theta \\approx 11.1^\\circ'}</M>. Now slide{' '}
-        <M>t</M> and watch the arrow.
+        The orange arrow is the velocity at <M>O</M>, drawn to scale: it lies exactly along the blue path as the ball
+        leaves <M>O</M>. The green angle <M>\theta</M> opens from the dashed forward line, the side of length 2, so{' '}
+        <M>\theta</M> comes out small: <M>{'\\theta \\approx 11.1^\\circ'}</M>. Turn on the toggle to see where the common
+        wrong answer <M>{'78.9^\\circ'}</M> comes from, or slide <M>t</M> to watch the arrow follow the path.
       </Notice>
     )
   } else if (atTwo) {
@@ -95,7 +95,7 @@ export default function LaunchAngle() {
           </Label>
         )}
         {showTheta && <Polyline points={arc(P, R, PI / 2, phi)} color={C.good} weight={2.5} />}
-        {showTheta && (
+        {showTheta && atStart && (
           <Label at={[P[0] + 1.22 * Math.cos((PI / 2 + phi) / 2), P[1] + 1.22 * Math.sin((PI / 2 + phi) / 2)]} attach="c" color={C.good} size={13} gap={0}>
             θ
           </Label>
@@ -120,7 +120,7 @@ export default function LaunchAngle() {
         </Buttons>
         <Readouts>
           <Readout color={C.g} tex={`\\underset{\\sim}{\\dot r}(t) \\approx ${s.toFixed(2)}\\,\\underset{\\sim}{i} + 2\\,\\underset{\\sim}{j}`} />
-          <Readout color={C.good} tex={`\\theta = \\tan^{-1}\\!\\left(\\tfrac{${s.toFixed(2)}}{2}\\right) \\approx ${theta.toFixed(1)}^\\circ`} />
+          <Readout color={C.good} tex={`${atStart ? '\\theta' : '\\text{angle to forward}'} = \\tan^{-1}\\!\\left(\\tfrac{${s.toFixed(2)}}{2}\\right) \\approx ${theta.toFixed(1)}^\\circ`} />
           {wrong && (
             <Readout
               color={C.bad}

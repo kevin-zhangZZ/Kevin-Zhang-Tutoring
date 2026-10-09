@@ -56,17 +56,17 @@ export default function Washer() {
   if (wrong && atZero) {
     notice = (
       <Notice tone="warn">
-        At <M>x = 0</M> the hole has radius <M>r = 0</M>, so <M>{'\\pi(R - r)^2'}</M> and <M>{'\\pi(R^2 - r^2)'}</M> happen
+        At <M>x = 0</M> the hole has radius <M>r = 0</M>, so <M>{'{\\pi(R - r)^2}'}</M> and <M>{'{\\pi(R^2 - r^2)}'}</M> happen
         to agree: both are <M>9\pi</M>. This is the only slice inside the region where they do. Move the slider either way and
-        the red disc shrinks inside the ring.
+        the red disc's area drops below the ring's.
       </Notice>
     )
   } else if (wrong) {
     notice = (
       <Notice tone="warn">
-        <M>{'\\pi(R - r)^2'}</M> is the red disc, whose radius is only the <b>gap</b> between the line and the curve. It is
+        <M>{'{\\pi(R - r)^2}'}</M> is the red disc, whose radius is only the <b>gap</b> between the line and the curve. It is
         smaller than the ring: <M>{num(W)}</M> against <M>{num(area)}</M> here. The ring is a strip <M>R - r</M> wide wrapped
-        all the way round, which is why <M>{'\\pi(R^2 - r^2) = \\pi(R - r)(R + r)'}</M>. Added across the region, the red
+        all the way round, which is why <M>{'{\\pi(R^2 - r^2) = \\pi(R - r)(R + r)}'}</M>. Added across the region, the red
         discs total about <M>{num(WRONG_TOTAL)}</M>, not <M>51.42</M>.
       </Notice>
     )
@@ -82,7 +82,9 @@ export default function Washer() {
             describes.
           </>
         ) : (
-          <>Press play to add up the washers from here to the right-hand terminal.</>
+          <>
+            Press <b>Sweep across the region</b> to add up the washers from here to the right-hand terminal.
+          </>
         )}
       </Notice>
     )
@@ -98,9 +100,11 @@ export default function Washer() {
     notice = (
       <Notice>
         The vertical slice of the region at this <M>x</M> runs from the curve (height <M>r = g(x)</M>) up to the line (height{' '}
-        <M>R = h(x)</M>). Spun about the <M>x</M>-axis it makes a <b>washer</b>: a disc of radius <M>R</M> with a hole of
-        radius <M>r</M>, so its area is <M>{'\\pi R^2 - \\pi r^2'}</M>. Press play to add up the washers, or turn on the
-        toggle to test the tempting <M>{'\\pi(R - r)^2'}</M>.
+        <M>R = h(x)</M>); the dashed copy below the axis is where the region lands after half a turn. Spun about the{' '}
+        <M>x</M>-axis the slice makes a <b>washer</b>: a disc of radius <M>R</M> with a hole of radius <M>r</M>, so its area
+        is <M>{'{\\pi R^2 - \\pi r^2}'}</M>. Press <b>Sweep across the region</b> to add up the washers, or turn on the toggle
+        to test the square of the difference, <M>{'{\\pi(R - r)^2}'}</M>, which the part d.i. report says a significant
+        number of responses used.
       </Notice>
     )
   }
@@ -125,10 +129,10 @@ export default function Washer() {
           <Line.Segment point1={[x0, 0]} point2={[x0, ri]} color={C.g} weight={3} />
           <Line.Segment point1={[x0, 0]} point2={[x0, -Ro]} color={C.f} weight={3} />
           {ri > 0.35 && (
-            <Label at={[x0, ri / 2]} attach="w" color={C.g} size={12} gap={10}>r</Label>
+            <Label at={[x0, ri / 2]} attach="w" color={C.g} size={12} gap={13}>r</Label>
           )}
-          {Ro > 0.35 && (
-            <Label at={[x0, -Ro / 2]} attach="w" color={C.f} size={12} gap={10}>R</Label>
+          {Ro - ri > 0.45 && (
+            <Label at={[x0, -(Ro + ri) / 2]} attach="w" color={C.f} size={12} gap={13}>R</Label>
           )}
           <Point x={A} y={h(A)} color={C.ink} />
           <Point x={B} y={h(B)} color={C.ink} />

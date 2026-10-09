@@ -26,15 +26,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="D = T_1-T_2 \;\implies\; E(D)=30-30=0" />,
-    reason: <>&ldquo;Differ by&rdquo; is about the difference, so define <Katex tex="D" /> as one time minus the other. Means subtract: <Katex tex="E(D)=E(T_1)-E(T_2)" />. As a linear combination of independent normal variables, <Katex tex="D" /> is also normal.</>,
+    reason: <>&ldquo;Differ by&rdquo; is about the difference, so let <Katex tex="D" /> be one time minus the other; its mean is <Katex tex="E(T_1)-E(T_2)" />. As a linear combination of independent normal variables, <Katex tex="D" /> is also normal.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\mathrm{Var}(D) &= \mathrm{Var}(T_1)+\mathrm{Var}(T_2)\\ &= 2.5^2+2.5^2 = 12.5\\ \mathrm{sd}(D) &= \sqrt{12.5}\approx3.536\end{aligned}" />,
-    reason: <>For independent variables, <Katex tex="\mathrm{Var}(aX+bY)=a^2\mathrm{Var}(X)+b^2\mathrm{Var}(Y)" /> (formula sheet). Here <Katex tex="a=1" /> and <Katex tex="b=-1" />, and <Katex tex="(-1)^2=1" />, so the variances <em>add</em> even though the times are subtracted. Add variances, never standard deviations: <Katex tex="\mathrm{sd}(D)" /> is not <Katex tex="2.5+2.5=5" />.</>,
+    reason: <>For independent variables, <Katex tex="\mathrm{Var}(aX+bY)=a^2\mathrm{Var}(X)+b^2\mathrm{Var}(Y)" /> (formula sheet). Here <Katex tex="a=1" />, <Katex tex="b=-1" /> and <Katex tex="(-1)^2=1" />, so the variances <em>add</em> even though the times are subtracted.</>,
+    more: <>Add variances, never standard deviations: <Katex tex="\mathrm{sd}(D)" /> is <Katex tex="\sqrt{12.5}\approx3.536" />, not <Katex tex="2.5+2.5=5" />. And subtracting doesn&rsquo;t cancel the variation: one trip can run long while the other runs short, so the difference is more spread out than either time on its own.</>,
   },
   {
     working: <Katex display tex="\Pr(|D|>6) = 1 - \Pr(-6\leq D\leq6)" />,
-    reason: <>Either trip could be the longer one, so the times differ by more than 6 minutes when <Katex tex="D>6" /> <em>or</em> <Katex tex="D<-6" />. Both tails count, and the quickest way to get them is the complement of <Katex tex="D" /> lying between <Katex tex="-6" /> and 6.</>,
+    reason: <>Either trip could be the longer one, so the times differ by more than 6 minutes when <Katex tex="D>6" /> <em>or</em> <Katex tex="D<-6" />: both tails, which together are 1 minus the middle.</>,
+    more: <>Equivalently, the normal curve of <Katex tex="D" /> is symmetric about <Katex tex="E(D)=0" />, so the two tails are equal and <Katex tex="\Pr(|D|>6)=2\Pr(D>6)=2\times0.04484\ldots\approx0.0897" />, the same answer.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\Pr(-6\leq D\leq6)\\ &= \Pr(-1.697\leq Z\leq1.697)\\ &\approx 0.9103\end{aligned}" />,
@@ -42,7 +44,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{1-0.9103 = 0.0897}" />,
-    reason: <>Matches option <b>B</b>. Option <b>A</b>, 0.0448, is only one tail, <Katex tex="\Pr(D>6)" />. Options <b>C</b> and <b>D</b> come from adding the standard deviations (<Katex tex="\mathrm{sd}=5" />): <b>C</b>, 0.1151, is one tail and <b>D</b>, 0.2301, is both. Option <b>E</b>, 0.9103, is the probability the times are <em>within</em> 6 minutes of each other.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>A</b>, 0.0448, the most common wrong answer, is only one tail, <Katex tex="\Pr(D>6)" />: it counts only the first trip being more than 6 minutes longer, not the second. Options <b>C</b> and <b>D</b> come from adding the standard deviations (<Katex tex="\mathrm{sd}=5" />): option <b>C</b>, 0.1151, is one tail and option <b>D</b>, 0.2301, is both. Option <b>E</b>, 0.9103, is the probability the times are <em>within</em> 6 minutes of each other: the middle, without subtracting it from 1.</>,
   },
 ]
 

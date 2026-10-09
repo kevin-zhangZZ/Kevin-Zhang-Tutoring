@@ -85,6 +85,9 @@ export default function OutsideAngle() {
       <Plane x={[7.5, 22.5]} y={[8.6, 17.8]} xStep={1} yStep={1} equalScale height={340} labels={false} xLabel="" yLabel="">
         {/* the 5 N force's direction, continued past P */}
         <Line.Segment point1={P} point2={[O[0] + 8.5, O[1]]} color={C.guide} style="dashed" weight={1.5} />
+        <Label at={[O[0] + 7.4, O[1]]} attach="s" color={C.guide} size={11}>
+          5 N direction
+        </Label>
         {/* the side that closes the triangle: the third force must run along it */}
         <Vector tail={Q} tip={O} color={closeCol} weight={atA ? 3 : 2} />
         <Vector tail={O} tip={P} color={C.f} weight={3} />

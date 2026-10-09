@@ -33,9 +33,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The numerator and denominator have the same degree, so divide first: write the numerator as{' '}
-        <Katex tex="(x^2-4)" /> plus whatever is left over. This is the standard first step for finding the
-        horizontal asymptote of a rational function.
+        The numerator and denominator have the same degree, so divide first to find the horizontal asymptote: write
+        the numerator as <Katex tex="(x^2-4)" /> plus whatever is left over.
+      </>
+    ),
+    more: (
+      <>
+        Adding and subtracting <Katex tex="4" /> turns <Katex tex="x^2+2x+c" /> into <Katex tex="(x^2-4)+(2x+c+4)" />, and the{' '}
+        <Katex tex="(x^2-4)" /> part divides exactly to give <Katex tex="1" />.
       </>
     ),
   },
@@ -43,9 +48,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{As } x\to\pm\infty,\ \frac{2x+c+4}{x^2-4}\to 0,\ \text{so } y\to 1" />,
     reason: (
       <>
-        The leftover fraction has a lower-degree numerator than denominator, so it shrinks to <Katex tex="0" />. The
-        same limit, <Katex tex="1" />, holds in both directions, so there is exactly <b>one</b> horizontal asymptote,{' '}
-        <Katex tex="y=1" />, for every value of <Katex tex="c" />. This already rules out option B.
+        The leftover fraction has a lower-degree numerator than denominator, so it shrinks to <Katex tex="0" /> in
+        both directions. So there is exactly <b>one</b> horizontal asymptote, <Katex tex="y=1" />, whatever the value
+        of <Katex tex="c" />.
+      </>
+    ),
+    more: (
+      <>
+        Two different horizontal asymptotes need two different limits, one as <Katex tex="x\to\infty" /> and another
+        as <Katex tex="x\to-\infty" /> (as with an inverse tangent graph). Here both limits are <Katex tex="1" />, so
+        that cannot happen for any value of <Katex tex="c" />.
       </>
     ),
   },
@@ -58,6 +70,14 @@ const ROWS: WorkingRow[] = [
         <Katex tex="x=2" /> and <Katex tex="x=-2" />.
       </>
     ),
+    more: (
+      <>
+        Skipping this check leads to the most popular wrong answer. Solving <Katex tex="x^2-4=0" /> and stopping
+        there gives two zeros of the denominator, so two vertical asymptotes: option A (chosen by 41%). That is true
+        for most values of <Katex tex="c" />, but the question asks what is <b>always</b> true, so a single value of{' '}
+        <Katex tex="c" /> where it fails is enough to rule it out.
+      </>
+    ),
   },
   {
     working: (
@@ -68,8 +88,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Only when <Katex tex="c=-8" /> does <Katex tex="(x-2)" /> cancel. Then there is a hole at{' '}
-        <Katex tex="\left(2,\tfrac{3}{2}\right)" /> and the only vertical asymptote is <Katex tex="x=-2" />.
+        Only when <Katex tex="c=-8" /> does <Katex tex="(x-2)" /> cancel. Then <Katex tex="x=2" /> gives a hole, not
+        an asymptote, and the only vertical asymptote is <Katex tex="x=-2" />.
+      </>
+    ),
+    more: (
+      <>
+        The hole is at <Katex tex="\left(2,\tfrac{3}{2}\right)" />: substitute <Katex tex="x=2" /> into the simplified
+        rule, <Katex tex="\frac{2+4}{2+2}=\frac{3}{2}" />. The original rule is undefined at <Katex tex="x=2" />, so that
+        single point is missing from the graph, but the curve does not shoot off to infinity there.
       </>
     ),
   },
@@ -82,9 +109,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Only when <Katex tex="c=0" /> does <Katex tex="(x+2)" /> cancel. Then there is a hole at{' '}
-        <Katex tex="\left(-2,\tfrac{1}{2}\right)" /> and the only vertical asymptote is <Katex tex="x=2" />. This is
-        the examiners&apos; example.
+        Only when <Katex tex="c=0" /> does <Katex tex="(x+2)" /> cancel. Then <Katex tex="x=-2" /> gives a hole, not
+        an asymptote, and the only vertical asymptote is <Katex tex="x=2" />.
+      </>
+    ),
+    more: (
+      <>
+        This is the case the examiner&apos;s report uses. With <Katex tex="c=0" /> the leftover fraction from the first
+        line is <Katex tex="\frac{2x+4}{(x-2)(x+2)}=\frac{2}{x-2}" />, so <Katex tex="y=1+\frac{2}{x-2}" />: a
+        hyperbola with one vertical asymptote, <Katex tex="x=2" />. The hole is at{' '}
+        <Katex tex="\left(-2,\tfrac{1}{2}\right)" />, again from the simplified rule:{' '}
+        <Katex tex="\frac{-2}{-2-2}=\frac{1}{2}" />.
       </>
     ),
   },
@@ -111,10 +146,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Matches option <b>E</b>. Option A (chosen by 41%) fails when <Katex tex="c=0" /> or <Katex tex="c=-8" />,
-        where only one vertical asymptote is left. Option C fails when <Katex tex="c=0" />, as <Katex tex="x=-2" />{' '}
-        is then a hole. Option D is true only when <Katex tex="c=0" />, not always. Option B is impossible, as there is
-        only one horizontal asymptote.
+        Matches option <b>E</b>, the only option true for every value of <Katex tex="c" />.
+      </>
+    ),
+    more: (
+      <>
+        Option A fails when <Katex tex="c=0" /> or <Katex tex="c=-8" />, where only one vertical
+        asymptote is left. Option C fails when <Katex tex="c=0" />, as <Katex tex="x=-2" /> is then a hole. Option D
+        is true only when <Katex tex="c=0" />, not always. Option B is impossible, as there is only one horizontal
+        asymptote.
       </>
     ),
   },

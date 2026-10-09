@@ -23,6 +23,15 @@ const ROWS: WorkingRow[] = [
       <Katex tex="\int2\cos(t)\,dt=2\sin(t)" />. The constant of integration is a{' '}
       <em>vector</em> <Katex tex="\underset{\sim}{c}" />, with a component in each direction.
     </>,
+    more: (
+      <>
+        To be sure of a sign, differentiate back:{' '}
+        <Katex tex="\tfrac{d}{dt}\bigl(-\cos(t)\bigr)=\sin(t)" />, the{' '}
+        <Katex tex="\underset{\sim}{i}" /> component of the acceleration. Writing{' '}
+        <Katex tex="+\cos(t)" /> would differentiate back to <Katex tex="-\sin(t)" />, the wrong
+        acceleration.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(0) = -\cos(0)\underset{\sim}{i}+2\sin(0)\underset{\sim}{j}+\underset{\sim}{c} = -\underset{\sim}{i}+\underset{\sim}{c}" />,
@@ -30,7 +39,14 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\underset{\sim}{i}+\underset{\sim}{c} = 2\underset{\sim}{i}+\underset{\sim}{j} \implies \underset{\sim}{c} = 3\underset{\sim}{i}+\underset{\sim}{j}" />,
-    reason: <>Set this equal to the given <Katex tex="\underset{\sim}{\dot r}(0)" /> and add <Katex tex="\underset{\sim}{i}" /> to both sides. One vector equation fixes both components of the constant at once.</>,
+    reason: <>Set this equal to the given <Katex tex="\underset{\sim}{\dot r}(0)" /> and add <Katex tex="\underset{\sim}{i}" /> to both sides.</>,
+    more: (
+      <>
+        One vector equation fixes both components of the constant at once. Writing{' '}
+        <Katex tex="\underset{\sim}{c}=c_1\underset{\sim}{i}+c_2\underset{\sim}{j}" />, it says{' '}
+        <Katex tex="-1+c_1=2" /> and <Katex tex="c_2=1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\underset{\sim}{\dot r}(t) = -\cos(t)\underset{\sim}{i}+2\sin(t)\underset{\sim}{j}+3\underset{\sim}{i}+\underset{\sim}{j}" />,
@@ -38,15 +54,27 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{\dot r}(t) = \bigl(3-\cos(t)\bigr)\underset{\sim}{i}+\bigl(2\sin(t)+1\bigr)\underset{\sim}{j}}" />,
-    reason: <>
-      Matches option <b>B</b>. Check at <Katex tex="t=0" />:{' '}
-      <Katex tex="(3-1)\underset{\sim}{i}+(0+1)\underset{\sim}{j}=2\underset{\sim}{i}+\underset{\sim}{j}" />.
-      Option <b>A</b> leaves out the constant <Katex tex="\underset{\sim}{c}" />. Option{' '}
-      <b>C</b> antidifferentiates <Katex tex="\sin(t)" /> to <Katex tex="+\cos(t)" />, the
-      sign slip. Options <b>D</b> and <b>E</b> don&rsquo;t antidifferentiate at all: D keeps
-      the acceleration&rsquo;s components and E differentiates them, each with a constant
-      chosen to fit <Katex tex="\underset{\sim}{\dot r}(0)" />.
-    </>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: (
+      <>
+        <p>
+          Check at <Katex tex="t=0" />:{' '}
+          <Katex tex="(3-1)\underset{\sim}{i}+(0+1)\underset{\sim}{j}=2\underset{\sim}{i}+\underset{\sim}{j}" />,
+          as given. But that check alone can&rsquo;t pick B: every option except A was built to
+          pass it. Differentiating back is the check that separates them, because only B
+          returns <Katex tex="\sin(t)\underset{\sim}{i}+2\cos(t)\underset{\sim}{j}" />.
+        </p>
+        <p>
+          Option <b>A</b> leaves out the constant <Katex tex="\underset{\sim}{c}" />, so at{' '}
+          <Katex tex="t=0" /> it gives <Katex tex="-\underset{\sim}{i}" />. Option <b>C</b>, the
+          most common wrong answer, antidifferentiates <Katex tex="\sin(t)" /> to{' '}
+          <Katex tex="+\cos(t)" />: the sign slip. Options <b>D</b> and <b>E</b> don&rsquo;t
+          antidifferentiate at all: D keeps the acceleration&rsquo;s components and E
+          differentiates them, each with a constant chosen to fit{' '}
+          <Katex tex="\underset{\sim}{\dot r}(0)" />.
+        </p>
+      </>
+    ),
   },
 ]
 

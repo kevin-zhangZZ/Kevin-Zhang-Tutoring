@@ -42,7 +42,30 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{100 = 25+49+2\times5\times7\cos(\theta)}" />,
-    reason: <>Matches option <b>A</b>. The <b>plus</b> sign is the whole question. Option B uses the cosine rule with <Katex tex="\theta" /> as the triangle's angle. But in the triangle the 7 N arrow starts at the <em>head</em> of the 5 N arrow, so <Katex tex="\theta" /> is outside the triangle and the angle inside is <Katex tex="\pi-\theta" />. The cosine rule then gives <Katex tex="100=25+49-2\times5\times7\cos(\pi-\theta)" />, and <Katex tex="\cos(\pi-\theta)=-\cos(\theta)" /> turns its minus into a plus. Options C, D and E put <Katex tex="\theta" /> next to the 10 N side, but <Katex tex="\theta" /> is between the 5 N and 7 N forces. (Solving, <Katex tex="\cos(\theta)=\tfrac{26}{70}=\tfrac{13}{35}" />, so <Katex tex="\theta\approx68^\circ" />.)</>,
+    reason: <>Matches option <b>A</b>: a plus sign, because <Katex tex="\theta" /> is the angle between the forces, not an angle of the force triangle.</>,
+    more: (
+      <>
+        <p>
+          Why not B, which 63% chose? Option B is the cosine rule with <Katex tex="\theta" /> taken as the triangle&apos;s
+          angle between the 5 and 7 sides. But <Katex tex="\theta" /> is the angle between the forces when both start
+          from the same point. To build the triangle, the 7 N arrow is slid, without turning, so that it starts at the{' '}
+          <em>head</em> of the 5 N arrow. There it still makes the angle <Katex tex="\theta" /> with the 5 N direction,
+          now with that direction carried on past the head, so <Katex tex="\theta" /> lies outside the triangle. The
+          triangle&apos;s own angle there is <Katex tex="\pi-\theta" /> (<Katex tex="180^\circ-\theta" /> in degrees),
+          which is the examiner&apos;s report&apos;s point.
+        </p>
+        <p>
+          The cosine rule with the correct inside angle gives{' '}
+          <Katex tex="100=25+49-2\times5\times7\cos(\pi-\theta)" />, and <Katex tex="\cos(\pi-\theta)=-\cos(\theta)" />{' '}
+          turns its minus into a plus: option A again. Solving it,{' '}
+          <Katex tex="\cos(\theta)=\tfrac{26}{70}=\tfrac{13}{35}" />, so <Katex tex="\theta\approx68^\circ" />.
+        </p>
+        <p>
+          Options C, D and E each put <Katex tex="\theta" /> next to the 10 N side, but <Katex tex="\theta" /> is
+          between the 5 N and 7 N forces.
+        </p>
+      </>
+    ),
   },
 ]
 
@@ -79,7 +102,7 @@ export default function SpecialistQ16_2022() {
       ]}
       rows={ROWS}
       extras={
-        <Explore title="θ sits outside the force triangle: the angle inside is π − θ">
+        <Explore title="θ sits outside the force triangle: the angle inside is 180° − θ">
           <OutsideAngleWidget />
         </Explore>
       }

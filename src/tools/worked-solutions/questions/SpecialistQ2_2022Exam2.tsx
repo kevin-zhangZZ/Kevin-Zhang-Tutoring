@@ -7,6 +7,17 @@
 // Interactives: c. spec-2022e2-q2c-bisector (drag v round |z| = 2: the midpoint ray is the average
 // of the arguments only because |u| = |v|; toggles show the sum −π/12 and |v| = 1 failing);
 // d. spec-2022e2-q2d-segment (minor segment = sector minus triangle, step by step).
+// Skipped: a.i (34% full marks) — an algebraic 'show that'; the report says marks were lost by
+// using CAS to solve and verify instead of showing the steps, which nothing to drag would fix.
+// Oct 2026 Concise/Detailed pass: reasons trimmed to the one-line "why"; checks, traps, the CAS
+// warning and report commentary moved to each row's `more`. c.'s midpoint-check row folded into the
+// averaging row's `more` (with the −π/12 trap); c.'s last reason now says −π/24 is the first grid
+// ray below the real axis. a.ii's trap now matches the report (the negatives of the values
+// provided, a = −√3, b = −√2 — previously described as the negatives of the answer); a.ii `more`
+// adds the quadratic-formula route. Both widgets audited (numbers re-derived with sympy) and kept.
+// Final review: "midpoint of uv" (uv was the product in a.) now "the line interval joining u and
+// v" / "M"; Background is a roadmap (no "subtends"); −π/12 described as what adding gives, not
+// as the report's diagnosis; d.'s widget Notice no longer repeats row 2's `more`.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -97,7 +108,8 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="b = \frac{\sqrt6}{a} \implies \frac{\sqrt6}{a}-\sqrt2\,a = \sqrt2-\sqrt6" />,
-    reason: <>The equation to reach contains only <Katex tex="a" />, so <Katex tex="b" /> has to be eliminated; the real-part equation gives <Katex tex="b" /> most simply. (<Katex tex="a\ne0" />, since <Katex tex="ab=\sqrt6\ne0" />.)</>,
+    reason: <>The equation to reach contains only <Katex tex="a" />, so <Katex tex="b" /> has to be eliminated; the real-part equation gives <Katex tex="b" /> most simply.</>,
+    more: <>Dividing by <Katex tex="a" /> is safe: <Katex tex="a\ne0" />, since <Katex tex="a=0" /> would make <Katex tex="ab=0" />, not <Katex tex="\sqrt6" />.</>,
   },
   {
     working: <Katex display tex="\sqrt6-\sqrt2\,a^2 = \sqrt2\,a-\sqrt6\,a" />,
@@ -105,7 +117,8 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt3-a^2 = a-\sqrt3\,a" />,
-    reason: <>Dividing every term by <Katex tex="\sqrt2" />: <Katex tex="\tfrac{\sqrt6}{\sqrt2}=\sqrt3" />. This is the step that makes the surds tidy.</>,
+    reason: <>Dividing every term by <Katex tex="\sqrt2" />, using <Katex tex="\tfrac{\sqrt6}{\sqrt2}=\sqrt3" />.</>,
+    more: <>How you'd know to do this: the target has <Katex tex="\sqrt3" /> in it but no <Katex tex="\sqrt2" /> or <Katex tex="\sqrt6" />. Every term here has a factor of <Katex tex="\sqrt2" /> (<Katex tex="\sqrt6=\sqrt2\times\sqrt3" />), so dividing by <Katex tex="\sqrt2" /> leaves exactly the surd the target uses.</>,
   },
   {
     working: <Katex display tex="0 = a^2+a-\sqrt3\,a-\sqrt3" />,
@@ -113,14 +126,21 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a^2+\bigl(1-\sqrt3\bigr)a-\sqrt3 = 0}" />,
-    reason: <>Taking out the common factor <Katex tex="a" /> from <Katex tex="a-\sqrt3\,a" />. Every line must be shown by hand — the report notes some students instead used a CAS to solve the given equation and verify it. As required.</>,
+    reason: <>Taking out the common factor <Katex tex="a" /> from <Katex tex="a-\sqrt3\,a" />. As required.</>,
+    more: <>Every line above has to be written out by hand. Solving with CAS and substituting back (the shortcut the report mentions) confirms the equation is true, but it doesn't show how it follows from <Katex tex="uv" />, which is what a 'show that' asks for.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="a^2+\bigl(1-\sqrt3\bigr)a-\sqrt3 = (a+1)\bigl(a-\sqrt3\bigr)" />,
-    reason: <><Katex tex="a=\sqrt3" /> is given as one solution, so <Katex tex="a-\sqrt3" /> is a factor. The constant term is <Katex tex="-\sqrt3=\bigl(-\sqrt3\bigr)(1)" />, so the other factor is <Katex tex="a+1" />. Expanding confirms the middle term.</>,
+    reason: <><Katex tex="a=\sqrt3" /> is given as one solution, so <Katex tex="a-\sqrt3" /> is a factor. The constant term is <Katex tex="-\sqrt3=\bigl(-\sqrt3\bigr)(1)" />, so the other factor is <Katex tex="a+1" />.</>,
+    more: (
+      <>
+        <p>Expanding confirms the middle term: <Katex tex="(a+1)\bigl(a-\sqrt3\bigr)=a^2-\sqrt3\,a+a-\sqrt3=a^2+\bigl(1-\sqrt3\bigr)a-\sqrt3" /> ✓.</p>
+        <p>The quadratic formula works too ("or otherwise"). The discriminant is <Katex tex="\bigl(1-\sqrt3\bigr)^2+4\sqrt3=4+2\sqrt3=\bigl(1+\sqrt3\bigr)^2" />, so <Katex tex="a=\tfrac{(\sqrt3-1)\pm(1+\sqrt3)}{2}" />, which is <Katex tex="\sqrt3" /> or <Katex tex="-1" />.</p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="a = -1 \quad\text{or}\quad a = \sqrt3" />,
@@ -128,11 +148,12 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="ab = \sqrt6 \implies b = \frac{\sqrt6}{-1} = -\sqrt6" />,
-    reason: <>Use <Katex tex="ab=\sqrt6" />, not the other equation — one line instead of three.</>,
+    reason: <>Substituting <Katex tex="a=-1" /> into <Katex tex="ab=\sqrt6" />, the simpler of the two equations from a.i.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -1, \quad b = -\sqrt6}" />,
-    reason: <>Check in the imaginary-part equation: <Katex tex="b-\sqrt2\,a=-\sqrt6+\sqrt2=\sqrt2-\sqrt6" /> ✓. The report notes some students gave the negatives of the values. For example, <Katex tex="a=1" />, <Katex tex="b=\sqrt6" /> still gives <Katex tex="ab=\sqrt6" /> but makes <Katex tex="b-\sqrt2\,a=\sqrt6-\sqrt2" />, the wrong sign, so check with both equations.</>,
+    reason: <>Check in the other equation, the imaginary part: <Katex tex="b-\sqrt2\,a=-\sqrt6+\sqrt2=\sqrt2-\sqrt6" /> ✓.</>,
+    more: <>The report notes some students gave the negatives of the values provided, <Katex tex="a=-\sqrt3" /> and <Katex tex="b=-\sqrt2" />. That pair still gives <Katex tex="ab=\sqrt6" />, but <Katex tex="b-\sqrt2\,a=-\sqrt2+\sqrt6=\sqrt6-\sqrt2" />, the wrong sign, so it is not a solution. A pair must satisfy both equations from a.i., which is why the check uses the equation that wasn't used to find <Katex tex="b" />.</>,
   },
 ]
 
@@ -147,7 +168,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Both lie on the circle } |z|=2" />,
-    reason: <>The whole reason the polar grid is printed. Follow the <Katex tex="r=2" /> circle round to the right ray rather than estimating <Katex tex="x" /> and <Katex tex="y" /> — the report notes considering the polar form was the more successful approach. The grid's rays are drawn every <Katex tex="\tfrac{\pi}{24}" />, so <Katex tex="u" /> is on the 4th ray above the positive real axis and <Katex tex="v" /> on the 6th ray below it.</>,
+    reason: <>So plot both on the <Katex tex="r=2" /> circle of the printed polar grid. Its rays are every <Katex tex="\tfrac{\pi}{24}" />, so <Katex tex="u" /> is on the 4th ray above the positive real axis (<Katex tex="4\times\tfrac{\pi}{24}=\tfrac{\pi}{6}" />) and <Katex tex="v" /> on the 6th ray below it (<Katex tex="6\times\tfrac{\pi}{24}=\tfrac{\pi}{4}" />).</>,
+    more: <>This is why the polar grid is printed: follow the <Katex tex="r=2" /> circle round to the right ray instead of estimating <Katex tex="x" /> and <Katex tex="y" />. The report notes some students used the Cartesian values to plot approximate positions, while considering the polar form was the more successful approach and gave accurate positions.</>,
   },
   {
     working: (
@@ -166,34 +188,45 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="|u| = |v| = 2" />,
-    reason: <>From part b. Both points are the same distance from the origin, which is what makes the next step possible. Whenever a question involves the midpoint of two complex numbers, compare their moduli first.</>,
+    reason: <>From part b. Both points are the same distance from the origin <Katex tex="O" />, which is what makes the next step possible.</>,
+    more: <>Whenever a question asks for the argument of the midpoint of two complex numbers, compare their moduli first. If they are equal, the midpoint's argument is the average of the two arguments (next line). If not, there is no shortcut: find <Katex tex="M=\tfrac{u+v}{2}" /> and its argument directly.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\triangle Ouv \text{ is isosceles} \\ &\implies OM \text{ bisects } \angle uOv\end{aligned}" />,
-    reason: <>Let <Katex tex="M" /> be the midpoint of <Katex tex="uv" />. Triangles <Katex tex="OuM" /> and <Katex tex="OvM" /> have all three sides equal (<Katex tex="Ou=Ov=2" />, <Katex tex="uM=vM" />, <Katex tex="OM" /> shared), so their angles at <Katex tex="O" /> are equal. So the ray through the midpoint has the <em>average</em> of the two arguments.</>,
+    reason: <>Let <Katex tex="M" /> be the midpoint of the line interval joining <Katex tex="u" /> and <Katex tex="v" />. In an isosceles triangle, the line from the apex <Katex tex="O" /> to the midpoint of the base bisects the angle at <Katex tex="O" />, so the ray through <Katex tex="M" /> has the <em>average</em> of the two arguments.</>,
+    more: <>Why it bisects the angle: triangles <Katex tex="OuM" /> and <Katex tex="OvM" /> have all three sides equal (<Katex tex="Ou=Ov=2" />, <Katex tex="uM=vM" />, <Katex tex="OM" /> shared), so they are congruent and their angles at <Katex tex="O" /> are equal.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\theta &= \frac{1}{2}\left(\frac\pi6+\left(-\frac\pi4\right)\right) \\ &= \frac12\left(\frac{2\pi}{12}-\frac{3\pi}{12}\right) = -\frac{\pi}{24}\end{aligned}" />,
     reason: <>Averaging, with a common denominator of 12.</>,
-  },
-  {
-    working: <Katex display tex="\begin{aligned}M &= \frac{u+v}{2} = \frac{\sqrt3+\sqrt2}{2}+\frac{1-\sqrt2}{2}i \\ &\approx 1.57-0.21i\end{aligned}" />,
-    reason: <>A direct check: <Katex tex="M" /> is in the fourth quadrant and <Katex tex="\arctan\!\left(\tfrac{-0.207}{1.573}\right)\approx-0.1309\approx-\tfrac{\pi}{24}" /> ✓.</>,
+    more: (
+      <>
+        <p>The report's common incorrect argument, <Katex tex="-\tfrac{\pi}{12}" />, is what you get by adding the arguments, <Katex tex="\tfrac\pi6+\left(-\tfrac\pi4\right)" />, and leaving out the halving. That ray points twice as far below the real axis as the midpoint does.</p>
+        <p>Without the isosceles idea you can still find <Katex tex="M" /> directly, and this doubles as a check: <Katex tex="M=\tfrac{u+v}{2}=\tfrac{\sqrt3+\sqrt2}{2}+\tfrac{1-\sqrt2}{2}i" />, which is <Katex tex="\approx1.57-0.21i" />, in the fourth quadrant. So <Katex tex="\theta=\arctan\!\left(\tfrac{-0.207}{1.573}\right)\approx-0.1309" />, and <Katex tex="\tfrac{-0.1309}{\pi}\approx-0.0417\approx-\tfrac{1}{24}" />, giving <Katex tex="-\tfrac{\pi}{24}" /> ✓.</p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\theta = -\frac{\pi}{24}}" />,
-    reason: <>The report's common incorrect argument <Katex tex="-\tfrac{\pi}{12}" /> is the <em>sum</em> of the two arguments, not their average — one halving short. Then draw the ray on part b.'s diagram: from an open circle at <Katex tex="O" /> (<Katex tex="\mathrm{Arg}(0)" /> is undefined), through the midpoint and beyond. The report notes many students did not draw a ray.</>,
+    reason: <>On the polar grid this is the first ray below the positive real axis. Draw the ray on part b.'s diagram from an open circle at <Katex tex="O" /> (<Katex tex="\mathrm{Arg}(0)" /> is undefined), through <Katex tex="M" /> and beyond.</>,
+    more: <>The report notes many students did not draw a ray, in some cases even after giving a correct argument. The question asks for both: the value of <Katex tex="\theta" /> and the ray.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\alpha = \mathrm{Arg}(u)-\mathrm{Arg}(v) = \frac\pi6-\left(-\frac\pi4\right) = \frac{5\pi}{12}" />,
-    reason: <>The angle the chord subtends at the centre <Katex tex="O" />: the angle between the radii to <Katex tex="u" /> and <Katex tex="v" />, using the arguments from part b. It is less than <Katex tex="\pi" />, so the segment on the side of the chord away from <Katex tex="O" /> is the minor one.</>,
+    reason: <>The angle at the centre <Katex tex="O" /> between the radii to <Katex tex="u" /> and <Katex tex="v" />, using the arguments from part b. It is less than <Katex tex="\pi" />, so the minor segment is the one on the side of the chord away from <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="A = \frac12r^2\alpha-\frac12r^2\sin(\alpha)" />,
-    reason: <>The minor segment is the sector <Katex tex="Ouv" /> minus the triangle <Katex tex="Ouv" />. Sector: <Katex tex="\tfrac12r^2\alpha" />, with <Katex tex="\alpha" /> in radians. Triangle: sides <Katex tex="Ou" /> and <Katex tex="Ov" /> are both radii with the angle <Katex tex="\alpha" /> between them, so <Katex tex="\tfrac12ab\sin(C)" /> gives <Katex tex="\tfrac12r^2\sin(\alpha)" />, with no height needed. A definite integral also works but must be split at <Katex tex="x=\sqrt3" />; the report notes that approach usually led to error.</>,
+    reason: <>Minor segment = sector <Katex tex="Ouv" /> minus triangle <Katex tex="Ouv" />. Sector: <Katex tex="\tfrac12r^2\alpha" /> (<Katex tex="\alpha" /> in radians). Triangle: <Katex tex="\tfrac12ab\sin(C)" />, with both sides radii <Katex tex="r" /> and the angle <Katex tex="\alpha" /> between them.</>,
+    more: (
+      <>
+        <p>The report notes some students who used an area formula, either of segments or triangles, had difficulty. Two things to get right: <Katex tex="\alpha" /> in radians (calculator in radian mode), and the triangle's area from the two radii and the angle between them. Triangle <Katex tex="Ouv" /> is not right-angled, so avoid <Katex tex="\tfrac12\times\text{base}\times\text{height}" /> with a guessed height: <Katex tex="\tfrac12ab\sin(C)" /> needs only the two radii and <Katex tex="\alpha" />.</p>
+        <p>A definite integral also works, but it must be split at <Katex tex="x=\sqrt3" />, where the segment's upper edge changes from the chord to the arc. The report notes that approach usually led to error.</p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \frac12r^2\bigl(\alpha-\sin(\alpha)\bigr)" />,
@@ -205,7 +238,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A \approx 0.69 \ \text{square units}}" />,
-    reason: <>With the calculator in radian mode: <Katex tex="\tfrac{5\pi}{12}\approx1.3090" /> and <Katex tex="\sin\!\left(\tfrac{5\pi}{12}\right)\approx0.9659" />, giving <Katex tex="0.6861" />. A sanity check: the whole disc is <Katex tex="4\pi\approx12.6" />, so a thin sliver near the rim being about 0.7 is the right order.</>,
+    reason: <>With the calculator in radian mode: <Katex tex="\tfrac{5\pi}{12}\approx1.3090" /> and <Katex tex="\sin\!\left(\tfrac{5\pi}{12}\right)\approx0.9659" />, giving <Katex tex="0.6861" />.</>,
+    more: <>A sanity check: the whole disc is <Katex tex="4\pi\approx12.6" />, so a thin sliver near the rim being about 0.7 is the right order.</>,
   },
 ]
 
@@ -226,11 +260,13 @@ export default function SpecialistQ2_2022Exam2() {
           <Background>
             <p>
               Once the values are known, the geometry takes over: <Katex tex="u" /> and{' '}
-              <Katex tex="v" /> both have modulus 2, so they sit on the same circle. Two points
-              on a circle make an isosceles triangle with the centre, and that single fact
-              supplies part c. (the line from the centre to the midpoint of the chord bisects the angle at the centre) and part d. (the chord
-              subtends <Katex tex="\mathrm{Arg}(u)-\mathrm{Arg}(v)" /> at the centre) without any
-              coordinate algebra at all.
+              <Katex tex="v" /> both have modulus 2, so they sit on the same circle centred at the
+              origin <Katex tex="O" />, and triangle <Katex tex="Ouv" /> is isosceles. That one fact
+              drives part c. (the ray from <Katex tex="O" /> through the midpoint of the interval
+              joining <Katex tex="u" /> and <Katex tex="v" /> splits the angle at <Katex tex="O" /> in
+              half) and
+              part d. (the angle at <Katex tex="O" /> is simply{' '}
+              <Katex tex="\mathrm{Arg}(u)-\mathrm{Arg}(v)" />), with no coordinate algebra at all.
             </p>
           </Background>
         </div>

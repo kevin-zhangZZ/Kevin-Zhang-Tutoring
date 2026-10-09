@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="s = ut+\tfrac12at^2" />,
-    reason: <>The constant-acceleration formula linking the initial velocity <Katex tex="u" />, time <Katex tex="t" /> and displacement <Katex tex="s" />, which is what the question gives.</>,
+    reason: <>The question gives the initial velocity <Katex tex="u" />, the time <Katex tex="t" /> and how far the particle goes, <Katex tex="s" />, so use the constant-acceleration formula linking those three to the unknown acceleration <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="30 = 3(6)+\tfrac12a(6)^2 = 18+18a" />,
@@ -23,7 +23,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="18a = 12 \implies a = \frac23\ \mathrm{ms^{-2}}" />,
-    reason: <>Subtract 18 from both sides, then divide by 18. Check: <Katex tex="u" /> and <Katex tex="a" /> are both positive, so the particle never turns around, which confirms the 30 m distance travelled is the displacement <Katex tex="s" /> used above.</>,
+    reason: <>Subtract 18 from both sides, then divide by 18.</>,
+    more: <>Check that using the 30 m distance as the displacement <Katex tex="s" /> was fair: <Katex tex="u" /> and <Katex tex="a" /> are both positive, so the particle never turns around, and the distance travelled equals the displacement.</>,
   },
   {
     working: <Katex display tex="v = u+at = 3+\frac23(6) = 7\ \mathrm{ms^{-1}}" />,
@@ -35,7 +36,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Delta p = 28\ \mathrm{kg\,ms^{-1}}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>D</b>, <Katex tex="49=7\times7" />, is the final momentum rather than the change; option <b>B</b>, <Katex tex="4=7-3" />, is the change in velocity without multiplying by the mass.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>D</b>, <Katex tex="49=7\times7" />, the most common wrong answer, is the final momentum <Katex tex="mv" /> rather than the change <Katex tex="m(v-u)" />: the particle already had momentum <Katex tex="7\times3=21" /> at the start. Option <b>B</b>, <Katex tex="4=7-3" />, is the change in velocity without multiplying by the mass. Option <b>A</b>, 0, would need the velocity to stay at <Katex tex="3\ \mathrm{ms^{-1}}" />, but the particle is accelerating.</>,
   },
 ]
 
@@ -58,8 +60,9 @@ export default function SpecialistQ17_2022() {
           <p>
             Momentum belongs to Mechanics, which is no longer an area of study. But the units
             in the question give away <Katex tex="p=mv" />, and everything before that step is
-            constant-acceleration kinematics — still current content, and both formulas needed
-            are on the formula sheet.
+            constant-acceleration kinematics — still current content, and both
+            constant-acceleration formulas used, <Katex tex="s=ut+\tfrac12at^2" /> and{' '}
+            <Katex tex="v=u+at" />, are on the formula sheet.
           </p>
         </Background>
       }

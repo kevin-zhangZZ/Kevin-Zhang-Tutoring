@@ -31,15 +31,38 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&u=0: \ A=-1; \quad u=1: \ B=1\\ &\frac{1}{u(u-1)} = \frac{1}{u-1}-\frac{1}{u}\end{aligned}" />,
-    reason: <><Katex tex="u=0" /> removes the <Katex tex="B" /> term and <Katex tex="u=1" /> removes the <Katex tex="A" /> term. Watch the order: <Katex tex="\tfrac{1}{u-1}" /> comes first, with the plus sign. <b>B</b> has the two fractions the other way round, which is the negative of the correct integrand. Quick check: for <Katex tex="2\le u\le3" />, <Katex tex="\tfrac{1}{u-1}>\tfrac1u" />, so the correct integrand is positive, as it must be since <Katex tex="\tfrac{1}{1+e^x}>0" />; B’s integrand is negative and would give a negative answer.</>,
+    reason: <><Katex tex="u=0" /> removes the <Katex tex="B" /> term and <Katex tex="u=1" /> removes the <Katex tex="A" /> term. Note the order: it is <Katex tex="\tfrac{1}{u-1}" /> that takes the plus sign.</>,
+    more: <>Check by recombining: <Katex tex="\tfrac{1}{u-1}-\tfrac{1}{u}=\tfrac{u-(u-1)}{u(u-1)}=\tfrac{1}{u(u-1)}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}x=0 &\implies u = 1+e^0 = 2\\ x=\log_e(2) &\implies u = 1+2 = 3\end{aligned}" />,
-    reason: <>The new integral is in <Katex tex="u" />, so the terminals must change too: put each <Katex tex="x" />-terminal into <Katex tex="u=1+e^x" />. Leaving them as <Katex tex="0" /> and <Katex tex="\log_e(2)" /> gives <b>A</b>. <b>E</b>’s upper terminal <Katex tex="1+e^2" /> comes from putting <Katex tex="x=2" /> instead of <Katex tex="x=\log_e(2)" />. <b>C</b> has B’s sign error and a lower terminal of 1, which would need <Katex tex="e^x=0" />, impossible.</>,
+    reason: <>The new integral is in <Katex tex="u" />, so the terminals must be <Katex tex="u" />-values too: put each <Katex tex="x" />-terminal into <Katex tex="u=1+e^x" />.</>,
+    more: <>Changing the terminals means you never have to substitute back to <Katex tex="x" /> at the end. Keeping the old terminals 0 and <Katex tex="\log_e(2)" /> on an integral in <Katex tex="u" /> mixes the two variables, so it is no longer the same integral.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_2^3\left(\frac{1}{u-1}-\frac{1}{u}\right)du}" />,
-    reason: <>Matches option <b>D</b>. As a check, its value is <Katex tex="\left[\log_e\left|\tfrac{u-1}{u}\right|\right]_2^3=\log_e\tfrac43" />, and <Cas fn="nInt">∫(1/(1+e^x), x, 0, ln(2))</Cas> gives the same value for the original integral.</>,
+    reason: <>Matches option <b>D</b>: the right terminals, and the fractions in the right order.</>,
+    more: (
+      <>
+        <p>
+          Why not the others? <b>B</b>, the most popular wrong answer (23%), has the right terminals but the fractions
+          the wrong way round, which is the negative of the correct integrand. A quick way to catch it: for{' '}
+          <Katex tex="2\le u\le3" />, <Katex tex="\tfrac{1}{u-1}>\tfrac1u" />, so the correct integrand is positive, as
+          it must be since <Katex tex="\tfrac{1}{1+e^x}>0" />. B’s integrand is negative and would give a negative
+          answer.
+        </p>
+        <p>
+          <b>A</b> leaves the terminals as the <Katex tex="x" />-values 0 and <Katex tex="\log_e(2)" />.{' '}
+          <b>C</b> has B’s sign error and a lower terminal of 1, which would need <Katex tex="e^x=0" />, impossible.{' '}
+          <b>E</b>’s upper terminal <Katex tex="1+e^2" /> comes from putting <Katex tex="x=2" /> instead of{' '}
+          <Katex tex="x=\log_e(2)" />.
+        </p>
+        <p>
+          As a check, D’s value is <Katex tex="\left[\log_e\left|\tfrac{u-1}{u}\right|\right]_2^3=\log_e\tfrac43" />,
+          and <Cas fn="nInt">∫(1/(1+e^x), x, 0, ln(2))</Cas> gives the same value for the original integral.
+        </p>
+      </>
+    ),
   },
 ]
 

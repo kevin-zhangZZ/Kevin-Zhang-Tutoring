@@ -4,7 +4,7 @@
 // Ouv with angle α = 5π/12, then the triangle Ouv (two radii with α between them, so ½·2·2·sin α)
 // taken away. What is left is ½r²(α − sin α) ≈ 0.69, the formula in the working.
 
-import { C, Circle, Controls, Label, Line, M, Notice, Plane, Point, Polygon, Polyline, Readout, Readouts, StepNav, useSteps } from './kit'
+import { C, Circle, Controls, Label, Line, M, Notice, Plane, Point, Polygon, Polyline, Readout, Readouts, StepNav, tick, useSteps } from './kit'
 
 const R = 2
 const A_U = Math.PI / 6
@@ -35,10 +35,9 @@ export default function Segment() {
 
   const notices = [
     <Notice key={0}>
-      The minor segment (orange) is the sliver between the chord <M>uv</M> and the arc of <M>|z| = 2</M>. Its top edge
-      changes from the chord to the arc at <M>{'x = \\sqrt3'}</M>, so an integral would have to be split there. The
-      report notes that route usually led to error. Instead, build the segment from two shapes with known areas. Press
-      Next.
+      The minor segment (shaded orange) is the sliver between the chord and the arc of <M>|z| = 2</M>. The dashed line
+      marks where an integral would have to be split. Instead, build the segment from two shapes with known areas.
+      Press Next.
     </Notice>,
     <Notice key={1}>
       Join <M>O</M> to <M>u</M> and <M>v</M>. The sector between them (blue) has angle{' '}
@@ -55,8 +54,8 @@ export default function Segment() {
 
   return (
     <div>
-      <Plane x={[-0.6, 2.6]} y={[-2, 1.6]} equalScale height={340} xLabel="Re" yLabel="Im">
-        {s.step === 0 && <Polygon points={SEGMENT} color={C.g} fillOpacity={0.5} weight={0} strokeOpacity={0} />}
+      <Plane x={[-0.6, 2.6]} y={[-2, 1.6]} equalScale height={340} xLabel="Re" yLabel="Im" xLabels={v => (v < 0 ? '' : tick(v))}>
+        {s.step === 0 && <Polygon points={SEGMENT} color={C.g} fillOpacity={0.65} weight={0} strokeOpacity={0} />}
         {s.step === 0 && (
           <Line.Segment point1={[Math.sqrt(3), -1.9]} point2={[Math.sqrt(3), 1.5]} color={C.guide} weight={1.5} style="dashed" />
         )}
@@ -64,7 +63,7 @@ export default function Segment() {
         {s.step === 2 && (
           <>
             <Polygon points={TRIANGLE} color={C.violet} fillOpacity={0.3} weight={0} strokeOpacity={0} />
-            <Polygon points={SEGMENT} color={C.g} fillOpacity={0.5} weight={0} strokeOpacity={0} />
+            <Polygon points={SEGMENT} color={C.g} fillOpacity={0.65} weight={0} strokeOpacity={0} />
           </>
         )}
         <Circle center={O} radius={R} color={C.guide} fillOpacity={0} weight={1.5} />

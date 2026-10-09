@@ -18,11 +18,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x<0 \ \text{ and } \ y-1>0" />,
-    reason: <><Katex tex="\tfrac{3\pi}{4}" /> lies between <Katex tex="\tfrac{\pi}{2}" /> and <Katex tex="\pi" />, so the complex number <Katex tex="z-i" /> is in the second quadrant of the Argand plane: negative real part and positive imaginary part. Write this down now: the gradient alone cannot tell options A and B apart, but the quadrant can.</>,
+    reason: <><Katex tex="\tfrac{3\pi}{4}" /> lies between <Katex tex="\tfrac{\pi}{2}" /> and <Katex tex="\pi" />, so the complex number <Katex tex="z-i" /> is in the second quadrant of the Argand plane: negative real part and positive imaginary part.</>,
+    more: <>Write this down before using the tangent. Because <Katex tex="\tan\!\left(-\tfrac{\pi}{4}\right)" /> is also <Katex tex="-1" />, the gradient alone cannot tell options A and B apart, but the quadrant can.</>,
   },
   {
     working: <Katex display tex="\frac{y-1}{x} = \tan\!\left(\tfrac{3\pi}{4}\right) = -1" />,
     reason: <>For a complex number <Katex tex="a+bi" /> with <Katex tex="a\ne0" />, <Katex tex="\tan(\mathrm{Arg})=\tfrac{b}{a}" /> (rise over run from the origin). Here <Katex tex="a=x" /> and <Katex tex="b=y-1" />.</>,
+    more: <>On the Argand plane, <Katex tex="z-i" /> is the step from the point <Katex tex="i" /> to the point <Katex tex="z" />, so the angle is measured at <Katex tex="i" /> instead of at the origin, and <Katex tex="\tfrac{y-1}{x}" /> is the gradient of the segment from the point <Katex tex="(0,1)" /> to <Katex tex="z" />. That is why the answer is part of a line through <Katex tex="(0,1)" />.</>,
   },
   {
     working: <Katex display tex="y-1=-x \;\implies\; y = 1-x" />,
@@ -34,7 +36,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = 1-x,\ \ x<0}" />,
-    reason: <>Matches option <b>A</b>. Geometrically this is the ray from the point <Katex tex="(0,1)" /> (that is, <Katex tex="i" />) heading up and to the left at <Katex tex="135^\circ" />, with <Katex tex="(0,1)" /> itself left out because <Katex tex="\mathrm{Arg}(0)" /> is undefined. Option B is the other half of the same line: there <Katex tex="z-i=x-xi" /> with <Katex tex="x>0" />, whose argument is <Katex tex="-\tfrac{\pi}{4}" />. Options C–E have gradient <Katex tex="1" />, not <Katex tex="-1" />: D is the ray <Katex tex="\mathrm{Arg}(z-i)=\tfrac{\pi}{4}" />, E is the ray <Katex tex="\mathrm{Arg}(z-i)=-\tfrac{3\pi}{4}" />, and C is the whole line through both.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Geometrically this is the ray from the point <Katex tex="(0,1)" /> (that is, <Katex tex="i" />) heading up and to the left at <Katex tex="135^\circ" />, with <Katex tex="(0,1)" /> itself left out because <Katex tex="\mathrm{Arg}(0)" /> is undefined. Option B, the most common wrong answer, is the other half of the same line: there <Katex tex="z-i=x-xi" /> with <Katex tex="x>0" />, which is in the fourth quadrant, so its argument is <Katex tex="-\tfrac{\pi}{4}" />. Options C–E have gradient <Katex tex="1" />, not <Katex tex="-1" />: D is the ray <Katex tex="\mathrm{Arg}(z-i)=\tfrac{\pi}{4}" />, E is the ray <Katex tex="\mathrm{Arg}(z-i)=-\tfrac{3\pi}{4}" />, and C, with no restriction on <Katex tex="x" />, is the whole line through both (it even includes <Katex tex="z=i" />, where the argument is undefined).</>,
   },
 ]
 

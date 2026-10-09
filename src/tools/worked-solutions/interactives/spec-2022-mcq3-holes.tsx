@@ -6,7 +6,7 @@
 // (option A, chosen by 41%) is not always true, but "at least one" (option E) is.
 
 import { useState } from 'react'
-import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, clamp } from './kit'
+import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, clamp, tick } from './kit'
 
 const XMIN = -6
 const XMAX = 6
@@ -36,7 +36,15 @@ export default function Holes() {
 
   return (
     <div>
-      <Plane x={[XMIN, XMAX]} y={[-6, 6]} height={320}>
+      <Plane
+        x={[XMIN, XMAX]}
+        y={[-6, 6]}
+        height={320}
+        // Skip the half-cut ticks past ±6, and ±1 on the y-axis: y = 1 is labelled on its asymptote
+        // and the middle branch runs over −1.
+        xLabels={v => (Math.abs(v) > 6.01 ? '' : tick(v))}
+        yLabels={v => (Math.abs(v) > 6.01 || Math.abs(Math.abs(v) - 1) < 1e-6 ? '' : tick(v))}
+      >
         <Line.ThroughPoints point1={[0, 1]} point2={[1, 1]} color={C.violet} style="dashed" weight={1.5} />
         <Label at={[XMIN + 0.2, 1]} color={C.violet} attach="ne">y = 1</Label>
         {va2 && (

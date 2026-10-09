@@ -72,10 +72,11 @@ export default function Halfway() {
         One case that fits: <M>{'a=5\\ \\mathrm{ms^{-2}}'}</M>, so the trip takes 2 s and <M>AB = 24</M> m. Any other{' '}
         <M>a</M> with <M>as = 120</M> only stretches the picture.
       </p>
-      <Plane x={[0, 2.2]} y={[0, 18]} xStep={0.5} yStep={2} height={300} xLabel="t" yLabel="v" xLabels={n => String(n)}>
+      <Plane x={[0, 2.2]} y={[0, 19]} xStep={0.5} yStep={2} height={300} xLabel="t" yLabel="v" xLabels={n => String(n)} yLabels={n => (n > 18 ? '' : String(n))}>
         <Region top={vel} bottom={() => 0} from={0} to={t} color={col} opacity={0.3} />
         <Region top={vel} bottom={() => 0} from={t} to={T} color={C.guide} opacity={0.12} />
-        <Line.Segment point1={[0, 12]} point2={[T, 12]} color={C.bad} style="dashed" weight={1.5} />
+        {/* starts clear of the y-axis so it doesn't strike through the "12" tick number */}
+        <Line.Segment point1={[0.2, 12]} point2={[T, 12]} color={C.bad} style="dashed" weight={1.5} />
         <Label at={[1.7, 12]} attach="s" color={C.bad} size={12}>
           average 12
         </Label>

@@ -8,7 +8,7 @@
 import { useState } from 'react'
 import {
   Buttons, C, Circle, Controls, Label, Line, M, MovablePoint, Notice, Plane, Point, Polyline, Readout, Readouts, Toggle,
-  Vector, clamp,
+  Vector, clamp, tick,
 } from './kit'
 
 const STEP = Math.PI / 24 // VCAA's polar grid has a ray every π/24
@@ -100,7 +100,7 @@ export default function Bisector() {
       <Notice tone="good">
         Still half-way: the ray through <M>M</M> is at <M>{`\\theta = ${piTex(K_U + k, 48)}`}</M>, the average of{' '}
         <M>{'\\tfrac{\\pi}{6}'}</M> and <M>{`${piTex(k, 24)}`}</M>. Whenever <M>u</M> and <M>v</M> are on the same circle
-        about <M>O</M>, the ray through the midpoint of <M>uv</M> bisects <M>{'\\angle uOv'}</M>. It is a ray, starting
+        about <M>O</M>, the ray through their midpoint <M>M</M> bisects <M>{'\\angle uOv'}</M>. It is a ray, starting
         at an open circle at <M>O</M>, and it must be drawn on the diagram.
       </Notice>
     )
@@ -108,7 +108,7 @@ export default function Bisector() {
 
   return (
     <div>
-      <Plane x={[-2.4, 2.5]} y={[-2.4, 2.4]} equalScale height={340} xLabel="" yLabel="Im">
+      <Plane x={[-2.4, 2.5]} y={[-2.4, 2.4]} equalScale height={340} xLabel="" yLabel="Im" xLabels={v => (Math.abs(v - 2) < 1e-9 ? '' : tick(v))}>
         {/* "Re" sits above the end of the axis: past the end there is no room on a phone */}
         <Label at={[2.5, 0]} attach="n" size={14} italic>Re</Label>
         <Circle center={[0, 0]} radius={2} color={C.guide} fillOpacity={0} weight={1.5} />

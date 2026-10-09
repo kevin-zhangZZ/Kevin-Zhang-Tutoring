@@ -33,11 +33,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}17^2 &= 7^2+2as\\ 2as &= 289-49 = 240\end{aligned}" />,
-    reason: <>Taking <Katex tex="s" /> as the whole distance <Katex tex="AB" />. Neither <Katex tex="a" /> nor <Katex tex="s" /> can be found separately, and neither needs to be.</>,
+    reason: <>Apply it from <Katex tex="A" /> to <Katex tex="B" />, taking <Katex tex="s" /> as the whole distance <Katex tex="AB" />.</>,
   },
   {
     working: <Katex display tex="as = 120" />,
-    reason: <>This single product is all the information the question actually supplies.</>,
+    reason: <>Neither <Katex tex="a" /> nor <Katex tex="s" /> can be found on its own, but that doesn&apos;t matter: the midpoint step below only needs their product <Katex tex="as" />.</>,
   },
   {
     working: <Katex display tex="v_M^2 = 7^2+2a\left(\frac s2\right) = 49+as" />,
@@ -49,7 +49,30 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{v_M = 13\ \mathrm{ms^{-1}}}" />,
-    reason: <>Matches option <b>D</b>. Option C, <Katex tex="\tfrac{7+17}{2}=12" />, is the velocity halfway through the <em>time</em>, because velocity grows evenly with time. But the particle moves slowly at first, so the first half of <Katex tex="AB" /> takes more than half the time. By the midpoint it has been speeding up for longer, so its velocity is more than 12.</>,
+    reason: <>Matches option <b>D</b>, not 12, which is the velocity halfway through the <em>time</em>.</>,
+    more: (
+      <>
+        <p>
+          Why not C, which 49% chose? Velocity grows evenly with <em>time</em> (<Katex tex="v=u+at" />), so{' '}
+          <Katex tex="\tfrac{7+17}{2}=12" /> is the velocity halfway through the time. But the particle moves slowly at
+          first, so in the first half of the time it covers less than half of <Katex tex="AB" />. It reaches the midpoint
+          later, after speeding up for longer, so its velocity there is more than 12.
+        </p>
+        <p>
+          What grows evenly with <em>distance</em> is <Katex tex="v^2" />: in <Katex tex="v^2=u^2+2as" />, the
+          value of <Katex tex="v^2" /> goes up by the same amount, <Katex tex="2a" />, for every metre travelled. So at
+          the midpoint <Katex tex="v^2" /> is halfway between <Katex tex="7^2" /> and <Katex tex="17^2" />:{' '}
+          <Katex tex="\tfrac12(49+289)=169" />, a quick check that <Katex tex="v_M=13" />.
+        </p>
+        <p>
+          Since the midpoint velocity must be more than 12, options A (<Katex tex="\sqrt{119}\approx10.9" />) and B
+          (11) are ruled out straight away. Option A, <Katex tex="\sqrt{119}=\sqrt{7\times17}" />, multiplies the two
+          velocities, which no formula here does. Option E, <Katex tex="\sqrt{240}=\sqrt{2as}" />, is the square root
+          of the whole increase in <Katex tex="v^2" /> from <Katex tex="A" /> to <Katex tex="B" />, not the velocity at
+          any point.
+        </p>
+      </>
+    ),
   },
 ]
 

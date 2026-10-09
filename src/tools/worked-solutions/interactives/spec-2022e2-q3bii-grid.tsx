@@ -28,9 +28,9 @@ export default function Grid() {
     notice = (
       <Notice tone="good">
         At <M>t = 10</M>, <M>{'x = \\log_e\\left(\\tan^{-1}(20)+1\\right) \\approx 0.9246'}</M>, so plot and label{' '}
-        <M>(10,\ 0.92)</M>. It is only <M>0.0196</M> below the asymptote, less than half a grid square, so the point
-        and the curve through it sit just under the dashed line, never on it or above it. Drag <M>t</M> back
-        towards <M>0</M> to see how the curve gets there.
+        <M>(10,\ 0.92)</M>, with the curve through it just under the dashed line, never on it or above it. The
+        orange gap up to the asymptote is too thin to see at this scale. Drag <M>t</M> back towards <M>0</M> to
+        watch it open up and see how the curve gets here.
       </Notice>
     )
   } else if (t < 0.5) {

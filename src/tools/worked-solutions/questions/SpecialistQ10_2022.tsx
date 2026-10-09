@@ -36,8 +36,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         A tangent &quot;at the point <Katex tex="(1,m)" />&quot; only exists if <Katex tex="(1,m)" /> is on the curve.
-        So <Katex tex="m" /> is not free: it must satisfy the curve&apos;s equation. Do this before differentiating,
-        because it limits which values of <Katex tex="m" /> are possible at all.
+        So <Katex tex="m" /> is not free: it must satisfy the curve&apos;s equation.
+      </>
+    ),
+    more: (
+      <>
+        Do this before differentiating, because it limits which values of <Katex tex="m" /> are possible at all.
       </>
     ),
   },
@@ -59,18 +63,34 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="10xy + 5x^2\frac{dy}{dx} - 3y - 3x\frac{dy}{dx} + 2y\frac{dy}{dx} = 0" />,
     reason: (
       <>
-        Differentiate both sides with respect to <Katex tex="x" />. Use the product rule on <Katex tex="5x^2y" /> and{' '}
-        <Katex tex="3xy" />, and the chain rule on <Katex tex="y^2" /> to get <Katex tex="2y\frac{dy}{dx}" />. The
-        right side, <Katex tex="10" />, differentiates to <Katex tex="0" />.
+        Differentiate both sides with respect to <Katex tex="x" /> (implicit differentiation): the product rule on{' '}
+        <Katex tex="5x^2y" /> and <Katex tex="3xy" />, the chain rule on <Katex tex="y^2" />.
+      </>
+    ),
+    more: (
+      <>
+        Term by term:
+        <Katex display tex="\frac{d}{dx}\left(5x^2y\right)=10xy+5x^2\frac{dy}{dx}" />
+        <Katex display tex="\frac{d}{dx}\left(3xy\right)=3y+3x\frac{dy}{dx}" />
+        <Katex display tex="\frac{d}{dx}\left(y^2\right)=2y\frac{dy}{dx}" />
+        For <Katex tex="y^2" />, differentiate with respect to <Katex tex="y" /> and then multiply by{' '}
+        <Katex tex="\frac{dy}{dx}" />, because <Katex tex="y" /> is a function of <Katex tex="x" />. The right side,{' '}
+        <Katex tex="10" />, is a constant, so it differentiates to <Katex tex="0" />.
       </>
     ),
   },
   {
-    working: <Katex display tex="\frac{dy}{dx} = \frac{3y-10xy}{5x^2-3x+2y}" />,
+    working: (
+      <>
+        <Katex display tex="\left(5x^2-3x+2y\right)\frac{dy}{dx} = 3y-10xy" />
+        <Katex display tex="\frac{dy}{dx} = \frac{3y-10xy}{5x^2-3x+2y}" />
+      </>
+    ),
     reason: (
       <>
-        Keep the <Katex tex="\frac{dy}{dx}" /> terms on the left, move the rest to the right, then factorise and
-        divide.
+        Keep the <Katex tex="\frac{dy}{dx}" /> terms on the left and take out <Katex tex="\frac{dy}{dx}" /> as a
+        common factor. Move <Katex tex="10xy" /> and <Katex tex="-3y" /> to the right, which changes their signs.
+        Then divide.
       </>
     ),
   },
@@ -93,10 +113,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Only the sign matters, and <Katex tex="1+m=\pm\sqrt{11}" /> makes it easy to see. For{' '}
-        <Katex tex="m=\sqrt{11}-1>0" />, the numerator <Katex tex="-7m" /> is negative and the denominator positive. For{' '}
-        <Katex tex="m=-\sqrt{11}-1<0" />, the numerator is positive and the denominator negative. Both gradients are
-        negative (about <Katex tex="-2.44" /> and <Katex tex="-4.56" />).
+        Only the sign matters. For <Katex tex="m=\sqrt{11}-1>0" />, the numerator <Katex tex="-7m" /> is negative and
+        the denominator positive. For <Katex tex="m=-\sqrt{11}-1<0" />, the numerator is positive and the denominator
+        negative. Either way the gradient is negative.
+      </>
+    ),
+    more: (
+      <>
+        Writing <Katex tex="1+m=\pm\sqrt{11}" /> makes the sign of the denominator obvious without decimals. As a
+        check, the two gradients are about <Katex tex="-2.44" /> and <Katex tex="-4.56" />.
       </>
     ),
   },
@@ -104,7 +129,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{m=-\sqrt{11}-1 \text{ or } m=\sqrt{11}-1}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Option A (chosen by 38%) is where <Katex tex="\frac{-7m}{2(1+m)}<0" />, that is{' '}
+        Matches option <b>E</b>: both possible points give a negative gradient.
+      </>
+    ),
+    more: (
+      <>
+        Option A (chosen by 38%) is where <Katex tex="\frac{-7m}{2(1+m)}<0" />, that is{' '}
         <Katex tex="m<-1" /> or <Katex tex="m>0" />. It treats <Katex tex="m" /> as free, but for every other value of{' '}
         <Katex tex="m" /> the point <Katex tex="(1,m)" /> is not on the curve, so there is no tangent. Option C is that
         set plus <Katex tex="m=-1" />, where the gradient is undefined. Options B and D each keep only one of the two
