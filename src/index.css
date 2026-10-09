@@ -16,6 +16,14 @@
     --color-tan: #34d399;
   }
 
+  /* Native controls (date pickers, number spinners, scrollbars) follow the site's theme. */
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+
   html {
     font-family: 'Aptos', 'Inter', system-ui, sans-serif;
   }

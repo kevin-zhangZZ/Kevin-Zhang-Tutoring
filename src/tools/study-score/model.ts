@@ -15,7 +15,7 @@
 // SACs are left out: they are moderated against the exam scores, so a student whose SACs track
 // their exams keeps the same rank.
 
-import { DISTRIBUTIONS, type ExamDist, type Subject, type YearDist } from './data'
+import { DISTRIBUTIONS, SUBJECTS, type ExamDist, type Subject, type YearDist } from './data.ts'
 
 /** Assumed correlation between a student's Exam 1 and Exam 2 ranks. */
 export const RHO = 0.8
@@ -191,3 +191,83 @@ export function project(subject: Subject, raw: number[]): Projection[] {
   return DISTRIBUTIONS[subject].map(d => projectYear(subject, d, raw))
 }
 
+
+// ── Reading the projections ────────────────────────────────────────────────────────────────
+
+/** The headline "typical year" score: the middle of the years' unrounded scores, rounded, so it
+ *  is always a whole study score. */
+export function typicalOf(rows: Projection[]): number {
+  const xs = rows.map(r => r.exact).sort((a, b) => a - b)
+  const n = xs.length
+  const mid = n % 2 ? xs[(n - 1) / 2] : (xs[n / 2 - 1] + xs[n / 2]) / 2
+  return Math.round(mid)
+}
+
+/** Raw marks the subject's exams add up to: 120 for every subject today. */
+export function totalMax(subject: Subject): number {
+  return SUBJECTS[subject].exams.reduce((s, e) => s + e.rawMax, 0)
+}
+
+/** A total split across the exams in proportion to each paper's size (60 → 20 + 40). Only the
+ *  total changes the projection, so this is just one example split. */
+export function splitTotal(subject: Subject, total: number): number[] {
+  const exams = SUBJECTS[subject].exams
+  const all = totalMax(subject)
+  let left = total
+  return exams.map((e, i) => {
+    if (i === exams.length - 1) return left
+    const m = Math.min(e.rawMax, Math.round((total * e.rawMax) / all))
+    left -= m
+    return m
+  })
+}
+
+/** Every total from 0 to the maximum, projected in every year; built once per subject. */
+const byTotal = new Map<Subject, Projection[][]>()
+function projectionsByTotal(subject: Subject): Projection[][] {
+  let t = byTotal.get(subject)
+  if (!t) {
+    t = []
+    for (let total = 0; total <= totalMax(subject); total++) t.push(project(subject, splitTotal(subject, total)))
+    byTotal.set(subject, t)
+  }
+  return t
+}
+
+export interface MarksNeeded {
+  target: number
+  /** Smallest total at which the typical-year score reaches the target, or null if none does. */
+  typical: number | null
+  /** Smallest total reaching the target in each year, oldest first (null: not reached). */
+  years: (number | null)[]
+  /** The most and least generous years' totals, ignoring years that can't reach it. */
+  lo: number | null
+  hi: number | null
+}
+
+/** The total marks needed for each target study score, typically and in each year. */
+export function marksNeeded(subject: Subject, targets: number[]): MarksNeeded[] {
+  const t = projectionsByTotal(subject)
+  return targets.map(target => {
+    const typical = t.findIndex(rows => typicalOf(rows) >= target)
+    const years = t[0].map((_, y) => {
+      const i = t.findIndex(rows => rows[y].score >= target)
+      return i < 0 ? null : i
+    })
+    const reached = years.filter((v): v is number => v !== null)
+    return {
+      target,
+      typical: typical < 0 ? null : typical,
+      years,
+      lo: reached.length ? Math.min(...reached) : null,
+      hi: reached.length ? Math.max(...reached) : null,
+    }
+  })
+}
+
+/** The rounded study scores full marks projects to across the years: the model's ceiling. */
+export function fullMarksRange(subject: Subject): { lo: number; hi: number } {
+  const rows = project(subject, SUBJECTS[subject].exams.map(e => e.rawMax))
+  const scores = rows.map(r => r.score)
+  return { lo: Math.min(...scores), hi: Math.max(...scores) }
+}

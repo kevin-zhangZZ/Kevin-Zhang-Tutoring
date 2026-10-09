@@ -48,6 +48,27 @@ export const SUBJECTS: Record<Subject, SubjectInfo> = {
 
 export const SUBJECT_IDS = Object.keys(SUBJECTS) as Subject[]
 
+/** The last paper set on the previous study design, where it matters: Specialist (new design from
+ *  2023) and Chemistry (from 2024) dropped topics that the Skip Guide tells students to skip.
+ *  Methods also changed in 2023, but the Skip Guide finds nothing to skip on its papers, so it
+ *  isn't flagged. */
+export const OLD_COURSE_UP_TO: Record<Subject, number | null> = {
+  methods: null,
+  specialist: 2022,
+  chemistry: 2023,
+}
+
+export function isOldCourse(subject: Subject, year: number): boolean {
+  const last = OLD_COURSE_UP_TO[subject]
+  return last !== null && year <= last
+}
+
+/** The first paper on the current study design, or null when the subject isn't flagged. */
+export function currentCourseFrom(subject: Subject): number | null {
+  const last = OLD_COURSE_UP_TO[subject]
+  return last === null ? null : last + 1
+}
+
 export interface ExamDist {
   max: number
   bands: [number, number, number][]
