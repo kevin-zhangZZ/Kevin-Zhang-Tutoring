@@ -1,5 +1,5 @@
 // 2023 Methods Exam 1 Q7c — solving x = (y − 1)² − 1 for y gives two roots, 1 ± √(x + 1), because
-// that equation is the WHOLE parabola reflected. Drag a point P along f (domain (−∞, 1]): its
+// that equation is the WHOLE parabola reflected. Slide a to move P along f (domain (−∞, 1]): its
 // mirror image P′ in y = x always lands on y = 1 − √(x + 1), with y-coordinate P's x-coordinate
 // (≤ 1). A toggle shows the report's most common error, 1 + √(x + 1): it is the mirror image of
 // the half of the parabola (x ≥ 1) that f's domain removed, and it sits at height 2 − a, not a.
@@ -27,14 +27,14 @@ export default function WhichRoot() {
     notice = (
       <Notice tone="good">
         <b>At f&apos;s endpoint <M>(1,-1)</M></b> the mirror image is <M>(-1,1)</M>, where the two roots meet:{' '}
-        <M>{'1 \\pm \\sqrt{0} = 1'}</M>. Drag <M>P</M> back to the left: the roots split, and f&apos;s points
+        <M>{'1 \\pm \\sqrt{0} = 1'}</M>. Slide <M>a</M> back to the left: the roots split, and f&apos;s points
         always land on the lower one.
       </Notice>
     )
   } else if (!showPlus) {
     notice = (
       <Notice>
-        Drag <M>P</M> along <M>f</M>. Its mirror image <M>P&apos;</M> always lands on the orange curve{' '}
+        Slide <M>a</M> to move <M>P</M> along <M>f</M>. Its mirror image <M>P&apos;</M> always lands on the orange curve{' '}
         <M>{'y = 1-\\sqrt{x+1}'}</M>, and the <M>y</M>-coordinate of <M>P&apos;</M> is the <M>x</M>-coordinate of{' '}
         <M>P</M>, which is at most <M>1</M> (f&apos;s domain). So <M>{'f^{-1}'}</M> only takes values{' '}
         <M>{'y \\le 1'}</M>, and <M>{'1+\\sqrt{x+1}'}</M> is never below <M>1</M>. Turn on &ldquo;Show the + root&rdquo;

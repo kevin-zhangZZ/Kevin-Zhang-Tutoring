@@ -3,7 +3,10 @@
 // the answer is the share of it lying right of t = 2: (9/16)/(225/256) = 16/25. Slide the time
 // already waited, a, from 0 (no condition: the answer is just Pr(T > 2) = 9/16) to 2 (answer 1) —
 // only the denominator changes. A toggle shows the common misreading T = 1: a strip of zero width,
-// so Pr(T = 1) = 0 and the ratio has no value.
+// so Pr(T = 1) = 0 and the ratio has no value. Readouts name the regions they measure
+// (Pr(T > a) = blue + orange) so the blue strip alone isn't mistaken for the denominator. Inline
+// Pr(...) in the Notices are braced so KaTeX can't line-break inside them; the slider reads
+// "already queued a" and the a = 1 Notice says what a is.
 
 import { useState } from 'react'
 import { Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Readout, Readouts, Region, Slider, Toggle } from './kit'
@@ -31,7 +34,7 @@ export default function NewWhole() {
     notice = (
       <Notice tone="warn">
         Reading it as <M>{`T = ${aStr}`}</M> asks for the area of a strip of <b>zero width</b>:{' '}
-        <M>{`\\Pr(T = ${aStr}) = \\int_{${aStr}}^{${aStr}} f(t)\\,dt = 0`}</M>. For a continuous random variable every
+        <M>{`{\\Pr(T = ${aStr})} = \\int_{${aStr}}^{${aStr}} f(t)\\,dt = 0`}</M>. For a continuous random variable every
         single value has probability 0, so dividing by it gives no answer. A person who has already queued for{' '}
         {aStr === '1' ? 'one minute' : `${aStr} minutes`} and is still waiting will end up with a total queuing time{' '}
         <b>longer</b> than that, so the condition is <M>{`T > ${aStr}`}</M>. Turn the toggle off to see that region.
@@ -41,17 +44,18 @@ export default function NewWhole() {
     notice = (
       <Notice tone="good">
         <b>This is the question.</b> The grey part, <M>{'t < 1'}</M>, is ruled out: this person has already waited
-        longer than that. What can still happen is the shaded area right of <M>t = 1</M>,{' '}
-        <M>{'\\Pr(T > 1) = \\int_1^4 f(t)\\,dt \\approx 0.879'}</M> — the new whole. The answer is the orange share of
-        it: <M>{'\\Pr(T > 2) \\div \\Pr(T > 1) = \\tfrac{9}{16} \\div \\tfrac{225}{256} = 0.64'}</M>. Slide <M>a</M> to 0 to
-        compare with no condition at all.
+        longer than that. What can still happen is the blue + orange area right of <M>t = 1</M>,{' '}
+        <M>{'{\\Pr(T > 1)} \\approx 0.879'}</M> — the new whole. The answer is the orange share of it:{' '}
+        <M>{'{\\Pr(T > 2)} \\div {\\Pr(T > 1)} = \\tfrac{9}{16} \\div \\tfrac{225}{256} = 0.64'}</M>. The slider{' '}
+        <M>a</M> is the time already queued, so the condition is <M>{'{T > a}'}</M>: slide it to 0 to compare with no
+        condition at all.
       </Notice>
     )
   } else if (atZero) {
     notice = (
       <Notice>
         With no time already waited, nothing is ruled out: the whole area under the curve, 1, counts, and the
-        probability is just <M>{'\\Pr(T > 2) = \\tfrac{9}{16} \\approx 0.563'}</M>. Slide <M>a</M> back to 1: the
+        probability is just <M>{'{\\Pr(T > 2)} =\\tfrac{9}{16} \\approx 0.563'}</M>. Slide <M>a</M> back to 1: the
         grey part drops out of the denominator while the orange part stays the same, so the answer goes up.
       </Notice>
     )
@@ -66,9 +70,9 @@ export default function NewWhole() {
   } else {
     notice = (
       <Notice>
-        Given <M>{`T > ${aStr}`}</M>, the grey part is ruled out and the shaded area right of{' '}
-        <M>{`t = ${aStr}`}</M>, <M>{`\\Pr(T > ${aStr}) \\approx ${pa.toFixed(3)}`}</M>, is the new whole. The orange
-        part, <M>{'\\Pr(T > 2) = \\tfrac{9}{16}'}</M>, doesn&apos;t move as you slide — only the denominator does. So
+        Given <M>{`T > ${aStr}`}</M>, the grey part is ruled out and the blue + orange area right of{' '}
+        <M>{`t = ${aStr}`}</M>, <M>{`{\\Pr(T > ${aStr})} \\approx ${pa.toFixed(3)}`}</M>, is the new whole. The orange
+        part, <M>{'{\\Pr(T > 2)} = \\tfrac{9}{16}'}</M>, doesn&apos;t move as you slide — only the denominator does. So
         the longer someone has already waited, the likelier a wait of more than 2 minutes. Slide <M>a</M> back to 1
         for the question.
       </Notice>
@@ -114,7 +118,7 @@ export default function NewWhole() {
         )}
       </Plane>
       <Controls>
-        <Slider label="\text{waited } a" value={a} onChange={setA} min={0} max={2} step={0.05} />
+        <Slider label="\text{already queued } a"value={a} onChange={setA} min={0} max={2} step={0.05} />
         <Buttons>
           <Toggle
             label={
@@ -134,8 +138,10 @@ export default function NewWhole() {
             </>
           ) : (
             <>
-              <Readout color={C.f} tex={`\\Pr(T > ${aStr}) \\approx ${pa.toFixed(3)}`} />
-              <Readout color={C.g} tex={`\\Pr(T > 2) \\approx ${P2.toFixed(3)}`} />
+              <Readout
+                tex={`\\Pr(T > ${aStr}) = ${atTwo ? '\\text{orange}' : '\\text{blue} + \\text{orange}'} \\approx ${pa.toFixed(3)}`}
+              />
+              <Readout color={C.g} tex={`\\Pr(T > 2) = \\text{orange} \\approx ${P2.toFixed(3)}`} />
               <Readout
                 color={atOne ? C.good : undefined}
                 tex={`\\Pr(T > 2 \\mid T > ${aStr}) ${atOne ? '= 0.64 = \\tfrac{16}{25}\\ \\checkmark' : `\\approx ${ratio.toFixed(3)}`}`}

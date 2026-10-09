@@ -2,6 +2,10 @@
 // simplified, then a product rule evaluated at an exact value. Question text transcribed
 // from the original paper. Answers checked with sympy and against the VCAA examination
 // report. Solution is original.
+// Oct 2026 review: no interactive (full marks a 42%, b 65%; neither under 40%). Concise
+// reasons trimmed to the step itself; the product-rule alternative, the report's traps
+// (missing bracket, unsimplified e^x/e^{2x}, mixed e^{2x}/e^x, surd handling) and the
+// accepted forms moved to each row's `more` (Detailed only).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -48,11 +52,21 @@ const ROWS_A: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="y" /> is one expression divided by another, so reach for the quotient rule
-        (it&apos;s on the formula sheet). Name the top <Katex tex="u" /> and the bottom{' '}
-        <Katex tex="v" />, and write their derivatives down first. (Rewriting{' '}
-        <Katex tex="y=\left(x^2-x\right)e^{-x}" /> and using the product rule works just as
-        well.)
+        <Katex tex="y" /> is one expression divided by another, so use the quotient rule (it is
+        on the formula sheet). Name the top <Katex tex="u" /> and the bottom{' '}
+        <Katex tex="v" />, and write their derivatives down first.
+      </>
+    ),
+    more: (
+      <>
+        The product rule works just as well; the report says either rule could be used. Write{' '}
+        <Katex tex="y=\left(x^2-x\right)e^{-x}" /> with <Katex tex="u=x^2-x" /> and{' '}
+        <Katex tex="v=e^{-x}" />. Then <Katex tex="v'=-e^{-x}" /> (use{' '}
+        <Katex tex="\tfrac{d}{dx}e^{kx}=ke^{kx}" /> with <Katex tex="k=-1" />), and that minus
+        sign is where the subtraction comes from:{' '}
+        <Katex tex="\tfrac{dy}{dx}=u'v+uv'=(2x-1)e^{-x}-\left(x^2-x\right)e^{-x}=\left(-x^2+3x-1\right)e^{-x}" />,
+        the same answer with no fraction left to simplify. The bracket around{' '}
+        <Katex tex="x^2-x" /> matters just as much on that route.
       </>
     ),
   },
@@ -60,9 +74,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac{dy}{dx} = \frac{(2x-1)e^x-\left(x^2-x\right)e^x}{\left(e^x\right)^2}" />,
     reason: (
       <>
-        <Katex tex="\dfrac{dy}{dx}=\dfrac{v\,u'-u\,v'}{v^2}" />. Keep the bracket around{' '}
-        <Katex tex="x^2-x" />: the minus sign in front applies to the whole of{' '}
-        <Katex tex="u\,v'" />, both of its terms.
+        Substitute into <Katex tex="\dfrac{dy}{dx}=\dfrac{v\,u'-u\,v'}{v^2}" />. Keep the bracket
+        around <Katex tex="x^2-x" />: the minus sign in front applies to both of its terms.
       </>
     ),
   },
@@ -70,11 +83,19 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="= \frac{e^x\left(2x-1-x^2+x\right)}{e^{2x}}" />,
     reason: (
       <>
-        Take out the common factor <Katex tex="e^x" /> on top so it can cancel later, and{' '}
-        <Katex tex="\left(e^x\right)^2=e^{2x}" />. Inside the bracket,{' '}
-        <Katex tex="-\left(x^2-x\right)=-x^2+x" /> — the minus multiplies both terms. Writing{' '}
-        <Katex tex="-x^2-x" /> instead gives <Katex tex="2x-1-x^2-x=-x^2+x-1" />, which is
-        exactly the common incorrect response the report quotes.
+        Take out the common factor <Katex tex="e^x" /> on top so it can cancel next, and use{' '}
+        <Katex tex="\left(e^x\right)^2=e^{2x}" />. Expand the bracket:{' '}
+        <Katex tex="-\left(x^2-x\right)=-x^2+x" />.
+      </>
+    ),
+    more: (
+      <>
+        The report says some students did not use brackets and so got the signs wrong. Without
+        the bracket, the minus reaches only the <Katex tex="x^2" />, so the top becomes{' '}
+        <Katex tex="2x-1-x^2-x=-x^2+x-1" /> and the answer comes out as{' '}
+        <Katex tex="\tfrac{-x^2+x-1}{e^x}" />, the report&apos;s common incorrect response.
+        Writing the bracket in the quotient-rule line, then expanding it carefully here, is what
+        prevents it.
       </>
     ),
   },
@@ -83,10 +104,20 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Collect like terms, <Katex tex="2x+x=3x" />, and cancel one <Katex tex="e^x" />:{' '}
-        <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. &ldquo;Simplify&rdquo; includes
-        this cancellation — stopping at <Katex tex="\tfrac{e^x(\ldots)}{e^{2x}}" /> leaves the
-        exponential terms unsimplified, which the report says many students did. Equivalent
-        answers: <Katex tex="\tfrac{-\left(x^2-3x+1\right)}{e^x}" /> or{' '}
+        <Katex tex="\tfrac{e^x}{e^{2x}}=\tfrac{1}{e^x}" />. This cancelling is part of the
+        &ldquo;simplify&rdquo; the question asks for.
+      </>
+    ),
+    more: (
+      <>
+        The report says many students simplified the quadratic but left the exponential terms
+        unsimplified. Stopping at{' '}
+        <Katex tex="\tfrac{e^x\left(-x^2+3x-1\right)}{e^{2x}}" /> is one way to do that: the
+        fraction still has{' '}
+        <Katex tex="e^x" /> on top and <Katex tex="e^{2x}" /> underneath, so it is not finished.
+        You can cancel only because <Katex tex="e^x" /> is a factor of the <em>whole</em>{' '}
+        numerator, not of just one term. The report&apos;s sample answer also
+        gives <Katex tex="\tfrac{-\left(x^2-3x+1\right)}{e^x}" /> or{' '}
         <Katex tex="\left(-x^2+3x-1\right)e^{-x}" />.
       </>
     ),
@@ -103,12 +134,18 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="f" /> is one function multiplied by another, so use the product rule.{' '}
-        <Katex tex="\tfrac{d}{dx}e^{kx}=ke^{kx}" /> (formula sheet) gives{' '}
-        <Katex tex="\tfrac{d}{dx}e^{2x}=2e^{2x}" />: the exponent stays <Katex tex="2x" /> and
-        the 2 comes out front as a multiplier. A correct derivative has <Katex tex="e^{2x}" />{' '}
-        in every term and no <Katex tex="e^x" /> anywhere — the report says some students mixed
-        the two.
+        <Katex tex="f" /> is one function multiplied by another, so use the product rule. For{' '}
+        <Katex tex="v'" />, <Katex tex="\tfrac{d}{dx}e^{kx}=ke^{kx}" /> (formula sheet) gives{' '}
+        <Katex tex="2e^{2x}" />: the exponent stays <Katex tex="2x" />.
+      </>
+    ),
+    more: (
+      <>
+        That means a correct derivative has <Katex tex="e^{2x}" /> in every term and no{' '}
+        <Katex tex="e^x" /> anywhere. The report says some students produced a mix of{' '}
+        <Katex tex="e^{2x}" /> and <Katex tex="e^x" /> terms. One way that happens is treating
+        the 2 like a power that comes down and disappears, writing <Katex tex="v'=2e^x" />. If an{' '}
+        <Katex tex="e^x" /> turns up in your <Katex tex="f'(x)" />, recheck <Katex tex="v'" />.
       </>
     ),
   },
@@ -143,9 +180,20 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= \frac{\sqrt2}{2}e^{\frac\pi2}\,(1+2)" />,
     reason: (
       <>
-        Both terms contain the same block <Katex tex="\tfrac{\sqrt2}{2}e^{\frac\pi2}" />, so
-        treat it as a common factor — one lot of it plus two lots of it. There&apos;s no need to
-        multiply out the surd or the <Katex tex="e^{\frac\pi2}" />.
+        Both terms contain the same block <Katex tex="\tfrac{\sqrt2}{2}e^{\frac\pi2}" />, so take
+        it out as a common factor: one lot of it plus two lots of it.
+      </>
+    ),
+    more: (
+      <>
+        The report says some students did not know how to work with the surd terms. Treat the
+        whole block like a pronumeral: if <Katex tex="a=\tfrac{\sqrt2}{2}e^{\frac\pi2}" />, the two
+        terms are just <Katex tex="a+2a=3a" />. There is no need to multiply out the surd or find
+        a decimal for <Katex tex="e^{\frac\pi2}" />; Exam 1 wants the exact value. The
+        report&apos;s sample answer simplifies <Katex tex="2\cdot\tfrac{\sqrt2}{2}" /> to{' '}
+        <Katex tex="\sqrt2" /> first, giving{' '}
+        <Katex tex="\sqrt2e^{\frac\pi2}+\tfrac{\sqrt2}{2}e^{\frac\pi2}" />; that leads to the same
+        place, since <Katex tex="\sqrt2+\tfrac{\sqrt2}{2}=\tfrac{3\sqrt2}{2}" />.
       </>
     ),
   },
@@ -153,8 +201,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{f'\!\left(\frac\pi4\right) = \frac{3\sqrt2}{2}e^{\frac\pi2}}" />,
     reason: (
       <>
-        The report notes there was no requirement to give a particular form; it also lists{' '}
-        <Katex tex="\tfrac{3e^{\frac\pi2}}{\sqrt2}" />.
+        <Katex tex="3\times\tfrac{\sqrt2}{2}=\tfrac{3\sqrt2}{2}" />. Any equivalent exact form,
+        such as <Katex tex="\tfrac{3e^{\frac\pi2}}{\sqrt2}" />, is fine.
+      </>
+    ),
+    more: (
+      <>
+        The report says there was no requirement to give the answer in a particular form, so
+        rationalising the denominator is optional here.
       </>
     ),
   },

@@ -60,7 +60,8 @@ export default function PastThePeak() {
         <b>
           <M>B</M> is at the peak <M>P</M>
         </b>
-        , so this is the tallest triangle (height <M>12</M>, area <M>12</M>). But it is not the biggest. At <M>P</M> the
+        , so this is the tallest triangle: base <M>k = 2</M>, height <M>g(2) = 12</M>, area{' '}
+        <M>{'\\tfrac12 \\times 2 \\times 12 = 12'}</M>. But it is not the biggest. At <M>P</M> the
         height has stopped growing (<M>{"g'(2) = 0"}</M>) while the base keeps growing, so the area is still rising:{' '}
         <M>{"A'(2) = 6 > 0"}</M>. Drag <M>B</M> further right.
       </Notice>

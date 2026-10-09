@@ -63,7 +63,7 @@ export default function SqrtWidth() {
           </>
         ) : (
           <>
-            Turn the toggle off and compare <M>k = 4,\ 9,\ 16</M>.
+            Switch <b>What if there were no square root?</b> off and compare <M>k = 4,\ 9,\ 16</M>.
           </>
         )}
       </Notice>
@@ -73,8 +73,8 @@ export default function SqrtWidth() {
       <Notice tone="good">
         <b>Four times the households, but only half the width</b>: <M>0.12 \to 0.06</M>. In the formula, <M>n</M> sits
         under the square root, so multiplying <M>n</M> by 4 multiplies <M>{'\\sqrt n'}</M> by <M>{'\\sqrt4 = 2'}</M>{' '}
-        &mdash; and the width is divided by 2. Turn on the toggle to see the common wrong answer of{' '}
-        <M>{'\\tfrac14'}</M>.
+        &mdash; and the width is divided by 2. Switch on <b>What if there were no square root?</b> to see the
+        common wrong answer of <M>{'\\tfrac14'}</M>.
       </Notice>
     )
   } else if (k === 16) {
@@ -117,7 +117,7 @@ export default function SqrtWidth() {
         )}
       </Plane>
       <Controls>
-        <Slider label="k" value={k} onChange={v => setK(Math.round(v))} min={1} max={16} step={1} format={v => `×${Math.round(v)}`} />
+        <Slider label="\text{multiply } n \text{ by } k" value={k} onChange={v => setK(Math.round(v))} min={1} max={16} step={1} format={v => `×${Math.round(v)}`} />
         <Buttons>
           <Toggle label="What if there were no square root?" checked={noRoot} onChange={setNoRoot} />
         </Buttons>

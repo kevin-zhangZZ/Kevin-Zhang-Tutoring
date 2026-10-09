@@ -6,6 +6,9 @@
 // t = 1 the new whole; a toggle shows the T = 1 misreading as a zero-width strip). Part b.
 // (26% full marks) has no widget: the report names only a dx/dt notation slip, and the rest is
 // fraction arithmetic.
+// Concise/Detailed review (9 Oct 2026): report traps, checks, the alternative method and the
+// 1/64-cancels shortcut moved into rows' `more`; Background trimmed so it doesn't repeat a reason
+// (the intersection, the 1/64 shortcut and the "same antiderivative" reuse tip live in the rows).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -66,11 +69,13 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^4 kt\left(16-t^2\right)dt = 1" />,
-    reason: <>The total area under a probability density function is 1. Here <Katex tex="f(t)=0" /> outside <Katex tex="[0,4]" />, so only that interval contributes. Write the <Katex tex="dt" /> — the report lists leaving it out, or writing <Katex tex="dx" />, as common errors.</>,
+    reason: <>The total area under a probability density function is 1. Here <Katex tex="f(t)=0" /> outside <Katex tex="[0,4]" />, so only that interval contributes.</>,
+    more: <>Write the <Katex tex="dt" />: the report lists leaving it out, or writing <Katex tex="dx" />, as common errors. The function is in <Katex tex="t" />, so the integral ends in <Katex tex="dt" /> — keep the variable consistent throughout.</>,
   },
   {
     working: <Katex display tex="k\int_0^4\left(16t-t^3\right)dt = 1" />,
     reason: <>Multiply out first, <Katex tex="t\left(16-t^2\right)=16t-t^3" />, so each term can be antidifferentiated on its own. The constant <Katex tex="k" /> comes out the front.</>,
+    more: <>The report describes a second approach that is just as good: evaluate the integral without <Katex tex="k" /> first, <Katex tex="\int_0^4\left(16t-t^3\right)dt=64" />, then solve <Katex tex="64k=1" />. Both rest on the same fact — the total probability is 1.</>,
   },
   {
     working: <Katex display tex="k\left[8t^2-\frac{t^4}{4}\right]_0^4 = 1" />,
@@ -86,14 +91,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \frac{1}{64}}" />,
-    reason: <>Divide both sides by 64. In a "show that" the report expects every step to be explicit, reaching the result in a logical, step-by-step manner — so write each line above, not just the answer. As required.</>,
+    reason: <>Divide both sides by 64. As required.</>,
+    more: <>In a "show that" the answer is given, so the mark is for the working: the report expects it to be explicit and to reach the result in a logical, step-by-step manner. Write each line above, not just the answer.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(T) = \int_0^4 t\,f(t)\,dt" />,
-    reason: <>For a continuous random variable, the mean is <Katex tex="\int t\,f(t)\,dt" /> over the values it can take: multiply the density by <Katex tex="t" />, then integrate. <Katex tex="f(t)=0" /> outside <Katex tex="[0,4]" />, so those are the terminals. Write <Katex tex="dt" />, not <Katex tex="dx" /> — the report notes some students mixed their variables here.</>,
+    reason: <>For a continuous random variable, the mean is <Katex tex="\int t\,f(t)\,dt" /> over the values it can take: multiply the density by <Katex tex="t" />, then integrate. <Katex tex="f(t)=0" /> outside <Katex tex="[0,4]" />, so those are the terminals.</>,
+    more: <>Why multiply by <Katex tex="t" />: the mean is the balance point of the area under <Katex tex="f" />, so each value <Katex tex="t" /> is weighted by how likely it is, <Katex tex="f(t)" />. As in part a., write <Katex tex="dt" />, not <Katex tex="dx" /> — the report notes some students wrote <Katex tex="dx" /> here, mixing their variables.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{64}\int_0^4 t\cdot t\left(16-t^2\right)dt" />,
@@ -117,14 +124,16 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(T) = \frac{32}{15} = 2\tfrac{2}{15} \ \text{minutes}}" />,
-    reason: <>Cancel before multiplying out: <Katex tex="2048\div64=32" />. About <Katex tex="2.13" /> minutes — sensible, since <Katex tex="T" /> lies between 0 and 4 and the density is largest near the middle of that interval.</>,
+    reason: <>Cancel before multiplying out: <Katex tex="2048\div64=32" />.</>,
+    more: <>Check: <Katex tex="\tfrac{32}{15}" /> is about <Katex tex="2.13" /> minutes. That is sensible: it lies between 0 and 4, close to where the density peaks, at <Katex tex="t=\tfrac{4}{\sqrt3}\approx2.3" /> (solve <Katex tex="f'(t)=\tfrac{1}{64}\left(16-3t^2\right)=0" />). An answer outside <Katex tex="[0,4]" /> would signal an arithmetic slip.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T>2\mid T>1) = \frac{\Pr(T>2 \cap T>1)}{\Pr(T>1)}" />,
-    reason: <>"Already queued for one minute" means the person's total queuing time is more than 1 minute, so the condition is <Katex tex="T>1" />, not <Katex tex="T=1" /> — the report notes some students read it as <Katex tex="\Pr(T=1)" /> (which is 0 for a continuous variable, so it can't be divided by). Then use <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />.</>,
+    reason: <>"Already queued for one minute" means they have waited 1 minute and are still waiting, so their total queuing time is more than 1 minute: the condition is <Katex tex="T>1" />. Then use <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />.</>,
+    more: <>Not <Katex tex="T=1" />: the report notes some students wrote <Katex tex="\Pr(T>2\mid T=1)" />, reading "already queued for one minute" as <Katex tex="\Pr(T=1)" />. For a continuous random variable a single value has probability 0 — it is a strip of zero width, so there is no area under <Katex tex="f" /> — and you can&apos;t divide by 0. The condition is what you already know; it goes after the bar and becomes the denominator.</>,
   },
   {
     working: <Katex display tex="= \frac{\Pr(T>2)}{\Pr(T>1)}" />,
@@ -132,7 +141,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(T>2) = \frac{1}{64}\int_2^4\left(16t-t^3\right)dt" />,
-    reason: <><Katex tex="T>2" /> means <Katex tex="t" /> runs from 2 up to 4, the largest value <Katex tex="T" /> can take (<Katex tex="f(t)=0" /> beyond 4) — these are the terminals.</>,
+    reason: <>A probability is an area under the density, so integrate <Katex tex="f(t)=\tfrac{1}{64}\left(16t-t^3\right)" /> (part a.'s <Katex tex="k" />, multiplied out). <Katex tex="T>2" /> means <Katex tex="t" /> runs from 2 up to 4, the largest value <Katex tex="T" /> can take (<Katex tex="f(t)=0" /> beyond 4) — these are the terminals.</>,
+    more: <>The report notes errors in the terminals of integration. Read them off the event: "more than 2" starts at 2 and runs to where the density stops, 4. Writing <Katex tex="\int_2^\infty f(t)\,dt" /> means the same thing, but past 4 you must use <Katex tex="f(t)=0" />, not <Katex tex="kt\left(16-t^2\right)" /> (which goes negative there).</>,
   },
   {
     working: <Katex display tex="= \frac{1}{64}\left[8t^2-\frac{t^4}{4}\right]_2^4" />,
@@ -161,14 +171,17 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T>2\mid T>1) = \frac{9/16}{225/256} = \frac{9}{16}\times\frac{256}{225}" />,
     reason: <>Dividing by a fraction is multiplying by its reciprocal.</>,
+    more: <>Shortcut: the <Katex tex="\tfrac{1}{64}" /> is a factor of both <Katex tex="\Pr(T>2)" /> and <Katex tex="\Pr(T>1)" />, so it cancels in the ratio. You could leave it out of both integrals and divide the brackets directly: <Katex tex="\dfrac{64-28}{64-\frac{31}{4}}=\dfrac{36}{225/4}=\dfrac{144}{225}=\dfrac{16}{25}" />.</>,
   },
   {
     working: <Katex display tex="= \frac{9\times16}{225} = \frac{9\times16}{9\times25}" />,
-    reason: <>Cancel before multiplying, as the report advises: <Katex tex="\tfrac{256}{16}=16" />. Then <Katex tex="225=9\times25" />, so the 9 cancels too.</>,
+    reason: <>Cancel before multiplying: <Katex tex="\tfrac{256}{16}=16" />. Then write <Katex tex="225=9\times25" /> to show the common factor 9.</>,
+    more: <>The report says the arithmetic with fractions was a challenge for some students, and encourages cancelling factors. Multiplying out first gives <Katex tex="\tfrac{2304}{3600}" />, which is much harder to simplify by hand.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{16}{25} = 0.64}" />,
-    reason: <>Check: this is bigger than <Katex tex="\Pr(T>2)=\tfrac{9}{16}\approx0.56" /> with no condition. Knowing the person has already waited a minute rules out the short waits, so a long wait becomes more likely.</>,
+    reason: <>Cancel the 9s. As a decimal, <Katex tex="\tfrac{16}{25}=0.64" />.</>,
+    more: <>Check: this is bigger than <Katex tex="\Pr(T>2)=\tfrac{9}{16}\approx0.56" /> with no condition. Knowing the person has already waited a minute rules out the short waits, so a long wait becomes more likely. In the diagram below, the condition removes the area left of <Katex tex="t=1" /> from the whole, while the area right of <Katex tex="t=2" /> stays the same.</>,
   },
 ]
 
@@ -198,15 +211,9 @@ export default function MethodsQ8_2023Exam1() {
             <p>
               Three standard facts, one per part: the area under a density is 1, the mean is{' '}
               <Katex tex="\int t\,f(t)\,dt" />, and{' '}
-              <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. The same antiderivative{' '}
-              <Katex tex="8t^2-\tfrac{t^4}{4}" /> serves parts a. and c., so work it out once
-              and reuse it.
-            </p>
-            <p>
-              In part c., <Katex tex="\{T>2\}" /> is contained in <Katex tex="\{T>1\}" />, so
-              the intersection is just <Katex tex="\{T>2\}" />. And because the constant{' '}
-              <Katex tex="\tfrac{1}{64}" /> appears in both the numerator and the denominator,
-              it cancels — you can leave it out of both integrals entirely.
+              <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. Every probability here
+              is an area under the density:{' '}
+              <Katex tex="\Pr(a<T<b)=\int_a^b f(t)\,dt" />.
             </p>
           </Background>
         </div>

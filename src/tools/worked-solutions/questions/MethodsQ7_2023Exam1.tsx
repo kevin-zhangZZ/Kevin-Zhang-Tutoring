@@ -7,11 +7,15 @@
 // f(x) = x² − 2x lies exactly on VCAA's printed curve. The part d. region figure is this
 // site's own explanatory graph. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
-// Widgets: part c — interactives/meth-2023e1-q7c-which-root (drag a point along f; its mirror
+// Widgets: part c — interactives/meth-2023e1-q7c-which-root (slide a point along f; its mirror
 // image always lands on the − root, and a toggle shows the + root is the mirror of the half of
 // the parabola f's domain removed); part d — interactives/meth-2023e1-q7d-twin-strips (each
 // vertical strip of one region reflects to an equal horizontal strip of the other, with a toggle
-// showing the report's ∫₋₁¹(f − f⁻¹)dx error measuring a different region).
+// showing the report's ∫₋₁¹(f − f⁻¹)dx error, a signed value between f and f⁻¹, not the area).
+// Both re-audited 9 Oct 2026 for the Concise/Detailed split: kept; report commentary,
+// alternatives and checks moved from row reasons into `more`. Final review 9 Oct: the part d.
+// alternative now describes the report's actual other approach (curve to x-axis combined with
+// line to x-axis) rather than crediting the report with a direct ∫₋₁⁰ method.
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
@@ -128,11 +132,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(1) = -1, \qquad f(x)\to\infty \ \text{ as } \ x\to-\infty" />,
-    reason: <>The domain <Katex tex="(-\infty,1]" /> stops exactly at the vertex, so the graph is the left half of the parabola, as in the figure. It falls all the way to its lowest point, the endpoint <Katex tex="(1,-1)" /> (included, because <Katex tex="x=1" /> is in the domain), and going left it rises without bound.</>,
+    reason: <>The domain <Katex tex="(-\infty,1]" /> stops exactly at the vertex, so the graph is the left half of the parabola, as in the figure: its lowest point is the endpoint <Katex tex="(1,-1)" />, and going left it rises without bound.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{range} = [-1,\,\infty)}" />,
-    reason: <>Square bracket at <Katex tex="-1" /> because <Katex tex="x=1" /> is included; round bracket at <Katex tex="\infty" /> always. The smaller end goes first: the report&apos;s common errors were the wrong brackets or the ends swapped, as in <Katex tex="(\infty,-1]" />.</>,
+    reason: <>Square bracket at <Katex tex="-1" /> because <Katex tex="x=1" /> is in the domain, so <Katex tex="-1" /> is reached; round bracket at <Katex tex="\infty" /> always. The smaller end goes first.</>,
   },
 ]
 
@@ -155,18 +159,20 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <InverseOverlay />,
-    reason: <>Drawn on the printed axes, as the question asks, using the grid as a guide. The report&apos;s general comments note that graphs of inverse functions need to be symmetric about the line <Katex tex="y=x" />.</>,
+    reason: <>Drawn on the printed axes, as the question asks, using the grid as a guide so the curve is a true mirror image of <Katex tex="f" /> in <Katex tex="y=x" />.</>,
+    more: <>The report&apos;s general comments make the same point: graphs of inverse functions need to be symmetric about the line <Katex tex="y=x" />, and students are encouraged to use the grid provided to get this right.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Let } y = (x-1)^2-1" />,
-    reason: <>Use the turning-point form from part a. In it, <Katex tex="x" /> appears only once (inside the square), so after <Katex tex="x" /> and <Katex tex="y" /> are swapped, <Katex tex="y" /> appears only once and can be made the subject. If you start from <Katex tex="x=y^2-2y" /> instead (where some students got stuck), <Katex tex="y" /> appears twice, so first complete the square, <Katex tex="x=(y-1)^2-1" />, or use the quadratic formula on <Katex tex="y^2-2y-x=0" />; both give the same two roots below.</>,
+    reason: <>Use the turning-point form from part a. In it, <Katex tex="x" /> appears only once (inside the square), so after <Katex tex="x" /> and <Katex tex="y" /> are swapped, <Katex tex="y" /> appears only once and can be made the subject.</>,
+    more: <>The report notes that some students got stuck after writing <Katex tex="x=y^2-2y" />. There <Katex tex="y" /> appears twice, so it can&apos;t simply be rearranged: first complete the square, <Katex tex="x=(y-1)^2-1" />, or use the quadratic formula on <Katex tex="y^2-2y-x=0" />. Both lead to the same two roots below.</>,
   },
   {
     working: <Katex display tex="\text{Swap } x \leftrightarrow y: \quad x = (y-1)^2-1" />,
-    reason: <>The inverse swaps the roles of <Katex tex="x" /> and <Katex tex="y" /> (part b.), so swap them and solve for <Katex tex="y" />. Writing &ldquo;swap&rdquo; signposts the method.</>,
+    reason: <>The inverse swaps the roles of <Katex tex="x" /> and <Katex tex="y" /> (part b.), so swap them and solve for <Katex tex="y" />. Writing &ldquo;swap&rdquo; shows the marker your method.</>,
   },
   {
     working: <Katex display tex="(y-1)^2 = x+1 \implies y-1 = \pm\sqrt{x+1}" />,
@@ -179,18 +185,25 @@ const ROWS_C: WorkingRow[] = [
         tex="\begin{aligned} \text{range of } f^{-1} &= \text{domain of } f = (-\infty,1] \\ \implies y \le 1 &\implies y-1 = -\sqrt{x+1} \end{aligned}"
       />
     ),
-    reason: <>The <Katex tex="y" />-values of <Katex tex="f^{-1}" /> are the <Katex tex="x" />-values of <Katex tex="f" />, so <Katex tex="y\le1" /> and <Katex tex="y-1" /> can&apos;t be positive: take the <em>negative</em> root. Choosing <Katex tex="1+\sqrt{x+1}" /> was the report&apos;s most common error. Your part b. sketch rules it out too: <Katex tex="f^{-1}" /> falls from <Katex tex="(-1,1)" /> through <Katex tex="(0,0)" />, while <Katex tex="1+\sqrt{x+1}" /> rises and is never below 1.</>,
+    reason: <>The <Katex tex="y" />-values of <Katex tex="f^{-1}" /> are the <Katex tex="x" />-values of <Katex tex="f" />, so <Katex tex="y\le1" /> and <Katex tex="y-1" /> can&apos;t be positive: take the <em>negative</em> root.</>,
+    more: (
+      <>
+        <p>Choosing <Katex tex="1+\sqrt{x+1}" /> was the report&apos;s most common error, and it reminds students to use their part b. graph. That sketch rules it out: <Katex tex="f^{-1}" /> falls from <Katex tex="(-1,1)" /> through <Katex tex="(0,0)" />, while <Katex tex="1+\sqrt{x+1}" /> rises from <Katex tex="(-1,1)" /> and is never below 1.</p>
+        <p>Why does the algebra produce a wrong root at all? The equation <Katex tex="x=(y-1)^2-1" /> knows nothing about f&apos;s domain: it is the reflection of the <em>whole</em> parabola, both halves. The diagram below shows which half each root comes from.</p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = 1-\sqrt{x+1}, \quad \text{domain } [-1,\infty)}" />,
-    reason: <>The domain of <Katex tex="f^{-1}" /> is the range of <Katex tex="f" /> from part a. Write the rule with the notation <Katex tex="f^{-1}(x)" />, as the report reminds. Check: <Katex tex="f^{-1}(3)=1-2=-1" /> and <Katex tex="f(-1)=1+2=3" /> ✓.</>,
+    reason: <>The domain of <Katex tex="f^{-1}" /> is the range of <Katex tex="f" /> from part a. Write the rule as <Katex tex="f^{-1}(x)=\dots" />, naming the inverse function.</>,
+    more: <>The report reminds students to use this notation for the inverse function. Check with a point from part b.: <Katex tex="f^{-1}(3)=1-2=-1" />, and <Katex tex="f(-1)=1+2=3" /> ✓.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} -x &= x^2-2x \\ x^2-x &= 0 \\ x(x-1) &= 0 \\ x &= 0 \ \text{ or } \ x = 1 \end{aligned}" />,
-    reason: <>Where <Katex tex="y=-x" /> cuts <Katex tex="f" />: the points <Katex tex="(0,0)" /> and <Katex tex="(1,-1)" />. Both <Katex tex="x" />-values are in the domain of <Katex tex="f" />.</>,
+    reason: <>Equate the line and <Katex tex="f" /> to find where they meet: the points <Katex tex="(0,0)" /> and <Katex tex="(1,-1)" />. Both <Katex tex="x" />-values are in the domain of <Katex tex="f" />.</>,
   },
   {
     working: (
@@ -202,19 +215,22 @@ const ROWS_D: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The two regions: one between the line and <Katex tex="f" />, one between the line and <Katex tex="f^{-1}" />. The line <Katex tex="y=-x" /> closes off both of them, so it must appear in the integral. Integrating <Katex tex="f-f^{-1}" /> from <Katex tex="-1" /> to <Katex tex="1" />, an error the report mentions, leaves the line out and measures a different region.</>,
+    reason: <>Sketch the three curves on part b.&apos;s axes: there are two regions, one between the line and <Katex tex="f" />, one between the line and <Katex tex="f^{-1}" />. The line <Katex tex="y=-x" /> closes off both, so it must appear in the integral.</>,
+    more: <>Integrating <Katex tex="f-f^{-1}" /> from <Katex tex="-1" /> to <Katex tex="1" />, an error the report mentions, leaves the line out altogether. It measures between <Katex tex="f" /> and <Katex tex="f^{-1}" />, and on <Katex tex="(0,1)" />, where <Katex tex="f^{-1}" /> is above <Katex tex="f" />, it counts that gap as negative, so it isn&apos;t the area of any region: it gives <Katex tex="\tfrac{4\sqrt2-4}{3}\approx0.55" />, not <Katex tex="\tfrac13" />.</>,
   },
   {
     working: <Katex display tex="(a,-a) \mapsto (-a,\,a): \ y=-x \text{ reflects onto itself}" />,
-    reason: <>Swapping the coordinates of a point on <Katex tex="y=-x" /> gives another point on <Katex tex="y=-x" />. So reflecting in <Katex tex="y=x" /> takes <Katex tex="f" /> to <Katex tex="f^{-1}" /> and the line to itself: the region cut off <Katex tex="f^{-1}" />, between <Katex tex="(-1,1)" /> and <Katex tex="(0,0)" />, is the mirror image of the one cut off <Katex tex="f" /> and has the same area. One integral, doubled. (Without symmetry, <Katex tex="\int_{-1}^{0}\left(-x-\left(1-\sqrt{x+1}\right)\right)dx" /> also gives <Katex tex="\tfrac16" />, as in the report&apos;s second method, but it takes longer.)</>,
+    reason: <>Swapping the coordinates of a point on <Katex tex="y=-x" /> gives another point on <Katex tex="y=-x" />. So reflecting in <Katex tex="y=x" /> takes <Katex tex="f" /> to <Katex tex="f^{-1}" /> and the line to itself: the two regions are mirror images, with the same area. One integral, doubled.</>,
+    more: <>Without symmetry, the region cut off <Katex tex="f^{-1}" />, between <Katex tex="(-1,1)" /> and <Katex tex="(0,0)" />, needs its own integral. One of the report&apos;s other approaches combines a curve-to-<Katex tex="x" />-axis area with the line-to-<Katex tex="x" />-axis area: on <Katex tex="[-1,0]" /> the triangle under <Katex tex="y=-x" /> has area <Katex tex="\tfrac12" />, the area under <Katex tex="f^{-1}" /> is <Katex tex="\int_{-1}^{0}\left(1-\sqrt{x+1}\right)dx" /> <Katex tex="=\left[x-\tfrac23(x+1)^{3/2}\right]_{-1}^{0}=\tfrac13" />, and <Katex tex="\tfrac12-\tfrac13=\tfrac16" />, the same as the region cut off <Katex tex="f" />. It is correct but takes longer; the report notes that using symmetry removes this extra integral, yet many students did not use it.</>,
   },
   {
     working: <Katex display tex="A = 2\int_0^1\Bigl(-x-\left(x^2-2x\right)\Bigr)dx" />,
-    reason: <>Upper curve minus lower: on <Katex tex="(0,1)" /> the line is above the parabola (at <Katex tex="x=\tfrac12" />, <Katex tex="-\tfrac12 > -\tfrac34" />). Keep the bracket — the report notes that without it students obtained <Katex tex="-x^2-3x" /> rather than <Katex tex="-x^2+x" />.</>,
+    reason: <>Upper curve minus lower: on <Katex tex="(0,1)" /> the line is above the parabola (at <Katex tex="x=\tfrac12" />, <Katex tex="-\tfrac12 > -\tfrac34" />). Keep the bracket round <Katex tex="x^2-2x" /> so the minus sign reaches both terms.</>,
+    more: <>The report says the most common errors arose from these signs: without the bracket students obtained <Katex tex="-x^2-3x" /> rather than <Katex tex="-x^2+x" />, and carried that error through the rest of their working.</>,
   },
   {
     working: <Katex display tex="= 2\int_0^1\left(x-x^2\right)dx" />,
-    reason: <><Katex tex="-x-x^2+2x=x-x^2" />.</>,
+    reason: <>Expand the bracket: <Katex tex="-x-x^2+2x=x-x^2" />.</>,
   },
   {
     working: <Katex display tex="= 2\left[\frac{x^2}{2}-\frac{x^3}{3}\right]_0^1 = 2\left(\frac12-\frac13\right)" />,
@@ -222,7 +238,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 2\times\frac16 = \frac13 \ \text{square units}}" />,
-    reason: <>Each region is <Katex tex="\tfrac16" />. Sanity check: the region below the line fits inside the triangle with corners <Katex tex="(0,0)" />, <Katex tex="(0,-1)" /> and <Katex tex="(1,-1)" />, of area <Katex tex="\tfrac12" />, so <Katex tex="\tfrac16" /> each is reasonable.</>,
+    reason: <>Each region is <Katex tex="\tfrac16" />, and there are two.</>,
+    more: <>Sanity check: the region below the line fits inside the triangle with corners <Katex tex="(0,0)" />, <Katex tex="(0,-1)" /> and <Katex tex="(1,-1)" />, of area <Katex tex="\tfrac12" />, so <Katex tex="\tfrac16" /> each is reasonable.</>,
   },
 ]
 
@@ -251,13 +268,10 @@ export default function MethodsQ7_2023Exam1() {
             <p>
               Everything in this question comes out of one picture: <Katex tex="f" /> and{' '}
               <Katex tex="f^{-1}" /> are mirror images in <Katex tex="y=x" />. That swaps the
-              domain and range (part a. feeds part c.), it fixes which square root to keep in
-              part c., and in part d. it means the two regions are congruent, so only one
-              integral is needed.
-            </p>
-            <p>
-              The line <Katex tex="y=-x" /> is perpendicular to <Katex tex="y=x" /> and so is
-              its own mirror image — which is why it cuts a matching piece off each curve.
+              domain and range (part a. feeds part c.), and it fixes which square root to keep in
+              part c. In part d. the line <Katex tex="y=-x" />, perpendicular to{' '}
+              <Katex tex="y=x" />, is its own mirror image, so it cuts matching pieces off the two
+              curves and only one integral is needed.
             </p>
           </Background>
         </div>

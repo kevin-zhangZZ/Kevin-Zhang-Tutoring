@@ -36,6 +36,15 @@ const ROWS: WorkingRow[] = [
         quadratic.
       </>
     ),
+    more: (
+      <>
+        Why not take <Katex tex="\log_e" /> of both sides straight away? Because{' '}
+        <Katex tex="\log_e" /> does not split over a sum or difference:{' '}
+        <Katex tex="\log_e\left(e^{2x}-12\right)" /> is not <Katex tex="2x-\log_e(12)" />. With
+        two different powers of <Katex tex="e" /> plus a constant, the way in is the quadratic
+        pattern, not logs.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{Let } m = e^x: \quad m^2-4m-12 = 0" />,
@@ -53,7 +62,16 @@ const ROWS: WorkingRow[] = [
       <>
         Factorise: <Katex tex="-6" /> and <Katex tex="2" /> multiply to <Katex tex="-12" /> and
         add to <Katex tex="-4" />. Then the null factor law: one bracket must equal zero.
-        Factorising is quicker and safer here than the quadratic formula.
+      </>
+    ),
+    more: (
+      <>
+        Don't stop once the quadratic is written down — the report notes that some students set
+        it up correctly but did not go on to factorise and solve. If the factors don't come to
+        mind, the quadratic formula gives the same roots,{' '}
+        <Katex tex="m=\frac{4\pm\sqrt{16+48}}{2}=\frac{4\pm8}{2}" />, but factorising is quicker
+        and safer here: the report notes that students who chose the quadratic formula were not
+        always successful with it.
       </>
     ),
   },
@@ -77,10 +95,16 @@ const ROWS: WorkingRow[] = [
       <>
         The graph of <Katex tex="y=e^x" /> lies entirely above the <Katex tex="x" />-axis (its
         range is <Katex tex="(0,\infty)" />), so <Katex tex="e^x" /> can never equal a negative
-        number. Equivalently, <Katex tex="\log_e(-2)" /> does not exist, since{' '}
-        <Katex tex="\log_e(a)" /> only exists for <Katex tex="a>0" />. This rejection must be
-        written down — the report notes some students gave both <Katex tex="x=\log_e(6)" /> and{' '}
-        <Katex tex="x=\log_e(-2)" /> without discarding <Katex tex="\log_e(-2)" />.
+        number. Write this line down: it is your reason for discarding the case.
+      </>
+    ),
+    more: (
+      <>
+        The same fact in log form: <Katex tex="e^x=-2" /> would mean{' '}
+        <Katex tex="x=\log_e(-2)" />, and <Katex tex="\log_e(a)" /> only exists for{' '}
+        <Katex tex="a>0" />. The report notes some students gave both{' '}
+        <Katex tex="x=\log_e(6)" /> and <Katex tex="x=\log_e(-2)" /> as solutions without
+        discarding <Katex tex="\log_e(-2)" />.
       </>
     ),
   },
@@ -89,9 +113,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Take <Katex tex="\log_e" /> of both sides: <Katex tex="\log_e" /> undoes{' '}
-        <Katex tex="e^x" />, since <Katex tex="\log_e\left(e^x\right)=x" />. Check in the
-        original equation: <Katex tex="e^{2x}=\left(e^x\right)^2=36" />, and{' '}
-        <Katex tex="36-12=24=4\times6" /> ✓.
+        <Katex tex="e^x" />, since <Katex tex="\log_e\left(e^x\right)=x" />. This is the only
+        solution.
+      </>
+    ),
+    more: (
+      <>
+        Check in the original equation: if <Katex tex="e^x=6" />, then{' '}
+        <Katex tex="e^{2x}=\left(e^x\right)^2=36" />, and <Katex tex="36-12=24=4\times6" /> ✓.
       </>
     ),
   },
@@ -112,10 +141,11 @@ export default function MethodsQ2_2023Exam1() {
           <p>
             Whenever an equation contains only <Katex tex="e^{2x}" />, <Katex tex="e^{x}" /> and
             constants, it is a quadratic in disguise, because{' '}
-            <Katex tex="e^{2x}=\left(e^x\right)^2" />. Substitute{' '}
-            <Katex tex="m=e^x" />, solve as usual, then undo the substitution — and check each
-            root, because <Katex tex="e^x" /> can never be zero or negative. A negative root
-            for <Katex tex="m" /> is not an answer to discard quietly; say why it goes.
+            <Katex tex="e^{2x}=\left(e^x\right)^2" />: one power is the square of the other. The
+            method is always the same: substitute <Katex tex="m=e^x" />, solve the quadratic for{' '}
+            <Katex tex="m" />, then set <Katex tex="e^x" /> equal to each root and solve for{' '}
+            <Katex tex="x" />. Because <Katex tex="e^x" /> is never zero or negative, a root{' '}
+            <Katex tex="m\le0" /> gives no value of <Katex tex="x" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

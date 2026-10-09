@@ -4,9 +4,14 @@
 // the VCAA examination report. Solution is original. Part b. has an interactive
 // (interactives/meth-2023e1-q3b-branches.tsx): slide x across both branches to see that only
 // 1 < x ≤ 4 puts the curve on or below y = 1, with a toggle testing the common wrong answer (−∞, 4].
+// Oct 2026 Concise/Detailed pass: part b.'s Background now sits in part b.; the report's common
+// errors, the (−∞, 4] algebra and the spot-checks live in each row's `more` (Detailed only).
+// Final review: part b. row 1 now says in Concise that the graph can switch sides of y = 1 at the
+// asymptote (so check each branch); part a. row 1's full transformation list moved to `more`;
+// row 2 says which way each side of the asymptote goes; the (−∞, 4] note now covers both sign cases.
 
 import Katex from '../../../components/Katex'
-import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
+import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './meth-2023e1-q3a-sketch.png'
 
@@ -45,11 +50,17 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="f(x) = 2-\frac{3}{x-1}" />,
     reason: (
       <>
-        A hyperbola. Compared with <Katex tex="y=\tfrac1x" />, the <Katex tex="-3" /> reflects it in the{' '}
-        <Katex tex="x" />-axis and dilates it by a factor of 3 from the <Katex tex="x" />-axis, the{' '}
-        <Katex tex="x-1" /> translates it 1 unit right, and the <Katex tex="2" /> translates it 2 units up. So the
-        asymptotes move from the axes to <Katex tex="x=1" /> and <Katex tex="y=2" />, and because of the reflection the
-        branches sit top-left and bottom-right of where the asymptotes cross.
+        A hyperbola: the graph of <Katex tex="y=\tfrac1x" /> reflected in the <Katex tex="x" />-axis (the minus sign),
+        moved 1 unit right and 2 units up. Because of the reflection, its branches sit top-left and bottom-right of
+        where the asymptotes cross.
+      </>
+    ),
+    more: (
+      <>
+        In full, compared with <Katex tex="y=\tfrac1x" />: the <Katex tex="-3" /> dilates it by a factor of 3 from
+        the <Katex tex="x" />-axis and reflects it in the <Katex tex="x" />-axis, the <Katex tex="x-1" /> translates
+        it 1 unit right, and the <Katex tex="2" /> translates it 2 units up. The translations move the asymptotes from
+        the two axes to <Katex tex="x=1" /> and <Katex tex="y=2" />, which the next two lines confirm.
       </>
     ),
   },
@@ -58,8 +69,9 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         The denominator can&apos;t be 0, so <Katex tex="x=1" /> is not in the domain, and as <Katex tex="x" /> gets
-        close to 1 the fraction <Katex tex="\tfrac{3}{x-1}" /> becomes huge. A vertical line&apos;s equation starts
-        with <Katex tex="x=" />, not <Katex tex="y=" />.
+        close to 1 the fraction <Katex tex="\tfrac{3}{x-1}" /> becomes huge in size: large and positive just right of
+        1, so <Katex tex="f(x)" /> plunges down, and large and negative just left of 1, so <Katex tex="f(x)" /> shoots
+        up. A vertical line&apos;s equation starts with <Katex tex="x=" />, not <Katex tex="y=" />.
       </>
     ),
   },
@@ -69,8 +81,15 @@ const ROWS_A: WorkingRow[] = [
       <>
         As <Katex tex="x" /> gets very large (positive or negative), <Katex tex="\tfrac{3}{x-1}" /> shrinks towards 0
         but never equals 0, so <Katex tex="f(x)" /> gets close to 2 without reaching it. A horizontal line&apos;s
-        equation starts with <Katex tex="y=" />. The report lists the two asymptotes labelled the wrong way round,
-        as <Katex tex="y=1" /> and <Katex tex="x=2" />, as a common error.
+        equation starts with <Katex tex="y=" />.
+      </>
+    ),
+    more: (
+      <>
+        Swapping these two labels — the vertical asymptote written as <Katex tex="y=1" /> and the horizontal one as{' '}
+        <Katex tex="x=2" /> — is among the most common errors in the report. A quick check: every point on the
+        vertical asymptote has <Katex tex="x" />-coordinate 1, so its equation is <Katex tex="x=1" />; every point on
+        the horizontal one has <Katex tex="y" />-coordinate 2, so its equation is <Katex tex="y=2" />.
       </>
     ),
   },
@@ -79,8 +98,14 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         The <Katex tex="y" />-intercept: substitute <Katex tex="x=0" /> and watch the double negative. Write it as{' '}
-        <Katex tex="(0,\,5)" />, with the <Katex tex="x" />-coordinate first; the report lists <Katex tex="(5,0)" /> as
-        a common error.
+        <Katex tex="(0,\,5)" />, with the <Katex tex="x" />-coordinate first.
+      </>
+    ),
+    more: (
+      <>
+        The report lists <Katex tex="(5,0)" /> for the <Katex tex="y" />-intercept among the most common errors. That
+        point is on the <Katex tex="x" />-axis, 5 units right of the origin; a <Katex tex="y" />-intercept always has{' '}
+        <Katex tex="x" />-coordinate 0.
       </>
     ),
   },
@@ -88,9 +113,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="2-\frac{3}{x-1} = 0 \implies \frac{3}{x-1} = 2 \implies x-1 = \frac32" />,
     reason: (
       <>
-        The <Katex tex="x" />-intercept: set <Katex tex="f(x)=0" />, then multiply both sides by{' '}
-        <Katex tex="x-1" /> and divide by 2. Now <em>add the 1 back</em> — stopping at <Katex tex="\tfrac32" /> gives
-        the <Katex tex="x" />-intercept the report lists among the most common errors.
+        The <Katex tex="x" />-intercept: set <Katex tex="f(x)=0" /> and move the fraction to the other side, then
+        multiply both sides by <Katex tex="x-1" /> and divide by 2. This gives <Katex tex="x-1" />, not yet{' '}
+        <Katex tex="x" />.
+      </>
+    ),
+    more: (
+      <>
+        The report lists the <Katex tex="x" />-intercept labelled <Katex tex="\left(\tfrac32,0\right)" /> among the most
+        common errors — the answer you get by stopping at this line.
       </>
     ),
   },
@@ -98,8 +129,9 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="x = \frac52 \implies \left(\tfrac52,\,0\right)" />,
     reason: (
       <>
-        It is on the right branch, which climbs from below the <Katex tex="x" />-axis towards <Katex tex="y=2" />. The
-        left branch stays above <Katex tex="y=2" />, so it has no <Katex tex="x" />-intercept.
+        Add 1 to both sides. This intercept is on the right branch, which climbs from below the{' '}
+        <Katex tex="x" />-axis towards <Katex tex="y=2" />; the left branch stays above <Katex tex="y=2" />, so it has
+        no <Katex tex="x" />-intercept.
       </>
     ),
   },
@@ -113,7 +145,20 @@ const ROWS_A: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Draw both asymptotes dashed and labelled, mark both intercepts with their coordinates, then draw each branch bending towards its two asymptotes. The report's general comments stress that hyperbolas must show asymptotic behaviour, approaching but never crossing the asymptotes.</>,
+    reason: (
+      <>
+        Draw both asymptotes dashed and labelled with their equations, mark both intercepts with their coordinates, then
+        draw each branch bending towards its two asymptotes without ever crossing them.
+      </>
+    ),
+    more: (
+      <>
+        The report&apos;s general comments stress that hyperbolas must show asymptotic behaviour, the graph moving
+        toward but never intersecting the asymptotes. They also warn that faint or dashed lines, such as asymptotes,
+        can be hard to see on a scanned script — so draw them firmly — and encourage students to use the grid
+        provided, here to place <Katex tex="(0,\,5)" /> and <Katex tex="\left(\tfrac52,\,0\right)" /> accurately.
+      </>
+    ),
   },
 ]
 
@@ -122,8 +167,9 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} f(x) = 1 \implies 2-\frac{3}{x-1} &= 1 \\ \frac{3}{x-1} &= 1 \\ x-1 = 3 \implies x &= 4 \end{aligned}" />,
     reason: (
       <>
-        Start with the boundary: where the curve <em>meets</em> the line <Katex tex="y=1" />. This gives one crossing
-        point only; which <Katex tex="x" />-values satisfy the inequality is then read off the sketch from part a.
+        Start with the boundary: where the curve <em>meets</em> the line <Katex tex="y=1" />. This is its only
+        crossing, but the graph can also switch sides of <Katex tex="y=1" /> where it breaks at the asymptote{' '}
+        <Katex tex="x=1" />, so check each branch on the sketch from part a.
       </>
     ),
   },
@@ -143,13 +189,19 @@ const ROWS_B: WorkingRow[] = [
       <>
         For <Katex tex="x<1" />, <Katex tex="x-1" /> is negative, so <Katex tex="\tfrac{3}{x-1}" /> is negative and{' '}
         <Katex tex="f(x) = 2-(\text{negative}) > 2" />. On the sketch the whole left branch sits above the horizontal
-        asymptote, so none of these <Katex tex="x" />-values work, even though they are all less than 4. The report
-        notes many students did not use their graph this way and erroneously gave <Katex tex="(-\infty,4]" />. That is
-        the answer you get by treating the inequation like an equation: rearranging to{' '}
-        <Katex tex="\tfrac{3}{x-1}\ge1" /> and multiplying both sides by <Katex tex="x-1" /> gives{' '}
-        <Katex tex="3 \ge x-1" />, so <Katex tex="x\le4" />. But multiplying by <Katex tex="x-1" /> keeps the{' '}
-        <Katex tex="\ge" /> sign only when <Katex tex="x-1" /> is positive, which is false for every{' '}
-        <Katex tex="x<1" />.
+        asymptote, so none of these <Katex tex="x" />-values work, even though they are all less than 4.
+      </>
+    ),
+    more: (
+      <>
+        The report notes many students did not use their graph from part a. and erroneously gave{' '}
+        <Katex tex="(-\infty,4]" />. That is the answer you get by rearranging to <Katex tex="\tfrac{3}{x-1}\ge1" />{' '}
+        and multiplying both sides by <Katex tex="x-1" /> without checking its sign: <Katex tex="3 \ge x-1" />, so{' '}
+        <Katex tex="x\le4" />. Multiplying by <Katex tex="x-1" /> keeps the <Katex tex="\ge" /> sign only when{' '}
+        <Katex tex="x-1" /> is positive. For <Katex tex="x>1" /> it is, and <Katex tex="x\le4" /> together with{' '}
+        <Katex tex="x>1" /> gives <Katex tex="1<x\le4" />. For <Katex tex="x<1" /> it is negative, so the sign flips:{' '}
+        <Katex tex="3 \le x-1" />, i.e. <Katex tex="x\ge4" />, which no <Katex tex="x<1" /> satisfies. Done carefully,
+        the algebra agrees with the sketch.
       </>
     ),
   },
@@ -158,8 +210,12 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Or <Katex tex="(1,4]" />. Open at 1 because <Katex tex="f(1)" /> does not exist (1 is not in the domain);
-        closed at 4 because <Katex tex="f(4)=1" /> and the inequality allows equality. Spot-check one{' '}
-        <Katex tex="x" />-value from each piece: <Katex tex="f(2)=2-3=-1\le1" /> ✓ (inside),{' '}
+        closed at 4 because <Katex tex="f(4)=1" /> and the inequality allows equality.
+      </>
+    ),
+    more: (
+      <>
+        Spot-check one <Katex tex="x" />-value from each piece: <Katex tex="f(2)=2-3=-1\le1" /> ✓ (inside),{' '}
         <Katex tex="f(5)=\tfrac54>1" /> ✓ (outside), and <Katex tex="f(0)=5>1" /> ✓ (outside).
       </>
     ),
@@ -172,21 +228,6 @@ export default function MethodsQ3_2023Exam1() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
         <p className="font-semibold text-gray-900 dark:text-white">Question 3 (4 marks)</p>
       </div>
-
-      <DetailOnly>
-        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
-          <Background>
-            <p>
-              Part b. is worth one mark, and 62% of students scored 0 on it. The key is the first
-              word of part a.: <em>sketch</em>. Solving{' '}
-              <Katex tex="f(x)=1" /> gives the single value <Katex tex="x=4" />; only the
-              picture tells you which side of it — and which branch — actually satisfies the
-              inequality. A hyperbola has two branches, and an inequality can hold on one and fail
-              on the other.
-            </p>
-          </Background>
-        </div>
-      </DetailOnly>
 
       <PartCard
         letter="a"
@@ -215,6 +256,16 @@ export default function MethodsQ3_2023Exam1() {
         }
         examinerReport={EXAM_B}
       >
+        <Background>
+          <p>
+            <Katex tex="f(x)\le1" /> asks for the <Katex tex="x" />-values where the graph is <em>on or below</em> the
+            horizontal line <Katex tex="y=1" />. A graph can get from one side of that line to the other in only two
+            ways: by crossing it, or by breaking at a vertical asymptote, where one branch ends and the next begins —
+            possibly on the other side of the line, without ever touching it. Between those points the graph stays on
+            one side, so the answer is built piece by piece: mark the crossings and the asymptotes, then decide each
+            piece from the sketch (or by testing one <Katex tex="x" />-value in it).
+          </p>
+        </Background>
         <WorkingTable rows={ROWS_B} />
         <Explore title="Only the right-hand branch ever comes down to y = 1">
           <BranchesWidget />

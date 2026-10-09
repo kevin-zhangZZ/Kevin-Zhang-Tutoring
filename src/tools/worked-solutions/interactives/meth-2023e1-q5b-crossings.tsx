@@ -4,7 +4,8 @@
 // (−19π/6 is just past −3π = −18π/6) and n = 1 (13π/6 is just past 2π = 12π/6) land outside,
 // and the extra half revolution −3π < k < −2π adds nothing because sin(k) is negative there.
 // A toggle shows part a.'s common slip (cos as the antiderivative of sin, giving −1/2) turning
-// the equation into sin(k) = 3/2, a line that never meets the curve.
+// the equation into sin(k) = 3/2, a line that never meets the curve. A key (top-left) says
+// green dots are answers and grey dots are outside the domain; the current n's pair is enlarged.
 
 import { useState } from 'react'
 import { Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, Toggle } from './kit'
@@ -16,6 +17,11 @@ const NS = [-2, -1, 0, 1]
 // The view: one revolution beyond each end of the domain, so n = −2 and n = 1 show up outside it.
 const XL = -4 * PI - 0.3
 const XR = 3 * PI + 0.6
+// Key for the dots, top-left (above the curve, which never passes 1).
+const KEY = [
+  { y: 1.8, color: C.good, text: 'an answer (inside the domain)' },
+  { y: 1.5, color: C.guide, text: 'outside the domain' },
+]
 
 /** Numerator of k/(π/6) for the two families: π/6 + 2nπ and 5π/6 + 2nπ. */
 const nums = (n: number): [number, number] => [1 + 12 * n, 5 + 12 * n]
@@ -96,6 +102,11 @@ export default function Crossings() {
         <Line.Segment point1={[LO, -1.45]} point2={[LO, 2]} color={C.guide} style="dashed" weight={2} />
         <Line.Segment point1={[HI, -1.45]} point2={[HI, 2]} color={C.guide} style="dashed" weight={2} />
         <Label at={[LO, -1.3]} attach="e" size={12} gap={5}>−3π &lt; k &lt; 2π</Label>
+        {!wrong &&
+          KEY.map(({ y, color, text }) => [
+            <Label key={`dot${y}`} at={[XL, y]} attach="e" size={14} gap={6} color={color}>●</Label>,
+            <Label key={`txt${y}`} at={[XL, y]} attach="e" size={12} gap={20}>{text}</Label>,
+          ])}
         <Plot.OfX y={Math.sin} domain={[XL, XR]} color={C.f} weight={3} />
         <Label at={[2.5 * PI, 1]} color={C.f} attach="n">sin(k)</Label>
         {[-4, -3, -2, -1, 0, 1, 2, 3].map(m => (

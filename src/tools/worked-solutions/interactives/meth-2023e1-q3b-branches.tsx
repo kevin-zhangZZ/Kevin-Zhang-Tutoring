@@ -2,11 +2,11 @@
 // Slide x across both branches: the test point on the curve is green when f(x) ≤ 1 and red when
 // not. Every x left of the asymptote x = 1 gives f(x) > 2, the curve is undefined at x = 1, it
 // is below y = 1 from the asymptote up to x = 4, and above it again after 4, so the answer is
-// (1, 4]. A toggle shows the popular wrong answer (−∞, 4] (from treating the inequation like an
-// equation): the red part of that interval sits under the left branch, where nothing works.
+// (1, 4]. A toggle shows the popular wrong answer (−∞, 4] (from multiplying by x − 1 without checking its
+// sign): the red part of that interval sits under the left branch, where nothing works.
 
 import { useState } from 'react'
-import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, clamp, num } from './kit'
+import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, clamp, num, tick } from './kit'
 
 const f = (x: number) => 2 - 3 / (x - 1)
 const X_MIN = -3
@@ -90,7 +90,8 @@ export default function Branches() {
 
   return (
     <div>
-      <Plane x={[X_MIN, X_MAX]} y={[-4, 6]} height={340}>
+      {/* The top tick (6) is left unnumbered so it does not sit under the axis name y. */}
+      <Plane x={[X_MIN, X_MAX]} y={[-4, 6]} height={340} yLabels={v => (v > 5.5 ? '' : tick(v))}>
         <Line.Segment point1={[1, Y_LO]} point2={[1, Y_HI]} color={C.guide} style="dashed" weight={2} />
         <Line.Segment point1={[X_MIN - 1, 2]} point2={[X_MAX + 1, 2]} color={C.guide} style="dashed" weight={2} />
         <Line.Segment point1={[X_MIN - 1, 1]} point2={[X_MAX + 1, 1]} color={C.g} weight={2.5} />

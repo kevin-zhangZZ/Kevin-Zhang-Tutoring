@@ -3,12 +3,14 @@
 // lower region (line minus parabola, length a − a²); its reflection is a horizontal strip across
 // the upper region at height a, with exactly the same length. Every strip has a twin, so the
 // areas are equal and A = 2∫₀¹(x − x²)dx = 1/3. A toggle shows the report's other error,
-// ∫₋₁¹(f − f⁻¹)dx, which ignores y = −x and measures a different region (≈ 0.55).
+// ∫₋₁¹(f − f⁻¹)dx, which ignores y = −x and gives a signed value between f and f⁻¹ (≈ 0.55):
+// +1 on [−1, 0], −0.448 on [0, 1], where f⁻¹ is above f. x tick numbers beyond ±1.5 are hidden
+// (equalScale widens the view on desktop and the −2 label was clipped at the edge).
 
 import { useState } from 'react'
 import {
   Buttons, C, Controls, Label, Line, M, Notice, Plane, PlayButton, Plot, Point, Polygon, Readout, Readouts, Region, Slider,
-  Toggle, integrate, num, usePlayer,
+  Toggle, integrate, num, tick, usePlayer,
 } from './kit'
 
 const f = (x: number) => x * x - 2 * x
@@ -52,16 +54,18 @@ export default function TwinStrips() {
       <Notice>
         The blue strip at <M>x = a</M> runs from the parabola up to the line, so its length is{' '}
         <M>{'-a - (a^2 - 2a) = a - a^2'}</M>. Reflect it in <M>y = x</M> and it becomes the orange strip at height{' '}
-        <M>y = a</M>, from <M>{'f^{-1}'}</M> across to the line: same length, because a reflection keeps lengths and
-        the line <M>y = -x</M> lands back on itself. Press play: every strip has a twin, so the two regions have equal
-        areas.
+        <M>y = a</M>, from <M>{'f^{-1}'}</M> (at <M>{'x = f(a)'}</M>, since <M>{'f^{-1}(f(a)) = a'}</M>) across to the line (at{' '}
+        <M>x = -a</M>): same length, because a reflection keeps lengths and
+        the line <M>y = -x</M> lands back on itself. Press &ldquo;Sweep from 0 to 1&rdquo;: every strip has a twin, so the
+        two regions have equal areas. Then press &ldquo;What if I integrate f − f⁻¹ from −1 to 1?&rdquo; to see what
+        the report&apos;s other error measures instead.
       </Notice>
     )
   }
 
   return (
     <div>
-      <Plane x={[-1.3, 1.5]} y={[-1.3, 1.6]} equalScale height={480}>
+      <Plane x={[-1.3, 1.5]} y={[-1.3, 1.6]} equalScale height={480} xLabels={v => (Math.abs(v) > 1.5 ? '' : tick(v))}>
         {wrong ? (
           <Region top={x => Math.max(f(x), fInv(x))} bottom={x => Math.min(f(x), fInv(x))} from={-1} to={1} color={C.bad} opacity={0.22} />
         ) : (
