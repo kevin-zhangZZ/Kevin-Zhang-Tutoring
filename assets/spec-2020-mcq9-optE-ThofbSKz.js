@@ -1,0 +1,1 @@
+const s="/Kevin-Zhang-Tutoring/assets/spec-2020-mcq9-optA-BGwV2gcg.png",n="/Kevin-Zhang-Tutoring/assets/spec-2020-mcq9-optB-Bn8j4C1G.png",t="/Kevin-Zhang-Tutoring/assets/spec-2020-mcq9-optC-sMFN3auP.png",o="/Kevin-Zhang-Tutoring/assets/spec-2020-mcq9-optD-BYobl-CP.png",p="/Kevin-Zhang-Tutoring/assets/spec-2020-mcq9-optE-CuNh4HxI.png";export{n as a,t as b,o as c,p as d,s as o};
