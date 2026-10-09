@@ -1,6 +1,7 @@
 // 2022 Methods Exam 1 Q4c — an area model of the four draws with Pr(red) = 2/3. Across: the first
 // card (blue strip 1/3 wide, red strip 2/3 wide). Down: the eight orders of the next three cards,
-// each band as tall as its probability (RRR 8/27 … BBB 1/27). "Given the first card is blue" means
+// each band as tall as its probability (RRR 8/27 … BBB 1/27, labelled outside the square so they
+// read as band heights, not as the areas of the red cells). "Given the first card is blue" means
 // keep only the blue strip, so the answer is the shaded fraction of that strip:
 // (1/3 × 12/27) ÷ 1/3 = 4/9 — the same 4/9 of the height the matching bands fill in the red strip,
 // which is why the condition is irrelevant. Buttons switch to the slips the examiners' report
@@ -21,10 +22,11 @@ const SEQS: [string, number][] = [
 const TWO_RED = ['RRB', 'RBR', 'BRR']
 const U = 12 // px per 1/27 of height
 const H = 27 * U
-const W = 288 // whole square width; the blue strip is W/3
+const W = 270 // whole square width; the blue strip is W/3
 const X0 = 46
 const Y0 = 26
-const VW = X0 + W + 6
+const LBL = 40 // label column right of the square: each band's height (not a cell's area)
+const VW = X0 + W + LBL
 const VH = Y0 + H + 22
 
 const OUTLINE: Record<Mode, number> = { right: W / 3, nodiv: W, half: W / 2, rrb: W / 3 }
@@ -91,7 +93,7 @@ export default function BlueStrip() {
         <text x={X0 - 6} y={top + h / 2 + 4} textAnchor="end" fontSize={11} className="fill-gray-600 dark:fill-gray-300">
           {seq}
         </text>
-        <text x={X0 + W - 6} y={top + h / 2 + 3.5} textAnchor="end" fontSize={10} className="fill-gray-500 dark:fill-gray-400">
+        <text x={X0 + W + 5} y={top + h / 2 + 3.5} textAnchor="start" fontSize={10} className="fill-gray-500 dark:fill-gray-400">
           {n}/27
         </text>
       </g>
@@ -103,7 +105,7 @@ export default function BlueStrip() {
       <div className="flex flex-col items-center gap-1">
         <div className="text-[12px] text-gray-500 dark:text-gray-400 text-center max-w-[360px]">
           Across: the <b>first</b> card. Down: the <b>next three</b> cards, each band as tall as its
-          probability. Area = probability.
+          probability (heights on the right). Area = probability.
         </div>
         <svg viewBox={`0 0 ${VW} ${VH}`} className="w-full max-w-[360px]" role="img" aria-label="Area model of the first card and the next three cards">
           <text x={X0 + W / 6} y={Y0 - 8} textAnchor="middle" fontSize={11.5} fontWeight={600} fill={BLUE}>
@@ -114,6 +116,9 @@ export default function BlueStrip() {
           </text>
           <text x={X0 - 6} y={Y0 - 8} textAnchor="end" fontSize={10.5} className="fill-gray-500 dark:fill-gray-400">
             next 3
+          </text>
+          <text x={X0 + W + 5} y={Y0 - 8} textAnchor="start" fontSize={10.5} className="fill-gray-500 dark:fill-gray-400">
+            height
           </text>
           {bands}
           <rect x={X0} y={Y0} width={W} height={H} fill="none" className="stroke-gray-400 dark:stroke-gray-500" strokeWidth={1} />
@@ -180,7 +185,9 @@ export default function BlueStrip() {
             Only one order is shaded. "Exactly two of the next three red" can happen as RRB, RBR or BRR,
             and all three bands are the same height <M>{'\\tfrac{4}{27}'}</M>, so{' '}
             <M>{'\\Pr(RRB)=\\tfrac{4}{27}'}</M> is only a third of the answer. The{' '}
-            <M>{'\\binom32=3'}</M> in the binomial counts the three orders.
+            <M>{'\\binom32=3'}</M> in the binomial counts the three orders. ("Don't divide" also gives{' '}
+            <M>{'\\tfrac{4}{27}'}</M>, but that is a different slip: all three orders, with the first card's{' '}
+            <M>{'\\tfrac13'}</M> left in.)
           </Notice>
         )}
       </Controls>

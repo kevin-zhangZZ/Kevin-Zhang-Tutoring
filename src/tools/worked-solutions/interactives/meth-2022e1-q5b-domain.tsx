@@ -3,8 +3,9 @@
 // (x − 3)(x + 1), and the dot on the parabola is above the axis (both factors the same sign, so
 // f(x) has a value) only for x < −1 or x > 3. At the roots the quadratic is 0 and the graph of f
 // dives down an asymptote, so −1 and 3 are left out. The domain is two separate pieces, marked
-// green on the x-axis. A toggle draws the two pieces as rays at different heights: the dashed line
-// at x never meets both at once, which is why (−∞, −1) ∩ (3, ∞), the common error in the report,
+// green on the x-axis (the tick numbers −1 and 3 are drawn above the axis, clear of the open
+// circles). A toggle draws the two pieces as rays at different heights: the point on the x-axis is
+// never above both at once, which is why (−∞, −1) ∩ (3, ∞), the common error in the report,
 // is the empty set and the answer needs ∪.
 
 import { useState } from 'react'
@@ -44,7 +45,7 @@ export default function DomainWidget() {
     notice = (
       <Notice tone="warn">
         <M>\cap</M> means &ldquo;in <b>both</b> sets at once&rdquo;. The purple rays are <M>{'x<-1'}</M> and{' '}
-        <M>{'x>3'}</M>: drag <M>x</M> anywhere and the dashed line meets at most one of them. So{' '}
+        <M>{'x>3'}</M>: wherever you drag the point on the <M>x</M>-axis, at most one purple ray is directly below it. So{' '}
         <M>{'(-\\infty,-1)\\cap(3,\\infty)'}</M> is the empty set, which would say <M>f</M> has no domain at all. The
         domain is every <M>x</M> in <b>either</b> piece, and &ldquo;either&rdquo; is <M>\cup</M>.
       </Notice>
@@ -87,7 +88,7 @@ export default function DomainWidget() {
 
   return (
     <div>
-      <Plane x={[X0, X1]} y={[Y0, Y1]} xStep={1} yStep={2} height={340} yLabels={v => (v < Y0 ? '' : tick(v))}>
+      <Plane x={[X0, X1]} y={[Y0, Y1]} xStep={1} yStep={2} height={340} yLabels={v => (v < Y0 ? '' : tick(v))} xLabels={v => (Math.abs(v + 1) < 1e-9 || Math.abs(v - 3) < 1e-9 ? '' : tick(v))}>
         <Region top={t => Math.max(q(t), 0)} bottom={() => 0} from={X0} to={-1} color={C.g} opacity={0.12} />
         <Region top={t => Math.max(q(t), 0)} bottom={() => 0} from={3} to={X1} color={C.g} opacity={0.12} />
         <Region top={() => 0} bottom={q} from={-1} to={3} color={C.bad} opacity={0.1} />
@@ -119,7 +120,9 @@ export default function DomainWidget() {
         <Point x={x} y={qx} color={qx > 0 ? C.g : C.bad} />
         {ok && <Point x={x} y={f(x)} color={C.f} />}
         <Label at={[1, -4]} attach="s" gap={10} color={C.g}>y = x² − 2x − 3</Label>
-        <Label at={[4.4, f(4.4)]} attach="s" color={C.f}>y = f(x)</Label>
+        <Label at={[4.4, 0]} attach="n" gap={10} color={C.f}>y = f(x)</Label>
+        <Label at={[-1, 0]} attach="ne" gap={9}>−1</Label>
+        <Label at={[3, 0]} attach="nw" gap={9}>3</Label>
         <MovablePoint point={[x, 0]} onMove={pt => onX(pt[0])} constrain={pt => [clamp(pt[0], LO, HI), 0]} color={dotColor} />
       </Plane>
       <Controls>

@@ -2,7 +2,7 @@
 // f(x) = 4 sin(πx/10) + 10, and Type B, g(x) = −x³/100 + 3x²/10 − 2x + 10). Every join puts the
 // right end (x = 20) of one tile against the left end (x = 0) of the next, so the four kinds of
 // join (AA, AB, BA, BB) compare f(20) or g(20) with f(0) or g(0) — which is why both ends of both
-// curves are needed (the report: many found only f(20) and g(20)). A toggle draws the gradients
+// curves are needed (the report: some found only f(20) and g(20)). A toggle draws the gradients
 // at the joins: at a mixed join they differ (f′(20) = 2π/5, g′(0) = −2), a corner, yet the
 // colours still meet at height 10 — Condition 2 asks for no gap, not for matching derivatives.
 
@@ -174,10 +174,9 @@ export default function TileJoins() {
         )}
         {!grad && mixed && (
           <Notice tone="good">
-            Each join puts the right end (<M>x = 20</M>) of one tile against the left end (<M>x = 0</M>) of the
-            next, so it needs one value from each tile. Finding only <M>f(20)</M> and <M>g(20)</M> checks just the
-            left side of every join. Since <M>f(0) = f(20) = g(0) = g(20) = 10</M>, every join lands on the dashed
-            line whatever the order: tap tiles, or try a random order.
+            Each readout pairs where one tile finishes (<M>x = 20</M>) with where the next one starts (
+            <M>x = 0</M>), and every value is 10, so every join lands on the dashed line. Tap tiles or try a random
+            order: it stays that way. Then show the gradients at the joins.
           </Notice>
         )}
         {grad && mixed && (

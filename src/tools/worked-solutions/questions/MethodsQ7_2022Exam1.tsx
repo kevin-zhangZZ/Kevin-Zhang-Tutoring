@@ -5,6 +5,10 @@
 // Part c has an Explore widget (interactives/meth-2022e1-q7c-joins.tsx): a row of tiles you can
 // switch between Type A and Type B, showing that every join pairs one tile's right end with the
 // next tile's left end (so all four endpoints are needed), and that the gradients need not match.
+// Part b (32% full marks) has no widget, by choice: the report says the marks were lost on the
+// written link (200 cm² explicitly shown to be half the 400 cm² tile, not ∫g dx = ½), which a
+// diagram can't fix; the last row's reason and `more` address it. Rows keep the essential "why"
+// in `reason` (Concise); report traps, checks and alternatives sit in `more` (Detailed only).
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
@@ -85,26 +89,42 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^{20}\sin\!\left(\frac{\pi x}{10}\right)dx = 0" />,
-    reason: <>Over one full period a sine wave has equal area above and below its axis, so this part adds nothing. (Check: an antiderivative is <Katex tex="-\tfrac{10}{\pi}\cos\!\left(\tfrac{\pi x}{10}\right)" />, and <Katex tex="\cos(2\pi)=\cos(0)=1" />, so the two ends cancel.)</>,
+    reason: <>Over one full period a sine wave has equal area above and below its axis, so this part adds nothing.</>,
+    more: <>Check by antidifferentiating: an antiderivative is <Katex tex="-\tfrac{10}{\pi}\cos\!\left(\tfrac{\pi x}{10}\right)" />, and <Katex tex="\cos(2\pi)=\cos(0)=1" />, so the values at the two ends cancel.</>,
   },
   {
     working: <Katex display tex="\text{area below } f = \int_0^{20}f(x)\,dx = 0+20a = 20a" />,
-    reason: <>The constant <Katex tex="a" /> integrates to <Katex tex="20a" />. So the area below the wave is the same as the area below the flat line <Katex tex="y=a" />: the bumps above <Katex tex="y=a" /> exactly fill the dips below it.</>,
+    reason: <>The constant <Katex tex="a" /> integrates to <Katex tex="20a" />. So the area below the wave equals the area below the flat line <Katex tex="y=a" />.</>,
+    more: <>Picture it: the bumps of the wave above <Katex tex="y=a" /> exactly fill its dips below <Katex tex="y=a" />, so the wave and the flat line enclose the same area.</>,
   },
   {
     working: <Katex display tex="20a = 200 \implies \boxed{a = 10}" />,
-    reason: <>Half of the 400 cm² from part a.i. So <Katex tex="a" /> is just the mid-height of the tile — for a 1-mark question this picture is all the working needed. The report notes some students found <Katex tex="a=6" />, erroneously writing <Katex tex="\sin(0)" /> or <Katex tex="\sin(2\pi)=1" />: in fact both are 0 (sine is 0 at every multiple of <Katex tex="\pi" />; it is <Katex tex="\cos(0)" /> that equals 1).</>,
+    reason: <>Half of the 400 cm² from part a.i.</>,
+    more: (
+      <>
+        So <Katex tex="a" /> is just the mid-height of the tile, half of its 20 cm height. The report notes
+        some students formed an integral for half the area, and advises letting the number of marks guide the
+        approach. The integral is written out above to show why the mid-height works; in the exam, for 1 mark,
+        you can go straight from 'one full wave per tile, so the bumps fill the dips' to{' '}
+        <Katex tex="a=10" />. The report also notes some students found{' '}
+        <Katex tex="a=6" />, erroneously writing <Katex tex="\sin(0)" /> or <Katex tex="\sin(2\pi)=1" />. In
+        fact both are 0 (sine is 0 at every multiple of <Katex tex="\pi" />); it is <Katex tex="\cos(0)" /> that
+        equals 1.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{shaded area} = \int_0^{20}g(x)\,dx" />,
-    reason: <>One colour is the region under <Katex tex="y=g(x)" /> from the left edge <Katex tex="x=0" /> to the right edge <Katex tex="x=20" />. The figure shows the curve stays inside the tile (above the bottom edge, below the top), so this integral is exactly that colour's area.</>,
+    reason: <>One colour is the region under <Katex tex="y=g(x)" />, from the left edge <Katex tex="x=0" /> to the right edge <Katex tex="x=20" />.</>,
+    more: <>The integral gives exactly this area because the curve stays inside the tile, above the bottom edge and below the top, as VCAA's figure shows. (Its turning points are at heights of about 6.2 and 13.8.)</>,
   },
   {
     working: <Katex display tex="= \int_0^{20}\left(-\frac{x^3}{100}+\frac{3x^2}{10}-2x+10\right)dx" />,
-    reason: <>Write the rule out in full, and keep the <Katex tex="dx" /> — the report notes the need to include it in the integral statement.</>,
+    reason: <>Write the rule out in full, and keep the <Katex tex="dx" />.</>,
+    more: <>The report notes most students recognised the need to include the 'dx' in the integral statement. In a 'show that' question, every line should be complete, correct mathematics.</>,
   },
   {
     working: <Katex display tex="= \left[-\frac{x^4}{400}+\frac{x^3}{10}-x^2+10x\right]_0^{20}" />,
@@ -120,7 +140,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{200 = \tfrac12\times400 = \tfrac12\ \text{area of tile}}" />,
-    reason: <>The marks hang on this last link: compare 200 with the tile's area of 400 cm² from part a.i — the report notes students needed to explicitly demonstrate this link. Both colours cover half the tile, so a Type B tile meets Condition 1. The <Katex tex="\tfrac12" /> is a fraction of the tile, not an area, so trying to show <Katex tex="\int_0^{20}g(x)\,dx=\tfrac12" /> (which the report notes some students did) proves the wrong thing. As required.</>,
+    reason: <>Write the link explicitly: 200 cm² is half the tile's 400 cm² from part a.i. So each colour covers half the tile, and a Type B tile meets Condition 1. As required.</>,
+    more: (
+      <>
+        The report notes students needed to explicitly demonstrate this link, so stopping at 200 cm² leaves the
+        'show that' unfinished. Note that the <Katex tex="\tfrac12" /> is a fraction of the tile, not an area:
+        some students incorrectly tried to show <Katex tex="\int_0^{20}g(x)\,dx=\tfrac12" />, which proves the
+        wrong thing, because the integral measures an area in cm².
+      </>
+    ),
   },
 ]
 
@@ -147,11 +175,21 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\text{AA}&: f(20)=f(0)\\ \text{AB}&: f(20)=g(0)\\ \text{BA}&: g(20)=f(0)\\ \text{BB}&: g(20)=g(0)\end{aligned}" />,
-    reason: <>Why all four values are needed: at every join the right edge (<Katex tex="x=20" />) of one tile meets the left edge (<Katex tex="x=0" />) of the next, and either tile could be Type A or Type B. That gives four kinds of join, and each compares a right endpoint with a left endpoint. The report notes some students found only <Katex tex="f(20)" /> and <Katex tex="g(20)" /> — that shows where each tile finishes, but not where the next one starts.</>,
+    reason: <>At every join, the right edge (<Katex tex="x=20" />) of one tile meets the left edge (<Katex tex="x=0" />) of the next, and either tile could be Type A or Type B. That gives four kinds of join (AB means a Type A tile followed by a Type B tile), which together use all four endpoint values.</>,
+    more: <>The report notes some students took 'endpoints' to mean only the right-hand end of each tile, finding only <Katex tex="f(20)" /> and <Katex tex="g(20)" />. That shows where each tile finishes, but not where the next one starts, so it checks only one side of each join.</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{gathered}f(0)=f(20)=g(0)=g(20)=10\\ \text{so the tiles join up in any order}\end{gathered}}" />,
-    reason: <>All four values are equal, so every join in the list above holds: the boundary leaves one tile at height 10 and enters the next at height 10, with no jump. Inside each tile the curve has no breaks (sine and polynomial graphs are continuous), so Type A and Type B tiles can go in any order and the colours form a continuous pattern — Condition 2 is met. The gradients don't have to match: at an AB join <Katex tex="f'(20)=\tfrac{2\pi}{5}" /> but <Katex tex="g'(0)=-2" />, so there is a corner but no gap. The report notes that proving the derivatives equal was not the intention of the question.</>,
+    reason: <>All four values are equal, so at every join the boundary leaves one tile at height 10 and enters the next at height 10, with no jump. The curves have no breaks inside a tile, so Type A and Type B tiles can go in any order — Condition 2 is met.</>,
+    more: (
+      <>
+        Why no breaks inside a tile: sine graphs and polynomial graphs are continuous everywhere, so a gap
+        could only ever appear at a join, and the four values above rule that out. The gradients don't have to match: at an AB join{' '}
+        <Katex tex="f'(20)=\tfrac{2\pi}{5}" /> but <Katex tex="g'(0)=-2" />, so the boundary has a corner there
+        but no gap. The report notes some students tried to prove the derivatives were equal at the endpoints,
+        which was not the intention of the question (and, as this AB join shows, is not always true).
+      </>
+    ),
   },
 ]
 

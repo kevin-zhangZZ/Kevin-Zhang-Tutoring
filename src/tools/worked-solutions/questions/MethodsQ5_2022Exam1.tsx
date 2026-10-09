@@ -3,7 +3,13 @@
 // paper. Answers checked with sympy and against the VCAA examination report. Solution is
 // original. Part b (27% full marks) has an interactive, meth-2022e1-q5b-domain: drag x to see
 // that the quadratic inside the log is positive only for x < −1 or x > 3, and a toggle shows
-// why writing the two pieces with ∩ gives the empty set.
+// why writing the two pieces with ∩ gives the empty set. Concise/Detailed review (9 Oct 2026):
+// widget kept (it shows exactly the report's two issues: reading the domain off the factors, and
+// ∪ vs ∩); reasons trimmed to what a student needs, with the report's traps, checks and the
+// "why log needs a positive input" explanation moved into each row's `more`. The report's "100
+// as 1010" is VCAA's own typesetting of 10^10 and is kept verbatim. Final review (9 Oct): b's
+// `more` no longer restates the report or the widget's sign Notice; widget tick labels −1/3 moved
+// clear of the open circles and the ∩ Notice refers to the draggable point, not a dashed line.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -37,8 +43,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="10^{3x-13} = 100 = 10^2" />,
     reason: (
       <>
-        Write both sides as powers of the same base, so no logarithms are needed.{' '}
-        <Katex tex="100 = 10\times10 = 10^2" />, not <Katex tex="10^{10}" /> (a slip the examiners noted).
+        Write both sides as powers of the same base, 10, so no logarithms are needed:{' '}
+        <Katex tex="100 = 10\times10 = 10^2" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes that some students wrote 100 as <Katex tex="10^{10}" />. But <Katex tex="10^{10}" /> is 10
+        multiplied by itself ten times, a 1 followed by ten zeros. The power counts the zeros:{' '}
+        <Katex tex="100" /> has two, so it is <Katex tex="10^2" />.
       </>
     ),
   },
@@ -48,7 +61,12 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3x = 15 \implies \boxed{x = 5}" />,
-    reason: <>Add 13 to both sides, then divide by 3. Check: <Katex tex="10^{3(5)-13}=10^2=100" />.</>,
+    reason: <>Add 13 to both sides, then divide by 3.</>,
+    more: (
+      <>
+        Check by substituting back: <Katex tex="10^{3(5)-13}=10^{2}=100" />.
+      </>
+    ),
   },
 ]
 
@@ -58,24 +76,50 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         The maximal domain is every <Katex tex="x" /> for which <Katex tex="f(x)" /> can be calculated.{' '}
-        <Katex tex="\log_e" /> only accepts positive inputs, so the quadratic inside it must be strictly greater than
-        zero: <Katex tex="\log_e(0)" /> is undefined too.
+        <Katex tex="\log_e" /> only accepts positive inputs (<Katex tex="\log_e(0)" /> is undefined too), so the
+        quadratic inside it must be <Katex tex=">0" />.
+      </>
+    ),
+    more: (
+      <>
+        Why only positive inputs? <Katex tex="\log_e(a)" /> is the power you raise <Katex tex="e" /> to in order to
+        get <Katex tex="a" />. Every power of <Katex tex="e" /> is positive (<Katex tex="e^{y}>0" /> for every{' '}
+        <Katex tex="y" />), so no power of <Katex tex="e" /> gives 0 or a negative number, and{' '}
+        <Katex tex="\log_e(a)" /> has no value unless <Katex tex="a>0" />.
       </>
     ),
   },
   {
     working: <Katex display tex="x^2-2x-3 = (x-3)(x+1)" />,
-    reason: <>Factorising: <Katex tex="-3\times1=-3" /> and <Katex tex="-3+1=-2" />.</>,
+    reason: (
+      <>
+        Find two numbers that multiply to <Katex tex="-3" /> and add to <Katex tex="-2" />: they are{' '}
+        <Katex tex="-3" /> and <Katex tex="1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="(x-3)(x+1)>0 \iff x<-1 \text{ or } x>3" />,
     reason: (
       <>
-        Sketch <Katex tex="y=(x-3)(x+1)" />: an upright parabola cutting the <Katex tex="x" />-axis at{' '}
-        <Katex tex="-1" /> and <Katex tex="3" />. It is above the axis (positive) to the left of <Katex tex="-1" /> and
-        to the right of <Katex tex="3" />, and below the axis between them. Test a point to be sure:{' '}
-        <Katex tex="x=0" /> gives <Katex tex="(-3)(1)=-3<0" />, so the middle is excluded. At <Katex tex="x=-1" /> and{' '}
-        <Katex tex="x=3" /> the quadratic equals 0, which is not greater than 0, so the roots are excluded too.
+        Sketch <Katex tex="y=(x-3)(x+1)" />: an upright parabola (the <Katex tex="x^2" /> term is positive) cutting
+        the <Katex tex="x" />-axis at <Katex tex="-1" /> and <Katex tex="3" />. It is above the axis (positive) only to the left of{' '}
+        <Katex tex="-1" /> and to the right of <Katex tex="3" />. At <Katex tex="-1" /> and <Katex tex="3" /> it
+        equals 0, which is not greater than 0, so those two values are left out.
+      </>
+    ),
+    more: (
+      <>
+        <p>
+          This is the step the report says many students missed: they factorised, but couldn&apos;t turn the factors
+          into the domain. The sketch is what does that.
+        </p>
+        <p>
+          Check with a test point in each region. Middle: <Katex tex="x=0" /> gives{' '}
+          <Katex tex="(0-3)(0+1)=-3<0" />, so the middle is excluded. Outside: <Katex tex="x=4" /> gives{' '}
+          <Katex tex="(1)(5)=5>0" /> and <Katex tex="x=-2" /> gives <Katex tex="(-5)(-1)=5>0" />, so both outer
+          pieces are included.
+        </p>
       </>
     ),
   },
@@ -84,10 +128,18 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Round brackets because <Katex tex="-1" /> and <Katex tex="3" /> are not included. The domain is every{' '}
-        <Katex tex="x" /> in <em>either</em> piece, so join them with a union, <Katex tex="\cup" />. An
-        intersection, <Katex tex="\cap" />, means &ldquo;in both at once&rdquo;, and no <Katex tex="x" /> is both less
-        than <Katex tex="-1" /> and greater than 3, so <Katex tex="\cap" /> gives the empty set. Equivalently, the
-        domain is <Katex tex="R\setminus[-1,3]" />.
+        <Katex tex="x" /> in <em>either</em> piece, so the two pieces are joined with a union,{' '}
+        <Katex tex="\cup" /> (&ldquo;or&rdquo;).
+      </>
+    ),
+    more: (
+      <>
+        The common error in the report was writing an intersection, <Katex tex="\cap" />, instead (the interval the
+        report prints, with <Katex tex="\cup" />, is the correct answer). But{' '}
+        <Katex tex="\cap" /> means &ldquo;in both at once&rdquo;, and no <Katex tex="x" /> is both less than{' '}
+        <Katex tex="-1" /> and greater than 3, so <Katex tex="(-\infty,-1)\cap(3,\infty)" /> is the empty set: it
+        would say <Katex tex="f" /> has no domain at all. Another correct way to write the answer is{' '}
+        <Katex tex="R\setminus[-1,3]" />, every real number except those from <Katex tex="-1" /> to 3 inclusive.
       </>
     ),
   },

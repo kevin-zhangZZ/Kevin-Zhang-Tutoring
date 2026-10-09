@@ -73,22 +73,25 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A\!\left(\tfrac\pi3\right) = \tfrac\pi3\times\tfrac{\sqrt3}{2} = \boxed{\frac{\sqrt3\,\pi}{6}}" />,
-    reason: <>Multiply the numerators and the denominators to get one fraction (about 0.91). The report notes responses such as <Katex tex="\left(\tfrac\pi3\right)\sin\tfrac\pi3" /> and <Katex tex="\tfrac\pi3\times\tfrac{\sqrt3}{2}" /> needed to be simplified.</>,
+    reason: <>Multiply the numerators and the denominators to give one simplified fraction.</>,
+    more: <>Don&apos;t stop a step early: the report notes responses such as <Katex tex="\left(\tfrac\pi3\right)\sin\tfrac\pi3" /> and <Katex tex="\tfrac\pi3\times\tfrac{\sqrt3}{2}" /> needed to be simplified. As a decimal the area is about 0.91.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="A(k) = \int_0^k f(x)\,dx" />,
-    reason: <><Katex tex="A(k)" /> is the area under <Katex tex="f" /> from <Katex tex="x=0" /> to <Katex tex="x=k" />. The graph shows <Katex tex="f" /> above the <Katex tex="x" />-axis there, so that area is just this integral.</>,
+    reason: <>In the graph the shaded region runs from the origin, where the curve starts, to the line <Katex tex="x=k" />, with <Katex tex="f" /> above the <Katex tex="x" />-axis. So its area <Katex tex="A(k)" /> is this integral from 0 to <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="\implies A'(k) = f(k)" />,
-    reason: <>The fundamental theorem of calculus: differentiating an integral with respect to its upper terminal gives back the function at that terminal. So when you are given an area function and asked about the curve, differentiate the area function. The report notes the question relied on this link.</>,
+    reason: <>The fundamental theorem of calculus: differentiating an integral with respect to its upper terminal gives back the function at that terminal. So to get the curve <Katex tex="f" /> from the area function <Katex tex="A" />, differentiate <Katex tex="A" />.</>,
+    more: <>This is the step the whole part hangs on: the report notes the question relied on linking <Katex tex="f(k)=A'(k)" />. Why it is true: move the right edge from <Katex tex="k" /> to a slightly bigger <Katex tex="k+h" />. The extra area <Katex tex="A(k+h)-A(k)" /> is a thin strip, almost a rectangle of width <Katex tex="h" /> and height <Katex tex="f(k)" />, so <Katex tex="\tfrac{A(k+h)-A(k)}{h}\approx f(k)" />. As <Katex tex="h" /> shrinks to 0 the left side becomes <Katex tex="A'(k)" /> (that is the definition of the derivative) and the approximation becomes exact. The diagram below lets you shrink the strip and watch this happen.</>,
   },
   {
     working: <Katex display tex="f(k) = \frac{d}{dk}\bigl(k\sin(k)\bigr) = \sin(k)+k\cos(k)" />,
-    reason: <><Katex tex="k\sin(k)" /> is a product of two factors that both change with <Katex tex="k" />, so use the <em>product</em> rule: <Katex tex="(1)\sin(k) + k\cos(k)" />. The report notes common incorrect solutions gave <Katex tex="k\cos(k)" />, which differentiates only the <Katex tex="\sin(k)" /> and treats the <Katex tex="k" /> in front as a constant.</>,
+    reason: <><Katex tex="k\sin(k)" /> is a product of two factors that both change with <Katex tex="k" />, so use the <em>product</em> rule with <Katex tex="u=k" /> and <Katex tex="v=\sin(k)" />: <Katex tex="u'v+uv' = (1)\sin(k) + k\cos(k)" />.</>,
+    more: <>The report notes common incorrect solutions gave the derivative of <Katex tex="A(k)" /> as <Katex tex="k\cos(k)" />. That differentiates only the <Katex tex="\sin(k)" /> and treats the <Katex tex="k" /> in front as a constant. But that <Katex tex="k" /> changes too, and its derivative (1) is what produces the <Katex tex="\sin(k)" /> term.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} f\!\left(\tfrac\pi3\right) &= \sin\!\left(\tfrac\pi3\right)+\tfrac\pi3\cos\!\left(\tfrac\pi3\right) \\ &= \tfrac{\sqrt3}{2}+\tfrac\pi3\times\tfrac12 \end{aligned}" />,
@@ -96,26 +99,30 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{\sqrt3}{2}+\frac{\pi}{6}}" />,
-    reason: <><Katex tex="\tfrac\pi3\times\tfrac12=\tfrac\pi6" />. Writing it as one fraction, <Katex tex="\tfrac{3\sqrt3+\pi}{6}" />, is equally correct. It is about 1.39, which fits the graph: <Katex tex="\tfrac\pi3\approx1.05" /> is very close to where <Katex tex="f" /> peaks (<Katex tex="x\approx1.08" />).</>,
+    reason: <><Katex tex="\tfrac\pi3\times\tfrac12=\tfrac\pi6" />.</>,
+    more: <>Writing it as one fraction, <Katex tex="\tfrac{3\sqrt3+\pi}{6}" />, is equally correct (the report gives both forms). As a decimal it is about 1.39. In the stem&apos;s graph, <Katex tex="x=\tfrac\pi3\approx1.05" /> is near the top of the hump, so this is close to the greatest height of <Katex tex="f" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average value over } [0,k] = \frac{1}{k}\int_0^k f(x)\,dx" />,
-    reason: <>The average value of <Katex tex="f" /> over <Katex tex="[a,b]" /> is <Katex tex="\tfrac{1}{b-a}\int_a^b f(x)\,dx" />: the height of the rectangle on <Katex tex="[a,b]" /> with the same area as under the curve. Here the interval is <Katex tex="[0,k]" />, so the terminals are 0 and <Katex tex="k" />, not 0 and 2 (<Katex tex="[0,2]" /> is only where <Katex tex="k" /> may lie), and <Katex tex="x" /> stays the variable of integration. It is the average <em>value</em>, not the average rate of change <Katex tex="\tfrac{f(k)-f(0)}{k}" />. The report flags each of these slips.</>,
+    reason: <>The average value of <Katex tex="f" /> over <Katex tex="[a,b]" /> is <Katex tex="\tfrac{1}{b-a}\int_a^b f(x)\,dx" />. The interval here is <Katex tex="x\in[0,k]" />, so <Katex tex="a=0" /> and <Katex tex="b=k" />.</>,
+    more: <>Picture it as the height of the rectangle on <Katex tex="[a,b]" /> with the same area as under the curve. The report flags three set-up slips. The terminals are 0 and <Katex tex="k" />, not 0 and 2: <Katex tex="[0,2]" /> only says where <Katex tex="k" /> may lie. Keep the letters apart: <Katex tex="x" /> is the variable of integration and <Katex tex="k" /> is the upper terminal (the report notes many students interchanged <Katex tex="k" /> and <Katex tex="x" />). And it is the average <em>value</em>, not the average rate of change <Katex tex="\tfrac{f(k)-f(0)}{k-0}" />.</>,
   },
   {
     working: <Katex display tex="= \frac{A(k)}{k} = \frac{k\sin(k)}{k} = \sin(k)" />,
-    reason: <><Katex tex="\int_0^k f(x)\,dx" /> is exactly the area <Katex tex="A(k)" /> we are given, so no integration is needed. Do not integrate <Katex tex="x\sin(x)" />: that is the area rule, not the curve <Katex tex="f" /> (the report notes some students did this). An average needs <Katex tex="k>0" />, so the <Katex tex="k" /> cancels.</>,
+    reason: <><Katex tex="\int_0^k f(x)\,dx" /> is exactly the area <Katex tex="A(k)" /> we are given, so no integration is needed. An interval needs some width, so <Katex tex="k>0" /> and the <Katex tex="k" /> cancels.</>,
+    more: <>Do not integrate <Katex tex="x\sin(x)" />: that is the area rule <Katex tex="A" /> with <Katex tex="x" /> written for <Katex tex="k" />, not the curve <Katex tex="f" />. The report notes some students tried to find <Katex tex="\tfrac1k\int_0^k x\sin(x)\,dx" /> this way.</>,
   },
   {
     working: <Katex display tex="\sin(k) \text{ is greatest when } k = \tfrac\pi2 \text{ on } [0,2]" />,
-    reason: <>The average value <Katex tex="\sin(k)" /> changes as <Katex tex="k" /> changes: <Katex tex="k" /> is the variable we choose. On <Katex tex="[0,2]" />, <Katex tex="\sin(k)" /> rises to its maximum of 1 at <Katex tex="k=\tfrac\pi2\approx1.57" />, which lies in <Katex tex="[0,2]" />, then falls. So no calculus is needed. Differentiating and solving <Katex tex="\cos(k)=0" /> gives the same answer, but the report notes this was unnecessary and often led to errors.</>,
+    reason: <><Katex tex="k" /> is a variable: each <Katex tex="k" /> gives a different interval <Katex tex="[0,k]" /> and so a different average <Katex tex="\sin(k)" />. We want the <Katex tex="k" /> that makes <Katex tex="\sin(k)" /> largest, and the sine graph reaches its maximum of 1 at <Katex tex="\tfrac\pi2" />.</>,
+    more: <>This is the point the report says some students missed. No calculus is needed, because you already know the shape of the sine graph: on <Katex tex="[0,2]" /> it rises to 1 at <Katex tex="k=\tfrac\pi2" />, then falls. Differentiating and solving <Katex tex="\cos(k)=0" /> gives the same answer, but the report notes this was unnecessary and often led to errors. If you do differentiate, <Katex tex="\cos(k)=0" /> gives <Katex tex="k=\tfrac\pi2" />, not <Katex tex="k=1" /> (<Katex tex="\cos(1)\approx0.54" />, not 0); the report notes some students wrote <Katex tex="k=1" /> after correctly getting <Katex tex="\cos(k)=0" />. The diagram below shows why the average stops rising at <Katex tex="k=\tfrac\pi2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac\pi2}" />,
-    reason: <>If you do differentiate, <Katex tex="\cos(k)=0" /> gives <Katex tex="k=\tfrac\pi2" />, not <Katex tex="k=1" /> (<Katex tex="\cos(1)\approx0.54" />). The report notes some students wrote <Katex tex="k=1" /> after correctly getting <Katex tex="\cos(k)=0" />.</>,
+    reason: <><Katex tex="\tfrac\pi2\approx1.57" /> lies inside <Katex tex="[0,2]" />, so it is allowed. The maximum average value is <Katex tex="\sin\tfrac\pi2=1" />.</>,
   },
 ]
 
@@ -164,7 +171,7 @@ export default function MethodsQ8_2022Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
-        <Explore title="Push the edge from k to k + h: the extra strip has height f(k), so A′(k) = f(k)">
+        <Explore title="Push the edge from k to k + h: the extra strip is almost f(k) tall, so A′(k) = f(k)">
           <StripWidget />
         </Explore>
       </PartCard>

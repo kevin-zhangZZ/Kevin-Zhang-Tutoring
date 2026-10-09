@@ -3,7 +3,8 @@
 // of height f(k). So (A(k + h) − A(k))/h closes in on f(k) as h shrinks — and that limit is A'(k).
 // The ratio is computed from A = k sin(k) alone, never from the derivative, so the agreement is
 // real. A toggle shows the common slip A'(k) = k cos(k) (product rule missed) failing: a red
-// rectangle of height k cos(k) on the same strip is far too short.
+// rectangle of height k cos(k) on the same strip is far too short — short by exactly sin(k), the
+// term the product rule supplies.
 
 import { useState } from 'react'
 import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Polygon, Readout, Readouts, Region, Slider, Toggle } from './kit'
@@ -28,9 +29,10 @@ export default function Strip() {
     notice = (
       <Notice tone="warn">
         As <M>h</M> shrinks, the strip ratio heads to <M>{`f(k) \\approx ${fk.toFixed(2)}`}</M>, but <M>k\cos(k)</M> gives only{' '}
-        <M>{`${wrong.toFixed(2)}`}</M>: the red rectangle of that height is far too short to match the strip. Writing <M>{"A'(k) = k\\cos(k)"}</M> treats the first <M>k</M> as a constant,
+        <M>{`${wrong.toFixed(2)}`}</M>: the red rectangle of that height is far too short to match the strip. Its height falls short of <M>f(k)</M> by exactly{' '}
+        <M>{`\\sin(k) \\approx ${Math.sin(k).toFixed(2)}`}</M>, the missing term. Writing <M>{"A'(k) = k\\cos(k)"}</M> treats the first <M>k</M> as a constant,
         yet it changes with <M>k</M> too. <M>k\sin(k)</M> is a product, so use the product rule:{' '}
-        <M>{"A'(k) = \\sin(k) + k\\cos(k)"}</M>.
+        <M>{"A'(k) = (1)\\sin(k) + k\\cos(k)"}</M>.
       </Notice>
     )
   } else if (small) {

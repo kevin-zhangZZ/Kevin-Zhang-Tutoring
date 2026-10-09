@@ -2,9 +2,12 @@
 // (π/2 right, 2 up) and see where the image lands. The rule always matches g (parts c.i and c.ii);
 // only D decides whether the image covers exactly [0, 2π]. Starts at the report's common wrong
 // answer D = [π/2, 5π/2], whose image overshoots to [π, 3π]; the fit is D = [−π/2, 3π/2].
+// x tick numbers are drawn along the foot of the plane (haloed Labels) because the curves cross the
+// x-axis right beside the π/2 gridlines and covered mafs's own tick numbers; the red part of the
+// image (outside g's domain) has its own legend entry.
 
 import { useState } from 'react'
-import { C, Controls, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Vector } from './kit'
+import { C, Controls, Label, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Vector } from './kit'
 
 const PI = Math.PI
 const A = PI / 2
@@ -12,6 +15,11 @@ const B = 2
 const h = (x: number) => 2 * Math.sin(2 * x) - 1
 const g = (x: number) => 1 - 2 * Math.sin(2 * x)
 const near = (u: number, v: number) => Math.abs(u - v) < 1e-6
+/** x tick values, −π to 3π in steps of π/2. */
+const TICKS = [-2, -1, 0, 1, 2, 3, 4, 5, 6].map(n => (n * PI) / 2)
+/** The x tick numbers sit along the foot of the plane, below every curve (the lowest is y = −3),
+ *  so the curves crossing the x-axis near the gridlines never cover them. */
+const TICK_Y = -3.55
 
 /** Half-multiples of π as tick text. */
 const halfPi = (v: number) => {
@@ -98,7 +106,7 @@ export default function DomainBack() {
 
   return (
     <div>
-      <Plane x={[-PI, 3 * PI + 0.45]}y={[-3.3, 3.3]} xStep={PI / 2} yStep={1} height={300} xLabels={halfPi}>
+      <Plane x={[-PI, 3 * PI + 0.45]} y={[-3.3, 3.3]} xStep={PI / 2} yStep={1} height={300} xLabels={false}>
         {/* Target: g on [0, 2π]. */}
         <Plot.OfX y={g} domain={[0, 2 * PI]} color={C.g} weight={7} opacity={0.4} />
         <Point x={0} y={g(0)} color={C.g} />
@@ -114,13 +122,19 @@ export default function DomainBack() {
         <Vector tail={[d, h(d)]} tip={[i0, h(d) + B]} color={C.ink} weight={2} />
         <Point x={i0} y={g(i0)} color={i0 < -1e-6 ? C.bad : imgColor} />
         <Point x={i1} y={g(i1)} color={i1 > 2 * PI + 1e-6 ? C.bad : imgColor} />
+        {TICKS.map(v => (
+          <Label key={v} at={[v, TICK_Y]} attach="c" size={12} bold={false}>
+            {halfPi(v) || '0'}
+          </Label>
+        ))}
       </Plane>
       <Controls>
         <Slider label="D\text{ starts at}" value={d} onChange={setD} min={-PI} max={PI / 2} step={PI / 4} format={textPi} />
         <Readouts>
-          <Readout color={C.f} tex={`D = \\left[${texPi(d)},\\ ${texPi(e)}\\right]`} />
+          <Readout color={C.f} tex={`h\\text{ on }D = \\left[${texPi(d)},\\ ${texPi(e)}\\right]`} />
           <Readout color={fit ? C.good : C.violet} tex={`\\text{image: }\\left[${texPi(i0)},\\ ${texPi(i1)}\\right]`} />
-          <Readout color={C.g} tex={`\\text{dom}\\,g = [0,\\ 2\\pi]`} />
+          <Readout color={C.g} tex={`g\\text{ on }[0,\\ 2\\pi]`} />
+          {!fit && <Readout color={C.bad} tex={`\\text{image outside }[0,\\ 2\\pi]`} />}
         </Readouts>
         {notice}
       </Controls>

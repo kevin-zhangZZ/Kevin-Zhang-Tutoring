@@ -7,6 +7,8 @@
 // calibrated f(x) = 2sin(2x) − 1 lies exactly on VCAA's printed curve. Answers checked with
 // sympy and against the VCAA examination report. Solution is original.
 // Interactive: c.iii — meth-2022e1-q6ciii-domain (slide D, translate, see where the image lands).
+// c.iii is the only part under 40% full marks (12%). Oct 2026 Concise/Detailed pass: each row's
+// reason is self-contained; report-error commentary, checks and longer explanations live in `more`.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -113,7 +115,15 @@ const EXAM_CIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = -f(x) = -\bigl(2\sin(2x)-1\bigr) = 1-2\sin(2x)" />,
-    reason: <>Reflecting in the <em>horizontal axis</em> sends each point <Katex tex="(x,y)" /> to <Katex tex="(x,-y)" />, so the whole output is negated, including the <Katex tex="-1" />. Reflecting in the centre line <Katex tex="y=-1" /> instead would leave the graph oscillating about <Katex tex="y=-1" />; the report notes many students did this.</>,
+    reason: <>Reflecting in the <em>horizontal axis</em> sends each point <Katex tex="(x,y)" /> to <Katex tex="(x,-y)" />, so the whole output is negated, including the <Katex tex="-1" />.</>,
+    more: (
+      <>
+        The report notes many students reflected <Katex tex="f" /> in its centre line <Katex tex="y=-1" /> instead.
+        That gives <Katex tex="y=-1-2\sin(2x)" />, which still oscillates about <Katex tex="y=-1" /> and still
+        starts at <Katex tex="(0,-1)" />. The horizontal axis is <Katex tex="y=0" />, so the correct{' '}
+        <Katex tex="g" /> starts at <Katex tex="(0,1)" /> instead: a quick check on your sketch.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{range } [-3,1] \to [-1,3]; \quad \text{maxima become minima}" />,
@@ -121,22 +131,53 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\text{min: } \left(\tfrac\pi4,-1\right),\ \left(\tfrac{5\pi}4,-1\right)\\&\text{max: } \left(\tfrac{3\pi}4,3\right),\ \left(\tfrac{7\pi}4,3\right)\end{aligned}" />,
-    reason: <>Read <Katex tex="f" />&apos;s turning points off the grid: maxima of 1 at <Katex tex="x=\tfrac\pi4,\tfrac{5\pi}4" /> and minima of <Katex tex="-3" /> at <Katex tex="x=\tfrac{3\pi}4,\tfrac{7\pi}4" />. The reflection keeps each <Katex tex="x" />-coordinate and flips the <Katex tex="y" />-value. Plotting these first fixes the curvature: <Katex tex="g" /> goes <em>down</em> from <Katex tex="(0,1)" />.</>,
+    reason: <>Read <Katex tex="f" />&apos;s turning points off the grid: the vertical gridlines are <Katex tex="\tfrac\pi2" /> apart, so each turning point is halfway between two of them (maxima of 1 at <Katex tex="x=\tfrac\pi4,\tfrac{5\pi}4" />, minima of <Katex tex="-3" /> at <Katex tex="x=\tfrac{3\pi}4,\tfrac{7\pi}4" />). Keep each <Katex tex="x" />-coordinate and flip the <Katex tex="y" />-value.</>,
+    more: (
+      <>
+        Plot these four points before drawing the curve: they fix the curvature, because <Katex tex="g" /> must
+        go <em>down</em> from <Katex tex="(0,1)" /> to its minimum at <Katex tex="\left(\tfrac\pi4,-1\right)" />.
+        The report notes some graphs had the incorrect curvature. Each new turning point sits on a
+        horizontal gridline, <Katex tex="y=-1" /> or <Katex tex="y=3" />, so it can be plotted exactly.
+      </>
+    ),
   },
   {
     working: <Katex display tex="x\text{-intercepts are unchanged}" />,
-    reason: <>A reflection in the <Katex tex="x" />-axis fixes every point on that axis, so <Katex tex="g" /> crosses at the same four places as <Katex tex="f" />: <Katex tex="x=\tfrac{\pi}{12},\tfrac{5\pi}{12},\tfrac{13\pi}{12},\tfrac{17\pi}{12}" /> (found in part b.). Use the grid to place them exactly.</>,
+    reason: <>A reflection in the <Katex tex="x" />-axis leaves every point on that axis where it is, so <Katex tex="g" /> crosses the <Katex tex="x" />-axis exactly where the printed <Katex tex="f" /> does. (Their exact values, <Katex tex="x=\tfrac{\pi}{12},\tfrac{5\pi}{12},\tfrac{13\pi}{12},\tfrac{17\pi}{12}" />, are found in part b.)</>,
+    more: (
+      <>
+        The report notes many graphs came close to, but not exactly at, these intercepts, so mark them on the
+        axis before sketching. Against the grid: <Katex tex="\tfrac{\pi}{12}" /> is one-sixth of
+        a grid square to the right of 0, <Katex tex="\tfrac{5\pi}{12}" /> is one-sixth of a grid square to the
+        left of <Katex tex="\tfrac\pi2" />, and the other two are two grid squares (<Katex tex="\pi" />) further
+        along.
+      </>
+    ),
   },
   {
     working: <ReflectionOverlay />,
     reason: <>Drawn on the printed axes, as the question asks. <Katex tex="g" /> starts at <Katex tex="(0,1)" /> and ends at <Katex tex="(2\pi,1)" />, because it has the same domain <Katex tex="[0,2\pi]" /> as <Katex tex="f" />.</>,
+    more: (
+      <>
+        The report notes some graphs finished at the incorrect endpoint: <Katex tex="g" /> stops exactly where
+        the printed <Katex tex="f" /> stops, at <Katex tex="x=2\pi" />, on the gridline <Katex tex="y=1" />.
+        The two curves meet only on the <Katex tex="x" />-axis (where <Katex tex="f=-f" />, so{' '}
+        <Katex tex="f=0" />), which is a last check on the sketch.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="2\sin(2k)-1 = 0 \implies \sin(2k) = \tfrac12" />,
-    reason: <>Set <Katex tex="f(k)=0" /> and make the sine the subject. The question names the variable <Katex tex="k" />, so the answers are values of <Katex tex="k" />.</>,
+    reason: <>Set <Katex tex="f(k)=0" /> and make <Katex tex="\sin(2k)" /> the subject.</>,
+    more: (
+      <>
+        As the report points out, the solutions are for <Katex tex="k" />, not <Katex tex="x" />: the question
+        names the variable <Katex tex="k" />, so the answers are written as <Katex tex="k=\dots" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="k\in[0,2\pi] \implies 2k\in[0,4\pi]" />,
@@ -144,15 +185,33 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\text{reference angle } \tfrac\pi6\\ &2k = \tfrac\pi6,\ \tfrac{5\pi}{6} \ \text{(first revolution)}\end{aligned}" />,
-    reason: <><Katex tex="\sin\tfrac\pi6=\tfrac12" /> is an exact value to know (<Katex tex="\sin\tfrac\pi4=\tfrac{\sqrt2}2" /> and <Katex tex="\sin\tfrac\pi3=\tfrac{\sqrt3}2" />, so not those). Sine is positive in the first and second quadrants: <Katex tex="\tfrac\pi6" /> and <Katex tex="\pi-\tfrac\pi6=\tfrac{5\pi}6" />.</>,
+    reason: <><Katex tex="\sin\tfrac\pi6=\tfrac12" /> is an exact value to know. Sine is positive in the first and second quadrants, so the first revolution gives <Katex tex="\tfrac\pi6" /> and <Katex tex="\pi-\tfrac\pi6=\tfrac{5\pi}6" />.</>,
+    more: (
+      <>
+        The report notes some students gave <Katex tex="\tfrac\pi3" /> or <Katex tex="\tfrac\pi4" /> as the
+        reference angle. Neither works: <Katex tex="\sin\tfrac\pi4=\tfrac{\sqrt2}2" /> and{' '}
+        <Katex tex="\sin\tfrac\pi3=\tfrac{\sqrt3}2" />. Only <Katex tex="\tfrac\pi6" /> gives{' '}
+        <Katex tex="\tfrac12" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="2k = \tfrac\pi6,\ \tfrac{5\pi}{6},\ \tfrac{13\pi}{6},\ \tfrac{17\pi}{6}" />,
-    reason: <>Add <Katex tex="2\pi=\tfrac{12\pi}{6}" /> to each of the first two for the second revolution; both are still inside <Katex tex="[0,4\pi]" />. Adding <Katex tex="2\pi" /> again gives at least <Katex tex="\tfrac{25\pi}6" />, which is past <Katex tex="4\pi" />, so there are no more.</>,
+    reason: <>Add <Katex tex="2\pi=\tfrac{12\pi}{6}" /> to each of the first two for the second revolution; both are still inside <Katex tex="[0,4\pi]" />.</>,
+    more: (
+      <>
+        Adding <Katex tex="2\pi" /> again gives at least <Katex tex="\tfrac{25\pi}6" />, which is past{' '}
+        <Katex tex="4\pi" />, so there are no more. The report notes errors in finding the third and fourth
+        angles. Add the <Katex tex="2\pi" /> to the angle <Katex tex="2k" />, <em>before</em> halving: adding it
+        to <Katex tex="k=\tfrac\pi{12}" /> instead gives <Katex tex="\tfrac{25\pi}{12}" />, which is outside{' '}
+        <Katex tex="[0,2\pi]" />. (After halving, the step between matching solutions is <Katex tex="\pi" />,
+        the period of <Katex tex="f" />: <Katex tex="\tfrac\pi{12}+\pi=\tfrac{13\pi}{12}" />.)
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac{\pi}{12},\ \tfrac{5\pi}{12},\ \tfrac{13\pi}{12},\ \tfrac{17\pi}{12}}" />,
-    reason: <>Halve each value; all four lie in <Katex tex="[0,2\pi]" />. The report notes errors included not finding the third and fourth correctly.</>,
+    reason: <>Halve each value; all four lie in <Katex tex="[0,2\pi]" />.</>,
   },
 ]
 
@@ -163,11 +222,27 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{centre line } y=-1+b \ \text{ must be } \ y=1" />,
-    reason: <>The term <Katex tex="2\sin\bigl(2(x-a)\bigr)" /> oscillates between <Katex tex="-2" /> and 2 whatever <Katex tex="a" /> is, so a horizontal shift never moves the centre line. Only <Katex tex="b" /> can lift it from <Katex tex="y=-1" /> (for <Katex tex="h" />) to <Katex tex="y=1" /> (for <Katex tex="g(x)=1-2\sin(2x)" />).</>,
+    reason: <>Sliding a graph sideways doesn&apos;t change its heights, so only <Katex tex="b" /> can move the centre line: from <Katex tex="y=-1" /> (for <Katex tex="h" />) up to <Katex tex="y=1" /> (for <Katex tex="g(x)=1-2\sin(2x)" />).</>,
+    more: (
+      <>
+        In the rule: <Katex tex="2\sin\bigl(2(x-a)\bigr)" /> oscillates between <Katex tex="-2" /> and 2
+        whatever <Katex tex="a" /> is, so the translated graph always oscillates about{' '}
+        <Katex tex="y=-1+b" />. In <Katex tex="g(x)=1-2\sin(2x)" />, the term <Katex tex="-2\sin(2x)" /> also
+        oscillates between <Katex tex="-2" /> and 2, so <Katex tex="g" /> oscillates about <Katex tex="y=1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{b = 2}" />,
-    reason: <>Positive, as required: the graph moves up 2. <Katex tex="b=-2" /> would push the centre line down to <Katex tex="y=-3" />, and <Katex tex="\tfrac\pi2" /> is the horizontal shift <Katex tex="a" /> (part c.ii.), not the vertical one.</>,
+    reason: <>Positive, as required: the graph moves up 2.</>,
+    more: (
+      <>
+        The report&apos;s common errors were <Katex tex="b=-2" /> and <Katex tex="b=\tfrac\pi2" />.{' '}
+        <Katex tex="b=-2" /> would push the centre line down to <Katex tex="y=-3" />.{' '}
+        <Katex tex="\tfrac\pi2" /> is the horizontal shift <Katex tex="a" /> (part c.ii.), not the vertical
+        one: <Katex tex="b" /> is added outside the sine, <Katex tex="a" /> is inside it.
+      </>
+    ),
   },
 ]
 
@@ -178,22 +253,46 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\sin(2x) = \sin(2x-\pi) = \sin\bigl(2\bigl(x-\tfrac\pi2\bigr)\bigr)" />,
-    reason: <>The symmetry property <Katex tex="\sin(\theta-\pi)=-\sin\theta" /> (the angles <Katex tex="\theta" /> and <Katex tex="\theta-\pi" /> are on opposite sides of the unit circle). Taking the 2 out as a factor shows the shift: <Katex tex="x-\tfrac\pi2" />.</>,
+    reason: <>Use the symmetry property <Katex tex="\sin(\theta-\pi)=-\sin\theta" /> with <Katex tex="\theta=2x" />, then take the 2 out as a factor to show the shift: <Katex tex="x-\tfrac\pi2" />.</>,
+    more: (
+      <>
+        Why the property holds: on the unit circle, the angles <Katex tex="\theta" /> and{' '}
+        <Katex tex="\theta-\pi" /> are half a turn apart, at opposite ends of a diameter, so their sines
+        (the <Katex tex="y" />-coordinates) are negatives of each other.
+      </>
+    ),
   },
   {
     working: <Katex display tex="a = \tfrac\pi2+n\pi,\ n\in Z" />,
-    reason: <>The period of <Katex tex="\sin(2x)" /> is <Katex tex="\tfrac{2\pi}2=\pi" />, so shifting by any further whole number of periods also works. A shift of half a period is what flips a sine wave upside down.</>,
+    reason: <>The period of <Katex tex="\sin(2x)" /> is <Katex tex="\tfrac{2\pi}2=\pi" />, so shifting by any further whole number of periods also works.</>,
+    more: (
+      <>
+        The general idea: a shift of half a period (<Katex tex="\tfrac\pi2" /> here) turns a sine wave upside
+        down, and a full period (<Katex tex="\pi" />) brings it back to where it started.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac\pi2}" />,
-    reason: <>The smallest positive value (<Katex tex="n=0" />). Check with a turning point: <Katex tex="h" />&apos;s maximum <Katex tex="\left(\tfrac\pi4,1\right)" /> moves to <Katex tex="\left(\tfrac{3\pi}4,3\right)" />, a maximum of <Katex tex="g" />. The report&apos;s common error <Katex tex="a=\tfrac\pi4" /> is only a quarter period: <Katex tex="\sin\bigl(2\bigl(x-\tfrac\pi4\bigr)\bigr)=-\cos(2x)" />, not <Katex tex="-\sin(2x)" />.</>,
+    reason: <>The smallest positive value (<Katex tex="n=0" />).</>,
+    more: (
+      <>
+        Check with a turning point: <Katex tex="h" />&apos;s maximum <Katex tex="\left(\tfrac\pi4,1\right)" />{' '}
+        moves <Katex tex="\tfrac\pi2" /> right and 2 up to <Katex tex="\left(\tfrac{3\pi}4,3\right)" />, which
+        is a maximum of <Katex tex="g" />. The report&apos;s common error <Katex tex="a=\tfrac\pi4" /> is only a
+        quarter period: <Katex tex="\sin\bigl(2\bigl(x-\tfrac\pi4\bigr)\bigr)=-\cos(2x)" />, not{' '}
+        <Katex tex="-\sin(2x)" />. The report also notes that some students seemed to confuse the vertical
+        and horizontal translations: as in c.i., <Katex tex="a" /> is the shift inside the sine, not the
+        vertical shift <Katex tex="b=2" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_CIII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{the translation maps } D \text{ onto dom}(g) = [0,2\pi]" />,
-    reason: <><Katex tex="g" /> is <Katex tex="f" /> reflected, so it has <Katex tex="f" />&apos;s domain <Katex tex="[0,2\pi]" />. &ldquo;Mapped onto the graph of <Katex tex="y=g(x)" />&rdquo; means the image is all of <Katex tex="g" /> and nothing more, so the translated domain must be exactly <Katex tex="[0,2\pi]" />.</>,
+    reason: <><Katex tex="g" /> is <Katex tex="f" /> reflected, so it has <Katex tex="f" />&apos;s domain <Katex tex="[0,2\pi]" />. &ldquo;Mapped onto the graph of <Katex tex="y=g(x)" />&rdquo; means the translated graph is all of <Katex tex="g" /> and nothing more, so the translated domain must be exactly <Katex tex="[0,2\pi]" />.</>,
   },
   {
     working: <Katex display tex="x \to x+a = x+\tfrac\pi2" />,
@@ -201,11 +300,31 @@ const ROWS_CIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}D+\tfrac\pi2 &= [0,2\pi]\\ \implies D &= \left[0-\tfrac\pi2,\ 2\pi-\tfrac\pi2\right]\end{aligned}" />,
-    reason: <><Katex tex="D" /> is where <Katex tex="h" /> sits <em>before</em> the shift, so undo the shift: subtract <Katex tex="\tfrac\pi2" />. Adding instead (translating in the wrong direction) gives <Katex tex="\left[\tfrac\pi2,\tfrac{5\pi}{2}\right]" />, the report&apos;s common wrong answer.</>,
+    reason: <><Katex tex="D" /> is where <Katex tex="h" /> sits <em>before</em> the shift, so undo the shift: subtract <Katex tex="\tfrac\pi2" /> from each endpoint.</>,
+    more: (
+      <>
+        This is where most students went wrong: the report notes they commonly translated in the wrong
+        direction, giving <Katex tex="\left[\tfrac\pi2,\tfrac{5\pi}{2}\right]" />. That answer adds{' '}
+        <Katex tex="\tfrac\pi2" /> to <Katex tex="g" />&apos;s domain, as if <Katex tex="h" /> were the graph{' '}
+        <em>after</em> the translation. Translating that <Katex tex="D" /> right by <Katex tex="\tfrac\pi2" />{' '}
+        lands the graph on <Katex tex="[\pi,3\pi]" />, not <Katex tex="[0,2\pi]" />. The diagram below
+        starts on that wrong answer: see where its image (the translated graph) lands, then slide <Katex tex="D" /> left
+        until it fits.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{D = \left[-\tfrac\pi2,\ \tfrac{3\pi}{2}\right]}" />,
-    reason: <>Check: <Katex tex="-\tfrac\pi2+\tfrac\pi2=0" /> and <Katex tex="\tfrac{3\pi}2+\tfrac\pi2=2\pi" />.</>,
+    reason: <>Check by translating forward: <Katex tex="-\tfrac\pi2+\tfrac\pi2=0" /> and <Katex tex="\tfrac{3\pi}2+\tfrac\pi2=2\pi" />, exactly <Katex tex="g" />&apos;s domain.</>,
+    more: (
+      <>
+        The <Katex tex="y" />-values check out too: <Katex tex="h\left(-\tfrac\pi2\right)=2\sin(-\pi)-1=-1" />,
+        so the endpoint <Katex tex="\left(-\tfrac\pi2,-1\right)" /> moves <Katex tex="\tfrac\pi2" /> right and 2
+        up to <Katex tex="(0,1)" />, which is exactly where <Katex tex="g" /> starts. In the same way,{' '}
+        <Katex tex="\left(\tfrac{3\pi}2,-1\right)" /> lands on <Katex tex="g" />&apos;s end point{' '}
+        <Katex tex="(2\pi,1)" />.
+      </>
+    ),
   },
 ]
 

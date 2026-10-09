@@ -4,6 +4,14 @@
 // Widget: meth-2022e1-q3-same-line — slide k and watch the two lines: k = −9 matches the
 // intercepts only (one crossing), k = −5 the gradients only (parallel, no solutions), and only
 // k = −3 makes them the same line.
+// Report slip (kept verbatim): its determinant-method values "k = 5 and k = −3" should read
+// k = −5; flagged in row 5's `more`. The report's "forming ratios" and "solve simultaneously"
+// methods are both shown in the last row's `more` (elimination of y gives
+// (k+3)(k+5)x = (k+3)(k+9), sympy-checked), and its "set the equations equal" error in the
+// Background. Widget audited 9 Oct 2026 (Concise/Detailed pass): readouts and Notices rechecked
+// with sympy, kept as is. Final review 9 Oct: row 3 reason now says why k = −8 crosses once
+// (the first line is never vertical); elimination route spells out why it must read 0 = 0; the
+// widget's warn Notice names the report's "determinant method" instead of an out-of-course term.
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
@@ -57,17 +65,29 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Same again: subtract <Katex tex="3x" />, then divide by <Katex tex="k+8" />. So{' '}
-        <Katex tex="m_2=-\tfrac{3}{k+8}" /> and <Katex tex="c_2=-\tfrac{1}{k+8}" />. Dividing by{' '}
-        <Katex tex="k+8" /> needs <Katex tex="k\ne-8" />. At <Katex tex="k=-8" /> this equation is <Katex tex="3x=-1" />, a
-        vertical line, while the first line is never vertical (its <Katex tex="y" /> coefficient is
-        always <Katex tex="-5" />). They cross once, so <Katex tex="k=-8" /> gives one solution and
-        can be set aside.
+        <Katex tex="m_2=-\tfrac{3}{k+8}" /> and <Katex tex="c_2=-\tfrac{1}{k+8}" />. Dividing needs{' '}
+        <Katex tex="k\ne-8" />; at <Katex tex="k=-8" /> this line is vertical but the first line never
+        is, so they cross once and <Katex tex="k=-8" /> isn&apos;t the answer.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="k=-8" /> the second equation is <Katex tex="3x=-1" />, the vertical line{' '}
+        <Katex tex="x=-\tfrac13" />. The first line&apos;s <Katex tex="y" /> coefficient is always{' '}
+        <Katex tex="-5" />, so it can never be vertical; at <Katex tex="k=-8" /> it is{' '}
+        <Katex tex="-8x-5y=-4" />, which meets <Katex tex="x=-\tfrac13" /> at the single point{' '}
+        <Katex tex="\left(-\tfrac13,\tfrac43\right)" />.
       </>
     ),
   },
   {
     working: <Katex display tex="\begin{aligned}m_1 &= m_2\\ \frac{k}{5} &= -\frac{3}{k+8}\\ k(k+8) &= -15\\ k^2+8k+15 &= 0\end{aligned}" />,
-    reason: <>Multiply both sides by <Katex tex="5(k+8)" />, then bring everything to one side.</>,
+    reason: (
+      <>
+        First condition, equal gradients. Multiply both sides by <Katex tex="5(k+8)" />, then bring
+        everything to one side.
+      </>
+    ),
   },
   {
     working: <Katex display tex="(k+3)(k+5) = 0 \implies k = -3 \text{ or } k = -5" />,
@@ -77,13 +97,23 @@ const ROWS: WorkingRow[] = [
         so each of these values must also be tested on the <Katex tex="y" />-intercepts.
       </>
     ),
+    more: (
+      <>
+        The report&apos;s &ldquo;determinant method&rdquo; comes from matrices, which are no longer in
+        the Methods course. Setting that determinant to zero gives this same equation,{' '}
+        <Katex tex="k^2+8k+15=0" />, so it only finds the values that make the lines parallel: here,
+        two candidates. The report says these students often arrived at two values (its
+        &ldquo;<Katex tex="k=5" />&rdquo; is a slip for <Katex tex="k=-5" />) and then did not justify
+        which was valid. The intercept check in the next two rows is that justification.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned}c_1 &= c_2\\ -\frac{4+k}{5} &= -\frac{1}{k+8}\\ (4+k)(k+8) &= 5\\ k^2+12k+27 &= 0\end{aligned}" />,
     reason: (
       <>
-        The second condition. Multiply both sides by <Katex tex="-5(k+8)" />, then expand:{' '}
-        <Katex tex="k^2+12k+32=5" />.
+        Second condition, equal <Katex tex="y" />-intercepts. Multiply both sides by{' '}
+        <Katex tex="-5(k+8)" />, then expand: <Katex tex="k^2+12k+32=5" />.
       </>
     ),
   },
@@ -92,8 +122,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Equal <Katex tex="y" />-intercepts alone is not enough either: at <Katex tex="k=-9" /> the
-        gradients differ, so the lines only cross once, at <Katex tex="(0,1)" /> on the{' '}
-        <Katex tex="y" />-axis.
+        gradients differ, so the lines cross only once.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="k=-9" /> the gradients are <Katex tex="-\tfrac95" /> and <Katex tex="3" />, and both
+        lines pass through <Katex tex="(0,1)" /> on the <Katex tex="y" />-axis, so that point is the
+        single solution.
       </>
     ),
   },
@@ -101,11 +137,36 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{k = -3}" />,
     reason: (
       <>
-        The only value in <em>both</em> lists. Check: <Katex tex="k=-3" /> gives{' '}
-        <Katex tex="-3x-5y=1" /> and <Katex tex="3x+5y=-1" />; multiplying the first by{' '}
-        <Katex tex="-1" /> gives the second, so they are the same line. At <Katex tex="k=-5" /> the
-        lines are <Katex tex="x+y=\tfrac15" /> and <Katex tex="x+y=-\tfrac13" />: parallel but
-        separate, so there are no solutions and <Katex tex="k=-5" /> is rejected.
+        The only value in <em>both</em> lists, so the lines are identical. <Katex tex="k=-5" /> is
+        rejected: the gradients match but the <Katex tex="y" />-intercepts (<Katex tex="\tfrac15" /> and{' '}
+        <Katex tex="-\tfrac13" />) don&apos;t, so the lines are parallel and never meet (no solutions).
+      </>
+    ),
+    more: (
+      <>
+        <p>
+          Check: <Katex tex="k=-3" /> gives <Katex tex="-3x-5y=1" /> and <Katex tex="3x+5y=-1" />;
+          multiplying the first by <Katex tex="-1" /> gives the second, so they really are the same
+          line. The <Katex tex="k=-5" /> rejection is just as clear in equation form, with no
+          gradients needed: the equations become <Katex tex="-5x-5y=-1" /> and{' '}
+          <Katex tex="3x+3y=-1" />, that is, <Katex tex="x+y=\tfrac15" /> and{' '}
+          <Katex tex="x+y=-\tfrac13" />, and <Katex tex="x+y" /> can&apos;t equal two different numbers.
+        </p>
+        <p>
+          Two other methods the report lists lead to the same two quadratics.{' '}
+          <b>Forming ratios:</b> identical lines means one equation is a multiple of the other, so{' '}
+          <Katex tex="\tfrac{k}{3}=\tfrac{-5}{k+8}=\tfrac{4+k}{-1}" />. The first equality rearranges
+          to <Katex tex="k(k+8)=-15" /> and the second to <Katex tex="(4+k)(k+8)=5" />.{' '}
+          <b>Solving simultaneously</b> works if you <em>eliminate</em> a variable (unlike setting the
+          two equations equal to each other, which leaves <Katex tex="x" />, <Katex tex="y" /> and{' '}
+          <Katex tex="k" /> all in the result): <Katex tex="(k+8)" /> times the first equation plus{' '}
+          <Katex tex="5" /> times the second removes <Katex tex="y" /> and leaves{' '}
+          <Katex tex="(k^2+8k+15)x=k^2+12k+27" />, that is,{' '}
+          <Katex tex="(k+3)(k+5)x=(k+3)(k+9)" />. If <Katex tex="(k+3)(k+5)\ne0" />, this gives exactly
+          one <Katex tex="x" /> (and then one <Katex tex="y" />): one solution. Infinitely many needs
+          both sides to be zero, which happens only at <Katex tex="k=-3" />; at <Katex tex="k=-5" /> it
+          reads <Katex tex="0=-8" />, so there are no solutions.
+        </p>
       </>
     ),
   },
@@ -129,16 +190,18 @@ export default function MethodsQ3_2022Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Equal gradients is <em>needed</em> but not enough: it only makes the lines
-            parallel, and parallel lines give either no solutions (separate lines) or
-            infinitely many (the same line). The step the question turns on is checking which
-            value also makes the <Katex tex="y" />-intercepts agree.
+            The question asks for a value of <Katex tex="k" />, not for a solution{' '}
+            <Katex tex="(x,y)" />, so the working has to get rid of <Katex tex="x" /> and{' '}
+            <Katex tex="y" /> and end with an equation in <Katex tex="k" /> alone. Setting the two
+            equations equal to each other doesn&apos;t do that: the result still contains{' '}
+            <Katex tex="x" />, <Katex tex="y" /> and <Katex tex="k" />. The report notes students who
+            did this &ldquo;had multiple variables to deal with&rdquo; and could not show how to solve
+            for <Katex tex="k" />.
           </p>
           <p>
-            The &ldquo;determinant method&rdquo; in the report comes from matrices, which are
-            no longer in the Methods course. Setting that determinant to zero gives the same
-            equal-gradient equation, <Katex tex="k^2+8k+15=0" />, which is why those students
-            were left with two values and needed the intercept check to choose between them.
+            Comparing the two lines instead does remove <Katex tex="x" /> and <Katex tex="y" />. The
+            gradients and <Katex tex="y" />-intercepts are expressions in <Katex tex="k" /> only, so
+            each condition becomes an ordinary equation in <Katex tex="k" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

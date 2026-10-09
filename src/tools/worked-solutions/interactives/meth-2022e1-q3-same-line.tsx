@@ -90,7 +90,7 @@ export default function SameLine() {
       <Notice tone="warn">
         At <M>k = -5</M> the gradients agree (both <M>-1</M>), so the lines are parallel. But the <M>y</M>-intercepts
         are <M>0.2</M> and <M>{'-\\tfrac{1}{3}'}</M>, so the lines never meet: <b>no solutions</b>. Equal
-        gradients alone (which is all a zero determinant checks) gives this value as well as{' '}
+        gradients alone (the only condition the report&apos;s &ldquo;determinant method&rdquo; checks) gives this value as well as{' '}
         <M>k = -3</M>, so it has to be checked and rejected. Now try <M>k = -3</M>.
       </Notice>
     )

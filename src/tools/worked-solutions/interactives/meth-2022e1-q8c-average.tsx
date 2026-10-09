@@ -3,6 +3,7 @@
 // the rectangle's top-right corner rides along y = sin(k), rising while the curve at x = k is above
 // the average and falling once it drops below. At k = π/2 the curve passes through the corner
 // (f(π/2) = 1 = sin(π/2)) and the average peaks at 1 — not at k = 1, and not where f peaks.
+// Starts at k = 0.8 (not 1) so the A(k) and A(k)/k readouts visibly differ on first load.
 
 import { useState } from 'react'
 import {
@@ -15,7 +16,7 @@ const zero = () => 0
 const HALF_PI = Math.PI / 2
 
 export default function Average() {
-  const [k, setK] = useState(1)
+  const [k, setK] = useState(0.8)
   const player = usePlayer(setK, { min: 0.05, max: 2, seconds: 7 })
 
   const area = k * Math.sin(k)
@@ -36,7 +37,8 @@ export default function Average() {
   } else if (k < HALF_PI) {
     notice = (
       <Notice>
-        The curve at <M>x = k</M> has height <M>{`f(k) \\approx ${fk.toFixed(2)}`}</M>, above the average{' '}
+        The rectangle&apos;s top corner (purple dot) rides along the dashed curve, which plots the average{' '}
+        <M>\sin k</M> against <M>k</M>. The curve at <M>x = k</M> has height <M>{`f(k) \\approx ${fk.toFixed(2)}`}</M>, above the average{' '}
         <M>{`\\sin(k) \\approx ${avg.toFixed(2)}`}</M>. Stretching the interval adds slices taller than the average, so
         the average rises, like adding a test score above your current average.{' '}
         {nearOne ? (
