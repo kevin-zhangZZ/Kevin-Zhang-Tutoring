@@ -1066,7 +1066,15 @@ and Specialist: only the WorkingTable (working + reasoning), the examiner's repo
 WorkingTable; wrap any other teaching aside (a CAS note, a card around a question-level Background)
 in `<DetailOnly>` so Concise doesn't show an empty box. A Background that isn't teaching — a
 single-part question's stem, or a "Not in the Current Study Design" / "Why only parts …" notice —
-takes `always`. Chemistry always shows everything. `node scripts/detail-check.mjs` lists anything beside
+takes `always`. Chemistry always shows everything.
+
+Concise must not be overloaded, and must still be followable alone. A row's `reason` is the short
+"why" a student needs for that line (usually one or two sentences); the teacher's elaboration — the
+longer explanation, a check, the trap, a link to the diagram — goes in the row's `more`, which shows
+under the reason in Detailed only. Never let Concise-visible text point at Detailed-only material
+("drag the slider", "see the Background", "the diagram below"): that sentence belongs in `more`, a
+Background, or the Explore itself. `node shot.mjs <route> --view both` (ws harness) flags these as
+`conciseRefs`. `node scripts/detail-check.mjs` lists anything beside
 a PartCard/WorkingTable that might need `DetailOnly`.
 
 ### 15.1 When to build an interactive diagram

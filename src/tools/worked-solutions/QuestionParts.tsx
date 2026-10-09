@@ -336,9 +336,14 @@ export function ExaminerReport({ stats }: { stats: MCQExaminerStats }) {
 // on the exam page (equations, substitutions, the final boxed answer); `reason` is the
 // explanatory "why" for that line — omit it for a row that's just algebraic manipulation
 // with nothing new to explain, and the cell renders empty.
+//
+// `more` is the teacher's elaboration on that line — the longer "why", a check, the trap to
+// avoid — shown under `reason` in the Detailed view only (studyMode.tsx). Keep `reason` to what
+// a student needs to follow the line on their own, so the Concise view stays uncluttered.
 export interface WorkingRow {
   working: ReactNode
   reason?: ReactNode
+  more?: ReactNode
 }
 
 // The Working/Reasoning split only works as two side-by-side columns once there's genuinely
@@ -365,7 +370,7 @@ export function WorkingTable({
   alwaysShow?: boolean
   hideLabel?: boolean
 }) {
-  const { hideAnswers } = useStudyMode()
+  const { hideAnswers, detailed } = useStudyMode()
   const reveal = useContext(RevealCtx)
   const stepping = hideAnswers && !alwaysShow
   const [shown, setShown] = useState(0)
@@ -411,12 +416,13 @@ export function WorkingTable({
               <div className="px-3 sm:px-4 py-3 @2xl:border-r border-gray-100 dark:border-gray-800 self-center space-y-1.5 text-[13.5px] text-gray-800 dark:text-gray-100">
                 {row.working}
               </div>
-              {row.reason && (
+              {(row.reason || (detailed && row.more)) && (
                 <div className="px-3 sm:px-4 pb-3 pt-1 @2xl:pt-3 @2xl:self-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400 border-t @2xl:border-t-0 border-dashed border-gray-100 dark:border-gray-800">
                   <p className="@2xl:hidden text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-1 mt-2">
                     Reasoning
                   </p>
                   {row.reason}
+                  {detailed && row.more && <div data-more className={row.reason ? 'mt-1.5 space-y-1.5' : 'space-y-1.5'}>{row.more}</div>}
                 </div>
               )}
             </div>
