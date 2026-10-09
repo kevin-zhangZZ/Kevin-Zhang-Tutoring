@@ -1073,8 +1073,10 @@ Concise must not be overloaded, and must still be followable alone. A row's `rea
 longer explanation, a check, the trap, a link to the diagram — goes in the row's `more`, which shows
 under the reason in Detailed only. Never let Concise-visible text point at Detailed-only material
 ("drag the slider", "see the Background", "the diagram below"): that sentence belongs in `more`, a
-Background, or the Explore itself. `node shot.mjs <route> --view both` (ws harness) flags these as
-`conciseRefs`. `node scripts/detail-check.mjs` lists anything beside
+Background, or the Explore itself. `node scripts/concise-refs.mjs [fileRegex]` lists every reason
+that does this (it should report 0); `node shot.mjs <route> --view both` (ws harness) flags them on
+the rendered page as `conciseRefs` (VCAA's own "the diagram below" in a stem is fine — the paper's
+figure shows in both views). `node scripts/detail-check.mjs` lists anything beside
 a PartCard/WorkingTable that might need `DetailOnly`.
 
 ### 15.1 When to build an interactive diagram

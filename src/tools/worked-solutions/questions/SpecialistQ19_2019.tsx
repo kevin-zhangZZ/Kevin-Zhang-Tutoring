@@ -52,7 +52,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="(2)\colon\ a^2+(2-a)^2=10" />
       </>
     ),
-    reason: <>One linear equation and one quadratic: make one variable the subject of the linear equation and substitute it into the quadratic, exactly as you would to find where a line meets a circle. That is what this is, as the diagram below shows.</>,
+    reason: <>One linear equation and one quadratic: make one variable the subject of the linear equation and substitute it into the quadratic, exactly as you would to find where a line meets a circle. That is what this is.</>,
+    more: <>The diagram below shows it.</>,
   },
   {
     working: (

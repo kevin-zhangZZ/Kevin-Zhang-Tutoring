@@ -66,9 +66,10 @@ const ROWS: WorkingRow[] = [
       <>
         <Katex tex="-\tfrac{\pi}{2}" /> is inside <Katex tex="(-\pi,\pi]" />, so no adjustment is needed. Matches option{' '}
         <b>A</b>. Options <b>D</b> and <b>E</b> are both bigger than <Katex tex="\pi" />, so they can never be a value of{' '}
-        <Katex tex="\mathrm{Arg}" />; option <b>B</b> is <Katex tex="\mathrm{Arg}(z^5)" /> on its own (see below).
+        <Katex tex="\mathrm{Arg}" />; option <b>B</b> is <Katex tex="\mathrm{Arg}(z^5)" /> on its own.
       </>
     ),
+    more: <>See the Common Mistake below for option B.</>,
   },
 ]
 

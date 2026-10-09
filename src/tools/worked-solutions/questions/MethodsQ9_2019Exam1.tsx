@@ -138,8 +138,12 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Equivalently <Katex tex="x\in(1,\infty)" />. The bell-shaped graph of <Katex tex="g(f(x))" /> goes downhill
-        right of <Katex tex="x=1" />, exactly where the parabola <Katex tex="f" /> turns over. Drag <Katex tex="x" /> in
-        the widget below to see both turn together.
+        right of <Katex tex="x=1" />, exactly where the parabola <Katex tex="f" /> turns over.
+      </>
+    ),
+    more: (
+      <>
+        Drag <Katex tex="x" /> in the widget below to see both turn together.
       </>
     ),
   },
@@ -185,10 +189,10 @@ const ROWS_D: WorkingRow[] = [
     reason: (
       <>
         With <Katex tex="u=e^x" />, <Katex tex="e^{2x}=u^2" />. The left side is exactly <Katex tex="f(u)" />:{' '}
-        <Katex tex="f(g(x))" /> is the parabola <Katex tex="f" /> read off at <Katex tex="u=e^x" /> (see the widget
-        below).
+        <Katex tex="f(g(x))" /> is the parabola <Katex tex="f" /> read off at <Katex tex="u=e^x" />.
       </>
     ),
+    more: <>See the widget below.</>,
   },
   {
     working: <Katex display tex="u^2-2u-3=0" />,
@@ -264,8 +268,13 @@ const ROWS_E: WorkingRow[] = [
     reason: (
       <>
         This is the parabola&apos;s vertex carried across: <Katex tex="x=0" /> gives <Katex tex="u=e^0=1" />, and{' '}
-        <Katex tex="f(1)=4" /> (slide <Katex tex="x" /> to <Katex tex="0" /> in part d.&apos;s widget). The derivative
-        is positive for <Katex tex="x<0" /> and negative for <Katex tex="x>0" />, so it is a maximum, which part f. uses.
+        <Katex tex="f(1)=4" />. The derivative is positive for <Katex tex="x<0" /> and negative for{' '}
+        <Katex tex="x>0" />, so it is a maximum, which part f. uses.
+      </>
+    ),
+    more: (
+      <>
+        Slide <Katex tex="x" /> to <Katex tex="0" /> in part d.&apos;s widget to see it.
       </>
     ),
   },
@@ -332,7 +341,12 @@ const ROWS_F: WorkingRow[] = [
     reason: (
       <>
         This is the report&apos;s rough sketch with addition of ordinates, argued precisely. For a 1-mark question the
-        sketch is enough: sweep <Katex tex="x" /> in the widget below to watch the two ordinates cancel exactly once.
+        sketch is enough.
+      </>
+    ),
+    more: (
+      <>
+        Sweep <Katex tex="x" /> in the widget below to watch the two ordinates cancel exactly once.
       </>
     ),
   },

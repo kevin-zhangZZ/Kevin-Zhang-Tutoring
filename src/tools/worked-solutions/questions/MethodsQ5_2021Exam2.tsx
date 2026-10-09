@@ -181,7 +181,8 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}a\in Z^+ \implies 2a^2 \text{ is an even integer} \\ \implies \sin\!\left(2a^2\pi\right) = 0\end{gathered}" />,
-    reason: <>The report notes some students were unable to interpret <Katex tex="\tfrac{\sin\left(2a^2\pi\right)}{a}" />. The key is that <Katex tex="a" /> is a positive integer, so <Katex tex="2a^2" /> is a whole number, and the sine graph crosses the <Katex tex="x" />-axis at every whole-number multiple of <Katex tex="\pi" />: <Katex tex="\sin(n\pi)=0" />. The diagram below shows what goes wrong when <Katex tex="a" /> is not an integer.</>,
+    reason: <>The report notes some students were unable to interpret <Katex tex="\tfrac{\sin\left(2a^2\pi\right)}{a}" />. The key is that <Katex tex="a" /> is a positive integer, so <Katex tex="2a^2" /> is a whole number, and the sine graph crosses the <Katex tex="x" />-axis at every whole-number multiple of <Katex tex="\pi" />: <Katex tex="\sin(n\pi)=0" />.</>,
+    more: <>The diagram below shows what goes wrong when <Katex tex="a" /> is not an integer.</>,
   },
   {
     working: <Katex display tex="\int_0^{2a\pi}g_a(x)\,dx = \frac{0}{a} = 0" />,
@@ -231,7 +232,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}a=2: \ -1.722; \quad a=3: \ -1.985 \\ a=4: \ -1.981; \quad a=5: \ -1.998\end{gathered}" />,
-    reason: <>The minimum for each <Katex tex="a" />, found with <Cas fn="fMin" /> over one period <Katex tex="[0,2a\pi]" /> (<Katex tex="a=2" /> is <Katex tex="f" /> from part b). Each is lower than <Katex tex="-\sqrt2\approx-1.414" />, getting close to <Katex tex="-2" /> as <Katex tex="a" /> grows. Click through the values of <Katex tex="a" /> in the diagram below.</>,
+    reason: <>The minimum for each <Katex tex="a" />, found with <Cas fn="fMin" /> over one period <Katex tex="[0,2a\pi]" /> (<Katex tex="a=2" /> is <Katex tex="f" /> from part b). Each is lower than <Katex tex="-\sqrt2\approx-1.414" />, getting close to <Katex tex="-2" /> as <Katex tex="a" /> grows.</>,
+    more: <>Click through the values of <Katex tex="a" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="a \ge 2: \ \min g_a \le -1-\tfrac{\sqrt2}{2} \approx -1.707 \lt -\sqrt2" />,

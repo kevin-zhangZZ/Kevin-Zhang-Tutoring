@@ -64,9 +64,10 @@ const ROWS: WorkingRow[] = [
       <>
         Chain rule, arranged so the <Katex tex="dV" />s cancel: <Katex tex="\tfrac{dh}{dV}" /> is the reciprocal of{' '}
         <Katex tex="\tfrac{dV}{dh}" />. Notice <Katex tex="3\pi h^2 = \pi(\sqrt3\,h)^2 = \pi r^2" />, the area of the
-        base: the height rises at (rate of volume) ÷ (area of the base). The interactive below shows why.
+        base: the height rises at (rate of volume) ÷ (area of the base).
       </>
     ),
+    more: <>The interactive below shows why.</>,
   },
   {
     working: <Katex display tex="\frac{dh}{dt} = \frac{1}{3\pi(0.5)^2}\times 1.5 = \frac{1.5}{0.75\pi}" />,

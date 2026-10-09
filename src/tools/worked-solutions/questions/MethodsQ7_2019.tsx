@@ -34,7 +34,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 0(a)+1(3a)+2(5a)+3(7a)" />
       </>
     ),
-    reason: <>"The mean of <Katex tex="X" />" is its expected value <Katex tex="E(X)" />: multiply each value by its probability and add. The values with bigger probabilities pull harder on the answer (see the Background below for why). The <Katex tex="x=0" /> term contributes nothing.</>,
+    reason: <>"The mean of <Katex tex="X" />" is its expected value <Katex tex="E(X)" />: multiply each value by its probability and add. The values with bigger probabilities pull harder on the answer. The <Katex tex="x=0" /> term contributes nothing.</>,
+    more: <>See the Background below for why the bigger probabilities pull harder.</>,
   },
   {
     working: <Katex display tex="= (0+3+10+21)a = 34a" />,

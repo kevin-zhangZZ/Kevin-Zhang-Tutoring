@@ -66,7 +66,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac65}" />,
-    reason: <>Matches option <b>D</b>. Check: with <Katex tex="a=\tfrac65" /> the <Katex tex="y" />-intercept is <Katex tex="f(0)=\tfrac{(-6/5)(3)}{-2}=\tfrac95" />, safely away from the asymptote at <Katex tex="x=2" />, and it is a local maximum (the tangent there is flat in the diagram below). Option <b>C</b>, <Katex tex="a=0" />, is what <Katex tex="f(0)=0" /> gives: the graph then passes through the origin, but with gradient <Katex tex="f'(0)=-\tfrac32" />. Option <b>E</b>, <Katex tex="a=2" />, cancels the factor <Katex tex="x-2" /> and leaves the straight line <Katex tex="y=x+3" />, which has no stationary point at all. Option <b>B</b> gives <Katex tex="f'(0)=-3" />.</>,
+    reason: <>Matches option <b>D</b>. Check: with <Katex tex="a=\tfrac65" /> the <Katex tex="y" />-intercept is <Katex tex="f(0)=\tfrac{(-6/5)(3)}{-2}=\tfrac95" />, safely away from the asymptote at <Katex tex="x=2" />, and it is a local maximum. Option <b>C</b>, <Katex tex="a=0" />, is what <Katex tex="f(0)=0" /> gives: the graph then passes through the origin, but with gradient <Katex tex="f'(0)=-\tfrac32" />. Option <b>E</b>, <Katex tex="a=2" />, cancels the factor <Katex tex="x-2" /> and leaves the straight line <Katex tex="y=x+3" />, which has no stationary point at all. Option <b>B</b> gives <Katex tex="f'(0)=-3" />.</>,
+    more: <>The tangent at the <Katex tex="y" />-intercept is flat in the diagram below.</>,
   },
 ]
 

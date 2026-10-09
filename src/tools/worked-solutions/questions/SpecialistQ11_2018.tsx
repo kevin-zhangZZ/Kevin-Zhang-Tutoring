@@ -41,9 +41,10 @@ const ROWS: WorkingRow[] = [
       <>
         Same two components in swapped order, so the same length. (Swapping the components reflects a vector
         in the line <Katex tex="y=x" />, so <Katex tex="\underset{\sim}{b}" /> is the mirror image of{' '}
-        <Katex tex="\underset{\sim}{a}" />. The widget below uses this.)
+        <Katex tex="\underset{\sim}{a}" />.)
       </>
     ),
+    more: <>The widget below uses this.</>,
   },
   {
     working: <Katex display tex="\cos(30^\circ) = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{b}\right|} = \frac{2m}{m^2+1}" />,
@@ -97,10 +98,11 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>C</b>. Option <b>B</b>, chosen by <Katex tex="10\%" />, is what setting the ratio
-        equal to <Katex tex="\sin(30^\circ)=\tfrac12" /> gives (see below). Option <b>A</b>&apos;s values make
+        equal to <Katex tex="\sin(30^\circ)=\tfrac12" /> gives. Option <b>A</b>&apos;s values make
         the ratio <Katex tex="\tfrac{1}{\sqrt2}" />, an angle of <Katex tex="45^\circ" />.
       </>
     ),
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

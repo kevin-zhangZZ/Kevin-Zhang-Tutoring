@@ -145,7 +145,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\theta = 34^\circ, \quad u = 16.4\ \text{m s}^{-1}}" />,
-    reason: <>Rounded as the question asks. Slide <Katex tex="\theta" /> in the diagram below: every launch there passes through <Katex tex="C" />, but only <Katex tex="\theta\approx34^\circ" /> arrives heading along the track.</>,
+    reason: <>Rounded as the question asks.</>,
+    more: <>Slide <Katex tex="\theta" /> in the diagram below: every launch there passes through <Katex tex="C" />, but only <Katex tex="\theta\approx34^\circ" /> arrives heading along the track.</>,
   },
 ]
 
@@ -195,7 +196,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d = 16.4\ \text{m}}" />,
-    reason: <>To one decimal place. Check: at <Katex tex="W" /> the car is doing about <Katex tex="17.16\ \text{m s}^{-1}" /> and needs <Katex tex="\tfrac{17.16^2}{18}\approx16.4" /> m to stop, exactly the distance left. Drag <Katex tex="W" /> in the diagram below.</>,
+    reason: <>To one decimal place. Check: at <Katex tex="W" /> the car is doing about <Katex tex="17.16\ \text{m s}^{-1}" /> and needs <Katex tex="\tfrac{17.16^2}{18}\approx16.4" /> m to stop, exactly the distance left.</>,
+    more: <>Drag <Katex tex="W" /> in the diagram below.</>,
   },
 ]
 

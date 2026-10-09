@@ -140,7 +140,8 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{a^2+3a+5}{a-1} = 2a+3" />,
-    reason: <>How would you know to do this? Parts b.i. and b.ii. set it up. If the tangent at <Katex tex="Q" /> passes through <Katex tex="P" />, it goes through both <Katex tex="P" /> and <Katex tex="Q" />, and only one line does that: the line <Katex tex="PQ" />. So the tangent <em>is</em> the line <Katex tex="PQ" />, and the gradients from b.i. and b.ii. must be equal (slide <Katex tex="Q" /> in the diagram below to watch the two lines merge). The report notes students who equated gradients tended to score more highly; the alternative, writing the tangent at <Katex tex="x=a" /> and substituting <Katex tex="(1,0)" />, gives <Katex tex="0=(2a+3)(1-a)+a^2+3a+5" />, the same quadratic, but many who used it could not form the correct quadratic equation.</>,
+    reason: <>How would you know to do this? Parts b.i. and b.ii. set it up. If the tangent at <Katex tex="Q" /> passes through <Katex tex="P" />, it goes through both <Katex tex="P" /> and <Katex tex="Q" />, and only one line does that: the line <Katex tex="PQ" />. So the tangent <em>is</em> the line <Katex tex="PQ" />, and the gradients from b.i. and b.ii. must be equal. The report notes students who equated gradients tended to score more highly; the alternative, writing the tangent at <Katex tex="x=a" /> and substituting <Katex tex="(1,0)" />, gives <Katex tex="0=(2a+3)(1-a)+a^2+3a+5" />, the same quadratic, but many who used it could not form the correct quadratic equation.</>,
+    more: <>Slide <Katex tex="Q" /> in the diagram below to watch the two lines merge.</>,
   },
   {
     working: <Katex display tex="a^2+3a+5 = (2a+3)(a-1)" />,
@@ -190,7 +191,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered} \text{least distance when the turning} \\ \text{point is directly above } P \end{gathered}" />,
-    reason: <>Why? <Katex tex="P" /> is on the <Katex tex="x" />-axis, and every point of the translated graph has <Katex tex="y\ge\tfrac{11}4" />, so every point is at least <Katex tex="\tfrac{11}4" /> from <Katex tex="P" />: its height alone is that much. A distance of exactly <Katex tex="\tfrac{11}4" /> needs a point that is at height <Katex tex="\tfrac{11}4" /> (only the turning point) <em>and</em> straight above <Katex tex="P" />. So slide the graph until its turning point is over <Katex tex="P" /> (try it in the diagram below). The report notes students who used a geometric approach tended to score more highly.</>,
+    reason: <>Why? <Katex tex="P" /> is on the <Katex tex="x" />-axis, and every point of the translated graph has <Katex tex="y\ge\tfrac{11}4" />, so every point is at least <Katex tex="\tfrac{11}4" /> from <Katex tex="P" />: its height alone is that much. A distance of exactly <Katex tex="\tfrac{11}4" /> needs a point that is at height <Katex tex="\tfrac{11}4" /> (only the turning point) <em>and</em> straight above <Katex tex="P" />. So slide the graph until its turning point is over <Katex tex="P" />. The report notes students who used a geometric approach tended to score more highly.</>,
+    more: <>Try it in the diagram below.</>,
   },
   {
     working: <Katex display tex="-\tfrac32+k = 1" />,

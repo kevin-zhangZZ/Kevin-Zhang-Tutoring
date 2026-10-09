@@ -48,7 +48,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x=4 \ \text{ and } \ y=\dfrac{x}{2}+2}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b> drops the <Katex tex="+2" />: it is what you get by dividing only the leading terms (see below). <b>A</b> misses the oblique asymptote entirely, and <b>D</b> and <b>E</b> put the vertical asymptote at <Katex tex="x=8" />, where the denominator is <Katex tex="8\ne0" />.</>,
+    reason: <>Matches option <b>C</b>. Option <b>B</b> drops the <Katex tex="+2" />: it is what you get by dividing only the leading terms. <b>A</b> misses the oblique asymptote entirely, and <b>D</b> and <b>E</b> put the vertical asymptote at <Katex tex="x=8" />, where the denominator is <Katex tex="8\ne0" />.</>,
+    more: <>See the Common Mistake below for option B.</>,
   },
 ]
 

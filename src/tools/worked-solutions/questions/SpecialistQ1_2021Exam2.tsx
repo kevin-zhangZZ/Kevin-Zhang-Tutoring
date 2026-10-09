@@ -136,7 +136,8 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Near the vertical asymptotes, the middle branch shoots up to <Katex tex="+\infty" /> at both ends, and the two outer branches go down to <Katex tex="-\infty" />. All three branches must appear — the report notes a significant number of responses left out the middle branch, and that setting the calculator screen to match the grid helps. The interactive below shows why.</>,
+    reason: <>Near the vertical asymptotes, the middle branch shoots up to <Katex tex="+\infty" /> at both ends, and the two outer branches go down to <Katex tex="-\infty" />. All three branches must appear — the report notes a significant number of responses left out the middle branch, and that setting the calculator screen to match the grid helps.</>,
+    more: <>The interactive below shows why.</>,
   },
 ]
 

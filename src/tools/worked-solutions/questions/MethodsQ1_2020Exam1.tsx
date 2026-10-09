@@ -43,10 +43,10 @@ const ROWS_A: WorkingRow[] = [
       <>
         Two functions of <Katex tex="x" />, <Katex tex="x^2" /> and <Katex tex="\sin(x)" />, multiplied together:
         a product, so the product rule. Both factors change when <Katex tex="x" /> changes, and the product rule
-        accounts for each change. The diagram below shows <Katex tex="y" /> as the area of a rectangle whose
-        width and height both grow.
+        accounts for each change.
       </>
     ),
+    more: <>The diagram below shows <Katex tex="y" /> as the area of a rectangle whose width and height both grow.</>,
   },
   {
     working: <Katex display tex="u = x^2, \qquad v = \sin(x)" />,
@@ -112,9 +112,9 @@ const ROWS_B: WorkingRow[] = [
         The chain rule (formula sheet): multiply the two rates. <Katex tex="u" /> changes <Katex tex="(2x-1)" />{' '}
         times as fast as <Katex tex="x" />, and <Katex tex="y" /> changes <Katex tex="e^u" /> times as fast as{' '}
         <Katex tex="u" />, so <Katex tex="y" /> changes <Katex tex="e^u(2x-1)" /> times as fast as <Katex tex="x" />.
-        The diagram below follows a small nudge to <Katex tex="x" /> through both steps.
       </>
     ),
+    more: <>The diagram below follows a small nudge to <Katex tex="x" /> through both steps.</>,
   },
   {
     working: <Katex display tex="f'(x) = (2x-1)e^{x^2-x+3}" />,

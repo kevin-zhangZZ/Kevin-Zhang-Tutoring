@@ -159,7 +159,8 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y=-4x}" />,
-    reason: <>The constant cancels, which is no accident: <Katex tex="f" /> is odd, so <Katex tex="A" /> and <Katex tex="B" /> are symmetric about the origin and the chord must pass through it. The widget below shows why.</>,
+    reason: <>The constant cancels, which is no accident: <Katex tex="f" /> is odd, so <Katex tex="A" /> and <Katex tex="B" /> are symmetric about the origin and the chord must pass through it.</>,
+    more: <>The widget below shows why.</>,
   },
 ]
 
@@ -193,7 +194,8 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \sqrt{4+4(1-k)^2} = 2\sqrt{1+(1-k)^2}" />,
-    reason: <>Take out the common factor of <Katex tex="4" />, then <Katex tex="\sqrt4=2" />. The surd itself can&apos;t be split: <Katex tex="\sqrt{4+(2-2k)^2}" /> is not <Katex tex="2+(2-2k)" /> (see below).</>,
+    reason: <>Take out the common factor of <Katex tex="4" />, then <Katex tex="\sqrt4=2" />. The surd itself can&apos;t be split: <Katex tex="\sqrt{4+(2-2k)^2}" /> is not <Katex tex="2+(2-2k)" />.</>,
+    more: <>See the Common Mistake below.</>,
   },
   {
     working: <Katex display tex="\boxed{CD = 2\sqrt{k^2-2k+2}}" />,
@@ -220,7 +222,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k=1 \text{ or } k=\frac73}" />,
-    reason: <>Both are positive, so both satisfy <Katex tex="k\in R^+" />. The report notes that some students gave only one. The widget below shows why there are two: <Katex tex="CD" /> is U-shaped in <Katex tex="k" />, and a line can cut a U twice.</>,
+    reason: <>Both are positive, so both satisfy <Katex tex="k\in R^+" />. The report notes that some students gave only one. There are two because <Katex tex="CD" /> is U-shaped in <Katex tex="k" />, and a line can cut a U twice.</>,
+    more: <>The widget below shows why.</>,
   },
 ]
 
@@ -254,7 +257,8 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \int_0^{\sqrt{k+1}}\bigl((k+1)x-x^3\bigr)\,dx" />,
-    reason: <>Collecting <Katex tex="x+kx=(k+1)x" />. This is the strip height in the widget below; it is positive for every <Katex tex="x" /> between <Katex tex="0" /> and <Katex tex="a" />.</>,
+    reason: <>Collecting <Katex tex="x+kx=(k+1)x" />. The integrand is positive for every <Katex tex="x" /> between <Katex tex="0" /> and <Katex tex="a" />.</>,
+    more: <>It is the strip height in the widget below.</>,
   },
   {
     working: <Katex display tex="= \left[\frac{(k+1)x^2}{2}-\frac{x^4}{4}\right]_0^{\sqrt{k+1}}" />,

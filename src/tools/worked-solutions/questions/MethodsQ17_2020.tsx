@@ -65,12 +65,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        This is the idea that answers the question (see the Background above). <Katex tex="c" /> is the height where a
+        This is the idea that answers the question. <Katex tex="c" /> is the height where a
         tangent crosses the <Katex tex="y" />-axis, and the curve itself crosses the <Katex tex="y" />-axis at height{' '}
         <Katex tex="f(0)" />. A tangent touches a concave-up curve at one point and runs underneath it everywhere else, so
         at <Katex tex="x=0" /> it is below <Katex tex="f(0)" />, unless the point it touches is on the <Katex tex="y" />
-        -axis. Drag the tangent along the curve in the diagram below and watch the red gap close only at{' '}
-        <Katex tex="x=0" />.
+        -axis.
+      </>
+    ),
+    more: (
+      <>
+        See the Background above. Drag the tangent along the curve in the diagram below and watch the red gap close only
+        at <Katex tex="x=0" />.
       </>
     ),
   },
@@ -119,10 +124,11 @@ const ROWS: WorkingRow[] = [
       <>
         The denominator <Katex tex="(a+2)^2" /> is positive, so <Katex tex="\frac{dc}{da}" /> has the sign of{' '}
         <Katex tex="-a" />: <Katex tex="c" /> rises as the contact point moves right towards <Katex tex="x=0" />, then falls
-        once it passes it, exactly as in the diagram. (On CAS,{' '}
+        once it passes it. (On CAS,{' '}
         <Cas fn="fMax">fMax(−ln(a + 2) + a/(a + 2), a) | a &gt; −2</Cas> gives <Katex tex="a=0" />.)
       </>
     ),
+    more: <>This is exactly as in the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{c = -\log_e(0+2) + 0 = -\log_e(2)}" />,

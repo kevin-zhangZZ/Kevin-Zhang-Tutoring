@@ -57,7 +57,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} 3-4\frac{dy}{dx}&=1 \\ \frac{dy}{dx}&=\frac12 \end{aligned}" />,
-    reason: <>Collect the <Katex tex="\tfrac{dy}{dx}" /> terms (<Katex tex="-6+2=-4" />), so <Katex tex="-4\tfrac{dy}{dx}=1-3=-2" />. This is the gradient at <Katex tex="(1,-1)" /> only. The general formula <Katex tex="\tfrac{dy}{dx}=\tfrac{1-3y^2}{6xy+2}" /> needs <em>both</em> coordinates, because the curve also passes through <Katex tex="\left(1,\tfrac13\right)" />, where the gradient is <Katex tex="\tfrac16" /> (see the diagram below).</>,
+    reason: <>Collect the <Katex tex="\tfrac{dy}{dx}" /> terms (<Katex tex="-6+2=-4" />), so <Katex tex="-4\tfrac{dy}{dx}=1-3=-2" />. This is the gradient at <Katex tex="(1,-1)" /> only. The general formula <Katex tex="\tfrac{dy}{dx}=\tfrac{1-3y^2}{6xy+2}" /> needs <em>both</em> coordinates, because the curve also passes through <Katex tex="\left(1,\tfrac13\right)" />, where the gradient is <Katex tex="\tfrac16" />.</>,
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="y-(-1) = \tfrac12(x-1)" />,

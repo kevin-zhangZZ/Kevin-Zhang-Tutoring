@@ -94,8 +94,13 @@ const ROWS: WorkingRow[] = [
         Replace <Katex tex="dx" /> with <Katex tex="-du" />. The minus sign and the reversed terminals
         are the same fact seen twice (<Katex tex="u" /> runs backwards), so they cancel: swapping the
         terminals of an integral changes its sign, and <Katex tex="-\int_2^1=\int_1^2" />. This is the
-        line the report writes out. The first diagram below shows it: the new region is the old one
-        flipped end to end, with the same area.
+        line the report writes out.
+      </>
+    ),
+    more: (
+      <>
+        The first diagram below shows it: the new region is the old one flipped end to end, with the
+        same area.
       </>
     ),
   },

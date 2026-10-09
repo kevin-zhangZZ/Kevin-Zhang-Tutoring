@@ -72,10 +72,11 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>D</b>. Option E, <Katex tex="4+2=6" />, counts the shared root{' '}
-        <Katex tex="z=-i" /> twice (see below). On CAS, complex solve (cSolve) of the whole equation lists the five
+        <Katex tex="z=-i" /> twice. On CAS, complex solve (cSolve) of the whole equation lists the five
         solutions; the ordinary real solve would return only <Katex tex="z=\pm1" />.
       </>
     ),
+    more: <>For option E, see below.</>,
   },
 ]
 

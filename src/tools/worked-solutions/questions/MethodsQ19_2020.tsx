@@ -66,7 +66,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{e.g. } q(17) = p(3) \approx 0.238" />,
-    reason: <>A concrete case: 17 non-sixes is the same as 3 sixes. On the graph, <Katex tex="q" /> is <Katex tex="p" /> reflected in the vertical line <Katex tex="x=10" />, since <Katex tex="w" /> and <Katex tex="20-w" /> are equally far from 10. The peak of <Katex tex="p" /> at 3 becomes the peak of <Katex tex="q" /> at 17 (slide <Katex tex="w" /> in the first diagram below).</>,
+    reason: <>A concrete case: 17 non-sixes is the same as 3 sixes. On the graph, <Katex tex="q" /> is <Katex tex="p" /> reflected in the vertical line <Katex tex="x=10" />, since <Katex tex="w" /> and <Katex tex="20-w" /> are equally far from 10. The peak of <Katex tex="p" /> at 3 becomes the peak of <Katex tex="q" /> at 17.</>,
+    more: <>Slide <Katex tex="w" /> in the first diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{q(w) = p(20-w)}" />,

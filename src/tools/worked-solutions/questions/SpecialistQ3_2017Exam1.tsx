@@ -97,7 +97,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= z^3+(-2-c)z^2+(2+2c)z-2c" />,
-    reason: <>Expand and collect like powers. The grid in the second diagram below shows where each term comes from.</>,
+    reason: <>Expand and collect like powers.</>,
+    more: <>The grid in the second diagram below shows where each term comes from.</>,
   },
   {
     working: <Katex display tex="z:\ \ 2+2c = 6 \implies c = 2" />,

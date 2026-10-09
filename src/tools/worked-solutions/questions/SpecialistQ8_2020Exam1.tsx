@@ -43,7 +43,8 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_0^{\sqrt3}y^2\,dx" />,
-    reason: <>Rotating about the <Katex tex="x" />-axis turns each thin slice of width <Katex tex="dx" /> into a disc of radius <Katex tex="y" />, with volume <Katex tex="\pi y^2\,dx" />; adding the discs from <Katex tex="x=0" /> to <Katex tex="x=\sqrt3" /> is this integral (the first diagram below slices the solid up). The radius goes in <em>squared</em>, which is exactly what removes the square root.</>,
+    reason: <>Rotating about the <Katex tex="x" />-axis turns each thin slice of width <Katex tex="dx" /> into a disc of radius <Katex tex="y" />, with volume <Katex tex="\pi y^2\,dx" />; adding the discs from <Katex tex="x=0" /> to <Katex tex="x=\sqrt3" /> is this integral. The radius goes in <em>squared</em>, which is exactly what removes the square root.</>,
+    more: <>The first diagram below slices the solid up.</>,
   },
   {
     working: <Katex display tex="y^2 = \frac{4\left(x^2+x+1\right)}{(x+1)\left(x^2+1\right)}" />,
@@ -51,7 +52,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{x^2+x+1}{(x+1)\left(x^2+1\right)} = \frac{A}{x+1}+\frac{Bx+C}{x^2+1}" />,
-    reason: <>One term for each factor of the denominator. <Katex tex="x+1" /> is linear, so it gets a constant, <Katex tex="A" />. <Katex tex="x^2+1" /> is an irreducible quadratic (<Katex tex="x^2+1\ge1" />, so it has no real roots and can&apos;t be factorised), and a quadratic denominator needs a <em>linear</em> numerator, <Katex tex="Bx+C" />. With only a constant there, the coefficients can&apos;t all be matched (see the common mistake and the second diagram below). The report notes many students identified this form.</>,
+    reason: <>One term for each factor of the denominator. <Katex tex="x+1" /> is linear, so it gets a constant, <Katex tex="A" />. <Katex tex="x^2+1" /> is an irreducible quadratic (<Katex tex="x^2+1\ge1" />, so it has no real roots and can&apos;t be factorised), and a quadratic denominator needs a <em>linear</em> numerator, <Katex tex="Bx+C" />. With only a constant there, the coefficients can&apos;t all be matched. The report notes many students identified this form.</>,
+    more: <>See the common mistake and the second diagram below.</>,
   },
   {
     working: <Katex display tex="x^2+x+1 = A\left(x^2+1\right)+(Bx+C)(x+1)" />,
@@ -86,7 +88,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\qquad+\,2\arctan(x)\Big]_0^{\sqrt3}" />
       </>
     ),
-    reason: <><Katex tex="\int\tfrac{2}{x+1}\,dx=2\log_e(x+1)" />, with no modulus needed since <Katex tex="x+1>0" /> on <Katex tex="\left[0,\sqrt3\right]" />. <Katex tex="\int\tfrac{2x}{x^2+1}\,dx=\log_e\left(x^2+1\right)" /> because the numerator is the derivative of the denominator (the <Katex tex="\tfrac{f'}{f}" /> form), so no substitution is required (the report notes a number of students used one). <Katex tex="\int\tfrac{2}{x^2+1}\,dx=2\arctan(x)" />, from the formula sheet&apos;s <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\left(\tfrac xa\right)" /> with <Katex tex="a=1" />. The third diagram below shows each piece as a layer of area.</>,
+    reason: <><Katex tex="\int\tfrac{2}{x+1}\,dx=2\log_e(x+1)" />, with no modulus needed since <Katex tex="x+1>0" /> on <Katex tex="\left[0,\sqrt3\right]" />. <Katex tex="\int\tfrac{2x}{x^2+1}\,dx=\log_e\left(x^2+1\right)" /> because the numerator is the derivative of the denominator (the <Katex tex="\tfrac{f'}{f}" /> form), so no substitution is required (the report notes a number of students used one). <Katex tex="\int\tfrac{2}{x^2+1}\,dx=2\arctan(x)" />, from the formula sheet&apos;s <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\left(\tfrac xa\right)" /> with <Katex tex="a=1" />.</>,
+    more: <>The third diagram below shows each piece as a layer of area.</>,
   },
   {
     working: (

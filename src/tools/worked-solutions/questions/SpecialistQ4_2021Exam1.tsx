@@ -77,7 +77,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{volume scales by } \tfrac1k" />,
-    reason: <>Think of the solid as thin discs. Every disc keeps its radius (the heights of the graph are unchanged), but each one is only <Katex tex="\tfrac1k" /> as thick, so each disc volume <Katex tex="\pi r^2\,\Delta x" /> — and so the total — is multiplied by <Katex tex="\tfrac1k" />. It is not <Katex tex="\tfrac1{k^2}" />: only the <Katex tex="x" />-direction is squashed, not the radius. The report notes very few students recognised this dilation. Slide <Katex tex="k" /> in the diagram below to see it.</>,
+    reason: <>Think of the solid as thin discs. Every disc keeps its radius (the heights of the graph are unchanged), but each one is only <Katex tex="\tfrac1k" /> as thick, so each disc volume <Katex tex="\pi r^2\,\Delta x" /> — and so the total — is multiplied by <Katex tex="\tfrac1k" />. It is not <Katex tex="\tfrac1{k^2}" />: only the <Katex tex="x" />-direction is squashed, not the radius. The report notes very few students recognised this dilation.</>,
+    more: <>Slide <Katex tex="k" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{V_s}{k}}" />,

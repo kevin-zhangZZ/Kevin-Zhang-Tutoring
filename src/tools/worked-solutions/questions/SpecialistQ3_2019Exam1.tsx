@@ -69,7 +69,8 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{Var}(V) = \operatorname{Var}\!\left(\dfrac{\pi}{4}L\right) = \left(\dfrac{\pi}{4}\right)^2\operatorname{Var}(L)" />,
-    reason: <>A constant multiplier comes out of a variance <b>squared</b>. Why: variance measures <em>squared</em> distance from the mean. Every piece&apos;s volume is <Katex tex="\tfrac{\pi}{4}" /> times as far from the mean volume as its length is from 3 cm, so every squared distance is <Katex tex="\left(\tfrac{\pi}{4}\right)^2" /> times as big (drag <Katex tex="k" /> in the diagram below). This is the step that separates this part from part a., and only 30% of students scored the mark.</>,
+    reason: <>A constant multiplier comes out of a variance <b>squared</b>. Why: variance measures <em>squared</em> distance from the mean. Every piece&apos;s volume is <Katex tex="\tfrac{\pi}{4}" /> times as far from the mean volume as its length is from 3 cm, so every squared distance is <Katex tex="\left(\tfrac{\pi}{4}\right)^2" /> times as big. This is the step that separates this part from part a., and only 30% of students scored the mark.</>,
+    more: <>Drag <Katex tex="k" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="\operatorname{Var}(L) = \bigl(\text{sd}(L)\bigr)^2 = \left(\dfrac{1}{10}\right)^2 = \dfrac{1}{100}" />,

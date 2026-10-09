@@ -45,8 +45,12 @@ const ROWS: WorkingRow[] = [
         Area <Katex tex="=\tfrac12\times\text{base}\times\text{height}" />, written as a function of <Katex tex="m" />, the one
         thing that changes. Before any calculus, think about the ends: near <Katex tex="m=0" /> the base vanishes, and near{' '}
         <Katex tex="m=3" /> the height vanishes, so the area is close to 0 at both ends. Moving <Katex tex="C" /> right
-        lengthens the base but shortens the height, so somewhere in between the area must peak. Slide <Katex tex="C" /> in
-        the diagram below to watch this trade-off.
+        lengthens the base but shortens the height, so somewhere in between the area must peak.
+      </>
+    ),
+    more: (
+      <>
+        Slide <Katex tex="C" /> in the diagram below to watch this trade-off.
       </>
     ),
   },
@@ -100,9 +104,10 @@ const ROWS: WorkingRow[] = [
       <>
         Matches option <b>D</b>. Check: <Katex tex="3\sqrt3\approx5.20" />, a little above <Katex tex="A(2)=5" /> and{' '}
         <Katex tex="A(1)=4" />, which is just what the top of the hump should look like. Option <b>C</b> (
-        <Katex tex="\sqrt3" />) is the value of <Katex tex="m" /> at the maximum, not the area (see below).
+        <Katex tex="\sqrt3" />) is the value of <Katex tex="m" /> at the maximum, not the area.
       </>
     ),
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

@@ -80,9 +80,10 @@ const ROWS_A: WorkingRow[] = [
       <>
         <Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{b}=|\underset{\sim}{b}|^2" />, the squared length, so no square root
         appears. Dividing by <Katex tex="|\underset{\sim}{b}|" /> just once gives the <em>scalar</em> resolute (the length of
-        the shadow), not the number of <Katex tex="\underset{\sim}{b}" />&apos;s in it; see the common mistake below.
+        the shadow), not the number of <Katex tex="\underset{\sim}{b}" />&apos;s in it.
       </>
     ),
+    more: <>See the common mistake below.</>,
   },
   {
     working: <Katex display tex="\frac{1-3m}{m^2+2} = -\frac{11}{18}" />,
@@ -123,10 +124,14 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="m" /> is given to be an integer, so <Katex tex="\tfrac{10}{11}" /> is rejected. It really does satisfy the
-        equation (the diagram below shows the multiplier reaching <Katex tex="-\tfrac{11}{18}" /> twice); the integer condition
-        is the only thing that rules it out. Both roots are bigger than <Katex tex="\tfrac13" />, as the sign check predicted.
+        equation; the integer condition is the only thing that rules it out. Both roots are bigger than <Katex tex="\tfrac13" />, as the sign check predicted.
         Check: with <Katex tex="m=4" />, <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=2-12-1=-11" /> and{' '}
         <Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{b}=1+16+1=18" />, giving <Katex tex="-\tfrac{11}{18}" /> ✓.
+      </>
+    ),
+    more: (
+      <>
+        The diagram below shows the multiplier reaching <Katex tex="-\tfrac{11}{18}" /> twice.
       </>
     ),
   },
@@ -141,8 +146,12 @@ const ROWS_B: WorkingRow[] = [
         <Katex tex="\underset{\sim}{b}" />, and the two parts add back to{' '}
         <Katex tex="\underset{\sim}{a}" />: <Katex tex="\underset{\sim}{a}=\underset{\sim}{a}_{\parallel}+\underset{\sim}{a}_{\perp}" />.
         The part along <Katex tex="\underset{\sim}{b}" /> is the resolute we were given, so the perpendicular part is whatever is
-        left once it is taken away. The diagram below shows why that leftover is exactly at right angles to{' '}
-        <Katex tex="\underset{\sim}{b}" />.
+        left once it is taken away.
+      </>
+    ),
+    more: (
+      <>
+        The diagram below shows why that leftover is exactly at right angles to <Katex tex="\underset{\sim}{b}" />.
       </>
     ),
   },

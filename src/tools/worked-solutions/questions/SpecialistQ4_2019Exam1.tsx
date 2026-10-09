@@ -78,8 +78,13 @@ const ROWS: WorkingRow[] = [
         <p className="mt-1.5">
           The repeated root has a meaning: the sideways gap is <Katex tex="x_B-x_A=(t-1)^2(t+1)" />, which is never
           negative for <Katex tex="t\ge0" />. A draws level with B for just an instant at <Katex tex="t=1" /> and then
-          falls behind again. Drag <Katex tex="t" /> in the diagram below to watch it.
+          falls behind again.
         </p>
+      </>
+    ),
+    more: (
+      <>
+        Drag <Katex tex="t" /> in the diagram below to watch it.
       </>
     ),
   },

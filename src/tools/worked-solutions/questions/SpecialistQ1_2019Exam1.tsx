@@ -115,9 +115,10 @@ const ROWS: WorkingRow[] = [
         Every solution is <Katex tex="1+e^{2x}" /> stretched vertically by some factor <Katex tex="A" />. The DE
         itself says this should happen: <Katex tex="\tfrac{dy}{dx}" /> is proportional to <Katex tex="y" />, so
         doubling a solution doubles its slope everywhere and it is still a solution. Adding a constant would
-        not do that (see the first interactive below).
+        not do that.
       </>
     ),
+    more: <>See the first interactive below.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}y(0)=\pi:\quad \pi &= A\left(1+e^{0}\right) = 2A \\ A &= \dfrac{\pi}{2}\end{aligned}" />,

@@ -159,7 +159,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = f^{-1}(x) \iff f(x) = x \implies \frac{\sqrt x}{\sqrt2} = x" />,
-    reason: <>A point where the two graphs meet is on both a curve and its own mirror image. For an <em>increasing</em> function like this one, that can only happen on the mirror line <Katex tex="y=x" /> itself (drag the point in the diagram below to see it), so solve <Katex tex="f(x)=x" /> — a quadratic after squaring — rather than <Katex tex="\tfrac{\sqrt x}{\sqrt2}=2x^2" />. Careful: a <em>decreasing</em> function can meet its inverse off the line, e.g. <Katex tex="y=-x^3" /> meets its inverse at <Katex tex="(1,-1)" />.</>,
+    reason: <>A point where the two graphs meet is on both a curve and its own mirror image. For an <em>increasing</em> function like this one, that can only happen on the mirror line <Katex tex="y=x" /> itself, so solve <Katex tex="f(x)=x" /> — a quadratic after squaring — rather than <Katex tex="\tfrac{\sqrt x}{\sqrt2}=2x^2" />. Careful: a <em>decreasing</em> function can meet its inverse off the line, e.g. <Katex tex="y=-x^3" /> meets its inverse at <Katex tex="(1,-1)" />.</>,
+    more: <>Drag the point in the diagram below to see why an increasing function can only meet its inverse on <Katex tex="y=x" />.</>,
   },
   {
     working: <Katex display tex="\frac{x}{2} = x^2 \implies x\left(x-\tfrac12\right) = 0 \implies x = 0,\ \tfrac12" />,

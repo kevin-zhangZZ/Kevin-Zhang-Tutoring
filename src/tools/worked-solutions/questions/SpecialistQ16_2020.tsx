@@ -58,9 +58,10 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Reread the last line of the question: it asks for <Katex tex="\sin(2\theta)" />, not <Katex tex="\sin\theta" />.
-        Keep the 2 in front: the interactive diagram below shows where it comes from.
+        Keep the 2 in front.
       </>
     ),
+    more: <>The interactive diagram below shows where it comes from.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{8\sqrt5}{81}}" />,

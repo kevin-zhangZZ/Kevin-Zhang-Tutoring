@@ -294,7 +294,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A = \frac12 r^2\bigl(\theta-\sin\theta\bigr) = \frac12(16)\left(\frac{4\pi}{3}-\sin\frac{4\pi}{3}\right)" />,
-    reason: <>Segment = sector minus triangle, and this formula holds for <Katex tex="\theta>\pi" /> too (see the Background above).</>,
+    reason: <>Segment = sector minus triangle, and this formula holds for <Katex tex="\theta>\pi" /> too.</>,
+    more: <>See the Background above.</>,
   },
   {
     working: <Katex display tex="\sin\frac{4\pi}{3} = -\frac{\sqrt3}{2}" />,

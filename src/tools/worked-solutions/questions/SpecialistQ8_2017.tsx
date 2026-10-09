@@ -42,9 +42,10 @@ const ROWS: WorkingRow[] = [
       <>
         Differentiating <Katex tex="f(x)=x^3-mx^2+4" /> term by term (<Katex tex="m" /> is a constant). This is the
         gradient function. Solving <Katex tex="f'(x)\ge0" /> now would answer a different question, where{' '}
-        <Katex tex="f" /> is increasing; that is how the popular wrong answer D arises (see below).
+        <Katex tex="f" /> is increasing; that is how the popular wrong answer D arises.
       </>
     ),
+    more: <>For option D, see below.</>,
   },
   {
     working: <Katex display tex="f''(x) = 6x-2m" />,
@@ -66,8 +67,12 @@ const ROWS: WorkingRow[] = [
         A check by picture, without <Katex tex="f''" />: completing the square shows that <Katex tex="y=f'(x)" /> is an
         upward parabola with its vertex at <Katex tex="x=\tfrac{m}{3}" />, halfway between its zeros <Katex tex="0" /> and{' '}
         <Katex tex="\tfrac{2m}{3}" />. An upward parabola falls to the left of its vertex and rises to the right of it,
-        whether <Katex tex="m" /> is positive or negative. So the gradient rises for <Katex tex="x\ge\tfrac{m}{3}" />. The
-        diagram below plots this parabola under the graph of <Katex tex="f" />.
+        whether <Katex tex="m" /> is positive or negative. So the gradient rises for <Katex tex="x\ge\tfrac{m}{3}" />.
+      </>
+    ),
+    more: (
+      <>
+        The diagram below plots this parabola under the graph of <Katex tex="f" />.
       </>
     ),
   },

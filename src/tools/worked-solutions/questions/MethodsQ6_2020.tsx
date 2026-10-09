@@ -58,7 +58,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{after the second crossing}" />
       </>
     ),
-    reason: <>So <Katex tex="f" /> keeps increasing to the right. The dip in <Katex tex="f'" /> means the gradient of <Katex tex="f" /> shrinks for a while and then grows again: <Katex tex="f" /> climbs less steeply, then more steeply. That is a bend (a change of concavity), not a turning point. It is option <b>B</b>: a small hump, then a minimum, both left of the <Katex tex="y" />-axis, then a rise that flattens briefly before steepening. Slide along the curves in the diagram below to see each stage.</>,
+    reason: <>So <Katex tex="f" /> keeps increasing to the right. The dip in <Katex tex="f'" /> means the gradient of <Katex tex="f" /> shrinks for a while and then grows again: <Katex tex="f" /> climbs less steeply, then more steeply. That is a bend (a change of concavity), not a turning point. It is option <b>B</b>: a small hump, then a minimum, both left of the <Katex tex="y" />-axis, then a rise that flattens briefly before steepening.</>,
+    more: <>Slide along the curves in the diagram below to see each stage.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{B}}" />,

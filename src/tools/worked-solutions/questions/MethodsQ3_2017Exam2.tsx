@@ -183,7 +183,8 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(25\le T\le55)=\int_{25}^{55}f(t)\,dt" />,
-    reason: <>For a continuous random variable, a probability is the <em>area under the density</em> between the two values. Drag the ends of the interval in the diagram below to see it.</>,
+    reason: <>For a continuous random variable, a probability is the <em>area under the density</em> between the two values.</>,
+    more: <>Drag the ends of the interval in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="=\int_{25}^{45}\frac{t-20}{625}\,dt+\int_{45}^{55}\frac{70-t}{625}\,dt" />,
@@ -203,7 +204,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac45}" />,
-    reason: <>A check by geometry, since both pieces are straight: the whole triangle has area 1, and the two corners left out are triangles of area <Katex tex="\tfrac12\times5\times\tfrac{5}{625}=0.02" /> (left of 25) and <Katex tex="\tfrac12\times15\times\tfrac{15}{625}=0.18" /> (right of 55), so the area is <Katex tex="1-0.02-0.18=0.8" /> ✓. The diagram&apos;s &ldquo;corners&rdquo; toggle shows this.</>,
+    reason: <>A check by geometry, since both pieces are straight: the whole triangle has area 1, and the two corners left out are triangles of area <Katex tex="\tfrac12\times5\times\tfrac{5}{625}=0.02" /> (left of 25) and <Katex tex="\tfrac12\times15\times\tfrac{15}{625}=0.18" /> (right of 55), so the area is <Katex tex="1-0.02-0.18=0.8" /> ✓.</>,
+    more: <>The diagram&apos;s &ldquo;corners&rdquo; toggle shows this.</>,
   },
 ]
 
@@ -230,7 +232,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{1}{41}}" />,
-    reason: <>Small, as it should be: <Katex tex="T\le25" /> is a thin sliver at the far left of the triangle, about 2.4% of the area left of 55. The report&apos;s common wrong answer <Katex tex="\tfrac1{40}" /> is what you get by dividing by part b.&apos;s <Katex tex="\tfrac45" /> instead (see below).</>,
+    reason: <>Small, as it should be: <Katex tex="T\le25" /> is a thin sliver at the far left of the triangle, about 2.4% of the area left of 55. The report&apos;s common wrong answer <Katex tex="\tfrac1{40}" /> is what you get by dividing by part b.&apos;s <Katex tex="\tfrac45" /> instead.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 
@@ -314,7 +317,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\binom{7}{2}p^2(1-p)^5+\binom{7}{3}p^3(1-p)^4" />,
-    reason: <>The binomial formula <Katex tex="\Pr(Y=k)=\binom{n}{k}p^k(1-p)^{n-k}" />, twice. For two days: <Katex tex="p^2" /> for the two long days, <Katex tex="(1-p)^5" /> for the other five, and <Katex tex="\binom72" /> ways to choose which two days they are. Step through the arrangements in the diagram below.</>,
+    reason: <>The binomial formula <Katex tex="\Pr(Y=k)=\binom{n}{k}p^k(1-p)^{n-k}" />, twice. For two days: <Katex tex="p^2" /> for the two long days, <Katex tex="(1-p)^5" /> for the other five, and <Katex tex="\binom72" /> ways to choose which two days they are.</>,
+    more: <>Step through the arrangements in the diagram below.</>,
   },
   {
     working: <Katex display tex="=21p^2(1-p)^5+35p^3(1-p)^4" />,
@@ -333,7 +337,8 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_GI: WorkingRow[] = [
   {
     working: <Katex display tex="q(0)=0,\qquad q(1)=0" />,
-    reason: <>Where to look: with <Katex tex="p=0" /> she never works more than <Katex tex="d" /> minutes and with <Katex tex="p=1" /> she always does, so either way exactly 2 or 3 days is impossible. <Katex tex="q" /> rises from 0 and falls back to 0, so its maximum is at a stationary point inside <Katex tex="(0,1)" />, where the tangent is flat (slide <Katex tex="p" /> in the diagram below). The report notes some students knew to solve <Katex tex="q'(p)=0" /> if they had an equation in part f.</>,
+    reason: <>Where to look: with <Katex tex="p=0" /> she never works more than <Katex tex="d" /> minutes and with <Katex tex="p=1" /> she always does, so either way exactly 2 or 3 days is impossible. <Katex tex="q" /> rises from 0 and falls back to 0, so its maximum is at a stationary point inside <Katex tex="(0,1)" />, where the tangent is flat. The report notes some students knew to solve <Katex tex="q'(p)=0" /> if they had an equation in part f.</>,
+    more: <>Slide <Katex tex="p" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}q'(p)=7\bigl[&2p(1-p)^4(2p+3)\\ &-4p^2(1-p)^3(2p+3)\\ &+2p^2(1-p)^4\bigr]\end{aligned}" />,

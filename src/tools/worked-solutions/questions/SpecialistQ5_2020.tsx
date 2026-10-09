@@ -68,9 +68,15 @@ const ROWS: WorkingRow[] = [
         Split the fraction: <Katex tex="\tfrac{a^2}{a^2}=1" />. Matches option <b>A</b>. As a picture, the expression is{' '}
         <Katex tex="\bigl(\tfrac{|z|}{a}\bigr)^2" />: hypotenuse over adjacent, squared, in the right triangle with sides{' '}
         <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="|z|" />. That is <Katex tex="\sec^2\theta=1+\tan^2\theta" />, with{' '}
-        <Katex tex="\tan\theta=\tfrac{b}{a}" /> (see the diagram below). Check with <Katex tex="z=1+2i" /> (not <Katex tex="1+i" />; see the common mistake below):{' '}
+        <Katex tex="\tan\theta=\tfrac{b}{a}" />. Check with <Katex tex="z=1+2i" /> (not <Katex tex="1+i" />):{' '}
         <Katex tex="\tfrac{4\times5}{2^2}=5" /> and <Katex tex="1+2^2=5" /> ✓, while B, C, D and E give 8, 20, 40 and 4. Option <b>C</b>{' '}
         is <Katex tex="4z\bar z" />, the numerator on its own, without dividing by <Katex tex="(z+\bar z)^2" />.
+      </>
+    ),
+    more: (
+      <>
+        See the diagram below for the triangle, and the common mistake below for why the check avoids{' '}
+        <Katex tex="1+i" />.
       </>
     ),
   },

@@ -54,7 +54,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{heights in } [0,\ b\pi-a] \text{ unchanged}" />
       </>
     ),
-    reason: <>The modulus reflects the part of the graph below the <Katex tex="x" />-axis up above it and leaves the rest alone (watch the fold in the diagram below). So the lowest point <Katex tex="(1,-a)" /> goes up to <Katex tex="(1,a)" />, and the crossing point stays at height <Katex tex="0" />, which makes it the new lowest point.</>,
+    reason: <>The modulus reflects the part of the graph below the <Katex tex="x" />-axis up above it and leaves the rest alone. So the lowest point <Katex tex="(1,-a)" /> goes up to <Katex tex="(1,a)" />, and the crossing point stays at height <Katex tex="0" />, which makes it the new lowest point.</>,
+    more: <>Watch the fold in the diagram below.</>,
   },
   {
     working: <Katex display tex="a < \tfrac{b\pi}{2} \;\implies\; 2a < b\pi \;\implies\; a < b\pi - a" />,

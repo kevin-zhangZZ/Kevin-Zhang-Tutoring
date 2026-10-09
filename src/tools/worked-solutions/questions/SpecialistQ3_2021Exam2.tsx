@@ -115,7 +115,8 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{maximise } {-\frac{dh}{dt}} = \frac{4\sqrt h}{\pi(h+8)^{2/3}}" />,
-    reason: <>The depth is falling, so <Katex tex="\tfrac{dh}{dt}" /> is negative. The rate of <em>decrease</em> is its size, <Katex tex="-\tfrac{dh}{dt}" />, so that is what to maximise. (The largest value of <Katex tex="\tfrac{dh}{dt}" /> itself is 0, at <Katex tex="h=0" />: an empty vessel.) Two effects compete: deeper water leaks faster, but higher up the vessel is wider, so each cm³ lost lowers the level less. Slide <Katex tex="h" /> in the diagram below to watch them trade places.</>,
+    reason: <>The depth is falling, so <Katex tex="\tfrac{dh}{dt}" /> is negative. The rate of <em>decrease</em> is its size, <Katex tex="-\tfrac{dh}{dt}" />, so that is what to maximise. (The largest value of <Katex tex="\tfrac{dh}{dt}" /> itself is 0, at <Katex tex="h=0" />: an empty vessel.) Two effects compete: deeper water leaks faster, but higher up the vessel is wider, so each cm³ lost lowers the level less.</>,
+    more: <>Slide <Katex tex="h" /> in the diagram below to watch them trade places.</>,
   },
   {
     working: (
@@ -175,7 +176,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = \int_{25}^{50}\frac{\pi(h+8)^{2/3}}{40\sqrt2-4\sqrt h}\,dh" />,
-    reason: <>Integrate with respect to <Katex tex="h" />, from the depth when pouring starts (25 cm, at <Katex tex="t=0" />) to the full depth (50 cm). The diagram below shades this area as the level rises.</>,
+    reason: <>Integrate with respect to <Katex tex="h" />, from the depth when pouring starts (25 cm, at <Katex tex="t=0" />) to the full depth (50 cm).</>,
+    more: <>The diagram below shades this area as the level rises.</>,
   },
   {
     working: <Cas fn="nInt">∫(π(h+8)^(2/3)/(40√2 − 4√h), h, 25, 50)</Cas>,

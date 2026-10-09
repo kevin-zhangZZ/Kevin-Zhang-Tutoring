@@ -112,10 +112,10 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Equation (2) is the simpler one, so start there. Factorise rather than dividing by <Katex tex="y" />, which would
-        throw away the case <Katex tex="y=0" />. The null factor law gives two cases; test each one in (1). In the diagram
-        below, the solutions are where the orange curve (1) crosses the blue lines (2).
+        throw away the case <Katex tex="y=0" />. The null factor law gives two cases; test each one in (1).
       </>
     ),
+    more: <>In the diagram below, the solutions are where the orange curve (1) crosses the blue lines (2).</>,
   },
   {
     working: <Katex display tex="\begin{gathered} y = 0 \text{ in } (1){:}\ x^2+2x+2 = 0 \\ \Delta = 2^2-4(1)(2) = -4 < 0 \end{gathered}" />,

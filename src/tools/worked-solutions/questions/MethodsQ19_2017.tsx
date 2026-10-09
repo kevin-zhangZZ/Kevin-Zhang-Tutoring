@@ -41,7 +41,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(k+1)-\sin(k) = 0" />,
-    reason: <>The <Katex tex="k" /> terms cancel and the <Katex tex="+1" /> matches the right-hand side. That is the whole trick: under <Katex tex="y=1" /> the window is a <Katex tex="1\times1" /> square, so the "<Katex tex="+1" />" part of the density already supplies all the area. The cosine part must add up to <Katex tex="0" />, so its positive and negative pieces must cancel (see the interactive below).</>,
+    reason: <>The <Katex tex="k" /> terms cancel and the <Katex tex="+1" /> matches the right-hand side. That is the whole trick: under <Katex tex="y=1" /> the window is a <Katex tex="1\times1" /> square, so the "<Katex tex="+1" />" part of the density already supplies all the area. The cosine part must add up to <Katex tex="0" />, so its positive and negative pieces must cancel.</>,
+    more: <>See the interactive below.</>,
   },
   {
     working: <Katex display tex="\sin(k+1)=\sin(k)" />,

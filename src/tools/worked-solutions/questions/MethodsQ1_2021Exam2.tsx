@@ -252,7 +252,8 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \frac{3+\sqrt3}{6}h \approx 0.789h > \tfrac{h}{2} \ \text{(reject)}" />,
-    reason: <>Reject: it is outside the domain from part f.i., and the width <Katex tex="h-2x" /> would be negative. Substituting it gives <Katex tex="V=-\tfrac{\sqrt3\,h^3}{9}" />, the negative volume the report saw. The interactive below shows where it lands.</>,
+    reason: <>Reject: it is outside the domain from part f.i., and the width <Katex tex="h-2x" /> would be negative. Substituting it gives <Katex tex="V=-\tfrac{\sqrt3\,h^3}{9}" />, the negative volume the report saw.</>,
+    more: <>The interactive below shows where it lands.</>,
   },
   {
     working: <Katex display tex="x = \frac{3-\sqrt3}{6}h \approx 0.211h < \tfrac{h}{2} \ \checkmark" />,

@@ -109,7 +109,8 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_a^b \left(y_{\text{outer}}^2 - y_{\text{inner}}^2\right)dx" />,
-    reason: <>Cut the region into thin vertical strips. Spun about the <Katex tex="x" />-axis, each strip sweeps out a <em>washer</em>: a disc of radius <Katex tex="y_{\text{outer}}" /> with a hole of radius <Katex tex="y_{\text{inner}}" />. Its area is <Katex tex="\pi y_{\text{outer}}^2-\pi y_{\text{inner}}^2" />, the whole disc minus the hole, and the volume adds these up. Drag the slice in the first diagram below.</>,
+    reason: <>Cut the region into thin vertical strips. Spun about the <Katex tex="x" />-axis, each strip sweeps out a <em>washer</em>: a disc of radius <Katex tex="y_{\text{outer}}" /> with a hole of radius <Katex tex="y_{\text{inner}}" />. Its area is <Katex tex="\pi y_{\text{outer}}^2-\pi y_{\text{inner}}^2" />, the whole disc minus the hole, and the volume adds these up.</>,
+    more: <>Drag the slice in the first diagram below.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}x=2: \ \ y_{\text{curve}}^2 &= \frac{4-1}{2} = \frac32 \\ y_{\text{line}}^2 &= (2-1)^2 = 1\end{aligned}" />,
@@ -133,7 +134,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = \frac{2\pi}{3}}" />,
-    reason: <>Positive, as any volume must be (<Katex tex="\approx2.09" /> cubic units). The report mentions another route: rotate the region under the hyperbola from <Katex tex="x=1" /> to <Katex tex="x=3" /> (<Katex tex="\tfrac{10\pi}{3}" />), then subtract the cone made by the line (<Katex tex="\tfrac{8\pi}{3}" />). Step through it in the second diagram below. Only <Katex tex="19\%" /> of students scored both marks.</>,
+    reason: <>Positive, as any volume must be (<Katex tex="\approx2.09" /> cubic units). The report mentions another route: rotate the region under the hyperbola from <Katex tex="x=1" /> to <Katex tex="x=3" /> (<Katex tex="\tfrac{10\pi}{3}" />), then subtract the cone made by the line (<Katex tex="\tfrac{8\pi}{3}" />). Only <Katex tex="19\%" /> of students scored both marks.</>,
+    more: <>Step through that alternative route in the second diagram below.</>,
   },
 ]
 

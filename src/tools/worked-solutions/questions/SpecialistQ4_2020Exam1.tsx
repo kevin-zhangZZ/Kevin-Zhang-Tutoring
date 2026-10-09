@@ -52,8 +52,12 @@ const ROWS: WorkingRow[] = [
         Start with the side you know most about. <Katex tex="|x-4|" /> is the distance between{' '}
         <Katex tex="x" /> and <Katex tex="4" />, so it is never negative, and it is zero only at{' '}
         <Katex tex="x=4" />, where the fraction isn&apos;t defined anyway. One over a positive number
-        is positive, so the right-hand side is always strictly positive: in the diagram below it is
-        the orange curve, which never dips below the <Katex tex="x" />-axis.
+        is positive, so the right-hand side is always strictly positive.
+      </>
+    ),
+    more: (
+      <>
+        In the diagram below it is the orange curve, which never dips below the <Katex tex="x" />-axis.
       </>
     ),
   },

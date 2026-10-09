@@ -87,7 +87,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(3b-1)(b-3) = 0 \implies b = \frac13 \ \text{ or } \ b = 3" />,
-    reason: <>Two numbers with product <Katex tex="3\times3=9" /> and sum <Katex tex="-10" /> are <Katex tex="-9" /> and <Katex tex="-1" />, which gives the factors. Two roots are expected: a line can cut an ellipse twice (see the graph below).</>,
+    reason: <>Two numbers with product <Katex tex="3\times3=9" /> and sum <Katex tex="-10" /> are <Katex tex="-9" /> and <Katex tex="-1" />, which gives the factors. Two roots are expected: a line can cut an ellipse twice.</>,
+    more: <>See the graph below.</>,
   },
   {
     working: <Katex display tex="b=\frac13 \text{ rejected (not an integer)}" />,

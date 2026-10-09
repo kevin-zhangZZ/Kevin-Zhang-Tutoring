@@ -77,7 +77,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(t) = -1 \implies t = \pi,\ 3\pi,\ 5\pi,\ \ldots" />,
-    reason: <>On the unit circle, <Katex tex="\cos(t)=-1" /> only at the point <Katex tex="(-1,0)" />: first at <Katex tex="t=\pi" />, then again after every full turn of <Katex tex="2\pi" />. So the maximum is not a one-off: it comes back at every odd multiple of <Katex tex="\pi" /> (slide <Katex tex="t" /> in the diagram below).</>,
+    reason: <>On the unit circle, <Katex tex="\cos(t)=-1" /> only at the point <Katex tex="(-1,0)" />: first at <Katex tex="t=\pi" />, then again after every full turn of <Katex tex="2\pi" />. So the maximum is not a one-off: it comes back at every odd multiple of <Katex tex="\pi" />.</>,
+    more: <>Slide <Katex tex="t" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="\boxed{t = (2k+1)\pi \text{ seconds}, \quad k \in \{0,1,2,\ldots\}}" />,

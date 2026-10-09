@@ -51,11 +51,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_1^{5} g(x)\,dx = 5 - 6" />,
-    reason: <>Subtract <Katex tex="6" /> from both sides. The same answer comes in one line by chaining the given integrals end to start, <Katex tex="1\to12\to5" />: <Katex tex="\int_1^{12}+\int_{12}^{5}=\int_1^{5}" />, so <Katex tex="5+(-6)=-1" />. The middle point does not have to lie between the ends: the walk below shows the backwards leg cancelling the overlap.</>,
+    reason: <>Subtract <Katex tex="6" /> from both sides. The same answer comes in one line by chaining the given integrals end to start, <Katex tex="1\to12\to5" />: <Katex tex="\int_1^{12}+\int_{12}^{5}=\int_1^{5}" />, so <Katex tex="5+(-6)=-1" />. The middle point does not have to lie between the ends.</>,
+    more: <>The walk below shows the backwards leg cancelling the overlap.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_1^{5} g(x)\,dx = -1}" />,
-    reason: <>Matches option <b>B</b>. A negative answer is fine: a definite integral is a <em>signed</em> area, so between <Katex tex="1" /> and <Katex tex="5" /> more area lies below the axis than above it. Option <b>E</b> <Katex tex="(11)" />, chosen by <Katex tex="36\%" /> (almost as many as answered correctly), is <Katex tex="5-(-6)" />: see the box below. Option <b>C</b> <Katex tex="(1)" /> has the right size but the wrong sign, which is what rearranging <Katex tex="5=\int_1^5+6" /> as <Katex tex="6-5" /> gives.</>,
+    reason: <>Matches option <b>B</b>. A negative answer is fine: a definite integral is a <em>signed</em> area, so between <Katex tex="1" /> and <Katex tex="5" /> more area lies below the axis than above it. Option <b>E</b> <Katex tex="(11)" />, chosen by <Katex tex="36\%" /> (almost as many as answered correctly), is <Katex tex="5-(-6)" />. Option <b>C</b> <Katex tex="(1)" /> has the right size but the wrong sign, which is what rearranging <Katex tex="5=\int_1^5+6" /> as <Katex tex="6-5" /> gives.</>,
+    more: <>For option <b>E</b>, see the box below.</>,
   },
 ]
 

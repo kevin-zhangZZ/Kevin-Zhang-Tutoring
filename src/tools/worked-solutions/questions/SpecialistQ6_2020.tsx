@@ -43,9 +43,10 @@ const ROWS: WorkingRow[] = [
       <>
         Pair the conjugates first: a difference of two squares, and <Katex tex="i^2=-1" /> makes every <Katex tex="i" /> disappear.
         That is exactly why the pair is needed; with any other third root the <Katex tex="i" />&apos;s would not cancel and the
-        coefficients would not be real (drag the third root around in the diagram below).
+        coefficients would not be real.
       </>
     ),
+    more: <>Drag the third root around in the diagram below.</>,
   },
   {
     working: <Katex display tex="P(z) = (z+2)\left(z^2+9\right) = z^3+2z^2+9z+18" />,
@@ -56,11 +57,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>C</b>. Option <b>E</b> comes from treating the roots as <Katex tex="\pm3" /> instead of{' '}
-        <Katex tex="\pm3i" />, and option <b>A</b> from using the root <Katex tex="2" /> instead of <Katex tex="-2" /> (both worked through below). A fast check:{' '}
+        <Katex tex="\pm3i" />, and option <b>A</b> from using the root <Katex tex="2" /> instead of <Katex tex="-2" />. A fast check:{' '}
         <Katex tex="c=18" /> must be minus the product of the roots, <Katex tex="-(-2)(3i)(-3i)=-(-2)(9)=18" /> ✓, and{' '}
         <Katex tex="P(-2)=-8+8-18+18=0" /> ✓.
       </>
     ),
+    more: <>Options <b>E</b> and <b>A</b> are both worked through below.</>,
   },
 ]
 

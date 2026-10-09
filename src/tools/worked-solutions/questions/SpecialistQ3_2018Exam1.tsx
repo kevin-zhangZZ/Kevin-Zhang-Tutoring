@@ -148,10 +148,10 @@ const ROWS: WorkingRow[] = [
         The required form <Katex tex="\tfrac{a}{\pi\sqrt b+c}" /> with <Katex tex="a=-18" />,{' '}
         <Katex tex="b=3" />, <Katex tex="c=6" />, all integers. Sense check:{' '}
         <Katex tex="\approx-1.57" />, negative, and the curve is indeed falling as it passes
-        through <Katex tex="\left(\tfrac{\pi}{6},\tfrac{\pi}{6}\right)" /> (see the interactive
-        below).
+        through <Katex tex="\left(\tfrac{\pi}{6},\tfrac{\pi}{6}\right)" />.
       </>
     ),
+    more: <>See the interactive below.</>,
   },
 ]
 

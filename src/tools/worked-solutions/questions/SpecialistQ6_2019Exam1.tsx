@@ -93,7 +93,12 @@ const ROWS: WorkingRow[] = [
         fixed <Katex tex="m" /> and <Katex tex="n" />, so the third can only hold if <Katex tex="d" /> equals the{' '}
         <Katex tex="\underset{\sim}{k}" />-component of <Katex tex="-10\underset{\sim}{a}-7\underset{\sim}{b}" />. For any
         other <Katex tex="d" />, no choice of <Katex tex="m" /> and <Katex tex="n" /> works and the vectors are
-        independent. In the diagram below, <Katex tex="16" /> is the height of the plane directly above the
+        independent.
+      </>
+    ),
+    more: (
+      <>
+        In the diagram below, <Katex tex="16" /> is the height of the plane directly above the
         point <Katex tex="(-6,\,2)" />.
       </>
     ),

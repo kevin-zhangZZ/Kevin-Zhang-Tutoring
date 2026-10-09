@@ -56,7 +56,12 @@ const ROWS: WorkingRow[] = [
       <>
         On the unit circle, <Katex tex="-x" /> is <Katex tex="x" /> reflected in the horizontal axis, so the height{' '}
         <Katex tex="\sin" /> changes sign: <Katex tex="\sin(-x) = -\sin(x)" />. Its reciprocal changes sign with it, so cosec is
-        odd. Drag <Katex tex="P" /> in the diagram below to see the reflection.
+        odd.
+      </>
+    ),
+    more: (
+      <>
+        Drag <Katex tex="P" /> in the diagram below to see the reflection.
       </>
     ),
   },

@@ -195,7 +195,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(30t = 450 − 150·sin(πt/6), t) | 0 ≤ t ≤ 40</Cas>,
-    reason: <>Gives <Katex tex="t=12.849\ldots" />, the only time the two are at the same <Katex tex="x" /> (the lower graph in the widget below shows the single crossing). The report quotes it as 12.84.</>,
+    reason: <>Gives <Katex tex="t=12.849\ldots" />, the only time the two are at the same <Katex tex="x" />. The report quotes it as 12.84.</>,
+    more: <>The lower graph in the widget below shows the single crossing.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}t &= 12.849\ldots\\ y_{\text{drone}} &= -t^2+40t = 348.87\ldots\end{aligned}" />,

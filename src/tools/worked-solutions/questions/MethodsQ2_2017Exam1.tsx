@@ -56,13 +56,14 @@ const ROWS_A: WorkingRow[] = [
       <>
         Chain rule on the log: one over the inside, times the derivative of the inside. The{' '}
         <Katex tex="3" /> from the inside cancels the <Katex tex="3" /> in the denominator. The
-        report&apos;s two common wrong answers each keep only one of those threes (see the Common
-        Mistake below). Quicker still: <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" />, and the
+        report&apos;s two common wrong answers each keep only one of those threes. Quicker still:{' '}
+        <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" />, and the
         constant <Katex tex="\log_e(3)" /> differentiates to <Katex tex="0" />. So{' '}
         <Katex tex="\log_e(kx)" /> differentiates to <Katex tex="\tfrac1x" /> for every positive
         constant <Katex tex="k" />.
       </>
     ),
+    more: <>See the Common Mistake below.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 1\times\log_e(3x) + x\times\frac{1}{x}" />,

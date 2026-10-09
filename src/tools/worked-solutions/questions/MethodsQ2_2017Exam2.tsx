@@ -173,7 +173,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = 7.5 \text{ minutes}}" />,
-    reason: <>A quarter of a period. Here P is level with the centre on the way up, moving straight up, so all of its speed goes into height; at the top and the bottom it moves sideways, so <Katex tex="h'=0" /> there (ride the wheel in the diagram below). Setting <Katex tex="h''(t)=\tfrac{11\pi^2}{45}\cos\!\left(\tfrac{\pi t}{15}\right)=0" /> also works, but it gives <Katex tex="t=7.5" /> and <Katex tex="t=22.5" />; at <Katex tex="22.5" /> the rate is <Katex tex="-\tfrac{11\pi}{3}" />, the fastest <em>fall</em>, so reject it.</>,
+    reason: <>A quarter of a period. Here P is level with the centre on the way up, moving straight up, so all of its speed goes into height; at the top and the bottom it moves sideways, so <Katex tex="h'=0" /> there. Setting <Katex tex="h''(t)=\tfrac{11\pi^2}{45}\cos\!\left(\tfrac{\pi t}{15}\right)=0" /> also works, but it gives <Katex tex="t=7.5" /> and <Katex tex="t=22.5" />; at <Katex tex="22.5" /> the rate is <Katex tex="-\tfrac{11\pi}{3}" />, the fastest <em>fall</em>, so reject it.</>,
+    more: <>Ride the wheel in the diagram below.</>,
   },
 ]
 
@@ -223,7 +224,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{-u}{\sqrt{3025-u^2}} = \frac{\sqrt{3025-u^2}+65}{u-500}" />,
-    reason: <>Two expressions for the same gradient, so they must be equal: one equation in one unknown. This is the "hence". Only at <Katex tex="P_2" /> is the line to <Katex tex="B" /> also the tangent — drag P in the diagram below and see the two lines coincide only there.</>,
+    reason: <>Two expressions for the same gradient, so they must be equal: one equation in one unknown. This is the "hence". Only at <Katex tex="P_2" /> is the line to <Katex tex="B" /> also the tangent.</>,
+    more: <>Drag P in the diagram below and see the two lines coincide only there.</>,
   },
   {
     working: <Cas fn="solve">solve(-u/√(3025-u²) = (√(3025-u²)+65)/(u-500), u) | 0&lt;u&lt;55</Cas>,
@@ -255,7 +257,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\alpha \approx 13.67^\circ}" />,
-    reason: <>Degree mode again — the report notes some students used radians (<Katex tex="0.24" />). Check: steeper than <Katex tex="\theta\approx7.41^\circ" />, as it must be: <Katex tex="P_2" /> is both higher than <Katex tex="C" /> and closer to <Katex tex="B" />, so the line from <Katex tex="B" /> to it climbs more steeply. The diagram in part (h) shows <Katex tex="\alpha" /> copied at <Katex tex="P_2" />.</>,
+    reason: <>Degree mode again — the report notes some students used radians (<Katex tex="0.24" />). Check: steeper than <Katex tex="\theta\approx7.41^\circ" />, as it must be: <Katex tex="P_2" /> is both higher than <Katex tex="C" /> and closer to <Katex tex="B" />, so the line from <Katex tex="B" /> to it climbs more steeply.</>,
+    more: <>The diagram in part (h) shows <Katex tex="\alpha" /> copied at <Katex tex="P_2" />.</>,
   },
 ]
 

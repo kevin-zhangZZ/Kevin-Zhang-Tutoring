@@ -49,7 +49,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = 0: \quad h = 25 \text{ (maximum)}" />,
-    reason: <>&ldquo;Both hands point vertically upwards&rdquo; at noon, so the model must <em>start at its maximum</em>. <Katex tex="\cos0=1" /> starts at the top, while <Katex tex="\sin0=0" /> starts on the midline: options A, B and C all give <Katex tex="h(0)=15" />, so they are out. (Underneath this: the hand&apos;s angle is measured from the vertical, so the height above the centre is <Katex tex="10\cos\theta" />; see the Background above.)</>,
+    reason: <>&ldquo;Both hands point vertically upwards&rdquo; at noon, so the model must <em>start at its maximum</em>. <Katex tex="\cos0=1" /> starts at the top, while <Katex tex="\sin0=0" /> starts on the midline: options A, B and C all give <Katex tex="h(0)=15" />, so they are out. (Underneath this: the hand&apos;s angle is measured from the vertical, so the height above the centre is <Katex tex="10\cos\theta" />.)</>,
+    more: <>See the Background above.</>,
   },
   {
     working: <Katex display tex="\text{period} = 60 \text{ minutes}" />,

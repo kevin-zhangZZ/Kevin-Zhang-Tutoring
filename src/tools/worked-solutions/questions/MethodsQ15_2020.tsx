@@ -45,7 +45,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{1}{3a}\int_{-2a}^{a}f(x)\,dx" />
       </>
     ),
-    reason: <>Start from the definition (see the Background above): the signed area under the graph, shared out over the width of the interval. The width is <Katex tex="a-(-2a)=3a" />.</>,
+    reason: <>Start from the definition: the signed area under the graph, shared out over the width of the interval. The width is <Katex tex="a-(-2a)=3a" />.</>,
+    more: <>See the Background above for the definition.</>,
   },
   {
     working: (
@@ -97,7 +98,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{a}{3}}" />,
-    reason: <>Matches option <b>B</b>. Sanity check: <Katex tex="f" /> runs from <Katex tex="-a" /> to <Katex tex="2a" /> but spends most of the interval low down, so its average should sit below the middle of that range, <Katex tex="\tfrac a2" />, and <Katex tex="\tfrac a3" /> does. Option <b>C</b>, <Katex tex="\tfrac a2" />, is exactly that middle (see below). Option <b>E</b> divides <Katex tex="a^2" /> by <Katex tex="a" /> instead of by the width <Katex tex="3a" />, and option <b>A</b> is the integral of the right-hand piece alone.</>,
+    reason: <>Matches option <b>B</b>. Sanity check: <Katex tex="f" /> runs from <Katex tex="-a" /> to <Katex tex="2a" /> but spends most of the interval low down, so its average should sit below the middle of that range, <Katex tex="\tfrac a2" />, and <Katex tex="\tfrac a3" /> does. Option <b>C</b>, <Katex tex="\tfrac a2" />, is exactly that middle. Option <b>E</b> divides <Katex tex="a^2" /> by <Katex tex="a" /> instead of by the width <Katex tex="3a" />, and option <b>A</b> is the integral of the right-hand piece alone.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

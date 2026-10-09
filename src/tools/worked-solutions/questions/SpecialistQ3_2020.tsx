@@ -27,7 +27,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="0\le t\le30: \ v \text{ rises from } 0 \text{ to } 10" />,
-    reason: <>Sketch the velocity–time graph from the story before looking at the options (the diagram below draws it): up from rest to 10&nbsp;m&nbsp;s<sup>−1</sup>, flat, then down to 0. Constant acceleration means a constant gradient, so each phase is a straight line.</>,
+    reason: <>Sketch the velocity–time graph from the story before looking at the options: up from rest to 10&nbsp;m&nbsp;s<sup>−1</sup>, flat, then down to 0. Constant acceleration means a constant gradient, so each phase is a straight line.</>,
+    more: <>The diagram below draws it.</>,
   },
   {
     working: <Katex display tex="v = \frac{10}{30}t = \frac{t}{3}" />,

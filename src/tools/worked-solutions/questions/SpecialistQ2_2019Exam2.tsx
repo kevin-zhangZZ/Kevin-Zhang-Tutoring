@@ -121,7 +121,8 @@ const ROWS_BI: WorkingRow[] = [
         <Katex display tex="\text{the two points are ends of a diameter}" />
       </>
     ),
-    reason: <>The segment joining the two points is a chord of any circle through them, and no chord is longer than a diameter. So the diameter is at least the distance between the points, and the smallest circle is the one where that segment <em>is</em> a diameter: centre at the midpoint, radius half the distance. Drag the centre in the diagram below to see the radius grow as soon as the centre leaves the midpoint.</>,
+    reason: <>The segment joining the two points is a chord of any circle through them, and no chord is longer than a diameter. So the diameter is at least the distance between the points, and the smallest circle is the one where that segment <em>is</em> a diameter: centre at the midpoint, radius half the distance.</>,
+    more: <>Drag the centre in the diagram below to see the radius grow as soon as the centre leaves the midpoint.</>,
   },
   {
     working: <Katex display tex="\text{midpoint} = \dfrac{\left(-1+\tfrac{\sqrt6}{2}i\right)+\left(-1-\tfrac{\sqrt6}{2}i\right)}{2} = -1" />,

@@ -62,7 +62,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X>7) = \Pr\!\left(Z > \frac{7-6}{2}\right) = \Pr\!\left(Z>\frac12\right)" />,
-    reason: <><Katex tex="7" /> is <Katex tex="1" /> above the mean, and <Katex tex="1" /> is half of <Katex tex="\sigma=2" />, so <Katex tex="7" /> sits at <Katex tex="z=\tfrac12" />. The shaded area is unchanged; standardising only relabels the axis (first widget below).</>,
+    reason: <><Katex tex="7" /> is <Katex tex="1" /> above the mean, and <Katex tex="1" /> is half of <Katex tex="\sigma=2" />, so <Katex tex="7" /> sits at <Katex tex="z=\tfrac12" />. The shaded area is unchanged; standardising only relabels the axis.</>,
+    more: <>See the first widget below.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(Z>\tfrac12\right) = \Pr\!\left(Z<-\tfrac12\right)" />,

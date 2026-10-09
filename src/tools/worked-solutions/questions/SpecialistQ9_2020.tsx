@@ -54,8 +54,12 @@ const ROWS: WorkingRow[] = [
       <>
         Turn the words into a point. The <Katex tex="x" />-intercept of the tangent is a point on the{' '}
         <Katex tex="x" />-axis, and the condition says its <Katex tex="x" />-coordinate equals the <Katex tex="y" />-value
-        at P. So the tangent passes through <Katex tex="(y,0)" />, as well as through P itself. Drag P in the first diagram
-        below: Q is always P&apos;s height laid out along the <Katex tex="x" />-axis.
+        at P. So the tangent passes through <Katex tex="(y,0)" />, as well as through P itself.
+      </>
+    ),
+    more: (
+      <>
+        Drag P in the first diagram below: Q is always P&apos;s height laid out along the <Katex tex="x" />-axis.
       </>
     ),
   },
@@ -82,13 +86,14 @@ const ROWS: WorkingRow[] = [
       <>
         Rather than check marks at random points, pick lines where the formula collapses to one number all along them:
         the two axes. Along the <Katex tex="x" />-axis every mark must be flat. Along the <Katex tex="y" />-axis every
-        mark must have gradient <Katex tex="-1" />, above <Katex tex="O" /> and below it (in the first diagram, O, P and Q
+        mark must have gradient <Katex tex="-1" />, above <Katex tex="O" /> and below it (O, P and Q
         then form an isosceles right-angled triangle). VCAA draws no marks on the axes themselves, so read the row and
         column of marks just beside them. (Strictly, a point on the <Katex tex="x" />-axis with a flat tangent has the{' '}
         <Katex tex="x" />-axis itself as its tangent, so &ldquo;its <Katex tex="x" />-intercept&rdquo; isn&apos;t one
         point; the marks just beside the axis are nearly flat, and that is what the figures show.)
       </>
     ),
+    more: <>See the triangle in the first diagram below.</>,
   },
   {
     working: (
@@ -99,7 +104,7 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Check each option in turn (the second diagram below lights up the two strips on each figure). <b>A</b> climbs at{' '}
+        Check each option in turn. <b>A</b> climbs at{' '}
         <Katex tex="45^\circ" /> along the <Katex tex="x" />-axis and is flat along the <Katex tex="y" />-axis: it fails
         both. <b>C</b> is flat along the <Katex tex="x" />-axis but climbs at gradient <Katex tex="+1" /> along the{' '}
         <Katex tex="y" />-axis. <b>D</b> has gradient <Katex tex="-1" /> along the <Katex tex="x" />-axis and is flat along
@@ -108,6 +113,7 @@ const ROWS: WorkingRow[] = [
         <Katex tex="-1" /> along the <Katex tex="y" />-axis.
       </>
     ),
+    more: <>The second diagram below lights up the two strips on each figure.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{B}}" />,
@@ -119,10 +125,11 @@ const ROWS: WorkingRow[] = [
         <Katex tex="\tfrac{y}{y-x}" />, D: <Katex tex="\tfrac{x}{y-x}" /> and E: <Katex tex="\tfrac{y}{x}" />. Option{' '}
         <b>D</b> (22%), the most popular wrong answer, is the right rule with <Katex tex="x" /> and <Katex tex="y" />{' '}
         swapped, and it fails both axis tests. Option <b>C</b> (17%) is the right rule with its sign reversed, which the{' '}
-        <Katex tex="x" />-axis test alone can&apos;t catch (see below). Option <b>E</b> is the gradient of <Katex tex="OP" />,
+        <Katex tex="x" />-axis test alone can&apos;t catch. Option <b>E</b> is the gradient of <Katex tex="OP" />,
         as if the tangent passed through <Katex tex="O" /> instead of <Katex tex="Q" />.
       </>
     ),
+    more: <>For option <b>C</b>, see the common mistake below.</>,
   },
 ]
 

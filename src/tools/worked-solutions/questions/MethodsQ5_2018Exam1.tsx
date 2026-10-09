@@ -57,10 +57,10 @@ const ROWS: WorkingRow[] = [
       <>
         A number and its negative have the same square, so undoing the square gives two
         candidates. On the graph, the horizontal line at height <Katex tex="y" /> meets the{' '}
-        <em>full</em> truncus twice, once each side of <Katex tex="x=2" />. The first interactive
-        below shows the two points.
+        <em>full</em> truncus twice, once each side of <Katex tex="x=2" />.
       </>
     ),
+    more: <>The first interactive below shows the two points.</>,
   },
   {
     working: <Katex display tex="x>2 \implies x-2 = +\frac{1}{\sqrt{y}}" />,

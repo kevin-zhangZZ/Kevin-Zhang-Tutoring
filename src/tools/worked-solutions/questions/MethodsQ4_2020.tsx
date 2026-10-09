@@ -39,7 +39,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\theta = -\tfrac{2\pi}{3}+2k\pi \ \text{ or } \ \theta = \tfrac{2\pi}{3}+2k\pi, \quad k\in Z" />,
-    reason: <><Katex tex="\cos\theta" /> is the horizontal coordinate of the point at angle <Katex tex="\theta" /> on the unit circle (see the Background). <Katex tex="\cos\tfrac\pi3=\tfrac12" />, so the basic angle is <Katex tex="\tfrac\pi3" />; the cosine is <em>negative</em>, so the point is left of the vertical axis, in the second or third quadrant: <Katex tex="\theta=\pi-\tfrac\pi3=\tfrac{2\pi}3" /> or <Katex tex="\theta=\pi+\tfrac\pi3=\tfrac{4\pi}3" />, which is the same point as <Katex tex="-\tfrac{2\pi}3" />. Every whole number of turns, <Katex tex="2k\pi" />, lands on the same two points. The first diagram below shows it.</>,
+    reason: <><Katex tex="\cos\theta" /> is the horizontal coordinate of the point at angle <Katex tex="\theta" /> on the unit circle. <Katex tex="\cos\tfrac\pi3=\tfrac12" />, so the basic angle is <Katex tex="\tfrac\pi3" />; the cosine is <em>negative</em>, so the point is left of the vertical axis, in the second or third quadrant: <Katex tex="\theta=\pi-\tfrac\pi3=\tfrac{2\pi}3" /> or <Katex tex="\theta=\pi+\tfrac\pi3=\tfrac{4\pi}3" />, which is the same point as <Katex tex="-\tfrac{2\pi}3" />. Every whole number of turns, <Katex tex="2k\pi" />, lands on the same two points.</>,
+    more: <>The first diagram below shows it. For the unit circle, see the Background.</>,
   },
   {
     working: <Katex display tex="2x-\tfrac\pi3 = -\tfrac{2\pi}{3}+2k\pi \implies 2x = -\tfrac\pi3+2k\pi" />,
@@ -68,10 +69,10 @@ const ROWS: WorkingRow[] = [
         a value that fails it: <b>A</b> and <b>B</b> include <Katex tex="-\tfrac\pi3" /> (<Katex tex="k=0" />), where the left side
         is <Katex tex="-1" />; <b>C</b> includes <Katex tex="\tfrac\pi3" /> and <b>E</b> includes <Katex tex="\pi" />, where it is 2.
         A, B and C each have one correct family, written differently from D&apos;s: A&apos;s <Katex tex="\tfrac{\pi(6k-3)}{6}" /> and
-        B&apos;s <Katex tex="\tfrac{\pi(6k+5)}{6}" /> are D&apos;s two families with <Katex tex="k" /> shifted by one. The second diagram
-        below tests every option.
+        B&apos;s <Katex tex="\tfrac{\pi(6k+5)}{6}" /> are D&apos;s two families with <Katex tex="k" /> shifted by one.
       </>
     ),
+    more: <>The second diagram below tests every option.</>,
   },
 ]
 

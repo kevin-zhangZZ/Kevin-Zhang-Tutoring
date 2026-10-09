@@ -75,7 +75,8 @@ const ROWS_A: WorkingRow[] = [
         <Katex display tex="= \frac{3}{1+(3x-6)^2}" />
       </>
     ),
-    reason: <>The <Katex tex="+\pi" /> is a constant, so it differentiates to 0. Why a factor of 3, in picture terms: <Katex tex="3x-6=3(x-2)" />, and replacing <Katex tex="x" /> by <Katex tex="3x" /> squeezes the graph sideways by a factor of 3, which makes it 3 times as steep everywhere (the diagram in part c. shows the squeeze). Shifting it right doesn&apos;t change any gradients.</>,
+    reason: <>The <Katex tex="+\pi" /> is a constant, so it differentiates to 0. Why a factor of 3, in picture terms: <Katex tex="3x-6=3(x-2)" />, and replacing <Katex tex="x" /> by <Katex tex="3x" /> squeezes the graph sideways by a factor of 3, which makes it 3 times as steep everywhere. Shifting it right doesn&apos;t change any gradients.</>,
+    more: <>The diagram in part c. shows the squeeze.</>,
   },
   {
     working: <Katex display tex="(3x-6)^2 = 9x^2-36x+36" />,
@@ -136,7 +137,8 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \arctan\big(3(x-2)\big)+\pi" />,
-    reason: <>Factorise the inside first. Then the graph is <Katex tex="y=\arctan(x)" /> moved three times: a dilation by factor <Katex tex="\tfrac13" /> from the <Katex tex="y" />-axis, a translation 2 units right, and a translation <Katex tex="\pi" /> units up. The shape of <Katex tex="y=\arctan(x)" />, an S between the asymptotes <Katex tex="y=\pm\tfrac\pi2" />, tells you almost everything (the diagram below builds it step by step).</>,
+    reason: <>Factorise the inside first. Then the graph is <Katex tex="y=\arctan(x)" /> moved three times: a dilation by factor <Katex tex="\tfrac13" /> from the <Katex tex="y" />-axis, a translation 2 units right, and a translation <Katex tex="\pi" /> units up. The shape of <Katex tex="y=\arctan(x)" />, an S between the asymptotes <Katex tex="y=\pm\tfrac\pi2" />, tells you almost everything.</>,
+    more: <>The diagram below builds it step by step.</>,
   },
   {
     working: (

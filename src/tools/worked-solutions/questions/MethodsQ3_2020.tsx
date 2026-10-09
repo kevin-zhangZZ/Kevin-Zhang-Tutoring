@@ -42,7 +42,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(6) = 2\sqrt{12-3}+c = 2(3)+c = 6+c" />,
-    reason: <>The derivative fixes only the <em>shape</em> of <Katex tex="f" />: adding any constant slides the graph up or down without changing its gradient anywhere, so every <Katex tex="c" /> gives a valid antiderivative. The one extra fact, <Katex tex="f(6)=4" />, is what picks out a single curve (slide <Katex tex="c" /> in the diagram below).</>,
+    reason: <>The derivative fixes only the <em>shape</em> of <Katex tex="f" />: adding any constant slides the graph up or down without changing its gradient anywhere, so every <Katex tex="c" /> gives a valid antiderivative. The one extra fact, <Katex tex="f(6)=4" />, is what picks out a single curve.</>,
+    more: <>Slide <Katex tex="c" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="6+c = 4 \implies c = -2" />,

@@ -43,7 +43,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_2\!\left((x+5)^2\right)-\log_2(x+9) = 1" />,
-    reason: <>Power law, <Katex tex="n\log_2 a=\log_2 a^n" />: the 2 in front becomes a power of the whole bracket. It is the product law in disguise, <Katex tex="\log_2(x+5)+\log_2(x+5)=\log_2\!\left((x+5)(x+5)\right)" />. The fine print: the law needs <Katex tex="{x+5>0}" />. This new line also makes sense when <Katex tex="x+5" /> is <em>negative</em>, because squaring makes it positive, and that is exactly where a false solution will sneak in (see the diagram below).</>,
+    reason: <>Power law, <Katex tex="n\log_2 a=\log_2 a^n" />: the 2 in front becomes a power of the whole bracket. It is the product law in disguise, <Katex tex="\log_2(x+5)+\log_2(x+5)=\log_2\!\left((x+5)(x+5)\right)" />. The fine print: the law needs <Katex tex="{x+5>0}" />. This new line also makes sense when <Katex tex="x+5" /> is <em>negative</em>, because squaring makes it positive, and that is exactly where a false solution will sneak in.</>,
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="\log_2\!\left(\frac{(x+5)^2}{x+9}\right) = 1" />,

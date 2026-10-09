@@ -175,7 +175,8 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{gathered}|z-u| = |z-v| \\ \iff z \text{ is as far from } u \text{ as from } v\end{gathered}" />,
-    reason: <>Read each modulus as a distance (see the Background in part a.). The phrase &lsquo;in relation to the points&rsquo; tells you the answer must mention <Katex tex="u" /> and <Katex tex="v" />, not just describe the line.</>,
+    reason: <>Read each modulus as a distance. The phrase &lsquo;in relation to the points&rsquo; tells you the answer must mention <Katex tex="u" /> and <Katex tex="v" />, not just describe the line.</>,
+    more: <>See the Background in part a.</>,
   },
   {
     working: (

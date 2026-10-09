@@ -59,7 +59,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="5.2 = 2\sigma-1.2815\ldots\sigma = 0.7184\ldots\sigma" />,
-    reason: <>Multiply through by <Katex tex="\sigma" /> and collect. As a picture: <Katex tex="0" /> is always <Katex tex="2" /> standard deviations below the mean <Katex tex="2\sigma" />, and <Katex tex="5.2" /> is <Katex tex="1.28" /> below it, so the gap from <Katex tex="0" /> to <Katex tex="5.2" /> is <Katex tex="2-1.2815\ldots=0.7184\ldots" /> of a standard deviation (the diagram below shows this).</>,
+    reason: <>Multiply through by <Katex tex="\sigma" /> and collect. As a picture: <Katex tex="0" /> is always <Katex tex="2" /> standard deviations below the mean <Katex tex="2\sigma" />, and <Katex tex="5.2" /> is <Katex tex="1.28" /> below it, so the gap from <Katex tex="0" /> to <Katex tex="5.2" /> is <Katex tex="2-1.2815\ldots=0.7184\ldots" /> of a standard deviation.</>,
+    more: <>The diagram below shows this.</>,
   },
   {
     working: <Katex display tex="\sigma = \frac{5.2}{0.7184\ldots} = 7.2378\ldots" />,
@@ -67,7 +68,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 7.238}" />,
-    reason: <>Matches option <b>A</b>. Check: the mean is <Katex tex="2\sigma\approx14.476" />, and <Cas fn="normCdf">normCdf(5.2, ∞, 14.476, 7.238)</Cas> <Katex tex="\approx 0.900" /> ✓. Option <b>D</b>, <Katex tex="1.585" />, comes from using <Katex tex="z=+1.2815" /> (see below). Options <b>B</b> and <b>E</b> are the means <Katex tex="2\sigma" /> that go with A and D: <Katex tex="14.476=2\times7.238" /> is the mean, not the standard deviation, and <Katex tex="3.169=2\times1.585" />.</>,
+    reason: <>Matches option <b>A</b>. Check: the mean is <Katex tex="2\sigma\approx14.476" />, and <Cas fn="normCdf">normCdf(5.2, ∞, 14.476, 7.238)</Cas> <Katex tex="\approx 0.900" /> ✓. Option <b>D</b>, <Katex tex="1.585" />, comes from using <Katex tex="z=+1.2815" />. Options <b>B</b> and <b>E</b> are the means <Katex tex="2\sigma" /> that go with A and D: <Katex tex="14.476=2\times7.238" /> is the mean, not the standard deviation, and <Katex tex="3.169=2\times1.585" />.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

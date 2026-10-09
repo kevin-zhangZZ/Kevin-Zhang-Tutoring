@@ -146,7 +146,8 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The second-quadrant branch climbs steeply off the top of the grid just left of <Katex tex="x=-1" /> (<Katex tex="f(-1)=e\approx2.72" />), so draw it steep, not flat; the report notes marks were lost for a poor shape there. The question asks for three labelled points: the local maximum and the two points of inflection. Slide the tangent in the diagram below to see the curve change its bend at each inflection.</>,
+    reason: <>The second-quadrant branch climbs steeply off the top of the grid just left of <Katex tex="x=-1" /> (<Katex tex="f(-1)=e\approx2.72" />), so draw it steep, not flat; the report notes marks were lost for a poor shape there. The question asks for three labelled points: the local maximum and the two points of inflection.</>,
+    more: <>Slide the tangent in the diagram below to see the curve change its bend at each inflection.</>,
   },
 ]
 

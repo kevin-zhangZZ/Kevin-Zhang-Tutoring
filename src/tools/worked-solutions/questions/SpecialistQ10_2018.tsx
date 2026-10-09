@@ -80,9 +80,10 @@ const ROWS: WorkingRow[] = [
         Matches option <b>A</b>. As a final check, <b>A</b>&apos;s numerator <Katex tex="2x+y" /> is zero on{' '}
         <Katex tex="y=-2x" />, and the diagram&apos;s marks are flat through <Katex tex="(-2,4)" /> and{' '}
         <Katex tex="(-4,8)" />. Option <b>E</b>, chosen by <Katex tex="12\%" />, gets the signs on both axes
-        right but puts its vertical marks on the wrong line (see below).
+        right but puts its vertical marks on the wrong line.
       </>
     ),
+    more: <>See below.</>,
   },
 ]
 

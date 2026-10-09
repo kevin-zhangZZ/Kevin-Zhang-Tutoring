@@ -151,8 +151,13 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Closed at both ends: at <Katex tex="x=\pm2" /> we take <Katex tex="\sqrt0" /> and{' '}
-        <Katex tex="\sqrt\pi" />, both fine. In the diagram below, drag <Katex tex="x" /> past{' '}
-        <Katex tex="\pm2" /> to see where <Katex tex="f" /> stops existing.
+        <Katex tex="\sqrt\pi" />, both fine.
+      </>
+    ),
+    more: (
+      <>
+        In the diagram below, drag <Katex tex="x" /> past <Katex tex="\pm2" /> to see where <Katex tex="f" />{' '}
+        stops existing.
       </>
     ),
   },
@@ -278,9 +283,10 @@ const ROWS_C: WorkingRow[] = [
       <>
         About <Katex tex="19.7" /> cubic units. A check: the solid fits inside a cylinder of radius{' '}
         <Katex tex="\sqrt\pi" /> and length <Katex tex="4" />, volume <Katex tex="4\pi^2\approx39.5" />, and fills
-        exactly half of it. The second diagram below shows why.
+        exactly half of it.
       </>
     ),
+    more: <>The second diagram below shows why.</>,
   },
 ]
 

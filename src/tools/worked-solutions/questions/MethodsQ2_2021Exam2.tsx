@@ -186,7 +186,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 0.77, \ 1.00, \ 1.13}" />,
-    reason: <>All three, to two decimal places (<Katex tex="a=1" /> is written 1.00). The report notes that many students found 0.77 or 1.13 but not both: working through both cases is what finds all three. Slide <Katex tex="a" /> in the diagram below to watch the area pass through <Katex tex="\tfrac13" /> three times.</>,
+    reason: <>All three, to two decimal places (<Katex tex="a=1" /> is written 1.00). The report notes that many students found 0.77 or 1.13 but not both: working through both cases is what finds all three.</>,
+    more: <>Slide <Katex tex="a" /> in the diagram below to watch the area pass through <Katex tex="\tfrac13" /> three times.</>,
   },
 ]
 

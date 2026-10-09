@@ -47,10 +47,11 @@ const ROWS: WorkingRow[] = [
       <>
         &ldquo;Rotated about the <Katex tex="x" />-axis&rdquo; means every cross-section is a disc of
         radius <Katex tex="y" /> and area <Katex tex="\pi y^2" />; adding up the discs gives this
-        formula (the first diagram below builds it). Write the <Katex tex="\pi" /> in from the start:
+        formula. Write the <Katex tex="\pi" /> in from the start:
         it is the easiest thing to drop, and the size check at the end catches it.
       </>
     ),
+    more: <>The first diagram below builds this formula.</>,
   },
   {
     working: <Katex display tex="V = \pi\int_0^1 \dfrac{1+2x}{1+x^2}\,dx" />,

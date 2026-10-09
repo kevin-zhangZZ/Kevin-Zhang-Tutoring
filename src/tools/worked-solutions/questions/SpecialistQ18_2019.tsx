@@ -52,7 +52,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(63.4,\ 66.6)}" />,
-    reason: <>Matches option <b>D</b>. Option <b>B</b>, <Katex tex="(63.6,\ 66.4)" />, is what <Katex tex="z=\operatorname{invNorm}(0.98)\approx2.054" /> gives, a <Katex tex="96\%" /> interval (see below). Option <b>C</b>, <Katex tex="(63.3,\ 66.7)" />, uses <Katex tex="z\approx2.576" />, the <Katex tex="99\%" /> interval. Option <b>A</b>, <Katex tex="(51.0,\ 79.0)" />, is <Katex tex="65\pm2.3263\times6" />: it uses <Katex tex="\sqrt{36}=6" /> where <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac46" /> belongs.</>,
+    reason: <>Matches option <b>D</b>. Option <b>B</b>, <Katex tex="(63.6,\ 66.4)" />, is what <Katex tex="z=\operatorname{invNorm}(0.98)\approx2.054" /> gives, a <Katex tex="96\%" /> interval. Option <b>C</b>, <Katex tex="(63.3,\ 66.7)" />, uses <Katex tex="z\approx2.576" />, the <Katex tex="99\%" /> interval. Option <b>A</b>, <Katex tex="(51.0,\ 79.0)" />, is <Katex tex="65\pm2.3263\times6" />: it uses <Katex tex="\sqrt{36}=6" /> where <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac46" /> belongs.</>,
+    more: <>See the Common Mistake below for option B.</>,
   },
 ]
 

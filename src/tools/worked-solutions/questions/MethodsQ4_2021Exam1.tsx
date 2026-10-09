@@ -149,8 +149,11 @@ const ROWS_B: WorkingRow[] = [
         asymptote. So left of <Katex tex="x=1" /> it is below 3, and from <Katex tex="x=1" /> rightwards it stays at
         or above 3, right up to the asymptote. The upper
         bound is the asymptote <Katex tex="x=2" />: solving the equation can&apos;t find it, but the graph shows it.
-        Slide{' '}
-        <Katex tex="x" /> past the asymptote in the diagram below.
+      </>
+    ),
+    more: (
+      <>
+        Slide <Katex tex="x" /> past the asymptote in the diagram below.
       </>
     ),
   },

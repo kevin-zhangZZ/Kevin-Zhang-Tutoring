@@ -125,7 +125,8 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{c=-3}" />,
-    reason: <>The largest value allowed, and it satisfies <Katex tex="c<0" />. Check: on <Katex tex="(-\infty,-3]" />, <Katex tex="g" /> falls from very large values down to <Katex tex="g(-3)=0" />, so its range is <Katex tex="[0,\infty)" />, inside <Katex tex="\text{dom}(f)" />. Push <Katex tex="c" /> to <Katex tex="-2.5" /> and <Katex tex="g(-2.5)=-0.75" /> is not in <Katex tex="[0,\infty)" />. Slide <Katex tex="c" /> yourself in the diagram below.</>,
+    reason: <>The largest value allowed, and it satisfies <Katex tex="c<0" />. Check: on <Katex tex="(-\infty,-3]" />, <Katex tex="g" /> falls from very large values down to <Katex tex="g(-3)=0" />, so its range is <Katex tex="[0,\infty)" />, inside <Katex tex="\text{dom}(f)" />. Push <Katex tex="c" /> to <Katex tex="-2.5" /> and <Katex tex="g(-2.5)=-0.75" /> is not in <Katex tex="[0,\infty)" />.</>,
+    more: <>Slide <Katex tex="c" /> yourself in the diagram below.</>,
   },
 ]
 
@@ -155,7 +156,8 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(f(g(x)))=\text{ran}(f)=[1,\infty)}" />,
-    reason: <>Because <Katex tex="g" /> delivers <em>all</em> of the domain of <Katex tex="f" />, the composite reaches everything <Katex tex="f" /> can reach: part a&apos;s answer, with no new work, and the check above agrees. This only works because <Katex tex="\text{ran}(g)" /> is the <em>whole</em> of <Katex tex="\text{dom}(f)" /> (the report&apos;s &ldquo;in this case&rdquo;); part c is the counterexample. Follow <Katex tex="x" /> through both functions in the diagram below.</>,
+    reason: <>Because <Katex tex="g" /> delivers <em>all</em> of the domain of <Katex tex="f" />, the composite reaches everything <Katex tex="f" /> can reach: part a&apos;s answer, with no new work, and the check above agrees. This only works because <Katex tex="\text{ran}(g)" /> is the <em>whole</em> of <Katex tex="\text{dom}(f)" /> (the report&apos;s &ldquo;in this case&rdquo;); part c is the counterexample.</>,
+    more: <>Follow <Katex tex="x" /> through both functions in the diagram below.</>,
   },
 ]
 

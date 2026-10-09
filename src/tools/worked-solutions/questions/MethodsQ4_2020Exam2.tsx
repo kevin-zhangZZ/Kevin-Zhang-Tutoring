@@ -171,7 +171,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\theta = 180^\circ+(-63.43\ldots^\circ) = 116.56\ldots^\circ" />,
-    reason: <>Turn anticlockwise from the positive <Katex tex="x" />-direction instead. The acute angle between the line and the axis is <Katex tex="\tan^{-1}(2)\approx63.43^\circ" />, and the two angles lie along the straight <Katex tex="x" />-axis, so they add to <Katex tex="180^\circ" /> (step through the diagram below). Equivalently, <Katex tex="\tan" /> repeats every <Katex tex="180^\circ" />, so this angle has the same tangent, <Katex tex="-2" />.</>,
+    reason: <>Turn anticlockwise from the positive <Katex tex="x" />-direction instead. The acute angle between the line and the axis is <Katex tex="\tan^{-1}(2)\approx63.43^\circ" />, and the two angles lie along the straight <Katex tex="x" />-axis, so they add to <Katex tex="180^\circ" />. Equivalently, <Katex tex="\tan" /> repeats every <Katex tex="180^\circ" />, so this angle has the same tangent, <Katex tex="-2" />.</>,
+    more: <>Step through the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{117^\circ}" />,
@@ -241,7 +242,8 @@ const ROWS_DII: WorkingRow[] = [
         <Katex display tex="y = -2(0.80352\ldots)+4 = 2.39295\ldots" />
       </>
     ),
-    reason: <>The crossing point is on both tangents, so get <Katex tex="y" /> from a tangent (the simpler one), not from <Katex tex="f" />. The curve bends downward here, so both tangents lie above it and so does their crossing: <Katex tex="f(0.80)\approx2.29" /> is the height of the curve underneath, the wrong answer the report describes (see the diagram below). And use the unrounded <Katex tex="x" />: <Katex tex="-2(0.80)+4=2.40" /> is out in the second decimal place.</>,
+    reason: <>The crossing point is on both tangents, so get <Katex tex="y" /> from a tangent (the simpler one), not from <Katex tex="f" />. The curve bends downward here, so both tangents lie above it and so does their crossing: <Katex tex="f(0.80)\approx2.29" /> is the height of the curve underneath, the wrong answer the report describes. And use the unrounded <Katex tex="x" />: <Katex tex="-2(0.80)+4=2.40" /> is out in the second decimal place.</>,
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{(0.80,\ 2.39)}" />,
@@ -267,7 +269,8 @@ const ROWS_EI: WorkingRow[] = [
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="f(3) = 6e^{1-9} = 6e^{-8}" />,
-    reason: <>The segment&apos;s right end is <Katex tex="(3,f(3))" />. On the graph <Katex tex="f(3)" /> looks like 0, but <Katex tex="6e^{-8}\approx0.002" /> is small, not zero (zoom in on the diagram below). Always substitute rather than read an endpoint off a sketch; the report notes students who assumed <Katex tex="f(3)=0" />.</>,
+    reason: <>The segment&apos;s right end is <Katex tex="(3,f(3))" />. On the graph <Katex tex="f(3)" /> looks like 0, but <Katex tex="6e^{-8}\approx0.002" /> is small, not zero. Always substitute rather than read an endpoint off a sketch; the report notes students who assumed <Katex tex="f(3)=0" />.</>,
+    more: <>Zoom in on the diagram below.</>,
   },
   {
     working: <Katex display tex="m = \frac{f(3)-f(n)}{3-n} = \frac{2ne^{1-n^2}-6e^{-8}}{n-3}" />,

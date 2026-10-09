@@ -134,7 +134,8 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{y'}{q} = -\frac{x'}{\sqrt3}+\frac{2}{\sqrt3} \implies h(x) = \frac{q}{\sqrt3}(2-x)" />,
-    reason: <>Substitute into the line from part a, make <Katex tex="y'" /> the subject, then drop the dashes. Notice <Katex tex="h(2)=0" /> for every <Katex tex="q" />: <Katex tex="A(2,0)" /> never moves, so as <Katex tex="q" /> changes the line <b>pivots about <Katex tex="A" /></b>. Drag <Katex tex="q" /> in the diagram below to see it.</>,
+    reason: <>Substitute into the line from part a, make <Katex tex="y'" /> the subject, then drop the dashes. Notice <Katex tex="h(2)=0" /> for every <Katex tex="q" />: <Katex tex="A(2,0)" /> never moves, so as <Katex tex="q" /> changes the line <b>pivots about <Katex tex="A" /></b>.</>,
+    more: <>Drag <Katex tex="q" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="x^2+\frac{q^2}{3}(2-x)^2 = 1" />,

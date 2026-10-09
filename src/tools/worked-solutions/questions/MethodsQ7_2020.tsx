@@ -41,7 +41,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = 2xg'\!\left(x^2\right)e^{g\left(x^2\right)}}" />,
-    reason: <>Matches option <b>C</b>. Check with a simple <Katex tex="g" />: if <Katex tex="g(u)=u" />, then <Katex tex="f(x)=e^{x^2}" /> with derivative <Katex tex="2xe^{x^2}" />, and C gives <Katex tex="2x\times1\times e^{x^2}" /> ✓. Option <b>A</b> leaves out the factor <Katex tex="g'(x^2)" /> altogether; option <b>B</b> drops the prime on <Katex tex="g" />; option <b>D</b> evaluates <Katex tex="g'" /> at <Katex tex="2x" /> instead of <Katex tex="x^2" />; option <b>E</b> changes the power from <Katex tex="g(x^2)" /> to <Katex tex="g(2x)" />. (With <Katex tex="g(u)=u" />, A and D also give <Katex tex="2xe^{x^2}" />, because <Katex tex="g'" /> is 1 everywhere, so that check only rules out B and E. The diagram below uses a <Katex tex="g" /> that rules out all four.)</>,
+    reason: <>Matches option <b>C</b>. Check with a simple <Katex tex="g" />: if <Katex tex="g(u)=u" />, then <Katex tex="f(x)=e^{x^2}" /> with derivative <Katex tex="2xe^{x^2}" />, and C gives <Katex tex="2x\times1\times e^{x^2}" /> ✓. Option <b>A</b> leaves out the factor <Katex tex="g'(x^2)" /> altogether; option <b>B</b> drops the prime on <Katex tex="g" />; option <b>D</b> evaluates <Katex tex="g'" /> at <Katex tex="2x" /> instead of <Katex tex="x^2" />; option <b>E</b> changes the power from <Katex tex="g(x^2)" /> to <Katex tex="g(2x)" />. (With <Katex tex="g(u)=u" />, A and D also give <Katex tex="2xe^{x^2}" />, because <Katex tex="g'" /> is 1 everywhere, so that check only rules out B and E.)</>,
+    more: <>The diagram below uses a <Katex tex="g" /> that rules out all four.</>,
   },
 ]
 

@@ -31,10 +31,10 @@ const ROWS: WorkingRow[] = [
         swapped over, with a sign change. That swap is the fingerprint of multiplying by <Katex tex="i" /> or{' '}
         <Katex tex="-i" />: <Katex tex="i(x+iy)=-y+ix" /> and <Katex tex="-i(x+iy)=y-ix" />. Check by expanding:{' '}
         <Katex tex="-i(x+iy) = -ix - i^2y = y-ix" />. On an Argand diagram, multiplying by <Katex tex="-i" /> turns a
-        point a quarter-turn clockwise about <Katex tex="O" />: <Katex tex="(x,y)" /> goes to <Katex tex="(y,-x)" /> (see
-        the diagram below).
+        point a quarter-turn clockwise about <Katex tex="O" />: <Katex tex="(x,y)" /> goes to <Katex tex="(y,-x)" />.
       </>
     ),
+    more: <>See the diagram below.</>,
   },
   {
     working: (
@@ -47,9 +47,10 @@ const ROWS: WorkingRow[] = [
       <>
         Now the given <Katex tex="(x+iy)^{14}" /> appears. The power belongs to everything inside the bracket, so the{' '}
         <Katex tex="-i" /> is raised to the 14th power as well, just as <Katex tex="(2x)^2=4x^2" />, not{' '}
-        <Katex tex="2x^2" />. Leaving it out gives the popular wrong answer B (see below).
+        <Katex tex="2x^2" />. Leaving it out gives the popular wrong answer B.
       </>
     ),
+    more: <>See the common mistake below.</>,
   },
   {
     working: (

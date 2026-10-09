@@ -31,7 +31,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="V(t) = 50+2t-5t = 50-3t" />,
-    reason: <>The trap. For the outflow you need the concentration <em>in the tank</em>, which depends on how much liquid is in it, and that is changing. Every minute 2 L arrive and 5 L leave, so the tank loses 3 L a minute (watch it drain in the diagram below). Volume = start + (in − out) × time, every time.</>,
+    reason: <>The trap. For the outflow you need the concentration <em>in the tank</em>, which depends on how much liquid is in it, and that is changing. Every minute 2 L arrive and 5 L leave, so the tank loses 3 L a minute. Volume = start + (in − out) × time, every time.</>,
+    more: <>Watch it drain in the diagram below.</>,
   },
   {
     working: <Katex display tex="\text{concentration in the tank} = \frac{m}{50-3t} \ \text{g/L}" />,

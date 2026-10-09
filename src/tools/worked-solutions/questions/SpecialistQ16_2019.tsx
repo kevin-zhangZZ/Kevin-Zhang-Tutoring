@@ -26,7 +26,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="v = e^x\sin(x)" />,
-    reason: <>Notice what <Katex tex="v" /> is written in terms of: position <Katex tex="x" />, not time. We can&apos;t differentiate with respect to <Katex tex="t" /> without knowing <Katex tex="x" /> as a function of <Katex tex="t" />, and we don&apos;t. That is the signal to use <Katex tex="a=v\dfrac{dv}{dx}" /> (see Background).</>,
+    reason: <>Notice what <Katex tex="v" /> is written in terms of: position <Katex tex="x" />, not time. We can&apos;t differentiate with respect to <Katex tex="t" /> without knowing <Katex tex="x" /> as a function of <Katex tex="t" />, and we don&apos;t. That is the signal to use <Katex tex="a=v\dfrac{dv}{dx}" />.</>,
+    more: <>See Background.</>,
   },
   {
     working: <Katex display tex="\frac{dv}{dx} = e^x\sin(x) + e^x\cos(x)" />,
@@ -38,7 +39,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = v\frac{dv}{dx} = e^x\sin(x)\cdot e^x\big(\sin(x)+\cos(x)\big)" />,
-    reason: <>Multiply by <Katex tex="v" /> (metres per second) to turn &ldquo;per metre&rdquo; into &ldquo;per second&rdquo;. Drag the point in the diagram below to see why.</>,
+    reason: <>Multiply by <Katex tex="v" /> (metres per second) to turn &ldquo;per metre&rdquo; into &ldquo;per second&rdquo;.</>,
+    more: <>Drag the point in the diagram below to see why.</>,
   },
   {
     working: <Katex display tex="a = e^{2x}\Big(\sin^2(x) + \sin(x)\cos(x)\Big)" />,

@@ -39,11 +39,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = 2^k-1 = 1,\ 3,\ 7,\ 15,\ \ldots" />,
-    reason: <>List a few values to check them: <Katex tex="n+1=2,4,8,16" /> are powers of 2, so <Katex tex="\log_2(n+1)=1,2,3,4" /> ✓. The gaps between the values double each time (2, 4, 8), which a linear rule like <Katex tex="2k-1" /> can&apos;t do. See the diagram below.</>,
+    reason: <>List a few values to check them: <Katex tex="n+1=2,4,8,16" /> are powers of 2, so <Katex tex="\log_2(n+1)=1,2,3,4" /> ✓. The gaps between the values double each time (2, 4, 8), which a linear rule like <Katex tex="2k-1" /> can&apos;t do.</>,
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 2^k-1, \quad k\in Z^+}" />,
-    reason: <>Matches option <b>B</b>. Option <b>A</b> drops the <Katex tex="-1" />: its <Katex tex="n=2" /> gives <Katex tex="\log_2 3" />, not an integer. Option <b>C</b> solves <Katex tex="\log_2(n)+1=x" /> instead (see the common mistake below); only its first value, <Katex tex="n=1" />, works. Options <b>D</b> and <b>E</b> are linear. <b>D</b> (the odd numbers) is the tricky one: its first two values, 1 and 3, both work, so test <Katex tex="k=3" /> too: <Katex tex="n=5" /> gives <Katex tex="\log_2 6" />, not an integer. <b>E</b> gives even <Katex tex="n" />, so <Katex tex="n+1" /> is odd and never a power of 2.</>,
+    reason: <>Matches option <b>B</b>. Option <b>A</b> drops the <Katex tex="-1" />: its <Katex tex="n=2" /> gives <Katex tex="\log_2 3" />, not an integer. Option <b>C</b> solves <Katex tex="\log_2(n)+1=x" /> instead; only its first value, <Katex tex="n=1" />, works. Options <b>D</b> and <b>E</b> are linear. <b>D</b> (the odd numbers) is the tricky one: its first two values, 1 and 3, both work, so test <Katex tex="k=3" /> too: <Katex tex="n=5" /> gives <Katex tex="\log_2 6" />, not an integer. <b>E</b> gives even <Katex tex="n" />, so <Katex tex="n+1" /> is odd and never a power of 2.</>,
+    more: <>For option <b>C</b>, see the common mistake below.</>,
   },
 ]
 

@@ -92,7 +92,8 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\left(3-\sqrt3\,i\right)^3 = \left(2\sqrt3\right)^3\text{cis}\!\left(3\times-\dfrac{\pi}{6}\right)" />,
-    reason: <>A power of a complex number is the cue for polar form, and part a. has just handed it to us. de Moivre's theorem: <Katex tex="\bigl(r\,\text{cis}\,\theta\bigr)^n = r^n\,\text{cis}(n\theta)" />. Raise the modulus to the power and multiply the argument by it. That works because multiplying complex numbers multiplies their lengths and adds their angles (step through the diagram below). Expanding the bracket works but is slower and more error-prone.</>,
+    reason: <>A power of a complex number is the cue for polar form, and part a. has just handed it to us. de Moivre's theorem: <Katex tex="\bigl(r\,\text{cis}\,\theta\bigr)^n = r^n\,\text{cis}(n\theta)" />. Raise the modulus to the power and multiply the argument by it. That works because multiplying complex numbers multiplies their lengths and adds their angles. Expanding the bracket works but is slower and more error-prone.</>,
+    more: <>Step through the diagram below.</>,
   },
   {
     working: <Katex display tex="\left(2\sqrt3\right)^3 = 2^3\left(\sqrt3\right)^3 = 8\times3\sqrt3 = 24\sqrt3" />,

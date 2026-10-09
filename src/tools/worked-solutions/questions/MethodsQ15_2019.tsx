@@ -37,7 +37,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g'(7) = \dfrac16}" />,
-    reason: <>Matches option <b>A</b>. The distractors are the common slips: <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" />, the value rather than the gradient; <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal; <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f(5)}" />, the reciprocal of the function value rather than of the gradient; <b>C</b> <Katex tex="\left(\tfrac{\sqrt7}{14}\right)" /> comes from a wrong inverse rule (see below).</>,
+    reason: <>Matches option <b>A</b>. The distractors are the common slips: <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" />, the value rather than the gradient; <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal; <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f(5)}" />, the reciprocal of the function value rather than of the gradient; <b>C</b> <Katex tex="\left(\tfrac{\sqrt7}{14}\right)" /> comes from a wrong inverse rule.</>,
+    more: <>See the second Common Mistake below.</>,
   },
 ]
 

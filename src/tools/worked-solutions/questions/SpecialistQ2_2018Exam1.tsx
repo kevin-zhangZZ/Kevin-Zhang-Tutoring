@@ -76,7 +76,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Arg}\left(\sqrt3-i\right) = -\frac{\pi}{6}" />,
-    reason: <>Sketch it: <Katex tex="\sqrt3" /> across and 1 <em>down</em>, so the fourth quadrant. The triangle has sides 1, <Katex tex="\sqrt3" />, 2, so the angle at the origin is <Katex tex="\tan^{-1}\!\left(\tfrac{1}{\sqrt3}\right)=\tfrac{\pi}{6}" />; below the axis means clockwise, so the argument is negative. The report says <Katex tex="\tfrac{\pi}{6}" />, <Katex tex="\tfrac{5\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" /> were given frequently. Each of those points somewhere else (try them in the first widget below).</>,
+    reason: <>Sketch it: <Katex tex="\sqrt3" /> across and 1 <em>down</em>, so the fourth quadrant. The triangle has sides 1, <Katex tex="\sqrt3" />, 2, so the angle at the origin is <Katex tex="\tan^{-1}\!\left(\tfrac{1}{\sqrt3}\right)=\tfrac{\pi}{6}" />; below the axis means clockwise, so the argument is negative. The report says <Katex tex="\tfrac{\pi}{6}" />, <Katex tex="\tfrac{5\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" /> were given frequently. Each of those points somewhere else.</>,
+    more: <>Try them in the first widget below.</>,
   },
   {
     working: <Katex display tex="\left(\sqrt3-i\right)^{10} = 2^{10}\operatorname{cis}\!\left(-\frac{10\pi}{6}\right) = 1024\operatorname{cis}\!\left(-\frac{5\pi}{3}\right)" />,

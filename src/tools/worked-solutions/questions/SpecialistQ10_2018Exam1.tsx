@@ -67,7 +67,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{2\left(1-t^2\right)}{\sqrt{1-t^2}} = 2\sqrt{1-t^2}" />,
-    reason: <>Cancel: <Katex tex="\tfrac{1-t^2}{\sqrt{1-t^2}}=\sqrt{1-t^2}" />, since <Katex tex="\tfrac{u}{\sqrt u}=\sqrt u" />. Simplify <em>before</em> squaring; the next step is then one line. (The first interactive below shows why the answer is this tidy.)</>,
+    reason: <>Cancel: <Katex tex="\tfrac{1-t^2}{\sqrt{1-t^2}}=\sqrt{1-t^2}" />, since <Katex tex="\tfrac{u}{\sqrt u}=\sqrt u" />. Simplify <em>before</em> squaring; the next step is then one line.</>,
+    more: <>The first interactive below shows why the answer is this tidy.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2 &= t^4 + 4\left(1-t^2\right)\\ &= t^4-4t^2+4\end{aligned}" />,

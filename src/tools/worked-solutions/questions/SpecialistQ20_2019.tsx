@@ -52,7 +52,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p\approx0.1704}" />,
-    reason: <>Matches option <b>B</b>. Option <b>D</b>, <Katex tex="0.8296=1-0.1704" />, is the upper tail, the wrong direction for <Katex tex="H_1" />. Option <b>E</b>, <Katex tex="0.9525" />, is the size of the <Katex tex="z" /> value, not a probability. Option <b>C</b>, <Katex tex="0.4621" />, standardises with <Katex tex="\sigma" /> instead of <Katex tex="\tfrac{\sigma}{\sqrt n}" /> (see below), and option <b>A</b>, <Katex tex="0.0953" />, is the size of that wrong <Katex tex="z" /> value. Since <Katex tex="p>0.05" />, this sample gives no real evidence that the calculator is faulty.</>,
+    reason: <>Matches option <b>B</b>. Option <b>D</b>, <Katex tex="0.8296=1-0.1704" />, is the upper tail, the wrong direction for <Katex tex="H_1" />. Option <b>E</b>, <Katex tex="0.9525" />, is the size of the <Katex tex="z" /> value, not a probability. Option <b>C</b>, <Katex tex="0.4621" />, standardises with <Katex tex="\sigma" /> instead of <Katex tex="\tfrac{\sigma}{\sqrt n}" />, and option <b>A</b>, <Katex tex="0.0953" />, is the size of that wrong <Katex tex="z" /> value. Since <Katex tex="p>0.05" />, this sample gives no real evidence that the calculator is faulty.</>,
+    more: <>See the Common Mistake below for option C.</>,
   },
 ]
 

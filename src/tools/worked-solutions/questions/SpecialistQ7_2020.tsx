@@ -42,10 +42,11 @@ const ROWS: WorkingRow[] = [
         <Katex tex="x^2+b" /> can be split. Since <Katex tex="b<0" />, write <Katex tex="b=-|b|" />, where{' '}
         <Katex tex="|b|" /> is a positive number: <Katex tex="x^2+b" /> is &ldquo;<Katex tex="x^2" /> minus a positive
         number&rdquo;, a difference of two squares. A number makes it concrete: with <Katex tex="b=-4" />,{' '}
-        <Katex tex="x^2+b=x^2-4=(x-2)(x+2)" />. In the diagram below, a negative <Katex tex="b" /> moves the parabola{' '}
+        <Katex tex="x^2+b=x^2-4=(x-2)(x+2)" />. A negative <Katex tex="b" /> moves the parabola{' '}
         <Katex tex="y=x^2+b" /> down so that it crosses the <Katex tex="x" />-axis twice.
       </>
     ),
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="x^2+b = \big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)" />,

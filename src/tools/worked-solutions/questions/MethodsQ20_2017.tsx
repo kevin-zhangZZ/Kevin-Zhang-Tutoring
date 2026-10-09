@@ -61,7 +61,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A_{\text{shaded}} = \int_0^{\pi/6}\!\sqrt3\sin(x)\,dx + \int_{\pi/6}^{\pi/2}\!\cos(x)\,dx" />,
-    reason: <>The shaded region lies under <em>both</em> curves, so the top of each thin vertical strip is whichever curve is <em>lower</em>. Left of <Katex tex="B" /> that is <Katex tex="\sqrt3\sin(x)" />; right of <Katex tex="B" /> it is <Katex tex="\cos(x)" />. The rule for the top edge changes at <Katex tex="B" />, so the area is two integrals split at <Katex tex="x=\tfrac{\pi}{6}" /> (sweep the strip in the interactive below).</>,
+    reason: <>The shaded region lies under <em>both</em> curves, so the top of each thin vertical strip is whichever curve is <em>lower</em>. Left of <Katex tex="B" /> that is <Katex tex="\sqrt3\sin(x)" />; right of <Katex tex="B" /> it is <Katex tex="\cos(x)" />. The rule for the top edge changes at <Katex tex="B" />, so the area is two integrals split at <Katex tex="x=\tfrac{\pi}{6}" />.</>,
+    more: <>Sweep the strip in the interactive below.</>,
   },
   {
     working: <Katex display tex="= \Bigl[-\sqrt3\cos(x)\Bigr]_0^{\pi/6} + \Bigl[\sin(x)\Bigr]_{\pi/6}^{\pi/2}" />,

@@ -46,7 +46,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{F}_2 = \left(3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}\right)-2\underset{\sim}{j}" />,
-    reason: <>Take the given <Katex tex="\underset{\sim}{F}_1=2\underset{\sim}{j}" /> away from both sides. Drawn tip-to-tail, <Katex tex="\underset{\sim}{F}_2" /> is the side that closes the triangle from the tip of <Katex tex="\underset{\sim}{F}_1" /> to the tip of <Katex tex="m\underset{\sim}{a}" /> (see the diagram below). Check the order by adding back: <Katex tex="\underset{\sim}{F}_1" /> plus your answer must give <Katex tex="m\underset{\sim}{a}" />.</>,
+    reason: <>Take the given <Katex tex="\underset{\sim}{F}_1=2\underset{\sim}{j}" /> away from both sides. Drawn tip-to-tail, <Katex tex="\underset{\sim}{F}_2" /> is the side that closes the triangle from the tip of <Katex tex="\underset{\sim}{F}_1" /> to the tip of <Katex tex="m\underset{\sim}{a}" />. Check the order by adding back: <Katex tex="\underset{\sim}{F}_1" /> plus your answer must give <Katex tex="m\underset{\sim}{a}" />.</>,
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{F}_2 = 3\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" />,

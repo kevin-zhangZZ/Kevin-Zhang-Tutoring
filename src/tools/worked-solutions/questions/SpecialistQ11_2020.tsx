@@ -34,7 +34,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sec^2(x) = 1+\tan^2(x) = 1+u^2" />,
-    reason: <>The rest of the denominator must be in <Katex tex="u" /> too, and the <Katex tex="\sec^2(x)" /> there isn't the one that becomes <Katex tex="du" />. Divide <Katex tex="\sin^2(x)+\cos^2(x)=1" /> by <Katex tex="\cos^2(x)" /> to get <Katex tex="\tan^2(x)+1=\sec^2(x)" />. Mind the sign: <Katex tex="\tan^2(x)-1" /> leads to option B (below).</>,
+    reason: <>The rest of the denominator must be in <Katex tex="u" /> too, and the <Katex tex="\sec^2(x)" /> there isn't the one that becomes <Katex tex="du" />. Divide <Katex tex="\sin^2(x)+\cos^2(x)=1" /> by <Katex tex="\cos^2(x)" /> to get <Katex tex="\tan^2(x)+1=\sec^2(x)" />. Mind the sign: <Katex tex="\tan^2(x)-1" /> leads to option B.</>,
+    more: <>See the common mistake below.</>,
   },
   {
     working: (
@@ -82,7 +83,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="u=1: \ -P=1 \implies P=-1" />
       </>
     ),
-    reason: <>The signs are the whole question here: C and D are the same two fractions with opposite signs. The diagram below shows where each sign comes from: near <Katex tex="u=1" /> the factor <Katex tex="u-2" /> is about <Katex tex="-1" />, which is what makes <Katex tex="P" /> negative.</>,
+    reason: <>The signs are the whole question here: C and D are the same two fractions with opposite signs. Near <Katex tex="u=1" /> the factor <Katex tex="u-2" /> is about <Katex tex="-1" />, which is what makes <Katex tex="P" /> negative.</>,
+    more: <>The diagram below shows where each sign comes from.</>,
   },
   {
     working: (

@@ -98,10 +98,10 @@ const ROWS: WorkingRow[] = [
       <>
         The question asks for <em>independent</em>, which is every real <Katex tex="p" /> except the two dependent
         values. The report notes many students found <Katex tex="p=\pm\sqrt5" /> but failed to conclude this:{' '}
-        <Katex tex="\pm\sqrt5" /> answers the opposite question. Slide <Katex tex="p" /> in the diagram below to see
-        the two holes.
+        <Katex tex="\pm\sqrt5" /> answers the opposite question.
       </>
     ),
+    more: <>Slide <Katex tex="p" /> in the diagram below to see the two holes.</>,
   },
 ]
 

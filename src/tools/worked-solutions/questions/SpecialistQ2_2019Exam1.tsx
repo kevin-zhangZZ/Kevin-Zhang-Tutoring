@@ -74,8 +74,12 @@ const ROWS: WorkingRow[] = [
       <>
         On the left arm the inside is negative, so <Katex tex="|x-4|=-(x-4)=4-x" />. Again check the assumption:{' '}
         <Katex tex="-2<4" />, so keep <Katex tex="x=-2" />. If a case's answer broke its own condition, it would be where
-        the line meets that arm's extension, not the V itself, and would be rejected. Drag <Katex tex="k" /> in the
-        interactive below to see that happen.
+        the line meets that arm's extension, not the V itself, and would be rejected.
+      </>
+    ),
+    more: (
+      <>
+        Drag <Katex tex="k" /> in the interactive below to see that happen.
       </>
     ),
   },

@@ -153,7 +153,8 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="(0,4) \text{ on the graph} \implies f(0) = 4" />,
-    reason: <>To find an unknown constant, substitute a point you know is on the graph. The graph labels three points, but <Katex tex="(\pm2,0)" /> are the roots that the brackets <Katex tex="(x+2)^2" /> and <Katex tex="(x-2)^2" /> already build in: they lie on the curve whatever <Katex tex="a" /> is, so substituting them gives <Katex tex="0=0" />. The <Katex tex="y" />-intercept is the one point whose height depends on <Katex tex="a" /> (slide <Katex tex="a" /> in the diagram below).</>,
+    reason: <>To find an unknown constant, substitute a point you know is on the graph. The graph labels three points, but <Katex tex="(\pm2,0)" /> are the roots that the brackets <Katex tex="(x+2)^2" /> and <Katex tex="(x-2)^2" /> already build in: they lie on the curve whatever <Katex tex="a" /> is, so substituting them gives <Katex tex="0=0" />. The <Katex tex="y" />-intercept is the one point whose height depends on <Katex tex="a" />.</>,
+    more: <>Slide <Katex tex="a" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="a(0+2)^2(0-2)^2 = 4" />,
@@ -237,7 +238,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\begin{aligned}&\text{reflection in the } x\text{-axis, then}\\&\text{translation of } 2 \text{ units up}\end{aligned}}" />,
-    reason: <>The other valid order, which the report also gives, is translate 2 units <em>down</em> first, then reflect in the <Katex tex="x" />-axis: <Katex tex="-\bigl(f(x)-2\bigr)=-f(x)+2" />. The reflection flips the sign of anything already added, so the order and the direction go together, and "up 2, then reflect" lands on <Katex tex="-f(x)-2" /> instead. Play all four routes in the diagram below.</>,
+    reason: <>The other valid order, which the report also gives, is translate 2 units <em>down</em> first, then reflect in the <Katex tex="x" />-axis: <Katex tex="-\bigl(f(x)-2\bigr)=-f(x)+2" />. The reflection flips the sign of anything already added, so the order and the direction go together, and "up 2, then reflect" lands on <Katex tex="-f(x)-2" /> instead.</>,
+    more: <>Play all four routes in the diagram below.</>,
   },
 ]
 
@@ -248,7 +250,8 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2f(x) = 2 \implies f(x) = 1" />,
-    reason: <>So the curves meet exactly where <Katex tex="f" /> crosses the line <Katex tex="y=1" />. That is no accident: <Katex tex="h" /> is <Katex tex="f" /> reflected in <Katex tex="y=1" />, and a point can only be its own mirror image if it is on the mirror (drag P in the diagram below).</>,
+    reason: <>So the curves meet exactly where <Katex tex="f" /> crosses the line <Katex tex="y=1" />. That is no accident: <Katex tex="h" /> is <Katex tex="f" /> reflected in <Katex tex="y=1" />, and a point can only be its own mirror image if it is on the mirror.</>,
+    more: <>Drag P in the diagram below.</>,
   },
   {
     working: <Katex display tex="\tfrac14\left(x^2-4\right)^2 = 1 \implies \left(x^2-4\right)^2 = 4" />,

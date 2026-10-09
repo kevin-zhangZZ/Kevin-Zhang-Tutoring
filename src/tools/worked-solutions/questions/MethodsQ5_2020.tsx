@@ -38,7 +38,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x\to\pm\infty: \ \frac{17}{x-5}\to 0, \ \text{ so } f(x)\to -3" />,
-    reason: <>As <Katex tex="x" /> gets large either way, the fraction part shrinks to 0 and the graph settles onto <Katex tex="y=-3" />. The quick way to see the sign: for huge <Katex tex="x" /> the <Katex tex="+2" /> and the 5 hardly matter, so <Katex tex="f(x)\approx\tfrac{3x}{-x}=-3" />. The top and bottom have opposite signs out there, so the ratio is negative (slide <Katex tex="x" /> far away in the diagram below).</>,
+    reason: <>As <Katex tex="x" /> gets large either way, the fraction part shrinks to 0 and the graph settles onto <Katex tex="y=-3" />. The quick way to see the sign: for huge <Katex tex="x" /> the <Katex tex="+2" /> and the 5 hardly matter, so <Katex tex="f(x)\approx\tfrac{3x}{-x}=-3" />. The top and bottom have opposite signs out there, so the ratio is negative.</>,
+    more: <>Slide <Katex tex="x" /> far away in the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 5, \quad y = -3}" />,

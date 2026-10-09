@@ -82,8 +82,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Collect the <Katex tex="p" /> terms and factorise to make <Katex tex="p" /> the subject. So each <Katex tex="n" />{' '}
-        allows exactly one <Katex tex="p" />, and more trials force a smaller <Katex tex="p" /> (slide <Katex tex="n" /> in
-        the graph below).
+        allows exactly one <Katex tex="p" />, and more trials force a smaller <Katex tex="p" />.
+      </>
+    ),
+    more: (
+      <>
+        Slide <Katex tex="n" /> in the graph below.
       </>
     ),
   },

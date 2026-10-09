@@ -77,7 +77,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(x) = f\bigl(2(x-2)\bigr) = \bigl(2(x-2)\bigr)^2-4" />,
-    reason: <>Without the brackets you get <Katex tex="f(2x-2)=(2x-2)^2-4" />, the incorrect rule named in the report. Subtracting 2 from <Katex tex="2x" /> only moves the graph 1 unit right. Slide <Katex tex="c" /> in the diagram below to see it.</>,
+    reason: <>Without the brackets you get <Katex tex="f(2x-2)=(2x-2)^2-4" />, the incorrect rule named in the report. Subtracting 2 from <Katex tex="2x" /> only moves the graph 1 unit right.</>,
+    more: <>Slide <Katex tex="c" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="\boxed{h(x) = 4(x-2)^2-4}" />,

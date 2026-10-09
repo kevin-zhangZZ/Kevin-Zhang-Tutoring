@@ -116,7 +116,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{15}{\sqrt{50}} = \frac{3}{\sqrt2} = \frac{3\sqrt2}{2} \approx 2.1213}" />,
-    reason: <>Any of these exact forms is accepted. Much smaller than the population&apos;s <Katex tex="15" /> cm, which is why a <Katex tex="5" /> cm gap turns out to be significant (the interactive in part c. shows this).</>,
+    reason: <>Any of these exact forms is accepted. Much smaller than the population&apos;s <Katex tex="15" /> cm, which is why a <Katex tex="5" /> cm gap turns out to be significant.</>,
+    more: <>The interactive in part c. shows this.</>,
   },
 ]
 

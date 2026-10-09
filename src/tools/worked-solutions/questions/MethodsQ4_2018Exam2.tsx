@@ -301,7 +301,8 @@ const ROWS_DII: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}E(T) &= \int_{-\infty}^{\infty} t\,M(t)\,dt \\ &= \int_0^{\infty} t\cdot\frac{3}{50}\left(\frac{t}{50}\right)^2 e^{-\left(\frac{t}{50}\right)^3}dt\end{aligned}" />,
-    reason: <>The expected value is the long-run average: each time <Katex tex="t" /> counts in proportion to how likely it is, <Katex tex="M(t)\,dt" />. Physically it is the balance point of the density curve (see the widget below). <Katex tex="M" /> is zero for <Katex tex="t<0" /> and has no upper cut-off, so the terminals are <Katex tex="0" /> and <Katex tex="\infty" />. The report gives <Katex tex="\int_0^{437}" /> as an example of an incorrect terminal: numerically it happens to give the same <Katex tex="44.6" /> because almost no probability lies beyond <Katex tex="437" />, but as written it is not <Katex tex="E(T)" />.</>,
+    reason: <>The expected value is the long-run average: each time <Katex tex="t" /> counts in proportion to how likely it is, <Katex tex="M(t)\,dt" />. Physically it is the balance point of the density curve. <Katex tex="M" /> is zero for <Katex tex="t<0" /> and has no upper cut-off, so the terminals are <Katex tex="0" /> and <Katex tex="\infty" />. The report gives <Katex tex="\int_0^{437}" /> as an example of an incorrect terminal: numerically it happens to give the same <Katex tex="44.6" /> because almost no probability lies beyond <Katex tex="437" />, but as written it is not <Katex tex="E(T)" />.</>,
+    more: <>See the balance point in the widget below.</>,
   },
   {
     working: <Cas fn="nInt">nInt(t*M(t), t, 0, ∞)</Cas>,

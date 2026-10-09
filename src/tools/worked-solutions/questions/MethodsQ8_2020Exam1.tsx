@@ -88,7 +88,8 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 1\cdot\log_e(x)+x\cdot\frac1x" />,
-    reason: <><Katex tex="f(x)=x\log_e(x)" /> is a product of two functions of <Katex tex="x" />, so use the product rule <Katex tex="(uv)'=u'v+uv'" /> with <Katex tex="u=x" /> and <Katex tex="v=\log_e(x)" />. Each factor is differentiated in turn while the other is left alone; the two derivatives are never simply multiplied (drag P in the diagram below to see why).</>,
+    reason: <><Katex tex="f(x)=x\log_e(x)" /> is a product of two functions of <Katex tex="x" />, so use the product rule <Katex tex="(uv)'=u'v+uv'" /> with <Katex tex="u=x" /> and <Katex tex="v=\log_e(x)" />. Each factor is differentiated in turn while the other is left alone; the two derivatives are never simply multiplied.</>,
+    more: <>Drag P in the diagram below to see why.</>,
   },
   {
     working: <Katex display tex="f'(x) = \log_e(x)+1 = 0" />,
@@ -200,7 +201,8 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g \text{ increasing} \implies g \text{ and } g^{-1} \text{ can only meet on } y = x" />,
-    reason: <>See the Background above for why. So there is no need for the rule of <Katex tex="g^{-1}" /> (which can't be written down with Methods functions anyway): compare <Katex tex="g" /> with the line <Katex tex="y=x" /> instead.</>,
+    reason: <>So there is no need for the rule of <Katex tex="g^{-1}" /> (which can't be written down with Methods functions anyway): compare <Katex tex="g" /> with the line <Katex tex="y=x" /> instead.</>,
+    more: <>See the Background above for why.</>,
   },
   {
     working: <Katex display tex="\text{Let } d(x) = g(x)-x = x\log_e(x)-x+k" />,

@@ -108,10 +108,10 @@ export default function SpecialistQ2_2016Exam2() {
       reason: (
         <>
           <Katex tex="|a+bi|=\sqrt{a^2+b^2}" />, so both sides are square roots; squaring gets rid of them. Watch the
-          sign: the imaginary part of <Katex tex="z+2-3i" /> is <Katex tex="y-3" />, not <Katex tex="y+3" /> (see the
-          common mistake below).
+          sign: the imaginary part of <Katex tex="z+2-3i" /> is <Katex tex="y-3" />, not <Katex tex="y+3" />.
         </>
       ),
+      more: <>See the common mistake below.</>,
     },
     {
       working: (
@@ -263,9 +263,10 @@ export default function SpecialistQ2_2016Exam2() {
           Start from the picture in part c. The chord joins the two intersection points from part b. What decides a
           segment&apos;s area is the angle the chord makes at the centre, so join the centre to each end. One radius
           points straight left, the other straight up. They are perpendicular, so the chord cuts off exactly a quarter
-          of the circle&apos;s angle. Step through the diagram below.
+          of the circle&apos;s angle.
         </>
       ),
+      more: <>Step through the diagram below.</>,
     },
     {
       working: (
@@ -340,7 +341,12 @@ export default function SpecialistQ2_2016Exam2() {
           <Katex tex="\mathrm{Arg}(0)" /> is undefined, since there is no direction from <Katex tex="O" /> to itself,
           so mark it with an open circle. The report notes students who drew a line, or a ray that included or extended
           past the origin. The other half of the line <Katex tex="y=x" /> has argument <Katex tex="\tfrac{\pi}{4}" />, not{' '}
-          <Katex tex="-\tfrac{3\pi}{4}" /> (drag the point through <Katex tex="O" /> in the diagram below to see it).
+          <Katex tex="-\tfrac{3\pi}{4}" />.
+        </>
+      ),
+      more: (
+        <>
+          Drag the point through <Katex tex="O" /> in the diagram below to see it.
         </>
       ),
     },
@@ -359,14 +365,15 @@ export default function SpecialistQ2_2016Exam2() {
       ),
       reason: (
         <>
-          Picture the ray swinging round <Katex tex="O" /> as <Katex tex="\alpha" /> changes (rotate it in the diagram
-          below). The line <Katex tex="y=x+2" /> has gradient 1 and lies entirely above the parallel line through the
+          Picture the ray swinging round <Katex tex="O" /> as <Katex tex="\alpha" /> changes. The line{' '}
+          <Katex tex="y=x+2" /> has gradient 1 and lies entirely above the parallel line through the
           origin, <Katex tex="y=x" /> (dashed). A ray pointing into that upper side (shaded) must eventually cross{' '}
           <Katex tex="y=x+2" />, as the example ray at <Katex tex="\tfrac{2\pi}{3}" /> does. A ray pointing below the
           dashed line heads away and never meets it, and one pointing exactly along the dashed line (
           <Katex tex="\theta=\tfrac{\pi}{4}" /> or <Katex tex="\theta=-\tfrac{3\pi}{4}" />) stays parallel to it forever.
         </>
       ),
+      more: <>Rotate the ray in the diagram below.</>,
     },
     {
       working: (

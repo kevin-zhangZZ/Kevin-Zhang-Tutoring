@@ -137,7 +137,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{\Pr(0<T\le3)}{\Pr(T>0)}" />,
-    reason: <>Conditional probability: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. On top, <em>both</em> things must happen: late (<Katex tex="T>0" />) and no later than 3 (<Katex tex="T\le3" />), which is the band <Katex tex="0<T\le3" />. <Katex tex="\Pr(T\le3)" /> on its own would also count deliveries that arrived early, which the condition has already ruled out. That is the report&apos;s 0.77 over 0.5, an answer greater than 1 (see the diagram below).</>,
+    reason: <>Conditional probability: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. On top, <em>both</em> things must happen: late (<Katex tex="T>0" />) and no later than 3 (<Katex tex="T\le3" />), which is the band <Katex tex="0<T\le3" />. <Katex tex="\Pr(T\le3)" /> on its own would also count deliveries that arrived early, which the condition has already ruled out. That is the report&apos;s 0.77 over 0.5, an answer greater than 1.</>,
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="\Pr(T>0) = 0.5" />,
@@ -184,7 +185,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Cas fn="normCdf">normCdf(−4.5, 0.5, −2.5, 4) = 0.46483…</Cas>,
-    reason: <>Check each value on the calculator (<Katex tex="k=-1.5" /> gives the same 0.46483…). You can also go straight to <Cas fn="solve">solve(normCdf(−4.5, 0.5, k, 4) = 0.4648, k)</Cas>, but a solver may return only one of the two roots, depending on the calculator and its starting point. The symmetry argument, or a graph of the area against <Katex tex="k" /> like the one below, is what tells you to look for two.</>,
+    reason: <>Check each value on the calculator (<Katex tex="k=-1.5" /> gives the same 0.46483…). You can also go straight to <Cas fn="solve">solve(normCdf(−4.5, 0.5, k, 4) = 0.4648, k)</Cas>, but a solver may return only one of the two roots, depending on the calculator and its starting point. The symmetry argument, or a graph of the area against <Katex tex="k" />, is what tells you to look for two.</>,
+    more: <>The lower graph in the diagram below is one like this.</>,
   },
   {
     working: <Katex display tex="\boxed{k = -1.5 \ \text{ or } \ k = -2.5}" />,

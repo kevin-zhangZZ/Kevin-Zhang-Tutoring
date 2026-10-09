@@ -188,7 +188,8 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="\qquad +\int_{1}^{x_Q}\left(2a^3+1-3a^2x\right)dx" />
       </>
     ),
-    reason: <>Trace the boundary of the shaded area in the diagram: it starts at <Katex tex="P" />, runs along the tangent to <Katex tex="Q" />, comes back along the <Katex tex="x" />-axis to where the curve cuts it at <Katex tex="x=1" />, then follows the curve back up to <Katex tex="P" />. Left of <Katex tex="1" /> the region's floor is the curve (first integral: tangent minus curve); right of <Katex tex="1" /> the curve has dropped below the axis, so the floor is the axis itself (second integral: tangent minus zero). Sweep the strip in the widget below across <Katex tex="x=1" /> to watch the floor change.</>,
+    reason: <>Trace the boundary of the shaded area in the diagram: it starts at <Katex tex="P" />, runs along the tangent to <Katex tex="Q" />, comes back along the <Katex tex="x" />-axis to where the curve cuts it at <Katex tex="x=1" />, then follows the curve back up to <Katex tex="P" />. Left of <Katex tex="1" /> the region's floor is the curve (first integral: tangent minus curve); right of <Katex tex="1" /> the curve has dropped below the axis, so the floor is the axis itself (second integral: tangent minus zero).</>,
+    more: <>Sweep the strip in the widget below across <Katex tex="x=1" /> to watch the floor change.</>,
   },
   {
     working: (
@@ -252,7 +253,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a^3=\dfrac{1}{10} \implies a=\dfrac{1}{\sqrt[3]{10}} = \dfrac{\sqrt[3]{100}}{10} \approx 0.4642}" />,
-    reason: <>Exact form required. Checking it really is a minimum: <Katex tex="A" /> blows up as <Katex tex="a\to0^+" /> (the <Katex tex="\tfrac{1}{6a^2}" /> term — the tangent flattens and <Katex tex="Q" /> runs off to the right) and grows again as <Katex tex="a\to1" /> (the lens between tangent and curve gets big), so the single stationary point in between must be the minimum. The widget below plots both pieces so you can watch the trade-off.</>,
+    reason: <>Exact form required. Checking it really is a minimum: <Katex tex="A" /> blows up as <Katex tex="a\to0^+" /> (the <Katex tex="\tfrac{1}{6a^2}" /> term — the tangent flattens and <Katex tex="Q" /> runs off to the right) and grows again as <Katex tex="a\to1" /> (the lens between tangent and curve gets big), so the single stationary point in between must be the minimum.</>,
+    more: <>The widget below plots both pieces so you can watch the trade-off.</>,
   },
 ]
 
@@ -323,7 +325,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\implies \text{the tangent to } f^{-1} \text{ at } x=1 \text{ is vertical}" />,
-    reason: <>Reflecting a horizontal line in <Katex tex="y=x" /> produces a vertical one (slide the point to <Katex tex="(0,1)" /> in the widget below and watch its mirror's tangent stand up). Equivalently, the inverse-function rule <Katex tex="\left(f^{-1}\right)'(1)=\tfrac{1}{f'(0)}" /> divides by zero — undefined gradient, which is what a vertical line has.</>,
+    reason: <>Reflecting a horizontal line in <Katex tex="y=x" /> produces a vertical one. Equivalently, the inverse-function rule <Katex tex="\left(f^{-1}\right)'(1)=\tfrac{1}{f'(0)}" /> divides by zero — undefined gradient, which is what a vertical line has.</>,
+    more: <>Slide the point to <Katex tex="(0,1)" /> in the widget below and watch its mirror's tangent stand up.</>,
   },
   {
     working: (

@@ -42,7 +42,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma = \frac{9}{1.5} = 6\ \text{mm}}" />,
-    reason: <>If 1.5 standard deviations are 9 mm, one is <Katex tex="9\div1.5=6" /> mm. Check: <Katex tex="250+1.5\times6=259" /> ✓. Matches option <b>C</b>. Option <b>A</b> is the <Katex tex="z" />-value itself, and option <b>D</b> is the 9 mm gap, which would put 259 only <em>one</em> standard deviation above the mean (see below). Both stop a step short.</>,
+    reason: <>If 1.5 standard deviations are 9 mm, one is <Katex tex="9\div1.5=6" /> mm. Check: <Katex tex="250+1.5\times6=259" /> ✓. Matches option <b>C</b>. Option <b>A</b> is the <Katex tex="z" />-value itself, and option <b>D</b> is the 9 mm gap, which would put 259 only <em>one</em> standard deviation above the mean. Both stop a step short.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

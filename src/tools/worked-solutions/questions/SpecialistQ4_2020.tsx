@@ -105,23 +105,23 @@ const ROWS: WorkingRow[] = [
         <Katex tex="\tfrac{\pi}{2}" />, and falls back to 0. So substituting the two endpoints is not enough; the largest value is in
         the middle. Each end of the range needs its own check. The value 0 would only happen at <Katex tex="x=0" /> or{' '}
         <Katex tex="x=\tfrac{\pi}{2}" />, both excluded, so 0 is approached but never reached: open bracket. The value 1 happens at{' '}
-        <Katex tex="x=\tfrac{\pi}{4}" />, which <i>is</i> inside the open domain, so it is reached: square bracket. Drag P in the first
-        diagram below.
+        <Katex tex="x=\tfrac{\pi}{4}" />, which <i>is</i> inside the open domain, so it is reached: square bracket.
       </>
     ),
+    more: <>Drag P in the first diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{f\bigl(g(x)\bigr)=\tfrac12\sin(2x),\quad \text{range } \big(0,\tfrac12\big]}" />,
     reason: (
       <>
         Matches option <b>E</b>: the range is half-open, including <Katex tex="\tfrac12" /> but not <Katex tex="0" />. Option{' '}
-        <b>D</b>, the most popular choice (50%), has the right rule but excludes <Katex tex="\tfrac12" /> (see the common mistake
-        below). Option <b>C</b> includes negative values, impossible here since <Katex tex="\sin(x)" /> and <Katex tex="\cos(x)" /> are
+        <b>D</b>, the most popular choice (50%), has the right rule but excludes <Katex tex="\tfrac12" />. Option <b>C</b> includes negative values, impossible here since <Katex tex="\sin(x)" /> and <Katex tex="\cos(x)" /> are
         both positive for <Katex tex="0<x<\tfrac{\pi}{2}" /> (<Katex tex="[-0.5,0.5]" /> is the range of <Katex tex="\sin(x)\cos(x)" />{' '}
         with no restriction on <Katex tex="x" />). Check from the original rules: <Katex tex="g\big(\tfrac{\pi}{4}\big)=\operatorname{cosec}^2\big(\tfrac{\pi}{4}\big)=2" />{' '}
         and <Katex tex="f(2)=\tfrac{\sqrt{1}}{2}=\tfrac12" /> ✓, so <Katex tex="\tfrac12" /> really is an output.
       </>
     ),
+    more: <>For option <b>D</b>, see the common mistake below.</>,
   },
 ]
 

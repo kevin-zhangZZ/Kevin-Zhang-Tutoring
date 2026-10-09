@@ -57,7 +57,8 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e|P| = kt + c \implies P = Ae^{kt}" />,
-    reason: <>Integrate both sides and exponentiate, absorbing <Katex tex="e^c" /> into a single constant <Katex tex="A" />. Don&apos;t skip the constant: it is what lets one curve pass through <em>two</em> given points (see the common mistake below).</>,
+    reason: <>Integrate both sides and exponentiate, absorbing <Katex tex="e^c" /> into a single constant <Katex tex="A" />. Don&apos;t skip the constant: it is what lets one curve pass through <em>two</em> given points.</>,
+    more: <>See the common mistake below.</>,
   },
   {
     working: (

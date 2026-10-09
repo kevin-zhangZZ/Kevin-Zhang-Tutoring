@@ -53,9 +53,13 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         "Closest point on a line" is the signal to think <em>perpendicular</em>: the shortest
-        segment from a point to a line meets the line at right angles (see Background, and drag{' '}
-        <Katex tex="P" /> in the first diagram below). Perpendicular gradients multiply to{' '}
-        <Katex tex="-1" />, so <Katex tex="2\times m_\perp=-1" />.
+        segment from a point to a line meets the line at right angles. Perpendicular gradients
+        multiply to <Katex tex="-1" />, so <Katex tex="2\times m_\perp=-1" />.
+      </>
+    ),
+    more: (
+      <>
+        See Background, and drag <Katex tex="P" /> in the first diagram below.
       </>
     ),
   },
@@ -93,10 +97,11 @@ const ROWS_B: WorkingRow[] = [
       <>
         The distance formula is Pythagoras: the horizontal and vertical gaps between{' '}
         <Katex tex="O" /> and <Katex tex="P" /> are the legs of a right-angled triangle with
-        hypotenuse <Katex tex="OP" /> (step through the diagram below). The report notes some
-        students misquoted it, so write it out before substituting.
+        hypotenuse <Katex tex="OP" />. The report notes some students misquoted it, so write it
+        out before substituting.
       </>
     ),
+    more: <>Step through the diagram below.</>,
   },
   {
     working: <Katex display tex="= \sqrt{\left(\frac85-0\right)^2+\left(-\frac45-0\right)^2}" />,

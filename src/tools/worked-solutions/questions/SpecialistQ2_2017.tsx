@@ -113,11 +113,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>E</b>, the union of both cases. Option B is what you get by multiplying by{' '}
-        <Katex tex="\sin(x)" /> without flipping on <Katex tex="(\pi,2\pi)" /> (see below). On CAS,{' '}
+        <Katex tex="\sin(x)" /> without flipping on <Katex tex="(\pi,2\pi)" />. On CAS,{' '}
         <Cas fn="solve">{'solve(cos(x) > 1/(4·sin(x)), x) | 0 < x < 2π'}</Cas> gives the three intervals directly,
         and graphing both sides shows where <Katex tex="\cos(x)" /> is on top.
       </>
     ),
+    more: <>For option B, see below.</>,
   },
 ]
 

@@ -210,7 +210,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -0.67 \ \text{ or } \ a = -0.11}" />,
-    reason: <>Both, to two decimal places. Only 4% of students scored full marks on this part. Drag P in the diagram below to watch <Katex tex="\theta" /> pass <Katex tex="60^\circ" /> twice.</>,
+    reason: <>Both, to two decimal places. Only 4% of students scored full marks on this part.</>,
+    more: <>Drag P in the diagram below to watch <Katex tex="\theta" /> pass <Katex tex="60^\circ" /> twice.</>,
   },
 ]
 
@@ -225,7 +226,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\text{top} = x+2 \ \text{ for } -2\le x\le-0.7504 \\ &\text{top} = p(x) \ \text{ for } -0.7504\le x\le0\end{aligned}" />,
-    reason: <>The line meets the <Katex tex="x" />-axis at <Katex tex="x=-2" /> and <Katex tex="p" /> touches it at the origin, so the region runs from <Katex tex="x=-2" /> to <Katex tex="x=0" />. Each vertical strip goes from the <Katex tex="x" />-axis up to the <em>lower</em> of the two graphs: left of the crossing <Katex tex="p" /> is above the line (e.g. <Katex tex="p(-2)\approx40.8" /> while the line is at 0), so the line is the top; right of it <Katex tex="p" /> is below the line, so <Katex tex="p" /> is the top. Sweep the strip in the diagram below to see it.</>,
+    reason: <>The line meets the <Katex tex="x" />-axis at <Katex tex="x=-2" /> and <Katex tex="p" /> touches it at the origin, so the region runs from <Katex tex="x=-2" /> to <Katex tex="x=0" />. Each vertical strip goes from the <Katex tex="x" />-axis up to the <em>lower</em> of the two graphs: left of the crossing <Katex tex="p" /> is above the line (e.g. <Katex tex="p(-2)\approx40.8" /> while the line is at 0), so the line is the top; right of it <Katex tex="p" /> is below the line, so <Katex tex="p" /> is the top.</>,
+    more: <>Sweep the strip in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="A = \int_{-2}^{-0.7504}(x+2)\,dx+\int_{-0.7504}^{0}p(x)\,dx" />,

@@ -84,8 +84,13 @@ const ROWS: WorkingRow[] = [
       <>
         Why this isn&apos;t negative: swapping the terminals of an integral changes its sign, so the minus in front and the
         reversed terminals cancel. What is left is an ordinary integral of a positive function over{' '}
-        <Katex tex="[0,1]" />, a positive area. The diagram below shows it as the original region reflected, with{' '}
-        <Katex tex="u" /> running backwards as <Katex tex="x" /> runs forwards.
+        <Katex tex="[0,1]" />, a positive area.
+      </>
+    ),
+    more: (
+      <>
+        The diagram below shows it as the original region reflected, with <Katex tex="u" /> running backwards as{' '}
+        <Katex tex="x" /> runs forwards.
       </>
     ),
   },

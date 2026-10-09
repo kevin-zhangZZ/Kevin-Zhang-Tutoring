@@ -61,11 +61,12 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Think of a sign table, one row per factor (the first diagram below has one). <Katex tex="g(x)" /> is negative
+        Think of a sign table, one row per factor. <Katex tex="g(x)" /> is negative
         everywhere, so dividing by it flips the sign. <Katex tex="(x+a)^2" /> is a square, never negative, so it cannot
         flip the sign at all. That leaves <Katex tex="x-b" /> in charge of the sign of <Katex tex="f''" />.
       </>
     ),
+    more: <>The first diagram below has a sign table like this.</>,
   },
   {
     working: (
@@ -82,8 +83,13 @@ const ROWS: WorkingRow[] = [
         (<Katex tex="x-b" /> is zero only at <Katex tex="b" />), so <Katex tex="f''" /> has the same sign on both sides.
         The curve straightens for an instant and keeps bending the same way. This is the report&apos;s comment:
         &ldquo;<Katex tex="f''(x)" /> does not change sign at <Katex tex="a" />&rdquo; refers to the point{' '}
-        <Katex tex="x=-a" />, where <Katex tex="(x+a)^2=0" />. Drag P through <Katex tex="-a" /> in the first diagram
-        below and watch the tangent stay on one side of the curve.
+        <Katex tex="x=-a" />, where <Katex tex="(x+a)^2=0" />.
+      </>
+    ),
+    more: (
+      <>
+        Drag P through <Katex tex="-a" /> in the first diagram below and watch the tangent stay on one side of the
+        curve.
       </>
     ),
   },
@@ -133,7 +139,12 @@ const ROWS: WorkingRow[] = [
       <>
         Reflecting in the <Katex tex="x" />-axis turns concave up into concave down and vice versa, so a change of
         concavity is still a change of concavity. The inflection point survives the reflection; it just moves to
-        height <Katex tex="|-1|=1" />. Press <b>Flip</b> in the second diagram below.
+        height <Katex tex="|-1|=1" />.
+      </>
+    ),
+    more: (
+      <>
+        Press <b>Flip</b> in the second diagram below.
       </>
     ),
   },
@@ -149,10 +160,10 @@ const ROWS: WorkingRow[] = [
       <>
         The same reflection happens at <Katex tex="-a" />: <Katex tex="f''" /> kept its sign there, so{' '}
         <Katex tex="-f''" /> does too. Whichever way <Katex tex="f" /> bends around <Katex tex="-a" />, it bends the same way
-        on both sides, and the reflection turns both sides over together (in the diagrams, concave up on both sides
-        becomes concave down on both sides). Still no change, so still no inflection.
+        on both sides, and the reflection turns both sides over together. Still no change, so still no inflection.
       </>
     ),
+    more: <>In the diagrams, concave up on both sides becomes concave down on both sides.</>,
   },
   {
     working: <Katex display tex="\boxed{(b,\,1)}" />,

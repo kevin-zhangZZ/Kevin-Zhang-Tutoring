@@ -141,9 +141,10 @@ const ROWS_B: WorkingRow[] = [
         The second derivative also works:{' '}
         <Katex tex="\tfrac{d^2y}{dx^2}=\tfrac12(x+6)^{-\frac12}-\tfrac12=\tfrac{1}{2\sqrt{x+6}}-\tfrac12" />, which
         at <Katex tex="x=3" /> is <Katex tex="\tfrac16-\tfrac12=-\tfrac13<0" />, so the curve is concave down there,
-        giving a local maximum. The diagram below shows which test values make the substitution easy to write down.
+        giving a local maximum.
       </>
     ),
+    more: <>The diagram below shows which test values make the substitution easy to write down.</>,
   },
 ]
 

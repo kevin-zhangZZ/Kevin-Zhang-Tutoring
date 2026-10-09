@@ -90,7 +90,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Box A has } g \text{ glazed} \implies \text{Box B has } 6-g" />,
-    reason: <>The six glazed doughnuts are split between the two boxes — this is the step the report says few students reached. Slide <Katex tex="g" /> in the diagram below to see it.</>,
+    reason: <>The six glazed doughnuts are split between the two boxes — this is the step the report says few students reached.</>,
+    more: <>Slide <Katex tex="g" /> in the diagram below to see it.</>,
   },
   {
     working: (

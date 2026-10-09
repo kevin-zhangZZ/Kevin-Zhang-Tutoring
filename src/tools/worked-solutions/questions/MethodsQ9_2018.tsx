@@ -51,7 +51,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y\text{-intercept} = -1}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> <Katex tex="(0)" />, chosen by <Katex tex="15\%" />, is the height of the point of contact: see the box below. Option <b>D</b> <Katex tex="\left(-1-\log_e(2)\right)" /> finds the right point of contact, <Katex tex="x=\tfrac12" />, but evaluates its <Katex tex="y" />-value as <Katex tex="\log_e\left(\tfrac12\right)" /> instead of <Katex tex="\log_e\left(2\times\tfrac12\right)=0" />.</>,
+    reason: <>Matches option <b>C</b>. Option <b>A</b> <Katex tex="(0)" />, chosen by <Katex tex="15\%" />, is the height of the point of contact. Option <b>D</b> <Katex tex="\left(-1-\log_e(2)\right)" /> finds the right point of contact, <Katex tex="x=\tfrac12" />, but evaluates its <Katex tex="y" />-value as <Katex tex="\log_e\left(\tfrac12\right)" /> instead of <Katex tex="\log_e\left(2\times\tfrac12\right)=0" />.</>,
+    more: <>For option <b>A</b>, see the box below.</>,
   },
 ]
 

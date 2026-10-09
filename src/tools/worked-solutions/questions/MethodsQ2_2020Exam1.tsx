@@ -214,9 +214,10 @@ const ROWS_B: WorkingRow[] = [
       <>
         Multiplying both sides by 20 and by <Katex tex="m+n" />. Read it as a sentence: the whole
         fleet of <Katex tex="m+n" /> cars is 20 times the <Katex tex="n-1" /> filter-only cars, one
-        filter-only car in every 20 (see the diagram below).
+        filter-only car in every 20.
       </>
     ),
+    more: <>See the diagram below.</>,
   },
   {
     working: <Katex display tex="20n-20 = m+n" />,

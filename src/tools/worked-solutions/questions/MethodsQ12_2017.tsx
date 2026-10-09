@@ -78,7 +78,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d = \frac{3\pi}{4}}" />,
-    reason: <>Matches option <b>C</b>, the only option in that range. Option B (18%), <Katex tex="\tfrac{\pi}{6}" />, stops one solution short (sum <Katex tex="-\tfrac{4\pi}{3}" />; see below for the slip that makes it look right); option D, <Katex tex="\tfrac{7\pi}{6}" />, includes the fifth solution (sum <Katex tex="\tfrac{\pi}{6}" />).</>,
+    reason: <>Matches option <b>C</b>, the only option in that range. Option B (18%), <Katex tex="\tfrac{\pi}{6}" />, stops one solution short (sum <Katex tex="-\tfrac{4\pi}{3}" />); option D, <Katex tex="\tfrac{7\pi}{6}" />, includes the fifth solution (sum <Katex tex="\tfrac{\pi}{6}" />).</>,
+    more: <>See the Common Mistake below for the slip that makes option B look right.</>,
   },
 ]
 

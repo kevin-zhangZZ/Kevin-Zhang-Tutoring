@@ -99,7 +99,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A = 32" />,
-    reason: <>Multiplying both sides by <Katex tex="64" />. Every value of <Katex tex="A" /> gives a curve that satisfies the DE (drag the start point in the diagram below); the initial condition is what picks this one.</>,
+    reason: <>Multiplying both sides by <Katex tex="64" />. Every value of <Katex tex="A" /> gives a curve that satisfies the DE; the initial condition is what picks this one.</>,
+    more: <>Drag the start point in the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{Q = \frac{32}{(16+2t)^{3/2}}}" />,

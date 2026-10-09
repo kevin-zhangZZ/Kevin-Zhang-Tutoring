@@ -56,12 +56,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>C</b>. Option E is the <Katex tex="[-1,1]" /> restriction applied to <Katex tex="x" />{' '}
-        instead of to <Katex tex="\tfrac1x" /> (see below). <Katex tex="x=0" /> needs no separate exclusion, since{' '}
+        instead of to <Katex tex="\tfrac1x" />. <Katex tex="x=0" /> needs no separate exclusion, since{' '}
         <Katex tex="|0|\ge1" /> is false. Spot-check: <Katex tex="x=2" /> gives{' '}
         <Katex tex="2\cos^{-1}(0.5)=\tfrac{2\pi}{3}" />, fine; <Katex tex="x=0.5" /> gives{' '}
         <Katex tex="\cos^{-1}(2)" />, undefined.
       </>
     ),
+    more: <>For option E, see below.</>,
   },
 ]
 

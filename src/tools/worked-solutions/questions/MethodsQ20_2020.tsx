@@ -55,7 +55,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = 2\pi n,\quad n\in Z\setminus\{0\}" />,
-    reason: <>Adding <Katex tex="a" /> to the angle must change nothing, for every <Katex tex="x" />, so <Katex tex="a" /> must be a whole number of full turns, <Katex tex="2\pi n" />. In graph terms, one unit must hold a whole number of periods <Katex tex="\tfrac{2\pi}{|a|}" />. Careful: a period of 2 (<Katex tex="a=\pi" />) is a whole number, but it fails, because a shift of 1 is then half a period and turns the graph upside down (first diagram below).</>,
+    reason: <>Adding <Katex tex="a" /> to the angle must change nothing, for every <Katex tex="x" />, so <Katex tex="a" /> must be a whole number of full turns, <Katex tex="2\pi n" />. In graph terms, one unit must hold a whole number of periods <Katex tex="\tfrac{2\pi}{|a|}" />. Careful: a period of 2 (<Katex tex="a=\pi" />) is a whole number, but it fails, because a shift of 1 is then half a period and turns the graph upside down.</>,
+    more: <>See the first diagram below.</>,
   },
   {
     working: <Katex display tex="a = 2\pi:\quad f(x)=\cos(2\pi x),\ \text{period } 1" />,
@@ -89,7 +90,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{E: } \cos\tfrac{\pi}{2} = 0 \text{ at } x=\tfrac14" />
       </>
     ),
-    reason: <>Each other interval contains a point where the cosine is 0 or negative, so <Katex tex="\log_2" /> is undefined there. Notice that C is D translated 2 units right. With period 1 that is the same piece of the graph, so C and D were always going to stand or fall together (try both in the second diagram below).</>,
+    reason: <>Each other interval contains a point where the cosine is 0 or negative, so <Katex tex="\log_2" /> is undefined there. Notice that C is D translated 2 units right. With period 1 that is the same piece of the graph, so C and D were always going to stand or fall together.</>,
+    more: <>Try both in the second diagram below.</>,
   },
   {
     working: <Katex display tex="a=\pm4\pi,\ \pm6\pi,\ \dots:\ \text{no option works}" />,
@@ -97,7 +99,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{D = \left[1,\ \tfrac76\right]}" />,
-    reason: <>Matches option <b>B</b>. It is &ldquo;a possible interval&rdquo; because others work too, such as <Katex tex="\big[\tfrac56,1\big]" /> or the whole of <Katex tex="\big[\tfrac56,\tfrac76\big]" /> (itute&apos;s answer). Options <b>C</b> (24%) and <b>D</b> (21%) both give the range <Katex tex="[-1,0]" /> if you take <Katex tex="a=\pi" />, which fails the property at <Katex tex="h=1" /> (see the box below). Option <b>A</b> is the interval that would work for <Katex tex="\sin(2\pi x)" /> instead of <Katex tex="\cos(2\pi x)" />. Option <b>E</b> contains the crest at <Katex tex="x=0" /> but runs on to <Katex tex="\cos\tfrac\pi2=0" />.</>,
+    reason: <>Matches option <b>B</b>. It is &ldquo;a possible interval&rdquo; because others work too, such as <Katex tex="\big[\tfrac56,1\big]" /> or the whole of <Katex tex="\big[\tfrac56,\tfrac76\big]" /> (itute&apos;s answer). Options <b>C</b> (24%) and <b>D</b> (21%) both give the range <Katex tex="[-1,0]" /> if you take <Katex tex="a=\pi" />, which fails the property at <Katex tex="h=1" />. Option <b>A</b> is the interval that would work for <Katex tex="\sin(2\pi x)" /> instead of <Katex tex="\cos(2\pi x)" />. Option <b>E</b> contains the crest at <Katex tex="x=0" /> but runs on to <Katex tex="\cos\tfrac\pi2=0" />.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

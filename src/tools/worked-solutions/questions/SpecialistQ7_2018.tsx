@@ -33,9 +33,10 @@ const ROWS: WorkingRow[] = [
         of <Katex tex="t" /> means the parametric arc-length formula. It is Pythagoras on a tiny scale: in a
         short time <Katex tex="\Delta t" /> the point moves <Katex tex="\Delta x" /> across and{' '}
         <Katex tex="\Delta y" /> up, so it travels <Katex tex="\sqrt{\Delta x^2+\Delta y^2}" />, and adding
-        up those little hypotenuses is the integral (see the interactive below).
+        up those little hypotenuses is the integral.
       </>
     ),
+    more: <>See the interactive below.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = 2\cos(2t), \qquad \frac{dy}{dt} = -2\sin(t)" />,

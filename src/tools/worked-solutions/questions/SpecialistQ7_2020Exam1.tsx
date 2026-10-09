@@ -73,7 +73,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m+n = 2 \implies -2+n = 2 \implies \boxed{n = 4}" />,
-    reason: <>Back-substituting into the continuity equation. Check: the line is then <Katex tex="y=-2x+4" />, which is exactly the tangent to <Katex tex="y=\tfrac{4}{1+x^2}" /> at <Katex tex="(1,2)" />. Matching the value and the gradient at a join is the same as asking for the tangent there (move the sliders below to see it). As required.</>,
+    reason: <>Back-substituting into the continuity equation. Check: the line is then <Katex tex="y=-2x+4" />, which is exactly the tangent to <Katex tex="y=\tfrac{4}{1+x^2}" /> at <Katex tex="(1,2)" />. Matching the value and the gradient at a join is the same as asking for the tangent there. As required.</>,
+    more: <>Move the sliders below to see it.</>,
   },
 ]
 
@@ -104,7 +105,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 3+\frac\pi3}" />,
-    reason: <>About 4.05 square units. Sanity check on the curved piece: from <Katex tex="x=1" /> to <Katex tex="x=\sqrt3" /> the curve falls from height 2 to height 1, so that piece must lie between <Katex tex="1\times(\sqrt3-1)\approx0.73" /> and <Katex tex="2\times(\sqrt3-1)\approx1.46" />. <Katex tex="\tfrac\pi3\approx1.05" /> does (step 3 of the diagram below).</>,
+    reason: <>About 4.05 square units. Sanity check on the curved piece: from <Katex tex="x=1" /> to <Katex tex="x=\sqrt3" /> the curve falls from height 2 to height 1, so that piece must lie between <Katex tex="1\times(\sqrt3-1)\approx0.73" /> and <Katex tex="2\times(\sqrt3-1)\approx1.46" />. <Katex tex="\tfrac\pi3\approx1.05" /> does.</>,
+    more: <>See step 3 of the diagram below.</>,
   },
 ]
 

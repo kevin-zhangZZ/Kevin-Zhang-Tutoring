@@ -76,9 +76,10 @@ const ROWS: WorkingRow[] = [
       <>
         Antidifferentiate again. "Initially at position <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}" />"
         means <Katex tex="\underset{\sim}{r}(0)=\underset{\sim}{i}+\underset{\sim}{j}" />, so this
-        constant is <em>not</em> zero. It is an easy one to drop (see below).
+        constant is <em>not</em> zero. It is an easy one to drop.
       </>
     ),
+    more: <>See the common mistake below.</>,
   },
   {
     working: <Katex display tex="x = 1+t^2, \quad y = 1+\tfrac{t^2}{2}" />,
@@ -91,10 +92,11 @@ const ROWS: WorkingRow[] = [
         A cartesian equation has no <Katex tex="t" />, so eliminate it. Both components contain{' '}
         <Katex tex="t^2" />, so solve for <Katex tex="t^2" /> as a whole and substitute it: no
         square roots needed. The result is a straight line, as it must be for a particle that
-        starts from rest under a constant force (see the Background), so the parabolas C and D
+        starts from rest under a constant force, so the parabolas C and D
         could have been ruled out before any algebra.
       </>
     ),
+    more: <>See the Background.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \tfrac{x}{2}+\tfrac12}" />,

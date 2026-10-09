@@ -68,7 +68,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y=\cos(x)}" />,
-    reason: <>Matches option <b>D</b>. A check without algebra: the original has its maximum <Katex tex="3\sin\!\left(\tfrac{\pi}{2}\right)=3" /> at <Katex tex="x=0" />, and a dilation from an axis never moves points on that axis, so the image must have its maximum <Katex tex="1" /> at <Katex tex="x=0" /> — a cosine. Option B (23%), <Katex tex="\sin\!\left(x-\tfrac{\pi}{2}\right)" />, is <Katex tex="-\cos(x)" /> (see below), and so is option C; option E, <Katex tex="\cos\!\left(x-\tfrac{\pi}{2}\right)" />, is <Katex tex="\sin(x)" /> in disguise.</>,
+    reason: <>Matches option <b>D</b>. A check without algebra: the original has its maximum <Katex tex="3\sin\!\left(\tfrac{\pi}{2}\right)=3" /> at <Katex tex="x=0" />, and a dilation from an axis never moves points on that axis, so the image must have its maximum <Katex tex="1" /> at <Katex tex="x=0" /> — a cosine. Option B (23%), <Katex tex="\sin\!\left(x-\tfrac{\pi}{2}\right)" />, is <Katex tex="-\cos(x)" />, and so is option C; option E, <Katex tex="\cos\!\left(x-\tfrac{\pi}{2}\right)" />, is <Katex tex="\sin(x)" /> in disguise.</>,
+    more: <>See the Common Mistake below for option B.</>,
   },
 ]
 

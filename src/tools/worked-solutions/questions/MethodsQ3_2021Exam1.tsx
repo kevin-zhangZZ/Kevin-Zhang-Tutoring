@@ -100,7 +100,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi" />,
-    reason: <>Dividing everything by 2, including the <Katex tex="2k\pi" />, which becomes <Katex tex="k\pi" />. The report lists leaving <Katex tex="+2k\pi" /> here among the common errors; press <Katex tex="+2k\pi" /> in the diagram below to see the solutions it skips.</>,
+    reason: <>Dividing everything by 2, including the <Katex tex="2k\pi" />, which becomes <Katex tex="k\pi" />. The report lists leaving <Katex tex="+2k\pi" /> here among the common errors.</>,
+    more: <>Press <Katex tex="+2k\pi" /> in the diagram below to see the solutions it skips.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi, \quad k\in Z}" />,

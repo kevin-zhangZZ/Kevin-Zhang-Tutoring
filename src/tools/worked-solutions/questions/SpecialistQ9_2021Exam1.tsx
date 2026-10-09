@@ -251,7 +251,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{upper}-\text{lower} = \frac{8\pi}{3}-\frac{4\pi}{3} = \frac{4\pi}{3}" />,
-    reason: <>The <Katex tex="2\sqrt3" /> terms cancel exactly, a good sign the arithmetic is right. The interactive below shows why: each is the area of a triangle, and the two triangles have the same area.</>,
+    reason: <>The <Katex tex="2\sqrt3" /> terms cancel exactly, a good sign the arithmetic is right. They cancel because each is the area of a triangle, and the two triangles have the same area.</>,
+    more: <>The interactive below shows why.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{\sqrt3}{6}\cdot\frac{4\pi}{3} = \frac{2\sqrt3\,\pi}{9}}" />,

@@ -72,7 +72,12 @@ const ROWS_DERIV: WorkingRow[] = [
       <>
         Multiply the two pieces. Sign check: the square and the surd are positive, so{' '}
         <Katex tex="f'(x)<0" /> everywhere it exists, as it must be for the reciprocal of an increasing
-        function. Slide <Katex tex="x" /> in the diagram below: the tangent always slopes down.
+        function.
+      </>
+    ),
+    more: (
+      <>
+        Slide <Katex tex="x" /> in the diagram below: the tangent always slopes down.
       </>
     ),
   },

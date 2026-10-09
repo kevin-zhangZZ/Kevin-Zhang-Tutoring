@@ -182,10 +182,10 @@ const ROWS_A: WorkingRow[] = [
         picture that gives the same result (and is a good check): the tangent drops a height{' '}
         <Katex tex="f(a)" /> at gradient <Katex tex="f'(a)" />, so it meets the axis a horizontal
         distance <Katex tex="\tfrac{f(a)}{f'(a)}" /> from <Katex tex="a" />:{' '}
-        <Katex tex="b = a-\tfrac{a^3-a}{3a^2-1} = \tfrac{2a^3}{3a^2-1}" />. The diagram in part b.
-        shows this run.
+        <Katex tex="b = a-\tfrac{a^3-a}{3a^2-1} = \tfrac{2a^3}{3a^2-1}" />.
       </>
     ),
+    more: <>The diagram in part b. shows this run.</>,
   },
 ]
 
@@ -200,7 +200,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \pm\frac{\sqrt3}{3}}" />,
-    reason: <>Exact, and rationalised (<Katex tex="\pm\tfrac1{\sqrt3}" /> is the same number); about <Katex tex="\pm0.577" />. The answer is just these two numbers, not an interval — the report notes some gave approximate answers or intervals. Drag the point to either one in the diagram below and watch the tangent flatten as <Katex tex="b" /> runs away.</>,
+    reason: <>Exact, and rationalised (<Katex tex="\pm\tfrac1{\sqrt3}" /> is the same number); about <Katex tex="\pm0.577" />. The answer is just these two numbers, not an interval — the report notes some gave approximate answers or intervals.</>,
+    more: <>Drag the point to either one in the diagram below and watch the tangent flatten as <Katex tex="b" /> runs away.</>,
   },
 ]
 
@@ -226,7 +227,8 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(2a³/(3a² − 1) = 1.1, a)</Cas>,
-    reason: <>Clearing the fraction gives the cubic <Katex tex="2a^3-3.3a^2+1.1=0" />, so expect up to three values: three different tangents that all land at <Katex tex="1.1" /> (the graph of <Katex tex="b" /> against <Katex tex="a" /> in part d.ii.&apos;s diagram crosses <Katex tex="1.1" /> three times). <Katex tex="a" /> has no restriction here, so keep them all.</>,
+    reason: <>Clearing the fraction gives the cubic <Katex tex="2a^3-3.3a^2+1.1=0" />, so expect up to three values: three different tangents that all land at <Katex tex="1.1" />. <Katex tex="a" /> has no restriction here, so keep them all.</>,
+    more: <>The graph of <Katex tex="b" /> against <Katex tex="a" /> in part d.ii.&apos;s diagram crosses <Katex tex="1.1" /> three times.</>,
   },
   {
     working: <Katex display tex="a = -0.50517\ldots,\ 0.80840\ldots,\ 1.34676\ldots" />,
@@ -295,7 +297,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="\implies b = a \text{ or } b = -a" />
       </>
     ),
-    reason: <>The gradient function <Katex tex="3x^2-1" /> is a parabola symmetric about the <Katex tex="y" />-axis: it takes the same value at <Katex tex="x" /> and <Katex tex="-x" /> and at no other pair. So the tangent at <Katex tex="b" /> can match the tangent at <Katex tex="a" /> only if <Katex tex="b=\pm a" /> (the lower graph in the diagram below). The question excludes <Katex tex="b=a" />, so <Katex tex="b=-a" />.</>,
+    reason: <>The gradient function <Katex tex="3x^2-1" /> is a parabola symmetric about the <Katex tex="y" />-axis: it takes the same value at <Katex tex="x" /> and <Katex tex="-x" /> and at no other pair. So the tangent at <Katex tex="b" /> can match the tangent at <Katex tex="a" /> only if <Katex tex="b=\pm a" />. The question excludes <Katex tex="b=a" />, so <Katex tex="b=-a" />.</>,
+    more: <>See the lower graph in the diagram below.</>,
   },
   {
     working: <Katex display tex="b = -a: \ \frac{2a^3}{3a^2-1} = -a" />,

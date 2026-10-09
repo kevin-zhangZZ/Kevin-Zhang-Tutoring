@@ -109,7 +109,8 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Area} = \left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|\sin\theta" />,
-    reason: <>Area of a parallelogram is base × <em>perpendicular</em> height. Take <Katex tex="AD" /> as the base; the height is how far <Katex tex="B" /> is above the line <Katex tex="AD" />, which is <Katex tex="\left|\overrightarrow{AB}\right|\sin\theta" />, not the slanted side <Katex tex="\left|\overrightarrow{AB}\right|" /> itself. Simply multiplying the two side lengths, <Katex tex="3\times6" />, treats the base as a rectangle; the report notes a significant proportion of students did this. Change the angle in the diagram below to see the difference.</>,
+    reason: <>Area of a parallelogram is base × <em>perpendicular</em> height. Take <Katex tex="AD" /> as the base; the height is how far <Katex tex="B" /> is above the line <Katex tex="AD" />, which is <Katex tex="\left|\overrightarrow{AB}\right|\sin\theta" />, not the slanted side <Katex tex="\left|\overrightarrow{AB}\right|" /> itself. Simply multiplying the two side lengths, <Katex tex="3\times6" />, treats the base as a rectangle; the report notes a significant proportion of students did this.</>,
+    more: <>Change the angle in the diagram below to see the difference.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\sin\theta &= \sqrt{1-\cos^2\theta} = \sqrt{1-\left(\tfrac49\right)^2}\\ &= \sqrt{1-\tfrac{16}{81}} = \sqrt{\dfrac{65}{81}} = \dfrac{\sqrt{65}}{9}\end{aligned}" />,
@@ -159,7 +160,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\text{height} &= \left|\overrightarrow{BP}\cdot\hat{\underset{\sim}{n}}\right|\\ &= \left|\dfrac{(0)(6)+(-2)(2)+(8)(5)}{\sqrt{65}}\right| = \dfrac{36}{\sqrt{65}}\end{aligned}" />,
-    reason: <>The key idea: the <b>scalar resolute</b> <Katex tex="\overrightarrow{BP}\cdot\hat{\underset{\sim}{n}}" /> is the part of <Katex tex="\overrightarrow{BP}" /> pointing straight out of the base. The rest of <Katex tex="\overrightarrow{BP}" /> runs parallel to the base and adds no height (the diagram below splits it for you). Very few students approached this correctly (96% scored zero); the report says the majority of those who attempted it made unfounded assumptions about the height or the layout of the pyramid. The resolute needs no assumption at all.</>,
+    reason: <>The key idea: the <b>scalar resolute</b> <Katex tex="\overrightarrow{BP}\cdot\hat{\underset{\sim}{n}}" /> is the part of <Katex tex="\overrightarrow{BP}" /> pointing straight out of the base. The rest of <Katex tex="\overrightarrow{BP}" /> runs parallel to the base and adds no height. Very few students approached this correctly (96% scored zero); the report says the majority of those who attempted it made unfounded assumptions about the height or the layout of the pyramid. The resolute needs no assumption at all.</>,
+    more: <>The diagram below splits <Katex tex="\overrightarrow{BP}" /> into these two parts for you.</>,
   },
   {
     working: <Katex display tex="V = \dfrac13\times2\sqrt{65}\times\dfrac{36}{\sqrt{65}}" />,

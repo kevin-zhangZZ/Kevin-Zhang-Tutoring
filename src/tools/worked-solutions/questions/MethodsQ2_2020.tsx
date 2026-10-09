@@ -31,7 +31,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies \text{remainder} = p(-2)" />
       </>
     ),
-    reason: <>The remainder theorem (see the Background above): dividing by <Katex tex="x-k" /> leaves remainder <Katex tex="p(k)" />. Here <Katex tex="x+2=x-(-2)" />, so <Katex tex="k=-2" />, the value that makes the divisor zero, not <Katex tex="+2" />.</>,
+    reason: <>The remainder theorem: dividing by <Katex tex="x-k" /> leaves remainder <Katex tex="p(k)" />. Here <Katex tex="x+2=x-(-2)" />, so <Katex tex="k=-2" />, the value that makes the divisor zero, not <Katex tex="+2" />.</>,
+    more: <>See the Background above for the remainder theorem.</>,
   },
   {
     working: <Katex display tex="p(-2) = (-2)^3-2a(-2)^2+(-2)-1" />,

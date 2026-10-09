@@ -66,10 +66,11 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>C</b>. Option <b>A</b>, <Katex tex="0" />, is what <Katex tex="i+i^2+\cdots+i^{100}" /> adds to
-        (exponent <Katex tex="n" /> instead of <Katex tex="n!" />, see below), and option <b>B</b>, <Katex tex="96" />, is
+        (exponent <Katex tex="n" /> instead of <Katex tex="n!" />), and option <b>B</b>, <Katex tex="96" />, is
         what you get by reading <Katex tex="i^{3!}" /> as <Katex tex="i^3=-i" />: <Katex tex="i-1-i+97=96" />.
       </>
     ),
+    more: <>See the Common Mistake below for option A.</>,
   },
 ]
 

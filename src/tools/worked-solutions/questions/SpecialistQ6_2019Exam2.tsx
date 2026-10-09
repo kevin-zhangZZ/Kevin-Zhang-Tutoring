@@ -61,7 +61,8 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} \overline{X} &\sim N\!\left(375,\ \dfrac{15^2}{50}\right) \\ \text{sd}\left(\overline{X}\right) &= \dfrac{15}{\sqrt{50}} = \dfrac{3}{\sqrt2} \approx 2.1213 \end{aligned}" />,
-    reason: <>The question is about the <em>mean</em> of each sample of <Katex tex="50" />, not about one packet, so first find how a sample mean is distributed. It is normal, centred on the population mean, but with standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" />: narrower than the population, because heavy and light packets in the same sample cancel out. The first diagram below shows the curve narrowing as <Katex tex="n" /> grows.</>,
+    reason: <>The question is about the <em>mean</em> of each sample of <Katex tex="50" />, not about one packet, so first find how a sample mean is distributed. It is normal, centred on the population mean, but with standard deviation <Katex tex="\tfrac{\sigma}{\sqrt n}" />: narrower than the population, because heavy and light packets in the same sample cancel out.</>,
+    more: <>The first diagram below shows the curve narrowing as <Katex tex="n" /> grows.</>,
   },
   {
     working: <Katex display tex="\Pr\left(370<\overline{X}<375\right) \approx 0.490789" />,
@@ -73,7 +74,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 1-(1-0.490789)^2 = 1-(0.509211)^2" />,
-    reason: <>&ldquo;Neither&rdquo; means both samples miss the band. Each misses with probability <Katex tex="1-0.4908" />, and the samples are independent, so multiply. In the square diagram below this is the grey corner.</>,
+    reason: <>&ldquo;Neither&rdquo; means both samples miss the band. Each misses with probability <Katex tex="1-0.4908" />, and the samples are independent, so multiply.</>,
+    more: <>In the square diagram below this is the grey corner.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.741}" />,
@@ -96,11 +98,13 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{sd}(D) = \sqrt9 = 3, \qquad D \sim N(0,\ 3^2)" />,
-    reason: <>A difference of independent normal variables is normal. The simulated pairs in the diagram below agree: their differences have a standard deviation close to <Katex tex="3" />, not <Katex tex="2.12" />.</>,
+    reason: <>A difference of independent normal variables is normal.</>,
+    more: <>The simulated pairs in the diagram below agree: their differences have a standard deviation close to <Katex tex="3" />, not <Katex tex="2.12" />.</>,
   },
   {
     working: <Katex display tex="\Pr\left(|D|<2\right) = \Pr(-2<D<2)" />,
-    reason: <>&ldquo;Differ by less than 2 grams&rdquo; means the difference is between <Katex tex="-2" /> and <Katex tex="2" />. <Katex tex="D" /> is negative whenever the second mean is the bigger one, and those pairs count too: only the size of the gap matters. The report notes very few students allowed for a negative difference; finding only <Katex tex="\Pr(D<2)" /> misses the lower bound. In the diagram this is the green strip on <em>both</em> sides of the diagonal.</>,
+    reason: <>&ldquo;Differ by less than 2 grams&rdquo; means the difference is between <Katex tex="-2" /> and <Katex tex="2" />. <Katex tex="D" /> is negative whenever the second mean is the bigger one, and those pairs count too: only the size of the gap matters. The report notes very few students allowed for a negative difference; finding only <Katex tex="\Pr(D<2)" /> misses the lower bound.</>,
+    more: <>In the diagram this is the green strip on <em>both</em> sides of the diagonal.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.495}" />,
@@ -122,7 +126,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = 2\times\Pr\left(\overline{X}<372 \mid \mu=375\right)" />,
-    reason: <>The <Katex tex="p" /> value is the probability of a sample mean at least as extreme as the one observed, <em>assuming <Katex tex="H_0" /> is true</em>. <Katex tex="372" /> is <Katex tex="3" /> g below <Katex tex="375" />; for a two-tailed test a mean <Katex tex="3" /> g above (<Katex tex="378" />) is just as extreme, so both tails count, hence the factor of <Katex tex="2" />. The diagram below shows the two tails.</>,
+    reason: <>The <Katex tex="p" /> value is the probability of a sample mean at least as extreme as the one observed, <em>assuming <Katex tex="H_0" /> is true</em>. <Katex tex="372" /> is <Katex tex="3" /> g below <Katex tex="375" />; for a two-tailed test a mean <Katex tex="3" /> g above (<Katex tex="378" />) is just as extreme, so both tails count, hence the factor of <Katex tex="2" />.</>,
+    more: <>The diagram below shows the two tails.</>,
   },
   {
     working: <Katex display tex="= 2\times0.02275 \approx 0.0455" />,
@@ -145,7 +150,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\begin{gathered} \text{No: there is evidence at the } 5\% \text{ level} \\ \text{that the machine is not} \\ \text{working properly.} \end{gathered}}" />,
-    reason: <>The conclusion must be in context and justified by the comparison, not just &ldquo;reject <Katex tex="H_0" />&rdquo;. It is evidence, not proof, and a close call: <Katex tex="0.046" /> only just clears <Katex tex="0.05" />. In the part d diagram, the observed <Katex tex="372" /> sits just inside the shaded tails.</>,
+    reason: <>The conclusion must be in context and justified by the comparison, not just &ldquo;reject <Katex tex="H_0" />&rdquo;. It is evidence, not proof, and a close call: <Katex tex="0.046" /> only just clears <Katex tex="0.05" />.</>,
+    more: <>In the part d diagram, the observed <Katex tex="372" /> sits just inside the shaded tails.</>,
   },
 ]
 

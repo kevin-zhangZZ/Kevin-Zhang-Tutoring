@@ -79,7 +79,12 @@ const ROWS_B: WorkingRow[] = [
         <Katex tex="f" /> is non-zero, here <Katex tex="[1,2]" />. It is the continuous version of{' '}
         <Katex tex="E(X)=\sum x\Pr(X=x)" />: each value <Katex tex="x" /> times its probability{' '}
         <Katex tex="f(x)\,dx" />. Don&apos;t drop the <Katex tex="x" />: <Katex tex="\int_1^2 f(x)\,dx" /> is just
-        the total probability, 1, from part (a). The diagram below shows why the <Katex tex="x" /> is needed.
+        the total probability, 1, from part (a).
+      </>
+    ),
+    more: (
+      <>
+        The diagram below shows why the <Katex tex="x" /> is needed.
       </>
     ),
   },

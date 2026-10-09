@@ -63,7 +63,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X=3) = \binom43\left(\tfrac35\right)^3\left(\tfrac25\right)^1" />,
-    reason: <>One order, say the first three with the gene and the fourth without, has probability <Katex tex="\left(\tfrac35\right)^3\left(\tfrac25\right)" /> because the people are independent. The person without the gene can be any of the four, so there are <Katex tex="\binom43=4" /> orders, all with that same probability: the four orange paths in the tree below.</>,
+    reason: <>One order, say the first three with the gene and the fourth without, has probability <Katex tex="\left(\tfrac35\right)^3\left(\tfrac25\right)" /> because the people are independent. The person without the gene can be any of the four, so there are <Katex tex="\binom43=4" /> orders, all with that same probability.</>,
+    more: <>They are the four orange paths in the tree below.</>,
   },
   {
     working: <Katex display tex="= 4\times\tfrac{27}{125}\times\tfrac25 = \tfrac{216}{625}" />,
@@ -90,7 +91,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X=2) = \binom42\left(\tfrac35\right)^2\left(\tfrac25\right)^2 = \frac{6\times3^2\times2^2}{5^4}" />,
-    reason: <>Look at the required form before calculating. <Katex tex="\tfrac{a^3}{b^4-c^4}" /> is built from powers, so keep <Katex tex="3^2" />, <Katex tex="2^2" /> and <Katex tex="5^4" /> as powers instead of multiplying out (that road leads to <Katex tex="\tfrac{72}{203}" />; see below). <Katex tex="\binom42=6" />: the number of ways to choose which two of the four have the gene.</>,
+    reason: <>Look at the required form before calculating. <Katex tex="\tfrac{a^3}{b^4-c^4}" /> is built from powers, so keep <Katex tex="3^2" />, <Katex tex="2^2" /> and <Katex tex="5^4" /> as powers instead of multiplying out (that road leads to <Katex tex="\tfrac{72}{203}" />). <Katex tex="\binom42=6" />: the number of ways to choose which two of the four have the gene.</>,
+    more: <>See the Common Mistake below.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge1) = 1-\Pr(X=0) = 1-\left(\tfrac25\right)^4 = \frac{5^4-2^4}{5^4}" />,
@@ -110,7 +112,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X=2\mid X\ge1) = \frac{6^3}{5^4-2^4}}" />,
-    reason: <>The required form, with <Katex tex="a=6" />, <Katex tex="b=5" />, <Katex tex="c=2" /> (the question asks for the form, so there is no need to list <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> separately). The report notes many students did not present their answer in the required form. Check: <Katex tex="\tfrac{216}{609}\approx0.355" />, a little more than <Katex tex="\Pr(X=2)=\tfrac{216}{625}\approx0.346" />. That makes sense: being told at least one has the gene rules out only the unlikely &ldquo;nobody&rdquo; case (<Katex tex="\tfrac{16}{625}\approx0.026" />), so it nudges the answer up slightly. The diagram below shows why.</>,
+    reason: <>The required form, with <Katex tex="a=6" />, <Katex tex="b=5" />, <Katex tex="c=2" /> (the question asks for the form, so there is no need to list <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> separately). The report notes many students did not present their answer in the required form. Check: <Katex tex="\tfrac{216}{609}\approx0.355" />, a little more than <Katex tex="\Pr(X=2)=\tfrac{216}{625}\approx0.346" />. That makes sense: being told at least one has the gene rules out only the unlikely &ldquo;nobody&rdquo; case (<Katex tex="\tfrac{16}{625}\approx0.026" />), so it nudges the answer up slightly.</>,
+    more: <>The diagram below shows why.</>,
   },
 ]
 

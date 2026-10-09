@@ -54,7 +54,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(a,b) = (1,-1)}" />,
-    reason: <>Matches option <b>E</b>. Check it forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓ and <Katex tex="-2(-1)-2 = 0" /> ✓. Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped (see below); option <b>A</b> <Katex tex="(1,1)" /> gets <Katex tex="a" /> right but loses the sign of <Katex tex="b" />, and its image is <Katex tex="(0,-4)" />.</>,
+    reason: <>Matches option <b>E</b>. Check it forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓ and <Katex tex="-2(-1)-2 = 0" /> ✓. Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped; option <b>A</b> <Katex tex="(1,1)" /> gets <Katex tex="a" /> right but loses the sign of <Katex tex="b" />, and its image is <Katex tex="(0,-4)" />.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

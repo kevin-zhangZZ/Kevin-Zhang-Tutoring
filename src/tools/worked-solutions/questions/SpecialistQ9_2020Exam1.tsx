@@ -157,10 +157,10 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         The parametric arc length formula, from the formula sheet. The square root is the
-        point&apos;s speed along the curve (see the first diagram below), so <Katex tex="s" /> adds
-        up speed × time.
+        point&apos;s speed along the curve, so <Katex tex="s" /> adds up speed × time.
       </>
     ),
+    more: <>See the first diagram below.</>,
   },
   {
     working: (
@@ -208,11 +208,11 @@ const ROWS_B: WorkingRow[] = [
         only changed sign, so try <Katex tex="(P+Q)^2" />. Expanding it confirms the match, since{' '}
         <Katex tex="\tfrac{2}{4\left(1-t^2\right)}=\tfrac{1}{2\left(1-t^2\right)}" />. Why it works:{' '}
         <Katex tex="\left(\tfrac{dx}{dt}\right)^2=\tfrac{1}{1-t^2}" /> is exactly{' '}
-        <Katex tex="4PQ" />, and <Katex tex="(P-Q)^2+4PQ=(P+Q)^2" /> (the second diagram below fits
-        the pieces together). The report notes that most students who answered this successfully
-        identified the perfect square.
+        <Katex tex="4PQ" />, and <Katex tex="(P-Q)^2+4PQ=(P+Q)^2" />. The report notes that most
+        students who answered this successfully identified the perfect square.
       </>
     ),
+    more: <>The second diagram below fits the pieces together.</>,
   },
   {
     working: <Katex display tex="s = \int_0^{1/2}\left(\frac{1}{1+t}+\frac{1}{4(1-t)}\right)dt" />,

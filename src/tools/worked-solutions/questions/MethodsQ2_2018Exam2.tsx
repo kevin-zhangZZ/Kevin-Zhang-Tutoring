@@ -127,7 +127,8 @@ const OVERLAY = (
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="b(t) = \frac{4500}{7}\left(e^{-t/5}-e^{-9t/10}\right)" />,
-    reason: <>A difference of two decaying exponentials: <Katex tex="b(t)" /> is the <em>gap</em> between a slow one (<Katex tex="e^{-t/5}" />) and a fast one (<Katex tex="e^{-9t/10}" />). The fast one dies away first, so the gap opens up and then closes again. The widget below shows the gap is widest when the two are falling equally fast.</>,
+    reason: <>A difference of two decaying exponentials: <Katex tex="b(t)" /> is the <em>gap</em> between a slow one (<Katex tex="e^{-t/5}" />) and a fast one (<Katex tex="e^{-9t/10}" />). The fast one dies away first, so the gap opens up and then closes again. The gap is widest when the two are falling equally fast.</>,
+    more: <>The widget below shows this.</>,
   },
   {
     working: <Katex display tex="b'(t) = \frac{4500}{7}\left(-\frac15 e^{-t/5}+\frac{9}{10}e^{-9t/10}\right) = 0" />,
@@ -223,7 +224,8 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum} \approx 455.82 \text{ mg at } t \approx 7.78 \text{ hours}}" />,
-    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. The time is before Tablet 2's own peak at <Katex tex="8.15" />, for the reason in the Background above. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
+    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. The time is before Tablet 2's own peak at <Katex tex="8.15" />. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
+    more: <>For why the time is before Tablet 2's own peak, see the Background above.</>,
   },
 ]
 

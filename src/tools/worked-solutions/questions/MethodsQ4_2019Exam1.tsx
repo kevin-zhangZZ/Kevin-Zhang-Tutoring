@@ -61,10 +61,11 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Now it is a standard exact-value equation. Cosine is <Katex tex="\tfrac12" /> at the reference angle{' '}
-        <Katex tex="\tfrac{\pi}{3}" />, not <Katex tex="\tfrac{\pi}{6}" /> (see Background above) — the report notes
-        some students did not identify the correct reference angle.
+        <Katex tex="\tfrac{\pi}{3}" />, not <Katex tex="\tfrac{\pi}{6}" /> — the report notes some students did not
+        identify the correct reference angle.
       </>
     ),
+    more: <>See Background above.</>,
   },
   {
     working: <Katex display tex="x\in[-2\pi,\pi] \;\implies\; \tfrac{x}{2}\in\left[-\pi,\tfrac{\pi}{2}\right]" />,
@@ -73,7 +74,12 @@ const ROWS_A: WorkingRow[] = [
         The angle inside the cosine is <Katex tex="\tfrac x2" />, not <Katex tex="x" />, so first find where{' '}
         <em>that</em> angle lives: halve both ends of the domain. This is the step the report says many students
         missed. <Katex tex="\left[-\pi,\tfrac{\pi}{2}\right]" /> is only three-quarters of a turn, so expect only a
-        couple of solutions (slide <Katex tex="x" /> in the diagram below to see the arc).
+        couple of solutions.
+      </>
+    ),
+    more: (
+      <>
+        Slide <Katex tex="x" /> in the diagram below to see the arc.
       </>
     ),
   },

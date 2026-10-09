@@ -67,9 +67,10 @@ const ROWS: WorkingRow[] = [
         quadrant, below the real axis, and its argument is negative. The two parts are the same size, so it sits
         halfway between the axes: <Katex tex="\tfrac\pi4" /> clockwise. <Katex tex="\tan^{-1}(1)=\tfrac\pi4" /> gives
         only the size of the angle; the sketch gives the sign. Writing <Katex tex="+\tfrac\pi4" /> here finds the cube
-        roots of a different number (see the first common mistake below).
+        roots of a different number.
       </>
     ),
+    more: <>See the first common mistake below.</>,
   },
   {
     working: <Katex display tex="\text{Let } w = r\operatorname{cis}\theta, \text{ with } w^3 = z" />,
@@ -97,8 +98,13 @@ const ROWS: WorkingRow[] = [
       <>
         Adding whole turns to <Katex tex="z" />&apos;s argument changes nothing about <Katex tex="z" />, and this is the
         step that produces three <em>different</em> cube roots: <Katex tex="3\theta" /> only has to point the same way
-        as <Katex tex="-\tfrac\pi4" />, not equal it. (Drag <Katex tex="w" /> round in the first diagram below:{' '}
-        <Katex tex="w^3" /> passes through <Katex tex="z" /> three times.)
+        as <Katex tex="-\tfrac\pi4" />, not equal it.
+      </>
+    ),
+    more: (
+      <>
+        Drag <Katex tex="w" /> round in the first diagram below: <Katex tex="w^3" /> passes through{' '}
+        <Katex tex="z" /> three times.
       </>
     ),
   },

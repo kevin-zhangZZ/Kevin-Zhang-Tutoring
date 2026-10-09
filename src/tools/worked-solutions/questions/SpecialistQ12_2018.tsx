@@ -122,9 +122,10 @@ const ROWS: WorkingRow[] = [
       <>
         Matches option <b>A</b>. Option <b>C</b>, chosen by <Katex tex="21\%" />, is one case in which the
         equation holds, not something every case must satisfy; option <b>E</b>, chosen by{' '}
-        <Katex tex="16\%" />, never satisfies it (see below).
+        <Katex tex="16\%" />, never satisfies it.
       </>
     ),
+    more: <>See below.</>,
   },
 ]
 

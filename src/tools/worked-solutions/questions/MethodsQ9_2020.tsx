@@ -84,7 +84,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_0^2 f\big(2(x+2)\big)\,dx = \frac52}" />,
-    reason: <>Matches option <b>E</b>. Sanity check: <Katex tex="[0,2]" /> is half as wide as <Katex tex="[4,8]" />, and on it <Katex tex="f\big(2(x+2)\big)" /> takes exactly the heights <Katex tex="f" /> takes on <Katex tex="[4,8]" />, so the area has to be half of 5. Option <b>B</b> (<Katex tex="10" />) is 5 multiplied by 2 instead of divided by 2, which is what reading the 2 as a stretch gives (see the Common Mistake below).</>,
+    reason: <>Matches option <b>E</b>. Sanity check: <Katex tex="[0,2]" /> is half as wide as <Katex tex="[4,8]" />, and on it <Katex tex="f\big(2(x+2)\big)" /> takes exactly the heights <Katex tex="f" /> takes on <Katex tex="[4,8]" />, so the area has to be half of 5. Option <b>B</b> (<Katex tex="10" />) is 5 multiplied by 2 instead of divided by 2, which is what reading the 2 as a stretch gives.</>,
+    more: <>See the Common Mistake below.</>,
   },
 ]
 

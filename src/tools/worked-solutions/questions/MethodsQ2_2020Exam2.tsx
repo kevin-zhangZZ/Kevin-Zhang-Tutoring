@@ -144,7 +144,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{200}{3}-50 = \tfrac{50}{3}\ \text{m}}" />,
-    reason: <>Both ends of the swim are at height 30, so its length is the change in <Katex tex="x" />: landing <Katex tex="x" /> minus starting <Katex tex="x" />. Exact, as the question requires (the report notes 16.7 was often seen). Check: <Katex tex="\tfrac{50}{3}\approx16.7" /> m is longer than the 10 m swim north, as it should be, since the swim cuts across the river at a slant. The &ldquo;Due east&rdquo; button in the diagram in part c. shows this swim.</>,
+    reason: <>Both ends of the swim are at height 30, so its length is the change in <Katex tex="x" />: landing <Katex tex="x" /> minus starting <Katex tex="x" />. Exact, as the question requires (the report notes 16.7 was often seen). Check: <Katex tex="\tfrac{50}{3}\approx16.7" /> m is longer than the 10 m swim north, as it should be, since the swim cuts across the river at a slant.</>,
+    more: <>The &ldquo;Due east&rdquo; button in the diagram in part c. shows this swim.</>,
   },
 ]
 
@@ -163,7 +164,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 54.4769\ldots" />,
-    reason: <>Just east of P. Why east? The shortest swim meets the north bank at right angles: a circle centred at P that only just touches the bank touches it at the closest point, and a circle&apos;s radius meets a line that touches it at <Katex tex="90^\circ" /> (drag Q in the diagram below). The bank slopes down to the east, so the line at right angles to it leans east of due north. That gives the report&apos;s second method: gradient of <Katex tex="PQ" /> <Katex tex="\times" /> gradient of the bank <Katex tex="=-1" />, i.e. <Katex tex="\tfrac{f_1(x)-30}{x-50}=-\tfrac{1}{f_1'(x)}" />, which gives the same <Katex tex="x" />.</>,
+    reason: <>Just east of P. Why east? The shortest swim meets the north bank at right angles: a circle centred at P that only just touches the bank touches it at the closest point, and a circle&apos;s radius meets a line that touches it at <Katex tex="90^\circ" />. The bank slopes down to the east, so the line at right angles to it leans east of due north. That gives the report&apos;s second method: gradient of <Katex tex="PQ" /> <Katex tex="\times" /> gradient of the bank <Katex tex="=-1" />, i.e. <Katex tex="\tfrac{f_1(x)-30}{x-50}=-\tfrac{1}{f_1'(x)}" />, which gives the same <Katex tex="x" />.</>,
+    more: <>Drag Q in the diagram below.</>,
   },
   {
     working: <Katex display tex="d(54.4769\ldots) = 8.4752\ldots" />,
@@ -186,7 +188,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{10\times200 = 2000\ \text{m}^2}" />,
-    reason: <>The integral of a constant is the constant times the length of the interval. Picture it: slide every vertical slice of the river straight down (diagram below) and it becomes a rectangle 200 m long and 10 m tall. Sliding a slice up or down doesn&apos;t change its height, so it doesn&apos;t change the area.</>,
+    reason: <>The integral of a constant is the constant times the length of the interval. Picture it: slide every vertical slice of the river straight down and it becomes a rectangle 200 m long and 10 m tall. Sliding a slice up or down doesn&apos;t change its height, so it doesn&apos;t change the area.</>,
+    more: <>See the diagram below.</>,
   },
 ]
 
@@ -207,7 +210,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="+\int_{400/3}^{150}\bigl(30-f_2(x)\bigr)dx" />
       </>
     ),
-    reason: <>Each vertical strip of the zone runs from the south bank up to whichever is <em>lower</em>: the line or the north bank (sweep the strip in the diagram below). The line is lower at both ends, the north bank in the middle, so the roof changes twice and the area needs three integrals, top minus bottom in each. Write them down: the report says appropriate working needed to be shown.</>,
+    reason: <>Each vertical strip of the zone runs from the south bank up to whichever is <em>lower</em>: the line or the north bank. The line is lower at both ends, the north bank in the middle, so the roof changes twice and the area needs three integrals, top minus bottom in each. Write them down: the report says appropriate working needed to be shown.</>,
+    more: <>Sweep the strip in the diagram below.</>,
   },
   {
     working: (
