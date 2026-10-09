@@ -1,14 +1,15 @@
-// Study score projection: where would an Exam 1 and Exam 2 mark have placed a student in a
-// given year, and what study score does that rank map to?
+// Study score projection: where would a student's exam marks have placed them in a given year,
+// and what study score does that rank map to?
 //
 // 1. Each exam's distribution (data.ts) is only known at the 10 grade boundaries. Between them
 //    we interpolate in z-space (the normal quantile of the cumulative share), which keeps the
 //    curve smooth and gives the open-ended top and bottom grades a sensible tail instead of a
 //    flat block. The A+ and UG bands are extended with the slope of the last three boundaries.
-// 2. VCAA adds the exams on its GA scale (Exam 1 out of 80, Exam 2 out of 160, so Exam 2 counts
-//    double). The two exams aren't independent, and VCAA doesn't publish how they co-vary, so we
-//    join them with a Gaussian copula with correlation RHO and find the share of students whose
-//    total is below this one.
+// 2. Methods and Specialist have two exams, which VCAA adds on its GA scale (Exam 1 out of 80,
+//    Exam 2 out of 160, so Exam 2 counts double). The two exams aren't independent, and VCAA
+//    doesn't publish how they co-vary, so we join them with a Gaussian copula with correlation
+//    RHO and find the share of students whose total is below this one. Chemistry has one exam,
+//    so its rank is simply the rank on that exam.
 // 3. Study scores are scaled to a normal distribution with mean 30 and SD 7, capped at 0–50.
 //
 // SACs are left out: they are moderated against the exam scores, so a student whose SACs track
@@ -21,7 +22,6 @@ export const RHO = 0.8
 /** The range of correlations quoted on the page as plausible. */
 export const RHO_RANGE: [number, number] = [0.7, 0.9]
 
-export const RAW_MAX = { e1: 40, e2: 80 } as const
 export const MEAN = 30
 export const SD = 7
 
@@ -122,29 +122,28 @@ export function marginalOf(dist: ExamDist): Marginal {
   return { max: dist.max, z, cdf: x => normCdf(z(x)), pmf, zMid }
 }
 
-// ── Both exams ─────────────────────────────────────────────────────────────────────────────
+// ── All exams ──────────────────────────────────────────────────────────────────────────────
 
 export interface Projection {
   year: number
   /** Share of the state below this student on each exam alone. */
-  pctE1: number
-  pctE2: number
+  pctExams: number[]
   /** Share of the state below this student on the combined exam score. */
   pct: number
   /** Unrounded and rounded study score at RHO. */
   exact: number
   score: number
-  /** Students who sat Exam 2 that year. */
+  /** Students who sat the (last) exam that year. */
   cohort: number
   source: string
 }
 
-const cache = new Map<string, [Marginal, Marginal]>()
-function marginals(subject: Subject, d: YearDist): [Marginal, Marginal] {
+const cache = new Map<string, Marginal[]>()
+function marginals(subject: Subject, d: YearDist): Marginal[] {
   const key = `${subject}-${d.year}`
   let m = cache.get(key)
   if (!m) {
-    m = [marginalOf(d.e1), marginalOf(d.e2)]
+    m = d.exams.map(marginalOf)
     cache.set(key, m)
   }
   return m
@@ -168,26 +167,27 @@ export function studyScoreOf(pct: number): number {
   return Math.min(50, Math.max(0, MEAN + SD * normInv(pct)))
 }
 
-/** One year's projection. Raw marks: Exam 1 out of 40, Exam 2 out of 80. */
-export function projectYear(subject: Subject, d: YearDist, rawE1: number, rawE2: number): Projection {
-  const x1 = rawE1 * 2
-  const x2 = rawE2 * 2
-  const [m1, m2] = marginals(subject, d)
-  const pct = combinedPct(m1, m2, x1 + x2, RHO)
+/** One year's projection. `raw` is one raw mark per exam (see SUBJECTS for what each is out of). */
+export function projectYear(subject: Subject, d: YearDist, raw: number[]): Projection {
+  // GA scores are twice the raw marks.
+  const xs = raw.map(r => r * 2)
+  const ms = marginals(subject, d)
+  const pct = ms.length === 1 ? ms[0].cdf(xs[0]) : combinedPct(ms[0], ms[1], xs[0] + xs[1], RHO)
   const exact = studyScoreOf(pct)
+  const last = d.exams[d.exams.length - 1]
   return {
     year: d.year,
-    pctE1: m1.cdf(x1),
-    pctE2: m2.cdf(x2),
+    pctExams: ms.map((m, i) => m.cdf(xs[i])),
     pct,
     exact,
     score: Math.round(exact),
-    cohort: d.e2.bands.reduce((s, b) => s + b[2], 0),
+    cohort: last.bands.reduce((s, b) => s + b[2], 0),
     source: d.source,
   }
 }
 
 /** The same marks in every year, oldest first. */
-export function project(subject: Subject, rawE1: number, rawE2: number): Projection[] {
-  return DISTRIBUTIONS[subject].map(d => projectYear(subject, d, rawE1, rawE2))
+export function project(subject: Subject, raw: number[]): Projection[] {
+  return DISTRIBUTIONS[subject].map(d => projectYear(subject, d, raw))
 }
+

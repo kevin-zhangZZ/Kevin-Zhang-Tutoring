@@ -4,15 +4,16 @@
 // leads with a running average of the last three, since single papers jump around by a few
 // points depending on how kind the year was.
 //
-// The log lives in the URL (?mode=papers&a=20260712-2019-27-55.20260719-2018-26-52) so the page
+// The log lives in the URL (?mode=papers&a=20260712-2019-27-55.20260719-2018-26-52: date, paper,
+// then one mark per exam, so a Chemistry entry is 20260712-2019-84) so the page
 // can be bookmarked or sent to a tutor; it's also remembered on this device, per subject, but
 // only when the student edits it, so opening someone else's link never overwrites your own.
 
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import SegmentedControl from '../../components/ui/SegmentedControl'
-import { DISTRIBUTIONS, type Subject } from './data'
-import { RAW_MAX, projectYear, type Projection } from './model'
-import { SUBJECT_NAME, topShare } from './format'
+import { DISTRIBUTIONS, SUBJECTS, type ExamInfo, type Subject } from './data'
+import { projectYear, type Projection } from './model'
+import { examShares, marksText, topShare } from './format'
 
 // ── Attempts: parsing, encoding, storage ───────────────────────────────────────────────────
 
@@ -22,8 +23,8 @@ export interface Attempt {
   /** YYYY-MM-DD */
   date: string
   paper: number
-  e1: number
-  e2: number
+  /** Raw marks, one per exam of the subject. */
+  marks: number[]
 }
 
 const YEARS = DISTRIBUTIONS.methods.map(d => d.year)
@@ -31,15 +32,15 @@ const NEWEST = YEARS[YEARS.length - 1]
 
 const byDate = (a: Attempt, b: Attempt) => a.date.localeCompare(b.date) || a.id - b.id
 
-export function decodeAttempts(s: string): Attempt[] {
+export function decodeAttempts(s: string, subject: Subject): Attempt[] {
+  const exams = SUBJECTS[subject].exams
   const out: Attempt[] = []
   for (const part of s.split('.')) {
-    const m = /^(\d{4})(\d{2})(\d{2})-(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(part)
-    if (!m) continue
-    const [, y, mo, d, paper, e1, e2] = m
-    const date = `${y}-${mo}-${d}`
-    const a = { id: out.length, date, paper: Number(paper), e1: Number(e1), e2: Number(e2) }
-    if (Number.isNaN(Date.parse(date)) || !YEARS.includes(a.paper) || a.e1 > RAW_MAX.e1 || a.e2 > RAW_MAX.e2) continue
+    const [d, paper, ...marks] = part.split('-')
+    if (!/^\d{8}$/.test(d ?? '') || marks.length !== exams.length || !marks.every(m => /^\d{1,3}$/.test(m))) continue
+    const date = `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6)}`
+    const a = { id: out.length, date, paper: Number(paper), marks: marks.map(Number) }
+    if (Number.isNaN(Date.parse(date)) || !YEARS.includes(a.paper) || a.marks.some((m, k) => m > exams[k].rawMax)) continue
     out.push(a)
   }
   return out.sort(byDate)
@@ -48,7 +49,7 @@ export function decodeAttempts(s: string): Attempt[] {
 export function encodeAttempts(list: Attempt[]): string {
   return [...list]
     .sort(byDate)
-    .map(a => `${a.date.replace(/-/g, '')}-${a.paper}-${a.e1}-${a.e2}`)
+    .map(a => [a.date.replace(/-/g, ''), a.paper, ...a.marks].join('-'))
     .join('.')
 }
 
@@ -102,14 +103,14 @@ interface Scored extends Attempt {
 const WINDOW = 3
 
 export default function PracticeMode({ subject, encoded, onChange }: { subject: Subject; encoded: string; onChange: (a: string) => void }) {
-  const attempts = useMemo(() => decodeAttempts(encoded), [encoded])
+  const attempts = useMemo(() => decodeAttempts(encoded, subject), [encoded, subject])
   const scored: Scored[] = useMemo(() => {
     const seen = new Map<number, number>()
     return attempts.map(a => {
       const sitting = (seen.get(a.paper) ?? 0) + 1
       seen.set(a.paper, sitting)
       const d = DISTRIBUTIONS[subject].find(x => x.year === a.paper)!
-      return { ...a, sitting, proj: projectYear(subject, d, a.e1, a.e2) }
+      return { ...a, sitting, proj: projectYear(subject, d, a.marks) }
     })
   }, [subject, attempts])
 
@@ -135,7 +136,7 @@ export default function PracticeMode({ subject, encoded, onChange }: { subject: 
     setEditing(null)
   }
   const clearAll = () => {
-    if (!window.confirm(`Clear all your ${SUBJECT_NAME[subject]} attempts?`)) return
+    if (!window.confirm(`Clear all your ${SUBJECTS[subject].name} attempts?`)) return
     commit([])
     setEditing(null)
   }
@@ -144,7 +145,7 @@ export default function PracticeMode({ subject, encoded, onChange }: { subject: 
     <>
       <ProgressTiles scored={scored} />
 
-      <ProgressChart scored={scored} />
+      <ProgressChart subject={subject} scored={scored} />
 
       <section className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-5">
         <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2 mb-3">
@@ -168,13 +169,14 @@ export default function PracticeMode({ subject, encoded, onChange }: { subject: 
         </div>
         <AttemptForm
           key={editing ?? `new-${added}`}
+          exams={SUBJECTS[subject].exams}
           initial={editing === null ? null : attempts.find(a => a.id === editing) ?? null}
           defaultPaper={YEARS.slice().reverse().find(y => !attempts.some(a => a.paper === y)) ?? NEWEST}
           onSave={save}
           onCancel={() => setEditing(null)}
           onRemove={editing === null ? undefined : () => remove(editing)}
         />
-        <AttemptList scored={scored} editing={editing} onEdit={setEditing} />
+        <AttemptList subject={subject} scored={scored} editing={editing} onEdit={setEditing} />
       </section>
     </>
   )
@@ -265,7 +267,7 @@ function timeTicks(d0: number, d1: number, maxTicks: number): { day: number; lab
   return weeks
 }
 
-function ProgressChart({ scored }: { scored: Scored[] }) {
+function ProgressChart({ subject, scored }: { subject: Subject; scored: Scored[] }) {
   const [ref, width] = useWidth()
   const [view, setView] = useState<ChartView>('time')
   const [hover, setHover] = useState<number | null>(null)
@@ -422,7 +424,7 @@ function ProgressChart({ scored }: { scored: Scored[] }) {
               {hv.paper} paper{hv.sitting > 1 ? ` (${nth(hv.sitting)} try)` : ''} · {hv.proj.score}
             </div>
             <div className="opacity-80 tabular-nums">
-              {fmtDate(hv.date)} · E1 {hv.e1}/{RAW_MAX.e1} · E2 {hv.e2}/{RAW_MAX.e2} · {topShare(hv.proj.pct)}
+              {fmtDate(hv.date)} · {marksText(subject, hv.marks)} · {topShare(hv.proj.pct)}
             </div>
           </div>
         )}
@@ -459,12 +461,14 @@ const INPUT =
 const LABEL = 'flex flex-col gap-1 text-[12px] font-semibold text-gray-500 dark:text-gray-400'
 
 function AttemptForm({
+  exams,
   initial,
   defaultPaper,
   onSave,
   onCancel,
   onRemove,
 }: {
+  exams: ExamInfo[]
   initial: Attempt | null
   defaultPaper: number
   onSave: (a: Omit<Attempt, 'id'>) => void
@@ -473,8 +477,7 @@ function AttemptForm({
 }) {
   const [paper, setPaper] = useState(initial?.paper ?? defaultPaper)
   const [date, setDate] = useState(initial?.date ?? today())
-  const [e1, setE1] = useState(initial ? String(initial.e1) : '')
-  const [e2, setE2] = useState(initial ? String(initial.e2) : '')
+  const [texts, setTexts] = useState<string[]>(() => exams.map((_, k) => (initial ? String(initial.marks[k]) : '')))
   const formRef = useRef<HTMLFormElement>(null)
   useEffect(() => {
     if (initial) formRef.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
@@ -485,12 +488,11 @@ function AttemptForm({
     const v = Number(s)
     return s.trim() !== '' && Number.isInteger(v) && v >= 0 && v <= max ? v : null
   }
-  const m1 = mark(e1, RAW_MAX.e1)
-  const m2 = mark(e2, RAW_MAX.e2)
-  const bad1 = e1.trim() !== '' && m1 === null
-  const bad2 = e2.trim() !== '' && m2 === null
+  const marks = exams.map((e, k) => mark(texts[k], e.rawMax))
+  const bad = exams.map((_, k) => texts[k].trim() !== '' && marks[k] === null)
+  const setText = (k: number, v: string) => setTexts(ts => ts.map((t, i) => (i === k ? v : t)))
   const dateOk = /^\d{4}-\d{2}-\d{2}$/.test(date)
-  const ready = m1 !== null && m2 !== null && dateOk
+  const ready = marks.every(m => m !== null) && dateOk
 
   const markBox = (label: string, value: string, set: (s: string) => void, max: number, bad: boolean) => (
     <label className={LABEL}>
@@ -517,7 +519,7 @@ function AttemptForm({
       ref={formRef}
       onSubmit={e => {
         e.preventDefault()
-        if (ready) onSave({ paper, date, e1: m1, e2: m2 })
+        if (ready) onSave({ paper, date, marks: marks as number[] })
       }}
       className={`flex flex-wrap items-end gap-x-3 gap-y-3 rounded-xl border p-3 mb-4 ${
         initial ? 'border-sky-300 dark:border-sky-800 bg-sky-50/60 dark:bg-sky-950/30' : 'border-dashed border-gray-300 dark:border-gray-700'
@@ -550,8 +552,11 @@ function AttemptForm({
           className={`${INPUT} border-gray-300 dark:border-gray-700 focus:ring-blue-500 font-medium`}
         />
       </label>
-      {markBox('Exam 1', e1, setE1, RAW_MAX.e1, bad1)}
-      {markBox('Exam 2', e2, setE2, RAW_MAX.e2, bad2)}
+      {exams.map((e, k) => (
+        <span key={e.label} className="contents">
+          {markBox(e.label, texts[k], v => setText(k, v), e.rawMax, bad[k])}
+        </span>
+      ))}
       <div className="flex items-center gap-2">
         <button
           type="submit"
@@ -571,10 +576,12 @@ function AttemptForm({
           </>
         )}
       </div>
-      {(bad1 || bad2) && (
+      {bad.some(Boolean) && (
         <p className="basis-full text-[12.5px] text-rose-600 dark:text-rose-400 -mt-1">
-          {bad1 ? `Exam 1 is out of ${RAW_MAX.e1}. ` : ''}
-          {bad2 ? `Exam 2 is out of ${RAW_MAX.e2}.` : ''}
+          {exams
+            .filter((_, k) => bad[k])
+            .map(e => `${e.label} is out of ${e.rawMax}.`)
+            .join(' ')}
         </p>
       )}
     </form>
@@ -583,13 +590,26 @@ function AttemptForm({
 
 // ── Log ────────────────────────────────────────────────────────────────────────────────────
 
-function AttemptList({ scored, editing, onEdit }: { scored: Scored[]; editing: number | null; onEdit: (id: number) => void }) {
+function AttemptList({
+  subject,
+  scored,
+  editing,
+  onEdit,
+}: {
+  subject: Subject
+  scored: Scored[]
+  editing: number | null
+  onEdit: (id: number) => void
+}) {
+  const exams = SUBJECTS[subject].exams
   if (!scored.length) {
     return <p className="text-[13px] text-gray-500 dark:text-gray-400 px-1">No papers yet. Your first attempt will appear here.</p>
   }
   // Narrow cards put the rank on a second line; wide ones give each mark and the rank a column.
   const cols =
-    'grid grid-cols-[4.5rem_1fr_auto_2.25rem_auto] @3xl:grid-cols-[5.5rem_7.5rem_4.5rem_4.5rem_2.5rem_1fr_auto] gap-x-3'
+    exams.length > 1
+      ? 'grid grid-cols-[4.5rem_1fr_auto_2.25rem_auto] @3xl:grid-cols-[5.5rem_7.5rem_4.5rem_4.5rem_2.5rem_1fr_auto] gap-x-3'
+      : 'grid grid-cols-[4.5rem_1fr_auto_2.25rem_auto] @3xl:grid-cols-[5.5rem_7.5rem_5.5rem_2.5rem_1fr_auto] gap-x-3'
   const wide = 'hidden @3xl:block'
   const narrow = '@3xl:hidden'
   return (
@@ -598,14 +618,13 @@ function AttemptList({ scored, editing, onEdit }: { scored: Scored[]; editing: n
         <div role="row" className={`${cols} pb-1.5 text-[12px] font-semibold text-gray-500 dark:text-gray-400`}>
           <span role="columnheader">Date Sat</span>
           <span role="columnheader">Paper</span>
-          <span role="columnheader" className={wide}>
-            Exam 1
-          </span>
-          <span role="columnheader" className={wide}>
-            Exam 2
-          </span>
+          {exams.map(e => (
+            <span key={e.label} role="columnheader" className={wide}>
+              {e.label}
+            </span>
+          ))}
           <span role="columnheader" className={narrow}>
-            E1 · E2
+            {exams.map(e => e.short).join(' · ')}
           </span>
           <span role="columnheader" className="text-right">
             Score
@@ -636,16 +655,14 @@ function AttemptList({ scored, editing, onEdit }: { scored: Scored[]; editing: n
                 </span>
               )}
             </span>
-            <span role="cell" className={`${wide} tabular-nums text-gray-700 dark:text-gray-200`}>
-              {a.e1}
-              <span className="text-gray-500 dark:text-gray-400 text-[12px]"> / {RAW_MAX.e1}</span>
-            </span>
-            <span role="cell" className={`${wide} tabular-nums text-gray-700 dark:text-gray-200`}>
-              {a.e2}
-              <span className="text-gray-500 dark:text-gray-400 text-[12px]"> / {RAW_MAX.e2}</span>
-            </span>
+            {exams.map((e, k) => (
+              <span key={e.label} role="cell" className={`${wide} tabular-nums text-gray-700 dark:text-gray-200`}>
+                {a.marks[k]}
+                <span className="text-gray-500 dark:text-gray-400 text-[12px]"> / {e.rawMax}</span>
+              </span>
+            ))}
             <span role="cell" className={`${narrow} tabular-nums text-gray-600 dark:text-gray-300 text-[12.5px] whitespace-nowrap`}>
-              {a.e1} · {a.e2}
+              {a.marks.join(' · ')}
             </span>
             <span role="cell" className="text-right font-display text-base font-bold text-gray-900 dark:text-white tabular-nums">
               {a.proj.score}
@@ -654,8 +671,8 @@ function AttemptList({ scored, editing, onEdit }: { scored: Scored[]; editing: n
               role="cell"
               className="order-last @3xl:order-none col-start-2 col-span-3 @3xl:col-auto -mt-0.5 @3xl:mt-0 text-[12px] @3xl:text-[12.5px] text-gray-500 dark:text-gray-400 tabular-nums"
             >
-              <span className="text-gray-700 dark:text-gray-200 font-medium">{topShare(a.proj.pct)}</span> · E1 {topShare(a.proj.pctE1).replace('top ', '')} · E2{' '}
-              {topShare(a.proj.pctE2).replace('top ', '')}
+              <span className="text-gray-700 dark:text-gray-200 font-medium">{topShare(a.proj.pct)}</span>
+              {examShares(subject, a.proj) && ` · ${examShares(subject, a.proj)}`}
             </span>
             <span role="cell" className="flex justify-end">
               <button
