@@ -59,9 +59,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="p(x)=x^2+(4k+3)x+4k^2-\frac94" />,
     reason: (
       <>
-        Name the left side. Its graph is a parabola opening upward (the coefficient of <Katex tex="x^2" /> is{' '}
-        <Katex tex="1>0" />), and the solutions of the equation are its <Katex tex="x" />-intercepts. Two conditions
-        are needed: two real solutions, <b>and</b> one of each sign.
+        Call the left side <Katex tex="p(x)" />. Its graph is an upward parabola (the coefficient of{' '}
+        <Katex tex="x^2" /> is <Katex tex="1>0" />), and the solutions of the equation are its{' '}
+        <Katex tex="x" />-intercepts. Two conditions are needed: two real solutions, <b>and</b> one of each sign.
       </>
     ),
   },
@@ -75,9 +75,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Two distinct real solutions need <Katex tex="\Delta=b^2-4ac>0" />. The <Katex tex="k^2" /> terms cancel, leaving a
-        linear inequality. This says nothing about the <b>signs</b> of the solutions, so it is only half the job.
-        Stopping here gives option <b>A</b>, chosen by 27% of students.
+        Two distinct real solutions need <Katex tex="\Delta=b^2-4ac>0" />. Expanding, the <Katex tex="16k^2" /> terms
+        cancel, leaving <Katex tex="24k+18" />. This says nothing about the <b>signs</b> of the solutions, so it is only half the job.
       </>
     ),
   },
@@ -100,10 +99,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{One positive, one negative} \iff p(0)<0" />,
     reason: (
       <>
-        Look at the <Katex tex="y" />-intercept. If <Katex tex="p(0)<0" />, the upward parabola is below the{' '}
-        <Katex tex="x" />-axis at <Katex tex="x=0" />, so it must cross the axis once to the left of the{' '}
-        <Katex tex="y" />-axis and once to the right: one negative and one positive solution. Conversely, if the
-        solutions are <Katex tex="\alpha<0<\beta" />, then <Katex tex="p(x)=(x-\alpha)(x-\beta)" />, so{' '}
+        Look at the <Katex tex="y" />-intercept. An upward parabola is below the <Katex tex="x" />-axis exactly
+        between its two <Katex tex="x" />-intercepts, so <Katex tex="x=0" /> lies between a negative and a positive
+        solution exactly when <Katex tex="p(0)<0" />.
+      </>
+    ),
+    more: (
+      <>
+        Why <Katex tex="p(0)<0" /> is enough on its own: the parabola is below the axis at <Katex tex="x=0" /> and
+        opens upward, so it must climb back through the <Katex tex="x" />-axis once on each side of the{' '}
+        <Katex tex="y" />-axis. So <Katex tex="p(0)<0" /> already guarantees two real solutions, and{' '}
+        <Katex tex="\Delta>0" /> comes for free. Conversely, if the solutions are{' '}
+        <Katex tex="\alpha<0<\beta" />, then <Katex tex="p(x)=(x-\alpha)(x-\beta)" />, so{' '}
         <Katex tex="p(0)=\alpha\beta" />, a negative times a positive, which is negative.
       </>
     ),
@@ -119,8 +126,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Substitute <Katex tex="x=0" />, then solve: <Katex tex="k^2<\tfrac{9}{16}" /> means <Katex tex="k" /> lies
-        strictly between <Katex tex="-\tfrac34" /> and <Katex tex="\tfrac34" />. Solving <Katex tex="p(0)>0" /> by
-        mistake gives option <b>E</b>, which only contains values of <Katex tex="k" /> that fail.
+        strictly between <Katex tex="-\tfrac34" /> and <Katex tex="\tfrac34" />.
       </>
     ),
   },
@@ -135,17 +141,28 @@ const ROWS: WorkingRow[] = [
       <>
         The endpoints are excluded: at both, <Katex tex="x=0" /> is a solution, and <Katex tex="0" /> is neither
         positive nor negative. Every <Katex tex="k" /> in <Katex tex="-\tfrac34<k<\tfrac34" /> also satisfies{' '}
-        <Katex tex="k>-\tfrac34" />: an upward parabola that dips below the axis always crosses it twice, so{' '}
-        <Katex tex="\Delta>0" /> holds automatically.
+        <Katex tex="k>-\tfrac34" />, so <Katex tex="\Delta>0" /> holds too.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{-\frac34 < k < \frac34}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Spot-check <Katex tex="k=0" />: <Katex tex="x^2+3x-\tfrac94=0" /> gives{' '}
-        <Katex tex="x=\tfrac{-3\pm3\sqrt2}{2}\approx 0.62,\ -3.62" /> ✓.
+        <p>
+          Spot-check <Katex tex="k=0" />: <Katex tex="x^2+3x-\tfrac94=0" /> gives{' '}
+          <Katex tex="x=\tfrac{-3\pm3\sqrt2}{2}\approx 0.62,\ -3.62" />, one of each sign ✓.
+        </p>
+        <p>
+          Where the other options come from. <b>A</b>, the most popular wrong answer (27%), is{' '}
+          <Katex tex="\Delta>0" /> alone: two solutions, but not necessarily one of each sign (the <Katex tex="k=1" />{' '}
+          test above). <b>B</b> is <Katex tex="\Delta\ge0" />, which also lets in <Katex tex="k=-\tfrac34" />, where the
+          only solution is <Katex tex="x=0" />. <b>C</b> is the part of A where <Katex tex="p(0)>0" />: two real
+          solutions, both negative. <b>E</b> is <Katex tex="p(0)>0" />, the sign condition the wrong way round: for{' '}
+          <Katex tex="k>\tfrac34" /> both solutions are negative, and for <Katex tex="k<-\tfrac34" /> there are no real
+          solutions.
+        </p>
       </>
     ),
   },

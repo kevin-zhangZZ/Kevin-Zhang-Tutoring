@@ -1,6 +1,6 @@
 // 2023 Methods Exam 2 MCQ 19 — y = p(x) = x² + (4k + 3)x + 4k² − 9/4 with a slider for k. It starts at
 // k = 1, inside option A (Δ = 24k + 18 > 0, two real roots) but with both roots negative: the
-// y-intercept p(0) = 4k² − 9/4 sits above the axis. Dragging k below 3/4 pulls p(0) below the axis,
+// y-intercept p(0) = 4k² − 9/4 sits above the axis. Dragging k just below 3/4 pulls p(0) below the axis,
 // and an upward parabola that is below the axis at x = 0 must cross once on each side — one negative
 // root, one positive. The key values k = ±3/4 are on the slider (at both, x = 0 is a root). The
 // chips show which options contain the current k, so the student sees A, B, C and E each contain
@@ -62,7 +62,8 @@ export default function InterceptSign() {
       <Notice tone="warn">
         <M>{`\\Delta = 24k + 18 = ${trim(disc)} > 0`}</M>, so there are two real roots and this <M>k</M> is in
         option A — but both roots are negative. The y-intercept <M>{'p(0)'}</M> is above the axis, so the upward
-        parabola can only cross on one side of it. Drag <M>k</M> below <M>{'\\tfrac34'}</M>.
+        parabola can only cross on one side of it. Drag <M>k</M> a little below <M>{'\\tfrac34'}</M> and watch{' '}
+        <M>{'p(0)'}</M> drop below the axis.
       </Notice>
     )
   } else if (k > -Q) {

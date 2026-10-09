@@ -23,7 +23,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\text{B: } \frac{dy}{dx} &= \tfrac13x^{-\frac23} = \frac{1}{3x^{\frac23}}\\ \text{C: } \frac{dy}{dx} &= \tfrac23x^{-\frac13} = \frac{2}{3x^{\frac13}}\end{aligned}" />,
     reason: <>Both curves pass through the origin, since <Katex tex="0^{\frac13}=0^{\frac23}=0" />. But both derivatives have a negative index, which puts <Katex tex="x" /> in the denominator, so the gradient is undefined at <Katex tex="x=0" />: no horizontal tangent.</>,
-    more: <>Subtracting <Katex tex="1" /> from an index less than <Katex tex="1" /> always leaves a negative index. As <Katex tex="x\to0" /> the size of the gradient grows without bound, so the graph gets steeper and steeper near the origin, not flatter. Option <b>B</b> has a vertical tangent at the origin; option <b>C</b> comes to a sharp point there (a cusp) whose two sides both become vertical.</>,
+    more: <>Subtracting <Katex tex="1" /> from an index less than <Katex tex="1" /> always leaves a negative index. As <Katex tex="x\to0" /> the gradient grows without bound, so the graph gets steeper and steeper near the origin, not flatter. Option <b>B</b> has a vertical tangent at the origin; option <b>C</b> comes to a sharp point there (a cusp) whose two sides both become vertical.</>,
   },
   {
     working: <Katex display tex="\text{E: } \frac{dy}{dx} = \tfrac34x^{-\frac14} = \frac{3}{4x^{\frac14}}" />,
@@ -36,8 +36,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = x^{\frac43}}" />,
-    reason: <>Matches option <b>D</b>, the only curve with a gradient of <Katex tex="0" /> at the origin.</>,
-    more: <>The rule of thumb: for <Katex tex="p>0" />, <Katex tex="y=x^p" /> has a horizontal tangent at the origin exactly when <Katex tex="p>1" />, because only then is the new index <Katex tex="p-1" /> positive. D is the only option with <Katex tex="p>1" />.</>,
+    reason: <>Matches option <b>D</b>, the only option with a power greater than <Katex tex="1" />.</>,
+    more: <>The rule of thumb: for <Katex tex="p>0" />, <Katex tex="y=x^p" /> has a horizontal tangent at the origin exactly when <Katex tex="p>1" />, because only then is the new index <Katex tex="p-1" /> positive. For <Katex tex="0<p<1" /> (options <b>B</b>, <b>C</b> and <b>E</b>) the graph is vertical at the origin instead, and option <b>A</b>, with a negative power, does not pass through the origin at all.</>,
   },
 ]
 

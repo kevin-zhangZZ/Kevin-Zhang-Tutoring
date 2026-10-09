@@ -6,6 +6,10 @@
 // different, so three distinct lines (D), agreeing with the report.
 // Interactive: meth-2023-mcq14-three-tangents (drag the point of contact along the curve and watch
 // where its tangent crosses x = 1/3; it passes through P three times; "Show all three" overlays them).
+// Oct 2026 Concise/Detailed pass: reasons trimmed to the step itself; the B trap, the by-hand
+// factorisation, a graphical check, the double-tangent check and the option analysis moved to `more`.
+// Final review: row 7's reason now explains the factorised line (by hand, CAS solve() as the
+// shortcut); the division detail stays in `more`. Checked: quartic = (3a − 1)(9a³ + 21a² + a − 3).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -57,8 +61,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y - y(a) = y'(a)\,(x-a)" />,
-    reason: <>The key idea: a tangent that passes through <Katex tex="P" /> does not have to touch the curve <i>at</i>{' '}
-      <Katex tex="P" />. It can touch the curve somewhere else and pass through <Katex tex="P" /> further along. We don&apos;t know where it touches, so call the point of contact <Katex tex="x=a" />; this is the tangent there (point&ndash;gradient form).</>,
+    reason: <>A tangent that passes through <Katex tex="P" /> need not touch the curve <i>at</i>{' '}
+      <Katex tex="P" />: it can touch the curve somewhere else and pass through <Katex tex="P" /> further along. So call the unknown point of contact <Katex tex="x=a" /> and write the tangent there (point&ndash;gradient form).</>,
+    more: (
+      <>
+        This is the step the question tests. Leaving the point of contact as an unknown <Katex tex="a" />, rather than
+        assuming it is <Katex tex="P" />, lets the algebra find every point of the curve whose tangent passes through{' '}
+        <Katex tex="P" />, all at once. The interactive below lets you slide the point of contact along the curve and
+        watch its tangent sweep past <Katex tex="P" />.
+      </>
+    ),
   },
   {
     working: (
@@ -71,7 +83,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\qquad - a^2\big(9a^2+22a+5\big)" />
       </>
     ),
-    reason: <>Rearrange into <Katex tex="y=mx+c" /> form: the gradient is <Katex tex="y'(a)" /> and the constant is <Katex tex="y(a)-a\,y'(a)" />, which simplifies nicely once <Katex tex="a\,y'(a)" /> is expanded.</>,
+    reason: <>Rearrange into <Katex tex="y=mx+c" /> form and call this tangent <Katex tex="y_T" />: the gradient is <Katex tex="y'(a)" /> and the constant is <Katex tex="y(a)-a\,y'(a)" />. The second bracket is <Katex tex="a\,y'(a)" /> expanded.</>,
+    more: (
+      <>
+        The <Katex tex="-3a" /> terms cancel and every term left has a factor of <Katex tex="a^2" />, which is why the
+        constant factorises so neatly.
+      </>
+    ),
   },
   {
     working: (
@@ -94,7 +112,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(3a-1)^2\big(3a^2+8a+3\big) = 0" />,
-    reason: <>On CAS, <Cas fn="solve">solve(27a^4+54a^3-18a^2-10a+3=0, a)</Cas> gives the three solutions straight away. By hand: <Katex tex="a=\tfrac13" /> has to be a solution, because the tangent at <Katex tex="P" /> itself passes through <Katex tex="P" />, so <Katex tex="(3a-1)" /> is a factor; here it is a repeated factor (expand to check). A repeated factor still gives only one value, <Katex tex="a=\tfrac13" />: one point of contact, one tangent.</>,
+    reason: <>Factorise. <Katex tex="a=\tfrac13" /> must be a solution, because the tangent at <Katex tex="P" /> itself passes through <Katex tex="P" />, so <Katex tex="(3a-1)" /> is a factor; here it is a repeated factor (expand to check). The repeated factor gives only one value, <Katex tex="a=\tfrac13" />: one point of contact, one tangent. On CAS, <Cas fn="solve">solve(27a^4+54a^3-18a^2-10a+3=0, a)</Cas> gives all three solutions at once.</>,
+    more: (
+      <>
+        Finding the repeated factor by hand: dividing the quartic by <Katex tex="(3a-1)" /> leaves{' '}
+        <Katex tex="9a^3+21a^2+a-3" />, and <Katex tex="a=\tfrac13" /> is a solution of that too, so{' '}
+        <Katex tex="(3a-1)" /> divides out a second time, leaving the quadratic <Katex tex="3a^2+8a+3" />. A
+        graphical check: graph <Katex tex="27a^4+54a^3-18a^2-10a+3" /> against <Katex tex="a" /> on CAS. It touches
+        the axis at <Katex tex="a=\tfrac13" /> and crosses it at two other places, so there are three different
+        values of <Katex tex="a" />.
+      </>
+    ),
   },
   {
     working: (
@@ -103,7 +131,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="a = \frac{-8\pm\sqrt{64-36}}{6} = \frac{-8\pm2\sqrt7}{6} = \frac{-4\pm\sqrt7}{3}" />
       </>
     ),
-    reason: <>Solve the quadratic factor with the quadratic formula; <Katex tex="\sqrt{28}=2\sqrt7" />.</>,
+    reason: <>The quadratic factor gives the other two solutions: use the quadratic formula, with <Katex tex="\sqrt{28}=2\sqrt7" />.</>,
   },
   {
     working: (
@@ -112,11 +140,26 @@ const ROWS: WorkingRow[] = [
         tex="\begin{array}{c|c} a & y'(a) \\ \hline \tfrac13 & \tfrac{40}{9} \\[4pt] \tfrac{-4+\sqrt7}{3}\approx-0.451 & \tfrac{20-14\sqrt7}{9}\approx-1.89 \\[4pt] \tfrac{-4-\sqrt7}{3}\approx-2.215 & \tfrac{20+14\sqrt7}{9}\approx6.34 \end{array}"
       />
     ),
-    reason: <>Each value of <Katex tex="a" /> is a point where a tangent through <Katex tex="P" /> touches the curve. Two different points of contact could in principle share one line (a line can touch a quartic twice), so compare the gradients: all three are different, so these are three different lines.</>,
+    reason: <>Each value of <Katex tex="a" /> is the point of contact of a tangent through <Katex tex="P" />; substitute it into <Katex tex="y'(a)" /> for that tangent&apos;s gradient. The three gradients are all different, so these are three different lines.</>,
+    more: (
+      <>
+        Why check the gradients? One line can touch a quartic at two different points. If that happened here, two
+        values of <Katex tex="a" /> would describe the same line, and it would count only once. Three different
+        gradients rule that out.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{3 \text{ tangents}}" />,
-    reason: <>Matches option <b>D</b>. Counting only the tangent at <Katex tex="P" /> itself gives <Katex tex="1" /> (option B); counting only the two tangents that touch the curve elsewhere gives <Katex tex="2" /> (option C).</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
+      <>
+        Counting only the tangent at <Katex tex="P" /> itself gives <Katex tex="1" /> (option B, the most common
+        answer, chosen by 33% of students). Counting only the two tangents that touch the curve elsewhere gives <Katex tex="2" /> (option C).
+        Counting the repeated solution <Katex tex="a=\tfrac13" /> twice gives <Katex tex="4" /> (option E). Option A is impossible: the tangent at{' '}
+        <Katex tex="P" /> always passes through <Katex tex="P" />.
+      </>
+    ),
   },
 ]
 

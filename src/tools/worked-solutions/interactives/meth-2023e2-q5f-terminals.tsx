@@ -47,10 +47,10 @@ export default function Terminals() {
         <Point x={A} y={h(A)} color={C.good} />
         <Point x={B} y={B} color={C.good} />
         {wrong && <Point x={W} y={W} color={C.bad} />}
-        <Label at={[A, h(A)]} attach="e" color={C.good}>{`x ≈ ${A.toFixed(2)}`}</Label>
+        <Label at={[A, h(A)]} attach="se" color={C.good}>{`x ≈ ${A.toFixed(2)}`}</Label>
         <Label at={[B, B]} attach="nw" color={C.good}>{`x ≈ ${B.toFixed(2)}`}</Label>
         {wrong && <Label at={[W, W]} attach="se" color={C.bad}>{`x ≈ ${W.toFixed(3)}`}</Label>}
-        <Label at={[1.2, 1.2]} color={C.guide} attach="nw">y = x</Label>
+        <Label at={[2, 2]} color={C.guide} attach="nw">y = x</Label>
         <Label at={[6.6, h(6.6)]} color={C.f} attach="e">h</Label>
         <Label at={[4.5, hInv(4.5)]} color={C.g} attach="n">inverse of h₁</Label>
       </Plane>
@@ -71,8 +71,7 @@ export default function Terminals() {
           </Notice>
         ) : (
           <Notice>
-            Two crossings, but only the right one, <M>{`x\\approx${B.toFixed(2)}`}</M>, is on <M>y=x</M>: there the
-            right branch <M>h_1</M> meets its own inverse. The left one, at{' '}
+            The right crossing, <M>{`x\\approx${B.toFixed(2)}`}</M>, is on <M>y=x</M>. The left one, at{' '}
             <M>{`\\left(${A.toFixed(2)},\\ ${h(A).toFixed(2)}\\right)`}</M>, is <M>h</M>&rsquo;s <em>left</em> branch
             meeting the inverse, well off the line. Turn on the toggle to see the common wrong terminal.
           </Notice>

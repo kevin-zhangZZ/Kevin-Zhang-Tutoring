@@ -58,8 +58,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="y" /> is a product of two functions of <Katex tex="x" />, so use the product rule,{' '}
-        <Katex tex="(uv)'=u'v+uv'" />: differentiate one factor at a time while keeping the other, then add. It is{' '}
-        <i>not</i> <Katex tex="f'(x)g'(x)" />.
+        <Katex tex="(uv)'=u'v+uv'" />: differentiate one factor at a time while keeping the other, then add.
+      </>
+    ),
+    more: (
+      <>
+        It is <i>not</i> <Katex tex="f'(x)g'(x)" />: the derivative of a product is not the product of the derivatives.
+        A quick check with <Katex tex="f(x)=g(x)=x" />: then <Katex tex="y=x^2" /> and{' '}
+        <Katex tex="\tfrac{dy}{dx}=2x" />, but <Katex tex="f'(x)g'(x)=1\times1=1" />.
       </>
     ),
   },
@@ -80,8 +86,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{10}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Option <b>D</b>, 6, is <Katex tex="f'(-2)\times g'(-2)=3\times2" />: multiplying the
-        two derivatives, which is not the product rule.
+        Matches option <b>E</b>; option <b>D</b>, 6, comes from multiplying the derivatives,{' '}
+        <Katex tex="3\times2" />.
+      </>
+    ),
+    more: (
+      <>
+        A useful habit: when a question hands you the values of the functions as well as their derivatives, expect to
+        use all four. Multiplying the derivatives never uses <Katex tex="f(-2)=-7" /> or <Katex tex="g(-2)=8" />, which
+        is a sign that something has gone wrong.
       </>
     ),
   },

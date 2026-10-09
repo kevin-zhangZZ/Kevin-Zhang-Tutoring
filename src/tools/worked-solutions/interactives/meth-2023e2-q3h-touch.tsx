@@ -91,7 +91,7 @@ export default function MinimumOnAxis() {
         {!onAxis && <Point x={r2} y={0} color={C.violet} />}
         <Point x={xm} y={ym} color={minColor} />
         <Label at={[xm, ym]} color={minColor} attach={Math.abs(ym) < 0.3 ? 'sw' : 's'} gap={10}>
-          {onAxis ? '(e, 0)' : `(${xm.toFixed(2)}, ${yText})`}
+          {onAxis ? '(e, 0)' : `(${xm.toFixed(2)}, ${yText.replace('-', '−')})`}
         </Label>
       </Plane>
       <Controls>
@@ -105,9 +105,9 @@ export default function MinimumOnAxis() {
           format={v => (v === E ? 'e' : v.toFixed(3))}
         />
         <Readouts>
-          <Readout color={minColor} tex={`\\text{local min at } x = ${onAxis ? 'e' : xm.toFixed(3)}`} />
+          <Readout color={minColor} tex={`\\text{local min at } x ${onAxis ? '= e' : `\\approx ${xm.toFixed(3)}`}`} />
           <Readout tex={"f'(x) = 0 \\ \\checkmark"} />
-          <Readout color={minColor} tex={`f(x) = ${onAxis ? '0 \\ \\checkmark' : yText}`} />
+          <Readout color={minColor} tex={`f(x) ${onAxis ? '= 0 \\ \\checkmark' : `\\approx ${yText}`}`} />
         </Readouts>
         {notice}
       </Controls>

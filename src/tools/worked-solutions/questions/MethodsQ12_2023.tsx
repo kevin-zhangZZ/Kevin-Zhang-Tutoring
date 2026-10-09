@@ -54,13 +54,24 @@ const TABLE = (
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="k^2+3k+k+(-k^2-4k+1) = 1" />,
+    working: (
+      <>
+        <Katex display tex="\textstyle\sum\Pr(X=x) = k^2+3k+k+(-k^2-4k+1)" />
+        <Katex display tex="= 1 \ \text{ for every } k" />
+      </>
+    ),
     reason: (
       <>
-        Usually you solve &ldquo;the probabilities add to 1&rdquo; for <Katex tex="k" />. Here every <Katex tex="k" />{' '}
-        term cancels, so the sum is 1 for <i>every</i> <Katex tex="k" /> and this can&apos;t find <Katex tex="k" />.
-        So <Katex tex="k" /> can vary, and the question asks for the largest mean over all the values it is allowed to
-        take.
+        The probabilities must add to 1, but every <Katex tex="k" /> term cancels, so the sum is 1 for{' '}
+        <i>every</i> <Katex tex="k" />: this can&apos;t find <Katex tex="k" />. So <Katex tex="k" /> can vary, and we need the largest mean over the values it
+        is allowed to take.
+      </>
+    ),
+    more: (
+      <>
+        Usually &ldquo;the probabilities add to 1&rdquo; is the equation that finds <Katex tex="k" />. Here it reduces
+        to <Katex tex="1=1" />, which is why the question asks for the <i>maximum possible</i> mean, and the limits on{' '}
+        <Katex tex="k" /> have to come from somewhere else.
       </>
     ),
   },
@@ -96,7 +107,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="k" /> must satisfy both conditions at once, and <Katex tex="k\geq0" /> cuts off the negative part of
-        the interval. No probability can then exceed 1, since they are all <Katex tex="\geq0" /> and add to 1.
+        the interval.
+      </>
+    ),
+    more: (
+      <>
+        No probability can then exceed 1, since they are all <Katex tex="\geq0" /> and add to 1, so these are all the
+        allowed values of <Katex tex="k" />.
       </>
     ),
   },
@@ -124,11 +141,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The tempting move is the turning point of the quadratic: <Katex tex="-6k-7=0" /> gives{' '}
-        <Katex tex="k=-\tfrac{7}{6}" /> and <Katex tex="E(X)=\tfrac{73}{12}\approx6.08" />, which is not even an option.
-        That <Katex tex="k" /> isn&apos;t allowed, since it makes <Katex tex="\Pr(X=0)=3k=-3.5" />. On the allowed
-        interval the derivative is negative, so <Katex tex="E(X)" /> decreases as <Katex tex="k" /> increases, and its
-        largest value is at the left end, <Katex tex="k=0" />.
+        The turning point, where <Katex tex="-6k-7=0" />, is <Katex tex="k=-\tfrac{7}{6}" />: outside the allowed
+        interval. On the interval the derivative is negative, so <Katex tex="E(X)" /> decreases as <Katex tex="k" />{' '}
+        increases, and its largest value is at the left end, <Katex tex="k=0" />.
+      </>
+    ),
+    more: (
+      <>
+        This is a maximum on a restricted domain: the largest value is at a turning point <i>inside</i> the interval or
+        at an endpoint. The tempting move is to use the turning point anyway: <Katex tex="k=-\tfrac{7}{6}" /> gives{' '}
+        <Katex tex="E(X)=\tfrac{73}{12}\approx6.08" />, which is not even an option, and it makes{' '}
+        <Katex tex="\Pr(X=0)=3k=-3.5" />, so it is not a valid distribution.
       </>
     ),
   },
@@ -136,11 +159,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{E(X)\big|_{k=0} = -0-0+2 = 2}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Check: at <Katex tex="k=0" /> the probabilities are 0, 0, 0, 1, so <Katex tex="X=2" />{' '}
-        for certain and its mean is 2. No mean can be larger, since <Katex tex="X" /> is never more than 2. Options{' '}
-        <b>B</b>, <b>C</b> and <b>D</b> are the means for other allowed values of <Katex tex="k" /> (about 0.218,
-        0.177 and 0.135), so they are possible but smaller; a mean of 0 (option <b>A</b>) would need{' '}
-        <Katex tex="k\approx0.257" />, outside the allowed interval.
+        Matches option <b>E</b>: at <Katex tex="k=0" /> the probabilities are 0, 0, 0, 1, so <Katex tex="X=2" /> for
+        certain.
+      </>
+    ),
+    more: (
+      <>
+        A quicker way to see that no mean can beat 2: <Katex tex="X" /> is never more than 2, so its mean
+        can&apos;t be more than 2, and <Katex tex="k=0" /> reaches it. Options <b>B</b>, <b>C</b> and <b>D</b> are the
+        means for other allowed values of <Katex tex="k" /> (about 0.218, 0.177 and 0.135), so they are possible means
+        but smaller; a mean of 0 (option <b>A</b>) would need <Katex tex="k\approx0.257" />, outside the allowed
+        interval.
       </>
     ),
   },

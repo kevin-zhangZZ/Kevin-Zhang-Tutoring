@@ -5,6 +5,11 @@
 // Solution is original. Widgets: f — interactives/meth-2023e2-q4f-two-tails (both tails share the
 // 1%); g — interactives/meth-2023e2-q4g-interval (centre gives p̂, width gives the level);
 // j — interactives/meth-2023e2-q4j-dilate (area ab = 1 and mean b·E(V)).
+// 9 Oct 2026 Concise/Detailed pass: each row's reason trimmed to what is needed to follow it;
+// traps, checks, report commentary and the part j. alternative method moved to the rows' more.
+// The three widgets were re-audited (readouts rechecked with scipy) and kept.
+// Final review: the Background now gives the sketch-and-shade habit for the tail errors the report
+// notes in a., b., c. and f. (it was a contents list); part e.'s normCdf is now a CAS line.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
@@ -144,11 +149,13 @@ const ROWS_A: WorkingRow[] = [
         normCdf(6.8, ∞, 6.7, 0.1)
       </Cas>
     ),
-    reason: <>&ldquo;Greater than&rdquo; means the upper tail: the area to the right of <Katex tex="6.8" />. Finding <Katex tex="\Pr(D<6.8)=0.8413" /> instead is the wrong tail (the report notes some students did this).</>,
+    reason: <>&ldquo;Greater than&rdquo; means the upper tail: the area to the right of <Katex tex="6.8" />.</>,
+    more: <>Finding <Katex tex="\Pr(D<6.8)=0.8413" /> instead gives the wrong tail, which the report notes some students did.</>,
   },
   {
     working: <Katex display tex="\boxed{0.1587}" />,
-    reason: <>The CAS gives <Katex tex="0.158655\ldots" />, which rounds <em>up</em> to <Katex tex="0.1587" /> at four decimal places (<Katex tex="0.1586" /> just chops the digits off). Check: <Katex tex="6.8" /> is one standard deviation above the mean, and the 68–95–99.7 rule puts about <Katex tex="\tfrac{1-0.68}{2}=0.16" /> above it.</>,
+    reason: <>The CAS gives <Katex tex="0.158655\ldots" />, which rounds <em>up</em> to <Katex tex="0.1587" /> at four decimal places.</>,
+    more: <><Katex tex="0.1586" />, which the report says was sometimes seen, just chops the digits off instead of rounding. Check: <Katex tex="6.8" /> is one standard deviation above the mean, and the 68–95–99.7 rule puts about <Katex tex="\tfrac{1-0.68}{2}=0.16" /> above it.</>,
   },
 ]
 
@@ -160,7 +167,8 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\Pr(D<d) = 0.9" />
       </>
     ),
-    reason: <>90% of balls must be <em>smaller</em> than <Katex tex="d" />, so <Katex tex="d" /> has an area of 0.9 to its left. Solving <Katex tex="\Pr(D>d)=0.9" /> instead puts 90% above <Katex tex="d" /> and gives <Katex tex="6.57" /> (the common error the report notes), which is <em>smaller</em> than the mean: a quick sanity check catches it.</>,
+    reason: <>90% of balls must be <em>smaller</em> than <Katex tex="d" />, so <Katex tex="d" /> has an area of 0.9 to its left.</>,
+    more: <>Solving <Katex tex="\Pr(D>d)=0.9" /> instead puts 90% <em>above</em> <Katex tex="d" /> and gives <Katex tex="6.57" />, the common error the report notes. A ball larger than 90% of all balls must be well above the mean of 6.7 cm, so an answer below the mean is a signal to recheck which tail you used.</>,
   },
   {
     working: (
@@ -172,7 +180,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="d = 6.8282\ldots" />,
-    reason: <>As a check, <Katex tex="6.7+1.2816\times0.1" />: the value of <Katex tex="Z" /> with 90% below it is <Katex tex="1.2816" />.</>,
+    reason: <>The diameter with 90% of balls below it.</>,
+    more: <>As a check, <Katex tex="6.7+1.2816\times0.1=6.828" />: the value of <Katex tex="Z" /> with 90% below it is <Katex tex="1.2816" />, so <Katex tex="d" /> is 1.28 standard deviations above the mean.</>,
   },
   {
     working: <Katex display tex="\boxed{6.83 \ \text{cm}}" />,
@@ -183,7 +192,8 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Fits through} \iff D < 6.95" />,
-    reason: <>Smaller than 6.95 cm, so it is the <em>lower</em> tail; <Katex tex="0.0062" /> is the probability of being larger. For a continuous variable <Katex tex="\Pr(D=6.95)=0" />, so <Katex tex="<" /> and <Katex tex="\le" /> give the same probability. Don&apos;t change 6.95 to 6.94: that is a habit from whole-number (discrete) variables, and <Katex tex="\Pr(D\le6.94)=0.9918" /> is a different probability.</>,
+    reason: <>Fitting through means a diameter smaller than 6.95 cm, so it is the <em>lower</em> tail. <Katex tex="D" /> is continuous, so <Katex tex="\Pr(D=6.95)=0" />, and <Katex tex="<" /> or <Katex tex="\le" /> gives the same probability.</>,
+    more: <>Some students gave <Katex tex="0.0062" />, which the report notes is the probability of a ball being <em>larger</em> than 6.95 cm. The report also saw <Katex tex="\Pr(D\le6.94)=0.9918" />: changing 6.95 to 6.94 is a habit from whole-number (discrete) variables, where <Katex tex="\Pr(X<7)=\Pr(X\le6)" />, but a diameter can take any value in between, so it gives a different probability.</>,
   },
   {
     working: (
@@ -191,22 +201,26 @@ const ROWS_C: WorkingRow[] = [
         normCdf(−∞, 6.95, 6.7, 0.1)
       </Cas>
     ),
-    reason: <><Katex tex="6.95" /> is 2.5 standard deviations above the mean, so almost every ball fits.</>,
+    reason: <>Lower bound <Katex tex="-\infty" />, upper bound <Katex tex="6.95" />.</>,
+    more: <>Check: <Katex tex="6.95" /> is 2.5 standard deviations above the mean, so almost every ball should fit, and the answer is close to 1.</>,
   },
   {
     working: <Katex display tex="\boxed{0.9938}" />,
     reason: <>Store the unrounded <Katex tex="0.993790\ldots" />: parts d. and e. both use it.</>,
+    more: <>Rounding to <Katex tex="0.9938" /> first happens not to change either later answer here, but rounding part-way through can shift the fourth decimal place of a later answer, so always carry the stored value.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&X = \text{number of the 4 balls that fit}\\ &X \sim \mathrm{Bi}(4,\ 0.993790\ldots)\end{aligned}" />,
-    reason: <>Each of the 4 balls independently fits or doesn&apos;t, with the part c. probability every time. Write down <Katex tex="n=4" /> and <Katex tex="p" />: the report notes students needed to give them.</>,
+    reason: <>Each of the 4 balls independently fits or doesn&apos;t, with the part c. probability every time, so <Katex tex="X" /> is binomial. Write down <Katex tex="n" /> and <Katex tex="p" />.</>,
+    more: <>The report notes that students needed to give the <Katex tex="n" /> and <Katex tex="p" /> values, and that some gave only the answer, which is not enough in a question worth more than one mark. This line and the CAS line below are that working.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = \Pr(X=3)+\Pr(X=4)" />,
-    reason: <>&ldquo;At least 3&rdquo; includes 3 itself. Not <Katex tex="\Pr(X=3)=0.0244" /> alone, and not <Katex tex="\Pr(X>3)=0.9754" />: the report notes both were seen.</>,
+    reason: <>&ldquo;At least 3&rdquo; includes 3 itself.</>,
+    more: <>Not <Katex tex="\Pr(X=3)=0.0244" /> alone, and not <Katex tex="\Pr(X>3)=0.9754" />, which only counts all 4 fitting: the report notes both were seen.</>,
   },
   {
     working: (
@@ -218,7 +232,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.9998}" />,
-    reason: <>Almost certain, which makes sense when each ball has a <Katex tex="99.4\%" /> chance on its own.</>,
+    reason: <>Four decimal places.</>,
+    more: <>Almost certain, which makes sense when each ball has a <Katex tex="99.4\%" /> chance of fitting on its own.</>,
   },
 ]
 
@@ -229,19 +244,29 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="6.86 < 6.95 \implies \{6.54<D<6.86\}\subset\{D<6.95\}" />,
-    reason: <>Every grade A ball is under 6.86 cm, so it is also under 6.95 cm and fits. &ldquo;Grade A and fits&rdquo; is therefore just &ldquo;grade A&rdquo;. This is the step that simplifies everything.</>,
+    reason: <>Every grade A ball is under 6.86 cm, so it is also under 6.95 cm and fits. &ldquo;Grade A and fits&rdquo; is therefore just &ldquo;grade A&rdquo;.</>,
+    more: <>This is the step that simplifies everything, and it is why the intersection is <em>not</em> <Katex tex="\Pr(\text{grade A})\times\Pr(\text{fits})" />: multiplying probabilities only works for independent events, and these are not (knowing a ball is grade A makes it certain to fit). The report notes that product was a common incorrect approach; it just cancels back to <Katex tex="0.8904\ldots" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(6.54<D<6.86) = 0.890401\ldots" />,
-    reason: <>From <Katex tex="\mathrm{normCdf}(6.54,\,6.86,\,6.7,\,0.1)" />.</>,
+    working: (
+      <>
+        <Cas fn="normCdf">
+          normCdf(6.54, 6.86, 6.7, 0.1)
+        </Cas>
+        <Katex display tex="\Pr(6.54<D<6.86) = 0.890401\ldots" />
+      </>
+    ),
+    reason: <>The numerator is now just <Katex tex="\Pr(\text{grade A})" />: lower bound 6.54, upper bound 6.86.</>,
   },
   {
     working: <Katex display tex="\frac{0.890401\ldots}{0.993790\ldots}" />,
-    reason: <>Divide by the part c. probability, not by part d.&apos;s <Katex tex="0.99977\ldots" />, which gives <Katex tex="0.8906\ldots" />, a common incorrect answer the report notes. Nor is the intersection a product of the two probabilities: the events are not independent.</>,
+    reason: <>Divide by the part c. probability, <Katex tex="\Pr(D<6.95)" />.</>,
+    more: <>Not by part d.&apos;s <Katex tex="0.99977\ldots" />, which gives <Katex tex="0.8906\ldots" />, a common incorrect answer the report notes. The condition is that this <em>one</em> ball fits, which is part c., not part d.&apos;s &ldquo;at least 3 of 4&rdquo;.</>,
   },
   {
     working: <Katex display tex="\boxed{0.8960}" />,
-    reason: <>Dividing by a probability a little under 1 makes the answer a little bigger than the unconditional <Katex tex="0.8904" />: a sensible check.</>,
+    reason: <>Four decimal places.</>,
+    more: <>Check: dividing by a probability a little under 1 makes the answer a little bigger than the unconditional <Katex tex="0.8904" />. That makes sense, because knowing the ball fits rules out only a few very large balls, none of them grade A.</>,
   },
 ]
 
@@ -252,7 +277,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&\Pr(6.54<D<6.86) > 0.99\\ \implies &\Pr(D>6.86) < 0.005\end{aligned}" />,
-    reason: <>Less than 1% may miss grade A <em>in total</em>, and the two tails are equal, so each must hold less than 0.5%. Solving <Katex tex="\Pr(D<6.86)=0.99" /> (<Katex tex="z=2.3263" />) puts the whole 1% in the upper tail and forgets the lower one; the report notes this was a common incorrect approach. It gives <Katex tex="\sigma\approx0.0688" />, and then only 98% are grade A.</>,
+    reason: <>Less than 1% may miss grade A <em>in total</em>, and the two tails are equal, so each must hold less than 0.5%.</>,
+    more: <>Solving <Katex tex="\Pr(D<6.86)=0.99" /> (<Katex tex="z=2.3263" />) puts the whole 1% in the upper tail and forgets the lower one; the report notes this was a common incorrect approach. It gives <Katex tex="\sigma\approx0.0688" />, and then the lower tail holds another 1%, so only 98% are grade A. The report notes that drawing a diagram and showing the probabilities was acceptable working: here, the bell curve with each tail, below 6.54 and above 6.86, marked as less than 0.005.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(Z<\frac{0.16}{\sigma}\right) > 0.995" />,
@@ -275,14 +301,16 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma = 0.06 \ \text{cm}}" />,
-    reason: <>To two decimal places, and it works: with <Katex tex="\sigma=0.06" />, <Katex tex="\Pr(6.54<D<6.86)=0.9923>0.99" /> ✓. The report notes the maximum value was not asked for, so any of <Katex tex="0.00,\ 0.01,\ \ldots,\ 0.06" /> was accepted.</>,
+    reason: <>To two decimal places; <Katex tex="0.06" /> is below <Katex tex="0.0621\ldots" />, so it meets the condition.</>,
+    more: <>Check: with <Katex tex="\sigma=0.06" />, <Katex tex="\Pr(6.54<D<6.86)=0.9923>0.99" /> ✓. The report notes the maximum value was not asked for, so any of <Katex tex="0.00,\ 0.01,\ \ldots,\ 0.06" /> was accepted. Trial and error also works (try values of <Katex tex="\sigma" /> in <Katex tex="\mathrm{normCdf}(6.54,\,6.86,\,6.7,\,\sigma)" /> until the result is above 0.99), but the report warns that some appropriate working must still be shown.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = \frac{0.7382+0.9493}{2} = 0.84375" />,
-    reason: <>A confidence interval for a proportion is <Katex tex="\hat p\pm E" />, so the sample proportion <Katex tex="\hat p" /> sits exactly in the middle: average the two ends. The report notes <Katex tex="\hat p=0.8904" /> was often seen; that is <Katex tex="\Pr(6.54<D<6.86)" /> from the model, not the inspector&apos;s sample.</>,
+    reason: <>A confidence interval for a proportion is <Katex tex="\hat p\pm E" />, so the sample proportion <Katex tex="\hat p" /> sits exactly in the middle: average the two ends.</>,
+    more: <>The report notes <Katex tex="\hat p=0.8904" /> was often seen. That is <Katex tex="\Pr(6.54<D<6.86)" /> from part e., the proportion of grade A balls the normal model predicts for the whole population, not the proportion in the inspector&apos;s sample of 32. The interval is always built around the sample&apos;s <Katex tex="\hat p" />. Check: <Katex tex="0.84375=\tfrac{27}{32}" />, a whole number of balls out of 32, as a sample proportion must be.</>,
   },
   {
     working: <Katex display tex="E = 0.9493-0.84375 = 0.10555" />,
@@ -309,14 +337,16 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{90\%}" />,
-    reason: <>To the nearest integer. The <Katex tex="z" /> value is not <Katex tex="1.96" />, so this is not a 95% interval; the report notes some students had the correct <Katex tex="z" /> value but then gave 95%.</>,
+    reason: <>To the nearest integer.</>,
+    more: <>The report notes some students had the correct <Katex tex="z" /> value but then gave 95%. Here <Katex tex="z\approx1.645" />, which belongs to 90%, not 95%. The small gap between <Katex tex="1.6444" /> and the usual <Katex tex="1.6449" /> is only because the interval&apos;s ends were rounded to 4 decimal places.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(V>50) = \int_{50}^{3\pi^2+30}\frac{1}{6\pi}\sin\!\left(\sqrt{\frac{v-30}{3}}\right)dv" />,
-    reason: <>The area under the pdf from 50 up to the top of its interval, <Katex tex="3\pi^2+30\approx59.6" />. Stop there, not at <Katex tex="\infty" />: beyond <Katex tex="3\pi^2+30" /> the pdf is 0, but the sine expression is not.</>,
+    reason: <>The area under the pdf from 50 up to the top of its interval, <Katex tex="3\pi^2+30\approx59.6" />, where the pdf drops to 0.</>,
+    more: <>Don&apos;t type <Katex tex="\infty" /> as the upper terminal: beyond <Katex tex="3\pi^2+30" /> the pdf is 0, but the sine expression keeps oscillating, so the CAS would be integrating the wrong function there.</>,
   },
   {
     working: (
@@ -328,7 +358,8 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.1345}" />,
-    reason: <>Four decimal places. Check: the same integral from 30 to <Katex tex="3\pi^2+30" /> gives 1, as it must for a pdf, which confirms the rule and terminals were typed correctly.</>,
+    reason: <>Four decimal places.</>,
+    more: <>The CAS gives <Katex tex="0.134516\ldots" />, which rounds to <Katex tex="0.1345" /> (the report mentions rounding errors). As a check, the same integral from 30 to <Katex tex="3\pi^2+30" /> gives 1, as it must for a pdf, which confirms the rule and terminals were typed correctly.</>,
   },
 ]
 
@@ -339,11 +370,13 @@ const ROWS_I: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 3\pi^2+12" />,
-    reason: <>The question says <b>exact</b>, so use the CAS definite-integral template in exact mode, typing the exact terminal <Katex tex="3\pi^2+30" />. nInt would only give the decimal <Katex tex="41.6088\ldots" />.</>,
+    reason: <>The question says <b>exact</b>, so use the CAS definite-integral template in exact mode, typing the exact terminal <Katex tex="3\pi^2+30" />.</>,
+    more: <>nInt only ever gives a decimal, here <Katex tex="41.6088\ldots" />, and the report notes an exact answer was required. A decimal terminal such as 59.6 would also stop the CAS from giving an exact result.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(V) = 3\pi^2+12 = 3\left(\pi^2+4\right) \ \text{m s}^{-1}}" />,
-    reason: <>About <Katex tex="41.6\ \text{m s}^{-1}" />, sensibly inside the interval <Katex tex="[30,\ 59.6]" />. The report notes an exact answer was required, so the decimal alone is not enough.</>,
+    reason: <>Exact, as the question asks.</>,
+    more: <>About <Katex tex="41.6\ \text{m s}^{-1}" />, sensibly inside the interval <Katex tex="[30,\ 59.6]" />. The factorised form <Katex tex="3\left(\pi^2+4\right)" /> is the one part j. needs.</>,
   },
 ]
 
@@ -354,19 +387,23 @@ const ROWS_J: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}\text{area under } g &= a\times b\times\left(\text{area under } f\right) = ab\\ ab &= 1 \implies a = \frac1b\end{aligned}" />,
-    reason: <>Stretching a region sideways by <Katex tex="b" /> multiplies its area by <Katex tex="b" />, and stretching it upwards by <Katex tex="a" /> multiplies its area by <Katex tex="a" />. The area under <Katex tex="f" /> is 1, and <Katex tex="g" /> must also have area 1 to be a pdf. The common incorrect answer <Katex tex="a=\tfrac23,\ b=1" /> fails this: its area is <Katex tex="\tfrac23" />.</>,
+    reason: <>Stretching a region sideways by <Katex tex="b" /> multiplies its area by <Katex tex="b" />, and stretching it upwards by <Katex tex="a" /> multiplies its area by <Katex tex="a" />. The area under <Katex tex="f" /> is 1, and <Katex tex="g" /> must also have area 1 to be a pdf.</>,
+    more: <>The common incorrect answer <Katex tex="a=\tfrac23,\ b=1" /> fails this: its area is <Katex tex="\tfrac23" />. It does make <Katex tex="\int w\,g(w)\,dw=\tfrac23\left(3\pi^2+12\right)=2\pi^2+8" />, but with area <Katex tex="\tfrac23" />, <Katex tex="g" /> is not a pdf, so that integral is not a mean. A vertical stretch on its own can&apos;t move a mean anyway: it leaves every speed where it was.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(W) = b\,\mathrm{E}(V) = b\left(3\pi^2+12\right)" />,
     reason: <>With <Katex tex="a=\tfrac1b" />, <Katex tex="g" /> is the pdf of <Katex tex="bV" />: every speed is multiplied by <Katex tex="b" />, and the <Katex tex="\tfrac1b" /> keeps the area at 1. So <Katex tex="\mathrm{E}(W)=\mathrm{E}(bV)=b\,\mathrm{E}(V)" />, using part i.</>,
+    more: <>The report notes that some students found <Katex tex="a=\tfrac1b" /> but could not then find the values: this line is the missing link. Think of the mean as the balance point of the region under the graph. Stretching the graph sideways by <Katex tex="b" /> moves every point, and so the balance point, to <Katex tex="b" /> times its speed, while the upwards stretch by <Katex tex="\tfrac1b" /> changes only heights. It is the same rule as <Katex tex="\mathrm{E}(kX)=k\,\mathrm{E}(X)" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}b\left(3\pi^2+12\right) &= 2\pi^2+8\\ 3b\left(\pi^2+4\right) &= 2\left(\pi^2+4\right)\end{aligned}" />,
-    reason: <>Factorise both sides: <Katex tex="\pi^2+4" /> is common, so it cancels. (The report&apos;s other method solves <Katex tex="\int g(w)\,dw=1" /> and <Katex tex="\int w\,g(w)\,dw=2\pi^2+8" /> simultaneously on CAS. The terminals must then be <Katex tex="30b" /> and <Katex tex="\left(3\pi^2+30\right)b" />, because the sideways stretch moves the interval too; the report notes many who tried this did not multiply the terminals by <Katex tex="b" />.)</>,
+    reason: <>Factorise both sides: <Katex tex="\pi^2+4" /> is common, so it cancels, leaving <Katex tex="3b=2" />.</>,
+    more: <>The report&apos;s other method solves <Katex tex="\int g(w)\,dw=1" /> and <Katex tex="\int w\,g(w)\,dw=2\pi^2+8" /> simultaneously on CAS, with terminals <Katex tex="30b" /> and <Katex tex="\left(3\pi^2+30\right)b" />. The terminals change because the sideways stretch moves the interval too: <Katex tex="g" /> is non-zero where <Katex tex="30\le\tfrac wb\le3\pi^2+30" />. The report notes many who tried this did not multiply the terminals by <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \frac32, \quad b = \frac23}" />,
-    reason: <><Katex tex="b=\tfrac23" />, then <Katex tex="a=\tfrac1b=\tfrac32" />. Check: <Katex tex="ab=1" /> ✓, and <Katex tex="\tfrac23\times3\left(\pi^2+4\right)=2\pi^2+8" /> ✓.</>,
+    reason: <><Katex tex="b=\tfrac23" />, then <Katex tex="a=\tfrac1b=\tfrac32" />.</>,
+    more: <>Check: <Katex tex="ab=1" /> ✓, and <Katex tex="\tfrac23\times3\left(\pi^2+4\right)=2\pi^2+8" /> ✓.</>,
   },
 ]
 
@@ -388,16 +425,15 @@ export default function MethodsQ4_2023Exam2() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Parts a. to g. are a tour of the whole probability course on one context: a normal
-              calculation, its inverse, a binomial built on a normal probability, a conditional
-              probability, an inverse normal in the standard deviation, and a confidence
-              interval read backwards for its <Katex tex="z" /> value.
+              Parts a. to f. all build on the normal model for <Katex tex="D" />, and in parts
+              a., b., c. and f. the report notes errors with the tails of the curve: the wrong
+              tail in a. to c., and only one of the two tails in f.
             </p>
             <p>
-              Keep the unrounded <Katex tex="\Pr(D<6.95)=0.993790\ldots" /> from part c.: parts
-              d. and e. both need it. Here rounding to <Katex tex="0.9938" /> first happens not to
-              change either answer, but rounding a value part-way through can shift the fourth
-              decimal place of a later answer, so always carry the stored value.
+              The habit that prevents this: before each normCdf or invNorm, sketch the bell curve
+              with 6.7 in the middle and shade the region the question describes.
+              &ldquo;Greater than&rdquo; is to the right of the value, &ldquo;smaller
+              than&rdquo; is to the left, and grade A is a middle band with a tail on each side.
             </p>
           </Background>
         </div>
@@ -515,7 +551,7 @@ export default function MethodsQ4_2023Exam2() {
         examinerReport={EXAM_F}
       >
         <WorkingTable rows={ROWS_F} />
-        <Explore title="Less than 1% may miss grade A in total, and there are two tails to miss by">
+        <Explore title="Balls miss grade A in both tails, so the two tails share the 1%">
           <TwoTailsWidget />
         </Explore>
       </PartCard>
@@ -613,7 +649,7 @@ export default function MethodsQ4_2023Exam2() {
         examinerReport={EXAM_J}
       >
         <WorkingTable rows={ROWS_J} />
-        <Explore title="Stretching sideways by b scales the area and the mean by b, so a must undo it">
+        <Explore title="A sideways stretch by b moves the mean to b·E(V); a = 1/b only keeps the area at 1">
           <DilateWidget />
         </Explore>
       </PartCard>

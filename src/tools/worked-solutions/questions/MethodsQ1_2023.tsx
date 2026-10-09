@@ -18,15 +18,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A = |a| = \left|-\tfrac12\right| = \tfrac12" />,
-    reason: <>Amplitude is the distance from the centre line (here <Katex tex="y=0" />) to a maximum, and a distance is never negative. The minus sign only reflects the graph in the <Katex tex="x" />-axis: it still reaches <Katex tex="\tfrac12" /> above and <Katex tex="\tfrac12" /> below the centre line.</>,
+    reason: <>Amplitude is the distance from the centre line (here <Katex tex="y=0" />) to a maximum, so it is never negative. The minus sign only reflects the graph in the <Katex tex="x" />-axis.</>,
+    more: <>The reflected graph still reaches <Katex tex="\tfrac12" /> above and <Katex tex="\tfrac12" /> below the centre line; it just goes down first instead of up. Reflecting a graph never changes how far it reaches from the centre line.</>,
   },
   {
     working: <Katex display tex="P = \frac{2\pi}{n} = \frac{2\pi}{3}" />,
-    reason: <><Katex tex="\sin(nx)" /> completes one cycle as <Katex tex="nx" /> runs through <Katex tex="2\pi" />, that is, as <Katex tex="x" /> runs through <Katex tex="\tfrac{2\pi}{n}" />. The <Katex tex="+\tfrac{2\pi}{3}" /> inside is only a horizontal translation, and translations change neither the amplitude nor the period. (It is exactly one period, so in fact <Katex tex="\sin(3x+2\pi)=\sin(3x)" />.)</>,
+    reason: <><Katex tex="\sin(nx)" /> completes one cycle as <Katex tex="nx" /> runs through <Katex tex="2\pi" />, that is, as <Katex tex="x" /> runs through <Katex tex="\tfrac{2\pi}{n}" />. The <Katex tex="+\tfrac{2\pi}{3}" /> inside is only a horizontal translation, which changes neither the amplitude nor the period.</>,
+    more: <>In fact the translation is exactly one period, so <Katex tex="\sin(3x+2\pi)=\sin(3x)" /> and the graph is the same as <Katex tex="y=-\tfrac12\sin(3x)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \tfrac12, \quad P = \tfrac{2\pi}{3}}" />,
-    reason: <>Matches option <b>E</b>. Option <b>B</b> (chosen by 16%) has the right period but keeps the minus sign in the amplitude. Option <b>D</b> has the right amplitude, but its period <Katex tex="\tfrac{\pi}{3}=\tfrac{\pi}{n}" /> is the rule for <Katex tex="\tan(nx)" />, not <Katex tex="\sin(nx)" />. Options <b>A</b> and <b>C</b> pair the negative amplitude with a wrong period.</>,
+    reason: <>Matches option <b>E</b>; option <b>B</b> keeps the minus sign in the amplitude.</>,
+    more: <>Option <b>B</b> was the most common wrong answer (16%): its period is right, so the only slip is the sign. Option <b>D</b> has the right amplitude, but its period <Katex tex="\tfrac{\pi}{3}=\tfrac{\pi}{n}" /> is the rule for <Katex tex="\tan(nx)" />, not <Katex tex="\sin(nx)" />. Options <b>A</b> and <b>C</b> pair the negative amplitude with a wrong period: <b>A</b> repeats <b>D</b>&rsquo;s <Katex tex="\tfrac{\pi}{3}" />, and <b>C</b>&rsquo;s <Katex tex="\tfrac{3\pi}{2}" /> swaps the 2 and the 3 in <Katex tex="\tfrac{2\pi}{3}" />.</>,
   },
 ]
 

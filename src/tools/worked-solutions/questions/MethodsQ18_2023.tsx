@@ -45,8 +45,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f(x)=\sin(ax) \text{ has period } \frac{2\pi}{a}" />,
     reason: (
       <>
-        The plan: the graph of a sine function repeats every period, and each repeat has one dip, so count how many
-        periods fit in the domain. The period of <Katex tex="\sin(ax)" /> is <Katex tex="\tfrac{2\pi}{a}" />.
+        The plan: count how many periods (complete waves) fit in the domain, then count the dips in each. For{' '}
+        <Katex tex="\sin(ax)" /> the period is <Katex tex="\tfrac{2\pi}{a}" />.
+      </>
+    ),
+    more: (
+      <>
+        Why <Katex tex="\tfrac{2\pi}{a}" />: one full cycle of sine needs its input <Katex tex="ax" /> to run through{' '}
+        <Katex tex="2\pi" />, and that takes <Katex tex="x" /> a distance of only <Katex tex="\tfrac{2\pi}{a}" />. So the
+        bigger <Katex tex="a" /> is, the shorter each wave.
       </>
     ),
   },
@@ -58,10 +65,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{Number of periods} = \frac{2a\pi}{2\pi/a} = a^2" />,
     reason: (
       <>
-        Divide the domain width by the period. Changing <Katex tex="a" /> does two things at once: the domain gets{' '}
-        <Katex tex="a" /> times wider and each wave gets <Katex tex="a" /> times shorter, so the count is{' '}
-        <Katex tex="a\times a" />. Using <Katex tex="2\pi" /> (the period of <Katex tex="\sin x" />) instead
-        gives <Katex tex="\tfrac{2a\pi}{2\pi}=a" />, option <b>C</b>.
+        Divide the domain width by the period. The <Katex tex="a" /> works twice: the domain is <Katex tex="a" /> times
+        wider and each wave is <Katex tex="a" /> times shorter, so the count is <Katex tex="a\times a" />.
       </>
     ),
   },
@@ -69,12 +74,25 @@ const ROWS: WorkingRow[] = [
     working: <>Each period contains exactly <b>one</b> local minimum.</>,
     reason: (
       <>
-        A local minimum is a turning point at the bottom of a dip, here where <Katex tex="\sin(ax)=-1" />, which happens
-        once per period. At <Katex tex="x=-a\pi" />, <Katex tex="f(x)=\sin(-a^2\pi)=0" />, so each period starts and ends
-        at a zero of <Katex tex="f" /> with its one dip strictly inside. The endpoints <Katex tex="x=\pm a\pi" /> are
-        not turning points, because the graph crosses the axis there rather than levelling off:{' '}
-        <Katex tex="f'(\pm a\pi)=a\cos(a^2\pi)=\pm a
-eq0" />. So they add nothing.
+        A local minimum is the bottom of a dip, where <Katex tex="\sin(ax)=-1" />, and that happens once per period. The
+        endpoints <Katex tex="x=\pm a\pi" /> don't count: a local minimum needs the graph on both sides of it, and at
+        an endpoint the domain stops.
+      </>
+    ),
+    more: (
+      <>
+        <p>
+          Why no dip is split or cut off: <Katex tex="f(-a\pi)=\sin(-a^2\pi)=0" /> because <Katex tex="a^2" /> is a whole
+          number, so the <Katex tex="a^2" /> periods can be laid end to end starting at <Katex tex="x=-a\pi" />. Each
+          starts and ends at a zero of <Katex tex="f" /> with its one dip strictly inside.
+        </p>
+        <p>
+          The endpoints are not turning points either:{' '}
+          <Katex tex="f'(\pm a\pi)=a\cos(a^2\pi)=(-1)^a a\neq0" />, so the graph is still sloping there rather than
+          levelling off. One endpoint is lower than the points beside it (for <Katex tex="a=1" />, <Katex tex="\sin x" />{' '}
+          falls to <Katex tex="0" /> at <Katex tex="x=\pi" />), but with graph on one side only it is not a local
+          minimum. Counting it would give <Katex tex="a^2+1" />, which is not among the options.
+        </p>
       </>
     ),
   },
@@ -88,16 +106,32 @@ eq0" />. So they add nothing.
     ),
     reason: (
       <>
-        Check the pattern on small cases. One case is not enough for "always": at <Katex tex="a=2" /> the count{' '}
-        <Katex tex="4" /> equals options <b>B</b>, <b>D</b> and <b>E</b>, and at <Katex tex="a=1" /> the count{' '}
-        <Katex tex="1" /> equals <b>C</b> and <b>E</b>. At <Katex tex="a=3" /> the options give 2, 4, 3, 6 and 9, and
-        only <Katex tex="a^2=9" /> fits.
+        Check the pattern on small cases by sketching or graphing. One case can't settle "always": at{' '}
+        <Katex tex="a=2" /> the count <Katex tex="4" /> is also the value of options <b>B</b> and <b>D</b>. At{' '}
+        <Katex tex="a=3" /> the count is <Katex tex="9" />, and only <Katex tex="a^2" /> gives 9.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="a=1" /> the count <Katex tex="1" /> fits both <b>C</b> and <b>E</b>, so <Katex tex="a=1" /> on
+        its own doesn't decide either. At <Katex tex="a=3" /> the five options give 2, 4, 3, 6 and 9, so{' '}
+        <Katex tex="a=3" /> is the first single case that leaves only one option standing.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{a^2}" />,
     reason: <>Matches option <b>E</b>.</>,
+    more: (
+      <>
+        Where the other options come from. <b>A</b> (2) and <b>B</b> (4) are fixed numbers, but the count grows with{' '}
+        <Katex tex="a" /> (1, 4, 9, …), so neither can always be right. <b>C</b> (<Katex tex="a" />) divides the domain
+        width by <Katex tex="2\pi" />, the period of <Katex tex="\sin x" />, instead of <Katex tex="\tfrac{2\pi}{a}" />:{' '}
+        <Katex tex="\tfrac{2a\pi}{2\pi}=a" /> counts the wider domain but misses the shorter waves. <b>D</b> (
+        <Katex tex="2a" />) equals <Katex tex="a^2" /> only when <Katex tex="a=2" />, so it fits a sketch of the{' '}
+        <Katex tex="a=2" /> case but fails at <Katex tex="a=1" /> and <Katex tex="a=3" />.
+      </>
+    ),
   },
 ]
 

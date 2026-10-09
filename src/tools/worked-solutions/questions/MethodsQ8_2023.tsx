@@ -1,6 +1,8 @@
 // 2023 Mathematical Methods — Exam 2, MCQ 8. VCAA examination report: 49% correct.
 // "At least once" is the complement of "never". Question text transcribed from the original paper.
 // Solution is original.
+// Oct 2026 Concise/Detailed pass (no interactive: 49% correct): the "none, not exactly one" trap behind D and E
+// moved to row 3's `more`; option analysis and the role of n != m moved to the last row's `more`. Rechecked in sympy.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -35,6 +37,13 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X\ge1) = 1-\Pr(X=0)" />,
     reason: <>"At least once" fails in only one way: no greens at all. The complement needs one term instead of adding the eight terms <Katex tex="\Pr(X=1)+\dots+\Pr(X=8)" />.</>,
+    more: (
+      <>
+        The opposite of &ldquo;at least one green&rdquo; is &ldquo;no greens&rdquo;, not &ldquo;exactly one
+        green&rdquo;. Options <b>E</b> and <b>D</b> both come from subtracting a one-green term instead of the
+        no-green term.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(\text{red on one draw}) = 1-\frac{n}{n+m} = \frac{m}{n+m}" />,
@@ -46,7 +55,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\ge1) = \boxed{1-\left(\frac{m}{n+m}\right)^{8}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b> uses green's probability where red's belongs: it is <Katex tex="1-\Pr(\text{all eight green})" />, the chance of at least one <em>red</em>. Option <b>A</b> is <Katex tex="\Pr(X=1)=8\left(\tfrac{n}{n+m}\right)\left(\tfrac{m}{n+m}\right)^7" />, the chance of <em>exactly</em> one green, and option <b>E</b> is <Katex tex="1-\Pr(X=1)" />. Option <b>D</b> is <b>E</b> without the factor 8, which counts the 8 positions the single green could be in.</>,
+    reason: <>Matches option <b>C</b>: one minus the chance that all eight draws are red.</>,
+    more: (
+      <>
+        Option <b>E</b> is <Katex tex="1-\Pr(X=1)=1-8\left(\tfrac{n}{n+m}\right)\left(\tfrac{m}{n+m}\right)^7" />, and
+        option <b>D</b> is the same with the factor 8 dropped; that 8 counts the 8 positions the single green could be
+        in. Option <b>A</b> is <Katex tex="\Pr(X=1)" /> itself, the chance of <em>exactly</em> one green. Option{' '}
+        <b>B</b> uses green&apos;s probability where red&apos;s belongs: it is{' '}
+        <Katex tex="1-\Pr(\text{all eight green})" />, the chance of at least one <em>red</em>. The condition{' '}
+        <Katex tex="n\ne m" /> is there so that B and C are different: if <Katex tex="n=m" />, both fractions equal{' '}
+        <Katex tex="\tfrac12" />.
+      </>
+    ),
   },
 ]
 

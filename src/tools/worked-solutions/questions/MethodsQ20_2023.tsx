@@ -66,6 +66,17 @@ const ROWS: WorkingRow[] = [
         function <Katex tex="f" />. So find where each composite exists, then keep the <Katex tex="x" />-values where both do.
       </>
     ),
+    more: (
+      <>
+        You may have learned that <Katex tex="f\circ g" /> exists only when{' '}
+        <Katex tex="\text{ran}(g)\subseteq\text{dom}(f)" />. Here <Katex tex="\text{ran}(g)=[-1,1]" /> is not inside{' '}
+        <Katex tex="\text{dom}(f)=\left(-\tfrac{1}{\sqrt2},\infty\right)" />, so <Katex tex="f\circ g" /> can&apos;t
+        use all of <Katex tex="g" />&apos;s domain. The question asks for the <Katex tex="x" />-values at which{' '}
+        <Katex tex="(f\circ g)(x)" /> can still be calculated: that means cutting <Katex tex="g" />&apos;s domain down to
+        the <Katex tex="x" />-values whose outputs <Katex tex="g(x)" /> land in <Katex tex="\text{dom}(f)" />. The same goes
+        for <Katex tex="g\circ f" /> with the roles swapped.
+      </>
+    ),
   },
   {
     working: <Katex display tex="(f\circ g)(x) = \log_e\!\left(\sin(x)+\tfrac{1}{\sqrt2}\right)" />,
@@ -86,8 +97,9 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Solve the boundary equation first. Sine is negative in quadrants 3 and 4, and the reference angle for{' '}
-        <Katex tex="\tfrac{1}{\sqrt2}" /> is <Katex tex="\tfrac{\pi}{4}" />: so <Katex tex="x=\pi+\tfrac{\pi}{4}=\tfrac{5\pi}{4}" />{' '}
-        and <Katex tex="x=-\tfrac{\pi}{4}" />, repeating every <Katex tex="2\pi" />.
+        <Katex tex="\tfrac{1}{\sqrt2}" /> is <Katex tex="\tfrac{\pi}{4}" />: so <Katex tex="x=\pi+\tfrac{\pi}{4}=\tfrac{5\pi}{4}" />,
+        and <Katex tex="x=-\tfrac{\pi}{4}" /> in quadrant 4 (the same as <Katex tex="\tfrac{7\pi}{4}" />, one period
+        back), repeating every <Katex tex="2\pi" />.
       </>
     ),
   },
@@ -102,8 +114,16 @@ const ROWS: WorkingRow[] = [
       <>
         From <Katex tex="-\tfrac{\pi}{4}" /> the sine graph rises to its peak of 1 at <Katex tex="\tfrac{\pi}{2}" /> and comes
         back down to <Katex tex="-\tfrac{1}{\sqrt2}" /> at <Katex tex="\tfrac{5\pi}{4}" />, so it is above{' '}
-        <Katex tex="-\tfrac{1}{\sqrt2}" /> in between (check <Katex tex="x=0" />: <Katex tex="\sin(0)=0>-\tfrac{1}{\sqrt2}" />
-        ). It then dips below until <Katex tex="\tfrac{7\pi}{4}" />, where the pattern repeats.
+        <Katex tex="-\tfrac{1}{\sqrt2}" /> in between. It then dips below until <Katex tex="\tfrac{7\pi}{4}" />, where
+        the pattern repeats.
+      </>
+    ),
+    more: (
+      <>
+        Check a point inside: <Katex tex="x=0" /> gives <Katex tex="\sin(0)=0>-\tfrac{1}{\sqrt2}" />. Using{' '}
+        <Katex tex="-\tfrac{\pi}{4}" /> rather than <Katex tex="\tfrac{7\pi}{4}" /> for the fourth-quadrant solution is
+        what lets the stretch above the line, which runs through <Katex tex="x=0" />, be written as the single interval{' '}
+        <Katex tex="\left(-\tfrac{\pi}{4},\ \tfrac{5\pi}{4}\right)" />.
       </>
     ),
   },
@@ -116,10 +136,19 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Now apply <Katex tex="x<5" />. The <Katex tex="k=0" /> piece fits, since <Katex tex="\tfrac{5\pi}{4}\approx3.93<5" />,
-        but the <Katex tex="k=1" /> piece would start at <Katex tex="\tfrac{7\pi}{4}\approx5.50" />, outside{' '}
-        <Katex tex="g" />&apos;s domain. So the pieces are <Katex tex="\left(-\tfrac{\pi}{4},\ \tfrac{5\pi}{4}\right)" />{' '}
-        and the copies to its left: <Katex tex="\left(-\tfrac{9\pi}{4},\ -\tfrac{3\pi}{4}\right)" />, and so on.
+        Now apply <Katex tex="x<5" />. The <Katex tex="k=0" /> piece ends at <Katex tex="\tfrac{5\pi}{4}\approx3.93<5" />,
+        so it stays, and so does every piece to its left (<Katex tex="k" /> negative). The <Katex tex="k=1" /> piece would
+        start at <Katex tex="\tfrac{7\pi}{4}\approx5.50" />, outside <Katex tex="g" />&apos;s domain, and later pieces lie
+        further right still.
+      </>
+    ),
+    more: (
+      <>
+        So <Katex tex="\text{dom}(f\circ g)" /> is <Katex tex="\left(-\tfrac{\pi}{4},\ \tfrac{5\pi}{4}\right)" /> together
+        with its copies to the left, one every <Katex tex="2\pi" />: <Katex tex="k=-1" /> gives{' '}
+        <Katex tex="\left(-\tfrac{9\pi}{4},\ -\tfrac{3\pi}{4}\right)" />, <Katex tex="k=-2" /> gives{' '}
+        <Katex tex="\left(-\tfrac{17\pi}{4},\ -\tfrac{11\pi}{4}\right)" />, and so on. The report writes these{' '}
+        <Katex tex="k" />-values as <Katex tex="k\in Z^-\cup\{0\}" />.
       </>
     ),
   },
@@ -167,13 +196,23 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Both composites must exist at the same <Katex tex="x" />, so the answer is the overlap of the two domains. The
-        pieces of <Katex tex="\text{dom}(f\circ g)" /> with <Katex tex="k\le-1" /> end at{' '}
-        <Katex tex="-\tfrac{3\pi}{4}\approx-2.36" /> or further left, so none of them reaches{' '}
-        <Katex tex="x>-\tfrac{1}{\sqrt2}" />. On the <Katex tex="k=0" /> piece, take the tighter bound at each end: the
-        larger left end, <Katex tex="-\tfrac{1}{\sqrt2}" /> (from <Katex tex="g\circ f" />), and the smaller right end,{' '}
-        <Katex tex="\tfrac{5\pi}{4}" /> (from <Katex tex="f\circ g" />). The two left ends are close, so compare them as
-        decimals.
+        Both composites must exist at the same <Katex tex="x" />, so take the overlap of the two domains. Only the{' '}
+        <Katex tex="k=0" /> piece of <Katex tex="\text{dom}(f\circ g)" /> reaches <Katex tex="x>-\tfrac{1}{\sqrt2}" />; on
+        it, keep the larger left end, <Katex tex="-\tfrac{1}{\sqrt2}" /> (the left ends are close, so compare them as
+        decimals), and the smaller right end, <Katex tex="\tfrac{5\pi}{4}" />.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="k=-1" /> piece ends at <Katex tex="-\tfrac{3\pi}{4}\approx-2.36" />, and the pieces further left
+        end further left still, so none of them overlaps <Katex tex="\text{dom}(g\circ f)" />. The <Katex tex="k=0" /> piece
+        is where the question is decided: its left end <Katex tex="-\tfrac{\pi}{4}" /> and{' '}
+        <Katex tex="g\circ f" />&apos;s left end <Katex tex="-\tfrac{1}{\sqrt2}" /> differ by only about{' '}
+        <Katex tex="0.08" />, so <Katex tex="f\circ g" />&apos;s piece{' '}
+        <Katex tex="\left(-\tfrac{\pi}{4},\ \tfrac{5\pi}{4}\right)" />, option <b>C</b> and the most popular wrong answer,
+        is easy to take as the answer on its own. But on the sliver <Katex tex="-\tfrac{\pi}{4}<x\le-\tfrac{1}{\sqrt2}" />,{' '}
+        <Katex tex="x+\tfrac{1}{\sqrt2}\le0" />, so <Katex tex="f(x)" />, and with it <Katex tex="g(f(x))" />, doesn&apos;t
+        exist. The interactive below zooms in on this gap.
       </>
     ),
   },
@@ -181,13 +220,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\left(-\tfrac{1}{\sqrt2},\ \tfrac{5\pi}{4}\right)}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Both ends are open: at <Katex tex="x=-\tfrac{1}{\sqrt2}" />,{' '}
-        <Katex tex="f(x)=\log_e(0)" />, and at <Katex tex="x=\tfrac{5\pi}{4}" />,{' '}
-        <Katex tex="f(g(x))=\log_e(0)" />, both undefined. Option <b>B</b> includes <Katex tex="x=-\tfrac{1}{\sqrt2}" />.
-        Option <b>C</b> is the <Katex tex="k=0" /> piece of <Katex tex="f\circ g" />&apos;s domain alone, so it leaves out{' '}
-        <Katex tex="g\circ f" />&apos;s condition <Katex tex="x>-\tfrac{1}{\sqrt2}" />. Option <b>D</b> is C with both ends
-        closed, where <Katex tex="f\circ g" /> fails. Option <b>E</b> is the gap between the two left ends, where{' '}
-        <Katex tex="g\circ f" /> doesn&apos;t exist at all.
+        Matches option <b>A</b>; both ends are open, since each end gives <Katex tex="\log_e(0)" />.
+      </>
+    ),
+    more: (
+      <>
+        Which composite fails at each end: at <Katex tex="x=-\tfrac{1}{\sqrt2}" /> it is <Katex tex="f(x)" /> that is{' '}
+        <Katex tex="\log_e(0)" />, so <Katex tex="g\circ f" /> is undefined; at <Katex tex="x=\tfrac{5\pi}{4}" /> it
+        is <Katex tex="f(g(x))" />, so <Katex tex="f\circ g" /> is undefined. Option <b>B</b> includes{' '}
+        <Katex tex="x=-\tfrac{1}{\sqrt2}" />. Option <b>C</b> is <Katex tex="f\circ g" />&apos;s <Katex tex="k=0" /> piece
+        alone, the trap described in the previous step. Option <b>D</b> is C with both ends closed, so it keeps the same
+        gap and adds two points where <Katex tex="f\circ g" /> fails. Option <b>E</b> is the gap between the two left ends
+        (ends included), where <Katex tex="g\circ f" /> doesn&apos;t exist at all.
       </>
     ),
   },

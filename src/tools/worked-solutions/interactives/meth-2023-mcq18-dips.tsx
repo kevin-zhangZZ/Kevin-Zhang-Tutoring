@@ -21,6 +21,7 @@ const OPTIONS: { letter: string; tex: string; value: (a: number) => number }[] =
   { letter: 'E', tex: 'a^2', value: a => a * a },
 ]
 
+const TICKS = [-4, -3, -2, -1, 1, 2, 3, 4]
 const PERIOD_TEX: Record<number, string> = { 1: '2\\pi', 2: '\\pi', 3: '\\tfrac{2\\pi}{3}', 4: '\\tfrac{\\pi}{2}' }
 const piLabel = (v: number) => {
   const n = Math.round(v / PI)
@@ -55,18 +56,31 @@ export default function SineDips() {
   let notice
   if (a === 1) {
     notice = (
-      <Notice>
+      <Notice tone={left.length === 1 ? 'good' : 'neutral'}>
         The domain <M>{'[-\\pi, \\pi]'}</M> is exactly one period (<M>{'2\\pi'}</M>), so there is one dip. But{' '}
-        <M>{'1 = a = a^2'}</M>, so one case can't decide between C and E. Now try <M>{'a = 2'}</M> and{' '}
-        <M>{'a = 3'}</M>.
+        <M>{'1 = a = a^2'}</M>, so <M>{'a = 1'}</M> on its own can't decide between C and E.{' '}
+        {left.length === 1 ? (
+          <>With the other values of <M>a</M> you have tried, only E is left.</>
+        ) : (
+          <>
+            Now try <M>{'a = 2'}</M> and <M>{'a = 3'}</M>.
+          </>
+        )}
       </Notice>
     )
   } else if (a === 2) {
     notice = (
       <Notice tone={left.length === 1 ? 'good' : 'warn'}>
         The domain is twice as wide (<M>{'4\\pi'}</M>) and each wave is half as long (period <M>{'\\pi'}</M>), so{' '}
-        <M>{'2 \\times 2 = 4'}</M> periods and 4 dips. But <M>{'4 = 2a = a^2'}</M> here, so testing only{' '}
-        <M>{'a = 2'}</M> can't separate B, D and E. Try <M>{'a = 3'}</M>.
+        <M>{'2 \\times 2 = 4'}</M> periods and 4 dips. But <M>{'4 = 2a = a^2'}</M> here, so <M>{'a = 2'}</M> on its
+        own can't separate B, D and E.{' '}
+        {left.length === 1 ? (
+          <>With the other values of <M>a</M> you have tried, only E is left.</>
+        ) : (
+          <>
+            Try <M>{'a = 3'}</M>.
+          </>
+        )}
       </Notice>
     )
   } else if (a === 3) {
@@ -88,7 +102,7 @@ export default function SineDips() {
 
   return (
     <div>
-      <Plane x={XR} y={YR} xStep={PI} yStep={1} height={260} xLabels={piLabel} yLabels={v => (Math.round(v) === -1 ? '−1' : '')}>
+      <Plane x={XR} y={YR} xStep={PI} yStep={1} height={260} xLabels={false} yLabels={v => (Math.round(v) === -1 ? '−1' : '')}>
         {bands.map((s, j) => (
           <Region
             key={j}
@@ -106,6 +120,12 @@ export default function SineDips() {
         <Label at={[lo, 1.25]} attach="n" color={C.guide} size={12}>{`x = ${piLabel(lo)}`}</Label>
         <Label at={[hi, 1.25]} attach="n" color={C.guide} size={12}>{`x = ${piLabel(hi)}`}</Label>
         <Plot.OfX y={f} domain={[lo, hi]} color={C.f} weight={2.5} minSamplingDepth={10} />
+        {/* π-ticks sit below the shaded band (not on the axis, where the curve crosses at every multiple of π). */}
+        {TICKS.map(n => (
+          <Label key={`t${n}`} at={[n * PI, -1.4]} attach="c" color={C.guide} size={11} bold={false}>
+            {piLabel(n * PI)}
+          </Label>
+        ))}
         {minima.map(x => (
           <Point key={x} x={x} y={-1} color={C.g} />
         ))}

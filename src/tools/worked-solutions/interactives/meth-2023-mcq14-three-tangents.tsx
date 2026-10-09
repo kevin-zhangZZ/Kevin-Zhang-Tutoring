@@ -6,7 +6,7 @@
 // lines together: three different gradients, so three different tangents (option D).
 
 import { useState } from 'react'
-import { Buttons, C, Controls, Label, Line, M, MovablePoint, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, clamp } from './kit'
+import { Buttons, C, Controls, Label, Line, M, MovablePoint, Notice, Plane, Plot, Point, Readout, Readouts, Slider, Toggle, clamp, tick } from './kit'
 
 const f = (x: number) => x * (3 * x - 1) * (x + 3) * (x + 1)
 const df = (x: number) => 12 * x ** 3 + 33 * x ** 2 + 10 * x - 3
@@ -49,6 +49,9 @@ function Tangent({ a, color }: { a: number; color: string }) {
   return <Line.ThroughPoints point1={[a, f(a)]} point2={[a + 1, f(a) + df(a)]} color={color} weight={2.5} />
 }
 
+// The curve crosses the x-axis right through the tick numbers −3 and −1, so leave those two out.
+const skipIntercepts = (v: number) => (Math.abs(v + 3) < 1e-9 || Math.abs(v + 1) < 1e-9 ? '' : tick(v))
+
 const sign = (v: number) => (v < 0 ? `- ${Math.abs(v).toFixed(2)}` : `+ ${v.toFixed(2)}`)
 
 export default function ThreeTangents() {
@@ -69,16 +72,14 @@ export default function ThreeTangents() {
       <Notice tone="good">
         <b>Three points of contact, three different gradients</b>: <M>{'\\tfrac{40}{9}'}</M> at P itself,{' '}
         <M>\approx -1.89</M> at <M>a \approx -0.451</M> and <M>\approx 6.34</M> at <M>a \approx -2.215</M>. So these are
-        three different lines through P, which is option <b>D</b>. Counting only the tangent at P gives 1 (option B);
-        counting only the two that touch the curve elsewhere gives 2 (option C).
+        three different lines through P (option <b>D</b>), and the tangent at P itself is only one of them.
       </Notice>
     )
   } else if (a === PX) {
     notice = (
       <Notice tone="good">
-        <b>This is the tangent at P itself</b> (gradient <M>{'\\tfrac{40}{9}'}</M>). It passes through P because it
-        touches the curve there. But a tangent can touch the curve somewhere else and still pass through P further
-        along. Drag the orange point (or <M>a</M>) to the left and watch where the tangent crosses the dashed line{' '}
+        <b>This is the tangent at P itself</b> (gradient <M>{'\\tfrac{40}{9}'}</M>). Is it the only tangent through
+        P? Drag the orange point (or <M>a</M>) to the left and watch where the tangent crosses the dashed line{' '}
         <M>x = \tfrac13</M>.
       </Notice>
     )
@@ -112,7 +113,7 @@ export default function ThreeTangents() {
 
   return (
     <div>
-      <Plane x={X_RANGE} y={Y_RANGE} xStep={1} yStep={6} height={340}>
+      <Plane x={X_RANGE} y={Y_RANGE} xStep={1} yStep={6} height={340} xLabels={skipIntercepts}>
         <Line.Segment point1={[PX, Y_RANGE[0]]} point2={[PX, Y_RANGE[1]]} color={C.guide} style="dashed" weight={1.5} />
         <Label at={[PX, -16.5]} color={C.guide} attach="e" size={12}>x = 1/3</Label>
         <Plot.OfX y={f} domain={X_RANGE} color={C.f} weight={3} />

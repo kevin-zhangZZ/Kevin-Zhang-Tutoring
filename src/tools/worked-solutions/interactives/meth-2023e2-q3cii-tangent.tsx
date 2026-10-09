@@ -88,8 +88,8 @@ export default function TangentThroughOrigin() {
           <Toggle label="What if I use the tangent at x = 0?" checked={atZero} onChange={setAtZero} />
         </Buttons>
         <Readouts>
-          <Readout color={lineColor} tex={`\\text{gradient } 2^a\\log_e(2) = ${m.toFixed(3)}`} />
-          <Readout color={C.violet} tex={`y\\text{-intercept} = ${hit ? '0' : c.toFixed(3)}`} />
+          <Readout color={lineColor} tex={`\\text{gradient } 2^a\\log_e(2) \\approx ${m.toFixed(3)}`} />
+          <Readout color={C.violet} tex={`y\\text{-intercept} ${hit ? '= 0' : `\\approx ${c.toFixed(3)}`}`} />
         </Readouts>
         {notice}
       </Controls>

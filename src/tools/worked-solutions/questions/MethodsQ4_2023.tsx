@@ -16,23 +16,26 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\text{Eq. 1: } y &= -\tfrac{k}{5}x+\tfrac{k+5}{5}\\ \text{Eq. 2: } y &= -\tfrac{4}{k+1}x \quad (k\ne-1)\end{aligned}" />,
-    reason: <>Each equation is a straight line, and two lines share infinitely many points only when they are the <em>same</em> line: equal gradients <em>and</em> equal <Katex tex="y" />-intercepts. Rearrange each into <Katex tex="y=mx+c" /> form to read both off. (Dividing by <Katex tex="k+1" /> needs <Katex tex="k\ne-1" />. At <Katex tex="k=-1" /> the second equation is <Katex tex="4x=0" />, the vertical line <Katex tex="x=0" />, which the first line crosses exactly once.)</>,
+    reason: <>Each equation is a straight line, and two lines share infinitely many points only when they are the <em>same</em> line: equal gradients <em>and</em> equal <Katex tex="y" />-intercepts. Rearrange each into <Katex tex="y=mx+c" /> form to read both off. (Dividing by <Katex tex="k+1" /> needs <Katex tex="k\ne-1" />. At <Katex tex="k=-1" /> the second line is <Katex tex="x=0" />, which the first line crosses only once, so that value can be set aside.)</>,
+    more: <>Checking <Katex tex="k=-1" /> in full: the equations become <Katex tex="-x+5y=4" /> and <Katex tex="4x=0" />. The second gives <Katex tex="x=0" />, and then the first gives <Katex tex="y=\tfrac45" />, so the only solution is <Katex tex="\left(0,\tfrac45\right)" />. A vertical line has no <Katex tex="y=mx+c" /> form, which is why it is checked separately.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}-\tfrac{k}{5} &= -\tfrac{4}{k+1}\\ k(k+1) &= 20\\ k^2+k-20 &= 0\\ (k+5)(k-4) &= 0\\ k &= -5 \ \text{ or } \ k=4\end{aligned}" />,
-    reason: <>Set the gradients equal and cross-multiply. These are the only two values where the lines are parallel; for every other <Katex tex="k" /> they cross at exactly one point, so <Katex tex="k\in R\setminus\{-5,4\}" /> (option <b>D</b>) is the unique-solution case. Equal gradients alone don't settle it: stopping here gives option <b>A</b>.</>,
+    reason: <>Set the gradients equal and cross-multiply. Only these two values make the lines parallel; for every other <Katex tex="k" /> they cross at exactly one point. Parallel lines can still be the same line or two separate lines that never meet, so test each value.</>,
   },
   {
     working: <Katex display tex="k=4: \quad 4x+5y = 9 \ \text{ and } \ 4x+5y = 0" />,
-    reason: <>Substitute each value back into the original equations. Same left-hand sides, different right-hand sides: <Katex tex="4x+5y" /> can't equal both <Katex tex="9" /> and <Katex tex="0" />, so these are parallel lines that never meet. No solutions at all, so <Katex tex="k=4" /> (option <b>C</b>) is the no-solution case.</>,
+    reason: <>Substitute each value back into the original equations. Same left-hand sides, different right-hand sides: <Katex tex="4x+5y" /> can't equal both <Katex tex="9" /> and <Katex tex="0" />, so these are parallel lines that never meet. No solutions at all.</>,
   },
   {
     working: <Katex display tex="k=-5: \quad -5x+5y = 0 \ \text{ and } \ 4x-4y = 0" />,
     reason: <>Divide the first by <Katex tex="5" /> and the second by <Katex tex="4" />: they become <Katex tex="-x+y=0" /> and <Katex tex="x-y=0" />, which both rearrange to <Katex tex="y=x" />. The same line twice, so every point on it satisfies both equations: infinitely many solutions.</>,
+    more: <>A quicker way to tell the two values apart uses the <Katex tex="y" />-intercepts from the first line of working. The second line always passes through the origin (intercept <Katex tex="0" />), while the first has intercept <Katex tex="\tfrac{k+5}{5}" />, which is <Katex tex="0" /> only when <Katex tex="k=-5" />. So at <Katex tex="k=-5" /> the parallel lines coincide, and at <Katex tex="k=4" /> they are separate.</>,
   },
   {
     working: <Katex display tex="\boxed{k \in \{-5\}}" />,
-    reason: <>Matches option <b>B</b>. Equal gradients only tell you there is no <em>unique</em> solution; whether there are <em>none</em> (parallel lines) or <em>infinitely many</em> (the same line) has to be checked by substituting each value back.</>,
+    reason: <>Matches option <b>B</b>: only <Katex tex="k=-5" /> gives the same line twice.</>,
+    more: <>Stopping at the equal-gradient step gives option <b>A</b>, <Katex tex="k\in\{-5,4\}" />, but <Katex tex="k=4" /> gives no solutions: <Katex tex="k\in\{4\}" /> (option <b>C</b>) is the no-solution case. Option <b>D</b>, <Katex tex="k\in R\setminus\{-5,4\}" />, is the set of values that give a unique solution, and option <b>E</b>, <Katex tex="k\in R\setminus\{-5\}" />, is every value that does <em>not</em> give infinitely many solutions.</>,
   },
 ]
 

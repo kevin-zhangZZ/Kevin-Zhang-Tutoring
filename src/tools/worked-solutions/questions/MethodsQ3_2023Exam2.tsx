@@ -4,6 +4,8 @@
 // Answers checked with sympy and against the VCAA examination report. Solution is original.
 // Interactive diagrams (§15): part c.ii. slides the point of tangency until the tangent's
 // y-intercept is 0, with a toggle for the tangent at x = 0 (interactives/meth-2023e2-q3cii-tangent.tsx);
+// part e. slides the ends of an interval to show the turning points belong in the largest strictly
+// decreasing interval, starting from the round-bracket answer (interactives/meth-2023e2-q3e-endpoints.tsx);
 // part g. drags Newton's starting value x₀ onto a turning point, where the tangent goes flat and x₁
 // is undefined (interactives/meth-2023e2-q3g-newton.tsx); part h. slides n until the local minimum
 // of nˣ − xⁿ lands on the x-axis at n = e (interactives/meth-2023e2-q3h-touch.tsx).
@@ -15,6 +17,7 @@ import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2023e2-q3-graph.png'
 
 const TangentWidget = lazyWidget(() => import('../interactives/meth-2023e2-q3cii-tangent'))
+const EndpointsWidget = lazyWidget(() => import('../interactives/meth-2023e2-q3e-endpoints'))
 const NewtonWidget = lazyWidget(() => import('../interactives/meth-2023e2-q3g-newton'))
 const TouchWidget = lazyWidget(() => import('../interactives/meth-2023e2-q3h-touch'))
 
@@ -125,11 +128,12 @@ const EXAM_H: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x\to-\infty \implies 2^x\to0" />,
-    reason: <>As <Katex tex="x" /> becomes large and negative, <Katex tex="2^x" /> gets closer and closer to 0 (for example <Katex tex="2^{-10}=\tfrac{1}{1024}" />) but never reaches it.</>,
+    reason: <><Katex tex="\lim_{x\to-\infty}g(x)" /> asks what value <Katex tex="g(x)" /> approaches as <Katex tex="x" /> becomes large and negative. As it does, <Katex tex="2^x" /> gets closer and closer to 0 (for example <Katex tex="2^{-10}=\tfrac{1}{1024}" />) but never reaches it.</>,
   },
   {
     working: <Katex display tex="\boxed{\lim_{x\to-\infty}g(x) = 0+5 = 5}" />,
-    reason: <>The horizontal asymptote. The report notes 6 was a common incorrect answer — that is <Katex tex="g(0)" />, not the limit as <Katex tex="x\to-\infty" />.</>,
+    reason: <>Add the 5: the graph of <Katex tex="g" /> levels off towards its horizontal asymptote <Katex tex="y=5" />.</>,
+    more: <>The report notes some students did not attempt this part and appear not to have recognised the limit notation, and that 6 was a common incorrect answer. That is <Katex tex="g(0)=2^0+5" />, the value at <Katex tex="x=0" />, not the value <Katex tex="g(x)" /> approaches far out to the left.</>,
   },
 ]
 
@@ -144,7 +148,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \log_e(2)}" />,
-    reason: <>Write the base: the report notes some students did not include it.</>,
+    reason: <>Exact, and with the base written: <Katex tex="\log_e(2)" /> (or <Katex tex="\ln(2)" />), not just <Katex tex="\log(2)" />.</>,
+    more: <>The report notes some students did not include the base, and its general comments list part b. among the parts where an exact value was required, so 0.693 would not do either.</>,
   },
 ]
 
@@ -159,14 +164,16 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = 2^a\log_e(2)\,x-a\,2^a\log_e(2)+2^a+5}" />,
-    reason: <>Expand and make <Katex tex="y" /> the subject. An <em>equation</em> is required, not just a gradient, and every <Katex tex="x" /> and <Katex tex="a" /> must survive the copying: the report notes many transcription errors. The constant term <Katex tex="-a\,2^a\log_e(2)+2^a+5" /> is the <Katex tex="y" />-intercept, which part c.ii. needs.</>,
+    reason: <>Expand and make <Katex tex="y" /> the subject. The answer must be an <em>equation</em>, <Katex tex="y=\ldots" />, not just the gradient.</>,
+    more: <>Copy the CAS output term by term and check that every <Katex tex="x" /> and <Katex tex="a" /> survived: the report notes many transcription errors (a dropped <Katex tex="x" />, <Katex tex="2a" /> in place of <Katex tex="2^a" />), and algebraic errors from students who expanded by hand. Notice the constant term <Katex tex="-a\,2^a\log_e(2)+2^a+5" />: it is the tangent's <Katex tex="y" />-intercept, and part c.ii. sets it to 0.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Origin on the tangent: } x=0,\ y=0" />,
-    reason: <>In the tangent, <Katex tex="a" /> is where the line touches the curve (unknown), while <Katex tex="x" /> and <Katex tex="y" /> are the coordinates of any point on the line. The origin is a point <em>on the line</em>, so substitute <Katex tex="x=0" /> and <Katex tex="y=0" /> into the tangent from part c.i., not <Katex tex="a=0" />. Putting <Katex tex="a=0" /> gives the tangent at <Katex tex="x=0" />, <Katex tex="y=0.693x+6" />, which the report notes many students gave.</>,
+    reason: <>The origin is a point <em>on the line</em>, so substitute <Katex tex="x=0" /> and <Katex tex="y=0" /> into the tangent from part c.i. The unknown is <Katex tex="a" />, the <Katex tex="x" />-coordinate of the point where the line touches the curve.</>,
+    more: <>In the tangent's equation, <Katex tex="x" /> and <Katex tex="y" /> are the coordinates of any point on the line, while <Katex tex="a" /> fixes which tangent it is. Putting <Katex tex="a=0" /> instead gives the tangent <em>at</em> <Katex tex="x=0" />, <Katex tex="y=0.693x+6" />: it touches the curve at <Katex tex="(0,\,6)" /> and crosses the <Katex tex="y" />-axis at 6, so it misses the origin. The report notes many students misread the question this way, and some substituted <Katex tex="a=0" /> rather than <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="0 = 2^a\log_e(2)\times0-a\,2^a\log_e(2)+2^a+5" />,
@@ -182,7 +189,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = 2.61784\ldots" />,
-    reason: <>The <Katex tex="x" />-coordinate of the point of tangency. This is not the answer yet: the report's general comments note many students found <Katex tex="a" /> and did not go on to the equation.</>,
+    reason: <>The <Katex tex="x" />-coordinate of the point of tangency. This is not the answer yet: the question asks for the equation of the tangent.</>,
+    more: <>The report's general comments note many students only found the value of <Katex tex="a" /> and did not continue to find the equation.</>,
   },
   {
     working: <Katex display tex="m = 2^{2.61784\ldots}\log_e(2) = 4.25476\ldots" />,
@@ -190,7 +198,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = 4.255x}" />,
-    reason: <>The <Katex tex="y" />-intercept is 0 because we chose <Katex tex="a" /> to make it 0. A CAS may report the intercept as <Katex tex="8.14\mathrm{E}\!-\!10" /> (that is, <Katex tex="8.14\times10^{-10}" />), a rounding leftover from its numerical solve; the report's general comments note it should be recognised as zero.</>,
+    reason: <>The <Katex tex="y" />-intercept is exactly 0, because we chose <Katex tex="a" /> to make it 0. If CAS shows a tiny constant such as <Katex tex="8.14\mathrm{E}\!-\!10" />, write 0.</>,
+    more: <><Katex tex="8.14\mathrm{E}\!-\!10" /> means <Katex tex="8.14\times10^{-10}" />, a rounding leftover from the numerical solve for <Katex tex="a" />. The report notes <Katex tex="y=4.255x+8.14\mathrm{E}\!-\!10" /> was often seen, and its general comments say those students did not appear to recognise that it should be zero.</>,
   },
 ]
 
@@ -201,7 +210,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h''(x) = \left(\log_e(2)\right)^2 2^x-2" />,
-    reason: <>A point of inflection is where the curve changes concavity, which is where <Katex tex="h''(x)" /> changes sign, so solve <Katex tex="h''(x)=0" />. Setting <Katex tex="h'(x)=0" /> instead gives the stationary points, which the report notes many students gave.</>,
+    reason: <>A point of inflection is where the curve changes concavity, which is where <Katex tex="h''(x)" /> changes sign, so solve <Katex tex="h''(x)=0" />.</>,
+    more: <>Setting <Katex tex="h'(x)=0" /> instead gives the stationary points <Katex tex="(0.49,\,1.16)" /> and <Katex tex="(3.21,\,-1.05)" />, which the report notes many students gave. Those are where the gradient is 0. The inflection is where the gradient stops getting steeper and starts easing off, a turning point of <Katex tex="h'" />, so it is found from <Katex tex="h''" />.</>,
   },
   {
     working: <Katex display tex="\left(\log_e(2)\right)^2 2^x = 2 \implies 2^x = \frac{2}{\left(\log_e(2)\right)^2}" />,
@@ -209,11 +219,13 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \log_2\!\left(\frac{2}{\left(\log_e(2)\right)^2}\right) = 2.05753\ldots" />,
-    reason: <>Take <Katex tex="\log_2" /> of both sides (or solve <Katex tex="h''(x)=0" /> with CAS). <Katex tex="h''(x)" /> is increasing (it is a positive multiple of <Katex tex="2^x" />, minus 2), so it goes from negative to positive here: a genuine inflection.</>,
+    reason: <>Take <Katex tex="\log_2" /> of both sides (or solve <Katex tex="h''(x)=0" /> with CAS).</>,
+    more: <>Check it is a genuine inflection: <Katex tex="h''(x)" /> is a positive multiple of <Katex tex="2^x" />, minus 2, so it is increasing and changes from negative to positive as <Katex tex="x" /> passes 2.0575. The curve switches from concave down to concave up there.</>,
   },
   {
     working: <Katex display tex="\boxed{(2.06,\ -0.07)}" />,
     reason: <>Substitute the unrounded <Katex tex="x" /> into <Katex tex="h" />: <Katex tex="h(2.05753\ldots)=4.1627-4.2334=-0.0707" />. Both coordinates to two decimal places, as asked.</>,
+    more: <>The report notes some rounding errors. Rounding <Katex tex="x" /> to 2.06 first and then substituting gives <Katex tex="h(2.06)=-0.0737" />, which happens to round to the same answer here, but early rounding is how the errors creep in.</>,
   },
   {
     working: (
@@ -225,14 +237,14 @@ const ROWS_D: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The inflection sits between the two stationary points the report notes many students gave instead.</>,
+    reason: <>The inflection sits between the local maximum and the local minimum, where the curve changes from bending down to bending up.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="h'(x) = \log_e(2)\cdot2^x-2x = 0" />,
-    reason: <>From the graph, <Katex tex="h" /> falls from its local maximum down to its local minimum, so the interval runs between the two stationary points. Find them by solving <Katex tex="h'(x)=0" />.</>,
+    reason: <>From the graph of <Katex tex="h" /> in part d., <Katex tex="h" /> falls from its local maximum down to its local minimum, so the interval runs between the two stationary points. Find them by solving <Katex tex="h'(x)=0" />.</>,
   },
   {
     working: (
@@ -244,15 +256,17 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 0.48509\ldots \ \text{ and } \ x = 3.21243\ldots" />,
-    reason: <>The local maximum <Katex tex="(0.49,\ 1.16)" /> and the local minimum <Katex tex="(3.21,\ -1.05)" /> of <Katex tex="h" />.</>,
+    reason: <>The <Katex tex="x" />-coordinates of the local maximum and the local minimum of <Katex tex="h" />.</>,
   },
   {
     working: <Katex display tex="h'(2) = 4\log_e(2)-4 = -1.23 < 0" />,
-    reason: <>A check between them: <Katex tex="h'(x)<0" /> on <Katex tex="0.485<x<3.212" />, so <Katex tex="h" /> is decreasing there. Outside this interval <Katex tex="h'(x)>0" /> and <Katex tex="h" /> is increasing: giving <Katex tex="(-\infty,0.49]\cup[3.21,\infty)" /> answers the wrong question, an error the report notes.</>,
+    reason: <>A check between them: <Katex tex="h'(x)<0" /> on <Katex tex="0.485<x<3.212" />, so <Katex tex="h" /> is decreasing there.</>,
+    more: <>Outside this interval <Katex tex="h'(x)>0" /> and <Katex tex="h" /> is increasing. So <Katex tex="(-\infty,0.49]\cup[3.21,\infty)" />, an answer the report notes, describes where <Katex tex="h" /> is strictly <em>increasing</em>: the opposite of what was asked.</>,
   },
   {
     working: <Katex display tex="\boxed{[0.49,\ 3.21]}" />,
-    reason: <><strong>Square</strong> brackets. <Katex tex="h" /> is strictly decreasing on an interval if, for any <Katex tex="x_1<x_2" /> in it, <Katex tex="h(x_1)>h(x_2)" />. Including the endpoints keeps this true: <Katex tex="h(0.485)=1.164" /> is larger than every other value of <Katex tex="h" /> on the interval, and <Katex tex="h(3.212)=-1.051" /> is smaller. A gradient of 0 at a single point does not stop the function decreasing. So the <em>largest</em> interval includes its endpoints; the report notes round brackets were often seen, and were incorrect.</>,
+    reason: <><strong>Square</strong> brackets: the endpoints belong. Strictly decreasing is a test on values, <Katex tex="x_1<x_2 \implies h(x_1)>h(x_2)" />, not on <Katex tex="h'" />, so <Katex tex="h'=0" /> at the ends doesn't matter: <Katex tex="h(0.485)=1.164" /> is higher, and <Katex tex="h(3.212)=-1.051" /> lower, than every other value of <Katex tex="h" /> on the interval.</>,
+    more: <>A gradient of 0 at a single point does not stop a function decreasing: <Katex tex="y=-x^3" /> is strictly decreasing everywhere, yet its gradient is 0 at <Katex tex="x=0" />. The question asks for the <em>largest</em> interval, so the endpoints must be in it. The report notes round brackets were often seen and were incorrect, and that some brackets could not be read as either kind, so draw square brackets clearly.</>,
   },
 ]
 
@@ -267,15 +281,17 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x_2 = -1.442695-\frac{-1.71349}{3.14038} = -0.897065\ldots" />,
-    reason: <>Substitute the unrounded <Katex tex="x_1" /> into <Katex tex="h" /> and <Katex tex="h'" /> (on CAS, store each estimate and reuse it), and round only when writing the answers in the table: the report notes rounding errors.</>,
+    reason: <>Substitute the unrounded <Katex tex="x_1" />: <Katex tex="h(x_1)\approx-1.71349" /> and <Katex tex="h'(x_1)\approx3.14038" />. Round only when writing the answers in the table.</>,
+    more: <>On CAS, define <Katex tex="h" /> and store each estimate (or reuse the previous answer) so nothing is retyped from the screen. The report notes rounding errors, and that some students had only one correct answer. Each estimate is built from the one before, so a slip in <Katex tex="x_1" /> carries into <Katex tex="x_2" /> and <Katex tex="x_3" />.</>,
   },
   {
     working: <Katex display tex="x_3 = -0.897065-\frac{-0.26775}{2.16633} = -0.773470\ldots" />,
-    reason: <>The same step once more, from the unrounded <Katex tex="x_2" />.</>,
+    reason: <>The same step once more, from the unrounded <Katex tex="x_2" />: <Katex tex="h(x_2)\approx-0.26775" /> and <Katex tex="h'(x_2)\approx2.16633" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x_1 = -1.443,\quad x_2 = -0.897,\quad x_3 = -0.773}" />,
-    reason: <>Each to three decimal places, as the table asks: the report's general comments note some students gave two. The estimates are converging towards the root <Katex tex="x\approx-0.7667" />, the left-hand <Katex tex="x" />-intercept of <Katex tex="h" />.</>,
+    reason: <>Each to three decimal places, as the table asks.</>,
+    more: <>The report's general comments note some students gave two decimal places. The estimates are converging towards the root <Katex tex="x\approx-0.7667" />, the left-hand <Katex tex="x" />-intercept of <Katex tex="h" />.</>,
   },
 ]
 
@@ -303,26 +319,31 @@ const ROWS_G: WorkingRow[] = [
         tex="\boxed{\begin{gathered}\text{These } x_0 \text{ are the turning points of } h,\\ \text{where } h'(x_0)=0\text{: the tangent is horizontal}\\ \text{and never meets the } x\text{-axis, so}\\ x_1=x_0-\tfrac{h(x_0)}{h'(x_0)} \text{ is undefined.}\end{gathered}}"
       />
     ),
-    reason: <>The report notes some students only mentioned the two solutions. The explanation needs the consequence: <Katex tex="h'(x_0)=0" />, a horizontal tangent, and an undefined <Katex tex="x_1" />.</>,
+    reason: <>Naming the two solutions is not enough: the explanation must say what goes wrong, that <Katex tex="h'(x_0)=0" /> makes <Katex tex="x_1" /> undefined.</>,
+    more: <>Starting near (not at) a turning point is also a poor choice: the tangent is almost flat, so it meets the <Katex tex="x" />-axis a long way off and <Katex tex="x_1" /> is thrown far from <Katex tex="x_0" />.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = n^x-x^n \ \text{ has a local minimum } \textbf{on the } x\textbf{-axis}" />,
-    reason: <>Two conditions at the same point: it is a stationary point, so <Katex tex="f'(x)=0" />, and it sits on the <Katex tex="x" />-axis, so <Katex tex="f(x)=0" />. The graph just touches the axis there.</>,
+    reason: <>Two conditions at the same point: it is a stationary point, so <Katex tex="f'(x)=0" />, and it sits on the <Katex tex="x" />-axis, so <Katex tex="f(x)=0" />.</>,
+    more: <>Picture it: the graph comes down to the <Katex tex="x" />-axis, just touches it, and goes back up, so the minimum point is also an <Katex tex="x" />-intercept.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} f(x) = 0&: \ n^x = x^n \\ f'(x) = 0&: \ n^x\log_e(n) = n\,x^{n-1}\end{aligned}" />,
-    reason: <>Differentiate <Katex tex="n^x" /> as in part b. and <Katex tex="x^n" /> with the power rule. Both equations are needed: the report notes many students indicated <Katex tex="f'(x)=0" /> but did not combine it with <Katex tex="f(x)=0" />.</>,
+    reason: <>Differentiate <Katex tex="n^x" /> as in part b. and <Katex tex="x^n" /> with the power rule. Two unknowns, <Katex tex="x" /> and <Katex tex="n" />, so solve the two equations together.</>,
+    more: <>The report notes many students indicated <Katex tex="f'(x)=0" /> but did not combine it with <Katex tex="f(x)=0" />. On its own, <Katex tex="f'(x)=0" /> has solutions for many values of <Katex tex="n" />: for <Katex tex="n=2" />, <Katex tex="f" /> is <Katex tex="h" /> from parts d.&ndash;g., whose local minimum <Katex tex="(3.21,\,-1.05)" /> is below the axis. It is <Katex tex="f(x)=0" /> that pins <Katex tex="n" /> down.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\frac{n^x\log_e(n)}{n^x} &= \frac{n\,x^{n-1}}{x^n} \\ \log_e(n) &= \frac nx \implies x = \frac{n}{\log_e(n)}\end{aligned}" />,
-    reason: <>Divide the second equation by the first: the <Katex tex="n^x" /> cancels on the left and <Katex tex="x^{n-1}" /> cancels on the right. This is allowed because <Katex tex="x\neq0" /> here (<Katex tex="f(0)=1\neq0" />).</>,
+    reason: <>Divide the second equation by the first: the <Katex tex="n^x" /> cancels on the left, and <Katex tex="\tfrac{x^{n-1}}{x^n}=\tfrac1x" /> on the right.</>,
+    more: <>Dividing is allowed because neither side of <Katex tex="n^x=x^n" /> is 0: <Katex tex="n^x>0" /> always, and <Katex tex="x\neq0" /> at this point because <Katex tex="f(0)=1\neq0" />.</>,
   },
   {
     working: <Katex display tex="n^x = x^n \implies x\log_e(n) = n\log_e(x)" />,
-    reason: <>Take <Katex tex="\log_e" /> of both sides of the first condition to bring the powers down. Both sides are positive because <Katex tex="x>0" />: a power <Katex tex="x^n" /> with non-integer <Katex tex="n" /> needs <Katex tex="x\geq0" />, and <Katex tex="x\neq0" /> from above.</>,
+    reason: <>Take <Katex tex="\log_e" /> of both sides of the first condition to bring the powers down.</>,
+    more: <>Logs need positive inputs. Here <Katex tex="n^x>0" /> always, so <Katex tex="x^n>0" /> too, and writing <Katex tex="\log_e(x^n)=n\log_e(x)" /> needs <Katex tex="x>0" />. We work with <Katex tex="x>0" />, where <Katex tex="x^n" /> makes sense for every positive real <Katex tex="n" /> (<Katex tex="x\neq0" /> from above), and the answer <Katex tex="x=e" /> is indeed positive.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\frac{n}{\log_e(n)}\cdot\log_e(n) &= n\log_e(x) \\ n &= n\log_e(x) \implies x = e\end{aligned}" />,
@@ -334,7 +355,8 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = e: \quad \log_e(e) = 1 = \frac{e}{e} \ \checkmark" />,
-    reason: <><Katex tex="n=e" /> works, and it is the only solution: <Katex tex="y=\tfrac{n}{e}" /> is the tangent to <Katex tex="y=\log_e(n)" /> at <Katex tex="n=e" /> (gradient <Katex tex="\tfrac1e" />, through <Katex tex="(e,\,1)" />), and the concave-down log curve lies below its tangent everywhere else.</>,
+    reason: <>This can't be rearranged for <Katex tex="n" />, so try the number that has just appeared: <Katex tex="n=e" /> makes both sides 1. On CAS, the graphs of <Katex tex="y=\log_e(n)" /> and <Katex tex="y=\tfrac{n}{e}" /> meet only at <Katex tex="n\approx2.718" />, which is <Katex tex="e" />.</>,
+    more: <>Why they meet only once: <Katex tex="y=\tfrac{n}{e}" /> is the tangent to <Katex tex="y=\log_e(n)" /> at <Katex tex="n=e" /> (gradient <Katex tex="\tfrac1e" />, through <Katex tex="(e,\,1)" />), and the concave-down log curve lies below its tangent everywhere else, so the two never meet again.</>,
   },
   {
     working: <Katex display tex="f''(e) = e^e-e(e-1)\,e^{e-2} = e^{e-1} > 0" />,
@@ -342,7 +364,8 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = e}" />,
-    reason: <>Exact: the report notes some students gave approximate values such as <Katex tex="n=2.7" />, and an exact answer was required.</>,
+    reason: <>Give the exact value <Katex tex="e" />, not a decimal.</>,
+    more: <>The report notes some students gave an approximate value such as <Katex tex="n=2.7" /> when an exact answer was required, and that some formulated the question correctly but did not provide an answer: keep going until you have a value for <Katex tex="n" />.</>,
   },
 ]
 
@@ -479,6 +502,9 @@ export default function MethodsQ3_2023Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="The turning points belong in the interval: h is still strictly decreasing there">
+          <EndpointsWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -545,7 +571,7 @@ export default function MethodsQ3_2023Exam2() {
         examinerReport={EXAM_H}
       >
         <WorkingTable rows={ROWS_H} />
-        <Explore title="Each n here has a local minimum, but only n = e puts it on the x-axis">
+        <Explore title={'Each n here has a local minimum, but only n = e puts it on the x-axis'}>
           <TouchWidget />
         </Explore>
       </PartCard>

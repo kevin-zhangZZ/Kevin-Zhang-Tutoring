@@ -98,7 +98,8 @@ export default function Touch() {
         <b>The maximum now sits on the x-axis</b>, so <M>{'b = \\tfrac{1-\\sqrt7}{3} \\approx -0.549'}</M> is the repeated
         root and <M>{'a = 1 - 2b \\approx 2.097'}</M>. The maximum started at height <M>{'f(b) \\approx 0.631'}</M>, so it had
         to drop by <M>{'0.631'}</M>: <M>{'k = -f(b) \\approx -0.631'}</M>. These are the two values of <M>b</M> from the working, so both sets
-        of <M>a</M> and <M>b</M> belong in the answer.
+        of <M>a</M> and <M>b</M> belong in the answer. Now switch on the sign slip to see what <M>{'k = f(b)'}</M> does
+        instead.
       </Notice>
     )
   } else if (minSlip) {
@@ -121,10 +122,9 @@ export default function Touch() {
   } else if (k === 0) {
     notice = (
       <Notice>
-        This is <M>f</M> itself (<M>k = 0</M>): three separate x-intercepts, so no repeated root. A squared factor{' '}
-        <M>{'(x-b)^2'}</M> means the graph only <b>touches</b> the x-axis at <M>x = b</M>, and a smooth curve can only touch
-        the axis at a turning point. The minimum is at height <M>{'\\approx -2.113'}</M>: slide <M>k</M> up, or press
-        &ldquo;Lift the minimum onto the axis&rdquo;.
+        This is <M>f</M> itself (<M>k = 0</M>): three separate x-intercepts, so no repeated root yet. For one, a turning
+        point has to sit exactly on the x-axis. The minimum is at height <M>{'\\approx -2.113'}</M>: slide <M>k</M> up, or
+        press &ldquo;Lift the minimum onto the axis&rdquo;.
       </Notice>
     )
   } else if (yMax > 0 && yMin < 0) {
@@ -156,9 +156,13 @@ export default function Touch() {
   }
 
   const showArrows = Math.abs(k) > 0.2
+  // Skip an x tick number that an intercept dot would cover, and the 3 past the axis's end
+  // (it crowds the axis name).
+  const dots = touching ? [a, b] : xs
+  const xTick = (v: number) => (v > 2.8 || dots.some(r => Math.abs(r - v) < 0.15) ? '' : tick(v))
   return (
     <div>
-      <Plane x={[-2.2, 2.8]} y={[-5, 3.6]} xStep={1} yStep={1} height={330} yLabels={v => (v > 3.6 ? '' : tick(v))}>
+      <Plane x={[-2.2, 2.8]} y={[-5, 3.6]} xStep={1} yStep={1} height={330} xLabels={xTick} yLabels={v => (v > 3.6 ? '' : tick(v))}>
         <Plot.OfX y={f} domain={[-2.2, 2.8]} color={C.guide} weight={2} style="dashed" />
         <Plot.OfX y={h} domain={[-2.2, 2.8]} color={C.f} weight={3} />
         {showArrows && <Vector tail={[X_MAX, F_MAX]} tip={[X_MAX, yMax]} color={slip ? C.bad : C.violet} weight={2} />}

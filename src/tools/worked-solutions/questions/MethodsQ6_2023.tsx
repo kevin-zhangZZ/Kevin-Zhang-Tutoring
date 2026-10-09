@@ -27,7 +27,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_3^{10}f(x)\,dx = \int_3^{7}f(x)\,dx+\int_7^{10}f(x)\,dx" />,
-    reason: <>An integral over an interval can be split at any point inside it: the integral from <Katex tex="3" /> to <Katex tex="10" /> is the integral from <Katex tex="3" /> to <Katex tex="7" /> plus the integral from <Katex tex="7" /> to <Katex tex="10" />. Split at <Katex tex="7" /> because that is where <Katex tex="D" /> starts, and the leftover piece uses the same numbers as the integral asked for.</>,
+    reason: <>An integral can be split at any point inside its interval. Split at <Katex tex="7" />, where <Katex tex="D" /> starts, so the leftover piece runs between <Katex tex="3" /> and <Katex tex="7" />, the same two endpoints as the integral asked for.</>,
+    more: <>If <Katex tex="f" /> is positive, think of it as area: the area under the curve from <Katex tex="3" /> to <Katex tex="10" /> is the area from <Katex tex="3" /> to <Katex tex="7" /> plus the area from <Katex tex="7" /> to <Katex tex="10" />. The same rule holds for any <Katex tex="f" />, since both sides equal <Katex tex="F(10)-F(3)" /> for an antiderivative <Katex tex="F" />.</>,
   },
   {
     working: <Katex display tex="C = \int_3^{7}f(x)\,dx+D" />,
@@ -35,7 +36,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_3^{7}f(x)\,dx = C-D" />,
-    reason: <>This is option <b>C</b>, which 41% of students chose. But the question asks for the integral from <Katex tex="7" /> to <Katex tex="3" />, with the terminals the other way round.</>,
+    reason: <>Rearrange. This is the integral from <Katex tex="3" /> to <Katex tex="7" />, but the question asks for the integral from <Katex tex="7" /> to <Katex tex="3" />, with the terminals the other way round.</>,
   },
   {
     working: <Katex display tex="\int_7^{3}f(x)\,dx = -\int_3^{7}f(x)\,dx" />,
@@ -43,7 +44,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_7^{3}f(x)\,dx = D-C}" />,
-    reason: <>Matches option <b>D</b>. A quick check with <Katex tex="f(x)=1" />: <Katex tex="C=10-3=7" /> and <Katex tex="D=10-7=3" />, while <Katex tex="\int_7^3 1\,dx=3-7=-4" />, which is <Katex tex="D-C" />, not <Katex tex="C-D" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Stopping one line early, at <Katex tex="\int_3^7 f(x)\,dx=C-D" />, gives option <b>C</b>, which 41% of students chose: it misses the sign change from reversing the terminals. A quick check with <Katex tex="f(x)=1" />: <Katex tex="C=10-3=7" /> and <Katex tex="D=10-7=3" />, while <Katex tex="\int_7^3 1\,dx=3-7=-4" />, which is <Katex tex="D-C" />, not <Katex tex="C-D" />.</>,
   },
 ]
 

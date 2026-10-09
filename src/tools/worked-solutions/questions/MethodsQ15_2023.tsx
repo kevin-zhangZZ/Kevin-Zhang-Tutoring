@@ -2,6 +2,8 @@
 // Reading two normal curves off their means and standard deviations. Question text transcribed from the original paper;
 // the five option diagrams and the key are cropped from the original VCAA exam PDF (option letters masked).
 // Solution is original.
+// Oct 2026 Concise/Detailed pass (no widget: 65% correct, not a qualifying part): option analysis in the last
+// row moved to `more` and refocused on C (right centres, wrong spread); peak-height formula added as row 3's `more`.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -38,6 +40,14 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{area under each} = 1 \implies \text{narrower} \Rightarrow \text{taller}" />,
     reason: <>Every probability density function encloses a total area of 1. A curve half as wide must be twice as tall to hold the same area, so the solid curve must also be the taller one.</>,
+    more: (
+      <>
+        You can see this in the formula too. Putting <Katex tex="x=\mu" /> into the normal density gives a peak height of{' '}
+        <Katex tex="\tfrac{1}{\sigma\sqrt{2\pi}}" />, so halving <Katex tex="\sigma" /> doubles the peak: about{' '}
+        <Katex tex="0.040" /> for <Katex tex="Y" /> against <Katex tex="0.020" /> for <Katex tex="X" />. In diagram A the
+        solid peak is indeed about twice as high as the dashed one.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned}\text{A}&:\ \text{all three}\ \checkmark\\ \text{B}&:\ \text{solid on right}\ \times\\ \text{C}&:\ \text{solid wider}\ \times\\ \text{D}&:\ \text{same width}\ \times\\ \text{E}&:\ \text{solid wider}\ \times\end{aligned}" />,
@@ -45,7 +55,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{A}}" />,
-    reason: <>Matches option <b>A</b>, the only diagram with all three features. Option <b>C</b> has the centres in the right order but gives the solid curve the larger spread; <b>B</b> puts the solid curve on the right; <b>D</b> gives the two curves the same spread; <b>E</b> swaps the two curves entirely.</>,
+    reason: <>Matches option <b>A</b>, the only diagram with all three features.</>,
+    more: (
+      <>
+        Option <b>C</b>, the most popular wrong answer, gets the centres right but draws the solid curve low and wide.
+        That is the shape for a standard deviation of <Katex tex="20" />, which belongs to <Katex tex="X" />, not{' '}
+        <Katex tex="Y" />. So checking where the peaks sit is not enough: check which curve is narrower, and the height
+        follows from that. <b>E</b> is diagram A with the solid and dashed lines swapped, as if the key were read the wrong way round.
+      </>
+    ),
   },
 ]
 

@@ -49,8 +49,10 @@ export default function TwoPieces() {
   } else if (h > 0.4) {
     notice = (
       <Notice>
-        Take the simplest functions with the given values: <M>f(x) = 3x - 1</M> and <M>g(x) = 2x + 12</M>. Step from{' '}
-        <M>x = -2</M> to <M>-2 + h</M>: <M>f</M> changes by <M>\Delta f = 3h</M> and <M>g</M> by <M>\Delta g = 2h</M>, and
+        Any <M>f</M> and <M>g</M> with the four given values would do, so take the simplest: the straight lines{' '}
+        <M>f(x) = 3x - 1</M> and <M>g(x) = 2x + 12</M>. Step from{' '}
+        <M>x = -2</M> to <M>-2 + h</M>: <M>f</M> changes by <M>\Delta f = f'(-2)h = 3h</M> and <M>g</M> by{' '}
+        <M>\Delta g = g'(-2)h = 2h</M>, and
         expanding <M>{'(f + \\Delta f)(g + \\Delta g) - fg'}</M> splits the change in <M>y</M> into the three pieces in the
         table. Press &ldquo;Shrink h&rdquo; and watch the orange chord <M>PQ</M>.
       </Notice>
@@ -75,7 +77,8 @@ export default function TwoPieces() {
 
   return (
     <div>
-      <Plane x={[-4, 0.7]} y={[-65, -25]} xStep={1} yStep={10} height={300}>
+      {/* y-axis name placed beside the axis top (not on it), so it isn't clipped at the edge. */}
+      <Plane x={[-4, 0.7]} y={[-65, -25]} xStep={1} yStep={10} height={300} yLabel="">
         <Plot.OfX y={y} color={C.f} weight={3} />
         <Line.ThroughPoints point1={P} point2={[-1, -46]} color={C.good} style="dashed" weight={2} />
         <Line.ThroughPoints point1={P} point2={Q} color={C.g} weight={2} />
@@ -90,6 +93,7 @@ export default function TwoPieces() {
         <Label at={P} attach="nw" size={12}>P(−2, −56)</Label>
         <Label at={Q} attach="se" size={12} color={C.g}>Q</Label>
         <Label at={[-0.9, -33]} attach="w" size={12} color={C.f}>y = f(x)g(x)</Label>
+        <Label at={[0, -25]} attach="e" size={14} italic>y</Label>
       </Plane>
       <Controls>
         <Slider

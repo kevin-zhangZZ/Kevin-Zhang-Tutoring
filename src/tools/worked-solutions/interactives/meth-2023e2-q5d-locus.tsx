@@ -35,7 +35,7 @@ export default function Locus() {
     notice = (
       <Notice>
         The turning point is <M>{'\\left(k,\\tfrac2k\\right)'}</M>: its <M>x</M>-coordinate is <M>k</M> and its height
-        is <M>\tfrac2k</M>. So height <M>{'= \\tfrac{2}{x}=2x^{-1}'}</M> every time, which is the dashed green curve. Drag{' '}
+        is <M>\tfrac2k</M>. Since <M>x=k</M> there, height <M>{'= \\tfrac{2}{x}=2x^{-1}'}</M> every time, which is the dashed green curve. Drag{' '}
         <M>k</M> and watch the point stay on it, then try <M>k=1</M>.
       </Notice>
     )

@@ -1,8 +1,9 @@
 // 2023 Methods Exam 2 Q2d.iii — why the graph of w is S-shaped, not made of straight lines.
 // Turn the wheel (slider or play) and watch the pod's height trace out w(t) on the graph beside
 // it, drawn to the same vertical scale. Near the bottom and the top the pod moves mostly
-// sideways, so its height changes slowly and the graph is flat; level with the centre it moves
-// straight up or down, so the graph is steepest. The stationary 5 minutes is a horizontal
+// sideways, so its height changes slowly (under half the top rate when t < 2.5 or t > 12.5) and
+// the graph is flattest; level with the centre it moves straight up or down, so the graph is
+// steepest. Starts at t = 2, where the rate is about 5.1 m/min against 12.6 m/min at B. The stationary 5 minutes is a horizontal
 // segment, and the double-speed piece is the same shape squeezed into 7.5 minutes. A toggle
 // overlays the straight-line sketch the examiners' report says some students drew.
 
@@ -63,7 +64,7 @@ function Wheel({ t }: { t: number }) {
 }
 
 export default function WheelGraph() {
-  const [t, setT] = useState(2.5)
+  const [t, setT] = useState(2)
   const [line, setLine] = useState(false)
   const player = usePlayer(setT, { min: 0, max: END, seconds: 11 })
 
@@ -104,11 +105,12 @@ export default function WheelGraph() {
         <M>{'8\\pi \\approx 25.1'}</M> m/min, twice the first piece&apos;s top speed, and ends at <M>(27.5, 15)</M>.
       </Notice>
     )
-  } else if (t < 3.75 || t > 11.25) {
+  } else if (t < 2.5 || t > 12.5) {
     notice = (
       <Notice>
         Near the {t < 7.5 ? 'bottom' : 'top'} of the wheel the pod is moving mostly <b>sideways</b>, so its height
-        changes slowly (about <M>{`${Math.abs(r).toFixed(1)}`}</M> m/min here) and the graph is <b>flat</b>.{' '}
+        changes slowly: about <M>{`${Math.abs(r).toFixed(1)}`}</M> m/min here, less than half its top rate of{' '}
+        <M>{'12.6'}</M> m/min. That is why the graph is <b>flattest</b> at the ends of the S-shape.{' '}
         {t < 7.5 ? (
           <>Slide on towards <M>t = 7.5</M>, when the pod reaches <M>B</M>.</>
         ) : (
@@ -119,9 +121,10 @@ export default function WheelGraph() {
   } else {
     notice = (
       <Notice>
-        Around <M>B</M>, level with the centre <M>P</M>, the pod moves almost <b>straight up</b>, so its height changes
-        fastest: <M>{'4\\pi \\approx 12.6'}</M> m/min at <M>t = 7.5</M>. That is the steep middle of the S-shape. Turn on
-        &ldquo;Straight-line sketch&rdquo; to compare with a straight line.
+        The closer the pod is to <M>B</M>, level with the centre <M>P</M>, the more directly <b>upward</b> it moves,
+        so the faster its height changes: about <M>{`${Math.abs(r).toFixed(1)}`}</M> m/min here, and fastest at{' '}
+        <M>B</M> itself (<M>t = 7.5</M>), <M>{'4\\pi \\approx 12.6'}</M> m/min. That is the steep middle of the
+        S-shape. Turn on &ldquo;Straight-line sketch&rdquo; to compare with a straight line.
       </Notice>
     )
   }

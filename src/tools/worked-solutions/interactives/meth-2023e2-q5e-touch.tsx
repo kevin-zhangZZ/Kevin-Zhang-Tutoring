@@ -1,6 +1,6 @@
 // 2023 Methods Exam 2 Q5e — while h(x) = (1/k)f(k − x) sits entirely above y = x, the inverse of
 // h1 (a reflection of part of h in y = x) sits entirely below it, so the two graphs cannot meet.
-// Increase k: h comes down, and the first contact is h just touching y = x (h = x and h′ = 1) at
+// Increase k: the gap between h and y = x shrinks, and the first contact is h just touching y = x (h = x and h′ = 1) at
 // k ≈ 1.27, x ≈ 1.87 — on the right branch, so the inverse of h1 passes through the same point.
 
 import { useState } from 'react'
@@ -30,7 +30,7 @@ const gap = (k: number) => {
 }
 
 export default function Touch() {
-  const [k, setK] = useState(1.1)
+  const [k, setK] = useState(1)
   const { x: xg, d } = gap(k)
   const near = Math.abs(k - KSTAR) < 0.006
   const above = !near && k < KSTAR
@@ -75,12 +75,12 @@ export default function Touch() {
         <Label at={[h(k + 0.9, k), k + 0.9]} color={C.g} attach="se">inverse of h₁</Label>
       </Plane>
       <Controls>
-        <Slider label="k" value={k} onChange={setK} min={0.8} max={2} step={0.002} format={v => v.toFixed(3)} />
+        <Slider label="k" value={k} onChange={setK} min={0.8} max={2} step={0.01} format={v => v.toFixed(2)} />
         <Buttons>
-          <ActionButton label="Go to the touch" onClick={() => setK(Math.round(KSTAR * 1000) / 1000)} />
+          <ActionButton label="Go to the touch" onClick={() => setK(KSTAR)} />
         </Buttons>
         <Readouts>
-          <Readout color={C.f} tex={`\\text{min of } h(x)-x \\approx ${d.toFixed(3)}`} />
+          <Readout color={C.f} tex={`\\text{min of } h(x)-x \\approx ${(Math.abs(d) < 5e-4 ? 0 : d).toFixed(3)}`} />
           <Readout color={C.good} tex={`\\text{touch at } k\\approx${KSTAR.toFixed(4)}`} />
         </Readouts>
         {notice}

@@ -32,9 +32,9 @@ export default function NewtonBreaks() {
   if (turning) {
     notice = (
       <Notice tone="warn">
-        <M>{`x_0 = ${x0.toFixed(3)}`}</M> solves <M>{'\\log_e(2)\\times2^x - 2x = 0'}</M>, which is{' '}
+        <M>{`x_0 \\approx ${x0.toFixed(3)}`}</M> solves <M>{'\\log_e(2)\\times2^x - 2x = 0'}</M>, which is{' '}
         <M>{"h'(x_0) = 0"}</M>: a turning point of <M>h</M>. The tangent is horizontal at height{' '}
-        <M>{`h(x_0) = ${y0.toFixed(3)}`}</M>, parallel to the <span className="whitespace-nowrap"><M>x</M>-axis</span>, so it never meets it and there is no{' '}
+        <M>{`h(x_0) \\approx ${y0.toFixed(3)}`}</M>, parallel to the <span className="whitespace-nowrap"><M>x</M>-axis</span>, so it never meets it and there is no{' '}
         <M>x_1</M>. In the formula you would divide <M>{y0.toFixed(3)}</M> by 0, so{' '}
         <M>{"x_1 = x_0 - \\frac{h(x_0)}{h'(x_0)}"}</M> is undefined.
       </Notice>
@@ -42,8 +42,8 @@ export default function NewtonBreaks() {
   } else if (!onScreen) {
     notice = (
       <Notice>
-        Close to a turning point the tangent is nearly flat (gradient <M>{m.toFixed(3)}</M>), so it meets the{' '}
-        <span className="whitespace-nowrap"><M>x</M>-axis</span> far away: <M>{`x_1 = ${x1.toFixed(2)}`}</M>, off the screen. The flatter the tangent, the further{' '}
+        Close to a turning point the tangent is nearly flat (gradient <M>{`\\approx ${m.toFixed(3)}`}</M>), so it meets the{' '}
+        <span className="whitespace-nowrap"><M>x</M>-axis</span> far away: <M>{`x_1 \\approx ${x1.toFixed(2)}`}</M>, off the screen. The flatter the tangent, the further{' '}
         <M>x_1</M> is thrown. Keep dragging: exactly at the turning point it never lands at all.
       </Notice>
     )
@@ -52,7 +52,7 @@ export default function NewtonBreaks() {
       <Notice>
         Newton&apos;s method follows the tangent at <M>{'(x_0,\\ h(x_0))'}</M> to the <span className="whitespace-nowrap"><M>x</M>-axis</span>; where it
         crosses is the next estimate <M>x_1</M>. From <M>{`x_0 = ${x0.toFixed(3)}`}</M> it lands at{' '}
-        <M>{`x_1 = ${x1.toFixed(3)}`}</M>{x0 === 0 ? ', as in part f.' : '.'} Now drag <M>x_0</M> towards a turning
+        <M>{`x_1 \\approx ${x1.toFixed(3)}`}</M>{x0 === 0 ? ', as in part f.' : '.'} Now drag <M>x_0</M> towards a turning
         point (<M>0.49</M> or <M>3.21</M>) and watch the tangent flatten.
       </Notice>
     )
@@ -83,9 +83,9 @@ export default function NewtonBreaks() {
           <ActionButton label="x₀ = 3.212" onClick={() => setX0(T2)} />
         </Buttons>
         <Readouts>
-          <Readout tex={`h(x_0) = ${y0.toFixed(3)}`} />
-          <Readout color={lineColor} tex={`h'(x_0) = ${turning ? '0' : m.toFixed(3)}`} />
-          <Readout color={C.violet} tex={turning ? 'x_1 \\text{ undefined}' : `x_1 = ${x1.toFixed(3)}`} />
+          <Readout tex={`h(x_0) \\approx ${y0.toFixed(3)}`} />
+          <Readout color={lineColor} tex={`h'(x_0) ${turning ? '= 0' : `\\approx ${m.toFixed(3)}`}`} />
+          <Readout color={C.violet} tex={turning ? 'x_1 \\text{ undefined}' : `x_1 \\approx ${x1.toFixed(3)}`} />
         </Readouts>
         {notice}
       </Controls>

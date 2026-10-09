@@ -3,8 +3,9 @@
 // drawn against the line y = −1/√2, and three bars show where f∘g exists (sin(x) + 1/√2 > 0, x < 5),
 // where g∘f exists (x + 1/√2 > 0, and f(x) < 5, which holds all the way to e⁵ − 1/√2 ≈ 147.7), and
 // where both do: (−1/√2, 5π/4), option A. It opens at x = −0.75, inside option C, where f∘g works
-// but g∘f does not; the zoom toggle shows how narrow that gap between −π/4 ≈ −0.785 and
-// −1/√2 ≈ −0.707 is. The slider snaps to −3π/4, −π/4, −1/√2 and 5π/4, where log_e(0) makes the
+// but g∘f does not (that gap is option E); the "Zoom in on the gap" toggle shows how narrow that gap
+// between −π/4 ≈ −0.785 and −1/√2 ≈ −0.707 is. The draggable marker on the x-axis is labelled x.
+// The slider snaps to −3π/4, −π/4, −1/√2 and 5π/4, where log_e(0) makes the
 // composite undefined — why every end is open (B and D close an end).
 
 import { useState } from 'react'
@@ -109,7 +110,7 @@ export default function BothExist() {
         {x > -PI / 4 ? (
           <>
             This <M>x</M> lies inside option C, so C is too big: <M>g\circ f</M> pulls the left end in from{' '}
-            <M>{'-\\tfrac{\\pi}{4}'}</M> to <M>{'-\\tfrac{1}{\\sqrt2}'}</M>.{' '}
+            <M>{'-\\tfrac{\\pi}{4}'}</M> to <M>{'-\\tfrac{1}{\\sqrt2}'}</M>. (Option E is this gap, so it fails too.){' '}
           </>
         ) : (
           <>
@@ -120,7 +121,7 @@ export default function BothExist() {
         {zoom ? (
           <>Slide right to exactly <M>{'-\\tfrac{1}{\\sqrt2}'}</M>.</>
         ) : (
-          <>Turn on the zoom to see how narrow the gap between <M>{'-\\tfrac{\\pi}{4}'}</M> and <M>{'-\\tfrac{1}{\\sqrt2}'}</M> is.</>
+          <>Press <b>Zoom in on the gap</b> to see how narrow the gap between <M>{'-\\tfrac{\\pi}{4}'}</M> and <M>{'-\\tfrac{1}{\\sqrt2}'}</M> is.</>
         )}
       </Notice>
     )
@@ -130,7 +131,7 @@ export default function BothExist() {
         <b>Both composites exist here</b>: <M>{'\\sin(x) + \\tfrac{1}{\\sqrt2} > 0'}</M> for <M>f\circ g</M>, and{' '}
         <M>{'x + \\tfrac{1}{\\sqrt2} > 0'}</M> with <M>{'f(x) < 5'}</M> for <M>g\circ f</M>. The green bar is every such{' '}
         <M>x</M>: <M>{'\\left(-\\tfrac{1}{\\sqrt2}, \\tfrac{5\\pi}{4}\\right)'}</M>, option A.{' '}
-        {zoom ? 'Turn off the zoom and slide' : 'Slide'} right past <M>{'\\tfrac{5\\pi}{4} \\approx 3.93'}</M> to see where{' '}
+        {zoom ? <>Press <b>Zoom back out</b>, then slide</> : 'Slide'} right past <M>{'\\tfrac{5\\pi}{4} \\approx 3.93'}</M> to see where{' '}
         <M>f\circ g</M> gives out.
       </Notice>
     )
@@ -151,9 +152,10 @@ export default function BothExist() {
     )
   }
 
-  // No tick numbers in the side padding (or at the left edge, where the curve starts)
+  // No tick numbers in the side padding (or at the left edge, where the curve starts), nor
+  // under the draggable x marker, whose halo would cover them
   const fmtTick = (v: number) =>
-    v <= X0 + 1e-9 || v > X1 + 1e-9 ? '' : (zoom ? v.toFixed(1) : String(Math.round(v))).replace('-', '−')
+    v <= X0 + 1e-9 || v > X1 + 1e-9 || Math.abs(v - x) < 0.06 * (X1 - X0) ? '' : (zoom ? v.toFixed(1) : String(Math.round(v))).replace('-', '−')
 
   return (
     <div>
@@ -196,6 +198,7 @@ export default function BothExist() {
         {/* The chosen x */}
         <Line.Segment point1={[x, 1.3]} point2={[x, ROW.both - 0.1]} color={C.guide} style="dashed" weight={1.5} />
         <Point x={x} y={s} color={C.g} />
+        <Label at={[x, 0]} attach="n" gap={15} italic color={both ? C.good : C.bad}>x</Label>
         <MovablePoint point={[x, 0]} onMove={pt => onX(pt[0])} constrain={pt => [clamp(pt[0], X0, Math.min(X1, X_MAX)), 0]} color={both ? C.good : C.bad} />
       </Plane>
       <Controls>
@@ -208,7 +211,7 @@ export default function BothExist() {
           step={zoom ? 0.001 : 0.01}
           format={v => num(v, zoom ? 3 : 2)}
         />
-        <Toggle label="Zoom in near x = −0.75" checked={zoom} onChange={onZoom} />
+        <Toggle label={zoom ? 'Zoom back out' : 'Zoom in on the gap'} checked={zoom} onChange={onZoom} />
         <Readouts>
           <Readout tex={`x = ${xTex}`} />
           <Readout

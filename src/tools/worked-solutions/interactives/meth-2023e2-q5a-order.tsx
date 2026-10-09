@@ -110,7 +110,7 @@ export default function Order() {
         <b>Lands at <M>(-2,1)</M>, not <M>(2,1)</M>.</b> The rule is <M>{seq.rule[2]}</M>, the mirror image of{' '}
         <M>g</M>.{' '}
         {pick === 1 ? (
-          <>This is the report&rsquo;s common wrong answer: after reflecting, the translation must be 2 to the right.</>
+          <>This is the report&rsquo;s common wrong answer.</>
         ) : (
           <>
             Translating right first puts the minimum at <M>x=2</M>, but the reflection then flips it to <M>x=-2</M>.

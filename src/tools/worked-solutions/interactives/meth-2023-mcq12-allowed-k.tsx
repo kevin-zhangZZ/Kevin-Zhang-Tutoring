@@ -6,7 +6,7 @@
 // at k = 0: E(X) = 2, when X = 2 for certain.
 //
 // Starts at the turning point (the tempting "maximum"); the table under the graph shows each
-// probability for the current k, in red when it is negative.
+// probability for the current k, in red when it is negative or above 1.
 
 import { useState } from 'react'
 import { C, Controls, Katex, Label, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, tick } from './kit'
@@ -29,13 +29,13 @@ export default function AllowedK() {
         <Notice tone="warn">
           This is the turning point of <M>E(X) = -3k^2 - 7k + 2</M>: <M>{'k = -\\tfrac{7}{6}'}</M> gives{' '}
           <M>{'E(X) = \\tfrac{73}{12} \\approx 6.08'}</M>, bigger than every option. But look at the table:{' '}
-          <M>\Pr(X=0) = 3k = -3.5</M>. A probability can&apos;t be negative, so this <M>k</M> is not allowed. Drag{' '}
+          <M>\Pr(X=0) = 3k = -3.5</M>. A probability can&apos;t be negative (and the cells above 1 are impossible too),
+          so this <M>k</M> is not allowed. Drag{' '}
           <M>k</M> right until every probability is <M>\geq 0</M>.
         </Notice>
       ) : (
         <Notice tone="warn">
-          Not allowed: with <M>{'k < 0'}</M>, both <M>\Pr(X=0) = 3k</M> and <M>\Pr(X=1) = k</M> are negative (red in
-          the table). So every <M>k</M> to the left of <M>0</M> is ruled out, and with it the high part of the curve,
+          Not allowed: with <M>{'k < 0'}</M>, both <M>\Pr(X=0) = 3k</M> and <M>\Pr(X=1) = k</M> are negative. So every <M>k</M> to the left of <M>0</M> is ruled out, and with it the high part of the curve,
           turning point and all. Drag <M>k</M> right into the green band.
         </Notice>
       )
@@ -68,7 +68,19 @@ export default function AllowedK() {
 
   return (
     <div>
-      <Plane x={[-1.4, 0.5]} y={[-3, 7]} xStep={0.5} yStep={2} height={290} xLabel="k" yLabel="E(X)" xLabels={v => (v < -1.45 || v > 0.45 ? '' : tick(v))}>
+      {/* Axis names placed beside the axes (not on them) so the axis lines don't run through them;
+          the −2 tick number is dropped so it doesn't crowd the "allowed" label. */}
+      <Plane
+        x={[-1.4, 0.5]}
+        y={[-3, 7]}
+        xStep={0.5}
+        yStep={2}
+        height={290}
+        xLabel=""
+        yLabel=""
+        xLabels={v => (v < -1.45 || v > 0.45 ? '' : tick(v))}
+        yLabels={v => (Math.abs(v + 2) < 1e-9 ? '' : tick(v))}
+      >
         <Region top={() => 7} bottom={() => -3} from={0} to={K_HI} color={C.good} opacity={0.15} />
         <Plot.OfX y={E} color={C.f} weight={2.5} />
         <Plot.OfX y={E} domain={[0, K_HI]} color={C.good} weight={4.5} />
@@ -76,6 +88,8 @@ export default function AllowedK() {
         <Label at={[-7 / 6, 73 / 12]} attach="s" size={12} gap={9}>turning point</Label>
         <Label at={[K_HI / 2, -3]} attach="n" size={12} color={C.good}>allowed</Label>
         <Point x={k} y={mean} color={allowed ? C.good : C.bad} />
+        <Label at={[0, 7]} attach="w" size={14} italic>E(X)</Label>
+        <Label at={[0.5, 0]} attach="n" size={14} italic>k</Label>
       </Plane>
       <Controls>
         <Slider label="k" value={k} onChange={setK} min={-1.4} max={0.5} step={0.01} />
@@ -102,7 +116,7 @@ export default function AllowedK() {
                 {probs.map((p, i) => (
                   <td
                     key={i}
-                    className={`${cell} ${p < -EPS ? 'bg-red-50 text-red-700 font-semibold dark:bg-red-950/40 dark:text-red-300' : ''}`}
+                    className={`${cell} ${p < -EPS || p > 1 + EPS ? 'bg-red-50 text-red-700 font-semibold dark:bg-red-950/40 dark:text-red-300' : ''}`}
                   >
                     {Math.abs(p) < 0.005 ? '0.00' : p.toFixed(2).replace('-', '−')}
                   </td>

@@ -88,7 +88,7 @@ export default function Interval() {
 
   return (
     <div>
-      <Plane x={[0.65, 1.05]} y={[0, 2]} xStep={0.1} yStep={10} height={220} xLabel="" yLabels={false} xLabels={v => v.toFixed(1)}>
+      <Plane x={[0.65, 1.07]} y={[0, 2]} xStep={0.1} yStep={10} height={220} xLabel="" yLabels={false} xLabels={v => (v > 1.001 ? '' : v.toFixed(1))}>
         <Line.Segment point1={[L_GIVEN, 0]} point2={[L_GIVEN, Y_GIVEN]} color={C.guide} style="dashed" weight={1.5} />
         <Line.Segment point1={[R_GIVEN, 0]} point2={[R_GIVEN, Y_GIVEN]} color={C.guide} style="dashed" weight={1.5} />
         <Line.Segment point1={[L_GIVEN, Y_GIVEN]} point2={[R_GIVEN, Y_GIVEN]} color={C.guide} weight={6} />

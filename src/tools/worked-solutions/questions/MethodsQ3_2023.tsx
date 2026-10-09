@@ -28,6 +28,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{dom}(p+q) = \mathrm{dom}(p)\cap\mathrm{dom}(q)" />,
     reason: <>The sum function is <Katex tex="(p+q)(x)=p(x)+q(x)" />, so it can only be evaluated where <em>both</em> <Katex tex="p(x)" /> and <Katex tex="q(x)" /> exist. That means <Katex tex="x" /> must lie in both domains: their intersection.</>,
+    more: <>The same rule holds for the difference <Katex tex="p-q" /> and the product <Katex tex="pq" />: each is defined only where both functions are.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} [-2,3) &: \ -2 \le x < 3 \\ (-1,5] &: \ -1 < x \le 5 \end{aligned}" />,
@@ -35,11 +36,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{both hold when } -1 < x < 3" />,
-    reason: <>Take the stricter condition at each end. On the left, any <Katex tex="x>-1" /> already satisfies <Katex tex="x\ge-2" />, and <Katex tex="x=-1" /> is out because <Katex tex="q(-1)" /> does not exist. On the right, any <Katex tex="x<3" /> already satisfies <Katex tex="x\le5" />, and <Katex tex="x=3" /> is out because <Katex tex="p(3)" /> does not exist.</>,
+    reason: <>Take the stricter condition at each end: <Katex tex="x>-1" /> (stricter than <Katex tex="x\ge-2" />) and <Katex tex="x<3" /> (stricter than <Katex tex="x\le5" />). Both ends are open because <Katex tex="q(-1)" /> and <Katex tex="p(3)" /> do not exist.</>,
+    more: <>On a number line, shade both intervals and keep only the overlap. It starts at <Katex tex="-1" />, where the domain of <Katex tex="q" /> starts, and stops at <Katex tex="3" />, where the domain of <Katex tex="p" /> stops, so each end keeps the bracket of the interval it came from.</>,
   },
   {
     working: <Katex display tex="\boxed{(-1,\,3)}" />,
-    reason: <>Matches option <b>E</b>. Option <b>A</b> (chosen by 22%) is the union <Katex tex="[-2,3)\cup(-1,5]" />, which includes values such as <Katex tex="x=4" /> where <Katex tex="p" /> is undefined. Option <b>D</b> has the right endpoints with the wrong brackets: <Katex tex="q(-1)" /> and <Katex tex="p(3)" /> do not exist. Options <b>B</b> and <b>C</b> include <Katex tex="x=-2" />, where <Katex tex="q" /> is undefined. The word &lsquo;continuous&rsquo; in the stem does not affect the answer.</>,
+    reason: <>Matches option <b>E</b>; option <b>A</b> is the union of the two domains, not their intersection.</>,
+    more: <>Option <b>A</b> (chosen by 22%) is <Katex tex="[-2,3)\cup(-1,5]=[-2,5]" />, which includes values such as <Katex tex="x=4" />, where <Katex tex="q(4)" /> exists but <Katex tex="p(4)" /> does not, so <Katex tex="p(4)+q(4)" /> cannot be found. Option <b>D</b> has the right endpoints but wrongly closes both ends. Options <b>B</b> and <b>C</b> include <Katex tex="x=-2" />, where <Katex tex="q" /> is undefined. The word &lsquo;continuous&rsquo; in the stem does not affect the answer.</>,
   },
 ]
 
