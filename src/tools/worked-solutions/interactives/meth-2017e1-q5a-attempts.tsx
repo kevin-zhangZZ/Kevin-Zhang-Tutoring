@@ -99,7 +99,7 @@ function Chain({ step }: { step: number }) {
                 ? i === 3
                   ? 'border-red-300 bg-red-50 text-red-700 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300'
                   : 'border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-900'
-                : 'border-dashed border-gray-300 text-gray-300 dark:border-gray-700 dark:text-gray-600'
+                : 'border-dashed border-gray-300 text-gray-500 dark:border-gray-700 dark:text-gray-400'
             }`}
           >
             {i <= step ? n : '?'}

@@ -77,7 +77,7 @@ export default function SpecialistQ5_2021() {
           </p>
           <div className="mb-2 flex justify-center">
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img src={circleSrc} alt="Argand diagram showing a circle of radius 1 centred at (2, √3) — from the original 2021 VCAA exam paper" className="w-full max-w-[280px]" />
+              <img loading="lazy" decoding="async" src={circleSrc} alt="Argand diagram showing a circle of radius 1 centred at (2, √3) — from the original 2021 VCAA exam paper" className="w-full max-w-[280px]" />
             </div>
           </div>
           <p>For points on this circle, the maximum value of <Katex tex="|z|" /> is</p>

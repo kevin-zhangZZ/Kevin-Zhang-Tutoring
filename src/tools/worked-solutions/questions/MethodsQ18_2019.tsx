@@ -16,7 +16,7 @@ import diagramSrc from './meth-2019-mcq18-piecewise-pdf.png'
 
 const AreaOne = lazyWidget(() => import('../interactives/meth-2019-mcq18-area-one'))
 
-const DIAGRAM = <img src={diagramSrc} alt="Piecewise-linear graph of p(x) through (-a, 0), (0, 2a) and (b, b), from the original 2019 VCAA exam paper" className="w-full max-w-[280px]" />
+const DIAGRAM = <img loading="lazy" decoding="async" src={diagramSrc} alt="Piecewise-linear graph of p(x) through (-a, 0), (0, 2a) and (b, b), from the original 2019 VCAA exam paper" className="w-full max-w-[280px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 16, B: 17, C: 26, D: 27, E: 13 },

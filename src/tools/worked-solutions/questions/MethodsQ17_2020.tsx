@@ -30,7 +30,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <img src={reportGraphSrc} alt="The report's graph of y = −ln(x + 2) with its vertical asymptote x = −2" className="w-full max-w-[360px] my-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph of y = −ln(x + 2) with its vertical asymptote x = −2" className="w-full max-w-[360px] my-1" />
       The maximum value of <Katex tex="c" /> occurs when the tangent to <Katex tex="f" /> is at <Katex tex="x=0" />.{' '}
       <Katex tex="c=f(0)=-\log_e(2)" />.
     </>

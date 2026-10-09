@@ -7,9 +7,11 @@
 
 import 'mafs/core.css'
 import './kit.css'
-import { useEffect, useRef, useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
+import { useContext, useEffect, useId, useRef, useState, type Dispatch, type ReactNode, type SetStateAction } from 'react'
 import { Coordinates, Mafs, Polygon, useTransformContext, vec } from 'mafs'
 import Katex from '../../../components/Katex'
+import UIToggle, { CHIP_BASE, CHIP_OFF } from '../../../components/ui/Toggle'
+import { ExploreTitleContext } from '../exploreContext'
 
 // `Text` is mafs's own: beware that its attach 'n'/'s' are upside down (mafs 0.21 puts 'n' BELOW
 // the point). Use `Label` below, which places n/s/e/w the right way round.
@@ -81,7 +83,11 @@ export function Plane({
   xLabels,
   yLabels,
   children,
+  label,
 }: {
+  /** Accessible name for the graph (screen readers), e.g. "Graph of y = f(x) and its inverse".
+   *  Without one, the name is "Interactive graph: " plus the enclosing Explore's title. */
+  label?: string
   /** The x-range to show. */
   x: vec.Vector2
   /** The y-range to show. */
@@ -118,13 +124,22 @@ export function Plane({
   const vx: vec.Vector2 = [x[0] - px, x[1] + px]
   const vy: vec.Vector2 = [y[0] - py, y[1] + py]
 
+  // Name the graph after its Explore box's title (rendered text, maths included) unless given a label.
+  const exploreTitleId = useContext(ExploreTitleContext)
+  const prefixId = useId()
+  const named = label === undefined && exploreTitleId
+    ? { 'aria-labelledby': `${prefixId} ${exploreTitleId}` }
+    : { 'aria-label': label ?? 'Interactive graph' }
+
   const [ref, width] = useWidth()
   const h = equalScale && width > 0
     ? clamp(Math.round((width * (vy[1] - vy[0])) / (vx[1] - vx[0])), minHeight, height)
     : height
 
   return (
-    <div className="ws-plane" ref={ref}>
+    // role="group" rather than "img": many planes hold draggable points that must stay reachable.
+    <div className="ws-plane" ref={ref} role="group" {...named}>
+      {'aria-labelledby' in named && <span id={prefixId} hidden>Interactive graph:</span>}
       <Mafs height={h} viewBox={{ x: vx, y: vy, padding: 0 }} preserveAspectRatio={equalScale ? 'contain' : false} pan={false} zoom={false}>
         <Coordinates.Cartesian xAxis={{ lines: xStep, labels: fx }} yAxis={{ lines: yStep, labels: fy }} subdivisions={false} />
         {/* Axis names past the positive end of each axis, set just off the axis line (which runs
@@ -291,30 +306,13 @@ export function Slider({
 }
 
 export function Toggle({ label, checked, onChange }: { label: ReactNode; checked: boolean; onChange: (v: boolean) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onChange(!checked)}
-      aria-pressed={checked}
-      className={`text-[12.5px] font-semibold px-3 py-1.5 rounded-full border transition-colors ${
-        checked
-          ? 'bg-emerald-600 border-emerald-600 text-white dark:bg-emerald-500 dark:border-emerald-500 dark:text-gray-950'
-          : 'bg-white border-gray-300 text-gray-600 hover:border-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300'
-      }`}
-    >
-      {label}
-    </button>
-  )
+  return <UIToggle label={label} checked={checked} onChange={onChange} />
 }
 
 /** A one-shot action — "Go to x = b", "Reset" — styled like an unpressed Toggle. */
 export function ActionButton({ label, onClick }: { label: ReactNode; onClick: () => void }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="text-[12.5px] font-semibold px-3 py-1.5 rounded-full border bg-white border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-800 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500"
-    >
+    <button type="button" onClick={onClick} className={`${CHIP_BASE} ${CHIP_OFF}`}>
       {label}
     </button>
   )
@@ -341,7 +339,14 @@ export function PlayButton({ playing, onClick, label = 'Play' }: { playing: bool
   )
 }
 
-/** Animate a number from min to max over `seconds`, driving a slider's state. Returns the play
+/** True when the student has asked their device for less motion. Read it when a tween starts:
+ *  under reduced motion a tween jumps straight to its end state instead of animating. */
+export function prefersReducedMotion(): boolean {
+  return typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+}
+
+/** Animate a number from min to max over `seconds`, driving a slider's state (under reduced
+ *  motion it steps there in a few still frames instead of sweeping). Returns the play
  *  state and a toggle; call `stop()` when the student grabs the slider themselves. */
 export function usePlayer(
   setValue: Dispatch<SetStateAction<number>>,
@@ -351,6 +356,26 @@ export function usePlayer(
   const current = useRef(min)
   useEffect(() => {
     if (!playing) return
+    if (prefersReducedMotion()) {
+      // No continuous sweep: step through the range in a few still frames, so the student still
+      // sees the values change and can stop on any of them.
+      const steps = 6
+      const id = setInterval(() => {
+        let done = false
+        setValue(v => {
+          const next = v + (max - min) / steps
+          if (next >= max - 1e-9) {
+            done = true
+            current.current = max
+            return max
+          }
+          current.current = next
+          return next
+        })
+        if (done) setPlaying(false)
+      }, Math.max(600, (seconds * 1000) / steps))
+      return () => clearInterval(id)
+    }
     let raf = 0
     let last = performance.now()
     const tick = (now: number) => {
@@ -444,7 +469,7 @@ export function StepNav({
       >
         ‹ Back
       </button>
-      <span className="text-[12px] font-display font-semibold tabular-nums text-gray-400 dark:text-gray-500">
+      <span className="text-[12px] font-display font-semibold tabular-nums text-gray-500 dark:text-gray-400">
         Step {step + 1} of {count}
       </span>
       <button

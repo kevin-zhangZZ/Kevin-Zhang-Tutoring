@@ -119,7 +119,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={sketchSrc} alt="Graph of f(x) = (x+1)/(x²−4): three branches, with vertical asymptotes at x = ±2 and horizontal asymptote y = 0, crossing the axes at (−1, 0) and (0, −1/4)" className="w-full max-w-[420px]" />
+        <img loading="lazy" decoding="async" src={sketchSrc} alt="Graph of f(x) = (x+1)/(x²−4): three branches, with vertical asymptotes at x = ±2 and horizontal asymptote y = 0, crossing the axes at (−1, 0) and (0, −1/4)" className="w-full max-w-[420px]" />
       </div>
     ),
     reason: (
@@ -147,7 +147,7 @@ export default function SpecialistQ5_2018Exam1() {
           coordinates.
         </p>
         <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={blankAxesSrc}
             alt="Blank axes from the original 2018 VCAA exam paper: x and y from −4 to 4, grid lines every 0.5, numbered every 2"
             className="w-full max-w-[360px]"
@@ -221,10 +221,10 @@ export default function SpecialistQ5_2018Exam1() {
         </WrongMethod>
         <SAExaminerReport stats={EXAM} maxMarks={4} />
         <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
             Video Walkthrough
           </p>
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 italic">Coming soon.</p>
+          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
         </div>
       </div>
     </div>

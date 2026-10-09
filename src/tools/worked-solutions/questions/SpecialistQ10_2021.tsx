@@ -49,7 +49,7 @@ export default function SpecialistQ10_2021() {
       question={
         <>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img
+            <img loading="lazy" decoding="async"
               src={fieldSrc}
               alt="A direction field on −2 ≤ x ≤ 2, −2 ≤ y ≤ 2, with short dashes that are steeply positive on the left and steeply negative on the right — from the original 2021 VCAA exam paper"
               className="w-full max-w-[400px]"

@@ -382,7 +382,7 @@ export default function MethodsQ2_2022Exam2() {
           The graph has been drawn to scale.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="Two out-of-phase sinusoidal population curves against time in weeks from 0 to 320: the rabbit population r(t) oscillating between 800 and 4200, and the fox population f(t) between 700 and 2500, with the points (20, 700) and (100, 2500) marked — from the original 2022 VCAA exam paper"
             className="w-full max-w-[520px]"

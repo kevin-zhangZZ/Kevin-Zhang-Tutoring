@@ -85,7 +85,7 @@ export default function MethodsQ3_2020Exam1() {
           <Katex tex="y=\tan(ax+b)" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="One branch of a tangent curve rising between two dashed vertical asymptotes, passing through the marked points (−1, −1) and (1, √3) — from the original 2020 VCAA exam paper"
             className="w-full max-w-[420px]"
@@ -174,8 +174,8 @@ export default function MethodsQ3_2020Exam1() {
       </Explore>
       <SAExaminerReport stats={EXAM} maxMarks={3} />
       <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-400 dark:text-gray-500 italic">Coming soon.</p>
+        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
+        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
       </div>
     </div>
   )

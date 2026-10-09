@@ -66,7 +66,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={regionSrc} alt="The curve y = √((1+2x)/(1+x²)) from (0,1) to (1, √(3/2)), with the region beneath it on [0,1] shaded — this is the region rotated about the x-axis" className="w-full max-w-[360px]" />
+        <img loading="lazy" decoding="async" src={regionSrc} alt="The curve y = √((1+2x)/(1+x²)) from (0,1) to (1, √(3/2)), with the region beneath it on [0,1] shaded — this is the region rotated about the x-axis" className="w-full max-w-[360px]" />
       </div>
     ),
     reason: (
@@ -242,10 +242,10 @@ export default function SpecialistQ8_2019Exam1() {
         </WrongMethod>
         <SAExaminerReport stats={EXAMINER} maxMarks={4} />
         <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
             Video Walkthrough
           </p>
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 italic">Coming soon.</p>
+          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
         </div>
       </div>
     </div>

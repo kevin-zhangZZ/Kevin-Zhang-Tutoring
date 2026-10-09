@@ -175,7 +175,7 @@ export default function MethodsQ1_2015Exam2() {
           <Katex tex="S" /> and the <Katex tex="x" />-axis at <Katex tex="Q" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The cubic y = f(x) with a local minimum just right of the y-axis and a local maximum further right, together with the tangent at P(1, 4/5) falling steeply from S on the y-axis through Q on the x-axis — from the original 2015 VCAA exam paper"
             className="w-full max-w-[420px]"
@@ -225,7 +225,7 @@ export default function MethodsQ1_2015Exam2() {
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-3">
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={shadedSrc}
             alt="The same curve and tangent, with the region between them shaded from the point of tangency P across to where the tangent meets the curve again — from the original 2015 VCAA exam paper"
             className="w-full max-w-[380px]"

@@ -101,7 +101,7 @@ export default function MethodsQ20_2017() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="y = cos(x) falling from 1 and y = √3 sin(x) rising from 0, crossing at B; the region under both curves (√3 sin(x) from O to B, cos(x) from B to A) down to the x-axis is shaded, with triangle OAB drawn inside it and A at (π/2, 0) — from the original 2017 VCAA exam paper"
           className="w-full max-w-[400px]"

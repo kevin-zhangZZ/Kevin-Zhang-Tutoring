@@ -17,7 +17,7 @@ import optCSrc from './chem-2025-mcq8-optC.png'
 import optDSrc from './chem-2025-mcq8-optD.png'
 
 const opt = (src: string, alt: string) => (
-  <img src={src} alt={`${alt} — from the original 2025 VCAA exam paper`} className="w-full max-w-[230px] bg-white rounded" />
+  <img loading="lazy" decoding="async" src={src} alt={`${alt} — from the original 2025 VCAA exam paper`} className="w-full max-w-[230px] bg-white rounded" />
 )
 
 const EXAMINER: MCQExaminerStats = {
@@ -97,7 +97,7 @@ export default function ChemistryQ8_2025() {
           </p>
           <p className="mb-2">A diagram of one of the cells in a flexible zinc–air battery is shown below.</p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={cellSrc}
               alt="A curved, flexible zinc–air cell in layers: a porous positive current collector (+), the air electrode, a solid-state electrolyte, the zinc electrode and a negative current collector (−) — from the original 2025 VCAA exam paper"
               className="w-full max-w-[460px]"

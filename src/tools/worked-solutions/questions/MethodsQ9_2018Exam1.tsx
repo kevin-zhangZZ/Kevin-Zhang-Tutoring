@@ -239,7 +239,7 @@ export default function MethodsQ9_2018Exam1() {
           Consider a part of the graph of <Katex tex="y=x\sin(x)" />, as shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={curveSrc} alt="Graph of y = x sin(x) from −5π to 5π: humps of growing amplitude either side of the origin, symmetric about the y-axis, from the original 2018 VCAA exam paper" className="w-full max-w-[460px]" />
+          <img loading="lazy" decoding="async" src={curveSrc} alt="Graph of y = x sin(x) from −5π to 5π: humps of growing amplitude either side of the origin, symmetric about the y-axis, from the original 2018 VCAA exam paper" className="w-full max-w-[460px]" />
         </div>
       </div>
 
@@ -391,7 +391,7 @@ export default function MethodsQ9_2018Exam1() {
             <Katex tex="\left(\dfrac{\pi}{2},-\dfrac{5\pi}{2}\right)" />, as shown in the
             diagram below.
             <div className="my-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img src={tangentsSrc} alt="The curves f and g on [0, 3π] between the tangent lines l1 and l2, which form a triangle with the y-axis; the regions inside the triangle outside the three lens shapes enclosed by f and g are shaded — from the original 2018 VCAA exam paper" className="w-full max-w-[300px]" />
+              <img loading="lazy" decoding="async" src={tangentsSrc} alt="The curves f and g on [0, 3π] between the tangent lines l1 and l2, which form a triangle with the y-axis; the regions inside the triangle outside the three lens shapes enclosed by f and g are shaded — from the original 2018 VCAA exam paper" className="w-full max-w-[300px]" />
             </div>
             Find the total area of the shaded regions shown in the diagram above.
           </>

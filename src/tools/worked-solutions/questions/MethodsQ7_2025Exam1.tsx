@@ -15,7 +15,7 @@ function InterceptOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[520px]">
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="VCAA's graph of y = f(x) with the answer written into its blanks: (−2, 0) where the curve touches the x-axis, (5, 0) where it crosses, and (0, −20) on the y-axis"
           className="w-full block"
@@ -260,7 +260,7 @@ export default function MethodsQ7_2025Exam1() {
               Complete the coordinate pairs of all axial intercepts of <Katex tex="y=f(x)" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={graphSrc}
                 alt="A cubic curve labelled y = f(x), touching the x-axis at a negative value, falling through the negative y-axis to a minimum and rising to cross the x-axis at a positive value, with the coordinate pairs ( , 0), ( , 0) and (0, ) left blank — from the original 2025 VCAA exam paper"
                 className="w-full max-w-[520px]"

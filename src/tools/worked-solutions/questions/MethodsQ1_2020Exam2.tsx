@@ -342,7 +342,7 @@ export default function MethodsQ1_2020Exam2() {
           <Katex tex="a\in R" />. Part of the graph of <Katex tex="f" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A W-shaped quartic touching the x-axis at (−2, 0) and (2, 0) with a local maximum at (0, 4) — from the original 2020 VCAA exam paper"
             className="w-full max-w-[400px]"
@@ -400,7 +400,7 @@ export default function MethodsQ1_2020Exam2() {
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <p>Part of the graph of the derivative function <Katex tex="f'" /> is shown below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={fprimeSrc}
             alt="A cubic curve labelled f prime, crossing the x-axis at (−2, 0), the origin and (2, 0) — from the original 2020 VCAA exam paper"
             className="w-full max-w-[280px]"
@@ -460,7 +460,7 @@ export default function MethodsQ1_2020Exam2() {
           of the graphs of <Katex tex="f" /> and <Katex tex="h" /> are shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={fhSrc}
             alt="The W-shaped quartic f together with its reflection h, an M-shaped curve, crossing at four points — from the original 2020 VCAA exam paper"
             className="w-full max-w-[320px]"
@@ -498,7 +498,7 @@ export default function MethodsQ1_2020Exam2() {
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 flex flex-col gap-3">
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={shadedSrc}
             alt="The graphs of f and h with the two regions between them shaded, one either side of the y-axis, each between the intersections near x = ±√2 and x = ±√6 — from the original 2020 VCAA exam paper"
             className="w-full max-w-[380px]"

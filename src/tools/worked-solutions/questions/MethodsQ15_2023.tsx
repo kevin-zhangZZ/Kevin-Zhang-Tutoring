@@ -18,7 +18,7 @@ import optESrc from './meth-2023-mcq15-optE.png'
 function Panel({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-2 w-fit">
-      <img src={src} alt={alt} className="w-full max-w-[300px]" />
+      <img loading="lazy" decoding="async" src={src} alt={alt} className="w-full max-w-[300px]" />
     </div>
   )
 }
@@ -81,7 +81,7 @@ export default function MethodsQ15_2023() {
             <Katex tex="X" /> and <Katex tex="Y" />, plotted on the same set of axes?
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-2 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={keySrc}
               alt="Key: a dashed line for X and a solid line for Y — from the original 2023 VCAA exam paper"
               className="w-full max-w-[80px]"

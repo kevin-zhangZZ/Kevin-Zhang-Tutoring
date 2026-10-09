@@ -65,7 +65,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={pathSrc} alt="Parabolic path: the particle starts at the origin moving right along the x-axis with velocity u i and curves downward under the constant acceleration α j, α < 0 — this site's own explanatory figure" className="w-full max-w-[320px]" />
+        <img loading="lazy" decoding="async" src={pathSrc} alt="Parabolic path: the particle starts at the origin moving right along the x-axis with velocity u i and curves downward under the constant acceleration α j, α < 0 — this site's own explanatory figure" className="w-full max-w-[320px]" />
       </div>
     ),
     reason: <>Exactly the projectile picture: constant horizontal velocity, constant vertical acceleration.</>,

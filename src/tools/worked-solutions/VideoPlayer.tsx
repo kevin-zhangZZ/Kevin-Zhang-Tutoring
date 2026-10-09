@@ -3,7 +3,7 @@
 // underneath (some browsers can silently fail to decode a video track — no `error`
 // event fires — so the fallback can't only appear on error).
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 
 const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2]
 const DEFAULT_SPEED = 1.25
@@ -28,6 +28,7 @@ export default function VideoPlayer({ src, label }: { src: string; label: string
   const videoRef = useRef<HTMLVideoElement>(null)
   const [failed, setFailed] = useState(false)
   const [speed, setSpeed] = useState(DEFAULT_SPEED)
+  const speedId = useId()
 
   // `playbackRate` is a DOM property, not a JSX attribute — set it (and `defaultPlaybackRate`,
   // so a rewind-to-start or loop keeps the same rate) directly once the element exists.
@@ -52,6 +53,7 @@ export default function VideoPlayer({ src, label }: { src: string; label: string
     <div className="flex flex-col gap-2.5 max-w-xl mx-auto">
       <video
         ref={videoRef}
+        aria-label={`Video walkthrough of ${label}`}
         controls
         controlsList="nodownload"
         onContextMenu={e => e.preventDefault()}
@@ -63,13 +65,15 @@ export default function VideoPlayer({ src, label }: { src: string; label: string
         <source src={src} type="video/mp4" />
       </video>
 
-      <div className="flex items-center gap-1 flex-wrap">
-        <span className="text-[11px] font-medium text-gray-400 dark:text-gray-500 mr-1">Speed</span>
+      <div role="group" aria-labelledby={speedId} className="flex items-center gap-1 flex-wrap">
+        <span id={speedId} className="text-[11px] font-medium text-gray-500 dark:text-gray-400 mr-1">Speed</span>
         {SPEEDS.map(s => (
           <button
             key={s}
+            type="button"
+            aria-pressed={speed === s}
             onClick={() => setRate(s)}
-            className={`text-[11.5px] font-medium px-2 py-1 rounded-md transition-colors ${
+            className={`relative text-[11.5px] font-medium px-2 py-1 rounded-md transition-colors after:absolute after:-inset-y-2.5 after:-inset-x-0.5 ${
               speed === s
                 ? 'bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300'
                 : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -84,7 +88,7 @@ export default function VideoPlayer({ src, label }: { src: string; label: string
         href={src.replace('&raw=1', '&dl=0')}
         target="_blank"
         rel="noreferrer"
-        className="text-[11.5px] text-gray-400 dark:text-gray-500 hover:text-sky-700 dark:hover:text-sky-400 underline underline-offset-2 w-fit"
+        className="text-[11.5px] text-gray-500 dark:text-gray-400 hover:text-sky-700 dark:hover:text-sky-400 underline underline-offset-2 w-fit"
       >
         Video not playing? Watch it on Dropbox instead ↗
       </a>

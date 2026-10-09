@@ -176,7 +176,7 @@ export default function SpecialistQ4_2014Exam2() {
           begins to refill.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={coneSrc}
             alt="An inverted cone of radius 0.5 m at the top and height 1 m, with the water depth h measured up from the vertex — from the original 2014 VCAA exam paper"
             className="w-full max-w-[260px]"
@@ -246,7 +246,7 @@ export default function SpecialistQ4_2014Exam2() {
           <Katex tex="0.05\pi" /> m<sup>3</sup>/min, but no water leaks out.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={bucketSrc}
             alt="A bucket-shaped tank, 1 m tall, with a top radius of 0.75 m and a base radius of 0.5 m, with the water depth x measured up from the base — from the original 2014 VCAA exam paper"
             className="w-full max-w-[360px]"

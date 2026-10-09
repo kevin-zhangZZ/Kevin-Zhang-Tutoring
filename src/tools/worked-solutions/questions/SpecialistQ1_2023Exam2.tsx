@@ -36,7 +36,7 @@ function EllipseOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[460px]">
-        <img src={trackSrc} alt="VCAA's diagram of the track, with the answer drawn over it: the quarter ellipse from D(2, e − 2) arcing back to the origin, leaving D horizontally and arriving at O vertically" className="w-full block" />
+        <img loading="lazy" decoding="async" src={trackSrc} alt="VCAA's diagram of the track, with the answer drawn over it: the quarter ellipse from D(2, e − 2) arcing back to the origin, leaving D horizontally and arriving at O vertically" className="w-full block" />
         <svg viewBox="0 0 1320 1036" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={ELLIPSE} fill="none" stroke={ORANGE} strokeWidth={6} />
         </svg>
@@ -293,7 +293,7 @@ export default function SpecialistQ1_2023Exam2() {
           meet at point <Katex tex="C(1,0)" />. Distances are measured in kilometres.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={trackSrc}
             alt="A curve on a grid dipping just below the x-axis between O and C(1, 0), through marked points A and B, then rising steeply to D at x = 2 — from the original 2023 VCAA exam paper"
             className="w-full max-w-[460px]"

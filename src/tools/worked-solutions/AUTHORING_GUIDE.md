@@ -477,18 +477,22 @@ Every new question file needs two more edits, always together:
    category (the description often names the trick) and groups By Topic on it; the question
    page shows the whole string. Use real `percentCorrect` (omit entirely for a flagged
    question, §8) — the sidebar shows it on the row and sorts by it.
-2. **`details.ts`** — add the import and the registry entry (both required, in the two
-   separate blocks that already exist in the file):
+2. **`details.ts`** — add one line mapping the id to the question's file name (no `.tsx`,
+   no import):
    ```ts
-   import ChemistryQ13_2022 from './questions/ChemistryQ13_2022'
-   // ...
-   'chem-q13-2022': ChemistryQ13_2022,
+   'chem-q13-2022': 'ChemistryQ13_2022',
    ```
-3. **Short-answer questions only — `npm run part-stats`.** It regenerates `partStats.ts`
-   (each question's parts with their `topic`, marks and VCAA averages, read from the question
-   file), which the sidebar uses to list a question's parts and show how hard it was. Commit
-   the regenerated file with the question. It reports any short-answer question it couldn't
-   read, and any multi-part question with a `PartCard` missing its `topic`.
+   The files are loaded on demand, a paper at a time (`questionLoader.ts`; `vite.config.ts`
+   groups them into one chunk per paper by file name), so keep the
+   `{Methods|Specialist|Chemistry}Q{n}_{year}[Exam1|Exam2].tsx` naming exactly — a file named
+   any other way still works but gets its own chunk instead of joining its paper's.
+3. **Every question — `npm run part-stats`.** It regenerates `partStats.ts` (each
+   short-answer question's parts with their `topic`, marks and VCAA averages, read from the
+   question file), which the sidebar uses to list a question's parts and show how hard it was,
+   and `catalogCounts.ts` (questions per subject, which the Home page shows without importing
+   `data.ts`). Commit both regenerated files with the question. It reports any short-answer
+   question it couldn't read, and any multi-part question with a `PartCard` missing its
+   `topic`. (In `npm run dev`, Home warns in the console if `catalogCounts.ts` is stale.)
 4. **Methods and Specialist — `npm run topic-check -- <subject> <subtopic prefix>`.** The
    Exam Analysis page files every MCQ and short-answer part under a subtopic, by rules that read
    the `data.ts` category and description and each part's `topic`

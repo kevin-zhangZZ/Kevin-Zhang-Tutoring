@@ -129,7 +129,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="On VCAA's grid: three branches of the graph of f with dashed asymptotes x = −2, x = 1 and y = 2; the left branch through (−5, 0), the middle branch a valley with its minimum near (0, 7.5), and the right branch through (1.5, 0) rising to the maximum (4.44, 2.51) with the point of inflection at (6.79, 2.45)"
           className="w-full max-w-[440px]"

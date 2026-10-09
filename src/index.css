@@ -24,7 +24,20 @@
     @apply bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100;
   }
 
-  * {
+  /* Colour fades (hover states, the light/dark switch) on controls and on elements that set
+     their own colours — not on every node. KaTeX's spans and SVG internals are left out: there
+     are thousands of them, they inherit their colour from a fading parent anyway, and a fade on
+     reused SVG nodes smears fills while a 3D drawing turns (the misc demonstrations). Wrapped in
+     :where() so it stays zero-specificity and any transition-* utility still wins. */
+  :where(
+    :is(
+      html, body, header, nav, main, aside, footer, dialog,
+      a, button, input, select, textarea, summary, label,
+      [role='button'], [role='tab'], [role='switch'], [role='option'], [role='menuitem'],
+      [class*='bg-'], [class*='text-'], [class*='border'], [class*='divide-'], [class*='ring-'],
+      [class*='decoration-'], [class*='placeholder-']
+    ):not(svg, svg *, .katex *)
+  ) {
     @apply transition-colors duration-150;
   }
 }
@@ -126,4 +139,16 @@
   --ea-missing: #374151;
   --ea-grid: #1f2937; --ea-axis: #374151;
   --ea-surface: #111827;
+}
+
+/* Surfaces. Two tiers: `.card` (rounded-xl) for a block of content or controls inside a tool;
+   `.panel` (rounded-2xl) for a page-level region — the solution pane, the sidebar, a chart
+   section. Padding stays with the caller. */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl;
+  }
+  .panel {
+    @apply bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl;
+  }
 }

@@ -69,7 +69,7 @@ export default function ChemistryQ27_2025() {
             are given below.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={structuresSrc}
               alt="Skeletal structures: geranial, a ten-carbon chain with an aldehyde group at one end and two C=C double bonds; linalool, with an OH on a carbon that also carries a methyl group and a vinyl group, and one further C=C — from the original 2025 VCAA exam paper"
               className="w-full max-w-[460px]"

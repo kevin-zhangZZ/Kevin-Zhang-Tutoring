@@ -139,7 +139,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={argandSrc}
           alt="On VCAA's polar grid: an orange ray leaving an open circle at z4 = √3 + i heading up and to the left at 150°, cutting the blue circle of radius 1 centred at 3i"
           className="w-full max-w-[380px]"

@@ -48,7 +48,7 @@ export default function MethodsQ18_2024() {
         <div className="flex flex-col gap-3">
           <p>Find the value of <Katex tex="x" /> which maximises the area of the trapezium below.</p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={figSrc}
               alt="A trapezium with top side x, slant sides 10, and a base split into three lengths of x by the two dashed perpendicular heights — from the original 2024 VCAA exam paper"
               className="w-full max-w-[340px]"

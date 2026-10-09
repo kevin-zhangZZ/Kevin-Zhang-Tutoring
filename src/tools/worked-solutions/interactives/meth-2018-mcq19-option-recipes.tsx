@@ -149,7 +149,7 @@ export default function OptionRecipes() {
               className={
                 'text-[13px] font-bold w-9 py-1.5 rounded-full border ' +
                 (L === pick
-                  ? 'bg-sky-600 border-sky-600 text-white dark:bg-sky-500 dark:border-sky-500'
+                  ? 'bg-sky-700 border-sky-700 text-white dark:bg-sky-500 dark:border-sky-500 dark:text-gray-950'
                   : 'bg-white border-gray-300 text-gray-600 hover:border-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300')
               }
             >

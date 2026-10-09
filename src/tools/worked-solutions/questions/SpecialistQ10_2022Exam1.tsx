@@ -93,7 +93,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="On VCAA's grid: three branches of y = sec(4x) — a U-shaped branch with minimum (0, 1) between the dashed asymptotes x = −π/8 and x = π/8, and two branches below the axis rising to the endpoints (−π/4, −1) and (π/4, −1)"
           className="w-full max-w-[520px]"

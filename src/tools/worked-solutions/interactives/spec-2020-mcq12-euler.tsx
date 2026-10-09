@@ -319,7 +319,7 @@ export default function EulerWidget() {
               ))}
               {s === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-1.5 py-1 text-gray-400 dark:text-gray-500">No steps yet: <Katex tex="y_0 = e" /></td>
+                  <td colSpan={4} className="px-1.5 py-1 text-gray-500 dark:text-gray-400">No steps yet: <Katex tex="y_0 = e" /></td>
                 </tr>
               )}
             </tbody>

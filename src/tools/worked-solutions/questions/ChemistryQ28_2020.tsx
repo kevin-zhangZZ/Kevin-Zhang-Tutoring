@@ -20,7 +20,7 @@ const EXAMINER: MCQExaminerStats = {
       <br />
       Since the products and their relative amounts are identical for both compounds, the chemical
       energies of the products will be identical for both.
-      <img src={reportGraphSrc} alt="The report's sketch of two Maxwell-Boltzmann distributions: a taller, narrower curve at T1 and a flatter, broader curve at T2, where T2 > T1" className="w-full max-w-[300px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's sketch of two Maxwell-Boltzmann distributions: a taller, narrower curve at T1 and a flatter, broader curve at T2, where T2 > T1" className="w-full max-w-[300px] mt-1" />
       Maxwell-Boltzmann distributions show a plot of the number (proportion) of molecules against
       kinetic energy or particle velocity. At higher temperatures the kinetic energies and velocities
       of the particles increases and the distribution flattens and broadens.

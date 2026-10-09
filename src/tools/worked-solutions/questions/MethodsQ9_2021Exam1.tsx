@@ -230,7 +230,7 @@ export default function MethodsQ9_2021Exam1() {
           the point <Katex tex="P" />, shown in the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={circleSrc}
             alt="The unit circle with a tangent touching it at P in the first quadrant, the radius OP drawn with a right angle marked, and the tangent meeting the x-axis at A(2, 0) — from the original 2021 VCAA exam paper"
             className="w-full max-w-[340px]"
@@ -310,7 +310,7 @@ export default function MethodsQ9_2021Exam1() {
           the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={triangleSrc}
             alt="The same unit circle with a shallower line through A(2, 0) meeting the circle at P′, and the shaded triangle OAP′ with the angle θ marked at O — from the original 2021 VCAA exam paper"
             className="w-full max-w-[340px]"

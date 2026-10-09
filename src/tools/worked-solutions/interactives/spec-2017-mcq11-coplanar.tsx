@@ -12,7 +12,7 @@
 // squashing one direction is a linear map, so it never changes whether vectors are coplanar.
 
 import { useEffect, useRef, useState } from 'react'
-import { ActionButton, Buttons, C, Controls, Katex, M, Notice, Readout, Readouts, Slider, num } from './kit'
+import { ActionButton, Buttons, C, Controls, Katex, M, Notice, Readout, Readouts, Slider, num, prefersReducedMotion } from './kit'
 
 type V3 = readonly [number, number, number]
 type P2 = readonly [number, number]
@@ -140,6 +140,11 @@ export default function CoplanarWidget() {
     const az0 = az
     const el0 = el
     const dAz = wrap(az1 - az0)
+    if (prefersReducedMotion()) {
+      setAz(wrap(az0 + dAz))
+      setEl(el1)
+      return
+    }
     const t0 = performance.now()
     const step = (now: number) => {
       const t = Math.min(1, (now - t0) / 700)

@@ -117,7 +117,7 @@ export default function InterceptSign() {
                 key={o.letter}
                 className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 ${
                   !inIt
-                    ? 'border-gray-200 text-gray-400 dark:border-gray-700 dark:text-gray-500 opacity-60'
+                    ? 'border-gray-200 text-gray-500 dark:border-gray-700 dark:text-gray-400'
                     : works
                       ? 'border-emerald-400 text-emerald-800 dark:border-emerald-700 dark:text-emerald-200'
                       : 'border-red-300 text-red-700 dark:border-red-800 dark:text-red-300'

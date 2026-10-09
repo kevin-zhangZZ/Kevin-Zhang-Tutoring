@@ -83,7 +83,7 @@ export default function MethodsQ2_2017() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="Part of a cubic graph with a local maximum at (−3, 36) and a local minimum at (5/3, −400/27), from the original 2017 VCAA exam paper"
           className="w-full max-w-[360px]"

@@ -147,7 +147,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={pdfSrc} alt="Graph of the probability density function on 0 ≤ x ≤ 5, peaking near x = 3.75, with the region from x = 2 to x = 5 shaded to show Pr(X > 2) ≈ 0.913 — this site's own explanatory figure" className="w-full max-w-[400px]" />
+        <img loading="lazy" decoding="async" src={pdfSrc} alt="Graph of the probability density function on 0 ≤ x ≤ 5, peaking near x = 3.75, with the region from x = 2 to x = 5 shaded to show Pr(X > 2) ≈ 0.913 — this site's own explanatory figure" className="w-full max-w-[400px]" />
       </div>
     ),
     reason: <>"Lives longer than two weeks" is the shaded area to the right of <Katex tex="x=2" /> — clearly most of the total area, so the answer should come out well above half.</>,

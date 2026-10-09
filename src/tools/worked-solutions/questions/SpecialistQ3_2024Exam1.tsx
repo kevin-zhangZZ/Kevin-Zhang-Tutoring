@@ -128,7 +128,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (x from about −6.6 to 4.6, y from about −2.4 to 6.5): two branches either side of the dashed asymptote x = −1, both approaching the dashed asymptote y = 1 far out; the left branch rises from about 1.8 at the left edge to +∞ at x = −1, the right branch falls from +∞ through the labelled point (0, 1) to the labelled minimum (1, 0) and then rises back towards y = 1"
           className="w-full max-w-[540px]"

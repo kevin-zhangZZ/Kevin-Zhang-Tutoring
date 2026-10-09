@@ -224,7 +224,7 @@ export default function MethodsQ2_2015Exam2() {
           below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={bridgeSrc}
             alt="A parabolic bridge frame from A(-40, 0) up to a peak of 60 and down to B(40, 0), with the road running from X(-40, 40) on the left clifftop to Y(40, 30) on the right, crossing the frame at E and F, two vertical columns PQ and MN joining road to frame near the y-axis, and the angle theta at A between the frame and the river — from the original 2015 VCAA exam paper"
             className="w-full max-w-[520px]"
@@ -322,7 +322,7 @@ export default function MethodsQ2_2015Exam2() {
           shaded region in the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={bannerSrc}
             alt="The parabolic frame and the road, with the region between them shaded from E on the left to F on the right — from the original 2015 VCAA exam paper"
             className="w-full max-w-[380px]"

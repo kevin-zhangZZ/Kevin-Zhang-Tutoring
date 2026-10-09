@@ -118,7 +118,7 @@ const ROWS_AII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={fSketchSrc}
           alt="Truncus on VCAA's grid (x from −5 to 5, y from −4 to 6) with dashed asymptotes x = 1 and y = 1, passing through (−1, 3/2) and (0, 3) — this site's own sketch"
           className="w-full max-w-[320px]"
@@ -229,7 +229,7 @@ export default function MethodsQ5_2019Exam1() {
               Sketch the graph of <Katex tex="f" /> on the axes below, labelling all asymptotes with their equations.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank axes from the original 2019 VCAA exam paper: x from −5 to 5 and y from −4 to 6, grid squares of 1 unit"
                 className="w-full max-w-[420px]"

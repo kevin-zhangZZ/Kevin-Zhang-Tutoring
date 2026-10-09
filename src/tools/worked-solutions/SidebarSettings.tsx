@@ -8,6 +8,7 @@ import { QUESTIONS, SUBJECTS, type SubjectId } from './data'
 import { DEFAULT_PREFS, useSidebarPrefs, type SidebarPrefs } from './sidebarPrefs'
 import { QuestionSidebar } from './QuestionSidebar'
 import { useStudyMode } from './studyMode'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 import { TOOL_PATH, questionPath } from './routes'
 
 // Each option: [value, button text, what it does].
@@ -207,27 +208,18 @@ export default function SidebarSettings() {
         <aside className="lg:sticky lg:top-4 flex flex-col gap-2">
           <div className="flex items-center justify-between gap-2">
             <h2 className="font-display text-[13px] font-bold text-gray-500 dark:text-gray-400">Preview</h2>
-            <div className="grid grid-flow-col auto-cols-fr gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5" role="group" aria-label="Preview subject">
-              {SUBJECTS.map(s => (
-                <button
-                  key={s.id}
-                  type="button"
-                  aria-pressed={subject === s.id}
-                  onClick={() => {
-                    setSubject(s.id)
-                    setSelectedId(null)
-                    setActivePart(null)
-                  }}
-                  className={`px-2 py-1 rounded-md text-[11px] font-medium ${
-                    subject === s.id ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400'
-                  }`}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
+            <SegmentedControl
+              aria-label="Preview subject"
+              value={subject}
+              onChange={id => {
+                setSubject(id)
+                setSelectedId(null)
+                setActivePart(null)
+              }}
+              options={SUBJECTS.map(s => ({ value: s.id, label: s.label }))}
+            />
           </div>
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-3 lg:max-h-[calc(100vh-5rem)] overflow-y-auto [scrollbar-gutter:stable] scrollbar-quiet">
+          <div className="panel p-3 lg:max-h-[calc(100vh-5rem)] overflow-y-auto [scrollbar-gutter:stable] scrollbar-quiet">
             <QuestionSidebar
               subject={subject}
               year={year}
@@ -249,7 +241,7 @@ export default function SidebarSettings() {
               }}
             />
           </div>
-          <p className="text-[12px] text-gray-400 dark:text-gray-500">
+          <p className="text-[12px] text-gray-500 dark:text-gray-400">
             The preview works like the real list. The phone settings apply below laptop width.
           </p>
         </aside>
@@ -277,27 +269,14 @@ function Choice({
       <span id={`pref-${id}`} className="font-display text-[14px] font-semibold text-gray-900 dark:text-white">
         {label}
       </span>
-      <div
-        role="group"
+      <SegmentedControl
+        size="md"
+        fill
         aria-labelledby={`pref-${id}`}
-        className="grid grid-flow-col auto-cols-fr gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl p-1"
-      >
-        {options.map(([v, text]) => (
-          <button
-            key={v}
-            type="button"
-            aria-pressed={v === value}
-            onClick={() => onChange(v)}
-            className={`px-2 py-2 rounded-lg text-[13px] font-medium transition-colors ${
-              v === value
-                ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-            }`}
-          >
-            {text}
-          </button>
-        ))}
-      </div>
+        value={value}
+        onChange={onChange}
+        options={options.map(([v, text]) => ({ value: v, label: text }))}
+      />
       {current && <p className="text-[13px] leading-relaxed text-gray-500 dark:text-gray-400">{current[2]}</p>}
     </div>
   )

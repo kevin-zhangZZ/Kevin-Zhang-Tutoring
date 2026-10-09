@@ -85,7 +85,7 @@ export default function MethodsQ19_2020() {
             times, <Katex tex="x" />, that a '6' is rolled on a fair six-sided die in 20 trials.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-            <img src={diagramSrc} alt="Graph of p(x), the probability function for the number of 6s rolled in 20 trials, from the original 2020 VCAA exam paper" className="w-full max-w-[380px]" />
+            <img loading="lazy" decoding="async" src={diagramSrc} alt="Graph of p(x), the probability function for the number of 6s rolled in 20 trials, from the original 2020 VCAA exam paper" className="w-full max-w-[380px]" />
           </div>
           <p>
             Let <Katex tex="q" /> be the probability function for the number of times, <Katex tex="w" />, that a '6'

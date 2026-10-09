@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -238,20 +239,23 @@ function NumField({ value, max, label, onChange }: {
   const [text, setText] = useState(String(value))
   const focused = useRef(false)
   useEffect(() => { if (!focused.current) setText(String(value)) }, [value])
+  // The label pads the tap area out to ~44px on phones without changing how the number looks.
   return (
-    <input
-      type="text" inputMode="numeric" autoComplete="off" aria-label={label} value={text}
-      style={{ width: `${Math.max(1, text.length) + 0.6}ch` }}
-      onFocus={e => { focused.current = true; const el = e.currentTarget; requestAnimationFrame(() => el.select()) }}
-      onBlur={() => { focused.current = false; setText(String(value)) }}
-      onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur() }}
-      onChange={e => {
-        const digits = e.target.value.replace(/[^0-9]/g, '').slice(0, String(max).length)
-        setText(digits)
-        if (digits !== '' && Number(digits) <= max) onChange(Number(digits))
-      }}
-      className="font-mono text-sm text-center tabular-nums bg-transparent text-gray-900 dark:text-gray-100 border-b-[1.5px] border-dashed border-gray-300 dark:border-gray-600 rounded-t px-px py-0.5 cursor-text hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-blue-100 dark:focus:bg-blue-900/50 focus:border-solid focus:border-blue-500"
-    />
+    <label className="flex py-3 -my-3 px-1 -mx-1 cursor-text">
+      <input
+        type="text" inputMode="numeric" autoComplete="off" aria-label={label} value={text}
+        style={{ width: `${Math.max(1, text.length) + 0.6}ch` }}
+        onFocus={e => { focused.current = true; const el = e.currentTarget; requestAnimationFrame(() => el.select()) }}
+        onBlur={() => { focused.current = false; setText(String(value)) }}
+        onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur() }}
+        onChange={e => {
+          const digits = e.target.value.replace(/[^0-9]/g, '').slice(0, String(max).length)
+          setText(digits)
+          if (digits !== '' && Number(digits) <= max) onChange(Number(digits))
+        }}
+        className="font-mono text-sm text-center tabular-nums bg-transparent text-gray-900 dark:text-gray-100 border-b-[1.5px] border-dashed border-gray-300 dark:border-gray-600 rounded-t px-px py-0.5 cursor-text hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-blue-100 dark:focus:bg-blue-900/50 focus:border-solid focus:border-blue-500 [@media(pointer:coarse)]:min-w-[2.5rem]"
+      />
+    </label>
   )
 }
 
@@ -317,17 +321,17 @@ function SettingsScreen({
     <div className="flex flex-col gap-5">
 
       {/* How hard */}
-      <div role="radiogroup" aria-label="Difficulty" className="grid grid-cols-4 gap-1 p-1 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
+      <div role="group" aria-label="Difficulty" className="grid grid-cols-4 gap-1 p-1 rounded-xl bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800">
         {PICKS.map(l => {
           const on = s.level === l
           return (
             <button
               key={l}
-              role="radio"
-              aria-checked={on}
+              type="button"
+              aria-pressed={on}
               onClick={() => pickLevel(l)}
               className={`flex items-center justify-center gap-2 py-2.5 rounded-[9px] text-sm font-semibold transition-colors ${
-                on ? TONE[l].seg : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                on ? TONE[l].seg : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               <span className={`hidden min-[400px]:block w-2 h-2 rounded-full ${TONE[l].dot}`} />
@@ -339,7 +343,7 @@ function SettingsScreen({
 
       {/* What to practise */}
       <div>
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-3">What to Practise</p>
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-3">What to Practise</p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           {FOCUSES.map(f => {
             const on = s.focus === f
@@ -353,7 +357,7 @@ function SettingsScreen({
                 }`}
               >
                 <span className={`text-[13.5px] font-bold leading-tight ${on ? TONE[s.level].title : 'text-gray-900 dark:text-gray-100'}`}>{FOCUS[f].name}</span>
-                <span className="text-[13px] font-bold tracking-[0.14em] text-gray-400 dark:text-gray-500">{glyphs(FOCUS[f].ops)}</span>
+                <span className="text-[13px] font-bold tracking-[0.14em] text-gray-500 dark:text-gray-400">{glyphs(FOCUS[f].ops)}</span>
                 <span className="mt-auto font-mono text-xs tabular-nums text-gray-500 dark:text-gray-400">{examples[f]}</span>
               </button>
             )
@@ -365,7 +369,7 @@ function SettingsScreen({
       <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
         {([['add', 'sub'], ['mul', 'div']] as const).map((pair, i) => (
           <div key={pair[0]} className={`flex items-center gap-5 px-5 py-3 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}>
-            <span className="flex gap-1.5 w-16 shrink-0">
+            <span className="flex gap-1.5 w-16 [@media(pointer:coarse)]:w-[94px] shrink-0">
               {pair.map(op => (
                 <button
                   key={op}
@@ -373,12 +377,12 @@ function SettingsScreen({
                   aria-pressed={s.ops[op]}
                   aria-label={OP_NAME[op]}
                   title={`${OP_NAME[op]}: ${s.ops[op] ? 'on' : 'off'}`}
-                  className={`w-[29px] h-[29px] grid place-items-center rounded-lg border-[1.5px] text-base font-bold leading-none transition-colors ${
+                  className={`w-[29px] h-[29px] [@media(pointer:coarse)]:w-11 [@media(pointer:coarse)]:h-11 grid place-items-center rounded-lg border-[1.5px] text-base font-bold leading-none transition-colors ${
                     blocked === op ? 'animate-[shake_0.32s]' : ''
                   } ${
                     s.ops[op]
                       ? 'border-transparent bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                      : 'border-dashed border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500'
+                      : 'border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400'
                   }`}
                 >
                   {SYM[op]}
@@ -398,29 +402,22 @@ function SettingsScreen({
             </span>
           </div>
         ))}
-        <p className={`px-5 py-2.5 border-t border-gray-100 dark:border-gray-800 text-xs ${blocked ? 'text-amber-600 dark:text-amber-400' : 'text-gray-400 dark:text-gray-500'}`}>
+        <p className={`px-5 py-2.5 border-t border-gray-100 dark:border-gray-800 text-xs ${blocked ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
           {blocked ? 'Keep at least one operation switched on.' : 'Tap a symbol to switch it off. Tap a number to change it.'}
         </p>
       </div>
 
       {/* Duration */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-3">Duration</p>
-        <div className="flex flex-wrap gap-1.5">
-          {DURATIONS.map(d => (
-            <button
-              key={d} onClick={() => setS(p => ({ ...p, duration: d }))}
-              aria-pressed={s.duration === d}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                s.duration === d
-                  ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-            >
-              {durationLabel(d)}
-            </button>
-          ))}
-        </div>
+      <div className="card px-5 py-4">
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-3">Duration</p>
+        <SegmentedControl
+          size="md"
+          fill
+          aria-label="Duration"
+          value={String(s.duration)}
+          onChange={d => setS(p => ({ ...p, duration: Number(d) }))}
+          options={DURATIONS.map(d => ({ value: String(d), label: durationLabel(d) }))}
+        />
       </div>
 
       {/* Start */}
@@ -572,7 +569,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
               : 'border-blue-500 text-gray-900 dark:text-white'
             }`}
           >
-            {input || <span className="text-gray-300 dark:text-gray-600">?</span>}
+            {input || <span className="text-gray-500 dark:text-gray-400">?</span>}
           </p>
         ) : (
           <input
@@ -610,7 +607,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-3 text-xs text-gray-400 dark:text-gray-500">
+      <div className="flex items-center justify-between gap-3 text-xs text-gray-500 dark:text-gray-400">
         <span>{coarse ? 'A right answer moves on by itself · Check marks a wrong one' : 'A right answer moves on by itself · Enter marks a wrong one'}</span>
         <button onClick={() => finish(true, timeLeft)} className="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 whitespace-nowrap">
           End round
@@ -650,7 +647,7 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="w-full bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-6 py-8 text-center">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-1">
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1">
           {result.endedEarly ? 'Round Ended' : 'Time’s Up'} · {settingsLabel}
         </p>
         <p className="text-6xl font-bold text-gray-900 dark:text-white mb-1">{result.correct}</p>
@@ -660,7 +657,7 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
         ) : best !== undefined ? (
           <p className="inline-block mt-3 text-xs font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1">Your best on {settingsLabel}: {best}</p>
         ) : null}
-        {result.endedEarly && <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">Rounds ended early don’t count towards your best.</p>}
+        {result.endedEarly && <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Rounds ended early don’t count towards your best.</p>}
       </div>
 
       <div className="w-full grid grid-cols-3 gap-3">
@@ -671,7 +668,7 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
         ].map(({ label, value, color }) => (
           <div key={label} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-4 py-4 text-center">
             <p className={`text-2xl font-bold ${color}`}>{value}</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{label}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{label}</p>
           </div>
         ))}
       </div>
@@ -754,7 +751,7 @@ export default function SpeedMaths() {
   return (
     <div className="max-w-lg mx-auto px-5 sm:px-6 py-8">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Speed Maths</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-1">Speed Maths</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">Solve as many arithmetic problems as you can before time runs out.</p>
       </div>
 

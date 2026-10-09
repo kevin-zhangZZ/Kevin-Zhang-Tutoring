@@ -114,7 +114,7 @@ const TOTAL_PATH =
 const OVERLAY = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
     <div className="relative w-full max-w-[560px]">
-      <img src={twoTabletsSrc} alt="VCAA's graph of the two tablets as separate dashed curves, with the solved total-amount curve drawn over it in blue and its maximum marked at (7.78, 455.82)" className="w-full" />
+      <img loading="lazy" decoding="async" src={twoTabletsSrc} alt="VCAA's graph of the two tablets as separate dashed curves, with the solved total-amount curve drawn over it in blue and its maximum marked at (7.78, 455.82)" className="w-full" />
       <svg viewBox="0 0 1314 734" className="absolute inset-0 w-full h-full" aria-hidden="true">
         <path d={TOTAL_PATH} fill="none" stroke="#0ea5e9" strokeWidth="6" strokeLinejoin="round" strokeLinecap="round" />
         <circle cx="880.6" cy="127.8" r="11" fill="#0ea5e9" />
@@ -257,7 +257,7 @@ export default function MethodsQ2_2018Exam2() {
           The graph of <Katex tex="y=b(t)" /> is shown below for <Katex tex="0\le t\le6" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={oneTabletSrc} alt="Graph of the amount of drug X against time for one tablet: rising steeply to a peak just above 300 mg near t = 2, then declining to about 190 mg at t = 6, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
+          <img loading="lazy" decoding="async" src={oneTabletSrc} alt="Graph of the amount of drug X against time for one tablet: rising steeply to a peak just above 300 mg near t = 2, then declining to about 190 mg at t = 6, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
       </div>
 
@@ -324,7 +324,7 @@ export default function MethodsQ2_2018Exam2() {
           shown in the graph below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={twoTabletsSrc} alt="Two identical dashed curves six hours apart, labelled Tablet 1 and Tablet 2, on axes running to t = 12 hours, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
+          <img loading="lazy" decoding="async" src={twoTabletsSrc} alt="Two identical dashed curves six hours apart, labelled Tablet 1 and Tablet 2, on axes running to t = 12 hours, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
       </div>
 

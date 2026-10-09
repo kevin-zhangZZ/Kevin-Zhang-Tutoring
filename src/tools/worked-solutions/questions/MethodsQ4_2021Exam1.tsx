@@ -88,7 +88,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's axes (−6 to 6): a rectangular hyperbola with dashed asymptotes x = 2 and y = 1, passing through (0, 2) and (4, 0), one branch above-left of the asymptotes' crossing and one below-right"
           className="w-full max-w-[380px]"

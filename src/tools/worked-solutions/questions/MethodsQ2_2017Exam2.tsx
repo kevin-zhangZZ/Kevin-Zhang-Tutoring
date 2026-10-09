@@ -320,7 +320,7 @@ export default function MethodsQ2_2017Exam2() {
         </p>
         <p className="mb-3">Sammy exits the capsule after one complete rotation of the Ferris wheel.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={stemSrc}
             alt="A drawing of the giant Ferris wheel with its capsules, standing on a platform; the point P is marked on the rim level with the centre on the right, and a bracket shows its height h above the ground — from the original 2017 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -392,7 +392,7 @@ export default function MethodsQ2_2017Exam2() {
           below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={p1Src}
             alt="The Ferris wheel as a circle centred at C above the origin O, with a straight line drawn from C through a point P1 on the circle down to B on the x-axis 500 m away; the angle theta is marked at B — from the original 2017 VCAA exam paper"
             className="w-full max-w-[520px]"
@@ -446,7 +446,7 @@ export default function MethodsQ2_2017Exam2() {
           <Katex tex="P" />, where angle <Katex tex="OBP_2=\alpha" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={p2Src}
             alt="The same circle with a line from B on the x-axis touching the circle at P2 near the top, the radius CP2 drawn dashed with a right angle marked at P2, and the angle alpha marked at B — from the original 2017 VCAA exam paper"
             className="w-full max-w-[520px]"

@@ -95,7 +95,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (x from about −5.7 to 5.7, y from −5 to 11): two increasing branches either side of the dashed vertical asymptote x = 1, the left branch above the dashed oblique asymptote y = x + 2 passing through (−3, 0) and (0, 6), the right branch below it passing through (2, 0)"
           className="w-full max-w-[420px]"

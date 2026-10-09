@@ -123,7 +123,7 @@ export default function SpecialistQ8_2017Exam1() {
           <Katex tex="\dfrac{dy}{dx}=\dfrac{-x}{1+y^2}" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={fieldSrc}
             alt="A slope field on axes from −2 to 2 in both directions: short line segments sloping up to the right on the left half of the plane, horizontal on the y-axis, and down to the right on the right half — from the original 2017 VCAA exam paper"
             className="w-full max-w-[420px]"
@@ -260,7 +260,7 @@ const X_INT = Math.sqrt(11 / 3)
 function SolutionOverlay() {
   return (
     <div className="relative w-full max-w-[380px]">
-      <img
+      <img loading="lazy" decoding="async"
         src={fieldSrc}
         alt="The slope field with the solution curve through (−1, 1) drawn over it: a symmetric arch peaking on the y-axis just above y = 1 and crossing the x-axis near x = 1.9"
         className="w-full block"

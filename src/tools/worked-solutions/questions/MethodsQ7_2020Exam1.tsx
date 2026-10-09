@@ -214,7 +214,7 @@ export default function MethodsQ7_2020Exam1() {
           <Katex tex="P(1,0)" />. Part of the graph of <Katex tex="y=f(x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="An upward parabola labelled f, with its minimum just left of the y-axis and well above the x-axis — from the original 2020 VCAA exam paper"
             className="w-full max-w-[340px]"

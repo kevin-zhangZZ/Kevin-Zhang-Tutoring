@@ -286,7 +286,7 @@ export default function LocateMode() {
               <text x={CX + 8}  y={24}      fontSize="12" textAnchor="start"
                 fill="currentColor" fillOpacity="0.3" fontFamily="Inter, sans-serif">y</text>
             </svg>
-            <p className="text-xs text-center text-gray-400 dark:text-gray-500 pb-2">
+            <p className="text-xs text-center text-gray-500 dark:text-gray-400 pb-2">
               {verb} the point for this angle{coarse ? '' : ', or use Tab and Enter'}
             </p>
           </div>

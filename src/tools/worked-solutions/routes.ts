@@ -10,28 +10,10 @@
 // "Q2(a–f)" → q2), and are unique within a subject/year/exam.
 
 import { QUESTIONS, SUBJECTS, type QuestionMeta, type SubjectId } from './data'
+import { codeSlug, examSlug } from './paths'
 
-export const TOOL_PATH = '/worked-solutions'
-
-export function examSlug(exam: string): string {
-  return exam.trim().toLowerCase().replace(/\s+/g, '-')
-}
-
-export function codeSlug(code: string): string {
-  return code.replace(/\(.*\)\s*$/, '').trim().toLowerCase().replace(/\s+/g, '-')
-}
-
-export function subjectPath(subject: SubjectId): string {
-  return `${TOOL_PATH}/${subject}`
-}
-
-export function yearPath(subject: SubjectId, year: number): string {
-  return `${TOOL_PATH}/${subject}/${year}`
-}
-
-export function questionPath(q: QuestionMeta): string {
-  return `${TOOL_PATH}/${q.subject}/${q.year}/${examSlug(q.exam)}/${codeSlug(q.code)}`
-}
+// The builders themselves live in paths.ts (no catalogue import, so Home can use them cheaply).
+export { TOOL_PATH, examSlug, codeSlug, subjectPath, yearPath, questionPath } from './paths'
 
 export interface ParsedPath {
   subject: SubjectId | null

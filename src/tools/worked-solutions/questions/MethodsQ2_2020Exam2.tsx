@@ -314,7 +314,7 @@ export default function MethodsQ2_2020Exam2() {
           All distances are measured in metres.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={riverSrc}
             alt="A shaded band of constant vertical width between two identical cosine curves running from x = 0 to x = 200, with the point P marked at (50, 30) on the lower curve — from the original 2020 VCAA exam paper"
             className="w-full max-w-[460px]"

@@ -106,7 +106,7 @@ const ROWS_BI: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={parabolaSrc}
           alt="This site's sketch of the parabola y = x squared plus 4x plus 3 with x-intercepts at (−3, 0) and (−1, 0) and turning point (−2, −1); the branch to the left of x = −3, where the parabola is at or above the x-axis, is drawn thicker in orange"
           className="w-full max-w-[420px]"

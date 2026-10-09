@@ -34,7 +34,7 @@ function InverseOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[380px]">
-        <img src={axesSrc} alt="VCAA's axes with f(x) = √x/√2 from (0, 0) to (2, 1), and the answer f⁻¹(x) = 2x² drawn over them from (0, 0) to (1, 2), crossing f at (1/2, 1/2)" className="w-full block" />
+        <img loading="lazy" decoding="async" src={axesSrc} alt="VCAA's axes with f(x) = √x/√2 from (0, 0) to (2, 1), and the answer f⁻¹(x) = 2x² drawn over them from (0, 0) to (1, 2), crossing f at (1/2, 1/2)" className="w-full block" />
         <svg viewBox="0 0 1110 1060" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={functionToPath(fInv, 0, 1, toX, toY)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <circle cx={toX(1)} cy={toY(2)} r={13} fill={ORANGE} />
@@ -65,7 +65,7 @@ function RegionsOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[380px]">
-        <img src={axesSrc} alt="VCAA's axes with f and f⁻¹: region A shaded between the curves from x = 0 to x = 1/2, and region B shaded between them from x = 1/2 to the dashed line x = 1" className="w-full block" />
+        <img loading="lazy" decoding="async" src={axesSrc} alt="VCAA's axes with f and f⁻¹: region A shaded between the curves from x = 0 to x = 1/2, and region B shaded between them from x = 1/2 to the dashed line x = 1" className="w-full block" />
         <svg viewBox="0 0 1110 1060" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={between(0, 0.5, f, fInv)} fill="#0ea5e9" fillOpacity={0.3} />
           <path d={between(0.5, 1, fInv, f)} fill={ORANGE} fillOpacity={0.3} />
@@ -247,7 +247,7 @@ export default function MethodsQ6_2020Exam1() {
           axes below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={axesSrc}
             alt="Gridded axes from −1/2 to 5/2, with gridlines every 1/2, and the curve f(x) = √x/√2 drawn from (0, 0) up to (2, 1) — from the original 2020 VCAA exam paper"
             className="w-full max-w-[380px]"

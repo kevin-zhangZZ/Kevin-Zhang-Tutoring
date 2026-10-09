@@ -14,7 +14,7 @@ import optCSrc from './chem-2019-mcq18-optC.png'
 import optDSrc from './chem-2019-mcq18-optD.png'
 
 const opt = (src: string, alt: string) => (
-  <img src={src} alt={`${alt} — from the original 2019 VCAA exam paper`} className="w-full max-w-[240px] bg-white rounded" />
+  <img loading="lazy" decoding="async" src={src} alt={`${alt} — from the original 2019 VCAA exam paper`} className="w-full max-w-[240px] bg-white rounded" />
 )
 
 const EXAMINER: MCQExaminerStats = {

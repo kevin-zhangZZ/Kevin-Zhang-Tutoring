@@ -402,7 +402,7 @@ export default function MethodsQ4_2017Exam2() {
           <Katex tex="f" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="Graph of y = 2^(x+1) − 2 rising through the origin, with a dashed horizontal asymptote at y = −2, from the original 2017 VCAA exam paper"
             className="w-full max-w-[380px]"
@@ -531,7 +531,7 @@ export default function MethodsQ4_2017Exam2() {
           Part of the graphs of <Katex tex="f" /> and <Katex tex="f^{-1}" /> are shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={pairSrc}
             alt="The graphs of f and its inverse crossing at the origin and again in the third quadrant, with dashed asymptotes at y = −2 and x = −2, from the original 2017 VCAA exam paper"
             className="w-full max-w-[400px]"

@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { angles, type AngleUnit } from './data'
 import { formatTime, type SessionMode, type Tally } from './session'
 import type { Best } from './storage'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 
 // Pieces shared by Values Test and Locate Test.
 
@@ -34,24 +35,19 @@ export function SessionBar({ correct, wrong, elapsed, mode, onMode, progress, su
           {progress && <span className="font-normal text-gray-500 dark:text-gray-400">{progress}</span>}
         </div>
         <div className="ml-auto flex flex-wrap items-center justify-end gap-2 min-w-0">
-          <div className="flex gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5" role="group" aria-label="Practice or Test">
-            {(['practice', 'test'] as SessionMode[]).map(m => (
-              <button
-                key={m}
-                onClick={() => onMode(m)}
-                aria-pressed={mode === m}
-                className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
-                  mode === m ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-                }`}
-              >
-                {m === 'practice' ? 'Practice' : 'Test'}
-              </button>
-            ))}
-          </div>
+          <SegmentedControl
+            aria-label="Practice or Test"
+            value={mode}
+            onChange={onMode}
+            options={[
+              { value: 'practice', label: 'Practice' },
+              { value: 'test', label: 'Test' },
+            ]}
+          />
           <button
             onClick={() => setOpen(o => !o)}
             aria-expanded={open}
-            className="px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 whitespace-nowrap transition-colors"
+            className="relative px-2.5 py-1 rounded-lg text-xs font-medium after:absolute after:-inset-y-2.5 after:-left-1 after:right-0 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 whitespace-nowrap transition-colors"
           >
             {summary} <span aria-hidden>{open ? '▴' : '▾'}</span>
           </button>
@@ -59,7 +55,7 @@ export function SessionBar({ correct, wrong, elapsed, mode, onMode, progress, su
             onClick={onRestart}
             aria-label="Start again"
             title="Start again"
-            className="p-1.5 rounded-md text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="relative p-1.5 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors after:absolute after:-inset-2.5"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" />
@@ -94,23 +90,8 @@ interface ChoiceProps<T extends string> {
 export function Choice<T extends string>({ label, value, options, onChange }: ChoiceProps<T>) {
   return (
     <div>
-      <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-1.5">{label}</p>
-      <div className="flex flex-wrap gap-1">
-        {options.map(o => (
-          <button
-            key={o.id}
-            onClick={() => onChange(o.id)}
-            aria-pressed={value === o.id}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
-              value === o.id
-                ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-            }`}
-          >
-            {o.label}
-          </button>
-        ))}
-      </div>
+      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1.5">{label}</p>
+      <SegmentedControl aria-label={label} value={value} onChange={onChange} options={options.map(o => ({ value: o.id, label: o.label }))} />
     </div>
   )
 }
@@ -220,9 +201,9 @@ export function RoundResults({ correct, total, elapsed, summary, best, newBest, 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-5">
       <div className="text-center">
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500">{retry ? 'Practice Round Complete' : 'Round Complete'} · {summary}</p>
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">{retry ? 'Practice Round Complete' : 'Round Complete'} · {summary}</p>
         <p className="text-5xl font-bold text-gray-900 dark:text-white mt-2 leading-none">
-          {correct}<span className="text-2xl text-gray-400 dark:text-gray-500 font-semibold"> / {total}</span>
+          {correct}<span className="text-2xl text-gray-500 dark:text-gray-400 font-semibold"> / {total}</span>
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
           {formatTime(elapsed)} · {pct}%

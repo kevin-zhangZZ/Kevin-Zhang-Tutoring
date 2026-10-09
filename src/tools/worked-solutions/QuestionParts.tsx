@@ -107,12 +107,14 @@ export function PartCard({
       >
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-start gap-3">
-            <span className="flex-none w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 font-display text-sm font-bold flex items-center justify-center">
+            {/* The part's heading (h3, under the question's h2), so screen readers can jump part to part. */}
+            <h3 className="flex-none w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 font-display text-sm font-bold flex items-center justify-center">
+              <span className="sr-only">Part </span>
               {letter}
-            </span>
+            </h3>
             <div className="text-[14px] text-gray-800 dark:text-gray-200 leading-relaxed pt-0.5">{statement}</div>
           </div>
-          <span className="flex-none text-[11px] font-medium text-gray-400 dark:text-gray-500 whitespace-nowrap pt-1">
+          <span className="flex-none text-[11px] font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap pt-1">
             {marks} mark{marks === 1 ? '' : 's'}
           </span>
         </div>
@@ -124,7 +126,7 @@ export function PartCard({
 
           {videoSrc && (
             <div data-video>
-              <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+              <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
                 Video Walkthrough
               </p>
               {videoIsExternal ? (
@@ -239,7 +241,7 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
 
   return (
     <div>
-      <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+      <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
         Examiner's Report
       </p>
       <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
@@ -256,7 +258,7 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
               </div>
             ))}
           </div>
-          <div className="flex justify-between items-baseline mt-2 text-[11px] text-gray-400 dark:text-gray-500">
+          <div className="flex justify-between items-baseline mt-2 text-[11px] text-gray-500 dark:text-gray-400">
             <span className="font-bold tracking-wider">Marks</span>
             <span>
               Average <b className="text-[12.5px] text-sky-700 dark:text-sky-300">{stats.average}</b> / {maxMarks}
@@ -267,7 +269,7 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
           <table className="w-full text-center text-[12.5px] border-collapse min-w-[280px]">
             <thead>
               <tr className="bg-gray-50 dark:bg-gray-800/60">
-                <th className="px-3 py-2 text-left text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 border-b border-r border-gray-200 dark:border-gray-800">
+                <th className="px-3 py-2 text-left text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400 border-b border-r border-gray-200 dark:border-gray-800">
                   Marks
                 </th>
                 {Array.from({ length: maxMarks + 1 }, (_, m) => (
@@ -282,7 +284,7 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
             </thead>
             <tbody>
               <tr>
-                <td className="px-3 py-2 text-left text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 border-r border-gray-200 dark:border-gray-800">%</td>
+                <td className="px-3 py-2 text-left text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400 border-r border-gray-200 dark:border-gray-800">%</td>
                 {stats.marks.map((p, m) => (
                   <td key={m} className="px-3 py-2 text-gray-800 dark:text-gray-100">{p}</td>
                 ))}
@@ -321,7 +323,7 @@ export function ExaminerReport({ stats }: { stats: MCQExaminerStats }) {
           {stats.comment}
         </div>
       )}
-      <p className="text-[12px] text-gray-400 dark:text-gray-500">
+      <p className="text-[12px] text-gray-500 dark:text-gray-400">
         {Object.keys(stats.percentages).length > 0 ? (
           <>The bars on the options show how students answered. {stats.noAnswer ?? 0}% left it blank.</>
         ) : (
@@ -386,25 +388,25 @@ export function WorkingTable({
     <div>
       {(!hideLabel || stepping) && (
         <div className="flex items-baseline justify-between gap-3 mb-2.5">
-          <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500">Worked Solution</p>
+          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400">Worked Solution</p>
           {stepping && (
-            <span className="font-display text-[11px] font-bold tabular-nums text-gray-400 dark:text-gray-500">
+            <span className="font-display text-[11px] font-bold tabular-nums text-gray-500 dark:text-gray-400">
               {shown} / {rows.length} steps
             </span>
           )}
         </div>
       )}
       {visibleCount === 0 ? (
-        <div className="rounded-xl border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 px-4 py-5 text-center text-[13px] text-gray-400 dark:text-gray-500">
+        <div className="rounded-xl border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 px-4 py-5 text-center text-[13px] text-gray-500 dark:text-gray-400">
           Have a go first. The working is hidden until you ask for it.
         </div>
       ) : (
         <div className="@container rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           <div className="hidden @2xl:grid @2xl:grid-cols-2 bg-gray-50 dark:bg-gray-800/60">
-            <div className="px-4 py-2 border-r border-gray-200 dark:border-gray-800 text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500">
+            <div className="px-4 py-2 border-r border-gray-200 dark:border-gray-800 text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400">
               Working
             </div>
-            <div className="px-4 py-2 text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500">
+            <div className="px-4 py-2 text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400">
               Reasoning
             </div>
           </div>
@@ -418,7 +420,7 @@ export function WorkingTable({
               </div>
               {(row.reason || (detailed && row.more)) && (
                 <div className="px-3 sm:px-4 pb-3 pt-1 @2xl:pt-3 @2xl:self-center text-[12.5px] leading-relaxed text-gray-500 dark:text-gray-400 border-t @2xl:border-t-0 border-dashed border-gray-100 dark:border-gray-800">
-                  <p className="@2xl:hidden text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-1 mt-2">
+                  <p className="@2xl:hidden text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-1 mt-2">
                     Reasoning
                   </p>
                   {row.reason}

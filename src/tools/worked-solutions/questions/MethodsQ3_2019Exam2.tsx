@@ -272,7 +272,7 @@ export default function MethodsQ3_2019Exam2() {
         </p>
         <p className="mt-2 mb-3">Part of the graph of <Katex tex="y=f(t)" /> is shown below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={ftGraphSrc} alt="Graph of y = f(t) for t from 0 to about 25, oscillating between about −1.76 and 1.76 and crossing the axis at t = 0, 4, 6, 8, 12, 16, 18, 20 and 24, from the original 2019 VCAA exam paper" className="w-full max-w-[420px]" />
+          <img loading="lazy" decoding="async" src={ftGraphSrc} alt="Graph of y = f(t) for t from 0 to about 25, oscillating between about −1.76 and 1.76 and crossing the axis at t = 0, 4, 6, 8, 12, 16, 18, 20 and 24, from the original 2019 VCAA exam paper" className="w-full max-w-[420px]" />
         </div>
       </div>
 

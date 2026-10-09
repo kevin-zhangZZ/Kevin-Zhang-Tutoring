@@ -67,11 +67,11 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
       <div ref={tip.wrapRef} className="relative">
         <div ref={ref}>
           {width > 0 && (
-            <svg width={width} height={height} className="block" role="img" aria-label="Histogram of average scores in 5% steps">
+            <svg width={width} height={height} className="block" role="group" aria-label="Histogram of average scores in 5% steps">
               {ticks.map(t => (
                 <g key={t}>
                   <line x1={m.l} x2={width - m.r} y1={Y(t)} y2={Y(t)} stroke={t === 0 ? 'var(--ea-axis)' : 'var(--ea-grid)'} />
-                  <text x={m.l - 6} y={Y(t) + 4} textAnchor="end" fontSize={11} className="fill-gray-400 dark:fill-gray-500">
+                  <text x={m.l - 6} y={Y(t) + 4} textAnchor="end" fontSize={11} className="fill-gray-500 dark:fill-gray-400">
                     {t}
                   </text>
                 </g>
@@ -84,7 +84,7 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
                 return (
                   <g
                     key={k}
-                    className="cursor-pointer outline-none"
+                    className="group cursor-pointer outline-none"
                     tabIndex={c ? 0 : -1}
                     role="button"
                     aria-label={`${binLabel(k)}: ${c} questions`}
@@ -95,7 +95,7 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
                     onFocus={e => tip.show(e, body)}
                     onBlur={tip.hide}
                   >
-                    <rect x={x} y={m.t} width={bw} height={ih} fill="transparent" />
+                    <rect x={x} y={m.t} width={bw} height={ih} fill="transparent" strokeWidth={2} className="stroke-transparent group-focus-visible:stroke-blue-500" />
                     {h > 0 && (
                       <path
                         d={vBarPath(x + 1, Y(c), Math.max(1, bw - 2), h)}
@@ -114,7 +114,7 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
                   y={height - 8}
                   textAnchor={v === 0 ? 'start' : v === 100 ? 'end' : 'middle'}
                   fontSize={11}
-                  className="fill-gray-400 dark:fill-gray-500"
+                  className="fill-gray-500 dark:fill-gray-400"
                 >
                   {width < 480 && v % 20 ? '' : `${v}%`}
                 </text>

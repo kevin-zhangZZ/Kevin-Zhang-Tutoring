@@ -117,7 +117,7 @@ export default function SpecialistQ3_2019Exam1() {
           <Katex tex="3" /> cm and a standard deviation of <Katex tex="0.1" /> cm.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={cylinderSrc} alt="A long chocolate cylinder being cut into shorter cylindrical pieces, from the original 2019 VCAA exam paper" className="w-full max-w-[420px]" />
+          <img loading="lazy" decoding="async" src={cylinderSrc} alt="A long chocolate cylinder being cut into shorter cylindrical pieces, from the original 2019 VCAA exam paper" className="w-full max-w-[420px]" />
         </div>
       </div>
 

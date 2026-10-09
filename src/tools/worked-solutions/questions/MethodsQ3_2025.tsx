@@ -12,10 +12,10 @@ import optBSrc from './meth-2025-mcq3-optB.png'
 import optCSrc from './meth-2025-mcq3-optC.png'
 import optDSrc from './meth-2025-mcq3-optD.png'
 
-const OPT_A = <img src={optASrc} alt="Option A: from 3 at x = −4 down to a trough just below the axis near x = −2, up to 2 at the origin, a shallow trough near x = 2 and ending at 1.5" className="w-full max-w-[300px]" />
-const OPT_B = <img src={optBSrc} alt="Option B: from 4 at x = −4 down to a trough of about 0.6 near x = −2, up to 3 at the origin, a shallow trough of about 1.3 near x = 2 and ending at 2.5" className="w-full max-w-[300px]" />
-const OPT_C = <img src={optCSrc} alt="Option C: humps near x = −2 and x = 2 with a local minimum of 1 at the origin, falling to 0 at x = 4" className="w-full max-w-[300px]" />
-const OPT_D = <img src={optDSrc} alt="Option D: humps near x = −2 and x = 2 with a local minimum of 3 at the origin, falling to 2 at x = 4" className="w-full max-w-[300px]" />
+const OPT_A = <img loading="lazy" decoding="async" src={optASrc} alt="Option A: from 3 at x = −4 down to a trough just below the axis near x = −2, up to 2 at the origin, a shallow trough near x = 2 and ending at 1.5" className="w-full max-w-[300px]" />
+const OPT_B = <img loading="lazy" decoding="async" src={optBSrc} alt="Option B: from 4 at x = −4 down to a trough of about 0.6 near x = −2, up to 3 at the origin, a shallow trough of about 1.3 near x = 2 and ending at 2.5" className="w-full max-w-[300px]" />
+const OPT_C = <img loading="lazy" decoding="async" src={optCSrc} alt="Option C: humps near x = −2 and x = 2 with a local minimum of 1 at the origin, falling to 0 at x = 4" className="w-full max-w-[300px]" />
+const OPT_D = <img loading="lazy" decoding="async" src={optDSrc} alt="Option D: humps near x = −2 and x = 2 with a local minimum of 3 at the origin, falling to 2 at x = 4" className="w-full max-w-[300px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 4, B: 71, C: 12, D: 13 },
@@ -62,7 +62,7 @@ export default function MethodsQ3_2025() {
         <div className="flex flex-col gap-3">
           <p>The graph of <Katex tex="y=f(x)" /> is shown below.</p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={stemSrc}
               alt="A wavy curve with a shallow trough near x = −2, a local maximum of 1 at the origin, a deeper trough near x = 2, then rising to 2 at x = 4 — from the original 2025 VCAA exam paper"
               className="w-full max-w-[420px]"

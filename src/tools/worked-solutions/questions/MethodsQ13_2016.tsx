@@ -50,7 +50,7 @@ export default function MethodsQ13_2016() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="A dashed curve y = f(x) from the y-axis above the origin, over a hump, down to the x-axis at d; a solid curve y = g(x) from the x-axis at a, just right of the origin, over a lower hump that touches f above b, down to the x-axis at c just before d; the region between the dashed curve and the solid curve or x-axis is shaded — from the original 2016 VCAA exam paper"
           className="w-full max-w-[340px]"

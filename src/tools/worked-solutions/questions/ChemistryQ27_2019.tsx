@@ -13,7 +13,7 @@ const EXAMINER: MCQExaminerStats = {
   noAnswer: 1,
   comment: (
     <>
-      <img src={structuresSrc} alt="The report's structural formulas for the four options, labelled A 4 carbon environments, B 5, C 4 and D 3" className="w-full max-w-[420px] mt-1" />
+      <img loading="lazy" decoding="async" src={structuresSrc} alt="The report's structural formulas for the four options, labelled A 4 carbon environments, B 5, C 4 and D 3" className="w-full max-w-[420px] mt-1" />
       Both butan-1-ol (<Chem eq="C4H10O" />) and 2-methylbutan-2-ol (<Chem eq="C5H12O" />) will show
       four distinct peaks on their ¹³C NMR spectra.
       <br />

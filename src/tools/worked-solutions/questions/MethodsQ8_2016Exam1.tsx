@@ -143,7 +143,7 @@ export default function MethodsQ8_2016Exam1() {
           <Katex tex="x=\tfrac1e" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={densitySrc}
             alt="Graph of f(x) = −4x logₑ(x) on (0, 1]: rises from the origin to a turning point at x = 1/e, then falls back to zero at x = 1 — from the original 2016 VCAA exam paper"
             className="w-full max-w-[380px]"

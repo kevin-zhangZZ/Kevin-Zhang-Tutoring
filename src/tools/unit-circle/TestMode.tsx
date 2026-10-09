@@ -213,8 +213,8 @@ export default function TestMode() {
             value={fnMode}
             onChange={v => set({ fnMode: v })}
             options={[
-              { id: 'methods', label: <>Methods <span className="ml-1 text-gray-400 dark:text-gray-500 font-normal">sin, cos, tan</span></> },
-              { id: 'specialist', label: <>Specialist <span className="ml-1 text-gray-400 dark:text-gray-500 font-normal">+ cosec, sec, cot</span></> },
+              { id: 'methods', label: <>Methods <span className="ml-1 text-gray-500 dark:text-gray-400 font-normal">sin, cos, tan</span></> },
+              { id: 'specialist', label: <>Specialist <span className="ml-1 text-gray-500 dark:text-gray-400 font-normal">+ cosec, sec, cot</span></> },
             ]}
           />
           <Choice label="Angle Unit" value={unit} onChange={v => set({ unit: v })} options={[{ id: 'rad', label: 'Radians' }, { id: 'deg', label: 'Degrees' }]} />

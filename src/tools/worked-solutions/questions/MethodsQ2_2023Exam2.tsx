@@ -235,7 +235,7 @@ const ROWS_DIII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (t from 0 to 30, w from 0 to 180): a curve rising in an S-shape from (0, 15) to (15, 135), flat to (20, 135), then falling in a steeper S-shape to (27.5, 15)"
           className="w-full max-w-[520px]"
@@ -260,7 +260,7 @@ export default function MethodsQ2_2023Exam2() {
           of 60 metres.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={wheelSrc}
             alt="A circle on a support frame, with centre P, the lowest point A marked 15 m above the ground, a point B on the rim level with P to the right, and an arrow showing anticlockwise rotation — from the original 2023 VCAA exam paper"
             className="w-full max-w-[340px]"

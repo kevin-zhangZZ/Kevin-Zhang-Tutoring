@@ -201,7 +201,7 @@ export default function MethodsQ9_2023Exam1() {
         <p className="font-semibold text-gray-900 dark:text-white">Question 9 (6 marks)</p>
         <p>The shapes of two walking tracks are shown below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={tracksSrc}
             alt="Two curves from near the y-axis rising to a shared peak P and falling to the x-axis: track 1 a solid cubic starting high on the y-axis with a small dip, and track 2 a dashed parabola starting at the origin — from the original 2023 VCAA exam paper"
             className="w-full max-w-[500px]"
@@ -278,7 +278,7 @@ export default function MethodsQ9_2023Exam1() {
               <Katex tex="\mathrm{km^2}" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={triangleSrc}
                 alt="The same two tracks with a triangle drawn from the origin to A on the x-axis and up to B on track 2 directly above A, the right angle at A marked — from the original 2023 VCAA exam paper"
                 className="w-full max-w-[500px]"

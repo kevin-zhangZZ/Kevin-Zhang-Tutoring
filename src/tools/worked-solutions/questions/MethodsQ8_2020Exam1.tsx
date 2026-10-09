@@ -232,7 +232,7 @@ export default function MethodsQ8_2020Exam1() {
           <Katex tex="f:(0,\infty)\to R" />, <Katex tex="f(x)=x\log_e(x)" />, is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The curve y = x log_e(x) starting at an open circle at O, dipping just below the x-axis to a minimum labelled Q(a, f(a)), crossing back at (b, 0) and then rising steeply — from the original 2020 VCAA exam paper"
             className="w-full max-w-[320px]"

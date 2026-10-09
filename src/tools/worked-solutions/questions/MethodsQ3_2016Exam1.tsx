@@ -116,7 +116,7 @@ export default function MethodsQ3_2016Exam1() {
         </Background>
         <WorkingTable rows={ROWS_A} />
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={hyperbolaSrc}
             alt="Graph of y = 2 + 3/(x − 1): two branches either side of the dashed vertical asymptote x = 1, both approaching the dashed horizontal asymptote y = 2, with the left branch crossing the axes at (−1/2, 0) and (0, −1)"
             className="w-full max-w-[400px]"

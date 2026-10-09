@@ -138,7 +138,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (x from −3 to 4, y from −2 to 6): a hyperbola with dashed asymptotes x = 1 and y = 2, the left branch rising from just above y = 2 through (0, 5) towards the vertical asymptote, the right branch climbing from below through (5/2, 0) and flattening towards y = 2"
           className="w-full max-w-[420px]"

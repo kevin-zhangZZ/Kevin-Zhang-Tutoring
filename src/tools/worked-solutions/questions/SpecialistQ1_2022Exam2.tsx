@@ -127,7 +127,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="On VCAA's grid: the graph of y = x²/(x − 1), a left branch rising to the local maximum (0, 0) then falling steeply to the dashed asymptote x = 1, and a right branch falling from that asymptote to the local minimum (2, 4) before rising along the dashed oblique asymptote y = x + 1"
           className="w-full max-w-[460px]"

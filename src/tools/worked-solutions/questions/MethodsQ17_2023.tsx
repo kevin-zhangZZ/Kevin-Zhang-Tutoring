@@ -14,7 +14,7 @@ import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import diagramSrc from './meth-2023-mcq17-cylinder-sheet.png'
 
-const DIAGRAM = <img src={diagramSrc} alt="Rectangular metal sheet of length x and width y, with two circular end-caps of radius r cut out, leaving a middle strip of width h, from the original 2023 VCAA exam paper" className="w-full max-w-[320px]" />
+const DIAGRAM = <img loading="lazy" decoding="async" src={diagramSrc} alt="Rectangular metal sheet of length x and width y, with two circular end-caps of radius r cut out, leaving a middle strip of width h, from the original 2023 VCAA exam paper" className="w-full max-w-[320px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 6, B: 28, C: 26, D: 26, E: 13 },

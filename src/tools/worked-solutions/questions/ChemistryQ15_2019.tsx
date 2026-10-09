@@ -12,7 +12,7 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       Aspartame has two chiral centres:
-      <img src={structureSrc} alt="The report's structure of aspartame with its two chiral carbons circled" className="w-full max-w-[280px] mt-1" />
+      <img loading="lazy" decoding="async" src={structureSrc} alt="The report's structure of aspartame with its two chiral carbons circled" className="w-full max-w-[280px] mt-1" />
       Associated with each chiral centre are two optical isomers. Hence, aspartame has four optical
       isomers. Optical isomers are stereoisomers and a molecule with two chiral centres can have four
       stereoisomers. The maximum number of stereoisomers of a molecule is 2<sup><i>n</i></sup> where{' '}

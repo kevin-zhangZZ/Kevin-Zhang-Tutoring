@@ -77,12 +77,12 @@ function CopyField({ value, children, boxed, button, minText = '' }: { value: st
 // nothing — the address comes first, with the link as a smaller option.
 function EmailCopy({ boxed }: { boxed: boolean }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 [@media(pointer:coarse)]:gap-3">
       <CopyField value={EMAIL} boxed={boxed} button="bg-blue-600 hover:bg-blue-700" minText={boxed ? 'min-w-[240px]' : 'min-w-0'}>
         {/* If it has to wrap on a narrow phone, it wraps after the @. */}
         {EMAIL.split('@')[0]}@<wbr />{EMAIL.split('@')[1]}
       </CopyField>
-      <a href={`mailto:${EMAIL}`} className="text-[13px] font-medium text-blue-700 dark:text-blue-400 hover:underline underline-offset-2 w-fit">
+      <a href={`mailto:${EMAIL}`} className="relative text-[13px] font-medium text-blue-700 dark:text-blue-400 hover:underline underline-offset-2 w-fit after:absolute after:-inset-y-1 after:-inset-x-1 [@media(pointer:coarse)]:after:-inset-y-3">
         Open in email app →
       </a>
     </div>
@@ -91,7 +91,7 @@ function EmailCopy({ boxed }: { boxed: boolean }) {
 
 function WeChatIdCopy({ boxed }: { boxed: boolean }) {
   return (
-    <CopyField value={WECHAT_ID} boxed={boxed} button="bg-emerald-600 hover:bg-emerald-700">
+    <CopyField value={WECHAT_ID} boxed={boxed} button="bg-emerald-700 hover:bg-emerald-800">
       <span className="font-mono">{WECHAT_ID}</span>
     </CopyField>
   )
@@ -126,7 +126,7 @@ export default function ContactMe() {
             <span className="text-[15px] font-semibold">WeChat</span>
           </div>
           <img src={wechatQr} alt="WeChat QR code" className="w-36 h-36 rounded-lg border border-gray-200 dark:border-gray-700" />
-          <p className="text-xs text-gray-400 dark:text-gray-500">Scan with WeChat to add me, or search my ID:</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Scan with WeChat to add me, or search my ID:</p>
           <div className="w-full max-w-[220px]">
             <WeChatIdCopy boxed />
           </div>

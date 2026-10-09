@@ -47,7 +47,7 @@ export default function MethodsQ9_2022() {
       question={
         <>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img
+            <img loading="lazy" decoding="async"
               src={diagramSrc}
               alt="The graph of f rising from the y-axis, with a point (x, y) on it joined to the origin O by a dashed segment labelled d — from the original 2022 VCAA exam paper"
               className="w-full max-w-[260px]"

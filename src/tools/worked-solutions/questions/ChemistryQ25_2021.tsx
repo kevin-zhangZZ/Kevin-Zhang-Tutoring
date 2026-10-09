@@ -13,7 +13,7 @@ import reportGraphSrc from './chem-2021-mcq25-report-graph.png'
 
 const RATE_GRAPH = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-    <img src={rateGraphSrc} alt="Graph of the rate of the forward and reverse reactions versus time: both constant before t1, then the reverse rate jumps instantly upward at t1 and decays back down while the forward rate rises smoothly, both meeting at a new steady rate by t2, from the original 2021 VCAA exam paper" className="w-full max-w-[420px]" />
+    <img loading="lazy" decoding="async" src={rateGraphSrc} alt="Graph of the rate of the forward and reverse reactions versus time: both constant before t1, then the reverse rate jumps instantly upward at t1 and decays back down while the forward rate rises smoothly, both meeting at a new steady rate by t2, from the original 2021 VCAA exam paper" className="w-full max-w-[420px]" />
   </div>
 )
 
@@ -22,7 +22,7 @@ const EXAMINER: MCQExaminerStats = {
   answer: 'C',
   comment: (
     <>
-      <img src={reportGraphSrc} alt="The report's copy of the rate–time graph: the reverse rate jumps up at t1 and falls, the forward rate rises, and both meet at a new steady rate before t2" className="w-full max-w-[380px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's copy of the rate–time graph: the reverse rate jumps up at t1 and falls, the forward rate rises, and both meet at a new steady rate before t2" className="w-full max-w-[380px] mt-1" />
       Consider the concentration-time graphs.
       <br />
       The only change that could cause an instantaneous increase to the rate of the reverse

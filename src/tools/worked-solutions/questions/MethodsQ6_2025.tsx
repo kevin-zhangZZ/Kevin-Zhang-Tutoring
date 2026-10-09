@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       The graph of <Katex tex="f(x)=x^3+1" /> is shown below with two trapeziums. The area of the
       trapeziums is larger than the exact area, <Katex tex="\displaystyle\int_0^1 f(x)\,dx" />.
-      <img src={reportGraphSrc} alt="The report's graph of y = x³ + 1 on [0, 1] with the two trapeziums shaded, their top edges lying above the curve" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph of y = x³ + 1 on [0, 1] with the two trapeziums shaded, their top edges lying above the curve" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

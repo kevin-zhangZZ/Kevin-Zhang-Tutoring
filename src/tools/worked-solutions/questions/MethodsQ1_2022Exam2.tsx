@@ -263,7 +263,7 @@ export default function MethodsQ1_2022Exam2() {
           <Katex tex="f(x)=\dfrac{x^2}{12}" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={parabolaSrc}
             alt="Part of the parabola y = x²/12 with the tangent at a point M on its left branch — from the original 2022 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -328,7 +328,7 @@ export default function MethodsQ1_2022Exam2() {
           tangent at point <Katex tex="M" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={perpSrc}
             alt="The same parabola with the tangent at M and the perpendicular line through M, which cuts the parabola again at a point N on the right branch — from the original 2022 VCAA exam paper"
             className="w-full max-w-[380px]"
@@ -382,7 +382,7 @@ export default function MethodsQ1_2022Exam2() {
               <Katex tex="x=-b" />, where <Katex tex="b>0" />, are shown below.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={shadedSrc}
                 alt="The parabola g(x) = x²/(4a²) with the tangent and the perpendicular line at x = −b, the region between the perpendicular line and the parabola shaded — from the original 2022 VCAA exam paper"
                 className="w-full max-w-[420px]"

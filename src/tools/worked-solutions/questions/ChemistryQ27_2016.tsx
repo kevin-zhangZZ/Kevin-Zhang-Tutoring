@@ -135,7 +135,7 @@ export default function ChemistryQ27_2016() {
             <Chem eq="2HCl(aq) + CaCO3(s) -> CaCl2(aq) + CO2(g) + H2O(l)" className="block text-[14px] mb-2" />
             <div className="flex justify-center mb-2">
               <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-                <img src={apparatusSrc} alt="Trial 1 apparatus: an Erlenmeyer flask with 100 mL 0.5 M HCl and 20 g marble chips, plugged with cottonwool and releasing CO2, sitting on digital scales, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
+                <img loading="lazy" decoding="async" src={apparatusSrc} alt="Trial 1 apparatus: an Erlenmeyer flask with 100 mL 0.5 M HCl and 20 g marble chips, plugged with cottonwool and releasing CO2, sitting on digital scales, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
               </div>
             </div>
             <p className="mb-1"><b>Trial 2</b></p>
@@ -143,7 +143,7 @@ export default function ChemistryQ27_2016() {
             <p className="mb-2">The results of the two trials were graphed on the same axes and are shown below.</p>
             <div className="flex justify-center">
               <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-                <img src={graphSrc} alt="Graph of mass of flask versus time for Trial 1 and Trial 2 — both curves start at the same mass and decrease to a plateau, with Trial 2 dropping faster and further, from the original 2016 VCAA exam paper" className="w-full max-w-[340px]" />
+                <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of mass of flask versus time for Trial 1 and Trial 2 — both curves start at the same mass and decrease to a plateau, with Trial 2 dropping faster and further, from the original 2016 VCAA exam paper" className="w-full max-w-[340px]" />
               </div>
             </div>
           </div>

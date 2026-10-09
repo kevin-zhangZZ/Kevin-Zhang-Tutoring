@@ -3,6 +3,7 @@ import DemoPage from '../DemoPage'
 import Explore from './Explore'
 import IsItANet from './IsItANet'
 import '../demos.css'
+import SegmentedControl from '../../../components/ui/SegmentedControl'
 
 // Two modes, kept in the URL so refresh and Back work: #/misc-demonstrations/nets (Explore) and
 // #/misc-demonstrations/nets/is-it-a-net (the cube challenge).
@@ -25,25 +26,20 @@ export default function Nets() {
         : 'A net is the flat shape you fold up to make a solid. Decide whether each pattern of six squares folds up into a cube, then watch it fold to check.'}
     >
       <div className="md-nets">
-        <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1 mb-5 w-fit" role="tablist" aria-label="Nets mode">
-          {TABS.map(t => (
-            <button
-              key={t.id}
-              type="button"
-              role="tab"
-              aria-selected={mode === t.id}
-              onClick={() => { if (mode !== t.id) navigate(t.path, { replace: true }) }}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-                mode === t.id
-                  ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
+        <SegmentedControl
+          variant="tabs"
+          size="md"
+          aria-label="Nets mode"
+          className="mb-5"
+          value={mode}
+          onChange={id => navigate(TABS.find(t => t.id === id)!.path, { replace: true })}
+          options={TABS.map(t => ({ value: t.id, label: t.label }))}
+          idFor={id => `nets-tab-${id}`}
+          controls="nets-panel"
+        />
+        <div role="tabpanel" id="nets-panel" aria-labelledby={`nets-tab-${mode}`}>
+          {mode === 'explore' ? <Explore /> : <IsItANet />}
         </div>
-        {mode === 'explore' ? <Explore /> : <IsItANet />}
       </div>
     </DemoPage>
   )

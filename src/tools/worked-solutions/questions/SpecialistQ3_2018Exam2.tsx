@@ -263,7 +263,7 @@ export default function SpecialistQ3_2018Exam2() {
           Part of the graph of <Katex tex="y=\dfrac12\sqrt{4x^2-1}" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={fountainSrc} alt="Part of the graph of y = ½√(4x²−1), rising from (½, 0) to (1, √3/2), from the original 2018 VCAA exam paper" className="w-full max-w-[380px]" />
+          <img loading="lazy" decoding="async" src={fountainSrc} alt="Part of the graph of y = ½√(4x²−1), rising from (½, 0) to (1, √3/2), from the original 2018 VCAA exam paper" className="w-full max-w-[380px]" />
         </div>
         <p className="mt-3">
           The curve shown is rotated about the <Katex tex="y" />-axis to form a volume of

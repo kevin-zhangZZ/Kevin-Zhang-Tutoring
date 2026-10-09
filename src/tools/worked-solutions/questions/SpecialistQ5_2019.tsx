@@ -86,7 +86,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={raysSrc} alt="The ray from 2 at angle π/4 and the ray from 5 + i at angle 5π/6, each starting at an open circle, crossing at (2 + √3, √3) — this site's own explanatory figure" className="w-full max-w-[420px]" />
+        <img loading="lazy" decoding="async" src={raysSrc} alt="The ray from 2 at angle π/4 and the ray from 5 + i at angle 5π/6, each starting at an open circle, crossing at (2 + √3, √3) — this site's own explanatory figure" className="w-full max-w-[420px]" />
       </div>
     ),
     reason: (

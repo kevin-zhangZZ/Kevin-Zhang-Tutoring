@@ -79,7 +79,7 @@ export default function ChemistryQ21_2021() {
           <p className="mb-2 italic">Use the following information to answer Questions 20 and 21.</p>
           <p className="mb-2">An electrolysis cell with a 5 V power supply is shown below.</p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={cellSrc}
               alt="Electrolysis cell: a Ni electrode joined to the positive terminal and a Pt electrode joined to the negative terminal of a 5 V power supply, both dipping into molten Ni(NO₃)₂(l) — from the original 2021 VCAA exam paper"
               className="w-full max-w-[320px]"

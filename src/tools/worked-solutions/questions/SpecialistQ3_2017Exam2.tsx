@@ -179,7 +179,7 @@ export default function SpecialistQ3_2017Exam2() {
           the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-          <img
+          <img loading="lazy" decoding="async"
             src={broochSrc}
             alt="A bowtie-shaped brooch on grid axes from −2 to 2: two curved wings meeting at the origin, each wing running out to x = ±2 with corner points near (±1.41, ±2.36), from the original 2017 VCAA exam paper"
             className="w-full max-w-[380px]"

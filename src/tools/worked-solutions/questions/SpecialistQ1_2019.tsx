@@ -33,7 +33,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={graphSrc} alt="Graph of y = eˣ/(x − 1): a left branch approaching the asymptote y = 0, passing through (0, −1) and falling to −∞ at the asymptote x = 1, and a right branch dropping from +∞ to a minimum at (2, e²) then rising — this site's own explanatory figure" className="w-full max-w-[360px]" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of y = eˣ/(x − 1): a left branch approaching the asymptote y = 0, passing through (0, −1) and falling to −∞ at the asymptote x = 1, and a right branch dropping from +∞ to a minimum at (2, e²) then rising — this site's own explanatory figure" className="w-full max-w-[360px]" />
       </div>
     ),
     reason: <>A &ldquo;does <b>not</b> have&rdquo; question is answered by checking the options one at a time: four will be there, and the answer is the one you can show is missing. A graph in a big enough window shows four features at once, but each still deserves a one-line algebraic check, which is what the next rows do.</>,

@@ -178,7 +178,7 @@ export default function MethodsQ7_2019Exam1() {
           point <Katex tex="(-1,0)" /> and <Katex tex="B" /> is the point <Katex tex="(x,0)" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={diagramSrc}
             alt="Upper semicircle y=√(1-x²) with A at (-1,0), B at (x,0), and P at (x,y) on the curve, with the right-angled triangle ABP shaded, from the original 2019 VCAA exam paper"
             className="w-full max-w-[420px]"

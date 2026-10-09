@@ -205,7 +205,7 @@ export default function IsItANet() {
           {answerBtn(false, 'No, It Isn’t')}
         </div>
         <p className="mt-2 text-[13px] text-gray-600 dark:text-gray-400 tabular-nums">
-          Score {score.score} of {score.total} · Streak {score.streak}{score.best >= 2 ? <span className="text-gray-500 dark:text-gray-500"> · Best {score.best}</span> : null}
+          Score {score.score} of {score.total} · Streak {score.streak}{score.best >= 2 ? <span className="text-gray-500 dark:text-gray-400"> · Best {score.best}</span> : null}
         </p>
         {!round.answered && (
           <p id="nets-ch-lock" className="mt-2 text-[12.5px] text-gray-500 dark:text-gray-400">Turn the pattern round if it helps. The Fold slider unlocks once you answer.</p>

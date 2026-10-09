@@ -174,7 +174,7 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={areaSrc}
           alt="The curve y = arctan(x)/2 with the region A between it and the x-axis from the origin to x = √3 shaded, the point (√3, π/6) marked, and the region B above the curve completing the rectangle"
           className="w-full max-w-[360px]"
@@ -237,7 +237,7 @@ export default function SpecialistQ8_2015Exam1() {
           The graph of <Katex tex="f(x)=\tfrac12\arctan(x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="An increasing S-shaped curve through the origin flattening out towards two horizontal dashed asymptotes, on a gridded set of axes — from the original 2015 VCAA exam paper"
             className="w-full max-w-[440px]"
@@ -311,7 +311,7 @@ const INVERSE_PATH = 'M 477.5 693.7 L 478.1 686.8 L 478.7 680.1 L 479.3 673.7 L 
 function InverseOverlay() {
   return (
     <div className="relative w-full max-w-[440px] bg-white rounded-xl border border-gray-200 dark:border-gray-800 p-0 overflow-hidden">
-      <img
+      <img loading="lazy" decoding="async"
         src={graphSrc}
         alt="VCAA's graph of y = arctan(x)/2 with this site's answer overlaid in orange: y = tan(2x) rising steeply through the origin between dashed vertical asymptotes x = ±π/4"
         className="w-full block"

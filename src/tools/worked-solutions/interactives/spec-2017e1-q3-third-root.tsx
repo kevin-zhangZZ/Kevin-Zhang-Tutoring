@@ -107,7 +107,7 @@ export default function ThirdRoot() {
           <table className="border-collapse text-[14px]">
             <thead>
               <tr>
-                <th className="px-2 py-1.5 text-[11px] font-normal text-gray-400 dark:text-gray-500">×</th>
+                <th className="px-2 py-1.5 text-[11px] font-normal text-gray-500 dark:text-gray-400">×</th>
                 <Head tex="z^2" />
                 <Head tex="-2z" />
                 <Head tex="+2" />

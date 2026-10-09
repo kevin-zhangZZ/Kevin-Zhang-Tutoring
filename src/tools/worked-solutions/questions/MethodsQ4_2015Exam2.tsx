@@ -192,7 +192,7 @@ export default function MethodsQ4_2015Exam2() {
           <Katex tex="x" /> and <Katex tex="y" /> directions are in metres.
         </p>
         <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 mt-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={shadedGraphSrc}
             alt="Graphs of f(x)=2sin(x) and g(x)=(1/2)sin(2x) on [0,2π], with the regions enclosed between them shaded, from the original 2015 VCAA exam paper"
             className="w-full max-w-[340px]"
@@ -237,7 +237,7 @@ export default function MethodsQ4_2015Exam2() {
               axes, draw the graph of <Katex tex="y=h(x)" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={fAxesSrc}
                 alt="Axes with y=2sin(x) already drawn on them, from the original 2015 VCAA exam paper"
                 className="w-full max-w-[300px]"
@@ -313,7 +313,7 @@ function LogoOverlay() {
   const h = (x: number) => (1 / 3) * Math.sin(3 * x)
   return (
     <div className="relative w-full max-w-[340px]">
-      <img
+      <img loading="lazy" decoding="async"
         src={fAxesSrc}
         alt="Axes with y=2sin(x) already drawn on them, from the original 2015 VCAA exam paper"
         className="w-full block"

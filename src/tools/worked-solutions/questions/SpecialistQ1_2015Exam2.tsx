@@ -179,7 +179,7 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="This site's sketch on VCAA's 0 to 1.8 grid: the curve y = f(x) falling from (0, √2) to (π/2, 1) with horizontal tangents at both ends, and its mirror image y = f inverse of x falling steeply from (1, π/2) to (√2, 0), the two crossing on the dotted line y = x at P(1.099, 1.099)"
           className="w-full max-w-[380px]"

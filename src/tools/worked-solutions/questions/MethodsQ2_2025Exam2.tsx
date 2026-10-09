@@ -295,7 +295,7 @@ export default function MethodsQ2_2025Exam2() {
           <Katex tex="(2,8)" />, as shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A straight line and a rising exponential curve crossing at the labelled points (−12, 1) and (2, 8), with the line above the curve between them — from the original 2025 VCAA exam paper"
             className="w-full max-w-[420px]"

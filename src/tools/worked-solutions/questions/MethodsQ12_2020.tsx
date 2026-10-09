@@ -76,7 +76,7 @@ export default function MethodsQ12_2020() {
             15 cm, as shown below.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={clockSrc}
               alt="A clock face of radius 15 cm resting on a horizontal base, with the 10 cm minute hand from the centre and the height h measured from the base up to the tip of the hand — from the original 2020 VCAA exam paper"
               className="w-full max-w-[430px]"

@@ -6,7 +6,7 @@ import { MCQShell } from '../MCQShell'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import graphSrc from './chem-2020-mcq9-calibration-graph.png'
 
-const GRAPH = <img src={graphSrc} alt="Graph of temperature versus time during electrical calibration of the solution calorimeter: 18.0 °C until 60 s, rising to a maximum of 21.2 °C at about 255–270 s, then falling slightly — from the original 2020 VCAA exam paper" className="w-full max-w-[420px]" />
+const GRAPH = <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of temperature versus time during electrical calibration of the solution calorimeter: 18.0 °C until 60 s, rising to a maximum of 21.2 °C at about 255–270 s, then falling slightly — from the original 2020 VCAA exam paper" className="w-full max-w-[420px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 3, B: 16, C: 54, D: 26 },

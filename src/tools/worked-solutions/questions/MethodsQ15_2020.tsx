@@ -20,7 +20,7 @@ import diagramSrc from './meth-2020-mcq15-piecewise-v.png'
 
 const BalanceWidget = lazyWidget(() => import('../interactives/meth-2020e2-mcq15-balance'))
 
-const DIAGRAM = <img src={diagramSrc} alt="Piecewise-linear V-shaped graph of f through (-2a, 2a), (0, -a) and (a, a), from the original 2020 VCAA exam paper" className="w-full max-w-[280px]" />
+const DIAGRAM = <img loading="lazy" decoding="async" src={diagramSrc} alt="Piecewise-linear V-shaped graph of f through (-2a, 2a), (0, -a) and (a, a), from the original 2020 VCAA exam paper" className="w-full max-w-[280px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 4, B: 32, C: 28, D: 27, E: 8 },

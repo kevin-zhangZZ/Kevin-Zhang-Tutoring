@@ -216,7 +216,7 @@ export default function SpecialistQ1_2016Exam2() {
       >
         <WorkingTable rows={ROWS_C} />
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="Graph of y = (4 + x² + x³)/x on [−3, 3]: a left branch falling from (−3, 14/3) through an inflection at (−1.59, −1.59) and down to −∞ at the origin, and a right branch coming down from +∞ to a minimum at (1.11, 5.95) and rising to (3, 40/3)"
             className="w-full max-w-[400px]"

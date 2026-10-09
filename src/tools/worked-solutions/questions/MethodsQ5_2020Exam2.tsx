@@ -616,7 +616,7 @@ export default function MethodsQ5_2020Exam2() {
           graph below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={tangentsSrc}
             alt="The cubic f with two straight lines labelled g sub a and g sub b drawn tangent to it, meeting the horizontal axis at b and a respectively — from the original 2020 VCAA exam paper"
             className="w-full max-w-[420px]"

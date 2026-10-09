@@ -14,8 +14,9 @@
 // working is revealed, because most widgets show the answer. Pass `spoilerFree` for one that only
 // builds intuition (it then shows straight away, like a Background).
 
-import { Component, lazy, Suspense, type ComponentType, type ReactNode } from 'react'
+import { Component, lazy, Suspense, useId, type ComponentType, type ReactNode } from 'react'
 import { useStudyMode } from './studyMode'
+import { ExploreTitleContext } from './exploreContext'
 
 export function lazyWidget(load: () => Promise<{ default: ComponentType }>) {
   return lazy(load)
@@ -40,7 +41,7 @@ class WidgetBoundary extends Component<{ children: ReactNode }, { failed: boolea
 
 function Loading() {
   return (
-    <div className="h-[300px] rounded-lg bg-gray-50 dark:bg-gray-800/40 animate-pulse flex items-center justify-center text-[12.5px] text-gray-400 dark:text-gray-500">
+    <div role="status" className="h-[300px] rounded-lg bg-gray-50 dark:bg-gray-800/40 animate-pulse motion-reduce:animate-none flex items-center justify-center text-[12.5px] text-gray-500 dark:text-gray-400">
       Loading the interactive diagram…
     </div>
   )
@@ -59,10 +60,12 @@ export function Explore({
 }) {
   // Interactive diagrams are teaching, not exam working: Detailed view only (studyMode.tsx).
   const { detailed } = useStudyMode()
+  const titleId = useId()
   if (!detailed) return null
   return (
     <section
       data-explore
+      aria-labelledby={`${titleId} ${titleId}-t`}
       className="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-white dark:bg-gray-900 overflow-hidden"
     >
       <header className="flex items-center gap-2.5 px-4 py-2.5 bg-emerald-50/80 dark:bg-emerald-950/30 border-b border-emerald-100 dark:border-emerald-900/50">
@@ -88,13 +91,15 @@ export function Explore({
           <path d="M15 6h1" />
         </svg>
         <div className="min-w-0">
-          <p className="text-[10.5px] font-bold tracking-wider text-emerald-700 dark:text-emerald-400 leading-none mb-1">Try It Yourself</p>
-          <p className="text-[13.5px] font-semibold text-gray-800 dark:text-gray-100 leading-snug">{title}</p>
+          <p id={titleId} className="text-[10.5px] font-bold tracking-wider text-emerald-700 dark:text-emerald-400 leading-none mb-1">Try It Yourself</p>
+          <p id={`${titleId}-t`} className="text-[13.5px] font-semibold text-gray-800 dark:text-gray-100 leading-snug">{title}</p>
         </div>
       </header>
       <div className="px-3 sm:px-4 py-4">
         <WidgetBoundary>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <ExploreTitleContext.Provider value={`${titleId}-t`}>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </ExploreTitleContext.Provider>
         </WidgetBoundary>
       </div>
     </section>

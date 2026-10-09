@@ -319,7 +319,7 @@ export default function MethodsQ4_2020Exam2() {
           <Katex tex="0\le x\le3" />, is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A curve rising from the origin to a peak just after x = 0.7 then decaying towards the x-axis at x = 3 — from the original 2020 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -489,7 +489,7 @@ export default function MethodsQ4_2020Exam2() {
           graph below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={segmentsSrc}
             alt="The same curve with two straight chords joining the origin to Q(n, f(n)) and Q to the point (3, f(3)) — from the original 2020 VCAA exam paper"
             className="w-full max-w-[340px]"

@@ -137,7 +137,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={arcsinSrc} alt="Graph of y = 2arcsin(x²−1) on a grid from −4.5 to 4.5: a symmetric curve from (−√2, π) down to a sharp corner at (0, −π) and back up to (√2, π)" className="w-full max-w-[380px]" />
+        <img loading="lazy" decoding="async" src={arcsinSrc} alt="Graph of y = 2arcsin(x²−1) on a grid from −4.5 to 4.5: a symmetric curve from (−√2, π) down to a sharp corner at (0, −π) and back up to (√2, π)" className="w-full max-w-[380px]" />
       </div>
     ),
     reason: <>Three labelled points, as the question demands. Note the shape at the ends: the curve meets <Katex tex="x=\pm\sqrt2" /> <em>vertically</em>, because the derivative blows up there — part c. will show <Katex tex="f'(x)=\tfrac{4}{\sqrt{2-x^2}}\to\infty" />. At <Katex tex="x=0" /> it has a sharp corner rather than a smooth turning point — the report says many graphs showed an obvious turning point there — which part e. explains.</>,
@@ -220,7 +220,7 @@ const ROWS_EIII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={piecewiseSrc} alt="Graph of g: a horizontal segment at y = −4 from x = −√2 to 0 and another at y = 4 from 0 to √2, with open circles at all four endpoints" className="w-full max-w-[380px]" />
+        <img loading="lazy" decoding="async" src={piecewiseSrc} alt="Graph of g: a horizontal segment at y = −4 from x = −√2 to 0 and another at y = 4 from 0 to √2, with open circles at all four endpoints" className="w-full max-w-[380px]" />
       </div>
     ),
     reason: <>Two horizontal segments, and <em>four</em> open circles: at <Katex tex="x=0" /> on both branches (the derivative does not exist there) and at <Katex tex="x=\pm\sqrt2" /> (the denominator vanishes). Sketch <Katex tex="g" />, not <Katex tex="f'" /> — the report notes that confusion explicitly, and the two look nothing alike.</>,

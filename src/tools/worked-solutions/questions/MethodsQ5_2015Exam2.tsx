@@ -133,7 +133,7 @@ const ROWS_AIII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sSketchSrc}
           alt="This site's sketch, on VCAA's grid, of S falling from (0, 10) to a minimum at (log_e(8), 6) then rising to (5, 2e^(5/3)+8e^(-10/3)) — not a VCAA diagram"
           className="w-full max-w-[340px]"

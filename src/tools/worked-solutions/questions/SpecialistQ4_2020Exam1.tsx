@@ -31,7 +31,7 @@ const EXAM: SAExaminerStats = {
       The intersection of the graphs of <Katex tex="y=3-x" /> and{' '}
       <Katex tex="y=\dfrac{1}{|x-4|}" /> occurs when <Katex tex="x<3" />. A quick sketch was
       helpful:
-      <img src={reportGraphSrc} alt="The report's sketch of y = 3 − x and y = 1/|x − 4|, with the asymptote x = 4" className="w-full max-w-[240px] my-2" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's sketch of y = 3 − x and y = 1/|x − 4|, with the asymptote x = 4" className="w-full max-w-[240px] my-2" />
       As <Katex tex="x<3" />, the inequality to be solved was{' '}
       <Katex tex="3-x>\dfrac{1}{4-x}" />. This led to the inequality{' '}
       <Katex tex="x^2-7x+11>0" />, which could be solved using the quadratic formula. A number of
@@ -275,10 +275,10 @@ export default function SpecialistQ4_2020Exam1() {
         </DetailOnly>
         <SAExaminerReport stats={EXAM} maxMarks={4} />
         <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-2.5">
+          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
             Video Walkthrough
           </p>
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 italic">Coming soon.</p>
+          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
         </div>
       </div>
     </div>

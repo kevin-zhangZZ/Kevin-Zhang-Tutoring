@@ -245,7 +245,7 @@ export default function MethodsQ8_2019Exam1() {
           origin.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={diagramSrc}
             alt="Degree-4 polynomial touching the x-axis at the origin, crossing at (-1,0) and (1,0), with local maxima marked at (-1/√2,1) and (1/√2,1), from the original 2019 VCAA exam paper"
             className="w-full max-w-[420px]"

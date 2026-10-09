@@ -47,7 +47,7 @@ export default function MarbleGrid() {
         cells.push(
           <g key={key}>
             <rect x={x} y={y} width={S} height={S} className="fill-gray-200 stroke-white dark:fill-gray-700 dark:stroke-gray-900" strokeWidth={2} />
-            <text x={x + S / 2} y={y + S / 2 + 5} textAnchor="middle" fontSize={15} className="fill-gray-400 dark:fill-gray-500">
+            <text x={x + S / 2} y={y + S / 2 + 5} textAnchor="middle" fontSize={15} className="fill-gray-600 dark:fill-gray-300">
               ×
             </text>
           </g>,
@@ -72,7 +72,7 @@ export default function MarbleGrid() {
             textAnchor="middle"
             fontSize={10.5}
             fontWeight={600}
-            className={fill ? 'fill-white' : 'fill-gray-400 dark:fill-gray-500'}
+            className={fill ? 'fill-white' : 'fill-gray-500 dark:fill-gray-400'}
           >
             {a}
             {b}

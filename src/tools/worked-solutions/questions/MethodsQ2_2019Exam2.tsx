@@ -305,7 +305,7 @@ export default function MethodsQ2_2019Exam2() {
           below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={hillSrc} alt="The hill y = 3x(x−30)²/2000 on x ∈ [0, 30], rising to a peak at (10, 6) and falling back to zero at x = 30, from the original 2019 VCAA exam paper" className="w-full max-w-[400px]" />
+          <img loading="lazy" decoding="async" src={hillSrc} alt="The hill y = 3x(x−30)²/2000 on x ∈ [0, 30], rising to a peak at (10, 6) and falling back to zero at x = 30, from the original 2019 VCAA exam paper" className="w-full max-w-[400px]" />
         </div>
       </div>
 
@@ -374,7 +374,7 @@ export default function MethodsQ2_2019Exam2() {
           the hill from <Katex tex="a\le x\le30" />, as shown in the graph below.
         </p>
         <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={hillCableSrc} alt="The hill with the dashed cable above it: straight from (0, 10) to A(a, b), then exactly 3 m above the hill all the way to x = 30, from the original 2019 VCAA exam paper" className="w-full max-w-[460px]" />
+          <img loading="lazy" decoding="async" src={hillCableSrc} alt="The hill with the dashed cable above it: straight from (0, 10) to A(a, b), then exactly 3 m above the hill all the way to x = 30, from the original 2019 VCAA exam paper" className="w-full max-w-[460px]" />
         </div>
       </div>
 

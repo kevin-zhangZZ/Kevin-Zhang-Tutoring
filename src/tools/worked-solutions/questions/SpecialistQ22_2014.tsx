@@ -69,7 +69,7 @@ export default function SpecialistQ22_2014() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={vtSrc}
           alt="A velocity-time graph: a straight line from the origin up to (2, 9), a flat section at v = 9 until t = 4, then a downward parabola crossing the t-axis at t = 8 and reaching −5 at t = 9 — from the original 2014 VCAA exam paper"
           className="w-full max-w-[400px]"

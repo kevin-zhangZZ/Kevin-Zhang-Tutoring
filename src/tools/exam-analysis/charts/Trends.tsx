@@ -44,7 +44,7 @@ function trendText(measure: TrendMeasure, t: number): string {
 
 function Arrow({ t, measure }: { t: number; measure: TrendMeasure }) {
   const flat = measure === 'marks' ? Math.abs(t) < 0.05 : Math.abs(t) < 0.002
-  if (flat) return <span className="text-gray-400">→</span>
+  if (flat) return <span className="text-gray-500 dark:text-gray-400">→</span>
   return <span className={t > 0 ? 'text-sky-700 dark:text-sky-400' : 'text-rose-600 dark:text-rose-400'}>{t > 0 ? '↑' : '↓'}</span>
 }
 
@@ -79,8 +79,17 @@ export function Heatmap({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasure
     if (v === null || (measure === 'marks' && v === 0)) return 'transparent'
     return measure === 'marks' ? mix('var(--ea-seq-lo)', 'var(--ea-seq-hi)', 0.12 + (0.88 * v) / max) : heatColor(v)
   }
-  const darkCell = (v: number | null) =>
-    v !== null && (measure === 'marks' ? 0.12 + (0.88 * v) / max > 0.55 : (0.8 - v) / 0.6 > 0.6)
+  // Cell numbers flip to the opposite end of the scale where the fill gets deep enough. The
+  // switch points are the colour-mix step (0-100, as mix() rounds it) where each theme's text
+  // still clears 4.5:1 — computed against the oklab blend of the --ea-seq / --ea-heat ends.
+  // Light: gray-950 below, white from the threshold. Dark: white below, gray-950 from it.
+  const cellText = (v: number | null) => {
+    if (v === null) return ''
+    const t = measure === 'marks' ? 0.12 + (0.88 * v) / max : (0.8 - v) / 0.6
+    const k = Math.round(Math.min(1, Math.max(0, t)) * 100)
+    const [light, dark] = measure === 'marks' ? [74, 69] : [94, 53]
+    return `${k >= light ? 'text-white' : 'text-gray-950'} ${k >= dark ? 'dark:text-gray-950' : 'dark:text-white'}`
+  }
 
   const row = (s: Series) => (
     <div key={s.g.id} className="flex items-center" style={{ height: cellH + 2 }}>
@@ -89,7 +98,7 @@ export function Heatmap({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasure
         onClick={() => ctx.onGroup(s.g.id)}
         style={{ width: labelW }}
         title={s.g.label}
-        className={`flex-none pr-2 text-left text-[12.5px] leading-tight truncate hover:underline underline-offset-2 ${isPicked(ctx, s.g.id) ? 'font-bold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'} ${showSubHeads ? 'pl-3' : ''}`}
+        className={`flex-none self-stretch pr-2 text-left text-[12.5px] leading-tight truncate hover:underline underline-offset-2 ${isPicked(ctx, s.g.id) ? 'font-bold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'} ${showSubHeads ? 'pl-3' : ''}`}
       >
         {s.g.label}
       </button>
@@ -109,8 +118,8 @@ export function Heatmap({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasure
             aria-label={`${s.g.label}, ${y}: ${valueText(measure, v)}`}
             style={{ width: cellW - 2, height: cellH, marginRight: 2, background: fillFor(v) }}
             className={`flex-none rounded-[3px] text-[11px] tabular-nums font-medium ${
-              v === null || (measure === 'marks' && v === 0) ? 'border border-gray-100 dark:border-gray-800 text-gray-300 dark:text-gray-600' : ''
-            } ${darkCell(v) ? 'text-white dark:text-gray-950' : 'text-gray-700 dark:text-gray-200'} ${sel ? 'ring-2 ring-gray-900 dark:ring-white' : ''}`}
+              v === null || (measure === 'marks' && v === 0) ? 'border border-gray-100 dark:border-gray-800 text-gray-300 dark:text-gray-600' : cellText(v)
+            } ${sel ? 'ring-2 ring-gray-900 dark:ring-white' : ''}`}
           >
             {cellW >= 22 ? (v === null || (measure === 'marks' && v === 0) ? '·' : valueText(measure, v)) : ''}
           </button>
@@ -133,7 +142,7 @@ export function Heatmap({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasure
         for its questions.
       </p>
       <div ref={tip.wrapRef} className="relative">
-        <div ref={ref} className="overflow-x-auto scrollbar-quiet">
+        <div ref={ref} className="overflow-x-auto scrollbar-quiet pt-3 -mt-3">
           {width > 0 && (
             <div style={{ minWidth: labelW + nY * 16 + trendW }}>
               <div className="flex items-end mb-1" style={{ height: 20 }}>
@@ -145,13 +154,13 @@ export function Heatmap({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasure
                     onClick={() => ctx.onYear(y)}
                     title={`Show ${y} only`}
                     style={{ width: cellW - 2, marginRight: 2 }}
-                    className={`flex-none text-center text-[11px] tabular-nums hover:underline underline-offset-2 ${y >= STUDY_DESIGN_YEAR ? 'font-semibold text-gray-700 dark:text-gray-200' : 'text-gray-400 dark:text-gray-500'}`}
+                    className={`relative flex-none self-stretch text-center text-[11px] tabular-nums hover:underline underline-offset-2 after:absolute after:-top-3 after:bottom-0 after:inset-x-0 ${y >= STUDY_DESIGN_YEAR ? 'font-semibold text-gray-700 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'}`}
                   >
                     {short ? `’${String(y).slice(2)}` : y}
                   </button>
                 ))}
                 {trendW > 0 && (
-                  <span style={{ width: trendW }} className="flex-none pl-2 text-[11px] text-gray-400 dark:text-gray-500">
+                  <span style={{ width: trendW }} className="flex-none pl-2 text-[11px] text-gray-500 dark:text-gray-400">
                     Trend
                   </span>
                 )}
@@ -169,7 +178,7 @@ export function Heatmap({ ctx, measure }: { ctx: ChartCtx; measure: TrendMeasure
                 : series.map(row)}
               {hasMissing && missingRow && (
                 <div className="flex items-center mt-1" style={{ height: cellH + 2 }}>
-                  <span style={{ width: labelW }} className="flex-none pr-2 text-[12.5px] text-gray-400 dark:text-gray-500 truncate">
+                  <span style={{ width: labelW }} className="flex-none pr-2 text-[12.5px] text-gray-500 dark:text-gray-400 truncate">
                     Not in archive
                   </span>
                   {missingRow.map((v, k) => (

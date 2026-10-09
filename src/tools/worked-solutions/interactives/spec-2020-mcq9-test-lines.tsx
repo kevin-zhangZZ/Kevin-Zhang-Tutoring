@@ -121,7 +121,7 @@ export default function TestLines() {
             aria-pressed={L === letter}
             className={`w-9 text-[13px] font-semibold py-1.5 rounded-full border transition-colors ${
               L === letter
-                ? 'bg-emerald-600 border-emerald-600 text-white dark:bg-emerald-500 dark:border-emerald-500 dark:text-gray-950'
+                ? 'bg-emerald-700 border-emerald-700 text-white dark:bg-emerald-500 dark:border-emerald-500 dark:text-gray-950'
                 : 'bg-white border-gray-300 text-gray-600 hover:border-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300'
             }`}
           >

@@ -2,15 +2,16 @@
 //
 // Every row is a real VCE-style question reference (subject, year, exam, question code) that
 // the tutor can flesh out over time. `hasDetail: true` means a written solution component
-// exists for it in `./questions` and is wired up in `details.tsx` — everything else renders
-// the "coming soon" placeholder until it's written up.
+// exists for it in `./questions` and is registered in `details.ts` (loaded on demand by
+// `questionLoader.ts`) — everything else renders the "coming soon" placeholder until it's
+// written up.
+//
+// Adding or removing a row changes the per-subject counts on the Home page: re-run
+// `npm run part-stats`, which regenerates `catalogCounts.ts` (AUTHORING_GUIDE §9).
 
-export type SubjectId = 'methods' | 'specialist' | 'chemistry'
+import type { SubjectId } from './subjects'
 
-export interface SubjectInfo {
-  id: SubjectId
-  label: string
-}
+export { SUBJECTS, SUBJECT_NAME, type SubjectId, type SubjectInfo } from './subjects'
 
 export type QuestionType = 'mc' | 'sa'
 
@@ -23,7 +24,7 @@ export interface QuestionMeta {
   topic: string
   /** Multiple choice vs short answer/extended response — used to section the list by type. */
   type: QuestionType
-  /** True once a written worked solution exists for this question (see `details.tsx`). */
+  /** True once a written worked solution exists for this question (see `details.ts`). */
   hasDetail: boolean
   /**
    * For multiple-choice questions only: the percentage of students who answered correctly,
@@ -45,18 +46,6 @@ export interface QuestionMeta {
 export const QUESTION_TYPE_LABEL: Record<QuestionType, string> = {
   mc: 'Multiple Choice',
   sa: 'Short Answer',
-}
-
-export const SUBJECTS: SubjectInfo[] = [
-  { id: 'methods', label: 'Methods' },
-  { id: 'specialist', label: 'Specialist' },
-  { id: 'chemistry', label: 'Chemistry' },
-]
-
-export const SUBJECT_NAME: Record<SubjectId, string> = {
-  methods: 'Mathematical Methods',
-  specialist: 'Specialist Mathematics',
-  chemistry: 'Chemistry',
 }
 
 // Badge / selection-highlight colors per subject (accessible in both light and dark).

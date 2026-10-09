@@ -82,7 +82,7 @@ export default function ChemistryQ19_2025() {
           <p className="mb-2">Some of the equipment used during the experiment is shown below.</p>
           <div className="mb-2 flex justify-center">
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img src={glasswareSrc} alt="Four pieces of laboratory glassware with zoomed-in scale callouts: a 50 mL beaker marked every 10 mL, a 50 mL measuring cylinder marked every 1 mL, a 10 mL measuring cylinder marked every 0.2 mL, and a 3 mL graduated plastic pipette marked every 0.5 mL, from the original 2025 VCAA exam paper" className="w-full max-w-[420px]" />
+              <img loading="lazy" decoding="async" src={glasswareSrc} alt="Four pieces of laboratory glassware with zoomed-in scale callouts: a 50 mL beaker marked every 10 mL, a 50 mL measuring cylinder marked every 1 mL, a 10 mL measuring cylinder marked every 0.2 mL, and a 3 mL graduated plastic pipette marked every 0.5 mL, from the original 2025 VCAA exam paper" className="w-full max-w-[420px]" />
             </div>
           </div>
           <p>The resolution of the equipment shown, from lowest to highest, is</p>

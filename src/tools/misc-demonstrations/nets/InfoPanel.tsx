@@ -185,7 +185,7 @@ export default function InfoPanel({ ns, ni, sel, phone, more, onMore, onJump, on
             ))}
           </div>
         )}
-        <button type="button" aria-label="Clear selection" onClick={onClear} className={'absolute top-0 right-0 w-11 h-11 flex items-center justify-center rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 ' + FOCUS}>
+        <button type="button" aria-label="Clear selection" onClick={onClear} className={'absolute top-0 right-0 w-11 h-11 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 ' + FOCUS}>
           <svg viewBox="0 0 16 16" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" /></svg>
         </button>
       </>

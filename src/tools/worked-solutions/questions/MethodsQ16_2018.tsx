@@ -19,7 +19,7 @@ const UnderestimateWidget = lazyWidget(() => import('../interactives/meth-2018-m
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img src={rectanglesSrc} alt="Graph of y = 2cos(2x) + 3 on [0, π/2] with three right-endpoint approximating rectangles, from the original 2018 VCAA exam paper" className="w-full max-w-[380px]" />
+    <img loading="lazy" decoding="async" src={rectanglesSrc} alt="Graph of y = 2cos(2x) + 3 on [0, π/2] with three right-endpoint approximating rectangles, from the original 2018 VCAA exam paper" className="w-full max-w-[380px]" />
   </div>
 )
 

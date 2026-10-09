@@ -242,7 +242,7 @@ export default function MethodsQ4_2019Exam1() {
               The function <Katex tex="f:[-2\pi,\pi]\to R,\ f(x)=\cos\!\left(\tfrac{x}{2}\right)" /> is shown on the axes below.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
-              <img
+              <img loading="lazy" decoding="async"
                 src={fAxesSrc}
                 alt="Axes with f(x)=cos(x/2) already drawn on them for -2π≤x≤π, from the original 2019 VCAA exam paper"
                 className="w-full max-w-[420px]"
@@ -311,7 +311,7 @@ function GOverlay() {
   const g = (x: number) => 1 - Math.cos(x / 2)
   return (
     <div className="relative w-full max-w-[420px]">
-      <img
+      <img loading="lazy" decoding="async"
         src={fAxesSrc}
         alt="Axes with f(x)=cos(x/2) already drawn on them, from the original 2019 VCAA exam paper"
         className="w-full block"

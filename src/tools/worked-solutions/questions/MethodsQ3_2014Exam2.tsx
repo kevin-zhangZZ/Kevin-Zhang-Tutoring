@@ -224,7 +224,7 @@ export default function MethodsQ3_2014Exam2() {
           <Katex tex="c" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A curve rising steeply from the origin to a peak just above 0.5 and then decaying slowly towards the t-axis — from the original 2014 VCAA exam paper"
             className="w-full max-w-[380px]"

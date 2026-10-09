@@ -68,7 +68,7 @@ export default function ChemistryQ16_2020() {
             The following table provides information about three organic compounds, X, Y and Z.
           </p>
           <div className="mb-2 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img src={tableSrc} alt="Table of compounds X, Y and Z with structural formulas: X is CH3CH2CH2OH, molar mass 60 g/mol, boiling point 97 °C; Y is CH3COOH, 60 g/mol, 118 °C; Z is HCOOCH3, 60 g/mol, boiling point unknown — from the original 2020 VCAA exam paper" className="w-full max-w-[520px]" />
+            <img loading="lazy" decoding="async" src={tableSrc} alt="Table of compounds X, Y and Z with structural formulas: X is CH3CH2CH2OH, molar mass 60 g/mol, boiling point 97 °C; Y is CH3COOH, 60 g/mol, 118 °C; Z is HCOOCH3, 60 g/mol, boiling point unknown — from the original 2020 VCAA exam paper" className="w-full max-w-[520px]" />
           </div>
           <p>Which one of the following is the best estimate for the boiling point of Compound Z?</p>
         </>

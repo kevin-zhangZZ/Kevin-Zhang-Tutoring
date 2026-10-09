@@ -89,7 +89,7 @@ export default function ChemistryQ29_2015() {
             </p>
             <p className="mb-2">The diagram below represents the cell.</p>
             <div className="flex justify-center">
-              <img src={electrorefiningSrc} alt="Electrolytic cell refining blister copper: Electrode I (impure copper) and Electrode II (pure copper) in copper(II) sulfate solution with sulfuric acid, from the original 2015 VCAA exam paper" className="w-full max-w-[380px]" />
+              <img loading="lazy" decoding="async" src={electrorefiningSrc} alt="Electrolytic cell refining blister copper: Electrode I (impure copper) and Electrode II (pure copper) in copper(II) sulfate solution with sulfuric acid, from the original 2015 VCAA exam paper" className="w-full max-w-[380px]" />
             </div>
           </div>
           <p>

@@ -98,7 +98,7 @@ export default function Check() {
             className={
               'px-3 py-1 rounded-full text-[12.5px] border transition-colors ' +
               (k === key
-                ? 'bg-sky-600 border-sky-600 text-white dark:bg-sky-500 dark:border-sky-500'
+                ? 'bg-sky-700 border-sky-700 text-white dark:bg-sky-500 dark:border-sky-500 dark:text-gray-950'
                 : 'border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800')
             }
           >

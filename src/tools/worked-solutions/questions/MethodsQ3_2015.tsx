@@ -74,7 +74,7 @@ export default function MethodsQ3_2015() {
       question={
         <>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img src={quarticSrc} alt="Quartic graph with simple roots at b and d and a repeated (touching) root at c, from the original 2015 VCAA exam paper" className="w-full max-w-[340px]" />
+            <img loading="lazy" decoding="async" src={quarticSrc} alt="Quartic graph with simple roots at b and d and a repeated (touching) root at c, from the original 2015 VCAA exam paper" className="w-full max-w-[340px]" />
           </div>
           <p>The rule for a function with the graph above could be</p>
         </>

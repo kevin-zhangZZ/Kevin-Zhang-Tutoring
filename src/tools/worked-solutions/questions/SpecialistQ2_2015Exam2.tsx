@@ -219,7 +219,7 @@ export default function SpecialistQ2_2015Exam2() {
               <Katex tex="1+i\sqrt3" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankSrc}
                 alt="A blank polar Argand grid: circles of radius 1, 2 and 3 about the origin, radial lines every 15°, and axes marked from −3 to 3 — from the original 2015 VCAA exam paper"
                 className="w-full max-w-[300px]"
@@ -330,7 +330,7 @@ function ArgandOverlay() {
   const blue = '#0ea5e9'
   return (
     <div className="relative w-full max-w-[360px] bg-white rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-      <img
+      <img loading="lazy" decoding="async"
         src={blankSrc}
         alt="VCAA's polar Argand grid with this site's answer overlaid: the points 0 and 1 + i√3, the perpendicular bisector of the segment joining them (a falling line through 2), the circle of radius 1 centred at 2, and the two points where they meet"
         className="w-full block"

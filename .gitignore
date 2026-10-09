@@ -4,3 +4,6 @@ dist-ssr
 *.local
 .env
 .env.*
+
+# Editor atomic-save temp copies (e.g. Foo.tsx.tmp.9424.cd718580d482)
+*.tmp.*

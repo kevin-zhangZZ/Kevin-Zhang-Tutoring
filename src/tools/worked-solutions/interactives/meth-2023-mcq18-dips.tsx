@@ -152,7 +152,7 @@ export default function SineDips() {
                 key={o.letter}
                 className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 ${
                   out
-                    ? 'border-gray-200 text-gray-400 opacity-60 dark:border-gray-700 dark:text-gray-500'
+                    ? 'border-gray-200 text-gray-500 dark:border-gray-700 dark:text-gray-400'
                     : 'border-emerald-400 text-emerald-800 dark:border-emerald-700 dark:text-emerald-200'
                 }`}
               >

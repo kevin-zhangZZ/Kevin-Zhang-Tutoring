@@ -59,7 +59,7 @@ export default function MethodsQ18_2025() {
         <div className="flex flex-col gap-3">
           <p>Consider the following graphs, which represent probability mass functions.</p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={graphsSrc}
               alt="Four probability mass function graphs labelled I to IV, each plotting probabilities against the values 1 to 5 — from the original 2025 VCAA exam paper"
               className="w-full max-w-[620px]"

@@ -43,7 +43,7 @@ const EXAMINER: MCQExaminerStats = {
       <Katex tex="\tfrac12\le\cos(2\pi x)\le1" />
       <br />
       Checking each of the options for a suitable domain gives <Katex tex="1\le x\le\tfrac76" />.
-      <img src={reportGraphSrc} alt="The report's graph of y = cos(2πx) with the lines y = 1 and y = 1/2, marking the points (1, 1) and (7/6, 1/2)" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph of y = cos(2πx) with the lines y = 1 and y = 1/2, marking the points (1, 1) and (7/6, 1/2)" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

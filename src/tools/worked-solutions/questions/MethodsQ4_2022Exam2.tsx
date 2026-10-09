@@ -340,7 +340,7 @@ export default function MethodsQ4_2022Exam2() {
           Part of the graph of <Katex tex="y=f(x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The graph of f: an increasing curve through the origin O between dashed vertical asymptotes x = −1/2 and x = 1/2 — from the original 2022 VCAA exam paper"
             className="w-full max-w-[340px]"
@@ -411,7 +411,7 @@ export default function MethodsQ4_2022Exam2() {
           The graph below shows the relevant area shaded.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={areaSrc}
             alt="The curves h and h⁻¹ between the dashed lines x = −1/2 and x = 1/2, crossing at the origin and at two symmetric points, with the two regions between them shaded — from the original 2022 VCAA exam paper"
             className="w-full max-w-[400px]"

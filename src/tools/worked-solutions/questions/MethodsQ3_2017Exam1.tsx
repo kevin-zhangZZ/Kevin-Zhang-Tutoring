@@ -155,7 +155,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={cubicSketchSrc}
           alt="Cubic hump from (-3,-4) up to a touch point at (-2,0) and back down, levelling off at (0,-4) — this site's own sketch, not a VCAA diagram"
           className="w-full max-w-[300px]"
@@ -210,7 +210,7 @@ export default function MethodsQ3_2017Exam1() {
               with their coordinates.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank axes from the original 2017 VCAA exam paper: x from −4 to 2 and y from −6 to 6, dashed grid lines every 1 unit on x and every 2 units on y"
                 className="w-full max-w-[340px]"

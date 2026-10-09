@@ -16,7 +16,7 @@ import optESrc from './meth-2022-mcq7-optE.png'
 function Panel({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-2 w-fit">
-      <img src={src} alt={alt} className="w-full max-w-[160px]" />
+      <img loading="lazy" decoding="async" src={src} alt={alt} className="w-full max-w-[160px]" />
     </div>
   )
 }
@@ -77,7 +77,7 @@ export default function MethodsQ7_2022() {
         <>
           <p>The graph of <Katex tex="y=f(x)" /> is shown below.</p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit my-3">
-            <img
+            <img loading="lazy" decoding="async"
               src={stemSrc}
               alt="The graph of y = f(x): rising from the lower left through the origin to a small local maximum just right of it, falling to a local minimum below the x-axis, then rising steeply — from the original 2022 VCAA exam paper"
               className="w-full max-w-[230px]"

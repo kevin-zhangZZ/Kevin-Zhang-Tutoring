@@ -142,7 +142,7 @@ export function DotStrip({ ctx }: { ctx: ChartCtx }) {
                 type="button"
                 onClick={() => ctx.onGroup(g.id)}
                 style={{ width: labelW }}
-                className={`flex-none text-left text-[13px] leading-tight truncate hover:underline underline-offset-2 ${isPicked(ctx, g.id) ? 'font-bold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}
+                className={`flex-none self-stretch text-left text-[13px] leading-tight truncate hover:underline underline-offset-2 ${isPicked(ctx, g.id) ? 'font-bold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'}`}
                 title={g.label}
               >
                 {g.label}
@@ -157,7 +157,7 @@ export function DotStrip({ ctx }: { ctx: ChartCtx }) {
             <span style={{ width: labelW }} className="flex-none" />
             <svg width={stripW} height={16} className="block" aria-hidden>
               {TICKS.map(t => (
-                <text key={t} x={pad + t * (stripW - 2 * pad)} y={12} textAnchor={t === 0 ? 'start' : t === 1 ? 'end' : 'middle'} fontSize={11} className="fill-gray-400 dark:fill-gray-500">
+                <text key={t} x={pad + t * (stripW - 2 * pad)} y={12} textAnchor={t === 0 ? 'start' : t === 1 ? 'end' : 'middle'} fontSize={11} className="fill-gray-500 dark:fill-gray-400">
                   {t * 100}%
                 </text>
               ))}

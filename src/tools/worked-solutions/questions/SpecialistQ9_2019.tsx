@@ -18,7 +18,7 @@ const FieldsWidget = lazyWidget(() => import('../interactives/spec-2019-mcq9-fie
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img
+    <img loading="lazy" decoding="async"
       src={dirFieldSrc}
       alt="A direction field on axes from -8 to 8, banded diagonally: constant along lines y-x=k, with horizontal tangent marks offset from the y=x diagonal rather than sitting on it"
       className="w-full max-w-[440px]"

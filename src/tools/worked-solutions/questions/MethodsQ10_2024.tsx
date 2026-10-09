@@ -24,7 +24,7 @@ const EXAMINER: MCQExaminerStats = {
       <br />
       <Katex tex="f" /> is many-to-one on <Katex tex="[2,4]" />, since <Katex tex="f'" /> changes
       sign. So <Katex tex="f" /> does not have an inverse function.
-      <img src={reportGraphSrc} alt="The report's example graphs: a cubic-like y = f(x) with a local maximum near x = 0.8 and a local minimum near x = 3.5, and y = f′(x) negative at x = 2 and positive at x = 4" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's example graphs: a cubic-like y = f(x) with a local maximum near x = 0.8 and a local minimum near x = 3.5, and y = f′(x) negative at x = 2 and positive at x = 4" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

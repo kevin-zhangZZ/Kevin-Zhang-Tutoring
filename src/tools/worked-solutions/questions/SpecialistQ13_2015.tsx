@@ -47,7 +47,7 @@ export default function SpecialistQ13_2015() {
       question={
         <>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img
+            <img loading="lazy" decoding="async"
               src={fieldSrc}
               alt="A direction field on axes from x = -3.5 to 3.5 and y = -2.5 to 2.5: the line segments are steeply negative near the left and right edges, and almost horizontal in a band through the middle of the field — from the original 2015 VCAA exam paper"
               className="w-full max-w-[460px]"

@@ -13,7 +13,7 @@ import argandSrc from './spec-2015-mcq9-argand.png'
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img src={argandSrc} alt="Argand diagram showing z1 as a point in the first quadrant and z1z2 as a point in the second quadrant, closer to the origin than z1 — from the original 2015 VCAA exam paper" className="w-full max-w-[300px]" />
+    <img loading="lazy" decoding="async" src={argandSrc} alt="Argand diagram showing z1 as a point in the first quadrant and z1z2 as a point in the second quadrant, closer to the origin than z1 — from the original 2015 VCAA exam paper" className="w-full max-w-[300px]" />
   </div>
 )
 

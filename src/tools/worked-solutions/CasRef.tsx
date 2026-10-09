@@ -241,7 +241,7 @@ export function Cas({ fn, children }: { fn: keyof typeof CAS_FUNCTIONS; children
         aria-expanded={open}
         aria-controls={open ? panelId : undefined}
         title={`What does ${fn} do?`}
-        className="font-mono text-[12.5px] px-1.5 py-0.5 rounded-md border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40 text-violet-800 dark:text-violet-200 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors cursor-pointer"
+        className="relative after:absolute after:inset-0 [@media(pointer:coarse)]:after:-inset-y-2 font-mono text-[12.5px] px-1.5 py-0.5 rounded-md border border-violet-200 dark:border-violet-900 bg-violet-50 dark:bg-violet-950/40 text-violet-800 dark:text-violet-200 hover:bg-violet-100 dark:hover:bg-violet-900/50 transition-colors cursor-pointer"
       >
         {children ?? entry.syntax}
         <span className="ml-1 text-[10px] align-super opacity-70">?</span>
@@ -263,7 +263,7 @@ export function Cas({ fn, children }: { fn: keyof typeof CAS_FUNCTIONS; children
             <p className="text-[12.5px] leading-relaxed text-gray-700 dark:text-gray-200 mb-2.5">
               {entry.purpose}
             </p>
-            <p className="text-[10px] font-bold tracking-wider text-gray-400 dark:text-gray-500 mb-1">
+            <p className="text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-1">
               Arguments
             </p>
             <div className="mb-2.5">
@@ -280,7 +280,7 @@ export function Cas({ fn, children }: { fn: keyof typeof CAS_FUNCTIONS; children
               </p>
             )}
             {entry.menu && (
-              <p className="text-[11.5px] text-gray-400 dark:text-gray-500">{entry.menu}</p>
+              <p className="text-[11.5px] text-gray-500 dark:text-gray-400">{entry.menu}</p>
             )}
           </div>,
           document.body,

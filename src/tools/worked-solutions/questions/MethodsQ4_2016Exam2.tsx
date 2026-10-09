@@ -464,7 +464,7 @@ export default function MethodsQ4_2016Exam2() {
           diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={biiSrc}
             alt="The hyperbola y = f(x) and the line y = x crossing at (−1, −1) and (1, 1), with the lens-shaped region between them shaded — from the original 2016 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -482,7 +482,7 @@ export default function MethodsQ4_2016Exam2() {
           diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={biiiSrc}
             alt="The graphs of f and its inverse crossing at (−1, −1) and (1, 1), with the region between them shaded — from the original 2016 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -500,7 +500,7 @@ export default function MethodsQ4_2016Exam2() {
           <Katex tex="P(c,d)" /> is on the graph of <Katex tex="f" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={pointSrc}
             alt="The right-hand branch of y = f(x) rising through the x-intercept at −1/2 towards the asymptote y = 2, with the point P(c, d) marked just above and left of the origin — from the original 2016 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -597,7 +597,7 @@ export default function MethodsQ4_2016Exam2() {
           square of the area of triangle <Katex tex="XYZ" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={triangleSrc}
             alt="The curve y = g(x) and the line y = x, with Z at (−1, −1), Y at (1, 1) and X on the curve to the upper left of the line — from the original 2016 VCAA exam paper"
             className="w-full max-w-[300px]"
@@ -625,7 +625,7 @@ export default function MethodsQ4_2016Exam2() {
           the plane. The region is shown shaded in the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={regionSrc}
             alt="The curve y = g(x) above the line y = x between their intersections at (−1, −1) and (1, 1), with the enclosed region shaded — from the original 2016 VCAA exam paper"
             className="w-full max-w-[300px]"

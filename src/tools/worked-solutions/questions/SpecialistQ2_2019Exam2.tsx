@@ -102,7 +102,7 @@ const ROWS_AII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={argandSrc} alt="VCAA's Argand grid (−3 to 3, gridlines every 0.2) with the conjugate pair −1 ± (√6/2)i plotted and the circle of minimum radius through them, centred at −1" className="w-full max-w-[380px]" />
+        <img loading="lazy" decoding="async" src={argandSrc} alt="VCAA's Argand grid (−3 to 3, gridlines every 0.2) with the conjugate pair −1 ± (√6/2)i plotted and the circle of minimum radius through them, centred at −1" className="w-full max-w-[380px]" />
       </div>
     ),
     reason: <>The two points, together with the circle from part b.iii. drawn through them. Conjugate roots are always mirror images in the real axis. Plot them carefully against the gridlines: <Katex tex="\tfrac{\sqrt6}{2}\approx1.22" /> sits just above the <Katex tex="1.2" /> gridline — the report notes some students did not plot the points accurately relative to the supplied gridlines and scale.</>,

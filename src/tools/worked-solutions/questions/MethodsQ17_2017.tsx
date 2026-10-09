@@ -19,7 +19,7 @@ const SignsWidget = lazyWidget(() => import('../interactives/meth-2017-mcq17-sig
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-    <img src={evenFunctionSrc} alt="Graph of an even function f with x-intercepts at a, b, c, d, symmetric about the y-axis, from the original 2017 VCAA exam paper" className="w-full max-w-[340px]" />
+    <img loading="lazy" decoding="async" src={evenFunctionSrc} alt="Graph of an even function f with x-intercepts at a, b, c, d, symmetric about the y-axis, from the original 2017 VCAA exam paper" className="w-full max-w-[340px]" />
   </div>
 )
 

@@ -155,7 +155,7 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={argandSrc} alt="VCAA's polar-grid Argand diagram with the circle of centre (1, 2) and radius 2, the vertical line Re(z) = 2, the two imaginary-axis intercepts and the two intersection points, all labelled" className="w-full max-w-[400px]" />
+        <img loading="lazy" decoding="async" src={argandSrc} alt="VCAA's polar-grid Argand diagram with the circle of centre (1, 2) and radius 2, the vertical line Re(z) = 2, the two imaginary-axis intercepts and the two intersection points, all labelled" className="w-full max-w-[400px]" />
       </div>
     ),
     reason: <>Both parts c and d on one diagram, with all four points labelled in exact form. The report notes coordinates were sometimes given as decimal approximations.</>,
@@ -254,7 +254,7 @@ export default function SpecialistQ2_2018Exam2() {
           <>
             Graph the circle given by <Katex tex="|z+1|=\sqrt2\,|z-i|" /> on the Argand diagram below, labelling the intercepts with the vertical axis.
             <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankArgandSrc}
                 alt="Blank Argand diagram from the original 2018 VCAA exam paper: Re(z) and Im(z) axes from −5 to 5 on a polar grid of circles of radius 1 to 5 and rays every 30°"
                 className="w-full max-w-[340px]"

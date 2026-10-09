@@ -17,6 +17,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { useDialogFocus } from '../../lib/a11y'
 
 interface GalleryImage {
   src: string
@@ -44,9 +45,8 @@ export function DiagramScope({ children }: { children: ReactNode }) {
   useEffect(() => {
     const el = ref.current
     if (!el || !openLightbox) return
-    function onClick(e: MouseEvent) {
+    function openFrom(target: HTMLImageElement | null) {
       if (!openLightbox) return
-      const target = (e.target as HTMLElement)?.closest?.('img') as HTMLImageElement | null
       if (!target || !el!.contains(target)) return
       // Several question files reuse the same diagram picture in more than one place at
       // once (e.g. a `const STEM = <img .../>` element used for both the `diagram` prop
@@ -67,13 +67,43 @@ export function DiagramScope({ children }: { children: ReactNode }) {
       if (index === -1) return
       openLightbox({ images, index, originEl: target })
     }
+    function onClick(e: MouseEvent) {
+      openFrom((e.target as HTMLElement)?.closest?.('img') as HTMLImageElement | null)
+    }
+    // Keyboard: every image is a focusable button (see `enhance` below); Enter/Space opens it.
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key !== 'Enter' && e.key !== ' ') return
+      const t = e.target as HTMLElement
+      if (t?.tagName !== 'IMG' || !t.hasAttribute('data-lightbox')) return
+      e.preventDefault()
+      openFrom(t as HTMLImageElement)
+    }
+    // Images mount and unmount as tabs switch, so mark them up whenever the subtree changes.
+    function enhance() {
+      for (const img of Array.from(el!.querySelectorAll('img'))) {
+        if (img.hasAttribute('data-lightbox') || img.closest('a, button')) continue
+        img.setAttribute('data-lightbox', '')
+        img.tabIndex = 0
+        img.setAttribute('role', 'button')
+        img.setAttribute('aria-label', img.alt ? `Enlarge diagram: ${img.alt}` : 'Enlarge diagram')
+      }
+    }
+    enhance()
+    const mo = new MutationObserver(enhance)
+    mo.observe(el, { childList: true, subtree: true })
     el.addEventListener('click', onClick)
-    return () => el.removeEventListener('click', onClick)
+    el.addEventListener('keydown', onKeyDown)
+    return () => {
+      mo.disconnect()
+      el.removeEventListener('click', onClick)
+      el.removeEventListener('keydown', onKeyDown)
+    }
   }, [openLightbox])
 
-  // cursor-zoom-in + a faint hover lift signal that these images are clickable.
+  // cursor-zoom-in + a faint hover lift signal that these images are clickable (the lift is
+  // skipped under prefers-reduced-motion); a focus ring shows keyboard focus.
   return (
-    <div ref={ref} className="contents [&_img]:cursor-zoom-in [&_img]:transition-transform [&_img]:duration-150 [&_img]:hover:scale-[1.015]">
+    <div ref={ref} className="contents [&_img]:cursor-zoom-in [&_img]:motion-safe:transition-transform [&_img]:duration-150 [&_img]:motion-safe:hover:scale-[1.015] [&_img]:focus-visible:outline [&_img]:focus-visible:outline-2 [&_img]:focus-visible:outline-offset-2 [&_img]:focus-visible:outline-blue-600">
       {children}
     </div>
   )
@@ -103,6 +133,9 @@ const MORPH_TRANSITION =
   'top .32s cubic-bezier(.2,.8,.2,1), left .32s cubic-bezier(.2,.8,.2,1), ' +
   'width .32s cubic-bezier(.2,.8,.2,1), height .32s cubic-bezier(.2,.8,.2,1), border-radius .32s ease'
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+
 export function LightboxProvider({ children }: { children: ReactNode }) {
   const [gallery, setGallery] = useState<GalleryImage[] | null>(null)
   const [index, setIndex] = useState(0)
@@ -112,8 +145,12 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
   const overlayRef = useRef<HTMLDivElement>(null)
   const cloneRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLImageElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const closeBtnRef = useRef<HTMLButtonElement>(null)
+  const originElRef = useRef<HTMLElement | null>(null)
 
   const open = useCallback(({ images, index: i, originEl }: OpenArgs) => {
+    originElRef.current = originEl
     const r = originEl.getBoundingClientRect()
     originRectRef.current = { top: r.top, left: r.left, width: r.width, height: r.height }
     setGallery(images)
@@ -139,6 +176,24 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
     const clone = cloneRef.current
     const overlay = overlayRef.current
     if (!clone || !overlay || !gallery) return
+
+    if (prefersReducedMotion()) {
+      // No morph or fade: jump straight to the end state.
+      clone.style.transition = 'none'
+      overlay.style.transition = 'none'
+      if (phase === 'opening') {
+        overlay.style.opacity = '1'
+        const target = computeTargetRect(gallery[index].naturalWidth, gallery[index].naturalHeight)
+        Object.assign(clone.style, {
+          top: target.top + 'px', left: target.left + 'px', width: target.width + 'px', height: target.height + 'px', borderRadius: '14px',
+        })
+        setPhase('open')
+      } else if (phase === 'closing') {
+        setPhase('closed')
+        setGallery(null)
+      }
+      return
+    }
 
     if (phase === 'opening') {
       const r = originRectRef.current!
@@ -189,7 +244,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
     if (!clone) return
     const reposition = () => {
       const target = computeTargetRect(gallery[index].naturalWidth, gallery[index].naturalHeight)
-      clone.style.transition = 'top .22s ease, left .22s ease, width .22s ease, height .22s ease'
+      clone.style.transition = prefersReducedMotion() ? 'none' : 'top .22s ease, left .22s ease, width .22s ease, height .22s ease'
       Object.assign(clone.style, {
         top: target.top + 'px', left: target.left + 'px', width: target.width + 'px', height: target.height + 'px',
       })
@@ -212,13 +267,15 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
   }, [phase, close, prev, next])
 
   const mounted = phase !== 'closed' && gallery !== null
+  // Move focus to ✕ on open, keep Tab inside, and hand focus back to the clicked image on close.
+  useDialogFocus(mounted, dialogRef, { initialFocus: closeBtnRef, returnFocus: originElRef })
 
   return (
     <LightboxCtx.Provider value={open}>
       {children}
       {mounted &&
         createPortal(
-          <>
+          <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="Enlarged diagram">
             <div
               ref={overlayRef}
               onClick={e => { if (e.target === e.currentTarget) close() }}
@@ -226,6 +283,8 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
               style={{ background: 'rgba(6,10,22,.72)', backdropFilter: 'blur(10px) saturate(120%)', WebkitBackdropFilter: 'blur(10px) saturate(120%)' }}
             >
               <button
+                ref={closeBtnRef}
+                type="button"
                 onClick={close}
                 aria-label="Close"
                 className="absolute top-5 right-5 sm:top-6 sm:right-6 w-10 h-10 rounded-full flex items-center justify-center text-white text-lg transition-colors z-10"
@@ -252,7 +311,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
                   >
                     ›
                   </button>
-                  <div className="absolute top-5 left-5 sm:top-6 sm:left-6 text-[12px] font-semibold text-white/60 tracking-wide">
+                  <div aria-live="polite" className="absolute top-5 left-5 sm:top-6 sm:left-6 text-[12px] font-semibold text-white/60 tracking-wide">
                     {index + 1} / {gallery.length}
                   </div>
                   <div
@@ -263,7 +322,9 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
                       <button
                         key={i}
                         onClick={e => { e.stopPropagation(); goTo(i) }}
+                        type="button"
                         aria-label={g.alt || `Image ${i + 1}`}
+                        aria-current={i === index ? 'true' : undefined}
                         className="w-11 h-9 flex-none rounded-md overflow-hidden transition-opacity"
                         style={{ opacity: i === index ? 1 : 0.5, border: i === index ? '2px solid #38bdf8' : '2px solid transparent' }}
                       >
@@ -293,7 +354,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
                 draggable={false}
               />
             </div>
-          </>,
+          </div>,
           document.body,
         )}
     </LightboxCtx.Provider>

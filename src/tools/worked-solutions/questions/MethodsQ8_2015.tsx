@@ -57,7 +57,7 @@ export default function MethodsQ8_2015() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="A curve from (−2, 0) dipping below the x-axis and returning to the origin, with that region shaded, then a straight line from the origin up to the point (p, p) — from the original 2015 VCAA exam paper"
           className="w-full max-w-[320px]"

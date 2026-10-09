@@ -78,7 +78,7 @@ function GeoDiagram({ a, fn, step, negative, angleTex, unit, size = 190 }: {
 
   const labels: Array<{ x: number; y: number; node: ReactNode; cls?: string; style?: React.CSSProperties; anchor?: 'left' | 'right' }> = []
   labels.push({ x: px + (a.cosN >= 0 ? 9 : -9), y: py + (a.sinN >= 0 ? -9 : 9), node: 'P', cls: 'font-sans font-bold text-blue-700 dark:text-blue-400 text-[11px]' })
-  labels.push({ x: c - 8, y: c + 9, node: 'O', cls: 'font-sans font-semibold text-gray-400 text-[10px]' })
+  labels.push({ x: c - 8, y: c + 9, node: 'O', cls: 'font-sans font-semibold text-gray-500 dark:text-gray-400 text-[10px]' })
   if (step < 3 && a.deg !== 0) labels.push({ x: c + 28 * Math.cos(mid), y: c - 28 * Math.sin(mid), node: <M t={angleTex} />, cls: 'text-gray-500 dark:text-gray-400 text-[10px]' })
   if (step === 2) {
     if (base === 'y' && !(Math.abs(a.sinN) < EPS)) labels.push({ x: px + (a.cosN >= 0 ? 8 : -8), y: (py + c) / 2, node: <i>y</i>, style: { color: col }, cls: 'font-bold text-[12px]', anchor: a.cosN >= 0 ? 'left' : 'right' })
@@ -262,7 +262,7 @@ export default function WrongExplanation({ angle, fn, angleTex, unit }: Props) {
       <ol className="mt-1 flex flex-col gap-2" aria-live="polite">
         {all.slice(0, step).map((s, i) => (
           <li key={i}>
-            <p className="text-[11px] font-semibold text-gray-400 dark:text-gray-500">Step {i + 1} of 3 · {s.title}</p>
+            <p className="text-[11px] font-semibold text-gray-500 dark:text-gray-400">Step {i + 1} of 3 · {s.title}</p>
             <p className="text-[13px] leading-relaxed text-gray-700 dark:text-gray-300">{s.body}</p>
           </li>
         ))}

@@ -157,7 +157,7 @@ const ROWS_CII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={regionSrc}
           alt="The cubic and the line y = x − 2 crossing three times, with the two regions between them shaded: the cubic above the line on the left region and below it on the right"
           className="w-full max-w-[440px]"
@@ -294,7 +294,7 @@ export default function MethodsQ1_2023Exam2() {
           below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A positive cubic crossing the x-axis three times, with a local maximum just left of the y-axis and a local minimum to its right — from the original 2023 VCAA exam paper"
             className="w-full max-w-[460px]"

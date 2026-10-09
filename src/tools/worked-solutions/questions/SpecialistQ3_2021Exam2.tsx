@@ -202,7 +202,7 @@ export default function SpecialistQ3_2021Exam2() {
           All lengths are measured in centimetres.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={vesselSrc}
             alt="A vase-shaped vessel of height H formed by rotating a cubic about the y-axis, with the water depth h marked from the base — from the original 2021 VCAA exam paper"
             className="w-full max-w-[300px]"

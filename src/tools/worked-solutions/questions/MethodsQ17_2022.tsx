@@ -33,7 +33,7 @@ const EXAMINER: MCQExaminerStats = {
       The gradient at <Katex tex="x" /> = 2 is negative.
       <br />
       So, <Katex tex="g" /> is a many-to-one function.
-      <img src={reportGraphSrc} alt="The report's example: g(x) = (x − 1)(x − 2)(x − 5/2) and the chord y = ½(x − 1) from (1, 0) to (3, 1)" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's example: g(x) = (x − 1)(x − 2)(x − 5/2) and the chord y = ½(x − 1) from (1, 0) to (3, 1)" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

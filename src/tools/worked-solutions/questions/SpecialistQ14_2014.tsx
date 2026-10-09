@@ -52,7 +52,7 @@ export default function SpecialistQ14_2014() {
       question={
         <>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img
+            <img loading="lazy" decoding="async"
               src={fieldSrc}
               alt="A direction field whose segments turn vertical along the diagonal line y = x and slope downwards along the positive x-axis — from the original 2014 VCAA exam paper"
               className="w-full max-w-[440px]"

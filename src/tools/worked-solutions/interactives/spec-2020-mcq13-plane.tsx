@@ -14,7 +14,7 @@
 // sheet are drawn before it, parts in front after it, so the sheet tints what is behind it.
 
 import { useEffect, useRef, useState } from 'react'
-import { ActionButton, Buttons, C, Controls, Katex, M, Notice, Readout, Readouts, Slider, Toggle } from './kit'
+import { ActionButton, Buttons, C, Controls, Katex, M, Notice, Readout, Readouts, Slider, Toggle, prefersReducedMotion } from './kit'
 
 type V3 = readonly [number, number, number]
 type P2 = readonly [number, number]
@@ -112,6 +112,10 @@ function useTurn(setTheta: (v: number) => void) {
   const stop = () => cancelAnimationFrame(raf.current)
   const go = (from: number, to: number) => {
     stop()
+    if (prefersReducedMotion()) {
+      setTheta(wrap(to))
+      return
+    }
     const t0 = performance.now()
     const tick = (now: number) => {
       const p = Math.min(1, (now - t0) / 1100)

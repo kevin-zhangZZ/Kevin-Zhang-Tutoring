@@ -307,7 +307,7 @@ export default function MethodsQ3_2020Exam2() {
           distribution of <Katex tex="T" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={normalSrc}
             alt="A bell curve centred at t = 0 on an axis scaled from −12 to 12 minutes — from the original 2020 VCAA exam paper"
             className="w-full max-w-[460px]"

@@ -174,7 +174,7 @@ export default function MethodsQ19_2018() {
             diagram below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
-            <img
+            <img loading="lazy" decoding="async"
               src={graphSrc}
               alt="Graphs of f(x)=cos(πx/2) and g(x)=sin(πx) on [0,3], with the regions between them shaded, from the original 2018 VCAA exam paper"
               className="w-full max-w-[380px]"

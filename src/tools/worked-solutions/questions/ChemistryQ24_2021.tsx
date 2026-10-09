@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       The general relative energy profiles for an uncatalysed reacton and a catalysed reaction may
       be shown as:
-      <img src={reportGraphSrc} alt="The report's energy profile: reactants above products, with a higher curve for the reaction pathway without a catalyst and a lower dashed curve for the reaction pathway with a catalyst, each activation energy Ea marked from the reactants" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's energy profile: reactants above products, with a higher curve for the reaction pathway without a catalyst and a lower dashed curve for the reaction pathway with a catalyst, each activation energy Ea marked from the reactants" className="w-full max-w-[360px] mt-1" />
       The energy content of the products (and reactants) – and so the Δ<i>H</i> for the equation –
       is not affected by adding a catalyst and will remain the same.
       <br />

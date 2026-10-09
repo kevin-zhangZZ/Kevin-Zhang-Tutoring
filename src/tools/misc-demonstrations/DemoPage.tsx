@@ -21,7 +21,7 @@ export default function DemoPage({ id, intro, children }: { id: DemoId; intro: R
         </Link>
       </nav>
       <div className="mb-5">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{demo.name}</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-1">{demo.name}</h1>
         <div className="text-sm text-gray-500 dark:text-gray-400 max-w-2xl">{intro}</div>
       </div>
 

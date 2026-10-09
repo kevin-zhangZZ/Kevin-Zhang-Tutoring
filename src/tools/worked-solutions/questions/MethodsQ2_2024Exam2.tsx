@@ -426,7 +426,7 @@ export default function MethodsQ2_2024Exam2() {
           <Katex tex="t" />-axis.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={powerSrc}
             alt="A power-versus-time graph: flat at 1.5 kilowatts until t = 0.4 hours, then falling steeply and levelling out towards 0.3 kilowatts — from the original 2024 VCAA exam paper"
             className="w-full max-w-[520px]"

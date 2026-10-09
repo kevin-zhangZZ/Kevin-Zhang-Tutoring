@@ -7,7 +7,7 @@
 // question's interval 0 ≤ t ≤ 1/2 (where P > Q throughout), to show the fit holds for every t.
 
 import { useEffect, useRef, useState } from 'react'
-import { C, Controls, Label, M, Notice, Plane, Polygon, Slider, StepNav, num, useSteps, type vec } from './kit'
+import { C, Controls, Label, M, Notice, Plane, Polygon, Slider, StepNav, num, prefersReducedMotion, useSteps, type vec } from './kit'
 
 const Pf = (t: number) => 1 / (1 + t)
 const Qf = (t: number) => 1 / (4 * (1 - t))
@@ -58,6 +58,11 @@ export default function PerfectSquare() {
   useEffect(() => {
     const from = gRef.current
     if (from === target) return
+    if (prefersReducedMotion()) {
+      gRef.current = target
+      setG(target)
+      return
+    }
     const start = performance.now()
     let raf = 0
     const frame = (now: number) => {

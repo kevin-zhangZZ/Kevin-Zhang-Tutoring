@@ -19,7 +19,7 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       Concentration-time graphs show all concentrations increasing/doubling at time <i>t</i>₁.
-      <img
+      <img loading="lazy" decoding="async"
         src={reportGraphSrc}
         alt="The report's copy of the concentration–time graph: the I₂, H₂ and HI concentrations all step up to double their values at t₂ and stay flat afterwards"
         className="w-full max-w-[360px] mt-1"
@@ -106,7 +106,7 @@ export default function ChemistryQ27_2021() {
             change was made to the equilibrium system at time <i>t</i>₂.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={graphSrc}
               alt="Concentration (M) against time: the I₂, H₂ and HI concentrations are constant until t₂, where each steps up to double its value, then stay constant to t₄; times t₁ to t₅ are marked — from the original 2021 VCAA exam paper"
               className="w-full max-w-[440px]"

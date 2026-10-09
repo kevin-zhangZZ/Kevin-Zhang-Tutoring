@@ -15,11 +15,11 @@ import optBSrc from './meth-2025-mcq13-optB.png'
 import optCSrc from './meth-2025-mcq13-optC.png'
 import optDSrc from './meth-2025-mcq13-optD.png'
 
-const STEM = <img src={stemSrc} alt="Graphs of y=f(x), a line through the origin with negative gradient, and y=g(x), a W-shaped quartic through the origin, from the original 2025 VCAA exam paper" className="w-full max-w-[320px]" />
-const OPT_A = <img src={optASrc} alt="Option A: a W-shaped quartic symmetric about the y-axis, meeting at the origin" className="w-full max-w-[300px]" />
-const OPT_B = <img src={optBSrc} alt="Option B: an M-shaped quartic (ends pointing down) with two humps above the x-axis" className="w-full max-w-[300px]" />
-const OPT_C = <img src={optCSrc} alt="Option C: a W-shaped quartic, asymmetric, shifted toward negative x" className="w-full max-w-[300px]" />
-const OPT_D = <img src={optDSrc} alt="Option D: an M-shaped quartic (ends pointing down) with two humps of different heights" className="w-full max-w-[300px]" />
+const STEM = <img loading="lazy" decoding="async" src={stemSrc} alt="Graphs of y=f(x), a line through the origin with negative gradient, and y=g(x), a W-shaped quartic through the origin, from the original 2025 VCAA exam paper" className="w-full max-w-[320px]" />
+const OPT_A = <img loading="lazy" decoding="async" src={optASrc} alt="Option A: a W-shaped quartic symmetric about the y-axis, meeting at the origin" className="w-full max-w-[300px]" />
+const OPT_B = <img loading="lazy" decoding="async" src={optBSrc} alt="Option B: an M-shaped quartic (ends pointing down) with two humps above the x-axis" className="w-full max-w-[300px]" />
+const OPT_C = <img loading="lazy" decoding="async" src={optCSrc} alt="Option C: a W-shaped quartic, asymmetric, shifted toward negative x" className="w-full max-w-[300px]" />
+const OPT_D = <img loading="lazy" decoding="async" src={optDSrc} alt="Option D: an M-shaped quartic (ends pointing down) with two humps of different heights" className="w-full max-w-[300px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 12, B: 17, C: 45, D: 25 },
@@ -37,7 +37,7 @@ const EXAMINER: MCQExaminerStats = {
       Try sensible functions with similar characteristic curves for the rules; for example, let{' '}
       <Katex tex="g(x)=x(x+1)(x-1)(x-2)" /> and <Katex tex="f(x)=-x" /> and then sketch{' '}
       <Katex tex="y=(g\circ f)(x)=x(x-1)(x+1)(x+2)" />.
-      <img src={reportGraphSrc} alt="The report's graph of y = x(x − 1)(x + 1)(x + 2): a W-shaped quartic crossing the x-axis at −2, −1, 0 and 1" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph of y = x(x − 1)(x + 1)(x + 2): a W-shaped quartic crossing the x-axis at −2, −1, 0 and 1" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

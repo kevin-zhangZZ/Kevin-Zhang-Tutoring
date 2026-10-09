@@ -1,6 +1,8 @@
 import { angles, shiftedAngleTex, type AngleData } from './data'
 import Katex from '../../components/Katex'
 import { useStoredState } from './storage'
+import SegmentedControl from '../../components/ui/SegmentedControl'
+import Toggle from '../../components/ui/Toggle'
 
 type AngleRange = 'pos' | 'neg' | 'both'
 type ShowValue = 'none' | 'cos' | 'sin' | 'tan'
@@ -42,58 +44,6 @@ function valueTex(a: AngleData, v: Exclude<ShowValue, 'none'>) {
   return v === 'cos' ? a.cosTex : v === 'sin' ? a.sinTex : a.tanTex
 }
 
-// ── Toggle switch ───────────────────────────────────────────────────────────
-
-interface ToggleProps {
-  checked: boolean
-  onChange: (v: boolean) => void
-  label: string
-}
-
-function Toggle({ checked, onChange, label }: ToggleProps) {
-  return (
-    <label className="flex items-center gap-2 cursor-pointer select-none">
-      <button
-        role="switch" aria-checked={checked}
-        onClick={() => onChange(!checked)}
-        className={`relative w-9 h-5 rounded-full transition-colors duration-200 focus:outline-none ${checked ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}
-      >
-        <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 ${checked ? 'translate-x-4' : ''}`} />
-      </button>
-      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
-    </label>
-  )
-}
-
-function Segmented<T extends string>({ value, options, onChange, label }: {
-  value: T
-  options: Array<{ id: T; label: string; color?: string }>
-  onChange: (v: T) => void
-  label: string
-}) {
-  return (
-    <div className="flex gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5 w-fit" role="radiogroup" aria-label={label}>
-      {options.map(o => {
-        const on = value === o.id
-        return (
-          <button
-            key={o.id}
-            role="radio"
-            aria-checked={on}
-            onClick={() => onChange(o.id)}
-            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              on ? 'bg-white dark:bg-gray-900 shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-            }`}
-            style={on ? { color: o.color ?? undefined } : undefined}
-          >
-            <span className={on && !o.color ? 'text-gray-900 dark:text-white' : ''}>{o.label}</span>
-          </button>
-        )
-      })}
-    </div>
-  )
-}
-
 // ── Main component ──────────────────────────────────────────────────────────
 
 interface Settings {
@@ -111,49 +61,44 @@ export default function MemorizationMode() {
   return (
     <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
       {/* Controls — beside the circle on laptops, above it on phones */}
-      <div className="w-full lg:w-72 lg:flex-none bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-5 flex flex-wrap lg:flex-col gap-5">
+      <div className="w-full lg:w-72 lg:flex-none card p-5 flex flex-wrap lg:flex-col gap-5">
         <div>
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2">View</p>
-          <Segmented label="View" value={view} onChange={v => set({ view: v })} options={[{ id: 'circle', label: 'Circle' }, { id: 'table', label: 'Table' }]} />
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">View</p>
+          <SegmentedControl aria-label="View" value={view} onChange={v => set({ view: v })} options={[{ value: 'circle', label: 'Circle' }, { value: 'table', label: 'Table' }]} />
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2">Angle Range</p>
-          <div className="flex gap-1">
-            {(['pos', 'neg', 'both'] as AngleRange[]).map(opt => (
-              <button key={opt} onClick={() => set({ range: opt })}
-                aria-pressed={range === opt}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                  range === opt
-                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                }`}
-              >
-                {opt === 'pos' ? '[0, 2π]' : opt === 'neg' ? '[−2π, 0]' : '[−2π, 2π]'}
-              </button>
-            ))}
-          </div>
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">Angle Range</p>
+          <SegmentedControl
+            aria-label="Angle range"
+            value={range}
+            onChange={v => set({ range: v })}
+            options={(['pos', 'neg', 'both'] as AngleRange[]).map(opt => ({
+              value: opt,
+              label: opt === 'pos' ? '[0, 2π]' : opt === 'neg' ? '[−2π, 0]' : '[−2π, 2π]',
+            }))}
+          />
         </div>
 
         {view === 'circle' && (
           <div>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider mb-2">Show Values</p>
-            <Segmented
-              label="Show values"
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">Show Values</p>
+            <SegmentedControl
+              aria-label="Show values"
               value={show}
               onChange={v => set({ show: v })}
               options={[
-                { id: 'none', label: 'None' },
-                { id: 'cos', label: 'cos', color: VALUE_COLOR.cos },
-                { id: 'sin', label: 'sin', color: VALUE_COLOR.sin },
-                { id: 'tan', label: 'tan', color: VALUE_COLOR.tan },
+                { value: 'none', label: 'None' },
+                { value: 'cos', label: 'cos', activeColor: VALUE_COLOR.cos },
+                { value: 'sin', label: 'sin', activeColor: VALUE_COLOR.sin },
+                { value: 'tan', label: 'tan', activeColor: VALUE_COLOR.tan },
               ]}
             />
           </div>
         )}
 
         <div className="self-end lg:self-auto">
-          <Toggle checked={deg} onChange={v => set({ deg: v })} label="Degrees" />
+          <Toggle appearance="switch" checked={deg} onChange={v => set({ deg: v })} label="Degrees" />
         </div>
       </div>
 
@@ -256,7 +201,7 @@ function Circle({ range, show, deg }: { range: AngleRange; show: ShowValue; deg:
                     </div>
                   )}
                   {deg && (
-                    <div className="text-gray-400 dark:text-gray-500 text-[8.5px] sm:text-[11px]">
+                    <div className="text-gray-500 dark:text-gray-400 text-[8.5px] sm:text-[11px]">
                       {a.degLabel}
                     </div>
                   )}
@@ -310,7 +255,7 @@ function ValueTable({ range, deg }: { range: AngleRange; deg: boolean }) {
                   {range === 'both' && a.piN !== 0 && <span className="text-gray-400"> , </span>}
                   {range !== 'pos' && a.piN !== 0 && <span className={range === 'both' ? 'text-gray-500 dark:text-gray-400' : ''}><Katex tex={shiftedAngleTex(a.piN, a.piD, -1)} /></span>}
                   {range === 'neg' && a.piN === 0 && <Katex tex="0" />}
-                  {deg && <span className="block text-[11px] text-gray-400 dark:text-gray-500">{a.degLabel}</span>}
+                  {deg && <span className="block text-[11px] text-gray-500 dark:text-gray-400">{a.degLabel}</span>}
                 </th>
                 <td className="py-1.5" style={{ color: VALUE_COLOR.cos }}><Katex tex={a.cosTex} /></td>
                 <td className="py-1.5" style={{ color: VALUE_COLOR.sin }}><Katex tex={a.sinTex} /></td>

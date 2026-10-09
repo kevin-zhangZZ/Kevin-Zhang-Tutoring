@@ -307,7 +307,7 @@ export default function Count() {
                   <M>x</M>
                 </th>
                 {cols.map((c, i) => (
-                  <th key={i} className={`${cellBase} font-normal ${c.point ? '' : 'text-gray-400'}`}>
+                  <th key={i} className={`${cellBase} font-normal ${c.point ? '' : 'text-gray-500 dark:text-gray-400'}`}>
                     {c.point ? <M>{xTex(n, c.x)}</M> : '···'}
                   </th>
                 ))}
@@ -337,7 +337,7 @@ export default function Count() {
                       isPOI(n, c.x) ? (
                         <span className="text-green-600 dark:text-green-400">✓</span>
                       ) : (
-                        <span className="text-gray-400">✗</span>
+                        <span className="text-gray-500 dark:text-gray-400">✗</span>
                       )
                     ) : null}
                   </td>
@@ -359,18 +359,21 @@ export default function Count() {
 
         <div className="text-[12.5px] text-gray-600 dark:text-gray-300">
           <p className="mb-1 font-semibold">The question&apos;s table, from the values of <Katex tex="n" /> you have tried</p>
-          <table className="border-collapse">
-            <tbody>
-              {byCount.map((vals, c) => (
-                <tr key={c}>
-                  <td className={`${cellBase} w-10`}>{c}</td>
-                  <td className={`${cellBase} text-left min-w-[150px]`}>
-                    {vals.length ? <Katex tex={`n = ${vals.join(', ')}`} /> : <span className="text-gray-400">?</span>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {/* A long run of tried values is one KaTeX line that can't wrap: let it scroll on a phone. */}
+          <div className="overflow-x-auto scrollbar-quiet">
+            <table className="border-collapse">
+              <tbody>
+                {byCount.map((vals, c) => (
+                  <tr key={c}>
+                    <td className={`${cellBase} w-10`}>{c}</td>
+                    <td className={`${cellBase} text-left min-w-[150px]`}>
+                      {vals.length ? <Katex tex={`n = ${vals.join(', ')}`} /> : <span className="text-gray-500 dark:text-gray-400">?</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </Controls>
     </div>

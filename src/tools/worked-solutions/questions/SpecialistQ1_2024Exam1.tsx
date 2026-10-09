@@ -28,7 +28,7 @@ function ArgandOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img
+        <img loading="lazy" decoding="async"
           src={argandSrc}
           alt="VCAA's Argand diagram with the answer drawn over it: three points on the imaginary axis, at i on the unit circle, at −2i/3 on the second circle below the origin, and at −i on the unit circle"
           className="w-full block"
@@ -223,7 +223,7 @@ export default function SpecialistQ1_2024Exam1() {
               Plot the solutions of <Katex tex="f(z)=0" /> on the Argand diagram below.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={argandSrc}
                 alt="An Argand diagram with circles centred at the origin of radius 1/3, 2/3, 1, 4/3, 5/3 and 2, and rays from the origin every π/6 — from the original 2024 VCAA exam paper"
                 className="w-full max-w-[380px]"

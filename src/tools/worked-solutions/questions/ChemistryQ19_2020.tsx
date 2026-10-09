@@ -10,7 +10,7 @@ import rateGraphSrc from './chem-2020-mcq19-rate-graph.png'
 
 const RATE_GRAPH = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-    <img src={rateGraphSrc} alt="Graph of the rate of the forward reaction versus time: constant until t1, then rising to a new, higher steady rate by t2, from the original 2020 VCAA exam paper" className="w-full max-w-[380px]" />
+    <img loading="lazy" decoding="async" src={rateGraphSrc} alt="Graph of the rate of the forward reaction versus time: constant until t1, then rising to a new, higher steady rate by t2, from the original 2020 VCAA exam paper" className="w-full max-w-[380px]" />
   </div>
 )
 

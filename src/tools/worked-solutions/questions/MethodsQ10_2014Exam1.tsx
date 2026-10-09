@@ -176,7 +176,7 @@ export default function MethodsQ10_2014Exam1() {
           <Katex tex="(2,4)" />, as shown.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={tangentSrc}
             alt="A downward parabola through the origin touching a falling straight line at Q(2, 4); the line crosses the y-axis at V(0, v) and the x-axis at U(u, 0) — from the original 2014 VCAA exam paper"
             className="w-full max-w-[330px]"
@@ -205,7 +205,7 @@ export default function MethodsQ10_2014Exam1() {
           The coordinates of <Katex tex="Q" /> are <Katex tex="(2,4)" />, as shown.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={rectSrc}
             alt="The line from V(0, v) down to U(u, 0) passing through Q(2, 4), with the rectangle OPQR beneath it and the two remaining triangles VRQ and QPU shaded — from the original 2014 VCAA exam paper"
             className="w-full max-w-[330px]"

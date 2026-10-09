@@ -65,7 +65,7 @@ export default function TileJoins() {
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="w-full max-w-[460px] mx-auto block select-none"
-        role="img"
+        role="group"
         aria-label="A row of five tiles; each join meets at height 10"
       >
         {types.map((t, i) => {
@@ -74,8 +74,16 @@ export default function TileJoins() {
             <g
               key={i}
               onClick={() => flip(i)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  flip(i)
+                }
+              }}
               style={{ cursor: 'pointer' }}
+              className="group outline-none"
               role="button"
+              tabIndex={0}
               aria-label={`Tile ${i + 1}, Type ${t}: tap to switch`}
             >
               <rect x={sx(i, 0)} y={TOP} width={S} height={S} className="fill-white dark:fill-gray-900" />
@@ -93,6 +101,16 @@ export default function TileJoins() {
                 fill="none"
                 className="stroke-gray-400 dark:stroke-gray-500"
                 strokeWidth={1.2}
+              />
+              {/* keyboard focus ring */}
+              <rect
+                x={sx(i, 0)}
+                y={TOP}
+                width={S}
+                height={S}
+                fill="none"
+                strokeWidth={2.5}
+                className="stroke-transparent group-focus-visible:stroke-blue-500"
               />
               <text x={sx(i, 10)} y={TOP - 9} textAnchor="middle" fontSize={12.5} fontWeight={700} fill={colour(t)}>
                 Type {t}

@@ -161,7 +161,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={pathSrc}
           alt="The answer on VCAA's grid (x from about −7.9 to 7.9, y from about −4.5 to 4.5): the left branch of a hyperbola, symmetric about the x-axis, from the labelled endpoint (−6, −2√3) up through (−3, 0) to the labelled endpoint (−6, 2√3), with arrows showing upward motion"
           className="w-full max-w-[520px]"

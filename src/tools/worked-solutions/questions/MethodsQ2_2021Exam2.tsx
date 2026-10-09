@@ -204,7 +204,7 @@ export default function MethodsQ2_2021Exam2() {
           the right endpoint of each rectangle, as shown in the graph below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={rectSrc}
             alt="Four rectangles of increasing height under the parabola y = x² between x = 0 and x = 1, each touching the curve at its right edge — from the original 2021 VCAA exam paper"
             className="w-full max-w-[280px]"
@@ -255,7 +255,7 @@ export default function MethodsQ2_2021Exam2() {
           <div className="flex flex-col gap-3">
             <p>The graph of <Katex tex="f" /> is shown below.</p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={graphSrc}
                 alt="The graph of f on a grid from x = −3 to 3: rising from about 1 at x = −3 to a maximum of 6 at x = −1, crossing the y-axis at 2, then falling through −4 at x = 1 and −6 at x = 2 to about −7 at x = 3 — from the original 2021 VCAA exam paper"
                 className="w-full max-w-[400px]"
@@ -278,7 +278,7 @@ export default function MethodsQ2_2021Exam2() {
           shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={shadedSrc}
             alt="The lens-shaped region between y = √x and y = x² from x = 0 to x = 1, shaded — from the original 2021 VCAA exam paper"
             className="w-full max-w-[280px]"

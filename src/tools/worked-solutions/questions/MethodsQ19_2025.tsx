@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       Option D gives the shortest distance <Katex tex="\sqrt{2}" /> between <Katex tex="y=x" /> and{' '}
       <Katex tex="y=\log_e(x-1)" />.
-      <img src={reportGraphSrc} alt="The report's diagram: the line y = x in red with point A at (1, 1), the curve y = logₑ(x − 1) in blue with point B at (2, 0), the dashed segment AB perpendicular to the line, and a dashed blue tangent at B parallel to the line" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's diagram: the line y = x in red with point A at (1, 1), the curve y = logₑ(x − 1) in blue with point B at (2, 0), the dashed segment AB perpendicular to the line, and a dashed blue tangent at B parallel to the line" className="w-full max-w-[360px] mt-1" />
       <br />
       The shortest distance between the line and the curve must be a perpendicular distance.
       <br />

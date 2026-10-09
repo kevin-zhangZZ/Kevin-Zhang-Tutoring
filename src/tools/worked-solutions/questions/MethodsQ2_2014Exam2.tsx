@@ -294,7 +294,7 @@ export default function MethodsQ2_2014Exam2() {
           the base of the cylinder.
         </p>
         <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-xl p-3 my-3 w-fit">
-          <img src={diagramSrc} alt="Ice cylinder of height h metres and diameter d metres, with a 1 m statue at its centre, from the original 2014 VCAA exam paper" className="w-full max-w-[280px]" />
+          <img loading="lazy" decoding="async" src={diagramSrc} alt="Ice cylinder of height h metres and diameter d metres, with a 1 m statue at its centre, from the original 2014 VCAA exam paper" className="w-full max-w-[280px]" />
         </div>
         <p>
           The cylinder had a height of <Katex tex="h" /> metres and a diameter of <Katex tex="d" /> metres.

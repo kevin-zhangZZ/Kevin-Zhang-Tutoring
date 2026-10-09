@@ -199,7 +199,7 @@ export default function SpecialistQ5_2017Exam2() {
           are shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={pathsSrc}
             alt="Two closed curves on grid axes: a wide ellipse centred at (1, 3) spanning x from −1 to 3 and y from 2 to 4, and a unit circle centred at (1, 2) — from the original 2017 VCAA exam paper"
             className="w-full max-w-[380px]"
@@ -329,7 +329,7 @@ const PY = (y: number) => 600 - 104.2 * y
 function StartOverlay() {
   return (
     <div className="relative w-full max-w-[400px]">
-      <img
+      <img loading="lazy" decoding="async"
         src={pathsSrc}
         alt="The two paths with the boat's starting point marked at (−1, 3) with an arrow pointing up, and the jet ski's at (1, 1) with an arrow pointing left — both indicating clockwise motion"
         className="w-full block"

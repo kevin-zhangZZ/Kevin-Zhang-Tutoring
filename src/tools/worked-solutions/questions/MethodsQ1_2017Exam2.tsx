@@ -284,7 +284,7 @@ export default function MethodsQ1_2017Exam2() {
           <Katex tex="f" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={cubicSrc}
             alt="Graph of y = x³ − 5x between x = −5 and x = 5, with a local maximum near x = −1.3 and a local minimum near x = 1.3, from the original 2017 VCAA exam paper"
             className="w-full max-w-[380px]"
@@ -411,7 +411,7 @@ export default function MethodsQ1_2017Exam2() {
           <Katex tex="(0,0)" /> and <Katex tex="(a,a)" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={shadedSrc}
             alt="The line y = x and the curve y = g(x) meeting at the origin and at (a, a), with the region between them shaded — the curve dips below the x-axis in between, from the original 2017 VCAA exam paper"
             className="w-full max-w-[320px]"

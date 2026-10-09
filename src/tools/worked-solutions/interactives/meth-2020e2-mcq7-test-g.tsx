@@ -226,7 +226,20 @@ export default function TestG() {
                     sel ? 'bg-emerald-50 dark:bg-emerald-950/40' : 'hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }`}
                 >
-                  <td className="w-7 px-1 py-1 font-semibold">{L}</td>
+                  <td className="w-7 px-1 py-1 font-semibold">
+                    <button
+                      type="button"
+                      aria-pressed={sel}
+                      aria-label={`Option ${L}`}
+                      onClick={e => {
+                        e.stopPropagation()
+                        setPick(L)
+                      }}
+                      className="w-full text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    >
+                      {L}
+                    </button>
+                  </td>
                   <td className="px-1 py-1">
                     <Katex tex={FORMULA[gk][L]} />
                   </td>

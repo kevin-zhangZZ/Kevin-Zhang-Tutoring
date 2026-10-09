@@ -107,7 +107,7 @@ export default function SpecialistQ4_2021Exam1() {
               <Katex tex="x" />-axis to form a solid of revolution.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={sineSrc}
                 alt="The graph of y = sin(x) on a grid from about −π/2 to 9π/4, with the arch between x = 0 and x = π shaded — from the original 2021 VCAA exam paper"
                 className="w-full max-w-[320px]"

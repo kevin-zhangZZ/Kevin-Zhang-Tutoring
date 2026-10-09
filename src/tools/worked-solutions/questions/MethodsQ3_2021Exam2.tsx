@@ -333,7 +333,7 @@ export default function MethodsQ3_2021Exam2() {
           <Katex tex="\theta" /> between them.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The curve p falling steeply from the upper left to touch the x-axis at the origin then rising slowly towards y = 1, with the straight line y = x + 2 crossing it — from the original 2021 VCAA exam paper"
             className="w-full max-w-[400px]"

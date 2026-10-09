@@ -42,7 +42,7 @@ function InverseOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[380px]">
-        <img src={graphSrc} alt="VCAA's axes with y = f(x), and the answer y = f⁻¹(x) = 1 − √(x + 1) drawn over them: starting at the closed endpoint (−1, 1), falling through (0, 0) and flattening out to the right, the mirror image of f in the line y = x" className="w-full block" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's axes with y = f(x), and the answer y = f⁻¹(x) = 1 − √(x + 1) drawn over them: starting at the closed endpoint (−1, 1), falling through (0, 0) and flattening out to the right, the mirror image of f in the line y = x" className="w-full block" />
         <svg viewBox="0 0 1089 1113" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={functionToPath(fInv, -1, 3.55, toX, toY, 600)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <circle cx={toX(-1)} cy={toY(1)} r={11} fill={ORANGE} />
@@ -208,7 +208,7 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={regionSrc}
           alt="The line y = −x cutting a lens-shaped region off the parabola between (0, 0) and (1, −1) and a congruent region off the inverse between (−1, 1) and (0, 0), both shaded"
           className="w-full max-w-[380px]"
@@ -254,7 +254,7 @@ export default function MethodsQ7_2023Exam1() {
           below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The left half of a parabola on a grid, falling from above y = 3 near x = −1 through the origin to a closed endpoint at (1, −1) — from the original 2023 VCAA exam paper"
             className="w-full max-w-[380px]"

@@ -19,11 +19,11 @@ import optESrc from './meth-2019-mcq16-optE.png'
 
 const SlopeTrace = lazyWidget(() => import('../interactives/meth-2019-mcq16-slope-trace'))
 
-const OPT_A = <img src={optASrc} alt="Option A: negative everywhere except a touch at zero near the origin, dipping to a trough and crossing up through zero at x = 5" className="w-full max-w-[220px]" />
-const OPT_B = <img src={optBSrc} alt="Option B: rises to a positive hump between the origin and x = 5, then plunges steeply negative after 5" className="w-full max-w-[220px]" />
-const OPT_C = <img src={optCSrc} alt="Option C: a downward parabola, positive from the origin until it crosses to negative between 5 and 6" className="w-full max-w-[220px]" />
-const OPT_D = <img src={optDSrc} alt="Option D: rising from the origin to a positive hump, falling to cross zero at x = 5, dipping just below the axis until x = 6, then rising steeply" className="w-full max-w-[220px]" />
-const OPT_E = <img src={optESrc} alt="Option E: the same shape as option A but crossing up through zero at x = 6 instead of x = 5" className="w-full max-w-[220px]" />
+const OPT_A = <img loading="lazy" decoding="async" src={optASrc} alt="Option A: negative everywhere except a touch at zero near the origin, dipping to a trough and crossing up through zero at x = 5" className="w-full max-w-[220px]" />
+const OPT_B = <img loading="lazy" decoding="async" src={optBSrc} alt="Option B: rises to a positive hump between the origin and x = 5, then plunges steeply negative after 5" className="w-full max-w-[220px]" />
+const OPT_C = <img loading="lazy" decoding="async" src={optCSrc} alt="Option C: a downward parabola, positive from the origin until it crosses to negative between 5 and 6" className="w-full max-w-[220px]" />
+const OPT_D = <img loading="lazy" decoding="async" src={optDSrc} alt="Option D: rising from the origin to a positive hump, falling to cross zero at x = 5, dipping just below the axis until x = 6, then rising steeply" className="w-full max-w-[220px]" />
+const OPT_E = <img loading="lazy" decoding="async" src={optESrc} alt="Option E: the same shape as option A but crossing up through zero at x = 6 instead of x = 5" className="w-full max-w-[220px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 63, B: 7, C: 7, D: 9, E: 14 },
@@ -78,7 +78,7 @@ export default function MethodsQ16_2019() {
   return (
     <MCQShell
       question={<p>Part of the graph of <Katex tex="y=f(x)" /> is shown below. The corresponding part of the graph of <Katex tex="y=f'(x)" /> is best represented by</p>}
-      diagram={<img src={stemSrc} alt="Graph of y = f(x): falling steeply from the upper left, flattening at the origin, continuing down to a minimum at x = 5, then rising steeply through the axis at x = 6" className="w-full max-w-[300px]" />}
+      diagram={<img loading="lazy" decoding="async" src={stemSrc} alt="Graph of y = f(x): falling steeply from the upper left, flattening at the origin, continuing down to a minimum at x = 5, then rising steeply through the axis at x = 6" className="w-full max-w-[300px]" />}
       options={[
         { letter: 'A', content: OPT_A, isAnswer: true },
         { letter: 'B', content: OPT_B },

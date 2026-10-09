@@ -14,7 +14,7 @@
 import { useEffect, useState } from 'react'
 import {
   ActionButton, Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, StepNav, Toggle,
-  num, tick, useSteps,
+  num, prefersReducedMotion, tick, useSteps,
 } from './kit'
 
 const HALF_PI = Math.PI / 2
@@ -69,6 +69,8 @@ function useMorph(seconds = 1.5) {
     // s drops to 0 in the same render as the step change, so the new stage never flashes up
     // finished before the move plays.
     play: () => {
+      // Reduced motion: the new stage appears finished, with no move.
+      if (prefersReducedMotion()) return setS(1)
       setS(0)
       setRun(r => r + 1)
     },

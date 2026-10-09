@@ -154,7 +154,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={sketchSrc} alt="Graph of y = 2cos(x)+1 on [0, 2π]: starts at (0, 3), falls through the x-axis at 2π/3, reaches a minimum at (π, −1), rises back through 4π/3 and ends at (2π, 3)" className="w-full max-w-[420px]" />
+        <img loading="lazy" decoding="async" src={sketchSrc} alt="Graph of y = 2cos(x)+1 on [0, 2π]: starts at (0, 3), falls through the x-axis at 2π/3, reaches a minimum at (π, −1), rises back through 4π/3 and ends at (2π, 3)" className="w-full max-w-[420px]" />
       </div>
     ),
     reason: (
@@ -233,7 +233,7 @@ export default function MethodsQ3_2018Exam1() {
               point with their coordinates.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank axes from the original 2018 VCAA exam paper: x from 0 to 2π marked every π/3, y from −2 to 4, grid squares of 1 unit"
                 className="w-full max-w-[360px]"

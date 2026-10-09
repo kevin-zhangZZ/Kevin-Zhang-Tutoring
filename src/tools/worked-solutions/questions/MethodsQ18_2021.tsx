@@ -28,7 +28,7 @@ const EXAMINER: MCQExaminerStats = {
       <Katex tex="f(x-k)=g(x)" /> will have a maximum of three solutions if the graph of{' '}
       <Katex tex="f" /> is translated to the left. The graph below shows three points of
       intersection for <Katex tex="k=-1" />.
-      <img src={reportGraphSrc} alt="The report's graph: y = (2(x + 1) + 1)(2(x + 1) − 1)(3(x + 1) − 1) and y = x × ln(−x) for −5 ≤ x ≤ 0, crossing at three points" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph: y = (2(x + 1) + 1)(2(x + 1) − 1)(3(x + 1) − 1) and y = x × ln(−x) for −5 ≤ x ≤ 0, crossing at three points" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

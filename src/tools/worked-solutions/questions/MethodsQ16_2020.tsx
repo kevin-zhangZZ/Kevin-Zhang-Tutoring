@@ -123,7 +123,7 @@ export default function MethodsQ16_2020() {
             below.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={triangleSrc}
               alt="The parabola y = 9 − x² in the first quadrant with a shaded right-angled triangle from the origin O to B(m, 0) to C(m, 9 − m²) — from the original 2020 VCAA exam paper"
               className="w-full max-w-[330px]"

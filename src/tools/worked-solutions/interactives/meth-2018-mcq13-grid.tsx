@@ -134,7 +134,7 @@ export default function MarbleGrid() {
                   textAnchor="middle"
                   fontSize={13}
                   fontWeight={hit || s.missed ? 700 : 400}
-                  className={hit || s.missed ? 'fill-gray-900 dark:fill-white' : 'fill-gray-400 dark:fill-gray-500'}
+                  className={hit || s.missed ? 'fill-gray-900 dark:fill-white' : 'fill-gray-500 dark:fill-gray-400'}
                 >
                   {signed(PTS[a] + PTS[b])}
                 </text>

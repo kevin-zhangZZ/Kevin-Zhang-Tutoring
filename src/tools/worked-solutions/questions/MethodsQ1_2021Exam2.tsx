@@ -309,7 +309,7 @@ export default function MethodsQ1_2021Exam2() {
           cut from each of the corners, as shown in the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={sheetSrc}
             alt="A rectangle labelled h cm high and 2h cm wide with a small square of side x cm marked at each corner by dashed lines — from the original 2021 VCAA exam paper"
             className="w-full max-w-[400px]"
@@ -323,7 +323,7 @@ export default function MethodsQ1_2021Exam2() {
           <Katex tex="V_{\text{box}}>0" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={boxSrc}
             alt="An open-topped rectangular box drawn in perspective — from the original 2021 VCAA exam paper"
             className="w-full max-w-[300px]"

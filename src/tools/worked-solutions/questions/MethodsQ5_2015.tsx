@@ -14,7 +14,7 @@ import optDSrc from './meth-2015-mcq5-optD.png'
 import optESrc from './meth-2015-mcq5-optE.png'
 
 function OptionGraph({ src, letter }: { src: string; letter: string }) {
-  return <img src={src} alt={`Option ${letter}: a small sketch on x and y axes, from the original 2015 VCAA exam paper`} className="w-full max-w-[180px]" />
+  return <img loading="lazy" decoding="async" src={src} alt={`Option ${letter}: a small sketch on x and y axes, from the original 2015 VCAA exam paper`} className="w-full max-w-[180px]" />
 }
 
 const EXAMINER: MCQExaminerStats = {
@@ -57,7 +57,7 @@ export default function MethodsQ5_2015() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="Part of the graph of f: a decreasing curve from the upper left that steepens to meet the origin, then a straight line falling to the lower right — from the original 2015 VCAA exam paper"
           className="w-full max-w-[200px]"

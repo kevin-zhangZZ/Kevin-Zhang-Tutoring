@@ -23,10 +23,10 @@ const EXAMINER: MCQExaminerStats = {
       In both cases it must be true that <Katex tex="ab>0" />.
       <br />
       Example 1 <Katex tex="a=1" /> and <Katex tex="b=1" />.
-      <img src={reportGraph1Src} alt="The report's Example 1: h(x) = ln(x) and h′(x) = 1/x, both defined for x > 0, with h′ positive throughout" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraph1Src} alt="The report's Example 1: h(x) = ln(x) and h′(x) = 1/x, both defined for x > 0, with h′ positive throughout" className="w-full max-w-[360px] mt-1" />
       <br />
       Example 2 <Katex tex="a=-1" /> and <Katex tex="b=-1" />.
-      <img src={reportGraph2Src} alt="The report's Example 2: h(x) = −ln(−x) and h′(x) = −1/x, both defined for x < 0, with h′ positive throughout" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraph2Src} alt="The report's Example 2: h(x) = −ln(−x) and h′(x) = −1/x, both defined for x < 0, with h′ positive throughout" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

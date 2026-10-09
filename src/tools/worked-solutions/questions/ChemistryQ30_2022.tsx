@@ -13,7 +13,7 @@ import optCSrc from './chem-2022-mcq30-optC.png'
 import optDSrc from './chem-2022-mcq30-optD.png'
 
 const opt = (src: string, alt: string) => (
-  <img src={src} alt={`${alt} — from the original 2022 VCAA exam paper`} className="w-full max-w-[260px] bg-white rounded" />
+  <img loading="lazy" decoding="async" src={src} alt={`${alt} — from the original 2022 VCAA exam paper`} className="w-full max-w-[260px] bg-white rounded" />
 )
 
 const EXAMINER: MCQExaminerStats = {

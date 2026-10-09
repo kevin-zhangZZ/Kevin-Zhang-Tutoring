@@ -174,7 +174,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={argandSrc}
           alt="On VCAA's polar grid: the points u = √3 + i (modulus 2, argument π/6) and v = √2 − √2i (modulus 2, argument −π/4), a dashed line joining them, and the part c. ray Arg(z) = −π/24 from an open circle at O through the midpoint of that line"
           className="w-full max-w-[440px]"

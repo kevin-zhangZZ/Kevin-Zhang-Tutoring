@@ -91,7 +91,7 @@ export default function SpecialistQ10_2018() {
   return (
     <MCQShell
       question={<p>The differential equation that best represents the direction field above is</p>}
-      diagram={<img src={fieldSrc} alt="Direction field for the differential equation, from the original 2018 VCAA exam paper" className="w-full max-w-[300px]" />}
+      diagram={<img loading="lazy" decoding="async" src={fieldSrc} alt="Direction field for the differential equation, from the original 2018 VCAA exam paper" className="w-full max-w-[300px]" />}
       options={[
         { letter: 'A', content: <Katex tex="\dfrac{dy}{dx}=\dfrac{2x+y}{y-2x}" />, isAnswer: true },
         { letter: 'B', content: <Katex tex="\dfrac{dy}{dx}=\dfrac{x+2y}{2x-y}" /> },

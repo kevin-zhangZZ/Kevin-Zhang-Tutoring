@@ -148,7 +148,7 @@ const EXAM_GII: SAExaminerStats = {
 function DensitySketch() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-      <img
+      <img loading="lazy" decoding="async"
         src={densitySrc}
         alt="Our sketch of the density function: zero along the t-axis up to t = 20, a straight line rising from (20, 0) to a peak at (45, 1/25), a straight line falling back to (70, 0), then zero along the axis again"
         className="w-full max-w-[420px]"
@@ -431,7 +431,7 @@ export default function MethodsQ3_2017Exam2() {
               Sketch the graph of <Katex tex="f" /> on the axes provided below.
             </p>
             <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={axesSrc}
                 alt="Blank axes from the original 2017 VCAA exam paper: t from 0 to 100 with dashed gridlines every 5, and y with dashed gridlines every 1/100 up to 1/25, labelled 1/50 and 1/25"
                 className="w-full max-w-[400px]"

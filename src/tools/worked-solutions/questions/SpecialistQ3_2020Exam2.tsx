@@ -139,7 +139,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="Graph of y = x²e^(−x) on VCAA's grid: falling steeply from the top left to a minimum at the origin, rising to the local maximum (2, 0.54), then decaying towards the x-axis, with the points of inflection (0.59, 0.19) and (3.41, 0.38) labelled"
           className="w-full max-w-[400px]"
@@ -324,7 +324,7 @@ export default function SpecialistQ3_2020Exam2() {
             local maximum stationary point and all points of inflection with their
             coordinates, correct to two decimal places.
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mt-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank axes with gridlines every 1, x from −5 to 5 and y from −3 to 3 — from the original 2020 VCAA exam paper"
                 className="w-full max-w-[380px]"

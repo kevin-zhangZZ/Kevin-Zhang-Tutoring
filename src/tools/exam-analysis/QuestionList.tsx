@@ -3,6 +3,7 @@
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 import { questionPath } from '../worked-solutions/routes'
 import { itemLabel, itemScore, pct, statOf, subLabel, type Item } from './model'
 import type { AnalysisSubject } from './taxonomy'
@@ -35,24 +36,10 @@ export function QuestionList({ subject, items }: { subject: AnalysisSubject; ite
           <b className="text-gray-900 dark:text-white">{items.length}</b> {items.length === 1 ? 'item' : 'items'} · {st.marks} marks · average{' '}
           <b className="text-gray-900 dark:text-white">{pct(st.score)}</b>
         </p>
-        <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1" role="group" aria-label="Sort">
-          {SORTS.map(s => (
-            <button
-              key={s.id}
-              type="button"
-              aria-pressed={sort === s.id}
-              onClick={() => setSort(s.id)}
-              className={`px-3 py-1 rounded-full text-[12.5px] font-medium ${
-                sort === s.id ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-              }`}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl aria-label="Sort" value={sort} onChange={setSort} options={SORTS.map(s => ({ value: s.id, label: s.label }))} />
       </div>
       {items.length === 0 ? (
-        <p className="text-[13px] text-gray-500 py-6 text-center">Nothing matches — try more years or clear the pick.</p>
+        <p className="text-[13px] text-gray-500 dark:text-gray-400 py-6 text-center">Nothing matches — try more years or clear the pick.</p>
       ) : (
         <ul className="divide-y divide-gray-100 dark:divide-gray-800 border-y border-gray-100 dark:border-gray-800">
           {sorted.slice(0, shown).map(i => {

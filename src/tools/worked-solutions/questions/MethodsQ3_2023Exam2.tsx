@@ -230,7 +230,7 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="The curve y = 2^x − x² rising to a local maximum near (0.49, 1.16), falling through an inflection at (2.06, −0.07) to a local minimum near (3.21, −1.05), then rising again; the left x-intercept is near x = −0.767"
           className="w-full max-w-[520px]"

@@ -38,7 +38,7 @@ const TangentWidget = lazyWidget(() => import('../interactives/spec-2020-mcq9-ta
 const TestLinesWidget = lazyWidget(() => import('../interactives/spec-2020-mcq9-test-lines'))
 
 function SlopeField({ src, letter }: { src: string; letter: string }) {
-  return <img src={src} alt={`Slope field option ${letter}, cropped from the VCAA paper`} className="w-full max-w-[220px]" />
+  return <img loading="lazy" decoding="async" src={src} alt={`Slope field option ${letter}, cropped from the VCAA paper`} className="w-full max-w-[220px]" />
 }
 
 const EXAMINER: MCQExaminerStats = {

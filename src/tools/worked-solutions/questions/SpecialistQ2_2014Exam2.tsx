@@ -204,7 +204,7 @@ const ROWS_BIII: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={circleSrc}
           alt="This site's sketch, on VCAA's −6 to 6 Argand grid, of the circle of radius 2 centred at (0, −2), passing through the origin and through (0, −4), (2, −2) and (−2, −2)"
           className="w-full max-w-[360px]"

@@ -44,7 +44,7 @@ function ArgandFrame({ alt, children }: { alt: string; children: ReactNode }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img src={argandSrc} alt={alt} className="w-full block" />
+        <img loading="lazy" decoding="async" src={argandSrc} alt={alt} className="w-full block" />
         <svg viewBox="0 0 1140 1014" className="absolute inset-0 w-full h-full" aria-hidden="true">
           {children}
         </svg>
@@ -495,7 +495,7 @@ export default function SpecialistQ2_2023Exam2() {
               roots of <Katex tex="z^7-1=0" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={argandSrc}
                 alt="An Argand diagram with the unit circle and rays through the origin every π/7 — from the original 2023 VCAA exam paper"
                 className="w-full max-w-[380px]"
@@ -520,7 +520,7 @@ export default function SpecialistQ2_2023Exam2() {
               <Katex tex="\mathrm{cis}\!\left(\dfrac{2\pi}{7}\right)" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={argandSrc}
                 alt="An Argand diagram with the unit circle and rays through the origin every π/7 — from the original 2023 VCAA exam paper"
                 className="w-full max-w-[380px]"

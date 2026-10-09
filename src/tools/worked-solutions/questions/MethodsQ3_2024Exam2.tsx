@@ -26,7 +26,7 @@ function CompletionOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[560px]">
-        <img src={graphSrc} alt="VCAA's graph of f for t up to 24 with the answer drawn over it: the curve continued from t = 24, dipping to about 3300 near t = 28, rising a little near t = 30, dipping again near t = 32 and climbing to the labelled endpoint (36, 5180)" className="w-full block" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's graph of f for t up to 24 with the answer drawn over it: the curve continued from t = 24, dipping to about 3300 near t = 28, rising a little near t = 30, dipping again near t = 32 and climbing to the labelled endpoint (36, 5180)" className="w-full block" />
         <svg viewBox="0 0 1908 1070" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={functionToPath(fModel, 24, 36, gx, gy, 400)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <circle cx={gx(36)} cy={gy(5180)} r={12} fill={ORANGE} />
@@ -259,7 +259,7 @@ export default function MethodsQ3_2024Exam2() {
           February 2021 and so on.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={chartSrc}
             alt="A scatter of 36 monthly sales points from about 2500 to 4800 million dollars, with a dashed cubic curve drawn through the first twelve — from the original 2024 VCAA exam paper"
             className="w-full max-w-[560px]"
@@ -349,7 +349,7 @@ export default function MethodsQ3_2024Exam2() {
         </div>
         <p>Part of the graph of <Katex tex="f" /> is shown on the axes below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The sales scatter with a solid oscillating curve drawn through it for t from 0 to 24 months only, the axes continuing empty to t = 36 — from the original 2024 VCAA exam paper"
             className="w-full max-w-[560px]"

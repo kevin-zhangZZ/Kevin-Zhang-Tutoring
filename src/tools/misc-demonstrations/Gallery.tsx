@@ -26,7 +26,7 @@ export default function Gallery() {
   return (
     <div className="max-w-5xl mx-auto px-5 sm:px-6 py-6 sm:py-8">
       <div className="mb-5">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Misc Demonstrations</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-1">Misc Demonstrations</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">
           Interactive 3D shapes to rotate, slice and fold, for class or for working on your own.
         </p>

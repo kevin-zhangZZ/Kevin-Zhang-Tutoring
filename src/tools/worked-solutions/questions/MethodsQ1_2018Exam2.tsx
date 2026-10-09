@@ -347,7 +347,7 @@ export default function MethodsQ1_2018Exam2() {
           graph of <Katex tex="y=f(x)" /> below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={quarticSrc} alt="Part of the graph of y = 3x⁴+4x³−12x²: a deep minimum M on the left, a local maximum at the origin and a shallower minimum on the right, from the original 2018 VCAA exam paper" className="w-full max-w-[420px]" />
+          <img loading="lazy" decoding="async" src={quarticSrc} alt="Part of the graph of y = 3x⁴+4x³−12x²: a deep minimum M on the left, a local maximum at the origin and a shallower minimum on the right, from the original 2018 VCAA exam paper" className="w-full max-w-[420px]" />
         </div>
       </div>
 
@@ -378,7 +378,7 @@ export default function MethodsQ1_2018Exam2() {
           <Katex tex="x=-\dfrac13" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={tangentSrc} alt="The same quartic with the tangent line l drawn through it, crossing the curve at two further points either side of the contact point, from the original 2018 VCAA exam paper" className="w-full max-w-[420px]" />
+          <img loading="lazy" decoding="async" src={tangentSrc} alt="The same quartic with the tangent line l drawn through it, crossing the curve at two further points either side of the contact point, from the original 2018 VCAA exam paper" className="w-full max-w-[420px]" />
         </div>
       </div>
 

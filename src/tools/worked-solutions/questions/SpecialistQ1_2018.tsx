@@ -65,7 +65,7 @@ export default function SpecialistQ1_2018() {
             Part of the graph of <Katex tex="y=\dfrac12\tan^{-1}(x)" /> is shown below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img src={graphSrc} alt="Graph of y = ½arctan(x): an increasing S-shaped curve through the origin, flattening towards horizontal dashed lines above and below the axis, from the original 2018 VCAA exam paper" className="w-full max-w-[420px]" />
+            <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of y = ½arctan(x): an increasing S-shaped curve through the origin, flattening towards horizontal dashed lines above and below the axis, from the original 2018 VCAA exam paper" className="w-full max-w-[420px]" />
           </div>
           <p className="mt-3">The equations of its asymptotes are</p>
         </>

@@ -69,7 +69,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (x from about −5.3 to 1.3, y from about −3.3 to 2.7): a truncus with two branches rising steeply either side of the dashed asymptote x = −3, crossing the x-axis at −3 ± √2⁄2 and flattening towards the dashed asymptote y = −2, passing through (0, −17/9)"
           className="w-full max-w-[440px]"

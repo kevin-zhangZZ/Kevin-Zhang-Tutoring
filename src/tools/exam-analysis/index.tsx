@@ -8,6 +8,7 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 import {
   FIRST_YEAR, LAST_YEAR, filterItems, groupsOf, missingMarksByYear, pct, fmt, statOf, subLabel, topicLabel, yearsOf,
   type ExamFilter, type Filters, type Level, type TypeFilter,
@@ -215,28 +216,19 @@ function Section({ title, blurb, options, children }: { title: string; blurb: Re
 
 function MeasureSwitch({ value, onChange }: { value: TrendMeasure; onChange: (v: TrendMeasure) => void }) {
   return (
-    <div className="flex items-center gap-2" role="group" aria-label="Measure">
-      <span className="text-[12px] font-semibold text-gray-500 dark:text-gray-400">Show</span>
-      <div className="flex gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-full p-0.5">
-        {(
-          [
-            ['marks', 'Marks'],
-            ['score', 'Difficulty'],
-          ] as const
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            aria-pressed={value === id}
-            onClick={() => onChange(id)}
-            className={`px-2.5 py-1 rounded-full text-[12.5px] font-medium ${
-              value === id ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+    <div className="flex items-center gap-2">
+      <span id="ea-measure-label" className="text-[12px] font-semibold text-gray-500 dark:text-gray-400">
+        Show
+      </span>
+      <SegmentedControl
+        aria-labelledby="ea-measure-label"
+        value={value}
+        onChange={onChange}
+        options={[
+          { value: 'marks', label: 'Marks' },
+          { value: 'score', label: 'Difficulty' },
+        ]}
+      />
     </div>
   )
 }
@@ -248,7 +240,7 @@ function FocusBar({ ctx, onClear }: { ctx: ChartCtx; onClear: (patch: Partial<Fo
   const chip = (label: string, onX: () => void) => (
     <span className="inline-flex items-center gap-1 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 pl-3 pr-1 py-0.5 text-[12.5px] font-medium">
       {label}
-      <button type="button" onClick={onX} aria-label={`Clear ${label}`} className="w-5 h-5 rounded-full grid place-items-center hover:bg-white/20 dark:hover:bg-gray-900/10">
+      <button type="button" onClick={onX} aria-label={`Clear ${label}`} className="relative w-5 h-5 rounded-full grid place-items-center hover:bg-white/20 dark:hover:bg-gray-900/10 after:absolute after:-inset-3">
         ×
       </button>
     </span>
@@ -258,7 +250,7 @@ function FocusBar({ ctx, onClear }: { ctx: ChartCtx; onClear: (patch: Partial<Fo
       <button
         type="button"
         onClick={() => onClear({ topic: null, sub: null, year: null, bin: null })}
-        className={`text-[13px] font-semibold ${any ? 'text-sky-700 dark:text-sky-400 hover:underline' : 'text-gray-900 dark:text-white'}`}
+        className={`relative text-[13px] font-semibold after:absolute after:-inset-y-3 after:-inset-x-1 ${any ? 'text-sky-700 dark:text-sky-400 hover:underline' : 'text-gray-900 dark:text-white'}`}
       >
         All topics
       </button>
@@ -282,7 +274,7 @@ function FocusBar({ ctx, onClear }: { ctx: ChartCtx; onClear: (patch: Partial<Fo
       )}
       {f.year && chip(String(f.year), () => onClear({ year: null }))}
       {f.bin !== null && chip(`Average ${binLabel(f.bin)}`, () => onClear({ bin: null }))}
-      {!any && <span className="text-[12.5px] text-gray-400 dark:text-gray-500">Click any topic, year or bar to narrow the view.</span>}
+      {!any && <span className="text-[12.5px] text-gray-500 dark:text-gray-400">Click any topic, year or bar to narrow the view.</span>}
     </div>
   )
 }

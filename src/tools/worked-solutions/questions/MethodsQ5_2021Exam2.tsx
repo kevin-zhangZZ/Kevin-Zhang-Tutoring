@@ -255,7 +255,7 @@ export default function MethodsQ5_2021Exam2() {
           <Katex tex="f(x)=\sin\!\left(\tfrac x2\right)+\cos(2x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="An oscillating curve between about −1.7 and 2, with a tall peak near x = π and a repeating pattern of period 4π — from the original 2021 VCAA exam paper"
             className="w-full max-w-[480px]"

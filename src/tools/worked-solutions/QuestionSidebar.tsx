@@ -27,6 +27,7 @@ import {
   yearsFor,
 } from './sidebarModel'
 import type { OmittedQuestion } from './omitted'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 
 export interface SidebarNav {
   /** Given in the real sidebar: rows and years become links to these paths. */
@@ -81,7 +82,7 @@ export function QuestionSidebar({
               to={settingsHref}
               title="Sidebar settings"
               aria-label="Sidebar settings"
-              className="w-7 h-7 grid place-items-center rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="relative w-7 h-7 grid place-items-center rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 after:absolute after:-inset-2"
             >
               <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0" />
@@ -97,22 +98,24 @@ export function QuestionSidebar({
             The list switch takes only what it needs; the order switch, with the longer labels,
             gets the rest. */}
         <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-1.5 mb-3">
-          <Segmented
-            label="List by"
+          <SegmentedControl
+            fill
+            aria-label="List by"
             value={view}
             onChange={onView}
             options={[
-              ['year', 'Year'],
-              ['topic', 'Topic'],
+              { value: 'year', label: 'Year' },
+              { value: 'topic', label: 'Topic' },
             ]}
           />
-          <Segmented
-            label="Order"
+          <SegmentedControl
+            fill
+            aria-label="Order"
             value={sort}
             onChange={onSort}
             options={[
-              ['exam', 'Exam order'],
-              ['hard', 'Hardest first'],
+              { value: 'exam', label: 'Exam order' },
+              { value: 'hard', label: 'Hardest first' },
             ]}
           />
         </div>
@@ -124,38 +127,6 @@ export function QuestionSidebar({
         )}
       </div>
     </AnchorCtx.Provider>
-  )
-}
-
-function Segmented<T extends string>({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string
-  value: T
-  onChange: (v: T) => void
-  options: [T, string][]
-}) {
-  return (
-    <div role="group" aria-label={label} className="grid grid-flow-col auto-cols-fr gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5">
-      {options.map(([v, text]) => (
-        <button
-          key={v}
-          type="button"
-          onClick={() => onChange(v)}
-          aria-pressed={value === v}
-          className={`px-2.5 py-1.5 rounded-md text-[11.5px] font-medium whitespace-nowrap transition-colors ${
-            value === v
-              ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-              : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-          }`}
-        >
-          {text}
-        </button>
-      ))}
-    </div>
   )
 }
 
@@ -196,7 +167,7 @@ function YearView({
               className={`w-10 text-center font-display text-[11.5px] font-bold py-1.5 rounded-lg transition-colors ${
                 y === year
                   ? 'bg-sky-50 dark:bg-sky-950/40 text-sky-700 dark:text-sky-300'
-                  : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
               }`}
             >
               {y}
@@ -279,8 +250,8 @@ function YearChips({ years, year, nav }: { years: number[]; year: number | null;
           current={y === year}
           className={`flex-none px-2.5 py-1 rounded-full font-display text-[11.5px] font-bold transition-colors ${
             y === year
-              ? 'bg-sky-600 text-white'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+              ? 'bg-sky-700 text-white'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
           }`}
         >
           {y}
@@ -341,22 +312,15 @@ function YearContent({
     const current = tabChoice ?? selectedExam ?? exams[0]
     return (
       <>
-        <div role="tablist" aria-label="Exam" className="grid grid-flow-col auto-cols-fr gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5 mb-2">
-          {exams.map(e => (
-            <button
-              key={e}
-              type="button"
-              role="tab"
-              aria-selected={e === current}
-              onClick={() => setTabChoice(e)}
-              className={`py-1 rounded-md text-[11.5px] font-semibold transition-colors ${
-                e === current ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400'
-              }`}
-            >
-              {e}
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          variant="buttons"
+          fill
+          className="w-full mb-2"
+          aria-label="Exam"
+          value={current}
+          onChange={setTabChoice}
+          options={exams.map(e => ({ value: e, label: e }))}
+        />
         {section(current, true, true)}
         <Legend prefs={prefs} />
       </>
@@ -421,7 +385,7 @@ function ExploreMark({ className = 'w-3.5 h-3.5' }: { className?: string }) {
 
 function Legend({ prefs }: { prefs: SidebarPrefs }) {
   return (
-    <div className="text-[10.5px] text-gray-400 dark:text-gray-500 leading-snug px-1 mt-3 pt-2 border-t border-gray-100 dark:border-gray-800">
+    <div className="text-[10.5px] text-gray-500 dark:text-gray-400 leading-snug px-1 mt-3 pt-2 border-t border-gray-100 dark:border-gray-800">
       {prefs.diff !== 'pct' && (
         <p className="flex flex-wrap gap-x-3 gap-y-1 mb-1.5">
           {(['hard', 'medium', 'easy'] as DifficultyBand[]).map(b => (
@@ -506,7 +470,7 @@ function ExamSection({
 
   return (
     <div className={`flex flex-col gap-1 ${first ? '' : 'mt-3'}`}>
-      <div className="flex items-center justify-between gap-2 px-1 min-h-[26px]">
+      <div className="flex items-center justify-between gap-2 px-1 min-h-[26px] [@media(pointer:coarse)]:min-h-[44px]">
         {collapsible ? (
           <button
             type="button"
@@ -516,10 +480,10 @@ function ExamSection({
           >
             <Chevron open={open} />
             {exam}
-            {!open && <span className="font-medium text-gray-400 dark:text-gray-500">· {count} questions</span>}
+            {!open && <span className="font-medium text-gray-500 dark:text-gray-400">· {count} questions</span>}
           </button>
         ) : inTabs ? (
-          <span className="text-[11px] text-gray-400 dark:text-gray-500">Original PDFs</span>
+          <span className="text-[11px] text-gray-500 dark:text-gray-400">Original PDFs</span>
         ) : (
           <span className="text-[11.5px] font-bold text-gray-900 dark:text-white">{exam}</span>
         )}
@@ -534,7 +498,7 @@ function ExamSection({
 
       {open && (
         <>
-          {types.length === 0 && <p className="text-[11.5px] text-gray-400 dark:text-gray-500 px-1">No worked solutions here yet.</p>}
+          {types.length === 0 && <p className="text-[11.5px] text-gray-500 dark:text-gray-400 px-1">No worked solutions here yet.</p>}
           {types.map(type => {
             const typeKey = `${examKey}-${type}`
             const foldable = prefs.typeFold === 'fold' && types.length > 1
@@ -580,7 +544,7 @@ function ExamSection({
             )
           })}
           {showOmittedNote && (
-            <p className="text-[11px] text-gray-400 dark:text-gray-500 italic px-1 mt-1 leading-snug">
+            <p className="text-[11px] text-gray-500 dark:text-gray-400 italic px-1 mt-1 leading-snug">
               Left out: {omitted.map(o => `${o.code} (${o.reason})`).join(', ')}.
             </p>
           )}
@@ -593,8 +557,8 @@ function ExamSection({
 function SourceLinks({ paper, report, style }: { paper: string; report: string; style: SidebarPrefs['links'] }) {
   const cls =
     style === 'buttons'
-      ? 'text-[10.5px] font-semibold px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-      : 'text-[10.5px] font-semibold text-sky-700 dark:text-sky-400 hover:underline'
+      ? 'relative text-[10.5px] font-semibold px-2 py-1 rounded-md after:absolute after:inset-y-0 after:inset-x-0 [@media(pointer:coarse)]:after:-inset-y-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+      : 'relative text-[10.5px] font-semibold text-sky-700 dark:text-sky-400 hover:underline after:absolute after:-inset-y-1 after:-inset-x-1 [@media(pointer:coarse)]:after:-inset-y-3.5'
   return (
     <span className={`flex ${style === 'buttons' ? 'gap-1' : 'gap-2.5'}`}>
       <a href={paper} target="_blank" rel="noreferrer" className={cls}>
@@ -613,8 +577,8 @@ function OmittedRow({ o }: { o: OmittedQuestion }) {
   const why = `/exam-skip-guide/${o.subject}/${o.year}/${o.exam.trim().toLowerCase().replace(/\s+/g, '-')}`
   return (
     <div className="flex items-center gap-2 px-2 py-1.5 ml-2.5">
-      <span className="flex-none w-[52px] font-display text-[11.5px] font-bold text-gray-300 dark:text-gray-600">{o.code}</span>
-      <span className="flex-1 min-w-0 text-[11.5px] text-gray-400 dark:text-gray-500 italic leading-snug">
+      <span className="flex-none w-[52px] font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400">{o.code}</span>
+      <span className="flex-1 min-w-0 text-[11.5px] text-gray-500 dark:text-gray-400 italic leading-snug">
         {o.reason}
         {!redacted && (
           <>
@@ -669,7 +633,7 @@ function TopicView({
             >
               <Chevron open={isOpen} />
               {topic}
-              <span className="ml-auto font-display text-[10.5px] font-bold text-gray-400 dark:text-gray-500">{qs.length}</span>
+              <span className="ml-auto font-display text-[10.5px] font-bold text-gray-500 dark:text-gray-400">{qs.length}</span>
             </button>
             {isOpen &&
               topicQuestions(subject, topic, sort).map(q => (
@@ -734,7 +698,7 @@ function QuestionRow({
           <span className="flex-1 min-w-0 flex flex-col">
             <span className={`flex items-baseline gap-2 font-display ${compact ? 'text-[11px]' : 'text-[11.5px]'} font-bold whitespace-nowrap`}>
               <span className="flex-none w-[34px] tabular-nums text-gray-500 dark:text-gray-400">{q.year}</span>
-              {q.exam !== 'Exam' && <span className="flex-none w-[46px] text-gray-400 dark:text-gray-500">{q.exam}</span>}
+              {q.exam !== 'Exam' && <span className="flex-none w-[46px] text-gray-500 dark:text-gray-400">{q.exam}</span>}
               <span className="text-sky-700 dark:text-sky-300">{mainCode(q.code)}</span>
             </span>
             <span className={`truncate ${compact ? 'text-[11.5px]' : 'text-[12px]'} text-gray-500 dark:text-gray-400 leading-snug`}>
@@ -811,7 +775,7 @@ function QuestionRow({
                 {p.x && <ExploreMark />}
                 {pct !== null && (
                   <span
-                    className={`flex-none w-8 text-right font-display text-[10.5px] tabular-nums ${hard ? BAND_NUMBER.hard : 'font-bold text-gray-400 dark:text-gray-500'}`}
+                    className={`flex-none w-8 text-right font-display text-[10.5px] tabular-nums ${hard ? BAND_NUMBER.hard : 'font-bold text-gray-500 dark:text-gray-400'}`}
                     title={`VCAA average ${p.a} out of ${p.m}`}
                   >
                     {pct}%

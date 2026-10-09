@@ -31,7 +31,7 @@ function ReflectionOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[380px]">
-        <img src={graphSrc} alt="VCAA's axes with y = f(x), and the answer y = g(x) = 1 − 2sin(2x) drawn over them on [0, 2π]: starting at (0, 1), dipping to −1 at x = π/4 and 5π/4, peaking at 3 at x = 3π/4 and 7π/4, ending at (2π, 1), crossing f at the four x-intercepts" className="w-full block" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's axes with y = f(x), and the answer y = g(x) = 1 − 2sin(2x) drawn over them on [0, 2π]: starting at (0, 1), dipping to −1 at x = π/4 and 5π/4, peaking at 3 at x = 3π/4 and 7π/4, ending at (2π, 1), crossing f at the four x-intercepts" className="w-full block" />
         <svg viewBox="0 0 1024 952" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={functionToPath(g, 0, 2 * Math.PI, toX, toY)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <text x={toX(3.25)} y={toY(2.4)} fontSize={44} fill="#c2410c" stroke="white" strokeWidth={10} paintOrder="stroke">y = g(x)</text>
@@ -338,7 +338,7 @@ export default function MethodsQ6_2022Exam1() {
           <Katex tex="f:[0,2\pi]\to R,\ f(x)=2\sin(2x)-1" />, is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="Two full cycles of y = 2sin(2x) − 1 on 0 ≤ x ≤ 2π, oscillating between 1 and −3 — from the original 2022 VCAA exam paper"
             className="w-full max-w-[340px]"

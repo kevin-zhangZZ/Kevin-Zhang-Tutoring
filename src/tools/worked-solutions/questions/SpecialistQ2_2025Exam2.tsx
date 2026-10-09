@@ -30,7 +30,7 @@ function ArgandAnswer({ stage }: { stage: 'a' | 'b' | 'c' }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img src={argandSrc} alt={ALT[stage]} className="w-full block" />
+        <img loading="lazy" decoding="async" src={argandSrc} alt={ALT[stage]} className="w-full block" />
         <svg viewBox="0 0 1152 1073" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <circle cx={AX} cy={AY} r={2 * R} fill="none" stroke={ORANGE} strokeWidth={7} />
           {stage !== 'a' && (
@@ -355,7 +355,7 @@ export default function SpecialistQ2_2025Exam2() {
           plane below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={pqSrc}
             alt="VCAA's polar Argand plane from −3 to 3 with the point P(3/2, 3√3/2) marked on the circle of radius 3 and the point Q(3, 0) marked on the positive real axis"
             className="w-full max-w-[420px]"

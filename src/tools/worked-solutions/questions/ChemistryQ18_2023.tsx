@@ -61,7 +61,7 @@ export default function ChemistryQ18_2023() {
         <>
           <p className="mb-2">The graph below shows the HPLC calibration curve for folic acid.</p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={curveSrc}
               alt="Calibration curve: peak area (0.00 to 0.50) against folic acid concentration (0 to 25 ng mL⁻¹), a straight line through the origin and (25, 0.49) drawn through five data points — from the original 2023 VCAA exam paper"
               className="w-full max-w-[460px]"

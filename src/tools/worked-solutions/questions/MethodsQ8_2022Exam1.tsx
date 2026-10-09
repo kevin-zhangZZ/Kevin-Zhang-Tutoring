@@ -137,7 +137,7 @@ export default function MethodsQ8_2022Exam1() {
           <Katex tex="f" />, the horizontal axis and the line <Katex tex="x=k" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A hump-shaped curve from the origin rising to a peak near x = 1 and returning to the axis at about x = 2, with the region left of the dashed line x = k shaded and labelled A(k) — from the original 2022 VCAA exam paper"
             className="w-full max-w-[400px]"

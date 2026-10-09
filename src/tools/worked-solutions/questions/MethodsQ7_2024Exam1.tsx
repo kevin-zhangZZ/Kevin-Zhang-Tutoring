@@ -28,7 +28,7 @@ function TrapeziaOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img src={graphSrc} alt="VCAA's graph of y = x sin(x) with the three trapezia drawn over it: their tops are chords joining the curve at 0, π/3, 2π/3 and π, lying just under the curve" className="w-full block" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's graph of y = x sin(x) with the three trapezia drawn over it: their tops are chords joining the curve at 0, π/3, 2π/3 and π, lying just under the curve" className="w-full block" />
         <svg viewBox="0 0 1164 931" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <polygon points={`${ax(0)},${ay(0)} ${pts} ${ax(Math.PI)},${ay(0)}`} fill={ORANGE} fillOpacity={0.22} stroke={ORANGE} strokeWidth={5} />
           {TRAP_X.slice(1, 3).map((x) => (
@@ -47,7 +47,7 @@ function DerivativeOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[460px]">
-        <img src={axesSrc} alt="VCAA's axes with y = f(x), and the answer y = f′(x) drawn over them: an odd curve falling from the endpoint (−π, π) through (−2, 0) to a minimum near (−1.1, −1.4), rising through the origin to a maximum near (1.1, 1.4), then falling through (2, 0) to the endpoint (π, −π)" className="w-full block" />
+        <img loading="lazy" decoding="async" src={axesSrc} alt="VCAA's axes with y = f(x), and the answer y = f′(x) drawn over them: an odd curve falling from the endpoint (−π, π) through (−2, 0) to a minimum near (−1.1, −1.4), rising through the origin to a maximum near (1.1, 1.4), then falling through (2, 0) to the endpoint (π, −π)" className="w-full block" />
         <svg viewBox="0 0 1582 1176" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={functionToPath(fp, -Math.PI, Math.PI, cx, cy, 600)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <circle cx={cx(-Math.PI)} cy={cy(Math.PI)} r={12} fill={ORANGE} />
@@ -276,7 +276,7 @@ export default function MethodsQ7_2024Exam1() {
           <Katex tex="f(x)=x\sin(x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="The curve y = x sin(x) on [−π, π]: a symmetric pair of humps rising to about 1.8 near x = ±2 and touching zero at the origin and at both ends — from the original 2024 VCAA exam paper"
             className="w-full max-w-[400px]"
@@ -375,7 +375,7 @@ export default function MethodsQ7_2024Exam1() {
               approximately <Katex tex="(1.1,1.4)" />.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={axesSrc}
                 alt="Axes from −3 to 3 in both directions with the graph of y = f(x) = x sin(x) on [−π, π] drawn and its endpoints (−π, 0) and (π, 0) labelled — from the original 2024 VCAA exam paper"
                 className="w-full max-w-[420px]"

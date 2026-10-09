@@ -55,7 +55,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={argandSrc}
           alt="The answer on VCAA's Argand grid (−4 to 4 on both axes): the point z₁ plotted at 1 + 2i and the point z̄₁ at 1 − 2i, each labelled"
           className="w-full max-w-[380px]"

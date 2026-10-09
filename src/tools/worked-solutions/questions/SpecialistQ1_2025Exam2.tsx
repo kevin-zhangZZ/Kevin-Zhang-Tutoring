@@ -129,7 +129,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (x from −4 to 4, y from −2 to 2): a left branch rising from just above the x-axis to +∞ at the dashed asymptote x = −1, and a right branch rising from −∞ through the origin to the maximum (1, 3/4), passing the inflection (1.7, 0.6) and decaying towards the asymptote y = 0"
           className="w-full max-w-[520px]"

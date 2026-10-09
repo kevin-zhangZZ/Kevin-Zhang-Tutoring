@@ -63,7 +63,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={volumeSrc} alt="Graph of V(x) = x(80−2x)(50−2x) on 0 ≤ x ≤ 25, rising to a maximum of 18 000 at x = 10 and falling back to zero at x = 25" className="w-full max-w-[340px]" />
+        <img loading="lazy" decoding="async" src={volumeSrc} alt="Graph of V(x) = x(80−2x)(50−2x) on 0 ≤ x ≤ 25, rising to a maximum of 18 000 at x = 10 and falling back to zero at x = 25" className="w-full max-w-[340px]" />
       </div>
     ),
     reason: <><Katex tex="x=\tfrac{100}{3}\approx33.3" /> is outside the domain: two <Katex tex="33.3" /> cm squares don&apos;t fit across a <Katex tex="50" /> cm width. That leaves <Katex tex="x=10" />, and the graph confirms it is the maximum. You can also see this without a graph: <Katex tex="V" /> is a cubic with positive leading coefficient, so it rises, falls, then rises again. Its <em>first</em> stationary point is the local maximum and the second is a local minimum.</>,
@@ -85,13 +85,13 @@ export default function MethodsQ6_2019() {
             from each of the corners, as shown in the diagram below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img src={diagramSrc} alt="Rectangular 80 cm by 50 cm sheet with x cm squares cut from each corner, from the original 2019 VCAA exam paper" className="w-full max-w-[320px]" />
+            <img loading="lazy" decoding="async" src={diagramSrc} alt="Rectangular 80 cm by 50 cm sheet with x cm squares cut from each corner, from the original 2019 VCAA exam paper" className="w-full max-w-[320px]" />
           </div>
           <p className="mb-3">
             A rectangular box with an open top is then constructed, as shown in the diagram below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-3">
-            <img src={boxSrc} alt="The open-topped rectangular box, drawn in perspective with hidden edges dashed, from the original 2019 VCAA exam paper" className="w-full max-w-[220px]" />
+            <img loading="lazy" decoding="async" src={boxSrc} alt="The open-topped rectangular box, drawn in perspective with hidden edges dashed, from the original 2019 VCAA exam paper" className="w-full max-w-[220px]" />
           </div>
           <p>The volume of the box is a maximum when <Katex tex="x" /> is equal to</p>
         </>

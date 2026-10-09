@@ -10,14 +10,14 @@ import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import graphSrc from './chem-2020-mcq9-calibration-graph.png'
 import reportGraphSrc from './chem-2020-mcq9-report-graph.png'
 
-const GRAPH = <img src={graphSrc} alt="Graph of temperature versus time during electrical calibration of the solution calorimeter, plateauing at 21.2 °C, from the original 2020 VCAA exam paper" className="w-full max-w-[420px]" />
+const GRAPH = <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of temperature versus time during electrical calibration of the solution calorimeter, plateauing at 21.2 °C, from the original 2020 VCAA exam paper" className="w-full max-w-[420px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 7, B: 28, C: 29, D: 35 },
   answer: 'B',
   comment: (
     <>
-      <img src={reportGraphSrc} alt="The report's copy of the calibration graph with a dashed line marking the maximum temperature, 21.2 °C" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's copy of the calibration graph with a dashed line marking the maximum temperature, 21.2 °C" className="w-full max-w-[360px] mt-1" />
       According to the temperature v. time graph, the temperature is approximately 21.1 °C when the
       current was stopped at 240 seconds (after being applied for 180 seconds).
       <br />

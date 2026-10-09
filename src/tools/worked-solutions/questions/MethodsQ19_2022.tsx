@@ -38,7 +38,7 @@ const EXAMINER: MCQExaminerStats = {
       <br />
       An example is shown below for a general cubic function using <Katex tex="b=2" /> and{' '}
       <Katex tex="a=1" />.
-      <img src={reportGraphSrc} alt="The report's example: y = x(2 − 2x)(1 − 2x), a cubic with a local maximum at the smaller stationary point" className="w-full max-w-[340px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's example: y = x(2 − 2x)(1 − 2x), a cubic with a local maximum at the smaller stationary point" className="w-full max-w-[340px] mt-1" />
     </>
   ),
 }

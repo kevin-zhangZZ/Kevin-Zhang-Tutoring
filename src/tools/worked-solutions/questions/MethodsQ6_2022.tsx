@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       The inverse of <Katex tex="f:(-\infty,0)\to R,\ f(x)=x^2" /> is{' '}
       <Katex tex="f^{-1}:(0,\infty)\to R,\ f^{-1}(x)=-\sqrt x" />, not <Katex tex="g(x)=\sqrt x,\ x>0" />.
-      <img src={reportGraphSrc} alt="The report's graph: f(x) = x², x < 0, its reflection g(x) = −√x, x > 0, in the dotted line y = x" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph: f(x) = x², x < 0, its reflection g(x) = −√x, x > 0, in the dotted line y = x" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

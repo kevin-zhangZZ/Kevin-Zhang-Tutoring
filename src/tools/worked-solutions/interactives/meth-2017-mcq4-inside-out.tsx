@@ -21,7 +21,7 @@ function Box({ value, color, faded }: { value: number | null; color?: string; fa
   return (
     <div
       className={`w-11 h-11 flex-none rounded-lg border-2 flex items-center justify-center font-display text-[18px] font-bold tabular-nums ${
-        faded ? 'border-dashed border-gray-300 text-gray-400 dark:border-gray-600 dark:text-gray-500' : 'text-gray-800 dark:text-gray-100'
+        faded ? 'border-dashed border-gray-300 text-gray-500 dark:border-gray-600 dark:text-gray-400' : 'text-gray-800 dark:text-gray-100'
       }`}
       style={!faded && color ? { borderColor: color } : undefined}
     >
@@ -167,7 +167,7 @@ export default function InsideOut() {
                     <td key={c} className="px-1 py-1 text-center">
                       <span
                         className={`inline-flex items-center justify-center w-8 h-7 rounded-md ${
-                          v === undefined ? 'text-gray-300 dark:text-gray-600' : 'text-gray-800 dark:text-gray-100 font-semibold'
+                          v === undefined ? 'text-gray-500 dark:text-gray-400' : 'text-gray-800 dark:text-gray-100 font-semibold'
                         } `}
                         style={k >= 0 ? { boxShadow: `0 0 0 2px ${COLOR[fn]}` } : undefined}
                       >

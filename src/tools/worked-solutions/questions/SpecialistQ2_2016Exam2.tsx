@@ -234,7 +234,7 @@ export default function SpecialistQ2_2016Exam2() {
     {
       working: (
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={sketchSrc}
             alt="Our sketch on VCAA's grid: the circle |z − 1| = 3, centre 1 and radius 3, and the line y = x + 2 crossing it at −2 and 1 + 3i"
             className="w-full max-w-[320px]"
@@ -328,7 +328,7 @@ export default function SpecialistQ2_2016Exam2() {
     {
       working: (
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={raySrc}
             alt="The part c sketch with the ray Arg(z) = −3π/4 added: a half-line from an open circle at the origin into the third quadrant"
             className="w-full max-w-[320px]"
@@ -356,7 +356,7 @@ export default function SpecialistQ2_2016Exam2() {
     {
       working: (
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={raysSrc}
             alt="The line y = x + 2, the dashed parallel line y = x through the origin, the half-plane above y = x shaded, and an example ray Arg(z) = 2π/3 from the origin meeting y = x + 2"
             className="w-full max-w-[320px]"
@@ -479,7 +479,7 @@ export default function SpecialistQ2_2016Exam2() {
               Argand diagram below.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mt-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankSrc}
                 alt="Blank Argand diagram with Re(z) and Im(z) each from −4 to 4 — from the original 2016 VCAA exam paper"
                 className="w-full max-w-[300px]"

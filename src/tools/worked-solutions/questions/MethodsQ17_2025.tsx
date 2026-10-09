@@ -12,10 +12,10 @@ import optBSrc from './meth-2025-mcq17-optB.png'
 import optCSrc from './meth-2025-mcq17-optC.png'
 import optDSrc from './meth-2025-mcq17-optD.png'
 
-const OPT_A = <img src={optASrc} alt="Option A: an upward-opening curve, negative between roughly x=1 and x=3" className="w-full max-w-[220px]" />
-const OPT_B = <img src={optBSrc} alt="Option B: a horizontal segment then a steep discontinuous line rising from below the axis at x=2 through positive values" className="w-full max-w-[220px]" />
-const OPT_C = <img src={optCSrc} alt="Option C: a rising line then a discontinuous horizontal segment, constant and positive from x=2 onward" className="w-full max-w-[220px]" />
-const OPT_D = <img src={optDSrc} alt="Option D: a wiggling curve, negative near x=1, positive with a small hump between roughly x=2 and x=3" className="w-full max-w-[220px]" />
+const OPT_A = <img loading="lazy" decoding="async" src={optASrc} alt="Option A: an upward-opening curve, negative between roughly x=1 and x=3" className="w-full max-w-[220px]" />
+const OPT_B = <img loading="lazy" decoding="async" src={optBSrc} alt="Option B: a horizontal segment then a steep discontinuous line rising from below the axis at x=2 through positive values" className="w-full max-w-[220px]" />
+const OPT_C = <img loading="lazy" decoding="async" src={optCSrc} alt="Option C: a rising line then a discontinuous horizontal segment, constant and positive from x=2 onward" className="w-full max-w-[220px]" />
+const OPT_D = <img loading="lazy" decoding="async" src={optDSrc} alt="Option D: a wiggling curve, negative near x=1, positive with a small hump between roughly x=2 and x=3" className="w-full max-w-[220px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 38, B: 20, C: 17, D: 24 },

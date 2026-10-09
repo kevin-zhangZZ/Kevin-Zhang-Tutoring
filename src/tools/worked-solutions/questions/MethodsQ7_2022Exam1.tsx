@@ -213,7 +213,7 @@ export default function MethodsQ7_2022Exam1() {
         </ul>
         <p>An example is shown below.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={patternSrc}
             alt="Five square tiles in a row, each with its lower region shaded below a curve, the curves joining up continuously from one tile to the next — from the original 2022 VCAA exam paper"
             className="w-full max-w-[420px]"
@@ -231,7 +231,7 @@ export default function MethodsQ7_2022Exam1() {
           <Katex tex="(0,20)" />, as shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={typeASrc}
             alt="A Type A tile: a square with corners labelled (0, 0), (20, 0), (20, 20) and (0, 20), the region below a sine-shaped curve shaded — from the original 2022 VCAA exam paper"
             className="w-full max-w-[400px]"
@@ -269,7 +269,7 @@ export default function MethodsQ7_2022Exam1() {
           <Katex tex="g(x)=-\dfrac{1}{100}x^3+\dfrac{3}{10}x^2-2x+10" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={typeBSrc}
             alt="A Type B tile: a square with corners labelled (0, 0), (20, 0), (20, 20) and (0, 20), the region below a cubic curve shaded — from the original 2022 VCAA exam paper"
             className="w-full max-w-[400px]"

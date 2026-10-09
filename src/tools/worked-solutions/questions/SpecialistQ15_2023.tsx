@@ -20,9 +20,9 @@ const EXAMINER: MCQExaminerStats = {
     <>
       If the sum of two unit vectors is a unit vector, then an equilateral triangle will be
       formed, such as the one in this diagram.
-      <img src={sumSrc} alt="The report's diagram: an equilateral triangle with sides a, b and a + b, and a 60° angle between a and b at the base" className="w-full max-w-[200px] mt-1" />
+      <img loading="lazy" decoding="async" src={sumSrc} alt="The report's diagram: an equilateral triangle with sides a, b and a + b, and a 60° angle between a and b at the base" className="w-full max-w-[200px] mt-1" />
       The difference of the two vectors can be represented as
-      <img src={diffSrc} alt="The report's diagram: a triangle formed by a and −b with a 120° angle between them, the third side being a − b" className="w-full max-w-[240px] mt-1" />
+      <img loading="lazy" decoding="async" src={diffSrc} alt="The report's diagram: a triangle formed by a and −b with a 120° angle between them, the third side being a − b" className="w-full max-w-[240px] mt-1" />
       By the cosine rule,{' '}
       <Katex tex="\left|\underset{\sim}{a}-\underset{\sim}{b}\right|=\sqrt{1^2+1^2-2(1)(1)\cos\left(120^\circ\right)}=\sqrt3" />
     </>

@@ -225,7 +225,7 @@ export default function SpecialistQ3_2015Exam2() {
           about the <Katex tex="x" />-axis.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={logoSrc}
             alt="A bow-tie shaped logo on gridded axes: two curves meeting at the origin and flaring out to vertical edges at x = ±√3/2, mirrored above and below the x-axis — from the original 2015 VCAA exam paper"
             className="w-full max-w-[380px]"

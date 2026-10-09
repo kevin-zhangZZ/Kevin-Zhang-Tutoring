@@ -118,7 +118,7 @@ export default function SpecialistQ6_2014Exam1() {
           Part of the graph of <Katex tex="y=\dfrac{x}{\sqrt{x^2-4}}" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A curve falling steeply from a vertical asymptote at x = 2 and flattening towards y = 1 as x increases past 4 — from the original 2014 VCAA exam paper"
             className="w-full max-w-[340px]"

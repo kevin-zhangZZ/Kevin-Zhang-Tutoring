@@ -24,7 +24,7 @@ const EXAMINER: MCQExaminerStats = {
       The [<Chem eq="H3O+" />] decreases – due to volume increase – then increases as the system
       moves to the right at the new equilibrium is lower, and the pH is higher, than before the
       dilution, as represented in the concentration–time graph.
-      <img src={reportGraphSrc} alt="The report's sketch of [H3O+] against time: constant at equilibrium e1, a sudden drop at the dilution time t, then a partial recovery levelling off at a lower equilibrium e2" className="w-full max-w-[300px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's sketch of [H3O+] against time: constant at equilibrium e1, a sudden drop at the dilution time t, then a partial recovery levelling off at a lower equilibrium e2" className="w-full max-w-[300px] mt-1" />
       Overall, the pH increases and the percentage ionisation increases.
     </>
   ),

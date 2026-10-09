@@ -185,7 +185,7 @@ const ROWS_BII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={curveSrc} alt="Graph of f(x) = x²e^(−x²): a twin-humped curve with equal maximum points at (−1, 1/e) and (1, 1/e) and a minimum at the origin" className="w-full max-w-[380px]" />
+        <img loading="lazy" decoding="async" src={curveSrc} alt="Graph of f(x) = x²e^(−x²): a twin-humped curve with equal maximum points at (−1, 1/e) and (1, 1/e) and a minimum at the origin" className="w-full max-w-[380px]" />
       </div>
     ),
     reason: <>The examination report notes that errors here could have been avoided by sketching the graph first — the two equal humps make it obvious that there are <em>two</em> values of <Katex tex="x" /> to give, not one.</>,
@@ -246,7 +246,7 @@ const ROWS_CII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={areaSrc} alt="The same curve with the horizontal tangent y = 1/e drawn, and the region enclosed between the line and the curve from x = −1 to x = 1 shaded" className="w-full max-w-[380px]" />
+        <img loading="lazy" decoding="async" src={areaSrc} alt="The same curve with the horizontal tangent y = 1/e drawn, and the region enclosed between the line and the curve from x = −1 to x = 1 shaded" className="w-full max-w-[380px]" />
       </div>
     ),
     reason: <>The enclosed region is the gap between the flat tangent and the dip of the curve between the two peaks.</>,
@@ -269,7 +269,7 @@ const ROWS_D: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={distanceSrc} alt="The curve with the fixed point (0, e) marked well above it and the shortest segment drawn down to the point M on the curve, of length about 2.511" className="w-full max-w-[320px]" />
+        <img loading="lazy" decoding="async" src={distanceSrc} alt="The curve with the fixed point (0, e) marked well above it and the shortest segment drawn down to the point M on the curve, of length about 2.511" className="w-full max-w-[320px]" />
       </div>
     ),
     reason: <>The point <Katex tex="(0,e)" /> sits high above the curve (<Katex tex="e\approx2.72" />, while the curve never rises past <Katex tex="\tfrac1e\approx0.37" />), so the shortest link runs down and slightly to the right.</>,

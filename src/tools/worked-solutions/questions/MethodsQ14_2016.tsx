@@ -77,7 +77,7 @@ export default function MethodsQ14_2016() {
           <p>Which one of the following is the maximum area of the rectangle?</p>
         </>
       }
-      diagram={<img src={diagramSrc} alt="Rectangle with corner (u,v) inscribed under y = 4 - x², from the original 2016 VCAA exam paper" className="w-full max-w-[260px]" />}
+      diagram={<img loading="lazy" decoding="async" src={diagramSrc} alt="Rectangle with corner (u,v) inscribed under y = 4 - x², from the original 2016 VCAA exam paper" className="w-full max-w-[260px]" />}
       options={[
         { letter: 'A', content: <Katex tex="4" /> },
         { letter: 'B', content: <Katex tex="\dfrac{2\sqrt3}{3}" /> },

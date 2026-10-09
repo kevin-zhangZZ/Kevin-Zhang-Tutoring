@@ -94,7 +94,7 @@ export default function SpecialistQ1_2015Exam1() {
           , and <Katex tex="a" /> is a positive real constant.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={rhombusSrc}
             alt="A rhombus labelled O at the bottom left, A at the bottom right, B at the top right and C at the top left — from the original 2015 VCAA exam paper"
             className="w-full max-w-[200px]"

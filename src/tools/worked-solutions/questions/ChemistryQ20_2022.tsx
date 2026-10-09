@@ -71,7 +71,7 @@ export default function ChemistryQ20_2022() {
         <>
           <p className="mb-2">The equipment below was set up by a student.</p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={equipmentSrc}
               alt="A Zn(s) rod dipping into a single beaker of 1 M Co(NO₂)₂(aq) and 1 M Mn(NO₂)₂(aq) — from the original 2022 VCAA exam paper"
               className="w-full max-w-[360px]"

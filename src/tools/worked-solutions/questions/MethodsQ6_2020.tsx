@@ -22,7 +22,7 @@ import optESrc from './meth-2020-mcq6-optE.png'
 
 const SlopeWidget = lazyWidget(() => import('../interactives/meth-2020e2-mcq6-slope'))
 
-const opt = (src: string, alt: string) => <img src={src} alt={alt} className="w-full max-w-[220px]" />
+const opt = (src: string, alt: string) => <img loading="lazy" decoding="async" src={src} alt={alt} className="w-full max-w-[220px]" />
 
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 19, B: 61, C: 6, D: 5, E: 8 },
@@ -74,7 +74,7 @@ export default function MethodsQ6_2020() {
         <>
           <p className="mb-2">Part of the graph of <Katex tex="y=f'(x)" /> is shown below.</p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={fprimeSrc}
               alt="A curve descending from the upper left, crossing the x-axis, reaching a minimum below it, crossing back up just left of the y-axis, then a small local maximum and local minimum above the axis before rising steeply — from the original 2020 VCAA exam paper"
               className="w-full max-w-[320px]"

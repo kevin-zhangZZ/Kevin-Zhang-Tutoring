@@ -90,7 +90,7 @@ export default function MethodsQ21_2014() {
             <Katex tex="BCD" /> is <Katex tex="x" /> radians.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 flex justify-center">
-            <img src={trapeziumSrc} alt="Isosceles trapezium ABCD with sides AB, BC, DA of equal length p and acute angle BCD of x radians, from the original 2014 VCAA exam paper" className="w-full max-w-[300px]" />
+            <img loading="lazy" decoding="async" src={trapeziumSrc} alt="Isosceles trapezium ABCD with sides AB, BC, DA of equal length p and acute angle BCD of x radians, from the original 2014 VCAA exam paper" className="w-full max-w-[300px]" />
           </div>
           <p className="mt-3">The area of the trapezium is a maximum when the value of <Katex tex="x" /> is</p>
         </>

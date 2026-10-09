@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       Use a ruler to draw line segments for each option. Then, select the line segment with the
       steepest gradient. Day 14 to day 28 has the greatest average rate of change.
-      <img src={reportGraphSrc} alt="The report's copy of the share-price chart with line segments drawn for the options: two blue segments from day 3 and a red segment from day 14 to day 28, the steepest" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's copy of the share-price chart with line segments drawn for the options: two blue segments from day 3 and a red segment from day 14 to day 28, the steepest" className="w-full max-w-[360px] mt-1" />
       <br />
       Average rate of change <Katex tex="\approx\dfrac{39.4-35.0}{28-14}=0.3143" />.
     </>
@@ -56,7 +56,7 @@ export default function MethodsQ11_2025() {
         <div className="flex flex-col gap-3">
           <p>The chart below shows the daily price of a stock market share over a 30-day period.</p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={chartSrc}
               alt="A share-price chart over 30 days, dipping to about $34.80 near day 3 and about $35.00 near day 14, then climbing unevenly to about $39.60 near day 29 — from the original 2025 VCAA exam paper"
               className="w-full max-w-[520px]"

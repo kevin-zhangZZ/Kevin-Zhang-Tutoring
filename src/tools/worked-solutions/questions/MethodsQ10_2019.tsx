@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={graphSrc} alt="Graph of y = x + sin(x): an always-rising staircase-like curve that briefly flattens at x = ±π but never turns back down" className="w-full max-w-[320px]" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of y = x + sin(x): an always-rising staircase-like curve that briefly flattens at x = ±π but never turns back down" className="w-full max-w-[320px]" />
       </div>
     ),
     reason: <>With a &ldquo;which statement is true&rdquo; question about one function, graph it on CAS first: every option is a claim about this curve. <Katex tex="f" /> is the straight line <Katex tex="y=x" /> with a sine wave added on top. The line sets the overall upward drift; the sine only makes it wobble.</>,

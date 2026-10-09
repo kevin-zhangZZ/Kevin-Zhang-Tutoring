@@ -169,7 +169,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer sketched on VCAA's grid (x from −6 to 6, gridlines every 2; y in steps of π/2): an S-shaped increasing curve rising from the asymptote y = π/2 to the asymptote y = 3π/2, with the point of inflection (2, π) labelled"
           className="w-full max-w-[420px]"
@@ -285,7 +285,7 @@ export default function SpecialistQ6_2020Exam1() {
             Sketch the graph of <Katex tex="y=f(x)" /> on the axes provided below. Label any
             asymptotes with their equations and the point of inflection with its coordinates.
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mt-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank dashed grid with x from −6 to 6 in steps of 2 and y from −3π/2 to 3π/2 in steps of π/2 — from the original 2020 VCAA exam paper"
                 className="w-full max-w-[380px]"

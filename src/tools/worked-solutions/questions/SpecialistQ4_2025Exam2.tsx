@@ -33,7 +33,7 @@ function PathAnswer({ part }: { part: 'b' | 'f' }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[440px]">
-        <img src={pathSrc} alt={ALT[part]} className="w-full block" />
+        <img loading="lazy" decoding="async" src={pathSrc} alt={ALT[part]} className="w-full block" />
         <svg viewBox="0 0 1096 1082" className="absolute inset-0 w-full h-full" aria-hidden="true">
           {part === 'b' ? (
             <g>
@@ -282,7 +282,7 @@ export default function SpecialistQ4_2025Exam2() {
         <p>is shown below for time <Katex tex="t\ge0" />.</p>
         <p>All lengths are in metres and time is measured in seconds.</p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={pathSrc}
             alt="VCAA's graph of the path on a grid from −10 to 10: a closed curve of large outer loops and three small inner loops, passing through (1, 0) and reaching as far right as (9, 0)"
             className="w-full max-w-[440px]"

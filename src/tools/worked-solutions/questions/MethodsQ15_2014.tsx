@@ -60,7 +60,7 @@ export default function MethodsQ15_2014() {
             the cardboard, as shown in the diagram below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
-            <img
+            <img loading="lazy" decoding="async"
               src={netSrc}
               alt="A rectangle 8 cm long and 6 cm wide with a small square of side x cm marked by dashed lines at each of the four corners — from the original 2014 VCAA exam paper"
               className="w-full max-w-[340px]"
@@ -68,7 +68,7 @@ export default function MethodsQ15_2014() {
           </div>
           <p className="mb-2">Zoe turns up the sides to form an open box.</p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mb-2">
-            <img
+            <img loading="lazy" decoding="async"
               src={boxSrc}
               alt="The open box formed by folding up the sides, drawn as a rectangular prism with hidden edges dashed — from the original 2014 VCAA exam paper"
               className="w-full max-w-[220px]"

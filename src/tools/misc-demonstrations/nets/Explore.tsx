@@ -8,21 +8,12 @@ import InfoPanel from './InfoPanel'
 import Counts from './Counts'
 import SurfaceArea from './SurfaceArea'
 import NetStrip from './NetStrip'
+import Toggle from '../../../components/ui/Toggle'
 import { tokensFor, useDark, useMedia, FOCUS, PILL_OFF, type Sel, type Hover, type Show, type CountState, type Kind } from './common'
 
 const CHIP_ON = 'bg-blue-600 border-blue-600 text-white dark:bg-blue-500 dark:border-blue-500 dark:text-gray-950'
 const CHIP_OFF = 'bg-white border-gray-300 text-gray-600 hover:border-gray-400 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300'
-const TGL_ON = 'bg-emerald-600 border-emerald-600 text-white dark:bg-emerald-500 dark:border-emerald-500 dark:text-gray-950'
-const CARD = 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl'
-
-function Toggle({ label, on, onClick }: { label: string; on: boolean; onClick(): void }) {
-  return (
-    <button type="button" aria-pressed={on} onClick={onClick}
-      className={'text-[12.5px] font-semibold px-3 py-1.5 min-h-11 sm:min-h-0 rounded-full border transition-colors ' + (on ? TGL_ON : PILL_OFF) + ' ' + FOCUS}>
-      {label}
-    </button>
-  )
-}
+const CARD = 'card'
 
 const PLAY_MS = 4000
 
@@ -177,9 +168,9 @@ export default function Explore() {
 
       <div className="mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Show">
         <span className="text-[13px] font-semibold text-gray-700 dark:text-gray-300 mr-1">Show</span>
-        <Toggle label="Face Names" on={show.faces} onClick={() => setShow(s => ({ ...s, faces: !s.faces }))} />
-        <Toggle label="Edge Numbers" on={show.edges} onClick={() => setShow(s => ({ ...s, edges: !s.edges }))} />
-        <Toggle label="Vertex Letters" on={show.verts} onClick={() => setShow(s => ({ ...s, verts: !s.verts }))} />
+        <Toggle className="min-h-11 sm:min-h-0" label="Face Names" checked={show.faces} onChange={() => setShow(s => ({ ...s, faces: !s.faces }))} />
+        <Toggle className="min-h-11 sm:min-h-0" label="Edge Numbers" checked={show.edges} onChange={() => setShow(s => ({ ...s, edges: !s.edges }))} />
+        <Toggle className="min-h-11 sm:min-h-0" label="Vertex Letters" checked={show.verts} onChange={() => setShow(s => ({ ...s, verts: !s.verts }))} />
       </div>
 
       {/* Main grid: one DOM order (solid, info, net) */}
@@ -188,7 +179,7 @@ export default function Explore() {
           <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
             <h3 id="nets-solid-title" className="text-[13px] font-semibold text-gray-700 dark:text-gray-300">3D Shape</h3>
             <div className="flex items-center gap-2">
-              <Toggle label="See-Through" on={see} onClick={() => setSee(v => !v)} />
+              <Toggle className="min-h-11 sm:min-h-0" label="See-Through" checked={see} onChange={() => setSee(v => !v)} />
               <button type="button" onClick={() => solidRef.current?.resetView()}
                 className={'inline-flex items-center gap-1.5 text-[12.5px] font-semibold px-3 py-1.5 min-h-11 sm:min-h-0 rounded-full border ' + PILL_OFF + ' ' + FOCUS}>
                 <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2.5 8a5.5 5.5 0 1 0 1.8-4.1" /><path d="M2.3 1.8v2.6h2.6" /></svg>

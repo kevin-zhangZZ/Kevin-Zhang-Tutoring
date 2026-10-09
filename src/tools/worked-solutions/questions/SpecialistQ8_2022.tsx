@@ -63,7 +63,7 @@ export default function SpecialistQ8_2022() {
       question={
         <div className="flex flex-col gap-3">
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={fieldSrc}
               alt="A direction field on −4 ≤ x ≤ 4, −4 ≤ y ≤ 4 whose line segments curl around the origin in closed loops that are taller than they are wide — from the original 2022 VCAA exam paper"
               className="w-full max-w-[420px]"

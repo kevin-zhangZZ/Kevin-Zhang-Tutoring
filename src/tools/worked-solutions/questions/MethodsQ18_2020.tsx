@@ -33,7 +33,7 @@ const EXAMINER: MCQExaminerStats = {
       The range is <Katex tex="(-\infty,\,-1+b]\cup[b+1,\,\infty)" />.
       <br />
       An example, using the graph of <Katex tex="y=\dfrac2x-3" /> is shown below.
-      <img src={reportGraphSrc} alt="The report's example: the graph of y = 2/x − 3 on [−2, 0) ∪ (0, 2], with endpoints (−a, −1 + b) and (a, 1 + b) labelled" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's example: the graph of y = 2/x − 3 on [−2, 0) ∪ (0, 2], with endpoints (−a, −1 + b) and (a, 1 + b) labelled" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

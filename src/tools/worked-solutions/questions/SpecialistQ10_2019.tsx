@@ -16,7 +16,7 @@ const SlabWidget = lazyWidget(() => import('../interactives/spec-2019-mcq10-slab
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img
+    <img loading="lazy" decoding="async"
       src={coneSrc}
       alt="A cone of sand with semi-vertex angle 60 degrees and height h, marked with a right angle from the apex down to the centre of the circular base"
       className="w-full max-w-[300px]"

@@ -14,7 +14,7 @@ import optDSrc from './meth-2024-mcq12-optD.png'
 function Panel({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-2 w-fit">
-      <img src={src} alt={alt} className="w-full max-w-[260px]" />
+      <img loading="lazy" decoding="async" src={src} alt={alt} className="w-full max-w-[260px]" />
     </div>
   )
 }
@@ -65,7 +65,7 @@ export default function MethodsQ12_2024() {
             The graph of <Katex tex="y=f(x)" /> is shown below.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={stemSrc}
               alt="The graph of y = f(x): rising from below the axis near x = −1.8, levelling off at (−1, 1), rising to a local maximum of about 2.7 near x = 0.8, falling to a local minimum at (2, 1), then rising steeply — from the original 2024 VCAA exam paper"
               className="w-full max-w-[460px]"

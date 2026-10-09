@@ -1,11 +1,14 @@
-import { ComponentType } from 'react'
-import UnitCircle from './unit-circle'
-import SpeedMaths from './speed-maths'
-import ExamSkipGuide from './exam-skip-guide'
-import WorkedSolutions from './worked-solutions'
-import ExamAnalysis from './exam-analysis'
-import ContactMe from './contact-me'
-import MiscDemonstrations from './misc-demonstrations'
+import { ComponentType, lazy } from 'react'
+
+// Each tool's code loads only when its page is opened (App.tsx wraps the routes in Suspense),
+// so Home and the light tools never download the worked solutions or the 3D demos.
+const UnitCircle = lazy(() => import('./unit-circle'))
+const SpeedMaths = lazy(() => import('./speed-maths'))
+const ExamSkipGuide = lazy(() => import('./exam-skip-guide'))
+const WorkedSolutions = lazy(() => import('./worked-solutions'))
+const ExamAnalysis = lazy(() => import('./exam-analysis'))
+const ContactMe = lazy(() => import('./contact-me'))
+const MiscDemonstrations = lazy(() => import('./misc-demonstrations'))
 
 export interface Tool {
   id: string

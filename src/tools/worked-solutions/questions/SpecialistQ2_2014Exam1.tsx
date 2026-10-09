@@ -100,7 +100,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={pathSrc}
           alt="The parabola y = x² − 3 drawn only for x ≥ −2: it starts at the point (−2, 1), falls through (−√3, 0) to the vertex (0, −3), and rises back through (√3, 0) and onwards"
           className="w-full max-w-[360px]"

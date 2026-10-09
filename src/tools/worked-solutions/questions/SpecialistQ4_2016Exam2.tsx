@@ -102,7 +102,7 @@ export default function SpecialistQ4_2016Exam2() {
     {
       working: (
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={shipPathsSrc}
             alt="Our sketch on VCAA's grid: ship A's path starting at (5, 3) at t = 0 and heading up-left, and ship B's path starting at (−8, −2) at t = 0 and heading up-right, each with an arrow for its direction"
             className="w-full max-w-[320px]"
@@ -193,7 +193,7 @@ export default function SpecialistQ4_2016Exam2() {
           <>
             <p>Sketch and label the path of each ship on the axes below. Show the direction of motion of each ship with an arrow.</p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit mt-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank axes with x from −10 to 10 and y from −6 to 10 — from the original 2016 VCAA exam paper"
                 className="w-full max-w-[380px]"

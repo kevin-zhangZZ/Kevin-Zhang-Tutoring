@@ -7,11 +7,12 @@
 // glance. In "Hide answers" mode (studyMode.tsx) the options start neutral and clickable;
 // choosing one marks it right or wrong, then reveals the bars, the working and the tabs.
 
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useId, useState, type ReactNode } from 'react'
 import { WorkingTable, ExaminerReport, type WorkingRow, type MCQExaminerStats, type MCQLetter } from './QuestionParts'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 import { DiagramScope } from './Lightbox'
 import { useStudyMode } from './studyMode'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 
 export interface MCQOptionData {
   letter: string
@@ -67,6 +68,9 @@ export function MCQShell({
   const [picked, setPicked] = useState<string | null>(null)
   const [tab, setTab] = useState<Tab>('solution')
   const revealed = !hideAnswers || picked !== null
+  const uid = useId()
+  const tabId = (t: Tab) => `${uid}-tab-${t}`
+  const panelId = `${uid}-panel`
 
   const hasReportTab = !!(examinerReport && (examinerReport.comment || examinerReport.flawed))
   const tabs: Tab[] = ['solution', ...(hasReportTab ? (['report'] as Tab[]) : []), ...(videoSrc ? (['video'] as Tab[]) : [])]
@@ -119,15 +123,18 @@ export function MCQShell({
               revealed={revealed}
               picked={picked === opt.letter}
               percent={revealed ? pct(opt.letter) : undefined}
+              selectable={hideAnswers}
               onPick={hideAnswers && picked === null ? () => setPicked(opt.letter) : undefined}
             >
               {opt.content}
             </MCQOption>
           ))}
           {hideAnswers && picked === null && (
-            <p className="text-[12.5px] text-gray-400 dark:text-gray-500 mt-1">Choose an answer to check it.</p>
+            <p className="text-[12.5px] text-gray-500 dark:text-gray-400 mt-1">Choose an answer to check it.</p>
           )}
-          {hideAnswers && picked !== null && (
+          {hideAnswers && (
+          <div aria-live="polite">
+          {picked !== null && (
             <p className="text-[13px] leading-relaxed text-gray-600 dark:text-gray-400 mt-1">
               {options.find(o => o.letter === picked)?.isAnswer ? (
                 <b className="text-emerald-700 dark:text-emerald-400">Correct. </b>
@@ -150,8 +157,10 @@ export function MCQShell({
               </button>
             </p>
           )}
+          </div>
+          )}
           {revealed && commonWrong && pct(commonWrong.letter)! > 0 && (
-            <p className="text-[12px] text-gray-400 dark:text-gray-500 mt-1">
+            <p className="text-[12px] text-gray-500 dark:text-gray-400 mt-1">
               Most common wrong answer: {commonWrong.letter} ({pct(commonWrong.letter)}% of students).
             </p>
           )}
@@ -161,34 +170,29 @@ export function MCQShell({
       {revealed && (
         <>
           {tabs.length > 1 && (
-            <div
-              role="tablist"
+            <SegmentedControl
+              variant="tabs"
+              size="md"
+              fill
+              className="sm:inline-grid w-full sm:w-fit mb-5"
               aria-label="Solution views"
-              className="grid grid-flow-col auto-cols-fr sm:inline-grid gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl sm:rounded-full p-1 w-full sm:w-fit mb-5"
-            >
-              {tabs.map(t => (
-                <TabButton key={t} active={tab === t} onClick={() => setTab(t)} accent={t === 'video'}>
-                  {t === 'solution' ? (
-                    <>
-                      <span className="sm:hidden">Solution</span>
-                      <span className="hidden sm:inline">Worked Solution</span>
-                    </>
-                  ) : t === 'report' ? (
-                    <>
-                      <span className="sm:hidden">Report</span>
-                      <span className="hidden sm:inline">Examiner's Report</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="sm:hidden">Video</span>
-                      <span className="hidden sm:inline">Video Walkthrough</span>
-                    </>
-                  )}
-                </TabButton>
-              ))}
-            </div>
+              value={tab}
+              onChange={setTab}
+              idFor={tabId}
+              controls={panelId}
+              options={tabs.map(t => ({
+                value: t,
+                label: TAB_LABEL[t],
+                toneClassName: t === 'video' ? 'text-violet-600 dark:text-violet-400' : undefined,
+              }))}
+            />
           )}
 
+          <div
+            role={tabs.length > 1 ? 'tabpanel' : undefined}
+            id={tabs.length > 1 ? panelId : undefined}
+            aria-labelledby={tabs.length > 1 ? tabId(tab) : undefined}
+          >
           {tab === 'solution' || tabs.length === 1 ? (
             <div className="flex flex-col gap-4">
               {detailed && background}
@@ -206,6 +210,7 @@ export function MCQShell({
               )}
             </div>
           ) : null}
+          </div>
         </>
       )}
     </DiagramScope>
@@ -219,6 +224,7 @@ function MCQOption({
   revealed,
   picked,
   percent,
+  selectable,
   onPick,
 }: {
   letter: string
@@ -227,6 +233,8 @@ function MCQOption({
   revealed: boolean
   picked: boolean
   percent?: number
+  /** Hide-answers mode: options are buttons in every state, so focus stays put after a pick. */
+  selectable?: boolean
   onPick?: () => void
 }) {
   const correct = revealed && isAnswer
@@ -265,7 +273,7 @@ function MCQOption({
               ? 'text-emerald-700 dark:text-emerald-300'
               : wrongPick
                 ? 'text-rose-700 dark:text-rose-300'
-                : 'text-gray-500 dark:text-gray-400'
+                : 'text-gray-600 dark:text-gray-400'
           }`}
         >
           {percent}%{correct ? ' ✓' : ''}
@@ -276,11 +284,17 @@ function MCQOption({
   )
 
   const base = `relative overflow-hidden flex gap-2.5 items-start px-3 py-2.5 rounded-xl border text-left ${tone}`
-  return onPick ? (
+  return selectable ? (
     <button
       type="button"
       onClick={onPick}
-      className={`${base} w-full hover:border-sky-300 dark:hover:border-sky-700 hover:bg-white dark:hover:bg-gray-800 transition-colors`}
+      aria-pressed={picked}
+      aria-disabled={onPick ? undefined : true}
+      className={`${base} w-full ${
+        onPick
+          ? 'hover:border-sky-300 dark:hover:border-sky-700 hover:bg-white dark:hover:bg-gray-800 transition-colors'
+          : 'cursor-default'
+      }`}
     >
       {inner}
     </button>
@@ -289,41 +303,28 @@ function MCQOption({
   )
 }
 
-// `accent` marks the Video Walkthrough tab, which only exists when a video does — it gets a
-// play icon and violet colouring in both active and inactive states.
-function TabButton({
-  active,
-  onClick,
-  children,
-  accent,
-}: {
-  active: boolean
-  onClick: () => void
-  children: ReactNode
-  accent?: boolean
-}) {
-  return (
-    <button
-      type="button"
-      role="tab"
-      aria-selected={active}
-      onClick={onClick}
-      className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-full text-[13.5px] font-medium whitespace-nowrap transition-colors ${
-        active ? 'bg-white dark:bg-gray-900 shadow-sm' : ''
-      } ${
-        accent
-          ? 'text-violet-600 dark:text-violet-400'
-          : active
-            ? 'text-gray-900 dark:text-white'
-            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-      }`}
-    >
-      {accent && (
-        <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 flex-none">
-          <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
-        </svg>
-      )}
-      {children}
-    </button>
-  )
+// Short labels on phones, full ones from `sm`. The Video Walkthrough tab (only there when a
+// video is) gets a play icon and violet text in both states.
+const TAB_LABEL: Record<Tab, ReactNode> = {
+  solution: (
+    <>
+      <span className="sm:hidden">Solution</span>
+      <span className="hidden sm:inline">Worked Solution</span>
+    </>
+  ),
+  report: (
+    <>
+      <span className="sm:hidden">Report</span>
+      <span className="hidden sm:inline">Examiner's Report</span>
+    </>
+  ),
+  video: (
+    <>
+      <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 flex-none" aria-hidden="true">
+        <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
+      </svg>
+      <span className="sm:hidden">Video</span>
+      <span className="hidden sm:inline">Video Walkthrough</span>
+    </>
+  ),
 }

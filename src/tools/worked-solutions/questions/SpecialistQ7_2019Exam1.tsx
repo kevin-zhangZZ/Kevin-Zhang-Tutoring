@@ -78,7 +78,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={argandSrc} alt="Argand diagram showing 3 − √3 i in the fourth quadrant, at distance 2√3 from the origin and at an angle of −π/6 below the real axis" className="w-full max-w-[320px]" />
+        <img loading="lazy" decoding="async" src={argandSrc} alt="Argand diagram showing 3 − √3 i in the fourth quadrant, at distance 2√3 from the origin and at an angle of −π/6 below the real axis" className="w-full max-w-[320px]" />
       </div>
     ),
     reason: <>The picture confirms both readings at a glance: the point is to the right and below the origin, so the argument must be a small negative angle.</>,

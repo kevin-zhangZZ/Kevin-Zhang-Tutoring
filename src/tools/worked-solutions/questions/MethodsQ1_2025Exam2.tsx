@@ -124,7 +124,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's axes (x and y from about −2.5 to 2.5): a negative quartic rising from below, flattening through the labelled stationary point of inflection (0, 0), peaking at the labelled local maximum (1, 1), then crossing the axis at the labelled (4/3, 0) and falling steeply"
           className="w-full max-w-[420px]"

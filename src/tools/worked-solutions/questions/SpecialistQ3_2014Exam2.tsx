@@ -186,7 +186,7 @@ export default function SpecialistQ3_2014Exam2() {
           <Katex tex="\overrightarrow{OC}=\underset{\sim}{c}" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={pgramSrc}
             alt="A parallelogram with vertices O bottom left, A bottom right, B top right and C top left; D marks the midpoint of the top side CB, and the diagonal OB crosses the segment AD at P — from the original 2014 VCAA exam paper"
             className="w-full max-w-[400px]"

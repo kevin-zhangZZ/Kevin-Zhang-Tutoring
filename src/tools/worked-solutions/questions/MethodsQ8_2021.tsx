@@ -16,7 +16,7 @@ import optESrc from './meth-2021-mcq8-optE.png'
 function Panel({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-2 w-fit">
-      <img src={src} alt={alt} className="w-full max-w-[160px]" />
+      <img loading="lazy" decoding="async" src={src} alt={alt} className="w-full max-w-[160px]" />
     </div>
   )
 }

@@ -1,7 +1,8 @@
 // The analysis page's filters: one bar above the charts (sticky on wide screens) that scopes
 // everything below it — subject, years, exam, question type, and topics or subtopics.
 
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 import { ALL_YEARS, FIRST_YEAR, LAST_YEAR, STUDY_DESIGN_YEAR, type ExamFilter, type Filters, type Level, type TypeFilter } from './model'
 import type { AnalysisSubject } from './taxonomy'
 
@@ -43,30 +44,27 @@ const LEVELS: { id: Level; label: string }[] = [
 ]
 
 function Seg<T extends string>({ label, value, options, onChange }: { label?: string; value: T; options: { id: T; label: string }[]; onChange: (v: T) => void }) {
+  const id = useId()
   return (
-    <div className="flex items-center gap-2" role="group" aria-label={label}>
-      {label && <span className="text-[12px] font-semibold text-gray-500 dark:text-gray-400">{label}</span>}
-      <div className="flex gap-0.5 bg-gray-100 dark:bg-gray-800 rounded-full p-0.5">
-        {options.map(o => (
-          <button
-            key={o.id}
-            type="button"
-            aria-pressed={value === o.id}
-            onClick={() => onChange(o.id)}
-            className={`px-2.5 py-1 rounded-full text-[12.5px] font-medium whitespace-nowrap ${
-              value === o.id ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-            }`}
-          >
-            {o.label}
-          </button>
-        ))}
-      </div>
+    <div className="flex items-center gap-2">
+      {label && (
+        <span id={id} className="text-[12px] font-semibold text-gray-500 dark:text-gray-400">
+          {label}
+        </span>
+      )}
+      <SegmentedControl
+        aria-labelledby={label ? id : undefined}
+        aria-label={label ? undefined : 'Subject'}
+        value={value}
+        onChange={onChange}
+        options={options.map(o => ({ value: o.id, label: o.label }))}
+      />
     </div>
   )
 }
 
 function YearSelects({ f, onChange }: { f: Filters; onChange: FilterProps['onChange'] }) {
-  const sel = 'bg-gray-100 dark:bg-gray-800 rounded-full px-2.5 py-1 text-[12.5px] font-medium text-gray-800 dark:text-gray-100 border-0 focus:ring-2 focus:ring-sky-500'
+  const sel = 'bg-gray-100 dark:bg-gray-800 rounded-full px-2.5 py-1 [@media(pointer:coarse)]:py-3 text-[12.5px] font-medium text-gray-800 dark:text-gray-100 border-0 focus:ring-2 focus:ring-sky-500'
   return (
     <div className="flex items-center gap-1.5">
       <span className="text-[12px] font-semibold text-gray-500 dark:text-gray-400">Years</span>
@@ -91,7 +89,7 @@ function YearSelects({ f, onChange }: { f: Filters; onChange: FilterProps['onCha
 
 function Presets({ f, onChange }: { f: Filters; onChange: FilterProps['onChange'] }) {
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-1 [@media(pointer:coarse)]:gap-y-4">
       {PRESETS.map(p => {
         const on = f.from === p.from && f.to === p.to
         return (
@@ -100,7 +98,7 @@ function Presets({ f, onChange }: { f: Filters; onChange: FilterProps['onChange'
             type="button"
             aria-pressed={on}
             onClick={() => onChange({ from: p.from, to: p.to })}
-            className={`px-2.5 py-1 rounded-full text-[12px] font-medium border ${
+            className={`relative px-2.5 py-1 rounded-full text-[12px] font-medium border after:absolute after:-inset-y-0.5 after:-inset-x-px [@media(pointer:coarse)]:after:-inset-y-2 ${
               on ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-transparent' : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-gray-400'
             }`}
           >

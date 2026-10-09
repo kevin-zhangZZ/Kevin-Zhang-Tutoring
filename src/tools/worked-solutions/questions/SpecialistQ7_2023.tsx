@@ -53,7 +53,7 @@ export default function SpecialistQ7_2023() {
       question={
         <div className="flex flex-col gap-3">
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={fieldSrc}
               alt="A direction field on −2 ≤ x ≤ 2, −2 ≤ y ≤ 2 whose strokes fall steeply on the left, flatten near the y-axis and rise on the right — from the original 2023 VCAA exam paper"
               className="w-full max-w-[460px]"

@@ -165,7 +165,7 @@ export default function MethodsQ10_2015Exam1() {
           <Katex tex="\theta" />, where <Katex tex="0<\theta\le\tfrac{\pi}{2}" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={circleSrc}
             alt="A circle of radius 2 centred at C(2, 0), with a point T on the upper right of the circle, the tangent at T falling from Y on the y-axis through B(2, b) and D(4, d) down to X on the x-axis, and the angle theta marked at C between CE and CT — from the original 2015 VCAA exam paper"
             className="w-full max-w-[420px]"

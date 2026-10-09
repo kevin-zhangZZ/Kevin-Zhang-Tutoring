@@ -83,7 +83,7 @@ export default function ChemistryQ10_2025() {
             The production of bioethanol from sugar cane follows the steps shown below.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={stepsSrc}
               alt="Flow chart beside a sugar cane plant: finely chopped and heated → hydrolysis → fermentation → distillation — from the original 2025 VCAA exam paper"
               className="w-full max-w-[520px]"

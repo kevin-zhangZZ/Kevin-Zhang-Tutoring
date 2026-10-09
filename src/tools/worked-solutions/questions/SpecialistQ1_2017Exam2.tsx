@@ -285,7 +285,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="Graph of y = x/(1+x³) from x = −3 to 3: a branch approaching the x-axis from above on the far left and rising to +∞ at the asymptote x = −1, then a branch coming up from −∞ just right of x = −1 through the origin to a maximum at (0.79, 0.53), an inflection at (1.26, 0.42), and a slow decay back towards y = 0"
           className="w-full max-w-[460px]"
@@ -466,7 +466,7 @@ export default function SpecialistQ1_2017Exam2() {
               with their coordinates. Show any asymptotes and label them with their equations.
             </p>
             <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={blankAxesSrc}
                 alt="Blank axes from the original 2017 VCAA exam paper: x from −3 to 3 and y from −2 to 2, with grid lines every 1"
                 className="w-full max-w-[400px]"

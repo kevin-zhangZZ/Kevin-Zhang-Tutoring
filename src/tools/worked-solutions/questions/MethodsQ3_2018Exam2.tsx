@@ -224,7 +224,7 @@ export default function MethodsQ3_2018Exam2() {
           the bridge and let <Katex tex="y" /> be the height, in metres, above ground level.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={bridge1Src} alt="A horizontal bridge at height 5 m spanning three identical sine arches labelled Arch 1, Arch 2 and Arch 3, on axes running to x = 110, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
+          <img loading="lazy" decoding="async" src={bridge1Src} alt="A horizontal bridge at height 5 m spanning three identical sine arches labelled Arch 1, Arch 2 and Arch 3, on axes running to x = 110, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
         <div className="mt-3 space-y-1">
           <p>Arch 1 can be modelled by the function <Katex tex="h_1:[5,35]\to R,\ h_1(x)=5\sin\!\left(\dfrac{(x-5)\pi}{30}\right)" />.</p>
@@ -259,7 +259,7 @@ export default function MethodsQ3_2018Exam2() {
           The stone is represented by the shaded regions shown in the diagram below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={shadedSrc} alt="The same bridge and arches with the stone shaded: the full rectangle under the bridge minus the three arch openings, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
+          <img loading="lazy" decoding="async" src={shadedSrc} alt="The same bridge and arches with the stone shaded: the full rectangle under the bridge minus the three arch openings, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
       </div>
 
@@ -301,7 +301,7 @@ export default function MethodsQ3_2018Exam2() {
           level.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={bridge2Src} alt="The inclined second bridge rising from 5 m at the left, over Arches 4, 5 and 6, with the perpendicular rod PQ drawn from the bridge down to a point P on Arch 5, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
+          <img loading="lazy" decoding="async" src={bridge2Src} alt="The inclined second bridge rising from 5 m at the left, over Arches 4, 5 and 6, with the perpendicular rod PQ drawn from the bridge down to a point P on Arch 5, from the original 2018 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
       </div>
 

@@ -231,7 +231,7 @@ export default function MethodsQ9_2017Exam1() {
           shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={curveSrc}
             alt="Graph of y = √x(1 − x) on the interval from 0 to 1: a single hump rising steeply from the origin and coming back down to the axis at x = 1, from the original 2017 VCAA exam paper"
             className="w-full max-w-[460px]"
@@ -329,7 +329,7 @@ export default function MethodsQ9_2017Exam1() {
           <Katex tex="45^\circ\le\theta<90^\circ" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={triangleSrc}
             alt="The same curve with a right-angled triangle above it: vertex A on the x-axis left of the origin, vertex B on the x-axis to the right, and the apex C above the curve, with AC and BC tangent to the curve and the right angle marked at C; the angle theta between AC and the x-axis is marked at A — from the original 2017 VCAA exam paper"
             className="w-full max-w-[460px]"

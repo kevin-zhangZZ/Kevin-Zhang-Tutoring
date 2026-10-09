@@ -27,7 +27,7 @@ function NewtonOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[560px]">
-        <img
+        <img loading="lazy" decoding="async"
           src={tangentSrc}
           alt="The part d. graph with the answer drawn over it: a straight line touching the curve at x = x₁ ≈ 5.83 on the rising part after the minimum, sloping upward and crossing the x-axis at x₂ ≈ 5.2"
           className="w-full block"
@@ -473,7 +473,7 @@ export default function MethodsQ4_2025Exam2() {
           The graph of <Katex tex="y=f(x)" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A sine curve lifted one unit, running from (0, 1) up to 2, down to touch 0 near 3π/2, and back up to 2 at the right-hand endpoint — from the original 2025 VCAA exam paper"
             className="w-full max-w-[520px]"
@@ -551,7 +551,7 @@ export default function MethodsQ4_2025Exam2() {
               below.
             </p>
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={tangentSrc}
                 alt="The graph of y = f(x) on a grid with a dashed straight line touching it at the labelled point A where x = 2π/3 and sloping down to the right, crossing the x-axis just past 2π — from the original 2025 VCAA exam paper"
                 className="w-full max-w-[560px]"
@@ -609,7 +609,7 @@ export default function MethodsQ4_2025Exam2() {
           <Katex tex="p\in\left(0,\tfrac{5\pi}{2}\right)" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={tSrc}
             alt="The curve with a dashed tangent line labelled y = t(x) touching it at the labelled point (p, f(p)) on the rising part near the first peak — from the original 2025 VCAA exam paper"
             className="w-full max-w-[460px]"

@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 import { guides, CONFIDENCE_LABEL, type Confidence } from './data'
 import { audits } from './audit'
 import { SkipIcon, NoteIcon, NewIcon } from './icons'
@@ -48,7 +49,7 @@ function ItemCode({ item }: { item: PaperItem }) {
   return (
     <span className="w-24 flex-none font-display text-[14px] font-bold text-gray-900 dark:text-white leading-snug">
       {item.code}
-      {item.allParts && <span className="block text-[11px] font-medium text-gray-400 dark:text-gray-500">all parts</span>}
+      {item.allParts && <span className="block text-[11px] font-medium text-gray-500 dark:text-gray-400">all parts</span>}
     </span>
   )
 }
@@ -84,7 +85,7 @@ function PaperCard({ paper, showExam }: { paper: Paper; showExam: boolean }) {
                 <ItemCode item={s} />
                 <div className="min-w-0 text-[13px] leading-relaxed text-gray-500 dark:text-gray-400">
                   {s.topic}
-                  {s.note && <span className="block text-xs text-gray-400 dark:text-gray-500">{s.note}</span>}
+                  {s.note && <span className="block text-xs text-gray-500 dark:text-gray-400">{s.note}</span>}
                 </div>
               </div>
             ))}
@@ -94,14 +95,14 @@ function PaperCard({ paper, showExam }: { paper: Paper; showExam: boolean }) {
           <div>
             <ListLabel tone="tip">Doable with a tip</ListLabel>
             {tips.map((t, i) => (
-              <div key={i} className="flex gap-3 py-1.5">
+              <div key={i} className="flex gap-3 py-1.5 [@media(pointer:coarse)]:py-3">
                 <ItemCode item={t} />
                 <p className="min-w-0 text-[13px] leading-relaxed text-gray-700 dark:text-gray-300">
                   {t.note ?? t.topic}
                   {t.link && (
                     <>
                       {' '}
-                      <Link to={t.link} className="font-semibold text-blue-700 dark:text-blue-400 hover:underline underline-offset-2 whitespace-nowrap">
+                      <Link to={t.link} className="relative font-semibold text-blue-700 dark:text-blue-400 hover:underline underline-offset-2 whitespace-nowrap after:absolute after:-inset-y-1 after:-inset-x-1 [@media(pointer:coarse)]:after:-inset-y-3">
                         Worked solution →
                       </Link>
                     </>
@@ -230,23 +231,25 @@ export default function ExamSkipGuide() {
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
           Past Exam Skip Guide
         </h1>
-        <div className="flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-full p-1">
-          {guides.map(g => (
-            <button
-              key={g.id}
-              onClick={() => { go(g.id, pickedYear, examsFor(g.id)[0]); setOpenTitles(new Set()) }}
-              aria-pressed={subjectId === g.id}
-              className={`px-3 sm:px-4 py-1.5 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                subjectId === g.id
-                  ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-              }`}
-            >
-              <span className="sm:hidden">{SHORT_NAME[g.id] ?? g.name}</span>
-              <span className="hidden sm:inline">{g.name}</span>
-            </button>
-          ))}
-        </div>
+        <SegmentedControl
+          size="md"
+          aria-label="Subject"
+          value={subjectId}
+          onChange={id => {
+            go(id, pickedYear, examsFor(id)[0])
+            setOpenTitles(new Set())
+          }}
+          options={guides.map(g => ({
+            value: g.id,
+            ariaLabel: g.name,
+            label: (
+              <>
+                <span className="sm:hidden">{SHORT_NAME[g.id] ?? g.name}</span>
+                <span className="hidden sm:inline">{g.name}</span>
+              </>
+            ),
+          }))}
+        />
       </div>
       <p className="text-[15px] text-gray-600 dark:text-gray-300 leading-relaxed mb-8 max-w-2xl">
         What to skip when practicing with 2014&ndash;2022 VCE papers, now that the study design has changed.

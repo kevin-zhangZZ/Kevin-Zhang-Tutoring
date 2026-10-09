@@ -39,7 +39,7 @@ function ReciprocalOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[620px]">
-        <img src={graphSrc} alt="VCAA's graph of f(x) = cos²(x) + cos(x) + 1 on 0 ≤ x ≤ 2π, with the answer y = 1/f(x) drawn over it: a wave from (0, 1/3) up to maximums (2π/3, 4/3) and (4π/3, 4/3), a local minimum (π, 1), and down to (2π, 1/3)" className="w-full" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's graph of f(x) = cos²(x) + cos(x) + 1 on 0 ≤ x ≤ 2π, with the answer y = 1/f(x) drawn over it: a wave from (0, 1/3) up to maximums (2π/3, 4/3) and (4π/3, 4/3), a local minimum (π, 1), and down to (2π, 1/3)" className="w-full" />
         <svg viewBox="0 0 1670 900" className="absolute inset-0 w-full h-full" aria-label="The graph of y = 1/f(x) drawn on the same axes">
           <path d={RECIPROCAL_PATH} fill="none" stroke={SKY} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
           {/* turning points of the reciprocal graph */}
@@ -252,7 +252,7 @@ export default function SpecialistQ5_2019Exam1() {
           <Katex tex="0\le x\le2\pi" /> is shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={graphSrc} alt="Graph of f(x) = cos²x + cos x + 1 on 0 ≤ x ≤ 2π, from the original 2019 VCAA exam paper" className="w-full max-w-[520px]" />
+          <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of f(x) = cos²x + cos x + 1 on 0 ≤ x ≤ 2π, from the original 2019 VCAA exam paper" className="w-full max-w-[520px]" />
         </div>
       </div>
 

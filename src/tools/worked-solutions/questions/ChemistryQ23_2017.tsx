@@ -64,7 +64,7 @@ export default function ChemistryQ23_2017() {
           </p>
           <div className="mb-2 flex justify-center">
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img src={apparatusSrc} alt="Bomb calorimeter apparatus: a sealed vessel with crude oil and excess oxygen, submerged in water in an insulated container, with a thermometer, stirrer, and ignition wire, from the original 2017 VCAA exam paper" className="w-full max-w-[380px]" />
+              <img loading="lazy" decoding="async" src={apparatusSrc} alt="Bomb calorimeter apparatus: a sealed vessel with crude oil and excess oxygen, submerged in water in an insulated container, with a thermometer, stirrer, and ignition wire, from the original 2017 VCAA exam paper" className="w-full max-w-[380px]" />
             </div>
           </div>
           <p>For this experiment, the students could maximise</p>

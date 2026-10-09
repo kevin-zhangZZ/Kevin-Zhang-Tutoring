@@ -41,7 +41,7 @@ function ArgandAnswer() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img
+        <img loading="lazy" decoding="async"
           src={argandSrc}
           alt="VCAA's polar Argand plane with the answer drawn over it: the line x − √3y − 4 = 0 rising gently through 4 on the real axis, and the roots −2 ± 2√3i where the circle of radius 4 meets the 120° and −120° spokes, the lower root lying on the line"
           className="w-full block"

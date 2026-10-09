@@ -14,7 +14,7 @@
 // over it. Everything below the base's plane is drawn before the translucent base, so it is tinted.
 
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
-import { ActionButton, Buttons, C, Controls, Katex, M, Notice, Readout, Readouts, Slider, Toggle } from './kit'
+import { ActionButton, Buttons, C, Controls, Katex, M, Notice, Readout, Readouts, Slider, Toggle, prefersReducedMotion } from './kit'
 
 type V3 = readonly [number, number, number]
 type P2 = readonly [number, number]
@@ -186,6 +186,11 @@ export default function PyramidHeight() {
     const fa = cam.current.a
     const fp = cam.current.p
     const da = wrap(ta - fa)
+    if (prefersReducedMotion()) {
+      setAlpha(wrap(fa + da))
+      setPhi(tp)
+      return
+    }
     const t0 = performance.now()
     const tick = (now: number) => {
       const q = Math.min(1, (now - t0) / 900)
@@ -332,11 +337,14 @@ export default function PyramidHeight() {
             height={H}
             viewBox={`0 0 ${W} ${H}`}
             className="block select-none"
-            style={{ touchAction: 'pan-y', cursor: 'grab' }}
+            // Vertical drags tilt the view, so the diagram keeps every touch gesture for itself;
+            // the page still scrolls from anywhere around it.
+            style={{ touchAction: 'none', cursor: 'grab' }}
             onPointerDown={onDown}
             onPointerMove={onMove}
             onPointerUp={onUp}
             onPointerCancel={onUp}
+            onLostPointerCapture={onUp}
             role="img"
             aria-label={`Three-dimensional view of the pyramid with parallelogram base ABCD drawn flat and apex P above it; the slant edge from ${name} to P is split into a rise of ${rise.toFixed(2)} along the unit normal and a part parallel to the base`}
           >

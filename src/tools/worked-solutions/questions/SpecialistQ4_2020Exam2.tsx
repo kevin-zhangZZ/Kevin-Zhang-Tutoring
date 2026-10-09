@@ -173,7 +173,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={pathsSrc}
           alt="On VCAA's axes: the aeroplane's ellipse centred at (450, 400) with a clockwise arrow from its lowest point, labelled t = 0: (450, 200), and the drone's parabola from (0, 0) to (1200, 0), crossing the ellipse at (316, 310) and again at (600, 400)"
           className="w-full max-w-[520px]"

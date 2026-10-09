@@ -56,7 +56,7 @@ export default function MethodsQ9_2015() {
           equal to
         </p>
       }
-      diagram={<img src={diagramSrc} alt="Uniform probability density function, constant at 1/6 from x=2 to x=a, from the original 2015 VCAA exam paper" className="w-full max-w-[280px]" />}
+      diagram={<img loading="lazy" decoding="async" src={diagramSrc} alt="Uniform probability density function, constant at 1/6 from x=2 to x=a, from the original 2015 VCAA exam paper" className="w-full max-w-[280px]" />}
       options={[
         { letter: 'A', content: <Katex tex="8" /> },
         { letter: 'B', content: <Katex tex="5" />, isAnswer: true },

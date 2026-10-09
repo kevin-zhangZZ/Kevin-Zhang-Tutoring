@@ -38,7 +38,7 @@ function Chip({ letter, tex, ok }: { letter: string; tex: string; ok: boolean })
       className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[12px] ${
         ok
           ? 'border-emerald-400 bg-emerald-50 text-emerald-900 dark:border-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-100'
-          : 'border-gray-300 bg-white text-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500'
+          : 'border-gray-300 bg-white text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400'
       }`}
     >
       <b>{letter}</b> <M>{tex}</M> {ok ? '✓' : '✗'}

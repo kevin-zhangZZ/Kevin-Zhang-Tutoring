@@ -237,7 +237,7 @@ const ROWS_BII: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="On VCAA's grid: the curve rising steeply from O and flattening towards the dashed horizontal asymptote x = log_e(π/2 + 1), with the point (10, 0.92) marked just below it"
           className="w-full max-w-[520px]"

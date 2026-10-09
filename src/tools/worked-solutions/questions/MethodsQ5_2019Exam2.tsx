@@ -262,7 +262,7 @@ const ROWS_F: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img src={inverseSrc} alt="Graphs of f and its inverse reflected in the dashed line y = x, with the point (a, 1−a³) on f and its mirror image (1−a³, a) on the inverse" className="w-full max-w-[340px]" />
+        <img loading="lazy" decoding="async" src={inverseSrc} alt="Graphs of f and its inverse reflected in the dashed line y = x, with the point (a, 1−a³) on f and its mirror image (1−a³, a) on the inverse" className="w-full max-w-[340px]" />
       </div>
     ),
     reason: <>The graph of <Katex tex="f^{-1}" /> is the graph of <Katex tex="f" /> reflected in the line <Katex tex="y=x" />.</>,
@@ -361,7 +361,7 @@ export default function MethodsQ5_2019Exam2() {
           horizontal axis.
         </p>
         <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={diagramSrc} alt="Graph of y = f(x) = 1 − x³ with its tangent at (a, 1 − a³), meeting the curve again at P and the x-axis at Q, and the two shaded regions bounded by the curve, the tangent and the x-axis, from the original 2019 VCAA exam paper" className="w-full max-w-[440px]" />
+          <img loading="lazy" decoding="async" src={diagramSrc} alt="Graph of y = f(x) = 1 − x³ with its tangent at (a, 1 − a³), meeting the curve again at P and the x-axis at Q, and the two shaded regions bounded by the curve, the tangent and the x-axis, from the original 2019 VCAA exam paper" className="w-full max-w-[440px]" />
         </div>
       </div>
 

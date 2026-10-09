@@ -98,7 +98,7 @@ export default function SpecialistQ10_2016() {
       question={
         <>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit mb-3">
-            <img src={directionFieldSrc} alt="Direction field for dy/dx + x + y = 0, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
+            <img loading="lazy" decoding="async" src={directionFieldSrc} alt="Direction field for dy/dx + x + y = 0, from the original 2016 VCAA exam paper" className="w-full max-w-[300px]" />
           </div>
           <p className="mb-2">
             The direction field for the differential equation <Katex tex="\dfrac{dy}{dx}+x+y=0" /> is shown
@@ -136,7 +136,7 @@ function DirectionFieldDiagram() {
   const tracePts = STEPS.map(s => `${ox + s.x * scaleX},${oy - s.y * scaleY}`)
   return (
     <div className="relative w-full max-w-[300px]">
-      <img
+      <img loading="lazy" decoding="async"
         src={directionFieldSrc}
         alt="Direction field for dy/dx + x + y = 0, from the original 2016 VCAA exam paper"
         className="w-full block"

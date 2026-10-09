@@ -48,7 +48,7 @@ export default function MethodsQ3_2016() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="Part of a cubic graph with x-intercepts at −3, −1/2 and 1, a local minimum at (−2, −9) and a local maximum at (1/3, 100/27), from the original 2016 VCAA exam paper"
           className="w-full max-w-[330px]"

@@ -71,7 +71,7 @@ export default function SpecialistQ20_2022() {
             below. Initially, the mass labelled 4 kg is held at rest.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={pulleySrc}
               alt="A pulley with a single block labelled 4 kg hanging from the left-hand string, and on the right a block labelled 2 kg with a second block labelled 2 kg hanging beneath it on another string — from the original 2022 VCAA exam paper"
               className="w-full max-w-[130px]"

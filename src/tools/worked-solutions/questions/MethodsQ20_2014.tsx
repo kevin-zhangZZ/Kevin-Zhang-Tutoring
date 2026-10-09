@@ -63,7 +63,7 @@ export default function MethodsQ20_2014() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="A piecewise-linear graph rising in a straight line from (1, 4) to a peak at (6, 10), then falling in a straight line to (11, 4) — from the original 2014 VCAA exam paper"
           className="w-full max-w-[340px]"

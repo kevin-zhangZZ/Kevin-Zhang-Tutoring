@@ -11,7 +11,7 @@ import galvanicCellSrc from './chem-2016-mcq29-galvanic-cell.png'
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img src={galvanicCellSrc} alt="Galvanic cell: solid Fe rod in 1 M Fe2+ solution vs. a platinum electrode with H2 gas bubbled through 1 M H+ solution (the standard hydrogen electrode), joined by a salt bridge — from the original 2016 VCAA exam paper" className="w-full max-w-[380px]" />
+    <img loading="lazy" decoding="async" src={galvanicCellSrc} alt="Galvanic cell: solid Fe rod in 1 M Fe2+ solution vs. a platinum electrode with H2 gas bubbled through 1 M H+ solution (the standard hydrogen electrode), joined by a salt bridge — from the original 2016 VCAA exam paper" className="w-full max-w-[380px]" />
   </div>
 )
 

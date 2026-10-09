@@ -168,7 +168,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={circleSrc}
           alt="The answer on VCAA's Argand grid (x and y from about −2.4 to 5.4): a circle of radius 2 centred at 1 + 2i, touching the real axis at 1 and crossing the imaginary axis at the labelled points (2 + √3)i and (2 − √3)i"
           className="w-full max-w-[420px]"
@@ -195,7 +195,7 @@ const ROWS_DI: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={raySrc}
           alt="The part c. diagram with the answer added: a ray starting at an open circle at 2 − i and running up and to the left through −2 + 3i to the edge of the grid, crossing the circle at 1 and at −1 + 2i"
           className="w-full max-w-[420px]"

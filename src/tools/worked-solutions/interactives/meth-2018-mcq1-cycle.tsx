@@ -25,7 +25,7 @@ function UnitCircle({ th }: { th: number }) {
       ? `M ${r2} 0 A ${r2} ${r2} 0 ${rest > Math.PI ? 1 : 0} 0 ${r2 * Math.cos(th)} ${-r2 * Math.sin(th)}`
       : ''
   return (
-    <svg viewBox="-78 -74 156 150" className="w-[150px] h-[144px] flex-none self-center text-gray-400 dark:text-gray-500">
+    <svg viewBox="-78 -74 156 150" className="w-[150px] h-[144px] flex-none self-center text-gray-500 dark:text-gray-400">
       <line x1={-68} y1={0} x2={68} y2={0} stroke="currentColor" strokeWidth={1} />
       <line x1={0} y1={-64} x2={0} y2={64} stroke="currentColor" strokeWidth={1} />
       <circle cx={0} cy={0} r={R} fill="none" stroke="currentColor" strokeWidth={1.5} />

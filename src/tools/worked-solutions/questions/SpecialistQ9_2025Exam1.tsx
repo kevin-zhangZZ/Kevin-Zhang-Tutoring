@@ -110,7 +110,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (−4 to 4 on both axes): two branches either side of the dashed vertical asymptote x = −1, both approaching the dashed oblique asymptote y = −x − 1, the left branch crossing the x-axis at −2 and the right branch passing through the origin, with an open circle at (1, −1.5)"
           className="w-full max-w-[420px]"

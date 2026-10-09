@@ -49,7 +49,7 @@ export default function MethodsQ8_2016() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="A single smooth hump starting at zero at t = 0, peaking at 10 around t = 7, and returning to zero near t = 14, from the original 2016 VCAA exam paper"
           className="w-full max-w-[420px]"

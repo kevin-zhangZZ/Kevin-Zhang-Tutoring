@@ -230,7 +230,7 @@ export default function SpecialistQ4_2021Exam2() {
           <Katex tex="C" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={trackSrc}
             alt="A stunt track: a horizontal run-up from A through W to B below the x-axis, a ramp curving up to the origin O where the car takes off at angle θ, a dashed flight path, and a second track sloping down at 10° to the horizontal from C(16, 4) to the x-axis — from the original 2021 VCAA exam paper"
             className="w-full max-w-[460px]"

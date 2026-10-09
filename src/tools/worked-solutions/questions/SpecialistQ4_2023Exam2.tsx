@@ -236,7 +236,7 @@ const ROWS_F: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="The answer on VCAA's grid (t from 0 to 6.4 in steps of 0.2, Q up to 1050 in steps of 50): a logistic S-curve rising from the labelled intercept (0, 100) and flattening towards the dashed asymptote labelled Q = 1000"
           className="w-full max-w-[520px]"

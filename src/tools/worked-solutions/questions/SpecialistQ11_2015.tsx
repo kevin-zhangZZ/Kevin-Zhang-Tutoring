@@ -52,7 +52,7 @@ export default function SpecialistQ11_2015() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={vtSrc}
           alt="A velocity-time graph: v rises to 0.5 at t = 1 and returns to zero at t = 2, dips to a minimum of -1 at t = 3 and back to zero at t just under 4, then rises again towards 0.8 by t = 6 — from the original 2015 VCAA exam paper"
           className="w-full max-w-[420px]"

@@ -150,7 +150,7 @@ export default function MethodsQ4_2015Exam1() {
       >
         <WorkingTable rows={ROWS_B} />
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={cubicSrc}
             alt="This site's sketch, on VCAA's −8 to 8 grid, of the cubic y = ½(x−1)(x+2)² drawn only on [−3, 2]: starting at (−3, −2), rising to touch the x-axis at the maximum (−2, 0), falling to the minimum (0, −2), then rising through (1, 0) to the endpoint (2, 8)"
             className="w-full max-w-[400px]"

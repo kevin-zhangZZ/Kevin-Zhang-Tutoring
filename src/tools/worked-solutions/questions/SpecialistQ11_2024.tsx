@@ -60,7 +60,7 @@ export default function SpecialistQ11_2024() {
             comprises two straight line segments.
           </p>
           <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={graphSrc}
               alt="A velocity-time graph falling in a straight line from (0, 40) through the t-axis to (100, −20), then rising in a straight line to (150, 0) — from the original 2024 VCAA exam paper"
               className="w-full max-w-[440px]"

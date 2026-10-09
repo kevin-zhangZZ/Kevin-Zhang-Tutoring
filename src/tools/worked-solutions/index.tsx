@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type RefObject } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, type QuestionMeta } from './data'
-import { QUESTION_DETAILS } from './details'
+import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, type QuestionMeta, type SubjectId } from './data'
+import { preloadQuestion, useQuestionDetail } from './questionLoader'
 import ComingSoon from './ComingSoon'
 import { examSourceFor } from './examSources'
 import { LightboxProvider } from './Lightbox'
@@ -13,6 +13,8 @@ import { QuestionSidebar, type SidebarNav } from './QuestionSidebar'
 import { listSequence, mainCode, relativeLabel, topicOf } from './sidebarModel'
 import SidebarSettings from './SidebarSettings'
 import { useBackToTop } from '../../components/Layout'
+import { useDialogFocus } from '../../lib/a11y'
+import SegmentedControl from '../../components/ui/SegmentedControl'
 
 // Below this width (Tailwind's `lg`) the list and the solution are separate screens: pick a
 // question from the list, read it with a ‹ previous · Questions · next › bar at the bottom.
@@ -28,18 +30,6 @@ function readLastQuestion(): QuestionMeta | undefined {
   } catch {
     return undefined
   }
-}
-
-// Shared look for the pill switches in the header. They never wrap: a wrapped pill turns into
-// a tall capsule with oversized corners on phones, so below `sm` the container is a plain
-// rounded rectangle and the buttons share its width equally.
-const SWITCH_CLASS = 'grid grid-flow-col auto-cols-fr gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl sm:rounded-full p-1'
-function switchButtonClass(active: boolean) {
-  return `px-3 sm:px-4 py-1.5 rounded-lg sm:rounded-full text-sm font-medium text-center transition-all whitespace-nowrap ${
-    active
-      ? 'bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm'
-      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
-  }`
 }
 
 export default function WorkedSolutions() {
@@ -60,22 +50,24 @@ function WorkedSolutionsRoutes() {
   return <QuestionsPage rest={rest} />
 }
 
+// The header switches share the width equally on phones and hug their labels from `sm` up;
+// `compact` (in the phone question view) always fills its row.
 function AnswersSwitch({ compact }: { compact?: boolean }) {
   const { hideAnswers, setHideAnswers } = useStudyMode()
   return (
-    <div
-      className={compact ? 'grid grid-flow-col auto-cols-fr gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl p-1' : `${SWITCH_CLASS} w-full sm:w-auto`}
-      role="group"
+    <SegmentedControl
+      size="md"
+      fill
+      className={compact ? '' : 'w-full sm:w-auto'}
       aria-label="Answers"
       title="Hide answers to try each question before seeing the working"
-    >
-      <button type="button" onClick={() => setHideAnswers(false)} aria-pressed={!hideAnswers} className={switchButtonClass(!hideAnswers)}>
-        Show answers
-      </button>
-      <button type="button" onClick={() => setHideAnswers(true)} aria-pressed={hideAnswers} className={switchButtonClass(hideAnswers)}>
-        Hide answers
-      </button>
-    </div>
+      value={hideAnswers ? 'hide' : 'show'}
+      onChange={v => setHideAnswers(v === 'hide')}
+      options={[
+        { value: 'show', label: 'Show answers' },
+        { value: 'hide', label: 'Hide answers' },
+      ]}
+    />
   )
 }
 
@@ -84,19 +76,19 @@ function AnswersSwitch({ compact }: { compact?: boolean }) {
 function DetailSwitch({ compact }: { compact?: boolean }) {
   const { detailed, setDetailed } = useStudyMode()
   return (
-    <div
-      className={compact ? 'grid grid-flow-col auto-cols-fr gap-1 bg-gray-100 dark:bg-gray-800 rounded-xl p-1' : `${SWITCH_CLASS} w-full sm:w-auto`}
-      role="group"
+    <SegmentedControl
+      size="md"
+      fill
+      className={compact ? '' : 'w-full sm:w-auto'}
       aria-label="Solution detail"
       title="Concise shows the exam working only; Detailed adds background notes, interactive diagrams and common mistakes"
-    >
-      <button type="button" onClick={() => setDetailed(false)} aria-pressed={!detailed} className={switchButtonClass(!detailed)}>
-        Concise
-      </button>
-      <button type="button" onClick={() => setDetailed(true)} aria-pressed={detailed} className={switchButtonClass(detailed)}>
-        Detailed
-      </button>
-    </div>
+      value={detailed ? 'detailed' : 'concise'}
+      onChange={v => setDetailed(v === 'detailed')}
+      options={[
+        { value: 'concise', label: 'Concise' },
+        { value: 'detailed', label: 'Detailed' },
+      ]}
+    />
   )
 }
 
@@ -108,14 +100,21 @@ function QuestionsPage({ rest }: { rest: string }) {
   const { prefs, view, sort, setView, setSort } = useSidebarPrefs()
   const [sheetOpen, setSheetOpen] = useState(false)
 
-  const Detail = selected?.hasDetail ? QUESTION_DETAILS[selected.id] : undefined
+  // Question files load on demand, a paper at a time (questionLoader.ts).
+  const detail = useQuestionDetail(selected?.hasDetail ? selected.id : undefined)
+  const Detail = detail.status === 'ready' ? detail.Detail : undefined
   const selectedColor = selected ? SUBJECT_COLOR[selected.subject] : null
   const selectedSource = selected ? examSourceFor(selected.subject, selected.year, selected.exam) : undefined
 
   const detailRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
-  const { parts, activePart, headerGone, jumpTo } = usePartTracking(detailRef, headerRef, selected?.id ?? null)
+  // Keyed on the solution being on the page too, so the parts are read once it has loaded.
+  const { parts, activePart, headerGone, jumpTo } = usePartTracking(
+    detailRef,
+    headerRef,
+    selected ? `${selected.id}${detail.status === 'loading' ? ':loading' : ''}` : null,
+  )
 
   // Previous / next step through whatever the list is showing (sidebarModel.listSequence).
   const sequence = subject
@@ -124,6 +123,27 @@ function QuestionsPage({ rest }: { rest: string }) {
   const index = selected ? sequence.findIndex(q => q.id === selected.id) : -1
   const prev = index > 0 ? sequence[index - 1] : null
   const next = index > -1 && index < sequence.length - 1 ? sequence[index + 1] : null
+
+  // Warm the papers a click is likely to need — the open year's, and the previous / next
+  // question's — once the browser is idle, so opening one rarely waits on the network.
+  const warmIds = [
+    ...(subject && openYear
+      ? QUESTIONS.filter(q => q.subject === subject && q.year === openYear && q.hasDetail)
+      : []
+    ).map(q => q.id),
+    ...(prev?.hasDetail ? [prev.id] : []),
+    ...(next?.hasDetail ? [next.id] : []),
+  ].join(' ')
+  useEffect(() => {
+    if (!warmIds) return
+    const warm = () => warmIds.split(' ').forEach(id => preloadQuestion(id).catch(() => {}))
+    if (typeof window.requestIdleCallback === 'function') {
+      const handle = window.requestIdleCallback(warm, { timeout: 3000 })
+      return () => window.cancelIdleCallback(handle)
+    }
+    const handle = window.setTimeout(warm, 600)
+    return () => window.clearTimeout(handle)
+  }, [warmIds])
 
   // The floating previous / next control carries its own ↑, so the shared back-to-top button
   // steps aside on large screens; on smaller ones it rises above the bottom bar.
@@ -217,19 +237,15 @@ function QuestionsPage({ rest }: { rest: string }) {
             VCAA Exam Explanations
           </h1>
           <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-            <div className={`${SWITCH_CLASS} w-full sm:w-auto`} role="group" aria-label="Subject">
-              {SUBJECTS.map(s => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => navigate(subjectPath(s.id))}
-                  aria-pressed={subject === s.id}
-                  className={switchButtonClass(subject === s.id)}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
+            <SegmentedControl
+              size="md"
+              fill
+              className="w-full sm:w-auto"
+              aria-label="Subject"
+              value={subject ?? ''}
+              onChange={id => navigate(subjectPath(id as SubjectId))}
+              options={SUBJECTS.map(s => ({ value: s.id, label: s.label }))}
+            />
             <AnswersSwitch />
             {subject !== 'chemistry' && <DetailSwitch />}
           </div>
@@ -264,7 +280,7 @@ function QuestionsPage({ rest }: { rest: string }) {
                       ‹ {view === 'topic' ? topicOf(selected) : `${selected.year} ${SUBJECTS.find(s => s.id === selected.subject)?.label}`}
                     </Link>
                     {index > -1 && (
-                      <span className="flex-none font-display text-[11.5px] font-bold text-gray-400 dark:text-gray-500">
+                      <span className="flex-none font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400">
                         {index + 1} of {sequence.length}
                       </span>
                     )}
@@ -330,6 +346,10 @@ function QuestionsPage({ rest }: { rest: string }) {
                     ) : (
                       <Detail key={selected.id} />
                     )
+                  ) : detail.status === 'loading' ? (
+                    <QuestionLoading />
+                  ) : detail.status === 'error' ? (
+                    <QuestionLoadError onRetry={detail.retry} />
                   ) : (
                     <ComingSoon topic={selected.topic} />
                   )}
@@ -395,7 +415,7 @@ function Landing() {
           )
         })}
       </div>
-      <Link to={`${TOOL_PATH}/settings`} className="text-[13px] font-semibold text-sky-700 dark:text-sky-400 hover:underline w-fit">
+      <Link to={`${TOOL_PATH}/settings`} className="relative text-[13px] font-semibold text-sky-700 dark:text-sky-400 hover:underline w-fit after:absolute after:-inset-y-3 after:-inset-x-1">
         Sidebar settings
       </Link>
     </div>
@@ -431,6 +451,40 @@ function CopyLinkButton() {
 // Which part of the open question is on screen, and whether its header has scrolled away —
 // shared by the sticky question bar and the sidebar's parts list, both of which can also jump
 // to a part.
+// While a question's paper is still downloading (usually a blink — the open year's papers are
+// fetched ahead of time). Holds the solution's space so the page doesn't jump when it lands,
+// and only says anything if the wait is long enough to notice.
+function QuestionLoading() {
+  const [slow, setSlow] = useState(false)
+  useEffect(() => {
+    const t = window.setTimeout(() => setSlow(true), 400)
+    return () => window.clearTimeout(t)
+  }, [])
+  return (
+    <div className="min-h-[60vh]" aria-busy="true">
+      <p role="status" className={`text-[13.5px] text-gray-500 dark:text-gray-400 ${slow ? '' : 'sr-only'}`}>
+        Loading the solution…
+      </p>
+    </div>
+  )
+}
+
+function QuestionLoadError({ onRetry }: { onRetry: () => void }) {
+  return (
+    <div role="alert" className="border-[1.5px] border-dashed border-gray-300 dark:border-gray-700 rounded-2xl px-7 py-9 text-center text-[13.5px] leading-relaxed text-gray-500 dark:text-gray-400">
+      This solution couldn’t be loaded — check your connection, then{' '}
+      <button type="button" onClick={onRetry} className="underline underline-offset-2 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
+        try again
+      </button>
+      . If the site was just updated,{' '}
+      <button type="button" onClick={() => window.location.reload()} className="underline underline-offset-2 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
+        reload the page
+      </button>
+      .
+    </div>
+  )
+}
+
 function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObject<HTMLDivElement>, questionId: string | null) {
   const [parts, setParts] = useState<{ letter: string; topic?: string }[]>([])
   const [activePart, setActivePart] = useState<string | null>(null)
@@ -469,11 +523,20 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
       setActivePart(current)
     }
     update()
-    main.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update)
+    // Scroll events can fire several times a frame; measure at most once per frame.
+    let frame = 0
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(() => {
+        frame = 0
+        update()
+      })
+    }
+    main.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
     return () => {
-      main.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
+      cancelAnimationFrame(frame)
+      main.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
     }
   }, [detailRef, headerRef, questionId])
 
@@ -521,7 +584,9 @@ function StickyQuestionBar({
       >
         <span className="font-display text-[12.5px] font-bold text-sky-700 dark:text-sky-300 whitespace-nowrap">{label}</span>
         {parts.length > 1 && (
-          <span className="flex gap-1 overflow-x-auto scrollbar-quiet">
+          // On touch, the chips' hit layers reach 44px tall; the strip's own padding (cancelled by an
+          // equal negative margin, so the bar keeps its height) stops its scroll box clipping them.
+          <span className="flex gap-1 overflow-x-auto scrollbar-quiet [@media(pointer:coarse)]:py-2 [@media(pointer:coarse)]:-my-2">
             {parts.map(({ letter, topic }) => (
               <button
                 key={letter}
@@ -530,10 +595,10 @@ function StickyQuestionBar({
                 onClick={() => onJump(letter)}
                 title={topic}
                 aria-current={active === letter ? 'true' : undefined}
-                className={`flex-none min-w-[1.75rem] h-7 px-1.5 rounded-full font-display text-[11.5px] font-bold transition-colors ${
+                className={`relative flex-none min-w-[1.75rem] h-7 px-1.5 rounded-full after:absolute after:inset-0 [@media(pointer:coarse)]:after:-inset-y-2 font-display text-[11.5px] font-bold transition-colors ${
                   active === letter
-                    ? 'bg-sky-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? 'bg-sky-700 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
                 {letter}
@@ -569,14 +634,14 @@ function PhoneBar({
           <span className="truncate">‹ {relativeLabel(prev, current)}</span>
         </Link>
       ) : (
-        <span className={`${side} text-gray-300 dark:text-gray-600`}>‹ Start</span>
+        <span className={`${side} text-gray-500 dark:text-gray-400`}>‹ Start</span>
       )}
       <button
         type="button"
         onClick={onMenu}
         className="flex flex-col items-center justify-center px-5 border-x border-gray-100 dark:border-gray-800 text-gray-900 dark:text-white"
       >
-        <svg viewBox="0 0 20 20" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+        <svg viewBox="0 0 20 20" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true">
           <path d="M4 5.5h12M4 10h12M4 14.5h12" />
         </svg>
         <span className="text-[11px] font-semibold mt-0.5">Questions</span>
@@ -586,7 +651,7 @@ function PhoneBar({
           <span className="truncate">{relativeLabel(next, current)} ›</span>
         </Link>
       ) : (
-        <span className={`${side} justify-end text-gray-300 dark:text-gray-600`}>End ›</span>
+        <span className={`${side} justify-end text-gray-500 dark:text-gray-400`}>End ›</span>
       )}
     </nav>
   )
@@ -657,12 +722,12 @@ function EndPager({ prev, next, current }: { prev: QuestionMeta | null; next: Qu
             : 'border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700'
         }`}
       >
-        <div className="text-[11.5px] font-semibold text-gray-400 dark:text-gray-500">{dir === 'prev' ? '← Previous' : 'Next →'}</div>
+        <div className="text-[11.5px] font-semibold text-gray-500 dark:text-gray-400">{dir === 'prev' ? '← Previous' : 'Next →'}</div>
         <div className="font-display text-[13px] font-bold text-sky-700 dark:text-sky-300 mt-0.5">{relativeLabel(q, current)}</div>
         <div className="text-[12.5px] text-gray-600 dark:text-gray-400">{topicOf(q)}</div>
       </Link>
     ) : (
-      <div className="rounded-xl border border-dashed border-gray-200 dark:border-gray-800 px-4 py-3 text-[12px] text-gray-300 dark:text-gray-600">
+      <div className="rounded-xl border border-dashed border-gray-200 dark:border-gray-800 px-4 py-3 text-[12px] text-gray-500 dark:text-gray-400">
         {dir === 'prev' ? 'Start of the list' : 'End of the list'}
       </div>
     )
@@ -690,6 +755,10 @@ function QuestionsSheet({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  // Trap Tab inside, make the page behind inert, and return focus to the Questions button on
+  // close. Must come before the layout effect below, which moves focus to ✕.
+  useDialogFocus(true, dialogRef, { initialFocus: closeRef })
 
   useLayoutEffect(() => {
     const box = scrollRef.current
@@ -707,8 +776,21 @@ function QuestionsSheet({
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
+  // The sheet is hidden at lg+, but its focus trap and inert page would stay — so close it
+  // when the window widens past the breakpoint (tablet rotation, window resize).
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    if (mq.matches) {
+      onClose()
+      return
+    }
+    const onChange = (e: MediaQueryListEvent) => e.matches && onClose()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [onClose])
+
   return (
-    <div className="lg:hidden fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Questions">
+    <div ref={dialogRef} className="lg:hidden fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Questions">
       {!full && <button type="button" aria-label="Close questions" onClick={onClose} className="absolute inset-0 w-full bg-black/30" />}
       <div
         className={`absolute inset-x-0 bottom-0 flex flex-col bg-white dark:bg-gray-900 ${
@@ -723,7 +805,7 @@ function QuestionsSheet({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+            className="relative w-8 h-8 grid place-items-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 after:absolute after:-inset-1.5"
           >
             ✕
           </button>

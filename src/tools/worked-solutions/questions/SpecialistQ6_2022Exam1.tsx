@@ -159,7 +159,7 @@ export default function SpecialistQ6_2022Exam1() {
           semicircle <Katex tex="OPQ" />, as shown below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={semicircleSrc}
             alt="A semicircle drawn above the x-axis from the origin O to a point Q on the positive x-axis, with centre marked a; a point P(x, y) sits on the arc, with arrows drawn from O to P and from Q to P — from the original 2022 VCAA exam paper"
             className="w-full max-w-[400px]"

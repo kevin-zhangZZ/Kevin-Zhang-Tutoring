@@ -18,7 +18,7 @@ import optESrc from './meth-2017-mcq6-optE.png'
 const ReflectWidget = lazyWidget(() => import('../interactives/meth-2017-mcq6-reflect'))
 
 function OptionGraph({ src, letter }: { src: string; letter: string }) {
-  return <img src={src} alt={`Option ${letter}: a small sketch on x and y axes, from the original 2017 VCAA exam paper`} className="w-full max-w-[180px]" />
+  return <img loading="lazy" decoding="async" src={src} alt={`Option ${letter}: a small sketch on x and y axes, from the original 2017 VCAA exam paper`} className="w-full max-w-[180px]" />
 }
 
 const EXAMINER: MCQExaminerStats = {
@@ -98,7 +98,7 @@ export default function MethodsQ6_2017() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="Part of the graph of f: an increasing curve, steep just left of the origin, flattening where it meets the x-axis, then rising gently to the right, from the original 2017 VCAA exam paper"
           className="w-full max-w-[200px]"

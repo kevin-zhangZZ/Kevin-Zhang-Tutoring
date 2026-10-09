@@ -246,7 +246,7 @@ export default function MethodsQ8_2018Exam1() {
           <Katex tex="y=f(x)" />, <Katex tex="y=g(x)" /> and the line <Katex tex="x=2" />.
         </p>
         <div className="mt-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img src={regionSrc} alt="Sections of the graphs of f and g for x ≥ 0 with the enclosed region shaded, from the original 2018 VCAA exam paper" className="w-full max-w-[460px]" />
+          <img loading="lazy" decoding="async" src={regionSrc} alt="Sections of the graphs of f and g for x ≥ 0 with the enclosed region shaded, from the original 2018 VCAA exam paper" className="w-full max-w-[460px]" />
         </div>
       </div>
 

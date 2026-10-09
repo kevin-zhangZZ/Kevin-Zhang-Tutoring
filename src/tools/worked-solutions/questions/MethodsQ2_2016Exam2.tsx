@@ -276,7 +276,7 @@ export default function MethodsQ2_2016Exam2() {
           <Katex tex="y" />-axis at <Katex tex="C" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={triangleSrc}
             alt="The quartic y = g(x) with a tangent at A falling to the right and cutting the y-axis at B above the origin, and a perpendicular line through A rising to the right and cutting the y-axis at C below the origin — from the original 2016 VCAA exam paper"
             className="w-full max-w-[380px]"
@@ -333,7 +333,7 @@ export default function MethodsQ2_2016Exam2() {
           <Katex tex="E" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={tangentsSrc}
             alt="The same quartic with a second tangent at D on the left branch, parallel to the tangent at A, meeting the line AC at E below the x-axis — from the original 2016 VCAA exam paper"
             className="w-full max-w-[320px]"

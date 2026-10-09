@@ -13,7 +13,7 @@ import optCSrc from './chem-2022-mcq28-optC.png'
 import optDSrc from './chem-2022-mcq28-optD.png'
 
 const opt = (src: string, alt: string, w: number) => (
-  <img src={src} alt={`${alt} — from the original 2022 VCAA exam paper`} className="bg-white rounded" style={{ width: w }} />
+  <img loading="lazy" decoding="async" src={src} alt={`${alt} — from the original 2022 VCAA exam paper`} className="bg-white rounded" style={{ width: w }} />
 )
 
 const EXAMINER: MCQExaminerStats = {
@@ -79,7 +79,7 @@ export default function ChemistryQ28_2022() {
             The <sup>13</sup>C NMR spectrum of an organic compound is shown below.
           </p>
           <div className="mb-3 bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-            <img
+            <img loading="lazy" decoding="async"
               src={spectrumSrc}
               alt="¹³C NMR spectrum, chemical shift 200 to 0 ppm: five signals, near 138, 115, 62, 32 and 30 ppm — data from SDBS Web, National Institute of Advanced Industrial Science and Technology, from the original 2022 VCAA exam paper"
               className="w-full max-w-[460px]"

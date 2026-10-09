@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={argandSrc}
           alt="Argand diagram (our own): z1 and z3 on the circle of radius 2, z2 and z4 on the circle of radius 1, joined as a parallelogram whose diagonals z1z3 and z2z4 cross at the origin at an angle of 5π/12"
           className="w-full max-w-[300px]"

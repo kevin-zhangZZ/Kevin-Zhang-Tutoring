@@ -37,9 +37,10 @@
   --p2: #38bdf8; --p2-edge: #7dd3fc;
   --p3: #a78bfa; --p3-edge: #c4b5fd;
 }
-/* The site fades colours on every element (index.css: * { transition-colors }). The 3D engine reuses
-   its SVG nodes from frame to frame, so that fade smears one part's fill into another's (a slice's
-   orange into a pyramid face) while the picture turns or animates. Drawings switch instantly. */
+/* The 3D engine reuses its SVG nodes from frame to frame, so any colour fade smears one part's fill
+   into another's (a slice's orange into a pyramid face) while the picture turns or animates.
+   index.css already leaves SVG out of its colour fades; this stays as a guard. Drawings switch
+   instantly. */
 .md-pp svg, .md-pp svg * { transition: none; }
 
 .md-pp .s3d-svg {

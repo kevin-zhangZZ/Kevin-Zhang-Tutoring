@@ -81,7 +81,7 @@ function Box({ value, caption, color }: { value: number | undefined; caption: st
 function Machine({ fn, nth }: { fn: Fn; nth: string }) {
   return (
     <div className="flex-1 min-w-[3.25rem] flex flex-col items-center -mt-5">
-      <span className="text-[10.5px] font-semibold text-gray-400 dark:text-gray-500 mb-0.5">{nth}</span>
+      <span className="text-[10.5px] font-semibold text-gray-500 dark:text-gray-400 mb-0.5">{nth}</span>
       <div className="w-full flex items-center">
         <div className="flex-1 h-[2px]" style={{ background: COLOR[fn] }} />
         <span

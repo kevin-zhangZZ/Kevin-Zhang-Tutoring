@@ -11,7 +11,7 @@ import fieldSrc from './spec-2025-mcq8-field.png'
 
 const DIAGRAM = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-2xl p-3 w-fit">
-    <img
+    <img loading="lazy" decoding="async"
       src={fieldSrc}
       alt="A direction field on axes from -2 to 2 in both directions: slopes below the x-axis are steeply positive everywhere, slopes above it near x = 0 are negative, and the pattern is mirrored about the y-axis"
       className="w-full max-w-[340px]"

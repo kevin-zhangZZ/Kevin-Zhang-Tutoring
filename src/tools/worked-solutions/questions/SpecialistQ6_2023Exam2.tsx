@@ -458,7 +458,7 @@ export default function SpecialistQ6_2023Exam2() {
           the type II error.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={curvesSrc}
             alt="Two overlapping bell curves on an x-bar axis: H1 centred near 11.4 and H0 centred at 12 — from the original 2023 VCAA exam paper"
             className="w-full max-w-[460px]"

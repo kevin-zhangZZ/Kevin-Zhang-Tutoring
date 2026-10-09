@@ -17,7 +17,7 @@ const EXAMINER: MCQExaminerStats = {
   comment: (
     <>
       Isoleucine:
-      <img src={isoleucineSrc} alt="The report's structure of isoleucine: H2N–CH–COOH with the side chain CH3CHCH2CH3 drawn below the alpha carbon" className="w-full max-w-[260px] mt-1" />
+      <img loading="lazy" decoding="async" src={isoleucineSrc} alt="The report's structure of isoleucine: H2N–CH–COOH with the side chain CH3CHCH2CH3 drawn below the alpha carbon" className="w-full max-w-[260px] mt-1" />
       Each molecule has 10 C–H bonds, hence 40 C–H bonds in total.
       <br />
       Lignoceric acid: Saturated fatty acid with 24 C atoms
@@ -33,7 +33,7 @@ const EXAMINER: MCQExaminerStats = {
       Maltotetraose: 4 glucose residues
       <br />
       Glucose, <Chem eq="C6H12O6" />, has 6 C–H bonds, as evident in:
-      <img src={glucoseSrc} alt="The report's ring structure of glucose with six of its hydrogen atoms boxed" className="w-full max-w-[230px] mt-1" />
+      <img loading="lazy" decoding="async" src={glucoseSrc} alt="The report's ring structure of glucose with six of its hydrogen atoms boxed" className="w-full max-w-[230px] mt-1" />
       4 glucose residues will provide 4 × 6 = 24 C–H bonds
       <br />
       The selection of alternative C may reflect the fact that it was the only option where the

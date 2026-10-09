@@ -79,7 +79,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The cubic y = 3x² − x³ drawn on [−1, 3]: starting at (−1, 4), falling to a local minimum at the origin, rising to a local maximum at (2, 4), then falling to (3, 0)"
           className="w-full max-w-[360px]"
@@ -102,7 +102,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={areaSrc}
           alt="The same cubic with the horizontal line y = 4 drawn across it, and the region between the line and the curve from x = −1 to x = 2 shaded"
           className="w-full max-w-[360px]"

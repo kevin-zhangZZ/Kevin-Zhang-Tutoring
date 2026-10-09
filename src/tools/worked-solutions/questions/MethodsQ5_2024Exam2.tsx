@@ -273,7 +273,7 @@ export default function MethodsQ5_2024Exam2() {
           <Katex tex="g(x)=\sin(2x)" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="Two oscillating curves on the same axes from 0 to 2π: a dashed curve labelled y = (g∘f)(x) with flattened crests, and a solid curve labelled y = (f∘g)(x) completing two full cycles — from the original 2024 VCAA exam paper"
             className="w-full max-w-[520px]"

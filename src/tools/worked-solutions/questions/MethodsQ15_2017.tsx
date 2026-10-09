@@ -105,7 +105,7 @@ export default function MethodsQ15_2017() {
         </>
       }
       diagram={
-        <img
+        <img loading="lazy" decoding="async"
           src={diagramSrc}
           alt="The curve y = −x³ + 8 in the first quadrant, from (0, 8) down to (2, 0), with a rectangle drawn from the origin to the point C(u, v) on the curve, from the original 2017 VCAA exam paper"
           className="w-full max-w-[230px]"

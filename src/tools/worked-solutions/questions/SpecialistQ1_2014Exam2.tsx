@@ -117,7 +117,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="flex flex-col gap-2">
-        <img
+        <img loading="lazy" decoding="async"
           src={graphSrc}
           alt="This site's sketch of the three branches of y = 9/((x+2)(x-4)) on VCAA's −6 ≤ x ≤ 6 grid: two positive branches outside the dashed vertical asymptotes x = −2 and x = 4 falling towards y = 0, and a middle branch below the axis with a maximum at (1, −1) and y-intercept (0, −9/8)"
           className="w-full max-w-[380px]"

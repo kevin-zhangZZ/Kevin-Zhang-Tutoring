@@ -11,7 +11,7 @@ import calibrationCurveSrc from './chem-2017-mcq22-calibration-curve.png'
 
 const CALIBRATION_CURVE = (
   <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-    <img src={calibrationCurveSrc} alt="HPLC calibration curve of peak area (arbitrary units) versus caffeine concentration (g/L), a straight line through the origin, from the original 2017 VCAA exam paper" className="w-full max-w-[380px]" />
+    <img loading="lazy" decoding="async" src={calibrationCurveSrc} alt="HPLC calibration curve of peak area (arbitrary units) versus caffeine concentration (g/L), a straight line through the origin, from the original 2017 VCAA exam paper" className="w-full max-w-[380px]" />
   </div>
 )
 

@@ -358,7 +358,7 @@ export default function SpecialistQ9_2021Exam1() {
         statement={
           <div className="flex flex-col gap-3">
             <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-              <img
+              <img loading="lazy" decoding="async"
                 src={regionSrc}
                 alt="A quarter-ellipse arc falling from about y = 1.1 at x = −1 to the x-axis at x = 3, with the region under it between the vertical lines x = 1 and x = 2√3 − 1 shaded — from the original 2021 VCAA exam paper"
                 className="w-full max-w-[380px]"

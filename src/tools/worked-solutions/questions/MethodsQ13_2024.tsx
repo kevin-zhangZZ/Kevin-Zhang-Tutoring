@@ -25,7 +25,7 @@ const EXAMINER: MCQExaminerStats = {
       <Katex tex="g(x)=\tfrac{x}{6}+\tfrac{6}{x}-1" />.
       <br />
       The local minimum of <Katex tex="g" /> is at <Katex tex="(6,1)" />.
-      <img src={reportGraphSrc} alt="The report's graph of y = g(x) for x from 0 to 10, a curve falling to its local minimum at (6, 1) and then rising slowly" className="w-full max-w-[360px] mt-1" />
+      <img loading="lazy" decoding="async" src={reportGraphSrc} alt="The report's graph of y = g(x) for x from 0 to 10, a curve falling to its local minimum at (6, 1) and then rising slowly" className="w-full max-w-[360px] mt-1" />
     </>
   ),
 }

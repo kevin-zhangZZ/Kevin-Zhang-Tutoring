@@ -252,7 +252,7 @@ export default function SpecialistQ4_2022Exam2() {
           below.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={diagramSrc}
             alt="A curved path leaving the origin at a small angle θ to the y-axis, bulging to the right and returning to cross the y-axis just above the point (0, 7) marked on it — from the original 2022 VCAA exam paper"
             className="w-full max-w-[320px]"

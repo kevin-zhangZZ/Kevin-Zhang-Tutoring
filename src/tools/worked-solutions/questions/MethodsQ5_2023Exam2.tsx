@@ -402,7 +402,7 @@ export default function MethodsQ5_2023Exam2() {
           and <Katex tex="g_2" />, and the line <Katex tex="y=x" />.
         </p>
         <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-          <img
+          <img loading="lazy" decoding="async"
             src={graphSrc}
             alt="A U-shaped curve g with the reflections of its two branches in the dotted line y = x: the inverse of g1 arcing up to the right and the inverse of g2 falling away below, meeting g at P and Q on the line y = x — from the original 2023 VCAA exam paper"
             className="w-full max-w-[560px]"

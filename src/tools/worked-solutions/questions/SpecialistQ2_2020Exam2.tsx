@@ -38,7 +38,7 @@ function ArgandAnswer({ stage }: { stage: 'b' | 'd' }) {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img src={argandSrc} alt={ALT[stage]} className="w-full block" />
+        <img loading="lazy" decoding="async" src={argandSrc} alt={ALT[stage]} className="w-full block" />
         <svg viewBox="0 0 1290 1150" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <line x1={px(-6.5)} y1={py(1.5)} x2={px(1.5)} y2={py(-6.5)} stroke={ORANGE} strokeWidth={7} />
           {stage === 'd' && (

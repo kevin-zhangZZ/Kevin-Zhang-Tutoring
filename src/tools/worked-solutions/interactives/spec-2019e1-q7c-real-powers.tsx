@@ -136,7 +136,7 @@ export function PowersPicture({
               {[0, 1, 2, 3, 4, 5].map(c => (
                 <th
                   key={c}
-                  className={`text-[11px] font-semibold px-0.5 ${c === col ? 'text-green-700 dark:text-green-400' : 'text-gray-400 dark:text-gray-500'}`}
+                  className={`text-[11px] font-semibold px-0.5 ${c === col ? 'text-green-700 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}`}
                 >
                   {c === 0 ? '6k' : `6k+${c}`}
                 </th>
@@ -146,7 +146,7 @@ export function PowersPicture({
           <tbody>
             {[-2, -1, 0, 1, 2].map(k => (
               <tr key={k}>
-                <th className="text-[11px] font-normal text-gray-400 dark:text-gray-500 pr-1 whitespace-nowrap text-right">
+                <th className="text-[11px] font-normal text-gray-500 dark:text-gray-400 pr-1 whitespace-nowrap text-right">
                   k = {intText(k)}
                 </th>
                 {[0, 1, 2, 3, 4, 5].map(c => {
@@ -156,7 +156,7 @@ export function PowersPicture({
                     'w-9 h-8 rounded-md font-semibold transition-colors',
                     good
                       ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
-                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700',
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700',
                     v === n ? 'ring-2 ring-sky-500' : '',
                     marked?.(v) ? 'outline outline-2 outline-dashed outline-red-500 outline-offset-1' : '',
                   ].join(' ')

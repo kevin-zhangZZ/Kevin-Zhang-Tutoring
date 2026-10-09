@@ -121,7 +121,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: (
       <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
-        <img
+        <img loading="lazy" decoding="async"
           src={sketchSrc}
           alt="The answer on VCAA's grid (x from 0 to 2.5π, y from −2.5 to 4): one full period of a cosine curve from the labelled endpoint (π/2, −1) up through the maximum (π, 3) and back down to the labelled endpoint (3π/2, −1), crossing the x-axis at 2π/3 and 4π/3"
           className="w-full max-w-[480px]"
