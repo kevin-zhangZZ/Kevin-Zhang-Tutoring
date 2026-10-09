@@ -20,7 +20,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \int_0^\infty x\cdot\frac29xe^{-\frac19x^2}\,dx" />,
-    reason: <>The density is zero for <Katex tex="x<0" />, so that part adds nothing and the integral starts at 0. Note the extra factor of <Katex tex="x" /> — without it you are integrating <Katex tex="f(x)" /> itself, which always gives 1 (the total probability), option A.</>,
+    reason: <>The density is zero for <Katex tex="x<0" />, so that part adds nothing and the integral starts at 0. Substitute the rule for <Katex tex="f(x)" />, keeping the extra factor of <Katex tex="x" /> in front.</>,
   },
   {
     working: <Katex display tex="= \frac29\int_0^\infty x^2e^{-\frac19x^2}\,dx" />,
@@ -28,11 +28,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <><Cas fn="nInt">nInt(2/9*x^2*e^(-x^2/9), x, 0, ∞)</Cas> <Katex tex="= 2.65868\ldots" /></>,
-    reason: <><Katex tex="x^2e^{-\frac19x^2}" /> has no antiderivative you can find by hand in this course, so this is a technology step (Exam 2 allows it). Type <Katex tex="\infty" /> as the upper terminal. The integral template in exact mode gives <Katex tex="\tfrac{3\sqrt\pi}{2}" />, the same number.</>,
+    reason: <><Katex tex="x^2e^{-\frac19x^2}" /> has no antiderivative you can find by hand in this course, so this is a technology step (Exam 2 allows it). Type <Katex tex="\infty" /> as the upper terminal.</>,
+    more: <>The integral template in exact mode gives <Katex tex="\tfrac{3\sqrt\pi}{2}" />, the same number. It is also a sensible size: the density peaks at <Katex tex="x=\tfrac{3}{\sqrt2}\approx2.12" /> and has a long tail to the right, which pulls the mean a little to the right of the peak.</>,
   },
   {
     working: <Katex display tex="\boxed{E(X) \approx 2.659}" />,
-    reason: <>Matches option <b>B</b>. Option E, 9, is <Katex tex="\int_0^\infty x^2f(x)\,dx = E(X^2)" /> — multiplying <Katex tex="f(x)" /> by <Katex tex="x^2" /> instead of <Katex tex="x" />. Sanity check: the density peaks at <Katex tex="x=\tfrac{3}{\sqrt2}\approx2.12" /> and has a long tail to the right, which pulls the mean a little to the right of the peak.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option A, 1, is what you get if the extra <Katex tex="x" /> is left out: <Katex tex="\int_0^\infty f(x)\,dx" /> is the total probability, which is always 1 for any density. Option E, 9, is <Katex tex="\int_0^\infty x^2f(x)\,dx = E(X^2)" /> — multiplying <Katex tex="f(x)" /> by <Katex tex="x^2" /> instead of <Katex tex="x" />.</>,
   },
 ]
 

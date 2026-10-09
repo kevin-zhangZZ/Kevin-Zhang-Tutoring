@@ -3,7 +3,8 @@
 // x = 0, a/2 and b/2, the box exists only for 0 < x < (shorter side)/2 (shaded), and the − root is
 // always the top of the hump inside that domain. The + root always lies between a/2 and b/2, where a
 // base side is negative and V < 0 — the cubic's local minimum, not a box. For a square sheet it sits
-// exactly at x = a/2, where V = 0. 34% of students chose B.
+// exactly at x = a/2, where V = 0. 34% of students chose B. For very unequal sides B's V is far
+// below the hump, so the window is clipped and B is marked at its bottom edge (readout gives V).
 
 import { useState } from 'react'
 import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, num } from './kit'
@@ -37,7 +38,10 @@ export default function PlusRoot() {
 
   const xMax = far * 1.12
   const yTop = vD * 1.35
-  const yBot = Math.min(vB, -0.2 * vD) * 1.35
+  // Keep the hump at least ~45% of the plot: for very unequal sides B's V is far below zero, so
+  // clip the window and mark B at the bottom edge instead of squashing the domain flat.
+  const yBot = Math.max(Math.min(vB, -0.2 * vD) * 1.35, -1.6 * vD)
+  const bOff = vB < yBot
 
   let notice
   if (square) {
@@ -45,17 +49,17 @@ export default function PlusRoot() {
       <Notice tone="warn">
         With a square sheet, B&apos;s <M>{`x = \\tfrac a2 = ${edge.toFixed(2)}`}</M> sits right at the edge of the domain:
         the base shrinks to a point and <M>V = 0</M>, the <b>smallest</b> possible box. D&apos;s{' '}
-        <M>{`x = \\tfrac a6 = ${xD.toFixed(2)}`}</M> is the maximum. Now make <M>a</M> and <M>b</M> different to
+        <M>{`x = \\tfrac a6 \\approx ${xD.toFixed(3)}`}</M> is the maximum. Now make <M>a</M> and <M>b</M> different to
         watch B leave the domain altogether.
       </Notice>
     )
   } else {
     notice = (
       <Notice>
-        Option B&apos;s <M>{`x \\approx ${xB.toFixed(2)}`}</M> is past <M>{`x = \\tfrac ${short}2 = ${edge.toFixed(2)}`}</M>,
+        Option B&apos;s <M>{`x \\approx ${xB.toFixed(3)}`}</M> is past <M>{`x = \\tfrac ${short}2 = ${edge.toFixed(2)}`}</M>,
         the edge of the shaded domain. There the side <M>{`${short} - 2x \\approx ${fx(Math.min(a, b) - 2 * xB, 2)}`}</M>{' '}
         is negative, so <M>{`V \\approx ${fx(vB, 2)}`}</M> is not a volume at all: B is the cubic&apos;s local
-        minimum. Option D&apos;s <M>{`x \\approx ${xD.toFixed(2)}`}</M> is the top of the hump, the only stationary
+        minimum. Option D&apos;s <M>{`x \\approx ${xD.toFixed(3)}`}</M> is the top of the hump, the only stationary
         point inside the domain. Change <M>a</M> and <M>b</M>: this never changes. Try <M>a = b</M>.
       </Notice>
     )
@@ -84,10 +88,18 @@ export default function PlusRoot() {
         <Label at={[xD, vD]} attach="n" color={C.good} bold>
           D
         </Label>
-        <Point x={xB} y={vB} color={C.bad} />
-        <Label at={[xB, vB]} attach={square ? 'ne' : 's'} color={C.bad} bold>
-          B
-        </Label>
+        {bOff ? (
+          <Label at={[xB, yBot]} attach="n" color={C.bad} bold>
+            B ↓ (below)
+          </Label>
+        ) : (
+          <>
+            <Point x={xB} y={vB} color={C.bad} />
+            <Label at={[xB, vB]} attach={square ? 'ne' : 's'} color={C.bad} bold>
+              B
+            </Label>
+          </>
+        )}
       </Plane>
       <Controls>
         <Slider label="a" value={a} onChange={setA} min={1} max={8} step={0.5} format={v => num(v, 1)} />

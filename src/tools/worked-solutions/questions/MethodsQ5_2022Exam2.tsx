@@ -1,10 +1,12 @@
 // 2022 Mathematical Methods — Exam 2, Section B Question 5 (9 marks). A composite with an
-// unknown inner function, worked entirely from a table of values. Question text
+// unknown outer function f, worked entirely from a table of values. Question text
 // transcribed from the original paper. Answers checked with sympy and against the VCAA
 // examination report. Solution is original.
 // Interactives: d meth-2022e2-q5d-same-area (every possible g′ has area −2, so the same
 // average −48/π; g′ at the ends says nothing about it); e meth-2022e2-q5e-two-factors (each
-// factor of g′ gives two zeros in [0, π]; the next ones are past π).
+// factor of g′ gives two zeros in [0, π]; the next ones are past π). Both audited 9 Oct 2026
+// (numbers re-derived with sympy) and kept. Report commentary, checks and the teacher's
+// explanations live in each row's `more` (Detailed only); `reason` is what Concise needs.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -81,11 +83,13 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = f\bigl(\sin(2x)\bigr) \implies g\!\left(\tfrac\pi6\right) = f\!\left(\sin\!\left(\tfrac\pi3\right)\right)" />,
-    reason: <>Double the input first: <Katex tex="2\times\tfrac\pi6=\tfrac\pi3" />.</>,
+    reason: <>Work from the inside out: substitute <Katex tex="x=\tfrac\pi6" /> into <Katex tex="\sin(2x)" /> first, so <Katex tex="2x=\tfrac\pi3" />.</>,
+    more: <>Every part of this question works the same way. <Katex tex="f" /> is unknown, so the only way to get a value of <Katex tex="g" /> (or <Katex tex="g'" />) is to work out the input <Katex tex="\sin(2x)" />, then look up <Katex tex="f" /> (or <Katex tex="f'" />) at that input in the table. The <Katex tex="x" />-values in the question are chosen so that <Katex tex="\sin(2x)" /> lands exactly on a column of the table.</>,
   },
   {
     working: <Katex display tex="\sin\!\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}" />,
-    reason: <>This is the <em>input</em> to <Katex tex="f" />, not the output — the report notes <Katex tex="g\left(\tfrac\pi6\right)=\tfrac{\sqrt3}{2}" /> as a common incorrect answer.</>,
+    reason: <>Exact value. This is the <em>input</em> to <Katex tex="f" />, not the answer yet.</>,
+    more: <>The report notes <Katex tex="g\left(\tfrac\pi6\right)=\tfrac{\sqrt3}{2}" /> as a common incorrect answer. Stopping here gives the value of the inside function <Katex tex="\sin(2x)" />, not of <Katex tex="g" />: <Katex tex="f" /> still has to be applied to it.</>,
   },
   {
     working: <Katex display tex="\boxed{g\!\left(\tfrac\pi6\right) = f\!\left(\tfrac{\sqrt3}{2}\right) = 3}" />,
@@ -97,25 +101,28 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = 2\cos(2x)\,f'\bigl(\sin(2x)\bigr)" />,
     reason: <>Given in the stem (it is the chain rule applied to <Katex tex="f\bigl(\sin(2x)\bigr)" />).</>,
+    more: <>Where it comes from: the chain rule differentiates the outside function and keeps the inside, giving <Katex tex="f'\bigl(\sin(2x)\bigr)" />, then multiplies by the derivative of the inside, <Katex tex="\tfrac{d}{dx}\sin(2x)=2\cos(2x)" />.</>,
   },
   {
     working: <Katex display tex="g'\!\left(\tfrac\pi6\right) = 2\cos\!\left(\tfrac\pi3\right)f'\!\left(\sin\!\left(\tfrac\pi3\right)\right)" />,
-    reason: <>Both factors need evaluating — the report notes <Katex tex="2\cos\left(\tfrac\pi3\right)" /> was sometimes ignored.</>,
+    reason: <>Substitute <Katex tex="x=\tfrac\pi6" /> into both factors, so <Katex tex="2x=\tfrac\pi3" /> in each.</>,
+    more: <>The report notes that some students did not show enough working and that <Katex tex="2\cos\left(\tfrac\pi3\right)" /> was sometimes ignored. Because <Katex tex="2\cos\left(\tfrac\pi3\right)=1" />, dropping it still lands on <Katex tex="\tfrac19" />. But in a &ldquo;show that&rdquo; the answer is already given, so the mark is for the working: every factor must be substituted and evaluated on the page.</>,
   },
   {
     working: <Katex display tex="= 2\times\tfrac12\times f'\!\left(\tfrac{\sqrt3}{2}\right) = 1\times\tfrac19" />,
-    reason: <><Katex tex="\cos\tfrac\pi3=\tfrac12" />, and the table gives <Katex tex="f'\!\left(\tfrac{\sqrt3}{2}\right)=\tfrac19" />.</>,
+    reason: <><Katex tex="\cos\tfrac\pi3=\tfrac12" /> and <Katex tex="\sin\tfrac\pi3=\tfrac{\sqrt3}{2}" />; the table gives <Katex tex="f'\!\left(\tfrac{\sqrt3}{2}\right)=\tfrac19" /> (the <Katex tex="f'(x)" /> row, not the <Katex tex="f(x)" /> row).</>,
   },
   {
     working: <Katex display tex="\boxed{g'\!\left(\tfrac\pi6\right) = \tfrac19}" />,
-    reason: <>Both substitutions must be written out for a "show that". As required.</>,
+    reason: <>Both substitutions are written out, as a &ldquo;show that&rdquo; needs. As required.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{point } \left(\tfrac\pi6,\ 3\right), \quad \text{gradient } \tfrac19" />,
-    reason: <>The point on <Katex tex="g" /> is <Katex tex="\left(\tfrac\pi6,\ g\left(\tfrac\pi6\right)\right)" />, with <Katex tex="g\left(\tfrac\pi6\right)=3" /> from part a.; the gradient is <Katex tex="g'\left(\tfrac\pi6\right)=\tfrac19" /> from part b. The report notes some used <Katex tex="\left(\tfrac\pi6,\tfrac{\sqrt3}{2}\right)" /> or <Katex tex="\left(\tfrac\pi6,\tfrac19\right)" />, but <Katex tex="\tfrac{\sqrt3}{2}" /> is the input to <Katex tex="f" /> and <Katex tex="\tfrac19" /> is the gradient, not the <Katex tex="y" />-value.</>,
+    reason: <>The point on <Katex tex="g" /> is <Katex tex="\left(\tfrac\pi6,\ g\left(\tfrac\pi6\right)\right)" />, with <Katex tex="g\left(\tfrac\pi6\right)=3" /> from part a.; the gradient is <Katex tex="g'\left(\tfrac\pi6\right)=\tfrac19" /> from part b.</>,
+    more: <>The report notes some used <Katex tex="\left(\tfrac\pi6,\tfrac{\sqrt3}{2}\right)" /> or <Katex tex="\left(\tfrac\pi6,\tfrac19\right)" />. Neither point is on the graph of <Katex tex="g" />: <Katex tex="\tfrac{\sqrt3}{2}" /> is <Katex tex="\sin(2x)" /> at <Katex tex="x=\tfrac\pi6" /> (the input to <Katex tex="f" />, as in part a.), and <Katex tex="\tfrac19" /> is the gradient, not the <Katex tex="y" />-value.</>,
   },
   {
     working: <Katex display tex="y-3 = \tfrac19\left(x-\tfrac\pi6\right)" />,
@@ -123,22 +130,25 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = \frac{x}{9}-\frac{\pi}{54}+3}" />,
-    reason: <>Expand: <Katex tex="\tfrac{1}{9}\times\tfrac\pi6=\tfrac{\pi}{54}" />, then add 3 to both sides. Over a common denominator this is <Katex tex="y=\tfrac x9+\tfrac{162-\pi}{54}" />; take care with the signs if you combine the constants. The question asks for the equation, so write <Katex tex="y=\dots" />, not just the point and gradient.</>,
+    reason: <>Expand: <Katex tex="\tfrac{1}{9}\times\tfrac\pi6=\tfrac{\pi}{54}" />, then add 3 to both sides.</>,
+    more: <>The report notes that an equation was required, so finish with <Katex tex="y=\dots" />: the point and gradient alone are not the answer. Over a common denominator this is <Katex tex="y=\tfrac x9+\tfrac{162-\pi}{54}" />, since <Katex tex="3=\tfrac{162}{54}" />; the report gives both forms. Take care with the constants. The report lists <Katex tex="y=\tfrac x9-\tfrac{162+\pi}{54}" />, which is <Katex tex="\tfrac x9-3-\tfrac\pi{54}" /> (the 3 has the wrong sign), and <Katex tex="y=\tfrac x9-\tfrac{\pi}{36}+3" />, but <Katex tex="\tfrac19\times\tfrac\pi6" /> is <Katex tex="\tfrac\pi{54}" />, not <Katex tex="\tfrac\pi{36}" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average value of } g' = \frac{1}{\tfrac\pi6-\tfrac\pi8}\int_{\pi/8}^{\pi/6}g'(x)\,dx" />,
-    reason: <>The average value of a function <Katex tex="h" /> on <Katex tex="[a,b]" /> is <Katex tex="\tfrac{1}{b-a}\int_a^b h(x)\,dx" />; here <Katex tex="h=g'" />. It is <em>not</em> <Katex tex="\tfrac{g'(\pi/6)-g'(\pi/8)}{\pi/6-\pi/8}" />, which the report says was occasionally seen: that is the average rate of change of <Katex tex="g'" />, a different quantity.</>,
+    reason: <>The average value of a function <Katex tex="h" /> on <Katex tex="[a,b]" /> is <Katex tex="\tfrac{1}{b-a}\int_a^b h(x)\,dx" />; here <Katex tex="h=g'" />.</>,
+    more: <>Picture it as the height of the rectangle on <Katex tex="\left[\tfrac\pi8,\tfrac\pi6\right]" /> with the same signed area as the graph of <Katex tex="g'" /> (area above the <Katex tex="x" />-axis counts as positive, below as negative). The report says <Katex tex="\tfrac{g'(\pi/6)-g'(\pi/8)}{\pi/6-\pi/8}" /> was occasionally seen: that is the average <em>rate of change</em> of <Katex tex="g'" />, which uses <Katex tex="g'" /> only at the two ends and is a different quantity.</>,
   },
   {
     working: <Katex display tex="\int_{\pi/8}^{\pi/6}g'(x)\,dx = \Bigl[g(x)\Bigr]_{\pi/8}^{\pi/6} = g\!\left(\tfrac\pi6\right)-g\!\left(\tfrac\pi8\right)" />,
-    reason: <>We can't integrate <Katex tex="g'" /> directly, because <Katex tex="f" /> is unknown. But an antiderivative of <Katex tex="g'" /> is <Katex tex="g" /> itself, so by the fundamental theorem the integral is <Katex tex="g" />, not <Katex tex="g'" />, evaluated at the ends — two table look-ups.</>,
+    reason: <><Katex tex="f" /> is unknown, so there is no formula to integrate. But <Katex tex="g" /> is an antiderivative of <Katex tex="g'" />, so the integral is <Katex tex="g" /> (not <Katex tex="g'" />) evaluated at the ends: two table look-ups.</>,
+    more: <>The report notes some students substituted into <Katex tex="g'(x)" />, not <Katex tex="g(x)" />. Integrating a derivative undoes it (the fundamental theorem of calculus): <Katex tex="\int_a^b g'(x)\,dx=g(b)-g(a)" />, the total change in <Katex tex="g" />. So the average value of <Katex tex="g'" /> is <Katex tex="\tfrac{g(\pi/6)-g(\pi/8)}{\pi/6-\pi/8}" />, the average rate of change of <Katex tex="g" />: the same shape as the incorrect formula above, but with <Katex tex="g" /> where it had <Katex tex="g'" />.</>,
   },
   {
     working: <Katex display tex="g\!\left(\tfrac\pi8\right) = f\!\left(\sin\!\left(\tfrac\pi4\right)\right) = f\!\left(\tfrac{\sqrt2}{2}\right) = 5" />,
-    reason: <>Double the input (<Katex tex="2\times\tfrac\pi8=\tfrac\pi4" />), then read the column <Katex tex="x=\tfrac{\sqrt2}{2}" /> of the table. Also <Katex tex="g\left(\tfrac\pi6\right)=3" /> from part a.</>,
+    reason: <>As in part a.: <Katex tex="2\times\tfrac\pi8=\tfrac\pi4" />, <Katex tex="\sin\tfrac\pi4=\tfrac{\sqrt2}{2}" />, then read the <Katex tex="f(x)" /> row in the column <Katex tex="x=\tfrac{\sqrt2}{2}" />. Also <Katex tex="g\left(\tfrac\pi6\right)=3" /> from part a.</>,
   },
   {
     working: <Katex display tex="\tfrac\pi6-\tfrac\pi8 = \tfrac{4\pi-3\pi}{24} = \tfrac{\pi}{24}" />,
@@ -146,14 +156,16 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{24}{\pi}(3-5) = -\frac{48}{\pi}}" />,
-    reason: <>The <Katex tex="\tfrac{24}{\pi}" /> multiplies the whole bracket: <Katex tex="\tfrac{24}{\pi}\times(-2)" />, not <Katex tex="\tfrac{24}{\pi}-2" /> (a common incorrect answer in the report). About <Katex tex="-15.3" />: negative, since <Katex tex="g" /> falls from 5 to 3 across the interval.</>,
+    reason: <>The <Katex tex="\tfrac{24}{\pi}" /> multiplies the whole bracket: <Katex tex="\tfrac{24}{\pi}\times(-2)" />.</>,
+    more: <>The report gives <Katex tex="\tfrac{24}{\pi}(3-5)=\tfrac{24}{\pi}-2" /> as a common incorrect answer: that subtracts 2 instead of multiplying by <Katex tex="-2" />. As a check, <Katex tex="-\tfrac{48}{\pi}\approx-15.3" /> is negative, which makes sense: <Katex tex="g" /> falls from 5 to 3 across the interval, so the total change in <Katex tex="g" /> is negative.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = 2\cos(2x)\,f'\bigl(\sin(2x)\bigr) = 0" />,
-    reason: <>A product is zero when either factor is zero, so both cases must be solved. The report notes some students solved only one.</>,
+    reason: <>A product is zero when either factor is zero, so solve both cases.</>,
+    more: <>The report notes some students solved <Katex tex="2\cos(2x)=0" /> or <Katex tex="f'(\sin(2x))=0" /> but not both. Each factor gives two solutions in <Katex tex="[0,\pi]" />, so solving only one of them finds only two of the four.</>,
   },
   {
     working: <Katex display tex="\text{case 1: } \cos(2x) = 0, \ x\in[0,\pi] \implies 2x = \tfrac\pi2,\ \tfrac{3\pi}{2}" />,
@@ -161,15 +173,18 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = \tfrac\pi4, \ \tfrac{3\pi}{4}" />,
-    reason: <>Halve each angle. These are genuine solutions: <Katex tex="f" /> is differentiable everywhere, so <Katex tex="f'\bigl(\sin(2x)\bigr)" /> is some number, and zero times a number is zero.</>,
+    reason: <>Halve each angle.</>,
+    more: <>These are genuine solutions even though <Katex tex="f" /> is unknown: <Katex tex="f" /> is differentiable everywhere, so <Katex tex="f'\bigl(\sin(2x)\bigr)" /> is some number, and zero times a number is zero.</>,
   },
   {
-    working: <Katex display tex="\text{case 2: } f'\bigl(\sin(2x)\bigr) = 0 \implies \sin(2x) = \tfrac{\sqrt2}{2}" />,
-    reason: <>The table gives <Katex tex="f'\!\left(\tfrac{\sqrt2}{2}\right)=0" />, so we need the input <Katex tex="\sin(2x)" /> to be <Katex tex="\tfrac{\sqrt2}{2}" />. Since <Katex tex="f" /> is unknown, this is the only zero of <Katex tex="f'" /> we know about, which is why the question asks for four solutions rather than all of them.</>,
+    working: <Katex display tex="\text{case 2: } f'\bigl(\sin(2x)\bigr) = 0 \ \text{ if } \ \sin(2x) = \tfrac{\sqrt2}{2}" />,
+    reason: <>The table gives <Katex tex="f'\!\left(\tfrac{\sqrt2}{2}\right)=0" />, the only zero of <Katex tex="f'" /> it shows, so the second factor is zero if its input, <Katex tex="\sin(2x)" />, equals <Katex tex="\tfrac{\sqrt2}{2}" />.</>,
+    more: <>The other two columns, <Katex tex="f'\left(\tfrac12\right)=7" /> and <Katex tex="f'\left(\tfrac{\sqrt3}{2}\right)=\tfrac19" />, are not zero, so they give nothing. Because <Katex tex="f" /> is unknown, <Katex tex="f'" /> may have other zeros that the table doesn&rsquo;t show, which is why the question asks for four solutions rather than all of them.</>,
   },
   {
     working: <Katex display tex="2x = \tfrac\pi4,\ \tfrac{3\pi}{4} \implies x = \tfrac\pi8, \ \tfrac{3\pi}{8}" />,
-    reason: <>For <Katex tex="2x\in[0,2\pi]" />, sine is <Katex tex="\tfrac{\sqrt2}{2}" /> in the first and second quadrants. The next angles, <Katex tex="\tfrac{9\pi}{4}" /> and <Katex tex="\tfrac{11\pi}{4}" />, are past <Katex tex="2\pi" /> and would give <Katex tex="x" /> outside <Katex tex="[0,\pi]" />; the report notes some students gave values outside the domain.</>,
+    reason: <>For <Katex tex="2x\in[0,2\pi]" />, sine is <Katex tex="\tfrac{\sqrt2}{2}" /> in the first and second quadrants: <Katex tex="\tfrac\pi4" /> and <Katex tex="\pi-\tfrac\pi4=\tfrac{3\pi}{4}" />. Then halve.</>,
+    more: <>The report notes some students gave values outside the domain. The next angles, <Katex tex="2x=\tfrac{9\pi}{4}" /> and <Katex tex="\tfrac{11\pi}{4}" />, are past <Katex tex="2\pi" /> and give <Katex tex="x=\tfrac{9\pi}{8}" /> and <Katex tex="\tfrac{11\pi}{8}" />, both bigger than <Katex tex="\pi" />. Likewise in case 1 the next solution, <Katex tex="x=\tfrac{5\pi}{4}" />, is past <Katex tex="\pi" />. Doubling the domain first, <Katex tex="2x\in[0,2\pi]" />, is what keeps these out.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac\pi8,\ \tfrac\pi4,\ \tfrac{3\pi}{8},\ \tfrac{3\pi}{4}}" />,
@@ -293,7 +308,7 @@ export default function MethodsQ5_2022Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
-        <Explore title="Whatever g′ looks like, its area is g(π/6) − g(π/8) = −2, so its average is fixed">
+        <Explore title="Whatever g′ looks like, its signed area is g(π/6) − g(π/8) = −2, so its average is fixed">
           <SameAreaWidget />
         </Explore>
       </PartCard>

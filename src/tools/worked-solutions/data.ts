@@ -1076,7 +1076,7 @@ export const QUESTIONS: QuestionMeta[] = [
   { id: 'meth-q2-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q2(a–h)', topic: 'Trigonometry — fox and rabbit populations as two sinusoids, a matrix transformation, and damping', type: 'sa', hasDetail: true },
   { id: 'meth-q3-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q3(a–c)', topic: 'Probability — coin flips: a binomial, a quadratic density function, and a sample proportion', type: 'sa', hasDetail: true },
   { id: 'meth-q4-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q4(a–e)', topic: 'Functions — a log difference that turns out odd, its inverse, and when it encloses area with it', type: 'sa', hasDetail: true },
-  { id: 'meth-q5-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q5(a–e)', topic: 'Calculus — a composite with an unknown inner function, worked from a table of values', type: 'sa', hasDetail: true },
+  { id: 'meth-q5-2022-e2', subject: 'methods', year: 2022, exam: 'Exam 2', code: 'Q5(a–e)', topic: 'Calculus — a composite with an unknown outer function, worked from a table of values', type: 'sa', hasDetail: true },
 
   // The 6 hardest Methods MCQs from 2023 Exam 2 Section A, by VCAA-reported % correct.
   { id: 'meth-q11-2023', subject: 'methods', year: 2023, exam: 'Exam 2', code: 'MCQ 11', topic: 'Calculus — gradient of a product f(x)·g(x) at a point', type: 'mc', hasDetail: true, percentCorrect: 22 },

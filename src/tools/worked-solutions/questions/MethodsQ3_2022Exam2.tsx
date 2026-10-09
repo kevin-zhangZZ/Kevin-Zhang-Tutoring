@@ -6,6 +6,10 @@
 // paper (previously transcribed with strict inequalities).
 // Interactives: b.iii meth-2022e2-q3biii-reflect (the gap d = 3 − h reflects f, so r = −1);
 // c.iii meth-2022e2-q3ciii-quadruple (halving the interval width needs four times the flips).
+// Skipped (Oct 2026 review): b.i (38%) — marks were lost by integrating in terms of a, b, c instead
+// of stating 1; that is a reading/definition slip one sentence fixes, nothing to manipulate. b.ii
+// (34%) — the report's losses are rounding c and not finishing the CAS solve after setting up the
+// integrals; the setup (each probability is an area with stated terminals) is fully in the working.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -133,7 +137,13 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{1}{32} = 0.03125}" />,
-    reason: <>Exact, as required. <Katex tex="0.0313" /> is a rounded value, not the exact answer — if CAS shows it, change the float setting or ask for the fraction.</>,
+    reason: <>Exact: the exam&apos;s instructions require exact values unless told otherwise. If CAS shows <Katex tex="0.0313" />, change the float setting or ask for the fraction.</>,
+    more: (
+      <>
+        The report also saw <Katex tex="0.3125" />, which has lost a zero. A size check catches that: <Katex tex="\tfrac{1}{32}" /> is about <Katex tex="\tfrac{1}{30}" />, a little
+        over <Katex tex="0.03" />, nowhere near <Katex tex="0.3" />.
+      </>
+    ),
   },
 ]
 
@@ -148,14 +158,30 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\tfrac{13}{16} = 0.8125}" />,
-    reason: <>Exact, as required (not rounded to <Katex tex="0.813" />).</>,
+    reason: <>Exact, as the instructions require (no accuracy is specified).</>,
+    more: (
+      <>
+        The report notes some students rounded to <Katex tex="0.813" />, which is not exact. It lists{' '}
+        <Katex tex="\tfrac12" /> as a common incorrect answer: <Katex tex="\tfrac12=\tfrac{16}{32}" /> is{' '}
+        <Katex tex="\Pr(X\ge3)" />, which leaves out <Katex tex="X=2" />. &ldquo;At least 2&rdquo; includes 2, so
+        on CAS the lower bound is 2, not 3.
+      </>
+    ),
   },
 ]
 
 const ROWS_AIII: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X\ge2\mid X<5) = \frac{\Pr(2\le X\le4)}{\Pr(X\le4)}" />,
-    reason: <>Conditional probability: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. The numerator needs <em>both</em> conditions at once: <Katex tex="X\ge2" /> and <Katex tex="X<5" /> together is <Katex tex="2\le X\le4" />. The report notes many students evaluated <Katex tex="\Pr(2\le X\le5)" /> in the numerator, which gives <Katex tex="\tfrac{26}{31}\approx0.839" /> instead.</>,
+    reason: <>Conditional probability: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. The numerator needs <em>both</em> conditions at once: <Katex tex="X\ge2" /> and <Katex tex="X<5" /> together is <Katex tex="2\le X\le4" />.</>,
+    more: (
+      <>
+        The report notes that many students had the correct denominator but evaluated{' '}
+        <Katex tex="\Pr(2\le X\le5)" /> in the numerator. That gives <Katex tex="\tfrac{26}{31}\approx0.839" />. It
+        keeps the outcome <Katex tex="X=5" />, but we are told <Katex tex="X<5" />, so five heads cannot have
+        happened: the numerator is the overlap of the two events, <Katex tex="A\cap B" />, not <Katex tex="A" /> alone.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(2\le X\le4) = \tfrac{26}{32}-\tfrac{1}{32} = \tfrac{25}{32}" />,
@@ -163,7 +189,7 @@ const ROWS_AIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\le4) = 1-\tfrac{1}{32} = \tfrac{31}{32}" />,
-    reason: <>The complement of all heads.</>,
+    reason: <>Everything except all five heads (part a.i.).</>,
   },
   {
     working: <Katex display tex="\frac{25/32}{31/32} = \frac{25}{31} = 0.80645\ldots" />,
@@ -171,33 +197,70 @@ const ROWS_AIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.806}" />,
-    reason: <>To three decimal places, as asked — the report notes some students gave <Katex tex="0.8065" /> or an exact answer instead.</>,
+    reason: <>To three decimal places, as asked.</>,
+    more: (
+      <>
+        When a question names the accuracy, give exactly that: <Katex tex="0.8065" /> has one decimal place too
+        many, and the exact <Katex tex="\tfrac{25}{31}" /> is not the three-place decimal that was asked for.
+      </>
+    ),
   },
 ]
 
 const ROWS_AIV: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(X) = np = 5\times\tfrac12 = \boxed{2.5}" />,
-    reason: <>The binomial mean, straight from the formula — no table of values needed. Use <Katex tex="n=5" /> flips and <Katex tex="p=\tfrac12" /> for <Katex tex="X" />, the <em>number</em> of heads (not the sample proportion).</>,
+    reason: <>The binomial mean formula, with <Katex tex="n=5" /> flips and <Katex tex="p=\tfrac12" />.</>,
+    more: (
+      <>
+        The report notes some students set up a table of values instead of using the formulas, which would
+        have been time consuming: for a binomial variable, <Katex tex="\mathrm{E}(X)=np" /> and{' '}
+        <Katex tex="\mathrm{sd}(X)=\sqrt{np(1-p)}" /> do it in one line. Others found the mean and standard deviation
+        of the sample proportion, <Katex tex="\tfrac{X}{5}" /> (mean <Katex tex="\tfrac12" />, standard deviation{' '}
+        <Katex tex="\tfrac{\sqrt5}{10}" />). The question asks about <Katex tex="X" />, the <em>number</em> of
+        heads.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = np(1-p) = 5\times\tfrac12\times\tfrac12 = \tfrac54" />,
-    reason: <>This is the <em>variance</em> — the report notes some students wrote it down instead of the standard deviation. One more step is needed.</>,
+    reason: <>This is the <em>variance</em>. The question asks for the standard deviation, its square root, so one more step is needed.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{\tfrac54} = \frac{\sqrt5}{2}}" />,
-    reason: <>The standard deviation is the square root of the variance, and the root applies to the denominator too: <Katex tex="\sqrt{\tfrac54}=\tfrac{\sqrt5}{\sqrt4}=\tfrac{\sqrt5}{2}" />, not <Katex tex="\tfrac{\sqrt5}{4}" />. Leave it exact, as required, rather than <Katex tex="1.118" />.</>,
+    reason: <>The root applies to the denominator too: <Katex tex="\sqrt{\tfrac54}=\tfrac{\sqrt5}{\sqrt4}=\tfrac{\sqrt5}{2}" />. Leave it exact.</>,
+    more: (
+      <>
+        The report&apos;s common incorrect answers were <Katex tex="\tfrac{\sqrt5}{4}" />, which takes the root of
+        the 5 but not the 4, and <Katex tex="1.118" />, a decimal where an exact answer was required.
+      </>
+    ),
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{1.5}^{3}f(h)\,dh = \Pr(1.5\le H\le3)" />,
-    reason: <>The area under a probability density function between two values is the probability that <Katex tex="H" /> lies between them. <Katex tex="f" /> is zero outside <Katex tex="1.5\le h\le3" />, so every height the coin can reach is in this interval: this integral is the <em>whole</em> area under <Katex tex="f" />, the probability of something certain.</>,
+    reason: <>The area under a probability density function between two values is the probability that <Katex tex="H" /> lies between them. <Katex tex="f" /> is zero outside <Katex tex="1.5\le h\le3" />, so this is the <em>whole</em> area under <Katex tex="f" />.</>,
+    more: (
+      <>
+        Every height the coin can reach lies in this interval, so <Katex tex="\Pr(1.5\le H\le3)" /> is the
+        probability of something certain.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\int_{1.5}^{3}f(h)\,dh = 1}" />,
-    reason: <>&ldquo;State&rdquo; signals that no integration is needed. Evaluating the integral in terms of <Katex tex="a,b,c" /> — the report notes many students did this — answers a question that was not asked; it is the left side of the first equation in part b.ii.</>,
+    reason: <>The total area under any probability density function is 1. &ldquo;State&rdquo; signals that no integration is needed.</>,
+    more: (
+      <>
+        The report notes that many students gave{' '}
+        <Katex tex="\tfrac{63a}{8}+\tfrac{27b}{8}+\tfrac{3c}{2}" /> as the answer. That is the integral worked out in
+        terms of <Katex tex="a,b,c" />, which is not its value: it is the left side of the first equation in part
+        b.ii. The value is 1 because <Katex tex="f" /> is a density, whatever <Katex tex="a" />, <Katex tex="b" />{' '}
+        and <Katex tex="c" /> turn out to be.
+      </>
+    ),
   },
 ]
 
@@ -221,30 +284,80 @@ const ROWS_BII: WorkingRow[] = [
         tex="\begin{aligned}\tfrac{63}{8}a+\tfrac{27}{8}b+\tfrac32c&=1\\[2pt]\tfrac{37}{24}a+\tfrac78b+\tfrac12c&=0.35\\[2pt]\tfrac{91}{24}a+\tfrac{11}{8}b+\tfrac12c&=0.25\end{aligned}"
       />
     ),
-    reason: <>Each integral evaluated: antidifferentiate to <Katex tex="\tfrac{ah^3}{3}+\tfrac{bh^2}{2}+ch" /> and substitute the terminals (CAS does this for you). Three linear equations in <Katex tex="a,b,c" />, so there is one solution.</>,
+    reason: <>Each integral evaluated: antidifferentiate to <Katex tex="\tfrac{ah^3}{3}+\tfrac{bh^2}{2}+ch" /> and substitute the terminals (CAS does this for you).</>,
+    more: (
+      <>
+        Writing these out is optional on Exam 2, since CAS can solve the integral forms directly. They show what
+        the problem really is: three simultaneous linear equations in <Katex tex="a" />, <Katex tex="b" /> and{' '}
+        <Katex tex="c" />.
+      </>
+    ),
   },
   {
     working: <Cas fn="solve">solve(eq1 and eq2 and eq3, {'{'}a, b, c{'}'})</Cas>,
-    reason: <>Type the three equations (the integral forms are fine) joined with &ldquo;and&rdquo;, and solve for all three unknowns at once. The report notes some students set up the integrals correctly but did not go on to find the answers — this one command finishes the question.</>,
+    reason: <>Type the three equations (the integral forms are fine) joined with &ldquo;and&rdquo;, and solve for all three unknowns at once.</>,
+    more: (
+      <>
+        The report notes some students set up the definite integrals correctly but did not find the answers.
+        Setting up is not the end: this one command finishes the question.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{a = -\tfrac45, \quad b = \tfrac{17}{5}, \quad c = -\tfrac{167}{60}}" />,
-    reason: <>Exact values were required: <Katex tex="-\tfrac{167}{60}=-2.78\dot3" />, and the report notes some students gave <Katex tex="c=-2.783" />. Check: <Katex tex="f(1.5)=\tfrac{31}{60}" /> and <Katex tex="f(3)=\tfrac{13}{60}" /> are positive, and a parabola with <Katex tex="a<0" /> is lowest at an endpoint of the interval, so <Katex tex="f\ge0" /> on <Katex tex="[1.5,3]" /> — a valid density.</>,
+    reason: <>Exact values were required: <Katex tex="c=-\tfrac{167}{60}" />, not the decimal <Katex tex="-2.78\dot3" />.</>,
+    more: (
+      <>
+        The report notes some students had <Katex tex="c=-2.783" />, a rounded decimal. Check that this{' '}
+        <Katex tex="f" /> is a valid density: <Katex tex="f(1.5)=\tfrac{31}{60}" /> and{' '}
+        <Katex tex="f(3)=\tfrac{13}{60}" /> are positive, and a parabola with <Katex tex="a<0" /> is lowest at an
+        endpoint of the interval, so <Katex tex="f\ge0" /> on <Katex tex="[1.5,3]" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="d = 3-h \implies h = 3-d" />,
-    reason: <>The coin is closest to the ceiling at the top of its flight, when it is <Katex tex="h" /> m above the floor. The ceiling is 3 m up, so the minimum gap is <Katex tex="3-h" />.</>,
+    reason: <>The coin is closest to the ceiling at the top of its flight, when it is <Katex tex="h" /> m above the floor. The ceiling is 3 m up, so the minimum gap is <Katex tex="3-h" />. The input of <Katex tex="f" /> is a height, so rearrange to get the height in terms of <Katex tex="d" />.</>,
+    more: (
+      <>
+        The report notes that many students did not attempt this part. The way in is the context, not the
+        algebra: sketch the room, mark <Katex tex="h" /> up from the floor and <Katex tex="d" /> down from the
+        3 m ceiling, and the two lengths add to 3. Once the new quantity (the gap) is linked to the old one (the
+        height), the rest is substitution.
+      </>
+    ),
   },
   {
     working: <Katex display tex="g(d) = f(3-d) = f(-d+3)" />,
     reason: <>A gap of <Katex tex="d" /> happens exactly when the height is <Katex tex="3-d" />, so the density for the gap at <Katex tex="d" /> is the density for the height at <Katex tex="3-d" />.</>,
+    more: (
+      <>
+        Writing <Katex tex="3-d" /> as <Katex tex="-d+3" /> puts it in the form <Katex tex="rd+s" /> that the
+        question uses.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{r = -1, \quad s = 3}" />,
-    reason: <>Matching <Katex tex="f(-d+3)" /> with <Katex tex="f(rd+s)" />. The <em>negative</em> <Katex tex="r" /> matters: a higher flip means a smaller gap, so the graph is reflected as well as translated. Check the domain: <Katex tex="1.5\le3-d\le3" /> gives <Katex tex="0\le d\le1.5" />, sensible distances. The report notes some students wrote <Katex tex="r=1" /> and <Katex tex="s=3" />; that gives <Katex tex="f(d+3)" />, which is non-zero only for <Katex tex="-1.5\le d\le0" /> — negative distances.</>,
+    reason: <>Matching <Katex tex="f(-d+3)" /> with <Katex tex="f(rd+s)" />. The <em>negative</em> <Katex tex="r" /> matters: a higher flip means a smaller gap.</>,
+    more: (
+      <>
+        <p>
+          The report notes some students wrote <Katex tex="r=1" /> and <Katex tex="s=3" />. That gives{' '}
+          <Katex tex="f(d+3)" />, which is non-zero only for <Katex tex="-1.5\le d\le0" />: negative distances. It
+          also keeps <Katex tex="f" />&apos;s left-to-right order, as if a higher flip left a bigger gap.
+        </p>
+        <p>
+          As a transformation, <Katex tex="f(-d+3)=f(-(d-3))" /> reflects the graph of <Katex tex="f" /> in the
+          vertical axis and then translates it 3 units right: together, a reflection in the line{' '}
+          <Katex tex="h=1.5" />, which carries <Katex tex="1.5\le h\le3" /> onto <Katex tex="0\le d\le1.5" />. Those
+          are sensible distances, and a reflection keeps the total area at 1.
+        </p>
+      </>
+    ),
   },
 ]
 
@@ -265,14 +378,15 @@ const ROWS_CI: WorkingRow[] = [
         tex="\boxed{\begin{gathered}\text{Discrete: } \hat P \text{ can only take the 26 values}\\ 0,\ \tfrac{1}{25},\ \tfrac{2}{25},\ \ldots,\ 1\end{gathered}}"
       />
     ),
-    reason: <>A discrete random variable takes separate values you can list (count); a continuous one can take any value in an interval. <Katex tex="\hat P" /> can never be, say, <Katex tex="0.41" />, so it is discrete. The question asks you to justify, so the reason is needed for the mark.</>,
+    reason: <>A discrete random variable takes separate values you can list (count); a continuous one can take any value in an interval. <Katex tex="\hat P" /> can never be, say, <Katex tex="0.41" />, so it is discrete.</>,
+    more: <>The question says &ldquo;justify&rdquo;, so &ldquo;discrete&rdquo; on its own is not enough: the reason (the values can be listed) is needed for the mark.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = 0.4, \ n = 25 \implies x = 0.4\times25 = 10 \text{ heads}" />,
-    reason: <>On CAS use <b>1-Prop z Interval</b> (menu → Statistics → Confidence Intervals), which asks for the number of successes <Katex tex="x" /> and <Katex tex="n" /> rather than <Katex tex="\hat p" />. The report notes that working through the formula sheet&apos;s formula was not necessary and would have been time consuming.</>,
+    reason: <>On CAS use <b>1-Prop z Interval</b> (menu → Statistics → Confidence Intervals), which asks for the number of successes <Katex tex="x" /> and <Katex tex="n" /> rather than <Katex tex="\hat p" />.</>,
   },
   {
     working: (
@@ -281,11 +395,26 @@ const ROWS_CII: WorkingRow[] = [
         tex="\begin{gathered}x=10,\ n=25,\ \text{C Level}=0.95\\ \implies (0.20796\ldots,\ 0.59204\ldots)\end{gathered}"
       />
     ),
-    reason: <>The CAS output. It is the formula-sheet interval <Katex tex="\hat p\pm1.96\sqrt{\tfrac{\hat p(1-\hat p)}{n}}=0.4\pm1.96\sqrt{\tfrac{0.4\times0.6}{25}}=0.4\pm0.192" />, if you want to check it.</>,
+    reason: <>The CAS output.</>,
+    more: (
+      <>
+        It is the formula-sheet interval{' '}
+        <Katex tex="\hat p\pm1.96\sqrt{\tfrac{\hat p(1-\hat p)}{n}}=0.4\pm1.96\sqrt{\tfrac{0.4\times0.6}{25}}=0.4\pm0.192" />.
+        Working through that formula by hand is a check, not the method: for a one-mark question, CAS is much
+        quicker.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{(0.208,\ 0.592)}" />,
-    reason: <>To three decimal places, and stated as an <em>interval</em> — the report notes some students did not.</>,
+    reason: <>To three decimal places, and written as an <em>interval</em>.</>,
+    more: (
+      <>
+        Round each endpoint on its own: <Katex tex="0.20796\ldots\to0.208" /> and{' '}
+        <Katex tex="0.59204\ldots\to0.592" />. The report notes some rounding errors, and that some students did
+        not give their answer as an interval: the answer is the pair of endpoints, written in brackets.
+      </>
+    ),
   },
 ]
 
@@ -297,15 +426,36 @@ const ROWS_CIII: WorkingRow[] = [
         tex="\begin{aligned}\text{width} &= 2\times1.96\sqrt{\frac{0.4\times0.6}{n}} = \frac{k}{\sqrt n}\\[2pt] \text{where } k &= 2\times1.96\sqrt{0.24}\end{aligned}"
       />
     ),
-    reason: <>The interval is <Katex tex="\hat p\pm1.96\sqrt{\tfrac{\hat p(1-\hat p)}{n}}" />, so its width is twice the bit after the <Katex tex="\pm" />. With <Katex tex="\hat p=0.4" /> unchanged, only <Katex tex="n" /> changes, and it sits under a square root in the denominator. Calling the fixed part <Katex tex="k" /> keeps the algebra short.</>,
+    reason: <>The interval is <Katex tex="\hat p\pm1.96\sqrt{\tfrac{\hat p(1-\hat p)}{n}}" />, so its width is twice the part after the <Katex tex="\pm" />. With <Katex tex="\hat p=0.4" /> fixed, only <Katex tex="n" /> changes; call the fixed part <Katex tex="k" />.</>,
+    more: (
+      <>
+        Notice where <Katex tex="n" /> sits: under a square root, in the denominator.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{k}{\sqrt n} = \frac12\times\frac{k}{\sqrt{25}} \implies \sqrt n = 2\sqrt{25} = 10" />,
-    reason: <>Set the new width equal to half the part c.ii. width. The <Katex tex="k" /> cancels, so halving the width means <em>doubling</em> <Katex tex="\sqrt n" />. That multiplies <Katex tex="n" /> by <Katex tex="2^2=4" />, not 2: doubling to <Katex tex="n=50" /> only shrinks the width to <Katex tex="\tfrac{1}{\sqrt2}\approx71\%" /> of what it was.</>,
+    reason: <>Set the new width equal to half the part c.ii. width (<Katex tex="n=25" />). The <Katex tex="k" /> cancels, so halving the width means <em>doubling</em> <Katex tex="\sqrt n" />.</>,
+    more: (
+      <>
+        Doubling <Katex tex="\sqrt n" /> multiplies <Katex tex="n" /> by <Katex tex="2^2=4" />, not 2. Doubling the
+        flips to <Katex tex="n=50" />, one of the report&apos;s common incorrect answers, only shrinks the width to{' '}
+        <Katex tex="\tfrac{1}{\sqrt2}\approx71\%" /> of what it was.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{n = 10^2 = 100}" />,
-    reason: <>Square <Katex tex="\sqrt n=10" /> to get <Katex tex="n" />. Check: <Katex tex="1.96\sqrt{\tfrac{0.24}{100}}=0.0960" />, exactly half of <Katex tex="0.1920" />. Work from this exact relationship, not the rounded interval: <Katex tex="0.592-0.208=0.384" /> leads to <Katex tex="n\approx100.04" />, and rounding that up gives <Katex tex="101" />, which is wrong.</>,
+    reason: <>Square <Katex tex="\sqrt n=10" /> to get <Katex tex="n" />.</>,
+    more: (
+      <>
+        Check: <Katex tex="1.96\sqrt{\tfrac{0.24}{100}}=0.0960" />, exactly half of <Katex tex="0.1920" />. Two more of
+        the report&apos;s common incorrect answers can be traced: <Katex tex="10" /> is <Katex tex="\sqrt n" />, not{' '}
+        <Katex tex="n" />, and <Katex tex="101" /> probably comes from the rounded interval, since{' '}
+        <Katex tex="0.592-0.208=0.384" /> leads to <Katex tex="n\approx100.04" />, which rounds up to 101. Work from
+        the exact relationship instead.
+      </>
+    ),
   },
 ]
 

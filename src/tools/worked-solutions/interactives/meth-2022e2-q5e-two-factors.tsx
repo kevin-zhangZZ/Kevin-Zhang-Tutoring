@@ -64,7 +64,8 @@ export default function TwoFactors() {
       <Plane x={[0, X_MAX]} y={[-2.3, 2.3]} xStep={PI / 8} yStep={1} height={300} xLabels={piTick} yLabels={yTick}>
         <Region top={() => TOP} bottom={() => -TOP} from={PI} to={X_MAX} color={C.guide} opacity={0.18} />
         <Line.Segment point1={[PI, -TOP]} point2={[PI, TOP]} color={C.guide} style="dashed" weight={2} />
-        <Label at={[(PI + X_MAX) / 2, 2.3]} color={C.guide} attach="s" size={12}>x &gt; π</Label>
+        {/* at the foot of the band: the blue curve peaks at the top of it (y = 2 at x = π) */}
+        <Label at={[(PI + X_MAX) / 2, -2.3]} color={C.guide} attach="n" size={12}>x &gt; π</Label>
 
         {two && (
           <>

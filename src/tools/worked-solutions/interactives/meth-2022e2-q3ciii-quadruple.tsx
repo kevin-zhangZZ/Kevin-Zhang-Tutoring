@@ -47,9 +47,8 @@ export default function QuadrupleTheFlips() {
   } else if (n === 50) {
     notice = (
       <Notice tone="warn">
-        Doubling the flips to <M>n=50</M> only multiplies the width by <M>{'\\tfrac{1}{\\sqrt2}\\approx0.71'}</M>: the new
-        interval is still about 71% as wide, not 50%. The <M>n</M> sits under a square root. Slide on until the blue
-        curve meets the green line.
+        Doubling the flips to <M>n=50</M> leaves the dot well above the green line: the second readout shows the
+        interval is still about 71% as wide, not 50%. Slide on until the blue curve meets the green line.
       </Notice>
     )
   } else if (n === 25) {
@@ -78,11 +77,15 @@ export default function QuadrupleTheFlips() {
         xStep={25}
         yStep={0.1}
         height={270}
-        xLabel="n"
+        xLabel=""
         yLabel=""
         xLabels={v => ([25, 50, 100, 150, 200].includes(Math.round(v)) ? String(Math.round(v)) : '')}
         yLabels={() => ''}
       >
+        {/* Axis name above the axis (not on it), so it can't run into the axis line's end. */}
+        <Label at={[210, 0]} attach="ne" size={14} italic>
+          n
+        </Label>
         <Line.Segment point1={[0, W25]} point2={[210, W25]} color={C.guide} style="dashed" weight={1.5} />
         <Label at={[210, W25]} attach="sw" color={C.guide} size={12}>c.ii width 0.384</Label>
         <Line.Segment point1={[0, W25 / 2]} point2={[210, W25 / 2]} color={C.good} style="dashed" weight={2} />

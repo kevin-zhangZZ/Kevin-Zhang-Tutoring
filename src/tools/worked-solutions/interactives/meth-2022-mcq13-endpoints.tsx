@@ -5,7 +5,7 @@
 // Between them the fraction is negative (that gap is option B).
 
 import { useState } from 'react'
-import { ActionButton, Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider } from './kit'
+import { ActionButton, Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider, tick } from './kit'
 
 const A = 2
 const u = (x: number) => (x + A) / (x - A)
@@ -30,22 +30,29 @@ export default function Endpoints() {
   const num = x + A
   const den = x - A
   const tex = (v: number) => show(v).replace('−', '-')
-  const fracTex = `u=\\dfrac{x+2}{x-2}=\\dfrac{${tex(num)}}{${tex(den)}}`
+  const fracTex = `\\dfrac{x+2}{x-2}=\\dfrac{${tex(num)}}{${tex(den)}}`
   const uTex = atPlus ? `${fracTex}\\ \\text{(undefined)}` : `${fracTex}=${tex(ux)}`
   const fTex = defined ? `f(x)=\\log_e(${tex(ux)})=${tex(f(x))}` : 'f(x)\\ \\text{is undefined}'
 
   return (
     <div>
-      <Plane x={[-6, 6]} y={[-4, 4]} xStep={1} yStep={1} height={320}>
+      <Plane
+        x={[-6, 6]}
+        y={[-4, 4]}
+        xStep={1}
+        yStep={1}
+        height={320}
+        xLabels={v => (Math.abs(v) > 6 ? '' : tick(v))}
+      >
         {/* The asymptotes x = −a and x = a */}
         <Line.ThroughPoints point1={[-A, 0]} point2={[-A, 1]} color={C.guide} style="dashed" weight={1.5} />
         <Line.ThroughPoints point1={[A, 0]} point2={[A, 1]} color={C.guide} style="dashed" weight={1.5} />
-        <Label at={[-A, -4]} attach="e" color={C.guide} size={12}>x = −a</Label>
+        <Label at={[-A, 3.6]} attach="w" color={C.guide} size={12}>x = −a</Label>
         <Label at={[A, -4]} attach="e" color={C.guide} size={12}>x = a</Label>
         {/* The inside of the log */}
         <Plot.OfX y={u} domain={[-6, 1.6]} color={C.g} weight={2} style="dashed" />
         <Plot.OfX y={u} domain={[2.45, 6]} color={C.g} weight={2} style="dashed" />
-        <Label at={[4.4, u(4.4)]} attach="ne" gap={8} color={C.g} size={12}>y = u(x)</Label>
+        <Label at={[-5.9, u(-5.9)]} attach="ne" gap={10} color={C.g} size={12}>y = (x+a)/(x−a)</Label>
         {/* f itself */}
         <Plot.OfX y={f} domain={[-6, -2.04]} color={C.f} weight={3} />
         <Plot.OfX y={f} domain={[2.04, 6]} color={C.f} weight={3} />
@@ -72,6 +79,10 @@ export default function Endpoints() {
         </Buttons>
         <Readouts>
           <Readout tex="a = 2" />
+          <Readout
+            color={defined ? C.good : C.bad}
+            tex={`x=${tex(x)}\\ \\text{${defined ? 'is in the domain' : 'is not in the domain'}}`}
+          />
           <Readout color={C.g} tex={uTex} />
           <Readout color={defined ? C.f : C.bad} tex={fTex} />
         </Readouts>

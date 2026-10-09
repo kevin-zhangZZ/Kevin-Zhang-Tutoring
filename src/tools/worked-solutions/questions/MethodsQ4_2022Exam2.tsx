@@ -5,7 +5,9 @@
 // artwork. Answers checked with sympy and against the VCAA examination report. Solution is
 // original.
 // Interactive: e(i) meth-2022e2-q4ei-second-crossing (slide k: h and h⁻¹ only enclose area once
-// h'(0) = 4/k < 1, and there is no upper limit on k).
+// h'(0) = 4/k < 1, and there is no upper limit on k; presets include the report's k = 33).
+// Concise/Detailed review (Oct 2026): reasons trimmed to the step itself; report commentary,
+// traps and checks moved into each row's `more`.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -110,7 +112,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{range } R}" />,
-    reason: <><Katex tex="f" /> is continuous and goes from <Katex tex="-\infty" /> to <Katex tex="+\infty" />, so it takes every real value, as the graph shows. It has no largest or smallest value, so a finite interval such as <Katex tex="(-26.2,26.2)" />, which the report notes as a common error, cannot be right.</>,
+    reason: <><Katex tex="f" /> is continuous and goes from <Katex tex="-\infty" /> to <Katex tex="+\infty" />, so it takes every real value, as the graph shows.</>,
+    more: (
+      <>
+        It has no largest or smallest value, so a finite interval such as{' '}
+        <Katex tex="(-26.2,26.2)" />, which the report notes as a common error, cannot be right. A value like
+        26.2 is what technology shows extremely close to the asymptote (
+        <Katex tex="f\left(\tfrac12-4\times10^{-12}\right)\approx26.2" />), but it is not a limit: the values of{' '}
+        <Katex tex="f" /> keep growing past any number as <Katex tex="x\to\tfrac12^-" />.
+      </>
+    ),
   },
 ]
 
@@ -130,7 +141,16 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(0) = \frac{4}{1-0} = \boxed{4}" />,
-    reason: <>The report notes students who found <Katex tex="f'(x)" /> and then did not substitute <Katex tex="x=0" />. Also, <Katex tex="f(0) = \log_e\tfrac12-\log_e\tfrac12 = 0" /> (the graph passes through <Katex tex="O" />), but <Katex tex="f'(0)" /> is the <em>gradient</em> there, and the graph is clearly rising at <Katex tex="O" />, so <Katex tex="f'(0)=0" /> cannot be right.</>,
+    reason: <>Substitute <Katex tex="x=0" /> into <Katex tex="f'(x)" />. On CAS, <Cas fn="define">Define f(x) = ln(x+1/2) - ln(1/2-x)</Cas>, then <Cas fn="derivative">d/dx(f(x)) | x = 0</Cas> gives 4 directly.</>,
+    more: (
+      <>
+        The report notes students who found <Katex tex="f'(x)" /> and then did not substitute{' '}
+        <Katex tex="x=0" />: the question asks for a number. As for <Katex tex="f'(0)=0" />:{' '}
+        <Katex tex="f(0) = \log_e\tfrac12-\log_e\tfrac12 = 0" /> (the graph passes through <Katex tex="O" />), but{' '}
+        <Katex tex="f'(0)" /> is the <em>gradient</em> there, and the graph is clearly rising at{' '}
+        <Katex tex="O" />, so it cannot be 0.
+      </>
+    ),
   },
 ]
 
@@ -145,7 +165,17 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(-\tfrac12,\ \tfrac12\right)}" />,
-    reason: <><Katex tex="f" /> is strictly increasing on its whole domain, so that is the maximal set. There is no need to remove <Katex tex="x=0" /> or to start the interval at <Katex tex="0" />: <Katex tex="O" /> is not a turning point, since the gradient is 4. The endpoints <Katex tex="\pm\tfrac12" /> cannot be included (square brackets are wrong) because <Katex tex="f" /> is not defined there, and the answer cannot be <Katex tex="R" />, because <Katex tex="f" /> is not defined outside the interval.</>,
+    reason: <><Katex tex="f" /> is strictly increasing on its whole domain, so that is the maximal set. The endpoints <Katex tex="\pm\tfrac12" /> stay out, because <Katex tex="f" /> is not defined there.</>,
+    more: (
+      <>
+        The report lists six wrong answers. There is no need to remove <Katex tex="x=0" /> or to start the
+        interval at <Katex tex="0" />: <Katex tex="O" /> is not a turning point, since the gradient there is 4.
+        Square brackets are wrong because <Katex tex="f" /> is not defined at <Katex tex="\pm\tfrac12" />. And{' '}
+        <Katex tex="(-\infty,\infty)" /> and <Katex tex="R\setminus\left(-\tfrac12,\tfrac12\right)" /> include
+        values of <Katex tex="x" /> outside <Katex tex="\left(-\tfrac12,\tfrac12\right)" />, where{' '}
+        <Katex tex="f" /> is not defined at all.
+      </>
+    ),
   },
 ]
 
@@ -153,6 +183,13 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(-x) = \log_e\!\left(-x+\tfrac12\right)-\log_e\!\left(\tfrac12+x\right)" />,
     reason: <>Replace every <Katex tex="x" /> with <Katex tex="(-x)" />: <Katex tex="x+\tfrac12" /> becomes <Katex tex="-x+\tfrac12" /> and <Katex tex="\tfrac12-x" /> becomes <Katex tex="\tfrac12+x" />.</>,
+    more: (
+      <>
+        The report notes students who substituted <Katex tex="-x" /> incorrectly. Write the brackets in as you
+        go: <Katex tex="\tfrac12-(-x) = \tfrac12+x" />. Dropping them gives <Katex tex="\tfrac12-x" /> back
+        again, and then the sum no longer comes to 0.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \log_e\!\left(\tfrac12-x\right)-\log_e\!\left(x+\tfrac12\right)" />,
@@ -169,18 +206,35 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x)+f(-x) = 0}" />,
-    reason: <>The terms cancel in pairs. This must be shown for every <Katex tex="x" />: substituting one value, which the report notes some students did, proves nothing. If you combine the logarithms instead, you get <Katex tex="\log_e" /> of a product that equals 1, and <Katex tex="\log_e 1 = 0" />; it is the logarithm that is 0, not the product inside it. As required.</>,
+    reason: <>The terms cancel in pairs, for every <Katex tex="x" /> in the domain. As required.</>,
+    more: (
+      <>
+        It has to hold for every <Katex tex="x" />, so substituting one value, which the report notes some
+        students did, proves nothing. If you combine the logarithms instead, you get <Katex tex="\log_e" /> of a
+        product that equals 1, and <Katex tex="\log_e 1 = 0" />. It is the logarithm that is 0, not the product
+        inside it: setting the product equal to 0, as in the line the report quotes, is wrong.
+      </>
+    ),
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{domain of } f^{-1} = \text{range of } f = \boxed{R}" />,
-    reason: <>The domain of an inverse is the range of the original function, found in part a. The question asks for the domain as well as the rule, and the report notes some students did not find it.</>,
+    reason: <>The domain of an inverse is the range of the original function, found in part a.</>,
+    more: <>The question asks for the domain as well as the rule, and the report notes some students did not find it. Here it takes one line, because part a has already done the work.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} x &= \log_e\!\left(y+\tfrac12\right)-\log_e\!\left(\tfrac12-y\right) \\ &= \log_e\!\left(\frac{y+\tfrac12}{\tfrac12-y}\right) \end{aligned}" />,
-    reason: <><Katex tex="f^{-1}" /> is the inverse function, not the reciprocal <Katex tex="\tfrac{1}{f(x)}" />: swap <Katex tex="x" /> and <Katex tex="y" /> in <Katex tex="y=f(x)" /> and solve for <Katex tex="y" />. On CAS, <Cas fn="solve">solve(x = ln(y+1/2) - ln(1/2-y), y)</Cas> does this in one step; by hand, first combine the logarithms using <Katex tex="\log_e a-\log_e b = \log_e\tfrac ab" />.</>,
+    reason: <>Swap <Katex tex="x" /> and <Katex tex="y" /> in <Katex tex="y=f(x)" />, then solve for <Katex tex="y" />. On CAS, <Cas fn="solve">solve(x = ln(y+1/2) - ln(1/2-y), y)</Cas> does this in one step; by hand, first combine the logarithms using <Katex tex="\log_e a-\log_e b = \log_e\tfrac ab" />.</>,
+    more: (
+      <>
+        <Katex tex="f^{-1}" /> is the inverse function, not the reciprocal <Katex tex="\tfrac{1}{f(x)}" />, which
+        the report notes some students found. The report also notes that finding the inverse by hand was time
+        consuming: in the exam, write this swapped equation, use solve and copy down the answer. The algebra in
+        the next three lines is what CAS is doing, so you can see where its answer comes from.
+      </>
+    ),
   },
   {
     working: <Katex display tex="e^x = \frac{y+\tfrac12}{\tfrac12-y} = \frac{2y+1}{1-2y}" />,
@@ -197,7 +251,14 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \frac{e^x-1}{2\left(e^x+1\right)}}" />,
-    reason: <>Dividing by <Katex tex="2\left(e^x+1\right)" />. Both the rule and the domain <Katex tex="R" /> are needed. CAS may give the rule in an equivalent form, such as <Katex tex="\tfrac12\tanh\!\left(\tfrac x2\right)" />. Copy it exactly: <Katex tex="\tanh" /> is not <Katex tex="\tan" />, a slip the report notes.</>,
+    reason: <>Dividing by <Katex tex="2\left(e^x+1\right)" />. With the domain <Katex tex="R" /> from the first line, that answers both parts of the question. CAS may show the rule as <Katex tex="\tfrac12\tanh\!\left(\tfrac x2\right)" />, which is the same function.</>,
+    more: (
+      <>
+        If you copy the CAS form, copy it exactly: <Katex tex="\tanh" /> is not <Katex tex="\tan" />, a slip
+        the report notes. The report also says <Katex tex="\tanh" /> is not part of the study design but that
+        this output is correct, so either form of the rule is fine.
+      </>
+    ),
   },
 ]
 
@@ -208,19 +269,61 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(x) = h^{-1}(x) \iff h(x) = x" />,
-    reason: <><Katex tex="h^{-1}" /> is the reflection of <Katex tex="h" /> in <Katex tex="y=x" />, and because <Katex tex="h" /> is strictly increasing the two graphs can only meet on that line. They always meet at <Katex tex="O" />. An area is enclosed only if they meet somewhere <em>else</em> as well, so the question is when <Katex tex="h(x) = x" /> has a solution other than <Katex tex="x=0" />.</>,
+    reason: <><Katex tex="h^{-1}" /> is the reflection of <Katex tex="h" /> in <Katex tex="y=x" />, and because <Katex tex="h" /> is strictly increasing the two graphs can only meet on that line. They always meet at <Katex tex="O" />, so area is enclosed only if <Katex tex="h(x) = x" /> has a solution <em>other</em> than <Katex tex="x=0" />.</>,
+    more: (
+      <>
+        Why only on <Katex tex="y=x" />: suppose <Katex tex="h(a) = h^{-1}(a) = b" />. Then{' '}
+        <Katex tex="h(a) = b" /> and <Katex tex="h(b) = a" />. If <Katex tex="a<b" />, then{' '}
+        <Katex tex="h(a)<h(b)" /> because <Katex tex="h" /> is increasing, which says <Katex tex="b<a" />,
+        impossible; <Katex tex="a>b" /> fails the same way. So <Katex tex="a=b" />, a point on{' '}
+        <Katex tex="y=x" />. This is why the rule for <Katex tex="h^{-1}" /> is never needed here: comparing{' '}
+        <Katex tex="h" /> with the line <Katex tex="y=x" /> is enough.
+      </>
+    ),
   },
   {
     working: <Katex display tex="k>4: \ h'(0) = \tfrac4k<1" />,
-    reason: <>Just to the right of <Katex tex="O" />, <Katex tex="h" /> rises more slowly than <Katex tex="y=x" />, so it sits below the line. But <Katex tex="h(x)\to+\infty" /> as <Katex tex="x\to\tfrac12^-" />, so it must cross back over <Katex tex="y=x" /> at some <Katex tex="x_0" /> in <Katex tex="\left(0,\tfrac12\right)" />, and, because <Katex tex="h=\tfrac1kf" /> is odd (part c), also at <Katex tex="-x_0" />. Two regions are enclosed, so <Katex tex="A(k)>0" />, however large <Katex tex="k" /> is.</>,
+    reason: <><Katex tex="y=x" /> has gradient 1, so compare <Katex tex="h'(0)" /> with 1. For <Katex tex="k>4" />, <Katex tex="h" /> leaves <Katex tex="O" /> flatter than <Katex tex="y=x" />, so just to the right of <Katex tex="O" /> it is below the line. But <Katex tex="h(x)\to+\infty" /> as <Katex tex="x\to\tfrac12^-" /> (part a), while <Katex tex="y=x" /> stays below <Katex tex="\tfrac12" /> there, so <Katex tex="h" /> must cross <Katex tex="y=x" /> again at some <Katex tex="x_0" /> in <Katex tex="\left(0,\tfrac12\right)" />. Area is enclosed: <Katex tex="A(k)>0" />.</>,
+    more: (
+      <>
+        Because <Katex tex="h=\tfrac1kf" /> is odd (part c), its graph is symmetric about <Katex tex="O" />, so it
+        also crosses at <Katex tex="-x_0" />: just to the left of <Katex tex="O" /> it is above the line, and near{' '}
+        <Katex tex="-\tfrac12" /> it is below it. That gives the two shaded regions in VCAA&apos;s figure.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned} &0<k\le4,\ x\ne0: \\ &h'(x) = \frac{4}{k\left(1-4x^2\right)} > \frac4k \ge 1 \end{aligned}" />,
-    reason: <>For <Katex tex="x\ne0" /> in the domain, <Katex tex="0<1-4x^2<1" />, and dividing by a positive number less than 1 makes a fraction bigger. So <Katex tex="h" /> starts at <Katex tex="O" /> with <Katex tex="y=x" /> and always climbs faster than it: <Katex tex="h(x)>x" /> on <Katex tex="\left(0,\tfrac12\right)" />, and by oddness <Katex tex="h(x)<x" /> on <Katex tex="\left(-\tfrac12,0\right)" />. The only meeting point is <Katex tex="O" />, so <Katex tex="A(k)=0" />. This includes <Katex tex="k=4" />, where <Katex tex="h" /> just touches <Katex tex="y=x" /> at <Katex tex="O" />.</>,
+    reason: <>For <Katex tex="x\ne0" /> in the domain, <Katex tex="0<1-4x^2<1" />, so <Katex tex="h'(x)" /> is bigger than <Katex tex="\tfrac4k" />. Starting together at <Katex tex="O" />, <Katex tex="h" /> climbs faster than <Katex tex="y=x" />, so <Katex tex="h(x)>x" /> on <Katex tex="\left(0,\tfrac12\right)" />, and, since <Katex tex="h=\tfrac1k f" /> is odd (part c), <Katex tex="h(x)<x" /> on <Katex tex="\left(-\tfrac12,0\right)" />. They meet only at <Katex tex="O" />, so <Katex tex="A(k)=0" />, including at <Katex tex="k=4" />.</>,
+    more: (
+      <>
+        Dividing <Katex tex="\tfrac4k" /> by a positive number less than 1 makes it bigger, which is where{' '}
+        <Katex tex="h'(x) > \tfrac4k" /> comes from. At <Katex tex="k=4" />, <Katex tex="h'(0)=1" />, so{' '}
+        <Katex tex="y=x" /> is the tangent to <Katex tex="h" /> at <Katex tex="O" />, but <Katex tex="h" />{' '}
+        crosses it there (<Katex tex="O" /> is a point of inflection): below the line on the left, above it on
+        the right. <Katex tex="O" /> is still the only meeting point, so no region is enclosed,{' '}
+        <Katex tex="k=4" /> is excluded and the answer is a strict inequality.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{k > 4}" />,
-    reason: <>So the answer is not every <Katex tex="k>0" />, and there is no upper limit on <Katex tex="k" />: as <Katex tex="k" /> grows, <Katex tex="x_0" /> gets very close to <Katex tex="\tfrac12" /> but the crossing never disappears.</>,
+    reason: <>Combining the two cases. There is no upper limit on <Katex tex="k" />: as <Katex tex="k" /> grows, <Katex tex="x_0" /> moves closer to <Katex tex="\tfrac12" />, but <Katex tex="h" /> still reaches <Katex tex="+\infty" />, so the crossing never disappears.</>,
+    more: (
+      <>
+        <Katex tex="k>0" />, one of the report&apos;s incorrect responses, just repeats the condition in the
+        question: it assumes the curves always enclose area, but for <Katex tex="0<k\le4" /> they meet only at{' '}
+        <Katex tex="O" />. <Katex tex="4<k<33" /> gets the lower end right but adds a false upper limit. On a
+        graph the crossing can seem to vanish for large <Katex tex="k" />: at <Katex tex="k=33" />,{' '}
+        <Katex tex="x_0\approx0.49999993" />, so close to <Katex tex="\tfrac12" /> that a graph can no longer
+        separate the crossing from the asymptote. The report&apos;s general comments say the answers to 4e could
+        easily be found with a slider: graph <Katex tex="y=h(x)" /> and <Katex tex="y=x" /> on CAS with a slider
+        for <Katex tex="k" />, and the area appears just after <Katex tex="k=4" />. For large <Katex tex="k" />,
+        trust the argument above over the screen. The
+        diagram below has such a slider: nothing is enclosed up to <Katex tex="k=4" />, and the shaded area
+        never vanishes as <Katex tex="k" /> grows.
+      </>
+    ),
   },
 ]
 

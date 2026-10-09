@@ -27,11 +27,38 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{one of each}) = 2\times\frac{3x}{(3+x)(2+x)}" />,
-    reason: <>"A pen of each colour" can happen in either order, so add the two branches of the tree.</>,
+    reason: <>"A pen of each colour" can happen in either order, red then black or black then red, so add the two probabilities. They are equal, so the sum is twice one of them.</>,
+    more: (
+      <>
+        On a tree diagram, RB and BR are two separate branches that both end in one pen of each colour, and the
+        probabilities of separate branches add. The question does not say which colour comes first, but the pens are
+        still drawn one after the other, so both orders count.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{6x}{(2+x)(3+x)}}" />,
-    reason: <>Matches option <b>A</b>. Option B counts only one order (red then black). Option C is just the second-draw factor, the chance of black after a red. A quick check with one black pen (<Katex tex="x=1" />): one of each means the black pen is one of the two drawn, which has probability <Katex tex="1-\tfrac34\times\tfrac23=\tfrac12" />, and only option A gives <Katex tex="\tfrac{6}{3\times4}=\tfrac12" />. (Checking with <Katex tex="x=3" /> would not separate A from C: both give <Katex tex="0.6" />.)</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
+      <>
+        <p>
+          Option B counts only one order (red then black). Option C is just the second-draw factor, the chance of
+          black after a red. Options D and E both have <Katex tex="3+x" /> on top, as if the two draw
+          probabilities <Katex tex="\tfrac{3}{3+x}" /> and <Katex tex="\tfrac{x}{2+x}" /> had been combined by
+          adding their numerators (D then multiplies the denominators, E adds them). That is not how fractions
+          combine, and the probabilities of successive draws multiply anyway. D cancels to{' '}
+          <Katex tex="\tfrac{1}{2+x}" />.
+        </p>
+        <p>
+          A quick check with one black pen (<Katex tex="x=1" />): one of each then means the black pen is drawn, and
+          the only way to miss it is two reds, so the probability is{' '}
+          <Katex tex="1-\tfrac34\times\tfrac23=\tfrac12" />. Only option A gives{' '}
+          <Katex tex="\tfrac{6}{3\times4}=\tfrac12" />: B gives <Katex tex="\tfrac14" />, C and D give{' '}
+          <Katex tex="\tfrac13" />, and E gives <Katex tex="\tfrac47" />. (Checking with <Katex tex="x=3" /> would not separate A from
+          C: both give <Katex tex="0.6" />.)
+        </p>
+      </>
+    ),
   },
 ]
 

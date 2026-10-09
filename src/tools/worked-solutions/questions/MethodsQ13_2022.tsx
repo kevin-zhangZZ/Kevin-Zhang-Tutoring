@@ -6,6 +6,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
@@ -32,6 +33,14 @@ const ROWS: WorkingRow[] = [
       <>
         A log is only defined for a positive input: <Katex tex="\log_e(0)" /> and the log of a negative number are
         both undefined. So the maximal domain is every <Katex tex="x" /> that makes the fraction strictly positive.
+      </>
+    ),
+    more: (
+      <>
+        Picture the graph of <Katex tex="y=\log_e(x)" />: it exists only to the right of its asymptote{' '}
+        <Katex tex="x=0" /> and never touches it. On CAS,{' '}
+        <Cas fn="solve">solve((x+a)/(x-a) &gt; 0, x) | a &gt; 0</Cas> gives the same intervals; the{' '}
+        <Katex tex="\mid a>0" /> tells the calculator that <Katex tex="a" /> is positive.
       </>
     ),
   },
@@ -63,6 +72,14 @@ const ROWS: WorkingRow[] = [
         positive over negative is negative.
       </>
     ),
+    more: (
+      <>
+        A quicker way to the same signs: <Katex tex="\dfrac{x+a}{x-a}" /> and <Katex tex="(x+a)(x-a)" /> always have
+        the same sign (for <Katex tex="x\neq a" />), and <Katex tex="y=(x+a)(x-a)" /> is an upright parabola with{' '}
+        <Katex tex="x" />-intercepts <Katex tex="\pm a" />. It is positive outside its intercepts and negative between
+        them.
+      </>
+    ),
   },
   {
     working: (
@@ -75,7 +92,16 @@ const ROWS: WorkingRow[] = [
       <>
         Check the two endpoints separately. At <Katex tex="x=-a" /> the fraction is <Katex tex="0" />, and{' '}
         <Katex tex="\log_e(0)" /> is undefined. At <Katex tex="x=a" /> the denominator is <Katex tex="0" />, so the
-        fraction is undefined. Neither is in the domain: the graph of <Katex tex="f" /> has a vertical asymptote at each.
+        fraction is undefined. So neither endpoint is in the domain.
+      </>
+    ),
+    more: (
+      <>
+        On the graph, both endpoints are vertical asymptotes. As <Katex tex="x" /> approaches <Katex tex="-a" /> from
+        the left, the fraction shrinks towards <Katex tex="0" /> and <Katex tex="f(x)\to-\infty" />. As{' '}
+        <Katex tex="x" /> approaches <Katex tex="a" /> from the right, the fraction grows without bound and{' '}
+        <Katex tex="f(x)\to\infty" />. The graph gets ever closer to <Katex tex="x=\pm a" /> but never touches
+        either line. The diagram below lets you slide <Katex tex="x" /> up to each endpoint and watch this.
       </>
     ),
   },
@@ -83,10 +109,19 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{(-\infty,-a)\cup(a,\infty) = R\setminus[-a,a]}" />,
     reason: (
       <>
-        Matches option <b>C</b>. The square brackets in <Katex tex="[-a,a]" /> remove the endpoints as well. Option D,{' '}
-        <Katex tex="R\setminus(-a,a)" />, keeps <Katex tex="x=\pm a" />, where <Katex tex="f" /> is undefined. Option
-        B, <Katex tex="(-a,a)" />, is the interval where the fraction is negative: where <Katex tex="f" /> does{' '}
+        Matches option <b>C</b>: the square brackets mean <Katex tex="\pm a" /> are removed too.
+      </>
+    ),
+    more: (
+      <>
+        In <Katex tex="R\setminus S" />, the brackets belong to the set <Katex tex="S" /> being <em>removed</em>, not
+        to the domain that is left. The endpoints <Katex tex="\pm a" /> must go, so they must be inside the removed
+        set: square brackets, <Katex tex="[-a,a]" />. Option D, <Katex tex="R\setminus(-a,a)" />, removes only the
+        numbers strictly between <Katex tex="-a" /> and <Katex tex="a" />, so it keeps <Katex tex="x=\pm a" />, where{' '}
+        <Katex tex="f" /> is undefined. It was the most popular answer (40%), ahead of C. Option B,{' '}
+        <Katex tex="(-a,a)" />, is the interval where the fraction is negative: where <Katex tex="f" /> does{' '}
         <em>not</em> exist. Option A, <Katex tex="[-a,a]" />, is the set that has to be removed, not the domain.
+        Option E, <Katex tex="R" />, ignores the restriction altogether.
       </>
     ),
   },

@@ -4,6 +4,9 @@
 // own artwork. Answers checked with sympy and against the VCAA examination report.
 // Solution is original. Part e has an interactive widget (interactives/meth-2022e2-q1e-min-area):
 // slide the tangent point x = −b and watch the shaded area A(b) fall to its minimum at b = 2a².
+// Concise/Detailed pass (Oct 2026): each row's reason keeps only what is needed to follow it;
+// report slips, checks and the longer explanation for part e live in that row's `more`. Final review (9 Oct):
+// d.ii now notes the 2-mark working requirement; e reasons carry the a-is-fixed and sign-of-dA/db steps.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -92,11 +95,12 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{x^2}{12} \implies \text{turning point } (0,\ 0)" />,
-    reason: <>The rule is <Katex tex="x^2" /> scaled by <Katex tex="\tfrac{1}{12}" />, with no horizontal or vertical translation, so the turning point stays at the origin, as the diagram shows. A parabola&apos;s axis of symmetry is the vertical line through its turning point.</>,
+    reason: <>The rule is <Katex tex="x^2" /> scaled by <Katex tex="\tfrac{1}{12}" />, with no translation, so the turning point is the origin. A parabola&apos;s axis of symmetry is the vertical line through its turning point.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 0}" />,
-    reason: <>An <em>equation</em> of a line is required. The report&apos;s common errors: <Katex tex="y=0" /> is the horizontal axis; 0 and <Katex tex="(0,0)" /> are not equations; &ldquo;the <Katex tex="y" />-axis&rdquo; names the right line but is not an equation.</>,
+    reason: <>The vertical line through <Katex tex="(0,0)" />. Give it as an <em>equation</em> of a line, not a number or a point.</>,
+    more: <>The report&apos;s most common errors: <Katex tex="y=0" /> is the horizontal axis (the <Katex tex="x" />-axis), not the axis of symmetry; 0 and <Katex tex="(0,0)" /> are a number and a point, not equations; &ldquo;the <Katex tex="y" />-axis&rdquo; names the right line but is not an equation; and <Katex tex="-\tfrac{b}{2a}=0" /> finds the turning point&apos;s <Katex tex="x" />-value but stops before writing the line it gives, <Katex tex="x=0" />.</>,
   },
 ]
 
@@ -114,11 +118,13 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = -2 \implies \frac{x}{6} = -2 \implies x = -12" />,
-    reason: <>The derivative gives the tangent&apos;s gradient at each <Katex tex="x" />, so to find <em>where</em> the gradient is <Katex tex="-2" />, solve <Katex tex="f'(x)=-2" />. Evaluating <Katex tex="f'(-2)" /> instead gives the gradient at <Katex tex="x=-2" />, a different question; the report notes several students did that.</>,
+    reason: <>The derivative gives the tangent&apos;s gradient at each <Katex tex="x" />, so to find <em>where</em> the gradient is <Katex tex="-2" />, solve <Katex tex="f'(x)=-2" />.</>,
+    more: <>The report notes several students found <Katex tex="f'(-2)" /> instead. That is the gradient <em>at</em> <Katex tex="x=-2" /> (it equals <Katex tex="-\tfrac13" />), a different question: here the gradient is known and the <Katex tex="x" />-value is the unknown.</>,
   },
   {
     working: <Katex display tex="f(-12) = \frac{144}{12} = 12 \implies M(-12,\ 12)" />,
-    reason: <>Substitute back into <Katex tex="f" /> for the <Katex tex="y" />-coordinate. <Katex tex="x=-12" /> is negative, matching <Katex tex="M" /> on the left branch in the diagram.</>,
+    reason: <>Substitute back into <Katex tex="f" /> for the <Katex tex="y" />-coordinate.</>,
+    more: <>Check: <Katex tex="x=-12" /> is negative, matching <Katex tex="M" /> on the left branch in the diagram.</>,
   },
   {
     working: <Katex display tex="y-12 = -2\bigl(x-(-12)\bigr)" />,
@@ -126,7 +132,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = -2x-12}" />,
-    reason: <>Expand: <Katex tex="y = -2x-24+12" />. Write an equation (<Katex tex="y = \ldots" />), not just the expression <Katex tex="-2x-12" />; the report notes some students wrote only the expression.</>,
+    reason: <>Expand: <Katex tex="y = -2x-24+12" />. Give an equation (<Katex tex="y = \ldots" />), not just the expression <Katex tex="-2x-12" />.</>,
+    more: <>The report notes some students wrote only the expression, and that students who did not use their technology often made algebraic errors. Its general comments add that the tangent and perpendicular lines in parts c, d.i and e could be found directly on CAS, with no need for by-hand steps. Working by hand, check the line passes through <Katex tex="M" />: at <Katex tex="x=-12" />, <Katex tex="y=24-12=12" /> ✓.</>,
   },
 ]
 
@@ -141,7 +148,8 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = \frac{x}{2}+18}" />,
-    reason: <>Add 12 to both sides: <Katex tex="6+12=18" />. Check: at <Katex tex="x=-12" />, <Katex tex="y=-6+18=12" /> ✓. The report&apos;s most common incorrect answer, <Katex tex="y=\tfrac x2+12" />, gives <Katex tex="y=6" /> at <Katex tex="x=-12" />, so it misses <Katex tex="M" />.</>,
+    reason: <>Add 12 to both sides: <Katex tex="6+12=18" />. Give the answer as an equation.</>,
+    more: <>Check it passes through <Katex tex="M" />: at <Katex tex="x=-12" />, <Katex tex="y=-6+18=12" /> ✓. The report&apos;s most common incorrect answer, <Katex tex="y=\tfrac x2+12" />, fails this check (it gives <Katex tex="y=6" /> at <Katex tex="x=-12" />), so it misses <Katex tex="M" />. As in part c, the report notes that students who did not use their technology tended to make algebraic errors; this one-line substitution catches them.</>,
   },
 ]
 
@@ -156,11 +164,12 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A = \int_{-12}^{18}\left(\frac{x}{2}+18-\frac{x^2}{12}\right)dx" />,
-    reason: <>Line minus curve, because the line is above the parabola between <Katex tex="M" /> and <Katex tex="N" /> (at <Katex tex="x=0" />: line 18, parabola 0). Use the perpendicular line, not the tangent: it is the one that bounds the region. Subtracting the other way gives <Katex tex="-375" />.</>,
+    reason: <>Line minus curve, because the line is above the parabola between <Katex tex="M" /> and <Katex tex="N" /> (at <Katex tex="x=0" />: line 18, parabola 0).</>,
+    more: <>The report notes three slips here. Some students used the tangent line: it is the perpendicular line that, with the parabola, encloses this region. Some subtracted the line from <Katex tex="f(x)" />, which gives <Katex tex="-375" />; an area cannot be negative, so the order is upper minus lower. Others had incorrect terminals: they are the two <Katex tex="x" />-values where the line meets the parabola, <Katex tex="-12" /> and <Katex tex="18" />. On CAS, this definite integral gives 375 directly, and the by-hand steps below are only a check. But this part is worth 2 marks, so write the integral, with its terminals, as your working: the report&apos;s general comments note that some students gave only the answer here.</>,
   },
   {
     working: <Katex display tex="= \left[\frac{x^2}{4}+18x-\frac{x^3}{36}\right]_{-12}^{18}" />,
-    reason: <>Antidifferentiate term by term (on CAS, the definite integral gives the value directly).</>,
+    reason: <>Antidifferentiate term by term.</>,
   },
   {
     working: (
@@ -169,7 +178,7 @@ const ROWS_DII: WorkingRow[] = [
         <Katex display tex="= 243-(-132)" />
       </>
     ),
-    reason: <>Upper terminal minus lower terminal.</>,
+    reason: <>Substitute <Katex tex="x=18" />, then subtract the value at <Katex tex="x=-12" />. Watch the sign: <Katex tex="-\tfrac{(-12)^3}{36} = +48" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = 375}" />,
@@ -180,7 +189,8 @@ const ROWS_DII: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = \frac{x}{2a^2} \implies g'(-b) = -\frac{b}{2a^2}" />,
-    reason: <>Plan: the shaded area depends on where the tangent touches (<Katex tex="x=-b" />), so write the area as a function <Katex tex="A(b)" /> and minimise it. First, the same steps as parts c and d.i, with letters: the tangent&apos;s gradient at <Katex tex="x=-b" />. Here <Katex tex="a" /> is a fixed positive constant.</>,
+    reason: <>Plan: <Katex tex="a" /> is a fixed constant, so the shaded area depends only on where the tangent touches (<Katex tex="x=-b" />). Find the area as a function <Katex tex="A(b)" />, then solve <Katex tex="\tfrac{dA}{db}=0" />. Start as in part c: the tangent&apos;s gradient at <Katex tex="x=-b" />.</>,
+    more: <>Why <Katex tex="b" /> and not <Katex tex="a" />? The two letters do different jobs. <Katex tex="a" /> decides which parabola <Katex tex="g" /> is (parts a–d were the case <Katex tex="4a^2=12" />) and stays the same throughout. <Katex tex="b" /> is the one that varies: it says where on the left branch the tangent touches. Moving <Katex tex="b" /> moves the tangent, the perpendicular line and the point where that line meets <Katex tex="g" /> again, so the shaded area changes with <Katex tex="b" />; it is a function of <Katex tex="b" /> alone. That is why the working repeats parts c, d.i and d.ii with letters, then minimises <Katex tex="A(b)" /> like any other optimisation question.</>,
   },
   {
     working: <Katex display tex="m_\perp = \frac{2a^2}{b}, \quad g(-b) = \frac{b^2}{4a^2}" />,
@@ -193,7 +203,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="= \frac{2a^2}{b}x+2a^2+\frac{b^2}{4a^2}" />
       </>
     ),
-    reason: <>Point–gradient form. The report notes many students were unable to find this line. Check against part d: <Katex tex="4a^2 = 12" /> (so <Katex tex="a^2=3" />) and <Katex tex="b=12" /> (so <Katex tex="M" /> is at <Katex tex="x=-12" />) give <Katex tex="y=\tfrac x2+6+12=\tfrac x2+18" />, the part d.i answer ✓.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />, as in part d.i. Call this perpendicular line <Katex tex="y_n" />.</>,
+    more: <>The report notes many students were unable to find this line. It is part d.i with letters: the gradient is the negative reciprocal of <Katex tex="g'(-b)" />, and the line passes through the point of tangency <Katex tex="(-b,\ g(-b))" />. (The <Katex tex="n" /> stands for <em>normal</em>, the name for the line perpendicular to a tangent at its point of contact.) Check against part d: <Katex tex="4a^2 = 12" /> (so <Katex tex="a^2=3" />) and <Katex tex="b=12" /> (so the point is <Katex tex="M" />, at <Katex tex="x=-12" />) give <Katex tex="y=\tfrac x2+6+12=\tfrac x2+18" />, the part d.i answer ✓.</>,
   },
   {
     working: (
@@ -202,7 +213,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="x = -b \text{ or } x = \frac{8a^4}{b}+b" />
       </>
     ),
-    reason: <>Where the line meets the parabola. <Katex tex="x=-b" /> is the point of tangency (the line passes through it), so the other solution is the right-hand terminal. Copy CAS output carefully: the report flags transcription errors in this part.</>,
+    reason: <><Cas fn="define">Define</Cas> <Katex tex="g(x)" /> and <Katex tex="y_n(x)" /> on CAS, then solve for where the line meets the parabola. <Katex tex="x=-b" /> is the point of tangency, so the other solution is the right-hand terminal.</>,
+    more: <>The report&apos;s general comments flag transcription errors in this question, so copy CAS output carefully. The report writes this terminal as <Katex tex="\tfrac{8a^4+b^2}{b}" />, an equivalent form.</>,
   },
   {
     working: (
@@ -211,7 +223,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="= \frac{64a^{12}+48a^8b^2+12a^4b^4+b^6}{3a^2b^3}" />
       </>
     ),
-    reason: <>Line minus parabola, because the line is on top across the shaded region. The report notes some students integrated <Katex tex="y_n" /> alone, which also counts the area under the parabola, and others had incorrect terminals. CAS may display an equivalent form such as <Katex tex="\tfrac{(4a^4+b^2)^3}{3a^2b^3}" />.</>,
+    reason: <>Line minus parabola, because the line is on top across the shaded region. CAS may show the result as <Katex tex="\tfrac{(4a^4+b^2)^3}{3a^2b^3}" />, an equivalent form.</>,
+    more: <>The report notes some students did not subtract <Katex tex="g(x)" /> and integrated <Katex tex="y_n" /> alone: that also counts the area under the parabola, down to the <Katex tex="x" />-axis, which is not shaded. Others had incorrect terminals: they are the two solutions from the previous row, <Katex tex="-b" /> and <Katex tex="\tfrac{8a^4}{b}+b" />.</>,
   },
   {
     working: (
@@ -220,7 +233,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="\frac{dA}{db} = \frac{(b^2-4a^4)(b^2+4a^4)^2}{a^2b^4}" />
       </>
     ),
-    reason: <>A minimum of <Katex tex="A" /> occurs where <Katex tex="\tfrac{dA}{db}=0" />. Define <Katex tex="A(b)" /> on CAS, then differentiate with respect to <Katex tex="b" />, treating <Katex tex="a" /> as a constant (factorise the result to see its sign).</>,
+    reason: <>A minimum of <Katex tex="A" /> occurs where <Katex tex="\tfrac{dA}{db}=0" />. Define <Katex tex="A(b)" /> on CAS and differentiate with respect to <Katex tex="b" />, treating <Katex tex="a" /> as a constant.</>,
+    more: <>Factorising the derivative (CAS can do this) shows its sign, which the next row uses to confirm the turning point is a minimum.</>,
   },
   {
     working: (
@@ -229,11 +243,13 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="b = 2a^2" />
       </>
     ),
-    reason: <>Without the restriction CAS gives <Katex tex="b=\pm 2a^2" />; the question says <Katex tex="b>0" />, which rules out <Katex tex="b=-2a^2" />, a common incorrect answer in the report. Check it is a minimum: <Katex tex="(b^2+4a^4)^2" /> and <Katex tex="a^2b^4" /> are positive, so the sign of <Katex tex="\tfrac{dA}{db}" /> is the sign of <Katex tex="b^2-4a^4" />: negative for <Katex tex="0<b<2a^2" /> and positive for <Katex tex="b>2a^2" />. The area decreases then increases, so it is a minimum.</>,
+    reason: <><Katex tex="b^2-4a^4=0" /> gives <Katex tex="b=\pm 2a^2" />; reject <Katex tex="b=-2a^2" />, since <Katex tex="b>0" />. The other factors of <Katex tex="\tfrac{dA}{db}" /> are positive, so its sign is that of <Katex tex="b^2-4a^4" />: negative before <Katex tex="b=2a^2" /> and positive after, so this is a minimum.</>,
+    more: <>The report lists <Katex tex="b=-2a^2" /> as a common incorrect answer: it ignores the condition <Katex tex="b>0" /> in the question. Adding <Katex tex="\mid b>0" /> to the solve command makes CAS do this rejection for you. The other factors, <Katex tex="(b^2+4a^4)^2" /> and <Katex tex="a^2b^4" />, are both positive because <Katex tex="a>0" /> and <Katex tex="b>0" />. For <Katex tex="0<b<2a^2" />, <Katex tex="b^2<4a^4" />, so <Katex tex="\tfrac{dA}{db}<0" /> and the area is decreasing; for <Katex tex="b>2a^2" /> it is increasing. So <Katex tex="b=2a^2" /> gives the smallest area. The interactive below draws this for <Katex tex="a=1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{b = 2a^2}" />,
-    reason: <>The minimum shaded area is then <Katex tex="A(2a^2) = \tfrac{64a^4}{3}" /> (not asked).</>,
+    reason: <>In terms of <Katex tex="a" />, as the question asks.</>,
+    more: <>The minimum shaded area is then <Katex tex="A(2a^2) = \tfrac{64a^4}{3}" /> (not asked).</>,
   },
 ]
 

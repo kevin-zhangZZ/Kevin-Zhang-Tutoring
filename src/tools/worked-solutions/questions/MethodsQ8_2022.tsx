@@ -15,6 +15,7 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\int_0^b f(x)\,dx &= \int_0^a f(x)\,dx \\ &\quad +\int_a^b f(x)\,dx\end{aligned}" />,
     reason: <>Since <Katex tex="0<a<b" />, the interval from 0 to <Katex tex="b" /> splits at <Katex tex="a" /> into two pieces, and the integral over the whole interval is the sum of the integrals over the two pieces.</>,
+    more: <>A definite integral adds up signed area: area above the <Katex tex="x" />-axis counts as positive and area below counts as negative. So the signed area from 0 to <Katex tex="b" /> is the signed area from 0 to <Katex tex="a" /> plus the signed area from <Katex tex="a" /> to <Katex tex="b" />. The value <Katex tex="-4" /> just says that, between 0 and <Katex tex="a" />, there is more area below the axis than above it.</>,
   },
   {
     working: <Katex display tex="10 = -4+\int_a^b f(x)\,dx" />,
@@ -22,11 +23,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_a^b f(x)\,dx = 10-(-4)" />,
-    reason: <>Subtracting <Katex tex="-4" /> from both sides. Subtracting a negative makes the answer <em>larger</em> than 10: the integral from 0 to <Katex tex="a" /> is negative, so the piece from <Katex tex="a" /> to <Katex tex="b" /> must be more than 10 to bring the total back up to 10.</>,
+    reason: <>Subtracting <Katex tex="-4" /> from both sides; subtracting a negative adds 4.</>,
+    more: <>So the answer is <em>larger</em> than 10, which makes sense: the integral from 0 to <Katex tex="a" /> is negative, so the piece from <Katex tex="a" /> to <Katex tex="b" /> must be more than 10 to bring the total back up to 10.</>,
   },
   {
     working: <Katex display tex="\boxed{14}" />,
-    reason: <>Matches option <b>E</b>. Check: <Katex tex="-4+14=10" />. Options B and D are just the two given integrals, the one from 0 to <Katex tex="a" /> and the one from 0 to <Katex tex="b" />.</>,
+    reason: <>Matches option <b>E</b>. Check: <Katex tex="-4+14=10" />.</>,
+    more: <>The same check rules out every other option. A, <Katex tex="-6" /> (the most common wrong answer), gives <Katex tex="-4+(-6)=-10" />, not 10. Answers like this come from mishandling the sign of <Katex tex="-4" />; writing the split equation first and substituting <Katex tex="-4" /> into it, as in the working, keeps the signs straight. B and D are just the two given integrals (the one from 0 to <Katex tex="a" /> and the one from 0 to <Katex tex="b" />), and C, 0, would leave the total at <Katex tex="-4" />.</>,
   },
 ]
 

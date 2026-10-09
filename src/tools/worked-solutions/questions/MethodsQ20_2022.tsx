@@ -5,7 +5,12 @@
 // Checked with scipy: d > 40 ⇔ 26.565° < θ < 63.435° (for 0° < θ < 90°), and
 // Pr(26.565 < θ < 63.435) = 0.96947 with σ = 8 (A). With σ = 64 (the variance used as the standard
 // deviation) the same interval gives 0.22645 (C). Pr(θ < 26.565) = 0.02684 (E). B (0.937) and D
-// (0.149) could not be traced to a single slip, so they are not explained.
+// (0.149) could not be traced to a single slip, so they are not explained. 50 sin 140° ≈ 32.1 m.
+// Final review (Oct 2026): row 1 no longer repeats row 6's σ warning; row 3 says why 0°–90° matters;
+// the final `more` now mentions B without claiming a cause; the widget's 40 m Notice no longer repeats
+// the two-cut-off and option-E sentences from the `more` text.
+// Oct 2026 Concise/Detailed pass: the 5-SD note, the "too low or too high" kick picture and the
+// option-by-option check moved into rows' `more`; Concise final row is just "Matches option A".
 // Interactive: meth-2022-mcq20-angle-band (d against θ above, the bell for θ below with the band
 // shaded; a distance slider and a σ = 64 toggle for option C).
 
@@ -37,7 +42,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\theta \sim \mathrm{N}(42,\,8^2)" />,
-    reason: <>The launch angle in degrees: mean <Katex tex="42" />, standard deviation <Katex tex="8" />. The variance is <Katex tex="8^2=64" />, but CAS asks for the standard deviation, <Katex tex="8" />.</>,
+    reason: <>The launch angle in degrees: mean <Katex tex="42" />, standard deviation <Katex tex="8" />, so the variance is <Katex tex="8^2=64" />.</>,
   },
   {
     working: <Katex display tex="50\sin(2\theta) > 40 \iff \sin(2\theta) > 0.8" />,
@@ -45,7 +50,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0^\circ < \theta < 90^\circ \implies 0^\circ < 2\theta < 180^\circ" />,
-    reason: <>An angle of elevation for a kick is between <Katex tex="0^\circ" /> and <Katex tex="90^\circ" />. (The normal model puts essentially no probability outside this range: <Katex tex="0^\circ" /> and <Katex tex="90^\circ" /> are more than 5 standard deviations from <Katex tex="42^\circ" />.)</>,
+    reason: <>An angle of elevation for a kick is between <Katex tex="0^\circ" /> and <Katex tex="90^\circ" />, so <Katex tex="2\theta" /> is between <Katex tex="0^\circ" /> and <Katex tex="180^\circ" />. That range decides which solutions of <Katex tex="\sin(2\theta)=0.8" /> to use.</>,
+    more: <>The normal model allows any angle in principle, but it puts essentially no probability outside this range: <Katex tex="0^\circ" /> and <Katex tex="90^\circ" /> are more than 5 standard deviations from <Katex tex="42^\circ" />. So restricting to <Katex tex="0^\circ" /> to <Katex tex="90^\circ" /> doesn&apos;t change the answer.</>,
   },
   {
     working: (
@@ -54,7 +60,16 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="53.130^\circ < 2\theta < 126.870^\circ" />
       </>
     ),
-    reason: <>On <Katex tex="0^\circ" /> to <Katex tex="180^\circ" />, sine rises to <Katex tex="1" /> at <Katex tex="90^\circ" /> and falls again, symmetrically. So it is above <Katex tex="0.8" /> on a middle interval, between the two angles where it equals <Katex tex="0.8" />. A kick that is too low <b>or</b> too high falls short, so there are two cut-offs. Use degree mode.</>,
+    reason: <>On <Katex tex="0^\circ" /> to <Katex tex="180^\circ" />, sine rises to <Katex tex="1" /> at <Katex tex="90^\circ" /> and falls again, symmetrically. So it is above <Katex tex="0.8" /> on a middle interval, between the two angles where it equals <Katex tex="0.8" />. Use degree mode.</>,
+    more: (
+      <>
+        In kick terms: too low <b>or</b> too high and the ball falls short, so &ldquo;more than 40 m&rdquo; has
+        two cut-offs, not one. Keeping only the lower one, <Katex tex="\theta>26.565^\circ" />, would also count
+        steep kicks such as <Katex tex="70^\circ" />, which travel <Katex tex="50\sin140^\circ\approx32" /> m.
+        Sketching <Katex tex="d=50\sin(2\theta)" /> against the line <Katex tex="d=40" />, as the report
+        suggests, shows the middle band at once.
+      </>
+    ),
   },
   {
     working: <Katex display tex="26.565^\circ < \theta < 63.435^\circ" />,
@@ -71,7 +86,21 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.969}" />,
-    reason: <>Matches option <b>A</b>. Sanity check: the interval reaches about <Katex tex="1.9" /> standard deviations below the mean and <Katex tex="2.7" /> above it, so almost all of the probability is inside and the answer must be close to <Katex tex="1" />. Option <b>C</b>, <Katex tex="0.226" />, is what normCdf gives with <Katex tex="\sigma=64" />, the variance entered as the standard deviation. Option <b>E</b>, <Katex tex="0.027" />, is <Katex tex="\Pr(\theta<26.565)" />, the chance of kicking too low.</>,
+    reason: <>Matches option <b>A</b>: the mean, <Katex tex="42^\circ" />, is well inside the interval, so the answer is close to <Katex tex="1" />.</>,
+    more: (
+      <>
+        Sanity check: the interval reaches about <Katex tex="1.9" /> standard deviations below the mean and{' '}
+        <Katex tex="2.7" /> above it, so only two thin tails are outside. Option <b>C</b>,{' '}
+        <Katex tex="0.226" />, is what normCdf gives with <Katex tex="\sigma=64" />, the variance entered as the
+        standard deviation. Option <b>E</b>, <Katex tex="0.027" />, is <Katex tex="\Pr(\theta<26.565)" />, the
+        chance of kicking too low: the left tail instead of the middle. Option <b>B</b>, <Katex tex="0.937" />,
+        is also close to <Katex tex="1" />, so the sanity check alone can&apos;t rule it out, and it doesn&apos;t
+        come from any one standard slip. Only the calculation separates A from B: if you got a value near{' '}
+        <Katex tex="0.969" /> but not equal to it, re-enter both ends of the interval and{' '}
+        <Katex tex="\sigma=8" />. The interactive below shows the band, both tails, and what the bell looks
+        like with <Katex tex="\sigma=64" />.
+      </>
+    ),
   },
 ]
 

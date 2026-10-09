@@ -2,10 +2,11 @@
 // enclosed when they meet a second time. Slide k: for k ≤ 4, h'(0) = 4/k ≥ 1 and h stays above
 // y = x on (0, ½), so O is the only meeting point and A(k) = 0. For k > 4, h leaves O flatter than
 // y = x but still shoots up to +∞ at x = ½, so it must cross the line again at ±x₀ — two regions.
-// Large k only squeezes x₀ towards ½; it never removes the crossing (no upper limit on k).
+// Large k only squeezes x₀ towards ½; it never removes the crossing (no upper limit on k). The
+// slider runs to 40 and a k = 33 preset tests the report's "4 < k < 33": there ½ − x₀ ≈ 7×10⁻⁸.
 
 import { useState } from 'react'
-import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, clamp } from './kit'
+import { ActionButton, Buttons, C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Region, Slider, clamp } from './kit'
 
 const f = (x: number) => Math.log(x + 0.5) - Math.log(0.5 - x)
 // Antiderivative of f: (x + ½)ln(x + ½) + (½ − x)ln(½ − x).
@@ -23,6 +24,14 @@ function crossing(k: number): number {
   }
   return (lo + hi) / 2
 }
+
+/** TeX for a small positive number in scientific notation, e.g. 7.2 × 10⁻³. */
+function sci(v: number): string {
+  const e = Math.floor(Math.log10(v))
+  return `${(v / 10 ** e).toFixed(1)} \\times 10^{${e}}`
+}
+
+const PRESETS = [3, 4, 5, 33]
 
 export default function SecondCrossing() {
   const [k, setK] = useState(6)
@@ -52,17 +61,17 @@ export default function SecondCrossing() {
   } else if (atFour) {
     notice = (
       <Notice tone="warn">
-        <b>At <M>k = 4</M>, still no area.</b> Now <M>h'(0) = 1</M>, so <M>h</M> just touches <M>y = x</M> at{' '}
-        <M>O</M>. But for every <M>{'x \\ne 0'}</M> its gradient <M>{"h'(x) = \\tfrac{1}{1-4x^2}"}</M> is bigger than{' '}
-        <M>1</M>, so <M>h</M> still pulls away above the line and never comes back. That is why <M>k = 4</M> is
-        excluded. Nudge <M>k</M> just past <M>4</M>.
+        <b>At <M>k = 4</M>, still no area.</b> Now <M>h'(0) = 1</M>, so <M>y = x</M> is the tangent to <M>h</M>{' '}
+        at <M>O</M>. But for every <M>{'x \\ne 0'}</M> its gradient <M>{"h'(x) = \\tfrac{1}{1-4x^2}"}</M> is bigger
+        than <M>1</M>, so <M>h</M> crosses the line at <M>O</M> and pulls away from it on both sides, never coming
+        back. <M>O</M> is the only meeting point, which is why <M>k = 4</M> is excluded. Nudge <M>k</M> just past <M>4</M>.
       </Notice>
     )
   } else if (!big) {
     notice = (
       <Notice tone="good">
-        <b>Now <M>{`h'(0) = \\tfrac4k \\approx ${slope.toFixed(2)} < 1`}</M>,</b> so <M>h</M> leaves <M>O</M>{' '}
-        <em>below</em> <M>y = x</M>. But <M>h</M> still shoots up to <M>{'+\\infty'}</M> at <M>{'x = \\tfrac12'}</M>,
+        <b>Now <M>{`h'(0) = \\tfrac4k \\approx ${slope.toFixed(2)} < 1`}</M>,</b> so <M>h</M> starts{' '}
+        <em>below</em> <M>y = x</M> just to the right of <M>O</M>. But <M>h</M> still shoots up to <M>{'+\\infty'}</M> at <M>{'x = \\tfrac12'}</M>,
         so it has to cross the line again, at <M>{`x_0 \\approx ${x0.toFixed(4)}`}</M>, and by symmetry at{' '}
         <M>{'-x_0'}</M>. Two regions are trapped, so <M>{'A(k) > 0'}</M>. Slide <M>k</M> back towards <M>4</M> and
         watch them shrink to nothing.
@@ -71,11 +80,11 @@ export default function SecondCrossing() {
   } else {
     notice = (
       <Notice tone="good">
-        <b>No upper limit.</b> For large <M>k</M> the second crossing{' '}
-        <M>{`x_0 \\approx ${x0.toFixed(5)}`}</M> is squeezed right up against the asymptote <M>{'x = \\tfrac12'}</M>,
-        so on a graph it can look as if it has gone. It hasn&apos;t: <M>h</M> must still reach{' '}
-        <M>{'+\\infty'}</M>, so it always cuts <M>y = x</M> again, and the area keeps growing. An upper bound, as
-        in <M>{'4 < k < 33'}</M>, is wrong.
+        <b>No upper limit.</b> For large <M>k</M> the second crossing is squeezed right up against the asymptote{' '}
+        <M>{'x = \\tfrac12'}</M>: here <M>{`\\tfrac12 - x_0 \\approx ${sci(0.5 - x0)}`}</M>, so on a graph it can look as
+        if it has gone. It hasn&apos;t: <M>h</M> must still reach <M>{'+\\infty'}</M>, so it always cuts <M>y = x</M>{' '}
+        again, and the area keeps growing. An upper bound, as in <M>{'4 < k < 33'}</M>, is wrong.
+        {k < 33 ? <> Tap <M>k = 33</M> to check.</> : k < 40 ? <> Push <M>k</M> on to <M>40</M>: the crossing is still there.</> : null}
       </Notice>
     )
   }
@@ -112,15 +121,28 @@ export default function SecondCrossing() {
         </Label>
       </Plane>
       <Controls>
-        <Slider label="k" value={k} onChange={setK} min={1} max={20} step={0.1} format={v => v.toFixed(1)} />
+        <Slider label="k" value={k} onChange={setK} min={1} max={40} step={0.1} format={v => v.toFixed(1)} />
+        <Buttons>
+          {PRESETS.map(p => (
+            <ActionButton key={p} label={<M>{`k = ${p}`}</M>} onClick={() => setK(p)} />
+          ))}
+        </Buttons>
         <Readouts>
           <Readout
             color={encloses ? C.good : C.bad}
-            tex={`h'(0) = \\tfrac{4}{k} ${encloses ? '\\approx' : atFour ? '=' : '\\approx'} ${slope.toFixed(2)} ${encloses ? '< 1' : atFour ? '' : '> 1'}`}
+            tex={
+              atFour
+                ? "h'(0) = \\tfrac{4}{k} = 1"
+                : `h'(0) = \\tfrac{4}{k} \\approx ${slope.toFixed(2)} ${encloses ? '< 1' : '> 1'}`
+            }
           />
           {encloses ? (
             <>
-              <Readout color={C.good} tex={`\\text{meet at } O \\text{ and } \\pm x_0,\\ x_0 \\approx ${x0.toFixed(big ? 5 : 4)}`} />
+              <Readout color={C.good} tex="\text{meet at } O \text{ and } \pm x_0" />
+              <Readout
+                color={C.good}
+                tex={big ? `\\tfrac12 - x_0 \\approx ${sci(0.5 - x0)}` : `x_0 \\approx ${x0.toFixed(4)}`}
+              />
               <Readout color={C.violet} tex={`A(k) \\approx ${area.toFixed(4)}`} />
             </>
           ) : (

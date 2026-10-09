@@ -4,6 +4,7 @@
 // Small b gives a steep normal and a tall region; large b a wide one — the minimum is in between,
 // at b = 2 = 2a², where the A(b) graph is flat (dA/db = 0). A toggle shows the report's error of
 // integrating yₙ alone: it adds the area under the parabola, and its minimum is at b ≈ 2.26 instead.
+// Lower plane: y up to 110 so the wrong curve (102.5 at b = 1) stays on the chart; ticks above 100 hidden.
 
 import { useState } from 'react'
 import {
@@ -57,13 +58,15 @@ export default function MinArea() {
       <Notice tone="good">
         <b>Smallest area: <M>{'A \\approx 21.33'}</M> at <M>b = 2</M>.</b> On the lower graph the curve is flat here,
         so <M>{'\\tfrac{dA}{db} = 0'}</M>, the equation the working solves. With <M>a = 1</M>, the answer{' '}
-        <M>{'b = 2a^2'}</M> gives <M>b = 2</M> ✓.
+        <M>{'b = 2a^2'}</M> gives <M>b = 2</M> ✓. Now turn on the toggle: what if you don&apos;t subtract{' '}
+        <M>g(x)</M>?
       </Notice>
     )
   } else if (b < B_MIN) {
     notice = (
       <Notice>
-        With <M>{`b \\approx ${b.toFixed(2)}`}</M> the tangent point is close to the vertex, so the tangent is shallow
+        Dashed: the tangent at <M>x = -b</M>. Blue: the normal, the line perpendicular to it. With{' '}
+        <M>{`b \\approx ${b.toFixed(2)}`}</M> the tangent point is close to the vertex, so the tangent is shallow
         and the normal is steep. The normal meets <M>g</M> again far out, at <M>{`x \\approx ${x2.toFixed(2)}`}</M>, so
         the region is tall. Drag <M>b</M> to the right and watch <M>A(b)</M> fall.
       </Notice>
@@ -94,7 +97,7 @@ export default function MinArea() {
         <Label at={[(x2 - b) / 2, yn((x2 - b) / 2)]} attach="nw" color={C.f}>normal</Label>
       </Plane>
       <div className="mt-4" />
-      <Plane x={[0, 5]} y={[-8, 80]} xStep={1} yStep={20} height={190} xLabel="b" yLabel="area">
+      <Plane x={[0, 5]} y={[-6, 110]} xStep={1} yStep={20} height={220} xLabel="b" yLabel="area" yLabels={(v) => (v > 100 ? '' : tick(v))}>
         {noSubtract && <Plot.OfX y={wrong} domain={[1, 4.5]} color={C.bad} weight={2.5} />}
         <Plot.OfX y={area} domain={[1, 4.5]} color={C.f} weight={2.5} />
         <Line.Segment point1={[B_MIN, 0]} point2={[B_MIN, area(B_MIN)]} color={C.good} style="dashed" weight={1.5} />
@@ -108,6 +111,7 @@ export default function MinArea() {
           <Toggle label="What if I don't subtract g(x)?" checked={noSubtract} onChange={setNoSubtract} />
         </Buttons>
         <Readouts>
+          <Readout tex="a = 1,\quad g(x) = \tfrac{x^2}{4}" />
           <Readout tex={`\\text{normal meets } g \\text{ again at } x = \\tfrac{8}{b} + b \\approx ${x2.toFixed(2)}`} />
           <Readout color={near ? C.good : C.f} tex={`A(b) \\approx ${A.toFixed(2)}`} />
           {noSubtract && <Readout color={C.bad} tex={`\\int y_n\\,dx \\approx ${wrong(b).toFixed(2)}`} />}

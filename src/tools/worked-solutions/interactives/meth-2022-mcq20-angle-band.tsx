@@ -57,10 +57,10 @@ export default function AngleBand() {
   } else if (atForty) {
     notice = (
       <Notice>
-        A kick goes more than 40 m only for angles in the green band, <M>{'26.57^\\circ < \\theta < 63.43^\\circ'}</M>:
-        too low <b>or</b> too high and it falls short, so there are two cut-offs, not one. The bell for{' '}
-        <M>\theta</M> is centred at <M>42^\circ</M>, well inside the band, so only its thin red tails miss and the answer
-        must be close to 1: about <M>0.969</M>. The left tail alone, <M>0.027</M>, is option E. Now try the toggle.
+        The green band, <M>{'26.57^\\circ < \\theta < 63.43^\\circ'}</M>, is every angle that goes more than 40 m;
+        the red tails on either side fall short. The bell for <M>\theta</M> is centred at <M>42^\circ</M>, well
+        inside the band, so the tails hold only <M>0.027 + 0.004</M> and the band about <M>0.969</M>. Now turn on
+        the toggle to see where option C comes from.
       </Notice>
     )
   } else {

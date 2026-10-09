@@ -8,6 +8,8 @@
 import { useState } from 'react'
 import { C, Controls, Label, Line, M, Notice, Plane, Plot, Point, Readout, Readouts, Slider } from './kit'
 
+const xl = (v: number) => (v < 0 ? '' : String(v)) // no tick numbers in the left margin
+
 const K = Math.PI / 80
 const s = (t: number) => 1700 * Math.exp(-0.003 * t) * Math.sin(K * t) + 2500
 const ds = (t: number) => 1700 * Math.exp(-0.003 * t) * (K * Math.cos(K * t) - 0.003 * Math.sin(K * t))
@@ -80,7 +82,11 @@ export default function SteepestClimb() {
 
   return (
     <div className="flex flex-col gap-2">
-      <Plane x={[0, 320]} y={[0, 4500]} xStep={40} yStep={1000} height={260} xLabel="t" yLabel="s">
+      {/* y numbers sit left of the axis (custom Labels) so the steep start of each curve doesn't run through them */}
+      <Plane x={[-48, 320]} y={[0, 4500]} xStep={40} yStep={1000} height={260} xLabel="t" yLabel="s" yLabels={false} xLabels={xl}>
+        {[1000, 2000, 3000, 4000].map(v => (
+          <Label key={v} at={[-2, v]} attach="w" size={12}>{String(v)}</Label>
+        ))}
         <Line.Segment point1={[40, 0]} point2={[40, 4500]} color={C.guide} style="dashed" weight={1.5} />
         <Plot.OfX y={s} domain={[0, 320]} color={C.f} weight={3} />
         <Line.Segment
@@ -92,7 +98,11 @@ export default function SteepestClimb() {
         <Point x={t} y={s(t)} color={colour} />
         <Label at={[40, 4500]} color={C.guide} attach="e" size={12}>t = 40</Label>
       </Plane>
-      <Plane x={[0, 320]} y={[-60, 70]} xStep={40} yStep={20} height={220} xLabel="t" yLabel="s′" yLabels={v => (Math.abs(v) > 60 ? '' : String(v))}>
+      <Plane x={[-48, 320]} y={[-60, 70]} xStep={40} yStep={20} height={220} xLabel="t" yLabel="s′" yLabels={false} xLabels={v => (v > 0 && v % 80 === 0 ? String(v) : '')}>
+        {/* s′ crosses the axis near 40, 120, 200, 280, so only every second time is numbered here */}
+        {[-60, -40, -20, 20, 40, 60].map(v => (
+          <Label key={v} at={[-2, v]} attach="w" size={12}>{String(v)}</Label>
+        ))}
         <Line.Segment point1={[40, -60]} point2={[40, 70]} color={C.guide} style="dashed" weight={1.5} />
         <Plot.OfX y={ds} domain={[0, 320]} color={C.violet} weight={3} />
         <Line.Segment point1={[t, 0]} point2={[t, slope]} color={colour} style="dashed" weight={1.5} />

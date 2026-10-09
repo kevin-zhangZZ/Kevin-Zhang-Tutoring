@@ -4,13 +4,14 @@
 // crop of VCAA's own artwork. Answers checked with scipy and against the VCAA examination
 // report. Solution is original.
 // The transformation Q before part e is written as a matrix, which is off the current study
-// design; part e carries a Background translating it into dilations and translations, and the
-// working never multiplies a matrix.
+// design; part e's first working row reads it as dilations and a translation (the Detailed
+// Background shows the multiplication), and the working never multiplies a matrix.
 //
 // Interactive widgets (interactives/meth-2022e2-q2*): (c) slide t through one cycle of r, f and
 // r + f, with a toggle for the report's "add the two maxima" line at 6700; (e) raise a level h
-// until the areas above and below the combined curve balance at 4142, with a toggle showing the
-// average-rate-of-change chord instead; (g) move a tangent along s(t) with s'(t) plotted below:
+// until the areas above and below the combined curve balance at 4142, with toggles for the
+// report's mistakes: leaving out r(t) (the fox curve alone balances at exactly 1600) and the
+// average-rate-of-change chord; (g) move a tangent along s(t) with s'(t) plotted below:
 // the steepest climb for t > 40 is the top of the s' graph (s'' = 0), not s' = 0, and not the
 // steepest fall at t = 76.
 
@@ -132,14 +133,15 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2500 \text{ rabbits}}" />,
-    reason: <>The population starts on the midline of the sine curve, as the graph shows at <Katex tex="t=0" />.</>,
+    more: <>The population starts on the midline of the sine curve, as the graph shows at <Katex tex="t=0" />.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le \sin\!\left(\tfrac{\pi t}{80}\right) \le 1" />,
-    reason: <>Sine always lies between <Katex tex="-1" /> and 1, so <Katex tex="1700\sin\!\left(\tfrac{\pi t}{80}\right)" /> lies between <Katex tex="-1700" /> and 1700. Work from the rule rather than estimating from the graph.</>,
+    reason: <>Sine always lies between <Katex tex="-1" /> and 1, so <Katex tex="1700\sin\!\left(\tfrac{\pi t}{80}\right)" /> lies between <Katex tex="-1700" /> and 1700.</>,
+    more: <>Work from the rule rather than estimating from the graph. The only labelled minimum on the graph, <Katex tex="(20,700)" />, belongs to the foxes; the report notes students who had the minimum as 700 and the maximum as 4000.</>,
   },
   {
     working: <Katex display tex="2500-1700 = 800, \quad 2500+1700 = 4200" />,
@@ -147,18 +149,20 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{minimum } 800, \ \text{maximum } 4200}" />,
-    reason: <>The question asks for population values, not coordinates. The report notes students who gave the points <Katex tex="(120,800)" /> and <Katex tex="(40,4200)" /> without stating the values, and others who gave 700 and 4000.</>,
+    reason: <>The question asks for the population values, not the points where they occur.</>,
+    more: <>The report notes students who gave the coordinates <Katex tex="(120,800)" /> and <Katex tex="(40,4200)" /> without stating the minimum and maximum values.</>,
   },
 ]
 
 const ROWS_AIII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{\pi/80} = 160" />,
-    reason: <>Successive maxima are one full period apart, and the period of <Katex tex="\sin(nt)" /> is <Katex tex="\tfrac{2\pi}{n}" />. Check on the graph: the rabbit maxima are at <Katex tex="t=40" /> and <Katex tex="t=200" />.</>,
+    reason: <>Successive maxima are one full period apart, and the period of <Katex tex="\sin(nt)" /> is <Katex tex="\tfrac{2\pi}{n}" />.</>,
+    more: <>Check on the graph: the rabbit maxima are at <Katex tex="t=40" /> and <Katex tex="t=200" />, 160 weeks apart.</>,
   },
   {
     working: <Katex display tex="\boxed{160 \text{ weeks}}" />,
-    reason: <>Not 80, the report's common incorrect answer: 80 weeks is only <em>half</em> a period, the gap from a maximum to the next minimum.</>,
+    more: <>Not 80, the report's common incorrect answer: 80 weeks is only <em>half</em> a period, the gap from a maximum to the next minimum.</>,
   },
 ]
 
@@ -169,7 +173,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = \frac{2500-700}{2} = 900" />,
-    reason: <>The amplitude is half the distance from the minimum value to the maximum value. Check: the midline is <Katex tex="\tfrac{2500+700}{2}=1600" />, which matches the <Katex tex="+1600" /> in the rule.</>,
+    reason: <>The amplitude is half the distance from the minimum value to the maximum value.</>,
+    more: <>Check: the midline is <Katex tex="\tfrac{2500+700}{2}=1600" />, which matches the <Katex tex="+1600" /> in the rule.</>,
   },
   {
     working: <Katex display tex="\tfrac12 \text{ period} = 100-20 = 80 \implies \text{period} = 160" />,
@@ -186,7 +191,8 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{aligned}f(100) &= 900\sin\!\left(\tfrac{\pi}{2}\right)+1600 = 2500\\ f(20) &= 900\sin\!\left(-\tfrac{\pi}{2}\right)+1600 = 700\end{aligned}"
       />
     ),
-    reason: <>Substitute both points to confirm the sign: the amplitude calculation only gives the size of <Katex tex="a" />, and <Katex tex="a=-900" /> would put the maximum and minimum the wrong way round. Both points fit, so <Katex tex="a=900" /> and <Katex tex="b=\tfrac{\pi}{80}" />. As required.</>,
+    reason: <>Substitute both points to confirm the sign of <Katex tex="a" />: the amplitude calculation only gives its size. Both points fit, so <Katex tex="a=900" /> and <Katex tex="b=\tfrac{\pi}{80}" />. As required.</>,
+    more: <>With <Katex tex="a=-900" /> the curve would be flipped upside down, putting the maximum and minimum the wrong way round: <Katex tex="f(100)" /> would be 700, not 2500. The report notes students used a range of techniques, such as substituting points from the graph and solving simultaneous equations. Whichever you use, this is a 'show that' question, so every step must be written out.</>,
   },
 ]
 
@@ -198,7 +204,8 @@ const ROWS_C: WorkingRow[] = [
         tex="\begin{aligned}r(t)+f(t) &= 1700\sin\!\left(\tfrac{\pi t}{80}\right)+2500\\ &\quad +900\sin\!\left(\tfrac{\pi(t-60)}{80}\right)+1600\end{aligned}"
       />
     ),
-    reason: <>The combined population is the sum of the two models. The two curves peak at different times (rabbits at <Katex tex="t=40" />, foxes at <Katex tex="t=100" />), so the combined maximum is <em>not</em> <Katex tex="4200+2500" />. The report notes adding the two maxima as a common incorrect approach.</>,
+    reason: <>The combined population is the sum of the two models. Rabbits peak at <Katex tex="t=40" /> and foxes at <Katex tex="t=100" />, so the combined maximum is <em>not</em> <Katex tex="4200+2500" />: it has to be found from the sum.</>,
+    more: <>Adding the two maxima was the report's common incorrect approach. At <Katex tex="t=40" />, when the rabbits peak, the foxes are only at about 964, a total of about 5164, well short of <Katex tex="4200+2500=6700" />.</>,
   },
   {
     working: <Cas fn="fMax">fMax(r(t) + f(t), t) | 0 ≤ t ≤ 160</Cas>,
@@ -206,7 +213,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = 53.73\ldots" />,
-    reason: <>fMax gives the time of the maximum, not the maximum itself. It lies between the rabbit peak and the fox peak, as expected.</>,
+    reason: <>fMax gives the time of the maximum, not the maximum itself.</>,
+    more: <>It lies between the rabbit peak (<Katex tex="t=40" />) and the fox peak (<Katex tex="t=100" />), nearer the rabbits, whose swing is bigger.</>,
   },
   {
     working: <Katex display tex="r(53.73\ldots)+f(53.73\ldots) = 5339.456\ldots" />,
@@ -214,29 +222,32 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{5339}" />,
-    reason: <>To the nearest whole number: the decimal part .456 is less than .5, so round down. The report notes 5340 as a common incorrect answer.</>,
+    reason: <>To the nearest whole number: the decimal part .456 is less than .5, so round down.</>,
+    more: <>The report notes rounding errors, with 5340 a common incorrect answer. Round once, from the full value: rounding to 5339.5 first and then rounding again gives the wrong 5340.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{both } f \text{ and } r \text{ have period } 160" />,
-    reason: <>Established in parts a.iii. and b.</>,
+    reason: <>Established in parts a.iii and b.</>,
   },
   {
     working: <Katex display tex="r(t+160)+f(t+160) = r(t)+f(t)" />,
-    reason: <>Each model repeats every 160 weeks, so their sum does too. Graphing <Katex tex="r+f" /> shows one peak in each 160-week cycle (at <Katex tex="t\approx53.7" />, <Katex tex="213.7" />, …), so the maxima are one period apart.</>,
+    reason: <>Each model repeats every 160 weeks, so their sum does too. Graphed, <Katex tex="r+f" /> has just one peak in each 160-week cycle, so successive maxima are one period apart.</>,
+    more: <>The peaks are at <Katex tex="t\approx53.7" /> (found in part c), <Katex tex="213.7" />, <Katex tex="373.7" />, …, each 160 weeks after the last.</>,
   },
   {
     working: <Katex display tex="\boxed{160 \text{ weeks}}" />,
-    reason: <>The report says an exact answer was required: 160 comes from the period, so a decimal estimate such as 160.1 (the report's common incorrect answer) is not accepted.</>,
+    reason: <>Exact: 160 comes straight from the period, not from a CAS estimate.</>,
+    more: <>The report says an exact answer was required, so a decimal such as 160.1, its common incorrect answer, is not accepted.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="t' = \tfrac{90}{\pi}t+60, \qquad y' = 900y+1600" />,
-    reason: <>What <Katex tex="Q" /> does to a point <Katex tex="(t,y)" />: each row of the matrix gives one new coordinate (see the note above).</>,
+    reason: <><Katex tex="Q" /> is a dilation by factor <Katex tex="\tfrac{90}{\pi}" /> from the <Katex tex="y" />-axis and by factor 900 from the <Katex tex="t" />-axis (the matrix's diagonal entries), then a translation of 60 in the <Katex tex="t" /> direction and 1600 in the <Katex tex="y" /> direction (the added column).</>,
   },
   {
     working: <Katex display tex="t = \frac{\pi(t'-60)}{90}, \qquad y = \frac{y'-1600}{900}" />,
@@ -248,11 +259,13 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(t) = 900\sin\!\left(\frac{\pi(t-60)}{90}\right)+1600" />,
-    reason: <>Make <Katex tex="y'" /> the subject and drop the dashes; call the new fox model <Katex tex="g" />. Its period is <Katex tex="2\pi\div\tfrac{\pi}{90}=180" />, not 160, so it is a different model from <Katex tex="f" /> in part b: don't reuse <Katex tex="f" />.</>,
+    reason: <>Make <Katex tex="y'" /> the subject and drop the dashes; call the new fox model <Katex tex="g" />, as it replaces <Katex tex="f" />.</>,
+    more: <>Its period is <Katex tex="2\pi\div\tfrac{\pi}{90}=180" />, not 160, so it really is a different model from <Katex tex="f" /> in part b: reusing <Katex tex="f" /> would answer a different question.</>,
   },
   {
     working: <Katex display tex="\text{average} = \frac{1}{300-0}\int_0^{300}\bigl(g(t)+r(t)\bigr)\,dt" />,
-    reason: <>The average value of a function over <Katex tex="a \le t \le b" /> is <Katex tex="\tfrac{1}{b-a}" /> times its integral from <Katex tex="a" /> to <Katex tex="b" />. The combined population is foxes <em>plus</em> rabbits, so add <Katex tex="r(t)" />: the report notes 1600 (the foxes alone) as a common incorrect answer, and that some students subtracted <Katex tex="r(t)" />. It is the average <em>value</em>, not the average rate of change, which some students used.</>,
+    reason: <>The average value of a function over <Katex tex="a \le t \le b" /> is <Katex tex="\tfrac{1}{b-a}" /> times its integral from <Katex tex="a" /> to <Katex tex="b" />. The combined population is foxes <em>plus</em> rabbits, so the integrand is <Katex tex="g(t)+r(t)" />.</>,
+    more: <>The report notes students who did not add <Katex tex="r(t)" />, and that 1600 was a common incorrect answer. 1600 is the average of the foxes alone; it can't be the combined average, which must lie between the lowest and highest combined populations, about 3107 and 5367. Others subtracted <Katex tex="r(t)" />, or used the average rate of change, which measures how fast the population changes between <Katex tex="t=0" /> and <Katex tex="t=300" /> (about 1.19 animals per week here), not how many animals there are.</>,
   },
   {
     working: <Cas fn="nInt">(1/300)·∫(900·sin(π(t − 60)/90) + 1600 + r(t), t, 0, 300)</Cas>,
@@ -260,7 +273,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 4142.26\ldots" />,
-    reason: <>A sensible size: the two midlines add to <Katex tex="1600+2500=4100" />, and 300 weeks is not a whole number of cycles of either curve, so the average is close to 4100 but not equal to it.</>,
+    more: <>A sensible size: the two midlines add to <Katex tex="1600+2500=4100" />. Over these 300 weeks the fox part averages exactly its midline (that is the 1600 above), so the extra 42 comes from the rabbits: 300 weeks is 1.875 rabbit cycles, and that unfinished second cycle includes its whole hump above the midline but only part of its dip below.</>,
   },
   {
     working: <Katex display tex="\boxed{4142}" />,
@@ -271,7 +284,8 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(s′(t) = 0, t) | 0 &lt; t &lt; 220</Cas>,
-    reason: <>The population is at a maximum where its rate of change is zero. The damping moves the turning points slightly earlier than the maxima of <Katex tex="r" /> at <Katex tex="t=40" /> and 200, so those times can't be reused: the report notes <Katex tex="\tfrac{s(200)-s(40)}{200-40}" /> was often seen. (It happens to round to <Katex tex="-3.6" /> as well, but 40 and 200 are not the maxima of <Katex tex="s" />.)</>,
+    reason: <>The population is at a maximum where its rate of change is zero. The factor <Katex tex="e^{-0.003t}" /> moves the peaks slightly earlier than the maxima of <Katex tex="r" /> at <Katex tex="t=40" /> and 200, so find them afresh; searching up to <Katex tex="t=220" /> catches the first two.</>,
+    more: <>Why earlier: the shrinking factor is already pulling the population down, so it stops rising a little before the sine itself peaks. The report notes <Katex tex="\tfrac{s(200)-s(40)}{200-40}" /> was often seen. It happens to round to <Katex tex="-3.6" /> as well, but 40 and 200 are the maxima of <Katex tex="r" />, not of <Katex tex="s" />. Others used <Katex tex="r(t)" /> instead of <Katex tex="s(t)" />: its maxima are all 4200, so its average rate of change between them is 0.</>,
   },
   {
     working: <Katex display tex="t = 38.058\ldots, \ 118.058\ldots, \ 198.058\ldots" />,
@@ -284,11 +298,13 @@ const ROWS_F: WorkingRow[] = [
         tex="\begin{aligned}s(38.058\ldots) &= 4012.16\ldots \ \text{(max)}\\ s(118.058\ldots) &= 1310.48\ldots \ \text{(min)}\\ s(198.058\ldots) &= 3435.70\ldots \ \text{(max)}\end{aligned}"
       />
     ),
-    reason: <>Substitute to see which are maxima. The middle one is a minimum, so reject it: the report notes students who found the average rate of change between the maximum and the minimum populations.</>,
+    reason: <>Substitute to see which are maxima. The middle one is a minimum, so reject it.</>,
+    more: <>The report notes some students found the average rate of change between the maximum and the minimum populations.</>,
   },
   {
     working: <Katex display tex="\text{average rate} = \frac{s(198.058\ldots)-s(38.058\ldots)}{198.058\ldots-38.058\ldots}" />,
-    reason: <>The average rate of change is the gradient between the two points on the curve. Use the stored, unrounded values: the report notes students who rounded too early.</>,
+    reason: <>The average rate of change is the gradient between the two points on the curve. Use the stored, unrounded values.</>,
+    more: <>The report notes some students rounded their values too early: round only the final answer.</>,
   },
   {
     working: <Katex display tex="= -3.6028\ldots" />,
@@ -303,11 +319,12 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\text{maximise } s'(t) \implies \text{solve } s''(t) = 0" />,
-    reason: <>The <em>rate of change</em>, <Katex tex="s'(t)" />, is what is being maximised. A maximum of <Katex tex="s'" /> is a turning point of the <Katex tex="s'" /> graph, where <em>its</em> derivative <Katex tex="s''" /> is zero. Solving <Katex tex="s'(t)=0" />, as many students did, finds the population's own turning points instead.</>,
+    reason: <>The <em>rate of change</em>, <Katex tex="s'(t)" />, is what is being maximised. A maximum of <Katex tex="s'" /> is a turning point of the <Katex tex="s'" /> graph, where <em>its</em> derivative <Katex tex="s''" /> is zero.</>,
+    more: <>The report notes many students solved <Katex tex="\tfrac{ds}{dt}=0" />. That finds where the rate of change is zero (the population's own turning points), not where it is greatest.</>,
   },
   {
     working: <Cas fn="solve">solve(s″(t) = 0, t) | 40 &lt; t &lt; 320</Cas>,
-    reason: <>Two full cycles after <Katex tex="t=40" /> are enough to see the pattern.</>,
+    reason: <>This window holds two steepest climbs and two steepest falls, enough to see the pattern.</>,
   },
   {
     working: <Katex display tex="t = 76.11\ldots, \ 156.11\ldots, \ 236.11\ldots, \ 316.11\ldots" />,
@@ -320,18 +337,20 @@ const ROWS_G: WorkingRow[] = [
         tex="\begin{aligned}s'(76.11\ldots) &= -53.1\ldots\\ s'(156.11\ldots) &= 41.79\ldots\\ s'(236.11\ldots) &= -32.8\ldots\\ s'(316.11\ldots) &= 25.8\ldots\end{aligned}"
       />
     ),
-    reason: <>Substitute each time into <Katex tex="s'" />. 76 gives the greatest <em>negative</em> rate, the report's other common incorrect answer. Of the positive rates, 41.79 is the largest, and every later climb is smaller: each is <Katex tex="e^{-0.003\times160}\approx0.62" /> times the one 160 weeks earlier. Just after <Katex tex="t=40" /> the rate is negative (<Katex tex="s'(40)\approx-4.5" />), so nothing earlier competes.</>,
+    reason: <>Substitute each time into <Katex tex="s'" />. The greatest positive rate is 41.79… at <Katex tex="t=156.11\ldots" />; each later climb is smaller, as the swings keep shrinking.</>,
+    more: <>76 gives the greatest <em>negative</em> rate (the steepest fall), the report's other common incorrect answer. The shrinking is steady: each climb is <Katex tex="e^{-0.003\times160}=e^{-0.48}\approx0.62" /> times the one 160 weeks earlier. Just after <Katex tex="t=40" /> the rate is negative (<Katex tex="s'(40)\approx-4.5" />), so nothing earlier competes either.</>,
   },
   {
     working: <Katex display tex="\boxed{t = 156 \text{ weeks}}" />,
-    reason: <>To the nearest whole number. The answer is the time: 41.8 is the rate <Katex tex="s'(156.11\ldots)" /> itself, a common incorrect answer (written in the report as <Katex tex="s(156.11\ldots)" />).</>,
+    reason: <>To the nearest whole number. The question asks for the time, not the rate.</>,
+    more: <>41.8 is the rate <Katex tex="s'(156.11\ldots)" /> itself, a common incorrect answer (the report writes it as <Katex tex="s(156.11\ldots)" />).</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="t\to\infty: \ e^{-0.003t}\to0" />,
-    reason: <>The damping factor decays to zero, while the sine stays between <Katex tex="-1" /> and 1.</>,
+    reason: <>The factor <Katex tex="e^{-0.003t}" /> decays to zero, while the sine stays between <Katex tex="-1" /> and 1.</>,
   },
   {
     working: <Katex display tex="1700e^{-0.003t}\sin\!\left(\tfrac{\pi t}{80}\right)\to0" />,
@@ -339,7 +358,8 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2500 \text{ rabbits}}" />,
-    reason: <>Only the constant 2500 is left. Answering 0, the report's common incorrect answer, gives the limit of the oscillating <em>part</em>, not of the population.</>,
+    reason: <>Only the constant 2500 is left.</>,
+    more: <>0, the report's common incorrect answer, is the limit of the oscillating <em>part</em>, not of the population.</>,
   },
 ]
 
@@ -477,13 +497,12 @@ export default function MethodsQ2_2022Exam2() {
       >
         <Background title="On the matrix notation">
           <p>
-            Transformation matrices are no longer on the study design. Multiplied out,{' '}
-            <Katex tex="Q" /> sends the point <Katex tex="(t,y)" /> to{' '}
-            <Katex tex="\left(\tfrac{90}{\pi}t+60,\ 900y+1600\right)" />. In words: a dilation by
-            factor <Katex tex="\tfrac{90}{\pi}" /> from the <Katex tex="y" />-axis and by factor 900 from
-            the <Katex tex="t" />-axis, then a translation of 60 units in the positive{' '}
-            <Katex tex="t" /> direction and 1600 units in the positive <Katex tex="y" /> direction. A
-            current paper would say that in words, and the working would be identical.
+            Transformation matrices are no longer on the study design. A current paper would
+            describe <Katex tex="Q" /> in words, as the first line of the working below does, and the
+            rest of the working would be identical. Multiplied out, the top row of the matrix gives{' '}
+            <Katex tex="t' = \tfrac{90}{\pi}t+0\cdot y+60" /> and the bottom row gives{' '}
+            <Katex tex="y' = 0\cdot t+900y+1600" />. Each new coordinate depends only on its own old
+            coordinate, which is why <Katex tex="Q" /> is just two dilations and a translation.
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />

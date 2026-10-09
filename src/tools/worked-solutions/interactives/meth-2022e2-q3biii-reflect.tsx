@@ -65,7 +65,7 @@ export default function GapIsReflection() {
       <div className="flex items-stretch gap-2">
         <Room h={h} />
         <div className="min-w-0 flex-1">
-          <Plane x={[-1.8, 3.3]} y={[0, 1.05]} xStep={0.5} yStep={0.25} height={260} xLabel="" yLabel=""
+          <Plane x={[-1.8, 3.3]} y={[0, 1.05]} xStep={0.5} yStep={0.25} height={260} xLabel="" yLabel="density"
             xLabels={v => (Math.abs(v + 1.5) < 1e-9 ? '-1.5' : Math.abs(v - 1.5) < 1e-9 ? '1.5' : Math.abs(v - 3) < 1e-9 ? '3' : '')}
             yLabels={() => ''}>
             {wrong && <Region top={() => 1.05} bottom={() => 0} from={-1.8} to={0} color={C.bad} opacity={0.08} />}

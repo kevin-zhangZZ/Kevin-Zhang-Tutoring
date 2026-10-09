@@ -5,7 +5,9 @@
 // never moves — which is why the fundamental theorem (g at the ends), not g′'s end values, gives
 // the answer. A toggle shows the wrong idea the report describes: using g′ instead of g at the
 // ends, (24/π)(1/9 − 0) = 8/(3π) ≈ 0.85.
-// The plane's horizontal coordinate is u = x − π/8, so the y-axis sits at x = π/8.
+// The plane's horizontal coordinate is u = x − π/8, so the y-axis sits at x = π/8. The slider's
+// readout says where the dip sits (left / middle / right of the interval) rather than a radian
+// decimal, which the π/8 and π/6 axis labels give no way to place.
 
 import { useMemo, useState } from 'react'
 import {
@@ -13,7 +15,6 @@ import {
   integrate, num,
 } from './kit'
 
-const A = Math.PI / 8
 const W = Math.PI / 24 // π/6 − π/8
 const AVG = -48 / Math.PI // the answer: (3 − 5) ÷ (π/24)
 const WRONG = 8 / (3 * Math.PI) // (24/π)(g′(π/6) − g′(π/8)) = (24/π)(1/9 − 0)
@@ -62,9 +63,9 @@ export default function SameArea() {
   ) : (
     <Notice>
       This is <b>one possible</b> <M>g'</M>: <M>f</M> is unknown, so nobody knows the real one. Every possibility starts at{' '}
-      <M>{"g'(\\tfrac\\pi8)=0"}</M>, ends at <M>{"g'(\\tfrac\\pi6)=\\tfrac19"}</M>, and has shaded area{' '}
-      <M>{'g(\\tfrac\\pi6)-g(\\tfrac\\pi8)=3-5=-2'}</M>. Drag the slider: the curve changes, but the green rectangle with
-      the same area never moves. Its height, <M>{'-\\tfrac{48}{\\pi}'}</M>, is the average value. Then turn on the
+      <M>{"g'(\\tfrac\\pi8)=0"}</M> (because <M>{"f'(\\tfrac{\\sqrt2}2)=0"}</M>), ends at{' '}
+      <M>{"g'(\\tfrac\\pi6)=\\tfrac19"}</M>, and has signed area <M>{'g(\\tfrac\\pi6)-g(\\tfrac\\pi8)=3-5=-2'}</M>. Drag the slider: the curve changes, but the green
+      rectangle with the same signed area never moves. Its height, <M>{'-\\tfrac{48}{\\pi}'}</M>, is the average value. Then turn on the
       wrong idea.
     </Notice>
   )
@@ -93,19 +94,19 @@ export default function SameArea() {
       </Plane>
       <Controls>
         <Slider
-          label="\text{dip at }x"
+          label="\text{where } g' \text{ dips}"
           value={m}
           onChange={setM}
           min={0.25}
           max={0.75}
           step={0.01}
-          format={() => `≈ ${num(A + uMin, 3)}`}
+          format={() => (uMin < 0.38 * W ? 'left' : uMin > 0.62 * W ? 'right' : 'middle')}
         />
         <Buttons>
           <Toggle label="Wrong idea: use g′ at the ends" checked={wrong} onChange={setWrong} />
         </Buttons>
         <Readouts>
-          <Readout color={C.f} tex={`\\text{shaded area} \\approx ${num(area, 3)}`} />
+          <Readout color={C.f} tex={`\\text{signed area} \\approx ${num(area, 3)}`} />
           <Readout color={C.good} tex={`\\text{average} = \\dfrac{-2}{\\pi/24} \\approx ${num(AVG, 2)}`} />
           <Readout tex={`\\text{lowest } g' \\approx ${num(yMin, 1)}`} />
           {wrong && <Readout color={C.bad} tex={`\\tfrac{24}{\\pi}\\left(\\tfrac19-0\\right) \\approx ${num(WRONG, 2)}`} />}

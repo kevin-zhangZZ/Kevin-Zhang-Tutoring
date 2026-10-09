@@ -67,8 +67,15 @@ const ROWS: WorkingRow[] = [
     working: <>B: <Katex tex="g" /> is a function, so it is never one-to-many ✗</>,
     reason: (
       <>
-        One-to-many means one <Katex tex="x" />-value gives several <Katex tex="y" />-values, and a function never does
-        that (see the Background above). So B is impossible for any function.
+        One-to-many means one <Katex tex="x" />-value gives several <Katex tex="y" />-values, like the sideways
+        parabola <Katex tex="x=y^2" />. A function gives exactly one <Katex tex="y" />-value for each{' '}
+        <Katex tex="x" />, so it is never one-to-many.
+      </>
+    ),
+    more: (
+      <>
+        B was the most common wrong answer (25%): it swaps the two terms. To keep them apart, read each name from
+        inputs to outputs: the first word counts <Katex tex="x" />-values, the second counts <Katex tex="y" />-values.
       </>
     ),
   },
@@ -89,18 +96,24 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex tex="g" /> heads downhill at <Katex tex="x=\tfrac{a+b}{2}" /> but finishes higher than it started, so it
-        changes direction at least once. So some <Katex tex="y" />-value is reached at two different{' '}
-        <Katex tex="x" />-values: C (one-to-one) ✗
+        C: <Katex tex="g" /> falls at <Katex tex="x=\tfrac{a+b}{2}" /> but <Katex tex="g(b)>g(a)" />, so it turns
+        around and repeats a <Katex tex="y" />-value: not one-to-one ✗
       </>
     ),
     reason: (
       <>
-        To end above where it started, <Katex tex="g" /> must also go uphill somewhere, so the graph turns around.
-        Because <Katex tex="g" /> is continuous (no jumps), after turning it passes back through heights it has
-        already reached, so a horizontal line just below a peak (or just above a dip) meets the graph twice. That
-        fails the horizontal line test, so <Katex tex="g" /> cannot be one-to-one; this holds for every such{' '}
-        <Katex tex="g" />, which is what &ldquo;must be&rdquo; requires.
+        Because <Katex tex="g" /> is continuous (no jumps), once it turns around it passes back through heights it has
+        already reached, so a horizontal line just below a peak (or just above a dip) meets the graph twice. A
+        one-to-one function meets every horizontal line at most once.
+      </>
+    ),
+    more: (
+      <>
+        Another way to see it: a continuous function on an interval that never repeats a height cannot turn around,
+        so it must be strictly increasing or strictly decreasing the whole way. The previous row ruled out both, so{' '}
+        <Katex tex="g" /> cannot be one-to-one. This holds for <em>every</em> function with the two properties, which
+        is what &ldquo;must be&rdquo; asks for; one example graph that happens to be many-to-one would not be enough.
+        The diagram below lets you try to build a one-to-one <Katex tex="g" /> with both properties.
       </>
     ),
   },
@@ -108,10 +121,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{g \text{ is many-to-one}}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Option B mixes up the two terms: one-to-many describes a relation that is not a
-        function at all. Options C, D and E are each ruled out above: one-to-one fails the horizontal line test,
-        strictly decreasing contradicts <Katex tex="g(b)>g(a)" />, and strictly increasing contradicts the negative
-        gradient at the midpoint.
+        Matches option <b>A</b>: a <Katex tex="y" />-value reached at two or more <Katex tex="x" />-values is exactly
+        what many-to-one means.
       </>
     ),
   },
@@ -153,8 +164,8 @@ export default function MethodsQ17_2022() {
             meets it more than once.
           </p>
           <p>
-            <b>One-to-many:</b> one input gives two or more outputs. For example, the circle{' '}
-            <Katex tex="x^2+y^2=1" /> gives <Katex tex="y=\pm1" /> at <Katex tex="x=0" />. On a graph, some vertical
+            <b>One-to-many:</b> one input gives two or more outputs. For example, the sideways parabola{' '}
+            <Katex tex="x=y^2" /> gives <Katex tex="y=\pm1" /> at <Katex tex="x=1" />. On a graph, some vertical
             line meets it more than once, so it is not a function. A function is always one-to-one or many-to-one.
           </p>
         </Background>
