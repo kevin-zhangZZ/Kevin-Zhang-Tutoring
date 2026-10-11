@@ -163,11 +163,14 @@ export function saveAttempts(subject: Subject, encoded: string) {
 export const GOAL_MIN = 20
 export const GOAL_MAX = 45
 
-/** A goal from a link or a box, or null if it isn't a whole number from GOAL_MIN to GOAL_MAX. */
+/** A goal from a link or a box, or null if it isn't a whole number from GOAL_MIN to GOAL_MAX.
+ *  Digits only, as for a mark (parseMark): "4e1" and "40.0" aren't goals, though Number() reads
+ *  both as 40. */
 export function parseGoal(s: string | null | undefined): number | null {
-  if (s == null || s.trim() === '') return null
-  const v = Number(s)
-  return Number.isInteger(v) && v >= GOAL_MIN && v <= GOAL_MAX ? v : null
+  const t = s?.trim() ?? ''
+  if (!/^\d+$/.test(t)) return null
+  const v = Number(t)
+  return v >= GOAL_MIN && v <= GOAL_MAX ? v : null
 }
 
 export function loadGoal(subject: Subject): number | null {

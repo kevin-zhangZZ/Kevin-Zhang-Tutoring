@@ -24,17 +24,19 @@ const fmt = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('en-AU', 
 const DAY_MONTH = fmt({ day: 'numeric', month: 'short' })
 const DAY_MONTH_YEAR = fmt({ day: 'numeric', month: 'short', year: 'numeric' })
 
-const otherYear = (iso: string) => iso.slice(0, 4) !== today().slice(0, 4)
+/** A date that gets its year written out: one from another year than this one. The formatters
+ *  below and the list's date column (List.tsx, which widens for them) all ask this. */
+export const isOtherYear = (iso: string) => iso.slice(0, 4) !== today().slice(0, 4)
 
 /** "13 Sept", with the year added when it isn't this year ("13 Sept 2025"). */
-export function fmtDate(iso: string, withYear = otherYear(iso)): string {
-  return (withYear ? DAY_MONTH_YEAR : DAY_MONTH).format(msOf(iso))
+export function fmtDate(iso: string): string {
+  return (isOtherYear(iso) ? DAY_MONTH_YEAR : DAY_MONTH).format(msOf(iso))
 }
 
 /** The same with a short year, for narrow columns: "13 Sept", or "13 Sept ’25". */
 export function fmtDateShort(iso: string): string {
   const d = DAY_MONTH.format(msOf(iso))
-  return otherYear(iso) ? `${d} ’${iso.slice(2, 4)}` : d
+  return isOtherYear(iso) ? `${d} ’${iso.slice(2, 4)}` : d
 }
 
 /** A chart axis day (from dayOf): "12 July". */

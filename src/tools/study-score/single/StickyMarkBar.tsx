@@ -11,7 +11,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
-import { scrollBehavior } from '../shared.tsx'
+import { FOCUS, scrollBehavior } from '../shared.tsx'
 import { PHONE, useMedia } from '../useMedia.ts'
 
 /** The bar's height; the watched edges are measured from just below it. */
@@ -140,14 +140,21 @@ export default function StickyMarkBar({
 
   // Hover tints only where there's a real hover: on a phone, a tapped button would keep it.
   // At 0 or full marks a stepper is aria-disabled, not disabled, so focus stays on it.
-  const step =
-    'flex-none w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 flex items-center justify-center [@media(hover:hover)]:hover:bg-gray-200 dark:[@media(hover:hover)]:hover:bg-gray-700 aria-disabled:opacity-40 aria-disabled:cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
+  const step = `flex-none w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 flex items-center justify-center [@media(hover:hover)]:hover:bg-gray-200 dark:[@media(hover:hover)]:hover:bg-gray-700 aria-disabled:opacity-40 aria-disabled:cursor-default ${FOCUS}`
   const tab = shown ? 0 : -1
   /** A stepper's handler: the new mark, or nothing at the limit. */
   const stepTo = (i: number, v: number) => () => {
     if (v >= 0 && v <= exams[i].rawMax) onMark(i, v)
   }
 
+  // ── Fitting a 320 px phone ──
+  // The bar is as wide as <main>, so at 320 px it has 304 px inside its padding. Full size, a
+  // two-exam bar needs about 324: each exam is its label (about 12 px) and three 40 px buttons
+  // with 2 px between them (138), twice, then the result (→ about 13, 4 px, about 22 of score:
+  // 39), with 4 px between the three. So below 360 px the mark button hugs its number (px-1 and
+  // at least 24 px wide: about 28 for two digits, still 40 px tall) and the arrow goes, the sr-only
+  // "Typical" still naming the result: 2 × 126 + 22 + 8 = about 282. The steppers stay 40 px.
+  // From 360 px there are 344 px, room for the full bar.
   return (
     <div className="sticky top-0 z-20 h-0 sm:hidden">
       <div
@@ -171,7 +178,7 @@ export default function StickyMarkBar({
               tabIndex={tab}
               aria-label={`${e.label}: ${marks[i]} out of ${e.rawMax}. Go to the mark inputs`}
               onClick={() => jump(i)}
-              className="flex-none min-w-10 h-10 px-0.5 rounded-lg font-display text-base font-bold text-gray-900 dark:text-white tabular-nums [@media(hover:hover)]:hover:bg-gray-50 dark:[@media(hover:hover)]:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className={`flex-none min-w-10 h-10 px-0.5 max-[359.98px]:min-w-6 max-[359.98px]:px-1 rounded-lg font-display text-base font-bold text-gray-900 dark:text-white tabular-nums [@media(hover:hover)]:hover:bg-gray-50 dark:[@media(hover:hover)]:hover:bg-gray-800 ${FOCUS}`}
             >
               {marks[i]}
             </button>
@@ -183,7 +190,9 @@ export default function StickyMarkBar({
           </span>
         ))}
         <span className="flex-none flex items-baseline gap-1 text-[0.9375rem] text-gray-500 dark:text-gray-400">
-          <span aria-hidden>→</span>
+          <span aria-hidden className="max-[359.98px]:hidden">
+            →
+          </span>
           <span className="sr-only">Typical</span>
           <b className={`font-display text-lg font-bold text-sky-700 dark:text-sky-300 tabular-nums ${busy ? 'opacity-50' : ''}`}>{typical}</b>
         </span>

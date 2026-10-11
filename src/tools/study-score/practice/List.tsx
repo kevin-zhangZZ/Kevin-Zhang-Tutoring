@@ -10,7 +10,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
 import { aheadOf, examShares } from '../format.ts'
-import { fmtDate, fmtDateShort, nth, today } from './dates.ts'
+import { fmtDate, fmtDateShort, isOtherYear, nth } from './dates.ts'
 import { attemptName, type Attempt, type Draft, type Scored } from './log.ts'
 import AttemptForm, { valuesOf, type FormValues } from './Form.tsx'
 
@@ -82,9 +82,8 @@ export default function AttemptList({
   const exams = SUBJECTS[subject].exams
   const cols = exams.length > 1 ? COLS.two : COLS.one
   // Dates from another year carry it ("12 July ’25", or "12 July 2025" in wide rows), so the
-  // column widens only when one does.
-  const year = today().slice(0, 4)
-  const otherYear = scored.some(a => a.date !== null && a.date.slice(0, 4) !== year)
+  // column widens only when one does: the same rule the formatters use to add the year.
+  const otherYear = scored.some(a => a.date !== null && isOtherYear(a.date))
   const widths = { '--dw': otherYear ? '4.75rem' : '3.75rem', '--dw-wide': otherYear ? '5.75rem' : '3.75rem' } as CSSProperties
 
   const focusEdit = (id: number) =>

@@ -1,13 +1,15 @@
 // The mark inputs in the page's top card (Check My Marks): a number box and a slider per exam.
 // A box keeps whatever is typed, but only a valid mark reaches the results. While a box holds
-// something else (45 in a box out of 40, or nothing at all), it says what's wrong and the
-// results dim, so the box and the results never disagree without saying so. Leaving the box
-// puts the last valid mark back. Marks are read by parseMark, as in Track My Papers, so the same
-// mistake reads the same way on both tabs.
+// something that isn't a mark (45 in a box out of 40) it says what's wrong; an empty box says
+// nothing while someone retypes. Either way the results dim until the box holds a valid mark, so
+// the box and the results never disagree unnoticed. Leaving the box puts the last valid mark
+// back. Marks are read by parseMark, as in Track My Papers, so the same mistake reads the same
+// way on both tabs.
 
 import { useCallback, useEffect, useId, useState, type KeyboardEvent, type Ref } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
 import { parseMark } from '../format.ts'
+import { FOCUS } from '../shared.tsx'
 
 // ── The inputs ─────────────────────────────────────────────────────────────────────────────
 
@@ -131,7 +133,7 @@ function MarkInput({
           step={1}
           value={value}
           onChange={e => onChange(Number(e.target.value))}
-          className="flex-1 min-w-0 accent-sky-600 dark:accent-sky-400 h-8 [@media(pointer:coarse)]:h-10 cursor-pointer"
+          className={`flex-1 min-w-0 accent-sky-600 dark:accent-sky-400 h-8 [@media(pointer:coarse)]:h-10 cursor-pointer rounded ${FOCUS}`}
         />
       </div>
       {/* Always mounted as a live region, so a screen reader hears the problem (and the quiet

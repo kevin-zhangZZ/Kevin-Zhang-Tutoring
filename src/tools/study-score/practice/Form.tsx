@@ -65,16 +65,24 @@ function checkValues(subject: Subject, v: FormValues): Check {
 }
 
 /** "This paper projects to 37 · ahead of 85% of the state · Recent Average 39 → 38", with the
- *  draft placed in the log where it would go. The Recent Average part only when it moves. */
+ *  draft placed in the log where it would go. The Recent Average part only when it moves.
+ *  `spoken` says it in words ("…of the state. Your Recent Average would go from 39 to 38."):
+ *  screen readers can read "·" as "dot" and "→" as "right arrow". */
 function projectionLine(subject: Subject, attempts: Attempt[], draft: Draft, editId: number | undefined) {
   const { list, at } = editId === undefined ? insertAttempt(attempts, draft) : replaceAttempt(attempts, editId, draft)
   const scored = scoreAttempts(subject, list)
   const { proj } = scored[at]
   const now = recentAverage(scoreAttempts(subject, attempts))
   const then = recentAverage(scored)
-  const move = now !== null && then !== null && Math.round(now) !== Math.round(then) ? ` · Recent Average ${Math.round(now)} → ${Math.round(then)}` : ''
-  const rest = ` · ${aheadOf(proj.pct)} of the state${move}`
-  return { score: proj.score, rest, text: `This paper projects to ${proj.score}${rest}` }
+  const moves = now !== null && then !== null && Math.round(now) !== Math.round(then)
+  const from = Math.round(now ?? 0)
+  const to = Math.round(then ?? 0)
+  const ahead = `${aheadOf(proj.pct)} of the state`
+  return {
+    score: proj.score,
+    rest: ` · ${ahead}${moves ? ` · Recent Average ${from} → ${to}` : ''}`,
+    spoken: `This paper projects to ${proj.score}, ${ahead}.${moves ? ` Your Recent Average would go from ${from} to ${to}.` : ''}`,
+  }
 }
 
 // ── Form ───────────────────────────────────────────────────────────────────────────────────
@@ -130,7 +138,7 @@ export default function AttemptForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [subject, attempts, draftKey, editId],
   )
-  const said = line ? line.text : check.tone === 'ok' ? '' : check.text
+  const said = line ? line.spoken : check.tone === 'ok' ? '' : check.text
   // The hint with nothing typed yet isn't worth reading out (it's also the line right after an
   // add), but an error is, even before any marks (a date in the future).
   const announce = check.tone === 'error' || values.marks.some(m => m.trim() !== '') ? said : ''
@@ -202,7 +210,8 @@ export default function AttemptForm({
             ) : (
               <>
                 <optgroup label="Current Course">{options(years.filter(y => y >= from))}</optgroup>
-                <optgroup label="Previous Course">{options(years.filter(y => y < from))}</optgroup>
+                {/* Not "Previous": Chemistry's 2016 paper is two study designs back. */}
+                <optgroup label="Older Course">{options(years.filter(y => y < from))}</optgroup>
               </>
             )}
           </select>
@@ -298,10 +307,15 @@ export default function AttemptForm({
           check.tone === 'error' ? 'text-rose-600 dark:text-rose-400' : line ? 'text-gray-700 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'
         }`}
       >
+        {/* The marks boxes and Add Attempt are described by this line, so it carries the words
+            (sr-only) and hides the symbols. */}
         {line ? (
           <>
-            This paper projects to <b className="font-semibold text-gray-900 dark:text-white tabular-nums">{line.score}</b>
-            {line.rest}
+            <span aria-hidden>
+              This paper projects to <b className="font-semibold text-gray-900 dark:text-white tabular-nums">{line.score}</b>
+              {line.rest}
+            </span>
+            <span className="sr-only">{line.spoken}</span>
           </>
         ) : (
           said
@@ -324,7 +338,7 @@ const SKIP_GUIDE_YEARS = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
 
 const SKIP_LINK = 'font-medium text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
 
-/** A paper from the previous study design reads low if skipped questions were left at zero:
+/** A paper from an older study design reads low if skipped questions were left at zero:
  *  say so, and link to that paper's list of what to skip (or, for a paper the Skip Guide doesn't
  *  list, to the subject's guide, saying which papers it covers). */
 function OldCourseHint({ subject, paper }: { subject: Subject; paper: number }) {
@@ -338,7 +352,7 @@ function OldCourseHint({ subject, paper }: { subject: Subject; paper: number }) 
     const upTo = `papers up to ${SKIP_GUIDE_YEARS[SKIP_GUIDE_YEARS.length - 1]}`
     links = (
       <Link to={base} aria-label={`Skip Guide (${upTo})`} className={SKIP_LINK}>
-        Skip Guide ({upTo}) →
+        Skip Guide ({upTo})<span aria-hidden> →</span>
       </Link>
     )
   } else if (exams.length > 1) {
@@ -347,10 +361,10 @@ function OldCourseHint({ subject, paper }: { subject: Subject; paper: number }) 
         What to skip:{' '}
         {exams.map((e, k) => (
           <span key={e.label}>
-            {k > 0 && ' · '}
+            {k > 0 && <span aria-hidden> · </span>}
             <Link to={`${base}/${paper}/${slug(e.label)}`} aria-label={`What to skip on ${paper} ${e.label}`} className={SKIP_LINK}>
               {e.label}
-              {k === exams.length - 1 && ' →'}
+              {k === exams.length - 1 && <span aria-hidden> →</span>}
             </Link>
           </span>
         ))}
@@ -359,7 +373,7 @@ function OldCourseHint({ subject, paper }: { subject: Subject; paper: number }) 
   } else {
     links = (
       <Link to={`${base}/${paper}/${slug(exams[0].label)}`} aria-label={`What to skip on the ${paper} paper`} className={SKIP_LINK}>
-        What to skip →
+        What to skip<span aria-hidden> →</span>
       </Link>
     )
   }

@@ -32,7 +32,7 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
             <b className={B}>One exam.</b> {SUBJECTS[subject].name} has a single end-of-year exam, out of {SUBJECTS[subject].exams[0].rawMax}, so your rank on that
             exam is your projected rank.
             {current !== null &&
-              ` The ${current === last ? `${last} paper is` : current === last - 1 ? `${current} and ${last} papers are` : `papers from ${current} on are`} on the current study design; earlier years are on the previous one, which covered some different content.`}
+              ` The ${current === last ? `${last} paper is` : current === last - 1 ? `${current} and ${last} papers are` : `papers from ${current} on are`} on the current study design; earlier years are on older study designs, which covered some different content.`}
           </p>
         ) : (
           <p>

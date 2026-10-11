@@ -6,10 +6,13 @@
 // spaced evenly in log order instead, which is the order they were sat (see practice/log.ts).
 //
 // Every paper is a focusable dot: focus, hover or tap shows its details; Esc, tapping elsewhere
-// or moving on closes them. The dots are one Tab stop (the last one focused, at first the latest
-// paper), and the arrow keys, Home and End step along them.
+// or moving on closes them. A tap or the mouse picks the nearest dot (one layer over the plot
+// takes every pointer), so two close dots each get their own taps. The dots are one Tab stop
+// (the last one focused, at first the latest paper), and the arrow keys, Home and End step along
+// them: each dot says where it is ("3 of 8") and how to move on, and a hint under the chart says
+// so too while a dot has keyboard focus.
 
-import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react'
 import SegmentedControl from '../../../components/ui/SegmentedControl'
 import type { Subject } from '../data.ts'
 import { aheadOf, marksText } from '../format.ts'
@@ -25,8 +28,25 @@ const H = 240
 const PAD = { top: 18, right: 16, bottom: 28, left: 34 }
 /** Same-day papers (or retakes of one paper in By Paper Year) are nudged apart by this much. */
 const DODGE = 11
+/** How near a dot a tap, or the mouse, has to be to pick it (the nearest within this wins). */
+const REACH = { touch: 24, mouse: 16 }
 
 // ── Small hooks ────────────────────────────────────────────────────────────────────────────
+
+/** Bumped once web fonts have arrived, for anything measured from text before they did. */
+function useFontsLoaded() {
+  const [n, setN] = useState(0)
+  useEffect(() => {
+    let live = true
+    document.fonts?.ready.then(() => {
+      if (live) setN(k => k + 1)
+    })
+    return () => {
+      live = false
+    }
+  }, [])
+  return n
+}
 
 /** A callback ref and the element's width, kept current as it resizes. */
 function useWidth() {
@@ -84,11 +104,15 @@ function orderTicks(n: number, maxTicks: number): number[] {
 
 // ── Words ──────────────────────────────────────────────────────────────────────────────────
 
-/** "2019 paper, 13 Sept, 2nd try, 40, ahead of 91%" ("2019 paper (5th in your log), …" undated). */
-function dotLabel(a: Scored): string {
+/** "2019 paper, 13 Sept, 2nd try, 40, ahead of 91% (3 of 8)" ("2019 paper (5th in your log), …"
+ *  undated): `at` of `of` is the dot's place along the chart, the order the arrow keys go in. */
+function dotLabel(a: Scored, at: number, of: number): string {
   const name = a.date ? `${a.paper} paper, ${fmtDate(a.date)}` : attemptName(a)
-  return `${name}${a.sitting > 1 ? `, ${nth(a.sitting)} try` : ''}, ${a.proj.score}, ${aheadOf(a.proj.pct)}`
+  return `${name}${a.sitting > 1 ? `, ${nth(a.sitting)} try` : ''}, ${a.proj.score}, ${aheadOf(a.proj.pct)} (${at} of ${of})`
 }
+
+/** Read out after a dot's label: the keys the dots answer to. */
+const KEYS_HELP = 'Use the left and right arrow keys to move between papers, Home and End for the first and last.'
 
 /** What the chart shows, for screen readers; each paper is also in Your Attempts. */
 function summaryOf(scored: Scored[], rolling: Rolling, view: View, goal: number | null): string {
@@ -124,38 +148,40 @@ function subtitleOf(view: View, dated: boolean, n: number): string {
 // ── Goal box ───────────────────────────────────────────────────────────────────────────────
 
 const GOAL_HINT = `Goals go up to ${GOAL_MAX}: near full marks this tool reads a few points low.`
+const GOAL_WHOLE = `Goals are whole numbers from ${GOAL_MIN} to ${GOAL_MAX}.`
 
 /**
  * The My Goal box's own text, so half-typed values ("4" on the way to "40") stay put while the
- * goal itself is only ever a valid whole number or null. Clearing the box removes the goal.
+ * goal itself is only ever a valid whole number or null. The box is plain text read by parseGoal
+ * (digits only), like the mark boxes: a number box reports "40e" as empty. Only emptying the box
+ * removes the goal; anything else that isn't one ("40e", "50", that "4") keeps the last goal, and
+ * the box says so: at once for what typing on can't fix, on leaving the box for a short number.
+ * (The chart remounts on a subject change, so there's no subject to follow here.)
  */
-function useGoalBox(subject: Subject, goal: number | null, onGoal: (g: number | null) => void) {
+function useGoalBox(goal: number | null, onGoal: (g: number | null) => void) {
   const shown = (g: number | null) => (g === null ? '' : String(g))
   const [text, setText] = useState(() => shown(goal))
   const [left, setLeft] = useState(false)
-  // A goal from elsewhere (a link, another subject) replaces the box unless it already says it.
+  // A goal from elsewhere (a link, the saved log reopened) replaces the box unless it already says it.
   useEffect(() => setText(t => (parseGoal(t) === goal ? t : shown(goal))), [goal])
-  useEffect(() => {
-    setText(shown(goal))
-    setLeft(false)
-    // Only on a subject change; the effect above follows the goal itself.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subject])
 
   const change = (v: string) => {
     setText(v)
     setLeft(false)
+    const empty = v.trim() === ''
     const g = parseGoal(v)
-    if (g !== goal) onGoal(g)
+    if ((empty || g !== null) && g !== goal) onGoal(g)
   }
-  const v = Number(text)
+  const t = text.trim()
+  const digits = /^\d+$/.test(t)
+  const kept = goal !== null ? ` Your goal stays at ${goal} for now.` : ''
   const hint =
-    text.trim() === ''
+    t === '' || parseGoal(t) !== null
       ? ''
-      : v > GOAL_MAX
-        ? GOAL_HINT
-        : left && parseGoal(text) === null
-          ? `Goals are whole numbers from ${GOAL_MIN} to ${GOAL_MAX}.`
+      : digits && Number(t) > GOAL_MAX
+        ? GOAL_HINT + kept
+        : !digits || left
+          ? GOAL_WHOLE + kept
           : ''
   return { text, change, leave: () => setLeft(true), hint }
 }
@@ -177,8 +203,11 @@ export default function ProgressChart({
 }) {
   const headingId = useId()
   const hintId = useId()
+  const keysId = useId()
   const [view, setView] = useState<View>('time')
-  const box = useGoalBox(subject, goal, onGoal)
+  // A dot has keyboard focus: show which keys move along.
+  const [keys, setKeys] = useState(false)
+  const box = useGoalBox(goal, onGoal)
   const n = scored.length
   const dated = allDated(scored)
   const rolling = rollingAverages(scored)
@@ -217,11 +246,9 @@ export default function ProgressChart({
         <label className="inline-flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
           My Goal
           <input
-            type="number"
+            type="text"
             inputMode="numeric"
-            min={GOAL_MIN}
-            max={GOAL_MAX}
-            step={1}
+            autoComplete="off"
             placeholder="—"
             value={box.text}
             onChange={e => box.change(e.target.value)}
@@ -238,7 +265,11 @@ export default function ProgressChart({
       </p>
 
       {/* Only drawn with at least one paper (practice/index.tsx shows a first-paper card instead). */}
-      <Plot subject={subject} scored={scored} rolling={rolling} view={view} dated={dated} goal={goal} />
+      <Plot subject={subject} scored={scored} rolling={rolling} view={view} dated={dated} goal={goal} keysId={keysId} onKeys={setKeys} />
+      {/* Every dot is described by this. */}
+      <p id={keysId} className="sr-only">
+        {KEYS_HELP}
+      </p>
 
       <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-500 dark:text-gray-400">
         {view === 'time' && rolling.length > 0 && (
@@ -264,6 +295,12 @@ export default function ProgressChart({
           </span>
         )}
         {view === 'time' && n < WINDOW && <span>The Recent Average line starts at your {nth(WINDOW)} paper.</span>}
+        {/* Screen readers have this already, in words (KEYS_HELP). */}
+        {keys && (
+          <span aria-hidden className="ml-auto">
+            ← → to move between papers
+          </span>
+        )}
       </div>
       {view === 'time' && !dated && (
         <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">Some papers have no date, so they’re spaced evenly in the order you sat them.</p>
@@ -277,6 +314,21 @@ export default function ProgressChart({
 /** Labels drawn over lines get a halo in the card's own colour so a line never strikes through. */
 const HALO = 'stroke-white dark:stroke-gray-900'
 
+/** The root font size over the browser's usual 16 px: how much rem-sized text is scaled. */
+const remScale = () => parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1
+
+/** Whether focus came from the keyboard (the browser draws its focus ring), not a tap or click. */
+function byKeyboard(el: Element): boolean {
+  try {
+    return el.matches(':focus-visible')
+  } catch {
+    return false
+  }
+}
+
+const sameHalves = (a: Record<string, number>, b: Record<string, number>) =>
+  Object.keys(a).length === Object.keys(b).length && Object.keys(a).every(k => a[k] === b[k])
+
 function Plot({
   subject,
   scored,
@@ -284,6 +336,8 @@ function Plot({
   view,
   dated,
   goal,
+  keysId,
+  onKeys,
 }: {
   subject: Subject
   scored: Scored[]
@@ -291,6 +345,10 @@ function Plot({
   view: View
   dated: boolean
   goal: number | null
+  /** The line every dot is described by (the keys it answers to). */
+  keysId: string
+  /** A dot got keyboard focus (true), or lost focus (false). */
+  onKeys: (on: boolean) => void
 }) {
   const [widthRef, width] = useWidth()
   const wrap = useRef<HTMLDivElement | null>(null)
@@ -302,12 +360,16 @@ function Plot({
     [widthRef],
   )
   const [active, setActive] = useState<number | null>(null)
-  // Touch screens get bigger invisible hit targets round each dot.
+  // A finger picks a dot from further away than a mouse pointer does.
   const coarse = useMedia('(pointer: coarse)')
+  const fontsIn = useFontsLoaded()
   // The dot that Tab lands on: the last one focused, while the log is the one it was focused in;
   // otherwise the latest paper.
   const [roving, setRoving] = useState<{ scored: Scored[]; id: number } | null>(null)
   const tabId = roving && roving.scored === scored ? roving.id : scored[scored.length - 1].id
+  // Set from a press that will pick a dot until that press's own focus change is over (see the
+  // pointer layer below).
+  const picking = useRef(false)
 
   // A new view moves every dot; close whatever was open.
   useEffect(() => setActive(null), [view])
@@ -353,7 +415,9 @@ function Plot({
   const ih = H - PAD.top - PAD.bottom
   const y = (s: number) => PAD.top + (1 - (s - lo) / (hi - lo)) * ih
 
-  // x: days (every paper dated), log position (some undated), or paper year.
+  // x: days (every paper dated), log position (some undated), or paper year. How many labels fit
+  // depends on their width, which grows with the root font size (the labels are in rem).
+  const k = remScale()
   const order = new Map(scored.map((a, i) => [a.id, i]))
   const slot = (i: number) => PAD.left + ((i + 0.5) / n) * iw
   let baseX: (a: Scored) => number
@@ -368,16 +432,34 @@ function Plot({
     const at = (day: number) => PAD.left + ((day - d0) / (d1 - d0)) * iw
     baseX = a => at(dayOf(a.date as string))
     // Everything on one day: label that day rather than the week around it.
-    const ticks = first === last ? [{ day: first, label: fmtDay(first) }] : timeTicks(d0, d1, Math.max(2, Math.floor(iw / 70)))
+    const ticks = first === last ? [{ day: first, label: fmtDay(first) }] : timeTicks(d0, d1, Math.max(2, Math.floor(iw / (70 * k))))
     xTicks = ticks.map(t => ({ x: at(t.day), label: t.label }))
   } else if (time) {
     baseX = a => slot(order.get(a.id) ?? 0)
-    xTicks = orderTicks(n, Math.max(2, Math.floor(iw / 44))).map(i => ({ x: slot(i), label: nth(i + 1) }))
+    xTicks = orderTicks(n, Math.max(2, Math.floor(iw / (44 * k)))).map(i => ({ x: slot(i), label: nth(i + 1) }))
   } else {
     const at = (yr: number) => PAD.left + ((yr - years[0]) / (years.length - 1)) * iw
     baseX = a => at(a.paper)
-    xTicks = years.filter((_, i) => iw >= 360 || i % 2 === (years.length - 1) % 2).map(yr => ({ x: at(yr), label: String(yr) }))
+    // Every year when they fit (about 36 px a label at 16 px root), else every 2nd, 3rd…, always
+    // keeping the newest paper's year.
+    const gap = iw / (years.length - 1)
+    const step = [1, 2, 3, 5].find(s => gap * s >= 36 * k) ?? years.length - 1
+    xTicks = years.filter((_, i) => (years.length - 1 - i) % step === 0).map(yr => ({ x: at(yr), label: String(yr) }))
   }
+  // A label at either end ("Jan 2027") is nudged in by half its width so it isn't cut off. The
+  // widths are measured once the labels are drawn (before the browser paints), so it's right at
+  // any text size; until then, an estimate for 11 px text scaled to the root font size.
+  const [halves, setHalves] = useState<Record<string, number>>({})
+  const tickKey = xTicks.map(t => t.label).join('|')
+  useLayoutEffect(() => {
+    const next: Record<string, number> = {}
+    wrap.current?.querySelectorAll<SVGTextElement>('text[data-tick]').forEach(el => {
+      const w = el.getComputedTextLength()
+      if (w > 0) next[el.textContent ?? ''] = w / 2
+    })
+    setHalves(cur => (sameHalves(cur, next) ? cur : next))
+  }, [tickKey, width, fontsIn])
+  const halfOf = (label: string) => halves[label] ?? label.length * 3.2 * remScale()
   // Papers that would land on one spot (same day; or the same paper in By Paper Year) are
   // spread a little either side of it, in log order.
   const spot = (a: Scored) => (time ? (dated ? a.date ?? '' : `#${a.id}`) : String(a.paper))
@@ -400,10 +482,31 @@ function Plot({
   const rollPath = rolling.map((r, i) => `${i ? 'L' : 'M'}${x(r.a).toFixed(1)},${y(r.v).toFixed(1)}`).join('')
   const hv = scored.find(a => a.id === active)
 
-  /** Focusing a dot (Tab, a click or the keys below) makes it the one Tab comes back to. */
-  const onDotFocus = (id: number) => {
+  /** Focusing a dot (Tab, a tap or click, or the keys below) makes it the one Tab comes back to. */
+  const onDotFocus = (id: number, el: SVGGElement) => {
     setActive(id)
     setRoving({ scored, id })
+    onKeys(byKeyboard(el))
+  }
+  const onDotBlur = (id: number) => {
+    if (!picking.current) setActive(cur => (cur === id ? null : cur))
+    onKeys(false)
+  }
+  /** The dot nearest the pointer, if one is within reach. */
+  const dotAt = (e: ReactMouseEvent<SVGRectElement>): Scored | null => {
+    const box = e.currentTarget.getBoundingClientRect()
+    const px = e.clientX - box.left
+    const py = e.clientY - box.top
+    let hit: Scored | null = null
+    let best = coarse ? REACH.touch : REACH.mouse
+    for (const a of dots) {
+      const d = Math.hypot(x(a) - px, y(a.proj.exact) - py)
+      if (d < best) {
+        hit = a
+        best = d
+      }
+    }
+    return hit
   }
   const onDotKey = (e: KeyboardEvent<SVGGElement>) => {
     if (e.key === 'Escape') {
@@ -432,12 +535,13 @@ function Plot({
               </g>
             ))}
             {/* Keyed by position: month names repeat once the dates span more than a year. A label
-                at either end ("Jan 2027") is nudged in, about half its width, so it isn't cut off. */}
+                at either end is nudged in by half its width (halfOf), so it isn't cut off. */}
             {xTicks.map(t => {
-              const half = t.label.length * 3.2
+              const half = halfOf(t.label)
               return (
                 <text
                   key={t.x}
+                  data-tick
                   x={Math.min(Math.max(t.x, half), width - half)}
                   y={H - 8}
                   textAnchor="middle"
@@ -461,7 +565,8 @@ function Plot({
             {time && rolling.length === 1 && <circle cx={x(lastRoll.a)} cy={y(lastRoll.v)} r={3.5} className="fill-sky-600 dark:fill-sky-400" />}
           </g>
 
-          {dots.map(a => {
+          {/* The dots take focus and keys only: pointers go to the layer drawn over them. */}
+          {dots.map((a, i) => {
             const on = active === a.id
             const cx = x(a)
             const cy = y(a.proj.exact)
@@ -472,21 +577,16 @@ function Plot({
             return (
               <g
                 key={a.id}
-                data-dot
+                data-dot={a.id}
                 tabIndex={a.id === tabId ? 0 : -1}
                 role="img"
-                aria-label={dotLabel(a)}
-                className="group cursor-pointer outline-none"
-                onFocus={() => onDotFocus(a.id)}
-                onBlur={() => setActive(cur => (cur === a.id ? null : cur))}
-                onMouseEnter={() => setActive(a.id)}
-                onClick={e => {
-                  e.stopPropagation()
-                  setActive(a.id)
-                }}
+                aria-label={dotLabel(a, i + 1, dots.length)}
+                aria-describedby={keysId}
+                className="group pointer-events-none outline-none"
+                onFocus={e => onDotFocus(a.id, e.currentTarget)}
+                onBlur={() => onDotBlur(a.id)}
                 onKeyDown={onDotKey}
               >
-                <circle cx={cx} cy={cy} r={coarse ? 20 : 14} fill="transparent" />
                 <circle cx={cx} cy={cy} r={12} fill="none" strokeWidth={2} className="stroke-transparent group-focus-visible:stroke-blue-500" />
                 {a.sitting > 1 ? (
                   <path d={`M${cx},${cy - d}L${cx + d},${cy}L${cx},${cy + d}L${cx - d},${cy}Z`} strokeWidth={strokeWidth} strokeLinejoin="round" className={tone} />
@@ -496,6 +596,41 @@ function Plot({
               </g>
             )
           })}
+
+          {/* One layer over the whole plot takes every pointer and picks the nearest dot, so a dot
+              drawn later can't take a tap meant for a close one drawn before it. A tap or click
+              focuses that dot (the one Tab comes back to); away from every dot, it falls through
+              to the wrapper, which closes the details. The layer can't take focus, so a press
+              moves focus to the page, and the dot losing it would close the details until the
+              button comes up: a press that will pick a dot leaves them open through that blur
+              (the flag clears once the press's own focus change is done). Not preventDefault: the
+              focus would then stay put, and a click after the keyboard would draw the keyboard ring. */}
+          <rect
+            aria-hidden
+            width={width}
+            height={H}
+            fill="transparent"
+            onMouseDown={e => {
+              if (!dotAt(e)) return
+              picking.current = true
+              setTimeout(() => {
+                picking.current = false
+              })
+            }}
+            onPointerMove={e => {
+              if (e.pointerType === 'touch') return
+              const hit = dotAt(e)
+              e.currentTarget.style.cursor = hit ? 'pointer' : ''
+              if (hit) setActive(hit.id)
+            }}
+            onClick={e => {
+              const hit = dotAt(e)
+              if (!hit) return
+              e.stopPropagation()
+              setActive(hit.id)
+              wrap.current?.querySelector<SVGGElement>(`[data-dot="${hit.id}"]`)?.focus({ preventScroll: true })
+            }}
+          />
 
           {/* Labels last, haloed, so neither a line nor a dot can cover them. */}
           <g aria-hidden className="pointer-events-none text-[0.6875rem]">
@@ -533,7 +668,7 @@ function Plot({
           </g>
         </svg>
       )}
-      {hv && width > 0 && <Tip subject={subject} a={hv} left={Math.min(Math.max(x(hv), 92), width - 92)} dotY={y(hv.proj.exact)} />}
+      {hv && width > 0 && <Tip subject={subject} a={hv} x={x(hv)} width={width} dotY={y(hv.proj.exact)} />}
     </div>
   )
 }
@@ -541,14 +676,27 @@ function Plot({
 // ── Tooltip ────────────────────────────────────────────────────────────────────────────────
 
 /** A paper's details, above its dot (below it when the dot is near the top). The dot's own
- *  label already says all this to screen readers. */
-function Tip({ subject, a, left, dotY }: { subject: Subject; a: Scored; left: number; dotY: number }) {
+ *  label already says all this to screen readers.
+ *
+ *  It's centred on the dot (`x`) but kept inside the chart (`width`), using its own measured
+ *  width (before the browser paints), so it fits at any text size. Never wider than the chart: if
+ *  the text is that big, its lines wrap. */
+function Tip({ subject, a, x, width, dotY }: { subject: Subject; a: Scored; x: number; width: number; dotY: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [half, setHalf] = useState(0)
+  // After every render: what it says changes with the dot.
+  useLayoutEffect(() => {
+    const h = (ref.current?.offsetWidth ?? 0) / 2
+    if (h !== half) setHalf(h)
+  })
+  const left = 2 * half >= width ? width / 2 : Math.min(Math.max(x, half), width - half)
   const below = dotY < 70
   return (
     <div
+      ref={ref}
       aria-hidden
-      className="pointer-events-none absolute z-10 rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-2.5 py-1.5 text-xs leading-snug shadow-lg whitespace-nowrap"
-      style={{ left, top: below ? dotY + 16 : dotY - 16, transform: below ? 'translateX(-50%)' : 'translate(-50%, -100%)' }}
+      className="pointer-events-none absolute z-10 w-max rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-2.5 py-1.5 text-xs leading-snug shadow-lg"
+      style={{ left, maxWidth: width, top: below ? dotY + 16 : dotY - 16, transform: below ? 'translateX(-50%)' : 'translate(-50%, -100%)' }}
     >
       <div className="font-semibold">
         {a.paper} paper{a.sitting > 1 ? ` (${nth(a.sitting)} try)` : ''} · {a.proj.score}

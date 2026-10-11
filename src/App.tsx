@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
-import { Suspense, useState, useEffect } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import Layout from './components/Layout'
 import RouteErrorBoundary from './components/RouteErrorBoundary'
 import Home from './pages/Home'
@@ -23,11 +23,14 @@ export default function App() {
     document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
   }, [dark])
 
+  // A press of the toggle this visit, remembered even where storage is blocked and can't keep it.
+  const picked = useRef(false)
+
   // Until the visitor picks a theme, follow the device's setting as it changes (e.g. at night).
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
     const follow = (e: MediaQueryListEvent) => {
-      if (!storedTheme()) setDark(e.matches)
+      if (!picked.current && !storedTheme()) setDark(e.matches)
     }
     mq.addEventListener('change', follow)
     return () => mq.removeEventListener('change', follow)
@@ -36,6 +39,7 @@ export default function App() {
   // Only a press of the toggle is saved as the visitor's choice.
   const toggleDark = () => {
     const next = !dark
+    picked.current = true
     try {
       localStorage.setItem('theme', next ? 'dark' : 'light')
     } catch {

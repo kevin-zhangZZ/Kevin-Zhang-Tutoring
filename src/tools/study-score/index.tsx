@@ -16,7 +16,7 @@ import { useNavigate, useParams, useSearchParams, type To } from 'react-router-d
 import SegmentedControl from '../../components/ui/SegmentedControl'
 import { DISTRIBUTIONS, SUBJECTS, SUBJECT_IDS, type Subject } from './data.ts'
 import { project, typicalOf } from './model.ts'
-import { CARD, CopyLink, SUB } from './shared.tsx'
+import { CARD_BOTTOM, CARD_TOP, CopyLink, FOCUS, SUB } from './shared.tsx'
 import HowItWorks from './about.tsx'
 import CheckMarks from './single/index.tsx'
 import MarkInputs from './single/MarkInputs.tsx'
@@ -27,7 +27,7 @@ const TOOL = '/study-score'
 /** Marks a first visit starts on: 75% of each paper. */
 const DEFAULT_SHARE = 0.75
 /** How long the marks wait after their last change before they go into the URL. Browsers cap
- *  history writes (Safari, and so every iOS browser, refuses more than 100 in 10 seconds), and a
+ *  history writes (Safari, and so every iOS browser, refuses more than 100 in 30 seconds), and a
  *  slider drag changes the mark once per step. */
 const URL_DELAY = 350
 
@@ -166,21 +166,26 @@ export default function StudyScore() {
 
   // Leaving the page, or the page being hidden or closed: write what's waiting, so a reload or a
   // restored tab has the latest marks (flush keeps to this page's own address).
-  // Any click flushes first, in the capture phase on document: that runs before React's own
-  // listener on the root, so before a link's onClick navigates (Enter on a link clicks too), and
-  // Back from the next page finds the latest marks. By unmount the new page's address is already
-  // there, so the flush on unmount is only a fallback. At most one write per click.
+  // A click on a link flushes first, in the capture phase on document: that runs before React's
+  // own listener on the root, so before the link's onClick navigates (Enter on a link clicks too),
+  // and Back from the next page finds the latest marks. Every way off the page in the app's shell
+  // is a link. Other clicks (the sticky bar's − and +, a tap on a slider's track) ride the delay
+  // like a drag does, and Subject, Mode and Copy Link flush for themselves. By unmount the new
+  // page's address is already there, so the flush on unmount is only a fallback.
   useEffect(() => {
     const onHidden = () => {
       if (document.visibilityState === 'hidden') flush()
     }
+    const onClick = (e: MouseEvent) => {
+      if ((e.target as Element | null)?.closest?.('a[href]')) flush()
+    }
     window.addEventListener('pagehide', flush)
     document.addEventListener('visibilitychange', onHidden)
-    document.addEventListener('click', flush, true)
+    document.addEventListener('click', onClick, true)
     return () => {
       window.removeEventListener('pagehide', flush)
       document.removeEventListener('visibilitychange', onHidden)
-      document.removeEventListener('click', flush, true)
+      document.removeEventListener('click', onClick, true)
       flush()
     }
   }, [flush])
@@ -267,52 +272,56 @@ export default function StudyScore() {
         </p>
       </header>
 
-      <div className="flex flex-col gap-5">
-        {/* A container, so the mark inputs go side by side only once the card itself is wide enough
-            (not just the screen: the sidebar takes 240 px from 768 px up). */}
-        <section className={`${CARD} @container flex flex-col gap-4`}>
-          <SegmentedControl
-            aria-label="Subject"
-            size="md"
-            fill
-            className="w-full sm:w-auto sm:max-w-md"
-            value={subject}
-            onChange={goSubject}
-            options={SUBJECT_IDS.map(s => ({ value: s, label: SUBJECTS[s].label, ariaLabel: SUBJECTS[s].name }))}
-          />
-          <div className="flex flex-col gap-2">
-            <SegmentedControl
-              variant="tabs"
-              aria-label="Mode"
-              size="md"
-              fill
-              className="w-full sm:w-auto sm:max-w-md"
-              value={mode}
-              onChange={goMode}
-              idFor={tabId}
-              controls={PANEL}
-              options={[
-                { value: 'single', label: 'Check My Marks' },
-                { value: 'papers', label: 'Track My Papers' },
-              ]}
-            />
-            <p className={SUB}>
-              {mode === 'single' ? (
-                <>
-                  Your marks, scored against each year {span}.{' '}
-                  <button
-                    type="button"
-                    onClick={toTrack}
-                    className="inline-block py-1 -my-1 [@media(pointer:coarse)]:py-3 [@media(pointer:coarse)]:-my-3 text-left font-medium text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                  >
-                    Just sat a past paper? Log it in Track My Papers<span aria-hidden> →</span>
-                  </button>
-                </>
-              ) : (
-                'Log each past paper you sit and see your trend.'
-              )}
-            </p>
-          </div>
+      {/* The top card is two elements that draw as one: Subject and Mode above, then the mode's
+          own part (its subtitle, and Check My Marks' inputs and Copy Link) as the first block of
+          the tabpanel, so the panel holds everything the tabs switch. */}
+      <div className={`${CARD_TOP} flex flex-col gap-4`}>
+        <SegmentedControl
+          aria-label="Subject"
+          size="md"
+          fill
+          className="w-full sm:w-auto sm:max-w-md"
+          value={subject}
+          onChange={goSubject}
+          options={SUBJECT_IDS.map(s => ({ value: s, label: SUBJECTS[s].label, ariaLabel: SUBJECTS[s].name }))}
+        />
+        <SegmentedControl
+          variant="tabs"
+          aria-label="Mode"
+          size="md"
+          fill
+          className="w-full sm:w-auto sm:max-w-md"
+          value={mode}
+          onChange={goMode}
+          idFor={tabId}
+          controls={PANEL}
+          options={[
+            { value: 'single', label: 'Check My Marks' },
+            { value: 'papers', label: 'Track My Papers' },
+          ]}
+        />
+      </div>
+
+      <div role="tabpanel" id={PANEL} aria-labelledby={tabId(mode)} className="flex flex-col gap-5 min-w-0">
+        {/* A container, so the mark inputs go side by side only once the card itself is wide
+            enough (not just the screen: the sidebar takes 240 px from 768 px up). */}
+        <div className={`${CARD_BOTTOM} @container flex flex-col gap-4`}>
+          <p className={SUB}>
+            {mode === 'single' ? (
+              <>
+                Your marks, scored against each year {span}.{' '}
+                <button
+                  type="button"
+                  onClick={toTrack}
+                  className={`inline-block py-1 -my-1 [@media(pointer:coarse)]:py-3 [@media(pointer:coarse)]:-my-3 text-left font-medium text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline rounded ${FOCUS}`}
+                >
+                  Just sat a past paper? Log it in Track My Papers<span aria-hidden> →</span>
+                </button>
+              </>
+            ) : (
+              'Log each past paper you sit and see your trend.'
+            )}
+          </p>
           {mode === 'single' && (
             <>
               <MarkInputs key={subject} subject={subject} marks={marks} onMark={setMark} onBusy={setBusy} boxRef={inputsRef} />
@@ -323,16 +332,13 @@ export default function StudyScore() {
               </div>
             </>
           )}
-        </section>
-
-        <div role="tabpanel" id={PANEL} aria-labelledby={tabId(mode)} className="flex flex-col gap-5 min-w-0">
-          {mode === 'single' ? (
-            <CheckMarks subject={subject} marks={marks} rows={rows} typical={typical} busy={busy} endRef={needRef} />
-          ) : (
-            <PracticeMode key={subject} subject={subject} encoded={params.get('a') ?? ''} goalParam={params.get('g')} onLog={onLog} onGoal={onGoal} />
-          )}
-          <HowItWorks subject={subject} />
         </div>
+        {mode === 'single' ? (
+          <CheckMarks subject={subject} marks={marks} rows={rows} typical={typical} busy={busy} endRef={needRef} />
+        ) : (
+          <PracticeMode key={subject} subject={subject} encoded={params.get('a') ?? ''} goalParam={params.get('g')} onLog={onLog} onGoal={onGoal} />
+        )}
+        <HowItWorks subject={subject} />
       </div>
     </div>
   )

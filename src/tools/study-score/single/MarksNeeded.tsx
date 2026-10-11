@@ -35,8 +35,14 @@ export default function MarksNeeded({
   const you = (
     <tr key="you">
       <td colSpan={3} className="py-1">
+        {/* Said as a sentence: "/" and "→" would be read out as "slash" and "right arrow". */}
         <div className="rounded-lg bg-sky-50 dark:bg-sky-950/60 px-2.5 py-1.5 text-[0.78125rem] font-semibold text-sky-800 dark:text-sky-200 tabular-nums">
-          You now: <b className="font-bold">{total}</b> / {max} → <b className="font-bold">{typical}</b>
+          <span aria-hidden>
+            You now: <b className="font-bold">{total}</b> / {max} → <b className="font-bold">{typical}</b>
+          </span>
+          <span className="sr-only">
+            You now: {total} out of {max}, typical study score {typical}
+          </span>
         </div>
       </td>
     </tr>

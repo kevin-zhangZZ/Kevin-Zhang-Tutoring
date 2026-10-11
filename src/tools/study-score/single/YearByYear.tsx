@@ -47,6 +47,19 @@ function ticksFor({ lo, hi }: Span): number[] {
   return out
 }
 
+/** The strip width (a container query on the header's strip) from which the labels between the
+ *  ends fit, by how many labels there are; narrower, only the end labels show (the grid lines all
+ *  stay). A label is two digits of text-xs, about 0.95rem, and wants 0.25rem clear of the next, so
+ *  n labels need about (n − 1) × 1.7rem: at 320 px the strip is 42 px, which fits only the ends.
+ *  Windows run 10 to 50 in 5s, so 3, 4, 6, 8 or 10 labels. Class names in full, for Tailwind. */
+const MIDDLE_LABELS: Record<number, string> = {
+  3: 'hidden @[3.5rem]:inline',
+  4: 'hidden @[5.25rem]:inline',
+  6: 'hidden @[8.5rem]:inline',
+  8: 'hidden @[12rem]:inline',
+  10: 'hidden @[15.5rem]:inline',
+}
+
 // Row tracks, shared by the header and every row so the columns line up.
 const GRID = 'grid grid-cols-[2.5rem_minmax(0,1fr)_2rem_6rem_12px] gap-x-2 sm:grid-cols-[3rem_minmax(0,1fr)_2.5rem_7.5rem_12px] sm:gap-x-3'
 
@@ -81,7 +94,7 @@ export default function YearByYear({ subject, marks, rows }: { subject: Subject;
       ? [{ label: null, rows: newestFirst }]
       : [
           { label: 'Current Course', rows: newestFirst.filter(r => r.year > last) },
-          { label: 'Previous Course', rows: newestFirst.filter(r => r.year <= last) },
+          { label: 'Older Course', rows: newestFirst.filter(r => r.year <= last) },
         ].filter(g => g.rows.length > 0)
 
   const what = exams.length > 1 ? exams.map((e, i) => `${marks[i]}/${e.rawMax} on ${e.label}`).join(' and ') : `${marks[0]}/${exams[0].rawMax} on the exam`
@@ -99,11 +112,13 @@ export default function YearByYear({ subject, marks, rows }: { subject: Subject;
       <div className="text-[0.8125rem]">
         <div aria-hidden className={`${GRID} items-end pb-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400`}>
           <span>Year</span>
-          <span className="relative h-4">
+          <span className="relative h-4 @container">
             {ticks.map((t, i) => (
               <span
                 key={t}
-                className={`absolute top-0 font-normal tabular-nums ${i === 0 ? '' : i === ticks.length - 1 ? '-translate-x-full' : '-translate-x-1/2'}`}
+                className={`absolute top-0 font-normal tabular-nums ${
+                  i === 0 ? '' : i === ticks.length - 1 ? '-translate-x-full' : `-translate-x-1/2 ${MIDDLE_LABELS[ticks.length] ?? 'hidden'}`
+                }`}
                 style={{ left: at(t) }}
               >
                 {t}
