@@ -48,73 +48,97 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le \sin(2x) \le 1" />,
-    reason: <>The sine of any angle lies between <Katex tex="-1" /> and <Katex tex="1" />. The <Katex tex="2" /> inside the sine only changes how fast the graph repeats (the period), never how high or low it goes.</>,
+    reason: <>The sine of any angle lies between <Katex tex="-1" /> and <Katex tex="1" />. The <Katex tex="2" /> inside the sine only changes the period, not the height.</>,
   },
   {
     working: <Katex display tex="-2 \le 2\sin(2x) \le 2" />,
-    reason: <>Multiply through by the amplitude <Katex tex="2" />. Both ends are actually reached: <Katex tex="g\left(\tfrac\pi4\right) = 2\sin\left(\tfrac\pi2\right) = 2" /> and <Katex tex="g\left(\tfrac{3\pi}4\right) = 2\sin\left(\tfrac{3\pi}2\right) = -2" />.</>,
+    reason: <>Multiply through by the amplitude <Katex tex="2" />. Both ends are reached: <Katex tex="g\left(\tfrac\pi4\right) = 2\sin\left(\tfrac\pi2\right) = 2" /> and <Katex tex="g\left(\tfrac{3\pi}4\right) = 2\sin\left(\tfrac{3\pi}2\right) = -2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{[-2,\ 2]}" />,
-    reason: <>Square brackets, because <Katex tex="-2" /> and <Katex tex="2" /> are values <Katex tex="g" /> actually takes; round brackets <Katex tex="(-2,2)" /> would leave them out. A range is a set of <Katex tex="y" />-values, so it must be an interval; <Katex tex="2" /> on its own is only the amplitude. The report lists <Katex tex="(-2,2)" /> and just writing 2 among the common errors.</>,
+    reason: <>Square brackets, because <Katex tex="g" /> actually reaches <Katex tex="-2" /> and <Katex tex="2" />. A range is an interval of <Katex tex="y" />-values, not just the amplitude.</>,
+    more: (
+      <>
+        Round brackets <Katex tex="(-2,2)" /> would leave out the endpoints that <Katex tex="g" /> does reach, and
+        writing <Katex tex="2" /> on its own gives the amplitude, not a set of values. The report lists both among the
+        common errors. Its list also shows <Katex tex="[-2,2]" />, the report&apos;s own answer, so that entry is a slip in the report: <Katex tex="[-2,2]" /> earns the mark.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{n} = \frac{2\pi}{2}" />,
-    reason: <>For <Katex tex="y = a\sin(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />: the angle <Katex tex="nx" /> needs to grow by <Katex tex="2\pi" /> for one full cycle, and that takes <Katex tex="x" /> only <Katex tex="\tfrac{2\pi}{n}" />. Here <Katex tex="n = 2" />.</>,
+    reason: <>For <Katex tex="y = a\sin(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />. Here <Katex tex="n = 2" />.</>,
+    more: <>Why: the angle <Katex tex="nx" /> must grow by <Katex tex="2\pi" /> for one full cycle, and that takes <Katex tex="x" /> only <Katex tex="\tfrac{2\pi}{n}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\pi}" />,
-    reason: <>The amplitude <Katex tex="2" /> stretches the graph vertically, so it has no effect on the period. Check: <Katex tex="g(x+\pi) = 2\sin(2x+2\pi) = 2\sin(2x) = g(x)" />.</>,
+    reason: <>The amplitude <Katex tex="2" /> is a vertical stretch, so it has no effect on the period.</>,
+    more: <>Check: <Katex tex="g(x+\pi) = 2\sin(2x+2\pi) = 2\sin(2x) = g(x)" />, so <Katex tex="g" /> repeats every <Katex tex="\pi" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} 2\sin(2x) &= \sqrt3 \\ \sin(2x) &= \frac{\sqrt3}{2} \end{aligned}" />,
-    reason: <>Divide both sides by <Katex tex="2" /> to get the sine on its own, so the equation reads sin(angle) = a known value.</>,
+    reason: <>Divide both sides by <Katex tex="2" /> to get the sine on its own, so the equation reads sine of an angle equals a known exact value.</>,
   },
   {
     working: <Katex display tex="\text{reference angle} = \tfrac\pi3" />,
-    reason: <>Exam 1 has no CAS, so this comes from the exact values: <Katex tex="\sin\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}" />. The reference angle is the first-quadrant angle with this sine value.</>,
+    reason: <>From the exact values, <Katex tex="\sin\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}" />. The reference angle is the first-quadrant angle with this sine value.</>,
   },
   {
     working: (
       <Katex
         display
-        tex="\begin{aligned} 2x &= \tfrac\pi3+2k\pi \quad \text{or} \\ 2x &= \pi-\tfrac\pi3+2k\pi \\ &=\tfrac{2\pi}{3}+2k\pi, \quad k\in Z \end{aligned}"
+        tex="\begin{aligned} 2x &= \tfrac\pi3+2k\pi \\ \text{or} \ \ 2x &= \pi-\tfrac\pi3+2k\pi \\ &=\tfrac{2\pi}{3}+2k\pi, \quad k\in Z \end{aligned}"
       />
     ),
     reason: (
       <>
-        Solve for the whole angle <Katex tex="2x" /> first. Sine is positive in the first and second quadrants, so
-        each turn has two angles: <Katex tex="\tfrac\pi3" /> and <Katex tex="\pi-\tfrac\pi3" />. Adding any whole
-        number of full turns, <Katex tex="2k\pi" />, gives the same sine again. Since <Katex tex="x\in R" /> (no
-        interval given), there are infinitely many solutions, so you write this general form rather than listing a
-        few; the report notes some students gave only the solutions within one period.{' '}
+        <Katex tex="x\in R" />, so give every solution, not just a few. Solve for the whole angle <Katex tex="2x" /> first. Sine is positive in quadrants 1 and 2, giving{' '}
+        <Katex tex="\tfrac\pi3" /> and <Katex tex="\pi-\tfrac\pi3" />; adding any number of full turns,{' '}
+        <Katex tex="2k\pi" />, gives the same sine.
+      </>
+    ),
+    more: (
+      <>
+        With no interval given there are infinitely many solutions, so you write this general form rather than
+        listing a few; the report notes some students gave only specific solutions within a period.{' '}
         <Katex tex="k\in Z" /> means <Katex tex="k" /> is any integer: <Katex tex="\dots,-2,-1,0,1,2,\dots" />.
       </>
     ),
   },
   {
     working: <Katex display tex="x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi" />,
-    reason: <>Dividing everything by 2, including the <Katex tex="2k\pi" />, which becomes <Katex tex="k\pi" />. The report lists leaving <Katex tex="+2k\pi" /> here among the common errors.</>,
-    more: <>Press <Katex tex="+2k\pi" /> in the diagram below to see the solutions it skips.</>,
+    reason: <>Divide everything by 2, including the <Katex tex="2k\pi" />, which becomes <Katex tex="k\pi" />.</>,
+    more: (
+      <>
+        The report lists <Katex tex="+2k\pi" /> among the common errors. Leaving <Katex tex="+2k\pi" /> here makes each
+        step of <Katex tex="k" /> jump <Katex tex="2\pi" />, two periods of <Katex tex="g" />, so every second pair of
+        solutions is missed, e.g. <Katex tex="\tfrac{7\pi}6" /> and <Katex tex="\tfrac{4\pi}3" />. Press{' '}
+        <Katex tex="+2k\pi" /> in the diagram below to see the solutions it skips.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac\pi6+k\pi \ \text{ or } \ x = \tfrac\pi3+k\pi, \quad k\in Z}" />,
     reason: (
       <>
+        State <Katex tex="k\in Z" />: <Katex tex="k" /> can be any integer (positive, negative or 0), each step moving one
+        period, <Katex tex="\pi" />. A fractional <Katex tex="k" /> gives non-solutions.
+      </>
+    ),
+    more: (
+      <>
         Check <Katex tex="k=0" />: <Katex tex="g\left(\tfrac\pi6\right) = 2\sin\left(\tfrac\pi3\right) = \sqrt3" /> and{' '}
-        <Katex tex="g\left(\tfrac\pi3\right) = 2\sin\left(\tfrac{2\pi}3\right) = \sqrt3" />. Each step in{' '}
-        <Katex tex="k" /> moves <Katex tex="x" /> one period, <Katex tex="\pi" /> (part b), so <Katex tex="k\in Z" />{' '}
-        must be stated. The report lists <Katex tex="k\in R" />, <Katex tex="k\in R^+" /> and{' '}
-        <Katex tex="k\in Z^+" /> among the common errors: a non-integer <Katex tex="k" /> such as{' '}
-        <Katex tex="\tfrac12" /> gives <Katex tex="x = \tfrac{2\pi}3" />, where <Katex tex="g(x) = -\sqrt3" />, and
-        positive-only <Katex tex="k" /> loses <Katex tex="\tfrac\pi6" />, <Katex tex="\tfrac\pi3" /> and every
-        solution to their left.
+        <Katex tex="g\left(\tfrac\pi3\right) = 2\sin\left(\tfrac{2\pi}3\right) = \sqrt3" />. The report lists{' '}
+        <Katex tex="k\in R" />, <Katex tex="k\in R^+" /> and <Katex tex="k\in Z^+" /> among the common errors: a
+        non-integer <Katex tex="k" /> such as <Katex tex="\tfrac12" /> gives <Katex tex="x = \tfrac{2\pi}3" />, where{' '}
+        <Katex tex="g(x) = -\sqrt3" />, and positive-only <Katex tex="k" /> loses <Katex tex="\tfrac\pi6" />,{' '}
+        <Katex tex="\tfrac\pi3" /> and every solution to their left.
       </>
     ),
   },

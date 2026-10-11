@@ -95,11 +95,12 @@ const EXAM_CII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="OP \perp AP \quad \text{(tangent} \perp \text{radius)}" />,
-    reason: <>A tangent always meets the radius at the point of contact at right angles, and the diagram marks this at <Katex tex="P" />. So triangle <Katex tex="OPA" /> is right-angled at <Katex tex="P" />, and right-angle trigonometry can find the angle at <Katex tex="O" />. Draw the triangle and label its sides and angle: the report notes that most students did not.</>,
+    reason: <>A tangent meets the radius at the point of contact at right angles (marked at <Katex tex="P" />). So triangle <Katex tex="OPA" /> is right-angled at <Katex tex="P" />, and trigonometry finds the angle at <Katex tex="O" />.</>,
+    more: <>Draw the triangle and label its sides and the angle as you go. The report notes that most students labelled neither, and that those who saw the question as a right-angled triangle tended to fare better.</>,
   },
   {
-    working: <Katex display tex="OP = 1, \quad OA = 2 \implies \cos(\angle AOP) = \frac{OP}{OA} = \frac12" />,
-    reason: <><Katex tex="OP" /> is a radius of the unit circle, so <Katex tex="OP=1" />, and <Katex tex="OA=2" /> because <Katex tex="A" /> is <Katex tex="(2,0)" />. Seen from the angle at <Katex tex="O" />, <Katex tex="OP" /> is the adjacent side and <Katex tex="OA" /> (opposite the right angle) is the hypotenuse, so use cosine.</>,
+    working: <Katex display tex="\begin{aligned} &OP = 1, \quad OA = 2 \\ &\cos(\angle AOP) = \frac{OP}{OA} = \frac12 \end{aligned}" />,
+    reason: <><Katex tex="OP=1" /> (a radius) and <Katex tex="OA=2" /> (<Katex tex="A" /> is <Katex tex="(2,0)" />). From the angle at <Katex tex="O" />, <Katex tex="OP" /> is adjacent and <Katex tex="OA" /> is the hypotenuse, so use cosine.</>,
   },
   {
     working: <Katex display tex="\angle AOP = \cos^{-1}\!\left(\tfrac12\right) = \tfrac\pi3" />,
@@ -111,7 +112,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m_{AP} = \frac{\tfrac{\sqrt3}{2}-0}{\tfrac12-2} = \frac{\tfrac{\sqrt3}{2}}{-\tfrac32} = -\frac{1}{\sqrt3}" />,
-    reason: <>The gradient formula with <Katex tex="A(2,0)" /> and <Katex tex="P" />. (Or: <Katex tex="m_{OP}=\tan\tfrac\pi3=\sqrt3" />, and <Katex tex="AP\perp OP" />, so take the negative reciprocal.) Don't differentiate <Katex tex="y=\sqrt{1-x^2}" /> and substitute <Katex tex="x=2" />: its derivative only exists for <Katex tex="-1<x<1" />, and the gradient you want is at <Katex tex="P" />, not at <Katex tex="A" />. The report flags this error.</>,
+    reason: <>The gradient formula with <Katex tex="A(2,0)" /> and <Katex tex="P" />.</>,
+    more: <>Alternatively, <Katex tex="m_{OP}=\tan\tfrac\pi3=\sqrt3" /> and <Katex tex="AP\perp OP" />, so take the negative reciprocal. Don't differentiate <Katex tex="y=\sqrt{1-x^2}" /> and substitute <Katex tex="x=2" />: its derivative only exists for <Katex tex="-1<x<1" />, and the gradient you want is at <Katex tex="P" />, not at <Katex tex="A" />. The report flags this error.</>,
   },
   {
     working: <Katex display tex="y-0 = -\frac{1}{\sqrt3}(x-2)" />,
@@ -119,7 +121,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = -\frac{x}{\sqrt3}+\frac{2}{\sqrt3}}" />,
-    reason: <>Expanding the bracket. Every step is written out, with the angle named and found: the report notes many students did not show how they found the angle or <Katex tex="P" />. As required.</>,
+    reason: <>Expanding the bracket. As required.</>,
+    more: <>In a 'show that', every step is written out, with the angle named and found: the report notes many students did not show how they found the angle or <Katex tex="P" />.</>,
   },
 ]
 
@@ -134,8 +137,8 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{y'}{q} = -\frac{x'}{\sqrt3}+\frac{2}{\sqrt3} \implies h(x) = \frac{q}{\sqrt3}(2-x)" />,
-    reason: <>Substitute into the line from part a, make <Katex tex="y'" /> the subject, then drop the dashes. Notice <Katex tex="h(2)=0" /> for every <Katex tex="q" />: <Katex tex="A(2,0)" /> never moves, so as <Katex tex="q" /> changes the line <b>pivots about <Katex tex="A" /></b>.</>,
-    more: <>Drag <Katex tex="q" /> in the diagram below to see it.</>,
+    reason: <>Substitute into the line from part a, make <Katex tex="y'" /> the subject, then drop the dashes. Since <Katex tex="h(2)=0" /> for every <Katex tex="q" />, the line <b>pivots about <Katex tex="A" /></b>.</>,
+    more: <>A vertical dilation leaves every point on the <Katex tex="x" />-axis where it is, so <Katex tex="A(2,0)" /> never moves while <Katex tex="q" /> changes the steepness. Drag <Katex tex="q" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="x^2+\frac{q^2}{3}(2-x)^2 = 1" />,
@@ -151,18 +154,20 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Delta \ge 0 \iff 1-q^2 \ge 0 \iff -1 \le q \le 1" />,
-    reason: <>A quadratic has at least one real solution exactly when <Katex tex="\Delta\ge0" />. In the picture: <Katex tex="q=\pm1" /> gives gradient <Katex tex="\mp\tfrac{1}{\sqrt3}" />, the tangent from part a and its reflection in the <Katex tex="x" />-axis. Any steeper line through <Katex tex="A" /> misses the circle.</>,
+    reason: <>A quadratic has at least one real solution exactly when <Katex tex="\Delta\ge0" />.</>,
+    more: <>In the picture: <Katex tex="q=\pm1" /> gives gradient <Katex tex="\mp\tfrac{1}{\sqrt3}" />, the tangent from part a and its reflection in the <Katex tex="x" />-axis. Any steeper line through <Katex tex="A" /> misses the circle.</>,
   },
   {
     working: <Katex display tex="\boxed{q \in [-1,0) \cup (0,1]}" />,
-    reason: <>The question says <Katex tex="q\in R\setminus\{0\}" />, so <Katex tex="0" /> must be removed from <Katex tex="[-1,1]" />. Leaving it in is the slip the report names.</>,
+    reason: <>The question says <Katex tex="q\in R\setminus\{0\}" />, so <Katex tex="0" /> must be removed from <Katex tex="[-1,1]" />.</>,
+    more: <>Leaving it in is the slip the report names. (At <Katex tex="q=0" />, <Katex tex="T" /> would flatten the whole plane onto the <Katex tex="x" />-axis.)</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="x \le 1 \text{ on the circle} \implies 2-x > 0 \implies q > 0" />,
-    reason: <>For the <Katex tex="y" />-coordinates <Katex tex="h(x)=\tfrac{q}{\sqrt3}(2-x)" /> to be positive: every point on the unit circle has <Katex tex="x\le1" />, so <Katex tex="2-x" /> is positive there, and the sign of <Katex tex="h(x)" /> is the sign of <Katex tex="q" />.</>,
+    reason: <>First the <Katex tex="y" />-coordinates, <Katex tex="h(x)=\tfrac{q}{\sqrt3}(2-x)" />. On the circle <Katex tex="x\le1" />, so <Katex tex="2-x>0" /> and <Katex tex="h(x)" /> has the sign of <Katex tex="q" />.</>,
   },
   {
     working: <Katex display tex="\text{two intersections} \iff \Delta > 0 \iff -1 < q < 1" />,
@@ -170,15 +175,18 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(0) = \frac{2q}{\sqrt3}" />,
-    reason: <>Now the <Katex tex="x" />-coordinates. Look at where the line crosses the <Katex tex="y" />-axis. If <Katex tex="h(0)<1" />, that crossing is inside the circle, so heading left the line must leave the circle at a point with <Katex tex="x<0" />. If <Katex tex="h(0)>1" />, then (since <Katex tex="h" /> is decreasing) <Katex tex="h(x)>1" /> for every <Katex tex="x\le0" />, so the line is above the circle there and both intersections have <Katex tex="x>0" />.</>,
+    reason: <>Now the <Katex tex="x" />-coordinates: look at the <Katex tex="y" />-intercept. Both intersections have <Katex tex="x>0" /> exactly when the line crosses the <Katex tex="y" />-axis above the circle, <Katex tex="h(0)>1" />: the line rises as <Katex tex="x" /> decreases, so it then stays above the circle for all <Katex tex="x\le0" />. If it crosses inside the circle instead, it exits at some <Katex tex="x<0" />.</>,
+    more: <>In more detail: <Katex tex="h" /> is decreasing, so if <Katex tex="h(0)>1" /> then <Katex tex="h(x)>1" /> for every <Katex tex="x\le0" />. The circle never goes above <Katex tex="y=1" />, so the line cannot meet it there, and both intersections have <Katex tex="x>0" />. If instead <Katex tex="0<h(0)<1" />, the point <Katex tex="(0,h(0))" /> is inside the circle, so heading left from it the line must cross the circle again at a point with <Katex tex="x<0" />.</>,
   },
   {
     working: <Katex display tex="h(0) > 1 \iff \frac{2q}{\sqrt3} > 1 \iff q > \frac{\sqrt3}{2}" />,
-    reason: <>Multiply both sides by <Katex tex="\tfrac{\sqrt3}{2}" />. At <Katex tex="q=\tfrac{\sqrt3}{2}" /> exactly, <Katex tex="h(0)=1" />: the line passes through <Katex tex="(0,1)" />, an intersection with <Katex tex="x=0" />, which is not positive. (Check: <Katex tex="q^2=\tfrac34" /> makes <Katex tex="c=4q^2-3=0" />, so <Katex tex="x=0" /> solves the quadratic.)</>,
+    reason: <>Multiply both sides by <Katex tex="\tfrac{\sqrt3}{2}" />. At <Katex tex="q=\tfrac{\sqrt3}{2}" /> exactly, <Katex tex="h(0)=1" />: the line passes through <Katex tex="(0,1)" />, an intersection with <Katex tex="x=0" />, which is not positive.</>,
+    more: <>Check with the quadratic from part b.i: <Katex tex="q^2=\tfrac34" /> makes <Katex tex="c=4q^2-3=0" />, so <Katex tex="x=0" /> is a solution.</>,
   },
   {
     working: <Katex display tex="\boxed{q \in \left(\tfrac{\sqrt3}{2},\ 1\right)}" />,
-    reason: <>Combining <Katex tex="q>\tfrac{\sqrt3}{2}" /> with <Katex tex="0<q<1" />. Both ends are open: at <Katex tex="q=\tfrac{\sqrt3}{2}" /> one intersection is <Katex tex="(0,1)" />, and at <Katex tex="q=1" /> there is only one intersection. The report says some students found these endpoints but wrote the wrong interval, so test each endpoint like this.</>,
+    reason: <>Combining <Katex tex="q>\tfrac{\sqrt3}{2}" /> with <Katex tex="0<q<1" />. Both ends are open: at <Katex tex="q=\tfrac{\sqrt3}{2}" /> one intersection is <Katex tex="(0,1)" />, and at <Katex tex="q=1" /> there is only one.</>,
+    more: <>The report says some students found these endpoints but then wrote an incorrect interval, so test each endpoint like this before choosing brackets.</>,
   },
 ]
 
@@ -193,22 +201,24 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="q\to0^+:\ P'\to(1,0),\ \theta\to0" />,
-    reason: <>The domain is every value <Katex tex="\theta" /> can take while <Katex tex="0<q\le1" />, so check the two ends of the range of <Katex tex="q" />. As <Katex tex="q\to0^+" /> the line flattens toward the <Katex tex="x" />-axis. But <Katex tex="q=0" /> is not allowed, so <Katex tex="\theta=0" /> is never reached: open bracket.</>,
+    reason: <>The domain is every <Katex tex="\theta" /> possible for <Katex tex="0<q\le1" />, so check both ends. As <Katex tex="q\to0^+" /> the line flattens to the <Katex tex="x" />-axis and <Katex tex="P'" />, the intersection closest to <Katex tex="A" />, approaches <Katex tex="(1,0)" />, but <Katex tex="q\ne0" />, so <Katex tex="\theta=0" /> is never reached: open bracket.</>,
   },
   {
     working: <Katex display tex="q=1:\ P'=P,\ \theta=\tfrac\pi3" />,
-    reason: <>At <Katex tex="q=1" />, <Katex tex="h" /> is the original tangent, so <Katex tex="P'=P" /> from part a. <Katex tex="q=1" /> is allowed, so <Katex tex="\tfrac\pi3" /> is included: closed bracket. In between, as <Katex tex="q" /> increases the line steepens about <Katex tex="A" /> and <Katex tex="P'" /> slides up the arc from <Katex tex="(1,0)" /> to <Katex tex="P" />, so <Katex tex="\theta" /> takes every value between.</>,
+    reason: <>At <Katex tex="q=1" />, <Katex tex="h" /> is the original tangent, so <Katex tex="P'=P" /> (part a). <Katex tex="q=1" /> is allowed, so <Katex tex="\tfrac\pi3" /> is included: closed bracket.</>,
+    more: <>In between, as <Katex tex="q" /> increases the line steepens about <Katex tex="A" /> and <Katex tex="P'" /> slides up the arc from <Katex tex="(1,0)" /> to <Katex tex="P" />. So <Katex tex="\theta" /> takes every value between <Katex tex="0" /> and <Katex tex="\tfrac\pi3" />, and never more, since <Katex tex="q" /> stops at <Katex tex="1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{g:\left(0,\tfrac\pi3\right]\to R, \ g(\theta) = \sin(\theta)}" />,
-    reason: <>Defining a function means giving its domain, codomain and rule: the report notes very few students stated the domain. Keep <Katex tex="\theta" /> as the variable throughout. <Katex tex="g(x)=\sin\theta" /> is another error the report names.</>,
+    reason: <>Defining a function means giving its domain, codomain and rule. Keep <Katex tex="\theta" /> as the variable throughout.</>,
+    more: <>The report notes very few students stated the domain, and some wrote <Katex tex="g(x)=\sin\theta" />, mixing the function's variable with the rule's.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="g'(\theta) = \cos\theta > 0 \ \text{ for } \theta\in\left(0,\tfrac\pi3\right]" />,
-    reason: <><Katex tex="\cos\theta" /> is positive for every <Katex tex="\theta" /> between <Katex tex="0" /> and <Katex tex="\tfrac\pi2" />, which covers the whole domain from part c.i. So <Katex tex="g" /> is strictly increasing on its domain and has no stationary point inside it. (Solving <Katex tex="\cos\theta=0" /> gives <Katex tex="\theta=\tfrac\pi2" />, which is outside the domain.)</>,
+    reason: <><Katex tex="\cos\theta>0" /> for <Katex tex="0<\theta<\tfrac\pi2" />, which covers the whole domain from part c.i. So <Katex tex="g" /> is strictly increasing there, with no stationary point.</>,
   },
   {
     working: <Katex display tex="\text{maximum at the right endpoint } \theta = \tfrac\pi3" />,
@@ -216,7 +226,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{maximum area} = \sin\!\left(\tfrac\pi3\right) = \tfrac{\sqrt3}{2}}" />,
-    reason: <>About 0.866 square units. Solving <Katex tex="g'(\theta)=0" /> instead gives <Katex tex="\theta=\tfrac\pi2" /> and <Katex tex="A=1" />, the report's common wrong answer: that would need <Katex tex="P'" /> at the top of the circle, <Katex tex="(0,1)" />, but <Katex tex="P'" /> never gets past <Katex tex="P" />.</>,
+    reason: <>An exact value (about 0.866 square units).</>,
+    more: <>Solving <Katex tex="g'(\theta)=0" /> instead gives <Katex tex="\theta=\tfrac\pi2" /> and <Katex tex="A=1" />, the report's common wrong answer: that would need <Katex tex="P'" /> at the top of the circle, <Katex tex="(0,1)" />, but <Katex tex="P'" /> never gets past <Katex tex="P" />.</>,
   },
 ]
 

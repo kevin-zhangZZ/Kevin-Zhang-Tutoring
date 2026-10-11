@@ -58,7 +58,8 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{with custard} = \tfrac12\times20 = 10" />,
-    reason: <>The box holds exactly 20 doughnuts, so turn each fraction into a count. Whole numbers are easier to add and subtract than fractions.</>,
+    reason: <>The box holds exactly 20 doughnuts, so turn each fraction into a count.</>,
+    more: <>Whole numbers are easier to add and subtract than fractions, and every probability in this part is then just a count out of 20.</>,
   },
   {
     working: <Katex display tex="\text{glazed, with custard} = \tfrac{1}{10}\times20 = 2" />,
@@ -66,7 +67,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{not glazed, with custard} = 10-2 = 8" />,
-    reason: <>Every custard doughnut is either glazed or not glazed, so take the 2 glazed ones away from the 10 with custard. The <Katex tex="\tfrac{7}{10}" /> "not glazed" fact is not needed for this part.</>,
+    reason: <>Every custard doughnut is either glazed or not glazed, so take the 2 glazed ones away from the 10 with custard.</>,
+    more: <>The <Katex tex="\tfrac{7}{10}" /> "not glazed" fact is not needed for this part; it is used in part b.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(G'\cap C) = \tfrac{8}{20} = \tfrac25}" />,
@@ -74,9 +76,16 @@ const ROWS_A: WorkingRow[] = [
       <>
         Writing <Katex tex="G" /> for glazed and <Katex tex="C" /> for with custard: 8 of the 20
         equally likely doughnuts. Don&apos;t multiply{' '}
-        <Katex tex="\Pr(C)\times\Pr(G')=\tfrac12\times\tfrac{7}{10}=\tfrac{7}{20}" />. Multiplying
-        is only valid for independent events, and these are not independent: if they were,{' '}
-        <Katex tex="\Pr(G\cap C)" /> would be <Katex tex="\tfrac{3}{10}\times\tfrac12=\tfrac{3}{20}" />,
+        <Katex tex="\tfrac12\times\tfrac{7}{10}=\tfrac{7}{20}" />: that assumes independence,
+        which the count of 8 disproves.
+      </>
+    ),
+    more: (
+      <>
+        That product, <Katex tex="\Pr(C)\times\Pr(G')=\tfrac{7}{20}" />, was the report&apos;s
+        common wrong answer. Nothing in the question says the events are independent, and the
+        given facts confirm they aren&apos;t: independence would make{' '}
+        <Katex tex="\Pr(G\cap C)=\left(1-\tfrac{7}{10}\right)\times\tfrac12=\tfrac{3}{20}" />,
         but it is given as <Katex tex="\tfrac{1}{10}=\tfrac{2}{20}" />.
       </>
     ),
@@ -86,12 +95,13 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{glazed in the box} = 20-\tfrac{7}{10}\times20 = 20-14 = 6" />,
-    reason: <>Seven-tenths of the 20 are not glazed, so 14 are not glazed and 6 are glazed. Moving the doughnuts into new boxes doesn&apos;t change them, so the two new boxes hold these 6 glazed doughnuts between them.</>,
+    reason: <>Seven-tenths of the 20 are not glazed, so 14 are not glazed and 6 are glazed.</>,
+    more: <>Moving the doughnuts into new boxes doesn&apos;t change them.</>,
   },
   {
     working: <Katex display tex="\text{Box A has } g \text{ glazed} \implies \text{Box B has } 6-g" />,
-    reason: <>The six glazed doughnuts are split between the two boxes — this is the step the report says few students reached.</>,
-    more: <>Slide <Katex tex="g" /> in the diagram below to see it.</>,
+    reason: <>The six glazed doughnuts are split between the two boxes, so Box <i>B</i> has whatever Box <i>A</i> doesn&apos;t.</>,
+    more: <>The report says few students could find <Katex tex="6-g" />, and many didn&apos;t use <Katex tex="g" /> at all. The answer must be in terms of <Katex tex="g" />, so <Katex tex="6-g" /> is the key step. Slide <Katex tex="g" /> in the diagram below to see it.</>,
   },
   {
     working: (
@@ -102,25 +112,34 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Let <Katex tex="A" /> and <Katex tex="B" /> be the events that Box <i>A</i> or Box{' '}
-        <i>B</i> is chosen, and <Katex tex="G" /> that the doughnut is glazed. On a tree diagram,
-        multiply along the branches: first the box (probability <Katex tex="\tfrac12" /> each),
-        then a glazed doughnut from that box. Each box holds 10 doughnuts, so its glazed count
-        must be divided by 10 to become a probability.
+        Let <Katex tex="A" />, <Katex tex="B" /> be the box chosen and <Katex tex="G" /> glazed.
+        Multiply along a tree: box (<Katex tex="\tfrac12" /> each), then glazed out of that
+        box&apos;s 10.
+      </>
+    ),
+    more: (
+      <>
+        Each box holds 10, so its glazed count divided by 10 is the probability. A common error in the report was using{' '}
+        <Katex tex="6-g" /> itself as the probability instead of <Katex tex="\tfrac{6-g}{10}" />;
+        a count is not a probability (with <Katex tex="g=0" /> it would give{' '}
+        <Katex tex="\tfrac12\times6=3" />, which is more than 1). The report also notes students
+        who drew a tree diagram or Karnaugh table did better.
       </>
     ),
   },
   {
     working: <Katex display tex="\Pr(B\mid G) = \frac{\Pr(B\cap G)}{\Pr(A\cap G)+\Pr(B\cap G)}" />,
-    reason: <>Conditional probability is <Katex tex="\Pr(B\mid G)=\frac{\Pr(B\cap G)}{\Pr(G)}" />. A glazed doughnut came from either Box <i>A</i> or Box <i>B</i>, so <Katex tex="\Pr(G)" /> is the sum of the two glazed branches of the tree.</>,
+    reason: <>Conditional probability is <Katex tex="\frac{\Pr(B\cap G)}{\Pr(G)}" />, and a glazed doughnut came from Box <i>A</i> or Box <i>B</i>, so <Katex tex="\Pr(G)" /> adds both glazed branches.</>,
   },
   {
     working: <Katex display tex="= \frac{\tfrac{6-g}{20}}{\tfrac{g}{20}+\tfrac{6-g}{20}} = \frac{\tfrac{6-g}{20}}{\tfrac{6}{20}}" />,
-    reason: <>In the denominator the <Katex tex="g" />&apos;s cancel, since <Katex tex="g+(6-g)=6" />. So <Katex tex="\Pr(G)=\tfrac{6}{20}=\tfrac{3}{10}" /> whatever <Katex tex="g" /> is: the same as picking from the original box, where 6 of the 20 are glazed.</>,
+    reason: <>In the denominator the <Katex tex="g" />&apos;s cancel, since <Katex tex="g+(6-g)=6" />.</>,
+    more: <>So <Katex tex="\Pr(G)=\tfrac{6}{20}=\tfrac{3}{10}" /> whatever <Katex tex="g" /> is: the same as picking from the original box, where 6 of the 20 are glazed.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(B\mid G) = \frac{6-g}{6}}" />,
-    reason: <>Dividing by <Katex tex="\tfrac{6}{20}" /> is multiplying by <Katex tex="\tfrac{20}{6}" />, so the 20s cancel. Equivalently <Katex tex="1-\tfrac g6" />. Check the extremes: <Katex tex="g=0" /> puts all six glazed doughnuts in Box <i>B</i>, giving 1, and <Katex tex="g=6" /> puts them all in Box <i>A</i>, giving 0 ✓.</>,
+    reason: <>Dividing by <Katex tex="\tfrac{6}{20}" /> is multiplying by <Katex tex="\tfrac{20}{6}" />, so the 20s cancel.</>,
+    more: <>Equivalently <Katex tex="1-\tfrac g6" />. Check the extremes: <Katex tex="g=0" /> puts all six glazed doughnuts in Box <i>B</i>, giving 1, and <Katex tex="g=6" /> puts them all in Box <i>A</i>, giving 0 ✓.</>,
   },
 ]
 
@@ -129,36 +148,45 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="\hat P = \frac{X}{5} \text{ where } X \sim \mathrm{Bi}\!\left(5,\tfrac12\right)" />,
     reason: (
       <>
-        <Katex tex="X" /> is the number of visitors in the sample who are under 25, and a sample
-        proportion is that count divided by the sample size. Each visitor is under 25 with
-        probability <Katex tex="\tfrac12" />, and with over a million visitors, picking five
-        barely changes that proportion, so the five are independent trials with the same chance:
-        binomial. So <Katex tex="n=5" /> (the sample size, not 4) and{' '}
-        <Katex tex="p=\tfrac12" /> (the proportion of <em>all</em> visitors under 25). It is
-        not <Katex tex="p=0.8" />: 0.8 is a value of <Katex tex="\hat P" /> in the question,
-        not the chance that one visitor is under 25.
+        <Katex tex="X" /> counts the sampled visitors under 25. Five independent visitors, each
+        under 25 with probability <Katex tex="\tfrac12" />: binomial, <Katex tex="n=5" />,{' '}
+        <Katex tex="p=\tfrac12" />.
+      </>
+    ),
+    more: (
+      <>
+        A sample proportion is the count divided by the sample size, hence{' '}
+        <Katex tex="\hat P=\tfrac X5" />. With over a million visitors, picking five barely changes
+        the proportion under 25, so the five are independent trials with the same chance. The
+        report&apos;s common errors were <Katex tex="n=4" /> and <Katex tex="p=0.8" />.{' '}
+        <Katex tex="n=5" /> is the sample size, and <Katex tex="p=\tfrac12" /> is the proportion
+        of <em>all</em> visitors under 25; 0.8 is a value of <Katex tex="\hat P" /> in the
+        question, not the chance that one visitor is under 25.
       </>
     ),
   },
   {
     working: <Katex display tex="\hat P \ge 0.8 \iff \frac{X}{5} \ge 0.8 \iff X \ge 4" />,
-    reason: <>Turn the proportion back into a count by multiplying both sides by 5: <Katex tex="0.8\times5=4" />. So at least 4 of the 5 visitors are under 25.</>,
+    reason: <>Turn the proportion back into a count by multiplying both sides by 5: <Katex tex="0.8\times5=4" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge4) = \Pr(X=4)+\Pr(X=5)" />,
-    reason: <>There are only five visitors, so <Katex tex="X" /> can&apos;t be more than 5: <Katex tex="X\ge4" /> means <Katex tex="X=4" /> or <Katex tex="X=5" />, and we add their probabilities.</>,
+    reason: <>There are only five visitors, so <Katex tex="X\ge4" /> means <Katex tex="X=4" /> or <Katex tex="X=5" />.</>,
   },
   {
     working: <Katex display tex="= \binom54\left(\tfrac12\right)^4\left(\tfrac12\right)^1+\binom55\left(\tfrac12\right)^5" />,
-    reason: <>The binomial formula <Katex tex="\Pr(X=x)=\binom nx p^x(1-p)^{n-x}" /> with <Katex tex="n=5" /> and <Katex tex="p=1-p=\tfrac12" />. Keep the brackets so each power applies to the whole fraction: every term then carries <Katex tex="\left(\tfrac12\right)^5=\tfrac{1}{32}" />.</>,
+    reason: <>The binomial formula <Katex tex="\Pr(X=x)=\binom nx p^x(1-p)^{n-x}" /> with <Katex tex="n=5" /> and <Katex tex="p=1-p=\tfrac12" />.</>,
+    more: <>Keep the brackets so each power applies to the whole fraction (the report notes missing brackets caused problems for some).</>,
   },
   {
     working: <Katex display tex="= 5\times\frac{1}{32}+1\times\frac{1}{32} = \frac{6}{32}" />,
-    reason: <><Katex tex="\binom54=5" /> (choose which 4 of the 5 visitors are the ones under 25) and <Katex tex="\binom55=1" />.</>,
+    reason: <><Katex tex="\binom54=5" /> and <Katex tex="\binom55=1" />, and in each term the powers of <Katex tex="\tfrac12" /> multiply to <Katex tex="\left(\tfrac12\right)^5=\tfrac{1}{32}" />.</>,
+    more: <><Katex tex="\binom54=5" /> counts the ways to choose which 4 of the 5 visitors are the ones under 25.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr\!\left(\hat P\ge0.8\right) = \tfrac{3}{16}}" />,
-    reason: <>Divide the top and bottom of <Katex tex="\tfrac{6}{32}" /> by 2. This is the exact binomial probability, which is what "do not use a normal approximation" asks for.</>,
+    reason: <>Divide the top and bottom of <Katex tex="\tfrac{6}{32}" /> by 2.</>,
+    more: <>This is the exact binomial probability, which is what "do not use a normal approximation" asks for.</>,
   },
 ]
 

@@ -23,7 +23,7 @@ const EXAM_B: SAExaminerStats = {
   comment: (
     <>
       Students generally handled this question well, applying the product rule to give the
-      derivative. A common error was not differentiating the <Katex tex="2x" /> within{' '}
+      derivative. A common error was not differentiating the <Katex tex="2x" /> within the{' '}
       <Katex tex="\sqrt{2x+1}" />. The evaluation of the derived function involved evaluating
       square roots and this caused problems for some.
     </>
@@ -35,10 +35,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="y = 2e^{-3x}" />,
     reason: (
       <>
-        The 2 is a constant multiplier, so it just stays in front. The power of{' '}
-        <Katex tex="e" /> is <Katex tex="-3x" />, not plain <Katex tex="x" />, so the chain rule
-        applies: <Katex tex="e^{-3x}" /> differentiates to itself times the derivative of its
-        power.
+        The 2 is a constant multiplier and stays in front. The power of <Katex tex="e" /> is{' '}
+        <Katex tex="-3x" />, not plain <Katex tex="x" />, so the chain rule applies.
       </>
     ),
   },
@@ -68,9 +66,8 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="f" /> is <Katex tex="x" /> multiplied by <Katex tex="\sqrt{2x+1}" />: two
-        functions of <Katex tex="x" /> multiplied together, so use the product rule (on the
-        formula sheet). Rewriting the square root as a power of <Katex tex="\tfrac12" /> lets
-        you differentiate it with the power rule.
+        functions of <Katex tex="x" /> multiplied together, so use the product rule. Write the
+        root as a power of <Katex tex="\tfrac12" /> to differentiate it.
       </>
     ),
   },
@@ -84,14 +81,18 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Name the two factors and differentiate each <em>before</em> substituting. Inside{' '}
-        <Katex tex="v" /> is <Katex tex="2x+1" />, not plain <Katex tex="x" />, so use the chain
-        rule: bring down the <Katex tex="\tfrac12" />, lower the power by 1, then multiply by
-        the derivative of the inside, <Katex tex="2" />. The report notes a common error was not
-        differentiating the <Katex tex="2x" /> within <Katex tex="\sqrt{2x+1}" />. Dropping
-        that <Katex tex="\times2" /> leaves an extra <Katex tex="\tfrac12" /> in{' '}
-        <Katex tex="v'" /> and leads to <Katex tex="\tfrac{11}{3}" /> instead of the correct
-        answer.
+        Inside <Katex tex="v" /> is <Katex tex="2x+1" />, not plain <Katex tex="x" />, so use the
+        chain rule: bring down the <Katex tex="\tfrac12" />, lower the power by 1, then multiply
+        by the inside's derivative, <Katex tex="2" />.
+      </>
+    ),
+    more: (
+      <>
+        Naming the two factors and differentiating each <em>before</em> substituting keeps the
+        product rule tidy. The report notes a common error was not differentiating the{' '}
+        <Katex tex="2x" /> within the <Katex tex="\sqrt{2x+1}" />. Dropping that{' '}
+        <Katex tex="\times2" /> leaves an extra <Katex tex="\tfrac12" /> in <Katex tex="v'" />{' '}
+        and leads to <Katex tex="\tfrac{11}{3}" /> instead of the correct answer.
       </>
     ),
   },
@@ -104,9 +105,14 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
+        Product rule: <Katex tex="u'v+uv'" />. A power of <Katex tex="-\tfrac12" /> means one
+        over the square root.
+      </>
+    ),
+    more: (
+      <>
         The formula sheet writes the product rule as{' '}
         <Katex tex="u\frac{dv}{dx}+v\frac{du}{dx}" />, the same two terms in a different order.
-        A power of <Katex tex="-\tfrac12" /> means one over the square root.
       </>
     ),
   },
@@ -119,10 +125,15 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        An optional tidy-up, giving the form in the report. Put the first term over{' '}
-        <Katex tex="\sqrt{2x+1}" /> too: multiply it top and bottom by{' '}
-        <Katex tex="\sqrt{2x+1}" />, and a square root times itself is just what is inside,{' '}
+        Optional tidy-up into a single fraction: multiply the first term top and bottom by{' '}
+        <Katex tex="\sqrt{2x+1}" />, since a square root times itself is{' '}
         <Katex tex="2x+1" />.
+      </>
+    ),
+    more: (
+      <>
+        Both terms then share the denominator <Katex tex="\sqrt{2x+1}" />, so add the
+        numerators: <Katex tex="(2x+1)+x=3x+1" />. This is the form the report gives.
       </>
     ),
   },
@@ -131,8 +142,13 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Work out the inside of the square root first: <Katex tex="2(4)+1=9" />, and{' '}
-        <Katex tex="\sqrt9=3" /> exactly. The report says evaluating the square roots caused
-        problems for some. Check with the untidied line instead:{' '}
+        <Katex tex="\sqrt9=3" /> exactly.
+      </>
+    ),
+    more: (
+      <>
+        The report says evaluating the square roots caused problems for some. Check using the
+        untidied line:{' '}
         <Katex tex="\sqrt9+\tfrac{4}{\sqrt9}=3+\tfrac43=\tfrac{13}{3}" /> ✓.
       </>
     ),

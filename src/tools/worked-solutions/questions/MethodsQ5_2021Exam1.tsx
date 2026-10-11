@@ -46,15 +46,18 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = 0: \ 4(x-1)^2-4 = 0" />,
-    reason: <>A horizontal axis intercept is where the graph of <Katex tex="g" /> meets the <Katex tex="x" />-axis, so set <Katex tex="g(x)=0" />. Solving <Katex tex="f(x)=g(x)" /> would instead find where the two graphs cross each other, which is a different question.</>,
+    reason: <>A horizontal axis intercept is where the graph of <Katex tex="g" /> meets the <Katex tex="x" />-axis, so set <Katex tex="g(x)=0" />.</>,
+    more: <>Solving <Katex tex="f(x)=g(x)" /> would instead find where the two graphs cross each other, which is a different question. The report notes some students made this mistake.</>,
   },
   {
     working: <Katex display tex="(x-1)^2 = 1 \implies x-1 = \pm1" />,
-    reason: <>Add 4 to both sides, then divide by 4. The rule is already in turning-point form, so just take the square root of both sides, remembering both the <Katex tex="+" /> and <Katex tex="-" /> roots. There is no need to expand or use the quadratic formula.</>,
+    reason: <>Add 4 to both sides and divide by 4, then square-root both sides, keeping both the <Katex tex="+" /> and <Katex tex="-" /> roots.</>,
+    more: <>The rule is already in turning-point form, so there is no need to expand or use the quadratic formula. The report says students who used the formula made careless errors, turning a simple solution into a difficult one.</>,
   },
   {
     working: <Katex display tex="x = 0 \text{ or } x = 2" />,
-    reason: <><Katex tex="x=2" /> is the common intercept given in the question, so <Katex tex="x=0" /> is the other one. Check by symmetry: the turning point of <Katex tex="g" /> is at <Katex tex="x=1" />, and the two intercepts sit 1 unit either side of it.</>,
+    reason: <><Katex tex="x=2" /> is the common intercept given in the question, so <Katex tex="x=0" /> is the other one.</>,
+    more: <>Check by symmetry: the turning point of <Katex tex="g" /> is at <Katex tex="x=1" />, and the two intercepts sit 1 unit either side of it, at <Katex tex="x=0" /> and <Katex tex="x=2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,\ 0)}" />,
@@ -65,36 +68,41 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{dilation: } (x,\ y) \to \left(\tfrac12 x,\ y\right)" />,
-    reason: <>A dilation by a factor of <Katex tex="\tfrac12" /> from the vertical axis halves every point&apos;s distance from the <Katex tex="y" />-axis: each <Katex tex="x" />-coordinate is multiplied by <Katex tex="\tfrac12" /> and each <Katex tex="y" />-coordinate stays the same.</>,
+    reason: <>A dilation by a factor of <Katex tex="\tfrac12" /> from the vertical axis multiplies every <Katex tex="x" />-coordinate by <Katex tex="\tfrac12" />; each <Katex tex="y" />-coordinate stays the same.</>,
+    more: <>Geometrically, it halves every point&apos;s distance from the <Katex tex="y" />-axis, squashing the graph towards that axis.</>,
   },
   {
     working: <Katex display tex="y = f(2x) = (2x)^2-4 = 4x^2-4" />,
-    reason: <>In the rule, <Katex tex="x" /> is replaced by <Katex tex="2x" />, the <em>reciprocal</em> of the factor. Why: the point now at <Katex tex="x" /> came from the point at <Katex tex="2x" /> on <Katex tex="f" />, so its height is <Katex tex="f(2x)" />. Check: <Katex tex="(2,0)" /> moves to <Katex tex="(1,0)" />, and <Katex tex="f(2\times1)=f(2)=0" /> ✓.</>,
+    reason: <>In the rule, replace <Katex tex="x" /> by <Katex tex="2x" />, using the <em>reciprocal</em> of the factor <Katex tex="\tfrac12" />.</>,
+    more: <>Why the reciprocal: the point now at <Katex tex="x" /> came from the point at <Katex tex="2x" /> on <Katex tex="f" />, so its height is <Katex tex="f(2x)" />. Using <Katex tex="f\left(\tfrac12 x\right)" /> instead would stretch the graph to twice the width, the opposite of what is asked; the report notes some students could not properly express this dilation. Check: <Katex tex="(2,0)" /> moves to <Katex tex="(1,0)" />, and <Katex tex="f(2\times1)=f(2)=0" /> ✓.</>,
   },
   {
     working: <Katex display tex="\text{translate 2 right: replace } x \text{ by } (x-2)" />,
-    reason: <>The translation comes <em>second</em>, so it acts on the dilated rule <Katex tex="y=f(2x)" />. Every <Katex tex="x" /> becomes <Katex tex="(x-2)" />, brackets and all, including the <Katex tex="x" /> that is multiplied by 2.</>,
+    reason: <>The translation comes <em>second</em>, so it acts on the dilated rule <Katex tex="y=f(2x)" />: every <Katex tex="x" /> becomes <Katex tex="(x-2)" />.</>,
   },
   {
     working: <Katex display tex="h(x) = f\bigl(2(x-2)\bigr) = \bigl(2(x-2)\bigr)^2-4" />,
-    reason: <>Without the brackets you get <Katex tex="f(2x-2)=(2x-2)^2-4" />, the incorrect rule named in the report. Subtracting 2 from <Katex tex="2x" /> only moves the graph 1 unit right.</>,
-    more: <>Slide <Katex tex="c" /> in the diagram below to see it.</>,
+    reason: <>Swap <Katex tex="x" /> for <Katex tex="(x-2)" /> inside <Katex tex="2x" />, brackets and all: <Katex tex="2x" /> becomes <Katex tex="2(x-2)=2x-4" />, not <Katex tex="2x-2" />.</>,
+    more: <>Without the brackets you get <Katex tex="f(2x-2)=(2x-2)^2-4" />, the incorrect rule named in the report. Since <Katex tex="2x-2=2(x-1)" />, that graph is the dilated one moved only 1 unit right, not 2. Slide <Katex tex="c" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="\boxed{h(x) = 4(x-2)^2-4}" />,
-    reason: <>The 2 inside the bracket is squared too: <Katex tex="\bigl(2(x-2)\bigr)^2 = 2^2(x-2)^2 = 4(x-2)^2" />, not <Katex tex="2(x-2)^2" />. Expanded, <Katex tex="h(x)=4x^2-16x+12" />; either form is fine.</>,
+    reason: <>The 2 inside the bracket is squared too: <Katex tex="\bigl(2(x-2)\bigr)^2 = 2^2(x-2)^2 = 4(x-2)^2" />.</>,
+    more: <>A common slip is writing <Katex tex="2(x-2)^2" />. Expanded, <Katex tex="h(x)=4x^2-16x+12" />; either form is fine.</>,
   },
   {
     working: <Katex display tex="f(x) = 0: \ x^2 = 4 \implies x = \pm 2" />,
-    reason: <>The question also asks for the intercepts of <Katex tex="h" />, which many students missed. Start from the intercepts of <Katex tex="f" />, <Katex tex="(-2,0)" /> and <Katex tex="(2,0)" />.</>,
+    reason: <>The question also asks for the intercepts of <Katex tex="h" />. Start from the intercepts of <Katex tex="f" />, <Katex tex="(-2,0)" /> and <Katex tex="(2,0)" />.</>,
+    more: <>Don&apos;t stop after the rule: the report says a significant number of students either could not, or did not realise they had to, find these intercepts.</>,
   },
   {
     working: <Katex display tex="(x,\ y) \to \left(\tfrac12 x + 2,\ y\right)" />,
-    reason: <>Both transformations together: halve <Katex tex="x" />, then add 2. Neither changes <Katex tex="y" />, so a point on the <Katex tex="x" />-axis stays on the <Katex tex="x" />-axis. The intercepts of <Katex tex="f" /> therefore move to the intercepts of <Katex tex="h" />.</>,
+    reason: <>Both transformations together: halve <Katex tex="x" />, then add 2. <Katex tex="y" /> is unchanged, so the intercepts of <Katex tex="f" /> map onto the intercepts of <Katex tex="h" />.</>,
+    more: <>A point on the <Katex tex="x" />-axis has <Katex tex="y=0" />, and still has <Katex tex="y=0" /> after both transformations, so the intercepts can be found without using the rule of <Katex tex="h" /> at all. This is quicker than solving <Katex tex="h(x)=0" />, a shortcut the report says few students realised.</>,
   },
   {
     working: <Katex display tex="(-2,\ 0) \to (1,\ 0), \quad (2,\ 0) \to (3,\ 0)" />,
-    reason: <><Katex tex="\tfrac12(-2)+2=1" /> and <Katex tex="\tfrac12(2)+2=3" />. Transforming the points is quicker than solving <Katex tex="h(x)=0" />, a shortcut the report says few students noticed.</>,
+    reason: <>Apply the mapping: <Katex tex="\tfrac12(-2)+2=1" /> and <Katex tex="\tfrac12(2)+2=3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(1,\ 0) \ \text{ and } \ (3,\ 0)}" />,

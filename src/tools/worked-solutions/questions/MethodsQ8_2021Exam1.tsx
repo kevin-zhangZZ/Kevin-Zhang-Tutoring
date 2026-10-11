@@ -54,11 +54,16 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\int(x+6)^{\frac12}\,dx = \frac{(x+6)^{\frac32}}{\frac32} = \frac{2(x+6)^{\frac32}}{3}" />,
     reason: (
       <>
-        Write <Katex tex="\sqrt{x+6}" /> as <Katex tex="(x+6)^{\frac12}" />, add 1 to the power and divide by the new
-        power. Dividing by <Katex tex="\tfrac32" /> is multiplying by <Katex tex="\tfrac23" />: the report says most
-        students had the right powers but often the wrong coefficients. Keep the bracket <Katex tex="(x+6)" /> whole
-        (some students lost it and just had <Katex tex="x" />). Its <Katex tex="x" /> has coefficient 1, so there is
-        nothing extra to divide by.
+        Write <Katex tex="\sqrt{x+6}" /> as <Katex tex="(x+6)^{\frac12}" />, add 1 to the power, then divide by the
+        new power <Katex tex="\tfrac32" />, which is the same as multiplying by <Katex tex="\tfrac23" />.
+      </>
+    ),
+    more: (
+      <>
+        The report says most students had the right powers but often the wrong coefficients: dividing by a fraction is
+        where it goes wrong, so write the division by <Katex tex="\tfrac32" /> as its own step before simplifying. Keep the
+        bracket <Katex tex="(x+6)" /> whole (some students lost it and just had <Katex tex="x" />). The{' '}
+        <Katex tex="x" /> inside the bracket has coefficient 1, so there is nothing extra to divide by.
       </>
     ),
   },
@@ -68,11 +73,13 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = \frac{2(x+6)^{\frac32}}{3}-\frac{x^2}{4}-\frac{3x}{2}+c" />,
-    reason: <>Put the three pieces together, keeping the minus signs. The <Katex tex="+c" /> is essential: every vertical translation of this curve has the same gradient, and the given point picks out the one we want.</>,
+    reason: <>Put the three pieces together, keeping the minus signs, and add <Katex tex="+c" />: the given point is what finds it.</>,
+    more: <>The <Katex tex="+c" /> is essential: every vertical translation of this curve has the same gradient, so the gradient alone can&apos;t tell them apart. The point <Katex tex="\left(3,\tfrac{29}{4}\right)" /> picks out the one we want.</>,
   },
   {
     working: <Katex display tex="x=3:\ \ 9^{\frac32} = \left(\sqrt9\right)^3 = 3^3 = 27" />,
-    reason: <>The stationary point <Katex tex="\left(3,\tfrac{29}{4}\right)" /> lies on the graph, so substitute <Katex tex="x=3" />, <Katex tex="y=\tfrac{29}{4}" />. First the awkward term, flagged in the report: <Katex tex="x+6=9" />, and a power of <Katex tex="\tfrac32" /> means square root, then cube. Rooting first keeps the numbers small.</>,
+    reason: <>The point <Katex tex="\left(3,\tfrac{29}{4}\right)" /> lies on the graph, so substitute <Katex tex="x=3" />, <Katex tex="y=\tfrac{29}{4}" />. First the awkward term: a power of <Katex tex="\tfrac32" /> means square root, then cube.</>,
+    more: <>The report flags this: students had difficulty evaluating terms like this one. Taking the square root first keeps the numbers small: <Katex tex="\sqrt9=3" /> and <Katex tex="3^3=27" />, rather than <Katex tex="9^3=729" /> and then <Katex tex="\sqrt{729}" />.</>,
   },
   {
     working: <Katex display tex="\frac{2(27)}{3}-\frac{3^2}{4}-\frac{3(3)}{2}+c = \frac{29}{4}" />,
@@ -88,10 +95,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = \frac{2(x+6)^{\frac32}}{3}-\frac{x^2}{4}-\frac{3x}{2}-4}" />,
-    reason: (
+    reason: <>The question asks for the rule, so give the whole function, not just <Katex tex="c=-4" />.</>,
+    more: (
       <>
-        The question asks for the rule, so give the whole function, not just <Katex tex="c=-4" /> (the report&apos;s
-        general comments make this point about this question). Check the coefficient by differentiating back:{' '}
+        The report&apos;s general comments make this point about this question: write the rule, not just the constant
+        of integration. A quick check of the tricky coefficient is to differentiate back:{' '}
         <Katex tex="\tfrac23\cdot\tfrac32(x+6)^{\frac12}=\sqrt{x+6}" /> ✓.
       </>
     ),
@@ -103,16 +111,23 @@ const ROWS_B: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned} x=-2:\ \frac{dy}{dx} &= \sqrt{4}-\frac{(-2)}{2}-\frac32 \\ &= 2+1-\frac32 = \frac32 > 0 \end{aligned}"
+        tex="\begin{aligned} &x=-2: \\ \frac{dy}{dx} &= \sqrt{4}-\frac{(-2)}{2}-\frac32 \\ &= 2+1-\frac32 = \frac32 > 0 \end{aligned}"
       />
     ),
     reason: (
       <>
-        Test the gradient on each side of <Katex tex="x=3" />. To change sign, <Katex tex="\tfrac{dy}{dx}" /> would have
-        to pass through 0, and it is 0 only at <Katex tex="x=3" /> (the single stationary point), so one test point per
-        side gives the sign for that whole side. Choose <Katex tex="x" /> so that <Katex tex="x+6" /> is a perfect
-        square (here 4): the square root is then exact without a calculator. The point must also have{' '}
-        <Katex tex="x\ge-6" />, where <Katex tex="\sqrt{x+6}" /> is defined.
+        <Katex tex="x=3" /> is the only stationary point, so the gradient can&apos;t change sign anywhere else: test
+        one point on each side. Pick <Katex tex="x" /> making <Katex tex="x+6" /> a perfect square (here 4) so the
+        root is exact.
+      </>
+    ),
+    more: (
+      <>
+        Why one point per side is enough: to change sign, <Katex tex="\tfrac{dy}{dx}" /> would have to pass through 0,
+        and the stem tells us that happens only at <Katex tex="x=3" />. The test point
+        must also have <Katex tex="x\ge-6" />, where <Katex tex="\sqrt{x+6}" /> is defined; <Katex tex="x=-6" /> and{' '}
+        <Katex tex="x=-5" /> (giving <Katex tex="\sqrt0" /> and <Katex tex="\sqrt1" />) work just as well. The
+        diagram below shows which test values make the substitution easy to write down.
       </>
     ),
   },
@@ -120,10 +135,17 @@ const ROWS_B: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned} x=10:\ \frac{dy}{dx} &= \sqrt{16}-\frac{10}{2}-\frac32 \\ &= 4-5-\frac32 = -\frac52 < 0 \end{aligned}"
+        tex="\begin{aligned} &x=10: \\ \frac{dy}{dx} &= \sqrt{16}-\frac{10}{2}-\frac32 \\ &= 4-5-\frac32 = -\frac52 < 0 \end{aligned}"
       />
     ),
-    reason: <><Katex tex="x+6=16" /> is the next perfect square to the right of <Katex tex="x=3" />. Write each substitution out in full: the report says not all students showed the working out of substituting their <Katex tex="x" /> values.</>,
+    reason: <>At <Katex tex="x=3" />, <Katex tex="x+6=9" />; the next perfect square is 16, at <Katex tex="x=10" />. Write each substitution out in full.</>,
+    more: (
+      <>
+        The report says not all students showed the working out of substituting their <Katex tex="x" /> values, and
+        its general comments say that for many students this step was a piece of muddled scribble at the bottom of the working
+        space. Two clear lines like these, plus the table below, are what earn the marks.
+      </>
+    ),
   },
   {
     working: (
@@ -132,19 +154,19 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{array}{c|ccc} x & -2 & 3 & 10 \\ \hline \frac{dy}{dx} & + & 0 & - \\ \text{slope} & \nearrow & \rightarrow & \searrow \end{array}"
       />
     ),
-    reason: <>Set the results out as a sign table. The gradient goes positive, zero, negative: the curve rises to <Katex tex="\left(3,\tfrac{29}{4}\right)" /> and then falls.</>,
+    reason: <>Set the results out as a sign table.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(3,\tfrac{29}{4}\right) \text{ is a local maximum}}" />,
-    reason: (
+    reason: <>The gradient changes from positive to negative through <Katex tex="x=3" />, so the stationary point is a local maximum.</>,
+    more: (
       <>
-        The second derivative also works:{' '}
+        The second derivative also works (the report notes students who tried it met with mixed success):{' '}
         <Katex tex="\tfrac{d^2y}{dx^2}=\tfrac12(x+6)^{-\frac12}-\tfrac12=\tfrac{1}{2\sqrt{x+6}}-\tfrac12" />, which
         at <Katex tex="x=3" /> is <Katex tex="\tfrac16-\tfrac12=-\tfrac13<0" />, so the curve is concave down there,
         giving a local maximum.
       </>
     ),
-    more: <>The diagram below shows which test values make the substitution easy to write down.</>,
   },
 ]
 

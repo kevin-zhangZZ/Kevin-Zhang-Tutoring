@@ -50,8 +50,13 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Rewrite <Katex tex="\tfrac{k}{x^2}" /> as <Katex tex="kx^{-2}" /> and use the power rule: add 1 to the index
-        and divide by the new index, <Katex tex="\tfrac{kx^{-1}}{-1} = -\tfrac{k}{x}" />. It is not a logarithm: a
-        logarithm only comes from <Katex tex="x^{-1}" />, the one power the rule can&apos;t handle.
+        and divide by the new index, <Katex tex="\tfrac{kx^{-1}}{-1} = -\tfrac{k}{x}" />.
+      </>
+    ),
+    more: (
+      <>
+        It is not a logarithm: a logarithm only comes from <Katex tex="x^{-1}" />, the one power the rule can&apos;t
+        handle. The report notes that the antiderivative was occasionally written as a logarithm.
       </>
     ),
   },
@@ -63,8 +68,7 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac{k}{2} = 1 \implies k = 2" />,
     reason: (
       <>
-        Solve for <Katex tex="k" />; the value{' '}
-        <Katex tex="k=2" /> is positive, as the question requires. As required.
+        Solve for <Katex tex="k" />. As required.
       </>
     ),
   },
@@ -76,15 +80,15 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         The mean of a continuous random variable is <Katex tex="\int x\,f(x)\,dx" /> over the interval where{' '}
-        <Katex tex="f" /> is non-zero, here <Katex tex="[1,2]" />. It is the continuous version of{' '}
-        <Katex tex="E(X)=\sum x\Pr(X=x)" />: each value <Katex tex="x" /> times its probability{' '}
-        <Katex tex="f(x)\,dx" />. Don&apos;t drop the <Katex tex="x" />: <Katex tex="\int_1^2 f(x)\,dx" /> is just
-        the total probability, 1, from part (a).
+        <Katex tex="f" /> is non-zero, here <Katex tex="[1,2]" />. Don&apos;t drop the <Katex tex="x" />:{' '}
+        <Katex tex="\int_1^2 f(x)\,dx" /> is just 1.
       </>
     ),
     more: (
       <>
-        The diagram below shows why the <Katex tex="x" /> is needed.
+        It is the continuous version of <Katex tex="E(X)=\sum x\Pr(X=x)" />: each value <Katex tex="x" /> times its
+        probability <Katex tex="f(x)\,dx" />. The report notes some students integrated <Katex tex="f(x)" /> rather
+        than <Katex tex="xf(x)" />; that integral is the total probability from part (a), not the mean. The diagram below shows why the <Katex tex="x" /> is needed.
       </>
     ),
   },
@@ -106,8 +110,12 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= 2\left(\log_e(2)-0\right)" />,
     reason: (
       <>
-        <Katex tex="\log_e(1)=0" /> because <Katex tex="e^0=1" />. The report lists not recognising{' '}
-        <Katex tex="\log_e(1)=0" /> among the common errors.
+        <Katex tex="\log_e(1)=0" /> because <Katex tex="e^0=1" />.
+      </>
+    ),
+    more: (
+      <>
+        The report lists not recognising <Katex tex="\log_e(1)=0" /> among the common errors.
       </>
     ),
   },
@@ -115,10 +123,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{E(X) = 2\log_e(2) = \log_e(4)}" />,
     reason: (
       <>
-        Either form is fine; <Katex tex="\log_e(4)" /> uses the log law <Katex tex="n\log_e(a)=\log_e(a^n)" />. Sense
-        check: <Katex tex="\log_e(2)\approx0.69" />, so <Katex tex="E(X)\approx1.39" />. That is inside{' '}
-        <Katex tex="[1,2]" /> and below the midpoint 1.5, as it should be: <Katex tex="f(1)=2" /> but{' '}
-        <Katex tex="f(2)=0.5" />, so <Katex tex="X" /> is more likely to take values near 1.
+        Either form is fine; <Katex tex="\log_e(4)" /> uses the log law <Katex tex="n\log_e(a)=\log_e(a^n)" />.
+      </>
+    ),
+    more: (
+      <>
+        Sense check: <Katex tex="\log_e(2)\approx0.69" />, so <Katex tex="E(X)\approx1.39" />. That is inside{' '}
+        <Katex tex="[1,2]" /> and below the midpoint 1.5, as it should be: <Katex tex="f" /> decreases across the interval, from{' '}
+        <Katex tex="f(1)=2" /> to <Katex tex="f(2)=0.5" />, so <Katex tex="X" /> is more likely to take values near 1.
       </>
     ),
   },

@@ -48,9 +48,14 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         This is <Katex tex="y=\frac{a}{x-h}+k" /> with <Katex tex="a=-2" />, <Katex tex="h=2" />,{' '}
-        <Katex tex="k=1" />: a rectangular hyperbola. It is <Katex tex="y=\frac1x" /> dilated by a factor of 2
-        from the <Katex tex="x" />-axis, reflected in the <Katex tex="x" />-axis, then translated 2 units right and
-        1 unit up.
+        <Katex tex="k=1" />: a rectangular hyperbola. Find its asymptotes and intercepts.
+      </>
+    ),
+    more: (
+      <>
+        In transformation terms it is <Katex tex="y=\frac1x" /> dilated by a factor of 2 from the{' '}
+        <Katex tex="x" />-axis, reflected in the <Katex tex="x" />-axis, then translated 2 units right and 1 unit
+        up. The translation moves the asymptotes from the axes to <Katex tex="x=2" /> and <Katex tex="y=1" />.
       </>
     ),
   },
@@ -70,8 +75,13 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="x-2 = 2 \implies x = 4" />,
     reason: (
       <>
-        So <Katex tex="(4,0)" />. The report notes some students labelled it <Katex tex="(4,0)" /> but positioned
-        it at <Katex tex="(3,0)" />: mark the point at 4 on the <Katex tex="x" />-axis.
+        So the <Katex tex="x" />-intercept is <Katex tex="(4,0)" />: mark it at 4 on the <Katex tex="x" />-axis.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students labelled it <Katex tex="(4,0)" /> but positioned it at{' '}
+        <Katex tex="(3,0)" />. The label and the position must agree, so count the tick marks.
       </>
     ),
   },
@@ -80,10 +90,10 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Set <Katex tex="x=0" /> to find the <Katex tex="y" />-intercept: <Katex tex="(0,2)" />. Watch the signs:{' '}
-        <Katex tex="\frac{2}{-2}=-1" />, and subtracting <Katex tex="-1" /> adds 1. The report notes some students
-        gave <Katex tex="(0,3)" />.
+        <Katex tex="\frac{2}{-2}=-1" />, and subtracting <Katex tex="-1" /> adds 1.
       </>
     ),
+    more: <>The report notes some students gave the <Katex tex="y" />-intercept as <Katex tex="(0,3)" />.</>,
   },
   {
     working: (
@@ -97,12 +107,18 @@ const ROWS_A: WorkingRow[] = [
     ),
     reason: (
       <>
-        Because <Katex tex="a=-2" /> is negative, the branches sit upper-left and lower-right of the point{' '}
-        <Katex tex="(2,1)" /> where the asymptotes cross: the opposite of <Katex tex="y=\tfrac1x" /> moved there.
-        The intercepts confirm it: <Katex tex="(0,2)" /> is left of <Katex tex="x=2" /> and above{' '}
+        Since <Katex tex="a=-2" /> is negative, the branches sit upper-left and lower-right of{' '}
+        <Katex tex="(2,1)" />. Dash and label both asymptotes; label both intercepts with coordinates.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="(2,1)" /> is where the asymptotes cross. A positive <Katex tex="a" /> (like{' '}
+        <Katex tex="y=\tfrac1x" />) puts the branches upper-right and lower-left; the reflection swaps them. The
+        intercepts confirm it: <Katex tex="(0,2)" /> is left of <Katex tex="x=2" /> and above{' '}
         <Katex tex="y=1" />; <Katex tex="(4,0)" /> is right of <Katex tex="x=2" /> and below <Katex tex="y=1" />.
-        Draw the asymptotes dashed and label them with their equations, and label both intercepts with
-        coordinates.
+        The report says asymptotes were often correctly positioned but labelled inaccurately or not at all: write
+        the equations <Katex tex="x=2" /> and <Katex tex="y=1" /> next to the dashed lines.
       </>
     ),
   },
@@ -119,11 +135,12 @@ const ROWS_B: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="\text{the curve only reaches } y=3 \text{ on the left branch}" />,
+    working: <Katex display tex="x>2: \ \frac{2}{x-2}>0 \implies y<1" />,
     reason: (
       <>
         For <Katex tex="x>2" />, <Katex tex="x-2" /> is positive, so <Katex tex="\frac{2}{x-2}" /> is positive and{' '}
-        <Katex tex="y = 1-(\text{a positive number})<1" />. The right branch never gets near 3.
+        <Katex tex="y = 1-(\text{a positive number})<1" />. So the right branch is never <Katex tex="\ge3" />; only the
+        left branch can satisfy the inequality.
       </>
     ),
   },
@@ -135,25 +152,33 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="x-2 = -1 \implies x = 1" />,
     reason: (
       <>
-        Multiply both sides by <Katex tex="x-2" /> and divide by 2. Solving this equation gives only this one endpoint,
-        the lower bound. The report notes most students solved algebraically instead of using the graph, and only
-        obtained the lower bound.
-      </>
-    ),
-  },
-  {
-    working: <Katex display tex="\text{left branch is increasing towards } +\infty \text{ as } x\to2^-" />,
-    reason: (
-      <>
-        On your sketch the left branch rises from just above <Katex tex="y=1" /> (far left) and shoots up the
-        asymptote. So left of <Katex tex="x=1" /> it is below 3, and from <Katex tex="x=1" /> rightwards it stays at
-        or above 3, right up to the asymptote. The upper
-        bound is the asymptote <Katex tex="x=2" />: solving the equation can&apos;t find it, but the graph shows it.
+        Multiply both sides by <Katex tex="x-2" /> and divide by 2. This gives only one endpoint: the lower bound.
       </>
     ),
     more: (
       <>
-        Slide <Katex tex="x" /> past the asymptote in the diagram below.
+        The report notes most students solved algebraically instead of using the graph, and only obtained the
+        lower bound. Algebra can work, but only with care: <Katex tex="\frac{-2}{x-2}\ge2" /> is impossible for{' '}
+        <Katex tex="x>2" /> (the left side is negative), and for <Katex tex="x<2" /> multiplying by the negative{' '}
+        <Katex tex="x-2" /> flips the inequality sign, giving <Katex tex="-2\le2(x-2)" />, so <Katex tex="x\ge1" />. Together:{' '}
+        <Katex tex="1\le x<2" />. The graph shows the same thing at a glance.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="y\to+\infty \text{ as } x\to2^-" />,
+    reason: (
+      <>
+        On your sketch the left branch rises from just above <Katex tex="y=1" /> (far left) to{' '}
+        <Katex tex="+\infty" /> at the asymptote, so it is at or above 3 only from <Katex tex="x=1" /> up to{' '}
+        <Katex tex="x=2" />. The asymptote is the upper bound.
+      </>
+    ),
+    more: (
+      <>
+        The left branch is always increasing, so it crosses <Katex tex="y=3" /> exactly once, at{' '}
+        <Katex tex="x=1" />, and then keeps rising up the asymptote without ever coming back down to 3. Slide{' '}
+        <Katex tex="x" /> past the asymptote in the diagram below.
       </>
     ),
   },
@@ -162,8 +187,15 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Square bracket at 1 (the inequality is <Katex tex="\ge" />, so <Katex tex="x=1" /> counts), round bracket
-        at 2 (the function is undefined there). Write the smaller endpoint first: the report notes some students
-        wrote <Katex tex="(2,1]" />. Writing <Katex tex="x\ge1" /> alone wrongly includes the whole right branch.
+        at 2 (the function is undefined there).
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students wrote <Katex tex="(2,1]" />, and others had the values but incorrect
+        brackets. An interval always lists the smaller endpoint first, and each bracket goes with its own
+        endpoint. Writing <Katex tex="x\ge1" /> alone wrongly includes <Katex tex="x=2" /> (where the function is
+        undefined) and every <Katex tex="x>2" /> (where <Katex tex="y<1" />).
       </>
     ),
   },
