@@ -47,9 +47,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{F} = m\underset{\sim}{a} \implies \underset{\sim}{a} = \frac{\underset{\sim}{F}}{m}" />,
     reason: (
       <>
-        Newton's second law: net force = mass <Katex tex="\times" /> acceleration. The question
-        gives the force (in newtons) and the mass (in kg) and asks for the acceleration, so
-        rearrange by dividing by the mass.
+        Newton's second law: net force = mass <Katex tex="\times" /> acceleration. We know the
+        force and mass, so divide by the mass.
       </>
     ),
   },
@@ -58,19 +57,25 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Substitute <Katex tex="m=10" />. Dividing a vector by a number divides each component by
-        that number, so the acceleration points the same way as the force.
+        that number.
       </>
     ),
+    more: <>So the acceleration points the same way as the force, just scaled down.</>,
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{a} = \tfrac12\underset{\sim}{i}+\tfrac65\underset{\sim}{j}\ \text{m s}^{-2}}" />,
     reason: (
       <>
         The force is a vector, so the acceleration is a vector too: give it in{' '}
-        <Katex tex="\underset{\sim}{i},\ \underset{\sim}{j}" /> form. Some students gave its
-        magnitude, <Katex tex="|\underset{\sim}{a}|=\sqrt{\tfrac14+\tfrac{36}{25}}=1.3" />,
-        instead. That is a single number, not the acceleration; a question wants a magnitude
-        only when it says &ldquo;magnitude&rdquo; (or &ldquo;speed&rdquo; for velocity).
+        <Katex tex="\underset{\sim}{i},\ \underset{\sim}{j}" /> form, not as a magnitude.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students found the magnitude,{' '}
+        <Katex tex="|\underset{\sim}{a}|=\sqrt{\tfrac14+\tfrac{36}{25}}=1.3" />, instead. That is
+        a single number, not the acceleration; a question wants a magnitude only when it says
+        &ldquo;magnitude&rdquo; (or &ldquo;speed&rdquo; for velocity).
       </>
     ),
   },
@@ -81,12 +86,17 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{v}(t) = \int\underset{\sim}{a}\,dt = \underset{\sim}{a}\,t+\underset{\sim}{c}" />,
     reason: (
       <>
-        Acceleration is the derivative of velocity, so velocity is an antiderivative of
-        acceleration. Here <Katex tex="\underset{\sim}{a}" /> is constant (the force never
-        changes), and the antiderivative of a constant vector is that vector times{' '}
-        <Katex tex="t" />, plus a constant <em>vector</em> <Katex tex="\underset{\sim}{c}" />.
-        (This is the vector form of the constant-acceleration formula{' '}
-        <Katex tex="v=u+at" />.)
+        Velocity is an antiderivative of acceleration. Here <Katex tex="\underset{\sim}{a}" /> is
+        constant, so it integrates to <Katex tex="\underset{\sim}{a}\,t" /> plus a constant
+        vector <Katex tex="\underset{\sim}{c}" />.
+      </>
+    ),
+    more: (
+      <>
+        The acceleration is constant because the force never changes. The constant of
+        integration must be a <em>vector</em>, since it is added to a vector. This is the vector
+        form of the constant-acceleration formula <Katex tex="v=u+at" />, so either route
+        works.
       </>
     ),
   },
@@ -94,8 +104,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{v}(0) = 0\,\underset{\sim}{a}+\underset{\sim}{c} = \underset{\sim}{c} = -3\underset{\sim}{j}" />,
     reason: (
       <>
-        &ldquo;Initial&rdquo; means <Katex tex="t=0" />. Substituting <Katex tex="t=0" /> leaves
-        just <Katex tex="\underset{\sim}{c}" />, so the constant is the initial velocity.
+        &ldquo;Initial&rdquo; means <Katex tex="t=0" />, which leaves just{' '}
+        <Katex tex="\underset{\sim}{c}" />, so the constant is the initial velocity.
       </>
     ),
   },
@@ -109,11 +119,16 @@ const ROWS_B: WorkingRow[] = [
       <>
         Expand and collect the <Katex tex="\underset{\sim}{j}" /> terms. The{' '}
         <Katex tex="-3" /> has no <Katex tex="t" />, so it cannot be merged with{' '}
-        <Katex tex="\tfrac65t" />. The common answer quoted in the report,{' '}
-        <Katex tex="-\tfrac95t\,\underset{\sim}{j}" />, is <Katex tex="\left(\tfrac65-3\right)t" />,
-        which wrongly multiplies the <Katex tex="-3" /> by <Katex tex="t" />. Check:
-        at <Katex tex="t=0" /> it gives <Katex tex="\underset{\sim}{0}" />, not the initial
-        velocity <Katex tex="-3\underset{\sim}{j}" />.
+        <Katex tex="\tfrac65t" />.
+      </>
+    ),
+    more: (
+      <>
+        The common answer quoted in the report, <Katex tex="-\tfrac95t\,\underset{\sim}{j}" />,
+        is <Katex tex="\left(\tfrac65-3\right)t" />, which wrongly multiplies the{' '}
+        <Katex tex="-3" /> by <Katex tex="t" />. Check any answer at <Katex tex="t=0" />: that
+        one gives <Katex tex="\underset{\sim}{0}" />, not the initial velocity{' '}
+        <Katex tex="-3\underset{\sim}{j}" />.
       </>
     ),
   },
@@ -128,18 +143,17 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{v}(2) = \underset{\sim}{i}+\left(\tfrac{12}{5}-\tfrac{15}{5}\right)\underset{\sim}{j} = \underset{\sim}{i}-\tfrac35\underset{\sim}{j}" />,
     reason: (
       <>
-        Write <Katex tex="3" /> as <Katex tex="\tfrac{15}{5}" /> to subtract. The report notes
-        arithmetic errors in this part, so take this step slowly.
+        Write <Katex tex="3" /> as <Katex tex="\tfrac{15}{5}" /> to subtract.
       </>
     ),
+    more: <>The report notes arithmetic errors in this part, so take this step slowly.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{p} = m\underset{\sim}{v} = 10\left(\underset{\sim}{i}-\tfrac35\underset{\sim}{j}\right)" />,
     reason: (
       <>
-        Momentum is mass <Katex tex="\times" /> velocity. The units give it away:{' '}
-        <Katex tex="\text{kg m s}^{-1}" /> is kg <Katex tex="\times" />{' '}
-        <Katex tex="\text{m s}^{-1}" />.
+        Momentum is mass <Katex tex="\times" /> velocity, so multiply the 10 kg mass by{' '}
+        <Katex tex="\underset{\sim}{v}(2)" />.
       </>
     ),
   },
@@ -148,9 +162,14 @@ const ROWS_C: WorkingRow[] = [
     reason: (
       <>
         Velocity is a vector, so momentum is a vector: leave it in{' '}
-        <Katex tex="\underset{\sim}{i},\ \underset{\sim}{j}" /> form. Its magnitude,{' '}
-        <Katex tex="\sqrt{10^2+6^2}=2\sqrt{34}" />, answers a different question (&ldquo;find
-        the magnitude of the momentum&rdquo;), and the report notes a number of students gave it.
+        <Katex tex="\underset{\sim}{i},\ \underset{\sim}{j}" /> form, not as a magnitude.
+      </>
+    ),
+    more: (
+      <>
+        Its magnitude, <Katex tex="\sqrt{10^2+6^2}=2\sqrt{34}" />, answers a different question
+        (&ldquo;find the magnitude of the momentum&rdquo;), and the report notes a number of
+        students gave it.
       </>
     ),
   },

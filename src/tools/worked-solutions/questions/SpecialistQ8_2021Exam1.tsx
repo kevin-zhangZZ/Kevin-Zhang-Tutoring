@@ -41,7 +41,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="z^2+2z+2 = 0" />,
-    reason: <>Every coefficient is real, so this is an ordinary quadratic: complete the square or use the quadratic formula.</>,
+    reason: <>This is a quadratic in <Katex tex="z" /> (no <Katex tex="\bar z" />), so complete the square or use the quadratic formula.</>,
   },
   {
     working: <Katex display tex="(z+1)^2+1 = 0" />,
@@ -62,9 +62,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="z^2+2\bar z+2 = 0" />,
     reason: (
       <>
-        The middle term is <Katex tex="2\bar z" />, not <Katex tex="2z" />. The conjugate <Katex tex="\bar z" /> is not a
-        power of <Katex tex="z" />, so this is not a polynomial equation: the quadratic formula and the conjugate root
-        theorem do not apply, and part a.&apos;s answers do not work. For example, <Katex tex="z=-1+i" /> gives{' '}
+        The middle term is <Katex tex="2\bar z" />, not <Katex tex="2z" />, so this is not a polynomial: the quadratic
+        formula does not apply, and part a.&apos;s answers are not solutions.
+      </>
+    ),
+    more: (
+      <>
+        The conjugate root theorem does not apply either. The report notes a number of students assumed part a.&apos;s
+        solutions carried over. Check <Katex tex="z=-1+i" />:{' '}
         <Katex tex="(-1+i)^2+2(-1-i)+2 = -2i-2-2i+2 = -4i \neq 0" />.
       </>
     ),
@@ -74,8 +79,13 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         When an equation mixes <Katex tex="z" /> and <Katex tex="\bar z" />, write <Katex tex="z" /> in Cartesian form:
-        then both are written in the same two real unknowns, <Katex tex="x" /> and <Katex tex="y" />. (Starting from
-        polar form is possible, but the report notes that those who tried it rarely made significant progress.)
+        then both are written in the same two real unknowns, <Katex tex="x" /> and <Katex tex="y" />.
+      </>
+    ),
+    more: (
+      <>
+        Starting from polar form <Katex tex="z=r\operatorname{cis}(\theta)" /> is possible, but the report notes that
+        those who tried it rarely made significant progress. Cartesian form turns the problem into two real equations.
       </>
     ),
   },
@@ -83,9 +93,16 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} z^2 &= x^2-y^2+2xyi \\ \bar z &= x-iy \end{aligned}" />,
     reason: (
       <>
-        Expand <Katex tex="(x+iy)^2 = x^2+2xyi+i^2y^2" /> and use <Katex tex="i^2=-1" />. The conjugate{' '}
-        <Katex tex="\bar z" /> just changes the sign of the imaginary part; it is <em>not</em> the reciprocal{' '}
-        <Katex tex="\tfrac{1}{z}" />.
+        Expand <Katex tex="(x+iy)^2 = x^2+2xyi+i^2y^2" /> with <Katex tex="i^2=-1" />. The conjugate just changes the
+        sign of the imaginary part.
+      </>
+    ),
+    more: (
+      <>
+        The conjugate <Katex tex="\bar z = x-iy" /> is <em>not</em> the reciprocal <Katex tex="\tfrac{1}{z}" />: the
+        report notes some students confused the two. In fact{' '}
+        <Katex tex="\tfrac{1}{z}=\tfrac{x-iy}{x^2+y^2}" />, which equals <Katex tex="\bar z" /> only when{' '}
+        <Katex tex="|z|=1" />.
       </>
     ),
   },
@@ -121,10 +138,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\begin{gathered} y = 0 \text{ in } (1){:}\ x^2+2x+2 = 0 \\ \Delta = 2^2-4(1)(2) = -4 < 0 \end{gathered}" />,
     reason: (
       <>
-        Substitute <Katex tex="y=0" /> into (1). Now <Katex tex="x" /> is the real part of <Katex tex="z" />, so it must be
-        a real number, and a negative discriminant means
-        there is no real <Katex tex="x" />, so this case gives no solutions. (It is part a.&apos;s equation again, but its
-        roots <Katex tex="-1\pm i" /> are not real, so they cannot be values of <Katex tex="x" />.)
+        Substitute <Katex tex="y=0" /> into (1). Here <Katex tex="x" /> must be real, and <Katex tex="\Delta<0" /> means
+        there is no real <Katex tex="x" />, so this case gives no solutions.
+      </>
+    ),
+    more: (
+      <>
+        This is part a.&apos;s equation again, but its roots <Katex tex="-1\pm i" /> are not real, so they cannot be values
+        of <Katex tex="x" />, the real part of <Katex tex="z" />.
       </>
     ),
   },
@@ -136,8 +157,12 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{z = 1\pm\sqrt5\,i}" />,
     reason: (
       <>
-        Put <Katex tex="x=1" /> and <Katex tex="y=\pm\sqrt5" /> back into <Katex tex="z=x+iy" />. Check{' '}
-        <Katex tex="z=1+\sqrt5\,i" />: <Katex tex="z^2=1-5+2\sqrt5\,i=-4+2\sqrt5\,i" /> and{' '}
+        Put <Katex tex="x=1" /> and <Katex tex="y=\pm\sqrt5" /> back into <Katex tex="z=x+iy" />.
+      </>
+    ),
+    more: (
+      <>
+        Check <Katex tex="z=1+\sqrt5\,i" />: <Katex tex="z^2=1-5+2\sqrt5\,i=-4+2\sqrt5\,i" /> and{' '}
         <Katex tex="2\bar z=2-2\sqrt5\,i" />. Adding these and 2, the imaginary parts cancel and the real parts give{' '}
         <Katex tex="-4+2+2=0" /> ✓. The other root checks the same way.
       </>

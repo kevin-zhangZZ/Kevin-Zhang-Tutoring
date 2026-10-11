@@ -45,7 +45,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin^2(x) = \tfrac12\bigl(1-\cos(2x)\bigr)" />,
-    reason: <>There is no standard antiderivative for <Katex tex="\sin^2(x)" />, so rewrite it. Rearrange <Katex tex="\cos(2x)=1-2\sin^2(x)" /> from the formula sheet to get terms with standard antiderivatives — the report notes this was the most effective method.</>,
+    reason: <><Katex tex="\sin^2(x)" /> has no standard antiderivative, so rearrange the formula-sheet identity <Katex tex="\cos(2x)=1-2\sin^2(x)" /> to rewrite it.</>,
+    more: <>Both terms on the right, <Katex tex="1" /> and <Katex tex="\cos(2x)" />, can be antidifferentiated directly. This step is where many students stalled or integrated incorrectly. A typical slip is to guess <Katex tex="\tfrac13\sin^3(x)" />, but that differentiates to <Katex tex="\sin^2(x)\cos(x)" />, not <Katex tex="\sin^2(x)" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} V_s &= \frac{\pi}{2}\int_0^\pi\bigl(1-\cos(2x)\bigr)dx \\ &= \frac{\pi}{2}\left[x-\frac{\sin(2x)}{2}\right]_0^\pi \end{aligned}" />,
@@ -57,14 +58,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V_s = \frac{\pi^2}{2}}" />,
-    reason: <>About <Katex tex="4.93" /> cubic units.</>,
+    reason: <>Exam 1 wants the exact value (about <Katex tex="4.93" /> cubic units).</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\sin(kx)=0 \;\Rightarrow\; kx=0,\ \pi \;\Rightarrow\; x=0,\ \tfrac{\pi}{k}" />,
-    reason: <>The first two non-negative <Katex tex="x" />-intercepts come from <Katex tex="kx=0" /> and <Katex tex="kx=\pi" />. Since <Katex tex="k>0" />, <Katex tex="\tfrac{\pi}{k}" /> is positive, so it is the next intercept after 0. The arch that ran from 0 to <Katex tex="\pi" /> now runs from 0 to <Katex tex="\tfrac\pi k" />, with the same height 1.</>,
+    reason: <>The first two non-negative intercepts come from <Katex tex="kx=0" /> and <Katex tex="kx=\pi" />; since <Katex tex="k>0" />, <Katex tex="\tfrac{\pi}{k}" /> is the next one after 0.</>,
+    more: <>So the arch that ran from 0 to <Katex tex="\pi" /> in part a now runs from 0 to <Katex tex="\tfrac\pi k" />, with the same maximum height 1.</>,
   },
   {
     working: (
@@ -73,16 +75,18 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{aligned} &y = \sin(kx) \text{ is } y = \sin(x) \\ &\text{dilated by a factor of } \tfrac1k \\ &\text{from the } y\text{-axis} \end{aligned}"
       />
     ),
-    reason: <>Replacing <Katex tex="x" /> by <Katex tex="kx" /> is a dilation by factor <Katex tex="\tfrac1k" /> from the <Katex tex="y" />-axis. Rotating the squashed graph gives part a&apos;s solid squashed the same way.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="kx" /> is a dilation by factor <Katex tex="\tfrac1k" /> from the <Katex tex="y" />-axis (the intercept <Katex tex="\pi" /> moved to <Katex tex="\tfrac\pi k" />), so the solid is part a&apos;s solid dilated the same way.</>,
+    more: <>For <Katex tex="k>1" /> this squashes the arch towards the <Katex tex="y" />-axis; for <Katex tex="0<k<1" /> it stretches it out.</>,
   },
   {
     working: <Katex display tex="\text{volume scales by } \tfrac1k" />,
-    reason: <>Think of the solid as thin discs. Every disc keeps its radius (the heights of the graph are unchanged), but each one is only <Katex tex="\tfrac1k" /> as thick, so each disc volume <Katex tex="\pi r^2\,\Delta x" /> — and so the total — is multiplied by <Katex tex="\tfrac1k" />. It is not <Katex tex="\tfrac1{k^2}" />: only the <Katex tex="x" />-direction is squashed, not the radius. The report notes very few students recognised this dilation.</>,
-    more: <>Slide <Katex tex="k" /> in the diagram below to see it.</>,
+    reason: <>Slice the solid into thin discs: each keeps its radius (heights unchanged) but is <Katex tex="\tfrac1k" /> as thick, so each disc volume <Katex tex="\pi r^2\,\Delta x" />, and the total, is multiplied by <Katex tex="\tfrac1k" />.</>,
+    more: <>It is not <Katex tex="\tfrac1{k^2}" />: only the <Katex tex="x" />-direction is dilated, not the radius. Slide <Katex tex="k" /> in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{V_s}{k}}" />,
-    reason: <>The answer must be <em>in terms of</em> <Katex tex="V_s" />, as instructed — <Katex tex="\tfrac{\pi^2}{2k}" /> alone does not answer the question. Check by integrating as in part a: <Katex tex="\pi\int_0^{\pi/k}\sin^2(kx)\,dx=\tfrac{\pi}{2}\left[x-\tfrac{\sin(2kx)}{2k}\right]_0^{\pi/k}=\tfrac{\pi}{2}\cdot\tfrac{\pi}{k}=\tfrac{\pi^2}{2k}=\tfrac{V_s}{k}" />.</>,
+    reason: <>The question asks for the volume <em>in terms of</em> <Katex tex="V_s" />, so write <Katex tex="\tfrac{V_s}{k}" />, not the equivalent <Katex tex="\tfrac{\pi^2}{2k}" /> (from <Katex tex="V_s=\tfrac{\pi^2}{2}" />).</>,
+    more: <>Check by integrating as in part a (the sine terms vanish at both terminals, since <Katex tex="\sin(2\pi)=\sin(0)=0" />): <Katex tex="\pi\int_0^{\pi/k}\sin^2(kx)\,dx=\tfrac{\pi}{2}\left[x-\tfrac{\sin(2kx)}{2k}\right]_0^{\pi/k}=\tfrac{\pi}{2}\cdot\tfrac{\pi}{k}=\tfrac{\pi^2}{2k}=\tfrac{V_s}{k}" />.</>,
   },
 ]
 

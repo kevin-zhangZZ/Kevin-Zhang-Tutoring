@@ -26,10 +26,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{2x+1}{x^2+1} = \frac{2x}{x^2+1}+\frac{1}{x^2+1}" />,
     reason: (
       <>
-        How would I know to split? The derivative of the denominator <Katex tex="x^2+1" /> is{' '}
-        <Katex tex="2x" />, and <Katex tex="2x" /> is sitting in the numerator. Splitting the
-        fraction leaves one piece with <Katex tex="2x" /> on top (a logarithm) and one with just a
-        constant on top (an arctan). Both are standard forms, so no substitution is needed.
+        The denominator's derivative is <Katex tex="2x" />, and <Katex tex="2x" /> sits in the
+        numerator. Split it off: the <Katex tex="2x" /> piece integrates to a log, the constant
+        piece to an arctan.
       </>
     ),
   },
@@ -37,12 +36,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\int_0^1\frac{2x}{x^2+1}\,dx = \Bigl[\log_e\left(x^2+1\right)\Bigr]_0^1" />,
     reason: (
       <>
-        The numerator is exactly the derivative of the denominator, so use{' '}
-        <Katex tex="\int\tfrac{f'(x)}{f(x)}\,dx=\log_e|f(x)|+c" /> with{' '}
-        <Katex tex="f(x)=x^2+1" />. The absolute value bars can go because{' '}
-        <Katex tex="x^2+1>0" /> for every <Katex tex="x" />. (If you substitute{' '}
-        <Katex tex="u=x^2+1" /> instead, change the terminals too: <Katex tex="x=0" /> gives{' '}
-        <Katex tex="u=1" /> and <Katex tex="x=1" /> gives <Katex tex="u=2" />.)
+        The numerator is the derivative of the denominator, so use{' '}
+        <Katex tex="\int\tfrac{f'(x)}{f(x)}\,dx=\log_e|f(x)|+c" />. No modulus is needed, as{' '}
+        <Katex tex="x^2+1>0" />.
+      </>
+    ),
+    more: (
+      <>
+        No substitution is needed here. If you do substitute <Katex tex="u=x^2+1" />, change the terminals too:{' '}
+        <Katex tex="x=0" /> gives <Katex tex="u=1" /> and <Katex tex="x=1" /> gives{' '}
+        <Katex tex="u=2" />, so the integral becomes{' '}
+        <Katex tex="\int_1^2\tfrac{1}{u}\,du" />. Forgetting to change the terminals (or mixing{' '}
+        <Katex tex="x" /> and <Katex tex="u" /> terminals) is the easiest way to go wrong.
       </>
     ),
   },
@@ -62,7 +67,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \arctan(1)-\arctan(0) = \frac{\pi}{4}-0 = \frac{\pi}{4}" />,
-    reason: <><Katex tex="\arctan(1)=\tfrac\pi4" /> because <Katex tex="\tan\left(\tfrac\pi4\right)=1" />, and <Katex tex="\arctan(0)=0" /> because <Katex tex="\tan(0)=0" />.</>,
+    reason: <><Katex tex="\arctan(1)=\tfrac\pi4" />, the angle in <Katex tex="\left(-\tfrac\pi2,\tfrac\pi2\right)" /> with <Katex tex="\tan\left(\tfrac\pi4\right)=1" />, and <Katex tex="\arctan(0)=0" /> because <Katex tex="\tan(0)=0" />.</>,
   },
   {
     working: <Katex display tex="\int_0^1\frac{2x+1}{x^2+1}\,dx = \boxed{\log_e(2)+\frac{\pi}{4}}" />,
@@ -88,9 +93,7 @@ export default function SpecialistQ2_2021Exam1() {
             whether it can be written as{' '}
             <em>(a multiple of the denominator's derivative) plus (a constant)</em>. The first part
             integrates to a logarithm and the second to an arctan (after completing the square if the
-            denominator has an <Katex tex="x" /> term). Here the numerator{' '}
-            <Katex tex="2x+1" /> is already in that form, so the integral is two standard forms
-            added together.
+            denominator has an <Katex tex="x" /> term).
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

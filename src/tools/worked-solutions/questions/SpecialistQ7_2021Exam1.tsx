@@ -38,7 +38,8 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dx}{dt} = x\sin(t) \implies \frac{1}{x}\,dx = \sin(t)\,dt" />,
-    reason: <>The right side is (a function of <Katex tex="x" />) × (a function of <Katex tex="t" />), so the variables separate: divide by <Katex tex="x" /> (allowed, since <Katex tex="x" /> starts at 1, not 0) to get everything in <Katex tex="x" /> on the left and everything in <Katex tex="t" /> on the right.</>,
+    reason: <>Separate the variables: divide by <Katex tex="x" /> (allowed: <Katex tex="x" /> starts at 1, and we see below it is never 0) so all the <Katex tex="x" /> terms are on the left and all the <Katex tex="t" /> terms on the right.</>,
+    more: <>This works because the right side is (a function of <Katex tex="x" />) × (a function of <Katex tex="t" />), which is exactly what makes a differential equation separable.</>,
   },
   {
     working: <Katex display tex="\int\frac{1}{x}\,dx = \int\sin(t)\,dt" />,
@@ -46,7 +47,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e|x| = -\cos(t)+c" />,
-    reason: <>The antiderivative of <Katex tex="\sin(t)" /> is <em>minus</em> <Katex tex="\cos(t)" /> — check by differentiating: <Katex tex="\tfrac{d}{dt}\big({-\cos(t)}\big)=\sin(t)" />. The report notes some sign errors here. One constant <Katex tex="c" /> on one side is enough.</>,
+    reason: <>The antiderivative of <Katex tex="\sin(t)" /> is <em>minus</em> <Katex tex="\cos(t)" />: check, <Katex tex="\tfrac{d}{dt}\big({-\cos(t)}\big)=\sin(t)" />. One constant <Katex tex="c" /> is enough.</>,
+    more: <>The report notes some sign errors when the trigonometric function was integrated: this minus sign is the one to watch. A constant on each side would only combine into a single constant, so one is enough.</>,
   },
   {
     working: <Katex display tex="t=0, \ x=1: \ \log_e(1) = -1+c \implies c = 1" />,
@@ -54,11 +56,13 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_e(x) = 1-\cos(t)" />,
-    reason: <>Why the absolute value can be dropped: this says <Katex tex="|x| = e^{1-\cos(t)}" />, which is never 0. So <Katex tex="x" /> can never pass through 0, and since it starts positive (<Katex tex="x=1" />), it stays positive, giving <Katex tex="|x| = x" />.</>,
+    reason: <>Drop the absolute value: <Katex tex="\log_e|x| = 1-\cos(t)" /> gives <Katex tex="|x| = e^{1-\cos(t)}" />, never 0, so <Katex tex="x" /> never changes sign; it starts at 1, so <Katex tex="x>0" /> and <Katex tex="|x| = x" />.</>,
+    more: <>To change sign, <Katex tex="x" /> would have to pass through 0 on the way (it is a continuous function of time). Exponentials are always positive, so that never happens. This is also what justified dividing by <Katex tex="x" /> in the first line.</>,
   },
   {
     working: <Katex display tex="\boxed{x = e^{1-\cos(t)}}" />,
-    reason: <>Check: <Katex tex="x(0)=e^0=1" /> ✓, and <Katex tex="\tfrac{dx}{dt}=e^{1-\cos t}\sin t = x\sin t" /> ✓.</>,
+    reason: <>Rewrite the logarithm in exponential form: <Katex tex="\log_e(x) = u \iff x = e^u" />.</>,
+    more: <>Check: <Katex tex="x(0)=e^0=1" /> ✓, and <Katex tex="\tfrac{dx}{dt}=e^{1-\cos t}\sin t = x\sin t" /> ✓.</>,
   },
 ]
 
@@ -77,12 +81,13 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(t) = -1 \implies t = \pi,\ 3\pi,\ 5\pi,\ \ldots" />,
-    reason: <>On the unit circle, <Katex tex="\cos(t)=-1" /> only at the point <Katex tex="(-1,0)" />: first at <Katex tex="t=\pi" />, then again after every full turn of <Katex tex="2\pi" />. So the maximum is not a one-off: it comes back at every odd multiple of <Katex tex="\pi" />.</>,
-    more: <>Slide <Katex tex="t" /> in the diagram below to see it.</>,
+    reason: <><Katex tex="\cos(t)=-1" /> first at <Katex tex="t=\pi" />, then again after every full turn of <Katex tex="2\pi" />, so the maximum recurs at every odd multiple of <Katex tex="\pi" />.</>,
+    more: <>On the unit circle, <Katex tex="\cos(t)=-1" /> only at the point <Katex tex="(-1,0)" />. Slide <Katex tex="t" /> in the diagram below to see the peaks repeat.</>,
   },
   {
     working: <Katex display tex="\boxed{t = (2k+1)\pi \text{ seconds}, \quad k \in \{0,1,2,\ldots\}}" />,
-    reason: <>The question asks for <em>the times</em>, so give the general rule, not just <Katex tex="t=\pi" />. Time starts at <Katex tex="t=0" />, so negative <Katex tex="k" /> is excluded (the report writes this as <Katex tex="k \in N \cup \{0\}" />). Both halves are needed for the 2 marks: the maximum <Katex tex="e^2" /> and these times. The report notes most students did not attempt or were unable to give these times.</>,
+    reason: <>The question asks for <em>the times</em>, so give the general rule, not just <Katex tex="t=\pi" />. Time starts at <Katex tex="t=0" />, so <Katex tex="k" /> cannot be negative.</>,
+    more: <>The report writes this as <Katex tex="k \in N \cup \{0\}" />, where <Katex tex="N = \{1,2,3,\ldots\}" />: the same set. The report notes most students did not attempt or were unable to give the times. Stopping at <Katex tex="t=\pi" /> only says when the maximum is <em>first</em> reached.</>,
   },
 ]
 

@@ -65,7 +65,7 @@ export default function SectorTriangle() {
   } else if (atHi) {
     notice = (
       <Notice>
-        The quarter-circle arc is<M>{'y=\\sqrt{-x^2-2x+15}'}</M>, the top of the circle <M>{'(x+1)^2+y^2=16'}</M>, and part
+        The quarter-circle arc is <M>{'y=\\sqrt{-x^2-2x+15}'}</M>, the top of the circle <M>{'(x+1)^2+y^2=16'}</M>, and part
         c.i&apos;s antiderivative is the area under it from <M>-1</M> to <M>x</M>. At the upper limit{' '}
         <M>{'\\sin\\theta=\\tfrac{x+1}{4}=\\tfrac{\\sqrt3}{2}'}</M> (<M>\theta</M> is measured from the vertical), so{' '}
         <M>{'\\theta=\\tfrac\\pi3'}</M>: the violet sector is <M>{'\\tfrac12\\cdot4^2\\cdot\\theta=\\tfrac{8\\pi}{3}'}</M>, the

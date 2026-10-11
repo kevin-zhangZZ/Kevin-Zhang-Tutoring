@@ -31,12 +31,20 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} &\text{Dependent} \iff \underset{\sim}{c} = m\underset{\sim}{a}+n\underset{\sim}{b} \\ &\text{for some } m,\ n\in R \end{aligned}" />,
     reason: (
       <>
-        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> are not parallel:{' '}
-        <Katex tex="\underset{\sim}{b}" /> is not a multiple of <Katex tex="\underset{\sim}{a}" />, since{' '}
-        <Katex tex="2 = -2\times(-1)" /> but <Katex tex="-8 \ne -2\times 6" />. So the only way the three can be
-        dependent is for <Katex tex="\underset{\sim}{c}" /> to be a combination of <Katex tex="\underset{\sim}{a}" />{' '}
-        and <Katex tex="\underset{\sim}{b}" />. Find the values of <Katex tex="p" /> that make this happen first,
-        then exclude them — the question asks for independence.
+        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> are not parallel (<Katex tex="\underset{\sim}{b}" /> is not a multiple of{' '}
+        <Katex tex="\underset{\sim}{a}" />), so the three are dependent exactly when <Katex tex="\underset{\sim}{c}" /> is a combination of them. Find those values of{' '}
+        <Katex tex="p" />, then exclude them.
+      </>
+    ),
+    more: (
+      <>
+        To check: matching the <Katex tex="\underset{\sim}{i}" /> components would need{' '}
+        <Katex tex="\underset{\sim}{b}=-2\underset{\sim}{a}" />, but{' '}
+        <Katex tex="-8 \ne -2\times 6" />. This matters: if <Katex tex="\underset{\sim}{a}" /> and{' '}
+        <Katex tex="\underset{\sim}{b}" /> were parallel, the three would be dependent for every <Katex tex="p" />.
+        Because they are not, any dependence must involve <Katex tex="\underset{\sim}{c}" />, so it can be rearranged
+        to <Katex tex="\underset{\sim}{c}=m\underset{\sim}{a}+n\underset{\sim}{b}" />. Dependence gives equations to
+        solve, while independence means "no solution", which is why we solve for dependence first.
       </>
     ),
   },
@@ -59,7 +67,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Rearrange the <Katex tex="\underset{\sim}{i}" /> equation for <Katex tex="m" /> and substitute into the{' '}
-        <Katex tex="\underset{\sim}{j}" /> equation. Check in the <Katex tex="\underset{\sim}{j}" /> equation:{' '}
+        <Katex tex="\underset{\sim}{j}" /> equation. Check both: <Katex tex="-7+2(5) = 3" /> and{' '}
         <Katex tex="6(7)-8(5) = 2" />.
       </>
     ),
@@ -96,12 +104,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{p \in R\setminus\left\{-\sqrt5,\ \sqrt5\right\}}" />,
     reason: (
       <>
-        The question asks for <em>independent</em>, which is every real <Katex tex="p" /> except the two dependent
-        values. The report notes many students found <Katex tex="p=\pm\sqrt5" /> but failed to conclude this:{' '}
-        <Katex tex="\pm\sqrt5" /> answers the opposite question.
+        The question asks for <em>independent</em>: every real <Katex tex="p" /> except the two dependent values.
       </>
     ),
-    more: <>Slide <Katex tex="p" /> in the diagram below to see the two holes.</>,
+    more: (
+      <>
+        The report notes many students found <Katex tex="p=\pm\sqrt5" /> but failed to conclude this:{' '}
+        <Katex tex="\pm\sqrt5" /> answers the opposite question. Equivalent answers are{' '}
+        <Katex tex="p\ne\pm\sqrt5" /> or{' '}
+        <Katex tex="p\in(-\infty,-\sqrt5)\cup(-\sqrt5,\sqrt5)\cup(\sqrt5,\infty)" />. Slide <Katex tex="p" /> in the
+        diagram below to see the two holes.
+      </>
+    ),
   },
 ]
 
@@ -132,15 +146,6 @@ export default function SpecialistQ6_2021Exam1() {
             <Katex tex="\underset{\sim}{c}=m\underset{\sim}{a}+n\underset{\sim}{b}" />; geometrically,
             all three then lie in one plane. They are <b>linearly independent</b> when no such
             combination exists.
-          </p>
-          <p>
-            Dependence gives equations you can solve, so the route is to find when the vectors{' '}
-            <em>are</em> dependent and then exclude those values. Read the last line of the
-            question twice before writing the answer: it asks for independent.
-          </p>
-          <p>
-            The absolute value is the second trap: <Katex tex="\left|1-p^2\right|=4" /> has
-            two branches, and only one of them has real solutions.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
