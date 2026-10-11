@@ -83,7 +83,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t = \frac{x}{u\cos(\theta)}" />,
-    reason: <>A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> with no <Katex tex="t" />, so eliminate <Katex tex="t" />: make it the subject of the simpler <Katex tex="x" /> equation. Don&apos;t eliminate <Katex tex="\theta" /> — the target equation still contains <Katex tex="\theta" />, so the Pythagorean identity leads nowhere.</>,
+    reason: <>A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> with no <Katex tex="t" />, so eliminate <Katex tex="t" />: make it the subject of the simpler <Katex tex="x" /> equation.</>,
+    more: <>Eliminate <Katex tex="t" /> only, not <Katex tex="\theta" />: the target equation still contains <Katex tex="\theta" />, so squaring and using the Pythagorean identity leads nowhere. The report notes some students did exactly that.</>,
   },
   {
     working: <Katex display tex="y = u\sin(\theta)\cdot\frac{x}{u\cos(\theta)}-\tfrac12(9.8)\left(\frac{x}{u\cos(\theta)}\right)^2" />,
@@ -97,16 +98,19 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{land at or beyond } C(16,4) \implies \text{at } x=16, \ y \ge 4" />,
-    reason: <>The second track slopes <em>down</em> from <Katex tex="C" />, so the car lands at or beyond <Katex tex="C" /> exactly when its path is at or above <Katex tex="C" /> at <Katex tex="x=16" />. A faster launch makes the drop term <Katex tex="\tfrac{4.9x^2}{u^2\cos^2(\theta)}" /> smaller, so the path is higher at <Katex tex="x=16" />: the minimum speed is the one whose path passes exactly through <Katex tex="C" />.</>,
+    working: <Katex display tex="\begin{aligned} &\text{land at or beyond } C(16,4): \\ &y \ge 4 \text{ at } x=16 \end{aligned}" />,
+    reason: <>The track slopes <em>down</em> from <Katex tex="C" />, so the car lands at or beyond <Katex tex="C" /> when its path is at or above <Katex tex="C" /> at <Katex tex="x=16" />. The minimum speed puts the path exactly through <Katex tex="C" />.</>,
+    more: <>Why exactly through <Katex tex="C" />: a faster launch makes the drop term <Katex tex="\tfrac{4.9x^2}{u^2\cos^2(\theta)}" /> smaller, so the path is higher at <Katex tex="x=16" />. Any slower than the speed that hits <Katex tex="C" /> and the path is below <Katex tex="C" /> at <Katex tex="x=16" />, so the car falls short.</>,
   },
   {
     working: <Katex display tex="4 = 16\tan(30^\circ)-\frac{4.9(16)^2}{u^2\cos^2(30^\circ)}" />,
-    reason: <>Use the cartesian equation from part a. (you may use it even if you couldn&apos;t show it): you know <em>where</em> <Katex tex="C" /> is, not <em>when</em> the car gets there, so the vector form in <Katex tex="t" /> is the hard way. Substitute <Katex tex="x=16" />, <Katex tex="y=4" /> — in that order, not swapped.</>,
+    reason: <>Substitute <Katex tex="x=16" />, <Katex tex="y=4" /> and <Katex tex="\theta=30^\circ" /> into part a.&apos;s cartesian equation; you can use it even if you couldn&apos;t show it.</>,
+    more: <>You know <em>where</em> <Katex tex="C" /> is, not <em>when</em> the car gets there, so the cartesian form is the right tool; the vector form in <Katex tex="t" /> is the hard way, and the report notes incorrect vector calculus approaches were frequent. Keep <Katex tex="x=16" />, <Katex tex="y=4" /> the right way round: the report also notes some responses swapped them.</>,
   },
   {
     working: <Cas fn="solve">solve(4 = 16·tan(30°) − 4.9·16²/(u²·cos²(30°)), u) | u &gt; 0</Cas>,
-    reason: <>With the calculator in degree mode. <Katex tex="16\tan(30^\circ)\approx9.2376" />, so the drop term must be about 5.2376; there is one positive root.</>,
+    reason: <>Solve for <Katex tex="u" /> on CAS in degree mode; <Katex tex="u" /> is a speed, so keep the one positive root.</>,
+    more: <>By hand: <Katex tex="16\tan(30^\circ)\approx9.2376" />, so the drop term must be about 5.2376. Then <Katex tex="u^2=\tfrac{4.9(16)^2}{\cos^2(30^\circ)\times5.2376}=\tfrac{1254.4}{0.75\times5.2376}\approx319.3" /> and <Katex tex="u\approx17.87" />.</>,
   },
   {
     working: <Katex display tex="\boxed{u = 17.87\ \text{m s}^{-1}}" />,
@@ -116,8 +120,9 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{smooth at } C \implies \text{same point and same gradient}" />,
-    reason: <><b>Smoothly</b> means no corner where the flight path meets the track: the path must reach <Katex tex="C" /> <em>and</em> be heading along the track there (its tangent at <Katex tex="C" /> lies along the track). These two conditions give the two equations needed for the two unknowns, <Katex tex="\theta" /> and <Katex tex="u" />.</>,
+    working: <Katex display tex="\begin{aligned} &\text{smooth at } C: \\ &\text{same point, same gradient} \end{aligned}" />,
+    reason: <><b>Smoothly</b> means no corner where the flight path meets the track: the path must reach <Katex tex="C" /> <em>and</em> be heading along the track there. Two conditions give two equations for the two unknowns, <Katex tex="\theta" /> and <Katex tex="u" />.</>,
+    more: <>&ldquo;Heading along the track&rdquo; means the tangent to the flight path at <Katex tex="C" /> lies along the track, so the path&apos;s gradient <Katex tex="\tfrac{dy}{dx}" /> at <Katex tex="x=16" /> equals the track&apos;s gradient. Passing through <Katex tex="C" /> alone (as in part b.) is not enough: the car could arrive at <Katex tex="C" /> at a kink.</>,
   },
   {
     working: <Katex display tex="\text{(1) } 4 = 16\tan(\theta)-\frac{4.9(16)^2}{u^2\cos^2(\theta)}" />,
@@ -129,11 +134,13 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{(2) } \tan(170^\circ) = \tan(\theta)-\frac{9.8(16)}{u^2\cos^2(\theta)}" />,
-    reason: <>In the diagram the track runs <em>down</em> from <Katex tex="C" /> to the <Katex tex="x" />-axis, so it makes an angle of <Katex tex="180^\circ-10^\circ=170^\circ" /> with the positive <Katex tex="x" />-direction and its gradient is <Katex tex="\tan(170^\circ)=-\tan(10^\circ)" />, which is negative. The report notes using <Katex tex="\tan10^\circ" /> as a common error.</>,
+    reason: <>The track runs <em>down</em> from <Katex tex="C" />, at <Katex tex="170^\circ" /> to the positive <Katex tex="x" />-direction, so its gradient is <Katex tex="\tan(170^\circ)=-\tan(10^\circ)" />, negative.</>,
+    more: <>The angle with the positive <Katex tex="x" />-direction is <Katex tex="180^\circ-10^\circ=170^\circ" />. The report notes a common error was to use <Katex tex="m=\tan10^\circ" />: that is a positive gradient, a line rising to the right, but this track falls to the right.</>,
   },
   {
     working: <Katex display tex="\text{(1)}-8\times\text{(2)}: \ 4+8\tan(10^\circ) = 8\tan(\theta)" />,
-    reason: <>Since <Katex tex="4.9(16)^2 = 1254.4 = 8\times9.8(16)" />, the <Katex tex="u" /> term in (1) is 8 times the one in (2), so subtracting 8 × (2) from (1) removes <Katex tex="u" /> completely; the report notes <Katex tex="\tan\theta" /> can be isolated by hand this way. (Or solve both at once on CAS, in degree mode: <Cas fn="solve">solve(eq1 and eq2, {'{'}θ, u{'}'}) | 0 &lt; θ &lt; 90°, u &gt; 0</Cas>.)</>,
+    reason: <>Since <Katex tex="4.9(16)^2 = 1254.4 = 8\times9.8(16)" />, subtracting 8 × (2) from (1) cancels the <Katex tex="u" /> terms, leaving an equation in <Katex tex="\theta" /> alone.</>,
+    more: <>In full: the left sides give <Katex tex="4-8\tan(170^\circ)=4+8\tan(10^\circ)" />, and the right sides give <Katex tex="16\tan(\theta)-8\tan(\theta)=8\tan(\theta)" />. The report notes <Katex tex="\tan\theta" /> can be isolated by hand this way. Or solve both at once on CAS, in degree mode: <Cas fn="solve">solve(eq1 and eq2, {'{'}θ, u{'}'}) | 0 &lt; θ &lt; 90°, u &gt; 0</Cas>.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \tan(\theta) &= \tfrac12+\tan(10^\circ) \approx 0.6763 \\ \theta &\approx 34.07^\circ \end{aligned}" />,
@@ -141,7 +148,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} u^2\cos^2(\theta) &= \frac{9.8(16)}{\tan(\theta)+\tan(10^\circ)} \approx 183.90 \\ u &= \frac{\sqrt{183.90}}{\cos(34.07^\circ)} \approx 16.37 \end{aligned}" />,
-    reason: <>Rearranging (2) for <Katex tex="u^2\cos^2(\theta)" />, using the unrounded <Katex tex="\theta" />. Take the positive root, since <Katex tex="u" /> is a speed.</>,
+    reason: <>Rearrange (2) for <Katex tex="u^2\cos^2(\theta)" />: the denominator is <Katex tex="\tan(\theta)-\tan(170^\circ)=\tan(\theta)+\tan(10^\circ)" />. Use the unrounded <Katex tex="\theta" />; <Katex tex="u" /> is a speed, so take the positive root.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = 34^\circ, \quad u = 16.4\ \text{m s}^{-1}}" />,
@@ -153,15 +160,18 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{60}{v} \text{ with } a = v\frac{dv}{ds}" />,
-    reason: <>The acceleration changes with <Katex tex="v" />, so it is not constant and a constant-acceleration formula can&apos;t be used — the report notes a number of incorrect responses used one. You have <Katex tex="a" /> in terms of <Katex tex="v" /> and want <Katex tex="v" /> in terms of <Katex tex="s" />, so use the form of acceleration that links <Katex tex="v" /> and <Katex tex="s" />.</>,
+    reason: <>The acceleration changes with <Katex tex="v" />, so constant-acceleration formulas don&apos;t apply. To get <Katex tex="v" /> in terms of <Katex tex="s" />, use the form of acceleration that links <Katex tex="v" /> and <Katex tex="s" />.</>,
+    more: <>The report notes a number of incorrect responses used a constant acceleration formula. The other forms, <Katex tex="\tfrac{dv}{dt}" /> and <Katex tex="\tfrac{d^2s}{dt^2}" />, bring in <Katex tex="t" />, which the answer doesn&apos;t contain; <Katex tex="v\tfrac{dv}{ds}" /> involves only <Katex tex="v" /> and <Katex tex="s" />.</>,
   },
   {
     working: <Katex display tex="v\frac{dv}{ds} = \frac{60}{v} \implies \frac{ds}{dv} = \frac{v^2}{60}" />,
-    reason: <>Dividing by <Katex tex="v" /> gives <Katex tex="\tfrac{dv}{ds}=\tfrac{60}{v^2}" />, a function of <Katex tex="v" /> only. Flipping both sides, <Katex tex="\tfrac{ds}{dv}=1\big/\tfrac{dv}{ds}" />, lets you find <Katex tex="s" /> by antidifferentiating with respect to <Katex tex="v" />.</>,
+    reason: <>Dividing by <Katex tex="v" /> gives <Katex tex="\tfrac{dv}{ds}=\tfrac{60}{v^2}" />; flip both sides to get <Katex tex="\tfrac{ds}{dv}" />, which you can antidifferentiate with respect to <Katex tex="v" />.</>,
+    more: <>Why flip: <Katex tex="\tfrac{60}{v^2}" /> is a function of <Katex tex="v" />, not <Katex tex="s" />, so you can&apos;t antidifferentiate it with respect to <Katex tex="s" />. Its reciprocal <Katex tex="\tfrac{ds}{dv}=1\big/\tfrac{dv}{ds}=\tfrac{v^2}{60}" /> is also in <Katex tex="v" />, and antidifferentiating it with respect to <Katex tex="v" /> gives <Katex tex="s" /> directly.</>,
   },
   {
     working: <Katex display tex="s = \int\frac{v^2}{60}\,dv = \frac{v^3}{180}+c" />,
-    reason: <>Include the constant — the report notes a number of students did not.</>,
+    reason: <>Antidifferentiating <Katex tex="v^2" /> gives <Katex tex="\tfrac{v^3}{3}" />, and <Katex tex="3\times60=180" />. Include the constant of integration.</>,
+    more: <>The report notes a number of students did not explicitly include a constant of integration or show that <Katex tex="c=0" />. In a &ldquo;show that&rdquo;, both are part of what you must show.</>,
   },
   {
     working: <Katex display tex="\text{from rest at } A: \ s=0 \text{ when } v=0 \implies c=0" />,
@@ -184,7 +194,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{braking: } 0-v_W^2 = 2(-9)d" />,
-    reason: <>Now the acceleration <em>is</em> constant (<Katex tex="-9" />, as the car slows), so <Katex tex="v^2-u^2=2as" /> applies, from speed <Katex tex="v_W" /> to rest. The stopping distance must be exactly <Katex tex="d" />: called off any later, the car is faster and has less room, so it runs past <Katex tex="B" />.</>,
+    reason: <>Braking, the acceleration <em>is</em> constant (<Katex tex="-9" />), so <Katex tex="v^2-u^2=2as" /> applies from <Katex tex="v_W" /> to rest. From the furthest safe <Katex tex="W" />, the car stops exactly at <Katex tex="B" />, distance <Katex tex="d" /> away.</>,
+    more: <>Why exactly <Katex tex="d" />: called off any later, the car is faster and has less room, so it runs past <Katex tex="B" />; called off any earlier, it stops short of <Katex tex="B" />, which is safe but not the furthest point. Here <Katex tex="u" /> in the formula is the speed at the start of braking, <Katex tex="v_W" />, not the launch speed <Katex tex="u" /> from parts a. to c.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} v_W^2 &= 18d \\ \left(180\left(\tfrac{400}{9}-d\right)\right)^{2/3} &= 18d \end{aligned}" />,
@@ -196,8 +207,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d = 16.4\ \text{m}}" />,
-    reason: <>To one decimal place. Check: at <Katex tex="W" /> the car is doing about <Katex tex="17.16\ \text{m s}^{-1}" /> and needs <Katex tex="\tfrac{17.16^2}{18}\approx16.4" /> m to stop, exactly the distance left.</>,
-    more: <>Drag <Katex tex="W" /> in the diagram below.</>,
+    reason: <>To one decimal place.</>,
+    more: <>Check: at <Katex tex="W" /> the car is doing about <Katex tex="17.16\ \text{m s}^{-1}" /> and needs <Katex tex="\tfrac{17.16^2}{18}\approx16.4" /> m to stop, exactly the distance left. Drag <Katex tex="W" /> in the diagram below.</>,
   },
 ]
 

@@ -62,11 +62,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\theta\in\left\{-\tfrac{\pi}{2},\ 0,\ \tfrac{\pi}{2},\ \pi\right\}" />,
     reason: (
       <>
-        The same values listed in <Katex tex="(-\pi,\pi]" /> (other values of <Katex tex="k" /> just add or subtract{' '}
-        <Katex tex="2\pi" />, the same direction). So <Katex tex="z" /> can lie on <b>either</b> axis:{' '}
-        <Katex tex="\theta=0,\pi" /> means <Katex tex="z" /> is real and <Katex tex="z^2=r^2>0" />;{' '}
-        <Katex tex="\theta=\pm\tfrac{\pi}{2}" /> means <Katex tex="z" /> is purely imaginary and{' '}
-        <Katex tex="z^2=-r^2<0" />. Both kinds give a real <Katex tex="z^2" />.
+        In <Katex tex="(-\pi,\pi]" /> (other <Katex tex="k" /> only add multiples of <Katex tex="2\pi" />) these are
+        the four axis directions, so <Katex tex="z" /> is real or purely
+        imaginary. Real <Katex tex="z" /> gives <Katex tex="z^2=r^2>0" />; imaginary <Katex tex="z" /> gives{' '}
+        <Katex tex="z^2=-r^2<0" />.
+      </>
+    ),
+    more: (
+      <>
+        Adding or subtracting <Katex tex="2\pi" /> gives the same direction, so these four are all the possibilities,
+        and <Katex tex="\tfrac{k\pi}{2}" /> over all integers <Katex tex="k" /> describes exactly these four directions.
       </>
     ),
   },
@@ -74,10 +79,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\arg(z) = \frac{k\pi}{2},\quad k\in Z}" />,
     reason: (
       <>
-        Matches option <b>A</b>, the only option containing all four directions. The other options each give some of
-        the values but not all: B (<Katex tex="k\pi" />) gives only <Katex tex="0" /> and <Katex tex="\pi" /> (real{' '}
-        <Katex tex="z" />); C gives only <Katex tex="\pm\tfrac{\pi}{2}" /> (purely imaginary <Katex tex="z" />); D
-        gives only <Katex tex="\tfrac{\pi}{2}" /> and E only <Katex tex="-\tfrac{\pi}{2}" />.
+        Matches option <b>A</b>, the only option containing all four directions.
+      </>
+    ),
+    more: (
+      <>
+        The other options each give some of the values but not all. B (<Katex tex="k\pi" />) gives only{' '}
+        <Katex tex="0" /> and <Katex tex="\pi" /> (real <Katex tex="z" />). C, the most popular answer (30%), gives
+        only <Katex tex="\pm\tfrac{\pi}{2}" /> (purely imaginary <Katex tex="z" />): it misses that a real{' '}
+        <Katex tex="z" /> also squares to a real number. D gives only <Katex tex="\tfrac{\pi}{2}" /> (plus multiples
+        of <Katex tex="2\pi" />) and E only <Katex tex="-\tfrac{\pi}{2}" />.
       </>
     ),
   },

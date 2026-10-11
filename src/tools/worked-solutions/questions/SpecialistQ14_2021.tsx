@@ -19,11 +19,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = v\frac{dv}{dx} = (3+2x)(2) = 6+4x" />,
-    reason: <>By the chain rule, <Katex tex="a=\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}" /> (this is on the formula sheet). You can't differentiate <Katex tex="v" /> with respect to <Katex tex="t" /> directly, because it is written in terms of <Katex tex="x" />.</>,
+    reason: <>By the chain rule, <Katex tex="a=\tfrac{dv}{dt}=\tfrac{dv}{dx}\cdot\tfrac{dx}{dt}=v\tfrac{dv}{dx}" /> (on the formula sheet).</>,
   },
   {
     working: <Katex display tex="x = 2: \ a = 6+8 = 14\ \text{m s}^{-2}" />,
-    reason: <>Option B stops here, giving the acceleration rather than the force.</>,
+    reason: <>Substitute <Katex tex="x=2" />. This is the acceleration; the question asks for the force.</>,
+    more: <>Option B, 14, stops here, giving the acceleration rather than the force.</>,
   },
   {
     working: <Katex display tex="F = ma = 5\times14" />,
@@ -31,7 +32,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{F = 70\ \text{N}}" />,
-    reason: <>Matches option <b>D</b>. Option A, 10, is <Katex tex="5\times2" />: it uses <Katex tex="a=\tfrac{dv}{dx}" /> and drops the factor <Katex tex="v" />. Option C, 35, is <Katex tex="5\times7=mv" /> (the momentum) rather than <Katex tex="ma" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Option A, 10, is <Katex tex="5\times2" />: it uses <Katex tex="a=\tfrac{dv}{dx}" /> and drops the factor <Katex tex="v" />. Option C, 35, is <Katex tex="5\times7=mv" /> (the momentum) rather than <Katex tex="ma" />.</>,
   },
 ]
 
@@ -54,9 +56,8 @@ export default function SpecialistQ14_2021() {
           <p>
             Mechanics (force analysis) is off the current Specialist study design, but the
             mathematics here is not: <Katex tex="a=v\tfrac{dv}{dx}" /> is standard
-            rectilinear motion, still on the course. The only force idea needed is the very
-            last line, Newton's second law: net force = mass × acceleration,{' '}
-            <Katex tex="F=ma" />.
+            rectilinear motion, still on the course. The only force idea needed is Newton's
+            second law, used in the last two lines.
           </p>
         </Background>
       }

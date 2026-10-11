@@ -89,7 +89,8 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = \frac{3\pi}{5}\left((H+8)^{5/3}-32\right)}" />,
-    reason: <>The 32 stays <em>inside</em> the bracket, and the answer is in terms of capital <Katex tex="H" /> (the vessel&apos;s height), not <Katex tex="h" />. The report names both as common notation errors.</>,
+    reason: <>Keep the 32 <em>inside</em> the bracket, and write capital <Katex tex="H" /> (the vessel&apos;s height), not <Katex tex="h" />.</>,
+    more: <>The report names both of these as common notation errors. Lower-case <Katex tex="h" /> is the depth of water, used from part b onwards.</>,
   },
 ]
 
@@ -99,8 +100,9 @@ const ROWS_BI: WorkingRow[] = [
     reason: <>We are given <Katex tex="\tfrac{dV}{dt}" /> and want <Katex tex="\tfrac{dh}{dt}" />, so link them through <Katex tex="V" /> with the chain rule. That needs <Katex tex="V" /> as a function of <Katex tex="h" />.</>,
   },
   {
-    working: <Katex display tex="V = \frac{3\pi}{5}\left((h+8)^{5/3}-32\right) \implies \frac{dV}{dh} = \pi(h+8)^{2/3}" />,
-    reason: <>The water fills the vessel from <Katex tex="y=0" /> up to <Katex tex="y=h" />, so its volume is part a.ii. with <Katex tex="H" /> replaced by the depth <Katex tex="h" />. Differentiating, the <Katex tex="\tfrac35" /> and the <Katex tex="\tfrac53" /> cancel. (<Katex tex="\pi(h+8)^{2/3}" /> is the area of the water&apos;s surface, a disc of radius <Katex tex="x=(h+8)^{1/3}" />.)</>,
+    working: <Katex display tex="\begin{aligned} V &= \frac{3\pi}{5}\left((h+8)^{5/3}-32\right) \\ \implies \frac{dV}{dh} &= \pi(h+8)^{2/3} \end{aligned}" />,
+    reason: <>The water fills <Katex tex="y=0" /> to <Katex tex="y=h" />, so its volume is part a.ii with <Katex tex="H" /> replaced by <Katex tex="h" />. Differentiating, the <Katex tex="\tfrac35" /> and <Katex tex="\tfrac53" /> cancel.</>,
+    more: <>A check on the answer: <Katex tex="\pi(h+8)^{2/3}" /> is the area of the water&apos;s surface, a disc of radius <Katex tex="x=(h+8)^{1/3}" />. That makes sense, since adding a thin layer of thickness <Katex tex="\delta h" /> adds about (surface area) <Katex tex="\times\,\delta h" /> of volume.</>,
   },
   {
     working: <Katex display tex="\frac{dh}{dt} = -4\sqrt h\times\frac{1}{\pi(h+8)^{2/3}}" />,
@@ -115,8 +117,8 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{maximise } {-\frac{dh}{dt}} = \frac{4\sqrt h}{\pi(h+8)^{2/3}}" />,
-    reason: <>The depth is falling, so <Katex tex="\tfrac{dh}{dt}" /> is negative. The rate of <em>decrease</em> is its size, <Katex tex="-\tfrac{dh}{dt}" />, so that is what to maximise. (The largest value of <Katex tex="\tfrac{dh}{dt}" /> itself is 0, at <Katex tex="h=0" />: an empty vessel.) Two effects compete: deeper water leaks faster, but higher up the vessel is wider, so each cm³ lost lowers the level less.</>,
-    more: <>Slide <Katex tex="h" /> in the diagram below to watch them trade places.</>,
+    reason: <>The depth is falling, so <Katex tex="\tfrac{dh}{dt}" /> is negative. The rate of <em>decrease</em> is its size, <Katex tex="-\tfrac{dh}{dt}" />, so maximise that.</>,
+    more: <>Maximising <Katex tex="\tfrac{dh}{dt}" /> itself would give 0, at <Katex tex="h=0" />: an empty vessel, not the answer. There is a genuine maximum of the rate of decrease because two effects compete: deeper water leaks faster, but higher up the vessel is wider, so each cm³ lost lowers the level less. Slide <Katex tex="h" /> in the diagram below to watch them trade places.</>,
   },
   {
     working: (
@@ -125,7 +127,8 @@ const ROWS_BII: WorkingRow[] = [
         <Katex display tex="h = 24" />
       </>
     ),
-    reason: <>fMax gives the depth where the maximum occurs, not the maximum rate. By hand, the product rule on <Katex tex="\sqrt h\,(h+8)^{-2/3}" /> gives a zero derivative when <Katex tex="\tfrac12(h+8)=\tfrac23h" />, i.e. <Katex tex="3h+24=4h" />, so <Katex tex="h=24" />. It is a maximum: the rate is 0 at <Katex tex="h=0" /> and shrinks back towards 0 as <Katex tex="h" /> grows (assuming the vessel is at least 24 cm tall).</>,
+    reason: <>fMax gives the depth where the maximum occurs, not the maximum rate itself, so the rate is found next.</>,
+    more: <>By hand: the product rule on <Katex tex="\sqrt h\,(h+8)^{-2/3}" /> gives <Katex tex="\tfrac12h^{-1/2}(h+8)^{-2/3}-\tfrac23h^{1/2}(h+8)^{-5/3}" />. Setting this to 0 and multiplying through by <Katex tex="h^{1/2}(h+8)^{5/3}" /> gives <Katex tex="\tfrac12(h+8)=\tfrac23h" />, i.e. <Katex tex="3h+24=4h" />, so <Katex tex="h=24" />. It is a maximum: the rate is 0 at <Katex tex="h=0" /> and shrinks back towards 0 as <Katex tex="h" /> grows (this assumes the vessel is at least 24 cm tall).</>,
   },
   {
     working: <Katex display tex="h = 24: \ {-\frac{dh}{dt}} = \frac{4\sqrt{24}}{\pi(32)^{2/3}} = 0.6188\ldots" />,
@@ -138,7 +141,8 @@ const ROWS_BII: WorkingRow[] = [
         <Katex display tex="\boxed{\text{at a depth of } 24 \text{ cm}}" />
       </>
     ),
-    reason: <>The question asks for two numbers, the rate and the depth; the report notes that some students gave only one. The rate of decrease is quoted as a positive number.</>,
+    reason: <>The question asks for two numbers, the rate and the depth. The rate of decrease is quoted as a positive number.</>,
+    more: <>The report&apos;s general comments note that some students gave only one of the required numbers in this part.</>,
   },
 ]
 
@@ -153,7 +157,8 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{rate out at } h=50: \ 4\sqrt{50}" />,
-    reason: <>The leak rate <Katex tex="4\sqrt h" /> changes with the depth, so it isn&apos;t the answer yet (the report notes a number of students stopped there). Substitute the depth that matters, <Katex tex="h=50" />.</>,
+    reason: <>The leak rate <Katex tex="4\sqrt h" /> changes with the depth, so it isn&apos;t the answer yet. Substitute the depth that matters, <Katex tex="h=50" />.</>,
+    more: <>Stopping at <Katex tex="4\sqrt h" /> is not enough: the question wants a number of cm³ per minute, and the overflow risk is at the brim, so the leak rate there is the one that counts.</>,
   },
   {
     working: <Katex display tex="\boxed{20\sqrt2 \approx 28.28\ \text{cm}^3\text{ per minute}}" />,
@@ -164,11 +169,12 @@ const ROWS_BIII: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dV}{dt} = 40\sqrt2-4\sqrt h" />,
-    reason: <>Rate in minus rate out: the crack keeps leaking while the water is poured in. The leak is at most <Katex tex="4\sqrt{50}=20\sqrt2" />, less than the <Katex tex="40\sqrt2" /> poured in, so the level rises the whole way.</>,
+    reason: <>Rate in minus rate out: the crack keeps leaking while the water is poured in.</>,
+    more: <>Keeping the leak is the key physical point: using <Katex tex="\tfrac{dV}{dt}=40\sqrt2" /> alone ignores the leak and gives only about 17.6 minutes. The leak is at most <Katex tex="4\sqrt{50}=20\sqrt2" /> (part b.iii), less than the <Katex tex="40\sqrt2" /> poured in, so the level does rise the whole way to the brim.</>,
   },
   {
     working: <Katex display tex="\frac{dh}{dt} = \frac{40\sqrt2-4\sqrt h}{\pi(h+8)^{2/3}}" />,
-    reason: <>Same chain rule as part b.i.: divide the new <Katex tex="\tfrac{dV}{dt}" /> by <Katex tex="\tfrac{dV}{dh}=\pi(h+8)^{2/3}" />.</>,
+    reason: <>Same chain rule as part b.i: divide the new <Katex tex="\tfrac{dV}{dt}" /> by <Katex tex="\tfrac{dV}{dh}=\pi(h+8)^{2/3}" />.</>,
   },
   {
     working: <Katex display tex="\frac{dt}{dh} = \frac{\pi(h+8)^{2/3}}{40\sqrt2-4\sqrt h}" />,
@@ -177,7 +183,7 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="t = \int_{25}^{50}\frac{\pi(h+8)^{2/3}}{40\sqrt2-4\sqrt h}\,dh" />,
     reason: <>Integrate with respect to <Katex tex="h" />, from the depth when pouring starts (25 cm, at <Katex tex="t=0" />) to the full depth (50 cm).</>,
-    more: <>The diagram below shades this area as the level rises.</>,
+    more: <>The time is the area under the graph of <Katex tex="\tfrac{dt}{dh}" /> from <Katex tex="h=25" /> to <Katex tex="h=50" />; the diagram below shades it as the level rises.</>,
   },
   {
     working: <Cas fn="nInt">∫(π(h+8)^(2/3)/(40√2 − 4√h), h, 25, 50)</Cas>,

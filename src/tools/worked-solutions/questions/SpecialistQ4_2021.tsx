@@ -37,9 +37,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The conjugate is <Katex tex="\bar z = a-bi" />. In the product, <Katex tex="-b^2i^2 = +b^2" />, so{' '}
-        <Katex tex="z\bar z" /> is real and positive (<Katex tex="z\neq0" /> because <Katex tex="b>0" />). In the
-        difference the <Katex tex="a" />&rsquo;s cancel, leaving a purely imaginary number.
+        Use <Katex tex="\bar z = a-bi" />. The product is real and positive; in the difference the{' '}
+        <Katex tex="a" />&rsquo;s cancel, leaving a purely imaginary number.
+      </>
+    ),
+    more: (
+      <>
+        In the product the cross terms cancel and <Katex tex="-b^2i^2 = +b^2" />. It is positive, not zero, because{' '}
+        <Katex tex="b>0" /> means <Katex tex="z\neq0" />.
       </>
     ),
   },
@@ -52,8 +57,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        To see where the quotient lies, write it in the form <Katex tex="x+yi" />: multiply top and bottom by{' '}
-        <Katex tex="i" />, so the denominator becomes <Katex tex="2b\,i^2 = -2b" />, a real number.
+        Write the quotient as <Katex tex="x+yi" /> to see where it lies: multiplying top and bottom by{' '}
+        <Katex tex="i" /> makes the denominator <Katex tex="2b\,i^2 = -2b" />, a real number.
       </>
     ),
   },
@@ -66,23 +71,29 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        This is true for <i>every</i> <Katex tex="a" /> and every <Katex tex="b>0" />, so the answer cannot depend on{' '}
-        <Katex tex="z" />. Quick check with <Katex tex="z=i" />: <Katex tex="z\bar z=1" /> and{' '}
-        <Katex tex="z-\bar z=2i" />, so the quotient is <Katex tex="\dfrac{1}{2i} = -\dfrac12 i" />. The
-        principal argument Arg lies in <Katex tex="(-\pi,\pi]" />, so a point straight below{' '}
-        <Katex tex="O" /> has Arg <Katex tex="-\tfrac\pi2" /> (not <Katex tex="\tfrac{3\pi}2" />).
+        This holds for <i>every</i> such <Katex tex="z" />. A point straight below <Katex tex="O" /> has principal
+        argument <Katex tex="-\tfrac\pi2" />, since Arg lies in <Katex tex="(-\pi,\pi]" />.
+      </>
+    ),
+    more: (
+      <>
+        Note <Katex tex="\tfrac{3\pi}2" /> is not allowed as a principal argument. Quick check with <Katex tex="z=i" />: <Katex tex="z\bar z=1" /> and <Katex tex="z-\bar z=2i" />, so the
+        quotient is <Katex tex="\dfrac{1}{2i} = -\dfrac12 i" />, straight down.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\mathrm{Arg}\!\left(\frac{z\bar z}{z-\bar z}\right) = -\frac{\pi}{2}}" />,
-    reason: (
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
       <>
-        Matches option <b>A</b>. Option D, <Katex tex="\tfrac\pi2" />, is what taking <Katex tex="\tfrac1i=i" /> gives
+        Option D, <Katex tex="\tfrac\pi2" />, is what taking <Katex tex="\tfrac1i=i" /> gives
         (the quotient would point straight up). But <Katex tex="i\times(-i) = -i^2 = 1" />, so{' '}
         <Katex tex="\tfrac1i=-i" />. Adding arguments instead of subtracting them also lands on D:{' '}
         <Katex tex="z\bar z" /> has Arg <Katex tex="0" /> and <Katex tex="z-\bar z" /> has Arg <Katex tex="\tfrac\pi2" />,
-        and dividing <i>subtracts</i> arguments, <Katex tex="0-\tfrac\pi2=-\tfrac\pi2" />, not <Katex tex="0+\tfrac\pi2" />.
+        and dividing <i>subtracts</i> arguments, <Katex tex="0-\tfrac\pi2=-\tfrac\pi2" />, not <Katex tex="0+\tfrac\pi2" />. Option C, <Katex tex="\tfrac\pi4" />, would need equal real and imaginary
+        parts, but the quotient&rsquo;s real part is <Katex tex="0" />, so its argument can only be{' '}
+        <Katex tex="\pm\tfrac\pi2" />.
       </>
     ),
   },

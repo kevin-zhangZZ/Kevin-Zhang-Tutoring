@@ -18,7 +18,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(\phi) = \frac{\underset{\sim}{b}\cdot\underset{\sim}{c}}{\left|\underset{\sim}{b}\right|\left|\underset{\sim}{c}\right|} = \frac{1-x}{\sqrt2\cdot\sqrt{1+x^2}}" />,
-    reason: <><Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{c}=1(1)+(-1)(x)=1-x" />, the <em>negative</em> of <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}" />. Also <Katex tex="\left|\underset{\sim}{c}\right|=\sqrt{1+x^2}=\left|\underset{\sim}{a}\right|" />, so the denominator is the same and <Katex tex="\cos(\phi)=-\cos(\theta)" />.</>,
+    reason: <><Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{c}=1(1)+(-1)(x)=1-x" /> and <Katex tex="\left|\underset{\sim}{c}\right|=\sqrt{1+x^2}" />, the same as <Katex tex="\left|\underset{\sim}{a}\right|" />.</>,
+    more: <>Compare with the first line: the numerator <Katex tex="1-x" /> is the <em>negative</em> of <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=x-1" /> and the denominator is identical, so <Katex tex="\cos(\phi)=-\cos(\theta)" />.</>,
   },
   {
     working: <Katex display tex="\cos(\theta)\cos(\phi) = \frac{(x-1)(1-x)}{2\left(1+x^2\right)}" />,
@@ -30,7 +31,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-\frac{(x-1)^2}{2\left(1+x^2\right)}}" />,
-    reason: <>Matches option <b>D</b>. Check with <Katex tex="x=1" />: then <Katex tex="\underset{\sim}{a}=\underset{\sim}{i}+\underset{\sim}{j}" /> is perpendicular to <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}-\underset{\sim}{j}" />, so <Katex tex="\cos(\theta)=0" /> and the product must be 0. Option D gives 0, but option C gives <Katex tex="-1" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Check with <Katex tex="x=1" />: then <Katex tex="\underset{\sim}{a}=\underset{\sim}{i}+\underset{\sim}{j}" /> is perpendicular to <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}-\underset{\sim}{j}" />, so <Katex tex="\cos(\theta)=0" /> and the product must be 0. Option D gives 0, but option C gives <Katex tex="-1" />. Option C differs from D only by a sign inside the bracket, so watch the signs in <Katex tex="x(1)+1(-1)" /> and <Katex tex="1(1)+(-1)(x)" />. Options A, B and E cannot be a product of two cosines, which must lie between <Katex tex="-1" /> and 1: A and E are undefined at <Katex tex="x=\pm1" />, and B equals <Katex tex="\sqrt2" /> at <Katex tex="x=0" />.</>,
   },
 ]
 

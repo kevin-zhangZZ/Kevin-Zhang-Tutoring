@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos^{-1}(u) \text{ needs } -1 \le u \le 1" />,
-    reason: <>The implied domain is every <Katex tex="x" /> for which the rule gives a real value. Inverse cosine only accepts inputs from <Katex tex="-1" /> to <Katex tex="1" /> (its domain is <Katex tex="[-1,\ 1]" />), and here its input is <Katex tex="u=\log_e(bx)" />.</>,
+    reason: <>The implied domain is every <Katex tex="x" /> giving a real value. Inverse cosine only accepts inputs in <Katex tex="[-1,\ 1]" />, and here its input is <Katex tex="u=\log_e(bx)" />.</>,
   },
   {
     working: <Katex display tex="-1 \le \log_e(bx) \le 1" />,
@@ -30,7 +30,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left[\frac{1}{be},\ \frac{e}{b}\right]}" />,
-    reason: <>Matches option <b>E</b>. Option C, <Katex tex="\left[\tfrac1b,\ \tfrac eb\right]" />, is what <Katex tex="0\le\log_e(bx)\le1" /> gives: it starts the band at <Katex tex="0" /> instead of <Katex tex="-1" />. Option D, <Katex tex="\left[\tfrac1b,\ \tfrac{e^\pi}b\right]" />, is what <Katex tex="0\le\log_e(bx)\le\pi" /> gives: the range of <Katex tex="\cos^{-1}" />, <Katex tex="[0,\ \pi]" />, used in place of its domain.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Option C, <Katex tex="\left[\tfrac1b,\ \tfrac eb\right]" />, is what <Katex tex="0\le\log_e(bx)\le1" /> gives: it starts the band at <Katex tex="0" /> instead of <Katex tex="-1" />. Option D, <Katex tex="\left[\tfrac1b,\ \tfrac{e^\pi}b\right]" />, is what <Katex tex="0\le\log_e(bx)\le\pi" /> gives: the range of <Katex tex="\cos^{-1}" />, <Katex tex="[0,\ \pi]" />, used in place of its domain.</>,
   },
 ]
 

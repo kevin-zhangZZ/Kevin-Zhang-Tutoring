@@ -19,7 +19,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{gathered}\bar X \sim \mathrm{N}\!\left(1.26,\ \frac{0.01^2}{6}\right)\\ \mathrm{sd}\!\left(\bar X\right) = \frac{0.01}{\sqrt6}\end{gathered}" />,
-    reason: <>The question is about the <em>mean</em> volume of six bottles, <Katex tex="\bar X" />, not one bottle. The mean of a random sample of size <Katex tex="n" /> has the same mean <Katex tex="\mu" />, but its standard deviation is <Katex tex="\frac{\sigma}{\sqrt n}" />: in an average of six bottles, high and low volumes partly cancel, so the sample mean varies less than a single bottle does.</>,
+    reason: <>The question is about the <em>mean</em> of six bottles, <Katex tex="\bar X" />. A sample mean of size <Katex tex="n" /> keeps the mean <Katex tex="\mu" />, but its standard deviation is <Katex tex="\frac{\sigma}{\sqrt n}" />.</>,
+    more: <>Why smaller: in an average of six bottles, high and low volumes partly cancel, so the sample mean varies less than a single bottle does.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr\!\left(\bar X \ge 1.25\right) &= \Pr\!\left(Z \ge \frac{1.25-1.26}{0.01/\sqrt6}\right)\\ &= \Pr\!\left(Z \ge -\sqrt6\right)\end{aligned}" />,
@@ -27,11 +28,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 0.99284\ldots" />,
-    reason: <>By <Cas fn="normCdf" /> with lower 1.25, upper ∞, μ = 1.26, σ = 0.01/√6. A probability close to 1 makes sense: 1.25 L is about 2.4 standard deviations below the mean of <Katex tex="\bar X" />.</>,
+    reason: <>By <Cas fn="normCdf" /> with lower −√6, upper ∞, μ = 0, σ = 1 (or, skipping the standardising, lower 1.25, μ = 1.26, σ = 0.01/√6).</>,
+    more: <>A probability close to 1 makes sense: 1.25 L is about 2.4 standard deviations below the mean of <Katex tex="\bar X" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr\!\left(\bar X \ge 1.25\right) \approx 0.9928}" />,
-    reason: <>Matches option <b>E</b>. Option <b>B</b>, 0.8413, uses the standard deviation of a single bottle, 0.01, instead of <Katex tex="\frac{0.01}{\sqrt6}" /> (giving <Katex tex="\Pr(Z\ge-1)" />); option <b>A</b>, 0.5968, uses 0.1 in place of 0.01.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Option <b>B</b>, 0.8413, the most common wrong answer, uses the standard deviation of a single bottle, 0.01, instead of <Katex tex="\frac{0.01}{\sqrt6}" /> (giving <Katex tex="\Pr(Z\ge-1)" />); option <b>A</b>, 0.5968, uses <Katex tex="\sigma = 0.1" /> instead of 0.01, so <Katex tex="\mathrm{sd}(\bar X)=\frac{0.1}{\sqrt6}" /> and <Katex tex="z\approx-0.245" />. Options <b>C</b>, 0.9750, and <b>D</b>, 0.9772, are <Katex tex="\Pr(Z\ge-1.96)" /> and <Katex tex="\Pr(Z\ge-2)" />: they come from a wrong <Katex tex="z" />-value, not the exact <Katex tex="-\sqrt6\approx-2.449" />.</>,
   },
 ]
 

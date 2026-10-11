@@ -24,9 +24,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="|z - (2+\sqrt3i)| = 1" />,
     reason: (
       <>
-        <Katex tex="|z-w|" /> is the distance from <Katex tex="z" /> to <Katex tex="w" />, so this is every point at
-        distance <Katex tex="1" /> from <Katex tex="2+\sqrt3i" />: a circle with centre <Katex tex="C(2,\sqrt3)" /> and
-        radius <Katex tex="1" />.
+        <Katex tex="|z-w|" /> is the distance from <Katex tex="z" /> to <Katex tex="w" />, so this is a circle with centre{' '}
+        <Katex tex="C(2,\sqrt3)" /> and radius <Katex tex="1" />.
       </>
     ),
   },
@@ -35,7 +34,8 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="|z|" /> is the distance from the origin to <Katex tex="z" />, so we want the point of the circle{' '}
-        <i>farthest from</i> <Katex tex="O" />, not the highest point.
+        <i>farthest from</i> <Katex tex="O" />, not the highest point (that maximises <Katex tex="\mathrm{Im}(z)" />,
+        not <Katex tex="|z|" />).
       </>
     ),
   },
@@ -47,20 +47,30 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="OP \le OC + CP = \sqrt7 + 1" />,
     reason: (
       <>
-        In triangle <Katex tex="OCP" />, side <Katex tex="OP" /> can&rsquo;t be longer than the other two sides
-        together. It equals <Katex tex="OC+CP" /> only when the triangle flattens into a straight line with{' '}
-        <Katex tex="C" /> between <Katex tex="O" /> and <Katex tex="P" />: the point where the line from{' '}
-        <Katex tex="O" /> through the centre meets the circle on the far side.
+        Going from <Katex tex="O" /> to <Katex tex="P" /> via the centre is never shorter than going direct. Equality
+        holds where the line from <Katex tex="O" /> through <Katex tex="C" /> meets the far side of the circle.
+      </>
+    ),
+    more: (
+      <>
+        This is the triangle inequality: in triangle <Katex tex="OCP" />, side <Katex tex="OP" /> can&rsquo;t be longer
+        than the other two sides together. It equals <Katex tex="OC+CP" /> only when the triangle flattens into a straight
+        line with <Katex tex="C" /> between <Katex tex="O" /> and <Katex tex="P" />, and that point is on the circle, so
+        the bound <Katex tex="\sqrt7+1" /> is actually reached.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{|z|_{\max} = \sqrt7 + 1}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Option A, <Katex tex="\sqrt3+1" />, is the greatest <em>imaginary part</em> on the
-        circle (its top point, <Katex tex="2+(\sqrt3+1)i" />), where <Katex tex="|z| = \sqrt{8+2\sqrt3} \approx 3.39" />,
-        less than <Katex tex="\sqrt7+1\approx3.65" />. Option B, <Katex tex="3" />, is the greatest <em>real part</em>.
+        Option A, <Katex tex="\sqrt3+1" />, is the greatest <em>imaginary part</em> on the circle (its top point,{' '}
+        <Katex tex="2+(\sqrt3+1)i" />), where <Katex tex="|z| = \sqrt{8+2\sqrt3} \approx 3.39" />, less than{' '}
+        <Katex tex="\sqrt7+1\approx3.65" />. Option B, <Katex tex="3" />, is the greatest <em>real part</em>. Option C,{' '}
+        <Katex tex="\sqrt{13}\approx3.61" />, is close to the answer but smaller: exactly,{' '}
+        <Katex tex="(\sqrt7+1)^2 = 8+2\sqrt7 \approx 13.29 > 13" />. Since <Katex tex="\sqrt7+1" /> is reached on the
+        circle, <Katex tex="\sqrt{13}" /> is not the maximum; only exact working separates these two.
       </>
     ),
   },

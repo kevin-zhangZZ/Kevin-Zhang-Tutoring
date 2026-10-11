@@ -25,9 +25,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Move the constants across (<Katex tex="x-1=5\cos(2t)" />, <Katex tex="y+1=5\sin(2t)" />), square and add,
-        using <Katex tex="\cos^2(2t)+\sin^2(2t)=1" />. The graph is a circle with centre <Katex tex="(1,-1)" /> and radius{' '}
+        Isolate <Katex tex="x-1=5\cos(2t)" /> and <Katex tex="y+1=5\sin(2t)" />, square and add, and use{' '}
+        <Katex tex="\cos^2+\sin^2=1" />. The graph is a circle with centre <Katex tex="(1,-1)" /> and radius{' '}
         <Katex tex="5" />.
+      </>
+    ),
+    more: (
+      <>
+        A shortest distance <b>along the graph</b> is an
+        arc length, so we need the angle between <Katex tex="A" /> and <Katex tex="B" /> at the centre.
       </>
     ),
   },
@@ -35,9 +41,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{angle at the centre} = 2t" />,
     reason: (
       <>
-        Compare with the standard circle <Katex tex="x=1+5\cos\theta" />, <Katex tex="y=-1+5\sin\theta" />, where{' '}
-        <Katex tex="\theta" /> is the angle turned anticlockwise about the centre from the horizontal. Here the angle
-        is <Katex tex="2t" />, <b>not</b> <Katex tex="t" />: the point turns twice as fast as <Katex tex="t" /> grows.
+        In <Katex tex="x=1+5\cos\theta" />, <Katex tex="y=-1+5\sin\theta" />, <Katex tex="\theta" /> is the angle at
+        the centre (anticlockwise from the horizontal). Here <Katex tex="2t" /> is in the place of{' '}
+        <Katex tex="\theta" />, so the angle is <Katex tex="2t" />, <b>not</b> <Katex tex="t" />.
+      </>
+    ),
+    more: (
+      <>
+        So the point turns twice as fast as <Katex tex="t" /> grows. Treating{' '}
+        <Katex tex="t" /> as the angle is what leads to option D, the most common wrong answer (23%).
       </>
     ),
   },
@@ -45,9 +57,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}A(6,-1):\ &\cos(2t)=1,\ \sin(2t)=0\\ &\implies 2t=0\end{aligned}" />,
     reason: (
       <>
-        Substitute <Katex tex="A" />: <Katex tex="5\cos(2t)+1=6" /> gives <Katex tex="\cos(2t)=1" /> and{' '}
-        <Katex tex="5\sin(2t)-1=-1" /> gives <Katex tex="\sin(2t)=0" />. So <Katex tex="A" /> is at angle{' '}
-        <Katex tex="0" /> (<Katex tex="t=0" />), directly right of the centre.
+        Substitute <Katex tex="A" />: <Katex tex="5\cos(2t)+1=6" /> and <Katex tex="5\sin(2t)-1=-1" />. So{' '}
+        <Katex tex="A" /> is at angle <Katex tex="0" /> (<Katex tex="t=0" />), directly right of the centre.
       </>
     ),
   },
@@ -55,9 +66,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}B(1,4):\ &\cos(2t)=0,\ \sin(2t)=1\\ &\implies 2t=\tfrac{\pi}{2}\end{aligned}" />,
     reason: (
       <>
-        Substitute <Katex tex="B" />: <Katex tex="5\cos(2t)+1=1" /> gives <Katex tex="\cos(2t)=0" /> and{' '}
-        <Katex tex="5\sin(2t)-1=4" /> gives <Katex tex="\sin(2t)=1" />. So <Katex tex="B" /> is at angle{' '}
-        <Katex tex="\tfrac{\pi}{2}" /> (<Katex tex="t=\tfrac{\pi}{4}" />), directly above the centre.
+        Substitute <Katex tex="B" />: <Katex tex="5\cos(2t)+1=1" /> and <Katex tex="5\sin(2t)-1=4" />. So{' '}
+        <Katex tex="B" /> is at angle <Katex tex="\tfrac{\pi}{2}" /> (<Katex tex="t=\tfrac{\pi}{4}" />), directly above
+        the centre.
+      </>
+    ),
+    more: (
+      <>
+        So from <Katex tex="A" /> to <Katex tex="B" />, <Katex tex="t" /> changes by only <Katex tex="\tfrac{\pi}{4}" />{' '}
+        while the angle at the centre changes by <Katex tex="\tfrac{\pi}{2}" />.
       </>
     ),
   },
@@ -65,10 +82,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{arc } AB = r\times\text{angle} = 5\times\tfrac{\pi}{2}" />,
     reason: (
       <>
-        Arc length is radius × angle at the centre (in radians). Going anticlockwise from <Katex tex="A" /> to{' '}
-        <Katex tex="B" /> is a quarter turn, <Katex tex="\tfrac{\pi}{2}" />; the other way round is{' '}
-        <Katex tex="\tfrac{3\pi}{2}" />, giving <Katex tex="5\times\tfrac{3\pi}{2}=\tfrac{15\pi}{2}" />, which is
-        longer.
+        Arc length is radius × angle at the centre (in radians). Anticlockwise from <Katex tex="A" /> to{' '}
+        <Katex tex="B" /> is a quarter turn, <Katex tex="\tfrac{\pi}{2}" />, the shorter way round.
+      </>
+    ),
+    more: (
+      <>
+        The other way round is <Katex tex="\tfrac{3\pi}{2}" />, giving{' '}
+        <Katex tex="5\times\tfrac{3\pi}{2}=\tfrac{15\pi}{2}" />, which is longer.
       </>
     ),
   },
@@ -76,10 +97,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{shortest distance} = \tfrac{5\pi}{2}}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Option D, <Katex tex="\tfrac{5\pi}{4}" />, is <Katex tex="5\times\tfrac{\pi}{4}" />:
-        the radius times the change in <Katex tex="t" /> instead of the change in the angle <Katex tex="2t" />. Option
-        B, <Katex tex="\tfrac{\pi}{2}" />, is the angle without multiplying by the radius, and option A,{' '}
-        <Katex tex="\tfrac{\pi}{4}" />, is just the change in <Katex tex="t" />.
+        Matches option <b>E</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option D, <Katex tex="\tfrac{5\pi}{4}" />, is <Katex tex="5\times\tfrac{\pi}{4}" />: the radius times the change
+        in <Katex tex="t" /> instead of the change in the angle <Katex tex="2t" />. Option B,{' '}
+        <Katex tex="\tfrac{\pi}{2}" />, is the angle without multiplying by the radius, option A,{' '}
+        <Katex tex="\tfrac{\pi}{4}" />, is just the change in <Katex tex="t" />, and option C,{' '}
+        <Katex tex="\pi" />, does not come from any single standard slip.
       </>
     ),
   },

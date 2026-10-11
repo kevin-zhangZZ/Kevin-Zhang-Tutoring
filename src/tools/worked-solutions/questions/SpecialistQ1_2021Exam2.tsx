@@ -70,7 +70,8 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{(2x-3)(x+5)}{(x-1)(x+2)} = \frac{2x^2+7x-15}{x^2+x-2}" />,
-    reason: <>The top and bottom are both degree 2, so divide first, the same way you would write <Katex tex="\tfrac73" /> as <Katex tex="2+\tfrac13" />. Expand both products to see the coefficients.</>,
+    reason: <>The top and bottom are both degree 2, so divide first. Expand both products to see the coefficients.</>,
+    more: <>It is the same idea as writing <Katex tex="\tfrac73" /> as <Katex tex="2+\tfrac13" />: a whole part, plus a remainder fraction whose top has a lower degree than its bottom.</>,
   },
   {
     working: <Katex display tex="2x^2+7x-15 = 2\left(x^2+x-2\right)+5x-11" />,
@@ -85,7 +86,7 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(x-1)(x+2) = 0 \implies x = 1, \ x = -2" />,
-    reason: <>Vertical asymptotes are where the denominator is zero. Neither factor cancels (the numerator is zero only at <Katex tex="x=\tfrac32" /> and <Katex tex="x=-5" />), so both are genuine vertical asymptotes.</>,
+    reason: <>Vertical asymptotes are where the denominator is zero. The numerator is zero only at <Katex tex="x=\tfrac32" /> and <Katex tex="x=-5" />, so neither factor cancels.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty: \ \frac{5x-11}{(x-1)(x+2)}\to0" />,
@@ -93,26 +94,31 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 1, \quad x = -2, \quad y = 2}" />,
-    reason: <>Three asymptotes. The horizontal one is the <Katex tex="A" /> from part a. — the report&apos;s most common error was leaving it out.</>,
+    reason: <>Three asymptotes. The horizontal one is <Katex tex="y=A" /> from part a.</>,
+    more: <>The report&apos;s most common error was giving only the vertical asymptotes and leaving out the horizontal one. &ldquo;The asymptotes&rdquo; means all of them.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{intercepts: } (-5,0), \ \left(\tfrac32,0\right), \ \left(0,\tfrac{15}{2}\right)" />,
-    reason: <>The x-intercepts are where the numerator <Katex tex="(2x-3)(x+5)" /> is zero. The y-intercept is <Katex tex="f(0)=\tfrac{(-3)(5)}{(-1)(2)}=\tfrac{15}{2}" />. All three must be labelled: the report notes many sketches were missing a required detail such as one of the intercepts.</>,
+    reason: <>The x-intercepts are where the numerator <Katex tex="(2x-3)(x+5)" /> is zero. The y-intercept is <Katex tex="f(0)=\tfrac{(-3)(5)}{(-1)(2)}=\tfrac{15}{2}" />.</>,
+    more: <>All three must be labelled on the sketch: the report notes many responses lacked a required detail such as the coordinates of one of the axial intercepts.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{-5x^2+22x+1}{\left(x^2+x-2\right)^2}" />,
-    reason: <>On CAS, <Cas fn="define">Define f(x)=(2x−3)(x+5)/((x−1)(x+2))</Cas> (the rest of the part uses it), then <Cas fn="derivative">d/dx(f(x))</Cas>. The denominator is a square, so it is positive: <Katex tex="f'(x)=0" /> only where the numerator is zero.</>,
+    reason: <>On CAS, <Cas fn="define">Define f(x)=(2x−3)(x+5)/((x−1)(x+2))</Cas>, then <Cas fn="derivative">d/dx(f(x))</Cas>. A fraction is zero only where its numerator is, so <Katex tex="f'(x)=0" /> only where <Katex tex="-5x^2+22x+1=0" />.</>,
+    more: <>Defining <Katex tex="f" /> once means you can reuse it for <Katex tex="f''" /> and for evaluating <Katex tex="f" /> at the points you find.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &-5x^2+22x+1=0 \\ &x = \frac{11\pm3\sqrt{14}}{5} \\ &x \approx -0.04499 \text{ or } 4.44499 \end{aligned}" />,
-    reason: <>The quadratic formula, or <Cas fn="solve">solve(d/dx(f(x))=0, x)</Cas>. Keep the extra decimal places: 4.44499 rounds to 4.44, but rounding to 4.445 first and then again would wrongly give 4.45.</>,
+    reason: <>The quadratic formula, or <Cas fn="solve">solve(d/dx(f(x))=0, x)</Cas>. Keep extra decimal places until the final rounding.</>,
+    more: <>4.44499 rounds to 4.44, but rounding to 4.445 first and then rounding again would wrongly give 4.45.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} x\approx-0.045&:\ f' \text{ goes } - \text{ to } + \implies \text{min} \\ x\approx4.445&:\ f' \text{ goes } + \text{ to } - \implies \text{max} \end{aligned}" />,
-    reason: <>The sign of <Katex tex="f'(x)" /> is the sign of its numerator <Katex tex="-5x^2+22x+1" />, an upside-down parabola: negative outside its two roots and positive between them. So the first point is a minimum, <Katex tex="(-0.04,\ 7.49)" />, at the bottom of the middle branch, and the second is the maximum the question asks for.</>,
+    reason: <>The denominator is a square, so the sign of <Katex tex="f'(x)" /> is the sign of <Katex tex="-5x^2+22x+1" />, an upside-down parabola: negative outside its roots, positive between them. So the second point is the maximum.</>,
+    more: <>The first point is a minimum, <Katex tex="(-0.04,\ 7.49)" />, at the bottom of the middle branch. The question doesn&apos;t ask for it to be labelled, but it tells you how high the middle branch sits.</>,
   },
   {
     working: <Katex display tex="f(4.44499) = 2.50556 \implies \text{max } (4.44,\ 2.51)" />,
@@ -120,11 +126,13 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f''(x) = 0 \implies x \approx 6.78822 \implies (6.79,\ 2.45)" />,
-    reason: <><Cas fn="solve">solve(d²/dx²(f(x))=0, x)</Cas> gives only one real solution, and <Katex tex="f(6.78822)=2.45099" />. The concavity really does change there: the curve is concave down at the maximum but must bend the other way to level off towards <Katex tex="y=2" />, so this is the point of inflection.</>,
+    reason: <><Cas fn="solve">solve(d²/dx²(f(x))=0, x)</Cas> gives one real solution, and <Katex tex="f(6.78822)=2.45099" />. The concavity changes there, so it is the point of inflection.</>,
+    more: <>Why the concavity changes: the curve is concave down at the maximum, but it must bend the other way to level off towards <Katex tex="y=2" /> from above.</>,
   },
   {
     working: <Katex display tex="f(x) = 2 \iff 5x-11=0 \iff x = \tfrac{11}{5}" />,
-    reason: <>Using part a.&apos;s form. So the right branch crosses its asymptote <Katex tex="y=2" /> at <Katex tex="x=2.2" />, rises to the maximum, then falls back towards <Katex tex="y=2" /> from above. That is allowed: a graph only has to approach a horizontal asymptote as <Katex tex="x\to\pm\infty" />.</>,
+    reason: <>Using part a.&apos;s form. So the right branch crosses <Katex tex="y=2" /> at <Katex tex="x=2.2" />, rises to the maximum, then falls back towards <Katex tex="y=2" /> from above (a graph may cross a horizontal asymptote at finite <Katex tex="x" />).</>,
+    more: <>Crossing is allowed: a graph only has to approach a horizontal asymptote as <Katex tex="x\to\pm\infty" />. It can cross it at finite values of <Katex tex="x" />.</>,
   },
   {
     working: (
@@ -136,8 +144,8 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Near the vertical asymptotes, the middle branch shoots up to <Katex tex="+\infty" /> at both ends, and the two outer branches go down to <Katex tex="-\infty" />. All three branches must appear — the report notes a significant number of responses left out the middle branch, and that setting the calculator screen to match the grid helps.</>,
-    more: <>The interactive below shows why.</>,
+    reason: <>The middle branch goes up to <Katex tex="+\infty" /> at both vertical asymptotes; the outer branches go down to <Katex tex="-\infty" />. Draw all three branches, with every label asked for. The middle branch&apos;s lowest point is about <Katex tex="y=7.49" />, above the default CAS window, so set the window to match the grid.</>,
+    more: <>The report notes a significant number of responses left out the middle branch, and that setting the calculator screen to match the grid helps. On the default window (y up to about 6.67) the middle branch is entirely off the top of the screen, because its lowest point is <Katex tex="(-0.04,\ 7.49)" />; matching the grid (y up to 16) shows it. The interactive below lets you try this.</>,
   },
 ]
 
@@ -148,11 +156,12 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{horizontal asymptote } y=2 \text{ for every } k" />,
-    reason: <>Top and bottom are both degree 2, so as <Katex tex="x\to\pm\infty" /> the graph approaches the ratio of the leading coefficients, <Katex tex="\tfrac21=2" />. <Katex tex="k" /> doesn&apos;t change that, so this asymptote is always there.</>,
+    reason: <>Top and bottom are both degree 2, so as <Katex tex="x\to\pm\infty" /> the graph approaches the ratio of the leading coefficients, <Katex tex="\tfrac21=2" />, whatever <Katex tex="k" /> is.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &\text{two asymptotes} \\ &\iff \text{only one vertical asymptote} \end{aligned}" />,
-    reason: <>Vertical asymptotes come from the zeros of the denominator, <Katex tex="x=k" /> and <Katex tex="x=-2" />, that don&apos;t cancel. One can be lost in two ways: the two zeros coincide, or <Katex tex="(x-k)" /> cancels with a factor of the numerator. (<Katex tex="x=-2" /> can never cancel: the numerator at <Katex tex="x=-2" /> is <Katex tex="(-7)(3)=-21" />.)</>,
+    reason: <>The denominator&apos;s zeros, <Katex tex="x=k" /> and <Katex tex="x=-2" />, give vertical asymptotes unless they cancel. One is lost if the zeros coincide, or if <Katex tex="(x-k)" /> cancels with the numerator.</>,
+    more: <><Katex tex="x=-2" /> itself can never cancel: the numerator at <Katex tex="x=-2" /> is <Katex tex="(-7)(3)=-21\ne0" />. So the only factor that can disappear is <Katex tex="(x-k)" />.</>,
   },
   {
     working: <Katex display tex="k=-2:\ g_k(x) = \frac{(2x-3)(x+5)}{(x+2)^2}" />,
@@ -160,7 +169,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} k=\tfrac32:\ g_k(x) &= \frac{2\left(x-\tfrac32\right)(x+5)}{\left(x-\tfrac32\right)(x+2)} \\ &= \frac{2(x+5)}{x+2},\quad x\ne\tfrac32 \end{aligned}" />,
-    reason: <><Katex tex="2x-3=2\left(x-\tfrac32\right)" />, so the factor cancels. At <Katex tex="x=\tfrac32" /> the graph now has a hole (one missing point), not an asymptote, leaving just <Katex tex="x=-2" /> and <Katex tex="y=2" />.</>,
+    reason: <><Katex tex="2x-3=2\left(x-\tfrac32\right)" />, so the factor cancels: a hole (one missing point) at <Katex tex="x=\tfrac32" />, not an asymptote. Only <Katex tex="x=-2" /> and <Katex tex="y=2" /> remain.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} k=-5:\ g_k(x) &= \frac{(2x-3)(x+5)}{(x+5)(x+2)} \\ &= \frac{2x-3}{x+2},\quad x\ne-5 \end{aligned}" />,
@@ -168,34 +177,41 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = -5, \ -2, \ \tfrac32}" />,
-    reason: <>All three. The report notes many responses gave only <Katex tex="k=-2" />: whenever a parameter sits in the denominator, also check whether it can cancel with the numerator.</>,
+    reason: <>All three values: one where the denominator&apos;s zeros coincide, two where a factor cancels.</>,
+    more: <>The report notes many responses included only <Katex tex="k=-2" />. Whenever a parameter sits in the denominator, also check whether it can cancel with a factor of the numerator. The interactive below lets you slide <Katex tex="k" /> and watch each one happen.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="g_k'(x) = \frac{-(2k+3)x^2+(30-8k)x+(30-29k)}{(x-k)^2(x+2)^2}" />,
-    reason: <>On CAS, <Cas fn="define">Define g(x)=(2x−3)(x+5)/((x−k)(x+2))</Cas> with <Katex tex="k" /> left as a letter, then <Cas fn="derivative">d/dx(g(x))</Cas>. Grouping the numerator by powers of <Katex tex="x" /> shows it is a quadratic in <Katex tex="x" />.</>,
+    reason: <>On CAS, <Cas fn="define">Define g(x)=(2x−3)(x+5)/((x−k)(x+2))</Cas> with <Katex tex="k" /> left as a letter, then <Cas fn="derivative">d/dx(g(x))</Cas>. The numerator is a quadratic in <Katex tex="x" />.</>,
+    more: <>CAS may not print the numerator in this form: grouping it by powers of <Katex tex="x" /> is what shows it is a quadratic, with coefficients that depend on <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="-(2k+3)x^2+(30-8k)x+(30-29k) = 0" />,
-    reason: <><Katex tex="g_k'(x)=0" /> exactly when this holds: a fraction is zero only when its numerator is, and the denominator is a square, never zero on the domain. So &ldquo;no stationary points&rdquo; means this quadratic has no real solutions — a discriminant question.</>,
+    reason: <>A fraction is zero only when its numerator is. So &ldquo;no stationary points&rdquo; means this quadratic has no real solutions: a discriminant question.</>,
+    more: <>The denominator <Katex tex="(x-k)^2(x+2)^2" /> is never zero in the domain, so it plays no part in where <Katex tex="g_k'(x)=0" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \Delta &= (30-8k)^2+4(2k+3)(30-29k) \\ &= -168k^2-588k+1260 \\ &= -84(k+5)(2k-3) \end{aligned}" />,
-    reason: <><Katex tex="\Delta=b^2-4ac" /> with <Katex tex="a=-(2k+3)" />, <Katex tex="b=30-8k" />, <Katex tex="c=30-29k" />; the two minus signs in <Katex tex="-4ac" /> cancel. Expanding and taking out <Katex tex="-84" /> leaves <Katex tex="2k^2+7k-15=(k+5)(2k-3)" />. CAS can expand and factorise this for you.</>,
+    reason: <><Katex tex="\Delta=b^2-4ac" /> with <Katex tex="a=-(2k+3)" />, <Katex tex="b=30-8k" />, <Katex tex="c=30-29k" />. Expand and factorise (CAS can do this).</>,
+    more: <>The two minus signs in <Katex tex="-4ac" /> cancel, giving <Katex tex="+4(2k+3)(30-29k)" />. Taking <Katex tex="-84" /> out of <Katex tex="-168k^2-588k+1260" /> leaves <Katex tex="2k^2+7k-15=(k+5)(2k-3)" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &\text{no stationary points} \\ &\iff \Delta<0 \\ &\iff (k+5)(2k-3)>0 \end{aligned}" />,
-    reason: <>A quadratic with <Katex tex="\Delta<0" /> has no real solutions. Dividing by <Katex tex="-84" /> flips the inequality. (At <Katex tex="k=-\tfrac32" /> the <Katex tex="x^2" /> term drops out and the equation is linear, with one solution <Katex tex="x=-\tfrac74" />; there <Katex tex="\Delta=1764>0" />, so the test still gives the right result.)</>,
+    reason: <>A quadratic with <Katex tex="\Delta<0" /> has no real solutions. Dividing by <Katex tex="-84" /> flips the inequality.</>,
+    more: <>At <Katex tex="k=-\tfrac32" /> the <Katex tex="x^2" /> term drops out and the equation is linear, with one solution <Katex tex="x=-\tfrac74" />. There <Katex tex="\Delta=1764>0" />, so the test still gives the right result: a stationary point exists.</>,
   },
   {
     working: <Katex display tex="\text{more than two asymptotes} \implies k\ne-5,\ -2,\ \tfrac32" />,
-    reason: <>These are the part d.i. values. For every other <Katex tex="k" />, neither <Katex tex="x=k" /> nor <Katex tex="x=-2" /> solves the quadratic, so each real solution is a genuine stationary point. At <Katex tex="k=-5" /> and <Katex tex="k=\tfrac32" />, <Katex tex="\Delta=0" /> but the double root is <Katex tex="x=k" />, the hole, so there is no stationary point there either: it is the given condition that rules these two out.</>,
+    reason: <>These are the part d.i. values, excluded by the question. For every other <Katex tex="k" />, each real solution of the quadratic is a genuine stationary point.</>,
+    more: <>Why genuine: substituting <Katex tex="x=k" /> into the quadratic gives <Katex tex="-(k+2)(k+5)(2k-3)" />, and <Katex tex="x=-2" /> gives <Katex tex="-21(k+2)" />, both nonzero for these <Katex tex="k" />, so no solution lands where <Katex tex="g_k" /> is undefined. At <Katex tex="k=-5" /> and <Katex tex="k=\tfrac32" />, <Katex tex="\Delta=0" /> but the double root is <Katex tex="x=k" />, the hole, so there is no stationary point there either: it is the given condition that rules these two out.</>,
   },
   {
     working: <Katex display tex="\boxed{k < -5 \ \text{ or } \ k > \tfrac32}" />,
-    reason: <><Katex tex="(k+5)(2k-3)" /> is an upright parabola in <Katex tex="k" /> with roots <Katex tex="-5" /> and <Katex tex="\tfrac32" />, so it is positive outside the roots. The inequalities are strict: at the endpoints the product is zero, not positive (and the given condition excludes them anyway).</>,
+    reason: <><Katex tex="(k+5)(2k-3)" /> is an upright parabola in <Katex tex="k" /> with roots <Katex tex="-5" /> and <Katex tex="\tfrac32" />, so it is positive outside the roots. The inequalities are strict. The excluded <Katex tex="-2" /> lies between the roots, so the exclusions change nothing.</>,
+    more: <>The endpoints <Katex tex="k=-5" /> and <Katex tex="k=\tfrac32" /> have no stationary points either (row above), but they give only two asymptotes, so the given condition excludes them. The report notes a common error was to include other incorrect values of <Katex tex="k" />: writing <Katex tex="\le" /> or <Katex tex="\ge" /> is one easy way to do that.</>,
   },
 ]
 

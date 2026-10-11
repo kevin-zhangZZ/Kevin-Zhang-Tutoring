@@ -71,7 +71,8 @@ const EXAM_CII: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="\alpha,\beta,\gamma \in R, \quad z_1 \in R" />,
-    reason: <>The coefficients of <Katex tex="p" /> are real, so its non-real roots come in conjugate pairs (the conjugate root theorem): if <Katex tex="w" /> is a root, so is <Katex tex="\overline{w}" />. The question separates the real root <Katex tex="z_1" /> from <Katex tex="z_2,z_3\in C" />, signalling that <Katex tex="z_2" /> and <Katex tex="z_3" /> are that pair.</>,
+    reason: <>The coefficients of <Katex tex="p" /> are real, so its non-real roots come in conjugate pairs: if <Katex tex="w" /> is a root, so is <Katex tex="\overline{w}" />.</>,
+    more: <>This is the conjugate root theorem. The question separates the real root <Katex tex="z_1" /> from <Katex tex="z_2,z_3\in C" />, signalling that <Katex tex="z_2" /> and <Katex tex="z_3" /> are that pair.</>,
   },
   {
     working: <Katex display tex="\boxed{z_3 = \overline{z_2}}" />,
@@ -82,7 +83,7 @@ const ROWS_AI: WorkingRow[] = [
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="z_2 = a+bi, \quad z_3 = a-bi \quad (a,b\in R)" />,
-    reason: <>From part a.i, <Katex tex="z_3=\overline{z_2}" />. Writing both in Cartesian form turns the two modulus conditions into equations for <Katex tex="a" /> and <Katex tex="b" />.</>,
+    reason: <>From part a.i, <Katex tex="z_3=\overline{z_2}" />. Cartesian form turns the two modulus conditions into equations for <Katex tex="a" /> and <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="\left|z_2+z_3\right| = |2a| = 0 \implies a = 0" />,
@@ -98,7 +99,8 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p(2) = (2-z_1)(2-3i)(2+3i) = -13" />,
-    reason: <>Substitute <Katex tex="z=2" /> into the <em>factorised</em> form: the only unknown left is <Katex tex="z_1" />. The report notes many students used <Katex tex="p(2)=-13" /> in the expanded form, which was less productive: <Katex tex="8+4\alpha+2\beta+\gamma=-13" /> is one equation with three unknowns.</>,
+    reason: <>Substitute <Katex tex="z=2" /> into the <em>factorised</em> form: the only unknown left is <Katex tex="z_1" />.</>,
+    more: <>The report notes many students used <Katex tex="p(2)=-13" /> in the expanded form, which was less productive: <Katex tex="8+4\alpha+2\beta+\gamma=-13" /> is one equation with three unknowns, whereas the factorised form already contains the two roots just found.</>,
   },
   {
     working: <Katex display tex="(2-3i)(2+3i) = 4-9i^2 = 13" />,
@@ -119,22 +121,26 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\alpha = -3, \quad \beta = 9, \quad \gamma = -27}" />,
-    reason: <>Matching coefficients with <Katex tex="z^3+\alpha z^2+\beta z+\gamma" />. Check: <Katex tex="p(2)=8-12+18-27=-13" /> ✓. The report also accepted an alternative answer from purely real <Katex tex="z" /> values (here <Katex tex="z_2=3" />, <Katex tex="z_3=-3" />); see the examiner&apos;s comment.</>,
+    reason: <>Matching coefficients with <Katex tex="z^3+\alpha z^2+\beta z+\gamma" />. Check: <Katex tex="p(2)=8-12+18-27=-13" /> ✓.</>,
+    more: <>The report also accepted a second answer. Real numbers are complex numbers too, so <Katex tex="z_2" /> and <Katex tex="z_3" /> could both be real. Then <Katex tex="|z_2+z_3|=0" /> gives <Katex tex="z_3=-z_2" />, and <Katex tex="|z_2-z_3|=|2z_2|=6" /> makes the roots <Katex tex="3" /> and <Katex tex="-3" />. Now <Katex tex="p(2)=(2-z_1)(2-3)(2+3)=-5(2-z_1)=-13" />, so <Katex tex="z_1=-\tfrac35" />, and <Katex tex="p(z)=\left(z+\tfrac35\right)\left(z^2-9\right)=z^3+\tfrac35z^2-9z-\tfrac{27}{5}" />: the report&apos;s <Katex tex="\alpha=\tfrac35,\ \beta=-9,\ \gamma=-\tfrac{27}{5}" />. It was accepted where the working across a.i and a.ii was correct and complete.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="z_4 = \sqrt3+i = 2\operatorname{cis}\!\left(\tfrac{\pi}{6}\right)" />,
-    reason: <>The grid is polar (circles <Katex tex="r=1" /> to <Katex tex="4" />, lines every <Katex tex="30^\circ" />), so convert to polar form to place <Katex tex="z_4" /> exactly: <Katex tex="|z_4|=\sqrt{3+1}=2" />, and <Katex tex="\tan\theta=\tfrac{1}{\sqrt3}" /> in the first quadrant gives <Katex tex="\theta=\tfrac{\pi}{6}" />. So <Katex tex="z_4" /> is where the circle <Katex tex="r=2" /> meets the <Katex tex="30^\circ" /> line.</>,
+    reason: <>The grid is polar, so use polar form: <Katex tex="|z_4|=\sqrt{3+1}=2" />, and <Katex tex="\tan\theta=\tfrac{1}{\sqrt3}" /> in the first quadrant gives <Katex tex="\theta=\tfrac{\pi}{6}" />.</>,
+    more: <>VCAA&apos;s grid has circles <Katex tex="r=1" /> to <Katex tex="4" /> and radial lines every <Katex tex="30^\circ" />, so <Katex tex="z_4" /> sits exactly where the circle <Katex tex="r=2" /> meets the <Katex tex="30^\circ" /> line, with no need to estimate <Katex tex="\sqrt3\approx1.73" />.</>,
   },
   {
     working: <Katex display tex="\operatorname{Arg}(z-z_4) = \tfrac{5\pi}{6} = 150^\circ" />,
-    reason: <><Katex tex="z-z_4" /> is the arrow from <Katex tex="z_4" /> to <Katex tex="z" />, so every point on the ray lies in direction <Katex tex="150^\circ" /> from <Katex tex="z_4" />: up and to the left, <Katex tex="30^\circ" /> above the negative real direction. Only that one direction counts, so it is a ray, not a whole line.</>,
+    reason: <><Katex tex="z-z_4" /> is the arrow from <Katex tex="z_4" /> to <Katex tex="z" />, so every point of the ray lies in direction <Katex tex="150^\circ" /> from <Katex tex="z_4" />: up and to the left.</>,
+    more: <>That is <Katex tex="30^\circ" /> above the negative real direction. Only that one direction counts (points in the opposite direction, <Katex tex="-30^\circ" /> from <Katex tex="z_4" />, have the wrong argument), so it is a ray starting at <Katex tex="z_4" />, not a whole line.</>,
   },
   {
     working: <Katex display tex="2i - z_4 = -\sqrt3+i = 2\operatorname{cis}\!\left(\tfrac{5\pi}{6}\right)" />,
-    reason: <>A second exact point to line the ruler up with. The gradient is <Katex tex="\tan\tfrac{5\pi}{6}=-\tfrac{1}{\sqrt3}" />, so going <Katex tex="\sqrt3" /> left from <Katex tex="z_4" /> takes you 1 up, to <Katex tex="(0,2)" />. So the ray passes through <Katex tex="2i" />, where the circle <Katex tex="r=2" /> meets the imaginary axis.</>,
+    reason: <>A second exact point to rule through: the gradient is <Katex tex="\tan\tfrac{5\pi}{6}=-\tfrac{1}{\sqrt3}" />, so going <Katex tex="\sqrt3" /> left from <Katex tex="z_4" /> takes you 1 up, to <Katex tex="2i" />.</>,
+    more: <><Katex tex="2i" /> is where the circle <Katex tex="r=2" /> meets the imaginary axis: a grid intersection.</>,
   },
   {
     working: (
@@ -146,7 +152,8 @@ const ROWS_B: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>At <Katex tex="z=z_4" />, <Katex tex="z-z_4=0" />, and <Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="z_4" /> itself is not on the ray: mark it with an open circle. The report notes this point was not always shown or placed correctly, sometimes through a lack of precision; ruling from <Katex tex="2\operatorname{cis}\left(\tfrac{\pi}{6}\right)" /> through <Katex tex="2i" /> avoids that.</>,
+    reason: <>At <Katex tex="z=z_4" />, <Katex tex="z-z_4=0" />, and <Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="z_4" /> itself is not on the ray: mark it with an open circle.</>,
+    more: <>The report notes this starting point was not always shown or placed correctly, sometimes through a lack of precision. Ruling from <Katex tex="2\operatorname{cis}\left(\tfrac{\pi}{6}\right)" /> through <Katex tex="2i" /> avoids that.</>,
   },
 ]
 
@@ -157,14 +164,16 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{through } 2i,\ 4i,\ -1+3i,\ 1+3i" />,
-    reason: <>One unit below, above, left and right of the centre: four exact points to draw it through. It is drawn in blue on the diagram in part b, where the ray cuts off a thin piece of it, the minor segment of part c.ii.</>,
+    reason: <>One unit below, above, left and right of the centre: four exact points to draw it through. It is the blue circle in part b&apos;s figure.</>,
+    more: <>The ray cuts a thin piece off the bottom-left of this circle: that piece is the minor segment of part c.ii.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{ray: } y = 2-\tfrac{x}{\sqrt3}, \quad x<\sqrt3" />,
-    reason: <>The line through <Katex tex="z_4" /> and <Katex tex="2i" /> from part b (gradient <Katex tex="-\tfrac{1}{\sqrt3}" />, <Katex tex="y" />-intercept 2); the ray is the part to the left of <Katex tex="z_4" />. To find the ends of the chord, solve it with the circle&apos;s Cartesian equation.</>,
+    reason: <>The line through <Katex tex="z_4" /> and <Katex tex="2i" /> from part b (gradient <Katex tex="-\tfrac{1}{\sqrt3}" />, <Katex tex="y" />-intercept 2); the ray is the part left of <Katex tex="z_4" />.</>,
+    more: <>The ends of the chord are where this meets the circle, so the plan is to solve it with the circle&apos;s Cartesian equation.</>,
   },
   {
     working: <Katex display tex="\text{circle: } x^2+(y-3)^2 = 1" />,
@@ -177,11 +186,12 @@ const ROWS_CII: WorkingRow[] = [
         tex="\begin{aligned} x^2+\left(-1-\tfrac{x}{\sqrt3}\right)^2 &= 1 \\ \tfrac43x^2+\tfrac{2}{\sqrt3}x &= 0 \\ x\left(\tfrac43x+\tfrac{2}{\sqrt3}\right) &= 0 \end{aligned}"
       />
     ),
-    reason: <>Substitute the ray into the circle: <Katex tex="y-3=-1-\tfrac{x}{\sqrt3}" />. Expanding, <Katex tex="\left(-1-\tfrac{x}{\sqrt3}\right)^2=1+\tfrac{2x}{\sqrt3}+\tfrac{x^2}{3}" />, and the 1s on each side cancel. On CAS, <Cas fn="solve" /> the two equations together.</>,
+    reason: <>From the ray, <Katex tex="y-3=2-\tfrac{x}{\sqrt3}-3=-1-\tfrac{x}{\sqrt3}" />. Substitute into the circle, expand, and the 1s on each side cancel. On CAS, <Cas fn="solve" /> the two equations together.</>,
+    more: <>Expanding: <Katex tex="\left(-1-\tfrac{x}{\sqrt3}\right)^2=1+\tfrac{2x}{\sqrt3}+\tfrac{x^2}{3}" />, so <Katex tex="x^2+\tfrac{x^2}{3}=\tfrac43x^2" />, and the constant 1 cancels with the 1 on the right.</>,
   },
   {
     working: <Katex display tex="x = 0 \ \text{ or } \ x = -\tfrac{3}{2\sqrt3} = -\tfrac{\sqrt3}{2}" />,
-    reason: <>Both are less than <Katex tex="\sqrt3" />, so both points are on the ray itself, not on the other half of the line.</>,
+    reason: <>Null factor law: <Katex tex="x=0" /> or <Katex tex="\tfrac43x=-\tfrac{2}{\sqrt3}" />. Both are less than <Katex tex="\sqrt3" />, so both points are on the ray itself, not on the other half of the line.</>,
   },
   {
     working: <Katex display tex="A = 2i, \quad B = -\tfrac{\sqrt3}{2}+\tfrac52i" />,
@@ -193,7 +203,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\theta = \tfrac{\pi}{3}" />,
-    reason: <>The angle the segment formula needs is the angle at the centre <Katex tex="3i" /> between the radii to <Katex tex="A" /> and <Katex tex="B" />. Both radii are 1 and the chord is 1, so that triangle is equilateral and every angle in it is <Katex tex="\tfrac{\pi}{3}" />. The report notes some students had difficulty determining the required angle: it is this angle at the centre, not an angle the ray makes with an axis.</>,
+    reason: <>The segment formula needs <Katex tex="\theta" />, the angle at the centre <Katex tex="3i" /> between the radii to <Katex tex="A" /> and <Katex tex="B" />. Both radii and the chord are 1, so that triangle is equilateral: every angle is <Katex tex="\tfrac{\pi}{3}" />.</>,
+    more: <>The report notes some students who used an area formula had difficulty determining the required angle. It is this angle at the centre, not an angle the ray makes with an axis: <Katex tex="\tfrac{\pi}{6}" /> is easy to grab here (the argument of <Katex tex="z_4" />, and the ray&apos;s <Katex tex="30^\circ" /> above the negative real direction), but a sector of angle <Katex tex="\tfrac{\pi}{6}" /> is too thin to reach both <Katex tex="A" /> and <Katex tex="B" />.</>,
   },
   {
     working: (
@@ -202,11 +213,13 @@ const ROWS_CII: WorkingRow[] = [
         tex="\begin{aligned} \text{Area} &= \tfrac12r^2\theta-\tfrac12r^2\sin\theta \\ &= \tfrac12\cdot\tfrac{\pi}{3}-\tfrac12\sin\tfrac{\pi}{3} \end{aligned}"
       />
     ),
-    reason: <>Segment = sector − triangle: the sector is <Katex tex="\tfrac12r^2\theta" />, and the triangle has two sides <Katex tex="r" /> with angle <Katex tex="\theta" /> between them, so its area is <Katex tex="\tfrac12r^2\sin\theta" />. Here <Katex tex="r=1" />. Since <Katex tex="\theta" /> is less than <Katex tex="\pi" />, this is the minor segment, on the far side of the chord from the centre.</>,
+    reason: <>Segment = sector − triangle, with <Katex tex="r=1" />: sector <Katex tex="\tfrac12r^2\theta" />, triangle <Katex tex="\tfrac12r^2\sin\theta" /> (two sides <Katex tex="r" /> with angle <Katex tex="\theta" /> between them). As <Katex tex="\theta<\pi" />, this is the minor segment.</>,
+    more: <>The minor segment is the piece on the far side of the chord from the centre; with <Katex tex="\theta" /> less than <Katex tex="\pi" /> the triangle sits inside the sector, so subtracting it leaves exactly that piece.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = \frac{\pi}{6}-\frac{\sqrt3}{4} = \frac{2\pi-3\sqrt3}{12}}" />,
-    reason: <>About 0.091 square units: a thin sliver, as the diagram shows.</>,
+    reason: <>About 0.091 square units: a thin sliver, as expected for the piece the ray cuts off.</>,
+    more: <>The report notes a smaller proportion correctly used a definite integral instead. The segment lies between the chord (above) and the lower arc <Katex tex="y=3-\sqrt{1-x^2}" /> (below), for <Katex tex="-\tfrac{\sqrt3}{2}\le x\le 0" />, so <Katex tex="\text{Area}=\int_{-\sqrt3/2}^{0}\left[\left(2-\tfrac{x}{\sqrt3}\right)-\left(3-\sqrt{1-x^2}\right)\right]dx" />, which <Cas fn="nInt" /> evaluates to 0.0906, matching.</>,
   },
 ]
 

@@ -14,23 +14,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{gathered} y_{n+1} = y_n+h\,f(x_n,y_n) \\ h = 0.1, \ f(x,y) = y\sin(x) \end{gathered}" />,
-    reason: <>Euler's method: new <Katex tex="y" /> = old <Katex tex="y" /> + step size × the gradient <Katex tex="\tfrac{dy}{dx}" /> at the <em>start</em> of the step. Going from <Katex tex="x=1" /> to <Katex tex="x=1.2" /> in steps of 0.1 takes <em>two</em> steps: <Katex tex="x_0=1" />, <Katex tex="x_1=1.1" />, <Katex tex="x_2=1.2" />.</>,
+    reason: <>Euler's method: new <Katex tex="y" /> = old <Katex tex="y" /> + step size × the gradient <Katex tex="\tfrac{dy}{dx}" /> at the <em>start</em> of the step. From <Katex tex="x=1" /> to <Katex tex="x=1.2" /> is <em>two</em> steps of 0.1.</>,
+    more: <>The three <Katex tex="x" />-values are <Katex tex="x_0=1" />, <Katex tex="x_1=1.1" />, <Katex tex="x_2=1.2" />. The gradient <Katex tex="f(x,y)" /> is just the right-hand side of the differential equation, <Katex tex="y\sin(x)" />, evaluated at the point where each step begins.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} y_1 &= 2+0.1\times2\sin(1) \\ &= 2.168294\ldots \end{aligned}" />,
-    reason: <>The first step starts at <Katex tex="(x_0, y_0) = (1, 2)" />, where the gradient is <Katex tex="2\sin(1)" />. Here <Katex tex="x" /> is a plain number, not an angle in degrees, so the calculator must be in radian mode: <Katex tex="\sin(1)=0.841471\ldots" />.</>,
+    reason: <>The first step starts at <Katex tex="(x_0, y_0) = (1, 2)" />, where the gradient is <Katex tex="2\sin(1)" />. Use radian mode: <Katex tex="\sin(1)=0.841471\ldots" />.</>,
+    more: <>Here <Katex tex="x" /> is a plain number, not an angle in degrees, so the calculator must be in radian mode. In degree mode <Katex tex="\sin(1^\circ)\approx0.017" /> and none of the options comes out.</>,
   },
   {
     working: <Katex display tex="y_2 = y_1+0.1\,y_1\sin(1.1)" />,
     reason: <>The second step starts at <Katex tex="(x_1, y_1) = (1.1,\ 2.168294\ldots)" />, so it uses the <em>updated</em> <Katex tex="y" /> and the new <Katex tex="x=1.1" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} &= 2.168294+0.1(2.168294)(0.891207) \\ &= 2.361534\ldots \end{aligned}" />,
-    reason: <>Keep <Katex tex="y_1" /> unrounded (store it in the calculator). Rounding it to 2.168 first gives <Katex tex="2.36121\ldots" />, which rounds to 2.361 — not one of the options.</>,
+    working: <Katex display tex="\begin{aligned} &= 2.168294\ldots \\ &\quad +0.1(2.168294\ldots)(0.891207\ldots) \\ &= 2.361534\ldots \end{aligned}" />,
+    reason: <>Keep <Katex tex="y_1" /> unrounded (store it in the calculator); in radians, <Katex tex="\sin(1.1)=0.891207\ldots" />.</>,
+    more: <>Rounding <Katex tex="y_1" /> to 2.168 first gives <Katex tex="2.36121\ldots" />, which rounds to 2.361 — not one of the options. Round only at the very end.</>,
   },
   {
     working: <Katex display tex="\boxed{y \approx 2.362} \ \text{(3 d.p.)}" />,
-    reason: <>Matches option <b>C</b>. Option A (2.168) is <Katex tex="y_1" />, stopping one step short. Options B and E come from putting the <em>end</em> of each step's <Katex tex="x" /> into <Katex tex="\sin(x)" /> (1.1 in the first step, 1.2 in the second) instead of the start: B after one step, E after two. Option D uses <Katex tex="x=1.2" /> instead of <Katex tex="x=1.1" /> in the second step.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option A (2.168) is <Katex tex="y_1" />, stopping one step short. Options B and E come from putting the <em>end</em> of each step's <Katex tex="x" /> into <Katex tex="\sin(x)" /> (1.1 in the first step, 1.2 in the second) instead of the start: B (2.178) after one step, E (2.381) after two. Option D (2.370) does the first step correctly but uses <Katex tex="x=1.2" /> instead of <Katex tex="x=1.1" /> in the second.</>,
   },
 ]
 

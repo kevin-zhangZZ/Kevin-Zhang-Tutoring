@@ -18,7 +18,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \text{west part} &= 5\sin(30^\circ) = \tfrac52 \\ \text{south part} &= 5\cos(30^\circ) = \tfrac{5\sqrt3}{2} \end{aligned}" />,
-    reason: <>Sketch a right-angled triangle with the 5 km path as the hypotenuse and the 30° angle at the start, between the path and the south line. The south side is adjacent to the 30° (so <Katex tex="\cos" />) and the west side is opposite it (so <Katex tex="\sin" />). Sense check: the path is only 30° off south, so the south part should be the bigger one, and <Katex tex="\tfrac{5\sqrt3}{2}\approx4.33" /> is bigger than <Katex tex="2.5" />.</>,
+    reason: <>In a right-angled triangle with hypotenuse 5 km and the 30° between the path and south, south is adjacent (<Katex tex="\cos" />) and west is opposite (<Katex tex="\sin" />).</>,
+    more: <>Sketch it: the 5 km path is the hypotenuse, and the 30° angle sits at the start, between the path and the line pointing due south. Sense check: the path is only 30° off south, so the south part should be the bigger one, and <Katex tex="\tfrac{5\sqrt3}{2}\approx4.33" /> is bigger than <Katex tex="2.5" />.</>,
   },
   {
     working: <Katex display tex="\text{first leg: } -\tfrac52\underset{\sim}{i}-\tfrac{5\sqrt3}{2}\underset{\sim}{j}" />,
@@ -34,7 +35,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{a} = -\tfrac52\underset{\sim}{i}+\left(10-\tfrac{5\sqrt3}{2}\right)\underset{\sim}{j}}" />,
-    reason: <>Matches option <b>B</b>: about 2.5 km west and 5.67 km north of the start. Option A is the first leg only, leaving out the walk north. Option D swaps sine and cosine in the first leg (measuring the 30° from west instead of south). Option C leaves out the first leg's south part. Option E reverses the first leg, as if the hikers had walked N30°E.</>,
+    reason: <>Matches option <b>B</b>: about 2.5 km west and <Katex tex="10-4.33\approx5.67" /> km north of the start.</>,
+    more: <>Option A is the first leg only, leaving out the walk north. Option D, the most common wrong choice, swaps sine and cosine in the first leg (measuring the 30° from west instead of south). Option C leaves out the first leg's south part. Option E reverses the first leg, as if the hikers had walked N30°E.</>,
   },
 ]
 

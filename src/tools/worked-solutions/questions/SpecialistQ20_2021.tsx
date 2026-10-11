@@ -22,7 +22,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="D = T_1-T_2" />,
-    reason: <>"Differ by less than 3 seconds" is about the difference between the two times, so let <Katex tex="D" /> be that difference. A linear combination of independent normal variables is itself normal, so only the mean and variance of <Katex tex="D" /> are needed.</>,
+    reason: <>"Differ by" is about the difference of the two times. A linear combination of independent normal variables is normal, so only the mean and variance of <Katex tex="D" /> are needed.</>,
   },
   {
     working: <Katex display tex="E(D) = E(T_1)-E(T_2) = 30-30 = 0" />,
@@ -30,7 +30,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{Var}(D) = \mathrm{Var}(T_1)+\mathrm{Var}(T_2) = 25+25 = 50" />,
-    reason: <>For independent variables, <Katex tex="\mathrm{Var}(aT_1+bT_2) = a^2\,\mathrm{Var}(T_1)+b^2\,\mathrm{Var}(T_2)" />. Here <Katex tex="a=1" />, <Katex tex="b=-1" /> and <Katex tex="(-1)^2=1" />, so the variances <em>add</em> even though the times are subtracted. Each variance is <Katex tex="5^2=25" />.</>,
+    reason: <>For independent variables the variances <em>add</em>, even though the times are subtracted. Each variance is <Katex tex="5^2=25" />.</>,
+    more: <>The general rule is <Katex tex="\mathrm{Var}(aT_1+bT_2) = a^2\,\mathrm{Var}(T_1)+b^2\,\mathrm{Var}(T_2)" />. Here <Katex tex="a=1" /> and <Katex tex="b=-1" />, and <Katex tex="(-1)^2=1" />, so both variances come in with a plus sign.</>,
   },
   {
     working: <Katex display tex="D \sim \mathrm{N}(0,\ 50) \;\implies\; \mathrm{sd}(D) = \sqrt{50} = 5\sqrt2" />,
@@ -38,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr\!\left(|D|<3\right) = \Pr(-3<D<3)" />,
-    reason: <>"Differ by less than 3 seconds" means <Katex tex="|T_1-T_2|<3" />. Either machine could be the faster one, so <Katex tex="D" /> can be negative too. This is the step the report&rsquo;s comment shows (with its brackets misplaced): <Katex tex="\Pr\left(|T_1-T_2|<3\right) = \Pr\left(-3<T_1-T_2<3\right)" />.</>,
+    reason: <>"Differ by less than 3 seconds" means <Katex tex="|T_1-T_2|<3" />. Either machine could be the faster one, so <Katex tex="D" /> can be negative too. The report&rsquo;s comment writes this step with its brackets misplaced; the working here is the correct form.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(-3<D<3) &= \Pr\!\left(-\frac{3}{5\sqrt2}<Z<\frac{3}{5\sqrt2}\right)\\ &= 0.32862\ldots\end{aligned}" />,
@@ -46,7 +47,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr\!\left(|T_1-T_2|<3\right) \approx 0.329}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b>, 0.164, is only <Katex tex="\Pr(0<D<3)" />, half the answer: it forgets that either machine could be the slower one. Option <b>B</b>, 0.236, adds the standard deviations (sd 10 instead of <Katex tex="\sqrt{50}" />); option <b>D</b>, 0.451, uses sd 5, the standard deviation of one machine; option <b>E</b>, 0.671, is the complement, <Katex tex="\Pr\left(|D|\ge3\right)" />.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>A</b>, 0.164, is only <Katex tex="\Pr(0<D<3)" />, half the answer: it forgets that either machine could be the slower one. Option <b>B</b>, 0.236, the most common wrong answer, adds the standard deviations (sd 10 instead of <Katex tex="\sqrt{50}" />); option <b>D</b>, 0.451, uses sd 5, the standard deviation of one machine; option <b>E</b>, 0.671, is the complement, <Katex tex="\Pr\left(|D|\ge3\right)" />.</>,
   },
 ]
 
