@@ -32,8 +32,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Every option is written in terms of <Katex tex="p" />, so these are all we need. The condition{' '}
-        <Katex tex="\Pr(A)+\Pr(B)=1" /> only fixes the value of <Katex tex="p" />. It does <i>not</i> mean{' '}
-        <Katex tex="B" /> is <Katex tex="A'" />: as the next line shows, the events overlap.
+        <Katex tex="\Pr(A)+\Pr(B)=1" /> only fixes the value of <Katex tex="p" />.
+      </>
+    ),
+    more: (
+      <>
+        The condition does <i>not</i> mean <Katex tex="B" /> is <Katex tex="A'" />: the next line shows{' '}
+        <Katex tex="\Pr(A\cap B)=p^3" />, which is not <Katex tex="0" />, so the events overlap. (Solving{' '}
+        <Katex tex="p+p^2=1" /> gives <Katex tex="p=\tfrac{\sqrt5-1}{2}\approx0.618" />, but no option needs it.)
       </>
     ),
   },
@@ -50,9 +56,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A probability table keeps track of the four regions. The totals come from the given probabilities (and{' '}
-        <Katex tex="\Pr(A')=1-p" />, <Katex tex="\Pr(B')=1-p^2" />); each other cell is a total minus the cell beside it,
-        e.g. <Katex tex="\Pr(A\cap B')=p-p^3" />.
+        A probability table tracks the four regions. Totals: <Katex tex="\Pr(A')=1-p" />,{' '}
+        <Katex tex="\Pr(B')=1-p^2" />. Each other cell is its row (or column) total minus the cell beside it.
+      </>
+    ),
+    more: (
+      <>
+        For example, <Katex tex="\Pr(A\cap B')=p-p^3" /> (row <Katex tex="A" /> total minus{' '}
+        <Katex tex="\Pr(A\cap B)" />), <Katex tex="\Pr(A'\cap B)=p^2-p^3" /> (column <Katex tex="B" /> total minus{' '}
+        <Katex tex="\Pr(A\cap B)" />), and <Katex tex="\Pr(A'\cap B')=(1-p)-(p^2-p^3)" />.
       </>
     ),
   },
@@ -60,21 +72,29 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\Pr(A'\cup B)=1-\Pr(A\cap B')" />,
     reason: (
       <>
-        <Katex tex="A'\cup B" /> means &ldquo;<Katex tex="A" /> doesn&apos;t happen, or <Katex tex="B" /> does&rdquo;: every
-        cell in row <Katex tex="A'" /> or column <Katex tex="B" />. That is three of the four cells, so it is quicker to
-        take the one cell left out, <Katex tex="A\cap B'" /> (in <Katex tex="A" /> but not in <Katex tex="B" />), away
-        from <Katex tex="1" />.
+        <Katex tex="A'\cup B" /> is every cell in row <Katex tex="A'" /> or column <Katex tex="B" />: three of the four.
+        Quicker to subtract the one cell left out, <Katex tex="A\cap B'" />, from <Katex tex="1" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="A'\cup B" /> means &ldquo;<Katex tex="A" /> doesn&apos;t happen, or <Katex tex="B" /> does&rdquo;.
+        The only outcome it misses is &ldquo;<Katex tex="A" /> happens and <Katex tex="B" /> doesn&apos;t&rdquo;, which
+        is <Katex tex="A\cap B'" />. Check with the addition rule:{' '}
+        <Katex tex="\Pr(A')+\Pr(B)-\Pr(A'\cap B)=(1-p)+p^2-(p^2-p^3)=1-p+p^3" />, the same answer.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\Pr(A'\cup B) = 1-(p-p^3) = 1-p+p^3}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Options B, C and E are single cells of the table: B is <Katex tex="\Pr(A'\cap B)" />, C
-        is <Katex tex="\Pr(A\cap B')" /> (the one cell <Katex tex="A'\cup B" /> leaves out) and E is{' '}
-        <Katex tex="\Pr(A'\cap B')" />. Option A is <Katex tex="1-\Pr(A)-\Pr(B)" />, which the given condition makes{' '}
-        <Katex tex="0" />.
+        Options B, C and E are single cells of the table: B is <Katex tex="\Pr(A'\cap B)" />, C is{' '}
+        <Katex tex="\Pr(A\cap B')" /> (the one cell <Katex tex="A'\cup B" /> leaves out, so choosing it means forgetting
+        to subtract from <Katex tex="1" />) and E is <Katex tex="\Pr(A'\cap B')" />. Option A is{' '}
+        <Katex tex="1-\Pr(A)-\Pr(B)" />, which the given condition makes <Katex tex="0" />; it would be{' '}
+        <Katex tex="\Pr(A'\cap B')" /> only if <Katex tex="A" /> and <Katex tex="B" /> didn&apos;t overlap.
       </>
     ),
   },

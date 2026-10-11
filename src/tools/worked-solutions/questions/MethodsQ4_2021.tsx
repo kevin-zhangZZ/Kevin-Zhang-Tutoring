@@ -23,23 +23,28 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(1) = (1-2)e^1 = -e" />,
-    reason: <>For <Katex tex="x<1" /> the factor <Katex tex="x-1" /> is negative and for <Katex tex="x>1" /> it is positive, so <Katex tex="h'(x)" /> changes from negative to positive at <Katex tex="x=1" />. This is a <em>minimum</em>, not the maximum.</>,
+    reason: <>Since <Katex tex="e^x>0" />, <Katex tex="h'(x)" /> has the sign of <Katex tex="x-1" />: negative then positive, so <Katex tex="x=1" /> is a <em>minimum</em>, not the maximum.</>,
+    more: <><Katex tex="h'(x)" /> is negative for <Katex tex="x<1" /> and positive for <Katex tex="x>1" />, so <Katex tex="h" /> decreases and then increases, and <Katex tex="x=1" /> is the bottom of the graph.</>,
   },
   {
     working: <Katex display tex="h(0) = (0-2)e^0 = -2, \quad h(2) = (2-2)e^2 = 0" />,
-    reason: <>The domain is the closed interval <Katex tex="[0,2]" />, so the maximum can sit at an endpoint instead of at a turning point. Here the only stationary point is a minimum, so the maximum <em>must</em> be at an endpoint: check both.</>,
+    reason: <>On a closed interval the maximum can be at an endpoint. The only stationary point is a minimum, so the maximum <em>must</em> be at an endpoint: evaluate both.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{maximum} = 0}" />,
     reason: (
       <>
-        Matches option <b>B</b>. It is the largest of <Katex tex="h(0)=-2" />,{' '}
-        <Katex tex="h(1)=-e\approx-2.72" /> and <Katex tex="h(2)=0" />, reached at the endpoint{' '}
-        <Katex tex="x=2" />. Option A, <Katex tex="-e" />, is the value at the stationary point, which is the
-        minimum. Option D, 2, is the <Katex tex="x" />-value where the maximum occurs, not the maximum value:{' '}
-        <Cas fn="fMax">fMax((x − 2)e^x, x) | 0 ≤ x ≤ 2</Cas> returns <Katex tex="x=2" />, which must be
-        substituted back into <Katex tex="h" />. Option C, 1, is the <Katex tex="x" />-value of the
-        stationary point.
+        Matches option <b>B</b>: the largest of <Katex tex="h(0)=-2" />,{' '}
+        <Katex tex="h(1)=-e\approx-2.72" /> and <Katex tex="h(2)=0" />, reached at <Katex tex="x=2" />.
+      </>
+    ),
+    more: (
+      <>
+        Option D, 2, is the <Katex tex="x" />-value where the maximum occurs, not the maximum value. On CAS,{' '}
+        <Cas fn="fMax">fMax((x − 2)e^x, x) | 0 ≤ x ≤ 2</Cas> returns <Katex tex="x=2" />, which must then be
+        substituted back into <Katex tex="h" />. Option A, <Katex tex="-e" />, is the value at the stationary
+        point, which is the minimum. Option C, 1, is the <Katex tex="x" />-value of the stationary point, and
+        option E, <Katex tex="e" />, is the minimum value with its sign dropped.
       </>
     ),
   },

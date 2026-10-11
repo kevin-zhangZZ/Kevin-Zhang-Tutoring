@@ -16,11 +16,13 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\log_e(x)+\log_e(2x) = \log_e(x\times 2x)" />,
-    reason: <>Both logs have base <Katex tex="e" />, so the law <Katex tex="\log_e(a)+\log_e(b)=\log_e(ab)" /> combines them into one log. It turns a <em>sum</em> of logs into the log of a <em>product</em> — adding the insides instead gives <Katex tex="\log_e(3x)" />, option D.</>,
+    reason: <>Both logs have base <Katex tex="e" />, so the law <Katex tex="\log_e(a)+\log_e(b)=\log_e(ab)" /> combines them into one log.</>,
+    more: <>The law turns a <em>sum</em> of logs into the log of a <em>product</em>. Adding the insides instead gives <Katex tex="\log_e(3x)" />, option D.</>,
   },
   {
     working: <Katex display tex="= \boxed{\log_e\!\left(2x^2\right)}" />,
-    reason: <>Matches option <b>C</b>. With <Katex tex="x>0" /> both rules have the same domain, so the graphs are identical. (That is why the question restricts <Katex tex="x" />: <Katex tex="\log_e\!\left(2x^2\right)" /> is also defined for negative <Katex tex="x" />, where <Katex tex="\log_e(x)" /> is not.) Option B is the most popular wrong answer: by the law <Katex tex="k\log_e(a)=\log_e\!\left(a^k\right)" />, <Katex tex="2\log_e(2x)=\log_e\!\left(4x^2\right)" />, which is out by a factor of 2 inside the log.</>,
+    reason: <>Matches option <b>C</b>: on the given domain <Katex tex="x>0" />, the two rules give the same value for every <Katex tex="x" />.</>,
+    more: <>The restriction <Katex tex="x>0" /> matters: <Katex tex="\log_e\!\left(2x^2\right)" /> is also defined for negative <Katex tex="x" />, where <Katex tex="\log_e(x)" /> is not, so without it the two graphs would not be identical. Option B is the most popular wrong answer: by the law <Katex tex="k\log_e(a)=\log_e\!\left(a^k\right)" />, <Katex tex="2\log_e(2x)=\log_e\!\left(4x^2\right)" />, which is out by a factor of 2 inside the log. In the same way option A is <Katex tex="\log_e\!\left(\tfrac14x^2\right)" />, out by a factor of 8, and option E, <Katex tex="\log_e(4x)" />, has no <Katex tex="x^2" /> inside at all.</>,
   },
 ]
 

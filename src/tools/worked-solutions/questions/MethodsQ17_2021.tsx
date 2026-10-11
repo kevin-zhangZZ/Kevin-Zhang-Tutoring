@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(n,\ 0.1), \quad \Pr(X\ge2) \ge 0.5" />,
-    reason: <>With <Katex tex="X" /> the number of successes, "at least two successes" is <Katex tex="X\ge2" />. This time the number of trials <Katex tex="n" /> is the unknown.</>,
+    reason: <>With <Katex tex="X" /> the number of successes, "at least two successes" is <Katex tex="X\ge2" />. Here the unknown is the number of trials <Katex tex="n" />, not the probability.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge2) = 1-\Pr(X=0)-\Pr(X=1)" />,
@@ -24,11 +24,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 1-(0.9)^n-n(0.1)(0.9)^{n-1}" />,
-    reason: <>Binomial formula: <Katex tex="\Pr(X=0)=0.9^n" /> (every trial fails) and <Katex tex="\Pr(X=1)=\binom n1(0.1)(0.9)^{n-1}" />. More trials give more chances of two successes, so this probability increases with <Katex tex="n" />: the answer is the first <Katex tex="n" /> that reaches 0.5.</>,
+    reason: <>Binomial formula: <Katex tex="\Pr(X=0)=0.9^n" /> (every trial fails) and <Katex tex="\Pr(X=1)=\binom n1(0.1)(0.9)^{n-1}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} n=16: \ &1-0.18530-0.32943 \\ &= 0.4853 < 0.5 \end{aligned}" />,
-    reason: <>Not yet enough. On CAS, <Cas fn="binomCdf">binomCdf(16, 0.1, 2, 16)</Cas> gives the same value. (<Katex tex="n=15" /> gives 0.4510, further below.)</>,
+    reason: <>More trials, more chances: the probability grows with <Katex tex="n" />, so find the first option reaching 0.5. 16 falls just short, so 15 does too.</>,
+    more: <>On CAS, <Cas fn="binomCdf">binomCdf(16, 0.1, 2, 16)</Cas> gives the same value. Option A, <Katex tex="n=15" />, gives 0.4510, further below.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} n=17: \ &1-0.16677-0.31501 \\ &= 0.5182 \ge 0.5 \end{aligned}" />,
@@ -36,7 +37,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 17}" />,
-    reason: <>Matches option <b>C</b>. Solving <Katex tex="\Pr(X\ge2)=0.5" /> on CAS with the formula above gives <Katex tex="n=16.44\ldots" />. The number of trials must be a whole number and the probability must reach 0.5, so round <em>up</em> to 17. Rounding to the nearest whole number gives 16, option B, which falls just short.</>,
+    reason: <>Matches option <b>C</b>: 17 is the first whole number of trials that reaches 0.5.</>,
+    more: <>Solving <Katex tex="\Pr(X\ge2)=0.5" /> with the formula above, <Cas fn="solve">solve(1-0.9^n-n·0.1·0.9^(n-1) = 0.5, n) | n &gt; 2</Cas>, gives <Katex tex="n=16.44\ldots" />. The number of trials must be a whole number and the probability must reach 0.5, so round <em>up</em> to 17. Rounding to the nearest whole number gives 16, option B, which falls just short.</>,
   },
 ]
 

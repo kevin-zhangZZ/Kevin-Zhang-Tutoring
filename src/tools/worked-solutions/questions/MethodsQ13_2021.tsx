@@ -22,11 +22,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{2622.676\ldots-2500}{12} = \frac{122.676\ldots}{12}" />,
-    reason: <>The 122.68 is the total growth over the year; the average rate shares it out over the 12 months. Forgetting to divide by 12 leaves about $123, nearest option D.</>,
+    reason: <>The 122.68 is the total growth over the year; the average rate shares it out over the 12 months.</>,
+    more: <>Forgetting to divide by 12 leaves about $123 — the total growth, not a rate per month — which is nearest option D.</>,
   },
   {
     working: <Katex display tex="\boxed{\$10.22 \approx \$10.20 \text{ per month}}" />,
-    reason: <>Matches option <b>B</b>. Option A, <Katex tex="\$10.00" />, is <Katex tex="0.004\times2500" /> — the growth in the <em>first</em> month only. A derivative is the wrong tool too: it gives the rate at a single instant, and on CAS <Katex tex="f'(12)\approx10.47" />, nearest option C.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option A, <Katex tex="\$10.00" />, is <Katex tex="0.004\times2500" /> — the growth in the <em>first</em> month only. A derivative is the wrong tool too: it gives the instantaneous rate at a single moment, not the average over the year, and on CAS <Katex tex="f'(12)\approx10.47" />, nearest option C.</>,
   },
 ]
 

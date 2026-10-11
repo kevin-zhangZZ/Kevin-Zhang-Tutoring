@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = 12x^3-4x^2-3x+1" />,
-    reason: <>Expanded, ready to differentiate later: <Katex tex="(2x-1)(2x+1) = 4x^2-1" /> (difference of two squares), then multiply by <Katex tex="3x-1" />.</>,
+    reason: <>Expanded (ready to differentiate later): <Katex tex="(2x-1)(2x+1) = 4x^2-1" />, then multiply by <Katex tex="3x-1" />.</>,
   },
   {
     working: <Katex display tex="g'(x) = 1\times\log_e(-x) + x\times\frac{1}{x} = \log_e(-x)+1" />,
@@ -48,23 +48,27 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g'(x) = 0 \implies \log_e(-x) = -1 \implies x = -\tfrac1e" />,
-    reason: <><Katex tex="g'(x)>0" /> for <Katex tex="x<-\tfrac1e" /> and <Katex tex="g'(x)<0" /> for <Katex tex="-\tfrac1e<x<0" />, so <Katex tex="g" /> is a single hump: it rises to its maximum <Katex tex="g\left(-\tfrac1e\right) = \tfrac1e" />, then falls to 0 as <Katex tex="x\to0^-" />. As <Katex tex="x\to-\infty" />, <Katex tex="g(x)\to-\infty" />.</>,
+    reason: <><Katex tex="g" /> comes up from <Katex tex="-\infty" />, peaks at <Katex tex="\left(-\tfrac1e,\tfrac1e\right)" />, then falls towards 0 as <Katex tex="x\to0^-" />: one hump.</>,
+    more: <>Sign of <Katex tex="g'" />: <Katex tex="g'(x)>0" /> for <Katex tex="x<-\tfrac1e" /> and <Katex tex="g'(x)<0" /> for <Katex tex="-\tfrac1e<x<0" />, so the stationary point is a maximum, with value <Katex tex="g\left(-\tfrac1e\right)=-\tfrac1e\log_e\left(\tfrac1e\right)=\tfrac1e" />. Also <Katex tex="g" /> is negative for <Katex tex="x<-1" />, and <Katex tex="g(x)\to-\infty" /> as <Katex tex="x\to-\infty" />.</>,
   },
   {
     working: <>The solutions of <Katex tex="f(x-k)=g(x)" /> are the <Katex tex="x" />-coordinates where <Katex tex="y=g(x)" /> meets <Katex tex="y=f(x-k)" />, for <Katex tex="x<0" /> only.</>,
-    reason: <><Katex tex="y=f(x-k)" /> is the cubic translated <Katex tex="k" /> units right (left when <Katex tex="k<0" />), and <Katex tex="g" /> only exists for <Katex tex="x<0" />. So the question asks: sliding the cubic sideways, what is the most times it can cross <Katex tex="g" />'s curve? Graph both on CAS and try different values of <Katex tex="k" />. With <Katex tex="k=0" /> (the graphs as given) there is only one crossing, but <Katex tex="k" /> can be any real number.</>,
+    reason: <><Katex tex="y=f(x-k)" /> is the cubic translated <Katex tex="k" /> units right (left when <Katex tex="k<0" />). So: sliding the cubic sideways, what is the most times it can cross <Katex tex="g" />'s curve?</>,
+    more: <>Graph both on CAS and try different values of <Katex tex="k" />. With <Katex tex="k=0" /> (the graphs as given) there is only one crossing, the trap behind option B, but <Katex tex="k" /> can be any real number and the question wants the most over every <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="k=-1: \quad f(x+1) = g(x)" />,
-    reason: <>Try translating the cubic left. On CAS, <Cas fn="solve">solve(f(x+1) = g(x), x)</Cas>.</>,
+    reason: <><Katex tex="g" /> only exists for <Katex tex="x<0" />, but the cubic's dip is at <Katex tex="x\approx0.42" />, so translate the cubic left to put its hump and dip over <Katex tex="g" />. Try <Katex tex="k=-1" />: on CAS, <Cas fn="solve">solve(f(x+1) = g(x), x)</Cas>.</>,
+    more: <><Katex tex="f'(x)=36x^2-8x-3=0" /> gives <Katex tex="x=\tfrac{2\pm\sqrt{31}}{18}" />: the hump is at <Katex tex="x\approx-0.20" /> and the dip at <Katex tex="x\approx0.42" />. With <Katex tex="k=0" /> the dip and the climb after it are over <Katex tex="x>0" />, where <Katex tex="g" /> doesn't exist.</>,
   },
   {
     working: <Katex display tex="x \approx -1.561,\ -0.758,\ -0.397" />,
-    reason: <>Moved 1 unit left, the cubic's hump rises above <Katex tex="g" />'s curve and around its dip the cubic falls below it, so the curves cross three times: the three points on the report's graph. So three is possible (any <Katex tex="k" /> between about <Katex tex="-1.52" /> and <Katex tex="-0.5" /> gives three).</>,
+    reason: <>Three solutions, so three is possible. Moved 1 unit left, the cubic's hump rises above <Katex tex="g" />'s curve and around its dip it falls below it.</>,
+    more: <>These are the three points on the report's graph. Any <Katex tex="k" /> between about <Katex tex="-1.52" /> and <Katex tex="-0.5" /> gives three. For <Katex tex="k" /> a little to the right of <Katex tex="-0.5" /> (e.g. <Katex tex="k=-0.4" />) the cubic only climbs back above <Katex tex="g" /> at <Katex tex="x\ge0" />, where <Katex tex="g" /> doesn't exist, so a crossing is lost: two solutions, the trap behind option C.</>,
   },
   {
     working: <Katex display tex="h(x) = f(x-k)-g(x)" />,
-    reason: <>Why never four: the solutions are exactly the zeros of <Katex tex="h" />.</>,
+    reason: <>To show four is impossible: the solutions are exactly the zeros of <Katex tex="h" /> for <Katex tex="x<0" />.</>,
   },
   {
     working: <Katex display tex="h''(x) = 72(x-k)-8-\frac{1}{x}" />,
@@ -72,15 +76,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <><Katex tex="h''" /> is increasing on <Katex tex="(-\infty,0)" />, so it changes sign at most once.</>,
-    reason: <><Katex tex="72(x-k)-8" /> is a straight line with positive gradient, and <Katex tex="-\tfrac1x" /> is increasing for <Katex tex="x<0" /> (its derivative <Katex tex="\tfrac{1}{x^2}" /> is positive). A sum of increasing functions is increasing. So <Katex tex="h" /> is concave down and then (perhaps) concave up, with at most one change.</>,
+    reason: <><Katex tex="72(x-k)-8" /> is a line with positive gradient, and <Katex tex="-\tfrac1x" /> is increasing (derivative <Katex tex="\tfrac{1}{x^2}>0" />). A sum of increasing functions is increasing.</>,
+    more: <>In fact <Katex tex="h''\to-\infty" /> as <Katex tex="x\to-\infty" /> and <Katex tex="h''\to+\infty" /> as <Katex tex="x\to0^-" />, so <Katex tex="h" /> is concave down then concave up, with exactly one change of concavity.</>,
   },
   {
     working: <><Katex tex="h'(x)=0" /> at most twice, so <Katex tex="h(x)=0" /> at most three times.</>,
-    reason: <><Katex tex="h'" /> decreases while <Katex tex="h''<0" /> and increases while <Katex tex="h''>0" />, so like a U-shaped graph it equals 0 at most twice. So <Katex tex="h" /> has at most two stationary points. These split <Katex tex="x<0" /> into at most three intervals, and on each one <Katex tex="h" /> is only increasing or only decreasing, so it crosses 0 at most once there. That holds for every <Katex tex="k" />.</>,
+    reason: <><Katex tex="h'" /> decreases then increases, so it is 0 at most twice. Its zeros split <Katex tex="x<0" /> into at most three intervals, on each of which <Katex tex="h" /> only increases or only decreases, so crosses 0 at most once.</>,
+    more: <><Katex tex="h'" /> decreases while <Katex tex="h''<0" /> and increases while <Katex tex="h''>0" />, so like a U-shaped graph it equals 0 at most twice: <Katex tex="h" /> has at most two stationary points, and between them <Katex tex="h" /> cannot turn around. That holds for every <Katex tex="k" />, so four solutions (option E) never happens.</>,
   },
   {
     working: <Katex display tex="\boxed{3}" />,
     reason: <>Matches option <b>D</b>.</>,
+    more: <>B (1) and C (2) are counts for particular values of <Katex tex="k" /> (shown above); A (0) happens for positive <Katex tex="k" /> such as <Katex tex="k=1" />; E (4) is ruled out above. The question asks for the maximum over every <Katex tex="k" />, which is 3.</>,
   },
 ]
 

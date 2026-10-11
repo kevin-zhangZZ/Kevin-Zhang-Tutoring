@@ -46,15 +46,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X=2\cap X\geq1) = \Pr(X=2)" />,
-    reason: <>Every outcome with 2 heads already has at least 1 head, so the "and" event is just <Katex tex="X=2" /> — no extra work needed for the intersection.</>,
+    reason: <>Every outcome with 2 heads already has at least 1 head, so the "and" event is just <Katex tex="X=2" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X=2\mid X\geq1) = \frac{\Pr(X=2)}{\Pr(X\geq1)} = \frac{3/8}{15/16}" />,
-    reason: <>Definition of conditional probability, <Katex tex="\Pr(A\mid B)=\dfrac{\Pr(A\cap B)}{\Pr(B)}" />. Dividing by <Katex tex="\Pr(X\geq1)" /> is what "given at least one head" does: only the outcomes with a head are now counted.</>,
+    reason: <>Definition of conditional probability, <Katex tex="\Pr(A\mid B)=\dfrac{\Pr(A\cap B)}{\Pr(B)}" />, using the intersection from the line above.</>,
+    more: <>Dividing by <Katex tex="\Pr(X\geq1)" /> is what "given at least one head" does: the outcome with no heads is ruled out, and probabilities are measured only among the outcomes that are left. Forgetting this leaves <Katex tex="\tfrac38" />, which is not among the options. Dividing <Katex tex="\tfrac38" /> by <Katex tex="\tfrac12" /> instead gives <Katex tex="\tfrac34" /> (option C): that treats the condition as one particular coin being a head, but the condition is that at least one of the four is, with probability <Katex tex="\tfrac{15}{16}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac38\times\frac{16}{15} = \frac{48}{120} = \frac25}" />,
-    reason: <>Matches option <b>D</b>. Check by listing: of the 16 equally likely outcomes, 15 have at least one head, and 6 of those (HHTT, HTHT, HTTH, THHT, THTH, TTHH) have two of each, giving <Katex tex="\tfrac{6}{15}=\tfrac25" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Check by listing: of the 16 equally likely outcomes, 15 have at least one head, and 6 of those (HHTT, HTHT, HTTH, THHT, THTH, TTHH) have two of each, giving <Katex tex="\tfrac{6}{15}=\tfrac25" />.</>,
   },
 ]
 

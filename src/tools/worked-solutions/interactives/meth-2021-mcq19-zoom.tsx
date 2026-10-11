@@ -104,7 +104,7 @@ export default function JoinZoom() {
     const peak = key === 'A'
     notice = zoomed ? (
       <Notice tone="warn">
-        Still a corner at <M>{`\\times${Math.round(z)}`}</M>, with exactly the same angle as at <M>{'\\times1'}</M>. A
+        Still a corner at <M>{`\\times${Math.round(z)}`}</M>: the two pieces stay at the angle between their dashed tangents. A
         smooth curve straightens into one line when you zoom in; this one never will, because the gradients either side
         of <M>x = 0</M> are <M>{String(o.mL)}</M> and <M>{String(o.mR)}</M>. Continuous, but not differentiable.
         {peak ? '' : ' Now try E.'}

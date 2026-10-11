@@ -15,27 +15,34 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(10,\ 0.25)" />,
-    reason: <>Let <Katex tex="X" /> be the number of games Ben wins. It is binomial: a fixed number of trials (10 games), each either a win or not, independent of each other (given), with the same probability of a win, 0.25, every game.</>,
+    reason: <>Let <Katex tex="X" /> be the number of games Ben wins: 10 independent games, each won with the same probability 0.25, so <Katex tex="X" /> is binomial.</>,
+    more: <>The remaining binomial conditions also hold: the number of trials is fixed at 10, and each game has exactly two outcomes, win or not.</>,
   },
   {
     working: <Katex display tex="\Pr(X=4) = \binom{10}{4}(0.25)^4(0.75)^6" />,
     reason: (
       <>
-        "Exactly four times" is a single value of <Katex tex="X" />, so it is one term of{' '}
-        <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" />, not a cumulative probability.{' '}
-        <Katex tex="\binom{10}{4}" /> counts the ways to choose which 4 of the 10 games are wins; each win has
-        probability 0.25 and each of the 6 losses 0.75. On CAS,{' '}
+        "Exactly four times" is a single value of <Katex tex="X" />, so use one term of{' '}
+        <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" />. On CAS,{' '}
         <Cas fn="binomPdf">binomPdf(10, 0.25, 4)</Cas> gives it directly.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\binom{10}{4}" /> counts the ways to choose which 4 of the 10 games are the wins; each of
+        those wins has probability 0.25 and each of the other 6 games (losses) has probability 0.75. It is not a
+        cumulative probability: "exactly" rules out "at least" and "at most".
       </>
     ),
   },
   {
     working: <Katex display tex="\begin{aligned} &= 210\times0.00390625\times0.177978\ldots \\ &= 0.14599\ldots \end{aligned}" />,
-    reason: <><Katex tex="\binom{10}{4}=\dfrac{10\times9\times8\times7}{4\times3\times2\times1}=210" />.</>,
+    reason: <><Katex tex="\binom{10}{4}=\dfrac{10\times9\times8\times7}{4\times3\times2\times1}=210" />, <Katex tex="0.25^4=0.00390625" /> and <Katex tex="0.75^6=0.177978\ldots" />.</>,
   },
   {
     working: <Katex display tex="\boxed{0.1460}" />,
-    reason: <>Matches option <b>A</b>. Every other option is a cumulative probability: <Katex tex="\Pr(X\ge4)=0.2241" /> (B), <Katex tex="\Pr(X\le4)=0.9219" /> (C), <Katex tex="\Pr(X\ge5)=0.0781" /> (D) and <Katex tex="\Pr(X\le3)=0.7759" /> (E).</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Every other option is a cumulative probability: <Katex tex="\Pr(X\ge4)=0.2241" /> (B), <Katex tex="\Pr(X\le4)=0.9219" /> (C), <Katex tex="\Pr(X\ge5)=0.0781" /> (D) and <Katex tex="\Pr(X\le3)=0.7759" /> (E).</>,
   },
 ]
 

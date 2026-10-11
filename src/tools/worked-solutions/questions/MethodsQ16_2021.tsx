@@ -30,7 +30,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x,y \in \left[\tfrac{3\pi}{2},2\pi\right] \;\implies\; \text{fourth quadrant}" />,
-    reason: <>Angles from <Katex tex="\tfrac{3\pi}{2}" /> to <Katex tex="2\pi" /> are the last quarter-turn of the unit circle. On the unit circle cosine is the horizontal coordinate and sine the vertical one, and a fourth-quadrant point is right of and below the centre. So for both angles, cosine is positive and sine is negative.</>,
+    reason: <>In the fourth quadrant cosine (horizontal coordinate) is positive and sine (vertical coordinate) is negative, for both angles.</>,
+    more: <>Angles from <Katex tex="\tfrac{3\pi}{2}" /> to <Katex tex="2\pi" /> are the last quarter-turn of the unit circle, so a fourth-quadrant point is right of and below the centre. These two signs decide every <Katex tex="\pm" /> below.</>,
   },
   {
     working: <Katex display tex="\sin^2(x) = 1-\cos^2(x) = 1-\tfrac{9}{25} = \tfrac{16}{25}" />,
@@ -38,11 +39,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(x) = \pm\tfrac45 \;\implies\; \sin(x) = -\tfrac45" />,
-    reason: <>A square root gives two values, and the identity can't tell them apart: the quadrant decides. <Katex tex="x" /> is in the fourth quadrant, where sine is negative, so reject <Katex tex="+\tfrac45" />.</>,
+    reason: <>A square root gives two values; <Katex tex="x" /> is in the fourth quadrant, where sine is negative, so reject <Katex tex="+\tfrac45" />.</>,
+    more: <>The identity can't tell the two values apart: only the quadrant decides. Keeping <Katex tex="+\tfrac45" /> is the slip behind option C, which 32% of students chose (more than chose A).</>,
   },
   {
     working: <Katex display tex="\cos^2(y) = 1-\sin^2(y) = 1-\tfrac{25}{169} = \tfrac{144}{169}" />,
-    reason: <>The same identity for <Katex tex="y" />. Only <Katex tex="\sin^2(y)" /> is needed, so the sign of <Katex tex="\sin(y)" /> (which is <Katex tex="-\tfrac{5}{13}" />) never matters here.</>,
+    reason: <>The same identity for <Katex tex="y" />, using the given <Katex tex="\sin^2(y)" /> directly.</>,
+    more: <>Because only <Katex tex="\sin^2(y)" /> is needed, the sign of <Katex tex="\sin(y)" /> (which is <Katex tex="-\tfrac{5}{13}" />) never matters here.</>,
   },
   {
     working: <Katex display tex="\cos(y) = \pm\tfrac{12}{13} \;\implies\; \cos(y) = \tfrac{12}{13}" />,
@@ -58,7 +61,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{8}{65}}" />,
-    reason: <>Matches option <b>A</b>. Wrong sign choices give three of the other options:keeping <Katex tex="\sin(x)=+\tfrac45" /> gives C, <Katex tex="\tfrac45+\tfrac{12}{13}=\tfrac{112}{65}" />; taking <Katex tex="\cos(y)=-\tfrac{12}{13}" /> gives B, <Katex tex="-\tfrac{112}{65}" />; both signs wrong gives D, <Katex tex="-\tfrac{8}{65}" />.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Wrong sign choices give three of the other options: keeping <Katex tex="\sin(x)=+\tfrac45" /> gives C, <Katex tex="\tfrac45+\tfrac{12}{13}=\tfrac{112}{65}" />; taking <Katex tex="\cos(y)=-\tfrac{12}{13}" /> gives B, <Katex tex="-\tfrac{112}{65}" />; both signs wrong gives D, <Katex tex="-\tfrac{8}{65}" />. E, <Katex tex="\tfrac{64}{65}" />, is <Katex tex="\tfrac35+\tfrac{5}{13}" />: adding <Katex tex="\cos(x)" /> and <Katex tex="\sin(y)" /> (with the wrong sign) instead of <Katex tex="\sin(x)" /> and <Katex tex="\cos(y)" />.</>,
   },
 ]
 

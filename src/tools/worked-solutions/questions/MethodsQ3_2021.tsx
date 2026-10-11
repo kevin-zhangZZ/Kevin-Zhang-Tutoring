@@ -23,7 +23,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = 1.96 \ \text{ for } 95\%" />,
-    reason: <>The middle <Katex tex="95\%" /> of the standard normal leaves <Katex tex="2.5\%" /> in each tail, so <Katex tex="z" /> has <Katex tex="0.975" /> to its left: <Cas fn="invNorm">invNorm(0.975, 0, 1) = 1.95996…</Cas>, rounded to 1.96. Using 1.645 (the 90% value) instead gives option B; using 2.58 (the 99% value) gives option C.</>,
+    reason: <>The middle <Katex tex="95\%" /> of the standard normal leaves <Katex tex="2.5\%" /> in each tail, so <Katex tex="z" /> has <Katex tex="0.975" /> to its left: <Cas fn="invNorm">invNorm(0.975, 0, 1) = 1.95996…</Cas>, rounded to 1.96.</>,
+    more: <>The other common values are 1.645 for a <Katex tex="90\%" /> interval and 2.58 for a <Katex tex="99\%" /> interval. Using the wrong one is the usual slip here, and both give options on this question (see the last row).</>,
   },
   {
     working: <Katex display tex="\sqrt{\frac{0.125\times0.875}{48}} = 0.047735\ldots" />,
@@ -39,11 +40,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0.125+0.093561\ldots = 0.2186" />,
-    reason: <>The upper end: <Katex tex="\hat p" /> plus the margin of error. Quick check: the interval must be centred on <Katex tex="\hat p=0.125" />. Option E is centred on <Katex tex="0.12" />, and option D is centred correctly but far too narrow.</>,
+    reason: <>The upper end: <Katex tex="\hat p" /> plus the margin of error.</>,
+    more: <>Quick check: the interval must be centred on <Katex tex="\hat p=0.125" />, and <Katex tex="\frac{0.0314+0.2186}{2}=0.125" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(0.0314,\ 0.2186)}" />,
     reason: <>Matches option <b>A</b>.</>,
+    more: <>Option B uses <Katex tex="z=1.645" /> (a <Katex tex="90\%" /> interval) and option C uses <Katex tex="z=2.58" /> (a <Katex tex="99\%" /> interval): both are centred on 0.125 but have the wrong width. Option D is centred correctly but far too narrow, with a margin of only 0.0354, about 0.74 standard errors. No usual <Katex tex="z" /> value (1.645, 1.96 or 2.58) gives that, so its width alone rules it out. Option E has the right margin of error, 0.0936, but is centred on 0.12 instead of 0.125.</>,
   },
 ]
 

@@ -39,10 +39,16 @@ const ROWS: WorkingRow[] = [
     working: <>Test each option at the join <Katex tex="x=0" />: (1) do the two pieces meet? (2) do their gradients match?</>,
     reason: (
       <>
-        Every piece here is a polynomial, which is differentiable everywhere on its own interval, so the only place a
-        hybrid function can fail is where the rule changes. It is differentiable there only if it passes both tests:
-        no gap (continuous) and no sharp corner (the gradient arriving from the left equals the gradient leaving to the
-        right).
+        Each piece is a polynomial, differentiable on its own interval, so only the join can fail. It must pass both
+        tests: no gap (continuous) and no corner (matching gradients).
+      </>
+    ),
+    more: (
+      <>
+        The rule changes at <Katex tex="x=0" />, and that is the only place a hybrid function built from polynomials
+        can go wrong. &ldquo;No corner&rdquo; means the gradient the graph arrives with from the left equals the
+        gradient it leaves with to the right. Test (1) comes first: if the pieces don&apos;t meet, there is no need to
+        check gradients.
       </>
     ),
   },
@@ -51,28 +57,34 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         The pieces meet at the origin, so A is continuous, but the gradient changes from <Katex tex="1" /> to{' '}
-        <Katex tex="-1" />: a sharp peak (A is the graph of <Katex tex="y=-|x|" />). Not differentiable at{' '}
-        <Katex tex="x=0" />.
+        <Katex tex="-1" />: a corner. Not differentiable at <Katex tex="x=0" />.
       </>
     ),
+    more: <>A is the graph of <Katex tex="y=-|x|" />, a sharp peak at the origin.</>,
   },
   {
     working: <Katex display tex="\text{B: } x=0 \text{ is in neither piece}" />,
     reason: (
       <>
         <Katex tex="x<0" /> and <Katex tex="x>0" /> both leave out <Katex tex="x=0" />, so <Katex tex="f(0)" /> doesn&apos;t
-        exist. A function can&apos;t be differentiable where it isn&apos;t defined, so B fails at <Katex tex="x=0" /> (and
-        it has the same corner as A there anyway).
+        exist, and a function can&apos;t be differentiable where it isn&apos;t defined.
       </>
     ),
+    more: <>B is A&apos;s graph with the point at the origin removed. Even if <Katex tex="f(0)=0" /> were filled in, the gradients <Katex tex="1" /> and <Katex tex="-1" /> would still disagree.</>,
   },
   {
     working: <Katex display tex="\text{C: } 8(0)+4=4,\ \ (2(0)+1)^2=1\ \ \times" />,
     reason: (
       <>
-        The left piece heads to <Katex tex="4" /> but <Katex tex="f(0)=1" />, so the graph jumps: C isn&apos;t continuous
-        at <Katex tex="x=0" />, so it can&apos;t be differentiable. No need to check gradients. (Careful:{' '}
-        <Katex tex="8x+4" /> is the <i>derivative</i> of <Katex tex="(2x+1)^2" />, not a piece that meets it.)
+        The left piece heads to <Katex tex="4" /> but <Katex tex="f(0)=1" />: a jump, so C isn&apos;t continuous and
+        can&apos;t be differentiable. No need to check gradients.
+      </>
+    ),
+    more: (
+      <>
+        Careful: <Katex tex="8x+4" /> is the <i>derivative</i> of <Katex tex="(2x+1)^2" />, so <Katex tex="8(0)+4=4" /> is
+        the same number as the right piece&apos;s gradient at <Katex tex="x=0" />. Mixing up a value with a gradient
+        makes C look as if it passes. Compare values with values: <Katex tex="4" /> vs <Katex tex="1" />.
       </>
     ),
   },
@@ -80,9 +92,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}\tfrac{d}{dx}(2x+1)^2&=2(2x+1)\times2=4(2x+1)\\&=4(2(0)+1)=4\ \text{at}\ x=0\end{aligned}" />,
     reason: (
       <>
-        D and E share the right piece <Katex tex="(2x+1)^2" />, so find its gradient at <Katex tex="x=0" /> once (chain
-        rule: bring down the power, then multiply by <Katex tex="2" />, the derivative of the inside). This is the
-        gradient the graph leaves the join with.
+        D and E share the right piece <Katex tex="(2x+1)^2" />, so find its gradient at <Katex tex="x=0" /> once, by
+        the chain rule. This is the gradient the graph leaves the join with.
+      </>
+    ),
+    more: (
+      <>
+        Chain rule: bring down the power <Katex tex="2" />, keep the bracket, then multiply by <Katex tex="2" />, the
+        derivative of the inside <Katex tex="2x+1" />.
       </>
     ),
   },
@@ -90,9 +107,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}\text{D: }&2(0)+1=1=(2(0)+1)^2\ \checkmark\\&\tfrac{d}{dx}(2x+1)=2\neq4\ \ \times\end{aligned}" />,
     reason: (
       <>
-        The pieces meet at <Katex tex="(0,1)" />, so D <i>is</i> continuous. But the graph arrives at <Katex tex="(0,1)" />{' '}
-        with gradient <Katex tex="2" /> and leaves with gradient <Katex tex="4" />: a corner. Continuous is not enough,
-        so D is not differentiable at <Katex tex="x=0" />.
+        The pieces meet at <Katex tex="(0,1)" />, so D <i>is</i> continuous, but the gradient is <Katex tex="2" />{' '}
+        arriving and <Katex tex="4" /> leaving: a corner. Continuous is not enough.
       </>
     ),
   },
@@ -108,6 +124,12 @@ const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{f(x)=\begin{cases}4x+1 & x<0\\(2x+1)^2 & x\geq0\end{cases}}" />,
     reason: <>Matches option <b>E</b>, the only one differentiable for all real <Katex tex="x" />.</>,
+    more: (
+      <>
+        Only 35% chose E. D (20%) is the trap of stopping after the continuity test: its pieces meet, but with
+        different gradients. C (19%) and A and B fail for the reasons in their rows.
+      </>
+    ),
   },
 ]
 

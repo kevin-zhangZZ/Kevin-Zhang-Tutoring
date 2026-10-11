@@ -18,7 +18,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = f(-x): \ x = -x \ \text{ only at } x=0 \quad \times" />,
-    reason: <>"Satisfied by the function" means true for <em>every</em> <Katex tex="x" /> in the domain <Katex tex="R" />, so holding at one point is not enough. This is the rule for an even function (graph symmetric about the <Katex tex="y" />-axis), and <Katex tex="y=x" /> is not symmetric about the <Katex tex="y" />-axis.</>,
+    reason: <>"Satisfied by the function" means true for <em>every</em> <Katex tex="x" /> in <Katex tex="R" />, so holding at one point is not enough: <Katex tex="x=1" /> gives <Katex tex="1\ne-1" />.</>,
+    more: <>This is the rule for an even function (graph symmetric about the <Katex tex="y" />-axis), and the line <Katex tex="y=x" /> is not symmetric about the <Katex tex="y" />-axis.</>,
   },
   {
     working: <Katex display tex="-f(x) = f(-x): \ -x = -x \ \text{ for all } x \quad \checkmark" />,
@@ -34,7 +35,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2}" />,
-    reason: <>Matches option <b>C</b>. The second and fourth relations hold for every <Katex tex="x" />; the first and third hold only at <Katex tex="x=0" />.</>,
+    reason: <>Matches option <b>C</b>: only the second and fourth relations hold for every <Katex tex="x" />.</>,
+    more: <>The first and third relations are true at <Katex tex="x=0" /> but false for every other <Katex tex="x" />, so the function does not satisfy them. Counting either one because it works at a single point gives option D (3), or E (4) if both are counted. Option B (1) comes from accepting the odd-function relation but missing that the fourth relation also holds (both sides are <Katex tex="x^2" />). Option A (0) comes from rejecting all four.</>,
   },
 ]
 

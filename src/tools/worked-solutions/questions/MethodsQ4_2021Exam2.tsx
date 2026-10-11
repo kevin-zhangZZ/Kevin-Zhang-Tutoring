@@ -101,6 +101,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Cas fn="normCdf">normCdf(11, ∞, 10, 0.8)</Cas>,
     reason: <>An upper-tail area, from 11 up to <Katex tex="\infty" />. For a continuous variable, <Katex tex="\ge" /> and <Katex tex=">" /> give the same probability.</>,
+    more: <>The report's common error, 0.228, is exactly normPdf(11, 10, 0.8): the <em>height</em> of the bell curve at <Katex tex="w=11" />, not an area. For a continuous variable a probability is always an area under the curve, which is what normCdf gives.</>,
   },
   {
     working: <Katex display tex="\boxed{0.106}" />,
@@ -126,11 +127,13 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="E\!\left(\hat P\right) = p = 0.08 = \tfrac{2}{25}" />,
-    reason: <>The mean of a sample proportion is the population proportion, <Katex tex="p" />. The answer 2, which the report saw often, is <Katex tex="np=25\times0.08" />: the mean <em>number</em> of balls that miss, not the proportion.</>,
+    reason: <>The mean of a sample proportion is the population proportion, <Katex tex="p" />: here 8% of balls miss.</>,
+    more: <>The answer 2, which the report saw often, is <Katex tex="np=25\times0.08" />: the mean <em>number</em> of balls that miss in a sample of 25, not the mean proportion. Dividing that count by 25 gives back <Katex tex="0.08" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{sd}\!\left(\hat P\right) = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.08\times0.92}{25}}" />,
-    reason: <><Katex tex="n=25" /> is the sample size. Leaving out the <Katex tex="\div n" /> gives <Katex tex="\sqrt{0.08\times0.92}=\tfrac{\sqrt{46}}{25}" />, the other answer the report saw often.</>,
+    reason: <>The standard deviation formula for a sample proportion, with sample size <Katex tex="n=25" />.</>,
+    more: <>Leaving out the <Katex tex="\div n" /> gives <Katex tex="\sqrt{0.08\times0.92}=\tfrac{\sqrt{46}}{25}" />, the other answer the report saw often. That is the standard deviation for a single ball, not for the proportion in a sample of 25.</>,
   },
   {
     working: <Katex display tex="= \sqrt{\frac{46/625}{25}} = \sqrt{\frac{46}{15\,625}}" />,
@@ -149,33 +152,38 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\hat P > 0.1 \iff X > 2.5 \iff X \ge 3" />,
-    reason: <>Because <Katex tex="X" /> is a whole number, <Katex tex="X>2.5" /> and <Katex tex="X\ge3" /> are the same event — but <Katex tex="X>3" /> is not, which is the report's named error.</>,
+    reason: <>Multiply by 25. <Katex tex="X" /> is a whole number, so <Katex tex="X>2.5" /> means <Katex tex="X\ge3" />.</>,
+    more: <><Katex tex="X>3" /> is a different event: it leaves out <Katex tex="X=3" />. The report notes some students wrote <Katex tex="\Pr(X>3)" /> instead of <Katex tex="\Pr(X\ge3)" />.</>,
   },
   {
     working: <Cas fn="binomCdf">1 − binomCdf(25, 0.08, 0, 2)</Cas>,
-    reason: <><Katex tex="\Pr(X\ge3)=1-\Pr(X\le2)" />. (Using <Katex tex="\Pr(X>3)" /> instead would give 0.135.)</>,
+    reason: <><Katex tex="\Pr(X\ge3)=1-\Pr(X\le2)" />.</>,
+    more: <>Using <Katex tex="\Pr(X>3)=1-\Pr(X\le3)" /> instead would give 0.135.</>,
   },
   {
     working: <Katex display tex="\boxed{0.323}" />,
-    reason: <>To three decimal places. Stating <Katex tex="n" /> and <Katex tex="p" /> is not enough; the answer is this probability.</>,
+    reason: <>To three decimal places.</>,
+    more: <>The report notes some students gave the correct <Katex tex="n" /> and <Katex tex="p" /> values but not the final answer. Naming the distribution is only the set-up; the question asks for <Katex tex="\Pr\!\left(\hat P>0.1\right)" />.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 0 \ \text{ for } x>50" />,
-    reason: <>A spin is a value of <Katex tex="X" />, read along the horizontal axis. The density is non-zero only for <Katex tex="0<x<50" />, so no spin above 50 can occur.</>,
+    reason: <>A spin is a value of <Katex tex="X" />, read along the horizontal axis. <Katex tex="f" /> is non-zero only for <Katex tex="0<x<50" />, so no spin exceeds 50.</>,
   },
   {
     working: <Katex display tex="\boxed{50 \text{ revolutions per second}}" />,
-    reason: <>The common wrong answer, 0.04, is <Katex tex="f(20)=\tfrac{20}{500}" />: the greatest <em>height</em> of the graph, read on the vertical axis. A height is a density, not a spin.</>,
+    reason: <>Not 0.04: that is the greatest <em>height</em> of the graph, <Katex tex="f(20)" />, not a spin.</>,
+    more: <>0.04, the report's common incorrect answer, is <Katex tex="f(20)=\tfrac{20}{500}" />, read on the vertical axis. A height on a pdf is a probability density, not a value of <Katex tex="X" />.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{m} f(x)\,dx = \frac12" />,
-    reason: <>The median <Katex tex="m" /> is the spin with half the probability (half the area under <Katex tex="f" />) below it. It is not the mean, <Katex tex="\int x f(x)\,dx" />, which some students found instead. The report notes that students who wrote <Katex tex="f(x)" /> in the integral like this were more successful with the method mark.</>,
+    reason: <>The median <Katex tex="m" /> is the spin with half the probability (half the area under <Katex tex="f" />) to its left.</>,
+    more: <>It is not the mean, <Katex tex="\int x f(x)\,dx" />, which the report notes some students found instead. The report also notes that students who wrote <Katex tex="f(x)" /> in the integral like this were more successful with the method mark.</>,
   },
   {
     working: <Katex display tex="\int_0^{20}\frac{x}{500}\,dx = \left[\frac{x^2}{1000}\right]_0^{20} = 0.4 < 0.5" />,
@@ -183,7 +191,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_{20}^{m}\frac{50-x}{750}\,dx = 0.1" />,
-    reason: <>Past 20, <Katex tex="f(x)=\tfrac{50-x}{750}" />, and the area from 20 to <Katex tex="m" /> must supply the remaining <Katex tex="0.5-0.4=0.1" />. Do not keep <Katex tex="\tfrac{x}{500}" /> running past 20, as one of the report's wrong set-ups does: that rule no longer applies there.</>,
+    reason: <>Past 20, <Katex tex="f(x)=\tfrac{50-x}{750}" />, and the area from 20 to <Katex tex="m" /> must supply the remaining <Katex tex="0.5-0.4=0.1" />.</>,
+    more: <>The report's first wrong set-up integrates <Katex tex="\tfrac{x}{500}" /> all the way from 0 to <Katex tex="m" />, past 20 where that rule no longer applies, so it adds area that is not under <Katex tex="f" /> and gives <Katex tex="m\approx21.2" />. Its second adds the two rules together, but at each <Katex tex="x" /> only one rule applies, never their sum. As the report suggests, you can <Cas fn="define">Define f(x)</Cas> as a hybrid function on CAS and solve <Katex tex="\int_0^m f(x)\,dx=\tfrac12" /> directly, which avoids both.</>,
   },
   {
     working: <Katex display tex="\frac{1}{750}\left[50x-\frac{x^2}{2}\right]_{20}^{m} = 0.1" />,
@@ -195,7 +204,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m^2-100m+1750 = 0 \implies m = 50\pm5\sqrt{30}" />,
-    reason: <>Multiply by <Katex tex="-2" /> and rearrange, then use the quadratic formula (<Katex tex="\sqrt{3000}=10\sqrt{30}" />) or solve on CAS. Reject <Katex tex="50+5\sqrt{30}\approx77.4" />: this equation only holds for <Katex tex="20\le m\le50" />.</>,
+    reason: <>Multiply by <Katex tex="-2" />, then use the quadratic formula (<Katex tex="\sqrt{3000}=10\sqrt{30}" />). Reject <Katex tex="50+5\sqrt{30}\approx77.4" />: it is outside <Katex tex="20\le m\le50" />.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 50-5\sqrt{30} \approx 22.6 \text{ rev/s}}" />,
@@ -210,15 +219,18 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="E(X) = \int_0^{20}\frac{x^2}{500}\,dx+\int_{20}^{50}\frac{x(50-x)}{750}\,dx" />,
-    reason: <><Katex tex="E(X)=\int x f(x)\,dx" />. <Katex tex="f" /> has two rules, so the integral splits at 20. On CAS, <Cas fn="define">Define f(x)</Cas> as a hybrid (piecewise) function, then integrate <Katex tex="x f(x)" /> from 0 to 50 in one go.</>,
+    reason: <><Katex tex="E(X)=\int x f(x)\,dx" />. <Katex tex="f" /> has two rules, so the integral splits at 20.</>,
+    more: <>On CAS, <Cas fn="define">Define f(x)</Cas> as a hybrid (piecewise) function, then integrate <Katex tex="x f(x)" /> from 0 to 50 in one go. The report notes, as in part f, that students who wrote <Katex tex="f(x)" /> in their definite integrals were more successful.</>,
   },
   {
     working: <Katex display tex="= \tfrac{16}{3}+18 = \tfrac{70}{3}" />,
-    reason: <>About <Katex tex="23.3" />, just above the median: the long tail on the right pulls the mean up.</>,
+    reason: <>Evaluate each integral on CAS. <Katex tex="\tfrac{70}{3}\approx23.3" />.</>,
+    more: <>By hand: <Katex tex="\left[\tfrac{x^3}{1500}\right]_0^{20}=\tfrac{8000}{1500}=\tfrac{16}{3}" />, and <Katex tex="\tfrac{1}{750}\left[25x^2-\tfrac{x^3}{3}\right]_{20}^{50}=\tfrac{13\,500}{750}=18" />. Note the mean, 23.3, is just above the median, 22.6: the long tail on the right pulls the mean up.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}E\!\left(X^2\right) &= \int_0^{20}\frac{x^3}{500}\,dx+\int_{20}^{50}\frac{x^2(50-x)}{750}\,dx\\ &= 80+570 = 650\end{aligned}" />,
     reason: <><Katex tex="E\!\left(X^2\right)=\int x^2 f(x)\,dx" />: the same split, with <Katex tex="x^2" /> in place of <Katex tex="x" />.</>,
+    more: <>By hand: <Katex tex="\left[\tfrac{x^4}{2000}\right]_0^{20}=80" />, and <Katex tex="\tfrac{1}{750}\left[\tfrac{50x^3}{3}-\tfrac{x^4}{4}\right]_{20}^{50}=\tfrac{427\,500}{750}=570" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = 650-\left(\tfrac{70}{3}\right)^2 = \tfrac{950}{9}" />,
@@ -226,26 +238,31 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(X) = \frac{5\sqrt{38}}{3} \approx 10.3 \text{ rev/s}}" />,
-    reason: <>The question asks for the standard deviation, so take the square root. Some students stopped at the variance, <Katex tex="105.6" />.</>,
+    reason: <>Take the square root: <Katex tex="\tfrac{\sqrt{950}}{3}=\tfrac{5\sqrt{38}}{3}" />, to one decimal place.</>,
+    more: <>The question asks for the standard deviation, not the variance (<Katex tex="\approx105.6" />), which is where the report notes some students stopped.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{50b} a\,f\!\left(\frac{x}{b}\right)dx = 1" />,
-    reason: <><Katex tex="g" /> is a probability density, so its total area is 1. The terminals are 0 and <Katex tex="50b" />, not 0 and 50: <Katex tex="f\!\left(\tfrac{x}{b}\right)" /> is non-zero only when <Katex tex="0<\tfrac{x}{b}<50" />, that is <Katex tex="0<x<50b" />.</>,
+    reason: <><Katex tex="g" /> is a density, so its total area is 1. <Katex tex="f\!\left(\tfrac{x}{b}\right)" /> is non-zero only for <Katex tex="0<\tfrac{x}{b}<50" />, that is <Katex tex="0<x<50b" />, so the upper terminal is <Katex tex="50b" />.</>,
+    more: <>The report notes the terminals were often incorrect. Not 50: the stretch moves the right-hand end of the graph from 50 out to <Katex tex="50b" />.</>,
   },
   {
     working: <Katex display tex="\int_0^{30} a\,f\!\left(\frac{x}{b}\right)dx = \frac12" />,
-    reason: <>The new median is 30, so half of the area under <Katex tex="g" /> lies left of 30. Two unknowns need two equations. You can <Cas fn="define">Define f(x)</Cas> as a hybrid function and <Cas fn="solve">solve</Cas> the pair for <Katex tex="a" /> and <Katex tex="b" /> on CAS, or reason it through by hand as below.</>,
+    reason: <>The new median is 30, so half of the area under <Katex tex="g" /> lies left of 30. Two unknowns, two equations: solve them on CAS, or by hand as below.</>,
+    more: <>On CAS, <Cas fn="define">Define f(x)</Cas> as a hybrid function and <Cas fn="solve">solve</Cas> the two equations together for <Katex tex="a" /> and <Katex tex="b" />. The report notes many students were unable to set up the correct equations; once these two are written down, the rest is technology.</>,
   },
   {
     working: <Katex display tex="ab = 1" />,
-    reason: <>The graph of <Katex tex="a\,f\!\left(\tfrac{x}{b}\right)" /> is the graph of <Katex tex="f" /> dilated by factor <Katex tex="b" /> from the <Katex tex="y" />-axis (widths <Katex tex="\times\, b" />) and by factor <Katex tex="a" /> from the <Katex tex="x" />-axis (heights <Katex tex="\times\, a" />). That multiplies every area by <Katex tex="ab" />. The area under <Katex tex="f" /> is 1, so the first equation says <Katex tex="ab=1" />.</>,
+    reason: <><Katex tex="g" /> is <Katex tex="f" /> dilated by factor <Katex tex="b" /> from the <Katex tex="y" />-axis and by factor <Katex tex="a" /> from the <Katex tex="x" />-axis, which multiplies every area by <Katex tex="ab" />. <Katex tex="f" />'s area is 1.</>,
+    more: <>Replacing <Katex tex="x" /> by <Katex tex="\tfrac{x}{b}" /> stretches every width by <Katex tex="b" />, and the <Katex tex="a" /> out front stretches every height by <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="\int_0^{30/b} f(x)\,dx = \frac12 \implies \frac{30}{b} = 50-5\sqrt{30}" />,
-    reason: <>Undo the dilation: the area under <Katex tex="g" /> from 0 to 30 is <Katex tex="ab=1" /> times the area under <Katex tex="f" /> from 0 to <Katex tex="\tfrac{30}{b}" />. So half of <Katex tex="f" />'s area lies left of <Katex tex="\tfrac{30}{b}" />, which makes <Katex tex="\tfrac{30}{b}" /> the median of <Katex tex="f" /> from part f.</>,
+    reason: <>Since <Katex tex="g(x)=af\!\left(\tfrac{x}{b}\right)" />, <Katex tex="x=30" /> on <Katex tex="g" /> comes from <Katex tex="\tfrac{30}{b}" /> on <Katex tex="f" />. So the area under <Katex tex="g" /> from 0 to 30 is <Katex tex="ab=1" /> times the area under <Katex tex="f" /> from 0 to <Katex tex="\tfrac{30}{b}" />. Hence <Katex tex="\tfrac{30}{b}" /> is <Katex tex="f" />'s median, from part f.</>,
+    more: <>Undo the dilation: the strip of <Katex tex="g" /> from 0 to 30 came from the strip of <Katex tex="f" /> from 0 to <Katex tex="\tfrac{30}{b}" />, stretched sideways by <Katex tex="b" /> and up by <Katex tex="a" />, so its area is <Katex tex="ab" /> times that strip's area.</>,
   },
   {
     working: <Katex display tex="b = \frac{30}{50-5\sqrt{30}} = 1.3266\ldots" />,

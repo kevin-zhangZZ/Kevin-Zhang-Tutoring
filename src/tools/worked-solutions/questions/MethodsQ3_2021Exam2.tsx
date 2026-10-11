@@ -107,11 +107,13 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{domain } (-\infty,-1)}" />,
-    reason: <>The <Katex tex="x" />-values that satisfy both. Checking only one condition goes wrong: <Katex tex="1-x>0" /> alone gives <Katex tex="(-\infty,1)" />, and <Katex tex="x^2-1>0" /> alone would admit <Katex tex="x>1" />. Write the smaller end first: <Katex tex="(-\infty,-1)" />, not <Katex tex="(-1,-\infty)" />.</>,
+    reason: <>The <Katex tex="x" />-values that satisfy both: of <Katex tex="x<-1" /> or <Katex tex="x>1" />, only <Katex tex="x<-1" /> also has <Katex tex="x<1" />.</>,
+    more: <>Checking only one condition goes wrong: <Katex tex="1-x>0" /> alone gives <Katex tex="(-\infty,1)" />, and <Katex tex="x^2-1>0" /> alone would admit <Katex tex="x>1" />. Write the interval with the smaller end first: <Katex tex="(-\infty,-1)" />, not <Katex tex="(-1,-\infty)" />. The endpoint <Katex tex="-1" /> is excluded because <Katex tex="\log_e(0)" /> is undefined.</>,
   },
   {
     working: <Katex display tex="q(x) = \log_e\!\left(\frac{(x-1)(x+1)}{1-x}\right) = \log_e(-x-1)" />,
-    reason: <>For the range, simplify first. The log law <Katex tex="\log_e A-\log_e B=\log_e\!\left(\tfrac AB\right)" /> applies because both arguments are positive on this domain. Factorise <Katex tex="x^2-1" />, then use <Katex tex="\tfrac{x-1}{1-x}=-1" />.</>,
+    reason: <>For the range, simplify to one log: use <Katex tex="\log_e A-\log_e B=\log_e\!\left(\tfrac AB\right)" />, factorise <Katex tex="x^2-1" />, and cancel using <Katex tex="\tfrac{x-1}{1-x}=-1" />.</>,
+    more: <>The log law is valid here because both arguments, <Katex tex="x^2-1" /> and <Katex tex="1-x" />, are positive everywhere on the domain.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&x\to-1^-: \ -x-1\to0^+, \ q\to-\infty \\ &x\to-\infty: \ -x-1\to\infty, \ q\to\infty\end{aligned}" />,
@@ -119,14 +121,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{range } R}" />,
-    reason: <>The question asks for the domain <em>and</em> the range — the report notes some students gave only the domain.</>,
+    reason: <>The question asks for the domain <em>and</em> the range, so state both.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
-    working: <Katex display tex="q(x) = \log_e(-x-1) \implies q'(x) = \frac{-1}{-x-1} = \frac{1}{x+1}" />,
-    reason: <>Use the simplified form from part a. Then only the chain rule is needed: the derivative of <Katex tex="\log_e(-x-1)" /> is <Katex tex="\tfrac{-1}{-x-1}" />. (CAS can also give the tangent directly — the report notes that working it all out by hand was time consuming.)</>,
+    working: <Katex display tex="\begin{aligned}q(x) &= \log_e(-x-1) \\ q'(x) &= \frac{-1}{-x-1} = \frac{1}{x+1}\end{aligned}" />,
+    reason: <>Use the simplified form from part a. Then only the chain rule is needed: the derivative of <Katex tex="\log_e(-x-1)" /> is <Katex tex="\tfrac{-1}{-x-1}" />.</>,
+    more: <>On CAS you can also get the tangent's equation directly from the Calculus menu. The report notes that many students worked the equation out without technology, which would have been time consuming.</>,
   },
   {
     working: <Katex display tex="q'(-2) = \frac{1}{-1} = -1, \quad q(-2) = \log_e(1) = 0" />,
@@ -141,7 +144,8 @@ const ROWS_BI: WorkingRow[] = [
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="m_{\perp} = \frac{-1}{-1} = 1" />,
-    reason: <>&ldquo;Perpendicular to the graph&rdquo; means perpendicular to the tangent there. Perpendicular gradients multiply to <Katex tex="-1" />, so take the negative reciprocal of the tangent gradient <Katex tex="-1" /> from part b.i.</>,
+    reason: <>&ldquo;Perpendicular to the graph&rdquo; means perpendicular to the tangent, so take the negative reciprocal of the tangent gradient <Katex tex="-1" /> from part b.i.</>,
+    more: <>Perpendicular gradients multiply to <Katex tex="-1" />: <Katex tex="m_1m_2=-1" />, so <Katex tex="m_\perp=-\tfrac{1}{m}" />. This line is often called the normal to the graph.</>,
   },
   {
     working: <Katex display tex="y-0 = 1\left(x-(-2)\right)" />,
@@ -149,7 +153,7 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = x+2}" />,
-    reason: <>An equation again. This is the line <Katex tex="y=x+2" /> that is used in parts e. and f.</>,
+    reason: <>An equation again, not just the gradient. This is the line <Katex tex="y=x+2" /> used in parts e and f.</>,
   },
 ]
 
@@ -164,11 +168,13 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}&p'(x) = 2e^{-x}\left(1-e^{-x}\right) \\ &\text{negative for } x<0, \text{ positive for } x>0\end{aligned}" />,
-    reason: <>For <Katex tex="x<0" />, <Katex tex="e^{-x}>1" /> makes the bracket negative; for <Katex tex="x>0" /> it is positive. So the graph falls to a minimum at the origin and then rises (graphing <Katex tex="p" /> on CAS shows the same), and a graph that goes down then up must repeat <Katex tex="y" />-values.</>,
+    reason: <>For <Katex tex="x<0" />, <Katex tex="e^{-x}>1" /> makes the bracket negative; for <Katex tex="x>0" /> it is positive. So <Katex tex="p" /> falls to a minimum at the origin, then rises, so <Katex tex="y" />-values between 0 and 1 are taken once on each side.</>,
+    more: <>Graphing <Katex tex="p" /> on CAS shows the same shape: steeply down from the upper left to touch the <Katex tex="x" />-axis at the origin, then up towards the asymptote <Katex tex="y=1" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{p \text{ is many-to-one: it fails the horizontal line test}}" />,
-    reason: <>For example <Katex tex="p\left(\log_e\left(\tfrac23\right)\right)=p(\log_e(2))=\tfrac14" />. Relate it to <Katex tex="p" />: it is <em>some</em> <Katex tex="y" />-values (those between 0 and 1) that have two <Katex tex="x" />-values, not every one — and the <em>vertical</em> line test is about being a function at all, which <Katex tex="p" /> passes.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}p \text{ is many-to-one:} \\ \text{it fails the horizontal} \\ \text{line test}\end{gathered}}" />,
+    reason: <>For example <Katex tex="p\left(\log_e\left(\tfrac23\right)\right)=p(\log_e(2))=\tfrac14" />: two different <Katex tex="x" />-values give the same <Katex tex="y" />-value.</>,
+    more: <>Check: <Katex tex="e^{-\log_e(2/3)}=\tfrac32" /> and <Katex tex="e^{-\log_e 2}=\tfrac12" />, so <Katex tex="p=\left(\tfrac32-1\right)^2=\left(\tfrac12-1\right)^2=\tfrac14" />. Relate the answer to <Katex tex="p" /> itself, not just the definition of one-to-one. It is <em>some</em> <Katex tex="y" />-values (those between 0 and 1) that have two <Katex tex="x" />-values, not every one: values of 1 or more occur only once, left of the origin. And the <em>vertical</em> line test is about being a function at all, which <Katex tex="p" /> passes.</>,
   },
 ]
 
@@ -183,22 +189,24 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p'(a) = 2\left(e^a-1\right)e^{-2a}}" />,
-    reason: <>Replace <Katex tex="x" /> by <Katex tex="a" /> and factorise; equivalently <Katex tex="2e^{-a}-2e^{-2a}" />. The answer must be in terms of <Katex tex="a" />, and it is the <em>gradient</em> that is asked for, not the tangent's equation.</>,
+    reason: <>Replace <Katex tex="x" /> by <Katex tex="a" /> and take out <Katex tex="2e^{-2a}" />, since <Katex tex="e^{-2a}\cdot e^{a}=e^{-a}" />; equivalently <Katex tex="2e^{-a}-2e^{-2a}" />. The answer is a gradient, in terms of <Katex tex="a" />.</>,
+    more: <>Only the gradient is asked for, not the tangent's equation, and it must use <Katex tex="a" />, not <Katex tex="x" />. Copy the brackets carefully: dropping them turns <Katex tex="2\left(e^{a}-1\right)e^{-2a}" /> into <Katex tex="2e^{a}-e^{-2a}" />, a different expression.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="y=x+2: \ m=1=\tan45^\circ" />,
-    reason: <>A line's gradient is <Katex tex="m=\tan\alpha" />, where <Katex tex="\alpha" /> is the angle the line makes with the positive <Katex tex="x" />-axis, measured anticlockwise. So the line <Katex tex="y=x+2" /> sits at <Katex tex="45^\circ" />.</>,
+    reason: <>A line's gradient is <Katex tex="\tan" /> of its angle with the positive <Katex tex="x" />-axis (measured anticlockwise). So <Katex tex="y=x+2" /> sits at <Katex tex="45^\circ" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\alpha &= 45^\circ+60^\circ = 105^\circ \\ \text{or } \alpha &= 45^\circ-60^\circ = -15^\circ\end{aligned}" />,
-    reason: <>Here <Katex tex="\alpha" /> is the tangent's angle at <Katex tex="x=a" />. To make <Katex tex="60^\circ" /> with the line, the tangent is turned <Katex tex="60^\circ" /> from <Katex tex="45^\circ" /> — anticlockwise <em>or</em> clockwise. Both give an acute angle of <Katex tex="60^\circ" />, so there are two cases. The report notes some students found only one of the two values of <Katex tex="a" />.</>,
+    reason: <>Let <Katex tex="\alpha" /> be the tangent's angle. To make <Katex tex="60^\circ" /> with the line, the tangent is turned <Katex tex="60^\circ" /> from <Katex tex="45^\circ" />, anticlockwise <em>or</em> clockwise: two cases.</>,
+    more: <>Both cases give an acute angle of <Katex tex="60^\circ" /> between the lines. Turning by <Katex tex="120^\circ" /> gives nothing new: the acute angle is then <Katex tex="60^\circ" /> again, and <Katex tex="45^\circ+120^\circ=165^\circ" /> is the same line as <Katex tex="-15^\circ" /> (so <Katex tex="\tan165^\circ=\tan(-15^\circ)" />). Missing the second case was the main trap: the report notes some students found only one of the two values of <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}p'(a) &= \tan105^\circ \approx -3.732 \\ \text{or } p'(a) &= \tan(-15^\circ) \approx -0.268\end{aligned}" />,
-    reason: <>Gradient <Katex tex="=\tan\alpha" />, with <Katex tex="p'(a)" /> from part d. (A direction of <Katex tex="-15^\circ" /> lies along the same line as <Katex tex="165^\circ" />, so this is also <Katex tex="\tan165^\circ" />.)</>,
+    reason: <>The tangent's gradient is <Katex tex="\tan\alpha" />, and it equals <Katex tex="p'(a)" /> from part d.</>,
   },
   {
     working: <Cas fn="solve">solve(2(e^a − 1)·e^(−2a) = tan(105°), a)</Cas>,
@@ -210,32 +218,34 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -0.67 \ \text{ or } \ a = -0.11}" />,
-    reason: <>Both, to two decimal places. Only 4% of students scored full marks on this part.</>,
-    more: <>Drag P in the diagram below to watch <Katex tex="\theta" /> pass <Katex tex="60^\circ" /> twice.</>,
+    reason: <>Both values, to two decimal places.</>,
+    more: <>Only 4% of students scored full marks on this part. Drag P in the diagram below to watch <Katex tex="\theta" /> pass <Katex tex="60^\circ" /> twice.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(e^(−2x) − 2e^(−x) + 1 = x + 2, x)</Cas>,
-    reason: <>Where the line meets the curve. CAS gives one solution, <Katex tex="x=-0.7504\ldots" />, on the left of the origin, matching the diagram.</>,
+    reason: <>Where the line meets the curve. CAS gives one solution, <Katex tex="x=-0.7504\ldots" />, on the left of the origin, matching the graph in the question.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -0.750}" />,
     reason: <>Three decimal places means writing the final zero: <Katex tex="-0.75" /> is only two, and the report points out that three were required.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}&\text{top} = x+2 \ \text{ for } -2\le x\le-0.7504 \\ &\text{top} = p(x) \ \text{ for } -0.7504\le x\le0\end{aligned}" />,
-    reason: <>The line meets the <Katex tex="x" />-axis at <Katex tex="x=-2" /> and <Katex tex="p" /> touches it at the origin, so the region runs from <Katex tex="x=-2" /> to <Katex tex="x=0" />. Each vertical strip goes from the <Katex tex="x" />-axis up to the <em>lower</em> of the two graphs: left of the crossing <Katex tex="p" /> is above the line (e.g. <Katex tex="p(-2)\approx40.8" /> while the line is at 0), so the line is the top; right of it <Katex tex="p" /> is below the line, so <Katex tex="p" /> is the top.</>,
-    more: <>Sweep the strip in the diagram below to see it.</>,
+    working: <Katex display tex="\begin{aligned}&\text{upper edge} = x+2 \ \text{ for } -2\le x\le-0.7504 \\ &\text{upper edge} = p(x) \ \text{ for } -0.7504\le x\le0\end{aligned}" />,
+    reason: <>The region runs from <Katex tex="x=-2" /> (the line's <Katex tex="x" />-intercept) to <Katex tex="x=0" /> (where <Katex tex="p" /> touches the axis). Each vertical strip stops at the <em>lower</em> graph: the line left of the crossing, <Katex tex="p" /> right of it.</>,
+    more: <>Left of the crossing <Katex tex="p" /> is above the line (e.g. at <Katex tex="x=-2" />, <Katex tex="p(-2)\approx40.8" /> while the line is at 0), so a strip there reaches the line first. Right of the crossing <Katex tex="p" /> is below the line, so the strip reaches <Katex tex="p" /> first. Sweep the strip in the diagram below to see it.</>,
   },
   {
     working: <Katex display tex="A = \int_{-2}^{-0.7504}(x+2)\,dx+\int_{-0.7504}^{0}p(x)\,dx" />,
-    reason: <>The top changes at the crossing, so the area is two integrals split there. Use the stored root <Katex tex="-0.7504\ldots" /> as the limit, not the rounded <Katex tex="-0.750" />.</>,
+    reason: <>The upper edge changes at the crossing, so the area is two integrals split there.</>,
+    more: <>Use the stored root <Katex tex="-0.7504\ldots" /> as the limit, not the rounded <Katex tex="-0.750" />: rounding a limit before integrating can change the last decimal place (here it happens to round the same either way). The report notes some students were unable to set up the definite integrals correctly. A single integral of either graph from <Katex tex="-2" /> to <Katex tex="0" /> would count the wrong region.</>,
   },
   {
-    working: <Katex display tex="\approx 0.78075+0.25735" />,
-    reason: <>Each integral on CAS. Check the first: it is a triangle with base and height both <Katex tex="1.2496" />, so its area is <Katex tex="\tfrac12\times1.2496^2\approx0.78075" />.</>,
+    working: <><Cas fn="nInt">nInt(x + 2, x, −2, r)</Cas> + <Cas fn="nInt">nInt(e^(−2x) − 2e^(−x) + 1, x, r, 0)</Cas> <Katex display tex="\approx 0.78075+0.25735" /></>,
+    reason: <>Each definite integral evaluated on CAS, with <Katex tex="r" /> the stored root <Katex tex="-0.7504\ldots" /> from the first step.</>,
+    more: <>Check the first: it is a triangle with base and height both <Katex tex="-0.7504-(-2)=1.2496" />, so its area is <Katex tex="\tfrac12\times1.2496^2\approx0.78075" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = 1.038}" />,

@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^a\bigl(3f(x)+2\bigr)dx = 3\int_0^a f(x)\,dx+\int_0^a 2\,dx" />,
-    reason: <>Two properties of definite integrals: the integral of a sum is the sum of the integrals, and a constant factor (the 3) can be taken outside. Split it this way so that the integral you were given, <Katex tex="\int_0^a f(x)\,dx" />, appears on its own.</>,
+    reason: <>The integral of a sum is the sum of the integrals, and the constant factor 3 comes outside. This makes the given integral <Katex tex="\int_0^a f(x)\,dx" /> appear on its own.</>,
   },
   {
     working: <Katex display tex="3\int_0^a f(x)\,dx = 3k" />,
@@ -22,11 +22,24 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^a 2\,dx = \left[2x\right]_0^a = 2a-0 = 2a" />,
-    reason: <>An antiderivative of the constant 2 is <Katex tex="2x" />. The result depends on <Katex tex="a" />: for <Katex tex="a>0" /> it is the area of a rectangle of height 2 and width <Katex tex="a" />.</>,
+    reason: <>An antiderivative of the constant 2 is <Katex tex="2x" />, evaluated from 0 to <Katex tex="a" />. The answer depends on <Katex tex="a" />, not just 2.</>,
+    more: (
+      <>
+        For <Katex tex="a>0" /> this is the area of a rectangle of height 2 and width <Katex tex="a" />, which is
+        why it can&apos;t be just 2.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{3k+2a}" />,
-    reason: <>Matches option <b>A</b>. Option E treats <Katex tex="\int_0^a 2\,dx" /> as just 2, forgetting the width <Katex tex="a" />. Option B leaves out the <Katex tex="+2" /> term altogether, and option C forgets to multiply <Katex tex="k" /> by 3.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
+      <>
+        Option E (chosen by 20% of students) treats <Katex tex="\int_0^a 2\,dx" /> as just 2, forgetting the
+        width <Katex tex="a" />. Option B leaves out the <Katex tex="+2" /> term altogether, option C forgets to
+        multiply <Katex tex="k" /> by 3, and option D makes both C&apos;s slip and E&apos;s.
+      </>
+    ),
   },
 ]
 

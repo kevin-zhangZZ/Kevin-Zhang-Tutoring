@@ -22,15 +22,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} \text{min of } (x+2)^2 &= 0 \text{ at } x=-2 \\ \text{max of } (x+2)^2 &= 9 \text{ at } x=-5 \end{aligned}" />,
-    reason: <>A square is smallest when the number being squared is <Katex tex="0" />, and largest when it is furthest from <Katex tex="0" />: on <Katex tex="[-3,1)" /> that is <Katex tex="-3" />. Both values are <em>attained</em>: <Katex tex="x=-2" /> is inside the domain and <Katex tex="x=-5" /> is its closed end. The open end <Katex tex="x\to-1^-" /> gives <Katex tex="(x+2)^2\to1" />, which is neither the minimum nor the maximum.</>,
+    reason: <>A square is smallest when the number being squared is <Katex tex="0" />, and largest when it is furthest from <Katex tex="0" />: on <Katex tex="[-3,1)" /> that is <Katex tex="-3" />.</>,
   },
   {
     working: <Katex display tex="(x+2)^2 \in [0,9] \implies h(x) \in [-4,5]" />,
-    reason: <>Subtracting 4. Because the turning point sits inside the domain, the range is closed at <em>both</em> ends — the open bracket at <Katex tex="x=-1" /> does not carry over.</>,
+    reason: <>Subtract 4. Both ends are reached (<Katex tex="x=-2" /> is in the domain, <Katex tex="x=-5" /> is its closed end), so the range is closed at <em>both</em> ends. The open end <Katex tex="x=-1" /> only gives <Katex tex="h\to-3" />, inside the range, so it doesn't matter.</>,
+    more: <>That is why the open bracket at <Katex tex="x=-1" /> does not carry over to the range: <Katex tex="-3" /> is neither the minimum nor the maximum value, and it is reached anyway at <Katex tex="x=-3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{[-4,\ 5]}" />,
-    reason: <>Matches option <b>E</b>. Option A comes from checking only the ends of the domain, <Katex tex="h(-5)=5" /> and <Katex tex="h(-1)=-3" />, which misses the turning point at <Katex tex="x=-2" />, where <Katex tex="h" /> dips to <Katex tex="-4" />. Option D leaves out <Katex tex="-4" />, but <Katex tex="h(-2)=-4" /> is reached because <Katex tex="x=-2" /> is in the domain.</>,
+    reason: <>Matches option <b>E</b>: the turning point gives the minimum, not the domain's endpoint.</>,
+    more: <>Option A (the most common wrong answer, 24%) comes from checking only the ends of the domain, <Katex tex="h(-5)=5" /> and <Katex tex="h(-1)=-3" />, which misses the turning point at <Katex tex="x=-2" />, where <Katex tex="h" /> dips to <Katex tex="-4" />. Option D leaves out <Katex tex="-4" />, but <Katex tex="h(-2)=-4" /> is reached because <Katex tex="x=-2" /> is in the domain.</>,
   },
 ]
 

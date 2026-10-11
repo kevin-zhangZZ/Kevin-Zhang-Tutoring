@@ -13,6 +13,8 @@
 // Oct 2026 review: part g's a = 1 minimum now uses g_1' = 0 instead of the compound-angle form
 // √2 sin(x + π/4) (Specialist, not Methods); g adds a check that every a ≥ 2 dips below −√2;
 // part c reads the first line of symmetry off the graph and confirms f(2π − x) = f(x).
+// Oct 2026 Concise/Detailed rebalance: long reasons trimmed, teacher detail and report commentary
+// moved to each row's `more`; part g notes the minima approach −2 unevenly (a = 4 above a = 3).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -98,7 +100,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4\pi}" />,
-    reason: <><Katex tex="f" /> repeats only when <em>both</em> parts are back at the start together, so we need the smallest length that is a whole number of periods of each. <Katex tex="4\pi" /> is one period of <Katex tex="\sin\!\left(\tfrac x2\right)" /> and four of <Katex tex="\cos(2x)" />. The common wrong answer <Katex tex="2\pi" /> fails because <Katex tex="\sin\!\left(\tfrac x2\right)" /> is only halfway through its cycle: <Katex tex="f(x+2\pi)=-\sin\!\left(\tfrac x2\right)+\cos(2x)" />. The graph confirms it: the pattern from 0 to <Katex tex="4\pi" /> repeats.</>,
+    reason: <><Katex tex="f" /> repeats only when <em>both</em> parts restart together: the smallest length holding a whole number of periods of each. <Katex tex="4\pi" /> is one sine period and four cosine periods.</>,
+    more: <>The common wrong answer <Katex tex="2\pi" /> is a whole number of periods of <Katex tex="\cos(2x)" /> but only half a period of <Katex tex="\sin\!\left(\tfrac x2\right)" />, so the sine part has flipped sign: <Katex tex="f(x+2\pi)=-\sin\!\left(\tfrac x2\right)+\cos(2x)" />, which is not <Katex tex="f(x)" />. The graph confirms it: the pattern from 0 to <Katex tex="4\pi" /> is what repeats.</>,
   },
 ]
 
@@ -108,8 +111,9 @@ const ROWS_B: WorkingRow[] = [
     reason: <><Katex tex="f" /> repeats every <Katex tex="4\pi" /> (part a), so its lowest value over one period is its lowest value anywhere. The lowest point is not at a &lsquo;nice&rsquo; <Katex tex="x" />-value, so let the CAS find it.</>,
   },
   {
-    working: <Katex display tex="\text{minimum} = -1.72209\ldots \text{ at } x \approx 7.939" />,
-    reason: <>This trough sits just right of <Katex tex="x=\tfrac{5\pi}{2}\approx7.854" />, where <Katex tex="\cos(2x)=-1" /> and <Katex tex="f=-\tfrac{\sqrt2}{2}-1\approx-1.707" />. That is the same value as <Katex tex="f\!\left(-\tfrac\pi2\right)" />, which the report notes many students evaluated. The trough looks as if it is where <Katex tex="\cos(2x)" /> is lowest, but <Katex tex="\sin\!\left(\tfrac x2\right)" /> is still changing there, so the true lowest point is slightly to one side and slightly lower.</>,
+    working: <Katex display tex="\begin{gathered}x \approx 7.939 \\ f(7.939\ldots) = -1.72209\ldots\end{gathered}" />,
+    reason: <>The CAS gives the <Katex tex="x" />-value of the lowest point; substitute it into <Katex tex="f" /> to get the minimum value.</>,
+    more: <>This trough sits just right of <Katex tex="x=\tfrac{5\pi}{2}\approx7.854" />, where <Katex tex="\cos(2x)=-1" /> and <Katex tex="f=-\tfrac{\sqrt2}{2}-1\approx-1.707" />. That is the same value as <Katex tex="f\!\left(-\tfrac\pi2\right)" />, which the report notes many students evaluated. The trough looks as if it is where <Katex tex="\cos(2x)" /> is lowest, but <Katex tex="\sin\!\left(\tfrac x2\right)" /> is still changing there, so the true lowest point is slightly to one side and slightly lower.</>,
   },
   {
     working: <Katex display tex="\boxed{-1.722}" />,
@@ -120,11 +124,12 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{gathered}f(h-x) = f(x) \text{ for all } x \\ \iff \text{the graph is symmetric about } x = \tfrac h2\end{gathered}" />,
-    reason: <>The inputs <Katex tex="x" /> and <Katex tex="h-x" /> average to <Katex tex="\tfrac h2" />, so they are the same distance either side of <Katex tex="x=\tfrac h2" />. Equal heights at every such pair is exactly what mirror symmetry in the line <Katex tex="x=\tfrac h2" /> means.</>,
+    reason: <><Katex tex="x" /> and <Katex tex="h-x" /> average to <Katex tex="\tfrac h2" />, so they sit the same distance either side of <Katex tex="x=\tfrac h2" />. Equal heights at every such pair is mirror symmetry in that line.</>,
   },
   {
     working: <Katex display tex="\text{first line of symmetry right of the } y\text{-axis: } x = \pi" />,
-    reason: <>Read it off the graph. A vertical line of symmetry must pass through a peak or trough, with matching heights either side. Before <Katex tex="\pi" /> there is a small peak just right of 0 (the troughs either side are at about <Katex tex="-1.7" /> and <Katex tex="-0.3" />) and a trough near <Katex tex="\tfrac\pi2" /> (the peaks either side are at about 1 and 2), so neither works. The tall peak <Katex tex="(\pi,2)" /> has matching smaller peaks (height about 1) just right of 0 and just left of <Katex tex="2\pi" />.</>,
+    reason: <>A vertical line of symmetry passes through a peak or trough with matching shapes either side. The small peak near 0 and the trough near <Katex tex="\tfrac\pi2" /> have unequal sides; the first balanced one is the tall peak <Katex tex="(\pi,2)" />.</>,
+    more: <>The unequal sides in numbers: for the small peak just right of 0, the troughs either side are at about <Katex tex="-1.7" /> and <Katex tex="-0.3" />; for the trough near <Katex tex="\tfrac\pi2" />, the peaks either side are at about 1 and 2. The tall peak <Katex tex="(\pi,2)" /> is: matching smaller peaks (height about 1) sit just right of 0 and just left of <Katex tex="2\pi" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}f(2\pi-x) &= \sin\!\left(\pi-\tfrac x2\right)+\cos(4\pi-2x) \\ &= \sin\!\left(\tfrac x2\right)+\cos(2x) = f(x)\end{aligned}" />,
@@ -132,7 +137,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\tfrac h2 = \pi \implies \boxed{h = 2\pi}" />,
-    reason: <>Give it exact: the report says 6.28 was a common incorrect answer.</>,
+    reason: <>The line is at <Katex tex="x=\tfrac h2" />, so double <Katex tex="\pi" />. Give it exactly: <Katex tex="2\pi" />, not 6.28.</>,
   },
 ]
 
@@ -158,7 +163,8 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-a\cos\!\left(\tfrac xa\right)+\frac{\sin(ax)}{a}}" />,
-    reason: <>The question asks for <em>an</em> antiderivative, so no <Katex tex="+c" /> is needed. The report notes students who differentiated instead, and others who wrote <Katex tex="a\cos\!\left(\tfrac xa\right)-\tfrac{\sin(ax)}{a}" /> (both signs flipped). Check by differentiating back: <Katex tex="-a\cdot\left(-\sin\!\left(\tfrac xa\right)\right)\cdot\tfrac1a=\sin\!\left(\tfrac xa\right)" /> and <Katex tex="\tfrac1a\cdot a\cos(ax)=\cos(ax)" />, which gives <Katex tex="g_a(x)" />.</>,
+    reason: <>The question asks for <em>an</em> antiderivative, so no <Katex tex="+c" /> is needed. Check: differentiating it gives back <Katex tex="g_a(x)" />.</>,
+    more: <>The report notes students who differentiated instead, and others who wrote <Katex tex="a\cos\!\left(\tfrac xa\right)-\tfrac{\sin(ax)}{a}" /> (both signs flipped). Differentiating back catches both slips: <Katex tex="-a\cdot\left(-\sin\!\left(\tfrac xa\right)\right)\cdot\tfrac1a=\sin\!\left(\tfrac xa\right)" /> and <Katex tex="\tfrac1a\cdot a\cos(ax)=\cos(ax)" />, which gives <Katex tex="g_a(x)" />.</>,
   },
 ]
 
@@ -180,9 +186,9 @@ const ROWS_EII: WorkingRow[] = [
     reason: <>Upper minus lower: the <Katex tex="-a" /> terms cancel.</>,
   },
   {
-    working: <Katex display tex="\begin{gathered}a\in Z^+ \implies 2a^2 \text{ is an even integer} \\ \implies \sin\!\left(2a^2\pi\right) = 0\end{gathered}" />,
-    reason: <>The report notes some students were unable to interpret <Katex tex="\tfrac{\sin\left(2a^2\pi\right)}{a}" />. The key is that <Katex tex="a" /> is a positive integer, so <Katex tex="2a^2" /> is a whole number, and the sine graph crosses the <Katex tex="x" />-axis at every whole-number multiple of <Katex tex="\pi" />: <Katex tex="\sin(n\pi)=0" />.</>,
-    more: <>The diagram below shows what goes wrong when <Katex tex="a" /> is not an integer.</>,
+    working: <Katex display tex="\begin{gathered}a\in Z^+ \implies 2a^2 \text{ is an integer} \\ \implies \sin\!\left(2a^2\pi\right) = 0\end{gathered}" />,
+    reason: <><Katex tex="a" /> is a positive integer, so <Katex tex="2a^2" /> is a whole number, and <Katex tex="\sin(n\pi)=0" /> for every whole number <Katex tex="n" />.</>,
+    more: <>This is the step the report notes some students were unable to interpret. On the graph of sine, these are the <Katex tex="x" />-axis crossings, so the whole expression collapses to 0. (That <Katex tex="2a^2" /> is also even does not matter; any integer works.) The diagram below shows what goes wrong when <Katex tex="a" /> is not an integer.</>,
   },
   {
     working: <Katex display tex="\int_0^{2a\pi}g_a(x)\,dx = \frac{0}{a} = 0" />,
@@ -205,7 +211,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-2 \le \sin\!\left(\tfrac xa\right)+\cos(ax) \le 2}" />,
-    reason: <>Adding the two inequalities: <Katex tex="g_a(x)" /> can never be more than <Katex tex="1+1=2" /> or less than <Katex tex="-1+(-1)=-2" />, for any <Katex tex="x" /> and any <Katex tex="a" />. The question asks about the maximum <em>and</em> the minimum, so state both bounds: the report notes some students considered the maximum only.</>,
+    reason: <>Adding the two inequalities: <Katex tex="g_a(x)" /> can never be more than <Katex tex="1+1=2" /> or less than <Katex tex="-1+(-1)=-2" />, for any <Katex tex="x" /> and any <Katex tex="a" />. State both bounds: the question asks about the maximum <em>and</em> the minimum.</>,
+    more: <>The report notes some students considered the maximum value only and not the minimum value.</>,
   },
 ]
 
@@ -216,32 +223,35 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin\!\left(\tfrac xa\right) = -1 \text{ on } [0, 2a\pi] \iff x = \tfrac{3a\pi}{2}" />,
-    reason: <><Katex tex="\sin\!\left(\tfrac xa\right)" /> has period <Katex tex="2a\pi" />, and <Katex tex="\cos(ax)" /> (period <Katex tex="\tfrac{2\pi}{a}" />) fits a whole number, <Katex tex="a^2" />, of its cycles into that length. So <Katex tex="g_a" /> repeats every <Katex tex="2a\pi" /> and one period is enough to check. In one cycle sine is <Katex tex="-1" /> only at <Katex tex="\tfrac{3\pi}{2}" />, so <Katex tex="\tfrac xa=\tfrac{3\pi}{2}" />.</>,
+    reason: <><Katex tex="g_a" /> repeats every <Katex tex="2a\pi" /> (one sine period, <Katex tex="a^2" /> cosine periods), so check one period. Within it, <Katex tex="\sin\!\left(\tfrac xa\right)=-1" /> only when <Katex tex="\tfrac xa=\tfrac{3\pi}{2}" />.</>,
+    more: <>In detail: <Katex tex="\sin\!\left(\tfrac xa\right)" /> has period <Katex tex="2a\pi" />, and <Katex tex="\cos(ax)" /> has period <Katex tex="\tfrac{2\pi}{a}" />, so it fits <Katex tex="2a\pi\div\tfrac{2\pi}{a}=a^2" /> whole cycles into that length. Both parts restart together after <Katex tex="2a\pi" />, so nothing new happens beyond one period.</>,
   },
   {
     working: <Katex display tex="\cos\!\left(a\cdot\tfrac{3a\pi}{2}\right) = \cos\!\left(\tfrac{3a^2\pi}{2}\right) = \begin{cases}0, & a \text{ odd} \\ 1, & a \text{ even}\end{cases}" />,
-    reason: <>If <Katex tex="a" /> is even, <Katex tex="a^2" /> is a multiple of 4, so <Katex tex="\tfrac{3a^2\pi}{2}" /> is a multiple of <Katex tex="6\pi" />. If <Katex tex="a" /> is odd, <Katex tex="3a^2" /> is odd, so <Katex tex="\tfrac{3a^2\pi}{2}" /> is an odd multiple of <Katex tex="\tfrac\pi2" />. Either way the cosine is never <Katex tex="-1" /> there, so no <Katex tex="g_a" /> ever reaches <Katex tex="-2" />. The minimum depends on <Katex tex="a" />; we want the highest of these minima.</>,
+    reason: <>Even <Katex tex="a" />: <Katex tex="a^2" /> is a multiple of 4, so the angle is a multiple of <Katex tex="6\pi" />. Odd <Katex tex="a" />: <Katex tex="3a^2" /> is odd, so it is an odd multiple of <Katex tex="\tfrac\pi2" />. Never <Katex tex="-1" />, so no <Katex tex="g_a" /> reaches <Katex tex="-2" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}a=1: \ g_1'(x) = \cos x - \sin x = 0 \\ \implies \tan x = 1 \implies x = \tfrac\pi4,\ \tfrac{5\pi}{4}\end{gathered}" />,
-    reason: <>With <Katex tex="a=1" />, <Katex tex="g_1(x)=\sin x+\cos x" /> has period <Katex tex="2\pi" />, so find its stationary points in <Katex tex="[0,2\pi]" />. Dividing <Katex tex="\sin x=\cos x" /> by <Katex tex="\cos x" /> gives <Katex tex="\tan x=1" />.</>,
+    reason: <>So each <Katex tex="a" /> has its own minimum above <Katex tex="-2" />, and we want the highest. Start with <Katex tex="a=1" />: <Katex tex="g_1(x)=\sin x+\cos x" />, period <Katex tex="2\pi" />; find its stationary points in <Katex tex="[0,2\pi]" />.</>,
+    more: <>Setting <Katex tex="g_1'(x)=0" /> gives <Katex tex="\sin x=\cos x" />; dividing by <Katex tex="\cos x" /> gives <Katex tex="\tan x=1" />, so <Katex tex="x=\tfrac\pi4" /> (first quadrant) or <Katex tex="\tfrac{5\pi}{4}" /> (third quadrant).</>,
   },
   {
     working: <Katex display tex="\min g_1 = g_1\!\left(\tfrac{5\pi}{4}\right) = -\tfrac{\sqrt2}{2}-\tfrac{\sqrt2}{2} = -\sqrt2" />,
-    reason: <><Katex tex="g_1" /> repeats and has no endpoints, so its lowest value is at one of these stationary points. <Katex tex="x=\tfrac\pi4" /> gives <Katex tex="\sqrt2" /> (the maximum) and <Katex tex="x=\tfrac{5\pi}{4}" /> gives <Katex tex="-\sqrt2" /> (the minimum).</>,
+    reason: <><Katex tex="g_1" /> repeats and has no endpoints, so its minimum is at a stationary point: <Katex tex="x=\tfrac\pi4" /> gives <Katex tex="\sqrt2" /> (the maximum), <Katex tex="x=\tfrac{5\pi}{4}" /> gives <Katex tex="-\sqrt2" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}a=2: \ -1.722; \quad a=3: \ -1.985 \\ a=4: \ -1.981; \quad a=5: \ -1.998\end{gathered}" />,
-    reason: <>The minimum for each <Katex tex="a" />, found with <Cas fn="fMin" /> over one period <Katex tex="[0,2a\pi]" /> (<Katex tex="a=2" /> is <Katex tex="f" /> from part b). Each is lower than <Katex tex="-\sqrt2\approx-1.414" />, getting close to <Katex tex="-2" /> as <Katex tex="a" /> grows.</>,
-    more: <>Click through the values of <Katex tex="a" /> in the diagram below.</>,
+    reason: <>The minimum for each <Katex tex="a" /> from <Cas fn="fMin" /> over one period <Katex tex="[0,2a\pi]" />. Every one is lower than <Katex tex="-\sqrt2\approx-1.414" />.</>,
+    more: <><Katex tex="a=2" /> is <Katex tex="f" /> from part b. The minima get close to <Katex tex="-2" /> as <Katex tex="a" /> grows, though not steadily (<Katex tex="a=4" /> is slightly higher than <Katex tex="a=3" />). Click through the values of <Katex tex="a" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="a \ge 2: \ \min g_a \le -1-\tfrac{\sqrt2}{2} \approx -1.707 \lt -\sqrt2" />,
-    reason: <>Why this holds for every <Katex tex="a\ge2" />, not just those checked: <Katex tex="\cos(ax)" /> equals <Katex tex="-1" /> once every <Katex tex="\tfrac{2\pi}{a}" />, so it does so at some <Katex tex="x" /> within <Katex tex="\tfrac\pi a" /> of <Katex tex="\tfrac{3a\pi}{2}" />. There <Katex tex="\tfrac xa" /> is within <Katex tex="\tfrac{\pi}{a^2}\le\tfrac\pi4" /> of <Katex tex="\tfrac{3\pi}{2}" />, and every angle from <Katex tex="\tfrac{5\pi}{4}" /> to <Katex tex="\tfrac{7\pi}{4}" /> has sine at most <Katex tex="-\tfrac{\sqrt2}{2}" />. So at that <Katex tex="x" />, <Katex tex="g_a(x)\le-\tfrac{\sqrt2}{2}-1" />.</>,
+    reason: <>True for every <Katex tex="a\ge2" />: <Katex tex="\cos(ax)=-1" /> at some <Katex tex="x" /> within <Katex tex="\tfrac\pi a" /> of <Katex tex="\tfrac{3a\pi}{2}" />; there <Katex tex="\tfrac xa" /> is within <Katex tex="\tfrac{\pi}{a^2}\le\tfrac\pi4" /> of <Katex tex="\tfrac{3\pi}{2}" />, so <Katex tex="\sin\!\left(\tfrac xa\right)\le-\tfrac{\sqrt2}{2}" />.</>,
+    more: <>Why: <Katex tex="\cos(ax)" /> equals <Katex tex="-1" /> once every <Katex tex="\tfrac{2\pi}{a}" />, so the nearest such <Katex tex="x" /> is at most half that, <Katex tex="\tfrac\pi a" />, away. Dividing by <Katex tex="a" /> shrinks the gap in angle to <Katex tex="\tfrac{\pi}{a^2}" />, which is at most <Katex tex="\tfrac\pi4" /> once <Katex tex="a\ge2" />. Every angle from <Katex tex="\tfrac{5\pi}{4}" /> to <Katex tex="\tfrac{7\pi}{4}" /> has sine at most <Katex tex="-\tfrac{\sqrt2}{2}" />. So at that <Katex tex="x" />, <Katex tex="g_a(x)\le-\tfrac{\sqrt2}{2}-1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{-\sqrt2}" />,
-    reason: <>The highest of the minima, at <Katex tex="a=1" />. Give it exact: the report says <Katex tex="-2" /> was a common incorrect answer, and that is a bound no <Katex tex="g_a" /> reaches.</>,
+    reason: <>The highest of the minima, at <Katex tex="a=1" />. Give it exactly. Not <Katex tex="-2" />: that is only the bound from part f, which no <Katex tex="g_a" /> reaches.</>,
   },
 ]
 

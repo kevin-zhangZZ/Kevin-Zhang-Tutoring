@@ -35,11 +35,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="k = \tfrac12: \ 2\left(\sin(0)+1\right) = 2 \ \checkmark" />,
-    reason: <>The unknown <Katex tex="k" /> appears both outside and inside the sine, so this equation can't be rearranged for <Katex tex="k" /> by hand. With five numbers to choose from, substitute them instead: <Katex tex="k=\tfrac12" /> makes the argument <Katex tex="\tfrac\pi2-\tfrac\pi2=0" />.</>,
+    reason: <><Katex tex="k" /> is both outside and inside the sine, so this can't be rearranged by hand; test the options instead. <Katex tex="k=\tfrac12" /> makes the argument <Katex tex="\tfrac\pi2-\tfrac\pi2=0" />.</>,
+    more: <>That is why <Katex tex="k=\tfrac12" /> is the option to try first. Solving the equation on CAS for <Katex tex="k>0" /> also works: it gives <Katex tex="k=\tfrac12" /> and <Katex tex="k=1" />, and only <Katex tex="\tfrac12" /> is an option (the question asks for <em>a</em> value of <Katex tex="k" />).</>,
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac12}" />,
-    reason: <>Matches option <b>E</b>. The other options make the left side about 0.80, 0.95, 1.17 and 1.5, not 2. (At <Katex tex="k=\tfrac12" /> the curve is <Katex tex="\cos\!\left(\tfrac x2-\tfrac\pi2\right)=\sin\!\left(\tfrac x2\right)" />.)</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>The other options, <Katex tex="k=\tfrac16,\ \tfrac15,\ \tfrac14,\ \tfrac13" />, make the left side about 0.80, 0.95, 1.17 and 1.5, not 2. At <Katex tex="k=\tfrac12" /> the curve is <Katex tex="\cos\!\left(\tfrac x2-\tfrac\pi2\right)=\sin\!\left(\tfrac x2\right)" />, whose integral over <Katex tex="[0,\pi]" /> is <Katex tex="\left[-2\cos\!\left(\tfrac x2\right)\right]_0^\pi=2" />, the same as for <Katex tex="\sin(x)" />.</>,
   },
 ]
 
