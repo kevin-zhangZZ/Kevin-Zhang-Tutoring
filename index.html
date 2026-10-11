@@ -4,8 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kevin Zhang Tutoring — VCE Tools</title>
-    <script type="module" crossorigin src="/Kevin-Zhang-Tutoring/assets/index-B5y_XOx9.js"></script>
-    <link rel="stylesheet" crossorigin href="/Kevin-Zhang-Tutoring/assets/index-BuwLxT_o.css">
+    <script>
+      // Set the theme before the first paint so dark-mode visitors never see a light flash.
+      // Same rule as App.tsx: a theme the visitor picked wins, otherwise the device's setting.
+      try {
+        var stored = localStorage.getItem('theme')
+        var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.classList.toggle('dark', dark)
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/Kevin-Zhang-Tutoring/assets/index-B6vfxDHP.js"></script>
+    <link rel="stylesheet" crossorigin href="/Kevin-Zhang-Tutoring/assets/index-hUo0d4Je.css">
   </head>
   <body>
     <div id="root"></div>
