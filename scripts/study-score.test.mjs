@@ -4,7 +4,7 @@
 // Node 24 strips the TypeScript types itself, so the modules are imported directly.
 import * as L from '../src/tools/study-score/practice/log.ts'
 import * as M from '../src/tools/study-score/model.ts'
-import { aheadOf, examShares } from '../src/tools/study-score/format.ts'
+import { aheadOf, examShares, parseMark } from '../src/tools/study-score/format.ts'
 import { nth } from '../src/tools/study-score/practice/dates.ts'
 import { DISTRIBUTIONS, SUBJECT_IDS, isOldCourse } from '../src/tools/study-score/data.ts'
 
@@ -62,7 +62,7 @@ const removed = L.removeAttempt(log, 1)
 check(removed.length === 3 && same(removed.map(a => a.id), [0, 1, 2]) && removed[1].paper === 2017, 'remove renumbers')
 
 check(L.attemptName(log[0]).startsWith('2019 paper from 12 Jul'), 'a dated name has its date')
-check(L.attemptName(log[1]) === '2018 paper (2nd logged)', 'an undated name has its place')
+check(L.attemptName(log[1]) === '2018 paper (2nd in your log)', 'an undated name has its place')
 check(L.allDated(old) && !L.allDated(log), 'allDated')
 
 // ── Links arriving ──
@@ -127,6 +127,11 @@ const p = M.project('methods', [30, 60])[9]
 check(examShares('methods', p).startsWith('Exam 1 ahead of ') && examShares('methods', p).includes(' · Exam 2 ahead of '), 'per-exam shares in words')
 check(examShares('chemistry', M.project('chemistry', [90])[9]) === '', 'no per-exam shares for one exam')
 check(same([1, 2, 3, 4, 11, 12, 13, 21, 22, 23, 101].map(nth), ['1st', '2nd', '3rd', '4th', '11th', '12th', '13th', '21st', '22nd', '23rd', '101st']), 'ordinals')
+const pm = (t, max = 40) => JSON.stringify(parseMark(t, 'Exam 1', max))
+check(pm('') === '{"mark":null,"error":null}' && pm('  ') === '{"mark":null,"error":null}', 'an empty box is neither a mark nor an error')
+check(pm('30') === '{"mark":30,"error":null}' && pm(' 0 ') === '{"mark":0,"error":null}' && pm('40') === '{"mark":40,"error":null}', 'whole marks in range')
+check(pm('45') === '{"mark":null,"error":"Exam 1 is out of 40."}', 'too big says what it is out of')
+check(['27.5', '-3', '4e', 'abc', '1,0'].every(t => parseMark(t, 'Exam 1', 40).error === 'Exam 1 needs a whole number from 0 to 40.'), 'anything else asks for a whole number')
 check(isOldCourse('specialist', 2022) && !isOldCourse('specialist', 2023) && isOldCourse('chemistry', 2023) && !isOldCourse('methods', 2016), 'old course years')
 
 console.log(`${passed} passed, ${failed} failed`)

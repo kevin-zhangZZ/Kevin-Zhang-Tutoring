@@ -10,7 +10,7 @@ import { OLD_COURSE_UP_TO, SUBJECTS, type Subject } from '../data.ts'
 import { aheadOf } from '../format.ts'
 import { MEAN, type Projection } from '../model.ts'
 import { CARD, H2, SUB } from '../shared.tsx'
-import { WIDE, mediaMatches } from './useMedia.ts'
+import { WIDE, mediaMatches } from '../useMedia.ts'
 
 // ── Axis window ────────────────────────────────────────────────────────────────────────────
 
@@ -96,8 +96,8 @@ export default function YearByYear({ subject, marks, rows }: { subject: Subject;
         you would have finished ahead of.
       </p>
 
-      <div className="text-[13px]">
-        <div aria-hidden className={`${GRID} items-end pb-1.5 text-[12px] font-semibold text-gray-500 dark:text-gray-400`}>
+      <div className="text-[0.8125rem]">
+        <div aria-hidden className={`${GRID} items-end pb-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400`}>
           <span>Year</span>
           <span className="relative h-4">
             {ticks.map((t, i) => (
@@ -120,11 +120,11 @@ export default function YearByYear({ subject, marks, rows }: { subject: Subject;
         ))}
       </div>
 
-      <p className="mt-2 flex items-center gap-2 text-[12px] text-gray-500 dark:text-gray-400">
+      <p className="mt-2 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
         {meanShown ? (
           <>
             <span aria-hidden className="flex-none w-0.5 h-3 rounded-sm bg-gray-300 dark:bg-gray-600" />
-            Darker line: the state average, {MEAN}.
+            Thicker line: the state average, {MEAN}.
           </>
         ) : (
           `The state average, ${MEAN}, is ${span.lo > MEAN ? 'below' : 'above'} this range.`
@@ -159,7 +159,7 @@ function YearGroup({
   return (
     <>
       {label && (
-        <p id={id} className="pt-2 pb-1 text-[11.5px] font-semibold text-gray-500 dark:text-gray-400">
+        <p id={id} className="pt-2 pb-1 text-[0.71875rem] font-semibold text-gray-500 dark:text-gray-400">
           {label}
         </p>
       )}
@@ -206,21 +206,22 @@ function YearRow({
         aria-controls={detailId}
         aria-label={`${r.year}: study score ${r.score}, ${rank} of the state`}
         onClick={onToggle}
-        className={`group ${GRID} w-full items-center px-2 py-1.5 [@media(pointer:coarse)]:min-h-[44px] text-left rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
+        className={`group ${GRID} w-full items-center px-2 py-1.5 [@media(pointer:coarse)]:min-h-[44px] text-left rounded-md [@media(hover:hover)]:hover:bg-gray-50 dark:[@media(hover:hover)]:hover:bg-gray-800/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`}
       >
         <span className="font-semibold text-gray-700 dark:text-gray-200 tabular-nums">{r.year}</span>
         <span aria-hidden className="relative h-6">
           {ticks.map(t => (
             <span key={t} className="absolute inset-y-0 w-px bg-gray-100 dark:bg-gray-800" style={{ left: at(t) }} />
           ))}
-          {meanShown && <span className="absolute inset-y-0 w-px bg-gray-300 dark:bg-gray-600" style={{ left: at(MEAN) }} />}
+          {/* 2 px, like the legend's swatch: "thicker" holds in both themes, where "darker" doesn't. */}
+          {meanShown && <span className="absolute inset-y-0 w-0.5 -translate-x-1/2 bg-gray-300 dark:bg-gray-600" style={{ left: at(MEAN) }} />}
           <span
-            className="absolute top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-600 dark:bg-sky-400 ring-2 ring-white dark:ring-gray-900 group-hover:scale-125 transition-transform motion-reduce:transition-none"
+            className="absolute top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-600 dark:bg-sky-400 ring-2 ring-white dark:ring-gray-900 [@media(hover:hover)]:group-hover:scale-125 transition-transform motion-reduce:transition-none"
             style={{ left: at(r.exact) }}
           />
         </span>
         <span className="text-right font-display text-base font-bold text-gray-900 dark:text-white tabular-nums">{r.score}</span>
-        <span className="whitespace-nowrap text-[12px] sm:text-[12.5px] text-gray-500 dark:text-gray-400 tabular-nums">
+        <span className="whitespace-nowrap text-xs sm:text-[0.78125rem] text-gray-500 dark:text-gray-400 tabular-nums">
           ahead of <b className="font-medium text-gray-700 dark:text-gray-200">{rank.replace('ahead of ', '')}</b>
         </span>
         <svg
@@ -231,7 +232,7 @@ function YearRow({
           <path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      <p id={detailId} hidden={!open} className="pl-[3.5rem] sm:pl-[4.25rem] pr-2 pb-2 text-[12.5px] leading-snug text-gray-500 dark:text-gray-400 tabular-nums">
+      <p id={detailId} hidden={!open} className="pl-[3.5rem] sm:pl-[4.25rem] pr-2 pb-2 text-[0.78125rem] leading-snug text-gray-500 dark:text-gray-400 tabular-nums">
         {detail}
       </p>
     </li>

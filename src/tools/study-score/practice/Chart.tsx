@@ -6,15 +6,17 @@
 // spaced evenly in log order instead, which is the order they were sat (see practice/log.ts).
 //
 // Every paper is a focusable dot: focus, hover or tap shows its details; Esc, tapping elsewhere
-// or moving on closes them, and the arrow keys step along the dots.
+// or moving on closes them. The dots are one Tab stop (the last one focused, at first the latest
+// paper), and the arrow keys, Home and End step along them.
 
 import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import SegmentedControl from '../../../components/ui/SegmentedControl'
 import type { Subject } from '../data.ts'
 import { aheadOf, marksText } from '../format.ts'
 import { CARD, H2, SUB } from '../shared.tsx'
-import { DAY, MONTHS, dayOf, fmtDate, nth } from './dates.ts'
-import { GOAL_MAX, GOAL_MIN, WINDOW, allDated, attemptName, parseGoal, rollingAverages, yearsFor, type Scored } from './log.ts'
+import { useMedia } from '../useMedia.ts'
+import { DAY, dayOf, fmtDate, fmtDay, fmtMonth, nth } from './dates.ts'
+import { GOAL_MAX, GOAL_MIN, WINDOW, allDated, attemptName, bestOf, mean, parseGoal, rollingAverages, yearsFor, type Scored } from './log.ts'
 
 type View = 'time' | 'paper'
 type Rolling = ReturnType<typeof rollingAverages>
@@ -41,18 +43,13 @@ function useWidth() {
   return [ref, w] as const
 }
 
-/** Touch screens get bigger invisible hit targets round each dot. */
-function useCoarsePointer(): boolean {
-  const [coarse] = useState(() => typeof window !== 'undefined' && !!window.matchMedia?.('(pointer: coarse)').matches)
-  return coarse
-}
-
 // ── Axes ───────────────────────────────────────────────────────────────────────────────────
 
-/** x-axis ticks for a span of days: month starts, thinned to fit; weeks if under two months. */
+/** x-axis ticks for a span of days: month starts, thinned to fit ("Sept", "Jan 2027" where a
+ *  year starts); weeks ("12 July") if under two months. Worded like every other date here. */
 function timeTicks(d0: number, d1: number, maxTicks: number): { day: number; label: string }[] {
   const start = new Date(d0 * DAY)
-  const months: { day: number; label: string }[] = []
+  const months: { day: number; y: number; m: number }[] = []
   for (let y = start.getUTCFullYear(), m = start.getUTCMonth() + 1; ; m++) {
     if (m > 11) {
       y++
@@ -60,18 +57,19 @@ function timeTicks(d0: number, d1: number, maxTicks: number): { day: number; lab
     }
     const day = Date.UTC(y, m, 1) / DAY
     if (day > d1) break
-    months.push({ day, label: m === 0 ? `Jan ${String(y).slice(2)}` : MONTHS[m] })
+    months.push({ day, y, m })
   }
   if (months.length >= 2) {
+    // The year goes on after thinning, so it lands on the first tick kept in a new year (Feb 2027
+    // when January was thinned out), or on the first tick if that's a January.
     const step = Math.ceil(months.length / maxTicks)
-    return months.filter((_, i) => i % step === 0)
+    return months
+      .filter((_, i) => i % step === 0)
+      .map(({ day, y, m }, i, kept) => ({ day, label: fmtMonth(day, i === 0 ? m === 0 : y !== kept[i - 1].y) }))
   }
   const weeks: { day: number; label: string }[] = []
   const step = 7 * Math.ceil((d1 - d0) / 7 / maxTicks || 1)
-  for (let day = Math.ceil(d0); day <= d1; day += step) {
-    const d = new Date(day * DAY)
-    weeks.push({ day, label: `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}` })
-  }
+  for (let day = Math.ceil(d0); day <= d1; day += step) weeks.push({ day, label: fmtDay(day) })
   return weeks
 }
 
@@ -86,10 +84,7 @@ function orderTicks(n: number, maxTicks: number): number[] {
 
 // ── Words ──────────────────────────────────────────────────────────────────────────────────
 
-const mean = (xs: Scored[]) => xs.reduce((s, a) => s + a.proj.exact, 0) / xs.length
-const bestOf = (xs: Scored[]) => xs.reduce((a, b) => (b.proj.exact > a.proj.exact ? b : a))
-
-/** "2019 paper, 13 Sept, 2nd try, 40, ahead of 91%" ("2019 paper (5th logged), …" undated). */
+/** "2019 paper, 13 Sept, 2nd try, 40, ahead of 91%" ("2019 paper (5th in your log), …" undated). */
 function dotLabel(a: Scored): string {
   const name = a.date ? `${a.paper} paper, ${fmtDate(a.date)}` : attemptName(a)
   return `${name}${a.sitting > 1 ? `, ${nth(a.sitting)} try` : ''}, ${a.proj.score}, ${aheadOf(a.proj.pct)}`
@@ -199,7 +194,7 @@ export default function ProgressChart({
         <button
           type="button"
           onClick={onAddPaper}
-          className="flex-none inline-flex items-center gap-1.5 rounded-lg border border-gray-300 dark:border-gray-700 px-2.5 py-1.5 [@media(pointer:coarse)]:py-2.5 text-[12.5px] font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="flex-none inline-flex items-center gap-1.5 rounded-lg border border-gray-300 dark:border-gray-700 px-2.5 py-1.5 [@media(pointer:coarse)]:py-2.5 text-[0.78125rem] font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
         >
           <svg width={11} height={11} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" aria-hidden>
             <path d="M6 2v8M2 6h8" />
@@ -219,7 +214,7 @@ export default function ProgressChart({
             { value: 'paper', label: 'By Paper Year' },
           ]}
         />
-        <label className="inline-flex items-center gap-2 text-[12px] font-semibold text-gray-500 dark:text-gray-400">
+        <label className="inline-flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
           My Goal
           <input
             type="number"
@@ -233,51 +228,45 @@ export default function ProgressChart({
             onBlur={box.leave}
             aria-invalid={box.hint ? true : undefined}
             aria-describedby={box.hint ? hintId : undefined}
-            className="w-14 h-8 [@media(pointer:coarse)]:h-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-1.5 text-center text-[14px] font-semibold tabular-nums text-gray-900 dark:text-white placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-14 h-8 [@media(pointer:coarse)]:h-10 rounded-lg border border-gray-500 dark:border-gray-500 bg-white dark:bg-gray-950 px-1.5 text-center text-sm [@media(pointer:coarse)]:text-base font-semibold tabular-nums text-gray-900 dark:text-white placeholder:font-normal placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </label>
       </div>
-      <p id={hintId} aria-live="polite" className={box.hint ? 'mt-1.5 text-[12px] text-gray-500 dark:text-gray-400' : 'sr-only'}>
+      {/* Every message here is about a goal that isn't used, so it's in the page's error colour. */}
+      <p id={hintId} aria-live="polite" className={box.hint ? 'mt-1.5 text-xs text-rose-600 dark:text-rose-400' : 'sr-only'}>
         {box.hint}
       </p>
 
-      {n > 0 ? (
-        <Plot subject={subject} scored={scored} rolling={rolling} view={view} dated={dated} goal={goal} />
-      ) : (
-        <div className="mt-3 h-40 grid place-items-center rounded-xl border border-dashed border-gray-300 dark:border-gray-700 text-[13px] text-gray-500 dark:text-gray-400 text-center px-4">
-          Add a paper and its projected study score shows up here.
-        </div>
-      )}
+      {/* Only drawn with at least one paper (practice/index.tsx shows a first-paper card instead). */}
+      <Plot subject={subject} scored={scored} rolling={rolling} view={view} dated={dated} goal={goal} />
 
-      {n > 0 && (
-        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[12px] text-gray-500 dark:text-gray-400">
-          {view === 'time' && rolling.length > 0 && (
-            <span className="inline-flex items-center gap-1.5">
-              <span aria-hidden className="w-4 h-[3px] rounded-full bg-sky-600 dark:bg-sky-400" />
-              Recent Average (last {WINDOW})
-            </span>
-          )}
+      <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-500 dark:text-gray-400">
+        {view === 'time' && rolling.length > 0 && (
           <span className="inline-flex items-center gap-1.5">
-            <span aria-hidden className={`w-2.5 h-2.5 rounded-full ${dotTone}`} />
-            Single paper
+            <span aria-hidden className="w-4 h-[3px] rounded-full bg-sky-600 dark:bg-sky-400" />
+            Recent Average (last {WINDOW})
           </span>
-          {anyRetake && (
-            <span className="inline-flex items-center gap-1.5">
-              <svg width={12} height={12} viewBox="0 0 12 12" aria-hidden>
-                <path
-                  d="M6 0.8L11.2 6L6 11.2L0.8 6Z"
-                  strokeWidth={view === 'time' ? 1.3 : 0}
-                  className={view === 'time' ? 'fill-sky-200 dark:fill-sky-900 stroke-sky-600 dark:stroke-sky-400' : 'fill-sky-600 dark:fill-sky-400'}
-                />
-              </svg>
-              Retake
-            </span>
-          )}
-          {view === 'time' && n < WINDOW && <span>The Recent Average line starts at your {nth(WINDOW)} paper.</span>}
-        </div>
-      )}
-      {n > 0 && view === 'time' && !dated && (
-        <p className="mt-1.5 text-[12px] text-gray-500 dark:text-gray-400">Some papers have no date, so they’re spaced evenly in the order you logged them.</p>
+        )}
+        <span className="inline-flex items-center gap-1.5">
+          <span aria-hidden className={`w-2.5 h-2.5 rounded-full ${dotTone}`} />
+          Single paper
+        </span>
+        {anyRetake && (
+          <span className="inline-flex items-center gap-1.5">
+            <svg width={12} height={12} viewBox="0 0 12 12" aria-hidden>
+              <path
+                d="M6 0.8L11.2 6L6 11.2L0.8 6Z"
+                strokeWidth={view === 'time' ? 1.3 : 0}
+                className={view === 'time' ? 'fill-sky-200 dark:fill-sky-900 stroke-sky-600 dark:stroke-sky-400' : 'fill-sky-600 dark:fill-sky-400'}
+              />
+            </svg>
+            Retake
+          </span>
+        )}
+        {view === 'time' && n < WINDOW && <span>The Recent Average line starts at your {nth(WINDOW)} paper.</span>}
+      </div>
+      {view === 'time' && !dated && (
+        <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">Some papers have no date, so they’re spaced evenly in the order you sat them.</p>
       )}
     </section>
   )
@@ -313,7 +302,12 @@ function Plot({
     [widthRef],
   )
   const [active, setActive] = useState<number | null>(null)
-  const coarse = useCoarsePointer()
+  // Touch screens get bigger invisible hit targets round each dot.
+  const coarse = useMedia('(pointer: coarse)')
+  // The dot that Tab lands on: the last one focused, while the log is the one it was focused in;
+  // otherwise the latest paper.
+  const [roving, setRoving] = useState<{ scored: Scored[]; id: number } | null>(null)
+  const tabId = roving && roving.scored === scored ? roving.id : scored[scored.length - 1].id
 
   // A new view moves every dot; close whatever was open.
   useEffect(() => setActive(null), [view])
@@ -374,7 +368,7 @@ function Plot({
     const at = (day: number) => PAD.left + ((day - d0) / (d1 - d0)) * iw
     baseX = a => at(dayOf(a.date as string))
     // Everything on one day: label that day rather than the week around it.
-    const ticks = first === last ? [{ day: first, label: fmtDate(scored[0].date as string, false) }] : timeTicks(d0, d1, Math.max(2, Math.floor(iw / 70)))
+    const ticks = first === last ? [{ day: first, label: fmtDay(first) }] : timeTicks(d0, d1, Math.max(2, Math.floor(iw / 70)))
     xTicks = ticks.map(t => ({ x: at(t.day), label: t.label }))
   } else if (time) {
     baseX = a => slot(order.get(a.id) ?? 0)
@@ -395,7 +389,7 @@ function Plot({
     return Math.min(width - PAD.right, Math.max(PAD.left, baseX(a) + shift))
   }
 
-  // Dots go in left-to-right order so Tab and the arrow keys move the way the eye does.
+  // Dots go in left-to-right order so the arrow keys move the way the eye does.
   const dots = time ? scored : [...scored].sort((p, q) => p.paper - q.paper || p.id - q.id)
   const avg = mean(scored)
   const lastRoll = rolling[rolling.length - 1]
@@ -406,6 +400,11 @@ function Plot({
   const rollPath = rolling.map((r, i) => `${i ? 'L' : 'M'}${x(r.a).toFixed(1)},${y(r.v).toFixed(1)}`).join('')
   const hv = scored.find(a => a.id === active)
 
+  /** Focusing a dot (Tab, a click or the keys below) makes it the one Tab comes back to. */
+  const onDotFocus = (id: number) => {
+    setActive(id)
+    setRoving({ scored, id })
+  }
   const onDotKey = (e: KeyboardEvent<SVGGElement>) => {
     if (e.key === 'Escape') {
       setActive(null)
@@ -427,17 +426,27 @@ function Plot({
             {yTicks.map(t => (
               <g key={t}>
                 <line x1={PAD.left} x2={width - PAD.right} y1={y(t)} y2={y(t)} className="stroke-gray-100 dark:stroke-gray-800" />
-                <text x={PAD.left - 8} y={y(t)} dy="0.32em" textAnchor="end" className="fill-gray-500 dark:fill-gray-400 text-[11px] tabular-nums">
+                <text x={PAD.left - 8} y={y(t)} dy="0.32em" textAnchor="end" className="fill-gray-500 dark:fill-gray-400 text-[0.6875rem] tabular-nums">
                   {t}
                 </text>
               </g>
             ))}
-            {/* Keyed by position: month names repeat once the dates span more than a year. */}
-            {xTicks.map(t => (
-              <text key={t.x} x={t.x} y={H - 8} textAnchor="middle" className="fill-gray-500 dark:fill-gray-400 text-[11px] tabular-nums">
-                {t.label}
-              </text>
-            ))}
+            {/* Keyed by position: month names repeat once the dates span more than a year. A label
+                at either end ("Jan 2027") is nudged in, about half its width, so it isn't cut off. */}
+            {xTicks.map(t => {
+              const half = t.label.length * 3.2
+              return (
+                <text
+                  key={t.x}
+                  x={Math.min(Math.max(t.x, half), width - half)}
+                  y={H - 8}
+                  textAnchor="middle"
+                  className="fill-gray-500 dark:fill-gray-400 text-[0.6875rem] tabular-nums"
+                >
+                  {t.label}
+                </text>
+              )
+            })}
 
             {!time && n > 1 && (
               <line x1={PAD.left} x2={width - PAD.right} y1={y(avg)} y2={y(avg)} strokeDasharray="4 4" className="stroke-gray-400 dark:stroke-gray-500" />
@@ -464,11 +473,11 @@ function Plot({
               <g
                 key={a.id}
                 data-dot
-                tabIndex={0}
+                tabIndex={a.id === tabId ? 0 : -1}
                 role="img"
                 aria-label={dotLabel(a)}
                 className="group cursor-pointer outline-none"
-                onFocus={() => setActive(a.id)}
+                onFocus={() => onDotFocus(a.id)}
                 onBlur={() => setActive(cur => (cur === a.id ? null : cur))}
                 onMouseEnter={() => setActive(a.id)}
                 onClick={e => {
@@ -489,7 +498,7 @@ function Plot({
           })}
 
           {/* Labels last, haloed, so neither a line nor a dot can cover them. */}
-          <g aria-hidden className="pointer-events-none text-[11px]">
+          <g aria-hidden className="pointer-events-none text-[0.6875rem]">
             {goal !== null && (
               <text x={PAD.left + 3} y={y(goal) - 5} strokeWidth={4} strokeLinejoin="round" paintOrder="stroke" className={`fill-amber-700 dark:fill-amber-300 font-semibold ${HALO}`}>
                 Goal {goal}
@@ -538,7 +547,7 @@ function Tip({ subject, a, left, dotY }: { subject: Subject; a: Scored; left: nu
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute z-10 rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-2.5 py-1.5 text-[12px] leading-snug shadow-lg whitespace-nowrap"
+      className="pointer-events-none absolute z-10 rounded-lg bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 px-2.5 py-1.5 text-xs leading-snug shadow-lg whitespace-nowrap"
       style={{ left, top: below ? dotY + 16 : dotY - 16, transform: below ? 'translateX(-50%)' : 'translate(-50%, -100%)' }}
     >
       <div className="font-semibold">

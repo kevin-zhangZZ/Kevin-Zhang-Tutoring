@@ -135,7 +135,6 @@ export interface Projection {
   score: number
   /** Students who sat the (last) exam that year. */
   cohort: number
-  source: string
 }
 
 const cache = new Map<string, Marginal[]>()
@@ -182,7 +181,6 @@ export function projectYear(subject: Subject, d: YearDist, raw: number[]): Proje
     exact,
     score: Math.round(exact),
     cohort: last.bands.reduce((s, b) => s + b[2], 0),
-    source: d.source,
   }
 }
 
@@ -190,7 +188,6 @@ export function projectYear(subject: Subject, d: YearDist, raw: number[]): Proje
 export function project(subject: Subject, raw: number[]): Projection[] {
   return DISTRIBUTIONS[subject].map(d => projectYear(subject, d, raw))
 }
-
 
 // ── Reading the projections ────────────────────────────────────────────────────────────────
 

@@ -6,14 +6,28 @@
 // Like the worked-solutions question bar, it takes no room in the layout: a zero-height sticky
 // wrapper at the top of the page with the bar hanging off it, so it is already pinned by the
 // time it shows. The app scrolls inside <main>, not the window, and `sticky top-0` pins to that.
+// While it shows, <main> gets scroll padding for it, so whatever takes keyboard focus is brought
+// into view below the bar rather than under it.
 
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
 import { scrollBehavior } from '../shared.tsx'
-import { PHONE, useMedia } from './useMedia.ts'
+import { PHONE, useMedia } from '../useMedia.ts'
 
 /** The bar's height; the watched edges are measured from just below it. */
 const BAR = 52
+/** Room kept clear under the bar for a focused element (and its focus ring). */
+const CLEAR = BAR + 8
+
+/** Focus showing a ring, as keyboard focus does. A click's focus is left alone: moving the row
+ *  out from under the pointer mid-click would lose the click. */
+function ringShown(el: HTMLElement): boolean {
+  try {
+    return el.matches(':focus-visible')
+  } catch {
+    return true
+  }
+}
 
 export default function StickyMarkBar({
   subject,
@@ -73,12 +87,41 @@ export default function StickyMarkBar({
     // The inputs are a new element after a subject switch.
   }, [phone, inputs, end, subject])
 
+  // ── Focus never hides under the bar ──
+  // Scroll padding makes the browser bring a focused element into view below the bar. It doesn't
+  // move an element that already counts as in view, which includes the strip under the bar, so a
+  // focus check scrolls one that landed there down into sight, at once (no motion to reduce).
+  // Not <main> itself (Skip to Content focuses it), nor anything too tall to fit below the bar:
+  // neither can be brought into view by moving it down.
+  /** The box `jump` is focusing, which is already on its way into view. */
+  const jumping = useRef<HTMLElement | null>(null)
+  useEffect(() => {
+    const main = bar.current?.closest('main')
+    if (!shown || !main) return
+    main.style.scrollPaddingTop = `${CLEAR}px`
+    const onFocus = (e: FocusEvent) => {
+      const el = e.target
+      if (!(el instanceof HTMLElement) || el === jumping.current || el.contains(main) || bar.current?.contains(el) || !ringShown(el)) return
+      const box = el.getBoundingClientRect()
+      if (box.height > main.clientHeight - CLEAR) return
+      const under = main.getBoundingClientRect().top + CLEAR - box.top
+      if (under > 0) main.scrollBy({ top: -under, behavior: 'instant' })
+    }
+    main.addEventListener('focusin', onFocus)
+    return () => {
+      main.style.scrollPaddingTop = ''
+      main.removeEventListener('focusin', onFocus)
+    }
+  }, [shown])
+
   /** Back to the full inputs, with that box ready to type in. */
   const jump = (i: number) => {
     const box = inputs.current?.querySelector<HTMLInputElement>(`[data-mark="${i}"]`)
     if (!box) return
     box.scrollIntoView({ behavior: scrollBehavior(), block: 'center' })
+    jumping.current = box
     box.focus({ preventScroll: true })
+    jumping.current = null
   }
 
   // ── Focus never stays in a hidden bar ──
@@ -95,8 +138,15 @@ export default function StickyMarkBar({
     else el.blur()
   }, [shown, inputs])
 
-  const step = 'flex-none w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
+  // Hover tints only where there's a real hover: on a phone, a tapped button would keep it.
+  // At 0 or full marks a stepper is aria-disabled, not disabled, so focus stays on it.
+  const step =
+    'flex-none w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 flex items-center justify-center [@media(hover:hover)]:hover:bg-gray-200 dark:[@media(hover:hover)]:hover:bg-gray-700 aria-disabled:opacity-40 aria-disabled:cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
   const tab = shown ? 0 : -1
+  /** A stepper's handler: the new mark, or nothing at the limit. */
+  const stepTo = (i: number, v: number) => () => {
+    if (v >= 0 && v <= exams[i].rawMax) onMark(i, v)
+  }
 
   return (
     <div className="sticky top-0 z-20 h-0 sm:hidden">
@@ -110,8 +160,8 @@ export default function StickyMarkBar({
       >
         {exams.map((e, i) => (
           <span key={e.label} data-exam={i} className="flex items-center gap-0.5 min-w-0">
-            <span className="text-[12px] font-semibold text-gray-500 dark:text-gray-400">{e.short}</span>
-            <button type="button" tabIndex={tab} aria-label={`${e.label} down one mark`} disabled={marks[i] <= 0} onClick={() => onMark(i, marks[i] - 1)} className={step}>
+            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{e.short}</span>
+            <button type="button" tabIndex={tab} aria-label={`${e.label} down one mark`} aria-disabled={marks[i] <= 0 || undefined} onClick={stepTo(i, marks[i] - 1)} className={step}>
               <svg viewBox="0 0 16 16" aria-hidden className="w-4 h-4">
                 <path d="M3.5 8h9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
@@ -121,18 +171,18 @@ export default function StickyMarkBar({
               tabIndex={tab}
               aria-label={`${e.label}: ${marks[i]} out of ${e.rawMax}. Go to the mark inputs`}
               onClick={() => jump(i)}
-              className="flex-none min-w-10 h-10 px-0.5 rounded-lg font-display text-base font-bold text-gray-900 dark:text-white tabular-nums hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="flex-none min-w-10 h-10 px-0.5 rounded-lg font-display text-base font-bold text-gray-900 dark:text-white tabular-nums [@media(hover:hover)]:hover:bg-gray-50 dark:[@media(hover:hover)]:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
               {marks[i]}
             </button>
-            <button type="button" tabIndex={tab} aria-label={`${e.label} up one mark`} disabled={marks[i] >= e.rawMax} onClick={() => onMark(i, marks[i] + 1)} className={step}>
+            <button type="button" tabIndex={tab} aria-label={`${e.label} up one mark`} aria-disabled={marks[i] >= e.rawMax || undefined} onClick={stepTo(i, marks[i] + 1)} className={step}>
               <svg viewBox="0 0 16 16" aria-hidden className="w-4 h-4">
                 <path d="M3.5 8h9M8 3.5v9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
             </button>
           </span>
         ))}
-        <span className="flex-none flex items-baseline gap-1 text-[15px] text-gray-500 dark:text-gray-400">
+        <span className="flex-none flex items-baseline gap-1 text-[0.9375rem] text-gray-500 dark:text-gray-400">
           <span aria-hidden>→</span>
           <span className="sr-only">Typical</span>
           <b className={`font-display text-lg font-bold text-sky-700 dark:text-sky-300 tabular-nums ${busy ? 'opacity-50' : ''}`}>{typical}</b>

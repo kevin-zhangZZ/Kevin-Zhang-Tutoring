@@ -35,7 +35,7 @@ const renumber = (list: Draft[]): Attempt[] => list.map((a, id) => ({ id, date: 
 // ── Links ──────────────────────────────────────────────────────────────────────────────────
 
 /** One attempt as it's written in a link: "20260712-2019-27-55", or "n-2019-27-55" undated. */
-export function tokenOf(a: Draft): string {
+function tokenOf(a: Draft): string {
   return [a.date ? a.date.replace(/-/g, '') : 'n', a.paper, ...a.marks].join('-')
 }
 
@@ -88,9 +88,9 @@ export function removeAttempt(list: Attempt[], id: number): Attempt[] {
   return renumber(list.filter((_, i) => i !== id))
 }
 
-/** "2019 paper from 13 Sept", or "2019 paper (5th logged)" when it has no date. */
+/** "2019 paper from 13 Sept", or "2019 paper (5th in your log)" when it has no date. */
 export function attemptName(a: Attempt): string {
-  return a.date ? `${a.paper} paper from ${fmtDate(a.date)}` : `${a.paper} paper (${nth(a.id + 1)} logged)`
+  return a.date ? `${a.paper} paper from ${fmtDate(a.date)}` : `${a.paper} paper (${nth(a.id + 1)} in your log)`
 }
 
 export const allDated = (list: Draft[]) => list.every(a => a.date !== null)
@@ -202,7 +202,11 @@ export function scoreAttempts(subject: Subject, attempts: Attempt[]): Scored[] {
  *  points depending on how kind the year was. */
 export const WINDOW = 3
 
-const mean = (xs: Scored[]) => xs.reduce((s, a) => s + a.proj.exact, 0) / xs.length
+/** The unrounded average projected score of some papers (at least one). */
+export const mean = (xs: Scored[]) => xs.reduce((s, a) => s + a.proj.exact, 0) / xs.length
+
+/** The paper with the highest projected score (the first, on a tie). */
+export const bestOf = (xs: Scored[]) => xs.reduce((a, b) => (b.proj.exact > a.proj.exact ? b : a))
 
 /** The unrounded Recent Average (fewer papers: all of them), or null for an empty log. */
 export function recentAverage(scored: Scored[]): number | null {

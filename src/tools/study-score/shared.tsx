@@ -7,7 +7,7 @@ import { fullMarksRange } from './model.ts'
 
 export const CARD = 'rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-5'
 export const H2 = 'font-display text-lg sm:text-xl font-bold text-gray-900 dark:text-white'
-export const SUB = 'text-[13px] text-gray-500 dark:text-gray-400'
+export const SUB = 'text-[0.8125rem] text-gray-500 dark:text-gray-400'
 
 /** 'smooth', unless the device asks for reduced motion. */
 export function scrollBehavior(): ScrollBehavior {
@@ -39,10 +39,10 @@ export function KeepInMind({ subject, nearTop = false, oldCourse = false }: { su
   }
   return (
     <section aria-labelledby={id} className="px-1">
-      <h2 id={id} className="text-[13px] font-semibold text-gray-700 dark:text-gray-200">
+      <h2 id={id} className="text-[0.8125rem] font-semibold text-gray-700 dark:text-gray-200">
         Keep in Mind
       </h2>
-      <ul className="mt-1 flex flex-col gap-1 text-[13.5px] leading-snug text-gray-700 dark:text-gray-300">
+      <ul className="mt-1 flex flex-col gap-1 text-[0.84375rem] leading-snug text-gray-700 dark:text-gray-300">
         {lines.map(l => (
           <li key={l} className="flex gap-2">
             <span aria-hidden className="mt-[0.5em] w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500 flex-none" />
@@ -70,15 +70,22 @@ function linkWithout(strip: string[]): string {
 /**
  * Copies this page's link. Where the clipboard is refused (some in-app browsers, WeChat's among
  * them), it shows the link selected in a box to copy by hand instead of failing silently.
+ * `flush` runs first, for a page still waiting to put its latest change in the address.
  */
-export function CopyLink({ strip = [], disabled = false, className = '' }: { strip?: string[]; disabled?: boolean; className?: string }) {
+export function CopyLink({ strip = [], flush, className = '' }: { strip?: string[]; flush?: () => void; className?: string }) {
   const [state, setState] = useState<'idle' | 'copied' | 'failed'>('idle')
   const [link, setLink] = useState('')
+  // Said to screen readers on its own, not through the button's label, and emptied afterwards,
+  // so the label going back to "Copy Link" isn't read out again.
+  const [said, setSaid] = useState('')
   const boxRef = useRef<HTMLInputElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     if (state !== 'copied') return
-    const t = setTimeout(() => setState('idle'), 1800)
+    const t = setTimeout(() => {
+      setState('idle')
+      setSaid('')
+    }, 1800)
     return () => clearTimeout(t)
   }, [state])
   useEffect(() => {
@@ -88,16 +95,24 @@ export function CopyLink({ strip = [], disabled = false, className = '' }: { str
   }, [state])
   const close = () => {
     setState('idle')
+    setSaid('')
     buttonRef.current?.focus()
   }
 
   const copy = () => {
+    flush?.()
     const url = linkWithout(strip)
     setLink(url)
-    if (!navigator.clipboard?.writeText) return setState('failed')
+    // Emptied first, so copying again straight away is said again.
+    setSaid('')
+    const done = (ok: boolean) => {
+      setState(ok ? 'copied' : 'failed')
+      setSaid(ok ? 'Link copied' : 'Couldn’t copy the link')
+    }
+    if (!navigator.clipboard?.writeText) return done(false)
     navigator.clipboard.writeText(url).then(
-      () => setState('copied'),
-      () => setState('failed'),
+      () => done(true),
+      () => done(false),
     )
   }
 
@@ -107,29 +122,31 @@ export function CopyLink({ strip = [], disabled = false, className = '' }: { str
         ref={buttonRef}
         type="button"
         onClick={copy}
-        disabled={disabled}
-        className="rounded-lg border border-gray-300 dark:border-gray-700 px-3 py-1.5 [@media(pointer:coarse)]:py-2.5 text-[13px] font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="rounded-lg border border-gray-300 dark:border-gray-700 px-3 py-1.5 [@media(pointer:coarse)]:py-2.5 text-[0.8125rem] font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
       >
-        <span aria-live="polite">{state === 'copied' ? 'Copied' : state === 'failed' ? 'Couldn’t Copy' : 'Copy Link'}</span>
+        {state === 'copied' ? 'Copied' : state === 'failed' ? 'Couldn’t Copy' : 'Copy Link'}
       </button>
+      <span role="status" className="sr-only">
+        {said}
+      </span>
       {state === 'failed' && (
         <div
           onKeyDown={e => e.key === 'Escape' && close()}
           className="absolute right-0 top-full mt-2 z-20 w-[min(20rem,80vw)] rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-3 shadow-lg flex flex-col gap-2">
-          <label className="text-[12.5px] text-gray-600 dark:text-gray-300">
+          <label className="text-[0.78125rem] text-gray-600 dark:text-gray-300">
             Copy this link by hand (press and hold, or select it):
             <input
               ref={boxRef}
               readOnly
               value={link}
               onFocus={e => e.target.select()}
-              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-950 px-2 py-1.5 text-[12.5px] text-gray-900 dark:text-white"
+              className="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-950 px-2 py-1.5 text-[0.78125rem] [@media(pointer:coarse)]:text-base text-gray-900 dark:text-white"
             />
           </label>
           <button
             type="button"
             onClick={close}
-            className="self-end rounded-lg px-3 py-1.5 [@media(pointer:coarse)]:py-2.5 text-[12.5px] font-medium text-sky-700 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40"
+            className="self-end rounded-lg px-3 py-1.5 [@media(pointer:coarse)]:py-2.5 text-[0.78125rem] font-medium text-sky-700 dark:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             Close
           </button>

@@ -9,7 +9,7 @@
 import { useId, useMemo, useRef, type MutableRefObject, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { SUBJECTS, currentCourseFrom, isOldCourse, type Subject } from '../data.ts'
-import { aheadOf } from '../format.ts'
+import { aheadOf, parseMark } from '../format.ts'
 import { Announce } from '../shared.tsx'
 import { today } from './dates.ts'
 import { insertAttempt, recentAverage, replaceAttempt, scoreAttempts, yearsFor, type Attempt, type Draft } from './log.ts'
@@ -39,29 +39,21 @@ export function defaultPaper(subject: Subject, attempts: Attempt[]): number {
 
 type Check = { tone: 'hint' | 'error'; text: string; focus: 'date' | number } | { tone: 'ok'; draft: Draft }
 
-function markOf(s: string, max: number): number | null | 'bad' {
-  if (s.trim() === '') return null
-  const v = Number(s)
-  return Number.isInteger(v) && v >= 0 && v <= max ? v : 'bad'
-}
-
-/** What's wrong or missing, first thing first, or the attempt ready to save. */
-export function checkValues(subject: Subject, v: FormValues): Check {
+/** What's wrong or missing, first thing first, or the attempt ready to save. A mark is read by
+ *  parseMark, as in Check My Marks, so the same mistake reads the same way in both modes. */
+function checkValues(subject: Subject, v: FormValues): Check {
   const exams = SUBJECTS[subject].exams
-  const marks = exams.map((e, k) => markOf(v.marks[k] ?? '', e.rawMax))
-  const bad = exams.findIndex((_, k) => marks[k] === 'bad')
+  const marks = exams.map((e, k) => parseMark(v.marks[k] ?? '', e.label, e.rawMax))
+  const bad = marks.findIndex(m => m.error !== null)
   if (bad >= 0) {
-    const text = exams
-      .filter((_, k) => marks[k] === 'bad')
-      .map(e => `${e.label} needs a whole number from 0 to ${e.rawMax}.`)
-      .join(' ')
+    const text = marks.flatMap(m => (m.error === null ? [] : [m.error])).join(' ')
     return { tone: 'error', text, focus: bad }
   }
   if (v.dateBad) return { tone: 'error', text: 'That date isn’t finished. Complete it, or clear it.', focus: 'date' }
   if (v.date && v.date > today()) return { tone: 'error', text: 'That date is in the future.', focus: 'date' }
-  const missing = exams.findIndex((_, k) => marks[k] === null)
+  const missing = marks.findIndex(m => m.mark === null)
   if (missing >= 0) {
-    const none = marks.every(m => m === null)
+    const none = marks.every(m => m.mark === null)
     const text = none
       ? exams.length > 1
         ? `Enter your ${exams.map(e => e.label).join(' and ')} marks to see the score.`
@@ -69,7 +61,7 @@ export function checkValues(subject: Subject, v: FormValues): Check {
       : `Enter your ${exams[missing].label} mark.`
     return { tone: 'hint', text, focus: missing }
   }
-  return { tone: 'ok', draft: { date: v.date || null, paper: v.paper, marks: marks as number[] } }
+  return { tone: 'ok', draft: { date: v.date || null, paper: v.paper, marks: marks.map(m => m.mark as number) } }
 }
 
 /** "This paper projects to 37 · ahead of 85% of the state · Recent Average 39 → 38", with the
@@ -87,11 +79,13 @@ function projectionLine(subject: Subject, attempts: Attempt[], draft: Draft, edi
 
 // ── Form ───────────────────────────────────────────────────────────────────────────────────
 
-const LABEL = 'text-[12px] font-semibold text-gray-500 dark:text-gray-400'
+const LABEL = 'text-xs font-semibold text-gray-500 dark:text-gray-400'
 /** One height for every control, a little taller under a finger. */
 const HEIGHT = 'h-9 [@media(pointer:coarse)]:h-10'
-const CONTROL = `${HEIGHT} rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-[14px] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500`
-const TEXT_BUTTON = `${HEIGHT} rounded-lg px-2 text-[13px] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`
+/** The boxes: a border that stands out from the card (3:1) even when empty, and 16 px text under a
+ *  finger, since iPhones zoom in on a box with smaller text and don't zoom back out. */
+const CONTROL = `${HEIGHT} rounded-lg border border-gray-500 dark:border-gray-500 bg-white dark:bg-gray-950 text-sm [@media(pointer:coarse)]:text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500`
+const TEXT_BUTTON = `${HEIGHT} rounded-lg px-2 text-[0.8125rem] font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500`
 
 export default function AttemptForm({
   subject,
@@ -269,7 +263,7 @@ export default function AttemptForm({
                 onChange={ev => setMark(k, ev.target.value)}
                 className={`${CONTROL} w-[4rem] px-2 font-semibold tabular-nums`}
               />
-              <span aria-hidden className="text-[12.5px] text-gray-500 dark:text-gray-400 tabular-nums">
+              <span aria-hidden className="text-[0.78125rem] text-gray-500 dark:text-gray-400 tabular-nums">
                 / {e.rawMax}
               </span>
             </span>
@@ -281,7 +275,7 @@ export default function AttemptForm({
             type="submit"
             aria-disabled={check.tone !== 'ok' || undefined}
             aria-describedby={previewId}
-            className={`${HEIGHT} rounded-lg bg-sky-700 dark:bg-sky-500 px-3.5 text-[13px] font-semibold text-white dark:text-gray-950 whitespace-nowrap hover:bg-sky-800 dark:hover:bg-sky-400 aria-disabled:opacity-40 aria-disabled:cursor-not-allowed aria-disabled:hover:bg-sky-700 dark:aria-disabled:hover:bg-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900`}
+            className={`${HEIGHT} rounded-lg bg-sky-700 dark:bg-sky-500 px-3.5 text-[0.8125rem] font-semibold text-white dark:text-gray-950 whitespace-nowrap hover:bg-sky-800 dark:hover:bg-sky-400 aria-disabled:opacity-40 aria-disabled:cursor-not-allowed aria-disabled:hover:bg-sky-700 dark:aria-disabled:hover:bg-sky-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900`}
           >
             {editing ? 'Save Changes' : 'Add Attempt'}
           </button>
@@ -300,7 +294,7 @@ export default function AttemptForm({
 
       <p
         id={previewId}
-        className={`mt-2.5 text-[13px] leading-snug ${
+        className={`mt-2.5 text-[0.8125rem] leading-snug ${
           check.tone === 'error' ? 'text-rose-600 dark:text-rose-400' : line ? 'text-gray-700 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400'
         }`}
       >
@@ -317,7 +311,7 @@ export default function AttemptForm({
 
       <OldCourseHint subject={subject} paper={values.paper} />
 
-      {!editing && <p className="mt-1.5 text-[12px] text-gray-500 dark:text-gray-400">No date? It’s added as your latest paper.</p>}
+      {!editing && <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">No date? It’s added as your latest paper.</p>}
     </form>
   )
 }
@@ -328,19 +322,26 @@ export default function AttemptForm({
  *  imported, since that module brings Exam Explanations' question data with it). */
 const SKIP_GUIDE_YEARS = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
 
-const SKIP_LINK = 'font-medium text-sky-700 dark:text-sky-400 hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
+const SKIP_LINK = 'font-medium text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
 
 /** A paper from the previous study design reads low if skipped questions were left at zero:
- *  say so, and link to that paper's list of what to skip. */
+ *  say so, and link to that paper's list of what to skip (or, for a paper the Skip Guide doesn't
+ *  list, to the subject's guide, saying which papers it covers). */
 function OldCourseHint({ subject, paper }: { subject: Subject; paper: number }) {
   if (!isOldCourse(subject, paper)) return null
   const exams = SUBJECTS[subject].exams
   const base = `/exam-skip-guide/${subject}`
-  const inGuide = SKIP_GUIDE_YEARS.includes(paper)
   const slug = (label: string) => label.toLowerCase().replace(/\s+/g, '-')
 
   let links: ReactNode
-  if (inGuide && exams.length > 1) {
+  if (!SKIP_GUIDE_YEARS.includes(paper)) {
+    const upTo = `papers up to ${SKIP_GUIDE_YEARS[SKIP_GUIDE_YEARS.length - 1]}`
+    links = (
+      <Link to={base} aria-label={`Skip Guide (${upTo})`} className={SKIP_LINK}>
+        Skip Guide ({upTo}) →
+      </Link>
+    )
+  } else if (exams.length > 1) {
     links = (
       <>
         What to skip:{' '}
@@ -357,14 +358,14 @@ function OldCourseHint({ subject, paper }: { subject: Subject; paper: number }) 
     )
   } else {
     links = (
-      <Link to={inGuide ? `${base}/${paper}/${slug(exams[0].label)}` : base} aria-label={`What to skip on the ${paper} paper`} className={SKIP_LINK}>
+      <Link to={`${base}/${paper}/${slug(exams[0].label)}`} aria-label={`What to skip on the ${paper} paper`} className={SKIP_LINK}>
         What to skip →
       </Link>
     )
   }
 
   return (
-    <p className="mt-1.5 text-[12.5px] leading-snug text-gray-600 dark:text-gray-300 max-w-3xl">
+    <p className="mt-1.5 text-[0.78125rem] leading-snug text-gray-600 dark:text-gray-300 max-w-3xl">
       <b className="font-semibold text-gray-700 dark:text-gray-200">Old-course paper.</b> If you skipped questions that are no longer on the course, add the
       marks you think you’d have got on them, or this paper will read a few points low. <span className="whitespace-nowrap">{links}</span>
     </p>

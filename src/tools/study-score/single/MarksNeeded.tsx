@@ -35,7 +35,7 @@ export default function MarksNeeded({
   const you = (
     <tr key="you">
       <td colSpan={3} className="py-1">
-        <div className="rounded-lg bg-sky-50 dark:bg-sky-950/60 px-2.5 py-1.5 text-[12.5px] font-semibold text-sky-800 dark:text-sky-200 tabular-nums">
+        <div className="rounded-lg bg-sky-50 dark:bg-sky-950/60 px-2.5 py-1.5 text-[0.78125rem] font-semibold text-sky-800 dark:text-sky-200 tabular-nums">
           You now: <b className="font-bold">{total}</b> / {max} → <b className="font-bold">{typical}</b>
         </div>
       </td>
@@ -53,9 +53,9 @@ export default function MarksNeeded({
           : `Marks out of ${max} on the exam for each study score.`}
       </p>
 
-      <table className="w-full max-w-xl text-[13px] sm:text-[13.5px] tabular-nums">
+      <table className="w-full max-w-xl text-[0.8125rem] sm:text-[0.84375rem] tabular-nums">
         <thead>
-          <tr className="text-left text-[12px] font-semibold text-gray-500 dark:text-gray-400">
+          <tr className="text-left text-xs font-semibold text-gray-500 dark:text-gray-400">
             <th scope="col" className="pb-1.5 pr-2 font-semibold w-[24%]">
               <span className="sm:hidden">Score</span>
               <span className="hidden sm:inline">Study Score</span>
@@ -87,7 +87,7 @@ export default function MarksNeeded({
                     <>
                       <span className={bold ? '' : 'font-medium'}>{r.typical}</span>
                       {two && (
-                        <span className="block sm:inline sm:ml-1.5 text-[12px] sm:text-[12.5px] font-normal text-gray-500 dark:text-gray-400">
+                        <span className="block sm:inline sm:ml-1.5 text-xs sm:text-[0.78125rem] font-normal text-gray-500 dark:text-gray-400">
                           e.g. {splitTotal(subject, r.typical).join(' + ')}
                         </span>
                       )}
@@ -103,7 +103,7 @@ export default function MarksNeeded({
         </tbody>
       </table>
 
-      <p className="mt-2 text-[12px] text-gray-500 dark:text-gray-400">The low end is the most generous year, the high end the least generous.</p>
+      <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">The low end is the most generous year, the high end the least generous.</p>
     </section>
   )
 }

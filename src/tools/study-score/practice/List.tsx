@@ -3,13 +3,14 @@
 //
 // The header and every row share one set of fixed grid tracks, so headings sit over their
 // numbers whatever is in a row. Narrow cards put the rank (and a retake's "2nd try") on a second
-// line; from @3xl each mark and the rank get their own column. It's a plain list: each row's
-// visible cells are hidden from screen readers, which hear one sentence per paper instead.
+// line and write another year short ("13 Sept ’25"); from @3xl each mark and the rank get their
+// own column. It's a plain list: each row's visible cells are hidden from screen readers, which
+// hear one sentence per paper instead.
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
 import { aheadOf, examShares } from '../format.ts'
-import { fmtDate, nth, today } from './dates.ts'
+import { fmtDate, fmtDateShort, nth, today } from './dates.ts'
 import { attemptName, type Attempt, type Draft, type Scored } from './log.ts'
 import AttemptForm, { valuesOf, type FormValues } from './Form.tsx'
 
@@ -20,14 +21,14 @@ import AttemptForm, { valuesOf, type FormValues } from './Form.tsx'
 export function UndoLine({ text, onUndo, className = '' }: { text: string; onUndo: () => void; className?: string }) {
   const id = useId()
   return (
-    <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-gray-50 dark:bg-gray-800/60 px-3 py-2 text-[13px] text-gray-600 dark:text-gray-300 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-gray-50 dark:bg-gray-800/60 px-3 py-2 text-[0.8125rem] text-gray-600 dark:text-gray-300 ${className}`}>
       <span id={id}>{text}</span>
       <button
         type="button"
         data-undo
         onClick={onUndo}
         aria-describedby={id}
-        className="relative rounded font-semibold text-sky-700 dark:text-sky-400 hover:underline after:absolute after:-inset-x-2 after:-inset-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="relative rounded font-semibold text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline after:absolute after:-inset-x-2 after:-inset-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
       >
         Undo
       </button>
@@ -37,16 +38,21 @@ export function UndoLine({ text, onUndo, className = '' }: { text: string; onUnd
 
 // ── List ───────────────────────────────────────────────────────────────────────────────────
 
-// Tracks: Date (as wide as the widest date shown, --dw) | Paper | marks | Score | Edit, and from
-// @3xl Date | Paper | each mark | Score | Ahead of the State | Edit.
+// Tracks: Date (as wide as the widest date shown: --dw, --dw-wide) | Paper | marks | Score | Edit,
+// and from @3xl Date | Paper | each mark | Score | Ahead of the State | Edit.
+//
+// The narrow tracks fit a 320 px phone, whose card is 254 px inside: with another year's date,
+// 4.75 + 3 + 2 + 2 rem and four 0.5 rem gaps leave the Paper column 34 px, enough for "2019"
+// (2.75 rem marks for Chemistry leave it 38). Edit's button reaches into the card's padding.
 const COLS = {
-  two: 'grid-cols-[var(--dw)_minmax(0,1fr)_4.25rem_2rem_2.75rem] @3xl:grid-cols-[var(--dw)_6.5rem_4.5rem_4.5rem_2.5rem_minmax(0,1fr)_2.75rem]',
-  one: 'grid-cols-[var(--dw)_minmax(0,1fr)_3.5rem_2rem_2.75rem] @3xl:grid-cols-[var(--dw)_6.5rem_5.5rem_2.5rem_minmax(0,1fr)_2.75rem]',
+  two: 'grid-cols-[var(--dw)_minmax(0,1fr)_3rem_2rem_2rem] @3xl:grid-cols-[var(--dw-wide)_6.5rem_4.5rem_4.5rem_2.5rem_minmax(0,1fr)_2.75rem]',
+  one: 'grid-cols-[var(--dw)_minmax(0,1fr)_2.75rem_2rem_2rem] @3xl:grid-cols-[var(--dw-wide)_6.5rem_5.5rem_2.5rem_minmax(0,1fr)_2.75rem]',
 }
+const GAP = 'gap-x-2 @3xl:gap-x-3'
 const WIDE = 'hidden @3xl:block'
 const NARROW = '@3xl:hidden'
 
-const PILL = 'rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-[11px] font-semibold text-gray-600 dark:text-gray-300 whitespace-nowrap'
+const PILL = 'rounded-full bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-[0.6875rem] font-semibold text-gray-600 dark:text-gray-300 whitespace-nowrap'
 
 export default function AttemptList({
   subject,
@@ -75,9 +81,11 @@ export default function AttemptList({
   const listRef = useRef<HTMLUListElement>(null)
   const exams = SUBJECTS[subject].exams
   const cols = exams.length > 1 ? COLS.two : COLS.one
-  // Dates from another year carry it ("12 July 2025"), so the column widens only when one does.
+  // Dates from another year carry it ("12 July ’25", or "12 July 2025" in wide rows), so the
+  // column widens only when one does.
   const year = today().slice(0, 4)
-  const dw = scored.some(a => a.date !== null && a.date.slice(0, 4) !== year) ? '5.75rem' : '3.75rem'
+  const otherYear = scored.some(a => a.date !== null && a.date.slice(0, 4) !== year)
+  const widths = { '--dw': otherYear ? '4.75rem' : '3.75rem', '--dw-wide': otherYear ? '5.75rem' : '3.75rem' } as CSSProperties
 
   const focusEdit = (id: number) =>
     requestAnimationFrame(() => listRef.current?.querySelector<HTMLElement>(`[data-edit="${id}"]`)?.focus())
@@ -114,8 +122,8 @@ export default function AttemptList({
   if (removed && removed.at === 0) rows.push(undoRow)
 
   return (
-    <div className="@container text-[13px]" style={{ '--dw': dw } as CSSProperties}>
-      <div aria-hidden className={`grid ${cols} gap-x-3 pb-1.5 text-[12px] font-semibold text-gray-500 dark:text-gray-400`}>
+    <div className="@container text-[0.8125rem]" style={widths}>
+      <div aria-hidden className={`grid ${cols} ${GAP} pb-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400`}>
         <span>Date Sat</span>
         <span>Paper</span>
         <span className={`${NARROW} text-right whitespace-nowrap`}>{exams.map(e => e.short).join(' · ')}</span>
@@ -169,30 +177,42 @@ function Row({
   const said = `Your ${attemptName(a)}${retake ? ` (${retake})` : ''}: ${exams
     .map((e, k) => `${e.label} ${a.marks[k]} out of ${e.rawMax}`)
     .join(', ')}. Projects to ${a.proj.score}, ${aheadOf(a.proj.pct)} of the state.${perExam}`
+  // Another year's date is written short in narrow rows ("13 Sept ’25"), in full in wide ones.
+  const long = a.date ? fmtDate(a.date) : 'No date'
+  const short = a.date ? fmtDateShort(a.date) : long
 
   return (
+    // Only the tint fades, and slowly only as it goes (a paper just added, an editor closed):
+    // the border and an open row's tint change with the rest of the page on a theme switch.
     <li
       data-row={a.id}
-      className={`relative -mx-2 px-2 rounded-lg border-t border-gray-100 dark:border-gray-800 transition-colors duration-1000 motion-reduce:transition-none ${
-        open ? 'bg-sky-50/70 dark:bg-sky-950/30' : flash ? 'bg-sky-50 dark:bg-sky-950/50' : ''
+      className={`relative -mx-2 px-2 rounded-lg border-t border-gray-100 dark:border-gray-800 transition-[background-color] motion-reduce:transition-none ${
+        open ? 'bg-sky-50/70 dark:bg-sky-950/30' : `duration-1000 ${flash ? 'bg-sky-50 dark:bg-sky-950/50' : ''}`
       }`}
     >
       <span className="sr-only">{said}</span>
-      <div className={`grid ${cols} gap-x-3 items-center py-1.5`}>
+      <div className={`grid ${cols} ${GAP} items-center py-1.5`}>
         <span aria-hidden className={`tabular-nums whitespace-nowrap ${a.date ? 'text-gray-600 dark:text-gray-300' : 'text-gray-500 dark:text-gray-400'}`}>
-          {a.date ? fmtDate(a.date) : 'No date'}
+          {short === long ? (
+            long
+          ) : (
+            <>
+              <span className={NARROW}>{short}</span>
+              <span className="hidden @3xl:inline">{long}</span>
+            </>
+          )}
         </span>
         <span aria-hidden className="min-w-0 flex items-center gap-1.5 font-semibold text-gray-700 dark:text-gray-200 tabular-nums">
           {a.paper}
           {retake && <span className={`${PILL} ${WIDE}`}>{retake}</span>}
         </span>
-        <span aria-hidden className={`${NARROW} text-right text-[12.5px] tabular-nums text-gray-600 dark:text-gray-300 whitespace-nowrap`}>
+        <span aria-hidden className={`${NARROW} text-right text-[0.78125rem] tabular-nums text-gray-600 dark:text-gray-300 whitespace-nowrap`}>
           {a.marks.join(' · ')}
         </span>
         {exams.map((e, k) => (
           <span key={e.label} aria-hidden className={`${WIDE} tabular-nums text-gray-700 dark:text-gray-200 whitespace-nowrap`}>
             {a.marks[k]}
-            <span className="text-[12px] text-gray-500 dark:text-gray-400"> / {e.rawMax}</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400"> / {e.rawMax}</span>
           </span>
         ))}
         <span aria-hidden className="text-right font-display text-base font-bold text-gray-900 dark:text-white tabular-nums">
@@ -200,7 +220,7 @@ function Row({
         </span>
         <span
           aria-hidden
-          className="order-last @3xl:order-none col-start-2 col-span-3 @3xl:col-auto -mt-0.5 @3xl:mt-0 flex flex-wrap items-center gap-x-1.5 text-[12px] @3xl:text-[12.5px] leading-snug text-gray-500 dark:text-gray-400 tabular-nums"
+          className="order-last @3xl:order-none col-start-2 col-span-3 @3xl:col-auto -mt-0.5 @3xl:mt-0 flex flex-wrap items-center gap-x-1.5 text-xs @3xl:text-[0.78125rem] leading-snug text-gray-500 dark:text-gray-400 tabular-nums"
         >
           {retake && <span className={`${PILL} ${NARROW}`}>{retake}</span>}
           <span className="font-medium text-gray-700 dark:text-gray-200">{aheadOf(a.proj.pct)}</span>
@@ -214,7 +234,7 @@ function Row({
             aria-expanded={open}
             aria-controls={open ? editorId : undefined}
             aria-label={`Edit your ${attemptName(a)}`}
-            className="relative inline-flex items-center h-7 px-1.5 -mr-1.5 rounded-md text-[12.5px] font-medium text-sky-700 dark:text-sky-400 hover:underline after:absolute after:-inset-x-1.5 after:-inset-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="relative inline-flex items-center h-7 px-1.5 -mr-1.5 rounded-md text-[0.78125rem] font-medium text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline after:absolute after:-inset-x-1.5 after:-inset-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             Edit
           </button>

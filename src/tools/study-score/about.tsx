@@ -15,13 +15,13 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
 
   return (
     <details className="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-      <summary className="flex items-center gap-2 min-h-[44px] px-4 sm:px-5 rounded-2xl cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-display text-[15px] font-bold text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+      <summary className="flex items-center gap-2 min-h-[44px] px-4 sm:px-5 rounded-2xl cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden font-display text-[0.9375rem] font-bold text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
         <svg viewBox="0 0 12 12" aria-hidden className="w-3 h-3 flex-none transition-transform motion-reduce:transition-none group-open:rotate-90">
           <path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         How It Works
       </summary>
-      <div className="px-4 sm:px-5 pb-4 pt-1 max-w-3xl flex flex-col gap-2 text-[13px] leading-relaxed text-gray-600 dark:text-gray-400">
+      <div className="px-4 sm:px-5 pb-4 pt-1 max-w-3xl flex flex-col gap-2 text-[0.8125rem] leading-relaxed text-gray-600 dark:text-gray-400">
         <p>
           <b className={B}>{one ? 'Ranking the exam.' : 'Ranking each exam.'}</b> Every year VCAA publishes how many students got each grade (UG to A+) on{' '}
           {one ? 'the exam' : 'Exam 1 and Exam 2'}, and the score range for each grade. That gives the share of the state below each grade boundary; between
@@ -39,7 +39,7 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
             <b className={B}>Combining the exams.</b> Exam 2 has twice as many marks, so it carries twice the weight overall. But a mark is a mark: one more on
             Exam 1 helps exactly as much as one more on Exam 2. VCAA doesn’t publish how students’ Exam 1 and Exam 2 results line up, so the projection assumes
             a correlation of {RHO} between them — typical for two papers on the same course. Anything from {RHO_RANGE[0]} to {RHO_RANGE[1]} moves the result by a
-            point or two at most, and mostly when the two exams went very differently.
+            point or two at most, and mostly near the top or bottom of the scale.
           </p>
         )}
         <p>
@@ -62,7 +62,7 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
           <b className={B}>Sources.</b> VCAA grade distributions:{' '}
           {[...rows].reverse().map((r, i) => (
             <span key={r.year}>
-              <a href={r.source} target="_blank" rel="noreferrer" className="text-sky-700 dark:text-sky-400 hover:underline">
+              <a href={r.source} target="_blank" rel="noreferrer" className="rounded text-sky-700 dark:text-sky-400 [@media(hover:hover)]:hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                 {r.year}
               </a>
               {i < rows.length - 1 ? ', ' : '.'}

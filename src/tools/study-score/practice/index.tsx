@@ -348,7 +348,7 @@ export default function PracticeMode({
 
       {clash && <LinkNotice attempts={attempts} savedCount={savedCount} edited={clashEdited} onSave={keepLink} onOpenMine={openMine} />}
       {notice?.kind === 'saved' && (
-        <p data-note tabIndex={-1} role="status" className="-mb-2 px-1 text-[12px] text-gray-500 dark:text-gray-400 outline-none">
+        <p data-note tabIndex={-1} role="status" className="-mb-2 px-1 text-xs text-gray-500 dark:text-gray-400 outline-none">
           {notice.added === null
             ? 'Saved on this device.'
             : `Saved on this device: ${notice.added} new paper${notice.added === 1 ? '' : 's'} from the link added.`}
@@ -366,7 +366,7 @@ export default function PracticeMode({
         </section>
       ) : (
         <>
-          <PracticeHeadline subject={subject} scored={scored} goal={goal} />
+          <PracticeHeadline scored={scored} goal={goal} />
           <KeepInMind
             subject={subject}
             nearTop={scored.some(a => a.proj.score >= 45)}
@@ -405,7 +405,7 @@ export default function PracticeMode({
             <button
               type="button"
               onClick={clearAll}
-              className="mt-2 -ml-1.5 h-9 [@media(pointer:coarse)]:h-10 rounded-lg px-1.5 text-[12.5px] text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="mt-2 -ml-1.5 h-9 [@media(pointer:coarse)]:h-10 rounded-lg px-1.5 text-[0.78125rem] text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 [@media(hover:hover)]:hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             >
               Clear All Papers
             </button>

@@ -3,7 +3,7 @@
 // live in the page's top card (MarkInputs), and the sticky mark bar is placed by the page.
 
 import type { Ref } from 'react'
-import type { Subject } from '../data.ts'
+import { SUBJECTS, type Subject } from '../data.ts'
 import { aheadOf } from '../format.ts'
 import type { Projection } from '../model.ts'
 import { Announce, KeepInMind } from '../shared.tsx'
@@ -31,13 +31,15 @@ export default function CheckMarks({
   endRef?: Ref<HTMLElement>
 }) {
   const latest = rows[rows.length - 1]
+  // The marks lead, so a step on the sticky bar's − or + is heard even when the scores don't move.
+  const said = SUBJECTS[subject].exams.map((e, i) => `${e.label} ${marks[i]}`).join(', ')
   return (
     <div aria-busy={busy || undefined} className={`flex flex-col gap-5 transition-opacity motion-reduce:transition-none ${busy ? 'opacity-50' : ''}`}>
       <Headline rows={rows} typical={typical} />
       <KeepInMind subject={subject} nearTop={rows.some(r => r.score >= 45)} />
       <YearByYear subject={subject} marks={marks} rows={rows} />
       <MarksNeeded subject={subject} marks={marks} typical={typical} cardRef={endRef} />
-      <Announce text={`Typical year ${typical}. In ${latest.year}: ${latest.score}, ${aheadOf(latest.pct)} of the state.`} />
+      <Announce text={`${said}. Typical year ${typical}. In ${latest.year}: ${latest.score}, ${aheadOf(latest.pct)} of the state.`} />
     </div>
   )
 }

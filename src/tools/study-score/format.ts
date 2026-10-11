@@ -22,3 +22,13 @@ export function examShares(subject: Subject, p: Projection): string {
 export function marksText(subject: Subject, marks: number[]): string {
   return SUBJECTS[subject].exams.map((e, i) => `${e.short} ${marks[i]}/${e.rawMax}`).join(' · ')
 }
+
+/** A mark as typed into a box: the whole number, or the message to show under the box. Both modes
+ *  use this, so the same mistake always reads the same way. An empty box is neither. */
+export function parseMark(text: string, label: string, max: number): { mark: number | null; error: string | null } {
+  const s = text.trim()
+  if (s === '') return { mark: null, error: null }
+  if (!/^\d+$/.test(s)) return { mark: null, error: `${label} needs a whole number from 0 to ${max}.` }
+  const v = Number(s)
+  return v > max ? { mark: null, error: `${label} is out of ${max}.` } : { mark: v, error: null }
+}

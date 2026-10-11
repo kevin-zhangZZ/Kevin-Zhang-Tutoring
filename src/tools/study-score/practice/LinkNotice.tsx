@@ -8,7 +8,7 @@ import { fmtDate } from './dates.ts'
 import type { Attempt } from './log.ts'
 
 const BUTTON =
-  'w-full sm:w-auto h-11 sm:h-8 [@media(pointer:coarse)]:h-11 rounded-lg border border-sky-300 dark:border-sky-800 bg-white dark:bg-gray-900 px-3 text-[13px] font-medium text-gray-800 dark:text-gray-100 whitespace-nowrap hover:bg-sky-100 dark:hover:bg-sky-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
+  'w-full sm:w-auto h-11 sm:h-8 [@media(pointer:coarse)]:h-11 rounded-lg border border-sky-300 dark:border-sky-800 bg-white dark:bg-gray-900 px-3 text-[0.8125rem] font-medium text-gray-800 dark:text-gray-100 whitespace-nowrap hover:bg-sky-100 dark:hover:bg-sky-900/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
 
 const papers = (n: number) => `${n} paper${n === 1 ? '' : 's'}`
 
@@ -46,7 +46,7 @@ export default function LinkNotice({
   const when = first && last ? (first === last ? `, ${fmtDate(first)}` : `, ${fmtDate(first)} to ${fmtDate(last)}`) : ''
 
   return (
-    <section aria-label="Log From a Link" className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 px-4 py-3 text-[13px] leading-snug text-sky-950 dark:text-sky-100">
+    <section aria-label="Log From a Link" className="rounded-xl border border-sky-200 dark:border-sky-900 bg-sky-50 dark:bg-sky-950/40 px-4 py-3 text-[0.8125rem] leading-snug text-sky-950 dark:text-sky-100">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <p className="min-w-0">
           This log came from a link

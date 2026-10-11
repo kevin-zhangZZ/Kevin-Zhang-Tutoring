@@ -2,20 +2,12 @@
 // A box keeps whatever is typed, but only a valid mark reaches the results. While a box holds
 // something else (45 in a box out of 40, or nothing at all), it says what's wrong and the
 // results dim, so the box and the results never disagree without saying so. Leaving the box
-// puts the last valid mark back.
+// puts the last valid mark back. Marks are read by parseMark, as in Track My Papers, so the same
+// mistake reads the same way on both tabs.
 
-import { useCallback, useEffect, useId, useState, type Ref } from 'react'
+import { useCallback, useEffect, useId, useState, type KeyboardEvent, type Ref } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
-
-/** What's wrong with a typed mark: null when it's fine, '' when the box is empty (nothing to
- *  say while someone is retyping), else a sentence. */
-function problemOf(text: string, label: string, max: number): string | null {
-  if (text.trim() === '') return ''
-  const v = Number(text)
-  if (!Number.isFinite(v) || v < 0 || !Number.isInteger(v)) return `${label} needs a whole number from 0 to ${max}.`
-  if (v > max) return `${label} is out of ${max}.`
-  return null
-}
+import { parseMark } from '../format.ts'
 
 // ── The inputs ─────────────────────────────────────────────────────────────────────────────
 
@@ -46,7 +38,8 @@ export default function MarkInputs({
   useEffect(() => () => onBusy(false), [onBusy])
 
   return (
-    <div ref={boxRef} className={`grid gap-5 sm:gap-8 ${exams.length > 1 ? 'sm:grid-cols-2' : 'sm:max-w-md'}`}>
+    // Side by side once the top card (an @container) is wide enough for two full-length sliders.
+    <div ref={boxRef} className={`grid gap-5 @xl:gap-8 ${exams.length > 1 ? '@xl:grid-cols-2' : 'sm:max-w-md'}`}>
       {exams.map((e, i) => (
         <MarkInput key={e.label} index={i} label={e.label} max={e.rawMax} value={marks[i]} onChange={v => onMark(i, v)} onValid={setValid} />
       ))}
@@ -79,14 +72,23 @@ function MarkInput({
     setNote('')
   }, [value])
 
-  const problem = problemOf(text, label, max)
-  const ok = problem === null
+  // An empty box is neither a mark nor a mistake: nothing to say while someone is retyping.
+  const { mark, error } = parseMark(text, label, max)
+  const ok = mark !== null
   useEffect(() => onValid(index, ok), [index, ok, onValid])
 
   const commit = (s: string) => {
     setText(s)
     setNote('')
-    if (problemOf(s, label, max) === null) onChange(Number(s))
+    const m = parseMark(s, label, max).mark
+    if (m !== null) onChange(m)
+  }
+  /** Up and Down step the mark, as they did when this was a number box. */
+  const step = (e: KeyboardEvent<HTMLInputElement>) => {
+    const d = e.key === 'ArrowUp' ? 1 : e.key === 'ArrowDown' ? -1 : 0
+    if (!d) return
+    e.preventDefault()
+    commit(String(Math.min(max, Math.max(0, (mark ?? value) + d))))
   }
   const leave = () => {
     if (!ok) setNote(`${label} set back to ${value}.`)
@@ -97,29 +99,28 @@ function MarkInput({
   return (
     <div className="flex flex-col gap-2 min-w-0">
       <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-[13px] font-semibold text-gray-700 dark:text-gray-200">
+        <label htmlFor={id} className="text-[0.8125rem] font-semibold text-gray-700 dark:text-gray-200">
           {label}
         </label>
-        <span className={`text-[12.5px] text-gray-500 dark:text-gray-400 tabular-nums transition-opacity motion-reduce:transition-none ${ok ? '' : 'opacity-50'}`}>{pct}%</span>
+        <span className={`text-[0.78125rem] text-gray-500 dark:text-gray-400 tabular-nums transition-opacity motion-reduce:transition-none ${ok ? '' : 'opacity-50'}`}>{pct}%</span>
       </div>
       <div className="flex items-center gap-3">
         <div className="flex items-baseline gap-1.5 flex-none">
           <input
             id={id}
             data-mark={index}
-            type="number"
+            type="text"
             inputMode="numeric"
-            min={0}
-            max={max}
-            step={1}
+            autoComplete="off"
             value={text}
             aria-invalid={!ok || undefined}
-            aria-describedby={problem ? errId : undefined}
+            aria-describedby={error ? errId : undefined}
             onChange={e => commit(e.target.value)}
+            onKeyDown={step}
             onBlur={leave}
-            className="w-[4.5rem] rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-2.5 py-1.5 font-display text-xl font-bold text-gray-900 dark:text-white tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-[4.5rem] rounded-lg border border-gray-500 dark:border-gray-500 bg-white dark:bg-gray-950 px-2.5 py-1.5 font-display text-xl font-bold text-gray-900 dark:text-white tabular-nums focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <span className="text-[15px] text-gray-500 dark:text-gray-400">/ {max}</span>
+          <span className="text-[0.9375rem] text-gray-500 dark:text-gray-400">/ {max}</span>
         </div>
         <input
           type="range"
@@ -135,8 +136,8 @@ function MarkInput({
       </div>
       {/* Always mounted as a live region, so a screen reader hears the problem (and the quiet
           put-back on leaving the box) as it happens. Hidden visually when there's nothing wrong. */}
-      <p id={errId} aria-live="polite" className={problem ? '-mt-1 text-[12px] text-rose-600 dark:text-rose-400' : 'sr-only'}>
-        {problem || note}
+      <p id={errId} aria-live="polite" className={error ? '-mt-1 text-xs text-rose-600 dark:text-rose-400' : 'sr-only'}>
+        {error ?? note}
       </p>
     </div>
   )
