@@ -1,7 +1,7 @@
 // Shared building blocks for a multi-part written solution: one card per exam part
 // (statement + marks + a working/reasoning table + examiner's report + video slot).
 
-import { Children, Fragment, cloneElement, createContext, isValidElement, useContext, useEffect, useState, type ReactNode } from 'react'
+import { Children, Fragment, cloneElement, createContext, isValidElement, useContext, useEffect, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 import { useStudyMode } from './studyMode'
 import { Explore } from './Explore'
@@ -68,6 +68,75 @@ function gateChildren(children: ReactNode, show: boolean): ReactNode {
   })
 }
 
+// The rail beside each part, and the label that rides down it, need to know the question they're
+// in and how to move about it. The tool (index.tsx) provides this around the open question;
+// anywhere else a PartCard renders without a rail.
+export interface PartNav {
+  /** The question's code without its parts, e.g. "Q4". */
+  code: string
+  /** The question's part letters, in order. */
+  parts: string[]
+  jumpTo: (letter: string) => void
+  /** Back to the very top of the question. */
+  jumpTop: () => void
+  /** Press on a label: opens the ladder of parts, which follows the finger until it lifts. */
+  startSlide: (e: ReactPointerEvent<HTMLElement>, letter: string) => void
+}
+
+export const PartNavCtx = createContext<PartNav | null>(null)
+
+const Chevron = ({ up }: { up?: boolean }) => (
+  <svg viewBox="0 0 10 6" aria-hidden="true">
+    <path
+      d={up ? 'M1.5 4.75 5 1.25 8.5 4.75' : 'M1.5 1.25 5 4.75 8.5 1.25'}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+// A part's rail and its label. Light blue beside the parts in view, dark beside the one in focus
+// (its top past the middle of the screen); the focused part's label carries the question code and
+// ▴ / ▾ to step between parts — ▴ on the first part goes to the top of the question, and the last
+// part has no ▾, so the arrows never leave the question. Pressing the label opens a ladder of the
+// parts to slide along. Which part is in focus, and which have been seen, are data attributes the
+// tool sets on the part (usePartTracking), so scrolling restyles the rails without re-rendering
+// the solution. Rendered twice per part: in the page margin on phones (`part`) and in the answer's
+// indent under the letter circle from `sm` up (`answer`); index.css shows the right one, and drops
+// the label on laptops, where the question list beside the solution does that job. The label is
+// for touch and pointer: keyboard and screen-reader users have the part headings and the list.
+function PartRail({ letter, host }: { letter: string; host: 'part' | 'answer' }) {
+  const nav = useContext(PartNavCtx)
+  if (!nav || !letter) return null
+  const i = nav.parts.indexOf(letter)
+  const prev = i > 0 ? nav.parts[i - 1] : null
+  const next = i > -1 && i < nav.parts.length - 1 ? nav.parts[i + 1] : null
+  return (
+    <span className={`ws-railbox ws-railbox-${host}`} aria-hidden="true">
+      <span className="ws-rail" />
+      <span className="ws-railcol">
+        <span className="ws-ride">
+          <button type="button" tabIndex={-1} className="ws-ride-ar" onClick={() => (prev ? nav.jumpTo(prev) : nav.jumpTop())}>
+            <Chevron up />
+          </button>
+          <span className="ws-ride-mid" onPointerDown={e => nav.startSlide(e, letter)}>
+            <span className="ws-ride-q">{nav.code}</span>
+            <span>{letter}</span>
+          </span>
+          {next && (
+            <button type="button" tabIndex={-1} className="ws-ride-ar" onClick={() => nav.jumpTo(next)}>
+              <Chevron />
+            </button>
+          )}
+        </span>
+      </span>
+    </span>
+  )
+}
+
 export function PartCard({
   letter,
   topic,
@@ -103,12 +172,15 @@ export function PartCard({
         data-part={letter}
         data-topic={topic}
         id={`part-${letter}`}
-        className="scroll-mt-16 border-t pt-6 sm:pt-6 sm:border sm:rounded-2xl sm:p-6 border-gray-200 dark:border-gray-800"
+        className="ws-part relative scroll-mt-16 border-t pt-6 sm:pt-6 sm:border sm:rounded-2xl sm:p-6 border-gray-200 dark:border-gray-800"
       >
+        <PartRail letter={letter} host="part" />
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-start gap-3">
-            {/* The part's heading (h3, under the question's h2), so screen readers can jump part to part. */}
-            <h3 className="flex-none w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 font-display text-sm font-bold flex items-center justify-center">
+            {/* The part's heading (h3, under the question's h2), so screen readers can jump part to part.
+                With a rail on a phone, the letter lives on the rail instead and this circle is kept
+                for screen readers only (index.css). */}
+            <h3 className="ws-part-circle flex-none w-7 h-7 rounded-full bg-sky-100 dark:bg-sky-900/50 text-sky-700 dark:text-sky-300 font-display text-sm font-bold flex items-center justify-center">
               <span className="sr-only">Part </span>
               {letter}
             </h3>
@@ -119,7 +191,8 @@ export function PartCard({
           </span>
         </div>
 
-        <div className="sm:pl-10 flex flex-col gap-5">
+        <div className="relative sm:pl-10 flex flex-col gap-5">
+          <PartRail letter={letter} host="answer" />
           {gateChildren(children, !hideAnswers || done)}
 
           {examinerReport && <SAExaminerReport stats={examinerReport} maxMarks={marks} />}

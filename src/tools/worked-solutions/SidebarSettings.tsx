@@ -127,6 +127,14 @@ const GROUPS: { title: string; controls: Control[] }[] = [
           ['full', 'Full screen', 'Takes the whole screen, giving the list more room.'],
         ],
       },
+      {
+        key: 'labelSide',
+        label: 'Part label, on a phone',
+        options: [
+          ['left', 'Left', 'The rail beside each part, and the label with its ▴ ▾ arrows, sit in the left margin.'],
+          ['right', 'Right', 'The same, mirrored into the right margin, for a right thumb.'],
+        ],
+      },
     ],
   },
 ]

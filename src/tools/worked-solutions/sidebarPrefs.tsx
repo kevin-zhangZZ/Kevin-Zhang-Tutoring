@@ -29,6 +29,8 @@ export interface SidebarPrefs {
   backBar: 'on' | 'off'
   /** Phones: the Questions list opens as a sheet or full screen. */
   sheet: 'sheet' | 'full'
+  /** Phones: which margin the part rail and its label (with the step arrows) sit in. */
+  labelSide: 'left' | 'right'
 }
 
 export const DEFAULT_PREFS: SidebarPrefs = {
@@ -43,6 +45,7 @@ export const DEFAULT_PREFS: SidebarPrefs = {
   pager: 'float',
   backBar: 'on',
   sheet: 'sheet',
+  labelSide: 'left',
 }
 
 export type ListView = 'year' | 'topic'
@@ -64,6 +67,7 @@ const OPTIONS: { [K in keyof SidebarPrefs]: SidebarPrefs[K][] } = {
   pager: ['off', 'end', 'float'],
   backBar: ['on', 'off'],
   sheet: ['sheet', 'full'],
+  labelSide: ['left', 'right'],
 }
 
 function readJson(key: string): Record<string, unknown> {

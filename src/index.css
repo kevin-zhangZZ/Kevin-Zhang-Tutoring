@@ -87,6 +87,208 @@
   }
 }
 
+/* Worked solutions: the rail beside each part and the label that rides it (QuestionParts.tsx
+   PartRail). The tool marks the part in focus [data-active] and parts that have scrolled into
+   view [data-seen] (index.tsx usePartTracking). Light rails grow in as their part arrives; the
+   focused part's rail is darker, and its label carries the question code and ▴ / ▾ and sits on
+   the middle of the screen — the line a part crosses to take focus — until its part ends. */
+.ws-railbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.ws-rail {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  border-radius: 3px;
+  background: theme('colors.sky.200');
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s, background-color 0.25s, width 0.2s, margin-left 0.2s;
+}
+.dark .ws-rail {
+  background: theme('colors.sky.900');
+}
+.ws-part[data-seen] .ws-rail {
+  transform: none;
+  opacity: 1;
+}
+.ws-part[data-active] .ws-rail {
+  width: 4px;
+  margin-left: -2px;
+  background: theme('colors.sky.700');
+}
+.dark .ws-part[data-active] .ws-rail {
+  background: theme('colors.sky.400');
+}
+.ws-railcol {
+  position: absolute;
+  inset: 0;
+}
+.ws-ride {
+  position: sticky;
+  /* Stuck so the letter's centre sits on the middle of the screen (inactive: no arrows). */
+  top: calc(50% - 13px);
+  display: block;
+  width: 28px;
+  margin: 0 auto;
+  overflow: hidden;
+  pointer-events: auto;
+  border: 1.5px solid theme('colors.sky.200');
+  border-radius: 9px;
+  background: #fff;
+  color: theme('colors.sky.700');
+  font-family: theme('fontFamily.display');
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.25s, border-color 0.25s, color 0.25s;
+}
+.dark .ws-ride {
+  border-color: theme('colors.sky.900');
+  background: theme('colors.gray.900');
+  color: theme('colors.sky.300');
+}
+.ws-part[data-seen] .ws-ride {
+  opacity: 1;
+}
+.ws-part[data-active] .ws-ride {
+  top: calc(50% - 39px);
+  border-color: theme('colors.sky.700');
+  background: theme('colors.sky.700');
+  color: #fff;
+}
+.dark .ws-part[data-active] .ws-ride {
+  border-color: theme('colors.sky.400');
+  background: theme('colors.sky.400');
+  color: theme('colors.gray.950');
+}
+/* Press here to open the ladder of parts; it follows the finger, so no page scroll. */
+.ws-ride-mid {
+  display: block;
+  padding: 5px 0 6px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.ws-part[data-active] .ws-ride-mid {
+  padding: 4px 0 5px;
+}
+.ws-ride-q {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 9px;
+  opacity: 0.75;
+  transition: max-height 0.25s;
+}
+.ws-part[data-active] .ws-ride-q {
+  max-height: 12px;
+  margin-bottom: 1px;
+}
+/* ▴ / ▾: folded away until the part is in focus. */
+.ws-ride-ar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0 solid rgb(255 255 255 / 0.25);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: height 0.2s;
+}
+.dark .ws-ride-ar {
+  border-color: rgb(3 7 18 / 0.2);
+}
+.ws-ride-ar svg {
+  flex: none;
+  width: 10px;
+  height: 6px;
+}
+.ws-part[data-active] .ws-ride-ar {
+  height: 22px;
+}
+.ws-part[data-active] .ws-ride-ar:first-child {
+  border-bottom-width: 1px;
+}
+.ws-part[data-active] .ws-ride-ar:last-child {
+  border-top-width: 1px;
+}
+.ws-ride-ar:hover {
+  background: rgb(255 255 255 / 0.15);
+}
+/* Phones: the rail runs the whole part in the 40px margin set aside on the label side (the
+   label centred 16px from the screen edge), starting level with the part's question. The part's
+   letter is the rail's label, so its circle is kept for screen readers only; in focus, the label's
+   ▴ reaches up into the gap above, keeping the letter level with the question's first line. */
+@media (max-width: 639px) {
+  .ws-railbox-answer {
+    display: none;
+  }
+  .ws-railbox-part {
+    top: 25.5px;
+    left: -40px;
+    width: 32px;
+  }
+  .ws-side-right .ws-railbox-part {
+    left: auto;
+    right: -40px;
+  }
+  .ws-rails .ws-part-circle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .ws-part[data-active] .ws-railbox-part .ws-ride {
+    margin-top: -32px;
+  }
+}
+/* Tablets and up: the rail hangs under the part's letter circle, in the answer's 40px indent. */
+@media (min-width: 640px) {
+  .ws-railbox-part {
+    display: none;
+  }
+  .ws-railbox-answer {
+    left: 0;
+    width: 28px;
+  }
+}
+/* Laptops: rails only — the question list beside the solution shows and jumps to the parts. */
+@media (min-width: 1024px) {
+  .ws-railcol {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws-rail,
+  .ws-ride,
+  .ws-ride-q,
+  .ws-ride-ar {
+    transition: none;
+  }
+}
+
 /* Smooth toggle transitions */
 .trig-label {
   transition: opacity 0.25s ease;

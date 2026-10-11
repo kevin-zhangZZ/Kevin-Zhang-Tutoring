@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type RefObject } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { QUESTIONS, SUBJECTS, SUBJECT_NAME, SUBJECT_COLOR, type QuestionMeta, type SubjectId } from './data'
 import { preloadQuestion, useQuestionDetail } from './questionLoader'
 import ComingSoon from './ComingSoon'
 import { examSourceFor } from './examSources'
 import { LightboxProvider } from './Lightbox'
-import { RevealScope } from './QuestionParts'
+import { PartNavCtx, RevealScope, type PartNav } from './QuestionParts'
 import { AlwaysDetailed, StudyModeProvider, useStudyMode } from './studyMode'
 import { TOOL_PATH, parsePath, questionPath, subjectPath, yearPath } from './routes'
 import { SidebarPrefsProvider, useSidebarPrefs } from './sidebarPrefs'
 import { QuestionSidebar, type SidebarNav } from './QuestionSidebar'
-import { listSequence, mainCode, relativeLabel, topicOf } from './sidebarModel'
+import { listSequence, mainCode, partsOf, relativeLabel, topicOf } from './sidebarModel'
 import SidebarSettings from './SidebarSettings'
 import { useBackToTop } from '../../components/Layout'
 import { useDialogFocus } from '../../lib/a11y'
@@ -110,11 +110,33 @@ function QuestionsPage({ rest }: { rest: string }) {
   const headerRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
   // Keyed on the solution being on the page too, so the parts are read once it has loaded.
-  const { parts, activePart, headerGone, jumpTo } = usePartTracking(
+  const { parts, activePart, headerGone, jumpTo, jumpTop } = usePartTracking(
     detailRef,
     headerRef,
     selected ? `${selected.id}${detail.status === 'loading' ? ':loading' : ''}` : null,
   )
+
+  // The part rail (QuestionParts.tsx PartRail): for a question with lettered parts. Its letters
+  // come from the solution on the page once it's there, and from partStats.ts until then, so the
+  // phone margin it needs is set aside before the solution loads and nothing jumps.
+  const railLetters = (parts.length ? parts.map(p => p.letter) : selected ? partsOf(selected).map(p => p.l) : []).filter(Boolean)
+  const hasRails = railLetters.length > 0
+  const railRight = hasRails && prefs.labelSide === 'right'
+  const [ladder, setLadder] = useState<LadderAnchor | null>(null)
+  const [sideSheetOpen, setSideSheetOpen] = useState(false)
+  const startSlide = useCallback((e: ReactPointerEvent<HTMLElement>, _letter: string) => {
+    if (e.button !== 0) return
+    e.preventDefault()
+    const r = e.currentTarget.getBoundingClientRect()
+    setLadder({ x: r.left + r.width / 2, y: r.top + r.height / 2, startY: e.clientY, key: Date.now() })
+  }, [])
+  const railKey = railLetters.join(' ')
+  const code = selected ? mainCode(selected.code) : ''
+  const partNav = useMemo<PartNav | null>(
+    () => (hasRails ? { code, parts: railKey.split(' '), jumpTo, jumpTop, startSlide } : null),
+    [hasRails, code, railKey, jumpTo, jumpTop, startSlide],
+  )
+  useEffect(() => setLadder(null), [selected?.id])
 
   // Previous / next step through whatever the list is showing (sidebarModel.listSequence).
   const sequence = subject
@@ -196,7 +218,11 @@ function QuestionsPage({ rest }: { rest: string }) {
         questionHref: questionPath,
         yearHref: y => yearPath(subject, y),
         onYear: y => navigate(yearPath(subject, y)),
-        onQuestion: () => setSheetOpen(false),
+        onQuestion: q => {
+          setSheetOpen(false)
+          // The open question's own row: back to the very top of it.
+          if (q.id === selected?.id) jumpTop()
+        },
         onPart: p => {
           setSheetOpen(false)
           jumpTo(p)
@@ -272,21 +298,46 @@ function QuestionsPage({ rest }: { rest: string }) {
             {selected && selectedColor && (
               <div
                 ref={detailRef}
-                className="ws-detail flex-1 min-w-0 w-[calc(100%+2rem)] -mx-4 sm:mx-0 sm:w-full bg-white dark:bg-gray-900 border-b sm:border border-gray-200 dark:border-gray-800 sm:rounded-2xl px-4 py-6 sm:p-8"
+                // On phones a question with parts gets a 40px margin on the label side for the
+                // part rail (index.css); from `sm` up the rail sits in each part's own indent.
+                className={`ws-detail ${hasRails ? 'ws-rails' : ''} ${railRight ? 'ws-side-right' : ''} flex-1 min-w-0 w-[calc(100%+2rem)] -mx-4 sm:mx-0 sm:w-full bg-white dark:bg-gray-900 border-b sm:border border-gray-200 dark:border-gray-800 sm:rounded-2xl ${
+                  !hasRails ? 'px-4' : railRight ? 'pl-4 pr-10' : 'pl-10 pr-4'
+                } py-6 sm:p-8`}
               >
                 {prefs.backBar === 'on' && openYear !== null && (
-                  <div className="lg:hidden -mx-4 sm:-mx-8 -mt-6 sm:-mt-8 mb-5 px-4 sm:px-8 h-11 flex items-center justify-between gap-3 border-b border-gray-200 dark:border-gray-800 sm:rounded-t-2xl">
+                  <div
+                    className={`lg:hidden ${
+                      !hasRails ? '-mx-4 px-4' : railRight ? '-ml-4 -mr-10 pl-4 pr-10' : '-ml-10 -mr-4 pl-10 pr-4'
+                    } sm:-mx-8 -mt-6 sm:-mt-8 mb-5 sm:px-8 h-11 flex items-center justify-between gap-3 border-b border-gray-200 dark:border-gray-800 sm:rounded-t-2xl`}
+                  >
                     <Link to={yearPath(selected.subject, openYear)} className="text-[13px] font-semibold text-sky-700 dark:text-sky-400 truncate">
                       ‹ {view === 'topic' ? topicOf(selected) : `${selected.year} ${SUBJECTS.find(s => s.id === selected.subject)?.label}`}
                     </Link>
-                    {index > -1 && (
-                      <span className="flex-none font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400">
-                        {index + 1} of {sequence.length}
-                      </span>
-                    )}
+                    <span className="flex-none flex items-center gap-1">
+                      {index > -1 && (
+                        <span className="font-display text-[11.5px] font-bold text-gray-500 dark:text-gray-400">
+                          {index + 1} of {sequence.length}
+                        </span>
+                      )}
+                      {hasRails && (
+                        <button
+                          type="button"
+                          onClick={() => setSideSheetOpen(true)}
+                          aria-label="Settings"
+                          title="Settings"
+                          className="sm:hidden -mr-2 w-9 h-9 grid place-items-center rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        >
+                          <svg viewBox="0 0 20 20" className="w-[17px] h-[17px]" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" aria-hidden="true">
+                            <circle cx="10" cy="10" r="2.6" />
+                            <path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M4.7 15.3l1.4-1.4M13.9 6.1l1.4-1.4" />
+                          </svg>
+                        </button>
+                      )}
+                    </span>
                   </div>
                 )}
                 <StickyQuestionBar
+                  hideBelowLg={hasRails}
                   key={`bar-${selected.id}`}
                   label={`${selected.year} · ${selected.exam} · ${mainCode(selected.code)}`}
                   visible={headerGone}
@@ -337,23 +388,25 @@ function QuestionsPage({ rest }: { rest: string }) {
                 <h2 className="font-display text-xl font-semibold text-gray-900 dark:text-white mt-3 mb-5 leading-snug">
                   {selected.topic}
                 </h2>
-                <RevealScope key={`question-${selected.id}`}>
-                  {Detail ? (
-                    selected.subject === 'chemistry' ? (
-                      <AlwaysDetailed>
+                <PartNavCtx.Provider value={partNav}>
+                  <RevealScope key={`question-${selected.id}`}>
+                    {Detail ? (
+                      selected.subject === 'chemistry' ? (
+                        <AlwaysDetailed>
+                          <Detail key={selected.id} />
+                        </AlwaysDetailed>
+                      ) : (
                         <Detail key={selected.id} />
-                      </AlwaysDetailed>
+                      )
+                    ) : detail.status === 'loading' ? (
+                      <QuestionLoading />
+                    ) : detail.status === 'error' ? (
+                      <QuestionLoadError onRetry={detail.retry} />
                     ) : (
-                      <Detail key={selected.id} />
-                    )
-                  ) : detail.status === 'loading' ? (
-                    <QuestionLoading />
-                  ) : detail.status === 'error' ? (
-                    <QuestionLoadError onRetry={detail.retry} />
-                  ) : (
-                    <ComingSoon topic={selected.topic} />
-                  )}
-                </RevealScope>
+                      <ComingSoon topic={selected.topic} />
+                    )}
+                  </RevealScope>
+                </PartNavCtx.Provider>
                 {prefs.pager === 'end' && <EndPager prev={prev} next={next} current={selected} />}
               </div>
             )}
@@ -363,6 +416,21 @@ function QuestionsPage({ rest }: { rest: string }) {
 
       {selected && <PhoneBar prev={prev} next={next} current={selected} onMenu={() => setSheetOpen(true)} />}
       {selected && prefs.pager === 'float' && <FloatPager prev={prev} next={next} current={selected} detailRef={detailRef} />}
+      {ladder && partNav && (
+        <PartLadder
+          anchor={ladder}
+          code={partNav.code}
+          parts={parts}
+          active={activePart}
+          onPick={part => {
+            setLadder(null)
+            if (part === null) jumpTop()
+            else jumpTo(part)
+          }}
+          onClose={() => setLadder(null)}
+        />
+      )}
+      {sideSheetOpen && <LabelSideSheet onClose={() => setSideSheetOpen(false)} />}
       {sheetOpen && selected && (
         <QuestionsSheet full={prefs.sheet === 'full'} selectedId={selected.id} onClose={() => setSheetOpen(false)}>
           {sidebar(`${TOOL_PATH}/settings`)}
@@ -489,9 +557,9 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
   const [parts, setParts] = useState<{ letter: string; topic?: string }[]>([])
   const [activePart, setActivePart] = useState<string | null>(null)
   const [headerGone, setHeaderGone] = useState(false)
-  // While a jump's smooth scroll is under way, keep the chosen part highlighted rather than
-  // flicking through every part it passes.
-  const jumping = useRef<{ part: string; until: number } | null>(null)
+  // While a jump's smooth scroll is under way, keep the chosen part (or, for a jump to the top,
+  // no part) highlighted rather than flicking through every part it passes.
+  const jumping = useRef<{ part: string | null; until: number } | null>(null)
 
   useEffect(() => {
     setParts([])
@@ -504,23 +572,55 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
     const partEls = () => Array.from(detail.querySelectorAll<HTMLElement>('[data-part]'))
     setParts(partEls().map(el => ({ letter: el.dataset.part!, topic: el.dataset.topic })))
 
+    // The part in focus also gets a data-active attribute, and a part that has scrolled into
+    // view data-seen, which is all the part rails need (index.css) — so scrolling restyles them
+    // without re-rendering the solution.
+    let marked: HTMLElement | null = null
+    const mark = (el: HTMLElement | null) => {
+      if (el === marked) return
+      marked?.removeAttribute('data-active')
+      el?.setAttribute('data-active', '')
+      marked = el
+    }
+    const seen =
+      typeof IntersectionObserver === 'function'
+        ? new IntersectionObserver(
+            entries => {
+              for (const e of entries) {
+                if (!e.isIntersecting) continue
+                e.target.setAttribute('data-seen', '')
+                seen?.unobserve(e.target)
+              }
+            },
+            { root: main },
+          )
+        : null
+    for (const el of partEls()) {
+      if (seen) seen.observe(el)
+      else el.setAttribute('data-seen', '')
+    }
+
     const update = () => {
       const box = main.getBoundingClientRect()
       setHeaderGone(header.getBoundingClientRect().bottom < box.top)
+      const els = partEls()
+      let current: HTMLElement | null = null
       if (jumping.current && Date.now() < jumping.current.until) {
-        setActivePart(jumping.current.part)
-        return
+        const part = jumping.current.part
+        current = part === null ? null : els.find(el => el.dataset.part === part) ?? null
+      } else {
+        jumping.current = null
+        // The part whose top has crossed the middle of the screen — or, at the very bottom of
+        // the page (where the last parts can never scroll that high), the last one in view.
+        const focus = main.clientHeight / 2
+        const atBottom = main.scrollTop + main.clientHeight >= main.scrollHeight - 2
+        for (const el of els) {
+          const top = el.getBoundingClientRect().top - box.top
+          if (top <= focus || (atBottom && top < main.clientHeight - 48)) current = el
+        }
       }
-      jumping.current = null
-      // The part whose top has passed just under the sticky bar — or, at the very bottom of
-      // the page (where the last parts can never scroll that high), the last one in view.
-      const atBottom = main.scrollTop + main.clientHeight >= main.scrollHeight - 2
-      let current: string | null = null
-      for (const el of partEls()) {
-        const top = el.getBoundingClientRect().top - box.top
-        if (top <= 96 || (atBottom && top < main.clientHeight - 48)) current = el.dataset.part!
-      }
-      setActivePart(current)
+      mark(current)
+      setActivePart(current?.dataset.part ?? null)
     }
     update()
     // Scroll events can fire several times a frame; measure at most once per frame.
@@ -537,6 +637,8 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
       cancelAnimationFrame(frame)
       main.removeEventListener('scroll', schedule)
       window.removeEventListener('resize', schedule)
+      seen?.disconnect()
+      mark(null)
     }
   }, [detailRef, headerRef, questionId])
 
@@ -553,7 +655,229 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
     [detailRef],
   )
 
-  return { parts, activePart, headerGone, jumpTo }
+  // Back to the very top of the question: its label, title and stem.
+  const jumpTop = useCallback(() => {
+    const detail = detailRef.current
+    const main = detail?.closest('main')
+    if (!detail || !main) return
+    jumping.current = { part: null, until: Date.now() + 1200 }
+    setActivePart(null)
+    const offset = detail.getBoundingClientRect().top - main.getBoundingClientRect().top
+    main.scrollTo({ top: Math.max(0, main.scrollTop + offset - 16), behavior: 'smooth' })
+  }, [detailRef])
+
+  return { parts, activePart, headerGone, jumpTo, jumpTop }
+}
+
+// Press on a part label: a ladder of the question's parts opens around it, with the question
+// itself ("Q4", its very top) at the head. Slide to a rung — its topic shows beside the finger —
+// and lift to jump there; a plain tap leaves the ladder open to tap a rung instead. It opens so
+// the part in focus sits level with the label pressed, and on the far side of the rail from the
+// screen edge, so the finger doesn't cover the topic.
+interface LadderAnchor {
+  x: number
+  y: number
+  startY: number
+  key: number
+}
+
+function PartLadder({
+  anchor,
+  code,
+  parts,
+  active,
+  onPick,
+  onClose,
+}: {
+  anchor: LadderAnchor
+  code: string
+  parts: { letter: string; topic?: string }[]
+  active: string | null
+  onPick: (part: string | null) => void
+  onClose: () => void
+}) {
+  const boxRef = useRef<HTMLDivElement>(null)
+  const [pos, setPos] = useState<{ left: number; top: number } | null>(null)
+  const [hover, setHover] = useState<number | null>(null)
+  const hoverRef = useRef<number | null>(null)
+  const dragging = useRef(true)
+  const moved = useRef(false)
+  const items = [{ part: null as string | null, label: code, topic: 'Top of question' }, ...parts.map(p => ({ part: p.letter as string | null, label: p.letter, topic: p.topic }))]
+  const current = Math.max(0, items.findIndex(it => it.part === active))
+  // The topic bubble opens towards the middle of the screen, away from the edge the rail is on.
+  const tipLeft = anchor.x > window.innerWidth / 2
+
+  useLayoutEffect(() => {
+    const box = boxRef.current
+    const rung = box?.children[current] as HTMLElement | undefined
+    if (!box || !rung) return
+    const off = box.clientTop + rung.offsetTop + rung.offsetHeight / 2
+    setPos({
+      left: Math.min(Math.max(6, anchor.x - box.offsetWidth / 2), window.innerWidth - box.offsetWidth - 6),
+      top: Math.min(Math.max(8, anchor.y - off), window.innerHeight - box.offsetHeight - 8),
+    })
+    // Only on opening: the ladder stays put while it's open.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anchor.key])
+
+  useEffect(() => {
+    const rungAt = (y: number) => {
+      const rungs = Array.from(boxRef.current?.children ?? []) as HTMLElement[]
+      const i = rungs.findIndex(r => {
+        const b = r.getBoundingClientRect()
+        return y >= b.top - 1 && y <= b.bottom + 1
+      })
+      return i < 0 ? null : i
+    }
+    const setHov = (i: number | null) => {
+      hoverRef.current = i
+      setHover(i)
+    }
+    const move = (e: PointerEvent) => {
+      if (!dragging.current) return
+      if (Math.abs(e.clientY - anchor.startY) > 6) moved.current = true
+      setHov(rungAt(e.clientY))
+    }
+    const up = () => {
+      if (!dragging.current) return
+      dragging.current = false
+      const i = hoverRef.current
+      setHov(null)
+      if (moved.current && i !== null) onPick(items[i].part)
+    }
+    const outside = (e: PointerEvent) => {
+      if (!boxRef.current?.contains(e.target as Node)) onClose()
+    }
+    const key = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    const main = boxRef.current?.closest('main')
+    const scrolled = () => !dragging.current && onClose()
+    document.addEventListener('pointermove', move)
+    document.addEventListener('pointerup', up)
+    document.addEventListener('pointercancel', up)
+    // Next frame, so the press that opened the ladder doesn't count as a press outside it.
+    const t = window.setTimeout(() => document.addEventListener('pointerdown', outside, true), 0)
+    document.addEventListener('keydown', key)
+    main?.addEventListener('scroll', scrolled, { passive: true })
+    return () => {
+      window.clearTimeout(t)
+      document.removeEventListener('pointermove', move)
+      document.removeEventListener('pointerup', up)
+      document.removeEventListener('pointercancel', up)
+      document.removeEventListener('pointerdown', outside, true)
+      document.removeEventListener('keydown', key)
+      main?.removeEventListener('scroll', scrolled)
+    }
+    // A fresh set of listeners for each press.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anchor.key])
+
+  const tipFor = hover !== null ? items[hover] : null
+  const rung = hover !== null ? (boxRef.current?.children[hover] as HTMLElement | undefined) : undefined
+  return (
+    <>
+      <div
+        ref={boxRef}
+        role="group"
+        aria-label={`Parts of ${code}`}
+        style={pos ? { left: pos.left, top: pos.top } : { visibility: 'hidden' }}
+        className="fixed z-40 w-10 p-1 flex flex-col gap-0.5 rounded-[14px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg touch-none select-none"
+      >
+        {items.map((it, i) => (
+          <button
+            key={it.label}
+            type="button"
+            aria-label={it.part ? `Part ${it.part}${it.topic ? `: ${it.topic}` : ''}` : `${code}, top of question`}
+            onClick={() => onPick(it.part)}
+            className={`h-[30px] rounded-lg font-display font-bold transition-transform ${it.part ? 'text-[11.5px]' : 'text-[10.5px]'} ${
+              i === current
+                ? 'bg-sky-700 text-white dark:bg-sky-400 dark:text-gray-950'
+                : i === hover
+                  ? 'bg-sky-100 text-sky-700 dark:bg-sky-900/60 dark:text-sky-300 scale-[1.08]'
+                  : it.part
+                    ? 'text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-950/50'
+                    : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+            }`}
+          >
+            {it.label}
+          </button>
+        ))}
+      </div>
+      {tipFor && rung && pos && (
+        <div
+          aria-hidden="true"
+          className={`fixed z-40 h-[30px] px-[11px] rounded-full bg-sky-700 dark:bg-sky-400 text-white dark:text-gray-950 shadow-lg pointer-events-none whitespace-nowrap font-display text-[12.5px] font-bold leading-[30px] -translate-y-1/2 ${
+            tipLeft ? '-translate-x-full' : ''
+          }`}
+          style={{
+            top: rung.getBoundingClientRect().top + rung.offsetHeight / 2,
+            left: tipLeft ? pos.left - 10 : pos.left + (boxRef.current?.offsetWidth ?? 40) + 10,
+          }}
+        >
+          {tipFor.part ? `${code} ${tipFor.label}` : code}
+          {tipFor.topic && <small className="ml-1.5 text-[10.5px] font-sans font-semibold opacity-80">{tipFor.topic}</small>}
+        </div>
+      )}
+    </>
+  )
+}
+
+// Phones: the label side, from the back bar's gear (also on the Sidebar Settings page).
+function LabelSideSheet({ onClose }: { onClose: () => void }) {
+  const { prefs, setPref } = useSidebarPrefs()
+  const dialogRef = useRef<HTMLDivElement>(null)
+  useDialogFocus(true, dialogRef)
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [onClose])
+
+  // Phones only: close it (and its inert page) if the window widens past `sm`.
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 640px)')
+    if (mq.matches) {
+      onClose()
+      return
+    }
+    const onChange = (e: MediaQueryListEvent) => e.matches && onClose()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [onClose])
+
+  return (
+    <div ref={dialogRef} className="sm:hidden fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label="Settings">
+      <button type="button" aria-label="Close settings" onClick={onClose} className="absolute inset-0 w-full bg-black/30" />
+      <div className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-900 rounded-t-2xl shadow-[0_-12px_30px_-12px_rgba(0,0,0,.35)] animate-[sheet-in_.22s_cubic-bezier(.2,.8,.2,1)] px-4 pt-2 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+        <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-700 mx-auto mb-3" aria-hidden />
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <span className="font-display text-[15px] font-bold text-gray-900 dark:text-white">Settings</span>
+          <Link to={`${TOOL_PATH}/settings`} className="relative text-[13px] font-semibold text-sky-700 dark:text-sky-400 after:absolute after:-inset-2.5">
+            All settings ›
+          </Link>
+        </div>
+        <div className="flex flex-col gap-2">
+          <span id="label-side" className="font-display text-[14px] font-semibold text-gray-900 dark:text-white">
+            Part label side
+          </span>
+          <SegmentedControl
+            size="md"
+            fill
+            aria-labelledby="label-side"
+            value={prefs.labelSide}
+            onChange={v => setPref('labelSide', v as 'left' | 'right')}
+            options={[
+              { value: 'left', label: 'Left' },
+              { value: 'right', label: 'Right' },
+            ]}
+          />
+          <p className="text-[13px] leading-relaxed text-gray-500 dark:text-gray-400">
+            Put the part label, its arrows and the slide ladder on the side your thumb uses.
+          </p>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 // A slim bar that pins to the top of the page once the question's own header has scrolled
@@ -562,12 +886,15 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
 // space in the layout (a zero-height sticky wrapper with the bar hanging off it), and spans
 // the detail card's full width by cancelling the card's padding.
 function StickyQuestionBar({
+  hideBelowLg,
   label,
   visible,
   parts,
   active,
   onJump,
 }: {
+  /** Below laptop width a question with parts has the rail label instead. */
+  hideBelowLg?: boolean
   label: string
   visible: boolean
   parts: { letter: string; topic?: string }[]
@@ -575,7 +902,7 @@ function StickyQuestionBar({
   onJump: (part: string) => void
 }) {
   return (
-    <div className="sticky top-0 z-20 h-0 -mx-4 sm:-mx-8">
+    <div className={`sticky top-0 z-20 h-0 -mx-4 sm:-mx-8 ${hideBelowLg ? 'hidden lg:block' : ''}`}>
       <div
         aria-hidden={!visible}
         className={`absolute inset-x-0 top-0 flex items-center gap-3 px-4 sm:px-8 py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur border-b border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-200 ${
