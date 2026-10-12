@@ -77,9 +77,7 @@ export default function GivenHead() {
     notice = (
       <Notice tone="good">
         Of the 4 heads, 3 came from a fair coin: <M>{'\\Pr(U\\mid H) = \\tfrac34'}</M>. As probabilities that is{' '}
-        <M>{'\\tfrac{3/9}{4/9}'}</M>, and the ninths cancel, which is why writing part a. as <M>{'\\tfrac49'}</M> makes part b.
-        one line. It beats the <M>{'\\tfrac23'}</M> we started with because fair coins give heads more readily. Now try the
-        wrong idea.
+        <M>{'\\tfrac{3/9}{4/9}'}</M>, and the ninths cancel. Now try the wrong idea.
       </Notice>
     )
   } else {

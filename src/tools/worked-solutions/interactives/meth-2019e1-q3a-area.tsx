@@ -129,9 +129,9 @@ export default function CoinArea() {
     notice = (
       <Notice tone="warn">
         &ldquo;Biased or unbiased: two kinds, so <M>{'\\tfrac12'}</M> each&rdquo; makes the two columns equally wide, and the
-        shaded area comes to <M>{`${areas.map(tex).join(' + ')} = ${tex(total)}`}</M>. But Jo picks a <b>coin</b>, not a kind of
-        coin: two of her three coins are fair, so the fair column must be twice as wide as the biased one. The widths are the
-        chances of picking, <M>{'\\tfrac23'}</M> and <M>{'\\tfrac13'}</M>, so they have to count coins.
+        shaded area comes to <M>{`${areas.map(tex).join(' + ')} = ${tex(total)}`}</M>, not <M>{'\\tfrac49'}</M>. The widths
+        are the chances of picking, so the fair column must be <M>{'\\tfrac23'}</M> wide and the biased one{' '}
+        <M>{'\\tfrac13'}</M>.
       </Notice>
     )
   } else if (k !== 4) {
@@ -159,8 +159,8 @@ export default function CoinArea() {
         <b>The rectangle is every way the experiment can go.</b> Across: which coin Jo picks, each <M>{'\\tfrac13'}</M> wide.
         Up: the shaded height is the chance that coin lands heads. Each shaded block is width <M>\times</M> height, one head
         branch of the tree, so <M>{'\\Pr(H)'}</M> is the total shaded area, <M>{'\\tfrac16 + \\tfrac16 + \\tfrac19 = \\tfrac49'}</M>.
-        The dashed line is that area spread evenly: it must land between <M>{'\\tfrac13'}</M> and <M>{'\\tfrac12'}</M>. Try
-        grouping the fair coins.
+        The dashed line is that area spread evenly across the rectangle. Try grouping the fair
+        coins.
       </Notice>
     )
   }

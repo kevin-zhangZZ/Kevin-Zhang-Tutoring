@@ -61,22 +61,27 @@ const ROWS_AI: WorkingRow[] = [
     working: <Katex display tex="f(x) = (3x-1)^{-1}" />,
     reason: (
       <>
-        One over something is that something to the power <Katex tex="-1" />. Rewriting the fraction as a
-        bracket to a power lets the chain rule do it in one line, with no quotient rule needed.
+        One over something is that something to the power <Katex tex="-1" />, so the chain rule can do it
+        in one line.
       </>
     ),
+    more: <>This avoids the quotient rule, which would also work (with numerator <Katex tex="1" />) but takes longer.</>,
   },
   {
     working: <Katex display tex="f'(x) = -1\times(3x-1)^{-2}\times 3" />,
     reason: (
       <>
-        Chain rule with <Katex tex="u = 3x-1" />. First differentiate the outside power as if the bracket
-        were a single letter: bring down the <Katex tex="-1" />, and the power drops by one to{' '}
-        <Katex tex="-1-1=-2" /> (not <Katex tex="0" />; the report notes slips with the negative
-        exponent). Then multiply by the inside&apos;s derivative, <Katex tex="\tfrac{du}{dx}=3" />. How would I
-        know to? Whenever the inside is anything other than plain <Katex tex="x" />, its derivative goes on
-        the end. The formula sheet&apos;s <Katex tex="\tfrac{d}{dx}(ax+b)^n = an(ax+b)^{n-1}" />, with{' '}
-        <Katex tex="a=3,\ n=-1" />, says the same thing.
+        Chain rule with <Katex tex="u = 3x-1" />: bring down the <Katex tex="-1" />, drop the power to{' '}
+        <Katex tex="-2" />, then multiply by the inside&apos;s derivative, <Katex tex="3" />.
+      </>
+    ),
+    more: (
+      <>
+        The new power is <Katex tex="-1-1=-2" />, not <Katex tex="0" />; the report notes slips with the
+        negative exponent. The inside&apos;s derivative goes on the end whenever the inside is anything other
+        than plain <Katex tex="x" />. The formula sheet&apos;s{' '}
+        <Katex tex="\tfrac{d}{dx}(ax+b)^n = an(ax+b)^{n-1}" />, with <Katex tex="a=3,\ n=-1" />, says the
+        same thing.
       </>
     ),
   },
@@ -84,10 +89,14 @@ const ROWS_AI: WorkingRow[] = [
     working: <Katex display tex="\boxed{f'(x) = \dfrac{-3}{(3x-1)^2}}" />,
     reason: (
       <>
-        Move the negative power back to the denominator. Sense-check the sign: <Katex tex="f" /> falls all
-        the way from its asymptote <Katex tex="x=\tfrac13" /> towards <Katex tex="0" />, so{' '}
-        <Katex tex="f'(x)" /> should be negative for every <Katex tex="x>\tfrac13" />, and it is (a square is
-        never negative).
+        Move the negative power back to the denominator.
+      </>
+    ),
+    more: (
+      <>
+        Sense-check the sign: <Katex tex="f" /> falls all the way from its asymptote{' '}
+        <Katex tex="x=\tfrac13" /> towards <Katex tex="0" />, so <Katex tex="f'(x)" /> should be negative for
+        every <Katex tex="x>\tfrac13" />, and it is (a square is never negative).
       </>
     ),
   },
@@ -98,11 +107,16 @@ const ROWS_AII: WorkingRow[] = [
     working: <Katex display tex="\int \frac{1}{3x-1}\,dx = \tfrac13\log_e(3x-1) + c" />,
     reason: (
       <>
-        The formula sheet only gives <Katex tex="\int\tfrac1x\,dx=\log_e(x)+c" /> for plain{' '}
-        <Katex tex="x" />. With <Katex tex="3x-1" /> inside, guess <Katex tex="\log_e(3x-1)" /> and
-        differentiate it: the chain rule gives <Katex tex="\tfrac{3}{3x-1}" />, three times too big. So divide
-        by the inside&apos;s coefficient and put <Katex tex="\tfrac13" /> in front. The domain is{' '}
-        <Katex tex="x>\tfrac13" />, so <Katex tex="3x-1>0" /> always and no absolute value is needed.
+        Since <Katex tex="\int\tfrac1x\,dx=\log_e(x)" />, try <Katex tex="\log_e(3x-1)" />: by the chain
+        rule its derivative is{' '}
+        <Katex tex="\tfrac{3}{3x-1}" />, three times too big, so put <Katex tex="\tfrac13" /> in front.
+      </>
+    ),
+    more: (
+      <>
+        In general, differentiating multiplies by the inside&apos;s coefficient (here <Katex tex="3" />), so
+        antidifferentiating divides by it. The domain is <Katex tex="x>\tfrac13" />, so{' '}
+        <Katex tex="3x-1>0" /> always and no absolute value is needed.
       </>
     ),
   },
@@ -110,8 +124,13 @@ const ROWS_AII: WorkingRow[] = [
     working: <Katex display tex="\boxed{\tfrac13\log_e(3x-1)}" />,
     reason: (
       <>
-        Any antiderivative will do, so take <Katex tex="c=0" />. Check by differentiating, as the report
-        suggests: <Katex tex="\tfrac13\times\tfrac{3}{3x-1}=\tfrac{1}{3x-1}" /> ✓. The report also accepts{' '}
+        Any antiderivative will do, so take <Katex tex="c=0" />. Check by differentiating:{' '}
+        <Katex tex="\tfrac13\times\tfrac{3}{3x-1}=\tfrac{1}{3x-1}" /> ✓.
+      </>
+    ),
+    more: (
+      <>
+        The report recommends exactly this derivative check. It also accepts{' '}
         <Katex tex="\tfrac13\log_e\!\left(x-\tfrac13\right)" />, which is this answer minus the constant{' '}
         <Katex tex="\tfrac13\log_e 3" />.
       </>
@@ -129,11 +148,16 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="g" /> is one function divided by another, so use the quotient rule from the formula
-        sheet, <Katex tex="\tfrac{d}{dx}\left(\tfrac uv\right)=\tfrac{v\frac{du}{dx}-u\frac{dv}{dx}}{v^2}" />.
-        Writing <Katex tex="u" />, <Katex tex="v" /> and their derivatives out first is the surest way to
-        avoid the bracket errors the report mentions. <Katex tex="\tfrac{du}{dx}" /> needs the chain rule:
-        the inside <Katex tex="\pi x" /> has derivative <Katex tex="\pi" />.
+        <Katex tex="g=\tfrac uv" />, so use the quotient rule (formula sheet):{' '}
+        <Katex tex="g'=\tfrac{v\frac{du}{dx}-u\frac{dv}{dx}}{v^2}" />. List the four pieces first;{' '}
+        <Katex tex="\tfrac{du}{dx}" /> needs the chain rule (inside <Katex tex="\pi x" />).
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students misquoted the rule, so copy it from the formula sheet rather than
+        from memory. Writing the four pieces out first is the surest way to avoid
+        the bracket errors the report mentions.
       </>
     ),
   },
@@ -156,21 +180,26 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Now substitute <Katex tex="x=1" />, as the question asks. Angle <Katex tex="\pi" /> is half a turn,
-        the point <Katex tex="(-1,0)" /> on the unit circle, so <Katex tex="\cos(\pi)=-1" /> and{' '}
-        <Katex tex="\sin(\pi)=0" /> (the report notes some students used <Katex tex="\cos(\pi)=1" />). Because{' '}
-        <Katex tex="\sin(\pi)=0" />, the whole second term drops out.
+        Substitute <Katex tex="x=1" />. Angle <Katex tex="\pi" /> is the point <Katex tex="(-1,0)" /> on the
+        unit circle, so <Katex tex="\cos(\pi)=-1" /> and <Katex tex="\sin(\pi)=0" />, which removes the
+        second term.
       </>
     ),
+    more: <>The report notes some students used <Katex tex="\cos(\pi)=1" />, which flips the sign of the answer.</>,
   },
   {
     working: <Katex display tex="\boxed{g'(1) = -\dfrac{\pi}{2}}" />,
     reason: (
       <>
-        The question says <em>evaluate</em>, so finish with the number; the report notes some students
-        stopped at <Katex tex="g'(x)" />. Sense check: <Katex tex="\sin(\pi x)" /> crosses zero going down at{' '}
-        <Katex tex="x=1" /> and <Katex tex="x+1=2>0" />, so <Katex tex="g" /> is decreasing there and{' '}
-        <Katex tex="g'(1)" /> must be negative.
+        The question says <em>evaluate</em>, so finish with the number, not just <Katex tex="g'(x)" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students stopped at <Katex tex="g'(x)" />. Sense check:{' '}
+        <Katex tex="\sin(\pi x)" /> crosses zero going down at <Katex tex="x=1" /> and{' '}
+        <Katex tex="x+1=2>0" />, so <Katex tex="g" /> is decreasing there and <Katex tex="g'(1)" /> must be
+        negative.
       </>
     ),
   },
@@ -215,8 +244,6 @@ export default function MethodsQ1_2019Exam1() {
           Differentiate it back: the chain rule gives <Katex tex="\tfrac{3}{3x-1}" />, which is{' '}
           <Katex tex="3f(x)" />, not <Katex tex="f(x)" />. The other common answer,{' '}
           <Katex tex="3\log_e(3x-1)" />, is worse: it differentiates to <Katex tex="\tfrac{9}{3x-1}" />.
-          Differentiating brings the inside&apos;s <Katex tex="3" /> out, so antidifferentiating has to divide
-          by it: <Katex tex="\tfrac13" />. A ten-second derivative check catches both.
         </WrongMethod>
       </PartCard>
 
@@ -242,10 +269,8 @@ export default function MethodsQ1_2019Exam1() {
           source="Examiner's report"
           working={<Katex display tex="g'(1) = \dfrac{2\pi(1) - 0}{4} = \dfrac{\pi}{2}" />}
         >
-          Right size, wrong sign. Angle <Katex tex="\pi" /> is half a turn round the unit circle, the point{' '}
-          <Katex tex="(-1,0)" />, so <Katex tex="\cos(\pi)=-1" />. A positive answer should set off an alarm:{' '}
-          <Katex tex="\sin(\pi x)" /> goes from positive to negative through <Katex tex="x=1" />, so{' '}
-          <Katex tex="g" /> is falling there and its gradient must be negative.
+          Right size, wrong sign. The sign check in the last row catches it: <Katex tex="g" /> is
+          falling at <Katex tex="x=1" />, so a positive gradient can&apos;t be right.
         </WrongMethod>
         <WrongMethod
           title="Leave out the brackets around x + 1"
@@ -260,8 +285,7 @@ export default function MethodsQ1_2019Exam1() {
           Without brackets, only the <Katex tex="1" /> is multiplied by <Katex tex="\pi\cos(\pi x)" />, not the
           whole <Katex tex="x+1" />. The rule&apos;s <Katex tex="v\tfrac{du}{dx}" /> is a product of the whole of{' '}
           <Katex tex="v" /> with the whole of <Katex tex="\tfrac{du}{dx}" />, so write{' '}
-          <Katex tex="(x+1)\,\pi\cos(\pi x)" />. Listing <Katex tex="u,\ v,\ \tfrac{du}{dx},\ \tfrac{dv}{dx}" />{' '}
-          first and substituting each one in brackets prevents this.
+          <Katex tex="(x+1)\,\pi\cos(\pi x)" />.
         </WrongMethod>
       </PartCard>
     </div>

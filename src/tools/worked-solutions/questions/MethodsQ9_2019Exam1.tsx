@@ -52,7 +52,7 @@ const EXAM_D: SAExaminerStats = {
   average: 1.2,
   comment: (
     <>
-      Most students were able to form a quadratic equation. Some faltered with the correct
+      Most students were able to form a quadratic equation. Some students faltered with the correct
       factorisation. The inclusion of <Katex tex="x=\log_e(-1)" /> was a common error.
     </>
   ),
@@ -105,8 +105,7 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= (2-2x)e^{3+2x-x^2}" />,
     reason: (
       <>
-        <Katex tex="f'(x)=2-2x" />, and the <b>whole</b> of it multiplies the exponential, so it goes in brackets. The
-        report stresses that <Katex tex="2-2xe^{3+2x-x^2}" /> is a different expression.
+        <Katex tex="f'(x)=2-2x" />, and the <b>whole</b> of it multiplies the exponential, so it goes in brackets.
       </>
     ),
   },
@@ -114,9 +113,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="e^{3+2x-x^2}>0 \text{ for all } x" />,
     reason: (
       <>
-        This is the reasoning the report says was often missing. Every power of <Katex tex="e" /> is positive, and
-        multiplying by a positive number never changes a sign, so the derivative has the same sign as{' '}
-        <Katex tex="2-2x" />.
+        Every power of <Katex tex="e" /> is positive, and multiplying by a positive number never changes a sign, so
+        the derivative has the same sign as <Katex tex="2-2x" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes that some students found the correct answer but did not support it with correct
+        reasoning. Saying why the exponential can be ignored is what makes the answer complete.
       </>
     ),
   },
@@ -128,8 +132,13 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="-2x<-2 \implies x>1" />,
     reason: (
       <>
-        Dividing by <Katex tex="-2" /> flips the inequality. Check: at <Katex tex="x=2" /> the derivative is{' '}
-        <Katex tex="(2-4)e^{3}<0" />, and at <Katex tex="x=0" /> it is <Katex tex="2e^{3}>0" />.
+        Dividing by <Katex tex="-2" /> flips the inequality.
+      </>
+    ),
+    more: (
+      <>
+        Check: at <Katex tex="x=2" /> the derivative is <Katex tex="(2-4)e^{3}<0" />, and at <Katex tex="x=0" /> it is{' '}
+        <Katex tex="2e^{3}>0" />.
       </>
     ),
   },
@@ -188,11 +197,16 @@ const ROWS_D: WorkingRow[] = [
     working: <Katex display tex="\text{Let } u=e^x:\quad 3+2u-u^2=0" />,
     reason: (
       <>
-        With <Katex tex="u=e^x" />, <Katex tex="e^{2x}=u^2" />. The left side is exactly <Katex tex="f(u)" />:{' '}
-        <Katex tex="f(g(x))" /> is the parabola <Katex tex="f" /> read off at <Katex tex="u=e^x" />.
+        With <Katex tex="u=e^x" />, <Katex tex="e^{2x}=u^2" />, so the equation becomes an ordinary quadratic in{' '}
+        <Katex tex="u" />.
       </>
     ),
-    more: <>See the widget below.</>,
+    more: (
+      <>
+        The left side is exactly <Katex tex="f(u)" />: <Katex tex="f(g(x))" /> is the parabola <Katex tex="f" /> read
+        off at <Katex tex="u=e^x" />. The widget below shows this.
+      </>
+    ),
   },
   {
     working: <Katex display tex="u^2-2u-3=0" />,
@@ -202,7 +216,12 @@ const ROWS_D: WorkingRow[] = [
     working: <Katex display tex="(u-3)(u+1)=0 \implies u=3 \text{ or } u=-1" />,
     reason: (
       <>
-        Two numbers with product <Katex tex="-3" /> and sum <Katex tex="-2" />. Check by expanding:{' '}
+        Two numbers with product <Katex tex="-3" /> and sum <Katex tex="-2" />, then the null factor law.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students faltered with the factorisation, so check by expanding:{' '}
         <Katex tex="(u-3)(u+1)=u^2-2u-3" />. These are the parabola&apos;s two <Katex tex="u" />-intercepts.
       </>
     ),
@@ -216,7 +235,7 @@ const ROWS_D: WorkingRow[] = [
     reason: (
       <>
         The graph of <Katex tex="y=e^x" /> lies entirely above the <Katex tex="x" />-axis, so it never reaches{' '}
-        <Katex tex="-1" />. The report says including <Katex tex="x=\log_e(-1)" /> was a common error.
+        <Katex tex="-1" />.
       </>
     ),
   },
@@ -231,9 +250,15 @@ const ROWS_E: WorkingRow[] = [
     working: <Katex display tex="\dfrac{d}{dx}f(g(x)) = 2e^x-2e^{2x}" />,
     reason: (
       <>
-        Differentiate part c.&apos;s rule term by term. The report lists an incorrect derivative as a common error, so
-        check the last term: by the chain rule, <Katex tex="\tfrac{d}{dx}e^{2x}=2e^{2x}" />. (The chain rule on the
-        composite gives the same thing: <Katex tex="f'(g(x))\,g'(x)=(2-2e^x)e^x" />.)
+        Differentiate part c.&apos;s rule term by term. Careful with the last term: by the chain rule,{' '}
+        <Katex tex="\tfrac{d}{dx}e^{2x}=2e^{2x}" />.
+      </>
+    ),
+    more: (
+      <>
+        The report lists an incorrect derivative as a common error, and the <Katex tex="e^{2x}" /> term is the
+        likeliest place to slip. A check: the chain rule on the composite gives the same thing,{' '}
+        <Katex tex="f'(g(x))\,g'(x)=(2-2e^x)e^x=2e^x-2e^{2x}" />.
       </>
     ),
   },
@@ -255,11 +280,11 @@ const ROWS_E: WorkingRow[] = [
     reason: <>Because <Katex tex="e^0=1" />.</>,
   },
   {
-    working: <Katex display tex="f(g(0)) = 3+2e^0-e^{0} = 3+2-1 = 4" />,
+    working: <Katex display tex="f(g(0)) = 3+2e^0-e^{2(0)} = 3+2-1 = 4" />,
     reason: (
       <>
         The question asks for <b>coordinates</b>, so substitute <Katex tex="x=0" /> into <Katex tex="f(g(x))" /> (not
-        into the derivative) for the <Katex tex="y" />-value. The report says omitting it was a common error.
+        into the derivative) for the <Katex tex="y" />-value.
       </>
     ),
   },
@@ -267,14 +292,15 @@ const ROWS_E: WorkingRow[] = [
     working: <Katex display tex="\boxed{(0,\,4)}" />,
     reason: (
       <>
-        This is the parabola&apos;s vertex carried across: <Katex tex="x=0" /> gives <Katex tex="u=e^0=1" />, and{' '}
-        <Katex tex="f(1)=4" />. The derivative is positive for <Katex tex="x<0" /> and negative for{' '}
-        <Katex tex="x>0" />, so it is a maximum, which part f. uses.
+        Not asked for, but part f. uses it: <Katex tex="e^x<1" /> for <Katex tex="x<0" /> and{' '}
+        <Katex tex="e^x>1" /> for <Katex tex="x>0" />, so the derivative goes from + to −. This is a maximum, and{' '}
+        <Katex tex="f(g(x))" /> is decreasing for <Katex tex="x>0" />.
       </>
     ),
     more: (
       <>
-        Slide <Katex tex="x" /> to <Katex tex="0" /> in part d.&apos;s widget to see it.
+        This is the parabola&apos;s vertex carried across: <Katex tex="x=0" /> gives <Katex tex="u=e^0=1" />, and{' '}
+        <Katex tex="f(1)=4" />. Slide <Katex tex="x" /> to <Katex tex="0" /> in part d.&apos;s widget to see it.
       </>
     ),
   },
@@ -309,15 +335,21 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x>\log_e(3) \implies x>1 \text{ and } x>0" />,
-    reason: <>Because <Katex tex="\log_e(3)\approx1.10" />. This lets us use parts b. and e.</>,
+    reason: (
+      <>
+        Since <Katex tex="3>e" />, <Katex tex="\log_e(3)>\log_e(e)=1" /> (and so is also above <Katex tex="0" />). This
+        lets us use parts b. and e.
+      </>
+    ),
+    more: <>On a calculator, <Katex tex="\log_e(3)\approx1.10" />.</>,
   },
   {
     working: <Katex display tex="\implies g(f(x))+f(g(x)) \text{ strictly decreasing}" />,
     reason: (
       <>
-        Part b.: <Katex tex="g(f(x))" /> is decreasing for <Katex tex="x>1" />. Part e.: the derivative of{' '}
-        <Katex tex="f(g(x))" />, <Katex tex="2e^x(1-e^x)" />, is negative for <Katex tex="x>0" />. A sum of two
-        decreasing functions is decreasing, so it can cross <Katex tex="0" /> at most once.
+        Part b.: <Katex tex="g(f(x))" /> decreases for <Katex tex="x>1" />. Part e.: <Katex tex="2e^x(1-e^x)<0" /> for{' '}
+        <Katex tex="x>0" />, so <Katex tex="f(g(x))" /> decreases. A sum of decreasing functions decreases, so it
+        crosses <Katex tex="0" /> at most once.
       </>
     ),
   },
@@ -330,9 +362,9 @@ const ROWS_F: WorkingRow[] = [
     ),
     reason: (
       <>
-        The sum starts positive at <Katex tex="\log_e(3)" /> and ends as negative as you like. It is continuous and
-        strictly decreasing, so it passes through <Katex tex="0" /> exactly once (at <Katex tex="x\approx1.87" />,
-        though the question doesn&apos;t ask for it).
+        As <Katex tex="x\to\infty" /> the index <Katex tex="3+2x-x^2\to-\infty" />, so{' '}
+        <Katex tex="g(f(x))\to0" />, while <Katex tex="(3-e^x)(1+e^x)\to-\infty" />. So the sum starts positive and
+        ends negative.
       </>
     ),
   },
@@ -340,13 +372,18 @@ const ROWS_F: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{One solution}}" />,
     reason: (
       <>
-        This is the report&apos;s rough sketch with addition of ordinates, argued precisely. For a 1-mark question the
-        sketch is enough.
+        The sum is continuous and strictly decreasing, from positive to negative, so it equals <Katex tex="0" />{' '}
+        exactly once.
       </>
     ),
     more: (
       <>
-        Sweep <Katex tex="x" /> in the widget below to watch the two ordinates cancel exactly once.
+        The crossing is at <Katex tex="x\approx1.87" />, though the question doesn&apos;t ask for it. For 1 mark the
+        report&apos;s route is quicker: roughly sketch the bell <Katex tex="g(f(x))" /> (peak <Katex tex="e^4" /> at{' '}
+        <Katex tex="x=1" />) and <Katex tex="f(g(x))" /> (asymptote <Katex tex="y=3" />, maximum <Katex tex="(0,4)" />,{' '}
+        <Katex tex="x" />-intercept <Katex tex="\log_e(3)" />, then plunging), and add ordinates to see the sum cross
+        the axis once. The rows above are that sketch argued precisely. Sweep <Katex tex="x" /> in the widget below to
+        watch the two ordinates cancel exactly once.
       </>
     ),
   },
@@ -444,8 +481,7 @@ export default function MethodsQ9_2019Exam1() {
           <p>
             An ordinate is a <Katex tex="y" />-value. The graph of <Katex tex="y=p(x)+q(x)" /> is built by adding the
             heights of the two graphs at each <Katex tex="x" />. So <Katex tex="p(x)+q(x)=0" /> wherever one graph is
-            exactly as far below the axis as the other is above it. If one of them is always positive, a solution can
-            only happen where the other is negative.
+            exactly as far below the axis as the other is above it.
           </p>
           <p>
             An equivalent picture: rearrange to <Katex tex="p(x)=-q(x)" /> and count where the graph of{' '}

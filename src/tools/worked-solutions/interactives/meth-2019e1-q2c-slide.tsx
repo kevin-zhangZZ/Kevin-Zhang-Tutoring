@@ -88,8 +88,7 @@ export default function SlideOntoInverse() {
         <M>g</M> lands exactly on <M>{'f^{-1}'}</M>. The centre moved from <M>{'\\left(\\tfrac13, 0\\right)'}</M> to{' '}
         <M>{'\\left(0, \\tfrac13\\right)'}</M>: <M>{'\\tfrac13'}</M> left, so <M>{'c = -\\tfrac13'}</M>, and{' '}
         <M>{'\\tfrac13'}</M> up, so <M>{'d = \\tfrac13'}</M>. In the rule, &ldquo;left&rdquo; shows up as a plus
-        inside: <M>{'f\\left(x + \\tfrac13\\right) + \\tfrac13 = \\tfrac{1}{3x} + \\tfrac13'}</M>. Now switch on the
-        sign slip.
+        inside: <M>{'f\\left(x + \\tfrac13\\right)'}</M>. Now switch on the sign slip.
       </Notice>
     )
   } else if (slipAnswer) {

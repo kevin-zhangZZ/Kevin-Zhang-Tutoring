@@ -48,10 +48,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="P=(x,y) \text{ is on } y=\sqrt{1-x^2}, \text{ and } B=(x,0)" />,
     reason: (
       <>
-        Look at the coordinates before reaching for a formula: <Katex tex="P" /> and <Katex tex="B" /> share the
-        same <Katex tex="x" />-coordinate, so <Katex tex="PB" /> is the vertical drop from <Katex tex="P" /> to
-        the <Katex tex="x" />-axis. A vertical length is just the difference in <Katex tex="y" />-coordinates,{' '}
-        <Katex tex="y-0=y" />.
+        <Katex tex="P" /> and <Katex tex="B" /> share the same <Katex tex="x" />-coordinate, so <Katex tex="PB" /> is
+        vertical: its length is the difference in <Katex tex="y" />-coordinates, <Katex tex="y-0=y" />.
       </>
     ),
   },
@@ -59,11 +57,11 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{PB = \sqrt{1-x^2}}" />,
     reason: (
       <>
-        The question says <em>in terms of <Katex tex="x" /> only</em>, so replace <Katex tex="y" /> using the
-        equation of the curve, <Katex tex="y=\sqrt{1-x^2}" />. This is also the height of triangle{' '}
-        <Katex tex="ABP" />, which part b needs.
+        The answer must be in terms of <Katex tex="x" /> only, so replace <Katex tex="y" /> using the equation of
+        the curve.
       </>
     ),
+    more: <>This length is also the height of triangle <Katex tex="ABP" />, which part b needs.</>,
   },
 ]
 
@@ -72,9 +70,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="AB = x-(-1) = x+1" />,
     reason: (
       <>
-        To maximise an area, first write the area in terms of one variable. <Katex tex="A" /> and{' '}
-        <Katex tex="B" /> are both on the <Katex tex="x" />-axis, so the base <Katex tex="AB" /> is a horizontal
-        distance: right <Katex tex="x" />-coordinate minus left.
+        To maximise the area, first write it in terms of <Katex tex="x" />. <Katex tex="A" /> and{' '}
+        <Katex tex="B" /> lie on the <Katex tex="x" />-axis, so the base is right <Katex tex="x" />-coordinate minus left.
       </>
     ),
   },
@@ -82,33 +79,37 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="A(x) = \tfrac12 (x+1)\sqrt{1-x^2},\quad -1<x<1" />,
     reason: (
       <>
-        <Katex tex="AB" /> is horizontal and <Katex tex="PB" /> is vertical, so the triangle is right-angled at{' '}
-        <Katex tex="B" />: area <Katex tex="=\tfrac12\times\text{base}\times\text{height}" /> with the height from
-        part a. <Katex tex="B" /> can only move between <Katex tex="x=-1" /> and <Katex tex="x=1" />; at either end
-        the triangle collapses to zero area.
+        <Katex tex="AB" /> is horizontal and <Katex tex="PB" /> vertical, so the triangle is right-angled at{' '}
+        <Katex tex="B" /> and area <Katex tex="=\tfrac12\times\text{base}\times\text{height}" />,
+        with the height <Katex tex="PB" /> from part a. <Katex tex="B" /> can only move between <Katex tex="-1" /> and{' '}
+        <Katex tex="1" />.
       </>
     ),
+    more: <>At either end of the domain the triangle collapses to zero area; that fact is used below to confirm the maximum.</>,
   },
   {
     working: <Katex display tex="\dfrac{d}{dx}\left(1-x^2\right)^{\frac12} = \tfrac12\left(1-x^2\right)^{-\frac12}(-2x) = \dfrac{-x}{\sqrt{1-x^2}}" />,
     reason: (
       <>
-        A maximum is where the area stops increasing and starts decreasing, so we need <Katex tex="A'(x)" />. Do the
-        awkward piece first, on its own line: <Katex tex="\sqrt{1-x^2}" /> is a function of{' '}
-        <Katex tex="1-x^2" />, so the chain rule multiplies by the derivative of the inside,{' '}
-        <Katex tex="-2x" />. That minus is the one most easily lost.
+        A maximum needs <Katex tex="A'(x)=0" />. First differentiate <Katex tex="\sqrt{1-x^2}" /> by the chain rule:
+        multiply by the derivative of the inside, <Katex tex="-2x" />.
       </>
     ),
+    more: <>A maximum is where the area stops increasing and starts decreasing, which is where the derivative is zero. Doing the awkward piece on its own line first keeps the minus from <Katex tex="-2x" /> safe: it is the one most easily lost.</>,
   },
   {
     working: <Katex display tex="A'(x) = \tfrac12\left[(1)\sqrt{1-x^2} + (x+1)\left(\dfrac{-x}{\sqrt{1-x^2}}\right)\right]" />,
     reason: (
       <>
-        <Katex tex="A" /> is a product of <Katex tex="x+1" /> and <Katex tex="\sqrt{1-x^2}" />, so use the product
-        rule: (derivative of the first)(second) + (first)(derivative of the second). Put brackets round every
-        factor: the report says the differentiation went wrong mostly through poor setting out, missing
-        brackets and negative terms. Each term has a meaning: the first is the area gained because the base
-        grows; the second is the effect of the changing height, negative once <Katex tex="x>0" /> because the
+        <Katex tex="A" /> is a product, so use the product rule: (derivative of first)(second) + (first)(derivative of
+        second). Bracket every factor.
+      </>
+    ),
+    more: (
+      <>
+        The report puts the difficulty with this differentiation down to poor setting out, particularly lack of
+        brackets, or dealing with negative terms. Each term has a meaning: the first is the area gained because the
+        base grows; the second is the effect of the changing height, negative once <Katex tex="x>0" /> because the
         height is then shrinking. The maximum is where the two balance.
       </>
     ),
@@ -117,20 +118,18 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= \dfrac{(1-x^2) - x(x+1)}{2\sqrt{1-x^2}} = \dfrac{1-x-2x^2}{2\sqrt{1-x^2}}" />,
     reason: (
       <>
-        A sum is hard to set equal to zero; a single fraction is easy, because it is zero exactly when its numerator
-        is. Multiply the first term by <Katex tex="\tfrac{\sqrt{1-x^2}}{\sqrt{1-x^2}}" /> to get the common
-        denominator, then expand <Katex tex="-x(x+1)=-x^2-x" />. Both terms are negative: the minus multiplies
-        the whole bracket.
+        Combine over the common denominator <Katex tex="\sqrt{1-x^2}" />: the first term becomes{' '}
+        <Katex tex="\sqrt{1-x^2}\cdot\sqrt{1-x^2}=1-x^2" />. Expand with the bracket: <Katex tex="-x(x+1)=-x^2-x" />.
       </>
     ),
+    more: <>One fraction is zero exactly when its numerator is, which is the point of combining. Both terms of <Katex tex="-x^2-x" /> are negative because the minus multiplies the whole bracket.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} A'(x)=0 \;&\Rightarrow\; 2x^2+x-1=0 \\ &\Rightarrow\; (2x-1)(x+1)=0 \end{aligned}" />,
     reason: (
       <>
-        The denominator <Katex tex="2\sqrt{1-x^2}" /> is positive for <Katex tex="-1<x<1" />, so only the numerator
-        can be zero. Multiply <Katex tex="1-x-2x^2=0" /> by <Katex tex="-1" /> to get a positive leading coefficient,
-        then factorise.
+        The denominator is positive for <Katex tex="-1<x<1" />, so set the numerator to zero. Multiply by{' '}
+        <Katex tex="-1" />, then factorise.
       </>
     ),
   },
@@ -138,32 +137,26 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="x=\tfrac12 \quad (x=-1 \text{ gives zero area})" />,
     reason: (
       <>
-        How do we know <Katex tex="x=\tfrac12" /> is a maximum? The area is <Katex tex="0" /> at both ends and
-        positive in between, so it must reach a highest point inside, and a highest point inside is a stationary
-        point. <Katex tex="x=\tfrac12" /> is the only one. (Or check signs: <Katex tex="A'(0)=\tfrac12>0" /> and
-        the numerator is negative for <Katex tex="x>\tfrac12" />, so <Katex tex="A" /> rises then falls.)
+        <Katex tex="A" /> is <Katex tex="0" /> at both ends and positive between, so its highest point is a stationary
+        point inside. <Katex tex="x=\tfrac12" /> is the only one, so it gives the maximum.
       </>
     ),
+    more: <>Or check signs: <Katex tex="A'(0)=\tfrac12>0" />, and the numerator <Katex tex="1-x-2x^2" /> is negative for <Katex tex="x>\tfrac12" />, so <Katex tex="A" /> rises then falls.</>,
   },
   {
     working: <Katex display tex="A\!\left(\tfrac12\right) = \tfrac12\left(\tfrac32\right)\sqrt{1-\tfrac14} = \tfrac12\left(\tfrac32\right)\left(\tfrac{\sqrt3}{2}\right)" />,
     reason: (
       <>
-        The question asks for the maximum <em>area</em>, not the <Katex tex="x" />-value where it happens, so
-        substitute <Katex tex="x=\tfrac12" /> back into <Katex tex="A(x)" />. Stopping at{' '}
-        <Katex tex="x=\tfrac12" /> gives up the final mark.
+        The question asks for the maximum <em>area</em>, so substitute <Katex tex="x=\tfrac12" /> back into{' '}
+        <Katex tex="A(x)" />.
       </>
     ),
+    more: <>Stopping at <Katex tex="x=\tfrac12" /> gives up the final mark.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum area} = \dfrac{3\sqrt3}{8}}" />,
-    reason: (
-      <>
-        Exact form, since the question sets no rounding. Sanity check: at <Katex tex="x=0" /> the triangle has base
-        and height both <Katex tex="1" />, area <Katex tex="\tfrac12" />, and{' '}
-        <Katex tex="\tfrac{3\sqrt3}{8}\approx0.65" /> is a little bigger, as a maximum must be.
-      </>
-    ),
+    reason: <>Exact form, since the question sets no rounding.</>,
+    more: <>Sanity check: at <Katex tex="x=0" /> the triangle has base and height both <Katex tex="1" />, area <Katex tex="\tfrac12" />, and <Katex tex="\tfrac{3\sqrt3}{8}\approx0.65" /> is a little bigger, as a maximum must be.</>,
   },
 ]
 
@@ -195,8 +188,8 @@ export default function MethodsQ7_2019Exam1() {
         >
           Not wrong as a start, but it is not an answer: it still contains <Katex tex="y" />, and the question asks
           for <Katex tex="x" /> only. It simplifies to <Katex tex="\sqrt{y^2}=y=\sqrt{1-x^2}" />, which you could
-          have read straight off the diagram. Whenever two points share an <Katex tex="x" />-coordinate, the distance
-          between them is just the difference of their <Katex tex="y" />-coordinates (and vice versa).
+          have read straight off the diagram. Incorrect versions usually come from a mis-set-up formula, such as
+          using <Katex tex="A" /> in place of <Katex tex="B" />, or writing <Katex tex="\sqrt{x^2+y^2}" />.
         </WrongMethod>
       </PartCard>
 
@@ -219,7 +212,7 @@ export default function MethodsQ7_2019Exam1() {
           working={
             <Katex
               display
-              tex="A'(x)=\tfrac12\left[\sqrt{1-x^2}+\dfrac{x(x+1)}{\sqrt{1-x^2}}\right]=\dfrac{1+x}{2\sqrt{1-x^2}}"
+              tex="\begin{aligned} A'(x)&=\tfrac12\left[\sqrt{1-x^2}+\dfrac{x(x+1)}{\sqrt{1-x^2}}\right] \\ &=\dfrac{1+x}{2\sqrt{1-x^2}} \end{aligned}"
             />
           }
         >
@@ -235,14 +228,14 @@ export default function MethodsQ7_2019Exam1() {
           working={
             <Katex
               display
-              tex="\begin{aligned} (1-x^2)-x^2+x=0 \;&\Rightarrow\; (2x+1)(x-1)=0 \\ &\Rightarrow\; x=-\tfrac12,\ A=\tfrac{\sqrt3}{8} \end{aligned}"
+              tex="\begin{aligned} &(1-x^2)-x^2+x=0 \\ \Rightarrow\; &(2x+1)(x-1)=0 \\ \Rightarrow\; &x=-\tfrac12,\ A=\tfrac{\sqrt3}{8} \end{aligned}"
             />
           }
         >
           Without brackets, the minus reaches only the first term of <Katex tex="x(x+1)" />. The equation now gives{' '}
           <Katex tex="x=1" /> (zero area) and <Katex tex="x=-\tfrac12" />, where the area is{' '}
-          <Katex tex="\tfrac{\sqrt3}{8}\approx0.22" />. A quick check catches it: at <Katex tex="x=0" /> the area is
-          already <Katex tex="\tfrac12" />, which is bigger, so <Katex tex="x=-\tfrac12" /> cannot be the maximum.
+          <Katex tex="\tfrac{\sqrt3}{8}\approx0.22" />. The sanity check in the last row catches it: <Katex tex="A(0)=\tfrac12" /> is
+          bigger, so <Katex tex="x=-\tfrac12" /> cannot be the maximum.
           Write <Katex tex="-x(x+1)=-x^2-x" /> with the bracket every time.
         </WrongMethod>
         <Explore title="Reflect it: the biggest triangle is half an equilateral triangle">

@@ -38,11 +38,12 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = \dfrac{\text{no. faulty}}{\text{sample size}} = \dfrac{8}{41}" />,
-    reason: <>A sample proportion is the number in the sample with the attribute divided by the sample size. Here the attribute is &ldquo;faulty&rdquo;: <Katex tex="8" /> of the <Katex tex="41" /> pegs Fred checked.</>,
+    reason: <>A sample proportion is the number in the sample with the attribute (faulty) divided by the sample size: <Katex tex="8" /> of the <Katex tex="41" /> pegs.</>,
   },
   {
     working: <Katex display tex="\boxed{\dfrac{8}{41}}" />,
-    reason: <>Leave it as a fraction: the question asks for a proportion and sets no rounding. (<Katex tex="\tfrac{8}{41}\approx0.195" /> — a shade under one peg in five was faulty in this particular sample. Part b. then tells you the company&apos;s <em>actual</em> long-run rate is <Katex tex="\tfrac16\approx0.167" />, so this sample happened to run slightly faulty; a sample proportion is an estimate, not the true value.)</>,
+    reason: <>Leave it as a fraction: the question asks for a proportion and sets no rounding.</>,
+    more: <><Katex tex="\tfrac{8}{41}\approx0.195" />: a shade under one peg in five was faulty in this particular sample. Part b. then tells you the company&apos;s <em>actual</em> long-run rate is <Katex tex="\tfrac16\approx0.167" />, so this sample happened to run slightly faulty; a sample proportion is an estimate, not the true value.</>,
   },
 ]
 
@@ -56,13 +57,17 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="\hat P" /> is a proportion, but its probabilities come from a <em>count</em>. Each of the 12 pegs is
-        faulty or not, with the same chance <Katex tex="\tfrac16" /> each time and independently (the company makes
-        thousands of pegs, so one peg doesn&apos;t change the odds for the next): that is a binomial count, and{' '}
-        <Katex tex="\hat P" /> is that count divided by 12. Use <Katex tex="p=\tfrac16" />, the <em>actual</em>{' '}
-        proportion this part gives you, not part a.&apos;s <Katex tex="\tfrac{8}{41}" />, which was one
-        sample&apos;s estimate. Whenever an exact probability about <Katex tex="\hat P" /> is asked for a small
-        sample, rewrite it in terms of <span className="whitespace-nowrap"><Katex tex="X" />.</span>
+        Each of the 12 pegs is independently faulty with chance <Katex tex="\tfrac16" />, so the number faulty is
+        binomial and <Katex tex="\hat P" /> is that count divided by 12. Use the <em>actual</em>{' '}
+        <Katex tex="p=\tfrac16" />, not part a.&apos;s <Katex tex="\tfrac{8}{41}" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\hat P" /> is a proportion, but its probabilities come from a <em>count</em>. Independence is
+        reasonable because the company makes thousands of pegs, so one peg doesn&apos;t change the odds for the
+        next. Whenever an exact probability about <Katex tex="\hat P" /> is asked for a small sample,
+        rewrite it in terms of <span className="whitespace-nowrap"><Katex tex="X" />.</span>
       </>
     ),
   },
@@ -76,10 +81,14 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Multiply both sides by 12: <Katex tex="X<2" />. <Katex tex="X" /> is a whole number, so only the counts{' '}
-        <Katex tex="0" /> and <Katex tex="1" /> qualify. Watch the strict inequality: a box with 2 faulty pegs
-        has <Katex tex="\hat P=\tfrac{2}{12}=\tfrac16" /> exactly, which is <em>not</em> less than{' '}
-        <Katex tex="\tfrac16" />. Wrongly including it (<Katex tex="\le" />) adds{' '}
-        <Katex tex="\Pr(X=2)\approx0.296" /> and gives about <Katex tex="0.677" />.
+        <Katex tex="0" /> and <Katex tex="1" /> qualify.
+      </>
+    ),
+    more: (
+      <>
+        Watch the strict inequality: a box with 2 faulty pegs has <Katex tex="\hat P=\tfrac{2}{12}=\tfrac16" />{' '}
+        exactly, which is <em>not</em> less than <Katex tex="\tfrac16" />. Wrongly including it (<Katex tex="\le" />)
+        adds <Katex tex="\Pr(X=2)\approx0.296" /> and gives about <Katex tex="0.677" />.
       </>
     ),
   },
@@ -92,12 +101,14 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        These are the two terms the report says few students found correctly. Use{' '}
-        <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" />. No faulty pegs: all twelve are good, each{' '}
-        <Katex tex="\tfrac56" />, and there is only one way for that to happen. One faulty peg: one factor of{' '}
-        <Katex tex="\tfrac16" /> and eleven of <Katex tex="\tfrac56" />, times{' '}
-        <Katex tex="\binom{12}{1}=12" /> because the faulty peg could be any of the 12. Simplify{' '}
-        <Katex tex="12\times\tfrac16=2" /> straight away to keep the next step clean.
+        Use <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" />. For none faulty,{' '}
+        <Katex tex="\binom{12}{0}=1" /> and <Katex tex="\left(\tfrac16\right)^0=1" />. For one faulty,{' '}
+        <Katex tex="\binom{12}{1}=12" /> (any of the 12 pegs), and <Katex tex="12\times\tfrac16=2" />.
+      </>
+    ),
+    more: (
+      <>
+        These are the two component expressions the report says few students found correctly.
       </>
     ),
   },
@@ -110,9 +121,13 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        The form <Katex tex="a(b)^n" /> means one number times a <em>single</em> power, so the two terms have to
-        become one. They share the base <Katex tex="\tfrac56" />, so factor out the lower power{' '}
-        <Katex tex="\left(\tfrac56\right)^{11}" />: since{' '}
+        The form <Katex tex="a(b)^n" /> needs a <em>single</em> power, so factor out the lower power{' '}
+        <Katex tex="\left(\tfrac56\right)^{11}" /> from both terms.
+      </>
+    ),
+    more: (
+      <>
+        This is the step the report says even fewer students managed. Since{' '}
         <Katex tex="\left(\tfrac56\right)^{12}=\left(\tfrac56\right)^{11}\times\tfrac56" />, the first term leaves{' '}
         <Katex tex="\tfrac56" /> behind and the second leaves <Katex tex="2" />.
       </>
@@ -122,11 +137,15 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{\Pr\!\left(\hat P<\tfrac16\right) = \dfrac{17}{6}\left(\dfrac56\right)^{11}}" />,
     reason: (
       <>
-        Write <Katex tex="2=\tfrac{12}{6}" /> first: <Katex tex="\tfrac56+\tfrac{12}{6}=\tfrac{17}{6}" />. This
-        is the required form with <Katex tex="a=\tfrac{17}{6}" />, <Katex tex="b=\tfrac56" />,{' '}
-        <Katex tex="n=11" />. Check it&apos;s sensible: <Katex tex="\tfrac{17}{6}\left(\tfrac56\right)^{11}\approx0.381" />,
-        between 0 and 1 (<Katex tex="a" /> being bigger than 1 is fine; it&apos;s only one factor). The same number
-        can also be written <Katex tex="\tfrac{17}{5}\left(\tfrac56\right)^{12}" />.
+        <Katex tex="\tfrac56+\tfrac{12}{6}=\tfrac{17}{6}" />. This is the required form with{' '}
+        <Katex tex="a=\tfrac{17}{6}" />, <Katex tex="b=\tfrac56" />, <Katex tex="n=11" />.
+      </>
+    ),
+    more: (
+      <>
+        Check it&apos;s sensible: <Katex tex="\tfrac{17}{6}\left(\tfrac56\right)^{11}\approx0.381" />, between 0
+        and 1 (<Katex tex="a" /> being bigger than 1 is fine; it&apos;s only one factor). The same number can also
+        be written <Katex tex="\tfrac{17}{5}\left(\tfrac56\right)^{12}" />.
       </>
     ),
   },
@@ -175,7 +194,7 @@ export default function MethodsQ6_2019Exam1() {
           <p>
             <Katex tex="\hat P" /> has mean <Katex tex="p" /> and standard deviation{' '}
             <Katex tex="\sqrt{\tfrac{p(1-p)}{n}}" />. Those tell you where <Katex tex="\hat P" /> is centred and how
-            spread out it is; they are not probabilities. For an exact probability, turn the{' '}
+            spread out it is. For an exact probability, turn the{' '}
             <Katex tex="\hat P" /> event into an <Katex tex="X" /> event and use the binomial distribution.
           </p>
         </Background>

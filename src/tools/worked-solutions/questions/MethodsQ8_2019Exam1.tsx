@@ -52,12 +52,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="f(x) = ax^2(x+1)(x-1)" />,
     reason: (
       <>
-        Read the factors off the intercepts. The graph <em>touches</em> the axis at the origin and
-        turns back, like <Katex tex="y=x^2" /> does, so <Katex tex="x^2" /> is a factor; it{' '}
-        <em>crosses</em> straight through at <Katex tex="x=\pm1" />, so <Katex tex="(x+1)" /> and{' '}
-        <Katex tex="(x-1)" /> are single factors. That is <Katex tex="2+1+1=4" />, the whole degree,
-        so there are no other factors — but there is still an unknown constant <Katex tex="a" />,
-        because stretching the graph up or down never moves an intercept.
+        It touches the axis at <Katex tex="0" /> (so <Katex tex="x^2" />) and crosses at{' '}
+        <Katex tex="\pm1" /> (single factors). Keep a constant <Katex tex="a" />: stretching never
+        moves an intercept.
+      </>
+    ),
+    more: (
+      <>
+        That is <Katex tex="2+1+1=4" /> factors, the whole degree, so there are no others.
+        Leaving <Katex tex="a" /> out is the error the report says many students made.
       </>
     ),
   },
@@ -69,11 +72,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="f\!\left(\tfrac{1}{\sqrt2}\right) = 1" />,
     reason: (
       <>
-        To find <Katex tex="a" /> you need a point on the graph that is <em>not</em> an intercept:
-        substituting <Katex tex="(1,0)" /> gives <Katex tex="a\cdot1\cdot0=0" />, which is true for
-        every <Katex tex="a" /> and tells you nothing. The marked turning point{' '}
-        <Katex tex="\left(\tfrac{1}{\sqrt2},1\right)" /> is the only height information the diagram
-        gives.
+        To find <Katex tex="a" />, substitute a marked point that is <em>not</em> an intercept: the
+        turning point <Katex tex="\left(\tfrac{1}{\sqrt2},1\right)" />.
+      </>
+    ),
+    more: (
+      <>
+        Substituting an intercept such as <Katex tex="(1,0)" /> gives{' '}
+        <Katex tex="a\cdot1\cdot0=0" />, which is true for every <Katex tex="a" /> and tells you
+        nothing. The marked turning points are the only height information the diagram gives.
       </>
     ),
   },
@@ -83,11 +90,11 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\tfrac{a}{4} = 1 \;\implies\; a=-4" />,
-    reason: (
+    reason: <>Negative, as it should be: both ends of the graph fall.</>,
+    more: (
       <>
-        This is the dilation factor the report says many students overlooked. Its sign is a
-        built-in check: a negative leading coefficient means both ends of a quartic fall, exactly
-        as in the diagram.
+        For a quartic, the sign of the leading coefficient fixes the end behaviour, so a positive{' '}
+        <Katex tex="a" /> here would signal an arithmetic slip.
       </>
     ),
   },
@@ -95,11 +102,11 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{f(x) = -4x^2(x^2-1)}" />,
     reason: (
       <>
-        Check with the other marked point:{' '}
+        Check the other marked point:{' '}
         <Katex tex="f\left(-\tfrac{1}{\sqrt2}\right)=-4\left(\tfrac12\right)\left(-\tfrac12\right)=1" /> ✓.
-        The expanded form <Katex tex="f(x)=-4x^4+4x^2" /> is equally correct.
       </>
     ),
+    more: <>The expanded form <Katex tex="f(x)=-4x^4+4x^2" /> is equally correct.</>,
   },
 ]
 
@@ -108,10 +115,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="g(x)>0 \ \text{ and } \ x^3+x^2>0" />,
     reason: (
       <>
-        A logarithm only accepts positive inputs, and <Katex tex="h" /> is a difference of two
-        logs, so <Katex tex="h(x)" /> has a value only where <em>both</em> logs do. The maximal
-        domain is every <Katex tex="x" /> that makes the rule work, so both conditions must hold
-        at the same <Katex tex="x" />.
+        A log needs a positive input, and <Katex tex="h" /> uses two logs, so <em>both</em>{' '}
+        inputs must be positive at the same <Katex tex="x" />.
       </>
     ),
   },
@@ -123,11 +128,15 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\iff x\ne0 \text{ and } -1<x<1" />,
     reason: (
       <>
-        <Katex tex="x^2" /> is never negative, so the product is negative exactly when{' '}
-        <Katex tex="x^2>0" /> (that is, <Katex tex="x\ne0" />) and <Katex tex="x^2-1<0" />. Check it
-        on the graph in part a: <Katex tex="f" /> is above the axis between the crossings
-        at <Katex tex="\pm1" />, except at the origin, where it only touches — there{' '}
-        <Katex tex="g(0)=0" /> and <Katex tex="\log_e 0" /> is undefined.
+        <Katex tex="x^2\ge0" />, so the product is negative exactly when <Katex tex="x^2>0" /> (i.e.{' '}
+        <Katex tex="x\ne0" />) and <Katex tex="x^2-1<0" />.
+      </>
+    ),
+    more: (
+      <>
+        You can also read this straight off the graph in part a: <Katex tex="f" /> is above the
+        axis between the crossings at <Katex tex="\pm1" />, except at the origin, where it only
+        touches. There <Katex tex="g(0)=0" />, and <Katex tex="\log_e 0" /> is undefined.
       </>
     ),
   },
@@ -139,8 +148,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\iff x\ne0 \text{ and } x>-1" />,
     reason: (
       <>
-        Same trick: <Katex tex="x^2\ge0" />, so the sign is decided by <Katex tex="x+1" />, except
-        at <Katex tex="x=0" /> where the whole product is <Katex tex="0" />, which is not positive.
+        Same idea: <Katex tex="x^2\ge0" />, so the sign is that of <Katex tex="x+1" />, except at{' '}
+        <Katex tex="x=0" />, where the product is <Katex tex="0" />, not positive.
       </>
     ),
   },
@@ -148,10 +157,16 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{D = (-1,1)\setminus\{0\}}" />,
     reason: (
       <>
-        Both conditions at once: <Katex tex="x>-1" /> (from the cubic), <Katex tex="x<1" /> (from{' '}
-        <Katex tex="g" />) and <Katex tex="x\ne0" /> (from both). The report gives this form or{' '}
-        <Katex tex="(-1,0)\cup(0,1)" />, which is the same set; plain <Katex tex="(-1,1)" /> would
-        wrongly include <Katex tex="0" />.
+        Combine: <Katex tex="x>-1" />, <Katex tex="x<1" /> and <Katex tex="x\ne0" />. Equivalently{' '}
+        <Katex tex="(-1,0)\cup(0,1)" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="x>-1" /> comes from the cubic, <Katex tex="x<1" /> from <Katex tex="g" />, and{' '}
+        <Katex tex="x\ne0" /> from both. The report gives both forms and notes some students were
+        not clear on how to express the interval: plain <Katex tex="(-1,1)" /> would wrongly
+        include <Katex tex="0" />.
       </>
     ),
   },
@@ -162,11 +177,16 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="h(x) = \log_e\!\left(\dfrac{g(x)}{x^3+x^2}\right)" />,
     reason: (
       <>
-        The rule is messy as given, so combine it with{' '}
-        <Katex tex="\log_e A-\log_e B=\log_e\!\left(\tfrac{A}{B}\right)" />. How would I know to? The
-        two arguments share the factor <Katex tex="x^2" />, a strong hint that something cancels.
-        The law is valid here because <Katex tex="A" /> and <Katex tex="B" /> are both positive
-        on <Katex tex="D" />.
+        Combine with <Katex tex="\log_e A-\log_e B=\log_e\!\left(\tfrac{A}{B}\right)" />, valid as{' '}
+        <Katex tex="A,B>0" /> on <Katex tex="D" />. Both inputs share <Katex tex="x^2" />, a hint
+        that something cancels.
+      </>
+    ),
+    more: (
+      <>
+        The report notes only a few students used logarithm laws, and some sketched various
+        graphs with limited success. Sketching <Katex tex="h" /> from the rule as given is hard; one
+        log law turns it into a single, familiar log graph.
       </>
     ),
   },
@@ -178,10 +198,9 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="= \log_e\bigl(-4(x-1)\bigr) = \log_e\bigl(4(1-x)\bigr)" />,
     reason: (
       <>
-        Cancel <Katex tex="x^2" /> and <Katex tex="x+1" />, allowed because <Katex tex="x\ne0" /> and{' '}
-        <Katex tex="x\ne-1" /> on <Katex tex="D" />. The simpler rule describes <Katex tex="h" /> only
-        on <Katex tex="D" />: simplifying never changes the domain. The report notes only a few
-        students used log laws, and this is the step that makes the range easy.
+        Cancel <Katex tex="x^2" /> and <Katex tex="x+1" /> (nonzero on <Katex tex="D" />).{' '}
+        <Katex tex="h" />&apos;s domain is still <Katex tex="D" />; the simpler rule is only used on{' '}
+        <Katex tex="D" />.
       </>
     ),
   },
@@ -190,10 +209,7 @@ const ROWS_C: WorkingRow[] = [
     reason: (
       <>
         As <Katex tex="x" /> increases, <Katex tex="4(1-x)" /> decreases, and <Katex tex="\log_e" /> is
-        an increasing function, so <Katex tex="h" /> decreases. So <Katex tex="h" /> is one-to-one:
-        its range runs between its values at the two ends of <Katex tex="D" />, and removing the
-        single point <Katex tex="x=0" /> removes exactly the single value <Katex tex="h(0)" /> — not a
-        whole interval.
+        increasing. So the range runs between the values at the ends of <Katex tex="D" />.
       </>
     ),
   },
@@ -201,8 +217,8 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="x\to-1^+:\ \ h(x)\to\log_e 8" />,
     reason: (
       <>
-        Left end: <Katex tex="4(1-(-1))=8" />. The end is open (<Katex tex="-1\notin D" />), so{' '}
-        <Katex tex="\log_e 8" /> is approached but never reached — a round bracket.
+        Left end: <Katex tex="4(1-(-1))=8" />. As <Katex tex="-1\notin D" />, <Katex tex="\log_e 8" />{' '}
+        is approached but never reached: a round bracket.
       </>
     ),
   },
@@ -211,7 +227,7 @@ const ROWS_C: WorkingRow[] = [
     reason: (
       <>
         Right end: <Katex tex="4(1-x)\to0^+" />, and the log of a tiny positive number is a large
-        negative number. The graph has the vertical asymptote <Katex tex="x=1" />.
+        negative number (vertical asymptote <Katex tex="x=1" />).
       </>
     ),
   },
@@ -219,11 +235,16 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="0\notin D \implies \log_e 4 \notin \text{range}" />,
     reason: (
       <>
-        The simplified rule gives <Katex tex="\log_e(4(1-0))=\log_e 4" /> at <Katex tex="x=0" />, but{' '}
-        <Katex tex="x=0" /> is not in <Katex tex="D" />, so <Katex tex="h" /> never takes that value,
-        and being one-to-one, no other <Katex tex="x" /> gives it either. The graph of{' '}
-        <Katex tex="h" /> is the curve <Katex tex="y=\log_e(4(1-x))" /> with a hole at{' '}
-        <Katex tex="(0,\log_e 4)" />.
+        <Katex tex="x=0" /> would give <Katex tex="\log_e(4(1-0))=\log_e 4" />, but{' '}
+        <Katex tex="0\notin D" />, and as <Katex tex="h" /> is strictly decreasing no other{' '}
+        <Katex tex="x" /> gives it.
+      </>
+    ),
+    more: (
+      <>
+        So the graph of <Katex tex="h" /> is the curve <Katex tex="y=\log_e(4(1-x))" /> for{' '}
+        <Katex tex="-1<x<1" />, with a hole at <Katex tex="(0,\log_e 4)" />. This is the detail
+        almost everyone missed: only 1% of students scored both marks.
       </>
     ),
   },
@@ -280,9 +301,7 @@ export default function MethodsQ8_2019Exam1() {
           working={<Katex display tex="\begin{aligned} f(x) &= x^2(x^2-1)\\ f\left(\tfrac{1}{\sqrt2}\right) &= \tfrac12\left(-\tfrac12\right) = -\tfrac14 \ne 1 \end{aligned}" />}
         >
           This has the right intercepts, but it opens upward, with dips of depth{' '}
-          <Katex tex="\tfrac14" /> where the diagram has peaks of height <Katex tex="1" />. Any
-          constant multiple of <Katex tex="x^2(x+1)(x-1)" /> has the same intercepts, so the factors
-          alone never finish the job. Catch it by substituting the marked point into your answer:
+          <Katex tex="\tfrac14" /> where the diagram has peaks of height <Katex tex="1" />. Catch it by substituting the marked point into your answer:
           if it doesn&apos;t give <Katex tex="1" />, you are missing <Katex tex="a" />.
         </WrongMethod>
       </PartCard>
@@ -315,7 +334,7 @@ export default function MethodsQ8_2019Exam1() {
         </Explore>
         <WrongMethod
           title={<>Simplify with log laws first to <Katex tex="\log_e(4(1-x))" />, then find where that works</>}
-          working={<Katex display tex="4(1-x)>0 \iff x<1 \implies D=(-\infty,1)" />}
+          working={<Katex display tex="\begin{aligned}&4(1-x)>0 \iff x<1\\&\implies D=(-\infty,1)\end{aligned}" />}
         >
           Log laws only hold where each log already exists. At <Katex tex="x=-2" />,{' '}
           <Katex tex="4(1-(-2))=12" /> is positive, but <Katex tex="g(-2)=-48" />, so{' '}
@@ -346,11 +365,9 @@ export default function MethodsQ8_2019Exam1() {
           title={<>The curve runs from <Katex tex="\log_e 8" /> down to <Katex tex="-\infty" />, so the range is <Katex tex="(-\infty,\ \log_e 8)" /></>}
           working={<Katex display tex="\text{Range} = \left(-\infty,\ \log_e 8\right)" />}
         >
-          This forgets that <Katex tex="x=0" /> is not in <Katex tex="D" />. The curve{' '}
-          <Katex tex="y=\log_e(4(1-x))" /> passes through <Katex tex="(0,\log_e 4)" />, but{' '}
-          <Katex tex="h" /> has a hole there, because at <Katex tex="x=0" /> both original logs
-          are <Katex tex="\log_e 0" />. Since <Katex tex="h" /> is one-to-one, nothing else fills
-          the gap. Whenever a point is removed from a domain, ask what output it would have given.
+          This forgets that <Katex tex="x=0" /> is not in <Katex tex="D" />: both original logs
+          are <Katex tex="\log_e 0" /> there, so the simplified curve&apos;s point{' '}
+          <Katex tex="(0,\log_e 4)" /> is missing from <Katex tex="h" />. Whenever a point is removed from a domain, ask what output it would have given.
         </WrongMethod>
       </PartCard>
     </div>

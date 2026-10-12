@@ -51,8 +51,14 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="1-\cos\!\left(\tfrac{x}{2}\right) = \cos\!\left(\tfrac{x}{2}\right)" />,
     reason: (
       <>
-        The same cosine, <Katex tex="\cos\!\left(\tfrac x2\right)" />, appears on both sides, so treat it as a
-        single unknown: this is just <Katex tex="1-c=c" />. Get it on its own before thinking about any angles.
+        The same cosine appears on both sides, so treat it as one unknown: this is just <Katex tex="1-c=c" />.
+      </>
+    ),
+    more: (
+      <>
+        Get <Katex tex="\cos\!\left(\tfrac x2\right)" /> on its own before thinking about any angles. The report
+        says most students managed this rearrangement; the marks were lost later, on the reference angle and the
+        domain.
       </>
     ),
   },
@@ -60,26 +66,23 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="2\cos\!\left(\tfrac{x}{2}\right) = 1 \;\implies\; \cos\!\left(\tfrac{x}{2}\right) = \tfrac12" />,
     reason: (
       <>
-        Now it is a standard exact-value equation. Cosine is <Katex tex="\tfrac12" /> at the reference angle{' '}
-        <Katex tex="\tfrac{\pi}{3}" />, not <Katex tex="\tfrac{\pi}{6}" /> — the report notes some students did not
-        identify the correct reference angle.
+        A standard exact value: cosine is <Katex tex="\tfrac12" /> at the reference angle{' '}
+        <Katex tex="\tfrac{\pi}{3}" /> (not <Katex tex="\tfrac{\pi}{6}" />, the angle where <Katex tex="\sin=\tfrac12" />).
       </>
     ),
-    more: <>See Background above.</>,
   },
   {
     working: <Katex display tex="x\in[-2\pi,\pi] \;\implies\; \tfrac{x}{2}\in\left[-\pi,\tfrac{\pi}{2}\right]" />,
     reason: (
       <>
-        The angle inside the cosine is <Katex tex="\tfrac x2" />, not <Katex tex="x" />, so first find where{' '}
-        <em>that</em> angle lives: halve both ends of the domain. This is the step the report says many students
-        missed. <Katex tex="\left[-\pi,\tfrac{\pi}{2}\right]" /> is only three-quarters of a turn, so expect only a
-        couple of solutions.
+        The angle inside the cosine is <Katex tex="\tfrac x2" />, not <Katex tex="x" />, so halve both ends of the
+        domain to find where <em>that</em> angle can lie.
       </>
     ),
     more: (
       <>
-        Slide <Katex tex="x" /> in the diagram below to see the arc.
+        <Katex tex="\left[-\pi,\tfrac{\pi}{2}\right]" /> is only three-quarters of a turn, so expect only a couple of
+        solutions. Slide <Katex tex="x" /> in the diagram below to see this arc on the unit circle.
       </>
     ),
   },
@@ -87,10 +90,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\tfrac{x}{2} = -\tfrac{\pi}{3},\ \tfrac{\pi}{3}" />,
     reason: (
       <>
-        Cosine is positive in quadrants 1 and 4, so the angles are <Katex tex="\pm\tfrac{\pi}{3}" /> plus whole
-        turns. Inside <Katex tex="\left[-\pi,\tfrac{\pi}{2}\right]" /> the quadrant-4 angle must be written as{' '}
-        <Katex tex="-\tfrac{\pi}{3}" /> (its other name, <Katex tex="\tfrac{5\pi}{3}" />, is outside the interval),
-        and adding or subtracting <Katex tex="2\pi" /> pushes either angle out. So there are exactly two.
+        Cosine is positive in quadrants 1 and 4. In <Katex tex="\left[-\pi,\tfrac{\pi}{2}\right]" /> those angles are{' '}
+        <Katex tex="\tfrac{\pi}{3}" /> and <Katex tex="-\tfrac{\pi}{3}" /> (not <Katex tex="\tfrac{5\pi}{3}" />, which is
+        outside it).
+      </>
+    ),
+    more: (
+      <>
+        Adding or subtracting a full turn (<Katex tex="2\pi" />) pushes either angle outside <Katex tex="\left[-\pi,\tfrac{\pi}{2}\right]" />, so there are
+        exactly two.
       </>
     ),
   },
@@ -110,10 +118,17 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="g(x) = 1-\cos\!\left(\tfrac{x}{2}\right) = -f(x)+1" />,
     reason: (
       <>
-        Read the rule as moves applied to the graph you are given, in order: the minus sign reflects{' '}
-        <Katex tex="f" /> in the <Katex tex="x" />-axis, then the <Katex tex="+1" /> translates it up{' '}
-        <Katex tex="1" />. Nothing multiplies <Katex tex="f" /> or <Katex tex="x" />, so there is no dilation: same
-        shape, same <Katex tex="x" />-values (the report says some students dilated it).
+        Read <Katex tex="-f(x)+1" /> as two moves on the given graph: reflect <Katex tex="f" /> in the{' '}
+        <Katex tex="x" />-axis, then translate up <Katex tex="1" />.
+      </>
+    ),
+    more: (
+      <>
+        Nothing multiplies <Katex tex="f" /> or <Katex tex="x" />, so there is no dilation: same shape, same{' '}
+        <Katex tex="x" />-values, only the heights change (the report says some students dilated it). Reflect{' '}
+        <em>every</em> section: the piece of <Katex tex="f" /> below the <Katex tex="x" />-axis, for{' '}
+        <Katex tex="-2\pi\le x<-\pi" />, flips to above it. The report's &ldquo;horizontally reflected&rdquo; means
+        flipped over a horizontal line (the <Katex tex="x" />-axis), not left-to-right.
       </>
     ),
   },
@@ -126,8 +141,13 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Endpoints of <Katex tex="g" />: the same <Katex tex="x" />-values as <Katex tex="f" />, because neither move is
-        horizontal. Follow each point of <Katex tex="f" /> through both moves as a check:{' '}
+        Neither move is horizontal, so <Katex tex="g" /> has the same endpoint <Katex tex="x" />-values as{' '}
+        <Katex tex="f" />; substitute them into <Katex tex="g" />.
+      </>
+    ),
+    more: (
+      <>
+        Check by following each point of <Katex tex="f" /> through both moves:{' '}
         <Katex tex="(-2\pi,-1)\to(-2\pi,1)\to(-2\pi,2)" />, and <Katex tex="(\pi,0)" /> stays put on the reflection,
         then goes up to <Katex tex="(\pi,1)" />. The maximum <Katex tex="(0,1)" /> of <Katex tex="f" /> becomes the
         minimum <Katex tex="(0,0)" /> of <Katex tex="g" />.
@@ -143,10 +163,15 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Setting <Katex tex="f(x)=g(x)" /> gives exactly the equation of part a., so its answers are the{' '}
-        <Katex tex="x" />-values of the intersections; this is the connection the report says successful students
-        made. It also makes sense geometrically: <Katex tex="f(x)+g(x)=1" />, so <Katex tex="g" /> is{' '}
-        <Katex tex="f" /> reflected in the line <Katex tex="y=\tfrac12" />, and the graphs can only meet on that line.
+        Setting <Katex tex="f(x)=g(x)" /> gives exactly part a.'s equation, so its answers are the intersection{' '}
+        <Katex tex="x" />-values. Substitute into <Katex tex="f" /> for <Katex tex="y" />.
+      </>
+    ),
+    more: (
+      <>
+        This is the connection the report says successful students made. It also makes sense geometrically:{' '}
+        <Katex tex="f(x)+g(x)=1" />, so <Katex tex="g" /> is <Katex tex="f" /> reflected in the line{' '}
+        <Katex tex="y=\tfrac12" />, and the graphs can only meet on that line.
       </>
     ),
   },
@@ -158,12 +183,19 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Plot and label the four points, then join them with the reflected, lifted shape (orange, drawn over the real
-        exam figure). Mind the curvature, as the report advises: <Katex tex="g" /> starts <em>flat</em> at{' '}
-        <Katex tex="(-2\pi,2)" /> because <Katex tex="f" /> starts flat there, bends over through{' '}
-        <Katex tex="(-\pi,1)" />, is U-shaped around its minimum <Katex tex="(0,0)" />, and is still rising at{' '}
-        <Katex tex="(\pi,1)" />. It crosses <Katex tex="f" /> at <Katex tex="\left(-\tfrac{2\pi}{3},\ \tfrac12\right)" />{' '}
-        and <Katex tex="\left(\tfrac{2\pi}{3},\ \tfrac12\right)" />.
+        Label both endpoints and both intersections with coordinates, then draw <Katex tex="f" />'s shape flipped and
+        lifted (orange): flat at <Katex tex="(-2\pi,2)" />, minimum <Katex tex="(0,0)" />, still rising at{' '}
+        <Katex tex="(\pi,1)" />.
+      </>
+    ),
+    more: (
+      <>
+        The report says some students did not label the points the question asks for: all four coordinates are needed.
+        Mind the curvature, as the report advises: <Katex tex="g" /> starts <em>flat</em> at{' '}
+        <Katex tex="(-2\pi,2)" /> because <Katex tex="f" /> starts flat at <Katex tex="(-2\pi,-1)" />. It is concave
+        down (like the top of a hill) from there to <Katex tex="(-\pi,1)" />, then concave up (U-shaped) through the
+        minimum <Katex tex="(0,0)" />, and has gradient <Katex tex="\tfrac12" /> at <Katex tex="(\pi,1)" />. The orange curve is drawn over the real
+        exam figure.
       </>
     ),
   },
@@ -210,8 +242,7 @@ export default function MethodsQ4_2019Exam1() {
           The report says some students did not identify the correct reference angle. <Katex tex="\tfrac{\pi}{6}" /> is
           the easy mix-up: it is the reference angle for <Katex tex="\sin\theta=\tfrac12" /> and for{' '}
           <Katex tex="\cos\theta=\tfrac{\sqrt3}{2}" />. Catch it by substituting back:{' '}
-          <Katex tex="\cos\tfrac{\pi}{6}\approx0.87" />, not <Katex tex="0.5" />. In the half-equilateral triangle, the
-          angle next to the side of length <Katex tex="1" /> is <Katex tex="\tfrac{\pi}{3}" />.
+          <Katex tex="\cos\tfrac{\pi}{6}\approx0.87" />, not <Katex tex="0.5" />.
         </WrongMethod>
         <WrongMethod
           title="Solve for x/2 between 0 and 2π, as usual"

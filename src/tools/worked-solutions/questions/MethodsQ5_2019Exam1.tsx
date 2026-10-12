@@ -63,9 +63,7 @@ const ROWS_AI: WorkingRow[] = [
     reason: (
       <>
         Substitute <Katex tex="x=-1" />, keeping <Katex tex="(-1-1)" /> in brackets before squaring:{' '}
-        <Katex tex="(-2)^2=4" />, which is positive. That square is positive for every{' '}
-        <Katex tex="x\ne1" />, so every value of <Katex tex="f" /> is more than <Katex tex="1" /> — worth
-        noticing before part a.ii.
+        <Katex tex="(-2)^2=4" />.
       </>
     ),
   },
@@ -73,9 +71,7 @@ const ROWS_AI: WorkingRow[] = [
     working: <Katex display tex="\boxed{f(-1) = \dfrac32}" />,
     reason: (
       <>
-        Keep this: <Katex tex="(-1,\tfrac32)" /> is a point on the graph for part a.ii. The report
-        says students who made use of it, and found a <Katex tex="y" />-intercept, were most
-        successful with the sketch.
+        Keep this: <Katex tex="(-1,\tfrac32)" /> is a point on the graph for part a.ii.
       </>
     ),
   },
@@ -91,11 +87,14 @@ const ROWS_AII: WorkingRow[] = [
     ),
     reason: (
       <>
-        Read them off the form <Katex tex="y=\dfrac{a}{(x-h)^2}+k" /> with <Katex tex="h=1" />,{' '}
-        <Katex tex="k=1" />. The denominator <Katex tex="(x-1)^2" /> is <Katex tex="0" /> at{' '}
-        <Katex tex="x=1" />, so <Katex tex="f" /> blows up there; and{' '}
-        <Katex tex="\dfrac{2}{(x-1)^2}\to0" /> as <Katex tex="x\to\pm\infty" />, leaving{' '}
-        <Katex tex="f\to1" />.
+        The denominator <Katex tex="(x-1)^2" /> is <Katex tex="0" /> at <Katex tex="x=1" />; for large{' '}
+        <Katex tex="|x|" />, <Katex tex="\tfrac{2}{(x-1)^2}\to0" />, leaving <Katex tex="f\to1" />.
+      </>
+    ),
+    more: (
+      <>
+        This is the truncus <Katex tex="y=\dfrac{a}{(x-h)^2}+k" /> with <Katex tex="h=1" /> and{' '}
+        <Katex tex="k=1" />, so the asymptotes can also be read straight off the rule.
       </>
     ),
   },
@@ -108,10 +107,17 @@ const ROWS_AII: WorkingRow[] = [
     ),
     reason: (
       <>
-        The <Katex tex="y" />-intercept and part a.i give two exact points on the left branch. A
-        truncus is symmetric about its vertical asymptote: <Katex tex="x=0" /> and{' '}
-        <Katex tex="x=2" /> are both 1 unit from <Katex tex="x=1" />, so <Katex tex="(x-1)^2" /> and
-        hence <Katex tex="f" /> are the same there. That gives two free points on the right branch.
+        The <Katex tex="y" />-intercept and part a.i give two points on the left branch. A truncus is
+        symmetric about its vertical asymptote, so mirror them in <Katex tex="x=1" /> as guide points for the
+        right branch.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="x=0" /> and <Katex tex="x=2" /> are both 1 unit from <Katex tex="x=1" />, so{' '}
+        <Katex tex="(x-1)^2" />, and hence <Katex tex="f" />, is the same at both; likewise{' '}
+        <Katex tex="x=-1" /> and <Katex tex="x=3" /> are both 2 units away. The report says students who
+        made use of part a. and found a <Katex tex="y" />-intercept were most successful with this sketch.
       </>
     ),
   },
@@ -127,12 +133,16 @@ const ROWS_AII: WorkingRow[] = [
     ),
     reason: (
       <>
-        Two branches, both <b>above</b> <Katex tex="y=1" /> (because{' '}
-        <Katex tex="\tfrac{2}{(x-1)^2}>0" />), mirror images in <Katex tex="x=1" />. Each shoots up
-        beside <Katex tex="x=1" /> and flattens towards <Katex tex="y=1" /> as{' '}
-        <Katex tex="x\to\pm\infty" />, getting ever closer to both asymptotes: never turning away or
-        crossing them (the curvature problems the report describes). Label both asymptotes with
-        their equations, as the question asks.
+        Two branches, both <b>above</b> <Katex tex="y=1" /> (since <Katex tex="\tfrac{2}{(x-1)^2}>0" />),
+        mirror images in <Katex tex="x=1" />, approaching both asymptotes without crossing them. Label
+        both asymptotes with their equations.
+      </>
+    ),
+    more: (
+      <>
+        Each branch shoots up beside <Katex tex="x=1" /> and flattens towards <Katex tex="y=1" /> as{' '}
+        <Katex tex="x\to\pm\infty" />, getting ever closer to both asymptotes. Graphs that turn away from
+        the asymptotes or cross them are the curvature problems the report describes.
       </>
     ),
   },
@@ -143,9 +153,9 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\text{Area} = \int_{-1}^{0} \left(\dfrac{2}{(x-1)^2}+1\right) dx" />,
     reason: (
       <>
-        From the sketch in part a.ii, the graph is above the <Katex tex="x" />-axis (in fact above{' '}
+        From the sketch, the graph is above the <Katex tex="x" />-axis (in fact above{' '}
         <Katex tex="y=1" />) for all of <Katex tex="-1\le x\le0" />, so the area is just this definite
-        integral, with no splitting or sign changes.
+        integral.
       </>
     ),
   },
@@ -158,11 +168,15 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Write the fraction as a power, <Katex tex="2(x-1)^{-2}" />. The power is{' '}
-        <Katex tex="-2" />, so use the power rule: add one to the power (<Katex tex="-2\to-1" />) and
-        divide by the new power (<Katex tex="-1" />). A logarithm only comes from a power of exactly{' '}
-        <Katex tex="-1" />, such as <Katex tex="\tfrac{1}{x-1}" />; using one here was one of the
-        report's most common errors.
+        Write the fraction as a power, <Katex tex="2(x-1)^{-2}" />, and use the power rule: add one to the
+        power (<Katex tex="-2\to-1" />), then divide by the new power.
+      </>
+    ),
+    more: (
+      <>
+        Not a logarithm: a log only comes from a power of exactly <Katex tex="-1" />, such as{' '}
+        <Katex tex="\tfrac{1}{x-1}" />, and here the power is <Katex tex="-2" />. A log component was one of
+        the most common errors in the report.
       </>
     ),
   },
@@ -170,9 +184,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\text{Area} = \left[-\dfrac{2}{x-1}+x\right]_{-1}^{0}" />,
     reason: (
       <>
-        The <Katex tex="+1" /> antidifferentiates to <Katex tex="+x" />. It isn't a throwaway
-        constant: under the curve sits a <Katex tex="1\times1" /> square below <Katex tex="y=1" />, and
-        the <Katex tex="x" /> is what counts it. Overlooking it was the other most common error in the report.
+        The <Katex tex="+1" /> antidifferentiates to <Katex tex="+x" />. Don&apos;t drop it.
+      </>
+    ),
+    more: (
+      <>
+        It isn&apos;t a throwaway constant: under the curve sits a <Katex tex="1\times1" /> square below{' '}
+        <Katex tex="y=1" />, and the <Katex tex="x" /> term is what counts it. Overlooking the{' '}
+        <Katex tex="+1" /> was the other most common error in the report.
       </>
     ),
   },
@@ -180,26 +199,24 @@ const ROWS_B: WorkingRow[] = [
     working: (
       <>
         <Katex display tex="= \left(-\dfrac{2}{-1}+0\right) - \left(-\dfrac{2}{-2}+(-1)\right)" />
-        <Katex display tex="= 2 - (1-1)" />
+        <Katex display tex="= 2 - (1-1) = 2" />
       </>
     ),
     reason: (
       <>
         Upper limit minus lower limit. At <Katex tex="x=0" />: <Katex tex="-\tfrac{2}{-1}=2" />. At{' '}
-        <Katex tex="x=-1" />: <Katex tex="-\tfrac{2}{-2}=1" />, then <Katex tex="1+(-1)=0" />. Bracket each
-        substitution so the minus signs can't get lost.
+        <Katex tex="x=-1" />: <Katex tex="-\tfrac{2}{-2}=1" />, then <Katex tex="1+(-1)=0" />.
       </>
     ),
+    more: <>Bracket each substitution, as here, so the minus signs can&apos;t get lost.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = 2}" />,
-    reason: (
+    reason: <>Area in square units.</>,
+    more: (
       <>
-        Square units. Check with the picture: the unit square under <Katex tex="y=1" /> (area{' '}
-        <Katex tex="1" />) plus the cap above it (<Katex tex="\left[-\tfrac{2}{x-1}\right]_{-1}^{0}=2-1=1" />)
-        makes <Katex tex="2" />. Also sensible: the curve rises from <Katex tex="\tfrac32" /> to{' '}
-        <Katex tex="3" /> over a width of <Katex tex="1" />, so the area must be between{' '}
-        <Katex tex="1.5" /> and <Katex tex="3" />.
+        Size check: the curve rises from <Katex tex="\tfrac32" /> to <Katex tex="3" /> over a width
+        of <Katex tex="1" />, so the area must be between <Katex tex="1.5" /> and <Katex tex="3" />.
       </>
     ),
   },
@@ -291,22 +308,17 @@ export default function MethodsQ5_2019Exam1() {
             </>
           }
         >
-          A log comes only from a power of exactly <Katex tex="-1" />; here{' '}
-          <Katex tex="\tfrac{2}{(x-1)^2}=2(x-1)^{-2}" />, a power of <Katex tex="-2" />, so the power rule applies.
           The negative answer is the giveaway: the region is above the <Katex tex="x" />-axis, so its area
-          must be positive (at least <Katex tex="\tfrac32" />, since the curve never drops below{' '}
-          <Katex tex="\tfrac32" /> on a width of <Katex tex="1" />).
+          must be positive.
         </WrongMethod>
         <WrongMethod
           title="Integrate the fraction; the +1 is just a constant"
           source="Examiner's report"
           working={<Katex display tex="\left[-\dfrac{2}{x-1}\right]_{-1}^{0} = 2-1 = 1" />}
         >
-          A <Katex tex="+1" /> inside the integral is not the <Katex tex="+c" />: it antidifferentiates to{' '}
-          <Katex tex="+x" />, and here it is worth a whole unit of area, the square under{' '}
-          <Katex tex="y=1" /> (turn on &ldquo;Drop the +1&rdquo; above). Size check: the curve is at least{' '}
-          <Katex tex="\tfrac32" /> high across a width of <Katex tex="1" />, so an area of <Katex tex="1" /> is too
-          small.
+          A <Katex tex="+1" /> inside the integral is not the <Katex tex="+c" />. Dropping it loses exactly{' '}
+          <Katex tex="1" />, the square under <Katex tex="y=1" /> (turn on &ldquo;Drop the +1&rdquo; above), and lands below the{' '}
+          <Katex tex="1.5" /> lower bound from the size check.
         </WrongMethod>
       </PartCard>
     </div>

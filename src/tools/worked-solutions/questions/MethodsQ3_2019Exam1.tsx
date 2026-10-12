@@ -51,11 +51,14 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Let <Katex tex="U" /> = an unbiased coin is picked, <Katex tex="B" /> = the biased coin is
-        picked. The experiment has two stages (pick a coin, then toss it), and the chance of a head
-        depends on which coin came out. Whenever that happens, split into cases by the first stage:
-        that is a tree diagram, written as the law of total probability. Defining the events in
-        words first also answers the report&apos;s comment that in some scripts it was not clear
-        which fractions were being manipulated.
+        picked. The chance of a head depends on which coin, so split into the two cases (a tree
+        diagram).
+      </>
+    ),
+    more: (
+      <>
+        Defining the events in words first also answers the report&apos;s comment that in some
+        scripts it was not clear which fractions were being manipulated.
       </>
     ),
   },
@@ -63,9 +66,14 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\Pr(U) = \tfrac23, \quad \Pr(B) = \tfrac13" />,
     reason: (
       <>
-        &ldquo;Randomly selects&rdquo; means each of the three coins is equally likely, so each has
-        chance <Katex tex="\tfrac13" />. Two of them are unbiased, so <Katex tex="\Pr(U)=\tfrac23" />,
-        not <Katex tex="\tfrac12" />: we count coins, not kinds of coin.
+        &ldquo;Randomly selects&rdquo; makes each of the three coins equally likely, chance{' '}
+        <Katex tex="\tfrac13" /> each. Two of them are unbiased.
+      </>
+    ),
+    more: (
+      <>
+        So <Katex tex="\Pr(U)=\tfrac23" />, not <Katex tex="\tfrac12" />: we count coins, not kinds
+        of coin.
       </>
     ),
   },
@@ -73,9 +81,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\Pr(H\mid U) = \tfrac12, \quad \Pr(H\mid B) = \tfrac13" />,
     reason: (
       <>
-        The stem&apos;s first sentence says an unbiased coin makes a head as likely as a tail, and
-        those are the only two outcomes, so each is <Katex tex="\tfrac12" />. The biased
-        coin&apos;s <Katex tex="\tfrac13" /> is given.
+        An unbiased coin gives a head as likely as a tail, the only two outcomes, so{' '}
+        <Katex tex="\tfrac12" />. The biased coin&apos;s <Katex tex="\tfrac13" /> is given.
       </>
     ),
   },
@@ -92,11 +99,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{\Pr(H) = \dfrac{4}{9}}" />,
     reason: (
       <>
-        <Katex tex="\tfrac13+\tfrac19=\tfrac39+\tfrac19" />. Simplify it now: the report notes that
-        students who did not simplify this often went wrong in part b. Check: every coin gives a
-        head with chance <Katex tex="\tfrac13" /> or <Katex tex="\tfrac12" />, so a mix of them must
-        land in between, and <Katex tex="\tfrac49" /> does. The biased coin pulls it just below{' '}
-        <Katex tex="\tfrac12" />.
+        <Katex tex="\tfrac13+\tfrac19=\tfrac39+\tfrac19" />. Simplify it now: part b. divides by
+        this.
+      </>
+    ),
+    more: (
+      <>
+        Check: every coin gives a head with chance <Katex tex="\tfrac13" /> or{' '}
+        <Katex tex="\tfrac12" />, so a mix of them must land in between, and{' '}
+        <Katex tex="\tfrac49" /> does. The biased coin pulls it just below <Katex tex="\tfrac12" />.
       </>
     ),
   },
@@ -107,9 +118,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\Pr(U\mid H) = \dfrac{\Pr(U\cap H)}{\Pr(H)}" />,
     reason: (
       <>
-        &ldquo;Given that she tossed a head&rdquo;: we know how the second stage turned out and are
-        asked about the first stage. That is conditional probability running backwards along the
-        tree, so use the definition <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />.
+        &ldquo;Given that she tossed a head&rdquo; is a conditional probability, so use the
+        definition <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />.
+      </>
+    ),
+    more: (
+      <>
+        We know how the second stage (the toss) turned out and are asked about the first stage (the
+        coin): conditional probability running backwards along the tree.
       </>
     ),
   },
@@ -117,9 +133,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= \dfrac{\tfrac23\times\tfrac12}{\tfrac49} = \dfrac{\tfrac13}{\tfrac49}" />,
     reason: (
       <>
-        The numerator is the &ldquo;unbiased <em>and</em> head&rdquo; branch, which is the first term
-        already worked out in part a. The denominator is part a.&apos;s answer, all the head
-        branches together.
+        Numerator: the &ldquo;unbiased <em>and</em> head&rdquo; branch, the first term from part a.
+        Denominator: part a.&apos;s answer.
       </>
     ),
   },
@@ -127,10 +142,15 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{\Pr(U\mid H) = \dfrac34}" />,
     reason: (
       <>
-        <Katex tex="\tfrac13\times\tfrac94=\tfrac34" /> (or in ninths,{' '}
-        <Katex tex="\tfrac39\div\tfrac49=\tfrac34" />). It is higher than the{' '}
-        <Katex tex="\tfrac23" /> we had before the toss: a fair coin gives heads more readily than
-        the biased one, so seeing a head makes a fair coin a little more likely.
+        Dividing by a fraction is multiplying by its reciprocal:{' '}
+        <Katex tex="\tfrac13\times\tfrac94=\tfrac34" />.
+      </>
+    ),
+    more: (
+      <>
+        Check: it is higher than the <Katex tex="\tfrac23" /> we had before the toss. A fair coin
+        gives heads more readily than the biased one, so seeing a head makes a fair coin a little
+        more likely.
       </>
     ),
   },
@@ -208,7 +228,7 @@ export default function MethodsQ3_2019Exam1() {
         <WrongMethod
           title="Carry Pr(H) into part b. as 1/3 + 1/9, unsimplified"
           source="Examiner's report"
-          working={<Katex display tex="\dfrac{\tfrac13}{\tfrac13+\tfrac19} = \dfrac{\tfrac13}{\tfrac13}+\dfrac{\tfrac13}{\tfrac19} = 1+3 = 4" />}
+          working={<Katex display tex="\begin{aligned}\dfrac{\tfrac13}{\tfrac13+\tfrac19} &= \dfrac{\tfrac13}{\tfrac13}+\dfrac{\tfrac13}{\tfrac19} \\ &= 1+3 = 4\end{aligned}" />}
         >
           The report notes that many students who did not simplify part a. did not complete this
           calculation successfully. One way it goes wrong is shown: splitting the fraction over the
