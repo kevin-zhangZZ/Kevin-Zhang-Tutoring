@@ -38,46 +38,52 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\left(x^2y^2\right)+\frac{d}{dx}(xy) = \frac{d}{dx}(2)" />,
-    reason: <>Differentiating both sides with respect to x.</>,
+    reason: <>Differentiating both sides with respect to <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="2xy^2+x^2\cdot2y\frac{dy}{dx} \ + \ y+x\frac{dy}{dx} \ = \ 0" />,
-    reason: <>Product rule on each term, with the chain rule supplying dy/dx whenever y is differentiated.</>,
+    reason: <>Product rule on each term, with the chain rule supplying <Katex tex="\dfrac{dy}{dx}" /> whenever <Katex tex="y" /> is differentiated.</>,
+    more: <>In detail: <Katex tex="\frac{d}{dx}\left(y^2\right)=2y\frac{dy}{dx}" /> by the chain rule, so <Katex tex="\frac{d}{dx}\left(x^2\cdot y^2\right)=2x\cdot y^2+x^2\cdot 2y\frac{dy}{dx}" />; and <Katex tex="\frac{d}{dx}(x\cdot y)=1\cdot y+x\frac{dy}{dx}" />. The constant 2 differentiates to 0.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx}\left(2x^2y+x\right) = -\left(2xy^2+y\right)" />,
-    reason: <>Collecting the dy/dx terms on one side.</>,
+    reason: <>Collecting the <Katex tex="\dfrac{dy}{dx}" /> terms on one side.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx}\cdot x(2xy+1) = -y(2xy+1)" />,
-    reason: <>Factorising both sides. The report says students needed to present evidence, typically a clear and correct factorisation like this one — without it the cancellation looks like a guess.</>,
+    reason: <>Factorising both sides: <Katex tex="x" /> comes out of the left, <Katex tex="y" /> out of the right, exposing the common factor <Katex tex="2xy+1" />.</>,
+    more: <>Don't skip this line. The report says students needed to present evidence, typically a clear and correct factorisation like this one; some moved too quickly to the final answer, and without the factorisation the cancellation looks like a guess.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = -\frac{y}{x}, \quad \text{provided } 2xy\ne-1}" />,
     reason: <>The common factor <Katex tex="2xy+1" /> cancels, which is exactly why the condition <Katex tex="2xy\ne-1" /> is attached. As required.</>,
+    more: <>Dividing by <Katex tex="x" /> is also safe: <Katex tex="x=0" /> would make the relation read <Katex tex="0=2" />, so no point of the graph has <Katex tex="x=0" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="-\frac{y}{x} = -1 \implies y = x" />,
-    reason: <>Setting the gradient from part a. equal to the required slope.</>,
+    reason: <>The slope of the tangent is <Katex tex="\dfrac{dy}{dx}" />, so set part a.'s gradient equal to <Katex tex="-1" /> and multiply by <Katex tex="-x" />.</>,
   },
   {
     working: <Katex display tex="\text{the points must also satisfy } x^2y^2+xy = 2" />,
-    reason: <>The step the report notes some students neglected: <Katex tex="y=x" /> is a whole line, and only the points of it that lie <em>on the curve</em> count.</>,
+    reason: <><Katex tex="y=x" /> is a whole line; only the points on it that also lie <em>on the curve</em> count.</>,
+    more: <>The report notes some students stopped at <Katex tex="y=x" />. The question asks for points, so solve <Katex tex="y=x" /> simultaneously with the relation.</>,
   },
   {
     working: <Katex display tex="x^2\cdot x^2+x\cdot x = 2 \implies x^4+x^2-2 = 0" />,
-    reason: <>Substituting y = x into the relation.</>,
+    reason: <>Substituting <Katex tex="y=x" /> into the relation.</>,
   },
   {
     working: <Katex display tex="\left(x^2+2\right)\left(x^2-1\right) = 0" />,
-    reason: <>A quadratic in <Katex tex="x^2" />. The factor <Katex tex="x^2+2" /> has no real zeros, so it contributes nothing.</>,
+    reason: <>A quadratic in <Katex tex="x^2" />: with <Katex tex="u=x^2" /> it is <Katex tex="u^2+u-2=(u+2)(u-1)" />. Since <Katex tex="x^2+2>0" />, that factor gives no real solutions.</>,
+    more: <>The report says some students who reached <Katex tex="x^4+x^2=2" /> had difficulty solving it. Move everything to one side first, then spot that only even powers appear, so it factorises as a quadratic in <Katex tex="x^2" />.</>,
   },
   {
     working: <Katex display tex="x^2 = 1 \implies x = \pm1, \quad y = x" />,
-    reason: <>Both signs.</>,
+    reason: <>Take both signs, and pair each <Katex tex="x" /> with <Katex tex="y=x" />.</>,
+    more: <>The report says some students found incorrect coordinates as well. A typical way: pairing <Katex tex="x=\pm1" /> with <Katex tex="y=\pm1" /> freely adds <Katex tex="(1,-1)" /> and <Katex tex="(-1,1)" />. Neither is on the graph: there <Katex tex="x^2y^2+xy=1-1=0\ne2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(1,\,1) \ \text{ and } \ (-1,\,-1)}" />,
@@ -106,12 +112,6 @@ export default function SpecialistQ8_2024Exam1() {
               <Katex tex="xy=-2" />. The factor <Katex tex="2xy+1" /> that cancels in part a.
               is never zero on either of them, which is why the excluded case never actually
               arises.
-            </p>
-            <p>
-              Part b. needs two conditions, not one. <Katex tex="y=x" /> says where the
-              gradient is right; <Katex tex="x^2y^2+xy=2" /> says where the point is on the
-              curve. The report notes some students recognised <Katex tex="y=x" /> but
-              neglected to consider that the points lay on the graph.
             </p>
           </Background>
         </div>

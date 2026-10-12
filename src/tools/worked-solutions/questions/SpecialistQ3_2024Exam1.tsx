@@ -61,18 +61,19 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{let } u = x+1 \implies x-1 = u-2" />,
-    reason: <>A substitution turns the rewrite into an expansion, which is far less error-prone than comparing coefficients.</>,
+    reason: <>With <Katex tex="u=x+1" /> the denominator becomes the single power <Katex tex="u^2" />, so we only need the numerator in powers of <Katex tex="u" />.</>,
+    more: <>Two other routes reach the same place. The common one the report describes: divide first, <Katex tex="f(x)=1+\dfrac{-4x}{(x+1)^2}" />, then split <Katex tex="-4x=-4(x+1)+4" />. Or compare coefficients in <Katex tex="(x-1)^2=A(x+1)^2+B(x+1)+C" />: <Katex tex="x=-1" /> gives <Katex tex="C=4" />, the <Katex tex="x^2" /> terms give <Katex tex="A=1" />, and <Katex tex="x=0" /> gives <Katex tex="1=1+B+4" />, so <Katex tex="B=-4" />. The substitution avoids most of the algebra slips the report mentions.</>,
   },
   {
     working: <Katex display tex="(x-1)^2 = (u-2)^2 = u^2-4u+4" />,
-    reason: <>Expanding in the new variable.</>,
+    reason: <>Expanding in the new variable, using <Katex tex="x-1=(x+1)-2=u-2" />.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{u^2-4u+4}{u^2} = 1-\frac4u+\frac{4}{u^2}" />,
-    reason: <>Dividing term by term.</>,
+    reason: <>Dividing each term of the numerator by <Katex tex="u^2" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{f(x) = 1-\frac{4}{x+1}+\frac{4}{(x+1)^2}, \quad A=1,\ B=-4,\ C=4}" />,
+    working: <Katex display tex="\boxed{\begin{aligned} &f(x) = 1-\frac{4}{x+1}+\frac{4}{(x+1)^2} \\ &A=1,\ B=-4,\ C=4 \end{aligned}}" />,
     reason: <>Substituting <Katex tex="u=x+1" /> back. Check at <Katex tex="x=0" />: <Katex tex="1-4+4=1" />, and <Katex tex="f(0)=\tfrac{1}{1}=1" />, which agree. As required.</>,
   },
 ]
@@ -80,19 +81,19 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 1-4(x+1)^{-1}+4(x+1)^{-2}" />,
-    reason: <>Differentiating the part-fraction form avoids the quotient rule entirely.</>,
+    reason: <>Part a.'s form written with negative powers — differentiating these is quicker and safer than the quotient rule on the original.</>,
   },
   {
     working: <Katex display tex="f'(x) = 4(x+1)^{-2}-8(x+1)^{-3}" />,
-    reason: <>Chain rule on each power.</>,
+    reason: <>Chain rule on each power, <Katex tex="\tfrac{d}{dx}(x+1)^n=n(x+1)^{n-1}" />: <Katex tex="-4\times(-1)=4" /> and <Katex tex="4\times(-2)=-8" />.</>,
   },
   {
     working: <Katex display tex="= \frac{4(x+1)-8}{(x+1)^3} = \frac{4x-4}{(x+1)^3}" />,
-    reason: <>Over a common denominator.</>,
+    reason: <>Writing <Katex tex="4(x+1)^{-2}" /> as <Katex tex="\tfrac{4(x+1)}{(x+1)^3}" /> gives one fraction, so only the numerator decides where <Katex tex="f'(x)=0" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = 0 \implies 4x-4 = 0 \implies x = 1" />,
-    reason: <>The denominator never vanishes on the domain, so this is the only stationary point — the question already tells us there is exactly one.</>,
+    reason: <>A fraction is zero only when its numerator is, and <Katex tex="4x-4=0" /> has the single solution <Katex tex="x=1" /> — the one turning point the stem promises.</>,
   },
   {
     working: <Katex display tex="f(1) = \frac{(1-1)^2}{(1+1)^2} = 0" />,
@@ -101,29 +102,38 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{(1,\ 0)}" />,
     reason: <>A minimum: <Katex tex="f\ge0" /> everywhere, so a zero value has to be the lowest point. That also makes it the <Katex tex="x" />-intercept, which part c. needs.</>,
+    more: <>The report notes some answers had little or no working, and some listed extra coordinates. With 2 marks, show <Katex tex="f'(x)" /> and the equation <Katex tex="f'(x)=0" />, then give this single point only — the stem says there is exactly one turning point.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x+1 = 0 \implies \text{vertical asymptote } x = -1" />,
-    reason: <>The one excluded value of the domain.</>,
+    reason: <>The one excluded value. Near it the numerator is close to <Katex tex="4" /> and <Katex tex="(x+1)^2" /> is a small positive number, so <Katex tex="f\to+\infty" /> on <em>both</em> sides.</>,
   },
   {
-    working: <Katex display tex="x\to\pm\infty \implies \frac{4}{x+1},\ \frac{4}{(x+1)^2} \to 0 \implies \text{horizontal asymptote } y = 1" />,
-    reason: <>Read straight off the part-fraction form from part a. There are no others — the report notes additional or incorrect asymptotes were submitted.</>,
+    working: <Katex display tex="\begin{aligned} &x\to\pm\infty \implies \frac{4}{x+1},\ \frac{4}{(x+1)^2} \to 0 \\ &\implies \text{horizontal asymptote } y = 1 \end{aligned}" />,
+    reason: <>Read straight off part a.'s form: both fractions vanish far out, leaving <Katex tex="1" />.</>,
+    more: <>The report notes additional or incorrect asymptotes were submitted. The repeated factor <Katex tex="(x+1)^2" /> gives just one vertical asymptote, and because top and bottom have equal degree the far-out behaviour is the horizontal line <Katex tex="y=1" /> — there is nothing else.</>,
   },
   {
-    working: <Katex display tex="\text{intercepts: } (1,0) \text{ from part b., and } f(0) = 1 \implies (0,1)" />,
-    reason: <>Both had to be labelled. Note the <Katex tex="y" />-intercept sits <em>on</em> the horizontal asymptote — solving <Katex tex="f(x)=1" /> gives <Katex tex="x=0" />, so the curve crosses <Katex tex="y=1" /> exactly once.</>,
+    working: <Katex display tex="f(x)-1 = -\frac{4}{x+1}+\frac{4}{(x+1)^2} = \frac{-4x}{(x+1)^2}" />,
+    reason: <>The sign of <Katex tex="f(x)-1" /> says which side of <Katex tex="y=1" /> the curve is on: above for <Katex tex="x<0" />, on it at <Katex tex="x=0" />, below for <Katex tex="x>0" />.</>,
+    more: <>The denominator is a square, so it is positive; the sign comes from <Katex tex="-4x" /> alone. This one fact settles both branches: the left branch (<Katex tex="x<-1" />) lies entirely above <Katex tex="y=1" />, and the right branch crosses <Katex tex="y=1" /> once, at <Katex tex="x=0" />. A curve may cross its horizontal asymptote — the asymptote only describes behaviour as <Katex tex="x\to\pm\infty" />.</>,
   },
   {
-    working: <Katex display tex="x<-1: \quad f(-2)=9,\ f(-3)=4,\ f(-6)=\tfrac{49}{25}\approx2.0" />,
-    reason: <>Evaluating a few points is the reliable way to get the left branch right: it falls from <Katex tex="+\infty" /> towards <Katex tex="y=1" /> from <em>above</em> as <Katex tex="x\to-\infty" />. The report notes some students only drew the right-hand branch, and that students were much more successful on the left-hand side if they evaluated the function at several points.</>,
+    working: <Katex display tex="\begin{aligned} &\text{intercepts: } (1,0) \text{ from part b.,} \\ &\text{and } f(0) = 1 \implies (0,1) \end{aligned}" />,
+    reason: <>Both must be labelled with coordinates. The <Katex tex="y" />-intercept <Katex tex="(0,1)" /> is exactly where the curve crosses <Katex tex="y=1" />.</>,
+    more: <>The report notes that some students with reasonable-looking graphs did not label asymptotes or axis intercepts appropriately — those labels carry marks.</>,
   },
   {
-    working: <Katex display tex="x>-1: \quad f\to+\infty \ \text{at } x\to-1^+, \ \text{ down through } (0,1) \text{ to } (1,0), \text{ then up towards } y=1" />,
-    reason: <>Always below <Katex tex="y=1" /> after the crossing, since <Katex tex="f(x)<1" /> for all <Katex tex="x>0" />.</>,
+    working: <Katex display tex="\begin{aligned} x<-1: \quad & f(-2)=9,\ f(-3)=4, \\ & f(-6)=\tfrac{49}{25}\approx2.0 \end{aligned}" />,
+    reason: <>A few values pin down the left branch: it comes down from <Katex tex="+\infty" /> near <Katex tex="x=-1" /> and levels off towards <Katex tex="y=1" /> from <em>above</em>.</>,
+    more: <>The report notes some students only drew the right-hand branch, and that students were much more successful on the left-hand side if they evaluated the function at several points. Here <Katex tex="f(-6)\approx2" /> is still well above 1, so the branch approaches the asymptote slowly — don't flatten it onto <Katex tex="y=1" /> too early.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} x>-1:\quad & f\to+\infty \text{ as } x\to-1^+, \\ & \text{down through } (0,1) \\ & \text{to the minimum } (1,0), \\ & \text{then up towards } y=1 \end{aligned}" />,
+    reason: <>From part b., <Katex tex="f'(x)=\tfrac{4(x-1)}{(x+1)^3}" /> is negative on <Katex tex="(-1,1)" /> and positive for <Katex tex="x>1" />: it falls to <Katex tex="(1,0)" />, then rises but stays below <Katex tex="y=1" /> since <Katex tex="f(x)<1" /> for <Katex tex="x>0" />.</>,
   },
   {
     working: (
@@ -165,10 +175,9 @@ export default function SpecialistQ3_2024Exam1() {
               powers beats the quotient rule on the original.
             </p>
             <p>
-              The graph in part c. has an unusual feature worth noticing: since{' '}
-              <Katex tex="f(x)=1" /> has the single solution <Katex tex="x=0" />, the curve{' '}
-              <em>crosses</em> its own horizontal asymptote at the <Katex tex="y" />-intercept.
-              There is no rule against that — the asymptote only governs behaviour far out.
+              The graph in part c. has an unusual feature worth watching for: the curve{' '}
+              <em>crosses</em> its own horizontal asymptote, at the <Katex tex="y" />-intercept.
+              Part c.'s working shows how the sign of <Katex tex="f(x)-1" /> reveals this.
             </p>
           </Background>
         </div>

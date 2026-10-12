@@ -37,19 +37,40 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = (0)(2)+(3)(-1)+(3)(-2) = -9" />,
-    reason: <>Note <Katex tex="\underset{\sim}{a}" /> has no <Katex tex="\underset{\sim}{i}" /> component, so the first product is zero.</>,
+    reason: <>Multiply matching components and add. <Katex tex="\underset{\sim}{a}" /> has no <Katex tex="\underset{\sim}{i}" /> component, so its <Katex tex="\underset{\sim}{i}" />-coefficient is 0.</>,
   },
   {
-    working: <Katex display tex="\left|\underset{\sim}{a}\right| = \sqrt{0+9+9} = 3\sqrt2, \qquad \left|\underset{\sim}{b}\right| = \sqrt{4+1+4} = 3" />,
-    reason: <>Both magnitudes.</>,
+    working: <Katex display tex="\begin{aligned}\left|\underset{\sim}{a}\right| &= \sqrt{0^2+3^2+3^2} = 3\sqrt2 \\ \left|\underset{\sim}{b}\right| &= \sqrt{2^2+(-1)^2+(-2)^2} = 3\end{aligned}" />,
+    reason: <>Each magnitude is the square root of the sum of the squared components.</>,
   },
   {
-    working: <Katex display tex="\cos(\theta) = \frac{-9}{3\sqrt2\times3} = \frac{-9}{9\sqrt2} = -\frac{1}{\sqrt2}" />,
-    reason: <>The standard formula. A negative cosine means an obtuse angle — the sign is the thing to hold onto.</>,
+    working: (
+      <Katex
+        display
+        tex="\cos(\theta) = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{b}\right|} = \frac{-9}{3\sqrt2\times3} = -\frac{1}{\sqrt2}"
+      />
+    ),
+    reason: <>The angle formula. Keep the minus sign: a negative cosine means the angle is obtuse.</>,
+    more: (
+      <>
+        The angle between two vectors is always taken in <Katex tex="[0,\pi]" />, and on that
+        interval cosine is positive for acute angles and negative for obtuse ones. So the sign
+        of the dot product alone already tells you which kind of angle you are looking for.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{\theta = \frac{3\pi}{4} \ \left(=135^\circ\right)}" />,
-    reason: <>Not <Katex tex="\tfrac{\pi}{4}" />, which is what dropping the minus sign gives — the report notes that result was frequently seen. The angle between two vectors is taken in <Katex tex="[0,\pi]" />.</>,
+    working: <Katex display tex="\boxed{\theta = \pi-\frac{\pi}{4} = \frac{3\pi}{4} \ \left(=135^\circ\right)}" />,
+    reason: <>Since <Katex tex="\cos\tfrac{\pi}{4}=\tfrac{1}{\sqrt2}" /> and <Katex tex="\cos(\pi-x)=-\cos(x)" />, the obtuse angle with cosine <Katex tex="-\tfrac{1}{\sqrt2}" /> is <Katex tex="\pi-\tfrac{\pi}{4}" />.</>,
+    more: (
+      <>
+        The report notes <Katex tex="\theta=\tfrac{\pi}{4}" /> was frequently seen, even from
+        students who had correctly found <Katex tex="\cos(\theta)=-\tfrac{1}{\sqrt2}" />. That is
+        the angle for <Katex tex="+\tfrac{1}{\sqrt2}" />: the reference angle, not the answer.
+        Check: <Katex tex="\cos\tfrac{3\pi}{4}=-\tfrac{1}{\sqrt2}" /> ✓. Either radians or degrees
+        is accepted.
+      </>
+    ),
   },
 ]
 
@@ -65,23 +86,55 @@ const ROWS_B: WorkingRow[] = [
         tex="\underset{\sim}{a}\times\underset{\sim}{c} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\0 & 3 & 3\\n & 2 & 1\end{vmatrix}"
       />
     ),
-    reason: <>Setting up the determinant.</>,
+    reason: <>The cross product as a determinant: unit vectors on top, then the components of <Katex tex="\underset{\sim}{a}" />, then of <Katex tex="\underset{\sim}{c}" />.</>,
+    more: (
+      <>
+        The report mentions occasional transcription errors. Copy the rows straight from the
+        stem — <Katex tex="\underset{\sim}{a}" /> is <Katex tex="(0,3,3)" />, with the missing{' '}
+        <Katex tex="\underset{\sim}{i}" /> component written as 0, and{' '}
+        <Katex tex="\underset{\sim}{c}" /> is <Katex tex="(n,2,1)" /> — and keep{' '}
+        <Katex tex="\underset{\sim}{a}" /> on the middle row, since{' '}
+        <Katex tex="\underset{\sim}{c}\times\underset{\sim}{a}" /> is the negative.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="= (3-6)\underset{\sim}{i} - (0-3n)\underset{\sim}{j} + (0-3n)\underset{\sim}{k} = -3\underset{\sim}{i}+3n\underset{\sim}{j}-3n\underset{\sim}{k}" />,
-    reason: <>Watch the middle sign — the j component carries a minus in front of its minor.</>,
+    working: <Katex display tex="\begin{aligned}&= (3-6)\underset{\sim}{i} - (0-3n)\underset{\sim}{j} + (0-3n)\underset{\sim}{k} \\ &= -3\underset{\sim}{i}+3n\underset{\sim}{j}-3n\underset{\sim}{k}\end{aligned}" />,
+    reason: <>Expand along the top row: each unit vector times its 2×2 minor, with a minus in front of the <Katex tex="\underset{\sim}{j}" /> term.</>,
+    more: (
+      <>
+        Each minor is the 2×2 determinant left after crossing out that unit vector&apos;s row and
+        column, e.g. for <Katex tex="\underset{\sim}{i}" />: <Katex tex="(3)(1)-(3)(2)=-3" />.
+        Check: the cross product is perpendicular to <Katex tex="\underset{\sim}{a}" />, and indeed{' '}
+        <Katex tex="(0)(-3)+(3)(3n)+(3)(-3n)=0" /> ✓.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\left|\underset{\sim}{a}\times\underset{\sim}{c}\right| = \sqrt{9+9n^2+9n^2} = 3\sqrt{1+2n^2}" />,
-    reason: <>Taking the factor of 3 out from under the root.</>,
+    working: <Katex display tex="\begin{aligned}\left|\underset{\sim}{a}\times\underset{\sim}{c}\right| &= \sqrt{9+9n^2+9n^2} \\ &= \sqrt{9(1+2n^2)} = 3\sqrt{1+2n^2}\end{aligned}" />,
+    reason: <>Square each component, add, then take the common factor 9 out of the root as 3.</>,
   },
   {
-    working: <Katex display tex="9 = 3\sqrt{1+2n^2} \implies 3 = \sqrt{1+2n^2} \implies 9 = 1+2n^2" />,
-    reason: <>Setting the dot product equal to the magnitude and squaring.</>,
+    working: <Katex display tex="\begin{aligned}9 &= 3\sqrt{1+2n^2} \\ 3 &= \sqrt{1+2n^2} \\ 9 &= 1+2n^2\end{aligned}" />,
+    reason: <>Set the dot product equal to the magnitude, divide by 3, then square both sides.</>,
+    more: (
+      <>
+        Squaring cannot introduce a false solution here: both sides of{' '}
+        <Katex tex="3=\sqrt{1+2n^2}" /> are positive. The report&apos;s version squares straight
+        away, <Katex tex="81=18n^2+9" />, which gives the same result.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{n^2 = 4 \implies n = \pm2}" />,
-    reason: <>Both values, and both are integers as required. The report notes some students did not give both values of <Katex tex="n" />.</>,
+    working: <Katex display tex="2n^2 = 8 \implies n^2 = 4 \implies \boxed{n = \pm2}" />,
+    reason: <>A square equal to 4 has two roots, and both are integers, so both values of <Katex tex="n" /> count.</>,
+    more: (
+      <>
+        The report notes some students did not give both values of <Katex tex="n" />. Check{' '}
+        <Katex tex="n=-2" />: <Katex tex="\underset{\sim}{a}\times\underset{\sim}{c}=-3\underset{\sim}{i}-6\underset{\sim}{j}+6\underset{\sim}{k}" />,
+        with magnitude <Katex tex="\sqrt{9+36+36}=9" />, equal to the dot product 9 ✓.
+      </>
+    ),
   },
 ]
 
@@ -104,13 +157,12 @@ export default function SpecialistQ4_2024Exam1() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Both parts hinge on signs. In part a. the dot product is negative, so the angle
-              is obtuse — the report notes <Katex tex="\tfrac{\pi}{4}" /> was frequently seen,
-              even from students who had found <Katex tex="\cos\theta=-\tfrac{1}{\sqrt2}" />.
-            </p>
-            <p>
-              In part b., squaring produces <Katex tex="n^2=4" />, and a squared unknown has{' '}
-              <em>two</em> solutions. Both are integers, so both belong in the answer.
+              Two tools are needed. The angle between vectors comes from{' '}
+              <Katex tex="\cos(\theta)=\dfrac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{b}\right|}" />. The cross
+              product <Katex tex="\underset{\sim}{a}\times\underset{\sim}{c}" /> is a vector
+              (found with a 3×3 determinant), so part b. compares the number{' '}
+              <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{c}" /> with that vector&apos;s
+              length.
             </p>
           </Background>
         </div>

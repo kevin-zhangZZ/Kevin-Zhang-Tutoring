@@ -58,11 +58,12 @@ const ROWS_A: WorkingRow[] = [
     reason: <>Means always add.</>,
   },
   {
-    working: <Katex display tex="\mathrm{Var}(T) = 0.3^2+0.4^2+0.5^2 = 0.09+0.16+0.25" />,
+    working: <Katex display tex="\begin{aligned}\mathrm{Var}(T) &= 0.3^2+0.4^2+0.5^2\\ &= 0.09+0.16+0.25\\ &= 0.5\end{aligned}" />,
     reason: <><strong>Variances</strong> add, and only because the three times are independent. The table gives standard deviations, so each must be squared first.</>,
+    more: <>Adding the standard deviations instead (<Katex tex="0.3+0.4+0.5=1.2" />) is the slip to avoid: standard deviations never add, only variances do.</>,
   },
   {
-    working: <Katex display tex="\boxed{\mathrm{E}(T) = 4.5, \qquad \mathrm{Var}(T) = 0.5}" />,
+    working: <Katex display tex="\boxed{\mathrm{E}(T) = 4.5 \ \text{h}, \qquad \mathrm{Var}(T) = 0.5 \ \text{h}^2}" />,
     reason: <>The question asked for the variance, not the standard deviation — no square root at the end here.</>,
   },
 ]
@@ -75,18 +76,22 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{Var}(aX) = a^2\,\mathrm{Var}(X)" />,
     reason: <>The rule that does the work: a constant multiplier comes out squared.</>,
+    more: <>The square is there because variance measures squared spread: doubling every time doubles the standard deviation but quadruples the variance.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(C) = 10^2(0.3)^2+20^2(0.4)^2+15^2(0.5)^2" />,
-    reason: <>Both the cost and the standard deviation are squared at each stage — the report notes students frequently forgot to square one or the other.</>,
+    reason: <>Square both the cost and the standard deviation at each stage; the three terms add because the stages are independent.</>,
+    more: <>The report notes students frequently forgot to square either the cost values or the standard deviation. Forgetting to square the costs gives <Katex tex="10(0.09)+20(0.16)+15(0.25)=7.85" />; forgetting to square the standard deviations gives <Katex tex="100(0.3)+400(0.4)+225(0.5)=302.5" />.</>,
   },
   {
-    working: <Katex display tex="= 100(0.09)+400(0.16)+225(0.25) = 9+64+56.25" />,
-    reason: <>Three terms.</>,
+    working: <Katex display tex="\begin{aligned}&= 100(0.09)+400(0.16)+225(0.25)\\ &= 9+64+56.25\end{aligned}" />,
+    reason: <>Evaluate each stage's contribution, then add.</>,
+    more: <>The report also mentions arithmetic errors among students who had the right formula. Keeping each stage as a separate term, as here, makes a slip easy to spot.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{Var}(C) = 129.25 \ \text{dollars}^2}" />,
-    reason: <>A sanity check: <Katex tex="\mathrm{E}(C)=10(1)+20(1.5)+15(2)=\$70" />, with a standard deviation of <Katex tex="\sqrt{129.25}\approx\$11.37" /> — a plausible spread.</>,
+    reason: <>The question asks for the variance, so no square root; its units are dollars squared.</>,
+    more: <>A sanity check: <Katex tex="\mathrm{E}(C)=10(1)+20(1.5)+15(2)=\$70" />, with a standard deviation of <Katex tex="\sqrt{129.25}\approx\$11.37" /> — a plausible spread.</>,
   },
 ]
 
@@ -94,30 +99,34 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(W_2<W_1) = \Pr(W_2-W_1<0)" />,
     reason: <>Comparing two random variables is always a question about their difference.</>,
+    more: <>The report accepts either order: <Katex tex="\Pr(W_1-W_2>0)" /> is the same event. Either way, the comparison becomes a question about one random variable whose distribution we can find.</>,
   },
   {
-    working: <Katex display tex="D = W_2-W_1 \ \text{ is normal, as a linear combination of independent normals}" />,
-    reason: <>This sentence is part of the working — it is what licenses using the standard normal at the end.</>,
+    working: <Katex display tex="\begin{aligned}&D = W_2-W_1 \ \text{ is normal, as a linear}\\ &\text{combination of independent normals}\end{aligned}" />,
+    reason: <>Knowing <Katex tex="D" /> is normal is what lets us standardise it once its mean and standard deviation are found.</>,
+    more: <>Write this sentence as part of the working — it is what licenses using the standard normal at the end.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(D) = 1.5-1.0 = 0.5" />,
     reason: <>Means subtract.</>,
   },
   {
-    working: <Katex display tex="\mathrm{Var}(D) = (0.4)^2+(0.3)^2 = 0.25 \implies \mathrm{sd}(D) = 0.5" />,
+    working: <Katex display tex="\begin{aligned}\mathrm{Var}(D) &= (0.4)^2+(0.3)^2 = 0.25\\ \implies \mathrm{sd}(D) &= 0.5\end{aligned}" />,
     reason: <>Variances <em>add</em> even for a difference: <Katex tex="\mathrm{Var}(X-Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)" /> for independent variables. Subtracting them would give 0.07 and the wrong answer.</>,
+    more: <>Why: <Katex tex="\mathrm{Var}(W_2-W_1)=1^2\,\mathrm{Var}(W_2)+(-1)^2\,\mathrm{Var}(W_1)" />, and <Katex tex="(-1)^2=1" />. Subtracting a random quantity adds uncertainty; it never removes it. As the report says, going directly to the standard deviation, <Katex tex="\sqrt{0.25}=0.5" />, is fine.</>,
   },
   {
     working: <Katex display tex="\Pr(D<0) = \Pr\!\left(Z<\frac{0-0.5}{0.5}\right) = \Pr(Z<-1)" />,
-    reason: <>Standardising. The deliberately tidy numbers point straight at the given result.</>,
+    reason: <>Standardise with <Katex tex="Z=\dfrac{D-\mathrm{E}(D)}{\mathrm{sd}(D)}" />. The tidy numbers land on <Katex tex="-1" />, which is why the question supplies <Katex tex="\Pr(-1<Z<1)" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(Z<-1) = \frac{1-\Pr(-1<Z<1)}{2} = \frac{1-0.68}{2}" />,
+    working: <Katex display tex="\begin{aligned}\Pr(Z<-1) &= \frac{1-\Pr(-1<Z<1)}{2}\\ &= \frac{1-0.68}{2}\\ &= \frac{0.32}{2}\end{aligned}" />,
     reason: <>By symmetry the two tails outside ±1 are equal, so halve what is left over.</>,
   },
   {
     working: <Katex display tex="\boxed{0.16}" />,
-    reason: <>Two decimal places, as asked. Sensible: Stage 2 averages half an hour longer than Stage 1, so it is the shorter one only about one time in six.</>,
+    reason: <>Two decimal places, as asked.</>,
+    more: <>Sensible: Stage 2 averages half an hour longer than Stage 1, so it is the shorter one only about one time in six. The report notes some students gave the correct answer with little or no working; for 2 marks, show the mean and variance of the difference and the standardisation.</>,
   },
 ]
 
@@ -172,14 +181,13 @@ export default function SpecialistQ6_2024Exam1() {
               One rule runs through all three parts:{' '}
               <Katex tex="\mathrm{Var}(aX+bY) = a^2\mathrm{Var}(X)+b^2\mathrm{Var}(Y)" /> for
               independent <Katex tex="X" /> and <Katex tex="Y" />. Everything squares — the
-              coefficients and the standard deviations alike — and the coefficients square
-              away their signs, so variances add even when the variables are subtracted.
+              coefficients and the standard deviations alike.
             </p>
             <p>
               Part c. is the one to read carefully. "Stage 2 takes less time than Stage 1" is
               not a statement about either distribution on its own; it is{' '}
-              <Katex tex="\Pr(W_2-W_1<0)" />, and the numbers are chosen so that the answer
-              lands exactly on the given <Katex tex="\Pr(-1<Z<1)=0.68" />.
+              <Katex tex="\Pr(W_2-W_1<0)" />, a question about one new normal variable, the
+              difference.
             </p>
           </Background>
         </div>

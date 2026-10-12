@@ -35,35 +35,40 @@ const ROWS: WorkingRow[] = [
         tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 2 & 1\\-1 & 3 & 2\end{vmatrix} = \underset{\sim}{i}-3\underset{\sim}{j}+5\underset{\sim}{k}"
       />
     ),
-    reason: <>A vector perpendicular to both lines — the direction along which the shortest gap is measured.</>,
+    reason: <>A cross product is perpendicular to both directions, so it points along the common perpendicular, where the shortest gap is measured.</>,
+    more: <>Expanding the determinant along the top row:{' '}<Katex tex="\underset{\sim}{i}\,(2\cdot2-1\cdot3)-\underset{\sim}{j}\,(1\cdot2-1\cdot(-1))+\underset{\sim}{k}\,(1\cdot3-2\cdot(-1))" />. Mind the minus sign on the middle term. Check: dotting the answer with <Katex tex="\underset{\sim}{d_1}" /> gives <Katex tex="1-6+5=0" />, and with <Katex tex="\underset{\sim}{d_2}" /> gives <Katex tex="-1-9+10=0" />.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right| = \sqrt{1+9+25} = \sqrt{35}" />,
-    reason: <>The <Katex tex="\sqrt{35}" /> in the given distance is a strong hint that this is the intended route.</>,
+    reason: <>Its length is the denominator of the distance formula. The <Katex tex="\sqrt{35}" /> in the given distance confirms this route.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{a_1} = \underset{\sim}{i}+m\underset{\sim}{k}, \qquad \underset{\sim}{a_2} = 2\underset{\sim}{i}-\underset{\sim}{k} \implies \underset{\sim}{a_2}-\underset{\sim}{a_1} = \underset{\sim}{i}+(-1-m)\underset{\sim}{k}" />,
-    reason: <>Any vector joining a point of one line to a point of the other will do — the formula projects away whatever part runs along the lines.</>,
+    working: <Katex display tex="\begin{aligned}&\underset{\sim}{a_1} = \underset{\sim}{i}+m\underset{\sim}{k}, \qquad \underset{\sim}{a_2} = 2\underset{\sim}{i}-\underset{\sim}{k}\\ &\underset{\sim}{a_2}-\underset{\sim}{a_1} = \underset{\sim}{i}+(-1-m)\underset{\sim}{k}\end{aligned}" />,
+    reason: <>The points at <Katex tex="\lambda=0" /> and <Katex tex="\mu=0" />; their difference is a vector joining the two lines.</>,
+    more: <>Why the choice of points does not matter: two joining vectors differ only by multiples of the direction vectors, which are perpendicular to <Katex tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2}" />, so every joining vector has the same component in that direction.</>,
   },
   {
     working: <Katex display tex="d = \frac{\left|\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\left(\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right)\right|}{\left|\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right|}" />,
-    reason: <>The scalar resolute of the joining vector in the common-perpendicular direction. It is not on the formula sheet, so it has to be recalled or rebuilt — the report notes students who tried to work from memory had varying results.</>,
+    reason: <>Each line lies in one of two parallel planes with normal <Katex tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2}" />. The shortest distance is the gap between them: the joining vector's scalar resolute along that normal.</>,
+    more: <>The scalar resolute of <Katex tex="\underset{\sim}{a}" /> in the direction of <Katex tex="\underset{\sim}{n}" /> is <Katex tex="\dfrac{\underset{\sim}{a}\cdot\underset{\sim}{n}}{|\underset{\sim}{n}|}" />; the absolute value turns it into a length. This formula is not on the formula sheet, so if you cannot recall it, sketch the two skew lines in their parallel planes and rebuild it from the picture, as the report credits a few students with doing.</>,
   },
   {
-    working: <Katex display tex="\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\left(\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right) = (1)(1)+(0)(-3)+(-1-m)(5) = -4-5m" />,
-    reason: <>The triple product.</>,
+    working: <Katex display tex="\begin{aligned}&\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\left(\underset{\sim}{d_1}\times\underset{\sim}{d_2}\right)\\ &\quad= (1)(1)+(0)(-3)+(-1-m)(5)\\ &\quad= -4-5m\end{aligned}" />,
+    reason: <>The numerator: dot the joining vector with <Katex tex="\underset{\sim}{i}-3\underset{\sim}{j}+5\underset{\sim}{k}" />, component by component.</>,
   },
   {
     working: <Katex display tex="\frac{\left|-4-5m\right|}{\sqrt{35}} = \frac{14}{\sqrt{35}} \implies \left|5m+4\right| = 14" />,
-    reason: <>The <Katex tex="\sqrt{35}" /> cancels. The absolute value is what produces two answers, not one — the report notes some students considered only one case.</>,
+    reason: <>Set the formula equal to the given distance and multiply both sides by <Katex tex="\sqrt{35}" />. Note <Katex tex="|-4-5m|=|5m+4|" />.</>,
+    more: <>Dropping the absolute value is the trap here: the report notes some students considered only one of the two equations and so did not find both values of <Katex tex="m" />.</>,
   },
   {
     working: <Katex display tex="5m+4 = 14 \ \text{ or } \ 5m+4 = -14" />,
-    reason: <>Both branches.</>,
+    reason: <>A quantity with absolute value 14 equals 14 or <Katex tex="-14" />, so there are two cases: <Katex tex="5m=10" /> or <Katex tex="5m=-18" />.</>,
   },
   {
     working: <Katex display tex="\boxed{m = 2 \quad \text{or} \quad m = -\frac{18}{5}}" />,
-    reason: <>Both differ from the excluded value <Katex tex="-\tfrac45" />, which is precisely the <Katex tex="m" /> making the triple product zero — there the lines would meet rather than be skew.</>,
+    reason: <>Both are allowed, since neither is the excluded value <Katex tex="-\tfrac45" />.</>,
+    more: <>Why <Katex tex="-\tfrac45" /> is excluded: it makes <Katex tex="-4-5m=0" />, so the distance would be zero and the lines would meet rather than be skew. Check: <Katex tex="m=2" /> gives <Katex tex="-4-10=-14" /> and <Katex tex="m=-\tfrac{18}{5}" /> gives <Katex tex="-4+18=14" />; both have absolute value 14, so both give distance <Katex tex="\tfrac{14}{\sqrt{35}}" />.</>,
   },
 ]
 
@@ -89,18 +94,11 @@ export default function SpecialistQ10_2024Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Picture the two skew lines sitting in a pair of parallel planes. The common
-            normal of those planes is{' '}
-            <Katex tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2}" />, and the shortest
-            distance is just the gap between the planes — the scalar resolute of <em>any</em>{' '}
-            vector joining the two lines in that normal direction. That picture is enough to
-            rebuild the formula if it will not come to mind.
-          </p>
-          <p>
-            Two details decide the marks. The absolute value gives two values of{' '}
-            <Katex tex="m" />, and the excluded value <Katex tex="m=-\tfrac45" /> in the stem
-            is not decoration: it is the one value making the distance zero, where the lines
-            would intersect and not be skew at all.
+            Two lines in space are skew when they are not parallel and never meet. Picture
+            them sitting in a pair of parallel planes, one line in each: both planes contain
+            the directions <Katex tex="\underset{\sim}{d_1}" /> and{' '}
+            <Katex tex="\underset{\sim}{d_2}" />, so their common normal is{' '}
+            <Katex tex="\underset{\sim}{d_1}\times\underset{\sim}{d_2}" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

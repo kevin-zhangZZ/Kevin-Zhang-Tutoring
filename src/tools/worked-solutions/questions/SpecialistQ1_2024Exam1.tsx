@@ -96,11 +96,12 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="3z+2i = 0 \implies z = -\frac{2i}{3}" />,
-    reason: <>The factor theorem: a linear factor is a factor exactly when its root kills the polynomial.</>,
+    reason: <>Factor theorem: <Katex tex="3z+2i" /> is a factor exactly when <Katex tex="f" /> is zero at the root of <Katex tex="3z+2i=0" />.</>,
   },
   {
     working: <Katex display tex="\left(-\tfrac{2i}{3}\right)^2 = \frac{4i^2}{9} = -\frac49, \qquad \left(-\tfrac{2i}{3}\right)^3 = \frac{-8i^3}{27} = \frac{8i}{27}" />,
-    reason: <>Building the powers first keeps the arithmetic clean. Note <Katex tex="i^3=-i" />, so the cube is <em>positive</em> imaginary.</>,
+    reason: <>Build the powers first. Since <Katex tex="i^2=-1" /> and <Katex tex="i^3=-i" />, the square is real and negative, the cube <em>positive</em> imaginary.</>,
+    more: <>The usual slip is a sign on <Katex tex="i^3" />: <Katex tex="(-1)^3=-1" /> and <Katex tex="i^3=-i" />, so the two minus signs cancel and <Katex tex="\left(-\tfrac{2i}{3}\right)^3=+\tfrac{8i}{27}" />.</>,
   },
   {
     working: <Katex display tex="f\!\left(-\tfrac{2i}{3}\right) = 3\cdot\frac{8i}{27} + 2i\cdot\left(-\frac49\right) + 3\cdot\left(-\frac{2i}{3}\right) + 2i" />,
@@ -112,30 +113,37 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\therefore 3z+2i \text{ is a factor of } f(z)}" />,
-    reason: <>Alternatively, group directly: <Katex tex="3z^3+2iz^2+3z+2i = z^2(3z+2i)+(3z+2i)" />, which shows the factor without any substitution at all. As required.</>,
+    reason: <>Since <Katex tex="f\left(-\tfrac{2i}{3}\right)=0" />, the factor theorem gives the factor. As required.</>,
+    more: <>The report accepted either route: showing <Katex tex="f\left(-\tfrac{2i}{3}\right)=0" /> as here, or writing down a correct factorisation, which is the grouping used in part b.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="3z^3+2iz^2+3z+2i = z^2(3z+2i)+1(3z+2i)" />,
-    reason: <>Grouping in pairs — the fastest route now that part a. has told us what to look for.</>,
+    reason: <>Group the first two terms and the last two: each pair contains <Katex tex="3z+2i" />, the factor from part a.</>,
   },
   {
     working: <Katex display tex="= (3z+2i)\left(z^2+1\right)" />,
-    reason: <>The quadratic factor.</>,
+    reason: <>Take out the common factor <Katex tex="3z+2i" />, leaving the quadratic factor <Katex tex="z^2+1" />.</>,
   },
   {
     working: <Katex display tex="(3z+2i)\left(z^2+1\right) = 0" />,
-    reason: <>Writing the equation down matters — the report notes some students moved directly from the factorised form to writing down the solutions.</>,
+    reason: <>Set the factorised form equal to zero, then each factor to zero (null factor law).</>,
+    more: <>Writing <Katex tex="=0" /> matters. <Katex tex="(3z+2i)(z^2+1)" /> on its own is just <Katex tex="f(z)" /> rewritten; the null factor law only applies once the product is set equal to zero, so jumping from the factorised form to a list of roots skips the step being marked.</>,
+  },
+  {
+    working: <Katex display tex="3z+2i = 0 \implies z = -\tfrac{2}{3}i" />,
+    reason: <>The linear factor gives the root already checked in part a.</>,
   },
   {
     working: <Katex display tex="z^2+1 = 0 \implies z^2 = -1 \implies z = \pm i" />,
-    reason: <>Over <Katex tex="C" /> this factors as <Katex tex="(z-i)(z+i)" />.</>,
+    reason: <>Over <Katex tex="C" />, <Katex tex="z^2+1=(z-i)(z+i)" />, so the quadratic factor gives two roots.</>,
   },
   {
     working: <Katex display tex="\boxed{z = -\tfrac{2}{3}i, \quad z = i, \quad z = -i}" />,
-    reason: <>All three in Cartesian form. The conjugate root theorem does <em>not</em> apply here — the coefficients are not all real, which is why <Katex tex="-\tfrac{2}{3}i" /> has no partner <Katex tex="+\tfrac{2}{3}i" />.</>,
+    reason: <>All three, in Cartesian form <Katex tex="x+yi" /> (here each has <Katex tex="x=0" />).</>,
+    more: <>Don't add <Katex tex="+\tfrac{2}{3}i" /> as a "conjugate partner". The conjugate root theorem needs all coefficients real, and here <Katex tex="2i" /> is not, so a root can appear without its conjugate. A cubic has exactly three roots, and the factorisation has found all three.</>,
   },
 ]
 
@@ -146,15 +154,16 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="i \to (0,1), \qquad -i \to (0,-1)" />,
-    reason: <>These land exactly on the unit circle, the third of the six printed circles.</>,
+    reason: <>These land exactly on the unit circle (radius 1), the third circle out from <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="-\tfrac{2}{3}i \to (0,-\tfrac23)" />,
-    reason: <>The printed circles have radii <Katex tex="\tfrac13,\tfrac23,1,\tfrac43,\tfrac53,2" />, so this point sits on the <em>second</em> circle down, two thirds of the way to <Katex tex="-i" />.</>,
+    reason: <>The printed circles have radii <Katex tex="\tfrac13,\tfrac23,1,\tfrac43,\tfrac53,2" />, so this point sits on the <em>second</em> circle out from <Katex tex="O" /> (radius <Katex tex="\tfrac23" />), on the negative imaginary axis.</>,
   },
   {
     working: <ArgandOverlay />,
-    reason: <>All three points sit on the imaginary axis. The report notes some students did not recognise that the radii are multiples of <Katex tex="\tfrac13" />, and some plotted the correct solutions along the real axis instead.</>,
+    reason: <>Three dots, all on the imaginary (vertical) axis.</>,
+    more: <>To place a point on these diagrams, read the ring spacing first: here each ring adds <Katex tex="\tfrac13" />, so <Katex tex="|z|=\tfrac23" /> is two rings out, not one or three. Then check the direction: a purely imaginary number sits straight above or below <Katex tex="O" />, never to the side.</>,
   },
 ]
 
@@ -175,13 +184,11 @@ export default function SpecialistQ1_2024Exam1() {
             <p>
               The cubic is built to be grouped:{' '}
               <Katex tex="3z^3+2iz^2+3z+2i = z^2(3z+2i)+(3z+2i)" />. Spotting that answers
-              parts a. and b. at once, and it is quicker than the substitution the factor
+              parts a and b at once, and it is quicker than the substitution the factor
               theorem asks for.
             </p>
             <p>
-              One warning. The coefficients here are <em>not</em> all real, so the conjugate
-              root theorem does not apply — a root can appear without its conjugate, and{' '}
-              <Katex tex="-\tfrac{2}{3}i" /> does exactly that.
+              Note that the coefficient <Katex tex="2i" /> is not real; this matters in part b.
             </p>
           </Background>
         </div>
