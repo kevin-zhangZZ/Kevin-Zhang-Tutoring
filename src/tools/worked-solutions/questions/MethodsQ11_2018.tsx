@@ -49,7 +49,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; x=0,\ \frac{\pi}{a},\ \frac{2\pi}{a},\ \dots" />
       </>
     ),
-    reason: <><Katex tex="\tan\theta=0" /> where <Katex tex="\sin\theta=0" />, i.e. where its argument is a multiple of <Katex tex="\pi" />. Each intercept sits halfway between two neighbouring asymptotes (<Katex tex="\tfrac{\pi}{a}" /> is halfway between <Katex tex="\tfrac{\pi}{2a}" /> and <Katex tex="\tfrac{3\pi}{2a}" />), so walking right from the origin the features alternate: intercept, asymptote, intercept, asymptote, …</>,
+    reason: <><Katex tex="\tan\theta=0" /> where <Katex tex="\sin\theta=0" />, i.e. where its argument is a multiple of <Katex tex="\pi" />. Going right from the origin, intercepts and asymptotes alternate.</>,
+    more: <>Each intercept sits halfway between two neighbouring asymptotes: <Katex tex="\tfrac{\pi}{a}" /> is halfway between <Katex tex="\tfrac{\pi}{2a}" /> and <Katex tex="\tfrac{3\pi}{2a}" />, and so on. So the order is intercept (at <Katex tex="x=0" />), asymptote, intercept, asymptote, …</>,
   },
   {
     working: (
@@ -59,7 +60,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies 3\pi=\frac{3\pi}{2a}" />
       </>
     ),
-    reason: <>How would I know which asymptote <Katex tex="3\pi" /> is? Count the intercepts before it. <Katex tex="x=0" /> is an intercept, but <Katex tex="(0,3\pi)" /> is open, so it doesn&apos;t count. If <Katex tex="3\pi" /> were the <em>first</em> asymptote there would be no intercept inside; the <em>third</em> would give two. Exactly one intercept means <Katex tex="3\pi" /> is the <b>second</b> asymptote.</>,
+    reason: <>Count intercepts to see which asymptote <Katex tex="3\pi" /> is. Before the <Katex tex="k" />th asymptote, <Katex tex="k-1" /> intercepts lie strictly between <Katex tex="0" /> and it (<Katex tex="x=0" /> doesn&apos;t count: the interval is open). Exactly one means <Katex tex="3\pi" /> is the <b>second</b> asymptote.</>,
+    more: <>If <Katex tex="3\pi" /> were the <em>first</em> asymptote, there would be no intercept inside <Katex tex="(0,3\pi)" />; if it were the <em>third</em>, there would be two (<Katex tex="\tfrac{\pi}{a}" /> and <Katex tex="\tfrac{2\pi}{a}" />). Exactly one intercept fits only the second.</>,
   },
   {
     working: <Katex display tex="\frac{3\pi}{2a}=3\pi \implies a=\frac12" />,
@@ -73,11 +75,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{in } (0,3\pi)\text{: only } x=2\pi \ \checkmark" />
       </>
     ),
-    reason: <>Check both conditions against the answer: <Katex tex="\tan\!\left(\tfrac12\cdot3\pi\right)=\tan\tfrac{3\pi}{2}" /> is undefined, so <Katex tex="x=3\pi" /> is an asymptote, and <Katex tex="2\pi" /> is the only intercept strictly between <Katex tex="0" /> and <Katex tex="3\pi" />. The period is <Katex tex="\tfrac{\pi}{a}=2\pi" />, the gap between neighbouring asymptotes.</>,
+    reason: <>Check both conditions: <Katex tex="\tan\!\left(\tfrac12\cdot3\pi\right)=\tan\tfrac{3\pi}{2}" /> is undefined, so <Katex tex="x=3\pi" /> is an asymptote, and <Katex tex="2\pi" /> is the only intercept strictly between <Katex tex="0" /> and <Katex tex="3\pi" />.</>,
+    more: <>The period is <Katex tex="\tfrac{\pi}{a}=2\pi" />, the gap between the neighbouring asymptotes <Katex tex="x=\pi" /> and <Katex tex="x=3\pi" />, as in the examiner&apos;s report.</>,
   },
   {
     working: <Katex display tex="\boxed{a=\tfrac12}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> <Katex tex="\left(\tfrac16\right)" /> makes <Katex tex="3\pi" /> the <em>first</em> asymptote, <Katex tex="\tfrac{\pi}{2a}=3\pi" />; option <b>B</b> <Katex tex="\left(\tfrac13\right)" /> sets the period <Katex tex="\tfrac{\pi}{a}=3\pi" />. Both are unpacked below.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>A</b> <Katex tex="\left(\tfrac16\right)" /> comes from <Katex tex="\tfrac{\pi}{2a}=3\pi" />, which makes <Katex tex="3\pi" /> the <em>first</em> asymptote, with no intercept inside. Option <b>B</b> <Katex tex="\left(\tfrac13\right)" /> sets the period <Katex tex="\tfrac{\pi}{a}=3\pi" />, which makes <Katex tex="3\pi" /> an intercept. Options <b>D</b> and <b>E</b> fail the same way: <Katex tex="\tan 3\pi=\tan 6\pi=0" />, so <Katex tex="x=3\pi" /> is an intercept, not an asymptote.</>,
   },
 ]
 
@@ -114,8 +118,7 @@ export default function MethodsQ11_2018() {
           </p>
           <p>
             Each branch runs from <Katex tex="-\infty" /> up to <Katex tex="+\infty" /> between
-            two neighbouring asymptotes and crosses the axis exactly once, halfway across. So the
-            period is the <em>gap</em> between neighbouring asymptotes, and knowing where one
+            two neighbouring asymptotes and crosses the axis exactly once. So knowing where one
             asymptote is does not tell you which one it is. That is what the intercept condition
             in this question is for.
           </p>
@@ -137,8 +140,7 @@ export default function MethodsQ11_2018() {
               <Katex tex="x=0,\ 6\pi,\ 12\pi,\ \dots" />, so the graph climbs from the origin
               straight up to <Katex tex="x=3\pi" /> without crossing the axis, and{' '}
               <Katex tex="x=0" /> doesn&apos;t count because <Katex tex="(0,3\pi)" /> is open. That
-              is zero intercepts, not one. The intercept condition is there to tell you which
-              asymptote <Katex tex="3\pi" /> is; to catch this, list the intercepts in{' '}
+              is zero intercepts, not one. To catch this, list the intercepts in{' '}
               <Katex tex="(0,3\pi)" /> for your <Katex tex="a" /> and count them.
             </p>
           </WrongMethod>

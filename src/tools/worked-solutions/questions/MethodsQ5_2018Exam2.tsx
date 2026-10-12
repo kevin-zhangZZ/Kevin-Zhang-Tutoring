@@ -16,7 +16,7 @@
 //
 // Report text kept verbatim, with two slips in it: 5b.'s "As in Question 5b." evidently means
 // 5a., and the wrong answer it quotes, (±√(9a² − 8) + 3)/3, is not what the 4a² misreading gives
-// (that gives x = (3a ± √(9a² − 8))/6, checked in sympy). Not relied on in our working.
+// (that gives x = (3a ± √(9a² − 8))/6, checked in sympy). Explained in 5b.'s last-row `more`.
 //
 // Solution is original.
 
@@ -105,72 +105,83 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{81x^2(a-x)}{4a^4} = \frac{81}{4a^4}\left(ax^2-x^3\right)" />,
-    reason: <>Expanding makes the differentiation routine. Everything outside the bracket is a constant, since <Katex tex="a" /> is a fixed positive number: treat <Katex tex="\tfrac{81}{4a^4}" /> exactly as you would a plain number in front.</>,
+    reason: <>Expand so the differentiation is routine. <Katex tex="a" /> is a fixed number, so treat <Katex tex="\tfrac{81}{4a^4}" /> like a constant in front.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{81}{4a^4}\left(2ax-3x^2\right) = \frac{81x(2a-3x)}{4a^4}" />,
-    reason: <>Differentiate, then factorise: the factorised form shows both zeros of <Katex tex="f'" /> at a glance. On CAS, store the rule once with <Cas fn="define">Define f(x)=81x^2(a-x)/(4a^4)</Cas> (every part of this question uses it), then take <Cas fn="derivative">d/dx(f(x))</Cas>.</>,
+    reason: <>Differentiate, then factorise to see both zeros of <Katex tex="f'" />. On CAS: <Cas fn="define">Define f(x)=81x^2(a-x)/(4a^4)</Cas>, then <Cas fn="derivative">d/dx(f(x))</Cas>.</>,
+    more: <>Define <Katex tex="f" /> once at the start: every part of this question uses the same rule.</>,
   },
   {
     working: <Katex display tex="f'(x)=0 \implies x=0 \ \text{ or } \ x=\frac{2a}{3}" />,
-    reason: <>Two stationary points, so which is the maximum? The <Katex tex="x^2" /> factor makes <Katex tex="x=0" /> a double root, where the graph touches the axis, and <Katex tex="f(x)>0" /> for <Katex tex="0<x<a" /> (both <Katex tex="x^2" /> and <Katex tex="a-x" /> are positive). So the curve rises from <Katex tex="0" /> and comes back down to <Katex tex="0" /> at <Katex tex="x=a" />: the turning point in between, <Katex tex="x=\tfrac{2a}{3}" />, is the local maximum, and <Katex tex="(0,0)" /> is a local minimum.</>,
+    reason: <>Which is the maximum? <Katex tex="f(0)=f(a)=0" /> and <Katex tex="f(x)>0" /> for <Katex tex="0<x<a" />, so the curve rises then falls: <Katex tex="x=\tfrac{2a}{3}" /> is the local maximum.</>,
+    more: <>Why positive: for <Katex tex="0<x<a" />, both <Katex tex="x^2" /> and <Katex tex="a-x" /> are positive. A sign check of <Katex tex="f'" /> agrees: <Katex tex="f'>0" /> just left of <Katex tex="\tfrac{2a}{3}" /> and <Katex tex="f'<0" /> just right. The <Katex tex="x^2" /> factor makes <Katex tex="x=0" /> a double root, where the graph touches the axis, so <Katex tex="(0,0)" /> is the local minimum. Solve <Katex tex="f'(x)=0" /> for <Katex tex="x" />, not for <Katex tex="a" />: the report notes some students gave <Katex tex="a=\tfrac{3x}{2}" />, which is not a point at all.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{2a}{3}\right) = \frac{81\cdot\frac{4a^2}{9}\cdot\frac{a}{3}}{4a^4} = \frac{12a^3}{4a^4} = \frac{3}{a}" />,
-    reason: <>Substituting. The <Katex tex="a" />s reduce from <Katex tex="a^3/a^4" /> to <Katex tex="1/a" /> — note the denominator is <Katex tex="4a^{\mathbf 4}" />, and the report says reading it as <Katex tex="4a^2" /> is what produced the common wrong answer <Katex tex="\left(\tfrac{2a}{3},3a\right)" />.</>,
+    reason: <>Substitute <Katex tex="x=\tfrac{2a}{3}" />. The denominator is <Katex tex="4a^{\mathbf 4}" />, so <Katex tex="\tfrac{a^3}{a^4}" /> leaves <Katex tex="\tfrac1a" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(\frac{2a}{3},\ \frac{3}{a}\right)}" />,
-    reason: <>The local <em>maximum</em>, and coordinates rather than just <Katex tex="x" /> — the report flags both of the other things students handed in: the <Katex tex="x" />-value alone, and the local minimum <Katex tex="(0,0)" /> added unasked.</>,
+    reason: <>Coordinates are asked for, so give both, and only the local maximum.</>,
+    more: <>The report flags both of the other things students handed in: the <Katex tex="x" />-value alone, and the local minimum <Katex tex="(0,0)" /> added unasked.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{81x^2(a-x)}{4a^4} = \frac{9x}{2a^2}" />,
-    reason: <>Intersections are the <Katex tex="x" />-values where both rules give the same <Katex tex="y" />, so set the rules equal. On CAS, <Cas fn="solve">solve(f(x)=h(x), x)</Cas> returns all three at once; just don&apos;t add a condition such as <Katex tex="x>0" />, which throws away <Katex tex="x=0" />.</>,
+    reason: <>Intersections: set the rules equal. On CAS, <Cas fn="solve">solve(f(x)=h(x), x)</Cas> gives all three, but don&apos;t add a condition like <Katex tex="x>0" />: it drops <Katex tex="x=0" />.</>,
   },
   {
-    working: <Katex display tex="81x^2(a-x) = 18a^2x \implies 81x^2(a-x)-18a^2x = 0" />,
-    reason: <>Multiplying both sides by <Katex tex="4a^4" />: the right-hand side becomes <Katex tex="\tfrac{9x}{2a^2}\times4a^4=18a^2x" />.</>,
+    working: <Katex display tex="\begin{aligned}81x^2(a-x) &= 18a^2x\\\implies 81x^2(a-x)-18a^2x &= 0\end{aligned}" />,
+    reason: <>Multiply both sides by <Katex tex="4a^4" />: <Katex tex="\tfrac{9x}{2a^2}\times4a^4=18a^2x" />.</>,
   },
   {
     working: <Katex display tex="9x\left(9ax-9x^2-2a^2\right) = 0" />,
-    reason: <>Take out the common factor <Katex tex="9x" />. This is where <Katex tex="x=0" /> comes from — dividing through by <Katex tex="x" /> instead of factorising loses it.</>,
+    reason: <>Take out the common factor <Katex tex="9x" />, rather than dividing by <Katex tex="x" />. This factor gives <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="9x^2-9ax+2a^2 = (3x-a)(3x-2a) = 0" />,
-    reason: <>Multiply the bracket by <Katex tex="-1" /> so the <Katex tex="x^2" /> term is positive, then factorise. You want two brackets whose first terms multiply to <Katex tex="9x^2" />, last terms to <Katex tex="2a^2" />, and cross terms add to <Katex tex="-9ax" />: <Katex tex="(3x-a)(3x-2a)" /> does it. The quadratic formula works too: <Katex tex="x=\tfrac{9a\pm3a}{18}" />.</>,
+    reason: <>Multiply the bracket by <Katex tex="-1" /> so the <Katex tex="x^2" /> term is positive, then factorise.</>,
+    more: <>You want two brackets whose first terms multiply to <Katex tex="9x^2" />, last terms to <Katex tex="2a^2" />, and cross terms add to <Katex tex="-9ax" />: <Katex tex="(3x-a)(3x-2a)" /> does it. The quadratic formula works too: <Katex tex="x=\tfrac{9a\pm3a}{18}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 0, \quad x = \frac{a}{3}, \quad x = \frac{2a}{3}}" />,
-    reason: <>Three intersections, and all three are needed for part c. Note the last one, <Katex tex="x=\tfrac{2a}{3}" />, is the local maximum from part a. — the line passes exactly through the crest of the cubic, since <Katex tex="h\left(\tfrac{2a}{3}\right)=\tfrac3a" /> too.</>,
+    reason: <>All three intersections, in terms of <Katex tex="a" />. Part c. needs every one.</>,
+    more: <>The last one, <Katex tex="x=\tfrac{2a}{3}" />, is the local maximum from part a.: the line passes exactly through the crest of the cubic, since <Katex tex="h\left(\tfrac{2a}{3}\right)=\tfrac3a" /> too. The report links its common incorrect answer to reading the denominator as <Katex tex="4a^2" /> instead of <Katex tex="4a^4" />. That slip gives <Katex tex="9x^2-9ax+2=0" />, so <Katex tex="x=\tfrac{3a\pm\sqrt{9a^2-8}}{6}" />: not exactly the report&apos;s printed form, but the same <Katex tex="\sqrt{9a^2-8}" />. The correct quadratic factorises neatly, so a surd here is a sign the denominator was misread.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
+    working: <Katex display tex="\begin{aligned} x=\tfrac a6&: \ h=\tfrac{24}{32a} > f=\tfrac{15}{32a} \\ x=\tfrac a2&: \ f=\tfrac{81}{32a} > h=\tfrac{72}{32a} \end{aligned}" />,
+    reason: <>Which curve is on top? Test a point in each interval between the intersections <Katex tex="0" />, <Katex tex="\tfrac a3" /> and <Katex tex="\tfrac{2a}{3}" />.</>,
+  },
+  {
     working: <Katex display tex="\text{On } \left(0,\tfrac{a}{3}\right): \ h>f; \qquad \text{On } \left(\tfrac{a}{3},\tfrac{2a}{3}\right): \ f>h" />,
-    reason: <>How do you know which is on top? Test a point in each interval. At <Katex tex="x=\tfrac a6" />, <Katex tex="h=\tfrac{24}{32a}" /> and <Katex tex="f=\tfrac{15}{32a}" />; at <Katex tex="x=\tfrac a2" />, <Katex tex="h=\tfrac{72}{32a}" /> and <Katex tex="f=\tfrac{81}{32a}" />. The curves swap order at the middle intersection, so the integrand must swap too. The report names having the functions in the incorrect order on both intervals as a common mistake.</>,
+    reason: <>The curves swap order at <Katex tex="x=\tfrac a3" />, so the order of subtraction must swap too.</>,
   },
   {
     working: <Katex display tex="A_1 = \int_0^{a/3}\bigl(h(x)-f(x)\bigr)dx = \frac{1}{16}" />,
-    reason: <>Upper minus lower on the first region. With <Katex tex="f" /> and <Katex tex="h" /> defined, the CAS definite-integral template gives this exactly, still with <Katex tex="a" /> as a letter.</>,
+    reason: <>Upper minus lower on the first region. With <Katex tex="f" /> and <Katex tex="h" /> defined, the CAS definite-integral template gives this exactly, with <Katex tex="a" /> still a letter.</>,
   },
   {
     working: <Katex display tex="A_2 = \int_{a/3}^{2a/3}\bigl(f(x)-h(x)\bigr)dx = \frac{1}{16}" />,
-    reason: <>Upper minus lower on the second. The two happen to be equal — a pleasant symmetry, but it must be shown, not assumed.</>,
+    reason: <>Upper minus lower on the second region.</>,
+    more: <>The two areas happen to be equal, but that has to be found by integrating, not assumed.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{1}{16}+\frac{1}{16} = \frac18}" />,
-    reason: <>Both regions, so both integrals — the report notes some students found only half of the area. Striking result: the total is a pure number with no <Katex tex="a" /> in it at all. Changing <Katex tex="a" /> stretches the picture sideways by a factor of <Katex tex="a" /> and squashes it vertically by <Katex tex="\tfrac1a" />, which leaves every area unchanged. That is why substituting a particular <Katex tex="a" /> (another approach the report mentions) happens to give the right number while not answering the question as asked.</>,
+    reason: <>Add both regions. The <Katex tex="a" /> cancels completely, so the total area is a plain number.</>,
+    more: <>The report notes some students found only half of the area, and others had the right integrals but not the right value: let CAS evaluate them exactly. Why no <Katex tex="a" />: changing <Katex tex="a" /> stretches the picture sideways by a factor of <Katex tex="a" /> and squashes it vertically by <Katex tex="\tfrac1a" />, which leaves every area unchanged. That is why substituting a particular <Katex tex="a" /> (which the report says some students did) gives the right number, but it does not answer the question for every <Katex tex="a" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="g\!\left(\frac{2a}{3}\right) = \frac{3}{a}" />,
-    reason: <><Katex tex="g" /> is the same rule as <Katex tex="f" />, restricted to <Katex tex="\left[0,\tfrac{2a}{3}\right]" />, so this is part a.&apos;s maximum value.</>,
+    reason: <><Katex tex="g" /> is the rule of <Katex tex="f" /> restricted to <Katex tex="\left[0,\tfrac{2a}{3}\right]" />, so this is part a.&apos;s maximum value.</>,
   },
   {
     working: <Katex display tex="\frac{2a}{3}\times g\!\left(\frac{2a}{3}\right) = \frac{2a}{3}\times\frac{3}{a}" />,
@@ -178,45 +189,48 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2}" />,
-    reason: <>The <Katex tex="a" />s cancel entirely. Geometrically, <Katex tex="\tfrac{2a}{3}\times g\left(\tfrac{2a}{3}\right)" /> is width × height of the rectangle with corners <Katex tex="(0,0)" /> and <Katex tex="\left(\tfrac{2a}{3},\tfrac{3}{a}\right)" /> — the box the graph of <Katex tex="g" /> fits in exactly, since <Katex tex="g" /> rises from one corner to the other. Its area is <Katex tex="2" /> whatever <Katex tex="a" /> is. A one-mark &ldquo;evaluate&rdquo; like this is usually set up for the next part: part e. needs this box.</>,
+    reason: <>The <Katex tex="a" />s cancel entirely.</>,
+    more: <>Geometrically, <Katex tex="\tfrac{2a}{3}\times g\left(\tfrac{2a}{3}\right)" /> is width × height of the rectangle with corners <Katex tex="(0,0)" /> and <Katex tex="\left(\tfrac{2a}{3},\tfrac{3}{a}\right)" />: the box the graph of <Katex tex="g" /> fits in exactly, since <Katex tex="g" /> rises from one corner to the other. Its area is <Katex tex="2" /> whatever <Katex tex="a" /> is. A one-mark &ldquo;evaluate&rdquo; like this is usually set up for the next part: part e. needs this box.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Area} = \int_0^{3/a} g^{-1}(x)\,dx" />,
-    reason: <>The line is <Katex tex="x=g\left(\tfrac{2a}{3}\right)=\tfrac3a" /> (part d.). <Katex tex="g^{-1}" /> runs from <Katex tex="(0,0)" /> to <Katex tex="\left(\tfrac3a,\tfrac{2a}{3}\right)" />, so the region is everything under <Katex tex="g^{-1}" /> from <Katex tex="x=0" /> to <Katex tex="x=\tfrac3a" />. A rule for <Katex tex="g^{-1}" /> would mean solving a cubic for <Katex tex="x" />, so don&apos;t integrate it directly: reflect the region instead.</>,
+    reason: <>The line is <Katex tex="x=g\left(\tfrac{2a}{3}\right)=\tfrac3a" />, and <Katex tex="g^{-1}" /> runs from <Katex tex="(0,0)" /> to <Katex tex="\left(\tfrac3a,\tfrac{2a}{3}\right)" />. <Katex tex="g^{-1}" /> has no easy rule, so reflect the region instead of integrating this.</>,
   },
   {
     working: <Katex display tex="= \frac{2a}{3}\times\frac{3}{a} - \int_0^{2a/3} g(x)\,dx" />,
-    reason: <>Reflect the region in <Katex tex="y=x" />, which does not change its area. It lands between the graph of <Katex tex="g" /> and the <Katex tex="y" />-axis: the part of <Katex tex="g" />&apos;s box (width <Katex tex="\tfrac{2a}{3}" />, height <Katex tex="\tfrac3a" />) that lies to the <em>left</em> of <Katex tex="g" />. That is the whole box minus the part under <Katex tex="g" />. This is the report&apos;s expression.</>,
+    reason: <>Reflected in <Katex tex="y=x" /> (same area), the region is the part of <Katex tex="g" />&apos;s box, <Katex tex="\tfrac{2a}{3}" /> wide and <Katex tex="\tfrac3a" /> high, <em>above</em> (left of) <Katex tex="g" />: the box minus the area under <Katex tex="g" />.</>,
+    more: <>Reflecting swaps <Katex tex="x" /> and <Katex tex="y" />: &ldquo;under <Katex tex="g^{-1}" />, for <Katex tex="0\le x\le\tfrac3a" />&rdquo; becomes &ldquo;left of <Katex tex="g" /> and right of the <Katex tex="y" />-axis, for <Katex tex="0\le y\le\tfrac3a" />&rdquo;. This is the report&apos;s expression.</>,
   },
   {
     working: <Katex display tex="\int_0^{2a/3} g(x)\,dx = \frac{81}{4a^4}\left[\frac{ax^3}{3}-\frac{x^4}{4}\right]_0^{2a/3}" />,
-    reason: <>The area under <Katex tex="g" />, which does have a rule you can integrate. On CAS, the definite-integral template gives <Katex tex="1" /> directly.</>,
+    reason: <>The area under <Katex tex="g" />, which does have a rule to integrate. On CAS, the definite-integral template gives <Katex tex="1" /> directly.</>,
   },
   {
     working: <Katex display tex="= \frac{81}{4a^4}\left(\frac{8a^4}{81}-\frac{4a^4}{81}\right) = 1" />,
-    reason: <>By hand, every term carries <Katex tex="a^4" />, so the <Katex tex="a" />s cancel. Like part d., this is independent of <Katex tex="a" />.</>,
+    reason: <>By hand: every term carries <Katex tex="a^4" />, so the <Katex tex="a" />s cancel.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = 2 - 1 = 1}" />,
-    reason: <>Only <Katex tex="7\%" /> of students scored both marks. Notice <Katex tex="g" /> cuts its box exactly in half (<Katex tex="1" /> and <Katex tex="1" />), which is why the area under <Katex tex="g^{-1}" /> equals the area under <Katex tex="g" /> here. That is a coincidence of this function: in general the region under <Katex tex="g" /> reflects to the region <em>beside</em> <Katex tex="g^{-1}" />, not under it.</>,
+    reason: <>The box (part d.) minus the area under <Katex tex="g" />.</>,
+    more: <>Only <Katex tex="7\%" /> of students scored both marks. Here <Katex tex="g" /> happens to cut its box exactly in half (<Katex tex="1" /> and <Katex tex="1" />), so the area under <Katex tex="g^{-1}" /> equals the area under <Katex tex="g" />. That is a coincidence of this function, not the method: it is always the part above <Katex tex="g" /> that reflects to the part under <Katex tex="g^{-1}" />. As the report says, other approaches using symmetry also work.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="g: \ (0,0) \to \left(\frac{2a}{3},\ \frac{3}{a}\right)" />,
-    reason: <>The endpoints of <Katex tex="g" />: <Katex tex="g(0)=0" /> and <Katex tex="g\left(\tfrac{2a}{3}\right)=\tfrac3a" /> (part d.). Between them <Katex tex="g" /> is increasing (its turning points are exactly at these two ends), which is why <Katex tex="g^{-1}" /> exists at all.</>,
+    reason: <><Katex tex="g(0)=0" /> and <Katex tex="g\left(\tfrac{2a}{3}\right)=\tfrac3a" /> (part d.). <Katex tex="g" /> is increasing in between (its turning points are the two ends), which is why <Katex tex="g^{-1}" /> exists.</>,
   },
   {
     working: <Katex display tex="g^{-1}: \ (0,0) \to \left(\frac{3}{a},\ \frac{2a}{3}\right)" />,
-    reason: <>Reflecting in <Katex tex="y=x" /> swaps each coordinate pair. Both graphs already share the endpoint <Katex tex="(0,0)" />, so only the other one has to be matched.</>,
+    reason: <>Reflecting in <Katex tex="y=x" /> swaps the coordinates. <Katex tex="(0,0)" /> is already shared, so only the far endpoints must match.</>,
   },
   {
     working: <Katex display tex="\frac{2a}{3} = \frac{3}{a} \implies 2a^2 = 9" />,
-    reason: <>The far endpoint of <Katex tex="g" /> and its reflection are the same point exactly when that point lies on the mirror line <Katex tex="y=x" />, i.e. when its two coordinates are equal.</>,
+    reason: <>A point equals its reflection exactly when it lies on the mirror line <Katex tex="y=x" />, i.e. its two coordinates are equal.</>,
   },
   {
     working: <Katex display tex="a^2 = \frac92 \implies a = \frac{3}{\sqrt2} = \frac{3\sqrt2}{2}" />,
@@ -224,14 +238,15 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \frac{3\sqrt2}{2}}" />,
-    reason: <>(<Katex tex="\approx2.12" />.) Then both endpoints sit at <Katex tex="\left(\sqrt2,\sqrt2\right)" /> on the line <Katex tex="y=x" />. Only <Katex tex="8\%" /> of students scored this mark. Part d. gives a second view: the far endpoint always has <Katex tex="x\times y=2" />, so as <Katex tex="a" /> changes it slides along <Katex tex="y=\tfrac2x" />, which meets <Katex tex="y=x" /> at <Katex tex="\left(\sqrt2,\sqrt2\right)" />.</>,
+    reason: <>Both far endpoints are then <Katex tex="\left(\sqrt2,\sqrt2\right)" />.</>,
+    more: <>(<Katex tex="a\approx2.12" />.) Only <Katex tex="8\%" /> of students scored this mark. Part d. gives a second view: the far endpoint of <Katex tex="g" /> always has <Katex tex="x\times y=2" />, so as <Katex tex="a" /> changes it slides along <Katex tex="y=\tfrac2x" />, which meets <Katex tex="y=x" /> at <Katex tex="\left(\sqrt2,\sqrt2\right)" />.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{3\sqrt2}{2} \implies a^4 = \frac{81}{4} \implies \frac{81}{4a^4} = 1" />,
-    reason: <>Substituting part f.&apos;s value. The constant in front becomes <Katex tex="1" />, which is what makes the arithmetic manageable.</>,
+    reason: <>Substitute part f.&apos;s value: the constant in front becomes <Katex tex="1" />, which keeps the arithmetic manageable.</>,
   },
   {
     working: <Katex display tex="g(x) = x^2\left(\frac{3\sqrt2}{2}-x\right), \quad x\in\left[0,\sqrt2\right]" />,
@@ -239,23 +254,26 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g(x) = x \implies x = 0, \ \frac{\sqrt2}{2}, \ \sqrt2" />,
-    reason: <>Because <Katex tex="g" /> is increasing, <Katex tex="g" /> and <Katex tex="g^{-1}" /> can only meet on <Katex tex="y=x" />, so solving <Katex tex="g(x)=x" /> finds every intersection (<Cas fn="solve">solve(g(x)=x, x)</Cas>). By hand: <Katex tex="x\left(x^2-\tfrac{3\sqrt2}{2}x+1\right)=0" />, and the quadratic&apos;s roots multiply to <Katex tex="1" />; one is the known endpoint <Katex tex="\sqrt2" />, so the other is <Katex tex="\tfrac{1}{\sqrt2}" />. <Katex tex="g" /> crosses <Katex tex="y=x" /> in the <em>middle</em> of the interval as well as at both ends, so the enclosed region is two pieces, not one.</>,
+    reason: <><Katex tex="g" /> is increasing, so <Katex tex="g" /> and <Katex tex="g^{-1}" /> meet only on <Katex tex="y=x" />: <Cas fn="solve">solve(g(x)=x, x)</Cas>. The middle crossing means the region between <Katex tex="g" /> and the line comes in two pieces.</>,
+    more: <>By hand: <Katex tex="g(x)-x=-x\left(x^2-\tfrac{3\sqrt2}{2}x+1\right)" />. You already know <Katex tex="x=\sqrt2" /> (the shared endpoint) is a root, so <Katex tex="x-\sqrt2" /> is a factor: <Katex tex="x^2-\tfrac{3\sqrt2}{2}x+1=\left(x-\sqrt2\right)\left(x-\tfrac{\sqrt2}{2}\right)" />. So <Katex tex="g" /> crosses <Katex tex="y=x" /> in the middle of the interval as well as at both ends.</>,
   },
   {
     working: <Katex display tex="\int_0^{\frac{\sqrt2}{2}}\bigl(x-g(x)\bigr)dx = \frac{1}{16}" />,
-    reason: <>Between <Katex tex="0" /> and <Katex tex="\tfrac{\sqrt2}{2}" />, <Katex tex="g" /> is below <Katex tex="y=x" /> (at <Katex tex="x=\tfrac12" />, <Katex tex="g\approx0.41" />), so the line minus the curve is positive.</>,
+    reason: <>On <Katex tex="\left(0,\tfrac{\sqrt2}{2}\right)" />, <Katex tex="g" /> is below <Katex tex="y=x" /> (at <Katex tex="x=\tfrac12" />, <Katex tex="g\approx0.41<0.5" />), so integrate line minus curve.</>,
   },
   {
-    working: <Katex display tex="\int_{\frac{\sqrt2}{2}}^{\sqrt2}\bigl(x-g(x)\bigr)dx = -\frac{1}{16}" />,
-    reason: <>Equal in size, opposite in sign: <Katex tex="g" /> is above <Katex tex="y=x" /> on this stretch. Adding the two signed values would give zero, so take magnitudes.</>,
+    working: <Katex display tex="\int_{\frac{\sqrt2}{2}}^{\sqrt2}\bigl(g(x)-x\bigr)dx = \frac{1}{16}" />,
+    reason: <>Here <Katex tex="g" /> is above <Katex tex="y=x" />, so swap to curve minus line.</>,
+    more: <>Integrating <Katex tex="x-g(x)" /> over the whole of <Katex tex="\left[0,\sqrt2\right]" /> in one go gives <Katex tex="\tfrac1{16}-\tfrac1{16}=0" />: the two pieces cancel. Split at the crossing and take upper minus lower on each piece.</>,
   },
   {
     working: <Katex display tex="\text{Area} = 2\left(\frac{1}{16}+\frac{1}{16}\right)" />,
-    reason: <>Each lobe between <Katex tex="g" /> and <Katex tex="y=x" /> has a mirror image between <Katex tex="y=x" /> and <Katex tex="g^{-1}" />, so the region enclosed by the two curves is double the region between <Katex tex="g" /> and the line.</>,
+    reason: <>Each piece between <Katex tex="g" /> and <Katex tex="y=x" /> has a mirror image between <Katex tex="y=x" /> and <Katex tex="g^{-1}" />, so double.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = \frac14}" />,
-    reason: <>The hardest part on the paper — <Katex tex="97\%" /> scored zero. (<Katex tex="0.25" /> square units: two small lobes of <Katex tex="0.0625" /> each and their reflections.)</>,
+    reason: <>The area enclosed by <Katex tex="g" /> and <Katex tex="g^{-1}" />, in square units.</>,
+    more: <>The hardest part on the paper: <Katex tex="97\%" /> scored zero.</>,
   },
 ]
 
@@ -293,18 +311,18 @@ export default function MethodsQ5_2018Exam2() {
       <PartCard letter="b" topic="Intersections" marks={1} statement={<>Find the <Katex tex="x" />-values of all of the points of intersection between the graphs of <Katex tex="f" /> and <Katex tex="h" />, in terms of <Katex tex="a" /> where appropriate.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
-            Factorise rather than divide. Both rules vanish at <Katex tex="x=0" />, so{' '}
-            <Katex tex="x=0" /> is one of the intersections — cancelling an <Katex tex="x" />{' '}
-            from both sides quietly throws it away, and part c. then comes out wrong.
+            Both rules give <Katex tex="0" /> at <Katex tex="x=0" />, so the origin is always an
+            intersection. It is the easy one to lose: cancelling an <Katex tex="x" /> from both
+            sides divides by zero there, and part c. then comes out wrong.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
         <WrongMethod
-          title="Give a a value (say a = 1) to make it easier"
+          title="Answers with no a in them: x = 0, 1/3, 2/3"
           source="Examiner's report"
           working={<Katex display tex="\frac{81x^2(1-x)}{4} = \frac{9x}{2} \implies x = 0,\ \tfrac13,\ \tfrac23" />}
         >
-          These are the intersections for <Katex tex="a=1" /> only. The question asks for them in terms
+          The report lists these answers, and they are exactly the intersections for <Katex tex="a=1" />. The question asks for them in terms
           of <Katex tex="a" />, so the answer must work for every positive <Katex tex="a" />, and two of
           the three intersections move as <Katex tex="a" /> changes. If a CAS answer comes back with
           no <Katex tex="a" /> in it, check that <Katex tex="a" /> hasn&apos;t been given a value (it may
@@ -315,9 +333,8 @@ export default function MethodsQ5_2018Exam2() {
       <PartCard letter="c" topic="Area Between Curves" marks={2} statement={<>Determine the total area of the regions bounded by the graphs of <Katex tex="y=f(x)" /> and <Katex tex="y=h(x)" />.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
-            Three intersections means <em>two</em> enclosed regions, and the curves change
-            places at the middle one. So the integrand flips between them: it is always
-            (upper − lower), but which function is upper changes.
+            Three intersections means <em>two</em> enclosed regions, each needing its own
+            integral of (upper − lower).
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -358,16 +375,11 @@ export default function MethodsQ5_2018Exam2() {
       <PartCard letter="e" topic="Inverse Area" marks={2} statement={<>Find the area bounded by the graph of <Katex tex="g^{-1}" />, the <Katex tex="x" />-axis and the line <Katex tex="x=g\!\left(\dfrac{2a}{3}\right)" />.</>} examinerReport={EXAM_E}>
         <Background>
           <p>
-            Do not try to find a rule for <Katex tex="g^{-1}" /> — that means solving a cubic
-            for <Katex tex="x" />. Use the reflection instead.
-          </p>
-          <p>
-            <Katex tex="g" /> runs from <Katex tex="(0,0)" /> to{' '}
-            <Katex tex="\left(\tfrac{2a}{3},\tfrac3a\right)" />, so it sits inside a rectangle
-            whose area part d. just told you is <Katex tex="2" />. Reflecting in{' '}
-            <Katex tex="y=x" /> turns that rectangle on its side and swaps "under the curve"
-            with "left of the curve". The area under <Katex tex="g^{-1}" /> is therefore the
-            rectangle minus the area under <Katex tex="g" />.
+            A rule for <Katex tex="g^{-1}" /> would mean solving{' '}
+            <Katex tex="y=\tfrac{81x^2(a-x)}{4a^4}" /> for <Katex tex="x" />, a cubic: not
+            practical. Two facts avoid it. Reflecting a region in <Katex tex="y=x" /> does not
+            change its area, and part d. has already given the area of the box that{' '}
+            <Katex tex="g" /> fits in.
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />
@@ -389,12 +401,6 @@ export default function MethodsQ5_2018Exam2() {
             A curve and its inverse are mirror images in <Katex tex="y=x" />, so the region
             they enclose is symmetric about that line. Find the area between{' '}
             <Katex tex="g" /> and <Katex tex="y=x" />, then double it.
-          </p>
-          <p>
-            The catch is that <Katex tex="g" /> crosses <Katex tex="y=x" /> partway along, not
-            only at the ends. That makes two separate lobes with opposite signs, so the signed
-            integral over the whole interval is zero and magnitudes have to be taken lobe by
-            lobe.
           </p>
         </Background>
         <WorkingTable rows={ROWS_G} />

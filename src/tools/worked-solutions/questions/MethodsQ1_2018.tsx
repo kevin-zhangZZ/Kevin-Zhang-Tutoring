@@ -20,19 +20,22 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 4\cos\!\left(\frac{2\pi x}{3}\right)+1" />,
-    reason: <>Only the coefficient of <Katex tex="x" /> inside the cosine affects the period. The <Katex tex="4" /> sets the amplitude and the <Katex tex="+1" /> shifts the curve vertically — neither changes how often it repeats.</>,
+    reason: <>Only the coefficient of <Katex tex="x" /> inside the cosine affects the period. The <Katex tex="4" /> (amplitude) and <Katex tex="+1" /> (vertical shift) don't change how often it repeats.</>,
   },
   {
     working: <Katex display tex="\text{Period} = \frac{2\pi}{n} \ \text{ for } \ \cos(nx), \qquad n = \frac{2\pi}{3}" />,
-    reason: <>Why <Katex tex="\tfrac{2\pi}{n}" />: cosine repeats every time the angle it is fed goes up by <Katex tex="2\pi" /> (once round the unit circle). The angle here is <Katex tex="nx" />, so <Katex tex="x" /> only has to go up by <Katex tex="\tfrac{2\pi}{n}" /> for <Katex tex="nx" /> to go up by <Katex tex="2\pi" />.</>,
+    reason: <>Cosine repeats each time its angle <Katex tex="nx" /> goes up by <Katex tex="2\pi" />, which happens when <Katex tex="x" /> goes up by <Katex tex="\tfrac{2\pi}{n}" />.</>,
+    more: <>The <Katex tex="2\pi" /> is one full turn round the unit circle: after it, cosine is back where it started.</>,
   },
   {
     working: <Katex display tex="\text{Period} = \frac{2\pi}{\ \frac{2\pi}{3}\ } = 2\pi \times \frac{3}{2\pi}" />,
-    reason: <>Dividing by a fraction is multiplying by its reciprocal. A quick check that skips the formula: one full cycle ends when the angle reaches <Katex tex="2\pi" />, and <Katex tex="\tfrac{2\pi x}{3} = 2\pi" /> gives <Katex tex="x = 3" />.</>,
+    reason: <>Dividing by a fraction is multiplying by its reciprocal.</>,
+    more: <>A quick check that skips the formula: one full cycle ends when the angle reaches <Katex tex="2\pi" />, and <Katex tex="\tfrac{2\pi x}{3} = 2\pi" /> gives <Katex tex="x = 3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Period} = 3}" />,
-    reason: <>Matches option <b>C</b>. The <Katex tex="2\pi" />s cancel exactly, which is the point of writing the coefficient as <Katex tex="\tfrac{2\pi}{3}" /> in the first place — a period of <Katex tex="3" /> was designed in. At <Katex tex="95\%" /> this was the paper's easiest question.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>The <Katex tex="2\pi" />s cancel exactly, which is the point of writing the coefficient as <Katex tex="\tfrac{2\pi}{3}" /> in the first place: a period of <Katex tex="3" /> was designed in. The period would be <Katex tex="2\pi" /> only if the coefficient of <Katex tex="x" /> were <Katex tex="1" />.</>,
   },
 ]
 

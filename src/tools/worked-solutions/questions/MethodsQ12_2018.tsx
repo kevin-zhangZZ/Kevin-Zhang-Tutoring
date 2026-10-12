@@ -48,31 +48,63 @@ const TABLE = (
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\mu = E(X) = \sum x\Pr(X=x)" />,
-    reason: <>The mean of a discrete random variable: multiply each value by its probability and add. Each value is weighted by how likely it is, so this is <em>not</em> the plain average of the five <Katex tex="x" />-values.</>,
+    reason: <>The mean of a discrete random variable: multiply each value by its probability and add.</>,
+    more: (
+      <>
+        Each value is weighted by how likely it is, so this is <em>not</em> the plain average of the
+        five <Katex tex="x" />-values.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= 0\!\left(\tfrac14\right) + 1\!\left(\tfrac{9}{20}\right) + 2\!\left(\tfrac{1}{10}\right) + 3\!\left(\tfrac{1}{20}\right) + 6\!\left(\tfrac{3}{20}\right)" />,
-    reason: <>Substituting the table. A quick check first: the probabilities sum to <Katex tex="\tfrac{5+9+2+1+3}{20}=1" /> ✓.</>,
+    reason: <>Substitute each value and its probability from the table.</>,
+    more: (
+      <>
+        A quick check that the table is a valid distribution: the probabilities sum
+        to <Katex tex="\tfrac{5+9+2+1+3}{20}=1" /> ✓.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \frac{0+9+4+3+18}{20} = \frac{34}{20}" />,
-    reason: <>Everything over the common denominator <Katex tex="20" />.</>,
+    reason: <>Write each product over <Katex tex="20" />; note <Katex tex="2\times\tfrac{1}{10}=\tfrac{4}{20}" />.</>,
   },
   {
     working: <Katex display tex="\mu = \frac{17}{10}" />,
-    reason: <>The mean is <Katex tex="1.7" />. Note it is not one of the values <Katex tex="X" /> can take — that is normal, and it is what makes the next step a clean cut.</>,
+    reason: <>Simplify: the mean is <Katex tex="1.7" />.</>,
+    more: (
+      <>
+        It is not one of the values <Katex tex="X" /> can take. That is normal for a mean.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(X<1.7) = \Pr(X=0)+\Pr(X=1)" />,
-    reason: <>Strictly less than <Katex tex="1.7" />, so the values <Katex tex="0" /> and <Katex tex="1" /> qualify and <Katex tex="2" /> does not. Because <Katex tex="\mu" /> falls between two possible values, the strict and non-strict inequalities happen to agree here — but read the sign anyway, since that is not always true.</>,
+    reason: <>Strictly less than <Katex tex="1.7" />: the values <Katex tex="0" /> and <Katex tex="1" /> qualify, and <Katex tex="2" /> does not.</>,
+    more: (
+      <>
+        Because <Katex tex="\mu" /> falls between two possible values, <Katex tex="\Pr(X<\mu)" /> and{' '}
+        <Katex tex="\Pr(X\le\mu)" /> happen to agree here. Read the sign anyway: when the mean is one of the
+        values, they differ.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \frac14 + \frac{9}{20} = \frac{5}{20}+\frac{9}{20}" />,
-    reason: <>Common denominator again.</>,
+    reason: <>Add over the common denominator <Katex tex="20" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X<\mu) = \frac{7}{10}}" />,
-    reason: <>Matches option <b>E</b> (<Katex tex="\tfrac{14}{20}=\tfrac{7}{10}" />). Option <b>A</b> <Katex tex="\left(\tfrac12\right)" /> assumes the mean splits the probability in half, which is what a <em>median</em> does; option <b>D</b> <Katex tex="\left(\tfrac45\right)" /> comes from averaging the five <Katex tex="x" />-values, <Katex tex="\tfrac{12}{5}=2.4" />, and then taking <Katex tex="\Pr(X<2.4)" />; option <b>B</b> <Katex tex="\left(\tfrac14\right)" /> is <Katex tex="\Pr(X<1)" />, using the most likely value <Katex tex="1" /> in place of the mean.</>,
+    reason: <>Simplify <Katex tex="\tfrac{14}{20}=\tfrac{7}{10}" />. Matches option <b>E</b>.</>,
+    more: (
+      <>
+        The two most common wrong answers, A and D, are worked through in the Common Mistake boxes below.
+        Option <b>B</b> <Katex tex="\left(\tfrac14\right)" /> is <Katex tex="\Pr(X<1)" />, using the most likely
+        value <Katex tex="1" /> in place of the mean. Option <b>C</b> <Katex tex="\left(\tfrac{17}{20}\right)" /> is{' '}
+        <Katex tex="\Pr(X\le3)" />, which would need the mean to be above <Katex tex="3" />.
+      </>
+    ),
   },
 ]
 
@@ -112,13 +144,11 @@ export default function MethodsQ12_2018() {
             working={<Katex display tex="\Pr(X<\mu)=\tfrac12" />}
           >
             <p>
-              Splitting the probability in half is what the <em>median</em> does. The mean
-              balances the distribution by leverage: a value far from the centre pulls hard even
-              with a small probability. Here the lone value <Katex tex="6" /> drags{' '}
-              <Katex tex="\mu" /> up to <Katex tex="1.7" />, past the bars at <Katex tex="0" /> and{' '}
-              <Katex tex="1" />, which already hold <Katex tex="\tfrac{7}{10}" /> of the
-              probability. Never assume a value for <Katex tex="\Pr(X<\mu)" />: find{' '}
-              <Katex tex="\mu" />, then add up the probabilities of the values strictly below it.
+              Nothing forces <Katex tex="\Pr(X<\mu)" /> to be <Katex tex="\tfrac12" />. Here the bars at{' '}
+              <Katex tex="0" /> and <Katex tex="1" />, both below <Katex tex="\mu=1.7" />, already hold{' '}
+              <Katex tex="\tfrac{7}{10}" /> of the probability. Never assume a value for{' '}
+              <Katex tex="\Pr(X<\mu)" />: find <Katex tex="\mu" />, then add up the probabilities of the
+              values strictly below it.
             </p>
           </WrongMethod>
           <WrongMethod
@@ -133,12 +163,11 @@ export default function MethodsQ12_2018() {
           >
             <p>
               Dividing by <Katex tex="5" /> treats every value as equally likely, each with
-              probability <Katex tex="\tfrac15" />. They are not: <Katex tex="x=1" /> has{' '}
-              <Katex tex="\tfrac{9}{20}" /> and <Katex tex="x=3" /> only <Katex tex="\tfrac{1}{20}" />.
-              Weight each value by its own probability,{' '}
-              <Katex tex="E(X)=\sum x\Pr(X=x)" />. A quick sense check: the mean should sit
-              towards the tall bars, but <Katex tex="2.4" /> has four-fifths of
-              the probability to its left.
+              probability <Katex tex="\tfrac15" />. They are not: the likely value <Katex tex="x=1" /> has{' '}
+              <Katex tex="\tfrac{9}{20}" />, but the far value <Katex tex="x=6" /> only{' '}
+              <Katex tex="\tfrac{3}{20}" />. Giving <Katex tex="6" /> too much weight and <Katex tex="1" /> too
+              little is what pulls <Katex tex="2.4" /> above the true <Katex tex="1.7" />. Weight each value by
+              its own probability, <Katex tex="E(X)=\sum x\Pr(X=x)" />.
             </p>
           </WrongMethod>
         </>

@@ -101,41 +101,45 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="h_1: [5,35], \qquad h_2: [40,70]" />,
-    reason: <>Start from what the question gives you: the domains of <Katex tex="h_1" /> and <Katex tex="h_2" />. Each arch spans <Katex tex="30" /> m and the gap between consecutive arches is <Katex tex="5" /> m, so each start is <Katex tex="35" /> m after the previous one.</>,
+    reason: <>Read the pattern from the given domains: each arch spans <Katex tex="30" /> m, then a <Katex tex="5" /> m gap, so each arch starts <Katex tex="35" /> m after the previous one.</>,
   },
   {
     working: <Katex display tex="h_3: [a, 105] \ \text{ with span } 105-a = 30" />,
-    reason: <>The domain is given as ending at <Katex tex="105" />, and all three arches are identical, so the span fixes the start.</>,
+    reason: <>Arch 3's domain ends at <Katex tex="105" /> and all three arches are identical, so its <Katex tex="30" /> m span fixes the start.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 75}" />,
-    reason: <>Consistent with the pattern <Katex tex="5,\ 40,\ 75" /> — each <Katex tex="35" /> m apart. Check: <Katex tex="h_3(75)=5\sin(0)=0" /> and <Katex tex="h_3(105)=5\sin(\pi)=0" />, so the arch does begin and end at ground level ✓</>,
+    reason: <>This fits the pattern of starts <Katex tex="5,\ 40,\ 75" />, each <Katex tex="35" /> m apart.</>,
+    more: <>Check: <Katex tex="h_3(75)=5\sin(0)=0" /> and <Katex tex="h_3(105)=5\sin(\pi)=0" />, so the arch does begin and end at ground level ✓</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} h_2(x) &= 5\sin\!\left(\frac{(x-40)\pi}{30}\right) \\ h_3(x) &= 5\sin\!\left(\frac{(x-75)\pi}{30}\right) \end{aligned}" />,
-    reason: <>Compare the two rules term by term. Same amplitude <Katex tex="5" /> and same <Katex tex="\tfrac{\pi}{30}" />, so nothing is stretched or reflected; only the constant subtracted from <Katex tex="x" /> changes. That points to a horizontal translation and nothing else.</>,
+    reason: <>Compare the rules: same amplitude <Katex tex="5" /> and same <Katex tex="\tfrac{\pi}{30}" />, so no dilation or reflection. Only the number subtracted from <Katex tex="x" /> changes, so it is a horizontal translation.</>,
   },
   {
     working: <Katex display tex="h_3(x) = h_2(x-35)" />,
-    reason: <>Replacing <Katex tex="x" /> by <Katex tex="x-35" /> in <Katex tex="h_2" /> gives <Katex tex="5\sin\!\left(\tfrac{(x-35-40)\pi}{30}\right)=5\sin\!\left(\tfrac{(x-75)\pi}{30}\right)" /> ✓. The arch now starts where <Katex tex="x-35=40" />, that is at <Katex tex="x=75" />, so every point has moved <Katex tex="35" /> to the right.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="x-35" /> in <Katex tex="h_2" /> gives <Katex tex="h_3" />. The arch now starts where <Katex tex="x-35=40" />, at <Katex tex="x=75" />: <Katex tex="35" /> to the right.</>,
+    more: <>Check: <Katex tex="h_2(x-35)=5\sin\!\left(\tfrac{(x-35-40)\pi}{30}\right)=5\sin\!\left(\tfrac{(x-75)\pi}{30}\right)=h_3(x)" /> ✓. A minus inside the bracket moves the graph right, because each <Katex tex="x" />-value must now be <Katex tex="35" /> bigger to reach the same point of the arch.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{A translation of } 35 \text{ units in the positive } x \text{ direction}}" />,
-    reason: <>Use the word <em>translation</em> — the report notes some students wrote "<Katex tex="35" /> m to the right", omitting it. If you add a mapping, it must agree with the words: <Katex tex="(x,\ y)\to(x+35,\ y)" />. The report also notes a correct statement followed by the incorrect expression <Katex tex="x\to x-35" />.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}\text{A translation of } 35 \text{ units}\\\text{in the positive } x \text{ direction}\end{gathered}}" />,
+    reason: <>Name the transformation (<em>translation</em>), its direction and its distance.</>,
+    more: <>The report notes some students wrote "<Katex tex="35" /> m to the right", omitting the word translation. If you add a mapping, it must agree with the words: <Katex tex="(x,\ y)\to(x+35,\ y)" />. The report also notes a correct statement followed by the incorrect expression <Katex tex="x\to x-35" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Rectangle} = 110\times5 = 550 \ \text{m}^2" />,
-    reason: <>The bridge is <Katex tex="110" /> m long and sits <Katex tex="5" /> m above the ground, so the whole region under it is a rectangle. The stone is what is left once the three arch openings are removed.</>,
+    reason: <>The region under the <Katex tex="110" /> m bridge, <Katex tex="5" /> m high, is a rectangle. The stone is this rectangle minus the three arch openings.</>,
   },
   {
     working: <Katex display tex="\int_5^{35} 5\sin\!\left(\frac{(x-5)\pi}{30}\right)dx = \frac{300}{\pi}" />,
-    reason: <>One arch opening. The terminals are where that region starts and ends, which is <Katex tex="h_1" />'s domain <Katex tex="[5,\ 35]" />. The rule only describes the arch there; outside it the same sine dips below the ground. The report gives <Katex tex="\int_0^{30}" /> as an example of incorrect terminals.</>,
+    reason: <>Area of one arch opening. The terminals are <Katex tex="h_1" />'s domain <Katex tex="[5,\ 35]" />, where the arch starts and ends at ground level. The CAS integral template gives exactly <Katex tex="\tfrac{300}{\pi}\approx95.49" />.</>,
+    more: <>By hand: an antiderivative is <Katex tex="-\tfrac{150}{\pi}\cos\!\left(\tfrac{(x-5)\pi}{30}\right)" />, giving <Katex tex="-\tfrac{150}{\pi}\big(\cos\pi-\cos0\big)=\tfrac{300}{\pi}" />. The report's example of incorrect terminals, <Katex tex="\int_0^{30}" />, is worked through in the Common Mistake box below.</>,
   },
   {
     working: <Katex display tex="\text{Shaded} = 550 - 3\times\frac{300}{\pi} = 550-\frac{900}{\pi}" />,
@@ -143,25 +147,28 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 264 \text{ m}^2}" />,
-    reason: <>The question asks for a number to the nearest square metre, so <Katex tex="550-\tfrac{900}{\pi}" /> on its own is not the answer — the report notes some students left their answer in that form. (<Katex tex="\tfrac{900}{\pi}\approx286.5" />, so a little under half the rectangle is stone.)</>,
+    reason: <><Katex tex="550-286.48\ldots=263.52\ldots" />, rounded to the nearest square metre as the question asks.</>,
+    more: <>The report notes some students left their answer as <Katex tex="550-\tfrac{900}{\pi}" />: correct, but not the number the question asks for. A little under half the rectangle is stone.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{gradient} = \tan(\theta) \ \text{ where } \theta \text{ is the angle of elevation}" />,
-    reason: <>Gradient is rise over run. Draw the right triangle under the bridge with a run of <Katex tex="1" />: the angle at the left is <Katex tex="\theta" />, the rise is the opposite side and the run the adjacent side, so <Katex tex="\tfrac{\text{rise}}{\text{run}}=\tan\theta" />. The gradient is the tangent of the angle, not the angle itself.</>,
+    working: <Katex display tex="\begin{gathered}\text{gradient} = \tan(\theta)\\\text{where } \theta \text{ is the angle of elevation}\end{gathered}" />,
+    reason: <>Gradient is rise over run, which in a right triangle with angle <Katex tex="\theta" /> is opposite over adjacent: <Katex tex="\tan\theta" />, not <Katex tex="\theta" /> itself.</>,
+    more: <>With a run of <Katex tex="1" />, the rise is <Katex tex="\tan\theta" />, which is the gradient.</>,
   },
   {
     working: <Katex display tex="\boxed{\tan\!\left(\frac{\pi}{90}\right) \approx 0.035}" />,
-    reason: <>The angle is in radians, so the calculator must be in radian mode. <Katex tex="\tan\!\left(\tfrac{\pi}{90}\right)=0.03492\ldots" />, which rounds to <Katex tex="0.035" />. The report notes some students evaluated <Katex tex="\tfrac{\pi}{90}" /> or <Katex tex="\sin\!\left(\tfrac{\pi}{90}\right)" />, and that <Katex tex="0.036" /> was sometimes given.</>,
+    reason: <>In radian mode, <Katex tex="\tan\!\left(\tfrac{\pi}{90}\right)=0.03492\ldots" />, which is <Katex tex="0.035" /> to three decimal places.</>,
+    more: <>The report notes some students evaluated <Katex tex="\tfrac{\pi}{90}" /> or <Katex tex="\sin\!\left(\tfrac{\pi}{90}\right)" />, and that <Katex tex="0.036" /> was sometimes given. The fourth decimal place is <Katex tex="2" />, so the third stays at <Katex tex="5" />.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} &\text{Arch 5 is Arch 2 repeated:} \\ &h_2(x) = 5\sin\!\left(\frac{(x-40)\pi}{30}\right),\ x\in[40,70] \end{aligned}" />,
-    reason: <>The second bridge's arches are stated to be identical to the first bridge's, so Arch 5 sits in the same position as Arch 2 and has the same rule.</>,
+    reason: <>The second bridge's arches are identical to the first bridge's, so Arch 5 sits where Arch 2 does and has the same rule.</>,
   },
   {
     working: <Katex display tex="h_2'(x) = \frac{\pi}{6}\cos\!\left(\frac{(x-40)\pi}{30}\right)" />,
@@ -169,15 +176,17 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{\pi}{6}\cos\!\left(\frac{(x-40)\pi}{30}\right) = \tan\!\left(\frac{\pi}{90}\right)" />,
-    reason: <>"The tangent to Arch 5 at <Katex tex="P" /> has the same gradient as the second bridge" — set the arch's gradient equal to part d.'s value.</>,
+    reason: <>The tangent at <Katex tex="P" /> has the same gradient as the bridge, so set <Katex tex="h_2'(x)" /> equal to part d.'s value.</>,
   },
   {
     working: <Cas fn="solve">solve(π/6*cos((x-40)π/30) = tan(π/90), x) | 40&lt;=x&lt;=70</Cas>,
-    reason: <>Restrict to Arch 5's domain. The required gradient is positive, so <Katex tex="P" /> is on the rising side of the arch, and there is only one such solution in <Katex tex="[40,70]" />: <Katex tex="x=54.3626\ldots" /> (the cosine equation's neighbouring solutions, <Katex tex="x\approx25.64" /> and <Katex tex="x\approx85.64" />, are off the arch). Store this unrounded value, since part f. needs it.</>,
+    reason: <>Restrict to Arch 5's domain, which gives the single solution <Katex tex="x=54.3626\ldots" />. Store this unrounded value as <Katex tex="xp" />: part f. needs it.</>,
+    more: <>The required gradient is positive, so <Katex tex="P" /> is on the rising side of the arch. The cosine equation's neighbouring solutions, <Katex tex="x\approx25.64" /> and <Katex tex="x\approx85.64" />, are off the arch.</>,
   },
   {
     working: <Katex display tex="\boxed{P \approx (54.36,\ 4.99)}" />,
-    reason: <>Two decimal places for both coordinates. Note <Katex tex="P" /> is <em>not</em> at the top of the arch: the bridge slopes gently upwards, so the matching point sits just before the crest at <Katex tex="x=55" />, and its height (<Katex tex="4.9889\ldots" />) is a shade under <Katex tex="5" />. The report notes <Katex tex="(54,5)" /> was sometimes given without working, possibly estimated from the graph.</>,
+    reason: <>The height is <Katex tex="h_2(xp)=4.9889\ldots" />; store it as <Katex tex="yp" /> for part f. Give both coordinates to two decimal places.</>,
+    more: <>The report notes <Katex tex="P\,(54,5)" /> was sometimes given without working, possibly estimated from the graph. Reading off the graph cannot give two decimal places.</>,
   },
 ]
 
@@ -188,23 +197,26 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m_{PQ} = -\frac{1}{\tan\!\left(\frac{\pi}{90}\right)} \approx -28.64" />,
-    reason: <>The rod runs perpendicular to the bridge. Why the negative reciprocal: turn the bridge's gradient triangle (run <Katex tex="1" />, rise <Katex tex="m" />) through <Katex tex="90^\circ" /> and it becomes run <Katex tex="-m" />, rise <Katex tex="1" />, a gradient of <Katex tex="-\tfrac1m" />. So the rod is very steep, nearly vertical, as the diagram shows.</>,
+    reason: <>The rod is perpendicular to the bridge, so its gradient is the negative reciprocal of the bridge's.</>,
+    more: <>Why the negative reciprocal: turn the bridge's gradient triangle (run <Katex tex="1" />, rise <Katex tex="m" />) through <Katex tex="90^\circ" /> and it becomes run <Katex tex="-m" />, rise <Katex tex="1" />, a gradient of <Katex tex="-\tfrac1m" />. So the rod is very steep, nearly vertical, as the diagram shows.</>,
   },
   {
-    working: <Katex display tex="PQ: \ y - 4.9889\ldots = -28.636\ldots\,(x - 54.3626\ldots)" />,
-    reason: <>The rod's line, through <Katex tex="P" /> from part e. Keep the unrounded coordinates — rounding here shows up in the third decimal of the final answer.</>,
+    working: <Katex display tex="\begin{aligned}&PQ:\\&y - 4.9889\ldots\\&\quad= -28.636\ldots\,(x - 54.3626\ldots)\end{aligned}" />,
+    reason: <>The rod's line passes through <Katex tex="P" /> from part e. Keep the unrounded coordinates.</>,
+    more: <>Using the rounded <Katex tex="P\,(54.36,\ 4.99)" /> gives <Katex tex="1.9071\ldots" /> instead of <Katex tex="1.9084\ldots" />: still <Katex tex="1.91" /> here, but rounding early is a common way to lose the accuracy mark.</>,
   },
   {
     working: <Cas fn="solve">solve(tan(π/90)·x+5 = -1/tan(π/90)·(x-xp)+yp, x)</Cas>,
-    reason: <>With <Katex tex="xp" /> and <Katex tex="yp" /> stored from part e. <Katex tex="Q" /> is on both lines, so solve the bridge and the rod simultaneously. This gives <Katex tex="Q\approx(54.2960,\ 6.8961)" />.</>,
+    reason: <>With <Katex tex="xp" />, <Katex tex="yp" /> stored from part e.: <Katex tex="Q" /> is on both lines, so solve them simultaneously. This gives <Katex tex="Q\approx(54.2960,\ 6.8961)" />.</>,
   },
   {
-    working: <Katex display tex="PQ = \sqrt{(54.3626-54.2960)^2+(4.9889-6.8961)^2}" />,
+    working: <Katex display tex="PQ = \sqrt{\begin{aligned}&(54.3626-54.2960)^2\\&\;+(4.9889-6.8961)^2\end{aligned}}" />,
     reason: <>Ordinary distance formula between the two points.</>,
   },
   {
     working: <Katex display tex="\boxed{PQ \approx 1.91 \text{ m}}" />,
-    reason: <>Two decimal places. A quick check: straight above <Katex tex="P" /> the bridge is at <Katex tex="5+54.3626\tan\!\left(\tfrac{\pi}{90}\right)\approx6.8984" />, a vertical gap of <Katex tex="PV\approx1.9095" />. The rod leans <Katex tex="\tfrac{\pi}{90}" /> off that vertical, so <Katex tex="PQ=PV\cos\!\left(\tfrac{\pi}{90}\right)\approx1.9084" /> ✓ (see the triangle below).</>,
+    reason: <><Katex tex="PQ=1.9084\ldots" />, to two decimal places.</>,
+    more: <>Check by the shorter route above: straight above <Katex tex="P" /> the bridge is at <Katex tex="5+54.3626\tan\!\left(\tfrac{\pi}{90}\right)\approx6.8984" />, a vertical gap of <Katex tex="PV\approx1.9095" />, so <Katex tex="PQ=PV\cos\!\left(\tfrac{\pi}{90}\right)\approx1.9084" /> ✓ (the triangle is drawn in the interactive below).</>,
   },
 ]
 
@@ -248,8 +260,7 @@ export default function MethodsQ3_2018Exam2() {
           working={<Katex display tex="\text{Translation of } 35 \text{ units to the left}" />}
         >
           Moving left would be <Katex tex="h_2(x+35)=5\sin\!\left(\tfrac{(x-5)\pi}{30}\right)" />, which is Arch 1,
-          not Arch 3. Check with one point: the arch must start where the bracket is zero. For <Katex tex="h_3" /> that
-          is <Katex tex="x=75" />, and <Katex tex="75" /> is to the right of <Katex tex="40" />.
+          not Arch 3.
         </WrongMethod>
       </PartCard>
 
@@ -266,10 +277,9 @@ export default function MethodsQ3_2018Exam2() {
       <PartCard letter="c" topic="Area Between Curves" marks={3} statement={<>Find the total area of the shaded regions, correct to the nearest square metre.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
-            Do not integrate the shaded shape directly — it has an awkward outline. Take the
-            rectangle under the bridge and subtract the three arch openings instead. Each
-            opening is the area under one sine arch, and all three are congruent, so a single
-            integral serves.
+            Do not integrate the shaded shape directly — its outline is awkward. Work out what is
+            <em> not</em> stone instead: each arch opening is the area under one sine arch, a
+            single easy integral.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -353,12 +363,6 @@ export default function MethodsQ3_2018Exam2() {
             so this is a shortest-distance-from-a-point-to-a-line problem: build the
             perpendicular through <Katex tex="P" />, find where it meets the bridge, then
             measure.
-          </p>
-          <p>
-            The tempting shortcut — treating <Katex tex="P" /> as sitting on{' '}
-            <Katex tex="y=5" /> and using a trigonometric ratio — is exactly what the report
-            describes. Part e. has already established that <Katex tex="P" /> is at height{' '}
-            <Katex tex="4.99" />, not <Katex tex="5" />, and slightly left of the crest.
           </p>
           <p>
             A shorter route, once you see it: the rod, the vertical line from <Katex tex="P" /> up

@@ -24,19 +24,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g(x+2) = 3x+1" />,
-    reason: <>This is <em>not</em> the rule for <Katex tex="g" />. The input to <Katex tex="g" /> is <Katex tex="x+2" />, but the right-hand side is written in terms of <Katex tex="x" />, so the rule has to be extracted before it can be used. The warning sign is anything other than a single letter inside the bracket.</>,
+    reason: <>This is <em>not</em> the rule for <Katex tex="g" />: the input is <Katex tex="x+2" />, but the right side is written in terms of <Katex tex="x" />. Recover the rule first.</>,
+    more: <>The warning sign is anything other than a single letter inside the bracket.</>,
   },
   {
     working: <Katex display tex="\text{Let } u = x+2 \implies x = u-2" />,
-    reason: <>Give the input its own name, <Katex tex="u" />. Then express the old <Katex tex="x" /> in terms of <Katex tex="u" />, ready to substitute.</>,
+    reason: <>Give the input its own name, <Katex tex="u" />, and write the old <Katex tex="x" /> in terms of <Katex tex="u" />, ready to substitute.</>,
   },
   {
     working: <Katex display tex="g(u) = 3(u-2)+1 = 3u-5" />,
-    reason: <>Replace <Katex tex="x" /> by <Katex tex="u-2" /> on the right. Now both sides are in terms of the actual input of <Katex tex="g" />, and that is where the <Katex tex="-5" /> appears.</>,
+    reason: <>Replace <Katex tex="x" /> by <Katex tex="u-2" /> on the right. Now both sides are in terms of the actual input of <Katex tex="g" />.</>,
   },
   {
     working: <Katex display tex="g(x) = 3x-5" />,
-    reason: <>The name of the variable is irrelevant, so relabel back to <Katex tex="x" />. Sanity check: <Katex tex="g(x+2)=3(x+2)-5=3x+1" /> ✓, which is what was given. As graphs: <Katex tex="y=g(x+2)" /> is <Katex tex="y=g(x)" /> shifted 2 units left, so <Katex tex="g" /> is the line <Katex tex="y=3x+1" /> shifted 2 units right.</>,
+    reason: <>The variable&apos;s name doesn&apos;t matter, so relabel back to <Katex tex="x" />. Check: <Katex tex="g(x+2)=3(x+2)-5=3x+1" /> ✓, as given.</>,
+    more: <>As graphs: <Katex tex="y=g(x+2)" /> is <Katex tex="y=g(x)" /> shifted 2 units left, so <Katex tex="g" /> is the line <Katex tex="y=3x+1" /> shifted 2 units right.</>,
   },
   {
     working: <Katex display tex="f(g(x)) = 2\bigl(g(x)\bigr) = 2(3x-5)" />,
@@ -44,7 +46,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(g(x)) = 6x-10}" />,
-    reason: <>Matches option <b>D</b>. Option <b>E</b> <Katex tex="(6x+2)" />, chosen by <Katex tex="20\%" />, is what you get by treating <Katex tex="3x+1" /> as the rule for <Katex tex="g" /> itself and doubling it, skipping the substitution step entirely. Option <b>A</b> <Katex tex="(6x-5)" /> is <Katex tex="g(f(x))=3(2x)-5" />, the composition the wrong way round, and option <b>B</b> <Katex tex="(6x+1)" /> makes both slips at once: <Katex tex="3(2x)+1" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Option <b>E</b> <Katex tex="(6x+2)" />, chosen by <Katex tex="20\%" />, takes <Katex tex="g(x)=3x+1" />. Option <b>A</b> <Katex tex="(6x-5)" /> is <Katex tex="g(f(x))=3(2x)-5" />, the composition the wrong way round, and option <b>B</b> <Katex tex="(6x+1)" /> makes both slips at once: <Katex tex="3(2x)+1" />.</>,
   },
 ]
 
@@ -72,13 +75,11 @@ export default function MethodsQ6_2018() {
           <p>
             <Katex tex="g(x+2)=3x+1" /> defines <Katex tex="g" /> indirectly. Reading it as
             "<Katex tex="g" /> of something is <Katex tex="3\times" /> that something{' '}
-            <Katex tex="+1" />" is the trap — the <Katex tex="3x" /> on the right is written
-            in terms of <Katex tex="x" />, not in terms of the input <Katex tex="x+2" />.
+            <Katex tex="+1" />" is the trap.
           </p>
           <p>
-            Substituting <Katex tex="u=x+2" /> forces the right-hand side to be rewritten in
-            terms of the actual input, and that is where the <Katex tex="-5" /> appears.
-            Always check the recovered rule by feeding the original input back in.
+            So recover <Katex tex="g" />&apos;s own rule first; only then can it go into a
+            composite.
           </p>
         </Background>
       }

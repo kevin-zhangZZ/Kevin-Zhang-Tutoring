@@ -50,11 +50,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Test a number to see which way powers go. For a base between <Katex tex="0" /> and <Katex tex="1" />, a bigger
-        power gives a <em>smaller</em> number: <Katex tex="\left(\tfrac12\right)^2=\tfrac14<\left(\tfrac12\right)^1" />. For a
-        base above <Katex tex="1" /> it&apos;s the reverse. Both graphs pass through <Katex tex="(1,1)" />, and{' '}
-        <Katex tex="f" /> is on top before it, so <Katex tex="f" /> has the smaller power. Everything below is checked
-        against this one fact.
+        For a base between <Katex tex="0" /> and <Katex tex="1" />, a bigger power gives a <em>smaller</em> number. So{' '}
+        <Katex tex="f" />, on top in <Katex tex="(0,1)" />, has the smaller power.
+      </>
+    ),
+    more: (
+      <>
+        Test a number to see which way powers go: <Katex tex="\left(\tfrac12\right)^2=\tfrac14<\left(\tfrac12\right)^1" />,
+        while <Katex tex="2^2=4>2^1" />. Both graphs pass through <Katex tex="(1,1)" />, and the pattern on each side of it
+        gives the same conclusion. Conversely, any <Katex tex="r<s" /> produces exactly the given sign pattern, so{' '}
+        <Katex tex="r<s" /> is the only thing the question tells us.
       </>
     ),
   },
@@ -65,7 +70,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies \tfrac{p}{q}<\tfrac{p}{n}=\tfrac{m}{n} \ \checkmark" />
       </>
     ),
-    reason: <>Same numerator, bigger denominator, smaller fraction. So A fits <Katex tex="r<s" /> and can be true, e.g. <Katex tex="f(x)=x^{1/3}" />, <Katex tex="g(x)=x^{1/2}" />. It is not <em>must</em> be false.</>,
+    reason: <>Same numerator, bigger denominator, smaller fraction. So A fits <Katex tex="r<s" />, e.g. <Katex tex="f(x)=x^{1/3}" />, <Katex tex="g(x)=x^{1/2}" />: A can be true, so it doesn&apos;t have to be false.</>,
   },
   {
     working: (
@@ -96,9 +101,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        D and E are both about where the gradients are equal, so find that point once, in general. Divide both sides by{' '}
-        <Katex tex="sx^{r-1}" /> (positive) and use <Katex tex="\tfrac{x^{s-1}}{x^{r-1}}=x^{s-r}" />. There is exactly one
-        solution.
+        D and E are both about equal gradients, so solve <Katex tex="f'(x)=g'(x)" /> once, in general. Divide by{' '}
+        <Katex tex="sx^{r-1}" /> (positive), use index laws, then raise both sides to the power <Katex tex="\tfrac{1}{s-r}" />.
+      </>
+    ),
+    more: (
+      <>
+        The index law is <Katex tex="\tfrac{x^{s-1}}{x^{r-1}}=x^{s-r}" />. Since <Katex tex="s-r>0" />,{' '}
+        <Katex tex="x^{s-r}" /> is strictly increasing on <Katex tex="R^+" />, so it equals <Katex tex="\tfrac{r}{s}" /> at
+        exactly one <Katex tex="x" />: the gradients match exactly once.
       </>
     ),
   },
@@ -111,10 +122,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A number between <Katex tex="0" /> and <Katex tex="1" /> raised to a positive power stays between{' '}
-        <Katex tex="0" /> and <Katex tex="1" />. So the only point where the gradients match is always in{' '}
-        <Katex tex="(0,1)" />: D is true for every allowed <Katex tex="f" /> and <Katex tex="g" /> (for example{' '}
-        <Katex tex="r=\tfrac12,\ s=2" /> gives <Katex tex="c=4^{-2/3}\approx0.40" />).
+        A number between <Katex tex="0" /> and <Katex tex="1" /> raised to a positive power stays between them. So the
+        gradients always match at some <Katex tex="c\in(0,1)" />: D is true.
+      </>
+    ),
+    more: (
+      <>
+        For example, <Katex tex="r=\tfrac12,\ s=2" /> gives <Katex tex="c=\left(\tfrac14\right)^{2/3}=4^{-2/3}\approx0.40" />.
+        D holds for every allowed <Katex tex="f" /> and <Katex tex="g" />, not just this one, so it can never be the
+        answer.
       </>
     ),
   },
@@ -127,9 +143,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Matches option <b>E</b>. The ratio shows it directly: <Katex tex="\tfrac{s}{r}>1" /> and <Katex tex="x^{s-r}>1" />{' '}
-        when <Katex tex="x>1" />, so <Katex tex="g" /> is always the steeper one there and the gradients can never be equal.
-        Options A to D can all be true, as the report says, so E is the only one that <em>must</em> be false.
+        Matches option <b>E</b>: for <Katex tex="x>1" />, <Katex tex="\tfrac{s}{r}>1" /> and <Katex tex="x^{s-r}>1" />, so{' '}
+        <Katex tex="g" /> is always steeper and the gradients are never equal.
+      </>
+    ),
+    more: (
+      <>
+        This also follows from the previous rows: the gradients match at exactly one point, and it lies in{' '}
+        <Katex tex="(0,1)" />, so there is none in <Katex tex="(1,\infty)" />. Options A to D can all be true, as the
+        report says, so E is the only one that <em>must</em> be
+        false.
       </>
     ),
   },

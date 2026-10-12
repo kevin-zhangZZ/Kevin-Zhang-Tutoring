@@ -177,7 +177,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(60<M<90) \approx 0.838}" />,
-    reason: <>Three decimal places. Sensible: <Katex tex="60" /> is one standard deviation below the mean and <Katex tex="90" /> is nearly three above, so the interval should capture a bit more than the <Katex tex="0.84" /> that lies above <Katex tex="-1\sigma" />. ✓</>,
+    reason: <>Three decimal places.</>,
+    more: <>Sensible: <Katex tex="60" /> is one standard deviation below the mean, and about <Katex tex="0.84" /> of adults lie above <Katex tex="-1\sigma" />. Cutting off the tiny tail beyond <Katex tex="90" /> (nearly <Katex tex="3\sigma" /> above) leaves a little less than that. ✓</>,
   },
 ]
 
@@ -188,22 +189,26 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(H\mid S) = \frac{\Pr(H\cap S)}{\Pr(S)} = \frac{0.09}{0.29}" />,
-    reason: <>"Given <Katex tex="S" />" shrinks the population to the sportspeople only. They are <Katex tex="0.29" /> of the town, and the part of them with a slow heart rate is <Katex tex="0.09" /> of the town, so the share is <Katex tex="0.09" /> out of <Katex tex="0.29" />. That is why the conditioning event goes in the denominator and the numerator is the intersection. The numerator must be a piece of the denominator, so a conditional probability can never exceed <Katex tex="1" />.</>,
+    reason: <>"Given <Katex tex="S" />" restricts attention to the sportspeople: the slow-heart-rate part of them (<Katex tex="0.09" />) out of all of them (<Katex tex="0.29" />).</>,
+    more: <>That is why the conditioning event always goes in the denominator and the numerator is the intersection. The numerator is a piece of the denominator, so a conditional probability can never exceed <Katex tex="1" />: a quick check on any answer.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(H\mid S) \approx 0.310}" />,
-    reason: <>Three decimal places, so write the trailing zero — the report notes some students gave <Katex tex="0.31" />.</>,
+    reason: <>Three decimal places, so keep the trailing zero: <Katex tex="0.310" />, not <Katex tex="0.31" />.</>,
+    more: <>The report notes some students gave <Katex tex="0.31" />.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(H) = 0.1587, \qquad \Pr(H\mid S) \approx 0.3103" />,
-    reason: <>Independent means knowing <Katex tex="S" /> tells you nothing about <Katex tex="H" />: the slow-heart-rate share among sportspeople should equal the share in the whole town. Part b.i. already gave the first number, so compare it with <Katex tex="\Pr(H)" />.</>,
+    reason: <>Independent means knowing <Katex tex="S" /> doesn't change the chance of <Katex tex="H" />, so compare part b.i.'s <Katex tex="\Pr(H\mid S)" /> with <Katex tex="\Pr(H)" />.</>,
+    more: <>In words: if the events were independent, the slow-heart-rate share among sportspeople would equal the share in the whole town.</>,
   },
   {
     working: <Katex display tex="\Pr(H\mid S) \ne \Pr(H)" />,
-    reason: <>Equivalently <Katex tex="\Pr(H)\Pr(S)=0.1587\times0.29\approx0.046\ne0.09=\Pr(H\cap S)" />. Either comparison works; write the numbers, because the report says a mathematical explanation was required.</>,
+    reason: <>They differ. Write the numbers down: the report says a mathematical explanation was required.</>,
+    more: <>Equivalently, <Katex tex="\Pr(H)\Pr(S)=0.1587\times0.29\approx0.046\ne0.09=\Pr(H\cap S)" />. Either comparison earns the mark.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{No — } H \text{ and } S \text{ are not independent}}" />,
@@ -214,7 +219,8 @@ const ROWS_BII: WorkingRow[] = [
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \operatorname{Bi}(16,\ 0.1587)" />,
-    reason: <>Sixteen independent adults, each with probability <Katex tex="0.1587" /> of a slow heart rate. The report says a method was required for full marks, and stating the correct <Katex tex="n" /> and <Katex tex="p" /> was sufficient.</>,
+    reason: <>Sixteen independent adults, each with probability <Katex tex="0.1587" /> of a slow heart rate. Write this line: it is the method mark.</>,
+    more: <>The report says a method was required for full marks, and stating the correct <Katex tex="n" /> and <Katex tex="p" /> was sufficient.</>,
   },
   {
     working: <Cas fn="binomPdf">binomPdf(16, 0.1587, 1)</Cas>,
@@ -222,18 +228,21 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(X=1) \approx 0.190}" />,
-    reason: <>Three decimal places, trailing zero included — the report notes some students gave <Katex tex="0.19" />.</>,
+    reason: <>Three decimal places, trailing zero included: <Katex tex="0.190" />, not <Katex tex="0.19" />.</>,
+    more: <>The report notes some students gave <Katex tex="0.19" />.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\hat P = \frac{X}{16} > 0.1 \iff X > 1.6" />,
-    reason: <>Our only tool for a sample of <Katex tex="16" /> is the binomial, and it counts <em>people</em>, so convert the proportion back into a count: <Katex tex="\hat P" /> is the count <Katex tex="X" /> divided by <Katex tex="16" />, and <Katex tex="0.1\times16=1.6" />.</>,
+    reason: <>The binomial counts <em>people</em>, so turn the proportion back into a count: <Katex tex="\hat P" /> is <Katex tex="X" /> divided by <Katex tex="16" />, and <Katex tex="0.1\times16=1.6" />.</>,
+    more: <>With <Katex tex="n=16" /> and <Katex tex="p=0.1587" /> both known, <Katex tex="X\sim\operatorname{Bi}(16,\ 0.1587)" /> as in part c.i., and the binomial gives the exact answer.</>,
   },
   {
     working: <Katex display tex="X \text{ is a whole number} \implies X > 1.6 \iff X \ge 2" />,
-    reason: <>This is the step the question is testing. You can't have <Katex tex="1.6" /> people: the possible proportions are only <Katex tex="0,\ \tfrac1{16}=0.0625,\ \tfrac2{16}=0.125,\ \ldots" />, and the first one above <Katex tex="0.1" /> is two people. Keep the letters straight too: the report flags <Katex tex="\Pr(\hat P>1.6)" /> as poor use of variables, since <Katex tex="1.6" /> is a count, so write <Katex tex="X" /> once you switch.</>,
+    reason: <>You can't have <Katex tex="1.6" /> people, so "more than <Katex tex="1.6" />" means at least <Katex tex="2" />. This is the step the question tests.</>,
+    more: <>The possible proportions are only <Katex tex="0,\ \tfrac1{16}=0.0625,\ \tfrac2{16}=0.125,\ \ldots" />, and the first one above <Katex tex="0.1" /> is two people. Keep the letters straight too: the report flags <Katex tex="\Pr(\hat P>1.6)" /> as poor use of variables, since <Katex tex="1.6" /> is a count, so write <Katex tex="X" /> once you switch.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(16, 0.1587, 2, 16)</Cas>,
@@ -241,22 +250,24 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr\!\left(\hat P>0.1\right) \approx 0.747}" />,
-    reason: <>Three decimal places. Sanity check: the expected count is <Katex tex="16\times0.1587\approx2.5" />, comfortably above <Katex tex="2" />, so a probability around three-quarters is the right size. ✓</>,
+    reason: <>Three decimal places.</>,
+    more: <>Sanity check: the expected count is <Katex tex="16\times0.1587\approx2.5" />, comfortably above <Katex tex="2" />, so a probability around three-quarters is the right size. ✓</>,
   },
 ]
 
 const ROWS_CIII: WorkingRow[] = [
   {
     working: <Katex display tex="\hat P_n = \frac{X}{n} > \frac1n \iff X > 1 \iff X \ge 2" />,
-    reason: <>The <Katex tex="n" />s cancel — this is the key simplification, and the report says many students appeared to be confused by this notation. Whatever the sample size, the condition is simply "at least two people".</>,
+    reason: <><Katex tex="\hat P_n" /> is the count over <Katex tex="n" />, so the <Katex tex="n" />s cancel: whatever the sample size, the condition is "at least two people".</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge2) > 0.99 \ \text{ where } X\sim\operatorname{Bi}(n,\ 0.1587)" />,
-    reason: <>Now a single inequality in <Katex tex="n" />. Note <Katex tex="X\ge2" />, not <Katex tex="X\ge1" />: one person gives <Katex tex="\hat P_n=\tfrac1n" /> exactly, which is not <em>greater than</em> <Katex tex="\tfrac1n" />.</>,
+    reason: <><Katex tex="X\ge2" />, not <Katex tex="X\ge1" />: one person gives <Katex tex="\hat P_n=\tfrac1n" /> exactly, which is not <em>greater than</em> <Katex tex="\tfrac1n" />.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(n, 0.1587, 2, n) &gt; 0.99</Cas>,
-    reason: <>There is no neat algebra for <Katex tex="n" /> here (it appears in a power and as a factor), so test values: increase <Katex tex="n" /> until the probability first clears <Katex tex="0.99" />. Bigger samples push the count away from <Katex tex="0" /> and <Katex tex="1" />, so once it clears it stays clear. Trial and error is an accepted method, and the report says so explicitly.</>,
+    reason: <>There is no neat algebra for <Katex tex="n" />, so test values: try <Katex tex="n=30" /> and <Katex tex="40" />, then narrow down to where the probability first exceeds <Katex tex="0.99" />.</>,
+    more: <>Bigger samples push the count away from <Katex tex="0" /> and <Katex tex="1" />, so once the probability clears <Katex tex="0.99" /> it stays clear. The report says trial and error was an acceptable method. Its own route writes out the failures, <Katex tex="\Pr(X=0)+\Pr(X=1)<0.01" />, i.e. <Katex tex="(1-0.1587)^n+n\times0.1587(1-0.1587)^{n-1}<0.01" />, and solves on CAS to get <Katex tex="n=38.925\ldots" />, which rounds <em>up</em> to <Katex tex="39" /> because <Katex tex="n" /> must be a whole number of people.</>,
   },
   {
     working: <Katex display tex="n=38: \ 0.98851 \ \text{✗}, \qquad n=39: \ 0.99011 \ \text{✓}" />,
@@ -264,7 +275,8 @@ const ROWS_CIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 39}" />,
-    reason: <>Only <Katex tex="8\%" /> of students scored both marks.</>,
+    reason: <>The least sample size; every larger <Katex tex="n" /> also works.</>,
+    more: <>Only <Katex tex="8\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -275,7 +287,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\hat p = \frac{0.102+0.145}{2} = \frac{0.247}{2}" />,
-    reason: <>Average the two endpoints: the midpoint is the only point equally far from both ends. No margin-of-error formula is needed.</>,
+    reason: <>Average the two endpoints. No margin-of-error formula is needed.</>,
   },
   {
     working: <Katex display tex="\boxed{\hat p = 0.1235}" />,
@@ -290,42 +302,47 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0.1587 \notin (0.102,\ 0.145)" />,
-    reason: <>The Mathsland value lies <em>above</em> the upper endpoint of Statsville's interval, so it is not one of the plausible values for Statsville's proportion.</>,
+    reason: <>The interval is the range of plausible values for Statsville's proportion, and Mathsland's <Katex tex="0.1587" /> lies <em>above</em> its upper end.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{The interval does not contain } 0.1587}" />,
-    reason: <>That is the whole explanation: if Statsville's proportion were the same as Mathsland's, the doctors' interval would very likely have contained <Katex tex="0.1587" />. The report is explicit that the confidence interval needed to be <em>referred to</em> in the answer, so name the interval and the value it misses; a general remark such as "the sample proportion is lower" is not enough. Only <Katex tex="11\%" /> got this mark.</>,
+    reason: <>Name the interval and the value it misses: the report says the confidence interval needed to be referred to in the answer.</>,
+    more: <>That is the whole explanation: if Statsville's proportion were the same as Mathsland's, an interval built this way would very likely have contained <Katex tex="0.1587" />. A general remark such as "the sample proportion is lower" is not enough. Only <Katex tex="11\%" /> got this mark.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}E(T) &= \int_{-\infty}^{\infty} t\,M(t)\,dt \\ &= \int_0^{\infty} t\cdot\frac{3}{50}\left(\frac{t}{50}\right)^2 e^{-\left(\frac{t}{50}\right)^3}dt\end{aligned}" />,
-    reason: <>The expected value is the long-run average: each time <Katex tex="t" /> counts in proportion to how likely it is, <Katex tex="M(t)\,dt" />. Physically it is the balance point of the density curve. <Katex tex="M" /> is zero for <Katex tex="t<0" /> and has no upper cut-off, so the terminals are <Katex tex="0" /> and <Katex tex="\infty" />. The report gives <Katex tex="\int_0^{437}" /> as an example of an incorrect terminal: numerically it happens to give the same <Katex tex="44.6" /> because almost no probability lies beyond <Katex tex="437" />, but as written it is not <Katex tex="E(T)" />.</>,
-    more: <>See the balance point in the widget below.</>,
+    reason: <>Expected value: integrate <Katex tex="t" /> times the density. <Katex tex="M" /> is zero for <Katex tex="t<0" /> and has no upper cut-off, so the terminals are <Katex tex="0" /> and <Katex tex="\infty" />.</>,
+    more: <>Each time <Katex tex="t" /> counts in proportion to how likely it is, <Katex tex="M(t)\,dt" />, so <Katex tex="E(T)" /> is the long-run average: physically, the balance point of the density curve (see it in the interactive below). The report gives <Katex tex="\int_0^{437}" /> as an example of an incorrect terminal: numerically it happens to give the same <Katex tex="44.6" /> because almost no probability lies beyond <Katex tex="437" />, but as written it is not <Katex tex="E(T)" />.</>,
   },
   {
     working: <Cas fn="nInt">nInt(t*M(t), t, 0, ∞)</Cas>,
-    reason: <>Technology: define <Katex tex="M" /> first, then integrate <Katex tex="t\times M(t)" />. Without the <Katex tex="t" /> you get <Katex tex="\int_0^\infty M(t)\,dt=1" />, the total probability; the report notes students who found "the area under the curve".</>,
+    reason: <>Define <Katex tex="M" /> on CAS first, then integrate <Katex tex="t\times M(t)" />, not <Katex tex="M(t)" /> alone.</>,
+    more: <>Without the <Katex tex="t" /> you get <Katex tex="\int_0^\infty M(t)\,dt=1" />, the total probability; the report notes students who found the area under the curve.</>,
   },
   {
     working: <Katex display tex="\boxed{E(T) \approx 44.6 \text{ minutes}}" />,
-    reason: <>One decimal place (<Katex tex="44.6489\ldots" />); <Katex tex="44.7" /> is a rounding error the report names.</>,
+    reason: <>One decimal place: <Katex tex="44.6489\ldots" /> rounds to <Katex tex="44.6" />, not <Katex tex="44.7" />.</>,
+    more: <>The report names <Katex tex="44.7" /> as a rounding error that was occasionally given.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T<15) = \int_0^{15} M(t)\,dt" />,
-    reason: <>'Elite' is the event <Katex tex="T<15" />, and a probability for a continuous variable is the area under the density over that interval, with no <Katex tex="t" /> multiplier. <Katex tex="M" /> is zero for negative times, so the area starts at <Katex tex="0" />.</>,
+    reason: <>'Elite' is <Katex tex="T<15" />: the area under the density from <Katex tex="0" /> (<Katex tex="M" /> is zero before that) to <Katex tex="15" />, with no <Katex tex="t" /> multiplier.</>,
   },
   {
     working: <Katex display tex="= \left[-e^{-\left(\frac{t}{50}\right)^3}\right]_0^{15} = 1-e^{-27/1000}" />,
-    reason: <>This one has a neat closed form: the density is exactly the derivative of <Katex tex="-e^{-(t/50)^3}" />, so no technology is strictly needed.</>,
+    reason: <>The density is exactly the derivative of <Katex tex="-e^{-(t/50)^3}" />, so it integrates neatly. On CAS, <Cas fn="nInt">nInt(M(t), t, 0, 15)</Cas> gives the same value.</>,
+    more: <>Check by the chain rule: <Katex tex="\tfrac{d}{dt}\bigl(-e^{-(t/50)^3}\bigr)=3\bigl(\tfrac{t}{50}\bigr)^2\cdot\tfrac1{50}\,e^{-(t/50)^3}=M(t)" />. And <Katex tex="(15/50)^3=0.3^3=0.027" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.0266}" />,
-    reason: <>Four decimal places. Sensible: <Katex tex="15" /> minutes is very fast against a mean of <Katex tex="44.6" />, so only a few per cent qualify as elite. ✓</>,
+    reason: <>Four decimal places.</>,
+    more: <>Sensible: <Katex tex="15" /> minutes is very fast against a mean of <Katex tex="44.6" />, so only a few per cent qualify as elite. ✓</>,
   },
 ]
 
@@ -336,7 +353,7 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(E) = \Pr(E\mid Y)\Pr(Y) + \Pr(E\mid Y')\Pr(Y')" />,
-    reason: <>Law of total probability, split by year level. The overall elite rate is the one computed in part f. — it applies to a randomly selected student from the whole school.</>,
+    reason: <>Let <Katex tex="E" /> = elite and <Katex tex="Y" /> = Year 12 (so <Katex tex="Y'" /> = not Year 12). Law of total probability, split by year level. Part f.'s rate is <Katex tex="\Pr(E)" /> for a student from the whole school.</>,
   },
   {
     working: <Katex display tex="0.0266\ldots = 0.05\times\frac17 + x\times\frac67" />,
@@ -348,7 +365,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.0227}" />,
-    reason: <>Four decimal places. It is below the school-wide <Katex tex="0.0266" />, as it must be: Year 12s are elite at <Katex tex="5\%" />, well above average, so the remaining six-sevenths have to sit below average to balance. Only <Katex tex="5\%" /> of students scored both marks.</>,
+    reason: <>Four decimal places. Below the school-wide <Katex tex="0.0266" />, as it must be: Year 12s are above average, so the rest must be below.</>,
+    more: <>Only <Katex tex="5\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -401,8 +419,8 @@ export default function MethodsQ4_2018Exam2() {
           sport, so it is not a piece of the sport group at all. The top of <Katex tex="\Pr(H\mid S)" /> must be the
           part of <Katex tex="S" /> that is also <Katex tex="H" />, which the question gives you directly as{' '}
           <Katex tex="0.09" />. (This ratio would only be right if every slow-heart-rate adult played sport.) The
-          report&apos;s other slip, an answer bigger than <Katex tex="1" />, is caught the same way: the top is part of
-          the bottom, so the fraction can&apos;t exceed <Katex tex="1" />.
+          report&apos;s other slip, an answer bigger than <Katex tex="1" />, fails the never-above-<Katex tex="1" />{' '}
+          check at once.
         </WrongMethod>
       </PartCard>
 
@@ -457,15 +475,13 @@ export default function MethodsQ4_2018Exam2() {
         <Background>
           <p>
             <Katex tex="86\%" /> scored zero, and the report says many students were confused by
-            the notation. Push through it: <Katex tex="\hat P_n" /> is the count divided by <Katex tex="n" />, so{' '}
-            <Katex tex="\hat P_n>\tfrac1n" /> says <Katex tex="\tfrac{X}{n}>\tfrac1n" />, i.e.
-            simply <Katex tex="X>1" />.
+            the notation. Push through it: rewrite <Katex tex="\hat P_n" /> as a count of people and
+            this becomes an ordinary binomial question with an unknown <Katex tex="n" />.
           </p>
           <p>
-            Because <Katex tex="X" /> counts people it is a whole number, so{' '}
-            <Katex tex="X>1" /> means <Katex tex="X\ge2" /> — <em>at least two</em>, not at
-            least one. That single boundary is what separates the right answer from the
-            report's common <Katex tex="n=27" />.
+            The one trap is the boundary case of exactly one person. Whether that counts as a
+            success is what separates the right answer from the report's common{' '}
+            <Katex tex="n=27" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_CIII} />
@@ -477,10 +493,11 @@ export default function MethodsQ4_2018Exam2() {
           source="Examiner's report"
           working={<Katex display tex="\Pr(X=0)=0.8413^n<0.01 \implies n=27" />}
         >
-          This treats <Katex tex="X=1" /> as a success. But one person gives{' '}
-          <Katex tex="\hat P_n=\tfrac1n" /> exactly, and the question needs <Katex tex="\hat P_n" /> to be{' '}
-          <em>greater than</em> <Katex tex="\tfrac1n" />. So both <Katex tex="X=0" /> and <Katex tex="X=1" /> fail,
-          and it is <Katex tex="\Pr(X\le1)" /> that must drop below <Katex tex="0.01" />, which takes until{' '}
+          The report prints this as <Katex tex="1-\Pr(X=0)<0.01" />, but no sample size satisfies that
+          inequality; the set-up that gives <Katex tex="27" /> is <Katex tex="\Pr(X=0)<0.01" />, i.e.{' '}
+          <Katex tex="\Pr(X\ge1)>0.99" /> (<Katex tex="n=26" />: <Katex tex="0.98881" />, <Katex tex="n=27" />:{' '}
+          <Katex tex="0.99059" />). Either way it treats <Katex tex="X=1" /> as a success, the boundary case
+          ruled out in the working, so both <Katex tex="X=0" /> and <Katex tex="X=1" /> fail, and it is <Katex tex="\Pr(X\le1)" /> that must drop below <Katex tex="0.01" />, which takes until{' '}
           <Katex tex="n=39" />. Catch it by testing the boundary case: put <Katex tex="X=1" /> into{' '}
           <Katex tex="\tfrac Xn>\tfrac1n" /> and see that it is false.
         </WrongMethod>
@@ -519,8 +536,7 @@ export default function MethodsQ4_2018Exam2() {
           <p>
             An approximate <Katex tex="95\%" /> confidence interval,{' '}
             <Katex tex="\hat p \pm 1.96\sqrt{\tfrac{\hat p(1-\hat p)}{n}}" />, is built so that about{' '}
-            <Katex tex="95\%" /> of intervals made this way capture the true population proportion. Read it as the
-            range of values of Statsville&apos;s true proportion that are consistent with the sample.
+            <Katex tex="95\%" /> of intervals made this way capture the true population proportion.
           </p>
           <p>
             So comparing the towns comes down to one check: is Mathsland&apos;s <Katex tex="0.1587" /> inside

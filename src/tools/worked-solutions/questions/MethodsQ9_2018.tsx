@@ -31,15 +31,17 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\frac{dy}{dx} = \frac{2}{2x} = \frac1x" />
       </>
     ),
-    reason: <>Chain rule: the derivative of <Katex tex="\log_e(u)" /> is <Katex tex="\tfrac{u'}{u}" />, and here <Katex tex="u=2x" /> so the two <Katex tex="2" />s cancel. Worth noticing: <Katex tex="\log_e(2x)=\log_e(2)+\log_e(x)" /> is just <Katex tex="\log_e(x)" /> shifted up by a constant, so it must have the same derivative.</>,
+    reason: <>Chain rule: the derivative of <Katex tex="\log_e(u)" /> is <Katex tex="\tfrac{u'}{u}" />, and here <Katex tex="u=2x" /> so the two <Katex tex="2" />s cancel.</>,
+    more: <>Worth noticing: <Katex tex="\log_e(2x)=\log_e(2)+\log_e(x)" /> is just <Katex tex="\log_e(x)" /> shifted up by a constant, so it must have the same derivative.</>,
   },
   {
     working: <Katex display tex="\frac1x = 2 \implies x = \frac12" />,
-    reason: <>How would I know to start here? The question tells us the tangent's gradient but not where it touches the curve, and a tangent needs a point. So work backwards: set the gradient function equal to <Katex tex="2" /> to find the <Katex tex="x" />-value of the point of contact. On CAS: <Cas fn="solve">solve(d/dx(ln(2x)) = 2, x)</Cas>.</>,
+    reason: <>We know the tangent's gradient but not where it touches, and a tangent needs a point. So set <Katex tex="\tfrac{dy}{dx}=2" /> to find the <Katex tex="x" />-value of the point of contact.</>,
+    more: <>On CAS: <Cas fn="solve">solve(d/dx(ln(2x)) = 2, x)</Cas>, though this one is quicker by hand.</>,
   },
   {
     working: <Katex display tex="y = \log_e\!\left(2\times\tfrac12\right) = \log_e(1) = 0" />,
-    reason: <>Substitute into the curve's own rule (not the derivative) to get the <Katex tex="y" />-coordinate. The point of contact is <Katex tex="\left(\tfrac12,\,0\right)" />, on the <Katex tex="x" />-axis, which is what keeps the arithmetic clean.</>,
+    reason: <>Substitute into the curve's own rule (not the derivative) for the <Katex tex="y" />-coordinate. The point of contact is <Katex tex="\left(\tfrac12,\,0\right)" />.</>,
   },
   {
     working: <Katex display tex="y - 0 = 2\left(x-\tfrac12\right)" />,
@@ -47,12 +49,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = 2x - 1" />,
-    reason: <>Expanding. In the form <Katex tex="y=mx+c" />, the constant <Katex tex="c" /> is the value of <Katex tex="y" /> when <Katex tex="x=0" />, which is where the line crosses the <Katex tex="y" />-axis.</>,
+    reason: <>Expanding. In <Katex tex="y=mx+c" />, the constant <Katex tex="c" /> is the value of <Katex tex="y" /> at <Katex tex="x=0" />, where the line crosses the <Katex tex="y" />-axis.</>,
   },
   {
     working: <Katex display tex="\boxed{y\text{-intercept} = -1}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> <Katex tex="(0)" />, chosen by <Katex tex="15\%" />, is the height of the point of contact. Option <b>D</b> <Katex tex="\left(-1-\log_e(2)\right)" /> finds the right point of contact, <Katex tex="x=\tfrac12" />, but evaluates its <Katex tex="y" />-value as <Katex tex="\log_e\left(\tfrac12\right)" /> instead of <Katex tex="\log_e\left(2\times\tfrac12\right)=0" />.</>,
-    more: <>For option <b>A</b>, see the box below.</>,
+    reason: <>Matches option <b>C</b>: the question asks where the line meets the <Katex tex="y" />-axis, not the point of contact.</>,
+    more: <>Option <b>A</b> <Katex tex="(0)" />, chosen by <Katex tex="15\%" />, is the height of the point of contact (the box below works through it). Option <b>D</b> <Katex tex="\left(-1-\log_e(2)\right)" /> finds the right point of contact, <Katex tex="x=\tfrac12" />, but evaluates its <Katex tex="y" />-value as <Katex tex="\log_e\left(\tfrac12\right)" /> instead of <Katex tex="\log_e\left(2\times\tfrac12\right)=0" />.</>,
   },
 ]
 
@@ -84,8 +86,7 @@ export default function MethodsQ9_2018() {
           <p>
             Here it is the other way round: the gradient is given, so you solve{' '}
             <Katex tex="\tfrac{dy}{dx}=m" /> for <Katex tex="x_1" />, then use the curve for{' '}
-            <Katex tex="y_1" />. The point of contact is only a stepping stone; the question asks about a
-            different point on the line, where it meets the <Katex tex="y" />-axis.
+            <Katex tex="y_1" />.
           </p>
         </Background>
       }

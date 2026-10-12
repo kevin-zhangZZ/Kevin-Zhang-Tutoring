@@ -127,20 +127,21 @@ const OVERLAY = (
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="b(t) = \frac{4500}{7}\left(e^{-t/5}-e^{-9t/10}\right)" />,
-    reason: <>A difference of two decaying exponentials: <Katex tex="b(t)" /> is the <em>gap</em> between a slow one (<Katex tex="e^{-t/5}" />) and a fast one (<Katex tex="e^{-9t/10}" />). The fast one dies away first, so the gap opens up and then closes again. The gap is widest when the two are falling equally fast.</>,
-    more: <>The widget below shows this.</>,
+    reason: <>The graph rises to a single peak and then falls, so the maximum amount is at the stationary point.</>,
+    more: <><Katex tex="b(t)" /> is the <em>gap</em> between a slow exponential (<Katex tex="e^{-t/5}" />) and a fast one (<Katex tex="e^{-9t/10}" />). The fast one dies away first, so the gap opens up and then closes again; it is widest when the two are falling equally fast, which is exactly what <Katex tex="b'(t)=0" /> says. The widget below shows this.</>,
   },
   {
     working: <Katex display tex="b'(t) = \frac{4500}{7}\left(-\frac15 e^{-t/5}+\frac{9}{10}e^{-9t/10}\right) = 0" />,
-    reason: <>&ldquo;Maximum amount&rdquo; means a stationary point: the graph rises then falls, so the peak is where <Katex tex="b'(t)=0" />. Each term uses <Katex tex="\frac{d}{dt}e^{kt}=ke^{kt}" />, so the constants <Katex tex="-\frac15" /> and <Katex tex="-\frac{9}{10}" /> come down in front.</>,
+    reason: <>Set <Katex tex="b'(t)=0" />. Each term uses <Katex tex="\frac{d}{dt}e^{kt}=ke^{kt}" />, so <Katex tex="-\frac15" /> and <Katex tex="-\frac{9}{10}" /> come down in front.</>,
   },
   {
     working: <Katex display tex="\frac{9}{10}e^{-9t/10} = \frac15 e^{-t/5}" />,
-    reason: <>The factor <Katex tex="\frac{4500}{7}" /> isn't zero, so the bracket must be. Move one term across so each side is a single exponential; one division then leaves <em>one</em> exponential equal to a number, which a log can undo.</>,
+    reason: <><Katex tex="\frac{4500}{7}\ne0" />, so the bracket is zero. Move one term across so each side is a single exponential.</>,
   },
   {
-    working: <Katex display tex="e^{-9t/10+t/5} = \frac{1/5}{9/10} = \frac{2}{9} \implies e^{-7t/10} = \frac29" />,
-    reason: <>Dividing exponentials subtracts their indices: <Katex tex="-\tfrac{9t}{10}+\tfrac{t}{5}=-\tfrac{7t}{10}" />.</>,
+    working: <Katex display tex="\frac{e^{-9t/10}}{e^{-t/5}} = \frac{1/5}{9/10} \implies e^{-7t/10} = \frac29" />,
+    reason: <>Divide both sides by <Katex tex="\frac{9}{10}e^{-t/5}" />. Dividing exponentials subtracts their indices: <Katex tex="-\tfrac{9t}{10}+\tfrac{t}{5}=-\tfrac{7t}{10}" />.</>,
+    more: <>The aim is <em>one</em> exponential equal to a number, which a log can then undo.</>,
   },
   {
     working: <Katex display tex="-\frac{7t}{10} = \log_e\!\left(\frac29\right) \implies t = -\frac{10}{7}\log_e\!\left(\frac29\right)" />,
@@ -148,18 +149,21 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \frac{10}{7}\log_e\!\left(\frac92\right)}" />,
-    reason: <>Flipping the fraction absorbs the minus sign, giving the required form <Katex tex="a\log_e(c)" /> with <Katex tex="a=\tfrac{10}{7}" />, <Katex tex="c=\tfrac92" />. An exact answer was required. (<Katex tex="\approx2.15" /> hours — matching the peak just past <Katex tex="t=2" /> on the printed graph.)</>,
+    reason: <><Katex tex="-\log_e\!\left(\tfrac29\right)=\log_e\!\left(\tfrac92\right)" />, which gives the required form <Katex tex="a\log_e(c)" />. An exact answer was required.</>,
+    more: <>Here <Katex tex="a=\tfrac{10}{7}" /> and <Katex tex="c=\tfrac92" />; the report writes the same answer as <Katex tex="\tfrac{10}{7}\log_e(4.5)" />. It is <Katex tex="\approx2.15" /> hours, matching the peak just past <Katex tex="t=2" /> on the printed graph. The report notes students who converted <Katex tex="t=2.148\ldots" /> to 2 hours and 15 minutes: that is not exact, and it is also wrong, since <Katex tex="0.148\ldots" /> of an hour is about 9 minutes, not 15.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Average rate of change} = \frac{b(6)-b(2)}{6-2}" />,
-    reason: <>Average <em>rate</em> of change is the gradient of the chord — the change in amount divided by the change in time. Not the average value of the function, and not the average of two gradients; the report lists both among the errors.</>,
+    reason: <>Average <em>rate</em> of change is the gradient of the chord: change in amount divided by change in time.</>,
+    more: <>The report lists two other formulas among the errors: the average value of the function (that is part c.&apos;s question), and the average of the gradients at the two ends (the report&apos;s &ldquo;<Katex tex="b=2" /> and <Katex tex="b=6" />&rdquo; means <Katex tex="t=2" /> and <Katex tex="t=6" />).</>,
   },
   {
     working: <Katex display tex="b(2) \approx 324.6565, \qquad b(6) \approx 190.7213" />,
-    reason: <>Evaluate the rule, not the graph — the report notes several students used the graph to approximate these values.</>,
+    reason: <>Substitute into the rule on CAS; values read off the graph aren&apos;t accurate enough for one decimal place.</>,
+    more: <>The report notes several students used the graph to approximate these values, and others made substitution errors. Keeping four decimal places here protects the final rounding.</>,
   },
   {
     working: <Katex display tex="= \frac{190.7213-324.6565}{4}" />,
@@ -167,65 +171,79 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx -33.5 \text{ mg/hour}}" />,
-    reason: <>Negative, and that sign is part of the answer — the drug is leaving the bloodstream over <Katex tex="[2,6]" />. The report lists <Katex tex="33.5" /> without the minus as a common wrong answer. One decimal place, as asked.</>,
+    reason: <>Negative, because the drug is leaving the bloodstream over <Katex tex="[2,6]" />; the sign is part of the answer. One decimal place, as asked.</>,
+    more: <>The report gives <Katex tex="33.5" />, without the minus sign, as a common incorrect answer.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Average value} = \frac{1}{b-a}\int_a^b f(x)\,dx" />,
-    reason: <>The standard formula. "Average amount" is an average <em>value</em> of the function — a different thing from part b.'s average rate of change, and the two parts sit side by side precisely to test that.</>,
+    working: <Katex display tex="\text{Average value} = \frac{1}{t_2-t_1}\int_{t_1}^{t_2} b(t)\,dt" />,
+    reason: <>&ldquo;Average amount&rdquo; over a time interval is the average <em>value</em> of the function: the integral divided by the interval width.</>,
+    more: <>The report lists finding the average rate of change among the errors here.</>,
   },
   {
-    working: <Katex display tex="= \frac16\int_0^6 \frac{4500}{7}\left(e^{-t/5}-e^{-9t/10}\right)dt" />,
-    reason: <>"During the first six hours" means <Katex tex="t=0" /> to <Katex tex="t=6" />. The report flags students who used <Katex tex="[2,6]" /> from the previous part, or started at <Katex tex="t=1" />.</>,
+    working: <Katex display tex="= \frac{1}{6-0}\int_0^6 \frac{4500}{7}\left(e^{-t/5}-e^{-9t/10}\right)dt" />,
+    reason: <>&ldquo;During the first six hours after one tablet is consumed&rdquo; means from <Katex tex="t=0" /> to <Katex tex="t=6" />.</>,
+    more: <>The report flags students who used <Katex tex="[2,6]" /> from the previous part (its &ldquo;Question 2c.&rdquo; means 2b.), who started at <Katex tex="t=1" />, and who integrated <Katex tex="t\times b(t)" /> instead of <Katex tex="b(t)" />.</>,
   },
   {
     working: <Cas fn="nInt">nInt(4500/7*(e^(-t/5)-e^(-9t/10)), t, 0, 6)/6</Cas>,
-    reason: <>The integral alone is <Katex tex="1535.1\ldots" />; forgetting to divide by <Katex tex="6" /> leaves that, which the report records as a frequent answer.</>,
+    reason: <>Integrate on CAS, then divide by the interval width <Katex tex="6" />.</>,
+    more: <>The integral alone is <Katex tex="1535.1\ldots" />; the report notes students who did not divide by <Katex tex="6" /> and gave that.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 256 \text{ mg}}" />,
-    reason: <>To the nearest milligram. Sanity check against the graph: the curve spends most of the six hours between <Katex tex="200" /> and <Katex tex="325" /> mg, so an average in the mid-<Katex tex="200" />s is the right size. ✓</>,
+    reason: <>To the nearest milligram, as asked.</>,
+    more: <>Sanity check against the graph: the curve spends most of the six hours between <Katex tex="200" /> and <Katex tex="325" /> mg, starting from <Katex tex="0" />, so an average in the mid-<Katex tex="200" />s is the right size.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="0\le t<6: \ b_{\text{total}}(t) = b(t)" />,
-    reason: <>Before <Katex tex="t=6" /> Tablet 2 hasn't been taken, so the total simply traces Tablet 1's curve. The report says many students traced this part correctly.</>,
+    reason: <>Before <Katex tex="t=6" /> Tablet 2 hasn&apos;t been taken, so the total simply traces Tablet 1&apos;s curve.</>,
+    more: <>The report says many students traced this part correctly.</>,
   },
   {
     working: <Katex display tex="6\le t\le 12: \ b_{\text{total}}(t) = b(t) + b(t-6)" />,
-    reason: <>Tablet 2 is the same curve started six hours later, so its contribution is <Katex tex="b" /> with <Katex tex="t" /> replaced by <Katex tex="t-6" /> (a translation 6 units right). The body holds both at once, so the heights <em>add</em>.</>,
+    reason: <>Tablet 2 is the same curve translated 6 hours right, <Katex tex="b(t-6)" />. Both are in the blood at once, so the heights <em>add</em>.</>,
+    more: <>This is addition of ordinates. As the report suggests, you can also define <Katex tex="b(t)+b(t-6)" /> on CAS and graph it to locate the turning point.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} t=6&: \ b(6)+b(0)\approx190.72 \\ \text{max}&: \ (7.78,\ 455.82) \\ t=12&: \ b(12)+b(6)\approx249.03 \end{aligned}" />,
-    reason: <>Three points pin the sketch down. At <Katex tex="t=6" /> Tablet 2 adds <Katex tex="b(0)=0" />, so the second piece starts exactly where the first ends: the report says some students did not <em>join</em> the two sections there. The graph turns a sharp corner at the join, since Tablet 2 arrives rising steeply. The maximum comes from d.ii.</>,
+    reason: <>Three points pin the sketch down: the join, the maximum (found in d.ii.) and the endpoint. Tablet 2 adds <Katex tex="b(0)=0" /> at <Katex tex="t=6" />, so the two pieces join.</>,
+    more: <>The report says some students did not join the two sections at <Katex tex="t=6" /> (it writes <Katex tex="x=6" />); the total is one continuous curve. It does turn a sharp corner there, because Tablet 2 arrives rising steeply (<Katex tex="b'(0)=450" /> mg/h) while Tablet 1 is falling.</>,
   },
   {
     working: OVERLAY,
-    reason: <>Addition of ordinates: at each time, stack the two dashed heights. The result follows Tablet 1 exactly until <Katex tex="t=6" />, then climbs steeply as Tablet 2 takes effect while Tablet 1 is still present, peaking higher than either curve alone before falling away. Note it does <em>not</em> start at the crossing point of the two dashed curves — another error the report records.</>,
+    reason: <>At each time, add the two dashed heights: the total follows Tablet 1 to <Katex tex="t=6" />, climbs above both dashed curves to the maximum, then falls to about <Katex tex="249" /> mg at <Katex tex="t=12" />.</>,
+    more: <>Some students started the second section at the crossing of the two dashed curves; the Common Mistake box below shows why that is wrong. Others shaded the area under the graph, which the question doesn&apos;t ask for.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
-    working: <Katex display tex="b_{\text{total}}(t) = b(t)+b(t-6)" />,
-    reason: <>The new rule. The report says many students were unable to find it, and instead solved <Katex tex="b'(t)=0" /> for the single-tablet peak.</>,
+    working: <Katex display tex="b_{\text{total}}(t) = b(t)+b(t-6), \quad 6\le t\le12" />,
+    reason: <>The new rule from d.i.: Tablet 2&apos;s curve shifted 6 hours right, added to Tablet 1&apos;s.</>,
+    more: <>The report says many students were unable to find the new rule and solved <Katex tex="b'(t)=0" /> instead, which only gives the single-tablet peak (see the Common Mistake boxes below).</>,
   },
   {
     working: <Cas fn="define">Define btot(t)=b(t)+b(t-6)</Cas>,
-    reason: <>Storing the combined rule first avoids retyping it and makes the next step one line.</>,
+    reason: <>Store <Katex tex="b(t)" /> first if it isn&apos;t already defined, then the combined rule, so CAS can work with it directly.</>,
   },
   {
     working: <Cas fn="fMax">fMax(btot(t), t) | 6&lt;=t&lt;=12</Cas>,
-    reason: <>Restrict to the window after the second tablet. The overall maximum in the first twelve hours must be in there — before <Katex tex="t=6" /> the total is just Tablet 1, which peaks at only <Katex tex="325.34" /> mg.</>,
+    reason: <>Search only after Tablet 2 is taken: before <Katex tex="t=6" /> the total is just Tablet 1, which peaks at only <Katex tex="325.34" /> mg (the report&apos;s <Katex tex="324.34" /> is a slip).</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} t&\approx7.7790 \\ b_{\text{total}}(7.7790)&\approx455.82 \end{aligned}" />,
+    reason: <>fMax returns the time of the maximum; substitute it (unrounded) back into the rule to get the maximum amount.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum} \approx 455.82 \text{ mg at } t \approx 7.78 \text{ hours}}" />,
-    reason: <>Both values are required, both to two decimal places — the report notes students who gave only one. The time is before Tablet 2's own peak at <Katex tex="8.15" />. Sensible: <Katex tex="455.82" /> is well above either curve's own peak but well below <Katex tex="2\times325=650" />, since Tablet 1 has already decayed a long way by the time Tablet 2 peaks.</>,
-    more: <>For why the time is before Tablet 2's own peak, see the Background above.</>,
+    reason: <>Both values are required, each to two decimal places.</>,
+    more: <>The report notes students who gave only one answer. Sense check: <Katex tex="455.82" /> is well above one tablet&apos;s peak of <Katex tex="325.34" /> but well below <Katex tex="2\times325.34\approx650.68" />, because Tablet 1 has decayed a long way by the time Tablet 2 peaks. The time, <Katex tex="7.78" />, comes before Tablet 2&apos;s own peak, as the Background explains.</>,
   },
 ]
 
@@ -340,30 +358,17 @@ export default function MethodsQ2_2018Exam2() {
         >
           The crossing is where the two tablets contribute <em>equal</em> amounts, not where the total
           is. Every point on the total is a sum of the two dashed heights, so at the crossing it sits
-          twice as high. The total is also already <Katex tex="190.72" /> mg at <Katex tex="t=6" />:
-          it never drops to the crossing point.
+          twice as high. The total is also already <Katex tex="190.72" /> mg at <Katex tex="t=6" />,
+          and from there on it never drops as low as the crossing height of <Katex tex="173.2" /> mg.
         </WrongMethod>
       </PartCard>
 
       <PartCard letter="d.ii" topic="Maximum Value" marks={2} statement={<>Find the maximum amount of drug <Katex tex="X" /> in the bloodstream in the first 12 hours and the time at which this maximum occurs. Give your answers correct to two decimal places.</>} examinerReport={EXAM_DII}>
         <Background>
           <p>
-            <Katex tex="74\%" /> of students scored zero here, and the report says many were
-            unable to find the combined rule. A second dose taken at{' '}
-            <Katex tex="t=6" /> contributes <Katex tex="b(t-6)" /> — the same curve shifted
-            six hours right — and the body holds both at once, so the total is the{' '}
-            <em>sum</em>.
-          </p>
-          <p>
-            Once <Katex tex="b(t)+b(t-6)" /> is defined, this is an ordinary maximum on{' '}
-            <Katex tex="[6,12]" />. Without it, the only thing left to maximise is the
-            single-tablet curve, which is where the report's <Katex tex="324.34" /> mg comes
-            from.
-          </p>
-          <p>
             Where will the peak be? The total's gradient is{' '}
             <Katex tex="b'(t)+b'(t-6)" />: Tablet 2's rise plus Tablet 1's fall. At Tablet 2's own
-            peak (<Katex tex="t\approx8.15" />) its rise has already stopped while Tablet 1 is still
+            peak (<Katex tex="t\approx2.15+6\approx8.15" />) its rise has already stopped while Tablet 1 is still
             falling, so the total is already going down. The total peaks a little earlier, where
             the rise and the fall cancel.
           </p>
@@ -387,10 +392,9 @@ export default function MethodsQ2_2018Exam2() {
           source="Examiner's report"
           working={<Katex display tex="\begin{aligned} b(8)+b(2)&\approx453.97 \\ b(8.149)+b(2.149)&\approx450.91 \end{aligned}" />}
         >
-          Both are less than <Katex tex="455.82" />. Tablet 2 on its own peaks at{' '}
-          <Katex tex="t\approx8.15" />, but Tablet 1 is still falling then, so the total has already
-          started to drop. Evaluating at a guessed time never proves a maximum: use the maximum
-          feature on the combined rule.
+          Both are less than <Katex tex="455.82" />, so neither time gives the maximum: the total
+          peaks before Tablet 2 does. Evaluating at a guessed time never proves a maximum; use the
+          maximum feature on the combined rule.
         </WrongMethod>
       </PartCard>
     </div>

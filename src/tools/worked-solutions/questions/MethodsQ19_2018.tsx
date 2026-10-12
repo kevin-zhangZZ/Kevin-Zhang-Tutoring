@@ -8,12 +8,14 @@
 // a toggle counting every strip as f − g; meth-2018-mcq19-option-recipes shows how many times
 // each option counts each region (+1, ×2, 0, −1) and its value against 6/π. WrongMethod: E's
 // last term (42% chose E). All five option values checked in sympy: A 4/π, B 9/π, C 6/π,
-// D 10/π, E −3/π; itute also gives C.
+// D 10/π, E −3/π; itute also gives C. Crossings found with CAS solve (the double-angle
+// factorisation, a Specialist identity, is kept in that row's `more` as a by-hand check).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
 import { Background, WrongMethod, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
+import { Cas } from '../CasRef'
 import graphSrc from './meth-2018-mcq19-fg-areas.png'
 
 const StripsWidget = lazyWidget(() => import('../interactives/meth-2018-mcq19-signed-strips'))
@@ -34,49 +36,54 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\cos\!\left(\frac{\pi x}{2}\right) = \sin(\pi x) = 2\sin\!\left(\frac{\pi x}{2}\right)\cos\!\left(\frac{\pi x}{2}\right)" />,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&\cos\!\left(\tfrac{\pi x}{2}\right) = \sin(\pi x),\ \ 0\le x\le 3\\ &\implies x=\tfrac13,\ 1,\ \tfrac53,\ 3\end{aligned}"
+      />
+    ),
     reason: (
       <>
-        An area between two curves has to be split wherever the top curve changes, and that can only happen where the curves
-        meet. The diagram marks <Katex tex="\tfrac13" /> and <Katex tex="\tfrac53" />, but confirm them. The double-angle
-        identity writes <Katex tex="\sin(\pi x)" /> in terms of <Katex tex="\tfrac{\pi x}{2}" />, the same angle as{' '}
-        <Katex tex="f" />.
+        An area between curves must be split wherever the top curve changes, which can only happen where they meet. Solve{' '}
+        <Katex tex="f(x)=g(x)" /> on CAS with <Cas fn="solve" />, restricted to <Katex tex="0\le x\le3" />.
       </>
     ),
-  },
-  {
-    working: <Katex display tex="\cos\!\left(\frac{\pi x}{2}\right)\left[1-2\sin\!\left(\frac{\pi x}{2}\right)\right] = 0" />,
-    reason: (
+    more: (
       <>
-        Factorise rather than divide by <Katex tex="\cos\left(\tfrac{\pi x}{2}\right)" />: it is zero at some of the crossings,
-        and dividing by it would lose them.
+        These match the diagram&apos;s dashed lines at <Katex tex="\tfrac13" /> and <Katex tex="\tfrac53" /> and the visible
+        crossings at <Katex tex="x=1" /> and <Katex tex="x=3" />. By hand, the identity{' '}
+        <Katex tex="\sin(\pi x)=2\sin\left(\tfrac{\pi x}{2}\right)\cos\left(\tfrac{\pi x}{2}\right)" /> (from Specialist, not
+        needed in Methods) gives <Katex tex="\cos\left(\tfrac{\pi x}{2}\right)\left[1-2\sin\left(\tfrac{\pi x}{2}\right)\right]=0" />,
+        so <Katex tex="\cos\left(\tfrac{\pi x}{2}\right)=0" /> (<Katex tex="x=1,3" />) or{' '}
+        <Katex tex="\sin\left(\tfrac{\pi x}{2}\right)=\tfrac12" /> (<Katex tex="x=\tfrac13,\tfrac53" />). Factorise rather than
+        divide by <Katex tex="\cos\left(\tfrac{\pi x}{2}\right)" />: dividing would lose <Katex tex="x=1" /> and{' '}
+        <Katex tex="x=3" />.
       </>
     ),
   },
   {
     working: (
-      <Katex
-        display
-        tex="\begin{aligned}\cos\!\left(\tfrac{\pi x}{2}\right)=0 &\implies x=1,\ 3\\ \sin\!\left(\tfrac{\pi x}{2}\right)=\tfrac12 &\implies x=\tfrac13,\ \tfrac53\end{aligned}"
-      />
-    ),
-    reason: <>Within <Katex tex="[0,3]" />, this gives four crossings: <Katex tex="x=\tfrac13,\,1,\,\tfrac53,\,3" /> — matching the diagram's dashed lines and the visible crossings at <Katex tex="x=1" /> and <Katex tex="x=3" />.</>,
-  },
-  {
-    working: (
-      <Katex
-        display
-        tex="\begin{aligned}f>g &\text{ on } \left(0,\tfrac13\right)\cup\left(1,\tfrac53\right)\\ g>f &\text{ on } \left(\tfrac13,1\right)\cup\left(\tfrac53,3\right)\end{aligned}"
-      />
+      <>
+        <Katex
+          display
+          tex="\begin{aligned}x=\tfrac16:&\ \ f\approx0.97>g=0.5\\ x=\tfrac12:&\ \ f\approx0.71<g=1\\ x=\tfrac43:&\ \ f=-0.5>g\approx-0.87\\ x=2:&\ \ f=-1<g=0\end{aligned}"
+        />
+        <Katex
+          display
+          tex="\begin{aligned}f>g &\text{ on } \left(0,\tfrac13\right)\cup\left(1,\tfrac53\right)\\ g>f &\text{ on } \left(\tfrac13,1\right)\cup\left(\tfrac53,3\right)\end{aligned}"
+        />
+      </>
     ),
     reason: (
       <>
         Between consecutive crossings <Katex tex="f-g" /> cannot change sign, so one test point per region settles which
-        curve is on top: at <Katex tex="x=\tfrac16" />, <Katex tex="f\approx0.97" /> and <Katex tex="g=\tfrac12" />; at{' '}
-        <Katex tex="x=\tfrac12" />, <Katex tex="f\approx0.71" /> and <Katex tex="g=1" />; at <Katex tex="x=\tfrac43" />,{' '}
-        <Katex tex="f=-\tfrac12" /> and <Katex tex="g\approx-0.87" />; at <Katex tex="x=2" />, <Katex tex="f=-1" /> and{' '}
-        <Katex tex="g=0" />. The third region lies below the <Katex tex="x" />-axis, yet <Katex tex="f" /> is still the top
-        curve there: for an area between curves, only which curve is higher matters, not where the axis is.
+        curve is on top.
+      </>
+    ),
+    more: (
+      <>
+        The third region lies below the <Katex tex="x" />-axis, yet <Katex tex="f" /> is still the top curve there: for an
+        area between curves, only which curve is higher matters, not where the axis is.
       </>
     ),
   },
@@ -89,8 +96,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Every option is built from integrals of <Katex tex="f-g" /> (or <Katex tex="g-f" />), so one antiderivative lets us
-        find each region's signed integral and see its sign.
+        Every option is built from integrals of <Katex tex="f-g" /> (or <Katex tex="g-f" />), so one antiderivative gives
+        each region&apos;s signed integral.
       </>
     ),
   },
@@ -112,15 +119,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Each region's signed integral is <Katex tex="h" /> at its right end minus <Katex tex="h" /> at its left end. The
-        signs follow the previous step exactly: <Katex tex="R_2" /> and <Katex tex="R_4" /> are negative because{' '}
-        <Katex tex="g" /> is on top there, so every strip has a negative height <Katex tex="f-g" />.
+        Each is <Katex tex="h" /> at the right end minus <Katex tex="h" /> at the left end. <Katex tex="R_2" /> and{' '}
+        <Katex tex="R_4" /> are negative because <Katex tex="g" /> is on top there.
       </>
     ),
   },
   {
     working: <Katex display tex="R_3 = -R_2 \quad \left(\text{both} = \tfrac{1}{2\pi}\text{ in size}\right)" />,
-    reason: <>Not a coincidence: <Katex tex="f(2-x)=-f(x)" /> and <Katex tex="g(2-x)=-g(x)" />, so <Katex tex="f-g" /> has point symmetry about <Katex tex="(1,0)" /> and the regions on <Katex tex="\left(\tfrac13,1\right)" /> and <Katex tex="\left(1,\tfrac53\right)" /> are congruent. That is what lets the total collapse to three terms instead of four.</>,
+    reason: <>The second and third regions have the same area, so they can be combined.</>,
+    more: <>Not a coincidence: <Katex tex="f(2-x)=-f(x)" /> and <Katex tex="g(2-x)=-g(x)" />, so <Katex tex="f-g" /> has point symmetry about <Katex tex="(1,0)" /> and the regions on <Katex tex="\left(\tfrac13,1\right)" /> and <Katex tex="\left(1,\tfrac53\right)" /> are congruent. That is what lets the total collapse to three terms instead of four.</>,
   },
   {
     working: (
@@ -132,15 +139,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Where <Katex tex="g" /> is on top the area is <em>minus</em> the integral of <Katex tex="f-g" />, so{' '}
-        <Katex tex="R_2" /> and <Katex tex="R_4" /> are subtracted. Then <Katex tex="R_3=-R_2" /> combines the two middle
-        regions into <Katex tex="-2R_2" />. A minus sign in front of an integral of <Katex tex="f-g" /> is the tell-tale
-        sign of a region with <Katex tex="g" /> on top.
+        <Katex tex="R_2" /> and <Katex tex="R_4" /> are subtracted. Then <Katex tex="R_3=-R_2" /> gives{' '}
+        <Katex tex="-2R_2" />.
       </>
     ),
   },
   {
     working: <Katex display tex="= \tfrac{1}{2\pi} - 2\!\left(-\tfrac{1}{2\pi}\right) - \left(-\tfrac{9}{2\pi}\right) = \tfrac{6}{\pi}" />,
-    reason: <>Not asked for, but a positive total confirms every sign.</>,
+    reason: <>Not asked for, but a quick check: an area must be positive, so a negative total would expose a sign error.</>,
   },
   {
     working: (
@@ -151,12 +157,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Matches option <b>C</b>, with <Katex tex="f-g=\cos\left(\tfrac{\pi x}{2}\right)-\sin(\pi x)" />. Option <b>E</b>, the
-        most popular answer at <Katex tex="42\%" />, differs only in its last term, <Katex tex="+\int_{5/3}^{3}(f-g)\,dx" />,
-        which equals <Katex tex="-\tfrac{9}{2\pi}" /> because <Katex tex="g" /> is on top there; its value is{' '}
-        <Katex tex="\tfrac{1}{2\pi}+\tfrac{1}{\pi}-\tfrac{9}{2\pi}=-\tfrac{3}{\pi}" />, which cannot be an area. <b>A</b>{' '}
-        integrates <Katex tex="g-f" /> straight across and subtracts the two regions where <Katex tex="f" /> is on top (
-        <Katex tex="\tfrac4\pi" />). <b>B</b> counts only the last region, twice (<Katex tex="\tfrac9\pi" />). <b>D</b> leaves
+        Matches option <b>C</b>, with <Katex tex="f-g=\cos\left(\tfrac{\pi x}{2}\right)-\sin(\pi x)" />.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>E</b>, the most popular answer at <Katex tex="42\%" />, differs only in its last term,{' '}
+        <Katex tex="+\int_{5/3}^{3}(f-g)\,dx" />, and comes to <Katex tex="-\tfrac{3}{\pi}" />, which cannot be an area.{' '}
+        <b>A</b> integrates <Katex tex="g-f" /> straight across and subtracts the two regions where <Katex tex="f" /> is on top
+        (<Katex tex="\tfrac4\pi" />). <b>B</b> counts only the last region, twice (<Katex tex="\tfrac9\pi" />). <b>D</b> leaves
         out the first region and doubles the last (<Katex tex="\tfrac{10}\pi" />).
       </>
     ),
@@ -217,8 +226,7 @@ export default function MethodsQ19_2018() {
           </p>
           <p>
             So a total area is found region by region: split at every crossing, and in each region integrate top minus bottom
-            (or put a minus sign in front of an integral of bottom minus top). Where the <Katex tex="x" />-axis is makes no
-            difference; only which curve is higher does.
+            (or put a minus sign in front of an integral of bottom minus top).
           </p>
         </Background>
       }
@@ -243,8 +251,7 @@ export default function MethodsQ19_2018() {
             On <Katex tex="\left(\tfrac53,3\right)" /> it is <Katex tex="g" /> that is on top (at <Katex tex="x=2" />,{' '}
             <Katex tex="f=-1" /> is below <Katex tex="g=0" />), so <Katex tex="f-g" /> is negative there and the last integral
             is <Katex tex="-\tfrac{9}{2\pi}" />: the biggest region is subtracted instead of added. A negative total is the
-            giveaway. To catch it, test one <Katex tex="x" />-value in every region and write top minus bottom, or put a minus
-            sign in front wherever the order is reversed.
+            giveaway. To catch it, test one <Katex tex="x" />-value in every region before writing any integral.
           </WrongMethod>
         </>
       }

@@ -22,27 +22,49 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="-2 + 3 = 1" />,
-    reason: <>Work out which <em>combination</em> of colours scores <Katex tex="+1" /> before touching any probability. There are only three colour pairs, so list them: two whites give <Katex tex="-4" />, two reds give <Katex tex="+6" />, and one of each gives <Katex tex="-2+3=+1" />. So the question is really &ldquo;what is the chance of one white and one red?&rdquo;</>,
+    reason: <>Before any probability, find which colours score <Katex tex="+1" />: only one white <Katex tex="(-2)" /> and one red <Katex tex="(+3)" />.</>,
+    more: (
+      <>
+        There are only three colour pairs, so list them: two whites give <Katex tex="-4" />, two reds
+        give <Katex tex="+6" />, and one of each gives <Katex tex="+1" />. So the question is really
+        &ldquo;what is the chance of one white and one red?&rdquo;
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{Box 1: } 4W, 2R \ (6) \qquad \text{Box 2: } 2W, 3R \ (5)" />,
-    reason: <>One marble comes from each box, so the two draws are independent. Keep the boxes separate: their sizes differ (<Katex tex="6" /> and <Katex tex="5" />), and they are not one shared pool of <Katex tex="11" /> marbles.</>,
+    reason: <>One marble comes from each box, so the draws are independent. Keep the boxes separate: they are not one pool of <Katex tex="11" /> marbles.</>,
   },
   {
     working: <Katex display tex="\Pr(W_1 \cap R_2) = \frac46 \times \frac35 = \frac{12}{30}" />,
-    reason: <>&ldquo;One of each&rdquo; can happen two ways, because it matters <em>which box</em> gave the white. First way: white from Box 1 <em>and</em> red from Box 2. &ldquo;And&rdquo; for independent draws means multiply, as along the branches of a tree diagram.</>,
+    reason: <>One of each can happen two ways, depending on <em>which box</em> gives the white. First way: white from Box 1 <em>and</em> red from Box 2, so multiply.</>,
+    more: (
+      <>
+        &ldquo;And&rdquo; for independent draws means multiply, as along the branches of a tree diagram.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(R_1 \cap W_2) = \frac26 \times \frac25 = \frac{4}{30}" />,
-    reason: <>Second way: red from Box 1 and white from Box 2. This is a different outcome with a different probability, because the boxes hold different mixes. Missing this case leaves you on option C.</>,
+    reason: <>Second way: red from Box 1 and white from Box 2. The probability differs from the first way because the boxes hold different mixes.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{score}=+1) = \frac{12}{30}+\frac{4}{30} = \frac{16}{30}" />,
-    reason: <>The two cases cannot both happen (Box 1 gave either a white or a red), so they are mutually exclusive and their probabilities add. &ldquo;Or&rdquo; between separate cases means add.</>,
+    reason: <>The two cases cannot both happen (Box 1 gives either a white or a red), so they are mutually exclusive: add.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{8}{15}}" />,
-    reason: <>Matches option <b>E</b>. (<Katex tex="\tfrac{8}{15}\approx0.53" /> — a little over half, which is plausible: mixed pairs are the most common outcome when each box is fairly balanced.) Option <b>C</b> <Katex tex="\left(\tfrac25=\tfrac{12}{30}\right)" /> is the first case only; option <b>D</b> <Katex tex="\left(\tfrac{2}{15}=\tfrac{4}{30}\right)" /> is the second only.</>,
+    reason: <>Simplify <Katex tex="\tfrac{16}{30}" />. Matches option <b>E</b>.</>,
+    more: (
+      <>
+        <Katex tex="\tfrac{8}{15}\approx0.53" />, a little over half, is plausible: of the <Katex tex="6\times5=30" /> equally
+        likely pairs, <Katex tex="16" /> are mixed, against <Katex tex="8" /> two-white and <Katex tex="6" /> two-red. Options <b>C</b> and <b>D</b> are each one of the two
+        cases on its own (see the Common Mistake box below). Option <b>B</b>{' '}
+        <Katex tex="\left(\tfrac15=\tfrac26\times\tfrac35\right)" /> is the chance of two reds, a score
+        of <Katex tex="+6" />. Option <b>A</b> <Katex tex="\left(\tfrac23=\tfrac46\right)" /> is just the
+        chance of a white from Box 1, ignoring Box 2.
+      </>
+    ),
   },
 ]
 
@@ -103,7 +125,7 @@ export default function MethodsQ13_2018() {
           </p>
           <p>
             Then be careful that the two boxes have <em>different</em> compositions, so
-            "white then red" and "red then white" are genuinely different probabilities. They
+            &ldquo;white from Box 1, red from Box 2&rdquo; and &ldquo;red from Box 1, white from Box 2&rdquo; are genuinely different probabilities. They
             are not, as in many textbook versions, two copies of the same number.
           </p>
         </Background>

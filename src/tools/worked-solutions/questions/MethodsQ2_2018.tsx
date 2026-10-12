@@ -26,11 +26,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies \text{only } x=1 \text{ is excluded}" />
       </>
     ),
-    reason: <>So the rule must fail at <Katex tex="x=1" /> and be perfectly well defined at every other real number. Two things can exclude a value: a zero denominator, or a negative under a square root.</>,
+    reason: <>So the rule must break at <Katex tex="x=1" /> and nowhere else. A rule breaks where a denominator is zero or a square root has a negative inside.</>,
   },
   {
     working: <Katex display tex="\textbf{A}: \ \frac{x^2-5}{x-1}, \quad x-1=0 \implies x=1" />,
-    reason: <>The denominator vanishes at <Katex tex="x=1" /> and nowhere else, and the numerator is a polynomial defined everywhere. Maximal domain <Katex tex="R\setminus\{1\}" /> ✓</>,
+    reason: <>The denominator is zero only at <Katex tex="x=1" />; the numerator is a polynomial, defined everywhere. Maximal domain <Katex tex="R\setminus\{1\}" /> ✓</>,
+    more: <>The <Katex tex="x^2-5" /> on top is a decoy: it makes the numerator zero at <Katex tex="x=\pm\sqrt5" />, but a zero numerator is perfectly legal (the function just takes the value <Katex tex="0" /> there). Only the denominator restricts the domain.</>,
   },
   {
     working: <Katex display tex="\textbf{B}: \ x-5=0 \implies x=5" />,
@@ -46,11 +47,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\textbf{E}: \ x-1\ge0 \implies x\ge1" />,
-    reason: <>Ruling out <b>E</b>, the most popular wrong answer at <Katex tex="5\%" />: a square root <em>requires</em> its argument to be non-negative, so the maximal domain is <Katex tex="[1,\infty)" /> — everything from <Katex tex="1" /> upwards is kept and everything below is lost. That is close to the opposite of excluding the single point <Katex tex="1" />.</>,
+    reason: <>Ruling out <b>E</b> (the most popular wrong answer, <Katex tex="5\%" />): a square root needs <Katex tex="x-1\ge0" />, so the domain is <Katex tex="[1,\infty)" />, which keeps <Katex tex="1" /> and loses everything below it.</>,
   },
   {
     working: <Katex display tex="\boxed{\textbf{A}}" />,
-    reason: <>Matches option <b>A</b>. The <Katex tex="x^2-5" /> on top is a decoy: it makes the numerator zero at <Katex tex="x=\pm\sqrt5" />, but a zero numerator is perfectly legal — the function just takes the value <Katex tex="0" /> there. Only the denominator restricts the domain.</>,
+    reason: <>Matches option <b>A</b>, the only rule that breaks at exactly <Katex tex="x=1" />.</>,
   },
 ]
 
@@ -99,14 +100,10 @@ export default function MethodsQ2_2018() {
       background={
         <Background title="What a maximal domain is">
           <p>
-            The maximal (or implied) domain is every real number the rule can actually be fed
-            without breaking. You find it by asking what would break: division by zero, and
-            the square root of a negative. Everything else is allowed.
-          </p>
-          <p>
-            Here the target is <Katex tex="R\setminus\{1\}" /> — every real{' '}
-            <em>except</em> <Katex tex="1" />. So you want a rule that dies at exactly one
-            point, and that point is <Katex tex="1" />.
+            The maximal (or implied) domain of a rule is the set of every real number it can
+            be fed without breaking. When a question gives only a rule and no domain, this is
+            the domain you assume. In Methods a rule breaks only through division by zero, an
+            even root of a negative number, or a logarithm of a number that is not positive.
           </p>
         </Background>
       }

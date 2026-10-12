@@ -26,27 +26,30 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2 + \frac{p}{x} = x^2 + p\,x^{-1}" />,
-    reason: <><Katex tex="p" /> is an unknown constant, so treat it like any number. Rewriting the fraction as a negative power lets the ordinary power rule do the differentiating.</>,
+    reason: <>Treat the constant <Katex tex="p" /> like any number. Writing the fraction as a negative power lets the power rule do the differentiating.</>,
   },
   {
     working: <Katex display tex="f'(x) = 2x - p\,x^{-2} = 2x - \frac{p}{x^2}" />,
-    reason: <>Power rule on <Katex tex="p\,x^{-1}" />: bring the <Katex tex="-1" /> down in front and lower the power to <Katex tex="-2" />. That minus sign is the one the whole answer depends on; lose it and you land on option E.</>,
+    reason: <>Power rule on <Katex tex="p\,x^{-1}" />: bring the <Katex tex="-1" /> down in front and lower the power to <Katex tex="-2" />. Keep that minus sign: the answer depends on it.</>,
   },
   {
     working: <Katex display tex="\text{Stationary at } x=-2 \implies f'(-2) = 0" />,
-    reason: <>&ldquo;Stationary point&rdquo; means the tangent is horizontal, so the <em>gradient</em> is zero there. It is <Katex tex="f'" /> that is zero, not <Katex tex="f" />: setting <Katex tex="f(-2)=0" /> would find an <Katex tex="x" />-intercept instead. One equation in one unknown is enough to pin <Katex tex="p" />. On the CAS: define <Katex tex="f(x)" />, then <Cas fn="solve">solve((d/dx(f(x))|x=−2)=0, p)</Cas>; the bracket before <code>d/dx</code> stops the CAS reading &ldquo;<Katex tex="-2=0" />&rdquo;.</>,
+    reason: <>&ldquo;Stationary point&rdquo; means the gradient is zero there. It is <Katex tex="f'" /> that is zero, not <Katex tex="f" />: <Katex tex="f(-2)=0" /> would give an <Katex tex="x" />-intercept.</>,
+    more: <>One equation in one unknown is enough to pin down <Katex tex="p" />. On the CAS: define <Katex tex="f(x)" />, then <Cas fn="solve">solve((d/dx(f(x))|x=−2)=0, p)</Cas>; the bracket before <code>d/dx</code> stops the CAS reading &ldquo;<Katex tex="-2=0" />&rdquo;.</>,
   },
   {
     working: <Katex display tex="2(-2) - \frac{p}{(-2)^2} = 0 \implies -4 - \frac{p}{4} = 0" />,
-    reason: <>Note <Katex tex="(-2)^2 = +4" />: squaring kills the minus sign in the denominator, while the <Katex tex="2x" /> term keeps it.</>,
+    reason: <>Note <Katex tex="(-2)^2 = +4" />: squaring removes the minus sign in the denominator, while the <Katex tex="2x" /> term keeps it.</>,
   },
   {
     working: <Katex display tex="\frac{p}{4} = -4" />,
-    reason: <>Add <Katex tex="\tfrac{p}{4}" /> to both sides. <Katex tex="p" /> must be negative, since <Katex tex="-\tfrac{p}{4}" /> has to cancel the <Katex tex="-4" />.</>,
+    reason: <>Add <Katex tex="\tfrac{p}{4}" /> to both sides.</>,
+    more: <><Katex tex="p" /> must be negative, since <Katex tex="-\tfrac{p}{4}" /> has to cancel the <Katex tex="-4" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = -16}" />,
-    reason: <>Matches option <b>A</b>. Option <b>E</b> <Katex tex="(16)" />, chosen by <Katex tex="15\%" />, is this answer with the sign lost, either from differentiating <Katex tex="p x^{-1}" /> as <Katex tex="+p x^{-2}" /> or from taking <Katex tex="(-2)^2" /> as <Katex tex="-4" />. Option <b>D</b> <Katex tex="(8)" /> is what <Katex tex="f(-2)=0" /> gives (an <Katex tex="x" />-intercept, not a stationary point); differentiating <Katex tex="\tfrac{p}{x}" /> as <Katex tex="-\tfrac{p}{x}" /> also gives it. A quick check: with <Katex tex="p=-16" />, <Katex tex="f'(x)=2x+\tfrac{16}{x^2}" />, and <Katex tex="f'(-2)=-4+4=0" /> ✓.</>,
+    reason: <>Matches option <b>A</b>. Check: <Katex tex="f'(-2)=-4-\tfrac{-16}{4}=-4+4=0" /> ✓.</>,
+    more: <>Option <b>E</b> <Katex tex="(16)" />, chosen by <Katex tex="15\%" />, loses the minus sign, from <Katex tex="+p x^{-2}" /> or from taking <Katex tex="(-2)^2" /> as <Katex tex="-4" />. Option <b>D</b> <Katex tex="(8)" /> is what <Katex tex="f(-2)=0" /> gives (an <Katex tex="x" />-intercept, not a stationary point); differentiating <Katex tex="\tfrac{p}{x}" /> as <Katex tex="-\tfrac{p}{x}" /> also gives it.</>,
   },
 ]
 

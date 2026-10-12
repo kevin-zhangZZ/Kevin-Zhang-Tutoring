@@ -32,7 +32,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^m f(x)\,dx = \frac12" />,
-    reason: <>The median <Katex tex="m" /> is the value with half the probability below it: <Katex tex="\Pr(X\le m)=\tfrac12" />. For a continuous random variable probability is area under the pdf, so the area from the start of the domain up to <Katex tex="m" /> must be <Katex tex="\tfrac12" />. Start the integral at <Katex tex="0" />, because <Katex tex="f" /> is zero to the left of <Katex tex="0" />.</>,
+    reason: <>The median <Katex tex="m" /> has half the probability below it, <Katex tex="\Pr(X\le m)=\tfrac12" />: the area under <Katex tex="f" /> from <Katex tex="0" /> up to <Katex tex="m" /> is <Katex tex="\tfrac12" />.</>,
+    more: <>For a continuous random variable, probability is area under the pdf. The integral starts at <Katex tex="0" />, the left end of the domain, because <Katex tex="f" /> is zero to the left of it. In general the median satisfies <Katex tex="\int_a^m f(x)\,dx=\tfrac12" />, with <Katex tex="a" /> the left end of the domain.</>,
   },
   {
     working: (
@@ -41,7 +42,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{1}{12}\left(4m^2-\frac{m^4}{4}\right)" />
       </>
     ),
-    reason: <>Antidifferentiate term by term (<Katex tex="8x\to4x^2" />, <Katex tex="x^3\to\tfrac{x^4}{4}" />) and substitute the terminals. The lower terminal <Katex tex="0" /> contributes nothing, one reason starting the area at <Katex tex="0" /> is convenient.</>,
+    reason: <>Antidifferentiate term by term (<Katex tex="8x\to4x^2" />, <Katex tex="x^3\to\tfrac{x^4}{4}" />) and substitute the terminals; the lower terminal <Katex tex="0" /> contributes nothing.</>,
   },
   {
     working: (
@@ -50,7 +51,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; 4m^2-\frac{m^4}{4} = 6" />
       </>
     ),
-    reason: <>Look at the options before going further: they are equations with whole-number coefficients, not values of <Katex tex="m" />. So the job is to clear every fraction and rearrange until one of them appears. First multiply both sides by <Katex tex="12" />.</>,
+    reason: <>The options are equations with whole-number coefficients, not values of <Katex tex="m" />, so clear every fraction until the equation looks like one of the options. First multiply both sides by <Katex tex="12" />.</>,
   },
   {
     working: (
@@ -59,11 +60,22 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; m^4-16m^2+24=0" />
       </>
     ),
-    reason: <>Multiply by <Katex tex="4" />, <em>both</em> sides, then move everything to one side so the <Katex tex="m^4" /> coefficient is <Katex tex="+1" />, as in options C to E. The <Katex tex="\tfrac12" /> from the first line has now become the <Katex tex="24" /> (<Katex tex="\tfrac12\times48" />), so the right-hand side is <Katex tex="0" />.</>,
+    reason: <>Multiply <em>both</em> sides by <Katex tex="4" />, then move everything to one side so the <Katex tex="m^4" /> coefficient is <Katex tex="+1" />, as in options C to E.</>,
+    more: <>The <Katex tex="\tfrac12" /> from the first line has now become the <Katex tex="24" /> (<Katex tex="\tfrac12\times48" />), which is why the right-hand side is <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{m^4-16m^2+24=0}" />,
-    reason: <>Matches option <b>E</b>. Option <b>D</b>, chosen by <Katex tex="19\%" />, uses the <Katex tex="\tfrac12" /> twice: it is already inside the <Katex tex="24" />, so the right-hand side must be <Katex tex="0" />. Option <b>A</b> is the <Katex tex="4m^2-\tfrac{m^4}{4}=6" /> line with only the left side multiplied by <Katex tex="4" />. Option <b>C</b> sets the integral equal to <Katex tex="0" /> instead of <Katex tex="\tfrac12" />.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: (
+      <>
+        Option <b>D</b> (<Katex tex="19\%" />) uses the <Katex tex="\tfrac12" /> a second time.
+        Option <b>A</b> multiplies only the left side of{' '}
+        <Katex tex="4m^2-\tfrac{m^4}{4}=6" /> by <Katex tex="4" />. Option <b>B</b> clears the{' '}
+        <Katex tex="\tfrac14" /> from the <Katex tex="m^4" /> term only, and has no real solution at all,
+        since <Katex tex="m^4-4m^2+6=(m^2-2)^2+2" />. Option <b>C</b> sets the integral equal to{' '}
+        <Katex tex="0" /> instead of <Katex tex="\tfrac12" />.
+      </>
+    ),
   },
 ]
 
@@ -89,15 +101,10 @@ export default function MethodsQ15_2018() {
       rows={ROWS}
       examinerReport={EXAMINER}
       background={
-        <Background title="The median of a pdf, and why CAS alone doesn't finish this">
+        <Background title="Why CAS alone doesn't finish this">
           <p>
-            For a continuous random variable, <Katex tex="\Pr(X\le m)" /> is the area under the pdf to the
-            left of <Katex tex="m" />, so the median is where that area reaches <Katex tex="\tfrac12" />:{' '}
-            <Katex tex="\int_a^m f(x)\,dx=\tfrac12" />, with <Katex tex="a" /> the left end of the domain.
-          </p>
-          <p>
-            Here the options are equations, so the task is algebra: build the equation and rearrange it into
-            one of theirs. A CAS can still check your choice. <Cas fn="solve" /> the integral equation for{' '}
+            Solving for <Katex tex="m" /> on CAS can&apos;t pick the option by itself, because the options are
+            equations to rearrange into, not values. It can still check your choice: using <Cas fn="solve" /> on the integral equation for{' '}
             <Katex tex="m" /> with <Katex tex="0\le m\le2" /> gives <Katex tex="m\approx1.294" />, and only
             option E is true at that value.
           </p>
@@ -118,8 +125,8 @@ export default function MethodsQ15_2018() {
               </>
             }
           >
-            The <Katex tex="\tfrac12" /> belongs in the <em>first</em> equation, area <Katex tex="=\tfrac12" />.
-            Clearing fractions multiplied it by <Katex tex="48" />, and it became the <Katex tex="24" />. Writing{' '}
+            The <Katex tex="\tfrac12" /> belongs in the <em>first</em> equation, area <Katex tex="=\tfrac12" />,
+            and by the last line it is already the <Katex tex="24" />. Writing{' '}
             <Katex tex="0.5" /> on the right as well uses it twice, and the equation then asks for an area of
             about <Katex tex="0.49" />, just short of half. To catch it, trace where each number in your final
             line came from: once a constant from the right-hand side has been moved across, the right-hand side

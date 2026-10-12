@@ -24,7 +24,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Let } \Pr(A)=p \implies \Pr(B)=2p" />,
-    reason: <>Two probabilities are unknown, but the question ties them together, so one letter covers both. Let the letter stand for the thing you are asked for, <Katex tex="\Pr(A)" />: then the answer is <Katex tex="p" /> itself, with nothing to convert at the end.</>,
+    reason: <>Both probabilities are unknown, but they are linked, so one letter covers both. Let it be <Katex tex="\Pr(A)" />, the thing asked for.</>,
+    more: <>With the letter standing for the quantity asked for, the answer is <Katex tex="p" /> itself, with nothing to convert at the end.</>,
   },
   {
     working: (
@@ -33,11 +34,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies \Pr(A\cap B) = \Pr(A)\Pr(B) = 2p^2" />
       </>
     ),
-    reason: <>This is the only place independence is used, and it is essential. Without it the intersection is a second unknown and the problem cannot be solved. (Picture <Katex tex="A" /> and <Katex tex="B" /> as strips crossing a unit square: the overlap is a <Katex tex="p\times2p" /> rectangle.)</>,
+    reason: <>Independence means the intersection is the product. Without it, <Katex tex="\Pr(A\cap B)" /> would be a second unknown.</>,
+    more: <>This is the only place independence is used, and it is essential. Picture <Katex tex="A" /> and <Katex tex="B" /> as strips crossing a unit square, of widths <Katex tex="p" /> and <Katex tex="2p" />: the overlap is a <Katex tex="p\times2p" /> rectangle.</>,
   },
   {
     working: <Katex display tex="\Pr(A\cup B) = \Pr(A)+\Pr(B)-\Pr(A\cap B)" />,
-    reason: <>How would I know to use this? The question gives a union and asks for a single event, and the addition rule is the formula that links <Katex tex="\Pr(A\cup B)" /> to <Katex tex="\Pr(A)" /> and <Katex tex="\Pr(B)" />. Subtracting the intersection stops the overlap being counted twice.</>,
+    reason: <>The addition rule links the given union to <Katex tex="\Pr(A)" /> and <Katex tex="\Pr(B)" />. The intersection is subtracted so the overlap isn&apos;t counted twice.</>,
   },
   {
     working: <Katex display tex="p + 2p - 2p^2 = 0.52" />,
@@ -49,7 +51,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = \frac{75 \pm \sqrt{5625-2600}}{100} = \frac{75 \pm 55}{100}" />,
-    reason: <>Quadratic formula; <Katex tex="\sqrt{3025}=55" /> exactly. On CAS, <Cas fn="solve">solve(p+2p-2p^2=0.52, p)</Cas> gives both roots at once.</>,
+    reason: <>Quadratic formula with <Katex tex="a=50,\ b=-75,\ c=13" />; <Katex tex="\sqrt{3025}=55" /> exactly.</>,
+    more: <>On CAS, <Cas fn="solve">solve(p+2p-2p^2=0.52, p)</Cas> gives both roots at once.</>,
   },
   {
     working: <Katex display tex="p = \frac{13}{10} \ \text{ or } \ p = \frac15" />,
@@ -57,11 +60,19 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = 1.3 > 1 \ \text{ rejected}" />,
-    reason: <>A probability cannot exceed <Katex tex="1" />. (It fails twice over here: <Katex tex="\Pr(B)=2p=2.6" /> as well.) Discarding the inadmissible root explicitly is part of the working, not an afterthought.</>,
+    reason: <>A probability cannot exceed <Katex tex="1" />. (It fails twice over: <Katex tex="\Pr(B)=2p=2.6" /> as well.)</>,
+    more: <>Both roots satisfy the equation, so the algebra can&apos;t choose between them; only the requirement <Katex tex="0\le\Pr\le1" /> can.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(A) = 0.2}" />,
-    reason: <>Matches option <b>B</b>. Check it: <Katex tex="\Pr(B)=0.4" />, <Katex tex="\Pr(A\cap B)=0.08" />, and <Katex tex="0.2+0.4-0.08=0.52" /> ✓. Option <b>D</b> <Katex tex="(0.4)" /> is <Katex tex="\Pr(B)" />, not <Katex tex="\Pr(A)" />.</>,
+    reason: <>Matches option <b>B</b>. Check: <Katex tex="0.2+0.4-0.2\times0.4=0.52" /> ✓.</>,
+    more: (
+      <>
+        Option <b>D</b> <Katex tex="(0.4)" />, chosen by <Katex tex="12\%" />, is <Katex tex="\Pr(B)" />, not{' '}
+        <Katex tex="\Pr(A)" />. Substituting the other options for <Katex tex="p" /> gives unions of{' '}
+        <Katex tex="0.28" /> (A), <Katex tex="0.72" /> (C) and <Katex tex="1" /> (E), none of them <Katex tex="0.52" />.
+      </>
+    ),
   },
 ]
 
@@ -113,16 +124,13 @@ export default function MethodsQ14_2018() {
       background={
         <Background title="Independence is what makes this solvable">
           <p>
-            The addition rule always needs <Katex tex="\Pr(A\cap B)" />, and normally that is
-            a second unknown. Independence replaces it with{' '}
-            <Katex tex="\Pr(A)\Pr(B)" />, which is written in terms of <Katex tex="p" /> —
-            so one equation in one unknown remains.
+            Whenever a question gives <Katex tex="\Pr(A\cup B)" />, the addition rule is the link to the
+            individual events, and it always needs <Katex tex="\Pr(A\cap B)" />. The extra information in the
+            question (here, independence) is what supplies it, leaving one equation in one unknown.
           </p>
           <p>
-            The price is that the equation becomes quadratic, and a quadratic hands you two
-            roots. On a probability question, always test both against{' '}
-            <Katex tex="0\le\Pr\le1" />; here the rejected root is the trap, and on the
-            multiple-choice options it is invisible unless you check.
+            The price is that the equation becomes quadratic, and a quadratic hands you two roots. On a
+            probability question, always test both against <Katex tex="0\le\Pr\le1" />.
           </p>
         </Background>
       }

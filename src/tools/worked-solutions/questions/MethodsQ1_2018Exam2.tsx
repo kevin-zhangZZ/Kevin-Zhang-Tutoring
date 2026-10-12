@@ -153,15 +153,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(x)=0 \implies x = -2,\ 0,\ 1" />,
-    reason: <>Three stationary points, so they must be compared — the question asks for the <em>minimum</em>, not just any turning point.</>,
+    reason: <>The minimum of a quartic with a positive <Katex tex="x^4" /> coefficient is at one of its stationary points, so find all three and compare.</>,
   },
   {
     working: <Katex display tex="f(-2) = -32, \quad f(0) = 0, \quad f(1) = -5" />,
-    reason: <>Substituting each back. The graph confirms the shape: a deep trough on the left, a local maximum at the origin, a shallower trough on the right.</>,
+    reason: <>Substitute each back into <Katex tex="f" />.</>,
+    more: <>The graph in the question confirms the shape: a deep trough on the left, a local maximum at the origin, a shallower trough on the right.</>,
   },
   {
     working: <Katex display tex="\boxed{M = (-2,\ -32)}" />,
-    reason: <>The lowest of the three. Give <em>coordinates</em> — the report notes some students only gave the <Katex tex="x" /> value.</>,
+    reason: <>The lowest of the three. <Katex tex="M" /> is a point, so give both coordinates, not just <Katex tex="x=-2" />.</>,
   },
 ]
 
@@ -176,71 +177,79 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-32+b>0 \implies \boxed{b>32}" />,
-    reason: <>Strictly greater. At <Katex tex="b=32" /> exactly, the minimum sits <em>on</em> the axis — that is an <Katex tex="x" />-intercept, so <Katex tex="b=32" /> must be excluded. The report lists <Katex tex="b=32" /> and <Katex tex="b\ge32" /> among the common incorrect answers, along with answers in terms of <Katex tex="x" /> from students who used the <Katex tex="x" />-coordinate instead.</>,
+    reason: <>Strictly greater: at <Katex tex="b=32" /> the minimum sits <em>on</em> the axis, which is still an <Katex tex="x" />-intercept.</>,
+    more: <>The report lists <Katex tex="b=32" /> and <Katex tex="b\ge32" /> among the common incorrect answers. <Katex tex="(-\infty,32)" /> has the inequality reversed: lowering the curve gives more intercepts, not fewer. <Katex tex="[33,\infty)" /> and <Katex tex="b=33" /> are wrong too: <Katex tex="b" /> is any real number, so values such as <Katex tex="b=32.5" /> also work. The answer is a condition on <Katex tex="b" />, not on <Katex tex="x" />, and should be written in maths notation (<Katex tex="b>32" /> or <Katex tex="b\in(32,\infty)" />), not copied in CAS syntax.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f\!\left(-\tfrac13\right) = \frac{1}{27}-\frac{4}{27}-\frac{36}{27} = -\frac{13}{9}" />,
-    reason: <>Any straight line needs a point and a gradient, so a tangent question is always these two calculations. First the point of contact. Everything over <Katex tex="27" /> keeps it exact — the report stresses that exact values were required.</>,
+    reason: <>A tangent needs a point and a gradient. First the point of contact: substitute <Katex tex="x=-\tfrac13" /> into <Katex tex="f" />, keeping fractions exact.</>,
+    more: <>Writing every term over <Katex tex="27" /> keeps the arithmetic exact; a decimal here would cost the mark, since exact values were required.</>,
   },
   {
     working: <Katex display tex="f'\!\left(-\tfrac13\right) = -\frac49+\frac{12}{9}+8 = \frac{80}{9}" />,
-    reason: <>Then the gradient: the tangent has the same gradient as the curve at the point of contact, so substitute into the derivative from part a.</>,
+    reason: <>Then the gradient: the tangent has the same gradient as the curve at the point of contact, so substitute into <Katex tex="f'(x)" /> from part a.</>,
   },
   {
     working: <Katex display tex="y+\frac{13}{9} = \frac{80}{9}\left(x+\frac13\right)" />,
-    reason: <>Point–gradient form.</>,
+    reason: <>Point–gradient form, <Katex tex="y-y_1=m(x-x_1)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \frac{80x}{9}+\frac{41}{27}}" />,
-    reason: <><Katex tex="\tfrac{80}{27}-\tfrac{13}{9}=\tfrac{80-39}{27}=\tfrac{41}{27}" />. Write it as an <em>equation</em> — the report says an equation and exact values were required.</>,
+    reason: <>Expand: <Katex tex="\tfrac{80}{27}-\tfrac{13}{9}=\tfrac{80-39}{27}=\tfrac{41}{27}" />. Give it as an equation, <Katex tex="y=\ldots" />, not just an expression.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="3x^4+4x^3-12x^2 = \frac{80x}{9}+\frac{41}{27}" />,
-    reason: <>Intersections of the curve and its tangent. Solve for <Katex tex="x" /> — the report warns against instead solving <Katex tex="f'(x)=\tfrac{80}{9}" />, which finds where the gradients match, a different question.</>,
+    reason: <>Intersect means equal <Katex tex="y" />-values: solve <Katex tex="f(x)=l(x)" /> for <Katex tex="x" />, not <Katex tex="f'(x)=\tfrac{80}{9}" />.</>,
   },
   {
     working: <Katex display tex="x = -\frac13 \ \text{ is a repeated root (tangency)}" />,
-    reason: <>A tangent touches rather than crosses, so <Katex tex="x=-\tfrac13" /> appears <em>twice</em> among the four roots of this quartic. That leaves exactly two others, which is what the question says.</>,
+    reason: <>A tangent touches rather than crosses, so <Katex tex="x=-\tfrac13" /> counts twice among the quartic's four roots, leaving exactly two others.</>,
   },
   {
     working: <Cas fn="solve">solve(3x^4+4x^3-12x^2 = 80x/9+41/27, x)</Cas>,
-    reason: <>Technology handles the quartic directly. By hand you would divide out <Katex tex="\left(x+\tfrac13\right)^2" /> and solve the remaining quadratic <Katex tex="3x^2+2x-\tfrac{41}{3}=0" />.</>,
+    reason: <>Technology handles the quartic directly.</>,
+    more: <>By hand: because <Katex tex="x=-\tfrac13" /> is a double root, <Katex tex="\left(x+\tfrac13\right)^2" /> is a factor, and <Katex tex="f(x)-l(x)=\left(x+\tfrac13\right)^2\left(3x^2+2x-\tfrac{41}{3}\right)" />. Multiplying the leftover quadratic by <Katex tex="3" /> gives <Katex tex="9x^2+6x-41=0" />, so <Katex tex="x=\tfrac{-6\pm\sqrt{1512}}{18}=\tfrac{-1\pm\sqrt{42}}{3}" />, since <Katex tex="\sqrt{1512}=6\sqrt{42}" />. That quadratic is why the answers are surds in the form the question prescribes.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \frac{-1-\sqrt{42}}{3} \ \text{ and } \ x = \frac{-1+\sqrt{42}}{3}}" />,
-    reason: <>In the required form <Katex tex="\tfrac{a\pm\sqrt b}{c}" /> with <Katex tex="a=-1" />, <Katex tex="b=42" />, <Katex tex="c=3" />. The sign matters: the report names <Katex tex="\tfrac{1\pm\sqrt{42}}{3}" /> as a frequent slip. (<Katex tex="\approx-2.49" /> and <Katex tex="\approx1.83" /> — either side of the contact point, as the figure shows.)</>,
+    reason: <>The required form <Katex tex="\tfrac{a\pm\sqrt b}{c}" />, with <Katex tex="a=-1" />, <Katex tex="b=42" />, <Katex tex="c=3" />.</>,
+    more: <>These are <Katex tex="\approx-2.49" /> and <Katex tex="\approx1.83" />, either side of the contact point, as the figure shows.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{On } \left(\frac{-1-\sqrt{42}}{3},\ \frac{-1+\sqrt{42}}{3}\right): \ l \ \text{ lies above } f" />,
-    reason: <>Before integrating, decide which graph is on top. Between the two outer intersections the tangent runs above the curve, touching it at <Katex tex="x=-\tfrac13" /> without crossing. If you are not sure, test one point in each region: at <Katex tex="x=-1" />, <Katex tex="l=-\tfrac{199}{27}\approx-7.4" /> and <Katex tex="f=-13" />; at <Katex tex="x=1" />, <Katex tex="l=\tfrac{281}{27}\approx10.4" /> and <Katex tex="f=-5" />. The tangent is on top in both, so a single integral covers both regions.</>,
+    reason: <>Decide which graph is on top. From d, they meet only at the endpoints and at <Katex tex="x=-\tfrac13" />, where <Katex tex="l" /> touches without crossing, so <Katex tex="l-f" /> never changes sign; the figure shows <Katex tex="l" /> on top.</>,
+    more: <>"Total area of the regions" sounds as if it needs splitting, but it does not. To confirm without the figure, test one point in each region: at <Katex tex="x=-1" />, <Katex tex="l=-\tfrac{199}{27}\approx-7.4" /> and <Katex tex="f=-13" />; at <Katex tex="x=1" />, <Katex tex="l=\tfrac{281}{27}\approx10.4" /> and <Katex tex="f=-5" />. The tangent is on top in both, so a single integral of (upper <Katex tex="-" /> lower) collects both regions with the correct sign.</>,
   },
   {
-    working: <Katex display tex="A = \int_{\frac{-1-\sqrt{42}}{3}}^{\frac{-1+\sqrt{42}}{3}} \left(\frac{80x}{9}+\frac{41}{27} - \left(3x^4+4x^3-12x^2\right)\right)dx" />,
-    reason: <>Upper minus lower, across the whole span, with the terminals from part d. The report is explicit that splitting the integral was unnecessary and that inserting a negative sign for the part below the <Katex tex="x" />-axis was wrong — the axis is irrelevant here, only which of the two graphs is on top. On CAS, enter it with the definite-integral template in exact mode, typing the exact terminals and bracketing all of <Katex tex="f(x)" />; that returns the surd form. (<Cas fn="nInt">nInt</Cas> only gives the decimal <Katex tex="37.636\ldots" />, which is a useful check but not the required form.)</>,
+    working: <Katex display tex="\begin{aligned}A &= \int_{\frac{-1-\sqrt{42}}{3}}^{\frac{-1+\sqrt{42}}{3}} \Bigl(\frac{80x}{9}+\frac{41}{27}\\&\qquad - \left(3x^4+4x^3-12x^2\right)\Bigr)dx\end{aligned}" />,
+    reason: <>Upper minus lower across the whole span, terminals from part d: one integral covers both regions. Evaluate with the CAS integral template in exact mode for the surd form.</>,
+    more: <>Type the exact terminals and bracketing all of <Katex tex="f(x)" />; that returns the surd form. (<Cas fn="nInt">nInt</Cas> only gives the decimal <Katex tex="37.636\ldots" />, a useful check but not the required form.)</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{784\sqrt{42}}{135}}" />,
-    reason: <>The required form <Katex tex="\tfrac{a\sqrt b}{c}" /> with <Katex tex="a=784" />, <Katex tex="b=42" />, <Katex tex="c=135" />. (<Katex tex="\approx37.6" /> square units. The two regions are equal, <Katex tex="\tfrac{392\sqrt{42}}{135}\approx18.8" /> each: writing <Katex tex="u=x+\tfrac13" />, the height is <Katex tex="l(x)-f(x)=14u^2-3u^4" />, which is symmetric about the touching point.)</>,
+    reason: <>The required form <Katex tex="\tfrac{a\sqrt b}{c}" />, with <Katex tex="a=784" />, <Katex tex="b=42" />, <Katex tex="c=135" /> (<Katex tex="\approx37.6" /> square units).</>,
+    more: <>The two regions are equal, <Katex tex="\tfrac{392\sqrt{42}}{135}\approx18.8" /> each: writing <Katex tex="u=x+\tfrac13" />, the height is <Katex tex="l(x)-f(x)=14u^2-3u^4" />, which is symmetric about the touching point.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}p(x)-f(x) &= 6(a-2)x^2+12x^2 - 12ax + a^2 \\ &= 6a x^2 - 12ax + a^2\end{aligned}" />,
-    reason: <>Subtracting term by term: the <Katex tex="3x^4" /> and <Katex tex="4x^3" /> cancel, and <Katex tex="6(a-2)x^2-(-12x^2)=6ax^2" />.</>,
+    reason: <>Subtract term by term: the <Katex tex="3x^4" /> and <Katex tex="4x^3" /> cancel, and <Katex tex="6(a-2)x^2-(-12x^2)=6ax^2" />.</>,
   },
   {
     working: <Katex display tex="6a = 0, \quad -12a = 0, \quad a^2 = 0" />,
-    reason: <>"For all <Katex tex="x" />" means the difference must be zero at <em>every</em> <Katex tex="x" />. If any coefficient were non-zero, <Katex tex="6ax^2-12ax+a^2" /> would be a genuine parabola or a non-zero constant, which is zero at two points at most. So every coefficient must vanish — equate coefficients rather than solving an equation in <Katex tex="x" />. The report notes that students who used technology instead got the additional expression <Katex tex="a=-6x(x-2)" />, which is not a constant and so cannot be the value of <Katex tex="a" />.</>,
+    reason: <>"For all <Katex tex="x" />" means the difference is zero at every <Katex tex="x" />, so every coefficient must be zero: equate coefficients.</>,
+    more: <>If any coefficient were non-zero, <Katex tex="6ax^2-12ax+a^2" /> would be a genuine parabola or a non-zero constant, which is zero at two points at most. So this is not an equation to solve for <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 0}" />,
@@ -251,88 +260,93 @@ const ROWS_F: WorkingRow[] = [
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="p'(x) = 12x^3+12x^2+12(a-2)x-12a" />,
-    reason: <>Differentiating. The <Katex tex="-12ax" /> term contributes <Katex tex="-12a" /> — the report says forgetting to differentiate it is what produced the often-given <Katex tex="x=0" /> and <Katex tex="x=\tfrac{-1\pm\sqrt{9-4a}}{2}" />.</>,
+    reason: <>Differentiate term by term. <Katex tex="a" /> is a constant, so <Katex tex="-12ax" /> gives <Katex tex="-12a" /> and <Katex tex="a^2" /> gives <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="= \left(12x^3+12x^2-24x\right) + 12a(x-1)" />,
-    reason: <>How would you see a factor here? Separate the terms containing <Katex tex="a" /> from the rest. The rest is exactly <Katex tex="f'(x)" />, and the <Katex tex="a" />-terms <Katex tex="12ax-12a" /> share the factor <Katex tex="(x-1)" />.</>,
+    reason: <>To find a factor, separate the terms containing <Katex tex="a" />: the rest is exactly <Katex tex="f'(x)" />, and <Katex tex="12ax-12a=12a(x-1)" />.</>,
   },
   {
     working: <Katex display tex="= 12x(x+2)(x-1) + 12a(x-1)" />,
-    reason: <><Katex tex="f'(x)" /> was already factorised in part a., and it also contains <Katex tex="(x-1)" />.</>,
+    reason: <><Katex tex="f'(x)" /> was factorised in part a., and it also contains <Katex tex="(x-1)" />.</>,
   },
   {
     working: <Katex display tex="= 12(x-1)\left(x^2+2x+a\right)" />,
-    reason: <>Take out the common factor <Katex tex="12(x-1)" />. So <Katex tex="x=1" /> is a stationary point for <em>every</em> value of <Katex tex="a" />. On CAS, <Cas fn="solve">solve(p&apos;(x)=0, x)</Cas> gives the same solutions directly, though you may have to tidy its form.</>,
+    reason: <>Take out the common factor <Katex tex="12(x-1)" />. So <Katex tex="x=1" /> is a stationary point for <em>every</em> value of <Katex tex="a" />.</>,
+    more: <>On CAS, <Cas fn="solve">solve(p&apos;(x)=0, x)</Cas> gives the same solutions directly, though you may have to tidy its form. Enter <Katex tex="p(x)" /> carefully, with <Katex tex="a" /> as a separate variable (type <Katex tex="a\times x" />, not <Katex tex="ax" />), and copy the signs exactly.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 1 \quad \text{or} \quad x = -1\pm\sqrt{1-a}}" />,
-    reason: <>Completing the square on <Katex tex="x^2+2x+a" /> gives <Katex tex="(x+1)^2 = 1-a" />. The second pair exists only when <Katex tex="1-a\ge0" />, which sets up part h. Check with <Katex tex="a=0" />: then <Katex tex="p=f" />, whose stationary points from part a. are <Katex tex="x=-2,\ 0,\ 1" />, and <Katex tex="-1\pm\sqrt1" /> gives <Katex tex="-2" /> and <Katex tex="0" /> ✓. The report&apos;s common error <Katex tex="x=1\pm\sqrt{1-a}" /> fails this check: it gives <Katex tex="0" /> and <Katex tex="2" />.</>,
+    reason: <>Complete the square: <Katex tex="x^2+2x+a=0" /> gives <Katex tex="(x+1)^2 = 1-a" />. This pair exists only when <Katex tex="1-a\ge0" />.</>,
+    more: <>Check with <Katex tex="a=0" />: then <Katex tex="p=f" />, whose stationary points from part a. are <Katex tex="x=-2,\ 0,\ 1" />, and <Katex tex="-1\pm\sqrt1" /> gives <Katex tex="-2" /> and <Katex tex="0" /> ✓. The report&apos;s common error <Katex tex="x=1\pm\sqrt{1-a}" /> fails this check: it gives <Katex tex="0" /> and <Katex tex="2" />. The condition <Katex tex="1-a\ge0" /> is what part h. builds on.</>,
   },
 ]
 
 const ROWS_HI: WorkingRow[] = [
   {
     working: <Katex display tex="x=1 \text{ is always a stationary point}" />,
-    reason: <>From part g. So "only one stationary point" means the other two must fail to exist.</>,
+    reason: <>From part g. So "only one stationary point" means the quadratic factor must add no others.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&x^2+2x+a = 0 \text{ has no real solutions} \\ &\iff \Delta = 4-4a < 0\end{aligned}" />,
-    reason: <>Any other stationary point has to come from the quadratic factor of <Katex tex="p'(x)" />. For there to be none, that quadratic must have no real solutions, which is a discriminant condition.</>,
+    reason: <>Any other stationary point comes from <Katex tex="x^2+2x+a=0" />. For none, this quadratic needs no real solutions: discriminant negative.</>,
   },
   {
     working: <Katex display tex="4-4a<0 \implies \boxed{a>1}" />,
-    reason: <>Strict. At <Katex tex="a=1" /> the quadratic has the repeated root <Katex tex="x=-1" />, which is a genuine second stationary point — so <Katex tex="a=1" /> gives two, not one. The report lists <Katex tex="a=1" /> among the common incorrect answers; only <Katex tex="18\%" /> scored this mark.</>,
+    reason: <>Strict: at <Katex tex="a=1" /> the quadratic gives <Katex tex="x=-1" />, a second stationary point (an inflection), so <Katex tex="a=1" /> gives two.</>,
+    more: <>The report lists <Katex tex="a=1" /> among the common incorrect answers; only <Katex tex="18\%" /> scored this mark. Its other listed answers, <Katex tex="a=0" /> and <Katex tex="a>0" />, fail too: at <Katex tex="a=0" />, <Katex tex="p=f" />, which has three stationary points.</>,
   },
 ]
 
 const ROWS_HII: WorkingRow[] = [
   {
-    working: <Katex display tex="a=2>1 \implies \text{the only stationary point is } x=1" />,
-    reason: <>Part h.i. applies, so there is nothing to compare — the single turning point of a positive quartic must be its minimum.</>,
+    working: <Katex display tex="\begin{aligned}&a=2>1\\&\implies \text{the only stationary}\\&\qquad\text{point is } x=1\end{aligned}" />,
+    reason: <>Part h.i. applies. With a positive <Katex tex="x^4" /> coefficient and only one stationary point, that point must be the minimum.</>,
   },
   {
     working: <Katex display tex="p(x) = 3x^4+4x^3+0\cdot x^2-24x+4" />,
-    reason: <>Substituting <Katex tex="a=2" />: the <Katex tex="x^2" /> coefficient <Katex tex="6(a-2)" /> vanishes.</>,
+    reason: <>Substitute <Katex tex="a=2" />: the <Katex tex="x^2" /> coefficient <Katex tex="6(a-2)" /> vanishes.</>,
   },
   {
     working: <Katex display tex="p(1) = 3+4-24+4" />,
-    reason: <>Evaluating at the stationary point.</>,
+    reason: <>Evaluate at the stationary point.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Minimum value} = -13}" />,
-    reason: <>State the <em>value</em> — the report says the minimum value needed to be stated, not just the coordinates of the turning point <Katex tex="(1,-13)" />.</>,
+    reason: <>State the minimum <em>value</em>, not just the turning point <Katex tex="(1,-13)" />.</>,
   },
 ]
 
 const ROWS_HIII: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}a>1 &\implies \text{one stationary point, at } x=1 \\ &\implies \text{it is the minimum}\end{aligned}" />,
-    reason: <>Carrying part h.i. forward. A quartic with a positive leading coefficient and a single turning point has that point as its global minimum.</>,
+    reason: <>The "if" condition is part h.i.'s <Katex tex="a>1" />. Then, as in h.ii., the single stationary point <Katex tex="x=1" /> is the minimum.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&p(x)=0 \text{ has no solutions} \\ &\iff \text{minimum} > 0 \\ &\iff p(1)>0\end{aligned}" />,
-    reason: <>This is the idea from part b. again: a graph with a single lowest point misses the axis exactly when that lowest point is above it. The report says some students instead solved <Katex tex="p(x)=0" /> or <Katex tex="p'(x)=0" /> for <Katex tex="x" />, and others tried to apply the discriminant to a cubic, which does not work.</>,
+    reason: <>As in part b.: the graph misses the axis exactly when its lowest point is above it.</>,
+    more: <>No discriminant is involved, and there is no need to solve for <Katex tex="x" />. The report says some students solved <Katex tex="p(x)=0" /> or <Katex tex="p'(x)=0" /> for <Katex tex="x" />, and others tried to apply the discriminant to a cubic, which does not work: the discriminant test is only for quadratics.</>,
   },
   {
-    working: <Katex display tex="p(1) = 3+4+6(a-2)-12a+a^2 = a^2-6a-5" />,
-    reason: <>Substituting <Katex tex="x=1" /> into the general rule and collecting.</>,
+    working: <Katex display tex="\begin{aligned}p(1) &= 3+4+6(a-2)-12a+a^2\\&= a^2-6a-5\end{aligned}" />,
+    reason: <>Substitute <Katex tex="x=1" /> into the general rule and collect terms.</>,
   },
   {
     working: <Katex display tex="a^2-6a-5 = 0 \implies a = \frac{6\pm\sqrt{56}}{2} = 3\pm\sqrt{14}" />,
     reason: <>Quadratic formula; <Katex tex="\sqrt{56}=2\sqrt{14}" />.</>,
   },
   {
-    working: <Katex display tex="a^2-6a-5>0 \implies a<3-\sqrt{14} \ \text{ or } \ a>3+\sqrt{14}" />,
+    working: <Katex display tex="\begin{aligned}&a^2-6a-5>0\\&\implies a<3-\sqrt{14} \ \text{ or } \ a>3+\sqrt{14}\end{aligned}" />,
     reason: <>An upward parabola in <Katex tex="a" /> is positive outside its roots.</>,
   },
   {
     working: <Katex display tex="3-\sqrt{14}\approx-0.74 \ \text{ fails } a>1" />,
-    reason: <>The left branch is entirely below <Katex tex="1" />, so the constraint from part h.i. removes it. Both conditions have to hold at once — and the inequality must point the right way: the report's example of an incorrect inequality is <Katex tex="a<\sqrt{14}+3" />.</>,
+    reason: <>Both conditions must hold at once. The left branch lies entirely below <Katex tex="1" />, so <Katex tex="a>1" /> removes it.</>,
   },
   {
     working: <Katex display tex="\boxed{a > 3+\sqrt{14}}" />,
-    reason: <>(<Katex tex="3+\sqrt{14}\approx6.74" />.) Spot-check: at <Katex tex="a=7" /> the minimum of <Katex tex="p" /> is <Katex tex="+2" />, so the curve clears the axis ✓; at <Katex tex="a=6.7" /> it is <Katex tex="-0.31" />, so it still cuts ✓. Only <Katex tex="4\%" /> of students scored both marks.</>,
+    reason: <><Katex tex="3+\sqrt{14}\approx6.74>1" />, so this whole branch satisfies both conditions.</>,
+    more: <>Spot-check: at <Katex tex="a=7" /> the minimum of <Katex tex="p" /> is <Katex tex="+2" />, so the curve clears the axis ✓; at <Katex tex="a=6.7" /> it is <Katex tex="-0.31" />, so it still cuts ✓. Only <Katex tex="4\%" /> of students scored both marks.</>,
   },
 ]
 
@@ -387,14 +401,6 @@ export default function MethodsQ1_2018Exam2() {
       </PartCard>
 
       <PartCard letter="d" topic="Intersections" marks={2} statement={<>The tangent <Katex tex="l" /> intersects <Katex tex="y=f(x)" /> at <Katex tex="x=-\dfrac13" /> and at two other points. State the <Katex tex="x" />-values of the two other points of intersection. Express your answers in the form <Katex tex="\dfrac{a\pm\sqrt{b}}{c}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are integers.</>} examinerReport={EXAM_D}>
-        <Background>
-          <p>
-            A tangent meets its curve at a <em>repeated</em> root. So{' '}
-            <Katex tex="f(x)-l(x)" /> is a quartic with <Katex tex="\left(x+\tfrac13\right)^2" />{' '}
-            as a factor, leaving a quadratic — which is why the answers come out in the
-            surd form the question prescribes.
-          </p>
-        </Background>
         <WorkingTable rows={ROWS_D} />
         <Explore title="Why the point of contact is a repeated root">
           <DoubleWidget />
@@ -425,20 +431,6 @@ export default function MethodsQ1_2018Exam2() {
       </PartCard>
 
       <PartCard letter="e" topic="Area Between Curves" marks={2} statement={<>Find the total area of the regions bounded by the tangent <Katex tex="l" /> and <Katex tex="y=f(x)" />. Express your answer in the form <Katex tex="\dfrac{a\sqrt{b}}{c}" />, where <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> are positive integers.</>} examinerReport={EXAM_E}>
-        <Background>
-          <p>
-            "Total area of the regions" sounds like it needs splitting, but it does not. The
-            tangent touches the curve at <Katex tex="x=-\tfrac13" /> without crossing, so{' '}
-            <Katex tex="l" /> stays above <Katex tex="f" /> right across the interval between
-            the two outer intersections. One integral of{' '}
-            <Katex tex="(\text{upper}-\text{lower})" /> therefore collects both lobes with the
-            correct sign already.
-          </p>
-          <p>
-            Where the regions sit relative to the <Katex tex="x" />-axis is irrelevant — an
-            area between two curves depends only on which is on top.
-          </p>
-        </Background>
         <WorkingTable rows={ROWS_E} />
         <Explore title="One integral covers both regions: the tangent is on top the whole way">
           <StripsWidget />
@@ -524,10 +516,9 @@ export default function MethodsQ1_2018Exam2() {
           source="Examiner's report"
           working={<Katex tex="\Delta=4-4a=0 \implies a=1" />}
         >
-          At <Katex tex="a=1" />, <Katex tex="p'(x)=12(x-1)(x+1)^2" />, which is zero at <Katex tex="x=1" />{' '}
-          <em>and</em> at <Katex tex="x=-1" />. The quadratic&apos;s single solution is an extra stationary point
-          (a stationary point of inflection), on top of <Katex tex="x=1" />, which is always there. To have only
-          one, the quadratic must contribute none: <Katex tex="\Delta<0" />.
+          Factorise at <Katex tex="a=1" />: <Katex tex="p'(x)=12(x-1)(x+1)^2" />. A repeated root is still a solution
+          of <Katex tex="p'(x)=0" />, so the count is two, not one. Only <Katex tex="\Delta<0" /> leaves{' '}
+          <Katex tex="x=1" /> on its own.
         </WrongMethod>
       </PartCard>
 
@@ -539,17 +530,8 @@ export default function MethodsQ1_2018Exam2() {
         <Background>
           <p>
             <Katex tex="92\%" /> scored zero here, and the report says many students did not
-            attempt it. The wording carries two separate conditions and both must be imposed:
-            "if <Katex tex="p" /> has only one stationary point" is part h.i.'s{' '}
-            <Katex tex="a>1" />, and "<Katex tex="p(x)=0" /> has no solutions" is a statement
-            about where the graph sits.
-          </p>
-          <p>
-            The second condition is the one to translate carefully. A quartic with a single
-            turning point misses the <Katex tex="x" />-axis exactly when that turning point is
-            above it — so the whole thing reduces to the inequality{' '}
-            <Katex tex="p(1)>0" />. No discriminant is involved; the report notes that some
-            students tried to apply one to a cubic equation.
+            attempt it. The key is to read the question as two separate conditions on{' '}
+            <Katex tex="a" />, find the values allowed by each, and keep only those that satisfy both.
           </p>
         </Background>
         <WorkingTable rows={ROWS_HIII} />

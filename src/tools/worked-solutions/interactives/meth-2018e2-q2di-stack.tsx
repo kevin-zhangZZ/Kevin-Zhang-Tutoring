@@ -37,7 +37,7 @@ export default function Stack() {
       <Notice tone="good">
         <b>The join.</b> At <M>t=6</M> Tablet 2 adds <M>b(0)=0</M>, so the total is{' '}
         <M>{`b(6)+0\\approx${num(b(6), 2)}`}</M>: the second piece starts exactly where the first ends, one unbroken
-        curve. It does turn a sharp corner, because Tablet 2 enters rising at <M>{"b'(0)=450"}</M> mg/h. Now step
+        curve (with a sharp corner). Now step
         forward a little.
       </Notice>
     )

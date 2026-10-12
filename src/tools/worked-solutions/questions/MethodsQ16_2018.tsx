@@ -44,6 +44,7 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
+        <Katex display tex="\text{Let } f(x)=2\cos(2x)+3" />
         <Katex display tex="\begin{aligned} f\!\left(\tfrac{\pi}{6}\right) &= 2\cos\!\left(\tfrac{\pi}{3}\right)+3 \\ &= 2(0.5)+3 \\ &= 4 \end{aligned}" />
         <Katex display tex="\begin{aligned} f\!\left(\tfrac{\pi}{3}\right) &= 2\cos\!\left(\tfrac{2\pi}{3}\right)+3 \\ &= 2(-0.5)+3 \\ &= 2 \end{aligned}" />
         <Katex display tex="\begin{aligned} f\!\left(\tfrac{\pi}{2}\right) &= 2\cos(\pi)+3 \\ &= 2(-1)+3 \\ &= 1 \end{aligned}" />
@@ -51,12 +52,12 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        First read the picture: the interval <Katex tex="\left[0,\tfrac{\pi}{2}\right]" /> is cut into three equal widths
-        of <Katex tex="\tfrac{\pi}{6}" />, and each rectangle&apos;s <em>top-right</em> corner touches the curve. So the
-        heights are <Katex tex="f" /> at the right edges <Katex tex="\tfrac{\pi}{6},\tfrac{\pi}{3},\tfrac{\pi}{2}" />. These
-        are exact values you know, so no CAS is needed (and it avoids a degree-mode slip).
+        From the figure: three equal widths of <Katex tex="\tfrac{\pi}{6}" /> across <Katex tex="\left[0,\tfrac{\pi}{2}\right]" />,
+        each rectangle&apos;s <em>top-right</em> corner on the curve. So the heights are <Katex tex="f" /> at the right
+        edges <Katex tex="\tfrac{\pi}{6},\tfrac{\pi}{3},\tfrac{\pi}{2}" />.
       </>
     ),
+    more: <>These are exact values you know, so no CAS is needed (and doing them by hand avoids a degree-mode slip).</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \text{Jamie's area} &= \frac{\pi}{6}(4+2+1) \\ &= \frac{7\pi}{6} \end{aligned}" />,
@@ -66,24 +67,21 @@ const ROWS: WorkingRow[] = [
     working: (
       <>
         <Katex display tex="\text{Exact area} = \int_0^{\pi/2}\bigl(2\cos(2x)+3\bigr)dx" />
-        <Katex display tex="= \Bigl[\sin(2x)+3x\Bigr]_0^{\pi/2} = \bigl(\sin\pi+\tfrac{3\pi}{2}\bigr)-0 = \frac{3\pi}{2}" />
+        <Katex display tex="= \Bigl[\sin(2x)+3x\Bigr]_0^{\pi/2}" />
+        <Katex display tex="= \bigl(\sin\pi+\tfrac{3\pi}{2}\bigr)-0 = \frac{3\pi}{2}" />
       </>
     ),
-    reason: (
-      <>
-        The exact area is the definite integral. Sanity check before dividing: the curve is decreasing, so every
-        right-endpoint rectangle sits below it and Jamie&apos;s <Katex tex="\tfrac{7\pi}{6}" /> must be <em>less</em> than{' '}
-        <Katex tex="\tfrac{3\pi}{2}" />. It is.
-      </>
-    ),
+    reason: <>The exact area is the definite integral (the curve stays above the <Katex tex="x" />-axis: its lowest value is <Katex tex="-2+3=1" />). The antiderivative of <Katex tex="2\cos(2x)" /> is <Katex tex="\sin(2x)" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} \text{ratio} &= \frac{7\pi/6}{3\pi/2} \\ &= \frac{7}{6}\times\frac{2}{3} \\ &= \frac{14}{18} \end{aligned}" />,
-    reason: <>&ldquo;As a fraction of the exact area&rdquo; means approximation <Katex tex="\div" /> exact. The <Katex tex="\pi" />s cancel, and the result is less than <Katex tex="1" />, as it must be for an underestimate.</>,
+    working: <Katex display tex="\begin{aligned} \text{ratio} &= \frac{7\pi/6}{3\pi/2} \\ &= \frac{7}{6}\times\frac{2}{3} \\ &= \frac{14}{18} = \frac{7}{9} \end{aligned}" />,
+    reason: <>&ldquo;As a fraction of the exact area&rdquo; means approximation <Katex tex="\div" /> exact. The <Katex tex="\pi" />s cancel; then simplify.</>,
+    more: <>Check: the curve is decreasing, so right-endpoint rectangles underestimate (see the Background) and the fraction must be less than <Katex tex="1" />. It is.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{7}{9}}" />,
-    reason: <>Matches option <b>B</b>. Option <b>E</b> <Katex tex="\left(\tfrac73\right)" /> divides <Katex tex="\tfrac{7\pi}{6}" /> by <Katex tex="\tfrac{\pi}{2}" />, the width of the interval, rather than by the exact area; a fraction bigger than <Katex tex="1" /> is impossible for an underestimate.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>E</b> <Katex tex="\left(\tfrac73\right)" />, chosen by <Katex tex="15\%" />, divides by the interval&apos;s width <Katex tex="\tfrac{\pi}{2}" /> instead of the exact area.</>,
   },
 ]
 
@@ -132,9 +130,8 @@ export default function MethodsQ16_2018() {
             <p>
               <Katex tex="\tfrac{\pi}{2}" /> is a length along the <Katex tex="x" />-axis, not the exact area. Dividing an
               area by a width gives the rectangles&apos; <em>average height</em>{' '}
-              (<Katex tex="\tfrac{4+2+1}{3}=\tfrac73" />), not a fraction of the true area. The check that catches it:
-              every rectangle sits under the curve, so the fraction must be less than <Katex tex="1" />, and{' '}
-              <Katex tex="\tfrac73" /> isn&apos;t. Divide by <Katex tex="\int_0^{\pi/2} f(x)\,dx=\tfrac{3\pi}{2}" /> instead.
+              (<Katex tex="\tfrac{4+2+1}{3}=\tfrac73" />), not a fraction of the true area, and it fails the
+              less-than-<Katex tex="1" /> check. Divide by <Katex tex="\int_0^{\pi/2} f(x)\,dx=\tfrac{3\pi}{2}" /> instead.
             </p>
           </WrongMethod>
         </>

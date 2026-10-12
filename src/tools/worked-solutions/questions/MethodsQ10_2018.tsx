@@ -29,19 +29,30 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="f\bigl(x+f(x)\bigr) = f(2x)" /><Katex display tex="\implies x+f(x) = 2x" />
       </>
     ),
-    reason: <>How would I know where to start? Both sides are <Katex tex="f" /> of something, and every option is a sloping straight line. A sloping line never gives two different inputs the same output, so the outputs can only be equal if the <em>inputs</em> are equal. That lets you strip the <Katex tex="f" /> off both sides.</>,
+    reason: <>Every option is a sloping straight line, which never gives two different inputs the same output. So equal outputs need equal <em>inputs</em>: strip the <Katex tex="f" /> off both sides.</>,
+    more: (
+      <>
+        How would you know to start here? Both sides of the equation are <Katex tex="f" /> of something, so
+        ask when two outputs of <Katex tex="f" /> can be equal. For a one-to-one function, only when the inputs are.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\implies f(x) = x" />,
-    reason: <>Subtract <Katex tex="x" /> from both sides. This points straight at option <b>C</b>; the next rows confirm it and check that the others really fail.</>,
+    reason: <>Subtract <Katex tex="x" /> from both sides. This points to option <b>C</b>; the next rows confirm C works and check that the others fail.</>,
   },
   {
     working: <Katex display tex="\textbf{C}: \ f\bigl(x+x\bigr) = f(2x) \ \checkmark" />,
-    reason: <>With the identity function the inner bracket collapses to <Katex tex="2x" /> immediately, so both sides are <Katex tex="f(2x)=2x" />. The equation holds for every <Katex tex="x" />, not just some.</>,
+    reason: <>Substitute <Katex tex="f(x)=x" />: the inner bracket becomes <Katex tex="2x" />, so both sides are <Katex tex="f(2x)=2x" /> for every <Katex tex="x" />.</>,
   },
   {
     working: <><Katex display tex="\textbf{A}: \ f\bigl(x+(1-x)\bigr) = f(1) = 0" /><Katex display tex="f(2x) = 1-2x" /></>,
-    reason: <>Ruling out <b>A</b>: the left side collapses to a constant while the right side still depends on <Katex tex="x" />, so they agree only at <Katex tex="x=\tfrac12" />. Had you tested only <Katex tex="x=\tfrac12" />, A would have looked right: one value can rule an option out, never in.</>,
+    reason: <>Ruling out <b>A</b>: the left side is the constant <Katex tex="0" /> but the right side depends on <Katex tex="x" />, so they agree only at <Katex tex="x=\tfrac12" />.</>,
+    more: (
+      <>
+        Had you tested only <Katex tex="x=\tfrac12" />, A would have looked right.
+      </>
+    ),
   },
   {
     working: <><Katex display tex="\textbf{B}: \ f\bigl(x+(x-1)\bigr) = 2x-2" /><Katex display tex="f(2x) = 2x-1" /></>,
@@ -53,11 +64,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <><Katex display tex="\textbf{E}: \ f\!\left(x+\tfrac{1-x}{2}\right) = \tfrac{1-x}{4}" /><Katex display tex="f(2x) = \tfrac{1-2x}{2}" /></>,
-    reason: <>Ruling out <b>E</b>: different gradients, so the two sides agree only where the lines cross, at <Katex tex="x=\tfrac13" />.</>,
+    reason: <>Ruling out <b>E</b>: the two sides have different gradients, so they agree only where the lines cross, at <Katex tex="x=\tfrac13" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = x}" />,
-    reason: <>Matches option <b>C</b>, the only option for which the two sides agree for every non-zero <Katex tex="x" />.</>,
+    reason: <>Matches option <b>C</b>, the only option where the two sides agree for every non-zero <Katex tex="x" />.</>,
   },
 ]
 

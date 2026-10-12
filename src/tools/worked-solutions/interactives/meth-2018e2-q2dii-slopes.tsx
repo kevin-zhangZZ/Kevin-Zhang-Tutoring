@@ -58,14 +58,14 @@ export default function Slopes() {
   } else if (t < T_MAX) {
     notice = (
       <Notice>
-        Tablet 2 is rising faster (<M>{`${num(s2, 1)}`}</M>) than Tablet 1 is falling (<M>{`${num(s1, 1)}`}</M>), so the
+        Tablet 2 is rising faster (<M>{`${num(s2, 1)}`}</M>) than Tablet 1 is falling (<M>{`${num(-s1, 1)}`}</M>), so the
         total climbs. Drag <M>t</M> right until the two slopes are equal and opposite.
       </Notice>
     )
   } else {
     notice = (
       <Notice>
-        Now Tablet 1&apos;s fall (<M>{`${num(s1, 1)}`}</M>) outweighs Tablet 2&apos;s {s2 > 0 ? 'rise' : 'change'} (
+        Now Tablet 1&apos;s fall (<M>{`${num(-s1, 1)}`}</M>) outweighs Tablet 2&apos;s {s2 > 0 ? 'rise' : 'change'} (
         <M>{`${num(s2, 1)}`}</M>), so the total is falling. The peak is behind you, where the slopes cancelled.
       </Notice>
     )

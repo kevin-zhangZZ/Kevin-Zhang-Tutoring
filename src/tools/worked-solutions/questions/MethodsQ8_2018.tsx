@@ -39,11 +39,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies \int_{5}^{12} g(x)\,dx = 6" />
       </>
     ),
-    reason: <>Swapping the terminals of a definite integral reverses its sign. The given integral runs <em>backwards</em> (from <Katex tex="12" /> down to <Katex tex="5" />), so turn it round before combining it with anything. This is the step the question is really testing: whenever a terminal on top is smaller than the one underneath, flip it first.</>,
+    reason: <>Swapping the terminals of a definite integral reverses its sign. This one runs <em>backwards</em> (<Katex tex="12" /> down to <Katex tex="5" />), so turn it round first.</>,
+    more: <>This is the step the question is really testing.</>,
   },
   {
-    working: <Katex display tex="\int_1^{12} = \int_1^{5} + \int_5^{12}" />,
-    reason: <>How would I know to split at <Katex tex="5" />? The integral we want (<Katex tex="1" /> to <Katex tex="5" />) and the flipped one (<Katex tex="5" /> to <Katex tex="12" />) join end to start at <Katex tex="5" /> and together cover <Katex tex="1" /> to <Katex tex="12" />, which is the integral we know. The signed areas of the two pieces add up to the whole.</>,
+    working: <Katex display tex="\begin{aligned}\int_1^{12} g(x)\,dx &= \int_1^{5} g(x)\,dx \\ &\quad + \int_5^{12} g(x)\,dx\end{aligned}" />,
+    reason: <>Split at <Katex tex="5" />: the wanted piece (<Katex tex="1" /> to <Katex tex="5" />) and the flipped piece (<Katex tex="5" /> to <Katex tex="12" />) together cover <Katex tex="1" /> to <Katex tex="12" />, the integral we know.</>,
+    more: <>The two pieces join end to start at <Katex tex="5" />, so their signed areas add up to the signed area of the whole.</>,
   },
   {
     working: <Katex display tex="5 = \int_1^{5} g(x)\,dx + 6" />,
@@ -51,13 +53,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_1^{5} g(x)\,dx = 5 - 6" />,
-    reason: <>Subtract <Katex tex="6" /> from both sides. The same answer comes in one line by chaining the given integrals end to start, <Katex tex="1\to12\to5" />: <Katex tex="\int_1^{12}+\int_{12}^{5}=\int_1^{5}" />, so <Katex tex="5+(-6)=-1" />. The middle point does not have to lie between the ends.</>,
-    more: <>The walk below shows the backwards leg cancelling the overlap.</>,
+    reason: <>Subtract <Katex tex="6" /> from both sides.</>,
+    more: <>The same answer comes in one line by chaining the given integrals end to start, <Katex tex="1\to12\to5" />: <Katex tex="\int_1^{12}+\int_{12}^{5}=\int_1^{5}" />, so <Katex tex="5+(-6)=-1" />. The walk below shows the backwards leg cancelling the overlap.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_1^{5} g(x)\,dx = -1}" />,
-    reason: <>Matches option <b>B</b>. A negative answer is fine: a definite integral is a <em>signed</em> area, so between <Katex tex="1" /> and <Katex tex="5" /> more area lies below the axis than above it. Option <b>E</b> <Katex tex="(11)" />, chosen by <Katex tex="36\%" /> (almost as many as answered correctly), is <Katex tex="5-(-6)" />. Option <b>C</b> <Katex tex="(1)" /> has the right size but the wrong sign, which is what rearranging <Katex tex="5=\int_1^5+6" /> as <Katex tex="6-5" /> gives.</>,
-    more: <>For option <b>E</b>, see the box below.</>,
+    reason: <>Matches option <b>B</b>. A negative answer is fine: a definite integral is a <em>signed</em> area.</>,
+    more: <>Here it means more area lies below the axis than above it between <Katex tex="1" /> and <Katex tex="5" />. Option <b>E</b> <Katex tex="(11)" />, chosen by <Katex tex="36\%" /> (almost as many as answered correctly), is <Katex tex="5-(-6)" />: the box below works through that slip. Option <b>A</b> <Katex tex="(-11)" /> is the same slip subtracted the other way round, <Katex tex="-6-5" />. Option <b>C</b> <Katex tex="(1)" /> has the right size but the wrong sign, which is what rearranging <Katex tex="5=\int_1^5+6" /> as <Katex tex="6-5" /> gives.</>,
   },
 ]
 
@@ -85,8 +87,8 @@ export default function MethodsQ8_2018() {
           <p>
             Look at the order: <Katex tex="1\to12" />, then <Katex tex="12\to5" />. The second
             interval runs backwards and overlaps the first. That is not an accident: the
-            question is built so that anyone who only remembers "add the integrals" without
-            checking direction lands on a distractor.
+            question is built so that anyone who treats <Katex tex="\int_{12}^{5}" /> as if it were{' '}
+            <Katex tex="\int_{5}^{12}" />, and so subtracts it, lands on a distractor.
           </p>
           <p>
             Two facts settle it:{' '}

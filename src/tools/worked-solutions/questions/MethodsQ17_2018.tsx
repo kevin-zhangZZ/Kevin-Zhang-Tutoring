@@ -5,7 +5,7 @@
 // b = ±1/√2; D²(0) = D²(±1) = 1, D²(±1/√2) = 3/4). itute agrees (C). The VCAA report prints no
 // comment for this question. Distractors verified: A (17%) is the stationary point b = 0, which is
 // a local maximum of D²; B puts the turning point at (±1, 0), still distance 1; D takes
-// 2b² − 1 = 0 to b = ±1/2 without the square root. E is not named (no clean slip found).
+// 2b² − 1 = 0 to b = ±1/2 without the square root. E (b = ±1/4) has D² = 241/256, no clean slip.
 // Interactive (§15): interactives/meth-2018-mcq17-closest-turning-point.tsx slides b, shows the
 // turning point riding along y = 1 − x² with a circle about O through it, plus D² against b.
 
@@ -26,15 +26,18 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = x^2 - 2bx + 1 = (x-b)^2 + 1 - b^2" />,
-    reason: <>Read the question carefully: it&apos;s the <em>turning point</em> that has to be close to the origin, not any point on the parabola. So first get the turning point in terms of <Katex tex="b" />. Completing the square reads it straight off, with no calculus needed.</>,
+    reason: <>It&apos;s the <em>turning point</em> that must be close to the origin, so first find it in terms of <Katex tex="b" />. Completing the square reads it straight off.</>,
+    more: <>Read the question carefully: it is not asking for the point of the parabola nearest the origin. Calculus works too: <Katex tex="\tfrac{dy}{dx}=2x-2b=0" /> gives <Katex tex="x=b" />.</>,
   },
   {
     working: <Katex display tex="\text{Turning point } \left(b,\ 1-b^2\right)" />,
-    reason: <>As <Katex tex="b" /> varies, this point traces its own curve — the downward parabola <Katex tex="y=1-x^2" />. The question is which point on <em>that</em> curve is nearest the origin.</>,
+    reason: <>From <Katex tex="(x-h)^2+k" /> form, the turning point is <Katex tex="(h,k)" />, here <Katex tex="h=b" /> and <Katex tex="k=1-b^2" />.</>,
+    more: <>As <Katex tex="b" /> varies, this point traces its own curve, the downward parabola <Katex tex="y=1-x^2" />. The question is which point on <em>that</em> curve is nearest the origin.</>,
   },
   {
     working: <Katex display tex="D^2 = b^2 + \left(1-b^2\right)^2" />,
-    reason: <>Distance from the origin, squared. Minimising <Katex tex="D^2" /> instead of <Katex tex="D" /> gives the same <Katex tex="b" /> and avoids differentiating a square root — a standard and expected simplification.</>,
+    reason: <>Distance from the origin, squared (Pythagoras). Minimising <Katex tex="D^2" /> gives the same <Katex tex="b" /> as minimising <Katex tex="D" />, without a square root.</>,
+    more: <>Since <Katex tex="D\ge0" />, <Katex tex="D" /> is smallest exactly when <Katex tex="D^2" /> is smallest. This is a standard and expected simplification.</>,
   },
   {
     working: <Katex display tex="D^2 = b^2 + 1 - 2b^2 + b^4 = b^4 - b^2 + 1" />,
@@ -46,7 +49,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2b\left(2b^2-1\right) = 0 \implies b = 0 \ \text{ or } \ b = \pm\frac{1}{\sqrt2}" />,
-    reason: <>Three stationary values, so they must be compared rather than assumed.</>,
+    reason: <>Three stationary points (values of <Katex tex="b" />). A zero derivative only finds candidates, so test each.</>,
+    more: <>From <Katex tex="2b^2-1=0" />: <Katex tex="b^2=\tfrac12" />, so <Katex tex="b=\pm\sqrt{\tfrac12}=\pm\tfrac{1}{\sqrt2}" />.</>,
   },
   {
     working: (
@@ -55,11 +59,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="b=\pm\tfrac{1}{\sqrt2}: \ D^2 = \tfrac14-\tfrac12+1 = \tfrac34" />
       </>
     ),
-    reason: <>Testing each. <Katex tex="b=0" /> is a local <em>maximum</em> of the distance, not a minimum — it puts the turning point at <Katex tex="(0,1)" />, one unit away, while the other two sit closer at <Katex tex="\sqrt{3}/2\approx0.87" />.</>,
+    reason: <>Substitute each candidate. <Katex tex="b=\pm\tfrac{1}{\sqrt2}" /> gives the smaller distance, <Katex tex="D=\tfrac{\sqrt3}{2}\approx0.87" />, against <Katex tex="1" /> at <Katex tex="b=0" />.</>,
+    more: <><Katex tex="\tfrac34" /> is the overall minimum, not just a local one: <Katex tex="D^2=\left(b^2-\tfrac12\right)^2+\tfrac34\ge\tfrac34" /> for every <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="\boxed{b = -\frac{1}{\sqrt2} \ \text{ or } \ b = \frac{1}{\sqrt2}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> <Katex tex="(b=0)" /> is the stationary point that is a local maximum. Option <b>B</b> <Katex tex="(b=\pm1)" /> puts the turning point on the <Katex tex="x" />-axis at <Katex tex="(\pm1,0)" />, but that is still <Katex tex="1" /> unit away. Option <b>D</b> <Katex tex="\left(\pm\tfrac12\right)" /> comes from solving <Katex tex="2b^2-1=0" /> as <Katex tex="b^2=\tfrac12 \Rightarrow b=\pm\tfrac12" />, forgetting the square root.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>A</b> <Katex tex="(b=0)" /> gives <Katex tex="D=1" />, the larger value. Option <b>B</b> <Katex tex="(b=\pm1)" /> puts the turning point on the <Katex tex="x" />-axis at <Katex tex="(\pm1,0)" />, but that is still <Katex tex="1" /> unit away. Option <b>D</b> <Katex tex="\left(\pm\tfrac12\right)" /> comes from solving <Katex tex="2b^2-1=0" /> as <Katex tex="b^2=\tfrac12 \Rightarrow b=\pm\tfrac12" />, forgetting the square root. Option <b>E</b> <Katex tex="\left(\pm\tfrac14\right)" /> gives <Katex tex="D^2=\tfrac{241}{256}\approx0.94" />, closer than <Katex tex="1" /> but not as close as <Katex tex="\tfrac34" />.</>,
   },
 ]
 
@@ -97,7 +103,7 @@ export default function MethodsQ17_2018() {
           >
             <p>
               Setting the derivative to zero finds <em>all</em> the stationary points, and here there are three. At{' '}
-              <Katex tex="b=0" /> the turning point is <Katex tex="(0,1)" />, with <Katex tex="D^2=1" />, but at{' '}
+              <Katex tex="b=0" />, <Katex tex="D^2=1" />, but at{' '}
               <Katex tex="b=\pm\tfrac{1}{\sqrt2}" /> it is <Katex tex="\tfrac34" />, which is smaller. So <Katex tex="b=0" /> is
               the top of a hump in <Katex tex="D^2" />, a local maximum. Always substitute every candidate (or check the
               sign of <Katex tex="\tfrac{d^2(D^2)}{db^2}=12b^2-2" />, which is <Katex tex="-2" /> at <Katex tex="b=0" />).
@@ -114,10 +120,6 @@ export default function MethodsQ17_2018() {
             parabola has one turning point; <Katex tex="b" /> is then varied to move that
             point around. So the differentiation at the end is with respect to{' '}
             <Katex tex="b" />, after <Katex tex="x" /> has already been eliminated.
-          </p>
-          <p>
-            Once three stationary values appear, they have to be compared. A derivative set
-            to zero locates candidates; it does not tell you which is the minimum.
           </p>
         </Background>
       }

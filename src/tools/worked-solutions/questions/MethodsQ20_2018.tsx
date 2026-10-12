@@ -49,63 +49,66 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}P&0\\0&Q\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix} \implies \begin{cases}x' = Px\\ y' = Qy\end{cases}" />,
-    reason: <>Every option is a <em>diagonal</em> matrix, so it is just two independent scalings: horizontal by <Katex tex="P" />, vertical by <Katex tex="Q" />. No matrix algebra is needed beyond reading off these two equations.</>,
+    working: <Katex display tex="\begin{aligned}&T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}P&0\\0&Q\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}\\ &\implies x' = Px,\quad y' = Qy\end{aligned}" />,
+    reason: <>Every option is a diagonal matrix: a dilation by factor <Katex tex="|P|" /> from the <Katex tex="y" />-axis and by <Katex tex="|Q|" /> from the <Katex tex="x" />-axis. A negative <Katex tex="P" /> adds a reflection in the <Katex tex="y" />-axis; a negative <Katex tex="Q" />, in the <Katex tex="x" />-axis.</>,
+    more: <>No matrix algebra is needed beyond reading off these two equations; the rest of the question is about how the two dilations change a gradient and an area.</>,
   },
   {
     working: <Katex display tex="g(x) = Q\,f\!\left(\frac{x}{P}\right)" />,
-    reason: <>The image curve: a point <Katex tex="(x,f(x))" /> moves to <Katex tex="(Px,\ Qf(x))" />, so to find <Katex tex="g" /> at a given <Katex tex="x" /> you undo the horizontal scaling and apply the vertical one.</>,
+    reason: <>From row 1, <Katex tex="x=\tfrac{x'}{P}" /> and <Katex tex="y=\tfrac{y'}{Q}" />. Substitute into <Katex tex="y=f(x)" />: <Katex tex="y'=Qf\!\left(\tfrac{x'}{P}\right)" />, then drop the dashes.</>,
   },
   {
     working: <Katex display tex="g'(x) = \frac{Q}{P}f'\!\left(\frac{x}{P}\right) \implies g'(0) = \frac{Q}{P}f'(0)" />,
-    reason: (
+    reason: <>Chain rule. <Katex tex="x=0" /> maps to <Katex tex="P\times0=0" />, and the area on each side of it is scaled by the same factor (a reflection just swaps the sides), so the median condition rules nothing out.</>,
+    more: (
       <>
-        Chain rule. It makes sense as rise over run: the horizontal factor <Katex tex="P" /> multiplies every run and the
-        vertical factor <Katex tex="Q" /> every rise, so every gradient is multiplied by <Katex tex="\tfrac QP" />. The point{' '}
-        <Katex tex="x=0" /> stays put (<Katex tex="P\times0=0" />), so the median stays at <Katex tex="0" /> for every option
-        and the two derivatives are compared at the same place. The median condition rules nothing out; the other two
-        conditions do the work.
+        It makes sense as rise over run: the horizontal factor <Katex tex="P" /> multiplies every run and the vertical factor{' '}
+        <Katex tex="Q" /> every rise, so every gradient is multiplied by <Katex tex="\tfrac QP" />. Because <Katex tex="0" /> is
+        fixed, the two derivatives <Katex tex="f'(0)" /> and <Katex tex="g'(0)" /> are compared at the same place. The other two
+        conditions (the gradient, and <Katex tex="g" /> being a pdf) do the work.
       </>
     ),
   },
   {
     working: <Katex display tex="\frac{Q}{P}(4) = -1 \implies \frac{Q}{P} = -\frac14" />,
-    reason: <>The first condition. The negative sign says <Katex tex="P" /> and <Katex tex="Q" /> have opposite signs — a reflection is involved somewhere.</>,
+    reason: <>The gradient condition. The negative sign says <Katex tex="P" /> and <Katex tex="Q" /> have opposite signs, so exactly one axis is reflected.</>,
   },
   {
     working: <Katex display tex="\int_{-\infty}^{\infty} g(x)\,dx = |P|\,Q = 1" />,
-    reason: <>The second condition, and the one that separates A from B: <Katex tex="g" /> must itself be a probability density function, so it still encloses unit area. Scaling horizontally by <Katex tex="|P|" /> and vertically by <Katex tex="Q" /> multiplies the area by <Katex tex="|P|Q" />, and that product has to stay <Katex tex="1" />.</>,
+    reason: <><Katex tex="g" /> is a pdf, so it must still enclose area <Katex tex="1" />. Widths are multiplied by <Katex tex="|P|" /> (a reflection doesn&apos;t change a width) and heights by <Katex tex="Q" /> (a negative <Katex tex="Q" /> puts the area below the axis).</>,
   },
   {
     working: <Katex display tex="g(x)\ge0 \implies Q>0 \implies P<0" />,
-    reason: <>A density is never negative, so the vertical scale factor cannot flip the curve. The reflection must therefore be horizontal.</>,
+    reason: <>A density is never negative, so the vertical factor cannot flip the curve. The reflection must be horizontal (in the <Katex tex="y" />-axis).</>,
   },
   {
     working: <Katex display tex="Q = -\frac{P}{4} \ \text{ and } \ |P|Q = 1 \implies |P|\left(-\frac{P}{4}\right) = 1" />,
-    reason: <>Combining the two conditions. With <Katex tex="P<0" />, <Katex tex="|P|=-P" />, so this becomes <Katex tex="\tfrac{P^2}{4}=1" />.</>,
+    reason: <>Combine the two conditions. With <Katex tex="P<0" />, <Katex tex="|P|=-P" />, so this becomes <Katex tex="\tfrac{P^2}{4}=1" />.</>,
   },
   {
     working: <Katex display tex="P^2 = 4, \ P<0 \implies P = -2, \quad Q = \frac12" />,
-    reason: <>Both conditions satisfied simultaneously.</>,
+    reason: <>Take the negative root, then <Katex tex="Q=-\tfrac P4=\tfrac12" />. Both conditions hold.</>,
   },
   {
     working: <Katex display tex="\textbf{B}: \ \frac{Q}{P} = \frac{-1/2}{2} = -\frac14 \ \checkmark, \quad |P|Q = -1 \ \times" />,
-    reason: <>Ruling out <b>B</b>, the most popular answer at <Katex tex="26\%" /> — more than chose the correct option. It gets the gradient exactly right and fails the area test: a negative <Katex tex="Q" /> turns the density upside down, so <Katex tex="g" /> is not a pdf at all. The derivative condition on its own cannot separate <b>A</b> from <b>B</b>.</>,
+    reason: <><b>B</b> gets the gradient right but its negative <Katex tex="Q" /> flips the curve below the axis, so <Katex tex="g" /> is not a pdf.</>,
+    more: <><b>B</b> was the most popular answer (<Katex tex="26\%" />), chosen by more students than the correct option.</>,
   },
   {
     working: <Katex display tex="\textbf{C}, \textbf{D}, \textbf{E}: \ \frac{Q}{P} = \frac14, \ -4, \ -4" />,
-    reason: <>Ruling out the rest: none gives <Katex tex="\tfrac{Q}{P}=-\tfrac14" />. <b>C</b> has no reflection at all; <b>D</b> and <b>E</b> have the two scale factors the wrong way round, dividing where they should multiply.</>,
+    reason: <>None gives <Katex tex="\tfrac{Q}{P}=-\tfrac14" />, so all fail the gradient condition.</>,
+    more: (
+      <>
+        <b>C</b> is <b>A</b> without the reflection, so <Katex tex="g'(0)=+1" />. <b>D</b> has <b>A</b>&apos;s scale factors
+        swapped between the axes (<Katex tex="\tfrac12" /> across, <Katex tex="2" /> up), so{' '}
+        <Katex tex="g'(0)=-4\times4=-16" />. <b>E</b> does the same and also flips the density under the axis (area{' '}
+        <Katex tex="-1" />).
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}-2&0\\[2pt]0&\tfrac12\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}}" />,
-    reason: (
-      <>
-        Matches option <b>A</b>. <b>B</b> (<Katex tex="26\%" />) passes the gradient test but flips the density under the
-        axis. <b>C</b> is <b>A</b> without the reflection, so <Katex tex="g'(0)=+1" />. <b>D</b> has <b>A</b>&apos;s scale factors
-        swapped between the axes (<Katex tex="\tfrac12" /> across, <Katex tex="2" /> up), giving{' '}
-        <Katex tex="g'(0)=-16" />; <b>E</b> does the same and also flips the density under the axis.
-      </>
-    ),
+    reason: <>Matches option <b>A</b>, the only option passing both tests.</>,
   },
 ]
 
@@ -143,17 +146,10 @@ export default function MethodsQ20_2018() {
           <p>
             Only <Katex tex="20\%" /> of the state got this, and the pattern of wrong answers
             says why: the derivative condition alone does not pin the transformation down.
-            Options <b>A</b> and <b>B</b> both satisfy it. What separates them is that{' '}
+            Two of the options satisfy it. What separates them is that{' '}
             <Katex tex="g" /> is stated to be a <em>probability density function</em>, which
             forces the area under it to stay <Katex tex="1" /> and forces it to stay
             non-negative.
-          </p>
-          <p>
-            Reading the matrix: a diagonal matrix <Katex tex="\begin{bmatrix}P&0\\0&Q\end{bmatrix}" />{' '}
-            stretches horizontally by <Katex tex="P" /> and vertically by{' '}
-            <Katex tex="Q" />, with a negative factor adding a reflection. Gradients get
-            multiplied by <Katex tex="\tfrac{Q}{P}" /> and areas by{' '}
-            <Katex tex="|P|Q" /> — those two facts are the whole question.
           </p>
         </Background>
       }
@@ -172,7 +168,7 @@ export default function MethodsQ20_2018() {
               />
             }
           >
-            The gradient does come out right, but every <Katex tex="y" />-value is multiplied by <Katex tex="-\tfrac12" />, so{' '}
+            Every <Katex tex="y" />-value is multiplied by <Katex tex="-\tfrac12" />, so{' '}
             <Katex tex="g(x)\le0" /> everywhere and <Katex tex="\int g(x)\,dx=-1" />. That is not a probability density
             function. A reflection in either axis flips the sign of the gradient, but only the reflection in the{' '}
             <Katex tex="y" />-axis keeps the curve above the axis. Once you have a candidate, ask: is <Katex tex="g" /> still{' '}

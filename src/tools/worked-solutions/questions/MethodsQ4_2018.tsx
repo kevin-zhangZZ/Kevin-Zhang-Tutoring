@@ -7,6 +7,7 @@
 // Interactive diagram (§15): interactives/meth-2018-mcq4-follow-point.tsx — slide x along g and
 // watch each point of g copy f's height from one unit to the LEFT and halve it, so A(3, 2) lands
 // at P(4, 1); a toggle draws the "move left" reading, ½f(x + 1), and shows (2, 1) is not on g.
+// Report comment is verbatim incl. VCAA's "a factor of a ½" (the "a" was missing until 12 Oct 2026).
 // f there is this site's example curve through A (the question gives no rule for f).
 
 import Katex from '../../../components/Katex'
@@ -24,7 +25,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       <Katex tex="A(3,2),\ g(x)=\tfrac12 f(x-1)" />,
       <br />
-      Dilate by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="x" />-axis: <Katex tex="(3,1)" />
+      Dilate by a factor of a <Katex tex="\tfrac12" /> from the <Katex tex="x" />-axis: <Katex tex="(3,1)" />
       <br />
       Translate 1 unit to the right: <Katex tex="(4,1)" />
     </>
@@ -34,7 +35,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = \frac12 f(x-1)" />,
-    reason: <>Compare with <Katex tex="y=f(x)" /> and look for two kinds of change: one <em>inside</em> the bracket, which acts on <Katex tex="x" />, and one <em>outside</em>, which acts on <Katex tex="y" />. Read each off separately.</>,
+    reason: <>Compare with <Katex tex="y=f(x)" />: the change <em>inside</em> the bracket acts on <Katex tex="x" />, and the <Katex tex="\tfrac12" /> <em>outside</em> acts on <Katex tex="y" />. Read each off separately.</>,
   },
   {
     working: (
@@ -43,19 +44,21 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\tfrac12 f(\cdot): \text{dilate by factor } \tfrac12 \text{ from the } x\text{-axis}" />
       </>
     ),
-    reason: <>The outside <Katex tex="\tfrac12" /> does exactly what it says: every <Katex tex="y" />-value is halved. The inside change works the opposite way to how it looks: <Katex tex="g(4)=\tfrac12 f(3)" />, so <Katex tex="g" /> reaches each value of <Katex tex="f" /> one unit <em>later</em>. That is a shift to the right, even though the bracket shows a minus.</>,
+    reason: <>The outside <Katex tex="\tfrac12" /> halves every <Katex tex="y" />-value. Inside: <Katex tex="g" /> at <Katex tex="x" /> uses <Katex tex="f" /> at <Katex tex="x-1" />, so what <Katex tex="f" /> does at <Katex tex="x=3" />, <Katex tex="g" /> does at <Katex tex="x=4" />: one unit <em>later</em>, a shift right.</>,
   },
   {
     working: <Katex display tex="(x,\,y) \to \left(x+1,\ \tfrac12 y\right)" />,
-    reason: <>Write the transformation as a rule for points, so any point can be pushed through it. Order doesn&apos;t matter here, because one move acts only on <Katex tex="x" /> and the other only on <Katex tex="y" />.</>,
+    reason: <>Write the transformation as a rule for points. Order doesn&apos;t matter here: one move acts only on <Katex tex="x" />, the other only on <Katex tex="y" />.</>,
   },
   {
     working: <Katex display tex="A(3,\,2) \to \left(3+1,\ \tfrac12\times 2\right) = (4,\,1)" />,
-    reason: <>Push <Katex tex="A" /> through the rule. Check it against <Katex tex="g" />&apos;s own rule: <Katex tex="g(4)=\tfrac12 f(3)=\tfrac12\times2=1" />, so <Katex tex="(4,1)" /> really is on <Katex tex="g" />. This substitution check is the safest way to settle a left-or-right doubt: the one point of <Katex tex="f" /> you know is at <Katex tex="x=3" />, so you need <Katex tex="x-1=3" />.</>,
+    reason: <>Push <Katex tex="A" /> through the rule, then check with <Katex tex="g" />&apos;s rule: <Katex tex="g(4)=\tfrac12 f(3)=\tfrac12\times2=1" />, so <Katex tex="(4,1)" /> is on <Katex tex="g" />.</>,
+    more: <>This substitution check is the safest way to settle any left-or-right doubt.</>,
   },
   {
     working: <Katex display tex="\boxed{P = (4,\,1)}" />,
-    reason: <>Matches option <b>C</b>. Option A <Katex tex="(2,1)" />, chosen by <Katex tex="18\%" />, translates to the <em>left</em>, reading <Katex tex="x-1" /> as a shift of <Katex tex="-1" />. Option D <Katex tex="(4,2)" /> forgets the dilation, option E <Katex tex="(4,4)" /> doubles instead of halving, and option B <Katex tex="(2,4)" /> does both moves backwards (it is the transformation that maps <Katex tex="g" /> back onto <Katex tex="f" />).</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option A <Katex tex="(2,1)" /> shifts left instead of right. Option D <Katex tex="(4,2)" /> forgets the dilation, option E <Katex tex="(4,4)" /> doubles instead of halving, and option B <Katex tex="(2,4)" /> does both moves backwards (it is the transformation that maps <Katex tex="g" /> back onto <Katex tex="f" />).</>,
   },
 ]
 
@@ -108,8 +111,7 @@ export default function MethodsQ4_2018() {
             <p>
               The minus sign inside the bracket moves the graph the <em>opposite</em> way. Substitution catches it: if{' '}
               <Katex tex="(2,1)" /> were on <Katex tex="g" />, then <Katex tex="g(2)=\tfrac12 f(1)" /> would have to be{' '}
-              <Katex tex="1" />, but nothing is known about <Katex tex="f(1)" />. The only known point of <Katex tex="f" /> is
-              at <Katex tex="x=3" />, and <Katex tex="g" /> uses it when <Katex tex="x-1=3" />, i.e. at <Katex tex="x=4" />.
+              <Katex tex="1" />, but nothing is known about <Katex tex="f(1)" />, so <Katex tex="(2,1)" /> can&apos;t be justified.
             </p>
           </WrongMethod>
         </>

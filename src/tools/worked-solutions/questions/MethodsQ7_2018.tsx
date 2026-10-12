@@ -23,7 +23,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f^{-1}(1) = 8 \iff f(8) = 1" />,
-    reason: <>How would I know to do this? The question gives a value of <Katex tex="f^{-1}" /> but a rule for <Katex tex="f" />, so turn the statement round. An inverse swaps inputs and outputs (its graph is the reflection of <Katex tex="f" /> in <Katex tex="y=x" />), so the point <Katex tex="(1,8)" /> on <Katex tex="f^{-1}" /> is the point <Katex tex="(8,1)" /> on <Katex tex="f" />. This avoids ever finding <Katex tex="f^{-1}" /> itself.</>,
+    reason: <>We're given a value of <Katex tex="f^{-1}" /> but the rule for <Katex tex="f" />. An inverse swaps inputs and outputs, so <Katex tex="(1,8)" /> on <Katex tex="f^{-1}" /> is <Katex tex="(8,1)" /> on <Katex tex="f" />.</>,
+    more: <>The interactive below lets you watch <Katex tex="(8,1)" /> on <Katex tex="f" /> and its mirror image <Katex tex="(1,8)" /> on <Katex tex="f^{-1}" /> get hit at the same <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="f(8) = k\log_2(8) = 1" />,
@@ -39,7 +40,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \frac13}" />,
-    reason: <>Matches option <b>B</b>. Option <b>C</b> <Katex tex="(3)" /> is the value one step before the end: <Katex tex="\log_2(8)" />, or equivalently <Katex tex="\tfrac1k" /> if you go via the inverse rule <Katex tex="f^{-1}(x)=2^{x/k}" /> and stop at <Katex tex="2^{1/k}=8" />. Check: <Katex tex="3k=1" /> means <Katex tex="k=\tfrac13" />, not <Katex tex="3" />.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>C</b> <Katex tex="(3)" /> is the value one step before the end: <Katex tex="\log_2(8)" />, or equivalently <Katex tex="\tfrac1k" /> if you go via the inverse rule <Katex tex="f^{-1}(x)=2^{x/k}" /> and stop at <Katex tex="2^{1/k}=8" />. Check: <Katex tex="3k=1" /> means <Katex tex="k=\tfrac13" />, not <Katex tex="3" />. Option <b>A</b> <Katex tex="(0)" /> is <Katex tex="\log_2(1)" />, the dead end of misreading the condition as <Katex tex="f(1)=8" /> (box below). Option <b>D</b> <Katex tex="(8)" /> just repeats a number from the question.</>,
   },
 ]
 

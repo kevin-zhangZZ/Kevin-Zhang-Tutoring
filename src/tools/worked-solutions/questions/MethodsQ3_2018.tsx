@@ -31,7 +31,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)=\frac1x, \quad f'(x) = -\frac{1}{x^2} < 0 \ \text{ for } x>0" />,
-    reason: <>Whenever you are asked for a range over an interval, first decide whether the function goes up or down across it: that decides which end of the domain gives the top of the range. On the positive reals <Katex tex="f" /> is strictly <em>decreasing</em>. That single fact reverses the order of the endpoints, and it is what separates the right answer from the most popular wrong one.</>,
+    reason: <>For a range over an interval, first decide whether <Katex tex="f" /> goes up or down across it. Since <Katex tex="a,b>0" />, the whole domain lies in <Katex tex="x>0" />, where <Katex tex="f'(x)<0" />: <Katex tex="f" /> is strictly <em>decreasing</em>.</>,
+    more: <>Increasing or decreasing decides which end of the domain gives the top of the range.</>,
   },
   {
     working: <Katex display tex="0<a<b \implies \frac1b < \frac1a" />,
@@ -46,8 +47,13 @@ const ROWS: WorkingRow[] = [
     reason: <>The domain excludes its right endpoint. The outputs get arbitrarily close to <Katex tex="\tfrac1b" /> without ever reaching it — the range is <em>open</em> at that end.</>,
   },
   {
-    working: <Katex display tex="\left[\frac1a,\ \frac1b\right) \ \text{ is empty when } \frac1a > \frac1b" />,
-    reason: <>Ruling out <b>A</b>, chosen by <Katex tex="34\%" /> — nearly as many as got it right. Its brackets are actually on the right values (<Katex tex="[" /> with <Katex tex="\tfrac1a" />, <Katex tex=")" /> with <Katex tex="\tfrac1b" />), but it keeps the <em>same</em> order as the domain, forgetting that <Katex tex="f" /> is decreasing. Written as an interval it is back-to-front, so it describes no values at all.</>,
+    working: (
+      <>
+        <Katex display tex="\textbf{A}: \left[\frac1a,\frac1b\right)" />
+        <Katex display tex="\text{is empty, as } \frac1a > \frac1b" />
+      </>
+    ),
+    reason: <>Ruling out <b>A</b> (<Katex tex="34\%" />): its brackets sit on the right values, but it keeps the domain's order. Since <Katex tex="\tfrac1a>\tfrac1b" />, it runs backwards and contains nothing.</>,
   },
   {
     working: (
@@ -56,11 +62,11 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{brackets the wrong way round}" />
       </>
     ),
-    reason: <>Ruling out <b>C</b>: right order, wrong ends. It closes the interval at the value that is never attained and opens it at the value that is. <b>B</b> makes both errors at once, and <b>E</b> simply repeats the domain.</>,
+    reason: <>Ruling out <b>C</b>: right order, but it closes the end never attained and opens the end that is. <b>B</b> makes both errors; <b>E</b> just repeats the domain.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Range} = \left(\frac1b,\ \frac1a\right]}" />,
-    reason: <>Matches option <b>D</b>. Both features have to be right: the order (<Katex tex="\tfrac1b" /> first because <Katex tex="f" /> decreases) <em>and</em> the bracket types (open where the domain was open, closed where it was closed).</>,
+    reason: <>Matches option <b>D</b>: <Katex tex="\tfrac1b" /> first because <Katex tex="f" /> decreases, open at <Katex tex="\tfrac1b" />, closed at <Katex tex="\tfrac1a" />.</>,
   },
 ]
 
