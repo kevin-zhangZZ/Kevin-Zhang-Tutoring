@@ -44,9 +44,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="a=-d, \qquad b=-c" />,
     reason: (
       <>
-        <Katex tex="f(-x)=f(x)" /> says the graph is its own mirror image in the <Katex tex="y" />-axis, so every
-        intercept has a partner the same distance away on the other side. In particular <Katex tex="b+c=0" />, which
-        explains the odd-looking upper limit <Katex tex="b+c" /> in option D.
+        <Katex tex="f(-x)=f(x)" /> means the graph is symmetric about the <Katex tex="y" />-axis, so the intercepts pair
+        up. In particular <Katex tex="b+c=0" />: that is the odd-looking upper limit in option D.
       </>
     ),
   },
@@ -59,10 +58,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Split at every <Katex tex="x" />-intercept, because that is where <Katex tex="f" /> changes sign. On{' '}
-        <Katex tex="(b,c)" /> the curve is below the axis, so <Katex tex="f(x)<0" /> and{' '}
-        <Katex tex="\int_b^c f(x)\,dx" /> is negative; the minus in front makes it a positive area. The two humps are above
-        the axis and are already positive.
+        Split at each <Katex tex="x" />-intercept. The dip on <Katex tex="(b,c)" /> is below the axis, so its integral is
+        negative; the minus in front makes it a positive area.
+      </>
+    ),
+    more: (
+      <>
+        The intercepts are where <Katex tex="f" /> changes sign, so each piece is entirely above or entirely below the
+        axis. The two humps are above it, so their integrals are already positive and need no sign change.
       </>
     ),
   },
@@ -82,9 +85,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} \int_b^c f(x)\,dx &= 2\int_b^{0} f(x)\,dx \\ &= 2\int_b^{b+c} f(x)\,dx \end{aligned}" />,
     reason: (
       <>
-        The dip runs from <Katex tex="b" /> to <Katex tex="c=-b" />, symmetric about the <Katex tex="y" />-axis, so its left
-        half <Katex tex="[b,0]" /> is exactly half of it. Writing <Katex tex="0" /> as <Katex tex="b+c" /> matches the form
-        of option D.
+        The dip runs from <Katex tex="b" /> to <Katex tex="c=-b" />, so by symmetry it is twice its left half{' '}
+        <Katex tex="[b,0]" />. Then write <Katex tex="0" /> as <Katex tex="b+c" /> to match option D.
       </>
     ),
   },
@@ -92,9 +94,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{Area} = 2\int_a^b f(x)\,dx - 2\int_b^{b+c} f(x)\,dx}" />,
     reason: (
       <>
-        Matches option <b>D</b>. B (37%) is <Katex tex="\int_a^d f(x)\,dx" /> in disguise, since{' '}
-        <Katex tex="-\int_c^b f(x)\,dx=+\int_b^c f(x)\,dx" />, and C adds the dip&apos;s negative integral; both count the
-        dip as negative. E reverses the bounds on the right hump as well, so the two humps cancel and only the dip is left.
+        Matches option <b>D</b>, where every piece counts as positive area.
+      </>
+    ),
+    more: (
+      <>
+        Call each hump&apos;s area <Katex tex="A_1" /> and the dip&apos;s area <Katex tex="A_2" />, so the answer is{' '}
+        <Katex tex="2A_1+A_2" />. A, B (37%) and C (21%) all equal the signed integral <Katex tex="2A_1-A_2" />: they count
+        the dip as negative. E handles the dip correctly (<Katex tex="\int_c^b f(x)\,dx=A_2" />) but also reverses the
+        bounds on the right hump, which is above the axis, so that hump becomes <Katex tex="-A_1" /> and cancels the left
+        one: E <Katex tex="=A_2" />.
       </>
     ),
   },

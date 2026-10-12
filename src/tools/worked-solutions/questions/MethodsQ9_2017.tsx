@@ -25,9 +25,10 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Average rate of change is the gradient of the chord joining the endpoints: change in <Katex tex="f" /> over
-        change in <Katex tex="x" />. It uses only the two end values, so no derivative is needed.
+        change in <Katex tex="x" />.
       </>
     ),
+    more: <>It uses only the two end values, so no derivative is needed.</>,
   },
   {
     working: <Katex display tex="f(1)=1-2=-1,\qquad f(a)=a^2-2a" />,
@@ -41,9 +42,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="= \frac{(a-1)^2}{a-1} = a-1" />,
     reason: (
       <>
-        <Katex tex="a^2-2a+1" /> is a perfect square, and a factor of <Katex tex="a-1" /> on top is what you&apos;d expect,
-        since the numerator is <Katex tex="0" /> when <Katex tex="a=1" />. Cancelling is legitimate because{' '}
-        <Katex tex="a>1" />, so <Katex tex="a-1\ne0" />.
+        <Katex tex="a^2-2a+1" /> is a perfect square. Cancel <Katex tex="a-1" />, allowed because <Katex tex="a>1" />, so{' '}
+        <Katex tex="a-1\ne0" />.
+      </>
+    ),
+    more: (
+      <>
+        A factor of <Katex tex="a-1" /> on top is what you&apos;d expect, since the numerator is <Katex tex="0" /> when{' '}
+        <Katex tex="a=1" />.
       </>
     ),
   },
@@ -51,9 +57,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="a-1=8 \implies \boxed{a=9}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Check: <Katex tex="f(9)=81-18=63" /> and <Katex tex="f(1)=-1" />, so the chord gradient
-        is <Katex tex="\tfrac{63-(-1)}{9-1}=\tfrac{64}{8}=8" />. Option D (8%) is <Katex tex="a=4" />, the solution of{' '}
-        <Katex tex="f(a)=8" />.
+        Matches option <b>A</b>.
+      </>
+    ),
+    more: (
+      <>
+        Check: <Katex tex="f(9)=81-18=63" /> and <Katex tex="f(1)=-1" />, so the chord gradient is{' '}
+        <Katex tex="\tfrac{63-(-1)}{9-1}=\tfrac{64}{8}=8" />. Option D (8%), <Katex tex="a=4" />, solves{' '}
+        <Katex tex="f(a)=8" /> instead (see the Common Mistake below). The other options fail the formula{' '}
+        <Katex tex="a-1" />: <Katex tex="a=8" /> gives <Katex tex="7" />, <Katex tex="a=7" /> gives <Katex tex="6" />, and{' '}
+        <Katex tex="a=1+\sqrt2" /> gives <Katex tex="\sqrt2" />.
       </>
     ),
   },

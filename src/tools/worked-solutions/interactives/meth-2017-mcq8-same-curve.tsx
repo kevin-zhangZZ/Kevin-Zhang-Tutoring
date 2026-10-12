@@ -58,9 +58,7 @@ export default function SameCurve() {
     notice = (
       <Notice tone="warn">
         <b>Option B is the curve <M>{'y = a^{b-4x} - 2'}</M></b>: the given graph slid down 4, with asymptote{' '}
-        <M>y = -2</M>. It comes from moving the <M>+2</M> across as <M>+2</M>. Quick check: the given graph never reaches{' '}
-        <M>y = 2</M>, so a correct formula for <M>x</M> must break down at <M>y = 2</M>, which means{' '}
-        <M>\log_a(y-2)</M>. Now try option A.
+        <M>y = -2</M>. It comes from moving the <M>+2</M> across as <M>+2</M>. Now try option A.
       </Notice>
     )
   } else if (opt === 'C') {

@@ -25,11 +25,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_k^{k+1}\bigl(\cos(x)+1\bigr)dx = 1" />,
-    reason: <>The only unknown is <Katex tex="k" />, and the one property of a density that involves <Katex tex="k" /> is total area <Katex tex="1" />. Outside <Katex tex="(k,k+1)" /> the function is zero, so only that interval contributes.</>,
+    reason: <>A density's total area is <Katex tex="1" />, the only condition involving <Katex tex="k" />. Outside <Katex tex="(k,k+1)" /> the function is zero, so only that interval counts.</>,
   },
   {
     working: <Cas fn="solve">solve(∫(cos(x)+1, x, k, k+1) = 1, k) | 0&lt;k&lt;2</Cas>,
-    reason: <>On CAS this is one line and returns <Katex tex="k=\tfrac{\pi-1}{2}" />. Keep the <Katex tex="0<k<2" /> restriction: without it CAS returns a whole family of solutions, one every <Katex tex="\pi" />. The by-hand working below shows <em>why</em> the answer is what it is.</>,
+    reason: <>CAS returns <Katex tex="k=\tfrac{\pi-1}{2}" />. Keep the <Katex tex="0<k<2" /> restriction: without it CAS returns a solution every <Katex tex="\pi" />. The rows below find it by hand.</>,
   },
   {
     working: <Katex display tex="\Bigl[\sin(x)+x\Bigr]_k^{k+1} = 1" />,
@@ -41,20 +41,22 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin(k+1)-\sin(k) = 0" />,
-    reason: <>The <Katex tex="k" /> terms cancel and the <Katex tex="+1" /> matches the right-hand side. That is the whole trick: under <Katex tex="y=1" /> the window is a <Katex tex="1\times1" /> square, so the "<Katex tex="+1" />" part of the density already supplies all the area. The cosine part must add up to <Katex tex="0" />, so its positive and negative pieces must cancel.</>,
-    more: <>See the interactive below.</>,
+    reason: <>The <Katex tex="k" /> terms cancel and the <Katex tex="+1" /> matches the right-hand side, so the cosine part must contribute zero area.</>,
+    more: <>That is the whole trick: under <Katex tex="y=1" /> the window is a <Katex tex="1\times1" /> square, so the "<Katex tex="+1" />" part of the density already supplies all the area. The positive and negative pieces of <Katex tex="\cos(x)" /> inside the window must cancel. The interactive below shows this.</>,
   },
   {
     working: <Katex display tex="\sin(k+1)=\sin(k)" />,
-    reason: <>Two angles with the same sine are either equal or supplementary (<Katex tex="\theta" /> and <Katex tex="\pi-\theta" />), each up to a multiple of <Katex tex="2\pi" />. These angles differ by <Katex tex="1" />, not a multiple of <Katex tex="2\pi" />, so they must be supplementary.</>,
+    reason: <>Equal sines means the angles are equal or supplementary (<Katex tex="\theta" /> and <Katex tex="\pi-\theta" />), up to multiples of <Katex tex="2\pi" />. These differ by <Katex tex="1" />, not a multiple of <Katex tex="2\pi" />, so they can't be equal; they must be supplementary.</>,
   },
   {
     working: <Katex display tex="k+1 = \pi-k" />,
-    reason: <>The supplementary case. The others, <Katex tex="k+1=3\pi-k" /> and so on, give <Katex tex="k" /> outside <Katex tex="0<k<2" />. In picture terms, the window's midpoint <Katex tex="\tfrac{k+(k+1)}{2}" /> is <Katex tex="\tfrac{\pi}{2}" />: the window is centred where <Katex tex="\cos(x)" /> changes sign.</>,
+    reason: <>The supplementary case. The others, <Katex tex="k+1=3\pi-k" /> and so on, give <Katex tex="k" /> outside <Katex tex="0<k<2" />.</>,
+    more: <>In picture terms, the window's midpoint <Katex tex="\tfrac{k+(k+1)}{2}" /> is <Katex tex="\tfrac{\pi}{2}" />: the window is centred where <Katex tex="\cos(x)" /> changes sign, so the part above <Katex tex="y=1" /> and the part below it are the same shape and cancel.</>,
   },
   {
     working: <Katex display tex="2k = \pi-1 \implies \boxed{k=\frac{\pi-1}{2}}" />,
-    reason: <>Matches option <b>D</b>. It is about <Katex tex="1.07" />, comfortably inside <Katex tex="0<k<2" />. Option B, <Katex tex="\tfrac{3\pi-1}{2}\approx4.21" />, also gives area <Katex tex="1" /> but lies outside that interval; option E, <Katex tex="\tfrac{\pi}{2}" />, is where the window's centre goes, not its left end.</>,
+    reason: <>Matches option <b>D</b>, about <Katex tex="1.07" />, inside <Katex tex="0<k<2" />.</>,
+    more: <>To check any other option, substitute it into the area <Katex tex="1+\sin(k+1)-\sin(k)" />: only B and D give <Katex tex="1" />, and only D is in <Katex tex="0<k<2" />. The interactive below tests each option; B and E, the two most common wrong answers, are in the Common Mistake boxes.</>,
   },
 ]
 

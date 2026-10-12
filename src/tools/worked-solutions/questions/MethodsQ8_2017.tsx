@@ -25,9 +25,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y = a^{\,b-4x}+2" />,
     reason: (
       <>
+        To get <Katex tex="x" /> back, undo the operations on <Katex tex="x" /> in reverse order. The{' '}
+        <Katex tex="+2" /> was done last, so it comes off first.
+      </>
+    ),
+    more: (
+      <>
         Read how <Katex tex="y" /> is built from <Katex tex="x" />: multiply by <Katex tex="-4" />, add{' '}
-        <Katex tex="b" />, raise <Katex tex="a" /> to that power, then add <Katex tex="2" />. To get <Katex tex="x" />{' '}
-        back, undo these in reverse order. The <Katex tex="+2" /> was done last, so it comes off first.
+        <Katex tex="b" />, raise <Katex tex="a" /> to that power, then add <Katex tex="2" />. Undoing them in reverse:
+        subtract <Katex tex="2" />, take <Katex tex="\log_a" />, subtract <Katex tex="b" />, divide by{' '}
+        <Katex tex="-4" />.
       </>
     ),
   },
@@ -39,8 +46,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\log_a(y-2) = b-4x" />,
     reason: (
       <>
-        Take <Katex tex="\log_a" /> of both sides (base <Katex tex="a" />, to match the base of the power). This undoes
-        the power, by the definition <Katex tex="a^{k}=N \iff \log_a(N)=k" />.
+        Take <Katex tex="\log_a" /> of both sides (base <Katex tex="a" /> matches the power) to bring the exponent down:{' '}
+        <Katex tex="a^{k}=N \iff \log_a(N)=k" />.
       </>
     ),
   },
@@ -57,9 +64,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{x=\tfrac14\bigl(b-\log_a(y-2)\bigr)}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Dividing by <Katex tex="4" /> applies to the whole right-hand side, which the bracket
-        shows; option D (11%) divides only the <Katex tex="b" />. Option B (14%) has <Katex tex="y+2" />, from moving the{' '}
-        <Katex tex="2" /> across with the wrong sign.
+        Matches option <b>A</b>. Divide the <em>whole</em> right-hand side by <Katex tex="4" />, which the bracket shows.
+      </>
+    ),
+    more: (
+      <>
+        Options B (14%) and D (11%) are the two slips in the Common Mistakes below. Option E treats the <Katex tex="+2" /> as part of
+        the power, as if <Katex tex="y=a^{\,b-4x+2}" />. Option C has B&apos;s <Katex tex="y+2" /> slip and divides by <Katex tex="4" /> inside the log instead of dividing the whole right side (<Katex tex="b" /> is never divided). A point
+        on the curve rules them all out: with <Katex tex="a=2" />, <Katex tex="b=3" />, <Katex tex="x=\tfrac12" /> gives{' '}
+        <Katex tex="y=2^1+2=4" />, and only A sends <Katex tex="y=4" /> back to <Katex tex="x=\tfrac12" /> (B gives about{' '}
+        <Katex tex="0.10" />, C about <Katex tex="2.42" />, D <Katex tex="-\tfrac14" />, E <Katex tex="\tfrac34" />).
       </>
     ),
   },
@@ -113,10 +127,8 @@ export default function MethodsQ8_2017() {
           >
             <p>
               Taking the <Katex tex="2" /> off the right side means subtracting <Katex tex="2" /> from both sides, which
-              gives <Katex tex="y-2" />. Catch it with a point: with <Katex tex="a=2" />, <Katex tex="b=3" />,{' '}
-              <Katex tex="x=\tfrac12" /> gives <Katex tex="y=2^1+2=4" />. Option B returns{' '}
-              <Katex tex="\tfrac14(3-\log_2 6)\approx0.10" />, not <Katex tex="\tfrac12" />. Or use the asymptote: the answer
-              must break down at <Katex tex="y=2" />, and <Katex tex="\log_a(y+2)" /> doesn&apos;t.
+              gives <Katex tex="y-2" />. It also fails the asymptote check:{' '}
+              <Katex tex="\log_a(y+2)" /> doesn&apos;t break down at <Katex tex="y=2" />.
             </p>
           </WrongMethod>
           <WrongMethod
@@ -132,8 +144,7 @@ export default function MethodsQ8_2017() {
             <p>
               Dividing by <Katex tex="4" /> divides every term on the right:{' '}
               <Katex tex="x=\tfrac{b}{4}-\tfrac14\log_a(y-2)" />. Writing the bracket,{' '}
-              <Katex tex="\tfrac14\bigl(b-\log_a(y-2)\bigr)" />, makes it hard to forget. The same point catches it: at{' '}
-              <Katex tex="y=4" />, option D gives <Katex tex="\tfrac34-\log_2 2=-\tfrac14" />, not <Katex tex="\tfrac12" />.
+              <Katex tex="\tfrac14\bigl(b-\log_a(y-2)\bigr)" />, makes it hard to forget.
             </p>
           </WrongMethod>
         </>

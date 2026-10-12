@@ -26,7 +26,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A = uv" />,
     reason: (
       <>
-        The rectangle runs from the origin <Katex tex="A" /> to the opposite corner <Katex tex="C(u,v)" />, so its width is{' '}
+        Here <Katex tex="A" /> is the area (not the vertex). The rectangle runs from the origin to the opposite corner <Katex tex="C(u,v)" />, so its width is{' '}
         <Katex tex="u" /> and its height is <Katex tex="v" />.
       </>
     ),
@@ -35,8 +35,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="v = -u^3+8" />,
     reason: (
       <>
-        <Katex tex="(u,v)" /> lies on the curve. Two unknowns but one link between them: substituting turns the area
-        into a function of <Katex tex="u" /> alone, which is what you need before you can differentiate.
+        <Katex tex="(u,v)" /> lies on the curve. Substituting for <Katex tex="v" /> makes the area a function of{' '}
+        <Katex tex="u" /> alone, ready to differentiate.
       </>
     ),
   },
@@ -44,8 +44,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A(u) = u(-u^3+8) = 8u-u^4" />,
     reason: (
       <>
-        Expanding. The domain is <Katex tex="0<u<2" />: <Katex tex="C" /> must stay on the curve above the{' '}
-        <Katex tex="x" />-axis, and <Katex tex="-u^3+8=0" /> at <Katex tex="u=2" />.
+        Expanding. Domain <Katex tex="0<u<2" />: <Katex tex="C" /> stays above the <Katex tex="x" />-axis, and the curve
+        meets it where <Katex tex="-u^3+8=0" />, at <Katex tex="u=2" />.
       </>
     ),
   },
@@ -62,9 +62,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} 8-4u^3&=0 \\ u^3&=2 \\ u&=\sqrt[3]{2} \end{aligned}" />,
     reason: (
       <>
-        Why this is a maximum: <Katex tex="A(0)=0" /> and <Katex tex="A(2)=0" /> (no width, then no height), and{' '}
-        <Katex tex="A" /> is positive in between, so the only stationary point must be the top. Or check signs:{' '}
-        <Katex tex="A'(1)=4>0" /> and <Katex tex="A'(1.5)=-5.5<0" />. On CAS,{' '}
+        It is a maximum: <Katex tex="A(0)=A(2)=0" /> and <Katex tex="A>0" /> in between, so the only stationary point
+        must be the top.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="A(0)=0" /> because the rectangle has no width, and <Katex tex="A(2)=0" /> because it has no height.
+        Or check the sign of the derivative either side: <Katex tex="A'(1)=4>0" /> and{' '}
+        <Katex tex="A'(1.5)=-5.5<0" />, rising then falling. On CAS,{' '}
         <Cas fn="fMax">{'fMax(8u-u^4,u)|0<u<2'}</Cas> gives this <Katex tex="u" />, not the maximum area.
       </>
     ),
@@ -82,9 +88,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{A = uv = 6\sqrt[3]{2}}" />,
     reason: (
       <>
-        Matches option <b>B</b>, about <Katex tex="7.56" />. Option A, <Katex tex="\sqrt[3]{2}" />, is <Katex tex="u" />:
-        where the maximum happens, not the maximum area. Sanity check against the picture: the rectangle sits inside a{' '}
-        <Katex tex="2\times8" /> box, so its area must be under <Katex tex="16" />, and option C is that whole box.
+        Matches option <b>B</b>, about <Katex tex="7.56" />. Option A, <Katex tex="\sqrt[3]{2}" />, is only the width{' '}
+        <Katex tex="u" />.
+      </>
+    ),
+    more: (
+      <>
+        Sanity check against the picture: the rectangle sits inside a <Katex tex="2\times8" /> box, so its area must be
+        under <Katex tex="16" />; option C is that whole box. Option D, <Katex tex="8" />, is the curve&apos;s height at{' '}
+        <Katex tex="x=0" />, and option E is half the answer: <Katex tex="\tfrac12uv" />, the area of triangle <Katex tex="ABC" />, not the
+        rectangle.
       </>
     ),
   },
@@ -132,8 +145,7 @@ export default function MethodsQ15_2017() {
             <p>
               Setting <Katex tex="A'(u)=0" /> finds <em>where</em> the maximum happens: the width of the best rectangle.
               The question asks for the maximum <em>area</em>, so substitute back:{' '}
-              <Katex tex="A=\sqrt[3]{2}\times6=6\sqrt[3]{2}" />. CAS has the same trap built in, because fMax returns the
-              value of <Katex tex="u" />, not the maximum. To catch it, reread the last line of the question and ask
+              <Katex tex="A=\sqrt[3]{2}\times6=6\sqrt[3]{2}" />. To catch it, reread the last line of the question and ask
               whether your number is a length or an area: a rectangle about <Katex tex="1.26" /> wide and <Katex tex="6" />{' '}
               tall has area about <Katex tex="7.56" />, not <Katex tex="1.26" />.
             </p>

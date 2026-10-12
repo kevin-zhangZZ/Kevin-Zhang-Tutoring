@@ -45,15 +45,16 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(x)=\sqrt3\sin(x) \implies \tan(x)=\frac{1}{\sqrt3}" />,
-    reason: <>Find <Katex tex="B" /> first: it is the triangle's top vertex, and it is where the shaded region's boundary changes curve. Intersections come from setting the rules equal. Dividing both sides by <Katex tex="\sqrt3\cos(x)" /> (not zero for <Katex tex="0\le x<\tfrac{\pi}{2}" />) turns sine-equals-cosine into a single <Katex tex="\tan" /> equation.</>,
+    reason: <><Katex tex="B" /> is the triangle's top vertex and where the shaded boundary changes curve. Set the rules equal and divide by <Katex tex="\sqrt3\cos(x)" /> to get a <Katex tex="\tan" /> equation.</>,
+    more: <>Dividing is safe because <Katex tex="\cos(x)\ne0" /> for <Katex tex="0\le x<\tfrac{\pi}{2}" />, and at <Katex tex="x=\tfrac{\pi}{2}" /> the curves don't meet (<Katex tex="0\ne\sqrt3" />).</>,
   },
   {
     working: <Katex display tex="x=\frac{\pi}{6}, \qquad y=\cos\!\left(\frac{\pi}{6}\right)=\frac{\sqrt3}{2}" />,
-    reason: <><Katex tex="\tan\!\left(\tfrac{\pi}{6}\right)=\tfrac{1}{\sqrt3}" /> is an exact value to know, and <Katex tex="\tfrac{\pi}{6}" /> is the only solution in <Katex tex="\left[0,\tfrac{\pi}{2}\right]" />. So <Katex tex="B=\left(\tfrac{\pi}{6},\tfrac{\sqrt3}{2}\right)" />. Stay exact: the options are all exact.</>,
+    reason: <><Katex tex="\tan\!\left(\tfrac{\pi}{6}\right)=\tfrac{1}{\sqrt3}" />, the only solution in <Katex tex="\left[0,\tfrac{\pi}{2}\right]" />. So <Katex tex="B=\left(\tfrac{\pi}{6},\tfrac{\sqrt3}{2}\right)" />.</>,
   },
   {
     working: <Katex display tex="A_{\triangle} = \frac12\times\frac{\pi}{2}\times\frac{\sqrt3}{2}" />,
-    reason: <>Triangle <Katex tex="OAB" /> has base <Katex tex="OA" /> along the <Katex tex="x" />-axis, of length <Katex tex="\tfrac{\pi}{2}" />. Its height is how far <Katex tex="B" /> is above that base: the <Katex tex="y" />-coordinate of <Katex tex="B" />. Don't drop the <Katex tex="\tfrac12" />.</>,
+    reason: <>Base <Katex tex="OA=\tfrac{\pi}{2}" /> along the <Katex tex="x" />-axis; height is <Katex tex="B" />'s <Katex tex="y" />-coordinate. Don't drop the <Katex tex="\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="A_{\triangle} = \frac{\sqrt3\pi}{8}" />,
@@ -61,8 +62,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="A_{\text{shaded}} = \int_0^{\pi/6}\!\sqrt3\sin(x)\,dx + \int_{\pi/6}^{\pi/2}\!\cos(x)\,dx" />,
-    reason: <>The shaded region lies under <em>both</em> curves, so the top of each thin vertical strip is whichever curve is <em>lower</em>. Left of <Katex tex="B" /> that is <Katex tex="\sqrt3\sin(x)" />; right of <Katex tex="B" /> it is <Katex tex="\cos(x)" />. The rule for the top edge changes at <Katex tex="B" />, so the area is two integrals split at <Katex tex="x=\tfrac{\pi}{6}" />.</>,
-    more: <>Sweep the strip in the interactive below.</>,
+    reason: <>The shading is under <em>both</em> curves, so each strip's top is the <em>lower</em> curve: <Katex tex="\sqrt3\sin(x)" /> left of <Katex tex="B" />, <Katex tex="\cos(x)" /> right of it, so split at <Katex tex="x=\tfrac{\pi}{6}" />.</>,
+    more: <>One integral can only follow one rule for the top edge, which is why the rule change at <Katex tex="B" /> forces two integrals. Sweep the strip in the interactive below to watch the top edge switch.</>,
   },
   {
     working: <Katex display tex="= \Bigl[-\sqrt3\cos(x)\Bigr]_0^{\pi/6} + \Bigl[\sin(x)\Bigr]_{\pi/6}^{\pi/2}" />,
@@ -70,15 +71,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \left(-\frac32+\sqrt3\right) + \left(1-\frac12\right)" />,
-    reason: <>Upper terminal minus lower terminal in each bracket: <Katex tex="-\sqrt3\cos\!\left(\tfrac{\pi}{6}\right)=-\sqrt3\times\tfrac{\sqrt3}{2}=-\tfrac32" />, minus <Katex tex="-\sqrt3\cos(0)=-\sqrt3" />; then <Katex tex="\sin\!\left(\tfrac{\pi}{2}\right)-\sin\!\left(\tfrac{\pi}{6}\right)=1-\tfrac12" />.</>,
+    reason: <>Upper minus lower terminal: <Katex tex="\left(-\sqrt3\cos\tfrac{\pi}{6}\right)-\left(-\sqrt3\cos0\right)=-\tfrac32+\sqrt3" />; then <Katex tex="\sin\!\left(\tfrac{\pi}{2}\right)-\sin\!\left(\tfrac{\pi}{6}\right)=1-\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="A_{\text{shaded}} = \sqrt3-1" />,
-    reason: <>About <Katex tex="0.73" />, a bit larger than the triangle's <Katex tex="0.68" />. That matches the picture: the shaded region is the triangle plus two thin slivers along its sloping sides.</>,
+    reason: <>About <Katex tex="0.73" />, a bit more than the triangle's <Katex tex="0.68" />, as the picture suggests.</>,
+    more: <>The shaded region is the triangle plus two thin slivers between its sloping sides and the curves, so it must be slightly bigger. That is a quick check on both areas.</>,
   },
   {
     working: <Katex display tex="\boxed{\sqrt3-1 \;:\; \frac{\sqrt3\pi}{8}}" />,
-    reason: <>Matches option <b>B</b>. Write the ratio in the question's order (shaded first, then triangle) and compare with the options before simplifying: B is already in this form. Option D forgets the <Katex tex="\tfrac12" /> in the triangle's area; option E uses the whole area under <Katex tex="\cos(x)" /> as the shaded area.</>,
+    reason: <>Matches option <b>B</b>, with shaded first and triangle second, as asked.</>,
+    more: <>Compare with the options before simplifying: B is already in this form. As decimals the ratio is about <Katex tex="1.076" />; option A, <Katex tex="9:8" />, is <Katex tex="1.125" /> and option C is about <Katex tex="1.152" />, so neither matches. Options D and E, the common slips, are in the Common Mistake boxes below.</>,
   },
 ]
 

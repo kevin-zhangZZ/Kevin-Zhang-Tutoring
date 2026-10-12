@@ -86,7 +86,7 @@ export default function DilateSteps() {
       <Notice tone="warn">
         Option B is sine shifted <b>right</b> by <M>{'\\tfrac{\\pi}{2}'}</M>: at <M>x = 0</M> it is{' '}
         <M>{'\\sin\\left(-\\tfrac{\\pi}{2}\\right) = -1'}</M>, a <b>minimum</b> on the y-axis. It is <M>{'-\\cos(x)'}</M>, the
-        image upside down. Option C, <M>{'\\cos(x + \\pi)'}</M>, is the same red graph, so neither can be the one answer.
+        image upside down. Option C, <M>{'\\cos(x + \\pi)'}</M>, is the same red graph.
       </Notice>
     )
   }

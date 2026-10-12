@@ -158,11 +158,11 @@ const EXAM_IIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x'=x+c, \qquad y'=y+d" />,
-    reason: <>Reading the matrix statement: this is a translation of <Katex tex="c" /> horizontally and <Katex tex="d" /> vertically — nothing more.</>,
+    reason: <>The transformation adds <Katex tex="c" /> to every <Katex tex="x" /> and <Katex tex="d" /> to every <Katex tex="y" />: a translation, nothing more.</>,
   },
   {
     working: <Katex display tex="x=x'-c, \qquad y=y'-d" />,
-    reason: <>Invert, so the <em>old</em> variables are written in terms of the new ones, ready to substitute.</>,
+    reason: <>Write the <em>old</em> variables in terms of the new ones, ready to substitute.</>,
   },
   {
     working: <Katex display tex="y'-d = 2^{\,x'-c}" />,
@@ -170,18 +170,19 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y' = 2^{\,x'-c}+d \equiv 2^{\,x'+1}-2" />,
-    reason: <>This has to be the rule for <Katex tex="f" />, so match the two forms piece by piece: the power <Katex tex="x'-c" /> must be <Katex tex="x'+1" />, and the constant <Katex tex="d" /> must be <Katex tex="-2" />.</>,
+    reason: <>This must be the rule for <Katex tex="f" />, so match the pieces: the power <Katex tex="x'-c" /> must be <Katex tex="x'+1" />, and <Katex tex="d" /> must be <Katex tex="-2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{c=-1, \qquad d=-2}" />,
-    reason: <><Katex tex="-c=1" /> gives <Katex tex="c=-1" />: one unit <em>left</em>, two units <em>down</em>. The minus on <Katex tex="c" /> is where the report's sign errors creep in — a translation left is a <Katex tex="+1" /> inside the function but a <Katex tex="-1" /> in the transformation.</>,
+    reason: <><Katex tex="-c=1" /> gives <Katex tex="c=-1" />: one unit <em>left</em>, two units <em>down</em>.</>,
+    more: <>The minus on <Katex tex="c" /> is where sign errors creep in: a translation left shows up as <Katex tex="+1" /> inside the function, but it is <Katex tex="-1" /> in the transformation.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x = 2^{\,y+1}-2" />,
-    reason: <>To invert, swap <Katex tex="x" /> and <Katex tex="y" /> and then make <Katex tex="y" /> the subject.</>,
+    reason: <>To invert, swap <Katex tex="x" /> and <Katex tex="y" />, then make <Katex tex="y" /> the subject.</>,
   },
   {
     working: <Katex display tex="x+2 = 2^{\,y+1}" />,
@@ -189,30 +190,35 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\log_2(x+2) = y+1" />,
-    reason: <>Taking <Katex tex="\log_2" /> of both sides. The brackets matter — <Katex tex="\log_2 x+2" /> means something different, which the report calls out.</>,
+    reason: <>Taking <Katex tex="\log_2" /> of both sides. Keep the brackets: <Katex tex="\log_2 x+2" /> would mean <Katex tex="\log_2(x)+2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \log_2(x+2)-1}" />,
-    reason: <>The rule. Check it on a point you know: <Katex tex="f(1)=2^2-2=2" />, so the inverse must send <Katex tex="2" /> back to <Katex tex="1" />, and <Katex tex="\log_2 4-1=1" /> ✓.</>,
+    reason: <>Subtract <Katex tex="1" /> to make <Katex tex="y" /> the subject: this is the rule.</>,
+    more: <>Check it on a point you know: <Katex tex="f(1)=2^2-2=2" />, so the inverse must send <Katex tex="2" /> back to <Katex tex="1" />, and <Katex tex="\log_2 4-1=1" /> ✓.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{dom}(f^{-1}) = \text{ran}(f) = (-2,\infty)}" />,
-    reason: <>The domain of an inverse is always the range of the original, and <Katex tex="2^{x+1}>0" /> means <Katex tex="f(x)>-2" /> without ever reaching it. The report notes students who gave the rule but not the domain.</>,
+    reason: <>The domain of an inverse is the range of the original. <Katex tex="2^{x+1}>0" />, so <Katex tex="f(x)>-2" />, never reaching it.</>,
+    more: <>The question asks for the rule <em>and</em> the domain; the report notes that some students gave only the rule. In function notation: <Katex tex="f^{-1}:(-2,\infty)\to R" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)=f^{-1}(x) \iff f(x)=x" />,
-    reason: <>An area between two curves always starts with where they meet, because those are the terminals. <Katex tex="f" /> is increasing, so any intersection of its graph with its own reflection in <Katex tex="y=x" /> must lie on that line. Solving <Katex tex="f(x)=x" /> is far easier than solving <Katex tex="f(x)=f^{-1}(x)" />, and it does not rely on your inverse from part (b) being right.</>,
+    reason: <>First find where the curves meet: those are the terminals. <Katex tex="f" /> is increasing, so it meets its reflection in <Katex tex="y=x" /> only on that line.</>,
+    more: <>A bonus of solving <Katex tex="f(x)=x" />: it does not rely on your inverse from part (b) being right.</>,
   },
   {
     working: <Katex display tex="2^{\,x+1}-2 = x \implies x=-1 \text{ or } x=0" />,
-    reason: <>This cannot be solved by hand, so use CAS: <Cas fn="solve">solve(2^(x+1)-2=x, x)</Cas>. Check both: <Katex tex="f(-1)=2^0-2=-1" /> ✓ and <Katex tex="f(0)=2-2=0" /> ✓. The second crossing is easy to miss on a rough sketch, since the region between them is a very thin sliver.</>,
+    reason: <>Not solvable by hand, so use CAS: <Cas fn="solve">solve(2^(x+1)-2=x, x)</Cas>.</>,
+    more: <>Check: <Katex tex="f(-1)=2^0-2=-1" /> ✓ and <Katex tex="f(0)=0" /> ✓. The crossing at <Katex tex="x=-1" /> is easy to miss on a rough sketch, since the region between the curves is a very thin sliver.</>,
   },
   {
     working: <Katex display tex="A = 2\int_{-1}^{0}\bigl(x-f(x)\bigr)dx" />,
-    reason: <>Between the intersections, <Katex tex="f" /> lies below <Katex tex="y=x" /> and <Katex tex="f^{-1}" /> lies the same distance above it. So the whole enclosed area is twice the strip between <Katex tex="y=x" /> and <Katex tex="f" /> — no second integral needed.</>,
+    reason: <>On <Katex tex="[-1,0]" />, <Katex tex="f" /> is below <Katex tex="y=x" /> and <Katex tex="f^{-1}" /> is the same distance above it, so the area is twice the strip between <Katex tex="y=x" /> and <Katex tex="f" />.</>,
+    more: <>The report's solution writes the area both ways, <Katex tex="2\int_{-1}^{0}\bigl(x-f(x)\bigr)dx" /> and <Katex tex="\int_{-1}^{0}\bigl(f^{-1}(x)-f(x)\bigr)dx" />; they are equal. The doubled form needs no inverse at all.</>,
   },
   {
     working: <Katex display tex="= 2\int_{-1}^{0}\bigl(x-2^{\,x+1}+2\bigr)dx" />,
@@ -228,33 +234,37 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 3-\frac{2}{\log_e 2}}" />,
-    reason: <>About <Katex tex="0.1146" />, but an exact answer was required — the report notes the decimal <Katex tex="0.1196" /> was often given. VCAA writes this as <Katex tex="\tfrac{-2}{\log_e(2)}+3" />.</>,
+    reason: <>Simplify and leave it exact, as required (about <Katex tex="0.1146" />).</>,
+    more: <>The report notes that <Katex tex="0.1196" /> was often given; a decimal loses the mark whatever its value, because an exact answer was required. VCAA writes the answer as <Katex tex="\tfrac{-2}{\log_e(2)}+3" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 2^{\,x+1}\log_e 2" />,
-    reason: <>Differentiating <Katex tex="a^{u}" /> brings down <Katex tex="\log_e a" /> and then the chain rule on <Katex tex="x+1" />, whose derivative is <Katex tex="1" />.</>,
+    reason: <>The derivative of <Katex tex="a^{u}" /> is <Katex tex="a^{u}\log_e a" /> times <Katex tex="u'" />; here <Katex tex="u=x+1" />, so <Katex tex="u'=1" />.</>,
   },
   {
     working: <Katex display tex="f'(0) = 2\log_e 2" />,
-    reason: <>About <Katex tex="1.386" />, so steeper than the line <Katex tex="y=x" /> at the origin — which is exactly why the two curves cross there rather than touch.</>,
+    reason: <>Substituting <Katex tex="x=0" />: <Katex tex="2^{1}=2" />. About <Katex tex="1.386" />.</>,
+    more: <>That is steeper than the line <Katex tex="y=x" /> at the origin, which is why the two curves cross there rather than touch.</>,
   },
   {
     working: <Katex display tex="\left(f^{-1}\right)'(0) = \frac{1}{f'(0)}" />,
-    reason: <>Reflecting in <Katex tex="y=x" /> swaps every run with its rise, so a gradient <Katex tex="m" /> becomes <Katex tex="\tfrac1m" />: the plain reciprocal, not the negative reciprocal (that belongs to a normal). The rule is <Katex tex="(f^{-1})'(f(a))=\tfrac{1}{f'(a)}" />; here <Katex tex="a=0" /> and <Katex tex="f(0)=0" />, so the point corresponds to itself and no extra substitution is needed.</>,
+    reason: <>Reflecting in <Katex tex="y=x" /> swaps run and rise, so gradient <Katex tex="m" /> becomes <Katex tex="\tfrac1m" />. The origin is on <Katex tex="y=x" />, so it is its own mirror image.</>,
+    more: <>The general rule is <Katex tex="(f^{-1})'(f(a))=\tfrac{1}{f'(a)}" />; here <Katex tex="a=0" /> and <Katex tex="f(0)=0" />, so no extra substitution is needed. It is the plain reciprocal, not the negative reciprocal: that belongs to a perpendicular line (a normal), not a reflection.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(0)=2\log_e2, \qquad \left(f^{-1}\right)'(0)=\frac{1}{2\log_e2}}" />,
-    reason: <>Their product is <Katex tex="1" />, which is the check.</>,
+    reason: <>Both gradients, as asked.</>,
+    more: <>Check: their product is <Katex tex="1" /> ✓, as it must be for reciprocal gradients.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="2e^{kx}-2 = 2^{\,x+1}-2" />,
-    reason: <><Katex tex="g_k(x)=f(x)" /> here means the two are the <em>same function</em>, so the rules must agree for every <Katex tex="x" />, not just where the graphs happen to cross. That makes this an identity to match, not an equation to solve for <Katex tex="x" />.</>,
+    reason: <><Katex tex="g_k(x)=f(x)" /> means the two rules agree for <em>every</em> <Katex tex="x" />, so match them as an identity; don't solve for <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="2e^{kx} = 2\cdot 2^{x} \implies e^{kx}=2^{x}" />,
@@ -266,14 +276,15 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \log_e 2}" />,
-    reason: <>About <Katex tex="0.693" />. Every exponential is a natural exponential in disguise; <Katex tex="k" /> is just the log of the old base.</>,
+    reason: <>Matching the exponents for every <Katex tex="x" />. About <Katex tex="0.693" />.</>,
+    more: <>Every exponential is a natural exponential in disguise: <Katex tex="a^x=e^{x\log_e a}" />, so <Katex tex="k" /> is just the log of the old base. On CAS, solve for <Katex tex="k" /> with <Katex tex="x" /> left free.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="x = 2e^{ky}-2" />,
-    reason: <>Swap and solve, as in part (b). Note this is <Katex tex="g_k" /> for a general <Katex tex="k" />, not the specific <Katex tex="\log_e2" /> from part (e) — the report says using that value here was a common error.</>,
+    reason: <>Swap <Katex tex="x" /> and <Katex tex="y" />, as in part (b). Keep <Katex tex="k" /> as a letter: the rule is for every <Katex tex="k\in R^+" />.</>,
   },
   {
     working: <Katex display tex="\frac{x+2}{2} = e^{ky}" />,
@@ -285,75 +296,83 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g_k^{-1}(x) = \frac1k\log_e\!\left(\frac{x+2}{2}\right)}" />,
-    reason: <>Domain <Katex tex="(-2,\infty)" />, the range of <Katex tex="g_k" />. Check at <Katex tex="x=0" />: <Katex tex="\tfrac1k\log_e(1)=0" /> ✓, so every one of these inverses passes through the origin too.</>,
+    reason: <>Dividing by <Katex tex="k" />. The domain is <Katex tex="(-2,\infty)" />, the range of <Katex tex="g_k" />.</>,
+    more: <>Check at <Katex tex="x=0" />: <Katex tex="\tfrac1k\log_e(1)=0" /> ✓, so every one of these inverses passes through the origin, as every <Katex tex="g_k" /> does.</>,
   },
 ]
 
 const ROWS_GI: WorkingRow[] = [
   {
     working: <Katex display tex="g_1(x)=2e^{x}-2 \;\longrightarrow\; g_k(x)=2e^{kx}-2" />,
-    reason: <><Katex tex="g_1" /> is not defined separately anywhere: it is just the member of the family with <Katex tex="k=1" />. Write the two rules side by side and compare. Only the <Katex tex="x" /> inside has changed, so whatever happens is horizontal.</>,
+    reason: <><Katex tex="g_1" /> is the family member with <Katex tex="k=1" />. Only the <Katex tex="x" /> inside has changed, so the transformation is horizontal.</>,
   },
   {
     working: <Katex display tex="g_k(x) = g_1(kx)" />,
-    reason: <>Replacing <Katex tex="x" /> by <Katex tex="kx" />. Follow one point: if <Katex tex="(a,y)" /> is on <Katex tex="g_1" />, then <Katex tex="g_k\!\left(\tfrac ak\right)=g_1(a)=y" />, so <Katex tex="\left(\tfrac ak,\,y\right)" /> is on <Katex tex="g_k" />. Every <Katex tex="x" />-coordinate is multiplied by <Katex tex="\tfrac1k" /> and every height is unchanged.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="kx" /> multiplies every <Katex tex="x" />-coordinate by <Katex tex="\tfrac1k" /> and leaves every height unchanged.</>,
+    more: <>Follow one point: if <Katex tex="(a,y)" /> is on <Katex tex="g_1" />, then <Katex tex="g_k\!\left(\tfrac ak\right)=g_1(a)=y" />, so <Katex tex="\left(\tfrac ak,\,y\right)" /> is on <Katex tex="g_k" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{dilation of factor } \tfrac1k \text{ from the } y\text{-axis}}" />,
-    reason: <>The wording matters: <em>from</em> the <Katex tex="y" />-axis (equivalently, parallel to the <Katex tex="x" />-axis). The report gives "in the <Katex tex="y" />-axis" as an example of an incorrect description. Give one transformation, in terms of <Katex tex="k" />.</>,
+    reason: <>One transformation, in terms of <Katex tex="k" />, measured <em>from</em> the <Katex tex="y" />-axis (equivalently, parallel to the <Katex tex="x" />-axis).</>,
+    more: <>The report gives "in the <Katex tex="y" />-axis" as an example of an incorrect description. "From the <Katex tex="y" />-axis" says which line stays fixed and which distances get multiplied.</>,
   },
 ]
 
 const ROWS_GII: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}g_1^{-1}(x)&=\log_e\!\left(\frac{x+2}{2}\right)\\ g_k^{-1}(x)&=\frac1k\log_e\!\left(\frac{x+2}{2}\right)\end{aligned}" />,
-    reason: <>This time the <Katex tex="\tfrac1k" /> multiplies the whole output, so the change is vertical.</>,
+    reason: <>From part (f) with <Katex tex="k=1" /> and general <Katex tex="k" />. This time <Katex tex="\tfrac1k" /> multiplies the whole output, so the change is vertical.</>,
   },
   {
     working: <Katex display tex="g_k^{-1}(x) = \frac1k\,g_1^{-1}(x)" />,
-    reason: <>Every point <Katex tex="(x,y)" /> on <Katex tex="g_1^{-1}" /> goes to <Katex tex="\left(x,\tfrac yk\right)" />: same <Katex tex="x" />, height multiplied by <Katex tex="\tfrac1k" />. That is exactly a vertical dilation.</>,
+    reason: <>Every point <Katex tex="(x,y)" /> on <Katex tex="g_1^{-1}" /> goes to <Katex tex="\left(x,\tfrac yk\right)" />: same <Katex tex="x" />, height multiplied by <Katex tex="\tfrac1k" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{dilation of factor } \tfrac1k \text{ from the } x\text{-axis}}" />,
-    reason: <>The mirror image of part (g)(i), as it must be: reflecting in <Katex tex="y=x" /> swaps horizontal dilations for vertical ones.</>,
+    reason: <>One transformation, in terms of <Katex tex="k" />.</>,
+    more: <>The mirror image of part (g)(i), as it must be: reflecting in <Katex tex="y=x" /> swaps horizontal dilations for vertical ones.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="g_k'(x)=2ke^{kx} \implies g_k'(0)=2k" />,
-    reason: <>Both curves pass through the origin, so both tangents there pass through the origin too.</>,
+    reason: <>Both curves pass through the origin, so both tangents are lines through the origin; only their gradients are needed.</>,
   },
   {
     working: <Katex display tex="L_1: y=2kx, \qquad L_2: y=\frac{x}{2k}" />,
-    reason: <>The second gradient is the reciprocal of the first, by the reflection property from part (d).</>,
+    reason: <>The gradient of <Katex tex="L_2" /> is the reciprocal of that of <Katex tex="L_1" />, by the reflection property from part (d).</>,
+    more: <>Differentiating <Katex tex="g_k^{-1}" /> directly gives the same: <Katex tex="\tfrac{d}{dx}\,\tfrac1k\log_e\!\left(\tfrac{x+2}{2}\right)=\tfrac{1}{k(x+2)}" />, which is <Katex tex="\tfrac{1}{2k}" /> at <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="\tan(\beta)=2k, \qquad \tan(\gamma)=\frac{1}{2k}=\tan(90^\circ-\beta)" />,
-    reason: <>The gradient of a line is the tan of its angle with the <Katex tex="x" />-axis. Since <Katex tex="\tfrac{1}{2k}" /> is the reciprocal, <Katex tex="\gamma=90^\circ-\beta" />: the lines are mirror images in <Katex tex="y=x" />, equally inclined to it, one above and one below. So for a <Katex tex="30^\circ" /> gap, each must be <Katex tex="15^\circ" /> from <Katex tex="y=x" />, at <Katex tex="30^\circ" /> and <Katex tex="60^\circ" /> to the <Katex tex="x" />-axis.</>,
+    reason: <>A line's gradient is the tan of its angle with the <Katex tex="x" />-axis. The gradients are reciprocals, so <Katex tex="\gamma=90^\circ-\beta" />.</>,
+    more: <>So the lines are mirror images in <Katex tex="y=x" />, equally inclined to it, one above and one below.</>,
   },
   {
     working: <Katex display tex="|\beta-\gamma| = |2\beta-90^\circ| = 30^\circ" />,
-    reason: <>The angle between them. The absolute value is what produces two answers: <Katex tex="L_1" /> can be <Katex tex="30^\circ" /> above <Katex tex="L_2" /> or <Katex tex="30^\circ" /> below it. Drop it and you are left with one answer; the report notes that some students found one answer only.</>,
+    reason: <>The angle between the lines. The absolute value allows <Katex tex="L_1" /> to be on either side of <Katex tex="L_2" />.</>,
   },
   {
     working: <Katex display tex="\beta=60^\circ \text{ or } \beta=30^\circ" />,
-    reason: <>The two cases: <Katex tex="L_1" /> is the steeper line (<Katex tex="k>\tfrac12" />) or the flatter one (<Katex tex="k<\tfrac12" />). Nothing in the question says which.</>,
+    reason: <><Katex tex="2\beta-90^\circ=\pm30^\circ" />: <Katex tex="L_1" /> is the steeper line (<Katex tex="k>\tfrac12" />) or the flatter one (<Katex tex="k<\tfrac12" />). Nothing in the question says which.</>,
+    more: <>Geometric check: the lines are equally inclined to <Katex tex="y=x" /> (at <Katex tex="45^\circ" />), so a <Katex tex="30^\circ" /> gap puts each <Katex tex="15^\circ" /> from it, at <Katex tex="30^\circ" /> and <Katex tex="60^\circ" /> to the <Katex tex="x" />-axis.</>,
   },
   {
     working: <Katex display tex="2k=\tan(60^\circ)=\sqrt3 \quad\text{or}\quad 2k=\tan(30^\circ)=\frac{1}{\sqrt3}" />,
-    reason: <>Back to <Katex tex="k" /> with exact values of <Katex tex="\tan" />; the report notes that some students gave approximate answers.</>,
+    reason: <>Back to <Katex tex="k" />, with exact values of <Katex tex="\tan" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k=\frac{\sqrt3}{2} \quad\text{or}\quad k=\frac{\sqrt3}{6}}" />,
-    reason: <>Exact values were required. Note the two are reciprocal-related through <Katex tex="4k_1k_2=1" /> — swapping <Katex tex="k" /> for <Katex tex="\tfrac{1}{4k}" /> swaps the roles of the two tangents.</>,
+    reason: <>Both values, exact.</>,
+    more: <>The two answers satisfy <Katex tex="4k_1k_2=1" />: replacing <Katex tex="k" /> by <Katex tex="\tfrac{1}{4k}" /> swaps the gradients <Katex tex="2k" /> and <Katex tex="\tfrac{1}{2k}" />, so the two tangents swap roles and the angle is unchanged.</>,
   },
 ]
 
 const ROWS_II: WorkingRow[] = [
   {
     working: <Katex display tex="g_k(x)=g_k^{-1}(x) \iff g_k(x)=x" />,
-    reason: <><Katex tex="g_k" /> is increasing for every <Katex tex="k>0" />, so all intersections lie on <Katex tex="y=x" />. The report says many students went after a discriminant instead, which does not apply to an exponential.</>,
+    reason: <><Katex tex="g_k" /> is increasing for every <Katex tex="k>0" />, so every intersection with its inverse lies on <Katex tex="y=x" />, as in part (c).</>,
   },
   {
     working: <Katex display tex="h(x) = 2e^{kx}-2-x, \qquad h(0)=0" />,
@@ -361,34 +380,38 @@ const ROWS_II: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h'(x) = 2ke^{kx}-1, \qquad h'(0)=2k-1" />,
-    reason: <><Katex tex="h" /> is convex (<Katex tex="h''=2k^2e^{kx}>0" />), so it has one turning point and at most two zeros. There is exactly one zero precisely when the turning point <em>is</em> the zero at the origin.</>,
+    reason: <><Katex tex="h'" /> is increasing (<Katex tex="2ke^{kx}" /> grows), so <Katex tex="h" /> has one turning point, a minimum. If that minimum is anywhere but the origin, it is below <Katex tex="h(0)=0" /> and <Katex tex="h" /> crosses zero twice.</>,
+    more: <>In more detail: <Katex tex="h'(x)=0" /> has exactly one solution and <Katex tex="h''(x)=2k^2e^{kx}>0" />, so the one turning point is a minimum. Also <Katex tex="h\to\infty" /> as <Katex tex="x\to\pm\infty" /> (the exponential takes over on the right; on the left <Katex tex="h\approx-2-x" />). So a minimum value below zero gives two zeros, one each side of it, and a minimum of exactly zero at the origin gives one.</>,
   },
   {
     working: <Katex display tex="2k-1=0" />,
-    reason: <>Equivalently: the tangent to <Katex tex="g_k" /> at the origin has gradient <Katex tex="2k" />, and it must equal the gradient <Katex tex="\tfrac{1}{2k}" /> of the inverse's tangent — the two curves touch instead of crossing.</>,
+    reason: <>The turning point is at the origin when <Katex tex="h'(0)=0" />.</>,
+    more: <>Equivalently, the curves touch rather than cross at the origin: the tangent to <Katex tex="g_k" /> there (gradient <Katex tex="2k" />) must equal the tangent to the inverse (gradient <Katex tex="\tfrac{1}{2k}" />). That is the report's method: solve <Katex tex="2k=\tfrac{1}{2k}" /> with <Katex tex="k>0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = \frac12}" />,
-    reason: <>For <Katex tex="k>\tfrac12" /> the curve is steeper than <Katex tex="y=x" /> at the origin and dips below it to the left, picking up a second crossing; for <Katex tex="k<\tfrac12" /> it dips below to the right instead. Only at <Katex tex="k=\tfrac12" /> is the origin the sole solution.</>,
+    reason: <>Only at <Katex tex="k=\tfrac12" /> is the origin the sole solution.</>,
+    more: <>For <Katex tex="k>\tfrac12" /> the curve is steeper than <Katex tex="y=x" /> at the origin, so it dips below the line to the left and crosses it again in the third quadrant. For <Katex tex="k<\tfrac12" /> it dips below to the right instead and crosses again in the first quadrant.</>,
   },
 ]
 
 const ROWS_IIII: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&g_k: \text{ asymptote } y=-2\\ &g_k^{-1}: \text{ asymptote } x=-2\end{aligned}" />,
-    reason: <>Reflections of each other in <Katex tex="y=x" />, and neither moves as <Katex tex="k" /> changes — only the steepness does.</>,
+    reason: <>Reflections of each other in <Katex tex="y=x" />. Neither asymptote moves as <Katex tex="k" /> changes; only the steepness does.</>,
   },
   {
     working: <Katex display tex="k\to\infty \implies g_k(x)\to-2 \text{ for } x<0" />,
-    reason: <>A larger <Katex tex="k" /> makes the exponential collapse faster, so the curve hugs its asymptote sooner and the second intersection slides towards <Katex tex="(-2,-2)" />.</>,
+    reason: <>A larger <Katex tex="k" /> makes the exponential collapse faster, so the second intersection slides towards <Katex tex="(-2,-2)" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&A(k) \to \text{area of the square}\\ &\text{with corners } (-2,-2) \text{ and } (0,0)\end{aligned}" />,
-    reason: <>In the limit the two curves become the two asymptotes, enclosing a <Katex tex="2\times2" /> square with the origin.</>,
+    reason: <>In the limit <Katex tex="g_k" /> becomes the lines <Katex tex="y=-2" /> and <Katex tex="x=0" />, and its inverse <Katex tex="x=-2" /> and <Katex tex="y=0" />: a <Katex tex="2\times2" /> square.</>,
   },
   {
     working: <Katex display tex="\boxed{b = 4}" />,
-    reason: <><Katex tex="A(k)" /> increases with <Katex tex="k" /> and approaches <Katex tex="4" /> without reaching it — <Katex tex="A(2)\approx2.04" />, <Katex tex="A(5)\approx3.20" />, <Katex tex="A(20)\approx3.80" />, roughly <Katex tex="4-\tfrac4k" /> for large <Katex tex="k" /> — so every <Katex tex="b<4" /> is beaten by a big enough <Katex tex="k" />, and <Katex tex="4" /> is the smallest bound that works.</>,
+    reason: <><Katex tex="A(k)" /> increases towards <Katex tex="4" /> but never reaches it, so every <Katex tex="b<4" /> is beaten by a large enough <Katex tex="k" />.</>,
+    more: <>Numerically, <Katex tex="A(2)\approx2.04" />, <Katex tex="A(5)\approx3.20" />, <Katex tex="A(20)\approx3.80" />. Exactly, with <Katex tex="r" /> the third-quadrant solution of <Katex tex="g_k(x)=x" /> (so <Katex tex="e^{kr}=\tfrac{r+2}{2}" />), <Katex tex="A(k)=2\int_r^0\bigl(x-g_k(x)\bigr)dx" />{' '}<Katex tex="=\tfrac{2r}{k}-r^2-4r" />. As <Katex tex="k\to\infty" />, <Katex tex="r\to-2" /> and this tends to <Katex tex="4" />, roughly <Katex tex="4-\tfrac4k" /> for large <Katex tex="k" />.</>,
   },
 ]
 
@@ -490,7 +513,7 @@ export default function MethodsQ4_2017Exam2() {
           </p>
           <p>
             First, if the function is <em>increasing</em>, then every intersection of the two
-            graphs lies on <Katex tex="y=x" /> — so solve <Katex tex="f(x)=x" />, never the
+            graphs lies on <Katex tex="y=x" /> — so solve <Katex tex="f(x)=x" />, rather than the
             messier <Katex tex="f(x)=f^{-1}(x)" />.
           </p>
           <p>
@@ -506,7 +529,7 @@ export default function MethodsQ4_2017Exam2() {
         <WrongMethod
           title="Integrate f minus its inverse"
           source="Examiner's report"
-          working={<Katex display tex="\int_{-1}^{0}\bigl(f(x)-f^{-1}(x)\bigr)dx=\frac{2}{\log_e 2}-3\approx-0.115" />}
+          working={<Katex display tex="\begin{aligned}\int_{-1}^{0}\bigl(f(x)-f^{-1}(x)\bigr)dx&=\frac{2}{\log_e 2}-3\\&\approx-0.115\end{aligned}" />}
         >
           Between the crossings <Katex tex="f" /> is <em>below</em> <Katex tex="y=x" /> and{' '}
           <Katex tex="f^{-1}" /> is above it, so this is bottom minus top and comes out negative. An
@@ -763,15 +786,9 @@ export default function MethodsQ4_2017Exam2() {
         <Background title="A limit, not an integral">
           <p>
             Only <Katex tex="2\%" /> of students scored this mark, and the reason is that it
-            looks like an area question and is not. There is no <Katex tex="k" /> to
-            integrate for — the answer is what the area tends towards as{' '}
-            <Katex tex="k" /> grows.
-          </p>
-          <p>
-            Both asymptotes are fixed at <Katex tex="-2" />, and a bigger <Katex tex="k" />{' '}
-            only makes each curve reach its asymptote sooner. So the enclosed region fills
-            out, but can never escape, the square with corners <Katex tex="(-2,-2)" /> and{' '}
-            <Katex tex="(0,0)" />.
+            looks like an area question and is not. No single <Katex tex="k" /> is
+            given, so there is no one area to integrate — the answer is what the area tends
+            towards as <Katex tex="k" /> grows.
           </p>
         </Background>
         <WorkingTable rows={ROWS_IIII} />

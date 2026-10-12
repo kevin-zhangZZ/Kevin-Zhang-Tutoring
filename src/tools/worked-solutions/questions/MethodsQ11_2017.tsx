@@ -28,11 +28,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(-1)=0 \text{ and } f'(3)=0" />,
-    reason: <>A local maximum and a local minimum are both stationary points, so both <Katex tex="x" />-values make the <em>derivative</em> zero (not <Katex tex="f" /> itself). Two unknowns, two equations.</>,
+    reason: <>A local maximum and a local minimum are both stationary points, so the <em>derivative</em> is zero at both (not <Katex tex="f" /> itself).</>,
+    more: <>Two unknowns, <Katex tex="a" /> and <Katex tex="b" />, need two equations, and the two turning points supply exactly two.</>,
   },
   {
     working: <Katex display tex="f'(x)=3(x+1)(x-3)" />,
-    reason: <><Katex tex="f'" /> is a quadratic with leading coefficient <Katex tex="3" /> and zeros <Katex tex="-1" /> and <Katex tex="3" />, so it must be this. A zero at <Katex tex="x=-1" /> means a factor <Katex tex="(x+1)" />. This is quicker than solving <Katex tex="3-2a+b=0" /> and <Katex tex="27+6a+b=0" /> simultaneously, which gives the same answer.</>,
+    reason: <><Katex tex="f'" /> is a quadratic with leading coefficient <Katex tex="3" /> and zeros <Katex tex="-1" /> and <Katex tex="3" />, so it must be this.</>,
+    more: <>A zero at <Katex tex="x=-1" /> means a factor <Katex tex="(x+1)" />, and a zero at <Katex tex="x=3" /> means <Katex tex="(x-3)" />; the <Katex tex="3" /> in front matches the <Katex tex="3x^2" />. This is quicker than solving <Katex tex="f'(-1)=3-2a+b=0" /> and <Katex tex="f'(3)=27+6a+b=0" /> simultaneously (subtracting gives <Katex tex="24+8a=0" />), which gives the same answer.</>,
   },
   {
     working: <Katex display tex="=3(x^2-2x-3)=3x^2-6x-9" />,
@@ -44,7 +46,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a=-3 \text{ and } b=-9}" />,
-    reason: <>Matches option <b>D</b>. Check the shape: <Katex tex="f'(x)=3(x+1)(x-3)" /> is positive, then negative, then positive, so <Katex tex="f" /> rises to the maximum at <Katex tex="x=-1" />, falls, and turns up at the minimum <Katex tex="x=3" />, as stated. Option A (10%) is what <Katex tex="f(-1)=f(3)=0" /> gives, and option C (10%) is what <Katex tex="3(x-1)(x+3)" /> gives — both below.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Check the shape: <Katex tex="f'(x)=3(x+1)(x-3)" /> is positive, then negative, then positive, so <Katex tex="f" /> rises to the maximum at <Katex tex="x=-1" />, falls, and turns up at the minimum at <Katex tex="x=3" />, as stated. Options A and C (10% each) are the Common Mistakes below. Options B and E keep the maximum at <Katex tex="x=-1" /> but put the minimum at <Katex tex="x=-\tfrac{1}{3}" /> and <Katex tex="x=5" />.</>,
   },
 ]
 

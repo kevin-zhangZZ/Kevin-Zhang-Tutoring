@@ -47,8 +47,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The discriminant test only works on <Katex tex="ax^2+bx+c=0" />, so first get everything on one side. Moving{' '}
-        <Katex tex="5-p" /> across makes it <Katex tex="-(5-p)=p-5" />.
+        The discriminant test needs the form <Katex tex="ax^2+bx+c=0" />, so move everything to one side:{' '}
+        <Katex tex="-(5-p)=p-5" />.
       </>
     ),
   },
@@ -56,9 +56,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="a=p-1, \quad b=4, \quad c=p-5" />,
     reason: (
       <>
-        For any one value of <Katex tex="p" /> this is an ordinary quadratic in <Katex tex="x" />; <Katex tex="p" /> just
-        sits inside the coefficients. So treat <Katex tex="p" /> as a number and read off <Katex tex="a" />,{' '}
-        <Katex tex="b" /> and <Katex tex="c" />.
+        For each fixed <Katex tex="p" /> this is a quadratic in <Katex tex="x" />, so treat <Katex tex="p" /> as a
+        constant and read off <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" />.
+      </>
+    ),
+    more: (
+      <>
+        Keep the brackets: <Katex tex="c" /> is the whole of <Katex tex="p-5" />, not just <Katex tex="-5" />.
       </>
     ),
   },
@@ -66,11 +70,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} \Delta &= b^2-4ac \\ &= 16-4(p-1)(p-5) \end{aligned}" />,
     reason: (
       <>
-        The roots are where the parabola meets the <Katex tex="x" />-axis. <Katex tex="\Delta" /> is the part under the
-        square root in the quadratic formula: if it is negative there is no real square root, so no{' '}
-        <Katex tex="x" />-intercepts. &ldquo;No real roots&rdquo; therefore means <Katex tex="\Delta<0" />. (It also needs{' '}
-        <Katex tex="a\ne0" />, i.e. <Katex tex="p\ne1" />; at <Katex tex="p=1" /> the equation is linear with a root, and{' '}
-        <Katex tex="p=1" /> fails the final inequality anyway.)
+        <Katex tex="\Delta" /> sits under the square root in the quadratic formula, so <Katex tex="\Delta<0" /> means no
+        real square root and no real roots.
+      </>
+    ),
+    more: (
+      <>
+        The test also needs <Katex tex="a\ne0" />, i.e. <Katex tex="p\ne1" />: at{' '}
+        <Katex tex="p=1" /> the equation is the linear <Katex tex="4x=4" />, which has the root <Katex tex="x=1" />. That
+        causes no trouble, because <Katex tex="p=1" /> gives <Katex tex="1-6+1=-4" />, which fails the final
+        inequality anyway.
       </>
     ),
   },
@@ -97,9 +106,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{p^2-6p+1>0}" />,
     reason: (
       <>
-        Matches option <b>B</b>. Dividing both sides by a negative number reverses the inequality (<Katex tex="2<3" />, but{' '}
-        <Katex tex="-2>-3" />). Option D (29%) is the same inequality without the flip. Check with <Katex tex="p=7" />:{' '}
-        <Katex tex="6x^2+4x+2=0" /> has <Katex tex="\Delta=16-48<0" />, and <Katex tex="49-42+1=8>0" />.
+        Matches option <b>B</b>: dividing both sides by <Katex tex="-4" />, a negative number, reverses the inequality.
+      </>
+    ),
+    more: (
+      <>
+        Why the flip: <Katex tex="2<3" />, but <Katex tex="-2>-3" />. Check with <Katex tex="p=7" />:{' '}
+        <Katex tex="6x^2+4x+2=0" /> has <Katex tex="\Delta=16-48<0" /> (no roots), and B gives{' '}
+        <Katex tex="49-42+1=8>0" />, true. A, C and E have constant term <Katex tex="6" /> or <Katex tex="-6" />, but the correct working gives{' '}
+        <Katex tex="-4\div(-4)=1" />.
       </>
     ),
   },
@@ -116,8 +131,8 @@ export default function MethodsQ7_2017() {
       background={
         <Background title="The discriminant, and inequalities with negatives">
           <p>
-            For <Katex tex="ax^2+bx+c=0" />, the quadratic formula has <Katex tex="\Delta=b^2-4ac" /> under the square
-            root. <Katex tex="\Delta>0" />: two real roots (the parabola crosses the <Katex tex="x" />-axis twice).{' '}
+            For <Katex tex="ax^2+bx+c=0" />, with <Katex tex="\Delta=b^2-4ac" />, there are three cases.{' '}
+            <Katex tex="\Delta>0" />: two real roots (the parabola crosses the <Katex tex="x" />-axis twice).{' '}
             <Katex tex="\Delta=0" />: one root (it touches). <Katex tex="\Delta<0" />: no real roots (it misses the axis).
           </p>
           <p>

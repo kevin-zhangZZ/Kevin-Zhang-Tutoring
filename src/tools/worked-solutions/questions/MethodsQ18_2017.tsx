@@ -44,8 +44,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The binomial mean and standard deviation from the formula sheet. The question links them (mean = sd) and puts a
-        condition on <Katex tex="p" />, so write both in terms of <Katex tex="n" /> and <Katex tex="p" />.
+        The binomial mean and standard deviation (formula sheet). The question says these are equal, which gives one
+        equation in <Katex tex="n" /> and <Katex tex="p" />.
       </>
     ),
   },
@@ -68,7 +68,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Divide both sides by <Katex tex="np" /> (valid since <Katex tex="0<p<1" /> and <Katex tex="n\ge1" />, so{' '}
-        <Katex tex="np\ne0" />). This says the mean is <Katex tex="1-p" />, always just under <Katex tex="1" />.
+        <Katex tex="np\ne0" />).
+      </>
+    ),
+    more: (
+      <>
+        This line says the mean is <Katex tex="1-p" />, always just under <Katex tex="1" />: mean = sd only happens for
+        binomials that expect fewer than one success.
       </>
     ),
   },
@@ -81,13 +87,13 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Collect the <Katex tex="p" /> terms and factorise to make <Katex tex="p" /> the subject. So each <Katex tex="n" />{' '}
-        allows exactly one <Katex tex="p" />, and more trials force a smaller <Katex tex="p" />.
+        Collect the <Katex tex="p" /> terms and factorise to make <Katex tex="p" /> the subject.
       </>
     ),
     more: (
       <>
-        Slide <Katex tex="n" /> in the graph below.
+        So each <Katex tex="n" /> allows exactly one <Katex tex="p" />, and more trials force a smaller{' '}
+        <Katex tex="p" />. Slide <Katex tex="n" /> in the graph below to see this.
       </>
     ),
   },
@@ -100,8 +106,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Taking reciprocals of positive quantities flips the inequality: a smaller <Katex tex="p" /> needs a larger{' '}
-        <Katex tex="n+1" />.
+        Both sides are positive, so taking reciprocals flips the inequality, and{' '}
+        <Katex tex="\tfrac{1}{0.01}=100" />. Then subtract <Katex tex="1" />.
       </>
     ),
   },
@@ -109,9 +115,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{n=99}" />,
     reason: (
       <>
-        Matches option <b>D</b>. Check the neighbour: <Katex tex="n=98" /> (option C) gives{' '}
-        <Katex tex="p=\tfrac1{99}\approx0.0101>0.01" />, which fails, while <Katex tex="n=99" /> gives{' '}
-        <Katex tex="p=0.01" /> exactly, which <Katex tex="\le" /> allows.
+        Matches option <b>D</b>: <Katex tex="n=99" /> gives <Katex tex="p=0.01" /> exactly, which{' '}
+        <Katex tex="\le" /> allows.
+      </>
+    ),
+    more: (
+      <>
+        Check the neighbour, the popular wrong answer (25% chose C): <Katex tex="n=98" /> gives{' '}
+        <Katex tex="p=\tfrac1{99}\approx0.0101>0.01" />, which fails. Options A and B are further off still (
+        <Katex tex="n=37" /> gives <Katex tex="p=\tfrac1{38}\approx0.026" />, <Katex tex="n=49" /> gives{' '}
+        <Katex tex="p=0.02" />). Option E, <Katex tex="n=101" />, does satisfy <Katex tex="p\le0.01" />, but it is not
+        the <em>smallest</em> such <Katex tex="n" />.
       </>
     ),
   },
@@ -143,10 +157,10 @@ export default function MethodsQ18_2017() {
       background={
         <Background title="Mean and standard deviation of a binomial">
           <p>
-            For <Katex tex="X\sim\mathrm{Bi}(n,p)" />, <Katex tex="\mathrm{E}(X)=np" /> and{' '}
-            <Katex tex="\mathrm{sd}(X)=\sqrt{np(1-p)}" />. Both depend on <Katex tex="n" /> and <Katex tex="p" />, so a
-            condition connecting them, like &ldquo;the mean equals the standard deviation&rdquo;, is one equation linking{' '}
-            <Katex tex="n" /> and <Katex tex="p" />: solve it for <Katex tex="p" /> in terms of <Katex tex="n" />.
+            The mean and standard deviation of a binomial both depend on <Katex tex="n" /> and <Katex tex="p" />. One
+            condition with two unknowns cannot fix both, but it can tie them together: solve it for <Katex tex="p" /> as a
+            function of <Katex tex="n" />, then apply the extra requirement (here <Katex tex="p\le0.01" />) to find which{' '}
+            <Katex tex="n" /> work.
           </p>
         </Background>
       }

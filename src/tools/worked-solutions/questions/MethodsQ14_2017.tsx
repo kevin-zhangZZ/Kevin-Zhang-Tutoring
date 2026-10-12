@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{E}(X)=1-4p" />,
     reason: (
       <>
-        Simplifying. This expression is option B, but it is the <em>mean</em>. The variance needs one more ingredient,{' '}
+        Simplifying. This is option B, but it is the <em>mean</em>; the variance also needs{' '}
         <Katex tex="\mathrm{E}(X^2)" />.
       </>
     ),
@@ -44,10 +44,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{E}(X^2)=(-1)^2p+0^2(2p)+1^2(1-3p)" />,
     reason: (
       <>
-        Square the <em>values</em>, keep the probabilities: the <Katex tex="x^2" /> row of the table is{' '}
-        <Katex tex="1,\ 0,\ 1" />. Squaring <Katex tex="-1" /> gives <Katex tex="+1" />, so the <Katex tex="p" /> is now
-        added instead of subtracted. This is the step that makes <Katex tex="\mathrm{E}(X^2)" /> different from{' '}
-        <Katex tex="\mathrm{E}(X)" />.
+        Square the <em>values</em>, keep the probabilities. <Katex tex="(-1)^2=+1" />, so the <Katex tex="p" /> is now
+        added, not subtracted.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="x^2" /> row of the table is <Katex tex="1,\ 0,\ 1" />. That sign change on the <Katex tex="p" />{' '}
+        term is the only thing that makes <Katex tex="\mathrm{E}(X^2)" /> different from <Katex tex="\mathrm{E}(X)" /> here.
       </>
     ),
   },
@@ -55,7 +59,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{E}(X^2)=p+1-3p=1-2p" />,
     reason: (
       <>
-        Simplifying. Sense check: <Katex tex="X^2=1" /> unless <Katex tex="X=0" />, so{' '}
+        Simplifying.
+      </>
+    ),
+    more: (
+      <>
+        Sense check: <Katex tex="X^2=1" /> unless <Katex tex="X=0" />, so{' '}
         <Katex tex="\mathrm{E}(X^2)=\Pr(X\ne0)=1-2p" />.
       </>
     ),
@@ -86,11 +95,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{6p-16p^2}" />,
     reason: (
       <>
-        Matches option <b>D</b>. Option B, <Katex tex="1-4p" />, is <Katex tex="\mathrm{E}(X)" />, not the variance. If
-        CAS shows <Katex tex="-2p(8p-3)" />, that is D in factorised form; expand it to match. Sanity check at{' '}
+        Matches option <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option B, <Katex tex="1-4p" />, is <Katex tex="\mathrm{E}(X)" />, not the variance. If CAS shows <Katex tex="-2p(8p-3)" />, that is D in factorised form; expand it to match. Sanity check at{' '}
         <Katex tex="p=\tfrac14" />: the distribution is <Katex tex="\tfrac14,\tfrac12,\tfrac14" /> on{' '}
         <Katex tex="-1,0,1" />, variance <Katex tex="\tfrac12" />, and{' '}
-        <Katex tex="6(\tfrac14)-16(\tfrac1{16})=\tfrac32-1=\tfrac12" /> ✓.
+        <Katex tex="6(\tfrac14)-16(\tfrac1{16})=\tfrac32-1=\tfrac12" /> ✓. The other options fail this check: A gives{' '}
+        <Katex tex="\tfrac18" />, B gives <Katex tex="0" />, C gives <Katex tex="\tfrac1{16}" /> and E gives{' '}
+        <Katex tex="\tfrac{11}{16}" />.
       </>
     ),
   },
@@ -181,8 +196,7 @@ export default function MethodsQ14_2017() {
             }
           >
             <p>
-              <Katex tex="4p-16p^2" /> is not among the options, which is the first warning. The slip is{' '}
-              <Katex tex="(-1)^2=+1" />, so the <Katex tex="p" /> is added, not subtracted. The answer also fails the sense
+              <Katex tex="4p-16p^2" /> is not among the options, which is the first warning. It also fails the sense
               check: at <Katex tex="p=0.3" />, which is allowed, it gives <Katex tex="1.2-1.44=-0.24" />, a negative
               variance. A variance is an average of squares, so if your expression can go negative for an allowed{' '}
               <Katex tex="p" />, something was squared wrongly.

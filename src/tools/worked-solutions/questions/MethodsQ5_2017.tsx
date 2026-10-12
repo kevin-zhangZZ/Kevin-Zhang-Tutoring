@@ -33,10 +33,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        You are given only the finished interval, so ask how an interval is built. From the formula sheet it runs
-        from <Katex tex="\hat p" /> minus a margin of error <Katex tex="E" /> to <Katex tex="\hat p" /> plus the{' '}
-        <em>same</em> <Katex tex="E" />. Equal steps either side means <Katex tex="\hat p" /> sits exactly in the
-        middle.
+        From the formula sheet, the interval runs from <Katex tex="\hat p" /> minus a margin of error{' '}
+        <Katex tex="E" /> to <Katex tex="\hat p" /> plus the <em>same</em> <Katex tex="E" />, so{' '}
+        <Katex tex="\hat p" /> is exactly in the middle.
+      </>
+    ),
+    more: (
+      <>
+        When you are given only the finished interval, work backwards from the formula that built it.
       </>
     ),
   },
@@ -44,9 +48,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\hat p = \frac{0.039+0.121}{2}" />,
     reason: (
       <>
-        The middle of an interval is the average of its endpoints. Adding the two ends, the <Katex tex="-E" /> and{' '}
-        <Katex tex="+E" /> cancel and leave <Katex tex="2\hat p" />. The <Katex tex="95\%" /> and the sample size
-        only decide how wide the interval is, not where its centre is, so neither is needed.
+        The middle of an interval is the average of its endpoints: adding the two ends, the <Katex tex="-E" /> and{' '}
+        <Katex tex="+E" /> cancel and leave <Katex tex="2\hat p" />.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="95\%" /> and the sample size only decide how wide the interval is, not where its centre is,
+        so neither is needed.
       </>
     ),
   },
@@ -58,9 +67,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\hat p = 0.080}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Check that the steps match: <Katex tex="0.080-0.039=0.041" /> and{' '}
-        <Katex tex="0.121-0.080=0.041" />. That <Katex tex="0.041" />, half the width, is the margin of error{' '}
-        <Katex tex="E" />, a distance rather than a position. Stopping at <Katex tex="0.041" /> gives option B.
+        Matches option <b>A</b>. Check: <Katex tex="0.080-0.039=0.041" /> and{' '}
+        <Katex tex="0.121-0.080=0.041" />, equal steps.
+      </>
+    ),
+    more: (
+      <>
+        Each step, <Katex tex="0.041" />, is half the width of the interval; giving it as the answer is option B.
+        Options C, D and E are not the same distance from both ends, so none of them could be the centre of{' '}
+        <Katex tex="\hat p\pm E" />.
       </>
     ),
   },
@@ -81,9 +96,9 @@ export default function MethodsQ5_2017() {
       }
       background={
         <p>
-          A confidence interval is always symmetric about the sample statistic it was built
-          from — the same margin of error goes out in both directions. So the sample
-          proportion is the midpoint, and you can recover it from the endpoints alone.
+          The approximate confidence interval on the formula sheet is symmetric about{' '}
+          <Katex tex="\hat p" /> — the same margin of error goes out in both directions. So
+          the sample proportion can be recovered from the endpoints alone.
         </p>
       }
       options={[

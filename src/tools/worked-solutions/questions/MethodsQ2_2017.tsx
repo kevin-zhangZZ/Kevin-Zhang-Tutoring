@@ -24,22 +24,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x)<0 \iff f \text{ is decreasing}" />,
-    reason: (
-      <>
-        The question is about the <em>derivative</em>, which is the gradient of the tangent. So read the graph for
-        where the curve goes downhill (left to right), not for where it is below the axis.
-      </>
-    ),
+    reason: <>The derivative is the gradient, so look for where the curve goes downhill (left to right), not where it is below the axis.</>,
   },
   {
     working: <Katex display tex="f'(x)=0 \text{ at } x=-3 \text{ and } x=\tfrac53" />,
-    reason: (
-      <>
-        Straight from the two labelled points: take their <Katex tex="x" />-coordinates, because the answer is an
-        interval of <Katex tex="x" />-values. These are the only places the gradient is zero, so they are the only
-        places its sign can change.
-      </>
-    ),
+    reason: <>The <Katex tex="x" />-coordinates of the two labelled stationary points. The gradient is zero only there, so only there can its sign change.</>,
+    more: <>Take the <Katex tex="x" />-coordinates, not the <Katex tex="y" />-coordinates, because the answer is an interval of <Katex tex="x" />-values.</>,
   },
   {
     working: (
@@ -48,23 +38,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\left(\tfrac53,-\tfrac{400}{27}\right) \text{ is a minimum}" />
       </>
     ),
-    reason: (
-      <>
-        From the shape of the graph: it rises to the first, falls to the second, then rises again. The downhill
-        stretch runs from the maximum to the minimum.
-      </>
-    ),
+    reason: <>From the graph: it rises to the first, falls to the second, then rises again. The downhill stretch runs from the maximum to the minimum.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x)<0 \text{ on } \left(-3,\tfrac53\right)}" />,
-    reason: (
-      <>
-        Matches option <b>D</b>. The brackets are round because <Katex tex="f'(x)=0" /> at the turning points
-        themselves. Option C (12%) is the complement, where the cubic is increasing. Option B is where{' '}
-        <Katex tex="f(x)" /> itself is negative (the cubic is <Katex tex="x(x+5)(x-3)" />), and option E uses the{' '}
-        <Katex tex="y" />-coordinates of the turning points instead of the <Katex tex="x" />-coordinates.
-      </>
-    ),
+    reason: <>Matches option <b>D</b>. Round brackets, because <Katex tex="f'(x)=0" /> at the turning points themselves.</>,
+    more: <>Option C (12%) is the complement, where the cubic is increasing. Option B is where <Katex tex="f(x)" /> itself is negative (the only cubic with these stationary points is <Katex tex="f(x)=x(x+5)(x-3)=x^3+2x^2-15x" />: check <Katex tex="f(-3)=36" /> and <Katex tex="f\left(\tfrac53\right)=-\tfrac{400}{27}" />; it has <Katex tex="x" />-intercepts <Katex tex="-5" />, <Katex tex="0" /> and <Katex tex="3" />), and option A is the part of that between <Katex tex="0" /> and <Katex tex="3" />. Option E is the <Katex tex="y" />-coordinate mix-up warned about above.</>,
   },
 ]
 

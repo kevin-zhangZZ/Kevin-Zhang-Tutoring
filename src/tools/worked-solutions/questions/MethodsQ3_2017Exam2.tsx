@@ -160,23 +160,27 @@ function DensitySketch() {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} f(20)&=\tfrac{1}{625}(20-20)=0\\ f(70)&=\tfrac{1}{625}(70-70)=0 \end{aligned}" />,
-    reason: <>Each rule is a constant times <Katex tex="(t-20)" /> or <Katex tex="(70-t)" />, so each piece of the graph is a <em>straight line</em>. A straight line is fixed by its two ends, so find them and join them with a ruler. The report notes many students did not use rulers, and some graphs looked like parabolas.</>,
+    reason: <>Each rule is a constant times <Katex tex="(t-20)" /> or <Katex tex="(70-t)" />, so each piece is a <em>straight line</em>. Find its two ends and join them with a ruler.</>,
+    more: <>The report notes many students did not use rulers, and some graphs looked like parabolas.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \tfrac{1}{625}(45-20)&=\tfrac{25}{625}=\tfrac{1}{25}\\ \tfrac{1}{625}(70-45)&=\tfrac{25}{625}=\tfrac{1}{25} \end{aligned}" />,
-    reason: <>Both rules give <Katex tex="\tfrac1{25}" /> at <Katex tex="t=45" />, so the two lines meet at the peak <Katex tex="\left(45,\tfrac1{25}\right)" />, exactly on the top gridline VCAA printed. It is one unbroken graph: a single closed point at the peak, with no open circle. The report notes some drew an open circle, or an open circle over a closed circle, at <Katex tex="(45,0.04)" />.</>,
+    reason: <>Both rules give <Katex tex="\tfrac1{25}" /> at <Katex tex="t=45" />, so the two lines meet at the peak <Katex tex="\left(45,\tfrac1{25}\right)" />: one unbroken graph, a single closed point, no open circle.</>,
+    more: <>The peak sits exactly on the top gridline VCAA printed. The report notes some drew an open circle, or an open circle over a closed circle, at <Katex tex="(45,0.04)" />.</>,
   },
   {
     working: <Katex display tex="f(t)=0 \text{ for } t<20 \text{ and } t>70" />,
-    reason: <>&ldquo;0 elsewhere&rdquo; is part of the function too, so the graph runs <em>along the <Katex tex="t" />-axis</em> on both sides of the triangle: it says she never spends less than 20 or more than 70 minutes. The report notes many students did not draw it.</>,
+    reason: <>&ldquo;0 elsewhere&rdquo; is part of the function too, so the graph runs <em>along the <Katex tex="t" />-axis</em> on both sides of the triangle.</>,
+    more: <>It says she never spends less than 20 or more than 70 minutes. The report notes many students did not draw it.</>,
   },
   {
     working: <Katex display tex="\tfrac12\times50\times\tfrac{1}{25}=1 \ \checkmark" />,
-    reason: <>A check: the triangle has base <Katex tex="70-20=50" /> and height <Katex tex="\tfrac1{25}" />, so its area is <Katex tex="1" />, as the total area under any probability density function must be.</>,
+    reason: <>A check: base <Katex tex="70-20=50" />, height <Katex tex="\tfrac1{25}" />, so the triangle&apos;s area is <Katex tex="1" />, as the total area under any probability density function must be.</>,
   },
   {
     working: <DensitySketch />,
-    reason: <>The finished sketch: along the axis to <Katex tex="(20,0)" />, a ruled line up to <Katex tex="\left(45,\tfrac1{25}\right)" />, a ruled line down to <Katex tex="(70,0)" />, then along the axis again. Every probability in parts b.–d. is an area under this triangle.</>,
+    reason: <>The finished sketch: along the axis to <Katex tex="(20,0)" />, ruled lines up to <Katex tex="\left(45,\tfrac1{25}\right)" /> and down to <Katex tex="(70,0)" />, then along the axis again.</>,
+    more: <>Every probability in parts b.–d. is an area under this triangle.</>,
   },
 ]
 
@@ -188,11 +192,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\int_{25}^{45}\frac{t-20}{625}\,dt+\int_{45}^{55}\frac{70-t}{625}\,dt" />,
-    reason: <>The interval crosses <Katex tex="t=45" />, where the rule for <Katex tex="f" /> changes, so split there: the first rule up to 45 and the second from 45. Split at exactly 45, because <Katex tex="t" /> is continuous, so <Katex tex="20\le t<45" /> runs right up to 45, not 44 (the report notes 44 was occasionally given). The lower terminal is the question&apos;s 25, not the 20 where the density starts (the report notes some used 20).</>,
+    reason: <>The interval crosses <Katex tex="t=45" />, where the rule for <Katex tex="f" /> changes, so split there: the rising rule up to 45, the falling rule from 45.</>,
+    more: <>Split at exactly 45, not 44 (see the Common Mistake below). The lower terminal is the question&apos;s 25, not the 20 where the density starts (the report notes some used 20).</>,
   },
   {
     working: <Katex display tex="\begin{aligned}=\;&\frac{1}{625}\left[\frac{(t-20)^2}{2}\right]_{25}^{45}\\ &+\frac{1}{625}\left[-\frac{(70-t)^2}{2}\right]_{45}^{55}\end{aligned}" />,
-    reason: <>Antidifferentiating each linear piece with its bracket kept whole. The minus sign on the second is there because the derivative of <Katex tex="\tfrac{(70-t)^2}{2}" /> is <Katex tex="-(70-t)" /> (chain rule).</>,
+    reason: <>Antidifferentiate each linear piece with its bracket kept whole. The second has a minus sign because the derivative of <Katex tex="\tfrac{(70-t)^2}{2}" /> is <Katex tex="-(70-t)" /> (chain rule).</>,
   },
   {
     working: <Katex display tex="=\frac{1}{625}\cdot\frac{25^2-5^2}{2}+\frac{1}{625}\cdot\frac{25^2-15^2}{2}" />,
@@ -204,27 +209,29 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac45}" />,
-    reason: <>A check by geometry, since both pieces are straight: the whole triangle has area 1, and the two corners left out are triangles of area <Katex tex="\tfrac12\times5\times\tfrac{5}{625}=0.02" /> (left of 25) and <Katex tex="\tfrac12\times15\times\tfrac{15}{625}=0.18" /> (right of 55), so the area is <Katex tex="1-0.02-0.18=0.8" /> ✓.</>,
-    more: <>The diagram&apos;s &ldquo;corners&rdquo; toggle shows this.</>,
+    reason: <>Simplifying <Katex tex="\tfrac{500}{625}" />.</>,
+    more: <>A check by geometry, since both pieces are straight: the whole triangle has area 1, and the two corners left out are triangles of area <Katex tex="\tfrac12\times5\times\tfrac{5}{625}=0.02" /> (left of 25) and <Katex tex="\tfrac12\times15\times\tfrac{15}{625}=0.18" /> (right of 55), so the area is <Katex tex="1-0.02-0.18=0.8" /> ✓. The diagram&apos;s &ldquo;corners&rdquo; toggle shows this.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&\Pr(T\le25\mid T\le55)\\ &=\frac{\Pr(T\le25\,\cap\,T\le55)}{\Pr(T\le55)}\end{aligned}" />,
-    reason: <>The conditional probability formula. Being told <Katex tex="T\le55" /> means only the part of the triangle left of 55 is still possible, so that area becomes the whole we divide by.</>,
+    reason: <>The conditional probability formula. Being told <Katex tex="T\le55" /> means only the area left of 55 is still possible, so that area is the whole we divide by.</>,
   },
   {
     working: <Katex display tex="=\frac{\Pr(T\le25)}{\Pr(T\le55)}" />,
-    reason: <>A time of at most 25 minutes is automatically at most 55 minutes, so &ldquo;both&rdquo; is just <Katex tex="T\le25" />. On a number line, the interval up to 25 sits inside the interval up to 55.</>,
+    reason: <>A time of at most 25 minutes is automatically at most 55 minutes, so &ldquo;both&rdquo; is just <Katex tex="T\le25" />.</>,
+    more: <>On a number line, the interval up to 25 sits inside the interval up to 55.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(T\le25)&=\int_{20}^{25}\frac{t-20}{625}\,dt\\ &=\frac{1}{625}\left[\frac{(t-20)^2}{2}\right]_{20}^{25}\\ &=\frac{25}{1250}=\frac{1}{50}\end{aligned}" />,
-    reason: <>Only the rising branch is involved, and the density is zero below 20, so the lower terminal is 20. As a triangle: <Katex tex="\tfrac12\times5\times\tfrac5{625}=\tfrac1{50}" />.</>,
+    reason: <>Only the rising branch is involved, and the density is zero below 20, so integrate from 20.</>,
+    more: <>As a triangle: <Katex tex="\tfrac12\times5\times\tfrac5{625}=\tfrac1{50}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\Pr(T\le55)\\ &=\int_{20}^{45}f(t)\,dt+\int_{45}^{55}f(t)\,dt\\ &=\frac12+\frac{200}{625}=\frac{41}{50}\end{aligned}" />,
-    reason: <>The first branch is exactly half the triangle, by symmetry, and the second piece was found in part b. This denominator starts at 20, not 25: the condition <Katex tex="T\le55" /> rules out only the times above 55.</>,
+    reason: <>Start at 20, not 25: <Katex tex="T\le55" /> rules out only times above 55. The first branch is half the triangle (symmetry); the second integral was found in part b.</>,
   },
   {
     working: <Katex display tex="\frac{1/50}{41/50}" />,
@@ -232,19 +239,21 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{1}{41}}" />,
-    reason: <>Small, as it should be: <Katex tex="T\le25" /> is a thin sliver at the far left of the triangle, about 2.4% of the area left of 55. The report&apos;s common wrong answer <Katex tex="\tfrac1{40}" /> is what you get by dividing by part b.&apos;s <Katex tex="\tfrac45" /> instead.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Small, as it should be: <Katex tex="T\le25" /> is a thin sliver at the far left of the triangle.</>,
+    more: <>It is about 2.4% of the area left of 55. The Common Mistake below shows where the report&apos;s common wrong answer <Katex tex="\tfrac1{40}" /> comes from.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T\ge a)=0.7" />,
-    reason: <>Picture it first: <Katex tex="\Pr(T\ge a)" /> is the area to the <em>right</em> of <Katex tex="a" />. The peak at 45 splits the area in half, so for 70% of it to be on the right, <Katex tex="a" /> must be <em>left</em> of 45. <Katex tex="T" /> is not normal (its density is a triangle), so the inverse normal is no use here; the report notes some students attempted it.</>,
+    reason: <>Picture it first: <Katex tex="\Pr(T\ge a)" /> is the area to the <em>right</em> of <Katex tex="a" />. The triangle is symmetric about its peak at 45, so half the area lies on each side; for for 70% on the right, <Katex tex="a" /> must be <em>left</em> of 45.</>,
+    more: <><Katex tex="T" /> is not normal (its density is a triangle), so the inverse normal is no use here; the report notes some students attempted it.</>,
   },
   {
     working: <Katex display tex="\iff \Pr(T\le a)=0.3" />,
-    reason: <>Switch to the left tail. The region left of <Katex tex="a" /> is one triangle on the rising branch, so one integral does it; the region right of <Katex tex="a" /> has a corner at the peak and would need two.</>,
+    reason: <>Switch to the left tail: left of <Katex tex="a" /> is one triangle on the rising branch, so one integral does it. Right of <Katex tex="a" /> has a corner at the peak and would need two.</>,
+    more: <>The report notes <Katex tex="\int_a^{75}\tfrac{1}{625}(70-t)\,dt=0.7" /> was occasionally given. That uses only the falling rule for a region that crosses the peak, and runs past 70 to 75, where <Katex tex="f" /> is 0 but the rule <Katex tex="\tfrac{1}{625}(70-t)" /> is negative, so that stretch subtracts area (this attempt gives <Katex tex="a=40" />).</>,
   },
   {
     working: <Katex display tex="\int_{20}^{a}\frac{t-20}{625}\,dt=0.3" />,
@@ -252,26 +261,31 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{(a-20)^2}{1250}=0.3" />,
-    reason: <>Evaluating <Katex tex="\tfrac1{625}\left[\tfrac{(t-20)^2}{2}\right]_{20}^{a}" />. It is also the triangle&apos;s area, <Katex tex="\tfrac12\times\text{base}\times\text{height}=\tfrac12(a-20)\times\tfrac{a-20}{625}" />.</>,
+    reason: <>Evaluating <Katex tex="\tfrac1{625}\left[\tfrac{(t-20)^2}{2}\right]_{20}^{a}" />.</>,
+    more: <>It is also the triangle&apos;s area, <Katex tex="\tfrac12\times\text{base}\times\text{height}=\tfrac12(a-20)\times\tfrac{a-20}{625}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&(a-20)^2=375\\ &\implies a=20+\sqrt{375}=20+5\sqrt{15}\end{aligned}" />,
-    reason: <>Take the positive root, since <Katex tex="a" /> is a time above 20. The other root, <Katex tex="20-5\sqrt{15}\approx0.64" />, is where the density is zero, so it is rejected.</>,
+    reason: <>Take the positive root, since <Katex tex="a" /> is a time above 20.</>,
+    more: <>The other root, <Katex tex="20-5\sqrt{15}\approx0.64" />, is where the density is zero, so it is rejected.</>,
   },
   {
     working: <Katex display tex="\boxed{a\approx39.3649}" />,
-    reason: <>Four decimal places. It is below 45, as the picture said it must be, so using only the rising rule was valid ✓. The report&apos;s common wrong answer, <Katex tex="50.6351" />, comes from solving <Katex tex="\int_{20}^{a}f(t)\,dt=0.7" />; it is the mirror image of this answer in <Katex tex="t=45" />.</>,
+    reason: <>Four decimal places, as asked. It is below 45, as the picture said, so using only the rising rule was valid ✓.</>,
+    more: <>The report&apos;s common wrong answer, <Katex tex="50.6351" />, is the mirror image of this answer in <Katex tex="t=45" /> (see the Common Mistake below).</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="X\sim\mathrm{Bi}\!\left(7,\tfrac{8}{25}\right)" />,
-    reason: <>Let <Katex tex="X" /> be the number of the seven days with more than 50 minutes. Each day is one trial with two outcomes, the probability <Katex tex="\tfrac8{25}" /> is the same every day, and the days are independent (the question says so): the conditions for a binomial. The question hands you the probability, so there is nothing to integrate.</>,
+    reason: <>Let <Katex tex="X" /> be the number of the seven days with more than 50 minutes: 7 independent trials, each a success with the same probability <Katex tex="\tfrac8{25}" />, so binomial.</>,
+    more: <>Each day has two outcomes (more than 50 minutes or not), and the question states the days are independent: the conditions for a binomial.</>,
   },
   {
     working: <Katex display tex="\Pr(X>3)=\Pr(X\ge4)" />,
-    reason: <><Katex tex="X" /> counts days, so it only takes whole numbers: &ldquo;more than three&rdquo; means 4, 5, 6 or 7. The report notes some students used <Katex tex="\Pr(X\ge3)" />.</>,
+    reason: <><Katex tex="X" /> counts days, so it only takes whole numbers: &ldquo;more than three&rdquo; means 4, 5, 6 or 7.</>,
+    more: <>The report notes some students used <Katex tex="\Pr(X\ge3)" />.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(7, 8/25, 4, 7)</Cas>,
@@ -279,18 +293,20 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\approx 0.1534}" />,
-    reason: <>Four decimal places. Plausible: the expected number of such days is <Katex tex="7\times0.32=2.24" />, so four or more is on the unlikely side but far from rare.</>,
+    reason: <>Correct to four decimal places.</>,
+    more: <>Plausible: the expected number of such days is <Katex tex="7\times0.32=2.24" />, so four or more is on the unlikely side but far from rare.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}&\Pr(X\ge2\mid X\ge1)\\ &=\frac{\Pr(X\ge2\,\cap\,X\ge1)}{\Pr(X\ge1)}\\ &=\frac{\Pr(X\ge2)}{\Pr(X\ge1)}\end{aligned}" />,
-    reason: <>At least two days is automatically at least one, so &ldquo;both&rdquo; is just <Katex tex="X\ge2" />. &ldquo;At least two&rdquo; <em>includes</em> two: it is <Katex tex="X\ge2" />, not <Katex tex="X>2" /> (the report notes some wrote <Katex tex="\tfrac{\Pr(X>2)}{\Pr(X>1)}" />).</>,
+    reason: <>Conditional probability. At least two days is automatically at least one, so &ldquo;both&rdquo; is just <Katex tex="X\ge2" />. &ldquo;At least two&rdquo; <em>includes</em> two: <Katex tex="\ge" />, not <Katex tex=">" />.</>,
+    more: <>The report notes some wrote <Katex tex="\tfrac{\Pr(X>2)}{\Pr(X>1)}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\Pr(X\ge1)&=1-\Pr(X=0)\\ &=1-\left(\tfrac{17}{25}\right)^7\approx0.93277\end{aligned}" />,
-    reason: <>The complement is quicker: the only way to miss &ldquo;at least one&rdquo; is for all seven days to be 50 minutes or less, each with probability <Katex tex="1-\tfrac8{25}=\tfrac{17}{25}" />.</>,
+    reason: <>Use the complement: the opposite of &ldquo;at least one&rdquo; is &ldquo;none&rdquo;, i.e. all seven days are 50 minutes or less, each with probability <Katex tex="1-\tfrac8{25}=\tfrac{17}{25}" />.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(7, 8/25, 2, 7)</Cas>,
@@ -298,27 +314,31 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{0.71131\ldots}{0.93277\ldots}" />,
-    reason: <>Divide the unrounded values. The report notes some rounded incorrectly, giving <Katex tex="0.7625" />. That is what <Katex tex="0.7113\div0.9328=0.76254\ldots" /> gives, and it is also what you get by chopping <Katex tex="0.76257\ldots" /> off after four places instead of rounding it up.</>,
+    reason: <>Divide the unrounded values, and round only once, at the end.</>,
+    more: <>The report notes some rounded incorrectly, giving <Katex tex="0.7625" /> (see the Common Mistake below).</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.7626}" />,
-    reason: <>Four decimal places. Bigger than <Katex tex="\Pr(X\ge2)\approx0.7113" /> on its own, as it should be: knowing she had at least one long day makes &ldquo;at least two&rdquo; more likely.</>,
+    reason: <>Correct to four decimal places: <Katex tex="0.76257\ldots" /> rounds up.</>,
+    more: <>Bigger than <Katex tex="\Pr(X\ge2)\approx0.7113" /> on its own, as it should be: knowing she had at least one long day makes &ldquo;at least two&rdquo; more likely.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="Y\sim\mathrm{Bi}(7,p)" />,
-    reason: <>Let <Katex tex="Y" /> be the number of the seven days with more than <Katex tex="d" /> minutes. It is the same set-up as part e., with &ldquo;50&rdquo; replaced by <Katex tex="d" />: 7 independent days, each a success with the same probability <Katex tex="p" />. So <Katex tex="Y" /> is binomial, and every probability about it comes from the binomial formula. The report notes some students did not realise the binomial distribution was required.</>,
+    reason: <>Let <Katex tex="Y" /> be the number of the seven days with more than <Katex tex="d" /> minutes. As in part e., that is 7 independent days, each a success with probability <Katex tex="p" />: binomial.</>,
+    more: <>It is part e. with &ldquo;50&rdquo; replaced by <Katex tex="d" />, so every probability about <Katex tex="Y" /> comes from the binomial formula. The report notes some students did not realise the binomial distribution was required.</>,
   },
   {
     working: <Katex display tex="q=\Pr(Y=2)+\Pr(Y=3)" />,
-    reason: <>&ldquo;Two or three days&rdquo; is two outcomes that can&apos;t happen together, so add their probabilities. Read it exactly: 2 or 3, not 3 or 4, and not &ldquo;2 or more&rdquo;.</>,
+    reason: <>&ldquo;Two or three days&rdquo; is two outcomes that can&apos;t happen together, so add their probabilities.</>,
+    more: <>Read it exactly: 2 or 3, not 3 or 4, and not &ldquo;2 or more&rdquo;.</>,
   },
   {
     working: <Katex display tex="=\binom{7}{2}p^2(1-p)^5+\binom{7}{3}p^3(1-p)^4" />,
-    reason: <>The binomial formula <Katex tex="\Pr(Y=k)=\binom{n}{k}p^k(1-p)^{n-k}" />, twice. For two days: <Katex tex="p^2" /> for the two long days, <Katex tex="(1-p)^5" /> for the other five, and <Katex tex="\binom72" /> ways to choose which two days they are.</>,
-    more: <>Step through the arrangements in the diagram below.</>,
+    reason: <>The binomial formula <Katex tex="\Pr(Y=k)=\binom{n}{k}p^k(1-p)^{n-k}" />, with <Katex tex="n=7" />, twice.</>,
+    more: <>For two days: <Katex tex="p^2" /> for the two long days, <Katex tex="(1-p)^5" /> for the other five, and <Katex tex="\binom72" /> ways to choose which two days they are. Step through the arrangements in the diagram below.</>,
   },
   {
     working: <Katex display tex="=21p^2(1-p)^5+35p^3(1-p)^4" />,
@@ -330,19 +350,20 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{q=7p^2(1-p)^4(2p+3)}" />,
-    reason: <>Any equivalent polynomial earns the marks: the unfactorised line above, this, or expanded, <Katex tex="14p^7-35p^6+70p^4-70p^3+21p^2" />. VCAA writes <Katex tex="7p^2(p-1)^4(2p+3)" />, the same thing because <Katex tex="(p-1)^4=(1-p)^4" />. Check with part e.: at <Katex tex="p=\tfrac8{25}" /> this gives <Katex tex="q\approx0.558" />, a sensible probability.</>,
+    reason: <>Any equivalent polynomial earns the marks: the unfactorised line above, this, or expanded.</>,
+    more: <>Expanded, it is <Katex tex="14p^7-35p^6+70p^4-70p^3+21p^2" />. VCAA writes <Katex tex="7p^2(p-1)^4(2p+3)" />, the same thing because <Katex tex="(p-1)^4=(1-p)^4" />. Check with part e.: at <Katex tex="p=\tfrac8{25}" /> this gives <Katex tex="q\approx0.558" />, a sensible probability.</>,
   },
 ]
 
 const ROWS_GI: WorkingRow[] = [
   {
     working: <Katex display tex="q(0)=0,\qquad q(1)=0" />,
-    reason: <>Where to look: with <Katex tex="p=0" /> she never works more than <Katex tex="d" /> minutes and with <Katex tex="p=1" /> she always does, so either way exactly 2 or 3 days is impossible. <Katex tex="q" /> rises from 0 and falls back to 0, so its maximum is at a stationary point inside <Katex tex="(0,1)" />, where the tangent is flat. The report notes some students knew to solve <Katex tex="q'(p)=0" /> if they had an equation in part f.</>,
-    more: <>Slide <Katex tex="p" /> in the diagram below.</>,
+    reason: <>With <Katex tex="p=0" /> or <Katex tex="p=1" />, exactly 2 or 3 long days is impossible. So <Katex tex="q" /> rises from 0 and falls back to 0: its maximum is a stationary point inside <Katex tex="(0,1)" />.</>,
+    more: <>With <Katex tex="p=0" /> she never works more than <Katex tex="d" /> minutes and with <Katex tex="p=1" /> she always does. At the top of the hump the tangent is flat, so solve <Katex tex="q'(p)=0" />. The report notes some students knew to solve <Katex tex="q'(p)=0" /> if they had an equation in part f. Slide <Katex tex="p" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}q'(p)=7\bigl[&2p(1-p)^4(2p+3)\\ &-4p^2(1-p)^3(2p+3)\\ &+2p^2(1-p)^4\bigr]\end{aligned}" />,
-    reason: <>Differentiating the factorised form from part f. with the product rule: three factors, so three terms, each with one factor differentiated. The middle term&apos;s minus sign comes from the chain rule on <Katex tex="(1-p)^4" />.</>,
+    reason: <>Product rule on part f.&apos;s factorised form: three factors, so three terms, each with one factor differentiated. The minus sign comes from the chain rule on <Katex tex="(1-p)^4" />.</>,
   },
   {
     working: <Katex display tex="=7p(1-p)^3\bigl[-14p^2-12p+6\bigr]" />,
@@ -350,7 +371,8 @@ const ROWS_GI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=-14p(1-p)^3(7p^2+6p-3)" />,
-    reason: <>Taking <Katex tex="-2" /> out of the bracket. A CAS derivative followed by factor gives the same.</>,
+    reason: <>Taking <Katex tex="-2" /> out of the bracket.</>,
+    more: <>A CAS derivative followed by factor gives the same.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&q'(p)=0,\ 0<p<1\\ &\implies 7p^2+6p-3=0\end{aligned}" />,
@@ -362,42 +384,50 @@ const ROWS_GI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p=\frac{\sqrt{30}-3}{7}=0.353889\ldots" />,
-    reason: <>Reject <Katex tex="\tfrac{-3-\sqrt{30}}{7}\approx-1.21" />: a probability can&apos;t be negative. On CAS in one step: <Cas fn="solve">solve(d/dp(q(p)) = 0, p) | 0 &lt; p &lt; 1</Cas> after defining <Katex tex="q(p)" />, or <Cas fn="fMax">fMax(q(p), p) | 0 ≤ p ≤ 1</Cas>.</>,
+    reason: <>Reject <Katex tex="\tfrac{-3-\sqrt{30}}{7}\approx-1.21" />: a probability can&apos;t be negative.</>,
+    more: <>On CAS, after defining <Katex tex="q(p)" />, either <Cas fn="fMax">fMax(q(p), p) | 0 ≤ p ≤ 1</Cas> in one step, or <Cas fn="solve">solve(d/dp(q(p)) = 0, p) | 0 &lt; p &lt; 1</Cas>.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}q_{\max}&=q(0.353889\ldots)\\ &=0.566466\ldots\end{aligned}" />,
-    reason: <>Substitute the unrounded <Katex tex="p" /> back in: the question asks for the maximum value of <Katex tex="q" /> as well. The report notes some students found only <Katex tex="p" />.</>,
+    reason: <>Substitute the unrounded <Katex tex="p" /> back in: the question asks for the maximum value of <Katex tex="q" /> as well.</>,
+    more: <>The report notes some students found only <Katex tex="p" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p\approx0.3539,\quad q_{\max}\approx0.5665}" />,
-    reason: <>Both correct to four decimal places, as asked; the report notes some gave exact values. Sensible: at <Katex tex="p\approx0.354" /> the expected number of long days is <Katex tex="7\times0.354\approx2.5" />, right between the two counts being added.</>,
+    reason: <>Both correct to four decimal places, as asked.</>,
+    more: <>The report notes some gave exact values. Sensible: at <Katex tex="p\approx0.354" /> the expected number of long days is <Katex tex="7\times0.354\approx2.5" />, right between the two counts being added.</>,
   },
 ]
 
 const ROWS_GII: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T>d)=p=0.353889\ldots" />,
-    reason: <>Go back to the definition: <Katex tex="p" /> is the probability that on one day she works more than <Katex tex="d" /> minutes, which is the area under the density to the <em>right</em> of <Katex tex="d" />. The maximum of <Katex tex="q" /> happens at <Katex tex="p=0.353889\ldots" /> (part g.i.), so we need the <Katex tex="d" /> that gives this <Katex tex="p" />. Use <Katex tex="p" />, not <Katex tex="q" />, and use it unrounded.</>,
+    reason: <><Katex tex="p" /> is the chance of more than <Katex tex="d" /> minutes on one day: the area to the <em>right</em> of <Katex tex="d" />. Set it to part g.i.&apos;s <Katex tex="p" /> (not <Katex tex="q" />), unrounded.</>,
+    more: <>The maximum of <Katex tex="q" /> happens at <Katex tex="p=0.353889\ldots" />, so we need the <Katex tex="d" /> that gives this <Katex tex="p" />. Using <Katex tex="q" /> instead is a Common Mistake below.</>,
   },
   {
     working: <Katex display tex="\int_d^{70}\frac{70-t}{625}\,dt=0.353889\ldots" />,
-    reason: <>Less than half the area is to the right of <Katex tex="d" />, so <Katex tex="d" /> is right of the peak at 45, and the region is one triangle on the falling branch, from <Katex tex="d" /> to 70. (Integrating from 20 to <Katex tex="d" /> would give the left-hand area instead.)</>,
+    reason: <>Less than half the area is right of <Katex tex="d" />, so <Katex tex="d" /> is right of the peak at 45: one triangle on the falling branch, from <Katex tex="d" /> to 70.</>,
   },
   {
     working: <Katex display tex="\frac{(70-d)^2}{1250}=0.353889\ldots" />,
-    reason: <>Evaluating, or as a triangle: base <Katex tex="70-d" />, height <Katex tex="\tfrac{70-d}{625}" />, area <Katex tex="\tfrac12(70-d)\cdot\tfrac{70-d}{625}" />.</>,
+    reason: <>Evaluating <Katex tex="\tfrac1{625}\left[-\tfrac{(70-t)^2}{2}\right]_{d}^{70}" />: the top terminal gives 0, so subtracting the bottom one leaves <Katex tex="+\tfrac{(70-d)^2}{1250}" />.</>,
+    more: <>Or as a triangle: base <Katex tex="70-d" />, height <Katex tex="\tfrac{70-d}{625}" />, area <Katex tex="\tfrac12(70-d)\cdot\tfrac{70-d}{625}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&(70-d)^2=442.36\ldots\\ &\implies 70-d=21.0324\ldots\end{aligned}" />,
-    reason: <>The positive root, since <Katex tex="d<70" />. The negative root gives <Katex tex="d\approx91.03" />, outside <Katex tex="[45,70]" />.</>,
+    reason: <>The positive root, since <Katex tex="d<70" />.</>,
+    more: <>The negative root gives <Katex tex="d\approx91.03" />, outside <Katex tex="[45,70]" />.</>,
   },
   {
     working: <Katex display tex="d=48.9676\ldots" />,
-    reason: <>On CAS: <Cas fn="solve">solve(∫(f(t), t, d, 70) = 0.353889…, d)</Cas>, with the unrounded <Katex tex="p" /> pasted in.</>,
+    reason: <><Katex tex="d=70-21.0324\ldots" />.</>,
+    more: <>Or in one step on CAS, after defining <Katex tex="f" /> as the hybrid function: <Cas fn="solve">solve(∫(f(t), t, d, 70) = 0.353889…, d)</Cas>, with the unrounded <Katex tex="p" /> pasted in.</>,
   },
   {
     working: <Katex display tex="\boxed{d\approx49 \text{ minutes}}" />,
-    reason: <>To the nearest minute. A check against part e.: <Katex tex="\Pr(T>50)=\tfrac8{25}=0.32" />, and a slightly earlier cut-off should give a slightly bigger probability. It does: <Katex tex="\Pr(T>49)=\tfrac{21^2}{1250}\approx0.353" />, close to the <Katex tex="0.3539" /> we need ✓.</>,
+    reason: <>To the nearest minute, as asked.</>,
+    more: <>A check against part e.: <Katex tex="\Pr(T>50)=\tfrac8{25}=0.32" />, and a slightly earlier cut-off should give a slightly bigger probability. It does: <Katex tex="\Pr(T>49)=\tfrac{21^2}{1250}\approx0.353" />, close to the <Katex tex="0.3539" /> we need ✓.</>,
   },
 ]
 

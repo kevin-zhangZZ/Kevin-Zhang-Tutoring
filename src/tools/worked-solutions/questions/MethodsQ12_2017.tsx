@@ -40,7 +40,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\sin(2x) = \frac{\sqrt3}{2}" />,
-    reason: <><Katex tex="\tfrac{\sqrt3}{2}" /> is an exact value: <Katex tex="\sin\tfrac{\pi}{3}=\tfrac{\sqrt3}{2}" />, so the reference angle is <Katex tex="\tfrac{\pi}{3}" />. Solve for the angle <Katex tex="2x" /> first, then divide by <Katex tex="2" />.</>,
+    reason: <><Katex tex="\tfrac{\sqrt3}{2}" /> is an exact value: <Katex tex="\sin\tfrac{\pi}{3}=\tfrac{\sqrt3}{2}" />, so the reference angle is <Katex tex="\tfrac{\pi}{3}" />. Solve for the angle <Katex tex="2x" /> first.</>,
   },
   {
     working: (
@@ -51,7 +51,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{or} \quad x = \frac{\pi}{3}+k\pi" />
       </>
     ),
-    reason: <>Sine is positive in the first and second quadrants, so <Katex tex="2x=\tfrac{\pi}{3}" /> or <Katex tex="\pi-\tfrac{\pi}{3}=\tfrac{2\pi}{3}" />, plus any whole number of turns <Katex tex="2k\pi" />. Dividing by <Katex tex="2" /> turns <Katex tex="2k\pi" /> into <Katex tex="k\pi" />: the solutions repeat every <Katex tex="\pi" />, the period of <Katex tex="\sin(2x)" />.</>,
+    reason: <>Sine is positive in quadrants 1 and 2, so <Katex tex="2x=\tfrac{\pi}{3}" /> or <Katex tex="\pi-\tfrac{\pi}{3}=\tfrac{2\pi}{3}" />, plus any whole number of turns <Katex tex="2k\pi" />. Then divide by <Katex tex="2" />.</>,
+    more: <>Dividing by <Katex tex="2" /> turns <Katex tex="2k\pi" /> into <Katex tex="k\pi" />: the solutions repeat every <Katex tex="\pi" />, the period of <Katex tex="\sin(2x)" />. Adding only <Katex tex="k\pi" /> to <Katex tex="2x" /> (before dividing) is the slip behind option B.</>,
   },
   {
     working: (
@@ -61,6 +62,7 @@ const ROWS: WorkingRow[] = [
       </>
     ),
     reason: <>The left end <Katex tex="-\pi" /> is fixed and only <Katex tex="d" /> moves, so list the solutions from <Katex tex="x=-\pi" /> upwards, taking <Katex tex="k=-1,0,1,\dots" /> in each family.</>,
+    more: <>Why start at <Katex tex="k=-1" />: <Katex tex="k=-2" /> gives <Katex tex="-\tfrac{11\pi}{6}" /> and <Katex tex="-\tfrac{5\pi}{3}" />, both below <Katex tex="-\pi" />. And <Katex tex="-\pi" /> itself is not a solution, since <Katex tex="\sin(-2\pi)=0" />.</>,
   },
   {
     working: (
@@ -70,16 +72,18 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="-\frac{4\pi}{3}+\frac{\pi}{3} = -\pi" />
       </>
     ),
-    reason: <>Keep a running total, adding one solution at a time as <Katex tex="d" /> moves right. It first reaches <Katex tex="-\pi" /> once <Katex tex="\tfrac{\pi}{3}" /> is included. A check: the two solutions in each hump of <Katex tex="\sin(2x)" /> are symmetric about its peak (<Katex tex="x=-\tfrac{3\pi}{4}" /> and <Katex tex="x=\tfrac{\pi}{4}" />), so each pair adds to twice the peak: <Katex tex="-\tfrac{3\pi}{2}+\tfrac{\pi}{2}=-\pi" />.</>,
+    reason: <>Keep a running total, adding one solution at a time as <Katex tex="d" /> moves right. It first reaches <Katex tex="-\pi" /> once <Katex tex="\tfrac{\pi}{3}" /> is included.</>,
+    more: <>A check: the two solutions in each hump of <Katex tex="\sin(2x)" /> are symmetric about its peak (<Katex tex="x=-\tfrac{3\pi}{4}" /> and <Katex tex="x=\tfrac{\pi}{4}" />), so each pair adds to twice the peak: <Katex tex="-\tfrac{3\pi}{2}+\tfrac{\pi}{2}=-\pi" />.</>,
   },
   {
     working: <Katex display tex="\frac{\pi}{3} \le d < \frac{7\pi}{6}" />,
-    reason: <>The interval must include <Katex tex="\tfrac{\pi}{3}" /> but stop before the next solution, <Katex tex="\tfrac{7\pi}{6}" /> — including it would make the sum <Katex tex="-\pi+\tfrac{7\pi}{6}=\tfrac{\pi}{6}" />. The question says <Katex tex="d" /> <em>could be</em>, so any value in this range works.</>,
+    reason: <>The interval must include <Katex tex="\tfrac{\pi}{3}" /> but stop before the next solution, <Katex tex="\tfrac{7\pi}{6}" />: the square bracket in <Katex tex="[-\pi,\,d]" /> means <Katex tex="d" /> itself counts. The question says <Katex tex="d" /> <em>could be</em>, so any value in this range works.</>,
+    more: <>Including <Katex tex="\tfrac{7\pi}{6}" /> would make the sum <Katex tex="-\pi+\tfrac{7\pi}{6}=\tfrac{\pi}{6}" />, so <Katex tex="d" /> must be strictly less than it.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \frac{3\pi}{4}}" />,
-    reason: <>Matches option <b>C</b>, the only option in that range. Option B (18%), <Katex tex="\tfrac{\pi}{6}" />, stops one solution short (sum <Katex tex="-\tfrac{4\pi}{3}" />); option D, <Katex tex="\tfrac{7\pi}{6}" />, includes the fifth solution (sum <Katex tex="\tfrac{\pi}{6}" />).</>,
-    more: <>See the Common Mistake below for the slip that makes option B look right.</>,
+    reason: <>Matches option <b>C</b>, the only option in that range.</>,
+    more: <>The other options give these sums: A, <Katex tex="d=0" />, stops after two solutions (<Katex tex="-\tfrac{3\pi}{2}" />); B (18%), <Katex tex="d=\tfrac{\pi}{6}" />, stops one solution short (<Katex tex="-\tfrac{4\pi}{3}" />); D (15%), <Katex tex="d=\tfrac{7\pi}{6}" />, includes the fifth solution (<Katex tex="\tfrac{\pi}{6}" />); E, <Katex tex="d=\tfrac{3\pi}{2}" />, includes all six (<Katex tex="\tfrac{3\pi}{2}" />). See the Common Mistake below for the slip that makes option B look right.</>,
   },
 ]
 

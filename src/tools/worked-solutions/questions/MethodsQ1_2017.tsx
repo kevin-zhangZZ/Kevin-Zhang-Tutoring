@@ -21,63 +21,30 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = a\sin(nx)+c \implies \text{period}=\frac{2\pi}{n}" />,
-    reason: (
-      <>
-        Sine completes one cycle as its <em>input</em> runs from <Katex tex="0" /> to <Katex tex="2\pi" />. Here the
-        input is <Katex tex="2x" />, which gets to <Katex tex="2\pi" /> when <Katex tex="x" /> is only{' '}
-        <Katex tex="\pi" />: the graph is squeezed to half its width (a dilation by factor{' '}
-        <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis).
-      </>
-    ),
+    reason: <>Sine completes one cycle as its input runs from <Katex tex="0" /> to <Katex tex="2\pi" />; with input <Katex tex="nx" />, that happens by <Katex tex="x=\tfrac{2\pi}{n}" />.</>,
+    more: <>Here the input is <Katex tex="2x" />, which reaches <Katex tex="2\pi" /> when <Katex tex="x" /> is only <Katex tex="\pi" />: the graph is squeezed to half its width (a dilation by factor <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis).</>,
   },
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{2} = \pi" />,
-    reason: (
-      <>
-        Only the <Katex tex="n" /> inside the sine affects the period; the <Katex tex="5" /> and the{' '}
-        <Katex tex="-1" /> change heights, not widths. This already leaves only A and C.
-      </>
-    ),
+    reason: <>Only the <Katex tex="n=2" /> inside the sine affects the period; the <Katex tex="5" /> and <Katex tex="-1" /> change heights, not widths. This leaves A and C.</>,
   },
   {
     working: <Katex display tex="-1\le\sin(2x)\le1" />,
-    reason: (
-      <>
-        For the range, start from what sine can do: whatever is inside it, sine never leaves this band, and it
-        reaches both ends.
-      </>
-    ),
+    reason: <>For the range, start from sine itself: whatever is inside it, sine stays in this band and reaches both ends.</>,
   },
   {
     working: <Katex display tex="-5\le 5\sin(2x)\le 5" />,
-    reason: (
-      <>
-        Multiply every part of the inequality by the amplitude <Katex tex="5" /> (positive, so the signs stay the
-        same way round). This is the dilation by factor <Katex tex="5" /> from the <Katex tex="x" />-axis.
-      </>
-    ),
+    reason: <>Multiply every part by the amplitude <Katex tex="5" /> (positive, so the inequality signs stay the same way round).</>,
+    more: <>This is the dilation by factor <Katex tex="5" /> from the <Katex tex="x" />-axis.</>,
   },
   {
     working: <Katex display tex="-6\le 5\sin(2x)-1\le 4" />,
-    reason: (
-      <>
-        Subtract <Katex tex="1" /> from every part: the whole band slides down one unit, centred on the midline{' '}
-        <Katex tex="y=-1" />.
-      </>
-    ),
+    reason: <>Subtract <Katex tex="1" /> from every part: the band slides down one unit, centred on the midline <Katex tex="y=-1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\pi \text{ and } [-6,4]}" />,
-    reason: (
-      <>
-        Matches option <b>C</b>. Option A (4%) runs from the shift <Katex tex="-1" /> up to{' '}
-        <Katex tex="-1+5=4" />, as if sine's lowest value were <Katex tex="0" />. Options D and E have the range
-        right but the period wrong: <Katex tex="2\pi" /> ignores the <Katex tex="2" /> inside, and{' '}
-        <Katex tex="4\pi" /> multiplies by it instead of dividing. A quick check: the midpoint of{' '}
-        <Katex tex="[-6,4]" /> is <Katex tex="-1" />, the vertical shift, and its half-width is <Katex tex="5" />,
-        the amplitude.
-      </>
-    ),
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option A (4%) runs from the shift <Katex tex="-1" /> up to <Katex tex="-1+5=4" />, treating the midline as the bottom of the graph (the Common Mistake box below shows why that fails). Options D and E have the range right but the period wrong: <Katex tex="2\pi" /> ignores the <Katex tex="2" /> inside, and <Katex tex="4\pi" /> multiplies by it instead of dividing. Option B has both wrong. A quick check on the range: the midpoint of <Katex tex="[-6,4]" /> is <Katex tex="-1" />, the vertical shift, and its half-width is <Katex tex="5" />, the amplitude.</>,
   },
 ]
 

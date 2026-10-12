@@ -35,10 +35,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\hat P = \frac{X}{5}, \qquad X \sim \mathrm{Bi}(5,p)" />,
     reason: (
       <>
-        A proportion out of five people is a <em>count</em> out of five, so write <Katex tex="\hat P=\tfrac X5" />, where{' '}
-        <Katex tex="X" /> is how many of the five live in a capital city. Each person is an independent trial with the same
-        chance <Katex tex="p" />, so <Katex tex="X" /> is binomial, and every <Katex tex="\hat P" /> statement becomes an{' '}
-        <Katex tex="X" /> statement.
+        A proportion of five people is a count divided by <Katex tex="5" />: <Katex tex="X" /> counts how many of the
+        five live in a capital city. Each person is an independent trial with the
+        same chance <Katex tex="p" />, so <Katex tex="X" /> is binomial.
       </>
     ),
   },
@@ -52,8 +51,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="\hat P=0" /> means <em>none</em> of the five lives in a capital city: five failures, each with
-        probability <Katex tex="1-p" />. Since <Katex tex="243=3^5" />, take the fifth root. On CAS,{' '}
-        <Cas fn="solve">solve((1−p)^5 = 1/243, p)</Cas>.
+        probability <Katex tex="1-p" />. Since <Katex tex="243=3^5" />, take the fifth root.
+      </>
+    ),
+    more: (
+      <>
+        On CAS, <Cas fn="solve">solve((1−p)^5 = 1/243, p)</Cas>.
       </>
     ),
   },
@@ -61,8 +64,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="p = \frac23" />,
     reason: (
       <>
-        A quick check: &ldquo;nobody lives in a capital city&rdquo; is as rare as 1 in 243, so most people must, and{' '}
-        <Katex tex="p" /> should be large. <Katex tex="\tfrac23" /> passes; <Katex tex="\tfrac13" /> would not.
+        <Katex tex="p=1-\tfrac13" />. Careful: <Katex tex="\tfrac13" /> is the chance a person does <em>not</em> live in
+        a capital city, not <Katex tex="p" />.
+      </>
+    ),
+    more: (
+      <>
+        Check: &ldquo;nobody lives in a capital city&rdquo; is as rare as 1 in 243, so <Katex tex="p" /> should be
+        large. <Katex tex="\tfrac23" /> passes; <Katex tex="\tfrac13" /> would not.
       </>
     ),
   },
@@ -70,9 +79,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} \Pr(\hat P>0.6) &= \Pr(X>3) \\ &= \Pr(X=4)+\Pr(X=5) \end{aligned}" />,
     reason: (
       <>
-        Multiply <Katex tex="\tfrac X5>0.6" /> by <Katex tex="5" /> to get <Katex tex="X>3" />. <Katex tex="X" /> is a whole
-        number, so it starts at <Katex tex="4" />: <Katex tex="X=3" /> is <Katex tex="\hat P=0.6" /> exactly, which is not{' '}
-        <em>greater</em> than <Katex tex="0.6" />.
+        Multiply <Katex tex="\tfrac X5>0.6" /> by <Katex tex="5" />. <Katex tex="X=3" /> gives <Katex tex="\hat P=0.6" />{' '}
+        exactly, which is not <em>greater</em> than <Katex tex="0.6" />, so start at <Katex tex="X=4" />.
       </>
     ),
   },
@@ -94,10 +102,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\Pr(\hat P>0.6) = \frac{112}{243} \approx 0.4609}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option E, <Katex tex="0.7901" />, is <Katex tex="\Pr(X\ge3)" />, which includes{' '}
+        Matches option <b>C</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option E, <Katex tex="0.7901" />, is <Katex tex="\Pr(X\ge3)" />, which includes{' '}
         <Katex tex="\hat P=0.6" /> itself. Option A, <Katex tex="0.0453" />, is <Katex tex="\Pr(X\ge4)" /> with{' '}
-        <Katex tex="p=\tfrac13" />. Option D is (to within rounding) <Katex tex="\Pr(X\le3)=\tfrac{131}{243}" />, the other
-        tail.
+        <Katex tex="p=\tfrac13" />. Option D is the other tail, <Katex tex="\Pr(X\le3)=\tfrac{131}{243}\approx0.53909" />,
+        which VCAA printed as <Katex tex="0.5390" /> although it rounds to <Katex tex="0.5391" />.
       </>
     ),
   },
@@ -156,8 +169,7 @@ export default function MethodsQ16_2017() {
             }
           >
             <p>
-              <Katex tex="X=3" /> is <Katex tex="\hat P=0.6" /> exactly, and <Katex tex="0.6" /> is not greater than{' '}
-              <Katex tex="0.6" />. Changing <Katex tex=">" /> to <Katex tex="\ge" /> adds a whole bar of probability,{' '}
+              Changing <Katex tex=">" /> to <Katex tex="\ge" /> adds a whole bar of probability,{' '}
               <Katex tex="\tfrac{80}{243}" />. To catch it, list the values <Katex tex="\hat P" /> can take (
               <Katex tex="0,\ 0.2,\ 0.4,\ 0.6,\ 0.8,\ 1" />) and tick only those that satisfy the inequality.
             </p>

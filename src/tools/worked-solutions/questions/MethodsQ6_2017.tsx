@@ -32,10 +32,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="(a,b)\in f \iff (b,a)\in f^{-1}" />,
     reason: (
       <>
-        An inverse swaps inputs and outputs, so every point of <Katex tex="f" /> has its coordinates swapped.
-        Swapping <Katex tex="x" /> and <Katex tex="y" /> is the same as reflecting in the line{' '}
-        <Katex tex="y=x" />. That is why the question says the same scale is used on both axes: only then does
-        the reflection look like a mirror image.
+        An inverse swaps inputs and outputs, so every point of <Katex tex="f" /> has its coordinates swapped: the
+        graph is reflected in the line <Katex tex="y=x" />.
+      </>
+    ),
+    more: (
+      <>
+        That is why the question says the same scale is used on both axes: only then does the reflection look like
+        a mirror image.
       </>
     ),
   },
@@ -43,10 +47,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f \text{ increasing} \implies f^{-1} \text{ increasing}" />,
     reason: (
       <>
+        <Katex tex="f" /> rises from left to right, so its inverse must rise too. A, B and D fall, and both branches
+        of E fall, so only C is left.
+      </>
+    ),
+    more: (
+      <>
         Swapping coordinates keeps the order: bigger outputs of <Katex tex="f" /> came from bigger inputs, so
-        bigger inputs of <Katex tex="f^{-1}" /> give bigger outputs. The graph of <Katex tex="f" /> rises from
-        bottom left to top right, so its inverse must rise too. A, B and D fall from left to right, and both
-        branches of E fall, so only C is left.
+        bigger inputs of <Katex tex="f^{-1}" /> give bigger outputs.
       </>
     ),
   },
@@ -54,10 +62,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{gradient } m \;\longrightarrow\; \text{gradient } \tfrac{1}{m}" />,
     reason: (
       <>
-        Don&apos;t just take the last one standing: check the shape. Reflecting in <Katex tex="y=x" /> swaps
-        each rise with its run, so a gradient <Katex tex="m" /> becomes <Katex tex="\tfrac1m" />. The steep
-        lower-left piece of <Katex tex="f" /> becomes a gentle piece on the left, and the gentle straight piece
-        becomes a steep straight piece on the right. C is gentle then steep.
+        Check the shape too: swapping rise and run turns gradient <Katex tex="m" /> into <Katex tex="\tfrac1m" />.{' '}
+        <Katex tex="f" /> is steep then gentle, so <Katex tex="f^{-1}" /> is gentle then steep, and C is.
+      </>
+    ),
+    more: (
+      <>
+        Don&apos;t just take the last one standing. The steep lower-left piece of <Katex tex="f" /> becomes a gentle
+        piece on the left of <Katex tex="f^{-1}" />, and the gentle straight piece of <Katex tex="f" /> becomes a
+        steep straight piece on the right.
       </>
     ),
   },
@@ -65,9 +78,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="(p,0)\to(0,p),\quad (0,-q)\to(-q,0)" />,
     reason: (
       <>
-        The intercepts swap too (here <Katex tex="p,\,q>0" />). <Katex tex="f" /> cuts the <Katex tex="x" />-axis
-        just right of the origin and the <Katex tex="y" />-axis below it, so <Katex tex="f^{-1}" /> cuts the{' '}
-        <Katex tex="y" />-axis just above the origin and the <Katex tex="x" />-axis to the left of it. C does both.
+        The intercepts swap too (here <Katex tex="p,\,q>0" />): <Katex tex="f^{-1}" /> cuts the <Katex tex="y" />-axis
+        just above the origin and the <Katex tex="x" />-axis left of it. C does both.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="f" /> cuts the <Katex tex="x" />-axis just right of the origin, at <Katex tex="(p,0)" />, and the{' '}
+        <Katex tex="y" />-axis below it, at <Katex tex="(0,-q)" />.
       </>
     ),
   },
@@ -75,8 +93,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{C}}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option A is <Katex tex="f" /> reflected in the <Katex tex="x" />-axis, the graph
-        of <Katex tex="y=-f(x)" />, rather than in <Katex tex="y=x" />.
+        Matches option <b>C</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option E has two separate branches, so it is not even the same kind of curve as <Katex tex="f" />.
       </>
     ),
   },
@@ -106,10 +128,9 @@ export default function MethodsQ6_2017() {
       }
       background={
         <p>
-          Two facts settle almost every pick-the-inverse question without any algebra.
-          Reflecting in <Katex tex="y=x" /> preserves whether a curve is increasing or
-          decreasing, and it turns a gradient of <Katex tex="m" /> into{' '}
-          <Katex tex="\tfrac1m" /> — so steep becomes shallow and shallow becomes steep.
+          Two facts about reflecting in <Katex tex="y=x" /> settle almost every
+          pick-the-inverse question without any algebra: uphill stays uphill, and steep and
+          gentle swap. The rows below show why.
         </p>
       }
       options={[

@@ -124,34 +124,39 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x)=3x^2-5" />,
-    reason: <>The graph shows a maximum left of <Katex tex="O" /> and a minimum right of it. At both the tangent is horizontal, so they are where the gradient <Katex tex="f'(x)" /> is zero.</>,
+    reason: <>The graph shows a maximum left of <Katex tex="O" /> and a minimum right of it. Turning points are where the gradient <Katex tex="f'(x)" /> is zero.</>,
   },
   {
     working: <Katex display tex="3x^2-5=0 \implies x=\pm\sqrt{\frac53}=\pm\frac{\sqrt{15}}{3}" />,
-    reason: <>Rationalising: <Katex tex="\sqrt{\tfrac53}=\tfrac{\sqrt5}{\sqrt3}=\tfrac{\sqrt{15}}{3}" />. On CAS, <Cas fn="solve">solve(d/dx(x^3-5x)=0, x)</Cas> gives both at once. Keep them exact: the report says exact answers were needed for full marks.</>,
+    reason: <>Keep <Katex tex="x" /> exact, rationalising <Katex tex="\sqrt{\tfrac53}=\tfrac{\sqrt5}{\sqrt3}=\tfrac{\sqrt{15}}{3}" />. On CAS, <Cas fn="solve">solve(d/dx(x^3-5x)=0, x)</Cas> gives both at once.</>,
+    more: <>The report says exact answers were required for full marks; some students gave decimals such as <Katex tex="(-1.29,4.3)" />.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{\sqrt{15}}{3}\right) = \frac{5\sqrt{15}}{9}-\frac{5\sqrt{15}}{3}" />,
-    reason: <>Cubing: <Katex tex="\left(\tfrac{\sqrt{15}}{3}\right)^3=\tfrac{15\sqrt{15}}{27}=\tfrac{5\sqrt{15}}{9}" />.</>,
+    reason: <>Substitute into <Katex tex="f" />. Cubing: <Katex tex="\left(\tfrac{\sqrt{15}}{3}\right)^3=\tfrac{15\sqrt{15}}{27}=\tfrac{5\sqrt{15}}{9}" />.</>,
   },
   {
     working: <Katex display tex="= \frac{5\sqrt{15}}{9}-\frac{15\sqrt{15}}{9} = -\frac{10\sqrt{15}}{9}" />,
-    reason: <>For the other point, no need to repeat the arithmetic: <Katex tex="f" /> is odd (<Katex tex="f(-x)=-f(x)" />), so <Katex tex="f\!\left(-\tfrac{\sqrt{15}}{3}\right)=+\tfrac{10\sqrt{15}}{9}" />. The maximum is the minimum turned half a revolution about <Katex tex="O" />.</>,
+    reason: <>Common denominator <Katex tex="9" />. For the other point, <Katex tex="f" /> is odd (<Katex tex="f(-x)=-x^3+5x=-f(x)" />), so <Katex tex="f\!\left(-\tfrac{\sqrt{15}}{3}\right)=+\tfrac{10\sqrt{15}}{9}" />.</>,
+    more: <>Geometrically, the maximum is the minimum turned half a revolution about <Katex tex="O" />, so there is no need to repeat the arithmetic.</>,
   },
   {
-    working: <Katex display tex="\boxed{\left(-\frac{\sqrt{15}}{3},\ \frac{10\sqrt{15}}{9}\right),\ \left(\frac{\sqrt{15}}{3},\ -\frac{10\sqrt{15}}{9}\right)}" />,
-    reason: <>Roughly <Katex tex="(-1.29,4.30)" /> and <Katex tex="(1.29,-4.30)" />, which matches the printed graph: maximum on the left, minimum on the right. &ldquo;Coordinates&rdquo; means both <Katex tex="x" /> and <Katex tex="y" />; the report says some students gave only the <Katex tex="x" /> values.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}\left(-\frac{\sqrt{15}}{3},\ \frac{10\sqrt{15}}{9}\right),\ \left(\frac{\sqrt{15}}{3},\ -\frac{10\sqrt{15}}{9}\right)\end{gathered}}" />,
+    reason: <>&ldquo;Coordinates&rdquo; means both <Katex tex="x" /> and <Katex tex="y" /> of both points: maximum on the left, minimum on the right, as in the graph.</>,
+    more: <>As decimals these are about <Katex tex="(-1.29,4.30)" /> and <Katex tex="(1.29,-4.30)" />: a useful check against the graph, but not the exact answer asked for. The report says some students gave only the <Katex tex="x" /> values and some mixed up the signs; pairing <Katex tex="-\tfrac{\sqrt{15}}{3}" /> with a negative <Katex tex="y" /> would put the left-hand turning point below the axis, which the graph rules out.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="f(-1)=-1+5=4, \qquad f(1)=1-5=-4" />,
-    reason: <>So <Katex tex="A=(-1,4)" /> and <Katex tex="B=(1,-4)" />. Take care with <Katex tex="-5\times(-1)=+5" />. The graph agrees: at <Katex tex="x=-1" /> the curve is above the axis, at <Katex tex="x=1" /> below it.</>,
+    reason: <>Substitute <Katex tex="x=\pm1" />, taking care with <Katex tex="-5\times(-1)=+5" />. So <Katex tex="A=(-1,4)" /> and <Katex tex="B=(1,-4)" />.</>,
+    more: <>The graph agrees: at <Katex tex="x=-1" /> the curve is above the axis, at <Katex tex="x=1" /> below it.</>,
   },
   {
     working: <Katex display tex="m = \frac{-4-4}{1-(-1)} = \frac{-8}{2} = -4" />,
-    reason: <>Rise over run, subtracting in the same order top and bottom (<Katex tex="B" /> minus <Katex tex="A" />). The chord falls from <Katex tex="A" /> (upper left) to <Katex tex="B" /> (lower right), so a negative gradient is expected. The report&apos;s common wrong answer <Katex tex="y=4x" /> fails this check on sight.</>,
+    reason: <>Rise over run, subtracting in the same order top and bottom. The chord falls from <Katex tex="A" /> (upper left) to <Katex tex="B" /> (lower right), so expect a negative gradient.</>,
+    more: <>The report mentions arithmetic errors in the gradient and the <Katex tex="y" />-intercept; bracketing each negative, as here, avoids them.</>,
   },
   {
     working: <Katex display tex="y-4 = -4(x+1)" />,
@@ -159,30 +164,34 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y=-4x}" />,
-    reason: <>The constant cancels, which is no accident: <Katex tex="f" /> is odd, so <Katex tex="A" /> and <Katex tex="B" /> are symmetric about the origin and the chord must pass through it.</>,
-    more: <>The widget below shows why.</>,
+    reason: <>Expanding: <Katex tex="y=-4x-4+4" />, so the constant cancels.</>,
+    more: <>That is no accident: <Katex tex="f" /> is odd, so <Katex tex="A" /> and <Katex tex="B" /> are symmetric about the origin and the chord must pass through it. The widget below shows why.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="AB = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}" />,
-    reason: <>The distance formula is Pythagoras: <Katex tex="AB" /> is the hypotenuse of a right triangle whose legs are the run <Katex tex="x_2-x_1" /> and the rise <Katex tex="y_2-y_1" />. So the squares are <b>added</b>; the report says some students multiplied them.</>,
+    reason: <>The distance formula is Pythagoras, with the run and the rise as the two legs. So the squares are <b>added</b>.</>,
+    more: <><Katex tex="AB" /> is the hypotenuse of a right triangle whose legs are the run <Katex tex="x_2-x_1" /> and the rise <Katex tex="y_2-y_1" />. The report says some students multiplied the two brackets instead of adding them.</>,
   },
   {
     working: <Katex display tex="= \sqrt{(1-(-1))^2+(-4-4)^2} = \sqrt{4+64}" />,
-    reason: <>Run <Katex tex="2" />, rise <Katex tex="-8" />. Squaring removes the sign, so the order of subtraction doesn&apos;t matter. Lose the run (for example by letting <Katex tex="1-(-1)" /> slip to <Katex tex="0" />) and only <Katex tex="\sqrt{64}" /> is left, which is the report&apos;s common incorrect answer.</>,
+    reason: <>Run <Katex tex="2" />, rise <Katex tex="-8" />. Squaring removes the sign, so the order of subtraction doesn&apos;t matter.</>,
+    more: <>Lose the run (for example by letting <Katex tex="1-(-1)" /> slip to <Katex tex="0" />) and only <Katex tex="\sqrt{64}" /> is left, which is the report&apos;s common incorrect answer. The report also notes arithmetic errors from students who did this by hand.</>,
   },
   {
     working: <Katex display tex="\boxed{AB = \sqrt{68} = 2\sqrt{17}}" />,
-    reason: <>Since <Katex tex="68=4\times17" />. About <Katex tex="8.25" />, just longer than the vertical drop of <Katex tex="8" />, as a hypotenuse must be. The part (c)(i) widget shows this triangle at <Katex tex="k=5" />.</>,
+    reason: <>Since <Katex tex="68=4\times17" />, <Katex tex="\sqrt{68}=\sqrt4\sqrt{17}=2\sqrt{17}" />.</>,
+    more: <>The part (c)(i) widget shows this same triangle at <Katex tex="k=5" />.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="g(-1)=-1+k, \qquad g(1)=1-k" />,
-    reason: <>Part (b) again, with <Katex tex="5" /> replaced by <Katex tex="k" />: <Katex tex="C=(-1,k-1)" /> and <Katex tex="D=(1,1-k)" />. On CAS, <Cas fn="define">Define g(x) = x^3 - k·x</Cas> first. The report warns that the multiplication sign between <Katex tex="k" /> and <Katex tex="x" /> is needed; typed as <Katex tex="kx" />, the CAS treats it as one new variable.</>,
+    reason: <>Part (b) with <Katex tex="5" /> replaced by <Katex tex="k" />: <Katex tex="C=(-1,k-1)" />, <Katex tex="D=(1,1-k)" />. On CAS, <Cas fn="define">Define g(x) = x^3 - k·x</Cas>, with the multiplication sign.</>,
+    more: <>The report warns that the multiplication sign between <Katex tex="k" /> and <Katex tex="x" /> must be inserted: typed as <Katex tex="kx" />, the CAS treats it as one new variable.</>,
   },
   {
     working: <Katex display tex="CD = \sqrt{2^2+\bigl((1-k)-(k-1)\bigr)^2}" />,
@@ -190,16 +199,17 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \sqrt{4+(2-2k)^2}" />,
-    reason: <><Katex tex="(1-k)-(k-1)=1-k-k+1=2-2k" />. Bracket the whole of <Katex tex="g(-1)" /> before subtracting: this double negative is where the report&apos;s sign errors come from.</>,
+    reason: <><Katex tex="(1-k)-(k-1)=1-k-k+1=2-2k" />. Bracket the whole of <Katex tex="g(-1)" /> before subtracting.</>,
+    more: <>This double negative is where the report&apos;s sign errors come from. The report notes that students who worked by hand made such errors and that it was time consuming; the CAS does the algebra safely.</>,
   },
   {
     working: <Katex display tex="= \sqrt{4+4(1-k)^2} = 2\sqrt{1+(1-k)^2}" />,
-    reason: <>Take out the common factor of <Katex tex="4" />, then <Katex tex="\sqrt4=2" />. The surd itself can&apos;t be split: <Katex tex="\sqrt{4+(2-2k)^2}" /> is not <Katex tex="2+(2-2k)" />.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Take out the common factor <Katex tex="4" />, then <Katex tex="\sqrt4=2" />. The surd can&apos;t be split: <Katex tex="\sqrt{4+(2-2k)^2}" /> is not <Katex tex="2+(2-2k)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{CD = 2\sqrt{k^2-2k+2}}" />,
-    reason: <>Expanding <Katex tex="1+(1-k)^2=k^2-2k+2" />. Check against part (b): at <Katex tex="k=5" /> this gives <Katex tex="2\sqrt{17}" /> ✓. The answer must contain only <Katex tex="k" />; the report says some contained <Katex tex="x" />.</>,
+    reason: <>Expanding <Katex tex="1+(1-k)^2=k^2-2k+2" />.</>,
+    more: <>Check: <Katex tex="k=5" /> gives <Katex tex="2\sqrt{17}" />, part (b)&apos;s answer ✓. The answer must contain only <Katex tex="k" />; the report says some incorrect answers contained <Katex tex="x" />.</>,
   },
 ]
 
@@ -210,7 +220,7 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="4(k^2-2k+2) = (k+1)^2" />,
-    reason: <>Squaring both sides. Squaring can create false solutions when one side is negative, but here <Katex tex="k>0" /> makes both sides positive, so none are introduced.</>,
+    reason: <>Square both sides. Both sides are positive (as <Katex tex="k>0" />), so squaring adds no false solutions.</>,
   },
   {
     working: <Katex display tex="4k^2-8k+8 = k^2+2k+1" />,
@@ -222,8 +232,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k=1 \text{ or } k=\frac73}" />,
-    reason: <>Both are positive, so both satisfy <Katex tex="k\in R^+" />. The report notes that some students gave only one. There are two because <Katex tex="CD" /> is U-shaped in <Katex tex="k" />, and a line can cut a U twice.</>,
-    more: <>The widget below shows why.</>,
+    reason: <>Both are positive, so both satisfy <Katex tex="k\in R^+" />. Give both: the report notes some students gave only one.</>,
+    more: <>Both check in the original equation: <Katex tex="k=1" /> gives <Katex tex="CD=2\sqrt1=2=k+1" />, and <Katex tex="k=\tfrac73" /> gives <Katex tex="CD=2\sqrt{\tfrac{25}{9}}=\tfrac{10}{3}=k+1" />. There are two because <Katex tex="CD" /> is U-shaped in <Katex tex="k" />, and a line can cut a U twice; the widget below shows this.</>,
   },
 ]
 
@@ -234,7 +244,7 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^3 - (k+1)x = 0 \implies x\bigl(x^2-(k+1)\bigr)=0" />,
-    reason: <>Factorise rather than divide by <Katex tex="x" />. Dividing would lose the intersection at the origin, which the question has already told us about.</>,
+    reason: <>Factorise rather than divide by <Katex tex="x" />: dividing would lose the intersection at the origin.</>,
   },
   {
     working: <Katex display tex="x=0 \text{ or } x=\pm\sqrt{k+1}" />,
@@ -242,22 +252,25 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \sqrt{k+1}}" />,
-    reason: <>The diagram puts <Katex tex="(a,a)" /> to the right of the origin, so take the positive root. &ldquo;<Katex tex="a" /> in terms of <Katex tex="k" />&rdquo; means <Katex tex="a=\ldots" />. The report says some students rearranged for <Katex tex="k" /> instead (<Katex tex="k=a^2-1" />), which answers a different question.</>,
+    reason: <>The diagram puts <Katex tex="(a,a)" /> to the right of the origin, so take the positive root, written as <Katex tex="a=\ldots" />.</>,
+    more: <>The report says <Katex tex="a=\pm\sqrt{k+1}" /> was a common incorrect answer, and that some students found <Katex tex="k" /> in terms of <Katex tex="a" /> (<Katex tex="k=a^2-1" />) instead, which answers a different question.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="A = \int_0^{\sqrt{k+1}}\bigl(x-g(x)\bigr)\,dx" />,
-    reason: <>Upper curve minus lower curve, between the intersections <Katex tex="x=0" /> and <Katex tex="x=a" /> from part (d)(i). The diagram shows the line on top the whole way, even where both dip below the axis, so one integral does it all. On CAS, with <Katex tex="g" /> already defined (part (c)(i)), type exactly this with the integral template; writing <Katex tex="g(x)" /> keeps the brackets for you, which is the report&apos;s advice.</>,
+    reason: <>Upper minus lower, between the intersections <Katex tex="x=0" /> and <Katex tex="x=a" />. The line is on top the whole way, even below the axis, so one integral does it.</>,
+    more: <>On CAS, with <Katex tex="g" /> already defined (part (c)(i)), type exactly this with the integral template; writing <Katex tex="g(x)" /> keeps the brackets for you, which is the report&apos;s advice. The report also says some students overcomplicated the question by breaking the area into sections: top minus bottom already handles the part below the <Katex tex="x" />-axis.</>,
   },
   {
     working: <Katex display tex="= \int_0^{\sqrt{k+1}}\bigl(x-(x^3-kx)\bigr)\,dx" />,
-    reason: <>By hand, the bracket around <Katex tex="g(x)" /> stays until you expand: <Katex tex="-(x^3-kx)=-x^3+kx" />. Dropping it is the error the report singles out.</>,
+    reason: <>By hand, keep the bracket around <Katex tex="g(x)" /> until you expand: <Katex tex="-(x^3-kx)=-x^3+kx" />.</>,
+    more: <>Dropping the bracket is the common error the report singles out.</>,
   },
   {
     working: <Katex display tex="= \int_0^{\sqrt{k+1}}\bigl((k+1)x-x^3\bigr)\,dx" />,
-    reason: <>Collecting <Katex tex="x+kx=(k+1)x" />. The integrand is positive for every <Katex tex="x" /> between <Katex tex="0" /> and <Katex tex="a" />.</>,
+    reason: <>Collecting <Katex tex="x+kx=(k+1)x" />. This is <Katex tex="x\bigl(k+1-x^2\bigr)" />, positive between <Katex tex="0" /> and <Katex tex="a" />, as the line is on top.</>,
     more: <>It is the strip height in the widget below.</>,
   },
   {
@@ -266,11 +279,13 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{(k+1)^2}{2}-\frac{(k+1)^2}{4}" />,
-    reason: <>Substitute the limit <Katex tex="\sqrt{k+1}" />, not <Katex tex="k+1" /> (the report mentions that slip too). Then <Katex tex="\left(\sqrt{k+1}\right)^2=k+1" /> and <Katex tex="\left(\sqrt{k+1}\right)^4=(k+1)^2" />, so the surd disappears completely.</>,
+    reason: <>Substitute the limit <Katex tex="\sqrt{k+1}" />, not <Katex tex="k+1" />: <Katex tex="\left(\sqrt{k+1}\right)^2=k+1" /> and <Katex tex="\left(\sqrt{k+1}\right)^4=(k+1)^2" />. The lower limit gives <Katex tex="0" />.</>,
+    more: <>The report says there was evidence of students substituting <Katex tex="k+1" /> instead of <Katex tex="\sqrt{k+1}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{(k+1)^2}{4}}" />,
-    reason: <>Check with the original <Katex tex="f" />, where <Katex tex="k=5" />: <Katex tex="\int_0^{\sqrt6}\bigl(x-f(x)\bigr)dx=\tfrac{36}{4}=9" />, a positive area of a plausible size for that region.</>,
+    reason: <>Common denominator <Katex tex="4" />: <Katex tex="\tfrac12-\tfrac14=\tfrac14" /> of <Katex tex="(k+1)^2" />.</>,
+    more: <>Check with <Katex tex="f" />, where <Katex tex="k=5" />: <Katex tex="\int_0^{\sqrt6}\bigl(x-f(x)\bigr)dx=\tfrac{36}{4}=9" />, positive as an area must be.</>,
   },
 ]
 
@@ -331,7 +346,7 @@ export default function MethodsQ1_2017Exam2() {
         <WrongMethod
           title="Multiply the two brackets in the distance formula"
           source="Examiner's report"
-          working={<Katex display tex="\sqrt{(1-(-1))^2\times(-4-4)^2}=\sqrt{4\times64}=16" />}
+          working={<Katex display tex="\begin{aligned}&\sqrt{(1-(-1))^2\times(-4-4)^2}\\&=\sqrt{4\times64}=16\end{aligned}" />}
         >
           That is the product of the legs, not Pythagoras. A quick sense check exposes it: walking
           along both legs is only <Katex tex="2+8=10" /> units, and the straight line from{' '}
@@ -468,13 +483,13 @@ export default function MethodsQ1_2017Exam2() {
           working={
             <Katex
               display
-              tex="\int_0^{\sqrt{k+1}}\bigl(x-x^3-kx\bigr)dx=-\frac{(k+1)(3k-1)}{4}"
+              tex="\begin{aligned}&\int_0^{\sqrt{k+1}}\bigl(x-x^3-kx\bigr)dx\\&=-\frac{(k+1)(3k-1)}{4}\end{aligned}"
             />
           }
         >
           Without the bracket the{' '}
-          <Katex tex="kx" /> term keeps its minus sign when it should have become <Katex tex="+kx" />. In effect you have found the area between{' '}
-          <Katex tex="y=x" /> and a different curve, <Katex tex="y=x^3+kx" />. Try{' '}
+          <Katex tex="kx" /> term keeps its minus sign when it should have become <Katex tex="+kx" />. In effect you have integrated <Katex tex="x" /> minus a
+          different function, <Katex tex="x^3+kx" />, instead of <Katex tex="x-g(x)" />. Try{' '}
           <Katex tex="k=5" />: the result is <Katex tex="-21" />, and an area can&apos;t be
           negative. Write <Katex tex="x-g(x)" /> first and expand the bracket as its own step.
         </WrongMethod>

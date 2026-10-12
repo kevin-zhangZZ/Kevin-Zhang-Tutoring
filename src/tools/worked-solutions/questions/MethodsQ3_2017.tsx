@@ -22,50 +22,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{different} = RY \text{ or } YR" />,
-    reason: (
-      <>
-        “Different colours” does not say which colour comes first, so list every order that fits. On a tree
-        diagram these are the two branches that change colour.
-      </>
-    ),
+    reason: <>“Different colours” does not say which colour comes first, so list both orders.</>,
+    more: <>On a tree diagram these are the two branches that change colour.</>,
   },
   {
     working: <Katex display tex="\Pr(RY) = \frac58\times\frac37 = \frac{15}{56}" />,
-    reason: (
-      <>
-        Red first: <Katex tex="5" /> of the <Katex tex="8" /> marbles. Then yellow: all <Katex tex="3" /> yellows
-        are still there, but only <Katex tex="7" /> marbles are left, because the first one is not replaced.
-      </>
-    ),
+    reason: <>Red first: <Katex tex="5" /> of <Katex tex="8" />. Then yellow: all <Katex tex="3" /> yellows remain, but only <Katex tex="7" /> marbles, as the first is not replaced.</>,
   },
   {
     working: <Katex display tex="\Pr(YR) = \frac38\times\frac57 = \frac{15}{56}" />,
-    reason: (
-      <>
-        The other order. It is equal to the first because the same numbers are multiplied, just in a different
-        order: that is always true for two draws without replacement.
-      </>
-    ),
+    reason: <>The other order: yellow (<Katex tex="3" /> of <Katex tex="8" />), then red (<Katex tex="5" /> of the <Katex tex="7" /> left).</>,
+    more: <>It equals <Katex tex="\Pr(RY)" /> because the same numbers are multiplied, just in a different order. That is always true for two draws without replacement.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{different}) = \frac{15}{56}+\frac{15}{56} = \frac{30}{56}" />,
-    reason: (
-      <>
-        The two orders cannot both happen, so add them. As a check, count unordered pairs instead:{' '}
-        <Katex tex="\frac{5\times3}{\binom{8}{2}}=\frac{15}{28}" />, the same answer.
-      </>
-    ),
+    reason: <>The two orders cannot both happen, so add them.</>,
+    more: <>As a check, count unordered pairs instead: <Katex tex="\frac{5\times3}{\binom{8}{2}}=\frac{15}{28}" />, the same answer.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{15}{28}}" />,
-    reason: (
-      <>
-        Matches option <b>C</b>. Option D (12%) is <Katex tex="\Pr(RY)" /> alone, forgetting that yellow can come
-        first. Option E is greater than <Katex tex="1" />, so it cannot be a probability. A sense check:{' '}
-        <Katex tex="\tfrac{15}{28}\approx0.54" />, a bit over half, which is sensible for a fairly even mix of
-        colours.
-      </>
-    ),
+    reason: <>Simplify <Katex tex="\tfrac{30}{56}" /> by dividing top and bottom by <Katex tex="2" />. Matches option <b>C</b>.</>,
+    more: <>Option D (12%) is <Katex tex="\Pr(RY)" /> alone, forgetting that yellow can come first. Option A is the probability that the first marble is red, option B is the ratio of yellow to red marbles (<Katex tex="3" /> to <Katex tex="5" />), not a probability of anything here, and option E is greater than <Katex tex="1" />, so it cannot be a probability. A sense check: <Katex tex="\tfrac{15}{28}\approx0.54" />, a bit over half: with <Katex tex="5" /> red and <Katex tex="3" /> yellow, one of each is a little more likely than two the same colour (<Katex tex="\Pr(\text{same})=\tfrac{5\times4+3\times2}{56}=\tfrac{13}{28}" />).</>,
   },
 ]
 

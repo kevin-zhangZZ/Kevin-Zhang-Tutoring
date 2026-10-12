@@ -21,9 +21,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="g(3)=2" />,
     reason: (
       <>
-        Work from the inside out. In <Katex tex="f(g(3))" /> the function touching the <Katex tex="3" /> is{' '}
-        <Katex tex="g" />, so <Katex tex="g" /> acts first; you can&apos;t apply <Katex tex="f" /> until you know
-        what is inside its bracket. <Katex tex="g(3)=2" /> is one of the given values.
+        Work from the inside out: in <Katex tex="f(g(3))" /> the function touching the <Katex tex="3" /> is{' '}
+        <Katex tex="g" />, so <Katex tex="g" /> acts first. <Katex tex="g(3)=2" /> is one of the given values.
+      </>
+    ),
+    more: (
+      <>
+        You can&apos;t apply <Katex tex="f" /> until you know what is inside its bracket, so reading the letters left
+        to right and applying <Katex tex="f" /> first is the wrong order.
       </>
     ),
   },
@@ -32,8 +37,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         The output of <Katex tex="g" /> becomes the input of <Katex tex="f" />, so replace <Katex tex="g(3)" /> by{' '}
-        <Katex tex="2" />. That <Katex tex="f(2)" /> is on the list is a good sign you are on the right track: the
-        examiners made sure every value the correct chain needs is given.
+        <Katex tex="2" />.
+      </>
+    ),
+    more: (
+      <>
+        Don&apos;t use the list to check the order. Both orders can be looked up here (
+        <Katex tex="g(f(3))=g(4)=1" /> is option A), so finding a value on the list proves nothing; only working
+        inside out gives the right order.
       </>
     ),
   },
@@ -41,9 +52,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{f(g(3)) = 5}" />,
     reason: (
       <>
-        Matches option <b>E</b>, reading <Katex tex="f(2)=5" /> off the list. Option A is{' '}
-        <Katex tex="g(f(3))=g(4)=1" />, the composite done in the wrong order; B is <Katex tex="g(3)=2" />, only the
-        first of the two steps; D is <Katex tex="f(3)=4" />, which skips <Katex tex="g" /> altogether.
+        Matches option <b>E</b>, reading <Katex tex="f(2)=5" /> off the list.
+      </>
+    ),
+    more: (
+      <>
+        Option A is <Katex tex="g(f(3))=g(4)=1" />, the composite done in the wrong order. B is{' '}
+        <Katex tex="g(3)=2" />, only the first of the two look-ups. C is the input <Katex tex="3" /> itself, not the
+        result of any look-up. D is <Katex tex="f(3)=4" />, which skips <Katex tex="g" /> altogether.
       </>
     ),
   },

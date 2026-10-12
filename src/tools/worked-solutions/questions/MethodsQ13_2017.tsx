@@ -45,10 +45,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Every option is built from <Katex tex="h(x)" />, <Katex tex="h(-x)" />, <Katex tex="h(x^2)" /> and{' '}
-        <Katex tex="h(0)" />, so work these out once. Each one means &ldquo;replace the <Katex tex="x" /> in the rule by
-        the new input&rdquo;: for <Katex tex="h(-x)" /> the denominator becomes <Katex tex="-x-1=-(x+1)" />, and that
-        minus sign is where slips happen. Factorising <Katex tex="x^2-1" /> shows <Katex tex="h(x^2)" /> shares a factor
-        with both <Katex tex="h(x)" /> and <Katex tex="h(-x)" />, which is why they can combine into it.
+        <Katex tex="h(0)" />, so work these out once by replacing the <Katex tex="x" /> in the rule by the new input.
+      </>
+    ),
+    more: (
+      <>
+        Factorising <Katex tex="x^2-1" /> shows <Katex tex="h(x^2)" /> shares a factor with both{' '}
+        <Katex tex="h(x)" /> and <Katex tex="h(-x)" />, which is why they can combine into it.
       </>
     ),
   },
@@ -61,12 +64,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A statement that is not true only needs <b>one</b> <Katex tex="x" /> where it fails, so try an easy value
-        first. <Katex tex="x=0" /> is in <Katex tex="(-1,1)" /> and gives <Katex tex="h(0)=-1" />. At{' '}
-        <Katex tex="x=0" />, A gives <Katex tex="1=1" />, B gives <Katex tex="-2=-2" />, and C and D give{' '}
-        <Katex tex="0=0" />, but E gives <Katex tex="1" /> on the left and <Katex tex="-1" /> on the right, so E is
-        false. Passing at one value doesn&apos;t prove A&ndash;D, so the next rows check them for every{' '}
-        <Katex tex="x" />.
+        A statement that is not true only needs <b>one</b> <Katex tex="x" /> where it fails, so test an easy value
+        in <Katex tex="(-1,1)" />. At <Katex tex="x=0" />, E gives <Katex tex="1" /> on the left but{' '}
+        <Katex tex="-1" /> on the right, so E is false.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="x=0" /> the others all pass: A gives <Katex tex="1=1" />, B gives <Katex tex="-2=-2" />, and C
+        and D give <Katex tex="0=0" />. Passing at one value doesn&apos;t prove A&ndash;D, so the next rows check them
+        for every <Katex tex="x" />.
       </>
     ),
   },
@@ -100,8 +107,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} \text{D: } h(x)-h(-x) &= \frac{1}{x-1}+\frac{1}{x+1} \\ &= \frac{2x}{x^2-1} \\ &= 2x\,h(x^2) \ \checkmark \end{aligned}" />,
     reason: (
       <>
-        The same common denominator as B, but now the numerator is <Katex tex="(x+1)+(x-1)=2x" />. True. On CAS,{' '}
-        <Cas fn="define">Define h(x)=1/(x-1)</Cas>, then enter each statement: A&ndash;D each return{' '}
+        The same common denominator as B, but now the numerator is <Katex tex="(x+1)+(x-1)=2x" />. True.
+      </>
+    ),
+    more: (
+      <>
+        On CAS, <Cas fn="define">Define h(x)=1/(x-1)</Cas>, then enter each statement: A&ndash;D each return{' '}
         <Katex tex="\text{true}" />.
       </>
     ),
@@ -117,8 +128,13 @@ const ROWS: WorkingRow[] = [
       <>
         Why E fails everywhere, not just at <Katex tex="0" />: a square is positive, but for every <Katex tex="x" /> in{' '}
         <Katex tex="(-1,1)" />, <Katex tex="x^2<1" />, so <Katex tex="x^2-1<0" /> and <Katex tex="h(x^2)" /> is
-        negative. The algebra says the same, as the examiner&apos;s report shows:{' '}
-        <Katex tex="(x-1)^2=x^2-2x+1" />, not <Katex tex="x^2-1" />.
+        negative.
+      </>
+    ),
+    more: (
+      <>
+        The algebra says the same, as the examiner&apos;s report shows: <Katex tex="(x-1)^2=x^2-2x+1" />, not{' '}
+        <Katex tex="x^2-1" />, so the denominators differ.
       </>
     ),
   },
@@ -126,9 +142,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{(h(x))^2 \ne h(x^2)}" />,
     reason: (
       <>
-        Matches option <b>E</b>, the statement that is <em>not</em> true. A, B, C and D hold for every{' '}
-        <Katex tex="x" /> in the domain; the sign slip <Katex tex="h(-x)=\tfrac{1}{x+1}" /> (below) makes A, B and D
-        all look false.
+        Matches option <b>E</b>, the statement that is <em>not</em> true.
+      </>
+    ),
+    more: (
+      <>
+        A, B, C and D hold for every <Katex tex="x" /> in the domain. One way to talk yourself out of a true statement is
+        the sign slip <Katex tex="h(-x)=\tfrac{1}{x+1}" /> (Common Mistake below), which makes A, B and D all look
+        false.
       </>
     ),
   },
@@ -157,7 +178,7 @@ export default function MethodsQ13_2017() {
             In the same way <Katex tex="h(-x)" /> replaces <Katex tex="x" /> by <Katex tex="-x" />:{' '}
             <Katex tex="\tfrac{1}{-x-1}" />, which is not the same as <Katex tex="-h(x)" /> or{' '}
             <Katex tex="\tfrac{1}{x+1}" />. An identity is a statement that holds for <em>every</em> <Katex tex="x" /> in
-            the domain, so one value where it fails is enough to show it is not true.
+            the domain.
           </p>
         </Background>
       }
@@ -179,7 +200,7 @@ export default function MethodsQ13_2017() {
             working={<Katex display tex="\left(\frac{1}{x-1}\right)^2 = \frac{1}{x^2-1} = h(x^2)" />}
           >
             <p>
-              Squaring a bracket is not squaring each term: <Katex tex="(x-1)^2=x^2-2x+1" />. The{' '}
+              <Katex tex="(x-1)^2" /> means <Katex tex="(x-1)(x-1)=x^2-2x+1" />, not <Katex tex="x^2-1" />: the{' '}
               <Katex tex="-2x" /> cross term is what gets lost. With it, E becomes{' '}
               <Katex tex="\tfrac{1}{x^2-2x+1}" /> on the left against <Katex tex="\tfrac{1}{x^2-1}" /> on the right. To
               catch it, check signs: the left side is a square, so it is positive, while{' '}
