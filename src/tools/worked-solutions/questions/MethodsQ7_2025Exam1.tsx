@@ -109,14 +109,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\therefore x=5 \text{ is a solution of } f(x)=0}" />,
-    reason: <>Equivalently, by the factor theorem <Katex tex="x-5" /> is a factor — which is exactly what part b. is about to use. As required.</>,
+    reason: <>As required.</>,
+    more: <>Equivalently, by the factor theorem <Katex tex="x-5" /> is a factor of <Katex tex="f(x)" /> — exactly what part b. is about to use. The report accepts a factor-theorem write-up too, but plain substitution is all a “verify” needs.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(x+d)^2(x-5) = \left(x^2+2dx+d^2\right)(x-5)" />,
-    reason: <>Expanding the given form and matching coefficients is the least error-prone of the several valid routes.</>,
+    reason: <>Expand the target form so its coefficients can be matched with those of <Katex tex="f(x)=x^3-x^2-16x-20" />.</>,
+    more: <>Long division or synthetic division of <Katex tex="f(x)" /> by <Katex tex="x-5" /> works equally well (the report lists all of these as valid); expanding the given form is the least error-prone because the answer's shape is already fixed.</>,
   },
   {
     working: <Katex display tex="= x^3+(2d-5)x^2+\left(d^2-10d\right)x-5d^2" />,
@@ -124,30 +126,34 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2d-5 = -1 \implies d = 2" />,
-    reason: <>Matching the <Katex tex="x^2" /> coefficient — the simplest equation to use.</>,
+    reason: <>Matching the <Katex tex="x^2" /> coefficient with the <Katex tex="-1" /> in <Katex tex="f(x)" /> — the only equation linear in <Katex tex="d" />.</>,
+    more: <>Matching the constant term instead gives <Katex tex="-5d^2=-20" />, so <Katex tex="d=\pm2" />, and you would still need another coefficient to rule out <Katex tex="d=-2" />. The <Katex tex="x^2" /> coefficient gives <Katex tex="d" /> outright.</>,
   },
   {
-    working: <Katex display tex="\text{check: } d^2-10d = 4-20 = -16 \ \checkmark, \qquad -5d^2 = -20 \ \checkmark" />,
-    reason: <>Both remaining coefficients agree, so the form is confirmed.</>,
+    working: <Katex display tex="\begin{aligned} &\text{check: } d^2-10d = 4-20 = -16 \ \checkmark \\ &\phantom{\text{check: }} -5d^2 = -20 \ \checkmark \end{aligned}" />,
+    reason: <>The <Katex tex="x" /> and constant coefficients of <Katex tex="f(x)" /> are <Katex tex="-16" /> and <Katex tex="-20" />; both agree, so the form is confirmed.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = (x+2)^2(x-5)}" />,
-    reason: <>Long division of <Katex tex="f(x)" /> by <Katex tex="x-5" /> gives <Katex tex="x^2+4x+4" />, which factorises the same way. The report reminds students that working must be shown for any question worth more than one mark.</>,
+    reason: <>Substituting <Katex tex="d=2" /> into the given form.</>,
+    more: <>As a cross-check, long division of <Katex tex="f(x)" /> by <Katex tex="x-5" /> gives <Katex tex="x^2+4x+4=(x+2)^2" />. Write the expansion or division down: a bare factorised answer is not enough for a 2-mark question.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="(x+2)^2(x-5) = 0 \implies x = -2 \ \text{(twice)}, \ x = 5" />,
-    reason: <>The squared factor is why the curve <em>touches</em> the axis on the left and crosses it on the right, exactly as drawn.</>,
+    reason: <>The <Katex tex="x" />-intercepts are the zeros of the factorised form from part b.</>,
+    more: <>The squared factor is why the curve <em>touches</em> the axis at <Katex tex="x=-2" /> and crosses it at <Katex tex="x=5" />, exactly as drawn — a useful check that the factorisation matches the picture.</>,
   },
   {
     working: <Katex display tex="f(0) = (2)^2(-5) = -20" />,
-    reason: <>Or read <Katex tex="-20" /> straight off the constant term of the expanded form.</>,
+    reason: <>The <Katex tex="y" />-intercept is <Katex tex="f(0)" /> — equally, the constant term <Katex tex="-20" /> of the original rule.</>,
   },
   {
     working: <Katex display tex="\boxed{(-2,\,0), \quad (5,\,0), \quad (0,\,-20)}" />,
-    reason: <>Both negative signs matter: the report notes <Katex tex="(2,0)" /> and <Katex tex="(0,20)" /> as the common slip, and the printed graph shows the left intercept is negative and the curve passes below the origin.</>,
+    reason: <>Both negative signs matter: the graph shows the touching intercept left of the origin and the curve crossing the <Katex tex="y" />-axis below it.</>,
+    more: <>A glance at the printed graph catches a dropped sign: neither <Katex tex="(2,0)" /> nor <Katex tex="(0,20)" /> is where the curve meets the axes.</>,
   },
   {
     working: <InterceptOverlay />,
@@ -162,15 +168,17 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= (x+2)^3(x-5)" />,
-    reason: <>A quartic with a triple factor.</>,
+    reason: <>A quartic with a triple factor <Katex tex="(x+2)^3" />, so near <Katex tex="x=-2" /> it behaves like a cubic <Katex tex="y=a(x+2)^3" />.</>,
   },
   {
-    working: <Katex display tex="\text{a factor of odd multiplicity} \ge3 \implies \text{stationary point of inflection}" />,
-    reason: <>The graph flattens at <Katex tex="x=-2" /> but still crosses, which is precisely a stationary point of inflection.</>,
+    working: <Katex display tex="\begin{gathered} \text{odd multiplicity} \ge 3 \text{ at } x=-2 \\ \implies \text{stationary point of inflection} \end{gathered}" />,
+    reason: <>Like <Katex tex="y=x^3" /> at the origin, the graph flattens at <Katex tex="x=-2" /> but still crosses the axis: a stationary point of inflection.</>,
+    more: <>A check by calculus: <Katex tex="\frac{d}{dx}\left[(x+2)^3(x-5)\right]" />{' '}<Katex tex="= 3(x+2)^2(x-5)+(x+2)^3" />{' '}<Katex tex="= (x+2)^2(4x-13)" />. This is zero at <Katex tex="x=-2" /> and <Katex tex="x=\tfrac{13}{4}" />, and the squared factor means its sign does not change at <Katex tex="x=-2" /> (negative on both sides), so the stationary point there is an inflection, not a turning point. The other stationary point, at <Katex tex="x=\tfrac{13}{4}" />, is the minimum between the two <Katex tex="x" />-intercepts.</>,
   },
   {
     working: <Katex display tex="\boxed{(-2,\,0)}" />,
-    reason: <>Coordinates, not an equation — the report notes students who gave the rule of the product curve instead.</>,
+    reason: <>The point is on the <Katex tex="x" />-axis, since the product is zero at <Katex tex="x=-2" />. Give coordinates, not an equation.</>,
+    more: <>The question asks for coordinates, so give the point, not the curve's equation. Expanding first turns this into a quartic; part b.'s factorised form makes it a one-line question.</>,
   },
 ]
 
@@ -180,16 +188,19 @@ const ROWS_DII: WorkingRow[] = [
     reason: <>The product from part d.i.</>,
   },
   {
-    working: <Katex display tex="\text{zeros at } x = -2 \ (\text{multiplicity }3) \text{ and } x = 5 \ (\text{multiplicity }1)" />,
-    reason: <>Both multiplicities are odd, so the sign changes at each.</>,
+    working: <Katex display tex="\begin{aligned} &\text{zeros: } x = -2 \ (\text{multiplicity }3) \\ &\phantom{\text{zeros: }} x = 5 \ (\text{multiplicity }1) \end{aligned}" />,
+    reason: <>Both multiplicities are odd, so the graph crosses the axis (the sign changes) at each zero.</>,
+    more: <>Contrast part c.: there <Katex tex="(x+2)^2" /> made <Katex tex="f" /> touch the axis at <Katex tex="x=-2" /> without changing sign. Multiplying by <Katex tex="g(x)=x+2" /> raises the multiplicity to 3, so the product now <em>crosses</em>. Treating <Katex tex="x=-2" /> as a touching point is what gives the report's incorrect answer <Katex tex="[5,\infty)\cup\{-2\}" />.</>,
   },
   {
-    working: <Katex display tex="x>5: \ (+)(+) = + \ ; \qquad -2<x<5: \ (+)(-) = - \ ; \qquad x<-2: \ (-)(-) = +" />,
-    reason: <>Testing the sign of each factor on the three intervals.</>,
+    working: <Katex display tex="\begin{aligned} x>5&: \ (+)(+) = + \\ -2<x<5&: \ (+)(-) = - \\ x<-2&: \ (-)(-) = + \end{aligned}" />,
+    reason: <>Testing the sign of each factor on the three intervals; <Katex tex="(x+2)^3" /> has the same sign as <Katex tex="x+2" />.</>,
+    more: <>Shape check: a quartic with positive leading coefficient rises to <Katex tex="+\infty" /> at both ends, so it is positive outside its zeros and negative between them, with a stationary point of inflection at <Katex tex="(-2,0)" /> and a minimum at <Katex tex="x=\tfrac{13}{4}" />. The report's incorrect answer <Katex tex="[-2,5]" /> is exactly the interval where the product is negative or zero, the reverse of what was asked.</>,
   },
   {
     working: <Katex display tex="\boxed{x \le -2 \ \text{ or } \ x \ge 5 \quad \text{i.e. } (-\infty,-2]\cup[5,\infty)}" />,
-    reason: <>Closed at both ends, since the inequality is <Katex tex="\ge" /> and the product is zero there. The report lists <Katex tex="(-\infty,2]\cup[5,\infty)" />, missing the negative sign, among the common incorrect answers.</>,
+    reason: <>Closed at <Katex tex="-2" /> and <Katex tex="5" />, since the inequality is <Katex tex="\ge" /> and the product is zero there. The two pieces are joined by “or” (<Katex tex="\cup" />).</>,
+    more: <>Of the report's other incorrect answers, <Katex tex="(-\infty,2]\cup[5,\infty)" /> drops the negative sign on <Katex tex="-2" />, and <Katex tex="(-\infty,2]\cap[5,\infty)" /> uses intersection, which would require <Katex tex="x" /> to be in both pieces at once: an empty set.</>,
   },
 ]
 
@@ -214,10 +225,8 @@ export default function MethodsQ7_2025Exam1() {
               is <Katex tex="(x+2)^3(x-5)" /> without any expanding.
             </p>
             <p>
-              That triple factor is the point of part d.i.: an odd multiplicity of three or
-              more means the curve flattens to a stationary point but still crosses — a
-              stationary point of inflection. And because both multiplicities are odd, the sign
-              of the product flips at each root, which settles part d.ii.
+              From there, the triple factor drives part d.i. and the sign of each factor
+              drives part d.ii.
             </p>
           </Background>
         </div>

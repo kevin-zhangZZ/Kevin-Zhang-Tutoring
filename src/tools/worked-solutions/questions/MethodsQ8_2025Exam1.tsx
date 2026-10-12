@@ -46,50 +46,56 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X>k) = \int_k^{4/3}\frac38(4-3x)\,dx = \frac{9}{16}" />,
-    reason: <>The upper terminal is <Katex tex="\tfrac43" />, where the density stops. Setting up this integral is the first mark.</>,
+    reason: <><Katex tex="\Pr(X>k)" /> is the area under <Katex tex="f" /> to the right of <Katex tex="k" />, which stops at <Katex tex="\tfrac43" /> where the density ends. Setting up this integral is the first mark.</>,
+    more: <>The report also accepts the complement, <Katex tex="\int_0^k\frac38(4-3x)\,dx=1-\frac{9}{16}=\frac{7}{16}" />, or an area equation from the triangle in the Background (or a trapezium for the complement, area <Katex tex="\tfrac{7}{16}" />); every route gives the same quadratic.</>,
   },
   {
     working: <Katex display tex="\int\frac38(4-3x)\,dx = -\frac{(4-3x)^2}{16}" />,
-    reason: <>By the reverse chain rule: raising the power gives <Katex tex="(4-3x)^2" />, then divide by both the new power 2 and the inner derivative <Katex tex="-3" /> — so <Katex tex="\tfrac38\div(-6)=-\tfrac{1}{16}" />. The report notes some students divided by 2 instead of 6.</>,
+    reason: <>Reverse chain rule: raise the power to <Katex tex="(4-3x)^2" />, then divide by the new power 2 <em>and</em> the inner derivative <Katex tex="-3" />: <Katex tex="\tfrac38\div(-6)=-\tfrac{1}{16}" />.</>,
+    more: <>The report notes some students raised the power to 2 but then divided by 2 instead of 6 — forgetting the inner derivative <Katex tex="-3" />. Differentiate your answer to check: <Katex tex="-\tfrac{1}{16}\times2(4-3x)\times(-3)=\tfrac38(4-3x)" />. Expanding first also works: <Katex tex="\int\left(\tfrac32-\tfrac98x\right)dx=\tfrac32x-\tfrac{9}{16}x^2" />, though that route gives fractional coefficients to clear later.</>,
   },
   {
     working: <Katex display tex="\left[-\frac{(4-3x)^2}{16}\right]_k^{4/3} = 0+\frac{(4-3k)^2}{16}" />,
-    reason: <>At <Katex tex="x=\tfrac43" /> the bracket is zero, which is why this antiderivative is the tidy one to use.</>,
+    reason: <>At <Katex tex="x=\tfrac43" /> the bracket <Katex tex="(4-3x)" /> is zero, so the upper limit contributes 0 and only the <Katex tex="k" /> term remains.</>,
   },
   {
     working: <Katex display tex="\frac{(4-3k)^2}{16} = \frac{9}{16} \implies (4-3k)^2 = 9" />,
-    reason: <>The 16s cancel.</>,
+    reason: <>Multiply both sides by 16.</>,
   },
   {
     working: <Katex display tex="4-3k = \pm3 \implies k = \frac13 \ \text{ or } \ k = \frac73" />,
-    reason: <>Equivalently <Katex tex="9k^2-24k+7=0" />, i.e. <Katex tex="(3k-1)(3k-7)=0" />.</>,
+    reason: <>Square-root both sides, keeping both signs: <Katex tex="4-3k=3" /> gives <Katex tex="\tfrac13" />, and <Katex tex="4-3k=-3" /> gives <Katex tex="\tfrac73" />.</>,
+    more: <>Expanding <Katex tex="(4-3k)^2=9" />, or clearing fractions if you used the expanded antiderivative, gives <Katex tex="9k^2-24k+7=0" />, which factorises by inspection as <Katex tex="(3k-1)(3k-7)=0" />. The report notes many students used the quadratic formula or grouping instead, and some solved with fractional coefficients such as <Katex tex="\tfrac32k^2-4k+\tfrac76=0" /> — multiply through to integer coefficients first.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \frac13}" />,
-    reason: <><Katex tex="\tfrac73>\tfrac43" /> lies outside the support of the density, so it is rejected.</>,
+    reason: <><Katex tex="k" /> must lie in <Katex tex="\left[0,\tfrac43\right]" />, where <Katex tex="X" /> takes its values; <Katex tex="\tfrac73>\tfrac43" /> is outside, so it is rejected.</>,
+    more: <>Check: <Katex tex="\Pr\left(X>\tfrac13\right)=\tfrac{(4-1)^2}{16}=\tfrac{9}{16}" />. The root <Katex tex="\tfrac73" /> appears only because squaring makes <Katex tex="(4-3k)^2" /> blind to sign; the formula <Katex tex="\tfrac{(4-3k)^2}{16}" /> is only valid for <Katex tex="0\le k\le\tfrac43" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{4/3}h(x)\,dx = \int_0^{4/3}\bigl(mf(x)+n\bigr)\,dx" />,
-    reason: <>Substituting the transformation.</>,
+    reason: <>Substitute <Katex tex="h(x)=mf(x)+n" />; the whole of <Katex tex="h" /> is integrated.</>,
   },
   {
     working: <Katex display tex="= m\int_0^{4/3}f(x)\,dx+\int_0^{4/3}n\,dx" />,
-    reason: <>Only the constant <Katex tex="m" /> comes out of the first integral — the <Katex tex="n" /> is a separate term, not a factor. The report notes many students incorrectly factored <Katex tex="m" /> out of the entire integral.</>,
+    reason: <>Split the integral of a sum. <Katex tex="m" /> multiplies <Katex tex="f(x)" /> only, so it comes out of the first integral alone — <Katex tex="n" /> is not multiplied by <Katex tex="m" />.</>,
+    more: <>The report notes many students factored <Katex tex="m" /> out of the entire integral, writing <Katex tex="m\int_0^{4/3}\bigl(f(x)+n\bigr)\,dx" />. That treats <Katex tex="mf(x)+n" /> as <Katex tex="m\bigl(f(x)+n\bigr)" /> and leads to the wrong answer <Katex tex="m+\tfrac{4mn}{3}" />.</>,
   },
   {
     working: <Katex display tex="\int_0^{4/3}f(x)\,dx = 1" />,
-    reason: <><Katex tex="f" /> is a probability density function and <Katex tex="\left[0,\tfrac43\right]" /> is its whole support, so this integral is 1 by definition — no calculation needed.</>,
+    reason: <><Katex tex="f" /> is a probability density function and <Katex tex="\left[0,\tfrac43\right]" /> is its whole support, so this integral is the total probability, 1 — no calculation needed.</>,
+    more: <>The report notes the students who recognised the total probability is 1 were generally successful. Integrating directly confirms it, using part a's antiderivative: <Katex tex="\left[-\tfrac{(4-3x)^2}{16}\right]_0^{4/3}=0+\tfrac{16}{16}=1" />.</>,
   },
   {
     working: <Katex display tex="\int_0^{4/3}n\,dx = n\times\frac43" />,
-    reason: <>A rectangle of height n and width 4/3.</>,
+    reason: <>The integral of a constant is the constant times the interval width, <Katex tex="\tfrac43-0" /> (a rectangle of height <Katex tex="n" />).</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^{4/3}h(x)\,dx = m+\frac{4n}{3}}" />,
-    reason: <>In terms of <Katex tex="m" /> and <Katex tex="n" />, as required.</>,
+    reason: <><Katex tex="m\times1+\tfrac43n" />, in terms of <Katex tex="m" /> and <Katex tex="n" /> as required.</>,
   },
 ]
 
@@ -115,14 +121,6 @@ export default function MethodsQ8_2025Exam1() {
               the region beyond <Katex tex="k" /> is a triangle — area{' '}
               <Katex tex="\tfrac12\times\left(\tfrac43-k\right)\times\tfrac38(4-3k)" />, which
               gives the same quadratic as the integral with no antidifferentiation at all.
-              Either route is accepted.
-            </p>
-            <p>
-              Part b. needs no integration either, but for a different reason:{' '}
-              <Katex tex="f" /> is a probability density on exactly the interval being
-              integrated over, so <Katex tex="\int_0^{4/3}f=1" /> by definition. The trap is
-              treating <Katex tex="n" /> as though it were part of a common factor —{' '}
-              <Katex tex="mf(x)+n" /> is a sum, not a product.
             </p>
           </Background>
         </div>

@@ -43,38 +43,44 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = x^2\cos(x) = u v \ \text{ with } u = x^2, \ v = \cos(x)" />,
-    reason: <>A product of two functions of x, so the product rule.</>,
+    reason: <>Two functions of <Katex tex="x" /> multiplied together, so the product rule: <Katex tex="\dfrac{dy}{dx}=\dfrac{du}{dx}v+u\dfrac{dv}{dx}" />.</>,
   },
   {
     working: <Katex display tex="\frac{du}{dx} = 2x, \qquad \frac{dv}{dx} = -\sin(x)" />,
-    reason: <>The derivative of <Katex tex="\cos" /> is <em>negative</em> sine — the sign that has to survive to the end.</>,
+    reason: <>Differentiate each factor on its own. The derivative of <Katex tex="\cos(x)" /> is <em>negative</em> <Katex tex="\sin(x)" />.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 2x\cos(x)+x^2\bigl(-\sin(x)\bigr)" />,
-    reason: <>Brackets around the second factor keep the sign unambiguous while the line is being written.</>,
+    reason: <>Substitute into the product rule, keeping <Katex tex="-\sin(x)" /> in brackets so the sign is unambiguous.</>,
+    more: <>The report notes some students did not use brackets around terms, so a line like <Katex tex="2x\cos(x)+x^2-\sin(x)" /> could be misread as <Katex tex="x^2" /> minus <Katex tex="\sin(x)" />, a different expression.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = 2x\cos(x)-x^2\sin(x)}" />,
-    reason: <>Tidying the double negative. Factorising to <Katex tex="x\bigl(2\cos(x)-x\sin(x)\bigr)" /> is fine but was not required.</>,
+    reason: <>Tidy <Katex tex="+\,x^2\bigl(-\sin(x)\bigr)" /> to <Katex tex="-\,x^2\sin(x)" /> for the final answer.</>,
+    more: <>The report notes many students left <Katex tex="2x\cos(x)+-x^2\sin(x)" /> untidied. Factorising to <Katex tex="x\bigl(2\cos(x)-x\sin(x)\bigr)" /> is also correct, but was not required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 6\sqrt{x+1}+5 = 6(x+1)^{1/2}+5" />,
-    reason: <>Writing the root as a power first. The initial index is <Katex tex="\tfrac12" />, not 1 — the report notes some students did not identify it correctly.</>,
+    reason: <>Write the square root as a power of <Katex tex="\tfrac12" /> so the power rule can be used.</>,
+    more: <>The report notes some students did not identify the initial power of <Katex tex="(x+1)" /> as <Katex tex="\tfrac12" />. A square root is always the power <Katex tex="\tfrac12" />; a cube root would be <Katex tex="\tfrac13" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = 6\times\tfrac12(x+1)^{-1/2}\times1 = 3(x+1)^{-1/2}" />,
-    reason: <>Chain rule; the inner derivative is 1. Equivalently <Katex tex="f'(x)=\dfrac{3}{\sqrt{x+1}}" /> — the numerator must not be dropped.</>,
+    reason: <>Chain rule: bring down the power, subtract 1, then multiply by the derivative of the inside <Katex tex="x+1" />, which is 1. The constant 5 differentiates to 0.</>,
+    more: <>Written as a fraction this is <Katex tex="f'(x)=\dfrac{3}{\sqrt{x+1}}" />. The report notes some students omitted the numerator: the 6 in front and the <Katex tex="\tfrac12" /> brought down both stay, giving 3 on top.</>,
   },
   {
-    working: <Katex display tex="f'(8) = \frac{3}{\sqrt{9}} = \frac33" />,
-    reason: <><Katex tex="8+1=9" />, a perfect square, and <Katex tex="\sqrt9=3" /> — not <Katex tex="\pm3" />, which the report notes led some students to <Katex tex="\pm1" />.</>,
+    working: <Katex display tex="f'(8) = 3(8+1)^{-1/2} =\frac{3}{\sqrt{9}} = \frac33" />,
+    reason: <>The gradient of the tangent at <Katex tex="x=8" /> is <Katex tex="f'(8)" />. A negative power means one over: <Katex tex="9^{-1/2}=\tfrac{1}{\sqrt9}" />, and <Katex tex="\sqrt9=3" />.</>,
+    more: <>The symbol <Katex tex="\sqrt{9}" /> means the positive square root only, so it is 3, not <Katex tex="\pm3" />. The report notes some students thought it was <Katex tex="\pm3" />, leading to an incorrect answer of <Katex tex="\pm1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{gradient} = 1}" />,
-    reason: <>The gradient of the tangent, which is what was asked for — going on to find the tangent line itself answers a different question.</>,
+    reason: <>The question asks only for the gradient, so stop here.</>,
+    more: <>The report notes some students went on to find the equation of the tangent line, which was not asked for. Read the question for exactly what is required.</>,
   },
 ]
 
@@ -89,11 +95,11 @@ export default function MethodsQ1_2025Exam1() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Two standard derivatives, one each way. Presentation matters as well as method:
-              brackets around <Katex tex="\bigl(-\sin(x)\bigr)" /> while you write
-              the product rule, and a final answer tidied to{' '}
-              <Katex tex="2x\cos(x)-x^2\sin(x)" /> rather than left with a stray double
-              negative.
+              Two standard derivatives. In part a. the function is a product of two functions
+              of <Katex tex="x" />, so it needs the product rule; in part b. a function of{' '}
+              <Katex tex="x+1" /> sits inside a square root, so it needs the chain rule, and then the
+              derivative is evaluated at <Katex tex="x=8" />. Watch the signs and brackets, and give
+              exactly what is asked.
             </p>
           </Background>
         </div>

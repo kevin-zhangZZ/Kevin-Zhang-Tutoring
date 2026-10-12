@@ -66,57 +66,65 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le \cos(2x) \le 1" />,
-    reason: <>The inner factor 2 changes the period but never the range of the cosine itself.</>,
+    reason: <>Start from the range of cosine itself. The inner factor 2 changes the period, never the range.</>,
   },
   {
-    working: <Katex display tex="-2 \le 2\cos(2x) \le 2 \implies -1 \le 2\cos(2x)+1 \le 3" />,
-    reason: <>Amplitude 2 about a centre of 1. The domain <Katex tex="[0,2\pi]" /> spans four full periods, so both extremes are actually reached.</>,
+    working: <Katex display tex="\begin{aligned} -2 &\le 2\cos(2x) \le 2 \\ \implies -1 &\le 2\cos(2x)+1 \le 3 \end{aligned}" />,
+    reason: <>Multiply through by 2, then add 1. The domain <Katex tex="[0,2\pi]" /> holds two full periods, so both extremes are actually reached.</>,
+    more: <>Same result read as a transformation: amplitude 2 about the centre line <Katex tex="y=1" />, so <Katex tex="1-2" /> to <Katex tex="1+2" />. The check on the domain matters in general: on a domain shorter than a period, a maximum or minimum might not be reached and the range would be smaller.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(f) = [-1,\ 3]}" />,
-    reason: <>Square brackets, in increasing order, and in terms of <Katex tex="y" />-values — the report says stating the range in terms of <Katex tex="x" /> (as in <Katex tex="-1\le x\le3" />) is not acceptable notation.</>,
+    reason: <>Square brackets because both ends are reached; smaller value first.</>,
+    more: <>Round brackets would exclude <Katex tex="-1" /> and <Katex tex="3" />, but both are reached (row above). The range is a set of <Katex tex="y" />-values, so do not write it as an inequality in <Katex tex="x" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="2\cos(2x)+1 = 0 \implies \cos(2x) = -\tfrac12" />,
-    reason: <>Isolating the cosine.</>,
+    reason: <>Isolate the cosine.</>,
   },
   {
     working: <Katex display tex="0 \le x \le 2\pi \implies 0 \le 2x \le 4\pi" />,
-    reason: <>Doubling the domain first — this is what makes the count of solutions obvious.</>,
+    reason: <>The equation is in <Katex tex="2x" />, so find every value of <Katex tex="2x" /> in its own interval: two full revolutions, not one.</>,
+    more: <>This is the reliable way to get every solution: treat <Katex tex="2x" /> as a single angle <Katex tex="\theta" />, solve <Katex tex="\cos\theta=-\tfrac12" /> for all <Katex tex="\theta" /> in <Katex tex="[0,4\pi]" />, then halve at the end. Solving only in <Katex tex="[0,2\pi]" /> and halving would find just the solutions in <Katex tex="[0,\pi]" />.</>,
   },
   {
-    working: <Katex display tex="\cos^{-1}\!\left(\tfrac12\right) = \tfrac{\pi}{3} \implies 2x = \pi\pm\tfrac{\pi}{3} \ \text{ in the first revolution}" />,
-    reason: <>Cosine is negative in the second and third quadrants, so the solutions sit <Katex tex="\tfrac{\pi}{3}" /> either side of <Katex tex="\pi" />.</>,
+    working: <Katex display tex="\begin{aligned} \cos^{-1}\!\left(\tfrac12\right) &= \tfrac{\pi}{3} \\ \implies 2x &= \pi\pm\tfrac{\pi}{3} \quad \text{(first revolution)} \end{aligned}" />,
+    reason: <>The basic angle uses the positive <Katex tex="\tfrac12" />. Cosine is negative in quadrants 2 and 3, so the angles sit <Katex tex="\tfrac{\pi}{3}" /> either side of <Katex tex="\pi" />.</>,
+    more: <>Find the basic angle from the positive <Katex tex="\tfrac12" /> (an exact value you must know), then place it in the quadrants where cosine is negative. Quadrant 2 gives <Katex tex="\pi-\tfrac{\pi}{3}=\tfrac{2\pi}{3}" />; quadrant 3 gives <Katex tex="\pi+\tfrac{\pi}{3}=\tfrac{4\pi}{3}" />. The basic angle <Katex tex="\tfrac{\pi}{3}" /> is not itself a solution, since <Katex tex="\cos\tfrac{\pi}{3}" /> is positive.</>,
   },
   {
     working: <Katex display tex="2x = \tfrac{2\pi}{3},\ \tfrac{4\pi}{3},\ \tfrac{8\pi}{3},\ \tfrac{10\pi}{3}" />,
-    reason: <>Adding <Katex tex="2\pi" /> gives the second revolution — four values in <Katex tex="[0,4\pi]" />, not two.</>,
+    reason: <>Add <Katex tex="2\pi" /> to each for the second revolution: four values in <Katex tex="[0,4\pi]" />, not two.</>,
+    more: <>Stopping after the first revolution loses half the answers. Counting the zeros before solving (two periods in <Katex tex="[0,2\pi]" />, two zeros each), tells you to expect four.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \tfrac{\pi}{3},\ \tfrac{2\pi}{3},\ \tfrac{4\pi}{3},\ \tfrac{5\pi}{3}}" />,
-    reason: <>Halving. Particular solutions were required, not a general solution formula.</>,
+    reason: <>Halve each value of <Katex tex="2x" />. List the particular solutions, not a general solution.</>,
+    more: <>The domain is restricted, so the answer is these four values; a general solution on its own does not answer the question. Check one: <Katex tex="f\!\left(\tfrac{\pi}{3}\right)=2\cos\tfrac{2\pi}{3}+1=2\left(-\tfrac12\right)+1=0" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{period} = \frac{2\pi}{2} = \pi \implies \left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right] \text{ is exactly one period}" />,
-    reason: <>So the curve starts and finishes at the same height, with one full oscillation in between.</>,
+    working: <Katex display tex="\begin{aligned} \text{period} &= \frac{2\pi}{2} = \pi \\ \tfrac{3\pi}{2}-\tfrac{\pi}{2} &= \pi \end{aligned}" />,
+    reason: <>The period of <Katex tex="\cos(nx)" /> is <Katex tex="\tfrac{2\pi}{n}" />. The window is exactly one period, so the curve starts and finishes at the same height.</>,
   },
   {
-    working: <Katex display tex="f\!\left(\tfrac{\pi}{2}\right) = 2\cos(\pi)+1 = -1, \qquad f\!\left(\tfrac{3\pi}{2}\right) = 2\cos(3\pi)+1 = -1" />,
-    reason: <>Both endpoints are at the minimum — they must be labelled with their coordinates.</>,
+    working: <Katex display tex="\begin{aligned} f\!\left(\tfrac{\pi}{2}\right) &= 2\cos(\pi)+1 = -1 \\ f\!\left(\tfrac{3\pi}{2}\right) &= 2\cos(3\pi)+1 = -1 \end{aligned}" />,
+    reason: <>Both endpoints are at the minimum. Label them <Katex tex="\left(\tfrac{\pi}{2},-1\right)" /> and <Katex tex="\left(\tfrac{3\pi}{2},-1\right)" />.</>,
+    more: <>The endpoints are not <Katex tex="x" />-intercepts: substitute each <Katex tex="x" /> into <Katex tex="f" /> to get its height.</>,
   },
   {
     working: <Katex display tex="f(\pi) = 2\cos(2\pi)+1 = 3" />,
-    reason: <>The maximum, exactly halfway between the endpoints. The report notes some graphs did not pass through <Katex tex="(\pi,3)" />.</>,
+    reason: <>Halfway between the endpoints, <Katex tex="\cos(2\pi)=1" /> gives the maximum 3, the top of the range from part a.</>,
   },
   {
     working: <Katex display tex="\text{crosses } y=0 \text{ at } x = \tfrac{2\pi}{3} \text{ and } \tfrac{4\pi}{3}" />,
-    reason: <>Two of the zeros from part b. lie in this window, and they sit symmetrically either side of <Katex tex="x=\pi" />.</>,
+    reason: <>Two of the zeros from part b. lie in this window, symmetric about <Katex tex="x=\pi" />.</>,
+    more: <>On VCAA's grid, <Katex tex="\tfrac{2\pi}{3}" /> is one third of the way from <Katex tex="\tfrac{\pi}{2}" /> to <Katex tex="\pi" /> (since <Katex tex="\tfrac{2\pi}{3}-\tfrac{\pi}{2}=\tfrac{\pi}{6}" />), and <Katex tex="\tfrac{4\pi}{3}" /> is its mirror image. Only the endpoints must be labelled; the intercepts help place the curve.</>,
   },
   {
     working: (
@@ -128,7 +136,8 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Symmetric about <Katex tex="x=\pi" />, drawn only on <Katex tex="\left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right]" />, not inverted, with both endpoints labelled — errors the report flagged.</>,
+    reason: <>One smooth cosine-shaped period: symmetric about <Katex tex="x=\pi" />, drawn only on <Katex tex="\left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right]" />, both endpoints labelled.</>,
+    more: <>Stop exactly at the endpoints, and keep the cosine shape: low at both ends, high in the middle. The curve flattens into each endpoint (both are minimum points) and is rounded, not pointed, at <Katex tex="(\pi,3)" />.</>,
   },
 ]
 
@@ -147,15 +156,9 @@ export default function MethodsQ3_2025Exam1() {
           <Background>
             <p>
               The inner 2 halves the period to <Katex tex="\pi" />, which is the fact behind
-              both b. and c.: over <Katex tex="[0,2\pi]" /> there are four periods and so four
-              zeros, and the window <Katex tex="\left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right]" />{' '}
-              in part c. is exactly one of them.
-            </p>
-            <p>
-              The reliable way to handle part b. is to transform the domain before solving:
-              substitute <Katex tex="\theta=2x" />, find every <Katex tex="\theta" /> in{' '}
-              <Katex tex="[0,4\pi]" />, then halve. The report notes some students gave only
-              two of the solutions, not taking into account the period of the function.
+              both b. and c.: over <Katex tex="[0,2\pi]" /> there are two periods, each crossing{' '}
+              <Katex tex="y=0" /> twice, so four zeros, and the window <Katex tex="\left[\tfrac{\pi}{2},\tfrac{3\pi}{2}\right]" />{' '}
+              in part c. is exactly one period long.
             </p>
           </Background>
         </div>

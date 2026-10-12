@@ -35,30 +35,55 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X\sim\text{Bi}(6,\tfrac14) \implies \text{var}(X) = np(1-p)" />,
-    reason: <>The standard formula. The question asks for the <em>variance</em>, so there is no square root at the end.</>,
+    reason: <>The binomial variance formula (on the formula sheet).</>,
   },
   {
     working: <Katex display tex="= 6\times\tfrac14\times\tfrac34" />,
-    reason: <><Katex tex="1-\tfrac14=\tfrac34" />.</>,
+    reason: <>Here <Katex tex="n=6" />, <Katex tex="p=\tfrac14" /> and <Katex tex="1-p=\tfrac34" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{var}(X) = \frac{18}{16} = \frac98}" />,
-    reason: <>Taking a square root here would give the standard deviation <Katex tex="\tfrac{3}{2\sqrt2}" /> — the report notes this as a common mistake.</>,
+    reason: <>Multiply the numerators (<Katex tex="6\times1\times3=18" />) and the denominators (<Katex tex="4\times4=16" />), then simplify. No square root — that would be the standard deviation.</>,
+    more: (
+      <>
+        The report names two common mistakes. One was giving the standard deviation{' '}
+        <Katex tex="\text{sd}(X)=\sqrt{\tfrac98}=\tfrac{3\sqrt2}{4}" /> instead of the variance.
+        The other was multiplying the fractions incorrectly. Remember the whole number 6 goes on
+        top, e.g. <Katex tex="6\times\tfrac14=\tfrac64" />, not <Katex tex="\tfrac{6}{24}" />. Any equivalent form of the answer is fine; the report
+        gives <Katex tex="\tfrac98=1\tfrac18=1.125" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X\ge5) = \Pr(X=5)+\Pr(X=6)" />,
-    reason: <>Two terms, not one. The report notes many students calculated only <Katex tex="\Pr(X=5)" />.</>,
+    reason: <>With 6 trials, <Katex tex="X" /> is at most 6, so <Katex tex="X\ge5" /> means <Katex tex="X=5" /> or <Katex tex="X=6" /> — two terms.</>,
+    more: (
+      <>
+        The report notes many students calculated only <Katex tex="\Pr(X=5)" />. The sign is{' '}
+        <Katex tex="\ge" />, so 5 itself is included, and so is every value above it up to{' '}
+        <Katex tex="n=6" />. Using <Katex tex="1-\Pr(X\le4)" /> gives the same answer but needs
+        five terms instead of two.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\Pr(X=5) = \binom{6}{5}\left(\tfrac14\right)^5\left(\tfrac34\right)^1 = 6\times\frac{1}{1024}\times\frac34 = \frac{18}{4096}" />,
-    reason: <><Katex tex="\binom{6}{5}=6" />, and <Katex tex="4^5=1024" />, <Katex tex="4^6=4096" />.</>,
+    working: <Katex display tex="\begin{aligned} \Pr(X=5) &= \binom{6}{5}\left(\tfrac14\right)^5\left(\tfrac34\right)^1 \\ &= 6\times\frac{1}{1024}\times\frac34 = \frac{18}{4096} \end{aligned}" />,
+    reason: <>Binomial formula <Katex tex="\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x}" /> with <Katex tex="x=5" />. Leave it over <Katex tex="4^6=4096" />; don't cancel yet, so it adds straight to <Katex tex="\Pr(X=6)=\tfrac{1}{4096}" />.</>,
+    more: (
+      <>
+        <Katex tex="\binom{6}{5}=6" /> (choose which 5 of the 6 trials are the successes), and{' '}
+        <Katex tex="4^5\times4=4^6=4096" />. Cancelling to <Katex tex="\tfrac{9}{2048}" /> would only have to be
+        undone before adding. Writing it as{' '}
+        <Katex tex="\tfrac{6\times3}{4^6}" />, as the report does, is just as good.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(X=6) = \left(\tfrac14\right)^6 = \frac{1}{4096}" />,
-    reason: <><Katex tex="\binom{6}{6}=1" /> and there is no failure factor.</>,
+    reason: <>All six trials are successes: <Katex tex="\binom{6}{6}=1" /> and <Katex tex="\left(\tfrac34\right)^0=1" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge5) = \frac{18+1}{4096} = \frac{19}{4096}" />,
@@ -66,7 +91,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="4096 = 4^6 = \left(2^2\right)^6 = 2^{12}" />,
-    reason: <>The step into the requested form <Katex tex="\tfrac{a}{2^b}" />. The report notes many students gave <Katex tex="\tfrac{19}{4^6}" /> instead.</>,
+    reason: <>The required form has a power of <b>2</b> underneath, so rewrite 4096 using <Katex tex="4=2^2" />.</>,
+    more: (
+      <>
+        The report notes many students gave <Katex tex="\tfrac{19}{4^6}" /> instead. That is the
+        right value, but it is not in the required form <Katex tex="\tfrac{a}{2^b}" />, so it would
+        not have earned full marks. Because 19 is odd, the fraction cannot be simplified, so <Katex tex="a=19" />,{' '}
+        <Katex tex="b=12" /> is the natural answer.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\Pr(X\ge5) = \frac{19}{2^{12}}}" />,
@@ -90,9 +123,9 @@ export default function MethodsQ6_2025Exam1() {
           <Background>
             <p>
               The requested form <Katex tex="\tfrac{a}{2^b}" /> is a hint, not decoration. With{' '}
-              <Katex tex="p=\tfrac14" /> every probability has a power of 4 underneath, and{' '}
-              <Katex tex="4^6=2^{12}" /> — so keeping everything over 4096 rather than
-              simplifying term by term makes the last step a single rewrite.
+              <Katex tex="p=\tfrac14" /> every probability is something over a power of 4, and{' '}
+              <Katex tex="4=2^2" />, so the answer will be something over a power of 2 once the powers of
+              4 are rewritten.
             </p>
           </Background>
         </div>

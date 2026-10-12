@@ -40,11 +40,12 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="e^{2x} = \left(e^x\right)^2 \implies \text{let } u = e^x" />,
-    reason: <>Recognising the hidden quadratic. Note <Katex tex="u=e^x>0" /> always, which is the check to apply at the end.</>,
+    reason: <>Since <Katex tex="e^{2x}=\left(e^x\right)^2" />, the equation is a quadratic in <Katex tex="e^x" />. Note <Katex tex="u=e^x>0" /> always — the check to apply at the end.</>,
+    more: <>The letter <Katex tex="u" /> is optional: the report also factorises directly as <Katex tex="\left(e^x-1\right)\left(e^x-7\right)=0" />, which avoids having to convert back from <Katex tex="u" /> later.</>,
   },
   {
     working: <Katex display tex="u^2-8u+7 = 0 \implies (u-1)(u-7) = 0" />,
-    reason: <>Two numbers multiplying to 7 and adding to 8.</>,
+    reason: <>Two numbers multiplying to 7 and adding to <Katex tex="-8" />: <Katex tex="-1" /> and <Katex tex="-7" />.</>,
   },
   {
     working: <Katex display tex="u = 1 \ \text{ or } \ u = 7" />,
@@ -52,7 +53,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="e^x = 1 \implies x = 0; \qquad e^x = 7 \implies x = \log_e(7)" />,
-    reason: <><Katex tex="x=\log_e(1)=0" /> is a perfectly good solution — the report notes some students incorrectly discarded it.</>,
+    reason: <>Take <Katex tex="\log_e" /> of both sides. Since <Katex tex="\log_e(1)=0" />, <Katex tex="x=0" /> is a genuine solution — don't discard it.</>,
+    more: <>The report notes some students incorrectly discarded <Katex tex="x=\ln(1)" />, and some did not simplify it to <Katex tex="0" />. A solution of <Katex tex="0" /> is not a problem; only a negative value of <Katex tex="u=e^x" /> would have to be rejected. Check: <Katex tex="x=0" /> gives <Katex tex="1-8+7=0" />, and <Katex tex="x=\log_e(7)" /> gives <Katex tex="49-56+7=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 0 \ \text{ or } \ x = \log_e(7)}" />,
@@ -62,24 +64,43 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="g \text{ has an inverse} \iff g \text{ is one-to-one on its domain}" />,
-    reason: <>So the domain can extend from the left only as far as the turning point, and no further.</>,
+    working: <Katex display tex="\begin{gathered} g \text{ has an inverse} \\ \iff g \text{ is one-to-one on its domain} \end{gathered}" />,
+    reason: <>So <Katex tex="(-\infty,a]" /> must stop at the turning point: past the minimum, <Katex tex="g" /> turns back up and repeats <Katex tex="y" />-values. Hence find the turning point.</>,
   },
   {
     working: <Katex display tex="g'(x) = 2e^{2x}-8e^x = 2e^x\left(e^x-4\right)" />,
-    reason: <>Factorising rather than expanding — this makes the zero immediate.</>,
+    reason: <>Chain rule: the derivative of <Katex tex="e^{2x}" /> is <Katex tex="2e^{2x}" />. Taking out the common factor <Katex tex="2e^x" /> makes the zero easy to find.</>,
+    more: (
+      <>
+        <p>
+          The report notes some students made arithmetic errors when factorising and got{' '}
+          <Katex tex="e^x=8" />, hence <Katex tex="a=\ln(8)" />. Expand your factorised form to
+          check it: <Katex tex="2e^x\left(e^x-4\right)=2e^{2x}-8e^x" /> ✓, whereas{' '}
+          <Katex tex="2e^x\left(e^x-8\right)=2e^{2x}-16e^x" /> ✗.
+        </p>
+        <p className="mt-2">
+          Without calculus (the report's other method): with <Katex tex="u=e^x" />,{' '}
+          <Katex tex="g=u^2-8u+7=(u-1)(u-7)" />, a parabola in <Katex tex="u" /> with axis of
+          symmetry <Katex tex="u=4" />, midway between its roots 1 and 7. Since{' '}
+          <Katex tex="e^x" /> is increasing, the minimum of <Katex tex="g" /> occurs where{' '}
+          <Katex tex="e^x=4" />.
+        </p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="2e^x>0 \ \text{always} \implies e^x = 4" />,
-    reason: <>The only way the derivative can vanish.</>,
+    reason: <><Katex tex="2e^x" /> is never zero, so <Katex tex="g'(x)=0" /> only when <Katex tex="e^x-4=0" />.</>,
   },
   {
     working: <Katex display tex="x = \log_e(4)" />,
-    reason: <>Not 4 — the substitution gives a value of <Katex tex="e^x" />, not of <Katex tex="x" />. The report notes some students let <Katex tex="a=e^x" />, found <Katex tex="a=4" /> and gave that as the answer.</>,
+    reason: <>Take <Katex tex="\log_e" />. The answer is not 4: 4 is the value of <Katex tex="e^x" /> at the turning point, not of <Katex tex="x" />.</>,
+    more: <>The report notes some students let <Katex tex="a=e^x" />, found <Katex tex="a=4" /> and gave that as the upper bound, rather than recognising that this meant <Katex tex="e^x=4" />. If you introduce a new letter, give it a name that can't be confused with the one asked for (here <Katex tex="u" />, not <Katex tex="a" />), and convert back at the end.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \log_e(4) \ \left(= 2\log_e(2)\right)}" />,
-    reason: <>On <Katex tex="\left(-\infty,\log_e 4\right]" /> the function is strictly decreasing, so one-to-one; any larger <Katex tex="a" /> would include values either side of the minimum and repeat a <Katex tex="y" />-value.</>,
+    reason: <>For <Katex tex="x<\log_e 4" />, <Katex tex="e^x<4" /> so <Katex tex="g'(x)<0" />: <Katex tex="g" /> is strictly decreasing, so one-to-one. The endpoint is included: the minimum value is reached only once.</>,
+    more: <>The minimum value is <Katex tex="g(\log_e 4)=4^2-8(4)+7=-9" />. For any <Katex tex="a>\log_e 4" />, a <Katex tex="y" />-value just above <Katex tex="-9" /> would be reached once on each side of the minimum, so <Katex tex="g" /> would fail the horizontal line test.</>,
   },
 ]
 
@@ -94,16 +115,12 @@ export default function MethodsQ5_2025Exam1() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Both parts use the substitution <Katex tex="u=e^x" />, and both have the same
-              trap at the end: <Katex tex="u" /> is not the answer. In part a.{' '}
-              <Katex tex="u=1" /> means <Katex tex="x=0" />, and in part b.{' '}
-              <Katex tex="u=4" /> means <Katex tex="x=\log_e(4)" />. The report notes both
-              slips.
+              Both parts are quadratics in <Katex tex="e^x" />: let <Katex tex="u=e^x" />, and
+              remember to convert back to <Katex tex="x" /> at the end.
             </p>
             <p>
-              Part b. is a domain-restriction question in disguise. A function has an inverse
-              exactly when it is one-to-one, so the largest left-hand domain runs up to — and
-              includes — the turning point, and no further.
+              Part b. is a domain-restriction question in disguise: a function has an inverse
+              exactly when it is one-to-one.
             </p>
           </Background>
         </div>
