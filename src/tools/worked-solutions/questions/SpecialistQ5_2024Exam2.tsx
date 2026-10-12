@@ -5,7 +5,6 @@
 // with sympy and against the VCAA examination report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { Cas } from '../CasRef'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 
 const EXAM_A: SAExaminerStats = {
@@ -76,27 +75,30 @@ const EXAM_DII: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\overrightarrow{AB} = (2-1)\underset{\sim}{i}+(-5-(-2))\underset{\sim}{j}+(-1-3)\underset{\sim}{k} = \underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}" />,
+    working: <Katex display tex="\begin{aligned}\overrightarrow{AB} &= (2-1)\underset{\sim}{i}+(-5-(-2))\underset{\sim}{j}+(-1-3)\underset{\sim}{k}\\ &= \underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}\end{aligned}" />,
     reason: <>Subtract the position vectors to get a direction along the line.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r} = \underset{\sim}{a}+s\underset{\sim}{d}" />,
-    reason: <>A point plus a multiple of a direction. Writing down only <Katex tex="\overrightarrow{AB}" /> answers a different question — the report's common error.</>,
+    reason: <>A line needs a point on it plus any multiple of a direction: position vector <Katex tex="\underset{\sim}{a}" />, direction <Katex tex="\underset{\sim}{d}" />, parameter <Katex tex="s" />.</>,
+    more: <>The report's common error was to write the vector <Katex tex="\overrightarrow{AB}" /> rather than the vector equation of the line. <Katex tex="\overrightarrow{AB}" /> is only the direction: it fixes no point, so it fits every line parallel to this one, not this line.</>,
   },
   {
-    working: <Katex display tex="\boxed{\underset{\sim}{r}(s) = \underset{\sim}{i}-2\underset{\sim}{j}+3\underset{\sim}{k}+s\left(\underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}\right), \quad s\in R}" />,
-    reason: <>Using <Katex tex="A" /> as the anchor. Starting from <Katex tex="B" />, or scaling the direction, gives an equally correct answer — "many correct answers exist".</>,
+    working: <Katex display tex="\boxed{\begin{aligned}\underset{\sim}{r}(s) &= \underset{\sim}{i}-2\underset{\sim}{j}+3\underset{\sim}{k}\\ &\quad+s\left(\underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}\right), \quad s\in R\end{aligned}}" />,
+    reason: <>Point <Katex tex="A" /> as <Katex tex="\underset{\sim}{a}" />, direction <Katex tex="\overrightarrow{AB}" />, written in <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" />, <Katex tex="\underset{\sim}{k}" /> form as the question asks.</>,
+    more: <>The report says many correct answers exist: it also lists <Katex tex="2\underset{\sim}{i}-5\underset{\sim}{j}-\underset{\sim}{k}+t\left(\underset{\sim}{i}-3\underset{\sim}{j}-4\underset{\sim}{k}\right)" />, which starts from <Katex tex="B" />. Any point of the line and any non-zero multiple of the direction work. The report also notes some students did not use the correct notation: write <Katex tex="\underset{\sim}{r}" /> (or <Katex tex="\underset{\sim}{r}(s)" />) equal to the expression, keep the parameter, and state <Katex tex="s\in R" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="L_1: \ \underset{\sim}{a_1} = (2,1,-3), \qquad \underset{\sim}{d} = (-1,2,1)" />,
-    reason: <>The <em>given</em> line, not the one from part a. — the report notes some students used their answer to part a instead.</>,
+    working: <Katex display tex="L_1: \ P(2,1,-3), \qquad \underset{\sim}{d} = (-1,2,1)" />,
+    reason: <>Read a point <Katex tex="P" /> (at <Katex tex="t=0" />) and the direction off the <em>given</em> line <Katex tex="L_1" /> — not the line from part a.</>,
+    more: <>The report notes some students used their answer to part a rather than the line given. The word "different" in the stem is the warning: <Katex tex="L_1" /> does not pass through <Katex tex="A" /> or <Katex tex="B" />.</>,
   },
   {
     working: <Katex display tex="\overrightarrow{AP} = (2,1,-3)-(1,-2,3) = (1,3,-6)" />,
-    reason: <>A vector from <Katex tex="A" /> to any point of the line.</>,
+    reason: <>Join <Katex tex="A" /> to <Katex tex="P" />. Any point on <Katex tex="L_1" /> works: the cross product next keeps only the part perpendicular to the line.</>,
   },
   {
     working: (
@@ -105,11 +107,13 @@ const ROWS_B: WorkingRow[] = [
         tex="\overrightarrow{AP}\times\underset{\sim}{d} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & 3 & -6\\-1 & 2 & 1\end{vmatrix} = 15\underset{\sim}{i}+5\underset{\sim}{j}+5\underset{\sim}{k}"
       />
     ),
-    reason: <>The cross product isolates the component of <Katex tex="\overrightarrow{AP}" /> perpendicular to the line.</>,
+    reason: <><Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right| = \left|\overrightarrow{AP}\right|\left|\underset{\sim}{d}\right|\sin\theta" />, with <Katex tex="\theta" /> the angle between <Katex tex="\overrightarrow{AP}" /> and the line, and <Katex tex="\left|\overrightarrow{AP}\right|\sin\theta" /> is the perpendicular distance from <Katex tex="A" /> to the line.</>,
+    more: <>Components: <Katex tex="\underset{\sim}{i}" />: <Katex tex="3(1)-(-6)(2)=15" />; <Katex tex="\underset{\sim}{j}" />: <Katex tex="-\left[1(1)-(-6)(-1)\right]=5" />; <Katex tex="\underset{\sim}{k}" />: <Katex tex="1(2)-3(-1)=5" />. Why <Katex tex="\sin\theta" />: picture the right-angled triangle with hypotenuse <Katex tex="AP" /> and one side along the line. The side opposite <Katex tex="\theta" /> is the shortest distance, <Katex tex="\left|\overrightarrow{AP}\right|\sin\theta" />.</>,
   },
   {
-    working: <Katex display tex="d = \frac{\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|}{\left|\underset{\sim}{d}\right|} = \frac{\sqrt{225+25+25}}{\sqrt{1+4+1}} = \frac{\sqrt{275}}{\sqrt6}" />,
-    reason: <>The standard point-to-line distance. Minimising <Katex tex="\left|\overrightarrow{AP}+t\underset{\sim}{d}\right|" /> directly also works.</>,
+    working: <Katex display tex="\begin{aligned}\text{distance} &= \frac{\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|}{\left|\underset{\sim}{d}\right|}\\ &= \frac{\sqrt{225+25+25}}{\sqrt{1+4+1}} = \frac{\sqrt{275}}{\sqrt6}\end{aligned}" />,
+    reason: <>Dividing by <Katex tex="\left|\underset{\sim}{d}\right|" /> leaves <Katex tex="\left|\overrightarrow{AP}\right|\sin\theta" />, the shortest distance.</>,
+    more: <>The report says students used many different techniques. A common one avoids the cross product: the closest point <Katex tex="Q" /> on <Katex tex="L_1" /> makes <Katex tex="\overrightarrow{AQ}" /> perpendicular to <Katex tex="\underset{\sim}{d}" />. Here <Katex tex="\overrightarrow{AQ} = (1-t,\ 3+2t,\ -6+t)" />, and <Katex tex="\overrightarrow{AQ}\cdot\underset{\sim}{d} = 6t-1 = 0" /> gives <Katex tex="t=\tfrac16" />, so <Katex tex="\overrightarrow{AQ} = \left(\tfrac56,\ \tfrac{10}{3},\ -\tfrac{35}{6}\right)" /> with length <Katex tex="\tfrac{\sqrt{1650}}{6} = \tfrac{5\sqrt{66}}{6}" />, the same answer.</>,
   },
   {
     working: <Katex display tex="\frac{5\sqrt{11}}{\sqrt6} = \frac{5\sqrt{11}\sqrt6}{6} = \frac{5\sqrt{66}}{6}" />,
@@ -117,30 +121,32 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{5\sqrt{66}}{6}}" />,
-    reason: <>About <Katex tex="6.77" />. In the form <Katex tex="\tfrac{a\sqrt b}{c}" /> with <Katex tex="a=5,\ b=66,\ c=6" /> — all positive integers, as required.</>,
+    reason: <>In the form <Katex tex="\tfrac{a\sqrt b}{c}" /> with <Katex tex="a=5,\ b=66,\ c=6" /> — all positive integers, as required.</>,
+    more: <>As a decimal this is about <Katex tex="6.77" />, a useful CAS check, but the answer must be left in the exact form asked for.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\overrightarrow{AB} = (1,-3,-4), \qquad \overrightarrow{AC} = (0,2,-5)-(1,-2,3) = (-1,4,-8)" />,
-    reason: <>Two vectors lying in the plane.</>,
+    working: <Katex display tex="\begin{aligned}\overrightarrow{AB} &= (1,-3,-4)\\ \overrightarrow{AC} &= (0,2,-5)-(1,-2,3) = (-1,4,-8)\end{aligned}" />,
+    reason: <>Two vectors joining points of the plane, so both lie in it.</>,
   },
   {
     working: (
       <Katex
         display
-        tex="\underset{\sim}{n} = \overrightarrow{AB}\times\overrightarrow{AC} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & -3 & -4\\-1 & 4 & -8\end{vmatrix} = 40\underset{\sim}{i}+12\underset{\sim}{j}+\underset{\sim}{k}"
+        tex="\begin{aligned}\underset{\sim}{n} &= \overrightarrow{AB}\times\overrightarrow{AC}\\ &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\1 & -3 & -4\\-1 & 4 & -8\end{vmatrix}\\ &= 40\underset{\sim}{i}+12\underset{\sim}{j}+\underset{\sim}{k}\end{aligned}"
       />
     ),
-    reason: <>The normal. Components: <Katex tex="24+16" />, <Katex tex="-(-8-4)" />, <Katex tex="4-3" />. Use <Cas fn="define" /> or the built-in crossP to avoid slips.</>,
+    reason: <>The cross product is perpendicular to both, so it is a normal to the plane.</>,
+    more: <>Components: <Katex tex="\underset{\sim}{i}" />: <Katex tex="(-3)(-8)-(-4)(4)=24+16" />; <Katex tex="\underset{\sim}{j}" />: <Katex tex="-\left[1(-8)-(-4)(-1)\right]=-(-8-4)" />; <Katex tex="\underset{\sim}{k}" />: <Katex tex="1(4)-(-3)(-1)=4-3" />. The report reminds students that CAS can find cross products accurately: on the TI-Nspire, crossP([1,-3,-4],[-1,4,-8]) returns [40, 12, 1]. A quick check on the normal: its dot product with each of <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AC}" /> is 0 (<Katex tex="40-36-4=0" /> and <Katex tex="-40+48-8=0" />).</>,
   },
   {
     working: <Katex display tex="40x+12y+z = d" />,
-    reason: <>The Cartesian form, with the normal supplying the coefficients.</>,
+    reason: <>A plane with normal <Katex tex="a\underset{\sim}{i}+b\underset{\sim}{j}+c\underset{\sim}{k}" /> has equation <Katex tex="ax+by+cz=d" />; only <Katex tex="d" /> is still unknown.</>,
   },
   {
-    working: <Katex display tex="A(1,-2,3): \quad 40(1)+12(-2)+3 = 40-24+3 = 19" />,
+    working: <Katex display tex="\begin{aligned}&A(1,-2,3):\\ &40(1)+12(-2)+3 = 19\end{aligned}" />,
     reason: <>Substituting any one of the three points fixes the constant.</>,
   },
   {
@@ -152,30 +158,32 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="y = z = 0: \quad 2x = 12 \implies x = 6" />,
-    reason: <>The x-intercept: set the other two variables to zero.</>,
+    reason: <>Every point on the <Katex tex="x" />-axis has <Katex tex="y=z=0" />, so set them to zero and solve.</>,
   },
   {
     working: <Katex display tex="x = z = 0: \quad -3y = 12 \implies y = -4" />,
-    reason: <>The y-intercept. Note the sign.</>,
+    reason: <>The <Katex tex="y" />-intercept, the same way. It is negative — keep the sign.</>,
   },
   {
     working: <Katex display tex="x = y = 0: \quad 4z = 12 \implies z = 3" />,
-    reason: <>The z-intercept.</>,
+    reason: <>The <Katex tex="z" />-intercept.</>,
   },
   {
     working: <Katex display tex="\boxed{(6,0,0), \quad (0,-4,0), \quad (0,0,3)}" />,
-    reason: <>Reading them off the "intercept form" <Katex tex="\tfrac{x}{6}+\tfrac{y}{-4}+\tfrac{z}{3}=1" /> is the same calculation done all at once.</>,
+    reason: <>Give each as a point with all three coordinates.</>,
+    more: <>Dividing the equation by 12 gives the "intercept form" <Katex tex="\tfrac{x}{6}+\tfrac{y}{-4}+\tfrac{z}{3}=1" />, from which all three intercepts can be read at once.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{u} = (0,-4,0)-(6,0,0) = (-6,-4,0)" />,
-    reason: <>One side of the triangle, taken from the vertex <Katex tex="(6,0,0)" />.</>,
+    reason: <>Triangle area needs two sides from a common vertex. From <Katex tex="(6,0,0)" />, subtract to get the side to <Katex tex="(0,-4,0)" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v} = (0,0,3)-(6,0,0) = (-6,0,3)" />,
-    reason: <>The other side from the same vertex. Both must start at the <em>same</em> vertex — the report lists incorrectly determining the spanning vectors among the common errors.</>,
+    reason: <>The other side from the <em>same</em> vertex.</>,
+    more: <>The report lists incorrectly determining the spanning vectors among the common errors. The intercepts' position vectors, such as <Katex tex="(6,0,0)" /> and <Katex tex="(0,-4,0)" />, run from the origin, not along the triangle's sides; their cross product gives the area of a different triangle (one with a vertex at <Katex tex="O" />). Always subtract to get two sides that share a vertex.</>,
   },
   {
     working: (
@@ -184,15 +192,17 @@ const ROWS_DII: WorkingRow[] = [
         tex="\underset{\sim}{u}\times\underset{\sim}{v} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\-6 & -4 & 0\\-6 & 0 & 3\end{vmatrix} = -12\underset{\sim}{i}+18\underset{\sim}{j}-24\underset{\sim}{k}"
       />
     ),
-    reason: <>The cross product gives the area of the parallelogram the two sides span.</>,
+    reason: <><Katex tex="\left|\underset{\sim}{u}\times\underset{\sim}{v}\right| = \left|\underset{\sim}{u}\right|\left|\underset{\sim}{v}\right|\sin\theta" />, with <Katex tex="\theta" /> the angle between them, is the area of the parallelogram the two sides span: twice the triangle.</>,
+    more: <>Components: <Katex tex="\underset{\sim}{i}" />: <Katex tex="(-4)(3)-0(0)=-12" />; <Katex tex="\underset{\sim}{j}" />: <Katex tex="-\left[(-6)(3)-0(-6)\right]=18" />; <Katex tex="\underset{\sim}{k}" />: <Katex tex="(-6)(0)-(-4)(-6)=-24" />. On CAS, crossP([-6,-4,0],[-6,0,3]) gives the same.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{u}\times\underset{\sim}{v}\right| = \sqrt{144+324+576} = \sqrt{1044} = 6\sqrt{29}" />,
-    reason: <><Katex tex="1044 = 36\times29" />.</>,
+    reason: <>Take out the largest square factor: <Katex tex="1044 = 36\times29" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = \tfrac12\times6\sqrt{29} = 3\sqrt{29}}" />,
-    reason: <>About <Katex tex="16.2" /> square units. Forgetting the half gives <Katex tex="6\sqrt{29}" />, the parallelogram — one of the report's common errors. The triangle is neither isosceles nor right-angled (assuming it was is another), so no shortcut applies.</>,
+    reason: <>Halve the parallelogram. This is <Katex tex="m\sqrt n" /> with <Katex tex="m=3,\ n=29" />.</>,
+    more: <>About <Katex tex="16.2" /> square units. The report's common errors: omitting the division by 2 (giving <Katex tex="6\sqrt{29}" />, the parallelogram), and incorrectly assuming the triangle was isosceles or right-angled. It is neither: the sides are <Katex tex="2\sqrt{13}" />, <Katex tex="3\sqrt5" /> and <Katex tex="5" />, all different, and the dot products of the two sides at each vertex are 36, 16 and 9, none zero. So "half base times height" with two of the sides as base and height does not apply; the cross product handles any triangle.</>,
   },
 ]
 
@@ -211,17 +221,11 @@ export default function SpecialistQ5_2024Exam2() {
           <Background>
             <p>
               Three of the five parts turn on a cross product. Point to line:{' '}
-              <Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|\div\left|\underset{\sim}{d}\right|" />.
+              <Katex tex="\left|\overrightarrow{AP}\times\underset{\sim}{d}\right|\div\left|\underset{\sim}{d}\right|" />{' '}(<Katex tex="P" /> any point on the line, <Katex tex="\underset{\sim}{d}" /> its direction).
               Plane through three points: the cross product of two side vectors is the normal.
               Area of a triangle:{' '}
               <Katex tex="\tfrac12\left|\underset{\sim}{u}\times\underset{\sim}{v}\right|" />.
               Knowing which divisor belongs to which is most of the question.
-            </p>
-            <p>
-              Two traps. Part b. gives its own line <Katex tex="L_1" />, which has nothing to do
-              with the line through <Katex tex="A" /> and <Katex tex="B" /> from part a. And in
-              part d.ii. the two spanning vectors must both start at the same vertex — the
-              three intercept position vectors are not sides of the triangle.
             </p>
           </Background>
         </div>

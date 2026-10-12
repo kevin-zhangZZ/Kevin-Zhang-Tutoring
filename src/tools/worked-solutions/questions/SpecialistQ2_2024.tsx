@@ -21,23 +21,28 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x^2+3x-10 = (x+5)(x-2)" />,
-    reason: <>The numerator shares the factor <Katex tex="x-2" /> with the denominator, so there is no asymptote at <Katex tex="x=2" /> — only a possible hole.</>,
+    reason: <>Factorise first: the numerator shares the factor <Katex tex="x-2" /> with the denominator, so the first branch alone would leave a hole at <Katex tex="x=2" />, not an asymptote.</>,
+    more: <>A vertical asymptote needs the denominator to be 0 while the numerator is not. Here both are 0 at <Katex tex="x=2" />, so the factor cancels and the graph just has a gap there (unless the rule fills it in).</>,
   },
   {
     working: <Katex display tex="\frac{(x+5)(x-2)}{x-2} = x+5 \quad (x\ne2)" />,
-    reason: <>Away from 2, the function is simply a straight line.</>,
+    reason: <>For every <Katex tex="x\ne2" />, the function is the straight line <Katex tex="y=x+5" />.</>,
   },
   {
     working: <Katex display tex="\lim_{x\to2}f(x) = 2+5 = 7" />,
-    reason: <>The hole in the line sits at height 7.</>,
+    reason: <>Near <Katex tex="x=2" />, <Katex tex="f(x)=x+5" />, so <Katex tex="f(x)" /> approaches 7: the gap in the line is at <Katex tex="(2,7)" />.</>,
   },
   {
     working: <Katex display tex="f(2) = 7 = \lim_{x\to2}f(x)" />,
-    reason: <>The second branch of the hybrid plugs the hole with exactly the right value, so <Katex tex="f" /> is continuous everywhere.</>,
+    reason: <>The second branch defines <Katex tex="f(2)=7" />, exactly the limit, so the gap is filled and <Katex tex="f" /> is continuous everywhere.</>,
+    more: <>Continuous at a point means <Katex tex="f" /> is defined there and its value equals the limit. So <Katex tex="f" /> is simply <Katex tex="f(x)=x+5" /> for all real <Katex tex="x" />: the hybrid rule is a disguised way of writing one straight line.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{the function } f \text{ is continuous}}" />,
-    reason: <>Matches option <b>A</b>. Option <b>D</b> (a point of discontinuity), chosen by 37%, would be right if <Katex tex="f(2)" /> were any value other than 7. The graph is a line, so there is no asymptote of either kind — ruling out <b>B</b> and <b>C</b>.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>
+      <b>D</b> (a point of discontinuity), chosen by 37%, is the trap: the "<Katex tex="x\in R\setminus\{2\}" />" in the first branch suggests a hole, but the second branch fills it with the right value. <b>D</b> would be correct only if <Katex tex="f(2)" /> were any value other than 7. <b>B</b> and <b>C</b> fail because the graph is the line <Katex tex="y=x+5" />, which has no asymptote of either kind.
+    </>,
   },
 ]
 

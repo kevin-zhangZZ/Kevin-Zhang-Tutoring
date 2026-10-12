@@ -31,11 +31,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(x-y)-\cos(x+y) = 2\sin(x)\sin(y)" />,
-    reason: <>Expanding both with the compound-angle formula: the <Katex tex="\cos x\cos y" /> terms cancel and the <Katex tex="\sin x\sin y" /> terms double. Without this the equation is not separable at all.</>,
+    reason: <>Every option separates <Katex tex="x" /> from <Katex tex="y" />, so the bracket must become a product. Expand both with the compound-angle formulas: the <Katex tex="\cos(x)\cos(y)" /> terms cancel and the <Katex tex="\sin(x)\sin(y)" /> terms double.</>,
+    more: <>The formulas are <Katex tex="\cos(x-y)=\cos(x)\cos(y)+\sin(x)\sin(y)" /> and <Katex tex="\cos(x+y)=\cos(x)\cos(y)-\sin(x)\sin(y)" />.</>,
   },
   {
     working: <Katex display tex="e^{x-y} = e^x e^{-y}" />,
-    reason: <>Splitting the exponential is the other half of the separation.</>,
+    reason: <>Split the exponential with index laws, so it too becomes an <Katex tex="x" />-factor times a <Katex tex="y" />-factor.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 2e^x e^{-y}\sin(x)\sin(y)" />,
@@ -43,11 +44,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{dy}{e^{-y}\sin(y)} = 2e^x\sin(x)\,dx" />,
-    reason: <>Dividing both sides by <Katex tex="e^{-y}\sin(y)" />.</>,
+    reason: <>Separate: divide both sides by the <Katex tex="y" />-factors <Katex tex="e^{-y}\sin(y)" />, keeping the <Katex tex="x" />-factors on the right.</>,
+    more: <>Dividing by <Katex tex="\sin(y)" /> assumes <Katex tex="\sin(y)\ne0" />. The constant solutions <Katex tex="y=n\pi" /> (where <Katex tex="\tfrac{dy}{dx}=0" />) are lost this way, but none of the options is affected.</>,
   },
   {
     working: <Katex display tex="\boxed{\int\frac{e^{y}}{\sin(y)}\,dy = 2\int e^x\sin(x)\,dx}" />,
-    reason: <>Matches option <b>C</b>, since <Katex tex="\tfrac{1}{e^{-y}}=e^{y}" />. Option <b>B</b> makes the same start but flips the sign of the exponent on the right, and option <b>A</b> uses <Katex tex="\cos" /> where the identity gives <Katex tex="\sin" />.</>,
+    reason: <>Matches option <b>C</b>, since <Katex tex="\tfrac{1}{e^{-y}}=e^{y}" />.</>,
+    more: <>Option <b>B</b>, the most common wrong answer, has the correct <Katex tex="y" /> side but <Katex tex="e^{-x}" /> on the right: the <Katex tex="x" />-part of <Katex tex="e^{x-y}" /> is <Katex tex="e^{+x}" />. Option <b>A</b> uses <Katex tex="\cos" /> where the identity gives <Katex tex="\sin" />, and has <Katex tex="\cos(y)" /> multiplying instead of dividing. Option <b>D</b> multiplies by the <Katex tex="y" />-factors instead of dividing by them, and puts <Katex tex="\cos(x)" /> in a denominator.</>,
   },
 ]
 

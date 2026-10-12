@@ -27,31 +27,73 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r_1}(t) = \cos(t)\underset{\sim}{i}+\sin(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
-    reason: <>Particle 1’s position.</>,
+    reason: <>Particle 1’s position. We need its <b>velocity</b>, so differentiate it.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v_1}(t) = -\sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\frac{\cos(2t)}{\sqrt{\sin(2t)}}\underset{\sim}{k}" />,
-    reason: <>Differentiate; the <Katex tex="\underset{\sim}{k}" /> component uses the chain rule on <Katex tex="\sqrt{\sin(2t)}" />.</>,
+    reason: (
+      <>
+        Differentiate each component; the <Katex tex="\underset{\sim}{k}" /> component uses the chain rule on{' '}
+        <Katex tex="\sqrt{\sin(2t)}" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\dfrac{d}{dt}\big(\sin(2t)\big)^{1/2}=\tfrac12\big(\sin(2t)\big)^{-1/2}\cdot 2\cos(2t)=\dfrac{\cos(2t)}{\sqrt{\sin(2t)}}" />.
+        On <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />, <Katex tex="\sin(2t)>0" />, so this is always defined (at the endpoints
+        it would be undefined, as <Katex tex="\sin(2t)=0" /> there).
+      </>
+    ),
   },
   {
     working: <Katex display tex="\underset{\sim}{r_2}(t) = \sin(t)\underset{\sim}{i}+\cos(t)\underset{\sim}{j}+\sqrt{\sin(2t)}\,\underset{\sim}{k}" />,
-    reason: <>Particle 2’s position (same k-component as particle 1).</>,
+    reason: <>Particle 2’s <b>position</b> is used as given — it is not differentiated.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{v_1}\cdot\underset{\sim}{r_2} = -\sin^2(t)+\cos^2(t) + \frac{\cos(2t)}{\sqrt{\sin(2t)}}\cdot\sqrt{\sin(2t)}" />,
-    reason: <>Dot product — the <Katex tex="\underset{\sim}{k}" /> components' square roots cancel neatly.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}\underset{\sim}{v_1}\cdot\underset{\sim}{r_2} &= -\sin^2(t)+\cos^2(t)\\ &\quad+ \frac{\cos(2t)}{\sqrt{\sin(2t)}}\cdot\sqrt{\sin(2t)}\end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        Perpendicular means the dot product is zero. Multiply matching components; the{' '}
+        <Katex tex="\underset{\sim}{k}" /> components’ square roots cancel.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \cos(2t) + \cos(2t) = 2\cos(2t)" />,
     reason: <>Using <Katex tex="\cos^2(t)-\sin^2(t)=\cos(2t)" />.</>,
   },
   {
-    working: <Katex display tex="2\cos(2t)=0 \;\implies\; 2t = \tfrac{\pi}{2}+k\pi \;\implies\; t=\tfrac{\pi}{4}+\tfrac{k\pi}{2}" />,
-    reason: <>Solve for perpendicularity.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}2\cos(2t)=0 &\implies 2t = \tfrac{\pi}{2}+n\pi\\ &\implies t=\tfrac{\pi}{4}+\tfrac{n\pi}{2},\ n\in Z\end{aligned}"
+      />
+    ),
+    reason: <>Set the dot product to zero; cosine is zero at odd multiples of <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{t\in\big(0,\tfrac{\pi}{2}\big) \;\implies\; \text{only } t=\tfrac{\pi}{4} \text{ works} \;\implies\; 1 \text{ time}}" />,
-    reason: <>The next solution, <Katex tex="t=\tfrac{3\pi}{4}" />, falls outside the given interval. Matches option <b>A</b>.</>,
+    working: <Katex display tex="\boxed{t=\tfrac{\pi}{4}\text{ only} \implies 1 \text{ time}}" />,
+    reason: (
+      <>
+        Only <Katex tex="t=\tfrac{\pi}{4}" /> lies in <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />; its neighbours{' '}
+        <Katex tex="-\tfrac{\pi}{4}" /> and <Katex tex="\tfrac{3\pi}{4}" /> fall outside. Matches option <b>A</b>.
+      </>
+    ),
+    more: (
+      <>
+        Equivalently, <Katex tex="2t\in(0,\pi)" />, and cosine is zero only once there, at{' '}
+        <Katex tex="2t=\tfrac{\pi}{2}" />. The stem bolds <b>velocity</b> and <b>position</b> because mixing them up
+        changes the count. Option <b>B</b> (2), the most common wrong answer, is the count if you dot the two{' '}
+        <em>velocities</em>: <Katex tex="\underset{\sim}{v_1}\cdot\underset{\sim}{v_2}=\dfrac{\cos(4t)}{\sin(2t)}" />,
+        which is zero at <Katex tex="t=\tfrac{\pi}{8}" /> and <Katex tex="\tfrac{3\pi}{8}" />. Dotting the two{' '}
+        <em>positions</em> gives <Katex tex="2\sin(2t)" />, which is never zero on the interval.
+      </>
+    ),
   },
 ]
 

@@ -27,28 +27,77 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{d} = \underset{\sim}{i}+\underset{\sim}{j}+\underset{\sim}{k} \ \text{ for both lines}" />,
-    reason: <>They really are parallel, which is what makes the shortest distance the same from every point of one line to the other.</>,
-  },
-  {
-    working: <Katex display tex="\underset{\sim}{a_1} = (1,3,1), \quad \underset{\sim}{a_2} = (-2,1,3) \implies \underset{\sim}{a_2}-\underset{\sim}{a_1} = (-3,-2,2)" />,
-    reason: <>Any point of each line will do.</>,
+    reason: <>Same direction, so the lines are parallel and the gap between them is the same everywhere.</>,
   },
   {
     working: (
       <Katex
         display
-        tex="\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\times\underset{\sim}{d} = \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\-3 & -2 & 2\\1 & 1 & 1\end{vmatrix} = -4\underset{\sim}{i}+5\underset{\sim}{j}-\underset{\sim}{k}"
+        tex="\begin{aligned}\underset{\sim}{a_1} &= (1,3,1), \quad \underset{\sim}{a_2} = (-2,1,3)\\ \underset{\sim}{a_2}-\underset{\sim}{a_1} &= (-3,-2,2)\end{aligned}"
       />
     ),
-    reason: <>For <em>parallel</em> lines the cross product of the two directions is zero, so the formula uses <Katex tex="\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\times\underset{\sim}{d}" /> instead.</>,
+    reason: <>Take one known point on each line (<Katex tex="s=0" />, <Katex tex="t=0" />) and the vector joining them.</>,
+    more: (
+      <>
+        Any point on each line would do: moving along a line only adds a multiple of{' '}
+        <Katex tex="\underset{\sim}{d}" />, which doesn’t change the perpendicular gap. But{' '}
+        <Katex tex="\left|\underset{\sim}{a_2}-\underset{\sim}{a_1}\right|=\sqrt{17}" /> itself is <em>not</em> the
+        answer — these two points are not directly opposite each other.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="d = \frac{\left|\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\times\underset{\sim}{d}\right|}{\left|\underset{\sim}{d}\right|} = \frac{\sqrt{16+25+1}}{\sqrt3}" />,
-    reason: <>The perpendicular component of the joining vector.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}&\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\times\underset{\sim}{d}\\ &= \begin{vmatrix}\underset{\sim}{i} & \underset{\sim}{j} & \underset{\sim}{k}\\-3 & -2 & 2\\1 & 1 & 1\end{vmatrix} = -4\underset{\sim}{i}+5\underset{\sim}{j}-\underset{\sim}{k}\end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        To get the perpendicular gap, cross the joining vector with <Katex tex="\underset{\sim}{d}" />: its magnitude is{' '}
+        <Katex tex="\left|\underset{\sim}{a_2}-\underset{\sim}{a_1}\right|\left|\underset{\sim}{d}\right|\sin\theta" />{' '}
+        (<Katex tex="\theta" /> is the angle between them), and <Katex tex="\left|\underset{\sim}{a_2}-\underset{\sim}{a_1}\right|\sin\theta" /> is exactly that gap.
+      </>
+    ),
+    more: (
+      <>
+        Picture the joining vector
+        as the hypotenuse of a right-angled triangle: one side runs along the lines, the other (opposite{' '}
+        <Katex tex="\theta" />) is the perpendicular distance. Components:{' '}
+        <Katex tex="\underset{\sim}{i}:(-2)(1)-(2)(1)=-4" />,{' '}
+        <Katex tex="\underset{\sim}{j}:-\big[(-3)(1)-(2)(1)\big]=5" />,{' '}
+        <Katex tex="\underset{\sim}{k}:(-3)(1)-(-2)(1)=-1" />. The examiner’s report does the same with{' '}
+        <Katex tex="\hat{\underset{\sim}{d}}" /> in place of <Katex tex="\underset{\sim}{d}" />.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\text{distance} = \frac{\left|\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\times\underset{\sim}{d}\right|}{\left|\underset{\sim}{d}\right|} = \frac{\sqrt{16+25+1}}{\sqrt3}" />,
+    reason: <>Dividing by <Katex tex="\left|\underset{\sim}{d}\right|=\sqrt3" /> leaves just the perpendicular gap.</>,
+    more: (
+      <>
+        Check without the cross product, by Pythagoras. The component of{' '}
+        <Katex tex="\underset{\sim}{a_2}-\underset{\sim}{a_1}" /> along the lines is its scalar resolute{' '}
+        <Katex tex="\dfrac{(-3)+(-2)+2}{\sqrt3}=-\sqrt3" />, so the perpendicular part has length{' '}
+        <Katex tex="\sqrt{17-3}=\sqrt{14}" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{\sqrt{42}}{\sqrt3} = \sqrt{14}}" />,
-    reason: <>Matches option <b>B</b>; about <Katex tex="3.74" />. Option <b>C</b>, <Katex tex="\sqrt{17}" />, is just the distance between the two named <em>points</em>, <Katex tex="\left|\underset{\sim}{a_2}-\underset{\sim}{a_1}\right|" />; option <b>A</b>, 3, is <Katex tex="\left|\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\underset{\sim}{d}\right|" /> without dividing by <Katex tex="\left|\underset{\sim}{d}\right|" />; option <b>D</b> is the square of the answer.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: (
+      <>
+        Option <b>C</b>, <Katex tex="\sqrt{17}" /> (28%), is the distance between the two starting{' '}
+        <em>points</em>, <Katex tex="\left|\underset{\sim}{a_2}-\underset{\sim}{a_1}\right|" />, which is longer than the
+        perpendicular gap. Option <b>A</b>, 3, is{' '}
+        <Katex tex="\left|\left(\underset{\sim}{a_2}-\underset{\sim}{a_1}\right)\cdot\underset{\sim}{d}\right|" />
+        , a dot product with the unnormalised <Katex tex="\underset{\sim}{d}" />: the along-the-line
+        component’s size, <Katex tex="\sqrt3" />, scaled up by <Katex tex="\left|\underset{\sim}{d}\right|=\sqrt3" />. It is
+        not the gap across the lines. Option <b>D</b> is the square of the answer.
+      </>
+    ),
   },
 ]
 

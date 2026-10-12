@@ -32,20 +32,22 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="x = 1-\cos(t),\quad y=t-\sin(t)" />,
-    reason: <>The given parametric curve — a cycloid.</>,
+    working: <Katex display tex="L = \int_0^{2\pi}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt" />,
+    reason: <>Arc length of a parametric curve: integrate <Katex tex="\sqrt{(x')^2+(y')^2}" /> over the given interval of <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = \sin(t) \qquad \frac{dy}{dt} = 1-\cos(t)" />,
-    reason: <>Differentiate each component.</>,
+    reason: <>Differentiate <Katex tex="x=1-\cos(t)" /> and <Katex tex="y=t-\sin(t)" />.</>,
+    more: <>It is the derivatives that get squared, not <Katex tex="x" /> and <Katex tex="y" /> themselves. Option <b>B</b> puts <Katex tex="x" /> and <Katex tex="y" /> straight into the formula.</>,
   },
   {
-    working: <Katex display tex="\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2 = \sin^2(t)+\big(1-\cos(t)\big)^2 = 2-2\cos(t)" />,
-    reason: <>Expand and simplify using <Katex tex="\sin^2(t)+\cos^2(t)=1" />.</>,
+    working: <Katex display tex="\begin{aligned} &\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2 \\ &= \sin^2(t)+1-2\cos(t)+\cos^2(t) \\ &= 2-2\cos(t) \end{aligned}" />,
+    reason: <>Expand <Katex tex="\big(1-\cos(t)\big)^2" /> and use <Katex tex="\sin^2(t)+\cos^2(t)=1" />.</>,
   },
   {
-    working: <Katex display tex="2-2\cos(t) = 4\sin^2\!\big(\tfrac{t}{2}\big)" />,
-    reason: <>Half-angle identity <Katex tex="1-\cos(t)=2\sin^2(t/2)" />.</>,
+    working: <Katex display tex="2-2\cos(t) = 2\big(1-\cos(t)\big) = 4\sin^2\!\big(\tfrac{t}{2}\big)" />,
+    reason: <>To remove the square root, write <Katex tex="1-\cos(t)" /> as a perfect square: <Katex tex="\cos(t)=1-2\sin^2(t/2)" />, so <Katex tex="1-\cos(t)=2\sin^2(t/2)" />.</>,
+    more: <>The report writes this identity as <Katex tex="\sin^2(ax)=\tfrac12\big(1-\cos(2ax)\big)" /> with <Katex tex="a=\tfrac12" />. The other version of the double-angle formula, <Katex tex="\cos(t)=2\cos^2(t/2)-1" />, gives <Katex tex="1+\cos(t)=2\cos^2(t/2)" />, which has a plus sign and does not apply here; using it by mistake leads to the <Katex tex="\cos(t/2)" /> of option <b>D</b>. The <Katex tex="\sin(t/2)" /> in option <b>A</b> is also a hint to use this identity.</>,
   },
   {
     working: <Katex display tex="\sqrt{4\sin^2(t/2)} = 2\sin\!\big(\tfrac{t}{2}\big)" />,
@@ -53,7 +55,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L = \int_0^{2\pi} 2\sin\!\big(\tfrac{t}{2}\big)\,dt}" />,
-    reason: <>Arc length formula <Katex tex="L=\int\sqrt{(x')^2+(y')^2}\,dt" />. Matches option <b>A</b>.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>The distractors: <b>B</b> is the derivative slip explained above. <b>C</b>, the most common wrong answer (29%), is <Katex tex="\int_0^{2\pi}\big(2-2\cos(t)\big)\,dt" />: the square root has been dropped. <b>D</b> has <Katex tex="\cos(t/2)" /> in place of <Katex tex="\sin(t/2)" />, and it integrates to 0, which is impossible for a length. A CAS check: option A evaluates to 8, while C gives <Katex tex="4\pi\approx12.57" />.</>,
   },
 ]
 

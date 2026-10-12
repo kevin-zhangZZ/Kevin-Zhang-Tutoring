@@ -89,19 +89,20 @@ const EXAM_DIII: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="x^4-x^2+1 = x^2\left(x^2-1\right)+1 \implies f(x) = -x^2+\frac{1}{1-x^2}" />,
-    reason: <>Dividing through first. In this form the two pieces are separate: a downward parabola plus a term that blows up at <Katex tex="x=\pm1" />.</>,
+    working: <Katex display tex="\begin{aligned}&x^4-x^2+1 = x^2\left(x^2-1\right)+1 \\ &\implies f(x) = -x^2+\frac{1}{1-x^2}\end{aligned}" />,
+    reason: <>Divide first: <Katex tex="\tfrac{x^2(x^2-1)}{1-x^2} = -x^2" />. Now <Katex tex="f" /> is a downward parabola plus a term that blows up at <Katex tex="x=\pm1" />.</>,
+    more: <>Writing the numerator as <Katex tex="x^2\left(x^2-1\right)+1" /> is polynomial long division done by inspection: split off the part that is a multiple of <Katex tex="x^2-1" />.</>,
   },
   {
-    working: <Katex display tex="1-x^2 = 0 \implies \text{vertical asymptotes } x = -1 \text{ and } x = 1" />,
+    working: <Katex display tex="\begin{aligned}&1-x^2 = 0 \implies \text{vertical} \\ &\text{asymptotes } x = -1 \text{ and } x = 1\end{aligned}" />,
     reason: <>Both must be labelled with their equations.</>,
   },
   {
-    working: <Katex display tex="f'(x) = -2x+\frac{2x}{\left(1-x^2\right)^2} = 2x\left[\frac{1}{\left(1-x^2\right)^2}-1\right]" />,
-    reason: <>Factorising the 2x out is what makes the zeros readable.</>,
+    working: <Katex display tex="\begin{aligned}f'(x) &= -2x+\frac{2x}{\left(1-x^2\right)^2} \\ &= 2x\left[\frac{1}{\left(1-x^2\right)^2}-1\right]\end{aligned}" />,
+    reason: <>By the chain rule, <Katex tex="\tfrac{d}{dx}\left(1-x^2\right)^{-1} = 2x\left(1-x^2\right)^{-2}" />. Factorising out <Katex tex="2x" /> makes the zeros readable.</>,
   },
   {
-    working: <Katex display tex="f'(x) = 0 \implies x = 0 \ \text{ or } \ \left(1-x^2\right)^2 = 1 \implies x = 0,\ \pm\sqrt2" />,
+    working: <Katex display tex="\begin{aligned}&f'(x) = 0 \implies x = 0 \ \text{ or } \ \left(1-x^2\right)^2 = 1 \\ &\implies x = 0,\ \pm\sqrt2\end{aligned}" />,
     reason: <><Katex tex="1-x^2=\pm1" /> gives <Katex tex="x^2=0" /> or <Katex tex="x^2=2" />.</>,
   },
   {
@@ -109,7 +110,7 @@ const ROWS_A: WorkingRow[] = [
     reason: <>So the stationary points are <Katex tex="(0,1)" />, <Katex tex="\left(\sqrt2,-3\right)" /> and <Katex tex="\left(-\sqrt2,-3\right)" />.</>,
   },
   {
-    working: <Katex display tex="|x|<1: \ f\to+\infty \text{ at both ends}; \qquad |x|>1: \ f\to-\infty \text{ both ways}" />,
+    working: <Katex display tex="\begin{aligned}&|x|<1: \ f\to+\infty \text{ at both ends} \\ &|x|>1: \ f\to-\infty \text{ both ways}\end{aligned}" />,
     reason: <>On the middle branch <Katex tex="1-x^2>0" />, so the reciprocal term is positive and dominates near the asymptotes; on the outer branches it is negative, and far out the <Katex tex="-x^2" /> takes over.</>,
   },
   {
@@ -122,34 +123,38 @@ const ROWS_A: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The middle branch is a wide, flat-bottomed valley with its minimum at <Katex tex="(0,1)" />. The report stresses the graph must be flatter near the <Katex tex="y" />-intercept, with turning points and end points precisely positioned.</>,
+    reason: <>A flat-bottomed middle valley with minimum <Katex tex="(0,1)" />, and two outer arches with maxima <Katex tex="\left(\pm\sqrt2,-3\right)" />. Label both asymptotes and all three points.</>,
+    more: <>Why the graph is so flat near the <Katex tex="y" />-intercept: <Katex tex="f(x) = 1+\dfrac{x^4}{1-x^2}" />, so near <Katex tex="x=0" /> the graph rises like <Katex tex="x^4" />, not <Katex tex="x^2" />: <Katex tex="f(0.5)\approx1.08" /> and even <Katex tex="f(0.7)\approx1.47" />, before it shoots up near the asymptotes. Turning points and end points must also sit where they belong on the grid (e.g. <Katex tex="f(\pm2)=-\tfrac{13}{3}\approx-4.3" />). Setting the CAS window to the given axes and copying point by point gets these right.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_{1}^{6} x^2\,dy" />,
-    reason: <>Rotation about the <Katex tex="y" />-axis, between the two given horizontal lines. The terminals are <Katex tex="y" />-values, not <Katex tex="x" />-values.</>,
+    reason: <>Rotating about the <Katex tex="y" />-axis makes discs of radius <Katex tex="x" />. The terminals are the given lines <Katex tex="y=1" /> and <Katex tex="y=6" />.</>,
+    more: <>The region is the cup of the middle branch above its minimum <Katex tex="(0,1)" /> and below <Katex tex="y=6" />. It is symmetric about the <Katex tex="y" />-axis, so each half sweeps out the same solid; the slice at height <Katex tex="y" /> has area <Katex tex="\pi x^2" />.</>,
   },
   {
-    working: <Katex display tex="y = -x^2+\frac{1}{1-x^2}, \quad \text{let } u = x^2 \implies y(1-u) = -u(1-u)+1" />,
-    reason: <>The integrand has to be <Katex tex="x^2" /> written in terms of <Katex tex="y" />, so invert the relation.</>,
+    working: <Katex display tex="\begin{aligned}&y = -x^2+\frac{1}{1-x^2}, \quad \text{let } u = x^2 \\ &\implies y(1-u) = -u(1-u)+1\end{aligned}" />,
+    reason: <>The integral must involve only <Katex tex="y" />, so solve for <Katex tex="x^2" />. Multiply through by <Katex tex="1-u" /> to clear the fraction.</>,
   },
   {
     working: <Katex display tex="u^2+(y-1)u+(1-y) = 0" />,
     reason: <>A quadratic in <Katex tex="u=x^2" />. Rearranging: <Katex tex="y-yu = -u+u^2+1" />.</>,
   },
   {
-    working: <Katex display tex="u = \frac{(1-y)\pm\sqrt{(y-1)^2+4(y-1)}}{2} = \frac{1-y\pm\sqrt{y^2+2y-3}}{2}" />,
+    working: <Katex display tex="\begin{aligned}u &= \frac{(1-y)\pm\sqrt{(y-1)^2+4(y-1)}}{2} \\ &= \frac{1-y\pm\sqrt{y^2+2y-3}}{2}\end{aligned}" />,
     reason: <>The quadratic formula, with <Katex tex="(y-1)^2+4(y-1) = y^2+2y-3" />.</>,
   },
   {
-    working: <Katex display tex="y=1 \implies u=0 \text{ (the minimum at } x=0) \implies \text{take the } + \text{ root}" />,
-    reason: <>Choosing the branch: the region sits on the middle arm, which starts at <Katex tex="x=0" /> when <Katex tex="y=1" />. Only the plus sign delivers that.</>,
+    working: <Katex display tex="\begin{aligned}&y>1 \implies \text{the } - \text{ root} < 0, \text{ but } u=x^2\ge0 \\ &\implies \text{take the } + \text{ root}\end{aligned}" />,
+    reason: <>The minus root cannot be <Katex tex="x^2" />. Check: at the minimum <Katex tex="y=1" />, the plus root gives <Katex tex="u=0" />, i.e. <Katex tex="x=0" />, as it should.</>,
+    more: <>The minus root is <Katex tex="\tfrac{(1-y)-\sqrt{\cdots}}{2}" />, and both parts of its numerator are negative when <Katex tex="y>1" />. A quick check of the plus root: at <Katex tex="y=6" /> it gives <Katex tex="x^2 = \tfrac{-5+\sqrt{45}}{2}\approx0.854" />, so <Katex tex="|x|\approx0.92" />, inside the asymptotes as the middle branch must be.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_1^{6}\frac{1-y+\sqrt{y^2+2y-3}}{2}\,dy}" />,
-    reason: <>The report says students were expected to write an expression for <Katex tex="x^2" /> within the definite integral instead of stating the generic formula.</>,
+    reason: <>The <Katex tex="x^2" /> expression goes inside the integral: <Katex tex="\pi\int_1^6 x^2\,dy" /> alone does not earn the marks.</>,
+    more: <>If you use <Cas fn="solve" /> on <Katex tex="y=f(x)" /> for <Katex tex="x" />, square the positive solution and copy every sign and the square root carefully.</>,
   },
 ]
 
@@ -160,7 +165,8 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 11.19823\ldots" />,
-    reason: <>Exactly, <Katex tex="\tfrac{\pi}{4}\left(21\sqrt5-25+4\log_e\!\left(\tfrac{2}{7+3\sqrt5}\right)\right)" /> — but a decimal was all that was asked for.</>,
+    reason: <>Only a one-decimal-place answer is asked for, so the numerical integral is all that is needed.</>,
+    more: <>For the curious, the exact value is <Katex tex="\tfrac{\pi}{4}\left(21\sqrt5-25+4\log_e\!\left(\tfrac{2}{7+3\sqrt5}\right)\right)" />. A wrong integrand in b.i. usually costs this mark too.</>,
   },
   {
     working: <Katex display tex="\boxed{11.2 \text{ cubic units}}" />,
@@ -172,13 +178,14 @@ const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = \frac{x^4+b}{1-x^2}" />,
     reason: <>The only possible asymptotes come from <Katex tex="1-x^2=0" />, so they disappear exactly when the numerator cancels those factors.</>,
+    more: <>Why no others: the numerator's degree is 2 more than the denominator's, so far out <Katex tex="g" /> behaves like a parabola, never a line, so there is no horizontal or oblique asymptote. The report's route is division: <Katex tex="g(x) = -x^2-1+\dfrac{b+1}{1-x^2}" />, and the fraction (the only source of asymptotes) vanishes precisely when <Katex tex="b+1=0" />.</>,
   },
   {
-    working: <Katex display tex="\text{need } x = \pm1 \text{ to be zeros of } x^4+b \implies 1+b = 0" />,
+    working: <Katex display tex="\begin{aligned}&\text{need } x = \pm1 \text{ to be zeros of } x^4+b \\ &\implies 1+b = 0\end{aligned}" />,
     reason: <>Both give the same condition, since <Katex tex="(\pm1)^4=1" />.</>,
   },
   {
-    working: <Katex display tex="b = -1: \quad g(x) = \frac{x^4-1}{1-x^2} = \frac{\left(x^2-1\right)\left(x^2+1\right)}{-\left(x^2-1\right)} = -\left(x^2+1\right)" />,
+    working: <Katex display tex="\begin{aligned}b = -1: \quad g(x) &= \frac{x^4-1}{1-x^2} \\ &= \frac{\left(x^2-1\right)\left(x^2+1\right)}{-\left(x^2-1\right)} \\ &= -\left(x^2+1\right)\end{aligned}" />,
     reason: <>Both factors cancel at once, leaving a polynomial.</>,
   },
   {
@@ -197,50 +204,53 @@ const ROWS_DI: WorkingRow[] = [
     reason: <>Since <Katex tex="g'(0)=0" /> whatever <Katex tex="b" /> is. So "exactly one" means the second equation must contribute nothing.</>,
   },
   {
-    working: <Katex display tex="b+1<0 \implies \left(x^2-1\right)^2 = b+1 \text{ has no real solutions}" />,
+    working: <Katex display tex="\begin{aligned}&b+1<0 \implies \left(x^2-1\right)^2 = b+1 \\ &\text{has no real solutions}\end{aligned}" />,
     reason: <>A square cannot be negative.</>,
   },
   {
     working: <Katex display tex="b+1=0 \implies \left(x^2-1\right)^2 = 0 \implies x = \pm1" />,
-    reason: <>These are outside the domain, so they are not stationary points either — which is why <Katex tex="b=-1" /> must be included.</>,
+    reason: <>But <Katex tex="x=\pm1" /> are outside the domain, so they are not stationary points either. So <Katex tex="b=-1" /> also gives just one.</>,
+    more: <>This is part c.'s function: at <Katex tex="b=-1" />, <Katex tex="g(x) = -\left(x^2+1\right)" /> with <Katex tex="x\ne\pm1" />, a parabola whose only stationary point is its vertex <Katex tex="(0,-1)" />. Equivalently, <Katex tex="g'(x)" /> simplifies to <Katex tex="-2x" /> there.</>,
   },
   {
     working: <Katex display tex="\boxed{b \le -1}" />,
-    reason: <>The report notes <Katex tex="b<-1" /> as the most frequent wrong answer.</>,
+    reason: <>Combining <Katex tex="b<-1" /> and <Katex tex="b=-1" />. Any <Katex tex="b>-1" /> also gives <Katex tex="x=\pm\sqrt{1+\sqrt{b+1}}" /> (see d.ii.), so it fails.</>,
+    more: <>Students who answered <Katex tex="b<-1" /> saw that a square cannot equal a negative, but missed that <Katex tex="b=-1" /> only produces the excluded <Katex tex="x=\pm1" />.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
-    working: <Katex display tex="\left(x^2-1\right)^2 = b+1 \implies x^2 = 1\pm\sqrt{b+1} \quad (b\ge-1)" />,
-    reason: <>Taking square roots twice, keeping both signs at the first step.</>,
+    working: <Katex display tex="\begin{aligned}&\left(x^2-1\right)^2 = b+1 \quad (b\ge-1) \\ &\implies x^2 = 1\pm\sqrt{b+1}\end{aligned}" />,
+    reason: <>Each extra stationary point needs <Katex tex="b+1\ge0" />. Square root both sides (keep <Katex tex="\pm" />), then add 1. (<Katex tex="b=-1" /> gives the excluded <Katex tex="x=\pm1" />, as in d.i.)</>,
   },
   {
-    working: <Katex display tex="x^2 = 1+\sqrt{b+1} \ \text{ always gives two solutions } \pm\sqrt{1+\sqrt{b+1}}" />,
+    working: <Katex display tex="\begin{aligned}&x^2 = 1+\sqrt{b+1} \text{ always gives} \\ &\text{two solutions } \pm\sqrt{1+\sqrt{b+1}}\end{aligned}" />,
     reason: <>This value is at least 1, so it is always positive.</>,
   },
   {
-    working: <Katex display tex="x^2 = 1-\sqrt{b+1} \ \text{ gives two more only if } 1-\sqrt{b+1}>0 \iff b<0" />,
+    working: <Katex display tex="\begin{aligned}&x^2 = 1-\sqrt{b+1} \text{ gives two more} \\ &\text{only if } 1-\sqrt{b+1}>0 \iff b<0\end{aligned}" />,
     reason: <>So for <Katex tex="-1<b<0" /> there are four extra stationary points, not two.</>,
   },
   {
-    working: <Katex display tex="b\ge0 \implies 1-\sqrt{b+1}\le0 \implies \text{no solutions from that branch}" />,
+    working: <Katex display tex="\begin{aligned}&b\ge0 \implies 1-\sqrt{b+1}\le0 \\ &\implies \text{no new solutions from that branch}\end{aligned}" />,
     reason: <>At <Katex tex="b=0" /> exactly, <Katex tex="x^2=0" /> gives <Katex tex="x=0" />, which is already counted — so <Katex tex="b=0" /> still yields three stationary points in total and must be included.</>,
   },
   {
     working: <Katex display tex="\boxed{b \ge 0}" />,
-    reason: <>The three points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1+\sqrt{b+1}}" />. The report notes many students did not include the equality sign.</>,
+    reason: <>The three points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1+\sqrt{b+1}}" />. Note the <Katex tex="\ge" />: <Katex tex="b=0" /> is included.</>,
+    more: <>Check <Katex tex="b=0" /> directly: <Katex tex="g'(x) = \dfrac{-2x^3\left(x^2-2\right)}{\left(1-x^2\right)^2}" />, which is zero only at <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt2" />. The extra root <Katex tex="x=0" /> from the second branch is a repeat, not a new point.</>,
   },
 ]
 
 const ROWS_DIII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{five stationary points} \iff \text{four nonzero solutions of } \left(x^2-1\right)^2 = b+1" />,
+    working: <Katex display tex="\begin{aligned}&\text{five stationary points} \iff \text{four nonzero} \\ &\text{solutions of } \left(x^2-1\right)^2 = b+1\end{aligned}" />,
     reason: <>Both branches of part d.ii. must contribute a pair, on top of <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="b+1>0 \implies b>-1" />,
-    reason: <>Strictly positive, so that <Katex tex="\sqrt{b+1}\ne0" /> and the two branches are genuinely different (and their roots are not the excluded <Katex tex="x=\pm1" />).</>,
+    reason: <>Strict, because <Katex tex="b=-1" /> makes both branches <Katex tex="x^2=1" />, the excluded <Katex tex="x=\pm1" />.</>,
   },
   {
     working: <Katex display tex="1-\sqrt{b+1}>0 \implies \sqrt{b+1}<1 \implies b<0" />,
@@ -248,7 +258,8 @@ const ROWS_DIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-1<b<0}" />,
-    reason: <>The five points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1\pm\sqrt{b+1}}" />. Note how parts d.i., d.ii. and d.iii. between them cover the whole real line for <Katex tex="b" />: one, five, and three stationary points respectively.</>,
+    reason: <>The five points are <Katex tex="x=0" /> and <Katex tex="x=\pm\sqrt{1\pm\sqrt{b+1}}" />.</>,
+    more: <>A check on all of part d.: reading along the <Katex tex="b" />-axis, <Katex tex="b\le-1" /> gives one stationary point, <Katex tex="-1<b<0" /> five, and <Katex tex="b\ge0" /> three. The three answers cover every real <Katex tex="b" /> with no overlap, as they must, since every <Katex tex="g" /> has some number of stationary points.</>,
   },
 ]
 
@@ -278,7 +289,7 @@ export default function SpecialistQ1_2024Exam2() {
               <Katex tex="x^2 = 1\pm\sqrt{b+1}" />, and the count depends only on how many of
               those two values are positive. Work that out once and all three answers —{' '}
               <Katex tex="b\le-1" />, <Katex tex="b\ge0" />, <Katex tex="-1<b<0" /> — fall out
-              together, which is also a check that they partition the real line.
+              together.
             </p>
           </Background>
         </div>

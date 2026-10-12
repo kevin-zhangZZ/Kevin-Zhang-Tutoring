@@ -20,23 +20,28 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P \implies Q \quad\text{has contrapositive}\quad \neg Q \implies \neg P" />,
-    reason: <>Both halves are negated and their order is swapped. Doing only one of the two gives the converse or the inverse instead.</>,
+    reason: <>The contrapositive swaps the two halves <em>and</em> negates both. Doing only one of the two gives the converse or the inverse instead.</>,
+    more: <>Three statements are easily confused. The converse is <Katex tex="Q\implies P" /> (swap only), the inverse is <Katex tex="\neg P\implies\neg Q" /> (negate only), and the contrapositive is <Katex tex="\neg Q\implies\neg P" /> (both). Only the contrapositive is guaranteed to be true exactly when the original is, which is why a proof by contrapositive is a valid proof of the original.</>,
   },
   {
     working: <Katex display tex="P: \ m+n\ge9, \qquad Q: \ m\ge5 \text{ or } n\ge5" />,
-    reason: <>Naming the two halves first keeps the negations straight.</>,
+    reason: <>Name the hypothesis <Katex tex="P" /> (after "if") and the conclusion <Katex tex="Q" /> (after "then"), so each negation is done separately.</>,
   },
   {
     working: <Katex display tex="\neg Q: \ \neg(m\ge5 \text{ or } n\ge5) \equiv m<5 \text{ and } n<5" />,
-    reason: <>De Morgan: negating an <em>or</em> turns it into an <em>and</em>. This is the step that separates the right answer from option <b>A</b>, chosen by 20%.</>,
+    reason: <>De Morgan: negating an <em>or</em> turns it into an <em>and</em>, with each part negated.</>,
+    more: <>"<Katex tex="m\ge5" /> or <Katex tex="n\ge5" />" is false only when <em>neither</em> holds, i.e. both <Katex tex="m<5" /> and <Katex tex="n<5" />. Negating each inequality but keeping the "or" gives option <b>A</b>, chosen by 20%: it is the most common slip on this question.</>,
   },
   {
     working: <Katex display tex="\neg P: \ m+n<9" />,
-    reason: <>The negation of <Katex tex="\ge" /> is <Katex tex="<" />, not <Katex tex="\le" /> — which rules out option <b>D</b>.</>,
+    reason: <>The negation of <Katex tex="\ge" /> is <Katex tex="<" />, not <Katex tex="\le" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{if } m<5 \text{ and } n<5, \text{ then } m+n<9}" />,
-    reason: <>Matches option <b>C</b>. A contrapositive is logically equivalent to the original, and indeed both are true here: two integers each below 5 are each at most 4, so their sum is at most 8.</>,
+    reason: <>Matches option <b>C</b>: the negated conclusion now comes first, the negated hypothesis second.</>,
+    more: <>
+      <b>A</b> negates both halves but keeps the "or" (De Morgan missed). <b>B</b> is the converse <Katex tex="Q\implies P" />: swapped but not negated. <b>D</b> negates <Katex tex="\ge" /> as <Katex tex="\le" />, but <Katex tex="m\le5" /> still includes <Katex tex="m=5" />, which satisfies <Katex tex="m\ge5" /> (likewise <Katex tex="m+n\le9" /> still allows <Katex tex="m+n=9" />). Check: a contrapositive is logically equivalent to the original, and both are true here, since two integers each below 5 are each at most 4, so their sum is at most 8.
+    </>,
   },
 ]
 

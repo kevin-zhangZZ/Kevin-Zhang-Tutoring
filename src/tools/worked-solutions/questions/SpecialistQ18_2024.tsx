@@ -37,23 +37,45 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x = 1-2t, \qquad y = 1+t, \qquad z = -2+3t" />,
-    reason: <>Reading the components off the vector equation.</>,
+    reason: <>Each component of the line: the constant from the point, plus <Katex tex="t" /> times the direction component.</>,
   },
   {
     working: <Katex display tex="3(1-2t)-2(1+t)+4(-2+3t) = 5" />,
-    reason: <>Substituting into the plane. This reduces three unknowns to one.</>,
+    reason: <>The intersection point is on both, so its coordinates must satisfy the plane’s equation. This leaves one unknown, <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="3-6t-2-2t-8+12t = 4t-7" />,
-    reason: <>Collecting terms — the t coefficients are −6, −2 and +12.</>,
+    reason: <>Expand and collect: <Katex tex="t" /> terms <Katex tex="-6-2+12=4" />, constants <Katex tex="3-2-8=-7" />.</>,
   },
   {
     working: <Katex display tex="4t-7 = 5 \implies t = 3" />,
     reason: <>A single value, so the line meets the plane exactly once.</>,
+    more: (
+      <>
+        If the <Katex tex="t" /> terms had cancelled completely, the line would be parallel to the plane: no
+        intersection (a false statement like <Katex tex="-7=5" />) or lying in it (a true one).
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{(1-6,\ 1+3,\ -2+9) = (-5,\,4,\,7)}" />,
-    reason: <>Matches option <b>D</b>. Substituting back is the free check: <Katex tex="3(-5)-2(4)+4(7) = -15-8+28 = 5" /> ✓. Option <b>A</b> is not even on the plane: <Katex tex="3(-5)-2(-1)+4(2)=-5" />.</>,
+    working: <Katex display tex="\boxed{\underset{\sim}{r}(3)=(1-6,\ 1+3,\ -2+9) = (-5,\,4,\,7)}" />,
+    reason: (
+      <>
+        Substitute <Katex tex="t=3" /> back into the line. Matches option <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        Check it is on the plane: <Katex tex="3(-5)-2(4)+4(7) = -15-8+28 = 5" /> ✓. The point must be on{' '}
+        <em>both</em> the line and the plane, and each distractor fails at least one. Option <b>B</b>,{' '}
+        <Katex tex="(-1,2,1)" />, is on the line (<Katex tex="t=1" />) but not the plane:{' '}
+        <Katex tex="3(-1)-2(2)+4(1)=-3" />. Option <b>C</b>, <Katex tex="(3,4,1)" />, is on the plane (
+        <Katex tex="9-8+4=5" />) but not the line: <Katex tex="x=3" /> needs <Katex tex="t=-1" />, which gives{' '}
+        <Katex tex="y=0" />. Option <b>A</b>, <Katex tex="(-5,-1,2)" />, is on neither:{' '}
+        <Katex tex="3(-5)-2(-1)+4(2)=-5" />, and <Katex tex="x=-5" /> needs <Katex tex="t=3" />, which gives{' '}
+        <Katex tex="y=4" />.
+      </>
+    ),
   },
 ]
 

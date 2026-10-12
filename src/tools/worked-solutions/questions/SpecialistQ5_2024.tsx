@@ -1,5 +1,5 @@
 // 2024 Specialist Mathematics — Exam 2, MCQ 5. VCAA examination report: 70% correct.
-// Conjugate then negate: the two reflections compose into one. Question text transcribed from the original paper (2024 papers
+// Conjugate then negate: a reflection then a 180° rotation compose into one reflection. Question text transcribed from the original paper (2024 papers
 // are image-only, so read from rendered pages). Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -25,23 +25,25 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="z = 1+\sqrt3\,i" />,
-    reason: <>The point (1, √3) on the Argand diagram.</>,
+    reason: <>The point <Katex tex="(1,\sqrt3)" /> on the Argand diagram, in the first quadrant.</>,
   },
   {
     working: <Katex display tex="\bar{z} = 1-\sqrt3\,i" />,
-    reason: <>Conjugation reflects in the real axis.</>,
+    reason: <>The conjugate flips the sign of the imaginary part: a reflection in the real axis.</>,
   },
   {
     working: <Katex display tex="-\bar{z} = -1+\sqrt3\,i" />,
-    reason: <>Negating rotates by 180° about the origin.</>,
+    reason: <>The minus sign flips the sign of both parts: a rotation by 180° about the origin.</>,
   },
   {
     working: <Katex display tex="(1,\sqrt3) \mapsto (-1,\sqrt3)" />,
-    reason: <>Comparing start and finish: the imaginary part is unchanged and the real part has flipped sign.</>,
+    reason: <>Compare start and finish: the imaginary part (height) is unchanged and the real part has flipped sign — a mirror image across the imaginary axis.</>,
+    more: <>This holds for every <Katex tex="z" />, not just this one: if <Katex tex="z=a+bi" /> then <Katex tex="-\bar{z}=-(a-bi)=-a+bi" />, the reflection of <Katex tex="(a,b)" /> in the imaginary axis. A reflection in one axis followed by a 180° rotation about the origin always gives the reflection in the other axis.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{reflection in the imaginary axis}}" />,
-    reason: <>Matches option <b>C</b>. Reflecting then rotating by 180° is the same single reflection in the perpendicular axis — true for <em>every</em> <Katex tex="z" />, so no calculation with these particular numbers is really needed. Option <b>A</b> describes <Katex tex="\bar{z}" /> alone.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>B</b> is tempting because <Katex tex="-1+\sqrt3\,i" /> does lie anticlockwise from <Katex tex="z" />, but by <Katex tex="\tfrac{\pi}{3}" /> (60°), not 90°: the arguments are <Katex tex="\tfrac{\pi}{3}" /> and <Katex tex="\tfrac{2\pi}{3}" />. An anticlockwise rotation by 90° is multiplication by <Katex tex="i" />, giving <Katex tex="iz=-\sqrt3+i" />. Option <b>D</b> (clockwise by 90°) gives <Katex tex="-iz=\sqrt3-i" />, in the fourth quadrant. Option <b>A</b> stops one step early: reflecting in the real axis gives <Katex tex="\bar{z}" />, not <Katex tex="-\bar{z}" /> — the minus sign is a second operation.</>,
   },
 ]
 

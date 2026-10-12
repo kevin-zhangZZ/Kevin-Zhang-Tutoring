@@ -27,27 +27,30 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="x = e^{(k-1)t}" />,
-    reason: <>Here <Katex tex="k" /> is a constant, so <Katex tex="k-1" /> is just the growth rate.</>,
+    reason: <>Acceleration is the second derivative of position. Here <Katex tex="k" /> is a constant, so <Katex tex="k-1" /> is a constant coefficient of <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="v = \frac{dx}{dt} = (k-1)e^{(k-1)t}" />,
-    reason: <>Chain rule.</>,
+    reason: <>Chain rule: the derivative of <Katex tex="e^{ct}" /> is <Katex tex="ce^{ct}" />, with <Katex tex="c=k-1" />.</>,
   },
   {
     working: <Katex display tex="a = \frac{dv}{dt} = (k-1)^2e^{(k-1)t} = (k-1)^2 x" />,
-    reason: <>Differentiating again. Recognising the answer as a multiple of <Katex tex="x" /> is what makes the substitution at the end trivial — there is no need to solve for <Katex tex="t" />.</>,
+    reason: <>Differentiate again. The answer is <Katex tex="(k-1)^2" /> times <Katex tex="x" /> itself, so the given <Katex tex="x" /> can be substituted directly.</>,
+    more: <>Solving <Katex tex="e^{(k-1)t}=k+1" /> for <Katex tex="t=\tfrac{\log_e(k+1)}{k-1}" /> and substituting it back also works, but it only undoes itself: <Katex tex="e^{(k-1)t}" /> returns to <Katex tex="k+1" />. Spotting <Katex tex="a=(k-1)^2x" /> skips that.</>,
   },
   {
     working: <Katex display tex="x = k+1 \implies a = (k-1)^2(k+1)" />,
-    reason: <>Substituting the given position.</>,
+    reason: <>Substitute the given position.</>,
   },
   {
-    working: <Katex display tex="(k-1)^2(k+1) = (k-1)\bigl[(k-1)(k+1)\bigr] = (k-1)\left(k^2-1\right)" />,
-    reason: <>Regrouping into the form the options use. Option <b>B</b>, <Katex tex="\left(k^2-1\right)(k+1)" />, is the same product with the wrong bracket doubled — and was chosen by 30%.</>,
+    working: <Katex display tex="a = (k-1)\bigl[(k-1)(k+1)\bigr] = (k-1)\left(k^2-1\right)" />,
+    reason: <>No option shows <Katex tex="(k-1)^2(k+1)" />, so pair one <Katex tex="(k-1)" /> with <Katex tex="(k+1)" /> to make the difference of squares <Katex tex="k^2-1" />.</>,
+    more: <>Option <b>B</b>, <Katex tex="\left(k^2-1\right)(k+1)=(k-1)(k+1)^2" />, squares the wrong factor, and was chosen by 30%. A quick check with <Katex tex="k=2" />: <Katex tex="a=(1)^2(3)=3" />; option <b>C</b> gives <Katex tex="3\times1=3" />, option <b>B</b> gives <Katex tex="3\times3=9" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(k^2-1\right)(k-1)}" />,
-    reason: <>Matches option <b>C</b>. (The report's comment ends with <Katex tex="=\left(k^2-1\right)(k+1)" />, which is option <b>B</b> — a slip: <Katex tex="(k-1)^2(k+1)=\left(k^2-1\right)(k-1)" />.)</>,
+    reason: <>Matches option <b>C</b>. The report's last line, <Katex tex="\left(k^2-1\right)(k+1)" />, is a slip: that is option <b>B</b>.</>,
+    more: <>The report's working is right up to <Katex tex="a=(k-1)^2(k+1)" />. Option <b>A</b>, <Katex tex="k^2-1=(k-1)(k+1)" />, is the velocity at <Katex tex="x=k+1" />, not the acceleration. Option <b>D</b>, <Katex tex="(k-1)^2" />, is the multiplier <Katex tex="\tfrac{a}{x}" /> — the position was never substituted.</>,
   },
 ]
 

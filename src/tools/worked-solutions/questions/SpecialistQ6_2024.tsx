@@ -26,28 +26,30 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="z^2 = (3+ki)^2 = 9+6ki+k^2i^2 = \left(9-k^2\right)+6ki" />,
-    reason: <>Remember <Katex tex="i^2=-1" />, so the <Katex tex="k^2" /> term is real and negative.</>,
+    working: <Katex display tex="\begin{aligned} z^2 &= (3+ki)^2 \\ &= 9+6ki+k^2i^2 \\ &= \left(9-k^2\right)+6ki \end{aligned}" />,
+    reason: <>Expand the square. Since <Katex tex="i^2=-1" />, the <Katex tex="k^2" /> term is real and negative.</>,
   },
   {
     working: <Katex display tex="4iz = 4i(3+ki) = 12i+4k i^2 = -4k+12i" />,
-    reason: <>Multiplying by <Katex tex="i" /> swaps the parts and flips one sign.</>,
+    reason: <>Expand, then use <Katex tex="i^2=-1" /> again: <Katex tex="4ki^2=-4k" /> is real.</>,
   },
   {
     working: <Katex display tex="z^2+4iz+3 = \left(12-k^2-4k\right)+(6k+12)i" />,
-    reason: <>Collecting: real parts <Katex tex="9-k^2-4k+3" />, imaginary parts <Katex tex="6k+12" />.</>,
+    reason: <>Add the three terms, collecting real parts <Katex tex="9-k^2-4k+3" /> and imaginary parts <Katex tex="6k+12" />.</>,
   },
   {
-    working: <Katex display tex="\text{purely imaginary} \implies 12-k^2-4k = 0 \implies k^2+4k-12 = 0" />,
-    reason: <>The real part must vanish.</>,
+    working: <Katex display tex="\begin{aligned} &\text{purely imaginary} \\ &\implies 12-k^2-4k = 0 \\ &\implies k^2+4k-12 = 0 \end{aligned}" />,
+    reason: <>Purely imaginary means the real part is zero.</>,
   },
   {
     working: <Katex display tex="(k+6)(k-2) = 0 \implies k = -6 \ \text{ or } \ k = 2" />,
-    reason: <>Both make the real part zero. Check the imaginary part is not also zero: at <Katex tex="k=2" /> it is <Katex tex="24\ne0" /> ✓ (and at <Katex tex="k=-6" /> it is <Katex tex="-24" />).</>,
+    reason: <>Both make the real part zero, and neither makes the imaginary part <Katex tex="6k+12" /> zero too, so both work.</>,
+    more: <>At <Katex tex="k=2" /> the expression is <Katex tex="24i" />, and at <Katex tex="k=-6" /> it is <Katex tex="-24i" />. The check matters because if the imaginary part were also zero, the expression would be <Katex tex="0" />, which is not usually counted as purely imaginary.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 2}" />,
-    reason: <>Matches option <b>D</b>, the value that appears among the options. The question asks for "a value", which is the hint that there is more than one.</>,
+    reason: <>Matches option <b>D</b>; <Katex tex="-6" /> is not an option.</>,
+    more: <>The question asks for "a value", the hint that there is more than one. Option <b>A</b> (<Katex tex="-2" />) is likely a sign slip in the <Katex tex="4iz" /> term: taking <Katex tex="4ki^2" /> as <Katex tex="+4k" /> makes the real part <Katex tex="12-k^2+4k" />, whose zeros are <Katex tex="k=6" /> and <Katex tex="k=-2" />. Substituting each option straight into <Katex tex="12-k^2-4k" /> is a quick check: <Katex tex="-2" /> gives 16, <Katex tex="-1" /> gives 15, <Katex tex="1" /> gives 7 and only <Katex tex="2" /> gives 0.</>,
   },
 ]
 

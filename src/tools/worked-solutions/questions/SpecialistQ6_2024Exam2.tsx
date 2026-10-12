@@ -83,6 +83,7 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{H_1: \ \mu < 1000}" />,
     reason: <>One-sided and <em>below</em>, because the machine is paused only when the volume is significantly <em>less</em> than 1000 mL. Under-filling is the problem; over-filling is not.</>,
+    more: <>The hypotheses are always about the population mean <Katex tex="\mu" />, never the sample mean: writing <Katex tex="H_1:\ \bar{x}<1000" /> or <Katex tex="H_1:\ \mu<997.5" /> misses the point, because we already know <Katex tex="\bar{x}=997.5" />. The question is whether that sample is surprising enough to doubt <Katex tex="\mu=1000" />.</>,
   },
 ]
 
@@ -93,15 +94,16 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{sd}\!\left(\overline{X}\right) = \frac{4.2}{3} = 1.4" />,
-    reason: <><Katex tex="\sqrt9=3" /> — a deliberately tidy sample size.</>,
+    reason: <>With <Katex tex="n=9" />, <Katex tex="\sqrt9=3" />, so the sample mean's standard deviation (its standard error) is 1.4 mL.</>,
   },
   {
-    working: <Katex display tex="p = \Pr\!\left(\overline{X}<997.5\mid\mu=1000\right) = \text{normCdf}(-\infty,\,997.5,\,1000,\,1.4)" />,
+    working: <Katex display tex="\begin{aligned} p &= \Pr\!\left(\overline{X}<997.5\mid\mu=1000\right) \\ &= \text{normCdf}(-\infty,\,997.5,\,1000,\,1.4) \end{aligned}" />,
     reason: <>The lower tail, matching <Katex tex="H_1" />. By <Cas fn="normCdf" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.037}" />,
-    reason: <>Three decimal places. Using 4.2 instead of 1.4 gives <Katex tex="0.276" />, which would reverse the conclusion.</>,
+    reason: <>Three decimal places, as asked.</>,
+    more: <>The p value is the probability of a sample mean at least this low <em>if the machine were working properly</em>. Leaving the standard deviation at 4.2 (the report's error) gives <Katex tex="0.276" />, which would reverse the conclusion in part b.ii.</>,
   },
 ]
 
@@ -115,8 +117,9 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>A p value below the significance level means the evidence against the null is strong enough.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{yes — the machine should be paused and adjusted}}" />,
-    reason: <>Answer the question asked, not just "reject <Katex tex="H_0" />" — the report notes some students did not fully answer whether or not the machine should be paused.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}\text{yes — the machine should be}\\ \text{paused and adjusted}\end{gathered}}" />,
+    reason: <>Answer the question asked — say whether the machine is paused, giving <Katex tex="p<0.05" /> as the reason, not just "reject <Katex tex="H_0" />".</>,
+    more: <>The report notes some students did not fully answer whether or not the machine should be paused. A full answer has both pieces: the decision in context (pause and adjust) and the reason (the p value 0.037 is below the 0.05 significance level).</>,
   },
 ]
 
@@ -127,7 +130,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{critical value: } \Pr\!\left(\overline{X}<c\mid\mu=1000\right) = 0.05" />,
-    reason: <>The rejection region is found under <Katex tex="H_0" />, using the hypothesised mean 1000 — not 997. The report lists not finding the critical value for when <Katex tex="H_0" /> is true among the common errors.</>,
+    reason: <>Failing to reject means <Katex tex="\overline{X}" /> lands on the wrong side of a cut-off <Katex tex="c" />, so find <Katex tex="c" /> first — using the hypothesised mean 1000, not 997. Lower tail, because <Katex tex="H_1:\ \mu<1000" />.</>,
+    more: <>The test itself does not know the true mean is 997: the rule "pause if <Katex tex="\overline{X}" /> is below <Katex tex="c" />" was fixed so that a properly working machine (mean 1000) is wrongly paused only 5% of the time. The report lists not finding the critical value for when <Katex tex="H_0" /> is true among the common errors.</>,
   },
   {
     working: <Katex display tex="c = \text{invNorm}(0.05,\,1000,\,1.4) = 997.697" />,
@@ -135,87 +139,93 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{Type II}) = \Pr\!\left(\overline{X}\ge997.697\mid\mu=997\right)" />,
-    reason: <>The <em>upper</em> tail now, since failing to reject means the sample mean came out too high to trigger the alarm. The report lists using the wrong tail as the other common error.</>,
+    reason: <>The <em>upper</em> tail now, since failing to reject means the sample mean came out too high to trigger the pause. Now use the true mean 997.</>,
+    more: <>The report lists using the wrong tail as the other common error: <Katex tex="\Pr\!\left(\overline{X}<997.697\mid\mu=997\right)\approx0.69" /> is the probability the fault <em>is</em> caught (the power of the test), the complement of what was asked.</>,
   },
   {
-    working: <Katex display tex="= 1-\text{normCdf}(-\infty,\,997.697,\,997,\,1.4) = 0.3092" />,
+    working: <Katex display tex="\begin{aligned} &= 1-\text{normCdf}(-\infty,\,997.697,\,997,\,1.4) \\ &= 0.3092 \end{aligned}" />,
     reason: <>Same standard deviation 1.4, different mean.</>,
   },
   {
     working: <Katex display tex="\boxed{0.31}" />,
-    reason: <>Two decimal places. A 3 mL shortfall is only about two standard errors, so missing it roughly a third of the time is entirely plausible.</>,
+    reason: <>Two decimal places, as asked.</>,
+    more: <>A sense check: a 3 mL shortfall is only about two standard errors <Katex tex="\left(\tfrac{3}{1.4}\approx2.1\right)" />, so a sample of nine misses it roughly a third of the time. Keep the critical value to at least three decimal places before this step; rounding it to 997.7 still gives 0.31, but rounding to 998 would give 0.24.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\overline{X}\sim\mathrm{N}\!\left(1000,\,1.4^2\right)" />,
-    reason: <>Same sample-mean distribution as part b.i.</>,
+    reason: <>The limits apply to the mean of nine bottles, so the standard deviation is 1.4 again, as in part b.i — not 4.2.</>,
   },
   {
-    working: <Katex display tex="\Pr\!\left(\overline{X}<a\right) = 0.01 \implies a = \text{invNorm}(0.01,\,1000,\,1.4)" />,
-    reason: <>The lower control limit.</>,
+    working: <Katex display tex="\begin{gathered} \Pr\!\left(\overline{X}<a\right) = 0.01 \\ \implies a = \text{invNorm}(0.01,\,1000,\,1.4) \end{gathered}" />,
+    reason: <>The lower limit: 1% of the area lies to its left.</>,
   },
   {
-    working: <Katex display tex="\Pr\!\left(\overline{X}>b\right) = 0.01 \implies b = \text{invNorm}(0.99,\,1000,\,1.4)" />,
+    working: <Katex display tex="\begin{gathered} \Pr\!\left(\overline{X}>b\right) = 0.01 \\ \implies b = \text{invNorm}(0.99,\,1000,\,1.4) \end{gathered}" />,
     reason: <>The upper limit — remember <Cas fn="invNorm" /> takes the area to the <em>left</em>, so 0.99 goes in, not 0.01.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 996.7, \qquad b = 1003.3}" />,
-    reason: <>Symmetric about 1000, as they must be: <Katex tex="1000\pm2.3263(1.4)" />.</>,
+    reason: <>One decimal place. Symmetric about 1000, as they must be.</>,
+    more: <>Both limits are <Katex tex="1000\pm2.3263\times1.4" />, where <Katex tex="2.3263=\text{invNorm}(0.99,0,1)" />. The report solves the same thing in standardised form: <Katex tex="\Pr\!\left(Z<\tfrac{a-1000}{1.4}\right)=0.01" /> and <Katex tex="\Pr\!\left(Z>\tfrac{b-1000}{1.4}\right)=0.01" />. Using 4.2 instead of 1.4 would give the limits for a <em>single</em> bottle, 990.2 and 1009.8.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\bar{x} = 1005, \quad \sigma = 4, \quad n = 50" />,
-    reason: <>The new machine, with the population standard deviation given.</>,
+    reason: <>The new machine's sample; the question lets us use the sample standard deviation 4 as <Katex tex="\sigma" />.</>,
   },
   {
     working: <Katex display tex="\bar{x}\pm z\frac{\sigma}{\sqrt n} = 1005\pm1.96\times\frac{4}{\sqrt{50}}" />,
-    reason: <>For 95% confidence, <Katex tex="z = \text{invNorm}(0.975,0,1) = 1.96" />.</>,
+    reason: <>For 95% confidence, <Katex tex="z = \text{invNorm}(0.975,0,1) = 1.96" /> (2.5% in each tail, so 0.975 to the left).</>,
   },
   {
     working: <Katex display tex="1.96\times0.56569 = 1.1087" />,
-    reason: <>The margin of error.</>,
+    reason: <>The margin of error: <Katex tex="\tfrac{4}{\sqrt{50}}=0.56569" />. Subtract it from and add it to 1005.</>,
   },
   {
     working: <Katex display tex="\boxed{(1003.9,\ 1006.1)}" />,
-    reason: <>One decimal place. Note 1000 is <em>not</em> in the interval — the new machine is over-filling.</>,
+    reason: <>One decimal place.</>,
+    more: <>1000 lies below the interval, so the evidence suggests the new machine's mean is above 1000 mL.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{a 95\% confidence interval captures } \mu \text{ in 95\% of samples}" />,
+    working: <Katex display tex="\begin{gathered}\text{a 95\% confidence interval captures } \mu \\ \text{in 95\% of samples}\end{gathered}" />,
     reason: <>That frequency is the meaning of the confidence level — nothing to compute beyond a percentage.</>,
   },
   {
     working: <Katex display tex="0.95\times40 = 38" />,
-    reason: <>Forty samples, not fifty. The 50 is the number of <em>bottles</em> in each sample — the report notes some students incorrectly used 50.</>,
+    reason: <>Forty samples, not fifty: 50 is the number of <em>bottles</em> in each sample.</>,
   },
   {
     working: <Katex display tex="\boxed{38 \text{ of the confidence intervals}}" />,
-    reason: <>Expected value, so a whole number here by coincidence rather than by rounding.</>,
+    reason: <>An expected number, which happens to be a whole number here.</>,
+    more: <>The population mean is fixed; it is the forty intervals that change from sample to sample. About 95% of them contain <Katex tex="\mu" />, so we expect 38 to contain it and 2 to miss it — though in any actual set of forty, the count could be a little different.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\text{margin of error} = z\frac{\sigma}{\sqrt n} \le 1" />,
-    reason: <>"Within 1 mL" means the half-width of the interval is at most 1.</>,
+    reason: <>"Within 1 mL" means the half-width of the 95% interval (the margin of error from part e.) is at most 1.</>,
   },
   {
     working: <Katex display tex="1.96\times\frac{4}{\sqrt n} \le 1 \implies \sqrt n \ge 7.84" />,
-    reason: <>Rearranging.</>,
+    reason: <>Multiply both sides by <Katex tex="\sqrt n" />: <Katex tex="\sqrt n\ge1.96\times4" />.</>,
   },
   {
     working: <Katex display tex="n \ge 61.46\ldots" />,
-    reason: <>Squaring <Katex tex="7.8399" />.</>,
+    reason: <>Squaring: <Katex tex="7.84^2=61.4656" />.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 62}" />,
-    reason: <>Rounding <em>up</em>: 61 would leave the margin just above 1 mL. Sample size always rounds up, whatever the decimal.</>,
+    reason: <>Round <em>up</em> to the next whole number: 61 bottles would leave the margin just above 1 mL.</>,
+    more: <>Check: <Katex tex="1.96\times\tfrac{4}{\sqrt{61}}=1.0038" />, just over 1, while <Katex tex="1.96\times\tfrac{4}{\sqrt{62}}=0.9957" />, within 1. A minimum sample size always rounds up, even when the decimal is below .5 — rounding 61.47 to the nearest whole number gives the wrong answer. The 50 bottles from part e. play no part here; only <Katex tex="\sigma=4" /> and the 95% level matter.</>,
   },
 ]
 
@@ -248,16 +258,8 @@ export default function SpecialistQ6_2024Exam2() {
             <p>
               Parts b. to d. all use the same distribution:{' '}
               <Katex tex="\overline{X}\sim\mathrm{N}\!\left(\mu,\left(\tfrac{4.2}{3}\right)^2\right)" />.
-              The <Katex tex="\sqrt9=3" /> matters — leaving the standard deviation at 4.2
-              changes the p value from 0.037 to 0.276 and flips the conclusion, and the report
-              notes some students did not divide by 3.
-            </p>
-            <p>
-              Part c. needs <em>two</em> different means. The critical value comes from{' '}
-              <Katex tex="\mu=1000" /> (that is where the 5% rule lives), but the probability of
-              missing the fault is computed with <Katex tex="\mu=997" /> (that is what is
-              actually happening). The report's common errors were not finding the critical
-              value under <Katex tex="H_0" /> and using the wrong tail.
+              Averaging nine bottles makes the sample mean far less variable than a single
+              bottle, which is why its standard deviation is 1.4 rather than 4.2.
             </p>
           </Background>
         </div>
