@@ -75,10 +75,10 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\sec^2(t) = 1+\tan^2(t)" />,
-    reason: <>The Pythagorean identity that links <Katex tex="\sec" /> and <Katex tex="\tan" /> — exactly the two functions in the parametric equations, which is the signal to use it to eliminate <Katex tex="t" />.</>,
+    reason: <>The Pythagorean identity linking <Katex tex="\sec" /> and <Katex tex="\tan" />, the two functions in the parametric equations, so it can eliminate <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="x = \sec(t)+1 \implies \sec(t) = x-1, \qquad y=\tan(t)" />,
+    working: <Katex display tex="\begin{aligned}&x = \sec(t)+1 \implies \sec(t) = x-1,\\ &y=\tan(t)\end{aligned}" />,
     reason: <>Make each trigonometric function the subject, so each can be replaced by an expression in <Katex tex="x" /> or <Katex tex="y" /> inside the identity.</>,
   },
   {
@@ -95,14 +95,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = \sqrt{x^2-2x}}" />,
-    reason: <>As required. The report notes students were required to work from the parametric forms to reach the cartesian form — so start from <Katex tex="x" /> and <Katex tex="t" />, not from the answer.</>,
+    reason: <>As required.</>,
+    more: <>The report notes students were required to work from the parametric forms to reach the cartesian form, so start from the two parametric equations, not from the given answer. Squaring <Katex tex="y=\sqrt{x^2-2x}" /> and working backwards does not show the result.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="t\in\left[0,\dfrac{\pi}{2}\right) \implies \sec(t)\in[1,\infty)" />,
-    reason: <>The curve is the set of points the parameter actually reaches, so start from the <Katex tex="t" />-interval, not from the cartesian rule. <Katex tex="\cos(t)" /> falls from <Katex tex="1" /> to <Katex tex="0^+" /> across this interval, so its reciprocal climbs from <Katex tex="1" /> without bound.</>,
+    reason: <>Start from the <Katex tex="t" />-interval, not the cartesian rule: the curve is only the points the parameter reaches. <Katex tex="\sec(0)=1" /> and <Katex tex="\sec(t)\to\infty" /> as <Katex tex="t\to\tfrac{\pi}{2}^-" />.</>,
+    more: <><Katex tex="\cos(t)" /> falls from <Katex tex="1" /> to <Katex tex="0^+" /> across this interval, so its reciprocal <Katex tex="\sec(t)" /> climbs from <Katex tex="1" /> without bound, taking every value in <Katex tex="[1,\infty)" />.</>,
   },
   {
     working: <Katex display tex="x = \sec(t)+1 \in [2,\infty)" />,
@@ -114,7 +116,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{domain } [2,\infty), \qquad \text{range } [0,\infty)}" />,
-    reason: <>Note this is the domain and range of the curve the <em>parameter</em> traces out. The rule <Katex tex="y=\sqrt{x^2-2x}" /> on its own would also allow <Katex tex="x\le0" />; the restriction on <Katex tex="t" /> removes that branch. The report notes a significant number gave a domain which did not account for the restriction on <Katex tex="t" />.</>,
+    reason: <>The rule <Katex tex="y=\sqrt{x^2-2x}" /> alone would also allow <Katex tex="x\le0" />, but the restriction on <Katex tex="t" /> means that branch is never traced.</>,
   },
 ]
 
@@ -140,11 +142,13 @@ const ROWS_CI: WorkingRow[] = [
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{As } t\to\dfrac{\pi}{2}^-: \quad \sin(t)\to1" />,
-    reason: <><Katex tex="t" /> never actually equals <Katex tex="\tfrac{\pi}{2}" /> (the interval is open there), which is why the question asks for a <em>limiting</em> value. But <Katex tex="\tfrac{1}{\sin(t)}" /> is continuous at <Katex tex="\tfrac{\pi}{2}" /> and <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" />, so the limit is found by substituting. Don&apos;t be put off by <Katex tex="x" /> and <Katex tex="y" /> both going to infinity: the gradient can still settle.</>,
+    reason: <><Katex tex="t" /> never reaches <Katex tex="\tfrac{\pi}{2}" /> (hence &ldquo;limiting&rdquo;), but <Katex tex="\sin(t)" /> is continuous there, so just substitute <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" />.</>,
+    more: <>Don&apos;t be put off by <Katex tex="x" /> and <Katex tex="y" /> both going to infinity: the point runs off, but its gradient can still settle to a finite value.</>,
   },
   {
     working: <Katex display tex="\boxed{\dfrac{dy}{dx} \to 1}" />,
-    reason: <>So far out along the curve the gradient settles at <Katex tex="1" /> — the curve approaches the asymptote <Katex tex="y=x-1" /> of the hyperbola <Katex tex="(x-1)^2-y^2=1" />, which has gradient <Katex tex="1" />. ✓</>,
+    reason: <>Substitute into part c.i.: <Katex tex="\tfrac{dy}{dx}=\tfrac{1}{\sin(t)}\to\tfrac11=1" />.</>,
+    more: <>A check: part a. gives <Katex tex="(x-1)^2-y^2=1" />, a hyperbola with asymptote <Katex tex="y=x-1" />, which has gradient <Katex tex="1" />. Far out, the curve hugs that asymptote. ✓</>,
   },
 ]
 
@@ -160,7 +164,7 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="x=4: \ y=\sqrt{16-8}=\sqrt8=2\sqrt2" />
       </>
     ),
-    reason: <>The two endpoints, which the question requires to be labelled with their coordinates. Leave <Katex tex="2\sqrt2" /> exact in the label, but use <Katex tex="2\sqrt2\approx2.83" /> to place the point just below the <Katex tex="y=3" /> gridline.</>,
+    reason: <>The endpoints, which must be labelled with their coordinates. Label <Katex tex="2\sqrt2" /> exactly; <Katex tex="2\sqrt2\approx2.83" /> places it just below <Katex tex="y=3" />.</>,
   },
   {
     working: (
@@ -168,32 +172,37 @@ const ROWS_D: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={sketchSrc} alt="The curve y = √(x² − 2x) from (2, 0), where it starts with a vertical tangent, rising to (4, 2√2), drawn on VCAA's grid from −4 to 4" className="w-full max-w-[340px]" />
       </div>
     ),
-    reason: <>Starting at <Katex tex="(2,0)" /> with a vertical tangent (the gradient <Katex tex="\tfrac{1}{\sin t}" /> is undefined at <Katex tex="t=0" />) and flattening towards gradient <Katex tex="1" /> as it climbs — exactly what parts c.i. and c.ii. predicted.</>,
+    reason: <>Starts at <Katex tex="(2,0)" /> with a vertical tangent (<Katex tex="\tfrac{1}{\sin t}" /> is undefined at <Katex tex="t=0" />), then flattens towards gradient <Katex tex="1" />, as parts c.i. and c.ii. predict.</>,
+    more: <>If you draw it from the CAS graph, set the viewing window to match the exam&apos;s axes (<Katex tex="-4" /> to <Katex tex="4" />, gridlines every <Katex tex="0.5" />) — the report advises matching the scale provided — so the shape and endpoints transfer accurately.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_0^{2\sqrt2} x^2\,dy" />,
-    reason: <>Picture the solid first: the region between the curve and the <Katex tex="y" />-axis spun about the <Katex tex="y" />-axis, a vase of radius <Katex tex="2" /> at the base and <Katex tex="4" /> at the top. Slice it horizontally: each slice is a disc at height <Katex tex="y" /> with radius <Katex tex="x" /> (the distance from the axis out to the curve) and thickness <Katex tex="dy" />, so its volume is <Katex tex="\pi x^2\,dy" />. The discs run from <Katex tex="y=0" /> to <Katex tex="y=2\sqrt2" /> (part d.). The report says the most common incorrect answer was an integral in terms of <Katex tex="x" />.</>,
+    reason: <>About the <Katex tex="y" />-axis, slice horizontally: discs of radius <Katex tex="x" /> and thickness <Katex tex="dy" />, from <Katex tex="y=0" /> to <Katex tex="y=2\sqrt2" /> (part d.).</>,
+    more: <>Picture the solid first: the region between the curve and the <Katex tex="y" />-axis spun about the <Katex tex="y" />-axis, a vase of radius <Katex tex="2" /> at the base and <Katex tex="4" /> at the top. Each slice at height <Katex tex="y" /> is a disc whose radius is the distance from the axis out to the curve, <Katex tex="x" />, so its volume is <Katex tex="\pi x^2\,dy" />.</>,
   },
   {
     working: <Katex display tex="dy = \dfrac{dy}{dt}\,dt = \sec^2(t)\,dt" />,
-    reason: <>The question wants <Katex tex="t" />, so the variable of integration changes from <Katex tex="y" /> to <Katex tex="t" /> — and whenever the variable changes, the differential changes with it, exactly as <Katex tex="du=u'(x)\,dx" /> in a substitution. A step <Katex tex="dt" /> in the parameter moves <Katex tex="y" /> by <Katex tex="\tfrac{dy}{dt}\,dt" />, not by <Katex tex="dt" />. The report notes that of those who attempted an integral in terms of <Katex tex="t" />, most simply replaced <Katex tex="dx" /> with <Katex tex="dt" />.</>,
+    reason: <>The answer must be in <Katex tex="t" />, so change the differential too, as in any substitution: <Katex tex="y=\tan(t)" /> gives <Katex tex="\tfrac{dy}{dt}=\sec^2(t)" />.</>,
+    more: <>A step <Katex tex="dt" /> in the parameter moves <Katex tex="y" /> by <Katex tex="\tfrac{dy}{dt}\,dt" />, not by <Katex tex="dt" /> — exactly as <Katex tex="du=u'(x)\,dx" /> when substituting <Katex tex="u" /> for <Katex tex="x" />.</>,
   },
   {
     working: (
       <>
         <Katex display tex="y=0 \implies \tan(t)=0 \implies t=0" />
-        <Katex display tex="y=2\sqrt2 \implies \tan(t)=2\sqrt2 \implies t=\tan^{-1}\!\left(2\sqrt2\right)" />
+        <Katex display tex="\begin{aligned}y=2\sqrt2 &\implies \tan(t)=2\sqrt2\\ &\implies t=\tan^{-1}\!\left(2\sqrt2\right)\end{aligned}" />
         <Katex display tex="\tan^{-1}\!\left(2\sqrt2\right)=\cos^{-1}\!\left(\tfrac13\right)" />
       </>
     ),
-    reason: <>The terminals are <Katex tex="y" />-values, so they must be converted to <Katex tex="t" />-values too, using <Katex tex="y=\tan(t)" /> with <Katex tex="t\in\left[0,\tfrac{\pi}{2}\right)" />. The report gives <Katex tex="\tan^{-1}\!\left(2\sqrt2\right)" /> and accepts <Katex tex="\cos^{-1}\!\left(\tfrac13\right)" />: at the top <Katex tex="x=4" />, so <Katex tex="\sec(t)=3" /> and <Katex tex="\cos(t)=\tfrac13" /> — the same angle.</>,
+    reason: <>The terminals are <Katex tex="y" />-values, so convert them to <Katex tex="t" /> using <Katex tex="y=\tan(t)" /> with <Katex tex="t\in\left[0,\tfrac{\pi}{2}\right)" />. Equivalently <Katex tex="\cos^{-1}\!\left(\tfrac13\right)" />, since <Katex tex="x=4" /> gives <Katex tex="\sec(t)=3" />.</>,
+    more: <>The report gives <Katex tex="\tan^{-1}\!\left(2\sqrt2\right)" /> and also accepts <Katex tex="\cos^{-1}\!\left(\tfrac13\right)" />. They are the same angle: at the top <Katex tex="x=4" />, so <Katex tex="\sec(t)+1=4" />, <Katex tex="\sec(t)=3" /> and <Katex tex="\cos(t)=\tfrac13" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_0^{\tan^{-1}(2\sqrt2)} \bigl(\sec(t)+1\bigr)^2\sec^2(t)\,dt}" />,
-    reason: <>The question says to write it down but not evaluate it, so stop here — substituting <Katex tex="x=\sec(t)+1" /> and <Katex tex="dy=\sec^2(t)\,dt" /> is the whole task.</>,
+    reason: <>Substitute <Katex tex="x=\sec(t)+1" /> and <Katex tex="dy=\sec^2(t)\,dt" />. &ldquo;Do not evaluate&rdquo;, so stop here.</>,
+    more: <>As a check (not required), CAS evaluates this as <Katex tex="\approx73.66" />, the same as <Katex tex="\pi\int_0^{2\sqrt2}x^2\,dy" /> with <Katex tex="x=1+\sqrt{1+y^2}" />.</>,
   },
 ]
 
@@ -244,9 +253,7 @@ export default function SpecialistQ1_2019Exam2() {
         >
           The report notes a significant number gave a domain which did not account for the restriction
           on <Katex tex="t" />. This is how that happens: it finds where the square root is defined, not
-          where the curve actually is. With <Katex tex="t\in\left[0,\tfrac{\pi}{2}\right)" />,{' '}
-          <Katex tex="\sec(t)\ge1" />, so <Katex tex="x=\sec(t)+1\ge2" /> and the branch{' '}
-          <Katex tex="x\le0" /> is never traced. To catch it, read the domain and range off{' '}
+          where the curve actually is. To catch it, read the domain and range off{' '}
           <Katex tex="x(t)" /> and <Katex tex="y(t)" /> over the given <Katex tex="t" />-interval.
         </WrongMethod>
       </PartCard>
@@ -294,8 +301,8 @@ export default function SpecialistQ1_2019Exam2() {
             <Katex tex="x" />-axis: the radius of a slice is <Katex tex="x" /> (not{' '}
             <Katex tex="y" />), and you integrate with respect to <Katex tex="y" /> (not{' '}
             <Katex tex="x" />). So <Katex tex="V=\pi\int x^2\,dy" />. Because the answer is
-            wanted in terms of <Katex tex="t" />, both the integrand <em>and</em> the terminals
-            then have to be converted to the parameter.
+            wanted in terms of <Katex tex="t" />, the integrand, the differential{' '}
+            <Katex tex="dy" /> <em>and</em> the terminals all have to be converted to the parameter.
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />

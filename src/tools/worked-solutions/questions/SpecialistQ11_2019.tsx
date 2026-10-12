@@ -24,7 +24,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \left(\dfrac{x_M+x_N}{2},\ \dfrac{y_M+y_N}{2},\ \dfrac{z_M+z_N}{2}\right)" />
       </>
     ),
-    reason: <>The midpoint is halfway from <Katex tex="M" /> to <Katex tex="N" /> in every direction at once, so each of its coordinates is the average of the matching coordinates, exactly as in two dimensions. Each coordinate only involves one unknown, so this gives three separate one-line equations.</>,
+    reason: <>Each coordinate of a midpoint is the average of the matching coordinates of the two ends, as in two dimensions. That gives three separate equations, one per coordinate.</>,
+    more: <>The midpoint is halfway from <Katex tex="M" /> to <Katex tex="N" /> in every direction at once, which is why each coordinate is averaged on its own. Each equation involves only one unknown, so each is a one-line solve.</>,
   },
   {
     working: (
@@ -33,19 +34,21 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="a-3=-10 \implies a=-7" />
       </>
     ),
-    reason: <>The <Katex tex="x" />-coordinates. Multiply by <Katex tex="2" /> first, then solve. As a check, <Katex tex="M" /> is <Katex tex="2" /> to the left of the midpoint and <Katex tex="N" /> is <Katex tex="2" /> to the right: <Katex tex="M" /> is <Katex tex="N" /> reflected in the midpoint, so <Katex tex="a = 2(-5)-(-3)" />.</>,
+    reason: <>The <Katex tex="x" />-coordinates. Multiply both sides by <Katex tex="2" /> first, then solve for <Katex tex="a" />.</>,
+    more: <>Check: <Katex tex="N" /> is <Katex tex="2" /> to the right of the midpoint (<Katex tex="-3" /> vs <Katex tex="-5" />), so <Katex tex="M" /> must be <Katex tex="2" /> to the left, at <Katex tex="-7" />. In other words, <Katex tex="M" /> is <Katex tex="N" /> reflected in the midpoint: <Katex tex="a = 2(-5)-(-3)" />.</>,
   },
   {
     working: <Katex display tex="\dfrac{1+b}{2} = \dfrac32 \implies 1+b=3 \implies b=2" />,
-    reason: <>The <Katex tex="y" />-coordinates, in the same way.</>,
+    reason: <>The <Katex tex="y" />-coordinates, in the same way: multiply by <Katex tex="2" />, then solve for <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="\dfrac{-2+(-1)}{2} = c \implies c = -\dfrac32" />,
-    reason: <>Here both <Katex tex="z" />-coordinates are known and it is the midpoint that is unknown — so this one is a direct evaluation rather than an equation to solve.</>,
+    reason: <>Here both <Katex tex="z" />-coordinates are known and the midpoint's is unknown, so just evaluate the average.</>,
   },
   {
     working: <Katex display tex="\boxed{a=-7,\quad b=2,\quad c=-\dfrac32}" />,
-    reason: <>Matches option <b>E</b>. Option <b>C</b> has the right <Katex tex="a" /> and <Katex tex="c" /> but <Katex tex="b=-2" />. Option <b>A</b>'s <Katex tex="a=-13" /> and <Katex tex="c=-\tfrac12" /> come from subtracting <Katex tex="N" />'s coordinates instead of adding them. Options <b>B</b> and <b>D</b> leave out the factor of <Katex tex="2" /> (for example <Katex tex="-5-(-3)=-2" /> for <Katex tex="a" />, and <Katex tex="-2+(-1)=-3" /> for <Katex tex="c" />).</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Option <b>C</b> has the right <Katex tex="a" /> and <Katex tex="c" /> but <Katex tex="b=-2" />. Option <b>A</b>'s <Katex tex="a=-13" /> and <Katex tex="c=-\tfrac12" /> come from subtracting <Katex tex="N" />'s coordinates instead of adding them. Options <b>B</b> and <b>D</b> leave out the factor of <Katex tex="2" /> (for example <Katex tex="-5-(-3)=-2" /> for <Katex tex="a" />, and <Katex tex="-2+(-1)=-3" /> for <Katex tex="c" />).</>,
   },
 ]
 
@@ -79,9 +82,9 @@ export default function SpecialistQ11_2019() {
             source="6% chose B, 5% chose D"
             working={<Katex display tex="a = -5-(-3) = -2" />}
           >
-            That is only the gap from <Katex tex="N" /> to the midpoint. <Katex tex="M" /> is that same gap again on the
-            other side of the midpoint, so <Katex tex="a = -5 - 2 = -7" />. Always check by putting the answer back in:
-            the midpoint of <Katex tex="-2" /> and <Katex tex="-3" /> is <Katex tex="-2.5" />, not <Katex tex="-5" />.
+            That is only the gap from <Katex tex="N" /> to the midpoint, not where <Katex tex="M" /> is. Putting the
+            answer back in exposes it: the midpoint of <Katex tex="-2" /> and <Katex tex="-3" /> is{' '}
+            <Katex tex="-2.5" />, not <Katex tex="-5" />.
           </WrongMethod>
         </>
       }

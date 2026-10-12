@@ -39,7 +39,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies \text{slope constant on } y-x=c" />
       </>
     ),
-    reason: <>The field repeats along every line of gradient <Katex tex="1" />, because each option depends only on <Katex tex="y-x" />. All five options have this form, so the stripes on their own separate nothing. What does separate them is <em>which</em> stripe is flat, steep or vertical, so test a line where every option is easy to evaluate.</>,
+    reason: <>Every option depends only on <Katex tex="y-x" />, so every option&apos;s field repeats along lines of gradient <Katex tex="1" />. The stripes alone can&apos;t separate them; test particular lines instead.</>,
   },
   {
     working: (
@@ -49,19 +49,21 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{B: } \cos(0)=1 \qquad \text{D: } \tfrac{1}{\cos(0)}=1" />
       </>
     ),
-    reason: <>The line <Katex tex="y=x" /> through <Katex tex="O" /> is the easiest to read. In the diagram its marks slope upward at gradient <Katex tex="1" /> (look at <Katex tex="(1,1)" /> and <Katex tex="(2,2)" />; the <Katex tex="x" />-axis is stretched, so they look a little flatter than <Katex tex="45^\circ" />). A and C would be flat there and E vertical, so those three are out.</>,
+    reason: <>In the diagram the marks on <Katex tex="y=x" /> slope upward with gradient <Katex tex="1" /> (look at <Katex tex="(1,1)" /> and <Katex tex="(2,2)" />). A and C would be flat there, and E (gradient undefined) vertical, so those three are out.</>,
+    more: <>What separates the options is <em>which</em> stripe is flat, steep or vertical. The line <Katex tex="y=x" /> through <Katex tex="O" /> is the easiest stripe to test, since <Katex tex="y-x=0" /> there for every option. The diagram&apos;s <Katex tex="x" />-axis is stretched compared with its <Katex tex="y" />-axis, so gradient-<Katex tex="1" /> marks look a little flatter than <Katex tex="45^\circ" />.</>,
   },
   {
     working: <Katex display tex="-1 \le \cos(y-x) \le 1 \implies \left|\frac{1}{\cos(y-x)}\right| \ge 1" />,
-    reason: <>B and D both pass the <Katex tex="y=x" /> test, so find a second feature. The reciprocal of a number between <Katex tex="-1" /> and <Katex tex="1" /> has size at least <Katex tex="1" />, so every mark in D&apos;s field is at least as steep as <Katex tex="45^\circ" />, never flat, and vertical where <Katex tex="\cos(y-x)=0" />. The diagram has plenty of flat marks, so D is out.</>,
+    reason: <>B and D both pass the <Katex tex="y=x" /> test. The reciprocal of a number between <Katex tex="-1" /> and <Katex tex="1" /> has size at least <Katex tex="1" />, so D&apos;s marks are never flat. The diagram has flat marks: D is out.</>,
+    more: <>D&apos;s marks are vertical exactly where <Katex tex="\cos(y-x)=0" />, the same diagonals on which B&apos;s marks are flat.</>,
   },
   {
     working: <Katex display tex="\cos(y-x)=0 \iff y-x=\pm\tfrac{\pi}{2},\ \pm\tfrac{3\pi}{2},\ \dots" />,
-    reason: <>Check B&apos;s flat marks against the picture: they lie on the diagonals <Katex tex="y=x\pm\tfrac{\pi}{2}" />, which cross the <Katex tex="y" />-axis at <Katex tex="y\approx\pm1.6" />. That is exactly where the diagram&apos;s flat marks sit.</>,
+    reason: <>Check B&apos;s flat marks: they lie on <Katex tex="y=x\pm\tfrac{\pi}{2}" />, crossing the <Katex tex="y" />-axis at <Katex tex="y\approx\pm1.6" />, exactly where the diagram&apos;s flat marks sit.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \cos(y-x)}" />,
-    reason: <>Matches option <b>B</b>. Option <b>D</b> gives the right gradient on <Katex tex="y=x" /> but can never be flat; options <b>A</b> and <b>C</b> are flat along <Katex tex="y=x" />, where the diagram&apos;s marks slope upward.</>,
+    reason: <>Matches option <b>B</b>.</>,
   },
 ]
 
@@ -103,21 +105,18 @@ export default function SpecialistQ9_2019() {
             source="16% chose D"
             working={<Katex display tex="\frac{dy}{dx}\Big|_{(0,0)} = \frac{1}{\cos(0-0)} = 1" />}
           >
-            D does pass the origin test, but so does B, so one test is not enough. Because{' '}
-            <Katex tex="|\cos(y-x)| \le 1" />, its reciprocal always has size at least <Katex tex="1" />: D&apos;s marks
-            are never flatter than <Katex tex="45^\circ" />, and where <Katex tex="\cos(y-x)=0" /> they are vertical. The
-            diagram is full of flat marks, so D cannot be it. When two options survive a test, look for a feature one
-            has and the other can&apos;t (here, a flat mark).
+            D does pass the origin test, but so does B, so one test is not enough. When two options survive a test,
+            look for a feature one has and the other can&apos;t: here, the diagram&apos;s flat marks, which D&apos;s
+            field can never have.
           </WrongMethod>
           <WrongMethod
             title={<>&ldquo;The stripes run along <Katex tex="y=x" />, so it&apos;s <Katex tex="\sin(y-x)" /> (or <Katex tex="\sin(x-y)" />)&rdquo;</>}
             source="12% chose C, 10% chose A"
             working={<Katex display tex="\sin(y-x) = \sin(x-y) = 0 \ \text{ on } \ y=x" />}
           >
-            All five options depend only on <Katex tex="y-x" />, so all five fields have stripes parallel to{' '}
-            <Katex tex="y=x" />; the stripes pick no option. Test one stripe: both sine options are <Katex tex="0" /> on{' '}
-            <Katex tex="y=x" />, so their marks along it would be flat, but in the diagram the marks on{' '}
-            <Katex tex="y=x" /> slope upward.
+            The stripes are real, but every option&apos;s field has them, so they can&apos;t point to a sine option. The
+            sine options are the ones whose marks along <Katex tex="y=x" /> itself would be flat, and the diagram&apos;s
+            slope upward there.
           </WrongMethod>
         </>
       }

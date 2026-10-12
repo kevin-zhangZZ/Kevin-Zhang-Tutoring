@@ -36,15 +36,17 @@ const ROWS: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of y = eˣ/(x − 1): a left branch approaching the asymptote y = 0, passing through (0, −1) and falling to −∞ at the asymptote x = 1, and a right branch dropping from +∞ to a minimum at (2, e²) then rising — this site's own explanatory figure" className="w-full max-w-[360px]" />
       </div>
     ),
-    reason: <>A &ldquo;does <b>not</b> have&rdquo; question is answered by checking the options one at a time: four will be there, and the answer is the one you can show is missing. A graph in a big enough window shows four features at once, but each still deserves a one-line algebraic check, which is what the next rows do.</>,
+    reason: <>For a &ldquo;does <b>not</b> have&rdquo; question, check the options one at a time: four will be there, and the answer is the one that is missing.</>,
+    more: <>A graph in a big enough window (like this one) shows four of the features at once, but each still deserves a one-line algebraic check, which is what the next rows do.</>,
   },
   {
     working: <Katex display tex="\lim_{x\to-\infty}\dfrac{e^x}{x-1} = 0" />,
-    reason: <><b>A — horizontal asymptote.</b> A horizontal asymptote is about the ends of the graph, so look at <Katex tex="x\to\pm\infty" />. On the left <Katex tex="e^x\to0" /> while the denominator grows without bound, so <Katex tex="y=0" /> is a horizontal asymptote there. (On the right <Katex tex="e^x" /> wins and <Katex tex="f(x)\to\infty" />, but one end is enough.) <b>Has one.</b></>,
+    reason: <><b>A — horizontal asymptote.</b> As <Katex tex="x\to-\infty" />, <Katex tex="e^x\to0" /> while the denominator grows without bound, so <Katex tex="y=0" /> is a horizontal asymptote. <b>Has one.</b></>,
+    more: <>A horizontal asymptote is about the ends of the graph, so look at <Katex tex="x\to\pm\infty" />. On the right <Katex tex="e^x" /> wins and <Katex tex="f(x)\to\infty" />, but one end is enough.</>,
   },
   {
     working: <Katex display tex="x-1=0 \implies x=1, \quad e^{1}\ne0" />,
-    reason: <><b>B — vertical asymptote.</b> Vertical asymptotes come from where the denominator is zero. At <Katex tex="x=1" /> the numerator is <Katex tex="e\ne0" />, so the value blows up there rather than cancelling to a hole. <b>Has one.</b></>,
+    reason: <><b>B — vertical asymptote.</b> The denominator is zero at <Katex tex="x=1" /> and the numerator <Katex tex="e" /> is not, so the function blows up there (no cancelling to a hole). <b>Has one.</b></>,
   },
   {
     working: (
@@ -53,11 +55,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="f'(x)=0 \implies x=2" />
       </>
     ),
-    reason: <><b>C — local minimum.</b> Turning points are where <Katex tex="f'(x)=0" />, so differentiate (quotient rule, or <Cas fn="derivative">d/dx(e^x/(x-1))</Cas> and factor). The denominator <Katex tex="(x-1)^2" /> is positive and <Katex tex="e^x>0" />, so <Katex tex="f'" /> takes the sign of <Katex tex="(x-2)" />: negative before <Katex tex="x=2" />, positive after. Falling then rising is a minimum, at <Katex tex="\left(2,e^2\right)\approx(2,\ 7.39)" />. <b>Has one.</b></>,
+    reason: <><b>C — local minimum.</b> Find <Katex tex="f'" /> by the quotient rule; turning points are where <Katex tex="f'(x)=0" />. Since <Katex tex="e^x>0" /> and <Katex tex="(x-1)^2>0" />, <Katex tex="f'" /> has the sign of <Katex tex="x-2" />: negative then positive, so a minimum at <Katex tex="x=2" />, with <Katex tex="f(2)=\tfrac{e^2}{2-1}=e^2" />. <b>Has one.</b></>,
+    more: <>On the CAS, <Cas fn="derivative">d/dx(e^x/(x-1))</Cas> and then factor gives the same <Katex tex="f'" />. This is the feature 19% of students thought was missing; the Common Mistake below shows how a graphing window can hide it.</>,
   },
   {
     working: <Katex display tex="f(0) = \dfrac{e^0}{0-1} = -1" />,
-    reason: <><b>D — vertical axis intercept.</b> The graph meets the <Katex tex="y" />-axis exactly when <Katex tex="x=0" /> is in the domain. It is (the only excluded value is <Katex tex="x=1" />), so the graph crosses at <Katex tex="(0,-1)" />. <b>Has one.</b></>,
+    reason: <><b>D — vertical axis intercept.</b> <Katex tex="x=0" /> is in the domain (only <Katex tex="x=1" /> is excluded), so the graph crosses the <Katex tex="y" />-axis at <Katex tex="(0,-1)" />. <b>Has one.</b></>,
   },
   {
     working: (
@@ -66,11 +69,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="x^2-4x+5 = (x-2)^2+1 > 0 \ \text{ for all } x" />
       </>
     ),
-    reason: <><b>E — point of inflection.</b> Concavity is the sign of <Katex tex="f''" />, and it can only change where <Katex tex="f''" /> is zero or undefined. The numerator is never zero (its discriminant is <Katex tex="16-20<0" />), so the only candidate is <Katex tex="x=1" />, where the denominator changes sign. The concavity does change there, from concave down to concave up, but <Katex tex="x=1" /> is the asymptote, not a point on the curve. <b>No point of inflection.</b></>,
+    reason: <><b>E — point of inflection.</b> Differentiate <Katex tex="f'" /> again (quotient rule or CAS), then factor. Concavity can only change where <Katex tex="f''" /> is zero or undefined. The top is never zero, so the only candidate is <Katex tex="x=1" />, which is the asymptote, not a point on the curve. <b>No point of inflection.</b></>,
+    more: <>On the CAS, <Cas fn="derivative">d²/dx²(e^x/(x-1))</Cas> and then factor gives this <Katex tex="f''" />. Completing the square (or the discriminant <Katex tex="16-20<0" />) shows the quadratic has no real zeros. The concavity does change across <Katex tex="x=1" />: <Katex tex="(x-1)^3<0" /> on the left gives concave down, and <Katex tex="(x-1)^3>0" /> on the right gives concave up.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Option E}}" />,
-    reason: <>Matches option <b>E</b>, the only feature the graph lacks. Options <b>A</b>, <b>B</b> and <b>D</b> are all present, and so is <b>C</b>, the popular wrong answer: as the report notes, there is a local minimum at <Katex tex="x=2" />.</>,
+    reason: <>Matches option <b>E</b>, the only feature the graph lacks.</>,
+    more: <>Options <b>A</b>, <b>B</b> and <b>D</b> are all present, and so is <b>C</b>, the popular wrong answer: as the report notes, there is a local minimum at <Katex tex="x=2" />.</>,
   },
 ]
 

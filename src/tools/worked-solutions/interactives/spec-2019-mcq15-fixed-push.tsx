@@ -69,7 +69,7 @@ export default function FixedPush() {
   } else {
     notice = (
       <Notice>
-        The orange arrow never turns. Nothing pushes sideways, so the horizontal velocity stays <M>u</M> and the dots
+        The orange arrow never turns. Nothing pushes horizontally, so the horizontal velocity stays <M>u</M> and the dots
         (every <M>0.5</M> s) are equally spaced across. The downward velocity grows like <M>{'\\alpha t'}</M>, so the
         drops between dots keep growing. After <M>t=0</M> the push is at about{' '}
         <M>{`${ang.toFixed(0)}^\\circ`}</M> to the velocity, not <M>{'90^\\circ'}</M>, so the particle speeds up.{' '}

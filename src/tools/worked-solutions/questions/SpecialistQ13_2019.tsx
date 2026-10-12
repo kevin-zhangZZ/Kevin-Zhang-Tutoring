@@ -38,7 +38,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{F}_1+\underset{\sim}{F}_2 = m\underset{\sim}{a} = 3\left(\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}\right)" />,
-    reason: <>How would I know to start here? The question gives forces and an acceleration, and the only link between them is that the <em>net</em> force is mass times acceleration. &ldquo;Net&rdquo; means the forces added as vectors. That is the one substitution the question needs; everything from here is vector algebra.</>,
+    reason: <>The forces and the acceleration are linked by: net force (the forces added as vectors) = mass × acceleration. That is the only mechanics needed.</>,
   },
   {
     working: <Katex display tex="= 3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}" />,
@@ -46,8 +46,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{F}_2 = \left(3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}\right)-2\underset{\sim}{j}" />,
-    reason: <>Take the given <Katex tex="\underset{\sim}{F}_1=2\underset{\sim}{j}" /> away from both sides. Drawn tip-to-tail, <Katex tex="\underset{\sim}{F}_2" /> is the side that closes the triangle from the tip of <Katex tex="\underset{\sim}{F}_1" /> to the tip of <Katex tex="m\underset{\sim}{a}" />. Check the order by adding back: <Katex tex="\underset{\sim}{F}_1" /> plus your answer must give <Katex tex="m\underset{\sim}{a}" />.</>,
-    more: <>See the diagram below.</>,
+    reason: <>Take the given <Katex tex="\underset{\sim}{F}_1=2\underset{\sim}{j}" /> away from both sides, so <Katex tex="\underset{\sim}{F}_2=m\underset{\sim}{a}-\underset{\sim}{F}_1" /> (not the other way round).</>,
+    more: <>Drawn tip-to-tail, <Katex tex="\underset{\sim}{F}_2" /> is the side that closes the triangle from the tip of <Katex tex="\underset{\sim}{F}_1" /> to the tip of <Katex tex="m\underset{\sim}{a}" /> (the diagram below shows it).</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{F}_2 = 3\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" />,
@@ -62,12 +62,13 @@ const ROWS: WorkingRow[] = [
     reason: <><Katex tex="\left(3\sqrt3\right)^2=9\times3=27" />, and <Katex tex="\sqrt{28}=2\sqrt7" />.</>,
   },
   {
-    working: <Katex display tex="\cos(\theta) = \frac{\underset{\sim}{F}_1\cdot\underset{\sim}{F}_2}{\left|\underset{\sim}{F}_1\right|\left|\underset{\sim}{F}_2\right|} = \frac{2}{2\times2\sqrt7} = \frac{1}{2\sqrt7}" />,
-    reason: <>The angle between two vectors is measured tail-to-tail and lies between <Katex tex="0" /> and <Katex tex="\pi" />. A positive cosine means it is under <Katex tex="\tfrac{\pi}{2}" />, so it is already the acute angle and no adjustment by <Katex tex="\pi" /> is needed. Had the dot product been negative, the acute angle would have been <Katex tex="\pi-\theta" />.</>,
+    working: <Katex display tex="\begin{aligned}\cos(\theta) &= \frac{\underset{\sim}{F}_1\cdot\underset{\sim}{F}_2}{\left|\underset{\sim}{F}_1\right|\left|\underset{\sim}{F}_2\right|}\\ &= \frac{2}{2\times2\sqrt7} = \frac{1}{2\sqrt7}\end{aligned}" />,
+    reason: <>The dot-product angle formula. The cosine is positive, so <Katex tex="\theta" /> is under <Katex tex="\tfrac{\pi}{2}" />: it is already the acute angle asked for.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = \arccos\!\left(\frac{1}{2\sqrt7}\right)}" />,
-    reason: <>About <Katex tex="79^\circ" />. Matches option <b>D</b>. Options <b>B</b> and <b>E</b> are obtuse, so cannot be the acute angle; option <b>C</b>, <Katex tex="\tfrac{\pi}{6}" />, is the angle the acceleration <Katex tex="\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" /> makes with <Katex tex="\underset{\sim}{i}" />, not the angle between the forces; option <b>A</b> does not match the cosine <Katex tex="\tfrac{1}{2\sqrt7}" /> found above.</>,
+    reason: <>About <Katex tex="79^\circ" />. Matches option <b>D</b>.</>,
+    more: <>Options <b>B</b> and <b>E</b> are obtuse, so cannot be the acute angle; option <b>C</b>, <Katex tex="\tfrac{\pi}{6}" />, is the angle the acceleration <Katex tex="\sqrt3\,\underset{\sim}{i}+\underset{\sim}{j}" /> makes with <Katex tex="\underset{\sim}{i}" />, not the angle between the forces; option <b>A</b>, about <Katex tex="55^\circ" />, has cosine <Katex tex="\tfrac{1}{\sqrt3}\approx0.58" />, not the <Katex tex="\tfrac{1}{2\sqrt7}\approx0.19" /> found above.</>,
   },
 ]
 
@@ -130,7 +131,7 @@ export default function SpecialistQ13_2019() {
             source="13% chose E"
             working={
               <>
-                <Katex display tex="\underset{\sim}{F}_2=2\underset{\sim}{j}-\left(3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}\right)=-3\sqrt3\,\underset{\sim}{i}-\underset{\sim}{j}" />
+                <Katex display tex="\begin{aligned}\underset{\sim}{F}_2&=2\underset{\sim}{j}-\left(3\sqrt3\,\underset{\sim}{i}+3\underset{\sim}{j}\right)\\ &=-3\sqrt3\,\underset{\sim}{i}-\underset{\sim}{j}\end{aligned}" />
                 <Katex display tex="\cos(\theta)=\frac{(2)(-1)}{2\times2\sqrt7}=-\frac{1}{2\sqrt7}" />
                 <Katex display tex="\theta=\pi-\arccos\left(\tfrac{1}{2\sqrt7}\right)\quad\text{(option E)}" />
               </>

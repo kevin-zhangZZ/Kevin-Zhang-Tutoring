@@ -10,6 +10,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import { Background, WrongMethod, type WorkingRow, type MCQExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import raysSrc from './spec-2019-mcq5-rays.png'
@@ -33,9 +34,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{Arg}(z-2) = \tfrac{\pi}{4}" />,
     reason: (
       <>
-        <Katex tex="z-2" /> is the arrow from the point <Katex tex="2" /> to <Katex tex="z" />, so this says: the arrow from{' '}
-        <Katex tex="(2,0)" /> to <Katex tex="z" /> points at angle <Katex tex="\tfrac{\pi}{4}" />. That is a ray starting at{' '}
-        <Katex tex="(2,0)" />, with gradient <Katex tex="\tan\tfrac{\pi}{4}=1" />.
+        <Katex tex="z-2" /> is the arrow from <Katex tex="(2,0)" /> to <Katex tex="z" />, so <Katex tex="z" /> lies on a
+        ray starting at <Katex tex="(2,0)" /> at angle <Katex tex="\tfrac{\pi}{4}" />: gradient{' '}
+        <Katex tex="\tan\tfrac{\pi}{4}=1" />.
       </>
     ),
   },
@@ -43,9 +44,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y - 0 = 1\cdot(x-2) \;\implies\; y = x-2,\ \ x>2" />,
     reason: (
       <>
-        Point–gradient form through <Katex tex="(2,0)" />. The direction <Katex tex="\tfrac{\pi}{4}" /> points up and to
-        the right, so only <Katex tex="x>2" /> is on the ray. That already tells you <Katex tex="b>0" /> for any point on
-        this ray, which rules out options <b>A</b> and <b>C</b> before any algebra.
+        Point–gradient form through <Katex tex="(2,0)" />. The angle <Katex tex="\tfrac{\pi}{4}" /> points up and to the
+        right, so only <Katex tex="x>2" /> is on the ray.
+      </>
+    ),
+    more: (
+      <>
+        So every point on this ray has <Katex tex="y>0" />, which already tells you <Katex tex="b>0" />: options{' '}
+        <b>A</b> and <b>C</b> are out before any algebra.
       </>
     ),
   },
@@ -53,9 +59,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{Arg}\big(z-(5+i)\big) = \tfrac{5\pi}{6}" />,
     reason: (
       <>
-        In the same way, a ray from <Katex tex="(5,1)" /> at angle <Katex tex="\tfrac{5\pi}{6}" />. That angle is in the
-        second quadrant, so the ray heads up and to the <em>left</em>: it climbs as <Katex tex="x" /> decreases, and its
-        gradient <Katex tex="\tan\tfrac{5\pi}{6}=-\tfrac{1}{\sqrt3}" /> is negative.
+        Likewise a ray from <Katex tex="(5,1)" /> at angle <Katex tex="\tfrac{5\pi}{6}" />. That is in the second
+        quadrant, so the ray heads up and to the <em>left</em>, with negative gradient{' '}
+        <Katex tex="\tan\tfrac{5\pi}{6}=-\tfrac{1}{\sqrt3}" />.
+      </>
+    ),
+    more: (
+      <>
+        Sense check: a ray heading left that climbs must have a negative gradient, since <Katex tex="y" /> increases
+        as <Katex tex="x" /> decreases.
       </>
     ),
   },
@@ -67,9 +79,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} x-2-1 &= -\tfrac{1}{\sqrt3}(x-5) \\ \sqrt3(x-3) &= -(x-5) \\ x(\sqrt3+1) &= 5+3\sqrt3 \end{aligned}" />,
     reason: (
       <>
-        The crossing point is on both rays, so it satisfies both equations. Substitute <Katex tex="y=x-2" /> into the
-        second, multiply both sides by <Katex tex="\sqrt3" /> to clear the fraction, then collect the <Katex tex="x" />{' '}
-        terms. (CAS <em>solve</em> on the two equations does the same.)
+        The crossing point satisfies both equations: substitute <Katex tex="y=x-2" /> into the second, multiply by{' '}
+        <Katex tex="\sqrt3" />, then collect the <Katex tex="x" /> terms.
+      </>
+    ),
+    more: (
+      <>
+        On CAS, <Cas fn="solve">solve(y=x−2 and y−1=−(x−5)/√3, {'{'}x,y{'}'})</Cas> gives the same point in one step.
       </>
     ),
   },
@@ -77,9 +93,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} x &= \frac{5+3\sqrt3}{\sqrt3+1} \\ &= \frac{(5+3\sqrt3)(\sqrt3-1)}{2} = 2+\sqrt3 \end{aligned}" />,
     reason: (
       <>
-        Rationalise with the conjugate, since <Katex tex="(\sqrt3+1)(\sqrt3-1)=2" />. Then check the point is on both{' '}
-        <em>rays</em>, not just both lines: <Katex tex="x=2+\sqrt3\approx3.73" /> satisfies <Katex tex="x>2" /> and{' '}
-        <Katex tex="x<5" />.
+        Rationalise using <Katex tex="(\sqrt3+1)(\sqrt3-1)=2" />. Check: <Katex tex="x\approx3.73" /> satisfies{' '}
+        <Katex tex="x>2" /> and <Katex tex="x<5" />, so the point is on both <em>rays</em>, not just both lines.
+      </>
+    ),
+    more: (
+      <>
+        Expanding the numerator: <Katex tex="(5+3\sqrt3)(\sqrt3-1)=5\sqrt3-5+9-3\sqrt3=4+2\sqrt3" />, and halving gives{' '}
+        <Katex tex="2+\sqrt3" />.
       </>
     ),
   },
@@ -91,9 +112,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A sketch confirms it: the two rays really do cross, at <Katex tex="\left(2+\sqrt3,\ \sqrt3\right)" />, about{' '}
-        <Katex tex="(3.7,\ 1.7)" />. The starting points are open circles, since <Katex tex="\mathrm{Arg}(0)" /> is
-        undefined.
+        A sketch confirms the rays cross at <Katex tex="\left(2+\sqrt3,\ \sqrt3\right)\approx(3.7,\ 1.7)" />. The start
+        points are open circles, since <Katex tex="\mathrm{Arg}(0)" /> is undefined.
       </>
     ),
   },
@@ -101,9 +121,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{b = y = x-2 = \sqrt3}" />,
     reason: (
       <>
-        The point is <Katex tex="(a,b)" />, so <Katex tex="b" /> is the <Katex tex="y" />-coordinate (the imaginary part of{' '}
-        <Katex tex="z" />). Matches option <b>D</b>. Option <b>E</b>, <Katex tex="2+\sqrt3" />, is <Katex tex="a" />, the{' '}
-        <Katex tex="x" />-coordinate.
+        <Katex tex="b" /> is the <Katex tex="y" />-coordinate (the imaginary part of <Katex tex="z" />). Matches option{' '}
+        <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>E</b>, <Katex tex="2+\sqrt3" />, is <Katex tex="a" />, not <Katex tex="b" />: the most popular wrong
+        answer (21%). Options <b>A</b> and <b>B</b> are the coordinates you get from a sign slip in the second gradient.
+        Both mistakes are worked through below.
       </>
     ),
   },
@@ -186,8 +212,7 @@ export default function SpecialistQ5_2019() {
               <Katex tex="y=x-2" /> at <Katex tex="\left(2-\sqrt3,\ -\sqrt3\right)" /> (whose <Katex tex="x" />-coordinate is
               option <b>B</b>). That point has <Katex tex="x<2" />, so it is on the backward extension of{' '}
               <Katex tex="y=x-2" />, not on the ray: there <Katex tex="\mathrm{Arg}(z-2)=-\tfrac{3\pi}{4}" />. Checking the
-              ray restrictions (<Katex tex="x>2" />, <Katex tex="x<5" />), or simply noticing that the first ray has{' '}
-              <Katex tex="y>0" />, catches it.
+              ray restrictions (<Katex tex="x>2" />, <Katex tex="x<5" />) catches it.
             </p>
           </WrongMethod>
         </>

@@ -54,11 +54,12 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="ABCD \text{ is a parallelogram} \implies \overrightarrow{AB} = \overrightarrow{DC}" />,
-    reason: <>In a parallelogram the two opposite sides are equal <em>as vectors</em>: same length and same direction. The letters tell you the order you walk round the shape, <Katex tex="A\to B\to C\to D\to A" />, so you go out along <Katex tex="AB" /> and come back along <Katex tex="CD" />. That makes <Katex tex="\overrightarrow{AB}" /> equal to <Katex tex="\overrightarrow{DC}" />, not <Katex tex="\overrightarrow{CD}" /> (which points back the other way). The report notes a significant proportion of students set <Katex tex="\overrightarrow{AB}=\overrightarrow{CD}" />; a quick sketch of <Katex tex="ABCD" /> in order avoids this.</>,
+    reason: <>Opposite sides of a parallelogram are equal as vectors. Walking round <Katex tex="A\to B\to C\to D" />, the step <Katex tex="C\to D" /> runs opposite to <Katex tex="A\to B" />, so the side pointing the same way as <Katex tex="\overrightarrow{AB}" /> is <Katex tex="\overrightarrow{DC}" />.</>,
+    more: <>Equal as vectors means same length <em>and</em> same direction, so <Katex tex="\overrightarrow{CD}=-\overrightarrow{AB}" />, not <Katex tex="\overrightarrow{AB}" />. The report notes a significant proportion of students set <Katex tex="\overrightarrow{AB}=\overrightarrow{CD}" />; a quick sketch of <Katex tex="ABCD" /> with the vertices in order avoids this.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\overrightarrow{AB} &= B-A\\ &= (4-2)\underset{\sim}{i}+(-2+1)\underset{\sim}{j}+(1-3)\underset{\sim}{k}\\ &= 2\underset{\sim}{i}-\underset{\sim}{j}-2\underset{\sim}{k}\end{aligned}" />,
-    reason: <>We know <Katex tex="A" /> and <Katex tex="B" />, so <Katex tex="\overrightarrow{AB}" /> is the side we can find completely. Any vector between two points is the position vector of the end minus the position vector of the start.</>,
+    reason: <>We know <Katex tex="A" /> and <Katex tex="B" />, so this side can be found completely: end point minus start point.</>,
   },
   {
     working: <Katex display tex="\overrightarrow{DC} = C-D = (a-4)\underset{\sim}{i}+(b-3)\underset{\sim}{j}+(c+1)\underset{\sim}{k}" />,
@@ -74,18 +75,20 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a=6, \quad b=2, \quad c=-3}" />,
-    reason: <>So <Katex tex="C(6,2,-3)" />. Check the other pair of sides as well: <Katex tex="\overrightarrow{BC}=C-B=2\underset{\sim}{i}+4\underset{\sim}{j}-4\underset{\sim}{k}=\overrightarrow{AD}" /> ✓, so <Katex tex="ABCD" /> really is a parallelogram. (The report gets there in one line: <Katex tex="\overrightarrow{OC}=\overrightarrow{OB}+\overrightarrow{AD}" />, since from <Katex tex="B" /> you make the same move as from <Katex tex="A" /> to <Katex tex="D" />.)</>,
+    reason: <>So <Katex tex="C" /> is the point <Katex tex="(6,2,-3)" />.</>,
+    more: <>Check the other pair of sides: <Katex tex="\overrightarrow{BC}=C-B=2\underset{\sim}{i}+4\underset{\sim}{j}-4\underset{\sim}{k}" /> and <Katex tex="\overrightarrow{AD}=D-A=2\underset{\sim}{i}+4\underset{\sim}{j}-4\underset{\sim}{k}" /> ✓, so <Katex tex="ABCD" /> really is a parallelogram. The report gets there in one line, <Katex tex="\overrightarrow{OC}=\overrightarrow{OB}+\overrightarrow{AD}" />, since from <Katex tex="B" /> you make the same move as from <Katex tex="A" /> to <Katex tex="D" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\overrightarrow{AD} = D-A = 2\underset{\sim}{i}+4\underset{\sim}{j}-4\underset{\sim}{k}" />,
-    reason: <>The angle between two vectors is measured with them tail to tail. <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AD}" /> both start at <Katex tex="A" />, so this is the parallelogram&apos;s angle at <Katex tex="A" />, the same angle part c. needs.</>,
+    reason: <>Both vectors start at <Katex tex="A" />, so the angle between them is the parallelogram&apos;s angle at <Katex tex="A" />. Part c. needs it too.</>,
+    more: <>The angle between two vectors is measured with them tail to tail, which is exactly how <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AD}" /> sit.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\overrightarrow{AB}\cdot\overrightarrow{AD}\\ &= (2)(2)+(-1)(4)+(-2)(-4)\\ &= 4-4+8 = 8\end{aligned}" />,
-    reason: <>The scalar (dot) product is the bridge between what we have (components) and what we want (an angle). Multiply matching components and add.</>,
+    reason: <>The scalar (dot) product links components to the angle. Multiply matching components and add, with <Katex tex="\overrightarrow{AB}=2\underset{\sim}{i}-\underset{\sim}{j}-2\underset{\sim}{k}" /> from part a.</>,
   },
   {
     working: (
@@ -102,27 +105,31 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\cos\theta = \dfrac{4}{9}}" />,
-    reason: <>Exact form. The question asks for the cosine, not the angle, so stop here; the report notes some students instead found an approximate value of the angle. (For the record, <Katex tex="\theta\approx63.6^\circ" />: acute, because the cosine is positive.)</>,
+    reason: <>Exact form. The question asks for the cosine, not the angle, so stop here.</>,
+    more: <>The report notes some students instead found an approximate value of the angle. For the record, <Katex tex="\theta\approx63.6^\circ" />: acute, because the cosine is positive.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Area} = \left|\overrightarrow{AB}\right|\left|\overrightarrow{AD}\right|\sin\theta" />,
-    reason: <>Area of a parallelogram is base × <em>perpendicular</em> height. Take <Katex tex="AD" /> as the base; the height is how far <Katex tex="B" /> is above the line <Katex tex="AD" />, which is <Katex tex="\left|\overrightarrow{AB}\right|\sin\theta" />, not the slanted side <Katex tex="\left|\overrightarrow{AB}\right|" /> itself. Simply multiplying the two side lengths, <Katex tex="3\times6" />, treats the base as a rectangle; the report notes a significant proportion of students did this.</>,
-    more: <>Change the angle in the diagram below to see the difference.</>,
+    reason: <>Area of a parallelogram is base × <em>perpendicular</em> height. With base <Katex tex="AD" />, drop a perpendicular from <Katex tex="B" />: in that right triangle <Katex tex="AB" /> is the hypotenuse and <Katex tex="\theta" /> is at <Katex tex="A" />, so the height is <Katex tex="\left|\overrightarrow{AB}\right|\sin\theta" />.</>,
+    more: <>The report notes a significant proportion of students simply multiplied the two side lengths, <Katex tex="3\times6" />, as for a rectangle. Change the angle in the diagram below to see the difference.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\sin\theta &= \sqrt{1-\cos^2\theta} = \sqrt{1-\left(\tfrac49\right)^2}\\ &= \sqrt{1-\tfrac{16}{81}} = \sqrt{\dfrac{65}{81}} = \dfrac{\sqrt{65}}{9}\end{aligned}" />,
-    reason: <>Part b. gave the cosine, but the area needs the sine: the Pythagorean identity converts one to the other. (Or sketch a right triangle with adjacent side <Katex tex="4" /> and hypotenuse <Katex tex="9" />; the opposite side is <Katex tex="\sqrt{81-16}=\sqrt{65}" />.) Take the positive root, since <Katex tex="0<\theta<\pi" />.</>,
+    reason: <>Part b. gave the cosine; the Pythagorean identity converts it to the sine. Take the positive root, since <Katex tex="0<\theta<\pi" />.</>,
+    more: <>Or sketch a right triangle with adjacent side <Katex tex="4" /> and hypotenuse <Katex tex="9" />: the opposite side is <Katex tex="\sqrt{81-16}=\sqrt{65}" />, so <Katex tex="\sin\theta=\tfrac{\sqrt{65}}{9}" />.</>,
   },
   {
     working: <Katex display tex="\text{Area} = 3\times6\times\dfrac{\sqrt{65}}{9} = \dfrac{18\sqrt{65}}{9}" />,
-    reason: <>The side lengths from part b. Read it as base <Katex tex="6" /> times height <Katex tex="3\times\tfrac{\sqrt{65}}{9}=\tfrac{\sqrt{65}}{3}\approx2.69" />, a little less than the side <Katex tex="3" /> because the parallelogram leans.</>,
+    reason: <>Side lengths <Katex tex="3" /> and <Katex tex="6" /> from part b.</>,
+    more: <>Read it as base <Katex tex="6" /> times height <Katex tex="3\times\tfrac{\sqrt{65}}{9}=\tfrac{\sqrt{65}}{3}\approx2.69" />, a little less than the side <Katex tex="3" /> because the parallelogram leans.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = 2\sqrt{65} \ \text{ square units}}" />,
-    reason: <>About <Katex tex="16.1" />, less than <Katex tex="18" /> as it must be. (The cross product gives the same thing in one step: <Katex tex="\left|\overrightarrow{AB}\times\overrightarrow{AD}\right|=2\sqrt{65}" />.)</>,
+    reason: <>About <Katex tex="16.1" />: less than <Katex tex="3\times6=18" />, as it must be, since <Katex tex="\sin\theta<1" />.</>,
+    more: <>The cross product gives the same thing in one step: <Katex tex="\left|\overrightarrow{AB}\times\overrightarrow{AD}\right|=\left|12\underset{\sim}{i}+4\underset{\sim}{j}+10\underset{\sim}{k}\right|=\sqrt{260}=2\sqrt{65}" />.</>,
   },
 ]
 
@@ -137,7 +144,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\implies 6\underset{\sim}{i}+2\underset{\sim}{j}+5\underset{\sim}{k} \text{ is perpendicular to the base}" />,
-    reason: <>This is the &ldquo;hence&rdquo;. <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AD}" /> are two non-parallel directions lying in the base, and every direction in the base is a combination of them, so anything perpendicular to both is perpendicular to the whole base.</>,
+    reason: <>This is the &ldquo;hence&rdquo;: <Katex tex="\overrightarrow{AB}" /> and <Katex tex="\overrightarrow{AD}" /> are two non-parallel directions in the base, so a vector perpendicular to both is perpendicular to the base.</>,
+    more: <>Every direction lying in the base is a combination <Katex tex="s\overrightarrow{AB}+t\overrightarrow{AD}" />, and its scalar product with <Katex tex="6\underset{\sim}{i}+2\underset{\sim}{j}+5\underset{\sim}{k}" /> is <Katex tex="s(0)+t(0)=0" />.</>,
   },
   {
     working: <Katex display tex="\left|6\underset{\sim}{i}+2\underset{\sim}{j}+5\underset{\sim}{k}\right| = \sqrt{36+4+25} = \sqrt{65}" />,
@@ -145,23 +153,25 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\hat{\underset{\sim}{n}} = \dfrac{1}{\sqrt{65}}\left(6\underset{\sim}{i}+2\underset{\sim}{j}+5\underset{\sim}{k}\right)}" />,
-    reason: <>Dividing by the magnitude keeps the direction and makes the length <Katex tex="1" />. The report notes some students did not proceed to find the required unit vector. (Its negative is equally correct.)</>,
+    reason: <>Dividing by the magnitude keeps the direction and makes the length <Katex tex="1" />. Its negative is equally correct.</>,
+    more: <>The report notes some students showed the perpendicularity but did not proceed to find the required unit vector.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="V = \dfrac13\times\text{base area}\times\text{height}" />,
-    reason: <>Volume of any pyramid, whatever its shape and wherever its apex sits. The base area is part c.; the missing piece is the perpendicular height, the distance from <Katex tex="P" /> to the plane of the base.</>,
+    reason: <>Volume of any pyramid, wherever its apex sits. The base area is part c.; we need the perpendicular height, from <Katex tex="P" /> to the plane of the base.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\overrightarrow{BP} &= P-B\\ &= (4-4)\underset{\sim}{i}+(-4+2)\underset{\sim}{j}+(9-1)\underset{\sim}{k}\\ &= -2\underset{\sim}{j}+8\underset{\sim}{k}\end{aligned}" />,
-    reason: <>&ldquo;Perpendicular to the base&rdquo; is the direction of <Katex tex="\hat{\underset{\sim}{n}}" /> from part d., so the height is how far you travel along <Katex tex="\hat{\underset{\sim}{n}}" /> getting from the base to <Katex tex="P" />. That needs a vector that <b>starts on the base</b> and ends at <Katex tex="P" />: any slant edge will do. <Katex tex="B" /> is convenient here (the report uses <Katex tex="\overrightarrow{AP}=2\underset{\sim}{i}-3\underset{\sim}{j}+6\underset{\sim}{k}" />, which gives the same height). The report notes most students who used a scalar resolute incorrectly used <Katex tex="\overrightarrow{OP}" />, and the origin is not on the base.</>,
+    reason: <>The height is how far <Katex tex="P" /> is from the base along <Katex tex="\hat{\underset{\sim}{n}}" /> (part d.). Measure it on a vector that <b>starts on the base</b> and ends at <Katex tex="P" />: any slant edge.</>,
+    more: <><Katex tex="B" /> is convenient here; the report uses <Katex tex="\overrightarrow{AP}=2\underset{\sim}{i}-3\underset{\sim}{j}+6\underset{\sim}{k}" />, which gives the same height (so do <Katex tex="\overrightarrow{CP}" /> and <Katex tex="\overrightarrow{DP}" />). The report notes most students who used a scalar resolute incorrectly used <Katex tex="\overrightarrow{OP}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}\text{height} &= \left|\overrightarrow{BP}\cdot\hat{\underset{\sim}{n}}\right|\\ &= \left|\dfrac{(0)(6)+(-2)(2)+(8)(5)}{\sqrt{65}}\right| = \dfrac{36}{\sqrt{65}}\end{aligned}" />,
-    reason: <>The key idea: the <b>scalar resolute</b> <Katex tex="\overrightarrow{BP}\cdot\hat{\underset{\sim}{n}}" /> is the part of <Katex tex="\overrightarrow{BP}" /> pointing straight out of the base. The rest of <Katex tex="\overrightarrow{BP}" /> runs parallel to the base and adds no height. Very few students approached this correctly (96% scored zero); the report says the majority of those who attempted it made unfounded assumptions about the height or the layout of the pyramid. The resolute needs no assumption at all.</>,
-    more: <>The diagram below splits <Katex tex="\overrightarrow{BP}" /> into these two parts for you.</>,
+    reason: <>The <b>scalar resolute</b> of <Katex tex="\overrightarrow{BP}" /> along <Katex tex="\hat{\underset{\sim}{n}}" /> is the part pointing straight out of the base; the rest runs parallel to the base and adds no height. Take the absolute value in case <Katex tex="\hat{\underset{\sim}{n}}" /> points away from <Katex tex="P" />.</>,
+    more: <>With the opposite normal, <Katex tex="-\hat{\underset{\sim}{n}}" />, the resolute is <Katex tex="-\tfrac{36}{\sqrt{65}}" />. Very few students approached this correctly (96% scored zero); the report says the majority of those who attempted it made unfounded assumptions about the height or the layout of the pyramid. The resolute needs no assumption at all. The diagram below splits <Katex tex="\overrightarrow{BP}" /> into these two parts for you.</>,
   },
   {
     working: <Katex display tex="V = \dfrac13\times2\sqrt{65}\times\dfrac{36}{\sqrt{65}}" />,
@@ -169,7 +179,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{V = 24 \ \text{ cubic units}}" />,
-    reason: <>The <Katex tex="\sqrt{65}" /> cancels, a good sign the setup is right. (With the cross product: <Katex tex="\tfrac13\left|\overrightarrow{AP}\cdot\left(\overrightarrow{AB}\times\overrightarrow{AD}\right)\right|=\tfrac13\times72=24" /> ✓.)</>,
+    reason: <>The <Katex tex="\sqrt{65}" /> cancels, a good sign the setup is right.</>,
+    more: <>Check with the cross product: <Katex tex="\tfrac13\left|\overrightarrow{AP}\cdot\left(\overrightarrow{AB}\times\overrightarrow{AD}\right)\right|=\tfrac13\times72=24" /> ✓.</>,
   },
 ]
 
@@ -218,9 +229,7 @@ export default function SpecialistQ4_2019Exam2() {
             </>
           }
         >
-          <Katex tex="AB" /> and <Katex tex="CD" /> are opposite sides, but <Katex tex="\overrightarrow{CD}" /> runs from{' '}
-          <Katex tex="C" /> back towards <Katex tex="D" />, the opposite way to <Katex tex="\overrightarrow{AB}" /> when you
-          walk round <Katex tex="ABCD" /> in order. Equating them puts <Katex tex="C" /> where the path{' '}
+          Equating them gets the direction of <Katex tex="\overrightarrow{CD}" /> backwards, and puts <Katex tex="C" /> where the path{' '}
           <Katex tex="A\to B\to C\to D" /> crosses itself. To catch it, check the other pair of sides: with{' '}
           <Katex tex="C(2,4,1)" />, <Katex tex="\overrightarrow{BC}=-2\underset{\sim}{i}+6\underset{\sim}{j}" />, which is not{' '}
           <Katex tex="\overrightarrow{AD}=2\underset{\sim}{i}+4\underset{\sim}{j}-4\underset{\sim}{k}" />.
@@ -243,9 +252,8 @@ export default function SpecialistQ4_2019Exam2() {
         >
           That is the area of a 3 by 6 <em>rectangle</em>. This parallelogram leans (<Katex tex="\theta\approx63.6^\circ" />,
           not <Katex tex="90^\circ" />), so its height above <Katex tex="AD" /> is{' '}
-          <Katex tex="3\sin\theta=\tfrac{\sqrt{65}}{3}\approx2.69" />, not <Katex tex="3" />. A quick check: leaning a shape over
-          with the same sides always loses area, so the answer must come out under <Katex tex="18" />. Multiply by{' '}
-          <Katex tex="\sin\theta" />; side × side is only right at <Katex tex="90^\circ" />.
+          <Katex tex="3\sin\theta" />, less than the slanted side <Katex tex="3" />. Side × side is only right at{' '}
+          <Katex tex="90^\circ" />; otherwise multiply by <Katex tex="\sin\theta" />.
         </WrongMethod>
       </PartCard>
 
@@ -269,11 +277,9 @@ export default function SpecialistQ4_2019Exam2() {
             The apex <Katex tex="P" /> is not directly above any convenient point. In fact the foot of the
             perpendicular from <Katex tex="P" /> lands <em>outside</em> the parallelogram: this pyramid leans
             so far that its apex overhangs the base. So the height can&apos;t be read off a coordinate or
-            taken from a slant length. Instead, take any vector from the base up to <Katex tex="P" />, and
-            find how much of it points along the unit normal from part d. That component <em>is</em> the
-            perpendicular height, because the normal is the &ldquo;straight up out of the base&rdquo;
-            direction. <Katex tex="V=\tfrac13\times\text{base}\times\text{height}" /> still holds for a
-            leaning pyramid, as long as the height is measured perpendicular to the base.
+            taken from a slant length. It has to be measured along the unit normal from part d., the
+            &ldquo;straight up out of the base&rdquo; direction, which the working below does without
+            needing to know where the apex sits.
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />
@@ -285,7 +291,7 @@ export default function SpecialistQ4_2019Exam2() {
           source="Examiner's report"
           working={
             <>
-              <Katex display tex="\overrightarrow{OP}\cdot\hat{\underset{\sim}{n}}=\dfrac{(4)(6)+(-4)(2)+(9)(5)}{\sqrt{65}}=\dfrac{61}{\sqrt{65}}" />
+              <Katex display tex="\begin{aligned}\overrightarrow{OP}\cdot\hat{\underset{\sim}{n}}&=\dfrac{(4)(6)+(-4)(2)+(9)(5)}{\sqrt{65}}\\&=\dfrac{61}{\sqrt{65}}\end{aligned}" />
               <Katex display tex="V=\dfrac13\times2\sqrt{65}\times\dfrac{61}{\sqrt{65}}=\dfrac{122}{3}" />
             </>
           }
@@ -310,8 +316,7 @@ export default function SpecialistQ4_2019Exam2() {
           }
         >
           Nothing in the question says where the apex sits, and here it is not over the centre, or over the
-          base at all: the foot of the perpendicular from <Katex tex="P" /> is outside <Katex tex="ABCD" /> (press
-          &ldquo;From above&rdquo; in the diagram). <Katex tex="\left|\overrightarrow{MP}\right|" /> is the length of a
+          base at all, as the Background says (press &ldquo;From above&rdquo; in the diagram). <Katex tex="\left|\overrightarrow{MP}\right|" /> is the length of a
           slanted segment. A height has to be measured perpendicular to the base, which is exactly what the
           resolute along <Katex tex="\hat{\underset{\sim}{n}}" /> does, with no need to know the layout.
         </WrongMethod>

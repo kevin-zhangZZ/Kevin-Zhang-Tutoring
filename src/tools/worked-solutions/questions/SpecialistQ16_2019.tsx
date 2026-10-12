@@ -26,16 +26,17 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="v = e^x\sin(x)" />,
-    reason: <>Notice what <Katex tex="v" /> is written in terms of: position <Katex tex="x" />, not time. We can&apos;t differentiate with respect to <Katex tex="t" /> without knowing <Katex tex="x" /> as a function of <Katex tex="t" />, and we don&apos;t. That is the signal to use <Katex tex="a=v\dfrac{dv}{dx}" />.</>,
-    more: <>See Background.</>,
+    reason: <><Katex tex="v" /> is given in terms of position <Katex tex="x" />, not time, so use <Katex tex="a=v\dfrac{dv}{dx}" /> (chain rule: <Katex tex="\dfrac{dv}{dt}=\dfrac{dv}{dx}\cdot\dfrac{dx}{dt}" /> and <Katex tex="\dfrac{dx}{dt}=v" />).</>,
+    more: <>We can&apos;t differentiate with respect to <Katex tex="t" /> directly: that would need <Katex tex="x" /> as a function of <Katex tex="t" />, which we aren&apos;t given. Whenever <Katex tex="v" /> is a function of <Katex tex="x" />, that is the signal to go through <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="\frac{dv}{dx} = e^x\sin(x) + e^x\cos(x)" />,
-    reason: <>Product rule: differentiate <Katex tex="e^x" />, then <Katex tex="\sin(x)" />. This is only the change in velocity per <em>metre</em>, not yet the acceleration.</>,
+    reason: <>Product rule: <Katex tex="(e^x)'\sin(x)+e^x(\sin(x))'" />. This is only the change in velocity per <em>metre</em>, not yet the acceleration.</>,
   },
   {
     working: <Katex display tex="= e^x\big(\sin(x)+\cos(x)\big)" />,
-    reason: <>Factorise out <Katex tex="e^x" />. This expression is option C, which is why stopping here is so tempting.</>,
+    reason: <>Factorise out <Katex tex="e^x" />. This expression is option C, so don&apos;t stop here.</>,
+    more: <>26% of students did stop here and chose C; the report points out that option C is <Katex tex="\tfrac{dv}{dx}" />.</>,
   },
   {
     working: <Katex display tex="a = v\frac{dv}{dx} = e^x\sin(x)\cdot e^x\big(\sin(x)+\cos(x)\big)" />,
@@ -48,7 +49,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = e^{2x}\left(\sin^2(x) + \tfrac12\sin(2x)\right)}" />,
-    reason: <>None of the options has <Katex tex="\sin(x)\cos(x)" />, but A has <Katex tex="\sin(2x)" />: the double-angle formula <Katex tex="\sin(2x)=2\sin(x)\cos(x)" /> turns one into <Katex tex="\tfrac12\sin(2x)" />. Matches option <b>A</b>. Option <b>C</b> is <Katex tex="\tfrac{dv}{dx}" /> (as the report notes), <b>B</b> has only one factor of <Katex tex="e^x" />, <b>D</b> is <Katex tex="\tfrac12v^2" /> itself rather than its derivative, and <b>E</b> differentiates only the <Katex tex="\sin(x)" /> factor.</>,
+    reason: <>No option has <Katex tex="\sin(x)\cos(x)" />, so use <Katex tex="\sin(2x)=2\sin(x)\cos(x)" />: <Katex tex="\sin(x)\cos(x)=\tfrac12\sin(2x)" />. Matches option <b>A</b>.</>,
+    more: <>The distractors: <b>C</b> stops before multiplying by <Katex tex="v" />, <b>B</b> is <Katex tex="v\tfrac{dv}{dx}" /> with one factor of <Katex tex="e^x" /> missing, <b>D</b> is <Katex tex="\tfrac12v^2" /> itself rather than its derivative, and <b>E</b> differentiates only the <Katex tex="\sin(x)" /> factor.</>,
   },
 ]
 

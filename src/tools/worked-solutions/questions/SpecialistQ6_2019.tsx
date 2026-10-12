@@ -24,11 +24,13 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="5\,\mathrm{Arg}(z) = 5\times\tfrac{\pi}{2} = \tfrac{5\pi}{2}" />,
-    reason: (
+    reason: <>By de Moivre, raising to the 5th power multiplies the argument by 5.</>,
+    more: (
       <>
-        By de Moivre, raising to the 5th power multiplies the argument by 5: <Katex tex="z^5" /> is <Katex tex="z" />{' '}
-        rotated by <Katex tex="\mathrm{Arg}(z)" /> five times. So <Katex tex="\tfrac{5\pi}{2}" /> is <em>an</em> argument of{' '}
-        <Katex tex="z^5" />, but it is bigger than <Katex tex="\pi" />, so it isn&apos;t the principal one.
+        <Katex tex="z^5=z\cdot z\cdot z\cdot z\cdot z" />, so its argument is <Katex tex="\mathrm{Arg}(z)" /> added five
+        times: five quarter-turns from the positive real axis. So{' '}
+        <Katex tex="\tfrac{5\pi}{2}" /> is <em>an</em> argument of <Katex tex="z^5" />, but it is bigger than{' '}
+        <Katex tex="\pi" />, so it isn&apos;t the principal one.
       </>
     ),
   },
@@ -36,18 +38,24 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{Arg}(z^5) = \tfrac{5\pi}{2} - 2\pi = \tfrac{\pi}{2}" />,
     reason: (
       <>
-        Subtract a full turn to land in <Katex tex="(-\pi,\pi]" />. A full turn changes nothing, so <Katex tex="z^5" />{' '}
-        points straight up, the same way as <Katex tex="z" />.
+        <Katex tex="\tfrac{5\pi}{2}" /> is outside <Katex tex="(-\pi,\pi]" />, so subtract a full turn,{' '}
+        <Katex tex="2\pi" />, which doesn&apos;t change the direction.
       </>
     ),
+    more: <>So <Katex tex="z^5" /> points straight up, the same way as <Katex tex="z" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{Arg}(w^4) = 4\times\tfrac{\pi}{4} = \pi" />,
     reason: (
       <>
         Same rule for <Katex tex="w^4" />. <Katex tex="\pi" /> is already in <Katex tex="(-\pi,\pi]" /> (the top end is
-        included). An argument of <Katex tex="\pi" /> means <Katex tex="w^4" /> lies on the negative real axis: it is a
-        negative real number.
+        included).
+      </>
+    ),
+    more: (
+      <>
+        An argument of <Katex tex="\pi" /> means <Katex tex="w^4" /> lies on the negative real axis: it is a negative
+        real number.
       </>
     ),
   },
@@ -55,8 +63,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{Arg}\!\left(\frac{z^5}{w^4}\right) = \mathrm{Arg}(z^5) - \mathrm{Arg}(w^4) = \tfrac{\pi}{2} - \pi" />,
     reason: (
       <>
-        Dividing complex numbers divides the moduli and <em>subtracts</em> the arguments. The result can land outside{' '}
-        <Katex tex="(-\pi,\pi]" />, in which case you add or subtract <Katex tex="2\pi" />, so check it.
+        Dividing complex numbers <em>subtracts</em> the arguments. The result can land outside{' '}
+        <Katex tex="(-\pi,\pi]" />, so check it.
       </>
     ),
   },
@@ -65,11 +73,19 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="-\tfrac{\pi}{2}" /> is inside <Katex tex="(-\pi,\pi]" />, so no adjustment is needed. Matches option{' '}
-        <b>A</b>. Options <b>D</b> and <b>E</b> are both bigger than <Katex tex="\pi" />, so they can never be a value of{' '}
-        <Katex tex="\mathrm{Arg}" />; option <b>B</b> is <Katex tex="\mathrm{Arg}(z^5)" /> on its own.
+        <b>A</b>.
       </>
     ),
-    more: <>See the Common Mistake below for option B.</>,
+    more: (
+      <>
+        Options <b>D</b> and <b>E</b> are both bigger than <Katex tex="\pi" />, so they can never be a value of{' '}
+        <Katex tex="\mathrm{Arg}" />. Option <b>D</b>,{' '}
+        <Katex tex="\tfrac{5\pi}{2}" />, is the row 1 value left unreduced, with the division by <Katex tex="w^4" /> also
+        ignored. Option <b>B</b> is <Katex tex="\mathrm{Arg}(z^5)" /> on its own, as if dividing by{' '}
+        <Katex tex="w^4" /> changed nothing (see the Common Mistake below), and option <b>C</b> is{' '}
+        <Katex tex="\mathrm{Arg}(w^4)" /> on its own.
+      </>
+    ),
   },
 ]
 

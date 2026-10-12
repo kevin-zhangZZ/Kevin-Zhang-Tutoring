@@ -35,7 +35,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \left(\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}\right)\hat{\underset{\sim}{b}} = \dfrac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{b}\right|^2}\,\underset{\sim}{b}" />
       </>
     ),
-    reason: <>The question hands us a vector resolute, so write down its formula: the scalar resolute <Katex tex="\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}" /> (how far <Katex tex="\underset{\sim}{a}" /> reaches along <Katex tex="\underset{\sim}{b}" />) times the unit vector <Katex tex="\hat{\underset{\sim}{b}}" />. Writing it with <Katex tex="\left|\underset{\sim}{b}\right|^2" /> avoids square roots, since <Katex tex="\hat{\underset{\sim}{b}}" /> appears twice. Note the result is always a multiple of <Katex tex="\underset{\sim}{b}" />.</>,
+    reason: <>The question gives a vector resolute, so start from its formula. The <Katex tex="\left|\underset{\sim}{b}\right|^2" /> form avoids square roots, since <Katex tex="\hat{\underset{\sim}{b}}" /> appears twice.</>,
+    more: <>The first form reads as the scalar resolute <Katex tex="\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}" /> (how far <Katex tex="\underset{\sim}{a}" /> reaches along <Katex tex="\underset{\sim}{b}" />) times the unit vector <Katex tex="\hat{\underset{\sim}{b}}" />. Either way, the result is always a multiple of <Katex tex="\underset{\sim}{b}" />, which matters below.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}=\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k}, \qquad \underset{\sim}{b}=m\underset{\sim}{i}+n\underset{\sim}{j}+p\underset{\sim}{k}" />,
@@ -46,7 +47,12 @@ const ROWS: WorkingRow[] = [
     reason: <>The dot product and the squared magnitude.</>,
   },
   {
-    working: <Katex display tex="\dfrac{m+n-p}{m^2+n^2+p^2}\left(m\underset{\sim}{i}+n\underset{\sim}{j}+p\underset{\sim}{k}\right) = 2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />,
+    working: (
+      <>
+        <Katex display tex="\dfrac{m+n-p}{m^2+n^2+p^2}\left(m\underset{\sim}{i}+n\underset{\sim}{j}+p\underset{\sim}{k}\right)" />
+        <Katex display tex="= 2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />
+      </>
+    ),
     reason: <>Set the resolute equal to the given vector, <Katex tex="2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />, not to <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k}" />, which is the vector being resolved.</>,
   },
   {
@@ -61,22 +67,24 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Option A}}" />,
-    reason: (
+    reason: <>Matches option <b>A</b>. These are the right equations to set up, though (as the report notes) they have no solution: a resolute can&apos;t be longer than the vector resolved, but here <Katex tex="\left|2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}\right|=\sqrt{14}" /> is more than <Katex tex="\left|\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k}\right|=\sqrt3" />.</>,
+    more: (
       <>
-        Matches option <b>A</b>. Option <b>B</b> puts the components of{' '}
+        Option <b>B</b> puts the components of{' '}
         <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k}" /> on the right instead of the
         resolute's. The others can be ruled out on sight: in <b>C</b> and <b>E</b> the same expression{' '}
         <Katex tex="m+n-p" /> is set equal to three different numbers, which is impossible, and <b>D</b> never uses the
         given resolute <Katex tex="2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" /> at all.
         <br />
-        The question only asks which equations you would <em>solve</em>. As the report points out, they actually have
-        no solution (the report's &ldquo;result of a vector&rdquo; means the resolute). A resolute is always parallel
-        to <Katex tex="\underset{\sim}{b}" />, so <Katex tex="\underset{\sim}{b}" /> would have to be parallel to{' '}
-        <Katex tex="2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />, and then the resolute is{' '}
-        <Katex tex="\tfrac{-2}{14}\left(2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}\right)" />, not{' '}
-        <Katex tex="2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />. Quicker still: a resolute can
-        never be longer than the vector being resolved, and here <Katex tex="\sqrt{14}\approx3.7" /> is longer than{' '}
-        <Katex tex="\left|\underset{\sim}{i}+\underset{\sim}{j}-\underset{\sim}{k}\right| = \sqrt3\approx1.7" />.
+        The report&apos;s &ldquo;result of a vector&rdquo; means the resolute. It can&apos;t be longer than the vector because its length is{' '}
+        <Katex tex="|\underset{\sim}{a}||\cos(\theta)|" />, where <Katex tex="\theta" /> is the angle between <Katex tex="\underset{\sim}{a}" /> and{' '}
+        <Katex tex="\underset{\sim}{b}" />, and <Katex tex="|\cos(\theta)|\le1" />. Another way to see it: as noted in
+        the first step, a resolute is always parallel to <Katex tex="\underset{\sim}{b}" />, so <Katex tex="\underset{\sim}{b}" /> would
+        have to be parallel to <Katex tex="2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />. Any multiple of it gives the same resolute, so take{' '}
+        <Katex tex="\underset{\sim}{b}=2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" />: then <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=(1)(2)+(1)(-3)+(-1)(1)=-2" />{' '}
+        and <Katex tex="|\underset{\sim}{b}|^2=2^2+(-3)^2+1^2=14" />, so the resolute is{' '}
+        <Katex tex="-\tfrac{2}{14}\left(2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}\right) = -\tfrac17\left(2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}\right)" />, not{' '}
+        <Katex tex="2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}" /> itself.
       </>
     ),
   },

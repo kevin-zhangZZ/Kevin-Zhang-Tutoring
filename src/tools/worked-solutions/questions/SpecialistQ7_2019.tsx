@@ -22,19 +22,22 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="L = \int_{t_1}^{t_2}\sqrt{\left(\dfrac{dx}{dt}\right)^2+\left(\dfrac{dy}{dt}\right)^2}\ dt" />,
-    reason: <>&ldquo;Length of the curve&rdquo; with <Katex tex="x" /> and <Katex tex="y" /> both given in terms of <Katex tex="t" /> is the parametric arc-length formula from the formula sheet, with <Katex tex="t" /> running from <Katex tex="0" /> to <Katex tex="\pi" />. Both derivatives are <em>squared</em> and then <em>added</em>, because each tiny piece of curve is a hypotenuse (see Background). That already rules out option <b>D</b>, which has no squares or root at all.</>,
+    reason: <><Katex tex="x" /> and <Katex tex="y" /> are both given in terms of <Katex tex="t" />, so use the parametric arc-length formula (formula sheet), with <Katex tex="t" /> from <Katex tex="0" /> to <Katex tex="\pi" />.</>,
+    more: <>Both derivatives are <em>squared</em> and then <em>added</em>, because each tiny piece of curve is a hypotenuse (see the Background). That already rules out option <b>D</b>, which has no squares or root at all.</>,
   },
   {
     working: <Katex display tex="\dfrac{dx}{dt} = 3\cos(t), \qquad \dfrac{dy}{dt} = -4\sin(t)" />,
-    reason: <>Differentiating each parametric equation with respect to <Katex tex="t" />. The derivative of <Katex tex="\cos(t)" /> is <Katex tex="-\sin(t)" />, so <Katex tex="\tfrac{dy}{dt}" /> is negative: the curve is heading down.</>,
+    reason: <>Differentiate each equation with respect to <Katex tex="t" />. The derivative of <Katex tex="\cos(t)" /> is <Katex tex="-\sin(t)" />.</>,
+    more: <><Katex tex="\tfrac{dy}{dt}" /> is negative on <Katex tex="(0,\pi)" />: the curve is heading down.</>,
   },
   {
     working: <Katex display tex="\left(\dfrac{dx}{dt}\right)^2+\left(\dfrac{dy}{dt}\right)^2 = 9\cos^2(t)+16\sin^2(t)" />,
-    reason: <>Square the whole derivative, sign included: <Katex tex="(-4\sin(t))^2 = (-4)^2\sin^2(t) = 16\sin^2(t)" />. A leg pointing downwards still has a positive length. Keeping the minus here is exactly the slip behind option <b>A</b>.</>,
+    reason: <>Square the whole derivative, sign included: <Katex tex="(-4\sin(t))^2 = (-4)^2\sin^2(t) = 16\sin^2(t)" />.</>,
+    more: <>A leg pointing downwards still has a positive length.</>,
   },
   {
     working: <Katex display tex="= 9\left(1-\sin^2(t)\right)+16\sin^2(t)" />,
-    reason: <>No option shows <Katex tex="9\cos^2(t)+16\sin^2(t)" /> as it stands, and options B and C use only <Katex tex="\sin^2(t)" />, so aim for that form: replace <Katex tex="\cos^2(t)" /> with <Katex tex="1-\sin^2(t)" />.</>,
+    reason: <>Options B and C use only <Katex tex="\sin^2(t)" />, so replace <Katex tex="\cos^2(t)" /> with <Katex tex="1-\sin^2(t)" />.</>,
   },
   {
     working: <Katex display tex="= 9-9\sin^2(t)+16\sin^2(t) = 9+7\sin^2(t)" />,
@@ -42,7 +45,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{L = \int_0^{\pi}\sqrt{9+7\sin^2(t)}\ dt}" />,
-    reason: <>Matches option <b>B</b>. Option <b>A</b> subtracts inside the root, which goes negative for most of the interval (at <Katex tex="t=\tfrac{\pi}{2}" /> it is <Katex tex="\sqrt{-16}" />). Option <b>E</b> writes <Katex tex="(3\cos(t))^2" /> as <Katex tex="3\cos^2(t)" />, forgetting to square the coefficients. Option <b>D</b> adds the derivatives without squaring and evaluates to <Katex tex="-8" />, a negative &ldquo;length&rdquo;. Option <b>C</b> is <Katex tex="\sqrt{1+\left(\tfrac{dy}{dt}\right)^2}" />, the cartesian formula <Katex tex="\sqrt{1+\left(\tfrac{dy}{dx}\right)^2}" /> with the wrong derivative in it.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>A</b> keeps the minus sign from <Katex tex="\tfrac{dy}{dt}" /> after squaring (see the Common Mistake below). Option <b>E</b> writes <Katex tex="(3\cos(t))^2" /> as <Katex tex="3\cos^2(t)" />, forgetting to square the coefficients. Option <b>D</b> adds the derivatives without squaring and evaluates to <Katex tex="-8" />, a negative &ldquo;length&rdquo;. Option <b>C</b> is <Katex tex="\sqrt{1+\left(\tfrac{dy}{dt}\right)^2}" />, the cartesian formula <Katex tex="\sqrt{1+\left(\tfrac{dy}{dx}\right)^2}" /> with the wrong derivative in it.</>,
   },
 ]
 

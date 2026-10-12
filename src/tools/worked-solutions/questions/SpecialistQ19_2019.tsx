@@ -26,7 +26,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="E(Z)=aE(X)+bE(Y)=4a+4b" />,
-    reason: <>Two unknowns need two equations, and the question gives exactly two facts about <Katex tex="Z" />: its mean and its variance. Start with the mean. Expected value is linear, so the constants come straight out.</>,
+    reason: <>Two unknowns need two equations: one from the mean of <Katex tex="Z" />, one from its variance. Expected value is linear, so the constants come straight out.</>,
   },
   {
     working: <Katex display tex="4a+4b=8 \implies a+b=2 \qquad (1)" />,
@@ -39,7 +39,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="=9a^2+9b^2" />
       </>
     ),
-    reason: <>This rule needs <b>independence</b>, which is given. The coefficients come out <b>squared</b> because variance measures squared distances from the mean: multiplying <Katex tex="X" /> by <Katex tex="a" /> multiplies every distance by <Katex tex="a" />, so every squared distance by <Katex tex="a^2" />. That is also why the variances always add, even if <Katex tex="b" /> turns out negative.</>,
+    reason: <><Katex tex="X" /> and <Katex tex="Y" /> are <b>independent</b>, so the variances add, each multiplied by its coefficient <b>squared</b>.</>,
+    more: <>The coefficients come out squared because variance measures squared distances from the mean: multiplying <Katex tex="X" /> by <Katex tex="a" /> multiplies every distance by <Katex tex="a" />, so every squared distance by <Katex tex="a^2" />.</>,
   },
   {
     working: <Katex display tex="9a^2+9b^2=90 \implies a^2+b^2=10 \qquad (2)" />,
@@ -52,8 +53,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="(2)\colon\ a^2+(2-a)^2=10" />
       </>
     ),
-    reason: <>One linear equation and one quadratic: make one variable the subject of the linear equation and substitute it into the quadratic, exactly as you would to find where a line meets a circle. That is what this is.</>,
-    more: <>The diagram below shows it.</>,
+    reason: <>One linear equation and one quadratic: make <Katex tex="b" /> the subject of the linear one and substitute into the quadratic.</>,
+    more: <>This is exactly how you find where a line meets a circle, and that is what it is: in the <Katex tex="(a,\ b)" /> plane, (1) is a line and (2) is a circle of radius <Katex tex="\sqrt{10}" />. The diagram below shows it.</>,
   },
   {
     working: (
@@ -71,11 +72,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="a=3,\ b=-1 \ \text{ or } \ a=-1,\ b=3" />
       </>
     ),
-    reason: <>Each value of <Katex tex="a" /> gives its <Katex tex="b" /> from <Katex tex="b=2-a" />. Two solutions, because a line can cross a circle twice.</>,
+    reason: <>Each value of <Katex tex="a" /> gives its <Katex tex="b" /> from <Katex tex="b=2-a" />, giving two pairs.</>,
+    more: <>Two solutions, because a line can cross a circle twice.</>,
   },
   {
     working: <Katex display tex="\boxed{a=3,\ b=-1}" />,
-    reason: <>Matches option <b>C</b>; the other solution, <Katex tex="a=-1,\ b=3" />, is not offered. Testing each option against both (1) and (2) is a quick exam alternative: <b>A</b>, <b>B</b> and <b>E</b> satisfy (1) but give variances <Katex tex="18" />, <Katex tex="180" /> and <Katex tex="180" />; <b>D</b> satisfies (2) but gives a mean of <Katex tex="16" />.</>,
+    reason: <>Matches option <b>C</b>; the other pair, <Katex tex="a=-1,\ b=3" />, is not offered.</>,
+    more: <>Testing each option against both (1) and (2) is a quick exam alternative: <b>A</b>, <b>B</b> and <b>E</b> satisfy (1) but give variances <Katex tex="18" />, <Katex tex="180" /> and <Katex tex="180" />; <b>D</b> satisfies (2) but gives a mean of <Katex tex="16" /> (see the Common Mistake below).</>,
   },
 ]
 

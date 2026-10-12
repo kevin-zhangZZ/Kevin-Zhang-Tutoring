@@ -28,19 +28,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\overline{x}\pm z\dfrac{\sigma}{\sqrt n}" />,
-    reason: <>&ldquo;Confidence interval for the mean&rdquo; with the population standard deviation <em>known</em> tells you it is a <Katex tex="z" /> interval: sample mean plus or minus <Katex tex="z" /> standard deviations of the sample mean. Here <Katex tex="\overline{x}=65" />, <Katex tex="\sigma=4" />, <Katex tex="n=36" />.</>,
+    reason: <>Population standard deviation known, so it is a <Katex tex="z" /> interval: sample mean <Katex tex="\pm\, z" /> standard deviations of the sample mean. Here <Katex tex="\overline{x}=65" />, <Katex tex="\sigma=4" />, <Katex tex="n=36" />.</>,
   },
   {
     working: <Katex display tex="98\%\text{ in the middle} \implies 1\%\text{ in each tail}" />,
-    reason: <>Always sketch the bell first. The interval holds the middle <Katex tex="98\%" />, so <Katex tex="2\%" /> is left over, and by symmetry it splits evenly between the two tails.</>,
+    reason: <>Sketch the bell: the middle <Katex tex="98\%" /> leaves <Katex tex="2\%" />, split evenly between the two tails.</>,
   },
   {
     working: <Katex display tex="z=\operatorname{invNorm}(0.99)\approx2.3263" />,
-    reason: <><Katex tex="\operatorname{invNorm}" /> measures area to the <b>left</b>. Left of the upper cut-off sits the middle <Katex tex="98\%" /> plus the lower tail&apos;s <Katex tex="1\%" />, which is <Katex tex="99\%" />, not <Katex tex="98\%" />. On the calculator: <Cas fn="invNorm">invNorm(0.99, 0, 1)</Cas>.</>,
+    reason: <><Katex tex="\operatorname{invNorm}" /> takes the area to the <b>left</b> of the upper cut-off: <Katex tex="98\%+1\%=99\%" />. On the calculator: <Cas fn="invNorm">invNorm(0.99, 0, 1)</Cas>.</>,
+    more: <>Not <Katex tex="0.98" />: left of the upper cut-off sits the middle <Katex tex="98\%" /> <em>plus</em> the whole lower tail.</>,
   },
   {
     working: <Katex display tex="\dfrac{\sigma}{\sqrt n}=\dfrac{4}{\sqrt{36}}=\dfrac{4}{6}\approx0.6667" />,
-    reason: <>The interval is for the <em>mean</em>, so the spread that matters is that of the sample mean, not of individual athletes. Averaging <Katex tex="36" /> masses cancels out much of the variation, shrinking the standard deviation by a factor of <Katex tex="\sqrt{36}=6" />.</>,
+    reason: <>The interval is for the <em>mean</em>, so use the standard deviation of the sample mean, <Katex tex="\tfrac{\sigma}{\sqrt n}" />, not of individual athletes.</>,
+    more: <>Averaging <Katex tex="36" /> masses cancels out much of the variation, shrinking the standard deviation by a factor of <Katex tex="\sqrt{36}=6" />.</>,
   },
   {
     working: <Katex display tex="2.3263\times0.6667\approx1.5509" />,
@@ -52,8 +54,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(63.4,\ 66.6)}" />,
-    reason: <>Matches option <b>D</b>. Option <b>B</b>, <Katex tex="(63.6,\ 66.4)" />, is what <Katex tex="z=\operatorname{invNorm}(0.98)\approx2.054" /> gives, a <Katex tex="96\%" /> interval. Option <b>C</b>, <Katex tex="(63.3,\ 66.7)" />, uses <Katex tex="z\approx2.576" />, the <Katex tex="99\%" /> interval. Option <b>A</b>, <Katex tex="(51.0,\ 79.0)" />, is <Katex tex="65\pm2.3263\times6" />: it uses <Katex tex="\sqrt{36}=6" /> where <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac46" /> belongs.</>,
-    more: <>See the Common Mistake below for option B.</>,
+    reason: <>Rounded to one decimal place. Matches option <b>D</b>.</>,
+    more: <>The distractors: option <b>B</b>, <Katex tex="(63.6,\ 66.4)" />, is what <Katex tex="z=\operatorname{invNorm}(0.98)\approx2.054" /> gives, a <Katex tex="96\%" /> interval (see the Common Mistake below). Option <b>C</b>, <Katex tex="(63.3,\ 66.7)" />, uses <Katex tex="z\approx2.576" />, the <Katex tex="99\%" /> interval. Option <b>A</b>, <Katex tex="(51.0,\ 79.0)" />, is <Katex tex="65\pm2.3263\times6" />: it uses <Katex tex="\sqrt{36}=6" /> where <Katex tex="\tfrac{\sigma}{\sqrt n}=\tfrac46" /> belongs.</>,
   },
 ]
 
@@ -88,9 +90,9 @@ export default function SpecialistQ18_2019() {
           <p>
             So in <Katex tex="98\%" /> of samples, <Katex tex="\overline{x}" /> lands within{' '}
             <Katex tex="z\tfrac{\sigma}{\sqrt n}" /> of <Katex tex="\mu" />, where <Katex tex="z" /> cuts off the middle{' '}
-            <Katex tex="98\%" /> of the standard normal. Turn that around: the interval{' '}
-            <Katex tex="\overline{x}\pm z\tfrac{\sigma}{\sqrt n}" /> built from <Katex tex="98\%" /> of samples will contain{' '}
-            <Katex tex="\mu" />. That is what &ldquo;<Katex tex="98\%" /> confidence&rdquo; means.
+            <Katex tex="98\%" /> of the standard normal. Turn that around: if we build the interval{' '}
+            <Katex tex="\overline{x}\pm z\tfrac{\sigma}{\sqrt n}" /> from each sample, <Katex tex="98\%" /> of those
+            intervals contain <Katex tex="\mu" />. That is what &ldquo;<Katex tex="98\%" /> confidence&rdquo; means.
           </p>
         </Background>
       }

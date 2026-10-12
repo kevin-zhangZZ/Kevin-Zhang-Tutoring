@@ -67,13 +67,14 @@ const EXAM_C: SAExaminerStats = {
 const EXAM_D: SAExaminerStats = {
   marks: [72, 27, 1],
   average: 0.3,
-  comment: <>Many students did not attempt this question. Of those who attempted it, most made errors relating to signs; giving the negative of the correct <Katex tex="p" /> value, or not accounting for the sign of <Katex tex="a" />.</>,
+  comment: <>Many students did not attempt this question. Of those who attempted it, most made errors relating to signs; giving the negative of the correct <Katex tex="p" /> value or not accounting for the sign of <Katex tex="a" />.</>,
 }
 
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="z = \dfrac{-4\pm\sqrt{4^2-4(2)(5)}}{2(2)} = \dfrac{-4\pm\sqrt{-24}}{4}" />,
-    reason: <>A "show that" has to start from the equation and arrive at the given roots, so solve it: quadratic formula with <Katex tex="a=2,\ b=4,\ c=5" />. The discriminant <Katex tex="16-40=-24" /> is negative, which is why the roots come out as a complex conjugate pair.</>,
+    reason: <>A "show that" must start from the equation and arrive at the given roots, so solve it: quadratic formula with <Katex tex="a=2,\ b=4,\ c=5" />.</>,
+    more: <>The discriminant <Katex tex="16-40=-24" /> is negative, which is why the roots come out as a complex conjugate pair.</>,
   },
   {
     working: <Katex display tex="\sqrt{-24} = \sqrt{24}\,i = 2\sqrt6\,i" />,
@@ -85,7 +86,7 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z = -1\pm\dfrac{\sqrt6}{2}i}" />,
-    reason: <>Dividing each term by <Katex tex="4" />. As required. The report stresses that a "show that" must start from the equation and lead to the given solutions, rather than substituting them in to verify.</>,
+    reason: <>Dividing each term by <Katex tex="4" />. As required.</>,
   },
 ]
 
@@ -97,7 +98,7 @@ const ROWS_AII: WorkingRow[] = [
         <Katex display tex="-1-\dfrac{\sqrt6}{2}i \ \leftrightarrow \ \left(-1,\ -\dfrac{\sqrt6}{2}\right)" />
       </>
     ),
-    reason: <>On an Argand diagram the real part is the horizontal coordinate and the imaginary part the vertical one. <Katex tex="\tfrac{\sqrt6}{2}\approx1.22" />, so both points sit a little above and below <Katex tex="-1" />.</>,
+    reason: <>On an Argand diagram the real part is the horizontal coordinate and the imaginary part the vertical one. <Katex tex="\tfrac{\sqrt6}{2}\approx1.22" />, so the points are <Katex tex="1.22" /> above and below <Katex tex="-1" /> on the real axis.</>,
   },
   {
     working: (
@@ -105,13 +106,14 @@ const ROWS_AII: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={argandSrc} alt="VCAA's Argand grid (−3 to 3, gridlines every 0.2) with the conjugate pair −1 ± (√6/2)i plotted and the circle of minimum radius through them, centred at −1" className="w-full max-w-[380px]" />
       </div>
     ),
-    reason: <>The two points, together with the circle from part b.iii. drawn through them. Conjugate roots are always mirror images in the real axis. Plot them carefully against the gridlines: <Katex tex="\tfrac{\sqrt6}{2}\approx1.22" /> sits just above the <Katex tex="1.2" /> gridline — the report notes some students did not plot the points accurately relative to the supplied gridlines and scale.</>,
+    reason: <>The two points, with the circle from part b.iii. drawn through them. Each point sits just beyond the <Katex tex="\pm1.2" /> gridline.</>,
+    more: <>Plot carefully against the gridlines (every <Katex tex="0.2" />): the report notes some students did not plot the points accurately relative to the supplied gridlines and scale.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
-    working: <Katex display tex="|z+m| = n \ \text{ is a circle of centre } -m \text{ and radius } n" />,
+    working: <Katex display tex="\begin{gathered} |z+m| = n \\ \text{is a circle of centre } -m \\ \text{and radius } n \end{gathered}" />,
     reason: <><Katex tex="|z-c|=r" /> is the set of points at distance <Katex tex="r" /> from <Katex tex="c" />. Here the centre is <Katex tex="-m" /> because the expression is <Katex tex="z+m=z-(-m)" />.</>,
   },
   {
@@ -121,17 +123,24 @@ const ROWS_BI: WorkingRow[] = [
         <Katex display tex="\text{the two points are ends of a diameter}" />
       </>
     ),
-    reason: <>The segment joining the two points is a chord of any circle through them, and no chord is longer than a diameter. So the diameter is at least the distance between the points, and the smallest circle is the one where that segment <em>is</em> a diameter: centre at the midpoint, radius half the distance.</>,
-    more: <>Drag the centre in the diagram below to see the radius grow as soon as the centre leaves the midpoint.</>,
+    reason: <>The segment joining the points is a chord of any circle through them, and no chord is longer than a diameter. So the smallest circle has that segment <em>as</em> its diameter.</>,
+    more: <>So the diameter is at least the distance between the points, with equality exactly when the segment is a diameter: centre at the midpoint, radius half the distance. Drag the centre in the diagram below to see the radius grow as soon as the centre leaves the midpoint.</>,
   },
   {
-    working: <Katex display tex="\text{midpoint} = \dfrac{\left(-1+\tfrac{\sqrt6}{2}i\right)+\left(-1-\tfrac{\sqrt6}{2}i\right)}{2} = -1" />,
+    working: (
+      <>
+        <Katex display tex="\text{centre} = \text{midpoint}" />
+        <Katex display tex="= \dfrac{\left(-1+\tfrac{\sqrt6}{2}i\right)+\left(-1-\tfrac{\sqrt6}{2}i\right)}{2}" />
+        <Katex display tex="= \dfrac{-2}{2} = -1" />
+      </>
+    ),
     reason: <>The imaginary parts cancel — as they always do for a conjugate pair, so the centre lands on the real axis.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="\text{radius} = \dfrac{1}{2}\left|\left(-1+\tfrac{\sqrt6}{2}i\right)-\left(-1-\tfrac{\sqrt6}{2}i\right)\right|" />
+        <Katex display tex="\text{radius} = \dfrac{1}{2}\Big|\left(-1+\tfrac{\sqrt6}{2}i\right)" />
+        <Katex display tex="-\left(-1-\tfrac{\sqrt6}{2}i\right)\Big|" />
         <Katex display tex="= \dfrac{1}{2}\left|\sqrt6\,i\right| = \dfrac{\sqrt6}{2}" />
       </>
     ),
@@ -139,7 +148,7 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m=1, \qquad n=\dfrac{\sqrt6}{2}}" />,
-    reason: <>Centre <Katex tex="-m=-1" /> gives <Katex tex="m=1" />. Check: <Katex tex="|z+1|" /> is <Katex tex="0" /> at <Katex tex="z=-1" />, so the centre really is <Katex tex="-1" />. The report notes <Katex tex="m=-1" /> was a common incorrect response.</>,
+    reason: <>Centre <Katex tex="-m=-1" />, so <Katex tex="m=1" />; radius <Katex tex="n=\tfrac{\sqrt6}{2}" />.</>,
   },
 ]
 
@@ -149,12 +158,13 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>From part b.i., with <Katex tex="m=1" /> and <Katex tex="n=\tfrac{\sqrt6}{2}" />.</>,
   },
   {
-    working: <Katex display tex="|(x+1)+yi| = \dfrac{\sqrt6}{2} \implies \sqrt{(x+1)^2+y^2} = \dfrac{\sqrt6}{2}" />,
+    working: <Katex display tex="\begin{aligned} &|(x+1)+yi| = \dfrac{\sqrt6}{2} \\ \implies &\sqrt{(x+1)^2+y^2} = \dfrac{\sqrt6}{2} \end{aligned}" />,
     reason: <>The modulus of <Katex tex="X+Yi" /> is <Katex tex="\sqrt{X^2+Y^2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(x+1)^2+y^2 = \dfrac{3}{2}}" />,
-    reason: <>Squaring: <Katex tex="\left(\tfrac{\sqrt6}{2}\right)^2=\tfrac{6}{4}=\tfrac32" />. Leave it in this form — the report notes algebraic errors from unnecessary attempts to isolate <Katex tex="y" />, and sign errors.</>,
+    reason: <>Squaring: <Katex tex="\left(\tfrac{\sqrt6}{2}\right)^2=\tfrac{6}{4}=\tfrac32" />. Leave it in this form.</>,
+    more: <>There is no need to make <Katex tex="y" /> the subject: the report notes algebraic errors resulting from unnecessary attempts to isolate <Katex tex="y" />.</>,
   },
 ]
 
@@ -167,10 +177,11 @@ const ROWS_C: WorkingRow[] = [
       </>
     ),
     reason: <>Quadratic formula again, with the new constant term.</>,
+    more: <>The report says most students who attempted this abandoned a potentially correct approach before reaching a conclusion. The quadratic formula is a correct start: keep going, one case at a time, as below.</>,
   },
   {
     working: <Katex display tex="\text{Require } |z+1| \le \dfrac{\sqrt6}{2}" />,
-    reason: <>Both roots must lie on or inside the circle from part b. Conveniently every root has the form <Katex tex="-1+(\text{something})" />, so <Katex tex="|z+1|" /> is just the size of that something.</>,
+    reason: <>Both roots must lie on or inside the circle, with <Katex tex="m=1" /> and <Katex tex="n=\tfrac{\sqrt6}{2}" /> from part b.i. Each root is <Katex tex="-1+(\text{something})" />, so <Katex tex="|z+1|" /> is the size of that something.</>,
   },
   {
     working: (
@@ -179,7 +190,7 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="\implies z=-1\pm\dfrac{\sqrt{8d-16}}{4}i" />
       </>
     ),
-    reason: <>A negative discriminant gives a conjugate pair displaced vertically from <Katex tex="-1" />.</>,
+    reason: <>That something is imaginary or real depending on the sign of <Katex tex="16-8d" />, so split into two cases. Negative: a conjugate pair straight above and below <Katex tex="-1" />.</>,
   },
   {
     working: (
@@ -197,7 +208,7 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="\implies z=-1\pm\dfrac{\sqrt{16-8d}}{4} \ \text{(both real)}" />
       </>
     ),
-    reason: <>This branch is easy to miss, but the question says <Katex tex="d\in R" /> and asks only that the solutions satisfy the relation — it never says they must be non-real. Real roots sit on the real axis and can perfectly well fall inside the circle.</>,
+    reason: <>Easy to miss: the question only says <Katex tex="d\in R" />, never that the roots are non-real. Real roots near <Katex tex="-1" /> lie inside the circle too.</>,
   },
   {
     working: (
@@ -210,7 +221,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-1\le d\le5}" />,
-    reason: <>Combining the two cases. Each case gave one end point: <Katex tex="d=-1" /> from the real roots, <Katex tex="d=5" /> from the non-real ones. Both cases really say the same thing, <Katex tex="\tfrac{\sqrt{|16-8d|}}{4}\le\tfrac{\sqrt6}{2}" />, i.e. <Katex tex="|16-8d|\le24" /> or <Katex tex="|d-2|\le3" />: an interval centred on <Katex tex="d=2" />, the value that gives a double root at the centre <Katex tex="-1" />. The report notes most students who reached a conclusion found only one end point of the interval.</>,
+    reason: <>Combining the cases: <Katex tex="d=-1" /> comes from the real roots, <Katex tex="d=5" /> from the non-real ones. Both end points count because the relation is <Katex tex="\le" />.</>,
+    more: <>Both cases really say the same thing, <Katex tex="\tfrac{\sqrt{|16-8d|}}{4}\le\tfrac{\sqrt6}{2}" />, i.e. <Katex tex="|16-8d|\le24" /> or <Katex tex="|d-2|\le3" />: an interval centred on <Katex tex="d=2" />, the value that gives a double root at the centre <Katex tex="-1" />.</>,
   },
 ]
 
@@ -225,11 +237,12 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{centre} = -\dfrac{b}{2a} \implies -p = -\dfrac{b}{2a} \implies \boxed{p=\dfrac{b}{2a}}" />,
-    reason: <>Same reasoning as part b.: the roots are straight above and below <Katex tex="-\tfrac{b}{2a}" />, so the smallest circle through them is centred at that common real part. The centre of <Katex tex="|z+p|=|z-(-p)|" /> is <Katex tex="-p" />, not <Katex tex="p" />, so set <Katex tex="-p" /> equal to the real part.</>,
+    reason: <>As in part b., the roots are straight above and below <Katex tex="-\tfrac{b}{2a}" />, so that is the centre. The centre of <Katex tex="|z+p|" /> is <Katex tex="-p" />.</>,
   },
   {
     working: <Katex display tex="\boxed{q = \left|\dfrac{\sqrt{4ac-b^2}}{2a}\right| = \dfrac{\sqrt{4ac-b^2}}{2|a|}}" />,
-    reason: <>The radius is the distance from the centre to either root, which is the <em>size</em> of the imaginary part. If <Katex tex="a" /> is negative, <Katex tex="\tfrac{\sqrt{4ac-b^2}}{2a}" /> is negative, and a radius can't be. So the denominator is <Katex tex="2|a|" />, which is the report's answer. The report notes that not accounting for the sign of <Katex tex="a" /> was a common error, as was giving the negative of the correct <Katex tex="p" /> value.</>,
+    reason: <>The radius is the distance from the centre to a root: the <em>size</em> of the imaginary part. If <Katex tex="a<0" /> the fraction is negative, so divide by <Katex tex="2|a|" />.</>,
+    more: <>This is the report's answer. When <Katex tex="a>0" />, <Katex tex="2|a|=2a" />, which is why forgetting the modulus is easy to miss.</>,
   },
 ]
 
@@ -274,10 +287,8 @@ export default function SpecialistQ2_2019Exam2() {
       <PartCard letter="b.i" topic="Circle Locus" marks={2} statement={<>Find <Katex tex="m" /> and <Katex tex="n" />.</>} examinerReport={EXAM_BI}>
         <Background>
           <p>
-            <Katex tex="|z-c|=r" /> is the Argand-plane way of writing "all points at distance{' '}
-            <Katex tex="r" /> from <Katex tex="c" />" — a circle. The smallest circle through two
-            given points is the one having them at opposite ends of a diameter, so its centre is
-            their midpoint and its radius is half the distance between them.
+            Plan: find the centre and radius of the smallest circle through the two roots from part a.,
+            then match them to the centre and radius of <Katex tex="|z+m|=n" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_BI} />
@@ -287,7 +298,7 @@ export default function SpecialistQ2_2019Exam2() {
         <WrongMethod
           title="|z + m| is a circle centred at m, and the centre is −1, so m = −1"
           source="Examiner's report"
-          working={<Katex display tex="\text{centre } -1 \implies m=-1 \implies |z-1|=\tfrac{\sqrt6}{2}" />}
+          working={<Katex display tex="\begin{aligned} &\text{centre } -1 \\ \implies &m=-1 \\ \implies &|z-1|=\tfrac{\sqrt6}{2} \end{aligned}" />}
         >
           <Katex tex="|z-c|" /> is the distance from <Katex tex="c" />, so first write <Katex tex="|z+m|" /> as{' '}
           <Katex tex="|z-(-m)|" />: the centre is <Katex tex="-m" />. With <Katex tex="m=-1" /> the circle is centred
@@ -314,22 +325,15 @@ export default function SpecialistQ2_2019Exam2() {
       </PartCard>
 
       <PartCard letter="b.iii" topic="Sketch Circle" marks={1} statement={<>Sketch the circle on the Argand diagram in <b>part a.ii.</b> Intercepts with the coordinate axes do not need to be calculated or labelled.</>} examinerReport={EXAM_BIII}>
-        <WorkingTable rows={[{ working: <>Drawn on the diagram in part a.ii. above: a circle centred at <Katex tex="-1" /> on the real axis, of radius <Katex tex="\tfrac{\sqrt6}{2}\approx1.22" />, passing through both plotted roots.</>, reason: <>Because the roots are the ends of a diameter, the circle must touch both of them and be centred midway between — a useful self-check when sketching.</> }]} />
+        <WorkingTable rows={[{ working: <>Drawn on the diagram in part a.ii. above: a circle centred at <Katex tex="-1" /> on the real axis, of radius <Katex tex="\tfrac{\sqrt6}{2}\approx1.22" />, passing through both plotted roots.</>, reason: <>Because the roots are the ends of a diameter, the circle must pass through both of them and be centred midway between — a useful self-check when sketching.</> }]} />
       </PartCard>
 
       <PartCard letter="c" topic="Roots in Region" marks={2} statement={<>Find all values of <Katex tex="d" />, where <Katex tex="d\in R" />, for which the solutions of <Katex tex="2z^2+4z+d=0" /> satisfy the relation <Katex tex="|z+m|\le n" />.</>} examinerReport={EXAM_C}>
         <Background>
           <p>
             The relation <Katex tex="|z+1|\le\tfrac{\sqrt6}{2}" /> describes the closed{' '}
-            <em>disc</em> — the circle together with its inside. So the question is: for which{' '}
-            <Katex tex="d" /> do both roots land inside or on that circle?
-          </p>
-          <p>
-            The trap is assuming the roots must be complex. Changing <Katex tex="d" /> changes the
-            discriminant, so for small enough <Katex tex="d" /> the roots become <em>real</em> —
-            and real numbers near <Katex tex="-1" /> are inside the disc too. Both cases have to
-            be checked — the report notes most students who reached a conclusion found only one
-            end point of the interval.
+            <em>disc</em>: the circle together with its inside. Changing <Katex tex="d" /> changes the
+            discriminant, so the roots can be real or non-real, and both kinds have to be checked.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -347,8 +351,7 @@ export default function SpecialistQ2_2019Exam2() {
           }
         >
           The report says most students who reached a conclusion found only one end point of the interval, and this
-          is one way that happens: it finds <Katex tex="d=5" /> but never <Katex tex="d=-1" />. The question asks for
-          all <Katex tex="d\in R" />, and nothing says the roots are non-real. For <Katex tex="-1\le d\le2" /> the
+          is one way that happens: it finds <Katex tex="d=5" /> but never <Katex tex="d=-1" />. For <Katex tex="-1\le d\le2" /> the
           roots are real numbers between <Katex tex="-1-\tfrac{\sqrt6}{2}" /> and <Katex tex="-1+\tfrac{\sqrt6}{2}" />,
           which sit inside the circle on the real axis. Whenever a parameter changes the discriminant, check both signs
           of it.
@@ -386,8 +389,7 @@ export default function SpecialistQ2_2019Exam2() {
         >
           It works only when <Katex tex="a>0" />. Multiply part b.&apos;s equation by <Katex tex="-1" />:{' '}
           <Katex tex="-2z^2-4z-5=0" /> has the same roots and the same circle, but this formula gives{' '}
-          <Katex tex="\tfrac{\sqrt{40-16}}{-4}=-\tfrac{\sqrt6}{2}" />, a negative radius. The radius is the{' '}
-          <em>size</em> of the imaginary part, so divide by <Katex tex="2|a|" />.
+          <Katex tex="\tfrac{\sqrt{40-16}}{-4}=-\tfrac{\sqrt6}{2}" />, a negative radius.
         </WrongMethod>
       </PartCard>
     </div>

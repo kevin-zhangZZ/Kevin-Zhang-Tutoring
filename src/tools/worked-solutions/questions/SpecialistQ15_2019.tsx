@@ -35,11 +35,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}(t) = \alpha\underset{\sim}{j} \quad (\alpha<0, \text{ constant})" />,
-    reason: <>The acceleration is entirely in the <Katex tex="\underset{\sim}{j}" /> direction, perpendicular to the initial motion along the <Katex tex="x" />-axis. Read the sign carefully: <Katex tex="\alpha" /> multiplies <Katex tex="\underset{\sim}{j}" />, so &ldquo;negative&rdquo; only says the push points down (the <Katex tex="-\underset{\sim}{j}" /> direction). It does not mean the particle slows down.</>,
+    reason: <>The acceleration is all in the <Katex tex="\underset{\sim}{j}" /> direction, perpendicular to the initial motion. <Katex tex="\alpha<0" /> only says it points down; it does not mean the particle slows down.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}(t) = \int\underset{\sim}{a}\,dt = \alpha t\,\underset{\sim}{j} + \underset{\sim}{c}" />,
-    reason: <>How would I know what to do? To describe a path, find <Katex tex="\underset{\sim}{r}(t)" />, and the only way from an acceleration to a position is to antidifferentiate twice. Do it component by component, with a constant <em>vector</em>.</>,
+    reason: <>To describe the path, find <Katex tex="\underset{\sim}{r}(t)" />: antidifferentiate the acceleration twice, component by component, with a constant <em>vector</em> each time.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}(0)=u\underset{\sim}{i} \implies \underset{\sim}{c}=u\underset{\sim}{i}" />,
@@ -51,7 +51,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{r}(t) = ut\,\underset{\sim}{i} + \dfrac{\alpha t^2}{2}\,\underset{\sim}{j}" />,
-    reason: <>Antidifferentiate again. The particle is somewhere on the <Katex tex="x" />-axis at <Katex tex="t=0" />; put the origin there. Starting elsewhere on the axis only slides the path sideways, it doesn&apos;t change its shape.</>,
+    reason: <>Antidifferentiate again, putting the origin where the particle is at <Katex tex="t=0" /> so the constant is zero.</>,
+    more: <>The particle is somewhere on the <Katex tex="x" />-axis at <Katex tex="t=0" />. Starting elsewhere on the axis only slides the path sideways; it doesn&apos;t change its shape, which is all the question asks about.</>,
   },
   {
     working: (
@@ -60,7 +61,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="y = \dfrac{\alpha}{2}\left(\dfrac{x}{u}\right)^2 = \dfrac{\alpha}{2u^2}x^2" />
       </>
     ),
-    reason: <>Eliminate <Katex tex="t" /> to get the cartesian path. Dividing by <Katex tex="u" /> is safe because the particle <em>is moving</em>, so <Katex tex="u\neq0" />. Then <Katex tex="y" /> is a constant multiple of <Katex tex="x^2" />: a parabola, opening downwards since <Katex tex="\alpha<0" />.</>,
+    reason: <>Eliminate <Katex tex="t" /> to get the Cartesian path (<Katex tex="u\neq0" />, since the particle <em>is moving</em>). <Katex tex="y" /> is a constant times <Katex tex="x^2" />: a parabola, opening down as <Katex tex="\alpha<0" />.</>,
   },
   {
     working: (
@@ -72,7 +73,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{a parabola (option E)}}" />,
-    reason: <>Matches option <b>E</b>. Checking the others: the speed <Katex tex="\sqrt{u^2+\alpha^2t^2}" /> <em>increases</em>, so A and B are out; the horizontal velocity stays <Katex tex="u\neq0" />, so the particle never travels parallel to the <Katex tex="y" />-axis, ruling out C; and a circular arc needs the acceleration to turn so it stays perpendicular to the current velocity, whereas here its direction is fixed, ruling out D.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Checking the others: the speed <Katex tex="\left|\underset{\sim}{v}\right|=\sqrt{u^2+\alpha^2t^2}" /> <em>increases</em>, so <b>A</b> and <b>B</b> are out (and the particle leaves the <Katex tex="x" />-axis, since <Katex tex="y\neq0" /> for <Katex tex="t>0" />). The horizontal velocity stays <Katex tex="u\neq0" />, so it never travels parallel to the <Katex tex="y" />-axis, ruling out <b>C</b>. A circular arc needs an acceleration that turns to stay perpendicular to the current velocity; this one has a fixed direction, ruling out <b>D</b>.</>,
   },
 ]
 
@@ -121,8 +123,7 @@ export default function SpecialistQ15_2019() {
             <p>
               <Katex tex="v=u+\alpha t" /> is the rule for an acceleration <em>along</em> the line of motion,{' '}
               <Katex tex="\underset{\sim}{a}=\alpha\underset{\sim}{i}" />. Here <Katex tex="\alpha" /> multiplies{' '}
-              <Katex tex="\underset{\sim}{j}" />: the push is at right angles to the motion, and its sign only says which way
-              it points. Nothing acts along <Katex tex="\underset{\sim}{i}" />, so the <Katex tex="\underset{\sim}{i}" />{' '}
+              <Katex tex="\underset{\sim}{j}" />: the push is at right angles to the motion. Nothing acts along <Katex tex="\underset{\sim}{i}" />, so the <Katex tex="\underset{\sim}{i}" />{' '}
               component of the velocity stays <Katex tex="u" /> for ever. Catch it by writing the acceleration in components
               before reading anything into a minus sign.
             </p>
@@ -140,8 +141,7 @@ export default function SpecialistQ15_2019() {
             <p>
               That dot product uses the velocity at <Katex tex="t=0" /> only. A moment later,{' '}
               <Katex tex="\underset{\sim}{v}(t)\cdot\underset{\sim}{a}=\left(u\underset{\sim}{i}+\alpha t\underset{\sim}{j}\right)\cdot\alpha\underset{\sim}{j}=\alpha^2t" />,
-              which is positive for <Katex tex="t>0" />. The push now has a part along the motion, and the speed{' '}
-              <Katex tex="\sqrt{u^2+\alpha^2t^2}" /> grows. A circle needs the acceleration to stay perpendicular to the{' '}
+              which is positive for <Katex tex="t>0" />. The push now has a part along the motion, so the particle speeds up. A circle needs the acceleration to stay perpendicular to the{' '}
               <em>current</em> velocity at every instant, turning with it; turn on the toggle in the diagram above to see
               that motion.
             </p>

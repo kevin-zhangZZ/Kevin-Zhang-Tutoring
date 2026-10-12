@@ -35,12 +35,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\tan(60^\circ) = \frac{r}{h} \;\implies\; r = h\tan(60^\circ) = \sqrt3\,h" />,
     reason: (
       <>
-        We are given <Katex tex="\tfrac{dV}{dt}" /> and want <Katex tex="\tfrac{dh}{dt}" />, so the plan is to write{' '}
-        <Katex tex="V" /> in terms of <Katex tex="h" /> alone. The cone has two dimensions, <Katex tex="r" /> and{' '}
-        <Katex tex="h" />, so first link them. The semi-vertex angle is measured from the vertical axis at the apex: in
-        the right triangle apex, centre, edge, <Katex tex="r" /> is opposite the <Katex tex="60^\circ" /> and{' '}
-        <Katex tex="h" /> is adjacent. The angle stays <Katex tex="60^\circ" /> as the pile grows, so this holds at every
-        instant.
+        Write <Katex tex="V" /> in terms of <Katex tex="h" /> alone, so first link <Katex tex="r" /> to{' '}
+        <Katex tex="h" />. The <Katex tex="60^\circ" /> is measured from the vertical axis: <Katex tex="r" /> is
+        opposite it, <Katex tex="h" /> adjacent.
+      </>
+    ),
+    more: (
+      <>
+        We are given <Katex tex="\tfrac{dV}{dt}" /> and want <Katex tex="\tfrac{dh}{dt}" />. The cone has two
+        dimensions, <Katex tex="r" /> and <Katex tex="h" />, but the chain rule needs a single variable.
+        The semi-vertex angle sits at the apex, in the right triangle apex, centre of base, edge of base. It stays{' '}
+        <Katex tex="60^\circ" /> as the pile grows, so <Katex tex="r=\sqrt3\,h" /> holds at every instant.
       </>
     ),
   },
@@ -63,17 +68,25 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Chain rule, arranged so the <Katex tex="dV" />s cancel: <Katex tex="\tfrac{dh}{dV}" /> is the reciprocal of{' '}
-        <Katex tex="\tfrac{dV}{dh}" />. Notice <Katex tex="3\pi h^2 = \pi(\sqrt3\,h)^2 = \pi r^2" />, the area of the
-        base: the height rises at (rate of volume) ÷ (area of the base).
+        <Katex tex="\tfrac{dV}{dh}" />.
       </>
     ),
-    more: <>The interactive below shows why.</>,
+    more: (
+      <>
+        Notice <Katex tex="3\pi h^2 = \pi(\sqrt3\,h)^2 = \pi r^2" />, the area of the base: the height rises at (rate of
+        volume) ÷ (area of the base). The interactive below shows why.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{dh}{dt} = \frac{1}{3\pi(0.5)^2}\times 1.5 = \frac{1.5}{0.75\pi}" />,
     reason: (
       <>
-        Substitute <Katex tex="\tfrac{dV}{dt}=1.5" /> and <Katex tex="h=0.5" /> only now, after differentiating.{' '}
+        Substitute <Katex tex="\tfrac{dV}{dt}=1.5" /> and <Katex tex="h=0.5" /> only now, after differentiating.
+      </>
+    ),
+    more: (
+      <>
         <Katex tex="h" /> is changing, so putting <Katex tex="h = 0.5" /> in before differentiating would make{' '}
         <Katex tex="V" /> a constant.
       </>
@@ -83,10 +96,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\frac{dh}{dt} = \frac{2}{\pi} \approx 0.64}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option <b>A</b>, <Katex tex="\tfrac{2}{3\pi}\approx0.21" />, is what you get by leaving
-        the <Katex tex="\tfrac13" /> out of the cone's volume. Option <b>E</b>,{' '}
-        <Katex tex="1.5\times 3\pi(0.5)^2 \approx 3.53" />, multiplies by <Katex tex="\tfrac{dV}{dh}" /> instead of
-        dividing.
+        Matches option <b>C</b>, in metres per minute.
       </>
     ),
   },

@@ -27,15 +27,18 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{sd}\left(\overline{X}\right)=\dfrac{\sigma}{\sqrt n}=\dfrac{0.2887}{\sqrt{100}}=0.02887" />,
-    reason: <>The test is about a <em>sample mean</em>, so we need the spread of <Katex tex="\overline{X}" />, not of single random numbers. Averaging <Katex tex="100" /> numbers shrinks the standard deviation by a factor of <Katex tex="\sqrt{100}=10" />.</>,
+    reason: <>The test is about a <em>sample mean</em>, so use the standard deviation of <Katex tex="\overline{X}" />, <Katex tex="\tfrac{\sigma}{\sqrt n}" />, not of single random numbers.</>,
+    more: <>Averaging <Katex tex="100" /> numbers shrinks the standard deviation by a factor of <Katex tex="\sqrt{100}=10" />.</>,
   },
   {
     working: <Katex display tex="\overline{X}\sim N\!\left(0.5,\ 0.02887^2\right)" />,
-    reason: <>Everything is worked out <b>assuming <Katex tex="H_0" /> is true</b>, so the mean is <Katex tex="0.5" />. The random numbers themselves are uniform, not normal, but the mean of <Katex tex="100" /> of them is approximately normal (central limit theorem).</>,
+    reason: <>Work <b>assuming <Katex tex="H_0" /> is true</b>, so the mean is <Katex tex="0.5" />. The mean of <Katex tex="100" /> numbers is approximately normal.</>,
+    more: <>The random numbers themselves are uniform, not normal, but the mean of a large sample of them is approximately normal (central limit theorem).</>,
   },
   {
     working: <Katex display tex="p=\Pr\left(\overline{X}\le0.4725 \mid \mu=0.5\right)" />,
-    reason: <>The <Katex tex="p" /> value is the probability of a sample mean at least as extreme as the one observed, if <Katex tex="H_0" /> is true. <Katex tex="H_1:\mu<0.5" /> says which way &ldquo;extreme&rdquo; points: <em>smaller</em>. So it is the left tail only; a one-sided test has no doubling.</>,
+    reason: <>The <Katex tex="p" /> value is the chance, under <Katex tex="H_0" />, of a sample mean at least this extreme. <Katex tex="H_1:\mu<0.5" /> points left, so take the left tail only.</>,
+    more: <>A one-sided test has no doubling: you would only count both tails if <Katex tex="H_1" /> were <Katex tex="\mu\neq0.5" />.</>,
   },
   {
     working: (
@@ -48,12 +51,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p=\Pr(Z<-0.9525)\approx0.1704" />,
-    reason: <>Standard normal lower tail. Or skip the <Katex tex="z" /> step and use the distribution of <Katex tex="\overline{X}" /> directly: <Cas fn="normCdf">normCdf(−∞, 0.4725, 0.5, 0.2887/√100)</Cas>.</>,
+    reason: <>Standard normal lower tail: <Cas fn="normCdf">normCdf(−∞, −0.9525, 0, 1)</Cas>.</>,
+    more: <>Or skip the <Katex tex="z" /> step and use the distribution of <Katex tex="\overline{X}" /> directly: <Cas fn="normCdf">normCdf(−∞, 0.4725, 0.5, 0.2887/√100)</Cas> gives the same <Katex tex="0.1704" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p\approx0.1704}" />,
-    reason: <>Matches option <b>B</b>. Option <b>D</b>, <Katex tex="0.8296=1-0.1704" />, is the upper tail, the wrong direction for <Katex tex="H_1" />. Option <b>E</b>, <Katex tex="0.9525" />, is the size of the <Katex tex="z" /> value, not a probability. Option <b>C</b>, <Katex tex="0.4621" />, standardises with <Katex tex="\sigma" /> instead of <Katex tex="\tfrac{\sigma}{\sqrt n}" />, and option <b>A</b>, <Katex tex="0.0953" />, is the size of that wrong <Katex tex="z" /> value. Since <Katex tex="p>0.05" />, this sample gives no real evidence that the calculator is faulty.</>,
-    more: <>See the Common Mistake below for option C.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>The distractors: option <b>D</b>, <Katex tex="0.8296=1-0.1704" />, is the upper tail, the wrong direction for <Katex tex="H_1" />. Option <b>E</b>, <Katex tex="0.9525" />, is the size of the <Katex tex="z" /> value, not a probability. Option <b>C</b>, <Katex tex="0.4621" />, standardises with <Katex tex="\sigma" /> instead of <Katex tex="\tfrac{\sigma}{\sqrt n}" /> (see the Common Mistake below), and option <b>A</b>, <Katex tex="0.0953" />, is the size of that wrong <Katex tex="z" /> value. Since <Katex tex="p>0.05" />, this sample gives no real evidence that the calculator is faulty.</>,
   },
 ]
 
@@ -121,7 +125,7 @@ export default function SpecialistQ20_2019() {
             <p>
               <Katex tex="\sigma=0.2887" /> is the spread of <em>single</em> random numbers. The test is about the mean of{' '}
               <Katex tex="100" /> of them, and averages vary much less than single values: the standard deviation of{' '}
-              <Katex tex="\overline{X}" /> is <Katex tex="\tfrac{\sigma}{\sqrt n}=0.02887" />, ten times smaller. Using{' '}
+              <Katex tex="\overline{X}" /> is <Katex tex="\tfrac{\sigma}{\sqrt n}=0.02887" />. Using{' '}
               <Katex tex="\sigma" /> makes a sample mean <Katex tex="0.0275" /> below <Katex tex="0.5" /> look tiny, when
               for means of <Katex tex="100" /> it is almost a whole standard deviation.
             </p>

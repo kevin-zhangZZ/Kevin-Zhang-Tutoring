@@ -23,19 +23,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="2x-8=0 \implies x=4" />,
-    reason: <>Vertical asymptotes come from the denominator being zero. Check the numerator there too: <Katex tex="4^2+1=17\ne0" />, so the function really blows up at <Katex tex="x=4" /> (if the numerator were also zero, it could be a hole instead).</>,
+    reason: <>Vertical asymptotes come from the denominator being zero. The numerator there is <Katex tex="4^2+1=17\ne0" />, so it is a genuine asymptote, not a hole.</>,
   },
   {
     working: <Katex display tex="\deg(\text{numerator}) = 2 > 1 = \deg(\text{denominator})" />,
-    reason: <>For large <Katex tex="x" /> the top grows like <Katex tex="x^2" /> and the bottom only like <Katex tex="x" />, so <Katex tex="f(x)" /> grows roughly like a multiple of <Katex tex="x" />: no horizontal asymptote, but a slanted (oblique) one. To find its exact equation, divide.</>,
+    reason: <>The top&apos;s degree is one more than the bottom&apos;s, so <Katex tex="f(x)" /> grows roughly like a multiple of <Katex tex="x" />: expect an oblique (slanted) asymptote. Divide to find it.</>,
+    more: <>For large <Katex tex="x" /> the top grows like <Katex tex="x^2" /> and the bottom only like <Katex tex="x" />, so <Katex tex="f(x)" /> never levels off: there is no horizontal asymptote.</>,
   },
   {
     working: <Katex display tex="x^2+1 = (2x-8)\left(\dfrac{x}{2}+2\right)+17" />,
-    reason: <>Polynomial division, one term at a time. <Katex tex="\tfrac{x}{2}" /> times <Katex tex="2x-8" /> gives <Katex tex="x^2-4x" />, leaving <Katex tex="4x+1" />; then <Katex tex="2" /> times <Katex tex="2x-8" /> gives <Katex tex="4x-8" />, leaving <Katex tex="17" />. Check by expanding: <Katex tex="(2x-8)\left(\tfrac{x}{2}+2\right)+17=x^2-16+17=x^2+1" /> ✓</>,
+    reason: <>Polynomial division: <Katex tex="x^2\div2x=\tfrac{x}{2}" />, and <Katex tex="\tfrac{x}{2}(2x-8)=x^2-4x" /> leaves <Katex tex="4x+1" />. Then <Katex tex="4x\div2x=2" />, and <Katex tex="2(2x-8)=4x-8" /> leaves <Katex tex="17" />.</>,
+    more: <>Check by expanding: <Katex tex="(2x-8)\left(\tfrac{x}{2}+2\right)+17=x^2-16+17=x^2+1" /> ✓</>,
   },
   {
     working: <Katex display tex="f(x) = \dfrac{x}{2}+2+\dfrac{17}{2x-8}" />,
-    reason: <>Dividing the identity above through by <Katex tex="2x-8" />. This form splits <Katex tex="f" /> into a straight line plus a remainder fraction whose top is a constant.</>,
+    reason: <>Dividing the identity above through by <Katex tex="2x-8" />: a straight line plus a remainder fraction whose top is a constant.</>,
   },
   {
     working: (
@@ -44,12 +46,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies f(x)\to\dfrac{x}{2}+2" />
       </>
     ),
-    reason: <>A constant over something growing without bound goes to <Katex tex="0" />. So the vertical gap between the curve and the line <Katex tex="y=\tfrac{x}{2}+2" /> shrinks to nothing at both ends: that line is the asymptote.</>,
+    reason: <>A constant over something growing without bound tends to <Katex tex="0" />, so the curve approaches the whole line <Katex tex="y=\tfrac{x}{2}+2" /> at both ends.</>,
   },
   {
     working: <Katex display tex="\boxed{x=4 \ \text{ and } \ y=\dfrac{x}{2}+2}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b> drops the <Katex tex="+2" />: it is what you get by dividing only the leading terms. <b>A</b> misses the oblique asymptote entirely, and <b>D</b> and <b>E</b> put the vertical asymptote at <Katex tex="x=8" />, where the denominator is <Katex tex="8\ne0" />.</>,
-    more: <>See the Common Mistake below for option B.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>B</b> drops the <Katex tex="+2" />: it is what you get by dividing only the leading terms (see the Common Mistake below). <b>A</b> misses the oblique asymptote entirely, and <b>D</b> and <b>E</b> put the vertical asymptote at <Katex tex="x=8" />, where the denominator is <Katex tex="8\ne0" /> (as if <Katex tex="2x=8" /> gave <Katex tex="x=8" /> without halving). <b>E</b> also turns the slope upside down: <Katex tex="2x" /> instead of <Katex tex="\tfrac{x}{2}" />.</>,
   },
 ]
 
@@ -95,7 +97,7 @@ export default function SpecialistQ2_2019() {
               The leading terms give the <em>slope</em> of the asymptote, <Katex tex="\tfrac{1}{2}" />, but not its height.
               The constant comes from the next step of the division, when the <Katex tex="-8" /> in the denominator acts on
               the <Katex tex="\tfrac{x}{2}" />. The line <Katex tex="y=\tfrac{x}{2}" /> is parallel to the true asymptote but
-              always about <Katex tex="2" /> units below the curve: <Katex tex="f(x)-\tfrac{x}{2}=2+\tfrac{17}{2x-8}\to2" />, not{' '}
+              2 units below it, so the curve does not get close to it: <Katex tex="f(x)-\tfrac{x}{2}=2+\tfrac{17}{2x-8}\to2" />, not{' '}
               <Katex tex="0" />.
             </p>
             <p>
