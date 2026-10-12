@@ -29,8 +29,9 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta \qquad |\underset{\sim}{a}\times\underset{\sim}{b}| = |\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta" />,
-    reason: <>Standard formulas, where <Katex tex="\theta" /> is the angle between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, <Katex tex="\theta\in[0,\pi]" /> (so <Katex tex="\sin\theta\geq0" /> always).</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{a}\cdot\underset{\sim}{b} &= |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta \\ |\underset{\sim}{a}\times\underset{\sim}{b}| &= |\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta \end{aligned}" />,
+    reason: <>Standard formulas, where <Katex tex="\theta\in[0,\pi]" /> is the angle between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, so <Katex tex="\sin\theta\geq0" />.</>,
+    more: <>The report writes the second formula as <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\sin(\theta)" />, without the modulus bars on the left. The cross product is a vector, so it cannot equal a number: it is its <em>magnitude</em> <Katex tex="|\underset{\sim}{a}\times\underset{\sim}{b}|" /> that equals <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta" />, which is exactly the quantity in the question.</>,
   },
   {
     working: <Katex display tex="|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta = |\underset{\sim}{a}||\underset{\sim}{b}|\sin\theta" />,
@@ -38,11 +39,23 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos\theta = \sin\theta \;\implies\; \tan\theta = 1" />,
-    reason: <>Divide through by <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" /> (non-zero, since both vectors are non-zero and the equality forces <Katex tex="\cos\theta\geq0" />).</>,
+    reason: <>Cancel <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|" /> (non-zero), then divide by <Katex tex="\cos\theta" />, which is non-zero: otherwise <Katex tex="\sin\theta=0" /> too, but <Katex tex="\sin^2\theta+\cos^2\theta=1" />.</>,
+    more: <>The report writes <Katex tex="\cos(\theta)=|\sin(\theta)|" />. The modulus changes nothing here, because <Katex tex="\sin\theta\geq0" /> for every angle between two vectors (<Katex tex="0\leq\theta\leq\pi" />).</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = \tfrac{\pi}{4}}" />,
-    reason: <>The only solution in <Katex tex="[0,\pi]" /> with <Katex tex="\cos\theta=\sin\theta" /> and both positive . Matches option <b>B</b>.</>,
+    reason: <>The only angle in <Katex tex="[0,\pi]" /> with <Katex tex="\tan\theta=1" /> (at <Katex tex="\tfrac{3\pi}{4}" />, <Katex tex="\tan\theta=-1" />). Matches option <b>B</b>.</>,
+    more: (
+      <>
+        Checking each option against <Katex tex="\cos\theta=\sin\theta" />:
+        <br />
+        <b>A</b> (<Katex tex="0" />, 17%): parallel vectors, so <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|" /> but <Katex tex="|\underset{\sim}{a}\times\underset{\sim}{b}|=0" />.
+        <br />
+        <b>C</b> (<Katex tex="\tfrac{\pi}{2}" />, 30%, the most common wrong answer) is tempting because <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}" /> is perpendicular to both vectors, but that is its direction, not the angle between them. At <Katex tex="\tfrac{\pi}{2}" /> the vectors are perpendicular, so <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=0" /> but <Katex tex="|\underset{\sim}{a}\times\underset{\sim}{b}|=|\underset{\sim}{a}||\underset{\sim}{b}|" />. Here <Katex tex="\cos\theta=0" /> while <Katex tex="\sin\theta=1" />, so the two quantities are not equal.
+        <br />
+        <b>D</b> (<Katex tex="\tfrac{3\pi}{4}" />, 5%): <Katex tex="\cos\theta=-\tfrac{\sqrt2}{2}" /> makes the dot product negative, but a magnitude is never negative.
+      </>
+    ),
   },
 ]
 

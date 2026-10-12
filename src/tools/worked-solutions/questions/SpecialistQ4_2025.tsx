@@ -63,15 +63,16 @@ print sum`}
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\pi\big(f(x)\big)^2 = \pi\left(\sqrt{x+1}\right)^2 = \pi(x+1)" />,
-    reason: <>The squaring undoes the square root, so each pass adds a simple multiple of π.</>,
+    reason: <>Simplify the volume line first: squaring undoes the square root, so each pass adds <Katex tex="\pi(\text{left}+1)" />.</>,
+    more: <>Each pass is the volume of one disc of radius <Katex tex="f(\text{left})" /> and thickness 1, so the algorithm adds up three unit-thick discs to estimate the volume of revolution of <Katex tex="y=\sqrt{x+1}" /> about the <Katex tex="x" />-axis. You don't need that interpretation to answer — only to trace the loop carefully.</>,
   },
   {
     working: <Katex display tex="\text{left}=1: \quad \text{volume} = 2\pi, \quad \text{sum} = 2\pi" />,
-    reason: <>First pass. left becomes 2.</>,
+    reason: <>sum starts at 0 and left starts at <Katex tex="a=1" />; <Katex tex="1\leq3" /> so the loop runs. Then left becomes 2.</>,
   },
   {
     working: <Katex display tex="\text{left}=2: \quad \text{volume} = 3\pi, \quad \text{sum} = 5\pi" />,
-    reason: <>Second pass. left becomes 3.</>,
+    reason: <>Second pass: <Katex tex="2\leq3" />, add <Katex tex="\pi(2+1)" />. left becomes 3.</>,
   },
   {
     working: <Katex display tex="\text{left}=3: \quad \text{volume} = 4\pi, \quad \text{sum} = 9\pi" />,
@@ -79,11 +80,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{left}=4 > 3 \implies \text{loop ends}" />,
-    reason: <>The test fails, so nothing more is added.</>,
+    reason: <>The test is checked before the body runs, so with left = 4 nothing more is added and sum is printed.</>,
   },
   {
     working: <Katex display tex="\boxed{9\pi}" />,
-    reason: <>Matches option <b>B</b>. Stopping at left = 2 gives <Katex tex="5\pi" />; running to left = 4 gives <Katex tex="14\pi" /> — both are offered as distractors.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>
+      The distractors come from tracing slips:{' '}
+      <b>A</b> (<Katex tex="5\pi" />) stops after two passes, as if the test were <Katex tex="\text{left}<b" />;{' '}
+      <b>C</b> (<Katex tex="14\pi" />) runs a fourth pass with left = 4, adding <Katex tex="5\pi" />;{' '}
+      <b>D</b> (<Katex tex="29\pi=\pi(2^2+3^2+4^2)" />) squares <Katex tex="\text{left}+1" /> instead of <Katex tex="\sqrt{\text{left}+1}" />.
+      A table with one row per pass (left, volume, sum), as in the report, makes the stopping point hard to miss.
+    </>,
   },
 ]
 

@@ -30,27 +30,36 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{n_1} = (2,2,1) \qquad \underset{\sim}{n_2} = (a,0,4)" />,
-    reason: <>Normal vectors read off from each plane’s equation.</>,
+    reason: <>A plane <Katex tex="Ax+By+Cz=D" /> has normal <Katex tex="(A,B,C)" />. The second plane has no <Katex tex="y" /> term, so its middle component is 0.</>,
   },
   {
-    working: <Katex display tex="\cos(\text{angle}) = \frac{|\underset{\sim}{n_1}\cdot\underset{\sim}{n_2}|}{|\underset{\sim}{n_1}||\underset{\sim}{n_2}|} = \frac{|2a+4|}{3\sqrt{a^2+16}}" />,
-    reason: <>Angle between planes = angle between normals; <Katex tex="|\underset{\sim}{n_1}|=\sqrt{4+4+1}=3" />.</>,
+    working: <Katex display tex="\cos\theta = \frac{|\underset{\sim}{n_1}\cdot\underset{\sim}{n_2}|}{|\underset{\sim}{n_1}||\underset{\sim}{n_2}|} = \frac{|2a+4|}{3\sqrt{a^2+16}}" />,
+    reason: <>The angle between planes is the angle between their normals. <Katex tex="|\underset{\sim}{n_1}|=\sqrt{4+4+1}=3" />, <Katex tex="|\underset{\sim}{n_2}|=\sqrt{a^2+16}" />. The modulus gives the acute angle.</>,
+    more: <>Two planes meet at two angles, <Katex tex="\theta" /> and <Katex tex="\pi-\theta" />; the modulus makes the cosine non-negative, so it picks the acute one. The report leaves it off, which is fine here because the next line shows <Katex tex="2a+4" /> is positive anyway.</>,
   },
   {
-    working: <Katex display tex="a>0 \;\implies\; 2a+4>0 \;\implies\; |2a+4|=2a+4" />,
-    reason: <>Drop the absolute value using the given sign of a.</>,
+    working: <Katex display tex="a>0 \implies |2a+4|=2a+4" />,
+    reason: <>The question says <Katex tex="a" /> is positive, so <Katex tex="2a+4>0" /> and the modulus can be dropped.</>,
   },
   {
     working: <Katex display tex="\frac{2a+4}{3\sqrt{a^2+16}} = \frac{2}{3}" />,
-    reason: <>Set equal to the given <Katex tex="\cos\big(\cos^{-1}(2/3)\big)=2/3" />.</>,
+    reason: <>The angle is <Katex tex="\cos^{-1}\!\big(\tfrac23\big)" />, so its cosine is <Katex tex="\tfrac23" />.</>,
+    more: <>This is the report&rsquo;s equation too. Option <b>B</b> (20%) has the right-hand side upside down (<Katex tex="\tfrac32" />), and option <b>D</b> (14%) has left out <Katex tex="|\underset{\sim}{n_1}|=3" /> from the denominator.</>,
   },
   {
-    working: <Katex display tex="3(2a+4) = 2\cdot3\sqrt{a^2+16} \;\implies\; 6a+12 = 6\sqrt{a^2+16}" />,
-    reason: <>Cross-multiply.</>,
+    working: <Katex display tex="6a+12 = 6\sqrt{a^2+16}" />,
+    reason: <>Multiply both sides by <Katex tex="3\cdot3\sqrt{a^2+16}" /> (cross-multiply).</>,
   },
   {
     working: <Katex display tex="\boxed{a+2 = \sqrt{a^2+16}}" />,
     reason: <>Divide through by 6. Matches option <b>A</b>.</>,
+    more: (
+      <>
+        Check: squaring gives <Katex tex="a^2+4a+4=a^2+16" />, so <Katex tex="a=3" />, and then <Katex tex="\tfrac{2(3)+4}{3\sqrt{25}}=\tfrac{10}{15}=\tfrac23" /> as required.
+        <br />
+        Option <b>C</b> (14%), <Katex tex="2a+4=3\sqrt{a^2+16}" />, says the cosine equals 1 (the planes would be parallel); it has no solution at all. Options <b>B</b> and <b>D</b> have no positive solution either, so A is the only option a positive <Katex tex="a" /> can satisfy.
+      </>
+    ),
   },
 ]
 

@@ -133,18 +133,19 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(1,\,0)}" />,
-    reason: <>In coordinate form — the report notes a common error was not presenting the answer this way.</>,
+    reason: <>Give the position as a coordinate pair.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="t = 2\pi: \quad x = 5\cos(2\pi)-4\cos(5\pi) = 5-4(-1) = 9, \qquad y = 0-0 = 0" />,
-    reason: <>So (9, 0) is where the particle sits after one full turn of the slower pair of terms — the point the arrow must be drawn at.</>,
+    working: <Katex display tex="\begin{aligned} t = 2\pi: \quad x &= 5\cos(2\pi)-4\cos(5\pi) \\ &= 5-4(-1) = 9 \\ y &= 5\sin(2\pi)-4\sin(5\pi) = 0 \end{aligned}" />,
+    reason: <>First find when the particle is at (9, 0). <Katex tex="x=9" /> needs <Katex tex="\cos(t)=1" /> and <Katex tex="\cos\left(\tfrac{5t}{2}\right)=-1" /> together, and <Katex tex="t=2\pi" /> does both.</>,
+    more: <>The largest <Katex tex="x" /> can ever be is <Katex tex="5+4=9" />, and only when both cosines are at their extremes: <Katex tex="\cos(t)=1" /> (so <Katex tex="t=0,\,2\pi,\ldots" />) and <Katex tex="\cos\left(\tfrac{5t}{2}\right)=-1" />. At <Katex tex="t=0" /> the second cosine is <Katex tex="+1" />, but at <Katex tex="t=2\pi" /> it is <Katex tex="\cos(5\pi)=-1" />. So (9, 0) is the right-most point of the whole path, reached at <Katex tex="t=2\pi" />.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{v}(t) = \left(-5\sin(t)+10\sin\left(\tfrac{5t}{2}\right)\right)\underset{\sim}{i}+\left(5\cos(t)-10\cos\left(\tfrac{5t}{2}\right)\right)\underset{\sim}{j}" />,
-    reason: <>Differentiating each component.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{v}(t) = {}&\left(-5\sin(t)+10\sin\left(\tfrac{5t}{2}\right)\right)\underset{\sim}{i} \\ &+\left(5\cos(t)-10\cos\left(\tfrac{5t}{2}\right)\right)\underset{\sim}{j} \end{aligned}" />,
+    reason: <>The velocity gives the direction of motion. Differentiate each component (chain rule on the <Katex tex="\tfrac{5t}{2}" /> terms).</>,
   },
   {
     working: <Katex display tex="t = 2\pi: \quad \underset{\sim}{v} = (0)\underset{\sim}{i}+\big(5-10(-1)\big)\underset{\sim}{j} = 15\,\underset{\sim}{j}" />,
@@ -152,56 +153,77 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{moving up at } (9,\,0) \implies \text{anticlockwise}" />,
-    reason: <>At the rightmost reach of the path, moving upward means turning anticlockwise.</>,
+    reason: <>At the right-most point of the path, moving upward means turning anticlockwise.</>,
   },
   {
     working: <PathAnswer part="b" />,
-    reason: <>The arrow drawn from <Katex tex="(9,0)" />, as the question asks — the report notes many responses did not follow the instruction to base the arrow on that point.</>,
+    reason: <>The arrow starts at <Katex tex="(9,0)" /> and points straight up.</>,
+    more: <>The report notes many responses did not follow the instruction to base the arrow on the point (9, 0). The path crosses itself several times, so an arrow drawn anywhere else is easy to misread — put it exactly where the question says.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(t), \sin(t) \text{ have period } 2\pi" />,
-    reason: <>The first pair of terms repeats every 2π.</>,
+    reason: <>The particle is surely back at the start once both pairs of terms are back to their <Katex tex="t=0" /> values. The first pair repeats every 2π.</>,
   },
   {
     working: <Katex display tex="\cos\left(\tfrac{5t}{2}\right), \sin\left(\tfrac{5t}{2}\right) \text{ have period } \frac{2\pi}{\frac52} = \frac{4\pi}{5}" />,
-    reason: <>The second pair has the shorter period, repeating two and a half times as often as the first.</>,
+    reason: <>Period <Katex tex="\tfrac{2\pi}{n}" /> with <Katex tex="n=\tfrac52" />: this pair repeats two and a half times as often as the first.</>,
   },
   {
-    working: <Katex display tex="\text{need } t = 2\pi k = \frac{4\pi}{5}m \implies 10k = 4m \implies m = \frac{5k}{2}" />,
-    reason: <>Both pairs must come back together, so t must be a common multiple. <Katex tex="m" /> is a whole number only when <Katex tex="k" /> is even.</>,
+    working: <Katex display tex="\begin{aligned} &\text{need } t = 2\pi k = \frac{4\pi}{5}m \\ &\implies 10k = 4m \implies m = \frac{5k}{2} \end{aligned}" />,
+    reason: <>Both pairs must come back together, so t must be a whole number of each period. <Katex tex="m" /> is a whole number only when <Katex tex="k" /> is even.</>,
   },
   {
     working: <Katex display tex="k = 2 \implies \boxed{t = 4\pi}" />,
-    reason: <>The lowest common multiple of <Katex tex="2\pi" /> and <Katex tex="\tfrac{4\pi}{5}" />. The report notes many responses gave a decimal rather than the exact form. At <Katex tex="t=2\pi" /> the particle is at (9, 0), not back at the start.</>,
+    reason: <>The smallest even <Katex tex="k" /> gives the lowest common multiple of <Katex tex="2\pi" /> and <Katex tex="\tfrac{4\pi}{5}" />, and the particle does not pass through (1, 0) any earlier. Leave it exact.</>,
+    more: (
+      <>
+        The report notes many responses gave a decimal rather than the exact form — 12.57 is not 4π. Two
+        checks that <Katex tex="4\pi" /> really is the <em>first</em> return. At{' '}
+        <Katex tex="t=2\pi" /> only the first pair has come round: the particle is at (9, 0), as
+        found in part b. And could the particle pass through (1, 0) earlier, mid-cycle? Squaring
+        and adding the components (the same identities as part d) gives{' '}
+        <Katex tex="|\underset{\sim}{r}|^2 = 41-40\cos\left(\tfrac{3t}{2}\right)" />, which equals 1
+        only when <Katex tex="\cos\left(\tfrac{3t}{2}\right)=1" />, i.e. at{' '}
+        <Katex tex="t=\tfrac{4\pi}{3}" /> and <Katex tex="\tfrac{8\pi}{3}" /> before{' '}
+        <Katex tex="4\pi" />. There the particle is at{' '}
+        <Katex tex="\left(-\tfrac12,\mp\tfrac{\sqrt3}{2}\right)" />: one unit from the origin, but
+        not at (1, 0).
+      </>
+    ),
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="\dot x = -5\sin(t)+10\sin\left(\tfrac{5t}{2}\right), \qquad \dot y = 5\cos(t)-10\cos\left(\tfrac{5t}{2}\right)" />,
+    working: <Katex display tex="\begin{aligned} \dot x &= -5\sin(t)+10\sin\left(\tfrac{5t}{2}\right) \\ \dot y &= 5\cos(t)-10\cos\left(\tfrac{5t}{2}\right) \end{aligned}" />,
     reason: <>Differentiating the position vector component by component.</>,
   },
   {
-    working: <Katex display tex="\text{speed}^2 = 25\sin^2(t)-100\sin(t)\sin\left(\tfrac{5t}{2}\right)+100\sin^2\left(\tfrac{5t}{2}\right)" />,
-    reason: <>Expanding the square of the i-component.</>,
+    working: <Katex display tex="\text{speed} = |\underset{\sim}{v}| = \sqrt{\dot x^2+\dot y^2}" />,
+    reason: <>Speed is the magnitude of the velocity vector. Work with <Katex tex="\text{speed}^2" /> and take the root at the end.</>,
   },
   {
-    working: <Katex display tex="\qquad\quad +\;25\cos^2(t)-100\cos(t)\cos\left(\tfrac{5t}{2}\right)+100\cos^2\left(\tfrac{5t}{2}\right)" />,
-    reason: <>And of the j-component.</>,
+    working: <Katex display tex="\begin{aligned} \text{speed}^2 = {}&25\sin^2(t)-100\sin(t)\sin\left(\tfrac{5t}{2}\right) \\ &+100\sin^2\left(\tfrac{5t}{2}\right) \end{aligned}" />,
+    reason: <>Expanding <Katex tex="\dot x^2" /> as a perfect square.</>,
   },
   {
-    working: <Katex display tex="= 25+100-100\left(\cos(t)\cos\left(\tfrac{5t}{2}\right)+\sin(t)\sin\left(\tfrac{5t}{2}\right)\right)" />,
-    reason: <>Using <Katex tex="\sin^2+\cos^2=1" /> twice, then grouping the two cross terms.</>,
+    working: <Katex display tex="\begin{aligned} &+25\cos^2(t)-100\cos(t)\cos\left(\tfrac{5t}{2}\right) \\ &+100\cos^2\left(\tfrac{5t}{2}\right) \end{aligned}" />,
+    reason: <>And <Katex tex="\dot y^2" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} &= 25+100 \\ &\quad -100\Big(\cos(t)\cos\left(\tfrac{5t}{2}\right) \\ &\qquad\quad +\sin(t)\sin\left(\tfrac{5t}{2}\right)\Big) \end{aligned}" />,
+    reason: <>Pair the squares: <Katex tex="25\left(\sin^2(t)+\cos^2(t)\right)=25" />, and likewise 100 for the <Katex tex="\tfrac{5t}{2}" /> terms. The two cross terms share <Katex tex="-100" />.</>,
   },
   {
     working: <Katex display tex="\cos(A)\cos(B)+\sin(A)\sin(B) = \cos(A-B)" />,
-    reason: <>The compound-angle formula from the formula sheet — the report says the working must show the use of these identities.</>,
+    reason: <>The bracket has this shape: the formula sheet&rsquo;s <Katex tex="\cos(x-y)" /> identity read right to left, with <Katex tex="A=\tfrac{5t}{2}" /> and <Katex tex="B=t" />.</>,
+    more: <>The report says this &lsquo;show that&rsquo; question required working that shows the use of the trigonometric identities on the formula sheet, and that the main reason for lost marks was taking short cuts. Jumping from the squared components straight to <Katex tex="125-100\cos\left(\tfrac{3t}{2}\right)" /> is such a short cut: write the expansion, the <Katex tex="\sin^2+\cos^2=1" /> step and this identity as separate lines. The order of <Katex tex="A" /> and <Katex tex="B" /> does not matter, since <Katex tex="\cos(-\theta)=\cos(\theta)" />.</>,
   },
   {
-    working: <Katex display tex="\text{speed}^2 = 125-100\cos\left(\tfrac{5t}{2}-t\right) = 125-100\cos\left(\tfrac{3t}{2}\right)" />,
+    working: <Katex display tex="\begin{aligned} \text{speed}^2 &= 125-100\cos\left(\tfrac{5t}{2}-t\right) \\ &= 125-100\cos\left(\tfrac{3t}{2}\right) \end{aligned}" />,
     reason: <>Subtracting the angles.</>,
   },
   {
@@ -213,53 +235,61 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{speed} = \sqrt{125-100\cos\left(\tfrac{3t}{2}\right)}" />,
-    reason: <>The result of part d.</>,
+    reason: <>The result of part d — usable here even if you could not prove it.</>,
   },
   {
     working: <Katex display tex="-1 \le \cos\left(\tfrac{3t}{2}\right) \le 1" />,
     reason: <>The speed is largest when the cosine is most negative, since it is being subtracted.</>,
   },
   {
-    working: <Katex display tex="\cos\left(\tfrac{3t}{2}\right) = -1 \implies \text{speed} = \sqrt{125+100} = \sqrt{225}" />,
-    reason: <>First attained at <Katex tex="t=\tfrac{2\pi}{3}" />.</>,
+    working: <Katex display tex="\begin{aligned} &\cos\left(\tfrac{3t}{2}\right) = -1 \\ &\implies \text{speed} = \sqrt{125+100} = \sqrt{225} \end{aligned}" />,
+    reason: <>This really happens, e.g. at <Katex tex="t=\tfrac{2\pi}{3}" /> (where <Katex tex="\tfrac{3t}{2}=\pi" />), so the bound is reached.</>,
   },
   {
     working: <Katex display tex="\boxed{15 \text{ m s}^{-1}}" />,
     reason: <>No calculus needed — the bound on the cosine does all the work.</>,
+    more: <>A check against part b: at <Katex tex="t=2\pi" /> the velocity was <Katex tex="15\,\underset{\sim}{j}" />, speed 15, and indeed <Katex tex="\cos(3\pi)=-1" />. The slowest speed is <Katex tex="\sqrt{125-100}=5" />, when the cosine is <Katex tex="+1" />, for example at the start.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
-    working: <Katex display tex="t = 0 \implies (1,\,0)" />,
-    reason: <>The starting point from part a.</>,
+    working: <Katex display tex="t = 0 \implies (1,\,0), \qquad \underset{\sim}{v}(0) = -5\,\underset{\sim}{j}" />,
+    reason: <>Start at the point from part a, moving straight down (put <Katex tex="t=0" /> into the velocity from part b).</>,
   },
   {
-    working: <Katex display tex="t = \pi: \quad x = 5\cos(\pi)-4\cos\left(\tfrac{5\pi}{2}\right) = -5-0 = -5" />,
-    reason: <><Katex tex="\cos\left(\tfrac{5\pi}{2}\right)=0" />, so only the first term survives.</>,
+    working: <Katex display tex="t = \tfrac{\pi}{2}: \quad \left(2\sqrt2,\; 5+2\sqrt2\right) \approx (2.8,\,7.8)" />,
+    reason: <>A midway point shows the arc goes up over the top of the large loop. Uses <Katex tex="\cos\left(\tfrac{5\pi}{4}\right)=\sin\left(\tfrac{5\pi}{4}\right)=-\tfrac{\sqrt2}{2}" />.</>,
   },
   {
-    working: <Katex display tex="t = \pi: \quad y = 5\sin(\pi)-4\sin\left(\tfrac{5\pi}{2}\right) = 0-4 = -4" />,
+    working: <Katex display tex="\begin{aligned} t = \pi: \quad x &= 5\cos(\pi)-4\cos\left(\tfrac{5\pi}{2}\right) \\ &= -5-0 = -5 \end{aligned}" />,
+    reason: <>The end point. <Katex tex="\cos\left(\tfrac{5\pi}{2}\right)=0" />, so only the first term survives.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned} t = \pi: \quad y &= 5\sin(\pi)-4\sin\left(\tfrac{5\pi}{2}\right) \\ &= 0-4 = -4 \end{aligned}" />,
     reason: <><Katex tex="\sin\left(\tfrac{5\pi}{2}\right)=1" />.</>,
   },
   {
     working: <PathAnswer part="f" />,
-    reason: <>From <Katex tex="(1,0)" /> the arc dips below the <Katex tex="x" />-axis, swings anticlockwise round the large outer loop and stops at <Katex tex="(-5,-4)" /> — the report notes some students did not take care to finish their drawing there.</>,
+    reason: <>From <Katex tex="(1,0)" /> the arc dips below the <Katex tex="x" />-axis, swings anticlockwise round the large outer loop and stops at <Katex tex="(-5,-4)" />.</>,
+    more: <>The report notes some students did not take care to finish their drawing at <Katex tex="(-5,-4)" />. Mark both end points on the graph first, then follow the printed curve between them, stopping exactly at <Katex tex="(-5,-4)" /> rather than running on along the curve.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="L = \int_{t_1}^{t_2}\left|\underset{\sim}{v}(t)\right|dt" />,
-    reason: <>Arc length is the integral of the speed. The report says the definite integral was required.</>,
+    reason: <>Arc length is the integral of the speed over the time interval.</>,
+    more: <>The report notes several responses only included the answer without stating how it was found, and says the definite integral was required — so write the integral, with its terminals, before the number.</>,
   },
   {
     working: <Katex display tex="L = \int_0^{\pi}\sqrt{125-100\cos\left(\tfrac{3t}{2}\right)}\,dt" />,
-    reason: <>Using the speed from part d. over the interval traced in part f.</>,
+    reason: <>Using the speed from part d, over the interval <Katex tex="[0,\pi]" /> traced in part f.</>,
   },
   {
     working: <Katex display tex="= 36.6078\ldots" />,
     reason: <>By <Cas fn="nInt" /> — there is no elementary antiderivative.</>,
+    more: <>A sense check: the speed stays between 5 and 15 (part e), so over <Katex tex="\pi" /> seconds the length must lie between <Katex tex="5\pi\approx15.7" /> and <Katex tex="15\pi\approx47.1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{36.6 \text{ metres}}" />,
@@ -276,7 +306,7 @@ export default function SpecialistQ4_2025Exam2() {
         <div className="py-1">
           <Katex
             display
-            tex="\underset{\sim}{r}(t) = \left(5\cos(t)-4\cos\left(\frac{5t}{2}\right)\right)\underset{\sim}{i}+\left(5\sin(t)-4\sin\left(\frac{5t}{2}\right)\right)\underset{\sim}{j}"
+            tex="\begin{aligned} \underset{\sim}{r}(t) = {}&\left(5\cos(t)-4\cos\left(\frac{5t}{2}\right)\right)\underset{\sim}{i} \\ &+\left(5\sin(t)-4\sin\left(\frac{5t}{2}\right)\right)\underset{\sim}{j} \end{aligned}"
           />
         </div>
         <p>is shown below for time <Katex tex="t\ge0" />.</p>

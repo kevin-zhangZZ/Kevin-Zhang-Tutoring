@@ -30,31 +30,34 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{take up as positive:} \quad u = 20, \quad a = -9.8" />,
-    reason: <>The ball is thrown upward but gravity acts downward.</>,
+    reason: <>The ball is thrown upward, but gravity (<Katex tex="g=9.8" /> m s<Katex tex="^{-2}" />) acts downward, so a is negative.</>,
   },
   {
     working: <Katex display tex="s = 1-50 = -49" />,
-    reason: <>Displacement, not distance: the tray is 49 m below the point of projection. This sign is the whole question.</>,
+    reason: <>Displacement, not distance: the tray is 49 m below the point of projection, so s is negative.</>,
+    more: <>Displacement is measured from where the ball starts (50 m up) to where it ends (the tray, 1 m up), so <Katex tex="s=1-50" />. The report's warning is about exactly this: "care must be taken with the signs". With <Katex tex="s=+49" /> the equation becomes <Katex tex="4.9t^2-20t+49=0" />, whose discriminant <Katex tex="400-960" /> is negative: no solution at all, which is the sign that a sign is wrong.</>,
   },
   {
     working: <Katex display tex="s = ut+\frac{1}{2}at^2 \implies -49 = 20t-4.9t^2" />,
-    reason: <>The constant-acceleration formula linking displacement and time.</>,
+    reason: <>s, u and a are known and t is wanted, so use the constant-acceleration formula without v.</>,
+    more: <>There is no need to split the flight into the way up and the way down: the acceleration is <Katex tex="-9.8" /> the whole time, so this one equation covers both. Splitting gives the same answer: up for <Katex tex="\frac{20}{9.8}\approx 2.041" /> s to <Katex tex="\frac{20^2}{2(9.8)}\approx 20.41" /> m above the window, then a fall of <Katex tex="69.41" /> m from rest taking <Katex tex="\sqrt{\frac{2(69.41)}{9.8}}\approx 3.764" /> s, total <Katex tex="5.804" /> s.</>,
   },
   {
     working: <Katex display tex="4.9t^2-20t-49 = 0" />,
     reason: <>Rearranged into a quadratic in t.</>,
   },
   {
-    working: <Katex display tex="t = \frac{20\pm\sqrt{400+4(4.9)(49)}}{9.8} = \frac{20\pm\sqrt{1360.4}}{9.8}" />,
+    working: <Katex display tex="\begin{aligned} t &= \frac{20\pm\sqrt{400+4(4.9)(49)}}{9.8} \\ &=\frac{20\pm\sqrt{1360.4}}{9.8} \end{aligned}" />,
     reason: <>By <Cas fn="solve" /> or the quadratic formula.</>,
   },
   {
     working: <Katex display tex="t = 5.8044\ldots \quad \text{or} \quad t = -1.7228\ldots" />,
-    reason: <>The negative root is before the throw, so it is rejected.</>,
+    reason: <>The negative root is a time before the throw, so it is rejected.</>,
   },
   {
     working: <Katex display tex="\boxed{t \approx 5.80 \text{ seconds}}" />,
-    reason: <>Matches option <b>B</b>. Option <b>C</b>, 5.83, is the time to reach the <em>ground</em> (<Katex tex="s=-50" />), ignoring the truck; options <b>A</b> and <b>D</b> are the sizes of the rejected negative roots of the truck and ground equations.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>C</b>, 5.83 (25%), is the time to reach the <em>ground</em>: solving <Katex tex="-50=20t-4.9t^2" /> gives <Katex tex="t\approx 5.831" />, which ignores the truck's 1 m tray. Options <b>A</b> (1.72) and <b>D</b> (1.75) are the sizes of the rejected negative roots of the truck and ground equations, <Katex tex="-1.723" /> and <Katex tex="-1.750" />.</>,
   },
 ]
 

@@ -96,7 +96,7 @@ const EXAM_G: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{initial concentration} = \frac{5}{3000} = \frac{1}{600} \approx 0.00167 \text{ kg/litre}" />,
+    working: <Katex display tex="\begin{aligned}\text{initial concentration} &= \frac{5}{3000} = \frac{1}{600} \\ &\approx 0.00167 \text{ kg/litre}\end{aligned}" />,
     reason: <>Salt already in the tank divided by the volume it is dissolved in.</>,
   },
   {
@@ -105,14 +105,26 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{1}{600} < 0.1 \implies \text{the quantity of salt increases}}" />,
-    reason: <>The water arriving is far saltier than what is already there, and inflow and outflow rates are equal, so salt accumulates. The report notes many responses did not quote the concentrations as required; only about one student in five scored this mark.</>,
+    reason: <>Equal volumes flow in and out, so saltier inflow means more salt arrives than leaves. The tank never gets saltier than the inflow, so this continues.</>,
+    more: (
+      <>
+        In numbers: each minute 20 litres arrive carrying <Katex tex="0.1\times20=2" /> kg, while 20
+        litres leave carrying only <Katex tex="\tfrac{1}{600}\times20=\tfrac{1}{30}" /> kg, so the
+        salt goes up. The question says &ldquo;by considering concentration&rdquo;, so the mark
+        needs both concentrations written down and compared &mdash; only about one student in
+        five did this. A
+        sentence such as &ldquo;salty water is flowing in&rdquo; is not enough: salt also flows
+        out. Part e. confirms the tank only ever approaches 0.1 kg per litre (300 kg in 3000
+        litres), never passing it.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dQ}{dt} = (\text{rate in})-(\text{rate out})" />,
-    reason: <>The standard set-up for a mixing problem.</>,
+    reason: <>The salt in the tank changes by what flows in minus what flows out each minute.</>,
   },
   {
     working: <Katex display tex="\text{rate in} = 0.1 \times 20 = 2 \text{ kg/min}" />,
@@ -129,13 +141,29 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dQ}{dt} = 2-\frac{Q}{150} = \frac{300-Q}{150}" />,
     reason: <>Putting the two over a common denominator gives exactly the form asked for. As required.</>,
+    more: (
+      <>
+        Writing the given equation down earns nothing. The mark needs both
+        rates built from the information in the stem &mdash; 2 kg/min in and{' '}
+        <Katex tex="\tfrac{Q}{3000}\times20" /> out &mdash; before the given form appears.
+      </>
+    ),
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="Q_{n+1} = Q_n+h\,\frac{300-Q_n}{150}, \qquad h = 15" />,
-    reason: <>Euler&rsquo;s method: <Katex tex="y_{n+1}=y_n+h\,f(x_n,y_n)" />. Two steps of 15 minutes reach t = 30.</>,
+    reason: <>Euler&rsquo;s method: new value = old value + step size × gradient at the old value. Two steps of 15 minutes reach <Katex tex="t=30" />.</>,
+    more: (
+      <>
+        The general formula is <Katex tex="y_{n+1}=y_n+h\,f(x_n,y_n)" />, where{' '}
+        <Katex tex="f" /> is the right-hand side of the differential equation. Here that is{' '}
+        <Katex tex="\tfrac{300-Q}{150}" />, which depends only on <Katex tex="Q" />, so each
+        step just needs the current amount of salt. Don&rsquo;t take a single step of 30
+        minutes: the question fixes <Katex tex="h=15" />, so two steps are needed.
+      </>
+    ),
   },
   {
     working: <Katex display tex="Q_0 = 5" />,
@@ -143,38 +171,65 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="Q_1 = 5+15\times\frac{300-5}{150} = 5+29.5 = 34.5" />,
-    reason: <>After 15 minutes. The report accepts a table, as long as both <Katex tex="Q(15)" /> and the final answer are shown.</>,
+    reason: <>This is <Katex tex="Q(15)" />: the gradient at <Katex tex="Q=5" /> is <Katex tex="\tfrac{295}{150}" /> kg/min, held for 15 minutes.</>,
+    more: (
+      <>
+        Write this intermediate value down: it is the evidence that Euler&rsquo;s method was
+        used, and a bare final answer loses marks.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="Q_2 = 34.5+15\times\frac{300-34.5}{150} = 34.5+26.55 = 61.05" />,
-    reason: <>After 30 minutes.</>,
+    working: <Katex display tex="\begin{aligned}Q_2 &= 34.5+15\times\frac{300-34.5}{150} \\ &= 34.5+26.55 = 61.05\end{aligned}" />,
+    reason: <>This is <Katex tex="Q(30)" />: the gradient is now recalculated at <Katex tex="Q=34.5" />.</>,
   },
   {
     working: <Katex display tex="\boxed{Q(30) \approx 61.05 \text{ kg}}" />,
-    reason: <>Two decimal places. The exact solution from part d. gives 58.47 kg, so Euler with such a coarse step overshoots by more than 4%.</>,
+    reason: <>Two decimal places, as asked.</>,
+    more: (
+      <>
+        A check: the exact solution from part d. gives <Katex tex="Q(30)\approx58.47" /> kg, so
+        Euler overshoots by about 4%. That is expected here &mdash; the gradient{' '}
+        <Katex tex="\tfrac{300-Q}{150}" /> shrinks as <Katex tex="Q" /> grows, and Euler holds
+        each step at the steeper gradient from the start of the step.
+      </>
+    ),
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dQ}{dt} = \frac{300-Q}{150} \implies \frac{dt}{dQ} = \frac{150}{300-Q}" />,
-    reason: <>Inverting, so the variables can be separated cleanly.</>,
+    reason: <>The right-hand side involves only <Katex tex="Q" />, so flip both sides to get <Katex tex="\tfrac{dt}{dQ}" /> and integrate with respect to <Katex tex="Q" />.</>,
   },
   {
     working: <Katex display tex="t = \int\frac{150}{300-Q}\,dQ = -150\log_e|300-Q|+c" />,
     reason: <>The <Katex tex="-150" /> comes from the derivative of the inside being <Katex tex="-1" />.</>,
   },
   {
-    working: <Katex display tex="t = 0, \ Q = 5: \quad 0 = -150\log_e(295)+c \implies c = 150\log_e(295)" />,
-    reason: <>The initial condition. The report lists not using it to find the constant as a frequently seen error.</>,
+    working: <Katex display tex="\begin{aligned}&t = 0, \ Q = 5: \quad 0 = -150\log_e(295)+c \\ &\implies c = 150\log_e(295)\end{aligned}" />,
+    reason: <>The tank starts with 5 kg of salt, so <Katex tex="Q=5" /> when <Katex tex="t=0" />; this fixes <Katex tex="c" />.</>,
+    more: (
+      <>
+        Without <Katex tex="c" /> the answer is a whole family of curves, not this tank. The
+        definite-integral version the report accepts is{' '}
+        <Katex tex="t=\int_5^Q\frac{150}{300-u}\,du" />, which builds the starting value in.
+      </>
+    ),
   },
   {
     working: <Katex display tex="t = 150\log_e\left(\frac{295}{300-Q}\right)" />,
-    reason: <>Combining the logarithms. <Katex tex="Q<300" /> throughout, so the modulus signs can be dropped.</>,
+    reason: <>Combining the logarithms. <Katex tex="Q" /> starts at 5, and <Katex tex="\tfrac{dQ}{dt}=0" /> at <Katex tex="Q=300" />, so <Katex tex="Q" /> never passes 300: <Katex tex="300-Q>0" />, so drop the modulus.</>,
   },
   {
-    working: <Katex display tex="\frac{t}{150} = \log_e\left(\frac{295}{300-Q}\right) \implies 300-Q = 295e^{-\frac{t}{150}}" />,
-    reason: <>Exponentiating and inverting the fraction.</>,
+    working: <Katex display tex="\begin{aligned}&\frac{t}{150} = \log_e\left(\frac{295}{300-Q}\right) \\ &\implies 300-Q = 295e^{-\frac{t}{150}}\end{aligned}" />,
+    reason: <>Divide by 150, then exponentiate: <Katex tex="e^{t/150}=\tfrac{295}{300-Q}" />. Flip both sides and multiply by 295.</>,
+    more: (
+      <>
+        The steps that must appear: separating, integrating, finding <Katex tex="c" />, and
+        rearranging. A CAS answer on its own does not earn the marks.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{Q = 300-295e^{-\frac{t}{150}}}" />,
@@ -185,15 +240,22 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="e^{-\frac{t}{150}} \to 0 \text{ as } t\to\infty" />,
-    reason: <>A decaying exponential.</>,
+    reason: <>A negative exponent: as <Katex tex="t" /> grows, <Katex tex="e^{-t/150}" /> shrinks towards 0.</>,
   },
   {
     working: <Katex display tex="\lim_{t\to\infty}\left(300-295e^{-\frac{t}{150}}\right) = 300" />,
-    reason: <>Equivalently, the steady state is where <Katex tex="\tfrac{dQ}{dt}=0" />, which needs <Katex tex="Q=300" />.</>,
+    reason: <>So the <Katex tex="295e^{-t/150}" /> term disappears in the long run.</>,
+    more: (
+      <>
+        Another way to see it, straight from the differential equation: the salt stops
+        changing when <Katex tex="\tfrac{dQ}{dt}=\tfrac{300-Q}{150}=0" />, that is, at{' '}
+        <Katex tex="Q=300" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{300 \text{ kg}}" />,
-    reason: <>Which is 3000 litres at the incoming concentration of 0.1 kg per litre — the tank eventually matches the inflow.</>,
+    reason: <>A sense check: 3000 litres at the incoming 0.1 kg per litre is 300 kg, so the tank ends up as salty as the inflow.</>,
   },
 ]
 
@@ -212,14 +274,27 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = 150\log_e\left(\frac{59}{40}\right) \text{ minutes} \approx 58.3 \text{ minutes}}" />,
-    reason: <>Exact form, since Section B requires exact answers unless otherwise specified — the report notes several responses left the answer as a decimal.</>,
+    reason: <>Give the exact form: the exam instructions require an exact answer unless the question says otherwise.</>,
+    more: (
+      <>
+        The decimal 58.3 is fine to add after the exact answer, but not instead of it.
+      </>
+    ),
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{at the moment the tap closes: } Q = 100 \text{ kg in } 3000 \text{ litres}" />,
-    reason: <>From part f. Until now the volume has been constant.</>,
+    working: <Katex display tex="\begin{aligned}&\text{when the tap closes:} \\ &Q = 100 \text{ kg in } 3000 \text{ litres}\end{aligned}" />,
+    reason: <>The tap closes when the salt reaches 100 kg (part f.). Until then the volume has stayed at 3000 litres.</>,
+    more: (
+      <>
+        We use <Katex tex="s" /> for the minutes since the tap closed, so it isn&rsquo;t confused
+        with <Katex tex="t" /> from parts b.&ndash;f.; the report&rsquo;s equation writes this
+        restarted time as <Katex tex="t" />. The question asks for the time after the tap is
+        turned off, so don&rsquo;t add on the 58.3 minutes from part f.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{after } s \text{ further minutes: } Q = 100+2s" />,
@@ -227,19 +302,34 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{volume} = 3000+20s" />,
-    reason: <>The key step: with the tap shut the tank fills at 20 litres per minute, so the denominator grows too. Treating the volume as fixed gives the common wrong answer of 25.</>,
+    reason: <>The key step: with the tap shut, 20 litres per minute still flow in and none drain out, so the volume grows too.</>,
+    more: (
+      <>
+        The report&rsquo;s most common error was 25, which is what you get by keeping the volume
+        at 3000: <Katex tex="\tfrac{100+2s}{3000}=\tfrac{1}{20}" /> gives{' '}
+        <Katex tex="s=25" />. Only 18% scored this mark. The question hints at it &mdash;
+        &ldquo;assume that the tank does not overflow&rdquo; only matters if the tank is filling up.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{100+2s}{3000+20s} = \frac{1}{20}" />,
     reason: <>Concentration equals mass over volume.</>,
   },
   {
-    working: <Katex display tex="20(100+2s) = 3000+20s \implies 2000+40s = 3000+20s" />,
+    working: <Katex display tex="\begin{aligned}20(100+2s) &= 3000+20s \\ 2000+40s &= 3000+20s\end{aligned}" />,
     reason: <>Cross-multiplying.</>,
   },
   {
     working: <Katex display tex="20s = 1000 \implies \boxed{s = 50 \text{ minutes}}" />,
     reason: <>By <Cas fn="solve" />, or by hand as above.</>,
+    more: (
+      <>
+        Check: after 50 minutes the tank holds <Katex tex="100+2(50)=200" /> kg in{' '}
+        <Katex tex="3000+20(50)=4000" /> litres, and{' '}
+        <Katex tex="\tfrac{200}{4000}=\tfrac{1}{20}" /> ✓.
+      </>
+    ),
   },
 ]
 
@@ -262,13 +352,12 @@ export default function SpecialistQ3_2025Exam2() {
             <p>
               Inflow and outflow being equal is what keeps this manageable: the volume stays at
               3000 litres, so the concentration draining out is always{' '}
-              <Katex tex="\tfrac{Q}{3000}" /> and the differential equation is linear.
+              <Katex tex="\tfrac{Q}{3000}" />, which is what gives the simple differential equation
+              in part b.
             </p>
             <p>
               Part g. quietly removes that assumption. With the tap shut the tank keeps filling,
-              so both the salt <em>and</em> the volume grow with time — and the answer 25, which
-              comes from holding the volume at 3000, was the error the report singled out. Only
-              18% of the cohort scored this mark.
+              so both the salt <em>and</em> the volume grow with time.
             </p>
           </Background>
         </div>

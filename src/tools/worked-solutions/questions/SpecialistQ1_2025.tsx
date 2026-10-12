@@ -21,19 +21,25 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P: \text{ I have a tiger} \qquad Q: \text{ I have a cat}" />,
-    reason: <>Name the two statements so the logic can be handled symbolically.</>,
+    reason: <>Name the two statements: <Katex tex="P" /> is the &ldquo;if&rdquo; part (hypothesis), <Katex tex="Q" /> the &ldquo;then&rdquo; part (conclusion).</>,
   },
   {
     working: <Katex display tex="\text{the statement is } P \implies Q" />,
-    reason: <>"If I have a tiger, then I have a cat."</>,
+    reason: <>&ldquo;If I have a tiger, then I have a cat.&rdquo; True, since a tiger is a type of cat.</>,
   },
   {
     working: <Katex display tex="\text{contrapositive: } \lnot Q \implies \lnot P" />,
-    reason: <>Swap the two halves and negate both. This is the one rearrangement that is always logically equivalent to the original.</>,
+    reason: <>Swap the hypothesis and conclusion and negate both. The contrapositive is always logically equivalent to the original.</>,
+    more: <>Why it is equivalent: if I did have a tiger, the original statement says I would have a cat. So having no cat rules out having a tiger.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{if I do not have a cat, then I do not have a tiger}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b> is the converse <Katex tex="Q\implies P" /> and option <b>A</b> the inverse <Katex tex="\lnot P\implies\lnot Q" />; neither follows from the original — a cat owner need not own a tiger.</>,
+    working: <Katex display tex="\boxed{\begin{gathered}\text{if I do not have a cat,} \\ \text{then I do not have a tiger}\end{gathered}}" />,
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
+      <>
+        Option <b>A</b> (5%) is the inverse <Katex tex="\lnot P\implies\lnot Q" />: negated but not swapped. It is false here, since someone with a lion has no tiger but does have a cat. Option <b>B</b> is the converse <Katex tex="Q\implies P" />: swapped but not negated, and false for the same reason. Option <b>D</b> is not a rearrangement of the statement at all: not having a tiger says nothing about owning any cat.
+      </>
+    ),
   },
 ]
 

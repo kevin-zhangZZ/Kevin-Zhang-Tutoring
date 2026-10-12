@@ -81,8 +81,9 @@ const ROWS_AI: WorkingRow[] = [
     reason: <>The sampling distribution of the mean is centred on the population mean, whatever the sample size.</>,
   },
   {
-    working: <Katex display tex="\text{sd}\left(\overline{X}\right) = \frac{\sigma}{\sqrt{n}} = \frac{80}{\sqrt{25}} = \frac{80}{5}" />,
-    reason: <>The standard error. The report notes some students wrote the variance rather than the standard deviation.</>,
+    working: <Katex display tex="\text{sd}\left(\overline{X}\right) = \frac{\sigma}{\sqrt{n}} = \frac{80}{\sqrt{25}} = \frac{80}{5} = 16" />,
+    reason: <>The standard deviation of the sample mean (the standard error) is the population <Katex tex="\sigma" /> divided by <Katex tex="\sqrt{n}" />.</>,
+    more: <>Writing the variance instead of the standard deviation is the common slip. The variance of <Katex tex="\overline{X}" /> is <Katex tex="\tfrac{\sigma^2}{n}=\tfrac{6400}{25}=256" />; the question asks for the standard deviation, its square root, 16. Averaging 25 students cuts the spread by a factor of <Katex tex="\sqrt{25}=5" />, not 25.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{mean } 1000 \text{ mL}, \quad \text{standard deviation } 16 \text{ mL}}" />,
@@ -96,8 +97,9 @@ const ROWS_AII: WorkingRow[] = [
     reason: <>Using part a.i. The population is normal, so the sample mean is exactly normal too.</>,
   },
   {
-    working: <Katex display tex="\Pr\left(\overline{X}>970\right) = \Pr\left(Z>\frac{970-1000}{16}\right) = \Pr(Z>-1.875)" />,
-    reason: <>Standardising, or going straight to CAS.</>,
+    working: <Katex display tex="\begin{aligned}\Pr\left(\overline{X}>970\right) &= \Pr\left(Z>\frac{970-1000}{16}\right)\\ &= \Pr(Z>-1.875)\end{aligned}" />,
+    reason: <>Standardising with the mean 1000 and standard deviation 16 from part a.i (not the population's 80).</>,
+    more: <>Standardising is optional — CAS gives the probability directly from <Katex tex="\overline{X}" />'s distribution. The common slip is using <Katex tex="\sigma=80" />, which describes one student, not the average of 25: that gives <Katex tex="\Pr(Z>-0.375)\approx0.6462" />. A sample mean 30 mL below 1000 is almost 2 standard errors low, so a probability near 0.97 is sensible.</>,
   },
   {
     working: <Katex display tex="= 0.969604\ldots" />,
@@ -116,11 +118,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = 1.9599\ldots \text{ for } 95\%" />,
-    reason: <>By <Cas fn="invNorm" /> with area 0.975 — two tails of 2.5% each.</>,
+    reason: <>By <Cas fn="invNorm" /> with area 0.975 — the 5% left outside a 95% interval is split into two tails of 2.5%.</>,
+    more: <>The middle 95% of <Katex tex="Z" /> runs from <Katex tex="-z" /> to <Katex tex="z" />, so the area to the left of <Katex tex="z" /> is <Katex tex="0.95+0.025=0.975" />. Using area 0.95 instead gives <Katex tex="z\approx1.645" />, the 90% value. The rounded 1.96 is the standard value for 95%; it gives the same interval to one decimal place.</>,
   },
   {
     working: <Katex display tex="750 \pm 1.96\times\frac{5}{\sqrt{30}} = 750\pm1.789\ldots" />,
-    reason: <><Katex tex="\overline{x}=750" />, <Katex tex="\sigma=5" />, <Katex tex="n=30" />.</>,
+    reason: <>Substituting the sample mean <Katex tex="\overline{x}=750" />, the known population <Katex tex="\sigma=5" /> and <Katex tex="n=30" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(748.2,\ 751.8)}" />,
@@ -130,12 +133,13 @@ const ROWS_B: WorkingRow[] = [
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{a } 95\% \text{ interval captures } \mu \text{ in } 95\% \text{ of samples, in the long run}" />,
+    working: <Katex display tex="\begin{aligned}&\text{a } 95\% \text{ interval captures } \mu\\ &\text{in } 95\% \text{ of samples, in the long run}\end{aligned}" />,
     reason: <>That is what the confidence level means — it is a property of the procedure, not of any one interval.</>,
   },
   {
     working: <Katex display tex="0.95\times300 = 285" />,
-    reason: <>The expected number out of 300 independent samples.</>,
+    reason: <>Each interval independently has probability 0.95 of containing μ, so the expected count is 95% of 300.</>,
+    more: <>The number of intervals that capture μ is binomial with <Katex tex="n=300" /> and <Katex tex="p=0.95" />, so its expected value is <Katex tex="np=285" />. Tempting wrong answers are "all of them" or "95%": the true mean is fixed, and it is the intervals that change from sample to sample, so about 15 of the 300 are expected to miss it.</>,
   },
   {
     working: <Katex display tex="\boxed{285 \text{ of the intervals}}" />,
@@ -146,30 +150,33 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{margin of error} = z\frac{\sigma}{\sqrt{n}} = 1.96\times\frac{5}{\sqrt{n}}" />,
-    reason: <>Half the width of the interval — the largest the difference between the sample mean and μ can be.</>,
+    reason: <>Half the interval&rsquo;s width: with 95% confidence, the sample mean is within this distance of μ.</>,
   },
   {
     working: <Katex display tex="1.96\times\frac{5}{\sqrt{n}} \le 1" />,
-    reason: <>The requirement: no more than 1 mL.</>,
+    reason: <>The requirement: the margin of error is no more than 1 mL. σ = 5 is known and z = 1.96 as in part b., so n is the only unknown.</>,
   },
   {
-    working: <Katex display tex="\sqrt{n} \ge 9.8 \implies n \ge 96.036\ldots" />,
-    reason: <>Rearranging and squaring.</>,
+    working: <Katex display tex="\sqrt{n} \ge 1.96\times5 = 9.8 \implies n \ge 96.04" />,
+    reason: <>Multiplying both sides by <Katex tex="\sqrt{n}" />, then squaring (both sides positive).</>,
+    more: <>With the unrounded <Katex tex="z=1.95996\ldots" /> the bound is <Katex tex="n\ge96.036\ldots" />; either way the answer is 97. CAS can also solve <Katex tex="1.96\times\tfrac{5}{\sqrt{n}}=1" /> for <Katex tex="n" /> directly.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 97}" />,
-    reason: <>Round up — the report notes some responses rounded down to 96, which would give a difference of more than 1 mL.</>,
+    reason: <>Sample sizes are whole numbers, and n must be <em>at least</em> 96.04, so round up.</>,
+    more: <>Rounding down to 96 gives a margin of error over 1 mL: <Katex tex="1.96\times\tfrac{5}{\sqrt{96}}\approx1.0002>1" />, while <Katex tex="1.96\times\tfrac{5}{\sqrt{97}}\approx0.9950\le1" />. In a minimum-sample-size question always round up, whatever the decimal.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{the company claims the mean is } \textit{less than } 750" />,
-    reason: <>So the claim is the alternative hypothesis, not the null.</>,
+    reason: <>The claim of a change is what the test looks for evidence of, so it becomes the alternative hypothesis.</>,
   },
   {
     working: <Katex display tex="\boxed{H_0: \mu = 750}" />,
-    reason: <>The null is always the status quo, stated as an equality.</>,
+    reason: <>The null is the status quo — the stated mean of 750 — written as an equality about the population mean μ.</>,
+    more: <>Hypotheses are always about the population parameter μ, never the sample mean: <Katex tex="H_1:\overline{x}<750" /> would be wrong, since we already know <Katex tex="\overline{x}=748" />.</>,
   },
   {
     working: <Katex display tex="\boxed{H_1: \mu < 750}" />,
@@ -180,11 +187,12 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="\overline{X}\sim\mathrm{N}\left(750,\ \left(\tfrac{5}{\sqrt{50}}\right)^2\right) \text{ under } H_0" />,
-    reason: <>The sampling distribution assuming the null hypothesis is true. The standard error is 5/√50 ≈ 0.7071.</>,
+    reason: <>A p value is calculated assuming the null hypothesis is true, so centre on 750. Standard error <Katex tex="\tfrac{5}{\sqrt{50}}\approx0.7071" />.</>,
   },
   {
     working: <Katex display tex="p = \Pr\left(\overline{X}\le748 \mid \mu = 750\right)" />,
-    reason: <>The p value is the probability of a result at least as extreme as the one observed, on the side named by H₁.</>,
+    reason: <>The p value is the probability of a sample mean at least as extreme as 748 in the direction of <Katex tex="H_1" /> — here, 748 or lower.</>,
+    more: <>Because <Katex tex="H_1" /> says <Katex tex="\mu<750" />, only the lower tail counts as "at least as extreme". A one-tailed test does not double the tail area; doubling would give 0.0047, the two-tailed p value.</>,
   },
   {
     working: <Katex display tex="z = \frac{748-750}{\frac{5}{\sqrt{50}}} = -2.8284\ldots" />,
@@ -192,7 +200,7 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p = 0.0023389\ldots" />,
-    reason: <>By <Cas fn="normCdf" /> with lower −∞, upper 748.</>,
+    reason: <>By <Cas fn="normCdf" /> with lower −∞, upper 748, μ = 750, σ = 5/√50 (or upper −2.8284…, μ = 0, σ = 1).</>,
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.0023}" />,
@@ -207,11 +215,12 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0.0023 < 0.01 \implies \text{reject } H_0" />,
-    reason: <>A p value below the significance level is evidence against the null.</>,
+    reason: <>The p value is below the 1% significance level, so the result is too unlikely under <Katex tex="H_0" />; reject it in favour of <Katex tex="H_1" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Yes — the claim is correct, since } 0.0023<0.01}" />,
-    reason: <>Both halves were needed: a verdict on the claim, and the comparison with the significance level.</>,
+    working: <Katex display tex="\boxed{\begin{aligned}&\text{Yes — the claim is correct,}\\ &\text{since } 0.0023<0.01\end{aligned}}" />,
+    reason: <>The answer must say whether the claim is supported <em>and</em> quote the comparison of p with 0.01.</>,
+    more: <>A bare "reject <Katex tex="H_0" />", or "p is small" without quoting 0.01, is incomplete. A full answer: since <Katex tex="p=0.0023<0.01" />, reject <Katex tex="H_0" />; there is evidence at the 1% level that the mean volume is less than 750 mL, so the claim is supported.</>,
   },
 ]
 
@@ -222,7 +231,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z_{0.01} = -2.32634\ldots" />,
-    reason: <>By <Cas fn="invNorm" /> with area 0.01.</>,
+    reason: <>By <Cas fn="invNorm" /> with area 0.01, μ = 0, σ = 1.</>,
+    more: <>Or skip the z step: <Cas fn="invNorm" /> with area 0.01, μ = 750, σ = <Katex tex="\tfrac{5}{\sqrt{50}}" /> gives c directly. Store the unrounded value — part h. uses it.</>,
   },
   {
     working: <Katex display tex="c = 750-2.32634\times\frac{5}{\sqrt{50}} = 750-1.64498\ldots" />,
@@ -231,25 +241,29 @@ const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{c \approx 748.355 \text{ mL}}" />,
     reason: <>Three decimal places. A sample mean below this supports the conclusion that the mean has fallen.</>,
+    more: <>Using the upper tail is the slip: area 0.99 gives <Katex tex="750+1.645=751.645" />, a value <em>above</em> 750 — that could never support a claim that the mean is <em>less</em> than 750. As a check, the observed 748 is below 748.355, consistent with rejecting <Katex tex="H_0" /> in part f.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{``service has not reduced the mean''} \iff H_0 \text{ is not rejected} \iff \overline{X} > 748.355" />,
-    reason: <>The complement of the critical region from part g. This is a Type II error, since the true mean really has fallen.</>,
+    working: <Katex display tex="\begin{aligned}&\text{``service has not reduced the mean''}\\ &\iff H_0 \text{ is not rejected}\\ &\iff \overline{X} \ge 748.355\ldots\end{aligned}" />,
+    reason: <>Concluding "not reduced" means not rejecting <Katex tex="H_0" />, which happens when the sample mean is not below part g.'s critical value.</>,
+    more: <>Since the true mean really has fallen, this conclusion is wrong: not rejecting a false <Katex tex="H_0" /> is a <b>Type II error</b>.</>,
   },
   {
     working: <Katex display tex="\overline{X}\sim\mathrm{N}\left(747.5,\ \left(\tfrac{5}{\sqrt{50}}\right)^2\right)" />,
-    reason: <>Now using the <em>true</em> mean of 747.5, not the hypothesised 750 — that switch is the whole question.</>,
+    reason: <>The probability is about what actually happens, so use the <em>true</em> mean 747.5, not the hypothesised 750. Same standard error.</>,
+    more: <>The critical value 748.355 was set using 750 (part g.) and stays fixed; only the distribution the sample mean really comes from changes. Using 750 here would give <Katex tex="\Pr(\overline{X}\ge748.355\mid\mu=750)=0.99" />, which is just the non-rejection probability when <Katex tex="H_0" /> is true.</>,
   },
   {
-    working: <Katex display tex="z = \frac{748.355-747.5}{\frac{5}{\sqrt{50}}} = 1.2091\ldots" />,
+    working: <Katex display tex="z = \frac{748.355\ldots-747.5}{\frac{5}{\sqrt{50}}} = 1.2091\ldots" />,
     reason: <>Standardising the critical value against the true distribution.</>,
   },
   {
-    working: <Katex display tex="\Pr\left(\overline{X}>748.355\right) = 0.11329\ldots" />,
-    reason: <>By <Cas fn="normCdf" /> with lower 748.355, upper ∞, μ = 747.5, σ = 5/√50.</>,
+    working: <Katex display tex="\Pr\left(\overline{X}\ge748.355\ldots\right) = 0.11329\ldots" />,
+    reason: <>By <Cas fn="normCdf" /> with lower = the stored critical value, upper ∞, μ = 747.5, σ = 5/√50.</>,
+    more: <>Typing the rounded 748.355 gives 0.11330…; both round to 0.113.</>,
   },
   {
     working: <Katex display tex="\boxed{0.113}" />,
@@ -282,7 +296,7 @@ export default function SpecialistQ6_2025Exam2() {
               Part h. is the only place where the distribution changes. Parts e. to g. all work
               under <Katex tex="H_0" />, with <Katex tex="\mu=750" />; part h. asks what happens
               when the true mean is 747.5, so the same critical value is now measured against a
-              different centre. That is a Type II error — failing to detect a real shift.
+              different centre (part h. finds a Type II error probability).
             </p>
           </Background>
         </div>

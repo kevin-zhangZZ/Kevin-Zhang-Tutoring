@@ -24,22 +24,22 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="W = 3P+2Q-R" />,
-    reason: <>Name the combination. A linear combination of independent normals is itself normal.</>,
+    reason: <>Name the combination. A linear combination of independent normals is itself normal, so find its mean and variance.</>,
   },
   {
     working: <Katex display tex="\operatorname{E}(W) = 3(-2)+2(3)-5 = -5" />,
-    reason: <>Expectation is linear, and the minus sign carries through.</>,
+    reason: <>Expectation is linear: <Katex tex="\operatorname{E}(aX+bY)=a\operatorname{E}(X)+b\operatorname{E}(Y)" />, and the minus sign carries through.</>,
   },
   {
     working: <Katex display tex="\operatorname{Var}(W) = 3^2(2^2)+2^2(3^2)+(-1)^2(6^2)" />,
-    reason: <>Each coefficient is <em>squared</em>, so the <Katex tex="-R" /> adds to the variance rather than subtracting. Independence is what allows the variances to be added at all.</>,
+    reason: <>Since <Katex tex="\operatorname{Var}(aX)=a^2\operatorname{Var}(X)" />, each coefficient is <em>squared</em>, so <Katex tex="-R" /> adds to the variance. Independence allows the variances to be added.</>,
   },
   {
-    working: <Katex display tex="= 36+36+36 = 108 \implies \text{sd}(W) = \sqrt{108} = 6\sqrt3" />,
+    working: <Katex display tex="\begin{aligned} &= 36+36+36 = 108 \\ \text{sd}(W) &= \sqrt{108} = 6\sqrt3 \end{aligned}" />,
     reason: <>Take the square root for the standard deviation.</>,
   },
   {
-    working: <Katex display tex="\Pr(W>25) = \Pr\left(Z>\frac{25-(-5)}{6\sqrt3}\right) = \Pr\left(Z>\frac{30}{6\sqrt3}\right)" />,
+    working: <Katex display tex="\begin{aligned} &\Pr(W>25) \\ &= \Pr\left(Z>\frac{25-(-5)}{6\sqrt3}\right) \\ &= \Pr\left(Z>\frac{30}{6\sqrt3}\right) \end{aligned}" />,
     reason: <>Standardising: subtract the mean and divide by the standard deviation.</>,
   },
   {
@@ -48,7 +48,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr\left(Z>\frac{5\sqrt3}{3}\right)}" />,
-    reason: <>Matches option <b>A</b>, about <Katex tex="\Pr(Z>2.887)" />. Option <b>D</b> uses a standard deviation of 7, from ignoring the coefficients (<Katex tex="4+9+36=49" />); option <b>C</b> uses a variance of 66, from multiplying the variances by 3 and 2 rather than by 9 and 4.</>,
+    reason: <>Matches option <b>A</b>, about <Katex tex="\Pr(Z>2.887)" />.</>,
+    more: (
+      <>
+        Each wrong option comes from a wrong variance (the numerator 30 is right in all of them). Option{' '}
+        <b>C</b> uses a variance of 66, from multiplying the variances by 3 and 2 rather than by 9 and 4 (
+        <Katex tex="12+18+36=66" />). Option <b>D</b> uses a standard deviation of 7, from ignoring the
+        coefficients (<Katex tex="4+9+36=49" />). Option <b>B</b> uses a standard deviation of 6, from
+        subtracting <Katex tex="\operatorname{Var}(R)" /> because of the minus sign (
+        <Katex tex="36+36-36=36" />).
+      </>
+    ),
   },
 ]
 

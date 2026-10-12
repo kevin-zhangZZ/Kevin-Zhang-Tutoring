@@ -100,7 +100,8 @@ const EXAM_DIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x^3+x+2 = (x+1)(x^2-x+2)" />,
-    reason: <>Factorising the denominator. <Katex tex="x=-1" /> is a root because <Katex tex="-1-1+2=0" />.</>,
+    reason: <>Vertical asymptotes come from the denominator's zeros. Trying the factors of 2 (<Katex tex="\pm1,\ \pm2" />): <Katex tex="x=-1" /> works, since <Katex tex="-1-1+2=0" />.</>,
+    more: <>So <Katex tex="(x+1)" /> is a factor, and dividing it out leaves <Katex tex="x^2-x+2" />. On CAS, factor or <Cas fn="solve" /> gives the same thing.</>,
   },
   {
     working: <Katex display tex="x^2-x+2: \ \Delta = 1-8 = -7 < 0" />,
@@ -109,22 +110,26 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{vertical asymptote: } x = -1" />,
     reason: <>The numerator is 3x = −3 there, not zero, so the graph really does blow up.</>,
+    more: <>Which way it blows up: just left of <Katex tex="x=-1" /> the denominator and the numerator are both negative, so <Katex tex="y\to+\infty" />; just right of it the denominator is positive, so <Katex tex="y\to-\infty" />. That is why the left branch climbs up the asymptote and the right branch comes up from below.</>,
   },
   {
-    working: <Katex display tex="\deg(\text{denominator}) > \deg(\text{numerator}) \implies y \to 0 \text{ as } x\to\pm\infty" />,
-    reason: <>Horizontal asymptote y = 0 — the report notes many responses did not label it.</>,
+    working: <Katex display tex="\begin{aligned}&\deg(\text{denominator}) > \deg(\text{numerator}) \\ &\implies y \to 0 \text{ as } x\to\pm\infty\end{aligned}" />,
+    reason: <>Horizontal asymptote y = 0 (the x-axis), which must be labelled.</>,
+    more: <>For large <Katex tex="|x|" /> the rule behaves like <Katex tex="\dfrac{3x}{x^3}=\dfrac{3}{x^2}" />, which is positive and tends to 0, so both branches approach the x-axis from above at the far ends of the grid. The report notes many responses did not label <Katex tex="y=0" /> — easy to forget because the axis is already drawn.</>,
   },
   {
-    working: <Katex display tex="y' = \frac{3(x^3+x+2)-3x(3x^2+1)}{(x^3+x+2)^2} = \frac{6-6x^3}{(x^3+x+2)^2}" />,
+    working: <Katex display tex="\begin{aligned} y' &= \frac{3(x^3+x+2)-3x(3x^2+1)}{(x^3+x+2)^2} \\ &= \frac{6-6x^3}{(x^3+x+2)^2}\end{aligned}" />,
     reason: <>Quotient rule, then collecting. The denominator is a square, so only the numerator can change sign.</>,
   },
   {
-    working: <Katex display tex="6-6x^3 = 0 \implies x = 1 \implies y = \frac{3}{1+1+2} = \frac{3}{4}" />,
-    reason: <>The only stationary point, at <Katex tex="\left(1,\tfrac34\right)" /> — an exact value is expected, not 0.8.</>,
+    working: <Katex display tex="\begin{aligned}&6-6x^3 = 0 \implies x = 1 \\ &\implies y = \frac{3}{1+1+2} = \frac{3}{4}\end{aligned}" />,
+    reason: <>The only stationary point. <Katex tex="y'>0" /> for <Katex tex="x<1" /> and <Katex tex="y'<0" /> for <Katex tex="x>1" />, so <Katex tex="\left(1,\tfrac34\right)" /> is a maximum.</>,
+    more: <>Label it exactly: the report notes some responses rounded the maximum to 1 decimal place, but only the point of inflection was to be rounded. The sign pattern comes from <Katex tex="6-6x^3=6(1-x^3)" />, positive for <Katex tex="x<1" /> and negative for <Katex tex="x>1" /> (so the left branch, <Katex tex="x<-1" />, is increasing throughout).</>,
   },
   {
     working: <Katex display tex="y'' = 0 \implies x = 1.6864\ldots \implies y = 0.5964\ldots" />,
-    reason: <>By <Cas fn="solve" /> on the second derivative. The question asks for one decimal place here: <Katex tex="(1.7,\,0.6)" />.</>,
+    reason: <>Define y on CAS and solve <Katex tex="y''=0" /> with <Cas fn="solve" />: there is one real solution. <Katex tex="y''" /> changes sign there and <Katex tex="y'\neq0" />, so it is a non-stationary inflection. To one decimal place: <Katex tex="(1.7,\,0.6)" />.</>,
+    more: <>The numerator of <Katex tex="y''" /> is <Katex tex="6(3x^5-x^3-12x^2-2)" />, whose only real zero is <Katex tex="x\approx1.686" />, so this is the only point of inflection: <Katex tex="y''<0" /> just before and <Katex tex="y''>0" /> just after. Since <Katex tex="x>1" />, <Katex tex="y'<0" /> there — the curve is still falling, so draw it sloping, not flat. The report notes several responses wrongly sketched it as a stationary point.</>,
   },
   {
     working: (
@@ -137,6 +142,7 @@ const ROWS_A: WorkingRow[] = [
       </div>
     ),
     reason: <>Both branches drawn, <Katex tex="x=-1" /> and <Katex tex="y=0" /> labelled, and the inflection shown as a non-stationary point.</>,
+    more: <>As the report suggests, graph the function on CAS with the window set to the question's axes (<Katex tex="-4\le x\le4" />, <Katex tex="-2\le y\le2" />) and copy its shape: smooth curves that approach the asymptotes without crossing <Katex tex="x=-1" />, the right branch passing through the origin, and both branches ending close to the x-axis at the edges of the grid.</>,
   },
 ]
 
@@ -147,18 +153,20 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{region: } 0 \le x \le 2" />,
-    reason: <>The curve meets the x-axis at the origin, and the line <Katex tex="x=2" /> closes the region on the right.</>,
+    reason: <>The y-axis (<Katex tex="x=0" />) closes the region on the left, where the curve passes through the origin; the line <Katex tex="x=2" /> closes it on the right.</>,
+    more: <>On <Katex tex="0\le x\le2" /> the curve is never below the x-axis, so the region is one piece between the curve and the x-axis, and rotating it gives a solid made of discs of radius <Katex tex="y" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \pi\int_0^2\left(\frac{3x}{x^3+x+2}\right)^2dx}" />,
-    reason: <>Written down only — part b.ii. does the evaluating.</>,
+    reason: <>Write the rule in full in place of <Katex tex="y" /> — part b.ii. does the evaluating.</>,
+    more: <>The report reminds students that any variable used in a formula must be defined. Writing just <Katex tex="\pi\int_0^2 y^2\,dx" />, or <Katex tex="\pi\int_0^2 f(x)^2\,dx" /> without saying what <Katex tex="f" /> is, does not pin down the solid; substituting the rule avoids the problem.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\pi\int_0^2\left(\frac{3x}{x^3+x+2}\right)^2dx = 2.28801\ldots" />,
-    reason: <>By <Cas fn="nInt" /> — there is no useful antiderivative here.</>,
+    reason: <>Evaluate the part b.i. integral by <Cas fn="nInt" /> — there is no useful antiderivative here.</>,
   },
   {
     working: <Katex display tex="\boxed{V \approx 2.29 \text{ cubic units}}" />,
@@ -173,7 +181,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 2 \text{ is a root}: \ 8-10+2 = 0" />,
-    reason: <>Trying the factors of the constant term finds it quickly.</>,
+    reason: <>Trying the factors of the constant term (<Katex tex="\pm1,\ \pm2" />) finds it quickly.</>,
+    more: <>This is Exam 2, so <Cas fn="solve" /> on <Katex tex="x^3-5x+2=0" /> gives all three exact roots at once; the factorising here shows where they come from.</>,
   },
   {
     working: <Katex display tex="x^3-5x+2 = (x-2)(x^2+2x-1)" />,
@@ -185,7 +194,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{x = 2, \qquad x = -1+\sqrt2, \qquad x = -1-\sqrt2}" />,
-    reason: <>Three separate equations, as the question specified — the report notes many responses did not include this.</>,
+    reason: <>Three separate equations, as the question asks.</>,
+    more: <>None of these is cancelled by the numerator: <Katex tex="3x" /> is zero only at <Katex tex="x=0" />, which is not a root of the denominator. A single combined statement such as <Katex tex="x=2,\ -1\pm\sqrt2" /> is not three separate equations.</>,
   },
 ]
 
@@ -195,31 +205,34 @@ const ROWS_DI: WorkingRow[] = [
     reason: <>The family, with a as the parameter.</>,
   },
   {
-    working: <Katex display tex="y' = \frac{3(x^3+ax+2)-3x(3x^2+a)}{(x^3+ax+2)^2} = \frac{6-6x^3}{(x^3+ax+2)^2}" />,
-    reason: <>The <Katex tex="3ax" /> terms cancel, so a disappears from the numerator entirely.</>,
+    working: <Katex display tex="\begin{aligned} y' &= \frac{3(x^3+ax+2)-3x(3x^2+a)}{(x^3+ax+2)^2} \\ &= \frac{6-6x^3}{(x^3+ax+2)^2}\end{aligned}" />,
+    reason: <>Quotient rule, as in part a. The <Katex tex="3ax" /> terms cancel, so a disappears from the numerator entirely.</>,
   },
   {
     working: <Katex display tex="6-6x^3 = 0 \implies x = 1 \quad \text{for every } a" />,
-    reason: <>The stationary point always sits at x = 1 — a surprising and very useful fact for parts d.ii. and d.iii.</>,
+    reason: <>A stationary point needs <Katex tex="y'=0" />, so it always sits at x = 1 — the key fact for part d.ii.</>,
   },
   {
     working: <Katex display tex="\boxed{y_P = \frac{3}{1+a+2} = \frac{3}{a+3}}" />,
     reason: <>Substituting x = 1 into the rule.</>,
+    more: <>This needs <Katex tex="a\neq-3" />: when <Katex tex="a=-3" /> the denominator is 0 at <Katex tex="x=1" />, so the graph has no point there at all. That is exactly the case part d.ii. is about, and why this part says to consider the case where the graph has a stationary point.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{the only candidate is } x = 1 \text{ (part d.i.)}" />,
-    reason: <>So the graph can only fail to have a stationary point if x = 1 is not in its domain.</>,
+    reason: <>If x = 1 is in the domain, <Katex tex="y'(1)=0" /> for every a. So no stationary point means x = 1 is not in the domain.</>,
+    more: <>Over half of students scored 0 here. The trap is to start from scratch — say, hunting for values of a that make <Katex tex="y'=0" /> unsolvable. But part d.i. already fixed where any stationary point must be, so the only question is which a removes <Katex tex="x=1" /> from the domain.</>,
   },
   {
     working: <Katex display tex="1+a+2 = 0 \implies a = -3" />,
-    reason: <>The denominator must vanish at x = 1.</>,
+    reason: <>The denominator <Katex tex="x^3+ax+2" /> must be zero at x = 1.</>,
   },
   {
     working: <Katex display tex="x^3-3x+2 = (x-1)^2(x+2)" />,
-    reason: <>Factorising with <Katex tex="a=-3" />. The numerator <Katex tex="3x" /> is 3 at x = 1 and −6 at x = −2, so neither zero cancels.</>,
+    reason: <>Factorising with <Katex tex="a=-3" /> (we know <Katex tex="x-1" /> is a factor). The numerator <Katex tex="3x" /> is 3 at x = 1 and −6 at x = −2, so neither zero cancels.</>,
+    more: <>Check: with <Katex tex="a=-3" />, <Katex tex="y'=\dfrac{6(1-x^3)}{(x-1)^4(x+2)^2}=\dfrac{-6(x^2+x+1)}{(x-1)^3(x+2)^2}" />, and <Katex tex="x^2+x+1" /> has no real zeros, so there really are no stationary points.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 1 \qquad \text{and} \qquad x = -2}" />,
@@ -233,20 +246,22 @@ const ROWS_DIII: WorkingRow[] = [
     reason: <>From part d.i. Naming the denominator keeps the next line readable.</>,
   },
   {
-    working: <Katex display tex="y'' = \frac{-18x^2D^2-\left(6-6x^3\right)\cdot2D\left(3x^2+a\right)}{D^4} = \frac{-18x^2D-12\left(1-x^3\right)\left(3x^2+a\right)}{D^3}" />,
-    reason: <>Quotient rule again, then cancelling one factor of D.</>,
+    working: <Katex display tex="\begin{aligned} y'' &= \frac{-18x^2D^2-2D\left(6-6x^3\right)\left(3x^2+a\right)}{D^4} \\ &= \frac{-18x^2D-12\left(1-x^3\right)\left(3x^2+a\right)}{D^3}\end{aligned}" />,
+    reason: <>Quotient rule again, with <Katex tex="\tfrac{d}{dx}(D^2)=2D\,D'" /> and <Katex tex="D'=3x^2+a" /> (chain rule). Then cancel one factor of D.</>,
   },
   {
-    working: <Katex display tex="x = 2: \quad -18(4)(8+2a+2)-12(1-8)(12+a) = 0" />,
-    reason: <>An inflection needs the second derivative to vanish, so only the numerator matters.</>,
+    working: <Katex display tex="\begin{aligned}&x = 2: \\ &-18(4)(8+2a+2) \\ &\quad -12(1-8)(12+a) = 0\end{aligned}" />,
+    reason: <>At a point of inflection <Katex tex="y''=0" />. A fraction is zero when its numerator is, so set the numerator to 0 at x = 2.</>,
+    more: <>With <Katex tex="x=2" />: <Katex tex="x^2=4" />, <Katex tex="D=8+2a+2" />, <Katex tex="1-x^3=-7" /> and <Katex tex="3x^2+a=12+a" />. The report says an appropriate method must be shown for both marks, so write this equation down even if CAS solves it.</>,
   },
   {
-    working: <Katex display tex="-72(10+2a)+84(12+a) = -720-144a+1008+84a = 288-60a" />,
+    working: <Katex display tex="\begin{aligned}&-72(10+2a)+84(12+a) \\ &= -720-144a+1008+84a \\ &= 288-60a\end{aligned}" />,
     reason: <>Expanding and collecting.</>,
   },
   {
     working: <Katex display tex="288-60a = 0 \implies \boxed{a = \frac{24}{5}}" />,
-    reason: <>Equivalently by <Cas fn="solve" /> on <Katex tex="y''(2)=0" />. With this a the denominator has no real zero near x = 2, so the point is a genuine inflection.</>,
+    reason: <>Equivalently, define y on CAS and solve <Katex tex="y''(2)=0" /> for a with <Cas fn="solve" />.</>,
+    more: <>Check it is a genuine inflection: with <Katex tex="a=\tfrac{24}{5}" /> the denominator's only real zero is near <Katex tex="x=-0.40" />, so <Katex tex="x=2" /> is in the domain, and <Katex tex="y''" /> changes sign there (about <Katex tex="-0.012" /> at <Katex tex="x=1.9" /> and <Katex tex="+0.010" /> at <Katex tex="x=2.1" />).</>,
   },
 ]
 
