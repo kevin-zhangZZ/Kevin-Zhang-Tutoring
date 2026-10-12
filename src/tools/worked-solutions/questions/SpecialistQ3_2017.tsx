@@ -26,9 +26,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z^4-1=0 \;\implies\; z^4=1" />,
     reason: (
       <>
-        A product is zero when either factor is zero, so solve each factor separately and then combine the
-        answers. Because the question asks for <em>distinct</em> roots, check the combined list for repeats
-        before counting.
+        A product is zero when either factor is zero: solve each factor, then combine, checking for repeats
+        since only <em>distinct</em> roots count.
       </>
     ),
   },
@@ -58,8 +57,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z = \frac{-3i+i}{2}=-i, \quad \text{or} \quad z=\frac{-3i-i}{2}=-2i" />,
     reason: (
       <>
-        Check by expanding: <Katex tex="(z+i)(z+2i)=z^2+3iz+2i^2=z^2+3iz-2" />. Spotting that factorisation (two
-        numbers with sum <Katex tex="3i" /> and product <Katex tex="-2" />) is a quicker route.
+        Check by expanding: <Katex tex="(z+i)(z+2i)=z^2+3iz+2i^2=z^2+3iz-2" />.
+      </>
+    ),
+    more: (
+      <>
+        Spotting that factorisation directly (two numbers with sum <Katex tex="3i" /> and product{' '}
+        <Katex tex="-2" />) is a quicker route than the quadratic formula.
       </>
     ),
   },
@@ -69,14 +73,15 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{5 \text{ distinct roots}}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Option E, <Katex tex="4+2=6" />, counts the shared root{' '}
-        <Katex tex="z=-i" /> twice. On CAS, complex solve (cSolve) of the whole equation lists the five
-        solutions; the ordinary real solve would return only <Katex tex="z=\pm1" />.
+        Option E (35%), <Katex tex="4+2=6" />, counts the shared root <Katex tex="z=-i" /> twice. Option C
+        (4) counts only the roots of <Katex tex="z^4-1" />. Option A (2) counts only the real roots{' '}
+        <Katex tex="z=\pm1" />, which is all an ordinary real solve on CAS returns; complex solve (cSolve) of the
+        whole equation lists all five.
       </>
     ),
-    more: <>For option E, see below.</>,
   },
 ]
 

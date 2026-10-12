@@ -23,20 +23,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = 3(2)+(-4)(2)+12(-1) = -14" />,
-    reason: (
+    reason: <>Every resolute starts with the dot product: multiply matching components and add.</>,
+    more: (
       <>
-        Every resolute starts with the dot product: multiply matching components and add. It is negative, so the angle
-        between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> is obtuse and the answer will be a{' '}
-        <em>negative</em> multiple of <Katex tex="\underset{\sim}{b}" />, pointing the opposite way.
-      </>
-    ),
-  },
-  {
-    working: <Katex display tex="\left|\underset{\sim}{b}\right|^2 = 2^2+2^2+(-1)^2 = 9" />,
-    reason: (
-      <>
-        The vector resolute divides by <Katex tex="\left|\underset{\sim}{b}\right|^2" />, and{' '}
-        <Katex tex="\left|\underset{\sim}{b}\right|^2" /> is just the sum of squares, so there is no square root to take.
+        It is negative, so the angle between <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> is
+        obtuse and the answer will be a <em>negative</em> multiple of <Katex tex="\underset{\sim}{b}" />, pointing the opposite
+        way.
       </>
     ),
   },
@@ -44,12 +36,25 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{vector resolute} = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{b}\right|^2}\,\underset{\sim}{b}" />,
     reason: (
       <>
-        Why the square: the vector resolute is the multiple <Katex tex="\lambda\underset{\sim}{b}" /> that leaves{' '}
+        This is <Katex tex="\left(\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}\right)\hat{\underset{\sim}{b}}" />: each unit
+        vector divides by <Katex tex="\left|\underset{\sim}{b}\right|" />, hence the square.
+      </>
+    ),
+    more: (
+      <>
+        Another way to see the square: the vector resolute is the multiple <Katex tex="\lambda\underset{\sim}{b}" /> that leaves{' '}
         <Katex tex="\underset{\sim}{a}-\lambda\underset{\sim}{b}" /> perpendicular to <Katex tex="\underset{\sim}{b}" />.
         Setting <Katex tex="(\underset{\sim}{a}-\lambda\underset{\sim}{b})\cdot\underset{\sim}{b}=0" /> gives{' '}
-        <Katex tex="\lambda=\frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\underset{\sim}{b}\cdot\underset{\sim}{b}}" />. The
-        same thing is <Katex tex="\left(\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}\right)\hat{\underset{\sim}{b}}" />, with one{' '}
-        <Katex tex="\left|\underset{\sim}{b}\right|" /> from each unit vector.
+        <Katex tex="\lambda=\frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\underset{\sim}{b}\cdot\underset{\sim}{b}}" />.
+      </>
+    ),
+  },
+  {
+    working: <Katex display tex="\left|\underset{\sim}{b}\right|^2 = 2^2+2^2+(-1)^2 = 9" />,
+    reason: (
+      <>
+        The formula divides by <Katex tex="\left|\underset{\sim}{b}\right|^2" />, which is just the sum of squares, so there
+        is no square root to take.
       </>
     ),
   },
@@ -57,7 +62,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{-\frac{14}{9}\left(2\underset{\sim}{i}+2\underset{\sim}{j}-\underset{\sim}{k}\right)}" />,
     reason: (
       <>
-        Matches option <b>C</b>. A, <Katex tex="-\tfrac{14}{3}=\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}" />, is the
+        Matches option <b>C</b>: substitute <Katex tex="-14" /> and <Katex tex="9" /> into the formula.
+      </>
+    ),
+    more: (
+      <>
+        A, <Katex tex="-\tfrac{14}{3}=\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}}" />, is the
         scalar resolute: a number, not a vector. B multiplies that number by <Katex tex="\underset{\sim}{b}" /> instead of{' '}
         <Katex tex="\hat{\underset{\sim}{b}}" />. D and E are the right formulas the wrong way round: D is{' '}
         <Katex tex="\tfrac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{|\underset{\sim}{a}|}=-\tfrac{14}{13}" /> and E is{' '}

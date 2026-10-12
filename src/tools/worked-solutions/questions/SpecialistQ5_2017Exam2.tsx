@@ -76,42 +76,50 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}_B(0) = (1-2)\underset{\sim}{i}+(3+0)\underset{\sim}{j} = -\underset{\sim}{i}+3\underset{\sim}{j}" />,
-    reason: <>Boat at <Katex tex="(-1,3)" /> — the leftmost point of the ellipse.</>,
+    reason: <>Substituting <Katex tex="t=0" />: the boat starts at <Katex tex="(-1,3)" />, the leftmost point of the ellipse.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r}_J(0) = (1-0)\underset{\sim}{i}+(2-1)\underset{\sim}{j} = \underset{\sim}{i}+\underset{\sim}{j}" />,
-    reason: <>Jet ski at <Katex tex="(1,1)" /> — the bottom of the circle.</>,
+    reason: <>The jet ski starts at <Katex tex="(1,1)" />, the bottom of the circle.</>,
   },
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}_B(0) = 2\sin(0)\underset{\sim}{i}+\cos(0)\underset{\sim}{j} = \underset{\sim}{j}" />,
-    reason: <>Differentiating and substituting <Katex tex="t=0" />: the boat sets off straight up from the left edge of its ellipse, which means it is going <strong>clockwise</strong>.</>,
+    reason: <>Differentiate each component, then substitute <Katex tex="t=0" /> to get the starting direction. The boat leaves the left edge of its ellipse heading straight up, so it goes <strong>clockwise</strong>.</>,
+    more: <>In detail: <Katex tex="\tfrac{d}{dt}(1-2\cos t)=2\sin t" /> and <Katex tex="\tfrac{d}{dt}(3+\sin t)=\cos t" />. Moving up from the leftmost point of a loop can only be clockwise.</>,
   },
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}_J(0) = -\cos(0)\underset{\sim}{i}+\sin(0)\underset{\sim}{j} = -\underset{\sim}{i}" />,
-    reason: <>The jet ski sets off to the left from the bottom of its circle — also <strong>clockwise</strong>. The report says significant numbers of students plotted the starting points correctly but did not show the direction of motion or clearly identify which vessel was which — both explicitly asked for.</>,
+    reason: <>Same for the jet ski. It leaves the bottom of its circle heading left — also <strong>clockwise</strong>. Mark both points, label which is which, and draw an arrow at each.</>,
+    more: <>Here <Katex tex="\dot{\underset{\sim}{r}}_J(t)=-\cos t\,\underset{\sim}{i}+\sin t\,\underset{\sim}{j}" />. The labels and arrows are where most marks were lost.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
-    working: <Katex display tex="\left|\dot{\underset{\sim}{r}}_B\right| = \sqrt{4\sin^2 t+\cos^2 t}" />,
-    reason: <>Speed is the <em>magnitude</em> of velocity. Equating the velocity vectors themselves asks a different (and here unsolvable) question — the report's most common error.</>,
+    working: <Katex display tex="\dot{\underset{\sim}{r}}_B = 2\sin t\,\underset{\sim}{i}+\cos t\,\underset{\sim}{j}" />,
+    reason: <>Differentiating each component of <Katex tex="\underset{\sim}{r}_B" />.</>,
   },
   {
-    working: <Katex display tex="\left|\dot{\underset{\sim}{r}}_J\right| = \sqrt{\cos^2 t+\sin^2 t} = 1" />,
-    reason: <>The jet ski travels at constant speed <Katex tex="1" /> km/min — it is going round a unit circle at unit angular rate.</>,
+    working: <Katex display tex="\left|\dot{\underset{\sim}{r}}_B\right| = \sqrt{4\sin^2 t+\cos^2 t}" />,
+    reason: <>Speed is the <em>magnitude</em> of velocity. Equate speeds, not velocity vectors.</>,
+  },
+  {
+    working: <Katex display tex="\left|\dot{\underset{\sim}{r}}_J\right| = \sqrt{(-\cos t)^2+\sin^2 t} = 1" />,
+    reason: <>From <Katex tex="\dot{\underset{\sim}{r}}_J=-\cos t\,\underset{\sim}{i}+\sin t\,\underset{\sim}{j}" />: the jet ski's speed is a constant <Katex tex="1" /> km/min.</>,
   },
   {
     working: <Katex display tex="4\sin^2 t+\cos^2 t = 1" />,
-    reason: <>Setting the two speeds equal and squaring.</>,
+    reason: <>Setting the two speeds equal and squaring both sides.</>,
   },
   {
     working: <Katex display tex="3\sin^2 t = 0 \implies \sin t = 0" />,
-    reason: <>Using <Katex tex="\cos^2 t = 1-\sin^2 t" />. Tidier than going to the CAS.</>,
+    reason: <>Replacing <Katex tex="\cos^2 t" /> with <Katex tex="1-\sin^2 t" />.</>,
+    more: <>Solving on CAS works too, but this identity makes it a one-liner.</>,
   },
   {
     working: <Katex display tex="\boxed{t = \pi}" />,
-    reason: <><Katex tex="t=0" /> also satisfies it, but the question asks for the first time <Katex tex="t>0" />. Geometrically: the boat matches the jet ski's speed only at the two ends of its ellipse, where it is moving along the short direction.</>,
+    reason: <><Katex tex="\sin t=0" /> at <Katex tex="t=0,\pi,2\pi,\dots" />; the first with <Katex tex="t>0" /> is <Katex tex="\pi" />.</>,
+    more: <>Geometrically: the boat matches the jet ski's speed only at the two ends of its ellipse (<Katex tex="t=0" /> and <Katex tex="t=\pi" />), where it is moving in the short direction. Everywhere else it is faster.</>,
   },
 ]
 
@@ -126,44 +134,53 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(3,3)}" />,
-    reason: <>The rightmost point of the ellipse — half a lap from where it started, which is right after time <Katex tex="\pi" /> out of a period of <Katex tex="2\pi" />. Give it as coordinates, not a vector: the report notes some answers were not given in coordinate form.</>,
+    reason: <>The question asks for coordinates, so write <Katex tex="(3,3)" />, not a vector.</>,
+    more: <>This is the rightmost point of the ellipse: <Katex tex="\pi" /> is half the period <Katex tex="2\pi" />, so the boat has gone half a lap from <Katex tex="(-1,3)" />. The report notes some answers were not given in coordinate form.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{r}_J-\underset{\sim}{r}_B = \bigl(2\cos t-\sin t\bigr)\underset{\sim}{i}-\bigl(1+\cos t+\sin t\bigr)\underset{\sim}{j}" />,
-    reason: <>Component by component: <Katex tex="(1-\sin t)-(1-2\cos t)=2\cos t-\sin t" />, and <Katex tex="(2-\cos t)-(3+\sin t)=-1-\cos t-\sin t" />.</>,
+    working: <Katex display tex="\begin{aligned}\underset{\sim}{r}_J-\underset{\sim}{r}_B &= \bigl(2\cos t-\sin t\bigr)\underset{\sim}{i}\\ &\quad-\bigl(1+\cos t+\sin t\bigr)\underset{\sim}{j}\end{aligned}" />,
+    reason: <>Subtracting component by component: <Katex tex="(1-\sin t)-(1-2\cos t)" /> and <Katex tex="(2-\cos t)-(3+\sin t)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{d(t) = \sqrt{\bigl(2\cos t-\sin t\bigr)^2+\bigl(1+\cos t+\sin t\bigr)^2}}" />,
-    reason: <>The magnitude of the difference. It must be a <em>scalar</em> — the report notes answers that left <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> in.</>,
+    reason: <>Distance is the magnitude of this vector — a <em>scalar</em>, with no <Katex tex="\underset{\sim}{i}" /> or <Katex tex="\underset{\sim}{j}" /> left in it.</>,
+    more: <>Squaring removes the minus sign on the <Katex tex="\underset{\sim}{j}" /> component, and <Katex tex="(\sin t-2\cos t)^2" /> is the same as <Katex tex="(2\cos t-\sin t)^2" />, so equivalent forms all earn the mark. If you copy a CAS-expanded version, check the brackets carefully. The report notes answers that kept vectors in the expression.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Cas fn="fMin">fMin(√((2cos(t)-sin(t))² + (1+cos(t)+sin(t))²), t, 0, 2π)</Cas>,
-    reason: <>Both motions have period <Katex tex="2\pi" />, so one full period covers every possibility. The graph of <Katex tex="d(t)" /> has two dips per cycle — a local minimum of about <Katex tex="2.24" /> at <Katex tex="t=\tfrac{\pi}{2}" /> and the true minimum near <Katex tex="t\approx4.28" /> — and the report says answers giving other local minimum values were frequent.</>,
+    reason: <>Both motions repeat every <Katex tex="2\pi" /> minutes, so searching one period covers every time. Over that period <Katex tex="d(t)" /> has two local minima — we need the smaller, so graph <Katex tex="d(t)" /> on CAS to check fMin found the lower dip.</>,
+    more: <>The graph shows both dips: a local minimum of <Katex tex="\sqrt5\approx2.24" /> at <Katex tex="t=\tfrac{\pi}{2}" /> and the true minimum near <Katex tex="t\approx4.28" />. The report says answers giving other local minimum values were frequent — reading off the first dip, or searching only an interval around <Katex tex="t=\tfrac{\pi}{2}" />, gives <Katex tex="\sqrt5\approx2.24" /> instead.</>,
+  },
+  {
+    working: <Katex display tex="t\approx4.281, \qquad d(4.281)\approx0.334" />,
+    reason: <>fMin returns the time of the minimum; substitute it into <Katex tex="d(t)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{d_{\min} \approx 0.33 \text{ km}}" />,
-    reason: <>Two decimal places — about <Katex tex="330" /> m. The paths themselves cross, but the two vessels are never at a crossing point at the same time, so the gap never closes.</>,
+    reason: <>Correct to two decimal places, in kilometres as asked.</>,
+    more: <>That is about <Katex tex="330" /> m. The paths themselves cross, but the two vessels are never at a crossing point at the same time, so the gap never closes.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="1-\sin t = 1-2\cos t" />,
-    reason: <>A collision needs both components to agree at the <em>same</em> time — not just the paths to cross. Start with the <Katex tex="\underset{\sim}{i} " /> component, which does not involve <Katex tex="a" />.</>,
+    reason: <>A collision means the same position at the <em>same</em> time, so both components must agree for one <Katex tex="t" />. The <Katex tex="\underset{\sim}{i}" /> component has no <Katex tex="a" />, so start there.</>,
   },
   {
     working: <Katex display tex="\sin t = 2\cos t \implies \tan t = 2" />,
-    reason: <>Dividing by <Katex tex="\cos t" />.</>,
+    reason: <>Dividing by <Katex tex="\cos t" />, which can't be <Katex tex="0" /> here (then <Katex tex="\sin t=2\cos t" /> would be <Katex tex="0" /> too, impossible since <Katex tex="\sin^2t+\cos^2t=1" />).</>,
   },
   {
     working: <Katex display tex="\boxed{t = \arctan(2)}" />,
-    reason: <>About <Katex tex="1.107" /> minutes — "shortly after starting", as the question says, so this first solution is the one wanted. Exact form was required.</>,
+    reason: <>The first solution (about <Katex tex="1.107" /> min) matches "shortly after starting". Give the exact form.</>,
+    more: <>The next solution is <Katex tex="\arctan(2)+\pi" />, which would give a different <Katex tex="a" /> (<Katex tex="3-\tfrac{3\sqrt5}{5}" />) and is not "shortly after starting". The report says many students gave decimal approximations rather than the exact forms, although an exact answer is required unless otherwise specified.</>,
   },
   {
     working: <Katex display tex="\sin t = \frac{2}{\sqrt5}, \qquad \cos t = \frac{1}{\sqrt5}" />,
@@ -171,7 +188,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a-\cos t = 3+\sin t \implies a = 3+\sin t+\cos t" />,
-    reason: <>Now the <Katex tex="\underset{\sim}{j} " /> component, with <Katex tex="t" /> known.</>,
+    reason: <>Now equate the <Katex tex="\underset{\sim}{j}" /> components at this same <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="a = 3+\frac{2}{\sqrt5}+\frac{1}{\sqrt5} = 3+\frac{3}{\sqrt5}" />,
@@ -179,7 +196,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 3+\frac{3\sqrt5}{5}}" />,
-    reason: <>Rationalised — about <Katex tex="4.34" />. The jet ski would have to start from <Katex tex="(1, a-1)\approx(1,3.34)" />, about <Katex tex="2.34" /> km further in the <Katex tex="\underset{\sim}{j}" /> direction than on the first morning.</>,
+    reason: <>Rationalised (about <Katex tex="4.34" />). Both answers are needed: the time <Katex tex="t=\arctan(2)" /> and this <Katex tex="a" />.</>,
+    more: <>The jet ski would have to start from <Katex tex="(1, a-1)\approx(1,3.34)" />, about <Katex tex="2.34" /> km further in the <Katex tex="\underset{\sim}{j}" /> direction than on the first morning.</>,
   },
 ]
 
@@ -245,7 +263,7 @@ export default function SpecialistQ5_2017Exam2() {
           </p>
           <p>
             Setting the velocity <em>vectors</em> equal is a much stronger condition and has
-            no solution in this question. The report says that was the most common error.
+            no solution in this question.
           </p>
         </Background>
         <WorkingTable rows={ROWS_BI} />

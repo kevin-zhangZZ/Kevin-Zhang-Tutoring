@@ -20,11 +20,13 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="1+i = \sqrt2\,\operatorname{cis}\!\left(\frac{\pi}{4}\right)" />,
-    reason: <>Roots of a complex number always start with polar form, because De Moivre&apos;s theorem works on the modulus and the argument separately. Modulus <Katex tex="\sqrt{1^2+1^2}=\sqrt2" />; argument <Katex tex="\tfrac{\pi}{4}" /> since the point sits on the line <Katex tex="y=x" /> in the first quadrant.</>,
+    reason: <>Roots need polar form. Modulus <Katex tex="\sqrt{1^2+1^2}=\sqrt2" />; argument <Katex tex="\tfrac{\pi}{4}" />, since <Katex tex="1+i" /> lies on <Katex tex="y=x" /> in the first quadrant.</>,
+    more: <>De Moivre&apos;s theorem works on the modulus and the argument separately, which is why finding roots always starts with polar form.</>,
   },
   {
     working: <Katex display tex="z^n = \sqrt2\,\operatorname{cis}\!\left(\frac{\pi}{4}+2\pi k\right), \quad k\in Z" />,
-    reason: <>This is the step that makes <Katex tex="n" /> answers appear. Adding any number of full turns <Katex tex="2\pi k" /> points in the same direction, so <Katex tex="1+i" /> has all of these arguments. Once they are divided by <Katex tex="n" /> they become steps of <Katex tex="\tfrac{2\pi}{n}" />, which are <em>not</em> full turns, so they give <Katex tex="n" /> different roots. Adding <Katex tex="2\pi k" /> after dividing (option B) only ever gives one point.</>,
+    reason: <>Adding whole turns <Katex tex="2\pi k" /> doesn&apos;t change <Katex tex="1+i" />, but once divided by <Katex tex="n" /> these become different angles, giving <Katex tex="n" /> different roots.</>,
+    more: <>Once divided by <Katex tex="n" />, the extra turns become steps of <Katex tex="\tfrac{2\pi}{n}" />, which are <em>not</em> full turns, so each <Katex tex="k=0,1,\dots,n-1" /> points in a new direction.</>,
   },
   {
     working: <Katex display tex="z = \left(\sqrt2\right)^{\frac1n}\operatorname{cis}\!\left(\frac{\frac{\pi}{4}+2\pi k}{n}\right)" />,
@@ -32,15 +34,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left(\sqrt2\right)^{\frac1n} = \left(2^{\frac12}\right)^{\frac1n} = 2^{\frac{1}{2n}}" />,
-    reason: <>The modulus. Writing <Katex tex="2^{1/n}" /> instead is option D, the most popular wrong answer — it forgets that the modulus was <Katex tex="\sqrt2" />, not <Katex tex="2" />.</>,
+    reason: <>The modulus is <Katex tex="\sqrt2=2^{\frac12}" />, not <Katex tex="2" />, so its <Katex tex="n" />th root is <Katex tex="2^{\frac{1}{2n}}" />.</>,
   },
   {
     working: <Katex display tex="\frac{\frac{\pi}{4}+2\pi k}{n} = \frac{\pi}{4n}+\frac{2\pi k}{n}" />,
-    reason: <>Both terms get divided by <Katex tex="n" />. Option C divides only the second, leaving <Katex tex="\tfrac{\pi}{4}" /> untouched.</>,
+    reason: <>Both terms of the argument get divided by <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="\boxed{2^{\frac{1}{2n}}\operatorname{cis}\!\left(\frac{\pi}{4n}+\frac{2\pi k}{n}\right),\ k\in Z}" />,
-    reason: <>Matches option <b>E</b>. The final detail is <Katex tex="k\in Z" />, not <Katex tex="k\in R" />: <Katex tex="k" /> counts whole turns, so only integers give solutions. That is all that separates E from A. D has the modulus <Katex tex="2^{\frac1n}" /> (row 4) and C leaves <Katex tex="\tfrac{\pi}{4}" /> undivided (row 5).</>,
+    reason: <>Matches option <b>E</b>; <Katex tex="k\in Z" /> because <Katex tex="k" /> counts whole turns.</>,
+    more: <>A differs from E only in <Katex tex="k\in R" />. D, the most popular wrong answer (15%), takes the modulus as <Katex tex="2^{\frac1n}" />, forgetting that <Katex tex="|1+i|=\sqrt2" /> (row 4). B has the same wrong modulus and also adds <Katex tex="2\pi k" /> after dividing, which only ever gives one point (row 2). C divides only the <Katex tex="2\pi k" /> term by <Katex tex="n" />, leaving <Katex tex="\tfrac{\pi}{4}" /> untouched (row 5), as well as using <Katex tex="k\in R" />.</>,
   },
 ]
 
@@ -95,7 +98,7 @@ export default function SpecialistQ4_2017() {
             <Katex tex="k" /> counts the extra full turns added to the argument of <Katex tex="1+i" />. Half a turn
             points the opposite way, so it gives a point whose <Katex tex="n" />th power is <Katex tex="-1-i" />.
             With <Katex tex="k\in R" /> the &ldquo;solutions&rdquo; would fill a whole circle, but{' '}
-            <Katex tex="z^n=1+i" /> has exactly <Katex tex="n" /> solutions, from <Katex tex="k=0,1,\dots,n-1" />.
+            <Katex tex="z^n=1+i" /> has only <Katex tex="n" /> solutions.
           </WrongMethod>
         </>
       }

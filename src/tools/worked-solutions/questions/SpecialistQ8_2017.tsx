@@ -30,9 +30,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{the gradient of } f \text{ is } f'(x)" />,
     reason: (
       <>
-        Read the question twice. It asks where the <em>gradient</em> is increasing, not where <Katex tex="f" /> is
-        increasing. So the function that has to be increasing is <Katex tex="f'" />, and a function is increasing where{' '}
-        <em>its</em> derivative is positive. The derivative of <Katex tex="f'" /> is <Katex tex="f''" />.
+        The question asks where the <em>gradient</em> <Katex tex="f'" /> is increasing, not <Katex tex="f" />. A function
+        increases where its own derivative is positive, and the derivative of <Katex tex="f'" /> is{' '}
+        <Katex tex="f''" />.
       </>
     ),
   },
@@ -40,12 +40,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f'(x) = 3x^2-2mx" />,
     reason: (
       <>
-        Differentiating <Katex tex="f(x)=x^3-mx^2+4" /> term by term (<Katex tex="m" /> is a constant). This is the
-        gradient function. Solving <Katex tex="f'(x)\ge0" /> now would answer a different question, where{' '}
-        <Katex tex="f" /> is increasing; that is how the popular wrong answer D arises.
+        Differentiate <Katex tex="f(x)=x^3-mx^2+4" /> term by term (<Katex tex="m" /> is a constant). This is the
+        gradient function.
       </>
     ),
-    more: <>For option D, see below.</>,
+    more: (
+      <>
+        Don&apos;t stop here and solve <Katex tex="f'(x)\ge0" />: that answers a different question (where{' '}
+        <Katex tex="f" /> is increasing), and is how the popular wrong answer D arises.
+      </>
+    ),
   },
   {
     working: <Katex display tex="f''(x) = 6x-2m" />,
@@ -55,8 +59,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="6x-2m\ge0 \implies x\ge\frac{m}{3}" />,
     reason: (
       <>
-        The gradient increases where <Katex tex="f''\ge0" />. Dividing by <Katex tex="6" /> (positive, so the inequality
-        keeps its direction): <Katex tex="\tfrac{2m}{6}=\tfrac{m}{3}" />.
+        The gradient increases where <Katex tex="f''\ge0" /> (<Katex tex="f''=0" /> at one point is allowed: see the
+        last row). Dividing by <Katex tex="6" /> keeps the direction: <Katex tex="\tfrac{2m}{6}=\tfrac{m}{3}" />.
       </>
     ),
   },
@@ -64,15 +68,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f'(x) = 3\left(x-\frac{m}{3}\right)^2-\frac{m^2}{3}" />,
     reason: (
       <>
-        A check by picture, without <Katex tex="f''" />: completing the square shows that <Katex tex="y=f'(x)" /> is an
-        upward parabola with its vertex at <Katex tex="x=\tfrac{m}{3}" />, halfway between its zeros <Katex tex="0" /> and{' '}
-        <Katex tex="\tfrac{2m}{3}" />. An upward parabola falls to the left of its vertex and rises to the right of it,
-        whether <Katex tex="m" /> is positive or negative. So the gradient rises for <Katex tex="x\ge\tfrac{m}{3}" />.
+        Check by completing the square: <Katex tex="y=f'(x)" /> is an upward parabola with vertex at{' '}
+        <Katex tex="x=\tfrac{m}{3}" />, so it rises for <Katex tex="x\ge\tfrac{m}{3}" />, whatever the value of{' '}
+        <Katex tex="m" />.
       </>
     ),
     more: (
       <>
-        The diagram below plots this parabola under the graph of <Katex tex="f" />.
+        This route needs no <Katex tex="f''" />. The vertex sits halfway between the zeros <Katex tex="0" /> and{' '}
+        <Katex tex="\tfrac{2m}{3}" /> of <Katex tex="f'" />. The diagram below plots this parabola under the graph of{' '}
+        <Katex tex="f" />.
       </>
     ),
   },
@@ -80,12 +85,23 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{x\ge\frac{m}{3}}" />,
     reason: (
       <>
-        Matches option <b>B</b>. The endpoint is included: <Katex tex="f''\left(\tfrac{m}{3}\right)=0" /> at that single
-        point only, and <Katex tex="f'" /> still rises across the whole of <Katex tex="\left[\tfrac{m}{3},\infty\right)" />.
-        One point of zero second derivative does not make a flat stretch. Option D (52%) is the right-hand piece of
-        where <Katex tex="f'(x)\ge0" /> for <Katex tex="m>0" />, which is where <Katex tex="f" /> is increasing, not its
-        gradient. Option C (7%) has the inequality the wrong way round: <Katex tex="x\le\tfrac{m}{3}" /> is where the
-        gradient is decreasing.
+        Matches option <b>B</b>; the endpoint is included, since <Katex tex="f''=0" /> only at the single point{' '}
+        <Katex tex="x=\tfrac{m}{3}" />.
+      </>
+    ),
+    more: (
+      <>
+        <p>
+          One point of zero second derivative does not make a flat stretch: <Katex tex="f'" /> still rises across the
+          whole of <Katex tex="\left[\tfrac{m}{3},\infty\right)" />, so &ldquo;strictly increasing&rdquo; holds there.
+        </p>
+        <p className="mt-2">
+          Option D (52%) comes from solving <Katex tex="f'(x)\ge0" />, as worked through in the Common Mistake box
+          below. Option C (7%) has the inequality the wrong way round:{' '}
+          <Katex tex="x\le\tfrac{m}{3}" /> is where the gradient is decreasing. Option A (4%) is right only when{' '}
+          <Katex tex="m=0" />. Option E (7%) points the wrong way too: with <Katex tex="m=3" />, at{' '}
+          <Katex tex="x=-1" /> we get <Katex tex="f''(-1)=-12" />, so the gradient is decreasing there.
+        </p>
       </>
     ),
   },
@@ -110,8 +126,7 @@ export default function SpecialistQ8_2017() {
           <p>
             &ldquo;The function is increasing&rdquo; and &ldquo;the gradient is increasing&rdquo; are different statements
             about different derivatives. The first is <Katex tex="f'>0" /> and describes going uphill; the second is{' '}
-            <Katex tex="f''>0" /> and describes the curve being concave up. More than half of all students chose option D,
-            which is the right-hand piece of where <Katex tex="f" /> itself is increasing (for <Katex tex="m>0" />).
+            <Katex tex="f''>0" /> and describes the curve being concave up.
           </p>
           <p>
             A gradient can be negative and still increasing. If the slope of a hill path goes <Katex tex="-3" />, then{' '}

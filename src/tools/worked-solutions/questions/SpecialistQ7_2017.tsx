@@ -30,11 +30,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The surd <Katex tex="\sqrt{2-x}" /> is what makes this awkward, and every option has powers{' '}
-        <Katex tex="u^{\frac12}" />, <Katex tex="u^{\frac32}" />, <Katex tex="u^{\frac52}" />, so let <Katex tex="u" /> be
-        what is under the root. Then everything else must be written in <Katex tex="u" /> too: <Katex tex="x^2" /> via{' '}
-        <Katex tex="x=2-u" />, and <Katex tex="dx" /> via <Katex tex="\tfrac{du}{dx}=-1" />. That minus sign is the first
-        of two to keep track of.
+        Let <Katex tex="u" /> be what is under the root (every option is in powers of <Katex tex="u^{\frac12}" />). Then
+        write <Katex tex="x^2" /> via <Katex tex="x=2-u" />, and <Katex tex="dx" /> via <Katex tex="\tfrac{du}{dx}=-1" />.
+      </>
+    ),
+    more: (
+      <>
+        The surd <Katex tex="\sqrt{2-x}" /> is what makes the integral awkward. Every <Katex tex="x" /> must go, including the one hidden in <Katex tex="dx" />. Its minus sign is the
+        first of two to keep track of.
       </>
     ),
   },
@@ -42,16 +45,20 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x=1 \implies u=1; \qquad x=2 \implies u=0" />,
     reason: (
       <>
-        The terminals are <Katex tex="x" />-values, so convert them to <Katex tex="u" />-values. They come out{' '}
-        <em>reversed</em> (the top terminal is now the smaller number) because as <Katex tex="x" /> goes up,{' '}
-        <Katex tex="u=2-x" /> goes down. That is the second minus sign in disguise, since{' '}
+        Convert the <Katex tex="x" />-terminals to <Katex tex="u" />-values. They come out <em>reversed</em> because as{' '}
+        <Katex tex="x" /> goes up, <Katex tex="u=2-x" /> goes down.
+      </>
+    ),
+    more: (
+      <>
+        The top terminal is now the smaller number. That is the second minus sign in disguise, since{' '}
         <Katex tex="\int_1^0 = -\int_0^1" />.
       </>
     ),
   },
   {
     working: <Katex display tex="x^2\sqrt{2-x} = (2-u)^2 u^{\frac12} = \bigl(4-4u+u^2\bigr)u^{\frac12}" />,
-    reason: <>Expanding the square before multiplying through.</>,
+    reason: <>Replace <Katex tex="x" /> by <Katex tex="2-u" /> and <Katex tex="\sqrt{2-x}" /> by <Katex tex="u^{\frac12}" />, then expand the square.</>,
   },
   {
     working: <Katex display tex="= 4u^{\frac12}-4u^{\frac32}+u^{\frac52}" />,
@@ -72,24 +79,23 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Substituting everything at once: the integrand, <Katex tex="dx=-du" /> and the new terminals. Taking the{' '}
-        <Katex tex="-1" /> from <Katex tex="-du" /> out the front gives the form the options use. Both minus signs are
-        still visible: one in front, one in the reversed terminals.
+        Substitute the integrand, <Katex tex="dx=-du" /> and the new terminals, then take the <Katex tex="-1" /> out the
+        front: the form the options use.
       </>
     ),
+    more: <>Both minus signs are still visible: one in front, one in the reversed terminals.</>,
   },
   {
     working: <Katex display tex="= \int_0^1\left(4u^{\frac12}-4u^{\frac32}+u^{\frac52}\right)du" />,
     reason: (
       <>
-        Why this isn&apos;t negative: swapping the terminals of an integral changes its sign, so the minus in front and the
-        reversed terminals cancel. What is left is an ordinary integral of a positive function over{' '}
-        <Katex tex="[0,1]" />, a positive area.
+        Swapping the terminals changes the sign, so the minus in front and the reversed terminals cancel: a positive
+        area, as it must be.
       </>
     ),
     more: (
       <>
-        The diagram below shows it as the original region reflected, with <Katex tex="u" /> running backwards as{' '}
+        What is left is an ordinary integral of a positive function over <Katex tex="[0,1]" />. The diagram below shows it as the original region reflected, with <Katex tex="u" /> running backwards as{' '}
         <Katex tex="x" /> runs forwards.
       </>
     ),
@@ -103,8 +109,13 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Not asked for, but it settles any doubt. The original integrand is positive on <Katex tex="[1,2]" />, so the answer
-        must be positive, which rules out A (<Katex tex="\approx-0.37" />), C (<Katex tex="=-\tfrac{142}{105}" />) and E (
+        Not asked for, but a sign check: the integrand is positive on <Katex tex="[1,2]" />, so the answer must be
+        positive, and D is. Antiderivative: add 1 to each power, divide by the new power.
+      </>
+    ),
+    more: (
+      <>
+        That rules out A (<Katex tex="\approx-0.37" />), C (<Katex tex="=-\tfrac{142}{105}" />) and E (
         <Katex tex="=-\tfrac{82}{105}" />). B is positive but only <Katex tex="\approx0.37" />, because it integrates over
         the wrong interval.
       </>
@@ -114,11 +125,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{-\int_1^0\left(4u^{\frac12}-4u^{\frac32}+u^{\frac52}\right)du}" />,
     reason: (
       <>
-        Matches option <b>D</b>: the minus pulled out the front, terminals left as <Katex tex="1" /> to{' '}
-        <Katex tex="0" />. Option C (20%) keeps the minus from <Katex tex="-du" /> inside the bracket <em>and</em> writes the
-        terminals as <Katex tex="0" /> to <Katex tex="1" />, using the one minus sign twice; it equals{' '}
-        <Katex tex="-\tfrac{142}{105}" />. Options A and B keep the <Katex tex="x" />-terminals <Katex tex="1" /> and{' '}
-        <Katex tex="2" />: A is right apart from never changing the terminals, and B also drops the minus sign.
+        Matches option <b>D</b>: minus out the front, terminals <Katex tex="1" /> to <Katex tex="0" />.
+      </>
+    ),
+    more: (
+      <>
+        Options A and B keep the <Katex tex="x" />-terminals <Katex tex="1" />{' '}
+        and <Katex tex="2" />: A is right apart from never changing the terminals, and B also drops the minus sign. E has
+        the wrong sign on the <Katex tex="u^{\frac52}" /> term and no minus out the front.
       </>
     ),
   },

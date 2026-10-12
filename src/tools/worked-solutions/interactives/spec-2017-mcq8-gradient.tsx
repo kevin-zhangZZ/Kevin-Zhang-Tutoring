@@ -101,8 +101,8 @@ export default function Gradient() {
     notice = (
       <Notice>
         Uphill and getting steeper: the tangent&apos;s gradient <M>{`${num(slope)}`}</M> is positive <i>and</i> growing as P
-        moves right. Both <M>f</M> and its gradient are increasing here. Now drag P left, past the green dot, and watch the
-        gradient start to fall.
+        moves right. Both <M>f</M> and its gradient are increasing here. Now drag P left, past the green dot: on that side
+        the gradient is decreasing (it gets smaller as P moves right).
       </Notice>
     )
   } else if (fInc) {

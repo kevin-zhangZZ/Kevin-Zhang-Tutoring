@@ -74,15 +74,16 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x=\sqrt2" />,
-    reason: <>How do I find a corner? It is where the edge changes direction suddenly, and on a piecewise rule that happens at the join: here <Katex tex="x=\sqrt2" />, where the <Katex tex="\arcsin" /> piece hands over to the <Katex tex="\arccos" /> piece.</>,
+    reason: <>A corner is where the edge suddenly changes direction. On a piecewise rule that happens at the join, <Katex tex="x=\sqrt2" />, where the <Katex tex="\arcsin" /> piece hands over to <Katex tex="\arccos" />.</>,
   },
   {
     working: <Katex display tex="y = 3\arcsin\!\left(\frac{\sqrt2}{2}\right) = 3\arcsin\!\left(\frac{1}{\sqrt2}\right)" />,
-    reason: <>Either branch gives the same value there (<Katex tex="\arccos\tfrac{1}{\sqrt2}" /> is also <Katex tex="\tfrac{\pi}{4}" />), a useful check that the edge really is joined up. <Katex tex="\sin\tfrac{\pi}{4}=\tfrac{1}{\sqrt2}" /> is a standard exact value.</>,
+    reason: <>Substitute <Katex tex="x=\sqrt2" /> into the <Katex tex="\arcsin" /> branch, the one whose domain includes <Katex tex="\sqrt2" />.</>,
+    more: <>The <Katex tex="\arccos" /> branch gives the same height there (<Katex tex="\arccos\tfrac{1}{\sqrt2}" /> is also <Katex tex="\tfrac{\pi}{4}" />), a useful check that the two pieces really do join up.</>,
   },
   {
     working: <Katex display tex="= 3\times\frac{\pi}{4}" />,
-    reason: <>Exact value. The factor of <Katex tex="3" /> is a dilation from the <Katex tex="x" />-axis; the report says some students dropped it.</>,
+    reason: <><Katex tex="\sin\tfrac{\pi}{4}=\tfrac{1}{\sqrt2}" /> is a standard exact value. Keep the <Katex tex="3" />: it is a dilation by factor <Katex tex="3" /> from the <Katex tex="x" />-axis.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(\sqrt2,\ \frac{3\pi}{4}\right)}" />,
@@ -93,19 +94,22 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{the brooch has point symmetry about } O" />,
-    reason: <>How would I know? The figure is symmetric in both axes, and reflecting in both axes is the same as a half-turn about <Katex tex="O" />: <Katex tex="(x,y)\to(-x,-y)" />. So the third-quadrant edge is the first-quadrant edge turned <Katex tex="180^\circ" />, and <Katex tex="g(x)=-f(-x)" />.</>,
+    reason: <>The figure is symmetric in both axes, and reflecting in both axes is a half-turn about <Katex tex="O" />: <Katex tex="(x,y)\to(-x,-y)" />. So the third-quadrant rule is <Katex tex="g(x)=-f(-x)" />.</>,
+    more: <>Why <Katex tex="-f(-x)" />? A point <Katex tex="(x,y)" /> is on the third-quadrant edge exactly when its half-turn image <Katex tex="(-x,-y)" /> is on <Katex tex="f" />, so <Katex tex="-y=f(-x)" />, that is, <Katex tex="y=-f(-x)" />.</>,
   },
   {
     working: <Katex display tex="-2\le x<-\sqrt2 \implies -x \in \left(\sqrt2,2\right]" />,
-    reason: <>Reflecting the domain. The <em>second</em> branch of <Katex tex="f" /> is the one that applies to <Katex tex="-x" /> here, so the order of the two pieces swaps.</>,
+    reason: <>For these <Katex tex="x" />, <Katex tex="-x" /> lies in the domain of the <Katex tex="\arccos" /> branch of <Katex tex="f" />, so that branch applies here.</>,
+    more: <>Reflection reverses the order of the intervals: <Katex tex="[0,\sqrt2]" /> becomes <Katex tex="[-\sqrt2,0]" /> and <Katex tex="(\sqrt2,2]" /> becomes <Katex tex="[-2,-\sqrt2)" />. So, reading left to right, the <Katex tex="\arccos" /> branch now comes first.</>,
   },
   {
     working: <Katex display tex="g(x) = -3\arccos\!\left(-\frac{x}{2}\right)" />,
-    reason: <>Substituting <Katex tex="-x" /> into the arccos branch and negating.</>,
+    reason: <>Substitute <Katex tex="-x" /> into the <Katex tex="\arccos" /> branch and negate: <Katex tex="g(x)=-f(-x)" />.</>,
   },
   {
     working: <Katex display tex="-\sqrt2\le x\le0 \implies g(x) = -3\arcsin\!\left(-\frac{x}{2}\right)" />,
-    reason: <>The same move on the arcsin branch. Since <Katex tex="\arcsin" /> is odd this also equals <Katex tex="3\arcsin\!\left(\tfrac{x}{2}\right)" /> — the third-quadrant edge is the smooth continuation of the first-quadrant one straight through the origin.</>,
+    reason: <>The same on the <Katex tex="\arcsin" /> branch: here <Katex tex="-x\in[0,\sqrt2]" />.</>,
+    more: <>Since <Katex tex="\arcsin" /> is odd this also equals <Katex tex="3\arcsin\!\left(\tfrac{x}{2}\right)" />: the third-quadrant edge is the smooth continuation of the first-quadrant one straight through the origin.</>,
   },
   {
     working: (
@@ -114,7 +118,8 @@ const ROWS_B: WorkingRow[] = [
         tex="\boxed{g(x)=\begin{cases}-3\arccos\!\left(-\tfrac{x}{2}\right) & -2\le x<-\sqrt2\\[4pt] -3\arcsin\!\left(-\tfrac{x}{2}\right) & -\sqrt2\le x\le0\end{cases}}"
       />
     ),
-    reason: <>Two pieces, each with its own domain. The report says many students did not use a hybrid function, and of those who did, the domains were frequently incorrect.</>,
+    reason: <>Two pieces, each with its own domain. The join <Katex tex="-\sqrt2" /> goes with the <Katex tex="\arcsin" /> piece, just as <Katex tex="\sqrt2" /> did in <Katex tex="f" />.</>,
+    more: <>The report says that of the students who did use a hybrid function, the domains were frequently incorrect. Check each piece's interval is the reflection of the matching piece of <Katex tex="f" />, with the endpoint <Katex tex="-\sqrt2" /> in exactly one of them.</>,
   },
 ]
 
@@ -126,26 +131,30 @@ const ROWS_C: WorkingRow[] = [
         tex="\begin{aligned}A = 4\Big(&\int_0^{\sqrt2}3\arcsin\!\left(\frac{x}{2}\right)dx\\ &+ \int_{\sqrt2}^{2}3\arccos\!\left(\frac{x}{2}\right)dx\Big)\end{aligned}"
       />
     ),
-    reason: <>The brooch is symmetric in both axes, so find the first-quadrant quarter and multiply by four. Each upright strip reaches up to the edge <Katex tex="y=f(x)" />, and <Katex tex="f" /> has a different rule either side of <Katex tex="\sqrt2" />; one integral can only use one rule, so split there.</>,
+    reason: <>The brooch is symmetric in both axes, so find the first-quadrant quarter and multiply by <Katex tex="4" />. The rule for <Katex tex="f" /> changes at <Katex tex="\sqrt2" />, so split the integral there.</>,
+    more: <>Each upright strip reaches up to the edge <Katex tex="y=f(x)" />, and one integral can only use one rule for that height: <Katex tex="3\arcsin\tfrac{x}{2}" /> up to <Katex tex="\sqrt2" />, <Katex tex="3\arccos\tfrac{x}{2}" /> after it.</>,
   },
   {
     working: <Cas fn="nInt">4·(nInt(3·sin⁻¹(x/2), x, 0, √2) + nInt(3·cos⁻¹(x/2), x, √2, 2))</Cas>,
-    reason: <>Both antiderivatives exist in closed form, but this is the technology paper and the question asks for a decimal. (Slicing sideways instead gives one integral and the exact value <Katex tex="24(\sqrt2-1)" />; see the explorer below.)</>,
+    reason: <>This is the technology paper and a decimal answer is asked for, so evaluate the integrals on CAS.</>,
+    more: <>Slicing sideways instead gives a single integral and the exact value <Katex tex="24(\sqrt2-1)\approx9.94" />: each horizontal strip runs from <Katex tex="x=2\sin\tfrac{y}{3}" /> to <Katex tex="x=2\cos\tfrac{y}{3}" />, for <Katex tex="0\le y\le\tfrac{3\pi}{4}" />, so <Katex tex="A=4\int_0^{3\pi/4}\left(2\cos\tfrac{y}{3}-2\sin\tfrac{y}{3}\right)dy=4\left[6\sin\tfrac{y}{3}+6\cos\tfrac{y}{3}\right]_0^{3\pi/4}=4(6\sqrt2-6)" />. The explorer below shows both ways.</>,
   },
   {
     working: <Katex display tex="\boxed{A \approx 9.9 \text{ cm}^2}" />,
-    reason: <>One decimal place. A rough check: the brooch fits inside a <Katex tex="4\times4.7" /> rectangle, about <Katex tex="19" /> cm<Katex tex="^2" />, and the bowtie shape fills a little over half of it.</>,
+    reason: <>Correct to one decimal place, in square centimetres, as asked.</>,
+    more: <>A rough check, only meant to catch answers that are badly off: the brooch fits inside a rectangle <Katex tex="4" /> wide and <Katex tex="2\times\tfrac{3\pi}{4}\approx4.7" /> tall (the corner height from part a), about <Katex tex="19" /> cm<Katex tex="^2" />, and the bowtie shape fills roughly half of it.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 3\arcsin\!\left(\frac{x}{2}\right) \text{ near } x=0" />,
-    reason: <>The angle between two curves where they cross is the angle between their <em>tangents</em> there, so I need the gradients at <Katex tex="O" />, and gradients mean derivatives. Only the <Katex tex="\arcsin" /> branch reaches the origin, so that is the one to differentiate.</>,
+    reason: <>The angle between two curves where they cross is the angle between their <em>tangents</em>, so find the gradients at <Katex tex="O" />. Only the <Katex tex="\arcsin" /> branch reaches the origin.</>,
+    more: <>Why tangents? Zoom in far enough on the crossing point and each curve looks like its tangent line, so the curves really do meet at the tangents&apos; angle. Gradients of tangents mean derivatives.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{3}{\sqrt{1-\frac{x^2}{4}}}\times\frac12 = \frac{3}{\sqrt{4-x^2}}" />,
-    reason: <>Chain rule, then simplifying: <Katex tex="\sqrt{1-\tfrac{x^2}{4}}=\tfrac{\sqrt{4-x^2}}{2}" />, so the halves cancel.</>,
+    reason: <>Chain rule, then simplify: <Katex tex="\sqrt{1-\tfrac{x^2}{4}}=\tfrac{\sqrt{4-x^2}}{2}" />, so the halves cancel.</>,
   },
   {
     working: <Katex display tex="f'(0) = \frac{3}{2}" />,
@@ -153,19 +162,21 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{other edge at } O\text{: gradient } -\frac32" />,
-    reason: <>The other edge through <Katex tex="O" /> (second and fourth quadrants) is the first one reflected in the <Katex tex="x" />-axis, <Katex tex="y=-3\arcsin\tfrac{x}{2}" />, so its gradient is the negative.</>,
+    reason: <>The other edge through <Katex tex="O" /> is this one reflected in the <Katex tex="x" />-axis, <Katex tex="y=-3\arcsin\tfrac{x}{2}" />, so its gradient is the negative.</>,
+    more: <>That edge runs through the fourth quadrant and, by the half-turn symmetry, on into the second.</>,
   },
   {
     working: <Katex display tex="\theta = \tan^{-1}\!\left(\frac32\right) \approx 56.31^\circ" />,
-    reason: <>A line of gradient <Katex tex="m" /> makes the angle <Katex tex="\tan^{-1}m" /> with the positive <Katex tex="x" />-direction. So each tangent is <Katex tex="56.31^\circ" /> from the <Katex tex="x" />-axis, one above it and one below.</>,
+    reason: <>A line of gradient <Katex tex="m" /> makes the angle <Katex tex="\tan^{-1}m" /> with the positive <Katex tex="x" />-direction. So one tangent is <Katex tex="56.31^\circ" /> above the <Katex tex="x" />-axis, the other <Katex tex="56.31^\circ" /> below.</>,
   },
   {
     working: <Katex display tex="180^\circ - 2(56.31^\circ)" />,
-    reason: <>The upper-right and lower-right edges enclose <Katex tex="2\theta\approx112.62^\circ" /> inside the right wing. The two curves cross at the origin, so the other angle between them — the gap above (and below) the origin — is the supplement. The report notes the obtuse angle was sometimes given instead. (Equivalently, each tangent is <Katex tex="90^\circ-56.31^\circ=33.69^\circ" /> from the <Katex tex="y" />-axis, and the gap above <Katex tex="O" /> is twice that.)</>,
+    reason: <>Inside the right wing the tangents make <Katex tex="2\theta\approx112.62^\circ" />, which is obtuse. Two crossing lines make a pair of angles adding to <Katex tex="180^\circ" />, so the acute one is the supplement.</>,
+    more: <>Check against the figure: each wing opens wider than a right angle at the origin, so the acute angle is the gap above (and below) the origin. Equivalently, each tangent is <Katex tex="90^\circ-56.31^\circ=33.69^\circ" /> from the <Katex tex="y" />-axis, and the gap above <Katex tex="O" /> is twice that.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 67.4^\circ}" />,
-    reason: <>One decimal place. Checking against the figure: each wing opens wider than a right angle at the origin, so the gaps above and below must be acute.</>,
+    reason: <>In degrees, correct to one decimal place, and under <Katex tex="90^\circ" /> as an acute angle must be.</>,
   },
 ]
 
@@ -232,19 +243,6 @@ export default function SpecialistQ3_2017Exam2() {
         statement={<>Specify the piecewise function that describes the edges in the third quadrant.</>}
         examinerReport={EXAM_B}
       >
-        <Background title="Reflecting a piecewise rule">
-          <p>
-            The brooch has point symmetry about the origin, so the third-quadrant rule is{' '}
-            <Katex tex="g(x)=-f(-x)" />: negate the input <em>and</em> the output.
-          </p>
-          <p>
-            Two things then move. The domains reflect —{' '}
-            <Katex tex="[0,\sqrt2]" /> becomes <Katex tex="[-\sqrt2,0]" /> and{' '}
-            <Katex tex="(\sqrt2,2]" /> becomes <Katex tex="[-2,-\sqrt2)" /> — and because
-            reflection reverses the order of the intervals, the <Katex tex="\arccos" />{' '}
-            branch now comes first when you write the rule left to right.
-          </p>
-        </Background>
         <WorkingTable rows={ROWS_B} />
         <Explore title="Half a turn about O: why the two pieces swap ends">
           <RotateWidget />
@@ -285,13 +283,13 @@ export default function SpecialistQ3_2017Exam2() {
           working={
             <Katex
               display
-              tex="4\left(\int_0^{\sqrt2}\arcsin\tfrac{x}{2}\,dx+\int_{\sqrt2}^{2}\arccos\tfrac{x}{2}\,dx\right)\approx3.3"
+              tex="\begin{aligned}&4\left(\int_0^{\sqrt2}\arcsin\tfrac{x}{2}\,dx\right.\\&\quad\left.+\int_{\sqrt2}^{2}\arccos\tfrac{x}{2}\,dx\right)\\&\approx3.3\end{aligned}"
             />
           }
         >
           That is the area of a brooch one-third as tall. The <Katex tex="3" /> multiplies every strip&apos;s height,
           so it multiplies the area by <Katex tex="3" /> too, and leaving it out gives{' '}
-          <Katex tex="8(\sqrt2-1)\approx3.3" />. The rough check in the working (a little over half of a{' '}
+          <Katex tex="8(\sqrt2-1)\approx3.3" />. The rough check in the working (roughly half of a{' '}
           <Katex tex="4\times4.7" /> rectangle) rules this out at once.
         </WrongMethod>
       </PartCard>
@@ -308,17 +306,6 @@ export default function SpecialistQ3_2017Exam2() {
         }
         examinerReport={EXAM_D}
       >
-        <Background title="The angle between two curves">
-          <p>
-            Where two curves cross, the angle between them is the angle between their <b>tangents</b> at that point.
-            Zoom in far enough and each curve looks like its tangent line, so the curves really do meet at that angle.
-          </p>
-          <p>
-            A line with gradient <Katex tex="m" /> makes the angle <Katex tex="\tan^{-1}m" /> with the positive{' '}
-            <Katex tex="x" />-direction. Two crossing lines make a pair of angles that add to{' '}
-            <Katex tex="180^\circ" />; the acute one is the smaller.
-          </p>
-        </Background>
         <WorkingTable rows={ROWS_D} />
         <Explore title="Slide P into the origin: the chord becomes the tangent">
           <AngleWidget />
@@ -329,9 +316,8 @@ export default function SpecialistQ3_2017Exam2() {
           working={<Katex display tex="2\tan^{-1}\!\left(\tfrac32\right)\approx112.6^\circ" />}
         >
           That is the angle <em>inside</em> the wing, the obtuse one, which the report says some students gave.
-          The two tangents make a pair of angles adding to <Katex tex="180^\circ" />, and the question asks for
-          the acute one, so it is <Katex tex="180^\circ-112.6^\circ=67.4^\circ" />. Whenever a question says
-          &ldquo;acute&rdquo;, check your answer is under <Katex tex="90^\circ" />.
+          The red flag: <Katex tex="112.6^\circ" /> is over <Katex tex="90^\circ" />, so it cannot be the acute
+          angle the question asks for.
         </WrongMethod>
         <WrongMethod
           title="The edges look straight, so use the gradient from O to the corner"

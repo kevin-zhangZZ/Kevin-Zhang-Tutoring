@@ -45,10 +45,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A point of inflection is where the curve changes concavity, from concave up to concave down or the other way, so
-        it is where <Katex tex="f''" /> <em>changes sign</em>. Solving <Katex tex="f''(x)=0" /> only finds the candidates;
-        each one still has to be checked for a sign change. (Compare <Katex tex="y=x^4" />: <Katex tex="f''(0)=0" />, but
-        it is concave up on both sides of <Katex tex="0" />, so it has no inflection there.)
+        A point of inflection is where the concavity changes, so where <Katex tex="f''" /> <em>changes sign</em>.
+        <Katex tex="g(x)<0" /> is never zero, so <Katex tex="f''=0" /> only where the numerator is. That gives
+        candidates; each must be checked for a sign change.
+      </>
+    ),
+    more: (
+      <>
+        Compare <Katex tex="y=x^4" />: <Katex tex="f''(0)=0" />, but it is concave up on both sides of{' '}
+        <Katex tex="0" />, so it has no inflection there.
       </>
     ),
   },
@@ -61,9 +66,9 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Think of a sign table, one row per factor. <Katex tex="g(x)" /> is negative
-        everywhere, so dividing by it flips the sign. <Katex tex="(x+a)^2" /> is a square, never negative, so it cannot
-        flip the sign at all. That leaves <Katex tex="x-b" /> in charge of the sign of <Katex tex="f''" />.
+        Check the sign of each factor: dividing by <Katex tex="g(x)" />, negative everywhere, flips the sign;{' '}
+        <Katex tex="(x+a)^2" /> is a square, never negative. So <Katex tex="x-b" /> decides the sign of{' '}
+        <Katex tex="f''" />.
       </>
     ),
     more: <>The first diagram below has a sign table like this.</>,
@@ -78,18 +83,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="(x+a)^2" /> touches zero at <Katex tex="-a" /> and bounces back up, like <Katex tex="y=x^2" /> at the
-        origin: it is positive just left and just right of <Katex tex="-a" />. Nothing else changes sign there
-        (<Katex tex="x-b" /> is zero only at <Katex tex="b" />), so <Katex tex="f''" /> has the same sign on both sides.
-        The curve straightens for an instant and keeps bending the same way. This is the report&apos;s comment:
-        &ldquo;<Katex tex="f''(x)" /> does not change sign at <Katex tex="a" />&rdquo; refers to the point{' '}
-        <Katex tex="x=-a" />, where <Katex tex="(x+a)^2=0" />.
+        <Katex tex="(x+a)^2" /> touches zero at <Katex tex="-a" /> but is positive on both sides, and{' '}
+        <Katex tex="x-b" /> keeps its sign there, so <Katex tex="f''" /> does too. (The report&apos;s &ldquo;at{' '}
+        <Katex tex="a" />&rdquo; means this point, <Katex tex="x=-a" />.)
       </>
     ),
     more: (
       <>
-        Drag P through <Katex tex="-a" /> in the first diagram below and watch the tangent stay on one side of the
-        curve.
+        Like <Katex tex="y=x^2" /> at the origin, the square bounces off zero rather than crossing it, so the curve
+        straightens for an instant at <Katex tex="-a" /> and keeps bending the same way. Drag P through <Katex tex="-a" /> in the first diagram below
+        and watch the tangent stay on one side of the curve.
       </>
     ),
   },
@@ -103,9 +106,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Just left of <Katex tex="b" />, <Katex tex="x-b<0" /> so <Katex tex="f''>0" /> (concave up); just right of it,{' '}
-        <Katex tex="x-b>0" /> so <Katex tex="f''<0" /> (concave down). A genuine change, so this is the only point of
-        inflection of <Katex tex="f" />. But it belongs to <Katex tex="f" />, and the question asks about{' '}
+        Left of <Katex tex="b" />, <Katex tex="f''>0" /> (concave up); right of it, <Katex tex="f''<0" /> (concave
+        down). So <Katex tex="(b,-1)" /> is the only inflection of <Katex tex="f" />, but the question asks about{' '}
         <Katex tex="|f(x)|" />.
       </>
     ),
@@ -119,9 +121,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="|f|" /> leaves the graph alone where <Katex tex="f\ge0" /> and reflects it in the{' '}
-        <Katex tex="x" />-axis where <Katex tex="f<0" />. Since <Katex tex="f" /> is continuous and{' '}
-        <Katex tex="f(b)=-1" />, <Katex tex="f" /> stays negative for <Katex tex="x" /> close to <Katex tex="b" />, so there{' '}
+        <Katex tex="f" /> is continuous and <Katex tex="f(b)=-1" />, so <Katex tex="f<0" /> for <Katex tex="x" /> near{' '}
+        <Katex tex="b" />. There <Katex tex="|f|" /> reflects <Katex tex="f" /> in the <Katex tex="x" />-axis:{' '}
         <Katex tex="|f|=-f" />.
       </>
     ),
@@ -137,9 +138,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Reflecting in the <Katex tex="x" />-axis turns concave up into concave down and vice versa, so a change of
-        concavity is still a change of concavity. The inflection point survives the reflection; it just moves to
-        height <Katex tex="|-1|=1" />.
+        Reflecting swaps concave up and concave down, so a change of concavity is still a change. The inflection
+        survives, at height <Katex tex="|-1|=1" />.
       </>
     ),
     more: (
@@ -158,23 +158,35 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The same reflection happens at <Katex tex="-a" />: <Katex tex="f''" /> kept its sign there, so{' '}
-        <Katex tex="-f''" /> does too. Whichever way <Katex tex="f" /> bends around <Katex tex="-a" />, it bends the same way
-        on both sides, and the reflection turns both sides over together. Still no change, so still no inflection.
+        <Katex tex="f''" /> kept its sign at <Katex tex="-a" />, so <Katex tex="-f''" /> does too: still no change of
+        concavity, so still no inflection.
       </>
     ),
-    more: <>In the diagrams, concave up on both sides becomes concave down on both sides.</>,
+    more: (
+      <>
+        Whichever way <Katex tex="f" /> bends around <Katex tex="-a" />, it bends the same way on both sides, and the
+        reflection turns both sides over together. In the diagrams, concave up on both sides becomes concave down on
+        both sides.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{(b,\,1)}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Where <Katex tex="f" /> crosses the <Katex tex="x" />-axis, <Katex tex="|f|" /> has a
-        sharp corner with no tangent, so those points are not points of inflection either (and no option mentions them);{' '}
+        Matches option <b>E</b>, the only point of inflection of <Katex tex="|f|" />.
+      </>
+    ),
+    more: (
+      <>
+        Where <Katex tex="f" /> crosses the <Katex tex="x" />-axis, <Katex tex="|f|" /> has a sharp corner. The
+        concavity does flip across it (one side is <Katex tex="f" />, the other <Katex tex="-f" />), but there is no
+        tangent, so a corner is not a point of inflection (and no option mentions one);{' '}
         <Katex tex="f(a)=1" /> and <Katex tex="f(-b)=1" /> are never needed. Option C (45%) takes both zeros of{' '}
         <Katex tex="f''" /> as points of inflection and gives the coordinates on <Katex tex="f" />, not{' '}
-        <Katex tex="|f|" />; option A (31%) switches to <Katex tex="|f|" /> but still includes <Katex tex="-a" />; option B
-        (9%) is the point of inflection of <Katex tex="f" />, with the absolute value forgotten.
+        <Katex tex="|f|" />; option A (31%) switches to <Katex tex="|f|" /> but still includes <Katex tex="-a" />; option
+        D (7%) is that wrong point alone; option B (9%) is the point of inflection of <Katex tex="f" />, with the
+        absolute value forgotten.
       </>
     ),
   },
@@ -199,10 +211,9 @@ export default function SpecialistQ10_2017() {
       background={
         <Background title="Two Ideas This Question Tests">
           <p>
-            <b>A point of inflection</b> is a point on the curve where the concavity changes: concave up (bending like ∪)
-            on one side and concave down (bending like ∩) on the other. Concavity is the sign of <Katex tex="f''" />, so
-            the test is a <em>change of sign</em> of <Katex tex="f''" />. <Katex tex="f''(x)=0" /> tells you where to
-            look, not that you have found one.
+            <b>A point of inflection</b> is a point on the curve where it has a tangent (no sharp corner) and the
+            concavity changes: concave up (bending like ∪) on one side and concave down (bending like ∩) on the other. Concavity is the sign of <Katex tex="f''" />, so
+            the test is a <em>change of sign</em> of <Katex tex="f''" />.
           </p>
           <p>
             <b>The graph of <Katex tex="|f(x)|" /></b> is the graph of <Katex tex="f" /> with every part below the{' '}
@@ -234,10 +245,8 @@ export default function SpecialistQ10_2017() {
             }
           >
             <p>
-              <Katex tex="f''=0" /> finds candidates; it doesn&apos;t prove anything. At <Katex tex="-a" /> the factor is
-              squared, so <Katex tex="(x+a)^2" /> is positive on both sides, <Katex tex="f''" /> has the same sign on both
-              sides, and the concavity never changes. Reflecting both points up to <Katex tex="(-a,1)" /> and{' '}
-              <Katex tex="(b,1)" /> fixes the <Katex tex="|f|" /> part but keeps the bad point: that is option A.
+              This stops at the candidates and skips the sign check, which <Katex tex="x=-a" /> fails. Reflecting both
+              points up (option A) fixes the <Katex tex="|f|" /> part but not this.
             </p>
             <p>
               Next time, check every candidate for a sign change. A factor with an even power, like{' '}
@@ -261,8 +270,7 @@ export default function SpecialistQ10_2017() {
               The question is about <Katex tex="|f(x)|" />, and every option has a <Katex tex="y" />-coordinate of{' '}
               <Katex tex="1" /> or <Katex tex="-1" />, so the absolute value is exactly what decides between B and E. The
               graph of <Katex tex="|f|" /> passes through <Katex tex="(b,\,|f(b)|)=(b,\,1)" />, never through a point with
-              a negative <Katex tex="y" />-coordinate. Reflection keeps the change of concavity, so the inflection is still
-              there, one unit above the axis instead of one below.
+              a negative <Katex tex="y" />-coordinate: the inflection sits one unit above the axis, not one below.
             </p>
           </WrongMethod>
         </>

@@ -26,7 +26,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx} = e^x\arctan(y)" />,
-    reason: <>The given first derivative. It is written in terms of both <Katex tex="x" /> and <Katex tex="y" />, so whatever we do to it has to treat <Katex tex="y" /> as a function of <Katex tex="x" />.</>,
+    reason: <>The given first derivative. It contains <Katex tex="y" />, so when differentiating it again treat <Katex tex="y" /> as a function of <Katex tex="x" />.</>,
   },
   {
     working: (
@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= e^x\arctan(y) + e^x\cdot\frac{1}{1+y^2}\cdot\frac{dy}{dx}" />
       </>
     ),
-    reason: <>The second derivative is the derivative of the first, so differentiate the right-hand side with respect to <Katex tex="x" />. It is a product, so use the product rule. The trap is <Katex tex="\arctan(y)" />: it has no <Katex tex="x" /> in sight, but <Katex tex="y" /> changes as <Katex tex="x" /> changes, so the chain rule gives <Katex tex="\tfrac{1}{1+y^2}\cdot\tfrac{dy}{dx}" />, not zero.</>,
+    reason: <>Differentiate the right side with respect to <Katex tex="x" />: product rule, then the chain rule on <Katex tex="\arctan(y)" />, because <Katex tex="y" /> changes as <Katex tex="x" /> changes.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} \text{at } (0,1): \quad \frac{dy}{dx} &= e^0\arctan(1) \\ &= \frac{\pi}{4} \end{aligned}" />,
@@ -52,7 +52,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2y}{dx^2}\bigg|_{(0,1)} = \frac{3\pi}{8}}" />,
-    reason: <>Matches option <b>B</b>. Option D (30%), <Katex tex="\tfrac{\pi}{4}" />, is just the first term: what you get by treating <Katex tex="\arctan(y)" /> as a constant, forgetting that it also varies with <Katex tex="x" />.</>,
+    reason: <>Matches option <b>B</b>. Option D (30%), <Katex tex="\tfrac{\pi}{4}" />, is only the first term.</>,
   },
 ]
 

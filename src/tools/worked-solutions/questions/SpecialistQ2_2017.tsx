@@ -33,11 +33,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Rewrite <Katex tex="\operatorname{cosec}(x)=\tfrac{1}{\sin(x)}" />. The natural next move is to clear the
-        fraction by multiplying by <Katex tex="\sin(x)" />, but multiplying an inequality by a negative number flips
-        it, and <Katex tex="\sin(x)" /> is positive on <Katex tex="(0,\pi)" /> and negative on{' '}
-        <Katex tex="(\pi,2\pi)" />. That sign change at <Katex tex="\pi" /> (where <Katex tex="\operatorname{cosec}" />{' '}
-        is undefined, hence its removal from the domain) is the signal to split into two cases.
+        Rewrite <Katex tex="\operatorname{cosec}(x)=\tfrac{1}{\sin(x)}" />. To clear the fraction we multiply by{' '}
+        <Katex tex="\sin(x)" />, which is positive on <Katex tex="(0,\pi)" /> but negative on{' '}
+        <Katex tex="(\pi,2\pi)" />, so split into two cases.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\sin(x)" /> changes sign at <Katex tex="x=\pi" />, where{' '}
+        <Katex tex="\operatorname{cosec}(x)" /> is undefined: that is why the question removes <Katex tex="\pi" /> from
+        the domain.
       </>
     ),
   },
@@ -66,10 +71,9 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Doubling the angle doubles its interval, so <Katex tex="2x" /> runs over one full revolution. There{' '}
-        <Katex tex="\sin" /> equals <Katex tex="\tfrac12" /> at <Katex tex="\tfrac{\pi}{6}" /> and{' '}
-        <Katex tex="\tfrac{5\pi}{6}" /> (first and second quadrants) and is above <Katex tex="\tfrac12" /> between
-        them. Halve to get back to <Katex tex="x" />.
+        Doubling the angle doubles its interval. On <Katex tex="(0,2\pi)" />, <Katex tex="\sin(2x)=\tfrac12" /> at{' '}
+        <Katex tex="2x=\tfrac{\pi}{6}" /> and <Katex tex="\tfrac{5\pi}{6}" />, and is above <Katex tex="\tfrac12" />{' '}
+        between them. Halve to get back to <Katex tex="x" />.
       </>
     ),
   },
@@ -94,8 +98,8 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         The second revolution: add <Katex tex="2\pi" /> to <Katex tex="\tfrac{\pi}{6}" /> and{' '}
-        <Katex tex="\tfrac{5\pi}{6}" />. Between those two, <Katex tex="\sin(2x)" /> is <em>above</em>{' '}
-        <Katex tex="\tfrac12" />, so &ldquo;below <Katex tex="\tfrac12" />&rdquo; is the rest of the revolution.
+        <Katex tex="\tfrac{5\pi}{6}" />. Between these, <Katex tex="\sin(2x)" /> is <em>above</em>{' '}
+        <Katex tex="\tfrac12" />, so &ldquo;below&rdquo; is the two outer pieces.
       </>
     ),
   },
@@ -112,13 +116,25 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Matches option <b>E</b>, the union of both cases. Option B is what you get by multiplying by{' '}
-        <Katex tex="\sin(x)" /> without flipping on <Katex tex="(\pi,2\pi)" />. On CAS,{' '}
-        <Cas fn="solve">{'solve(cos(x) > 1/(4·sin(x)), x) | 0 < x < 2π'}</Cas> gives the three intervals directly,
-        and graphing both sides shows where <Katex tex="\cos(x)" /> is on top.
+        Matches option <b>E</b>, the union of both cases.
       </>
     ),
-    more: <>For option B, see below.</>,
+    more: (
+      <>
+        <p>
+          On CAS, <Cas fn="solve">{'solve(cos(x) > 1/(4·sin(x)), x) | 0 < x < 2π'}</Cas> gives the three intervals
+          directly, and graphing both sides shows where <Katex tex="\cos(x)" /> is on top.
+        </p>
+        <p className="mt-2">
+          Options A and D both include <Katex tex="\left(\tfrac{5\pi}{12},\pi\right)" />, where the inequality fails
+          (at <Katex tex="x=\tfrac{\pi}{2}" />, <Katex tex="0>\tfrac14" /> is false), and even contain{' '}
+          <Katex tex="x=\pi" />, where <Katex tex="\operatorname{cosec}(x)" /> is undefined. Option C includes{' '}
+          <Katex tex="\left(\tfrac{13\pi}{12},\tfrac{17\pi}{12}\right)" />, where it fails. Option B (30%) comes from
+          multiplying by <Katex tex="\sin(x)" /> without flipping on <Katex tex="(\pi,2\pi)" />, worked through in the
+          Common Mistake box below.
+        </p>
+      </>
+    ),
   },
 ]
 

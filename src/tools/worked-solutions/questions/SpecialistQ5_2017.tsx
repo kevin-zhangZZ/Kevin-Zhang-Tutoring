@@ -20,7 +20,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="|z-(2-i)| = |z-4|" />,
-    reason: <>Rewriting <Katex tex="z-2+i" /> as <Katex tex="z-(2-i)" />. The sign flip is the first thing to get right: the fixed point is <Katex tex="2-i" />, not <Katex tex="2+i" />.</>,
+    reason: <>Write the left side as <Katex tex="z" /> minus a point. Taking out the bracket flips the sign, so the fixed point is <Katex tex="2-i" />, not <Katex tex="2+i" />.</>,
   },
   {
     working: (
@@ -29,7 +29,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{of } (2,-1) \text{ and } (4,0)" />
       </>
     ),
-    reason: <>Read each side as a distance: <Katex tex="|z-(2-i)|" /> is how far <Katex tex="z" /> is from <Katex tex="2-i" />, and <Katex tex="|z-4|" /> is how far it is from <Katex tex="4" />. The points the same distance from two fixed points form the perpendicular bisector of the segment joining them.</>,
+    reason: <><Katex tex="z" /> is equally far from <Katex tex="2-i" /> and <Katex tex="4" />. Points equidistant from two fixed points form the perpendicular bisector of the segment joining them.</>,
   },
   {
     working: <Katex display tex="\text{midpoint} = \left(\frac{2+4}{2},\ \frac{-1+0}{2}\right) = \left(3,-\frac12\right)" />,
@@ -37,11 +37,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{full line: } y = -2x+\frac{11}{2}" />,
-    reason: <>If the midpoint had not been one of the options: gradient of the segment is <Katex tex="\tfrac12" />, so the bisector's gradient is <Katex tex="-2" />, through <Katex tex="\left(3,-\tfrac12\right)" />. Substituting the other four options shows none of them satisfies this.</>,
+    reason: <>Only needed if the midpoint weren't an option: the segment's gradient is <Katex tex="\tfrac12" />, so the bisector has gradient <Katex tex="-2" /> through <Katex tex="\left(3,-\tfrac12\right)" />.</>,
+    more: <>None of the other options satisfies it: at <Katex tex="x=-3" /> the line gives <Katex tex="y=\tfrac{23}{2}" /> (not B or C), and at <Katex tex="x=3" /> it gives only <Katex tex="y=-\tfrac12" /> (not D or E).</>,
   },
   {
     working: <Katex display tex="\boxed{\left(3,-\tfrac12\right)}" />,
-    reason: <>Matches option <b>A</b>. Direct check: <Katex tex="\left|3-\tfrac12i-(2-i)\right| = \left|1+\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> and <Katex tex="\left|3-\tfrac12i-4\right| = \left|-1-\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> ✓.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Direct check in the original equation: <Katex tex="\left|3-\tfrac12i-(2-i)\right| = \left|1+\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> and <Katex tex="\left|3-\tfrac12i-4\right| = \left|-1-\tfrac12i\right| = \tfrac{\sqrt5}{2}" /> ✓.</>,
   },
 ]
 

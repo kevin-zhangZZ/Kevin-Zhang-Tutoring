@@ -5,7 +5,8 @@
 // Widget: interactives/spec-2017-mcq11-coplanar — a 3D view of the plane of b and c, with a slider
 // for d moving a's tip up and down the one vertical line it can travel; it lands in the plane only
 // at d = −14.
-// WrongMethod: option B (9%) — d ≠ −14 is the condition for independence, not dependence.
+// WrongMethod: option B (9%) — d ≠ −14 is the condition for independence, not dependence. Framed
+// without a determinant (3×3 determinants are not in the current Specialist study design).
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -26,10 +27,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{a} = k\underset{\sim}{b}+l\underset{\sim}{c}" />,
     reason: (
       <>
-        Write down what &ldquo;dependent&rdquo; means and let it make the equations. <Katex tex="\underset{\sim}{b}" /> and{' '}
-        <Katex tex="\underset{\sim}{c}" /> are not parallel (their components are not in the same ratio), so the three are
-        dependent exactly when <Katex tex="\underset{\sim}{a}" /> can be built from them. One vector equation is three
-        component equations, and there are three unknowns: <Katex tex="k" />, <Katex tex="l" /> and <Katex tex="d" />.
+        Dependent means one vector can be built from the others. <Katex tex="\underset{\sim}{b}" /> and{' '}
+        <Katex tex="\underset{\sim}{c}" /> are not parallel, so write <Katex tex="\underset{\sim}{a}" /> as a combination of
+        them.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\underset{\sim}{b}" /> and <Katex tex="\underset{\sim}{c}" /> are not parallel because their components
+        are not in the same ratio, so the three are dependent exactly when <Katex tex="\underset{\sim}{a}" /> can be built from
+        them. One vector equation is three component equations, and there are three unknowns: <Katex tex="k" />,{' '}
+        <Katex tex="l" /> and <Katex tex="d" />.
       </>
     ),
   },
@@ -47,10 +55,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Subtract the <Katex tex="\underset{\sim}{j}" />-equation from the <Katex tex="\underset{\sim}{i}" />-equation:{' '}
-        <Katex tex="l = 2-3 = -1" />, then <Katex tex="k = 3-l = 4" />. Check in the <Katex tex="\underset{\sim}{i}" />
-        -equation, <Katex tex="4+2(-1)=2" /> ✓, because a sign slip here (<Katex tex="l=1,\ k=2" />) gives{' '}
-        <Katex tex="d=-8-2=-10" />, which is option A. The <Katex tex="\underset{\sim}{i}" /> and{' '}
-        <Katex tex="\underset{\sim}{j}" /> parts of <Katex tex="\underset{\sim}{a}" /> have now fixed the recipe completely.
+        <Katex tex="l = 2-3 = -1" />, then <Katex tex="k = 3-l = 4" />.
+      </>
+    ),
+    more: (
+      <>
+        Check in the <Katex tex="\underset{\sim}{i}" />-equation: <Katex tex="4+2(-1)=2" /> ✓. It is worth checking, because a
+        sign slip here (<Katex tex="l=1,\ k=2" />) gives <Katex tex="d=-8-2=-10" />, which is option A.
       </>
     ),
   },
@@ -58,9 +69,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{k}:\ d = 4(-4)+(-1)(-2)" />,
     reason: (
       <>
-        The <Katex tex="\underset{\sim}{k}" />-components must agree too. With <Katex tex="k" /> and <Katex tex="l" /> already
-        fixed there is no freedom left, so this equation decides <Katex tex="d" />. On CAS, <Cas fn="solve" /> the three
-        component equations together for <Katex tex="k" />, <Katex tex="l" /> and <Katex tex="d" /> gives the same.
+        The <Katex tex="\underset{\sim}{k}" />-components must agree too: those of <Katex tex="\underset{\sim}{b}" /> and{' '}
+        <Katex tex="\underset{\sim}{c}" /> are <Katex tex="-4" /> and <Katex tex="-2" />. With the scalars{' '}
+        <Katex tex="k=4" /> and <Katex tex="l=-1" /> now known, this decides <Katex tex="d" />.
+      </>
+    ),
+    more: (
+      <>
+        On CAS, <Cas fn="solve" /> the three component equations together for <Katex tex="k" />, <Katex tex="l" /> and{' '}
+        <Katex tex="d" /> to get the same values in one step.
       </>
     ),
   },
@@ -69,8 +86,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Matches option <b>C</b>. Check: <Katex tex="4\underset{\sim}{b}-\underset{\sim}{c}=2\underset{\sim}{i}+3\underset{\sim}{j}-14\underset{\sim}{k}" /> ✓.
-        Option B, <Katex tex="d\in R\setminus\{-14\}" />, is the opposite condition: for every other value of{' '}
-        <Katex tex="d" /> no <Katex tex="k" /> and <Katex tex="l" /> work, so the vectors are independent.
+      </>
+    ),
+    more: (
+      <>
+        Option B, <Katex tex="d\in R\setminus\{-14\}" />, is the condition for independence, the reverse of what is asked.
+        Option A,{' '}
+        <Katex tex="d=-10" />, comes from the sign slip in the third row, and D is its opposite. E, every{' '}
+        <Katex tex="d" />, cannot be right: at <Katex tex="d=0" />, say, the <Katex tex="\underset{\sim}{k}" />-equation fails.
       </>
     ),
   },
@@ -116,20 +139,21 @@ export default function SpecialistQ11_2017() {
             <CoplanarWidget />
           </Explore>
           <WrongMethod
-            title="Dependent means the determinant isn't zero, so d ≠ −14"
+            title="Dependent means a can't be made from b and c, so d ≠ −14"
             source="9% chose B"
             working={
               <>
-                <Katex display tex="\det\begin{bmatrix}2&3&d\\1&1&-4\\2&1&-2\end{bmatrix}=-d-14" />
-                <Katex display tex="-d-14\ne0 \implies d\in R\setminus\{-14\}" />
+                <Katex display tex="\underset{\sim}{a}=k\underset{\sim}{b}+l\underset{\sim}{c}\ \text{only when}\ d=-14" />
+                <Katex display tex="\text{dependent} \implies d\in R\setminus\{-14\}" />
               </>
             }
           >
-            The determinant is right, but the test is the wrong way round. A non-zero determinant means the box built on the
-            three vectors has some volume, so they do not lie in one plane: that is <em>independent</em>. Dependent is the
-            flat case, determinant <Katex tex="=0" />, so <Katex tex="d=-14" />. A sense check: dependence is the special,
-            fragile situation, pinned to one value of <Katex tex="d" />; an answer that says &ldquo;almost every{' '}
-            <Katex tex="d" />&rdquo; describes the ordinary case, independence.
+            The algebra is right, but the meanings are swapped. Being able to build <Katex tex="\underset{\sim}{a}" /> from{' '}
+            <Katex tex="\underset{\sim}{b}" /> and <Katex tex="\underset{\sim}{c}" /> is what <em>dependent</em> means: then
+            all three lie in one plane, so <Katex tex="d=-14" />. For every other <Katex tex="d" />,{' '}
+            <Katex tex="\underset{\sim}{a}" /> sticks out of that plane, and that is <em>independent</em>. A sense check:
+            dependence is the special, fragile situation, pinned to one value of <Katex tex="d" />; an answer that says
+            &ldquo;almost every <Katex tex="d" />&rdquo; describes the ordinary case, independence.
           </WrongMethod>
         </>
       }

@@ -23,19 +23,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{v} = \frac{\underset{\sim}{r}_2-\underset{\sim}{r}_1}{t_2-t_1}" />,
-    reason: <>&ldquo;Constant velocity&rdquo; is the clue: the position changes by the same vector every second, so the velocity is the total change in position divided by the time it took, the vector version of a gradient. (If the velocity weren&apos;t constant, you&apos;d need to differentiate instead.)</>,
+    reason: <>Constant velocity, so velocity is change in position over time taken. Here <Katex tex="\underset{\sim}{r}_1=3\underset{\sim}{i}+\underset{\sim}{j}" />, <Katex tex="\underset{\sim}{r}_2=-\underset{\sim}{i}+5\underset{\sim}{j}" /> and <Katex tex="t_2-t_1=2" /> s.</>,
+    more: <>This is the vector version of a gradient. If the velocity weren&apos;t constant, you&apos;d need to differentiate the position instead.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r}_2-\underset{\sim}{r}_1 = \left(-\underset{\sim}{i}+5\underset{\sim}{j}\right)-\left(3\underset{\sim}{i}+\underset{\sim}{j}\right)" />,
-    reason: <>Later minus earlier: where it ended up minus where it started. Getting the order backwards (and not dividing by the time) gives option D.</>,
+    reason: <>Later minus earlier: where the body ended up minus where it started.</>,
+    more: <>Getting the order backwards gives <Katex tex="\underset{\sim}{r}_1-\underset{\sim}{r}_2=4\underset{\sim}{i}-4\underset{\sim}{j}" />, which is option D (and it still isn&apos;t divided by the time).</>,
   },
   {
     working: <Katex display tex="= -4\underset{\sim}{i}+4\underset{\sim}{j}" />,
-    reason: <>Component by component: <Katex tex="-1-3=-4" /> and <Katex tex="5-1=4" />. This is the <em>displacement</em> over the two seconds, which is option C, the trap for anyone who forgets to divide.</>,
+    reason: <>Component by component: <Katex tex="-1-3=-4" /> and <Katex tex="5-1=4" />. This is the displacement over <em>two</em> seconds, not yet the velocity.</>,
+    more: <>Stopping here gives option C, the most popular wrong answer. Its units give it away: it is in metres, but the question asks for m s<Katex tex="^{-1}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\underset{\sim}{v} = -2\underset{\sim}{i}+2\underset{\sim}{j}\ \text{m s}^{-1}}" />,
-    reason: <>Matches option <b>B</b>, after dividing by the <Katex tex="2" /> seconds. Check: starting at <Katex tex="3\underset{\sim}{i}+\underset{\sim}{j}" /> and adding <Katex tex="2\underset{\sim}{v}" /> gives <Katex tex="-\underset{\sim}{i}+5\underset{\sim}{j}" /> ✓. Option E, <Katex tex="\underset{\sim}{i}+3\underset{\sim}{j}" />, is <Katex tex="\tfrac12\left(\underset{\sim}{r}_1+\underset{\sim}{r}_2\right)" />: the body&apos;s <em>position</em> at <Katex tex="t=1" />, not its velocity. Option A adds the two position vectors instead of subtracting them.</>,
+    working: <Katex display tex="\underset{\sim}{v} = \frac{-4\underset{\sim}{i}+4\underset{\sim}{j}}{2} = \boxed{-2\underset{\sim}{i}+2\underset{\sim}{j}\ \text{m s}^{-1}}" />,
+    reason: <>Matches option <b>B</b>, after dividing the displacement by the <Katex tex="2" /> seconds.</>,
+    more: <>Check: starting at <Katex tex="3\underset{\sim}{i}+\underset{\sim}{j}" /> and adding <Katex tex="2\underset{\sim}{v}=-4\underset{\sim}{i}+4\underset{\sim}{j}" /> gives <Katex tex="-\underset{\sim}{i}+5\underset{\sim}{j}" /> ✓. Option A, <Katex tex="2\underset{\sim}{i}+6\underset{\sim}{j}" />, adds the two position vectors instead of subtracting them. Option E, <Katex tex="\underset{\sim}{i}+3\underset{\sim}{j}" />, is <Katex tex="\tfrac12\left(\underset{\sim}{r}_1+\underset{\sim}{r}_2\right)" />: the body&apos;s <em>position</em> at <Katex tex="t=1" /> (the midpoint), not its velocity.</>,
   },
 ]
 
@@ -58,8 +62,7 @@ export default function SpecialistQ15_2017() {
       background={
         <p>
           Velocity is the rate of change of position, <Katex tex="\underset{\sim}{v}=\dfrac{d\underset{\sim}{r}}{dt}" />.
-          When the velocity is constant, the position changes by the same vector every second, so the body moves in a
-          straight line and <Katex tex="\underset{\sim}{v}=\dfrac{\text{change in position}}{\text{time taken}}" />.
+          A constant velocity means the body moves in a straight line at a steady speed.
         </p>
       }
       options={[
@@ -86,10 +89,8 @@ export default function SpecialistQ15_2017() {
             }
           >
             <p>
-              That is how far the body moved in <em>two</em> seconds. Velocity is displacement per second, so it has to
-              be divided by the time taken. Two quick catches: the units (the answer is asked for in m s
-              <Katex tex="^{-1}" />, but <Katex tex="-4\underset{\sim}{i}+4\underset{\sim}{j}" /> is in metres), and
-              the check <Katex tex="\underset{\sim}{r}_1+2\left(-4\underset{\sim}{i}+4\underset{\sim}{j}\right)=-5\underset{\sim}{i}+9\underset{\sim}{j}" />,
+              A quick catch is the check{' '}
+              <Katex tex="\underset{\sim}{r}_1+2\left(-4\underset{\sim}{i}+4\underset{\sim}{j}\right)=-5\underset{\sim}{i}+9\underset{\sim}{j}" />,
               which is not where the body ends up.
             </p>
           </WrongMethod>

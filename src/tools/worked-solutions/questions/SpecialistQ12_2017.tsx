@@ -27,8 +27,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x = 1-\sqrt a\sin(t), \qquad y = 1-\frac1b\cos(t)" />,
     reason: (
       <>
-        To find the shape of a path, get its cartesian equation: eliminate <Katex tex="t" />. When <Katex tex="\sin(t)" /> and{' '}
-        <Katex tex="\cos(t)" /> of the same <Katex tex="t" /> appear, the tool for that is{' '}
+        To find the shape of the path, eliminate <Katex tex="t" /> to get its cartesian equation. With{' '}
+        <Katex tex="\sin(t)" /> and <Katex tex="\cos(t)" /> of the same <Katex tex="t" />, use{' '}
         <Katex tex="\sin^2(t)+\cos^2(t)=1" />.
       </>
     ),
@@ -50,9 +50,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{(x-1)^2}{\left(\sqrt a\right)^2}+\frac{(y-1)^2}{\left(\frac1b\right)^2} = 1" />,
     reason: (
       <>
-        Written in standard form, this is an ellipse centred at <Katex tex="(1,1)" /> with horizontal semi-axis{' '}
-        <Katex tex="\sqrt a" /> and vertical semi-axis <Katex tex="\tfrac1b" />: the two numbers multiplying{' '}
-        <Katex tex="\sin(t)" /> and <Katex tex="\cos(t)" /> in the rule.
+        In standard form this is an ellipse centred at <Katex tex="(1,1)" />, with horizontal semi-axis{' '}
+        <Katex tex="\sqrt a" /> and vertical semi-axis <Katex tex="\tfrac1b" />.
       </>
     ),
   },
@@ -60,9 +59,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{circle} \iff \sqrt a = \frac1b" />,
     reason: (
       <>
-        A circle is an ellipse stretched by the same amount both ways, so the two semi-axes must be equal (equivalently, the
-        coefficients <Katex tex="\tfrac1a" /> and <Katex tex="b^2" /> must be equal). Both are positive since{' '}
-        <Katex tex="a,b\in R^+" />, so there are no signs to worry about.
+        A circle is an ellipse with equal semi-axes. Both are positive since <Katex tex="a,b\in R^+" />, so there are no signs
+        to worry about.
+      </>
+    ),
+    more: (
+      <>
+        Equivalently, the coefficients <Katex tex="\tfrac1a" /> and <Katex tex="b^2" /> in the cartesian equation must be
+        equal, which gives the same condition.
       </>
     ),
   },
@@ -78,11 +82,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{ab^2 = 1}" />,
     reason: (
       <>
-        Matches option <b>A</b>. &ldquo;Always&rdquo; matters: with <Katex tex="ab^2=1" /> the path is a circle of radius{' '}
-        <Katex tex="\sqrt a" /> for every value of <Katex tex="a" /> (e.g. <Katex tex="a=4" />, <Katex tex="b=\tfrac12" /> gives
-        radius <Katex tex="2" />), and <Katex tex="t\ge0" /> runs on forever, so the whole circle is traced. Option D,{' '}
-        <Katex tex="ab=1" />, is what you get by dropping the square root (<Katex tex="a=\tfrac1b" />); like B, it gives a
-        circle only when <Katex tex="a=b=1" />.
+        Matches option <b>A</b>: with <Katex tex="ab^2=1" /> the path is a circle of radius <Katex tex="\sqrt a" /> for every{' '}
+        <Katex tex="a" />, which is what &ldquo;always&rdquo; asks for.
+      </>
+    ),
+    more: (
+      <>
+        For example <Katex tex="a=4" />, <Katex tex="b=\tfrac12" /> gives a circle of radius <Katex tex="2" />, and since{' '}
+        <Katex tex="t\ge0" /> runs on forever, the whole circle is traced. Option D, <Katex tex="ab=1" />, is what you get by
+        dropping the square root (<Katex tex="a=\tfrac1b" />); like B, <Katex tex="a^2b=1" />, it gives a circle only when{' '}
+        <Katex tex="a=b=1" />. C, <Katex tex="ab^2\ne1" />, is the condition for the path <em>never</em> being a circle, and E,{' '}
+        <Katex tex="a^2b\ne1" />, allows ellipses such as <Katex tex="a=4" />, <Katex tex="b=1" /> (semi-axes{' '}
+        <Katex tex="2" /> and <Katex tex="1" />).
       </>
     ),
   },

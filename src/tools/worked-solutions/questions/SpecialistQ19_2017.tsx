@@ -22,8 +22,9 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{width} \propto \frac{1}{\sqrt n}" />,
-    reason: <>The interval is <Katex tex="\bar x \pm z\dfrac{\sigma}{\sqrt n}" />, so its width is <Katex tex="2z\dfrac{\sigma}{\sqrt n}" />. The confidence level (so <Katex tex="z" />) and the population (so <Katex tex="\sigma" />) aren&apos;t changing, so the width depends on <Katex tex="n" /> only through <Katex tex="1/\sqrt n" />. Spotting that square root is the whole question.</>,
+    working: <Katex display tex="\text{width} = 2z\frac{\sigma}{\sqrt n} \propto \frac{1}{\sqrt n}" />,
+    reason: <>The interval is <Katex tex="\bar x \pm z\dfrac{\sigma}{\sqrt n}" />. The confidence level (so <Katex tex="z" />) and <Katex tex="\sigma" /> don&apos;t change, so only <Katex tex="\sqrt n" /> affects the width.</>,
+    more: <>Spotting that <Katex tex="n" /> sits under a square root is the whole question.</>,
   },
   {
     working: (
@@ -32,24 +33,31 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; \text{new width} = 0.25 \times \text{old width}" />
       </>
     ),
-    reason: <>&ldquo;Decrease <em>by</em> 75%&rdquo; means only 25% of the original width is left, just as $100 decreased by 75% leaves $25.</>,
-  },
-  {
-    working: <Katex display tex="\frac{1/\sqrt{n_{\text{new}}}}{1/\sqrt{n_{\text{old}}}} = 0.25" />,
-    reason: <>Set the ratio of new to old width equal to <Katex tex="0.25" />. The constant <Katex tex="2z\sigma" /> cancels, which is why it was safe to ignore.</>,
+    reason: <>Decreasing <em>by</em> 75% leaves 25% of the original width.</>,
+    more: <>Just as $100 decreased by 75% leaves $25.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="\sqrt{\frac{n_{\text{old}}}{n_{\text{new}}}} = 0.25" />
-        <Katex display tex="\implies\; \frac{n_{\text{old}}}{n_{\text{new}}} = 0.0625" />
+        <Katex display tex="\frac{\text{new width}}{\text{old width}} = \frac{2z\sigma/\sqrt{n_{\text{new}}}}{2z\sigma/\sqrt{n_{\text{old}}}}" />
+        <Katex display tex="\implies\; \sqrt{\frac{n_{\text{old}}}{n_{\text{new}}}} = 0.25" />
       </>
     ),
-    reason: <>Square both sides to clear the square root.</>,
+    reason: <>The constant <Katex tex="2z\sigma" /> cancels, and dividing by <Katex tex="1/\sqrt{n_{\text{old}}}" /> is multiplying by <Katex tex="\sqrt{n_{\text{old}}}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\frac{n_{\text{new}}}{n_{\text{old}}} = \frac{1}{0.0625} = 16}" />,
-    reason: <>Matches option <b>D</b>: the sample size must be multiplied by <Katex tex="16" />. Because of the square root, you square the factor you want: a width <Katex tex="\tfrac14" /> as big needs <Katex tex="4^2=16" /> times the sample. Option B, <Katex tex="4" />, is <Katex tex="1/0.25" /> without the squaring; multiplying <Katex tex="n" /> by 4 only halves the width.</>,
+    working: (
+      <>
+        <Katex display tex="\sqrt{\frac{n_{\text{new}}}{n_{\text{old}}}} = \frac{1}{0.25} = 4" />
+        <Katex display tex="\implies\; \frac{n_{\text{new}}}{n_{\text{old}}} = 4^2" />
+      </>
+    ),
+    reason: <>Flip both sides to put the new sample size on top, then square both sides to clear the square root.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\frac{n_{\text{new}}}{n_{\text{old}}} = 16}" />,
+    reason: <>Matches option <b>D</b>. Because of the square root, a quarter of the width needs <Katex tex="4^2=16" /> times the sample.</>,
+    more: <>Check every option: multiplying <Katex tex="n" /> by <Katex tex="k" /> multiplies the width by <Katex tex="\tfrac{1}{\sqrt k}" />. So A (<Katex tex="k=2" />) leaves about 71% of the width, B (<Katex tex="k=4" />) 50%, C (<Katex tex="k=9" />) 33%, D (<Katex tex="k=16" />) 25% ✓ and E (<Katex tex="k=25" />) 20%.</>,
   },
 ]
 
@@ -69,9 +77,8 @@ export default function SpecialistQ19_2017() {
         <p>
           An approximate confidence interval for <Katex tex="\mu" /> is{' '}
           <Katex tex="\left(\bar x - z\dfrac{\sigma}{\sqrt n},\ \bar x + z\dfrac{\sigma}{\sqrt n}\right)" />, where{' '}
-          <Katex tex="z" /> depends only on the confidence level (<Katex tex="1.96" /> for 95%). Its width,{' '}
-          <Katex tex="2z\dfrac{\sigma}{\sqrt n}" />, shrinks as the sample grows, but only like{' '}
-          <Katex tex="1/\sqrt n" />.
+          <Katex tex="z" /> depends only on the confidence level (<Katex tex="1.96" /> for 95%), and{' '}
+          <Katex tex="\sigma" /> is the population standard deviation. A bigger sample gives a narrower interval.
         </p>
       }
       options={[

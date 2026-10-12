@@ -18,6 +18,7 @@
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
+import { Cas } from '../CasRef'
 import argandSrc from './spec-2017e2-q4e-argand.png'
 
 const SymmetriesWidget = lazyWidget(() => import('../interactives/spec-2017e2-q4c-symmetries'))
@@ -148,30 +149,35 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\left|-2-2\sqrt3i\right| = \sqrt{(-2)^2+\left(-2\sqrt3\right)^2} = \sqrt{16} = 4" />,
-    reason: <>Modulus first: Pythagoras on the real and imaginary parts, the distance of the point from <Katex tex="O" />.</>,
+    reason: <>Modulus first: Pythagoras on the real and imaginary parts gives the point&apos;s distance from <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="\tan^{-1}\!\left(\frac{2\sqrt3}{2}\right) = \tan^{-1}\!\left(\sqrt3\right) = \frac{\pi}{3}" />,
-    reason: <>Use the <em>sizes</em> of the two parts, signs dropped, to get the acute angle the point makes with the real axis. Recognise <Katex tex="\tan\tfrac{\pi}{3}=\sqrt3" /> from the 30–60–90 triangle.</>,
+    reason: <>With the signs dropped, this is the acute angle the point makes with the real axis: <Katex tex="\tan\tfrac{\pi}{3}=\sqrt3" />.</>,
+    more: <>Working with the <em>sizes</em> of the two parts keeps the quadrant question separate: the signs are dealt with in the next row. Recognise <Katex tex="\tan\tfrac{\pi}{3}=\sqrt3" /> from the 30–60–90 triangle.</>,
   },
   {
     working: <Katex display tex="\operatorname{Re}<0,\ \operatorname{Im}<0 \implies \text{third quadrant}" />,
-    reason: <>The signs decide the quadrant: left of the imaginary axis and below the real axis. A quick sketch of the point is the habit the report recommends, because it makes a wrong-quadrant answer obvious.</>,
+    reason: <>Both parts negative: left of the imaginary axis and below the real axis.</>,
+    more: <>A quick sketch of the point is the habit the report recommends: it makes a wrong-quadrant answer obvious.</>,
   },
   {
     working: <Katex display tex="\operatorname{Arg}\!\left(-2-2\sqrt3i\right) = -\left(\pi-\frac{\pi}{3}\right) = -\frac{2\pi}{3}" />,
-    reason: <>A third-quadrant point is reached by turning <em>clockwise</em> from the positive real axis, so its principal argument is negative: <Katex tex="\tfrac{\pi}{3}" /> short of <Katex tex="-\pi" />. This keeps it in <Katex tex="(-\pi,\pi]" />.</>,
+    reason: <>A third-quadrant point is reached turning <em>clockwise</em> from the positive real axis, <Katex tex="\tfrac{\pi}{3}" /> short of <Katex tex="-\pi" />, so the argument is negative.</>,
+    more: <>This keeps it in <Katex tex="(-\pi,\pi]" />, the range of the principal argument.</>,
   },
   {
     working: <Katex display tex="\boxed{4\operatorname{cis}\!\left(-\frac{2\pi}{3}\right)}" />,
-    reason: <>Equivalently <Katex tex="4\operatorname{cis}\!\left(\tfrac{4\pi}{3}\right)" />, though the principal argument is the usual convention.</>,
+    reason: <>Polar form <Katex tex="r\operatorname{cis}\theta" /> with <Katex tex="r=4" />.</>,
+    more: <><Katex tex="4\operatorname{cis}\!\left(\tfrac{4\pi}{3}\right)" /> names the same point, though the principal argument is the usual convention.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="z = \frac{-4\pm\sqrt{4^2-4(1)(16)}}{2(1)}" />,
-    reason: <>A "show that" wants the roots <em>derived</em>, so start from the equation with the quadratic formula. Completing the square, <Katex tex="(z+2)^2=-12" />, is equally good.</>,
+    reason: <>A "show that" wants the roots <em>derived</em>, so solve the equation: quadratic formula with <Katex tex="a=1,\ b=4,\ c=16" />.</>,
+    more: <>Completing the square, <Katex tex="(z+2)^2=-12" />, is equally good: the report lists both as giving correct solutions.</>,
   },
   {
     working: <Katex display tex="= \frac{-4\pm\sqrt{-48}}{2}" />,
@@ -183,7 +189,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z = \frac{-4\pm4\sqrt3i}{2} = -2\pm2\sqrt3i}" />,
-    reason: <>Halving both terms. Every line above is needed: the report says solely verifying the given roots by substitution did not follow the instruction. As required.</>,
+    reason: <>Halving both terms. As required.</>,
+    more: <>Every line above is needed. The report says some students left out key steps, or confused factors with solutions and did not go beyond factorising the quadratic: a factor such as <Katex tex="z+2+2\sqrt3i" /> is not a root.</>,
   },
 ]
 
@@ -194,30 +201,35 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{roots: } -2+2\sqrt3i,\quad -2-2\sqrt3i" />,
-    reason: <>How would I know what to do to <Katex tex="w" />? Compare: the roots have the same sizes of parts, <Katex tex="2" /> and <Katex tex="2\sqrt3" />, only different signs. Changing signs is exactly what negating (both signs) and conjugating (the imaginary sign only) do.</>,
+    reason: <>The roots&apos; parts have the same sizes as <Katex tex="w" />&apos;s, <Katex tex="2" /> and <Katex tex="2\sqrt3" />; only the signs differ. So look for sign changes.</>,
+    more: <>Negating and conjugating, alone or together, reach every sign pattern, so one of them will match each root.</>,
   },
   {
     working: <Katex display tex="-w = -2+2\sqrt3i" />,
-    reason: <>Negating flips both signs, which gives one root. On the Argand plane it is a half-turn about <Katex tex="O" />.</>,
+    reason: <>Negating flips both signs, which gives one root.</>,
+    more: <>On the Argand plane, negating is a half-turn about <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="\bar w = 2+2\sqrt3i \implies -\bar w = -2-2\sqrt3i" />,
-    reason: <>Conjugate (flip in the real axis), then negate. That gives the other root, as it must: the roots of a real quadratic are conjugates, and <Katex tex="-\bar w" /> is the conjugate of <Katex tex="-w" />.</>,
+    reason: <>Conjugate (flip the imaginary sign), then negate: that gives the other root.</>,
+    more: <>As it must: the roots of a real quadratic are conjugates, and <Katex tex="-\bar w" /> is the conjugate of <Katex tex="-w" />. Geometrically, conjugating is a flip in the real axis.</>,
   },
   {
     working: <Katex display tex="\boxed{z = -\left(2-2\sqrt3i\right),\ \ z = -\overline{\left(2-2\sqrt3i\right)}}" />,
-    reason: <>That is, <Katex tex="z=-w" /> and <Katex tex="z=-\bar w" />. The report says many attempts were not expressed in terms of <Katex tex="2-2\sqrt3i" /> as required.</>,
+    reason: <>That is, <Katex tex="z=-w" /> and <Katex tex="z=-\bar w" />: both roots written using the given number.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="|z| = \left|z-\left(2-2\sqrt3i\right)\right|" />,
-    reason: <>Read <Katex tex="|z-c|" /> as the distance from <Katex tex="z" /> to <Katex tex="c" />. So this says <Katex tex="z" /> is as far from <Katex tex="0" /> as from <Katex tex="2-2\sqrt3i" />, which already tells you the locus is a line: the perpendicular bisector of those two points.</>,
+    reason: <>Read <Katex tex="|z-c|" /> as the distance from <Katex tex="z" /> to <Katex tex="c" />: <Katex tex="z" /> is as far from <Katex tex="0" /> as from <Katex tex="2-2\sqrt3i" />.</>,
+    more: <>That already says the locus is a line, the perpendicular bisector of those two points. The report says a smaller proportion of students correctly used that approach; the algebra below was the most common.</>,
   },
   {
     working: <Katex display tex="x^2+y^2 = (x-2)^2+\left(y+2\sqrt3\right)^2" />,
-    reason: <>Put <Katex tex="z=x+yi" />, so <Katex tex="z-\left(2-2\sqrt3i\right)=(x-2)+\left(y+2\sqrt3\right)i" />, and square both moduli. Squaring is safe because both sides are non-negative.</>,
+    reason: <>Put <Katex tex="z=x+yi" />, so <Katex tex="z-\left(2-2\sqrt3i\right)=(x-2)+\left(y+2\sqrt3\right)i" />, then square both moduli.</>,
+    more: <>Squaring is safe because both sides are non-negative.</>,
   },
   {
     working: <Katex display tex="x^2+y^2 = x^2-4x+4+y^2+4\sqrt3y+12" />,
@@ -225,11 +237,13 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0 = -4x+4\sqrt3y+16" />,
-    reason: <>The <Katex tex="x^2" /> and <Katex tex="y^2" /> cancel, which is why an "equal distances from two points" locus always comes out as a straight line.</>,
+    reason: <>The <Katex tex="x^2" /> and <Katex tex="y^2" /> cancel, leaving a linear equation.</>,
+    more: <>That cancellation is why an "equal distances from two points" locus always comes out as a straight line.</>,
   },
   {
     working: <Katex display tex="\boxed{x-\sqrt3y-4 = 0}" />,
-    reason: <>Dividing by <Katex tex="-4" />. Quick check: the midpoint <Katex tex="1-\sqrt3i" /> of the two fixed points must be on the bisector, and <Katex tex="1-\sqrt3\left(-\sqrt3\right)-4=0" /> ✓. As required.</>,
+    reason: <>Dividing by <Katex tex="-4" />. As required.</>,
+    more: <>Quick check: the midpoint <Katex tex="1-\sqrt3i" /> of the two fixed points must be on the bisector, and <Katex tex="1-\sqrt3\left(-\sqrt3\right)-4=0" /> ✓.</>,
   },
 ]
 
@@ -244,11 +258,13 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-2\pm2\sqrt3i = 4\operatorname{cis}\!\left(\pm\frac{2\pi}{3}\right)" />,
-    reason: <>Part a. has already located the roots. On this polar grid each is where the circle of radius <Katex tex="4" /> meets the <Katex tex="120^\circ" /> or <Katex tex="-120^\circ" /> spoke, so no estimating <Katex tex="2\sqrt3\approx3.46" /> is needed.</>,
+    reason: <>From part a. On this polar grid each root is where the circle of radius <Katex tex="4" /> meets the <Katex tex="120^\circ" /> or <Katex tex="-120^\circ" /> spoke.</>,
+    more: <>So there is no need to estimate <Katex tex="2\sqrt3\approx3.46" /> on the grid.</>,
   },
   {
     working: <ArgandAnswer />,
-    reason: <>The lower root lies exactly on the line, since <Katex tex="-2-\sqrt3\left(-2\sqrt3\right)-4=0" />. An accurate line passes right through it. The report says incorrect plotting of the line was the most common error.</>,
+    reason: <>The lower root lies exactly on the line, since <Katex tex="-2-\sqrt3\left(-2\sqrt3\right)-4=0" />. An accurate line passes right through it.</>,
+    more: <>The report says incorrect plotting of the line was the most common error, and that plotted points should be accurately placed and clearly seen: mark each root with a clear dot and label it.</>,
   },
 ]
 
@@ -259,7 +275,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="|z-a| = |z-b|:\ \text{perpendicular bisector of } a,\,b" />,
-    reason: <>Part d. in reverse. So the question is: which pairs <Katex tex="a,b" /> have <Katex tex="\operatorname{Re}(z)=-2" /> as their perpendicular bisector? Answer: <Katex tex="b" /> must be <Katex tex="a" />&apos;s mirror image in that line.</>,
+    reason: <>Part d. in reverse. For <Katex tex="\operatorname{Re}(z)=-2" /> to be the perpendicular bisector of <Katex tex="a" /> and <Katex tex="b" />, <Katex tex="b" /> must be <Katex tex="a" />&apos;s mirror image in it.</>,
   },
   {
     working: <Katex display tex="\operatorname{Im}(b) = \operatorname{Im}(a)" />,
@@ -275,35 +291,37 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = -4-\bar a}" />,
-    reason: <>Because <Katex tex="-\bar a = -\operatorname{Re}(a)+\operatorname{Im}(a)\,i" />: conjugating then negating leaves the imaginary part unchanged. Check with <Katex tex="a=0" />: <Katex tex="b=-4" />, and the bisector of <Katex tex="0" /> and <Katex tex="-4" /> is <Katex tex="\operatorname{Re}(z)=-2" /> ✓.</>,
+    reason: <>Because <Katex tex="-\bar a = -\operatorname{Re}(a)+\operatorname{Im}(a)\,i" />: conjugating then negating keeps the imaginary part and negates the real part.</>,
+    more: <>Check with <Katex tex="a=0" />: <Katex tex="b=-4" />, and the bisector of <Katex tex="0" /> and <Katex tex="-4" /> is <Katex tex="\operatorname{Re}(z)=-2" /> ✓. (<Katex tex="a" /> must not lie on the line itself: then <Katex tex="b=a" /> and the relation holds for every <Katex tex="z" />, not just a line.) The form in the previous row is also correct; the report says a variety of correct forms was accepted.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="|z|=4 \text{ meets } \operatorname{Re}(z)=-2 \text{ at } -2\pm2\sqrt3i" />,
-    reason: <>The two roots are on the circle, since <Katex tex="\sqrt{4+12}=4" />, so the chord is the segment joining them. Sketch it: <Katex tex="O" /> is to the right of the chord, inside the bigger piece.</>,
+    reason: <>The two roots are on the circle, since <Katex tex="\sqrt{4+12}=4" />, so the chord joins them. <Katex tex="O" /> is right of the chord, inside the bigger piece.</>,
+    more: <>A quick sketch makes this clear: the chord is the vertical line <Katex tex="\operatorname{Re}(z)=-2" />, and the larger region, the one containing <Katex tex="O" />, is the major segment.</>,
   },
   {
     working: <Katex display tex="\operatorname{Arg}\left(-2\pm2\sqrt3i\right) = \pm\frac{2\pi}{3}" />,
-    reason: <>From part a. (and its conjugate). The minor arc between them, through <Katex tex="-4" />, subtends <Katex tex="\tfrac{2\pi}{3}" /> at <Katex tex="O" />.</>,
+    reason: <>From part a. (and its conjugate). Each root is <Katex tex="\pi-\tfrac{2\pi}{3}=\tfrac{\pi}{3}" /> from the negative real axis, so the minor arc through <Katex tex="-4" /> subtends <Katex tex="2\cdot\tfrac{\pi}{3}=\tfrac{2\pi}{3}" /> at <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="\theta = 2\pi-\frac{2\pi}{3} = \frac{4\pi}{3}" />,
-    reason: <>The major segment is bounded by the major arc, which goes the long way round, through <Katex tex="4" />. Using <Katex tex="\tfrac{2\pi}{3}" /> here was the report&apos;s common error.</>,
+    reason: <>The major segment is bounded by the major arc, which goes the long way round, through <Katex tex="4" />. So <Katex tex="\theta" /> is not <Katex tex="\tfrac{2\pi}{3}" />.</>,
   },
   {
     working: <Katex display tex="A = \frac12 r^2\bigl(\theta-\sin\theta\bigr) = \frac12(16)\left(\frac{4\pi}{3}-\sin\frac{4\pi}{3}\right)" />,
-    reason: <>Segment = sector minus triangle, and this formula holds for <Katex tex="\theta>\pi" /> too.</>,
-    more: <>See the Background above.</>,
+    reason: <>Segment = sector <Katex tex="\tfrac12r^2\theta" /> minus triangle <Katex tex="\tfrac12r^2\sin\theta" />, with <Katex tex="\theta" /> the angle the segment&apos;s own arc subtends at <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="\sin\frac{4\pi}{3} = -\frac{\sqrt3}{2}" />,
-    reason: <>Third quadrant, reference angle <Katex tex="\tfrac{\pi}{3}" />. The negative sine is what makes the triangle term <em>add</em> for a major segment.</>,
+    reason: <>Third quadrant, reference angle <Katex tex="\tfrac{\pi}{3}" />. The negative sine makes the triangle term <em>add</em>, as it should for a major segment.</>,
   },
   {
     working: <Katex display tex="A = 8\left(\frac{4\pi}{3}+\frac{\sqrt3}{2}\right) = \boxed{\frac{32\pi}{3}+4\sqrt3}" />,
-    reason: <>About <Katex tex="40.4" />. Sanity check: the whole disc is <Katex tex="16\pi\approx50.3" /> and half of it is <Katex tex="25.1" />, so a major segment of about four-fifths of the disc is right.</>,
+    reason: <>About <Katex tex="40.4" />: more than half the disc, <Katex tex="8\pi\approx25.1" />, as a major segment must be.</>,
+    more: <>The whole disc is <Katex tex="16\pi\approx50.3" />, so this segment is about four-fifths of it. The report also saw definite-integral solutions, usually completed correctly: with vertical strips, <Katex tex="A=\int_{-2}^{4}2\sqrt{16-x^2}\,dx" />, and <Cas fn="nInt">nInt</Cas> gives <Katex tex="40.44" />, the same answer.</>,
   },
 ]
 
@@ -443,8 +461,7 @@ export default function SpecialistQ4_2017Exam2() {
             Two conditions do it. The segment joining <Katex tex="a" /> and{' '}
             <Katex tex="b" /> must be perpendicular to the line, and the midpoint of{' '}
             <Katex tex="a" /> and <Katex tex="b" /> must lie on it. Together they say <Katex tex="b" /> is the mirror
-            image of <Katex tex="a" /> in the line. With a vertical line those say: same imaginary part, and real parts
-            averaging to <Katex tex="-2" />.
+            image of <Katex tex="a" /> in the line.
           </p>
           <p>
             Only <Katex tex="1\%" /> of students scored this mark. It is not hard once you see
@@ -473,14 +490,9 @@ export default function SpecialistQ4_2017Exam2() {
         <Background title="Segments bigger than a semicircle">
           <p>
             A segment is a sector with the triangle <Katex tex="OAB" /> (centre and the two chord ends) taken into
-            account: <Katex tex="A=\tfrac12r^2\theta-\tfrac12r^2\sin\theta" />, where <Katex tex="\theta" /> is the angle
-            the segment&apos;s own arc subtends at the centre.
-          </p>
-          <p>
-            For a minor segment the triangle sticks out of it and is subtracted. For a major segment the centre is
-            inside the segment, so the triangle is <em>part of</em> it and must be added. You don&apos;t need two
-            formulas: when <Katex tex="\theta>\pi" />, <Katex tex="\sin\theta<0" />, and the minus sign turns into a plus
-            by itself.
+            account. For a minor segment the triangle sticks out of the segment, so it is subtracted from the sector.
+            For a major segment the centre is inside the segment, so the triangle is <em>part of</em> it and is
+            added. One formula, used in the working, covers both cases.
           </p>
         </Background>
         <WorkingTable rows={ROWS_G} />
@@ -490,7 +502,7 @@ export default function SpecialistQ4_2017Exam2() {
         <WrongMethod
           title="The angle between the two roots is 2π/3, so use that"
           source="Examiner's report"
-          working={<Katex display tex="\frac12(16)\left(\frac{2\pi}{3}-\sin\frac{2\pi}{3}\right) = \frac{16\pi}{3}-4\sqrt3 \approx 9.83" />}
+          working={<Katex display tex="\begin{aligned}&\frac12(16)\left(\frac{2\pi}{3}-\sin\frac{2\pi}{3}\right)\\&= \frac{16\pi}{3}-4\sqrt3 \approx 9.83\end{aligned}" />}
         >
           <Katex tex="\tfrac{2\pi}{3}" /> is the angle of the <em>minor</em> arc, so this is the area of the small segment
           on the far side of the chord. The report says a significant number of students used this sector angle. Catch

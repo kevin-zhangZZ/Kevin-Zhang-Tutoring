@@ -28,11 +28,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="-1\le\frac1x\le1" />,
     reason: (
       <>
-        <Katex tex="f" /> is a composite: <Katex tex="\cos^{-1}" /> applied to <Katex tex="\tfrac1x" />. For a
-        composite, the inside&apos;s output must be something the outside accepts, and{' '}
-        <Katex tex="\cos^{-1}" /> only accepts inputs in <Katex tex="[-1,1]" />. So it is{' '}
-        <Katex tex="\tfrac1x" />, not <Katex tex="x" />, that must land in <Katex tex="[-1,1]" />. The outer factor
-        of <Katex tex="2" /> only stretches the graph; it can&apos;t change which <Katex tex="x" /> are allowed.
+        <Katex tex="\cos^{-1}" /> only accepts inputs in <Katex tex="[-1,1]" />, and here its input is{' '}
+        <Katex tex="\tfrac1x" />, so it is <Katex tex="\tfrac1x" />, not <Katex tex="x" />, that must lie in{' '}
+        <Katex tex="[-1,1]" />.
+      </>
+    ),
+    more: (
+      <>
+        The outer factor of <Katex tex="2" /> only stretches the graph; it can&apos;t change which{' '}
+        <Katex tex="x" /> are allowed.
       </>
     ),
   },
@@ -44,10 +48,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{1}{|x|}\le1 \;\implies\; 1\le|x|" />,
     reason: (
       <>
-        <Katex tex="|x|" /> is positive, so multiplying both sides by it keeps the direction. Don&apos;t multiply{' '}
-        <Katex tex="-1\le\tfrac1x\le1" /> through by <Katex tex="x" /> itself: its sign is unknown, and for negative{' '}
-        <Katex tex="x" /> both inequalities would flip. Sense check: <Katex tex="1" /> divided by a small number is
-        big, so it is the <em>small</em> <Katex tex="x" /> that must go.
+        <Katex tex="|x|" /> is positive, so multiplying both sides by it keeps the inequality&apos;s direction.
+      </>
+    ),
+    more: (
+      <>
+        Don&apos;t multiply <Katex tex="-1\le\tfrac1x\le1" /> through by <Katex tex="x" /> itself: its sign is
+        unknown, and for negative <Katex tex="x" /> both inequalities would flip. Sense check: <Katex tex="1" />{' '}
+        divided by a small number is big, so it is the <em>small</em> <Katex tex="x" /> that must go.
       </>
     ),
   },
@@ -55,14 +63,19 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{(-\infty,-1]\cup[1,\infty)}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option E is the <Katex tex="[-1,1]" /> restriction applied to <Katex tex="x" />{' '}
-        instead of to <Katex tex="\tfrac1x" />. <Katex tex="x=0" /> needs no separate exclusion, since{' '}
-        <Katex tex="|0|\ge1" /> is false. Spot-check: <Katex tex="x=2" /> gives{' '}
-        <Katex tex="2\cos^{-1}(0.5)=\tfrac{2\pi}{3}" />, fine; <Katex tex="x=0.5" /> gives{' '}
-        <Katex tex="\cos^{-1}(2)" />, undefined.
+        <Katex tex="|x|\ge1" /> means <Katex tex="x\le-1" /> or <Katex tex="x\ge1" />, which already excludes{' '}
+        <Katex tex="x=0" />. Matches option <b>C</b>.
       </>
     ),
-    more: <>For option E, see below.</>,
+    more: (
+      <>
+        Spot-check: <Katex tex="x=2" /> gives <Katex tex="2\cos^{-1}(0.5)=\tfrac{2\pi}{3}" />, fine;{' '}
+        <Katex tex="x=-0.5" /> gives <Katex tex="\cos^{-1}(-2)" />, undefined. Option E (12%) applies the{' '}
+        <Katex tex="[-1,1]" /> restriction to <Katex tex="x" /> instead of to <Katex tex="\tfrac1x" />, and B does
+        the same without removing <Katex tex="0" />. D only removes the <Katex tex="x=0" /> that{' '}
+        <Katex tex="\tfrac1x" /> forbids, and A ignores both restrictions.
+      </>
+    ),
   },
 ]
 
@@ -109,8 +122,7 @@ export default function SpecialistQ1_2017() {
               </>
             }
           >
-            The <Katex tex="[-1,1]" /> rule is about whatever sits <em>inside</em> <Katex tex="\cos^{-1}" />, which
-            here is <Katex tex="\tfrac1x" />, not <Katex tex="x" />. Applying it to <Katex tex="x" /> gives exactly
+            Applying the <Katex tex="[-1,1]" /> rule to <Katex tex="x" /> instead of to <Katex tex="\tfrac1x" /> gives exactly
             the wrong set: for every <Katex tex="x" /> strictly between <Katex tex="-1" /> and <Katex tex="1" />{' '}
             (other than 0), <Katex tex="\left|\tfrac1x\right|>1" />. To catch it, test one value from your answer
             in the original rule: <Katex tex="x=\tfrac12" /> fails straight away.

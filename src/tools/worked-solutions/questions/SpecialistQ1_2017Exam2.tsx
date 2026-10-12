@@ -98,9 +98,15 @@ const ROWS_AI: WorkingRow[] = [
     working: <Katex display tex="1+x^3 = 0 \implies x = -1" />,
     reason: (
       <>
-        First question for any fraction: where is the bottom zero? At <Katex tex="x=-1" /> the
-        denominator vanishes but the numerator is <Katex tex="-1\neq0" />, so the values blow up —
-        a vertical asymptote. It also fixes the maximal domain <Katex tex="D=R\setminus\{-1\}" />.
+        A vertical asymptote sits where the denominator is zero but the numerator isn&apos;t: at{' '}
+        <Katex tex="x=-1" /> the top is <Katex tex="-1\neq0" />.
+      </>
+    ),
+    more: (
+      <>
+        Near <Katex tex="x=-1" /> you divide a number close to <Katex tex="-1" /> by a number close
+        to <Katex tex="0" />, so the values blow up. This also fixes the maximal domain{' '}
+        <Katex tex="D=R\setminus\{-1\}" />.
       </>
     ),
   },
@@ -108,9 +114,9 @@ const ROWS_AI: WorkingRow[] = [
     working: <Katex display tex="f(x) = \frac{x}{1+x^3} = \frac{\frac1{x^2}}{\frac1{x^3}+1}" />,
     reason: (
       <>
-        Second question, the one that finds the other asymptote: what happens as{' '}
-        <Katex tex="x\to\pm\infty" />? Divide top and bottom by <Katex tex="x^3" />, the highest
-        power, so that every term except the <Katex tex="1" /> shrinks to zero.
+        The denominator only finds vertical asymptotes. For a horizontal asymptote, ask what happens as{' '}
+        <Katex tex="x\to\pm\infty" />: divide top and bottom by <Katex tex="x^3" />, the highest
+        power.
       </>
     ),
   },
@@ -118,16 +124,21 @@ const ROWS_AI: WorkingRow[] = [
     working: <Katex display tex="x\to\pm\infty \implies f(x)\to\frac{0}{0+1}=0" />,
     reason: (
       <>
-        The bottom's degree (3) is higher than the top's (1), so the bottom wins and the curve
-        flattens onto the <Katex tex="x" />-axis. With the top's degree lower there is no
-        polynomial part to find, so no partial fractions are needed — the report notes various
-        incorrect attempts at partial fraction forms.
+        Every term except the <Katex tex="1" /> shrinks to zero, so the curve flattens onto the{' '}
+        <Katex tex="x" />-axis: the bottom&apos;s degree (3) beats the top&apos;s (1).
+      </>
+    ),
+    more: (
+      <>
+        With the top&apos;s degree lower there is no polynomial part to split off, so no partial
+        fractions are needed — the report notes various incorrect attempts at partial fraction
+        forms.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{x=-1 \text{ and } y=0}" />,
-    reason: <>One vertical, one horizontal. The report says significantly fewer students stated the horizontal one.</>,
+    reason: <>One vertical, one horizontal: the mark needs both.</>,
   },
 ]
 
@@ -136,9 +147,14 @@ const ROWS_AII: WorkingRow[] = [
     working: <Katex display tex="f'(x) = \frac{(1+x^3)(1)-x(3x^2)}{(1+x^3)^2}" />,
     reason: (
       <>
-        Quotient rule: bottom times the top's derivative, minus top times the bottom's derivative,
-        all over the bottom squared. The question says &ldquo;find <Katex tex="f'(x)" />&rdquo;, so
-        write it down, simplified.
+        Quotient rule: bottom times the top&apos;s derivative, minus top times the bottom&apos;s
+        derivative, all over the bottom squared.
+      </>
+    ),
+    more: (
+      <>
+        The question says &ldquo;find <Katex tex="f'(x)" />&rdquo; as well as the stationary point,
+        so write the derivative down, simplified, rather than going straight to a CAS solve.
       </>
     ),
   },
@@ -150,9 +166,16 @@ const ROWS_AII: WorkingRow[] = [
     working: <Katex display tex="1-2x^3=0 \implies x = \sqrt[3]{\tfrac12}\approx0.7937" />,
     reason: (
       <>
-        A fraction is zero only when its numerator is, and the denominator is a square so it never
-        changes sign — the derivative's sign is entirely the numerator's. A cubic{' '}
-        <Katex tex="x^3=\tfrac12" /> has one real root, so there is exactly one stationary point.
+        Stationary points are where <Katex tex="f'(x)=0" />. A fraction is zero only when its
+        numerator is, and <Katex tex="x^3=\tfrac12" /> has one real root, so there is one stationary
+        point.
+      </>
+    ),
+    more: (
+      <>
+        The denominator is a square, so it never changes sign: the sign of <Katex tex="f'" /> is
+        entirely the sign of the numerator <Katex tex="1-2x^3" />. That is used again to decide the
+        nature of the point below.
       </>
     ),
   },
@@ -164,10 +187,14 @@ const ROWS_AII: WorkingRow[] = [
     working: <Katex display tex="\boxed{(0.79,\ 0.53)}" />,
     reason: (
       <>
-        It's a local maximum: <Katex tex="1-2x^3" /> is positive just left of{' '}
-        <Katex tex="0.79" /> and negative just right, so <Katex tex="f" /> rises then falls.
-        Give it as a coordinate pair to two decimal places — the report notes some students did
-        not give the coordinates in the required form.
+        Give it as a coordinate pair, both values to two decimal places, as the question asks.
+      </>
+    ),
+    more: (
+      <>
+        Its nature isn&apos;t asked, but it&apos;s a local maximum: <Katex tex="1-2x^3" /> is positive
+        just left of <Katex tex="0.79" /> and negative just right, so <Katex tex="f" /> rises then
+        falls. You need that for the sketch in part b.
       </>
     ),
   },
@@ -206,10 +233,15 @@ const ROWS_AIII: WorkingRow[] = [
     ),
     reason: (
       <>
-        No sign change at <Katex tex="x=0" />: concave down on both sides. You could predict this
-        from the factor <Katex tex="x^2" />, which is zero at <Katex tex="0" /> but never negative.
-        So <Katex tex="(0,0)" /> is not an inflection — including it is the common error the
-        report lists.
+        No sign change at <Katex tex="x=0" />: concave down on both sides, so{' '}
+        <Katex tex="(0,0)" /> is <em>not</em> a point of inflection.
+      </>
+    ),
+    more: (
+      <>
+        You could predict this without testing: the factor <Katex tex="x^2" /> is zero at{' '}
+        <Katex tex="0" /> but never negative, and the other factors don&apos;t change sign near{' '}
+        <Katex tex="0" />.
       </>
     ),
   },
@@ -222,9 +254,9 @@ const ROWS_AIII: WorkingRow[] = [
     ),
     reason: (
       <>
-        Sign change at <Katex tex="x=\sqrt[3]{2}" />: the factor <Katex tex="x^3-2" /> goes from
-        negative to positive (and <Katex tex="(1+x^3)^3>0" /> for <Katex tex="x>-1" />). Concave
-        down becomes concave up, so this one is a genuine inflection.
+        Sign change at <Katex tex="x=\sqrt[3]{2}" />: <Katex tex="x^3-2" /> goes from negative to
+        positive while <Katex tex="6x^2" /> and <Katex tex="(1+x^3)^3" /> stay positive. Concave
+        down becomes concave up — a genuine inflection.
       </>
     ),
   },
@@ -234,7 +266,7 @@ const ROWS_AIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(1.26,\ 0.42)}" />,
-    reason: <>One point of inflection only.</>,
+    reason: <>One point of inflection only, both coordinates to two decimal places.</>,
   },
 ]
 
@@ -254,7 +286,7 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{aligned} &\text{stationary point } (0.79,\ 0.53) \\ &\text{inflection } (1.26,\ 0.42) \end{aligned}"
       />
     ),
-    reason: <>From parts a.ii. and a.iii. Mark them with their coordinates — the question asks for labels.</>,
+    reason: <>From parts a.ii. and a.iii.; the stationary point is a local maximum (<Katex tex="f'" /> goes from <Katex tex="+" /> to <Katex tex="-" />). Label both with coordinates.</>,
   },
   {
     working: (
@@ -265,20 +297,24 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Just left of <Katex tex="-1" />, <Katex tex="1+x^3<0" /> and <Katex tex="x<0" />, so the
-        quotient is positive. Just right, the denominator flips sign but the numerator doesn't.
-        That decides which way each branch runs.
+        Just left of <Katex tex="-1" />, top and bottom are both negative, so <Katex tex="f>0" />.
+        Just right, the bottom is positive but the top is still negative, so <Katex tex="f<0" />.
       </>
     ),
+    more: <>These signs decide which way each branch runs along the asymptote: up on the left, down on the right.</>,
   },
   {
     working: <Katex display tex="x\to\pm\infty: \ f\to0^+" />,
     reason: (
       <>
         Both tails approach <Katex tex="y=0" /> from <em>above</em>: for large <Katex tex="x" /> top
-        and bottom are positive, and for <Katex tex="x<-1" /> both are negative. At the ends of the
-        window, <Katex tex="f(-3)=\tfrac{3}{26}\approx0.12" /> and{' '}
-        <Katex tex="f(3)=\tfrac{3}{28}\approx0.11" />.
+        and bottom are positive, and for <Katex tex="x<-1" /> both are negative.
+      </>
+    ),
+    more: (
+      <>
+        At the ends of the window, <Katex tex="f(-3)=\tfrac{3}{26}\approx0.12" /> and{' '}
+        <Katex tex="f(3)=\tfrac{3}{28}\approx0.11" />, so both ends finish just above the axis.
       </>
     ),
   },
@@ -295,9 +331,15 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Concavity from part a.iii.: concave up left of <Katex tex="x=-1" />, concave down from the
-        asymptote through the origin to <Katex tex="(1.26,\ 0.42)" />, then concave up. Near the
-        origin the curve hugs <Katex tex="y=x" /> (the gradient there is <Katex tex="f'(0)=1" />),
-        so draw it passing smoothly through — no kink and no bend-change at <Katex tex="(0,0)" />.
+        asymptote through the origin to <Katex tex="(1.26,\ 0.42)" />, then concave up.
+      </>
+    ),
+    more: (
+      <>
+        Near the origin the curve hugs <Katex tex="y=x" /> (the gradient there is{' '}
+        <Katex tex="f'(0)=1" />), so draw it passing smoothly through — no kink and no change of
+        bend at <Katex tex="(0,0)" />. Place each marked point carefully against the grid: the
+        report notes points that were not marked clearly or not in the correct position.
       </>
     ),
   },
@@ -309,9 +351,8 @@ const ROWS_CI: WorkingRow[] = [
     reason: (
       <>
         The solid is a stack of thin discs. The disc at <Katex tex="x" /> has radius{' '}
-        <Katex tex="f(x)" />, so its volume is <Katex tex="\pi\bigl(f(x)\bigr)^2\,\delta x" />; the
-        integral adds them up. The <Katex tex="f(x)" /> must be <em>squared</em> — the report lists
-        forgetting this as a common error.
+        <Katex tex="f(x)" />, so its volume is <Katex tex="\pi\bigl(f(x)\bigr)^2\,\delta x" /> —
+        note the square. The integral adds the discs up.
       </>
     ),
   },
@@ -326,8 +367,12 @@ const ROWS_CI: WorkingRow[] = [
       <>
         The piece from <Katex tex="0" /> to <Katex tex="a" /> and the piece from{' '}
         <Katex tex="a" /> to <Katex tex="3" /> generate equal volumes, so set the two integrals
-        equal. Put <Katex tex="\pi" /> on both sides or neither — including it on one side only is
-        the other flagged error. An equivalent form says the first piece is half the whole:{' '}
+        equal, with <Katex tex="\pi" /> on both sides (or neither).
+      </>
+    ),
+    more: (
+      <>
+        An equivalent form says the first piece is half the whole:{' '}
         <Katex tex="\int_0^{a}\bigl(f(x)\bigr)^2 dx = \tfrac12\int_0^{3}\bigl(f(x)\bigr)^2 dx" />.
       </>
     ),
@@ -343,9 +388,14 @@ const ROWS_CII: WorkingRow[] = [
     working: <Katex display tex="\boxed{a \approx 0.98}" />,
     reason: (
       <>
-        Two decimal places. Sanity check: it sits well left of the midpoint <Katex tex="1.5" />,
-        which is right — the curve is tallest near <Katex tex="x=0.8" />, and squaring makes those
-        tall discs count extra, so half the volume is reached early.
+        Correct to two decimal places, as asked (CAS gives <Katex tex="a=0.9764\ldots" />).
+      </>
+    ),
+    more: (
+      <>
+        Sanity check: it sits well left of the midpoint <Katex tex="1.5" />, which is right — the
+        curve is tallest near <Katex tex="x=0.8" />, and squaring makes those tall discs count
+        extra, so half the volume is reached early.
       </>
     ),
   },
@@ -377,10 +427,6 @@ export default function SpecialistQ1_2017Exam2() {
             asymptote is <Katex tex="y=0" />. Equal degrees: <Katex tex="y=" /> the ratio of the
             leading coefficients. Top&apos;s degree one higher: an oblique line, found by division.
           </p>
-          <p>
-            Every rational function needs both checks. The denominator only ever tells you about
-            the vertical ones.
-          </p>
         </Background>
         <WorkingTable rows={ROWS_AI} />
         <Explore title="Why y = 0 is an asymptote: far out, f(x) behaves like 1/x²">
@@ -393,8 +439,7 @@ export default function SpecialistQ1_2017Exam2() {
         >
           That rule only finds <em>vertical</em> asymptotes, and the mark needed both. The other
           check is what <Katex tex="f" /> does as <Katex tex="x\to\pm\infty" />: here it tends to{' '}
-          <Katex tex="0" />, so <Katex tex="y=0" /> is an asymptote too. Quick catch: whenever the
-          top&apos;s degree is lower than the bottom&apos;s, <Katex tex="y=0" /> is an asymptote.
+          <Katex tex="0" />, so <Katex tex="y=0" /> is an asymptote too. Always run both checks.
         </WrongMethod>
       </PartCard>
 
@@ -428,13 +473,11 @@ export default function SpecialistQ1_2017Exam2() {
         <Background title="Zero second derivative is not enough">
           <p>
             A point of inflection needs the concavity to <em>change</em>, which means{' '}
-            <Katex tex="f''" /> must change <em>sign</em> — not merely reach zero. A factor with an
-            even power, like <Katex tex="x^2" />, is zero at its root but has the same sign on
-            both sides, so it can&apos;t produce a sign change.
+            <Katex tex="f''" /> must change <em>sign</em> — not merely reach zero.
           </p>
           <p>
             The quickest check on a CAS is to graph <Katex tex="f''" /> and look for a
-            crossing rather than a touch. By hand, test a value either side.
+            crossing rather than a touch.
           </p>
         </Background>
         <WorkingTable rows={ROWS_AIII} />
@@ -449,7 +492,7 @@ export default function SpecialistQ1_2017Exam2() {
           Solving <Katex tex="f''(x)=0" /> only finds candidates. At <Katex tex="x=0" /> the curve
           is concave down on both sides, so nothing changes and <Katex tex="(0,0)" /> is not an
           inflection. Catch it by testing the sign of <Katex tex="f''" /> either side of every
-          root, or by spotting a squared factor in <Katex tex="f''" />.
+          root.
         </WrongMethod>
       </PartCard>
 

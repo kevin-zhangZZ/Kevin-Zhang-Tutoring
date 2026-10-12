@@ -23,7 +23,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="p < \alpha \implies \text{reject } H_0" />,
-    reason: <>The decision rule, with <Katex tex="\alpha=0.05" /> from &ldquo;the 5% level of significance&rdquo;. A small <Katex tex="p" />-value means the observed data would be unlikely if <Katex tex="H_0" /> were true, so <Katex tex="H_0" /> goes. Test every option against this one rule.</>,
+    reason: <>The decision rule, with <Katex tex="\alpha=0.05" /> from &ldquo;the 5% level of significance&rdquo;. Test every option against it.</>,
+    more: <>A small <Katex tex="p" />-value means the observed data would be unlikely if <Katex tex="H_0" /> were true, so <Katex tex="H_0" /> is rejected.</>,
   },
   {
     working: <Katex display tex="\text{A: } p=0.04<0.05" />,
@@ -39,7 +40,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{D: } p\ne0.05 \text{ includes, for example, } p=0.01" />,
-    reason: <>For any <Katex tex="p<0.05" /> the null hypothesis should be rejected, so &ldquo;should not be rejected whenever <Katex tex="p\ne0.05" />&rdquo; is false.</>,
+    reason: <>Any <Katex tex="p<0.05" /> means <Katex tex="H_0" /> should be rejected, so &ldquo;should not be rejected whenever <Katex tex="p\ne0.05" />&rdquo; is false.</>,
   },
   {
     working: <Katex display tex="\text{E: } p=0.01<0.05" />,
@@ -47,7 +48,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{C}}" />,
-    reason: <>Matches option <b>C</b>. The one-sided/two-sided distinction is a red herring here: it changes how <Katex tex="p" /> is <em>calculated</em>, not how it is compared with <Katex tex="\alpha" /> once you have it.</>,
+    reason: <>Matches option <b>C</b>, the only true statement.</>,
+    more: <>The &ldquo;one-sided&rdquo; is a red herring here: one-sided versus two-sided changes how <Katex tex="p" /> is <em>calculated</em>, not how it is compared with <Katex tex="\alpha" /> once you have it.</>,
   },
 ]
 
@@ -87,9 +89,8 @@ export default function SpecialistQ20_2017() {
             working={<Katex display tex="p=0.06>0.05 \implies \text{reject } H_0 \quad \text{(option B)}" />}
           >
             <p>
-              The comparison is the wrong way round. <Katex tex="p" /> measures how likely a result like this is{' '}
-              <em>if <Katex tex="H_0" /> is true</em>, so a large <Katex tex="p" /> means the data fit{' '}
-              <Katex tex="H_0" /> comfortably: no evidence against it. Under the reversed rule, options A and E would be
+              The comparison is the wrong way round: a large <Katex tex="p" /> means no evidence against{' '}
+              <Katex tex="H_0" />. Under the reversed rule, options A and E would be
               true as well, which is one sign that something is off. Remember: small <Katex tex="p" />, reject{' '}
               <Katex tex="H_0" />.
             </p>

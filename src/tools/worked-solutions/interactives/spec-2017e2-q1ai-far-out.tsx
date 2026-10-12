@@ -57,8 +57,7 @@ export default function FarOut() {
       <Notice tone="good">
         The dashed orange curve is <M>{'y = \\frac{1}{x^2}'}</M>. Far out the two are almost the same curve, and{' '}
         <M>{'\\frac{1}{x^2} \\to 0'}</M>, so <M>{'f(x) \\to 0'}</M> too. Both tails come in from <b>above</b>: for{' '}
-        <M>{'x < -1'}</M> the top and bottom are both negative. The bottom&apos;s degree (3) beats the top&apos;s (1), so
-        there is no polynomial part and no partial fractions are needed.
+        <M>{'x < -1'}</M> the top and bottom are both negative.
       </Notice>
     )
   }
