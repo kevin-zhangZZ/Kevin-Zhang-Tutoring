@@ -51,27 +51,30 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = \left(-3x^3+x^2-64\right)^3" />,
-    reason: <>How would I know it's the chain rule? A whole bracket is raised to a power, and what's inside isn't just <Katex tex="x" />: that's a function inside a function. Call the inside <Katex tex="u=-3x^3+x^2-64" />, so <Katex tex="y=u^3" />.</>,
+    reason: <>A bracket that isn't just <Katex tex="x" /> is raised to a power: a function inside a function, so use the chain rule. Call the inside <Katex tex="u=-3x^3+x^2-64" />, so <Katex tex="y=u^3" />.</>,
   },
   {
     working: (
       <Katex
         display
-        tex="\begin{aligned}\frac{dy}{dx} &= \frac{dy}{du}\times\frac{du}{dx}\\ &= 3\left(-3x^3+x^2-64\right)^2 \times \frac{d}{dx}\left(-3x^3+x^2-64\right)\end{aligned}"
+        tex="\begin{aligned}\frac{dy}{dx} &= \frac{dy}{du}\times\frac{du}{dx}\\ &= 3\left(-3x^3+x^2-64\right)^2\\ &\qquad\times \frac{d}{dx}\left(-3x^3+x^2-64\right)\end{aligned}"
       />
     ),
-    reason: <>Differentiate the outside as if the bracket were a single letter: <Katex tex="u^3" /> becomes <Katex tex="3u^2" />, with the bracket copied exactly (power down by one, nothing inside touched). Then <em>multiply</em> by how fast the inside is changing.</>,
+    reason: <>Differentiate the outside as if the bracket were a single letter: <Katex tex="u^3" /> becomes <Katex tex="3u^2" />. Then <em>multiply</em> by the inside's derivative.</>,
+    more: <>The report notes transcription errors, especially with exponents: check that <Katex tex="-3x^3" /> and <Katex tex="x^2" /> inside the bracket are copied unchanged, and only the outer power drops, from 3 to 2.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = 3\left(-3x^3+x^2-64\right)^2\left(-9x^2+2x\right)}" />,
-    reason: <>The inside differentiates term by term to <Katex tex="-9x^2+2x" /> (the constant <Katex tex="-64" /> disappears). It multiplies the whole of <Katex tex="3(\dots)^2" />, so it needs its own brackets: without them the expression means something else entirely, and the report names poor use of brackets as a reason a significant number of students missed this mark. Leave it factorised. Expanding isn't asked for, and the report notes arithmetic errors with unnecessary expansions.</>,
+    reason: <>The inside differentiates term by term to <Katex tex="-9x^2+2x" /> (the constant <Katex tex="-64" /> disappears). It multiplies the whole of <Katex tex="3(\dots)^2" />, so it needs its own brackets.</>,
+    more: <>Leave the answer factorised. Expanding isn't asked for, and the report notes arithmetic errors with unnecessary expansions.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} u &= e^x, & u' &= e^x \\ v &= \cos(x), & v' &= -\sin(x)\end{aligned}" />,
-    reason: <>How would I know it's the quotient rule? <Katex tex="f" /> is one function of <Katex tex="x" /> divided by another. Name the top <Katex tex="u" /> and the bottom <Katex tex="v" />, and write all four pieces down before assembling anything. That's where the signs get sorted out.</>,
+    reason: <><Katex tex="f" /> is one function of <Katex tex="x" /> divided by another, so use the quotient rule. Name the top <Katex tex="u" /> and the bottom <Katex tex="v" />, and write all four pieces down first.</>,
+    more: <>Listing the pieces before assembling anything is where the signs get sorted out: <Katex tex="v'=-\sin(x)" /> carries a negative that is easy to lose.</>,
   },
   {
     working: (
@@ -80,7 +83,8 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{aligned} f'(x) &= \frac{u'v-uv'}{v^2} \\ &= \frac{e^x\cos(x)-e^x\bigl(-\sin(x)\bigr)}{\cos^2(x)}\end{aligned}"
       />
     ),
-    reason: <>The top's derivative comes first: <Katex tex="u'v-uv'" />. The order matters because of the subtraction, since swapping it flips the sign of the answer. Here <Katex tex="v'=-\sin(x)" />, so subtracting it gives a double negative, which becomes <Katex tex="+" />.</>,
+    reason: <>The top's derivative comes first: <Katex tex="u'v-uv'" />. Subtracting <Katex tex="uv'=e^x\bigl(-\sin(x)\bigr)" /> gives a double negative, which becomes <Katex tex="+" />.</>,
+    more: <>The order matters because of the subtraction: swapping it flips the sign of the answer.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{e^x\bigl(\cos(x)+\sin(x)\bigr)}{\cos^2(x)}" />,
@@ -93,11 +97,13 @@ const ROWS_B: WorkingRow[] = [
         tex="\begin{aligned} f'(\pi) &= \frac{e^{\pi}\bigl(\cos(\pi)+\sin(\pi)\bigr)}{\cos^2(\pi)} \\ &= \frac{e^{\pi}(-1+0)}{(-1)^2}\end{aligned}"
       />
     ),
-    reason: <>Now the evaluation the question asks for: replace every <Katex tex="x" /> with <Katex tex="\pi" /> (and write <Katex tex="\pi" /> clearly, as the report reminds students). The exact values come from the unit circle point <Katex tex="(-1,0)" />: <Katex tex="\cos(\pi)=-1" />, <Katex tex="\sin(\pi)=0" />, and <Katex tex="\cos^2(\pi)" /> means <Katex tex="\bigl(\cos(\pi)\bigr)^2=1" />.</>,
+    reason: <>Now evaluate, as the question asks: replace every <Katex tex="x" /> with <Katex tex="\pi" />. From the unit circle point <Katex tex="(-1,0)" />, <Katex tex="\cos(\pi)=-1" /> and <Katex tex="\sin(\pi)=0" />, so <Katex tex="\cos^2(\pi)=(-1)^2=1" />.</>,
+    more: <>Write <Katex tex="\pi" /> clearly so it can't be mistaken for <Katex tex="x" />: the report asks students to take care with legibility here.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(\pi) = -e^{\pi}}" />,
-    reason: <>The question says <em>evaluate</em>, so the answer is a number: the slope of <Katex tex="y=f(x)" /> at <Katex tex="x=\pi" />. A quick check: <Katex tex="\cos(x)" /> is at its minimum at <Katex tex="x=\pi" />, so the bottom is momentarily not changing and only the top's change counts: <Katex tex="\tfrac{e^{\pi}\cos(\pi)}{\cos^2(\pi)}=\tfrac{e^{\pi}}{\cos(\pi)}=-e^{\pi}" /> ✓.</>,
+    reason: <>The question says <em>evaluate</em>, so the answer is a number: the slope of <Katex tex="y=f(x)" /> at <Katex tex="x=\pi" />.</>,
+    more: <>Check: <Katex tex="v'(\pi)=-\sin(\pi)=0" />, so the <Katex tex="-uv'" /> term vanishes and <Katex tex="f'(\pi)=\tfrac{u'v}{v^2}=\tfrac{e^{\pi}(-1)}{1}=-e^{\pi}" /> ✓.</>,
   },
 ]
 
@@ -165,9 +171,7 @@ export default function MethodsQ1_2018Exam1() {
           </p>
           <p>
             Two marks for a derivative and an evaluation: expect the work to be split between
-            finding <Katex tex="f'(x)" /> and substituting <Katex tex="x=\pi" />. The report says
-            students applied the quotient rule competently, but many didn't carry out the
-            evaluation, often omitting it completely.
+            finding <Katex tex="f'(x)" /> and substituting <Katex tex="x=\pi" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
@@ -179,8 +183,7 @@ export default function MethodsQ1_2018Exam1() {
           source="Examiner's report"
           working={<Katex display tex="f'(x) = \frac{e^x\bigl(\cos(x)+\sin(x)\bigr)}{\cos^2(x)}" />}
         >
-          &ldquo;Evaluate <Katex tex="f'(\pi)" />&rdquo; asks for a single number, the slope of the
-          graph at <Katex tex="x=\pi" />. A correct derivative with no substitution answers only
+          A correct derivative with no substitution answers only
           half the question, and the report says many students omitted the evaluation completely.
           To catch it, reread the instruction before moving on and check that your last line is
           what it asks for: here, a value with no <Katex tex="x" /> left in it.

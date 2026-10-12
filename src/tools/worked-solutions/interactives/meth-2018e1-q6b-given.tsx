@@ -95,8 +95,7 @@ export default function GivenIsTheNewWhole() {
         Dividing the part a. answer by <M>{'\\Pr(B_1)'}</M> measures <em>all</em> the black area,{' '}
         <M>{'\\tfrac34'}</M>, against Box 1&apos;s column, <M>{'\\tfrac12'}</M>. The red-shaded stones sit in Box 2, outside the
         region you are dividing by, so the bar overshoots 1: <M>{'\\tfrac32'}</M>. The top of a conditional probability
-        must be the overlap <M>{'\\Pr(A \\cap B)'}</M>, which lies inside the bottom region, so it can never exceed 1. The
-        report notes answers above 1 from students who worked <M>{'\\Pr(\\text{Black}\\mid\\text{Box 1})'}</M>.
+        must be the overlap <M>{'\\Pr(A \\cap B)'}</M>, which lies inside the bottom region, so it can never exceed 1.
       </Notice>
     )
   }

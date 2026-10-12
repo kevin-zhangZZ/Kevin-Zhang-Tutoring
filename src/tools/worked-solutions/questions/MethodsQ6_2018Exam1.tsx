@@ -62,15 +62,18 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(B_1) = \Pr(B_2) = \frac12" />,
-    reason: <>Each box is equally likely to be chosen. Write <Katex tex="B_1,B_2" /> for the boxes and <Katex tex="K" /> for "the stone is black". How do I know to start with the box? The chance of black depends on which box you are in, so split by box first, then find black inside each box.</>,
+    reason: <>Each box is equally likely. Write <Katex tex="B_1,B_2" /> for the boxes and <Katex tex="K" /> for "the stone is black" (<Katex tex="B" /> is taken by the boxes).</>,
+    more: <>How do I know to start with the box? The chance of black depends on which box you are in, so split by box first, then find black inside each box. These are the first branches of the tree.</>,
   },
   {
-    working: <Katex display tex="\Pr(K\mid B_1) = \frac44 = 1, \qquad \Pr(K\mid B_2) = \frac24 = \frac12" />,
-    reason: <>Box 1 is all black, so a black stone is certain. Box 2 is half black. These are the second-stage branches of the tree: each is worked out <em>inside</em> one box, which is what the bar in <Katex tex="\Pr(K\mid B_1)" /> means.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(K\mid B_1) &= \frac44 = 1 \\ \Pr(K\mid B_2) &= \frac24 = \frac12\end{aligned}" />,
+    reason: <>Box 1 is all black; Box 2 has <Katex tex="2" /> black stones out of <Katex tex="4" />. Each is worked out <em>inside</em> one box.</>,
+    more: <>These are the second-stage branches of the tree. Working inside one box is what the bar in <Katex tex="\Pr(K\mid B_1)" /> means: &ldquo;given Box 1&rdquo;.</>,
   },
   {
-    working: <Katex display tex="\Pr(K) = \Pr(K\mid B_1)\Pr(B_1) + \Pr(K\mid B_2)\Pr(B_2)" />,
-    reason: <>The law of total probability: the stone is black either via Box 1 or via Box 2, and those two routes are mutually exclusive. On a tree diagram this is "multiply along each branch, then add the branches".</>,
+    working: <Katex display tex="\begin{aligned}\Pr(K) &= \Pr(K\mid B_1)\Pr(B_1) \\ &\quad + \Pr(K\mid B_2)\Pr(B_2)\end{aligned}" />,
+    reason: <>Black comes via Box 1 or via Box 2, which can&apos;t both happen: multiply along each branch, then add the branches.</>,
+    more: <>This is the law of total probability.</>,
   },
   {
     working: <Katex display tex="= 1\times\frac12 + \frac12\times\frac12 = \frac12+\frac14" />,
@@ -78,26 +81,28 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(K) = \frac34}" />,
-    reason: <>The report gives a one-line counting check: because both boxes and all stones are equally likely, every one of the <Katex tex="8" /> stones is equally likely to be drawn, and <Katex tex="6" /> of them are black — <Katex tex="\tfrac68=\tfrac34" />. (This shortcut works only because the boxes hold the <em>same</em> number of stones.)</>,
+    reason: <>The probability that the drawn stone is black.</>,
+    more: <>Two quick checks from the report. The only other outcome is white, via Box 2 only: <Katex tex="\tfrac12\times\tfrac12=\tfrac14" />, and <Katex tex="1-\tfrac14=\tfrac34" />. Or count: both boxes and all stones are equally likely, so each of the <Katex tex="8" /> stones is equally likely to be drawn, and <Katex tex="6" /> of them are black, giving <Katex tex="\tfrac68=\tfrac34" />. The counting shortcut works only because the two boxes hold the <em>same</em> number of stones.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(B_1\mid K) = \frac{\Pr(B_1\cap K)}{\Pr(K)}" />,
-    reason: <>&ldquo;Given that the stone is black&rdquo; tells you what you already know, and that goes after the bar. So the question reverses the conditioning: part a. went box <Katex tex="\to" /> colour, this goes colour <Katex tex="\to" /> box. Note which event is given — the report flags students who computed <Katex tex="\Pr(K\mid B_1)" /> instead and got an answer above <Katex tex="1" />, which is impossible for a probability and should be caught immediately.</>,
+    reason: <>Conditional probability rule (formula sheet). &ldquo;Given that the stone is black&rdquo;: black is known, so <Katex tex="K" /> goes after the bar: we want <Katex tex="\Pr(B_1\mid K)" />, not <Katex tex="\Pr(K\mid B_1)" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(B_1\cap K) = \Pr(K\mid B_1)\Pr(B_1) = 1\times\frac12 = \frac12" />,
-    reason: <>The numerator is the single branch "Box 1 <em>and</em> black", already computed in part a.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(B_1\cap K) &= \Pr(K\mid B_1)\Pr(B_1) \\ &= 1\times\frac12 = \frac12\end{aligned}" />,
+    reason: <>The numerator is the single branch &ldquo;Box 1 <em>and</em> black&rdquo;, already found in part a.</>,
   },
   {
     working: <Katex display tex="\Pr(B_1\mid K) = \frac{1/2}{3/4} = \frac12\times\frac43" />,
-    reason: <>Dividing by the total from part a. Knowing the stone is black shrinks the sample space to the black outcomes only.</>,
+    reason: <>Divide by <Katex tex="\Pr(K)=\tfrac34" /> from part a.: knowing the stone is black shrinks the sample space to the black outcomes.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(B_1\mid K) = \frac23}" />,
-    reason: <>Sensible: of the six black stones, four are in Box 1, so <Katex tex="\tfrac46=\tfrac23" />. It is larger than the prior <Katex tex="\tfrac12" />, as it should be — seeing a black stone is evidence <em>for</em> the all-black box. (<Katex tex="\tfrac23\approx0.67" />.)</>,
+    reason: <>Check: <Katex tex="4" /> of the <Katex tex="6" /> black stones (equally likely, since both boxes hold <Katex tex="4" />) are in Box 1, and <Katex tex="\tfrac46=\tfrac23" />.</>,
+    more: <>It is also larger than the <Katex tex="\tfrac12" /> chance of Box 1 before you saw the stone, as it should be: a black stone is evidence <em>for</em> the all-black box.</>,
   },
 ]
 
@@ -124,11 +129,9 @@ export default function MethodsQ6_2018Exam1() {
       >
         <Background>
           <p>
-            A two-stage experiment (first a box, then a stone from that box) is a tree:{' '}
-            <b>multiply</b> along each branch, then <b>add</b> the branches you want. You multiply
-            because the second probability is a fraction <em>of</em> the first (half of the times
-            you pick Box 2, the stone is black, and you pick Box 2 half the time). You add because
-            the branches can&apos;t both happen: the stone comes from one box or the other.
+            A two-stage experiment (first a box, then a stone from that box) is a tree. Why
+            multiply along a branch? The second probability is a fraction <em>of</em> the first:
+            you pick Box 2 half the time, and half of those times the stone is black.
           </p>
           <p>
             Only one stone is drawn, once, so there are no repeated trials and no binomial
@@ -154,11 +157,6 @@ export default function MethodsQ6_2018Exam1() {
             question backwards: "given black, how likely is the box?". These are different numbers, and
             the order inside <Katex tex="\Pr(A\mid B)" /> is what distinguishes them — the bar
             means "given", and what follows it is what you already know.
-          </p>
-          <p>
-            A sanity check that costs nothing: a probability can never exceed{' '}
-            <Katex tex="1" />. The report notes students whose answer did, which is a signal
-            the conditioning was applied the wrong way round.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />

@@ -32,15 +32,17 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = \frac12 - \frac{1}{2x-2}" />,
-    reason: <>Given. <Katex tex="f'" /> tells us the slope of <Katex tex="f" /> at every <Katex tex="x" />, but not how high the graph sits. So antidifferentiate term by term to get the shape (plus a constant <Katex tex="c" />), then use <Katex tex="f(2)=0" /> to fix the height.</>,
+    reason: <>Given. Antidifferentiate term by term to get <Katex tex="f" /> up to a constant <Katex tex="c" />, then use <Katex tex="f(2)=0" /> to find <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="\int \frac{1}{2x-2}\,dx = \frac12\log_e(2x-2)+c" />,
-    reason: <>The inside <Katex tex="2x-2" /> has derivative <Katex tex="2" />, so a <Katex tex="\tfrac12" /> must appear out the front to undo it. Dropping that <Katex tex="\tfrac12" /> is the common misconception the report names. How would I know I have it right? Differentiate back: <Katex tex="\tfrac{d}{dx}\,\tfrac12\log_e(2x-2) = \tfrac12\cdot\tfrac{2}{2x-2} = \tfrac{1}{2x-2}" /> ✓. No absolute value is needed: the domain is <Katex tex="(1,\infty)" />, so <Katex tex="2x-2>0" /> throughout.</>,
+    reason: <>Using <Katex tex="\int\tfrac{1}{ax+b}\,dx=\tfrac1a\log_e(ax+b)+c" /> with <Katex tex="a=2" />. No absolute value needed: on <Katex tex="(1,\infty)" />, <Katex tex="2x-2>0" />.</>,
+    more: <>Dropping the <Katex tex="\tfrac12" /> is the common misconception the report names. The final answer is checked by differentiating back in the last row.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{x}{2} - \frac12\log_e(2x-2) + c" />,
-    reason: <>The antiderivative of the constant <Katex tex="\tfrac12" /> is <Katex tex="\tfrac{x}{2}" /> (write it that way: the report notes that <Katex tex="\tfrac{1}{2x}" /> is not the same thing). Every value of <Katex tex="c" /> gives a curve with exactly these slopes; changing <Katex tex="c" /> only slides the graph up or down. That is why one known point is needed to pick out <Katex tex="f" />.</>,
+    reason: <>The antiderivative of the constant <Katex tex="\tfrac12" /> is <Katex tex="\tfrac{x}{2}" />. One constant <Katex tex="c" /> covers both terms.</>,
+    more: <>Write <Katex tex="\tfrac{x}{2}" /> (or <Katex tex="\tfrac12 x" />), not 1/2x, which reads as <Katex tex="\tfrac{1}{2x}" />: the report flags this notation slip.</>,
   },
   {
     working: (
@@ -49,15 +51,17 @@ const ROWS: WorkingRow[] = [
         tex="\begin{aligned} f(2) = 1 - \tfrac12\log_e(2) + c &= 0 \\ c &= \tfrac12\log_e(2) - 1 \end{aligned}"
       />
     ),
-    reason: <><Katex tex="f(2)=0" /> says the point <Katex tex="(2,\,0)" /> is on the graph. Substituting <Katex tex="x=2" />: <Katex tex="\tfrac22=1" /> and <Katex tex="2(2)-2=2" />.</>,
+    reason: <>Substitute <Katex tex="x=2" /> and set equal to <Katex tex="0" />: <Katex tex="\tfrac22=1" /> and <Katex tex="2(2)-2=2" />.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{x}{2} - \frac12\log_e(2x-2) + \frac12\log_e(2) - 1" />,
-    reason: <>Put the constant back in: the question asks for <Katex tex="f(x)" />, not <Katex tex="c" />, and the report flags students who found <Katex tex="c" /> and then never used it. The report&apos;s own sample answer stops at this line, so the simplification below is optional, but it makes checking easier.</>,
+    reason: <>Substitute <Katex tex="c" /> back: the question asks for <Katex tex="f(x)" />, not <Katex tex="c" />. This is a complete answer (the report&apos;s sample answer stops here).</>,
+    more: <>The report flags students who found <Katex tex="c" /> and then never used it. The simplification below is optional, but it makes checking easier.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = \frac{x}{2} - \frac12\log_e(x-1) - 1}" />,
-    reason: <>The two logarithms combine: <Katex tex="-\tfrac12\log_e(2x-2)+\tfrac12\log_e(2) = -\tfrac12\log_e\!\left(\tfrac{2x-2}{2}\right) = -\tfrac12\log_e(x-1)" />. (A shortcut lands here directly: <Katex tex="\tfrac{1}{2x-2} = \tfrac12\cdot\tfrac{1}{x-1}" /> antidifferentiates to <Katex tex="\tfrac12\log_e(x-1)" />, which differs from <Katex tex="\tfrac12\log_e(2x-2)" /> only by the constant <Katex tex="\tfrac12\log_e(2)" />, so <Katex tex="c" /> absorbs it and comes out as <Katex tex="-1" />.) Worth a check: <Katex tex="f(2)=1-\tfrac12\log_e(1)-1=0" /> ✓, and differentiating gives back <Katex tex="\tfrac12-\tfrac{1}{2(x-1)}=\tfrac12-\tfrac{1}{2x-2}" /> ✓.</>,
+    reason: <>Optional tidy-up with the log law: <Katex tex="-\tfrac12\log_e(2x-2)+\tfrac12\log_e(2) = -\tfrac12\log_e\!\left(\tfrac{2x-2}{2}\right) = -\tfrac12\log_e(x-1)" />.</>,
+    more: <>A shortcut lands here directly: <Katex tex="\tfrac{1}{2x-2} = \tfrac12\cdot\tfrac{1}{x-1}" /> antidifferentiates to <Katex tex="\tfrac12\log_e(x-1)" />, which differs from <Katex tex="\tfrac12\log_e(2x-2)" /> only by the constant <Katex tex="\tfrac12\log_e(2)" />, so <Katex tex="c" /> absorbs it and comes out as <Katex tex="-1" />. Worth a check: <Katex tex="f(2)=1-\tfrac12\log_e(1)-1=0" /> ✓, and differentiating gives back <Katex tex="\tfrac12-\tfrac{1}{2(x-1)}=\tfrac12-\tfrac{1}{2x-2}" /> ✓.</>,
   },
 ]
 

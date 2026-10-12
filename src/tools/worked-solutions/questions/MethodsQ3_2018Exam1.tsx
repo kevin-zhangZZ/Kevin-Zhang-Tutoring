@@ -51,8 +51,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="2\cos(x)+1 = 0 \implies \cos(x) = -\frac12" />,
     reason: (
       <>
-        Get <Katex tex="\cos(x)" /> on its own first. The unit circle and the exact-value triangles tell you which angles
-        give a particular value of <Katex tex="\cos(x)" />, so that is the form you need before you can use them.
+        Make <Katex tex="\cos(x)" /> the subject first: exact values tell you which angles give a particular value of{' '}
+        <Katex tex="\cos(x)" />.
       </>
     ),
   },
@@ -60,10 +60,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\text{Reference angle: } \cos^{-1}\!\left(\tfrac12\right) = \frac{\pi}{3}" />,
     reason: (
       <>
-        Ignore the minus sign for now and ask which acute angle has cosine <Katex tex="\tfrac12" />. It is{' '}
-        <Katex tex="\tfrac{\pi}{3}" />: in the 30–60–90 triangle with hypotenuse 2, the side of length 1 is next to the{' '}
-        <Katex tex="60^\circ" /> angle. The report names <Katex tex="\tfrac{\pi}{6}" /> as the common slip, but{' '}
-        <Katex tex="\cos\left(\tfrac{\pi}{6}\right)=\tfrac{\sqrt3}{2}" />, not <Katex tex="\tfrac12" />.
+        Ignore the minus sign and ask which acute angle has cosine <Katex tex="\tfrac12" />: in the 30–60–90 triangle
+        with hypotenuse 2, the side of length 1 is next to the <Katex tex="60^\circ" /> angle.
       </>
     ),
   },
@@ -71,9 +69,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\cos(x)<0 \implies x \text{ in the 2nd or 3rd quadrant}" />,
     reason: (
       <>
-        Now the sign decides <em>where</em> the angle goes. <Katex tex="\cos(x)" /> is the horizontal coordinate of the
-        point at angle <Katex tex="x" /> on the unit circle, so it is negative to the left of the vertical axis: quadrants 2
-        and 3.
+        Now the sign decides the quadrants. <Katex tex="\cos(x)" /> is the horizontal coordinate on the unit circle,
+        negative left of the vertical axis.
       </>
     ),
   },
@@ -81,9 +78,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="x = \pi - \frac{\pi}{3} \ \text{ or } \ x = \pi + \frac{\pi}{3}" />,
     reason: (
       <>
-        Place the reference angle either side of the negative horizontal axis (angle <Katex tex="\pi" />): back{' '}
-        <Katex tex="\tfrac{\pi}{3}" /> for quadrant 2, forward <Katex tex="\tfrac{\pi}{3}" /> for quadrant 3. Both points
-        have horizontal coordinate <Katex tex="-\tfrac12" />.
+        Place <Katex tex="\tfrac{\pi}{3}" /> either side of the angle <Katex tex="\pi" />: back for quadrant 2, forward for
+        quadrant 3.
+      </>
+    ),
+    more: (
+      <>
+        Both points sit at horizontal coordinate <Katex tex="-\tfrac12" />: the quadrant 2 point is the reflection of the point at
+        angle <Katex tex="\tfrac{\pi}{3}" /> (horizontal coordinate <Katex tex="\tfrac12" />) in the vertical axis, and the
+        quadrant 3 point is its reflection in the horizontal axis.
       </>
     ),
   },
@@ -91,9 +94,13 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{x = \frac{2\pi}{3} \ \text{ or } \ x = \frac{4\pi}{3}}" />,
     reason: (
       <>
-        Both lie inside <Katex tex="0\le x\le 2\pi" />, which is exactly one lap of the circle, so each quadrant is visited
-        once and there are no others. Adding or subtracting <Katex tex="2\pi" /> only leaves the domain, which is the other
-        slip the report mentions.
+        Both lie in <Katex tex="0\le x\le 2\pi" />, exactly one lap of the circle, so each quadrant gives one solution and
+        there are no others.
+      </>
+    ),
+    more: (
+      <>
+        The report says some students gave solutions beyond the given domain.
       </>
     ),
   },
@@ -104,10 +111,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\text{Amplitude } 2, \quad \text{period } \frac{2\pi}{1} = 2\pi" />,
     reason: (
       <>
-        Read the transformations of <Katex tex="y=\cos(x)" /> off the rule before drawing anything. The 2 multiplies the
-        output (it stretches the graph vertically), and nothing multiplies <Katex tex="x" />, so the period stays{' '}
-        <Katex tex="2\pi" />. The domain <Katex tex="[0,2\pi]" /> is therefore exactly one cycle, and one cycle is all you
-        draw.
+        The 2 multiplies the output (a vertical stretch); nothing multiplies <Katex tex="x" />, so the period stays{' '}
+        <Katex tex="2\pi" /> and <Katex tex="[0,2\pi]" /> is exactly one cycle.
       </>
     ),
   },
@@ -120,9 +125,8 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        The two endpoints the question asks you to label. Draw both as closed dots, since the domain{' '}
-        <Katex tex="[0,2\pi]" /> includes them. They are the highest points: <Katex tex="\cos(x)" /> is at its maximum of 1
-        at <Katex tex="x=0" /> and <Katex tex="x=2\pi" />.
+        The endpoints you must label, drawn as closed dots since <Katex tex="[0,2\pi]" /> includes them. They are the
+        highest points, where <Katex tex="\cos(x)=1" />.
       </>
     ),
   },
@@ -135,9 +139,14 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="f" /> is smallest where <Katex tex="\cos(x)" /> is smallest, which gives the local minimum, the third
-        labelled point. Check: the curve swings 2 either side of the line <Katex tex="y=1" />, so the range is{' '}
-        <Katex tex="[1-2,\,1+2] = [-1,3]" />.
+        <Katex tex="f" /> is smallest where <Katex tex="\cos(x)" /> is smallest: the local minimum, the third point to
+        label.
+      </>
+    ),
+    more: (
+      <>
+        Check: the curve swings 2 either side of the line <Katex tex="y=1" />, so the range is{' '}
+        <Katex tex="[1-2,\,1+2] = [-1,3]" />, which fits VCAA&apos;s axes from <Katex tex="-2" /> to 4.
       </>
     ),
   },
@@ -145,9 +154,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="x\text{-intercepts: } x=\frac{2\pi}{3},\ \frac{4\pi}{3} \quad \text{(part a.)}" />,
     reason: (
       <>
-        Part a. is not a separate question. The <Katex tex="x" />-intercepts are where <Katex tex="f(x)=0" />, which is
-        exactly the equation you solved there. The report singles out students who linked the two parts as the ones who
-        did well.
+        The <Katex tex="x" />-intercepts are where <Katex tex="f(x)=0" />, which is exactly part a.&apos;s equation, so
+        reuse its answers.
+      </>
+    ),
+    more: (
+      <>
+        The report notes that students who linked part a. to part b. were generally successful. The question only asks you
+        to label the endpoints and minimum, but marking the intercepts in the right places shows the shape is right.
       </>
     ),
   },
@@ -159,9 +173,14 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        One full cycle and no more, since the domain is exactly one period; the report notes graphs drawn with extra cycles.
-        Take care that the curve leaves <Katex tex="(0,3)" /> and arrives at <Katex tex="(2\pi,3)" /> <em>flat</em>, not
-        at a slant: <Katex tex="f'(x)=-2\sin(x)" /> is 0 at both endpoints, so the tangents there are horizontal.
+        One cycle only. Leave <Katex tex="(0,3)" /> and arrive at <Katex tex="(2\pi,3)" /> <em>flat</em>:{' '}
+        <Katex tex="f'(x)=-2\sin(x)" /> is 0 at both endpoints.
+      </>
+    ),
+    more: (
+      <>
+        A slanted start or finish turns the two maximum points into corners. The report says students who took care with shape,
+        especially at endpoints, were generally successful, and that some did not label the three key points.
       </>
     ),
   },
@@ -186,11 +205,9 @@ export default function MethodsQ3_2018Exam1() {
       >
         <Background>
           <p>
-            <Katex tex="\cos(x)" /> is the horizontal coordinate of the point at angle <Katex tex="x" /> on the unit
-            circle. Solving <Katex tex="\cos(x)=k" /> is a two-step job. The reference angle comes from the{' '}
-            <em>size</em> of the cosine, ignoring its sign: here{' '}
-            <Katex tex="\cos^{-1}\!\left(\tfrac12\right)=\tfrac{\pi}{3}" />. The sign then tells you which quadrants to
-            place it in. Keeping those two steps separate is what stops <Katex tex="\tfrac{\pi}{3}" /> and{' '}
+            Solving <Katex tex="\cos(x)=k" /> is a two-step job. First find the reference angle: the acute angle whose
+            cosine is the <em>size</em> of <Katex tex="k" />, ignoring its sign. Then use the sign to decide which
+            quadrants to place it in. Keeping those two steps separate is what stops <Katex tex="\tfrac{\pi}{3}" /> and{' '}
             <Katex tex="\tfrac{\pi}{6}" /> getting swapped.
           </p>
         </Background>
@@ -201,22 +218,20 @@ export default function MethodsQ3_2018Exam1() {
         <WrongMethod
           title="The reference angle is π/6, so x = 5π/6 or 7π/6"
           source="Examiner's report"
-          working={<Katex display tex="2\cos\left(\tfrac{5\pi}{6}\right)+1 = 2\left(-\tfrac{\sqrt3}{2}\right)+1 = 1-\sqrt3 \ne 0" />}
+          working={<Katex display tex="\begin{aligned}2\cos\left(\tfrac{5\pi}{6}\right)+1 &= 2\left(-\tfrac{\sqrt3}{2}\right)+1 \\ &= 1-\sqrt3 \ne 0\end{aligned}" />}
         >
           <Katex tex="\tfrac{\pi}{6}" /> is the reference angle for <Katex tex="\tfrac{\sqrt3}{2}" />, not for{' '}
           <Katex tex="\tfrac12" />, so both answers put the point at horizontal coordinate{' '}
           <Katex tex="-\tfrac{\sqrt3}{2}\approx-0.87" /> instead of <Katex tex="-\tfrac12" />. Substituting back catches it
-          in seconds: <Katex tex="1-\sqrt3\approx-0.73" />, not 0. To keep the two apart, sketch the 30–60–90 triangle
-          with sides <Katex tex="1,\ \sqrt3,\ 2" />: cosine is adjacent over hypotenuse, and the side of length 1 is next
-          to the <Katex tex="60^\circ" /> (<Katex tex="\tfrac{\pi}{3}" />) angle.
+          in seconds: <Katex tex="1-\sqrt3\approx-0.73" />, not 0.
         </WrongMethod>
         <WrongMethod
           title="List the angles that solve cos(x) = −½ without checking the domain"
           source="Examiner's report"
           working={<Katex display tex="x = \pm\frac{2\pi}{3} \implies x = -\frac{2\pi}{3} \notin [0,2\pi]" />}
         >
-          <Katex tex="-\tfrac{2\pi}{3}" /> does satisfy the equation, but it is outside the domain, and writing it instead
-          of <Katex tex="-\tfrac{2\pi}{3}+2\pi=\tfrac{4\pi}{3}" /> loses the second answer that <em>is</em> in the domain.
+          One way this happens: <Katex tex="-\tfrac{2\pi}{3}" /> does satisfy the equation, but it is outside the
+          domain, and writing it instead of <Katex tex="-\tfrac{2\pi}{3}+2\pi=\tfrac{4\pi}{3}" /> loses the second answer that <em>is</em> in the domain.
           Finish every trig equation by checking each answer against the stated interval, and by counting: one lap from{' '}
           <Katex tex="0" /> to <Katex tex="2\pi" /> gives exactly two solutions of <Katex tex="\cos(x)=-\tfrac12" />.
         </WrongMethod>
@@ -258,14 +273,13 @@ export default function MethodsQ3_2018Exam1() {
         <WrongMethod
           title="The 2 in 2cos(x) squeezes the wave, so draw two cycles"
           source="Examiner's report"
-          working={<Katex display tex="2\cos(2x)+1=0 \implies x=\frac{\pi}{3},\ \frac{2\pi}{3},\ \frac{4\pi}{3},\ \frac{5\pi}{3}" />}
+          working={<Katex display tex="\begin{aligned}&2\cos(2x)+1=0 \\ &\implies x=\frac{\pi}{3},\ \frac{2\pi}{3},\ \frac{4\pi}{3},\ \frac{5\pi}{3}\end{aligned}" />}
         >
           The report notes graphs drawn with more than one cycle. Reading <Katex tex="2\cos(x)" /> as{' '}
           <Katex tex="\cos(2x)" /> is one way to get there: that halves the period to <Katex tex="\pi" /> and fits two
           cycles into <Katex tex="[0,2\pi]" />, with minimums at <Katex tex="\tfrac{\pi}{2}" /> and{' '}
           <Katex tex="\tfrac{3\pi}{2}" /> instead of <Katex tex="\pi" />. The catch is part a.: that graph crosses the axis
-          four times, but part a. found only two solutions. A 2 in front of <Katex tex="\cos" /> doubles the heights; only
-          a 2 multiplying <Katex tex="x" /> squeezes the period.
+          four times, but part a. found only two solutions. When the sketch and part a. disagree, the sketch is wrong.
         </WrongMethod>
       </PartCard>
     </div>

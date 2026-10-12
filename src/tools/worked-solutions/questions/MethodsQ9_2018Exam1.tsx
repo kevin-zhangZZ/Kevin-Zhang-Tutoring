@@ -98,76 +98,81 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{n\pi}^{(n+1)\pi}\! x\sin(x)\,dx = \Bigl[\sin(x)-x\cos(x)\Bigr]_{n\pi}^{(n+1)\pi}" />,
-    reason: <>The antiderivative is handed to you. Do not carry a <Katex tex="+c" /> into a <em>definite</em> integral — it cancels, and the report notes it caused confusion.</>,
+    reason: <>The antiderivative is given, so evaluate it at the two limits. No <Katex tex="+c" /> in a <em>definite</em> integral — it cancels.</>,
+    more: <>The report notes that quite a few students included <Katex tex="+c" />, and it then appeared to cause them some confusion.</>,
   },
   {
     working: <Katex display tex="\sin(k\pi) = 0 \ \text{ for every integer } k" />,
-    reason: <>Both sine terms vanish, so only the cosine terms survive. This is why the answer comes out so clean.</>,
+    reason: <>Both sine terms vanish, so only the cosine terms survive.</>,
   },
   {
     working: <Katex display tex="= -(n+1)\pi\cos\bigl((n+1)\pi\bigr) + n\pi\cos(n\pi)" />,
-    reason: <>What is left after the sines go. Keep <Katex tex="(n+1)\pi" /> and <Katex tex="n\pi" /> exactly as they are — the next step only needs to know which kind of multiple of <Katex tex="\pi" /> each one is.</>,
+    reason: <>Upper limit minus lower limit. Leave <Katex tex="(n+1)\pi" /> and <Katex tex="n\pi" /> as they are — only whether each is an even or odd multiple of <Katex tex="\pi" /> matters next.</>,
   },
   {
     working: <Katex display tex="n \text{ even} \implies \cos(n\pi) = 1, \quad \cos\bigl((n+1)\pi\bigr) = -1" />,
-    reason: <>Consecutive integer multiples of <Katex tex="\pi" /> always give opposite cosines: <Katex tex="+1" /> at even multiples, <Katex tex="-1" /> at odd ones. Keeping <Katex tex="n" /> as a letter is the whole point — the report says many students substituted a value instead and produced a specific solution rather than the general one.</>,
+    reason: <>Even multiples of <Katex tex="\pi" /> sit at <Katex tex="(1,0)" /> on the unit circle, odd ones at <Katex tex="(-1,0)" />. Keep <Katex tex="n" /> as a letter: the answer must be a rule in <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="= -(n+1)\pi(-1) + n\pi(1) = (n+1)\pi + n\pi" />,
-    reason: <>Both terms come out positive: the minus sign in front of <Katex tex="(n+1)\pi" /> meets <Katex tex="\cos\bigl((n+1)\pi\bigr)=-1" />, and the two minuses cancel.</>,
+    reason: <>The minus in front of <Katex tex="(n+1)\pi" /> meets <Katex tex="\cos\bigl((n+1)\pi\bigr)=-1" />, so both terms come out positive.</>,
   },
   {
     working: <Katex display tex="\boxed{(2n+1)\pi}" />,
-    reason: <>Check against the figure: for <Katex tex="n=0" /> this gives <Katex tex="\pi" />, the area of the small first hump on <Katex tex="[0,\pi]" />, and the humps grow steadily as <Katex tex="x" /> increases — which is what the graph shows.</>,
+    reason: <>Collect like terms for simplest form.</>,
+    more: <>Check against the figure: <Katex tex="n=0" /> gives <Katex tex="\pi" />, the small first hump on <Katex tex="[0,\pi]" />, and <Katex tex="n=2" /> gives <Katex tex="5\pi" />, the bigger hump on <Katex tex="[2\pi,3\pi]" /> — the humps grow as <Katex tex="x" /> increases, as the graph shows.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="n \text{ odd} \implies \cos(n\pi) = -1, \quad \cos\bigl((n+1)\pi\bigr) = 1" />,
-    reason: <>Exactly the previous case with both cosines swapped, because <Katex tex="n" /> and <Katex tex="n+1" /> have traded parity.</>,
+    reason: <>Same working as part a.i. up to the cosines. Now <Katex tex="n" /> is odd and <Katex tex="n+1" /> is even, so the two cosine values swap.</>,
   },
   {
     working: <Katex display tex="= -(n+1)\pi(1) + n\pi(-1) = -(n+1)\pi - n\pi" />,
-    reason: <>Now both terms come out negative.</>,
+    reason: <>Substitute into part a.i.&apos;s line <Katex tex="-(n+1)\pi\cos\bigl((n+1)\pi\bigr) + n\pi\cos(n\pi)" />. Now both terms are negative.</>,
   },
   {
     working: <Katex display tex="\boxed{-(2n+1)\pi}" />,
-    reason: <>The same magnitude as part a.i. with the sign reversed — only <Katex tex="19\%" /> of students scored this mark. It makes sense from the figure: on an odd interval the curve lies <em>below</em> the axis, so the signed area is negative. Recognising that part a.ii. is part a.i. with one sign flipped is the intended one-line answer.</>,
+    reason: <>Part a.i.&apos;s answer with the sign reversed.</>,
+    more: <>Seeing that part a.ii. is part a.i. with one sign flipped is the intended one-line answer for this 1 mark.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="y = x\sin(x) \implies \frac{dy}{dx} = \sin(x) + x\cos(x)" />,
-    reason: <>Product rule.</>,
+    reason: <>Product rule, with <Katex tex="u=x" /> and <Katex tex="v=\sin(x)" />.</>,
   },
   {
     working: <Katex display tex="\sin\!\left(-\frac{5\pi}{2}\right) = -1, \qquad \cos\!\left(-\frac{5\pi}{2}\right) = 0" />,
-    reason: <><Katex tex="-\tfrac{5\pi}{2} = -2\pi-\tfrac{\pi}{2}" />, which lands in the same place on the unit circle as <Katex tex="-\tfrac{\pi}{2}" />.</>,
+    reason: <><Katex tex="-\tfrac{5\pi}{2} = -2\pi-\tfrac{\pi}{2}" />, the same point on the unit circle as <Katex tex="-\tfrac{\pi}{2}" />, which is <Katex tex="(0,-1)" />.</>,
+    more: <>The report says the students who had difficulty were those who could not differentiate correctly or who substituted incorrectly. A quick check that the point is on the curve uses the same value: <Katex tex="\left(-\tfrac{5\pi}{2}\right)\sin\left(-\tfrac{5\pi}{2}\right)=\left(-\tfrac{5\pi}{2}\right)(-1)=\tfrac{5\pi}{2}" /> ✓.</>,
   },
   {
     working: <Katex display tex="m = -1 + \left(-\frac{5\pi}{2}\right)(0) = -1" />,
-    reason: <>The <Katex tex="x\cos(x)" /> term dies, leaving a gradient of exactly <Katex tex="-1" />.</>,
+    reason: <>The <Katex tex="x\cos(x)" /> term is zero, leaving a gradient of exactly <Katex tex="-1" />.</>,
   },
   {
     working: <Katex display tex="y - \frac{5\pi}{2} = -1\left(x+\frac{5\pi}{2}\right)" />,
-    reason: <>Point–gradient form through the given point.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" /> through the given point.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -x}" />,
-    reason: <>The two <Katex tex="\tfrac{5\pi}{2}" /> terms cancel exactly. A tangent through the origin is a striking result, and worth checking the given point satisfies it: <Katex tex="-\left(-\tfrac{5\pi}{2}\right)=\tfrac{5\pi}{2}" /> ✓. It is no accident. Because <Katex tex="\left|\sin(x)\right|\le1" />, the graph is trapped between the lines <Katex tex="y=x" /> and <Katex tex="y=-x" />, and at <Katex tex="x=-\tfrac{5\pi}{2}" />, where <Katex tex="\sin(x)=-1" />, it just touches <Katex tex="y=-x" />. A line the curve touches without crossing is its tangent.</>,
+    reason: <>The two <Katex tex="\tfrac{5\pi}{2}" /> terms cancel.</>,
+    more: <>Check: the given point satisfies it, since <Katex tex="-\left(-\tfrac{5\pi}{2}\right)=\tfrac{5\pi}{2}" />. A tangent through the origin is no accident. Because <Katex tex="\left|\sin(x)\right|\le1" />, the graph is trapped between the lines <Katex tex="y=x" /> and <Katex tex="y=-x" />, and at <Katex tex="x=-\tfrac{5\pi}{2}" />, where <Katex tex="\sin(x)=-1" />, it just touches <Katex tex="y=-x" />. A line the curve touches without crossing is its tangent.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x' = x + a, \qquad y' = y" />,
-    reason: <>Read the column-vector statement one row at a time. Nothing is multiplied, so <Katex tex="T" /> adds <Katex tex="a" /> to every <Katex tex="x" />-coordinate and leaves <Katex tex="y" /> alone: a horizontal translation by <Katex tex="a" />.</>,
+    reason: <>Read <Katex tex="T" /> one row at a time: it adds <Katex tex="a" /> to every <Katex tex="x" />-coordinate and leaves <Katex tex="y" /> alone — a horizontal translation by <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="x = x'-a, \quad y = y'" />,
-    reason: <>To find the image's equation, make the old coordinates the subject. This is the step that decides the sign: the rule uses <Katex tex="x'-a" />, not <Katex tex="x'+a" />.</>,
+    reason: <>Make the old coordinates the subject, ready to substitute into <Katex tex="y=x\sin(x)" />. This decides the sign: <Katex tex="x'-a" />, not <Katex tex="x'+a" />.</>,
   },
   {
     working: <Katex display tex="y' = (x'-a)\sin(x'-a)" />,
@@ -175,7 +180,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(x-a)\sin(x-a) = (3\pi-x)\sin(x)" />,
-    reason: <>This must match the target rule for every <Katex tex="x" />. How would I know what to try? The target's first factor is <Katex tex="3\pi-x=-(x-3\pi)" />, which looks like <Katex tex="x-a" /> with <Katex tex="a=3\pi" /> apart from a stray minus sign. So try <Katex tex="a=3\pi" /> and see whether the sine supplies that minus.</>,
+    reason: <>Match the first factor: <Katex tex="3\pi-x=-(x-3\pi)" />, so try <Katex tex="a=3\pi" />.</>,
+    more: <>The image must match the target for every <Katex tex="x" />. With <Katex tex="a=3\pi" /> the first factor is right apart from a minus sign; the question is then whether the sine factor supplies that stray minus sign. The next two rows check it.</>,
   },
   {
     working: <Katex display tex="a = 3\pi: \ (x-3\pi)\sin(x-3\pi)" />,
@@ -183,50 +189,55 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= (x-3\pi)\bigl(-\sin(x)\bigr) = (3\pi-x)\sin(x) \ \checkmark" />,
-    reason: <>Shifting a sine by an odd multiple of <Katex tex="\pi" /> flips its sign, <Katex tex="\sin(x-3\pi)=-\sin(x)" />, and that flip is exactly what turns <Katex tex="(x-3\pi)" /> into <Katex tex="(3\pi-x)" />.</>,
+    reason: <>Shifting sine by an odd multiple of <Katex tex="\pi" /> flips its sign, <Katex tex="\sin(x-3\pi)=-\sin(x)" />, and that minus turns <Katex tex="(x-3\pi)" /> into <Katex tex="(3\pi-x)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 3\pi}" />,
-    reason: <>Positive: the graph moves to the <em>right</em>. Picture check: <Katex tex="y=x\sin(x)" /> touches the <Katex tex="x" />-axis at the origin (both factors are zero there), and the target touches it at <Katex tex="x=3\pi" /> (both <Katex tex="3\pi-x" /> and <Katex tex="\sin(x)" /> are zero), so the origin has moved <Katex tex="3\pi" /> right. The report names <Katex tex="-3\pi" /> as a common incorrect answer.</>,
+    reason: <>Positive, so the graph moves <Katex tex="3\pi" /> to the <em>right</em>.</>,
+    more: <>Picture check: <Katex tex="y=x\sin(x)" /> touches the <Katex tex="x" />-axis at the origin (both factors are zero there), and the target touches it at <Katex tex="x=3\pi" /> (both <Katex tex="3\pi-x" /> and <Katex tex="\sin(x)" /> are zero), so the origin has moved <Katex tex="3\pi" /> right.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Shaded} = \text{triangle} - \text{three lenses}" />,
-    reason: <>Read the shading carefully before computing anything. The grey region is the <em>whole triangle</em> with three white lens shapes cut out of it — each lens being a region enclosed between <Katex tex="f" /> and <Katex tex="g" />. So the answer is a triangle area minus lobe areas, not an area between a tangent and a curve.</>,
+    reason: <>The grey is the whole triangle formed by <Katex tex="l_1" />, <Katex tex="l_2" /> and the <Katex tex="y" />-axis, with three white lenses (each enclosed between <Katex tex="f" /> and <Katex tex="g" />) cut out.</>,
   },
   {
-    working: <Katex display tex="f'(x) = -\sin(x)+(3\pi-x)\cos(x), \quad f'\!\left(\tfrac{\pi}{2}\right) = -1" />,
-    reason: <>Product rule, then <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" /> and <Katex tex="\cos\left(\tfrac{\pi}{2}\right)=0" />. The same gradient as part b., because this curve <em>is</em> part b.'s curve translated by part c.'s <Katex tex="T" /> — so <Katex tex="l_1" /> is part b.'s tangent <Katex tex="y=-x" /> translated <Katex tex="3\pi" /> to the right.</>,
+    working: <Katex display tex="\begin{aligned}&f'(x) = -\sin(x)+(3\pi-x)\cos(x),\\ &f'\!\left(\tfrac{\pi}{2}\right) = -1\end{aligned}" />,
+    reason: <>Product rule, then <Katex tex="\sin\left(\tfrac{\pi}{2}\right)=1" /> and <Katex tex="\cos\left(\tfrac{\pi}{2}\right)=0" />.</>,
+    more: <>The same gradient as part b. is no coincidence: <Katex tex="f" /> <em>is</em> part b.&apos;s curve translated <Katex tex="3\pi" /> to the right by part c.&apos;s <Katex tex="T" />, and the point <Katex tex="\left(-\tfrac{5\pi}{2},\tfrac{5\pi}{2}\right)" /> moves to <Katex tex="\left(\tfrac{\pi}{2},\tfrac{5\pi}{2}\right)" />. So <Katex tex="l_1" /> is part b.&apos;s tangent <Katex tex="y=-x" /> moved <Katex tex="3\pi" /> right: <Katex tex="y=-(x-3\pi)" />.</>,
   },
   {
     working: <Katex display tex="l_1: \ y = 3\pi - x, \qquad l_2: \ y = x - 3\pi" />,
-    reason: <><Katex tex="l_1" /> through <Katex tex="\left(\tfrac{\pi}{2},\tfrac{5\pi}{2}\right)" /> with gradient <Katex tex="-1" />; <Katex tex="g=-f" />, so <Katex tex="l_2" /> is <Katex tex="l_1" /> reflected in the <Katex tex="x" />-axis.</>,
+    reason: <><Katex tex="l_1" />: gradient <Katex tex="-1" /> through <Katex tex="\left(\tfrac{\pi}{2},\tfrac{5\pi}{2}\right)" />. Since <Katex tex="g=-f" />, <Katex tex="l_2" /> is <Katex tex="l_1" /> reflected in the <Katex tex="x" />-axis.</>,
   },
   {
     working: <Katex display tex="\text{Vertices: } (0,3\pi),\ (0,-3\pi),\ (3\pi,0)" />,
-    reason: <>The two tangents meet the <Katex tex="y" />-axis at <Katex tex="\pm3\pi" /> and cross each other at <Katex tex="(3\pi,0)" />.</>,
+    reason: <>Put <Katex tex="x=0" /> into each tangent for the <Katex tex="y" />-intercepts <Katex tex="\pm3\pi" />; both tangents are zero at <Katex tex="x=3\pi" />, so they meet at <Katex tex="(3\pi,0)" />.</>,
   },
   {
     working: <Katex display tex="\text{Triangle} = \frac12\times 6\pi\times 3\pi = 9\pi^2" />,
     reason: <>Base <Katex tex="6\pi" /> along the <Katex tex="y" />-axis, perpendicular height <Katex tex="3\pi" />.</>,
+    more: <>The report&apos;s solution splits this along the <Katex tex="x" />-axis into two triangles of <Katex tex="\tfrac{9\pi^2}{2}" /> each — the same total.</>,
   },
   {
     working: <Katex display tex="\int_0^{\pi}\! f = 5\pi, \quad \int_{\pi}^{2\pi}\! f = -3\pi, \quad \int_{2\pi}^{3\pi}\! f = \pi" />,
-    reason: <>These are part a. in disguise: <Katex tex="f(x)=(3\pi-x)\sin(x)" /> is the reflected, shifted version of <Katex tex="x\sin(x)" />, so its humps have the same sizes running the other way. This is the symmetry the report says successful students exploited.</>,
+    reason: <>No new integration. Undo part c.&apos;s shift: <Katex tex="\int_0^{\pi} f=\int_{-3\pi}^{-2\pi} x\sin(x)\,dx" />, and as <Katex tex="x\sin(x)" /> is even this equals <Katex tex="\int_{2\pi}^{3\pi} x\sin(x)\,dx" />: part a. with <Katex tex="n=2" />. Likewise the others are <Katex tex="n=1" /> and <Katex tex="n=0" />.</>,
+    more: <>Why it works: <Katex tex="x\sin(x)" /> is even (<Katex tex="(-x)\sin(-x)=x\sin(x)" />), so its graph is symmetric about the <Katex tex="y" />-axis and the hump on <Katex tex="[-3\pi,-2\pi]" /> is the mirror image of the one on <Katex tex="[2\pi,3\pi]" />, with the same signed area. So the first hump of <Katex tex="f" /> is part a.i. with <Katex tex="n=2" />: <Katex tex="5\pi" />. The middle hump, <Katex tex="[\pi,2\pi]" />, comes from <Katex tex="[-2\pi,-\pi]" />, i.e. <Katex tex="[\pi,2\pi]" />: part a.ii. with <Katex tex="n=1" />, <Katex tex="-3\pi" />. The last, <Katex tex="[2\pi,3\pi]" />, comes from <Katex tex="[-\pi,0]" />, i.e. <Katex tex="[0,\pi]" />: part a.i. with <Katex tex="n=0" />, <Katex tex="\pi" />. This is the symmetry the report says successful students used to find the areas under the curves.</>,
   },
   {
     working: <Katex display tex="\int_0^{3\pi}\!\left|f\right| = 5\pi+3\pi+\pi = 9\pi" />,
-    reason: <>Take magnitudes: each hump contributes its own area regardless of sign.</>,
+    reason: <>Take magnitudes: each hump contributes its area whether it is above or below the axis.</>,
   },
   {
-    working: <Katex display tex="\text{Lobes} = \int_0^{3\pi}\!\left|f-g\right| = 2\int_0^{3\pi}\!\left|f\right| = 18\pi" />,
-    reason: <>Since <Katex tex="g=-f" />, the gap between the two curves is <Katex tex="2\left|f\right|" /> everywhere — the three lenses are each symmetric about the <Katex tex="x" />-axis.</>,
+    working: <Katex display tex="\text{Lenses} = \int_0^{3\pi}\!\left|f-g\right| = 2\int_0^{3\pi}\!\left|f\right| = 18\pi" />,
+    reason: <>Since <Katex tex="g=-f" />, the gap between the two curves is <Katex tex="2\left|f\right|" /> everywhere — each lens is a hump plus its mirror image.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Shaded} = 9\pi^2 - 18\pi = 9\pi(\pi-2)}" />,
-    reason: <>Triangle minus lenses. (<Katex tex="\approx32.3" /> square units — about a third of the triangle's <Katex tex="9\pi^2\approx88.8" />, which matches how much grey the figure shows.) Only <Katex tex="4\%" /> of students scored both marks; the report says students who found the area between each tangent and the curve directly, while using a valid method, had lengthy calculations and were rarely successful.</>,
+    reason: <>Triangle minus lenses, in square units.</>,
+    more: <>Sense check: <Katex tex="9\pi^2-18\pi\approx32.3" />, about a third of the triangle&apos;s <Katex tex="9\pi^2\approx88.8" />, which matches how much grey the figure shows.</>,
   },
 ]
 
@@ -253,9 +264,7 @@ export default function MethodsQ9_2018Exam1() {
         <Background>
           <p>
             The only thing that makes this hard is that <Katex tex="n" /> stays a letter. Keep
-            it that way: substituting <Katex tex="n=2" /> gives you one number, not the rule
-            the question asks for, and the report says many students substituted a value of{' '}
-            <Katex tex="n" /> and ended up with a specific solution.
+            it that way: the answer must be a rule in <Katex tex="n" />, not one number.
           </p>
           <p>
             Two facts do all the work. <Katex tex="\sin(k\pi)=0" /> for every integer{' '}
@@ -305,10 +314,7 @@ export default function MethodsQ9_2018Exam1() {
           <p>
             The report&apos;s diagnosis is that students did not relate this part to part a.i. The
             working is identical line for line; the only thing that changes is which cosine is{' '}
-            <Katex tex="+1" /> and which is <Katex tex="-1" />. Odd multiples of{' '}
-            <Katex tex="\pi" /> sit at <Katex tex="(-1,0)" /> on the unit circle and even multiples at{' '}
-            <Katex tex="(1,0)" />, so when <Katex tex="n" /> is odd, <Katex tex="\cos(n\pi)=-1" /> and{' '}
-            <Katex tex="\cos\bigl((n+1)\pi\bigr)=1" />.
+            <Katex tex="+1" /> and which is <Katex tex="-1" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_AII} />
@@ -351,9 +357,8 @@ export default function MethodsQ9_2018Exam1() {
         <Background>
           <p>
             The column-vector notation looks like matrix work, but the matrix here is the
-            identity — nothing is being multiplied. <Katex tex="T" /> adds <Katex tex="a" /> to
-            every <Katex tex="x" /> and leaves <Katex tex="y" /> alone, which is the definition
-            of a horizontal translation.
+            identity — nothing is being multiplied, only a column of numbers added. Treat it as an
+            ordinary translation question.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -406,12 +411,9 @@ export default function MethodsQ9_2018Exam1() {
             while valid, involved lengthy calculations and was rarely successful.
           </p>
           <p>
-            Look at what is actually shaded instead. The two tangents and the{' '}
-            <Katex tex="y" />-axis bound a triangle, and everything in it is grey <em>except</em>{' '}
-            three lens-shaped holes where the two curves enclose a region between them. So:
-            triangle, minus lenses. The triangle is elementary, and the lenses are part a.'s
-            integrals reused, because <Katex tex="f" /> is nothing but the original{' '}
-            <Katex tex="x\sin(x)" /> translated and reflected.
+            The quick route is to read the shading as a whole: a triangle with holes cut out. The
+            triangle needs only the two tangents, and the holes need only part a.&apos;s integrals,
+            because parts a., b. and c. were built to lead into this part.
           </p>
         </Background>
         <WorkingTable rows={ROWS_D} />

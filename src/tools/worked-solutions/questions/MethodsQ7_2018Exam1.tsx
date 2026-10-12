@@ -52,14 +52,16 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="m_{\text{line}} = 2 \implies m_{\perp} = -\frac12" />,
     reason: (
       <>
-        "Closest point on a line" is the signal to think <em>perpendicular</em>: the shortest
-        segment from a point to a line meets the line at right angles. Perpendicular gradients
-        multiply to <Katex tex="-1" />, so <Katex tex="2\times m_\perp=-1" />.
+        "Closest point on a line" means <em>perpendicular</em>: the shortest segment from{' '}
+        <Katex tex="O" /> meets the line at right angles. Perpendicular gradients multiply to{' '}
+        <Katex tex="-1" />.
       </>
     ),
     more: (
       <>
-        See Background, and drag <Katex tex="P" /> in the first diagram below.
+        Here <Katex tex="2\times m_\perp=-1" />, so <Katex tex="m_\perp=-\tfrac12" />. The Background explains why the shortest
+        segment must be perpendicular; drag <Katex tex="P" /> in the first diagram below to see
+        it.
       </>
     ),
   },
@@ -83,8 +85,14 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{P = \left(\frac85,\ -\frac45\right)}" />,
     reason: (
       <>
-        Two quick checks. On the line: <Katex tex="2\left(\tfrac85\right)-4=\tfrac{16}{5}-\tfrac{20}{5}=-\tfrac45" /> ✓.
-        Perpendicular: the gradient of <Katex tex="OP" /> is <Katex tex="\tfrac{-4/5}{8/5}=-\tfrac12" /> ✓.
+        Check it is on the line: <Katex tex="2\left(\tfrac85\right)-4=\tfrac{16}{5}-\tfrac{20}{5}=-\tfrac45" /> ✓.
+      </>
+    ),
+    more: (
+      <>
+        A second check, for perpendicularity: the gradient of <Katex tex="OP" /> is{' '}
+        <Katex tex="\tfrac{-4/5}{8/5}=-\tfrac12" /> ✓. This gradient check is what exposes the
+        report's common wrong answers below.
       </>
     ),
   },
@@ -95,13 +103,17 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="OP = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}" />,
     reason: (
       <>
-        The distance formula is Pythagoras: the horizontal and vertical gaps between{' '}
-        <Katex tex="O" /> and <Katex tex="P" /> are the legs of a right-angled triangle with
-        hypotenuse <Katex tex="OP" />. The report notes some students misquoted it, so write it
-        out before substituting.
+        The distance formula is Pythagoras on the horizontal and vertical gaps between{' '}
+        <Katex tex="O" /> and <Katex tex="P" />. Write it out before substituting.
       </>
     ),
-    more: <>Step through the diagram below.</>,
+    more: (
+      <>
+        The two gaps are the legs of a right-angled triangle with hypotenuse <Katex tex="OP" />,
+        so the squares are <em>added</em>. The report notes some students misquoted the formula,
+        which is why writing it out first is worth the line. Step through the diagram below.
+      </>
+    ),
   },
   {
     working: <Katex display tex="= \sqrt{\left(\frac85-0\right)^2+\left(-\frac45-0\right)^2}" />,
@@ -124,11 +136,16 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{OP = \frac{4\sqrt{5}}{5}}" />,
     reason: (
       <>
-        This is the required form <Katex tex="\tfrac{a\sqrt b}{b}" /> with <Katex tex="a=4" /> and{' '}
-        <Katex tex="b=5" />, both positive integers. Sense check:{' '}
-        <Katex tex="\tfrac{4\sqrt5}{5}\approx1.79" /> is less than <Katex tex="2" />, the distance
-        from <Katex tex="O" /> to <Katex tex="(2,0)" />, which is on the line but is not the
-        closest point.
+        The required form <Katex tex="\tfrac{a\sqrt b}{b}" /> with <Katex tex="a=4" />,{' '}
+        <Katex tex="b=5" />. Equal values like <Katex tex="\tfrac{4}{\sqrt5}" /> are not in that
+        form.
+      </>
+    ),
+    more: (
+      <>
+        Sense check: <Katex tex="\tfrac{4\sqrt5}{5}\approx1.79" /> is less than{' '}
+        <Katex tex="2" />, the distance from <Katex tex="O" /> to <Katex tex="(2,0)" />, which is
+        on the line but is not the closest point.
       </>
     ),
   },
@@ -159,11 +176,32 @@ export default function MethodsQ7_2018Exam1() {
             tangent at right angles.
           </p>
           <p>
-            "Minimise a distance" also looks like a calculus problem, and it can be done that way
-            (the report's Method 2 differentiates <Katex tex="OP=\sqrt{5x^2-16x+16}" />). But the
-            report says students who took that route often had difficulty finding the derivative
-            correctly. The perpendicular method below (the report's Method 1) needs no calculus
-            at all, which is exactly the kind of recognition Exam 1 rewards.
+            "Minimise a distance" also looks like a calculus problem, and it can be done that
+            way. A point on the line is <Katex tex="(x,\,2x-4)" />, so
+          </p>
+          <Katex display tex="OP^2 = x^2+(2x-4)^2 = 5x^2-16x+16" />
+          <p>
+            Since <Katex tex="OP\ge0" />, <Katex tex="OP" /> is smallest exactly where{' '}
+            <Katex tex="OP^2" /> is smallest, so differentiate <Katex tex="OP^2" /> and avoid the
+            square root:
+          </p>
+          <Katex display tex="\frac{d\left(OP^2\right)}{dx} = 10x-16 = 0 \implies x = \frac85" />
+          <p>
+            This is the minimum because <Katex tex="5x^2-16x+16" /> is an upward parabola.
+            The report's Method 2 differentiates <Katex tex="OP" /> itself, which needs the chain
+            rule:{' '}
+            <Katex tex="\tfrac{10x-16}{2\sqrt{5x^2-16x+16}}" />, which is zero at the same{' '}
+            <Katex tex="x" />. The report says students who took this route often had difficulty
+            finding the derivative correctly. The perpendicular method below (the report's Method
+            1) needs no calculus at all, which is exactly the kind of recognition Exam 1 rewards.
+          </p>
+          <p>
+            Some students used similar triangles. A quick version of that idea: the line and the
+            axes form a right-angled triangle with legs <Katex tex="2" /> and <Katex tex="4" /> and
+            hypotenuse <Katex tex="\sqrt{20}" />, and <Katex tex="OP" /> is its height from the
+            right angle at <Katex tex="O" />. Twice the area, worked out both ways, gives{' '}
+            <Katex tex="OP\times\sqrt{20}=2\times4" />, so{' '}
+            <Katex tex="OP=\tfrac{8}{\sqrt{20}}=\tfrac{4}{\sqrt5}" />, which checks part b.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -213,7 +251,7 @@ export default function MethodsQ7_2018Exam1() {
           }
         >
           The middle term of <Katex tex="(2x-4)^2" /> is <Katex tex="2\times2x\times(-4)=-16x" />,
-          so <Katex tex="OP^2=5x^2-16x+16" /> and the derivative is <Katex tex="10x-16" />. One
+          not <Katex tex="-8x" />, so the derivative should be <Katex tex="10x-16" />. One
           slip in the expansion moves the whole answer. Two checks catch it: the gradient of{' '}
           <Katex tex="OP" /> is <Katex tex="-3" />, not <Katex tex="-\tfrac12" />; and{' '}
           <Katex tex="OP=\tfrac{4\sqrt{10}}{5}\approx2.53" /> is <em>longer</em> than the{' '}
@@ -239,11 +277,10 @@ export default function MethodsQ7_2018Exam1() {
           source="Examiner's report"
           working={<Katex display tex="OP=\sqrt{\frac{16}{5}}=\frac{4}{\sqrt5}" />}
         >
-          The value is right but the form is not: <Katex tex="\tfrac{a\sqrt b}{b}" /> needs the
-          surd on top. The report's general comments list 7b among the questions where students
+          The report's general comments list 7b among the questions where students
           should re-read the question to check the answer matches what is asked: it{' '}
-          "specified a given format for the answer". Multiply top and bottom by{' '}
-          <Katex tex="\sqrt5" />: <Katex tex="\tfrac{4}{\sqrt5}\times\tfrac{\sqrt5}{\sqrt5}=\tfrac{4\sqrt5}{5}" />.
+          "specified a given format for the answer". To get the surd on top,
+          multiply top and bottom by <Katex tex="\sqrt5" />: <Katex tex="\tfrac{4}{\sqrt5}\times\tfrac{\sqrt5}{\sqrt5}=\tfrac{4\sqrt5}{5}" />.
           Likewise <Katex tex="\tfrac{\sqrt{80}}{5}" /> is equal but not in the form, since the
           number under the root must match the denominator.
         </WrongMethod>

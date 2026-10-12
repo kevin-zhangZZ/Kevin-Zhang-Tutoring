@@ -43,38 +43,42 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim N\!\left(6,\ 4\right) \implies \mu = 6" />,
-    reason: <>The mean is <Katex tex="6" />. (The <Katex tex="4" /> is the <em>variance</em>, so the standard deviation is <Katex tex="\sqrt4=2" /> — that matters in part b., not here.)</>,
+    reason: <>The mean is <Katex tex="6" />. The <Katex tex="4" /> is the <em>variance</em> (so <Katex tex="\sigma=\sqrt4=2" />), which matters in part b., not here.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>6) = \frac12}" />,
-    reason: <>How would I know? The cut-off <Katex tex="6" /> <em>is</em> the mean. A normal curve is a mirror image of itself about its mean, so exactly half the area lies above <Katex tex="\mu" />, whatever <Katex tex="\sigma" /> is. No standardising, no calculator.</>,
+    reason: <>The cut-off <Katex tex="6" /> <em>is</em> the mean, and a normal curve is symmetric about its mean, so exactly half the area lies above it.</>,
+    more: <>This holds whatever <Katex tex="\sigma" /> is: no standardising and no calculator needed.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\sigma = \sqrt{\operatorname{Var}(X)} = \sqrt4 = 2" />,
-    reason: <>Read the stem carefully: it gives the <em>variance</em>, <Katex tex="\sigma^2 = 4" />. Standardising divides by <Katex tex="\sigma" />, the spread measured in the same units as <Katex tex="X" />, so take the square root first. The report&apos;s general comments single this out: in Question 4 &ldquo;the variance and not the standard deviation was given&rdquo;.</>,
+    reason: <>The stem gives the <em>variance</em>, <Katex tex="\sigma^2 = 4" />. Standardising divides by <Katex tex="\sigma" />, so take the square root first.</>,
+    more: <><Katex tex="\sigma" /> is the spread measured in the same units as <Katex tex="X" />. The report&apos;s general comments single this out: in Question 4 &ldquo;the variance and not the standard deviation was given&rdquo;.</>,
   },
   {
     working: <Katex display tex="Z = \frac{X-\mu}{\sigma} = \frac{X-6}{2}" />,
-    reason: <>Why standardise? The right-hand side, <Katex tex="\Pr(Z<b)" />, is about <Katex tex="Z" />, so the left-hand side must be turned into a statement about <Katex tex="Z" /> too. <Katex tex="\frac{x-\mu}{\sigma}" /> counts how many standard deviations <Katex tex="x" /> is from the mean.</>,
+    reason: <>The right-hand side, <Katex tex="\Pr(Z<b)" />, is about <Katex tex="Z" />, so the left-hand side must be rewritten in terms of <Katex tex="Z" /> too.</>,
   },
   {
     working: <Katex display tex="\Pr(X>7) = \Pr\!\left(Z > \frac{7-6}{2}\right) = \Pr\!\left(Z>\frac12\right)" />,
-    reason: <><Katex tex="7" /> is <Katex tex="1" /> above the mean, and <Katex tex="1" /> is half of <Katex tex="\sigma=2" />, so <Katex tex="7" /> sits at <Katex tex="z=\tfrac12" />. The shaded area is unchanged; standardising only relabels the axis.</>,
-    more: <>See the first widget below.</>,
+    reason: <><Katex tex="7" /> is <Katex tex="1" /> above the mean, which is half of <Katex tex="\sigma=2" />, so <Katex tex="7" /> sits at <Katex tex="z=\tfrac12" />.</>,
+    more: <>The first diagram below draws the bell once with both rulers, so you can see <Katex tex="x=7" /> line up with <Katex tex="z=\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(Z>\tfrac12\right) = \Pr\!\left(Z<-\tfrac12\right)" />,
-    reason: <>
-      Now match the form <Katex tex="\Pr(Z<b)" />, a <em>lower</em> tail. The standard normal is symmetric about <Katex tex="0" />, so the upper tail beyond <Katex tex="\tfrac12" /> has the same area as the lower tail below <Katex tex="-\tfrac12" />. The report does the flip first instead: <Katex tex="\Pr(X>7)=\Pr(X<5)" /> by symmetry about <Katex tex="6" />, then{' '}
+    reason: <>The question wants a <em>lower</em> tail, <Katex tex="\Pr(Z<b)" />. By symmetry about <Katex tex="0" />, the area above <Katex tex="\tfrac12" /> equals the area below <Katex tex="-\tfrac12" />.</>,
+    more: <>
+      The report does the flip first instead: <Katex tex="\Pr(X>7)=\Pr(X<5)" /> by symmetry about <Katex tex="6" />, then{' '}
       <Katex tex="\frac{5-6}{2}=-\tfrac12" />. Either order works, as long as you standardise.
     </>,
   },
   {
     working: <Katex display tex="\boxed{b = -\frac12}" />,
-    reason: <>Sign check: <Katex tex="7" /> is above the mean, so <Katex tex="\Pr(X>7)<\tfrac12" />, and a lower tail with less than half the area must end below <Katex tex="Z" />&apos;s mean of <Katex tex="0" />. So <Katex tex="b" /> must be negative. (<Katex tex="\Pr(Z<-0.5)\approx0.309" />.)</>,
+    reason: <>Matching <Katex tex="\Pr(Z<b)" /> with <Katex tex="\Pr\!\left(Z<-\tfrac12\right)" /> gives <Katex tex="b=-\tfrac12" />. Check: <Katex tex="7" /> is above the mean, so the tail is under half and <Katex tex="b" /> must be negative.</>,
+    more: <>In full: <Katex tex="\Pr(X>7)<\tfrac12" />, and a lower tail of <Katex tex="Z" /> holding less than half the area must end below <Katex tex="0" />. For reference only (not needed in a tech-free exam), <Katex tex="\Pr(Z<-0.5)\approx0.309" />.</>,
   },
 ]
 
@@ -107,8 +111,8 @@ export default function MethodsQ4_2018Exam1() {
         <Background>
           <p>
             This is an Exam 1 question, so there is no calculator and no numerical answer
-            wanted — only the <Katex tex="z" />-value. Two things have to happen: standardise
-            (which needs <Katex tex="\sigma" />, not the variance), and flip the tail (because
+            wanted — only the <Katex tex="z" />-value. Two things have to happen: standardise,
+            and flip the tail (because
             the question asks for <Katex tex="\Pr(Z<b)" />, a <em>lower</em> tail, while{' '}
             <Katex tex="\Pr(X>7)" /> is an upper one).
           </p>

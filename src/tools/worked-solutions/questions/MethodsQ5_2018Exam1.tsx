@@ -35,10 +35,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y = \frac{1}{(x-2)^2}" />,
     reason: (
       <>
-        An inverse undoes <Katex tex="f" />: given an output <Katex tex="y" />, which input{' '}
-        <Katex tex="x" /> produced it? So write <Katex tex="y=f(x)" /> and make <Katex tex="x" /> the
-        subject; swapping the letters at the end gives the inverse. (Swapping first and solving for{' '}
-        <Katex tex="y" /> works just as well.)
+        Write <Katex tex="y=f(x)" /> and make <Katex tex="x" /> the subject: the inverse takes an
+        output <Katex tex="y" /> back to the input <Katex tex="x" /> that produced it.
+      </>
+    ),
+    more: (
+      <>
+        Swapping the letters at the end gives the inverse. Swapping first and solving for{' '}
+        <Katex tex="y" /> works just as well.
       </>
     ),
   },
@@ -50,38 +54,54 @@ const ROWS: WorkingRow[] = [
         with numerator <Katex tex="1" /> is never zero.
       </>
     ),
+    more: (
+      <>
+        The report notes that some students did not handle the algebraic manipulation correctly.
+        Undo one operation at a time: reciprocal first, then square root. Typical slips are squaring
+        instead of square-rooting (<Katex tex="x-2=\tfrac{1}{y^2}" />) or dropping the reciprocal
+        (<Katex tex="x-2=\sqrt y" />).
+      </>
+    ),
   },
   {
     working: <Katex display tex="x-2 = \pm\frac{1}{\sqrt{y}}" />,
     reason: (
       <>
-        A number and its negative have the same square, so undoing the square gives two
-        candidates. On the graph, the horizontal line at height <Katex tex="y" /> meets the{' '}
-        <em>full</em> truncus twice, once each side of <Katex tex="x=2" />.
+        Square-root both sides (allowed, since <Katex tex="y=\tfrac{1}{(x-2)^2}>0" />). There are two
+        candidates, because a number and its negative have the same square.
       </>
     ),
-    more: <>The first interactive below shows the two points.</>,
+    more: (
+      <>
+        On the graph, the horizontal line at height <Katex tex="y" /> meets the <em>full</em> truncus
+        twice, once each side of <Katex tex="x=2" />. The first interactive below shows the two points.
+      </>
+    ),
   },
   {
     working: <Katex display tex="x>2 \implies x-2 = +\frac{1}{\sqrt{y}}" />,
     reason: (
       <>
         The domain <Katex tex="(2,\infty)" /> makes <Katex tex="x-2" /> positive, so the negative
-        root is discarded. It belongs to the left branch, which <Katex tex="f" /> leaves out. That
-        restriction is also why <Katex tex="f" /> has an inverse at all: the whole truncus fails the
-        horizontal line test. (If you swapped first, you get <Katex tex="y-2=\pm\tfrac{1}{\sqrt x}" />{' '}
-        and keep <Katex tex="+" /> because the outputs of <Katex tex="f^{-1}" /> are the inputs of{' '}
-        <Katex tex="f" />, so <Katex tex="y>2" />.)
+        root is discarded.
+      </>
+    ),
+    more: (
+      <>
+        The negative root belongs to the left branch of the truncus, which <Katex tex="f" /> leaves
+        out. If you swap first (row 1), you get <Katex tex="y-2=\pm\tfrac{1}{\sqrt x}" /> and keep{' '}
+        <Katex tex="+" /> because the outputs of <Katex tex="f^{-1}" /> are the inputs of{' '}
+        <Katex tex="f" />, so <Katex tex="y>2" />.
       </>
     ),
   },
   {
     working: <Katex display tex="x = 2 + \frac{1}{\sqrt{y}}" />,
-    reason: (
+    reason: <>Add 2 to both sides: now <Katex tex="x" /> is written in terms of <Katex tex="y" />.</>,
+    more: (
       <>
-        Now <Katex tex="x" /> is written in terms of <Katex tex="y" />. Writing{' '}
-        <Katex tex="\sqrt{\tfrac1y}" /> instead of <Katex tex="\tfrac{1}{\sqrt y}" /> is the same
-        number for <Katex tex="y>0" />.
+        Writing <Katex tex="\sqrt{\tfrac1y}" /> instead of <Katex tex="\tfrac{1}{\sqrt y}" /> is the
+        same number for <Katex tex="y>0" />.
       </>
     ),
   },
@@ -89,9 +109,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{f^{-1}(x) = 2+\frac{1}{\sqrt{x}}}" />,
     reason: (
       <>
-        Relabel <Katex tex="y\to x" />, and write it as <Katex tex="f^{-1}(x)=\dots" /> rather than{' '}
-        <Katex tex="y=\dots" />: the report notes incorrect notation in stating the final answer.
-        Quick check with a point: <Katex tex="f(3)=1" />, and <Katex tex="f^{-1}(1)=2+1=3" />.
+        Relabel <Katex tex="y\to x" /> and write it as <Katex tex="f^{-1}(x)=\dots" />, not{' '}
+        <Katex tex="y=\dots" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes that some students used incorrect notation in stating their final answer,
+        so name the inverse function properly. Quick check with a point: <Katex tex="f(3)=1" />, and <Katex tex="f^{-1}(1)=2+1=3" />.
       </>
     ),
   },
@@ -99,10 +124,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\operatorname{ran}(f) = (0,\infty)" />,
     reason: (
       <>
-        The domain of an inverse is the range of the original, because the inverse swaps inputs and
-        outputs. As <Katex tex="x" /> runs over <Katex tex="(2,\infty)" />,{' '}
-        <Katex tex="(x-2)^2" /> takes every positive value, so <Katex tex="\tfrac{1}{(x-2)^2}" /> does
-        too. It is unbounded as <Katex tex="x\to2^+" /> and approaches <Katex tex="0" /> as{' '}
+        The inverse swaps inputs and outputs, so its domain is the range of <Katex tex="f" />. For{' '}
+        <Katex tex="x>2" />, <Katex tex="(x-2)^2" /> takes every positive value, so{' '}
+        <Katex tex="\tfrac{1}{(x-2)^2}" /> does too.
+      </>
+    ),
+    more: (
+      <>
+        It is unbounded as <Katex tex="x\to2^+" /> and approaches <Katex tex="0" /> as{' '}
         <Katex tex="x\to\infty" />, but never reaches it.
       </>
     ),
@@ -111,11 +140,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\operatorname{dom}\left(f^{-1}\right) = (0,\infty)}" />,
     reason: (
       <>
-        The domain is part of the answer, not an optional extra. Round bracket at <Katex tex="0" />{' '}
-        because <Katex tex="0" /> is never an output of <Katex tex="f" />; writing{' '}
-        <Katex tex="R^+" /> is also fine. Here the rule <Katex tex="2+\tfrac{1}{\sqrt x}" /> happens
-        to make sense for exactly these <Katex tex="x" />, but don&apos;t rely on that: the domain of an
-        inverse always comes from the range of <Katex tex="f" />.
+        The domain is part of the answer. Round bracket at <Katex tex="0" /> because{' '}
+        <Katex tex="0" /> is never an output of <Katex tex="f" />; writing <Katex tex="R^+" /> is also
+        fine.
+      </>
+    ),
+    more: (
+      <>
+        The report also notes incorrect notation in stating the domain, so check the brackets:{' '}
+        <Katex tex="(0,\infty)" />, not <Katex tex="[0,\infty)" />. The rule{' '}
+        <Katex tex="2+\tfrac{1}{\sqrt x}" /> happens to make sense for exactly these{' '}
+        <Katex tex="x" />, but that is luck, not the reason.
       </>
     ),
   },
@@ -163,9 +198,9 @@ export default function MethodsQ5_2018Exam1() {
         >
           This is the inverse of the <em>other</em> half of the truncus, the branch with{' '}
           <Katex tex="x<2" />. It even passes the check <Katex tex="f\big(f^{-1}(x)\big)=x" />, because
-          squaring wipes out the sign: <Katex tex="\tfrac{1}{\left(-1/\sqrt x\right)^2}=x" />. Check the
-          other way round instead: <Katex tex="f(3)=1" />, so <Katex tex="f^{-1}(1)" /> must be{' '}
-          <Katex tex="3" />, but <Katex tex="2-\tfrac{1}{\sqrt1}=1" />. Every output of this rule is
+          squaring wipes out the sign: <Katex tex="\tfrac{1}{\left(-1/\sqrt x\right)^2}=x" />. The
+          point check from the working fails: <Katex tex="f^{-1}(1)" /> must be <Katex tex="3" />, but{' '}
+          <Katex tex="2-\tfrac{1}{\sqrt1}=1" />. Every output of this rule is
           less than <Katex tex="2" />, while the outputs of <Katex tex="f^{-1}" /> must be inputs of{' '}
           <Katex tex="f" />, all greater than <Katex tex="2" />.
         </WrongMethod>
@@ -176,10 +211,9 @@ export default function MethodsQ5_2018Exam1() {
           title="The domain of f⁻¹ is the same as f's: (2, ∞)"
           working={<Katex display tex="\operatorname{dom}\left(f^{-1}\right)=(2,\infty)" />}
         >
-          An inverse swaps inputs and outputs, so its domain is the <em>range</em> of{' '}
-          <Katex tex="f" />, not the domain. Test it: <Katex tex="(3,1)" /> is on <Katex tex="f" />, so{' '}
-          <Katex tex="f^{-1}(1)=3" />, yet <Katex tex="1" /> is not in <Katex tex="(2,\infty)" />.
-          Before stating the domain of an inverse, find the range of <Katex tex="f" />.
+          Test it: <Katex tex="(3,1)" /> is on <Katex tex="f" />, so <Katex tex="f^{-1}(1)=3" />, yet{' '}
+          <Katex tex="1" /> is not in <Katex tex="(2,\infty)" />. The inputs of <Katex tex="f^{-1}" /> are
+          the outputs of <Katex tex="f" />, so find the <em>range</em> of <Katex tex="f" /> first.
         </WrongMethod>
         <SAExaminerReport stats={EXAM} maxMarks={3} />
         <div>

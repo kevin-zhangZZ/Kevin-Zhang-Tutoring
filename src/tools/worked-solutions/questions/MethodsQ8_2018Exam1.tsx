@@ -5,7 +5,7 @@
 // independently with sympy and against the VCAA examination report. Solution is original.
 // Interactives: 8b — f = f′ divided by e^{kx} becomes two parabolas y = x² and y = x(kx + 2); slide k
 // and the second crossing x = 2/(1 − k) runs off to infinity at k = 1 (toggle: Δ = 4 for every k).
-// 8c — strips of height f − g, with a toggle for the report's slip ∫f + ∫g (= −4 at k = 1).
+// 8c — strips of height f − g, with a toggle for the common error ∫f + ∫g (= −4 at k = 1).
 // 8d — the area swept from 0 to t always equals f(t)/k, because the strip height is f′/k; then set
 // A = 16/k with a k slider. WrongMethod boxes: solving for k and Δ = 0 in 8b (examiner's report),
 // dividing by x in 8b, f + g in 8c (report), dropping the 1/k in 8d.
@@ -78,60 +78,67 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = x\,e^{kx}(kx+2)}" />,
-    reason: <>As required. On a "show that" the full factorising must be written down — you cannot leave the reader to do the last step.</>,
+    reason: <>As required.</>,
+    more: <>On a "show that", write down every step to the given form, including the factorising — you cannot leave the reader to do the last step.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = f'(x) \implies x^2e^{kx} = x\,e^{kx}(kx+2)" />,
-    reason: <>The graphs meet where the two rules give the same <Katex tex="y" />-value, so solve <Katex tex="f(x)=f'(x)" />. This is an equation <em>in <Katex tex="x" /></em>; <Katex tex="k" /> is a constant we get to choose. The question is really: which <Katex tex="k" /> leaves only one solution <Katex tex="x" />?</>,
+    reason: <>The graphs meet where <Katex tex="f(x)=f'(x)" />. This is an equation in <Katex tex="x" />; <Katex tex="k" /> is a constant to choose so that only one <Katex tex="x" /> works.</>,
   },
   {
     working: <Katex display tex="x^2 = x(kx+2) \quad \left(e^{kx}>0 \text{ always}\right)" />,
-    reason: <>An exponential is never zero, so dividing by <Katex tex="e^{kx}" /> loses and gains no solutions: the crossings of <Katex tex="f" /> and <Katex tex="f'" /> are at exactly the same <Katex tex="x" />-values as those of the parabolas <Katex tex="y=x^2" /> and <Katex tex="y=x(kx+2)" />. Do not divide by <Katex tex="x" /> as well — it can be zero.</>,
+    reason: <>Divide by <Katex tex="e^{kx}" />, which is never zero, so no solutions are lost. Don't divide by <Katex tex="x" /> — it can be zero.</>,
+    more: <>So the crossings of <Katex tex="f" /> and <Katex tex="f'" /> are at exactly the same <Katex tex="x" />-values as the crossings of the parabolas <Katex tex="y=x^2" /> and <Katex tex="y=x(kx+2)" />.</>,
   },
   {
     working: <Katex display tex="x^2 - kx^2 - 2x = 0 \implies x\bigl((1-k)x - 2\bigr) = 0" />,
-    reason: <>Bring everything to one side and factor out the common <Katex tex="x" />. The unknown being solved for is <Katex tex="x" />, not <Katex tex="k" /> — the report says most students solved for the wrong letter here.</>,
+    reason: <>Bring everything to one side and factor out the common <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="x = 0 \quad \text{or} \quad x = \frac{2}{1-k}" />,
-    reason: <>Null factor law. <Katex tex="x=0" /> is a solution for <em>every</em> <Katex tex="k" />: both graphs pass through the origin, since <Katex tex="f(0)=f'(0)=0" />. So there is always at least one intersection, and "exactly one" means the second root must disappear.</>,
+    reason: <>Null factor law. <Katex tex="x=0" /> works for every <Katex tex="k" />, so "exactly one" means the second root must disappear.</>,
+    more: <>Both graphs pass through the origin, since <Katex tex="f(0)=f'(0)=0" />, so there is always at least one intersection. This is the step most students missed: once you know <Katex tex="x=0" /> is always a solution, the question becomes whether it can be the only one.</>,
   },
   {
-    working: <Katex display tex="\frac{2}{1-k} \text{ has no solution when } 1-k=0" />,
-    reason: <>The second root can never equal <Katex tex="0" /> (the numerator is <Katex tex="2" />), so the only way to lose it is for it to stop existing. That happens exactly when the coefficient of <Katex tex="x^2" /> vanishes and the quadratic degenerates into the linear equation <Katex tex="-2x=0" />. For any other <Katex tex="k" /> there are two intersections — for <Katex tex="k>1" /> the second is at a negative <Katex tex="x" />, which still counts because the domain is <Katex tex="R" />.</>,
+    working: <Katex display tex="(1-k)x-2=0 \text{ has no solution when } k=1" />,
+    reason: <>At <Katex tex="k=1" /> this factor is just <Katex tex="-2" />, never <Katex tex="0" />, so <Katex tex="x=0" /> is the only root. For any other <Katex tex="k" />, <Katex tex="\tfrac{2}{1-k}\ne0" /> is a second intersection.</>,
+    more: <>Equivalently, at <Katex tex="k=1" /> the <Katex tex="x^2" /> terms cancel and the equation is the linear <Katex tex="-2x=0" />. For <Katex tex="k>1" /> the second intersection is at a negative <Katex tex="x" />, which still counts because the domain is <Katex tex="R" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 1}" />,
-    reason: <>Then <Katex tex="x=0" /> is the only intersection, which is what the question wants — and <Katex tex="k=1" /> is a positive real constant as required. The report notes that few students spotted that <Katex tex="x=0" /> was the unique solution; only <Katex tex="3\%" /> scored both marks.</>,
+    reason: <><Katex tex="k=1" /> is positive, as the question requires.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="A = \int_0^2 \bigl(f(x)-g(x)\bigr)\,dx" />,
-    reason: <>Read the boundaries off the figure: <Katex tex="f" /> is the upper curve, <Katex tex="g" /> the lower one, and the region runs from where they meet at <Katex tex="x=0" /> across to the line <Katex tex="x=2" />. You can confirm the order from the rules: <Katex tex="x^2e^{kx}\ge0" />, while <Katex tex="-\tfrac{2xe^{kx}}{k}\le0" /> for <Katex tex="x\ge0" />. Each thin strip of the region has height <Katex tex="\text{upper}-\text{lower}" />, so the area is <Katex tex="\int(\text{upper}-\text{lower})\,dx" /> — whichever side of the axis the curves are on.</>,
+    reason: <>From the figure, <Katex tex="f" /> is the upper curve and <Katex tex="g" /> the lower, from where they meet at <Katex tex="x=0" /> to <Katex tex="x=2" />. Area <Katex tex="=\int(\text{upper}-\text{lower})\,dx" />.</>,
+    more: <>You can confirm the order from the rules: <Katex tex="x^2e^{kx}\ge0" />, while <Katex tex="-\tfrac{2xe^{kx}}{k}\le0" /> for <Katex tex="x\ge0" />. Each thin strip of the region has height <Katex tex="\text{upper}-\text{lower}" />, whichever side of the axis the curves are on.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \int_0^2 \left(x^2e^{kx} + \frac{2x\,e^{kx}}{k}\right)dx}" />,
-    reason: <>Substituting the two rules: subtracting <Katex tex="g(x)=-\tfrac{2x e^{kx}}{k}" /> flips its sign to a plus. Keep the <Katex tex="dx" /> — the report says students commonly left it out.</>,
+    reason: <>Substitute the rules: subtracting the negative <Katex tex="g(x)=-\tfrac{2x e^{kx}}{k}" /> gives a plus. Include the <Katex tex="dx" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = x\,e^{kx}(kx+2) = kx^2e^{kx} + 2x\,e^{kx}" />,
-    reason: <>How would I know to start here? "Using your result from part a." is the hint, and part a. was a <em>derivative</em> — so the plan is to make the integrand look like <Katex tex="f'(x)" />. Expanding part a.'s answer shows its two terms, <Katex tex="x^2e^{kx}" /> and <Katex tex="xe^{kx}" />: the same ingredients as the integrand in part c.</>,
+    reason: <>The question says to use part a. Expanded, <Katex tex="f'(x)" /> has terms in <Katex tex="x^2e^{kx}" /> and <Katex tex="xe^{kx}" /> — the same as the integrand in part c.</>,
   },
   {
     working: <Katex display tex="\frac{1}{k}f'(x) = x^2e^{kx} + \frac{2x\,e^{kx}}{k} = f(x)-g(x)" />,
-    reason: <>Compare term by term: each term of the integrand is <Katex tex="\tfrac1k" /> times the matching term of <Katex tex="f'(x)" />, so dividing by <Katex tex="k" /> reproduces the integrand <em>exactly</em>. The whole question is built around this: the awkward integral is really just <Katex tex="\tfrac1k f'" />, and the antiderivative of <Katex tex="f'" /> is <Katex tex="f" />.</>,
+    reason: <>Each term of the integrand is <Katex tex="\tfrac1k" /> times the matching term of <Katex tex="f'(x)" />, so the integrand is exactly <Katex tex="\tfrac1k f'(x)" />.</>,
+    more: <>Check term by term: <Katex tex="\tfrac1k\left(kx^2e^{kx}\right)=x^2e^{kx}" /> and <Katex tex="\tfrac1k\left(2xe^{kx}\right)=\tfrac{2xe^{kx}}{k}" />.</>,
   },
   {
     working: <Katex display tex="A = \frac{1}{k}\int_0^2 f'(x)\,dx = \frac{1}{k}\Bigl[f(x)\Bigr]_0^2" />,
-    reason: <>Antidifferentiating by recognition — the report's general comments call it using "the inverse process" of part a. No integration by parts is needed (it is not part of Methods anyway). The report says many students did not use their result from part a.</>,
+    reason: <>An antiderivative of <Katex tex="f'(x)" /> is <Katex tex="f(x)" />, so integrate by recognition.</>,
+    more: <>The report's general comments call this using "the inverse process" of part a.; no integration by parts is needed (it is not part of Methods anyway).</>,
   },
   {
     working: <Katex display tex="= \frac{1}{k}\left(4e^{2k} - 0\right) = \frac{4e^{2k}}{k}" />,
@@ -139,15 +146,17 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{4e^{2k}}{k} = \frac{16}{k} \implies 4e^{2k} = 16" />,
-    reason: <>Multiplying both sides by <Katex tex="k" />, which is legitimate because <Katex tex="k" /> is a positive constant and so never zero. The <Katex tex="k" /> in the denominator cancels on both sides — the reason the answer comes out clean.</>,
+    reason: <>Multiply both sides by <Katex tex="k" />, allowed because <Katex tex="k" /> is positive, so never zero.</>,
+    more: <>The <Katex tex="\tfrac1k" /> on both sides cancels — that is why the answer comes out exact.</>,
   },
   {
     working: <Katex display tex="e^{2k} = 4 \implies 2k = \log_e(4)" />,
-    reason: <>Taking the natural logarithm of both sides.</>,
+    reason: <>Take the natural logarithm of both sides.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \frac{\log_e(4)}{2} = \log_e(2)}" />,
-    reason: <><Katex tex="\log_e(4)=\log_e\left(2^2\right)=2\log_e(2)" />, so the <Katex tex="2" />s cancel. Positive, as the question requires. (<Katex tex="\log_e(2)\approx0.693" />.)</>,
+    reason: <><Katex tex="\log_e(4)=2\log_e(2)" />, so the <Katex tex="2" />s cancel. Positive, as required.</>,
+    more: <>Either form, <Katex tex="\log_e(2)" /> or <Katex tex="\tfrac12\log_e(4)" />, is a correct exact answer (<Katex tex="\log_e(2)\approx0.693" />).</>,
   },
 ]
 
@@ -193,8 +202,7 @@ export default function MethodsQ8_2018Exam1() {
             <Katex tex="a\ne0" /> with <Katex tex="\Delta=0" /> (the two roots merge into a
             repeated root), or <Katex tex="a=0" /> with <Katex tex="b\ne0" /> (it was never a
             quadratic — it is linear). The usual "set the discriminant to zero" trick only finds
-            the first kind. Here one root is pinned at <Katex tex="x=0" /> and the other can
-            never reach it, so the single root has to arrive the second way.
+            the first kind. Here the single root arrives the second way.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
@@ -286,7 +294,8 @@ export default function MethodsQ8_2018Exam1() {
           <p>
             "Using your result from part a." is not a suggestion. The integrand in part c. has
             no antiderivative you can find with Methods techniques — unless you notice it is a multiple of <Katex tex="f'" />, in which case the integral is just{' '}
-            <Katex tex="f" /> evaluated at the terminals. The question was built backwards
+            <Katex tex="\tfrac1k" /> times <Katex tex="f" /> evaluated at the limits,{' '}
+            <Katex tex="f(2)-f(0)" />. The question was built backwards
             from that identity.
           </p>
           <p>
