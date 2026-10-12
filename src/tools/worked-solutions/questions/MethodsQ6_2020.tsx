@@ -33,7 +33,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 0 \text{ at exactly two points}" />,
-    reason: <>The height of the <Katex tex="f'" /> graph at any <Katex tex="x" /> is the gradient of <Katex tex="f" /> there, so the stationary points of <Katex tex="f" /> are where the printed curve meets the <Katex tex="x" />-axis. It crosses twice. The later dip is a local minimum of <Katex tex="f'" /> that stays <em>above</em> the axis: the gradient of <Katex tex="f" /> gets smaller there but never reaches 0, so it is not a third zero.</>,
+    reason: <>The height of the <Katex tex="f'" /> graph is the gradient of <Katex tex="f" />, so the stationary points of <Katex tex="f" /> are where the printed curve meets the <Katex tex="x" />-axis. It crosses twice.</>,
+    more: <>The later dip stays <em>above</em> the axis, so it is not a third zero: it only bends the graph of <Katex tex="f" />, as the step after next explains.</>,
   },
   {
     working: <Katex display tex="f'>0,\ \text{then } f'<0,\ \text{then } f'>0" />,
@@ -45,11 +46,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{the local max comes } \textbf{first}" />,
-    reason: <>This eliminates options <b>C</b> and <b>D</b>, which have a minimum before a maximum, and option <b>E</b>, which has two maximums.</>,
+    reason: <>This eliminates options <b>C</b> and <b>D</b>, which have a minimum before a maximum. Option <b>E</b> is out too: it has three stationary points (two maximums and a flat section), but <Katex tex="f'" /> has only two zeros.</>,
   },
   {
     working: <Katex display tex="\text{both zeros of } f' \text{ are left of the } y\text{-axis}" />,
-    reason: <>Where the turning points are matters as well as what they are: both zeros of <Katex tex="f'" /> are at negative <Katex tex="x" />, so both turning points of <Katex tex="f" /> are too. Option <b>A</b> has the right rise–fall–rise pattern, but its minimum is to the <em>right</em> of the <Katex tex="y" />-axis, so it is out. (A second check: <Katex tex="f'(0)>0" />, so <Katex tex="f" /> must be rising where it crosses the <Katex tex="y" />-axis, and in A it is falling there.)</>,
+    reason: <>So both turning points of <Katex tex="f" /> are at negative <Katex tex="x" />. Option <b>A</b> rises, falls, rises, but its minimum is to the <em>right</em> of the <Katex tex="y" />-axis, so it is out.</>,
+    more: <>Where the turning points are matters as well as what they are. A was the most popular wrong answer: see the Common Mistake box below for a second check that rules it out.</>,
   },
   {
     working: (
@@ -58,12 +60,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{after the second crossing}" />
       </>
     ),
-    reason: <>So <Katex tex="f" /> keeps increasing to the right. The dip in <Katex tex="f'" /> means the gradient of <Katex tex="f" /> shrinks for a while and then grows again: <Katex tex="f" /> climbs less steeply, then more steeply. That is a bend (a change of concavity), not a turning point. It is option <b>B</b>: a small hump, then a minimum, both left of the <Katex tex="y" />-axis, then a rise that flattens briefly before steepening.</>,
-    more: <>Slide along the curves in the diagram below to see each stage.</>,
+    reason: <>So <Katex tex="f" /> keeps rising. The dip in <Katex tex="f'" /> only makes <Katex tex="f" /> climb less steeply, then more steeply again: a bend, not a turning point.</>,
+    more: <>After its second zero, <Katex tex="f'" /> rises to a small peak, dips, then climbs again, all above the axis. So the gradient of <Katex tex="f" /> grows, shrinks for a while, then grows again: changes of concavity, not of direction. Slide along the curves in the diagram below to see each stage.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{B}}" />,
-    reason: <>Matches option <b>B</b>. The method: find the zeros of <Katex tex="f'" />, note <em>where</em> they are, and read the sign between them; the turning points of <Katex tex="f" /> follow. Then use what&apos;s left (here the dip) to check the finer shape.</>,
+    reason: <>Matches option <b>B</b>: a maximum then a minimum, both left of the <Katex tex="y" />-axis, then a rise with a brief flattening.</>,
+    more: <>The method: find the zeros of <Katex tex="f'" />, note <em>where</em> they are, and read the sign between them; the turning points of <Katex tex="f" /> follow. Then use what&apos;s left (here the dip) to check the finer shape.</>,
   },
 ]
 
@@ -116,10 +119,8 @@ export default function MethodsQ6_2020() {
             }
           >
             <p>
-              The pattern is right, but it is only half the information. The turning points of <Katex tex="f" /> sit exactly where{' '}
-              <Katex tex="f'=0" />, and both of those are at <b>negative</b> <Katex tex="x" />. A&apos;s minimum is at a positive{' '}
-              <Katex tex="x" />, which would need <Katex tex="f'=0" /> to the right of the <Katex tex="y" />-axis, where the printed{' '}
-              <Katex tex="f'" /> is well above the axis.
+              The pattern is right, but it is only half the information. A&apos;s minimum at a positive <Katex tex="x" /> would need{' '}
+              <Katex tex="f'=0" /> to the right of the <Katex tex="y" />-axis, where the printed <Katex tex="f'" /> is well above the axis.
             </p>
             <p>
               A second check that catches it: <Katex tex="f'(0)" /> is positive (the printed curve cuts the <Katex tex="y" />-axis above

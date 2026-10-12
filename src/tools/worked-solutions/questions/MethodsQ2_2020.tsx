@@ -32,7 +32,6 @@ const ROWS: WorkingRow[] = [
       </>
     ),
     reason: <>The remainder theorem: dividing by <Katex tex="x-k" /> leaves remainder <Katex tex="p(k)" />. Here <Katex tex="x+2=x-(-2)" />, so <Katex tex="k=-2" />, the value that makes the divisor zero, not <Katex tex="+2" />.</>,
-    more: <>See the Background above for the remainder theorem.</>,
   },
   {
     working: <Katex display tex="p(-2) = (-2)^3-2a(-2)^2+(-2)-1" />,
@@ -40,15 +39,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -8-8a-2-1 = -11-8a" />,
-    reason: <>Powers first. <Katex tex="(-2)^3=-8" /> (an odd power keeps the minus sign), but <Katex tex="(-2)^2=4" /> is positive, so <Katex tex="-2a(-2)^2=-2a\times4=-8a" />: the only minus left in that term is the one in front of <Katex tex="2a" />.</>,
+    reason: <>Powers first: <Katex tex="(-2)^3=-8" /> (odd power, stays negative) but <Katex tex="(-2)^2=4" />, so <Katex tex="-2a(-2)^2=-2a\times4=-8a" />.</>,
   },
   {
     working: <Katex display tex="-11-8a = 5 \implies -8a = 16" />,
-    reason: <>The remainder is given as 5. (On CAS, <Cas fn="define">Define p(x) = x^3 − 2a·x^2 + x − 1</Cas> then <Cas fn="solve">solve(p(−2) = 5, a)</Cas> does these lines in one go, but by hand is just as quick.)</>,
+    reason: <>The remainder is given as 5, so set <Katex tex="p(-2)=5" />.</>,
+    more: <>On CAS, <Cas fn="define">Define p(x) = x^3 − 2a·x^2 + x − 1</Cas> then <Cas fn="solve">solve(p(−2) = 5, a)</Cas> does these lines in one go, but by hand is just as quick.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -2}" />,
-    reason: <>Matches option <b>E</b>. Check: <Katex tex="p(-2)=-8+16-2-1=5" /> ✓. Option <b>C</b> (<Katex tex="\tfrac12" />) comes from substituting <Katex tex="x=2" /> instead of <Katex tex="-2" />; option <b>A</b> (<Katex tex="2" />) from writing <Katex tex="-2a(-2)^2" /> as <Katex tex="+8a" />. Options <b>B</b> and <b>D</b> come from slips in the terms without <Katex tex="a" />, which total <Katex tex="-8-2-1=-11" />: getting <Katex tex="-9" /> instead (for example, <Katex tex="(-2)^3" /> as <Katex tex="-6" />) gives <Katex tex="-\tfrac74" />, and getting <Katex tex="-7" /> (for example, the <Katex tex="x" /> term as <Katex tex="+2" />) gives <Katex tex="-\tfrac32" />.</>,
+    reason: <>Matches option <b>E</b>. Check: <Katex tex="p(-2)=-8+16-2-1=5" /> ✓.</>,
+    more: <>Option <b>C</b> (<Katex tex="\tfrac12" />) comes from substituting <Katex tex="x=2" /> instead of <Katex tex="-2" />, and option <b>A</b> (<Katex tex="2" />) from writing <Katex tex="-2a(-2)^2" /> as <Katex tex="+8a" />: both are unpacked in the Common Mistake boxes below. Options <b>B</b> and <b>D</b> come from slips in the terms without <Katex tex="a" />, which total <Katex tex="-8-2-1=-11" />: getting <Katex tex="-9" /> instead (for example, <Katex tex="(-2)^3" /> as <Katex tex="-6" />) gives <Katex tex="-\tfrac74" />, and getting <Katex tex="-7" /> (for example, the <Katex tex="x" /> term as <Katex tex="+2" />) gives <Katex tex="-\tfrac32" />.</>,
   },
 ]
 

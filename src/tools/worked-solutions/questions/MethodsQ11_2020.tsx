@@ -26,15 +26,15 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="1-\Pr(Z>1.5) = \Pr(Z<1.5)" />,
-    reason: <>The total area under the curve is 1, so one minus the tail to the right of 1.5 is everything to its left. Rewriting the right-hand side as a &ldquo;less than&rdquo; makes it the same shape as <Katex tex="\Pr(X<259)" />, so the two can be compared directly.</>,
+    reason: <>The total area is 1, so one minus the right tail is the area to the left of 1.5. Now both sides are &ldquo;less than&rdquo; areas.</>,
   },
   {
     working: <Katex display tex="\Pr(X<259) = \Pr(Z<1.5)" />,
-    reason: <>Two &ldquo;less than&rdquo; areas that are equal must be cut off at the same place on the curve. So 259 on the <Katex tex="X" /> scale is the same point as 1.5 on the <Katex tex="Z" /> scale: 259 is 1.5 standard deviations above the mean.</>,
+    reason: <>Equal &ldquo;less than&rdquo; areas are cut off at the same point, so 259 on the <Katex tex="X" /> scale is <Katex tex="z=1.5" />: 1.5 standard deviations above the mean.</>,
   },
   {
     working: <Katex display tex="\frac{259-250}{\sigma} = 1.5" />,
-    reason: <>Standardise with <Katex tex="z=\tfrac{x-\mu}{\sigma}" /> and <Katex tex="\mu=250" />: the <Katex tex="z" />-value of 259 must be 1.5.</>,
+    reason: <>Standardise using <Katex tex="z=\tfrac{x-\mu}{\sigma}" />, with <Katex tex="\mu=250" />.</>,
   },
   {
     working: <Katex display tex="\frac{9}{\sigma} = 1.5" />,
@@ -42,8 +42,14 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\sigma = \frac{9}{1.5} = 6\ \text{mm}}" />,
-    reason: <>If 1.5 standard deviations are 9 mm, one is <Katex tex="9\div1.5=6" /> mm. Check: <Katex tex="250+1.5\times6=259" /> ✓. Matches option <b>C</b>. Option <b>A</b> is the <Katex tex="z" />-value itself, and option <b>D</b> is the 9 mm gap, which would put 259 only <em>one</em> standard deviation above the mean. Both stop a step short.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Matches option <b>C</b>. Check: <Katex tex="250+1.5\times6=259" /> ✓.</>,
+    more: (
+      <>
+        Option <b>A</b>, 1.5, is the{' '}
+        <Katex tex="z" />-value itself, not a length in millimetres; option <b>D</b>, 9, is the 9 mm gap left undivided (the
+        Common Mistake below). Both stop a step short.
+      </>
+    ),
   },
 ]
 

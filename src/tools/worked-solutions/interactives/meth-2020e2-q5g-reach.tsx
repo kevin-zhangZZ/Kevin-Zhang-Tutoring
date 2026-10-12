@@ -45,8 +45,7 @@ export default function Reach() {
         <b>It lands on <M>(-t, 0)</M>.</b> Here <M>{`t = \\sqrt{-w/5} \\approx ${num(t, 3)}`}</M>, which is the condition{' '}
         <M>w = -5t^2</M> read the other way round. Every negative <M>w</M> has its own <M>t</M> like this (move <M>w</M> and
         press the button again), and no <M>w \ge 0</M> has one, so the answer is the whole set <M>w &lt; 0</M>, not the
-        formula. {Math.abs(w + 1) < 1e-9 && <>With <M>w = -1</M>, <M>p</M> is part a.&apos;s <M>f</M> and{' '}
-        <M>{'t = \\tfrac{\\sqrt5}{5}'}</M>: exactly part e.&apos;s answer, where the tangent at <M>a</M> lands at <M>b = -a</M>.</>}
+        formula.
       </Notice>
     )
   } else if (flat) {

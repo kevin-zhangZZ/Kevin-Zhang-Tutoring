@@ -27,25 +27,27 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\log_2(n+1) = x \iff n+1 = 2^x" />,
-    reason: <>The options all give <Katex tex="n" /> on its own, so make <Katex tex="n" /> the subject. A logarithm is an exponent: <Katex tex="\log_2(n+1)=x" /> says &ldquo;2 to the power <Katex tex="x" /> gives <Katex tex="n+1" />&rdquo;, so write it in exponential form.</>,
+    reason: <>The options give <Katex tex="n" /> on its own, so make <Katex tex="n" /> the subject: rewrite the logarithm in exponential form.</>,
   },
   {
     working: <Katex display tex="n = 2^x-1" />,
-    reason: <>Subtract 1 from both sides. The <Katex tex="-1" /> sits <em>outside</em> the power: it undoes the <Katex tex="+1" /> that was inside the logarithm.</>,
+    reason: <>Subtract 1 from both sides. The <Katex tex="-1" /> sits <em>outside</em> the power.</>,
+    more: <>It undoes the <Katex tex="+1" /> that was inside the logarithm.</>,
   },
   {
     working: <Katex display tex="x \in Z^+ \implies x = k, \quad k = 1,2,3,\ldots" />,
-    reason: <>&ldquo;<Katex tex="x" /> is a positive integer&rdquo; means <Katex tex="x" /> can be any of 1, 2, 3, …, which the options call <Katex tex="k\in Z^+" />. <Katex tex="x=0" /> (from <Katex tex="n=0" />) is not allowed, because 0 isn&apos;t positive.</>,
+    reason: <>&ldquo;<Katex tex="x" /> is a positive integer&rdquo; means <Katex tex="x" /> is any of 1, 2, 3, …, which the options call <Katex tex="k\in Z^+" />.</>,
+    more: <><Katex tex="x=0" /> (from <Katex tex="n=0" />) is not allowed, because 0 isn&apos;t positive.</>,
   },
   {
     working: <Katex display tex="n = 2^k-1 = 1,\ 3,\ 7,\ 15,\ \ldots" />,
-    reason: <>List a few values to check them: <Katex tex="n+1=2,4,8,16" /> are powers of 2, so <Katex tex="\log_2(n+1)=1,2,3,4" /> ✓. The gaps between the values double each time (2, 4, 8), which a linear rule like <Katex tex="2k-1" /> can&apos;t do.</>,
-    more: <>See the diagram below.</>,
+    reason: <>Check a few: <Katex tex="n+1=2,4,8,16" /> are powers of 2, so <Katex tex="\log_2(n+1)=1,2,3,4" /> ✓.</>,
+    more: <>The gaps between the values double each time (2, 4, 8), which a linear rule like <Katex tex="2k-1" /> can&apos;t do.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 2^k-1, \quad k\in Z^+}" />,
-    reason: <>Matches option <b>B</b>. Option <b>A</b> drops the <Katex tex="-1" />: its <Katex tex="n=2" /> gives <Katex tex="\log_2 3" />, not an integer. Option <b>C</b> solves <Katex tex="\log_2(n)+1=x" /> instead; only its first value, <Katex tex="n=1" />, works. Options <b>D</b> and <b>E</b> are linear. <b>D</b> (the odd numbers) is the tricky one: its first two values, 1 and 3, both work, so test <Katex tex="k=3" /> too: <Katex tex="n=5" /> gives <Katex tex="\log_2 6" />, not an integer. <b>E</b> gives even <Katex tex="n" />, so <Katex tex="n+1" /> is odd and never a power of 2.</>,
-    more: <>For option <b>C</b>, see the common mistake below.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>A</b> drops the <Katex tex="-1" />: its <Katex tex="n=2" /> gives <Katex tex="\log_2 3" />, not an integer. Option <b>C</b> solves <Katex tex="\log_2(n)+1=x" /> instead (see the Common Mistake below); only its first value, <Katex tex="n=1" />, works. Options <b>D</b> and <b>E</b> are linear. <b>D</b> (the odd numbers) is the tricky one: its first two values, 1 and 3, both work, so test <Katex tex="k=3" /> too: <Katex tex="n=5" /> gives <Katex tex="\log_2 6" />, not an integer. <b>E</b> gives even <Katex tex="n\ge2" />, so <Katex tex="n+1" /> is an odd number from 3 up, never a power of 2.</>,
   },
 ]
 

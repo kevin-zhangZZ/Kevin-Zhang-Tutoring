@@ -118,11 +118,12 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Cas fn="invNorm">invNorm(0.6, 0, 4)</Cas>,
-    reason: <>An inverse normal, not a normal CDF: the probability is given and the cut-off is wanted. <Cas fn="invNorm" /> takes the area to the left of the cut-off, which is exactly what <Katex tex="\Pr(T\le a)" /> is.</>,
+    reason: <>The probability is given and the cut-off is wanted: an inverse normal. <Cas fn="invNorm" /> takes the area to the <em>left</em> of the cut-off, which is exactly <Katex tex="\Pr(T\le a)" />.</>,
   },
   {
     working: <Katex display tex="a = 1.0133\ldots" />,
-    reason: <>Check the sign: 0.6 is more than half, so <Katex tex="a" /> must be above the mean of 0, and only a little above, since 0.6 is only a little more than 0.5. An answer of <Katex tex="-1" /> (the report notes it was seen occasionally) fails this check: it is the cut-off with 0.6 of the area to its <em>right</em>, <Katex tex="\texttt{invNorm}(0.4,0,4)=-1.01\ldots" />.</>,
+    reason: <>Check the sign: 0.6 is a little more than half, so <Katex tex="a" /> must be a little above the mean of 0.</>,
+    more: <>An answer of <Katex tex="-1" /> (the report notes it was seen occasionally) fails this check: it is the cut-off with 0.6 of the area to its <em>right</em>, <Katex tex="\texttt{invNorm}(0.4,0,4)=-1.01\ldots" />. An answer of 2 (also seen occasionally) is too far out: <Katex tex="a=1.01\ldots" /> rounds to 1, and <Katex tex="\Pr(T\le2)\approx0.69" />, not 0.6.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 1 \text{ minute}}" />,
@@ -133,12 +134,12 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(T\le3\mid T>0)" />,
-    reason: <>Translate the words first. &ldquo;No later than three minutes after&rdquo; is <Katex tex="T\le3" />: it can be exactly 3, but not later. &ldquo;Given that it arrives after its scheduled delivery time&rdquo; is the condition <Katex tex="T>0" />, and a condition goes behind the bar.</>,
+    reason: <>Translate the words. &ldquo;No later than three minutes after&rdquo; is <Katex tex="T\le3" /> (exactly 3 is allowed). &ldquo;Given that it arrives after&rdquo; is the condition <Katex tex="T>0" />, which goes behind the bar.</>,
   },
   {
     working: <Katex display tex="= \frac{\Pr(0<T\le3)}{\Pr(T>0)}" />,
-    reason: <>Conditional probability: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. On top, <em>both</em> things must happen: late (<Katex tex="T>0" />) and no later than 3 (<Katex tex="T\le3" />), which is the band <Katex tex="0<T\le3" />. <Katex tex="\Pr(T\le3)" /> on its own would also count deliveries that arrived early, which the condition has already ruled out. That is the report&apos;s 0.77 over 0.5, an answer greater than 1.</>,
-    more: <>See the diagram below.</>,
+    reason: <>Conditional probability: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. On top, <em>both</em> must happen: late (<Katex tex="T>0" />) and no later than 3 (<Katex tex="T\le3" />), the band <Katex tex="0<T\le3" />.</>,
+    more: <>Putting <Katex tex="\Pr(T\le3)" /> on top gives the report&apos;s 0.77 over 0.5, an answer greater than 1; the Common Mistake box below explains why. The diagram below shows the band as a share of the late half.</>,
   },
   {
     working: <Katex display tex="\Pr(T>0) = 0.5" />,
@@ -150,11 +151,13 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{0.27337\ldots}{0.5} = 0.54674\ldots" />,
-    reason: <>Keep full precision until the last line. Rounding the numerator to 0.273 first gives 0.546, which the report notes was seen occasionally.</>,
+    reason: <>Keep full precision until the last line: rounding the numerator to 0.273 first gives 0.546.</>,
+    more: <>The report notes that 0.546 was seen occasionally: it comes from rounding too early.</>,
   },
   {
     working: <Katex display tex="\boxed{0.547}" />,
-    reason: <>To three decimal places. Sanity check: just over half of the late deliveries are at most 3 minutes late. That is plausible, since 3 minutes is less than one standard deviation (4 minutes) past the mean, where the curve is still high.</>,
+    reason: <>To three decimal places.</>,
+    more: <>Sanity check: just over half of the late deliveries are at most 3 minutes late. That is plausible, since 3 minutes is less than one standard deviation (4 minutes) past the mean, where the curve is still high.</>,
   },
 ]
 
@@ -164,8 +167,8 @@ const ROWS_C: WorkingRow[] = [
     reason: <>The given 46.48% (<Cas fn="normCdf">normCdf(−3, 2, 0, 4)</Cas> = 0.46483…). Read the interval relative to the mean of 0: it runs from <b>3 below</b> the mean to <b>2 above</b> it.</>,
   },
   {
-    working: <Katex display tex="X \sim \mathrm{N}\left(k,4^2\right), \quad \Pr(-4.5\le X\le0.5) = 0.4648\ldots" />,
-    reason: <>Let <Katex tex="X" /> be the delivery time under the improved model. Only the mean has changed. With <Katex tex="\sigma" /> still 4, the bell curve has exactly the same shape, just slid along the <Katex tex="t" />-axis, so any interval that sits the same way relative to the mean holds the same area.</>,
+    working: <Katex display tex="\begin{aligned}&X \sim \mathrm{N}\left(k,4^2\right)\\ &\Pr(-4.5\le X\le0.5) = 0.4648\ldots\end{aligned}" />,
+    reason: <>Let <Katex tex="X" /> be the improved delivery time. Same <Katex tex="\sigma" />, so the same-shaped curve, just slid along: an interval placed the same way relative to the mean holds the same area.</>,
   },
   {
     working: <Katex display tex="\Pr(k-3\le X\le k+2) = 0.4648\ldots" />,
@@ -173,11 +176,13 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(k-2\le X\le k+3) = 0.4648\ldots" />,
-    reason: <>A normal curve is symmetric about its mean, so the <em>mirror-image</em> interval, 2 below to 3 above, holds the same area too. This is the step that finds the second value; the report notes many students did not find <Katex tex="k=-2.5" />.</>,
+    reason: <>A normal curve is symmetric about its mean, so the <em>mirror-image</em> interval, 2 below to 3 above, holds the same area too. This gives the second value of <Katex tex="k" />.</>,
+    more: <>The report notes many students did not find <Katex tex="k=-2.5" />. The Common Mistake box below shows why stopping after the first placement misses it.</>,
   },
   {
     working: <Katex display tex="k-3=-4.5,\ \ k+2=0.5 \implies k=-1.5" />,
-    reason: <>Match the window <Katex tex="-4.5\le t\le0.5" /> to the first placement. Both ends give the same <Katex tex="k" /> because both intervals are 5 wide. This is the report&apos;s &ldquo;translation of 1.5 units in the direction of the negative <Katex tex="t" />-axis&rdquo;.</>,
+    reason: <>Match the window <Katex tex="-4.5\le t\le0.5" /> to the first placement. Both ends give the same <Katex tex="k" />, since both intervals are 5 wide.</>,
+    more: <>This is the report&apos;s &ldquo;translation of 1.5 units in the direction of the negative <Katex tex="t" />-axis&rdquo;.</>,
   },
   {
     working: <Katex display tex="k-2=-4.5,\ \ k+3=0.5 \implies k=-2.5" />,
@@ -185,23 +190,25 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Cas fn="normCdf">normCdf(−4.5, 0.5, −2.5, 4) = 0.46483…</Cas>,
-    reason: <>Check each value on the calculator (<Katex tex="k=-1.5" /> gives the same 0.46483…). You can also go straight to <Cas fn="solve">solve(normCdf(−4.5, 0.5, k, 4) = 0.4648, k)</Cas>, but a solver may return only one of the two roots, depending on the calculator and its starting point. The symmetry argument, or a graph of the area against <Katex tex="k" />, is what tells you to look for two.</>,
-    more: <>The lower graph in the diagram below is one like this.</>,
+    reason: <>Check each value on the calculator (<Katex tex="k=-1.5" /> gives the same 0.46483…).</>,
+    more: <>You can also go straight to <Cas fn="solve">solve(normCdf(−4.5, 0.5, k, 4) = 0.4648, k)</Cas>, but a solver may return only one of the two roots, depending on the calculator and its starting point. The symmetry argument, or a graph of the area against <Katex tex="k" /> (the lower graph in the diagram below), is what tells you to look for two.</>,
   },
   {
     working: <Katex display tex="\boxed{k = -1.5 \ \text{ or } \ k = -2.5}" />,
-    reason: <>Both are exact, so they are already correct to one decimal place. With 3 marks, working must be shown, and the report notes that drawing a diagram is a suitable method: sketch the curve over the window with its mean 3 in from the left end (<Katex tex="k=-1.5" />), and again with it 2 in from the left end (<Katex tex="k=-2.5" />).</>,
+    reason: <>Both are exact, so they are already correct to one decimal place.</>,
+    more: <>With 3 marks, working must be shown, and the report notes that drawing a diagram is a suitable method: sketch the curve over the window with its mean 3 in from the left end (<Katex tex="k=-1.5" />), and again with it 2 in from the left end (<Katex tex="k=-2.5" />).</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="X = \text{number on time or earlier}, \quad X \sim \mathrm{Bi}(8,0.85)" />,
-    reason: <>Eight deliveries, each independently on time (or earlier) or not, with the same probability 0.85 each time: a binomial count. Count the outcome that 0.85 describes, so <Katex tex="p=0.85" />, not 0.15.</>,
+    working: <Katex display tex="\begin{aligned}&X = \text{number on time or earlier}\\ &X \sim \mathrm{Bi}(8,0.85)\end{aligned}" />,
+    reason: <>Eight independent deliveries, each on time (or earlier) with the same probability 0.85: a binomial count. Count the outcome 0.85 describes, so <Katex tex="p=0.85" />, not 0.15.</>,
   },
   {
     working: <Katex display tex="\text{fewer than half of eight} \implies X<4 \implies X\le3" />,
-    reason: <>Half of 8 is 4, and &ldquo;fewer than&rdquo; leaves 4 itself out. <Katex tex="X" /> is a count, so <Katex tex="X<4" /> is the same as <Katex tex="X\le3" />. The report&apos;s common incorrect answer used <Katex tex="X\le4" />.</>,
+    reason: <>Half of 8 is 4, and &ldquo;fewer than&rdquo; leaves 4 itself out. <Katex tex="X" /> is a count, so <Katex tex="X<4" /> is the same as <Katex tex="X\le3" />.</>,
+    more: <>The report&apos;s common incorrect answer, <Katex tex="\Pr(X\le4)=0.021" />, includes the bar at 4; the Common Mistake boxes below cover it and <Katex tex="p=0.15" />.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(8, 0.85, 0, 3)</Cas>,
@@ -220,15 +227,17 @@ const ROWS_D: WorkingRow[] = [
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(\text{one or more late}) = 1-\Pr(\text{none late})" />,
-    reason: <>&ldquo;Not on time or earlier&rdquo; means late. &ldquo;One or more late&rdquo; covers 1, 2, …, <Katex tex="n" /> late: <Katex tex="n" /> separate cases. Its opposite, &ldquo;none late&rdquo;, is a single case, so work with the complement.</>,
+    reason: <>&ldquo;Not on time or earlier&rdquo; means late. &ldquo;One or more late&rdquo; is <Katex tex="n" /> separate cases (1, 2, …, <Katex tex="n" /> late); its opposite, &ldquo;none late&rdquo;, is one case, so use the complement.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{none late}) = \Pr(\text{all on time}) = 0.85^n" />,
-    reason: <>None late means every one of the <Katex tex="n" /> deliveries is on time or earlier. They are independent, so multiply <Katex tex="n" /> factors of 0.85. (Equivalently, with <Katex tex="L\sim\mathrm{Bi}(n,0.15)" /> the number late, <Katex tex="\Pr(L=0)=\binom{n}{0}0.15^0\,0.85^n=0.85^n" />.)</>,
+    reason: <>None late means all <Katex tex="n" /> deliveries are on time or earlier. They are independent, so multiply <Katex tex="n" /> factors of 0.85.</>,
+    more: <>Equivalently, with <Katex tex="L\sim\mathrm{Bi}(n,0.15)" /> the number late, <Katex tex="\Pr(L=0)=\binom{n}{0}0.15^0\,0.85^n=0.85^n" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(\text{one or more late}) = 1-0.85^n}" />,
-    reason: <>Check with <Katex tex="n=1" />: a single delivery is late with probability 0.15, and <Katex tex="1-0.85^1=0.15" />. The report&apos;s common incorrect answer, <Katex tex="1-0.15^n" />, fails this check (it gives 0.85).</>,
+    reason: <>Check with <Katex tex="n=1" />: a single delivery is late with probability 0.15, and <Katex tex="1-0.85^1=0.15" />.</>,
+    more: <>The report&apos;s common incorrect answer, <Katex tex="1-0.15^n" />, fails this check; the Common Mistake box below says which event it actually describes.</>,
   },
 ]
 
@@ -247,7 +256,8 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n \ge \frac{\log_e(0.05)}{\log_e(0.85)} = 18.43\ldots" />,
-    reason: <><Katex tex="\log_e(0.85)" /> is negative, because <Katex tex="0.85<1" />, and dividing by a negative number flips the inequality. The direction makes sense: more deliveries give more chances of a late one, so <Katex tex="n" /> has to be <em>at least</em> something. (Or <Cas fn="solve">solve(1 − 0.85^n ≥ 0.95, n)</Cas>.)</>,
+    reason: <><Katex tex="\log_e(0.85)" /> is negative, because <Katex tex="0.85<1" />, and dividing by a negative number flips the inequality.</>,
+    more: <>The direction makes sense: more deliveries give more chances of a late one, so <Katex tex="n" /> has to be <em>at least</em> something. On the calculator, <Cas fn="solve">solve(1 − 0.85^n ≥ 0.95, n)</Cas> gives the same bound.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}n=18&: \ 1-0.85^{18} = 0.946\ldots < 0.95\\ n=19&: \ 1-0.85^{19} = 0.954\ldots \ge 0.95\end{aligned}" />,
@@ -255,30 +265,33 @@ const ROWS_EII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 19}" />,
-    reason: <>Round <em>up</em>, not to the nearest integer: <Katex tex="n\ge18.43\ldots" /> asks for the first whole number past 18.43. The report notes some students left their answer as 18.43 or rounded down to 18.</>,
+    reason: <>Round <em>up</em>, not to the nearest integer: <Katex tex="n\ge18.43\ldots" /> asks for the first whole number past 18.43.</>,
+    more: <>The report notes some students left their answer as 18.43 or rounded down to 18, and that 2 was a common incorrect answer, from solving <Katex tex="1-0.15^n>0.95" />. The Common Mistake boxes below take each in turn.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{array}{lcl}\text{before 4 pm}: \ 1-y & \longrightarrow & \text{on time}: \ 0.85\\[2pt] \text{after 4 pm}: \ y & \longrightarrow & \text{on time}: \ x\end{array}" />,
-    reason: <>A tree diagram in two stages: first <em>when</em> the delivery is made (after 4 pm with probability <Katex tex="y" />, so before 4 pm with <Katex tex="1-y" />), then whether it is on time. Before 4 pm the company&apos;s claim holds, so 0.85; after 4 pm it is <Katex tex="x" />. The report notes students who used a tree diagram were generally successful.</>,
+    reason: <>A tree diagram in two stages: first <em>when</em> the delivery is made (after 4 pm: <Katex tex="y" />; before: <Katex tex="1-y" />), then whether it is on time (0.85 before 4 pm, by the claim; <Katex tex="x" /> after).</>,
+    more: <>The report notes students who used a tree diagram were generally successful.</>,
   },
   {
     working: <Katex display tex="0.85(1-y)+xy = 0.75" />,
-    reason: <>&ldquo;Overall&rdquo; means across all deliveries, before and after 4 pm together. Multiply along each on-time branch and add the two branches (the law of total probability). The result is a weighted average of 0.85 and <Katex tex="x" />, weighted by how many deliveries fall in each group.</>,
+    reason: <>&ldquo;Overall&rdquo; means across all deliveries. Multiply along each on-time branch and add the two branches (the law of total probability).</>,
   },
   {
-    working: <Katex display tex="0.85-0.85y+xy = 0.75 \implies y(0.85-x) = 0.1" />,
+    working: <Katex display tex="\begin{aligned}&0.85-0.85y+xy = 0.75\\ &\implies y(0.85-x) = 0.1\end{aligned}" />,
     reason: <>Expand, then collect the <Katex tex="y" /> terms.</>,
   },
   {
     working: <Katex display tex="y = \frac{0.1}{0.85-x} = \frac{2}{17-20x}" />,
-    reason: <>Multiplying top and bottom by 20 gives the report&apos;s form. Since <Katex tex="x\le0.7<0.85" />, the denominator is positive. The analyst doesn&apos;t give one value of <Katex tex="x" />, only <Katex tex="0.3\le x\le0.7" />, so <Katex tex="y" /> isn&apos;t one number either: it has a range of values, and the question wants its ends.</>,
+    reason: <>Multiplying top and bottom by 20 clears the decimals. <Katex tex="x" /> is only known to lie in <Katex tex="[0.3,0.7]" />, so <Katex tex="y" /> has a range of values: find its ends.</>,
   },
   {
     working: <Katex display tex="x \uparrow \implies 0.85-x \downarrow \implies y \uparrow" />,
-    reason: <>As <Katex tex="x" /> increases, the denominator shrinks, so <Katex tex="y" /> increases: <Katex tex="y" /> is an increasing function of <Katex tex="x" /> on <Katex tex="[0.3,0.7]" />, and its smallest and largest values come at the endpoints. In context: the worse the after-4 pm record, the fewer deliveries can be after 4 pm if the overall rate is still to reach 0.75.</>,
+    reason: <>Since <Katex tex="x\le0.7<0.85" />, the denominator is positive and shrinks as <Katex tex="x" /> grows, so <Katex tex="y" /> increases with <Katex tex="x" />: its minimum and maximum come at the endpoints.</>,
+    more: <>In context: the worse the after-4 pm record, the fewer deliveries can be after 4 pm if the overall rate is still to reach 0.75.</>,
   },
   {
     working: <Katex display tex="x = 0.3: \ y = \frac{0.1}{0.55} = \frac{2}{11}" />,
@@ -290,7 +303,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y_{\min} = \tfrac{2}{11}, \quad y_{\max} = \tfrac{2}{3}}" />,
-    reason: <>Exact values: the report notes some students gave approximate answers (about 0.18 and 0.67) when exact answers were required. Check the minimum: with <Katex tex="y=\tfrac{2}{11}" />, <Katex tex="0.85\times\tfrac{9}{11}+0.3\times\tfrac{2}{11}=\tfrac{8.25}{11}=0.75" />. Only 3% of students earned both marks.</>,
+    reason: <>No accuracy is asked for, so give exact values.</>,
+    more: <>The report notes some students gave approximate answers when exact answers were required. Check the minimum: with <Katex tex="y=\tfrac{2}{11}" />, <Katex tex="0.85\times\tfrac{9}{11}+0.3\times\tfrac{2}{11}=\tfrac{8.25}{11}=0.75" />.</>,
   },
 ]
 

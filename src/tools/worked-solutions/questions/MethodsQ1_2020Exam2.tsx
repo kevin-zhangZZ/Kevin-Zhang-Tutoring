@@ -153,8 +153,8 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="(0,4) \text{ on the graph} \implies f(0) = 4" />,
-    reason: <>To find an unknown constant, substitute a point you know is on the graph. The graph labels three points, but <Katex tex="(\pm2,0)" /> are the roots that the brackets <Katex tex="(x+2)^2" /> and <Katex tex="(x-2)^2" /> already build in: they lie on the curve whatever <Katex tex="a" /> is, so substituting them gives <Katex tex="0=0" />. The <Katex tex="y" />-intercept is the one point whose height depends on <Katex tex="a" />.</>,
-    more: <>Slide <Katex tex="a" /> in the diagram below.</>,
+    reason: <>To find <Katex tex="a" />, substitute a known point. Use the <Katex tex="y" />-intercept: the roots <Katex tex="(\pm2,0)" /> lie on the curve whatever <Katex tex="a" /> is, so they only give <Katex tex="0=0" />.</>,
+    more: <>The <Katex tex="y" />-intercept, <Katex tex="16a" />, is the one labelled height that depends on <Katex tex="a" />. Slide <Katex tex="a" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="a(0+2)^2(0-2)^2 = 4" />,
@@ -166,14 +166,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac14}" />,
-    reason: <>As required. Shown, not assumed — the report notes some students assumed <Katex tex="a=\tfrac14" /> in their proof rather than showing it.</>,
+    reason: <>As required. The value is found from the point, not assumed.</>,
+    more: <>The report notes some students assumed <Katex tex="a=\tfrac14" /> in their proof rather than showing it: substituting <Katex tex="\tfrac14" /> and checking that <Katex tex="f(0)=4" /> doesn't show that <Katex tex="a" /> must be <Katex tex="\tfrac14" />. Start from the point and finish at the value.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(x+2)^2(x-2)^2 = \bigl[(x+2)(x-2)\bigr]^2" />,
-    reason: <>Pairing the brackets first turns this into one difference of squares, then one square — far less error-prone than expanding two quadratics.</>,
+    reason: <>Pair the brackets first: <Katex tex="(x+2)(x-2)" /> is a difference of squares, so the whole thing is one square.</>,
+    more: <>Far less error-prone than expanding two quadratics and multiplying them out. On CAS, expand does it in one step; the report notes this can be done with technology, and that expanding by hand is time consuming and often leads to algebraic errors.</>,
   },
   {
     working: <Katex display tex="= \left(x^2-4\right)^2 = x^4-8x^2+16" />,
@@ -181,37 +183,41 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = \tfrac14\left(x^4-8x^2+16\right)" />,
-    reason: <>The <Katex tex="\tfrac14" /> must be distributed across <em>all three</em> terms — the report's common wrong answer keeps it on the first only.</>,
+    reason: <>The <Katex tex="\tfrac14" /> multiplies <em>all three</em> terms. The report's common wrong answer, <Katex tex="\tfrac14x^4-8x^2+16" />, applied it to the first only.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = \tfrac14x^4-2x^2+4}" />,
-    reason: <>So <Katex tex="b=-2" /> and <Katex tex="c=4" />, both integers ✓. The question doesn't ask you to state <Katex tex="b" /> and <Katex tex="c" /> separately; the rule in this form is the answer. Check: the constant term is <Katex tex="f(0)" />, and it is <Katex tex="4" />, the printed <Katex tex="y" />-intercept ✓.</>,
+    reason: <>So <Katex tex="b=-2" /> and <Katex tex="c=4" />, both integers ✓. Check: the constant term is <Katex tex="f(0)=4" />, the printed <Katex tex="y" />-intercept ✓.</>,
+    more: <>The question doesn't ask you to state <Katex tex="b" /> and <Katex tex="c" /> separately: the rule in this form is the answer.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \tfrac14x^4-2x^2+4" />,
-    reason: <>Differentiating part b. is much quicker than the product rule on the factorised form.</>,
+    reason: <>Differentiate the expanded form from part b: much quicker than the product rule on the factorised form.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = x^3-4x}" />,
-    reason: <>Or, factorised, <Katex tex="x(x-2)(x+2)" />. Check it against the printed graph: <Katex tex="f'" /> must be zero wherever <Katex tex="f" /> has a turning point, at <Katex tex="x=-2" />, <Katex tex="0" /> and <Katex tex="2" />, and a positive <Katex tex="x^3" /> term makes it rise to the right ✓. Write it as a <em>rule</em>, <Katex tex="f'(x)=\ldots" />: the report notes some students did not write a rule, and others solved <Katex tex="f'(x)=0" /> instead.</>,
+    reason: <>Written as a rule, <Katex tex="f'(x)=\ldots" />: the report notes some students did not write a rule, and others solved <Katex tex="f'(x)=0" /> instead.</>,
+    more: <>Factorised, it is <Katex tex="x(x-2)(x+2)" />; the report gives both forms. Check it against the printed graph: <Katex tex="f'" /> must be zero wherever <Katex tex="f" /> has a turning point, at <Katex tex="x=-2" />, <Katex tex="0" /> and <Katex tex="2" />, and a positive <Katex tex="x^3" /> term makes it rise to the right ✓.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{minimise } f'(x) \implies \text{solve } f''(x) = 0" />,
-    reason: <>"The minimum value of the graph of <Katex tex="f'" />" is the lowest <Katex tex="y" />-value on the <em>derivative</em> graph: the bottom of its trough on <Katex tex="(0,2)" />. At the bottom of a trough a graph is momentarily flat, so its own gradient is zero, and the gradient of <Katex tex="f'" /> is <Katex tex="f''" />. So differentiate once more and set it to zero, exactly as you would to find a turning point of <Katex tex="f" />, just one level up.</>,
+    reason: <>The lowest point of the <Katex tex="f'" /> graph is a turning point of <Katex tex="f'" />, so the gradient of <Katex tex="f'" />, which is <Katex tex="f''" />, is zero there.</>,
+    more: <>"The minimum value of the graph of <Katex tex="f'" />" is the lowest <Katex tex="y" />-value on the <em>derivative</em> graph: the bottom of its trough on <Katex tex="(0,2)" />. The diagram below shows this is also where <Katex tex="f" /> falls most steeply.</>,
   },
   {
     working: <Katex display tex="f''(x) = 3x^2-4 = 0 \implies x = \pm\frac{2}{\sqrt3} = \pm\frac{2\sqrt3}{3}" />,
-    reason: <>Only the positive root, <Katex tex="\tfrac{2\sqrt3}{3}\approx1.15" />, lies in <Katex tex="(0,2)" />. The negative one is the top of the printed hump on <Katex tex="(-2,0)" />.</>,
+    reason: <>Only the positive root, <Katex tex="\tfrac{2\sqrt3}{3}\approx1.15" />, lies in <Katex tex="(0,2)" />. <Katex tex="f'" /> is <Katex tex="0" /> at <Katex tex="x=0" /> and <Katex tex="x=2" /> and negative between (<Katex tex="f'(1)=-3" />), so this turning point is the minimum.</>,
+    more: <>The negative root is the top of the printed hump of <Katex tex="f'" /> on <Katex tex="(-2,0)" />.</>,
   },
   {
     working: <Katex display tex="f'\!\left(\tfrac{2\sqrt3}{3}\right) = \left(\tfrac{2\sqrt3}{3}\right)^3-4\left(\tfrac{2\sqrt3}{3}\right)" />,
-    reason: <>The question wants a value <em>of</em> <Katex tex="f'" />, so substitute into <Katex tex="f'" />, not into <Katex tex="f" />. (Substituting into <Katex tex="f" /> gives <Katex tex="\tfrac{16}{9}" />, the height of the curve at that point, which is a different thing.)</>,
+    reason: <>The question wants a value <em>of</em> <Katex tex="f'" />, so substitute into <Katex tex="f'" />, not into <Katex tex="f" />.</>,
   },
   {
     working: <Katex display tex="= \tfrac{8\cdot3\sqrt3}{27}-\tfrac{8\sqrt3}{3} = \tfrac{8\sqrt3}{9}-\tfrac{24\sqrt3}{9}" />,
@@ -219,116 +225,128 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-\frac{16\sqrt3}{9}}" />,
-    reason: <>An exact value, as the section's instructions require, and a <em>gradient</em>, not a coordinate pair or an <Katex tex="x" />-value. About <Katex tex="-3.08" />. Check: <Katex tex="f'" /> is <Katex tex="0" /> at both ends of <Katex tex="(0,2)" /> and dips below the axis in between, so this one turning point is the minimum; and it is negative, as it must be where <Katex tex="f" /> is going downhill.</>,
+    reason: <>The minimum value: an exact number, not the <Katex tex="x" />-value or a coordinate pair, which the report notes some students gave.</>,
+    more: <>About <Katex tex="-3.08" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = -f(x)+2" />,
-    reason: <>Compare the two rules: <Katex tex="h" /> is the rule for <Katex tex="f" /> with a minus sign in front and <Katex tex="+2" /> on the end. Read the transformations off in the order the rule is built: first negate <Katex tex="f(x)" />, then add 2.</>,
+    reason: <>Compare the rules: <Katex tex="h" /> is <Katex tex="f" /> with a minus sign in front, then <Katex tex="+2" /> on the end. Read the transformations off in that order.</>,
   },
   {
     working: <Katex display tex="f(x) \to -f(x): \text{ reflection in the } x\text{-axis}" />,
-    reason: <>Negating the <em>output</em> sends every point <Katex tex="(x,y)" /> to <Katex tex="(x,-y)" />: a flip over the <Katex tex="x" />-axis. Say "reflection <em>in</em> the <Katex tex="x" />-axis". A reflection in the <Katex tex="y" />-axis would negate the <em>input</em>, giving <Katex tex="f(-x)" />, which is just <Katex tex="f(x)" /> again because <Katex tex="f" /> is even.</>,
+    reason: <>Negating the <em>output</em> sends <Katex tex="(x,y)" /> to <Katex tex="(x,-y)" />: a reflection in the <Katex tex="x" />-axis (not the <Katex tex="y" />-axis, which negates the input).</>,
   },
   {
     working: <Katex display tex="-f(x) \to -f(x)+2: \text{ translation of } 2 \text{ units up}" />,
-    reason: <>Adding 2 to every output lifts the whole graph 2 units (in the positive <Katex tex="y" /> direction). Call it a <em>translation</em>, not a "shift" or "move".</>,
+    reason: <>Adding 2 to every output lifts the whole graph 2 units in the positive <Katex tex="y" /> direction.</>,
+    more: <>Call it a <em>translation</em>, not a "shift" or "move": the report notes some students could not give a suitable written description.</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{aligned}&\text{reflection in the } x\text{-axis, then}\\&\text{translation of } 2 \text{ units up}\end{aligned}}" />,
-    reason: <>The other valid order, which the report also gives, is translate 2 units <em>down</em> first, then reflect in the <Katex tex="x" />-axis: <Katex tex="-\bigl(f(x)-2\bigr)=-f(x)+2" />. The reflection flips the sign of anything already added, so the order and the direction go together, and "up 2, then reflect" lands on <Katex tex="-f(x)-2" /> instead.</>,
-    more: <>Play all four routes in the diagram below.</>,
+    reason: <>The report also gives: translate 2 units <em>down</em>, then reflect in the <Katex tex="x" />-axis, since <Katex tex="-\bigl(f(x)-2\bigr)=-f(x)+2" />.</>,
+    more: <>The reflection flips the sign of anything already added, so the order and the direction go together: "up 2, then reflect" lands on <Katex tex="-f(x)-2" /> instead. The report notes some students did not have the transformations in the correct order. Play all four routes in the diagram below.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = h(x) \iff f(x) = 2-f(x)" />,
-    reason: <>Graphs intersect where their rules give the same output. From part d, <Katex tex="h(x)=2-f(x)" />, so there is only one unknown quantity, <Katex tex="f(x)" />. (On CAS, with <Katex tex="f" /> and <Katex tex="h" /> defined: <Cas fn="solve">solve(f(x) = h(x), x)</Cas>.)</>,
+    reason: <>Graphs intersect where <Katex tex="f(x)=h(x)" />; on CAS, with <Katex tex="f" /> and <Katex tex="h" /> defined, <Cas fn="solve">solve(f(x) = h(x), x)</Cas>. By hand, use <Katex tex="h(x)=2-f(x)" /> from part d.</>,
   },
   {
     working: <Katex display tex="2f(x) = 2 \implies f(x) = 1" />,
-    reason: <>So the curves meet exactly where <Katex tex="f" /> crosses the line <Katex tex="y=1" />. That is no accident: <Katex tex="h" /> is <Katex tex="f" /> reflected in <Katex tex="y=1" />, and a point can only be its own mirror image if it is on the mirror.</>,
-    more: <>Drag P in the diagram below.</>,
+    reason: <>So the curves meet exactly where <Katex tex="f" /> crosses the line <Katex tex="y=1" />.</>,
+    more: <>That is no accident: <Katex tex="h(x)=2-f(x)" /> sends each height <Katex tex="y" /> to <Katex tex="2-y" />, so <Katex tex="h" /> is <Katex tex="f" /> reflected in <Katex tex="y=1" />, and a point can only be its own mirror image if it is on the mirror. Drag P in the diagram below.</>,
   },
   {
     working: <Katex display tex="\tfrac14\left(x^2-4\right)^2 = 1 \implies \left(x^2-4\right)^2 = 4" />,
-    reason: <>Using <Katex tex="(x+2)^2(x-2)^2=\bigl[(x+2)(x-2)\bigr]^2=\left(x^2-4\right)^2" /> from part b.</>,
+    reason: <>Using <Katex tex="(x+2)^2(x-2)^2=\left(x^2-4\right)^2" /> from part b.</>,
   },
   {
     working: <Katex display tex="x^2-4 = \pm2 \implies x^2 = 6 \text{ or } x^2 = 2" />,
-    reason: <>Taking the square root gives <em>both</em> signs, and each case gives two values of <Katex tex="x" />: that is where the four solutions come from. (The line <Katex tex="y=1" /> cuts the W shape four times.)</>,
+    reason: <>The square root gives <em>both</em> signs, and each case gives two values of <Katex tex="x" />: four solutions in all.</>,
+    more: <>The line <Katex tex="y=1" /> cuts the W shape four times, matching the four crossings in the figure.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -\sqrt6,\ -\sqrt2,\ \sqrt2,\ \sqrt6}" />,
-    reason: <>Exact values, as required. Numerically <Katex tex="\pm1.41" /> and <Katex tex="\pm2.45" />, matching the four crossings in the figure.</>,
+    reason: <>Exact values, as the report requires. Numerically <Katex tex="\pm1.41" /> and <Katex tex="\pm2.45" />.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{in the shaded regions } h(x) > f(x)" />,
-    reason: <>An area between curves is the integral of (upper − lower), so first decide which curve is on top. The shaded regions run between the crossings at <Katex tex="\sqrt2" /> and <Katex tex="\sqrt6" /> (part e.i), and there the M-shaped <Katex tex="h" /> is above: at <Katex tex="x=2" />, say, <Katex tex="h(2)=2" /> and <Katex tex="f(2)=0" />. So the integrand is <Katex tex="h-f" />, not <Katex tex="f-h" />.</>,
+    reason: <>Area is <Katex tex="\int(\text{upper}-\text{lower})\,dx" />. The right-hand region runs from <Katex tex="\sqrt2" /> to <Katex tex="\sqrt6" /> (part e.i), and <Katex tex="h" /> is on top: <Katex tex="h(2)=2" />, <Katex tex="f(2)=0" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\text{both regions are congruent}\\&\text{(both functions are even)}\end{aligned}" />,
-    reason: <>Only <Katex tex="x^2" /> appears in <Katex tex="f" /> and <Katex tex="h" />, so <Katex tex="f(-x)=f(x)" /> and <Katex tex="h(-x)=h(x)" />: the whole picture is symmetric in the <Katex tex="y" />-axis, and the left-hand region is the mirror image of the right-hand one. So integrate over the right-hand one and double it.</>,
+    reason: <>Only <Katex tex="x^2" /> appears in <Katex tex="f" /> and <Katex tex="h" />, so the picture is symmetric about the <Katex tex="y" />-axis: integrate the right-hand region and double it.</>,
+    more: <>Even means <Katex tex="f(-x)=f(x)" /> and <Katex tex="h(-x)=h(x)" />, so the left-hand region is the mirror image of the right-hand one and has the same area.</>,
   },
   {
     working: <Katex display tex="\boxed{2\int_{\sqrt2}^{\sqrt6}\bigl(h(x)-f(x)\bigr)dx}" />,
-    reason: <>Equivalently <Katex tex="\int_{-\sqrt6}^{-\sqrt2}(h-f)\,dx+\int_{\sqrt2}^{\sqrt6}(h-f)\,dx" />. Keep the brackets around <Katex tex="h(x)-f(x)" />, and there is no need to substitute the rules in — the report notes both led to errors.</>,
+    reason: <>Keep the brackets around <Katex tex="h(x)-f(x)" /> so the 2 multiplies both, and include the <Katex tex="dx" />.</>,
+    more: <>The report also gives <Katex tex="\int_{-\sqrt6}^{-\sqrt2}\bigl(h(x)-f(x)\bigr)dx+\int_{\sqrt2}^{\sqrt6}\bigl(h(x)-f(x)\bigr)dx" />. Leave the functions as <Katex tex="f" /> and <Katex tex="h" />: the report notes that writing out or substituting the full expressions often led to transcription and algebraic errors, and that functions given other names, such as <Katex tex="g(x)" />, must be defined.</>,
   },
 ]
 
 const ROWS_EIII: WorkingRow[] = [
   {
-    working: <Cas fn="nInt">2·∫(h(x) - f(x), x, √2, √6)</Cas>,
-    reason: <>Evaluate the integral from part e.ii, 2 and all, with <Katex tex="f" /> and <Katex tex="h" /> defined on the calculator so the rules don't have to be typed again. A decimal answer is asked for, so the calculator is the expected tool.</>,
+    working: <Cas fn="nInt">nInt(2(h(x) − f(x)), x, √2, √6)</Cas>,
+    reason: <>Evaluate the part e.ii integral, 2 and all, on CAS with <Katex tex="f" /> and <Katex tex="h" /> defined. A decimal is asked for, so CAS is the expected tool.</>,
   },
   {
     working: <Katex display tex="= \frac{112\sqrt2}{15}-\frac{16\sqrt6}{5} = 2.7210\ldots" />,
-    reason: <>The exact form, though the question asks only for a decimal. Each region on its own is <Katex tex="1.3605\ldots" />.</>,
+    reason: <>The exact value, for reference: the integral template (ctrl + I) gives it, while <Katex tex="\text{nInt}" /> gives only the decimal.</>,
   },
   {
     working: <Katex display tex="\boxed{2.72}" />,
-    reason: <>To two decimal places. The report notes some students forgot to multiply by 2, giving <Katex tex="1.36" />, and some gave <Katex tex="2.71" />. Check: each region fits inside a box about <Katex tex="1" /> wide (<Katex tex="\sqrt6-\sqrt2\approx1.04" />) and <Katex tex="2" /> tall (the biggest gap, at <Katex tex="x=2" />), area about <Katex tex="2" />; a rounded lens filling about two-thirds of it, <Katex tex="\approx1.36" />, is plausible, and two of them make <Katex tex="2.72" />.</>,
+    reason: <>Correct to two decimal places. Don't drop the 2: one region alone gives <Katex tex="1.36" />, which the report notes some students gave.</>,
+    more: <>The report also notes some students gave <Katex tex="2.71" />; <Katex tex="2.7210\ldots" /> rounds to <Katex tex="2.72" />. A size check: each region fits inside a box about <Katex tex="1" /> wide (<Katex tex="\sqrt6-\sqrt2\approx1.04" />) and <Katex tex="2" /> tall (the biggest gap, at <Katex tex="x=2" />), area about <Katex tex="2" />; a rounded lens filling about two-thirds of it, <Katex tex="\approx1.36" />, is plausible, and two of them make <Katex tex="2.72" />.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="D = |h(x)-f(x)|" />,
-    reason: <>The vertical distance at <Katex tex="x" /> is the length of the vertical segment joining the two graphs: upper minus lower. But the upper curve changes at every crossing (<Katex tex="\pm\sqrt2" />, <Katex tex="\pm\sqrt6" />): <Katex tex="h" /> is on top inside the shaded regions, <Katex tex="f" /> everywhere else. The absolute value covers both cases at once.</>,
+    reason: <>Vertical distance is upper minus lower, but the upper curve changes at every crossing. The absolute value covers both cases at once.</>,
+    more: <><Katex tex="h" /> is on top inside the shaded regions, between the crossings at <Katex tex="\pm\sqrt2" /> and <Katex tex="\pm\sqrt6" />; <Katex tex="f" /> is on top everywhere else.</>,
   },
   {
     working: <Katex display tex="D \le 2 \iff -2 \le h(x)-f(x) \le 2" />,
-    reason: <>"At most 2" means <Katex tex="D\le2" />, with 2 itself allowed. <Katex tex="|u|\le2" /> means <Katex tex="u" /> is within 2 of zero on either side, so <Katex tex="h-f" /> may be anywhere from <Katex tex="-2" /> (where <Katex tex="f" /> is on top) to <Katex tex="2" /> (where <Katex tex="h" /> is on top). This is the report's method; on CAS, <Cas fn="solve">solve(−2 ≤ h(x) − f(x) ≤ 2, x)</Cas>.</>,
+    reason: <>"At most 2" means <Katex tex="D\le2" />, 2 included. On CAS: <Cas fn="solve">solve(h(x) − f(x) ≥ −2 and h(x) − f(x) ≤ 2, x)</Cas>.</>,
+    more: <><Katex tex="|u|\le2" /> means <Katex tex="u" /> is within 2 of zero on either side, so <Katex tex="h-f" /> may be anywhere from <Katex tex="-2" /> (where <Katex tex="f" /> is on top) to <Katex tex="2" /> (where <Katex tex="h" /> is on top). This is the report's method. The rows below do the same by hand.</>,
   },
   {
     working: <Katex display tex="h(x)-f(x) = 2-2f(x) = 2-\tfrac12\left(x^2-4\right)^2" />,
     reason: <>By hand: <Katex tex="h=2-f" /> (part d), and <Katex tex="f(x)=\tfrac14\left(x^2-4\right)^2" /> (part b).</>,
+    more: <>On the exam the CAS solve above, with <Katex tex="f" /> and <Katex tex="h" /> defined, is enough: the report's general comments say there is no need to write out the entire expression for the functions, naming 1f. These rows show why the answer is what it is.</>,
   },
   {
-    working: <Katex display tex="\text{right inequality: } 2-\tfrac12\left(x^2-4\right)^2 \le 2 \text{, always true}" />,
-    reason: <>A square is never negative, so <Katex tex="h-f" /> never exceeds 2. In the picture: inside the shaded regions the gap is at most 2 everywhere (it equals 2 only at <Katex tex="x=\pm2" />, where <Katex tex="f=0" /> and <Katex tex="h=2" />), so all of each shaded region is in the answer. Only the left inequality cuts anything off.</>,
+    working: <Katex display tex="\begin{aligned}&\text{right: } 2-\tfrac12\left(x^2-4\right)^2 \le 2\\&\text{always true}\end{aligned}" />,
+    reason: <>A square is never negative, so <Katex tex="h-f" /> never exceeds 2. Only the left inequality cuts anything off.</>,
+    more: <>In the picture: inside the shaded regions the gap is at most 2 everywhere (it equals 2 only at <Katex tex="x=\pm2" />, where <Katex tex="f=0" /> and <Katex tex="h=2" />), so all of each shaded region is in the answer.</>,
   },
   {
     working: <Katex display tex="2-\tfrac12\left(x^2-4\right)^2 \ge -2 \implies \left(x^2-4\right)^2 \le 8" />,
-    reason: <>The left inequality: where <Katex tex="f" /> is on top, the gap <Katex tex="f-h" /> must not exceed 2. (The same inequality drops out quicker from the mirror picture of e.i: <Katex tex="f" /> and <Katex tex="h" /> are equal distances from <Katex tex="y=1" />, so <Katex tex="D=2|f(x)-1|" />, and <Katex tex="D\le2 \iff 0\le f(x)\le2" />, i.e. <Katex tex="\tfrac14\left(x^2-4\right)^2\le2" />.)</>,
+    reason: <>The left inequality: where <Katex tex="f" /> is on top, the gap <Katex tex="f-h" /> must not exceed 2. Subtract 2, then multiply by <Katex tex="-2" />, reversing the sign.</>,
+    more: <>The same inequality drops out quicker from the mirror picture of e.i: <Katex tex="f" /> and <Katex tex="h" /> are equal distances from <Katex tex="y=1" />, so <Katex tex="D=2|f(x)-1|" />, and <Katex tex="D\le2 \iff 0\le f(x)\le2" />, i.e. <Katex tex="\tfrac14\left(x^2-4\right)^2\le2" />.</>,
   },
   {
     working: <Katex display tex="\left|x^2-4\right| \le 2\sqrt2 \implies 4-2\sqrt2 \le x^2 \le 4+2\sqrt2" />,
-    reason: <>Taking square roots: <Katex tex="x^2-4" /> lies between <Katex tex="-2\sqrt2" /> and <Katex tex="2\sqrt2" />.</>,
+    reason: <>Taking square roots (<Katex tex="\sqrt8=2\sqrt2" />): <Katex tex="x^2-4" /> lies between <Katex tex="-2\sqrt2" /> and <Katex tex="2\sqrt2" />.</>,
   },
   {
     working: <Katex display tex="\sqrt{4-2\sqrt2} \le |x| \le \sqrt{4+2\sqrt2}" />,
-    reason: <>A range of <Katex tex="x^2" /> that doesn't include 0 gives two separate, symmetric intervals in <Katex tex="x" />, one on each side of the <Katex tex="y" />-axis. The middle is excluded: at <Katex tex="x=0" />, <Katex tex="D=|{-2}-4|=6" />.</>,
+    reason: <>A range of <Katex tex="x^2" /> that excludes 0 gives two symmetric intervals in <Katex tex="x" />. The middle is out: at <Katex tex="x=0" />, <Katex tex="D=|{-2}-4|=6" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{-2.61 \le x \le -1.08 \ \text{ or } \ 1.08 \le x \le 2.61}" />,
-    reason: <>To two decimal places as asked, from <Katex tex="\pm\sqrt{4\pm2\sqrt2}" /> (the report notes some students gave exact values instead). Closed intervals, because "at most" includes 2. The answer runs past the shaded regions (<Katex tex="\sqrt2\approx1.41" /> to <Katex tex="\sqrt6\approx2.45" />) at both ends, because just outside a crossing the gap is still small. Only 23% of students scored both marks.</>,
+    working: <Katex display tex="\boxed{\begin{aligned}&-2.61 \le x \le -1.08\ \text{ or}\\&1.08 \le x \le 2.61\end{aligned}}" />,
+    reason: <>To two decimal places, as asked (the report notes some students gave exact values instead), with <Katex tex="\le" /> because "at most" includes 2.</>,
+    more: <>From <Katex tex="\pm\sqrt{4\pm2\sqrt2}" />. The answer runs past the shaded regions (<Katex tex="\sqrt2\approx1.41" /> to <Katex tex="\sqrt6\approx2.45" />) at both ends, because just outside a crossing the gap is still small. Only 23% of students scored both marks; the report notes others had incorrect inequality signs, extra solutions, or only the values of <Katex tex="x" /> for which <Katex tex="D=2" />.</>,
   },
 ]
 
@@ -391,8 +409,8 @@ export default function MethodsQ1_2020Exam2() {
           working={<Katex display tex="f(x) = \tfrac14x^4-8x^2+16" />}
         >
           The <Katex tex="\tfrac14" /> multiplies the whole bracket <Katex tex="x^4-8x^2+16" />, so every term gets it:{' '}
-          <Katex tex="-8x^2\times\tfrac14=-2x^2" /> and <Katex tex="16\times\tfrac14=4" />. The quick catch: the constant
-          term is <Katex tex="f(0)" />, the <Katex tex="y" />-intercept. This version gives <Katex tex="f(0)=16" />, but the
+          <Katex tex="-8x^2\times\tfrac14=-2x^2" /> and <Katex tex="16\times\tfrac14=4" />. This version gives the
+          constant term <Katex tex="f(0)=16" />, but the
           graph (and part a) says <Katex tex="4" />.
         </WrongMethod>
       </PartCard>

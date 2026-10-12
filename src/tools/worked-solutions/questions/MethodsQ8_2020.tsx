@@ -25,19 +25,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X = \text{number of defective items in a box of 25}" />,
-    reason: <>Name the random variable first: the count of defective items in <em>one box</em>. That keeps the item (probability <Katex tex="p" />) and the box (the count <Katex tex="X" />) apart, which is where this question catches people.</>,
+    reason: <>Name the random variable: the count of defective items in <em>one box</em>, not whether one item is defective.</>,
+    more: <>That keeps the item (probability <Katex tex="p" />) and the box (the count <Katex tex="X" />) apart, which is where this question catches people.</>,
   },
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(25,\,p)" />,
-    reason: <>The question says to treat it as binomial: 25 items (trials), each defective or not, each with the same unknown probability <Katex tex="p" />.</>,
+    reason: <>The question says to treat it as binomial: 25 items (trials), each defective or not, with the same unknown probability <Katex tex="p" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{E}(X) = np = 25p = 1.4" />,
-    reason: <>The mean of a binomial is <Katex tex="np" />: 25 items, each defective with probability <Katex tex="p" />, give <Katex tex="25p" /> defective items per box on average. The given mean therefore pins down <Katex tex="p" />.</>,
+    reason: <>The mean of a binomial is <Katex tex="np" />, and the given mean of 1.4 per box pins down <Katex tex="p" />.</>,
+    more: <>25 items, each defective with probability <Katex tex="p" />, give <Katex tex="25p" /> defective items per box on average.</>,
   },
   {
     working: <Katex display tex="p = \frac{1.4}{25} = 0.056" />,
-    reason: <>This is option C, but it is the probability that a <em>single item</em> is defective: a stepping stone, not the answer. The question asks about a whole box.</>,
+    reason: <>This is the probability that a <em>single item</em> is defective: a stepping stone, not the answer. The question asks about a whole box.</>,
   },
   {
     working: <Katex display tex="X \sim \mathrm{Bi}(25,\,0.056)" />,
@@ -45,7 +47,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X>3) = \Pr(X\ge4) = 1-\Pr(X\le3)" />,
-    reason: <>&ldquo;More than three&rdquo; means 4, 5, 6, … defective items. <Katex tex="X" /> is a count, so it only takes whole numbers: <Katex tex="X>3" /> and <Katex tex="X\ge4" /> are the same event, and 3 itself is <b>not</b> in it. The complement, &ldquo;at most 3&rdquo;, is four values instead of twenty-two.</>,
+    reason: <><Katex tex="X" /> only takes whole numbers, so &ldquo;more than three&rdquo; means 4, 5, 6, …: 3 itself is <b>not</b> included. Use the complement, &ldquo;at most 3&rdquo;.</>,
+    more: <><Katex tex="X>3" /> and <Katex tex="X\ge4" /> are the same event for a count. The complement is four values (0 to 3) instead of twenty-two (4 to 25).</>,
   },
   {
     working: (
@@ -54,11 +57,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 1 - 0.95150\ldots = 0.048496\ldots" />
       </>
     ),
-    reason: <>Or directly, <Cas fn="binomCdf">binomCdf(25, 0.056, 4, 25)</Cas>: the lower bound is 4, because both bounds are included. A lower bound of 3 gives <Katex tex="\Pr(X\ge3)\approx0.162" />, which is option <b>E</b>.</>,
+    reason: <>binomCdf from 0 to 3 gives <Katex tex="\Pr(X\le3)" />; subtract it from 1.</>,
+    more: <>Or directly, <Cas fn="binomCdf">binomCdf(25, 0.056, 4, 25)</Cas>: the lower bound is 4, because both bounds are included.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>3) \approx 0.048}" />,
-    reason: <>Correct to three decimal places. Matches option <b>B</b>. It&apos;s plausible that it&apos;s small: the mean is 1.4, so 4 or more defective items is well into the tail. The distractors are the wrong pieces of the same distribution: <b>E</b> is <Katex tex="\Pr(X\ge3)\approx0.162" />, <b>D</b> is the single value <Katex tex="\Pr(X=3)\approx0.114" />, <b>A</b> is the single value <Katex tex="\Pr(X=4)\approx0.037" />, and <b>C</b> is <Katex tex="p" /> itself.</>,
+    reason: <>Correct to three decimal places. Matches option <b>B</b>.</>,
+    more: <>It&apos;s plausible that it&apos;s small: the mean is 1.4, so 4 or more defective items is well into the tail. The distractors are the wrong pieces of the same distribution: <b>E</b> wrongly includes 3, giving <Katex tex="\Pr(X\ge3)\approx0.162" />, <b>D</b> is the single value <Katex tex="\Pr(X=3)\approx0.114" />, <b>A</b> is the single value <Katex tex="\Pr(X=4)\approx0.037" />, and <b>C</b> is <Katex tex="p" /> itself.</>,
   },
 ]
 

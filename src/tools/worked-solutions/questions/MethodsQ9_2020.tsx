@@ -43,11 +43,13 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_4^8 f(x)\,dx = 5" />,
-    reason: <>This is all we know about <Katex tex="f" />: the signed area between <Katex tex="y=f(x)" /> and the <Katex tex="x" />-axis from <Katex tex="x=4" /> to <Katex tex="x=8" /> is 5. With no rule for <Katex tex="f" />, there is nothing to antidifferentiate, so the way in is to see <Katex tex="y=f\big(2(x+2)\big)" /> as a transformed copy of <Katex tex="y=f(x)" /> and follow what happens to that area.</>,
+    reason: <>The signed area under <Katex tex="y=f(x)" /> from <Katex tex="x=4" /> to <Katex tex="x=8" /> is 5. There is no rule for <Katex tex="f" />, so treat <Katex tex="y=f\big(2(x+2)\big)" /> as a transformed copy of <Katex tex="y=f(x)" /> and track that area.</>,
+    more: <>This is all we know about <Katex tex="f" />: with no rule, there is nothing to antidifferentiate directly.</>,
   },
   {
     working: <Katex display tex="y=f(x) \;\to\; y=f(2x)" />,
-    reason: <>First the 2. It multiplies <Katex tex="x" />, so the new graph reaches every input twice as early: <Katex tex="f(2x)" /> takes the value <Katex tex="f(8)" /> at <Katex tex="x=4" />, not at <Katex tex="x=8" />. Each point <Katex tex="(x,\,y)" /> moves to <Katex tex="\left(\tfrac x2,\,y\right)" />, halfway to the <Katex tex="y" />-axis at the same height: a dilation by factor <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis.</>,
+    reason: <>The 2 multiplies <Katex tex="x" />, so each point <Katex tex="(x,\,y)" /> moves to <Katex tex="\left(\tfrac x2,\,y\right)" />: a dilation by factor <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis.</>,
+    more: <>The new graph reaches every input twice as early: <Katex tex="f(2x)" /> takes the value <Katex tex="f(8)" /> at <Katex tex="x=4" />, not at <Katex tex="x=8" />. So every point moves halfway to the <Katex tex="y" />-axis at the same height: a squash, not a stretch.</>,
   },
   {
     working: (
@@ -56,11 +58,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\int_2^4 f(2x)\,dx = \tfrac12\times5 = \tfrac52" />
       </>
     ),
-    reason: <>Picture the area as thin vertical strips. Every strip keeps its height (the heights are the same values of <Katex tex="f" />), but its width is halved, so the total area is halved. The ends move to <Katex tex="\tfrac42=2" /> and <Katex tex="\tfrac82=4" />. This is the report&apos;s middle line.</>,
+    reason: <>The ends move to <Katex tex="\tfrac42=2" /> and <Katex tex="\tfrac82=4" />. Every thin vertical strip keeps its height but its width is halved, so the area is halved.</>,
+    more: <>This is the examiner&apos;s report&apos;s step <Katex tex="\int_2^4 f(2x)\,dx=\tfrac52" />.</>,
   },
   {
     working: <Katex display tex="y=f(2x) \;\to\; y=f\big(2(x+2)\big)" />,
-    reason: <>Replacing <Katex tex="x" /> with <Katex tex="x+2" /> is a translation of 2 units in the negative <Katex tex="x" /> direction: the new graph does at <Katex tex="x" /> what the old one did at <Katex tex="x+2" />, two units further right.</>,
+    reason: <>Replacing <Katex tex="x" /> with <Katex tex="x+2" /> is a translation of 2 units in the negative <Katex tex="x" /> direction.</>,
+    more: <>The new graph does at <Katex tex="x" /> what the old one did at <Katex tex="x+2" />, two units further right, so everything happens 2 units earlier.</>,
   },
   {
     working: (
@@ -69,7 +73,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\int_0^2 f\big(2(x+2)\big)\,dx = \int_2^4 f(2x)\,dx = \tfrac52" />
       </>
     ),
-    reason: <>A translation slides the region without changing its shape or size, so the area stays <Katex tex="\tfrac52" />. And <Katex tex="[2,4]" /> slides to <Katex tex="[0,2]" />, exactly the limits in the question. That is the check that the transformations were read correctly. (Reading it as <Katex tex="f(2x+4)" />, translate 4 left then dilate by <Katex tex="\tfrac12" />, also lands on <Katex tex="[0,2]" />. Either way there is one dilation by <Katex tex="\tfrac12" />, so the area is halved once.)</>,
+    reason: <>A translation slides the region without changing its area. And <Katex tex="[2,4]" /> slides onto <Katex tex="[0,2]" />, exactly the question&apos;s limits, which confirms the transformations were read correctly.</>,
+    more: <>Reading it as <Katex tex="f(2x+4)" />, translate 4 left then dilate by <Katex tex="\tfrac12" />, also lands on <Katex tex="[0,2]" />. Either way there is one dilation by <Katex tex="\tfrac12" />, so the area is halved once.</>,
   },
   {
     working: (
@@ -80,12 +85,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \tfrac12\big(F(8)-F(4)\big) = \tfrac12\times5" />
       </>
     ),
-    reason: <>The same answer by algebra, using only the chain rule. Let <Katex tex="F" /> be an antiderivative of <Katex tex="f" />, so the given integral says <Katex tex="F(8)-F(4)=5" />. Differentiating <Katex tex="\tfrac12F(2x+4)" /> gives back <Katex tex="f(2x+4)" />: the <Katex tex="\tfrac12" /> cancels the 2 the chain rule brings out, exactly as when you antidifferentiate <Katex tex="(2x+4)^n" /> and divide by 2. Then substitute the terminals: <Katex tex="x=2" /> gives <Katex tex="F(8)" />, <Katex tex="x=0" /> gives <Katex tex="F(4)" />. (Specialist students will recognise the substitution <Katex tex="u=2x+4" />.)</>,
+    reason: <>Check by algebra. With <Katex tex="F" /> an antiderivative of <Katex tex="f" />, the given integral says <Katex tex="F(8)-F(4)=5" />. The chain rule shows <Katex tex="\tfrac12F(2x+4)" /> is an antiderivative of <Katex tex="f(2x+4)" />.</>,
+    more: <>The <Katex tex="\tfrac12" /> cancels the 2 the chain rule brings out, exactly as when you antidifferentiate <Katex tex="(2x+4)^n" /> and divide by 2. Then substitute the terminals: <Katex tex="x=2" /> gives <Katex tex="F(8)" />, <Katex tex="x=0" /> gives <Katex tex="F(4)" />. (Specialist students will recognise the substitution <Katex tex="u=2x+4" />.)</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^2 f\big(2(x+2)\big)\,dx = \frac52}" />,
-    reason: <>Matches option <b>E</b>. Sanity check: <Katex tex="[0,2]" /> is half as wide as <Katex tex="[4,8]" />, and on it <Katex tex="f\big(2(x+2)\big)" /> takes exactly the heights <Katex tex="f" /> takes on <Katex tex="[4,8]" />, so the area has to be half of 5. Option <b>B</b> (<Katex tex="10" />) is 5 multiplied by 2 instead of divided by 2, which is what reading the 2 as a stretch gives.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Matches option <b>E</b>: half of 5, as <Katex tex="[0,2]" /> is half as wide as <Katex tex="[4,8]" /> with the same heights.</>,
+    more: <>Option <b>B</b> (<Katex tex="10" />) is 5 multiplied by 2 instead of divided by 2, which is what reading the 2 as a stretch gives; the Common Mistake below works through it. Options <b>A</b> (<Katex tex="12" />), <b>C</b> (<Katex tex="8" />) and <b>D</b> (<Katex tex="\tfrac12" />) are neither <Katex tex="\tfrac12\times5" /> nor <Katex tex="2\times5" />, the only results a dilation by <Katex tex="\tfrac12" /> or <Katex tex="2" /> could give, so no reading of the transformations leads to them: if you chose one, rework the steps above.</>,
   },
 ]
 

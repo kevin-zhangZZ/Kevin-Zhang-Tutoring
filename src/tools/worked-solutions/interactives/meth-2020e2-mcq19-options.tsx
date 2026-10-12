@@ -82,7 +82,7 @@ export default function Options() {
     ),
     E: (
       <Notice tone="warn">
-        <M>1 - p(w)</M> gives a number for every <M>w</M>, but they are all close to 1 and add to 20, so this isn&apos;t a
+        <M>1 - p(w)</M> gives a number for every <M>w</M>, but each is at least 0.76 and together they add to 20, so this isn&apos;t a
         probability function (its values would add to 1). &ldquo;Not rolled&rdquo; changes <i>which outcome you count</i>; it
         doesn&apos;t take a complement. <M>1 - p(3) \approx 0.76</M> is the chance of <i>any number of sixes except three</i>, not
         of three non-sixes.

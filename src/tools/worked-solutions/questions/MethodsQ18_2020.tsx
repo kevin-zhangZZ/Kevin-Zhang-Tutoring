@@ -48,11 +48,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Sketch first: the range is the set of heights the graph reaches, and a sketch shows them at a glance.{' '}
+        Sketch first: the range is the set of heights the graph reaches. With <Katex tex="a>0" /> the branches sit top
+        right and bottom left of <Katex tex="(0,b)" />, like <Katex tex="y=\frac1x" />.
+      </>
+    ),
+    more: (
+      <>
         <Katex tex="y=\frac{a}{x}+b" /> is the hyperbola <Katex tex="y=\frac1x" /> dilated by factor <Katex tex="a" /> from
-        the <Katex tex="x" />-axis and translated <Katex tex="b" /> units up (down, if <Katex tex="b<0" />). With{' '}
-        <Katex tex="a>0" /> the two branches sit where <Katex tex="\frac1x" />&apos;s do: top right and bottom left of the
-        point <Katex tex="(0,b)" /> where the asymptotes cross.
+        the <Katex tex="x" />-axis and translated <Katex tex="b" /> units up (down, if <Katex tex="b<0" />), so its
+        asymptotes cross at <Katex tex="(0,b)" />.
       </>
     ),
   },
@@ -65,10 +69,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Now the ends of the domain. The square brackets in <Katex tex="[-a,0)\cup(0,a]" /> mean <Katex tex="x=-a" /> and{' '}
-        <Katex tex="x=a" /> are in the domain, so <Katex tex="(-a,\,b-1)" /> and <Katex tex="(a,\,b+1)" /> are points of the
-        graph: closed dots. Notice the <Katex tex="a" />&apos;s cancel. The domain ends exactly where{' '}
-        <Katex tex="\frac{a}{x}=\pm1" />, which is why none of the options mention <Katex tex="a" />.
+        The square brackets in <Katex tex="[-a,0)\cup(0,a]" /> put <Katex tex="x=\pm a" /> in the domain, so these end
+        points are on the graph: closed dots.
+      </>
+    ),
+    more: (
+      <>
+        Notice the <Katex tex="a" />&apos;s cancel. The domain ends exactly where <Katex tex="\frac{a}{x}=\pm1" />, which is
+        why none of the options mention <Katex tex="a" />.
       </>
     ),
   },
@@ -81,9 +89,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="h'(x)=-\frac{a}{x^2}<0" />, so each branch is decreasing. On the right-hand piece, as{' '}
-        <Katex tex="x\to0^+" /> the fraction <Katex tex="\frac{a}{x}" /> grows without bound, so the graph climbs up the
-        asymptote forever; at the other end it comes down to its closed end point, height <Katex tex="b+1" />.
+        <Katex tex="h'(x)=-\frac{a}{x^2}<0" />, so each branch decreases. The right piece climbs up the asymptote as{' '}
+        <Katex tex="x\to0^+" /> and comes down to its closed end, height <Katex tex="b+1" />.
       </>
     ),
   },
@@ -96,9 +103,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The left-hand piece starts at its closed end point, height <Katex tex="b-1" /> at <Katex tex="x=-a" />, and falls
-        without bound as <Katex tex="x\to0^-" />. Nothing on either branch has a height strictly between{' '}
-        <Katex tex="b-1" /> and <Katex tex="b+1" />.
+        The left piece starts at its closed end, height <Katex tex="b-1" />, and falls without bound as{' '}
+        <Katex tex="x\to0^-" />. No height strictly between <Katex tex="b-1" /> and <Katex tex="b+1" /> is reached.
       </>
     ),
   },
@@ -106,12 +112,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{Range} = (-\infty,\,b-1]\cup[b+1,\,\infty)}" />,
     reason: (
       <>
-        Matches option <b>D</b>. Check with the report&apos;s example, <Katex tex="a=2" />, <Katex tex="b=-3" /> (
-        <Katex tex="y=\frac2x-3" />): the ends are <Katex tex="(-2,-4)" /> and <Katex tex="(2,-2)" />, and the range is{' '}
-        <Katex tex="(-\infty,-4]\cup[-2,\infty)" />, which is D with <Katex tex="b=-3" />. Option <b>C</b> has the right
-        shape but open brackets, leaving out <Katex tex="b-1" /> and <Katex tex="b+1" />, which <Katex tex="h" /> does take
-        at <Katex tex="x=-a" /> and <Katex tex="x=a" />. Options <b>A</b> and <b>B</b> are the gap itself: apart from
-        A&apos;s two end values, <Katex tex="h" /> takes none of those heights. Option <b>E</b> runs through the gap too.
+        Matches option <b>D</b>: square brackets, because <Katex tex="h" /> does take the values <Katex tex="b\pm1" />.
+      </>
+    ),
+    more: (
+      <>
+        Check with the report&apos;s example, <Katex tex="a=2" />, <Katex tex="b=-3" /> (<Katex tex="y=\frac2x-3" />): the ends
+        are <Katex tex="(-2,-4)" /> and <Katex tex="(2,-2)" />, and the range is <Katex tex="(-\infty,-4]\cup[-2,\infty)" />,
+        which is D with <Katex tex="b=-3" />. Option <b>C</b> (round brackets) and option <b>A</b> (the interval between the
+        end heights) are the two Common Mistakes below. Option <b>B</b> is the gap itself, heights <Katex tex="h" /> never
+        takes, and option <b>E</b> runs through that gap too.
       </>
     ),
   },
@@ -166,11 +176,10 @@ export default function MethodsQ18_2020() {
             }
           >
             <p>
-              The only <Katex tex="x" /> missing from the domain is <Katex tex="0" />, the vertical asymptote. There the
-              graph has no end point at all: it runs off to <Katex tex="\pm\infty" />, which is why <Katex tex="\infty" />{' '}
-              gets a round bracket. The other two ends, <Katex tex="x=-a" /> and <Katex tex="x=a" />, are in the domain
-              (square brackets), so <Katex tex="h(-a)=b-1" /> and <Katex tex="h(a)=b+1" /> are values <Katex tex="h" />{' '}
-              really takes.
+              Option C treats <Katex tex="b-1" /> and <Katex tex="b+1" /> as if they were left out, like the asymptote.
+              But the only <Katex tex="x" /> missing from the domain is <Katex tex="0" />; <Katex tex="x=-a" /> and{' '}
+              <Katex tex="x=a" /> are in it, so <Katex tex="h(-a)=b-1" /> and <Katex tex="h(a)=b+1" /> are values{' '}
+              <Katex tex="h" /> really takes.
             </p>
             <p>
               Next time, before reading off a range, mark each end of your sketch as a closed or open dot from the

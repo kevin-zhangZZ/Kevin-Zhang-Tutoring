@@ -113,7 +113,7 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{north} \implies x \text{ stays at } 50" />,
-    reason: <>The vertical axis points north, so swimming north means moving straight up the page: the swimmer&apos;s <Katex tex="x" />-coordinate stays at P&apos;s <Katex tex="50" /> and only <Katex tex="y" /> changes. They land on the north bank directly above P.</>,
+    reason: <>North is straight up the page, so <Katex tex="x" /> stays at P&apos;s <Katex tex="50" />: the swimmer lands on the north bank directly above P.</>,
   },
   {
     working: <Katex display tex="f_1(50) = 20\cos\!\left(\tfrac\pi2\right)+40 = 40" />,
@@ -121,14 +121,15 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{40-30 = 10\ \text{m}}" />,
-    reason: <>A vertical swim is just the difference in heights. No distance formula is needed (the report notes some students used it, which was not efficient). In fact <Katex tex="f_1(x)-f_2(x)=10" /> for every <Katex tex="x" />, because the two rules differ only in their constant term: every north–south crossing of this river is 10 m, wherever you start. Parts d., e. and f. all lean on this.</>,
+    reason: <>A vertical swim is just the difference in heights. In fact <Katex tex="f_1(x)-f_2(x)=10" /> for every <Katex tex="x" />: the rules differ only in their constant term.</>,
+    more: <>No distance formula is needed; the report notes some students used it, which was not efficient. So every north–south crossing of this river is 10 m, wherever you start; parts d., e. and f. all lean on this.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{east} \implies y \text{ stays at } 30" />,
-    reason: <>East is the positive <Katex tex="x" />-direction, so the swim is horizontal: the swimmer stays at P&apos;s height, <Katex tex="y=30" />, the whole way. They reach the north bank where the bank itself is at height 30.</>,
+    reason: <>East is the positive <Katex tex="x" />-direction, so the swimmer stays at P&apos;s height, <Katex tex="y=30" />, and lands where the north bank is at height 30.</>,
   },
   {
     working: <Katex display tex="f_1(x) = 30 \implies \cos\!\left(\tfrac{\pi x}{100}\right) = -\tfrac12" />,
@@ -136,36 +137,41 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(f1(x) = 30, x) | 50 ≤ x ≤ 100</Cas>,
-    reason: <>On CAS, with <Katex tex="f_1" /> defined first. In <Katex tex="[0,200]" /> the equation has two solutions, <Katex tex="\tfrac{200}{3}" /> and <Katex tex="\tfrac{400}{3}" />: the line <Katex tex="y=30" /> crosses the north bank on both sides of the dip. Swimming east from <Katex tex="x=50" />, the swimmer hits the first one, so restrict to just east of P.</>,
+    reason: <>On CAS, with <Katex tex="f_1" /> defined first. Restrict to just east of P: heading east, the swimmer reaches the first crossing.</>,
+    more: <>In <Katex tex="[0,200]" /> the equation has two solutions, <Katex tex="\tfrac{200}{3}" /> and <Katex tex="\tfrac{400}{3}" />: the line <Katex tex="y=30" /> crosses the north bank on both sides of the dip. Only the first is on the swimmer&apos;s path.</>,
   },
   {
     working: <Katex display tex="\tfrac{\pi x}{100} = \tfrac{2\pi}{3} \implies x = \tfrac{200}{3}" />,
-    reason: <>By hand: for <Katex tex="50\le x\le100" />, <Katex tex="\tfrac{\pi x}{100}" /> runs from <Katex tex="\tfrac\pi2" /> to <Katex tex="\pi" />, and the only angle there with cosine <Katex tex="-\tfrac12" /> is <Katex tex="\tfrac{2\pi}{3}" />. This is the <Katex tex="x" />-coordinate of the landing point <Katex tex="\left(\tfrac{200}{3},30\right)" />, not yet the distance (the report notes some students stopped here).</>,
+    reason: <>By hand: for <Katex tex="50\le x\le100" />, <Katex tex="\tfrac{\pi x}{100}" /> runs from <Katex tex="\tfrac\pi2" /> to <Katex tex="\pi" />, and the only angle there with cosine <Katex tex="-\tfrac12" /> is <Katex tex="\tfrac{2\pi}{3}" />.</>,
+    more: <>This is the <Katex tex="x" />-coordinate of the landing point <Katex tex="\left(\tfrac{200}{3},30\right)" />, not yet the distance: the report notes some students stopped here.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac{200}{3}-50 = \tfrac{50}{3}\ \text{m}}" />,
-    reason: <>Both ends of the swim are at height 30, so its length is the change in <Katex tex="x" />: landing <Katex tex="x" /> minus starting <Katex tex="x" />. Exact, as the question requires (the report notes 16.7 was often seen). Check: <Katex tex="\tfrac{50}{3}\approx16.7" /> m is longer than the 10 m swim north, as it should be, since the swim cuts across the river at a slant.</>,
-    more: <>The &ldquo;Due east&rdquo; button in the diagram in part c. shows this swim.</>,
+    reason: <>Both ends of the swim are at height 30, so its length is landing <Katex tex="x" /> minus starting <Katex tex="x" />. No accuracy is specified, so give the exact value.</>,
+    more: <>The report notes 16.7 was often seen, but exact answers were required. Check: <Katex tex="\tfrac{50}{3}\approx16.7" /> m is longer than the 10 m swim north, as it should be, since the swim cuts across the river at a slant. The &ldquo;Due east&rdquo; button in the diagram in part c. shows this swim.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="Q\bigl(x, f_1(x)\bigr) \text{ on the north bank}" />,
-    reason: <>The swimmer may now land anywhere on the north bank, so call the landing point <Katex tex="Q" /> and leave its <Katex tex="x" />-coordinate free. Each choice of <Katex tex="x" /> is a different swim with a different length.</>,
+    reason: <>The swimmer may now land anywhere on the north bank, so call the landing point <Katex tex="Q" /> and leave its <Katex tex="x" />-coordinate free.</>,
+    more: <>Each choice of <Katex tex="x" /> is a different swim with a different length; the task is to find the shortest.</>,
   },
   {
     working: <Katex display tex="d(x) = \sqrt{(x-50)^2+\bigl(f_1(x)-30\bigr)^2}" />,
-    reason: <>The length of <Katex tex="PQ" /> from <Katex tex="P(50,30)" />, by the distance formula (Pythagoras on the horizontal and vertical gaps). The question becomes: which <Katex tex="x" /> makes <Katex tex="d(x)" /> smallest?</>,
+    reason: <>The length of <Katex tex="PQ" /> by the distance formula. Now find the <Katex tex="x" /> that makes <Katex tex="d(x)" /> smallest.</>,
+    more: <>The distance formula is Pythagoras on the horizontal gap <Katex tex="x-50" /> and the vertical gap <Katex tex="f_1(x)-30" /> between <Katex tex="P(50,30)" /> and <Katex tex="Q" />.</>,
   },
   {
     working: <Cas fn="fMin">fMin(d(x), x) | 50 ≤ x ≤ 100</Cas>,
-    reason: <>Define <Katex tex="f_1" /> and <Katex tex="d" /> on the CAS first, so the formula is typed only once (the report says students need to check that they have entered their formulas correctly). The picture says the closest point is just east of P, so restricting to <Katex tex="50\le x\le100" /> is safe. Calculator in <b>radians</b>.</>,
+    reason: <>Define <Katex tex="f_1" /> and <Katex tex="d" /> on CAS first, in <b>radians</b>. The bank drops away east of P, so the closest point is a little east of P: restrict to <Katex tex="50\le x\le100" />.</>,
+    more: <>Defining the functions means each rule is typed only once. The report notes the distance formula was often set up correctly but the incorrect <Katex tex="x" /> value was given, and says students need to check that they have entered their formulas correctly into their technology. Solving <Katex tex="\tfrac{d}{dx}\bigl(d(x)\bigr)=0" /> (the report&apos;s first method) gives the same <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="x = 54.4769\ldots" />,
-    reason: <>Just east of P. Why east? The shortest swim meets the north bank at right angles: a circle centred at P that only just touches the bank touches it at the closest point, and a circle&apos;s radius meets a line that touches it at <Katex tex="90^\circ" />. The bank slopes down to the east, so the line at right angles to it leans east of due north. That gives the report&apos;s second method: gradient of <Katex tex="PQ" /> <Katex tex="\times" /> gradient of the bank <Katex tex="=-1" />, i.e. <Katex tex="\tfrac{f_1(x)-30}{x-50}=-\tfrac{1}{f_1'(x)}" />, which gives the same <Katex tex="x" />.</>,
-    more: <>Drag Q in the diagram below.</>,
+    reason: <>Just east of P, as expected: the shortest line from a point to a curve meets it at right angles, and here the bank slopes down to the east.</>,
+    more: <>That right angle gives the report&apos;s second method: gradient of <Katex tex="PQ" /> <Katex tex="\times" /> gradient of the bank <Katex tex="=-1" />, i.e. <Katex tex="\tfrac{f_1(x)-30}{x-50}=-\tfrac{1}{f_1'(x)}" />, which solves to the same <Katex tex="x" />. Drag Q in the diagram below.</>,
   },
   {
     working: <Katex display tex="d(54.4769\ldots) = 8.4752\ldots" />,
@@ -173,34 +179,37 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{8.5\ \text{m}}" />,
-    reason: <>To one decimal place. Sanity check: the shortest swim can&apos;t be longer than any particular swim, and 8.5 m is indeed shorter than the 10 m swim north (part a.) and the 16.7 m swim east (part b.). The question asks for the distance, not the <Katex tex="x" />-value; the report notes some students found the <Katex tex="x" /> value but not the minimum distance.</>,
+    reason: <>The distance, to one decimal place, as asked.</>,
+    more: <>Sanity check: the shortest swim can&apos;t be longer than any particular swim, and 8.5 m is indeed shorter than the 10 m swim north (part a.) and the 16.7 m swim east (part b.).</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="A = \int_0^{200}\bigl(f_1(x)-f_2(x)\bigr)dx" />,
-    reason: <>Area between two curves: integrate top minus bottom. The north bank <Katex tex="f_1" /> is above the south bank <Katex tex="f_2" /> everywhere. Keep the bracket around <Katex tex="f_1(x)-f_2(x)" />: the report&apos;s general comments list bracket errors in this part.</>,
+    reason: <>Area between two curves: integrate top minus bottom. The north bank <Katex tex="f_1" /> is above the south bank <Katex tex="f_2" /> everywhere.</>,
+    more: <>Keep the bracket around <Katex tex="f_1(x)-f_2(x)" />: the report&apos;s general comments list 2d. among the questions where brackets were not used correctly.</>,
   },
   {
     working: <Katex display tex="= \int_0^{200}10\,dx" />,
-    reason: <>From part a., <Katex tex="f_1(x)-f_2(x)=10" />: every vertical slice of the river is exactly 10 m tall.</>,
+    reason: <><Katex tex="f_1(x)-f_2(x)=10" /> for every <Katex tex="x" /> (part a.): every vertical slice of the river is exactly 10 m tall.</>,
   },
   {
     working: <Katex display tex="\boxed{10\times200 = 2000\ \text{m}^2}" />,
-    reason: <>The integral of a constant is the constant times the length of the interval. Picture it: slide every vertical slice of the river straight down and it becomes a rectangle 200 m long and 10 m tall. Sliding a slice up or down doesn&apos;t change its height, so it doesn&apos;t change the area.</>,
-    more: <>See the diagram below.</>,
+    reason: <>The integral of a constant is the constant times the length of the interval.</>,
+    more: <>Geometrically: slide every vertical slice of the river straight down and it becomes a rectangle 200 m long and 10 m tall, with the same area, since no slice changes height. The diagram below animates this.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="f_2(x) = 30 \implies x = 50,\ 150" />,
-    reason: <>Draw the line <Katex tex="y=30" /> through P on the figure first. The zone is the river <em>below</em> it. It starts at P, where the south bank crosses the line, and closes where the south bank climbs back up through it: <Katex tex="\cos\!\left(\tfrac{\pi x}{100}\right)=0" />, so <Katex tex="\tfrac{\pi x}{100}=\tfrac\pi2" /> or <Katex tex="\tfrac{3\pi}{2}" />.</>,
+    reason: <>The zone is the river <em>below</em> <Katex tex="y=30" />. It runs between the south bank&apos;s crossings of the line: <Katex tex="\cos\!\left(\tfrac{\pi x}{100}\right)=0" />, so <Katex tex="\tfrac{\pi x}{100}=\tfrac\pi2" /> or <Katex tex="\tfrac{3\pi}{2}" />.</>,
+    more: <>Draw the line <Katex tex="y=30" /> through P on the figure first. The zone starts at P itself, where the south bank crosses the line, and closes where the south bank climbs back up through it.</>,
   },
   {
     working: <Katex display tex="f_1(x) = 30 \implies x = \tfrac{200}{3},\ \tfrac{400}{3}" />,
-    reason: <>Where the north bank crosses the line (both solutions from part b.). Between these two <Katex tex="x" />-values the north bank is below the line, so the <em>whole</em> width of the river is in the zone.</>,
+    reason: <>Where the north bank crosses the line (part b.). Between these, the north bank is below the line, so the <em>whole</em> width of the river is in the zone.</>,
   },
   {
     working: (
@@ -210,8 +219,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="+\int_{400/3}^{150}\bigl(30-f_2(x)\bigr)dx" />
       </>
     ),
-    reason: <>Each vertical strip of the zone runs from the south bank up to whichever is <em>lower</em>: the line or the north bank. The line is lower at both ends, the north bank in the middle, so the roof changes twice and the area needs three integrals, top minus bottom in each. Write them down: the report says appropriate working needed to be shown.</>,
-    more: <>Sweep the strip in the diagram below.</>,
+    reason: <>Each strip runs from the south bank up to whichever is <em>lower</em>: the line at both ends, the north bank in the middle. So three integrals, top minus bottom.</>,
+    more: <>Write all three down: the report says appropriate working needed to be shown. Sweep the strip in the diagram below to watch the roof change.</>,
   },
   {
     working: (
@@ -220,7 +229,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="+\int_{200/3}^{400/3}10\,dx" />
       </>
     ),
-    reason: <>The banks and the line are symmetric about <Katex tex="x=100" /> (<Katex tex="\cos\!\left(2\pi-\theta\right)=\cos\theta" />, so <Katex tex="f(200-x)=f(x)" />), so the two end pieces are mirror images with equal areas. In the middle, <Katex tex="f_1-f_2=10" /> (part a.).</>,
+    reason: <>The picture is symmetric about <Katex tex="x=100" />, so the two end pieces have equal areas. In the middle, <Katex tex="f_1-f_2=10" /> (part a.).</>,
+    more: <>Why symmetric: <Katex tex="\cos\!\left(2\pi-\theta\right)=\cos\theta" />, so <Katex tex="f_1(200-x)=f_1(x)" /> and <Katex tex="f_2(200-x)=f_2(x)" />, and the line <Katex tex="y=30" /> is horizontal.</>,
   },
   {
     working: <Katex display tex="\int_{200/3}^{400/3}10\,dx = 10\times\tfrac{200}{3} = \tfrac{2000}{3}" />,
@@ -242,7 +252,7 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="= -\tfrac{2000}{\pi}\left(\tfrac{\sqrt3}{2}-1\right) = \tfrac{1000\left(2-\sqrt3\right)}{\pi}" />
       </>
     ),
-    reason: <>An antiderivative of <Katex tex="\cos(ax)" /> is <Katex tex="\tfrac1a\sin(ax)" />, and here <Katex tex="\tfrac1a=\tfrac{100}{\pi}" />. Then <Katex tex="\sin\tfrac{2\pi}{3}=\tfrac{\sqrt3}{2}" /> and <Katex tex="\sin\tfrac\pi2=1" />. Each corner piece is <Katex tex="\approx85.29" /> m².</>,
+    reason: <>An antiderivative of <Katex tex="\cos(ax)" /> is <Katex tex="\tfrac1a\sin(ax)" />, with <Katex tex="\tfrac1a=\tfrac{100}{\pi}" />. Then <Katex tex="\sin\tfrac{2\pi}{3}=\tfrac{\sqrt3}{2}" /> and <Katex tex="\sin\tfrac\pi2=1" />.</>,
   },
   {
     working: <Katex display tex="A = \tfrac{2000}{3}+\tfrac{2000\left(2-\sqrt3\right)}{\pi} = 837.248\ldots" />,
@@ -250,11 +260,13 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Cas fn="nInt">2·nInt(30 − f2(x), x, 50, 200/3) + nInt(f1(x) − f2(x), x, 200/3, 400/3)</Cas>,
-    reason: <>On the day, with <Katex tex="f_1" /> and <Katex tex="f_2" /> defined, CAS evaluates the set-up directly and gives the same <Katex tex="837.248\ldots" />. There is no need to write the rules out in full (the report&apos;s general comments name 2e. for this).</>,
+    reason: <>On the day, with <Katex tex="f_1" /> and <Katex tex="f_2" /> defined, CAS evaluates the set-up directly and gives the same <Katex tex="837.248\ldots" />.</>,
+    more: <>There is no need to write the rules out in full: the report&apos;s general comments name 2e. both among the questions where students did so and among those where incorrect equations were entered into technology.</>,
   },
   {
     working: <Katex display tex="\boxed{837\ \text{m}^2}" />,
-    reason: <>To the nearest square metre. Checks: the zone lies inside the stretch of river from <Katex tex="x=50" /> to <Katex tex="x=150" />, whose area is <Katex tex="10\times100=1000" />, and it contains the middle piece of <Katex tex="667" />, so an answer between the two is right. Another route (itute, and the report&apos;s second method): the region between <Katex tex="y=30" /> and the south bank from 50 to 150, minus the bite where the north bank dips below the line, <Katex tex="\int_{50}^{150}(30-f_2)\,dx-\int_{200/3}^{400/3}(30-f_1)\,dx" />.</>,
+    reason: <>To the nearest square metre.</>,
+    more: <>Check: the zone lies inside the river from <Katex tex="x=50" /> to <Katex tex="x=150" />, whose area is <Katex tex="10\times100=1000" />, and contains the middle piece of <Katex tex="667" />, so an answer between the two is right. Another route (the report&apos;s second set-up): the region between <Katex tex="y=30" /> and the south bank from 50 to 150, minus the bite where the north bank dips below the line, <Katex tex="\int_{50}^{150}(30-f_2)\,dx-\int_{200/3}^{400/3}(30-f_1)\,dx" />.</>,
   },
 ]
 
@@ -265,7 +277,7 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="w(x) < 20 \text{ for all } x \in [0,200]" />,
-    reason: <>&ldquo;For all parts of the river&rdquo;: the width must be under 20 everywhere, which is the same as saying the <em>widest</em> part must be under 20. So find where the river is widest.</>,
+    reason: <>&ldquo;For all parts of the river&rdquo;: the width must be under 20 everywhere, i.e. the <em>widest</em> part must be under 20. So find where it is widest.</>,
   },
   {
     working: (
@@ -274,15 +286,16 @@ const ROWS_F: WorkingRow[] = [
         <Katex display tex="= (k-1)f_1(x)+10" />
       </>
     ),
-    reason: <>How would I see where it is widest? Split <Katex tex="kf_1" /> into <Katex tex="f_1+(k-1)f_1" />: the bank where it is now, plus the extra distance the dilation lifts it. The old gap <Katex tex="f_1-f_2" /> is the 10 from part a. This way the rules never need writing out, which the report recommends (writing them out often led to errors). If you do expand, it is <Katex tex="20(k-1)\cos\!\left(\tfrac{\pi x}{100}\right)+40k-30" />, ending in <Katex tex="-30" />; the report notes <Katex tex="+30" /> was seen.</>,
+    reason: <>Split <Katex tex="kf_1" /> into <Katex tex="f_1+(k-1)f_1" />: the bank where it is now, plus the extra lift. The old gap <Katex tex="f_1-f_2" /> is 10 (part a.).</>,
+    more: <>This way the rules never need writing out, which the report recommends (writing them out often led to errors). If you do expand, it is <Katex tex="20(k-1)\cos\!\left(\tfrac{\pi x}{100}\right)+40k-30" />, ending in <Katex tex="-30" />; the report notes <Katex tex="+30" /> was seen.</>,
   },
   {
     working: <Katex display tex="f_1(x) \text{ is largest } (60) \text{ at } x = 0,\ 200" />,
-    reason: <>Since <Katex tex="k-1\ge0" />, the extra width <Katex tex="(k-1)f_1(x)" /> is biggest where the north bank is highest. That is the picture of a dilation: each point of the bank rises by <Katex tex="(k-1)\times" /> its height, so the 60 m peaks rise three times as far as the 20 m trough. The peaks are where <Katex tex="\cos\!\left(\tfrac{\pi x}{100}\right)=1" />, at the two ends of the stretch shown. The report notes a common incorrect approach was testing <Katex tex="x=50" /> (P) instead, giving <Katex tex="k<\tfrac54" />.</>,
+    reason: <>Since <Katex tex="k-1\ge0" />, the extra width <Katex tex="(k-1)f_1(x)" /> is biggest where the bank is highest: <Katex tex="\cos\!\left(\tfrac{\pi x}{100}\right)=1" />, at <Katex tex="x=0" /> and <Katex tex="200" />.</>,
   },
   {
     working: <Katex display tex="w(0) = 60(k-1)+10 = 60k-50 < 20" />,
-    reason: <>The widest part must be under 20. This is <Katex tex="kf_1(0)-f_2(0)" />, the report&apos;s <Katex tex="60k-50" />. Strict, because the width must be <em>strictly</em> less than 20: at <Katex tex="k=\tfrac76" /> it is exactly 20 at the ends.</>,
+    reason: <>The widest part, <Katex tex="kf_1(0)-f_2(0)" />, must be under 20. Strict, because the width must be <em>strictly</em> less than 20.</>,
   },
   {
     working: <Katex display tex="60k < 70 \implies k < \tfrac76" />,
@@ -290,7 +303,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{1\le k<\tfrac76}" />,
-    reason: <>Combined with the given <Katex tex="k\ge1" />. <Katex tex="k=1" /> is included: then nothing moves and the width is the constant 10 from part a. The report also accepts <Katex tex="k\in\left[1,\tfrac76\right)" />. Check: <Katex tex="k=\tfrac76\approx1.17" /> stretches the 60 m peaks to 70 m, exactly 20 above the south bank&apos;s 50 m there.</>,
+    reason: <>Combined with the given <Katex tex="k\ge1" />. <Katex tex="k=1" /> is included: nothing moves and the width is 10 everywhere.</>,
+    more: <>Interval notation, <Katex tex="k\in\left[1,\tfrac76\right)" />, is equally good (the report gives both forms). Check: <Katex tex="k=\tfrac76\approx1.17" /> stretches the 60 m peaks to 70 m, exactly 20 above the south bank&apos;s 50 m there.</>,
   },
 ]
 
@@ -512,7 +526,8 @@ export default function MethodsQ2_2020Exam2() {
             point at height <Katex tex="h" /> moves to height <Katex tex="kh" />, up by{' '}
             <Katex tex="(k-1)h" />. So the higher a point is, the further it moves. The north bank doesn&apos;t
             shift north as a block (that would be a translation, which moves every point the same amount); it
-            stretches, and its peaks rise more than its trough. That is why the river no longer has the same
+            stretches: its 60 m peaks at the ends rise three times as far as its 20 m trough at{' '}
+            <Katex tex="x=100" />. That is why the river no longer has the same
             width everywhere.
           </p>
         </Background>
@@ -523,7 +538,7 @@ export default function MethodsQ2_2020Exam2() {
         <WrongMethod
           title="Check the width only at P (x = 50)"
           source="Examiner's report"
-          working={<Katex display tex="kf_1(50)-f_2(50) = 40k-30 < 20 \implies k<\tfrac54" />}
+          working={<Katex display tex="\begin{gathered}kf_1(50)-f_2(50) = 40k-30 < 20 \\ \implies k<\tfrac54\end{gathered}" />}
         >
           P is where the swimmer starts, but it isn&apos;t where the river is widest. At{' '}
           <Katex tex="k=1.2" />, say, the width at P is <Katex tex="18" /> (fine) but at the ends it is{' '}

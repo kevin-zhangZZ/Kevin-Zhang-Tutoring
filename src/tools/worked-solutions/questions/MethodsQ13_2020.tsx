@@ -35,19 +35,23 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y=\cos(2x+4) = \cos\bigl(2(x+2)\bigr)" />,
-    reason: <>Factorise the coefficient of <Katex tex="x" /> out of the bracket first. Then each number has one job: the <Katex tex="2" /> multiplying the bracket squashes the graph, and the <Katex tex="+2" /> added to <Katex tex="x" /> shifts it. In <Katex tex="2x+4" /> the <Katex tex="4" /> is tangled up with the squash, so it is not the size of the shift.</>,
+    reason: <>Factorise the coefficient of <Katex tex="x" /> out first, so each number has one job: the <Katex tex="2" /> squashes the graph and the <Katex tex="+2" /> shifts it. The <Katex tex="4" /> in <Katex tex="2x+4" /> is not the shift.</>,
+    more: <>In <Katex tex="2x+4" /> the <Katex tex="4" /> is tangled up with the squash, so reading it as the shift gives the wrong graph.</>,
   },
   {
     working: <Katex display tex="\cos(x) \xrightarrow{\ x\,\to\,2x\ } \cos(2x) \xrightarrow{\ x\,\to\,x+2\ } \cos\bigl(2(x+2)\bigr)" />,
-    reason: <>Build the new rule from <Katex tex="\cos(x)" /> one step at a time. Replacing <Katex tex="x" /> by <Katex tex="2x" /> halves every <Katex tex="x" />-coordinate: a dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis. Then replacing <Katex tex="x" /> by <Katex tex="x+2" /> moves the graph 2 units left. The other order fails: <Katex tex="\cos(x+2)" /> first, then <Katex tex="x\to2x" />, gives <Katex tex="\cos(2x+2)" />, because the squash also halves the shift.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="2x" /> is a dilation by a factor of <Katex tex="\tfrac12" /> from the <Katex tex="y" />-axis. Then replacing <Katex tex="x" /> by <Katex tex="x+2" /> moves the graph 2 units left.</>,
+    more: <>Build the new rule from <Katex tex="\cos(x)" /> one step at a time, in this order. Replacing <Katex tex="x" /> by <Katex tex="2x" /> halves every <Katex tex="x" />-coordinate.</>,
   },
   {
     working: <Katex display tex="x' = \tfrac12x-2, \qquad y' = y" />,
-    reason: <>The same two steps as a rule for where each point goes: halve the <Katex tex="x" />-coordinate, then subtract 2. (Directly: a point <Katex tex="(x,y)" /> on <Katex tex="y=\cos(x)" /> must land on <Katex tex="y'=\cos(2x'+4)" /> with <Katex tex="y'=y" />, so <Katex tex="2x'+4=x" />, giving <Katex tex="x'=\tfrac{x-4}{2}" />.)</>,
+    reason: <>The same two steps as a rule for where each point goes: halve the <Katex tex="x" />-coordinate, then subtract 2. Heights don&apos;t change.</>,
+    more: <>Directly: a point <Katex tex="(x,y)" /> on <Katex tex="y=\cos(x)" /> must land on <Katex tex="y'=\cos(2x'+4)" /> with <Katex tex="y'=y" />, so <Katex tex="2x'+4=x" />, giving <Katex tex="x'=\tfrac{x-4}{2}=\tfrac12x-2" />.</>,
   },
   {
     working: <Katex display tex="\text{A}: \ \tfrac12(x-4) = \tfrac12x-2 \ \checkmark" />,
-    reason: <>Now expand each option's <Katex tex="x" />-row. The order of operations is the order of the transformations: without the outer bracket, the matrix multiplies <Katex tex="(x,y)" /> first (dilate) and the vector is added afterwards (translate); with the bracket, the vector is added first (translate) and then everything, the shift included, is multiplied (dilate). So A translates 4 left first, and the dilation after it halves that shift to 2: the same map as "dilate by <Katex tex="\tfrac12" />, then 2 left", which is the report's reading.</>,
+    reason: <>Each option&apos;s top row gives <Katex tex="x'" />: the matrix multiplies <Katex tex="x" /> by its top-left entry. With the outer bracket, the vector is added first, then multiplied; without it, the vector is added afterwards.</>,
+    more: <>So A translates 4 left first, and the dilation after it halves that shift to 2: the same map as &ldquo;dilate by <Katex tex="\tfrac12" />, then 2 left&rdquo;, which is the report&apos;s reading (it writes <Katex tex="T" /> both ways).</>,
   },
   {
     working: (
@@ -56,11 +60,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{D}: \ 2(x+2)=2x+4, \qquad \text{E}: \ 2x+2" />
       </>
     ),
-    reason: <>Expand each of the others and compare with <Katex tex="\tfrac12x-2" />. B halves and then moves 4 left; C moves 2 left and then halves, so the shift shrinks to 1; D and E multiply by 2, which stretches the graph away from the <Katex tex="y" />-axis.</>,
+    reason: <>None of the others gives <Katex tex="\tfrac12x-2" />. B halves and then moves 4 left; C moves 2 left and then halves, so the shift shrinks to 1; D and E multiply by 2.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{A}}" />,
-    reason: <>Matches option <b>A</b>. Check with a point: the peak <Katex tex="(0,1)" /> goes to <Katex tex="x'=-2" />, and <Katex tex="\cos\bigl(2(-2)+4\bigr)=\cos(0)=1" /> ✓. Option <b>C</b> (38%) gives <Katex tex="y=\cos(2x+2)" /> and option <b>B</b> (20%) gives <Katex tex="y=\cos(2x+8)" /> (see the common mistakes below). Options <b>D</b> and <b>E</b> dilate by a factor of <Katex tex="2" />, stretching instead of compressing.</>,
+    reason: <>Matches option <b>A</b>. Check: the peak <Katex tex="(0,1)" /> goes to <Katex tex="x'=-2" />, and <Katex tex="\cos\bigl(2(-2)+4\bigr)=\cos(0)=1" /> ✓.</>,
+    more: <>Option <b>C</b> (38%) maps <Katex tex="y=\cos(x)" /> onto <Katex tex="y=\cos(2x+2)" /> and option <b>B</b> (20%) onto <Katex tex="y=\cos(2x+8)" />; the Common Mistakes below work through both. Options <b>D</b> and <b>E</b> give <Katex tex="y=\cos\left(\tfrac12x-2\right)" /> and <Katex tex="y=\cos\left(\tfrac12x-1\right)" />: they dilate by a factor of <Katex tex="2" />, stretching instead of compressing.</>,
   },
 ]
 

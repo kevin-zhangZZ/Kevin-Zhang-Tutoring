@@ -47,11 +47,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Start with the shape. <Katex tex="-\log_e(x+2)" /> is <Katex tex="y=\log_e(x)" /> translated 2 units left and
+        <Katex tex="f''(x)" /> has a square on the bottom, so it is positive for every <Katex tex="x" />: the curve is
+        concave up (bends upwards, like ∪) everywhere.
+      </>
+    ),
+    more: (
+      <>
+        Picture the shape first. <Katex tex="-\log_e(x+2)" /> is <Katex tex="y=\log_e(x)" /> translated 2 units left and
         reflected in the <Katex tex="x" />-axis: it comes down from the asymptote <Katex tex="x=-2" />, crosses the{' '}
         <Katex tex="x" />-axis at <Katex tex="(-1,0)" /> and the <Katex tex="y" />-axis at <Katex tex="(0,-\log_e(2))" />, and
-        keeps falling. <Katex tex="f''(x)" /> is a square on the bottom, so it is positive for every <Katex tex="x" />: the
-        curve is concave up everywhere (it bends upwards, like the left-hand side of a ∪).
+        keeps falling, bending like the left-hand side of a ∪.
       </>
     ),
   },
@@ -65,17 +70,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        This is the idea that answers the question. <Katex tex="c" /> is the height where a
-        tangent crosses the <Katex tex="y" />-axis, and the curve itself crosses the <Katex tex="y" />-axis at height{' '}
-        <Katex tex="f(0)" />. A tangent touches a concave-up curve at one point and runs underneath it everywhere else, so
-        at <Katex tex="x=0" /> it is below <Katex tex="f(0)" />, unless the point it touches is on the <Katex tex="y" />
-        -axis.
+        A tangent to a concave-up curve runs below it except where it touches. The intercept <Katex tex="c" /> is the
+        tangent&apos;s height at <Katex tex="x=0" />, so <Katex tex="c\le f(0)" />, with equality only for the tangent at{' '}
+        <Katex tex="x=0" />.
       </>
     ),
     more: (
       <>
-        See the Background above. Drag the tangent along the curve in the diagram below and watch the red gap close only
-        at <Katex tex="x=0" />.
+        Drag the tangent along the
+        curve in the diagram below and watch the red gap close only at <Katex tex="x=0" />.
       </>
     ),
   },
@@ -83,9 +86,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y = -\log_e(a+2) - \frac{1}{a+2}(x-a)" />,
     reason: (
       <>
-        Now confirm it with calculus. The tangent at the point where <Katex tex="x=a" /> is{' '}
-        <Katex tex="y-f(a)=f'(a)(x-a)" />, with <Katex tex="f(a)=-\log_e(a+2)" /> and{' '}
-        <Katex tex="f'(a)=-\frac{1}{a+2}" />.
+        Now confirm it with calculus. The tangent at <Katex tex="x=a" /> is <Katex tex="y-f(a)=f'(a)(x-a)" />, with{' '}
+        <Katex tex="f(a)=-\log_e(a+2)" /> and <Katex tex="f'(a)=-\frac{1}{a+2}" />.
       </>
     ),
   },
@@ -93,8 +95,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="c = -\log_e(a+2) + \frac{a}{a+2}" />,
     reason: (
       <>
-        The vertical axis intercept: put <Katex tex="x=0" />, so <Katex tex="-\frac{1}{a+2}(0-a)=+\frac{a}{a+2}" />. Now{' '}
-        <Katex tex="c" /> is a function of <Katex tex="a" />, the point of contact, and the question wants its maximum.
+        Put <Katex tex="x=0" />: <Katex tex="-\frac{1}{a+2}(0-a)=+\frac{a}{a+2}" />. Now <Katex tex="c" /> is a function of
+        the contact point <Katex tex="a" />, to be maximised.
       </>
     ),
   },
@@ -122,25 +124,33 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The denominator <Katex tex="(a+2)^2" /> is positive, so <Katex tex="\frac{dc}{da}" /> has the sign of{' '}
-        <Katex tex="-a" />: <Katex tex="c" /> rises as the contact point moves right towards <Katex tex="x=0" />, then falls
-        once it passes it. (On CAS,{' '}
-        <Cas fn="fMax">fMax(−ln(a + 2) + a/(a + 2), a) | a &gt; −2</Cas> gives <Katex tex="a=0" />.)
+        <Katex tex="(a+2)^2>0" />, so <Katex tex="\frac{dc}{da}" /> has the sign of <Katex tex="-a" />: <Katex tex="c" /> rises
+        until the contact point reaches <Katex tex="x=0" />, then falls.
       </>
     ),
-    more: <>This is exactly as in the diagram below.</>,
+    more: (
+      <>
+        On CAS, <Cas fn="fMax">fMax(−ln(a + 2) + a/(a + 2), a) | a &gt; −2</Cas> gives <Katex tex="a=0" />. This is exactly
+        what the diagram below shows.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{c = -\log_e(0+2) + 0 = -\log_e(2)}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Check: <Katex tex="-\log_e(2)\approx-0.69" /> is exactly <Katex tex="f(0)" />, where the
-        curve itself crosses the <Katex tex="y" />-axis, as the picture said. Option <b>A</b> (<Katex tex="-1" />) is a real
-        tangent&apos;s intercept, the tangent <Katex tex="y=-x-1" /> at the <Katex tex="x" />-intercept{' '}
-        <Katex tex="(-1,0)" />, but a lower one. Options <b>B</b> (<Katex tex="-1+\log_e(2)\approx-0.31" />) and{' '}
-        <b>E</b> (<Katex tex="\log_e(2)\approx0.69" />) are both <em>above</em> <Katex tex="f(0)" />, so no tangent can
-        reach them; E is <Katex tex="f(0)" /> with its minus sign lost. Option <b>D</b> (
-        <Katex tex="\approx-1.69" />) is reached by some tangents, but it is lower than <Katex tex="-\log_e(2)" />.
+        Matches option <b>C</b>: <Katex tex="-\log_e(2)\approx-0.69" /> is exactly <Katex tex="f(0)" />, as the tangents
+        argument said.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>A</b> (<Katex tex="-1" />) is a real tangent&apos;s intercept, the tangent <Katex tex="y=-x-1" /> at the{' '}
+        <Katex tex="x" />-intercept <Katex tex="(-1,0)" />, but a lower one. Options <b>B</b> (
+        <Katex tex="-1+\log_e(2)\approx-0.31" />) and <b>E</b> (<Katex tex="\log_e(2)\approx0.69" />) are both{' '}
+        <em>above</em> <Katex tex="f(0)" />, so no tangent can reach them; E is <Katex tex="f(0)" /> with its minus sign
+        lost. Option <b>D</b> (<Katex tex="\approx-1.69" />) is reached by some tangents, but it is lower than{' '}
+        <Katex tex="-\log_e(2)" />.
       </>
     ),
   },
@@ -161,14 +171,9 @@ export default function MethodsQ17_2020() {
       background={
         <Background title="The Idea That Makes This Quick">
           <p>
-            A curve is <b>concave up</b> where it bends upwards, like ∪; that is where <Katex tex="f''(x)>0" />. A tangent
-            touches a concave-up curve at one point, and the curve bends away upwards on both sides of it, so the tangent
-            lies <em>below</em> the curve everywhere else.
-          </p>
-          <p>
-            So at any other <Katex tex="x" />, a tangent&apos;s height is less than the curve&apos;s height there. That
-            turns a &ldquo;maximum intercept&rdquo; question into a picture: the highest a tangent can cross the{' '}
-            <Katex tex="y" />-axis is where the curve itself crosses it.
+            Why does a tangent sit below a concave-up curve? It touches the curve at one point, and the curve bends away
+            upwards on both sides of that point, leaving the straight tangent underneath. Knowing this turns a
+            &ldquo;maximum intercept&rdquo; question into a picture instead of a long calculation.
           </p>
         </Background>
       }

@@ -144,80 +144,89 @@ const EXAM_EIII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 2xe^{1-x^2}" />,
-    reason: <>The slope of the tangent at <Katex tex="x=1" /> is the derivative there, <Katex tex="f'(1)" />: the derivative <em>is</em> the gradient of the tangent at each point. And <Katex tex="f" /> is a product, <Katex tex="2x" /> times <Katex tex="e^{1-x^2}" />, so it needs the product rule.</>,
+    reason: <>The slope of the tangent at <Katex tex="x=1" /> is the derivative there, <Katex tex="f'(1)" />. And <Katex tex="f" /> is a product, <Katex tex="2x" /> times <Katex tex="e^{1-x^2}" />, so use the product rule.</>,
+    more: <>The derivative <em>is</em> the gradient of the tangent at each point, which is why &ldquo;slope of the tangent&rdquo; always means &ldquo;find the derivative, then substitute&rdquo;.</>,
   },
   {
-    working: <Katex display tex="f'(x) = 2e^{1-x^2}+2x\cdot(-2x)e^{1-x^2} = 2\left(1-2x^2\right)e^{1-x^2}" />,
-    reason: <>Product rule <Katex tex="(uv)'=u'v+uv'" /> with <Katex tex="u=2x" /> and <Katex tex="v=e^{1-x^2}" />. The chain rule gives <Katex tex="v'=-2x\,e^{1-x^2}" />: the same exponential, times the derivative of its power. Taking out the common factor <Katex tex="2e^{1-x^2}" /> now pays off in parts c. and d.</>,
+    working: <Katex display tex="\begin{aligned} f'(x) &= 2e^{1-x^2} \\ &\quad +2x\cdot(-2x)e^{1-x^2} \\ &= 2\left(1-2x^2\right)e^{1-x^2} \end{aligned}" />,
+    reason: <>Product rule <Katex tex="(uv)'=u'v+uv'" /> with <Katex tex="u=2x" />, <Katex tex="v=e^{1-x^2}" />; the chain rule gives <Katex tex="v'=-2x\,e^{1-x^2}" />. Then factor out <Katex tex="2e^{1-x^2}" />.</>,
+    more: <><Katex tex="v'" /> is the same exponential, times the derivative of its power, <Katex tex="-2x" />. Taking out the common factor now pays off in parts c. and d., which reuse this derivative.</>,
   },
   {
     working: <Katex display tex="f'(1) = 2(1-2)e^{0}" />,
-    reason: <><Katex tex="e^{1-1}=e^0=1" />, so this is clean by hand. On CAS, <Cas fn="define" /> <Katex tex="f(x)" /> first (every later part uses it), then <Cas fn="derivative">d/dx(f(x)) | x = 1</Cas>.</>,
+    reason: <><Katex tex="e^{1-1}=e^0=1" />, so this is clean by hand. On CAS, <Cas fn="define" /> <Katex tex="f(x)" /> first, then <Cas fn="derivative">d/dx(f(x)) | x = 1</Cas>.</>,
+    more: <>Defining <Katex tex="f" /> now means every later part can use it without retyping the rule.</>,
   },
   {
     working: <Katex display tex="\boxed{-2}" />,
-    reason: <>The question asks for the <em>slope</em>, a number — the report notes some students wrote the equation of the tangent instead. Check against the graph: at <Katex tex="x=1" /> the curve is past its peak and falling steeply, so a gradient of <Katex tex="-2" /> is believable.</>,
+    reason: <>The slope is a number, not the equation of the tangent.</>,
+    more: <>The report notes some students wrote the equation of the tangent instead. Check against the graph: at <Katex tex="x=1" /> the curve is past its peak and falling steeply, so a gradient of <Katex tex="-2" /> is believable.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\tan\theta = -2" />,
-    reason: <>The gradient from part a. The tangent falls to the right, so the angle it makes with the positive <Katex tex="x" />-direction is obtuse, which is why the question says &ldquo;obtuse&rdquo;.</>,
+    reason: <>The angle <Katex tex="\theta" /> a line makes with the positive <Katex tex="x" />-direction has <Katex tex="\tan\theta=" /> its gradient, here <Katex tex="-2" /> from part a. The line falls to the right, so <Katex tex="\theta" /> is obtuse.</>,
   },
   {
     working: <Katex display tex="\tan^{-1}(-2) = -63.43\ldots^\circ" />,
-    reason: <>In degree mode. The calculator only ever returns an angle between <Katex tex="-90^\circ" /> and <Katex tex="90^\circ" />. The minus sign means it turned 63.43° <em>clockwise</em>, down to the lower half of the line. That is not the angle asked for.</>,
+    reason: <>In degree mode. The calculator only returns angles between <Katex tex="-90^\circ" /> and <Katex tex="90^\circ" />, so this is not the obtuse angle asked for.</>,
   },
   {
     working: <Katex display tex="\theta = 180^\circ+(-63.43\ldots^\circ) = 116.56\ldots^\circ" />,
-    reason: <>Turn anticlockwise from the positive <Katex tex="x" />-direction instead. The acute angle between the line and the axis is <Katex tex="\tan^{-1}(2)\approx63.43^\circ" />, and the two angles lie along the straight <Katex tex="x" />-axis, so they add to <Katex tex="180^\circ" />. Equivalently, <Katex tex="\tan" /> repeats every <Katex tex="180^\circ" />, so this angle has the same tangent, <Katex tex="-2" />.</>,
-    more: <>Step through the diagram below.</>,
+    reason: <><Katex tex="\tan" /> repeats every <Katex tex="180^\circ" />, so adding <Katex tex="180^\circ" /> gives the obtuse angle with the same tangent, <Katex tex="-2" />.</>,
+    more: <>Another way to see it: the acute angle between the line and the axis is <Katex tex="\tan^{-1}(2)\approx63.43^\circ" />, and it sits next to <Katex tex="\theta" /> along the straight <Katex tex="x" />-axis, so the two add to <Katex tex="180^\circ" />. Step through the diagram below.</>,
   },
   {
     working: <Katex display tex="\boxed{117^\circ}" />,
-    reason: <>To the nearest degree. The report lists <Katex tex="63^\circ" /> and <Katex tex="-63^\circ" /> as common incorrect answers. Check: <Katex tex="117^\circ" /> is obtuse, and <Katex tex="\tan116.57^\circ\approx-2" />, the gradient.</>,
+    reason: <>To the nearest degree. Check: <Katex tex="117^\circ" /> is obtuse.</>,
+    more: <>Also <Katex tex="\tan116.57^\circ\approx-2" />, the gradient.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 2\left(1-2x^2\right)e^{1-x^2} \ \text{ from part a.}" />,
-    reason: <>The slope at <em>any</em> point is the derivative there, and <Katex tex="p" /> is just a name for &ldquo;some <Katex tex="x" />-value&rdquo;. So reuse part a.&apos;s derivative with <Katex tex="p" /> in place of <Katex tex="x" />.</>,
+    reason: <>The slope at <em>any</em> point is the derivative there, and <Katex tex="p" /> is just &ldquo;some <Katex tex="x" />-value&rdquo;. So put <Katex tex="p" /> in place of <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(p) = 2\left(1-2p^2\right)e^{1-p^2}}" />,
-    reason: <>VCAA also gives <Katex tex="\left(2e-4p^2e\right)e^{-p^2}" />, the form CAS tends to print, since <Katex tex="e^{1-p^2}=e\cdot e^{-p^2}" />. Keep the brackets: <Katex tex="2\left(1-2p^2\right)e^{-p^2+1}" /> is not the same as <Katex tex="2\left(1-2p^2\right)e^{-p^2}+1" />. Check: <Katex tex="p=1" /> must give part a.&apos;s answer, and <Katex tex="2(1-2)e^0=-2" />.</>,
+    reason: <>Keep the whole <Katex tex="1-p^2" /> in the power. Check: <Katex tex="p=1" /> gives <Katex tex="2(1-2)e^0=-2" />, part a.&apos;s answer.</>,
+    more: <>The report also gives<Katex tex="\left(2e-4p^2e\right)e^{-p^2}" />, the form CAS tends to print, since <Katex tex="e^{1-p^2}=e\cdot e^{-p^2}" />.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="m_1m_2 = -1 \text{ with } m_1 = -2 \implies m_2 = \tfrac12" />,
-    reason: <>The tangent at <Katex tex="x=1" /> has gradient <Katex tex="-2" /> (part a.). Its perpendicular partner has the negative reciprocal, <Katex tex="-\tfrac{1}{-2}=\tfrac12" />: flip the fraction <em>and</em> change the sign. Not <Katex tex="2" />, which only changes the sign; the report notes some students solved <Katex tex="f'(p)=2" />.</>,
+    reason: <>The tangent at <Katex tex="x=1" /> has gradient <Katex tex="-2" /> (part a.). Perpendicular gradients multiply to <Katex tex="-1" />, so flip the fraction <em>and</em> change the sign.</>,
   },
   {
     working: <Katex display tex="2\left(1-2p^2\right)e^{1-p^2} = \tfrac12" />,
-    reason: <>The gradient of the tangent at <Katex tex="x=p" /> is part c.&apos;s expression, so set it equal to <Katex tex="\tfrac12" />. This is the link to the earlier parts that the report says some students couldn&apos;t make.</>,
+    reason: <>The tangent at <Katex tex="x=p" /> has gradient <Katex tex="f'(p)" />, part c.&apos;s expression, so set it equal to <Katex tex="\tfrac12" />.</>,
+    more: <>This is the link to the earlier parts that the report says some students couldn&apos;t make, even when they knew <Katex tex="m_1m_2=-1" />.</>,
   },
   {
     working: <Cas fn="solve">solve(2(1 − 2p²)·e^(1 − p²) = 1/2, p) | 0 ≤ p ≤ 3</Cas>,
-    reason: <><Katex tex="p" /> appears both outside and inside the exponential, so there is no way to isolate it by hand: this is a job for CAS. Restrict to the domain <Katex tex="0\le x\le3" />.</>,
+    reason: <><Katex tex="p" /> is both outside and inside the exponential, so it can&apos;t be isolated by hand: solve on CAS, restricted to the domain <Katex tex="0\le x\le3" />.</>,
   },
   {
     working: <Katex display tex="p = 0.655251\ldots" />,
-    reason: <>Without the restriction CAS also gives <Katex tex="p=-0.655\ldots" /> (<Katex tex="f'" /> is an even function, so its solutions come in <Katex tex="\pm" /> pairs), which is outside the domain. Store the value: part d.ii. needs its full precision. Check: it is just left of the peak at <Katex tex="x=\tfrac1{\sqrt2}\approx0.707" />, where the curve is still rising gently, so a small positive gradient like <Katex tex="\tfrac12" /> fits.</>,
+    reason: <>Store this value: part d.ii. needs its full precision.</>,
+    more: <>Without the restriction CAS also gives <Katex tex="p=-0.655\ldots" /> (<Katex tex="f'" /> is an even function, so its solutions come in <Katex tex="\pm" /> pairs), which is outside the domain. Check: it is just left of the peak at <Katex tex="x=\tfrac1{\sqrt2}\approx0.707" />, where the curve is still rising gently, so a small positive gradient like <Katex tex="\tfrac12" /> fits.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.655}" />,
-    reason: <>To three decimal places: 0.65525… rounds down. The report notes <Katex tex="p=0.656" /> was often seen.</>,
+    reason: <>To three decimal places: 0.65525… rounds <em>down</em>, to 0.655.</>,
+    more: <>The report notes <Katex tex="p=0.656" /> was often seen.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{at } x=1: \ f(1) = 2e^0 = 2, \quad m = -2" />,
-    reason: <>&ldquo;Hence&rdquo; means use part d.i. Each tangent needs a point and a gradient. At <Katex tex="x=1" /> both are exact: <Katex tex="f(1)=2" /> and part a.&apos;s gradient <Katex tex="-2" />.</>,
+    reason: <>&ldquo;Hence&rdquo;: use part d.i. Each tangent needs a point and a gradient. At <Katex tex="x=1" /> both are exact: <Katex tex="f(1)=2" />, and <Katex tex="-2" /> from part a.</>,
   },
   {
     working: <Katex display tex="y = -2(x-1)+2 = -2x+4" />,
@@ -225,11 +234,12 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{at } x=p: \ f(p) = 2.31881\ldots, \quad m = \tfrac12" />,
-    reason: <>The second tangent touches at <Katex tex="x=p" /> from part d.i., where the gradient is <Katex tex="\tfrac12" /> by construction. Use the stored <Katex tex="p=0.655251\ldots" />, not 0.655; the report notes some students rounded too early.</>,
+    reason: <>At <Katex tex="x=p" /> the gradient is <Katex tex="\tfrac12" /> by construction (part d.i.). Evaluate <Katex tex="f(p)" /> on CAS with the stored <Katex tex="p=0.655251\ldots" />, not 0.655.</>,
+    more: <>The report notes some students rounded too early. Rounded values carried through two more steps can shift the final answer in its second decimal place.</>,
   },
   {
     working: <Katex display tex="y = \tfrac12(x-p)+f(p) \approx 0.5x+1.99119" />,
-    reason: <>Point–gradient form again. The <Katex tex="y" />-intercept <Katex tex="f(p)-\tfrac p2" /> is only known as a decimal, so keep all its digits.</>,
+    reason: <>Point–gradient form again. The <Katex tex="y" />-intercept <Katex tex="f(p)-\tfrac p2" /> is a decimal, so keep all its digits.</>,
   },
   {
     working: <Cas fn="solve">solve(−2x + 4 = (1/2)(x − p) + f(p), x)</Cas>,
@@ -242,54 +252,60 @@ const ROWS_DII: WorkingRow[] = [
         <Katex display tex="y = -2(0.80352\ldots)+4 = 2.39295\ldots" />
       </>
     ),
-    reason: <>The crossing point is on both tangents, so get <Katex tex="y" /> from a tangent (the simpler one), not from <Katex tex="f" />. The curve bends downward here, so both tangents lie above it and so does their crossing: <Katex tex="f(0.80)\approx2.29" /> is the height of the curve underneath, the wrong answer the report describes. And use the unrounded <Katex tex="x" />: <Katex tex="-2(0.80)+4=2.40" /> is out in the second decimal place.</>,
-    more: <>See the diagram below.</>,
+    reason: <>The crossing point lies on both tangents, so take <Katex tex="y" /> from a tangent&apos;s rule, not from <Katex tex="f" />. Use the unrounded <Katex tex="x" />.</>,
+    more: <>The curve bends downward here, so both tangents lie above it, and so does their crossing. Rounding <Katex tex="x" /> first gives <Katex tex="-2(0.80)+4=2.40" />, out in the second decimal place. The diagram below shows the two tangents, their crossing and the curve beneath it.</>,
   },
   {
     working: <Katex display tex="\boxed{(0.80,\ 2.39)}" />,
-    reason: <>To two decimal places; write the 0 in 0.80. Check: <Katex tex="x=0.80" /> lies between the two points of contact, <Katex tex="x=0.655" /> and <Katex tex="x=1" />, as it must for two tangents to a hump that meet above it.</>,
+    reason: <>Both coordinates, to two decimal places; write the 0 in 0.80.</>,
+    more: <>Check: <Katex tex="x=0.80" /> lies between the two points of contact, <Katex tex="x=0.655" /> and <Katex tex="x=1" />, as it must for two tangents to a hump that meet above it.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="f(0) = 2(0)e^{1} = 0" />,
-    reason: <>First find the segment&apos;s two ends. <Katex tex="(0,f(0))" /> is the origin, so the line has no constant term: it is <Katex tex="y=mx" />.</>,
+    reason: <>The segment starts at the origin, so the line has no constant term: it is <Katex tex="y=mx" />.</>,
   },
   {
     working: <Katex display tex="m = \frac{f(n)-0}{n-0} = \frac{2ne^{1-n^2}}{n}" />,
-    reason: <>Gradient is rise over run between <Katex tex="(0,0)" /> and <Katex tex="Q(n,f(n))" />. Write <Katex tex="f(n)" /> out in full: the question wants the answer in terms of <Katex tex="n" />, and the report notes students who left <Katex tex="f(n)" /> in it.</>,
+    reason: <>Rise over run from <Katex tex="(0,0)" /> to <Katex tex="Q(n,f(n))" />. Write <Katex tex="f(n)" /> out in full: the answer must be in terms of <Katex tex="n" />.</>,
+    more: <>The report notes students who left <Katex tex="f(n)" /> in the rule.</>,
   },
   {
     working: <Katex display tex="\boxed{y_1 = 2e^{1-n^2}x}" />,
-    reason: <>The <Katex tex="n" /> cancels. The two letters do different jobs: <Katex tex="n" /> fixes where <Katex tex="Q" /> is, so for a given <Katex tex="Q" /> the gradient <Katex tex="2e^{1-n^2}" /> is just a number; <Katex tex="x" /> moves along the segment. The rule needs both. Check: <Katex tex="x=0" /> gives <Katex tex="y=0" />, and <Katex tex="x=n" /> gives <Katex tex="2ne^{1-n^2}=f(n)" />, so it passes through both ends.</>,
+    reason: <>The <Katex tex="n" /> cancels. Keep the <Katex tex="x" />: <Katex tex="n" /> fixes where <Katex tex="Q" /> is, so the gradient is a number; <Katex tex="x" /> moves along the segment.</>,
+    more: <>Check: <Katex tex="x=0" /> gives <Katex tex="y=0" />, and <Katex tex="x=n" /> gives <Katex tex="2ne^{1-n^2}=f(n)" />, so the line passes through both ends. The diagram below tests the report&apos;s wrong answers the same way.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="f(3) = 6e^{1-9} = 6e^{-8}" />,
-    reason: <>The segment&apos;s right end is <Katex tex="(3,f(3))" />. On the graph <Katex tex="f(3)" /> looks like 0, but <Katex tex="6e^{-8}\approx0.002" /> is small, not zero. Always substitute rather than read an endpoint off a sketch; the report notes students who assumed <Katex tex="f(3)=0" />.</>,
-    more: <>Zoom in on the diagram below.</>,
+    reason: <>Substitute; don&apos;t read it off the graph. <Katex tex="f(3)=6e^{-8}\approx0.002" /> is small, but not zero.</>,
+    more: <>Zoom in on the diagram below to see the gap.</>,
   },
   {
     working: <Katex display tex="m = \frac{f(3)-f(n)}{3-n} = \frac{2ne^{1-n^2}-6e^{-8}}{n-3}" />,
-    reason: <>Rise over run between <Katex tex="Q(n,f(n))" /> and <Katex tex="(3,f(3))" />, with the same order on top and bottom. Multiplying top and bottom by <Katex tex="-1" /> just tidies the signs.</>,
+    reason: <>Rise over run between <Katex tex="Q(n,f(n))" /> and <Katex tex="(3,f(3))" />. Multiplying top and bottom by <Katex tex="-1" /> just tidies the signs.</>,
   },
   {
     working: <Katex display tex="\boxed{y_2 = \left(\frac{2ne^{1-n^2}-6e^{-8}}{n-3}\right)(x-3)+6e^{-8}}" />,
-    reason: <>Point–gradient form through <Katex tex="(3,f(3))" />. Anchoring at <Katex tex="Q(n,f(n))" /> instead is equally valid; the report accepts many forms. There&apos;s no need to expand it, which only invites transcription slips (the report names <Katex tex="e^{n^2-8}" /> copied as <Katex tex="e^{n^2}-8" />). Check: <Katex tex="x=3" /> gives <Katex tex="6e^{-8}" />, and <Katex tex="x=n" /> gives <Katex tex="2ne^{1-n^2}=f(n)" />.</>,
+    reason: <>Point–gradient form through <Katex tex="(3,f(3))" />: a full rule, not just the gradient. There&apos;s no need to expand it.</>,
+    more: <>Anchoring at <Katex tex="Q(n,f(n))" /> instead is equally valid; the report accepts many forms. Expanding only invites transcription slips: the report names <Katex tex="e^{n^2-8}" /> copied as <Katex tex="e^{n^2}-8" />, and <Katex tex="x" /> and <Katex tex="n" /> mixed up. If you copy from the CAS screen, scroll across so you get the whole expression. Check: <Katex tex="x=3" /> gives <Katex tex="6e^{-8}" />, and <Katex tex="x=n" /> gives <Katex tex="2ne^{1-n^2}=f(n)" />.</>,
   },
 ]
 
 const ROWS_EIII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{on } [0,n]: \ f \text{ lies above the chord } y_1" />,
-    reason: <>An area between a curve and a line is <Katex tex="\int(\text{upper}-\text{lower})\,dx" />, so first decide which is on top in each region. On the left the curve arches above its chord (it bends downward there), so that area is <Katex tex="\int_0^n(f-y_1)\,dx" />.</>,
+    reason: <>Area between a curve and a line is <Katex tex="\int(\text{upper}-\text{lower})\,dx" />. On the left the curve arches above its chord.</>,
+    more: <>So first decide which is on top in each region. On <Katex tex="[0,n]" />, <Katex tex="f(x)-y_1=2x\bigl(e^{1-x^2}-e^{1-n^2}\bigr)\ge0" />, because <Katex tex="x\le n" /> makes <Katex tex="1-x^2\ge1-n^2" />. So the chord sits beneath the curve whatever <Katex tex="n" /> is, and that area is <Katex tex="\int_0^n(f-y_1)\,dx" />.</>,
   },
   {
     working: <Katex display tex="\text{on } [n,3]: \ y_2 \text{ lies above } f" />,
-    reason: <>Past <Katex tex="Q" /> the curve drops away faster than the chord and sags beneath it, so the roles swap: <Katex tex="\int_n^3(y_2-f)\,dx" />. Upper minus lower in each, so both integrals are positive areas.</>,
+    reason: <>Past <Katex tex="Q" /> the curve sags beneath the chord, so the roles swap.</>,
+    more: <>The curve drops away faster than the chord, so this area is <Katex tex="\int_n^3(y_2-f)\,dx" />. Taking upper minus lower in each region makes both integrals positive areas.</>,
   },
   {
     working: <Katex display tex="\int_0^n\bigl(f(x)-y_1\bigr)dx = \int_n^3\bigl(y_2-f(x)\bigr)dx" />,
@@ -297,15 +313,17 @@ const ROWS_EIII: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(∫(f(x) − y1, x, 0, n) = ∫(y2 − f(x), x, n, 3), n) | 1 &lt; n &lt; 3</Cas>,
-    reason: <><Cas fn="define" /> <Katex tex="y_1" /> and <Katex tex="y_2" /> from parts e.i. and e.ii. first rather than retyping them; the report notes that writing out entire expressions often led to transcription errors and misuse of brackets. <Katex tex="n" /> sits both inside and outside exponentials, so only a solver can finish it. Keep the restriction: without it CAS also returns <Katex tex="n\approx0.387" />.</>,
+    reason: <><Cas fn="define" /> <Katex tex="y_1" /> and <Katex tex="y_2" /> from parts e.i. and e.ii. rather than retyping them. <Katex tex="n" /> is inside and outside exponentials, so solve on CAS with <Katex tex="1<n<3" />.</>,
+    more: <>The report notes that writing out entire expressions often led to transcription errors and misuse of brackets. Keep the restriction: without it CAS also returns <Katex tex="n\approx0.387" />.</>,
   },
   {
     working: <Katex display tex="n = 1.08803\ldots" />,
-    reason: <>Inside <Katex tex="1<n<3" />. Check: both areas come to about <Katex tex="0.901" />. The left one is quick by hand, since <Katex tex="\int2xe^{1-x^2}dx=-e^{1-x^2}" />: it is <Katex tex="e-(1+n^2)e^{1-n^2}\approx0.901" />.</>,
+    reason: <>Inside <Katex tex="1<n<3" />. Check: both areas come to about <Katex tex="0.901" />.</>,
+    more: <>The left area is quick to check by hand, since <Katex tex="\int2xe^{1-x^2}dx=-e^{1-x^2}" />: it is <Katex tex="e-(1+n^2)e^{1-n^2}\approx0.901" />.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 1.088}" />,
-    reason: <>To three decimal places. The report notes that treating the right-hand region as a triangle gave 1.087. It is a trapezium, because the chord ends at <Katex tex="(3,f(3))" />, which is <Katex tex="6e^{-8}" /> above the axis (part e.ii.).</>,
+    reason: <>To three decimal places.</>,
   },
 ]
 
@@ -402,7 +420,12 @@ export default function MethodsQ4_2020Exam2() {
         <WrongMethod
           title="Copy the CAS output as e^(−p²) + 1"
           source="Examiner's report"
-          working={<Katex display tex="2\left(1-2p^2\right)e^{-p^2}+1 \ \xrightarrow{\ p=1\ } \ -2e^{-1}+1\approx0.26" />}
+          working={
+            <>
+              <Katex display tex="2\left(1-2p^2\right)e^{-p^2}+1" />
+              <Katex display tex="\xrightarrow{\ p=1\ } \ -2e^{-1}+1\approx0.26" />
+            </>
+          }
         >
           The <Katex tex="+1" /> has fallen out of the power and become a separate term, which
           makes a different function: at <Katex tex="p=1" /> it gives about 0.26, not part a.&apos;s{' '}

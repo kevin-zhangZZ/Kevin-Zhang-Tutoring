@@ -36,7 +36,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{centre of the clock} = 15 \text{ cm above the base}" />,
-    reason: <>The clock face has radius 15 and rests on the base, so its centre is 15 cm up. The tip goes round the centre, so its height swings evenly above and below 15: that is the midline of the model, the <Katex tex="15" /> in every option.</>,
+    reason: <>The face has radius 15 and rests on the base, so its centre is 15 cm up. The tip circles the centre, so 15 is the midline.</>,
+    more: <>The tip&apos;s height swings evenly above and below the centre: that is the <Katex tex="15" /> in every option.</>,
   },
   {
     working: (
@@ -45,24 +46,34 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="h_{\min} = 15-10 = 5" />
       </>
     ),
-    reason: <>The tip is always 10 cm from the centre, so it is at most 10 cm above it (hand straight up) and at most 10 cm below it (hand straight down). The amplitude is 10. All five options have this right, so it doesn&apos;t separate them.</>,
+    reason: <>The tip is always 10 cm from the centre: highest with the hand straight up, lowest with it straight down. The amplitude is 10.</>,
+    more: <>All five options have amplitude 10, so this doesn&apos;t separate them.</>,
   },
   {
     working: <Katex display tex="t = 0: \quad h = 25 \text{ (maximum)}" />,
-    reason: <>&ldquo;Both hands point vertically upwards&rdquo; at noon, so the model must <em>start at its maximum</em>. <Katex tex="\cos0=1" /> starts at the top, while <Katex tex="\sin0=0" /> starts on the midline: options A, B and C all give <Katex tex="h(0)=15" />, so they are out. (Underneath this: the hand&apos;s angle is measured from the vertical, so the height above the centre is <Katex tex="10\cos\theta" />.)</>,
-    more: <>See the Background above.</>,
+    reason: <>At noon the hand points straight up, so the model starts at its maximum. <Katex tex="\cos0=1" /> does; <Katex tex="\sin0=0" /> starts on the midline, so A, B and C (all <Katex tex="h(0)=15" />) are out.</>,
   },
   {
     working: <Katex display tex="\text{period} = 60 \text{ minutes}" />,
-    reason: <>A minute hand goes round once an hour, so the height repeats every 60 minutes. This is what separates the two survivors, D and E.</>,
+    reason: <>A minute hand goes round once an hour, so the height repeats every 60 minutes. This decides between D and E.</>,
   },
   {
     working: <Katex display tex="\frac{2\pi}{n} = 60 \implies n = \frac{\pi}{30}" />,
-    reason: <>The period of <Katex tex="\cos(nt)" /> is <Katex tex="\tfrac{2\pi}{n}" />: one full cycle is <Katex tex="2\pi" /> radians, and the angle grows at <Katex tex="n" /> radians per minute. Here the hand turns <Katex tex="2\pi" /> in 60 minutes, so <Katex tex="n=\tfrac{2\pi}{60}=\tfrac{\pi}{30}" />.</>,
+    reason: <>The period of <Katex tex="\cos(nt)" /> is <Katex tex="\tfrac{2\pi}{n}" />.</>,
+    more: <>One full cycle is <Katex tex="2\pi" /> radians, and the angle grows at <Katex tex="n" /> radians per minute. The hand turns <Katex tex="2\pi" /> in 60 minutes, so <Katex tex="n=\tfrac{2\pi}{60}=\tfrac{\pi}{30}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{h(t) = 15+10\cos\!\left(\frac{\pi t}{30}\right)}" />,
-    reason: <>Matches option <b>E</b>. Check <Katex tex="t=30" /> (half past): <Katex tex="15+10\cos\pi=5" />, the hand pointing straight down ✓. Options <b>A</b>, <b>B</b> and <b>C</b> are sines, which start on the midline (A is the right curve 15 minutes late, a hand that started at 9 o&apos;clock). Option <b>D</b> has <Katex tex="n=\tfrac{\pi}{60}" />, which is what you get from using <Katex tex="\tfrac{\pi}{n}" /> for the period; its period is <Katex tex="2\pi\div\tfrac{\pi}{60}=120" /> minutes, two hours per revolution.</>,
+    reason: <>Matches option <b>E</b>. Check <Katex tex="t=30" />: <Katex tex="15+10\cos\pi=5" />, the hand straight down ✓.</>,
+    more: (
+      <>
+        Options <b>A</b>, <b>B</b> and <b>C</b> are sines, which start on the midline: A is the right curve 15 minutes late (a
+        hand that started at 9 o&apos;clock; the Common Mistake below), B a hand that started at 3 o&apos;clock, and C also has
+        the wrong period. Option <b>D</b> starts correctly at 25 but has <Katex tex="n=\tfrac{\pi}{60}" />, which is what using{' '}
+        <Katex tex="\tfrac{\pi}{n}" /> for the period gives; its period is <Katex tex="2\pi\div\tfrac{\pi}{60}=120" /> minutes,
+        two hours per revolution.
+      </>
+    ),
   },
 ]
 
@@ -95,8 +106,9 @@ export default function MethodsQ12_2020() {
       background={
         <Background title="Why a clock gives a cosine, not a sine">
           <p>
-            Three things fix the model: the midline (the centre of the clock, 15 cm up), the amplitude (the hand&apos;s
-            length, 10 cm), and where it starts. The last one decides between sine and cosine.
+            Four things fix the model: the midline (the centre of the clock, 15 cm up), the amplitude (the hand&apos;s
+            length, 10 cm), the period (one turn, 60 minutes) and where it starts. The last one decides between sine and
+            cosine.
           </p>
           <p>
             On the unit circle the angle is measured from the <em>horizontal</em> (the positive <Katex tex="x" />-axis), so
@@ -105,9 +117,6 @@ export default function MethodsQ12_2020() {
             the centre is the side <em>next to</em> the angle, <Katex tex="10\cos\theta" />, so
           </p>
           <Katex display tex="h = 15 + 10\cos\theta." />
-          <p>
-            The quick check is <Katex tex="t=0" />: the tip starts at the top, and cosine is the one that starts at its maximum.
-          </p>
         </Background>
       }
       options={[
@@ -136,8 +145,7 @@ export default function MethodsQ12_2020() {
             <p>
               &ldquo;Height = sine&rdquo; is true on the unit circle, where the angle starts from the horizontal. This hand
               starts pointing straight up, so its height above the centre is <Katex tex="10\cos\theta" />. Option A gives{' '}
-              <Katex tex="h(0)=15" />, a tip level with the centre (pointing at 9 o&apos;clock), but at noon the tip is at the
-              top, 25 cm up. Substituting <Katex tex="t=0" /> into each option catches this in seconds.
+              <Katex tex="h(0)=15" />, a tip level with the centre, but at noon the tip is at the top, 25 cm up.
             </p>
           </WrongMethod>
         </>

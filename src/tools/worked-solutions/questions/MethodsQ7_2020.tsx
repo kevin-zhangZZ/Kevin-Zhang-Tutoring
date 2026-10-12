@@ -25,15 +25,18 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = e^{g(x^2)}" />,
-    reason: <>CAS can&apos;t do this one for you: <Katex tex="g" /> is an unknown function, so a calculator either treats it as a constant or leaves the derivative unevaluated. Name the layers from the inside out instead: <Katex tex="x^2" /> is fed into <Katex tex="g" />, and <Katex tex="g(x^2)" /> is fed into the exponential. The chain rule peels them off one at a time, outermost first.</>,
+    reason: <>Name the layers from the inside out: <Katex tex="x^2" /> is fed into <Katex tex="g" />, and <Katex tex="g(x^2)" /> is fed into the exponential. The chain rule peels them off outermost first.</>,
+    more: <>CAS can&apos;t do this one for you: <Katex tex="g" /> is an unknown function, so a calculator either treats it as a constant or leaves the derivative unevaluated.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}e^{u} = e^{u}\cdot\frac{du}{dx}, \quad u = g\!\left(x^2\right)" />,
-    reason: <>Cover up everything in the power and call it <Katex tex="u" />. The derivative of <Katex tex="e^u" /> is <Katex tex="e^u" /> itself, so the exponential comes back <em>unchanged</em>, power and all (option E changes the power), times the derivative of the covered-up part.</>,
+    reason: <>Call the whole power <Katex tex="u" />. The derivative of <Katex tex="e^u" /> is <Katex tex="e^u" /> itself, power unchanged, times the derivative of <Katex tex="u" />.</>,
+    more: <>The exponential comes back exactly as it was, power and all. Option <b>E</b> changes the power to <Katex tex="g(2x)" />; nothing in the chain rule ever touches what sits in the power of the outer layer.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}g\!\left(x^2\right) = g'\!\left(x^2\right)\times2x" />,
-    reason: <>Now the covered-up part, which is <Katex tex="g" /> of something. Its derivative is <Katex tex="g'" /> of the <em>same</em> something, <Katex tex="x^2" />, because that is the input <Katex tex="g" /> actually receives, times the derivative of that something, <Katex tex="2x" />. The <Katex tex="2x" /> is its own factor: it never goes inside <Katex tex="g'" /> (that is option D).</>,
+    reason: <>Chain rule again: <Katex tex="g'" /> evaluated at the same input <Katex tex="g" /> receives, <Katex tex="x^2" />, times the derivative of that input, <Katex tex="2x" />.</>,
+    more: <>Writing <Katex tex="g'(2x)" /> here instead is option <b>D</b>, the most common wrong answer (11%).</>,
   },
   {
     working: <Katex display tex="f'(x) = e^{g\left(x^2\right)}\times g'\!\left(x^2\right)\times2x" />,
@@ -41,8 +44,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = 2xg'\!\left(x^2\right)e^{g\left(x^2\right)}}" />,
-    reason: <>Matches option <b>C</b>. Check with a simple <Katex tex="g" />: if <Katex tex="g(u)=u" />, then <Katex tex="f(x)=e^{x^2}" /> with derivative <Katex tex="2xe^{x^2}" />, and C gives <Katex tex="2x\times1\times e^{x^2}" /> ✓. Option <b>A</b> leaves out the factor <Katex tex="g'(x^2)" /> altogether; option <b>B</b> drops the prime on <Katex tex="g" />; option <b>D</b> evaluates <Katex tex="g'" /> at <Katex tex="2x" /> instead of <Katex tex="x^2" />; option <b>E</b> changes the power from <Katex tex="g(x^2)" /> to <Katex tex="g(2x)" />. (With <Katex tex="g(u)=u" />, A and D also give <Katex tex="2xe^{x^2}" />, because <Katex tex="g'" /> is 1 everywhere, so that check only rules out B and E.)</>,
-    more: <>The diagram below uses a <Katex tex="g" /> that rules out all four.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Check with a simple <Katex tex="g" />: if <Katex tex="g(u)=u" />, then <Katex tex="f(x)=e^{x^2}" /> with derivative <Katex tex="2xe^{x^2}" />, and C gives <Katex tex="2x\times1\times e^{x^2}" /> ✓. Option <b>A</b> leaves out the factor <Katex tex="g'(x^2)" /> altogether; option <b>B</b> uses <Katex tex="g" /> where <Katex tex="g'" /> belongs; options <b>D</b> and <b>E</b> are the slips in the two rows above. (With <Katex tex="g(u)=u" />, A and D also give <Katex tex="2xe^{x^2}" />, because <Katex tex="g'" /> is 1 everywhere, so that check only rules out B and E. The diagram below uses a <Katex tex="g" /> that rules out all four.)</>,
   },
 ]
 

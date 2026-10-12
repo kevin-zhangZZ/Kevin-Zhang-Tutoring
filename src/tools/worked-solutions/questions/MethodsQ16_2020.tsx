@@ -30,11 +30,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="OB = m, \qquad BC = 9-m^2" />,
     reason: (
       <>
-        The right angle is at <Katex tex="B" />, so the two sides that meet there are the base and the height. The base
-        runs along the <Katex tex="x" />-axis from <Katex tex="O" /> to <Katex tex="B(m,0)" />: length <Katex tex="m" />. The
-        height runs straight up from <Katex tex="B" /> to the parabola, so it is the parabola&apos;s <Katex tex="y" />-value at{' '}
-        <Katex tex="x=m" />: <Katex tex="9-m^2" />. (The domain stops at <Katex tex="m=3" /> because that is where the
-        parabola meets the <Katex tex="x" />-axis.)
+        The right angle is at <Katex tex="B" />: the base runs along the <Katex tex="x" />-axis to <Katex tex="B(m,0)" />, and
+        the height is the parabola&apos;s <Katex tex="y" />-value at <Katex tex="x=m" />.
+      </>
+    ),
+    more: (
+      <>
+        The domain stops at <Katex tex="m=3" /> because that is where the parabola meets the <Katex tex="x" />-axis.
       </>
     ),
   },
@@ -42,15 +44,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A(m) = \tfrac12 m\left(9-m^2\right) = \tfrac12\left(9m-m^3\right)" />,
     reason: (
       <>
-        Area <Katex tex="=\tfrac12\times\text{base}\times\text{height}" />, written as a function of <Katex tex="m" />, the one
-        thing that changes. Before any calculus, think about the ends: near <Katex tex="m=0" /> the base vanishes, and near{' '}
-        <Katex tex="m=3" /> the height vanishes, so the area is close to 0 at both ends. Moving <Katex tex="C" /> right
-        lengthens the base but shortens the height, so somewhere in between the area must peak.
+        Area <Katex tex="=\tfrac12\times\text{base}\times\text{height}" />, as a function of <Katex tex="m" />. Expanding now
+        makes the derivative one line, with no product rule.
       </>
     ),
     more: (
       <>
-        Slide <Katex tex="C" /> in the diagram below to watch this trade-off.
+        Before any calculus, think about the ends: near <Katex tex="m=0" /> the base vanishes, and near{' '}
+        <Katex tex="m=3" /> the height vanishes, so the area is close to 0 at both ends. Moving <Katex tex="C" /> right
+        lengthens the base but shortens the height, so somewhere in between the area must peak. Slide{' '}
+        <Katex tex="C" /> in the diagram below to watch this trade-off.
       </>
     ),
   },
@@ -58,8 +61,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A'(m) = \tfrac12\left(9-3m^2\right)" />,
     reason: (
       <>
-        At the top of a smooth hump the graph is momentarily flat, so its gradient is zero: that is why we differentiate
-        and set <Katex tex="A'(m)=0" />. Expanding first makes this a one-line derivative, with no product rule.
+        At a maximum turning point the gradient is zero, so differentiate and set <Katex tex="A'(m)=0" />.
       </>
     ),
   },
@@ -72,9 +74,12 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="m=-\sqrt3" /> is rejected: it is outside <Katex tex="(0,3)" />, and a length can&apos;t be negative. On CAS,{' '}
-        <Cas fn="fMax">fMax(0.5m(9 − m^2), m) | 0 &lt; m &lt; 3</Cas> gives <Katex tex="m=\sqrt3" /> in one step, but it
-        returns the value of <Katex tex="m" />, not the area.
+        Reject <Katex tex="m=-\sqrt3" />: it is outside <Katex tex="(0,3)" />.
+      </>
+    ),
+    more: (
+      <>
+        On CAS, <Cas fn="fMax">fMax(0.5m(9 − m^2), m) | 0 &lt; m &lt; 3</Cas> gives <Katex tex="m=\sqrt3" /> in one step.
       </>
     ),
   },
@@ -82,9 +87,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A'(1) = 3 > 0, \qquad A'(2) = -\tfrac32 < 0" />,
     reason: (
       <>
-        Confirm it is a maximum: the area is increasing just before <Katex tex="\sqrt3\approx1.73" /> and decreasing just
-        after, so <Katex tex="m=\sqrt3" /> is the top of the hump, not the bottom of a dip. Together with the zero area at
-        both ends, this is the largest area on the whole domain.
+        The area increases before <Katex tex="\sqrt3\approx1.73" /> and decreases after, so <Katex tex="m=\sqrt3" /> gives
+        the maximum.
+      </>
+    ),
+    more: (
+      <>
+        So <Katex tex="m=\sqrt3" /> is the top of the hump, not the bottom of a dip, and (by the ends argument above) the
+        largest area on the whole of <Katex tex="(0,3)" />.
       </>
     ),
   },
@@ -92,9 +102,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="A\!\left(\sqrt3\right) = \tfrac12\times\sqrt3\times\left(9-3\right) = \tfrac12\times\sqrt3\times6" />,
     reason: (
       <>
-        Substitute back. <Katex tex="m=\sqrt3" /> says <em>where</em> the maximum happens; the question asks for the maximum{' '}
-        <em>area</em>, which is <Katex tex="A(\sqrt3)" />. (The corner is then <Katex tex="C(\sqrt3,\,6)" />: base{' '}
-        <Katex tex="\sqrt3" />, height 6.)
+        Substitute back: <Katex tex="m=\sqrt3" /> says <em>where</em> the maximum is, but the question asks for the
+        maximum <em>area</em>.
+      </>
+    ),
+    more: (
+      <>
+        The corner is then <Katex tex="C(\sqrt3,\,6)" />: base <Katex tex="\sqrt3" />, height 6.
       </>
     ),
   },
@@ -102,12 +116,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{3\sqrt3}" />,
     reason: (
       <>
-        Matches option <b>D</b>. Check: <Katex tex="3\sqrt3\approx5.20" />, a little above <Katex tex="A(2)=5" /> and{' '}
-        <Katex tex="A(1)=4" />, which is just what the top of the hump should look like. Option <b>C</b> (
-        <Katex tex="\sqrt3" />) is the value of <Katex tex="m" /> at the maximum, not the area.
+        Matches option <b>D</b>, not <b>C</b> (<Katex tex="\sqrt3" />), which is the value of <Katex tex="m" />.
       </>
     ),
-    more: <>See the Common Mistake below.</>,
+    more: (
+      <>
+        Check: <Katex tex="3\sqrt3\approx5.20" />, a little above <Katex tex="A(2)=5" /> and <Katex tex="A(1)=4" />, just
+        what the top of the hump should look like. Why C is so tempting is in the Common Mistake below.
+      </>
+    ),
   },
 ]
 

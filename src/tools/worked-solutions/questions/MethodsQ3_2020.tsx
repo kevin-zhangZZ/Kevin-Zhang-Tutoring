@@ -29,7 +29,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = 2\times\frac{(2x-3)^{1/2}}{2\times\tfrac12}+c = 2\sqrt{2x-3}+c" />,
-    reason: <>The rule <Katex tex="\int(ax+b)^n\,dx=\frac{(ax+b)^{n+1}}{a(n+1)}+c" />: raise the index by one, then divide by the new index <Katex tex="\tfrac12" /> <em>and</em> by <Katex tex="a=2" />. Here those two cancel. You divide by <Katex tex="a" /> because differentiating <Katex tex="(2x-3)^{1/2}" /> by the chain rule brings out a factor of 2 (the derivative of the inside), so antidifferentiating has to take it back out.</>,
+    reason: <>The rule <Katex tex="\int(ax+b)^n\,dx=\frac{(ax+b)^{n+1}}{a(n+1)}+c" />: raise the index by one, then divide by the new index <Katex tex="\tfrac12" /> <em>and</em> by <Katex tex="a=2" />. Here those two cancel.</>,
+    more: <>You divide by <Katex tex="a" /> because differentiating <Katex tex="(2x-3)^{1/2}" /> by the chain rule brings out a factor of 2 (the derivative of the inside), so antidifferentiating has to take it back out.</>,
   },
   {
     working: (
@@ -42,16 +43,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(6) = 2\sqrt{12-3}+c = 2(3)+c = 6+c" />,
-    reason: <>The derivative fixes only the <em>shape</em> of <Katex tex="f" />: adding any constant slides the graph up or down without changing its gradient anywhere, so every <Katex tex="c" /> gives a valid antiderivative. The one extra fact, <Katex tex="f(6)=4" />, is what picks out a single curve.</>,
-    more: <>Slide <Katex tex="c" /> in the diagram below.</>,
+    reason: <>The derivative fixes <Katex tex="f" /> only up to the constant <Katex tex="c" />; the one extra fact, <Katex tex="f(6)=4" />, pins it down. Substitute <Katex tex="x=6" /> first.</>,
+    more: <>Adding a constant slides the graph up or down without changing its gradient anywhere. Slide <Katex tex="c" /> in the diagram below.</>,
   },
   {
     working: <Katex display tex="6+c = 4 \implies c = -2" />,
-    reason: <>Using the given value. (Another way to see it: <Katex tex="f(x)=f(6)+\int_6^x f'(t)\,dt" />, start at the known value and add the change. On CAS, <Katex tex="4+\int_6^x \frac{2}{\sqrt{2t-3}}\,dt" /> returns <Katex tex="2\sqrt{2x-3}-2" /> directly.)</>,
+    reason: <>Set this equal to the given value <Katex tex="f(6)=4" />.</>,
+    more: <>Another way to see it: <Katex tex="f(x)=f(6)+\int_6^x f'(t)\,dt" />, start at the known value and add the change. On CAS, <Katex tex="4+\int_6^x \frac{2}{\sqrt{2t-3}}\,dt" /> returns <Katex tex="2\sqrt{2x-3}-2" /> directly.</>,
   },
   {
     working: <Katex display tex="\boxed{f(x) = 2\sqrt{2x-3}-2}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b> is the antiderivative with the constant left as 0: it gives <Katex tex="f(6)=6" />, not 4. Options <b>B</b>, <b>D</b> and <b>E</b> are <Katex tex="\sqrt{2x-3}" /> plus a constant, whose derivative is <Katex tex="\frac{1}{\sqrt{2x-3}}" />, half of <Katex tex="f'(x)" />: they have lost the factor of 2, and none of them gives <Katex tex="f(6)=4" /> either (they give 1, 5 and 3).</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>A</b> leaves out the constant (see the Common Mistake box below). Options <b>B</b>, <b>D</b> and <b>E</b> are <Katex tex="\sqrt{2x-3}" /> plus a constant, whose derivative is <Katex tex="\frac{1}{\sqrt{2x-3}}" />, half of <Katex tex="f'(x)" />: they have lost the factor of 2, and none of them gives <Katex tex="f(6)=4" /> either (they give 1, 5 and 3).</>,
   },
 ]
 

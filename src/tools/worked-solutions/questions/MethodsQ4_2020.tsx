@@ -31,16 +31,17 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="2\cos\!\left(2x-\tfrac\pi3\right)+1 = 0 \implies \cos\!\left(2x-\tfrac\pi3\right) = -\tfrac12" />,
-    reason: <>Get the cosine on its own first. The unit circle can only tell us which angles have a particular cosine, so we need <Katex tex="\cos(\text{angle}) = \text{number}" /> before anything else.</>,
+    reason: <>Get the cosine on its own first: the unit circle only tells us which angles have a given cosine.</>,
   },
   {
     working: <Katex display tex="\text{Let } \theta = 2x-\tfrac\pi3: \quad \cos\theta = -\tfrac12" />,
-    reason: <>Treat the whole bracket as one angle <Katex tex="\theta" />. Solve for <Katex tex="\theta" /> first and undo the bracket at the end, so the two jobs (finding the angles, then finding <Katex tex="x" />) don&apos;t get tangled.</>,
+    reason: <>Treat the whole bracket as one angle <Katex tex="\theta" />: solve for <Katex tex="\theta" /> first, then undo the bracket to get <Katex tex="x" />.</>,
+    more: <>Keeping the two jobs separate (finding the angles, then finding <Katex tex="x" />) stops them getting tangled.</>,
   },
   {
     working: <Katex display tex="\theta = -\tfrac{2\pi}{3}+2k\pi \ \text{ or } \ \theta = \tfrac{2\pi}{3}+2k\pi, \quad k\in Z" />,
-    reason: <><Katex tex="\cos\theta" /> is the horizontal coordinate of the point at angle <Katex tex="\theta" /> on the unit circle. <Katex tex="\cos\tfrac\pi3=\tfrac12" />, so the basic angle is <Katex tex="\tfrac\pi3" />; the cosine is <em>negative</em>, so the point is left of the vertical axis, in the second or third quadrant: <Katex tex="\theta=\pi-\tfrac\pi3=\tfrac{2\pi}3" /> or <Katex tex="\theta=\pi+\tfrac\pi3=\tfrac{4\pi}3" />, which is the same point as <Katex tex="-\tfrac{2\pi}3" />. Every whole number of turns, <Katex tex="2k\pi" />, lands on the same two points.</>,
-    more: <>The first diagram below shows it. For the unit circle, see the Background.</>,
+    reason: <><Katex tex="\cos\tfrac\pi3=\tfrac12" />, so the basic angle is <Katex tex="\tfrac\pi3" />. Cosine is negative in quadrants 2 and 3: <Katex tex="\pi-\tfrac\pi3=\tfrac{2\pi}3" /> or <Katex tex="\pi+\tfrac\pi3=\tfrac{4\pi}3" /> (same point as <Katex tex="-\tfrac{2\pi}3" />); add <Katex tex="2k\pi" /> for full turns.</>,
+    more: <>A negative cosine puts the point left of the vertical axis of the unit circle, which is quadrants 2 and 3. The first diagram below shows the two points.</>,
   },
   {
     working: <Katex display tex="2x-\tfrac\pi3 = -\tfrac{2\pi}{3}+2k\pi \implies 2x = -\tfrac\pi3+2k\pi" />,
@@ -48,7 +49,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = -\tfrac\pi6+k\pi = \frac{\pi(6k-1)}{6}" />,
-    reason: <>Halve <em>everything</em>, the <Katex tex="2k\pi" /> included: it becomes <Katex tex="k\pi" />. That is why the solutions in <Katex tex="x" /> repeat every <Katex tex="\pi" />, not every <Katex tex="2\pi" />: the period of <Katex tex="\cos\!\left(2x-\tfrac\pi3\right)" /> is <Katex tex="\tfrac{2\pi}{2}=\pi" />. Then write it over 6 to match the options: <Katex tex="-\tfrac{\pi}{6}+\tfrac{6k\pi}{6}" />.</>,
+    reason: <>Halve <em>everything</em>, the <Katex tex="2k\pi" /> included: it becomes <Katex tex="k\pi" />. Then write it over 6 to match the options: <Katex tex="-\tfrac{\pi}{6}+\tfrac{6k\pi}{6}" />.</>,
+    more: <>That is why the solutions in <Katex tex="x" /> repeat every <Katex tex="\pi" />, not every <Katex tex="2\pi" />: the period of <Katex tex="\cos\!\left(2x-\tfrac\pi3\right)" /> is <Katex tex="\tfrac{2\pi}{2}=\pi" />.</>,
   },
   {
     working: <Katex display tex="2x-\tfrac\pi3 = \tfrac{2\pi}{3}+2k\pi \implies 2x = \pi+2k\pi" />,
@@ -62,17 +64,22 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{x = \frac{\pi(6k-1)}{6} \ \text{ or } \ x = \frac{\pi(6k+3)}{6}, \ k\in Z}" />,
     reason: (
       <>
-        Matches option <b>D</b>. On CAS (radian mode), <Cas fn="solve">solve(2cos(2x − π/3) + 1 = 0, x)</Cas> gives the families as{' '}
-        <Katex tex="\tfrac{(6n-1)\pi}{6}" /> and <Katex tex="\tfrac{(2n+1)\pi}{2}" />, and the second matches no option until you
-        multiply its top and bottom by 3: <Katex tex="\tfrac{(2n+1)\pi}{2}=\tfrac{(6n+3)\pi}{6}" />. A check with <Katex tex="k=0" />:{' '}
-        <Katex tex="x=-\tfrac\pi6" /> and <Katex tex="x=\tfrac\pi2" /> both satisfy the original equation. Every other option contains
-        a value that fails it: <b>A</b> and <b>B</b> include <Katex tex="-\tfrac\pi3" /> (<Katex tex="k=0" />), where the left side
-        is <Katex tex="-1" />; <b>C</b> includes <Katex tex="\tfrac\pi3" /> and <b>E</b> includes <Katex tex="\pi" />, where it is 2.
-        A, B and C each have one correct family, written differently from D&apos;s: A&apos;s <Katex tex="\tfrac{\pi(6k-3)}{6}" /> and
-        B&apos;s <Katex tex="\tfrac{\pi(6k+5)}{6}" /> are D&apos;s two families with <Katex tex="k" /> shifted by one.
+        Matches option <b>D</b>. Check with <Katex tex="k=0" />: <Katex tex="x=-\tfrac\pi6" /> and <Katex tex="x=\tfrac\pi2" /> both
+        satisfy the original equation.
       </>
     ),
-    more: <>The second diagram below tests every option.</>,
+    more: (
+      <>
+        On CAS (radian mode), <Cas fn="solve">solve(2cos(2x − π/3) + 1 = 0, x)</Cas> gives the families as{' '}
+        <Katex tex="\tfrac{(6n-1)\pi}{6}" /> and <Katex tex="\tfrac{(2n+1)\pi}{2}" />, and the second matches no option until you
+        multiply its top and bottom by 3: <Katex tex="\tfrac{(2n+1)\pi}{2}=\tfrac{(6n+3)\pi}{6}" />. Every other option contains
+        a value that fails the equation: <b>A</b> and <b>B</b> include <Katex tex="-\tfrac\pi3" /> (<Katex tex="k=0" />), where the
+        left side is <Katex tex="-1" />; <b>E</b> includes <Katex tex="\pi" />, where it is 2; and <b>C</b>&apos;s second family fails
+        too (the Common Mistake box below). A, B and C each have one correct family, written differently from D&apos;s: A&apos;s{' '}
+        <Katex tex="\tfrac{\pi(6k-3)}{6}" /> and B&apos;s <Katex tex="\tfrac{\pi(6k+5)}{6}" /> are D&apos;s two families with{' '}
+        <Katex tex="k" /> shifted by one. The second diagram below tests every option.
+      </>
+    ),
   },
 ]
 
@@ -132,9 +139,8 @@ export default function MethodsQ4_2020() {
               <Katex tex="2\cos\tfrac\pi3+1=2" />, not 0.
             </p>
             <p>
-              When a CAS answer doesn&apos;t look like any option, rewrite it over the options&apos; denominator
-              (<Katex tex="\tfrac{(2n+1)\pi}{2}=\tfrac{(6n+3)\pi}{6}" />, option D), or test <Katex tex="k=0" /> in each remaining
-              option&apos;s formulas. One value that fails the equation rules an option out.
+              When two options share a correct family, their other family decides it: test <Katex tex="k=0" /> in each. One
+              value that fails the equation rules an option out.
             </p>
           </WrongMethod>
           <Explore title="Test each option: every x it gives must be a solution, and every solution must be given">

@@ -45,8 +45,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{1}{3a}\int_{-2a}^{a}f(x)\,dx" />
       </>
     ),
-    reason: <>Start from the definition: the signed area under the graph, shared out over the width of the interval. The width is <Katex tex="a-(-2a)=3a" />.</>,
-    more: <>See the Background above for the definition.</>,
+    reason: <>The average value of <Katex tex="f" /> over <Katex tex="[p,q]" /> is <Katex tex="\tfrac{1}{q-p}\int_p^q f(x)\,dx" />: the signed area shared out over the width. Here the width is <Katex tex="a-(-2a)=3a" />.</>,
+    more: <>It works like the average of a list of numbers, total divided by how many: here the integral is the total and the width of the interval plays the part of &ldquo;how many&rdquo;.</>,
   },
   {
     working: (
@@ -55,7 +55,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{gradient} = \frac{-a-2a}{0-(-2a)} = -\tfrac32" />
       </>
     ),
-    reason: <>The graph is two straight pieces joined at the corner <Katex tex="(0,-a)" />, so the integral splits at <Katex tex="x=0" /> and each piece needs its own rule. Get each gradient from rise over run between the labelled points.</>,
+    reason: <><Katex tex="f" /> is two straight pieces joined at the corner <Katex tex="(0,-a)" />, so split the integral at <Katex tex="x=0" /> and find each piece&apos;s rule. Gradient is rise over run between the labelled points.</>,
   },
   {
     working: <Katex display tex="y = -\tfrac32x - a,\quad x\in[-2a,0]" />,
@@ -90,16 +90,18 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= (a^2-a^2)-0 = 0" />
       </>
     ),
-    reason: <>Zero is right, not a slip. This piece is below the axis from <Katex tex="0" /> to <Katex tex="\tfrac a2" /> and above it from <Katex tex="\tfrac a2" /> to <Katex tex="a" />, two triangles of area <Katex tex="\tfrac{a^2}{4}" /> each, and an integral counts area below the axis as negative, so they cancel.</>,
+    reason: <>Zero is right, not a slip: this piece has equal areas below and above the axis, and the integral counts area below the axis as negative.</>,
+    more: <>The piece is below the axis from <Katex tex="0" /> to <Katex tex="\tfrac a2" /> and above it from <Katex tex="\tfrac a2" /> to <Katex tex="a" />: two triangles, each with base <Katex tex="\tfrac a2" /> and height <Katex tex="a" />, so area <Katex tex="\tfrac{a^2}{4}" /> each. They cancel.</>,
   },
   {
     working: <Katex display tex="\text{Average} = \frac{1}{3a}\big(a^2+0\big) = \frac{a^2}{3a}" />,
-    reason: <>Divide the total by the width of the <em>whole</em> interval, <Katex tex="3a" />. (Quicker, with no rules needed: <Katex tex="f" /> crosses the axis at <Katex tex="x=-\tfrac{2a}{3}" /> and <Katex tex="x=\tfrac a2" />, so the signed area is three triangles, <Katex tex="\tfrac{4a^2}{3}-\tfrac{7a^2}{12}+\tfrac{a^2}{4}=a^2" />.)</>,
+    reason: <>Add the two integrals, then divide by the width of the <em>whole</em> interval, <Katex tex="3a" />.</>,
+    more: <>A quicker route needs no rules, just triangle areas. <Katex tex="f" /> crosses the axis at <Katex tex="x=-\tfrac{2a}{3}" /> and <Katex tex="x=\tfrac a2" />, so the graph makes three triangles: above the axis on <Katex tex="[-2a,-\tfrac{2a}{3}]" /> (base <Katex tex="\tfrac{4a}{3}" />, height <Katex tex="2a" />, area <Katex tex="\tfrac{4a^2}{3}" />), below it on <Katex tex="[-\tfrac{2a}{3},\tfrac a2]" /> (base <Katex tex="\tfrac{7a}{6}" />, depth <Katex tex="a" />, area <Katex tex="\tfrac{7a^2}{12}" />) and above it on <Katex tex="[\tfrac a2,a]" /> (area <Katex tex="\tfrac{a^2}{4}" />). Signed area <Katex tex="\tfrac{4a^2}{3}-\tfrac{7a^2}{12}+\tfrac{a^2}{4}=a^2" />, the same total.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{a}{3}}" />,
-    reason: <>Matches option <b>B</b>. Sanity check: <Katex tex="f" /> runs from <Katex tex="-a" /> to <Katex tex="2a" /> but spends most of the interval low down, so its average should sit below the middle of that range, <Katex tex="\tfrac a2" />, and <Katex tex="\tfrac a3" /> does. Option <b>C</b>, <Katex tex="\tfrac a2" />, is exactly that middle. Option <b>E</b> divides <Katex tex="a^2" /> by <Katex tex="a" /> instead of by the width <Katex tex="3a" />, and option <b>A</b> is the integral of the right-hand piece alone.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>C</b>, <Katex tex="\tfrac a2" />, is halfway between the highest value <Katex tex="2a" /> and the lowest <Katex tex="-a" />; the Common Mistake below shows why that isn&apos;t the average. Option <b>E</b> divides <Katex tex="a^2" /> by <Katex tex="a" /> instead of by the width <Katex tex="3a" />, and option <b>A</b> is the integral of the right-hand piece alone. Option <b>D</b> doesn&apos;t come from any single obvious slip; if you got <Katex tex="\tfrac{3a}{4}" />, recheck the terminals in each integral and that you divided by the full width <Katex tex="3a" />.</>,
   },
 ]
 
@@ -129,8 +131,7 @@ export default function MethodsQ15_2020() {
             level it settles at is the average value. At that level, the area of the graph above the line balances the area below it.
           </p>
           <p>
-            Areas below the <Katex tex="x" />-axis count as negative, because the integral does. The average value is not halfway
-            between the highest and lowest points, and not the average of the endpoint values.
+            Areas below the <Katex tex="x" />-axis count as negative, because the integral does. It is also not the average of the endpoint values.
           </p>
         </Background>
       }

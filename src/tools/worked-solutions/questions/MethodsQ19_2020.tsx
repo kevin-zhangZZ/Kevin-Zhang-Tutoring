@@ -45,15 +45,17 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}\big(20,\tfrac16\big),\quad p(x) = \Pr(X=x)" />,
-    reason: <>First name the variable each function describes. <Katex tex="X" /> is the number of 6s in 20 rolls: the rolls are independent and each is a 6 with probability <Katex tex="\tfrac16" />, so <Katex tex="X" /> is binomial. That fits the graph: its peak is at <Katex tex="x=3" />, near <Katex tex="20\times\tfrac16\approx3.3" />.</>,
+    reason: <>Name the variable <Katex tex="p" /> describes: <Katex tex="X" />, the number of 6s in 20 independent rolls, each a 6 with probability <Katex tex="\tfrac16" />, so binomial.</>,
+    more: <>That fits the graph: its peak is at <Katex tex="x=3" />, near the mean <Katex tex="20\times\tfrac16\approx3.3" />.</>,
   },
   {
     working: <Katex display tex="W = 20 - X,\quad q(w) = \Pr(W=w)" />,
-    reason: <><Katex tex="W" /> is the number of rolls that are <em>not</em> a 6. Every roll is either a 6 or not a 6, so the two counts always add to 20. This is the whole question: <b><Katex tex="w" /> rolls that aren&apos;t a 6 means <Katex tex="20-w" /> rolls that are</b>.</>,
+    reason: <><Katex tex="W" /> counts the rolls that are <em>not</em> a 6. Every roll is one or the other, so the counts add to 20: <b><Katex tex="w" /> rolls that aren&apos;t a 6 means <Katex tex="20-w" /> rolls that are</b>.</>,
+    more: <>This is the whole question. The rest of the working just writes it in symbols.</>,
   },
   {
     working: <Katex display tex="q(w) = \Pr(20-X=w) = \Pr(X=20-w)" />,
-    reason: <>Rewrite the event <Katex tex="\{W=w\}" /> in terms of <Katex tex="X" /> by rearranging <Katex tex="20-X=w" />. &ldquo;Exactly <Katex tex="w" /> non-sixes&rdquo; and &ldquo;exactly <Katex tex="20-w" /> sixes&rdquo; are one event described two ways, so they have the same probability.</>,
+    reason: <><Katex tex="20-X=w" /> rearranges to <Katex tex="X=20-w" />: the same event, so the same probability.</>,
   },
   {
     working: (
@@ -62,16 +64,18 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="p(20-w) = \binom{20}{20-w}\left(\tfrac16\right)^{20-w}\left(\tfrac56\right)^{w}" />
       </>
     ),
-    reason: <>The formulas agree. <Katex tex="W\sim\mathrm{Bi}\big(20,\tfrac56\big)" />, because now the outcome being counted is &ldquo;not a 6&rdquo;. The powers match term for term, and <Katex tex="\binom{20}{w}=\binom{20}{20-w}" />: choosing which <Katex tex="w" /> rolls are non-sixes is the same as choosing which <Katex tex="20-w" /> are sixes.</>,
+    reason: <>Check with the formulas: <Katex tex="W" /> is binomial too, with <Katex tex="\Pr(\text{not a }6)=\tfrac56" />, so <Katex tex="W\sim\mathrm{Bi}\big(20,\tfrac56\big)" />; the powers match and <Katex tex="\binom{20}{w}=\binom{20}{20-w}" />, so the two expressions are identical.</>,
+    more: <>The binomial coefficients are equal because choosing which <Katex tex="w" /> rolls are non-sixes is the same as choosing which <Katex tex="20-w" /> are sixes.</>,
   },
   {
     working: <Katex display tex="\text{e.g. } q(17) = p(3) \approx 0.238" />,
-    reason: <>A concrete case: 17 non-sixes is the same as 3 sixes. On the graph, <Katex tex="q" /> is <Katex tex="p" /> reflected in the vertical line <Katex tex="x=10" />, since <Katex tex="w" /> and <Katex tex="20-w" /> are equally far from 10. The peak of <Katex tex="p" /> at 3 becomes the peak of <Katex tex="q" /> at 17.</>,
-    more: <>Slide <Katex tex="w" /> in the first diagram below.</>,
+    reason: <>A concrete case: 17 non-sixes is the same as 3 sixes. As <Katex tex="w" /> and <Katex tex="20-w" /> are equally far from 10, the graph of <Katex tex="q" /> is the graph of <Katex tex="p" /> reflected in <Katex tex="x=10" />.</>,
+    more: <>The peak of <Katex tex="p" /> at 3 becomes the peak of <Katex tex="q" /> at 17. Slide <Katex tex="w" /> in the first diagram below to see every pair.</>,
   },
   {
     working: <Katex display tex="\boxed{q(w) = p(20-w)}" />,
-    reason: <>Since <Katex tex="\Pr(X=20-w) = p(20-w)" /> by definition. Matches option <b>A</b>. Option <b>B</b> (chosen by 33%) feeds <Katex tex="p" /> the <em>fraction</em> of rolls that are sixes, <Katex tex="1-\tfrac{w}{20}=\tfrac{20-w}{20}" />, instead of the <em>number</em> of sixes, <Katex tex="20-w" />. Option <b>E</b> (27%), <Katex tex="1-p(w)" />, takes the complement of a probability rather than switching which outcome is counted; its 21 values add to 20, so it isn&apos;t even a probability function. Option <b>C</b>, <Katex tex="p\big(\tfrac{w}{20}\big)" />, feeds <Katex tex="p" /> the fraction of non-sixes, and option <b>D</b>, <Katex tex="p(w-20)" />, asks for a negative number of sixes whenever <Katex tex="w<20" />: it translates <Katex tex="p" /> 20 units right instead of reflecting it.</>,
+    reason: <><Katex tex="\Pr(X=20-w) = p(20-w)" /> by definition. Matches option <b>A</b>.</>,
+    more: <>Option <b>B</b> (chosen by 33%) feeds <Katex tex="p" /> the <em>fraction</em> of rolls that are sixes, <Katex tex="1-\tfrac{w}{20}" />, instead of the <em>number</em> of sixes. Option <b>E</b> (27%) takes the complement of a probability instead of switching which outcome is counted. Both are unpacked in the Common Mistakes below. Option <b>C</b>, <Katex tex="p\big(\tfrac{w}{20}\big)" />, feeds <Katex tex="p" /> the fraction of non-sixes, and option <b>D</b>, <Katex tex="p(w-20)" />, asks for a negative number of sixes whenever <Katex tex="w<20" />: it translates <Katex tex="p" /> 20 units right instead of reflecting it.</>,
   },
 ]
 

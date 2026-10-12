@@ -51,16 +51,18 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h=1:\quad \cos(ax+a) = \cos(ax) \text{ for all } x" />,
-    reason: <>Use the property with <Katex tex="h=1" /> (<Katex tex="h=0" /> says nothing). It says the graph of <Katex tex="f" /> translated 1 unit left is the same graph. Once a shift of 1 works, every integer shift does, since a shift of 3 is three shifts of 1, so <Katex tex="h=1" /> is the whole condition.</>,
+    reason: <><Katex tex="f(x+h)" /> is <Katex tex="f" /> translated <Katex tex="h" /> units, so use the property with <Katex tex="h=1" />: once a shift of 1 leaves <Katex tex="f" /> unchanged, every integer shift does.</>,
+    more: <>A shift of 3, say, is three shifts of 1. <Katex tex="h=0" /> says nothing, and negative <Katex tex="h" /> are shifts of 1 the other way, so <Katex tex="h=1" /> is the whole condition.</>,
   },
   {
     working: <Katex display tex="a = 2\pi n,\quad n\in Z\setminus\{0\}" />,
-    reason: <>Adding <Katex tex="a" /> to the angle must change nothing, for every <Katex tex="x" />, so <Katex tex="a" /> must be a whole number of full turns, <Katex tex="2\pi n" />. In graph terms, one unit must hold a whole number of periods <Katex tex="\tfrac{2\pi}{|a|}" />. Careful: a period of 2 (<Katex tex="a=\pi" />) is a whole number, but it fails, because a shift of 1 is then half a period and turns the graph upside down.</>,
-    more: <>See the first diagram below.</>,
+    reason: <>Put <Katex tex="x=0" />: <Katex tex="\cos a=1" />, so <Katex tex="a" /> is a whole number of full turns, <Katex tex="2\pi n" />. Half a turn (<Katex tex="a=\pi" />) fails: it flips the graph.</>,
+    more: <>Conversely, any <Katex tex="a=2\pi n" /> works, because adding a whole number of full turns to the angle never changes the cosine. In graph terms (see the Background), one unit must hold a whole number of periods <Katex tex="\tfrac{2\pi}{|a|}" />. The <Katex tex="a=\pi" /> trap is the Common Mistake below; the first diagram below lets you try different values of <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="a = 2\pi:\quad f(x)=\cos(2\pi x),\ \text{period } 1" />,
-    reason: <>Take <Katex tex="n=1" />, one cycle per unit, as the report does. <Katex tex="n=-1" /> gives the same function, because cosine is even. The larger values of <Katex tex="n" /> are checked after the options: none of them works.</>,
+    reason: <>Take <Katex tex="n=1" />, one cycle per unit, as the report does. The other values of <Katex tex="n" /> are checked after the options.</>,
+    more: <><Katex tex="n=-1" /> gives the same function, because cosine is even: <Katex tex="\cos(-2\pi x)=\cos(2\pi x)" />.</>,
   },
   {
     working: (
@@ -70,7 +72,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\iff \tfrac12 \le \cos(2\pi x) \le 1" />
       </>
     ),
-    reason: <>Undo the <Katex tex="\log_2" />. It is increasing, so the inequalities keep their direction: <Katex tex="\log_2\tfrac12=-1" /> and <Katex tex="\log_2 1=0" />. The range has to be <em>all</em> of <Katex tex="[-1,0]" />, so on <Katex tex="D" /> the cosine must stay between <Katex tex="\tfrac12" /> and <Katex tex="1" />, and reach both.</>,
+    reason: <><Katex tex="\log_2" /> is increasing, so undo it without flipping the inequalities. On <Katex tex="D" /> the cosine must stay between <Katex tex="\tfrac12" /> and <Katex tex="1" />, and reach both.</>,
+    more: <>The ends match because <Katex tex="\log_2\tfrac12=-1" /> and <Katex tex="\log_2 1=0" />. &ldquo;Reach both&rdquo; is because the range has to be <em>all</em> of <Katex tex="[-1,0]" />, not just sit inside it.</>,
   },
   {
     working: (
@@ -79,7 +82,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\cos(2\pi x) \text{ decreases from } 1 \text{ to } \tfrac12" />
       </>
     ),
-    reason: <>At <Katex tex="x=1" /> the angle is a full turn, so the cosine is at a crest, <Katex tex="1" />. By <Katex tex="\tfrac{7\pi}{3}=2\pi+\tfrac{\pi}{3}" /> it has fallen to <Katex tex="\cos\tfrac\pi3=\tfrac12" />, decreasing all the way, so it covers exactly <Katex tex="\big[\tfrac12,1\big]" /> and <Katex tex="g" /> covers exactly <Katex tex="[-1,0]" />.</>,
+    reason: <>At <Katex tex="x=1" /> the angle is <Katex tex="2\pi" />, a crest, so the cosine is 1. It then decreases to <Katex tex="\cos\tfrac{7\pi}{3}=\cos\tfrac\pi3=\tfrac12" />, so <Katex tex="g" /> covers exactly <Katex tex="[-1,0]" />.</>,
+    more: <><Katex tex="\tfrac{7\pi}{3}=2\pi+\tfrac{\pi}{3}" />, so the angle runs from a crest through the first <Katex tex="\tfrac\pi3" /> of the next cycle, where cosine is decreasing all the way. So the cosine takes every value in <Katex tex="\big[\tfrac12,1\big]" /> and nothing else.</>,
   },
   {
     working: (
@@ -90,17 +94,18 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{E: } \cos\tfrac{\pi}{2} = 0 \text{ at } x=\tfrac14" />
       </>
     ),
-    reason: <>Each other interval contains a point where the cosine is 0 or negative, so <Katex tex="\log_2" /> is undefined there. Notice that C is D translated 2 units right. With period 1 that is the same piece of the graph, so C and D were always going to stand or fall together.</>,
-    more: <>Try both in the second diagram below.</>,
+    reason: <>Each other interval contains a point where the cosine is 0 or negative, so <Katex tex="\log_2" /> is undefined there.</>,
+    more: <>Notice that C is D translated 2 units right. With period 1 that is the same piece of the graph, so C and D were always going to stand or fall together. Try both in the second diagram below.</>,
   },
   {
     working: <Katex display tex="a=\pm4\pi,\ \pm6\pi,\ \dots:\ \text{no option works}" />,
-    reason: <>The other values the property allows. The cosine stays in <Katex tex="\big[\tfrac12,1\big]" /> only while the angle <Katex tex="ax" /> is within <Katex tex="\tfrac\pi3" /> of a crest, a stretch of <Katex tex="x" /> of width at most <Katex tex="\tfrac{1}{3|n|}" />. The options have widths <Katex tex="\tfrac16" /> (A, B) and <Katex tex="\tfrac13" /> (C, D, E), so <Katex tex="|n|\ge3" /> is impossible, and <Katex tex="|n|=2" /> leaves only A and B, where <Katex tex="4\pi x" /> runs over <Katex tex="\big[\pi,\tfrac{5\pi}{3}\big]" /> (starting at <Katex tex="-1" />) and <Katex tex="\big[4\pi,\tfrac{14\pi}{3}\big]" /> (falling to <Katex tex="-\tfrac12" />). So <Katex tex="a=\pm2\pi" /> is the only value that makes any option work.</>,
+    reason: <>Larger <Katex tex="|n|" /> gives steeper waves, which stay in <Katex tex="\big[\tfrac12,1\big]" /> over shorter stretches of <Katex tex="x" />. That width is at most <Katex tex="\tfrac{1}{3|n|}" />, under every option's width once <Katex tex="|n|\ge3" />; at <Katex tex="|n|=2" />, A and B fail too. So <Katex tex="a=\pm2\pi" />.</>,
+    more: <>The cosine stays in <Katex tex="\big[\tfrac12,1\big]" /> only while the angle <Katex tex="ax" /> is within <Katex tex="\tfrac\pi3" /> of a crest, a stretch of <Katex tex="x" /> of width at most <Katex tex="\tfrac{2\pi/3}{2\pi|n|}=\tfrac{1}{3|n|}" />. The options have widths <Katex tex="\tfrac16" /> (A, B) and <Katex tex="\tfrac13" /> (C, D, E), so <Katex tex="|n|\ge3" /> is impossible, and <Katex tex="|n|=2" /> leaves only A and B, where <Katex tex="4\pi x" /> runs over <Katex tex="\big[\pi,\tfrac{5\pi}{3}\big]" /> (starting at <Katex tex="-1" />) and <Katex tex="\big[4\pi,\tfrac{14\pi}{3}\big]" /> (falling to <Katex tex="-\tfrac12" />).</>,
   },
   {
     working: <Katex display tex="\boxed{D = \left[1,\ \tfrac76\right]}" />,
-    reason: <>Matches option <b>B</b>. It is &ldquo;a possible interval&rdquo; because others work too, such as <Katex tex="\big[\tfrac56,1\big]" /> or the whole of <Katex tex="\big[\tfrac56,\tfrac76\big]" /> (itute&apos;s answer). Options <b>C</b> (24%) and <b>D</b> (21%) both give the range <Katex tex="[-1,0]" /> if you take <Katex tex="a=\pi" />, which fails the property at <Katex tex="h=1" />. Option <b>A</b> is the interval that would work for <Katex tex="\sin(2\pi x)" /> instead of <Katex tex="\cos(2\pi x)" />. Option <b>E</b> contains the crest at <Katex tex="x=0" /> but runs on to <Katex tex="\cos\tfrac\pi2=0" />.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>It is &ldquo;a possible interval&rdquo; because others work too, such as <Katex tex="\big[\tfrac56,1\big]" /> or the whole of <Katex tex="\big[\tfrac56,\tfrac76\big]" />. Options <b>C</b> (24%) and <b>D</b> (21%) are the <Katex tex="a=\pi" /> trap (Common Mistake below). Option <b>A</b> is the interval that would work for <Katex tex="\sin(2\pi x)" /> instead of <Katex tex="\cos(2\pi x)" />. Option <b>E</b> contains the crest at <Katex tex="x=0" /> but is too wide: it runs on to a zero of the cosine.</>,
   },
 ]
 

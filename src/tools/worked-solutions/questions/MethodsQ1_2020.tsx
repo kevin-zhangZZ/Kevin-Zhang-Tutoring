@@ -24,7 +24,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g\bigl(f(-1)\bigr)" />,
-    reason: <>Work from the inside out. <Katex tex="g" /> can&apos;t act until we know what is in its bracket, so <Katex tex="f(-1)" /> is worked out first, even though <Katex tex="g" /> is written first.</>,
+    reason: <>Work from the inside out: <Katex tex="g" /> can&apos;t act until we know what is in its bracket, so <Katex tex="f(-1)" /> comes first, even though <Katex tex="g" /> is written first.</>,
   },
   {
     working: <Katex display tex="f(-1) = 4" />,
@@ -36,7 +36,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g(4) = 6}" />,
-    reason: <>Matches option <b>D</b> (<Katex tex="g(4)=6" /> is given). Option <b>B</b> (<Katex tex="4" />) stops one step early at <Katex tex="f(-1)" />; option <b>A</b> is <Katex tex="g(-1)=2" />, <Katex tex="g" /> applied to <Katex tex="-1" /> directly; option <b>C</b> is <Katex tex="f\bigl(g(-1)\bigr)=f(2)=5" />, the composite in the other order (<Katex tex="g" /> first, then <Katex tex="f" />).</>,
+    reason: <>Matches option <b>D</b> (<Katex tex="g(4)=6" /> is given).</>,
+    more: <>Option <b>B</b> (<Katex tex="4" />) stops one step early at <Katex tex="f(-1)" />; option <b>A</b> is <Katex tex="g(-1)=2" />, <Katex tex="g" /> applied to <Katex tex="-1" /> directly; option <b>C</b> is <Katex tex="f\bigl(g(-1)\bigr)=f(2)=5" />, the composite in the other order (<Katex tex="g" /> first, then <Katex tex="f" />).</>,
   },
 ]
 

@@ -159,11 +159,12 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g_a: \ y-\left(a^3-a\right) = \left(3a^2-1\right)(x-a)" />,
-    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />. The gradient is the <em>whole</em> of <Katex tex="3a^2-1" />, so it goes in brackets — the report notes many students left them out, writing <Katex tex="3a^2-1(x-a)" />.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />. The gradient is the <em>whole</em> of <Katex tex="3a^2-1" />, so it goes in brackets.</>,
+    more: <>The report notes many students left the brackets out, writing <Katex tex="3a^2-1(x-a)" />.</>,
   },
   {
     working: <Katex display tex="\text{at } (b,0): \ -\left(a^3-a\right) = \left(3a^2-1\right)(b-a)" />,
-    reason: <>&ldquo;<Katex tex="(b,0)" /> is the <Katex tex="x" />-intercept&rdquo; means this point is on the line, so its coordinates satisfy the line&apos;s equation: put <Katex tex="x=b" />, <Katex tex="y=0" />. That leaves one equation linking <Katex tex="a" /> and <Katex tex="b" />, to be solved for <Katex tex="b" />.</>,
+    reason: <><Katex tex="(b,0)" /> is on the line, so substitute <Katex tex="x=b" />, <Katex tex="y=0" />. That leaves one equation linking <Katex tex="a" /> and <Katex tex="b" />, to solve for <Katex tex="b" />.</>,
   },
   {
     working: <Katex display tex="-a^3+a = 3a^2b-3a^3-b+a" />,
@@ -175,33 +176,34 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = \frac{2a^3}{3a^2-1}}" />,
-    reason: (
+    reason: <>Dividing by <Katex tex="3a^2-1" />, which must not be <Katex tex="0" /> (part b. finds when it is). As required.</>,
+    more: (
       <>
-        Dividing by <Katex tex="3a^2-1" />. As required. The report notes some students did not
-        show suitable steps: in a &ldquo;show that&rdquo; every line above has to appear. A
-        picture that gives the same result (and is a good check): the tangent drops a height{' '}
-        <Katex tex="f(a)" /> at gradient <Katex tex="f'(a)" />, so it meets the axis a horizontal
-        distance <Katex tex="\tfrac{f(a)}{f'(a)}" /> from <Katex tex="a" />:{' '}
-        <Katex tex="b = a-\tfrac{a^3-a}{3a^2-1} = \tfrac{2a^3}{3a^2-1}" />.
+        The report notes some students did not show suitable steps: in a &ldquo;show that&rdquo;
+        every line above has to appear. A picture that gives the same result (and is a good check):
+        the tangent drops a height <Katex tex="f(a)" /> at gradient <Katex tex="f'(a)" />, so it
+        meets the axis a horizontal distance <Katex tex="\tfrac{f(a)}{f'(a)}" /> from{' '}
+        <Katex tex="a" />: <Katex tex="b = a-\tfrac{a^3-a}{3a^2-1} = \tfrac{2a^3}{3a^2-1}" />. The
+        diagram in part b. shows this run.
       </>
     ),
-    more: <>The diagram in part b. shows this run.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="b = \frac{2a^3}{3a^2-1} \text{ undefined} \iff 3a^2-1 = 0" />,
-    reason: <>A fraction exists for every <Katex tex="a" /> except where its denominator is zero. And this denominator isn&apos;t just any expression: <Katex tex="3a^2-1" /> is <Katex tex="f'(a)" />, the gradient of the tangent. So <Katex tex="b" /> fails exactly where the tangent is flat — at the turning points of <Katex tex="f" />.</>,
+    reason: <>A fraction is undefined only where its denominator is zero. Here <Katex tex="3a^2-1=f'(a)" />, so <Katex tex="b" /> fails exactly where the tangent is flat: at the turning points of <Katex tex="f" />.</>,
   },
   {
     working: <Katex display tex="a^2 = \tfrac13 \implies a = \pm\frac{1}{\sqrt3}" />,
-    reason: <>Both square roots: the cubic has two turning points, so there are two flat tangents. The report notes some students wrote down only one solution.</>,
+    reason: <>Both square roots: the cubic has two turning points, so there are two flat tangents.</>,
+    more: <>The report notes some students wrote down only one solution.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \pm\frac{\sqrt3}{3}}" />,
-    reason: <>Exact, and rationalised (<Katex tex="\pm\tfrac1{\sqrt3}" /> is the same number); about <Katex tex="\pm0.577" />. The answer is just these two numbers, not an interval — the report notes some gave approximate answers or intervals.</>,
-    more: <>Drag the point to either one in the diagram below and watch the tangent flatten as <Katex tex="b" /> runs away.</>,
+    reason: <>Exact and rationalised (<Katex tex="\pm\tfrac1{\sqrt3}" /> is the same number). The answer is just these two values, not an interval.</>,
+    more: <>About <Katex tex="\pm0.577" />, but give the exact values: the report notes some gave approximate answers, and others gave intervals. Drag the point to either value in the diagram below and watch the tangent flatten as <Katex tex="b" /> runs away.</>,
   },
 ]
 
@@ -212,11 +214,13 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="g_a(x) = f\!\left(\pm\tfrac{\sqrt3}{3}\right) = \mp\tfrac{2\sqrt3}{9}" />,
-    reason: <>A line with gradient <Katex tex="0" /> has the same height everywhere: the height of its point of contact, <Katex tex="f\!\left(\tfrac{\sqrt3}{3}\right)=\tfrac{\sqrt3}{9}-\tfrac{3\sqrt3}{9}=-\tfrac{2\sqrt3}{9}" /> (and <Katex tex="+\tfrac{2\sqrt3}{9}" /> at <Katex tex="-\tfrac{\sqrt3}{3}" />). That height isn&apos;t <Katex tex="0" />, so the line runs parallel to the <Katex tex="x" />-axis, above or below it, and never meets it. That is <em>why</em> <Katex tex="b" /> does not exist.</>,
+    reason: <>Gradient <Katex tex="0" />, so the line&apos;s height everywhere is that of its point of contact. It isn&apos;t <Katex tex="0" />, so the line never meets the <Katex tex="x" />-axis: that is <em>why</em> <Katex tex="b" /> does not exist.</>,
+    more: <>The height: <Katex tex="f\!\left(\tfrac{\sqrt3}{3}\right)=\tfrac{\sqrt3}{9}-\tfrac{3\sqrt3}{9}=-\tfrac{2\sqrt3}{9}" />, and <Katex tex="+\tfrac{2\sqrt3}{9}" /> at <Katex tex="-\tfrac{\sqrt3}{3}" />. So one flat tangent runs below the <Katex tex="x" />-axis and the other above it, both parallel to it.</>,
   },
   {
     working: <Katex display tex="\boxed{g_a \text{ is a horizontal line}}" />,
-    reason: <>The question asks about the graph of <Katex tex="g_a" />, the tangent, so describe the line. The report notes many described the curve of <Katex tex="f" /> instead: &ldquo;maximum&rdquo;, &ldquo;minimum&rdquo;, &ldquo;inflection&rdquo; and &ldquo;increasing/decreasing&rdquo; describe <Katex tex="f" /> near <Katex tex="x=a" />, not the tangent.</>,
+    reason: <>The question asks about <Katex tex="g_a" />, the tangent, so describe the line, not the curve <Katex tex="f" />.</>,
+    more: <>The report notes many described the curve of <Katex tex="f" /> instead: &ldquo;maximum&rdquo;, &ldquo;minimum&rdquo;, &ldquo;inflection&rdquo; and &ldquo;increasing/decreasing&rdquo; describe <Katex tex="f" /> near <Katex tex="x=a" />, not the tangent.</>,
   },
 ]
 
@@ -227,8 +231,8 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve(2a³/(3a² − 1) = 1.1, a)</Cas>,
-    reason: <>Clearing the fraction gives the cubic <Katex tex="2a^3-3.3a^2+1.1=0" />, so expect up to three values: three different tangents that all land at <Katex tex="1.1" />. <Katex tex="a" /> has no restriction here, so keep them all.</>,
-    more: <>The graph of <Katex tex="b" /> against <Katex tex="a" /> in part d.ii.&apos;s diagram crosses <Katex tex="1.1" /> three times.</>,
+    reason: <>Clearing the fraction gives the cubic <Katex tex="2a^3-3.3a^2+1.1=0" />, so expect up to three values. <Katex tex="a" /> has no restriction here, so keep them all.</>,
+    more: <>Three different tangents all land at <Katex tex="x=1.1" />. The graph of <Katex tex="b" /> against <Katex tex="a" /> in part d.ii.&apos;s diagram crosses <Katex tex="1.1" /> three times.</>,
   },
   {
     working: <Katex display tex="a = -0.50517\ldots,\ 0.80840\ldots,\ 1.34676\ldots" />,
@@ -236,22 +240,26 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -0.5052, \ 0.8084, \ 1.3468}" />,
-    reason: <>All three, to four decimal places. Round, don&apos;t chop: the report lists <Katex tex="-0.5051" /> and <Katex tex="1.3467" /> (the first four decimals of <Katex tex="-0.50517\ldots" /> and <Katex tex="1.34676\ldots" />), <Katex tex="1.347" /> (too few decimals) and <Katex tex="-0.5052" /> written as <Katex tex="0.5052" />.</>,
+    reason: <>All three, rounded (not chopped) to four decimal places.</>,
+    more: <>The report lists <Katex tex="-0.5051" /> and <Katex tex="1.3467" /> (the first four decimals of <Katex tex="-0.50517\ldots" /> and <Katex tex="1.34676\ldots" />), <Katex tex="1.347" /> (too few decimals) and <Katex tex="-0.5052" /> written as <Katex tex="0.5052" />.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(1 ≤ 2a³/(3a² − 1) &lt; 1.1, a)</Cas>,
-    reason: <>On a TI-Nspire the double inequality solves directly and returns two intervals (some calculators can&apos;t, and you then read the graph of <Katex tex="b" /> against <Katex tex="a" /> instead). The rows below show where the intervals come from, and why the left one is easy to lose: it is only about <Katex tex="0.005" /> wide.</>,
+    reason: <>The TI-Nspire solves the double inequality directly and returns two intervals. The rows below show where they come from; the left one is easy to lose, being only about <Katex tex="0.005" /> wide.</>,
+    more: <>Some calculators can&apos;t solve a double inequality; then graph <Katex tex="b" /> against <Katex tex="a" /> and read off where it lies between <Katex tex="1" /> and <Katex tex="1.1" />.</>,
   },
   {
     working: <Katex display tex="b = 1: \ 2a^3 = 3a^2-1 \iff 2a^3-3a^2+1 = 0" />,
-    reason: <>Find the edges of the window first. The reminder that <Katex tex="f" /> has an <Katex tex="x" />-intercept at <Katex tex="(1,0)" /> is a hint: the tangent at <Katex tex="(1,0)" /> crosses the axis right where it touches, so <Katex tex="a=1" /> gives <Katex tex="b=1" /> and <Katex tex="a-1" /> is a factor.</>,
+    reason: <>Find the window&apos;s edges first. The point <Katex tex="(1,0)" /> is already on the <Katex tex="x" />-axis, so the tangent there meets the axis at <Katex tex="x=1" />: <Katex tex="a=1" /> gives <Katex tex="b=1" />, so <Katex tex="a-1" /> is a factor.</>,
+    more: <>That is why the question reminds you that <Katex tex="f" /> has an <Katex tex="x" />-intercept at <Katex tex="(1,0)" />.</>,
   },
   {
     working: <Katex display tex="(a-1)^2(2a+1) = 0 \implies a = 1 \text{ or } a = -\tfrac12" />,
-    reason: <>Dividing by <Katex tex="a-1" /> leaves <Katex tex="2a^2-a-1=(a-1)(2a+1)" />, so <Katex tex="a=1" /> is a <em>double</em> root: <Katex tex="b" /> touches <Katex tex="1" /> there without going below it. The other root, <Katex tex="a=-\tfrac12" />, is the tangent from the left-hand hump that passes through <Katex tex="(1,0)" />.</>,
+    reason: <>Dividing by <Katex tex="a-1" /> leaves <Katex tex="2a^2-a-1=(a-1)(2a+1)" />. So <Katex tex="a=1" /> is a <em>double</em> root: <Katex tex="b" /> touches <Katex tex="1" /> there without crossing it.</>,
+    more: <>The other root, <Katex tex="a=-\tfrac12" />, is the tangent from the left-hand hump that also passes through <Katex tex="(1,0)" />.</>,
   },
   {
     working: <Katex display tex="b = 1.1: \ a = -0.5052,\ 0.8084,\ 1.3468 \ \text{(d.i.)}" />,
@@ -264,7 +272,8 @@ const ROWS_DII: WorkingRow[] = [
         <Katex display tex="\implies -0.5052 < a \le -0.5" />
       </>
     ),
-    reason: <>Just right of the asymptote <Katex tex="a=-\tfrac{\sqrt3}{3}" /> the tangent is nearly flat and lands far to the right; as <Katex tex="a" /> increases, <Katex tex="b" /> falls, passing <Katex tex="1.1" /> first (<Katex tex="a\approx-0.5052" />, excluded) and then <Katex tex="1" /> (<Katex tex="a=-\tfrac12" />, included). Check a point inside: <Katex tex="a=-0.502" /> gives <Katex tex="b\approx1.037" /> ✓.</>,
+    reason: <>Graph <Katex tex="b" /> against <Katex tex="a" />: on this branch <Katex tex="b" /> falls as <Katex tex="a" /> increases, through <Katex tex="1.1" /> (excluded) and then <Katex tex="1" /> at <Katex tex="a=-\tfrac12" /> (included).</>,
+    more: <>Just right of the asymptote <Katex tex="a=-\tfrac{\sqrt3}{3}" /> the tangent is nearly flat and lands far to the right; as <Katex tex="a" /> increases it lands closer in. Check a point inside: <Katex tex="a=-0.502" /> gives <Katex tex="b\approx1.037" /> ✓.</>,
   },
   {
     working: (
@@ -273,15 +282,16 @@ const ROWS_DII: WorkingRow[] = [
         <Katex display tex="\implies 0.8084 < a < 1.3468" />
       </>
     ),
-    reason: <>Because of the double root, <Katex tex="b" /> touches <Katex tex="1" /> at <Katex tex="a=1" /> and turns back up, so the whole stretch between the two <Katex tex="1.1" />&apos;s is in the window — and <Katex tex="a=1" /> is <em>inside</em> it, not an end.</>,
+    reason: <><Katex tex="b" /> touches <Katex tex="1" /> at the double root <Katex tex="a=1" /> and turns back up, so the whole stretch between the two <Katex tex="1.1" />&apos;s is in the window; <Katex tex="a=1" /> is <em>inside</em> it, not an end.</>,
   },
   {
-    working: <Katex display tex="\text{otherwise } b<0 \text{ or } 0 \le b<1" />,
-    reason: <>For <Katex tex="a<-\tfrac{\sqrt3}{3}" /> and <Katex tex="0<a<\tfrac{\sqrt3}{3}" /> the tangent lands at a negative <Katex tex="b" />; for <Katex tex="-\tfrac12<a\le0" /> it lands between <Katex tex="0" /> and <Katex tex="1" />. Nothing else qualifies.</>,
+    working: <Katex display tex="\text{otherwise } b<1 \text{ or } b \ge 1.1" />,
+    reason: <>Elsewhere on those two branches <Katex tex="b\ge1.1" />. For <Katex tex="a<-\tfrac{\sqrt3}{3}" /> and <Katex tex="0<a<\tfrac{\sqrt3}{3}" />, <Katex tex="b<0" />; for <Katex tex="-\tfrac12<a\le0" />, <Katex tex="0\le b<1" />. Nothing else qualifies.</>,
   },
   {
     working: <Katex display tex="\boxed{a\in(-0.505,\ -0.500\,] \cup (0.808,\ 1.347)}" />,
-    reason: <>To three decimal places, smaller number first in each interval. Round brackets where <Katex tex="b=1.1" />; a square bracket only at <Katex tex="-0.500" />, where <Katex tex="b=1" /> is reached at an end. The report notes values within the interval in the wrong order, and incorrect brackets.</>,
+    reason: <>To three decimal places, smaller number first. Round brackets where <Katex tex="b=1.1" />; square only at <Katex tex="-0.500" />, where <Katex tex="b=1" /> is reached.</>,
+    more: <>The report notes some students had the values within the interval in the wrong order, and others had incorrect brackets.</>,
   },
 ]
 
@@ -297,12 +307,13 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="\implies b = a \text{ or } b = -a" />
       </>
     ),
-    reason: <>The gradient function <Katex tex="3x^2-1" /> is a parabola symmetric about the <Katex tex="y" />-axis: it takes the same value at <Katex tex="x" /> and <Katex tex="-x" /> and at no other pair. So the tangent at <Katex tex="b" /> can match the tangent at <Katex tex="a" /> only if <Katex tex="b=\pm a" />. The question excludes <Katex tex="b=a" />, so <Katex tex="b=-a" />.</>,
-    more: <>See the lower graph in the diagram below.</>,
+    reason: <>Equal squares means equal or opposite numbers. The question excludes <Katex tex="b=a" />, so <Katex tex="b=-a" />.</>,
+    more: <>In pictures: the gradient function <Katex tex="3x^2-1" /> is a parabola symmetric about the <Katex tex="y" />-axis, so it takes the same value at <Katex tex="x" /> and <Katex tex="-x" /> and at no other pair. See the lower graph in the diagram below.</>,
   },
   {
     working: <Katex display tex="b = -a: \ \frac{2a^3}{3a^2-1} = -a" />,
-    reason: <><Katex tex="b" /> isn&apos;t free: it is where the tangent at <Katex tex="a" /> lands, so it must also satisfy part a.&apos;s formula. The report notes many students did not use <Katex tex="b=\tfrac{2a^3}{3a^2-1}" />.</>,
+    reason: <><Katex tex="b" /> isn&apos;t free: it is where the tangent at <Katex tex="a" /> lands, so it must also satisfy part a.&apos;s formula.</>,
+    more: <>The report notes many students did not use <Katex tex="b=\tfrac{2a^3}{3a^2-1}" />.</>,
   },
   {
     working: <Katex display tex="2a^3 = -3a^3+a \implies a\left(5a^2-1\right) = 0" />,
@@ -319,18 +330,21 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="\implies a^3-a = 0 \implies a = 0,\ \pm1" />
       </>
     ),
-    reason: <>If you instead substitute the formula straight into <Katex tex="f'(a)=f'(b)" /> (the report&apos;s route), CAS returns <Katex tex="a=-1,\ -\tfrac{\sqrt5}{5},\ 0,\ \tfrac{\sqrt5}{5},\ 1" />. The extras <Katex tex="-1,0,1" /> are these <Katex tex="b=a" /> cases: points of contact on the <Katex tex="x" />-axis, whose tangents land where they touch. Excluded by <Katex tex="b\ne a" />.</>,
+    reason: <>Why a CAS solve of <Katex tex="f'(a)=f'(b)" /> with the formula for <Katex tex="b" /> also returns <Katex tex="a=-1,0,1" />: these are the excluded <Katex tex="b=a" /> cases.</>,
+    more: <>Substituting <Katex tex="b=\tfrac{2a^3}{3a^2-1}" /> straight into <Katex tex="f'(a)=f'(b)" /> and solving is the report&apos;s route.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \pm\frac{\sqrt5}{5}}" />,
-    reason: <>About <Katex tex="\pm0.447" />. Check: <Katex tex="a=-\tfrac{\sqrt5}{5}" /> gives <Katex tex="b=\tfrac{\sqrt5}{5}=-a" />, and both tangents have gradient <Katex tex="3\cdot\tfrac15-1=-\tfrac25" /> ✓. That is the pair VCAA drew: <Katex tex="a" /> a little left of <Katex tex="0" />, <Katex tex="b" /> the same distance to the right.</>,
+    reason: <>Rationalised: <Katex tex="\tfrac{1}{\sqrt5}=\tfrac{\sqrt5}{5}" />.</>,
+    more: <>Check: <Katex tex="a=-\tfrac{\sqrt5}{5}" /> gives <Katex tex="b=\tfrac{\sqrt5}{5}=-a" />, and both gradients are <Katex tex="3\cdot\tfrac15-1=-\tfrac25" /> ✓. About <Katex tex="\pm0.447" />. That is the pair VCAA drew: <Katex tex="a" /> a little left of <Katex tex="0" />, <Katex tex="b" /> the same distance to the right.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="p(-x) = (-x)^3+w(-x)" />,
-    reason: <>Substitute <Katex tex="-x" /> everywhere <Katex tex="x" /> appears, in brackets — the report notes some students did not expand the expression in brackets correctly.</>,
+    reason: <>Substitute <Katex tex="-x" /> everywhere <Katex tex="x" /> appears, in brackets.</>,
+    more: <>The report notes some students did not expand the expression in brackets correctly.</>,
   },
   {
     working: <Katex display tex="= -x^3-wx" />,
@@ -342,7 +356,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{p(-x) = -p(x) \ \text{ for all } w\in R}" />,
-    reason: <>As required. <Katex tex="w" /> was never given a value, so the argument holds for every <Katex tex="w" />. What it means: the graph of <Katex tex="p" /> has half-turn symmetry about the origin, and a half-turn carries the tangent at <Katex tex="x=t" /> onto a <em>parallel</em> tangent at <Katex tex="x=-t" /> — the property stated after this part, which g. and h. use.</>,
+    reason: <>As required. <Katex tex="w" /> was never given a value, so the argument holds for every <Katex tex="w" />.</>,
+    more: <>What it means: the graph of <Katex tex="p" /> has half-turn symmetry about the origin, and a half-turn carries the tangent at <Katex tex="x=t" /> onto a <em>parallel</em> tangent at <Katex tex="x=-t" /> — the property stated after this part, which g. and h. use.</>,
   },
 ]
 
@@ -374,18 +389,21 @@ const ROWS_G: WorkingRow[] = [
         <Katex display tex="w<0 \implies t = \sqrt{-w/5} > 0 \text{ works}" />
       </>
     ),
-    reason: <>The question asks for the values of <Katex tex="w" /> for which <em>some</em> <Katex tex="t>0" /> works. Every such <Katex tex="w" /> is negative; and every negative <Katex tex="w" /> is reached, by <Katex tex="t=\sqrt{-w/5}" />. (A sketch of <Katex tex="w=-5t^2" /> for <Katex tex="t>0" /> says the same: a downward parabola whose values fill <Katex tex="(-\infty,0)" />.)</>,
+    reason: <>A <Katex tex="w" /> counts if <em>some</em> <Katex tex="t>0" /> works. Every such <Katex tex="w" /> is negative, and every negative <Katex tex="w" /> is reached, by <Katex tex="t=\sqrt{-w/5}" />.</>,
+    more: <>A sketch of <Katex tex="w=-5t^2" /> for <Katex tex="t>0" /> says the same: a downward parabola whose values fill <Katex tex="(-\infty,0)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{w<0}" />,
-    reason: <>A set of values, not a formula — the report notes some students found <Katex tex="w=-5t^2" /> but were unable to write down the values of <Katex tex="w" />. Check: <Katex tex="w=-1" /> makes <Katex tex="p" /> part a.&apos;s <Katex tex="f" />, and then <Katex tex="t=\sqrt{1/5}=\tfrac{\sqrt5}{5}" />: exactly part e.&apos;s answer, where the tangent at <Katex tex="a" /> lands at <Katex tex="b=-a" />.</>,
+    reason: <>The answer is a set of values of <Katex tex="w" />, not the formula <Katex tex="w=-5t^2" />.</>,
+    more: <>Check: <Katex tex="w=-1" /> makes <Katex tex="p" /> part a.&apos;s <Katex tex="f" />, and then <Katex tex="t=\sqrt{1/5}=\tfrac{\sqrt5}{5}" />: exactly part e.&apos;s answer, where the tangent at <Katex tex="a" /> lands at <Katex tex="b=-a" />.</>,
   },
 ]
 
 const ROWS_H: WorkingRow[] = [
   {
     working: <Katex display tex="T: (x,y) \to (mx+h,\ ny+k)" />,
-    reason: <>The matrix read as a mapping. <Katex tex="m" />: dilation by factor <Katex tex="|m|" /> from the <Katex tex="y" />-axis (and a reflection in the <Katex tex="y" />-axis if <Katex tex="m<0" />). <Katex tex="n" />: dilation by factor <Katex tex="|n|" /> from the <Katex tex="x" />-axis (reflection in the <Katex tex="x" />-axis if <Katex tex="n<0" />). <Katex tex="h" />, <Katex tex="k" />: translations of <Katex tex="h" /> units in the positive <Katex tex="x" /> direction and <Katex tex="k" /> units in the positive <Katex tex="y" /> direction.</>,
+    reason: <>Read the matrix as a mapping: <Katex tex="m" /> and <Katex tex="n" /> dilate (and reflect, if negative); <Katex tex="h" /> and <Katex tex="k" /> translate.</>,
+    more: <>In full, <Katex tex="m" />: dilation by factor <Katex tex="|m|" /> from the <Katex tex="y" />-axis (and a reflection in the <Katex tex="y" />-axis if <Katex tex="m<0" />). <Katex tex="n" />: dilation by factor <Katex tex="|n|" /> from the <Katex tex="x" />-axis (reflection in the <Katex tex="x" />-axis if <Katex tex="n<0" />). <Katex tex="h" />, <Katex tex="k" />: translations of <Katex tex="h" /> units in the positive <Katex tex="x" /> direction and <Katex tex="k" /> units in the positive <Katex tex="y" /> direction.</>,
   },
   {
     working: (
@@ -407,7 +425,7 @@ const ROWS_H: WorkingRow[] = [
         <Katex display tex="= \frac{n}{m}\left(3\left(\frac{x'-h}{m}\right)^{\!2}+w\right)" />
       </>
     ),
-    reason: <>Chain rule. <Katex tex="k" /> disappears when differentiating — moving a graph up or down changes no gradient — and <Katex tex="\tfrac nm" /> multiplies every gradient by the same amount.</>,
+    reason: <>Chain rule. <Katex tex="k" /> disappears when differentiating, and <Katex tex="\tfrac nm" /> multiplies every gradient by the same amount.</>,
   },
   {
     working: <Katex display tex="\text{equal at } x' = \pm t \iff (t-h)^2 = (-t-h)^2" />,
@@ -415,20 +433,19 @@ const ROWS_H: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-2th = 2th \iff th = 0 \iff h = 0" />,
-    reason: <>Expanding: <Katex tex="t^2-2th+h^2=t^2+2th+h^2" />. It has to hold for <b>all</b> <Katex tex="t\ne0" />, which forces <Katex tex="h=0" />. Nothing restricts <Katex tex="m" />, <Katex tex="n" /> or <Katex tex="k" />.</>,
+    reason: <>Expanding: <Katex tex="t^2-2th+h^2=t^2+2th+h^2" />. It has to hold for <b>all</b> <Katex tex="t\ne0" />, which forces <Katex tex="h=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{h = 0; \ \text{no restrictions on } m, n \text{ or } k}" />,
-    reason: (
+    reason: <><Katex tex="m" />, <Katex tex="n" /> and <Katex tex="k" /> all dropped out of the condition, so they stay as given (<Katex tex="m,n\in R\setminus\{0\}" />, <Katex tex="k\in R" />); only <Katex tex="h" /> is restricted.</>,
+    more: (
       <>
         The picture: the graph of <Katex tex="p" /> has half-turn symmetry about the origin (part
         f.), which pairs the tangent at <Katex tex="t" /> with a parallel one at{' '}
         <Katex tex="-t" />. Stretches and reflections keep that centre at the origin; a vertical
         translation moves it to <Katex tex="(0,k)" />, still on the <Katex tex="y" />-axis; only a
         horizontal translation moves it off, and then the pairs sit either side of{' '}
-        <Katex tex="x=h" /> instead of <Katex tex="x=0" />. The key word is{' '}
-        <em>restrictions</em>: <Katex tex="m,n\in R\setminus\{0\}" /> and <Katex tex="k\in R" />{' '}
-        as given, nothing more. The report writes &ldquo;<Katex tex="h=0" /> (odd
+        <Katex tex="x=h" /> instead of <Katex tex="x=0" />. The report writes &ldquo;<Katex tex="h=0" /> (odd
         function)&rdquo;; strictly, with <Katex tex="k\ne0" /> the image is not odd, yet it keeps
         the property — what survives is that its gradient function is even.
       </>
@@ -518,10 +535,7 @@ export default function MethodsQ5_2020Exam2() {
           <p>
             The nature of a graph is what <em>kind</em> of graph it is. <Katex tex="g_a" /> is a
             tangent, so it is always a straight line; what is left to say is which kind of line:
-            horizontal (gradient <Katex tex="0" />) or sloping. The question names{' '}
-            <Katex tex="g_a" />, not <Katex tex="f" />, so words that describe <Katex tex="f" /> near{' '}
-            <Katex tex="x=a" /> (maximum, minimum, inflection, increasing, decreasing) answer a
-            different question.
+            horizontal (gradient <Katex tex="0" />) or sloping.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -599,8 +613,8 @@ export default function MethodsQ5_2020Exam2() {
         >
           Tangents from the left-hand hump slope gently down to the right, and just past the top of the
           hump they land very far away; as <Katex tex="a" /> increases their landing point sweeps back
-          in, through the window, for <Katex tex="-0.5052<a\le-0.5" />. That sliver is only about{' '}
-          <Katex tex="0.005" /> wide, so a sketch or a full-size graph of <Katex tex="b" /> hides it. The{' '}
+          in, through the window, for <Katex tex="-0.5052<a\le-0.5" />, a sliver that a sketch or a full-size graph of{' '}
+          <Katex tex="b" /> hides. The{' '}
           <Katex tex="b=1" /> equation gives it away: its root <Katex tex="a=-\tfrac12" /> is on that
           branch.
         </WrongMethod>
