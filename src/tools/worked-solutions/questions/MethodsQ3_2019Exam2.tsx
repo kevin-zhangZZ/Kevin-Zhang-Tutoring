@@ -92,7 +92,7 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\sin\!\left(\dfrac{\pi t}{3}\right) \text{ has period } \dfrac{2\pi}{\pi/3}=6" />,
-    reason: <>A sum of two waves: find each wave's period first. For <Katex tex="\sin(nt)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />; here <Katex tex="n=\tfrac{\pi}{3}" />, so the <Katex tex="\pi" />'s cancel.</>,
+    reason: <>For a sum of two waves, find each wave's period first: <Katex tex="\sin(nt)" /> has period <Katex tex="\tfrac{2\pi}{n}" />, with <Katex tex="n=\tfrac{\pi}{3}" /> here.</>,
   },
   {
     working: <Katex display tex="\sin\!\left(\dfrac{\pi t}{6}\right) \text{ has period } \dfrac{2\pi}{\pi/6}=12" />,
@@ -100,7 +100,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Period} = 12}" />,
-    reason: <>The sum repeats only once <em>both</em> pieces have come back to their starting state together — the lowest common multiple of <Katex tex="6" /> and <Katex tex="12" />, which is <Katex tex="12" />. The given graph agrees: the pattern on <Katex tex="[0,12]" /> repeats exactly on <Katex tex="[12,24]" />. The answer is a number of time units, not <Katex tex="12t" />.</>,
+    reason: <>The sum repeats only when <em>both</em> waves are back at their start together: the lowest common multiple of <Katex tex="6" /> and <Katex tex="12" />.</>,
+    more: <>The given graph agrees: the pattern on <Katex tex="[0,12]" /> repeats exactly on <Katex tex="[12,24]" />. The report's common wrong answers were <Katex tex="6" />, <Katex tex="18" /> and <Katex tex="12t" />. After <Katex tex="6" /> or <Katex tex="18" /> units the slow wave has done only half a cycle or one and a half, so it is upside down. And the period is a number of time units, not an expression in <Katex tex="t" />.</>,
   },
 ]
 
@@ -112,11 +113,13 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="2\sin\!\left(\dfrac{\pi t}{6}\right)\cos\!\left(\dfrac{\pi t}{6}\right)+\sin\!\left(\dfrac{\pi t}{6}\right)=0" />
       </>
     ),
-    reason: <>On CAS, <Cas fn="solve">solve(sin(πt/3)+sin(πt/6)=0, t) | 0≤t≤6</Cas> gives the answer directly, and the given graph shows the crossings. By hand: <Katex tex="\tfrac{\pi t}{3}" /> is double <Katex tex="\tfrac{\pi t}{6}" />, so the double-angle rule <Katex tex="\sin(2A)=2\sin A\cos A" /> rewrites the first term in terms of the second.</>,
+    reason: <><Katex tex="\tfrac{\pi t}{3}" /> is double <Katex tex="\tfrac{\pi t}{6}" />, so use <Katex tex="\sin(2A)=2\sin A\cos A" /> to write both terms with the same angle.</>,
+    more: <>On CAS, <Cas fn="solve">solve(sin(πt/3)+sin(πt/6)=0, t) | 0≤t≤6</Cas> gives the answer directly; the rows here are the by-hand route. The double-angle rule rewrites the first term in terms of the angle <Katex tex="\tfrac{\pi t}{6}" />, so both terms share a factor. The given graph shows the same three crossings on <Katex tex="[0,6]" />.</>,
   },
   {
     working: <Katex display tex="\sin\!\left(\dfrac{\pi t}{6}\right)\left[2\cos\!\left(\dfrac{\pi t}{6}\right)+1\right]=0" />,
-    reason: <>Common factor. A product is zero when either factor is. (Dividing by <Katex tex="\sin\!\left(\tfrac{\pi t}{6}\right)" /> instead would throw away the solutions where it is zero.)</>,
+    reason: <>Take out the common factor. A product is zero when either factor is.</>,
+    more: <>Don't divide by <Katex tex="\sin\!\left(\tfrac{\pi t}{6}\right)" /> instead: that would throw away the solutions where it is zero, <Katex tex="t=0" /> and <Katex tex="t=6" />.</>,
   },
   {
     working: (
@@ -129,14 +132,16 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t=0,\ 4,\ 6}" />,
-    reason: <>The interval is closed, so both endpoints count. All three are wanted — the report notes some students only gave two values, either <Katex tex="0,4" /> or <Katex tex="4,6" />.</>,
+    reason: <>The interval is closed, so both endpoints count: all three values are wanted.</>,
+    more: <>The report notes some students only gave two values, either <Katex tex="0,4" /> or <Katex tex="4,6" />. Only the <Katex tex="t" />-values are asked for; the report's general comments say there is no need to write down coordinates here.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{fMax on } 0\le t\le 12 \implies t\approx1.787" />,
-    reason: <>Technology is the expected route: <Cas fn="fMax">fMax(sin(πt/3)+sin(πt/6), t) | 0&lt;=t&lt;=12</Cas> returns the <Katex tex="t" /> value where the maximum occurs. Restricting to one period <Katex tex="[0,12]" /> is enough, because the pattern then repeats. Graphing <Katex tex="f" /> and reading the highest point works equally well.</>,
+    reason: <>Use technology: <Cas fn="fMax">fMax(sin(πt/3)+sin(πt/6), t) | 0≤t≤12</Cas> returns the <Katex tex="t" />-value of the maximum. One period, <Katex tex="[0,12]" />, is enough because the pattern repeats.</>,
+    more: <>Graphing <Katex tex="f" /> and using the graph's maximum tool works equally well.</>,
   },
   {
     working: <Katex display tex="f(1.787\ldots)\approx1.7602" />,
@@ -144,14 +149,16 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum strength} \approx 1.76}" />,
-    reason: <>Correct to two decimal places, as asked. Sanity check against the given graph: the tall peaks sit a little below <Katex tex="2" />. ✓ The other common wrong answer, <Katex tex="1.79" />, is most likely the <Katex tex="t" />-value — the report's general comments single out Question 3c. for giving coordinates instead of the value.</>,
+    reason: <>Correct to two decimal places, as asked. Give the strength itself, not the coordinates of the peak.</>,
+    more: <>Sanity check against the given graph: the tall peaks sit a little below <Katex tex="2" />. ✓ The report's common wrong answers were <Katex tex="1.73" /> and <Katex tex="1.79" />. <Katex tex="1.79" /> is most likely the <Katex tex="t" />-value: the report's general comments single out Question 3c. for giving coordinates instead of the value.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f(t)\ge0 \text{ on } [0,4], \qquad f(t)\le0 \text{ on } [4,6]" />,
-    reason: <>Before integrating for an <em>area</em>, always check whether the curve crosses the axis inside the interval. Part b. says it does, at <Katex tex="t=4" />, and the given graph shows the curve dipping below between <Katex tex="4" /> and <Katex tex="6" />.</>,
+    reason: <>Before integrating for an <em>area</em>, check whether the curve crosses the axis inside the interval. Part b. found a crossing at <Katex tex="t=4" />.</>,
+    more: <>The given graph shows the curve above the axis on <Katex tex="[0,4]" /> and dipping below it between <Katex tex="4" /> and <Katex tex="6" />.</>,
   },
   {
     working: <Katex display tex="\text{Area} = \int_0^4 f(t)\,dt \;-\; \int_4^6 f(t)\,dt" />,
@@ -159,7 +166,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="F(t) = -\dfrac{3}{\pi}\cos\!\left(\dfrac{\pi t}{3}\right)-\dfrac{6}{\pi}\cos\!\left(\dfrac{\pi t}{6}\right)" />,
-    reason: <>An antiderivative, using <Katex tex="\int\sin(nt)\,dt=-\tfrac1n\cos(nt)" /> on each term: <Katex tex="\tfrac{1}{\pi/3}=\tfrac3\pi" /> and <Katex tex="\tfrac{1}{\pi/6}=\tfrac6\pi" />. (CAS gives the exact values directly; this is what it is doing.)</>,
+    reason: <>Antidifferentiate each term with <Katex tex="\int\sin(nt)\,dt=-\tfrac1n\cos(nt)" />: <Katex tex="\tfrac{1}{\pi/3}=\tfrac3\pi" /> and <Katex tex="\tfrac{1}{\pi/6}=\tfrac6\pi" />.</>,
+    more: <>On CAS you can evaluate the two definite integrals directly and get the same exact values; the rows below are what it is doing. Either way, write the integrals down: this is a 2-mark question, and the report's general comments name Question 3d. as one where some students did not show their method.</>,
   },
   {
     working: (
@@ -186,39 +194,44 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} = \dfrac{15}{\pi}}" />,
-    reason: <>Exact form, since the question does not ask for a decimal (about <Katex tex="4.77" />).</>,
+    reason: <>Give the exact value: no decimal is asked for.</>,
+    more: <>The report's general comments list Question 3d. among those where approximate answers were seen; <Katex tex="\tfrac{15}{\pi}\approx4.77" /> is only a check, not the answer.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
-    working: <Katex display tex="\int_2^0 g(t)\,dt+\int_2^6 g(t)\,dt = -\int_0^2 g(t)\,dt+\int_2^6 g(t)\,dt" />,
-    reason: <>Start by reading the given expression. Swapping the terminals of an integral changes its sign, so the first piece is <em>subtracted</em>: a part of <Katex tex="g" /> below the axis on <Katex tex="[0,2]" /> would count positively.</>,
+    working: <Katex display tex="\begin{aligned}&\int_2^0 g(t)\,dt+\int_2^6 g(t)\,dt\\&= -\int_0^2 g(t)\,dt+\int_2^6 g(t)\,dt\end{aligned}" />,
+    reason: <>Swapping an integral's terminals changes its sign, so the first piece is <em>subtracted</em>: a part of <Katex tex="g" /> below the axis on <Katex tex="[0,2]" /> counts positively.</>,
   },
   {
     working: <Katex display tex="\text{Part d.: } \ -\int_4^6 f(t)\,dt+\int_0^4 f(t)\,dt=\dfrac{15}{\pi}" />,
-    reason: <>Now compare with how part d.'s area was built: minus a 2-wide dip, plus a 4-wide hump. The expression for <Katex tex="g" /> has exactly that shape — minus a 2-wide piece on <Katex tex="[0,2]" />, plus a 4-wide piece on <Katex tex="[2,6]" />. So <Katex tex="g" /> should have <Katex tex="f" />'s dip on <Katex tex="[0,2]" /> and <Katex tex="f" />'s hump on <Katex tex="[2,6]" />: the same two pieces <em>in reverse order</em>.</>,
+    reason: <>Part d.'s area had the same shape: minus a 2-wide dip, plus a 4-wide hump. So <Katex tex="g" /> needs <Katex tex="f" />'s dip on <Katex tex="[0,2]" /> and its hump on <Katex tex="[2,6]" />.</>,
+    more: <>The widths are the giveaway: <Katex tex="[0,2]" /> and <Katex tex="[4,6]" /> are both 2 wide, <Katex tex="[2,6]" /> and <Katex tex="[0,4]" /> both 4 wide. But <Katex tex="f" /> has its hump first and its dip second, and <Katex tex="g" /> needs the same two pieces <em>in reverse order</em>.</>,
   },
   {
     working: <Katex display tex="t\mapsto 6-t:\quad [0,4]\to[2,6],\ \ [4,6]\to[0,2]" />,
-    reason: <>A translation can't change the order of the pieces; a reflection in a vertical line can. Reflecting in <Katex tex="t=3" />, the middle of <Katex tex="[0,6]" />, sends <Katex tex="t" /> to <Katex tex="6-t" />: reflect in the <Katex tex="y" />-axis (<Katex tex="t\mapsto -t" />), then translate <Katex tex="6" /> units right.</>,
+    reason: <>A translation can't reverse the order of the pieces; a reflection in a vertical line can. Reflecting in <Katex tex="t=3" />, the middle of <Katex tex="[0,6]" />, sends <Katex tex="t" /> to <Katex tex="6-t" />.</>,
+    more: <>As two steps: reflect in the <Katex tex="y" />-axis (<Katex tex="t\mapsto -t" />), then translate <Katex tex="6" /> units right (<Katex tex="-t\mapsto -t+6" />). Check the ends: <Katex tex="0\mapsto6" />, <Katex tex="4\mapsto2" />, <Katex tex="6\mapsto0" />.</>,
   },
   {
     working: <Katex display tex="T\!\begin{bmatrix}t\\y\end{bmatrix}=\begin{bmatrix}-1&0\\0&1\end{bmatrix}\!\begin{bmatrix}t\\y\end{bmatrix}+\begin{bmatrix}6\\0\end{bmatrix}" />,
-    reason: <>Match to the given form: the first coordinate becomes <Katex tex="at+c=-t+6" />, and heights are unchanged, <Katex tex="by+d=y" />.</>,
+    reason: <>The matrix sends <Katex tex="(x,y)" /> to <Katex tex="(ax+c,\ by+d)" />, with <Katex tex="x" /> playing the role of <Katex tex="t" />. Match: <Katex tex="at+c=-t+6" />, and heights are unchanged, <Katex tex="by+d=y" />.</>,
   },
   {
     working: <Katex display tex="g(t)=f(6-t),\quad t\le 6" />,
-    reason: <>The rule of the image (see the note above for the backwards substitution). Its domain is where <Katex tex="f" />'s domain <Katex tex="t\ge0" /> lands: <Katex tex="6-t\ge0" />, so <Katex tex="t\le6" />. That covers <Katex tex="[0,6]" />, so both integrals exist.</>,
+    reason: <>The point <Katex tex="\bigl(t,f(t)\bigr)" /> moves to <Katex tex="\bigl(6-t,f(t)\bigr)" />. So the point at new position <Katex tex="s" /> came from <Katex tex="t=6-s" />, giving <Katex tex="g(s)=f(6-s)" />. <Katex tex="f" /> needs <Katex tex="6-s\ge0" />, so <Katex tex="s\le6" />.</>,
+    more: <>Renaming <Katex tex="s" /> back to <Katex tex="t" /> gives <Katex tex="g(t)=f(6-t)" />. The domain <Katex tex="t\le6" /> covers <Katex tex="[0,6]" />, so both integrals exist.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="\int_2^6 f(6-t)\,dt = \int_0^4 f(u)\,du = \dfrac{27}{2\pi}" />
-        <Katex display tex="-\int_0^2 f(6-t)\,dt = -\int_4^6 f(u)\,du = \dfrac{3}{2\pi}" />
+        <Katex display tex="\int_2^6 f(6-t)\,dt = \int_0^4 f(t)\,dt = \dfrac{27}{2\pi}" />
+        <Katex display tex="-\int_0^2 f(6-t)\,dt = -\int_4^6 f(t)\,dt = \dfrac{3}{2\pi}" />
       </>
     ),
-    reason: <>Check it: substituting <Katex tex="u=6-t" /> turns each integral of <Katex tex="g" /> back into one of part d.'s integrals of <Katex tex="f" /> (CAS gives the same values directly).</>,
+    reason: <>Check on CAS, or by symmetry: <Katex tex="g" /> on <Katex tex="[2,6]" /> is <Katex tex="f" /> on <Katex tex="[0,4]" /> reflected, and <Katex tex="g" /> on <Katex tex="[0,2]" /> is <Katex tex="f" /> on <Katex tex="[4,6]" /> reflected.</>,
+    more: <>Reflecting a region in a vertical line doesn't change its size or which side of the axis it is on, so each integral of <Katex tex="g" /> equals the matching integral of <Katex tex="f" /> from part d.</>,
   },
   {
     working: <Katex display tex="\dfrac{3}{2\pi}+\dfrac{27}{2\pi} = \dfrac{15}{\pi}" />,
@@ -226,7 +239,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a=-1,\quad b=1,\quad c=6,\quad d=0}" />,
-    reason: <>One answer of several. The report also accepts <Katex tex="c=6+12n" /> for <Katex tex="n\in Z^+\cup\{0\}" /> (shifting by a whole period of <Katex tex="12" /> changes nothing; <Katex tex="n" /> can't be negative because then <Katex tex="c<6" /> and <Katex tex="g" />, defined only for <Katex tex="t\le c" />, would miss part of <Katex tex="[0,6]" />), and the alternative <Katex tex="a=1,\ b=-1,\ c=-6+12n" /> for <Katex tex="n\in Z^-\cup\{0\}" />, <Katex tex="d=0" />: reflect in the <Katex tex="t" />-axis and translate <Katex tex="6" /> units left, <Katex tex="g(t)=-f(t+6)" />, which simplifies to the same function <Katex tex="\sin\!\left(\tfrac{\pi t}{6}\right)-\sin\!\left(\tfrac{\pi t}{3}\right)" />. "There are other solutions," as the report says.</>,
+    reason: <>The question asks for values, so state all four. This is one of several accepted answers: any <Katex tex="c=6+12n" />, <Katex tex="n\in Z^+\cup\{0\}" />, also works, since <Katex tex="12" /> is the period.</>,
+    more: <>The report notes students who described the transformations but gave incorrect or no values. <Katex tex="n" /> can't be negative: then <Katex tex="c<6" />, and <Katex tex="g" />, defined only for <Katex tex="t\le c" />, would miss part of <Katex tex="[0,6]" />. The report's alternative is <Katex tex="a=1,\ b=-1,\ c=-6+12n" /> for <Katex tex="n\in Z^-\cup\{0\}" />, <Katex tex="d=0" />: in our words, reflect in the <Katex tex="t" />-axis and translate <Katex tex="6" /> units left, giving <Katex tex="g(t)=-f(t+6)" />, which simplifies to the same function <Katex tex="\sin\!\left(\tfrac{\pi t}{6}\right)-\sin\!\left(\tfrac{\pi t}{3}\right)" />. "There are other solutions," as the report says.</>,
   },
 ]
 
@@ -242,7 +256,8 @@ const ROWS_F: WorkingRow[] = [
         <Katex display tex="= -f(t)" />
       </>
     ),
-    reason: <>Part d. only measured <Katex tex="[0,6]" />, half a period — how does the other half compare? Using <Katex tex="\sin(2k\pi - A)=-\sin A" />, this says the graph on <Katex tex="[6,12]" /> is the graph on <Katex tex="[0,6]" /> rotated <Katex tex="180^\circ" /> about the point <Katex tex="(6,0)" />, so it traps exactly the same amount of area. (The given graph shows it too.)</>,
+    reason: <>Part d. covered only half a period. Using <Katex tex="\sin(2n\pi - A)=-\sin A" />: the height at <Katex tex="12-t" /> is minus the height at <Katex tex="t" />, so <Katex tex="[6,12]" /> holds the <Katex tex="[0,6]" /> regions flipped, with the same sizes and so the same area.</>,
+    more: <>In fact the graph on <Katex tex="[6,12]" /> is the <Katex tex="[0,6]" /> graph rotated <Katex tex="180^\circ" /> about <Katex tex="(6,0)" />. Why a rotation: <Katex tex="t\mapsto12-t" /> reflects in the line <Katex tex="t=6" />, and the minus sign in <Katex tex="-f(t)" /> reflects in the axis; the two reflections together are a half-turn about <Katex tex="(6,0)" />. The given graph shows it: on <Katex tex="[6,12]" /> a small bump then a deep trough, the half-turned image of the tall hump and small dip on <Katex tex="[0,6]" />.</>,
   },
   {
     working: <Katex display tex="\text{Area over one period } [0,12] = 2\times\dfrac{15}{\pi} = \dfrac{30}{\pi}" />,
@@ -254,7 +269,8 @@ const ROWS_F: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \dfrac{30}{12\pi} = \dfrac{5}{2\pi}}" />,
-    reason: <>Note <Katex tex="\tfrac{5}{2\pi}\approx0.80" />, not <Katex tex="\tfrac{5\pi}{2}\approx7.85" /> — the report flags students who wrote the <Katex tex="\pi" /> on the wrong side of the fraction. A quick check catches it: <Katex tex="k" /> is the average height of <Katex tex="|f|" />, and <Katex tex="|f|" /> never exceeds about <Katex tex="1.76" />, so <Katex tex="k" /> can't be <Katex tex="7.85" />.</>,
+    reason: <>Divide by <Katex tex="12" /> and simplify, keeping <Katex tex="\pi" /> in the denominator. Give the exact value: no decimal is asked for.</>,
+    more: <>The report's general comments list Question 3f. among those where approximate answers were seen, so <Katex tex="k\approx0.80" /> is only a size check. Not <Katex tex="\tfrac{5\pi}{2}\approx7.85" />: the report notes students who had the correct method but wrote that as their final answer. A quick check catches it: <Katex tex="|f|" /> never exceeds about <Katex tex="1.76" />, so its average height <Katex tex="k" /> can't be <Katex tex="7.85" />.</>,
   },
 ]
 
@@ -280,9 +296,10 @@ export default function MethodsQ3_2019Exam2() {
         <Background>
           <p>
             "Dual-tone" means two sine waves of different frequencies added together — which is
-            literally what a telephone keypad sends down the line when you press a button. The
-            sum repeats only when both waves have simultaneously returned to where they started,
-            so its period is the <b>lowest common multiple</b> of the two individual periods.
+            literally what a telephone keypad sends down the line when you press a button. So
+            this question asks for the period of a sum, and the key idea is that a sum repeats
+            only when <em>every</em> term does: its period is the <b>lowest common multiple</b> of
+            the individual periods.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -379,16 +396,18 @@ export default function MethodsQ3_2019Exam2() {
       >
         <Background>
           <p>
-            <b>How a transformation acts on a graph.</b> The matrix statement says a point{' '}
+            <b>How a transformation acts on a graph.</b> Transformation matrices are no longer in
+            the study design; a current paper would describe the same reflections and translations
+            in words, and the working would be identical. The matrix statement says a point{' '}
             <Katex tex="(t,y)" /> moves to <Katex tex="(at+c,\ by+d)" />. So a point on the graph
             of <Katex tex="f" />, which looks like <Katex tex="\bigl(t,\ f(t)\bigr)" />, lands at{' '}
             <Katex tex="\bigl(at+c,\ b\,f(t)+d\bigr)" />.
           </p>
           <p>
             To get the <em>rule</em> of the new graph, call the image point{' '}
-            <Katex tex="(T,\ Y)" />. Then <Katex tex="T=at+c" />, so <Katex tex="t=\tfrac{T-c}{a}" />
+            <Katex tex="(s,\ Y)" />. Then <Katex tex="s=at+c" />, so <Katex tex="t=\tfrac{s-c}{a}" />
             , and <Katex tex="Y=b\,f(t)+d" /> becomes{' '}
-            <Katex tex="Y = b\,f\!\left(\tfrac{T-c}{a}\right)+d" />. That backwards-looking
+            <Katex tex="Y = b\,f\!\left(\tfrac{s-c}{a}\right)+d" />. That backwards-looking
             substitution is the key step: the rule of the image uses the{' '}
             <em>inverse</em> of what the transformation does to <Katex tex="t" />, which is easy to
             get backwards. The domain moves too: <Katex tex="f" /> is only defined for{' '}
@@ -397,9 +416,7 @@ export default function MethodsQ3_2019Exam2() {
           <p>
             There is no single right answer here — VCAA accepted several — so the job is to
             find <em>any</em> transformation that lands the right pieces of the graph on{' '}
-            <Katex tex="[0,2]" /> and <Katex tex="[2,6]" />. The given terminals are the clue —
-            including the fact that the first integral runs from <Katex tex="2" /> <em>down</em>{' '}
-            to <Katex tex="0" />, which makes a region below the axis count positively.
+            <Katex tex="[0,2]" /> and <Katex tex="[2,6]" />. The given terminals are the clue.
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />
@@ -411,15 +428,13 @@ export default function MethodsQ3_2019Exam2() {
           working={
             <>
               <Katex display tex="\int_0^2 f(6-t)\,dt+\int_2^6 f(6-t)\,dt" />
-              <Katex display tex="=\int_0^6 f(u)\,du=\dfrac{12}{\pi}" />
+              <Katex display tex="=\int_0^6 f(t)\,dt=\dfrac{12}{\pi}" />
             </>
           }
         >
           With the terminals the usual way round, even the correct <Katex tex="g" /> gives{' '}
-          <Katex tex="\tfrac{12}{\pi}" />, part d.'s wrong answer, and nothing seems to work. The
-          reversed terminals are deliberate: they are the question's way of making a region{' '}
-          <em>below</em> the axis on <Katex tex="[0,2]" /> count positively, which is the clue that{' '}
-          <Katex tex="g" /> must have its dip there.
+          <Katex tex="\tfrac{12}{\pi}" />, part d.'s wrong answer, and nothing seems to work. Read{' '}
+          <Katex tex="\int_2^0" /> as written: it is minus <Katex tex="\int_0^2" />.
         </WrongMethod>
       </PartCard>
 

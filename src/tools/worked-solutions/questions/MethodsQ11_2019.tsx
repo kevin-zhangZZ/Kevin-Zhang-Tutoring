@@ -37,11 +37,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\Pr(B\mid A)=m,\quad \Pr(B\mid A')=n" />
       </>
     ),
-    reason: <>Given information. Put it on a tree: the first branches are <Katex tex="A" /> (probability <Katex tex="p" />) and <Katex tex="A'" /> (probability <Katex tex="1-p" />); the <Katex tex="B" />-branch after <Katex tex="A" /> carries <Katex tex="m" />, and the <Katex tex="B" />-branch after <Katex tex="A'" /> carries <Katex tex="n" />.</>,
+    reason: <>Given information. On a tree: first branches <Katex tex="A" /> (<Katex tex="p" />) and <Katex tex="A'" /> (<Katex tex="1-p" />); then <Katex tex="B" /> after <Katex tex="A" /> is <Katex tex="m" />, and <Katex tex="B" /> after <Katex tex="A'" /> is <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="A,B \text{ independent} \iff \Pr(B\mid A)=\Pr(B)" />,
-    reason: <>The definition of independence, in the conditional form: knowing that <Katex tex="A" /> occurred does not change the probability of <Katex tex="B" />. How would I know to use this form? What we are given, <Katex tex="m" />, is already a conditional probability, so this form lets it go straight in. The only missing piece is <Katex tex="\Pr(B)" />.</>,
+    reason: <>Independence in conditional form: knowing <Katex tex="A" /> occurred doesn't change the probability of <Katex tex="B" />. Use this form because <Katex tex="m" /> is already a conditional probability; only <Katex tex="\Pr(B)" /> is missing.</>,
+    more: <>The other form, <Katex tex="\Pr(A\cap B)=\Pr(A)\Pr(B)" />, works too, but it needs <Katex tex="\Pr(A\cap B)=pm" /> as an extra step and leads to the same equation.</>,
   },
   {
     working: (
@@ -50,19 +51,22 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= mp+n(1-p)" />
       </>
     ),
-    reason: <>The law of total probability, which is just adding the two <Katex tex="B" />-paths on the tree: <Katex tex="B" /> happens either with <Katex tex="A" /> or without it. Everything is now in terms of <Katex tex="m" />, <Katex tex="n" /> and <Katex tex="p" />. Notice that <Katex tex="\Pr(B)" /> is a weighted average of <Katex tex="m" /> and <Katex tex="n" /> (the weights <Katex tex="p" /> and <Katex tex="1-p" /> add to 1), so it always lies between them.</>,
+    reason: <>Law of total probability: add the two <Katex tex="B" />-paths on the tree, since <Katex tex="B" /> happens either with <Katex tex="A" /> or without it.</>,
+    more: <>Notice that <Katex tex="\Pr(B)" /> is a weighted average of <Katex tex="m" /> and <Katex tex="n" /> (the weights <Katex tex="p" /> and <Katex tex="1-p" /> add to 1), so it always lies between them. It can only equal <Katex tex="m" /> if <Katex tex="n" /> equals <Katex tex="m" /> too, which is where the algebra below ends up.</>,
   },
   {
     working: <Katex display tex="m = mp+n(1-p)" />,
-    reason: <>Substituting both sides of the independence condition: the left side is <Katex tex="\Pr(B\mid A)=m" />, the right side is <Katex tex="\Pr(B)" /> from the line above.</>,
+    reason: <>Substitute into <Katex tex="\Pr(B\mid A)=\Pr(B)" />: the left side is <Katex tex="m" />, the right side is <Katex tex="\Pr(B)" /> from the line above.</>,
   },
   {
     working: <Katex display tex="m(1-p) = n(1-p)" />,
-    reason: <>Subtracting <Katex tex="mp" /> from both sides and factorising. Since the question quotes <Katex tex="\Pr(B\mid A')=n" />, the event <Katex tex="A'" /> must be possible, so <Katex tex="p<1" /> and <Katex tex="1-p\ne0" /> — it can be divided out.</>,
+    reason: <>Subtract <Katex tex="mp" /> from both sides and factorise. Then divide by <Katex tex="1-p" />, which is not zero: <Katex tex="\Pr(B\mid A')" /> is given, so <Katex tex="A'" /> can happen and <Katex tex="p<1" />.</>,
+    more: <>A probability conditional on <Katex tex="A'" /> only exists if <Katex tex="A'" /> is possible, so <Katex tex="\Pr(A')=1-p>0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{m=n}" />,
-    reason: <>Matches option <b>A</b>. This also makes sense directly: if <Katex tex="\Pr(B\mid A)=\Pr(B\mid A')" />, then <Katex tex="B" /> occurs at the same rate whether or not <Katex tex="A" /> happens, which is exactly what independence means. It holds for any value of <Katex tex="p" />, which is why none of the options involving <Katex tex="p" /> can be right. Option <b>C</b> (<Katex tex="16\%" />) adds the two <Katex tex="B" />-branches as if they left the same point on the tree, and option <b>D</b> (<Katex tex="12\%" />) compares <Katex tex="\Pr(B\mid A)" /> with <Katex tex="\Pr(A)" /> instead of <Katex tex="\Pr(B)" />.</>,
+    reason: <>Matches option <b>A</b>: <Katex tex="B" /> occurs at the same rate whether or not <Katex tex="A" /> happens.</>,
+    more: <>That is exactly what independence means, and it holds for any value of <Katex tex="p" />, so options <b>B</b>, <b>D</b> and <b>E</b>, which tie <Katex tex="m" /> or <Katex tex="n" /> to <Katex tex="p" />, cannot be right. Option <b>B</b> (<Katex tex="23\%" />) likely comes from setting <Katex tex="m" /> equal to the <Katex tex="A'" /> branch, <Katex tex="1-p" />, mixing up a first-branch probability with a conditional probability of <Katex tex="B" />; but <Katex tex="1-p" /> says nothing about how often <Katex tex="B" /> happens. Option <b>C</b> (<Katex tex="16\%" />) adds the two <Katex tex="B" />-branches as if they left the same point on the tree; the Common Mistake boxes below test C and D with numbers.</>,
   },
 ]
 
@@ -86,10 +90,7 @@ export default function MethodsQ11_2019() {
           </p>
           <Katex display tex="\Pr(A\cap B)=\Pr(A)\Pr(B)" />
           <Katex display tex="\Pr(B\mid A)=\Pr(B)" />
-          <p>
-            Pick the form that uses what you are given. Here the givens are conditional probabilities, so the second form
-            is the natural one.
-          </p>
+          <p>Pick the form that uses what you are given.</p>
         </Background>
       }
       options={[

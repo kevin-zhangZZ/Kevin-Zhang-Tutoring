@@ -38,9 +38,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\log_x(y) = \frac{\log_y(y)}{\log_y(x)} = \frac{1}{\log_y(x)}" />,
     reason: (
       <>
-        Four of the options are &ldquo;1 over a log&rdquo;, so aim for a numerator of 1. Change of base lets us rewrite a
-        log in any base we like; choosing the new base to be the argument, <Katex tex="y" />, makes the top{' '}
-        <Katex tex="\log_y(y)=1" />. The old base, <Katex tex="x" />, moves into the log on the bottom.
+        Change of base, <Katex tex="\log_a(b)=\tfrac{\log_c(b)}{\log_c(a)}" />, with the new base <Katex tex="c" /> chosen
+        as the argument, <Katex tex="y" />: the top becomes <Katex tex="\log_y(y)=1" />.
+      </>
+    ),
+    more: (
+      <>
+        Why this base: four of the options are &ldquo;1 over a log&rdquo;, which is the hint to aim for a numerator of 1.
       </>
     ),
   },
@@ -62,11 +66,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Matches option <b>D</b>. A and C can be ruled out at a glance: with <Katex tex="x" />, <Katex tex="y" />,{' '}
-        <Katex tex="z" /> all greater than 1, every log here is positive, but A and C are negative. B and E are the same
-        expression in disguise (<Katex tex="\tfrac{1}{\log_x(y)}=\log_y(x)" />), and both are each term flipped over
-        rather than the term itself: with <Katex tex="x=2,\ y=4,\ z=8" /> the expression is{' '}
-        <Katex tex="2+1.5=3.5" />, while B and E give <Katex tex="\tfrac12+\tfrac23\approx1.17" />.
+        Matches option <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        A and C can be ruled out at a glance: with <Katex tex="x" />, <Katex tex="y" />, <Katex tex="z" /> all greater
+        than 1, every log here is positive, but A and C are negative. B and E are the same expression in disguise (
+        <Katex tex="\tfrac{1}{\log_x(y)}=\log_y(x)" />), and both are each term flipped over rather than the term itself:
+        with <Katex tex="x=2,\ y=4,\ z=8" /> the expression is <Katex tex="2+1.5=3.5" />, while B and E give{' '}
+        <Katex tex="\tfrac12+\tfrac23\approx1.17" />.
       </>
     ),
   },

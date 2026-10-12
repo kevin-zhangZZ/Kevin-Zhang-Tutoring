@@ -115,13 +115,15 @@ const EXAM_G: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="E(X) = \int_{-\infty}^{\infty} x\,f(x)\,dx = \int_0^5 x\cdot\dfrac{4}{625}\left(5x^3-x^4\right)dx" />,
-    reason: (
+    working: <Katex display tex="\begin{aligned}E(X) &= \int_{-\infty}^{\infty} x\,f(x)\,dx\\&= \int_0^5 x\cdot\dfrac{4}{625}\left(5x^3-x^4\right)dx\end{aligned}" />,
+    reason: <>The mean weights each life span <Katex tex="x" /> by its density and integrates. Outside <Katex tex="[0,5]" /> the density is zero, so only that stretch contributes.</>,
+    more: (
       <>
-        The mean weights each life span <Katex tex="x" /> by how likely it is, <Katex tex="f(x)" />, and adds up:
-        that is where the extra <Katex tex="x" /> comes from. Outside <Katex tex="[0,5]" /> the density is zero, so
-        only that stretch contributes. (Leave the <Katex tex="x" /> out and you get{' '}
-        <Katex tex="\int_0^5 f(x)\,dx=1" />, the total area of <em>every</em> density, so it can&apos;t be the mean.)
+        The extra <Katex tex="x" /> is the whole point: leave it out and you get{' '}
+        <Katex tex="\int_0^5 f(x)\,dx=1" />, the total area of <em>every</em> density, so it can&apos;t be the mean. That
+        is one of the report&apos;s slips. <Katex tex="X" /> is continuous (life span can be any value from{' '}
+        <Katex tex="0" /> to <Katex tex="5" /> weeks), so the mean is an integral, not a sum; the report notes some
+        students tried to treat <Katex tex="f" /> as a discrete random variable.
       </>
     ),
   },
@@ -139,7 +141,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{E(X) = \dfrac{10}{3} \text{ weeks}}" />,
-    reason: <>Exact form: Section B needs exact answers unless told otherwise, and the report notes some students gave an approximate answer. Sanity check: <Katex tex="\tfrac{10}{3}\approx3.3" /> weeks sits sensibly inside the <Katex tex="0" />–<Katex tex="5" /> week range, a bit left of the density's peak at <Katex tex="x=\tfrac{15}{4}" />: the long, thin left tail pulls the balance point towards <Katex tex="0" />.</>,
+    reason: <>Leave it exact: Section B wants exact answers unless told otherwise.</>,
+    more: (
+      <>
+        The report notes some students gave an approximate answer, and its general comments list 4a. among the
+        questions where some students did not show their method: for 2 marks, write the integral. Sanity check:{' '}
+        <Katex tex="\tfrac{10}{3}\approx3.3" /> weeks sits inside the <Katex tex="0" />–<Katex tex="5" /> week range, a
+        bit left of the density&apos;s peak at <Katex tex="x=\tfrac{15}{4}" />: the long, thin left tail pulls the
+        balance point towards <Katex tex="0" />.
+      </>
+    ),
   },
 ]
 
@@ -150,7 +161,7 @@ const ROWS_B: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={pdfSrc} alt="Graph of the probability density function on 0 ≤ x ≤ 5, peaking near x = 3.75, with the region from x = 2 to x = 5 shaded to show Pr(X > 2) ≈ 0.913 — this site's own explanatory figure" className="w-full max-w-[400px]" />
       </div>
     ),
-    reason: <>"Lives longer than two weeks" is the shaded area to the right of <Katex tex="x=2" /> — clearly most of the total area, so the answer should come out well above half.</>,
+    reason: <>"Lives longer than two weeks" is the shaded area to the right of <Katex tex="x=2" />: most of the total area, so expect well over half.</>,
   },
   {
     working: (
@@ -160,6 +171,7 @@ const ROWS_B: WorkingRow[] = [
       </>
     ),
     reason: <>The area under the density from <Katex tex="2" /> to the end of its domain at <Katex tex="5" />.</>,
+    more: <>The life span has its own density <Katex tex="f" />; nothing here is normal (the normal model only arrives in part d., for wingspans). The report notes some students used the normal distribution here.</>,
   },
   {
     working: (
@@ -171,16 +183,18 @@ const ROWS_B: WorkingRow[] = [
     reason: <>Evaluating the antiderivative at each terminal.</>,
   },
   {
-    working: <Katex display tex="\Pr(X>2) = \dfrac{4}{625}\left(\dfrac{625}{4}-\dfrac{68}{5}\right) = \dfrac{2853}{3125} = 0.91296" />,
+    working: <Katex display tex="\begin{aligned}\Pr(X>2) &= \dfrac{4}{625}\left(\dfrac{625}{4}-\dfrac{68}{5}\right)\\&= \dfrac{2853}{3125}\\&= 0.91296\end{aligned}" />,
     reason: <>Upper minus lower. The fraction is exact, so nothing has been rounded yet.</>,
   },
   {
     working: <Katex display tex="\text{Expected number} = 80\times0.91296 = 73.0368" />,
-    reason: <>"How many are expected" is a count, not a probability. Each of the <Katex tex="80" /> butterflies independently either lives past two weeks or doesn't, so the count is <Katex tex="\operatorname{Bi}(80,\ 0.91296)" />, whose mean is <Katex tex="np" />. The report notes some students found the probability but did not multiply by <Katex tex="80" />.</>,
+    reason: <>"How many are expected" asks for a count, not a probability: expected number <Katex tex="=" /> sample size <Katex tex="\times" /> probability.</>,
+    more: <>Each of the <Katex tex="80" /> butterflies independently either lives past two weeks or doesn&apos;t, so the count is <Katex tex="\operatorname{Bi}(80,\ 0.91296)" />, whose mean is <Katex tex="np" />. The report notes some students found the probability but did not multiply by <Katex tex="80" />.</>,
   },
   {
     working: <Katex display tex="\boxed{73 \text{ butterflies}}" />,
-    reason: <>To the nearest whole butterfly: <Katex tex="73.04" /> rounds <em>down</em>. The report notes others rounded to <Katex tex="74" />; the nearest integer is not the next one up.</>,
+    reason: <>To the nearest whole butterfly: <Katex tex="73.04" /> rounds <em>down</em>.</>,
+    more: <>The report notes other students rounded to <Katex tex="74" />; the nearest integer is not the next one up.</>,
   },
 ]
 
@@ -192,76 +206,86 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="= \dfrac{\Pr(X\ge4)}{\Pr(X\ge2)}" />
       </>
     ),
-    reason: <>Conditional probability. A butterfly that lives at least <Katex tex="4" /> weeks has automatically lived at least <Katex tex="2" />, so the overlap of the two events is just the smaller one — that's what collapses the numerator.</>,
+    reason: <>"Given that" means conditional probability. A butterfly that lives at least <Katex tex="4" /> weeks has lived at least <Katex tex="2" />, so the overlap is just <Katex tex="X\ge4" />.</>,
   },
   {
     working: (
       <>
         <Katex display tex="\Pr(X\ge4) = \int_4^5 \dfrac{4}{625}\left(5x^3-x^4\right)dx" />
-        <Katex display tex="= \dfrac{821}{3125} = 0.26272" />
+        <Katex display tex="\text{At } x=4:\ \dfrac{5(256)}{4}-\dfrac{1024}{5} = \dfrac{576}{5}" />
+        <Katex display tex="= \dfrac{4}{625}\left(\dfrac{625}{4}-\dfrac{576}{5}\right) = \dfrac{821}{3125} = 0.26272" />
       </>
     ),
-    reason: <>Same antiderivative as part b., evaluated from <Katex tex="4" /> to <Katex tex="5" />.</>,
+    reason: <>Same antiderivative as part b., now evaluated from <Katex tex="4" /> to <Katex tex="5" />; the value at <Katex tex="x=5" />, <Katex tex="\tfrac{625}{4}" />, is unchanged. The denominator, <Katex tex="\Pr(X\ge2)=\tfrac{2853}{3125}" />, is part b.&apos;s probability.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge4 \mid X\ge2) = \dfrac{821/3125}{2853/3125} = \dfrac{821}{2853}" />,
-    reason: <>The <Katex tex="3125" />s cancel — which is why carrying exact values through beats rounding early. The report notes students who rounded too early: <Katex tex="\tfrac{0.2627}{0.9130}=0.28773\ldots" /> gives <Katex tex="0.2877" />, wrong in the fourth decimal place.</>,
+    reason: <>Divide: the <Katex tex="3125" />s cancel, leaving an exact fraction with nothing rounded.</>,
+    more: <>This is why carrying exact values through beats rounding early. The report notes students who rounded too early: <Katex tex="\tfrac{0.2627}{0.9130}=0.28773\ldots" /> gives <Katex tex="0.2877" />, wrong in the fourth decimal place.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.2878}" />,
-    reason: <>Correct to four decimal places, as asked. (For a continuous variable <Katex tex="\Pr(X\ge4)" /> and <Katex tex="\Pr(X>4)" /> are the same thing — a single exact value has zero probability.)</>,
+    reason: <>Correct to four decimal places, as asked.</>,
+    more: <>For a continuous variable, <Katex tex="\Pr(X\ge4)" /> and <Katex tex="\Pr(X>4)" /> are the same thing: a single exact value has zero probability. So "at least" versus "longer than" changes nothing here; what matters is the direction, <Katex tex="\ge" /> not <Katex tex="\le" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="L \sim N\!\left(14.1,\ 2.1^2\right)" />,
-    reason: <>Let <Katex tex="L" /> be the wingspan in cm. Careful: the second parameter is the <em>variance</em>, so the standard deviation <Katex tex="2.1" /> is squared here.</>,
+    reason: <>Let <Katex tex="L" /> be the wingspan in cm. The second parameter is the <em>variance</em>, so the standard deviation <Katex tex="2.1" /> is squared here.</>,
   },
   {
     working: <Katex display tex="\Pr(16<L<18)" />,
-    reason: <>Straight to technology: <Cas fn="normCdf">normCdf(16, 18, 14.1, 2.1)</Cas> gives it. The bounds go first and the parameters last, and the final argument is the standard deviation <Katex tex="2.1" />, not the variance <Katex tex="2.1^2" />.</>,
+    reason: <>Straight to technology: <Cas fn="normCdf">normCdf(16, 18, 14.1, 2.1)</Cas> — bounds first, then mean and standard deviation.</>,
+    more: <>The last argument is the standard deviation <Katex tex="2.1" />, not the variance <Katex tex="2.1^2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.1512}" />,
-    reason: <>The CAS shows <Katex tex="0.151150\ldots" />: the fifth decimal is <Katex tex="5" />, so the fourth rounds <em>up</em> to <Katex tex="0.1512" />. Just chopping off the extra digits gives <Katex tex="0.1511" />, one of the report&apos;s incorrect answers. Sanity check: <Katex tex="16" /> and <Katex tex="18" /> sit about <Katex tex="0.9" /> and <Katex tex="1.9" /> standard deviations above the mean, so a probability around <Katex tex="15\%" /> is the right size. ✓</>,
+    reason: <>The CAS shows <Katex tex="0.151150\ldots" />: the fifth decimal is <Katex tex="5" />, so the fourth rounds <em>up</em>.</>,
+    more: <>Just chopping off the extra digits gives <Katex tex="0.1511" />, one of the report&apos;s incorrect answers; its other one, <Katex tex="0.1516" />, doesn&apos;t come from any correct rounding of it either. Copy <Katex tex="0.151150\ldots" /> down in full, then round. Sanity check: <Katex tex="16" /> and <Katex tex="18" /> sit about <Katex tex="0.9" /> and <Katex tex="1.9" /> standard deviations above the mean, so a probability around <Katex tex="15\%" /> is the right size.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Find } \ell \text{ with } \Pr(L<\ell)=0.05" />,
-    reason: <>"In the smallest <Katex tex="5\%" />" means the bottom <Katex tex="5\%" /> of the distribution, so the cut-off has <Katex tex="5\%" /> of the area to its <em>left</em>. The greatest wingspan still counted as very small is exactly that cut-off.</>,
+    reason: <>"The smallest <Katex tex="5\%" />" is the bottom <Katex tex="5\%" />, so the cut-off has area <Katex tex="0.05" /> to its <em>left</em>. The greatest very small wingspan is that cut-off.</>,
   },
   {
     working: <Katex display tex="\ell \approx 10.6458" />,
-    reason: <>The inverse normal runs the distribution backwards — give it an area, it returns the boundary: <Cas fn="invNorm">invNorm(0.05, 14.1, 2.1)</Cas> here. The first argument is always the area to the <em>left</em>, which is why <Katex tex="0.05" /> goes in without any adjustment.</>,
+    reason: <><Cas fn="invNorm">invNorm(0.05, 14.1, 2.1)</Cas> returns the value with area <Katex tex="0.05" /> to its left.</>,
+    more: <>The inverse normal runs the distribution backwards: give it an area, it returns the boundary. Its first argument is always the area to the <em>left</em>, which is why <Katex tex="0.05" /> goes in without any adjustment.</>,
   },
   {
     working: <Katex display tex="\boxed{\ell \approx 10.6 \text{ cm}}" />,
-    reason: <>One decimal place. Sanity check: <Katex tex="10.6" /> is <Katex tex="1.645" /> standard deviations below the mean — closer in than two, because the bottom <Katex tex="5\%" /> is a fatter slice than the bottom <Katex tex="2.5\%" />.</>,
+    reason: <>One decimal place, as asked.</>,
+    more: <>Sanity check: <Katex tex="10.6" /> is <Katex tex="1.645" /> standard deviations below the mean — closer in than two, because the bottom <Katex tex="5\%" /> is a fatter slice than the bottom <Katex tex="2.5\%" />.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \operatorname{Bi}(36,\ 0.0527)" />,
-    reason: <>Let <Katex tex="X" /> be the number of very large butterflies in the sample. The four binomial conditions all hold: a fixed number of trials (<Katex tex="36" />), two outcomes per trial (very large or not), a constant probability (<Katex tex="0.0527" />), and independent selections.</>,
+    reason: <>Let <Katex tex="X" /> be the number of very large butterflies. Each of the <Katex tex="36" /> is very large (probability <Katex tex="0.0527" />) or not, independently, so <Katex tex="X" /> is binomial.</>,
+    more: <>All four binomial conditions hold: a fixed number of trials (<Katex tex="36" />), two outcomes per trial (very large or not), a constant probability (<Katex tex="0.0527" />), and independent selections (a random sample).</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = 1-\Pr(X\le2)" />,
-    reason: <>"<Katex tex="3" /> or more" is the opposite of "<Katex tex="2" /> or fewer" — the boundary value <Katex tex="3" /> belongs to the event, which is where off-by-one errors creep in.</>,
+    reason: <>"<Katex tex="3" /> or more" is the opposite of "<Katex tex="2" /> or fewer": the boundary value <Katex tex="3" /> belongs to the event.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.2947}" />,
-    reason: <>Either <Cas fn="binomCdf">1 - binomCdf(36, 0.0527, 0, 2)</Cas> using the complement, or <Cas fn="binomCdf">binomCdf(36, 0.0527, 3, 36)</Cas> counting the wanted values directly. Both bounds are inclusive, so the upper one is <Katex tex="36" />, not <Katex tex="35" />.</>,
+    reason: <><Cas fn="binomCdf">1 - binomCdf(36, 0.0527, 0, 2)</Cas>, or directly <Cas fn="binomCdf">binomCdf(36, 0.0527, 3, 36)</Cas>.</>,
+    more: <>binomCdf&apos;s bounds are both inclusive, so the direct version runs from <Katex tex="3" /> up to <Katex tex="36" />, not <Katex tex="35" />.</>,
   },
 ]
 
 const ROWS_FII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Want the smallest integer } n \text{ with } \Pr(X\ge n) < 0.01" />,
-    reason: <>Here <Katex tex="n" /> is a threshold count, not the sample size (that is still <Katex tex="36" />). As <Katex tex="n" /> climbs, "<Katex tex="n" /> or more" loses bars from the bottom of its tail, so the probability only falls. Test values until it first drops below <Katex tex="1\%" />; the report confirms trial and error is acceptable.</>,
+    working: <Katex display tex="\begin{gathered}\text{Want the smallest integer } n\\\text{with } \Pr(X\ge n) < 0.01\end{gathered}" />,
+    reason: <>Here <Katex tex="n" /> is a threshold count, not the sample size (still <Katex tex="36" />). <Katex tex="\Pr(X\ge n)" /> falls as <Katex tex="n" /> rises, so test values until it drops below <Katex tex="1\%" />.</>,
+    more: <>As <Katex tex="n" /> climbs, "<Katex tex="n" /> or more" loses bars from the bottom of its tail, so the probability can only fall: once it is below <Katex tex="1\%" /> it stays there. The report confirms trial and error is an acceptable method.</>,
   },
   {
     working: (
@@ -270,22 +294,25 @@ const ROWS_FII: WorkingRow[] = [
         <Katex display tex="\Pr(X\ge7) = 0.00244\ldots < 0.01 \quad \checkmark" />
       </>
     ),
-    reason: <>Each line is one call: <Cas fn="binomCdf">binomCdf(36, 0.0527, 6, 36)</Cas> and then the same with <Katex tex="7" /> as the lower bound. Both lines are needed as working: one shows <Katex tex="6" /> fails, the other shows <Katex tex="7" /> succeeds, which together prove <Katex tex="7" /> is the <em>smallest</em>.</>,
+    reason: <><Cas fn="binomCdf">binomCdf(36, 0.0527, 6, 36)</Cas>, then the same with lower bound <Katex tex="7" />. Showing <Katex tex="6" /> fails and <Katex tex="7" /> passes proves <Katex tex="7" /> is the <em>smallest</em>.</>,
   },
   {
     working: <Katex display tex="\boxed{n=7}" />,
-    reason: <>The first integer that passes. The report notes some students gave an answer without any working — the two probabilities above are what earn the method mark.</>,
+    reason: <>The first integer that passes.</>,
+    more: <>The report notes some students gave an answer without any working: the two probabilities above are what earn the method mark.</>,
   },
 ]
 
 const ROWS_FIII: WorkingRow[] = [
   {
     working: <Katex display tex="E(\hat P) = p = \boxed{0.0527}" />,
-    reason: <>The sample proportion is centred on the true population proportion — on average the sample gets it right. Why: <Katex tex="\hat P=\tfrac{X}{36}" />, so <Katex tex="E(\hat P)=\tfrac{E(X)}{36}=\tfrac{36p}{36}=p" />.</>,
+    reason: <>The sample proportion is centred on the population proportion, <Katex tex="p=0.0527" />.</>,
+    more: <>Why: <Katex tex="\hat P=\tfrac{X}{36}" />, so <Katex tex="E(\hat P)=\tfrac{E(X)}{36}=\tfrac{36p}{36}=p" />. On average the sample gets it right.</>,
   },
   {
     working: <Katex display tex="sd(\hat P) = \sqrt{\dfrac{p(1-p)}{n}} = \sqrt{\dfrac{0.0527\times0.9473}{36}}" />,
-    reason: <>Standard formula from the formula sheet, with <Katex tex="n=36" />. It is the binomial sd scaled the same way: <Katex tex="sd(\tfrac{X}{36})=\tfrac{\sqrt{36p(1-p)}}{36}=\sqrt{\tfrac{p(1-p)}{36}}" />.</>,
+    reason: <>The formula-sheet standard deviation of <Katex tex="\hat P" />, with sample size <Katex tex="n=36" />.</>,
+    more: <>It is the binomial standard deviation scaled the same way: <Katex tex="sd(\tfrac{X}{36})=\tfrac{\sqrt{36p(1-p)}}{36}=\sqrt{\tfrac{p(1-p)}{36}}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{sd(\hat P) \approx 0.0372}" />,
@@ -295,12 +322,12 @@ const ROWS_FIII: WorkingRow[] = [
 
 const ROWS_FIV: WorkingRow[] = [
   {
-    working: <Katex display tex="0.0527-0.0372 < \hat P < 0.0527+0.0372" />,
-    reason: <>"Within one standard deviation of <Katex tex="0.0527" />" — the centre from part f.iii., plus and minus the standard deviation from the same part.</>,
+    working: <Katex display tex="0.0527-0.03723\ldots < \hat P < 0.0527+0.03723\ldots" />,
+    reason: <>"Within one standard deviation of <Katex tex="0.0527" />": the centre from part f.iii., plus and minus the standard deviation from the same part.</>,
   },
   {
     working: <Katex display tex="0.01546\ldots < \hat P < 0.08993\ldots" />,
-    reason: <>Use the unrounded standard deviation, <Katex tex="0.03723\ldots" />, so the endpoints are accurate.</>,
+    reason: <>Keep the standard deviation unrounded (stored in the calculator) so the endpoints are accurate.</>,
   },
   {
     working: <Katex display tex="\hat P = \dfrac{X}{36} \implies 36\times0.01546 < X < 36\times0.08993" />,
@@ -312,26 +339,28 @@ const ROWS_FIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(1\le X\le3) \text{ where } X\sim\operatorname{Bi}(36,\ 0.0527)" />,
-    reason: <>The exact binomial distribution from part f.i., as the question instructs, rather than a normal approximation to <Katex tex="\hat P" />.</>,
+    reason: <>Use the exact binomial distribution from part f.i., as the question instructs, not a normal approximation.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.7380}" />,
-    reason: <><Cas fn="binomCdf">binomCdf(36, 0.0527, 1, 3)</Cas> covers it, both bounds inclusive — exactly what <Katex tex="X\in\{1,2,3\}" /> needs. Four decimal places, so write the trailing zero — the report notes some students rounded to <Katex tex="0.738" />.</>,
+    reason: <><Cas fn="binomCdf">binomCdf(36, 0.0527, 1, 3)</Cas>, both bounds inclusive. Four decimal places, so keep the trailing zero.</>,
+    more: <>The report notes some students rounded their answer to <Katex tex="0.738" />.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{CI} = \left(\hat p - 1.96\sqrt{\dfrac{\hat p(1-\hat p)}{n}},\ \ \hat p + 1.96\sqrt{\dfrac{\hat p(1-\hat p)}{n}}\right)" />,
-    reason: <>The approximate <Katex tex="95\%" /> confidence interval from the formula sheet. It is symmetric about <Katex tex="\hat p" />, which is what makes it possible to work backwards.</>,
+    working: <Katex display tex="\begin{aligned}\text{CI} = \Bigg(&\hat p - 1.96\sqrt{\dfrac{\hat p(1-\hat p)}{n}},\\&\hat p + 1.96\sqrt{\dfrac{\hat p(1-\hat p)}{n}}\Bigg)\end{aligned}" />,
+    reason: <>The approximate <Katex tex="95\%" /> confidence interval from the formula sheet.</>,
   },
   {
     working: <Katex display tex="\hat p = \dfrac{0.0234+0.0866}{2} = 0.055" />,
-    reason: <>How would I know? The interval is <Katex tex="\hat p\pm" /> (the same amount), so <Katex tex="\hat p" /> sits exactly halfway between the endpoints. The report notes many students had the proportion as <Katex tex="0.0527" /> or <Katex tex="0.55" />: <Katex tex="0.0527" /> is Town A's probability, and <Katex tex="0.55" /> is ten times too big.</>,
+    reason: <>The interval is <Katex tex="\hat p\pm" /> the same amount, so <Katex tex="\hat p" /> is the midpoint of the endpoints.</>,
+    more: <>The report notes many students had the proportion as <Katex tex="0.0527" /> or <Katex tex="0.55" /> instead of <Katex tex="0.055" />: <Katex tex="0.0527" /> is Town A&apos;s probability, not this Town B sample&apos;s proportion, and <Katex tex="0.55" /> is ten times too big.</>,
   },
   {
     working: <Katex display tex="1.96\sqrt{\dfrac{\hat p(1-\hat p)}{n}} = \dfrac{0.0866-0.0234}{2} = 0.0316" />,
-    reason: <>The margin of error is <em>half</em> the interval's width.</>,
+    reason: <>The margin of error is <em>half</em> the interval&apos;s width.</>,
   },
   {
     working: (
@@ -344,11 +373,12 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="n = \dfrac{0.051975}{0.00025993\ldots} \approx 199.96" />,
-    reason: <>Solving for <Katex tex="n" />. On CAS it is one line: <Cas fn="solve">solve(0.055 + 1.96·√(0.055·0.945/n) = 0.0866, n)</Cas>.</>,
+    reason: <>Solve for <Katex tex="n" />. On CAS it is one line: <Cas fn="solve">solve(0.055 + 1.96·√(0.055·0.945/n) = 0.0866, n)</Cas>.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 200}" />,
-    reason: <>A sample size must be a whole number, and the given interval endpoints were themselves rounded to four decimal places, which is why the arithmetic lands just short of <Katex tex="200" />.</>,
+    reason: <>A sample size is a whole number; the arithmetic lands just short of <Katex tex="200" /> because the given endpoints were rounded to four decimal places.</>,
+    more: <>Check: with <Katex tex="n=200" />, <Katex tex="0.055\pm1.96\sqrt{\tfrac{0.055\times0.945}{200}}" /> gives <Katex tex="(0.02340\ldots,\ 0.08659\ldots)" />, which rounds to the given <Katex tex="(0.0234,\ 0.0866)" />.</>,
   },
 ]
 
@@ -375,8 +405,7 @@ export default function MethodsQ4_2019Exam2() {
             <p>
               <b>Parts a.–c.: a continuous random variable</b> given by a probability density
               function. Probabilities are <em>areas</em> under the density curve, so every question
-              is an integral. The mean is <Katex tex="\displaystyle\int x\,f(x)\,dx" /> — note the
-              extra factor of <Katex tex="x" />, which weights each value by how likely it is.
+              is an integral. The mean is <Katex tex="\displaystyle\int x\,f(x)\,dx" />.
             </p>
             <p>
               <b>Parts d.–e.: a normal distribution</b> for the wingspans — technology
@@ -522,8 +551,7 @@ export default function MethodsQ4_2019Exam2() {
             <Katex tex="\hat P" /> (read "p-hat") is the <em>sample</em> proportion: take a sample
             of <Katex tex="36" />, count the very large ones, divide by <Katex tex="36" />.
             Different samples give different answers, so <Katex tex="\hat P" /> is itself a random
-            variable, with a mean and a standard deviation of its own:{' '}
-            <Katex tex="E(\hat P)=p" /> and <Katex tex="sd(\hat P)=\sqrt{\tfrac{p(1-p)}{n}}" />.
+            variable, with a mean and a standard deviation of its own.
           </p>
         </Background>
         <WorkingTable rows={ROWS_FIII} />
@@ -542,9 +570,8 @@ export default function MethodsQ4_2019Exam2() {
       <PartCard letter="f.iv" topic="Sample Proportion" marks={2} statement="What is the probability that a sample proportion of butterflies that are very large lies within one standard deviation of 0.0527, correct to four decimal places? Do not use a normal approximation." examinerReport={EXAM_FIV}>
         <Background>
           <p>
-            "Do not use a normal approximation" is the instruction that makes this part work. It
-            means: don't treat <Katex tex="\hat P" /> as a bell curve and quote the usual{' '}
-            <Katex tex="68\%" />. Instead, translate the interval for <Katex tex="\hat P" /> into a
+            "Do not use a normal approximation" is the instruction that makes this part work:
+            translate the interval for <Katex tex="\hat P" /> into a
             range of whole-number <em>counts</em>, and use the exact binomial distribution on
             those.
           </p>

@@ -16,29 +16,33 @@ const ReciprocalWidget = lazyWidget(() => import('../interactives/meth-2019-mcq1
 const EXAMINER: MCQExaminerStats = {
   percentages: { A: 55, B: 26, C: 8, D: 5, E: 4 },
   answer: 'A',
+  noAnswer: 0,
 }
 
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g=f^{-1} \text{ and } f(5)=7 \implies g(7)=5" />,
-    reason: <>An inverse undoes its function: if <Katex tex="f" /> sends <Katex tex="5" /> to <Katex tex="7" />, then <Katex tex="g" /> sends <Katex tex="7" /> back to <Katex tex="5" />. That is why the question hands you <Katex tex="f(5)=7" />: it tells you which point of <Katex tex="f" /> matches the point of <Katex tex="g" /> at <Katex tex="x=7" />.</>,
+    reason: <>An inverse undoes its function: <Katex tex="f" /> sends <Katex tex="5" /> to <Katex tex="7" />, so <Katex tex="g" /> sends <Katex tex="7" /> back to <Katex tex="5" />. This finds the point of <Katex tex="f" /> that matches <Katex tex="x=7" /> on <Katex tex="g" />.</>,
+    more: <>That is why the question hands you <Katex tex="f(5)=7" />: you never have to solve <Katex tex="x^2-4x+2=7" /> yourself.</>,
   },
   {
     working: <Katex display tex="\text{Graph of } g \text{ is the graph of } f \text{ reflected in } y=x" />,
-    reason: <>Reflecting in <Katex tex="y=x" /> swaps the coordinates of every point, so the tangent at <Katex tex="(5,\,7)" /> on <Katex tex="f" /> becomes the tangent at <Katex tex="(7,\,5)" /> on <Katex tex="g" />, with its rise and run swapped. A gradient of <Katex tex="m=\tfrac{\text{rise}}{\text{run}}" /> becomes <Katex tex="\tfrac{\text{run}}{\text{rise}}=\tfrac1m" />: the reciprocal, not the negative reciprocal (the tangents are mirror images, not perpendicular).</>,
+    reason: <>Reflecting in <Katex tex="y=x" /> swaps every point&apos;s coordinates, so a tangent&apos;s rise and run swap: a gradient <Katex tex="m" /> becomes <Katex tex="\tfrac1m" />.</>,
+    more: <>The tangent at <Katex tex="(5,\,7)" /> on <Katex tex="f" /> becomes the tangent at <Katex tex="(7,\,5)" /> on <Katex tex="g" />. A gradient of <Katex tex="m=\tfrac{\text{rise}}{\text{run}}" /> becomes <Katex tex="\tfrac{\text{run}}{\text{rise}}=\tfrac1m" />: the reciprocal, not the negative reciprocal, because the two tangents are mirror images, not perpendicular.</>,
   },
   {
     working: <Katex display tex="g'(7) = \dfrac{1}{f'\bigl(g(7)\bigr)} = \dfrac{1}{f'(5)}" />,
-    reason: <>The inverse-function derivative rule, <Katex tex="\tfrac{dx}{dy}=\tfrac{1}{dy/dx}" />, written for this point. The gradient of <Katex tex="g" /> at <Katex tex="x=7" /> is controlled by the gradient of <Katex tex="f" /> at the <em>matching</em> point <Katex tex="x=5" />, not at <Katex tex="x=7" />.</>,
+    reason: <>The inverse-function derivative rule, <Katex tex="\tfrac{dx}{dy}=\tfrac{1}{dy/dx}" />, at this point. Use the gradient of <Katex tex="f" /> at the <em>matching</em> point <Katex tex="x=5" />, not at <Katex tex="x=7" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = 2x-4 \implies f'(5) = 2(5)-4 = 6" />,
-    reason: <>Differentiate <Katex tex="f" /> and evaluate at the matching point. There is no need to find the rule for <Katex tex="g" />. If you do, check it carefully: <Katex tex="f(x)=(x-2)^2-2" /> gives <Katex tex="g(x)=2+\sqrt{x+2}" />, so <Katex tex="g'(7)=\tfrac{1}{2\sqrt9}=\tfrac16" />, the same answer the long way.</>,
+    reason: <>Differentiate <Katex tex="f" /> and evaluate at the matching point. There is no need to find the rule for <Katex tex="g" />.</>,
+    more: <>The long way gives the same answer: <Katex tex="f(x)=(x-2)^2-2" />, so <Katex tex="g(x)=2+\sqrt{x+2}" />, <Katex tex="g'(x)=\tfrac{1}{2\sqrt{x+2}}" /> and <Katex tex="g'(7)=\tfrac{1}{2\sqrt9}=\tfrac16" />. It is slower, and an algebra slip in the inverse is easy to make (second Common Mistake below).</>,
   },
   {
     working: <Katex display tex="\boxed{g'(7) = \dfrac16}" />,
-    reason: <>Matches option <b>A</b>. The distractors are the common slips: <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" />, the value rather than the gradient; <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal; <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f(5)}" />, the reciprocal of the function value rather than of the gradient; <b>C</b> <Katex tex="\left(\tfrac{\sqrt7}{14}\right)" /> comes from a wrong inverse rule.</>,
-    more: <>See the second Common Mistake below.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>The distractors are the common slips. <b>B</b> <Katex tex="(5)" /> is <Katex tex="g(7)" />, the value rather than the gradient. <b>D</b> <Katex tex="(6)" /> is <Katex tex="f'(5)" /> without the reciprocal. <b>E</b> <Katex tex="\left(\tfrac17\right)" /> is <Katex tex="\tfrac{1}{f(5)}" />, the reciprocal of the function value rather than of the gradient. <b>C</b> <Katex tex="\left(\tfrac{\sqrt7}{14}\right)" /> comes from the inverse slip in the second Common Mistake, <Katex tex="g(x)=2+\sqrt x" />.</>,
   },
 ]
 
@@ -87,10 +91,8 @@ export default function MethodsQ15_2019() {
             }
           >
             <Katex tex="(x-2)^2 = x^2-4x+4" />, so <Katex tex="f(x)=(x-2)^2-2" />: the <Katex tex="-2" /> was dropped.
-            The correct inverse is <Katex tex="g(x)=2+\sqrt{x+2}" />, giving{' '}
-            <Katex tex="g'(7)=\tfrac{1}{2\sqrt9}=\tfrac16" />. The catch: test the inverse on the given point.{' '}
-            <Katex tex="2+\sqrt7\neq5" />, whereas <Katex tex="2+\sqrt{7+2}=5" />. Better still, skip finding the
-            inverse and use <Katex tex="g'(7)=\tfrac{1}{f'(5)}" />.
+            The catch: test any inverse on the given point. <Katex tex="g(7)" /> must be <Katex tex="5" />, but{' '}
+            <Katex tex="2+\sqrt7\neq5" />, whereas the correct <Katex tex="2+\sqrt{7+2}=5" />.
           </WrongMethod>
         </>
       }

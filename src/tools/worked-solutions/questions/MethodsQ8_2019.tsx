@@ -32,11 +32,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \dfrac{\Pr\bigl(X=74 \ \cap \ X\ge70\bigr)}{\Pr(X\ge70)}" />
       </>
     ),
-    reason: <>The word "given" signals conditional probability, <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. The event after "given" (at least <Katex tex="70" /> hits) goes on the bottom: it is the new, smaller set of possible outcomes.</>,
+    reason: <>"Given" signals conditional probability, <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />. The event after "given" (at least <Katex tex="70" /> hits) goes on the bottom.</>,
   },
   {
     working: <Katex display tex="= \dfrac{\Pr(X=74)}{\Pr(X\ge70)}" />,
-    reason: <>Hitting exactly <Katex tex="74" /> times <em>already</em> means hitting at least <Katex tex="70" /> times, so the overlap of the two events is simply <Katex tex="X=74" />. This collapse is the whole idea of the question.</>,
+    reason: <>Hitting exactly <Katex tex="74" /> times <em>already</em> means hitting at least <Katex tex="70" /> times, so the overlap of the two events is simply <Katex tex="X=74" />.</>,
+    more: <>This collapse is the whole idea of the question: the top of the fraction is one binomial bar, not an intersection you have to work out separately.</>,
   },
   {
     working: (
@@ -45,15 +46,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\Pr(X\ge70) \approx 0.82662" />
       </>
     ),
-    reason: <>On CAS: <Cas fn="binomPdf">binomPdf(80, 0.9, 74)</Cas> for the top and <Cas fn="binomCdf">binomCdf(80, 0.9, 70, 80)</Cas> for the bottom. binomCdf takes both bounds, so "at least <Katex tex="70" />" is simply lower bound <Katex tex="70" />, upper bound <Katex tex="80" /> (the complement <Katex tex="1-\Pr(X\le69)" /> gives the same). Keep five or more decimal places until the final division.</>,
+    reason: <>On CAS: <Cas fn="binomPdf">binomPdf(80, 0.9, 74)</Cas> for the top; <Cas fn="binomCdf">binomCdf(80, 0.9, 70, 80)</Cas> for the bottom, since "at least <Katex tex="70" />" means lower bound <Katex tex="70" />, upper bound <Katex tex="80" />.</>,
+    more: <>The complement <Katex tex="1-\Pr(X\le69)" /> gives the same denominator. Keep five or more decimal places until the final division so the fourth decimal place of the answer is safe.</>,
   },
   {
-    working: <Katex display tex="\dfrac{0.12354}{0.82662} \approx 0.1494" />,
-    reason: <>Dividing, then rounding to four decimal places as asked.</>,
-  },
-  {
-    working: <Katex display tex="\boxed{\approx 0.1494}" />,
-    reason: <>Matches option <b>C</b>. The distractors are all near-misses: <b>B</b> <Katex tex="(0.8266)" /> is the denominator on its own, <b>D</b> <Katex tex="(0.3005)" /> is <Katex tex="\Pr(X\ge74)" />, and <b>A</b> <Katex tex="(0.3635)" /> is <Katex tex="\Pr(X\ge74\mid X\ge70)" /> — the answer to the question if "exactly" had read "at least".</>,
+    working: <Katex display tex="\dfrac{0.12354}{0.82662} \approx \boxed{0.1494}" />,
+    reason: <>Dividing, then rounding to four decimal places as asked. Matches option <b>C</b>.</>,
+    more: <>Option <b>D</b> <Katex tex="(0.3005)" /> is <Katex tex="\Pr(X\ge74)" />: it reads "exactly" as "at least" <em>and</em> ignores the condition. The two most popular wrong answers, <b>B</b> and <b>A</b>, are the Common Mistakes below.</>,
   },
 ]
 

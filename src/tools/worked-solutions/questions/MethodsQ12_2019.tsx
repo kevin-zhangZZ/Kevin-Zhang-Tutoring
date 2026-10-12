@@ -39,7 +39,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_1^4 f(x)\,dx = \int_1^2 f(x)\,dx + \int_2^4 f(x)\,dx" />,
-    reason: <>How would I know to split here? The integral we need runs over <Katex tex="[1,2]" />, and the two given ones share the end point <Katex tex="4" />: <Katex tex="[1,2]" /> is what is left of <Katex tex="[1,4]" /> once <Katex tex="[2,4]" /> is taken away. The whole is the sum of its pieces.</>,
+    reason: <>Split <Katex tex="[1,4]" /> at <Katex tex="2" />: the whole is the sum of its pieces, and <Katex tex="[1,2]" /> (the piece we need) is what is left of <Katex tex="[1,4]" /> once <Katex tex="[2,4]" /> is taken away.</>,
   },
   {
     working: (
@@ -48,19 +48,22 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\int_1^2 f(x)\,dx = 6" />
       </>
     ),
-    reason: <>Substitute the given values and solve. Sense check: the <Katex tex="[2,4]" /> piece is negative, so it cancels part of the <Katex tex="[1,2]" /> piece. For the total to still be <Katex tex="4" />, the <Katex tex="[1,2]" /> piece must be <em>more</em> than <Katex tex="4" />, not <Katex tex="4+(-2)=2" />.</>,
+    reason: <>Substitute the given values and solve: <Katex tex="4-(-2)=6" />.</>,
+    more: <>Sense check: the <Katex tex="[2,4]" /> piece is negative, so it cancels part of the <Katex tex="[1,2]" /> piece. For the total to still be <Katex tex="4" />, the <Katex tex="[1,2]" /> piece must be <em>more</em> than <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="\int_1^2 \big(f(x)+x\big)\,dx = \int_1^2 f(x)\,dx + \int_1^2 x\,dx" />,
-    reason: <>The integral of a sum is the sum of the integrals. We know <Katex tex="\int_1^2 f(x)\,dx" /> but cannot integrate <Katex tex="f" /> itself, so separate it from the <Katex tex="x" /> term, which we can integrate directly.</>,
+    reason: <>The integral of a sum is the sum of the integrals. This separates the <Katex tex="f" /> part (known: <Katex tex="6" />) from the <Katex tex="x" /> part, which we can integrate directly.</>,
   },
   {
     working: <Katex display tex="\int_1^2 x\,dx = \left[\frac{x^2}{2}\right]_1^2 = 2-\tfrac12 = \tfrac32" />,
-    reason: <>An antiderivative of <Katex tex="x" /> is <Katex tex="\tfrac{x^2}{2}" />. As a picture, this is the trapezium under <Katex tex="y=x" /> from <Katex tex="1" /> to <Katex tex="2" />: parallel sides <Katex tex="1" /> and <Katex tex="2" />, width <Katex tex="1" />, area <Katex tex="\tfrac{1+2}{2}\times1=\tfrac32" />.</>,
+    reason: <>An antiderivative of <Katex tex="x" /> is <Katex tex="\tfrac{x^2}{2}" />; evaluate at <Katex tex="2" />, then subtract its value at <Katex tex="1" />.</>,
+    more: <>As a picture, this is the trapezium under <Katex tex="y=x" /> from <Katex tex="1" /> to <Katex tex="2" />: parallel sides <Katex tex="1" /> and <Katex tex="2" />, width <Katex tex="1" />, area <Katex tex="\tfrac{1+2}{2}\times1=\tfrac32" />.</>,
   },
   {
     working: <Katex display tex="\boxed{6+\tfrac32 = \tfrac{15}{2}}" />,
-    reason: <>Matches option <b>E</b>. Option <b>B</b> (<Katex tex="6" />), chosen by <Katex tex="26\%" />, is <Katex tex="\int_1^2 f(x)\,dx" /> alone, with the <Katex tex="+x" /> left out. Options <b>A</b> (<Katex tex="2" />) and <b>D</b> <Katex tex="\left(\tfrac72\right)" /> use <Katex tex="4+(-2)=2" /> for <Katex tex="\int_1^2 f(x)\,dx" />, adding the given integrals instead of subtracting: A then also leaves out the <Katex tex="+x" />, while D adds the <Katex tex="\tfrac32" />.</>,
+    reason: <>Matches option <b>E</b>: the <Katex tex="f" /> part plus the <Katex tex="x" /> part.</>,
+    more: <>Option <b>B</b> (<Katex tex="6" />), chosen by <Katex tex="26\%" />, is <Katex tex="\int_1^2 f(x)\,dx" /> alone, with the <Katex tex="+x" /> left out. Option <b>C</b> (<Katex tex="8" />) is likely <Katex tex="6+2" />: <Katex tex="\tfrac{x^2}{2}" /> evaluated at <Katex tex="2" /> only, forgetting to subtract its value at <Katex tex="1" />. Options <b>A</b> (<Katex tex="2" />) and <b>D</b> <Katex tex="\left(\tfrac72\right)" /> start from <Katex tex="4+(-2)=2" />, adding the given integrals instead of subtracting (a Common Mistake box below tests this); D then adds the <Katex tex="\tfrac32" />.</>,
   },
 ]
 

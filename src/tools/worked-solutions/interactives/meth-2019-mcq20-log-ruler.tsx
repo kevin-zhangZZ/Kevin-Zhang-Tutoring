@@ -1,5 +1,5 @@
 // 2019 Methods Exam 2 MCQ 20 — a log ruler: every number sits at distance logₑ(number) from 1,
-// so each tick is double the last and multiplying by x is always the same step. logₓ(y) counts
+// so multiplying by x is always the same step (the ticks are powers of 2). logₓ(y) counts
 // how many ×x steps (blue) make up the distance from 1 to y (orange): logₑy ÷ logₑx. Swapping the
 // base and the argument divides the same two lengths the other way round, so log_y(x) is the
 // reciprocal. A toggle tests all five options with the chosen x, y, z (> 1): only D matches the
@@ -62,8 +62,8 @@ export default function LogRuler() {
   } else {
     notice = (
       <Notice>
-        Each number <M>n</M> sits at distance <M>{'\\log_e(n)'}</M> from 1, so each tick is double the last and multiplying by the same
-        number is always the same step.{' '}
+        Each number sits at distance <M>\log_e</M> of that number from 1, so multiplying by the same number is always the
+        same step. The ticks here are powers of 2, so each is double the last.{' '}
         <M>\log_x(y)</M> asks how many <M>{'\\times x'}</M> steps take you from 1 to <M>y</M>: the blue steps laid along the
         orange bar{whole ? <>, here exactly <b>{Math.round(r)}</b></> : ''}. <M>\log_y(x)</M> divides the same two lengths
         the other way round, so it is the reciprocal. Try other values: the product stays 1.

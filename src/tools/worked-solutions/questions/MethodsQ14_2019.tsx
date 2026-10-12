@@ -22,15 +22,18 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X\sim N\!\left(200,\ \sigma^2\right), \qquad \Pr(X>190)=0.97" />,
-    reason: <>Here the probability is given and a <em>parameter</em> is the unknown — the reverse of the usual &ldquo;find the probability&rdquo; set-up. That combination is the signal to go through the standard normal <Katex tex="Z" />, whose <Katex tex="z" />-values we can look up with the inverse normal.</>,
+    reason: <>The probability is given and <Katex tex="\sigma" /> is unknown, so standardise to <Katex tex="Z" />, which has no unknowns, and use the inverse normal on that.</>,
+    more: <>This is the reverse of the usual &ldquo;find the probability&rdquo; set-up: a <em>parameter</em> is the unknown. <Cas fn="invNorm" /> needs actual numbers for the mean and standard deviation, so it can&apos;t be used on <Katex tex="X" /> with <Katex tex="\sigma" /> unknown.</>,
   },
   {
     working: <Katex display tex="\Pr(X<190) = 1-0.97 = 0.03" />,
-    reason: <><Cas fn="invNorm" /> works with the area to the <em>left</em> of a value. <Katex tex="97\%" /> lies to the right of <Katex tex="190" />, so <Katex tex="3\%" /> lies to its left. A quick sketch helps: <Katex tex="190" /> is below the mean, deep in the left tail.</>,
+    reason: <><Cas fn="invNorm" /> works with the area to the <em>left</em> of a value. <Katex tex="97\%" /> lies to the right of <Katex tex="190" />, so <Katex tex="3\%" /> lies to its left.</>,
+    more: <>A quick sketch helps: <Katex tex="190" /> is below the mean, deep in the left tail.</>,
   },
   {
     working: <Katex display tex="Z = \dfrac{X-\mu}{\sigma} \implies z = \dfrac{190-200}{\sigma} = \dfrac{-10}{\sigma}" />,
-    reason: <>A <Katex tex="z" />-value counts how many standard deviations a value is from the mean. <Katex tex="190" /> is <Katex tex="10" /> g below the mean, which is <Katex tex="\tfrac{10}{\sigma}" /> standard deviations — so the unknown <Katex tex="\sigma" /> now sits inside a <Katex tex="z" />-value.</>,
+    reason: <>Standardise <Katex tex="190" />: it is <Katex tex="10" /> g below the mean, which is <Katex tex="\tfrac{10}{\sigma}" /> standard deviations below.</>,
+    more: <>A <Katex tex="z" />-value counts how many standard deviations a value is from the mean, so the unknown <Katex tex="\sigma" /> now sits inside a <Katex tex="z" />-value we can find.</>,
   },
   {
     working: (
@@ -39,15 +42,17 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\dfrac{-10}{\sigma} = \operatorname{invNorm}(0.03) \approx -1.8808" />
       </>
     ),
-    reason: <><Cas fn="invNorm" /> on the standard normal returns the <Katex tex="z" />-value with <Katex tex="3\%" /> of the area below it. It is negative, which is the check that the tail is the right way round — <Katex tex="190" /> is below the mean.</>,
+    reason: <><Cas fn="invNorm" /> on the standard normal gives the <Katex tex="z" />-value with <Katex tex="3\%" /> of the area below it. It is negative, as it must be: <Katex tex="190" /> is below the mean.</>,
   },
   {
     working: <Katex display tex="\sigma = \dfrac{-10}{-1.8808} \approx 5.317" />,
-    reason: <>Solving for <Katex tex="\sigma" />. On CAS you can skip the standardising altogether: <Cas fn="solve" /> <Katex tex="\operatorname{normCdf}(190,\infty,200,\sigma)=0.97" /> for <Katex tex="\sigma" />, adding <Katex tex="\mid \sigma>0" /> so only the positive standard deviation comes back (see <Cas fn="normCdf" />).</>,
+    reason: <>Solve for <Katex tex="\sigma" />.</>,
+    more: <>Unlike <Cas fn="invNorm" />, a CAS <em>solve</em> can handle the unknown, so you can skip the standardising altogether: <Cas fn="solve" /> <Katex tex="\operatorname{normCdf}(190,\infty,200,\sigma)=0.97" /> for <Katex tex="\sigma" />, adding <Katex tex="\mid \sigma>0" /> so only the positive standard deviation comes back (see <Cas fn="normCdf" />).</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 5.3 \text{ g}}" />,
-    reason: <>Matches option <b>B</b>. Quick sanity check: <Katex tex="190" /> is <Katex tex="10" /> g below the mean, and <Katex tex="97\%" /> of packets are heavier than that — so <Katex tex="10" /> g must be a bit under two standard deviations, making <Katex tex="\sigma" /> a bit over <Katex tex="5" />. ✓</>,
+    reason: <>Matches option <b>B</b>, correct to one decimal place.</>,
+    more: <>Quick sanity check: <Katex tex="97\%" /> of packets are heavier than <Katex tex="190" />, so the <Katex tex="10" /> g gap must be a bit under two standard deviations, making <Katex tex="\sigma" /> a bit over <Katex tex="5" />. Checking the other options the same way: <Katex tex="\sigma=3.3" /> puts about <Katex tex="99.9\%" /> above <Katex tex="190" />, <Katex tex="\sigma=6.1" /> only about <Katex tex="94.9\%" />, and <Katex tex="9.4" /> and <Katex tex="12.1" /> are further off still (about <Katex tex="85.6\%" /> and <Katex tex="79.6\%" />).</>,
   },
 ]
 

@@ -21,11 +21,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="a=1, \quad b=2, \quad c=-k" />,
-    reason: <>&ldquo;How many real solutions&rdquo; for a quadratic is a discriminant question, so start by matching <Katex tex="x^2+2x-k=0" /> to <Katex tex="ax^2+bx+c=0" />. Watch the sign: the constant term is <Katex tex="-k" />, so <Katex tex="c=-k" />, not <Katex tex="k" />.</>,
+    reason: <>&ldquo;How many real solutions&rdquo; of a quadratic is a discriminant question. Match <Katex tex="x^2+2x-k=0" /> to <Katex tex="ax^2+bx+c=0" />: the constant term is <Katex tex="-k" />, so <Katex tex="c=-k" />.</>,
   },
   {
     working: <Katex display tex="\Delta = b^2-4ac = 2^2-4(1)(-k) = 4+4k" />,
-    reason: <>The two minus signs in <Katex tex="-4(1)(-k)" /> make <Katex tex="+4k" />. Keep brackets round <Katex tex="-k" /> when substituting so the sign can&apos;t go missing.</>,
+    reason: <>The two minus signs in <Katex tex="-4(1)(-k)" /> make <Katex tex="+4k" />.</>,
+    more: <>Keep brackets round <Katex tex="-k" /> when substituting so the sign can&apos;t go missing.</>,
   },
   {
     working: (
@@ -36,11 +37,12 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="k>-1" />
       </>
     ),
-    reason: <>&ldquo;Two real solutions&rdquo; means two <em>different</em> ones, so <Katex tex="\Delta" /> must be strictly positive. Dividing by <Katex tex="+4" /> keeps the inequality the same way round: it only flips when you multiply or divide by a negative. The boundary <Katex tex="k=-1" /> gives <Katex tex="\Delta=0" />, a single repeated solution, so it is excluded.</>,
+    reason: <><Katex tex="\Delta>0" /> gives two different real solutions (<Katex tex="\Delta=0" /> one, <Katex tex="\Delta<0" /> none), so <Katex tex="\Delta" /> must be strictly positive. Dividing by <Katex tex="+4" /> keeps the inequality the same way round.</>,
   },
   {
     working: <Katex display tex="\boxed{k\in(-1,\infty)}" />,
-    reason: <>Matches option <b>B</b>. The round bracket does the excluding: option <b>E</b>, <Katex tex="[-1,\infty)" />, is <Katex tex="\Delta\ge0" />, which lets in <Katex tex="k=-1" /> and its one solution. Option <b>D</b>, <Katex tex="\{-1\}" />, is the solution of <Katex tex="\Delta=0" />, the one-solution case. Option <b>C</b>, <Katex tex="(-\infty,-1)" />, is exactly where <Katex tex="\Delta<0" />: no real solutions at all.</>,
+    reason: <>Matches option <b>B</b>; the round bracket excludes <Katex tex="k=-1" />.</>,
+    more: <>Option <b>E</b>, <Katex tex="[-1,\infty)" />, is <Katex tex="\Delta\ge0" />, which lets in <Katex tex="k=-1" /> and its one solution. Option <b>D</b>, <Katex tex="\{-1\}" />, is the solution of <Katex tex="\Delta=0" />, the one-solution case. Option <b>C</b>, <Katex tex="(-\infty,-1)" />, comes from wrongly flipping the inequality (the common mistake below). Option <b>A</b>, <Katex tex="\{-1,1\}" />, lists just two values, and <Katex tex="k=-1" /> gives only one solution; <Katex tex="k=1" /> does give two, but so does every <Katex tex="k>-1" />.</>,
   },
 ]
 

@@ -42,11 +42,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{-a}^b p(x)\,dx = 1" />,
-    reason: <>There are two unknowns, <Katex tex="a" /> and <Katex tex="b" />, so I need two equations. The first comes free with the words &ldquo;probability density function&rdquo;: the total area under <Katex tex="p" /> on <Katex tex="[-a,b]" /> must be 1.</>,
+    reason: <>Two unknowns, <Katex tex="a" /> and <Katex tex="b" />, need two equations. First: <Katex tex="p" /> is a probability density, so the total area under it on <Katex tex="[-a,b]" /> is 1.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\frac{1}{b-(-a)}\int_{-a}^b p(x)\,dx = \frac34 \\ \frac{1}{a+b}\times 1 = \frac34\end{gathered}" />,
-    reason: <>The second comes from the average value of <Katex tex="p" /> over <Katex tex="[-a,b]" />. Its formula contains the same integral, which we already know is 1, so there is nothing to integrate. Picture it: the average value is the height of the rectangle over <Katex tex="[-a,b]" /> that has the same area as the region under <Katex tex="p" />.</>,
+    reason: <>Second: the average value of <Katex tex="p" /> over <Katex tex="[-a,b]" />. Its formula contains the same integral, which is 1, so there is nothing to integrate.</>,
   },
   {
     working: <Katex display tex="a+b = \frac43" />,
@@ -54,23 +54,27 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="1 = \underbrace{a^2}_{\text{triangle}} + \underbrace{\tfrac12 b(2a+b)}_{\text{trapezium}}" />,
-    reason: <>Now write the area in terms of <Katex tex="a" /> and <Katex tex="b" /> straight from the graph. The triangle over <Katex tex="[-a,0]" /> has base <Katex tex="a" /> and height <Katex tex="2a" />, so its area is <Katex tex="\tfrac12\cdot a\cdot 2a=a^2" />. The trapezium over <Katex tex="[0,b]" /> has parallel sides <Katex tex="2a" /> and <Katex tex="b" /> and width <Katex tex="b" />.</>,
+    reason: <>The area from the graph: a triangle on <Katex tex="[-a,0]" /> (base <Katex tex="a" />, height <Katex tex="2a" />) plus a trapezium on <Katex tex="[0,b]" /> (parallel sides <Katex tex="2a" /> and <Katex tex="b" />, width <Katex tex="b" />).</>,
+    more: <>Triangle: <Katex tex="\tfrac12\cdot a\cdot 2a=a^2" />. Trapezium: <Katex tex="\tfrac12(\text{sum of parallel sides})\times\text{width}=\tfrac12(2a+b)\,b" />. The parallel sides are the heights of the graph at <Katex tex="x=0" /> and <Katex tex="x=b" />, read from the points <Katex tex="(0,2a)" /> and <Katex tex="(b,b)" />.</>,
   },
   {
     working: <Katex display tex="a^2 + a\left(\tfrac43-a\right)+\tfrac12\left(\tfrac43-a\right)^2 = 1" />,
-    reason: <>Substitute <Katex tex="b=\tfrac43-a" /> so that only one unknown is left (the trapezium expands to <Katex tex="ab+\tfrac{b^2}{2}" />). On CAS, <Cas fn="solve" /> the two equations together for <Katex tex="\{a,b\}" /> with <Katex tex="a>0" /> and <Katex tex="b>0" />.</>,
+    reason: <>Substitute <Katex tex="b=\tfrac43-a" /> so only one unknown is left (the trapezium expands to <Katex tex="ab+\tfrac{b^2}{2}" />).</>,
+    more: <>The report instead solves the two equations together on CAS: <Cas fn="solve" /> them for <Katex tex="\{a,b\}" /> with <Katex tex="a>0" /> and <Katex tex="b>0" />. By hand it is quick because the <Katex tex="a" />-terms cancel (next line).</>,
   },
   {
     working: <Katex display tex="\tfrac{a^2}{2}+\tfrac89 = 1 \;\implies\; a^2=\tfrac29" />,
-    reason: <>Expanding, the <Katex tex="\tfrac{4a}{3}" /> terms cancel and the <Katex tex="a^2" /> terms collect to <Katex tex="\tfrac{a^2}{2}" />. We don&apos;t even need <Katex tex="a=\tfrac{\sqrt2}{3}" /> itself, only <Katex tex="a^2" />, because <Katex tex="a^2" /> is the triangle&apos;s area.</>,
+    reason: <>Expanding, the <Katex tex="\tfrac{4a}{3}" /> terms cancel and the <Katex tex="a^2" /> terms collect to <Katex tex="\tfrac{a^2}{2}" />; the constant is <Katex tex="\tfrac12\left(\tfrac43\right)^2=\tfrac89" />.</>,
+    more: <>Expanded: <Katex tex="a^2+\tfrac{4a}{3}-a^2+\tfrac89-\tfrac{4a}{3}+\tfrac{a^2}{2}" />. So <Katex tex="a=\tfrac{\sqrt2}{3}" /> and <Katex tex="b=\tfrac43-\tfrac{\sqrt2}{3}=\tfrac{4-\sqrt2}{3}" />, both positive as required. We don&apos;t actually need <Katex tex="a" /> itself, only <Katex tex="a^2" />, because <Katex tex="a^2" /> is the triangle&apos;s area.</>,
   },
   {
     working: <Katex display tex="\Pr(X>0) = \int_0^b p(x)\,dx = 1 - a^2" />,
-    reason: <>The event <Katex tex="X>0" /> is the part of the region to the right of the <Katex tex="y" />-axis: the trapezium. That is everything except the triangle, since the total is 1.</>,
+    reason: <><Katex tex="X>0" /> is the region right of the <Katex tex="y" />-axis: the trapezium, which is the total area 1 minus the triangle.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>0) = 1-\frac29 = \frac79}" />,
-    reason: <>Matches option <b>D</b>. As a check, <Katex tex="b=\tfrac{4-\sqrt2}{3}" /> and <Katex tex="2a+b=\tfrac{4+\sqrt2}{3}" /> give the trapezium directly: <Katex tex="\tfrac12\cdot\tfrac{16-2}{9}=\tfrac79" />. Option <b>B</b> <Katex tex="\left(\tfrac34\right)" /> is the average value itself, a height rather than an area.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Check with the trapezium directly: <Katex tex="b=\tfrac{4-\sqrt2}{3}" /> and <Katex tex="2a+b=\tfrac{4+\sqrt2}{3}" />, so <Katex tex="\tfrac12 b(2a+b)=\tfrac12\cdot\tfrac{16-2}{9}=\tfrac79" />. Option <b>B</b> <Katex tex="\left(\tfrac34\right)" /> is the average value itself, a height rather than an area.</>,
   },
 ]
 

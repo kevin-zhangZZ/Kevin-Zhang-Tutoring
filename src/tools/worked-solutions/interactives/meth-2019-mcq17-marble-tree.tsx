@@ -90,7 +90,7 @@ export default function MarbleTree() {
       <Notice tone="warn">
         Careful testing the options with these numbers: option{matches.length > 2 ? 's' : ''} {matches.filter(l => l !== 'D').join(', ')}{' '}
         {matches.length > 2 ? 'give' : 'gives'} the same value as D here,{' '}
-        {matches.includes('C') ? 'because there are as many greens as reds, or exactly one more green.' : 'by coincidence.'}
+        {matches.includes('C') ? 'because there are as many greens as reds, or exactly one more green.' : 'by coincidence.'}{' '}
         Numbers like <M>n = 6</M>, <M>k = 2</M> separate them.
       </Notice>
     )

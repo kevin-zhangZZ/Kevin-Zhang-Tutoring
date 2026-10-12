@@ -50,10 +50,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="0 < x < \tfrac{5\pi}{4} \implies 0 < 2x < \tfrac{5\pi}{2}" />,
     reason: (
       <>
-        The equation is about the angle <Katex tex="2x" />, not <Katex tex="x" />, so first find the interval that{' '}
-        <Katex tex="2x" /> lives in: multiply every part of the inequality by 2. This is the step that decides how many
-        solutions there are. <Katex tex="\tfrac{5\pi}{2}" /> is more than a full revolution (<Katex tex="2\pi" />), so
-        the angle <Katex tex="2x" /> goes all the way round once and then a quarter-turn further.
+        The equation is about the angle <Katex tex="2x" />, so first find the interval for <Katex tex="2x" />: multiply
+        every part by 2.
+      </>
+    ),
+    more: (
+      <>
+        This is the step that decides how many solutions there are. <Katex tex="\tfrac{5\pi}{2}" /> is more than a full
+        revolution (<Katex tex="2\pi" />), so the angle <Katex tex="2x" /> goes all the way round once and then a
+        quarter-turn further.
       </>
     ),
   },
@@ -66,23 +71,27 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        We are told <Katex tex="\tan(\alpha)=d" /> with <Katex tex="\alpha" /> in the first quadrant, so{' '}
-        <Katex tex="\alpha" /> plays the part of the basic angle. Tan is positive in quadrants 1 and 3, which gives{' '}
-        <Katex tex="\alpha" /> and <Katex tex="\pi+\alpha" /> on the first lap. The extra quarter-turn brings the first
-        quadrant round again: <Katex tex="2\pi+\alpha" /> is still below <Katex tex="\tfrac{5\pi}{2}" /> because{' '}
-        <Katex tex="\alpha<\tfrac{\pi}{2}" />. The next one, <Katex tex="3\pi+\alpha" />, is past{' '}
-        <Katex tex="\tfrac{5\pi}{2}" />, so we stop at three.
+        <Katex tex="\alpha" /> is the first-quadrant angle with tan equal to <Katex tex="d" />. Tan is positive in
+        quadrants 1 and 3; <Katex tex="0<2x<\tfrac{5\pi}{2}" /> is more than one revolution, so quadrant 1 comes round
+        again (quadrant 3 doesn&apos;t: <Katex tex="3\pi+\alpha>\tfrac{5\pi}{2}" />).
+      </>
+    ),
+    more: (
+      <>
+        The first lap gives <Katex tex="\alpha" /> (quadrant 1) and <Katex tex="\pi+\alpha" /> (quadrant 3). The extra
+        quarter-turn gives <Katex tex="2\pi+\alpha" />, which is still below <Katex tex="\tfrac{5\pi}{2}" /> because{' '}
+        <Katex tex="\alpha<\tfrac{\pi}{2}" />, so there are exactly three.
       </>
     ),
   },
   {
     working: <Katex display tex="x = \tfrac{\alpha}{2},\ \tfrac{\pi+\alpha}{2},\ \tfrac{2\pi+\alpha}{2}" />,
-    reason: (
+    reason: <>Halve each value of <Katex tex="2x" /> to get <Katex tex="x" />.</>,
+    more: (
       <>
-        Halve each value of <Katex tex="2x" /> to get <Katex tex="x" />. As a check, consecutive solutions are{' '}
-        <Katex tex="\tfrac{\pi}{2}" /> apart, which is the period of <Katex tex="\tan(2x)" />, and the largest,{' '}
-        <Katex tex="\pi+\tfrac{\alpha}{2}" />, is below <Katex tex="\tfrac{5\pi}{4}" /> because{' '}
-        <Katex tex="\tfrac{\alpha}{2}<\tfrac{\pi}{4}" />.
+        As a check, consecutive solutions are <Katex tex="\tfrac{\pi}{2}" /> apart, which is the period of{' '}
+        <Katex tex="\tan(2x)" />, and the largest, <Katex tex="\pi+\tfrac{\alpha}{2}" />, is below{' '}
+        <Katex tex="\tfrac{5\pi}{4}" /> because <Katex tex="\tfrac{\alpha}{2}<\tfrac{\pi}{4}" />.
       </>
     ),
   },
@@ -93,23 +102,26 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{3\pi+3\alpha}{2}" />
       </>
     ),
-    reason: (
+    reason: <>Add the three solutions over their common denominator of 2.</>,
+    more: (
       <>
-        Add the three solutions over their common denominator of 2. A quick check with a nice value:{' '}
-        <Katex tex="d=1" /> gives <Katex tex="\alpha=\tfrac{\pi}{4}" />, and the solutions{' '}
-        <Katex tex="\tfrac{\pi}{8},\ \tfrac{5\pi}{8},\ \tfrac{9\pi}{8}" /> add to <Katex tex="\tfrac{15\pi}{8}" />, which
-        is <Katex tex="\tfrac{3(\pi+\pi/4)}{2}" />.
+        A quick check with a nice value: <Katex tex="d=1" /> gives <Katex tex="\alpha=\tfrac{\pi}{4}" />, and the
+        solutions <Katex tex="\tfrac{\pi}{8},\ \tfrac{5\pi}{8},\ \tfrac{9\pi}{8}" /> add to{' '}
+        <Katex tex="\tfrac{15\pi}{8}" />, which is <Katex tex="\tfrac{3(\pi+\pi/4)}{2}" />.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\frac{3(\pi+\alpha)}{2}}" />,
-    reason: (
+    reason: <>Matches option <b>E</b>.</>,
+    more: (
       <>
-        Matches option <b>E</b>. Option <b>D</b>, <Katex tex="\tfrac{\pi}{2}+\alpha" /> (the most popular answer at{' '}
-        <Katex tex="30\%" />), is the sum of the first two solutions only. Option <b>C</b>,{' '}
-        <Katex tex="\pi+2\alpha" />, is the first two values of <Katex tex="2x" /> added without halving. Both stop after
-        one revolution.
+        Option <b>D</b>, <Katex tex="\tfrac{\pi}{2}+\alpha" /> (the most popular answer at <Katex tex="30\%" />), is
+        the sum of the first two solutions only. Option <b>C</b>, <Katex tex="\pi+2\alpha" />, is the first two values
+        of <Katex tex="2x" /> added without halving. Both stop after one revolution. Options <b>A</b> and <b>B</b> have
+        no <Katex tex="\pi" /> term, but every solution after the first adds <Katex tex="\tfrac{\pi}{2}" /> to the one
+        before, so the sum must include a multiple of <Katex tex="\pi" />. Option <b>A</b> (0) is impossible anyway,
+        since every solution is positive.
       </>
     ),
   },
@@ -172,7 +184,8 @@ export default function MethodsQ19_2019() {
               than one revolution: <Katex tex="0<2x<\tfrac{5\pi}{2}" />. The first-quadrant angle comes round again at{' '}
               <Katex tex="2\pi+\alpha" />, which is the third solution <Katex tex="x=\pi+\tfrac{\alpha}{2}" />, sitting
               in <Katex tex="\left(\pi,\tfrac{5\pi}{4}\right)" />. Keeping the interval as{' '}
-              <Katex tex="0<2x<\tfrac{5\pi}{4}" /> (forgetting to double it) loses the same solution. To catch it, always
+              <Katex tex="0<2x<\tfrac{5\pi}{4}" /> (forgetting to double it) loses that solution too (and, when{' '}
+              <Katex tex="\alpha\geq\tfrac{\pi}{4}" />, the second one as well). To catch it, always
               rewrite the interval for <Katex tex="2x" /> before solving, and if it runs past <Katex tex="2\pi" />, go
               round again.
             </p>

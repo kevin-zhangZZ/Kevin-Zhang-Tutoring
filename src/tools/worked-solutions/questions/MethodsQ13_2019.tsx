@@ -20,15 +20,17 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Known: } f(-2)=7" />,
-    reason: <>That is all the information there is about <Katex tex="f" />. We know its value at one input, <Katex tex="-2" />, and nowhere else — so the only place we can say anything about <Katex tex="h" /> is where <Katex tex="h" /> ends up feeding <Katex tex="f" /> the input <Katex tex="-2" />.</>,
+    reason: <>This is the only fact about <Katex tex="f" />, so we need the <Katex tex="x" />-value at which <Katex tex="h" /> uses <Katex tex="f(-2)" />.</>,
   },
   {
     working: <Katex display tex="h(x) = f\!\left(\dfrac{x}{2}\right)+5 \implies \text{need } \dfrac{x}{2}=-2" />,
-    reason: <>Read <Katex tex="h" /> as a recipe: take <Katex tex="x" />, halve it, feed that to <Katex tex="f" />, then add <Katex tex="5" />. The input to <Katex tex="f" /> is <Katex tex="\tfrac{x}{2}" />, not <Katex tex="x" />, so set <em>that</em> equal to the known input.</>,
+    reason: <>The input to <Katex tex="f" /> is <Katex tex="\tfrac{x}{2}" />, not <Katex tex="x" />, so set <em>that</em> equal to the known input <Katex tex="-2" />.</>,
+    more: <>Read <Katex tex="h" /> as a recipe: take <Katex tex="x" />, halve it, feed that to <Katex tex="f" />, then add <Katex tex="5" />.</>,
   },
   {
     working: <Katex display tex="\dfrac{x}{2}=-2 \implies x=-4" />,
-    reason: <>Multiply by <Katex tex="2" />. Seen as a transformation, replacing <Katex tex="x" /> by <Katex tex="\tfrac{x}{2}" /> dilates the graph by a factor of <Katex tex="2" /> <em>from</em> the <Katex tex="y" />-axis, so every <Katex tex="x" />-coordinate doubles: <Katex tex="-2\to-4" />. As a mapping, <Katex tex="(x,\,y)\to(2x,\ y+5)" />. It feels backwards (a &ldquo;half&rdquo; that doubles), and solving <Katex tex="\tfrac{x}{2}=-2" /> is the way to never get it backwards.</>,
+    reason: <>Multiply by <Katex tex="2" />. So the <Katex tex="x" />-coordinate doubles, <Katex tex="-2\to-4" />; it does not halve.</>,
+    more: <>Seen as a transformation, replacing <Katex tex="x" /> by <Katex tex="\tfrac{x}{2}" /> dilates the graph by a factor of <Katex tex="2" /> <em>from</em> the <Katex tex="y" />-axis, so every <Katex tex="x" />-coordinate doubles. As a mapping, <Katex tex="(x,\,y)\to(2x,\ y+5)" />. It feels backwards: a &ldquo;half&rdquo; that doubles.</>,
   },
   {
     working: <Katex display tex="h(-4) = f(-2)+5 = 7+5 = 12" />,
@@ -36,7 +38,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(-4,12)}" />,
-    reason: <>Matches option <b>C</b>. Options <b>A</b> and <b>B</b> both have <Katex tex="x=-1" />, which is what halving <Katex tex="-2" /> gives instead of doubling it (<Katex tex="23\%" /> between them). <b>E</b> <Katex tex="(3,\ 3.5)" /> is <Katex tex="(-2+5,\ 7\div2)" />: each change applied to the wrong coordinate.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Options <b>A</b> and <b>B</b> halve the <Katex tex="x" />-coordinate instead of doubling it. <b>D</b> has the right <Katex tex="x" />, but <Katex tex="-14=-2\times7" />; nothing scales the <Katex tex="y" />-coordinate, which only moves up <Katex tex="5" />. <b>E</b> <Katex tex="(3,\ 3.5)" /> is <Katex tex="(-2+5,\ 7\div2)" />: each change applied to the wrong coordinate.</>,
   },
 ]
 

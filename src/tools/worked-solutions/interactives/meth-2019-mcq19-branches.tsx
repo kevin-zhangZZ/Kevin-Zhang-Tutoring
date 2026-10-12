@@ -50,9 +50,8 @@ export default function Branches() {
   } else if (nearOne) {
     notice = (
       <Notice tone="good">
-        <b>A quick check with a nice value.</b> <M>d = 1</M> gives <M>{'\\alpha = \\tfrac{\\pi}{4}'}</M>, so the solutions
-        are <M>{'\\tfrac{\\pi}{8}, \\tfrac{5\\pi}{8}, \\tfrac{9\\pi}{8}'}</M>. They add to <M>{'\\tfrac{15\\pi}{8}'}</M>, and
-        option E gives <M>{'\\tfrac{3(\\pi + \\pi/4)}{2} = \\tfrac{15\\pi}{8}'}</M> too.
+        At <M>d = 1</M> the three crossings land exactly on <M>{'\\tfrac{\\pi}{8}, \\tfrac{5\\pi}{8}, \\tfrac{9\\pi}{8}'}</M>,
+        the values in the nice-value check above, with the gaps of <M>{'\\tfrac{\\pi}{2}'}</M> easy to see.
       </Notice>
     )
   } else {

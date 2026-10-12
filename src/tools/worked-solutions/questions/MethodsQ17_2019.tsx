@@ -33,7 +33,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="n \text{ marbles: } k \text{ red},\ n-k \text{ green}" />,
-    reason: <>&ldquo;<b>Not</b> replaced&rdquo; is the key phrase. After the first draw the box has one marble fewer, and one fewer of the colour just drawn, so the second draw&apos;s probabilities depend on the first. That calls for a two-stage tree diagram.</>,
+    reason: <>&ldquo;<b>Not</b> replaced&rdquo; is the key phrase: the second draw&apos;s probabilities depend on the first, so use a two-stage tree diagram.</>,
+    more: <>After the first draw the box has one marble fewer, and one fewer of the colour just drawn. So every second-stage branch has <Katex tex="n-1" /> underneath, not <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="\Pr(\text{both red}) = \frac{k}{n}\cdot\frac{k-1}{n-1}" />,
@@ -49,15 +50,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{k(k-1)}{n(n-1)} + \frac{(n-k)(n-k-1)}{n(n-1)}" />,
-    reason: <>Both products already have the denominator <Katex tex="n(n-1)" />, so the numerators add directly. Counting pairs gives the same thing: <Katex tex="\tfrac{{}^kC_2+{}^{n-k}C_2}{{}^nC_2}" /> (2 of the reds or 2 of the greens, out of all pairs), and the halves in each <Katex tex="{}^mC_2=\tfrac{m(m-1)}{2}" /> cancel.</>,
+    reason: <>Both products already have the denominator <Katex tex="n(n-1)" />, so the numerators add directly.</>,
+    more: <>Counting pairs gives the same thing: <Katex tex="\tfrac{{}^kC_2+{}^{n-k}C_2}{{}^nC_2}" /> (2 of the reds or 2 of the greens, out of all pairs), and the halves in each <Katex tex="{}^mC_2=\tfrac{m(m-1)}{2}" /> cancel.</>,
   },
   {
     working: <Katex display tex="\text{Check } n=6,\ k=2: \ \tfrac26\cdot\tfrac15+\tfrac46\cdot\tfrac35=\tfrac{14}{30}=\tfrac{7}{15}" />,
-    reason: <>With letters in every option, test a small case. With 2 red and 4 green marbles only D gives <Katex tex="\tfrac7{15}" /> (A gives <Katex tex="\tfrac59" />, C gives <Katex tex="\tfrac25" />). Choose the counts with care: when there are as many greens as reds, or exactly one more green than red, C happens to equal D (and 3 red with 2 green makes B equal D).</>,
+    reason: <>With letters in every option, test a small case: 2 red and 4 green marbles. Only D gives <Katex tex="\tfrac7{15}" />.</>,
+    more: <>At these numbers A gives <Katex tex="\tfrac59" />, B gives <Katex tex="\tfrac{13}{36}" /> and C gives <Katex tex="\tfrac25" />. Choose the counts with care: when there are as many greens as reds, or exactly one more green than red, C happens to equal D (and 3 red with 2 green makes B equal D).</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{k(k-1)+(n-k)(n-k-1)}{n(n-1)}}" />,
-    reason: <>Matches option <b>D</b>. Option <b>A</b> is the with-replacement answer (both draws out of <Katex tex="n" />). Option <b>E</b> is the binomial probability of exactly two reds in <Katex tex="n" /> draws with replacement, a different experiment. Option <b>C</b> agrees with D only when the number of green marbles equals the number of red marbles or is one more, so it is not correct in general.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Option <b>C</b>, the most popular wrong answer, looks like the probability of <em>different</em> colours, <Katex tex="2\cdot\tfrac kn\cdot\tfrac{n-k}{n-1}=\tfrac{2k(n-k)}{n(n-1)}" />, with a stray <Katex tex="-1" />: it answers the opposite event, and miscounts even that. It agrees with D only in the special cases in the previous row. Option <b>B</b> keeps the with-replacement denominator <Katex tex="n^2" /> but takes one marble off the greens only, so it fits neither experiment. Options <b>A</b> (with replacement) and <b>E</b> (binomial) are the two Common Mistakes below.</>,
   },
 ]
 

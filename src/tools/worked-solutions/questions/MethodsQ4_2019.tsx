@@ -29,10 +29,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Antidifferentiate term by term; the constants <Katex tex="a" /> and <Katex tex="b" /> just ride along. The
-        signs are the part to get right: <Katex tex="\sin" /> integrates to <Katex tex="-\cos" /> and{' '}
-        <Katex tex="\cos" /> to <Katex tex="+\sin" />. If you&apos;re unsure, differentiate your answer:{' '}
-        <Katex tex="\tfrac{d}{dx}\bigl(-a\cos x\bigr)=a\sin x" />, so it checks out.
+        Antidifferentiate term by term. Watch the signs: <Katex tex="\sin" /> integrates to <Katex tex="-\cos" /> and{' '}
+        <Katex tex="\cos" /> to <Katex tex="+\sin" />.
+      </>
+    ),
+    more: (
+      <>
+        The constants <Katex tex="a" /> and <Katex tex="b" /> just ride along. If you&apos;re unsure of a sign,
+        differentiate your answer: <Katex tex="\tfrac{d}{dx}\bigl(-a\cos x\bigr)=a\sin x" />, so it checks out.
       </>
     ),
   },
@@ -41,8 +45,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Upper terminal minus lower terminal. Don&apos;t drop the lower terminal just because it is <Katex tex="0" />:{' '}
-        <Katex tex="\cos 0=1" />, so <Katex tex="-a\cos0=-a" />, and that is where the <Katex tex="2" /> in{' '}
-        <Katex tex="2-\sqrt3" /> comes from.
+        <Katex tex="\cos 0=1" />, so <Katex tex="-a\cos0=-a" />.
+      </>
+    ),
+    more: (
+      <>
+        Subtracting that <Katex tex="-a" /> is where the <Katex tex="2" /> in <Katex tex="2-\sqrt3" /> comes from.
       </>
     ),
   },
@@ -51,8 +59,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Exact values: <Katex tex="\cos\tfrac{\pi}{6}=\tfrac{\sqrt3}{2}" />, <Katex tex="\sin\tfrac{\pi}{6}=\tfrac12" />,{' '}
-        <Katex tex="\cos0=1" />, <Katex tex="\sin0=0" />. The <Katex tex="\sqrt3" /> in every option tells you exact
-        values are expected.
+        <Katex tex="\cos0=1" />, <Katex tex="\sin0=0" />.
       </>
     ),
   },
@@ -66,19 +73,25 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Every option is written over <Katex tex="2" /> with a <Katex tex="(2-\sqrt3)" /> factor, so aim for that form:
-        put everything over <Katex tex="2" />, then take <Katex tex="a" /> out of the first two terms. A CAS will do the
-        integral, but its output usually isn&apos;t in the options&apos; form. You still have to rearrange, or test
-        values such as <Katex tex="a=2,\ b=1" /> in your answer and in each option.
+        put everything over <Katex tex="2" />, then take <Katex tex="a" /> out of the first two terms.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="\sqrt3" /> in every option tells you exact values are expected. A CAS will do the integral,
+        but its output usually isn&apos;t in the options&apos; form. You still have to
+        rearrange, or test values such as <Katex tex="a=2,\ b=1" /> in your answer and in each option.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\dfrac{(2-\sqrt3)a+b}{2}}" />,
-    reason: (
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
       <>
-        Matches option <b>C</b>. Option <b>B</b> comes from <Katex tex="\int\sin x\,dx=\cos x" /> and <b>A</b> from{' '}
-        <Katex tex="\int\cos x\,dx=-\sin x" />. Option <b>E</b> is the integral of <Katex tex="a\cos(x)+b\sin(x)" />, with
-        sin and cos swapped, and <b>D</b> is that swap with the cos slip as well.
+        Option <b>B</b> comes from <Katex tex="\int\sin x\,dx=\cos x" /> and <b>A</b> from{' '}
+        <Katex tex="\int\cos x\,dx=-\sin x" /> (both are worked in full in the box below). Option <b>E</b> is the integral of <Katex tex="a\cos(x)+b\sin(x)" />, with
+        sin and cos swapped, and <b>D</b> is that swap with the <Katex tex="\int\cos x\,dx=-\sin x" /> slip as well.
       </>
     ),
   },
@@ -116,9 +129,8 @@ export default function MethodsQ4_2019() {
           >
             <p>
               Differentiating cycles <Katex tex="\sin\to\cos\to-\sin\to-\cos\to\sin" />, so antidifferentiating runs the
-              cycle backwards: <Katex tex="\int\cos x\,dx=\sin x" /> and <Katex tex="\int\sin x\,dx=-\cos x" />. Two quick
-              checks catch the slip. First, differentiate your antiderivative and see whether the integrand comes back.
-              Second, look at signs: <Katex tex="\sin x" /> and <Katex tex="\cos x" /> are both positive on{' '}
+              cycle backwards: <Katex tex="\int\cos x\,dx=\sin x" /> and <Katex tex="\int\sin x\,dx=-\cos x" />. Besides
+              differentiating to check, a sign check catches the slip: <Katex tex="\sin x" /> and <Katex tex="\cos x" /> are both positive on{' '}
               <Katex tex="\left[0,\tfrac{\pi}{6}\right]" />, so for positive <Katex tex="a" /> and <Katex tex="b" /> the
               integral is positive and grows with both. Only C and E have a positive coefficient on both, and the
               interactive above shows why the <Katex tex="a" /> share is the small one.

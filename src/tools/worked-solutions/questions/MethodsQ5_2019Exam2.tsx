@@ -104,7 +104,8 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = -3x^2 \implies f'(a) = -3a^2" />,
-    reason: <>A tangent needs a gradient and a point. The gradient is the derivative evaluated at the point of contact — here that point has <Katex tex="x=a" />, so substitute <Katex tex="a" /> into <Katex tex="f'(x)" /> and treat the answer as a number.</>,
+    reason: <>A tangent needs a gradient and a point. Its gradient is the derivative at the point of contact, <Katex tex="x=a" />.</>,
+    more: <>Substitute <Katex tex="a" /> into <Katex tex="f'(x)" /> and treat the result as a fixed number: <Katex tex="a" /> is unknown, but it doesn&apos;t vary along the line. On CAS the tangent line command (Calculus menu) gives the whole equation directly; the report&apos;s general comments say it could have been readily found using technology, as errors were often made rearranging it by hand.</>,
   },
   {
     working: <Katex display tex="\text{Point of contact: } \bigl(a,\ f(a)\bigr) = \bigl(a,\ 1-a^3\bigr)" />,
@@ -120,7 +121,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = -3a^2x+2a^3+1}" />,
-    reason: <>Collect the <Katex tex="a^3" /> terms. Write it as an equation, <Katex tex="y=\ldots" /> — the report says an equation was required. Keep <Katex tex="x" /> in the answer: the tangent is a whole line, so its rule must still depend on <Katex tex="x" />.</>,
+    reason: <>Collect the <Katex tex="a^3" /> terms. Give an equation, <Katex tex="y=\ldots" />, still containing <Katex tex="x" />: the tangent is a whole line.</>,
+    more: <>The report says an equation was required. It also notes transcription errors such as <Katex tex="y=3a^2x+2a^3+1" />: check the gradient&apos;s sign when copying from CAS. <Katex tex="f" /> is decreasing, so its tangent must slope down.</>,
   },
 ]
 
@@ -136,6 +138,7 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{x_Q = \dfrac{2a^3+1}{3a^2}}" />,
     reason: <>Dividing by <Katex tex="3a^2" /> is safe because <Katex tex="0<a<1" />, so <Katex tex="a\ne0" />.</>,
+    more: <>The report notes the transcription error <Katex tex="x=\tfrac{1+2a^2}{3a^2}" />: the power on <Katex tex="a" /> in the numerator is <Katex tex="3" />, carried over from the tangent&apos;s <Katex tex="2a^3" />.</>,
   },
 ]
 
@@ -146,19 +149,22 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^3-3a^2x+2a^3=0" />,
-    reason: <>The <Katex tex="+1" /> on each side cancels. Everything collected on one side gives a cubic in <Katex tex="x" />, with <Katex tex="a" /> along for the ride as a constant.</>,
+    reason: <>The <Katex tex="+1" />s cancel. Collecting everything on one side gives a cubic in <Katex tex="x" />, with <Katex tex="a" /> a constant.</>,
   },
   {
     working: <Katex display tex="(x-a)^2(x+2a)=0" />,
-    reason: <>You already know <Katex tex="x=a" /> is a solution — and because the line is a <em>tangent</em> there, it is a <b>repeated</b> root, so <Katex tex="(x-a)^2" /> must divide the cubic. That leaves a linear factor, and matching the constant term <Katex tex="a^2\times(2a)=2a^3" /> ✓ identifies it as <Katex tex="(x+2a)" />.</>,
+    reason: <>The line touches the curve at <Katex tex="x=a" />, so that is a <b>repeated</b> root and <Katex tex="(x-a)^2" /> is a factor. Matching the constant term, <Katex tex="a^2\times 2a=2a^3" />, gives the last factor <Katex tex="(x+2a)" />.</>,
+    more: <>Check by expanding: <Katex tex="(x^2-2ax+a^2)(x+2a)=x^3-3a^2x+2a^3" /> ✓ (the <Katex tex="x^2" /> terms cancel, as they must, since the cubic has none).</>,
   },
   {
-    working: <Katex display tex="x=a \text{ (twice, the point of contact)} \quad\text{or}\quad x=-2a" />,
-    reason: <>Null factor law. On CAS, <Cas fn="solve" /> <Katex tex="1+2a^3-3a^2x=1-x^3" /> for <Katex tex="x" /> returns the same two solutions — but write the equation down first: the report notes some students gave the answer without showing any working.</>,
+    working: <Katex display tex="\begin{gathered}x=a \text{ (twice, the point of contact)}\\ \text{or}\quad x=-2a\end{gathered}" />,
+    reason: <>Null factor law. On CAS, <Cas fn="solve" /> <Katex tex="1+2a^3-3a^2x=1-x^3" /> for <Katex tex="x" /> gives the same two solutions; write the equation down first as your working.</>,
+    more: <>This is a 2-mark question, so the equation is the method mark: the report notes some students gave the answer without showing any working, and others unsuccessfully tried to solve the equation by hand. Using CAS for the solving step is fine.</>,
   },
   {
     working: <Katex display tex="\boxed{x_P = -2a}" />,
-    reason: <>Negative, since <Katex tex="a>0" /> — which matches the diagram, where <Katex tex="P" /> sits to the left of the <Katex tex="y" />-axis.</>,
+    reason: <>Negative, since <Katex tex="a>0" />, which matches the diagram: <Katex tex="P" /> is left of the <Katex tex="y" />-axis.</>,
+    more: <>Only the <Katex tex="x" />-coordinate was asked for, so there is no need to give the coordinates of <Katex tex="P" /> as well.</>,
   },
 ]
 
@@ -170,7 +176,7 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="= (x-a)^2(x+2a) \ge 0 \ \text{ for } x\ge-2a" />
       </>
     ),
-    reason: <>Part c.'s factorisation, reused. A squared factor can't be negative and <Katex tex="x+2a>0" /> to the right of <Katex tex="P" />, so the tangent lies <em>above</em> the curve all the way from <Katex tex="P" /> onwards — touching it only at <Katex tex="x=a" />. So the tangent is the ceiling of the whole region, and nothing swaps over at <Katex tex="x=a" />.</>,
+    reason: <>Part c.'s factorisation: <Katex tex="(x-a)^2\ge0" /> and <Katex tex="x+2a>0" /> right of <Katex tex="P" />, so the tangent is above the curve throughout — the region&apos;s ceiling everywhere.</>,
   },
   {
     working: (
@@ -179,7 +185,8 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="x_Q-1 = \dfrac{(a-1)^2(2a+1)}{3a^2}>0" />
       </>
     ),
-    reason: <>Where does the <em>floor</em> change? The curve crosses the axis at <Katex tex="x=1" />, and <Katex tex="Q" /> is always to the right of that (the difference is a square times positive things), so for every <Katex tex="a" /> in <Katex tex="(0,1)" /> the picture has the same shape as the diagram.</>,
+    reason: <>The floor changes where the curve crosses the axis, <Katex tex="x=1" />. <Katex tex="Q" /> is always right of it (a square times positives), so the picture always matches the diagram.</>,
+    more: <>The second line is <Katex tex="\tfrac{2a^3+1}{3a^2}-1=\tfrac{2a^3-3a^2+1}{3a^2}" />, factorised. Since it is positive for every <Katex tex="a" /> in <Katex tex="(0,1)" />, the same two-piece split works whatever <Katex tex="a" /> is.</>,
   },
   {
     working: (
@@ -188,8 +195,8 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="\qquad +\int_{1}^{x_Q}\left(2a^3+1-3a^2x\right)dx" />
       </>
     ),
-    reason: <>Trace the boundary of the shaded area in the diagram: it starts at <Katex tex="P" />, runs along the tangent to <Katex tex="Q" />, comes back along the <Katex tex="x" />-axis to where the curve cuts it at <Katex tex="x=1" />, then follows the curve back up to <Katex tex="P" />. Left of <Katex tex="1" /> the region's floor is the curve (first integral: tangent minus curve); right of <Katex tex="1" /> the curve has dropped below the axis, so the floor is the axis itself (second integral: tangent minus zero).</>,
-    more: <>Sweep the strip in the widget below across <Katex tex="x=1" /> to watch the floor change.</>,
+    reason: <>Left of <Katex tex="x=1" /> the floor is the curve (tangent minus curve); right of it the floor is the axis (tangent minus zero). One integral for each stretch.</>,
+    more: <>Trace the boundary of the shaded area in the diagram: it starts at <Katex tex="P" />, runs along the tangent to <Katex tex="Q" />, comes back along the <Katex tex="x" />-axis to where the curve cuts it at <Katex tex="x=1" />, then follows the curve back up to <Katex tex="P" />. Sweep the strip in the widget below across <Katex tex="x=1" /> to watch the floor change.</>,
   },
   {
     working: (
@@ -200,26 +207,46 @@ const ROWS_D: WorkingRow[] = [
         <Katex display tex="= 6a^4+2a^3-\dfrac{3a^2}{2}+\dfrac14" />
       </>
     ),
-    reason: <>At <Katex tex="x=-2a" />: <Katex tex="4a^4-6a^4-4a^4=-6a^4" />.</>,
+    reason: <>Tangent minus curve simplifies to part c.'s cubic. At <Katex tex="x=-2a" /> the bracket is <Katex tex="4a^4-6a^4-4a^4=-6a^4" />.</>,
   },
   {
     working: <Katex display tex="\int_{1}^{x_Q}\left(2a^3+1-3a^2x\right)dx = \dfrac{\left(2a^3-3a^2+1\right)^2}{6a^2}" />,
-    reason: <>This piece is just a triangle — base <Katex tex="x_Q-1" />, height the tangent's value at <Katex tex="x=1" />, which is <Katex tex="2a^3-3a^2+1" /> — so <Katex tex="\tfrac12\times\text{base}\times\text{height}" /> gives the same thing without integrating.</>,
+    reason: <>This piece is a triangle: height = tangent at <Katex tex="x=1" />, <Katex tex="2a^3-3a^2+1" />; base <Katex tex="x_Q-1=\tfrac{2a^3-3a^2+1}{3a^2}" />. Then <Katex tex="\tfrac12\times\text{base}\times\text{height}" />.</>,
+    more: <>Integrating the tangent from <Katex tex="1" /> to <Katex tex="x_Q" /> by hand (or on CAS) gives the same result; the triangle just saves the algebra.</>,
+  },
+  {
+    working: (
+      <>
+        <Katex display tex="\dfrac{\left(2a^3-3a^2+1\right)^2}{6a^2}" />
+        <Katex display tex="= \dfrac{4a^6-12a^5+9a^4+4a^3-6a^2+1}{6a^2}" />
+        <Katex display tex="= \dfrac{2a^4}{3}-2a^3+\dfrac{3a^2}{2}" />
+        <Katex display tex="\quad+\dfrac{2a}{3}-1+\dfrac{1}{6a^2}" />
+      </>
+    ),
+    reason: <>Expand the square, then divide each term by <Katex tex="6a^2" /> so it can be added to the first piece.</>,
+  },
+  {
+    working: (
+      <>
+        <Katex display tex="A = \left(6a^4+2a^3-\dfrac{3a^2}{2}+\dfrac14\right)" />
+        <Katex display tex="\quad+\dfrac{2a^4}{3}-2a^3+\dfrac{3a^2}{2}" />
+        <Katex display tex="\quad+\dfrac{2a}{3}-1+\dfrac{1}{6a^2}" />
+        <Katex display tex="= \dfrac{20a^4}{3}+\dfrac{2a}{3}-\dfrac34+\dfrac{1}{6a^2}" />
+      </>
+    ),
+    reason: <>Add the two pieces: the <Katex tex="a^3" /> and <Katex tex="a^2" /> terms cancel. This term-by-term form is the easy one to differentiate in part e.</>,
   },
   {
     working: <Katex display tex="\boxed{A(a) = \dfrac{80a^6+8a^3-9a^2+2}{12a^2}}" />,
-    reason: <>Adding the two pieces over the common denominator <Katex tex="12a^2" />. A check that uses no split at all: the whole triangle under the tangent from <Katex tex="x=-2a" /> to <Katex tex="Q" />, <Katex tex="\tfrac12\left(x_Q+2a\right)\left(1+8a^3\right)" />, minus the area under the curve from <Katex tex="-2a" /> to <Katex tex="1" />, gives the same rule (this is the report's alternative method). At <Katex tex="a=\tfrac12" /> both give <Katex tex="\tfrac23" />.</>,
-  },
-  {
-    working: <Katex display tex="= \dfrac{20a^4}{3}+\dfrac{2a}{3}-\dfrac34+\dfrac{1}{6a^2}" />,
-    reason: <>The same rule, split term by term. This version is worth writing down: part e. needs <Katex tex="A'(a)" />, and differentiating these four simple terms is far easier than quotient-ruling the fraction.</>,
+    reason: <>The same rule over the common denominator <Katex tex="12a^2" />. Give it as a rule, <Katex tex="A(a)=\ldots" />.</>,
+    more: <>A check that uses no split at all (the report&apos;s alternative method): the whole triangle under the tangent from <Katex tex="x=-2a" /> to <Katex tex="Q" />, <Katex tex="\tfrac12\left(x_Q+2a\right)\left(1+8a^3\right)" />, minus the area under the curve from <Katex tex="-2a" /> to <Katex tex="1" />, gives the same rule. At <Katex tex="a=\tfrac12" /> both give <Katex tex="\tfrac23" />.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="A(a) = \dfrac{20a^4}{3}+\dfrac{2a}{3}-\dfrac34+\dfrac{a^{-2}}{6}" />,
-    reason: <>A minimum of a function of <Katex tex="a" /> on an open interval happens where <Katex tex="A'(a)=0" />, so differentiate part d.'s rule. Writing <Katex tex="\tfrac{1}{6a^2}" /> as <Katex tex="\tfrac{a^{-2}}{6}" /> lets the power rule handle every term.</>,
+    reason: <>On an open interval a minimum occurs where <Katex tex="A'(a)=0" />, so differentiate part d.'s rule. Writing <Katex tex="\tfrac{1}{6a^2}" /> as <Katex tex="\tfrac{a^{-2}}{6}" /> suits the power rule.</>,
   },
   {
     working: <Katex display tex="A'(a) = \dfrac{80a^3}{3}+\dfrac23-\dfrac{1}{3a^3}" />,
@@ -232,7 +259,8 @@ const ROWS_E: WorkingRow[] = [
         <Katex display tex="\times 3a^3: \quad 80a^6+2a^3-1=0" />
       </>
     ),
-    reason: <>Multiplying through by <Katex tex="3a^3" /> clears both fractions at once. (On CAS, <Cas fn="solve" /> <Katex tex="A'(a)=0" /> for <Katex tex="a" /> — but it returns <em>both</em> roots, and you still have to choose.)</>,
+    reason: <>Multiplying through by <Katex tex="3a^3" /> clears both fractions at once.</>,
+    more: <>On CAS, <Cas fn="solve" /> <Katex tex="A'(a)=0" /> for <Katex tex="a" /> does this in one step, but it returns <em>both</em> real roots, and you still have to choose.</>,
   },
   {
     working: (
@@ -248,13 +276,14 @@ const ROWS_E: WorkingRow[] = [
     reason: <>Null factor law.</>,
   },
   {
-    working: <Katex display tex="a^3=-\dfrac18 \implies a=-\dfrac12 \ \text{ — rejected, since } 0<a<1" />,
-    reason: <><Katex tex="a=-\tfrac12" /> does solve <Katex tex="A'(a)=0" />, but the question says <Katex tex="0<a<1" /> — check every root against the domain before boxing it. (Geometrically, a negative <Katex tex="a" /> puts the point of contact left of the <Katex tex="y" />-axis and the picture no longer matches the diagram at all.)</>,
+    working: <Katex display tex="\begin{aligned}a^3=-\dfrac18 &\implies a=-\dfrac12\\ &\text{— rejected, since } 0<a<1\end{aligned}" />,
+    reason: <><Katex tex="a=-\tfrac12" /> does solve <Katex tex="A'(a)=0" />, but the question requires <Katex tex="0<a<1" />.</>,
+    more: <>Geometrically, a negative <Katex tex="a" /> puts the point of contact left of the <Katex tex="y" />-axis, and the picture no longer matches the diagram at all.</>,
   },
   {
     working: <Katex display tex="\boxed{a^3=\dfrac{1}{10} \implies a=\dfrac{1}{\sqrt[3]{10}} = \dfrac{\sqrt[3]{100}}{10} \approx 0.4642}" />,
-    reason: <>Exact form required. Checking it really is a minimum: <Katex tex="A" /> blows up as <Katex tex="a\to0^+" /> (the <Katex tex="\tfrac{1}{6a^2}" /> term — the tangent flattens and <Katex tex="Q" /> runs off to the right) and grows again as <Katex tex="a\to1" /> (the lens between tangent and curve gets big), so the single stationary point in between must be the minimum.</>,
-    more: <>The widget below plots both pieces so you can watch the trade-off.</>,
+    reason: <>Exact form required. It is a minimum: <Katex tex="A'(a)=\tfrac{(10a^3-1)(8a^3+1)}{3a^3}" /> changes sign from negative to positive here (<Katex tex="8a^3+1" /> and <Katex tex="3a^3" /> are positive, so its sign is that of <Katex tex="10a^3-1" />).</>,
+    more: <>The report&apos;s general comments list 5e. among the questions where approximate answers were seen; the decimal is only a check. Geometrically, <Katex tex="A" /> blows up as <Katex tex="a\to0^+" /> (the <Katex tex="\tfrac{1}{6a^2}" /> term: the tangent flattens and <Katex tex="Q" /> runs off to the right) and grows again as <Katex tex="a" /> nears <Katex tex="1" /> (the lens between tangent and curve gets big), so the single stationary point in between is the minimum. The widget below plots both pieces so you can watch the trade-off.</>,
   },
 ]
 
@@ -279,7 +308,7 @@ const ROWS_F: WorkingRow[] = [
         <Katex display tex="x\text{-axis} \ \longmapsto \ y\text{-axis}" />
       </>
     ),
-    reason: <>Every single feature of part d.'s picture has a mirror image in this part's picture. So the new regions are just the old regions flipped over — same shapes, same areas.</>,
+    reason: <>The contact point <Katex tex="\bigl(a,\ 1-a^3\bigr)" /> on <Katex tex="f" /> reflects to <Katex tex="\bigl(1-a^3,\ a\bigr)" /> on <Katex tex="f^{-1}" />. Every feature of part d.'s picture has a mirror image, so the new regions are the old ones flipped: same areas.</>,
   },
   {
     working: (
@@ -288,15 +317,17 @@ const ROWS_F: WorkingRow[] = [
         <Katex display tex="\text{where } b=1-a^3" />
       </>
     ),
-    reason: <>Reflection doesn't stretch or squash anything, so it preserves area exactly. And every <Katex tex="b" /> in <Katex tex="(0,1)" /> comes from exactly one <Katex tex="a" /> in <Katex tex="(0,1)" /> (because <Katex tex="b=1-a^3" /> is one-to-one there), so each new picture is the mirror image of exactly one old picture. The two optimisation problems are therefore the <em>same</em> problem: the <Katex tex="a" /> that minimised part e.'s area gives, through its mirror partner, the <Katex tex="b" /> that minimises this one. No new integration is needed.</>,
+    reason: <>Reflection preserves area, and each <Katex tex="b" /> in <Katex tex="(0,1)" /> matches exactly one <Katex tex="a" /> in <Katex tex="(0,1)" />, so this minimisation is part e.&apos;s problem again.</>,
+    more: <>So the <Katex tex="a" /> that minimised part e.&apos;s area gives, through <Katex tex="b=1-a^3" />, the <Katex tex="b" /> that minimises this one.</>,
   },
   {
     working: <Katex display tex="b = 1-a^3 \quad\text{with}\quad a^3=\dfrac{1}{10} \ \text{ (part e)}" />,
-    reason: <>The point <Katex tex="\bigl(a,\ 1-a^3\bigr)" /> reflects to <Katex tex="\bigl(1-a^3,\ a\bigr)" />, so the <Katex tex="x" />-coordinate of the new point of contact — which is what <Katex tex="b" /> is — equals <Katex tex="1-a^3" />.</>,
+    reason: <><Katex tex="b" /> is the new contact point&apos;s <Katex tex="x" />-coordinate, <Katex tex="1-a^3" />; use part e.&apos;s minimising <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="\boxed{b = 1-\dfrac{1}{10} = \dfrac{9}{10}}" />,
-    reason: <>Notice how little work this needed once the symmetry was spotted. The report's second method sets up the area directly as an integral of the tangent minus <Katex tex="f^{-1}(x)" />, then solves <Katex tex="A'(b)=0" />; it notes many students attempted that method but were not successful.</>,
+    reason: <>Substitute part e.&apos;s <Katex tex="a^3=\tfrac{1}{10}" />. This is exact, so <Katex tex="0.9" /> is equally acceptable.</>,
+    more: <>The report&apos;s second method sets up the area directly, as the integral of the tangent minus <Katex tex="f^{-1}(x)" /> from <Katex tex="0" /> to <Katex tex="9-8b" /> (the <Katex tex="x" />-coordinate of <Katex tex="P" />&apos;s mirror image, which is <Katex tex="P" />&apos;s <Katex tex="y" />-coordinate <Katex tex="1+8a^3" />, with <Katex tex="a^3=1-b" />), then solves <Katex tex="A'(b)=0" />. It notes many students attempted that method but were not successful; the symmetry avoids it entirely.</>,
   },
 ]
 
@@ -308,11 +339,13 @@ const ROWS_G: WorkingRow[] = [
         <Katex display tex="f(1)=0 \implies y = -3(x-1) = 3-3x" />
       </>
     ),
-    reason: <>Gradient <Katex tex="-3" />: this tangent drops <Katex tex="3" /> for every <Katex tex="1" /> across, and it passes through <Katex tex="(1,0)" />. Finding the equation isn't strictly needed, but it pins down where the two tangents meet.</>,
+    reason: <>Gradient <Katex tex="-3" />: this tangent drops <Katex tex="3" /> for every <Katex tex="1" /> across, and it passes through <Katex tex="(1,0)" />, since <Katex tex="f(1)=0" />.</>,
+    more: <>The equation isn&apos;t strictly needed for the angle; it matches the report&apos;s <Katex tex="y=3-3x" />.</>,
   },
   {
     working: <Katex display tex="f(0)=1 \implies f^{-1}(1)=0" />,
-    reason: <>To work on <Katex tex="f^{-1}" /> at <Katex tex="x=1" />, first find the matching point on <Katex tex="f" />: the input <Katex tex="1" /> for <Katex tex="f^{-1}" /> is an <em>output</em> of <Katex tex="f" />. So <Katex tex="f^{-1}" /> also passes through <Katex tex="(1,0)" />, and both tangents go through that point.</>,
+    reason: <>An input <Katex tex="1" /> for <Katex tex="f^{-1}" /> is an <em>output</em> of <Katex tex="f" />, and <Katex tex="f(0)=1" />. So <Katex tex="f^{-1}" /> also passes through <Katex tex="(1,0)" />.</>,
+    more: <>So both tangents pass through the same point, <Katex tex="(1,0)" />, and the angle between them is formed there.</>,
   },
   {
     working: (
@@ -325,8 +358,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\implies \text{the tangent to } f^{-1} \text{ at } x=1 \text{ is vertical}" />,
-    reason: <>Reflecting a horizontal line in <Katex tex="y=x" /> produces a vertical one. Equivalently, the inverse-function rule <Katex tex="\left(f^{-1}\right)'(1)=\tfrac{1}{f'(0)}" /> divides by zero — undefined gradient, which is what a vertical line has.</>,
-    more: <>Slide the point to <Katex tex="(0,1)" /> in the widget below and watch its mirror's tangent stand up.</>,
+    reason: <>Reflecting the horizontal tangent at <Katex tex="(0,1)" /> in <Katex tex="y=x" /> gives a vertical tangent at <Katex tex="(1,0)" />: the line <Katex tex="x=1" />.</>,
+    more: <>Reflection swaps rise and run, so gradients at mirror points are reciprocals: <Katex tex="\left(f^{-1}\right)'(1)=\tfrac{1}{f'(0)}" />, which divides by zero — an undefined gradient, as a vertical line has. Slide the point to <Katex tex="(0,1)" /> in the widget below and watch its mirror&apos;s tangent stand up.</>,
   },
   {
     working: (
@@ -338,12 +371,13 @@ const ROWS_G: WorkingRow[] = [
     reason: <>A line of gradient <Katex tex="m" /> makes an angle <Katex tex="\tan^{-1}|m|" /> with the horizontal; the sign only says which way it leans.</>,
   },
   {
-    working: <Katex display tex="\text{Required angle} = 90^\circ-\tan^{-1}(3) = \tan^{-1}\!\left(\dfrac13\right)" />,
-    reason: <>The second tangent is vertical, i.e. <Katex tex="90^\circ" /> from the horizontal, so the angle between them is what's left over. The two arctans are complementary because <Katex tex="\tan" /> of one is the reciprocal of <Katex tex="\tan" /> of the other.</>,
+    working: <Katex display tex="\text{Required angle} = \dfrac{\pi}{2}-\tan^{-1}(3) = \tan^{-1}\!\left(\dfrac13\right)" />,
+    reason: <>The second tangent is vertical, a right angle (<Katex tex="\tfrac{\pi}{2}" />) from the horizontal, so the angle between them is what&apos;s left over. A right triangle with legs <Katex tex="3" /> and <Katex tex="1" /> has acute angles <Katex tex="\tan^{-1}(3)" /> and <Katex tex="\tan^{-1}\!\left(\tfrac13\right)" />, which add to <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\tan^{-1}\!\left(\dfrac13\right) \approx 18.43^\circ}" />,
-    reason: <>Exact form — the report says an exact answer was required, and notes some students rounded to <Katex tex="18^\circ" />. In radians this is <Katex tex="\tfrac{\pi}{2}-\tan^{-1}(3)=\tan^{-1}\!\left(\tfrac13\right)" />, the report's form.</>,
+    working: <Katex display tex="\boxed{\tan^{-1}\!\left(\dfrac13\right)} \approx 0.3218 \approx 18.43^\circ" />,
+    reason: <>Give the exact value: the report says an exact answer was required, and some students rounded to <Katex tex="18^\circ" />.</>,
+    more: <>The report writes it as <Katex tex="\tfrac{\pi}{2}-\tan^{-1}(3)=\tan^{-1}\!\left(\tfrac13\right)" />. The decimals (<Katex tex="0.3218" /> radians, or <Katex tex="18.43^\circ" />) are only a check.</>,
   },
 ]
 
@@ -424,10 +458,8 @@ export default function MethodsQ5_2019Exam2() {
           <p>
             The shaded area is bounded by <em>three</em> different things — the curve, the tangent
             and the axis — so no single integral can cover it. The trick is to ask, at each{' '}
-            <Katex tex="x" />, "what is the ceiling here, and what is the floor?" The ceiling is
-            the tangent throughout. The floor changes at <Katex tex="x=1" />, where the curve
-            drops below the axis: before that the floor is the curve, after it the floor is the
-            axis. One integral for each stretch.
+            <Katex tex="x" />, "what is the ceiling here, and what is the floor?", and to start a
+            new integral wherever either one changes.
           </p>
         </Background>
         <WorkingTable rows={ROWS_D} />
@@ -522,7 +554,10 @@ export default function MethodsQ5_2019Exam2() {
             To turn gradients into angles, use <Katex tex="\tan\theta=m" />: a line of gradient{' '}
             <Katex tex="m" /> makes an angle <Katex tex="\theta=\tan^{-1}(m)" /> with the positive{' '}
             <Katex tex="x" />-axis. The angle <em>between</em> two lines is then the difference of
-            their angles — and if that comes out obtuse, take its supplement to get the acute one.
+            their angles — and if that comes out obtuse, take its supplement to get the acute one. Only
+            the size of the lean matters, so the working uses <Katex tex="\tan^{-1}|m|" />, the angle to the horizontal. A
+            vertical line has no gradient: it makes a right angle with the horizontal, so the angle
+            between it and another line is <Katex tex="\tfrac{\pi}{2}" /> minus that line&apos;s angle.
           </p>
         </Background>
         <WorkingTable rows={ROWS_G} />

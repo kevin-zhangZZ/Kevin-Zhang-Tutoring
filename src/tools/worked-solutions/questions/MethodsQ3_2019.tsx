@@ -22,7 +22,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Average rate of change} = \dfrac{f(8)-f(6)}{8-6}" />,
-    reason: <>&ldquo;Average rate of change&rdquo; is the gradient of the straight line (the chord) joining the two points on the curve: rise over run. No calculus is needed, because an <em>average</em> rate only ever looks at the two endpoints. Don&apos;t confuse it with average <em>value</em>, which is the one that needs an integral.</>,
+    reason: <>&ldquo;Average rate of change&rdquo; is the gradient of the chord joining the two endpoints on the curve: rise over run.</>,
+    more: <>No calculus is needed, because an <em>average</em> rate only ever looks at the two endpoints.</>,
   },
   {
     working: <Katex display tex="f(6) = \dfrac{a}{6-4} = \dfrac{a}{2}, \qquad f(8) = \dfrac{a}{8-4} = \dfrac{a}{4}" />,
@@ -34,7 +35,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-\dfrac{a}{8}}" />,
-    reason: <>Matches option <b>E</b>. The negative sign is worth a sanity check: <Katex tex="a>0" /> and the denominator <Katex tex="x-4" /> is growing, so <Katex tex="f" /> is shrinking across <Katex tex="[6,8]" />, and a falling graph must have a negative average rate of change. Option <b>D</b>, <Katex tex="-\tfrac{a}{4}" />, is the rise without dividing by the run <Katex tex="2" />. Option <b>A</b>, <Katex tex="a\log_e(2)" />, is the area <Katex tex="\int_6^8 f(x)\,dx" />, and option <b>B</b> is that area divided by <Katex tex="2" />, the average value.</>,
+    reason: <>Matches option <b>E</b>. It is negative because <Katex tex="f" /> is decreasing on <Katex tex="[6,8]" />.</>,
+    more: <>Why decreasing: <Katex tex="a>0" /> and the denominator <Katex tex="x-4" /> is growing, so <Katex tex="f" /> is shrinking across <Katex tex="[6,8]" />. Option <b>D</b>, <Katex tex="-\tfrac{a}{4}" />, is the rise without dividing by the run <Katex tex="2" />. Option <b>A</b>, <Katex tex="a\log_e(2)" />, is the area <Katex tex="\int_6^8 f(x)\,dx" />, and option <b>B</b> is that area divided by <Katex tex="2" />, the average <em>value</em> (the common mistake below).</>,
   },
 ]
 
@@ -76,8 +78,7 @@ export default function MethodsQ3_2019() {
               <Katex tex="[6,8]" />. The average <em>rate of change</em> is how fast <Katex tex="f" /> changes on average:
               change in <Katex tex="f" /> over change in <Katex tex="x" />, the chord&apos;s gradient. The sign catches the
               mix-up: <Katex tex="f" /> is positive on <Katex tex="[6,8]" />, so its average value is positive, but it is
-              falling, so its rate of change must be negative. Leaving off the <Katex tex="\tfrac12" /> gives the plain
-              area, option A.
+              falling, so its rate of change must be negative.
             </p>
           </WrongMethod>
         </>

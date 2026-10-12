@@ -21,7 +21,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="a+3a+5a+7a=1" />,
-    reason: <>You can't find a mean while the probabilities still contain <Katex tex="a" />, so pin <Katex tex="a" /> down first. The one fact every probability distribution obeys is that its probabilities add to <Katex tex="1" />, and that gives an equation in <Katex tex="a" />.</>,
+    reason: <>Find <Katex tex="a" /> first: the probabilities of any distribution add to <Katex tex="1" />, which gives an equation in <Katex tex="a" />.</>,
+    more: <>The mean can't be a number while every probability still contains <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="16a=1 \implies a=\dfrac{1}{16}" />,
@@ -34,8 +35,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 0(a)+1(3a)+2(5a)+3(7a)" />
       </>
     ),
-    reason: <>"The mean of <Katex tex="X" />" is its expected value <Katex tex="E(X)" />: multiply each value by its probability and add. The values with bigger probabilities pull harder on the answer. The <Katex tex="x=0" /> term contributes nothing.</>,
-    more: <>See the Background below for why the bigger probabilities pull harder.</>,
+    reason: <>"The mean of <Katex tex="X" />" is its expected value <Katex tex="E(X)" />: multiply each value by its probability and add. The <Katex tex="x=0" /> term contributes nothing.</>,
   },
   {
     working: <Katex display tex="= (0+3+10+21)a = 34a" />,
@@ -43,7 +43,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{E(X) = \dfrac{34}{16} = \dfrac{17}{8}}" />,
-    reason: <>Matches option <b>D</b>. Sanity check: <Katex tex="\tfrac{17}{8}=2.125" />, which sits between <Katex tex="0" /> and <Katex tex="3" /> and leans towards the larger values — right, since they carry the bigger probabilities. Option <b>A</b> <Katex tex="\left(\tfrac{1}{16}\right)" /> is just <Katex tex="a" />, the value found on the way; option <b>C</b> <Katex tex="\left(\tfrac{35}{16}\right)" /> is <Katex tex="35a" />, what you get by giving the <Katex tex="x=0" /> column a weight of <Katex tex="1" /> instead of <Katex tex="0" />; and option <b>E</b> <Katex tex="(2)" /> is the median, the value where the running total of probability <Katex tex="\left(\tfrac{1}{16},\ \tfrac{4}{16},\ \tfrac{9}{16}\right)" /> first passes <Katex tex="\tfrac12" />, not the mean.</>,
+    reason: <>Substituting <Katex tex="a=\tfrac{1}{16}" />. Matches option <b>D</b>.</>,
+    more: <>Sanity check: <Katex tex="\tfrac{17}{8}=2.125" />, which sits between <Katex tex="0" /> and <Katex tex="3" />, nearer the heavier bars. Option <b>A</b> <Katex tex="\left(\tfrac{1}{16}\right)" /> is just <Katex tex="a" />, the value found on the way; option <b>B</b> <Katex tex="(1)" /> is the total of the probabilities; option <b>C</b> <Katex tex="\left(\tfrac{35}{16}\right)" /> is <Katex tex="35a" />, what you get by giving the <Katex tex="x=0" /> column a weight of <Katex tex="1" /> instead of <Katex tex="0" />; and option <b>E</b> <Katex tex="(2)" /> is the median, the value where the running total of probability <Katex tex="\left(\tfrac{1}{16},\ \tfrac{4}{16},\ \tfrac{9}{16}\right)" /> first passes <Katex tex="\tfrac12" />, not the mean.</>,
   },
 ]
 

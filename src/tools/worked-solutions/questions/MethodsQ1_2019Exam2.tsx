@@ -128,7 +128,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v=e^{-x^2} \implies v'=-2x\,e^{-x^2}" />,
-    reason: <>Chain rule: <Katex tex="\tfrac{d}{dx}e^{g(x)}=g'(x)e^{g(x)}" />, and here the inside function is <Katex tex="g(x)=-x^2" />, whose derivative is <Katex tex="-2x" />.</>,
+    reason: <>Chain rule: <Katex tex="\tfrac{d}{dx}e^{g(x)}=g'(x)e^{g(x)}" />, with inside function <Katex tex="g(x)=-x^2" />, so <Katex tex="g'(x)=-2x" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = 2x\cdot e^{-x^2} + x^2\cdot\left(-2x\,e^{-x^2}\right)" />,
@@ -136,7 +136,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = 2xe^{-x^2}-2x^3e^{-x^2} = 2x\left(1-x^2\right)e^{-x^2}}" />,
-    reason: <>The report accepted equivalent forms, but take the factorised version forward — it makes the stationary points in part b. readable straight off. If you use technology, copy its output carefully: the report notes transcription errors such as <Katex tex="2x^3e^{-x^2}-2xe^{-x^2}" />.</>,
+    reason: <>On Exam 2, <Cas fn="derivative">d/dx(x^2*e^(-x^2))</Cas> gives this directly. Any equivalent form is accepted; take the factorised one forward, as part b. reads off it.</>,
+    more: <>The hand working above shows where the CAS output comes from. Copy that output carefully: the report notes transcription errors such as <Katex tex="2x^3e^{-x^2}-2xe^{-x^2}" /> (the signs swapped) and <Katex tex="2e^{-x^2}-2x^3e^{-x^2}" /> (an <Katex tex="x" /> dropped), and errors from students who went on to rework the output by hand.</>,
   },
 ]
 
@@ -156,18 +157,18 @@ const ROWS_BI: WorkingRow[] = [
         <Katex display tex="f'(0.5) = 2(0.5)(1-0.25)e^{-0.25} > 0" />
       </>
     ),
-    reason: <>Test the sign of <Katex tex="f'" /> just to the left and just to the right of <Katex tex="x=0" />. (Only the sign matters, so there's no need to evaluate these.)</>,
+    reason: <>Test the sign of <Katex tex="f'" /> just either side of <Katex tex="x=0" />. Only the sign matters: <Katex tex="1-x^2" /> and <Katex tex="e^{-x^2}" /> are positive here, so the sign is that of <Katex tex="2x" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Local minimum}}" />,
-    reason: <><Katex tex="f" /> is decreasing on the left of <Katex tex="x=0" /> and increasing on the right, so the curve turns around from falling to rising — a minimum turning point.</>,
+    reason: <>Negative then positive: <Katex tex="f" /> falls then rises, so the origin is a local minimum. The "nature" is this word, not the coordinates.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Stationary points at } x=-1,\ 0,\ 1 \quad \text{(part b.i)}" />,
-    reason: <>From solving <Katex tex="f'(x)=0" /> in part b.i. — the report notes some students gave only one of <Katex tex="x=\pm1" />, or included <Katex tex="x=0" />.</>,
+    reason: <>If this smooth function has a maximum on <Katex tex="R" />, it must be at a stationary point, so check each solution of <Katex tex="f'(x)=0" /> from part b.i.</>,
   },
   {
     working: (
@@ -176,11 +177,13 @@ const ROWS_BII: WorkingRow[] = [
         <Katex display tex="f(1) = 1^2e^{-1^2} = \dfrac1e, \qquad f(0)=0" />
       </>
     ),
-    reason: <>Evaluate <Katex tex="f" /> at each one. <Katex tex="f(-1)=f(1)" /> because <Katex tex="f" /> only ever sees <Katex tex="x^2" />, so it's an <b>even</b> function — its graph is symmetric about the <Katex tex="y" />-axis.</>,
+    reason: <>Evaluate <Katex tex="f" /> at each. <Katex tex="f(-1)=f(1)" /> because <Katex tex="f" /> only involves <Katex tex="x^2" />: it is an <b>even</b> function.</>,
+    more: <>An even function's graph is symmetric about the <Katex tex="y" />-axis, so a peak at <Katex tex="x=1" /> always has a mirror-image twin at <Katex tex="x=-1" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered} f(x)=x^2e^{-x^2}\ge0 \text{ for every } x \\ f(x)\to0 \text{ as } x\to\pm\infty \end{gathered}" />,
-    reason: <>A square times a positive exponential can't be negative, and <Katex tex="e^{-x^2}" /> collapses far faster than <Katex tex="x^2" /> grows. So the curve sits on or above the axis and flattens towards it at both ends — the two turning points at <Katex tex="x=\pm1" /> are therefore the highest the graph ever gets, not just locally.</>,
+    reason: <>The curve never dips below the axis and flattens towards it at both ends, so the peaks at <Katex tex="x=\pm1" /> are the highest points overall, not just locally.</>,
+    more: <>Why: a square times a positive exponential can't be negative, and <Katex tex="e^{-x^2}" /> shrinks far faster than <Katex tex="x^2" /> grows, so <Katex tex="f(x)" /> heads to <Katex tex="0" /> as <Katex tex="x" /> moves away from the origin in either direction.</>,
   },
   {
     working: (
@@ -188,11 +191,13 @@ const ROWS_BII: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={curveSrc} alt="Graph of f(x) = x²e^(−x²): a twin-humped curve with equal maximum points at (−1, 1/e) and (1, 1/e) and a minimum at the origin" className="w-full max-w-[380px]" />
       </div>
     ),
-    reason: <>The examination report notes that errors here could have been avoided by sketching the graph first — the two equal humps make it obvious that there are <em>two</em> values of <Katex tex="x" /> to give, not one.</>,
+    reason: <>A quick sketch shows two equal humps, so there are <em>two</em> values of <Katex tex="x" /> to give, not one.</>,
+    more: <>The examination report's general advice says errors in Question 1 could have been avoided if a graph of the function had been sketched. On CAS, graph <Katex tex="f" /> before answering any of the parts.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Maximum value } \dfrac1e, \text{ at } x=-1 \text{ and } x=1}" />,
-    reason: <>Both pieces are needed for the two marks: the <em>value</em> and the <em>x</em>-values. Leave it as <Katex tex="\tfrac1e" /> — the report says an exact answer was required, and some students gave the approximation.</>,
+    reason: <>Give both the maximum <em>value</em> and the <Katex tex="x" />-values. Keep <Katex tex="\tfrac1e" /> exact: the report says an exact answer was required.</>,
+    more: <>The report notes some students did not find the maximum value at all, and some gave an approximate answer (such as <Katex tex="0.368" />) instead of <Katex tex="\tfrac1e" />.</>,
   },
 ]
 
@@ -207,18 +212,19 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned} &\text{Hardest case: } x=\pm1, \text{ where } f(x) \text{ is largest} \\ &\implies d<-\dfrac1e \end{aligned}" />,
-    reason: <>The graph of <Katex tex="f(x)+d" /> is the graph of <Katex tex="f" /> shifted down by <Katex tex="|d|" />. To push the whole curve below the axis, the shift has to clear the <em>highest</em> point of the curve.</>,
+    reason: <>Adding <Katex tex="d" /> shifts the whole graph vertically. To get every point below the axis, the shift must clear the <em>highest</em> point, <Katex tex="\tfrac1e" />.</>,
   },
   {
     working: <Katex display tex="\boxed{d<-\dfrac1e}" />,
-    reason: <>Strictly less than: at <Katex tex="d=-\tfrac1e" /> the peaks land exactly on the axis, giving <Katex tex="f(x)+d=0" /> at <Katex tex="x=\pm1" /> — zero isn't negative, so that value of <Katex tex="d" /> fails. The report lists <Katex tex="d\le-\tfrac1e" /> among the common incorrect answers.</>,
+    reason: <>Strict inequality: at <Katex tex="d=-\tfrac1e" /> the peaks sit exactly on the axis, and zero isn't negative.</>,
+    more: <>In interval notation the answer is <Katex tex="\left(-\infty,-\tfrac1e\right)" />, smaller end first; the report saw students write <Katex tex="\left(-\tfrac1e,-\infty\right)" />. Answers such as <Katex tex="d>-\tfrac1e" /> or <Katex tex="d<\tfrac1e" /> fail a quick test: <Katex tex="d=0" /> satisfies both, yet leaves the peaks above the axis. And <Katex tex="d>\tfrac1e" /> lifts the whole graph above the axis, the opposite of what is asked.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
-    working: <Katex display tex="f'(-1) = 2(-1)\bigl(1-(-1)^2\bigr)e^{-1} = -2\times 0\times e^{-1} = 0" />,
-    reason: <><Katex tex="x=-1" /> is one of the stationary points from part b., so the gradient there is zero — the tangent is <b>horizontal</b>.</>,
+    working: <Katex display tex="\begin{aligned}f'(-1) &= 2(-1)\bigl(1-(-1)^2\bigr)e^{-1}\\ &= -2\times 0\times e^{-1}\\ &= 0\end{aligned}" />,
+    reason: <><Katex tex="x=-1" /> is a stationary point (part b.), so the gradient is zero and the tangent is <b>horizontal</b>.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} &f(-1) = \dfrac1e \\ &\implies \text{the tangent passes through } \left(-1,\ \dfrac1e\right) \end{aligned}" />,
@@ -226,14 +232,14 @@ const ROWS_CI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y=\dfrac1e}" />,
-    reason: <>A horizontal line through a point takes the <Katex tex="y" />-value of that point. Write it as an <em>equation</em> — the report says an equation was required.</>,
+    reason: <>The horizontal line through <Katex tex="\left(-1,\tfrac1e\right)" />. Write it as an <em>equation</em>: the report says an equation was required.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\dfrac1e = x^2e^{-x^2} \implies x=-1 \text{ or } x=1" />,
-    reason: <>Find where the tangent line meets the curve again. Since <Katex tex="\tfrac1e" /> is the <em>maximum</em> value of <Katex tex="f" /> (part b.ii), the line <Katex tex="y=\tfrac1e" /> touches the curve at both peaks and never cuts it anywhere else — so these are the only two intersection points, and they are the terminals of the enclosed region.</>,
+    reason: <>Find where the tangent meets the curve. As <Katex tex="\tfrac1e" /> is the maximum of <Katex tex="f" /> (part b.ii), the line only touches at the two peaks: these are the terminals (limits of integration).</>,
   },
   {
     working: <Katex display tex="\text{On } [-1,1]: \quad f(x) \le \dfrac1e" />,
@@ -241,7 +247,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Area} = \int_{-1}^{1}\left(\dfrac1e - x^2e^{-x^2}\right)dx" />,
-    reason: <>Upper minus lower, between the two points of contact: each thin vertical strip of the region has height <Katex tex="\tfrac1e-f(x)" />, and the integral adds the strips up. The report's other method gives the same number: the rectangle under the tangent, <Katex tex="2\times\tfrac1e" />, minus the area under the curve, <Katex tex="\int_{-1}^{1}x^2e^{-x^2}dx" />.</>,
+    reason: <>Integrate between the terminals <Katex tex="x=\pm1" />: each thin vertical strip has height <Katex tex="\tfrac1e-f(x)" />.</>,
+    more: <>The report's other method gives the same number: the rectangle under the tangent, <Katex tex="2\times\tfrac1e\approx0.7358" />, minus the area under the curve, <Katex tex="\int_{-1}^{1}x^2e^{-x^2}dx\approx0.3789" />.</>,
   },
   {
     working: (
@@ -253,7 +260,8 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area} \approx 0.3568}" />,
-    reason: <>Evaluate with technology: <Cas fn="nInt">nInt(1/e - x^2*e^(-x^2), x, -1, 1)</Cas> does it in one line, or build the same thing with the definite-integral template. <Katex tex="x^2e^{-x^2}" /> has no antiderivative that can be written with the functions in this course, so this integral genuinely has to be done by technology — which is exactly what Exam 2 expects.</>,
+    reason: <>Evaluate with <Cas fn="nInt">nInt(1/e - x^2*e^(-x^2), x, -1, 1)</Cas> and round to four decimal places, as asked.</>,
+    more: <><Katex tex="x^2e^{-x^2}" /> has no antiderivative that can be written with the functions in this course, so this integral has to be done by technology, which is what Exam 2 expects. The definite-integral template does the same job.</>,
   },
 ]
 
@@ -272,19 +280,21 @@ const ROWS_D: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={distanceSrc} alt="The curve with the fixed point (0, e) marked well above it and the shortest segment drawn down to the point M on the curve, of length about 2.511" className="w-full max-w-[320px]" />
       </div>
     ),
-    reason: <>The point <Katex tex="(0,e)" /> sits high above the curve (<Katex tex="e\approx2.72" />, while the curve never rises past <Katex tex="\tfrac1e\approx0.37" />), so the shortest link runs down and slightly to the right.</>,
+    reason: <><Katex tex="(0,e)" /> sits far above the curve (<Katex tex="e\approx2.72" />, but <Katex tex="f(x)\le\tfrac1e\approx0.37" />), so the shortest link runs steeply down to the curve.</>,
   },
   {
     working: <Katex display tex="\text{Minimise } D(m) \text{ for } m\in[0,1]" />,
-    reason: <>Technology does this one. Store the rule first with <Cas fn="define">Define dist(m)=√(m^2+(m^2*e^(-m^2)-e)^2)</Cas> and then ask for <Cas fn="fMin">fMin(dist(m), m) | 0&lt;=m&lt;=1</Cas> to get the minimising value. Graphing <Katex tex="D" /> against <Katex tex="m" /> and reading off the minimum works just as well. If you solve <Katex tex="D'(m)=0" /> instead, you get <em>two</em> solutions in <Katex tex="[0,1]" />: <Katex tex="m\approx0.783" /> and <Katex tex="m=0" />. At <Katex tex="m=0" /> the curve is flat and <Katex tex="(0,e)" /> is directly above it, so <Katex tex="D" /> is stationary there too, but <Katex tex="D(0)=e" /> is the <em>largest</em> distance on the interval, so discard it.</>,
+    reason: <>Use technology: <Cas fn="define">Define dist(m)=√(m^2+(m^2*e^(-m^2)-e)^2)</Cas>, then <Cas fn="fMin">fMin(dist(m), m) | 0&lt;=m&lt;=1</Cas> gives the minimising <Katex tex="m\approx0.783" />.</>,
+    more: <>Graphing <Katex tex="D" /> against <Katex tex="m" /> and reading off the minimum works just as well. If you solve <Katex tex="D'(m)=0" /> instead, you get <em>two</em> solutions in <Katex tex="[0,1]" />: <Katex tex="m\approx0.783" /> and <Katex tex="m=0" />. At <Katex tex="m=0" /> the curve is flat and <Katex tex="(0,e)" /> is directly above it, so <Katex tex="D" /> is stationary there too, but <Katex tex="D(0)=e" /> is the <em>largest</em> distance on the interval, so discard it.</>,
   },
   {
     working: <Katex display tex="D(0)=e\approx2.718, \qquad D(1)\approx2.554" />,
-    reason: <>Worth checking the endpoints of the restricted domain too — both are bigger than the interior value below, confirming the minimum really is inside <Katex tex="[0,1]" />.</>,
+    reason: <>Check the endpoints of <Katex tex="[0,1]" /> too: both exceed <Katex tex="D(0.783\ldots)\approx2.511" />, so the minimum is not at an endpoint.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Minimum distance} \approx 2.511, \text{ at } m\approx0.783}" />,
-    reason: <>Both values are asked for, each to three decimal places — the report notes some students found <Katex tex="m" /> but not the distance, and some gave answers to two decimal places.</>,
+    reason: <>The minimum distance is <Katex tex="D(0.783\ldots)\approx2.511" />. Give both values, each to three decimal places, as asked.</>,
+    more: <>The report notes some students found <Katex tex="m" /> but not the distance, and some gave their answers correct to two decimal places.</>,
   },
 ]
 
@@ -306,8 +316,7 @@ export default function MethodsQ1_2019Exam2() {
         <Background>
           <p>
             The <b>nature</b> of a stationary point means <em>which kind</em> it is: a local
-            minimum, a local maximum, or a stationary point of inflection. The question is
-            asking for that word, not for coordinates — the report lists "point of inflection",
+            minimum, a local maximum, or a stationary point of inflection. The report lists "point of inflection",
             "stationary points", "turning points" and the coordinates{' '}
             <Katex tex="(0,0)" /> among the common incorrect answers.
           </p>
@@ -333,9 +342,8 @@ export default function MethodsQ1_2019Exam2() {
           Solving <Katex tex="f'(x)=0" /> finds <em>every</em> stationary point, and part b.i already showed
           that <Katex tex="x=0" /> is the minimum: <Katex tex="f(0)=0" />, well below{' '}
           <Katex tex="\tfrac1e" />. Evaluate <Katex tex="f" /> at each solution and keep only the ones that
-          give the largest value. The report also saw students give only one of <Katex tex="x=\pm1" />; because{' '}
-          <Katex tex="f" /> is even, a peak at <Katex tex="x=1" /> always has a mirror-image twin at{' '}
-          <Katex tex="x=-1" />.
+          give the largest value. The report also saw students give only one of <Katex tex="x=\pm1" />: by
+          symmetry, both peaks count.
         </WrongMethod>
       </PartCard>
 
@@ -344,9 +352,8 @@ export default function MethodsQ1_2019Exam2() {
           <p>
             Adding a constant <Katex tex="d" /> to a function slides its whole graph up (if{' '}
             <Katex tex="d>0" />) or down (if <Katex tex="d<0" />) without changing its shape.
-            "Always negative" therefore means: push the graph down far enough that <em>every</em>{' '}
-            point of it, including the very highest one, ends up strictly below the{' '}
-            <Katex tex="x" />-axis.
+            "Always negative" therefore means: every point of the shifted graph must end up strictly
+            below the <Katex tex="x" />-axis.
           </p>
         </Background>
         <WorkingTable rows={ROWS_BIII} />
@@ -358,10 +365,9 @@ export default function MethodsQ1_2019Exam2() {
           source="Examiner's report"
           working={<Katex display tex="d=-\tfrac1e:\quad f(\pm1)+d=\tfrac1e-\tfrac1e=0" />}
         >
-          Zero isn&apos;t negative. &ldquo;Always negative&rdquo; means strictly below the axis at every{' '}
-          <Katex tex="x" />, and at <Katex tex="d=-\tfrac1e" /> the two peaks sit exactly on it. Whenever a
-          question says &ldquo;negative&rdquo; (not &ldquo;non-positive&rdquo;), test the boundary value
-          itself: here it fails, so the inequality is strict.
+          Whenever a question says &ldquo;negative&rdquo; (not &ldquo;non-positive&rdquo;), test the boundary
+          value itself. Here <Katex tex="d=-\tfrac1e" /> puts the peaks exactly on the axis, which fails, so it is excluded
+          and the inequality is strict.
         </WrongMethod>
         <WrongMethod
           title="Rearrange and stop: d < −x²e^(−x²)"
@@ -401,8 +407,7 @@ export default function MethodsQ1_2019Exam2() {
         >
           That is the area between the curve and the <Katex tex="x" />-axis; the tangent never appears in
           it. The region is bounded by the curve <em>and the tangent</em>, so the line has to be in the
-          integrand: line minus curve. (Or take this <Katex tex="0.3789" /> away from the rectangle{' '}
-          <Katex tex="2\times\tfrac1e" />, which is the report&apos;s other method.)
+          integrand: line minus curve.
         </WrongMethod>
         <WrongMethod
           title="Integrate from 0 to 1"

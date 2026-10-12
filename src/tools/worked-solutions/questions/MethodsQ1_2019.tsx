@@ -20,11 +20,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \underbrace{3}_{\text{amplitude}}\sin\!\left(\underbrace{\tfrac25}_{n}\,x\right)\underbrace{-\,2}_{\text{shift down}}" />,
-    reason: <>Read the three numbers that control a sine graph straight off the rule: the <Katex tex="3" /> out the front (how far the wave swings from its centre line), the <Katex tex="n=\tfrac25" /> multiplying <Katex tex="x" /> inside the sine (how long a cycle takes), and the <Katex tex="-2" /> on the end (where the centre line sits). Each number changes one feature, so period and range can be found separately.</>,
+    reason: <>Each number changes one feature: the <Katex tex="3" /> sets how far the wave swings, <Katex tex="n=\tfrac25" /> sets the cycle length, and the <Katex tex="-2" /> moves the centre line.</>,
   },
   {
     working: <Katex display tex="\text{Period} = \dfrac{2\pi}{n} = \dfrac{2\pi}{2/5} = 2\pi\times\dfrac52 = 5\pi" />,
-    reason: <>A sine graph repeats once its angle has turned through a full <Katex tex="2\pi" />. The angle here is <Katex tex="\tfrac{2x}{5}" />, and <Katex tex="\tfrac{2x}{5}=2\pi" /> when <Katex tex="x=5\pi" />: that&apos;s where <Katex tex="\tfrac{2\pi}{n}" /> comes from. Because <Katex tex="n=\tfrac25" /> is less than 1, the graph is stretched sideways (by <Katex tex="\tfrac52" />), so expect a period longer than <Katex tex="2\pi" />. Dividing by a fraction means multiplying by its reciprocal. The <Katex tex="3" /> and <Katex tex="-2" /> act on the output, so they can&apos;t change the period.</>,
+    reason: <>For <Katex tex="\sin(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />: the angle <Katex tex="\tfrac{2x}{5}" /> completes a full turn of <Katex tex="2\pi" /> when <Katex tex="x=5\pi" />.</>,
+    more: <>Because <Katex tex="n=\tfrac25" /> is less than 1, the graph is stretched sideways by <Katex tex="\tfrac52" />, so expect a period longer than <Katex tex="2\pi" />. Dividing by a fraction means multiplying by its reciprocal. The <Katex tex="3" /> and <Katex tex="-2" /> act on the output, so they can&apos;t change the period.</>,
   },
   {
     working: (
@@ -34,11 +35,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="-5\le 3\sin\!\left(\dfrac{2x}{5}\right)-2\le1" />
       </>
     ),
-    reason: <>Build the range up one step at a time: every sine sits between <Katex tex="-1" /> and <Katex tex="1" />, whatever is inside it; multiplying by <Katex tex="3" /> stretches that to <Katex tex="[-3,3]" />; subtracting <Katex tex="2" /> slides the whole interval down to <Katex tex="[-5,1]" />. Equivalently: centre line <Katex tex="y=-2" />, swinging <Katex tex="3" /> either side. The domain is all of <Katex tex="R" />, so the graph reaches both ends of that interval.</>,
+    reason: <>Sine always lies between <Katex tex="-1" /> and <Katex tex="1" />; multiplying by <Katex tex="3" /> stretches that to <Katex tex="[-3,3]" />; subtracting <Katex tex="2" /> slides it down to <Katex tex="[-5,1]" />.</>,
+    more: <>Equivalently: centre line <Katex tex="y=-2" />, swinging <Katex tex="3" /> either side. The domain is all of <Katex tex="R" />, so the graph reaches both ends of that interval.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Period} = 5\pi, \ \text{range} = [-5,1]}" />,
-    reason: <>Matches option <b>B</b>. Option A&apos;s range <Katex tex="[-3,3]" /> leaves out the vertical shift; option C&apos;s <Katex tex="[-1,5]" /> shifts up <Katex tex="2" /> instead of down. Options D and E have period <Katex tex="\tfrac{5\pi}{2}=\pi\div\tfrac25" />, which uses <Katex tex="\pi" /> where the formula has <Katex tex="2\pi" />.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option A&apos;s range <Katex tex="[-3,3]" /> leaves out the vertical shift; option C&apos;s <Katex tex="[-1,5]" /> shifts up <Katex tex="2" /> instead of down. Options D and E have period <Katex tex="\tfrac{5\pi}{2}=\pi\div\tfrac25" />, which uses <Katex tex="\pi" /> where the formula has <Katex tex="2\pi" />.</>,
   },
 ]
 

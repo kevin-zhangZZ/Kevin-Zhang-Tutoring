@@ -22,10 +22,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f(x) = \int\left(3x^2-2x\right)dx = x^3-x^2+c" />,
     reason: (
       <>
-        We&apos;re given <Katex tex="f'" /> and want <Katex tex="f" />, so antidifferentiate: raise each power by one
-        and divide by the new power. Antidifferentiating can&apos;t recover a constant term, because every function{' '}
-        <Katex tex="x^3-x^2+c" /> has the same derivative. That unknown <Katex tex="c" /> is exactly what the extra
-        fact <Katex tex="f(4)=0" /> is for.
+        We&apos;re given <Katex tex="f'" /> and want <Katex tex="f" />, so antidifferentiate. Keep the{' '}
+        <Katex tex="+c" />: the given value <Katex tex="f(4)=0" /> is what fixes it.
+      </>
+    ),
+    more: (
+      <>
+        Raise each power by one and divide by the new power. Antidifferentiating can&apos;t recover a constant term,
+        because every function <Katex tex="x^3-x^2+c" /> has the same derivative, so one known point is needed to pick
+        out the right one.
       </>
     ),
   },
@@ -49,9 +54,10 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x)=x^3-x^2-48}" />,
-    reason: (
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
       <>
-        Matches option <b>C</b>. Option <b>A</b> leaves the constant out (it gives <Katex tex="f(4)=48" />), and{' '}
+        Option <b>A</b> leaves the constant out (it gives <Katex tex="f(4)=48" />), and{' '}
         <b>B</b> has the sign of the constant reversed. Options <b>D</b> and <b>E</b> come from <em>differentiating</em>{' '}
         instead: <Katex tex="6x-2" /> is <Katex tex="f''(x)" />, and <Katex tex="6x-24" /> is <Katex tex="6x+k" /> with{' '}
         <Katex tex="k" /> chosen to make the value at <Katex tex="4" /> zero.

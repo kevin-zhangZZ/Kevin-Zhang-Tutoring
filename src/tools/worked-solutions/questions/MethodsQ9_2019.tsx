@@ -34,15 +34,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{bmatrix}\tfrac12 & 0\\[2pt] 0 & -2\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix} = \begin{bmatrix}\tfrac12 x\\[2pt] -2y\end{bmatrix}" />,
-    reason: <>Multiply out the matrix product row by row. Because the matrix is <em>diagonal</em> — zeros off the main diagonal — the <Katex tex="x" /> and <Katex tex="y" /> never mix: each new coordinate depends only on the old one of the same name.</>,
+    reason: <>Multiply out row by row. The matrix is <em>diagonal</em> (zeros off the main diagonal), so each new coordinate depends only on the old one of the same name.</>,
   },
   {
-    working: <Katex display tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}\tfrac12 x - \tfrac12\\[2pt] -2y-2\end{bmatrix} \implies \begin{cases} x' = \tfrac12 x - \tfrac12 \\[2pt] y' = -2y-2 \end{cases}" />,
+    working: (
+      <>
+        <Katex display tex="T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right) = \begin{bmatrix}\tfrac12 x - \tfrac12\\[2pt] -2y-2\end{bmatrix}" />
+        <Katex display tex="\implies \begin{cases} x' = \tfrac12 x - \tfrac12 \\[2pt] y' = -2y-2 \end{cases}" />
+      </>
+    ),
     reason: <>Adding the translation column. The whole question is now two ordinary equations, and no further matrix work is needed.</>,
   },
   {
     working: <Katex display tex="T\!\left(\begin{bmatrix}a\\b\end{bmatrix}\right) = \begin{bmatrix}0\\0\end{bmatrix}" />,
-    reason: <>Read the question for which point is which: "the image of <Katex tex="(a,b)" /> is <Katex tex="(0,0)" />" means <Katex tex="(a,b)" /> goes <em>in</em> and the origin comes <em>out</em>. So substitute <Katex tex="x=a,\ y=b" /> on the right and set the output to zero, rather than feeding <Katex tex="(0,0)" /> into <Katex tex="T" />.</>,
+    reason: <>"The image of <Katex tex="(a,b)" /> is <Katex tex="(0,0)" />" means <Katex tex="(a,b)" /> goes <em>in</em> and the origin comes <em>out</em>: substitute <Katex tex="x=a,\ y=b" /> and set the output to zero.</>,
+    more: <>Don't feed <Katex tex="(0,0)" /> into <Katex tex="T" />: that gives <Katex tex="T(0,0)=\left(-\tfrac12,-2\right)" />, the image <em>of</em> the origin, which answers a different question.</>,
   },
   {
     working: <Katex display tex="\tfrac12 a - \tfrac12 = 0 \implies a = 1" />,
@@ -50,12 +56,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-2b - 2 = 0 \implies b = -1" />,
-    reason: <>The <Katex tex="y" /> equation on its own: <Katex tex="-2b=2" />. The <Katex tex="-2" /> flips the sign, so <Katex tex="b" /> must be negative for the image to come back up to <Katex tex="0" />.</>,
+    reason: <>The <Katex tex="y" /> equation on its own: <Katex tex="-2b=2" />, then divide both sides by <Katex tex="-2" />.</>,
+    more: <>The <Katex tex="-2" /> in the matrix flips the sign of <Katex tex="y" />, so <Katex tex="b" /> has to be negative for <Katex tex="-2b" /> to be the <Katex tex="+2" /> that cancels the <Katex tex="-2" /> translation.</>,
   },
   {
     working: <Katex display tex="\boxed{(a,b) = (1,-1)}" />,
-    reason: <>Matches option <b>E</b>. Check it forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓ and <Katex tex="-2(-1)-2 = 0" /> ✓. Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped; option <b>A</b> <Katex tex="(1,1)" /> gets <Katex tex="a" /> right but loses the sign of <Katex tex="b" />, and its image is <Katex tex="(0,-4)" />.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>Matches option <b>E</b>; check forwards: <Katex tex="\tfrac12(1)-\tfrac12 = 0" /> ✓, <Katex tex="-2(-1)-2 = 0" /> ✓.</>,
+    more: <>Option <b>B</b> <Katex tex="(-1,1)" />, the most popular wrong answer at <Katex tex="19\%" />, is this answer with both signs flipped; the Common Mistake below shows the sign slip that produces it. Option <b>A</b> <Katex tex="(1,1)" /> fails the forward check: its image is <Katex tex="(0,-4)" />.</>,
   },
 ]
 

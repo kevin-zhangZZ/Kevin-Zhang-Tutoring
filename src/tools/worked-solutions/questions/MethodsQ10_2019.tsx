@@ -31,11 +31,13 @@ const ROWS: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={graphSrc} alt="Graph of y = x + sin(x): an always-rising staircase-like curve that briefly flattens at x = ±π but never turns back down" className="w-full max-w-[320px]" />
       </div>
     ),
-    reason: <>With a &ldquo;which statement is true&rdquo; question about one function, graph it on CAS first: every option is a claim about this curve. <Katex tex="f" /> is the straight line <Katex tex="y=x" /> with a sine wave added on top. The line sets the overall upward drift; the sine only makes it wobble.</>,
+    reason: <>Graph it on CAS first to see what <Katex tex="f" /> looks like: the line <Katex tex="y=x" /> with a sine wobble added on top.</>,
+    more: <>With a &ldquo;which statement is true&rdquo; question about one function, a graph lets you test all five options at once. The line sets the overall upward drift; the sine only makes it wobble.</>,
   },
   {
     working: <Katex display tex="x-1\le x+\sin(x)\le x+1" />,
-    reason: <>Option <b>A</b>. Since <Katex tex="-1\le\sin(x)\le1" />, the graph is trapped between the parallel lines <Katex tex="y=x-1" /> and <Katex tex="y=x+1" />. Both rise without bound, so <Katex tex="f(x)\to\pm\infty" /> as <Katex tex="x\to\pm\infty" /> and it never levels out to a horizontal asymptote. A is false.</>,
+    reason: <>Option <b>A</b>. Since <Katex tex="-1\le\sin(x)\le1" />, the graph is trapped between <Katex tex="y=x-1" /> and <Katex tex="y=x+1" />, so <Katex tex="f(x)\to\pm\infty" /> as <Katex tex="x\to\pm\infty" />. A is false.</>,
+    more: <>A horizontal asymptote needs <Katex tex="f(x)" /> to settle towards one fixed value at an end of the graph. Both bounding lines rise without bound, so <Katex tex="f" /> never levels out.</>,
   },
   {
     working: (
@@ -44,7 +46,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= f(x)+2\pi \ne f(x)" />
       </>
     ),
-    reason: <>Option <b>C</b>. &ldquo;Period <Katex tex="2\pi" />&rdquo; means <Katex tex="f(x+2\pi)=f(x)" /> for <em>every</em> <Katex tex="x" />: shift the graph <Katex tex="2\pi" /> along and it lands on itself. The <Katex tex="\sin" /> part does repeat, but the <Katex tex="x" /> part has grown by <Katex tex="2\pi" />, so each copy of the wobble sits <Katex tex="2\pi" /> higher than the one before. C is false.</>,
+    reason: <>Option <b>C</b>. Period <Katex tex="2\pi" /> needs <Katex tex="f(x+2\pi)=f(x)" /> for <em>every</em> <Katex tex="x" />. The <Katex tex="\sin" /> part repeats, but the <Katex tex="x" /> part grows by <Katex tex="2\pi" />. C is false.</>,
   },
   {
     working: <Katex display tex="f'(x) = 1+\cos(x)" />,
@@ -63,11 +65,13 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="x\approx4.968 \ \text{ (one solution)}" />
       </>
     ),
-    reason: <>Option <b>B</b>. The gradient is <Katex tex="0" /> only at isolated points (the flat spots on the graph, stationary points of inflection), never over an interval, so <Katex tex="f" /> is strictly increasing. A strictly increasing function takes each value exactly once, so <Katex tex="f(x)=4" /> has exactly one solution, as CAS confirms. B is false.</>,
+    reason: <>Option <b>B</b>. The gradient is <Katex tex="0" /> only at isolated points, so <Katex tex="f" /> is strictly increasing and takes each value once: <Katex tex="f(x)=4" /> has one solution, as CAS confirms. B is false.</>,
+    more: <>These are the flat spots on the graph, stationary points of inflection. With no level stretch anywhere, <Katex tex="f" /> can never come back to a value it has already taken.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x)\ge0 \text{ for } x\in R}" />,
-    reason: <>Matches option <b>D</b>. The equals sign matters: <Katex tex="f'(x)=0" /> at <Katex tex="x=\pm\pi,\pm3\pi,\ldots" />, so <Katex tex="f'(x)>0" /> would be false, but the gradient is never negative. Option <b>C</b>, chosen by <Katex tex="33\%" />, carries the period of <Katex tex="\sin(x)" /> over to <Katex tex="f" />; the <Katex tex="+x" /> stops the graph repeating.</>,
+    reason: <>Matches option <b>D</b>: the gradient is never negative.</>,
+    more: <>The equals sign matters: <Katex tex="f'(x)=0" /> at those flat spots, so <Katex tex="f'(x)>0" /> would be false. Option <b>C</b> was the popular wrong answer; the Common Mistake below shows why.</>,
   },
 ]
 

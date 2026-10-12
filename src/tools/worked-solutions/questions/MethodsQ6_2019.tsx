@@ -35,7 +35,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{height} = x" />
       </>
     ),
-    reason: <>Always start a box question from the net. Folding the flaps up turns the cut sheet into the open box, so its <em>height</em> is the side of the cut-out square, <Katex tex="x" />. Each edge of the sheet has a square cut from <em>both</em> ends, so each base dimension loses <Katex tex="2x" />, not <Katex tex="x" />.</>,
+    reason: <>Read the net: the flaps fold up, so the <em>height</em> is the cut-out side <Katex tex="x" />. Each edge has a square cut from <em>both</em> ends, so each base dimension loses <Katex tex="2x" />, not <Katex tex="x" />.</>,
+    more: <>Always start a box question from the net. Along the <Katex tex="80" /> cm edge the base runs between the two cut-out squares, so its length is <Katex tex="80-x-x=80-2x" />; the <Katex tex="50" /> cm edge works the same way.</>,
   },
   {
     working: <Katex display tex="V(x) = x(80-2x)(50-2x), \qquad 0<x<25" />,
@@ -49,7 +50,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 4\left(3x^2-130x+1000\right)" />
       </>
     ),
-    reason: <>Expand, then differentiate. (On a CAS you can skip both lines: <Cas fn="fMax">fMax(x(80-2x)(50-2x), x) | 0&lt;x&lt;25</Cas> returns <Katex tex="x=10" /> directly. Keep the domain restriction: without it there is no maximum, since this cubic grows without bound. Graphing <Katex tex="V" /> and reading off the peak works too. The by-hand route is shown because the factorisation is short and it is the only route available on Exam 1.)</>,
+    reason: <>Expand, then differentiate. (On CAS, <Cas fn="fMax">fMax(x(80-2x)(50-2x), x) | 0&lt;x&lt;25</Cas> returns <Katex tex="x=10" /> directly.)</>,
+    more: <>Keep the domain restriction in the CAS command: without it there is no maximum, since this cubic grows without bound. Graphing <Katex tex="V" /> and reading off the peak works too. The by-hand route is shown because the factorisation is short and it is the only route available on Exam 1.</>,
   },
   {
     working: (
@@ -58,7 +60,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies x=\dfrac{100}{3} \ \text{ or } \ x=10" />
       </>
     ),
-    reason: <>A maximum of a smooth function inside its domain is a stationary point, so set <Katex tex="V'(x)=0" />. Dividing by <Katex tex="4" /> first leaves a quadratic that factorises.</>,
+    reason: <>A maximum of a smooth function inside its domain is a stationary point, so set <Katex tex="V'(x)=0" />. Divide by <Katex tex="4" />, then factorise: <Katex tex="-100" /> and <Katex tex="-30" /> multiply to <Katex tex="3\times1000" /> and add to <Katex tex="-130" />.</>,
+    more: <>If the factors don&apos;t jump out, use the quadratic formula, or <Cas fn="solve">solve(3x^2-130x+1000=0, x)</Cas>.</>,
   },
   {
     working: (
@@ -66,11 +69,13 @@ const ROWS: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={volumeSrc} alt="Graph of V(x) = x(80−2x)(50−2x) on 0 ≤ x ≤ 25, rising to a maximum of 18 000 at x = 10 and falling back to zero at x = 25" className="w-full max-w-[340px]" />
       </div>
     ),
-    reason: <><Katex tex="x=\tfrac{100}{3}\approx33.3" /> is outside the domain: two <Katex tex="33.3" /> cm squares don&apos;t fit across a <Katex tex="50" /> cm width. That leaves <Katex tex="x=10" />, and the graph confirms it is the maximum. You can also see this without a graph: <Katex tex="V" /> is a cubic with positive leading coefficient, so it rises, falls, then rises again. Its <em>first</em> stationary point is the local maximum and the second is a local minimum.</>,
+    reason: <><Katex tex="x=\tfrac{100}{3}\approx33.3" /> is outside the domain: two <Katex tex="33.3" /> cm squares don&apos;t fit across a <Katex tex="50" /> cm width. That leaves <Katex tex="x=10" />, and the graph confirms it is the maximum.</>,
+    more: <>You can also see this without a graph: <Katex tex="V" /> is a cubic with positive leading coefficient, so it rises, falls, then rises again. Its <em>first</em> stationary point is the local maximum and the second is a local minimum.</>,
   },
   {
     working: <Katex display tex="\boxed{x=10}" />,
-    reason: <>Matches option <b>A</b>. Option <b>D</b>, <Katex tex="\tfrac{100}{3}" />, is the rejected root. Options <b>B</b> and <b>E</b>, <Katex tex="20" /> and <Katex tex="\tfrac{200}{3}" />, are the solutions of <Katex tex="V'(x)=0" /> for the wrong model <Katex tex="x(80-x)(50-x)" />. Option <b>C</b>, <Katex tex="25" />, is the end of the domain, where the width and the volume are both <Katex tex="0" />.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option <b>D</b>, <Katex tex="\tfrac{100}{3}" />, is the rejected root. Options <b>B</b> and <b>E</b>, <Katex tex="20" /> and <Katex tex="\tfrac{200}{3}" />, are the solutions of <Katex tex="V'(x)=0" /> for the wrong model <Katex tex="x(80-x)(50-x)" />. Option <b>C</b>, <Katex tex="25" />, is the end of the domain, where the width and the volume are both <Katex tex="0" />.</>,
   },
 ]
 
@@ -122,10 +127,8 @@ export default function MethodsQ6_2019() {
             }
           >
             <p>
-              Look at the net: along the <Katex tex="80" /> cm edge there is a cut-out square at <em>each</em> end, so
-              the base length is <Katex tex="80-x-x=80-2x" />, and likewise <Katex tex="50-2x" />. A quick check: with{' '}
-              <Katex tex="x=20" />, the true base is <Katex tex="40\times10" />, not <Katex tex="60\times30" />. Both
-              B and E are solutions of the wrong model&apos;s <Katex tex="V'(x)=0" />, which is how a student lands on either of them.
+              Each edge loses a square at <em>both</em> ends, not one. A quick check: with{' '}
+              <Katex tex="x=20" />, the true base is <Katex tex="40\times10" />, not <Katex tex="60\times30" />.
             </p>
           </WrongMethod>
           <WrongMethod
@@ -136,8 +139,8 @@ export default function MethodsQ6_2019() {
             <p>
               <Katex tex="V'(x)=0" /> gives <em>candidates</em>, which still have to be checked against the domain and
               the question. At <Katex tex="x=\tfrac{100}{3}" /> the width would be{' '}
-              <Katex tex="50-\tfrac{200}{3}=-\tfrac{50}{3}" /> cm, so there is no box. Even on the cubic&apos;s graph it
-              is a local <em>minimum</em>, where <Katex tex="V=-\tfrac{200\,000}{27}" />. Write the domain{' '}
+              <Katex tex="50-\tfrac{200}{3}=-\tfrac{50}{3}" /> cm, so there is no box, and the formula gives a negative
+              volume there, <Katex tex="V=-\tfrac{200\,000}{27}" />. Write the domain{' '}
               <Katex tex="0<x<25" /> before you solve, and the wrong root rules itself out.
             </p>
           </WrongMethod>

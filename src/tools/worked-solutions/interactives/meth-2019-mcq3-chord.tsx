@@ -59,7 +59,7 @@ export default function Chord() {
       <Controls>
         <Slider label="a" value={a} onChange={setA} min={1} max={8} step={0.5} format={d} />
         <Buttons>
-          <Toggle label="Average value instead (options A and B)" checked={avg} onChange={setAvg} />
+          <Toggle label="Area and average value (options A and B)" checked={avg} onChange={setAvg} />
         </Buttons>
         <Readouts>
           <Readout color={C.good} tex={`f(6) = \\tfrac{a}{2} = ${t(y6)}, \\quad f(8) = \\tfrac{a}{4} = ${t(y8)}`} />

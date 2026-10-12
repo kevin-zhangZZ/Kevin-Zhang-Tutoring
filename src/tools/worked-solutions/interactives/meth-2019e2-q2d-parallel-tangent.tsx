@@ -48,7 +48,7 @@ export default function ParallelTangent() {
     notice = (
       <Notice>
         Here the cable is <b>flatter</b> than the chord: <M>{`h'(x) = ${m.toFixed(3)}`}</M> is closer to <M>0</M> than{' '}
-        <M>{'-0.3'}</M>. The cable&apos;s gradient starts at <M>0</M> at the peak, gets as steep as{' '}
+        <M>{'-0.3'}</M>. The gradient <M>{"h'(x)"}</M> starts at <M>0</M> at the peak <M>x = 10</M> (the cable itself follows <M>h</M> only from <M>{'x = a \\approx 11.12'}</M>), gets as steep as{' '}
         <M>{'-\\tfrac{9}{20}'}</M> at <M>x = 20</M>, and eases back to <M>0</M> at <M>x = 30</M>, so it must pass{' '}
         <M>{'-0.3'}</M> once on each side of <M>20</M>. Slide until the tangent turns green.
       </Notice>
