@@ -20,12 +20,13 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="y = k+A\cos(nx) \implies \text{range } [k-|A|,\ k+|A|]" />,
-    reason: <>The inner coefficient <Katex tex="n" /> changes the period only, so it can be ignored entirely here.</>,
+    working: <Katex display tex="\begin{aligned} y &= k+A\cos(nx) \\ \text{range} &= [k-|A|,\ k+|A|] \end{aligned}" />,
+    reason: <>On <Katex tex="R" />, <Katex tex="\cos(nx)" /> takes every value in <Katex tex="[-1,1]" />, so <Katex tex="y" /> runs <Katex tex="|A|" /> either side of <Katex tex="k" />. The <Katex tex="n" /> only changes the period.</>,
+    more: <>So the range is fixed by two numbers: the centre <Katex tex="k" /> (the vertical translation) and the amplitude <Katex tex="|A|" />. Each option's <Katex tex="9x" />, <Katex tex="3x" /> or <Katex tex="6x" /> squeezes the graph horizontally but never changes how high or low it goes. The domain matters, though: it is all of <Katex tex="R" /> here, so a full cycle is included and both extremes are reached.</>,
   },
   {
-    working: <Katex display tex="[6,12] \implies \text{centre } \tfrac{6+12}{2} = 9, \quad \text{amplitude } \tfrac{12-6}{2} = 3" />,
-    reason: <>Half the sum and half the difference of the endpoints.</>,
+    working: <Katex display tex="\begin{aligned} \text{centre} &= \tfrac{6+12}{2} = 9 \\ \text{amplitude} &= \tfrac{12-6}{2} = 3 \end{aligned}" />,
+    reason: <>The centre is the midpoint of the range; the amplitude is half its width.</>,
   },
   {
     working: <Katex display tex="\text{A: } 6\pm3 = [3,9]; \quad \text{B: } 6\pm6 = [0,12]" />,
@@ -37,7 +38,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f:R\to R,\ f(x)=9-3\cos(6x)}" />,
-    reason: <>Matches option <b>C</b>. The minus sign in front of the cosine makes no difference to the range — it only decides whether the curve starts at the bottom or the top.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>The minus sign in front of the cosine is a reflection in the <Katex tex="x" />-axis: <Katex tex="-3\cos(6x)" /> still runs from <Katex tex="-3" /> to <Katex tex="3" />, so it makes no difference to the range — it only decides whether the curve starts at the bottom or the top. Option <b>B</b>, the most common wrong answer, does reach 12, but with centre 6 and amplitude 6 it also reaches 0; checking only the maximum is not enough.</>,
   },
 ]
 

@@ -44,35 +44,38 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_1^2 f(x)\,dx - \left(\int_1^2 f(x)\,dx + \int_2^3 f(x)\,dx\right) > 0" />,
-    reason: <>Split <Katex tex="\int_1^3" /> at <Katex tex="x=2" /> and rearrange.</>,
+    reason: <>Move everything to one side, then split <Katex tex="\int_1^3" /> at <Katex tex="x=2" />: integrals over adjacent intervals add.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_2^3 f(x)\,dx < 0}" />,
-    reason: <>The <Katex tex="\int_1^2" /> terms cancel — the condition is really just about the sign of <Katex tex="f" /> on <Katex tex="[2,3]" />.</>,
+    reason: <>The <Katex tex="\int_1^2" /> terms cancel, so the condition is only about the signed area between <Katex tex="x=2" /> and <Katex tex="x=3" />.</>,
+    more: <>In words: integrating from 1 to 3 instead of 1 to 2 adds on the piece <Katex tex="\int_2^3 f(x)\,dx" />. For the total to go <i>down</i>, that added piece must be negative. It is a <i>signed</i> area: <Katex tex="f" /> could rise above the axis somewhere in <Katex tex="[2,3]" /> as long as the area below the axis there is bigger overall.</>,
   },
   {
-    working: <>Check each option for whether <Katex tex="f" /> is negative on <Katex tex="[2,3]" />:</>,
-    reason: <>The graph shape everywhere else is irrelevant.</>,
+    working: <>Check each option for whether <Katex tex="\int_2^3 f(x)\,dx<0" />:</>,
+    reason: <>Only the graph on <Katex tex="[2,3]" /> matters; its shape on <Katex tex="[1,2]" /> is irrelevant because that part cancelled.</>,
   },
   {
     working: OPT_A,
-    reason: <>A: an upward-curving graph crossing the <Katex tex="x" />-axis near <Katex tex="x=1" /> and <Katex tex="x=3" />, dipping <b>below</b> the axis in between — so <Katex tex="f<0" /> throughout <Katex tex="(1,3)\supset[2,3]" />. ✓</>,
+    reason: <>A: <Katex tex="x" />-intercepts at <Katex tex="x=1" /> and <Katex tex="x=3" />, below the axis between them, so <Katex tex="f<0" /> on <Katex tex="[2,3)" /> and the integral is negative. ✓</>,
   },
   {
     working: OPT_B,
-    reason: <>B: jumps to a negative value right at <Katex tex="x=2" />, but rises steeply through <Katex tex="f=0" /> well before <Katex tex="x=3" /> and finishes strongly positive — the positive area past the crossing clearly outweighs the small negative sliver near <Katex tex="x=2" />, so <Katex tex="\int_2^3 f(x)\,dx" /> comes out positive overall. Doesn't satisfy the condition.</>,
+    reason: <>B: negative just after <Katex tex="x=2" />, but crosses the axis near <Katex tex="x\approx2.3" />; the triangle above is wider and taller than the one below, so <Katex tex="\int_2^3 f(x)\,dx>0" />. ✗</>,
+    more: <>The line starts below the axis at the open circle and, by <Katex tex="x=3" />, is about twice as far above it. So the triangle below the axis (width about <Katex tex="\tfrac13" />) is much smaller than the triangle above it (width about <Katex tex="\tfrac23" />, twice as tall): roughly four times as much area above as below. The filled dot at <Katex tex="x=2" /> is a single point and does not change the integral. B also has a large positive <Katex tex="\int_1^2 f(x)\,dx" />, which may look like it makes the left side bigger, but that part appears on both sides and cancels.</>,
   },
   {
     working: OPT_C,
-    reason: <>C: constant and clearly positive across all of <Katex tex="[2,3]" />. Doesn't satisfy the condition.</>,
+    reason: <>C: constant and positive across all of <Katex tex="[2,3]" />, so <Katex tex="\int_2^3 f(x)\,dx>0" />. ✗</>,
   },
   {
     working: OPT_D,
-    reason: <>D: crosses <Katex tex="f=0" /> right around <Katex tex="x=2" /> and stays non-negative (a small hump) for the rest of <Katex tex="[2,3]" />, only turning negative again after <Katex tex="x=3" />. Doesn't satisfy the condition.</>,
+    reason: <>D: <Katex tex="x" />-intercepts at <Katex tex="x=2" /> and <Katex tex="x=3" />, <b>above</b> the axis between them, so <Katex tex="\int_2^3 f(x)\,dx>0" />. ✗</>,
+    more: <>D is below the axis on <Katex tex="(1,2)" />, which can make it look like a candidate, but that region is part of <i>both</i> integrals. Here <Katex tex="\int_1^3 f(x)\,dx" /> is <Katex tex="\int_1^2 f(x)\,dx" /> plus the positive hump on <Katex tex="[2,3]" />, so it is the <i>larger</i> of the two: the inequality goes the wrong way.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Option A}}" />,
-    reason: <>The only graph negative throughout <Katex tex="[2,3]" />. Matches option <b>A</b>.</>,
+    reason: <>Only A has <Katex tex="\int_2^3 f(x)\,dx<0" />. Matches option <b>A</b>.</>,
   },
 ]
 

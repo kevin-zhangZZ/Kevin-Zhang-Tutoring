@@ -34,27 +34,36 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = a\log_e(bx) \;\implies\; h'(x) = a\cdot\frac{b}{bx} = \frac{a}{x}" />,
-    reason: <>Differentiate — the constant <Katex tex="b" /> cancels out of <Katex tex="h'" /> entirely, but it still controls the <i>domain</i>.</>,
+    reason: <>Chain rule: the derivative of <Katex tex="\log_e(bx)" /> is <Katex tex="\frac{b}{bx}" />. The <Katex tex="b" /> cancels out of <Katex tex="h'" />, but it still controls the <i>domain</i>.</>,
   },
   {
     working: <>Domain requires <Katex tex="bx>0" />: if <Katex tex="b>0" />, domain is <Katex tex="x>0" />; if <Katex tex="b<0" />, domain is <Katex tex="x<0" />.</>,
-    reason: <>The sign of <Katex tex="b" /> determines which half-line <Katex tex="h" /> (and so <Katex tex="h'" />) is defined on.</>,
+    reason: <>The sign of <Katex tex="b" /> decides which half-line <Katex tex="h" /> (and so <Katex tex="h'" />) is defined on, and that decides the sign of <Katex tex="\frac{a}{x}" />.</>,
+    more: <>It is easy to assume a log is always defined for <Katex tex="x>0" />, but that is only true when <Katex tex="b>0" />. For example, with <Katex tex="b=-1" />, <Katex tex="h(x)=a\log_e(-x)" /> is defined only for <Katex tex="x<0" />. This is the case students who chose C missed.</>,
   },
   {
-    working: <Katex display tex="\text{Case } b>0\ (x>0):\quad h'(x)=\frac{a}{x}>0 \text{ for all } x>0 \;\implies\; a>0" />,
-    reason: <>For <Katex tex="a/x" /> to stay positive with <Katex tex="x>0" /> throughout, need <Katex tex="a>0" />.</>,
+    working: <Katex display tex="b>0:\ \ x>0,\ \ \frac{a}{x}>0 \implies a>0" />,
+    reason: <>For <Katex tex="\frac{a}{x}" /> to stay positive when <Katex tex="x" /> is always positive, need <Katex tex="a>0" />.</>,
+    more: <>The question asks for range <Katex tex="(0,\infty)" />, not just positive values. With <Katex tex="a>0" /> and <Katex tex="x>0" /> that holds: as <Katex tex="x\to0^+" />, <Katex tex="\frac{a}{x}\to\infty" />, and as <Katex tex="x\to\infty" />, <Katex tex="\frac{a}{x}\to0^+" />, so every positive value is reached. The report's Example 1 (<Katex tex="a=b=1" />) shows this case.</>,
   },
   {
-    working: <Katex display tex="\text{Case } b<0\ (x<0):\quad h'(x)=\frac{a}{x}>0 \text{ for all } x<0 \;\implies\; a<0" />,
-    reason: <>With <Katex tex="x<0" /> throughout, need <Katex tex="a<0" /> for the quotient to stay positive.</>,
+    working: <Katex display tex="b<0:\ \ x<0,\ \ \frac{a}{x}>0 \implies a<0" />,
+    reason: <>Now <Katex tex="x" /> is always negative, so <Katex tex="\frac{a}{x}" /> is positive only if <Katex tex="a<0" /> (negative ÷ negative).</>,
+    more: <>Again the full range <Katex tex="(0,\infty)" /> is reached: as <Katex tex="x\to0^-" />, <Katex tex="\frac{a}{x}\to\infty" />, and as <Katex tex="x\to-\infty" />, <Katex tex="\frac{a}{x}\to0^+" />. The report's Example 2 (<Katex tex="a=b=-1" />, so <Katex tex="h(x)=-\log_e(-x)" />) shows this case.</>,
   },
   {
     working: <>Both valid cases — <Katex tex="(a>0,b>0)" /> and <Katex tex="(a<0,b<0)" /> — have <Katex tex="a" /> and <Katex tex="b" /> the <b>same sign</b>.</>,
-    reason: <>Option C only captures the first case, missing the second — too restrictive to be the thing that <i>must</i> be true.</>,
+    reason: <>Either case is possible, so a statement that <i>must</i> be true has to hold in both.</>,
   },
   {
     working: <Katex display tex="\boxed{ab>0}" />,
-    reason: <>The general condition covering both cases. Matches option <b>D</b>.</>,
+    reason: <>Same sign is exactly <Katex tex="ab>0" />. Matches option <b>D</b>.</>,
+    more: <>
+      Test each option against the example <Katex tex="a=b=-1" />, which works:
+      <br />• <b>A</b> (<Katex tex="a>0" /> only) and <b>C</b> (<Katex tex="a>0" /> and <Katex tex="b>0" />) both fail it. C (chosen by 46%) describes a case that <i>works</i>, but &ldquo;must be true&rdquo; asks for something every valid pair satisfies, and C misses the second case.
+      <br />• <b>B</b> (<Katex tex="a>0" /> and <Katex tex="b<0" />) never works: the domain is <Katex tex="x<0" />, so <Katex tex="\frac{a}{x}<0" /> and the range is <Katex tex="(-\infty,0)" />.
+      <br />• <b>D</b> (<Katex tex="ab>0" />) holds in both cases.
+    </>,
   },
 ]
 

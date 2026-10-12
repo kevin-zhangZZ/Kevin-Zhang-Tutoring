@@ -31,27 +31,29 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = f(-x)+2" />,
-    reason: <>Two transformations: <Katex tex="x\mapsto-x" /> is a reflection in the <Katex tex="y" />-axis, and <Katex tex="+2" /> lifts everything two units.</>,
+    reason: <>The <Katex tex="-x" /> inside the brackets reflects the graph in the <Katex tex="y" />-axis; the <Katex tex="+2" /> outside translates it 2 units up.</>,
+    more: <>A change inside the brackets acts on <Katex tex="x" />, so it moves the graph sideways; a change outside acts on <Katex tex="y" />, so it moves the graph up or down. That is why <Katex tex="f(-x)" /> is a reflection in the <Katex tex="y" />-axis, while <Katex tex="-f(x)" /> would be a reflection in the <Katex tex="x" />-axis. The order doesn't matter here: one transformation only moves points sideways, the other only up.</>,
   },
   {
     working: <Katex display tex="(x,y) \mapsto (-x,\ y+2)" />,
-    reason: <>The mapping applied to every point of the original graph.</>,
+    reason: <>Every point of the original swaps sides of the <Katex tex="y" />-axis and rises 2. Now track a few distinctive points.</>,
   },
   {
     working: <Katex display tex="\text{local max } (0,1) \mapsto (0,3)" />,
-    reason: <>A point on the <Katex tex="y" />-axis stays put horizontally, so it simply rises to 3 — still a local maximum. Options <b>C</b> and <b>D</b> have a local <em>minimum</em> at the origin: they match <Katex tex="2-f(x)" /> and <Katex tex="4-f(x)" />, reflections in the <Katex tex="x" />-axis instead.</>,
+    reason: <>A point on the <Katex tex="y" />-axis doesn't move sideways, so it rises to 3 and is still a local maximum. <b>C</b> and <b>D</b> have a minimum there, so they are out; <b>A</b> peaks at only 2.</>,
   },
   {
-    working: <Katex display tex="\text{deeper min near } x=2 \ \mapsto \ \text{near } x=-2" />,
-    reason: <>The reflection swaps the two troughs: the deeper one (originally on the right) ends up on the left, as it does in both <b>A</b> and <b>B</b>.</>,
+    working: <Katex display tex="\begin{aligned} \text{min } (2,\,-1.4) &\mapsto (-2,\ 0.6) \\ \text{min } (-2,\,-0.7) &\mapsto (2,\ 1.3) \end{aligned}" />,
+    reason: <>Approximate troughs read off the graph. They swap sides and each rises 2, so the deeper trough is now on the left.</>,
   },
   {
-    working: <Katex display tex="\text{right-hand end } f(-4)\approx0.5 \ \mapsto \ \text{value} \approx2.5 \text{ at } x=4" />,
-    reason: <>Tracking the ends confirms the orientation.</>,
+    working: <Katex display tex="\begin{aligned} x=-4: &\ \ f(4)+2 = 2+2 = 4 \\ x=4: &\ \ f(-4)+2 \approx 0.5+2 = 2.5 \end{aligned}" />,
+    reason: <>For the ends, substitute into <Katex tex="y=f(-x)+2" />: read the original graph at <Katex tex="-x" />, then add 2.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Graph B}}" />,
-    reason: <>Matches option <b>B</b>: high at the left, deep trough near <Katex tex="x=-2" />, peak of 3 at the origin, shallow trough near <Katex tex="x=2" />. Option <b>A</b> has the right reflection but is lifted only 1 unit — its value at the origin is 2.</>,
+    reason: <>Matches option <b>B</b>: 4 at the left end, a peak of 3 at the origin.</>,
+    more: <>Option <b>A</b> has the right reflection but is lifted only 1 unit (2 at the origin, 3 at <Katex tex="x=-4" />): it is <Katex tex="y=f(-x)+1" />. Options <b>C</b> and <b>D</b> have a local <em>minimum</em> at the origin: they are <Katex tex="y=2-f(x)" /> and <Katex tex="y=4-f(x)" />, reflections in the <Katex tex="x" />-axis rather than the <Katex tex="y" />-axis. Between them they drew 25% of students — mixing up <Katex tex="f(-x)" /> with <Katex tex="-f(x)" /> was the main trap.</>,
   },
 ]
 

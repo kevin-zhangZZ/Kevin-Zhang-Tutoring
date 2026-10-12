@@ -23,31 +23,40 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X<200) = 1-0.325 = 0.675" />,
-    reason: <>Converting the upper tail into a cumulative probability.</>,
+    reason: <><Cas fn="invNorm" /> needs a left-tail (cumulative) probability, so convert the upper tail first.</>,
   },
   {
     working: <Katex display tex="\Pr(X<180) = 1-0.325-0.589 = 0.086" />,
     reason: <>The three regions <Katex tex="X<180" />, <Katex tex="180<X<200" /> and <Katex tex="X>200" /> account for everything.</>,
   },
   {
-    working: <Katex display tex="z_1 = \text{invNorm}(0.086) = -1.3657, \qquad z_2 = \text{invNorm}(0.675) = 0.4538" />,
-    reason: <>By <Cas fn="invNorm" /> on the standard normal.</>,
+    working: <Katex display tex="\begin{aligned} z_1 &= \text{invNorm}(0.086) = -1.3658 \\ z_2 &= \text{invNorm}(0.675) = 0.4538 \end{aligned}" />,
+    reason: <>The z-scores of 180 and 200: <Cas fn="invNorm" /> with mean 0 and standard deviation 1, using the left-tail areas above.</>,
   },
   {
-    working: <Katex display tex="\frac{180-\mu}{\sigma} = -1.3657, \qquad \frac{200-\mu}{\sigma} = 0.4538" />,
-    reason: <>Two linear equations in μ and σ.</>,
+    working: <Katex display tex="\frac{180-\mu}{\sigma} = -1.3658, \qquad \frac{200-\mu}{\sigma} = 0.4538" />,
+    reason: <>Each z-score is <Katex tex="z=\dfrac{x-\mu}{\sigma}" />, giving two equations in the two unknowns.</>,
   },
   {
-    working: <Katex display tex="\text{subtract: } \frac{20}{\sigma} = 1.8195 \implies \sigma = 10.99" />,
-    reason: <>The <Katex tex="\mu" /> cancels, which is why subtracting is the efficient move.</>,
+    working: <Katex display tex="\begin{aligned} \frac{200-\mu}{\sigma}-\frac{180-\mu}{\sigma} &= 0.4538-(-1.3658) \\ \frac{20}{\sigma} &= 1.8196 \\ \sigma &\approx 10.99 \end{aligned}" />,
+    reason: <>Subtracting cancels <Katex tex="\mu" />, leaving one equation in <Katex tex="\sigma" />.</>,
+    more: <>Alternatively, enter both equations into <Cas fn="solve" /> together. Either way, keep at least 4 decimal places in the z-scores (or store them on CAS); 4 d.p. is enough here.</>,
   },
   {
-    working: <Katex display tex="\mu = 200-0.4538(10.99) = 195.0" />,
-    reason: <>Back-substituting.</>,
+    working: <Katex display tex="\mu = 200-0.4538\times10.99 \approx 195.0" />,
+    reason: <>Back-substitute into the second equation, rearranged as <Katex tex="\mu=200-0.4538\sigma" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\mu \approx 195, \quad \sigma \approx 11}" />,
-    reason: <>Matches option <b>D</b>. Note the mean is <em>not</em> midway between 180 and 200: the two tails have different sizes, so the distribution is not centred between them.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>
+      Check: with <Katex tex="\mu=195" /> and <Katex tex="\sigma=11" />,{' '}
+      <Katex tex="\Pr(X>200)\approx0.325" /> and <Katex tex="\Pr(180<X<200)\approx0.589" /> ✓. Options{' '}
+      <b>A</b> and <b>B</b> (26% together) put the mean at 190, midway between 180 and 200 — but the two
+      tails have different sizes (0.086 below 180, 0.325 above 200), so the distribution is not centred
+      between them. Option <b>C</b> keeps the right mean but with <Katex tex="\sigma=10" /> gives{' '}
+      <Katex tex="\Pr(X>200)\approx0.309" />, not 0.325.
+    </>,
   },
 ]
 

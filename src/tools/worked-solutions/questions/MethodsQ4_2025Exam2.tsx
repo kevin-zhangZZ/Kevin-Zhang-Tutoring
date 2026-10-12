@@ -202,11 +202,12 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin\!\left(\tfrac{2\pi}{3}\right) = \sin\!\left(\pi-\tfrac{\pi}{3}\right) = \frac{\sqrt3}{2}" />,
-    reason: <>Second quadrant, so the sine is positive and equals its first-quadrant partner.</>,
+    reason: <><Katex tex="\tfrac{2\pi}{3}=\pi-\tfrac{\pi}{3}" /> is in the second quadrant, where sine is positive, so it equals <Katex tex="\sin\!\left(\tfrac{\pi}{3}\right)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{\sqrt3}{2}+1}" />,
-    reason: <>Exact, as required — about <Katex tex="1.866" />, which matches the height of point <Katex tex="A" /> on the diagram.</>,
+    reason: <>Exact, as required — evaluate the sine rather than leaving <Katex tex="\sin\!\left(\tfrac{2\pi}{3}\right)+1" />.</>,
+    more: <>The report notes some students left their answer as <Katex tex="\sin\!\left(\tfrac{2\pi}{3}\right)+1" /> or gave an approximate value. As a check, <Katex tex="\tfrac{\sqrt3}{2}+1\approx1.866" />, the height of point <Katex tex="A" /> on the part d. graph.</>,
   },
 ]
 
@@ -217,102 +218,109 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="0 \le x \le \tfrac{5\pi}{2} \ \text{ covers one and a quarter periods}" />,
-    reason: <>Which is why there are three solutions, not two — the domain runs past <Katex tex="2\pi" />.</>,
+    reason: <>So look for solutions beyond <Katex tex="2\pi" /> too, not just in the first revolution.</>,
   },
   {
     working: <Katex display tex="x = \tfrac{\pi}{6}, \ \pi-\tfrac{\pi}{6} = \tfrac{5\pi}{6}" />,
-    reason: <>The two in the first revolution.</>,
+    reason: <><Katex tex="\sin\!\left(\tfrac{\pi}{6}\right)=\tfrac12" />; sine is also positive in the second quadrant, giving <Katex tex="\pi-\tfrac{\pi}{6}" />.</>,
   },
   {
     working: <Katex display tex="x = \tfrac{\pi}{6}+2\pi = \tfrac{13\pi}{6} \ \le \tfrac{15\pi}{6} \ \checkmark" />,
-    reason: <>The next one up. The following candidate <Katex tex="\tfrac{5\pi}{6}+2\pi=\tfrac{17\pi}{6}" /> exceeds the domain.</>,
+    reason: <>Add the period <Katex tex="2\pi" /> to each. <Katex tex="\tfrac{13\pi}{6}" /> is inside <Katex tex="\tfrac{5\pi}{2}=\tfrac{15\pi}{6}" />, but <Katex tex="\tfrac{5\pi}{6}+2\pi=\tfrac{17\pi}{6}" /> is not.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \frac{\pi}{6}, \ \frac{5\pi}{6}, \ \frac{13\pi}{6}}" />,
     reason: <>Three exact values.</>,
+    more: <>The report notes some responses had only <Katex tex="\tfrac{\pi}{6}" /> or only the first two solutions, put <Katex tex="\tfrac{7\pi}{2}" /> instead of <Katex tex="\tfrac{13\pi}{6}" />, or gave extra solutions or a general solution. Picture the line <Katex tex="y=\tfrac32" /> across the given graph: it cuts the curve exactly three times, and <Katex tex="\tfrac{7\pi}{2}" /> is beyond the domain's end at <Katex tex="\tfrac{5\pi}{2}" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x+k) = f(x) \text{ for all } x \implies k \text{ is a period of } \sin" />,
-    reason: <>The smallest positive one inside <Katex tex="\left(0,\tfrac{5\pi}{2}\right)" /> is the full period.</>,
+    working: <Katex display tex="f(x+k) = f(x) \iff \sin(x+k) = \sin(x)" />,
+    reason: <>Shifting the graph by <Katex tex="k" /> must leave it unchanged, so <Katex tex="k" /> must be a whole number of periods of sine: <Katex tex="2\pi, 4\pi, \ldots" /></>,
+    more: <>It only has to hold for <Katex tex="x\in[0,a]" />, but two sine curves that agree along a whole interval are the same curve, so <Katex tex="k" /> must still be a multiple of <Katex tex="2\pi" />. Negative shifts such as <Katex tex="k=-2\pi" /> (an occasional wrong answer in the report) are ruled out because <Katex tex="k" /> must lie in <Katex tex="\left(0,\tfrac{5\pi}{2}\right)" />.</>,
   },
   {
     working: <Katex display tex="k = 2\pi" />,
-    reason: <>And <Katex tex="2\pi<\tfrac{5\pi}{2}" />, so it is admissible.</>,
+    reason: <>The only multiple of <Katex tex="2\pi" /> in <Katex tex="\left(0,\tfrac{5\pi}{2}\right)" />; <Katex tex="4\pi" /> is too big.</>,
   },
   {
-    working: <Katex display tex="\text{need both } x \text{ and } x+k \text{ inside } \left[0,\tfrac{5\pi}{2}\right]" />,
-    reason: <>The report notes many students found <Katex tex="k" /> but not <Katex tex="a" />: <Katex tex="f(x+2\pi)" /> only exists while <Katex tex="x+2\pi" /> stays in the domain.</>,
+    working: <Katex display tex="\text{need } x+2\pi \in \left[0,\tfrac{5\pi}{2}\right]" />,
+    reason: <><Katex tex="f" /> is only defined on <Katex tex="\left[0,\tfrac{5\pi}{2}\right]" />, so <Katex tex="f(x+2\pi)" /> only exists while <Katex tex="x+2\pi" /> stays in the domain.</>,
   },
   {
     working: <Katex display tex="x+2\pi \le \tfrac{5\pi}{2} \implies x \le \tfrac{\pi}{2}" />,
-    reason: <>The binding constraint.</>,
+    reason: <>So the identity can hold only for <Katex tex="x" /> up to <Katex tex="\tfrac{\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{k = 2\pi, \qquad a = \frac{\pi}{2}}" />,
-    reason: <>The largest possible a.</>,
+    reason: <>The largest possible <Katex tex="a" />.</>,
+    more: <>The report notes many students found <Katex tex="k" /> but not <Katex tex="a" />, with <Katex tex="a=\tfrac{5\pi}{2}" />, <Katex tex="\tfrac{9\pi}{2}" /> and <Katex tex="2\pi" /> common incorrect responses and <Katex tex="a=\infty" /> occasional. Each ignores the domain: for any <Katex tex="x>\tfrac{\pi}{2}" />, <Katex tex="x+2\pi" /> passes <Katex tex="\tfrac{5\pi}{2}" /> and <Katex tex="f(x+2\pi)" /> is undefined. (<Katex tex="\tfrac{9\pi}{2}=\tfrac{5\pi}{2}+2\pi" /> is the period added to the domain's end instead of subtracted.)</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = \cos(x) \implies f'\!\left(\tfrac{2\pi}{3}\right) = -\tfrac12" />,
-    reason: <><Katex tex="\cos\!\left(\tfrac{2\pi}{3}\right)=-\tfrac12" />: negative, matching the downward tangent on the diagram.</>,
+    reason: <>The tangent's gradient is <Katex tex="f'" /> at the point: negative, matching the downward tangent on the diagram.</>,
   },
   {
     working: <Katex display tex="y-\left(\tfrac{\sqrt3}{2}+1\right) = -\tfrac12\left(x-\tfrac{2\pi}{3}\right)" />,
-    reason: <>Point–gradient form, using the value from part a.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />, with <Katex tex="y_1=f\!\left(\tfrac{2\pi}{3}\right)" /> from part a.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -\frac{x}{2}+\frac{\pi}{3}+\frac{\sqrt3}{2}+1}" />,
-    reason: <>An <em>equation</em> was required, not just the gradient. Numerically the intercept is about <Katex tex="2.913" />.</>,
+    reason: <>Expanding, since <Katex tex="-\tfrac12\times\left(-\tfrac{2\pi}{3}\right)=\tfrac{\pi}{3}" />. An <em>equation</em> was required, not just the gradient.</>,
+    more: <>The report notes some transcription errors, and errors from students who worked this by hand rather than using their CAS. Whichever way you get it, check it: <Katex tex="x=\tfrac{2\pi}{3}" /> must give back <Katex tex="y=\tfrac{\sqrt3}{2}+1" />. The <Katex tex="y" />-intercept is about <Katex tex="2.913" />.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="x_{n+1} = x_n-\frac{f(x_n)}{f'(x_n)} = x_n-\frac{\sin(x_n)+1}{\cos(x_n)}" />,
-    reason: <>The Newton iteration for this f.</>,
+    reason: <>Newton's method, with <Katex tex="f'(x)=\cos(x)" />.</>,
   },
   {
-    working: <Katex display tex="x_0 = \tfrac{2\pi}{3}: \quad x_1 = \tfrac{2\pi}{3}-\frac{\tfrac{\sqrt3}{2}+1}{-\tfrac12} = 5.82644\ldots" />,
-    reason: <>Dividing by the negative gradient throws the estimate a long way right — this is the tangent drawn on the part d. axes, and its <Katex tex="x" />-intercept is <Katex tex="x_1" />.</>,
+    working: <Katex display tex="\begin{aligned}x_1 &= \tfrac{2\pi}{3}-\frac{\tfrac{\sqrt3}{2}+1}{-\tfrac12} \\ &= \tfrac{2\pi}{3}+\sqrt3+2 = 5.82644\ldots\end{aligned}" />,
+    reason: <>First iteration from <Katex tex="x_0=\tfrac{2\pi}{3}" />, using <Katex tex="f" /> and <Katex tex="f'" /> there from parts a and d.</>,
+    more: <><Katex tex="x_1" /> is the <Katex tex="x" />-intercept of the part d. tangent: setting <Katex tex="y=0" /> in its equation gives the same <Katex tex="\tfrac{2\pi}{3}+\sqrt3+2" />. Dividing by the small negative gradient <Katex tex="-\tfrac12" /> throws the estimate a long way to the right.</>,
   },
   {
-    working: <Katex display tex="x_2 = x_1-\frac{\sin(x_1)+1}{\cos(x_1)} = 5.82644-\frac{0.55566}{0.89588}" />,
-    reason: <>The second iteration.</>,
+    working: <Katex display tex="\begin{aligned}x_2 &= x_1-\frac{\sin(x_1)+1}{\cos(x_1)} \\ &= 5.82644-\frac{0.55898}{0.89750} = 5.2036\ldots\end{aligned}" />,
+    reason: <>Second iteration. CAS in radian mode, carrying all the digits of <Katex tex="x_1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x_2 = 5.2}" />,
-    reason: <>One decimal place. It is converging towards <Katex tex="\tfrac{3\pi}{2}\approx4.712" />, the point where <Katex tex="f=0" /> — slowly, because the root is also a turning point.</>,
+    reason: <>One decimal place, as asked.</>,
+    more: <>The report notes <Katex tex="5.0" /> was occasionally given. One more step gives <Katex tex="x_3\approx4.95" />, which rounds to <Katex tex="5.0" />: <Katex tex="x_0" /> is the starting value, so two iterations end at <Katex tex="x_2" />. The estimates are heading for <Katex tex="\tfrac{3\pi}{2}\approx4.712" />, where <Katex tex="f=0" />, but slowly, because the curve only touches the axis there (the zero is also a turning point).</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
-    working: <Katex display tex="x_1 = 5.826, \quad f(x_1) = 0.5557, \quad f'(x_1) = \cos(x_1) = 0.8959" />,
-    reason: <>The point of contact and the gradient there.</>,
+    working: <Katex display tex="x_1 = 5.826, \quad f(x_1) = 0.5590, \quad f'(x_1) = 0.8975" />,
+    reason: <>From part e.i: the point of contact and the gradient there.</>,
   },
   {
-    working: <Katex display tex="y = 0.8959(x-5.826)+0.5557" />,
-    reason: <>The tangent to draw, sloping upward this time.</>,
+    working: <Katex display tex="y = 0.8975(x-5.826)+0.5590" />,
+    reason: <>Positive gradient, so this tangent slopes upward, unlike the one at <Katex tex="A" />.</>,
   },
   {
-    working: <Katex display tex="\text{its } x\text{-intercept is } x_2 = 5.2" />,
-    reason: <>Which is the whole point of the picture: each Newton step replaces the curve by its tangent and takes that line's <Katex tex="x" />-intercept as the next estimate.</>,
+    working: <Katex display tex="\text{its } x\text{-intercept is } x_2 \approx 5.20" />,
+    reason: <>Newton's method takes the tangent's <Katex tex="x" />-intercept as the next estimate, so the line must cross the axis at <Katex tex="x_2" />.</>,
   },
   {
     working: <NewtonOverlay />,
-    reason: <>A ruled line, touching the curve at <Katex tex="x=x_1" /> and cutting the axis at <Katex tex="x_2\approx5.2" />. The report notes some students drew lines that were not tangential to the curve at any point, or that clearly cut the curve at <Katex tex="x=5.82\ldots" /></>,
+    reason: <>Rule a line touching the curve at about <Katex tex="(5.83,\ 0.56)" /> and cutting the <Katex tex="x" />-axis at about <Katex tex="5.2" />.</>,
+    more: <>The report notes many students did not attempt this, some drew lines not tangential to the curve at any point, some drew a line that clearly cut the curve at <Katex tex="x=5.82\ldots" />, others could not find <Katex tex="x_1" />, and that a ruler should be used. The two points fix the line; near the point of contact it should hug the curve without crossing it.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="\text{point of contact } \bigl(p,\ f(p)\bigr) = \bigl(p,\ \sin(p)+1\bigr)" />,
-    reason: <>Reading the coordinates from the stem.</>,
+    reason: <>The tangent touches the curve where <Katex tex="x=p" />.</>,
   },
   {
     working: <Katex display tex="\text{gradient } = f'(p) = \cos(p)" />,
@@ -320,111 +328,129 @@ const ROWS_FI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y-\bigl(\sin(p)+1\bigr) = \cos(p)(x-p)" />,
-    reason: <>Point–gradient form. The report notes some students wrote <Katex tex="y-\sin(p)+1" /> in place of <Katex tex="y-(\sin(p)+1)" />, and others used <Katex tex="y=mx+c" /> claiming <Katex tex="c=\sin(p)+1" />.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />. Keep the brackets around <Katex tex="\sin(p)+1" />.</>,
+    more: <>The report notes some students wrote <Katex tex="y-\sin(p)+1" /> in place of <Katex tex="y-(\sin(p)+1)" /> — that changes the sign of the 1. Others used <Katex tex="y=mx+c" /> claiming <Katex tex="c=\sin(p)+1" />, but <Katex tex="c" /> is the height at <Katex tex="x=0" />, not at <Katex tex="x=p" />. Done properly, substituting the point into <Katex tex="y=\cos(p)x+c" /> gives <Katex tex="c=\sin(p)+1-p\cos(p)" />, the report's second method.</>,
   },
   {
     working: <Katex display tex="\boxed{t(x) = \cos(p)(x-p)+\sin(p)+1}" />,
-    reason: <>As required.</>,
+    reason: <>Making <Katex tex="y" /> the subject. As required.</>,
   },
 ]
 
 const ROWS_FII: WorkingRow[] = [
   {
     working: <Katex display tex="t(0) = -p\cos(p)+\sin(p)+1" />,
-    reason: <>The <Katex tex="y" />-intercept, now a function of <Katex tex="p" /> alone.</>,
+    reason: <>The <Katex tex="y" />-intercept is <Katex tex="t(0)" />. It is now a function of <Katex tex="p" /> alone, so find its extremes with calculus.</>,
   },
   {
-    working: <Katex display tex="\frac{d}{dp}\bigl[-p\cos(p)+\sin(p)+1\bigr] = -\cos(p)+p\sin(p)+\cos(p) = p\sin(p)" />,
-    reason: <>The product rule produces a <Katex tex="+\cos(p)" /> that cancels the <Katex tex="-\cos(p)" /> — a very clean derivative.</>,
+    working: <Katex display tex="\begin{aligned}&\frac{d}{dp}\bigl[-p\cos(p)+\sin(p)+1\bigr] \\ &\quad= -\cos(p)+p\sin(p)+\cos(p) = p\sin(p)\end{aligned}" />,
+    reason: <>Product rule on <Katex tex="-p\cos(p)" />; the two <Katex tex="\cos(p)" /> terms cancel.</>,
   },
   {
     working: <Katex display tex="p\sin(p) = 0 \ \text{ on } \left(0,\tfrac{5\pi}{2}\right) \implies p = \pi \ \text{ or } \ p = 2\pi" />,
     reason: <>Since <Katex tex="p>0" />, only the zeros of <Katex tex="\sin(p)" /> matter.</>,
   },
   {
-    working: <Katex display tex="\text{sign of } p\sin(p): \ + \text{ on } (0,\pi), \ - \text{ on } (\pi,2\pi), \ + \text{ on } \left(2\pi,\tfrac{5\pi}{2}\right)" />,
-    reason: <>So <Katex tex="p=\pi" /> is a maximum and <Katex tex="p=2\pi" /> a minimum — the report notes some students labelled them the wrong way round.</>,
+    working: <Katex display tex="\begin{aligned}&\text{sign of } p\sin(p): \ + \text{ on } (0,\pi), \\ &- \text{ on } (\pi,2\pi), \ + \text{ on } \left(2\pi,\tfrac{5\pi}{2}\right)\end{aligned}" />,
+    reason: <>Increasing then decreasing at <Katex tex="\pi" />: a maximum. Decreasing then increasing at <Katex tex="2\pi" />: a minimum.</>,
   },
   {
-    working: <Katex display tex="p=\pi: \ -\pi(-1)+0+1 = \pi+1; \qquad p=2\pi: \ -2\pi(1)+0+1 = 1-2\pi" />,
-    reason: <>The endpoints give <Katex tex="1" /> and <Katex tex="2" />, both inside this range, so the turning points really are the extremes.</>,
+    working: <Katex display tex="\begin{aligned}p=\pi&: \ -\pi(-1)+0+1 = \pi+1 \\ p=2\pi&: \ -2\pi(1)+0+1 = 1-2\pi\end{aligned}" />,
+    reason: <>Substituting back into <Katex tex="t(0)" />, with <Katex tex="\cos(\pi)=-1" />, <Katex tex="\cos(2\pi)=1" />.</>,
+  },
+  {
+    working: <Katex display tex="p\to0: \ t(0)\to1; \qquad p\to\tfrac{5\pi}{2}: \ t(0)\to2" />,
+    reason: <>Check the ends of the interval: both lie between <Katex tex="1-2\pi" /> and <Katex tex="\pi+1" />, so the turning points give the extremes.</>,
+    more: <>The report notes some students had the minimum value as 1 and the maximum value as 2 — those are only the end values (not even reached, as the interval is open).</>,
   },
   {
     working: <Katex display tex="\boxed{\text{minimum } 1-2\pi, \qquad \text{maximum } \pi+1}" />,
-    reason: <>Exact values, and stated as <Katex tex="y" />-intercepts rather than as coordinate pairs.</>,
+    reason: <>Exact values of the <Katex tex="y" />-intercept, not coordinate pairs.</>,
+    more: <>The report notes some students gave coordinates such as <Katex tex="(2\pi,1-2\pi)" /> and <Katex tex="(\pi,1+\pi)" /> without stating the intercept values, and others swapped the labels, giving <Katex tex="\max=1-2\pi" /> and <Katex tex="\min=1+\pi" />. A sanity check catches the swap: <Katex tex="1+\pi\approx4.14" /> is the larger.</>,
   },
 ]
 
 const ROWS_FIII: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 0 \implies \sin(x) = -1 \implies x = \tfrac{3\pi}{2}" />,
-    reason: <>The only <Katex tex="x" />-intercept of <Katex tex="f" /> in the domain.</>,
+    reason: <>The only <Katex tex="x" />-intercept of <Katex tex="f" /> in the domain: the minimum, where the curve touches the axis.</>,
   },
   {
     working: <Katex display tex="t\!\left(\tfrac{3\pi}{2}\right) = 0: \quad \cos(p)\left(\tfrac{3\pi}{2}-p\right)+\sin(p)+1 = 0" />,
-    reason: <>One equation in p.</>,
+    reason: <>The tangent must cross the axis at <Katex tex="\tfrac{3\pi}{2}" />: substitute <Katex tex="x=\tfrac{3\pi}{2}" /> into part f.i's rule.</>,
   },
   {
-    working: <Katex display tex="\text{“unique”} \implies \cos(p)\ne0" />,
-    reason: <>A horizontal tangent has either no <Katex tex="x" />-intercept or infinitely many. At <Katex tex="p=\tfrac{3\pi}{2}" /> the tangent <em>is</em> the <Katex tex="x" />-axis, so every point is an intercept — which is why that root must be rejected.</>,
+    working: <Katex display tex="\text{solve on } \left(0,\tfrac{5\pi}{2}\right): \ p = 2.381\ldots, \ \tfrac{3\pi}{2}, \ 7.043\ldots" />,
+    reason: <>With <Cas fn="solve" /> (or <Cas fn="nSolve" /> with bounds), restricting <Katex tex="p" /> to the interval; expect three roots, including the touching root <Katex tex="\tfrac{3\pi}{2}" />.</>,
+    more: <>At <Katex tex="p=\tfrac{3\pi}{2}" /> the left-hand side only touches zero, so on a graph that root is easy to miss — but it has to be found and dealt with, not overlooked.</>,
   },
   {
-    working: <Katex display tex="\text{solve numerically on } \left(0,\tfrac{5\pi}{2}\right)\setminus\left\{\tfrac{3\pi}{2}\right\}" />,
-    reason: <>By <Cas fn="nSolve" />, or by graphing the left-hand side.</>,
+    working: <Katex display tex="p = \tfrac{3\pi}{2}: \ t(x) = 0 \ \text{(the } x\text{-axis)} \implies \text{reject}" />,
+    reason: <>There <Katex tex="\cos(p)=0" />, so the tangent is the <Katex tex="x" />-axis itself: every point is an intercept, so it is not unique.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 2.38 \ \text{ or } \ p = 7.04}" />,
-    reason: <>Two decimal places. The report notes <Katex tex="p=4.71\ldots" /> (that is, <Katex tex="\tfrac{3\pi}{2}" />) was often included and was not awarded full marks.</>,
+    reason: <>Two decimal places. Each of these tangents has non-zero gradient, so its <Katex tex="x" />-intercept is unique.</>,
+    more: <>The report notes <Katex tex="p=4.71\ldots" /> (that is, <Katex tex="\tfrac{3\pi}{2}" />) was often included and was not awarded full marks, and that <Katex tex="p=4.49" /> and <Katex tex="p=7.73" /> were other common incorrect responses. Those two solve <Katex tex="\tan(p)=p" />, which is <Katex tex="t(0)=1" />: the tangent passing through <Katex tex="(0,1)" />, not through <Katex tex="\left(\tfrac{3\pi}{2},0\right)" />. Check any answer by substituting it back into the part f.iii. equation.</>,
   },
 ]
 
 const ROWS_GI: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = ax^3+bx^2+cx+d \implies g(0) = d" />,
-    reason: <>Only the constant term survives at zero.</>,
+    reason: <>Substitute <Katex tex="x=0" />: only the constant term survives.</>,
   },
   {
     working: <Katex display tex="f(0) = \sin(0)+1 = 1 \implies d = 1" />,
-    reason: <>The first condition. The report notes some students substituted <Katex tex="a=b=c=0" /> rather than <Katex tex="x=0" />.</>,
+    reason: <>Using <Katex tex="g(0)=f(0)" />.</>,
+    more: <>The report notes some students substituted <Katex tex="a=b=c=0" /> rather than <Katex tex="x=0" />. The condition is about the functions' values at <Katex tex="x=0" />; the coefficients are what we are solving for.</>,
   },
   {
     working: <Katex display tex="g'(x) = 3ax^2+2bx+c \implies g'(0) = c" />,
-    reason: <>Likewise for the derivative.</>,
+    reason: <>Differentiate, then substitute <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="f'(0) = \cos(0) = 1 \implies c = 1" />,
-    reason: <>The second condition.</>,
+    reason: <>Using <Katex tex="g'(0)=f'(0)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{c = 1 \ \text{ and } \ d = 1}" />,
-    reason: <>As required. In effect <Katex tex="g" /> now matches the Maclaurin behaviour of <Katex tex="f" /> to first order.</>,
+    reason: <>As required.</>,
+    more: <>Geometrically, <Katex tex="g" /> and <Katex tex="f" /> pass through the same point <Katex tex="(0,1)" /> with the same gradient 1: they share a tangent there. Parts g.ii. and g.iii. add the same kind of condition at a second point.</>,
   },
 ]
 
 const ROWS_GII: WorkingRow[] = [
   {
-    working: <Katex display tex="g(2\pi) = f(2\pi) = 1: \quad 8\pi^3a+4\pi^2b+2\pi+1 = 1" />,
-    reason: <>Using <Katex tex="c=d=1" /> from part g.i.</>,
+    working: <Katex display tex="\begin{aligned}&g(2\pi) = f(2\pi) = 1: \\ &8\pi^3a+4\pi^2b+2\pi+1 = 1\end{aligned}" />,
+    reason: <><Katex tex="f(2\pi)=\sin(2\pi)+1=1" />. Substitute <Katex tex="x=2\pi" /> into <Katex tex="g" />, with <Katex tex="c=d=1" /> from part g.i.</>,
   },
   {
-    working: <Katex display tex="g'(2\pi) = f'(2\pi) = 1: \quad 12\pi^2a+4\pi b+1 = 1 \implies b = -3\pi a" />,
-    reason: <>The second equation solves immediately for b in terms of a.</>,
+    working: <Katex display tex="\begin{aligned}g'(2\pi) = f'(2\pi) = 1&: \quad 12\pi^2a+4\pi b+1 = 1 \\ &\implies b = -3\pi a\end{aligned}" />,
+    reason: <><Katex tex="f'(2\pi)=\cos(2\pi)=1" /> and <Katex tex="g'(x)=3ax^2+2bx+1" />. This equation gives <Katex tex="b" /> in terms of <Katex tex="a" />.</>,
   },
   {
-    working: <Katex display tex="8\pi^3a-12\pi^3a = -2\pi \implies -4\pi^3a = -2\pi \implies a = \frac{1}{2\pi^2}" />,
-    reason: <>Substituting back.</>,
+    working: <Katex display tex="\begin{aligned}8\pi^3a-12\pi^3a &= -2\pi \\ -4\pi^3a &= -2\pi \\ a &= \frac{1}{2\pi^2}\end{aligned}" />,
+    reason: <>Substitute <Katex tex="b=-3\pi a" /> into the first equation (after subtracting 1 from both sides).</>,
+    more: <>Or solve the two equations simultaneously for <Katex tex="a" /> and <Katex tex="b" /> with <Cas fn="solve" />, as the report does.</>,
   },
   {
     working: <Katex display tex="b = -\frac{3}{2\pi} \implies g(x) = \frac{x^3}{2\pi^2}-\frac{3x^2}{2\pi}+x+1" />,
-    reason: <>The cubic is now fully determined, and it meets <Katex tex="f" /> at <Katex tex="x=0" />, <Katex tex="x=\pi" /> and <Katex tex="x=2\pi" />.</>,
+    reason: <><Katex tex="b=-3\pi\times\tfrac{1}{2\pi^2}" />. The cubic is now fully determined.</>,
   },
   {
-    working: <Katex display tex="\text{Area} = \int_0^{2\pi}\left|f(x)-g(x)\right|dx" />,
-    reason: <>They cross once inside, at <Katex tex="x=\pi" />, so the absolute value matters — two signed halves would cancel to nearly nothing.</>,
+    working: <Katex display tex="g(\pi) = \tfrac{\pi}{2}-\tfrac{3\pi}{2}+\pi+1 = 1 = f(\pi)" />,
+    reason: <>For an area, first find every crossing inside <Katex tex="[0,2\pi]" />. Graphing both shows they also meet at <Katex tex="x=\pi" />: <Katex tex="f" /> is above <Katex tex="g" /> on <Katex tex="(0,\pi)" />, below on <Katex tex="(\pi,2\pi)" />.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned}\text{Area} &= \int_0^{\pi}\bigl(f(x)-g(x)\bigr)dx \\ &\quad+\int_{\pi}^{2\pi}\bigl(g(x)-f(x)\bigr)dx \\ &= 1.5325\ldots\end{aligned}" />,
+    reason: <>Split at the crossing so each piece is top minus bottom. Evaluate with <Cas fn="nInt" />.</>,
+    more: <>The report notes a common incorrect method was <Katex tex="\int_0^{2\pi}f(x)-g(x)\,dx" />: the two pieces have equal size and opposite sign, so that gives 0. The report uses this symmetry the other way: Area <Katex tex="=2\int_0^{\pi}\bigl(f(x)-g(x)\bigr)dx" />.</>,
   },
   {
     working: <Katex display tex="\boxed{1.53 \text{ square units}}" />,
-    reason: <>Two decimal places, as required — the report notes some students gave an exact form instead.</>,
+    reason: <>Two decimal places, as required.</>,
+    more: <>The exact value is <Katex tex="4-\tfrac{\pi^2}{4}" />; the report notes some students gave their answer in exact form, not correct to two decimal places as the question required.</>,
   },
 ]
 
@@ -434,28 +460,22 @@ const ROWS_GIII: WorkingRow[] = [
     reason: <>A parabola now, not a cubic.</>,
   },
   {
-    working: <Katex display tex="g(r) = f(r): \quad br^2+r+1 = \sin(r)+1 \implies br^2+r = \sin(r)" />,
-    reason: <>The first condition.</>,
+    working: <Katex display tex="g(r) = f(r): \quad br^2+r+1 = \sin(r)+1" />,
+    reason: <>Equal values at <Katex tex="x=r" />.</>,
   },
   {
-    working: <Katex display tex="g'(r) = f'(r): \quad 2br+1 = \cos(r) \implies b = \frac{\cos(r)-1}{2r}" />,
-    reason: <>The second condition, solved for b.</>,
+    working: <Katex display tex="g'(r) = f'(r): \quad 2br+1 = \cos(r)" />,
+    reason: <><Katex tex="g'(x)=2bx+1" /> and <Katex tex="f'(x)=\cos(x)" />: equal gradients at <Katex tex="x=r" />.</>,
   },
   {
-    working: <Katex display tex="\frac{r(\cos(r)-1)}{2}+r = \sin(r) \implies r\bigl(\cos(r)+1\bigr) = 2\sin(r)" />,
-    reason: <>Substituting and tidying.</>,
+    working: <Katex display tex="\text{solve simultaneously for } b, r \text{ with } 0<r<\tfrac{5\pi}{2}" />,
+    reason: <>Two equations, two unknowns: use <Cas fn="solve" />, restricting <Katex tex="r" /> to the interval.</>,
+    more: <>The CAS returns a single solution. Eliminating <Katex tex="b" /> by hand gives <Katex tex="r\bigl(\cos(r)+1\bigr)=2\sin(r)" />, and graphing the difference of the two sides on <Katex tex="\left(0,\tfrac{5\pi}{2}\right)" /> shows its only zero is <Katex tex="r=\pi" />.</>,
   },
   {
-    working: <Katex display tex="2r\cos^2\!\left(\tfrac{r}{2}\right) = 4\sin\!\left(\tfrac{r}{2}\right)\cos\!\left(\tfrac{r}{2}\right)" />,
-    reason: <>Double-angle forms: <Katex tex="1+\cos r=2\cos^2\!\left(\tfrac r2\right)" /> and <Katex tex="\sin r=2\sin\!\left(\tfrac r2\right)\cos\!\left(\tfrac r2\right)" />.</>,
-  },
-  {
-    working: <Katex display tex="\cos\!\left(\tfrac{r}{2}\right) = 0 \implies r = \pi" />,
-    reason: <>The other factor gives <Katex tex="\tan\!\left(\tfrac r2\right)=\tfrac r2" />, whose first positive root <Katex tex="\tfrac r2\approx4.49" /> puts <Katex tex="r" /> outside the domain.</>,
-  },
-  {
-    working: <Katex display tex="\boxed{r = \pi, \qquad b = \frac{\cos(\pi)-1}{2\pi} = -\frac{1}{\pi}}" />,
-    reason: <>Exact values. Check: <Katex tex="g(\pi) = -\pi+\pi+1 = 1 = \sin(\pi)+1" /> ✓ and <Katex tex="g'(\pi) = -2+1 = -1 = \cos(\pi)" /> ✓.</>,
+    working: <Katex display tex="\boxed{r = \pi, \qquad b = -\frac{1}{\pi}}" />,
+    reason: <>Exact values are required: if CAS gives <Katex tex="3.14159\ldots" /> and <Katex tex="-0.31830\ldots" />, recognise them as <Katex tex="\pi" /> and <Katex tex="-\tfrac{1}{\pi}" />.</>,
+    more: <>The report notes some students gave only approximate answers, and others had just the left-hand sides <Katex tex="br^2+r" /> and <Katex tex="2br+1" /> without equating them to <Katex tex="f(r)" /> and <Katex tex="f'(r)" />. Check: <Katex tex="g(\pi)=-\pi+\pi+1=1=\sin(\pi)+1" /> and <Katex tex="g'(\pi)=-2+1=-1=\cos(\pi)" />.</>,
   },
 ]
 
@@ -491,11 +511,6 @@ export default function MethodsQ4_2025Exam2() {
               method converges so slowly in part e., and why part f.iii. has to exclude{' '}
               <Katex tex="p=\tfrac{3\pi}{2}" />, where the tangent lies flat along the{' '}
               <Katex tex="x" />-axis and has infinitely many intercepts.
-            </p>
-            <p>
-              Part f.ii. rewards doing the algebra before the calculus: differentiating{' '}
-              <Katex tex="-p\cos(p)+\sin(p)+1" /> gives simply <Katex tex="p\sin(p)" />, because
-              the product rule throws up a <Katex tex="\cos(p)" /> that cancels.
             </p>
           </Background>
         </div>

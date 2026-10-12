@@ -1,5 +1,5 @@
 // 2025 Mathematical Methods — Exam 2, MCQ 4. VCAA examination report: 55% correct.
-// No solutions needs a zero determinant AND an inconsistency. Question text transcribed from the original paper.
+// No solutions needs parallel lines (equal coefficient ratios, the report's method; matrices are not in Methods) AND an inconsistency. Question text transcribed from the original paper.
 // Solution is original.
 
 import Katex from '../../../components/Katex'
@@ -31,28 +31,32 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{vmatrix}k & 3\\2 & 2k+1\end{vmatrix} = k(2k+1)-6 = 2k^2+k-6" />,
-    reason: <>A unique solution exists exactly when this determinant is non-zero, so the candidates come from setting it to zero.</>,
+    working: <Katex display tex="\text{parallel} \iff \dfrac{k}{2} = \dfrac{3}{2k+1}" />,
+    reason: <>Each equation is a line. Two lines fail to meet at exactly one point only when they are parallel: their <Katex tex="x" />- and <Katex tex="y" />-coefficients are in the same ratio.</>,
+    more: <>This is the same as equal gradients. Rearranged, the lines are <Katex tex="y=-\tfrac{k}{3}x+\tfrac{k^2}{3}" /> and <Katex tex="y=-\tfrac{2}{2k+1}x+\tfrac{6-2k}{2k+1}" />, and <Katex tex="-\tfrac{k}{3}=-\tfrac{2}{2k+1}" /> cross-multiplies to the same equation as the next line. The second form needs <Katex tex="k\ne-\tfrac12" />. At <Katex tex="k=-\tfrac12" /> the second line is the vertical line <Katex tex="2x=7" />, which the first line crosses once, so that value gives a unique solution.</>,
   },
   {
-    working: <Katex display tex="2k^2+k-6 = (2k-3)(k+2) = 0 \implies k = \tfrac32 \ \text{ or } \ k = -2" />,
-    reason: <>Two candidates — and this is where the question really starts. A zero determinant means <em>either</em> no solutions <em>or</em> infinitely many, so each must be tested.</>,
+    working: <Katex display tex="\begin{gathered}k(2k+1) = 6\\ 2k^2+k-6 = 0\\ (2k-3)(k+2) = 0\\ k =\tfrac32 \text{ or } k=-2\end{gathered}" />,
+    reason: <>Cross-multiply and factorise. Parallel lines either coincide (infinitely many solutions) or never meet (no solutions), so each value must be tested.</>,
   },
   {
-    working: <Katex display tex="k=\tfrac32: \quad \tfrac32x+3y = \tfrac94 \ \text{ and } \ 2x+4y = 3" />,
-    reason: <>The second equation is <Katex tex="\tfrac43" /> times the first, so the two lines coincide.</>,
+    working: <Katex display tex="\begin{aligned}k=\tfrac32: \quad \tfrac32x+3y &= \tfrac94\\ 2x+4y &= 3\end{aligned}" />,
+    reason: <>Substitute into both equations. Multiplying the first by <Katex tex="\tfrac43" /> gives exactly the second, so the two lines coincide.</>,
+    more: <>The report checks this with the constants: <Katex tex="\tfrac{k^2}{6-2k}=\tfrac{9/4}{3}=\tfrac34" />, the same as <Katex tex="\tfrac{k}{2}=\tfrac34" />. When the constant terms are in the same ratio as the coefficients, the equations are multiples of each other: the same line.</>,
   },
   {
     working: <Katex display tex="\implies \text{infinitely many solutions, not none}" />,
-    reason: <>So <Katex tex="k=\tfrac32" /> is rejected. Option <b>C</b>, chosen by 19%, keeps it.</>,
+    reason: <>So <Katex tex="k=\tfrac32" /> is rejected.</>,
   },
   {
-    working: <Katex display tex="k=-2: \quad -2x+3y = 4 \ \text{ and } \ 2x-3y = 10" />,
-    reason: <>Adding the two gives 0 = 14.</>,
+    working: <Katex display tex="\begin{aligned}k=-2: \quad -2x+3y &= 4\\ 2x-3y &= 10\end{aligned}" />,
+    reason: <>Adding the two equations gives <Katex tex="0=14" />, which is impossible: parallel lines that never meet.</>,
+    more: <>In the report&apos;s ratio form: the constants give <Katex tex="\tfrac{k^2}{6-2k}=\tfrac{4}{10}=\tfrac25" />, but <Katex tex="\tfrac{k}{2}=-1" />. The ratios differ, so the lines are parallel but separate.</>,
   },
   {
     working: <Katex display tex="\boxed{k = -2 \text{ only}}" />,
-    reason: <>Matches option <b>A</b>: parallel but distinct lines, so no solutions.</>,
+    reason: <>Matches option <b>A</b>: the only value giving no solutions.</>,
+    more: <>Option <b>B</b> (13%) is the value giving infinitely many solutions. Option <b>C</b> (19%) is the trap: it stops at the parallel condition and keeps both values without testing them. Option <b>D</b> (12%) is every value giving a unique solution, the opposite of what was asked.</>,
   },
 ]
 

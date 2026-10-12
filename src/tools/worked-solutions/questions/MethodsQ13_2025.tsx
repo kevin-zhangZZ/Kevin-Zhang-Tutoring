@@ -49,31 +49,44 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <>Since only the <i>shapes</i> are given (not formulas), pick concrete functions with matching shapes: let <Katex tex="g(x)=x(x+1)(x-1)(x-2)" /> (roots at <Katex tex="-1,0,1,2" />, a W-shape through the origin) and <Katex tex="f(x)=-x" /> (a line through the origin with negative gradient).</>,
-    reason: <>Standard technique for "identify the composite from a sketch" questions — the specific choice doesn't matter as long as the qualitative shape matches.</>,
+    reason: <>Any formulas with the right shapes will do: a different negative gradient only stretches the answer sideways. This <Katex tex="g" /> fits the sketch: one negative root, a root at <Katex tex="0" />, then two positive roots.</>,
+    more: <>Why a particular choice is safe: every line through the origin with negative gradient is <Katex tex="f(x)=-kx" /> for some <Katex tex="k>0" />, so <Katex tex="(g\circ f)(x)=g(-kx)" />. That is the graph of <Katex tex="g" /> reflected in the <Katex tex="y" />-axis and then dilated by a factor of <Katex tex="\tfrac1k" /> from the <Katex tex="y" />-axis, which is the report&apos;s first method. The dilation only stretches or squeezes sideways, so the <i>shape</i> is the same for every <Katex tex="k" />, and taking <Katex tex="k=1" /> loses nothing.</>,
   },
   {
-    working: <Katex display tex="(g\circ f)(x) = g(-x) = (-x)(-x+1)(-x-1)(-x-2)" />,
-    reason: <>Substitute f(x) = −x into g.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}(g\circ f)(x) &= g(-x)\\ &= (-x)(-x+1)(-x-1)(-x-2)\end{aligned}"
+      />
+    ),
+    reason: <><Katex tex="(g\circ f)(x)" /> means <Katex tex="g(f(x))" />: <Katex tex="f" /> acts first, so replace every <Katex tex="x" /> in <Katex tex="g" /> by <Katex tex="f(x)=-x" />.</>,
   },
   {
     working: <Katex display tex="= (-x)(1-x)(x+1)(x+2)" />,
-    reason: <>Simplify <Katex tex="(-x-1)=-(x+1)" /> and <Katex tex="(-x-2)=-(x+2)" /> — the two sign flips cancel each other.</>,
+    reason: <>Simplify <Katex tex="(-x-1)=-(x+1)" /> and <Katex tex="(-x-2)=-(x+2)" />: the two sign flips cancel each other.</>,
   },
   {
     working: <Katex display tex="\boxed{(g\circ f)(x) = x(x-1)(x+1)(x+2)}" />,
-    reason: <>Rewrite <Katex tex="(-x)(1-x)=x(x-1)" />. Roots at <Katex tex="-2,-1,0,1" /> — three non-positive and only one positive, so <b>not</b> symmetric about the <Katex tex="y" />-axis.</>,
+    reason: <>Rewrite <Katex tex="(-x)(1-x)=x(x-1)" />. Roots at <Katex tex="-2,-1,0,1" />: two negative, <Katex tex="0" /> and one positive. So the local maximum lies between <Katex tex="-1" /> and <Katex tex="0" />.</>,
+    more: <>These are <Katex tex="g" />&apos;s roots <Katex tex="-1,0,1,2" /> with their signs flipped, exactly what a reflection in the <Katex tex="y" />-axis does. The turning points flip too: <Katex tex="g" />&apos;s local maximum is just to the <i>right</i> of the origin, so the local maximum of <Katex tex="y=(g\circ f)(x)" /> is just to the <i>left</i>.</>,
   },
   {
     working: <>This is a product of four linear factors, so the leading term is <Katex tex="x^4" /> with a <b>positive</b> coefficient — the graph must rise to <Katex tex="+\infty" /> at <i>both</i> ends (a "W"-family shape), never dropping away at either end.</>,
-    reason: <>Immediately rules out <b>B</b> and <b>D</b> — both curve back downward at the far left and right ends ("M"-family shapes), which would mean a negative leading coefficient instead.</>,
+    reason: <>Rules out <b>B</b> and <b>D</b>: both fall away downward at the far left and right ("M" shapes), which needs a negative leading coefficient.</>,
   },
   {
     working: <>Between the two remaining "W"-shaped candidates: <b>A</b> is symmetric about the <Katex tex="y" />-axis (its roots and dip-depths mirror each other either side of <Katex tex="x=0" />); <b>C</b> is visibly asymmetric, shifted toward negative <Katex tex="x" />.</>,
-    reason: <>The roots <Katex tex="-2,-1,0,1" /> are <i>not</i> symmetric about <Katex tex="x=0" /> (three of the four roots are negative or zero) — so the graph can't be symmetric either. Rules out <b>A</b>.</>,
+    reason: <>The roots <Katex tex="-2,-1,0,1" /> are <i>not</i> symmetric about <Katex tex="x=0" />, so the graph can&apos;t be symmetric either. Rules out <b>A</b>.</>,
   },
   {
     working: OPT_C,
-    reason: <>Matches option <b>C</b> — the only "W"-family graph that's also visibly asymmetric, shifted toward negative <Katex tex="x" />, consistent with roots <Katex tex="-2,-1,0,1" />.</>,
+    reason: <>Matches option <b>C</b>: a "W" with roots like <Katex tex="-2,-1,0,1" /> and its local maximum between <Katex tex="-1" /> and <Katex tex="0" />.</>,
+    more: <>
+      Where the wrong answers come from:
+      <br />• <b>D</b> (25%, the most common wrong answer) is the graph of <Katex tex="y=-g(x)" />: <Katex tex="g" /> reflected in the <Katex tex="x" />-axis, still with roots <Katex tex="-1,0,1,2" />. That is <Katex tex="(f\circ g)(x)=f(g(x))" />, the composition done in the wrong order. In <Katex tex="g\circ f" />, <Katex tex="f" /> acts on <Katex tex="x" /> first, so it moves the graph <i>sideways</i> (a reflection in the <Katex tex="y" />-axis), not up and down.
+      <br />• <b>B</b> is <b>C</b> turned upside down: the right roots, but a negative leading coefficient.
+      <br />• <b>A</b> is symmetric about the <Katex tex="y" />-axis, which would need the roots to come in <Katex tex="\pm" /> pairs.
+    </>,
   },
 ]
 

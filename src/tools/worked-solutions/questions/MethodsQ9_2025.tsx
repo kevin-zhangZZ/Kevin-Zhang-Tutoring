@@ -27,23 +27,29 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="W: \text{walked}, \qquad L: \text{took at least 30 minutes}" />,
-    reason: <>Naming the two events makes the conditional probability readable.</>,
+    reason: <>&ldquo;Given that &hellip; took at least 30 minutes&rdquo; means the answer is <Katex tex="\Pr(W\mid L)" />, with <Katex tex="L" /> as the condition.</>,
   },
   {
-    working: <Katex display tex="\text{walkers who were late} = 0.2m" />,
-    reason: <>Counts, not proportions — there are m walkers in total.</>,
+    working: <Katex display tex="\text{walkers in } L = 0.2m" />,
+    reason: <>20% of the <Katex tex="m" /> walkers. Use counts, not percentages: the groups differ in size (<Katex tex="m" /> vs <Katex tex="n" />), so 20% and 40% can&rsquo;t simply be compared.</>,
   },
   {
-    working: <Katex display tex="\text{others who were late} = 0.4n" />,
-    reason: <>The other branch.</>,
+    working: <Katex display tex="\text{non-walkers in } L = 0.4n" />,
+    reason: <>40% of the <Katex tex="n" /> students who used other transport.</>,
   },
   {
     working: <Katex display tex="\Pr(W\mid L) = \frac{0.2m}{0.2m+0.4n}" />,
-    reason: <>Out of everyone who took at least 30 minutes, the fraction who walked.</>,
+    reason: <>Only students in <Katex tex="L" /> count now: <Katex tex="0.2m+0.4n" /> of them, of whom <Katex tex="0.2m" /> walked.</>,
+    more: <>A student is selected at random, so each probability is a count divided by the <Katex tex="m+n" /> students in total. This is the report&rsquo;s <Katex tex="\tfrac{\Pr(W\cap L)}{\Pr(L)}" /> written that way, with the <Katex tex="m+n" /> cancelling top and bottom.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{m}{m+2n}}" />,
-    reason: <>Matches option <b>A</b>: divide numerator and denominator by 0.2. Option <b>B</b> is the complement <Katex tex="\Pr(\text{not }W\mid L)" />, and <b>C</b> is <Katex tex="\Pr(W\cap L)" /> without conditioning.</>,
+    reason: <>Divide top and bottom by 0.2. Matches option <b>A</b>.</>,
+    more: <>
+      <b>B</b>, <Katex tex="\tfrac{2n}{m+2n}=\tfrac{0.4n}{0.2m+0.4n}" />, is the probability that a student in <Katex tex="L" /> did <em>not</em> walk.{' '}
+      <b>C</b>, <Katex tex="\tfrac{m}{5(m+n)}=\tfrac{0.2m}{m+n}" />, is <Katex tex="\Pr(W\cap L)" />: it divides by all <Katex tex="m+n" /> students instead of only those in <Katex tex="L" />.{' '}
+      <b>D</b>, <Katex tex="\tfrac13=\tfrac{0.2}{0.2+0.4}" />, uses the percentages alone, which is only right if the two groups are the same size (<Katex tex="m=n" />).
+    </>,
   },
 ]
 

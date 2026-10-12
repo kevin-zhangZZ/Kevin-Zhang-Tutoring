@@ -27,27 +27,34 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="n = 17, \quad k = 5" />,
-    reason: <>The initial values. <Katex tex="k" /> never changes, so each pass subtracts 5.</>,
+    reason: <>The initial values. <Katex tex="k" /> never changes, so each pass of the loop subtracts 5 from <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="17>5 \ \checkmark \implies n = 12, \ \text{print } 12" />,
-    reason: <>The test happens before the body, and the print happens after the subtraction.</>,
+    reason: <>The test <Katex tex="n>k" /> is checked first; if true, the body runs in order: subtract, then print the new <Katex tex="n" />.</>,
+    more: <>A <code>while</code> loop only checks its condition at the top of each pass. Once the test passes, every line of the body runs, even if <Katex tex="n" /> drops below <Katex tex="k" /> partway through. Separately, 17 is never printed because the body subtracts 5 before it prints, so the first value printed is already 12.</>,
   },
   {
     working: <Katex display tex="12>5 \ \checkmark \implies n = 7, \ \text{print } 7" />,
-    reason: <>Second pass.</>,
+    reason: <>Second pass: back to the test with the new value <Katex tex="n=12" />.</>,
   },
   {
     working: <Katex display tex="7>5 \ \checkmark \implies n = 2, \ \text{print } 2" />,
-    reason: <>Third pass.</>,
+    reason: <>Third pass. The test was passed with <Katex tex="n=7" />, so 2 is still printed, even though <Katex tex="2<5" />.</>,
+    more: <>This is the step behind option <b>B</b> (15%): stopping as soon as <Katex tex="n" /> falls below 5 and not printing 2. The comparison with <Katex tex="k" /> is only made at the top of the next pass, after 2 has already been printed.</>,
   },
   {
     working: <Katex display tex="2>5 \ \times \implies \text{loop ends}" />,
-    reason: <>The test fails, so nothing more is printed — <Katex tex="-3" /> never happens, which is what option <b>D</b> assumes.</>,
+    reason: <>The test fails, so the body does not run again: nothing more is printed, and <Katex tex="-3" /> never appears.</>,
   },
   {
     working: <Katex display tex="\boxed{12,\ 7,\ 2}" />,
-    reason: <>Matches option <b>C</b>. Note 17 itself is never printed, because the print statement sits after the subtraction.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>
+      <b>A</b> (12) stops after a single pass, as if the <code>while</code> were a one-off <code>if</code>.{' '}
+      <b>B</b> (12, 7) is the third-pass slip described above.{' '}
+      <b>D</b> (12, 7, 2, <Katex tex="-3" />) runs one more pass after the test <Katex tex="2>5" /> has failed. Writing <Katex tex="n" /> after each line, as the report does, keeps the order test, subtract, print straight.
+    </>,
   },
 ]
 

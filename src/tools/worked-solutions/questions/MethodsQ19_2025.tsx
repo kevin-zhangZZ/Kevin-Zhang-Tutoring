@@ -5,6 +5,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 import reportGraphSrc from './meth-2025-mcq19-report-graph.png'
 
@@ -40,36 +41,39 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <>The shortest segment between a line and a smooth curve is <b>perpendicular</b> to the line — and since the line has gradient 1, the curve's tangent at <Katex tex="B" /> must also have gradient 1.</>,
-    reason: <>Key geometric fact for minimum-distance problems.</>,
+    working: <Katex display tex="g(x) = \log_e(x-1),\quad g'(x) = \frac{1}{x-1}" />,
+    reason: <>For the shortest <Katex tex="AB" />, the curve's tangent at <Katex tex="B" /> must be parallel to the line, so it has gradient 1.</>,
+    more: <>Why: <Katex tex="AB" /> is shortest when it is perpendicular to the line. If the tangent at <Katex tex="B" /> were steeper or flatter than the line, moving <Katex tex="B" /> a little along the curve would bring it closer to the line. The report's diagram shows this: the dashed tangent at <Katex tex="B" /> runs parallel to the red line.</>,
   },
   {
-    working: <Katex display tex="g(x) = \log_e(x-1) \;\implies\; g'(x) = \frac{1}{x-1}" />,
-    reason: <>Differentiate the curve <Katex tex="y=\log_e(x-1)" />.</>,
+    working: <Katex display tex="\begin{aligned} \frac{1}{x-1} &= 1 \;\implies\; x=2 \\ B &= (2,\ \log_e(1)) = (2,0) \end{aligned}" />,
+    reason: <>Set <Katex tex="g'(x)=1" /> to find where the curve has gradient 1, then substitute into <Katex tex="g" /> for the <Katex tex="y" />-coordinate.</>,
   },
   {
-    working: <Katex display tex="\frac{1}{x-1} = 1 \;\implies\; x=2" />,
-    reason: <>Find where the tangent has gradient 1.</>,
+    working: <Katex display tex="d(x) = \sqrt{(x-2)^2 + (x+c-0)^2}" />,
+    reason: <>Distance from <Katex tex="B(2,0)" /> to a general point <Katex tex="A(x,\ x+c)" /> on the line.</>,
   },
   {
-    working: <Katex display tex="B = (2,\ \log_e(1)) = (2,0)" />,
-    reason: <>Coordinates of the closest point on the curve.</>,
+    working: <Katex display tex="d'(x) = 0 \;\implies\; x = \frac{2-c}{2}" />,
+    reason: <>The closest point <Katex tex="A" /> minimises <Katex tex="d" />: <Katex tex="d'(x)=0" />, solved for <Katex tex="x" /> with <Cas fn="solve" />.</>,
+    more: <>By hand, it is enough to minimise the expression under the square root: its derivative is <Katex tex="2(x-2)+2(x+c)=0" />, so <Katex tex="4x=4-2c" /> and <Katex tex="x=\tfrac{2-c}{2}" />. (For <Katex tex="c=0" /> this gives <Katex tex="A=(1,1)" />, as in the report's diagram.)</>,
   },
   {
-    working: <Katex display tex="\text{Distance from } (2,0) \text{ to } x-y+c=0: \quad \frac{|2-0+c|}{\sqrt2} = \frac{|2+c|}{\sqrt2}" />,
-    reason: <>Perpendicular distance from a point to a line.</>,
+    working: <Katex display tex="\begin{aligned} d\left(\tfrac{2-c}{2}\right) &= \sqrt{\left(\tfrac{-2-c}{2}\right)^2 + \left(\tfrac{2+c}{2}\right)^2} \\ &= \sqrt{\tfrac{(2+c)^2}{2}} = \frac{|2+c|}{\sqrt2} \end{aligned}" />,
+    reason: <>Substitute back: <Katex tex="\tfrac{2-c}{2}-2=\tfrac{-2-c}{2}" /> and <Katex tex="\tfrac{2-c}{2}+c=\tfrac{2+c}{2}" />. This is the minimum length of <Katex tex="AB" />.</>,
   },
   {
-    working: <Katex display tex="\frac{|2+c|}{\sqrt2} = \sqrt2 \;\implies\; |2+c| = 2" />,
-    reason: <>Set equal to the given minimum distance.</>,
-  },
-  {
-    working: <Katex display tex="2+c = 2 \ \text{ or } \ 2+c=-2 \;\implies\; c=0 \ \text{ or } \ c=-4" />,
-    reason: <>Solve the absolute value equation.</>,
+    working: <Katex display tex="\begin{aligned} \frac{|2+c|}{\sqrt2} &= \sqrt2 \;\implies\; |2+c| = 2 \\ c &= 0 \ \text{ or } \ c=-4 \end{aligned}" />,
+    reason: <>Set the minimum length equal to <Katex tex="\sqrt2" /> and solve: <Katex tex="2+c=2" /> or <Katex tex="2+c=-2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{c=0}" />,
-    reason: <>Matches option <b>D</b>. The report rejects <Katex tex="c=-4" /> because it is not an option; it also fails on its own terms, since <Katex tex="y=x-4" /> actually crosses the curve (between <Katex tex="x=5" /> and <Katex tex="x=6" />), so its minimum distance would be 0. For <Katex tex="c=0" />, <Katex tex="x>\log_e(x-1)" /> everywhere, so the line and curve never meet.</>,
+    reason: <>Matches option <b>D</b>; <Katex tex="c=-4" /> is not an option.</>,
+    more: <>
+      The report rejects <Katex tex="c=-4" /> simply because it is not an option. It also fails on its own terms: <Katex tex="y=x-4" /> actually crosses the curve (between <Katex tex="x=5" /> and <Katex tex="x=6" />), so its minimum distance is 0. For <Katex tex="c=0" /> there is no such problem: the curve lies below its tangent <Katex tex="y=x-2" /> at <Katex tex="B" /> (it is concave down: its gradient <Katex tex="\tfrac{1}{x-1}" /> is decreasing), and that tangent lies below <Katex tex="y=x" />, so the line and curve never meet and <Katex tex="\sqrt2" /> really is the shortest length.
+      <br />
+      The distractors, using <Katex tex="\tfrac{|2+c|}{\sqrt2}" />: option A (the most popular answer, 35%), <Katex tex="c=\sqrt2-2" />, makes the <em>vertical</em> gap at <Katex tex="x=2" /> equal to <Katex tex="\sqrt2" />, but the perpendicular distance is then only 1. Option B gives <Katex tex="\sqrt2+1\approx2.41" /> and option C gives <Katex tex="\tfrac{3}{\sqrt2}\approx2.12" />.
+    </>,
   },
 ]
 

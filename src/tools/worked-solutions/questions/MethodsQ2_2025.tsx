@@ -25,23 +25,26 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\tan(\theta) \text{ is undefined when } \theta = \frac{\pi}{2}+k\pi, \ k\in Z" />,
-    reason: <>Every asymptote of a tangent graph comes from this one condition.</>,
+    reason: <>The graph of <Katex tex="y=\tan(\theta)" /> has a vertical asymptote at every odd multiple of <Katex tex="\tfrac{\pi}{2}" />, where <Katex tex="\cos(\theta)=0" />.</>,
+    more: <>The 2 in front only stretches the graph vertically; it does not move any asymptote. So all the work is in the bracket inside the tangent.</>,
   },
   {
     working: <Katex display tex="\pi\left(x+\tfrac12\right) = \frac{\pi}{2}+k\pi" />,
-    reason: <>Setting the argument equal to it.</>,
+    reason: <>Set the whole argument of the tangent equal to that general form.</>,
   },
   {
     working: <Katex display tex="x+\tfrac12 = \tfrac12+k \implies x = k" />,
-    reason: <>Dividing by <Katex tex="\pi" />. The <Katex tex="+\tfrac12" /> inside exactly cancels the <Katex tex="\tfrac12" /> from the tangent's own offset.</>,
+    reason: <>Divide both sides by <Katex tex="\pi" />, then subtract <Katex tex="\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\text{check the period: } \frac{\pi}{\pi} = 1" />,
-    reason: <>Asymptotes are one period apart, so consecutive integers is exactly right. Option <b>B</b> spaces them 2 apart and <b>C</b> keeps only the odd ones.</>,
+    reason: <>The period of <Katex tex="\tan(nx)" /> is <Katex tex="\tfrac{\pi}{n}" />, so asymptotes are 1 unit apart — consecutive integers, as <Katex tex="x=k" /> says.</>,
+    more: <>This is also the report's route: find one asymptote (at <Katex tex="x=0" /> the argument is <Katex tex="\pi\cdot\tfrac12=\tfrac{\pi}{2}" />), then step along by the period. Don't use the sine/cosine formula <Katex tex="\tfrac{2\pi}{n}" /> here — it gives 2, which would wrongly space the asymptotes 2 apart.</>,
   },
   {
     working: <Katex display tex="\boxed{x = k, \quad k\in Z}" />,
-    reason: <>Matches option <b>A</b>. A quick sanity check: at <Katex tex="x=0" /> the argument is <Katex tex="\tfrac{\pi}{2}" />, so there really is an asymptote there.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>The question asks for <em>all</em> asymptotes. Options <b>B</b> (even integers) and <b>C</b> (odd integers, the most common wrong answer) are each only half of them — the spacing of 2 that a period of 2 would give. Option <b>D</b>, <Katex tex="x=\frac{4k+1}{2}=2k+\tfrac12" />, is not an asymptote at all: there the argument is <Katex tex="\pi(2k+1)" />, where <Katex tex="\tan" /> is 0, so those are <Katex tex="x" />-intercepts.</>,
   },
 ]
 
