@@ -15,6 +15,10 @@ export interface SAExaminerStats {
   comment?: ReactNode
 }
 
+// VCAA prints averages to at least one decimal place ("1.0", "0.0"), but a whole number
+// stored as `average: 1` would render as "1".
+const formatAverage = (a: number) => (Number.isInteger(a) ? a.toFixed(1) : String(a))
+
 export type MCQLetter = 'A' | 'B' | 'C' | 'D' | 'E'
 
 // VCAA examination-report stats for a multiple-choice question: the percentage of
@@ -334,7 +338,7 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
           <div className="flex justify-between items-baseline mt-2 text-[11px] text-gray-500 dark:text-gray-400">
             <span className="font-bold tracking-wider">Marks</span>
             <span>
-              Average <b className="text-[12.5px] text-sky-700 dark:text-sky-300">{stats.average}</b> / {maxMarks}
+              Average <b className="text-[12.5px] text-sky-700 dark:text-sky-300">{formatAverage(stats.average)}</b> / {maxMarks}
             </span>
           </div>
         </div>
@@ -361,7 +365,7 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
                 {stats.marks.map((p, m) => (
                   <td key={m} className="px-3 py-2 text-gray-800 dark:text-gray-100">{p}</td>
                 ))}
-                <td className="px-3 py-2 font-bold text-sky-700 dark:text-sky-300 border-l border-gray-200 dark:border-gray-800">{stats.average}</td>
+                <td className="px-3 py-2 font-bold text-sky-700 dark:text-sky-300 border-l border-gray-200 dark:border-gray-800">{formatAverage(stats.average)}</td>
               </tr>
             </tbody>
           </table>

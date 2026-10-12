@@ -86,9 +86,9 @@ export function MCQShell({
   const pct = (letter: string) => examinerReport?.percentages[letter as MCQLetter]
   const answers = options.filter(o => o.isAnswer)
   const wrongOptions = options.filter(o => !o.isAnswer && pct(o.letter) !== undefined)
-  const commonWrong = flawed
-    ? undefined
-    : wrongOptions.reduce<MCQOptionData | undefined>((best, o) => (best === undefined || pct(o.letter)! > pct(best.letter)! ? o : best), undefined)
+  // Every wrong option sharing the top percentage, so a tie (e.g. B and C both 17%) names both.
+  const topWrongPct = wrongOptions.reduce((max, o) => Math.max(max, pct(o.letter)!), 0)
+  const commonWrong = flawed || topWrongPct === 0 ? [] : wrongOptions.filter(o => pct(o.letter) === topWrongPct)
 
   return (
     <DiagramScope>
@@ -159,9 +159,11 @@ export function MCQShell({
           )}
           </div>
           )}
-          {revealed && commonWrong && pct(commonWrong.letter)! > 0 && (
+          {revealed && commonWrong.length > 0 && (
             <p className="text-[12px] text-gray-500 dark:text-gray-400 mt-1">
-              Most common wrong answer: {commonWrong.letter} ({pct(commonWrong.letter)}% of students).
+              {commonWrong.length === 1
+                ? `Most common wrong answer: ${commonWrong[0].letter} (${topWrongPct}% of students).`
+                : `Most common wrong answers: ${commonWrong.map(o => o.letter).join(' and ')} (${topWrongPct}% of students each).`}
             </p>
           )}
         </div>

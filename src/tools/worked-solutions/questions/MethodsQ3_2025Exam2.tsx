@@ -351,7 +351,7 @@ export default function MethodsQ3_2025Exam2() {
         <div className="py-1">
           <Katex
             display
-            tex="f(t)=\begin{cases}\dfrac{1}{1\,215\,000}(t-29)(59-t)^3 & 29\le t\le59\\[8pt] 0 & \text{otherwise}\end{cases}"
+            tex="f(t)=\begin{cases}\dfrac{1}{1\,215\,000}(t-29)(59-t)^3, \\ \qquad\qquad\qquad 29\le t\le59 \\[8pt] 0, \quad \text{otherwise}\end{cases}"
           />
         </div>
       </div>
