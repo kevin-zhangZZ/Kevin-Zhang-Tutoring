@@ -24,31 +24,52 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="L_1: \ \underset{\sim}{r_1}(s) = (2+s)\underset{\sim}{i}+(3+2s)\underset{\sim}{j}+(1-s)\underset{\sim}{k}" />,
-    reason: <>A point plus a multiple of the direction, written out in components.</>,
+    reason: <>Vector equation of a line: position vector of <Katex tex="A_1" /> plus <Katex tex="s" /> times the direction <Katex tex="\underset{\sim}{u}" />, collected into components.</>,
+    more: <>That is, <Katex tex="\underset{\sim}{r_1} = (2\underset{\sim}{i}+3\underset{\sim}{j}+\underset{\sim}{k}) + s(\underset{\sim}{i}+2\underset{\sim}{j}-\underset{\sim}{k})" />. Each value of <Katex tex="s \in R" /> gives one point of <Katex tex="L_1" />.</>,
   },
   {
-    working: <Katex display tex="L_2: \ \underset{\sim}{r_2}(u) = (1-u)\underset{\sim}{i}+(3-u)\underset{\sim}{j}+(2+u)\underset{\sim}{k}" />,
-    reason: <>A <em>different</em> parameter <Katex tex="u" />: the two lines reach the meeting point at different parameter values, so reusing <Katex tex="s" /> forces them to arrive simultaneously and destroys the problem.</>,
+    working: <Katex display tex="L_2: \ \underset{\sim}{r_2}(t) = (1-t)\underset{\sim}{i}+(3-t)\underset{\sim}{j}+(2+t)\underset{\sim}{k}" />,
+    reason: <>Same method from <Katex tex="A_2" /> and <Katex tex="\underset{\sim}{v}" />, but with a <em>different</em> parameter <Katex tex="t" />: the meeting point is generally at different parameter values on the two lines.</>,
+    more: (
+      <>
+        The report says it was common to use the same parameter for both lines, and those
+        students were ineligible for full marks. Using <Katex tex="s" /> for both asks the lines
+        to reach the point at the <em>same</em> parameter value. Here that gives{' '}
+        <Katex tex="2+s=1-s \Rightarrow s=-\tfrac12" /> but{' '}
+        <Katex tex="3+2s=3-s \Rightarrow s=0" /> — a contradiction, even though the lines do
+        meet (at <Katex tex="s=1" /> on <Katex tex="L_1" /> and <Katex tex="t=-2" /> on{' '}
+        <Katex tex="L_2" />). Also avoid calling the parameter <Katex tex="u" /> or{' '}
+        <Katex tex="v" /> here, since the question already uses those letters for the direction vectors.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="2+s = 1-u, \qquad 3+2s = 3-u, \qquad 1-s = 2+u" />,
-    reason: <>Equating components gives three equations in two unknowns.</>,
+    working: <Katex display tex="\begin{aligned} 2+s &= 1-t \\ 3+2s &= 3-t \\ 1-s &= 2+t \end{aligned}" />,
+    reason: <>At the intersection the two position vectors are equal, so equate the <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{k}" /> components: three equations, two unknowns.</>,
   },
   {
-    working: <Katex display tex="\text{from the } \underset{\sim}{j} \text{ equation: } 2s = -u \implies u = -2s" />,
-    reason: <>The simplest of the three.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{j}\text{: } 3+2s &= 3-t \\ 2s &= -t \\ t &= -2s \end{aligned}" />,
+    reason: <>Start with the simplest equation: the constant 3 on each side cancels, leaving <Katex tex="t" /> directly in terms of <Katex tex="s" />.</>,
   },
   {
-    working: <Katex display tex="\text{substituting into } 2+s=1-u: \quad 2+s = 1+2s \implies s = 1, \ u = -2" />,
-    reason: <>Any two of the three equations determine the parameters.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{i}\text{: } 2+s &= 1-t \\ 2+s &= 1+2s \\ s &= 1, \quad t = -2 \end{aligned}" />,
+    reason: <>Substitute <Katex tex="t=-2s" /> into the <Katex tex="\underset{\sim}{i}" /> equation to find <Katex tex="s" />, then use <Katex tex="t=-2s" /> to get <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="\text{check the third: } 1-1 = 0 \ \text{ and } \ 2+(-2) = 0 \ \checkmark" />,
-    reason: <>The third equation must hold too — that is what confirms the lines really intersect rather than being skew.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{k}\text{: } 1-s &= 2+t \\ \text{LHS} &= 1-1 = 0 \\ \text{RHS} &= 2+(-2) = 0 \quad \checkmark \end{aligned}" />,
+    reason: <>Substitute <Katex tex="s=1,\ t=-2" /> into the unused <Katex tex="\underset{\sim}{k}" /> equation. It holds, so the lines really intersect.</>,
+    more: (
+      <>
+        Two unknowns are fixed by any two equations, so the third is an independent test. If it
+        failed, the lines would be skew and there would be no point of intersection. (They are not parallel here: <Katex tex="\underset{\sim}{v}" />{' '}
+        is not a multiple of <Katex tex="\underset{\sim}{u}" />.)
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{(3,\,5,\,0)}" />,
-    reason: <>From <Katex tex="s=1" /> in <Katex tex="L_1" />, and <Katex tex="u=-2" /> in <Katex tex="L_2" /> gives the same point.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{r_1}(1) &= 3\underset{\sim}{i}+5\underset{\sim}{j}+0\underset{\sim}{k} \\ \text{point: } &\boxed{(3,\,5,\,0)} \end{aligned}" />,
+    reason: <>Substitute <Katex tex="s=1" /> into <Katex tex="L_1" />. The question asks for coordinates, so give the point, not a vector.</>,
+    more: <>Check with <Katex tex="L_2" />: <Katex tex="t=-2" /> gives <Katex tex="(1+2,\ 3+2,\ 2-2) = (3,5,0)" />, the same point.</>,
   },
 ]
 
@@ -76,15 +97,11 @@ export default function SpecialistQ2_2025Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Two lines in space meet at a single <em>point</em>, but the two parameters at that
-            point are generally different. Using one letter for both asks the two lines to
-            reach the point at the same parameter value, which they do not — the report notes
-            it was common, and those students were ineligible for full marks.
-          </p>
-          <p>
-            Three equations for two unknowns means the system is overdetermined. Solving two
-            of them and checking the third is not optional — it is the step that proves the
-            lines are not skew.
+            Two lines in space can intersect, be parallel, or be <em>skew</em> (not parallel, but
+            never meeting). If they intersect, there is one point both vector equations
+            reach; setting{' '}
+            <Katex tex="\underset{\sim}{r_1}(s)=\underset{\sim}{r_2}(t)" /> and solving for both
+            parameters finds that point.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

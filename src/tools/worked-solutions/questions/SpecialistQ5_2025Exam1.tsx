@@ -40,15 +40,11 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{collision at } t=1 \implies \underset{\sim}{r_P}(1) = \underset{\sim}{r_Q}(1)" />,
-    reason: <>Both components must match — but only the j components involve c.</>,
+    reason: <>Colliding means being at the same point at the same time. Both components must match, but only the <Katex tex="\underset{\sim}{j}" /> components involve <Katex tex="c" />.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{j}: \quad -1 = 2(1)^2+c(1)+1" />,
-    reason: <>The <Katex tex="\underset{\sim}{j}" /> component of <Katex tex="\underset{\sim}{r_P}" /> is the constant <Katex tex="-1" />.</>,
-  },
-  {
-    working: <Katex display tex="-1 = 3+c" />,
-    reason: <>Evaluating the right side.</>,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{j}: \quad -1 &= 2(1)^2+c(1)+1 \\ -1 &= 3+c \end{aligned}" />,
+    reason: <>The <Katex tex="\underset{\sim}{j}" /> component of <Katex tex="\underset{\sim}{r_P}" /> is the constant <Katex tex="-1" />; set it equal to that of <Katex tex="\underset{\sim}{r_Q}(1)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{c = -4}" />,
@@ -58,24 +54,39 @@ const ROWS_A: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\underset{\sim}{v_P}(t) = \left(3t^2+2at\right)\underset{\sim}{i}, \qquad \underset{\sim}{v_Q}(t) = (b+2)\underset{\sim}{i}+(4t+c+1)\underset{\sim}{j}" />,
+    working: <Katex display tex="\begin{aligned} \underset{\sim}{v_P}(t) &= \left(3t^2+2at\right)\underset{\sim}{i} \\ \underset{\sim}{v_Q}(t) &= (b+2)\underset{\sim}{i}+(4t+c+1)\underset{\sim}{j} \end{aligned}" />,
     reason: <>Differentiating each position vector. <Katex tex="\underset{\sim}{r_P}" /> has a constant <Katex tex="\underset{\sim}{j}" /> component, so <Katex tex="\underset{\sim}{v_P}" /> has none.</>,
   },
   {
-    working: <Katex display tex="t=1, \ c=-4: \quad \underset{\sim}{v_P}(1) = (3+2a)\underset{\sim}{i}, \qquad \underset{\sim}{v_Q}(1) = (b+2)\underset{\sim}{i}+\underset{\sim}{j}" />,
+    working: <Katex display tex="\begin{aligned} &t=1,\ c=-4: \\ \underset{\sim}{v_P}(1) &= (3+2a)\underset{\sim}{i} \\ \underset{\sim}{v_Q}(1) &= (b+2)\underset{\sim}{i}+\underset{\sim}{j} \end{aligned}" />,
     reason: <>The <Katex tex="\underset{\sim}{j}" /> component of <Katex tex="\underset{\sim}{v_Q}" /> is <Katex tex="4t-3" />, which is 1 at <Katex tex="t=1" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v_P}(1)\cdot\underset{\sim}{v_Q}(1) = (3+2a)(b+2)+0 = 0" />,
-    reason: <>Perpendicular means zero dot product. <Katex tex="\underset{\sim}{v_P}(1)" /> has no <Katex tex="\underset{\sim}{j}" /> component, so only the <Katex tex="\underset{\sim}{i}" /> components contribute.</>,
+    reason: <>The velocities are at right angles at collision (given), so their dot product is zero. <Katex tex="\underset{\sim}{v_P}(1)" /> has no <Katex tex="\underset{\sim}{j}" /> component, so only the <Katex tex="\underset{\sim}{i}" /> components contribute.</>,
   },
   {
     working: <Katex display tex="b = a-1 \implies (3+2a)(a+1) = 0" />,
-    reason: <>Substituting the relation from part a.</>,
+    reason: <>One equation, two unknowns — so use the collision itself: matching <Katex tex="\underset{\sim}{i}" /> components at <Katex tex="t=1" /> (part a.) give <Katex tex="1+a=b+2" />.</>,
+    more: <>This is the second fact the report says students needed. Replacing <Katex tex="b+2" /> by <Katex tex="a+1" /> leaves an equation in <Katex tex="a" /> alone, already factorised.</>,
   },
   {
     working: <Katex display tex="\boxed{a = -\tfrac32 \ \text{ or } \ a = -1}" />,
-    reason: <>The first makes <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{0}" />; the second makes <Katex tex="\underset{\sim}{v_Q}(1)=\underset{\sim}{j}" />, at right angles to <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{i}" />. Both were required.</>,
+    reason: <>Setting each factor to zero: <Katex tex="3+2a=0" /> gives <Katex tex="2a=-3" />, so <Katex tex="a=-\tfrac32" />; and <Katex tex="a+1=0" /> gives <Katex tex="a=-1" />.</>,
+    more: (
+      <>
+        The report's common error was <Katex tex="a=-\tfrac23" /> from the first factor — the
+        fraction flipped. Check by substituting back: <Katex tex="3+2\left(-\tfrac32\right)=0" />,
+        but <Katex tex="3+2\left(-\tfrac23\right)=\tfrac53\ne0" />. Both values are wanted (the
+        question asks for two): <Katex tex="a=-\tfrac32" /> makes{' '}
+        <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{0}" />, so the dot product is zero
+        ("at right angles" is read as a zero dot product, which the zero vector satisfies, and
+        the report's answer lists this value);{' '}
+        <Katex tex="a=-1" /> gives <Katex tex="b=-2" />, so{' '}
+        <Katex tex="\underset{\sim}{v_P}(1)=\underset{\sim}{i}" /> and{' '}
+        <Katex tex="\underset{\sim}{v_Q}(1)=\underset{\sim}{j}" />, clearly at right angles.
+      </>
+    ),
   },
 ]
 
@@ -86,11 +97,12 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="t=1: \quad \left|\underset{\sim}{a_P}\right| = |6+2a|, \qquad \left|\underset{\sim}{a_Q}\right| = 4" />,
-    reason: <>The magnitudes to equate.</>,
+    reason: <>Substituting <Katex tex="t=1" />: <Katex tex="\underset{\sim}{a_P}" /> points along <Katex tex="\underset{\sim}{i}" /> with length <Katex tex="|6+2a|" />; <Katex tex="\underset{\sim}{a_Q}" /> is constant with length 4.</>,
   },
   {
-    working: <Katex display tex="|6+2a| = 4 \implies 6+2a = \pm4 \implies a = -1 \ \text{ or } \ a = -5" />,
-    reason: <>Two candidates from this condition alone.</>,
+    working: <Katex display tex="\begin{aligned} |6+2a| = 4 &\implies 6+2a = \pm4 \\ &\implies a = -1 \ \text{ or } \ a = -5 \end{aligned}" />,
+    reason: <>Equal magnitudes. An absolute value equal to 4 means the inside is <Katex tex="4" /> or <Katex tex="-4" />, giving two candidates.</>,
+    more: <>The report's solution writes only <Katex tex="6+2a=4" />; the <Katex tex="-4" /> case gives <Katex tex="a=-5" />, which is the value that has to be ruled out next.</>,
   },
   {
     working: <Katex display tex="\text{part b. also requires } a\in\left\{-\tfrac32,\,-1\right\}" />,
@@ -98,7 +110,17 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = -1, \qquad b = a-1 = -2}" />,
-    reason: <>The only value in both sets. Offering <Katex tex="a=-5,\ b=-6" /> as well cost the mark, because that pair fails the perpendicularity condition.</>,
+    reason: <>The only value in both sets; then <Katex tex="b" /> from <Katex tex="b=a-1" /> (part a.).</>,
+    more: (
+      <>
+        Giving <Katex tex="a=-5,\ b=-6" /> as well cost the mark (report). Check why it fails: then{' '}
+        <Katex tex="\underset{\sim}{v_P}(1)=-7\underset{\sim}{i}" /> and{' '}
+        <Katex tex="\underset{\sim}{v_Q}(1)=-4\underset{\sim}{i}+\underset{\sim}{j}" />, whose
+        dot product is <Katex tex="28\ne0" />, so the velocities are not at right angles. The other
+        part b. value fails here too: <Katex tex="a=-\tfrac32" /> gives{' '}
+        <Katex tex="|6-3|=3\ne4" />.
+      </>
+    ),
   },
 ]
 
@@ -114,7 +136,7 @@ export default function SpecialistQ5_2025Exam1() {
         <div className="py-1">
           <Katex
             display
-            tex="\underset{\sim}{r_P}(t) = \left(t^3+at^2\right)\underset{\sim}{i}-\underset{\sim}{j} \qquad\text{and}\qquad \underset{\sim}{r_Q}(t) = (bt+2t)\underset{\sim}{i}+\left(2t^2+ct+t\right)\underset{\sim}{j}"
+            tex="\begin{aligned} \underset{\sim}{r_P}(t) &= \left(t^3+at^2\right)\underset{\sim}{i}-\underset{\sim}{j} \quad\text{and} \\ \underset{\sim}{r_Q}(t) &= (bt+2t)\underset{\sim}{i}+\left(2t^2+ct+t\right)\underset{\sim}{j} \end{aligned}"
           />
         </div>
         <p>
@@ -128,17 +150,13 @@ export default function SpecialistQ5_2025Exam1() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Particle <Katex tex="P" /> only ever moves along <Katex tex="\underset{\sim}{i}" />,
-              so its velocity has no <Katex tex="\underset{\sim}{j}" /> component. The dot product
-              of the two velocities at <Katex tex="t=1" /> is therefore just the product of their{' '}
-              <Katex tex="\underset{\sim}{i}" /> components, <Katex tex="(3+2a)(b+2)" />, and the
-              collision condition <Katex tex="b+2=1+a" /> from part a. turns it into a factorised
-              quadratic in <Katex tex="a" />.
+              Every condition in this question is read at the moment of collision, <Katex tex="t=1" />,
+              and each one gives an equation: equal positions (part a.), perpendicular velocities
+              (part b.) and equal acceleration magnitudes (part c.).
             </p>
             <p>
-              Part c. adds a condition rather than replacing one. The perpendicularity from
-              part b. still holds, so the answer must satisfy both — which is why{' '}
-              <Katex tex="a=-5" /> is rejected even though it solves part c.'s equation.
+              The conditions accumulate. Part c. adds a condition rather than replacing one, so its
+              answer must satisfy part b.'s as well.
             </p>
           </Background>
         </div>

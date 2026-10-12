@@ -49,7 +49,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d}{dt}\left(t^2+k\right)^{1/2} = t\left(t^2+k\right)^{-1/2}" />,
-    reason: <>The reverse chain rule: the <Katex tex="2t" /> from the inner derivative exactly meets the <Katex tex="\tfrac12" /> from the power, so no extra constant is needed.</>,
+    reason: <>Spot that <Katex tex="t" /> is (half) the derivative of the inside, <Katex tex="t^2+k" />: try <Katex tex="\left(t^2+k\right)^{1/2}" />. Its <Katex tex="\tfrac12" /> and the inner <Katex tex="2t" /> cancel exactly.</>,
+    more: <>This is the reverse chain rule: when the integrand is (a multiple of) <Katex tex="f'(t)\left[f(t)\right]^n" />, the antiderivative is a multiple of <Katex tex="\left[f(t)\right]^{n+1}" />. Differentiating the guess and comparing tells you the multiple, which here is exactly 1, so no substitution is needed.</>,
   },
   {
     working: <Katex display tex="x(t) = \sqrt{t^2+k}+c" />,
@@ -57,7 +58,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x(0) = 0: \quad \sqrt{k}+c = 0 \implies c = -\sqrt{k}" />,
-    reason: <>"Starts from rest at <Katex tex="O" />" fixes the constant — the report notes some students did not apply it correctly.</>,
+    reason: <>The particle starts <em>at</em> <Katex tex="O" />, so its displacement is 0 when <Katex tex="t=0" />. This fixes the constant.</>,
+    more: <>The report notes some students did not correctly apply the initial condition. Note <Katex tex="\sqrt{0^2+k}=\sqrt{k}" />, not 0, so <Katex tex="c" /> is not 0. "From rest" is a separate condition (<Katex tex="v(0)=0" />), which the given <Katex tex="v(t)" /> already satisfies; it plays no part in finding <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x(t) = \sqrt{t^2+k}-\sqrt{k}}" />,
@@ -68,30 +70,35 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="a = \frac{dv}{dt}, \qquad v = \frac{t}{\sqrt{t^2+k}}" />,
-    reason: <>Velocity is given as a function of <em>time</em>, so this is an ordinary derivative — no need for the <Katex tex="v\tfrac{dv}{dx}" /> forms.</>,
+    reason: <>Acceleration is the derivative of velocity with respect to time, and <Katex tex="v" /> is given in terms of <Katex tex="t" />.</>,
+    more: <>Because <Katex tex="v" /> is a function of time, this is an ordinary derivative; the <Katex tex="v\tfrac{dv}{dx}" /> forms are only needed when velocity is given in terms of position.</>,
   },
   {
     working: <Katex display tex="\frac{dv}{dt} = \frac{\sqrt{t^2+k}-t\cdot\frac{t}{\sqrt{t^2+k}}}{t^2+k}" />,
-    reason: <>Quotient rule, with the chain rule on the denominator.</>,
+    reason: <>Quotient rule with <Katex tex="u=t" /> and <Katex tex="w=\sqrt{t^2+k}" />; the chain rule gives <Katex tex="w'=\dfrac{t}{\sqrt{t^2+k}}" />.</>,
+    more: <>The report notes the quotient rule was not always applied correctly, and a correct final value built on an incorrect derivative did not earn full marks, so show <Katex tex="a(t)" /> in full. Alternatively, write <Katex tex="v=t\left(t^2+k\right)^{-1/2}" /> and use the product rule with the chain rule: <Katex tex="a=\left(t^2+k\right)^{-1/2}-t^2\left(t^2+k\right)^{-3/2}" />, which simplifies to the same result.</>,
   },
   {
     working: <Katex display tex="= \frac{\left(t^2+k\right)-t^2}{\left(t^2+k\right)^{3/2}} = \frac{k}{\left(t^2+k\right)^{3/2}}" />,
-    reason: <>Multiplying numerator and denominator by <Katex tex="\sqrt{t^2+k}" />. The tidy result is the sign that the quotient rule was applied correctly.</>,
+    reason: <>Multiplying numerator and denominator by <Katex tex="\sqrt{t^2+k}" /> clears the fraction inside the fraction.</>,
+    more: <>Note <Katex tex="\left(t^2+k\right)\sqrt{t^2+k}=\left(t^2+k\right)^{3/2}" />. The <Katex tex="t^2" /> terms cancelling to leave a tidy <Katex tex="k" /> is a good sign the derivative is right.</>,
   },
   {
     working: <Katex display tex="t = 0: \quad a = \frac{k}{k^{3/2}} = k^{-1/2}" />,
-    reason: <>Substituting the initial time.</>,
+    reason: <>"Initial" means <Katex tex="t=0" />. Then <Katex tex="k^{3/2}=k\sqrt{k}" />, so <Katex tex="\tfrac{k}{k^{3/2}}=\tfrac{1}{\sqrt{k}}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a(0) = \frac{1}{\sqrt{k}} \ \text{ m s}^{-2}}" />,
-    reason: <>Positive, as it must be for a particle starting from rest and speeding up. Note <Katex tex="a>0" /> for all <Katex tex="t" />, so the particle never slows.</>,
+    reason: <>In terms of <Katex tex="k" />, as asked. Positive, as expected for a particle speeding up from rest.</>,
+    more: <>In fact <Katex tex="a(t)=\dfrac{k}{\left(t^2+k\right)^{3/2}}>0" /> for all <Katex tex="t" />, so the particle never slows; its velocity rises towards 1 m s<Katex tex="^{-1}" /> but never reaches it.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="s(3)-x(3) = 1" />,
-    reason: <>"Ahead by 1 m" — the second particle minus the first.</>,
+    reason: <>"Ahead by 1 m": the second particle's position minus the first's is 1. Both start at <Katex tex="O" /> on the same path, so positions compare directly.</>,
+    more: <>Why is the second particle the one ahead? Its velocity is always 1, while the first particle's velocity <Katex tex="\tfrac{t}{\sqrt{t^2+k}}" /> is always less than 1, so <Katex tex="x(t)<t=s(t)" />. Setting it up the other way round, <Katex tex="x(3)-s(3)=1" />, leads to <Katex tex="\sqrt{9+k}-\sqrt{k}=4" />, then <Katex tex="\sqrt{k}=-\tfrac78" />, which has no solution.</>,
   },
   {
     working: <Katex display tex="3-\left(\sqrt{9+k}-\sqrt{k}\right) = 1 \implies \sqrt{9+k}-\sqrt{k} = 2" />,
@@ -99,19 +106,21 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sqrt{9+k} = 2+\sqrt{k}" />,
-    reason: <>Isolating one root before squaring is what makes this work — squaring the difference directly leaves a cross term <Katex tex="\sqrt{k(9+k)}" /> that needs a second round of squaring. The report notes some ineffective attempts at rearranging and squaring.</>,
+    reason: <>Isolate one root <em>before</em> squaring, so that after squaring only one root remains.</>,
+    more: <>The report notes some ineffective attempts at rearranging and squaring. Squaring <Katex tex="\sqrt{9+k}-\sqrt{k}=2" /> as it stands gives <Katex tex="9+2k-2\sqrt{k(9+k)}=4" />, which still contains a root and needs a second, messier round of squaring. Squaring each root separately (<Katex tex="9+k-k=4" />) is not valid: <Katex tex="(a-b)^2\ne a^2-b^2" />.</>,
   },
   {
     working: <Katex display tex="9+k = 4+4\sqrt{k}+k" />,
-    reason: <>Squaring. The <Katex tex="k" /> cancels from both sides.</>,
+    reason: <>Squaring both sides; the right side expands as <Katex tex="(2+\sqrt{k})^2" />. The <Katex tex="k" /> cancels from both sides.</>,
   },
   {
     working: <Katex display tex="5 = 4\sqrt{k} \implies \sqrt{k} = \tfrac54" />,
-    reason: <>A single remaining root.</>,
+    reason: <>Now only one root is left; solve for it.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \frac{25}{16}}" />,
-    reason: <>Positive, as required. Check: <Katex tex="\sqrt{9+\tfrac{25}{16}}-\tfrac54 = \tfrac{13}{4}-\tfrac54 = 2" /> ✓.</>,
+    reason: <>Squaring <Katex tex="\tfrac54" />; positive, as <Katex tex="k" /> must be. Check: <Katex tex="\sqrt{9+\tfrac{25}{16}}-\tfrac54 = \tfrac{13}{4}-\tfrac54 = 2" /> ✓.</>,
+    more: <>Squaring can introduce false solutions, which is why the check matters; here it confirms <Katex tex="k=\tfrac{25}{16}" />. Exact form is expected, as Exam 1 is technology-free.</>,
   },
 ]
 
@@ -141,10 +150,9 @@ export default function SpecialistQ3_2025Exam1() {
               plus the constant fixed by <Katex tex="x(0)=0" />.
             </p>
             <p>
-              Part c. reduces to <Katex tex="\sqrt{9+k}-\sqrt{k}=2" />. The reliable way to
-              clear two square roots is to isolate one of them <em>before</em> squaring;
-              squaring the difference as it stands leaves a <Katex tex="\sqrt{k(9+k)}" /> term
-              that needs a second round of squaring.
+              Part c. reduces to <Katex tex="\sqrt{9+k}-\sqrt{k}=2" />, an equation with two
+              square roots. In general, to clear two square roots, isolate one of them, square,
+              and repeat if a root remains.
             </p>
           </Background>
         </div>

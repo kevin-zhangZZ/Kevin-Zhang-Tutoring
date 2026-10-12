@@ -37,43 +37,58 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P(n): \quad \sum_{i=1}^{n}(i+1)^2 = \tfrac16 n\left(2n^2+9n+13\right)" />,
-    reason: <>Naming the proposition explicitly is part of the expected structure.</>,
+    reason: <>Name the proposition, so you can refer to <Katex tex="P(1)" />, <Katex tex="P(k)" /> and <Katex tex="P(k+1)" /> below.</>,
   },
   {
-    working: <Katex display tex="P(1): \ \text{LHS} = (1+1)^2 = 4; \quad \text{RHS} = \tfrac16(1)(2+9+13) = \tfrac{24}{6} = 4" />,
-    reason: <>Both sides evaluated separately and shown equal — writing "<Katex tex="\text{LHS}=\text{RHS}" />" without computing them is not a verification.</>,
+    working: <Katex display tex="\begin{aligned}P(1)\!:\ \text{LHS} &= (1+1)^2 = 4 \\ \text{RHS} &= \tfrac16(1)(2+9+13) = \tfrac{24}{6} = 4\end{aligned}" />,
+    reason: <>Base case: put <Katex tex="n=1" /> into each side separately and show both equal 4.</>,
+    more: <>The report lists not properly verifying the base case among the common errors. Writing "<Katex tex="\text{LHS}=\text{RHS}" />" or "true for <Katex tex="n=1" />" without computing both sides is not a verification. When <Katex tex="n=1" /> the sum has a single term, <Katex tex="(1+1)^2=2^2" />, the first term of <Katex tex="2^2+3^2+4^2+\ldots" />.</>,
   },
   {
     working: <Katex display tex="\therefore P(1) \text{ is true}" />,
     reason: <>The base case, stated as a conclusion.</>,
   },
   {
-    working: <Katex display tex="\text{Assume } P(k) \text{ true for some } k\in N: \quad \sum_{i=1}^{k}(i+1)^2 = \tfrac16 k\left(2k^2+9k+13\right)" />,
-    reason: <>State the assumption exactly — the report's example of a misstated one is <Katex tex="(k+1)^2=\tfrac16k\left(2k^2+9k+1\right)" />, which drops the sum and changes a coefficient.</>,
+    working: <Katex display tex="\begin{aligned}&\text{Assume } P(k) \text{ true for some } k\in N\!: \\ &\sum_{i=1}^{k}(i+1)^2 = \tfrac16 k\left(2k^2+9k+13\right)\end{aligned}" />,
+    reason: <>Assume the whole statement for one particular <Katex tex="k" />: the full sum on the left, <Katex tex="n" /> replaced by <Katex tex="k" /> everywhere.</>,
+    more: <>The report's example of a misstated assumption is <Katex tex="(k+1)^2=\tfrac16k\left(2k^2+9k+1\right)" />: the sum has been replaced by its last term alone (and the constant 13 appears as 1). Also assume it for <em>some</em> <Katex tex="k" />, not for all <Katex tex="n" />, since assuming it for all <Katex tex="n" /> is assuming the very thing being proved.</>,
   },
   {
-    working: <Katex display tex="\sum_{i=1}^{k+1}(i+1)^2 = \sum_{i=1}^{k}(i+1)^2+\bigl((k+1)+1\bigr)^2" />,
-    reason: <>Start from the left side of <Katex tex="P(k+1)" /> and work forwards. The report lists assuming equality at the beginning of the inductive step among the common errors.</>,
+    working: <Katex display tex="\begin{aligned}&\text{Need: } \sum_{i=1}^{k+1}(i+1)^2 = \\ &\tfrac16(k+1)\left(2(k+1)^2+9(k+1)+13\right)\end{aligned}" />,
+    reason: <>Replace <Katex tex="n" /> by <Katex tex="k+1" /> in <Katex tex="P(n)" /> to see the target. This is only the goal: the proof works on its left side alone.</>,
+    more: <>The report lists assuming equality at the beginning of the inductive step among the common errors: students wrote this equation as if it were already true and then worked on both sides at once. That assumes what you are trying to prove. Label it as the goal (or keep it in your head), then transform the left side until it becomes the right side.</>,
+  },
+  {
+    working: <Katex display tex="\begin{aligned}\text{LHS} &= \sum_{i=1}^{k+1}(i+1)^2 \\ &= \sum_{i=1}^{k}(i+1)^2+\bigl((k+1)+1\bigr)^2\end{aligned}" />,
+    reason: <>Start from the left side of <Katex tex="P(k+1)" />: the sum to <Katex tex="k+1" /> is the sum to <Katex tex="k" /> plus its last term, <Katex tex="i=k+1" />.</>,
+    more: <>Splitting off the last term is the key move: what is left, <Katex tex="\sum_{i=1}^{k}(i+1)^2" />, is exactly the left side of <Katex tex="P(k)" />, so the assumption can now be used.</>,
   },
   {
     working: <Katex display tex="= \tfrac16 k\left(2k^2+9k+13\right)+(k+2)^2" />,
-    reason: <>Using the assumption — the only place it is allowed.</>,
+    reason: <>Replace the sum to <Katex tex="k" /> using the assumption <Katex tex="P(k)" />; also <Katex tex="(k+1)+1=k+2" />.</>,
   },
   {
-    working: <Katex display tex="= \tfrac16\left[2k^3+9k^2+13k+6\left(k^2+4k+4\right)\right] = \tfrac16\left[2k^3+15k^2+37k+24\right]" />,
-    reason: <>Common denominator, then expand and collect.</>,
+    working: <Katex display tex="\begin{aligned}&= \tfrac16\bigl[2k^3+9k^2+13k \\ &\qquad +6\left(k^2+4k+4\right)\bigr] \\ &= \tfrac16\left(2k^3+15k^2+37k+24\right)\end{aligned}" />,
+    reason: <>Take out <Katex tex="\tfrac16" /> (so <Katex tex="(k+2)^2" /> becomes <Katex tex="6(k+2)^2" />), then expand and collect like terms.</>,
   },
   {
     working: <Katex display tex="= \tfrac16(k+1)\left(2k^2+13k+24\right)" />,
-    reason: <>Factorising out <Katex tex="k+1" />, which must appear if the proof is going to close.</>,
+    reason: <>The target has a factor <Katex tex="k+1" />, so look for it here: at <Katex tex="k=-1" /> the cubic is <Katex tex="-2+15-37+24=0" />, so <Katex tex="k+1" /> is a factor; match coefficients (or divide) to get the quadratic.</>,
+    more: <>To find the quadratic factor, write <Katex tex="2k^3+15k^2+37k+24=(k+1)\left(2k^2+bk+24\right)" /> (the 2 and the 24 are forced by the <Katex tex="k^3" /> and constant terms). Matching <Katex tex="k^2" /> terms gives <Katex tex="b+2=15" />, so <Katex tex="b=13" />; check the <Katex tex="k" /> terms: <Katex tex="24+13=37" />. Polynomial long division gives the same quadratic.</>,
   },
   {
-    working: <Katex display tex="2(k+1)^2+9(k+1)+13 = 2k^2+4k+2+9k+9+13 = 2k^2+13k+24" />,
-    reason: <>Checking that this bracket is exactly the one <Katex tex="P(k+1)" /> requires.</>,
+    working: <Katex display tex="\begin{aligned}&2(k+1)^2+9(k+1)+13 \\ &= 2k^2+4k+2+9k+9+13 \\ &= 2k^2+13k+24\end{aligned}" />,
+    reason: <>Expand the bracket in the target: it is <Katex tex="2k^2+13k+24" />, exactly the quadratic just found.</>,
+    more: <>The report's sample proof (not reproduced here) goes the other way, rewriting <Katex tex="2k^2" /> as <Katex tex="2(k+1)^2-4k-2" />, so the quadratic becomes <Katex tex="2(k+1)^2+9k+22=2(k+1)^2+9(k+1)+13" />. Either direction is fine, as long as the two expressions are shown to be equal.</>,
   },
   {
-    working: <Katex display tex="\boxed{\therefore P(k) \text{ true} \implies P(k+1) \text{ true; with } P(1) \text{ true}, \ P(n) \text{ holds for all } n\in N}" />,
-    reason: <>The closing statement completes the induction.</>,
+    working: <Katex display tex="\begin{aligned}&\therefore \text{LHS} \\ &= \tfrac16(k+1)\left(2(k+1)^2+9(k+1)+13\right) \\ &= \text{RHS of } P(k+1)\end{aligned}" />,
+    reason: <>So the left side of <Katex tex="P(k+1)" /> has become its right side: <Katex tex="P(k+1)" /> is true whenever <Katex tex="P(k)" /> is.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{\begin{gathered}P(1) \text{ true and } P(k) \Rightarrow P(k+1), \\ \therefore P(n) \text{ true for all } n\in N\end{gathered}}" />,
+    reason: <>The conclusion must name both parts: the base case and the inductive step.</>,
+    more: <>Together they give <Katex tex="P(1)\Rightarrow P(2)\Rightarrow P(3)\Rightarrow\ldots" />: each true statement makes the next one true, so every natural number is reached.</>,
   },
 ]
 
@@ -95,17 +110,15 @@ export default function SpecialistQ7_2025Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            Three things earn the marks here beyond the algebra, and all three are about how
-            the proof is written. Verify the base case by <em>evaluating both sides</em>.
-            Assume the result for <em>some</em> <Katex tex="k" />, not for all of them. And
-            in the inductive step, begin with the left-hand side of{' '}
-            <Katex tex="P(k+1)" /> and work forwards — never start from the equation you are
-            trying to establish.
+            Induction proves a statement for every <Katex tex="n\in N" /> in two steps. The{' '}
+            <em>base case</em> shows it is true for <Katex tex="n=1" />. The{' '}
+            <em>inductive step</em> shows that if it is true for some <Katex tex="n=k" />, it
+            must also be true for <Katex tex="n=k+1" />.
           </p>
           <p>
-            The algebra itself is one line of expansion and one of factorising: getting{' '}
-            <Katex tex="k+1" /> back out of <Katex tex="2k^3+15k^2+37k+24" /> is the only
-            technical step.
+            The algebra here is one expansion and one factorisation. Most lost marks were for
+            how the proof was written: all three errors the report lists are about structure,
+            not algebra.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
