@@ -43,25 +43,25 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_0^{\sqrt3}y^2\,dx" />,
-    reason: <>Rotating about the <Katex tex="x" />-axis turns each thin slice of width <Katex tex="dx" /> into a disc of radius <Katex tex="y" />, with volume <Katex tex="\pi y^2\,dx" />; adding the discs from <Katex tex="x=0" /> to <Katex tex="x=\sqrt3" /> is this integral. The radius goes in <em>squared</em>, which is exactly what removes the square root.</>,
-    more: <>The first diagram below slices the solid up.</>,
+    reason: <>Rotating about the <Katex tex="x" />-axis: each thin slice is a disc of radius <Katex tex="y" />, volume <Katex tex="\pi y^2\,dx" />.</>,
+    more: <>Adding the discs from <Katex tex="x=0" /> to <Katex tex="x=\sqrt3" /> is this integral. The first diagram below slices the solid up.</>,
   },
   {
     working: <Katex display tex="y^2 = \frac{4\left(x^2+x+1\right)}{(x+1)\left(x^2+1\right)}" />,
-    reason: <>Squaring: the 2 out the front becomes 4 and the root disappears, leaving a rational function. Its numerator has degree 2 and its denominator degree 3, so it is already a proper fraction and can go straight into partial fractions, with no division first. Set the 4 aside and decompose the fraction.</>,
+    reason: <>Squaring turns the 2 into 4 and removes the root. Numerator degree 2, denominator degree 3: already proper, so no division is needed. Set the 4 aside.</>,
   },
   {
     working: <Katex display tex="\frac{x^2+x+1}{(x+1)\left(x^2+1\right)} = \frac{A}{x+1}+\frac{Bx+C}{x^2+1}" />,
-    reason: <>One term for each factor of the denominator. <Katex tex="x+1" /> is linear, so it gets a constant, <Katex tex="A" />. <Katex tex="x^2+1" /> is an irreducible quadratic (<Katex tex="x^2+1\ge1" />, so it has no real roots and can&apos;t be factorised), and a quadratic denominator needs a <em>linear</em> numerator, <Katex tex="Bx+C" />. With only a constant there, the coefficients can&apos;t all be matched. The report notes many students identified this form.</>,
-    more: <>See the common mistake and the second diagram below.</>,
+    reason: <>One term per factor. Linear <Katex tex="x+1" /> gets a constant <Katex tex="A" />. <Katex tex="x^2+1" /> is irreducible (<Katex tex="x^2+1\ge1" />, no real roots), so it needs a linear numerator <Katex tex="Bx+C" />.</>,
+    more: <>The report notes many students identified this form. A constant alone over <Katex tex="x^2+1" /> can&apos;t work: the common mistake below shows why, and the second diagram lets you try.</>,
   },
   {
     working: <Katex display tex="x^2+x+1 = A\left(x^2+1\right)+(Bx+C)(x+1)" />,
-    reason: <>Multiplying both sides by <Katex tex="(x+1)\left(x^2+1\right)" />. This is an identity, true for every <Katex tex="x" />, so we may substitute any convenient value of <Katex tex="x" /> or compare coefficients.</>,
+    reason: <>Multiplying both sides by <Katex tex="(x+1)\left(x^2+1\right)" />. This is an identity, true for every <Katex tex="x" />, so we can substitute values or compare coefficients.</>,
   },
   {
     working: <Katex display tex="x=-1: \ 1 = 2A \implies A = \tfrac12" />,
-    reason: <>Choose <Katex tex="x=-1" />, the root of <Katex tex="x+1" />: it makes that factor zero, which wipes out the whole <Katex tex="(Bx+C)(x+1)" /> term and leaves one unknown. Left side <Katex tex="(-1)^2+(-1)+1=1" />; right side <Katex tex="A(1+1)=2A" />.</>,
+    reason: <><Katex tex="x=-1" /> makes <Katex tex="x+1" /> zero, wiping out the <Katex tex="(Bx+C)(x+1)" /> term. Left side <Katex tex="(-1)^2+(-1)+1=1" />; right side <Katex tex="A(1+1)=2A" />.</>,
   },
   {
     working: (
@@ -70,7 +70,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{const}: \ 1 = A+C \implies C = \tfrac12" />
       </>
     ),
-    reason: <><Katex tex="x^2+1" /> has no real root to substitute, so compare coefficients instead. The right side expands to <Katex tex="(A+B)x^2+(B+C)x+(A+C)" />; matching its <Katex tex="x^2" /> and constant terms with <Katex tex="x^2+x+1" /> gives <Katex tex="B" /> and <Katex tex="C" />. The <Katex tex="x" /> term is a free check: <Katex tex="B+C=\tfrac12+\tfrac12=1" /> ✓.</>,
+    reason: <><Katex tex="x^2+1" /> has no real root to substitute, so compare coefficients. The right side expands to <Katex tex="(A+B)x^2+(B+C)x+(A+C)" />; match its <Katex tex="x^2" /> and constant terms.</>,
+    more: <>The <Katex tex="x" /> term is a free check: <Katex tex="B+C=\tfrac12+\tfrac12=1" /> ✓.</>,
   },
   {
     working: (
@@ -79,7 +80,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{2}{x+1}+\frac{2x}{x^2+1}+\frac{2}{x^2+1}" />
       </>
     ),
-    reason: <>Multiplying back by 4 (<Katex tex="4\times\tfrac12=2" />), then splitting <Katex tex="\tfrac{2x+2}{x^2+1}" /> into two fractions. Each of the three pieces is now a standard integral: a log, an <Katex tex="\tfrac{f'}{f}" /> log and an arctan. Keep the 2 with the <Katex tex="x" />: <Katex tex="2x" /> is exactly the derivative of <Katex tex="x^2+1" />.</>,
+    reason: <>Multiply back by 4 (<Katex tex="4\times\tfrac12=2" />), then split so each piece is a standard integral. Keep the 2 with the <Katex tex="x" />: <Katex tex="2x" /> is the derivative of <Katex tex="x^2+1" />.</>,
+    more: <>The three pieces are a log, an <Katex tex="\tfrac{f'}{f}" /> log and an arctan. The report writes the same integral with <Katex tex="2\pi" /> taken out first: <Katex tex="2\pi\int_0^{\sqrt3}\left(\tfrac{1}{x+1}+\tfrac{x}{x^2+1}+\tfrac{1}{x^2+1}\right)dx" />.</>,
   },
   {
     working: (
@@ -88,8 +90,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\qquad+\,2\arctan(x)\Big]_0^{\sqrt3}" />
       </>
     ),
-    reason: <><Katex tex="\int\tfrac{2}{x+1}\,dx=2\log_e(x+1)" />, with no modulus needed since <Katex tex="x+1>0" /> on <Katex tex="\left[0,\sqrt3\right]" />. <Katex tex="\int\tfrac{2x}{x^2+1}\,dx=\log_e\left(x^2+1\right)" /> because the numerator is the derivative of the denominator (the <Katex tex="\tfrac{f'}{f}" /> form), so no substitution is required (the report notes a number of students used one). <Katex tex="\int\tfrac{2}{x^2+1}\,dx=2\arctan(x)" />, from the formula sheet&apos;s <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\left(\tfrac xa\right)" /> with <Katex tex="a=1" />.</>,
-    more: <>The third diagram below shows each piece as a layer of area.</>,
+    reason: <><Katex tex="\int\tfrac{2}{x+1}\,dx=2\log_e(x+1)" /> (no modulus: <Katex tex="x+1>0" /> here). <Katex tex="\tfrac{2x}{x^2+1}" /> is <Katex tex="\tfrac{f'}{f}" />, giving <Katex tex="\log_e\left(x^2+1\right)" />. And <Katex tex="\int\tfrac{2}{x^2+1}\,dx=2\arctan(x)" />.</>,
+    more: <>The arctan comes from the formula sheet&apos;s <Katex tex="\int\tfrac{a}{a^2+x^2}\,dx=\tan^{-1}\left(\tfrac xa\right)" /> with <Katex tex="a=1" />. In the <Katex tex="\tfrac{f'}{f}" /> form the top is the derivative of the bottom, so it integrates straight to <Katex tex="\log_e" /> of the bottom with no substitution needed (the report notes a number of students used one). The third diagram below shows each piece as a layer of area.</>,
   },
   {
     working: (
@@ -98,15 +100,16 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="-\,\pi\left[0+0+0\right]" />
       </>
     ),
-    reason: <>Upper terminal: <Katex tex="\left(\sqrt3\right)^2+1=4" /> and <Katex tex="\arctan\sqrt3=\tfrac\pi3" /> (because <Katex tex="\tan\tfrac\pi3=\sqrt3" />). Lower terminal: <Katex tex="\log_e(1)=0" /> and <Katex tex="\arctan(0)=0" />, so every term vanishes at <Katex tex="x=0" />.</>,
+    reason: <>Upper terminal: <Katex tex="\left(\sqrt3\right)^2+1=4" /> and <Katex tex="\arctan\sqrt3=\tfrac\pi3" /> (as <Katex tex="\tan\tfrac\pi3=\sqrt3" />). Lower terminal: <Katex tex="\log_e(1)=0" /> and <Katex tex="\arctan(0)=0" />, so every term vanishes.</>,
   },
   {
     working: <Katex display tex="= \pi\left[2\log_e\left(\sqrt3+1\right)+2\log_e(2)+\tfrac{2\pi}{3}\right]" />,
-    reason: <>The answer has to look like <Katex tex="2\pi\left(\log_e(a)+b\right)" />, so every term needs a factor of 2 for the <Katex tex="2\pi" /> to come out. <Katex tex="\log_e(4)=\log_e\left(2^2\right)=2\log_e(2)" /> supplies it.</>,
+    reason: <>The answer needs <Katex tex="2\pi" /> out the front, so every term needs a factor of 2: <Katex tex="\log_e(4)=\log_e\left(2^2\right)=2\log_e(2)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{V = 2\pi\left(\log_e\left(2+2\sqrt3\right)+\frac\pi3\right)}" />,
-    reason: <>Taking out <Katex tex="2\pi" /> and combining the logs with <Katex tex="\log_e(m)+\log_e(n)=\log_e(mn)" />: <Katex tex="\log_e\left(\sqrt3+1\right)+\log_e(2)=\log_e\left(2\sqrt3+2\right)" />. So <Katex tex="a=2+2\sqrt3" /> and <Katex tex="b=\tfrac\pi3" /> (VCAA writes <Katex tex="a" /> as <Katex tex="2\sqrt3+2" />); the <Katex tex="\pi" /> in <Katex tex="b" /> could only come from the arctan term. Numerically <Katex tex="V\approx17.25" />. Check the size: the radius falls from <Katex tex="y(0)=2" /> to <Katex tex="y\left(\sqrt3\right)\approx1.45" />, so the solid lies between cylinders of volume <Katex tex="\pi(1.45)^2\sqrt3\approx11.4" /> and <Katex tex="\pi(2)^2\sqrt3\approx21.8" /> ✓.</>,
+    reason: <>Take out <Katex tex="2\pi" /> and combine the logs: <Katex tex="\log_e\left(\sqrt3+1\right)+\log_e(2)=\log_e\left(2\sqrt3+2\right)" />. So <Katex tex="a=2+2\sqrt3" /> and <Katex tex="b=\tfrac\pi3" />.</>,
+    more: <>VCAA writes <Katex tex="a" /> as <Katex tex="2\sqrt3+2" />. Numerically <Katex tex="V\approx17.25" />. Size check: <Katex tex="y" /> decreases across the interval, from <Katex tex="y(0)=2" /> to <Katex tex="y\left(\sqrt3\right)\approx1.45" />, so the solid lies between cylinders of volume <Katex tex="\pi(1.45)^2\sqrt3\approx11.4" /> and <Katex tex="\pi(2)^2\sqrt3\approx21.8" /> ✓. The first diagram&apos;s toggle shows these two cylinders.</>,
   },
 ]
 
@@ -128,28 +131,14 @@ export default function SpecialistQ8_2020Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            The square root and the 2 out the front are both there to be removed by the{' '}
-            <Katex tex="y^2" /> in the volume formula, so the real question is the partial
-            fraction decomposition underneath.
-          </p>
-          <p>
-            Partial fractions, the rule: a linear factor such as <Katex tex="x+1" /> gets a
-            constant on top, <Katex tex="\tfrac{A}{x+1}" />; an irreducible quadratic factor (one
-            with no real roots, such as <Katex tex="x^2+1" />) gets a linear numerator,{' '}
-            <Katex tex="\tfrac{Bx+C}{x^2+1}" />. The fraction has to be proper first (the
-            numerator&apos;s degree less than the denominator&apos;s).
-          </p>
-          <p>
-            The three integrals this leads to are all standard:{' '}
-            <Katex tex="\int\tfrac{1}{x+1}\,dx=\log_e(x+1)" />,{' '}
-            <Katex tex="\int\tfrac{2x}{x^2+1}\,dx=\log_e\left(x^2+1\right)" /> (the top is the
-            derivative of the bottom) and <Katex tex="\int\tfrac{1}{x^2+1}\,dx=\arctan(x)" />.
+            The root and the 2 are packaging: once <Katex tex="y" /> is squared in the volume
+            formula, the real question is the partial fraction decomposition underneath.
           </p>
           <p>
             The given answer form is a strong hint: a single logarithm plus something, all
-            times <Katex tex="2\pi" />. Seeing that <Katex tex="b=\tfrac\pi3" /> has to come
-            from an arctan tells you the <Katex tex="\tfrac{1}{x^2+1}" /> piece must survive
-            the decomposition.
+            times <Katex tex="2\pi" />. The non-log part <Katex tex="b" /> can only come from an
+            arctan, which tells you a <Katex tex="\tfrac{1}{x^2+1}" /> piece must survive the
+            decomposition (it turns out <Katex tex="b=\tfrac\pi3" />).
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

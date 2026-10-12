@@ -124,17 +124,15 @@ export default function BuildArctan() {
     notice = (
       <Notice>
         <b>Dilation by factor <M>{'\\tfrac13'}</M> from the <M>y</M>-axis: <M>x</M> becomes <M>3x</M>.</b> Every point moves to a
-        third of its distance from the <M>y</M>-axis, so the S squeezes in sideways. The asymptotes stay put, because a
-        sideways squeeze can&apos;t change a height. But the curve is now 3 times as steep: gradient <M>3</M> at the centre.
+        third of its distance from the <M>y</M>-axis, so the S squeezes in sideways. The asymptotes stay put. But the curve is now 3 times as steep: gradient <M>3</M> at the centre.
         That is the chain-rule 3 in part a.
       </Notice>
     )
   } else if (step === 2) {
     notice = (
       <Notice>
-        <b>Translation 2 units right: <M>{'\\arctan(3x-6) = \\arctan(3(x-2))'}</M>.</b> Take the 3 out first: the shift is{' '}
-        <M>2</M>, not <M>6</M>. Quick check: the centre is where the inside is zero, and <M>3x - 6 = 0</M> at <M>x = 2</M>.
-        The asymptotes are horizontal lines, so a sideways shift leaves them alone too. The centre <M>(2, 0)</M> is at
+        <b>Translation 2 units right: <M>{'\\arctan(3x-6) = \\arctan(3(x-2))'}</M>.</b> Quick check: the centre is where the inside is zero, and <M>3x - 6 = 0</M> at <M>x = 2</M>.
+        The asymptotes stay put again. The centre <M>(2, 0)</M> is at
         the <M>x</M>-value where part b found the inflection.
       </Notice>
     )

@@ -51,11 +51,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="|z| = \sqrt{\left(\tfrac{1}{\sqrt2}\right)^2+\left(-\tfrac{1}{\sqrt2}\right)^2} = \sqrt{\tfrac12+\tfrac12} = 1" />,
     reason: (
       <>
-        Put <Katex tex="z" /> in polar form first: de Moivre&apos;s theorem works with the modulus and the argument,
-        not with real and imaginary parts. Square each part before adding (the <Katex tex="\tfrac{1}{\sqrt2}" />s
-        become <Katex tex="\tfrac12" />s). A modulus of 1 means <Katex tex="z" /> is on the unit circle, and its cube
-        roots will be too. The report notes some students had difficulty with this first step and gave an incorrect
-        argument or modulus.
+        Call the number <Katex tex="z" />. Put it in polar form first: de Moivre&apos;s theorem works with the
+        modulus and the argument.
+        Square each part before adding.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students had difficulty with this first step and gave an incorrect argument or modulus.
+        Squaring turns each <Katex tex="\pm\tfrac{1}{\sqrt2}" /> into <Katex tex="\tfrac12" />, minus sign and all, so
+        the modulus is exactly 1: <Katex tex="z" /> is on the unit circle.
       </>
     ),
   },
@@ -63,32 +68,35 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\operatorname{Arg}(z) = -\tfrac\pi4, \quad z = \operatorname{cis}\!\left(-\tfrac\pi4\right)" />,
     reason: (
       <>
-        Sketch it: the real part is positive and the imaginary part negative, so <Katex tex="z" /> is in the fourth
-        quadrant, below the real axis, and its argument is negative. The two parts are the same size, so it sits
-        halfway between the axes: <Katex tex="\tfrac\pi4" /> clockwise. <Katex tex="\tan^{-1}(1)=\tfrac\pi4" /> gives
-        only the size of the angle; the sketch gives the sign. Writing <Katex tex="+\tfrac\pi4" /> here finds the cube
-        roots of a different number.
+        Real part positive, imaginary part negative: <Katex tex="z" /> is in the fourth quadrant, so its argument is
+        negative. Equal-sized parts put it halfway between the axes: <Katex tex="\tfrac\pi4" /> below the positive
+        real axis.
       </>
     ),
-    more: <>See the first common mistake below.</>,
+    more: (
+      <>
+        A small sketch settles it. <Katex tex="\tan^{-1}(1)=\tfrac\pi4" /> gives only the size of the angle; the
+        sketch gives the sign. Writing <Katex tex="+\tfrac\pi4" /> here finds the cube roots of a different number:
+        see the first common mistake below.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{Let } w = r\operatorname{cis}\theta, \text{ with } w^3 = z" />,
     reason: (
       <>
-        A cube root of <Katex tex="z" /> is any number <Katex tex="w" /> with <Katex tex="w^3 = z" />, and there are
-        three of them. Write the unknown in polar form too, because de Moivre&apos;s theorem says exactly what cubing
-        does to a number in that form.
+        A cube root of <Katex tex="z" /> is any <Katex tex="w" /> with <Katex tex="w^3 = z" />; there are three. Write{' '}
+        <Katex tex="w" /> in polar form so de Moivre can cube it.
       </>
     ),
   },
   {
     working: <Katex display tex="w^3 = r^3\operatorname{cis}(3\theta)" />,
-    reason: (
+    reason: <>De Moivre: cubing cubes the modulus and <em>triples</em> the argument.</>,
+    more: (
       <>
-        De Moivre: cubing cubes the modulus and <em>triples</em> the argument. So we need a length{' '}
-        <Katex tex="r" /> whose cube is 1, and an angle <Katex tex="\theta" /> that, tripled, points the same way as{' '}
-        <Katex tex="z" />.
+        So we need a length <Katex tex="r" /> whose cube is 1, and an angle <Katex tex="\theta" /> that, tripled,
+        points the same way as <Katex tex="z" />.
       </>
     ),
   },
@@ -96,9 +104,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="r^3\operatorname{cis}(3\theta) = \operatorname{cis}\!\left(-\tfrac\pi4+2k\pi\right), \ k\in Z" />,
     reason: (
       <>
-        Adding whole turns to <Katex tex="z" />&apos;s argument changes nothing about <Katex tex="z" />, and this is the
-        step that produces three <em>different</em> cube roots: <Katex tex="3\theta" /> only has to point the same way
-        as <Katex tex="-\tfrac\pi4" />, not equal it.
+        Adding whole turns doesn&apos;t change <Katex tex="z" />. <Katex tex="3\theta" /> only has to point the same
+        way as <Katex tex="-\tfrac\pi4" />, and this is what gives three <em>different</em> roots.
       </>
     ),
     more: (
@@ -112,8 +119,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="r^3 = 1 \implies r = 1" />,
     reason: (
       <>
-        Match the moduli. <Katex tex="r" /> is a length, a positive real number, so its only cube root is{' '}
-        <Katex tex="r = 1" />: every cube root lies on the unit circle.
+        Match the moduli. <Katex tex="r" /> is a length, a positive real number, so <Katex tex="r = 1" />: every cube
+        root lies on the unit circle.
       </>
     ),
   },
@@ -126,9 +133,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Match the arguments, then divide by 3. The <Katex tex="2k\pi" /> becomes <Katex tex="\tfrac{2k\pi}{3}" />:
-        consecutive roots are a third of a turn apart. Now choose the three values of <Katex tex="k" /> that put{' '}
-        <Katex tex="\theta" /> in <Katex tex="(-\pi,\pi]" />, the principal range the question asks for.
+        Match the arguments, then divide by 3: consecutive roots are a third of a turn apart. Choose the{' '}
+        <Katex tex="k" /> values that put <Katex tex="\theta" /> in <Katex tex="(-\pi,\pi]" />, the principal range.
       </>
     ),
   },
@@ -144,11 +150,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="k=-1: \ \theta = -\tfrac{\pi}{12}-\tfrac{8\pi}{12} = -\tfrac{3\pi}{4}" />,
     reason: (
       <>
-        A third of a turn clockwise. Take <Katex tex="k=-1" />, not <Katex tex="k=2" />: <Katex tex="k=2" /> gives{' '}
-        <Katex tex="\tfrac{15\pi}{12}=\tfrac{5\pi}{4}" />, the same point, but bigger than <Katex tex="\pi" />, so not a
-        principal value. The report notes some students neglected to give the arguments using principal values.{' '}
-        <Katex tex="k=3" /> would give <Katex tex="-\tfrac{\pi}{12}+2\pi" />, the <Katex tex="k=0" /> root again, so
-        there are no more.
+        A third of a turn clockwise. Take <Katex tex="k=-1" />, not <Katex tex="k=2" />, which gives{' '}
+        <Katex tex="\tfrac{5\pi}{4}" />: the same point, but bigger than <Katex tex="\pi" />, so not a principal value.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students neglected to give the arguments using principal values. There are no
+        more roots to find: <Katex tex="k=3" /> gives <Katex tex="-\tfrac{\pi}{12}+2\pi" />,
+        the <Katex tex="k=0" /> root again, and every other <Katex tex="k" /> repeats one of the three.
       </>
     ),
   },
@@ -156,10 +166,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\operatorname{cis}\!\left(-\tfrac{3\pi}{4}\right), \ \operatorname{cis}\!\left(-\tfrac{\pi}{12}\right), \ \operatorname{cis}\!\left(\tfrac{7\pi}{12}\right)}" />,
     reason: (
       <>
-        Check by cubing one: <Katex tex="\left(\operatorname{cis}\tfrac{7\pi}{12}\right)^3 = \operatorname{cis}\tfrac{7\pi}{4} = \operatorname{cis}\!\left(-\tfrac\pi4\right) = z" />{' '}
-        ✓. All three have modulus 1, sit <Katex tex="\tfrac{2\pi}{3}" /> apart around the unit circle, and have
-        arguments in <Katex tex="(-\pi,\pi]" />. Leave them in polar form, as the question asks: the report&apos;s
-        general comments use this question as their example of giving answers in the form specified.
+        Three roots, in polar form with principal arguments, as asked. Check one:{' '}
+        <Katex tex="\left(\operatorname{cis}\tfrac{7\pi}{12}\right)^3 = \operatorname{cis}\tfrac{7\pi}{4} = \operatorname{cis}\!\left(-\tfrac\pi4\right) = z" />{' '}
+        ✓
+      </>
+    ),
+    more: (
+      <>
+        On the unit circle the three roots are the corners of an equilateral triangle. Leave them in polar form: the report&apos;s general comments use this question as
+        their example of giving answers in the form specified.
       </>
     ),
   },
@@ -186,14 +201,12 @@ export default function SpecialistQ3_2020Exam1() {
           </p>
           <p>
             The plan: write <Katex tex="z" /> in polar form, write the unknown root as{' '}
-            <Katex tex="w = r\operatorname{cis}\theta" />, and use de Moivre&apos;s theorem, which says cubing cubes the
-            modulus and triples the argument. Here the modulus is 1, so the whole question comes down to angles.
+            <Katex tex="w = r\operatorname{cis}\theta" />, and use de Moivre&apos;s theorem to cube it. Here the modulus
+            is 1, so the whole question comes down to angles.
           </p>
           <p>
             &ldquo;Principal values&rdquo; means every argument you write down must lie in{' '}
-            <Katex tex="(-\pi,\pi]" />. That is part of the answer, not a formatting detail: the report notes some
-            students neglected to give the arguments using principal values, so choose the <Katex tex="k" /> values
-            that land there rather than taking <Katex tex="k=0,1,2" /> mechanically.
+            <Katex tex="(-\pi,\pi]" />. That is part of the answer, not a formatting detail.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
@@ -229,8 +242,7 @@ export default function SpecialistQ3_2020Exam1() {
           }
         >
           The three points are right, but <Katex tex="\tfrac{5\pi}{4}" /> is bigger than <Katex tex="\pi" />, so it is
-          not a principal value, and the question asks for principal values. The report notes some students neglected
-          to give the arguments for their final answers using principal values. Subtract a full turn (or take{' '}
+          not a principal value, and the question asks for principal values. Subtract a full turn (or take{' '}
           <Katex tex="k=-1" /> instead): <Katex tex="\tfrac{5\pi}{4}-2\pi = -\tfrac{3\pi}{4}" />. Before writing the
           answer down, check every argument is between <Katex tex="-\pi" /> and <Katex tex="\pi" />, with{' '}
           <Katex tex="\pi" /> itself allowed and <Katex tex="-\pi" /> not.

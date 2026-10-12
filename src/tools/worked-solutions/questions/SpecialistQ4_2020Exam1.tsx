@@ -49,15 +49,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{1}{|x-4|} > 0 \ \text{ for all } x \ne 4" />,
     reason: (
       <>
-        Start with the side you know most about. <Katex tex="|x-4|" /> is the distance between{' '}
-        <Katex tex="x" /> and <Katex tex="4" />, so it is never negative, and it is zero only at{' '}
-        <Katex tex="x=4" />, where the fraction isn&apos;t defined anyway. One over a positive number
-        is positive, so the right-hand side is always strictly positive.
+        Start with the side you know most about. A modulus is never negative, and{' '}
+        <Katex tex="|x-4|" /> is zero only at <Katex tex="x=4" />, where the fraction isn&apos;t
+        defined. So the right-hand side is always positive.
       </>
     ),
     more: (
       <>
-        In the diagram below it is the orange curve, which never dips below the <Katex tex="x" />-axis.
+        <Katex tex="|x-4|" /> is the distance between <Katex tex="x" /> and <Katex tex="4" />, and
+        one over a positive number is positive. In the diagram below the right-hand side is the
+        orange curve, which never dips below the <Katex tex="x" />-axis.
       </>
     ),
   },
@@ -66,10 +67,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         The left-hand side has to be bigger than something positive, so it must be positive
-        itself. That rules out every <Katex tex="x\ge3" /> at a stroke, including the awkward
-        point <Katex tex="x=4" />. How would you know to look for this? Whenever one side of an
-        inequality can only be positive (a modulus, a square, an exponential), ask what that
-        forces the other side to be.
+        itself. That rules out every <Katex tex="x\ge3" />, including the awkward point{' '}
+        <Katex tex="x=4" />.
+      </>
+    ),
+    more: (
+      <>
+        How would you know to look for this? Whenever one side of an inequality can only be
+        positive (a modulus, a square, an exponential), ask what that forces the other side to be.
       </>
     ),
   },
@@ -77,10 +82,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x < 3 \implies x-4 < 0 \implies |x-4| = 4-x" />,
     reason: (
       <>
-        The modulus of a negative number is its opposite: <Katex tex="|x-4| = -(x-4) = 4-x" />.
-        Because <Katex tex="x<3" /> is already known, <Katex tex="x-4" /> is certainly negative,
-        so there is only one case to handle, not two. (The other case, <Katex tex="x>4" />, has
-        no solutions: there <Katex tex="3-x" /> is negative.)
+        Since <Katex tex="x<3" />, <Katex tex="x-4" /> is negative, and the modulus of a negative
+        number is its opposite: <Katex tex="|x-4| = -(x-4) = 4-x" />. So there is only one case
+        to handle.
+      </>
+    ),
+    more: (
+      <>
+        The other case, <Katex tex="x>4" />, needs no algebra: there <Katex tex="3-x" /> is
+        negative while the right-hand side is positive, so it has no solutions.
       </>
     ),
   },
@@ -92,10 +102,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="(3-x)(4-x) > 1" />,
     reason: (
       <>
-        Multiply both sides by <Katex tex="4-x" /> to clear the fraction. On <Katex tex="x<3" />{' '}
-        it is positive (bigger than 1, in fact), so the inequality sign stays as it is. Knowing
-        the sign of what you multiply by is the whole issue here: the report notes students who
-        approached this algebraically were often unsure how to deal with the inequality signs.
+        Multiply both sides by <Katex tex="4-x" /> to clear the fraction. For <Katex tex="x<3" />{' '}
+        it is positive, so the inequality sign stays as it is.
+      </>
+    ),
+    more: (
+      <>
+        Knowing the sign of what you multiply by is the whole issue here: the report notes
+        students who approached this algebraically were often unsure how to deal with the
+        inequality signs. Multiplying by a negative reverses an inequality, and you can&apos;t
+        multiply by an expression whose sign you don&apos;t know without splitting into cases.
+        Working out <Katex tex="x<3" /> first is what makes this step safe.
       </>
     ),
   },
@@ -107,9 +124,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x = \frac{7\pm\sqrt{49-44}}{2} = \frac{7\pm\sqrt5}{2}" />,
     reason: (
       <>
-        The discriminant <Katex tex="49-44=5" /> is not a perfect square, so the quadratic
-        doesn&apos;t factorise nicely: use the quadratic formula.{' '}
-        <Katex tex="\tfrac{7-\sqrt5}{2}\approx2.38" /> and <Katex tex="\tfrac{7+\sqrt5}{2}\approx4.62" />.
+        The discriminant <Katex tex="49-44=5" /> is not a perfect square, so use the quadratic
+        formula. <Katex tex="\tfrac{7-\sqrt5}{2}\approx2.38" /> and{' '}
+        <Katex tex="\tfrac{7+\sqrt5}{2}\approx4.62" />.
       </>
     ),
   },
@@ -123,7 +140,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="y=x^2-7x+11" /> is an upright parabola, so it is above the axis outside its
-        two roots and below it between them. A quick sketch settles which side you want.
+        two roots and below it between them.
       </>
     ),
   },
@@ -136,11 +153,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Everything since the second line assumed <Katex tex="x<3" />, so the answer must respect
-        it. The branch <Katex tex="x>\tfrac{7+\sqrt5}{2}" /> fails: at <Katex tex="x=5" />, say,{' '}
-        <Katex tex="3-x=-2" /> is certainly not bigger than <Katex tex="\tfrac{1}{|5-4|}=1" />. The
-        left branch, <Katex tex="x<\tfrac{7-\sqrt5}{2}\approx2.38" />, already lies inside{' '}
-        <Katex tex="x<3" /> and survives whole.
+        Everything from <Katex tex="|x-4|=4-x" /> onwards assumed <Katex tex="x<3" />, so the branch{' '}
+        <Katex tex="x>\tfrac{7+\sqrt5}{2}" /> is out. The left branch,{' '}
+        <Katex tex="x<\tfrac{7-\sqrt5}{2}\approx2.38" />, lies inside <Katex tex="x<3" /> and
+        survives whole.
+      </>
+    ),
+    more: (
+      <>
+        A test value confirms the right branch fails the original inequality: at{' '}
+        <Katex tex="x=5" />, <Katex tex="3-x=-2" /> is certainly not bigger than{' '}
+        <Katex tex="\tfrac{1}{|5-4|}=1" />.
       </>
     ),
   },
@@ -148,13 +171,19 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{x \in \left(-\infty,\ \tfrac{7-\sqrt5}{2}\right)}" />,
     reason: (
       <>
-        Interval notation, as the question demands — the report notes students who wrote the
-        same set as <Katex tex="-\infty<x<\tfrac{7-\sqrt5}{2}" /> did not receive full marks. Round
-        brackets at both ends: <Katex tex="-\infty" /> is never included, and{' '}
-        <Katex tex="\tfrac{7-\sqrt5}{2}" /> is left out because the inequality is strict (there
-        the two sides are equal, both <Katex tex="\tfrac{\sqrt5-1}{2}\approx0.618" />). Check:{' '}
-        <Katex tex="x=0" /> gives <Katex tex="3>\tfrac14" />, true, while <Katex tex="x=2.5" />,
-        just past the boundary, gives <Katex tex="0.5>\tfrac23" />, false.
+        Interval notation, as the question asks. Round brackets at both ends:{' '}
+        <Katex tex="-\infty" /> is never included, and <Katex tex="\tfrac{7-\sqrt5}{2}" /> is
+        left out because the inequality is strict.
+      </>
+    ),
+    more: (
+      <>
+        The report notes students who wrote the same set as{' '}
+        <Katex tex="-\infty<x<\tfrac{7-\sqrt5}{2}" /> did not receive full marks, because the
+        answer wasn&apos;t in interval notation. At <Katex tex="x=\tfrac{7-\sqrt5}{2}" /> the two
+        sides are equal, both <Katex tex="\tfrac{\sqrt5-1}{2}\approx0.618" />. Check either side
+        of the boundary: <Katex tex="x=0" /> gives <Katex tex="3>\tfrac14" />, true, while{' '}
+        <Katex tex="x=2.5" /> gives <Katex tex="0.5>\tfrac23" />, false.
       </>
     ),
   },
@@ -202,14 +231,9 @@ export default function SpecialistQ4_2020Exam1() {
             doing before any algebra.
           </p>
           <p>
-            The instinct with a modulus is to split into two cases. Resist it here: because
-            the right-hand side is always positive, the left-hand side must be too, and that
-            single deduction fixes the sign of <Katex tex="x-4" /> before you ever open the
-            absolute value.
-          </p>
-          <p>
-            It also means you never multiply an inequality by something of unknown sign — the
-            usual way marks are lost on this type of question.
+            The instinct with a modulus is to split into two cases. Resist it here: one deduction
+            about signs fixes the sign of <Katex tex="x-4" /> before you ever open the absolute
+            value.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
@@ -231,10 +255,9 @@ export default function SpecialistQ4_2020Exam1() {
             >
               <p>
                 The quadratic was only derived for <Katex tex="x<3" />: that is what made{' '}
-                <Katex tex="|x-4|=4-x" /> and what made multiplying by <Katex tex="4-x" /> safe. So its
+                <Katex tex="|x-4|=4-x" />. So its
                 solutions have to be filtered through <Katex tex="x<3" />, and the right-hand branch
-                fails the filter. One test value exposes it: at <Katex tex="x=5" />,{' '}
-                <Katex tex="3-x=-2" /> is not bigger than <Katex tex="\tfrac{1}{|5-4|}=1" />.
+                fails the filter, as the test value <Katex tex="x=5" /> in the working shows.
               </p>
               <p>
                 Squaring both sides to get rid of the modulus lands on exactly the same wrong answer,
@@ -260,15 +283,13 @@ export default function SpecialistQ4_2020Exam1() {
                 <Katex tex="-x^2+7x-13>0" /> becomes <Katex tex="x^2-7x+13<0" />, which is never true
                 (the discriminant <Katex tex="49-52" /> is negative and the parabola is upright). So
                 this case has no solutions at all; forgetting the flip turns &ldquo;never&rdquo; into
-                &ldquo;always&rdquo; and adds the whole of <Katex tex="(4,\infty)" />. A test value
-                catches it: <Katex tex="x=5" /> gives <Katex tex="3-5=-2" />, which is not bigger
-                than <Katex tex="1" />.
+                &ldquo;always&rdquo; and adds the whole of <Katex tex="(4,\infty)" />. The test value{' '}
+                <Katex tex="x=5" /> in the working catches it.
               </p>
               <p>
-                Better still, skip this case. For <Katex tex="x>4" /> the left-hand side is negative
-                and the right-hand side positive (the line is below the axis in the diagram), so it
-                can&apos;t have solutions. This is one way the report&apos;s &ldquo;unsure how to deal
-                with the inequality signs&rdquo; plays out.
+                Better still, skip this case, as the working does (the line is below the axis there
+                in the diagram). This is one way the report&apos;s &ldquo;unsure how to deal with the
+                inequality signs&rdquo; plays out.
               </p>
             </WrongMethod>
           </AfterWorking>

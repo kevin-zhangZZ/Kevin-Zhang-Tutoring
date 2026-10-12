@@ -54,12 +54,16 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\text{vector resolute of } \underset{\sim}{a} \text{ along } \underset{\sim}{b} = \left(\frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\underset{\sim}{b}\cdot\underset{\sim}{b}}\right)\underset{\sim}{b}" />,
     reason: (
       <>
-        The resolute is always a number times <Katex tex="\underset{\sim}{b}" />, and that number is{' '}
-        <Katex tex="\tfrac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\underset{\sim}{b}\cdot\underset{\sim}{b}}" />. The question
-        has already written the resolute as a number times{' '}
-        <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+m\underset{\sim}{j}-\underset{\sim}{k}" />, and its number is{' '}
-        <Katex tex="-\tfrac{11}{18}" />. So there is no need to expand into components: the whole part is one equation,
-        our number <Katex tex="=" /> their number.
+        The resolute is a number times <Katex tex="\underset{\sim}{b}" />. The question gives that number as{' '}
+        <Katex tex="-\tfrac{11}{18}" />, so find our number in terms of <Katex tex="m" /> and set the two equal.
+      </>
+    ),
+    more: (
+      <>
+        The question has already written the resolute as a number times{' '}
+        <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+m\underset{\sim}{j}-\underset{\sim}{k}" />, so there is no need
+        to expand it into components and match three of them: the whole part is one equation, our number{' '}
+        <Katex tex="=" /> their number.
       </>
     ),
   },
@@ -79,19 +83,27 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{b}=|\underset{\sim}{b}|^2" />, the squared length, so no square root
-        appears. Dividing by <Katex tex="|\underset{\sim}{b}|" /> just once gives the <em>scalar</em> resolute (the length of
-        the shadow), not the number of <Katex tex="\underset{\sim}{b}" />&apos;s in it.
+        appears.
       </>
     ),
-    more: <>See the common mistake below.</>,
+    more: (
+      <>
+        Dividing by <Katex tex="|\underset{\sim}{b}|" /> instead of <Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{b}" /> is
+        a common slip: see the common mistake below.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{1-3m}{m^2+2} = -\frac{11}{18}" />,
     reason: (
       <>
-        Both sides are the number multiplying <Katex tex="\underset{\sim}{b}" />, so they must be equal. The given number is
-        negative, so <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=1-3m" /> must be negative: expect{' '}
-        <Katex tex="m>\tfrac13" />. That is a quick check on whatever comes out.
+        Both sides are the number multiplying <Katex tex="\underset{\sim}{b}" />, so they must be equal.
+      </>
+    ),
+    more: (
+      <>
+        A quick check before solving: the given number is negative, so{' '}
+        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=1-3m" /> must be negative. Expect <Katex tex="m>\tfrac13" />.
       </>
     ),
   },
@@ -114,8 +126,13 @@ const ROWS_A: WorkingRow[] = [
       <>
         Look for two numbers with product <Katex tex="11\times40=440" /> and sum <Katex tex="-54" />: they are{' '}
         <Katex tex="-44" /> and <Katex tex="-10" />, so{' '}
-        <Katex tex="11m^2-44m-10m+40=11m(m-4)-10(m-4)" />. The report notes that students who factorised were generally more
-        successful than those who used the quadratic formula.
+        <Katex tex="11m^2-44m-10m+40=11m(m-4)-10(m-4)" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes that students who factorised were generally more successful than those who used the quadratic
+        formula: here the formula needs <Katex tex="\sqrt{54^2-4(11)(40)}=\sqrt{1156}=34" />, an easy place to slip by hand.
       </>
     ),
   },
@@ -123,15 +140,16 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{m = 4}" />,
     reason: (
       <>
-        <Katex tex="m" /> is given to be an integer, so <Katex tex="\tfrac{10}{11}" /> is rejected. It really does satisfy the
-        equation; the integer condition is the only thing that rules it out. Both roots are bigger than <Katex tex="\tfrac13" />, as the sign check predicted.
-        Check: with <Katex tex="m=4" />, <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=2-12-1=-11" /> and{' '}
+        <Katex tex="m" /> is given to be an integer, so reject <Katex tex="\tfrac{10}{11}" />. Check: with <Katex tex="m=4" />,{' '}
+        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=2-12-1=-11" /> and{' '}
         <Katex tex="\underset{\sim}{b}\cdot\underset{\sim}{b}=1+16+1=18" />, giving <Katex tex="-\tfrac{11}{18}" /> ✓.
       </>
     ),
     more: (
       <>
-        The diagram below shows the multiplier reaching <Katex tex="-\tfrac{11}{18}" /> twice.
+        <Katex tex="m=\tfrac{10}{11}" /> really does satisfy the equation; the integer condition is the only thing that rules it
+        out. Both roots are bigger than <Katex tex="\tfrac13" />, as the sign check predicted. The diagram below shows the
+        multiplier reaching <Katex tex="-\tfrac{11}{18}" /> twice.
       </>
     ),
   },
@@ -142,11 +160,9 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{a}_{\perp} = \underset{\sim}{a}-\left(\text{resolute of } \underset{\sim}{a} \text{ along } \underset{\sim}{b}\right)" />,
     reason: (
       <>
-        Any vector splits into a part along <Katex tex="\underset{\sim}{b}" /> and a part at right angles to{' '}
-        <Katex tex="\underset{\sim}{b}" />, and the two parts add back to{' '}
-        <Katex tex="\underset{\sim}{a}" />: <Katex tex="\underset{\sim}{a}=\underset{\sim}{a}_{\parallel}+\underset{\sim}{a}_{\perp}" />.
-        The part along <Katex tex="\underset{\sim}{b}" /> is the resolute we were given, so the perpendicular part is whatever is
-        left once it is taken away.
+        <Katex tex="\underset{\sim}{a}" /> splits into a part along <Katex tex="\underset{\sim}{b}" /> plus a part at right
+        angles to it. The part along <Katex tex="\underset{\sim}{b}" /> is the given resolute, so the perpendicular part is
+        what is left once it is taken away.
       </>
     ),
     more: (
@@ -159,11 +175,11 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= \left(2\underset{\sim}{i}-3\underset{\sim}{j}+\underset{\sim}{k}\right)+\tfrac{11}{18}\left(\underset{\sim}{i}+4\underset{\sim}{j}-\underset{\sim}{k}\right)" />,
     reason: (
       <>
-        Put in <Katex tex="m=4" /> from part a. (which is why the report notes some students could not attempt this part).
-        Taking away <Katex tex="-\tfrac{11}{18}\underset{\sim}{b}" /> means <em>adding</em>{' '}
-        <Katex tex="\tfrac{11}{18}\underset{\sim}{b}" />: watch that sign.
+        Put in <Katex tex="m=4" /> from part a. Taking away <Katex tex="-\tfrac{11}{18}\underset{\sim}{b}" /> means{' '}
+        <em>adding</em> <Katex tex="\tfrac{11}{18}\underset{\sim}{b}" />: watch that sign.
       </>
     ),
+    more: <>This part depends on part a., which is why the report notes some students could not attempt it.</>,
   },
   {
     working: (
@@ -175,23 +191,22 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Write every coefficient over 18 before adding, one component at a time: <Katex tex="2=\tfrac{36}{18}" />,{' '}
-        <Katex tex="-3=-\tfrac{54}{18}" />, <Katex tex="1=\tfrac{18}{18}" />, and{' '}
-        <Katex tex="\tfrac{11}{18}\times4=\tfrac{44}{18}" />. The report notes that arithmetic errors often cost students this
-        mark, so take it slowly.
+        <Katex tex="-3=-\tfrac{54}{18}" />, <Katex tex="1=\tfrac{18}{18}" />,{' '}
+        <Katex tex="\tfrac{11}{18}\times4=\tfrac{44}{18}" /> and <Katex tex="\tfrac{11}{18}\times(-1)=-\tfrac{11}{18}" />.
       </>
     ),
+    more: <>The report notes that arithmetic errors often cost students this mark, so take it slowly.</>,
   },
   {
     working: <Katex display tex="\boxed{\tfrac{47}{18}\underset{\sim}{i}-\tfrac{5}{9}\underset{\sim}{j}+\tfrac{7}{18}\underset{\sim}{k}}" />,
     reason: (
       <>
-        <Katex tex="-\tfrac{10}{18}" /> simplifies to <Katex tex="-\tfrac59" />, the form the report gives. Check: the answer
-        must be perpendicular to <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+4\underset{\sim}{j}-\underset{\sim}{k}" />, so
-        its dot product with <Katex tex="\underset{\sim}{b}" /> must be <Katex tex="0" />:{' '}
-        <Katex tex="\tfrac{47}{18}-\tfrac{40}{18}-\tfrac{7}{18}=0" /> ✓. This ten-second check catches almost any slip in the
-        arithmetic.
+        Simplify <Katex tex="-\tfrac{10}{18}=-\tfrac59" />. Check it is perpendicular: its dot product with{' '}
+        <Katex tex="\underset{\sim}{b}=\underset{\sim}{i}+4\underset{\sim}{j}-\underset{\sim}{k}" /> is{' '}
+        <Katex tex="\tfrac{47}{18}-\tfrac{40}{18}-\tfrac{7}{18}=0" /> ✓.
       </>
     ),
+    more: <>This ten-second check catches almost any slip in the arithmetic, including a lost minus sign.</>,
   },
 ]
 
@@ -279,8 +294,7 @@ export default function SpecialistQ5_2020Exam1() {
           working={<Katex display tex="\underset{\sim}{a}-\tfrac{11}{18}\left(\underset{\sim}{i}+4\underset{\sim}{j}-\underset{\sim}{k}\right) = \tfrac{25}{18}\underset{\sim}{i}-\tfrac{49}{9}\underset{\sim}{j}+\tfrac{29}{18}\underset{\sim}{k}" />}
         >
           <p>
-            The resolute is <Katex tex="-\tfrac{11}{18}\underset{\sim}{b}" />, so taking it away means <em>adding</em>{' '}
-            <Katex tex="\tfrac{11}{18}\underset{\sim}{b}" />. Lose the minus sign and every component comes out wrong.
+            Lose the minus sign on the resolute and every component comes out wrong.
           </p>
           <p>
             The perpendicular check catches it straight away:{' '}

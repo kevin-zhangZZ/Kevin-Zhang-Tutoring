@@ -60,9 +60,14 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="y = \log_e(1+t)+\tfrac14\log_e(1-t)" />,
     reason: (
       <>
-        The target is three <em>separate</em> fractions, so the plan is: find{' '}
-        <Katex tex="\tfrac{dy}{dt}" />, square it by expanding the brackets (not by combining into
-        one fraction), then match each term with the given form. Each log needs the chain rule,{' '}
+        Plan: differentiate each log with the chain rule, square by expanding the brackets, then
+        match the three terms with the given form.
+      </>
+    ),
+    more: (
+      <>
+        The target is three <em>separate</em> fractions, so expand the square term by term rather
+        than combining everything into one fraction. Chain rule for a log:{' '}
         <Katex tex="\tfrac{d}{dt}\log_e(u)=\tfrac{1}{u}\cdot\tfrac{du}{dt}" />.
       </>
     ),
@@ -71,12 +76,12 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac{dy}{dt} = \frac{1}{1+t}+\frac14\cdot\frac{-1}{1-t} = \frac{1}{1+t}-\frac{1}{4(1-t)}" />,
     reason: (
       <>
-        The inner derivative of <Katex tex="1-t" /> is <Katex tex="-1" />, which supplies the minus
-        sign. Leave the two fractions apart. It helps to name them <Katex tex="P=\tfrac{1}{1+t}" /> and{' '}
-        <Katex tex="Q=\tfrac{1}{4(1-t)}" />, so that <Katex tex="\tfrac{dy}{dt}=P-Q" /> (part b. uses
-        these names too).
+        The inner derivative of <Katex tex="1-t" /> is <Katex tex="-1" />, giving the minus sign.
+        Name the fractions <Katex tex="P=\tfrac{1}{1+t}" /> and <Katex tex="Q=\tfrac{1}{4(1-t)}" />,
+        so <Katex tex="\tfrac{dy}{dt}=P-Q" />.
       </>
     ),
+    more: <>Leave the two fractions apart. Part b uses the names <Katex tex="P" /> and <Katex tex="Q" /> too.</>,
   },
   {
     working: (
@@ -97,9 +102,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac{2}{4(1+t)(1-t)} = \frac{1}{2\left(1-t^2\right)}" />,
     reason: (
       <>
-        The middle term. <Katex tex="(1+t)(1-t)=1-t^2" /> is a difference of two squares. It is{' '}
-        <Katex tex="1-t^2" />, not <Katex tex="(1-t)^2" />: the report notes some students confused
-        the two, which led to incorrect results.
+        The middle term. <Katex tex="(1+t)(1-t)=1-t^2" /> is a difference of two squares, not{' '}
+        <Katex tex="(1-t)^2" />.
       </>
     ),
   },
@@ -116,8 +120,8 @@ const ROWS_A: WorkingRow[] = [
     ),
     reason: (
       <>
-        In the given form every term is <Katex tex="+\tfrac{1}{\ldots}" />, so the minus sign has
-        to go into the number in the denominator:{' '}
+        Every term in the given form is <Katex tex="+\tfrac{1}{\ldots}" />, so the minus sign goes
+        into the denominator&apos;s number:{' '}
         <Katex tex="-\tfrac{1}{2\left(1-t^2\right)}=\tfrac{1}{(-2)\left(1-t^2\right)}" />. That is why{' '}
         <Katex tex="b" /> is negative.
       </>
@@ -127,10 +131,12 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{a = 1, \quad b = -2, \quad c = 16}" />,
     reason: (
       <>
-        Reading off the three numbers. The values were given in the question, so the marks are
-        for the working above: the report notes students needed to find{' '}
-        <Katex tex="\tfrac{dy}{dt}" />, square it, and show that working rather than just writing
-        the answer. As required.
+        Reading off the three numbers. As required.
+      </>
+    ),
+    more: (
+      <>
+        The values were given in the question, so the marks are for the working above.
       </>
     ),
   },
@@ -146,9 +152,8 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        The derivative of <Katex tex="\arcsin(t)" /> is on the formula sheet. Squaring removes its
-        square root and leaves <Katex tex="1-t^2" />, the same factor as in the middle term of part
-        a. That is a hint that the two will combine.
+        The derivative of <Katex tex="\arcsin(t)" /> is on the formula sheet. Squaring leaves{' '}
+        <Katex tex="1-t^2" />, the same factor as part a&apos;s middle term: a hint they will combine.
       </>
     ),
   },
@@ -156,11 +161,15 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="s = \int_0^{1/2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt" />,
     reason: (
       <>
-        The parametric arc length formula, from the formula sheet. The square root is the
-        point&apos;s speed along the curve, so <Katex tex="s" /> adds up speed × time.
+        The parametric arc length formula, from the formula sheet.
       </>
     ),
-    more: <>See the first diagram below.</>,
+    more: (
+      <>
+        The square root is the point&apos;s speed along the curve, so <Katex tex="s" /> adds up
+        speed × time. See the first diagram below.
+      </>
+    ),
   },
   {
     working: (
@@ -203,35 +212,39 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        How to spot the perfect square: part a&apos;s <Katex tex="\left(\tfrac{dy}{dt}\right)^2" />{' '}
-        was <Katex tex="(P-Q)^2" />. The first and last terms are unchanged and the middle one has
-        only changed sign, so try <Katex tex="(P+Q)^2" />. Expanding it confirms the match, since{' '}
-        <Katex tex="\tfrac{2}{4\left(1-t^2\right)}=\tfrac{1}{2\left(1-t^2\right)}" />. Why it works:{' '}
-        <Katex tex="\left(\tfrac{dx}{dt}\right)^2=\tfrac{1}{1-t^2}" /> is exactly{' '}
-        <Katex tex="4PQ" />, and <Katex tex="(P-Q)^2+4PQ=(P+Q)^2" />. The report notes that most
-        students who answered this successfully identified the perfect square.
+        Part a&apos;s <Katex tex="\left(\tfrac{dy}{dt}\right)^2" /> was <Katex tex="(P-Q)^2" />,
+        so try <Katex tex="(P+Q)^2" />. Expanding it matches,
+        since <Katex tex="\tfrac{2}{4\left(1-t^2\right)}=\tfrac{1}{2\left(1-t^2\right)}" />.
       </>
     ),
-    more: <>The second diagram below fits the pieces together.</>,
+    more: (
+      <>
+        This is the pattern described above:{' '}
+        <Katex tex="\left(\tfrac{dx}{dt}\right)^2=\tfrac{1}{1-t^2}" /> is exactly{' '}
+        <Katex tex="4PQ=4\cdot\tfrac{1}{1+t}\cdot\tfrac{1}{4(1-t)}" />, so adding it to{' '}
+        <Katex tex="(P-Q)^2" /> gives <Katex tex="(P+Q)^2" />. The report notes that most students
+        who answered this successfully identified the perfect square. The second diagram below
+        fits the pieces together.
+      </>
+    ),
   },
   {
     working: <Katex display tex="s = \int_0^{1/2}\left(\frac{1}{1+t}+\frac{1}{4(1-t)}\right)dt" />,
     reason: (
       <>
         <Katex tex="\sqrt{(P+Q)^2}=|P+Q|" />, and both fractions are positive for{' '}
-        <Katex tex="0\le t\le\tfrac12" />, so the square root is just the bracket. It had to be
-        positive anyway: it is a speed.
+        <Katex tex="0\le t\le\tfrac12" />, so the square root is just the bracket.
       </>
     ),
+    more: <>It had to be positive anyway: it is a speed.</>,
   },
   {
     working: <Katex display tex="= \left[\log_e(1+t)-\tfrac14\log_e(1-t)\right]_0^{1/2}" />,
     reason: (
       <>
         <Katex tex="\int\tfrac{1}{4(1-t)}\,dt=-\tfrac14\log_e(1-t)" />: the inner derivative of{' '}
-        <Katex tex="1-t" /> is <Katex tex="-1" /> again, so the sign flips. No absolute values are
-        needed, because <Katex tex="1+t" /> and <Katex tex="1-t" /> are positive on{' '}
-        <Katex tex="\left[0,\tfrac12\right]" />.
+        <Katex tex="1-t" /> is <Katex tex="-1" /> again, so the sign flips. No absolute values:{' '}
+        <Katex tex="1\pm t" /> are positive on <Katex tex="\left[0,\tfrac12\right]" />.
       </>
     ),
   },
@@ -249,9 +262,14 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="-\log_e\tfrac12=\log_e(2)" />, so <Katex tex="m=\tfrac32" />,{' '}
-        <Katex tex="n=\tfrac14" /> and <Katex tex="p=2" />, all rational as the form requires. The
-        form is not unique: the report&apos;s own first line,{' '}
-        <Katex tex="\log_e\left(\tfrac32\right)-\tfrac14\log_e\left(\tfrac12\right)" />, fits it too.
+        <Katex tex="n=\tfrac14" /> and <Katex tex="p=2" />, all rational as the form requires.
+      </>
+    ),
+    more: (
+      <>
+        The form is not unique: the unsimplified line above,{' '}
+        <Katex tex="\log_e\left(\tfrac32\right)-\tfrac14\log_e\left(\tfrac12\right)" />, fits it
+        too (with <Katex tex="n=-\tfrac14" /> and <Katex tex="p=\tfrac12" />).
         Check: <Katex tex="s\approx0.4055+0.1733\approx0.579" />. The straight line from the start{' '}
         <Katex tex="(0,0)" /> to the end point <Katex tex="\left(\tfrac{\pi}{6},\,y\left(\tfrac12\right)\right)\approx(0.524,\,0.232)" />{' '}
         has length about <Katex tex="0.573" />. The curve bends only slightly, so its length should
@@ -325,10 +343,6 @@ export default function SpecialistQ9_2020Exam1() {
             turns that middle term into <Katex tex="+2PQ" />:
           </p>
           <Katex display tex="(P-Q)^2+4PQ = P^2+2PQ+Q^2 = (P+Q)^2" />
-          <p>
-            So after substituting, check whether the middle term has changed sign. If it has, the
-            square root is <Katex tex="P+Q" />.
-          </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
         <Explore title="Arc length is distance travelled: the square root is the speed, by Pythagoras">
@@ -356,10 +370,8 @@ export default function SpecialistQ9_2020Exam1() {
             incorrect results. With the wrong square, the <Katex tex="1-t^2" /> term has nothing to
             combine with, so the middle term stays negative and there is no perfect square. For{' '}
             <Katex tex="\left(\tfrac{1}{1+t}-\tfrac{k}{1-t}\right)^2" /> the last term needs{' '}
-            <Katex tex="{k^2=\tfrac{17}{16}}" /> but the middle term needs <Katex tex="{2k=\tfrac12}" />.
-            Over one denominator the numerator is <Katex tex="41t^2+2t+25" />, whose discriminant is{' '}
-            <Katex tex="-4096" />, so it is not the square of anything. You are left with a square
-            root you can&apos;t integrate by hand.
+            <Katex tex="{k^2=\tfrac{17}{16}}" /> but the middle term needs <Katex tex="{2k=\tfrac12}" />,
+            which can&apos;t both hold. You are left with a square root you can&apos;t integrate by hand.
           </p>
           <p>
             A quick check at <Katex tex="t=0" /> won&apos;t catch this slip, because{' '}

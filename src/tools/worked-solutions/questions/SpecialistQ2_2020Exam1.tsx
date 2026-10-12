@@ -46,11 +46,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{Let } u = 1-x, \text{ so } x = 1-u \text{ and } \frac{du}{dx} = -1" />,
     reason: (
       <>
-        The only awkward feature is the <Katex tex="\sqrt{1-x}" /> in the denominator, so let{' '}
-        <Katex tex="u" /> be what is under the root: the root becomes <Katex tex="\sqrt u" />, a plain
-        power. Because <Katex tex="1-x" /> is <em>linear</em>, <Katex tex="\tfrac{du}{dx}" /> is just a
-        constant, so nothing extra has to cancel. That is the signal to look for: a linear expression
-        inside a root, with a polynomial on top.
+        The awkward part is the <Katex tex="\sqrt{1-x}" /> in the denominator, so let <Katex tex="u" /> be
+        what is under the root: it becomes <Katex tex="\sqrt u" />, a plain power.
+      </>
+    ),
+    more: (
+      <>
+        Because <Katex tex="1-x" /> is <em>linear</em>, <Katex tex="\tfrac{du}{dx}" /> is just a constant,
+        so nothing extra has to cancel. That is the signal to look for: a linear expression inside a root,
+        with a polynomial on top.
       </>
     ),
   },
@@ -63,10 +67,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A substitution changes <em>everything</em> in the integral to <Katex tex="u" />: the{' '}
-        <Katex tex="dx" />, and the numerator as well. An integral with both <Katex tex="x" /> and{' '}
-        <Katex tex="u" /> in it can't be evaluated. Rearranging <Katex tex="u=1-x" /> to{' '}
-        <Katex tex="x=1-u" /> is what lets the numerator be rewritten.
+        Everything must be in terms of <Katex tex="u" />: the <Katex tex="dx" />, and the numerator too,
+        using <Katex tex="x=1-u" />.
+      </>
+    ),
+    more: (
+      <>
+        An integral with both <Katex tex="x" /> and <Katex tex="u" /> in it can't be evaluated.
+        Rearranging <Katex tex="u=1-x" /> to <Katex tex="x=1-u" /> is what lets the numerator be
+        rewritten.
       </>
     ),
   },
@@ -74,11 +83,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x = -1 \Rightarrow u = 2; \qquad x = 0 \Rightarrow u = 1" />,
     reason: (
       <>
-        Change the terminals to <Katex tex="u" />-values now, so there is no substituting back at the
-        end. They come out <b>reversed</b>: the left end <Katex tex="x=-1" /> gives the bigger value{' '}
-        <Katex tex="u=2" />, because <Katex tex="u=1-x" /> goes <em>down</em> as <Katex tex="x" /> goes
-        up. (Keep the old terminals by mistake and you would be integrating <Katex tex="\sqrt u" /> over
-        negative <Katex tex="u" />, which is not even defined.)
+        Change the terminals to <Katex tex="u" />-values, so there is no substituting back at the end.
+        They come out reversed because <Katex tex="u=1-x" /> goes <em>down</em> as <Katex tex="x" /> goes up.
+      </>
+    ),
+    more: (
+      <>
+        Keep the old terminals by mistake and you would be integrating <Katex tex="\sqrt u" /> over
+        negative <Katex tex="u" />, which is not even defined.
       </>
     ),
   },
@@ -91,16 +103,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Replace <Katex tex="dx" /> with <Katex tex="-du" />. The minus sign and the reversed terminals
-        are the same fact seen twice (<Katex tex="u" /> runs backwards), so they cancel: swapping the
-        terminals of an integral changes its sign, and <Katex tex="-\int_2^1=\int_1^2" />. This is the
-        line the report writes out.
+        Replace <Katex tex="dx" /> with <Katex tex="-du" />. Swapping the terminals of an integral
+        changes its sign, so <Katex tex="-\int_2^1=\int_1^2" />.
       </>
     ),
     more: (
       <>
-        The first diagram below shows it: the new region is the old one flipped end to end, with the
-        same area.
+        The minus sign and the reversed terminals are the same fact seen twice (<Katex tex="u" /> runs
+        backwards as <Katex tex="x" /> runs forwards), so they cancel. This is the line the report writes
+        out, and it ends in <Katex tex="du" />: the report reminds students to include the{' '}
+        <Katex tex="dx" /> or <Katex tex="du" /> in every integral. The first diagram below shows the new
+        region is the old one flipped end to end, with the same area.
       </>
     ),
   },
@@ -109,11 +122,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         The denominator is a single term, so divide each term of the numerator by it:{' '}
-        <Katex tex="\tfrac{2}{u^{1/2}}=2u^{-1/2}" /> and <Katex tex="\tfrac{u}{u^{1/2}}=u^{1/2}" />. One
-        fraction with no known antiderivative becomes two powers of <Katex tex="u" />, and the power
-        rule does the rest. This is what the substitution was for: in <Katex tex="x" /> the same split
-        leaves <Katex tex="\int\frac{x}{\sqrt{1-x}}\,dx" />, which still needs a substitution (the
-        report makes this point about splitting first).
+        <Katex tex="\tfrac{2}{u^{1/2}}=2u^{-1/2}" /> and <Katex tex="\tfrac{u}{u^{1/2}}=u^{1/2}" />.
+      </>
+    ),
+    more: (
+      <>
+        One fraction with no known antiderivative becomes two powers of <Katex tex="u" />, and the power
+        rule does the rest.
       </>
     ),
   },
@@ -122,11 +137,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Add one to the power, then <b>divide</b> by the new power:{' '}
-        <Katex tex="\int2u^{-1/2}\,du=2\cdot\frac{u^{1/2}}{1/2}=4u^{1/2}" /> and{' '}
-        <Katex tex="\int u^{1/2}\,du=\frac{u^{3/2}}{3/2}=\tfrac23u^{3/2}" />. Dividing by{' '}
-        <Katex tex="\tfrac12" /> doubles; dividing by <Katex tex="\tfrac32" /> gives{' '}
-        <Katex tex="\tfrac23" />. Differentiate each back to check: the report notes various errors
-        with exponents.
+        <Katex tex="2\cdot\frac{u^{1/2}}{1/2}=4u^{1/2}" /> and{' '}
+        <Katex tex="\frac{u^{3/2}}{3/2}=\tfrac23u^{3/2}" />.
+      </>
+    ),
+    more: (
+      <>
+        Dividing by <Katex tex="\tfrac12" /> doubles; dividing by <Katex tex="\tfrac32" /> is multiplying
+        by <Katex tex="\tfrac23" />.
       </>
     ),
   },
@@ -134,27 +152,30 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="= \left(4\sqrt2-\tfrac23\cdot2\sqrt2\right)-\left(4-\tfrac23\right)" />,
     reason: (
       <>
-        <Katex tex="2^{1/2}=\sqrt2" />, <Katex tex="2^{3/2}=2\cdot2^{1/2}=2\sqrt2" />, and any power of{' '}
-        <Katex tex="1" /> is <Katex tex="1" />. Upper terminal minus lower terminal, with a bracket
-        around the <em>whole</em> lower value so both of its terms are subtracted.
+        Upper terminal minus lower, with a bracket around the <em>whole</em> lower value.{' '}
+        <Katex tex="2^{3/2}=2\cdot2^{1/2}=2\sqrt2" />, and any power of <Katex tex="1" /> is <Katex tex="1" />.
       </>
     ),
   },
   {
     working: <Katex display tex="= 4\sqrt2-\tfrac{4\sqrt2}{3}-\tfrac{10}{3} = \tfrac{12\sqrt2-4\sqrt2}{3}-\tfrac{10}{3}" />,
-    reason: <>Collecting the surd terms over the common denominator 3; the rational part is <Katex tex="4-\tfrac23=\tfrac{10}{3}" />.</>,
+    reason: <>Collect the surd terms over the common denominator 3; the rational part is <Katex tex="4-\tfrac23=\tfrac{10}{3}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{8\sqrt2}{3}-\frac{10}{3}}" />,
     reason: (
       <>
-        In the required form <Katex tex="a\sqrt b+c" /> with <Katex tex="a=\tfrac83" />,{' '}
-        <Katex tex="b=2" />, <Katex tex="c=-\tfrac{10}{3}" />, exactly as VCAA writes it. Sanity check:
-        this is about <Katex tex="0.44" />. On <Katex tex="[-1,0]" /> the integrand rises from{' '}
-        <Katex tex="0" /> to <Katex tex="1" />, and since <Katex tex="\sqrt{1-x}\ge1" /> there, it sits
+        The required form <Katex tex="a\sqrt b+c" />, with <Katex tex="a=\tfrac83" />,{' '}
+        <Katex tex="b=2" />, <Katex tex="c=-\tfrac{10}{3}" />.
+      </>
+    ),
+    more: (
+      <>
+        Sanity check: this is about <Katex tex="0.44" />. On <Katex tex="[-1,0]" /> the integrand rises
+        from <Katex tex="0" /> to <Katex tex="1" />, and since <Katex tex="\sqrt{1-x}\ge1" /> there, it sits
         below the line <Katex tex="y=1+x" />, whose triangle has area <Katex tex="\tfrac12" />. So the
-        answer must be positive and under <Katex tex="\tfrac12" />. <Katex tex="0.44" /> fits; a negative
-        answer or one bigger than <Katex tex="\tfrac12" /> means a slip somewhere.
+        answer must be positive and under <Katex tex="\tfrac12" />; a negative answer or one bigger than{' '}
+        <Katex tex="\tfrac12" /> means a slip somewhere.
       </>
     ),
   },
@@ -207,14 +228,8 @@ export default function SpecialistQ2_2020Exam1() {
           }
         >
           <p>
-            The integrand is positive all the way along <Katex tex="[-1,0]" />, so a negative answer (about{' '}
-            <Katex tex="-0.44" />) is impossible. That is the check that catches it.
-          </p>
-          <p>
-            The reversed terminals and the minus sign come as a pair: both say that <Katex tex="u" /> runs
-            backwards as <Katex tex="x" /> runs forwards. Keep both, and{' '}
-            <Katex tex="-\int_2^1=\int_1^2" />. Quietly dropping the negative sign at the end gives the right
-            number from wrong working. In the diagram above, turn on &ldquo;What if I drop the minus
+            About <Katex tex="-0.44" />: a negative answer for a positive integrand gives it away. Quietly
+            dropping the negative sign at the end gives the right number from wrong working. In the diagram above, turn on &ldquo;What if I drop the minus
             sign?&rdquo; to watch the region count as negative.
           </p>
         </WrongMethod>

@@ -66,7 +66,8 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\arctan(u) = \frac{1}{1+u^2}\cdot\frac{du}{dx}" />,
-    reason: <>The formula sheet gives <Katex tex="\tfrac{d}{dx}\left(\tan^{-1}(x)\right)=\tfrac{1}{1+x^2}" />, which is for arctan of plain <Katex tex="x" />. Here the input is <Katex tex="3x-6" />, so <Katex tex="f" /> is a composite: arctan of the inner function <Katex tex="u=3x-6" />. The chain rule multiplies by the inner derivative, <Katex tex="\tfrac{du}{dx}=3" />, and that 3 is where the numerator of the given answer comes from.</>,
+    reason: <>The formula sheet&apos;s arctan derivative plus the chain rule, with inner function <Katex tex="u=3x-6" />, so <Katex tex="\tfrac{du}{dx}=3" />.</>,
+    more: <>The formula sheet gives <Katex tex="\tfrac{d}{dx}\left(\tan^{-1}(x)\right)=\tfrac{1}{1+x^2}" />, which is for arctan of plain <Katex tex="x" />. Here the input is <Katex tex="3x-6" />, so <Katex tex="f" /> is a composite, and the chain rule multiplies by the inner derivative. That 3 is where the numerator of the given answer comes from.</>,
   },
   {
     working: (
@@ -75,8 +76,8 @@ const ROWS_A: WorkingRow[] = [
         <Katex display tex="= \frac{3}{1+(3x-6)^2}" />
       </>
     ),
-    reason: <>The <Katex tex="+\pi" /> is a constant, so it differentiates to 0. Why a factor of 3, in picture terms: <Katex tex="3x-6=3(x-2)" />, and replacing <Katex tex="x" /> by <Katex tex="3x" /> squeezes the graph sideways by a factor of 3, which makes it 3 times as steep everywhere. Shifting it right doesn&apos;t change any gradients.</>,
-    more: <>The diagram in part c. shows the squeeze.</>,
+    reason: <>The <Katex tex="+\pi" /> is a constant, so it differentiates to 0.</>,
+    more: <>Why a factor of 3, in picture terms: <Katex tex="3x-6=3(x-2)" />, and replacing <Katex tex="x" /> by <Katex tex="3x" /> squeezes the graph sideways by a factor of 3, which makes it 3 times as steep at matching points. Shifting it right doesn&apos;t change any gradients. The diagram in part c. shows the squeeze.</>,
   },
   {
     working: <Katex display tex="(3x-6)^2 = 9x^2-36x+36" />,
@@ -84,14 +85,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \frac{3}{9x^2-36x+37}}" />,
-    reason: <>Adding the 1 lifts 36 to 37. In a &ldquo;show that&rdquo; the answer is printed in the question, so the marks are for the lines that reach it: the report says students needed to demonstrate the use of the chain rule, and its general comments name this part as the example of presenting sufficient working for a given result. As required.</>,
+    reason: <>Adding the 1 lifts 36 to 37. As required.</>,
+    more: <>In a &ldquo;show that&rdquo; the answer is printed in the question, so the marks are for the lines that reach it: the report says students needed to demonstrate the use of the chain rule, and its general comments name this part as the example of presenting sufficient working for a given result.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 3\left(9x^2-36x+37\right)^{-1}" />,
-    reason: <>&ldquo;Hence&rdquo; means start from part a.&apos;s <Katex tex="f'(x)" /> and differentiate again. Writing it as a power lets you use the chain rule rather than the quotient rule: less to go wrong.</>,
+    reason: <>&ldquo;Hence&rdquo;: differentiate part a.&apos;s <Katex tex="f'(x)" /> again. A point of inflection is where <Katex tex="f''" /> changes sign (the concavity changes).</>,
+    more: <>Writing <Katex tex="f'(x)" /> as a power lets you use the chain rule rather than the quotient rule: less to go wrong.</>,
   },
   {
     working: (
@@ -104,11 +107,11 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f''(x) = \frac{-54(x-2)}{\left(9x^2-36x+37\right)^2}" />,
-    reason: <>Take 18 out of <Katex tex="18x-36" /> and multiply it by <Katex tex="-3" />. Factorising is the point: it shows at a glance where <Katex tex="f''" /> is zero and what sign it has either side.</>,
+    reason: <>Take 18 out of <Katex tex="18x-36" /> and multiply it by <Katex tex="-3" />. The factor <Katex tex="x-2" /> shows where <Katex tex="f''" /> is zero and its sign either side.</>,
   },
   {
     working: <Katex display tex="f''(2) = 0" />,
-    reason: <>The numerator is zero at <Katex tex="x=2" />. Necessary, but not enough on its own: it says the concavity <em>might</em> change here, not that it does.</>,
+    reason: <>The numerator is zero at <Katex tex="x=2" /> (the denominator is 1 there). Necessary, but not enough on its own: it says the concavity <em>might</em> change here, not that it does.</>,
   },
   {
     working: (
@@ -117,11 +120,13 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="9(x-2)^2+1 \ge 1 > 0 \ \text{ for all } x" />
       </>
     ),
-    reason: <>Completing the square: <Katex tex="9x^2-36x+36=9(x-2)^2" />, plus 1. So the denominator is never zero and, being a square, always positive: it can&apos;t affect the sign. The sign of <Katex tex="f''" /> is the sign of <Katex tex="-54(x-2)" />.</>,
+    reason: <>Complete the square (<Katex tex="9x^2-36x+36=9(x-2)^2" />): the denominator is always positive, so the sign of <Katex tex="f''" /> is the sign of <Katex tex="-54(x-2)" />.</>,
+    more: <>The denominator of <Katex tex="f''" /> is the square of this, so it is never zero and can&apos;t affect the sign.</>,
   },
   {
     working: <Katex display tex="x<2: f''(x)>0; \quad x>2: f''(x)<0" />,
-    reason: <>For <Katex tex="x<2" />, <Katex tex="x-2" /> is negative, so <Katex tex="-54(x-2)" /> is positive; for <Katex tex="x>2" /> it is negative. Test values agree: <Katex tex="f''(1)=\tfrac{54}{100}=\tfrac{27}{50}>0" /> and <Katex tex="f''(3)=-\tfrac{27}{50}<0" /> (the denominator is <Katex tex="10^2" /> at both). <Katex tex="f''>0" /> means the gradient is increasing (concave up); <Katex tex="f''<0" /> means it is decreasing (concave down).</>,
+    reason: <>For <Katex tex="x<2" />, <Katex tex="x-2" /> is negative, so <Katex tex="-54(x-2)" /> is positive; for <Katex tex="x>2" /> it is negative.</>,
+    more: <>Test values agree: <Katex tex="f''(1)=\tfrac{54}{100}=\tfrac{27}{50}>0" /> and <Katex tex="f''(3)=-\tfrac{27}{50}<0" /> (the denominator is <Katex tex="10^2" /> at both).</>,
   },
   {
     working: (
@@ -130,15 +135,15 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\boxed{\text{so there is a point of inflection at } x=2}" />
       </>
     ),
-    reason: <>This sign change is the justification. The report notes most students showed <Katex tex="f''(x)=0" /> when <Katex tex="x=2" />, but few attempted to justify that a point of inflection occurred there. As required.</>,
+    reason: <>State the sign change explicitly: it is the justification, and the step most students left out. As required.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \arctan\big(3(x-2)\big)+\pi" />,
-    reason: <>Factorise the inside first. Then the graph is <Katex tex="y=\arctan(x)" /> moved three times: a dilation by factor <Katex tex="\tfrac13" /> from the <Katex tex="y" />-axis, a translation 2 units right, and a translation <Katex tex="\pi" /> units up. The shape of <Katex tex="y=\arctan(x)" />, an S between the asymptotes <Katex tex="y=\pm\tfrac\pi2" />, tells you almost everything.</>,
-    more: <>The diagram below builds it step by step.</>,
+    reason: <>Factorise the inside: the graph is <Katex tex="y=\arctan(x)" /> dilated by factor <Katex tex="\tfrac13" /> from the <Katex tex="y" />-axis, translated 2 units right, then <Katex tex="\pi" /> units up.</>,
+    more: <>Take the 3 out first, so the shift is 2, not 6. The shape of <Katex tex="y=\arctan(x)" />, an S between the asymptotes <Katex tex="y=\pm\tfrac\pi2" />, tells you almost everything. The diagram below builds it step by step.</>,
   },
   {
     working: (
@@ -147,7 +152,8 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="\implies y\to\tfrac\pi2+\pi=\tfrac{3\pi}{2}" />
       </>
     ),
-    reason: <>Arctan&apos;s outputs never reach <Katex tex="\pm\tfrac\pi2" />; they only approach them as the input grows without bound. As <Katex tex="x\to\infty" />, the input <Katex tex="3x-6\to\infty" /> too, and the <Katex tex="+\pi" /> lifts the limit to <Katex tex="\tfrac{3\pi}{2}" />. The sideways moves can&apos;t change these heights; only the <Katex tex="+\pi" /> does.</>,
+    reason: <>Arctan approaches (never reaches) <Katex tex="\tfrac\pi2" /> as its input <Katex tex="3x-6\to\infty" />; the <Katex tex="+\pi" /> lifts the limit to <Katex tex="\tfrac{3\pi}{2}" />.</>,
+    more: <>The sideways moves can&apos;t change these heights; only the <Katex tex="+\pi" /> does.</>,
   },
   {
     working: (
@@ -156,15 +162,18 @@ const ROWS_C: WorkingRow[] = [
         <Katex display tex="\implies y\to-\tfrac\pi2+\pi=\tfrac\pi2" />
       </>
     ),
-    reason: <>The same on the left. So both asymptotes sit above the <Katex tex="x" />-axis, and the whole curve lies strictly between <Katex tex="y=\tfrac\pi2" /> and <Katex tex="y=\tfrac{3\pi}{2}" />.</>,
+    reason: <>The same on the left. So the whole curve lies strictly between <Katex tex="y=\tfrac\pi2" /> and <Katex tex="y=\tfrac{3\pi}{2}" />.</>,
+    more: <>Both asymptotes sit above the <Katex tex="x" />-axis, so the curve never crosses it.</>,
   },
   {
     working: <Katex display tex="f'(x) = \frac{3}{9(x-2)^2+1} > 0 \ \text{ for all } x" />,
-    reason: <>Part a.&apos;s derivative with the square completed as in part b. The gradient is positive everywhere, so the curve rises all the way from one asymptote to the other, steepest at <Katex tex="x=2" /> where <Katex tex="f'(2)=3" />.</>,
+    reason: <>Part a.&apos;s derivative with the square completed as in part b. It is positive everywhere, so the curve rises from one asymptote to the other.</>,
+    more: <>It is steepest at the inflection point, <Katex tex="x=2" />, where <Katex tex="f'(2)=3" /> (as in part b.).</>,
   },
   {
     working: <Katex display tex="f(2) = \arctan(0)+\pi = \pi" />,
-    reason: <>The point of inflection from part b., which the question asks to be labelled with its coordinates. It is also the centre of the S: because arctan is an odd function, a half-turn about <Katex tex="(2,\pi)" /> maps the curve onto itself, so the rise into <Katex tex="y=\tfrac{3\pi}2" /> on the right mirrors the approach from <Katex tex="y=\tfrac\pi2" /> on the left.</>,
+    reason: <>The point of inflection from part b., which the question asks to be labelled with its coordinates <Katex tex="(2,\pi)" />.</>,
+    more: <>It is also the centre of the S: because arctan is an odd function, a half-turn about <Katex tex="(2,\pi)" /> maps the curve onto itself, so the rise into <Katex tex="y=\tfrac{3\pi}2" /> on the right mirrors the approach from <Katex tex="y=\tfrac\pi2" /> on the left.</>,
   },
   {
     working: (
@@ -176,7 +185,8 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The question asks for three labels: <Katex tex="y=\tfrac\pi2" />, <Katex tex="y=\tfrac{3\pi}{2}" /> and <Katex tex="(2,\pi)" /> (the <Katex tex="y" />-intercept is not required). Use the width of the grid — a curve drawn over only <Katex tex="0\le x\le4" /> never shows the asymptotic behaviour. A check on the shape: the curve crosses the <Katex tex="y" />-axis at <Katex tex="\pi-\arctan 6\approx1.74" />, only just above <Katex tex="\tfrac\pi2\approx1.57" />, and most of its rise happens between <Katex tex="x=1" /> and <Katex tex="x=3" />.</>,
+    reason: <>Label <Katex tex="y=\tfrac\pi2" />, <Katex tex="y=\tfrac{3\pi}{2}" /> and <Katex tex="(2,\pi)" /> (the <Katex tex="y" />-intercept is not required). Draw across the whole grid so the curve visibly approaches both asymptotes.</>,
+    more: <>A check on the shape: the curve crosses the <Katex tex="y" />-axis at <Katex tex="\pi-\arctan 6\approx1.74" />, only just above <Katex tex="\tfrac\pi2\approx1.57" />, and most of its rise happens between <Katex tex="x=1" /> and <Katex tex="x=3" />.</>,
   },
 ]
 

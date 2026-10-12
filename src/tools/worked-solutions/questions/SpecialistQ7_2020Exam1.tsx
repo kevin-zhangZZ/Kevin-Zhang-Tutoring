@@ -53,35 +53,39 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{continuity at } x=1: \ \lim_{x\to1^-}f(x) = f(1)" />,
-    reason: <>No jump at the join. <Katex tex="f(1)" /> comes from the second rule, since <Katex tex="x\ge1" /> includes <Katex tex="x=1" />; just to the left of 1 the line is in charge, heading for height <Katex tex="m(1)+n" />. The line has to arrive exactly where the curve starts.</>,
+    reason: <>No jump at the join: the line&apos;s height as <Katex tex="x\to1^-" /> must equal <Katex tex="f(1)" />, which comes from the second rule since <Katex tex="x\ge1" /> includes <Katex tex="x=1" />.</>,
+    more: <>Just to the left of 1 the line is in charge, heading for height <Katex tex="m(1)+n" />. The line has to arrive exactly where the curve starts.</>,
   },
   {
     working: <Katex display tex="m(1)+n = \frac{4}{1+1^2} = 2 \implies m+n = 2" />,
-    reason: <>One equation, but two unknowns: every line through <Katex tex="(1,2)" /> satisfies it. The second equation has to come from <Katex tex="f'" />, the gradients.</>,
+    reason: <>One equation, two unknowns. The second equation comes from <Katex tex="f'" /> being continuous: the gradients must match at <Katex tex="x=1" />.</>,
+    more: <>Every line through <Katex tex="(1,2)" /> satisfies <Katex tex="m+n=2" />, so continuity of <Katex tex="f" /> alone can&apos;t pin down <Katex tex="m" />.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned}x\ge1: \ \frac{d}{dx}\left(\frac{4}{1+x^2}\right) &= \frac{d}{dx}\left(4\left(1+x^2\right)^{-1}\right)\\ &= \frac{-8x}{\left(1+x^2\right)^2}\end{aligned}" />,
-    reason: <>To compare gradients at <Katex tex="x=1" /> we need the curve&apos;s gradient there. Write the fraction as a negative power and use the chain rule: <Katex tex="4\cdot(-1)\left(1+x^2\right)^{-2}\cdot2x" />. The quotient rule gives the same thing with more writing.</>,
+    working: <Katex display tex="\begin{aligned}f(x) &= 4\left(1+x^2\right)^{-1}\\ f'(x) &= -4\left(1+x^2\right)^{-2}\cdot2x\\ &= \frac{-8x}{\left(1+x^2\right)^2}\end{aligned}" />,
+    reason: <>We need the gradient of the <Katex tex="x\ge1" /> rule at <Katex tex="x=1" />. Write the fraction as a negative power and use the chain rule.</>,
+    more: <>The <Katex tex="2x" /> is the derivative of the inside, <Katex tex="1+x^2" />. The quotient rule gives the same result with more writing.</>,
   },
   {
-    working: <Katex display tex="\text{at } x=1: \ \frac{-8}{2^2} = -2" />,
+    working: <Katex display tex="f'(1) = \frac{-8(1)}{\left(1+1^2\right)^2} = \frac{-8}{4} = -2" />,
     reason: <>The curve leaves the join sloping down with gradient <Katex tex="-2" />.</>,
   },
   {
-    working: <Katex display tex="x<1: \ f'(x) = m \implies \boxed{m = -2}" />,
-    reason: <>The line&apos;s gradient is <Katex tex="m" /> everywhere, including as it arrives at <Katex tex="x=1" />. For <Katex tex="f'" /> to be continuous (no corner), the gradient arriving from the left must equal the gradient leaving on the right.</>,
+    working: <Katex display tex="\begin{aligned}x<1: \ f'(x) &= m\\ m = f'(1) &\implies \boxed{m=-2}\end{aligned}" />,
+    reason: <>The line&apos;s gradient is <Katex tex="m" /> everywhere. <Katex tex="f'" /> continuous (no corner at the join) means it must equal the curve&apos;s gradient there.</>,
   },
   {
     working: <Katex display tex="m+n = 2 \implies -2+n = 2 \implies \boxed{n = 4}" />,
-    reason: <>Back-substituting into the continuity equation. Check: the line is then <Katex tex="y=-2x+4" />, which is exactly the tangent to <Katex tex="y=\tfrac{4}{1+x^2}" /> at <Katex tex="(1,2)" />. Matching the value and the gradient at a join is the same as asking for the tangent there. As required.</>,
-    more: <>Move the sliders below to see it.</>,
+    reason: <>Back-substitute into the continuity equation. As required.</>,
+    more: <>Check: the line is then <Katex tex="y=-2x+4" />, which is exactly the tangent to <Katex tex="y=\tfrac{4}{1+x^2}" /> at <Katex tex="(1,2)" />. Matching the value and the gradient at a join is the same as asking for the tangent there. Move the sliders below to see it.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\begin{aligned}f(x) &= -2x+4 \ \text{ on } [0,1]\\ f(x) &= \frac{4}{1+x^2} \ \text{ on } [1,\sqrt3]\end{aligned}" />,
-    reason: <>Using <Katex tex="m=-2" /> and <Katex tex="n=4" /> from part a. Both rules are positive across <Katex tex="[0,\sqrt3]" /> (the line falls only from 4 to 2), so the whole region is above the <Katex tex="x" />-axis and the area is just the integral, with no absolute values needed.</>,
+    working: <Katex display tex="\begin{aligned}[0,1]&: \ f(x) = -2x+4\\ [1,\sqrt3]&: \ f(x) = \tfrac{4}{1+x^2}\end{aligned}" />,
+    reason: <>Using <Katex tex="m=-2" /> and <Katex tex="n=4" /> from part a. Both rules are positive on <Katex tex="[0,\sqrt3]" />, so the area is just the integral.</>,
+    more: <>The line falls only from 4 to 2 and the curve from 2 to 1, so the whole region is above the <Katex tex="x" />-axis and no absolute values are needed.</>,
   },
   {
     working: <Katex display tex="A = \int_0^1(-2x+4)\,dx+\int_1^{\sqrt3}\frac{4}{1+x^2}\,dx" />,
@@ -89,11 +93,13 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^1(-2x+4)\,dx = \left[-x^2+4x\right]_0^1 = 3" />,
-    reason: <>Or, as the report notes a few students did, see that this piece is a trapezium: parallel sides <Katex tex="f(0)=4" /> and <Katex tex="f(1)=2" />, width 1, so its area is <Katex tex="\tfrac{4+2}{2}\times1=3" /> with no integral at all.</>,
+    reason: <>Antidifferentiate term by term, then substitute: <Katex tex="(-1+4)-0=3" />.</>,
+    more: <>Or, as the report notes a few students did, see that this piece is a trapezium: parallel sides <Katex tex="f(0)=4" /> and <Katex tex="f(1)=2" />, width 1, so its area is <Katex tex="\tfrac{4+2}{2}\times1=3" /> with no integral at all.</>,
   },
   {
     working: <Katex display tex="\int\frac{4}{1+x^2}\,dx = 4\arctan(x)+c" />,
-    reason: <>The formula sheet gives <Katex tex="\int\frac{a}{a^2+x^2}\,dx=\tan^{-1}\!\left(\frac xa\right)" />; here <Katex tex="a^2=1" />, so <Katex tex="a=1" /> and <Katex tex="\int\frac{1}{1+x^2}\,dx=\arctan(x)" />. The 4 is a constant multiple, so it stays out the front. It does <em>not</em> become <Katex tex="\tfrac14" />, the formula-sheet misreading the report singles out. Check by differentiating: <Katex tex="\tfrac{d}{dx}\left(4\arctan(x)\right)=\tfrac{4}{1+x^2}" />.</>,
+    reason: <>Formula sheet, <Katex tex="\int\frac{a}{a^2+x^2}\,dx=\tan^{-1}\!\left(\frac xa\right)" />, with <Katex tex="a=1" />. The 4 is a constant multiple, so it stays out the front. (<Katex tex="\tan^{-1}" /> is also written arctan.)</>,
+    more: <>The 4 does <em>not</em> become <Katex tex="\tfrac14" />: that is the formula-sheet misreading the report singles out. The Common Mistake box below shows two quick ways to catch it.</>,
   },
   {
     working: <Katex display tex="4\left[\arctan(x)\right]_1^{\sqrt3} = 4\left(\tfrac\pi3-\tfrac\pi4\right)" />,
@@ -105,8 +111,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = 3+\frac\pi3}" />,
-    reason: <>About 4.05 square units. Sanity check on the curved piece: from <Katex tex="x=1" /> to <Katex tex="x=\sqrt3" /> the curve falls from height 2 to height 1, so that piece must lie between <Katex tex="1\times(\sqrt3-1)\approx0.73" /> and <Katex tex="2\times(\sqrt3-1)\approx1.46" />. <Katex tex="\tfrac\pi3\approx1.05" /> does.</>,
-    more: <>See step 3 of the diagram below.</>,
+    reason: <>Add the two pieces. Exact area in square units, about 4.05.</>,
+    more: <>Sanity check on the curved piece: from <Katex tex="x=1" /> to <Katex tex="x=\sqrt3" /> the curve falls from height 2 to height 1, so that piece must lie between <Katex tex="1\times(\sqrt3-1)\approx0.73" /> and <Katex tex="2\times(\sqrt3-1)\approx1.46" />. <Katex tex="\tfrac\pi3\approx1.05" /> does. See step 3 of the diagram below.</>,
   },
 ]
 
