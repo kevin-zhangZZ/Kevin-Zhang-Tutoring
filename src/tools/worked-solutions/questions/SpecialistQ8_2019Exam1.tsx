@@ -47,19 +47,21 @@ const ROWS: WorkingRow[] = [
       <>
         &ldquo;Rotated about the <Katex tex="x" />-axis&rdquo; means every cross-section is a disc of
         radius <Katex tex="y" /> and area <Katex tex="\pi y^2" />; adding up the discs gives this
-        formula. Write the <Katex tex="\pi" /> in from the start:
-        it is the easiest thing to drop, and the size check at the end catches it.
+        formula.
       </>
     ),
-    more: <>The first diagram below builds this formula.</>,
+    more: (
+      <>
+        Write the <Katex tex="\pi" /> in from the start: it is the easiest thing to drop, and the
+        size check at the end catches it. The first diagram below builds this formula.
+      </>
+    ),
   },
   {
     working: <Katex display tex="V = \pi\int_0^1 \dfrac{1+2x}{1+x^2}\,dx" />,
     reason: (
       <>
-        Squaring undoes the square root, so the integrand is a plain fraction. That is the first
-        clue the question was designed around <Katex tex="y^2" />: a root you would never want to
-        integrate simply vanishes.
+        Squaring undoes the square root, so the integrand is a plain fraction.
       </>
     ),
   },
@@ -71,12 +73,22 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The shaded region spins around the <Katex tex="x" />-axis. Its radius starts at{' '}
-        <Katex tex="y(0)=1" />, ends at <Katex tex="y(1)=\sqrt{1.5}\approx1.22" /> and bulges a little
-        in between, never reaching <Katex tex="1.3" />. So the solid is a slightly bulging cylinder of
-        length <Katex tex="1" />, and <Katex tex="V" /> should lie between{' '}
-        <Katex tex="\pi(1)^2(1)\approx3.1" /> and <Katex tex="\pi(1.3)^2(1)\approx5.3" />. Keep that
-        range to check the answer.
+        A size check before integrating: the radius runs from <Katex tex="y(0)=1" /> to{' '}
+        <Katex tex="y(1)=\sqrt{1.5}\approx1.22" />, peaking at about <Katex tex="1.27" /> (never above{' '}
+        <Katex tex="1.3" />), over a length
+        of <Katex tex="1" />. So <Katex tex="V" /> should lie between{' '}
+        <Katex tex="\pi(1)^2(1)\approx3.1" /> and <Katex tex="\pi(1.3)^2(1)\approx5.3" />.
+      </>
+    ),
+    more: (
+      <>
+        The solid is a slightly bulging cylinder. Its widest point is where{' '}
+        <Katex tex="\tfrac{d}{dx}\bigl(y^2\bigr)=\tfrac{2(1-x-x^2)}{(1+x^2)^2}=0" />, at{' '}
+        <Katex tex="x=\tfrac{\sqrt5-1}{2}\approx0.62" />, where{' '}
+        <Katex tex="y^2=\tfrac{1+\sqrt5}{2}\approx1.62" /> and so <Katex tex="y\approx1.27" />, just
+        under <Katex tex="1.3" />. Using that exact widest radius tightens the upper bound to{' '}
+        <Katex tex="\pi\cdot\tfrac{1+\sqrt5}{2}\approx5.08" /> (the outer cylinder in the first
+        diagram below); the rounder <Katex tex="5.3" /> is all the check needs.
       </>
     ),
   },
@@ -84,12 +96,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{1+2x}{1+x^2} = \dfrac{1}{1+x^2} + \dfrac{2x}{1+x^2}" />,
     reason: (
       <>
-        The key move: split the <b>numerator</b> over the common denominator. How would you know?
-        Look at the denominator. <Katex tex="1+x^2" /> turns up in exactly two standard integrals: a
-        constant over it (an inverse tan) and its own derivative, <Katex tex="2x" />, over it (a log).
-        The numerator <Katex tex="1+2x" /> is exactly one of each. Partial fractions is the wrong tool
-        here, because it splits the <em>denominator</em>, and <Katex tex="1+x^2" /> has no real
-        factors.
+        The key move: split the <b>numerator</b>. Over <Katex tex="1+x^2" />, a constant on top gives an
+        inverse tan, and the denominator&apos;s derivative <Katex tex="2x" /> on top gives a log;{' '}
+        <Katex tex="1+2x" /> is one of each.
+      </>
+    ),
+    more: (
+      <>
+        This is where the report says some students got stuck: they did not see how the integrand
+        split. Some tried partial fractions instead; the first Common Mistake box below shows why
+        that goes round in a circle.
       </>
     ),
   },
@@ -110,9 +126,15 @@ const ROWS: WorkingRow[] = [
       <>
         The numerator <Katex tex="2x" /> is exactly the derivative of the denominator{' '}
         <Katex tex="1+x^2" />, so this is the <Katex tex="\tfrac{f'(x)}{f(x)}" /> form, which integrates
-        to <Katex tex="\log_e|f(x)|" />. Spotting it takes one line; a <Katex tex="u" />-substitution
-        reaches the same place in several, with more chances to slip. No absolute value is needed
-        since <Katex tex="1+x^2>0" />.
+        to <Katex tex="\log_e|f(x)|" />. No absolute value is needed since{' '}
+        <Katex tex="1+x^2>0" />.
+      </>
+    ),
+    more: (
+      <>
+        Spotting the form takes one line. A <Katex tex="u" />-substitution reaches the same place in
+        several, with more chances to slip. The second Common Mistake box below shows one way it
+        goes wrong.
       </>
     ),
   },
@@ -130,8 +152,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="\tan^{-1}(1)=\tfrac{\pi}{4}" /> because <Katex tex="\tan\tfrac{\pi}{4}=1" />, and{' '}
-        <Katex tex="\tan^{-1}(0)=0" />. Careful with <Katex tex="\log_e(1)=0" />, not{' '}
-        <Katex tex="1" />, an easy slip under pressure. The whole lower terminal contributes nothing.
+        <Katex tex="\tan^{-1}(0)=0" /> and <Katex tex="\log_e(1)=0" />, so the whole lower terminal
+        contributes nothing.
+      </>
+    ),
+    more: (
+      <>
+        Careful with <Katex tex="\log_e(1)=0" />, not <Katex tex="1" />: an easy slip under
+        pressure.
       </>
     ),
   },
@@ -139,10 +167,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{V = \dfrac{\pi^2}{4}+\pi\log_e(2) \ \text{ cubic units}}" />,
     reason: (
       <>
-        Equivalently <Katex tex="\pi\left(\tfrac{\pi}{4}+\log_e(2)\right)" />. Numerically this is
-        about <Katex tex="4.64" />, inside the range <Katex tex="3.1" /> to <Katex tex="5.3" /> from
-        the picture ✓. Dropping the <Katex tex="\pi" /> would give about <Katex tex="1.48" />, which
-        fails that check.
+        Equivalently <Katex tex="\pi\left(\tfrac{\pi}{4}+\log_e(2)\right)" />, about{' '}
+        <Katex tex="4.64" />: inside the size-check range <Katex tex="3.1" /> to <Katex tex="5.3" /> ✓.
+      </>
+    ),
+    more: (
+      <>
+        Without a calculator: <Katex tex="\tfrac{\pi^2}{4}\approx\tfrac{9.87}{4}\approx2.47" /> and{' '}
+        <Katex tex="\pi\log_e 2\approx3.14\times0.693\approx2.18" />. Dropping the{' '}
+        <Katex tex="\pi" /> would give about <Katex tex="1.48" />, which fails the check.
       </>
     ),
   },

@@ -68,10 +68,8 @@ export default function Net() {
         </Readouts>
         {atMean ? (
           <Notice tone="good">
-            The average piece: <M>{'A=\\tfrac{\\pi}{2}+3\\pi'}</M>. Write <M>3\pi</M> as <M>{'\\tfrac{6\\pi}{2}'}</M> before
-            adding, to get <M>{'\\tfrac{7\\pi}{2}'}</M>. Because <M>{'A=\\tfrac{\\pi}{2}+\\pi L'}</M> is a straight-line
-            function of <M>L</M>, averaging over all the pieces gives <M>{'E(A)=\\tfrac{\\pi}{2}+\\pi E(L)'}</M>. Every
-            piece gets the same <M>{'\\tfrac{\\pi}{2}'}</M> from its ends, so the average does too.
+            The average piece, <M>L=3</M>: the ends stay fixed and only the side grows with <M>L</M>, so averaging over
+            all the pieces gives <M>{'E(A)=\\tfrac{\\pi}{2}+\\pi E(L)=\\tfrac{7\\pi}{2}'}</M>.
           </Notice>
         ) : (
           <Notice>

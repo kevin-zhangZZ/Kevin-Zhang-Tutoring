@@ -65,9 +65,9 @@ export default function Squared() {
       <Notice>
         This is the question: <M>{'V=\\pi\\left(\\tfrac12\\right)^2L=\\tfrac{\\pi}{4}L'}</M>, so{' '}
         <M>{'k=\\tfrac{\\pi}{4}\\approx0.785'}</M>. Follow the dashed lines: each orange volume is only{' '}
-        <M>{'\\tfrac{\\pi}{4}'}</M> as far from its mean as the blue length was from 3 cm. So the sd shrinks to{' '}
-        <M>{'\\tfrac{\\pi}{4}\\times0.1'}</M>, and the square on it shrinks by <M>{'\\left(\\tfrac{\\pi}{4}\\right)^2'}</M>. The{' '}
-        <M>\pi</M> is part of <M>k</M>, so it gets squared too. Try <M>k=2</M> to make the effect obvious.
+        <M>{'\\tfrac{\\pi}{4}'}</M> times as far from its mean as the blue length was from 3 cm. So the sd shrinks to{' '}
+        <M>{'\\tfrac{\\pi}{4}\\times0.1'}</M>, and the orange square is <M>{'\\left(\\tfrac{\\pi}{4}\\right)^2'}</M> times the
+        size of the blue one. Try <M>k=2</M> to make the effect obvious.
       </Notice>
     )
   } else if (Math.abs(k - 1) < 0.01) {

@@ -57,11 +57,8 @@ export default function Cases() {
   if (k === K_Q) {
     notice = (
       <Notice tone="good">
-        <b>This is the question, <M>k = 7</M>.</b> At <M>x = 4</M> the line is already <M>9</M> above the vertex. Going
-        right, the arm (gradient <M>1</M>) gains on the line (gradient <M>{'\\tfrac12'}</M>) by only <M>{'\\tfrac12'}</M>{' '}
-        per unit, so it takes <M>18</M> units to catch up: <M>x = 22</M>. Going left, the gap closes by{' '}
-        <M>{'1 + \\tfrac12 = \\tfrac32'}</M> per unit, so after <M>6</M> units: <M>x = -2</M>. Now drag <M>k</M> below{' '}
-        <M>-2</M>.
+        <b>This is the question, <M>k = 7</M>.</b> The line passes above the vertex and crosses each solid arm once, at{' '}
+        <M>x = -2</M> and <M>x = 22</M>, so both case answers pass their checks. Now drag <M>k</M> below <M>-2</M>.
       </Notice>
     )
   } else if (k > -2) {

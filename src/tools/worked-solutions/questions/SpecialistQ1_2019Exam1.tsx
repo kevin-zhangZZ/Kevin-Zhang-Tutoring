@@ -48,9 +48,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{dy}{dx} = \dfrac{2ye^{2x}}{1+e^{2x}}" />,
     reason: (
       <>
-        How would I know to separate? The right-hand side is a function of <Katex tex="y" /> times a function
-        of <Katex tex="x" />: <Katex tex="2y\times\tfrac{e^{2x}}{1+e^{2x}}" />. A product like that is the signal
-        that the variables can be pulled apart.
+        The right-hand side is a function of <Katex tex="y" /> times a function of <Katex tex="x" />:{' '}
+        <Katex tex="2y\times\tfrac{e^{2x}}{1+e^{2x}}" />. That product is the signal to separate the variables.
       </>
     ),
   },
@@ -58,11 +57,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{1}{y}\,\dfrac{dy}{dx} = \dfrac{2e^{2x}}{1+e^{2x}}" />,
     reason: (
       <>
-        Divide both sides by <Katex tex="y" /> to get every <Katex tex="y" /> on the left. <Katex tex="y" /> is
-        multiplying on the right, so it crosses over <em>dividing</em>; moving it across as a multiplier is how
-        the report&apos;s common error <Katex tex="\int2y\,dy" /> arises. Leave the <Katex tex="2" /> with{' '}
-        <Katex tex="e^{2x}" />: the next rows show why. (Dividing by <Katex tex="y" /> sets aside{' '}
-        <Katex tex="y=0" />, a constant solution; ours starts at <Katex tex="\pi" />, so that&apos;s fine.)
+        <Katex tex="y" /> is multiplying on the right, so divide both sides by <Katex tex="y" />. Leave the{' '}
+        <Katex tex="2" /> with <Katex tex="e^{2x}" />: <Katex tex="2e^{2x}" /> is the derivative of the bottom,{' '}
+        <Katex tex="1+e^{2x}" /> (row 4).
+      </>
+    ),
+    more: (
+      <>
+        Moving <Katex tex="y" /> across as a <em>multiplier</em> instead is how the report&apos;s common error{' '}
+        <Katex tex="\int2y\,dy" /> arises. Dividing by <Katex tex="y" /> sets aside <Katex tex="y=0" />, a constant
+        solution; ours starts at <Katex tex="\pi" />, so that&apos;s fine.
       </>
     ),
   },
@@ -71,8 +75,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Integrate both sides with respect to <Katex tex="x" />. By the chain rule,{' '}
-        <Katex tex="\int\tfrac1y\tfrac{dy}{dx}\,dx" /> is just <Katex tex="\int\tfrac1y\,dy" />, so each side now
-        involves only one variable and can be integrated on its own.
+        <Katex tex="\int\tfrac1y\tfrac{dy}{dx}\,dx=\int\tfrac1y\,dy" />, so each side involves only one variable.
       </>
     ),
   },
@@ -80,11 +83,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{d}{dx}\left(1+e^{2x}\right) = 2e^{2x}" />,
     reason: (
       <>
-        The key observation: the numerator on the right is <em>exactly</em> the derivative of the denominator,
-        so the integrand is <Katex tex="\tfrac{f'(x)}{f(x)}" /> and integrates straight to a logarithm. How would
-        I know to check? Whenever the bottom of a fraction is a function whose derivative looks like the top,
-        differentiate the bottom and compare. No substitution is needed; the report notes some students spent
-        time using a substitution, which was not necessary.
+        The top on the right is exactly the derivative of the bottom, so the integrand is{' '}
+        <Katex tex="\tfrac{f'(x)}{f(x)}" />, and <Katex tex="\int\tfrac{f'(x)}{f(x)}\,dx=\log_e|f(x)|+c" />.
+      </>
+    ),
+    more: (
+      <>
+        To spot this form: whenever the bottom of a fraction is a function whose derivative looks like the
+        top, differentiate the bottom and compare. Recognising the form means no substitution is needed: the report
+        notes some students spent time using a substitution, which was not necessary, and that students who failed
+        to recognise this derivative did not score highly.
       </>
     ),
   },
@@ -92,19 +100,23 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\log_e|y| = \log_e\left(1+e^{2x}\right)+c" />,
     reason: (
       <>
-        Both sides are now standard. <Katex tex="1+e^{2x}>0" /> always, so no absolute value is needed on the
-        right. One constant <Katex tex="c" /> is enough: the constants from the two sides combine into one.
+        <Katex tex="1+e^{2x}>0" /> always, so no absolute value is needed on the right. The constants from the two
+        sides combine into one <Katex tex="c" />.
       </>
     ),
   },
   {
-    working: <Katex display tex="\log_e\left(\dfrac{|y|}{1+e^{2x}}\right) = c \implies \dfrac{y}{1+e^{2x}} = \pm e^{c} = A" />,
+    working: <Katex display tex="\begin{aligned}\log_e\left(\dfrac{|y|}{1+e^{2x}}\right) &= c \\ \implies \dfrac{y}{1+e^{2x}} &= \pm e^{c} = A\end{aligned}" />,
     reason: (
       <>
-        To undo the logs, collect them on one side (<Katex tex="\log_e a-\log_e b=\log_e\tfrac ab" />) and
-        exponentiate. The <Katex tex="c" /> was <em>added</em> inside the log, so it comes out as a{' '}
-        <em>factor</em> <Katex tex="e^{c}" />, because <Katex tex="e^{a+b}=e^a\times e^b" />. Writing the constant
-        as <Katex tex="A=\pm e^c" /> absorbs the sign from the absolute value.
+        Collect the logs (<Katex tex="\log_e a-\log_e b=\log_e\tfrac ab" />), then exponentiate both sides;{' '}
+        <Katex tex="A=\pm e^c" /> absorbs the sign from <Katex tex="|y|" />.
+      </>
+    ),
+    more: (
+      <>
+        Exponentiating row 5 directly gives the same result: the added <Katex tex="c" /> becomes a{' '}
+        <em>factor</em> <Katex tex="e^{c}" />, since <Katex tex="e^{a+b}=e^a\times e^b" />, not an added constant.
       </>
     ),
   },
@@ -112,20 +124,24 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y = A\left(1+e^{2x}\right)" />,
     reason: (
       <>
-        Every solution is <Katex tex="1+e^{2x}" /> stretched vertically by some factor <Katex tex="A" />. The DE
-        itself says this should happen: <Katex tex="\tfrac{dy}{dx}" /> is proportional to <Katex tex="y" />, so
-        doubling a solution doubles its slope everywhere and it is still a solution. Adding a constant would
-        not do that.
+        The general solution: every solution is <Katex tex="1+e^{2x}" /> stretched vertically by a factor{' '}
+        <Katex tex="A" />, not shifted up by a constant.
       </>
     ),
-    more: <>See the first interactive below.</>,
+    more: (
+      <>
+        The DE itself says this should happen: <Katex tex="\tfrac{dy}{dx}" /> is proportional to <Katex tex="y" />,
+        so doubling a solution doubles its slope everywhere and it is still a solution. Adding a constant would not
+        do that. The first interactive below shows it.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\begin{aligned}y(0)=\pi:\quad \pi &= A\left(1+e^{0}\right) = 2A \\ A &= \dfrac{\pi}{2}\end{aligned}" />,
     reason: (
       <>
-        The general solution is a whole family of curves; the initial condition picks out the one through{' '}
-        <Katex tex="(0,\pi)" />. Substitute <Katex tex="x=0" /> and <Katex tex="y=\pi" />.
+        The initial condition picks out the one curve of the family through <Katex tex="(0,\pi)" />: substitute{' '}
+        <Katex tex="x=0" /> and <Katex tex="y=\pi" />.
       </>
     ),
   },
@@ -133,9 +149,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{y = \dfrac{\pi}{2}\left(1+e^{2x}\right)}" />,
     reason: (
       <>
-        Quick check: at <Katex tex="x=0" /> this gives <Katex tex="\tfrac{\pi}{2}\times2=\pi" /> ✓, and
-        differentiating returns <Katex tex="\pi e^{2x}" />, which equals{' '}
-        <Katex tex="\tfrac{2ye^{2x}}{1+e^{2x}}" /> when <Katex tex="y" /> is substituted ✓.
+        Check: at <Katex tex="x=0" />, <Katex tex="\tfrac{\pi}{2}\times2=\pi" /> ✓, and{' '}
+        <Katex tex="\tfrac{dy}{dx}=\pi e^{2x}" /> equals <Katex tex="\tfrac{2ye^{2x}}{1+e^{2x}}" /> with this{' '}
+        <Katex tex="y" /> ✓.
       </>
     ),
   },
@@ -161,20 +177,12 @@ export default function SpecialistQ1_2019Exam1() {
             <Katex tex="x" />'s (with <Katex tex="dx" />) on the other. Then integrating both
             sides turns the differential equation into an ordinary equation relating{' '}
             <Katex tex="y" /> and <Katex tex="x" />. &ldquo;Moving the <Katex tex="dx" /> across&rdquo; is
-            shorthand for the chain rule:{' '}
-            <Katex tex="\int g(y)\tfrac{dy}{dx}\,dx=\int g(y)\,dy" />.
-          </p>
-          <p>
-            The second thing to spot is the standard form{' '}
-            <Katex tex="\displaystyle\int\frac{f'(x)}{f(x)}\,dx = \log_e|f(x)|+c" />. Whenever the
-            top of a fraction is the derivative of the bottom, the integral is a log — recognising
-            this saves doing a substitution.
+            shorthand for the chain rule.
           </p>
           <p>
             A solution of a differential equation is a curve whose slope at every point equals what the
             equation demands there. A <b>slope field</b> draws that demanded slope as a short mark at many
-            points, and every solution curve runs along the marks. So any answer can be checked two ways: it must
-            pass through the initial point, and its derivative must satisfy the equation.
+            points, and every solution curve runs along the marks.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

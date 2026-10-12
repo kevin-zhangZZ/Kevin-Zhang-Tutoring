@@ -36,11 +36,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{d}{dx}\Bigl[\sin\left(x^2\right)+\cos\left(y^2\right)\Bigr] = \dfrac{d}{dx}\left[\dfrac{3\sqrt2}{\pi}xy\right]" />,
     reason: (
       <>
-        The relation holds at every point on the curve, so as we move along it the two sides stay
-        equal, and therefore change at the same rate: their derivatives with respect to{' '}
-        <Katex tex="x" /> are equal. How would I know to do this? <Katex tex="y" /> is trapped inside{' '}
-        <Katex tex="\cos\left(y^2\right)" /> and in <Katex tex="xy" />, so it can't be made the
-        subject. That is the signal for implicit differentiation.
+        <Katex tex="y" /> can't be made the subject, so differentiate both sides with respect
+        to <Katex tex="x" />. The two sides stay equal all along the curve, so they change at the same
+        rate.
       </>
     ),
   },
@@ -48,9 +46,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{d}{dx}\sin\left(x^2\right) = 2x\cos\left(x^2\right)" />,
     reason: (
       <>
-        Chain rule: the outside <Katex tex="\sin(u)" /> gives <Katex tex="\cos(u)" />, times the
-        derivative of the inside <Katex tex="u=x^2" />, which is <Katex tex="2x" />. This term has
-        no <Katex tex="y" /> in it, so no <Katex tex="\tfrac{dy}{dx}" /> appears.
+        Chain rule: <Katex tex="\sin(u)" /> gives <Katex tex="\cos(u)" />, times the derivative of{' '}
+        <Katex tex="u=x^2" />, which is <Katex tex="2x" />. No <Katex tex="y" /> here, so no{' '}
+        <Katex tex="\tfrac{dy}{dx}" />.
       </>
     ),
   },
@@ -63,9 +61,13 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Chain rule again, with one more link: <Katex tex="\cos(u)" /> with <Katex tex="u=y^2" />,
-        and <Katex tex="y" /> itself depends on <Katex tex="x" />. So{' '}
-        <Katex tex="\tfrac{d}{dx}\left(y^2\right)=2y\tfrac{dy}{dx}" />, not just <Katex tex="2y" />.
+        Chain rule with <Katex tex="u=y^2" />, and <Katex tex="y" /> itself depends on{' '}
+        <Katex tex="x" />, so <Katex tex="\tfrac{d}{dx}\left(y^2\right)=2y\tfrac{dy}{dx}" />, not
+        just <Katex tex="2y" />.
+      </>
+    ),
+    more: (
+      <>
         A reliable habit: differentiate a <Katex tex="y" />-term as if <Katex tex="y" /> were{' '}
         <Katex tex="x" />, then multiply by <Katex tex="\tfrac{dy}{dx}" />.
       </>
@@ -75,9 +77,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{d}{dx}\left[\dfrac{3\sqrt2}{\pi}xy\right] = \dfrac{3\sqrt2}{\pi}\left(y+x\dfrac{dy}{dx}\right)" />,
     reason: (
       <>
-        Product rule, because both factors change as we move along the curve:{' '}
+        Product rule, since both <Katex tex="x" /> and <Katex tex="y" /> change:{' '}
         <Katex tex="(x)'y+x(y)' = y+x\tfrac{dy}{dx}" />. The constant{' '}
-        <Katex tex="\tfrac{3\sqrt2}{\pi}" /> just comes along for the ride.
+        <Katex tex="\tfrac{3\sqrt2}{\pi}" /> stays in front.
       </>
     ),
   },
@@ -90,9 +92,9 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The three derivatives assembled. The calculus is now finished. Before starting the algebra,
-        check that every term containing <Katex tex="y" /> has picked up its{' '}
-        <Katex tex="\tfrac{dy}{dx}" /> (two of them here).
+        The three derivatives assembled; the rest is algebra. Check first that each{' '}
+        <Katex tex="y" />-term of the relation, <Katex tex="\cos\left(y^2\right)" /> and{' '}
+        <Katex tex="xy" />, produced a <Katex tex="\tfrac{dy}{dx}" />.
       </>
     ),
   },
@@ -105,12 +107,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Substitute now, before rearranging, while each term is still a simple product. How would I
-        know the numbers will be friendly? Inside the trig functions the coordinates only appear
-        squared, and squaring gives <Katex tex="\tfrac{\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" />,
-        which are standard angles. (The report says it made little difference whether students
-        substituted before or after finding <Katex tex="\tfrac{dy}{dx}" />; before is simply less
-        writing.)
+        Substitute the point now, while each term is a simple product. Inside the trig functions
+        the coordinates appear squared, giving the standard angles <Katex tex="\tfrac{\pi}{6}" /> and{' '}
+        <Katex tex="\tfrac{\pi}{3}" />.
+      </>
+    ),
+    more: (
+      <>
+        The report says it made little difference whether students substituted before or after
+        finding <Katex tex="\tfrac{dy}{dx}" />; before is simply less writing. Its general comments
+        list algebra in this question as an area of weakness, and keeping the expressions small is
+        the best protection.
       </>
     ),
   },
@@ -118,8 +125,12 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\cos\!\left(\dfrac{\pi}{6}\right) = \dfrac{\sqrt3}{2}, \qquad \sin\!\left(\dfrac{\pi}{3}\right) = \dfrac{\sqrt3}{2}" />,
     reason: (
       <>
-        Exact values from the unit circle. The question is engineered so that both equal{' '}
-        <Katex tex="\tfrac{\sqrt3}{2}" />. A quick check that the point really is on the curve:{' '}
+        Exact values from the unit circle.
+      </>
+    ),
+    more: (
+      <>
+        A quick check that the point really is on the curve:{' '}
         <Katex tex="\sin\left(\tfrac{\pi}{6}\right)+\cos\left(\tfrac{\pi}{3}\right)=\tfrac12+\tfrac12=1" />{' '}
         and <Katex tex="\tfrac{3\sqrt2}{\pi}\cdot\sqrt{\tfrac{\pi}{6}}\cdot\sqrt{\tfrac{\pi}{3}}=\tfrac{3\sqrt2}{\pi}\cdot\tfrac{\pi}{3\sqrt2}=1" />.
       </>
@@ -147,9 +158,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{\pi}{\sqrt2} - \pi\dfrac{dy}{dx} = \sqrt6 + \sqrt3\,\dfrac{dy}{dx}" />,
     reason: (
       <>
-        Multiply every term by <Katex tex="\sqrt\pi" />. How would I know? The target form has plain{' '}
-        <Katex tex="\pi" />'s and no <Katex tex="\sqrt\pi" />, and every term here has a{' '}
-        <Katex tex="\sqrt\pi" /> on top or underneath, so one multiplication clears them all:{' '}
+        Multiply every term by <Katex tex="\sqrt\pi" />: the target form has plain{' '}
+        <Katex tex="\pi" />'s, and every term here has one <Katex tex="\sqrt\pi" /> on top or
+        underneath, so this clears them all.
+      </>
+    ),
+    more: (
+      <>
+        Term by term:{' '}
         <Katex tex="\sqrt\pi\sqrt{\tfrac{\pi}{2}}=\tfrac{\pi}{\sqrt2}" />,{' '}
         <Katex tex="\sqrt\pi\sqrt\pi=\pi" />, <Katex tex="\sqrt\pi\sqrt{\tfrac{6}{\pi}}=\sqrt6" /> and{' '}
         <Katex tex="\sqrt\pi\sqrt{\tfrac{3}{\pi}}=\sqrt3" />.
@@ -174,17 +190,16 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="= \dfrac{\dfrac{\pi-\sqrt2\sqrt6}{\sqrt2}}{\pi+\sqrt3} = \dfrac{\pi-\sqrt{12}}{\sqrt2\left(\pi+\sqrt3\right)}" />
+        <Katex display tex="= \dfrac{\dfrac{\pi-\sqrt2\sqrt6}{\sqrt2}}{\pi+\sqrt3}" />
+        <Katex display tex="= \dfrac{\pi-\sqrt{12}}{\sqrt2\left(\pi+\sqrt3\right)}" />
       </>
     ),
     reason: (
       <>
-        Now aim at the target <Katex tex="\tfrac{\pi-a\sqrt b}{\sqrt a\left(\pi+\sqrt b\right)}" />: it
-        has <Katex tex="\sqrt a" /> in the denominator and a plain <Katex tex="\pi" /> leading the
-        numerator. Putting the numerator over the common denominator <Katex tex="\sqrt2" /> does
-        exactly that, using <Katex tex="\sqrt6=\tfrac{\sqrt2\sqrt6}{\sqrt2}" /> and{' '}
-        <Katex tex="\sqrt2\times\sqrt6=\sqrt{12}" />. Don't rationalise: the required form keeps
-        the surd in the denominator.
+        The target has <Katex tex="\sqrt a" /> downstairs and a plain <Katex tex="\pi" /> on top, so
+        put the numerator over <Katex tex="\sqrt2" />:{' '}
+        <Katex tex="\sqrt6=\tfrac{\sqrt2\sqrt6}{\sqrt2}=\tfrac{\sqrt{12}}{\sqrt2}" />. Don't
+        rationalise: the form keeps the surd downstairs.
       </>
     ),
   },
@@ -192,11 +207,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\dfrac{dy}{dx} = \dfrac{\pi-2\sqrt3}{\sqrt2\left(\pi+\sqrt3\right)}}" />,
     reason: (
       <>
-        <Katex tex="\sqrt{12}=2\sqrt3" />, which lands the answer in the required form with{' '}
-        <Katex tex="a=2" /> and <Katex tex="b=3" />. The letter <Katex tex="a" /> appears twice in the
-        form, and both agree: the <Katex tex="2" /> in <Katex tex="2\sqrt3" /> and the{' '}
-        <Katex tex="\sqrt2" /> downstairs. Sign check: <Katex tex="\pi\approx3.14<2\sqrt3\approx3.46" />,
-        so <Katex tex="\tfrac{dy}{dx}\approx-0.047" />. The curve is almost flat and falling slightly
+        <Katex tex="\sqrt{12}=2\sqrt3" /> gives the required form with <Katex tex="a=2" /> and{' '}
+        <Katex tex="b=3" />. Both places <Katex tex="a" /> appears agree: <Katex tex="2\sqrt3" /> on
+        top and <Katex tex="\sqrt2" /> downstairs.
+      </>
+    ),
+    more: (
+      <>
+        Sign check: <Katex tex="\pi\approx3.14<2\sqrt3\approx3.46" />, so{' '}
+        <Katex tex="\tfrac{dy}{dx}\approx-0.047" />. The curve is almost flat and falling slightly
         at this point.
       </>
     ),
@@ -224,11 +243,10 @@ export default function SpecialistQ10_2019Exam1() {
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <Background>
           <p>
-            This relation can't be rearranged into <Katex tex="y=\ldots" />, so{' '}
-            <b>implicit differentiation</b> is the way in. Why it works: the relation is true at
-            every point of the curve, so as you move along the curve the left side and the right
-            side stay equal. Two quantities that stay equal must change at the same rate, so their
-            derivatives with respect to <Katex tex="x" /> are equal too.
+            Here <Katex tex="y" /> is trapped inside <Katex tex="\cos\left(y^2\right)" /> and in{' '}
+            <Katex tex="xy" />, so the relation can't be rearranged into <Katex tex="y=\ldots" />. That
+            is the signal for <b>implicit differentiation</b>: the relation holds at every point of the
+            curve, so the derivatives of the two sides with respect to <Katex tex="x" /> are equal.
           </p>
           <p>
             Treat <Katex tex="y" /> as a function of <Katex tex="x" />. Every time you differentiate
@@ -236,13 +254,6 @@ export default function SpecialistQ10_2019Exam1() {
             <Katex tex="\tfrac{dy}{dx}" />, and a product such as <Katex tex="xy" /> needs the product
             rule because both factors change. The value of <Katex tex="\tfrac{dy}{dx}" /> at a point
             is the gradient of the tangent to the curve there.
-          </p>
-          <p>
-            Then it is an algebra problem: gather the <Katex tex="\tfrac{dy}{dx}" /> terms on one
-            side, factor, and divide. The report's general comments list algebra in this question
-            as an area of weakness, so it's worth substituting the given point early to keep the
-            expressions small (the report says it made little difference whether students
-            substituted before or after finding <Katex tex="\tfrac{dy}{dx}" />).
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
@@ -264,9 +275,9 @@ export default function SpecialistQ10_2019Exam1() {
           move along the curve, so its rate of change with respect to <Katex tex="x" /> must carry the
           factor <Katex tex="\tfrac{dy}{dx}" />. Without it the gradient comes out near{' '}
           <Katex tex="-1.95" />: a steep line that cuts straight through a curve which is almost flat at
-          this point (turn on the toggle in the widget above). To catch it, check after differentiating
-          that every term containing <Katex tex="y" /> has produced a <Katex tex="\tfrac{dy}{dx}" />.
-          Here both <Katex tex="\cos\left(y^2\right)" /> and <Katex tex="xy" /> must.
+          this point (turn on the toggle in the widget above). The check after assembling the
+          derivatives, that both <Katex tex="\cos\left(y^2\right)" /> and <Katex tex="xy" /> produced
+          a <Katex tex="\tfrac{dy}{dx}" />, catches it.
         </WrongMethod>
         <WrongMethod
           title="Rationalise the denominator to finish, like always"
@@ -281,8 +292,7 @@ export default function SpecialistQ10_2019Exam1() {
           some students were unable to express the answer in the required form. After rationalising,
           the numerator starts with <Katex tex="\sqrt2\,\pi" /> instead of a plain <Katex tex="\pi" />,
           and the denominator has <Katex tex="2" /> where the form has <Katex tex="\sqrt a" />, so{' '}
-          <Katex tex="a" /> and <Katex tex="b" /> can't be read off. Look at the target before you
-          simplify: a <Katex tex="\sqrt a" /> downstairs means don't rationalise. Clear the{' '}
+          <Katex tex="a" /> and <Katex tex="b" /> can't be read off. Clear the{' '}
           <Katex tex="\sqrt\pi" />'s instead, and stop as soon as the shape matches.
         </WrongMethod>
         <SAExaminerReport stats={EXAMINER} maxMarks={5} />

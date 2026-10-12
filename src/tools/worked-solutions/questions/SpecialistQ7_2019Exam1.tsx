@@ -65,15 +65,18 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}\left|3-\sqrt3\,i\right| &= \sqrt{3^2+\left(-\sqrt3\right)^2}\\ &= \sqrt{12} = 2\sqrt3\end{aligned}" />,
-    reason: <>A "show that" in polar form means producing both halves of <Katex tex="r\,\text{cis}\,\theta" /> from <Katex tex="x+yi" />, so start with <Katex tex="r" />. The modulus is the distance from the origin, <Katex tex="\sqrt{x^2+y^2}" /> (Pythagoras on the Argand diagram). Simplify the surd: <Katex tex="\sqrt{12}=\sqrt{4\times3}=2\sqrt3" />.</>,
+    reason: <>Polar form needs both <Katex tex="r" /> and <Katex tex="\theta" />. The modulus is the distance from the origin, <Katex tex="\sqrt{x^2+y^2}" />; then <Katex tex="\sqrt{12}=\sqrt{4\times3}=2\sqrt3" />.</>,
+    more: <>A &quot;show that&quot; in polar form means producing both halves of <Katex tex="r\,\text{cis}\,\theta" /> from <Katex tex="x+yi" />, so start with <Katex tex="r" />. The formula <Katex tex="\sqrt{x^2+y^2}" /> is just Pythagoras on the Argand diagram: the point is <Katex tex="3" /> across and <Katex tex="\sqrt3" /> down.</>,
   },
   {
     working: <Katex display tex="\tan\theta = \dfrac{-\sqrt3}{3} = -\dfrac{1}{\sqrt3}" />,
-    reason: <>The argument is the angle from the positive real axis, and in the right-angled triangle to the point, <Katex tex="\tan\theta=\tfrac{y}{x}" />. But <Katex tex="\tan" /> repeats every <Katex tex="\pi" />, so this equation has two answers in <Katex tex="(-\pi,\pi]" />; it can't finish the job on its own.</>,
+    reason: <>The argument <Katex tex="\theta" /> satisfies <Katex tex="\tan\theta=\tfrac{y}{x}" />. But <Katex tex="\tan" /> repeats every <Katex tex="\pi" />, so this has two answers in <Katex tex="(-\pi,\pi]" /> (the range for the principal argument): the quadrant decides.</>,
+    more: <>The argument is the angle from the positive real axis, and <Katex tex="\tfrac{y}{x}" /> is opposite over adjacent in the right-angled triangle from the origin to the point. That is why <Katex tex="\tan" /> alone can't finish the job.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&x>0,\ y<0 \text{: fourth quadrant}\\ &\implies \theta = -\dfrac{\pi}{6}\end{aligned}" />,
-    reason: <>The basic angle for <Katex tex="\tfrac{1}{\sqrt3}" /> is <Katex tex="\tfrac{\pi}{6}" /> (the 30°–60°–90° triangle). The point is right of and below the origin, so the angle is measured clockwise: the principal argument is <Katex tex="-\tfrac{\pi}{6}" />, not <Katex tex="\tfrac{5\pi}{6}" />, the other angle with the same <Katex tex="\tan" />. Sketching the point first is the quickest way to know which one.</>,
+    reason: <>The basic angle for <Katex tex="\tfrac{1}{\sqrt3}" /> is <Katex tex="\tfrac{\pi}{6}" />. The point is right of and below the origin, so the argument is <Katex tex="-\tfrac{\pi}{6}" />, not <Katex tex="\tfrac{5\pi}{6}" /> (the other angle with this <Katex tex="\tan" />).</>,
+    more: <><Katex tex="\tan\tfrac{\pi}{6}=\tfrac{1}{\sqrt3}" /> comes from the 30°–60°–90° triangle. <Katex tex="\tfrac{5\pi}{6}" /> also lies in <Katex tex="(-\pi,\pi]" />, but it points into the second quadrant (left and up). Below the real axis the angle is measured clockwise, hence the minus sign. Sketching the point first is the quickest way to know which one.</>,
   },
   {
     working: (
@@ -81,26 +84,26 @@ const ROWS_A: WorkingRow[] = [
         <img loading="lazy" decoding="async" src={argandSrc} alt="Argand diagram showing 3 − √3 i in the fourth quadrant, at distance 2√3 from the origin and at an angle of −π/6 below the real axis" className="w-full max-w-[320px]" />
       </div>
     ),
-    reason: <>The picture confirms both readings at a glance: the point is to the right and below the origin, so the argument must be a small negative angle.</>,
+    reason: <>A quick sketch confirms both: the point is <Katex tex="2\sqrt3" /> from the origin, a small angle below the positive real axis.</>,
   },
   {
     working: <Katex display tex="\boxed{3-\sqrt3\,i = 2\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{6}\right)}" />,
-    reason: <>In a "show that" the answer is given, so the mark is for the working: both the modulus and the argument need to be seen. As required.</>,
+    reason: <>Combine <Katex tex="r=2\sqrt3" /> and <Katex tex="\theta=-\tfrac{\pi}{6}" /> into <Katex tex="r\,\text{cis}\,\theta" />. As required.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\left(3-\sqrt3\,i\right)^3 = \left(2\sqrt3\right)^3\text{cis}\!\left(3\times-\dfrac{\pi}{6}\right)" />,
-    reason: <>A power of a complex number is the cue for polar form, and part a. has just handed it to us. de Moivre's theorem: <Katex tex="\bigl(r\,\text{cis}\,\theta\bigr)^n = r^n\,\text{cis}(n\theta)" />. Raise the modulus to the power and multiply the argument by it. That works because multiplying complex numbers multiplies their lengths and adds their angles. Expanding the bracket works but is slower and more error-prone.</>,
-    more: <>Step through the diagram below.</>,
+    working: <Katex display tex="\left(3-\sqrt3\,i\right)^3 = \left(2\sqrt3\right)^3\text{cis}\!\left(3\times\left(-\dfrac{\pi}{6}\right)\right)" />,
+    reason: <>A power is the cue for polar form, which part a. gave us. De Moivre: <Katex tex="\bigl(r\,\text{cis}\,\theta\bigr)^n = r^n\,\text{cis}(n\theta)" />, so cube the modulus and triple the argument.</>,
+    more: <>It works because multiplying complex numbers multiplies their lengths and adds their angles, so three factors of <Katex tex="z" /> multiply three lengths and add three angles. Expanding <Katex tex="\left(3-\sqrt3\,i\right)^3" /> also works but is slower and more error-prone; the report notes students who did that generally did not score as well. Step through the diagram below to watch each factor turn and stretch the arrow.</>,
   },
   {
-    working: <Katex display tex="\left(2\sqrt3\right)^3 = 2^3\left(\sqrt3\right)^3 = 8\times3\sqrt3 = 24\sqrt3" />,
-    reason: <>The modulus cubed, using <Katex tex="\left(\sqrt3\right)^3=\sqrt3\times\sqrt3\times\sqrt3=3\sqrt3" />; and the argument tripled is <Katex tex="3\times-\tfrac{\pi}{6}=-\tfrac{\pi}{2}" />.</>,
+    working: <Katex display tex="\begin{aligned}\left(2\sqrt3\right)^3 &= 2^3\left(\sqrt3\right)^3\\&= 8\times3\sqrt3\\&= 24\sqrt3\\3\times\left(-\tfrac{\pi}{6}\right) &= -\tfrac{\pi}{2}\end{aligned}" />,
+    reason: <>Cube the modulus, using <Katex tex="\left(\sqrt3\right)^3=\sqrt3\times\sqrt3\times\sqrt3=3\sqrt3" />, and triple the argument.</>,
   },
   {
-    working: <Katex display tex="= 24\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{2}\right) = 24\sqrt3\left(\cos\!\left(-\tfrac{\pi}{2}\right)+i\sin\!\left(-\tfrac{\pi}{2}\right)\right)" />,
+    working: <Katex display tex="\begin{aligned}&= 24\sqrt3\,\text{cis}\!\left(-\dfrac{\pi}{2}\right)\\&= 24\sqrt3\left(\cos\!\left(-\tfrac{\pi}{2}\right)+i\sin\!\left(-\tfrac{\pi}{2}\right)\right)\end{aligned}" />,
     reason: <>Convert back to <Katex tex="x+iy" /> form as the question requires.</>,
   },
   {
@@ -109,37 +112,44 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(3-\sqrt3\,i\right)^3 = -24\sqrt3\,i}" />,
-    reason: <>So <Katex tex="x=0" /> and <Katex tex="y=-24\sqrt3" /> — the cube happens to land exactly on the negative imaginary axis, which is the clue that parts c. and d. are about where powers land.</>,
+    reason: <>In the form <Katex tex="x+iy" />: <Katex tex="x=0" /> and <Katex tex="y=-24\sqrt3" />.</>,
+    more: <>The cube lands exactly on the negative imaginary axis, which is the clue that parts c. and d. are about which powers land on an axis.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\left(3-\sqrt3\,i\right)^n = \left(2\sqrt3\right)^n\text{cis}\!\left(-\dfrac{n\pi}{6}\right)" />,
-    reason: <>de Moivre again, now with a general <Katex tex="n" /> (negative <Katex tex="n" /> too: the theorem holds for every integer power). Write <Katex tex="z=3-\sqrt3\,i" /> for short. The modulus <Katex tex="\left(2\sqrt3\right)^n" /> is never <Katex tex="0" />, so whether <Katex tex="z^n" /> is real depends only on the angle.</>,
+    reason: <>De Moivre with a general integer <Katex tex="n" />, writing <Katex tex="z=3-\sqrt3\,i" />. The modulus <Katex tex="\left(2\sqrt3\right)^n" /> is never <Katex tex="0" />, so only the angle decides.</>,
+    more: <>De Moivre's theorem holds for every integer power, negative ones included, so negative <Katex tex="n" /> must be considered too.</>,
   },
   {
     working: <Katex display tex="z^n \text{ is real} \iff \sin\!\left(-\dfrac{n\pi}{6}\right)=0" />,
-    reason: <>In <Katex tex="r\,\text{cis}\,\theta = r\cos\theta + i\,r\sin\theta" /> the imaginary part is <Katex tex="r\sin\theta" />, and a number is real exactly when that is <Katex tex="0" />. Geometrically, <Katex tex="z^n" /> must sit on the real axis, on <em>either</em> side: an angle of <Katex tex="0" />, <Katex tex="\pi" />, <Katex tex="-\pi" />, <Katex tex="2\pi" />, and so on.</>,
+    reason: <>The imaginary part of <Katex tex="r\,\text{cis}\,\theta" /> is <Katex tex="r\sin\theta" />, and a number is real exactly when that is <Katex tex="0" />.</>,
+    more: <>Geometrically, <Katex tex="z^n" /> must sit on the real axis, on <em>either</em> side: an angle of <Katex tex="0" />, <Katex tex="\pi" />, <Katex tex="-\pi" />, <Katex tex="2\pi" />, and so on.</>,
   },
   {
     working: <Katex display tex="\dfrac{n\pi}{6} = k\pi, \ k\in Z \implies n = 6k" />,
-    reason: <><Katex tex="\sin\theta=0" /> exactly when <Katex tex="\theta" /> is a whole multiple of <Katex tex="\pi" />, and <Katex tex="\sin(-\theta)=-\sin\theta" />, so the minus sign can go. The question wants <em>every</em> integer <Katex tex="n" />, so the answer is a family, and a family needs a counter that runs through all the integers: that is <Katex tex="k" /> (a new letter, since <Katex tex="n" /> is taken). Multiply both sides by <Katex tex="\tfrac{6}{\pi}" />.</>,
+    reason: <><Katex tex="\sin\theta=0" /> exactly when <Katex tex="\theta=k\pi" />, a whole multiple of <Katex tex="\pi" /> (the minus sign can go, as <Katex tex="\sin(-\theta)=-\sin\theta" />). Multiply by <Katex tex="\tfrac{6}{\pi}" />.</>,
+    more: <>The question wants <em>every</em> integer <Katex tex="n" />, so the answer is a family, and a family needs a counter that runs through all the integers: that is <Katex tex="k" /> (a new letter, since <Katex tex="n" /> is taken).</>,
   },
   {
     working: <Katex display tex="\boxed{n = 6k, \ k\in Z}" />,
-    reason: <>That is, <Katex tex="n" /> is any integer multiple of <Katex tex="6" />: <Katex tex="\ldots,-12,-6,0,6,12,\ldots" />. Each power turns the point a further <Katex tex="\tfrac{\pi}{6}" /> clockwise, so six powers make a half-turn, from one side of the real axis to the other. Say explicitly that <Katex tex="k" /> is an integer; the report notes some students did not indicate that <Katex tex="k" /> was a member of <Katex tex="Z" />. Any form that lists the same set is equally correct: <Katex tex="n=-6k" /> (straight from <Katex tex="-\tfrac{n\pi}{6}=k\pi" />) or <Katex tex="n=6k+6" />, because <Katex tex="k" /> runs over every integer.</>,
+    reason: <>That is, any integer multiple of <Katex tex="6" />: <Katex tex="\ldots,-12,-6,0,6,12,\ldots" />. Writing <Katex tex="k\in Z" /> is part of the answer.</>,
+    more: <>Each power turns the point a further <Katex tex="\tfrac{\pi}{6}" /> clockwise, so six powers make a half-turn, from one side of the real axis to the other. Any form that lists the same set is equally correct: <Katex tex="n=-6k" /> (straight from <Katex tex="-\tfrac{n\pi}{6}=k\pi" />) or <Katex tex="n=6k+6" />, because <Katex tex="k" /> runs over every integer.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned}z^n = ai &\iff \operatorname{Re}\left(z^n\right) = 0\\ &\iff \cos\!\left(-\dfrac{n\pi}{6}\right)=0\end{aligned}" />,
-    reason: <>&quot;<Katex tex="z^n=ai" /> with <Katex tex="a" /> real&quot; is a careful way of saying <em>purely imaginary</em>: the real part <Katex tex="\left(2\sqrt3\right)^n\cos\!\left(-\tfrac{n\pi}{6}\right)" /> must be <Katex tex="0" />, and since the modulus is never <Katex tex="0" />, the cosine must be. Geometrically, <Katex tex="z^n" /> lies on the imaginary axis, pointing straight up (<Katex tex="a>0" />) or straight down (<Katex tex="a<0" />); both count.</>,
+    reason: <><Katex tex="z^n=ai" /> with <Katex tex="a" /> real means <em>purely imaginary</em>: the real part <Katex tex="\left(2\sqrt3\right)^n\cos\!\left(-\tfrac{n\pi}{6}\right)" /> is <Katex tex="0" />, so the cosine is.</>,
+    more: <>The modulus <Katex tex="\left(2\sqrt3\right)^n" /> is never <Katex tex="0" />, which is why the cosine itself must vanish. Geometrically, <Katex tex="z^n" /> lies on the imaginary axis.</>,
   },
   {
     working: <Katex display tex="\dfrac{n\pi}{6} = \dfrac{\pi}{2}+k\pi, \ k\in Z" />,
-    reason: <>Cosine is even, so the minus sign can go. <Katex tex="\cos\theta=0" /> at <Katex tex="\theta=\tfrac{\pi}{2}" />, and then at every <Katex tex="\pi" /> either side of it (the top and bottom of the unit circle are <Katex tex="\pi" /> apart). A general solution is always &quot;the first solution, plus any whole number of gaps&quot;: here <Katex tex="\tfrac{\pi}{2}+k\pi" />, not <Katex tex="\tfrac{\pi}{2}+2k\pi" />, which would keep only the straight-down powers.</>,
+    reason: <><Katex tex="\cos\theta=0" /> at <Katex tex="\tfrac{\pi}{2}" /> and every <Katex tex="\pi" /> either side (top and bottom of the unit circle). Cosine is even, so the minus sign can go.</>,
+    more: <>The report notes many students were unable to find a general solution.</>,
   },
   {
     working: <Katex display tex="n = 3+6k, \ k\in Z" />,
@@ -147,7 +157,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{n = 6k+3, \ k\in Z}" />,
-    reason: <>Equivalently, <Katex tex="n" /> is an odd multiple of <Katex tex="3" />: <Katex tex="\ldots,-9,-3,3,9,15,\ldots" />. Check against part b.: <Katex tex="n=3" /> gave <Katex tex="-24\sqrt3\,i" />, purely imaginary ✓. These sit halfway between the real powers of part c.: three turns of <Katex tex="-\tfrac{\pi}{6}" /> reach the imaginary axis, three more reach the real axis. The report notes that there were a number of equivalent correct answers; for example, <Katex tex="n=3(2k+1)" />, <Katex tex="n=6k-3" /> and <Katex tex="n=12k\pm3" /> (each with <Katex tex="k\in Z" />) all describe this same set.</>,
+    reason: <>The odd multiples of <Katex tex="3" />: <Katex tex="\ldots,-9,-3,3,9,15,\ldots" />. Check: part b. gave <Katex tex="z^3=-24\sqrt3\,i" />, purely imaginary ✓.</>,
+    more: <>These sit halfway between the real powers of part c. The report notes that there were a number of equivalent correct answers; for example, <Katex tex="n=3(2k+1)" />, <Katex tex="n=6k-3" /> and <Katex tex="n=12k\pm3" /> (each with <Katex tex="k\in Z" />) all describe this same set.</>,
   },
 ]
 

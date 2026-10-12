@@ -36,11 +36,12 @@ const EXAMINER: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Collision} \iff \underset{\sim}{r}_A(t) = \underset{\sim}{r}_B(t) \ \text{ for the same } t" />,
-    reason: <>Two particles collide only if they are at the same place <em>at the same moment</em>. So we need one value of <Katex tex="t" /> that makes the two position vectors equal, which means the <Katex tex="\underset{\sim}{i}" /> parts match <em>and</em> the <Katex tex="\underset{\sim}{j}" /> parts match, with the same <Katex tex="t" /> in both.</>,
+    reason: <>Collide means the same place at the same moment: one value of <Katex tex="t" /> must make the <Katex tex="\underset{\sim}{i}" /> components equal <em>and</em> the <Katex tex="\underset{\sim}{j}" /> components equal.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{i}: \quad t^2-1 = t^3-t" />,
-    reason: <>Two equations, two unknowns (<Katex tex="t" /> and <Katex tex="a" />). Start with the one that has only one unknown: the <Katex tex="\underset{\sim}{i}" /> components have no <Katex tex="a" /> in them, so this equation pins down the collision time by itself.</>,
+    reason: <>The <Katex tex="\underset{\sim}{i}" /> components contain no <Katex tex="a" />, so this equation alone finds the collision time.</>,
+    more: <>Two equations, two unknowns (<Katex tex="t" /> and <Katex tex="a" />): start with the equation that has only one unknown in it, then use its answer in the other.</>,
   },
   {
     working: <Katex display tex="t^3-t^2-t+1 = 0" />,
@@ -55,14 +56,22 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
+        Group the four terms in pairs and take out the common factor <Katex tex="(t-1)" />, then factorise the
+        difference of squares <Katex tex="t^2-1=(t-1)(t+1)" />.
+      </>
+    ),
+    more: (
+      <>
         <p>
-          Four terms, no obvious root formula: group them in pairs and take out the common factor{' '}
-          <Katex tex="(t-1)" />, then factorise the difference of squares <Katex tex="t^2-1=(t-1)(t+1)" />.
+          A quicker way to see it: <Katex tex="t^3-t=t(t^2-1)" />, so the equation says{' '}
+          <Katex tex="t^2-1=t(t^2-1)" />, i.e. <Katex tex="(t^2-1)(t-1)=0" />.
         </p>
         <p className="mt-1.5">
-          A quicker way to see it: <Katex tex="t^3-t=t(t^2-1)" />, so the equation says{' '}
-          <Katex tex="t^2-1=t(t^2-1)" />, i.e. <Katex tex="(t^2-1)(t-1)=0" />. Don&apos;t divide both sides by{' '}
-          <Katex tex="t^2-1" />: it can be zero, and dividing throws away the root <Katex tex="t=-1" />.
+          The examiners&apos; report notes various algebraic and transcription errors that stopped students
+          getting full marks. One slip to avoid: don&apos;t divide both sides by <Katex tex="t^2-1" />. That step
+          is only valid if <Katex tex="t\ne\pm1" />, yet <Katex tex="t=1" /> is the very time we want, and it
+          silently drops <Katex tex="t=-1" />. Bring everything to one side and factorise instead, so every root is
+          found and then checked against the domain.
         </p>
       </>
     ),
@@ -71,34 +80,32 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="t=1 \ \text{(repeated)} \quad \text{or} \quad t=-1" />,
     reason: (
       <>
-        <p>
-          <Katex tex="t=-1" /> is outside the given domain <Katex tex="0\le t\le2" /> (it would be one unit of time before
-          they started moving), so the collision happens at <Katex tex="t=1" />.
-        </p>
-        <p className="mt-1.5">
-          The repeated root has a meaning: the sideways gap is <Katex tex="x_B-x_A=(t-1)^2(t+1)" />, which is never
-          negative for <Katex tex="t\ge0" />. A draws level with B for just an instant at <Katex tex="t=1" /> and then
-          falls behind again.
-        </p>
+        <Katex tex="t=-1" /> is outside the given domain <Katex tex="0\le t\le2" /> (it is before they started
+        moving), so the collision happens at <Katex tex="t=1" />.
       </>
     ),
     more: (
       <>
-        Drag <Katex tex="t" /> in the diagram below to watch it.
+        The repeated root has a meaning: the sideways gap is <Katex tex="x_B-x_A=(t-1)^2(t+1)" />, which is never
+        negative for <Katex tex="t\ge0" />. A draws level with B for just an instant at <Katex tex="t=1" /> and then
+        is to the left of B again. Drag <Katex tex="t" /> in the diagram below to watch it.
       </>
     ),
   },
   {
     working: <Katex display tex="\underset{\sim}{j}: \quad a+\dfrac{t}{3} = \arccos\!\left(\dfrac{t}{2}\right)" />,
-    reason: <>Now the <Katex tex="\underset{\sim}{j}" /> components, which is where <Katex tex="a" /> lives. The time is already fixed, so this equation has only one unknown left. At <Katex tex="t=1" /> both particles have <Katex tex="x=0" /> whatever <Katex tex="a" /> is; <Katex tex="a" /> just has to put A at the same height as B.</>,
+    reason: <>At <Katex tex="t=1" /> both particles have <Katex tex="x=0" /> whatever <Katex tex="a" /> is, so now match the <Katex tex="\underset{\sim}{j}" /> components, which contain <Katex tex="a" />.</>,
+    more: <>The time is already fixed, so this equation has only one unknown left: <Katex tex="a" /> just has to put A at the same height as B at that moment.</>,
   },
   {
     working: <Katex display tex="a+\dfrac{1}{3} = \arccos\!\left(\dfrac{1}{2}\right) = \dfrac{\pi}{3}" />,
-    reason: <>Substitute <Katex tex="t=1" />. <Katex tex="\arccos\left(\tfrac12\right)" /> is the angle in <Katex tex="[0,\pi]" /> whose cosine is <Katex tex="\tfrac12" />, which is <Katex tex="\tfrac{\pi}{3}" /> (not <Katex tex="\tfrac{\pi}{6}" />; that one is <Katex tex="\arcsin\tfrac12" />).</>,
+    reason: <>Substitute <Katex tex="t=1" />. <Katex tex="\arccos\left(\tfrac12\right)" /> is the angle in <Katex tex="[0,\pi]" /> whose cosine is <Katex tex="\tfrac12" />, which is <Katex tex="\tfrac{\pi}{3}" />.</>,
+    more: <>Not <Katex tex="\tfrac{\pi}{6}" />: that one is <Katex tex="\arcsin\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \dfrac{\pi}{3}-\dfrac13 = \dfrac{\pi-1}{3}}" />,
-    reason: <>Check: at <Katex tex="t=1" />, particle <Katex tex="A" /> is at <Katex tex="(0,\ \tfrac{\pi}{3})" /> and particle <Katex tex="B" /> is at <Katex tex="\bigl(1-1,\ \arccos\tfrac12\bigr)=(0,\ \tfrac{\pi}{3})" /> ✓ — same point, same time.</>,
+    reason: <>Subtract <Katex tex="\tfrac13" /> from both sides.</>,
+    more: <>Check: at <Katex tex="t=1" />, particle <Katex tex="A" /> is at <Katex tex="(0,\ \tfrac{\pi}{3})" /> and particle <Katex tex="B" /> is at <Katex tex="\bigl(1-1,\ \arccos\tfrac12\bigr)=(0,\ \tfrac{\pi}{3})" /> ✓ — same point, same time.</>,
   },
 ]
 
@@ -130,13 +137,7 @@ export default function SpecialistQ4_2019Exam1() {
           </p>
           <p>
             Careful with the word <b>collide</b>. Two paths that cross are not enough — the
-            particles must be at the crossing point <em>simultaneously</em>. So this is not "solve
-            for where the paths meet"; it is "find a single <Katex tex="t" /> making both
-            components agree".
-          </p>
-          <p>
-            That gives a clean strategy: one component equation contains no unknown constant, so
-            it pins down the time; the other then gives the constant.
+            particles must be at the crossing point <em>simultaneously</em>.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />

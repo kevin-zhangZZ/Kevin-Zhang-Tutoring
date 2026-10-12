@@ -129,18 +129,20 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f'(x) = -\sin(x)\bigl(2\cos(x)+1\bigr)}" />,
-    reason: <>Both terms share a factor of <Katex tex="-\sin(x)" />. Factorising is optional for this mark (the unfactorised line above is already a full answer) but makes part a.ii. much easier — a product is zero exactly when one of its factors is. The report also accepts <Katex tex="-\sin(2x)-\sin(x)" />, but notes that using a double angle formula was not always done correctly nor helpful for the next part.</>,
+    reason: <>Both terms share a factor of <Katex tex="-\sin(x)" />. The line above already earns the mark; factorising sets up part a.ii.</>,
+    more: <>The report also accepts <Katex tex="-\sin(2x)-\sin(x)" />, but notes that using a double angle formula was not always done correctly nor helpful for the next part. It also says students who factorised did so with mixed success, so expand your factorised form back out to check it (part a.ii.'s Common Mistake box shows an easy sign slip).</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 0 \implies -\sin(x)\bigl(2\cos(x)+1\bigr)=0" />,
-    reason: <>At a turning point the curve stops going down and starts going up (or the reverse), so for that instant the tangent is flat: gradient zero. &ldquo;Hence&rdquo; is the cue to use part a.i., and its factorised form is exactly what you want here.</>,
+    reason: <>At a turning point the tangent is flat, so solve <Katex tex="f'(x)=0" />. &ldquo;Hence&rdquo; says use part a.i.'s factorised form.</>,
   },
   {
     working: <Katex display tex="\sin(x)=0 \quad \text{or} \quad \cos(x)=-\dfrac12" />,
-    reason: <>Null factor law: a product is zero only when one of its factors is zero. This is why factorising in part a.i. pays off: one hard equation becomes two easy ones.</>,
+    reason: <>Null factor law: a product is zero only when one of its factors is zero.</>,
+    more: <>This is why factorising in part a.i. pays off: one hard equation becomes two easy ones.</>,
   },
   {
     working: (
@@ -149,12 +151,13 @@ const ROWS_AII: WorkingRow[] = [
         <Katex display tex="\cos(x)=-\tfrac12 \ \text{ on } (0,2\pi) \implies x=\dfrac{2\pi}{3},\ \dfrac{4\pi}{3}" />
       </>
     ),
-    reason: <>Cosine is negative in the second and third quadrants, and the base angle for <Katex tex="\tfrac12" /> is <Katex tex="\tfrac{\pi}{3}" />, giving <Katex tex="\pi-\tfrac{\pi}{3}" /> and <Katex tex="\pi+\tfrac{\pi}{3}" />. Note <Katex tex="x=0" /> and <Katex tex="x=2\pi" /> also satisfy <Katex tex="\sin(x)=0" />, but they are <em>excluded</em> — the question asks for the open interval <Katex tex="(0,2\pi)" />, and they are domain endpoints, not turning points.</>,
+    reason: <>Cosine is negative in the second and third quadrants, and the base angle for <Katex tex="\tfrac12" /> is <Katex tex="\tfrac{\pi}{3}" />, giving <Katex tex="\pi-\tfrac{\pi}{3}" /> and <Katex tex="\pi+\tfrac{\pi}{3}" />. Round brackets in <Katex tex="(0,2\pi)" /> exclude <Katex tex="x=0" /> and <Katex tex="x=2\pi" />.</>,
   },
   {
     working: (
       <>
-        <Katex display tex="f\!\left(\tfrac{2\pi}{3}\right) = \left(-\tfrac12\right)^2+\left(-\tfrac12\right)+1 = \tfrac14-\tfrac12+1 = \tfrac34" />
+        <Katex display tex="f\!\left(\tfrac{2\pi}{3}\right) = \left(-\tfrac12\right)^2+\left(-\tfrac12\right)+1" />
+        <Katex display tex="= \tfrac14-\tfrac12+1 = \tfrac34" />
         <Katex display tex="f(\pi) = (-1)^2+(-1)+1 = 1" />
         <Katex display tex="f\!\left(\tfrac{4\pi}{3}\right) = \tfrac14-\tfrac12+1 = \tfrac34" />
       </>
@@ -163,7 +166,8 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(\dfrac{2\pi}{3},\ \dfrac34\right),\quad (\pi,\ 1),\quad \left(\dfrac{4\pi}{3},\ \dfrac34\right)}" />,
-    reason: <>Which is which? Read it off the given graph: two dips a little below <Katex tex="1" /> (height <Katex tex="\tfrac34" />, at <Katex tex="x\approx2.1" /> and <Katex tex="4.2" />) either side of a small bump at <Katex tex="(\pi,1)" />. The question only asks for coordinates, but checking that each one sits on a flat spot of the graph is a free check.</>,
+    reason: <>Check against the given graph: two dips at height <Katex tex="\tfrac34" /> (<Katex tex="x\approx2.1" /> and <Katex tex="4.2" />) either side of a small bump at <Katex tex="(\pi,1)" />.</>,
+    more: <>The question only asks for coordinates, not whether each is a maximum or minimum, but checking that each one sits on a flat spot of the printed graph is a free check on your algebra.</>,
   },
 ]
 
@@ -175,7 +179,7 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\implies \dfrac{1}{f(x)} \text{ has no asymptotes}" />
       </>
     ),
-    reason: <>The first thing to settle for any reciprocal graph: does the original ever hit zero? Here it doesn't — its smallest value is <Katex tex="\tfrac34" /> — so the reciprocal graph is a single unbroken curve.</>,
+    reason: <>Check first: wherever <Katex tex="f=0" />, <Katex tex="\tfrac1f" /> has an asymptote. But the least value of <Katex tex="f" /> is <Katex tex="\tfrac34" /> (part a.ii.; the endpoints are at <Katex tex="3" />), so <Katex tex="\tfrac1f" /> is one unbroken curve.</>,
   },
   {
     working: (
@@ -189,11 +193,12 @@ const ROWS_B: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\left(\tfrac{2\pi}{3},\ \tfrac34\right)\to\left(\tfrac{2\pi}{3},\ \tfrac43\right), \qquad (\pi,1)\to(\pi,1)" />
+        <Katex display tex="\left(\tfrac{2\pi}{3},\ \tfrac34\right)\to\left(\tfrac{2\pi}{3},\ \tfrac43\right)" />
+        <Katex display tex="(\pi,1)\to(\pi,1)" />
         <Katex display tex="\left(\tfrac{4\pi}{3},\ \tfrac34\right)\to\left(\tfrac{4\pi}{3},\ \tfrac43\right)" />
       </>
     ),
-    reason: <>Invert each <Katex tex="y" />-coordinate from part a.ii. The two minimums of <Katex tex="f" /> become maximums at height <Katex tex="\tfrac43" />, and the local maximum at <Katex tex="(\pi,1)" /> becomes a local minimum — still at height <Katex tex="1" />, since <Katex tex="1" /> is its own reciprocal.</>,
+    reason: <>Invert each <Katex tex="y" />-coordinate from part a.ii. <Katex tex="(\pi,1)" /> stays put, as <Katex tex="1" /> is its own reciprocal, but is now a local minimum — it still needs its label.</>,
   },
   {
     working: (
@@ -202,7 +207,7 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\implies \text{endpoints } \left(0,\ \tfrac13\right),\ \left(2\pi,\ \tfrac13\right)" />
       </>
     ),
-    reason: <>The endpoints must be labelled too, and they are <em>closed</em> (filled) dots — the domain includes them, so no open circles.</>,
+    reason: <><Katex tex="\cos(0)=\cos(2\pi)=1" />, so <Katex tex="f=1+1+1=3" />. Label both endpoints as <em>filled</em> dots: the domain <Katex tex="0\le x\le2\pi" /> includes them.</>,
   },
   {
     working: (
@@ -211,7 +216,7 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\iff \cos(x)\bigl(\cos(x)+1\bigr)=0" />
       </>
     ),
-    reason: <>Where does the new graph cross the old one? Exactly where <Katex tex="f=\tfrac1f" />, i.e. where <Katex tex="f=1" /> (since <Katex tex="f>0" />).</>,
+    reason: <>Points to aim the sketch through: the graphs meet where <Katex tex="f=\tfrac1f" />, i.e. <Katex tex="f^2=1" />, so <Katex tex="f=1" /> (as <Katex tex="f>0" />).</>,
   },
   {
     working: (
@@ -220,23 +225,28 @@ const ROWS_B: WorkingRow[] = [
         <Katex display tex="\cos(x)=-1 \implies x=\pi" />
       </>
     ),
-    reason: <>So the two curves meet at <Katex tex="\left(\tfrac{\pi}{2},1\right)" />, <Katex tex="(\pi,1)" /> and <Katex tex="\left(\tfrac{3\pi}{2},1\right)" /> — a useful accuracy check when drawing, because these are points you can place exactly. The report notes graphs not passing through <Katex tex="\left(\tfrac{\pi}{2},1\right)" /> and <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" />, calling both &ldquo;intersection points&rdquo;; strictly, only the first is a crossing of the two graphs (the second is a turning point of the new graph), but a correct sketch must pass through both.</>,
+    reason: <>So the new graph crosses the old at <Katex tex="\left(\tfrac{\pi}{2},1\right)" /> and <Katex tex="\left(\tfrac{3\pi}{2},1\right)" />, and touches it at <Katex tex="(\pi,1)" />, where both graphs turn (<Katex tex="f" /> a max, <Katex tex="\tfrac1f" /> a min). These points can be placed exactly.</>,
+    more: <>The report notes graphs not passing through <Katex tex="\left(\tfrac{\pi}{2},1\right)" /> and <Katex tex="\left(\tfrac{4\pi}{3},\tfrac43\right)" />, calling both &ldquo;intersection points&rdquo;; strictly, only the first is a crossing of the two graphs (the second is a turning point of the new graph), but a correct sketch must pass through both.</>,
   },
   {
     working: <ReciprocalOverlay />,
     reason: (
       <>
-        The answer (in blue) drawn on VCAA's own axes. Filled dots are the labelled turning
-        points and endpoints; the two small rings mark where it crosses the original curve, at{' '}
-        <Katex tex="x=\tfrac{\pi}{2}" /> and <Katex tex="x=\tfrac{3\pi}{2}" />. It is a gentle wave
-        between <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> — much flatter than{' '}
-        <Katex tex="f" />, because taking reciprocals squashes the tall value <Katex tex="3" /> down
-        to <Katex tex="\tfrac13" />. The report notes poor estimation of the heights{' '}
-        <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> against the given scale. The trick is
-        to read the grid first: VCAA's has five lines per unit, so each line is <Katex tex="0.2" />.
-        Then <Katex tex="\tfrac13\approx0.33" /> is two-thirds of the way from <Katex tex="0.2" /> to{' '}
-        <Katex tex="0.4" />, and <Katex tex="\tfrac43\approx1.33" /> two-thirds of the way from{' '}
-        <Katex tex="1.2" /> to <Katex tex="1.4" />.
+        The answer, in blue: a smooth wave between <Katex tex="\tfrac13" /> and{' '}
+        <Katex tex="\tfrac43" />, all turning points and endpoints labelled. Gridlines are every{' '}
+        <Katex tex="0.2" />, so <Katex tex="\tfrac13\approx0.33" /> and{' '}
+        <Katex tex="\tfrac43\approx1.33" /> each sit two-thirds of the way up a grid square.
+      </>
+    ),
+    more: (
+      <>
+        Filled dots are the labelled turning points and endpoints; the two small rings mark where
+        it crosses the original curve, at <Katex tex="x=\tfrac{\pi}{2}" /> and{' '}
+        <Katex tex="x=\tfrac{3\pi}{2}" />. The wave is much flatter than <Katex tex="f" />, because
+        taking reciprocals squashes the tall value <Katex tex="3" /> down to{' '}
+        <Katex tex="\tfrac13" />. The report notes poor estimation of the heights{' '}
+        <Katex tex="\tfrac13" /> and <Katex tex="\tfrac43" /> against the given scale; the
+        two-thirds placement above avoids it.
       </>
     ),
   },
@@ -282,9 +292,9 @@ export default function SpecialistQ5_2019Exam1() {
           source="Examiner's report"
           working={<Katex display tex="(0,3),\ \left(\tfrac{2\pi}{3},\tfrac34\right),\ (\pi,1),\ \left(\tfrac{4\pi}{3},\tfrac34\right),\ (2\pi,3)" />}
         >
-          The question asks about the open interval <Katex tex="(0,2\pi)" />, and round brackets
-          leave out <Katex tex="0" /> and <Katex tex="2\pi" />. They are also the ends of the domain:
-          the graph starts and stops there rather than turning around. Before solving, write the
+          <Katex tex="x=0" /> and <Katex tex="x=2\pi" /> do satisfy <Katex tex="\sin(x)=0" />, but
+          they are the ends of the domain: the graph starts and stops there rather than turning
+          around. Before solving, write the
           interval next to your equation, then cross off any solution outside it.
         </WrongMethod>
         <WrongMethod
@@ -314,12 +324,12 @@ export default function SpecialistQ5_2019Exam1() {
             knowing:
           </p>
           <p>
-            • Wherever <Katex tex="f(x)=0" />, the reciprocal has a <em>vertical asymptote</em>.
-            (Not an issue here — check this first, because it decides the whole shape.)<br />
-            • Turning points keep their <Katex tex="x" />-value but swap between maximum and
-            minimum, with the <Katex tex="y" />-value inverted.<br />
-            • Where <Katex tex="f(x)=1" /> (or <Katex tex="-1" />), the two graphs cross, since
-            those numbers are their own reciprocals.<br />
+            • Zeros of <Katex tex="f" /> become <em>vertical asymptotes</em> of{' '}
+            <Katex tex="\tfrac1f" />.<br />
+            • Turning points keep their <Katex tex="x" />-value; max and min swap.<br />
+            • Where <Katex tex="f(x)=1" /> (or <Katex tex="-1" />), the two graphs meet, since
+            those numbers are their own reciprocals. They cross there, unless both graphs turn at
+            that point, when they touch.<br />
             • <Katex tex="f" /> and <Katex tex="\tfrac1f" /> always have the same sign, and where{' '}
             <Katex tex="f" /> is big, <Katex tex="\tfrac1f" /> is small.
           </p>

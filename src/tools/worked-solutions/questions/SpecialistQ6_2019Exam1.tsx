@@ -34,13 +34,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{c} = m\underset{\sim}{a} + n\underset{\sim}{b}" />,
     reason: (
       <>
-        First check that <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> aren't parallel: to match
-        the <Katex tex="\underset{\sim}{i}" />-components, <Katex tex="\underset{\sim}{b}" /> would have to be{' '}
-        <Katex tex="-\underset{\sim}{a}" />, but then its <Katex tex="\underset{\sim}{j}" />-component would be{' '}
-        <Katex tex="3" />, not <Katex tex="4" />. So <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />{' '}
-        span a plane through the origin, and the three vectors are dependent exactly when{' '}
-        <Katex tex="\underset{\sim}{c}" /> lies in that plane — that is, when it can be built out of{' '}
-        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />. Write that down with two unknown scalars.
+        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" /> aren't parallel, so the three vectors
+        are linearly dependent exactly when <Katex tex="\underset{\sim}{c}" /> can be built from{' '}
+        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />. Write that with two unknown scalars.
+      </>
+    ),
+    more: (
+      <>
+        Why aren't they parallel? To match the <Katex tex="\underset{\sim}{i}" />-components,{' '}
+        <Katex tex="\underset{\sim}{b}" /> would have to be <Katex tex="-\underset{\sim}{a}" />, but then its{' '}
+        <Katex tex="\underset{\sim}{j}" />-component would be <Katex tex="3" />, not <Katex tex="4" />.
       </>
     ),
   },
@@ -58,11 +61,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Two vectors are equal only when all three components match, so this one vector equation is three ordinary
-        equations. Now look at where <Katex tex="d" /> appears: only in the <Katex tex="\underset{\sim}{k}" /> equation.
-        So the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> equations are two equations in
-        just <Katex tex="m" /> and <Katex tex="n" /> — solve them first, and the <Katex tex="\underset{\sim}{k}" />{' '}
-        equation then tells you what <Katex tex="d" /> has to be.
+        Equal vectors have equal components. <Katex tex="d" /> appears only in the <Katex tex="\underset{\sim}{k}" />{' '}
+        equation, so solve the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> equations for{' '}
+        <Katex tex="m" /> and <Katex tex="n" /> first.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> equations are two equations in two
+        unknowns. The report noted occasional arithmetic and transcription errors, so copy each component (and its sign)
+        carefully and check your <Katex tex="m" /> and <Katex tex="n" /> in the <Katex tex="\underset{\sim}{j}" /> equation.
       </>
     ),
   },
@@ -75,9 +83,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Doubling the <Katex tex="\underset{\sim}{i}" /> equation turns <Katex tex="-2n" /> into <Katex tex="-4n" />, which
-        cancels the <Katex tex="+4n" /> in the <Katex tex="\underset{\sim}{j}" /> equation — so add them and{' '}
-        <Katex tex="n" /> disappears.
+        Double the <Katex tex="\underset{\sim}{i}" /> equation (making <Katex tex="-4n" />) to cancel the{' '}
+        <Katex tex="+4n" /> in the <Katex tex="\underset{\sim}{j}" /> equation, then add.
       </>
     ),
   },
@@ -89,17 +96,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} d &= 4m-8n \\ &= 4(-10)-8(-7) \\ &= -40+56 = 16 \end{aligned}" />,
     reason: (
       <>
-        Now the <Katex tex="\underset{\sim}{k}" /> equation, held back until now. The first two equations have already
-        fixed <Katex tex="m" /> and <Katex tex="n" />, so the third can only hold if <Katex tex="d" /> equals the{' '}
-        <Katex tex="\underset{\sim}{k}" />-component of <Katex tex="-10\underset{\sim}{a}-7\underset{\sim}{b}" />. For any
-        other <Katex tex="d" />, no choice of <Katex tex="m" /> and <Katex tex="n" /> works and the vectors are
-        independent.
+        <Katex tex="m" /> and <Katex tex="n" /> are already fixed, so the <Katex tex="\underset{\sim}{k}" /> equation
+        holds only for this one value of <Katex tex="d" />.
       </>
     ),
     more: (
       <>
-        In the diagram below, <Katex tex="16" /> is the height of the plane directly above the
-        point <Katex tex="(-6,\,2)" />.
+        So <Katex tex="d" /> must equal the <Katex tex="\underset{\sim}{k}" />-component of{' '}
+        <Katex tex="-10\underset{\sim}{a}-7\underset{\sim}{b}" />. For any other <Katex tex="d" />, no choice of{' '}
+        <Katex tex="m" /> and <Katex tex="n" /> works and the vectors are independent. In the diagram below,{' '}
+        <Katex tex="16" /> is the height of the plane directly above the point <Katex tex="(-6,\,2)" />.
       </>
     ),
   },
@@ -113,10 +119,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        If you know the cross product (on the course from 2023): <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}" />{' '}
-        is perpendicular to both <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, so it is the
-        normal to their plane. <Katex tex="\underset{\sim}{c}" /> lies in that plane exactly when it is perpendicular to
-        the normal, i.e. when the dot product is zero.
+        Cross product route (current course): <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}" /> is
+        normal to the plane of <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, so{' '}
+        <Katex tex="\underset{\sim}{c}" /> lies in the plane when its dot product with it is zero.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\underset{\sim}{a}\times\underset{\sim}{b}" /> is perpendicular to both{' '}
+        <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{b}" />, so it is perpendicular to every
+        combination <Katex tex="m\underset{\sim}{a}+n\underset{\sim}{b}" />. A vector lies in their plane exactly when
+        it is perpendicular to that normal.
       </>
     ),
   },
@@ -130,10 +143,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The same test laid out as a determinant of the three vectors' components. The determinant equals{' '}
-        <Katex tex="\underset{\sim}{c}\cdot\left(\underset{\sim}{a}\times\underset{\sim}{b}\right)" />, which is why it
-        also comes to <Katex tex="2d-32" />; it is zero exactly when the three vectors lie in one plane. The report notes
-        a number of students used this route successfully.
+        The same test as a determinant of the three vectors' components: it equals{' '}
+        <Katex tex="\underset{\sim}{c}\cdot\left(\underset{\sim}{a}\times\underset{\sim}{b}\right)" />, so it is zero
+        exactly when the vectors lie in one plane. Determinants are no longer on the course.
+      </>
+    ),
+    more: (
+      <>
+        The report notes that a number of students used this route successfully. It is kept here for that reason; on the
+        current course use the elimination or cross product method above.
       </>
     ),
   },

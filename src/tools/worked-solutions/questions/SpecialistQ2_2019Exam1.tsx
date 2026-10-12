@@ -41,9 +41,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="|x-4| = \begin{cases} x-4, & x\ge4 \\ -(x-4), & x<4\end{cases}" />,
     reason: (
       <>
-        The modulus is the only awkward part of the equation, and it has a different formula on each side of{' '}
-        <Katex tex="x=4" />, where <Katex tex="x-4" /> changes sign. So split there: on the right the modulus does
-        nothing, on the left it flips the sign. Graphically, these are the two straight arms of the V-shaped graph of{' '}
+        <Katex tex="x-4" /> changes sign at <Katex tex="x=4" />, so split there: for <Katex tex="x\ge4" /> the modulus
+        changes nothing; for <Katex tex="x<4" /> it flips the sign.
+      </>
+    ),
+    more: (
+      <>
+        The modulus is the only awkward part of the equation, and splitting removes it, leaving one linear equation in
+        each case. Graphically, the two cases are the two straight arms of the V-shaped graph of{' '}
         <Katex tex="y=|x-4|" />.
       </>
     ),
@@ -57,9 +62,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        On the right arm, <Katex tex="|x-4|" /> is just <Katex tex="x-4" />, so the equation becomes linear. But that
-        replacement is only true for <Katex tex="x\ge4" />, so the answer only counts if it lies there. It does:{' '}
-        <Katex tex="22\ge4" />, so keep <Katex tex="x=22" />.
+        For <Katex tex="x\ge4" />, replace <Katex tex="|x-4|" /> by <Katex tex="x-4" /> and solve. The answer only
+        counts if it satisfies <Katex tex="x\ge4" />: <Katex tex="22\ge4" />, so keep it.
       </>
     ),
   },
@@ -72,14 +76,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        On the left arm the inside is negative, so <Katex tex="|x-4|=-(x-4)=4-x" />. Again check the assumption:{' '}
-        <Katex tex="-2<4" />, so keep <Katex tex="x=-2" />. If a case's answer broke its own condition, it would be where
-        the line meets that arm's extension, not the V itself, and would be rejected.
+        For <Katex tex="x<4" />, <Katex tex="|x-4|=4-x" />. Check the condition: <Katex tex="-2<4" />, so keep{' '}
+        <Katex tex="x=-2" />.
       </>
     ),
     more: (
       <>
-        Drag <Katex tex="k" /> in the interactive below to see that happen.
+        If a case&apos;s answer broke its own condition, it would be where the line meets that arm&apos;s extension, not
+        the V itself, and would be rejected. Drag <Katex tex="k" /> in the interactive below to see that happen.
       </>
     ),
   },
@@ -90,7 +94,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="x=-2: \quad |-2-4| = 6, \quad \dfrac{-2}{2}+7 = 6 \ \checkmark" />
       </>
     ),
-    reason: <>Substituting back confirms both — the report's general comments point out that answers to this question could be verified as correct by substitution. It matters most on the squaring route, which can produce solutions that satisfy the squared equation but not the original.</>,
+    reason: <>Substitute both answers into the original equation to confirm them.</>,
+    more: <>The report&apos;s general comments point out that answers to this question could be verified by substitution. The check is essential if you squared both sides instead (the Background above explains why squaring can add extra roots).</>,
   },
   {
     working: (
@@ -100,12 +105,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The picture behind the algebra: the V-shaped graph of <Katex tex="y=|x-4|" /> cuts the line{' '}
-        <Katex tex="y=\tfrac{x}{2}+7" /> exactly twice, once on each arm, which is why each case produced one
-        solution. Why is <Katex tex="22" /> so far out? At <Katex tex="x=4" /> the line is already <Katex tex="9" />{' '}
-        above the vertex. Going right, the arm (gradient <Katex tex="1" />) gains on the line (gradient{' '}
+        The picture behind the algebra: the V-shaped graph of <Katex tex="y=|x-4|" /> meets the line{' '}
+        <Katex tex="y=\tfrac{x}{2}+7" /> once on each arm, which is why both case answers passed their checks: two solutions.
+      </>
+    ),
+    more: (
+      <>
+        Why is <Katex tex="22" /> so far out? At <Katex tex="x=4" /> the line is already <Katex tex="9" /> above the
+        vertex. Going right, the arm (gradient <Katex tex="1" />) gains on the line (gradient{' '}
         <Katex tex="\tfrac12" />) by only <Katex tex="\tfrac12" /> per unit, so it needs <Katex tex="18" /> units:{' '}
-        <Katex tex="x=22" />. Going left, the gap closes by <Katex tex="\tfrac32" /> per unit, so after{' '}
+        <Katex tex="x=22" />. Going left, the gap closes by <Katex tex="1+\tfrac12=\tfrac32" /> per unit, so after{' '}
         <Katex tex="6" /> units: <Katex tex="x=-2" />.
       </>
     ),
@@ -135,10 +144,8 @@ export default function SpecialistQ2_2019Exam1() {
             each, and keep only the solutions consistent with the case you assumed.
           </p>
           <p>
-            A quadratic route also exists — square both sides — but it is riskier: squaring can
-            introduce solutions that don't satisfy the original equation, and the report notes
-            students who solved linear equations were generally more successful than those who
-            solved a quadratic equation.
+            A quadratic route also exists — square both sides — but it is riskier: the quadratic is
+            harder to solve, and squaring can add extra roots.
           </p>
           <p>
             Why squaring can add fake answers: <Katex tex="|A|=B" /> squared is <Katex tex="A^2=B^2" />, which is
