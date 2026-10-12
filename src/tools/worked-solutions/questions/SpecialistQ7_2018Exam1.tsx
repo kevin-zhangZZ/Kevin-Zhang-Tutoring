@@ -38,9 +38,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\cot(2x) = \frac{1}{\tan(2x)}" />,
     reason: (
       <>
-        How would I know to start here? The right-hand side is a multiple of{' '}
-        <Katex tex="\cot(x)=\tfrac{1}{\tan(x)}" />, and <Katex tex="\tfrac12\tan(x)" /> is already
-        in <Katex tex="\tan" />, so aim to write everything in terms of <Katex tex="\tan(x)" />.
+        The right-hand side is a multiple of <Katex tex="\cot(x)=\tfrac{1}{\tan(x)}" />, and{' '}
+        <Katex tex="\tfrac12\tan(x)" /> is already in <Katex tex="\tan" />, so write everything in terms
+        of <Katex tex="\tan" />.
+      </>
+    ),
+    more: (
+      <>
         Careful: <Katex tex="\cot" /> is the reciprocal of <Katex tex="\tan" />, not of{' '}
         <Katex tex="\cos" /> (that is <Katex tex="\sec" />). The report says a number of students
         made that slip.
@@ -51,17 +55,24 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\tan(2x) = \frac{2\tan(x)}{1-\tan^2(x)}" />,
     reason: (
       <>
-        Now the "suitable double angle formula" picks itself: the <Katex tex="\tan" /> one (on the
-        formula sheet) turns <Katex tex="\tan(2x)" /> into <Katex tex="\tan(x)" />, the only
-        function left in the problem.
+        The "suitable double angle formula" is the <Katex tex="\tan" /> one (formula sheet): it turns{' '}
+        <Katex tex="\tan(2x)" /> into <Katex tex="\tan(x)" />, the only function left.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="\sin" /> and <Katex tex="\cos" /> double angle formulas would bring in both{' '}
+        <Katex tex="\sin(x)" /> and <Katex tex="\cos(x)" />; the <Katex tex="\tan" /> formula keeps a
+        single function throughout, matching the <Katex tex="\cot" /> on the right.
       </>
     ),
   },
   {
     working: <Katex display tex="\cot(2x) = \frac{1-\tan^2(x)}{2\tan(x)}" />,
-    reason: (
+    reason: <>Take the reciprocal of both sides: the fraction flips.</>,
+    more: (
       <>
-        Taking the reciprocal flips the fraction. Notice that splitting it would give{' '}
+        Splitting this fraction would give{' '}
         <Katex tex="\tfrac{1}{2\tan(x)}-\tfrac{\tan(x)}{2}=\tfrac12\cot(x)-\tfrac12\tan(x)" />: a{' '}
         <Katex tex="-\tfrac12\tan(x)" /> is hiding inside <Katex tex="\cot(2x)" />.
       </>
@@ -77,8 +88,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Substitute into the left-hand side, writing <Katex tex="\tfrac12\tan(x)" /> as{' '}
-        <Katex tex="\tfrac{\tan(x)}{2}" /> so both terms are fractions ready for a common
-        denominator.
+        <Katex tex="\tfrac{\tan(x)}{2}" /> so both terms are fractions.
       </>
     ),
   },
@@ -90,12 +100,12 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex display tex="\begin{aligned}&= \frac{1-\tan^2(x)+\tan^2(x)}{2\tan(x)}\\ &= \frac{1}{2\tan(x)}\end{aligned}" />
     ),
-    reason: (
+    reason: <>The <Katex tex="\tan^2(x)" /> terms cancel exactly, leaving a constant over <Katex tex="\tan(x)" />.</>,
+    more: (
       <>
-        The <Katex tex="\tan^2(x)" /> terms cancel exactly. That cancellation is the whole point of
-        the question: the <Katex tex="+\tfrac12\tan(x)" /> was chosen to wipe out the{' '}
-        <Katex tex="-\tfrac12\tan(x)" /> inside <Katex tex="\cot(2x)" />, leaving a pure multiple
-        of <Katex tex="\cot(x)" />.
+        This is the question's <Katex tex="+\tfrac12\tan(x)" /> cancelling the{' '}
+        <Katex tex="-\tfrac12\tan(x)" /> found when splitting <Katex tex="\cot(2x)" /> in the third line;
+        that cancellation is the whole point of the question.
       </>
     ),
   },
@@ -103,8 +113,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="= \frac12\cdot\frac{1}{\tan(x)} = \frac12\cot(x)" />,
     reason: (
       <>
-        Pull the constant out: the 2 is in the <b>denominator</b>, so it becomes{' '}
-        <Katex tex="\tfrac12" /> in front, then <Katex tex="\tfrac{1}{\tan(x)}=\cot(x)" />.
+        The 2 is in the <b>denominator</b>, so it becomes <Katex tex="\tfrac12" /> in front; then{' '}
+        <Katex tex="\tfrac{1}{\tan(x)}=\cot(x)" />.
       </>
     ),
   },
@@ -112,9 +122,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{a = \frac12}" />,
     reason: (
       <>
-        Match with <Katex tex="a\cot(x)" />. The report notes some students gave{' '}
-        <Katex tex="a=2" />, the reciprocal of the correct value. A quick check catches it:
-        at <Katex tex="x=\tfrac{\pi}{4}" />, the left side is{' '}
+        The equation holds for every <Katex tex="x" />, so match with <Katex tex="a\cot(x)" />:{' '}
+        <Katex tex="a" /> is the constant in front of <Katex tex="\cot(x)" />.
+      </>
+    ),
+    more: (
+      <>
+        A quick check that it is <Katex tex="\tfrac12" /> and not its reciprocal <Katex tex="2" />: at <Katex tex="x=\tfrac{\pi}{4}" />, the left side is{' '}
         <Katex tex="\cot\!\left(\tfrac{\pi}{2}\right)+\tfrac12\tan\!\left(\tfrac{\pi}{4}\right)=0+\tfrac12=\tfrac12" />,
         and <Katex tex="\tfrac12\cot\!\left(\tfrac{\pi}{4}\right)=\tfrac12" /> ✓ (while{' '}
         <Katex tex="2\cot\!\left(\tfrac{\pi}{4}\right)=2" />).
@@ -144,14 +158,8 @@ export default function SpecialistQ7_2018Exam1() {
             constant.
           </p>
           <p>
-            The instruction "use a suitable double angle formula" is a strong hint about
-            route. There are three double angle formulas available, but only the{' '}
-            <Katex tex="\tan" /> one keeps everything in a single trigonometric function —
-            and the right-hand side is a <Katex tex="\cot" />, which is just{' '}
-            <Katex tex="\tfrac{1}{\tan}" />.
-          </p>
-          <p>
-            The report confirms this is the efficient path: students who expanded into{' '}
+            The direct <Katex tex="\tan" /> route used below is the efficient one: the report says
+            students who expanded into{' '}
             <Katex tex="\sin" /> and <Katex tex="\cos" /> could get there, but were less
             successful. If you do go that way, choose{' '}
             <Katex tex="\cos(2x)=\cos^2(x)-\sin^2(x)" /> and write{' '}
@@ -172,9 +180,8 @@ export default function SpecialistQ7_2018Exam1() {
           source="Examiner's report"
           working={<Katex display tex="\frac{1}{\cos(2x)}+\frac12\tan(x) = a\cot(x)" />}
         >
-          <Katex tex="\cot" /> is the reciprocal of <Katex tex="\tan" />:{' '}
-          <Katex tex="\cot(2x)=\tfrac{\cos(2x)}{\sin(2x)}=\tfrac{1}{\tan(2x)}" />. The reciprocal of{' '}
-          <Katex tex="\cos" /> is <Katex tex="\sec" />. With this slip the left side is no longer a
+          The correct first line is{' '}
+          <Katex tex="\cot(2x)=\tfrac{\cos(2x)}{\sin(2x)}=\tfrac{1}{\tan(2x)}" />. With this slip the left side is no longer a
           constant multiple of <Katex tex="\cot(x)" />: dividing it by <Katex tex="\cot(x)" /> gives
           about <Katex tex="0.672" /> at <Katex tex="x=\tfrac{\pi}{8}" /> but{' '}
           <Katex tex="1.321" /> at <Katex tex="x=\tfrac{\pi}{6}" />. If your algebra refuses to
@@ -185,11 +192,9 @@ export default function SpecialistQ7_2018Exam1() {
           source="Examiner's report"
           working={<Katex display tex="\frac{1}{2\tan(x)} = a\cot(x) \;\Rightarrow\; a = 2" />}
         >
-          The report says some students gave <Katex tex="a=2" />. One way to get there is to read the
-          2 straight off <Katex tex="\tfrac{1}{2\tan(x)}" />, but it sits in the denominator:{' '}
-          <Katex tex="\tfrac{1}{2\tan(x)}=\tfrac12\cdot\tfrac{1}{\tan(x)}=\tfrac12\cot(x)" />. Catch it
-          by substituting one value: at <Katex tex="x=\tfrac{\pi}{4}" /> the left side is{' '}
-          <Katex tex="\tfrac12" />, but <Katex tex="2\cot\!\left(\tfrac{\pi}{4}\right)=2" />.
+          Reading the 2 straight off <Katex tex="\tfrac{1}{2\tan(x)}" /> treats it as if it multiplied{' '}
+          <Katex tex="\cot(x)" />. It divides, so it contributes <Katex tex="\tfrac12" />: the correct{' '}
+          <Katex tex="a" /> is the reciprocal of 2.
         </WrongMethod>
         <SAExaminerReport stats={EXAM} maxMarks={3} />
         <div>

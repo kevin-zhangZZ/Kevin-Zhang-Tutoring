@@ -71,58 +71,62 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x = \sec(t), \qquad y = \frac{\sqrt2}{2}\tan(t)" />,
-    reason: <>A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> alone, so <Katex tex="t" /> has to go. The two coordinates are <Katex tex="\sec" /> and <Katex tex="\tan" /> of the same <Katex tex="t" />, and those two are tied together by a Pythagorean identity. Spotting that pair is the cue to use it.</>,
+    reason: <>To get a cartesian equation, eliminate <Katex tex="t" />. The coordinates are <Katex tex="\sec" /> and <Katex tex="\tan" /> of the same <Katex tex="t" />, which a Pythagorean identity links.</>,
   },
   {
     working: <Katex display tex="\sec^2(t) - \tan^2(t) = 1" />,
-    reason: <>Divide <Katex tex="\sin^2(t)+\cos^2(t)=1" /> by <Katex tex="\cos^2(t)" /> to get <Katex tex="\tan^2(t)+1=\sec^2(t)" />. Written as a difference, it has the same shape as the target <Katex tex="x^2-2y^2=1" />: a square minus a square equals <Katex tex="1" />. So we need <Katex tex="x^2" /> and <Katex tex="2y^2" /> in terms of <Katex tex="t" />.</>,
+    reason: <>Divide <Katex tex="\sin^2(t)+\cos^2(t)=1" /> by <Katex tex="\cos^2(t)" /> and rearrange. Like the target, it is a square minus a square equal to <Katex tex="1" />.</>,
+    more: <>Dividing gives <Katex tex="\tan^2(t)+1=\sec^2(t)" />, i.e. <Katex tex="\sec^2(t)-\tan^2(t)=1" />. So the job is to express <Katex tex="x^2" /> and <Katex tex="2y^2" /> in terms of <Katex tex="t" />.</>,
   },
   {
-    working: <Katex display tex="x^2 = \sec^2(t), \qquad y^2 = \frac12\tan^2(t) \implies \tan^2(t) = 2y^2" />,
-    reason: <>Square both, since the identity is in squares. <Katex tex="\left(\tfrac{\sqrt2}{2}\right)^2=\tfrac24=\tfrac12" />, so multiplying <Katex tex="y^2" /> by <Katex tex="2" /> recovers <Katex tex="\tan^2(t)" />. That is where the <Katex tex="2" /> in <Katex tex="2y^2" /> comes from.</>,
-  },
+    working: <Katex display tex="\begin{gathered}x^2 = \sec^2(t), \qquad y^2 = \frac12\tan^2(t)\\ \implies \tan^2(t) = 2y^2\end{gathered}" />,
+    reason: <>Square both, since the identity is in squares. <Katex tex="\left(\tfrac{\sqrt2}{2}\right)^2=\tfrac12" />, so <Katex tex="2y^2" /> recovers <Katex tex="\tan^2(t)" />.</>,  },
   {
     working: <Katex display tex="\boxed{x^2 - 2y^2 = \sec^2(t)-\tan^2(t) = 1}" />,
-    reason: <>Substitute both into the identity. On a &ldquo;show that&rdquo;, write this last line out in full: the target equation has to appear, not just the substitution. As required.</>,
+    reason: <>Substitute both into the identity. As required.</>,
+    more: <>On a &ldquo;show that&rdquo;, write this last line out in full: the target equation has to appear, not just the substitution.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x^2 - 2(x-1)^2 = 1" />,
-    reason: <>A point of intersection lies on both graphs, so its coordinates satisfy both equations at once. Substituting the line <Katex tex="y=x-1" /> into the curve leaves one equation in <Katex tex="x" /> only, which is exactly what the question asks for.</>,
+    reason: <>An intersection point satisfies both equations, so substitute the line <Katex tex="y=x-1" /> into the curve to get an equation in <Katex tex="x" /> only.</>,
   },
   {
-    working: <Katex display tex="x^2 - 2\left(x^2-2x+1\right) = 1 \implies -x^2+4x-2 = 1" />,
-    reason: <>Expand the square first, then multiply the bracket by <Katex tex="-2" />. The <Katex tex="-2" /> multiplies every term, including the <Katex tex="+1" />.</>,
+    working: <Katex display tex="\begin{aligned}&x^2 - 2\left(x^2-2x+1\right) = 1\\ \implies &-x^2+4x-2 = 1\end{aligned}" />,
+    reason: <>Expand the square, then multiply the bracket by <Katex tex="-2" />, including the <Katex tex="+1" />.</>,
   },
   {
     working: <Katex display tex="x^2-4x+3 = 0 \implies (x-1)(x-3) = 0" />,
-    reason: <>Move everything to one side and multiply by <Katex tex="-1" /> so the <Katex tex="x^2" /> term is positive, then factorise.</>,
+    reason: <>Move everything to one side, multiply by <Katex tex="-1" /> so the <Katex tex="x^2" /> term is positive, then factorise.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 1 \ \text{ and } \ x = 3}" />,
-    reason: <>The question asks for the <Katex tex="x" />-coordinates only. The report notes students who gave full coordinate pairs, sometimes wrongly. (For reference the points are <Katex tex="(1,0)" />, the hyperbola&apos;s vertex, and <Katex tex="(3,2)" />. These two <Katex tex="x" />-values become the terminals of the integral in part c.)</>,
+    reason: <>The question asks for the <Katex tex="x" />-coordinates only, so stop here.</>,
+    more: <>The report notes students who gave full coordinate pairs, sometimes wrongly. For reference the points are <Katex tex="(1,0)" />, the hyperbola&apos;s vertex, and <Katex tex="(3,2)" />. These two <Katex tex="x" />-values become the terminals of the integral in part c.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="V = \pi\int_a^b \left(y_{\text{outer}}^2 - y_{\text{inner}}^2\right)dx" />,
-    reason: <>Cut the region into thin vertical strips. Spun about the <Katex tex="x" />-axis, each strip sweeps out a <em>washer</em>: a disc of radius <Katex tex="y_{\text{outer}}" /> with a hole of radius <Katex tex="y_{\text{inner}}" />. Its area is <Katex tex="\pi y_{\text{outer}}^2-\pi y_{\text{inner}}^2" />, the whole disc minus the hole, and the volume adds these up.</>,
-    more: <>Drag the slice in the first diagram below.</>,
+    reason: <>The bounded region is the sliver between the upper arc and the line for <Katex tex="1 \le x \le 3" />, so each vertical slice spun about the <Katex tex="x" />-axis is a <em>washer</em>: area <Katex tex="\pi y_{\text{outer}}^2-\pi y_{\text{inner}}^2" />.</>,
+    more: <>A washer is a disc of radius <Katex tex="y_{\text{outer}}" /> with a hole of radius <Katex tex="y_{\text{inner}}" />: the whole disc minus the hole. The integral adds up these thin washers from <Katex tex="x=a" /> to <Katex tex="x=b" />. Drag the slice in the first diagram below to see one.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}x=2: \ \ y_{\text{curve}}^2 &= \frac{4-1}{2} = \frac32 \\ y_{\text{line}}^2 &= (2-1)^2 = 1\end{aligned}" />,
-    reason: <>Test a point between the intersections to see which boundary is further from the axis. The <em>curve</em> is outer, so it goes first. You can also see it without numbers: the hyperbola leaves its vertex <Katex tex="(1,0)" /> going straight up, while the line leaves at <Katex tex="45^\circ" />, so the curve is on top until they meet again at <Katex tex="x=3" />.</>,
+    reason: <>Test a point between the intersections: the <em>curve</em> is further from the axis, so it is outer and goes first.</>,
+    more: <>You can also see it without numbers: the hyperbola leaves its vertex <Katex tex="(1,0)" /> going straight up, while the line leaves at <Katex tex="45^\circ" />, so the curve is on top until they meet again at <Katex tex="x=3" />.</>,
   },
   {
     working: <Katex display tex="V = \pi\int_1^3\left(\frac{x^2-1}{2} - (x-1)^2\right)dx" />,
-    reason: <>The terminals are the intersections from part b. From part a., <Katex tex="x^2-2y^2=1" /> rearranges to <Katex tex="y^2=\tfrac{x^2-1}{2}" />. There is no need to solve for <Katex tex="y" /> itself, since the formula only uses <Katex tex="y^2" />.</>,
+    reason: <>Terminals from part b. Part a gives <Katex tex="y^2=\tfrac{x^2-1}{2}" /> directly; the formula only needs <Katex tex="y^2" />, so no square roots.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\frac{x^2-1}{2}-(x-1)^2 \\ &= \frac{x^2-1-2x^2+4x-2}{2} \\ &= \frac{-x^2+4x-3}{2}\end{aligned}" />,
-    reason: <>Put everything over a common denominator of <Katex tex="2" /> before integrating. The numerator is minus the quadratic from part b, which is why it is zero at <Katex tex="x=1" /> and <Katex tex="x=3" />: the washer has no area where the curves meet.</>,
+    reason: <>Put everything over a common denominator of <Katex tex="2" /> before integrating.</>,
+    more: <>Check: the numerator is minus the quadratic from part b, so it is zero at <Katex tex="x=1" /> and <Katex tex="x=3" />, where the curves meet and the washer has no area.</>,
   },
   {
     working: <Katex display tex="V = \frac{\pi}{2}\left[-\frac{x^3}{3}+2x^2-3x\right]_1^3" />,
@@ -130,12 +134,12 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\begin{aligned}x=3: \ \ &-9+18-9 = 0 \\ x=1: \ \ &-\tfrac13+2-3 = -\tfrac43 \\ V &=\tfrac{\pi}{2}\left[0-\left(-\tfrac43\right)\right]\end{aligned}" />,
-    reason: <>Evaluate the bracket at each terminal separately, then subtract: upper minus lower. The upper terminal gives exactly zero; the lower gives <Katex tex="-\tfrac43" />, and subtracting a negative adds.</>,
+    reason: <>Evaluate at each terminal, then subtract upper minus lower; subtracting a negative adds.</>,
   },
   {
     working: <Katex display tex="\boxed{V = \frac{2\pi}{3}}" />,
-    reason: <>Positive, as any volume must be (<Katex tex="\approx2.09" /> cubic units). The report mentions another route: rotate the region under the hyperbola from <Katex tex="x=1" /> to <Katex tex="x=3" /> (<Katex tex="\tfrac{10\pi}{3}" />), then subtract the cone made by the line (<Katex tex="\tfrac{8\pi}{3}" />). Only <Katex tex="19\%" /> of students scored both marks.</>,
-    more: <>Step through that alternative route in the second diagram below.</>,
+    reason: <>Positive, as a volume must be (<Katex tex="\approx2.09" /> cubic units).</>,
+    more: <>Only <Katex tex="19\%" /> of students scored both marks; the report says some did not apply the volume formula correctly and many made algebraic or arithmetic errors. It also mentions another route: rotate the region under the hyperbola from <Katex tex="x=1" /> to <Katex tex="x=3" /> (<Katex tex="\pi\int_1^3\tfrac{x^2-1}{2}\,dx=\tfrac{10\pi}{3}" />), then subtract the cone made by the line (height <Katex tex="2" />, radius <Katex tex="2" />, so <Katex tex="\tfrac13\pi(2)^2(2)=\tfrac{8\pi}{3}" />). Step through it in the second diagram below.</>,
   },
 ]
 
@@ -177,19 +181,8 @@ export default function SpecialistQ9_2018Exam1() {
           <p>
             Start with a sketch. The curve is the whole hyperbola (both branches, since{' '}
             <Katex tex="t\in R" />), but the line only meets the right branch, at{' '}
-            <Katex tex="x=1" /> and <Katex tex="x=3" /> (part b). The region they bound is the
-            thin sliver between the upper arc and the line, and it lies above the{' '}
-            <Katex tex="x" />-axis.
-          </p>
-          <p>
-            Two things then make this manageable. First, the formula needs{' '}
-            <Katex tex="y^2" />, not <Katex tex="y" />, and part a. hands you{' '}
-            <Katex tex="y^2=\tfrac{x^2-1}{2}" /> directly, so no square roots ever appear.
-          </p>
-          <p>
-            Second, decide which curve is <em>outer</em> before writing the integral. Test one
-            interior point. If the answer comes out negative, the order was wrong: a volume
-            cannot be negative, so that is a free check.
+            <Katex tex="x=1" /> and <Katex tex="x=3" /> (part b). The region between them lies
+            above the{' '}<Katex tex="x" />-axis, so only the upper arc of the right branch matters.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -206,8 +199,8 @@ export default function SpecialistQ9_2018Exam1() {
           A slice is not a disc of radius <Katex tex="R-r" />. It is a disc of radius{' '}
           <Katex tex="R" /> with a hole of radius <Katex tex="r" />, so its area is{' '}
           <Katex tex="\pi R^2-\pi r^2" />, and <Katex tex="(R-r)^2\ne R^2-r^2" />. Expanding the
-          square also leaves a cross term <Katex tex="2(x-1)\sqrt{\tfrac{x^2-1}{2}}" />, and the{' '}
-          <Katex tex="-\sqrt{x^2-1}" /> piece of it has no antiderivative you can find with the
+          square also leaves a cross term <Katex tex="-2(x-1)\sqrt{\tfrac{x^2-1}{2}}" />, and the{' '}
+          <Katex tex="\sqrt2\sqrt{x^2-1}" /> piece of it has no antiderivative you can find with the
           substitutions in this course. On a technology-free paper, an integral you can&apos;t do
           is a sign the setup is wrong. (This
           integral is about <Katex tex="0.27" />, not <Katex tex="\tfrac{2\pi}{3}\approx2.09" />.)
@@ -217,10 +210,8 @@ export default function SpecialistQ9_2018Exam1() {
           title="The straight line looks like the top edge, so it goes first"
           working={<Katex display tex="V=\pi\int_1^3\left((x-1)^2-\frac{x^2-1}{2}\right)dx=-\frac{2\pi}{3}" />}
         >
-          On a rough sketch the hyperbola can look as if it sags below the line. It doesn&apos;t:
-          it leaves <Katex tex="(1,0)" /> vertically, so it is on top all the way to{' '}
-          <Katex tex="x=3" /> (check <Katex tex="x=2" />: <Katex tex="y^2=\tfrac32" /> against{' '}
-          <Katex tex="1" />). A negative volume always means the outer and inner radii are the
+          On a rough sketch the hyperbola can look as if it sags below the line. It doesn&apos;t, as
+          the <Katex tex="x=2" /> test in the working shows. A negative volume always means the outer and inner radii are the
           wrong way round. Go back and swap them in the integral, rather than quietly dropping the
           minus sign.
         </WrongMethod>

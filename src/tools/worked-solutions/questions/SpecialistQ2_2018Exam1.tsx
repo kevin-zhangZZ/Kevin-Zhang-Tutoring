@@ -61,31 +61,34 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Arg}(1+i) = \tan^{-1}\!\left(\frac11\right) = \frac{\pi}{4}" />,
-    reason: <>The argument is the angle from the positive real axis, and its tangent is imaginary part over real part. Both parts are positive, so <Katex tex="1+i" /> is in the first quadrant and the angle in the triangle <em>is</em> the argument, no adjustment needed. You want the angle whose tangent is 1, so write <Katex tex="\tan^{-1}" /> (arctan). The report's common incorrect response was writing <Katex tex="\tan\left(\tfrac11\right)=\tfrac{\pi}{4}" />.</>,
+    reason: <>The argument's tangent is imaginary part over real part. Both parts are positive (first quadrant), so the argument is <Katex tex="\tan^{-1}(1)" />, the angle whose tangent is 1 (not <Katex tex="\tan(1)" />, which is a ratio, not an angle).</>,
+    more: <>In the first quadrant the angle in the triangle <em>is</em> the argument, so no adjustment is needed (compare part b, where the point is below the axis). The report's common incorrect response was writing <Katex tex="\tan\left(\tfrac11\right)=\tfrac{\pi}{4}" />; the Common Mistake box below follows it through.</>,
   },
   {
     working: <Katex display tex="\boxed{1+i = \sqrt2\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right) = \sqrt2\,\operatorname{cis}\!\left(\frac{\pi}{4}\right)}" />,
-    reason: <>Polar form is <Katex tex="r\operatorname{cis}\theta" /> with <Katex tex="r=|z|" /> and <Katex tex="\theta=\operatorname{Arg}z" />; on a "show that", finish by writing the required form explicitly. Expanding back confirms it: <Katex tex="\sqrt2\left(\tfrac{\sqrt2}{2}+\tfrac{\sqrt2}{2}i\right)=1+i" />. As required.</>,
+    reason: <>Polar form is <Katex tex="r\operatorname{cis}\theta" /> with <Katex tex="r=|z|" /> and <Katex tex="\theta=\operatorname{Arg}z" />; on a "show that", write the required form out in full. As required.</>,
+    more: <>Expanding back confirms it: <Katex tex="\sqrt2\left(\tfrac{\sqrt2}{2}+\tfrac{\sqrt2}{2}i\right)=1+i" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\left|\sqrt3-i\right| = \sqrt{3+1} = 2" />,
-    reason: <>Polar form first: powers are easy in polar form and hopeless in cartesian form. Start with the modulus, by Pythagoras.</>,
+    working: <Katex display tex="\left|\sqrt3-i\right| = \sqrt{\left(\sqrt3\right)^2+(-1)^2} = 2" />,
+    reason: <>Polar form first: powers this high are easy in polar form and impractical to expand in cartesian form. Start with the modulus, by Pythagoras.</>,
   },
   {
     working: <Katex display tex="\operatorname{Arg}\left(\sqrt3-i\right) = -\frac{\pi}{6}" />,
-    reason: <>Sketch it: <Katex tex="\sqrt3" /> across and 1 <em>down</em>, so the fourth quadrant. The triangle has sides 1, <Katex tex="\sqrt3" />, 2, so the angle at the origin is <Katex tex="\tan^{-1}\!\left(\tfrac{1}{\sqrt3}\right)=\tfrac{\pi}{6}" />; below the axis means clockwise, so the argument is negative. The report says <Katex tex="\tfrac{\pi}{6}" />, <Katex tex="\tfrac{5\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" /> were given frequently. Each of those points somewhere else.</>,
-    more: <>Try them in the first widget below.</>,
+    reason: <>Sketch it: <Katex tex="\sqrt3" /> across and 1 <em>down</em>, so fourth quadrant. The triangle's angle is <Katex tex="\tan^{-1}\!\left(\tfrac{1}{\sqrt3}\right)=\tfrac{\pi}{6}" />; below the axis means clockwise, so negative.</>,
+    more: <>The report says <Katex tex="\tfrac{\pi}{6}" />, <Katex tex="\tfrac{5\pi}{6}" /> and <Katex tex="\tfrac{\pi}{3}" /> were given frequently. Each points somewhere else: try them in the first interactive below, and see the Common Mistake boxes for where each one leads.</>,
   },
   {
-    working: <Katex display tex="\left(\sqrt3-i\right)^{10} = 2^{10}\operatorname{cis}\!\left(-\frac{10\pi}{6}\right) = 1024\operatorname{cis}\!\left(-\frac{5\pi}{3}\right)" />,
-    reason: <>De Moivre: raise the modulus to the power and multiply the argument by it. Why: multiplying complex numbers multiplies their lengths and adds their angles, so ten equal factors add <Katex tex="-\tfrac{\pi}{6}" /> ten times.</>,
+    working: <Katex display tex="\begin{aligned}\left(\sqrt3-i\right)^{10} &= 2^{10}\operatorname{cis}\!\left(-\frac{10\pi}{6}\right)\\ &= 1024\operatorname{cis}\!\left(-\frac{5\pi}{3}\right)\end{aligned}" />,
+    reason: <>De Moivre: raise the modulus to the power and multiply the argument by the power.</>,
   },
   {
     working: <Katex display tex="(1+i)^{12} = \left(\sqrt2\right)^{12}\operatorname{cis}\!\left(\frac{12\pi}{4}\right) = 64\operatorname{cis}(3\pi)" />,
-    reason: <>Using part a, which is why it was there. <Katex tex="\left(\sqrt2\right)^{12}=2^6=64" />. Note <Katex tex="64\operatorname{cis}(3\pi)=-64" />, a real number; quick check: <Katex tex="(1+i)^2=2i" />, so <Katex tex="(1+i)^{12}=(2i)^6=-64" />.</>,
+    reason: <>De Moivre again on part a's polar form, with <Katex tex="\left(\sqrt2\right)^{12}=2^6=64" />.</>,
+    more: <>Part a was there to set this up. Note <Katex tex="64\operatorname{cis}(3\pi)=-64" />, a real number; quick check: <Katex tex="(1+i)^2=2i" />, so <Katex tex="(1+i)^{12}=(2i)^6=-64" />.</>,
   },
   {
     working: (
@@ -98,15 +101,17 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="-\frac{14\pi}{3} + 4\pi = -\frac{2\pi}{3}" />,
-    reason: <>Adding <Katex tex="2\pi" /> is a full turn, so it doesn't change the complex number. Add two turns to bring the argument into <Katex tex="(-\pi,\pi]" />, where the exact values are the familiar ones. (Or reduce each argument early: <Katex tex="-\tfrac{5\pi}{3}" /> points the same way as <Katex tex="\tfrac{\pi}{3}" /> and <Katex tex="3\pi" /> the same way as <Katex tex="\pi" />, so <Katex tex="\tfrac{\pi}{3}-\pi=-\tfrac{2\pi}{3}" /> directly.)</>,
+    reason: <>Adding <Katex tex="2\pi" /> (a full turn) doesn't change the number. Add two turns to bring the argument into <Katex tex="(-\pi,\pi]" />, where the exact values are familiar.</>,
+    more: <>Or reduce each argument early: <Katex tex="-\tfrac{5\pi}{3}" /> points the same way as <Katex tex="\tfrac{\pi}{3}" /> and <Katex tex="3\pi" /> the same way as <Katex tex="\pi" />, so <Katex tex="\tfrac{\pi}{3}-\pi=-\tfrac{2\pi}{3}" /> directly.</>,
   },
   {
     working: <Katex display tex="16\operatorname{cis}\!\left(-\frac{2\pi}{3}\right) = 16\left(-\frac12 - \frac{\sqrt3}{2}i\right)" />,
-    reason: <><Katex tex="-\tfrac{2\pi}{3}" /> is clockwise past <Katex tex="-\tfrac{\pi}{2}" />, in the third quadrant, where cosine and sine are both negative. The reference angle is <Katex tex="\tfrac{\pi}{3}" />, so <Katex tex="\cos\!\left(-\tfrac{2\pi}{3}\right)=-\tfrac12" /> and <Katex tex="\sin\!\left(-\tfrac{2\pi}{3}\right)=-\tfrac{\sqrt3}{2}" />.</>,
+    reason: <><Katex tex="-\tfrac{2\pi}{3}" /> is in the third quadrant (cosine and sine both negative) with reference angle <Katex tex="\tfrac{\pi}{3}" />, so cos is <Katex tex="-\tfrac12" /> and sin is <Katex tex="-\tfrac{\sqrt3}{2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{-8 - 8\sqrt3\,i}" />,
-    reason: <>The required <Katex tex="a+bi" /> form (the report notes some students who reached <Katex tex="16\operatorname{cis}\left(-\tfrac{2\pi}{3}\right)" /> did not finish in this form), with <Katex tex="a=-8" /> and <Katex tex="b=-8\sqrt3" />, both real, as the question requires. Both parts negative: third quadrant, consistent with an argument of <Katex tex="-\tfrac{2\pi}{3}" />.</>,
+    reason: <>Expand to the required <Katex tex="a+bi" /> form: <Katex tex="a=-8" /> and <Katex tex="b=-8\sqrt3" />, both real.</>,
+    more: <>The report notes some students who reached <Katex tex="16\operatorname{cis}\left(-\tfrac{2\pi}{3}\right)" /> did not finish in this form. Check: both parts negative puts the answer in the third quadrant, consistent with an argument of <Katex tex="-\tfrac{2\pi}{3}" />.</>,
   },
 ]
 
@@ -147,9 +152,8 @@ export default function SpecialistQ2_2018Exam1() {
       <PartCard letter="b" topic="De Moivre's Theorem" marks={3} statement={<>Evaluate <Katex tex="\dfrac{\left(\sqrt3-i\right)^{10}}{(1+i)^{12}}" />, giving your answer in the form <Katex tex="a+bi" />, where <Katex tex="a,b\in R" />.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
-            Expanding these powers in cartesian form is hopeless. Convert both numbers to
-            polar form, use de Moivre, <Katex tex="(r\operatorname{cis}\theta)^n=r^n\operatorname{cis}(n\theta)" />,
-            to raise them, then divide: moduli divide and arguments subtract, so the whole thing
+            Convert both numbers to polar form, use de Moivre, <Katex tex="(r\operatorname{cis}\theta)^n=r^n\operatorname{cis}(n\theta)" />,
+            to raise them, then divide, so the whole thing
             collapses to one <Katex tex="\operatorname{cis}" /> before converting back.
           </p>
           <p>
@@ -159,11 +163,10 @@ export default function SpecialistQ2_2018Exam1() {
             over. Dividing turns it back the other way.
           </p>
           <p>
-            The one place to be careful is the argument of <Katex tex="\sqrt3-i" />. It sits
-            in the fourth quadrant, so <Katex tex="\operatorname{Arg}=-\tfrac{\pi}{6}" />, not{' '}
-            <Katex tex="+\tfrac{\pi}{6}" /> and not <Katex tex="\tfrac{11\pi}{6}" /> if you
-            want the principal value. Sketching it on an Argand diagram takes five seconds and
-            is what the report recommends.
+            The one place to be careful is the argument of <Katex tex="\sqrt3-i" />, which the
+            report says quite a few students got wrong; it recommends a quick Argand diagram. For the
+            principal value, write <Katex tex="-\tfrac{\pi}{6}" />, not{' '}
+            <Katex tex="\tfrac{11\pi}{6}" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
@@ -186,13 +189,12 @@ export default function SpecialistQ2_2018Exam1() {
           <Katex tex="\tan^{-1}\!\left(\tfrac{1}{\sqrt3}\right)" /> only gives the size of the angle
           in the triangle. <Katex tex="2\operatorname{cis}\tfrac{\pi}{6}=\sqrt3+i" />, the point{' '}
           <em>above</em> the axis, so everything turns the wrong way and the answer comes out as
-          the conjugate of the true one. Catch it by plotting the point first: a negative imaginary
-          part means below the real axis, so a negative argument.
+          the conjugate of the true one.
         </WrongMethod>
         <WrongMethod
           title="Arg(√3 − i) = π/3"
           source="Examiner's report"
-          working={<Katex display tex="16\operatorname{cis}\!\left(\frac{10\pi}{3}-3\pi\right) = 16\operatorname{cis}\!\left(\frac{\pi}{3}\right) = 8+8\sqrt3\,i" />}
+          working={<Katex display tex="\begin{aligned}16\operatorname{cis}\!\left(\frac{10\pi}{3}-3\pi\right) &= 16\operatorname{cis}\!\left(\frac{\pi}{3}\right)\\ &= 8+8\sqrt3\,i\end{aligned}" />}
         >
           This is the ratio upside down, <Katex tex="\tan^{-1}\!\left(\tfrac{\sqrt3}{1}\right)" />, as
           well as the sign lost. The tangent of the argument is imaginary part over real part,{' '}

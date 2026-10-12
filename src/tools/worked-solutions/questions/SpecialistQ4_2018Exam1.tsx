@@ -46,7 +46,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="E(Y)=2, \quad \operatorname{Var}(Y)=4" />
       </>
     ),
-    reason: <>Given. There are two unknowns, and the question gives two facts about <Katex tex="aX+bY" /> (its mean and its variance), so expect one equation from each.</>,
+    reason: <>Given. Two unknowns and two facts about <Katex tex="aX+bY" /> (its mean and its variance), so expect one equation from each.</>,
   },
   {
     working: (
@@ -55,7 +55,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= 2a+2b = 10" />
       </>
     ),
-    reason: <>&ldquo;Mean of <Katex tex="aX+bY" />&rdquo; means use the linear rule for expectation: the coefficients come out exactly as they are. This rule always holds; independence is not needed for it.</>,
+    reason: <>The mean is linear: the coefficients come out exactly as they are.</>,
+    more: <>This rule always holds; independence is not needed for it.</>,
   },
   {
     working: <Katex display tex="a+b = 5" />,
@@ -63,7 +64,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\operatorname{Var}(aX+bY) = a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)" />,
-    reason: <>&ldquo;Variance of <Katex tex="aX+bY" />&rdquo; means use the variance rule. The coefficients come out <em>squared</em> (variance is an average of squared distances from the mean; see the Explore box above), and the two variances simply add only because <Katex tex="X" /> and <Katex tex="Y" /> are independent, which is why the question says so.</>,
+    reason: <>Formula-sheet rule for independent <Katex tex="X" /> and <Katex tex="Y" />: the coefficients come out <em>squared</em> and the variances add.</>,
+    more: <>The first Explore box above shows where the squares come from.</>,
   },
   {
     working: <Katex display tex="2a^2+4b^2 = 44" />,
@@ -75,7 +77,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a = 5-b \implies (5-b)^2+2b^2 = 22" />,
-    reason: <>One linear and one quadratic equation: make one unknown the subject of the linear equation and substitute it into the quadratic, the same move as finding where a line meets a curve. Replacing <Katex tex="a" /> leaves <Katex tex="2b^2" /> alone, so only <Katex tex="(5-b)^2" /> needs expanding.</>,
+    reason: <>Make <Katex tex="a" /> the subject of the linear equation and substitute into the quadratic, as when finding where a line meets a curve.</>,
+    more: <>Replacing <Katex tex="a" /> (rather than <Katex tex="b" />) leaves <Katex tex="2b^2" /> alone, so only <Katex tex="(5-b)^2" /> needs expanding.</>,
   },
   {
     working: <Katex display tex="25-10b+b^2+2b^2 = 22" />,
@@ -87,12 +90,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(3b-1)(b-3) = 0 \implies b = \frac13 \ \text{ or } \ b = 3" />,
-    reason: <>Two numbers with product <Katex tex="3\times3=9" /> and sum <Katex tex="-10" /> are <Katex tex="-9" /> and <Katex tex="-1" />, which gives the factors. Two roots are expected: a line can cut an ellipse twice.</>,
-    more: <>See the graph below.</>,
+    reason: <>Split <Katex tex="-10b=-9b-b" /> (product <Katex tex="3\times3=9" />, sum <Katex tex="-10" />): <Katex tex="3b(b-3)-(b-3)=(3b-1)(b-3)" />.</>,
+    more: <>If the factors don&apos;t come, the quadratic formula works too: <Katex tex="b=\frac{10\pm\sqrt{100-36}}{6}=\frac{10\pm8}{6}" />, so <Katex tex="b=3" /> or <Katex tex="\tfrac13" />. Two roots are expected: the line <Katex tex="a+b=5" /> can cut the ellipse <Katex tex="2a^2+4b^2=44" /> twice, as the graph below shows.</>,
   },
   {
     working: <Katex display tex="b=\frac13 \text{ rejected (not an integer)}" />,
-    reason: <>This is what &ldquo;<Katex tex="a" /> and <Katex tex="b" /> are integers&rdquo; is for. State the rejection in writing: the report names failing to reject the non-integer solution as a common problem. (<Katex tex="b=\tfrac13" /> would give <Katex tex="a=\tfrac{14}{3}" />, also not an integer.)</>,
+    reason: <>The question says <Katex tex="a" /> and <Katex tex="b" /> are integers, so reject <Katex tex="b=\tfrac13" />, and say so in writing.</>,
+    more: <>The report names failing to reject the non-integer solution as a common problem. (With <Katex tex="b=\tfrac13" />, <Katex tex="a=\tfrac{14}{3}" />, also not an integer.)</>,
   },
   {
     working: <Katex display tex="b=3 \implies a = 5-3 = 2" />,
@@ -100,7 +104,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 2, \quad b = 3}" />,
-    reason: <>Check both conditions: <Katex tex="2(2)+2(3)=10" /> ✓ and <Katex tex="2(4)+4(9)=8+36=44" /> ✓. The report reminds students that in a question worth more than one mark, appropriate working must be shown.</>,
+    reason: <>Check both conditions: <Katex tex="2(2)+2(3)=10" /> ✓ and <Katex tex="2(2)^2+4(3)^2=8+36=44" /> ✓.</>,
+    more: <>The report reminds students that in a question worth more than one mark, appropriate working must be shown, so write out both equations and the solving steps, not just the answer.</>,
   },
 ]
 
@@ -140,11 +145,6 @@ export default function SpecialistQ4_2018Exam1() {
             Multiplying <Katex tex="X" /> by <Katex tex="a" /> multiplies every distance from the
             mean by <Katex tex="|a|" />, so every squared distance by <Katex tex="a^2" />.
           </p>
-          <p>
-            One linear equation and one quadratic can have two solutions, so the stated condition
-            that <Katex tex="a" /> and <Katex tex="b" /> are integers is doing real work — it
-            is there to be used, and the rejected root should be written down.
-          </p>
         </Background>
         <Explore title="Why the coefficient comes out squared in a variance" spoilerFree>
           <SquaresWidget />
@@ -179,9 +179,8 @@ export default function SpecialistQ4_2018Exam1() {
           This pair really does satisfy both equations:{' '}
           <Katex tex="2\left(\tfrac{14}{3}+\tfrac13\right)=10" /> and{' '}
           <Katex tex="2\left(\tfrac{196}{9}\right)+4\left(\tfrac19\right)=\tfrac{396}{9}=44" />.
-          That is why it is tempting. But the question says <Katex tex="a" /> and{' '}
-          <Katex tex="b" /> are integers, so it must be rejected, in writing. When a question states a
-          restriction like this, expect to need it.
+          That is why it is tempting, but it fails the integer condition. When a question states a
+          restriction like this, it is there to be used.
         </WrongMethod>
         <WrongMethod
           title={<>&ldquo;<Katex tex="\operatorname{Var}(aX+bY) = a\operatorname{Var}(X)+b\operatorname{Var}(Y)" />, no squares.&rdquo;</>}
@@ -193,9 +192,8 @@ export default function SpecialistQ4_2018Exam1() {
           }
         >
           This one is dangerous because it lands on integers. Check with the correct rule:{' '}
-          <Katex tex="2(-12)^2+4(17)^2=288+1156=1444" />, not <Katex tex="44" />. Scaling a random
-          variable scales every distance from the mean, and variance averages squared distances, so
-          the coefficient must be squared (the first Explore box shows this). The wrong rule would
+          <Katex tex="2(-12)^2+4(17)^2=288+1156=1444" />, not <Katex tex="44" />. The coefficients
+          must be squared, as in the Background. The wrong rule would
           also give a negative &ldquo;variance&rdquo; <Katex tex="2a=-24" /> from the{' '}
           <Katex tex="aX" /> part, which is impossible.
         </WrongMethod>

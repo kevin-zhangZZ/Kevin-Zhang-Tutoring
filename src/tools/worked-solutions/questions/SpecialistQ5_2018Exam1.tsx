@@ -39,9 +39,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f(x) = \frac{x+1}{x^2-4} = \frac{x+1}{(x-2)(x+2)}" />,
     reason: (
       <>
-        Factorise the denominator first. Its zeros are the only <Katex tex="x" />-values the
-        function can&apos;t take, so they are the candidates for vertical asymptotes, and together
-        with the numerator&apos;s zero they split the axis into the regions you will test for sign.
+        Factorise the denominator. Its zeros are where the vertical asymptotes can be, and with the
+        numerator&apos;s zero they split the <Katex tex="x" />-axis into the regions for the sign test.
       </>
     ),
   },
@@ -54,10 +53,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Check the numerator at each one: it is <Katex tex="-1" /> at <Katex tex="x=-2" /> and{' '}
-        <Katex tex="3" /> at <Katex tex="x=2" />, not <Katex tex="0" />. A non-zero number divided by
-        something tiny blows up, so these are genuine asymptotes. (If the numerator were also{' '}
-        <Katex tex="0" /> there, the factor would cancel and leave a hole instead.)
+        The numerator is <Katex tex="-1" /> at <Katex tex="x=-2" /> and <Katex tex="3" /> at{' '}
+        <Katex tex="x=2" />, not <Katex tex="0" />, so these are genuine asymptotes, not holes.
+      </>
+    ),
+    more: (
+      <>
+        A non-zero number divided by something tiny blows up. If the numerator were also{' '}
+        <Katex tex="0" /> there, the factor would cancel and leave a hole instead.
       </>
     ),
   },
@@ -65,16 +68,19 @@ const ROWS: WorkingRow[] = [
     working: (
       <Katex
         display
-        tex="\begin{aligned} \lim_{x\to\pm\infty}\frac{x+1}{x^2-4} &= \lim_{x\to\pm\infty}\frac{\frac1x+\frac1{x^2}}{1-\frac4{x^2}} = 0 \\ \text{horizontal asymptote: } &\boxed{y=0} \end{aligned}"
+        tex="\begin{aligned} \lim_{x\to\pm\infty}\frac{x+1}{x^2-4} &= \lim_{x\to\pm\infty}\frac{\frac1x+\frac1{x^2}}{1-\frac4{x^2}} \\ &= \frac{0+0}{1-0} = 0 \\ \text{horizontal asymptote: } &\boxed{y=0} \end{aligned}"
       />
     ),
     reason: (
       <>
+        The denominator has the higher degree, so <Katex tex="f(x)\to0" /> at both ends. &ldquo;Any
+        asymptotes&rdquo; includes this one: label <Katex tex="y=0" /> on the sketch.
+      </>
+    ),
+    more: (
+      <>
         Dividing top and bottom by <Katex tex="x^2" /> shows it: the top shrinks to <Katex tex="0" />{' '}
-        while the bottom tends to <Katex tex="1" />. The quick check is degrees: the denominator&apos;s
-        is higher, so the asymptote is <Katex tex="y=0" />. The report says this asymptote was{' '}
-        <em>often not stated</em>. It lies along the <Katex tex="x" />-axis, so it is easy to
-        overlook, but &ldquo;any asymptotes&rdquo; includes it.
+        while the bottom tends to <Katex tex="1" />.
       </>
     ),
   },
@@ -83,8 +89,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         A fraction is zero exactly when its numerator is zero (and its denominator isn&apos;t). The
-        curve crosses the asymptote <Katex tex="y=0" /> here, which is allowed: a horizontal
-        asymptote only describes the ends.
+        curve may cross <Katex tex="y=0" /> here: a horizontal asymptote only describes the ends.
       </>
     ),
   },
@@ -92,9 +97,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f(0) = \frac{1}{-4} = -\frac14 \implies \boxed{\left(0,\ -\frac14\right)}" />,
     reason: (
       <>
-        Substitute <Katex tex="x=0" /> for the vertical-axis intercept. Position it with care: the
-        grid lines are <Katex tex="0.5" /> apart, so <Katex tex="-\tfrac14" /> is only half a square
-        below the origin. The report notes intercepts that were found but not positioned correctly.
+        Substitute <Katex tex="x=0" />. VCAA&apos;s grid lines are <Katex tex="0.5" /> apart, so{' '}
+        <Katex tex="-\tfrac14" /> is only half a square below the origin.
+      </>
+    ),
+    more: (
+      <>
+        Placing it carefully matters: plotting it at <Katex tex="-1" /> or lower bends the whole
+        middle branch out of shape.
       </>
     ),
   },
@@ -107,12 +117,22 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        No need to plot points. The values <Katex tex="x=-2,\ -1,\ 2" /> split the axis into four
-        regions, and in each one the signs of <Katex tex="x+1" />, <Katex tex="x+2" /> and{' '}
-        <Katex tex="x-2" /> are fixed, so the sign of <Katex tex="f" /> is too. Near an asymptote the
-        sign tells you which way the branch runs off: just right of <Katex tex="x=-2" />,{' '}
-        <Katex tex="f \approx \frac{-1}{\text{tiny negative}}" />, which is huge and positive, so the
-        middle branch starts at <Katex tex="+\infty" />.
+        In each region cut off by <Katex tex="x=-2,\ -1,\ 2" /> the signs of <Katex tex="x+1" />,{' '}
+        <Katex tex="x+2" />, <Katex tex="x-2" /> are fixed, so the sign of <Katex tex="f" /> is too. The
+        sign beside each asymptote says whether the branch goes to <Katex tex="+\infty" /> or{' '}
+        <Katex tex="-\infty" />.
+      </>
+    ),
+    more: (
+      <>
+        No need to plot points. Near an asymptote, look at
+        the numerator&apos;s sign and the sign of the tiny denominator. Just right of{' '}
+        <Katex tex="x=-2" />, <Katex tex="f \approx \frac{-1}{\text{tiny negative}}" />, which is huge
+        and positive, so the middle branch starts at <Katex tex="+\infty" />; just left of{' '}
+        <Katex tex="x=-2" /> the denominator is tiny positive, so the left branch goes to{' '}
+        <Katex tex="-\infty" />. At <Katex tex="x=2" /> the numerator is <Katex tex="3" />: the
+        middle branch goes to <Katex tex="-\infty" /> from the left and the right branch comes down
+        from <Katex tex="+\infty" />.
       </>
     ),
   },
@@ -124,13 +144,19 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        One branch for each interval of the domain <Katex tex="R\setminus\{-2,\ 2\}" />, and all three
-        must appear. The report notes graphs missing the outer ones. Left: from just below{' '}
-        <Katex tex="y=0" /> down to <Katex tex="-\infty" /> at <Katex tex="x=-2" />. Middle: from{' '}
+        One branch for each interval of the domain <Katex tex="R\setminus\{-2,\ 2\}" />. Left: from just below <Katex tex="y=0" /> down to <Katex tex="-\infty" />. Middle: from{' '}
         <Katex tex="+\infty" /> through <Katex tex="(-1,0)" /> and{' '}
-        <Katex tex="\left(0,-\tfrac14\right)" /> down to <Katex tex="-\infty" /> at{' '}
-        <Katex tex="x=2" />. Right: from <Katex tex="+\infty" /> down to just above{' '}
-        <Katex tex="y=0" />. Every branch is strictly decreasing, so there is no flat spot to draw.
+        <Katex tex="\left(0,-\tfrac14\right)" /> to <Katex tex="-\infty" />. Right: from{' '}
+        <Katex tex="+\infty" /> down to just above <Katex tex="y=0" />. Every branch falls the whole
+        way (<Katex tex="f'(x)<0" /> on the whole domain), with no flat spot.
+      </>
+    ),
+    more: (
+      <>
+        By the quotient rule,{' '}
+        <Katex tex="f'(x) = \frac{(x^2-4)-(x+1)(2x)}{(x^2-4)^2} = -\frac{x^2+2x+4}{(x^2-4)^2} = -\frac{(x+1)^2+3}{(x^2-4)^2}" />.
+        Completing the square shows the numerator is at least <Katex tex="3" />, so{' '}
+        <Katex tex="f'(x)<0" /> for every <Katex tex="x\neq\pm2" />: no turning point or flat spot to draw.
       </>
     ),
   },
@@ -171,8 +197,7 @@ export default function SpecialistQ5_2018Exam1() {
           </p>
           <p>
             No calculus is needed. A sign test in each of the four regions the asymptotes and
-            the <Katex tex="x" />-intercept cut the axis into tells you whether each branch is above
-            or below the axis, and so which way it runs off at each asymptote.
+            the <Katex tex="x" />-intercept cut the axis into is enough to place every branch.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
@@ -202,9 +227,8 @@ export default function SpecialistQ5_2018Exam1() {
           source="Examiner's report"
           working={<Katex tex="f'(x) = -\frac{x^2+2x+4}{(x^2-4)^2} = -\frac{(x+1)^2+3}{(x^2-4)^2} < 0" />}
         >
-          A stationary point of inflection needs <Katex tex="f'(x)=0" />, but completing the square
-          shows the numerator <Katex tex="(x+1)^2+3" /> is never zero, so the gradient is always
-          negative. The middle branch does change from concave up to concave down (near{' '}
+          A stationary point of inflection needs <Katex tex="f'(x)=0" />, which never happens here.
+          The middle branch does change from concave up to concave down (near{' '}
           <Katex tex="x \approx -0.36" />) but it is still falling there, with gradient about{' '}
           <Katex tex="-0.23" />. Catch it by asking whether anything forces the curve to level off:
           here nothing does.

@@ -50,34 +50,36 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dQ}{dt} = \text{rate in} - \text{rate out}" />,
-    reason: <><Katex tex="Q" /> counts kilograms of salt, so this is a salt account: the amount changes by what arrives each minute minus what leaves each minute. Every mixing problem starts from this line. Each rate is (litres per minute) × (kilograms per litre), which gives kilograms per minute.</>,
+    reason: <><Katex tex="Q" /> is kilograms of salt, so it changes by the salt arriving each minute minus the salt leaving. Each rate is (L/min) × (kg/L), giving kg/min.</>,
   },
   {
     working: <Katex display tex="\text{Rate in} = 5\times 0 = 0 \ \text{kg/min}" />,
-    reason: <>The inflow is <em>pure</em> water: <Katex tex="5" /> litres a minute, each carrying <Katex tex="0" /> kg of salt. Write this line even though it is zero. The report says leaving it out was the most common error, and it is the step that explains why the equation has no &ldquo;in&rdquo; term.</>,
+    reason: <>The inflow is <em>pure</em> water: <Katex tex="5" /> L/min carrying <Katex tex="0" /> kg/L. Write this line even though it is zero; leaving it out was the most common error.</>,
   },
   {
     working: <Katex display tex="V = 16 + 5t - 3t = 16+2t \ \text{ litres}" />,
-    reason: <>Now the litres account, which is separate from the salt. The pure water brings no salt, but it does bring liquid: <Katex tex="5" /> L in and <Katex tex="3" /> L out each minute is a net gain of <Katex tex="2" /> L a minute, starting from <Katex tex="16" /> L. The volume is not constant, and that is where <Katex tex="16+2t" /> comes from.</>,
+    reason: <>The litres account is separate from the salt. Pure water brings no salt but does bring liquid: <Katex tex="5" /> L in and <Katex tex="3" /> L out is a net gain of <Katex tex="2" /> L/min from <Katex tex="16" /> L.</>,
   },
   {
     working: <Katex display tex="\text{Concentration} = \frac{Q}{16+2t} \ \text{ kg/L}" />,
-    reason: <>&ldquo;Stirred continuously&rdquo; means the salt is spread evenly, so every litre in the tank holds the same amount, including each litre that flows out. That phrase is your signal that concentration = amount ÷ volume.</>,
+    reason: <>&ldquo;Stirred continuously&rdquo; means the salt is spread evenly, so every litre, including each litre flowing out, holds amount ÷ volume.</>,
   },
   {
     working: <Katex display tex="\text{Rate out} = 3\times\frac{Q}{16+2t} = \frac{3Q}{16+2t}" />,
-    reason: <><Katex tex="3" /> litres leave each minute, each carrying <Katex tex="\tfrac{Q}{16+2t}" /> kg: flow rate times concentration, as in the first line.</>,
+    reason: <><Katex tex="3" /> litres leave each minute, each carrying <Katex tex="\tfrac{Q}{16+2t}" /> kg: flow rate times concentration.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dQ}{dt} = 0 - \frac{3Q}{16+2t} = -\frac{3Q}{16+2t}}" />,
-    reason: <>Substituting both rates. The derivative is negative for every <Katex tex="t\ge0" />, which makes sense: with no salt coming in, the amount can only fall. As required.</>,
+    reason: <>Substituting both rates. As required.</>,
+    more: <>The derivative is negative for every <Katex tex="t\ge0" />, which makes sense: with no salt coming in, the amount can only fall.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{1}{Q}\,dQ = -\frac{3}{16+2t}\,dt" />,
-    reason: <>How would I know to separate? The right-hand side is a function of <Katex tex="Q" /> times a function of <Katex tex="t" />: <Katex tex="Q\times\left(-\tfrac{3}{16+2t}\right)" />. That product is the sign of a separable DE, so put every <Katex tex="Q" /> with <Katex tex="dQ" /> and every <Katex tex="t" /> with <Katex tex="dt" />. Dividing by <Katex tex="Q" /> is safe because <Katex tex="Q>0" />: there is always some salt left.</>,
+    reason: <>The right side is <Katex tex="Q\times\left(-\tfrac{3}{16+2t}\right)" />, a function of <Katex tex="Q" /> times a function of <Katex tex="t" />, so the DE is separable: <Katex tex="Q" /> with <Katex tex="dQ" />, <Katex tex="t" /> with <Katex tex="dt" />.</>,
+    more: <>Dividing by <Katex tex="Q" /> is safe because <Katex tex="Q>0" />: there is always some salt left. Copy the DE from part a exactly: the report notes that some students made transcription errors that changed the problem.</>,
   },
   {
     working: <Katex display tex="\int\frac{1}{Q}\,dQ = -3\int\frac{1}{16+2t}\,dt" />,
@@ -86,25 +88,25 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\log_e(Q) = -\frac32\log_e(16+2t) + c" />,
     reason: <>
-      <Katex tex="\int\tfrac{1}{16+2t}\,dt=\tfrac12\log_e(16+2t)" />: differentiating <Katex tex="\log_e(16+2t)" /> gives <Katex tex="\tfrac{2}{16+2t}" /> by the chain rule, so the <Katex tex="\tfrac12" /> cancels that <Katex tex="2" />. Then <Katex tex="-3\times\tfrac12=-\tfrac32" />. No modulus is needed, since <Katex tex="Q>0" /> and <Katex tex="16+2t>0" /> for <Katex tex="t\ge0" />. Keep <Katex tex="16+2t" /> in one piece: the required form uses it, and the report says taking out the <Katex tex="2" /> made later steps harder. Add <Katex tex="+\,c" /> now, at the moment you integrate. The report says it was frequently missing, and without it there is nothing for the initial condition to find.
+      By the chain rule <Katex tex="\log_e(16+2t)" /> differentiates to <Katex tex="\tfrac{2}{16+2t}" />, so <Katex tex="\int\tfrac{1}{16+2t}\,dt=\tfrac12\log_e(16+2t)" />; then <Katex tex="-3\times\tfrac12=-\tfrac32" />. Add <Katex tex="+\,c" /> now.
     </>,
+    more: <>No modulus is needed, since <Katex tex="Q>0" /> and <Katex tex="16+2t>0" /> for <Katex tex="t\ge0" />. Keep <Katex tex="16+2t" /> in one piece rather than taking out the <Katex tex="2" />: it is the bracket the required form uses.</>,
   },
   {
     working: <Katex display tex="Q = e^c(16+2t)^{-3/2} = \frac{A}{(16+2t)^{3/2}}" />,
-    reason: <>The log law <Katex tex="k\log_e(x)=\log_e(x^k)" /> moves the <Katex tex="-\tfrac32" /> into a power; then exponentiate both sides. <Katex tex="e^c" /> is just an unknown positive constant, so call it <Katex tex="A" />. This is already the shape the question asks for.</>,
+    reason: <>The log law <Katex tex="k\log_e(x)=\log_e(x^k)" /> moves <Katex tex="-\tfrac32" /> into a power; then exponentiate. Since <Katex tex="e^{x+c}=e^c e^x" />, the constant multiplies rather than adds. <Katex tex="e^c" /> is an unknown positive constant: call it <Katex tex="A" />.</>,
   },
   {
     working: <Katex display tex="t=0,\ Q=0.5: \quad \frac12 = \frac{A}{16^{3/2}} = \frac{A}{64}" />,
-    reason: <>&ldquo;Initially holds <Katex tex="0.5" /> kg&rdquo; means <Katex tex="Q=0.5" /> when <Katex tex="t=0" />. For <Katex tex="16^{3/2}" />, take the square root first and then cube: <Katex tex="\left(\sqrt{16}\right)^3=4^3=64" />.</>,
+    reason: <>&ldquo;Initially holds <Katex tex="0.5" /> kg&rdquo; means <Katex tex="Q=0.5" /> when <Katex tex="t=0" />. <Katex tex="16^{3/2}=\left(\sqrt{16}\right)^3=4^3=64" />.</>,
   },
   {
     working: <Katex display tex="A = 32" />,
-    reason: <>Multiplying both sides by <Katex tex="64" />. Every value of <Katex tex="A" /> gives a curve that satisfies the DE; the initial condition is what picks this one.</>,
-    more: <>Drag the start point in the diagram below.</>,
-  },
+    reason: <>Multiplying both sides by <Katex tex="64" />.</>,  },
   {
     working: <Katex display tex="\boxed{Q = \frac{32}{(16+2t)^{3/2}}}" />,
-    reason: <>The required form <Katex tex="\tfrac{a}{(16+2t)^{b/c}}" /> with <Katex tex="a=32" />, <Katex tex="b=3" />, <Katex tex="c=2" />, all positive integers. Two checks: at <Katex tex="t=0" />, <Katex tex="Q=\tfrac{32}{64}=0.5" /> ✓, and <Katex tex="Q\to0" /> as <Katex tex="t\to\infty" />, which is right since fresh water keeps flushing salt out.</>,
+    reason: <>The required form with <Katex tex="a=32" />, <Katex tex="b=3" />, <Katex tex="c=2" />, all positive integers. Check: at <Katex tex="t=0" />, <Katex tex="Q=\tfrac{32}{64}=0.5" /> ✓.</>,
+    more: <>Also <Katex tex="Q\to0" /> as <Katex tex="t\to\infty" />, which is right since fresh water keeps flushing salt out.</>,
   },
 ]
 
@@ -132,8 +134,7 @@ export default function SpecialistQ8_2018Exam1() {
           </p>
           <p>
             Two details make this problem the shape it is. The water coming in is{' '}
-            <em>pure</em>, so the rate of salt entering is zero; say so explicitly, because the report
-            says leaving it out was the most common error. And the inflow exceeds the outflow, so the volume grows steadily rather
+            <em>pure</em>, so the rate of salt entering is zero. And the inflow exceeds the outflow, so the volume grows steadily rather
             than staying at <Katex tex="16" /> L; that growing volume is what puts{' '}
             <Katex tex="16+2t" /> into the equation.
           </p>
@@ -149,10 +150,8 @@ export default function SpecialistQ8_2018Exam1() {
         >
           <p>
             The equation is right, but in a &ldquo;show that&rdquo; the result is given, so the marks are for
-            the steps that lead to it. Those steps start from rate in minus rate out, and the report
-            says the most common error was not stating that the rate in is zero. Write{' '}
-            <Katex tex="\text{rate in}=5\times0=0" /> kg/min: it shows you used the fact that the
-            incoming water is pure, which is why the first term vanishes.
+            the steps that lead to it, starting from rate in minus rate out with the zero rate in
+            shown.
           </p>
         </WrongMethod>
       </PartCard>
@@ -189,12 +188,9 @@ export default function SpecialistQ8_2018Exam1() {
           }
         >
           <p>
-            Without a constant this is one particular solution, and the wrong one: at{' '}
-            <Katex tex="t=0" /> it gives <Katex tex="Q=\tfrac{1}{64}" />, not <Katex tex="0.5" />. There is
-            nothing left to adjust, so the initial condition can&apos;t be used. Add{' '}
-            <Katex tex="+\,c" /> the moment you integrate. To catch it, substitute{' '}
-            <Katex tex="t=0" /> into your final answer: you must get back the <Katex tex="0.5" /> kg you
-            started with.
+            Without a constant there is nothing for the initial condition to fix. To catch the slip,
+            substitute <Katex tex="t=0" /> into your final answer: you must get back the{' '}
+            <Katex tex="0.5" /> kg you started with, but this gives <Katex tex="\tfrac{1}{64}" />.
           </p>
         </WrongMethod>
         <WrongMethod
@@ -208,10 +204,8 @@ export default function SpecialistQ8_2018Exam1() {
           }
         >
           <p>
-            Differentiating <Katex tex="\log_e(16+2t)" /> gives <Katex tex="\tfrac{2}{16+2t}" />, twice
-            too much, so the antiderivative needs a <Katex tex="\tfrac12" />. This slip is hard to spot
-            because the initial condition still works: <Katex tex="\tfrac{2048}{16^3}=0.5" />. Check the
-            DE instead. At <Katex tex="t=0" /> this answer falls at <Katex tex="\tfrac{3}{16}" /> kg/min,
+            This slip is hard to spot because the initial condition still works:{' '}
+            <Katex tex="\tfrac{2048}{16^3}=0.5" />. Check the DE instead: at <Katex tex="t=0" /> this answer falls at <Katex tex="\tfrac{3}{16}" /> kg/min,
             but the DE says <Katex tex="\tfrac{dQ}{dt}=-\tfrac{3(0.5)}{16}=-\tfrac{3}{32}" />. The form{' '}
             <Katex tex="\tfrac{a}{(16+2t)^{b/c}}" /> in the question is also a strong hint that the power
             is a fraction.
@@ -234,8 +228,7 @@ export default function SpecialistQ8_2018Exam1() {
             Getting there needs <Katex tex="(8+t)^{3/2}=\tfrac{(16+2t)^{3/2}}{2^{3/2}}=\tfrac{(16+2t)^{3/2}}{2\sqrt2}" />,
             so <Katex tex="Q=\tfrac{8\sqrt2\times2\sqrt2}{(16+2t)^{3/2}}=\tfrac{32}{(16+2t)^{3/2}}" />.
             On the way, <Katex tex="8^{3/2}=16\sqrt2" /> is messier than <Katex tex="16^{3/2}=64" />. The
-            report says this unnecessary step made later calculations harder for many students. When the
-            question shows you the bracket it wants, keep that bracket.
+            report says this unnecessary step made later calculations harder for many students.
           </p>
         </WrongMethod>
       </PartCard>

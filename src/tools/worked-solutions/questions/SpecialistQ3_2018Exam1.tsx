@@ -37,12 +37,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="2x^2\sin(y) + xy = \frac{\pi^2}{18}" />,
     reason: (
       <>
-        The equation mixes <Katex tex="x" /> and <Katex tex="y" /> and can&apos;t be rearranged
-        into <Katex tex="y=\dots" />, yet we want a gradient: that is the signal for implicit
-        differentiation. Differentiate every term with respect to <Katex tex="x" />,
-        remembering that <Katex tex="y" /> changes as <Katex tex="x" /> does. The right side
-        differentiates to <Katex tex="0" />: every point on the curve makes the left side
-        equal <Katex tex="\tfrac{\pi^2}{18}" />, so moving along the curve never changes it.
+        <Katex tex="y" /> can&apos;t be made the subject, so differentiate every term with
+        respect to <Katex tex="x" /> (implicit differentiation). The right side is a constant,
+        so it differentiates to <Katex tex="0" />.
       </>
     ),
   },
@@ -50,12 +47,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{d}{dx}\left(2x^2\sin(y)\right) = 4x\sin(y) + 2x^2\cos(y)\frac{dy}{dx}" />,
     reason: (
       <>
-        Both factors change as you move along the curve, so product rule: (derivative of{' '}
-        <Katex tex="2x^2" />) <Katex tex="\times\sin(y)" /> <Katex tex="+\ 2x^2\times" />{' '}
-        (derivative of <Katex tex="\sin(y)" />). <Katex tex="\sin(y)" /> depends on{' '}
-        <Katex tex="x" /> only through <Katex tex="y" />, so the chain rule gives{' '}
-        <Katex tex="\tfrac{d}{dx}\sin(y)=\cos(y)\tfrac{dy}{dx}" />: the{' '}
-        <Katex tex="\tfrac{dy}{dx}" /> measures how fast <Katex tex="y" /> itself is changing.
+        Product rule on <Katex tex="2x^2\times\sin(y)" />. Since <Katex tex="y" /> depends
+        on <Katex tex="x" />, the chain rule gives{' '}
+        <Katex tex="\tfrac{d}{dx}\sin(y)=\cos(y)\tfrac{dy}{dx}" />.
+      </>
+    ),
+    more: (
+      <>
+        In full: (derivative of <Katex tex="2x^2" />) <Katex tex="\times\sin(y)" />{' '}
+        <Katex tex="+\ 2x^2\times" /> (derivative of <Katex tex="\sin(y)" />).{' '}
+        <Katex tex="\sin(y)" /> depends on <Katex tex="x" /> only through <Katex tex="y" />,
+        so it is a function of a function; the <Katex tex="\tfrac{dy}{dx}" /> measures how
+        fast <Katex tex="y" /> itself is changing.
       </>
     ),
   },
@@ -63,10 +66,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{d}{dx}(xy) = y + x\frac{dy}{dx}" />,
     reason: (
       <>
-        Product rule again: differentiating <Katex tex="x" /> gives <Katex tex="1" /> (leaving{' '}
-        <Katex tex="y" />), and differentiating <Katex tex="y" /> gives{' '}
-        <Katex tex="\tfrac{dy}{dx}" /> (leaving <Katex tex="x" />). Writing just{' '}
-        <Katex tex="y" /> here would treat <Katex tex="y" /> as a constant.
+        Product rule again: <Katex tex="x" /> differentiates to <Katex tex="1" /> and{' '}
+        <Katex tex="y" /> differentiates to <Katex tex="\tfrac{dy}{dx}" />.
+      </>
+    ),
+    more: (
+      <>
+        Writing just <Katex tex="y" /> for the derivative of <Katex tex="xy" /> would treat{' '}
+        <Katex tex="y" /> as a constant.
       </>
     ),
   },
@@ -74,11 +81,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="4x\sin(y) + 2x^2\cos(y)\frac{dy}{dx} + y + x\frac{dy}{dx} = 0" />,
     reason: (
       <>
-        The differentiated equation. The terms without <Katex tex="\tfrac{dy}{dx}" /> are the
-        change caused by <Katex tex="x" /> moving; the terms with it are the change caused
-        by <Katex tex="y" /> moving, and together they cancel. Substitute the point now rather
-        than rearranging first: the report is explicit that finding a general expression
-        for <Katex tex="\tfrac{dy}{dx}" /> was not necessary.
+        Add the two derivatives; the right side is <Katex tex="0" />. Substitute the point
+        now, before rearranging: that
+        leaves a linear equation in <Katex tex="\tfrac{dy}{dx}" /> with plain numbers.
       </>
     ),
   },
@@ -87,8 +92,7 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Only <Katex tex="y" /> sits inside the trig functions, and <Katex tex="\tfrac{\pi}{6}" />{' '}
-        is <Katex tex="30^\circ" />, so there are just two exact values to recall. The{' '}
-        <Katex tex="x" />s are plain numbers.
+        is <Katex tex="30^\circ" />, so there are just two exact values to recall.
       </>
     ),
   },
@@ -111,8 +115,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{\pi}{3} + \frac{\pi}{6} + \left(\frac{\sqrt3\pi^2}{36} + \frac{\pi}{6}\right)\frac{dy}{dx} = 0" />,
     reason: (
       <>
-        Now it is a linear equation in <Katex tex="\tfrac{dy}{dx}" /> with plain numbers, so
-        group the number terms and the <Katex tex="\tfrac{dy}{dx}" /> terms:{' '}
+        Group the number terms and the <Katex tex="\tfrac{dy}{dx}" /> terms:{' '}
         <Katex tex="4\cdot\tfrac{\pi}{6}\cdot\tfrac12=\tfrac{\pi}{3}" /> and{' '}
         <Katex tex="2\cdot\tfrac{\pi^2}{36}\cdot\tfrac{\sqrt3}{2}=\tfrac{\sqrt3\pi^2}{36}" />.
       </>
@@ -123,10 +126,15 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         <Katex tex="\tfrac{\pi}{3}+\tfrac{\pi}{6}=\tfrac{\pi}{2}" />. In the bracket write{' '}
-        <Katex tex="\tfrac{\pi}{6}" /> as <Katex tex="\tfrac{6\pi}{36}" /> and take out the
-        common <Katex tex="\tfrac{\pi}{36}" />:{' '}
-        <Katex tex="\tfrac{\sqrt3\pi^2+6\pi}{36}=\tfrac{\pi(\sqrt3\pi+6)}{36}" />. The{' '}
-        <Katex tex="\pi\sqrt3+6" /> of the required form is already showing.
+        <Katex tex="\tfrac{\pi}{6}=\tfrac{6\pi}{36}" /> and take out the common{' '}
+        <Katex tex="\tfrac{\pi}{36}" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\tfrac{\sqrt3\pi^2+6\pi}{36}=\tfrac{\pi(\sqrt3\pi+6)}{36}" />: the{' '}
+        <Katex tex="\pi\sqrt3+6" /> of the required form is already showing, a good sign
+        the arithmetic is on track.
       </>
     ),
   },
@@ -135,9 +143,8 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Move <Katex tex="\tfrac{\pi}{2}" /> across and divide by the coefficient of{' '}
-        <Katex tex="\tfrac{dy}{dx}" /> (multiply by its reciprocal). The lone{' '}
-        <Katex tex="\pi" /> cancels top and bottom and <Katex tex="\tfrac{36}{2}=18" />, which
-        is what makes the prescribed answer form possible.
+        <Katex tex="\tfrac{dy}{dx}" />. The <Katex tex="\pi" /> cancels and{' '}
+        <Katex tex="\tfrac{36}{2}=18" />.
       </>
     ),
   },
@@ -146,12 +153,16 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         The required form <Katex tex="\tfrac{a}{\pi\sqrt b+c}" /> with <Katex tex="a=-18" />,{' '}
-        <Katex tex="b=3" />, <Katex tex="c=6" />, all integers. Sense check:{' '}
-        <Katex tex="\approx-1.57" />, negative, and the curve is indeed falling as it passes
-        through <Katex tex="\left(\tfrac{\pi}{6},\tfrac{\pi}{6}\right)" />.
+        <Katex tex="b=3" />, <Katex tex="c=6" />, all integers.
       </>
     ),
-    more: <>See the interactive below.</>,
+    more: (
+      <>
+        As a decimal, <Katex tex="\approx-1.57" />. The interactive below draws the curve and
+        this tangent, so you can see the curve falling as it passes through{' '}
+        <Katex tex="\left(\tfrac{\pi}{6},\tfrac{\pi}{6}\right)" />.
+      </>
+    ),
   },
 ]
 
@@ -184,12 +195,6 @@ export default function SpecialistQ3_2018Exam1() {
             does not change at all. Its derivative is <Katex tex="0" />: the change caused
             by <Katex tex="x" /> moving and the change caused by <Katex tex="y" /> moving must
             cancel. That balance is the equation you solve for <Katex tex="\tfrac{dy}{dx}" />.
-          </p>
-          <p>
-            The efficiency point the report makes is worth taking: substitute the numbers{' '}
-            <em>immediately</em> after differentiating, before rearranging. Solving a general
-            expression for <Katex tex="\tfrac{dy}{dx}" /> and only then substituting gives the
-            same answer through far messier algebra.
           </p>
           <p>
             Worth a check first that the point is actually on the curve:{' '}

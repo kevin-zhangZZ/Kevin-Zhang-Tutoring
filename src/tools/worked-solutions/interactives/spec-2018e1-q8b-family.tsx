@@ -62,8 +62,6 @@ export default function FamilyWidget() {
         Forgetting the <M>{'\\tfrac12'}</M> from the chain rule gives <M>{'Q = \\tfrac{2048}{(16 + 2t)^3}'}</M>, the red
         curve. It starts at the right place, <M>{'\\tfrac{2048}{16^3} = 0.5'}</M>, so checking <M>Q(0)</M> won&apos;t catch
         it. Look at the grey marks instead: the red curve cuts across them, falling twice as steeply as the DE says.
-        Check the slope at <M>t = 0</M>: the DE demands <M>{'-\\tfrac{3(0.5)}{16} = -\\tfrac{3}{32}'}</M>, and this curve
-        has <M>{'-\\tfrac{3}{16}'}</M>.
       </Notice>
     )
   } else if (atHalf) {

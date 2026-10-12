@@ -51,27 +51,31 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}(t) = \sin(t)\,\underset{\sim}{i} + \cos(t)\,\underset{\sim}{j} + t^2\,\underset{\sim}{k}" />,
-    reason: <>Given. How would I know where to start? Momentum is mass times velocity, and velocity is the derivative of position. So a position vector plus the word &ldquo;momentum&rdquo; means: differentiate, then evaluate at the two times.</>,
+    reason: <>Given. Velocity is the derivative of position, so the plan is: differentiate, then evaluate at the two times.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}(t) = \dot{\underset{\sim}{r}}(t) = \cos(t)\,\underset{\sim}{i} - \sin(t)\,\underset{\sim}{j} + 2t\,\underset{\sim}{k}" />,
-    reason: <>Differentiate each component on its own: <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{k}" /> are fixed directions, so they just come along for the ride. Watch the sign: <Katex tex="\cos" /> differentiates to <Katex tex="-\sin" />.</>,
+    reason: <>Differentiate each component on its own (<Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" />, <Katex tex="\underset{\sim}{k}" /> are fixed directions). Watch the sign: <Katex tex="\cos" /> differentiates to <Katex tex="-\sin" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{p}(t) = m\underset{\sim}{v}(t) = 2\dot{\underset{\sim}{r}}(t)" />,
-    reason: <>Momentum <Katex tex="=" /> mass <Katex tex="\times" /> velocity, with <Katex tex="m=2" /> kg. Velocity is a vector, so momentum is a vector too: it points the way the particle is moving.</>,
+    reason: <>Momentum <Katex tex="=" /> mass <Katex tex="\times" /> velocity, with <Katex tex="m=2" /> kg. Velocity is a vector, so momentum is a vector too.</>,
+    more: <>Momentum points the way the particle is moving, and its length is mass <Katex tex="\times" /> speed.</>,
   },
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}\!\left(\frac{\pi}{2}\right) = 0\,\underset{\sim}{i} - 1\,\underset{\sim}{j} + \pi\,\underset{\sim}{k} = -\underset{\sim}{j} + \pi\,\underset{\sim}{k}" />,
-    reason: <><Katex tex="\cos t" /> and <Katex tex="\sin t" /> are the <Katex tex="x" />- and <Katex tex="y" />-coordinates of the point at angle <Katex tex="t" /> on the unit circle. At <Katex tex="\tfrac{\pi}{2}" /> you are at the top, <Katex tex="(0,1)" />, so <Katex tex="\cos\tfrac{\pi}{2}=0" /> and <Katex tex="\sin\tfrac{\pi}{2}=1" />. Picture check: seen from above, the particle is at <Katex tex="(\sin t,\cos t)=(1,0)" /> going clockwise round a circle, so it is heading straight down, <Katex tex="-\underset{\sim}{j}" />.</>,
+    reason: <>Substitute <Katex tex="t=\tfrac{\pi}{2}" />: <Katex tex="\cos\tfrac{\pi}{2}=0" /> and <Katex tex="\sin\tfrac{\pi}{2}=1" /> (the top of the unit circle, <Katex tex="(0,1)" />).</>,
+    more: <><Katex tex="\cos t" /> and <Katex tex="\sin t" /> are the <Katex tex="x" />- and <Katex tex="y" />-coordinates of the point at angle <Katex tex="t" /> on the unit circle. Picture check, looking down on the <Katex tex="\underset{\sim}{i}" />–<Katex tex="\underset{\sim}{j}" /> plane: the particle itself is at <Katex tex="(\sin t,\cos t)" />, the unit-circle coordinates swapped, so at <Katex tex="t=\tfrac{\pi}{2}" /> it is at <Katex tex="(1,0)" />, not <Katex tex="(0,1)" />. It goes clockwise round its circle, so from <Katex tex="(1,0)" /> it is heading in the <Katex tex="-\underset{\sim}{j}" /> direction, matching the working.</>,
   },
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}(\pi) = -1\,\underset{\sim}{i} - 0\,\underset{\sim}{j} + 2\pi\,\underset{\sim}{k} = -\underset{\sim}{i} + 2\pi\,\underset{\sim}{k}" />,
-    reason: <>At <Katex tex="\pi" /> you are at <Katex tex="(-1,0)" /> on the unit circle: <Katex tex="\cos\pi=-1" />, <Katex tex="\sin\pi=0" />. Now the <Katex tex="\underset{\sim}{j}" /> component vanishes instead. Picture check: the particle is at the bottom of its circle, <Katex tex="(0,-1)" />, still going clockwise, so it is heading left, <Katex tex="-\underset{\sim}{i}" />.</>,
+    reason: <>Substitute <Katex tex="t=\pi" />: <Katex tex="\cos\pi=-1" /> and <Katex tex="\sin\pi=0" /> (the point <Katex tex="(-1,0)" /> on the unit circle).</>,
+    more: <>Now the <Katex tex="\underset{\sim}{j}" /> component vanishes instead. Picture check: the particle is at <Katex tex="(\sin\pi,\cos\pi)=(0,-1)" />, still going clockwise, so it is heading in the <Katex tex="-\underset{\sim}{i}" /> direction.</>,
   },
   {
     working: <Katex display tex="\Delta\underset{\sim}{p} = 2\left(\dot{\underset{\sim}{r}}(\pi) - \dot{\underset{\sim}{r}}\!\left(\frac{\pi}{2}\right)\right)" />,
-    reason: <>A change is always final minus initial, like a change in temperature. &ldquo;From <Katex tex="t=\tfrac{\pi}{2}" /> to <Katex tex="t=\pi" />&rdquo; makes <Katex tex="\pi" /> the final time. The mass is constant, so the <Katex tex="2" /> factors out: <Katex tex="\Delta\underset{\sim}{p} = m\,\Delta\underset{\sim}{v}" />. Subtracting the other way round flips every sign.</>,
+    reason: <>Change <Katex tex="=" /> final <Katex tex="-" /> initial, and <Katex tex="t=\pi" /> is the final time. The mass is constant, so the <Katex tex="2" /> factors out: <Katex tex="\Delta\underset{\sim}{p} = m\,\Delta\underset{\sim}{v}" />.</>,
+    more: <>It is the same as a change in temperature: new value minus old value. Subtracting the other way round flips every sign of the answer.</>,
   },
   {
     working: <Katex display tex="= 2\left(\left(-\underset{\sim}{i}+2\pi\,\underset{\sim}{k}\right) - \left(-\underset{\sim}{j}+\pi\,\underset{\sim}{k}\right)\right)" />,
@@ -79,11 +83,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= 2\left(-\underset{\sim}{i}+\underset{\sim}{j}+\pi\,\underset{\sim}{k}\right)" />,
-    reason: <>Component by component. <Katex tex="\underset{\sim}{i}" />: <Katex tex="-1-0=-1" />. <Katex tex="\underset{\sim}{j}" />: <Katex tex="0-(-1)=+1" />, subtracting a negative. <Katex tex="\underset{\sim}{k}" />: <Katex tex="2\pi-\pi=\pi" />. The report notes arithmetic errors at this step, and the <Katex tex="\underset{\sim}{j}" /> part is where they hide.</>,
+    reason: <>Component by component. <Katex tex="\underset{\sim}{i}" />: <Katex tex="-1-0=-1" />. <Katex tex="\underset{\sim}{j}" />: <Katex tex="0-(-1)=+1" />, subtracting a negative. <Katex tex="\underset{\sim}{k}" />: <Katex tex="2\pi-\pi=\pi" />.</>,
+    more: <>The report notes arithmetic errors at this step; the <Katex tex="\underset{\sim}{j}" /> part is where they hide.</>,
   },
   {
     working: <Katex display tex="\boxed{\Delta\underset{\sim}{p} = -2\underset{\sim}{i} + 2\underset{\sim}{j} + 2\pi\,\underset{\sim}{k}}" />,
-    reason: <>Leave it as a vector: the change in momentum has a direction as well as a size. Quick check from the picture: horizontally the momentum turned from pointing down to pointing left, so the change points left and up (negative <Katex tex="\underset{\sim}{i}" />, positive <Katex tex="\underset{\sim}{j}" />). Its units are really kg m s<Katex tex="^{-1}" />; see the note above on the paper&apos;s &ldquo;kg ms<Katex tex="^{-2}" />&rdquo;.</>,
+    reason: <>Leave it as a vector: a change in momentum has a direction as well as a size. Its units are really kg m s<Katex tex="^{-1}" />; the paper&apos;s &ldquo;kg ms<Katex tex="^{-2}" />&rdquo; is a slip.</>,
+    more: <>On the units: the report says students who instead found the average rate of change of momentum, to match the printed kg ms<Katex tex="^{-2}" />, were awarded marks accordingly. That average rate is the change divided by the time taken,{' '}<Katex tex="\Delta\underset{\sim}{p}\div\tfrac{\pi}{2}=-\tfrac{4}{\pi}\underset{\sim}{i}+\tfrac{4}{\pi}\underset{\sim}{j}+4\underset{\sim}{k}" /> kg m s<Katex tex="^{-2}" />.</>,
   },
 ]
 
@@ -111,20 +117,9 @@ export default function SpecialistQ6_2018Exam1() {
             Force and momentum are not on the current Specialist study design, so this
             question <em>looks</em> like one to skip. It is not. The only physics involved is
             the definition <Katex tex="\underset{\sim}{p}=m\underset{\sim}{v}" /> — momentum
-            is mass times velocity — and that is handed to you in one line. Everything after
+            is mass times velocity — which you need to know. Everything after
             it is differentiating a vector function and substituting, which is squarely
             current content.
-          </p>
-          <p>
-            The answer is a <em>vector</em>, not a magnitude. The units printed on the paper,
-            kg ms<Katex tex="^{-2}" />, are a slip — momentum is measured in kg m s
-            <Katex tex="^{-1}" /> — and the report says students who instead found the average
-            rate of change of momentum, to match those units, were awarded marks accordingly.
-            That average rate is the change divided by the time taken,{' '}
-            <Katex tex="\Delta\underset{\sim}{p}\div\tfrac{\pi}{2}" />, which works out
-            to{' '}
-            <Katex tex="-\tfrac{4}{\pi}\underset{\sim}{i}+\tfrac{4}{\pi}\underset{\sim}{j}+4\underset{\sim}{k}" />{' '}
-            kg m s<Katex tex="^{-2}" />.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
@@ -143,16 +138,13 @@ export default function SpecialistQ6_2018Exam1() {
           &ldquo;distance&rdquo;.
         </WrongMethod>
         <WrongMethod
-          title="Minus a negative j is still minus"
+          title="Getting −j instead of +j"
           working={<Katex display tex="2\left(-\underset{\sim}{i}-\underset{\sim}{j}+\pi\,\underset{\sim}{k}\right) = -2\underset{\sim}{i}-2\underset{\sim}{j}+2\pi\,\underset{\sim}{k}" />}
         >
           The <Katex tex="\underset{\sim}{j}" /> part of{' '}
           <Katex tex="\dot{\underset{\sim}{r}}\left(\tfrac{\pi}{2}\right)" /> is{' '}
           <Katex tex="-1" />, so subtracting it <em>adds</em> 1: <Katex tex="0-(-1)=+1" />. Write
-          each component&apos;s subtraction out with brackets. The picture catches it too: the
-          momentum turned from pointing down to pointing left, so the change points up and to the
-          left, a negative <Katex tex="\underset{\sim}{i}" /> part and a <em>positive</em>{' '}
-          <Katex tex="\underset{\sim}{j}" /> part.
+          each component&apos;s subtraction out with brackets.
         </WrongMethod>
         <SAExaminerReport stats={EXAM} maxMarks={3} />
         <div>
