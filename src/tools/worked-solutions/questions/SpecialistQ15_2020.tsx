@@ -76,10 +76,15 @@ const ROWS: WorkingRow[] = [
       <>
         Antidifferentiate again. "Initially at position <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}" />"
         means <Katex tex="\underset{\sim}{r}(0)=\underset{\sim}{i}+\underset{\sim}{j}" />, so this
-        constant is <em>not</em> zero. It is an easy one to drop.
+        constant is <em>not</em> zero.
       </>
     ),
-    more: <>See the common mistake below.</>,
+    more: (
+      <>
+        It is an easy one to drop: leaving it out gives the parallel line{' '}
+        <Katex tex="y=\tfrac{x}{2}" />, option A (see the common mistake below).
+      </>
+    ),
   },
   {
     working: <Katex display tex="x = 1+t^2, \quad y = 1+\tfrac{t^2}{2}" />,
@@ -90,21 +95,38 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         A cartesian equation has no <Katex tex="t" />, so eliminate it. Both components contain{' '}
-        <Katex tex="t^2" />, so solve for <Katex tex="t^2" /> as a whole and substitute it: no
-        square roots needed. The result is a straight line, as it must be for a particle that
-        starts from rest under a constant force, so the parabolas C and D
-        could have been ruled out before any algebra.
+        <Katex tex="t^2" />, so substitute <Katex tex="t^2=x-1" /> as a whole: no square roots
+        needed.
       </>
     ),
-    more: <>See the Background.</>,
+    more: (
+      <>
+        The result is a straight line, as it must be for a particle that starts from rest under a
+        constant force (the Background explains why), so the parabolas C and D could have been
+        ruled out before any algebra.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{y = \tfrac{x}{2}+\tfrac12}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Check at <Katex tex="t=0" />: the path must pass through the
-        starting point <Katex tex="(1, 1)" />, and <Katex tex="\tfrac12+\tfrac12=1" />. Strictly the
-        path is only the ray <Katex tex="x\ge1" />, since <Katex tex="t\ge0" />.
+        Matches option <b>E</b>. Check: it passes through the starting point{' '}
+        <Katex tex="(1, 1)" />, since <Katex tex="\tfrac12+\tfrac12=1" />.
+      </>
+    ),
+    more: (
+      <>
+        <p>
+          Strictly the path is only the ray <Katex tex="x\ge1" />, since <Katex tex="x=1+t^2" />{' '}
+          and <Katex tex="t\ge0" />; the options give the line it lies on.
+        </p>
+        <p>
+          The <Katex tex="(1, 1)" /> check alone rules out A, B and C (at <Katex tex="x=1" /> they
+          give <Katex tex="y=\tfrac12" />, <Katex tex="0" /> and <Katex tex="3" />). It does not
+          rule out D, which also passes through <Katex tex="(1, 1)" />; only the straight-line
+          fact from the previous step does.
+        </p>
       </>
     ),
   },
@@ -172,11 +194,7 @@ export default function SpecialistQ15_2020() {
               turns a straight line into option D's parabola. Since <Katex tex="y" /> also contains{' '}
               <Katex tex="t^2" />, replace <Katex tex="t^2" /> as a block.
             </p>
-            <p>
-              The quick catch: from rest, a constant force gives a straight path (see the
-              Background), so no parabola can be right. That rules out C as well; C and D together
-              drew 41% of students.
-            </p>
+            <p>C and D, the two parabolas, together drew 41% of students.</p>
           </WrongMethod>
           <WrongMethod
             title="Antidifferentiate twice and leave the constants at zero"
@@ -190,15 +208,8 @@ export default function SpecialistQ15_2020() {
           >
             <p>
               The first constant really is zero (the particle starts at rest), but the second is
-              the starting position, <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}" />. Leaving
-              it out moves the whole path to start at the origin: the right direction, on the
-              wrong line.
-            </p>
-            <p>
-              The check that catches it takes five seconds: at <Katex tex="t=0" /> the particle is
-              at <Katex tex="(1, 1)" />, so the answer must pass through <Katex tex="(1, 1)" />.
-              Option A gives <Katex tex="y=\tfrac12" /> at <Katex tex="x=1" />, and option B gives{' '}
-              <Katex tex="y=0" />.
+              the starting position, <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}" />. The
+              five-second <Katex tex="(1, 1)" /> check in the last step catches it.
             </p>
           </WrongMethod>
         </>

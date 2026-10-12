@@ -28,12 +28,19 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         "The component of <Katex tex="\underset{\sim}{F}" /> in the direction of{' '}
-        <Katex tex="\underset{\sim}{d}" />" is the scalar resolute: the length of{' '}
+        <Katex tex="\underset{\sim}{d}" />" is the scalar resolute: dot{' '}
+        <Katex tex="\underset{\sim}{F}" /> with <Katex tex="\underset{\sim}{d}" />, then
+        divide by the length of the direction vector <Katex tex="\underset{\sim}{d}" />.
+      </>
+    ),
+    more: (
+      <>
+        Why divide by <Katex tex="|\underset{\sim}{d}|" />: since{' '}
+        <Katex tex="\underset{\sim}{F}\cdot\underset{\sim}{d}=|\underset{\sim}{F}||\underset{\sim}{d}|\cos\theta" />,
+        dividing by <Katex tex="|\underset{\sim}{d}|" /> leaves{' '}
+        <Katex tex="|\underset{\sim}{F}|\cos\theta" />, the length of{' '}
         <Katex tex="\underset{\sim}{F}" />'s shadow on the line of{' '}
-        <Katex tex="\underset{\sim}{d}" />, <Katex tex="|\underset{\sim}{F}|\cos\theta" />.
-        Since <Katex tex="\underset{\sim}{F}\cdot\underset{\sim}{d}=|\underset{\sim}{F}||\underset{\sim}{d}|\cos\theta" />,
-        dividing by <Katex tex="|\underset{\sim}{d}|" /> leaves exactly that. Divide by the
-        length of the vector you are projecting <em>onto</em>: only its direction matters.
+        <Katex tex="\underset{\sim}{d}" />.
       </>
     ),
   },
@@ -47,10 +54,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{d}\right| = \sqrt{2^2+3^2+6^2} = \sqrt{49} = 7" />,
-    reason: (
+    reason: <>Pythagoras in three dimensions: square each component, add, square-root.</>,
+    more: (
       <>
-        Pythagoras in three dimensions. 2, 3, 6, 7 is a Pythagorean quadruple worth
-        recognising. Adding <Katex tex="2+3+6=11" /> instead of squaring gives option D,{' '}
+        2, 3, 6, 7 is a Pythagorean quadruple worth recognising. Adding{' '}
+        <Katex tex="2+3+6=11" /> instead of squaring gives option D,{' '}
         <Katex tex="\tfrac{92}{11}" />.
       </>
     ),
@@ -59,10 +67,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\frac{92}{7}}" />,
     reason: (
       <>
-        Matches option <b>B</b>. The question asks for the magnitude, but{' '}
-        <Katex tex="\tfrac{92}{7}" /> is already positive (the angle between{' '}
-        <Katex tex="\underset{\sim}{F}" /> and <Katex tex="\underset{\sim}{d}" /> is acute, about{' '}
-        <Katex tex="46^\circ" />), so it is its own magnitude.
+        Matches option <b>B</b>. It is already positive, so it is its own magnitude.
+      </>
+    ),
+    more: (
+      <>
+        A scalar resolute is negative when the angle between the vectors is obtuse, which is
+        why the question says "magnitude". Here{' '}
+        <Katex tex="\cos\theta=\tfrac{92}{19\times7}\approx0.69" /> (using{' '}
+        <Katex tex="|\underset{\sim}{F}|=\sqrt{1+36+324}=19" />), so the angle is acute, about{' '}
+        <Katex tex="46^\circ" />, and no absolute value is needed. Option <b>C</b>,{' '}
+        <Katex tex="\tfrac{124}{7}" />, has the right <Katex tex="|\underset{\sim}{d}|" /> but sign slips in
+        the dot product: <Katex tex="-2+18+108=124" /> has the first two products with their signs flipped.
       </>
     ),
   },
@@ -87,8 +103,7 @@ export default function SpecialistQ14_2020() {
             <Katex tex="\underset{\sim}{d}" /> is{' '}
             <Katex tex="\underset{\sim}{F}\cdot\hat{\underset{\sim}{d}}=\dfrac{\underset{\sim}{F}\cdot\underset{\sim}{d}}{|\underset{\sim}{d}|}=|\underset{\sim}{F}|\cos\theta" />:
             how much of <Katex tex="\underset{\sim}{F}" /> points along{' '}
-            <Katex tex="\underset{\sim}{d}" />. It is negative when the angle is obtuse, which is
-            why a question asking for a "magnitude" takes its absolute value. The vector resolute
+            <Katex tex="\underset{\sim}{d}" />. The vector resolute
             is that number times <Katex tex="\hat{\underset{\sim}{d}}" />.
           </p>
           <p>

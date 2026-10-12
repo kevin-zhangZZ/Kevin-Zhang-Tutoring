@@ -30,12 +30,13 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="u = \tan(x), \quad \frac{du}{dx} = \sec^2(x)" />,
-    reason: <>How would you know to use <Katex tex="\tan(x)" />? The numerator <Katex tex="\sec^2(x)" /> is the derivative of <Katex tex="\tan(x)" />, and <Katex tex="\tan(x)" /> sits in the denominator. When an integrand holds a function <em>and</em> its derivative, let <Katex tex="u" /> be the function: the derivative becomes the <Katex tex="du" />. (Options A to D all start at <Katex tex="u=1=\tan\tfrac\pi4" />, which confirms it.)</>,
+    reason: <>The numerator <Katex tex="\sec^2(x)" /> is the derivative of <Katex tex="\tan(x)" />, which also appears in the denominator, so let <Katex tex="u=\tan(x)" />.</>,
+    more: <>The general rule: when an integrand holds a function <em>and</em> its derivative, let <Katex tex="u" /> be the function, and the derivative becomes the <Katex tex="du" />. The options confirm it: A to D all start at <Katex tex="u=1=\tan\tfrac\pi4" />.</>,
   },
   {
     working: <Katex display tex="\sec^2(x) = 1+\tan^2(x) = 1+u^2" />,
-    reason: <>The rest of the denominator must be in <Katex tex="u" /> too, and the <Katex tex="\sec^2(x)" /> there isn't the one that becomes <Katex tex="du" />. Divide <Katex tex="\sin^2(x)+\cos^2(x)=1" /> by <Katex tex="\cos^2(x)" /> to get <Katex tex="\tan^2(x)+1=\sec^2(x)" />. Mind the sign: <Katex tex="\tan^2(x)-1" /> leads to option B.</>,
-    more: <>See the common mistake below.</>,
+    reason: <>The <Katex tex="\sec^2(x)" /> in the denominator must also be written in <Katex tex="u" />. Divide <Katex tex="\sin^2(x)+\cos^2(x)=1" /> by <Katex tex="\cos^2(x)" />.</>,
+    more: <>This <Katex tex="\sec^2(x)" /> is not the one that becomes <Katex tex="du" />: that one is in the numerator. Mind the sign: the wrong identity <Katex tex="\sec^2(x)=\tan^2(x)-1" /> leads to option B, as the common mistake below shows.</>,
   },
   {
     working: (
@@ -44,7 +45,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \left(1+u^2\right)-3u+1 = u^2-3u+2" />
       </>
     ),
-    reason: <>A quadratic in <Katex tex="u" />.</>,
+    reason: <>Replace <Katex tex="\tan(x)" /> by <Katex tex="u" /> and <Katex tex="\sec^2(x)" /> by <Katex tex="1+u^2" />: the denominator becomes a quadratic in <Katex tex="u" />, ready to factorise.</>,
   },
   {
     working: <Katex display tex="u^2-3u+2 = (u-1)(u-2)" />,
@@ -57,7 +58,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="x = \tfrac\pi3 \Rightarrow u = \tan\tfrac\pi3 = \sqrt3" />
       </>
     ),
-    reason: <>An integral in <Katex tex="u" /> needs <Katex tex="u" />-terminals. Option E keeps the <Katex tex="x" />-terminals <Katex tex="\tfrac\pi4" /> and <Katex tex="\tfrac\pi3" />; option A's <Katex tex="\tfrac{1}{\sqrt3}" /> is <Katex tex="\tan\tfrac\pi6" />, not <Katex tex="\tan\tfrac\pi3" />.</>,
+    reason: <>An integral in <Katex tex="u" /> needs <Katex tex="u" />-terminals: put each <Katex tex="x" />-terminal into <Katex tex="u=\tan(x)" />.</>,
+    more: <>Option E keeps the <Katex tex="x" />-terminals <Katex tex="\tfrac\pi4" /> and <Katex tex="\tfrac\pi3" />; option A's upper terminal <Katex tex="\tfrac{1}{\sqrt3}" /> is <Katex tex="\tan\tfrac\pi6" />, not <Katex tex="\tan\tfrac\pi3" />.</>,
   },
   {
     working: (
@@ -70,7 +72,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1}{(u-1)(u-2)} = \frac{P}{u-1}+\frac{Q}{u-2}" />,
-    reason: <>Partial fractions: split a fraction whose denominator has two factors into two fractions with one factor each, which is the form every option is in.</>,
+    reason: <>Partial fractions: split into two fractions with one factor each, the form every option is in.</>,
   },
   {
     working: <Katex display tex="1 = P(u-2)+Q(u-1)" />,
@@ -83,8 +85,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="u=1: \ -P=1 \implies P=-1" />
       </>
     ),
-    reason: <>The signs are the whole question here: C and D are the same two fractions with opposite signs. Near <Katex tex="u=1" /> the factor <Katex tex="u-2" /> is about <Katex tex="-1" />, which is what makes <Katex tex="P" /> negative.</>,
-    more: <>The diagram below shows where each sign comes from.</>,
+    reason: <>At <Katex tex="u=2" /> the <Katex tex="P" /> term vanishes: <Katex tex="1=Q(1)" />. At <Katex tex="u=1" /> the <Katex tex="Q" /> term vanishes: <Katex tex="1=P(-1)" />.</>,
+    more: <>The signs are the whole question here: C and D are the same two fractions with opposite signs. Near <Katex tex="u=1" /> the factor <Katex tex="u-2" /> is about <Katex tex="-1" />, which is what makes <Katex tex="P" /> negative. The diagram below shows where each sign comes from.</>,
   },
   {
     working: (
@@ -97,7 +99,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int_1^{\sqrt3}\left(\frac{1}{u-2}-\frac{1}{u-1}\right)du}" />,
-    reason: <>Matches option <b>C</b>. Option D (19%) is the same two fractions with the signs swapped; option B (16%) is what the wrong identity <Katex tex="\sec^2(x)=\tan^2(x)-1" /> produces; option E keeps the <Katex tex="x" />-terminals (and its two fractions add up to <Katex tex="\tfrac{1}{(u-1)(u+2)}" />, the wrong quadratic); option A swaps the signs and uses <Katex tex="\tfrac1{\sqrt3}" /> as the upper terminal.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Options D (19%) and B (16%) are worked through in the common mistakes below. Besides its <Katex tex="x" />-terminals, option E has the wrong quadratic: its two fractions add up to <Katex tex="\tfrac{1}{(u-1)(u+2)}" />. Besides its wrong upper terminal, option A has D's swapped signs.</>,
   },
 ]
 

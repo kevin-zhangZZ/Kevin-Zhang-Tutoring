@@ -24,9 +24,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="v = \frac{1}{x}" />,
     reason: (
       <>
-        Velocity is given in terms of position <Katex tex="x" />, not time, so you can&apos;t just differentiate
-        with respect to <Katex tex="t" />. That is the signal to use <Katex tex="a = v\dfrac{dv}{dx}" /> from the
-        formula sheet.
+        Velocity is given in terms of position <Katex tex="x" />, not time: the signal to use{' '}
+        <Katex tex="a = v\dfrac{dv}{dx}" /> from the formula sheet.
       </>
     ),
   },
@@ -44,7 +43,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Multiplying by <Katex tex="v" /> (metres per second) turns &ldquo;per metre&rdquo; into &ldquo;per
-        second&rdquo;. The other formula-sheet form agrees:{' '}
+        second&rdquo;.
+      </>
+    ),
+    more: (
+      <>
+        The other formula-sheet form agrees:{' '}
         <Katex tex="\tfrac{d}{dx}\left(\tfrac12v^2\right) = \tfrac{d}{dx}\left(\tfrac12x^{-2}\right) = -x^{-3}" />.
       </>
     ),
@@ -53,11 +57,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{a = -\frac{1}{2^3} = -\frac18}" />,
     reason: (
       <>
-        Substitute <Katex tex="x=2" />. The sign makes sense: <Katex tex="v>0" />, so the particle moves forward, but{' '}
-        <Katex tex="v=\tfrac1x" /> shrinks as <Katex tex="x" /> grows, so it is slowing down. Matches option{' '}
-        <b>B</b>. Option <b>A</b>, <Katex tex="-\tfrac14" />, is <Katex tex="\tfrac{dv}{dx}" /> alone, without the
-        factor of <Katex tex="v" />; option <b>C</b> has the sign wrong; option <b>D</b>, <Katex tex="\tfrac12" />, is
-        the velocity itself.
+        Substitute <Katex tex="x=2" />. Matches option <b>B</b>; negative because the particle is slowing down.
+      </>
+    ),
+    more: (
+      <>
+        The sign makes sense: <Katex tex="v>0" />, so the particle moves forward, but <Katex tex="v=\tfrac1x" />{' '}
+        shrinks as <Katex tex="x" /> grows, so it is slowing down. Option <b>A</b>, <Katex tex="-\tfrac14" />, is{' '}
+        <Katex tex="\tfrac{dv}{dx}" /> alone, without the factor of <Katex tex="v" /> (see the Common Mistake box
+        below); option <b>C</b> has the sign wrong; option <b>E</b>, <Katex tex="\tfrac14" />, makes both slips; option{' '}
+        <b>D</b>, <Katex tex="\tfrac12" />, is the velocity itself.
       </>
     ),
   },
@@ -82,9 +91,7 @@ export default function SpecialistQ17_2020() {
           </p>
           <Katex display tex="a = \frac{dv}{dt} = \frac{dv}{dx}\cdot\frac{dx}{dt} = v\frac{dv}{dx} = \frac{d}{dx}\left(\tfrac12v^2\right)" />
           <p>
-            Both forms are on the formula sheet. The units check it: <Katex tex="\tfrac{dv}{dx}" /> is{' '}
-            <Katex tex="\text{m s}^{-1}" /> per metre, which is <Katex tex="\text{s}^{-1}" />; times{' '}
-            <Katex tex="v" /> in <Katex tex="\text{m s}^{-1}" /> gives <Katex tex="\text{m s}^{-2}" />.
+            Both forms are on the formula sheet.
           </p>
         </Background>
       }

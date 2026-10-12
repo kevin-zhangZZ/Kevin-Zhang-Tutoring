@@ -35,7 +35,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies f'(0)=0" />
       </>
     ),
-    reason: <>Translate each phrase into maths before doing anything. The <Katex tex="y" />-intercept is the point where <Katex tex="x=0" />; a stationary point is where the gradient <Katex tex="f'(x)" /> is zero. Both at once means the gradient <em>at <Katex tex="x=0" /></em> is zero. (It is not <Katex tex="f(0)=0" />: that would put the <Katex tex="y" />-intercept on the <Katex tex="x" />-axis, which says nothing about the gradient.)</>,
+    reason: <>Translate each phrase into maths. The <Katex tex="y" />-intercept is where <Katex tex="x=0" />; a stationary point is where the gradient <Katex tex="f'(x)" /> is zero. Both at once: the gradient <em>at <Katex tex="x=0" /></em> is zero.</>,
   },
   {
     working: <Katex display tex="f(x) = \frac{(x-a)(x+3)}{x-2} = \frac{x^2+(3-a)x-3a}{x-2}" />,
@@ -58,16 +58,17 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= \frac{-6+2a+3a}{4}" />
       </>
     ),
-    reason: <>Only <Katex tex="x=0" /> is needed, so substitute straight away rather than simplifying the general expression: at <Katex tex="x=0" />, <Katex tex="u'=3-a" />, <Katex tex="v=-2" />, <Katex tex="u=-3a" /> and <Katex tex="v'=1" />. Watch the signs: <Katex tex="(3-a)(-2)=-6+2a" />, and subtracting <Katex tex="-3a" /> adds <Katex tex="3a" />.</>,
+    reason: <>Only <Katex tex="x=0" /> is needed, so substitute straight away: at <Katex tex="x=0" />, <Katex tex="u'=3-a" />, <Katex tex="v=-2" />, <Katex tex="u=-3a" /> and <Katex tex="v'=1" />.</>,
+    more: <>Simplifying the general <Katex tex="f'(x)" /> first would be wasted work. Watch the signs: <Katex tex="(3-a)(-2)=-6+2a" />, and subtracting <Katex tex="-3a" /> adds <Katex tex="3a" />.</>,
   },
   {
     working: <Katex display tex="\frac{5a-6}{4} = 0" />,
-    reason: <>The condition from the first line: the gradient at the <Katex tex="y" />-intercept is zero. On CAS the whole question is one line once <Katex tex="f" /> is stored with <Cas fn="define">Define f(x) = (x-a)(x+3)/(x-2)</Cas>: <Cas fn="solve">solve(d/dx(f(x)) = 0, a) | x = 0</Cas>.</>,
+    reason: <>The condition from the first line: the gradient at the <Katex tex="y" />-intercept is zero, so <Katex tex="5a=6" />. On CAS, store <Katex tex="f" /> with <Cas fn="define">Define f(x) = (x-a)(x+3)/(x-2)</Cas>, then <Cas fn="solve">solve(d/dx(f(x)) = 0, a) | x = 0</Cas>.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac65}" />,
-    reason: <>Matches option <b>D</b>. Check: with <Katex tex="a=\tfrac65" /> the <Katex tex="y" />-intercept is <Katex tex="f(0)=\tfrac{(-6/5)(3)}{-2}=\tfrac95" />, safely away from the asymptote at <Katex tex="x=2" />, and it is a local maximum. Option <b>C</b>, <Katex tex="a=0" />, is what <Katex tex="f(0)=0" /> gives: the graph then passes through the origin, but with gradient <Katex tex="f'(0)=-\tfrac32" />. Option <b>E</b>, <Katex tex="a=2" />, cancels the factor <Katex tex="x-2" /> and leaves the straight line <Katex tex="y=x+3" />, which has no stationary point at all. Option <b>B</b> gives <Katex tex="f'(0)=-3" />.</>,
-    more: <>The tangent at the <Katex tex="y" />-intercept is flat in the diagram below.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Check: with <Katex tex="a=\tfrac65" /> the <Katex tex="y" />-intercept is <Katex tex="f(0)=\tfrac{(-6/5)(3)}{-2}=\tfrac95" />, safely away from the asymptote at <Katex tex="x=2" />, and since <Katex tex="f''(0)=-1<0" /> it is a local maximum. Option <b>C</b>, <Katex tex="a=0" />, is what <Katex tex="f(0)=0" /> gives (the Common Mistake box below). Option <b>E</b>, <Katex tex="a=2" />, cancels the factor <Katex tex="x-2" /> and leaves the straight line <Katex tex="y=x+3" /> (with a hole at <Katex tex="x=2" />), whose gradient is 1 everywhere, so it has no stationary point at all. Options <b>A</b> and <b>B</b> give <Katex tex="f'(0)=-4" /> and <Katex tex="-3" />. The tangent at the <Katex tex="y" />-intercept goes flat in the diagram below.</>,
   },
 ]
 

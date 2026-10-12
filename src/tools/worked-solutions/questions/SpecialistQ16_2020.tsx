@@ -23,9 +23,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = (1)(2)+(2)(-4)+(2)(4) = 2" />,
     reason: (
       <>
-        An angle between two vectors always comes from the dot product,{' '}
-        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />.
-        Start with the dot product: multiply matching components and add.
+        The angle between two vectors comes from{' '}
+        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = |\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />,
+        so start with the dot product: multiply matching components and add.
       </>
     ),
   },
@@ -38,18 +38,23 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Rearrange the dot-product rule for <Katex tex="\cos\theta" />. It is positive, so <Katex tex="\theta" /> is
-        already the acute angle the question describes. (A negative dot product would give the obtuse angle, and you
-        would use its supplement.)
+        already the acute angle the question describes.
       </>
     ),
+    more: <>A negative dot product would give the obtuse angle, and you would then use its supplement to get the acute one.</>,
   },
   {
     working: <Katex display tex="\sin\theta = \sqrt{1-\tfrac{1}{81}} = \sqrt{\tfrac{80}{81}} = \frac{4\sqrt5}{9}" />,
     reason: (
       <>
-        The double-angle formula needs <Katex tex="\sin\theta" /> as well. Picture a right triangle with adjacent 1 and
-        hypotenuse 9: the opposite side is <Katex tex="\sqrt{81-1}=\sqrt{80}=4\sqrt5" />. Take the positive root
-        because <Katex tex="\theta" /> is acute.
+        The double-angle formula needs <Katex tex="\sin\theta" /> as well. Use{' '}
+        <Katex tex="\sin^2\theta+\cos^2\theta=1" />, taking the positive root because <Katex tex="\theta" /> is acute.
+      </>
+    ),
+    more: (
+      <>
+        Or picture a right triangle with adjacent 1 and hypotenuse 9: the opposite side is{' '}
+        <Katex tex="\sqrt{81-1}=\sqrt{80}=4\sqrt5" />, so <Katex tex="\sin\theta=\tfrac{4\sqrt5}{9}" />.
       </>
     ),
   },
@@ -61,14 +66,19 @@ const ROWS: WorkingRow[] = [
         Keep the 2 in front.
       </>
     ),
-    more: <>The interactive diagram below shows where it comes from.</>,
+    more: <>The interactive diagram below shows where the 2 comes from.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{8\sqrt5}{81}}" />,
     reason: (
       <>
-        Matches option <b>D</b>. Option <b>B</b> is <Katex tex="\sin\theta" />, one step short; option <b>C</b>{' '}
-        is <Katex tex="\sin\theta\cos\theta" />, the formula without its 2; option <b>A</b> is <Katex tex="\cos\theta" />.
+        Matches option <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>A</b>, <Katex tex="\tfrac19" />, is <Katex tex="\cos\theta" /> itself; options <b>B</b> and{' '}
+        <b>C</b> are unpacked in the Common Mistake boxes below.
       </>
     ),
   },
@@ -96,10 +106,7 @@ export default function SpecialistQ16_2020() {
             , where <Katex tex="\theta" /> is between <Katex tex="0" /> and <Katex tex="\pi" />.
           </p>
           <p className="mt-2">
-            The double-angle formula: <Katex tex="\sin(2\theta) = 2\sin\theta\cos\theta" />. Once you know{' '}
-            <Katex tex="\cos\theta" />, you get <Katex tex="\sin\theta" /> from{' '}
-            <Katex tex="\sin^2\theta+\cos^2\theta=1" /> (or a right triangle), choosing its sign from the quadrant
-            of <Katex tex="\theta" />.
+            The double-angle formula: <Katex tex="\sin(2\theta) = 2\sin\theta\cos\theta" />.
           </p>
         </Background>
       }

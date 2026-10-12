@@ -33,10 +33,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}\underset{\sim}{v}_{\text{after}}-\underset{\sim}{v}_{\text{before}} &= \left(2\underset{\sim}{i}-7\underset{\sim}{j}\right)-\left(2\underset{\sim}{i}-10\underset{\sim}{j}\right)\\ &= 3\underset{\sim}{j}\end{aligned}" />,
     reason: (
       <>
-        Subtract component by component, keeping the signs: <Katex tex="-7-(-10) = 3" />. The{' '}
-        <Katex tex="\underset{\sim}{i}" /> components are identical, so only the vertical motion changes. Both{' '}
-        <Katex tex="\underset{\sim}{j}" /> components are negative: the hit slowed the ball but didn&apos;t send it
-        back.
+        Subtract component by component, keeping the signs: <Katex tex="-7-(-10) = 3" />.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="\underset{\sim}{i}" /> components are identical, so only the{' '}
+        <Katex tex="\underset{\sim}{j}" /> component of the velocity changes.
       </>
     ),
   },
@@ -48,8 +51,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\left|\Delta\underset{\sim}{p}\right| = 0.06}" />,
     reason: (
       <>
-        Matches option <b>B</b>. Option <b>E</b>, <Katex tex="0.34=0.02\times17" />, comes from adding the{' '}
-        <Katex tex="\underset{\sim}{j}" />-components (<Katex tex="10+7" />) instead of subtracting them.
+        The magnitude of <Katex tex="0.06\underset{\sim}{j}" /> is 0.06. Matches option <b>B</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>E</b>, <Katex tex="0.34=0.02\times17" />, comes from adding the{' '}
+        <Katex tex="\underset{\sim}{j}" />-components (<Katex tex="10+7" />) instead of subtracting them; the Common
+        Mistake box below shows why that only works when the ball is sent back. The most common wrong answer,
+        option <b>C</b>, <Katex tex="0.10=0.02\times5" />, matches a mixed slip: adding the{' '}
+        <Katex tex="\underset{\sim}{i}" />-components (<Katex tex="2+2=4" />) but subtracting the{' '}
+        <Katex tex="\underset{\sim}{j}" />-components gives <Katex tex="|4\underset{\sim}{i}+3\underset{\sim}{j}|=5" />.
+        Subtract every component the same way.
       </>
     ),
   },

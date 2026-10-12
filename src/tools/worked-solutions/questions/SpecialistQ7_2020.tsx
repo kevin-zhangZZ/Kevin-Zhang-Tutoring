@@ -38,23 +38,28 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="b<0 \implies x^2+b = x^2-|b|" />,
     reason: (
       <>
-        The question asks for <em>linear</em> denominators, so the first job is to see whether the quadratic{' '}
-        <Katex tex="x^2+b" /> can be split. Since <Katex tex="b<0" />, write <Katex tex="b=-|b|" />, where{' '}
-        <Katex tex="|b|" /> is a positive number: <Katex tex="x^2+b" /> is &ldquo;<Katex tex="x^2" /> minus a positive
-        number&rdquo;, a difference of two squares. A number makes it concrete: with <Katex tex="b=-4" />,{' '}
-        <Katex tex="x^2+b=x^2-4=(x-2)(x+2)" />. A negative <Katex tex="b" /> moves the parabola{' '}
-        <Katex tex="y=x^2+b" /> down so that it crosses the <Katex tex="x" />-axis twice.
+        The question wants <em>linear</em> denominators, so first check whether <Katex tex="x^2+b" /> splits. With{' '}
+        <Katex tex="b<0" />, <Katex tex="b=-|b|" />: <Katex tex="x^2" /> minus a positive number, a difference of two squares.
       </>
     ),
-    more: <>See the diagram below.</>,
+    more: (
+      <>
+        A number makes it concrete: with <Katex tex="b=-4" />, <Katex tex="x^2+b=x^2-4=(x-2)(x+2)" />. A negative{' '}
+        <Katex tex="b" /> moves the parabola <Katex tex="y=x^2+b" /> down so that it crosses the <Katex tex="x" />-axis twice;
+        see the diagram below.
+      </>
+    ),
   },
   {
     working: <Katex display tex="x^2+b = \big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)" />,
     reason: (
       <>
-        Difference of two squares, with <Katex tex="\sqrt{|b|}" />, a real number because <Katex tex="|b|>0" />. Not{' '}
-        <Katex tex="\sqrt{b}" />: with <Katex tex="b<0" /> that isn&apos;t a real number, and{' '}
-        <Katex tex="(x+\sqrt b)(x-\sqrt b)" /> expands to <Katex tex="x^2-b" /> anyway, the wrong sign.
+        Difference of two squares, with <Katex tex="\sqrt{|b|}" /> a real number because <Katex tex="|b|>0" />.
+      </>
+    ),
+    more: (
+      <>
+        Not <Katex tex="\sqrt{b}" />, the slip behind option B: see the second common mistake below.
       </>
     ),
   },
@@ -62,10 +67,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{1}{ax(x^2+b)} = \frac{1}{ax\big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)}" />,
     reason: (
       <>
-        The denominator now has three linear factors, <Katex tex="x" />, <Katex tex="x-\sqrt{|b|}" /> and{' '}
-        <Katex tex="x+\sqrt{|b|}" />, and they are all different: their zeros <Katex tex="0" />,{' '}
-        <Katex tex="\sqrt{|b|}" /> and <Katex tex="-\sqrt{|b|}" /> are distinct because <Katex tex="b\ne0" />. No factor
-        repeats, so each gets one partial fraction and none needs a squared denominator.
+        Three linear factors with different zeros, <Katex tex="0" /> and <Katex tex="\pm\sqrt{|b|}" /> (distinct as{' '}
+        <Katex tex="b\ne0" />). None repeats, so none needs a squared denominator.
       </>
     ),
   },
@@ -73,12 +76,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="= \frac{A}{x} + \frac{B}{x+\sqrt{|b|}} + \frac{C}{x-\sqrt{|b|}}" />,
     reason: (
       <>
-        One term for each linear factor. The constant <Katex tex="a" /> is not a factor in this sense: it has no{' '}
-        <Katex tex="x" /> in it and is never zero, so it can&apos;t give a denominator of its own. It just ends up inside
-        the constants <Katex tex="A" />, <Katex tex="B" /> and <Katex tex="C" /> (next line). So the denominators are{' '}
-        <Katex tex="x" />, not <Katex tex="ax" />, and <Katex tex="x\pm\sqrt{|b|}" />, not <Katex tex="ax\pm\sqrt{|b|}" />{' '}
-        as in option C. (Writing <Katex tex="\tfrac{A}{ax}" />, as options A, B and E do, is harmless: it is just the
-        constant <Katex tex="\tfrac{A}{a}" /> over <Katex tex="x" />. It is the other two denominators that decide.)
+        One term for each linear factor. The constant <Katex tex="a" /> has no <Katex tex="x" /> in it, so it isn&apos;t a
+        factor of this kind: it is absorbed into <Katex tex="A" />, <Katex tex="B" /> and <Katex tex="C" /> (next line).
+      </>
+    ),
+    more: (
+      <>
+        So the denominators are <Katex tex="x" />, not <Katex tex="ax" />, and <Katex tex="x\pm\sqrt{|b|}" />, not <Katex tex="ax\pm\sqrt{|b|}" /> as in
+        option C. (Writing <Katex tex="\tfrac{A}{ax}" />, as options A, B and E do, is harmless: it is just the constant{' '}
+        <Katex tex="\tfrac{A}{a}" /> over <Katex tex="x" />. It is the other two denominators that decide.)
       </>
     ),
   },
@@ -94,9 +100,13 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Not needed to choose the option, but it confirms that D works. Multiply both sides by{' '}
-        <Katex tex="ax\big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)" /> and substitute each zero in turn, so that two of the
-        three terms vanish each time (at <Katex tex="x=\pm\sqrt{|b|}" />, <Katex tex="x^2+b=|b|+b=0" />). All three
+        Not needed to choose the option, but it confirms D: multiply both sides by the denominator, then substitute each zero
+        so that two of the three terms vanish.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="x=\pm\sqrt{|b|}" />, <Katex tex="x^2+b=|b|+b=0" />, which removes the <Katex tex="A" /> term. All three
         constants come out as real numbers, with the <Katex tex="a" /> sitting inside them, which is why D has no{' '}
         <Katex tex="\tfrac1a" /> in front. (Using <Katex tex="|b|=-b" />: <Katex tex="\tfrac{1}{2a|b|}=-\tfrac{1}{2ab}" />.)
       </>
@@ -104,14 +114,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{A}{x} + \frac{B}{x+\sqrt{|b|}} + \frac{C}{x-\sqrt{|b|}}}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Option <b>A</b> (39%, the most popular choice) keeps <Katex tex="x^2+b" /> as a quadratic
-        over a <Katex tex="Bx+C" /> numerator: the right form when <Katex tex="b>0" />, but <Katex tex="x^2+b" /> isn&apos;t a
-        linear denominator, and the report notes it results from not considering that <Katex tex="b<0" />. Options{' '}
-        <b>B</b> (18%) and <b>E</b> use <Katex tex="\sqrt{b}" />, which is not real when <Katex tex="b<0" />, and{' '}
-        <Katex tex="(x+\sqrt b)(x-\sqrt b)=x^2-b" /> is the wrong quadratic in any case; E also squares a factor that
-        doesn&apos;t repeat. Option <b>C</b> (12%) puts <Katex tex="a" /> into the linear factors:{' '}
+        Option <b>A</b> (39%, the most popular choice) keeps <Katex tex="x^2+b" /> as a quadratic over a{' '}
+        <Katex tex="Bx+C" /> numerator; the report notes it results from not considering that <Katex tex="b<0" /> (first
+        common mistake below). Options <b>B</b> (18%) and <b>E</b> use <Katex tex="\sqrt{b}" /> (second common mistake
+        below); E also squares a factor that doesn&apos;t repeat. Option <b>C</b> (12%) puts <Katex tex="a" /> into the linear factors:{' '}
         <Katex tex="ax\pm\sqrt{|b|}" /> is zero at <Katex tex="x=\mp\tfrac{\sqrt{|b|}}{a}" />, not at the zeros{' '}
         <Katex tex="\pm\sqrt{|b|}" /> of the denominator.
       </>
@@ -199,8 +208,8 @@ export default function SpecialistQ7_2020() {
             </p>
             <p>
               Deal with the sign first: <Katex tex="b=-|b|" />, so <Katex tex="x^2+b=x^2-|b|=\big(x-\sqrt{|b|}\big)\big(x+\sqrt{|b|}\big)" />.
-              A number check catches the slip at once: <Katex tex="b=-4" /> should give{' '}
-              <Katex tex="x^2-4=(x-2)(x+2)" />, and <Katex tex="\sqrt{|b|}=2" />.
+              A number check catches the slip at once: try <Katex tex="b=-4" /> as in the working, where{' '}
+              <Katex tex="\sqrt{|b|}=2" /> and <Katex tex="\sqrt b" /> doesn&apos;t exist.
             </p>
           </WrongMethod>
         </>

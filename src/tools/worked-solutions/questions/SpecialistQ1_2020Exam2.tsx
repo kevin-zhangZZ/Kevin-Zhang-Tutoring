@@ -87,7 +87,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="d^2 = \left(\sqrt3\right)^2+\left(\tfrac{3\sqrt3}{2}\right)^2 = 3+\tfrac{27}{4} = \tfrac{39}{4}" />,
-    reason: <>Distance from the <em>origin</em>: the coordinates <Katex tex="x" /> and <Katex tex="y" /> are the two legs of a right triangle with its corner at <Katex tex="(0,0)" />, so Pythagoras gives <Katex tex="d=\sqrt{x^2+y^2}" />. It is not the distance from the position at <Katex tex="t=0" />, which the report notes some students found.</>,
+    reason: <>Distance from the <em>origin</em>: <Katex tex="x" /> and <Katex tex="y" /> are the legs of a right triangle with its corner at <Katex tex="(0,0)" />, so Pythagoras gives <Katex tex="d=\sqrt{x^2+y^2}" />.</>,
+    more: <>Measure from the fixed point <Katex tex="(0,0)" />, not from where the particle started, <Katex tex="(0,3)" /> at <Katex tex="t=0" /> — the report notes some students found that distance instead.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \frac{\sqrt{39}}{2}\ \text{m}}" />,
@@ -98,11 +99,11 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dx}{dt} = 4\cos(2t), \quad \frac{dy}{dt} = -3\sin(t)" />,
-    reason: <><Katex tex="y" /> isn&apos;t given as a function of <Katex tex="x" /> — both coordinates are given in terms of <Katex tex="t" />. So differentiate each with respect to <Katex tex="t" /> first. The chain rule supplies the factor 2 in <Katex tex="\tfrac{dx}{dt}" />.</>,
+    reason: <>Both coordinates are given in terms of <Katex tex="t" />, so differentiate each with respect to <Katex tex="t" /> first. For <Katex tex="x=2\sin(2t)" /> the chain rule multiplies by the inner derivative 2, so <Katex tex="2\times2" /> gives the 4.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{-3\sin(t)}{4\cos(2t)}}" />,
-    reason: <>The chain rule in parametric form: the gradient is the rise per unit time divided by the run per unit time (see Background). This is the first answer the question asks for.</>,
+    reason: <>The chain rule in parametric form: rise per unit time divided by run per unit time. This is the first answer the question asks for.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ \frac{dy}{dx} = \frac{-3\sin(\pi)}{4\cos(2\pi)} = \frac{0}{4} = 0" />,
@@ -110,11 +111,13 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 2\sin(2\pi) = 0, \quad y = 3\cos(\pi) = -3" />,
-    reason: <>A line needs a point as well as a gradient. The point of contact is where the particle is at <Katex tex="t=\pi" />: <Katex tex="(0,-3)" />, the bottom of the path. <Katex tex="\cos(\pi)=-1" /> — the report notes some students made a sign error here, giving <Katex tex="y=3" />.</>,
+    reason: <>A line needs a point as well as a gradient: where the particle is at <Katex tex="t=\pi" />. Careful: <Katex tex="\cos(\pi)=-1" />, so the point is <Katex tex="(0,-3)" />.</>,
+    more: <>This is the bottom of the path. The report notes some students made a sign error here, giving <Katex tex="y=3" /> — the horizontal tangent at the top of the path instead.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -3}" />,
-    reason: <>The <em>equation</em> of the tangent: the horizontal line through <Katex tex="(0,-3)" />. The report&apos;s general comments note that some students stated the derivative correctly and then never gave this equation — &ldquo;hence find the equation&rdquo; is a second task.</>,
+    reason: <>The <em>equation</em> of the tangent: the horizontal line through <Katex tex="(0,-3)" />.</>,
+    more: <>The report&apos;s general comments note that some students stated the derivative correctly and then never gave this equation — &ldquo;hence find the equation&rdquo; is a second task, with its own marks.</>,
   },
 ]
 
@@ -126,7 +129,8 @@ const ROWS_BII: WorkingRow[] = [
         tex="\begin{aligned}\underset{\sim}{v} &= \frac{dx}{dt}\underset{\sim}{i}+\frac{dy}{dt}\underset{\sim}{j}\\ &= 4\cos(2t)\,\underset{\sim}{i}-3\sin(t)\,\underset{\sim}{j}\end{aligned}"
       />
     ),
-    reason: <>Velocity is the rate of change of position. Write the position as the vector <Katex tex="\underset{\sim}{r}=x\underset{\sim}{i}+y\underset{\sim}{j}" /> and differentiate each component with respect to <Katex tex="t" /> — the same two derivatives as in b.i, kept as components instead of divided.</>,
+    reason: <>Velocity is the derivative of the position vector <Katex tex="\underset{\sim}{r}=x\underset{\sim}{i}+y\underset{\sim}{j}" />: differentiate each component with respect to <Katex tex="t" />.</>,
+    more: <>These are the same two derivatives as in b.i, kept as separate components instead of divided.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ 4\cos(2\pi) = 4, \quad -3\sin(\pi) = 0" />,
@@ -134,14 +138,15 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{v} = 4\underset{\sim}{i}\ \text{m s}^{-1}}" />,
-    reason: <>The question writes <Katex tex="\underset{\sim}{v}" /> with a tilde, so it wants a <em>vector</em>: 4 m/s in the direction of <Katex tex="\underset{\sim}{i}" />. Writing 4 alone gives the speed, which is what the report says many students answered.</>,
+    reason: <>The question asks for velocity <Katex tex="\underset{\sim}{v}" /> (tilde: a <em>vector</em>), so give the direction too: 4 m/s in the direction of <Katex tex="\underset{\sim}{i}" />. Writing 4 alone is only the speed.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a} = \frac{d\underset{\sim}{v}}{dt} = -8\sin(2t)\,\underset{\sim}{i}-3\cos(t)\,\underset{\sim}{j}" />,
-    reason: <>For the magnitude of the acceleration, first find the acceleration vector: differentiate each component of the velocity from b.ii with respect to <Katex tex="t" />. That is why b.ii needed the velocity vector — the report says errors here generally arose from using a form of <Katex tex="\tfrac{dy}{dx}" /> in b.ii.</>,
+    reason: <>First find the acceleration vector: differentiate each component of the velocity from b.ii with respect to <Katex tex="t" />.</>,
+    more: <>This is why b.ii needed the velocity <em>vector</em>: the report says errors here generally arose from using a form of <Katex tex="\tfrac{dy}{dx}" /> in b.ii rather than <Katex tex="\tfrac{dx}{dt}" />.</>,
   },
   {
     working: <Katex display tex="t = \pi: \ -8\sin(2\pi) = 0, \quad -3\cos(\pi) = 3" />,
@@ -149,7 +154,8 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{a} = 3\underset{\sim}{j}" />,
-    reason: <>Straight up, at right angles to the velocity <Katex tex="4\underset{\sim}{i}" />: at the bottom of its path the particle is being turned, not sped up.</>,
+    reason: <>Straight up, at right angles to the velocity <Katex tex="4\underset{\sim}{i}" />.</>,
+    more: <>At the bottom of its path the particle is being turned, not sped up or slowed down: all of the acceleration goes into changing its direction.</>,
   },
   {
     working: <Katex display tex="\boxed{\left|\underset{\sim}{a}\right| = 3\ \text{m s}^{-2}}" />,
@@ -160,7 +166,7 @@ const ROWS_BIII: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x = 0: \ 2\sin(2t) = 0 \implies t = 0, \tfrac\pi2, \pi, \tfrac{3\pi}{2},\ldots" />,
-    reason: <>At the origin <em>both</em> coordinates are zero at the same instant, so list when each one is zero. <Katex tex="x" /> first: its argument is <Katex tex="2t" />, so it is zero at every multiple of <Katex tex="\tfrac\pi2" />.</>,
+    reason: <>At the origin <em>both</em> coordinates are zero at the same instant, so list when each is zero. <Katex tex="\sin(2t)=0" /> when <Katex tex="2t" /> is a multiple of <Katex tex="\pi" />.</>,
   },
   {
     working: <Katex display tex="y = 0: \ 3\cos(t) = 0 \implies t = \tfrac\pi2, \tfrac{3\pi}{2},\ldots" />,
@@ -168,18 +174,20 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = \tfrac\pi2\ \text{seconds}}" />,
-    reason: <>The first time in both lists. Not <Katex tex="t=0" />: <Katex tex="x=0" /> then, but <Katex tex="y=3" />, so the particle is at <Katex tex="(0,3)" /> on the <Katex tex="y" />-axis, not at the origin.</>,
+    reason: <>The first time in both lists. Not <Katex tex="t=0" />: then <Katex tex="y=3" />, so the particle is at <Katex tex="(0,3)" />, not the origin.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="d = \int_{t_1}^{t_2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt" />,
-    reason: <>Distance travelled along a curved path is its arc length. With <Katex tex="x" /> and <Katex tex="y" /> given in terms of <Katex tex="t" />, use the parametric form from the formula sheet — the integrand is the speed, so this is <Katex tex="\int\text{speed}\,dt" /> (see Background).</>,
+    reason: <>Distance travelled along a curved path is its arc length. With <Katex tex="x" /> and <Katex tex="y" /> in terms of <Katex tex="t" />, use the parametric form from the formula sheet.</>,
+    more: <>The integrand is the speed <Katex tex="\left|\underset{\sim}{v}\right|" />, so this is <Katex tex="\int\text{speed}\,dt" />.</>,
   },
   {
     working: <Katex display tex="\boxed{d = \int_0^{\pi/6}\sqrt{\left(4\cos(2t)\right)^2+\left(-3\sin(t)\right)^2}\,dt}" />,
-    reason: <>The terminals are the times <Katex tex="0" /> and <Katex tex="\tfrac\pi6" />, because the integration is with respect to <Katex tex="t" />. The minus sign disappears when squared. Include the <Katex tex="dt" /> — the report notes errors included missing <Katex tex="dt" />.</>,
+    reason: <>The terminals are the times <Katex tex="0" /> and <Katex tex="\tfrac\pi6" />, because we integrate with respect to <Katex tex="t" />. Include the <Katex tex="dt" />.</>,
+    more: <>The minus sign in <Katex tex="-3\sin(t)" /> disappears when squared.</>,
   },
   {
     working: <Cas fn="nInt">nInt(√((4cos(2t))^2 + (-3sin(t))^2), t, 0, π/6)</Cas>,
@@ -187,7 +195,7 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{d = 1.804\ \text{m}}" />,
-    reason: <>Three decimal places, as asked — the report notes some students gave the distance to fewer decimal places than required.</>,
+    reason: <>Three decimal places, as asked.</>,
   },
 ]
 
@@ -231,13 +239,13 @@ export default function SpecialistQ1_2020Exam2() {
           working={
             <Katex
               display
-              tex="\sqrt{\left(\sqrt3-0\right)^2+\left(\tfrac{3\sqrt3}{2}-3\right)^2}=\tfrac{\sqrt{75-36\sqrt3}}{2}\approx1.78"
+              tex="\sqrt{\left(\sqrt3\right)^2+\left(\tfrac{3\sqrt3}{2}-3\right)^2}\approx1.78"
             />
           }
         >
-          That is the distance from <Katex tex="(0,3)" />, where the particle was at <Katex tex="t=0" />. The question
-          says &ldquo;from the origin&rdquo;, which is the fixed point <Katex tex="(0,0)" /> — it doesn&apos;t matter
-          where the particle began. Before calculating, write down the two points you are measuring between.
+          That is the distance from the starting point <Katex tex="(0,3)" />, about 1.34 m short of the true answer.
+          Before calculating, write down the two points you are measuring between: here{' '}
+          <Katex tex="\left(\sqrt3,\tfrac{3\sqrt3}{2}\right)" /> and <Katex tex="(0,0)" />.
         </WrongMethod>
       </PartCard>
 
@@ -346,8 +354,7 @@ export default function SpecialistQ1_2020Exam2() {
           }
         >
           <Katex tex="\tfrac{dy}{dx}" /> is the gradient of the path — metres up per metre across — and it would be the
-          same whatever speed the particle went round the path, so it can&apos;t be a velocity. The report says errors
-          here generally arose from using a form of <Katex tex="\tfrac{dy}{dx}" /> in b.ii. Acceleration is the
+          same whatever speed the particle went round the path, so it can&apos;t be a velocity. Acceleration is the
           derivative of the velocity <em>vector</em>: differentiate <Katex tex="4\cos(2t)" /> and{' '}
           <Katex tex="-3\sin(t)" /> separately. Units are a check: m s⁻² comes from differentiating m s⁻¹ with
           respect to seconds.
@@ -400,8 +407,7 @@ export default function SpecialistQ1_2020Exam2() {
         >
           Without <Katex tex="dt" /> the integral no longer says which variable the terminals <Katex tex="0" /> and{' '}
           <Katex tex="\tfrac\pi6" /> belong to, and it has lost the step width that turns a speed (m s⁻¹) into a
-          distance (m). The report lists a missing <Katex tex="dt" /> among the errors in this part — it is part of the
-          expression, not decoration.
+          distance (m). The <Katex tex="dt" /> is part of the expression, not decoration.
         </WrongMethod>
       </PartCard>
     </div>

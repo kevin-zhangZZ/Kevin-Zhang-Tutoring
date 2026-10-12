@@ -52,9 +52,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\text{tangent at } P(x,y) \text{ passes through } Q(y,\,0)" />,
     reason: (
       <>
-        Turn the words into a point. The <Katex tex="x" />-intercept of the tangent is a point on the{' '}
-        <Katex tex="x" />-axis, and the condition says its <Katex tex="x" />-coordinate equals the <Katex tex="y" />-value
-        at P. So the tangent passes through <Katex tex="(y,0)" />, as well as through P itself.
+        Turn the words into a point. The <Katex tex="x" />-intercept is on the <Katex tex="x" />-axis, and its{' '}
+        <Katex tex="x" />-coordinate equals P&apos;s <Katex tex="y" />-value. So the tangent passes through{' '}
+        <Katex tex="(y,0)" /> as well as P.
       </>
     ),
     more: (
@@ -67,11 +67,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{dy}{dx} = \frac{y-0}{x-y} = \frac{y}{x-y}" />,
     reason: (
       <>
-        The gradient of the tangent at P is <Katex tex="\tfrac{dy}{dx}" /> there, and two points fix a line&apos;s
-        gradient: rise over run from <Katex tex="Q(y,0)" /> to <Katex tex="P(x,y)" />. (Writing the tangent as{' '}
-        <Katex tex="Y-y=\tfrac{dy}{dx}(X-x)" /> and putting in <Katex tex="Y=0" />, <Katex tex="X=y" /> gives the same
-        equation.) This is the differential equation the right slope field shows; the question never states it, and
-        building it is the real work.
+        The tangent&apos;s gradient is <Katex tex="\tfrac{dy}{dx}" /> at P, and two points fix it: rise over run from{' '}
+        <Katex tex="Q(y,0)" /> to <Katex tex="P(x,y)" />.
+      </>
+    ),
+    more: (
+      <>
+        Writing the tangent as <Katex tex="Y-y=\tfrac{dy}{dx}(X-x)" /> and putting in <Katex tex="Y=0" />,{' '}
+        <Katex tex="X=y" /> gives the same equation.
       </>
     ),
   },
@@ -84,16 +87,20 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Rather than check marks at random points, pick lines where the formula collapses to one number all along them:
-        the two axes. Along the <Katex tex="x" />-axis every mark must be flat. Along the <Katex tex="y" />-axis every
-        mark must have gradient <Katex tex="-1" />, above <Katex tex="O" /> and below it (O, P and Q
-        then form an isosceles right-angled triangle). VCAA draws no marks on the axes themselves, so read the row and
-        column of marks just beside them. (Strictly, a point on the <Katex tex="x" />-axis with a flat tangent has the{' '}
-        <Katex tex="x" />-axis itself as its tangent, so &ldquo;its <Katex tex="x" />-intercept&rdquo; isn&apos;t one
-        point; the marks just beside the axis are nearly flat, and that is what the figures show.)
+        Test lines where the formula gives one value all along: the axes. Marks beside the <Katex tex="x" />-axis must be
+        flat; beside the <Katex tex="y" />-axis, gradient <Katex tex="-1" />.
       </>
     ),
-    more: <>See the triangle in the first diagram below.</>,
+    more: (
+      <>
+        This is quicker than checking marks at random points. The <Katex tex="y" />-axis result holds above{' '}
+        <Katex tex="O" /> and below it: O, P and Q then form an isosceles right-angled triangle (see the first diagram
+        below). VCAA draws no marks on the axes themselves, so read the row and column of marks just beside them.
+        Strictly, a point on the <Katex tex="x" />-axis with a flat tangent has the <Katex tex="x" />-axis itself as its
+        tangent, so &ldquo;its <Katex tex="x" />-intercept&rdquo; isn&apos;t one point; the marks just beside the axis are
+        nearly flat, and that is what the figures show.
+      </>
+    ),
   },
   {
     working: (
@@ -104,32 +111,36 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Check each option in turn. <b>A</b> climbs at{' '}
-        <Katex tex="45^\circ" /> along the <Katex tex="x" />-axis and is flat along the <Katex tex="y" />-axis: it fails
-        both. <b>C</b> is flat along the <Katex tex="x" />-axis but climbs at gradient <Katex tex="+1" /> along the{' '}
-        <Katex tex="y" />-axis. <b>D</b> has gradient <Katex tex="-1" /> along the <Katex tex="x" />-axis and is flat along
-        the <Katex tex="y" />-axis: it fails both. <b>E</b> is flat along the <Katex tex="x" />-axis but vertical along the{' '}
-        <Katex tex="y" />-axis. Only <b>B</b> is flat along the <Katex tex="x" />-axis and has gradient{' '}
-        <Katex tex="-1" /> along the <Katex tex="y" />-axis.
+        Only <b>B</b> is flat along the <Katex tex="x" />-axis and has gradient <Katex tex="-1" /> along the{' '}
+        <Katex tex="y" />-axis.
       </>
     ),
-    more: <>The second diagram below lights up the two strips on each figure.</>,
+    more: (
+      <>
+        Option by option: <b>A</b> climbs at <Katex tex="45^\circ" /> along the <Katex tex="x" />-axis and is flat along
+        the <Katex tex="y" />-axis, so it fails both. <b>C</b> is flat along the <Katex tex="x" />-axis but climbs at
+        gradient <Katex tex="+1" /> along the <Katex tex="y" />-axis. <b>D</b> has gradient <Katex tex="-1" /> along the{' '}
+        <Katex tex="x" />-axis and is flat along the <Katex tex="y" />-axis, so it fails both. <b>E</b> is flat along the{' '}
+        <Katex tex="x" />-axis but vertical along the <Katex tex="y" />-axis. The second diagram below lights up the two
+        strips on each figure.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\text{B}}" />,
-    reason: (
+    reason: <>Matches option <b>B</b>.</>,
+    more: (
       <>
-        Matches option <b>B</b>. A third check agrees: B&apos;s marks turn vertical along <Katex tex="y=x" /> in the first
-        and third quadrants, where <Katex tex="x-y=0" /> makes <Katex tex="\tfrac{y}{x-y}" /> undefined (Q is straight
-        below P). Measured mark by mark, the other four fields are A: <Katex tex="\tfrac{x}{x-y}" />, C:{' '}
+        A third check agrees: B&apos;s marks turn vertical along <Katex tex="y=x" /> in the first and third quadrants,
+        where <Katex tex="x-y=0" /> makes <Katex tex="\tfrac{y}{x-y}" /> undefined (Q is directly below or above P).
+        Measured mark by mark, the other four fields are A: <Katex tex="\tfrac{x}{x-y}" />, C:{' '}
         <Katex tex="\tfrac{y}{y-x}" />, D: <Katex tex="\tfrac{x}{y-x}" /> and E: <Katex tex="\tfrac{y}{x}" />. Option{' '}
         <b>D</b> (22%), the most popular wrong answer, is the right rule with <Katex tex="x" /> and <Katex tex="y" />{' '}
-        swapped, and it fails both axis tests. Option <b>C</b> (17%) is the right rule with its sign reversed, which the{' '}
-        <Katex tex="x" />-axis test alone can&apos;t catch. Option <b>E</b> is the gradient of <Katex tex="OP" />,
-        as if the tangent passed through <Katex tex="O" /> instead of <Katex tex="Q" />.
+        swapped. Option <b>C</b> (17%) is the right rule with its sign reversed (see the common mistake
+        below). Option <b>E</b> is the gradient of <Katex tex="OP" />, as
+        if the tangent passed through <Katex tex="O" /> instead of <Katex tex="Q" />.
       </>
     ),
-    more: <>For option <b>C</b>, see the common mistake below.</>,
   },
 ]
 

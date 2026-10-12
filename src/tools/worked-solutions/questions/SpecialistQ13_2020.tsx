@@ -30,8 +30,12 @@ const ROWS: WorkingRow[] = [
       <>
         Linearly dependent means one of the vectors can be built from the other two.{' '}
         <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{c}" /> are clearly not
-        parallel, so the question becomes: is <Katex tex="\underset{\sim}{b}" /> a combination of
-        them? Put <Katex tex="\underset{\sim}{b}" /> on its own because it holds the unknown{' '}
+        parallel, so ask: is <Katex tex="\underset{\sim}{b}" /> a combination of them?
+      </>
+    ),
+    more: (
+      <>
+        Put <Katex tex="\underset{\sim}{b}" /> on its own because it holds the unknown{' '}
         <Katex tex="\lambda" />; the right side then has only <Katex tex="m" /> and{' '}
         <Katex tex="n" /> in it.
       </>
@@ -50,10 +54,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{j}: \ 2m = 3 \implies m = \tfrac32" />,
     reason: (
       <>
-        Three equations, three unknowns (<Katex tex="m" />, <Katex tex="n" />,{' '}
-        <Katex tex="\lambda" />). Start with the one that has the fewest:{' '}
         <Katex tex="\underset{\sim}{c}" /> has no <Katex tex="\underset{\sim}{j}" /> part, so the{' '}
-        <Katex tex="\underset{\sim}{j}" /> equation has <Katex tex="m" /> alone.
+        <Katex tex="\underset{\sim}{j}" /> equation has <Katex tex="m" /> alone: start there.
+      </>
+    ),
+    more: (
+      <>
+        Three equations, three unknowns (<Katex tex="m" />, <Katex tex="n" />,{' '}
+        <Katex tex="\lambda" />): start with the one that has the fewest.
       </>
     ),
   },
@@ -62,7 +70,12 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         With <Katex tex="m" /> known, the <Katex tex="\underset{\sim}{k}" /> equation gives{' '}
-        <Katex tex="n" />. Notice <Katex tex="\lambda" /> hasn't appeared yet: the{' '}
+        <Katex tex="n" />.
+      </>
+    ),
+    more: (
+      <>
+        Notice <Katex tex="\lambda" /> hasn't appeared yet: the{' '}
         <Katex tex="\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{k}" /> parts of{' '}
         <Katex tex="\underset{\sim}{b}" /> fix the only possible recipe, whatever{' '}
         <Katex tex="\lambda" /> is.
@@ -73,12 +86,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{i}: \ m+n = \lambda \implies \lambda = \tfrac32+\tfrac72" />,
     reason: (
       <>
-        The <Katex tex="\underset{\sim}{i}" /> equation is the test that's left. The recipe{' '}
-        <Katex tex="\tfrac32\underset{\sim}{a}+\tfrac72\underset{\sim}{c}" /> has{' '}
-        <Katex tex="\underset{\sim}{i}" />-component <Katex tex="\tfrac32+\tfrac72" />, so it
-        produces <Katex tex="\underset{\sim}{b}" /> only if <Katex tex="\lambda" /> equals that.
-        For any other <Katex tex="\lambda" />, no <Katex tex="m" /> and <Katex tex="n" /> work and
-        the vectors are independent.
+        The <Katex tex="\underset{\sim}{i}" /> equation is the test that's left: the recipe{' '}
+        <Katex tex="\tfrac32\underset{\sim}{a}+\tfrac72\underset{\sim}{c}" /> produces{' '}
+        <Katex tex="\underset{\sim}{b}" /> only if its <Katex tex="\underset{\sim}{i}" />-component
+        equals <Katex tex="\lambda" />.
+      </>
+    ),
+    more: (
+      <>
+        For any other <Katex tex="\lambda" />, no <Katex tex="m" /> and <Katex tex="n" /> work (the{' '}
+        <Katex tex="\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{k}" /> equations have
+        already fixed them), so the vectors are independent.
       </>
     ),
   },
@@ -86,11 +104,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\lambda = 5}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Check:{' '}
+        Matches option <b>E</b>.
+      </>
+    ),
+    more: (
+      <>
+        Check:{' '}
         <Katex tex="\tfrac32\underset{\sim}{a}+\tfrac72\underset{\sim}{c}=5\underset{\sim}{i}+3\underset{\sim}{j}+2\underset{\sim}{k}" />.
-        On CAS, a zero determinant (the three vectors as rows) says the same thing:{' '}
-        <Cas fn="solve">solve(det([[1,2,−1][λ,3,2][1,0,1]]) = 0, λ)</Cas> gives{' '}
-        <Katex tex="10-2\lambda=0" />, so <Katex tex="\lambda=5" />.
+        On CAS, solve the three component equations together:{' '}
+        <Cas fn="solve">solve(m+n=λ and 2m=3 and −m+n=2, {'{'}m,n,λ{'}'})</Cas> gives{' '}
+        <Katex tex="m=\tfrac32,\ n=\tfrac72,\ \lambda=5" />.
       </>
     ),
   },

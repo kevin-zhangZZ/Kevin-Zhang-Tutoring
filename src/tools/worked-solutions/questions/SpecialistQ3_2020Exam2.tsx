@@ -88,53 +88,59 @@ const EXAM_EII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2e^{-x}" />,
-    reason: <>A product of <Katex tex="x^2" /> and <Katex tex="e^{-x}" />, so the product rule. On CAS, <Cas fn="define">Define f(x)=x^2·e^(−x)</Cas> first: parts b. and c. use the same function.</>,
+    reason: <>A product of <Katex tex="x^2" /> and <Katex tex="e^{-x}" />, so use the product rule.</>,
+    more: <>On CAS, <Cas fn="define">Define f(x)=x^2·e^(−x)</Cas> first: parts b. and c. use the same function.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} f'(x) &= 2xe^{-x}+x^2\left(-e^{-x}\right) \\ &= \left(2x-x^2\right)e^{-x} \end{aligned}" />,
-    reason: <>By the chain rule the derivative of <Katex tex="e^{-x}" /> is <Katex tex="-e^{-x}" />, which is where the minus sign comes from. Taking out the common factor <Katex tex="e^{-x}" /> now makes the next step easy.</>,
+    reason: <>By the chain rule, the derivative of <Katex tex="e^{-x}" /> is <Katex tex="-e^{-x}" />. Then take out the common factor <Katex tex="e^{-x}" />.</>,
   },
   {
     working: <Katex display tex="f'(x) = 0: \ x(2-x)e^{-x} = 0" />,
-    reason: <><Katex tex="e^{-x}>0" /> for every <Katex tex="x" />, so it can never be the factor that is zero. Only <Katex tex="x(2-x)" /> can vanish.</>,
+    reason: <><Katex tex="e^{-x}>0" /> for every <Katex tex="x" />, so only <Katex tex="x(2-x)" /> can be zero.</>,
   },
   {
     working: <Katex display tex="x = 0 \text{ or } x = 2" />,
-    reason: <>Because <Katex tex="e^{-x}>0" />, the sign of <Katex tex="f'" /> is the sign of <Katex tex="x(2-x)" />: negative, then positive, then negative. So the graph falls into a local minimum at <Katex tex="x=0" />, rises to a local maximum at <Katex tex="x=2" />, and falls again. That is the shape part c. needs.</>,
+    reason: <>The sign of <Katex tex="f'" /> is the sign of <Katex tex="x(2-x)" />: negative, positive, negative. So a local minimum at <Katex tex="x=0" /> and a local maximum at <Katex tex="x=2" />.</>,
+    more: <>The graph falls into the minimum, rises to the maximum, and falls again. That is the shape part c. needs.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,\ 0) \ \text{ and } \ \left(2,\ \tfrac{4}{e^2}\right)}" />,
-    reason: <>Coordinates, not just <Katex tex="x" />-values — the report notes students who did not score well stated the derivative only and did not give the coordinates. <Katex tex="\tfrac{4}{e^2}\approx0.54" />.</>,
+    reason: <>Substitute back: <Katex tex="f(0)=0" /> and <Katex tex="f(2)=4e^{-2}" />. The question asks for coordinates, not just <Katex tex="x" />-values.</>,
+    more: <><Katex tex="\tfrac{4}{e^2}\approx0.54" />, which part c. uses.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="x\to\infty: \ f(x) = \frac{x^2}{e^x} \to 0^+" />,
-    reason: <>Write <Katex tex="e^{-x}" /> as division by <Katex tex="e^x" />. The top grows like a power and the bottom grows exponentially, and the exponential always wins: <Katex tex="f(10)\approx0.0045" />, <Katex tex="f(20)\approx8\times10^{-7}" />. Since <Katex tex="f(x)\ge0" />, the curve comes down onto <Katex tex="y=0" /> from above.</>,
+    reason: <>Write <Katex tex="e^{-x}" /> as division by <Katex tex="e^x" />. The exponential grows faster than any power, so <Katex tex="f(x)\to0" />, from above since <Katex tex="f(x)\ge0" />.</>,
+    more: <>For instance <Katex tex="f(10)\approx0.0045" /> and <Katex tex="f(20)\approx8\times10^{-7}" />.</>,
   },
   {
     working: <Katex display tex="x\to-\infty: \ x^2e^{-x}\to+\infty" />,
-    reason: <>On the left both factors grow: <Katex tex="x^2\to\infty" /> and <Katex tex="e^{-x}=e^{|x|}\to\infty" />. Nothing levels off, so there is no asymptote on this side.</>,
+    reason: <>On the left both factors grow without bound (<Katex tex="e^{-x}=e^{|x|}" />), so there is no asymptote on this side.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 0}" />,
-    reason: <>One horizontal asymptote and nothing else. There is no vertical asymptote: <Katex tex="f(x)=\frac{x^2}{e^x}" /> never divides by zero because <Katex tex="e^x>0" />, so <Katex tex="f" /> is defined and finite at every real <Katex tex="x" />, including <Katex tex="x=0" />, where the graph passes through the origin.</>,
+    reason: <>The only asymptote. There is no vertical one: <Katex tex="e^x>0" />, so <Katex tex="\frac{x^2}{e^x}" /> never divides by zero and <Katex tex="f" /> is finite at every <Katex tex="x" /> (<Katex tex="f(0)=0" />).</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{aligned} f''(x) &= \left(2-2x\right)e^{-x}-\left(2x-x^2\right)e^{-x} \\ &= \left(x^2-4x+2\right)e^{-x} \end{aligned}" />,
-    reason: <>A point of inflection is where the curve changes from bending up to bending down (or back), which is where <Katex tex="f''" /> changes sign. So differentiate part a.&apos;s answer once more, with the product rule again.</>,
+    reason: <>A point of inflection is where the concavity changes, i.e. where <Katex tex="f''" /> changes sign. Differentiate part a.&apos;s <Katex tex="f'(x)" /> with the product rule again.</>,
   },
   {
-    working: <Katex display tex="x^2-4x+2 = 0 \implies x = 2\pm\sqrt2" />,
-    reason: <>So <Katex tex="x=0.5857\ldots" /> and <Katex tex="x=3.4142\ldots" />. Since <Katex tex="e^{-x}>0" />, the sign of <Katex tex="f''" /> is the sign of the upright parabola <Katex tex="x^2-4x+2" />: positive, negative, positive. It really does change sign at both roots, so both are points of inflection. (A zero of <Katex tex="f''" /> on its own is not enough; part e. turns on exactly that.) On CAS, <Cas fn="solve">solve(x^2−4x+2=0, x)</Cas> gives the same.</>,
+    working: <Katex display tex="\begin{aligned} x^2-4x+2 = 0 &\implies x = 2\pm\sqrt2 \\ &\implies x = 0.5857\ldots,\ 3.4142\ldots \end{aligned}" />,
+    reason: <><Katex tex="e^{-x}>0" />, so <Katex tex="f''" /> has the sign of the upright parabola <Katex tex="x^2-4x+2" />: positive, negative, positive. It changes sign at both roots, so both are points of inflection.</>,
+    more: <>A zero of <Katex tex="f''" /> on its own is not enough: <Katex tex="f''" /> must change sign there. Part e. turns on exactly that. On CAS, <Cas fn="solve">solve(x^2−4x+2=0, x)</Cas> gives the same roots.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} f\left(2-\sqrt2\right) &= 0.1910\ldots \\ f\left(2+\sqrt2\right) &= 0.3835\ldots \end{aligned}" />,
-    reason: <>Rounding to two decimal places gives <Katex tex="(0.59,0.19)" /> and <Katex tex="(3.41,0.38)" /> — and <Katex tex="0.5857" /> rounds <em>up</em> to 0.59, the slip the report calls out.</>,
+    reason: <>To two decimal places the points of inflection are <Katex tex="(0.59,0.19)" /> and <Katex tex="(3.41,0.38)" />. Note <Katex tex="0.5857" /> rounds <em>up</em> to 0.59.</>,
+    more: <>The report notes some students rounded the <Katex tex="x" />-value of the left-most point of inflection to 0.58 instead of 0.59.</>,
   },
   {
     working: (
@@ -146,65 +152,74 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The second-quadrant branch climbs steeply off the top of the grid just left of <Katex tex="x=-1" /> (<Katex tex="f(-1)=e\approx2.72" />), so draw it steep, not flat; the report notes marks were lost for a poor shape there. The question asks for three labelled points: the local maximum and the two points of inflection.</>,
-    more: <>Slide the tangent in the diagram below to see the curve change its bend at each inflection.</>,
+    reason: <>Label the local maximum <Katex tex="\left(2,\tfrac{4}{e^2}\right)\approx(2,0.54)" /> and both points of inflection. Touch the axis at <Katex tex="(0,0)" />, flatten onto <Katex tex="y=0" /> from above, and draw the left branch steep: <Katex tex="f(-1)=e\approx2.72" />.</>,
+    more: <>The report notes marks were lost for a poor shape in the second quadrant: since <Katex tex="f(-1)=e" />, the curve leaves the top of the grid just left of <Katex tex="x=-1" />. The curve touches the <Katex tex="x" />-axis at the minimum <Katex tex="(0,0)" /> without crossing it, because <Katex tex="f(x)\ge0" />. Slide the tangent in the diagram below to see the curve change its bend at each inflection.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = x^ne^{-x} \implies g'(x) = nx^{n-1}e^{-x}-x^ne^{-x}" />,
-    reason: <>Product rule, keeping the index general. The power rule <Katex tex="\frac{d}{dx}\left(x^n\right)=nx^{n-1}" /> holds for every integer <Katex tex="n" />, negative ones included. On CAS, <Cas fn="define">Define g(x)=x^n·e^(−x)</Cas>, then apply the derivative template twice, <Cas fn="derivative">d/dx(d/dx(g(x)))</Cas>, and factor the result.</>,
+    reason: <>Product rule, keeping the index general: <Katex tex="\frac{d}{dx}\left(x^n\right)=nx^{n-1}" /> holds for every integer <Katex tex="n" />, negative ones included.</>,
+    more: <>On CAS, <Cas fn="define">Define g(x)=x^n·e^(−x)</Cas>, then apply the derivative template twice, <Cas fn="derivative">d/dx(d/dx(g(x)))</Cas>, and factor the result.</>,
   },
   {
-    working: <Katex display tex="\begin{aligned} g''(x) &= n(n-1)x^{n-2}e^{-x}-nx^{n-1}e^{-x} \\ &\quad -nx^{n-1}e^{-x}+x^ne^{-x} \end{aligned}" />,
-    reason: <>Differentiating each of the two terms; the middle contribution appears twice, which is where the <Katex tex="-2n" /> comes from.</>,
+    working: <Katex display tex="\begin{aligned} g''(x) &= n(n-1)x^{n-2}e^{-x}-nx^{n-1}e^{-x} \\ &\quad -nx^{n-1}e^{-x}+x^ne^{-x} \\ &= \left(n(n-1)x^{n-2}-2nx^{n-1}+x^n\right)e^{-x} \end{aligned}" />,
+    reason: <>The product rule on each of the two terms of <Katex tex="g'(x)" />. The two middle terms are alike, which gives <Katex tex="-2nx^{n-1}e^{-x}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{g''(x) = x^{n-2}\left(x^2-2nx+n(n-1)\right)e^{-x}}" />,
-    reason: <>Factoring out the lowest power. Leaving it expanded as <Katex tex="\left(n(n-1)x^{n-2}-2nx^{n-1}+x^n\right)e^{-x}" /> is equally acceptable — but the factored form is what makes part e. easy.</>,
+    reason: <>Take out the lowest power, <Katex tex="x^{n-2}" />, and <Katex tex="e^{-x}" />. This factored form is what part e. needs.</>,
+    more: <>Leaving it expanded, as in the line above, is equally acceptable. The report gives that expanded form (written as <Katex tex="-\left(2nx^{n-1}-n^2x^{n-2}+nx^{n-2}-x^n\right)e^{-x}" />) and the factored form as the two most common correct answers.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="g''(x) = 0, \ x\ne0 \implies x^2-2nx+n(n-1) = 0" />,
-    reason: <>The <Katex tex="x^{n-2}" /> factor and <Katex tex="e^{-x}" /> are set aside, which is exactly what "non-zero values" signals.</>,
+    reason: <>For <Katex tex="x\ne0" />, <Katex tex="x^{n-2}\ne0" /> and <Katex tex="e^{-x}>0" />, so only the quadratic factor can be zero.</>,
   },
   {
     working: <Katex display tex="x = \frac{2n\pm\sqrt{4n^2-4n(n-1)}}{2} = n\pm\sqrt{n}" />,
-    reason: <>The discriminant collapses beautifully: <Katex tex="4n^2-4n^2+4n=4n" />. Completing the square is quicker still: <Katex tex="x^2-2nx+n(n-1)=(x-n)^2-n" />, so <Katex tex="(x-n)^2=n" />. That form also shows at a glance that there are no real solutions when <Katex tex="n<0" />, which part ii. needs.</>,
+    reason: <>The quadratic formula. The discriminant simplifies: <Katex tex="4n^2-4n^2+4n=4n" />, and <Katex tex="\sqrt{4n}=2\sqrt n" />.</>,
+    more: <>Completing the square is quicker: <Katex tex="x^2-2nx+n(n-1)=(x-n)^2-n" />, so <Katex tex="(x-n)^2=n" />. That form also shows at a glance that there are no real solutions when <Katex tex="n<0" />, which part ii. needs.</>,
   },
   {
     working: <Katex display tex="\boxed{x = n-\sqrt n \ \text{ and } \ x = n+\sqrt n}" />,
-    reason: <>Real only when <Katex tex="n\ge0" />; and <Katex tex="n-\sqrt n" /> is itself non-zero only for <Katex tex="n\ge2" />. (The report notes the restrictions were not required.)</>,
+    reason: <>These are real when <Katex tex="n\ge0" />.</>,
+    more: <>Strictly, <Katex tex="n-\sqrt n=0" /> when <Katex tex="n=0" /> or <Katex tex="1" />, and <Katex tex="n+\sqrt n=0" /> when <Katex tex="n=0" />, so those cases don&apos;t give non-zero values. The report notes the restrictions were not required.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
-    working: <Katex display tex="g''(x) = x^{n-2}\left((x-n)^2-n\right)e^{-x}" />,
-    reason: <>Part d.&apos;s answer with the square completed. A point of inflection needs <Katex tex="g''" /> to <em>change sign</em> at a point on the graph. <Katex tex="e^{-x}>0" /> never changes sign, so watch the other two factors: the quadratic changes sign at <Katex tex="n\pm\sqrt n" /> (when <Katex tex="n>0" />), and <Katex tex="x^{n-2}" /> can only change sign at <Katex tex="x=0" />. Test each kind of <Katex tex="n" /> in turn.</>,
+    working: <Katex display tex="\begin{aligned} g''(x) &= x^{n-2}\left(x^2-2nx+n(n-1)\right)e^{-x} \\ &= x^{n-2}\left((x-n)^2-n\right)e^{-x} \end{aligned}" />,
+    reason: <>Part d.&apos;s answer, with the square completed. A point of inflection needs <Katex tex="g''" /> to <em>change sign</em> at a point on the graph. As <Katex tex="e^{-x}>0" />, only <Katex tex="x^{n-2}" /> (at <Katex tex="x=0" />) and the quadratic (at <Katex tex="n\pm\sqrt n" />) can change its sign.</>,
+    more: <>So test each kind of <Katex tex="n" /> in turn: negative, 0, 1, then even and odd <Katex tex="n\ge2" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} n<0: \ & (x-n)^2-n>0 \text{ for all } x \\ & x=0 \text{ is not in the domain of } g \end{aligned}" />,
-    reason: <>With <Katex tex="n<0" />, <Katex tex="-n>0" />, so the quadratic is a square plus a positive number and has no roots. The only possible sign change is at <Katex tex="x=0" /> (for odd <Katex tex="n" />, <Katex tex="x^{n-2}" /> is an odd power), but <Katex tex="g(0)=0^n" /> is undefined for <Katex tex="n<0" />: <Katex tex="x=0" /> is a vertical asymptote, so there is no point on the graph there. For example <Katex tex="n=-1" />: <Katex tex="g''=x^{-3}\left(x^2+2x+2\right)e^{-x}" /> changes sign only across the asymptote. <b>0 points of inflection.</b></>,
+    reason: <><Katex tex="-n>0" />, so the quadratic has no roots. And <Katex tex="g(0)=0^n" /> is undefined, so there is no point on the graph at <Katex tex="x=0" />. <b>0 points of inflection.</b></>,
+    more: <>For odd <Katex tex="n" />, <Katex tex="x^{n-2}" /> is an odd power and <Katex tex="g''" /> does change sign across <Katex tex="x=0" />, but <Katex tex="x=0" /> is a vertical asymptote, so there is no point there to be an inflection. For example <Katex tex="n=-1" />: <Katex tex="g''=x^{-3}\left(x^2+2x+2\right)e^{-x}" /> changes sign only across the asymptote.</>,
   },
   {
     working: <Katex display tex="n=0: \ g(x)=e^{-x}, \ g''(x)=e^{-x}>0" />,
-    reason: <>The formula <Katex tex="n\pm\sqrt n" /> gives <Katex tex="x=0" /> here, but at <Katex tex="n=0" /> the quadratic is just <Katex tex="x^2" />, and it cancels the <Katex tex="x^{-2}" /> in front. The curve bends up everywhere: <b>0 points of inflection</b>. So the 0 row is all of <Katex tex="n\le0" />.</>,
+    reason: <>The quadratic is <Katex tex="x^2" />, which cancels the <Katex tex="x^{-2}" />. So <Katex tex="g''>0" /> everywhere: <b>0 points of inflection</b>, and the 0 row is all of <Katex tex="n\le0" />.</>,
+    more: <>The report notes the majority of responses gave <Katex tex="n=0" /> one point of inflection.</>,
   },
   {
     working: <Katex display tex="n=1: \ g''(x) = x^{-1}\cdot x(x-2)e^{-x} = (x-2)e^{-x}" />,
-    reason: <>The root <Katex tex="n-\sqrt n=0" /> cancels against <Katex tex="x^{n-2}=x^{-1}" />, leaving just <Katex tex="x=2" />, where <Katex tex="g''" /> goes from negative to positive. <b>1 point of inflection.</b></>,
+    reason: <>The root <Katex tex="x=n-\sqrt n=0" /> cancels against <Katex tex="x^{-1}" />, leaving a sign change only at <Katex tex="x=2" /> (negative to positive). <b>1 point of inflection.</b></>,
   },
   {
     working: <Katex display tex="\begin{aligned} n=2,4,6,\ldots: \ & x^{n-2} \text{ is an even power,} \\ & \text{no sign change at } x=0 \end{aligned}" />,
-    reason: <>For <Katex tex="n\ge2" />, <Katex tex="n-\sqrt n" /> and <Katex tex="n+\sqrt n" /> are distinct and positive, and each is a single root of the quadratic, so <Katex tex="g''" /> changes sign at both. At <Katex tex="x=0" />, <Katex tex="x^{n-2}\ge0" /> on both sides: even where <Katex tex="g''(0)=0" /> (<Katex tex="n\ge4" />), the origin is a minimum, not an inflection. <b>2 points of inflection</b>, e.g. <Katex tex="n=4" />: <Katex tex="g''=x^2(x-2)(x-6)e^{-x}" />.</>,
+    reason: <>For <Katex tex="n\ge2" />, <Katex tex="n\pm\sqrt n" /> are two distinct positive roots, and the parabola crosses zero at each, so <Katex tex="g''" /> changes sign at both. An even power doesn&apos;t change sign at 0. <b>2 points of inflection.</b></>,
+    more: <><Katex tex="n-\sqrt n=\sqrt n\left(\sqrt n-1\right)>0" /> for <Katex tex="n\ge2" />. Even where <Katex tex="g''(0)=0" /> (<Katex tex="n\ge4" />), <Katex tex="x^{n-2}\ge0" /> on both sides, so the origin is a minimum, not an inflection. For example <Katex tex="n=4" />: <Katex tex="g''=x^2(x-2)(x-6)e^{-x}" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} n=3,5,7,\ldots: \ & x^{n-2} \text{ is an odd power,} \\ & g'' \text{ changes sign at } x=0 \end{aligned}" />,
-    reason: <>That adds the origin, which is on the graph since <Katex tex="g(0)=0" />, to the two points at <Katex tex="n\pm\sqrt n" />. As <Katex tex="g'(0)=0" /> too, it is a stationary point of inflection. <b>3 points of inflection</b>, e.g. <Katex tex="n=3" />: <Katex tex="g''=x\left(x^2-6x+6\right)e^{-x}" />.</>,
+    reason: <>An odd power changes sign at 0, and <Katex tex="g(0)=0" /> is on the graph. So the origin adds a third point to the two at <Katex tex="n\pm\sqrt n" />: <b>3 points of inflection.</b></>,
+    more: <>Since <Katex tex="g'(0)=0" /> too, the origin is a stationary point of inflection.</>,
   },
   {
     working: (
@@ -249,7 +264,8 @@ const ROWS_EII: WorkingRow[] = [
         </table>
       </div>
     ),
-    reason: <>The completed table. Only 2% of students scored both marks, and the report says very few distinguished between even and odd values of <Katex tex="n" />. Answer with integers, since <Katex tex="n\in Z" />: the report notes some students gave intervals of real numbers instead.</>,
+    reason: <>The completed table. Give integer values, since <Katex tex="n\in Z" />, not intervals of real numbers.</>,
+    more: <>Only 2% of students scored both marks. The report notes some students gave intervals of real numbers for <Katex tex="n" />, and very few distinguished between even and odd values of <Katex tex="n" />.</>,
   },
 ]
 
@@ -296,10 +312,6 @@ export default function SpecialistQ3_2020Exam2() {
             <Katex tex="x\to a" />. Something has to blow up at a finite <Katex tex="x" />: usually division by zero (like{' '}
             <Katex tex="\frac1x" /> at 0) or <Katex tex="\log_e" /> of something heading to 0. A polynomial times an
             exponential has neither, so it has no vertical asymptotes.
-          </p>
-          <p>
-            A steep curve is not an asymptote. Here <Katex tex="f(-1)=e\approx2.7" /> and{' '}
-            <Katex tex="f(-2)=4e^2\approx30" />: very steep, but finite at every <Katex tex="x" />.
           </p>
         </Background>
         <WrongMethod
@@ -424,9 +436,8 @@ export default function SpecialistQ3_2020Exam2() {
           source="Examiner's report"
           working={<Katex display tex="n=0: \ x=0\pm\sqrt0=0 \implies 1 \text{ point}" />}
         >
-          At <Katex tex="n=0" />, <Katex tex="g(x)=x^0e^{-x}=e^{-x}" /> and <Katex tex="g''(x)=e^{-x}" />, which is positive
-          everywhere, including at 0. The &ldquo;root&rdquo; <Katex tex="x=0" /> came from the quadratic{' '}
-          <Katex tex="x^2" />, which cancels the <Katex tex="x^{-2}" /> in front. Whenever a formula hands you a candidate,
+          The candidate <Katex tex="x=0" /> is not a sign change: at <Katex tex="n=0" />, <Katex tex="g''" /> is positive
+          everywhere (the <Katex tex="n=0" /> row). Whenever a formula hands you a candidate,
           check that <Katex tex="g''" /> actually changes sign there. In the diagram, set <Katex tex="n=0" /> with
           &ldquo;Just count x = n ± √n&rdquo; on.
         </WrongMethod>
@@ -438,7 +449,7 @@ export default function SpecialistQ3_2020Exam2() {
           Right for even <Katex tex="n" />, wrong for odd <Katex tex="n" />. When <Katex tex="n\ge3" /> is odd,{' '}
           <Katex tex="x^{n-2}" /> is an odd power, so <Katex tex="g''" /> also changes sign at <Katex tex="x=0" />. For{' '}
           <Katex tex="n=3" />, <Katex tex="g''(x)=x\left(x^2-6x+6\right)e^{-x}" /> is negative just left of 0 and positive
-          just right of it. That makes <Katex tex="(0,0)" /> a third, stationary, point of inflection. The catch: after
+          just right of it. The catch: after
           solving <Katex tex="g''=0" />, look at every factor, including the power of <Katex tex="x" /> set aside in e.i.
         </WrongMethod>
       </PartCard>

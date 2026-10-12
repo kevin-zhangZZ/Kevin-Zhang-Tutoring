@@ -71,7 +71,7 @@ export default function AccelerationTurns() {
         At <M>{'t=\\pi'}</M>: <M>{'-8\\sin(2\\pi)=0'}</M> and <M>{'-3\\cos(\\pi)=3'}</M>, so{' '}
         <M>{'\\underset{\\sim}{a}=3\\underset{\\sim}{j}'}</M> and <M>{'|\\underset{\\sim}{a}|=3'}</M>. It points straight up,
         into the bend, at right angles to <M>{'\\underset{\\sim}{v}=4\\underset{\\sim}{i}'}</M>: the velocity arrow is
-        swinging from slightly down to slightly up. Its length, the speed 4, is at its largest here (the faint arrows
+        swinging from slightly down to slightly up. Its length, the speed 4, has a local maximum here (the faint arrows
         either side are both shorter), so at this instant it isn&apos;t changing: all of{' '}
         <M>{'\\underset{\\sim}{a}'}</M> goes into turning. Slide away from <M>\pi</M> to see <M>{'\\underset{\\sim}{a}'}</M>{' '}
         also change the speed.

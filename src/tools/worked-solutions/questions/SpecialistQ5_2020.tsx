@@ -27,8 +27,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z = a+bi \implies \bar z = a-bi" />,
     reason: (
       <>
-        Every option is written in terms of <Katex tex="\operatorname{Re}(z)=a" /> and <Katex tex="\operatorname{Im}(z)=b" />, so
-        write everything in <Katex tex="a" /> and <Katex tex="b" /> and simplify until it looks like one of them.
+        Every option is in terms of <Katex tex="\operatorname{Re}(z)=a" /> and <Katex tex="\operatorname{Im}(z)=b" />, so write
+        everything in <Katex tex="a" /> and <Katex tex="b" /> and simplify.
       </>
     ),
   },
@@ -36,9 +36,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z\bar z = (a+bi)(a-bi) = a^2-b^2i^2 = a^2+b^2" />,
     reason: (
       <>
-        A difference of two squares, and <Katex tex="i^2=-1" /> turns the minus into a plus. Worth knowing by heart:{' '}
-        <Katex tex="z\bar z=|z|^2" />, the square of the distance from <Katex tex="0" /> to <Katex tex="z" />, always real and never
-        negative.
+        A difference of two squares; <Katex tex="i^2=-1" /> turns the minus into a plus.
+      </>
+    ),
+    more: (
+      <>
+        Worth knowing by heart: <Katex tex="z\bar z=|z|^2" />, the square of the distance from <Katex tex="0" /> to{' '}
+        <Katex tex="z" />, always real and never negative.
       </>
     ),
   },
@@ -46,9 +50,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z+\bar z = 2a \implies (z+\bar z)^2 = 4a^2" />,
     reason: (
       <>
-        Adding a number to its conjugate cancels the imaginary parts: <Katex tex="z+\bar z=2\operatorname{Re}(z)" />, always real. On
-        the Argand plane <Katex tex="z" /> and <Katex tex="\bar z" /> are mirror images in the real axis, so their sum lands on it. Note
-        it is <em>squared</em>, so the 4 downstairs will cancel the 4 upstairs.
+        Adding a number to its conjugate cancels the imaginary parts, so <Katex tex="z+\bar z=2\operatorname{Re}(z)" />. Then square it.
+      </>
+    ),
+    more: (
+      <>
+        On the Argand plane <Katex tex="z" /> and <Katex tex="\bar z" /> are mirror images in the real axis, so their sum lands on it:
+        it is always real.
       </>
     ),
   },
@@ -56,8 +64,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{4z\bar z}{(z+\bar z)^2} = \frac{4\left(a^2+b^2\right)}{4a^2} = \frac{a^2+b^2}{a^2}" />,
     reason: (
       <>
-        The condition <Katex tex="a\in R\setminus\{0\}" /> is there precisely so this division is allowed: if <Katex tex="a=0" />,{' '}
-        <Katex tex="z" /> is purely imaginary and <Katex tex="z+\bar z=0" />.
+        Substitute both results; the 4s cancel. Dividing by <Katex tex="a^2" /> is allowed because the question says{' '}
+        <Katex tex="a\neq0" />.
+      </>
+    ),
+    more: (
+      <>
+        That is why the condition <Katex tex="a\in R\setminus\{0\}" /> is there: if <Katex tex="a=0" />, <Katex tex="z" /> is purely
+        imaginary, <Katex tex="z+\bar z=0" /> and the expression is undefined.
       </>
     ),
   },
@@ -65,18 +79,22 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="= 1+\frac{b^2}{a^2} = \boxed{1+\left(\frac{\operatorname{Im}(z)}{\operatorname{Re}(z)}\right)^2}" />,
     reason: (
       <>
-        Split the fraction: <Katex tex="\tfrac{a^2}{a^2}=1" />. Matches option <b>A</b>. As a picture, the expression is{' '}
-        <Katex tex="\bigl(\tfrac{|z|}{a}\bigr)^2" />: hypotenuse over adjacent, squared, in the right triangle with sides{' '}
-        <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="|z|" />. That is <Katex tex="\sec^2\theta=1+\tan^2\theta" />, with{' '}
-        <Katex tex="\tan\theta=\tfrac{b}{a}" />. Check with <Katex tex="z=1+2i" /> (not <Katex tex="1+i" />):{' '}
-        <Katex tex="\tfrac{4\times5}{2^2}=5" /> and <Katex tex="1+2^2=5" /> ✓, while B, C, D and E give 8, 20, 40 and 4. Option <b>C</b>{' '}
-        is <Katex tex="4z\bar z" />, the numerator on its own, without dividing by <Katex tex="(z+\bar z)^2" />.
+        Split the fraction (<Katex tex="\tfrac{a^2}{a^2}=1" />). Matches option <b>A</b>.
       </>
     ),
     more: (
       <>
-        See the diagram below for the triangle, and the common mistake below for why the check avoids{' '}
-        <Katex tex="1+i" />.
+        <p>
+          Option <b>C</b>, the most common wrong answer (13%), is <Katex tex="4z\bar z" />: the numerator on its own, without
+          dividing by <Katex tex="(z+\bar z)^2" />. A quick check with <Katex tex="z=1+2i" />: the expression is{' '}
+          <Katex tex="\tfrac{4\times5}{2^2}=5" /> and A gives <Katex tex="1+2^2=5" /> ✓, while B, C, D and E give 8, 20, 40 and 4
+          (the common mistake below shows why <Katex tex="1+i" /> is a poor test value).
+        </p>
+        <p>
+          As a picture, the expression is <Katex tex="\bigl(\tfrac{|z|}{a}\bigr)^2" />: hypotenuse over adjacent, squared, in the
+          right triangle with sides <Katex tex="|a|" />, <Katex tex="|b|" /> and <Katex tex="|z|" /> (the diagram below). That is{' '}
+          <Katex tex="\sec^2\theta=1+\tan^2\theta" />, with <Katex tex="\tan\theta=\tfrac{b}{a}" />.
+        </p>
       </>
     ),
   },
@@ -129,8 +147,8 @@ export default function SpecialistQ5_2020() {
               different rules collapse to the same number (drag z to <Katex tex="1+i" /> in the diagram and watch E light up).
             </p>
             <p>
-              If you test, use a value whose real and imaginary parts are different and not 1, such as <Katex tex="z=1+2i" />: the
-              expression is 5, A gives 5 and E gives 4. Better still, keep <Katex tex="a" /> and <Katex tex="b" /> as letters and
+              If you test, use a value whose real and imaginary parts are different and not 1, such as <Katex tex="z=1+2i" /> (the check
+              in the last row of the working), where E is caught out. Better still, keep <Katex tex="a" /> and <Katex tex="b" /> as letters and
               simplify, as in the working.
             </p>
           </WrongMethod>

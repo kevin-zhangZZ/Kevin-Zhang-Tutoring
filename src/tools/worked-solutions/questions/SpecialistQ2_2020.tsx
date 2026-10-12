@@ -33,19 +33,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\cos^{-1}(x) \text{ has range } [0,\pi]" />,
-    reason: <>Follow the report&apos;s advice: build <Katex tex="f" /> from the graph of <Katex tex="y=\cos^{-1}(x)" /> one transformation at a time, tracking the range at each step. <Katex tex="\cos^{-1}" /> runs from <Katex tex="0" /> (at <Katex tex="x=1" />) up to <Katex tex="\pi" /> (at <Katex tex="x=-1" />).</>,
+    reason: <>Build <Katex tex="f" /> from <Katex tex="y=\cos^{-1}(x)" /> one transformation at a time, tracking the range. <Katex tex="\cos^{-1}(x)" /> runs from <Katex tex="0" /> (at <Katex tex="x=1" />) up to <Katex tex="\pi" /> (at <Katex tex="x=-1" />).</>,
+    more: <>This is the report&apos;s advice: use transformations on <Katex tex="g(x)=\cos^{-1}(x)" />.</>,
   },
   {
     working: <Katex display tex="b\cos^{-1}(x) \text{ has range } [0,\ b\pi]" />,
-    reason: <>Multiplying by <Katex tex="b" /> is a dilation by factor <Katex tex="b" /> from the <Katex tex="x" />-axis: every height is multiplied by <Katex tex="b" />. Since <Katex tex="b>0" />, the ends keep their order: <Katex tex="0\to0" /> and <Katex tex="\pi\to b\pi" />.</>,
+    reason: <>Multiplying by <Katex tex="b" /> is a dilation by factor <Katex tex="b" /> from the <Katex tex="x" />-axis. Since <Katex tex="b>0" />, the ends go <Katex tex="0\to0" /> and <Katex tex="\pi\to b\pi" />.</>,
   },
   {
     working: <Katex display tex="b\cos^{-1}(x) - a \text{ has range } [-a,\ b\pi-a]" />,
-    reason: <>Subtracting <Katex tex="a" /> is a translation <Katex tex="a" /> units down, so every height, and both ends of the range, drop by <Katex tex="a" />. This is option A, but the modulus hasn&apos;t been applied yet.</>,
+    reason: <>Subtracting <Katex tex="a" /> is a translation <Katex tex="a" /> units down, so both ends of the range drop by <Katex tex="a" />. This is option A, but the modulus hasn&apos;t been applied yet.</>,
   },
   {
     working: <Katex display tex="-a < 0 < b\pi - a" />,
-    reason: <>Since <Katex tex="a>0" /> and <Katex tex="a<\tfrac{b\pi}{2}<b\pi" />, the lower end is negative and the upper end positive: the graph crosses the <Katex tex="x" />-axis, where <Katex tex="b\cos^{-1}(x)=a" />, i.e. at <Katex tex="x=\cos\left(\tfrac ab\right)" />.</>,
+    reason: <>Since <Katex tex="a>0" /> and <Katex tex="a<\tfrac{b\pi}{2}<b\pi" />, the lower end is negative and the upper end positive, so the graph crosses the <Katex tex="x" />-axis on the way.</>,
+    more: <>It crosses where <Katex tex="b\cos^{-1}(x)=a" />, i.e. at <Katex tex="x=\cos\left(\tfrac ab\right)" />. That is inside <Katex tex="[-1,1]" />, since <Katex tex="0<\tfrac ab<\tfrac\pi2" />.</>,
   },
   {
     working: (
@@ -54,16 +56,18 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\text{heights in } [0,\ b\pi-a] \text{ unchanged}" />
       </>
     ),
-    reason: <>The modulus reflects the part of the graph below the <Katex tex="x" />-axis up above it and leaves the rest alone. So the lowest point <Katex tex="(1,-a)" /> goes up to <Katex tex="(1,a)" />, and the crossing point stays at height <Katex tex="0" />, which makes it the new lowest point.</>,
+    reason: <>The modulus reflects the part of the graph below the <Katex tex="x" />-axis up above it and leaves the rest alone. So <Katex tex="(1,-a)" /> goes up to <Katex tex="(1,a)" />, and the crossing point, at height <Katex tex="0" />, becomes the lowest point.</>,
     more: <>Watch the fold in the diagram below.</>,
   },
   {
     working: <Katex display tex="a < \tfrac{b\pi}{2} \;\implies\; 2a < b\pi \;\implies\; a < b\pi - a" />,
-    reason: <>Which is higher now: the flipped end at height <Katex tex="a" />, or the untouched top at <Katex tex="b\pi-a" />? This is exactly what the condition <Katex tex="a<\tfrac{b\pi}{2}" /> decides (the report&apos;s <Katex tex="b\pi>2a" />): the flipped piece stays below the top, so the maximum is <Katex tex="b\pi-a" />.</>,
+    reason: <>Which is higher now: the flipped end at height <Katex tex="a" /> or the untouched top at <Katex tex="b\pi-a" />? The condition <Katex tex="a<\tfrac{b\pi}{2}" /> decides it: the top, so the maximum is <Katex tex="b\pi-a" />.</>,
+    more: <>This is the report&apos;s <Katex tex="b\pi>2a" />. Without it (if <Katex tex="\tfrac{b\pi}{2}<a<b\pi" />) the flipped end would be higher than the top, and the range would be <Katex tex="[0,\ a]" />, none of the options.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Range} = [0,\ b\pi-a]}" />,
-    reason: <>Minimum <Katex tex="0" /> at <Katex tex="x=\cos\left(\tfrac ab\right)" /> (inside <Katex tex="[-1,1]" />, since <Katex tex="0<\tfrac ab<\tfrac\pi2" />); maximum <Katex tex="b\pi-a" /> at <Katex tex="x=-1" />. Matches option <b>B</b>. Option <b>A</b> is the range before the modulus is taken; option <b>C</b> takes the modulus of the two ends only, missing that the graph passes through <Katex tex="0" /> on the way; option <b>E</b> is the range of <Katex tex="a-b\cos^{-1}(x)" />, the whole graph reflected in the <Katex tex="x" />-axis instead of only the part below it folded up.</>,
+    reason: <>Minimum <Katex tex="0" /> where the graph touches the axis; maximum <Katex tex="b\pi-a" /> at <Katex tex="x=-1" />. Matches option <b>B</b>.</>,
+    more: <>Option <b>A</b> is the interval from the third line; option <b>C</b> takes the modulus of the two ends only, missing that the graph passes through <Katex tex="0" /> on the way (both are in the Common Mistake boxes below). Option <b>D</b>&apos;s top, <Katex tex="b\pi+a" />, would need the graph moved <em>up</em> by <Katex tex="a" />. Option <b>E</b> is the range of <Katex tex="a-b\cos^{-1}(x)" />: the whole graph reflected in the <Katex tex="x" />-axis instead of only the part below it folded up.</>,
   },
 ]
 
@@ -121,7 +125,7 @@ export default function SpecialistQ2_2020() {
             <p>
               Taking the modulus of the two ends only works when the whole interval is on one side of <Katex tex="0" />.
               Here the values run from <Katex tex="-a" /> up to <Katex tex="b\pi-a" />, so they pass through{' '}
-              <Katex tex="0" /> on the way, at <Katex tex="x=\cos\left(\tfrac ab\right)" />, and <Katex tex="|0|=0" />. So{' '}
+              <Katex tex="0" /> on the way, and <Katex tex="|0|=0" />. So{' '}
               <Katex tex="f" /> reaches <Katex tex="0" />, which is lower than <Katex tex="a" />. The folded graph has a
               sharp corner sitting on the <Katex tex="x" />-axis there.
             </p>

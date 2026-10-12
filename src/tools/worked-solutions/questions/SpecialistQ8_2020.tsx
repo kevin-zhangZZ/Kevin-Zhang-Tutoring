@@ -27,14 +27,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y - ix = -i(x+iy)" />,
     reason: (
       <>
-        How would you spot this? <Katex tex="y-ix" /> is built from the same two real numbers as <Katex tex="x+iy" />,
-        swapped over, with a sign change. That swap is the fingerprint of multiplying by <Katex tex="i" /> or{' '}
-        <Katex tex="-i" />: <Katex tex="i(x+iy)=-y+ix" /> and <Katex tex="-i(x+iy)=y-ix" />. Check by expanding:{' '}
-        <Katex tex="-i(x+iy) = -ix - i^2y = y-ix" />. On an Argand diagram, multiplying by <Katex tex="-i" /> turns a
-        point a quarter-turn clockwise about <Katex tex="O" />: <Katex tex="(x,y)" /> goes to <Katex tex="(y,-x)" />.
+        <Katex tex="y-ix" /> has the same two numbers as <Katex tex="x+iy" />, swapped, with a sign change: the pattern
+        that multiplying by <Katex tex="i" /> or <Katex tex="-i" /> produces. Check: <Katex tex="-i(x+iy) = -ix - i^2y = y-ix" />.
       </>
     ),
-    more: <>See the diagram below.</>,
+    more: (
+      <>
+        Multiplying by <Katex tex="i" /> gives <Katex tex="i(x+iy)=-y+ix" />, and by <Katex tex="-i" /> gives{' '}
+        <Katex tex="y-ix" />, the one we want. On an Argand diagram, multiplying by <Katex tex="-i" /> turns a point a
+        quarter-turn clockwise about <Katex tex="O" />: <Katex tex="(x,y)" /> goes to <Katex tex="(y,-x)" />. See the
+        diagram below.
+      </>
+    ),
   },
   {
     working: (
@@ -45,12 +49,11 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Now the given <Katex tex="(x+iy)^{14}" /> appears. The power belongs to everything inside the bracket, so the{' '}
-        <Katex tex="-i" /> is raised to the 14th power as well, just as <Katex tex="(2x)^2=4x^2" />, not{' '}
-        <Katex tex="2x^2" />. Leaving it out gives the popular wrong answer B.
+        Now the given <Katex tex="(x+iy)^{14}" /> appears. The power applies to the whole bracket, so{' '}
+        <Katex tex="-i" /> is raised to the 14th power too, just as <Katex tex="(2x)^2=4x^2" />.
       </>
     ),
-    more: <>See the common mistake below.</>,
+    more: <>Leaving the <Katex tex="-i" /> outside the power gives the popular wrong answer B: see the common mistake below.</>,
   },
   {
     working: (
@@ -61,11 +64,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="(-i)^2=i^2=-1" />, so group the fourteen factors into seven pairs. Or think in turns: fourteen
-        quarter-turns clockwise is <Katex tex="3\tfrac12" /> turns, which ends where a half-turn does, and a half-turn
-        about <Katex tex="O" /> is multiplication by <Katex tex="-1" />. The powers of <Katex tex="-i" /> run{' '}
-        <Katex tex="-i,\,-1,\,i,\,1" /> and repeat every four; <Katex tex="14=3\times4+2" />, so{' '}
-        <Katex tex="(-i)^{14}=(-i)^2" />.
+        <Katex tex="(-i)^2=i^2=-1" />, so group the fourteen factors into seven pairs.
+      </>
+    ),
+    more: (
+      <>
+        Or think in turns: fourteen quarter-turns clockwise is <Katex tex="3\tfrac12" /> turns, which ends where a
+        half-turn does, and a half-turn about <Katex tex="O" /> is multiplication by <Katex tex="-1" />. Or use the
+        cycle: the powers of <Katex tex="-i" /> run <Katex tex="-i,\,-1,\,i,\,1" /> and repeat every four;{' '}
+        <Katex tex="14=3\times4+2" />, so <Katex tex="(-i)^{14}=(-i)^2" />.
       </>
     ),
   },
@@ -83,23 +90,28 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A quick check: the result holds &ldquo;for all values of <Katex tex="x" /> and <Katex tex="y" />&rdquo;, so try
-        some. <Katex tex="(1+i)^2=2i" /> and <Katex tex="(1-i)^2=-2i" />, and <Katex tex="i^7=-i" />. Choose values that
-        make <Katex tex="b\ne0" />, or A and D can&apos;t be told apart (<Katex tex="x=1,\ y=0" /> gives <Katex tex="-1" />{' '}
-        for both). With <Katex tex="x=y=1" /> only option A gives <Katex tex="128i" />: B and E give{' '}
-        <Katex tex="-128" />, C gives <Katex tex="128" /> and D gives <Katex tex="-128i" />.
+        Check with numbers, since it holds for all <Katex tex="x" /> and <Katex tex="y" />. Use{' '}
+        <Katex tex="(1+i)^2=2i" />, <Katex tex="(1-i)^2=-2i" /> and <Katex tex="i^7=-i" />.
+      </>
+    ),
+    more: (
+      <>
+        Choose values that make <Katex tex="b\ne0" />, or A and D can&apos;t be told apart (<Katex tex="x=1,\ y=0" />{' '}
+        gives <Katex tex="-1" /> for both). With <Katex tex="x=y=1" /> only option A gives <Katex tex="128i" />: B and E
+        give <Katex tex="-128" />, C gives <Katex tex="128" /> and D gives <Katex tex="-128i" />.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{-a - ib}" />,
-    reason: (
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
       <>
-        Matches option <b>A</b>. As it should, it has the same modulus as <Katex tex="a+ib" />, since{' '}
-        <Katex tex="|y-ix|=|x+iy|" />. Option <b>B</b> (29%) is <Katex tex="-i(a+ib)=b-ia" />: the <Katex tex="-i" />{' '}
-        taken outside the bracket and never raised to the 14th power. Option <b>C</b> is <Katex tex="i(a+ib)=-b+ia" />,
-        the same slip with <Katex tex="i" /> in place of <Katex tex="-i" /> (and since <Katex tex="i^{14}=-1" /> too, that
-        sign wouldn&apos;t have mattered once the power was applied).
+        Sanity check: <Katex tex="-a-ib" /> has the same modulus as <Katex tex="a+ib" />, as it must, since <Katex tex="|y-ix|=|x+iy|" />. Option{' '}
+        <b>B</b> (29%) is <Katex tex="-i(a+ib)=b-ia" />: the <Katex tex="-i" /> taken outside the bracket and never
+        raised to the 14th power. Option <b>C</b> is <Katex tex="i(a+ib)=-b+ia" />, the same slip with{' '}
+        <Katex tex="i" /> in place of <Katex tex="-i" /> (since <Katex tex="i^{14}=-1" /> too, that sign wouldn&apos;t
+        have mattered once the power was applied).
       </>
     ),
   },

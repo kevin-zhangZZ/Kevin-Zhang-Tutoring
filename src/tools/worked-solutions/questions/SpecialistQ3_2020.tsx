@@ -27,16 +27,18 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="0\le t\le30: \ v \text{ rises from } 0 \text{ to } 10" />,
-    reason: <>Sketch the velocity–time graph from the story before looking at the options: up from rest to 10&nbsp;m&nbsp;s<sup>−1</sup>, flat, then down to 0. Constant acceleration means a constant gradient, so each phase is a straight line.</>,
+    reason: <>Sketch the velocity–time graph from the story first: up from rest to 10&nbsp;m&nbsp;s<sup>−1</sup>, flat, then down to 0. Constant acceleration means a constant gradient, so each phase is a straight line.</>,
     more: <>The diagram below draws it.</>,
   },
   {
     working: <Katex display tex="v = \frac{10}{30}t = \frac{t}{3}" />,
-    reason: <>Gradient is rise over run: 10&nbsp;m&nbsp;s<sup>−1</sup> gained over 30 s is <Katex tex="\tfrac{10}{30}" />, not <Katex tex="\tfrac{30}{10}" />. Options C and D invert it, and <Katex tex="3t" /> would already be 90&nbsp;m&nbsp;s<sup>−1</sup> at <Katex tex="t=30" />. The line starts at the origin (at rest when <Katex tex="t=0" />), so there is no constant term.</>,
+    reason: <>Gradient is rise over run: 10&nbsp;m&nbsp;s<sup>−1</sup> gained over 30 s. The line starts at the origin (at rest when <Katex tex="t=0" />), so there is no constant term.</>,
+    more: <>It is <Katex tex="\tfrac{10}{30}" />, not <Katex tex="\tfrac{30}{10}" />. Options C and D invert it: <Katex tex="3t" /> would already be 90&nbsp;m&nbsp;s<sup>−1</sup> at <Katex tex="t=30" />.</>,
   },
   {
     working: <Katex display tex="30<t\le230: \ v = 10" />,
-    reason: <>The 200 seconds is how long the cruise <em>lasts</em>, not when it ends. It starts at <Katex tex="t=30" />, so it ends at <Katex tex="30+200=230" />. Option E ends it at 200.</>,
+    reason: <>The cruise starts at <Katex tex="t=30" /> and <em>lasts</em> 200 seconds, so it ends at <Katex tex="30+200=230" />.</>,
+    more: <>The 200 is a duration, not the time the cruise ends. Option E ends it at 200.</>,
   },
   {
     working: <Katex display tex="230<t\le260: \ v \text{ falls from } 10 \text{ to } 0" />,
@@ -48,11 +50,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v - 0 = -\tfrac13(t-260) \implies v = \tfrac13(260-t)" />,
-    reason: <>Point–gradient form through <Katex tex="(260,0)" />, the moment the train stops, so the bracket is <Katex tex="260-t" />. Check the other end: <Katex tex="\tfrac13(260-230)=10" /> ✓. Option B uses <Katex tex="230-t" />, which is zero at <Katex tex="t=230" />, when the train is still doing 10&nbsp;m&nbsp;s<sup>−1</sup>, and negative for the whole braking phase.</>,
+    reason: <>Point–gradient form through <Katex tex="(260,0)" />, the moment the train stops. Check the other end: <Katex tex="\tfrac13(260-230)=10" /> ✓.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{option A}}" />,
-    reason: <>Matches option <b>A</b>. Option <b>B</b> has the braking piece through the wrong point, options <b>C</b> and <b>D</b> have the gradient <Katex tex="3" /> instead of <Katex tex="\tfrac13" />, and option <b>E</b> ends the cruise at 200 instead of 230. Check the joins: <Katex tex="\tfrac{30}{3}=10" /> ✓ and <Katex tex="\tfrac{260-230}{3}=10" /> ✓, so the velocity never jumps, as a real train&apos;s can&apos;t. The area under the graph, <Katex tex="\tfrac12(30)(10)+200(10)+\tfrac12(30)(10)=2300" /> m, is a sensible distance between two stations.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option <b>B</b> has the braking piece <Katex tex="\tfrac13(230-t)" />: the right gradient through the wrong point (the Common Mistake box below). Options <b>C</b>, <b>D</b> and <b>E</b> are the slips noted under the second and third lines. Check the joins: <Katex tex="\tfrac{30}{3}=10" /> ✓ and <Katex tex="\tfrac{260-230}{3}=10" /> ✓, so the velocity never jumps, as a real train&apos;s can&apos;t. The area under the graph, <Katex tex="\tfrac12(30)(10)+200(10)+\tfrac12(30)(10)=2300" /> m, is a sensible distance between two stations.</>,
   },
 ]
 

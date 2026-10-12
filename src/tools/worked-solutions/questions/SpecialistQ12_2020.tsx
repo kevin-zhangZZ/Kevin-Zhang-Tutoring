@@ -25,23 +25,26 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y_{n+1} = y_n+h\,f(x_n), \quad h = 0.1, \ f(x) = e^{\cos(x)}" />,
-    reason: <>Euler's method replaces the curve by its tangent for one small step: from the point you are at, go across <Katex tex="h" /> and up <Katex tex="h\times" />(the gradient there). The gradient is taken at <Katex tex="x_n" />, where the step <em>starts</em>, because that is the only point you already know. <Katex tex="y_3" /> is three steps from <Katex tex="x_0=0" />, so the steps start at 0, 0.1 and 0.2 and finish at <Katex tex="x_3=0.3" />.</>,
+    reason: <>Each Euler step uses the gradient at <Katex tex="x_n" />, where the step <em>starts</em>. <Katex tex="y_3" /> is three steps from <Katex tex="x_0=0" />, starting at 0, 0.1 and 0.2.</>,
+    more: <>Euler's method replaces the curve by its tangent for one small step: from the point you are at, go across <Katex tex="h" /> and up <Katex tex="h\times" />(the gradient there). The gradient is taken where the step starts because that is the only point you already know. The three steps finish at <Katex tex="x_3=0.3" />.</>,
   },
   {
     working: <Katex display tex="y_1 = y_0+0.1\,f(0) = e+0.1\,e^{\cos(0)} = e+0.1e" />,
-    reason: <>First step, from <Katex tex="x_0=0" />. <Katex tex="\cos(0)=1" />, so <Katex tex="e^{\cos(0)}=e^1=e" />. It is <Katex tex="e^0" /> that equals 1: using 1 here is the slip in options A and B.</>,
+    reason: <>First step, from <Katex tex="x_0=0" />. <Katex tex="\cos(0)=1" />, so <Katex tex="e^{\cos(0)}=e^1=e" />.</>,
+    more: <>It is <Katex tex="e^0" /> that equals 1: using 1 here is the slip in options A and B.</>,
   },
   {
     working: <Katex display tex="y_2 = y_1+0.1\,f(0.1) = e+0.1\left(e+e^{\cos(0.1)}\right)" />,
-    reason: <>The second step starts at <Katex tex="x_1=0.1" />, so it uses the gradient there. Leave it unevaluated and collect the 0.1s: every option is in this exact form.</>,
+    reason: <>The second step starts at <Katex tex="x_1=0.1" />, so it uses the gradient there. Leave it unevaluated and collect the 0.1s, as every option does.</>,
   },
   {
     working: <Katex display tex="y_3 = y_2+0.1\,f(0.2)" />,
-    reason: <>The third step starts at <Katex tex="x_2=0.2" />. It finishes at <Katex tex="x_3=0.3" />, but the gradient at 0.3 is never used: it would only start a fourth step.</>,
+    reason: <>The third step starts at <Katex tex="x_2=0.2" />. The gradient at 0.3 is never used: it would only start a fourth step.</>,
   },
   {
     working: <Katex display tex="\boxed{y_3 = e+0.1\left(e+e^{\cos(0.1)}+e^{\cos(0.2)}\right)}" />,
-    reason: <>Matches option <b>C</b>: three steps, three gradients, read at <Katex tex="x=0" />, 0.1 and 0.2. Option D (17%) reads each gradient at the <em>end</em> of its step (0.1, 0.2, 0.3); option E adds a fourth step, so it is <Katex tex="y_4" />; options B and A take <Katex tex="e^{\cos(0)}" /> as 1, and A also stops after two steps. As a check, C <Katex tex="\approx3.527" />, close to the exact <Katex tex="y(0.3)\approx3.522" />; Euler is a little high because the gradient <Katex tex="e^{\cos(x)}" /> is falling, so each tangent overshoots.</>,
+    reason: <>Matches option <b>C</b>: three gradients, read at <Katex tex="x=0" />, 0.1 and 0.2.</>,
+    more: <>Option D (17%) reads each gradient at the <em>end</em> of its step (0.1, 0.2, 0.3); it and option B (12%) are worked through in the common mistakes below. Option E adds a fourth step, so it is <Katex tex="y_4" />. As a check, C <Katex tex="\approx3.527" />, close to the exact <Katex tex="y(0.3)\approx3.522" />; Euler is a little high because the gradient <Katex tex="e^{\cos(x)}" /> is falling, so each tangent overshoots.</>,
   },
 ]
 

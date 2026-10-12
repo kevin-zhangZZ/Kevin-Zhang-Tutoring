@@ -27,9 +27,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="P(3i) = 0 \implies P(-3i) = 0" />,
     reason: (
       <>
-        &ldquo;Real coefficients&rdquo; is the clue: then non-real roots come in conjugate pairs (the conjugate root theorem). The
-        reason: conjugating both sides of <Katex tex="P(3i)=0" /> changes every <Katex tex="i" /> to <Katex tex="-i" /> but leaves the
-        real coefficients alone, so <Katex tex="P(-3i)=\overline{0}=0" />. This is what gives the cubic its third root for free.
+        &ldquo;Real coefficients&rdquo; is the clue: non-real roots then come in conjugate pairs (the conjugate root theorem).
+      </>
+    ),
+    more: (
+      <>
+        Why it works: conjugating both sides of <Katex tex="P(3i)=0" /> changes every <Katex tex="i" /> to <Katex tex="-i" /> but
+        leaves the real coefficients alone, so <Katex tex="P(-3i)=\overline{0}=0" />. This is what gives the cubic its third root for
+        free.
       </>
     ),
   },
@@ -41,12 +46,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="(z-3i)(z+3i) = z^2-9i^2 = z^2+9" />,
     reason: (
       <>
-        Pair the conjugates first: a difference of two squares, and <Katex tex="i^2=-1" /> makes every <Katex tex="i" /> disappear.
-        That is exactly why the pair is needed; with any other third root the <Katex tex="i" />&apos;s would not cancel and the
-        coefficients would not be real.
+        Pair the conjugates first: a difference of two squares, and <Katex tex="i^2=-1" /> makes the <Katex tex="i" />&apos;s
+        disappear.
       </>
     ),
-    more: <>Drag the third root around in the diagram below.</>,
+    more: (
+      <>
+        That is exactly why the pair is needed: with any other third root the <Katex tex="i" />&apos;s would not cancel and the
+        coefficients would not be real. The diagram below lets you drag the third root around and watch this happen.
+      </>
+    ),
   },
   {
     working: <Katex display tex="P(z) = (z+2)\left(z^2+9\right) = z^3+2z^2+9z+18" />,
@@ -56,13 +65,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{a=2, \ b=9, \ c=18}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option <b>E</b> comes from treating the roots as <Katex tex="\pm3" /> instead of{' '}
-        <Katex tex="\pm3i" />, and option <b>A</b> from using the root <Katex tex="2" /> instead of <Katex tex="-2" />. A fast check:{' '}
-        <Katex tex="c=18" /> must be minus the product of the roots, <Katex tex="-(-2)(3i)(-3i)=-(-2)(9)=18" /> ✓, and{' '}
-        <Katex tex="P(-2)=-8+8-18+18=0" /> ✓.
+        Matches option <b>C</b>.
       </>
     ),
-    more: <>Options <b>E</b> and <b>A</b> are both worked through below.</>,
+    more: (
+      <>
+        A fast check: substituting the given root, <Katex tex="P(-2)=-8+8-18+18=0" /> ✓, and the constant term is{' '}
+        <Katex tex="2\times9=18" /> from the two factors ✓. Options <b>E</b> (7%) and <b>A</b> (6%) are the two common
+        mistakes below. B and D come from other roots
+        altogether: B is <Katex tex="(z+3)(z^2+4)" /> (roots <Katex tex="-3" /> and <Katex tex="\pm2i" />) and D is{' '}
+        <Katex tex="(z-3)(z^2-4)" /> (roots <Katex tex="3" /> and <Katex tex="\pm2" />).
+      </>
+    ),
   },
 ]
 

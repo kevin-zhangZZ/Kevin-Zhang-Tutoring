@@ -23,20 +23,50 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dm}{dt} = (\text{rate in})-(\text{rate out})" />,
-    reason: <><Katex tex="m" /> is the mass of salt, so <Katex tex="\tfrac{dm}{dt}" /> is how fast it changes, in grams per minute. Salt only changes by arriving or leaving, so split it into the two. Each rate is a flow times a concentration: <Katex tex="\tfrac{\text{L}}{\text{min}}\times\tfrac{\text{g}}{\text{L}}=\tfrac{\text{g}}{\text{min}}" />.</>,
+    reason: (
+      <>
+        Salt only changes by arriving or leaving. Each rate is a flow times a concentration:{' '}
+        <Katex tex="\tfrac{\text{L}}{\text{min}}\times\tfrac{\text{g}}{\text{L}}=\tfrac{\text{g}}{\text{min}}" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="m" /> is the mass of salt, so <Katex tex="\tfrac{dm}{dt}" /> is how fast it changes, in grams per minute; splitting
+        it into what comes in and what goes out turns one hard rate into two easy ones.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{rate in} = 2\times15 = 30 \ \text{g/min}" />,
-    reason: <>"15 grams of salt per litre" is the <em>concentration</em> of what comes in, and 2 litres arrive each minute: 30 g of salt a minute. It doesn't depend on <Katex tex="m" />, so it is a constant.</>,
+    reason: (
+      <>
+        2 L a minute arrive, each carrying 15 g of salt. It doesn&apos;t depend on <Katex tex="m" />, so it is a constant.
+      </>
+    ),
   },
   {
     working: <Katex display tex="V(t) = 50+2t-5t = 50-3t" />,
-    reason: <>The trap. For the outflow you need the concentration <em>in the tank</em>, which depends on how much liquid is in it, and that is changing. Every minute 2 L arrive and 5 L leave, so the tank loses 3 L a minute. Volume = start + (in − out) × time, every time.</>,
-    more: <>Watch it drain in the diagram below.</>,
+    reason: (
+      <>
+        The outflow needs the concentration <em>in the tank</em>, so first the volume: 2 L arrive and 5 L leave each minute, a net loss
+        of 3 L a minute.
+      </>
+    ),
+    more: (
+      <>
+        This is the trap: the volume is changing, so the concentration in the tank depends on <Katex tex="t" /> as well as{' '}
+        <Katex tex="m" />. The diagram below shows the tank draining.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{concentration in the tank} = \frac{m}{50-3t} \ \text{g/L}" />,
-    reason: <>"Well stirred" means the salt is spread evenly, so every litre in the tank, including each litre that flows out, holds the same <Katex tex="\tfrac{m}{V}" /> grams.</>,
+    reason: (
+      <>
+        &ldquo;Well stirred&rdquo; means the salt is spread evenly, so every litre, including each litre that flows out, holds{' '}
+        <Katex tex="\tfrac{m}{V}" /> grams.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\text{rate out} = 5\times\frac{m}{50-3t} = \frac{5m}{50-3t}" />,
@@ -44,7 +74,21 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{dm}{dt} = 30-\frac{5m}{50-3t}}" />,
-    reason: <>Matches option <b>D</b>. Option E (14%) uses <Katex tex="50-5t" />, which counts the 5 L leaving but forgets the 2 L arriving; option C keeps the volume at 50 L (<Katex tex="\tfrac{5m}{50}=\tfrac{m}{10}" />); option B uses <Katex tex="50-5t" /> and also leaves out the 30 g/min coming in. "For a non-zero volume of mixture" restricts this to <Katex tex="t<\tfrac{50}{3}" />: at <Katex tex="t=\tfrac{50}{3}\approx16.7" /> the tank is empty and the fraction is undefined. Check at <Katex tex="t=0" />: <Katex tex="30-\tfrac{5(300)}{50}=0" />. The tank starts at 6 g/L, so salt leaves at <Katex tex="5\times6=30" /> g/min, exactly what arrives; option A's <Katex tex="\tfrac{dm}{dt}=0" /> is true only at that instant.</>,
+    reason: (
+      <>
+        Matches option <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>E</b> (14%, the most common wrong answer) uses <Katex tex="50-5t" /> (the common mistake below). Option C keeps the volume at 50 L (<Katex tex="\tfrac{5m}{50}=\tfrac{m}{10}" />);
+        option B uses <Katex tex="50-5t" /> and also leaves out the 30 g/min coming in. &ldquo;For a non-zero volume of
+        mixture&rdquo; restricts this to <Katex tex="t<\tfrac{50}{3}" />: at <Katex tex="t=\tfrac{50}{3}\approx16.7" /> the tank is
+        empty and the fraction is undefined. Check at <Katex tex="t=0" />: <Katex tex="30-\tfrac{5(300)}{50}=0" />. The tank starts at
+        6 g/L, so salt leaves at <Katex tex="5\times6=30" /> g/min, exactly what arrives; option A&apos;s{' '}
+        <Katex tex="\tfrac{dm}{dt}=0" /> is true only at that instant.
+      </>
+    ),
   },
 ]
 

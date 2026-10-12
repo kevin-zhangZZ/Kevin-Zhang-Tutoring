@@ -43,12 +43,17 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="f\bigl(g(x)\bigr)" /> takes each output of <Katex tex="g" /> and feeds it into <Katex tex="f" />, so it only
-        exists if every output of <Katex tex="g" /> is an input <Katex tex="f" /> accepts: range of <Katex tex="g" /> inside the
-        domain of <Katex tex="f" />. <Katex tex="f" /> needs <Katex tex="x-1\ge0" /> for the square root (and <Katex tex="x\ne0" />,
-        already covered). On <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />, <Katex tex="\sin^2(x)" /> is strictly between 0 and 1, so its
-        reciprocal <Katex tex="\operatorname{cosec}^2(x)" /> is always bigger than 1. The check passes, and the composite has{' '}
-        <Katex tex="g" />&apos;s domain <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />: the interval the range must be worked out over.
+        <Katex tex="f\bigl(g(x)\bigr)" /> feeds each output of <Katex tex="g" /> into <Katex tex="f" />, so it exists only if{' '}
+        <Katex tex="\operatorname{ran} g\subseteq\operatorname{dom} f" />. It does, and the composite then has{' '}
+        <Katex tex="g" />&apos;s domain, the interval the range is found over.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="f" /> needs <Katex tex="x-1\ge0" /> for the square root (and <Katex tex="x\ne0" />, already covered). On{' '}
+        <Katex tex="\big(0,\tfrac{\pi}{2}\big)" />, <Katex tex="\sin^2(x)" /> is strictly between 0 and 1, so its reciprocal{' '}
+        <Katex tex="\operatorname{cosec}^2(x)" /> is always bigger than 1: every output of <Katex tex="g" /> is a number{' '}
+        <Katex tex="f" /> accepts.
       </>
     ),
   },
@@ -65,10 +70,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="\operatorname{cosec}^2(x)-1" /> is the Pythagorean identity <Katex tex="1+\cot^2(x)=\operatorname{cosec}^2(x)" />{' '}
-        rearranged, and it is what makes the square root go away. The square root of a square is the absolute value; for{' '}
-        <Katex tex="0<x<\tfrac{\pi}{2}" /> both <Katex tex="\cos(x)" /> and <Katex tex="\sin(x)" /> are positive, so{' '}
-        <Katex tex="\cot(x)>0" /> and the absolute value drops.
+        The identity <Katex tex="1+\cot^2(x)=\operatorname{cosec}^2(x)" /> removes the square root. The absolute value drops
+        because <Katex tex="\cot(x)>0" /> for <Katex tex="0<x<\tfrac{\pi}{2}" />.
+      </>
+    ),
+    more: (
+      <>
+        The square root of a square is the absolute value, <Katex tex="\sqrt{\cot^2(x)}=|\cot(x)|" />. On{' '}
+        <Katex tex="\big(0,\tfrac{\pi}{2}\big)" /> both <Katex tex="\cos(x)" /> and <Katex tex="\sin(x)" /> are positive, so their
+        quotient <Katex tex="\cot(x)" /> is positive too.
       </>
     ),
   },
@@ -81,10 +91,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Dividing by <Katex tex="\operatorname{cosec}^2(x)" /> is multiplying by <Katex tex="\sin^2(x)" />. By the double-angle formula{' '}
-        <Katex tex="\sin(2x)=2\sin(x)\cos(x)" />, <Katex tex="\sin(x)\cos(x)" /> and <Katex tex="\tfrac12\sin(2x)" /> are the same rule, so
-        options C, D and E all have it; A and B have <Katex tex="g\bigl(f(x)\bigr)" />, the functions composed in the wrong order. The
-        range decides between C, D and E.
+        Dividing by <Katex tex="\operatorname{cosec}^2(x)" /> is multiplying by <Katex tex="\sin^2(x)" />; then the double-angle
+        formula <Katex tex="\sin(2x)=2\sin(x)\cos(x)" />.
+      </>
+    ),
+    more: (
+      <>
+        So <Katex tex="\sin(x)\cos(x)" /> and <Katex tex="\tfrac12\sin(2x)" /> are the same rule, and options C, D and E all have
+        it. Options A and B have <Katex tex="g\bigl(f(x)\bigr)" />, the functions composed in the wrong order. The range decides
+        between C, D and E.
       </>
     ),
   },
@@ -97,31 +112,40 @@ const ROWS: WorkingRow[] = [
       <>
         <Katex display tex="\sin(2x)\in(0,1]" />
         <Katex display tex="\sin(2x)=1 \text{ at } 2x=\tfrac{\pi}{2},\ x=\tfrac{\pi}{4}\in\big(0,\tfrac{\pi}{2}\big)" />
+        <Katex display tex="\implies \tfrac12\sin(2x)\in\big(0,\tfrac12\big]" />
       </>
     ),
     reason: (
       <>
-        Picture <Katex tex="\sin" /> on <Katex tex="(0,\pi)" />: it rises from 0, reaches its top value 1 at{' '}
-        <Katex tex="\tfrac{\pi}{2}" />, and falls back to 0. So substituting the two endpoints is not enough; the largest value is in
-        the middle. Each end of the range needs its own check. The value 0 would only happen at <Katex tex="x=0" /> or{' '}
-        <Katex tex="x=\tfrac{\pi}{2}" />, both excluded, so 0 is approached but never reached: open bracket. The value 1 happens at{' '}
-        <Katex tex="x=\tfrac{\pi}{4}" />, which <i>is</i> inside the open domain, so it is reached: square bracket.
+        On <Katex tex="(0,\pi)" />, sine rises from 0 to 1 at <Katex tex="\tfrac{\pi}{2}" />, then falls back. 1 is reached (at{' '}
+        <Katex tex="x=\tfrac{\pi}{4}" />, inside the domain): square bracket. 0 would need <Katex tex="x=0" /> or{' '}
+        <Katex tex="\tfrac{\pi}{2}" />, both excluded: open bracket.
       </>
     ),
-    more: <>Drag P in the first diagram below.</>,
+    more: (
+      <>
+        Because the largest value is in the middle of the interval, substituting the two endpoints is not enough: each end of
+        the range needs its own check. Drag P in the first diagram below.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{f\bigl(g(x)\bigr)=\tfrac12\sin(2x),\quad \text{range } \big(0,\tfrac12\big]}" />,
     reason: (
       <>
-        Matches option <b>E</b>: the range is half-open, including <Katex tex="\tfrac12" /> but not <Katex tex="0" />. Option{' '}
-        <b>D</b>, the most popular choice (50%), has the right rule but excludes <Katex tex="\tfrac12" />. Option <b>C</b> includes negative values, impossible here since <Katex tex="\sin(x)" /> and <Katex tex="\cos(x)" /> are
-        both positive for <Katex tex="0<x<\tfrac{\pi}{2}" /> (<Katex tex="[-0.5,0.5]" /> is the range of <Katex tex="\sin(x)\cos(x)" />{' '}
-        with no restriction on <Katex tex="x" />). Check from the original rules: <Katex tex="g\big(\tfrac{\pi}{4}\big)=\operatorname{cosec}^2\big(\tfrac{\pi}{4}\big)=2" />{' '}
-        and <Katex tex="f(2)=\tfrac{\sqrt{1}}{2}=\tfrac12" /> ✓, so <Katex tex="\tfrac12" /> really is an output.
+        Matches option <b>E</b>: the range includes <Katex tex="\tfrac12" /> but not <Katex tex="0" />.
       </>
     ),
-    more: <>For option <b>D</b>, see the common mistake below.</>,
+    more: (
+      <>
+        Option <b>D</b>, the most popular choice (50%), has the right rule but excludes <Katex tex="\tfrac12" />; see the common
+        mistake below. Option <b>C</b> includes negative values, impossible here since <Katex tex="\sin(x)" /> and{' '}
+        <Katex tex="\cos(x)" /> are both positive for <Katex tex="0<x<\tfrac{\pi}{2}" /> (<Katex tex="[-0.5,0.5]" /> is the range
+        of <Katex tex="\sin(x)\cos(x)" /> with no restriction on <Katex tex="x" />). Check from the original rules:{' '}
+        <Katex tex="g\big(\tfrac{\pi}{4}\big)=\operatorname{cosec}^2\big(\tfrac{\pi}{4}\big)=2" /> and{' '}
+        <Katex tex="f(2)=\tfrac{\sqrt{1}}{2}=\tfrac12" /> ✓, so <Katex tex="\tfrac12" /> really is an output.
+      </>
+    ),
   },
 ]
 

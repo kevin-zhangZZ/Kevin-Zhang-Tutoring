@@ -133,33 +133,37 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="z = x+yi, \quad u = -2-i, \quad v = -4-3i" />,
-    reason: <>Whenever a relation involving <Katex tex="z" /> has to become a cartesian equation, put <Katex tex="z=x+yi" />: every modulus then turns into a square root of real numbers. The report notes that students who used a geometric approach were generally less successful, so do the algebra and use the picture as a check.</>,
+    reason: <>To turn a relation in <Katex tex="z" /> into a cartesian equation, put <Katex tex="z=x+yi" />: each modulus then becomes a square root of real numbers.</>,
+    more: <>Do the algebra, and use the picture only as a check.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}|z-u| = |(x+2)+(y+1)i| \\ |z-v| = |(x+4)+(y+3)i|\end{gathered}" />,
-    reason: <>Group the real parts and the imaginary parts before taking the modulus. The signs are where marks go: <Katex tex="x-(-2)=x+2" /> and <Katex tex="y-(-1)=y+1" />.</>,
+    reason: <>Group the real parts and the imaginary parts before taking the modulus. Watch the signs: <Katex tex="x-(-2)=x+2" /> and <Katex tex="y-(-1)=y+1" />.</>,
   },
   {
     working: <Katex display tex="(x+2)^2+(y+1)^2 = (x+4)^2+(y+3)^2" />,
-    reason: <>Using <Katex tex="|a+bi|=\sqrt{a^2+b^2}" /> on both sides, then squaring. Both sides are distances, so neither is negative and squaring loses nothing.</>,
+    reason: <>Using <Katex tex="|a+bi|=\sqrt{a^2+b^2}" /> on both sides, then squaring.</>,
+    more: <>Both sides are distances, so neither is negative and squaring loses nothing.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}x^2+4x+4+y^2+2y+1 \\ = x^2+8x+16+y^2+6y+9\end{gathered}" />,
-    reason: <>The <Katex tex="x^2" /> and <Katex tex="y^2" /> terms appear once on each side and cancel. That is why the answer is a straight line rather than a circle: it happens whenever the two moduli are simply set equal.</>,
+    reason: <>Expand. The <Katex tex="x^2" /> and <Katex tex="y^2" /> terms appear once on each side and cancel, so the answer is a straight line.</>,
+    more: <>This happens whenever two moduli are simply set equal, which is why the locus is a line rather than a circle.</>,
   },
   {
-    working: <Katex display tex="4x+2y+5 = 8x+6y+25 \implies 4x+4y+20 = 0" />,
+    working: <Katex display tex="\begin{gathered}4x+2y+5 = 8x+6y+25 \\ \implies 4x+4y+20 = 0\end{gathered}" />,
     reason: <>Collect everything on one side.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -x-5}" />,
-    reason: <>Divide by 4 and make <Katex tex="y" /> the subject, as the question asks: <Katex tex="m=-1" />, <Katex tex="c=-5" />. Quick check: the midpoint of <Katex tex="u" /> and <Katex tex="v" />, <Katex tex="(-3,-2)" />, is obviously the same distance from both, and <Katex tex="-2=-(-3)-5" /> ✓.</>,
+    reason: <>Divide by 4 and make <Katex tex="y" /> the subject, as the question asks: <Katex tex="m=-1" />, <Katex tex="c=-5" />.</>,
+    more: <>Quick check: the midpoint of <Katex tex="u" /> and <Katex tex="v" />, <Katex tex="(-3,-2)" />, is obviously the same distance from both, and <Katex tex="-2=-(-3)-5" /> ✓.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="u = -2-i \to (-2,-1), \quad v = -4-3i \to (-4,-3)" />,
+    working: <Katex display tex="\begin{gathered}u = -2-i \to (-2,-1) \\ v = -4-3i \to (-4,-3)\end{gathered}" />,
     reason: <>Real part across, imaginary part up. Mark and label both points: the question asks for the points as well as the relation.</>,
   },
   {
@@ -168,15 +172,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <ArgandAnswer stage="b" />,
-    reason: <>Check it looks like the perpendicular bisector: the line passes through the midpoint <Katex tex="(-3,-2)" /> of <Katex tex="uv" />, and <Katex tex="uv" /> has gradient 1, perpendicular to the line's gradient <Katex tex="-1" /> ✓. The report notes some students who could not find the cartesian form in 2a. still plotted the relation from this geometric understanding.</>,
+    reason: <>The finished answer: <Katex tex="u" /> and <Katex tex="v" /> labelled, and the line through both intercepts.</>,
+    more: <>Check it looks like the perpendicular bisector: the line passes through the midpoint <Katex tex="(-3,-2)" /> of <Katex tex="uv" />, and <Katex tex="uv" /> has gradient 1, perpendicular to the line's gradient <Katex tex="-1" /> ✓.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\begin{gathered}|z-u| = |z-v| \\ \iff z \text{ is as far from } u \text{ as from } v\end{gathered}" />,
-    reason: <>Read each modulus as a distance. The phrase &lsquo;in relation to the points&rsquo; tells you the answer must mention <Katex tex="u" /> and <Katex tex="v" />, not just describe the line.</>,
-    more: <>See the Background in part a.</>,
+    reason: <>Each modulus is a distance: <Katex tex="|z-u|" /> is how far <Katex tex="z" /> is from <Katex tex="u" />. &lsquo;In relation to the points&rsquo; means the answer must mention <Katex tex="u" /> and <Katex tex="v" />.</>,
   },
   {
     working: (
@@ -185,29 +189,32 @@ const ROWS_C: WorkingRow[] = [
         tex="\boxed{\begin{gathered}\text{the perpendicular bisector of the line}\\ \text{segment joining } u \text{ and } v\end{gathered}}"
       />
     ),
-    reason: <>The points equally far from two fixed points form the line that cuts the segment between them in half, at right angles. Both halves of the phrase matter: <em>perpendicular bisector</em>, and <em>of the segment joining u and v</em>. Say it the right way round: the line bisects the segment, not the other way. The report notes insufficiently precise responses such as &lsquo;a linear line&rsquo;, or ones that did not relate the line to the points, were not accepted.</>,
+    reason: <>The points equally far from two fixed points form the line that cuts the segment between them in half, at right angles.</>,
+    more: <>Both halves of the phrase matter: <em>perpendicular bisector</em>, and <em>of the segment joining u and v</em>. Say it the right way round: the line bisects the segment, not the other way. In the interactive below, drag <Katex tex="z" /> and watch the two distances match only on this line.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{Arg}(z-u) = \tfrac\pi4" />,
-    reason: <><Katex tex="z-u" /> is the arrow from <Katex tex="u" /> to <Katex tex="z" />, and its argument is the angle that arrow makes with the positive real direction. So the locus is every point you can reach by leaving <Katex tex="u" /> at <Katex tex="45^\circ" />.</>,
+    reason: <><Katex tex="z-u" /> is the arrow from <Katex tex="u" /> to <Katex tex="z" />, and its argument is that arrow's angle from the positive real direction. So <Katex tex="z" /> is reached by leaving <Katex tex="u" /> at <Katex tex="45^\circ" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}\text{a ray from } u(-2,-1) \text{ at } 45^\circ\text{,} \\ \text{up and to the right only}\end{gathered}" />,
-    reason: <>One direction only. Below and to the left of <Katex tex="u" />, the arrow from <Katex tex="u" /> to <Katex tex="z" /> points the opposite way, with argument <Katex tex="-\tfrac{3\pi}{4}" />. And <Katex tex="\operatorname{Arg}(0)" /> is undefined, so <Katex tex="u" /> itself is not on the ray: show it with an open circle. The report notes incorrect responses frequently extended through <Katex tex="u" />, and some sketched a line instead of a ray.</>,
+    reason: <>One direction only: below-left of <Katex tex="u" />, the arrow from <Katex tex="u" /> points the opposite way. And <Katex tex="u" /> itself is excluded, since <Katex tex="\operatorname{Arg}(0)" /> is undefined.</>,
+    more: <>The report notes incorrect responses frequently extended through <Katex tex="u" />, and some sketched a line instead of a ray.</>,
   },
   {
     working: <ArgandAnswer stage="d" />,
-    reason: <>Drawn on the part b. diagram, as the question asks, through <Katex tex="(0,1)" /> and <Katex tex="(1,2)" />. <Katex tex="u" /> is already plotted from part b., so ring it to show the ray starts there but does not include it, as the report's own diagram does.</>,
+    reason: <>Drawn on the part b. diagram, as the question asks, through <Katex tex="(0,1)" /> and <Katex tex="(1,2)" />, with <Katex tex="u" /> ringed: the ray starts there but does not include it.</>,
+    more: <><Katex tex="u" /> is already plotted from part b.; ringing it is how the report's own diagram shows the excluded endpoint.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="\tan\!\left(\tfrac\pi4\right) = 1 \implies \text{gradient } 1" />,
-    reason: <>The argument is the angle the ray makes with the positive real direction, and a line at angle <Katex tex="\theta" /> to the positive <Katex tex="x" />-direction has gradient <Katex tex="\tan\theta" />.</>,
+    reason: <>The ray makes angle <Katex tex="\tfrac\pi4" /> with the positive <Katex tex="x" />-direction, and a line at angle <Katex tex="\theta" /> has gradient <Katex tex="\tan\theta" />.</>,
   },
   {
     working: <Katex display tex="y-(-1) = 1\left(x-(-2)\right) \implies y = x+1" />,
@@ -215,38 +222,45 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{y = x+1, \quad x>-2}" />,
-    reason: <>&lsquo;Write down the <em>function</em>&rsquo; is the cue that a domain is needed, and a ray is only half a line. The ray leaves <Katex tex="u" /> heading right, so <Katex tex="x>-2" />, strict because <Katex tex="u" /> is excluded. In function notation: <Katex tex="f:(-2,\infty)\to R,\ f(x)=x+1" />. The report notes that many students gave the correct rule but did not include the domain; 75% scored zero.</>,
+    reason: <>&lsquo;Write down the <em>function</em>&rsquo; needs a domain. The ray leaves <Katex tex="u" /> heading right, so <Katex tex="x>-2" />, strict because <Katex tex="u" /> is excluded.</>,
+    more: <>In function notation the answer is <Katex tex="f:(-2,\infty)\to R,\ f(x)=x+1" />. 75% of students scored zero here.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="z_c = m+ni: \quad |z_c-u| = |z_c-v| = |z_c+5i|" />,
-    reason: <>How would I know where to start? The centre is the one point the same distance, <Katex tex="r" />, from every point on the circle. Three points give two equations in the two unknowns <Katex tex="m" /> and <Katex tex="n" />. Note <Katex tex="z_c-(-5i)=z_c+5i" />, the distance to <Katex tex="(0,-5)" />.</>,
+    reason: <>The centre is the same distance, <Katex tex="r" />, from all three points, giving two equations in <Katex tex="m" /> and <Katex tex="n" />. Note <Katex tex="z_c-(-5i)=z_c+5i" />.</>,
+    more: <>Why equally far? Every point on a circle is <Katex tex="r" /> from its centre, and all three given points lie on the circle. <Katex tex="|z_c+5i|" /> is the distance from the centre to <Katex tex="(0,-5)" />.</>,
   },
   {
-    working: <Katex display tex="(-2-m)^2+(-1-n)^2 = m^2+(n+5)^2" />,
+    working: <Katex display tex="(m+2)^2+(n+1)^2 = m^2+(n+5)^2" />,
     reason: <><Katex tex="|z_c-u|=|z_c+5i|" />, squared.</>,
   },
   {
-    working: <Katex display tex="(-4-m)^2+(-3-n)^2 = m^2+(n+5)^2" />,
-    reason: <><Katex tex="|z_c-v|=|z_c+5i|" />, squared. On CAS you can finish in one step with <Cas fn="solve">solve(eq1 and eq2, {'{'}m, n{'}'})</Cas>, but by hand is quick too.</>,
+    working: <Katex display tex="(m+4)^2+(n+3)^2 = m^2+(n+5)^2" />,
+    reason: <><Katex tex="|z_c-v|=|z_c+5i|" />, squared.</>,
+    more: <>On CAS, <Cas fn="solve" /> on these two squared equations together, for <Katex tex="m" /> and <Katex tex="n" />, finishes in one step; the report notes students familiar with CAS used it effectively. By hand is quick too, as below.</>,
   },
   {
     working: <Katex display tex="5+4m+2n = 10n+25 \implies m-2n = 5" />,
-    reason: <>Expanding the first: <Katex tex="m^2" /> and <Katex tex="n^2" /> cancel, exactly as <Katex tex="x^2" /> and <Katex tex="y^2" /> did in part a. So this equation is a straight line of possible centres: the perpendicular bisector of <Katex tex="u" /> and <Katex tex="-5i" />.</>,
+    reason: <>Expanding the first: <Katex tex="m^2" /> and <Katex tex="n^2" /> cancel, as <Katex tex="x^2" /> and <Katex tex="y^2" /> did in part a., leaving a linear equation.</>,
+    more: <>The report notes many students set up suitable equations but fewer were then able to proceed further: expanding and cancelling is the step that unlocks it. Geometrically, this equation is a straight line of possible centres: the perpendicular bisector of the segment joining <Katex tex="u" /> and <Katex tex="-5i" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}25+8m+6n = 10n+25 \\ \implies 8m = 4n \implies n = 2m\end{gathered}" />,
-    reason: <>Expanding the second: another straight line, the perpendicular bisector of <Katex tex="v" /> and <Katex tex="-5i" />.</>,
+    reason: <>Expanding the second: again the squares cancel, leaving a linear equation.</>,
+    more: <>This line of possible centres is the perpendicular bisector of the segment joining <Katex tex="v" /> and <Katex tex="-5i" />.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}m-2(2m) = 5 \implies -3m = 5 \\ \implies m = -\tfrac53, \ n = -\tfrac{10}{3}\end{gathered}" />,
-    reason: <>Substitute <Katex tex="n=2m" /> into the first. Geometrically, this is finding where the two lines cross.</>,
+    reason: <>Substitute <Katex tex="n=2m" /> into the first.</>,
+    more: <>Geometrically, this is finding where the two perpendicular bisectors cross; the interactive below shows it.</>,
   },
   {
     working: <Katex display tex="\boxed{z_c = -\tfrac53-\tfrac{10}{3}i}" />,
-    reason: <>Check: the centre is also equally far from <Katex tex="u" /> and <Katex tex="v" />, so it must lie on part a.'s line <Katex tex="y=-x-5" />, and <Katex tex="-\tfrac{10}{3}=\tfrac53-5" /> ✓.</>,
+    reason: <>The centre in the form <Katex tex="a+ib" />, as asked.</>,
+    more: <>Check: the centre is also equally far from <Katex tex="u" /> and <Katex tex="v" />, so it must lie on part a.'s line <Katex tex="y=-x-5" />, and <Katex tex="-\tfrac{10}{3}=\tfrac53-5" /> ✓.</>,
   },
   {
     working: <Katex display tex="r^2 = \left(-\tfrac53\right)^2+\left(-\tfrac{10}{3}+5\right)^2 = \tfrac{25}{9}+\tfrac{25}{9} = \tfrac{50}{9}" />,
@@ -254,7 +268,7 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{r = \frac{5\sqrt2}{3}}" />,
-    reason: <>About 2.36. The question asks for both the centre and the radius; the report notes some students correctly found <Katex tex="z_c" /> but did not also state the radius.</>,
+    reason: <>About 2.36. The question asks for both the centre and the radius.</>,
   },
 ]
 
@@ -333,8 +347,8 @@ export default function SpecialistQ2_2020Exam2() {
           True, but it describes the graph without mentioning <Katex tex="u" /> and <Katex tex="v" />, and the
           question asks for an interpretation &lsquo;in relation to the points&rsquo;. The report did not accept
           insufficiently precise responses such as &lsquo;a linear line&rsquo;, or ones that did not interpret the
-          line in relation to the points. Say what the line does to the segment <Katex tex="uv" />: it cuts it in
-          half, at right angles.
+          line in relation to the points. The boxed answer does: it names the segment <Katex tex="uv" /> and says how the
+          line meets it.
         </WrongMethod>
       </PartCard>
 
