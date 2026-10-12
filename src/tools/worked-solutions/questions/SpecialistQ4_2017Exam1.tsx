@@ -51,11 +51,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="X\sim N(298,\,3^2)" />,
     reason: (
       <>
-        Name the random variable first: <Katex tex="X" /> is the volume of <em>one</em> bottle, and that is
-        what the given mean and standard deviation describe. But read the question again: it asks about the{' '}
-        <em>mean volume per bottle in a four-bottle pack</em>. The word <em>mean</em> tells you the variable
-        you need is the sample mean <Katex tex="\bar X" /> of <Katex tex="n=4" /> bottles, not{' '}
-        <Katex tex="X" />.
+        <Katex tex="X" /> is <em>one</em> bottle&apos;s volume. The question asks for the <em>mean</em> volume
+        per bottle in a pack of four, so you need the sample mean <Katex tex="\bar X" />.
+      </>
+    ),
+    more: (
+      <>
+        Underline &ldquo;mean volume per bottle&rdquo; as you read: it decides every number that follows.
       </>
     ),
   },
@@ -63,8 +65,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\bar X=\tfrac14\left(X_1+X_2+X_3+X_4\right)" />,
     reason: (
       <>
-        Four independent bottles from the same machine, averaged. Because each <Katex tex="X_i" /> is normal,
-        their average is exactly normal too.
+        The average of four independent bottles. Each <Katex tex="X_i" /> is normal, so their average is
+        exactly normal too.
       </>
     ),
   },
@@ -76,11 +78,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{sd}(\bar X)=\frac{\sigma}{\sqrt n}=\frac{3}{\sqrt4}=\frac32" />,
     reason: (
       <>
-        Averaging <em>does</em> shrink the spread: in a pack, a heavy bottle and a light one partly cancel, so
-        pack means stay closer to 298 than single bottles do. The shrink factor is <Katex tex="\sqrt n" />, not{' '}
-        <Katex tex="n" />, because it is the variances that add (see Background). Write{' '}
-        <Katex tex="\mathrm{sd}(\bar X)" /> in full: the report says students&apos; notation often did not
-        distinguish the standard deviation of <Katex tex="X" /> from that of <Katex tex="\bar X" />.
+        Averaging shrinks the spread. Variances add, so the sd of a mean of <Katex tex="n" /> divides by{' '}
+        <Katex tex="\sqrt n" />, not by <Katex tex="n" />.
+      </>
+    ),
+    more: (
+      <>
+        In a pack, a heavy bottle and a light one partly cancel, so pack means stay closer to 298 than single
+        bottles do. Write <Katex tex="\mathrm{sd}(\bar X)" /> in full rather than just &ldquo;sd&rdquo;: the
+        report says students&apos; notation often did not distinguish the standard deviation of{' '}
+        <Katex tex="X" /> from that of <Katex tex="\bar X" />.
       </>
     ),
   },
@@ -88,8 +95,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\Pr(\bar X<295) = \Pr\!\left(Z<\frac{295-298}{3/2}\right)" />,
     reason: (
       <>
-        Standardise: (value <Katex tex="-" /> mean) <Katex tex="\div" /> sd, using the sd <em>of the mean</em>.
-        Keep the order value minus mean, so the sign of <Katex tex="z" /> records which side of 298 you are on.
+        Standardise: (value <Katex tex="-" /> mean) <Katex tex="\div" /> sd, in that order, using the sd{' '}
+        <em>of the mean</em>.
       </>
     ),
   },
@@ -98,8 +105,14 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Dividing by <Katex tex="\tfrac32" /> is multiplying by <Katex tex="\tfrac23" />. So 295 is exactly two
-        standard deviations below the mean. On a no-calculator paper, a value that lands on a whole number of
-        standard deviations is your cue for the 68&ndash;95&ndash;99.7 rule.
+        standard deviations below the mean.
+      </>
+    ),
+    more: (
+      <>
+        On a no-calculator paper, a value that lands on a whole number of standard deviations is your cue for
+        the 68&ndash;95&ndash;99.7 rule. The report notes that arithmetic mistakes stopped some students reaching{' '}
+        <Katex tex="\Pr(Z<-2)" />, so take care dividing by <Katex tex="\tfrac32" />.
       </>
     ),
   },
@@ -112,10 +125,16 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        About 95% of any normal distribution lies within 2 standard deviations of the mean. The other 5% is
-        split equally between the two tails by symmetry, and you want only the lower tail, so halve it.
-        (Stopping at <Katex tex="0.05" /> counts both tails.) This is why the question says
-        &ldquo;approximate&rdquo;.
+        About 95% of a normal distribution lies within 2 sds of the mean. The other 5% splits equally between the
+        two tails, and you want only the lower one, so halve it.
+      </>
+    ),
+    more: (
+      <>
+        Match the rule to the number of sds: 68% goes with 1 sd, 95% with 2 and 99.7% with 3. Here{' '}
+        <Katex tex="z=-2" />, so it is the 95% figure; the report says some students used 68% or 99.7% instead.
+        Stopping at <Katex tex="0.05" /> counts both tails. The rule is only approximate, which is why the
+        question says &ldquo;approximate&rdquo;.
       </>
     ),
   },
@@ -123,9 +142,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\approx 0.025}" />,
     reason: (
       <>
-        VCAA accepted both <Katex tex="0.025" /> (from the <Katex tex="95\%" /> rule) and{' '}
-        <Katex tex="0.023" /> (the exact value, <Katex tex="0.02275" />). Check the direction: 295 is below the
-        mean, so the answer must be well under <Katex tex="0.5" />.
+        Three decimal places, as asked. VCAA accepted both <Katex tex="0.025" /> (the 95% rule) and{' '}
+        <Katex tex="0.023" /> (the exact value <Katex tex="0.02275" />, rounded).
+      </>
+    ),
+    more: (
+      <>
+        This probability is the final answer. The report says some students went on to build a confidence
+        interval; the question doesn&apos;t ask for one.
       </>
     ),
   },
@@ -150,8 +174,6 @@ export default function SpecialistQ4_2017Exam1() {
         <p>
           <strong>The whole question in one idea.</strong> A sample mean is less variable than
           a single observation: <Katex tex="\mathrm{sd}(\bar X)=\tfrac{\sigma}{\sqrt n}" />.
-          Reading &ldquo;mean volume per bottle&rdquo; as &ldquo;volume of one bottle&rdquo; is the first error
-          the report lists.
         </p>
         <p>
           <strong>Why <Katex tex="\sqrt n" /> and not <Katex tex="n" />?</strong> For independent random
@@ -186,7 +208,8 @@ export default function SpecialistQ4_2017Exam1() {
       >
         This finds the chance that <em>one bottle</em> is under 295&nbsp;mL, about one bottle in six. For a
         pack to <em>average</em> under 295, most of its four bottles have to be low at once, which is far
-        rarer. Catch it by asking which random variable the question describes: &ldquo;the mean volume per
+        rarer. The report says some students then used this 0.16 as <Katex tex="p" /> in a binomial
+        distribution; the question needs neither. Catch the slip by asking which random variable the question describes: &ldquo;the mean volume per
         bottle in a pack&rdquo; is <Katex tex="\bar X" />, and <Katex tex="\bar X" /> has its own, smaller
         standard deviation. In the first explorer, the sd&nbsp;3 curve is far wider than the bars of pack means.
       </WrongMethod>
@@ -203,8 +226,8 @@ export default function SpecialistQ4_2017Exam1() {
         }
       >
         Dividing <Katex tex="\sigma" /> by 4 for the mean, or multiplying it by 4 for the total, treats the
-        standard deviation as if it scaled like the mean. It doesn&apos;t: the <em>variances</em> add, so the
-        sd scales by <Katex tex="\sqrt n" />. With <Katex tex="\mathrm{sd}(T)=6" />, the total gives{' '}
+        standard deviation as if it scaled like the mean. It scales by <Katex tex="\sqrt n" /> (see the
+        working above). With <Katex tex="\mathrm{sd}(T)=6" />, the total gives{' '}
         <Katex tex="\Pr\!\left(Z<\tfrac{1180-1192}{6}\right)=\Pr(Z<-2)" />, the same answer as the mean.
         A quick check: sd <Katex tex="\tfrac34" /> would make a pack mean under 295 a four-sd event, almost
         impossible, yet the first explorer shows about 2% of packs doing it.
@@ -214,8 +237,8 @@ export default function SpecialistQ4_2017Exam1() {
         source="Examiner's report"
         working={<Katex display tex="\Pr(Z<2)\approx 0.975" />}
       >
-        Standardise as (value <Katex tex="-" /> mean) <Katex tex="\div" /> sd, in that order: 295 is below
-        298, so <Katex tex="z" /> must be negative. The same 0.975 comes from finding{' '}
+        295 is below 298, so <Katex tex="z" /> must be negative; <Katex tex="\tfrac{298-295}{1.5}" />{' '}
+        standardises the wrong way round. The same 0.975 comes from finding{' '}
         <Katex tex="\Pr(\bar X>295)" />, the wrong tail, which the report also lists. Catch both with a quick
         sketch: a value below the mean has less than half the area to its left, so any answer above 0.5 is
         wrong.

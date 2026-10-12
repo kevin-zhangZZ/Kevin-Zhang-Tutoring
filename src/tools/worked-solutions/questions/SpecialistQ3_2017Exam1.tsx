@@ -18,6 +18,8 @@
 // (z² − 2z + 2)(z − c); only c = 2 fits the pattern z³ + az² + 6z + a). WrongMethods: −1 − i as
 // the partner, and "(1 − i)(1 + i) = 2 so the third solution is 2" — both from the report, both
 // verified (P(−1 − i) = −8 − 16i at a = −4; z³ − 3z² + 4z − 2 has the same pair but third root 1).
+// Concise/Detailed rebalance (Oct 2026): reasons trimmed to the step's why; Argand picture, report
+// traps (stalling at a = −4, factors vs solutions, polar form) moved into each row's `more`.
 
 import Katex from '../../../components/Katex'
 import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -58,10 +60,15 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Every coefficient (<Katex tex="1,\ a,\ 6,\ a" />) is real, so non-real solutions come in
-        conjugate pairs: if <Katex tex="1-i" /> is a solution, so is its conjugate. Conjugating flips
-        the sign of the <b>imaginary</b> part only — on an Argand diagram, a reflection in the real
-        axis. Whenever a real polynomial hands you one non-real root, this is the first thing to
-        write down.
+        conjugate pairs. The conjugate flips the sign of the <b>imaginary</b> part only.
+      </>
+    ),
+    more: (
+      <>
+        On an Argand diagram, conjugating is a reflection in the real axis. Whenever a real
+        polynomial hands you one non-real root, this is the first thing to write down. Cartesian
+        form is all this question needs: the report notes that those who tried polar form were
+        unsuccessful.
       </>
     ),
   },
@@ -75,9 +82,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Each solution gives a linear factor, so the pair gives a quadratic factor. Keep{' '}
-        <Katex tex="z-1" /> together and it is a difference of two squares; the <Katex tex="i" />{' '}
-        terms cancel because the roots are conjugates, which is why the factor has real
-        coefficients.
+        <Katex tex="z-1" /> together: it is a difference of two squares, and <Katex tex="i^2=-1" />.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="i" /> terms cancel because the roots are conjugates, which is why the factor
+        has real coefficients.
       </>
     ),
   },
@@ -87,11 +98,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        A cubic has three solutions. Two are used up, so exactly one linear factor{' '}
-        <Katex tex="(z-c)" /> is left, where <Katex tex="c" /> is the third solution. It must be
-        real: non-real solutions come in pairs and only one is left. Both sides start with{' '}
-        <Katex tex="z^3" />, so no extra constant is needed. The question is now just: which{' '}
-        <Katex tex="c" /> makes the two sides match?
+        A cubic has three solutions, so one linear factor <Katex tex="(z-c)" /> is left, where{' '}
+        <Katex tex="c" /> is the third solution.
+      </>
+    ),
+    more: (
+      <>
+        The third solution must be real: non-real solutions come in pairs and only one is left. Both
+        sides start with <Katex tex="z^3" />, so no extra constant is needed in front. The question is
+        now just: which <Katex tex="c" /> makes the two sides match?
       </>
     ),
   },
@@ -104,9 +119,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="z:\ \ 2+2c = 6 \implies c = 2" />,
     reason: (
       <>
-        Equate coefficients of <Katex tex="z" />. Choose this one first: it is the only coefficient
-        on the left that doesn&apos;t involve the unknown <Katex tex="a" />, so it gives{' '}
-        <Katex tex="c" /> in one line.
+        Equate coefficients of <Katex tex="z" />: it is the only one on the left without the
+        unknown <Katex tex="a" />, so it gives <Katex tex="c" /> straight away.
       </>
     ),
   },
@@ -119,10 +133,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        The other two coefficients must both equal <Katex tex="a" />. They agree, which confirms{' '}
-        <Katex tex="c = 2" /> and gives <Katex tex="a=-4" /> (not asked for, but a check). The
-        report says many students found <Katex tex="a=-4" /> and then stalled — with the factor form
-        written down, the constant term <Katex tex="-2c = -4" /> hands you the third solution.
+        The other two coefficients must both equal <Katex tex="a" />. They agree, confirming{' '}
+        <Katex tex="c=2" /> and giving <Katex tex="a=-4" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="a" /> isn&apos;t asked for, but the agreement is a check. The report notes
+        students who found <Katex tex="a=-4" /> but couldn&apos;t get the third solution — with the
+        factor form written down, the constant term <Katex tex="-2c = -4" /> hands you the third solution.
       </>
     ),
   },
@@ -130,9 +149,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{z = 1+i \ \text{ and }\ z = 2}" />,
     reason: (
       <>
-        Check with <Katex tex="a=-4" />: <Katex tex="2^3-4(2)^2+6(2)-4 = 0" /> ✓. The question asks
-        for solutions, so write <Katex tex="z=2" />, not the factor <Katex tex="(z-2)" />, and give the
-        real solution as a number, not in terms of <Katex tex="a" /> — the report notes both slips.
+        The other two solutions. Check with <Katex tex="a=-4" />:{' '}
+        <Katex tex="2^3-4(2)^2+6(2)-4 = 0" /> ✓.
+      </>
+    ),
+    more: (
+      <>
+        The question asks for solutions, so write <Katex tex="z=2" />, not the factor{' '}
+        <Katex tex="(z-2)" />, and give the real solution as a number, not in terms of{' '}
+        <Katex tex="a" /> — the report notes both slips.
       </>
     ),
   },

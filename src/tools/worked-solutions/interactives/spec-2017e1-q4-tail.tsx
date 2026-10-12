@@ -68,8 +68,8 @@ export default function Tail() {
     notice = (
       <Notice>
         More bottles per pack, narrower curve: <M>{'\\mathrm{sd}(\\bar X) = \\tfrac{3}{\\sqrt n}'}</M>, so{' '}
-        <M>{'z = \\tfrac{295-298}{3/\\sqrt n} = -\\sqrt n'}</M>. Only at <M>n = 4</M> (<M>z = -2</M>) or{' '}
-        <M>n = 9</M> (<M>z = -3</M>) does <M>295</M> land on a whole number of sds, where the 68–95–99.7 rule
+        <M>{'z = \\tfrac{295-298}{3/\\sqrt n} = -\\sqrt n'}</M>. Only at <M>n = 1</M>, <M>4</M> or <M>9</M>{' '}
+        (<M>z = -1, -2, -3</M>) does <M>295</M> land on a whole number of sds, where the 68–95–99.7 rule
         gives the tail without a calculator.
       </Notice>
     )

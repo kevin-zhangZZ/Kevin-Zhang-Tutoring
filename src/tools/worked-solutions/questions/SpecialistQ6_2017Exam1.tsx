@@ -39,11 +39,14 @@ const ROWS_DERIV: WorkingRow[] = [
     working: <Katex display tex="f(x) = \bigl(\arcsin(x)\bigr)^{-1}" />,
     reason: (
       <>
-        <Katex tex="\arcsin(x)" /> sits inside a reciprocal, so this is a function of a function: rewrite
-        &ldquo;1 over something&rdquo; as that something to the power <Katex tex="-1" /> and the chain rule
-        applies. (The quotient rule with numerator 1 gives the same answer.) This <Katex tex="-1" /> is a
-        genuine power, so it makes the <em>reciprocal</em> of <Katex tex="\arcsin" />, not its inverse; the
-        report notes that some students confused the two.
+        Write &ldquo;1 over <Katex tex="\arcsin(x)" />&rdquo; as a power of <Katex tex="-1" /> so the chain
+        rule applies. This <Katex tex="-1" /> is a genuine power: <Katex tex="f" /> is the <em>reciprocal</em> of{' '}
+        <Katex tex="\arcsin" />, not its inverse.
+      </>
+    ),
+    more: (
+      <>
+        The quotient rule with numerator 1 gives the same answer.
       </>
     ),
   },
@@ -52,8 +55,7 @@ const ROWS_DERIV: WorkingRow[] = [
     reason: (
       <>
         Chain rule with <Katex tex="u=\arcsin(x)" />: <Katex tex="\tfrac{d}{du}\,u^{-1} = -u^{-2}" />, then
-        multiply by <Katex tex="\tfrac{du}{dx}" />. The minus sign already tells you <Katex tex="f" /> falls
-        wherever it is defined: as <Katex tex="\arcsin(x)" /> grows, 1 divided by it shrinks.
+        multiply by <Katex tex="\tfrac{du}{dx}" />.
       </>
     ),
   },
@@ -62,7 +64,7 @@ const ROWS_DERIV: WorkingRow[] = [
     reason: (
       <>
         From the formula sheet (the <Katex tex="\sin^{-1}\!\left(\tfrac{x}{a}\right)" /> rule with{' '}
-        <Katex tex="a=1" />). It is positive, because <Katex tex="\arcsin" /> is an increasing function.
+        <Katex tex="a=1" />).
       </>
     ),
   },
@@ -70,14 +72,13 @@ const ROWS_DERIV: WorkingRow[] = [
     working: <Katex display tex="\boxed{f'(x) = \frac{-1}{\bigl(\arcsin(x)\bigr)^2\sqrt{1-x^2}}}" />,
     reason: (
       <>
-        Multiply the two pieces. Sign check: the square and the surd are positive, so{' '}
-        <Katex tex="f'(x)<0" /> everywhere it exists, as it must be for the reciprocal of an increasing
-        function.
+        Multiply the two pieces.
       </>
     ),
     more: (
       <>
-        Slide <Katex tex="x" /> in the diagram below: the tangent always slopes down.
+        Check the sign: the square and the surd are positive, so <Katex tex="f'(x)<0" />. That is as expected:{' '}
+        <Katex tex="\arcsin" /> is increasing, so 1 divided by it is decreasing. Slide <Katex tex="x" /> in the diagram below: the tangent always slopes down.
       </>
     ),
   },
@@ -88,11 +89,17 @@ const ROWS_DOMAIN: WorkingRow[] = [
     working: <Katex display tex="1-x^2>0 \implies -1<x<1" />,
     reason: (
       <>
-        Read the conditions off the formula for <Katex tex="f'(x)" />: what could stop it being a real
-        number? The surd is in a denominator, so it must exist <em>and</em> be non-zero:{' '}
-        <Katex tex="1-x^2>0" />, strictly. This also keeps <Katex tex="x" /> inside{' '}
-        <Katex tex="[-1,1]" />, where <Katex tex="\arcsin" /> exists. The endpoints go even though{' '}
-        <Katex tex="f(\pm1)=\pm\tfrac{2}{\pi}" /> exists: the graph has a vertical tangent there.
+        The surd is in a denominator, so it must exist <em>and</em> be non-zero: <Katex tex="1-x^2>0" />,
+        strictly. This excludes <Katex tex="x=\pm1" />, even though <Katex tex="f(\pm1)=\pm\tfrac{2}{\pi}" />{' '}
+        exists.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="x=\pm1" /> the graph of <Katex tex="f" /> has a vertical tangent, which has no gradient.
+        This condition also keeps <Katex tex="x" /> inside <Katex tex="[-1,1]" />, where{' '}
+        <Katex tex="\arcsin" /> exists, so answers such as <Katex tex="R" /> or{' '}
+        <Katex tex="(-\infty,0)\cup(0,\infty)" /> (common errors in the report) can&apos;t be right.
       </>
     ),
   },
@@ -101,8 +108,13 @@ const ROWS_DOMAIN: WorkingRow[] = [
     reason: (
       <>
         The other factor in the denominator, <Katex tex="\bigl(\arcsin(x)\bigr)^2" />, must be non-zero
-        too. <Katex tex="\arcsin(x)=0" /> only at <Katex tex="x=0" />, where <Katex tex="f" /> itself has
-        a vertical asymptote. The report says many students did not exclude zero.
+        too, and <Katex tex="\arcsin(x)=0" /> only at <Katex tex="x=0" />.
+      </>
+    ),
+    more: (
+      <>
+        At <Katex tex="x=0" />, <Katex tex="f" /> itself has a vertical asymptote. The report says many
+        students did not exclude zero.
       </>
     ),
   },
@@ -110,9 +122,7 @@ const ROWS_DOMAIN: WorkingRow[] = [
     working: <Katex display tex="\boxed{(-1,0)\cup(0,1)}" />,
     reason: (
       <>
-        Both conditions at once (also written <Katex tex="(-1,1)\setminus\{0\}" />). Compare the domain
-        of <Katex tex="f" /> itself, <Katex tex="[-1,0)\cup(0,1]" />: <Katex tex="f'" /> keeps the gap at 0
-        and also loses the endpoints <Katex tex="\pm1" />.
+        Both conditions at once (also written <Katex tex="(-1,1)\setminus\{0\}" />).
       </>
     ),
   },
@@ -133,7 +143,7 @@ export default function SpecialistQ6_2017Exam1() {
           <strong>Reciprocal or inverse?</strong> <Katex tex="\arcsin(x)" />, also written{' '}
           <Katex tex="\sin^{-1}(x)" />, is the <em>inverse</em> of sine: that <Katex tex="-1" /> is not a
           power. <Katex tex="\dfrac{1}{\arcsin(x)}=\bigl(\arcsin(x)\bigr)^{-1}" /> is its{' '}
-          <em>reciprocal</em>, and here the <Katex tex="-1" /> really is a power. For a reciprocal the
+          <em>reciprocal</em>. For a reciprocal the
           chain rule gives <Katex tex="\dfrac{d}{dx}\Bigl(\dfrac1u\Bigr)=-\dfrac{u'}{u^2}" />; the
           &ldquo;flip the derivative&rdquo; rule <Katex tex="\tfrac{dy}{dx}=1\div\tfrac{dx}{dy}" /> belongs
           to inverse functions.
@@ -158,9 +168,8 @@ export default function SpecialistQ6_2017Exam1() {
         This gives <Katex tex="\sqrt{1-x^2}" />, one of the report&apos;s most common wrong derivatives.
         Flipping a derivative is the rule for an <em>inverse</em> function; this <Katex tex="f" /> is a{' '}
         <em>reciprocal</em>, and <Katex tex="\tfrac{d}{dx}\bigl(\tfrac1u\bigr)=-\tfrac{u'}{u^2}" />, not{' '}
-        <Katex tex="\tfrac{1}{u'}" />. Catch it with a sign check: <Katex tex="\arcsin" /> is increasing, so
-        its reciprocal is decreasing and <Katex tex="f'(x)" /> must be negative, but{' '}
-        <Katex tex="\sqrt{1-x^2}" /> never is. Turn on the toggle in the diagram above to see this line
+        <Katex tex="\tfrac{1}{u'}" />. The sign check in the last row of the working catches it:{' '}
+        <Katex tex="f'(x)" /> must be negative, but <Katex tex="\sqrt{1-x^2}" /> never is. Turn on the toggle in the diagram above to see this line
         rise while the curve falls.
       </WrongMethod>
       <WrongMethod
@@ -171,9 +180,8 @@ export default function SpecialistQ6_2017Exam1() {
         That runs a rule backwards: <Katex tex="\log_e(u)" /> is an <em>antiderivative</em> of{' '}
         <Katex tex="\tfrac1u" />, not its derivative. Differentiating{' '}
         <Katex tex="\tfrac1u=u^{-1}" /> gives <Katex tex="-u^{-2}" />. A quick check exposes it: for{' '}
-        <Katex tex="-1\le x<0" />, <Katex tex="\arcsin(x)" /> is negative, so{' '}
-        <Katex tex="\log_e(\arcsin x)" /> doesn&apos;t even exist, yet <Katex tex="f" /> is defined and
-        smooth there.
+        <Katex tex="-1<x<0" />, <Katex tex="\arcsin(x)" /> is negative, so{' '}
+        <Katex tex="\log_e(\arcsin x)" /> doesn&apos;t even exist, yet <Katex tex="f'(x)" /> does.
       </WrongMethod>
       <WorkingTable rows={ROWS_DOMAIN} />
       <Explore title="f(1) exists but f′(1) doesn't: building the set where f′ is defined">
@@ -188,9 +196,8 @@ export default function SpecialistQ6_2017Exam1() {
         <Katex tex="f" />: <Katex tex="\arcsin" /> exists on <Katex tex="[-1,1]" /> and only{' '}
         <Katex tex="x=0" /> makes the denominator zero. But <Katex tex="f'" /> needs more than a point on
         the graph. At <Katex tex="x=\pm1" /> the formula for <Katex tex="f'(x)" /> has{' '}
-        <Katex tex="\sqrt{1-1}=0" /> on the bottom, and the graph has a vertical tangent (step 3 of the
-        diagram above). Always take the domain of <Katex tex="f'" /> from the formula for{' '}
-        <Katex tex="f'(x)" />, checking every denominator and every surd.
+        <Katex tex="\sqrt{1-1}=0" /> on the bottom, so <Katex tex="\pm1" /> must go too (step 3 of the
+        diagram above shows the vertical tangent there).
       </WrongMethod>
       <SAExaminerReport stats={EXAM} maxMarks={3} />
       <div>

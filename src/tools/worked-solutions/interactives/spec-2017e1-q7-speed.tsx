@@ -67,7 +67,7 @@ export default function Speed() {
     notice = (
       <Notice tone="good">
         <b>The shaded area is now</b> <M>{'\\int_0^{\\pi/4}3\\sin t\\cos t\\,dt=\\tfrac34'}</M>, the length of the path.
-        Here <M>{'3\sin t\cos t\ge 0'}</M>, which is why the root needed no absolute value. Now turn on
+        Here <M>{'3\\sin t\\cos t\\ge 0'}</M>, which is why the root needed no absolute value. Now turn on
         &ldquo;Forget the chain rule&rdquo;.
       </Notice>
     )

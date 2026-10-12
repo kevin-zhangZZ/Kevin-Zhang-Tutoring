@@ -76,10 +76,10 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         The bracket is a product, <Katex tex="x" /> times <Katex tex="\arccos\!\left(\tfrac{x}{a}\right)" />, so
-        use the product rule: (derivative of the first) × second + first × (derivative of the second). In a
-        &ldquo;show that&rdquo; this line is part of the evidence, so write it down.
+        use the product rule: (derivative of the first) × second + first × (derivative of the second).
       </>
     ),
+    more: <>In a &ldquo;show that&rdquo; this line is part of the evidence, so write it down.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\arccos\!\left(\frac{x}{a}\right) = \frac{-1}{\sqrt{1-\frac{x^2}{a^2}}}\times\frac1a" />,
@@ -87,18 +87,22 @@ const ROWS_A: WorkingRow[] = [
       <>
         The formula sheet gives <Katex tex="\tfrac{d}{dx}\cos^{-1}(x)=\tfrac{-1}{\sqrt{1-x^2}}" />. Here the input
         is <Katex tex="\tfrac{x}{a}" />, so the chain rule multiplies by its derivative, <Katex tex="\tfrac1a" />.
-        The minus sign is there because <Katex tex="\arccos" /> is a decreasing function.
       </>
     ),
+    more: <>The minus sign is there because <Katex tex="\arccos" /> is a decreasing function.</>,
   },
   {
     working: <Katex display tex="\sqrt{1-\frac{x^2}{a^2}} = \sqrt{\frac{a^2-x^2}{a^2}} = \frac{\sqrt{a^2-x^2}}{a}" />,
     reason: (
       <>
-        How would I know to do this? The target has <Katex tex="\sqrt{a^2-x^2}" />, so aim for it: put{' '}
-        <Katex tex="1-\tfrac{x^2}{a^2}" /> over the common denominator <Katex tex="a^2" /> and root the top and
-        bottom separately. <Katex tex="\sqrt{a^2}=a" /> (rather than <Katex tex="|a|" />) only because the
-        question says <Katex tex="a>0" />, which is why that condition is there.
+        The target has <Katex tex="\sqrt{a^2-x^2}" />, so aim for it: put{' '}
+        <Katex tex="1-\tfrac{x^2}{a^2}" /> over the common denominator <Katex tex="a^2" /> and root top and bottom
+        separately. <Katex tex="\sqrt{a^2}=a" /> because <Katex tex="a>0" />.
+      </>
+    ),
+    more: (
+      <>
+        In general <Katex tex="\sqrt{a^2}=|a|" />; that is why the question states <Katex tex="a>0" />.
       </>
     ),
   },
@@ -113,13 +117,17 @@ const ROWS_A: WorkingRow[] = [
     ),
   },
   {
-    working: <Katex display tex="\boxed{\ =\ \arccos\!\left(\frac{x}{a}\right)-\frac{x}{\sqrt{a^2-x^2}}}" />,
+    working: <Katex display tex="\boxed{\begin{aligned}&\frac{d}{dx}\left(x\arccos\!\left(\frac{x}{a}\right)\right)\\&\quad=\arccos\!\left(\frac{x}{a}\right)-\frac{x}{\sqrt{a^2-x^2}}\end{aligned}}" />,
     reason: (
       <>
         Substitute into the product-rule line:{' '}
-        <Katex tex="1\cdot\arccos\!\left(\tfrac{x}{a}\right)+x\cdot\tfrac{-1}{\sqrt{a^2-x^2}}" />. The report says
-        some students lost the mark by simply writing the given answer; the lines in between are what is being
-        assessed. As required.
+        <Katex tex="1\cdot\arccos\!\left(\tfrac{x}{a}\right)+x\cdot\tfrac{-1}{\sqrt{a^2-x^2}}" />. As required.
+      </>
+    ),
+    more: (
+      <>
+        The report says some students simply wrote the answer as given and did not get the mark: the lines in
+        between are what is being assessed.
       </>
     ),
   },
@@ -130,9 +138,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="-1\le\frac{x}{2}\le1 \implies -2\le x\le 2" />,
     reason: (
       <>
-        Work from the inside out. The innermost function is <Katex tex="\arccos" />, whose input must lie in{' '}
-        <Katex tex="[-1,1]" />, endpoints included (<Katex tex="\arccos(1)=0" /> and{' '}
-        <Katex tex="\arccos(-1)=\pi" /> both exist). Here the input is <Katex tex="\tfrac{x}{2}" />.
+        Work from the inside out: <Katex tex="\arccos" /> needs its input, here <Katex tex="\tfrac{x}{2}" />, to
+        lie in <Katex tex="[-1,1]" />, endpoints included.
       </>
     ),
   },
@@ -140,9 +147,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\arccos\!\left(\frac{x}{2}\right)\ge0 \text{ for all such } x" />,
     reason: (
       <>
-        Next layer out: the square root needs what is <em>inside</em> it to be <Katex tex="\ge 0" />. The inside
-        is <Katex tex="\arccos\!\left(\tfrac{x}{2}\right)" />, not <Katex tex="x" />, and <Katex tex="\arccos" />{' '}
-        never gives a negative value, so the root adds no new restriction.
+        Next layer out: the root needs its inside, <Katex tex="\arccos\!\left(\tfrac{x}{2}\right)" />, to be{' '}
+        <Katex tex="\ge 0" />. <Katex tex="\arccos" /> is never negative, so there is no new restriction.
       </>
     ),
   },
@@ -165,10 +171,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="0\le\arccos\!\left(\frac{x}{2}\right)\le\pi" />,
     reason: (
       <>
-        For the range, inside out again. As <Katex tex="x" /> runs over <Katex tex="[-2,2]" />,{' '}
-        <Katex tex="\tfrac{x}{2}" /> runs over <Katex tex="[-1,1]" />, so the inside takes every value in{' '}
-        <Katex tex="[0,\pi]" />: <Katex tex="\pi" /> at <Katex tex="x=-2" /> and <Katex tex="0" /> at{' '}
-        <Katex tex="x=2" /> (<Katex tex="\arccos" /> is decreasing).
+        For the range, inside out again: <Katex tex="\tfrac{x}{2}" /> runs over all of{' '}
+        <Katex tex="[-1,1]" />, so the inside takes every value in <Katex tex="[0,\pi]" />.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\arccos" /> is decreasing, so the inside is <Katex tex="\pi" /> at <Katex tex="x=-2" /> and{' '}
+        <Katex tex="0" /> at <Katex tex="x=2" />.
       </>
     ),
   },
@@ -176,9 +186,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{ran}(f) = \left[0,\sqrt{\pi}\,\right]}" />,
     reason: (
       <>
-        The square root is applied last. It is increasing, so it sends the smallest value to the smallest and the
-        largest to the largest: <Katex tex="\sqrt0=0" /> and <Katex tex="\sqrt\pi\approx1.77" />. Stopping at{' '}
-        <Katex tex="[0,\pi]" />, which the report says was frequent, gives the range of the inside only.
+        The square root is applied last. It is increasing, so the ends map to <Katex tex="\sqrt0=0" /> and{' '}
+        <Katex tex="\sqrt\pi\approx1.77" />.
+      </>
+    ),
+    more: (
+      <>
+        Stopping at <Katex tex="[0,\pi]" />, which the report says was frequent, gives the range of the inside
+        only.
       </>
     ),
   },
@@ -190,10 +205,15 @@ const ROWS_C: WorkingRow[] = [
     reason: (
       <>
         Rotating about the <Katex tex="x" />-axis turns each thin slice into a disc of radius{' '}
-        <Katex tex="y=f(x)" /> and area <Katex tex="\pi y^2" />, so <Katex tex="V=\pi\int y^2\,dx" />. For the
-        limits, read the boundaries: <Katex tex="x=-2" /> is the left end, and there is no right-hand line, so the
-        region runs until the curve itself meets <Katex tex="y=0" />, at <Katex tex="x=2" /> (
-        <Katex tex="\arccos(1)=0" />). The <Katex tex="y" />-axis is not a boundary.
+        <Katex tex="y=f(x)" /> and area <Katex tex="\pi y^2" />, so <Katex tex="V=\pi\int y^2\,dx" />. Limits:
+        from <Katex tex="x=-2" /> to where the curve meets <Katex tex="y=0" />:{' '}
+        <Katex tex="f(2)=\sqrt{\arccos(1)}=0" />, so <Katex tex="x=2" />.
+      </>
+    ),
+    more: (
+      <>
+        Read the boundaries: <Katex tex="x=-2" /> is the left end, and there is no right-hand line, so the region
+        is closed off on the right by the curve itself.
       </>
     ),
   },
@@ -201,8 +221,13 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="\bigl(f(x)\bigr)^2 = \arccos\!\left(\frac{x}{2}\right)" />,
     reason: (
       <>
-        Squaring removes the square root. That is why the question built <Katex tex="f" /> with a root: the
-        volume integral is far nicer than the area one.
+        Squaring removes the square root.
+      </>
+    ),
+    more: (
+      <>
+        That is why the question built <Katex tex="f" /> with a root: the volume integral is far nicer than the
+        area one.
       </>
     ),
   },
@@ -210,9 +235,8 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="V = \pi\int_{-2}^{2}\arccos\!\left(\frac{x}{2}\right)dx" />,
     reason: (
       <>
-        <Katex tex="\arccos" /> has no antiderivative on the formula sheet. How would I know what to do? Part (a)
-        with <Katex tex="a=2" /> is a derivative containing <Katex tex="\arccos\!\left(\tfrac{x}{2}\right)" />,
-        and a &ldquo;show that&rdquo; is usually a tool for the next part.
+        <Katex tex="\arccos" /> has no antiderivative on the formula sheet. But part (a) with <Katex tex="a=2" /> is
+        a derivative containing <Katex tex="\arccos\!\left(\tfrac{x}{2}\right)" />, so use it.
       </>
     ),
   },
@@ -226,13 +250,18 @@ const ROWS_C: WorkingRow[] = [
     reason: (
       <>
         Part (a) with <Katex tex="a=2" />, rearranged to make <Katex tex="\arccos\!\left(\tfrac{x}{2}\right)" /> the
-        subject: the <Katex tex="\tfrac{x}{\sqrt{4-x^2}}" /> term moves across and becomes <b>+</b>. The report
-        lists sign errors at exactly this point, so write this line out rather than doing it in your head.
+        subject: the <Katex tex="\tfrac{x}{\sqrt{4-x^2}}" /> term moves across and becomes <b>+</b>.
+      </>
+    ),
+    more: (
+      <>
+        The report lists sign errors when using part (a), so write this line out rather than doing it in your
+        head.
       </>
     ),
   },
   {
-    working: <Katex display tex="\int\arccos\!\left(\frac{x}{2}\right)dx = x\arccos\!\left(\frac{x}{2}\right)+\int\frac{x}{\sqrt{4-x^2}}\,dx" />,
+    working: <Katex display tex="\begin{aligned}&\int\arccos\!\left(\frac{x}{2}\right)dx\\&= x\arccos\!\left(\frac{x}{2}\right)+\int\frac{x}{\sqrt{4-x^2}}\,dx\end{aligned}" />,
     reason: <>Antidifferentiate both sides. Antidifferentiating a derivative gives back the function.</>,
   },
   {
@@ -241,7 +270,13 @@ const ROWS_C: WorkingRow[] = [
       <>
         The <Katex tex="x" /> on top is the signal: it is <Katex tex="-\tfrac12" /> times the derivative of{' '}
         <Katex tex="4-x^2" />, the expression under the root. So this is a reverse chain rule (
-        <Katex tex="u=4-x^2" />), not an arcsin. Check:{' '}
+        <Katex tex="u=4-x^2" />), not an arcsin.
+      </>
+    ),
+    more: (
+      <>
+        With <Katex tex="u=4-x^2" />, <Katex tex="\tfrac{du}{dx}=-2x" />, so the integral is{' '}
+        <Katex tex="-\tfrac12\int u^{-1/2}\,du=-u^{1/2}" />. Check by differentiating:{' '}
         <Katex tex="\tfrac{d}{dx}\left(-\sqrt{4-x^2}\right)=\tfrac{2x}{2\sqrt{4-x^2}}=\tfrac{x}{\sqrt{4-x^2}}" /> ✓.
       </>
     ),
@@ -270,8 +305,12 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="V = \pi\bigl(0-(-2\pi)\bigr)" />,
     reason: (
       <>
-        Top limit minus bottom limit. The <Katex tex="\sqrt{4-x^2}" /> term was <Katex tex="0" /> at both ends
-        (equivalently, <Katex tex="\tfrac{x}{\sqrt{4-x^2}}" /> is odd, so its integral over{' '}
+        Top limit minus bottom limit.
+      </>
+    ),
+    more: (
+      <>
+        The <Katex tex="\sqrt{4-x^2}" /> term was <Katex tex="0" /> at both ends (equivalently, <Katex tex="\tfrac{x}{\sqrt{4-x^2}}" /> is odd, so its integral over{' '}
         <Katex tex="[-2,2]" /> is <Katex tex="0" />). So a sign slip with that term happens not to change the
         number here, but the working is still wrong, and on any other interval the answer would be too.
       </>
@@ -281,12 +320,22 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="\boxed{V = 2\pi^2}" />,
     reason: (
       <>
-        About <Katex tex="19.7" /> cubic units. A check: the solid fits inside a cylinder of radius{' '}
-        <Katex tex="\sqrt\pi" /> and length <Katex tex="4" />, volume <Katex tex="4\pi^2\approx39.5" />, and fills
-        exactly half of it.
+        Leave it exact, as Exam 1 expects (about <Katex tex="19.7" /> cubic units).
       </>
     ),
-    more: <>The second diagram below shows why.</>,
+    more: (
+      <>
+        A check: the solid fits inside a cylinder of radius <Katex tex="\sqrt\pi" /> and length <Katex tex="4" />,
+        volume <Katex tex="4\pi^2\approx39.5" />, and fills exactly half of it (the second diagram below shows
+        why). The report mentions students turning the integral into one of a cos function and subtracting from the
+        surrounding rectangle, a route that does not need part (a). One way to do it: the area under{' '}
+        <Katex tex="y=\arccos\!\left(\tfrac{x}{2}\right)" /> is the box <Katex tex="[-2,2]\times[0,\pi]" />{' '}
+        (area <Katex tex="4\pi" />) minus the region between the curve and the line <Katex tex="x=2" />. Writing the
+        curve as <Katex tex="x=2\cos y" />, that region has area{' '}
+        <Katex tex="\int_0^{\pi}(2-2\cos y)\,dy=2\pi" />, so the integral is <Katex tex="4\pi-2\pi=2\pi" /> and{' '}
+        <Katex tex="V=2\pi^2" /> again.
+      </>
+    ),
   },
 ]
 
@@ -374,17 +423,13 @@ export default function SpecialistQ10_2017Exam1() {
       >
         <Background title="Why part (a) is the key">
           <p>
-            Rotating a region about the <Katex tex="x" />-axis turns every thin vertical slice of width{' '}
-            <Katex tex="\delta x" /> into a disc of radius <Katex tex="y" />, with volume about{' '}
-            <Katex tex="\pi y^2\,\delta x" />. Adding the discs gives <Katex tex="V=\pi\int_a^b y^2\,dx" />, and
-            squaring <Katex tex="\sqrt{\arccos(x/2)}" /> leaves a plain <Katex tex="\arccos(x/2)" />.
+            A volume of revolution adds up thin discs: a vertical slice of width <Katex tex="\delta x" /> becomes a
+            disc of radius <Katex tex="y" /> and volume about <Katex tex="\pi y^2\,\delta x" />, and summing these
+            as <Katex tex="\delta x\to0" /> gives <Katex tex="V=\pi\int_a^b y^2\,dx" />.
           </p>
           <p>
-            Antidifferentiating <Katex tex="\arccos" /> is not on the formula sheet, which is
-            precisely why part (a) handed you{' '}
-            <Katex tex="\tfrac{d}{dx}\left(x\arccos\!\left(\tfrac{x}{a}\right)\right)" />.
-            Reading a "show that" result as a tool for the next part, rather than as an
-            isolated exercise, is the habit this question rewards.
+            Reading a "show that" result as a tool for the next part, rather than as an isolated exercise, is the
+            habit this question rewards. You can use the given result even if you could not prove it.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
@@ -430,8 +475,8 @@ export default function SpecialistQ10_2017Exam1() {
         >
           Differentiate to check: <Katex tex="\tfrac{d}{dx}\arcsin\!\left(\tfrac{x}{2}\right)=\tfrac{1}{\sqrt{4-x^2}}" />,
           with no <Katex tex="x" /> on top. The arcsin formula needs a constant numerator. When the numerator is a
-          multiple of the derivative of what is under the root (here <Katex tex="x=-\tfrac12(-2x)" />), substitute{' '}
-          <Katex tex="u=4-x^2" /> instead, which gives <Katex tex="-\sqrt{4-x^2}" />.
+          multiple of the derivative of what is under the root (here <Katex tex="x=-\tfrac12(-2x)" />), it is a
+          reverse chain rule instead.
         </WrongMethod>
       </PartCard>
     </div>

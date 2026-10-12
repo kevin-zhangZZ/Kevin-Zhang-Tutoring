@@ -46,76 +46,35 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{1}{x(1+x^2)} = \frac{A}{x}+\frac{Bx+C}{1+x^2}" />,
-    reason: (
-      <>
-        How would I know? There is no <Katex tex="\tfrac{f'}{f}" /> pattern (the derivative of{' '}
-        <Katex tex="x(1+x^2)" /> is <Katex tex="1+3x^2" />, not a constant multiple of the numerator <Katex tex="1" />), but the
-        denominator is already factorised, which is the cue for partial fractions. Since{' '}
-        <Katex tex="1+x^2\ge1" /> has no real roots, it is an irreducible quadratic and gets a{' '}
-        <em>linear</em> numerator <Katex tex="Bx+C" />, not a constant.
-      </>
-    ),
+    reason: <>The denominator is already factorised, the cue for partial fractions. <Katex tex="1+x^2\ge1" /> has no real roots (irreducible), so its numerator is <em>linear</em>, <Katex tex="Bx+C" />, not a constant.</>,
+    more: <>How would I know? No standard form (<Katex tex="\tfrac{f'}{f}" />, inverse tan) fits the whole fraction, so split it first. A substitution such as <Katex tex="x=\tan(u)" /> can work but is long, and the report says it was rarely followed through correctly.</>,
   },
   {
     working: <Katex display tex="1 = A(1+x^2)+(Bx+C)x" />,
-    reason: (
-      <>
-        Multiply both sides by <Katex tex="x(1+x^2)" />. This must be true for <em>every</em>{' '}
-        <Katex tex="x" /> (it is an identity, not an equation to solve), so we may substitute any
-        convenient value or compare coefficients.
-      </>
-    ),
+    reason: <>Multiply both sides by <Katex tex="x(1+x^2)" />. This is an identity, true for <em>every</em> <Katex tex="x" />, so we may substitute convenient values or compare coefficients.</>,
   },
   {
     working: <Katex display tex="x=0: \quad 1=A" />,
-    reason: (
-      <>
-        <Katex tex="x=0" /> wipes out both terms containing <Katex tex="x" />. It is allowed even though
-        the original fraction is undefined there, because this polynomial identity holds for all{' '}
-        <Katex tex="x" />.
-      </>
-    ),
+    reason: <><Katex tex="x=0" /> wipes out both terms containing <Katex tex="x" />.</>,
+    more: <>This is allowed even though the original fraction is undefined at <Katex tex="x=0" />, because the polynomial identity holds for all <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="1 = (A+B)x^2+Cx+A" />,
-    reason: (
-      <>
-        Expand and collect powers of <Katex tex="x" />, ready to match against the left side, which is{' '}
-        <Katex tex="0x^2+0x+1" />.
-      </>
-    ),
+    reason: <>Expand and collect powers of <Katex tex="x" />, ready to match against the left side, which is <Katex tex="0x^2+0x+1" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} x^2&:\ 0=A+B \implies B=-1\\ x&:\ 0=C \end{aligned}" />,
-    reason: (
-      <>
-        Three powers of <Katex tex="x" />, three unknowns: that is why the quadratic factor needs both{' '}
-        <Katex tex="B" /> and <Katex tex="C" />. The <Katex tex="Bx^2" /> term is the only thing that can
-        cancel the <Katex tex="Ax^2" /> from <Katex tex="A(1+x^2)" />. (The report notes that{' '}
-        <Katex tex="\tfrac{Bx}{1+x^2}" /> happened to work here only because <Katex tex="C=0" />.)
-      </>
-    ),
+    reason: <>Equate coefficients with <Katex tex="0x^2+0x+1" />, using <Katex tex="A=1" />.</>,
+    more: <>The <Katex tex="Bx^2" /> term is the only thing that can cancel the <Katex tex="Ax^2" /> from <Katex tex="A(1+x^2)" />. The report notes that the form <Katex tex="\tfrac{Bx}{1+x^2}" /> happened to give correct partial fractions here only because <Katex tex="C=0" />.</>,
   },
   {
     working: <Katex display tex="\int_1^{\sqrt3}\!\left(\frac1x-\frac{x}{1+x^2}\right)dx" />,
-    reason: (
-      <>
-        Quick check at <Katex tex="x=1" />: <Katex tex="1-\tfrac12=\tfrac12" /> and{' '}
-        <Katex tex="\tfrac{1}{1\times2}=\tfrac12" />. The first piece is standard. In the second, the
-        numerator <Katex tex="x" /> is half the derivative of <Katex tex="1+x^2" />, so it is an{' '}
-        <Katex tex="\tfrac{f'}{f}" /> form.
-      </>
-    ),
+    reason: <>Substitute <Katex tex="A=1" />, <Katex tex="B=-1" />, <Katex tex="C=0" />. The first piece is standard; in the second, the numerator <Katex tex="x" /> is half the derivative of <Katex tex="1+x^2" />.</>,
+    more: <>Quick check at <Katex tex="x=1" />, a value not used to find the constants: <Katex tex="1-\tfrac12=\tfrac12" /> and <Katex tex="\tfrac{1}{1\times2}=\tfrac12" />. Splitting first keeps the terminals as they are; the report notes that students who substituted <Katex tex="u=x^2" /> or <Katex tex="u=1+x^2" /> often did not adjust the terminals.</>,
   },
   {
     working: <Katex display tex="= \Bigl[\log_e(x)-\tfrac12\log_e(1+x^2)\Bigr]_1^{\sqrt3}" />,
-    reason: (
-      <>
-        <Katex tex="\int\tfrac{2x}{1+x^2}\,dx=\log_e(1+x^2)" />, so the <Katex tex="x" /> numerator gives
-        half of that. No modulus signs are needed: <Katex tex="x>0" /> and <Katex tex="1+x^2>0" /> on{' '}
-        <Katex tex="[1,\sqrt3]" />.
-      </>
-    ),
+    reason: <><Katex tex="\int\tfrac{2x}{1+x^2}\,dx=\log_e(1+x^2)" />, so the <Katex tex="x" /> numerator gives half of that. No modulus signs needed: <Katex tex="x>0" /> and <Katex tex="1+x^2>0" /> on <Katex tex="[1,\sqrt3]" />.</>,
   },
   {
     working: (
@@ -124,43 +83,20 @@ const ROWS: WorkingRow[] = [
         tex="\begin{aligned} &= \left(\log_e\sqrt3-\tfrac12\log_e 4\right)\\ &\quad-\left(0-\tfrac12\log_e 2\right) \end{aligned}"
       />
     ),
-    reason: (
-      <>
-        Substitute both terminals into <em>both</em> terms. At <Katex tex="x=1" /> the first term is{' '}
-        <Katex tex="\log_e1=0" />, but the second is <Katex tex="-\tfrac12\log_e2" />, not 0, because{' '}
-        <Katex tex="1+1^2=2" />.
-      </>
-    ),
+    reason: <>Substitute both terminals into <em>both</em> terms. At <Katex tex="x=1" /> the first term is <Katex tex="\log_e1=0" />, but the second is <Katex tex="-\tfrac12\log_e2" />, not 0, because <Katex tex="1+1^2=2" />.</>,
   },
   {
     working: <Katex display tex="= \tfrac12\log_e3-\log_e2+\tfrac12\log_e2" />,
-    reason: (
-      <>
-        Write everything in terms of <Katex tex="\log_e3" /> and <Katex tex="\log_e2" />:{' '}
-        <Katex tex="\log_e\sqrt3=\tfrac12\log_e3" /> and <Katex tex="\tfrac12\log_e4=\tfrac12\log_e2^2=\log_e2" />.
-      </>
-    ),
+    reason: <>Write everything in terms of <Katex tex="\log_e3" /> and <Katex tex="\log_e2" />: <Katex tex="\log_e\sqrt3=\tfrac12\log_e3" /> and <Katex tex="\tfrac12\log_e4=\tfrac12\log_e2^2=\log_e2" />.</>,
   },
   {
     working: <Katex display tex="= \tfrac12\log_e3-\tfrac12\log_e2 = \tfrac12\log_e\!\left(\tfrac32\right)" />,
-    reason: (
-      <>
-        Collect the <Katex tex="\log_e2" /> terms (<Katex tex="-1+\tfrac12=-\tfrac12" />), then use{' '}
-        <Katex tex="\log_e a-\log_e b=\log_e\tfrac{a}{b}" />.
-      </>
-    ),
+    reason: <>Collect the <Katex tex="\log_e2" /> terms (<Katex tex="-1+\tfrac12=-\tfrac12" />), then use <Katex tex="\log_e a-\log_e b=\log_e\tfrac{a}{b}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\log_e\!\left(\sqrt{\frac32}\right)}" />,
-    reason: (
-      <>
-        The required form has a square root, so move the <Katex tex="\tfrac12" /> inside:{' '}
-        <Katex tex="a=3" />, <Katex tex="b=2" />. <Katex tex="\log_e\!\left(\tfrac{\sqrt6}{2}\right)" /> is the
-        same number but not the required form, since{' '}
-        <Katex tex="\tfrac{\sqrt6}{2}=\sqrt{\tfrac64}=\sqrt{\tfrac32}" />. Sense check: about{' '}
-        <Katex tex="0.203" />, positive, as it must be for a positive integrand.
-      </>
-    ),
+    reason: <>The required form has a square root, so move the <Katex tex="\tfrac12" /> inside as a power: <Katex tex="\tfrac12\log_e\tfrac32=\log_e\!\left(\tfrac32\right)^{1/2}" />, giving <Katex tex="a=3" />, <Katex tex="b=2" />.</>,
+    more: <><Katex tex="\log_e\!\left(\tfrac{\sqrt6}{2}\right)" /> is the same number but not the required form, since <Katex tex="\tfrac{\sqrt6}{2}=\sqrt{\tfrac64}=\sqrt{\tfrac32}" />; the report notes this answer came up often. Sense check: the value is about <Katex tex="0.203" />, positive, as it must be for a positive integrand.</>,
   },
 ]
 

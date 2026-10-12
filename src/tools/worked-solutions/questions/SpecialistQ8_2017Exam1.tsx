@@ -66,38 +66,42 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{At }(-1,1):\ \frac{dy}{dx}=\frac{-(-1)}{1+1^2}=\frac12" />,
-    reason: <>The condition <Katex tex="y(-1)=1" /> is the point <Katex tex="x=-1" />, <Katex tex="y=1" />: put your pencil there. The equation gives the gradient at every point, and here it is <Katex tex="\tfrac12" />, so the curve leaves gently uphill to the right. Check that this matches the tick at <Katex tex="(-1,1)" /> before you draw anything.</>,
+    reason: <><Katex tex="y(-1)=1" /> is the point <Katex tex="(-1,1)" />: start the pencil there and follow the ticks, never cutting across them. Here the gradient is <Katex tex="\tfrac12" />, gently uphill to the right.</>,
+    more: <>Check that the tick drawn at <Katex tex="(-1,1)" /> has this gradient before you draw anything: it confirms you are starting at the right point.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx}\ \begin{cases}>0, & x<0\\ =0, & x=0\\ <0, & x>0\end{cases}" />,
-    reason: <>How do you know the shape before drawing? Look at the signs. <Katex tex="1+y^2>0" /> always, so <Katex tex="\tfrac{dy}{dx}" /> has the sign of <Katex tex="-x" />: uphill left of the <Katex tex="y" />-axis, flat on it, downhill to the right. So the curve has a single maximum, on the <Katex tex="y" />-axis.</>,
+    reason: <>Since <Katex tex="1+y^2>0" />, <Katex tex="\tfrac{dy}{dx}" /> has the sign of <Katex tex="-x" />: rising left of the <Katex tex="y" />-axis, flat on it, falling right of it. So there is one maximum, on the <Katex tex="y" />-axis.</>,
   },
   {
     working: <Katex display tex="x\to-x \implies \frac{dy}{dx}\to-\frac{dy}{dx}" />,
-    reason: <>Swapping <Katex tex="x" /> for <Katex tex="-x" /> changes the gradient&apos;s sign but not its size, so every tick on the right is the mirror image of one on the left. The curve&apos;s mirror image in the <Katex tex="y" />-axis therefore follows the ticks too, and it passes through the same peak on the axis. Only one solution curve passes through a point, so the curve is its own mirror image. The report lists a non-symmetric curve among the errors.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="-x" /> flips the gradient&apos;s sign but not its size, so the field, and hence the curve, is symmetric about the <Katex tex="y" />-axis.</>,
+    more: <>Why the curve itself, and not just the field: each tick on the right is the mirror image of one on the left, so the curve&apos;s reflection in the <Katex tex="y" />-axis also follows the ticks, and it passes through the same peak on the axis. Only one solution curve passes through a given point, so the curve is its own mirror image. The report lists a non-symmetric curve among the errors.</>,
   },
   {
     working: <Katex display tex="\text{peak: }(0,\ \approx 1.2)" />,
-    reason: <>The ticks flatten as you near the <Katex tex="y" />-axis: gradient <Katex tex="\tfrac12" /> at <Katex tex="x=-1" />, about <Katex tex="0.2" /> at <Katex tex="x=-0.5" />, <Katex tex="0" /> at <Katex tex="x=0" />. So the curve keeps rising, more and more gently, and peaks only about <Katex tex="0.2" /> above its start. The report says many graphs went almost flat between <Katex tex="x=-0.5" /> and <Katex tex="x=0.5" /> and missed this <Katex tex="y" />-intercept. This height is not the answer.</>,
+    reason: <>Towards the <Katex tex="y" />-axis the ticks flatten (gradient <Katex tex="\tfrac12" /> at <Katex tex="x=-1" />, about <Katex tex="0.2" /> at <Katex tex="x=-0.5" />), so the curve rises only about <Katex tex="0.2" /> more. This height is the <Katex tex="y" />-intercept, not the answer.</>,
+    more: <>The report says many graphs were almost flat between <Katex tex="x=-0.5" /> and <Katex tex="x=0.5" />, missing this <Katex tex="y" />-intercept. Part b.&apos;s equation puts the peak at <Katex tex="y\approx1.22" /> (the real root of <Katex tex="2y^3+6y-11=0" />).</>,
   },
   {
     working: <Katex display tex="\boxed{x\approx 1.9}" />,
-    reason: <>Past the peak, follow the ticks down: they steepen, to a gradient of about <Katex tex="-1.9" /> where the curve meets the <Katex tex="x" />-axis. Read the positive <Katex tex="x" />-intercept off your own sketch, because &ldquo;hence&rdquo; means the estimate comes from the graph. The report gives <Katex tex="1.7\le x\le1.9" />. Draw the curve right across the field on both sides, not just to the intercepts. Part b. confirms the estimate: <Katex tex="y=0" /> gives <Katex tex="x=\sqrt{\tfrac{11}{3}}\approx1.915" />.</>,
+    reason: <>Past the peak the ticks steepen downhill (gradient about <Katex tex="-1.9" /> at the <Katex tex="x" />-axis). &ldquo;Hence&rdquo; means read the positive <Katex tex="x" />-intercept off your own sketch.</>,
+    more: <>The report accepts <Katex tex="1.7\le x\le1.9" />. Draw the curve right across the field on both sides, not just to the <Katex tex="x" />-intercepts: the report says some students stopped there. After drawing, you can check your reading against part b.: <Katex tex="y=0" /> gives <Katex tex="3x^2=11" />, so <Katex tex="x=\sqrt{\tfrac{11}{3}}\approx1.915" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="(1+y^2)\,dy = -x\,dx" />,
-    reason: <>The right side is a function of <Katex tex="x" /> divided by a function of <Katex tex="y" />, which is the signal to separate variables. Multiply both sides by <Katex tex="1+y^2" /> so every <Katex tex="y" /> sits with <Katex tex="dy" /> and every <Katex tex="x" /> with <Katex tex="dx" />.</>,
+    reason: <>The right side is a function of <Katex tex="x" /> over a function of <Katex tex="y" />, so separate variables: multiply by <Katex tex="1+y^2" /> to put each variable with its own differential.</>,
   },
   {
     working: <Katex display tex="y+\frac{y^3}{3} = -\frac{x^2}{2}+c" />,
-    reason: <>Integrate each side with respect to its own variable. A constant from each side would combine into one, so a single <Katex tex="+c" /> is enough. Every value of <Katex tex="c" /> is a different curve in the slope field; the next step picks the one through <Katex tex="(-1,1)" />.</>,
+    reason: <>Integrate each side with respect to its own variable. The two constants combine into one <Katex tex="+c" />.</>,
   },
   {
     working: <Katex display tex="1+\frac13 = -\frac{(-1)^2}{2}+c" />,
-    reason: <>Substitute <Katex tex="x=-1" />, <Katex tex="y=1" />. Square first, <Katex tex="(-1)^2=1" />, and the minus sign in front still applies, so the right side is <Katex tex="-\tfrac12+c" />. Getting <Katex tex="+\tfrac12" /> here is what produces the report&apos;s most common wrong constant, <Katex tex="\tfrac56" />.</>,
+    reason: <>Substitute <Katex tex="x=-1" />, <Katex tex="y=1" /> to find the <Katex tex="c" /> for this curve. Square first, <Katex tex="(-1)^2=1" />, and the minus in front still applies: <Katex tex="-\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="c = \frac43+\frac12 = \frac{11}{6}" />,
@@ -105,11 +109,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y+\frac{y^3}{3}+\frac{x^2}{2}-\frac{11}{6} = 0" />,
-    reason: <>The required form has everything on one side equal to <Katex tex="0" />. Moving <Katex tex="\tfrac{11}{6}" /> across makes it <Katex tex="-\tfrac{11}{6}" />; moving <Katex tex="-\tfrac{x^2}{2}" /> across makes it <Katex tex="+\tfrac{x^2}{2}" />.</>,
+    reason: <>The required form is everything on one side, equal to <Katex tex="0" />: <Katex tex="-\tfrac{x^2}{2}" /> and <Katex tex="+\tfrac{11}{6}" /> change sign as they move across.</>,
   },
   {
     working: <Katex display tex="\boxed{2y^3+6y+3x^2-11 = 0}" />,
-    reason: <>Multiply through by <Katex tex="6" />, the lowest common denominator, to clear the fractions and get the integer coefficients asked for: <Katex tex="a=2" />, <Katex tex="b=6" />, <Katex tex="c=3" />, <Katex tex="d=-11" />. The report says many students stopped before this step. Check with the initial condition: <Katex tex="2+6+3-11=0" /> ✓.</>,
+    reason: <>Multiply by <Katex tex="6" /> to get the integer coefficients asked for. Check at <Katex tex="(-1,1)" />: <Katex tex="2+6+3-11=0" /> ✓.</>,
+    more: <>So <Katex tex="a=2" />, <Katex tex="b=6" />, <Katex tex="c=3" /> (the question&apos;s coefficient of <Katex tex="x^2" />, not the constant <Katex tex="\tfrac{11}{6}" />), <Katex tex="d=-11" />. The report says most students integrated correctly but made no attempt to write the answer with integers, as the question required.</>,
   },
 ]
 
@@ -147,16 +152,9 @@ export default function SpecialistQ8_2017Exam1() {
       >
         <Background title="Reading a slope field">
           <p>
-            Every tick is a tiny piece of tangent. A solution curve must be tangent to the
-            ticks it passes through — it never cuts across them. Start at the given point and
-            follow the ticks in both directions.
-          </p>
-          <p>
-            Before drawing, extract what the equation tells you about shape.{' '}
-            <Katex tex="1+y^2>0" /> always, so the sign of <Katex tex="\tfrac{dy}{dx}" /> is
-            the sign of <Katex tex="-x" />: rising for <Katex tex="x<0" />, zero at{' '}
-            <Katex tex="x=0" />, falling for <Katex tex="x>0" />. That gives a single maximum
-            on the <Katex tex="y" />-axis and a curve symmetric about it.
+            Every tick is a tiny piece of tangent: its slope is the value of{' '}
+            <Katex tex="\tfrac{dy}{dx}" /> at that point. A solution curve is a curve whose tangent
+            at every point matches the tick there.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />

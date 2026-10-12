@@ -142,8 +142,7 @@ export default function DomainOfDerivative() {
       <Notice>
         Start from the inside: <M>{'\\arcsin'}</M> undoes <M>{'\\sin'}</M>, so its inputs are values of sine, only{' '}
         <M>-1</M> to <M>1</M>. In the grey regions there is no <M>{'\\arcsin(x)'}</M>, so no <M>f(x)</M> and certainly no{' '}
-        <M>{"f'(x)"}</M>. That already rules out <M>R</M>, <M>{'R\\setminus\\{-1,0,1\\}'}</M> and{' '}
-        <M>{'(-\\infty,0)\\cup(0,\\infty)'}</M>, all common errors in the report. Press Next.
+        <M>{"f'(x)"}</M>. Press Next.
       </Notice>
     )
   } else if (s.step === 1) {

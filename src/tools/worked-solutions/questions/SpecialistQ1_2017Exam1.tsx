@@ -41,32 +41,38 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\bigl(3xy^2\bigr)+\frac{d}{dx}(2y) = \frac{d}{dx}(x)" />,
-    reason: <>A tangent needs a gradient, and the curve is given as an equation in <Katex tex="x" /> and <Katex tex="y" /> rather than as <Katex tex="y=\ldots" />. That combination is the signal for implicit differentiation: apply <Katex tex="\tfrac{d}{dx}" /> to every term on both sides.</>,
+    reason: <>A tangent needs a gradient, and the curve isn&apos;t written as <Katex tex="y=\ldots" />, so differentiate every term on both sides with respect to <Katex tex="x" /> (implicit differentiation).</>,
+    more: <>Writing <Katex tex="\tfrac{d}{dx}" /> in front of each term, as here, also avoids the notational errors the report mentions.</>,
   },
   {
     working: <Katex display tex="\frac{d}{dx}\bigl(3xy^2\bigr) = 3y^2 + 3x\cdot 2y\frac{dy}{dx}" />,
-    reason: <><Katex tex="3xy^2" /> is <Katex tex="3x" /> times <Katex tex="y^2" />, and both change as <Katex tex="x" /> changes, so use the product rule: <Katex tex="(3x)'\,y^2 + 3x\,(y^2)'" />. For <Katex tex="(y^2)'" /> use the chain rule: differentiate with respect to <Katex tex="y" /> to get <Katex tex="2y" />, then multiply by <Katex tex="\tfrac{dy}{dx}" /> because <Katex tex="y" /> depends on <Katex tex="x" />. The report lists this term first among the typical errors.</>,
+    reason: <><Katex tex="3xy^2" /> is <Katex tex="3x" /> times <Katex tex="y^2" />: product rule. Then chain rule on <Katex tex="y^2" />: <Katex tex="2y\tfrac{dy}{dx}" />, because <Katex tex="y" /> depends on <Katex tex="x" />.</>,
+    more: <>In full: <Katex tex="(3x)'\,y^2 + 3x\,(y^2)' = 3\cdot y^2+3x\cdot 2y\tfrac{dy}{dx}" />. The report lists this term (product rule and/or chain rule) first among the typical errors.</>,
   },
   {
     working: <Katex display tex="3y^2+6xy\frac{dy}{dx}+2\frac{dy}{dx} = 1" />,
-    reason: <>By the same chain rule, <Katex tex="\tfrac{d}{dx}(2y)=2\tfrac{dy}{dx}" />. The right-hand side is <Katex tex="x" />, whose derivative is <Katex tex="1" />, not <Katex tex="0" /> (the report says a number of students gave <Katex tex="0" />).</>,
+    reason: <>By the same chain rule, <Katex tex="\tfrac{d}{dx}(2y)=2\tfrac{dy}{dx}" />. On the right, <Katex tex="\tfrac{d}{dx}(x)=1" />.</>,
+    more: <>The report says a number of students took <Katex tex="\tfrac{d}{dx}(x)" /> to be <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="3(-1)^2+6(1)(-1)\frac{dy}{dx}+2\frac{dy}{dx}=1" />,
-    reason: <>Substitute <Katex tex="x=1" /> and <Katex tex="y=-1" /> now, before rearranging: the equation is linear in <Katex tex="\tfrac{dy}{dx}" /> either way, and numbers are easier to handle than letters. Take care with the signs: <Katex tex="(-1)^2=1" /> but <Katex tex="6(1)(-1)=-6" />. The report saw arithmetic errors giving the derivative as <Katex tex="-\tfrac12" />, <Katex tex="-2" /> or <Katex tex="2" />.</>,
+    reason: <>Substitute <Katex tex="x=1" />, <Katex tex="y=-1" /> now, before rearranging: the equation is linear in <Katex tex="\tfrac{dy}{dx}" />, and numbers are easier to handle than letters.</>,
+    more: <>Take care with the signs: <Katex tex="(-1)^2=1" /> but <Katex tex="6(1)(-1)=-6" />. The report notes several arithmetic errors that gave the derivative as <Katex tex="-\tfrac12" />, <Katex tex="-2" /> or <Katex tex="2" />. Rearranging first to <Katex tex="\tfrac{dy}{dx}=\tfrac{1-3y^2}{6xy+2}" /> and then substituting also works.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} 3-4\frac{dy}{dx}&=1 \\ \frac{dy}{dx}&=\frac12 \end{aligned}" />,
-    reason: <>Collect the <Katex tex="\tfrac{dy}{dx}" /> terms (<Katex tex="-6+2=-4" />), so <Katex tex="-4\tfrac{dy}{dx}=1-3=-2" />. This is the gradient at <Katex tex="(1,-1)" /> only. The general formula <Katex tex="\tfrac{dy}{dx}=\tfrac{1-3y^2}{6xy+2}" /> needs <em>both</em> coordinates, because the curve also passes through <Katex tex="\left(1,\tfrac13\right)" />, where the gradient is <Katex tex="\tfrac16" />.</>,
-    more: <>See the diagram below.</>,
+    reason: <>Collect the <Katex tex="\tfrac{dy}{dx}" /> terms (<Katex tex="-6+2=-4" />), so <Katex tex="-4\tfrac{dy}{dx}=1-3=-2" />.</>,
+    more: <>This is the gradient at <Katex tex="(1,-1)" /> only. The line <Katex tex="x=1" /> also meets the curve at <Katex tex="\left(1,\tfrac13\right)" /> (solve <Katex tex="3y^2+2y-1=0" />), where the gradient is <Katex tex="\tfrac16" />. Drag the point in the diagram below to see this.</>,
   },
   {
     working: <Katex display tex="y-(-1) = \tfrac12(x-1)" />,
-    reason: <>A tangent is a straight line, so all it needs is one point and one number for the gradient: use <Katex tex="y-y_1=m(x-x_1)" />. The gradient of the <em>tangent</em> is <Katex tex="\tfrac12" />; the report notes a few students found the normal instead, whose gradient would be <Katex tex="-2" />.</>,
+    reason: <>The question wants the tangent&apos;s equation, not just its gradient: use <Katex tex="y-y_1=m(x-x_1)" /> with <Katex tex="m=\tfrac12" /> and the point <Katex tex="(1,-1)" />.</>,
+    more: <>The report notes some students found the correct derivative and stopped there, and a few found the normal instead, whose gradient would be <Katex tex="-2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \frac{x}{2}-\frac32}" />,
-    reason: <>Equivalently <Katex tex="x-2y=3" />. Check: at <Katex tex="x=1" />, <Katex tex="y=\tfrac12-\tfrac32=-1" /> ✓, so the line does pass through the given point.</>,
+    reason: <>Expand and simplify to gradient–intercept form, or equivalently <Katex tex="x-2y=3" />.</>,
+    more: <>Check: at <Katex tex="x=1" />, <Katex tex="y=\tfrac12-\tfrac32=-1" /> ✓, so the line passes through the given point.</>,
   },
 ]
 

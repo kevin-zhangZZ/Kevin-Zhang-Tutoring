@@ -52,11 +52,9 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Angle <Katex tex="BCD" /> has its vertex at the middle letter, <Katex tex="C" />, and the angle between two
-        vectors is measured with their tails together. So both vectors must <em>start</em> at <Katex tex="C" />. A
-        vector from <Katex tex="C" /> to <Katex tex="B" /> is &ldquo;end minus start&rdquo;:{' '}
-        <Katex tex="\underset{\sim}{b}-\underset{\sim}{c}" />. Dotting <Katex tex="\underset{\sim}{b}" />,{' '}
-        <Katex tex="\underset{\sim}{c}" /> or <Katex tex="\underset{\sim}{d}" /> themselves measures an angle at the
-        origin instead, the report&apos;s most common error.
+        vectors needs their tails together, so both vectors <em>start</em> at <Katex tex="C" />. From{' '}
+        <Katex tex="C" /> to <Katex tex="B" /> is &ldquo;end minus start&rdquo;, one component at a time:{' '}
+        <Katex tex="1-2=-1" />, <Katex tex="-1-(-1)=0" /> and <Katex tex="2-1=1" />.
       </>
     ),
   },
@@ -64,7 +62,7 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\overrightarrow{CD} = \underset{\sim}{d}-\underset{\sim}{c} = (a-2)\underset{\sim}{i}-\underset{\sim}{j}-\underset{\sim}{k}" />,
     reason: (
       <>
-        Same rule, end minus start, one component at a time: <Katex tex="a-2" />,{' '}
+        Same rule: <Katex tex="a-2" />,{' '}
         <Katex tex="-2-(-1)=-1" /> and <Katex tex="0-1=-1" />.
       </>
     ),
@@ -78,9 +76,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Multiply matching components and add. The report says some students&apos; algebra here was poor; the slip to watch is the
-        first term, <Katex tex="(-1)(a-2)=2-a" />, not <Katex tex="a-2" />. Write the dot: the report also noted students
-        leaving it out or using another symbol.
+        Multiply matching components and add. Careful with the first term: <Katex tex="(-1)(a-2)=2-a" />, not{' '}
+        <Katex tex="a-2" />.
+      </>
+    ),
+    more: (
+      <>
+        The report says some students&apos; algebra here was poor, and many left out the dot or used another symbol:
+        write <Katex tex="\overrightarrow{CB}\cdot\overrightarrow{CD}" /> with the dot.
       </>
     ),
   },
@@ -97,12 +100,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{1-a}{\sqrt2\,\sqrt{(a-2)^2+2}}=\cos\!\left(\frac{\pi}{3}\right)=\frac12" />,
     reason: (
       <>
-        The dot-product rule <Katex tex="\underset{\sim}{u}\cdot\underset{\sim}{v}=|\underset{\sim}{u}||\underset{\sim}{v}|\cos\theta" />{' '}
-        rearranged for <Katex tex="\cos\theta" />, with <Katex tex="\theta=\tfrac{\pi}{3}" />. Exact value:{' '}
-        <Katex tex="\cos\tfrac{\pi}{3}=\tfrac12" /> (the report notes many students did not know their exact values).
-        The cosine rule in triangle <Katex tex="BCD" /> also works (the report mentions it): with{' '}
-        <Katex tex="BD^2=|\underset{\sim}{d}-\underset{\sim}{b}|^2=(a-1)^2+5" /> it simplifies to the same equation,{' '}
-        <Katex tex="2(1-a)=\sqrt2\,\sqrt{(a-2)^2+2}" />.
+        Rearrange <Katex tex="\underset{\sim}{u}\cdot\underset{\sim}{v}=|\underset{\sim}{u}||\underset{\sim}{v}|\cos\theta" />{' '}
+        for <Katex tex="\cos\theta" />, with <Katex tex="\theta=\tfrac{\pi}{3}" />. Exact value:{' '}
+        <Katex tex="\cos\tfrac{\pi}{3}=\tfrac12" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes many students did not know their exact values. The cosine rule in triangle <Katex tex="BCD" />{' '}
+        also works (the report mentions it):{' '}
+        <Katex tex="BD^2=CB^2+CD^2-2\times CB\times CD\cos\tfrac{\pi}{3}" />, with <Katex tex="CB^2=2" />,{' '}
+        <Katex tex="CD^2=(a-2)^2+2" /> and <Katex tex="BD^2=|\underset{\sim}{d}-\underset{\sim}{b}|^2=(a-1)^2+5" />,
+        simplifies to the same equation, <Katex tex="2(1-a)=\sqrt2\,\sqrt{(a-2)^2+2}" />.
       </>
     ),
   },
@@ -110,10 +119,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="1-a>0 \implies a<1" />,
     reason: (
       <>
-        Read the sign off <em>before</em> squaring. The denominator is a product of lengths, so it is positive; the
-        fraction equals <Katex tex="+\tfrac12" />, so the numerator <Katex tex="1-a" /> must be positive too. In picture
-        terms, <Katex tex="\tfrac{\pi}{3}" /> is acute, and an acute angle means a positive dot product. Squaring is about
-        to throw this sign away, so write it down now; it decides between the two roots at the end.
+        Record the sign <em>before</em> squaring: the denominator is a product of lengths, so positive, and the fraction
+        is <Katex tex="+\tfrac12" />, so the numerator <Katex tex="1-a" /> is positive.
+      </>
+    ),
+    more: (
+      <>
+        This condition is what will choose between the two roots that the squared equation produces.
       </>
     ),
   },
@@ -126,9 +138,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Cross-multiply, then square both sides to clear the surds. The squared equation is also true when{' '}
-        <Katex tex="2(1-a)=-\sqrt2\,\sqrt{(a-2)^2+2}" />, that is when <Katex tex="\cos\theta=-\tfrac12" /> and the angle
-        is <Katex tex="\tfrac{2\pi}{3}" />, so it can produce an extra root.
+        Cross-multiply, then square both sides to clear the surds. Squaring also accepts{' '}
+        <Katex tex="\cos\theta=-\tfrac12" /> (angle <Katex tex="\tfrac{2\pi}{3}" />), so it can give an extra root.
+      </>
+    ),
+    more: (
+      <>
+        The squared equation is true whenever <Katex tex="2(1-a)=\pm\sqrt2\,\sqrt{(a-2)^2+2}" />: it only tests{' '}
+        <Katex tex="\cos^2\theta=\tfrac14" />.
       </>
     ),
   },
@@ -149,12 +166,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{a=-2}" />,
     reason: (
       <>
-        Only <Katex tex="a=-2" /> satisfies <Katex tex="a<1" />. Check: at <Katex tex="a=-2" />,{' '}
-        <Katex tex="\overrightarrow{CB}\cdot\overrightarrow{CD}=3" /> and{' '}
-        <Katex tex="|\overrightarrow{CD}|=\sqrt{18}=3\sqrt2" />, so{' '}
-        <Katex tex="\cos\theta=\tfrac{3}{\sqrt2\times3\sqrt2}=\tfrac12" />. The other root, <Katex tex="a=2" />, gives a
-        dot product of <Katex tex="-1" /> and <Katex tex="|\overrightarrow{CD}|=\sqrt2" />, so{' '}
-        <Katex tex="\cos\theta=-\tfrac12" />: that is the angle <Katex tex="\tfrac{2\pi}{3}" /> that squaring let in.
+        Only <Katex tex="a=-2" /> satisfies <Katex tex="a<1" />. Check: <Katex tex="\overrightarrow{CB}\cdot\overrightarrow{CD}=3" />,{' '}
+        <Katex tex="|\overrightarrow{CD}|=3\sqrt2" />, so <Katex tex="\cos\theta=\tfrac{3}{\sqrt2\times3\sqrt2}=\tfrac12" />.
       </>
     ),
   },
@@ -187,17 +200,13 @@ export default function SpecialistQ5_2017Exam1() {
             The angle between two vectors comes from the dot product,{' '}
             <Katex tex="\underset{\sim}{u}\cdot\underset{\sim}{v}=|\underset{\sim}{u}||\underset{\sim}{v}|\cos\theta" />,
             where <Katex tex="\theta" /> is the angle between the vectors when they are placed <b>tail to tail</b>{' '}
-            (<Katex tex="0\le\theta\le\pi" />). An angle named with three letters, like <Katex tex="BCD" />, has its
-            vertex at the middle letter, so the two vectors you need both start at <Katex tex="C" />:{' '}
-            <Katex tex="\overrightarrow{CB}" /> and <Katex tex="\overrightarrow{CD}" />. The given{' '}
+            (<Katex tex="0\le\theta\le\pi" />). The given{' '}
             <Katex tex="\underset{\sim}{b}" />, <Katex tex="\underset{\sim}{c}" /> and <Katex tex="\underset{\sim}{d}" />{' '}
             all start at the origin, so they are only the raw material.
           </p>
           <p>
             The <b>sign</b> of the dot product tells you the kind of angle: positive for acute, zero for a right angle,
-            negative for obtuse. Here the angle <Katex tex="\tfrac{\pi}{3}" /> is acute, so{' '}
-            <Katex tex="\overrightarrow{CB}\cdot\overrightarrow{CD}" /> must come out positive. Keep that in mind: the
-            algebra involves squaring, which throws the sign away.
+            negative for obtuse.
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
@@ -220,8 +229,8 @@ export default function SpecialistQ5_2017Exam1() {
           <p>
             Position vectors start at the origin, so this is the angle <Katex tex="BOD" /> at <Katex tex="O" />, not the
             angle at <Katex tex="C" />. (Both of these values of <Katex tex="a" /> really do make angle{' '}
-            <Katex tex="BOD" /> equal <Katex tex="\tfrac{\pi}{3}" />.) The catch is in the name of the angle: the middle
-            letter is the vertex, and both vectors must start there, so subtract position vectors first. Two surd answers
+            <Katex tex="BOD" /> equal <Katex tex="\tfrac{\pi}{3}" />.) For the angle at <Katex tex="C" />, subtract position
+            vectors first. Two surd answers
             and no way to choose between them is another hint that something is off.
           </p>
         </WrongMethod>
@@ -236,10 +245,8 @@ export default function SpecialistQ5_2017Exam1() {
           }
         >
           <p>
-            Squaring turned <Katex tex="\cos\theta=\tfrac12" /> into <Katex tex="\cos^2\theta=\tfrac14" />, which is also
-            true when <Katex tex="\cos\theta=-\tfrac12" />. So the algebra finds every <Katex tex="a" /> that makes the angle
-            either <Katex tex="\tfrac{\pi}{3}" /> or <Katex tex="\tfrac{2\pi}{3}" />, and <Katex tex="a=2" /> is the second
-            kind. Catch it by noting <Katex tex="1-a>0" /> before squaring, or by substituting each root back into the
+            The algebra finds every <Katex tex="a" /> that makes the angle either <Katex tex="\tfrac{\pi}{3}" /> or{' '}
+            <Katex tex="\tfrac{2\pi}{3}" />, and <Katex tex="a=2" /> is the second kind. The sign condition <Katex tex="a<1" /> rules it out, and so does substituting each root back into the
             unsquared equation. Don&apos;t over-correct either: the report also saw students reject <Katex tex="a=-2" />{' '}
             instead, but <Katex tex="a" /> is just a coordinate and is free to be negative.
           </p>

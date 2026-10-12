@@ -116,8 +116,8 @@ export default function Packs() {
   } else if (choice === 'root') {
     notice = (
       <Notice tone="good">
-        The curve with <M>{'\\mathrm{sd}(\\bar X) = \\tfrac{3}{\\sqrt4} = 1.5'}</M> fits the bars. In a pack, a heavy
-        bottle and a light one partly cancel, so the mean rarely strays far from <M>298</M>. Only about 2% of pack
+        The curve with <M>{'\\mathrm{sd}(\\bar X) = \\tfrac{3}{\\sqrt4} = 1.5'}</M> fits the bars: pack means
+        rarely stray far from <M>298</M>. Only about 2% of pack
         means are under <M>295</M>, compared with about 16% of single bottles. Press <b>Draw 1 pack</b> a few times,
         then try the other two curves.
       </Notice>
