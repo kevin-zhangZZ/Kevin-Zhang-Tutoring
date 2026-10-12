@@ -60,10 +60,14 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\Pr(B\mid A) = \frac{\Pr(A\cap B)}{\Pr(A)}" />,
     reason: (
       <>
-        Two conditionals are given, so pick the one with <Katex tex="\Pr(A)" /> underneath. The event
-        after the bar is the one you divide by: given <Katex tex="A" />, the whole of <Katex tex="A" />{' '}
-        becomes the new "total", and <Katex tex="A\cap B" /> is the part of it that is also{' '}
-        <Katex tex="B" />.
+        Of the two given conditionals, use the one with <Katex tex="\Pr(A)" /> underneath: the event
+        after the bar is the one you divide by.
+      </>
+    ),
+    more: (
+      <>
+        Given <Katex tex="A" />, the whole of <Katex tex="A" /> becomes the new "total", and{' '}
+        <Katex tex="A\cap B" /> is the part of it that is also <Katex tex="B" />.
       </>
     ),
   },
@@ -71,8 +75,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac14 = \frac{p}{\Pr(A)}" />,
     reason: (
       <>
-        Substituting both given values. In words: the overlap <Katex tex="p" /> is a quarter of{' '}
-        <Katex tex="A" />, so <Katex tex="A" /> must be four times the overlap.
+        Substitute both given values. In words: the overlap <Katex tex="p" /> is a quarter of{' '}
+        <Katex tex="A" />.
       </>
     ),
   },
@@ -80,8 +84,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\Pr(A) = \frac{p}{\frac14}" />,
     reason: (
       <>
-        Rearranging. The report's warning is about this line: dividing by <Katex tex="\tfrac14" />{' '}
-        means multiplying by <Katex tex="4" />, not dividing by <Katex tex="4" />.
+        Rearrange to make <Katex tex="\Pr(A)" /> the subject. Dividing by <Katex tex="\tfrac14" /> means multiplying by{' '}
+        <Katex tex="4" />.
       </>
     ),
   },
@@ -89,7 +93,7 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{\Pr(A)=4p}" />,
     reason: (
       <>
-        Check the size: bigger than <Katex tex="p" />, as it must be, because{' '}
+        Check: <Katex tex="4p" /> is bigger than <Katex tex="p" />, as it must be, because{' '}
         <Katex tex="A\cap B" /> is part of <Katex tex="A" />.
       </>
     ),
@@ -101,35 +105,44 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\Pr(A\mid B)=\frac{p}{\Pr(B)}=\frac15" />,
     reason: (
       <>
-        To get the union you need <Katex tex="\Pr(B)" /> as well, and the other conditional is the one
-        with <Katex tex="\Pr(B)" /> underneath. Same move as part (a).
+        <Katex tex="\Pr(A'\cap B')" /> ("neither") is <Katex tex="1-\Pr(A\cup B)" />, and the union
+        needs <Katex tex="\Pr(B)" /> too. The other conditional has <Katex tex="\Pr(B)" /> underneath;
+        same move as part (a).
       </>
     ),
   },
   {
     working: <Katex display tex="\Pr(B)=5p" />,
-    reason: <>The overlap is a fifth of <Katex tex="B" />, so <Katex tex="B" /> is five times the overlap.</>,
+    reason: <>Cross-multiply: the overlap is a fifth of <Katex tex="B" />, so <Katex tex="B" /> is five times the overlap.</>,
   },
   {
     working: <Katex display tex="\Pr(A\cup B)=\Pr(A)+\Pr(B)-\Pr(A\cap B)" />,
     reason: (
       <>
-        The addition rule, which holds for any two events. Adding <Katex tex="\Pr(A)" /> and{' '}
+        The addition rule, true for any two events. Adding <Katex tex="\Pr(A)" /> and{' '}
         <Katex tex="\Pr(B)" /> counts the overlap twice, so subtract it once.
       </>
     ),
   },
   {
     working: <Katex display tex="= 4p+5p-p = 8p" />,
-    reason: <>Everything is now in terms of <Katex tex="p" />, with no independence assumed anywhere.</>,
+    reason: <>Substitute part (a) and the line above. No independence is assumed anywhere.</>
   },
   {
     working: <Katex display tex="A'\cap B' = (A\cup B)'" />,
     reason: (
       <>
-        How would I know to use the union? <Katex tex="A'\cap B'" /> means "in neither{' '}
-        <Katex tex="A" /> nor <Katex tex="B" />", which is everything outside <Katex tex="A\cup B" />{' '}
-        (De Morgan). So "neither" is always <Katex tex="1" /> minus the union.
+        <Katex tex="A'\cap B'" /> means "in neither <Katex tex="A" /> nor <Katex tex="B" />": everything
+        outside <Katex tex="A\cup B" />.
+      </>
+    ),
+    more: (
+      <>
+        This is De Morgan's law, and it is how you would know to find the union in the first place:
+        "neither" is always <Katex tex="1" /> minus the union. The report notes various misconceptions
+        about the connection between the conditional probabilities and{' '}
+        <Katex tex="\Pr(A'\cap B')" />; the conditionals only feed in through <Katex tex="\Pr(A)" />{' '}
+        and <Katex tex="\Pr(B)" />.
       </>
     ),
   },
@@ -142,21 +155,25 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="8p \le \frac15" />,
-    reason: <>The condition is about the union, and part (b) already found <Katex tex="\Pr(A\cup B)=8p" />.</>,
+    reason: <>The condition is about the union, and part (b) found <Katex tex="\Pr(A\cup B)=8p" />.</>,
   },
   {
     working: <Katex display tex="p \le \frac{1}{40}" />,
-    reason: <>Dividing by <Katex tex="8" />, a positive number, so the inequality sign stays the same way round.</>,
+    reason: <>Divide by <Katex tex="8" />, a positive number, so the inequality sign stays the same way round.</>,
   },
   {
     working: <Katex display tex="p>0" />,
     reason: (
       <>
-        This is the mark most students dropped. An interval has two ends and the inequality only gave
-        the top one, so ask: what stops <Katex tex="p" /> going lower? Negative <Katex tex="p" /> is
-        impossible for a probability. And <Katex tex="p=0" /> is ruled out too: it would make{' '}
-        <Katex tex="\Pr(A)=4p=0" />, so <Katex tex="\Pr(B\mid A)=\tfrac{p}{4p}" /> would be{' '}
-        <Katex tex="\tfrac00" />, not the given <Katex tex="\tfrac14" />.
+        The lower end: <Katex tex="p" /> can't be negative, and <Katex tex="p=0" /> would make{' '}
+        <Katex tex="\Pr(A)=4p=0" />, so <Katex tex="\Pr(B\mid A)" /> couldn't equal the given{' '}
+        <Katex tex="\tfrac14" />.
+      </>
+    ),
+    more: (
+      <>
+        This is the mark most students dropped (only 10% got full marks): an interval has two ends, and
+        the inequality only gave the top one.
       </>
     ),
   },
@@ -164,11 +181,17 @@ const ROWS_C: WorkingRow[] = [
     working: <Katex display tex="\boxed{0<p\le\frac{1}{40}}" />,
     reason: (
       <>
-        Strict at the left end, included at the right. Check the top end:{' '}
-        <Katex tex="p=\tfrac1{40}" /> gives <Katex tex="\Pr(A)=\tfrac1{10}" />,{' '}
+        Combine the two ends: strict at the left, included at the right (the condition says{' '}
+        <Katex tex="\le" />). As an interval: <Katex tex="p\in\left(0,\tfrac1{40}\right]" />.
+      </>
+    ),
+    more: (
+      <>
+        Check the top end: <Katex tex="p=\tfrac1{40}" /> gives <Katex tex="\Pr(A)=\tfrac1{10}" />,{' '}
         <Katex tex="\Pr(B)=\tfrac18" />, <Katex tex="\Pr(A\cup B)=\tfrac15" />, all legitimate. Across
         the whole interval every cell of the table stays between <Katex tex="0" /> and{' '}
-        <Katex tex="1" />, so nothing else trims it.
+        <Katex tex="1" /> (the tightest, <Katex tex="1-8p" />, only needs{' '}
+        <Katex tex="p\le\tfrac18" />), so nothing else trims it.
       </>
     ),
   },
@@ -204,10 +227,8 @@ export default function MethodsQ8_2017Exam1() {
           working={<Katex display tex="\frac{p}{\Pr(A)}=\frac14 \implies \Pr(A)=\frac{p}{4}" />}
         >
           The report also lists transposing <Katex tex="\tfrac{p}{\Pr(A)}=\tfrac14" /> incorrectly
-          among the most common errors. Cross-multiply instead: <Katex tex="4p=\Pr(A)" />. The quick
-          check catches it: <Katex tex="\tfrac p4" /> is smaller than <Katex tex="p" />, but{' '}
-          <Katex tex="A\cap B" /> sits inside <Katex tex="A" />, so <Katex tex="\Pr(A)" /> can never be
-          less than <Katex tex="p" />.
+          among the most common errors. Cross-multiply instead: <Katex tex="4p=\Pr(A)" />. The size
+          check in the last row catches <Katex tex="\tfrac p4" />: it is smaller than <Katex tex="p" />.
         </WrongMethod>
       </PartCard>
 
@@ -215,8 +236,10 @@ export default function MethodsQ8_2017Exam1() {
         <Background title="The whole question on one table">
           <p>
             Once you know <Katex tex="\Pr(A)=4p" />, <Katex tex="\Pr(B)=5p" /> and{' '}
-            <Katex tex="\Pr(A\cap B)=p" />, every other cell follows by subtraction along rows
-            and columns:
+            <Katex tex="\Pr(A\cap B)=p" /> (<Katex tex="\Pr(B)=5p" /> comes from{' '}
+            <Katex tex="\Pr(A\mid B)=\tfrac15" /> the same way part (a) found <Katex tex="\Pr(A)" />;
+            see the first two rows below), every other cell follows by subtraction along rows and
+            columns:
           </p>
           <div className="overflow-x-auto">
             <table className="text-[13px] tabular-nums border-collapse mt-1">
@@ -294,11 +317,9 @@ export default function MethodsQ8_2017Exam1() {
           working={<Katex display tex="\begin{aligned}\Pr(A'\cap B')&=(1-4p)(1-5p)\\&=1-9p+20p^2\end{aligned}" />}
         >
           Multiplying is the rule for <em>independent</em> events only, and nothing says{' '}
-          <Katex tex="A" /> and <Katex tex="B" /> are independent. Here they are not: independence would
+          <Katex tex="A" /> and <Katex tex="B" /> are independent. In general they are not: independence would
           need <Katex tex="\Pr(B\mid A)=\Pr(B)" />, i.e. <Katex tex="\tfrac14=5p" />, which is true only
-          when <Katex tex="p=\tfrac1{20}" />. The same product rule applied to the overlap gives{' '}
-          <Katex tex="\Pr(A\cap B)=4p\times5p=20p^2" />, contradicting the given{' '}
-          <Katex tex="\Pr(A\cap B)=p" />. Unless a question says "independent", reach for the addition
+          when <Katex tex="p=\tfrac1{20}" />. Unless a question says "independent", reach for the addition
           rule or a table, never a product.
         </WrongMethod>
       </PartCard>

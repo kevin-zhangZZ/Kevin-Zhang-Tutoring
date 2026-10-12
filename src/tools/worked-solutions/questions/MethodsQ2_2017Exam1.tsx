@@ -44,9 +44,14 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="y = x\log_e(3x)" />,
     reason: (
       <>
-        How would I know it&apos;s the product rule? <Katex tex="y" /> is two factors multiplied together, and{' '}
-        <em>both</em> contain <Katex tex="x" />: <Katex tex="u=x" /> and <Katex tex="v=\log_e(3x)" />. (If one
-        factor were a constant, like <Katex tex="5\log_e(3x)" />, you wouldn&apos;t need it.)
+        Two factors multiplied, and <em>both</em> contain <Katex tex="x" />, so use the product rule
+        with <Katex tex="u=x" /> and <Katex tex="v=\log_e(3x)" />.
+      </>
+    ),
+    more: (
+      <>
+        If one factor were a constant, like <Katex tex="5\log_e(3x)" />, you wouldn&apos;t need the
+        product rule: the constant just stays in front.
       </>
     ),
   },
@@ -54,16 +59,18 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\frac{d}{dx}\log_e(3x) = \frac{1}{3x}\times 3 = \frac{1}{x}" />,
     reason: (
       <>
-        Chain rule on the log: one over the inside, times the derivative of the inside. The{' '}
-        <Katex tex="3" /> from the inside cancels the <Katex tex="3" /> in the denominator. The
-        report&apos;s two common wrong answers each keep only one of those threes. Quicker still:{' '}
-        <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" />, and the
-        constant <Katex tex="\log_e(3)" /> differentiates to <Katex tex="0" />. So{' '}
+        Chain rule on the log: one over the inside, times the derivative of the inside, which is{' '}
+        <Katex tex="3" />. The two threes cancel.
+      </>
+    ),
+    more: (
+      <>
+        Quicker still: <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" />, and the constant{' '}
+        <Katex tex="\log_e(3)" /> differentiates to <Katex tex="0" />. So{' '}
         <Katex tex="\log_e(kx)" /> differentiates to <Katex tex="\tfrac1x" /> for every positive
         constant <Katex tex="k" />.
       </>
     ),
-    more: <>See the Common Mistake below.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = 1\times\log_e(3x) + x\times\frac{1}{x}" />,
@@ -78,9 +85,13 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \log_e(3x) + 1}" />,
     reason: (
       <>
-        Simplify <Katex tex="x\times\tfrac1x=1" />. Check it against part (b): the integrand there is{' '}
-        <Katex tex="\log_e(3x)+1" />, exactly this. That match is no accident; it is what the
-        &ldquo;hence&rdquo; in part (b) is built on.
+        Simplify <Katex tex="x\times\tfrac1x=1" />.
+      </>
+    ),
+    more: (
+      <>
+        A free check: the integrand in part (b) is <Katex tex="\log_e(3x)+1" />, exactly this.
+        That match is no accident; it is what the &ldquo;hence&rdquo; in part (b) is built on.
       </>
     ),
   },
@@ -91,10 +102,13 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\int_1^2\bigl(\log_e(3x)+1\bigr)dx = \Bigl[x\log_e(3x)\Bigr]_1^2" />,
     reason: (
       <>
-        How would I know? The word &ldquo;hence&rdquo;, and the integrand is word for word the
-        answer to part (a). Part (a) says <Katex tex="x\log_e(3x)" /> differentiates to{' '}
-        <Katex tex="\log_e(3x)+1" />, so reading it backwards, <Katex tex="x\log_e(3x)" /> is an
-        antiderivative of it. No integration technique is needed at all.
+        &ldquo;Hence&rdquo;: the integrand is part (a)&apos;s answer, so{' '}
+        <Katex tex="x\log_e(3x)" />, which differentiates to it, is an antiderivative.
+      </>
+    ),
+    more: (
+      <>
+        This is part (a) read backwards: the answer to (a) is the antiderivative for (b).
       </>
     ),
   },
@@ -102,9 +116,15 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= 2\log_e(6) - 1\log_e(3)" />,
     reason: (
       <>
-        Upper terminal minus lower terminal: <Katex tex="3\times2=6" /> inside the log at the top and{' '}
-        <Katex tex="3\times1=3" /> at the bottom. Keep the front factors <Katex tex="2" /> and{' '}
-        <Katex tex="1" />; they are the <Katex tex="x" /> in <Katex tex="x\log_e(3x)" />.
+        Upper terminal minus lower: <Katex tex="x=2" /> gives <Katex tex="2\log_e(6)" />,{' '}
+        <Katex tex="x=1" /> gives <Katex tex="1\log_e(3)" />.
+      </>
+    ),
+    more: (
+      <>
+        Keep the front factors <Katex tex="2" /> and <Katex tex="1" />; they are the{' '}
+        <Katex tex="x" /> in <Katex tex="x\log_e(3x)" />, and the inside of each log is{' '}
+        <Katex tex="3\times2=6" /> and <Katex tex="3\times1=3" />.
       </>
     ),
   },
@@ -112,9 +132,14 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="= \log_e(6^2) - \log_e(3) = \log_e\!\left(\frac{36}{3}\right)" />,
     reason: (
       <>
+        Move the <Katex tex="2" /> up as a power <em>first</em>, then subtract logs by dividing.
+      </>
+    ),
+    more: (
+      <>
         The quotient law <Katex tex="\log_e(m)-\log_e(n)=\log_e\!\left(\tfrac mn\right)" /> only
-        works on bare logs, so the <Katex tex="2" /> must go up as a power <em>first</em>:{' '}
-        <Katex tex="2\log_e(6)=\log_e(36)" />. Then subtract by dividing.
+        works on bare logs, and the <Katex tex="2" /> belongs to the first log only. So rewrite{' '}
+        <Katex tex="2\log_e(6)=\log_e(36)" /> before combining.
       </>
     ),
   },
@@ -122,8 +147,12 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\boxed{\log_e(12)}" />,
     reason: (
       <>
-        So <Katex tex="a=12" />, a positive integer as required. As a sanity check,{' '}
-        <Katex tex="\log_e(12)\approx2.48" />, and the integrand runs from{' '}
+        So <Katex tex="a=12" />, a positive integer as required.
+      </>
+    ),
+    more: (
+      <>
+        Sanity check: <Katex tex="\log_e(12)\approx2.48" />, and the integrand runs from{' '}
         <Katex tex="\log_e(3)+1\approx2.10" /> to <Katex tex="\log_e(6)+1\approx2.79" /> over an
         interval of width <Katex tex="1" />, so the area must lie between those two numbers.
       </>
@@ -172,11 +201,10 @@ export default function MethodsQ2_2017Exam1() {
           }
         >
           These are the report&apos;s two common wrong answers. The chain rule gives{' '}
-          <Katex tex="\tfrac{1}{3x}\times3" />, and each slip keeps only one of the two threes. Two
-          ways to catch it: split <Katex tex="\log_e(3x)=\log_e(3)+\log_e(x)" /> before
-          differentiating, or look ahead. Part (b) integrates <Katex tex="\log_e(3x)+1" />, and the
-          examiners chose that <Katex tex="+1" /> because it is the answer to (a). If your (a) ends
-          in <Katex tex="+\tfrac13" /> or <Katex tex="+3" />, go back and check.
+          <Katex tex="\tfrac{1}{3x}\times3" />, and each slip keeps only one of the two threes:
+          dropping the <Katex tex="\times3" /> gives <Katex tex="\tfrac13" />, and dropping the{' '}
+          <Katex tex="3" /> under the <Katex tex="x" /> gives <Katex tex="3" />. Splitting the log
+          first, as in the note on row 2, avoids the chain rule entirely.
         </WrongMethod>
       </PartCard>
 
@@ -222,13 +250,11 @@ export default function MethodsQ2_2017Exam1() {
           source="Examiner's report"
           working={<Katex display tex="\Bigl[\tfrac1x+x\Bigr]_1^2=\tfrac52-2=\tfrac12\ \text{✗}" />}
         >
-          The report notes some students tried to integrate the expression directly. There is no
-          rule on the formula sheet for <Katex tex="\int\log_e(3x)\,dx" />, so there is nowhere to
-          go. The tempting move is to write down <Katex tex="\tfrac1x" />, but that is the{' '}
+          The report notes some students tried to integrate the expression directly. The tempting
+          move is to write down <Katex tex="\tfrac1x" />, but that is the{' '}
           <em>derivative</em> of <Katex tex="\log_e(3x)" /> (from part (a)), not an antiderivative.
           Two alarms: <Katex tex="\tfrac12" /> is not of the form <Katex tex="\log_e(a)" />, and the
-          integrand is above <Katex tex="2" /> on the whole interval, so the answer must be above{' '}
-          <Katex tex="2" />.
+          size check in the last row rules it out.
         </WrongMethod>
         <WrongMethod
           title="Combine the logs before moving the 2 up"
@@ -237,10 +263,9 @@ export default function MethodsQ2_2017Exam1() {
           }
         >
           The report mentions some poor application of log laws, and this is one way it happens
-          here. The quotient law needs both logs bare, but the <Katex tex="2" /> belongs to the
-          first log only. Move it up as a power first:{' '}
-          <Katex tex="\log_e(36)-\log_e(3)=\log_e(12)" />. The same size check catches it:{' '}
-          <Katex tex="\log_e(4)\approx1.39" /> is far below <Katex tex="2" />.
+          here: the <Katex tex="2" /> has been applied to both logs instead of just the first. The
+          size check in the last row catches it: <Katex tex="\log_e(4)\approx1.39" /> is below even
+          the smallest height of the integrand, about <Katex tex="2.10" />.
         </WrongMethod>
       </PartCard>
     </div>

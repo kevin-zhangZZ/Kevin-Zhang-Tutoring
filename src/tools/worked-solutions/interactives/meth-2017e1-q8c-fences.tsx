@@ -81,8 +81,7 @@ export default function Fences() {
     notice = (
       <Notice tone="good">
         <b>The top end is included.</b> Here <M>8p = \tfrac15</M> exactly, and the condition says{' '}
-        <M>{'\\le'}</M>, not <M>{'<'}</M>. Check the probabilities: <M>{'\\Pr(A) = \\tfrac1{10}'}</M>,{' '}
-        <M>{'\\Pr(B) = \\tfrac18'}</M>, <M>{'\\Pr(A\\cup B) = \\tfrac15'}</M>, all legitimate. Solid edge, square bracket.
+        <M>{'\\le'}</M>, not <M>{'<'}</M>. Solid edge, square bracket.
       </Notice>
     )
   } else {

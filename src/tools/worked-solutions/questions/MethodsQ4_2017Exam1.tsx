@@ -33,10 +33,11 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="p = \tfrac14, \quad 1-p = \tfrac34" />,
-    reason: (
+    reason: <>The population proportion of angel fish is the <Katex tex="p" /> in the formula for the sd of <Katex tex="\hat P" />.</>,
+    more: (
       <>
-        The proportion of angel fish in the whole population is the <Katex tex="p" /> in the formula. The sample
-        proportion <Katex tex="\hat P" /> changes from sample to sample, scattering around this <Katex tex="p" />.
+        <Katex tex="p" /> is fixed; the sample proportion <Katex tex="\hat P" /> changes from sample to sample,
+        scattering around <Katex tex="p" />. The sd measures how widely it scatters.
       </>
     ),
   },
@@ -49,10 +50,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        &ldquo;Standard deviation of <Katex tex="\hat P" />&rdquo; is the cue for this formula (it is on the formula
-        sheet). Draw the root sign right over the whole fraction, <Katex tex="n" /> included: the examiners' report noted
-        students whose root stopped short of <Katex tex="n" />, because that writes a different expression (see the
-        second box below the graph).
+        This sd formula is on the formula sheet. Draw the root sign over the whole fraction, <Katex tex="n" />{' '}
+        included.
+      </>
+    ),
+    more: (
+      <>
+        The examiners&apos; report noted students whose root sign stopped short of <Katex tex="n" />. Even if you
+        meant the right thing, <Katex tex="\tfrac{\sqrt{3/16}}{n}" /> is a different expression and leads to a
+        different answer (followed through in the Common Mistake box below).
       </>
     ),
   },
@@ -61,8 +67,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         &ldquo;Less than or equal to <Katex tex="\tfrac{1}{100}" />&rdquo; translates straight into{' '}
-        <Katex tex="\le" />. Keep it as an inequality rather than an equation: its direction at the end tells you
-        whether the sample sizes that work are the big ones or the small ones.
+        <Katex tex="\le" />.
+      </>
+    ),
+    more: (
+      <>
+        Keep it as an inequality rather than an equation: its direction at the end tells you whether the sample sizes
+        that work are the big ones or the small ones.
       </>
     ),
   },
@@ -70,9 +81,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\dfrac{3}{16n} \le \dfrac{1}{10\,000}" />,
     reason: (
       <>
-        To undo the square root, square <b>both</b> sides, so the right side becomes{' '}
-        <Katex tex="\left(\tfrac{1}{100}\right)^2 = \tfrac{1}{10\,000}" />. Squaring keeps the <Katex tex="\le" />{' '}
-        only because both sides are non-negative (a square root is never negative).
+        Square <b>both</b> sides to remove the root. The <Katex tex="\le" /> stays because both sides are
+        non-negative.
+      </>
+    ),
+    more: (
+      <>
+        The right side becomes <Katex tex="\left(\tfrac{1}{100}\right)^2 = \tfrac{1}{10\,000}" />.
       </>
     ),
   },
@@ -80,9 +95,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="30\,000 \le 16n" />,
     reason: (
       <>
-        Clear the fractions by multiplying both sides by <Katex tex="160\,000\,n" />. That is positive (
-        <Katex tex="n" /> is a sample size), so the inequality sign stays as it is. No flipping of fractions, so no
-        chance of losing track of the direction.
+        Multiply both sides by <Katex tex="16n \times 10\,000 = 160\,000\,n" /> to clear both denominators. It is
+        positive (<Katex tex="n" /> is a sample size), so the sign stays.
+      </>
+    ),
+    more: (
+      <>
+        The report says many students could not correctly transpose this inequality. Clearing the fractions this way
+        avoids flipping them upside down, which would reverse the sign and is easy to forget.
       </>
     ),
   },
@@ -90,10 +110,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="n \ge \dfrac{30\,000}{16} = 1875" />,
     reason: (
       <>
-        Without a calculator, halve top and bottom until the 16 is gone:{' '}
-        <Katex tex="\tfrac{30\,000}{16} = \tfrac{15\,000}{8} = \tfrac{7500}{4} = \tfrac{3750}{2} = 1875" />. The answer
-        is <Katex tex="n \ge" /> something, which makes sense: <Katex tex="n" /> is in the denominator, so bigger
-        samples give a smaller sd.
+        Divide by 16, halving top and bottom without a calculator:{' '}
+        <Katex tex="\tfrac{30\,000}{16} = \tfrac{15\,000}{8} = \tfrac{7500}{4} = \tfrac{3750}{2} = 1875" />.
+      </>
+    ),
+    more: (
+      <>
+        Sense check: the answer points the right way, <Katex tex="n \ge" /> something, as the Background predicts for
+        a condition &ldquo;sd <Katex tex="\le" /> something&rdquo;.
       </>
     ),
   },
@@ -101,10 +125,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{n = 1875}" />,
     reason: (
       <>
-        The smallest integer with <Katex tex="n \ge 1875" /> is <Katex tex="1875" /> itself. Check it: at{' '}
-        <Katex tex="n = 1875" />,{' '}
-        <Katex tex="\operatorname{sd}(\hat P) = \sqrt{\tfrac{3}{30\,000}} = \sqrt{\tfrac{1}{10\,000}} = \tfrac{1}{100}" />{' '}
-        exactly, which is allowed because the question says &ldquo;less than or equal to&rdquo;.
+        The smallest integer with <Katex tex="n \ge 1875" /> is 1875 itself. There{' '}
+        <Katex tex="\operatorname{sd}(\hat P) = \sqrt{\tfrac{3}{30\,000}} = \sqrt{\tfrac{1}{10\,000}} = \tfrac{1}{100}" /> exactly, which
+        &ldquo;less than or equal to&rdquo; allows.
       </>
     ),
   },
@@ -176,8 +199,7 @@ export default function MethodsQ4_2017Exam1() {
             />
           }
         >
-          The report noted students whose square root sign did not extend over <Katex tex="n" />. Even if you meant the
-          right thing, what is written is a different expression, one that shrinks like <Katex tex="\tfrac1n" /> instead
+          Written this way, the expression shrinks like <Katex tex="\tfrac1n" /> instead
           of <Katex tex="\tfrac{1}{\sqrt n}" />. Followed through, it gives <Katex tex="n = 44" />, where the true sd is{' '}
           <Katex tex="\sqrt{\tfrac{3}{704}} \approx 0.065" />. The <Katex tex="n" /> is part of the fraction under the
           root, so draw the root sign over all of it.
@@ -186,12 +208,10 @@ export default function MethodsQ4_2017Exam1() {
           title="Flip both fractions upside down and keep the ≤"
           working={<Katex display tex="\dfrac{16n}{3} \le 10\,000 \implies n \le 1875" />}
         >
-          The report says many students could not correctly transpose the inequality, and this is the classic way it
-          goes wrong. Taking reciprocals of positive numbers <b>reverses</b> an inequality (
+          This is the classic way the transposing goes wrong. Taking reciprocals of positive numbers <b>reverses</b> an inequality (
           <Katex tex="2 \le 3" /> but <Katex tex="\tfrac12 \ge \tfrac13" />), so it should be{' '}
           <Katex tex="\tfrac{16n}{3} \ge 10\,000" />. Sense check: <Katex tex="n \le 1875" /> would make the smallest{' '}
-          <Katex tex="n" /> equal to 1, and the smallest samples have the <em>biggest</em> sd. Multiplying both sides by
-          the positive <Katex tex="160\,000\,n" /> avoids the trap altogether.
+          <Katex tex="n" /> equal to 1, and the smallest samples have the <em>biggest</em> sd.
         </WrongMethod>
         <SAExaminerReport stats={EXAM} maxMarks={2} />
         <div>

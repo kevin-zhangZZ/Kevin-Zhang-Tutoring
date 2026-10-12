@@ -84,11 +84,12 @@ const EXAM_D: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\sqrt{x}(1-x) = x^{\frac12}-x^{\frac32}" />,
-    reason: <>How would I know to expand? The integrand is a product, and there is no product rule for integration. Multiplying out turns it into a difference of powers of <Katex tex="x" />, and each power can be antidifferentiated on its own. (<Katex tex="\sqrt{x}\times x=x^{\frac12}\times x^{1}=x^{\frac32}" />: add the indices.)</>,
+    reason: <>There is no product rule for integration, so expand first: each power of <Katex tex="x" /> can then be antidifferentiated on its own. (<Katex tex="x^{\frac12}\times x^{1}=x^{\frac32}" />: add the indices.)</>,
+    more: <>How would I know to expand? Both factors are simple powers of <Katex tex="x" />, so multiplying out turns the product into a difference of powers, which the power rule handles directly.</>,
   },
   {
     working: <Katex display tex="\text{Area}=\int_0^1\left(x^{\frac12}-x^{\frac32}\right)dx" />,
-    reason: <>The graph shows the curve touching the axis only at <Katex tex="x=0" /> and <Katex tex="x=1" /> and sitting above it in between (<Katex tex="\sqrt{x}\ge0" /> and <Katex tex="1-x\ge0" /> there), so the area is just the integral, with no splitting.</>,
+    reason: <>The curve is on or above the axis for all of <Katex tex="[0,1]" /> (<Katex tex="\sqrt{x}\ge0" /> and <Katex tex="1-x\ge0" />), so the area is just the integral, with no splitting.</>,
   },
   {
     working: <Katex display tex="=\left[\frac{2}{3}x^{\frac32}-\frac{2}{5}x^{\frac52}\right]_0^1" />,
@@ -100,14 +101,16 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{Area}=\frac{4}{15}}" />,
-    reason: <>About <Katex tex="0.267" />. Sensible — the hump peaks a little below <Katex tex="0.4" /> and sits over an interval of width <Katex tex="1" />.</>,
+    reason: <>About <Katex tex="0.267" />.</>,
+    more: <>Sensible: the hump peaks a little below <Katex tex="0.4" /> (height about <Katex tex="0.385" /> at <Katex tex="x=\tfrac13" />) over an interval of width <Katex tex="1" />, so its area must be less than <Katex tex="0.4" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)=x^{\frac12}-x^{\frac32}" />,
-    reason: <>Same expansion as part (a). It turns the product into two power-rule terms. (The product rule works too: <Katex tex="\tfrac{1-x}{2\sqrt{x}}-\sqrt{x}" />, which needs the same common denominator.)</>,
+    reason: <>Same expansion as part (a): it turns the product into two power-rule terms.</>,
+    more: <>The product rule works too: <Katex tex="f'(x)=\tfrac{1-x}{2\sqrt{x}}-\sqrt{x}" />, which then needs the same common-denominator step to reach the printed form.</>,
   },
   {
     working: <Katex display tex="f'(x)=\frac12x^{-\frac12}-\frac32x^{\frac12}" />,
@@ -119,7 +122,8 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="=\frac{1}{2\sqrt{x}}-\frac{3\sqrt{x}}{2}\times\frac{\sqrt{x}}{\sqrt{x}}" />,
-    reason: <>How would I know to do this? The target has a single fraction over <Katex tex="2\sqrt{x}" />, so put both terms over that denominator. The second term needs an extra <Katex tex="\sqrt{x}" /> on the bottom, so multiply top and bottom by <Katex tex="\sqrt{x}" />. This is the step the report says many students left out, and it is the whole of the working, so leaving it out costs the mark.</>,
+    reason: <>The target is a single fraction over <Katex tex="2\sqrt{x}" />, so give the second term that denominator: multiply its top and bottom by <Katex tex="\sqrt{x}" />.</>,
+    more: <>This is the step the report says many students left out.</>,
   },
   {
     working: <Katex display tex="=\frac{1}{2\sqrt{x}}-\frac{3x}{2\sqrt{x}}=\boxed{\frac{1-3x}{2\sqrt{x}}}" />,
@@ -130,7 +134,8 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\theta=45^\circ \implies m_{AC}=\tan(45^\circ)=1" />,
-    reason: <>How would I know where to start? The only information about <Katex tex="BC" /> is that it is perpendicular to <Katex tex="AC" />, and the only information about <Katex tex="AC" /> is its angle. An angle with the positive <Katex tex="x" />-direction turns into a gradient through <Katex tex="m=\tan\theta" />.</>,
+    reason: <>An angle with the positive <Katex tex="x" />-direction gives a gradient through <Katex tex="m=\tan\theta" />.</>,
+    more: <>How would I know where to start? The only information about <Katex tex="BC" /> is that it is perpendicular to <Katex tex="AC" />, and the only information about <Katex tex="AC" /> is its angle. So get <Katex tex="AC" />'s gradient first, then <Katex tex="BC" />'s.</>,
   },
   {
     working: <Katex display tex="AC\perp BC \implies m_{BC}=-\frac{1}{1}=-1" />,
@@ -138,27 +143,31 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1-3x}{2\sqrt{x}}=-1" />,
-    reason: <>We know the gradient of <Katex tex="BC" /> but not a point on it (<Katex tex="B" /> and <Katex tex="C" /> are both unknown). The point to find is where <Katex tex="BC" /> touches the curve: there the curve's gradient equals the line's, <Katex tex="-1" />, and part (b) gives that gradient.</>,
+    reason: <><Katex tex="BC" /> is a tangent, so where it touches the curve the curve's gradient (part (b)) equals the line's, <Katex tex="-1" />.</>,
+    more: <>We know the gradient of <Katex tex="BC" /> but not yet a point on it, since <Katex tex="B" /> and <Katex tex="C" /> are both unknown. The one point we can find is where it touches the curve.</>,
   },
   {
     working: <Katex display tex="1-3x=-2\sqrt{x} \;\Longrightarrow\; 3x-2\sqrt{x}-1=0" />,
-    reason: <>Multiply through by <Katex tex="2\sqrt{x}" /> (non-zero for <Katex tex="x>0" />) and collect on one side. It mixes <Katex tex="x" /> and <Katex tex="\sqrt{x}" />, which is a quadratic in disguise.</>,
+    reason: <>Multiply through by <Katex tex="2\sqrt{x}" /> (non-zero for <Katex tex="x>0" />) and collect on one side. A mix of <Katex tex="x" /> and <Katex tex="\sqrt{x}" /> is a quadratic in disguise.</>,
   },
   {
     working: <Katex display tex="\text{let } a=\sqrt{x}:\quad 3a^2-2a-1=0" />,
-    reason: <>Since <Katex tex="x=(\sqrt{x})^2=a^2" />. The report is explicit that the top responses substituted a pronumeral like this rather than squaring both sides, which would have introduced a spurious solution.</>,
+    reason: <>Since <Katex tex="x=(\sqrt{x})^2=a^2" />, this is an ordinary quadratic in <Katex tex="a" />. Substituting avoids squaring both sides, which adds a false solution.</>,
   },
   {
     working: <Katex display tex="(3a+1)(a-1)=0 \implies a=-\tfrac13 \text{ or } a=1" />,
-    reason: <><Katex tex="a=\sqrt{x}\ge0" />, so <Katex tex="a=-\tfrac13" /> is rejected. (It would square to <Katex tex="x=\tfrac19" />, the point where the gradient is <Katex tex="+1" />: the same stray root that squaring both sides produces.)</>,
+    reason: <><Katex tex="a=\sqrt{x}\ge0" />, so <Katex tex="a=-\tfrac13" /> is rejected.</>,
+    more: <>(<Katex tex="a=-\tfrac13" /> would give <Katex tex="x=\tfrac19" />, the point where the gradient is <Katex tex="+1" />, which is where <Katex tex="AC" /> touches in part (d).)</>,
   },
   {
     working: <Katex display tex="\sqrt{x}=1 \implies x=1" />,
-    reason: <>Sense check: gradient <Katex tex="-1" /> is downhill, so the contact point must be right of the peak at <Katex tex="x=\tfrac13" />, and <Katex tex="x=1" /> is. It is the end of <Katex tex="f" />'s domain; the rule <Katex tex="\sqrt{x}(1-x)" /> is still differentiable there, and the examiners' solution uses this point.</>,
+    reason: <>Square both sides. This is the right-hand end of the domain <Katex tex="[0,1]" />.</>,
+    more: <>Sense check: gradient <Katex tex="-1" /> is downhill, so the contact point must be right of the peak at <Katex tex="x=\tfrac13" /> (where <Katex tex="f'(x)=0" /> from (b)), and <Katex tex="x=1" /> is. <Katex tex="x=1" /> is the endpoint of <Katex tex="f" />'s domain, outside the interval <Katex tex="(0,1)" /> where (b) was shown. The rule <Katex tex="\sqrt{x}(1-x)" /> itself has gradient <Katex tex="-1" /> there, so the line touching the curve at its end is the tangent the question intends, and the examiners' solution uses it.</>,
   },
   {
     working: <Katex display tex="f(1)=\sqrt{1}\,(1-1)=0 \implies B=(1,0)" />,
-    reason: <>The contact point <Katex tex="(1,0)" /> lies on <Katex tex="BC" /> and on the <Katex tex="x" />-axis, and <Katex tex="B" /> is where <Katex tex="BC" /> meets the <Katex tex="x" />-axis, so the contact point is <Katex tex="B" /> itself. Write this down: the report says many students did not fully establish <Katex tex="B(1,0)" />. (The figure is drawn for a general <Katex tex="\theta" />; only at <Katex tex="45^\circ" /> does <Katex tex="B" /> land on the curve's end.)</>,
+    reason: <>The contact point is on <Katex tex="BC" /> and on the <Katex tex="x" />-axis, and <Katex tex="B" /> is where <Katex tex="BC" /> meets the <Katex tex="x" />-axis, so it is <Katex tex="B" /> itself.</>,
+    more: <>Write this step down: the report says many students gave the correct line but were not able to fully determine <Katex tex="B(1,0)" /> due to insufficient working. The figure is drawn for a general <Katex tex="\theta" />; only at <Katex tex="45^\circ" /> does <Katex tex="B" /> land on the curve's end.</>,
   },
   {
     working: <Katex display tex="y-0=-1(x-1)" />,
@@ -173,19 +182,22 @@ const ROWS_C: WorkingRow[] = [
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{1-3x}{2\sqrt{x}}=1" />,
-    reason: <>The plan: <Katex tex="C" /> is where <Katex tex="AC" /> and <Katex tex="BC" /> cross, so we need both equations. <Katex tex="BC" /> came from part (c). For <Katex tex="AC" /> we know the gradient, <Katex tex="\tan 45^\circ=1" />, and find a point on it exactly as in part (c): where it touches the curve.</>,
+    reason: <><Katex tex="C" /> is where <Katex tex="AC" /> meets <Katex tex="BC" />. <Katex tex="AC" /> is also a tangent, with gradient <Katex tex="\tan45^\circ=1" />, so find where the curve's gradient is <Katex tex="1" /> to get a point on <Katex tex="AC" />.</>,
+    more: <>The plan: we need both line equations, then solve them simultaneously. <Katex tex="BC" /> came from part (c); <Katex tex="AC" /> is found the same way, from where it touches the curve.</>,
   },
   {
     working: <Katex display tex="1-3x=2\sqrt{x} \;\Longrightarrow\; 3x+2\sqrt{x}-1=0" />,
-    reason: <>The sign of the middle term is the only difference from part (c). Squaring would wipe out that difference and give part (c)'s quadratic again, which is why we substitute instead.</>,
+    reason: <>Multiply by <Katex tex="2\sqrt{x}" /> and collect, as in part (c). Only the sign of the middle term differs.</>,
+    more: <>Squaring would wipe out that sign difference and give the same squared equation as part (c), <Katex tex="9x^2-10x+1=0" />, this time with <Katex tex="x=1" /> as the false root. That is why we substitute instead.</>,
   },
   {
     working: <Katex display tex="\text{let } a=\sqrt{x}:\quad 3a^2+2a-1=0" />,
-    reason: <>Same substitution.</>,
+    reason: <>Same substitution as part (c), with <Katex tex="x=a^2" />.</>,
   },
   {
-    working: <Katex display tex="(3a-1)(a+1)=0 \implies a=\tfrac13 \text{ (rejecting } a=-1)" />,
-    reason: <><Katex tex="\sqrt{x}" /> cannot be negative. Sense check: gradient <Katex tex="+1" /> is uphill, so the contact point must be left of the peak at <Katex tex="x=\tfrac13" />.</>,
+    working: <Katex display tex="\begin{aligned}&(3a-1)(a+1)=0 \\ &\implies a=\tfrac13 \text{ (rejecting } a=-1)\end{aligned}" />,
+    reason: <><Katex tex="a=\sqrt{x}" /> cannot be negative.</>,
+    more: <>Sense check: gradient <Katex tex="+1" /> is uphill, so the contact point must be left of the peak at <Katex tex="x=\tfrac13" /> (where <Katex tex="f'(x)=0" /> from (b)). The next line gives <Katex tex="x=\tfrac19" />, which is.</>,
   },
   {
     working: <Katex display tex="x=\left(\tfrac13\right)^2=\tfrac19" />,
@@ -201,7 +213,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y=x-\tfrac{3}{27}+\tfrac{8}{27}=x+\tfrac{5}{27}" />,
-    reason: <>Writing <Katex tex="\tfrac19=\tfrac3{27}" /> so the fractions combine. Its <Katex tex="x" />-intercept is <Katex tex="A=\left(-\tfrac5{27},0\right)" />, left of the origin as in the figure.</>,
+    reason: <>Writing <Katex tex="\tfrac19=\tfrac3{27}" /> so the fractions combine.</>,
+    more: <>Its <Katex tex="x" />-intercept is <Katex tex="A=\left(-\tfrac5{27},0\right)" />, left of the origin as in the figure.</>,
   },
   {
     working: <Katex display tex="x+\tfrac{5}{27}=-x+1" />,
@@ -209,7 +222,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2x=1-\tfrac{5}{27}=\tfrac{22}{27} \implies x=\tfrac{11}{27}" />,
-    reason: <>Add <Katex tex="x" /> and subtract <Katex tex="\tfrac5{27}" /> on both sides, keeping everything over <Katex tex="27" />. The report says errors in calculating the coordinates were common, so go slowly here.</>,
+    reason: <>Add <Katex tex="x" /> and subtract <Katex tex="\tfrac5{27}" /> on both sides, keeping everything over <Katex tex="27" />.</>,
+    more: <>The report says a common error involved calculating the coordinates, so go slowly with the twenty-sevenths.</>,
   },
   {
     working: <Katex display tex="y=-\tfrac{11}{27}+1=\tfrac{16}{27}" />,
@@ -217,7 +231,8 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{C=\left(\frac{11}{27},\ \frac{16}{27}\right)}" />,
-    reason: <>Check without the algebra: the angles at <Katex tex="A" /> and <Katex tex="B" /> are both <Katex tex="45^\circ" />, so the triangle is isosceles and <Katex tex="C" /> sits above the midpoint of <Katex tex="AB" />, at a height of half of <Katex tex="AB" />. With <Katex tex="A=\left(-\tfrac5{27},0\right)" /> and <Katex tex="B=(1,0)" />: midpoint <Katex tex="x=\tfrac12\left(1-\tfrac5{27}\right)=\tfrac{11}{27}" />, height <Katex tex="\tfrac12\times\tfrac{32}{27}=\tfrac{16}{27}" /> ✓.</>,
+    reason: <>Both coordinates of <Katex tex="C" />.</>,
+    more: <>Check without the algebra: the angles at <Katex tex="A" /> and <Katex tex="B" /> are both <Katex tex="45^\circ" />, so the triangle is isosceles and <Katex tex="C" /> sits above the midpoint of <Katex tex="AB" />, at a height of half of <Katex tex="AB" />. With <Katex tex="A=\left(-\tfrac5{27},0\right)" /> and <Katex tex="B=(1,0)" />: midpoint <Katex tex="x=\tfrac12\left(1-\tfrac5{27}\right)=\tfrac{11}{27}" />, height <Katex tex="\tfrac12\times\tfrac{32}{27}=\tfrac{16}{27}" /> ✓.</>,
   },
 ]
 
@@ -270,8 +285,7 @@ export default function MethodsQ9_2017Exam1() {
           source="Examiner's report"
           working={<Katex display tex="\int_0^1\sqrt{x}\,dx\times\int_0^1(1-x)\,dx=\tfrac23\times\tfrac12=\tfrac13" />}
         >
-          There is no product rule for integration: the integral of a product is not the product of the
-          integrals. The hump's height at each <Katex tex="x" /> is <Katex tex="\sqrt{x}" /> times{' '}
+          The integral of a product is not the product of the integrals. The hump's height at each <Katex tex="x" /> is <Katex tex="\sqrt{x}" /> times{' '}
           <Katex tex="1-x" /> at that same <Katex tex="x" />, and multiplying the two totals gives{' '}
           <Katex tex="\tfrac13" /> instead of <Katex tex="\tfrac4{15}" />. When the integrand is a product
           you can expand, expand it first.
@@ -281,9 +295,8 @@ export default function MethodsQ9_2017Exam1() {
           source="Examiner's report"
           working={<Katex display tex="\int_0^1\sqrt{x}\,dx+\int_0^1(1-x)\,dx=\tfrac23+\tfrac12=\tfrac76" />}
         >
-          <Katex tex="\sqrt{x}\,(1-x)" /> is a product, not a sum. A box estimate catches it: the hump
-          fits inside a rectangle <Katex tex="1" /> wide and <Katex tex="0.4" /> high, so its area is less
-          than <Katex tex="0.4" />, yet <Katex tex="\tfrac76" /> is more than the whole 1-by-1 square.
+          <Katex tex="\sqrt{x}\,(1-x)" /> is a product, not a sum. <Katex tex="\tfrac76" /> also fails the size check on the
+          last line of the working: it is more than the whole 1-by-1 square the hump sits in.
         </WrongMethod>
       </PartCard>
 

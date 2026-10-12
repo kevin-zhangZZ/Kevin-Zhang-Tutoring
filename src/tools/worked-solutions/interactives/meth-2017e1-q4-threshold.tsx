@@ -31,8 +31,7 @@ export default function Threshold() {
         <b>The red strip is <M>n \le 1875</M></b>, and every sample size in it puts the curve <b>above</b> the line:
         its sd is too big, the opposite of what was asked (and the &ldquo;smallest&rdquo; such <M>n</M> would be{' '}
         <M>1</M>). Because <M>n</M> is in the denominator, the sd shrinks as <M>n</M> grows, so the answer has to be{' '}
-        <M>n \ge</M> something. Safest algebra: multiply both sides of <M>{'\\tfrac{3}{16n} \\le \\tfrac{1}{10\\,000}'}</M>{' '}
-        by the positive <M>{'160\\,000\\,n'}</M> to get <M>{'30\\,000 \\le 16n'}</M>.
+        <M>n \ge</M> something.
       </Notice>
     )
   } else if (exact) {

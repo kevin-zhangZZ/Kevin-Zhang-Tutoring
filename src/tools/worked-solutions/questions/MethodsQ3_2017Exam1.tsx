@@ -49,11 +49,15 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="(x+2)^2(x-1) = (x^2+4x+4)(x-1)" />,
     reason: (
       <>
-        A &ldquo;show that&rdquo; starts from one side and works to the other, so begin with the left side and
-        never write the two sides as equal until you get there. Square the bracket first:{' '}
-        <Katex tex="(x+2)^2=x^2+4x+4" />, and the middle term <Katex tex="2\times 2\times x=4x" /> is the one that
-        is easy to drop. Keep the brackets round the quadratic, because the <em>whole</em> of it multiplies{' '}
-        <Katex tex="(x-1)" />.
+        Start from the left side and square the bracket first. Keep brackets round the quadratic: the{' '}
+        <em>whole</em> of it multiplies <Katex tex="(x-1)" />.
+      </>
+    ),
+    more: (
+      <>
+        A &ldquo;show that&rdquo; starts from the left side and works to the right. Don&apos;t open by writing the
+        equation you are asked to prove as if it were already true. In <Katex tex="(x+2)^2=x^2+4x+4" />, the middle term <Katex tex="2\times 2\times x=4x" /> is the one
+        that is easy to drop.
       </>
     ),
   },
@@ -61,17 +65,23 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="= x^3+4x^2+4x-x^2-4x-4" />,
     reason: (
       <>
-        Multiply each term of the quadratic by <Katex tex="x" />, then each term by <Katex tex="-1" />. Three
-        terms times two terms gives six products, a quick count that none are missing.
+        Multiply each term of the quadratic by <Katex tex="x" />, then each term by <Katex tex="-1" />.
       </>
     ),
+    more: <>Three terms times two terms gives six products, a quick count that none are missing.</>,
   },
   {
     working: <Katex display tex="\boxed{= x^3+3x^2-4}" />,
     reason: (
       <>
-        Collect like terms: <Katex tex="4x^2-x^2=3x^2" />, and <Katex tex="4x-4x=0" />. The <Katex tex="x" /> terms
-        cancel, which is why the given answer has no <Katex tex="x" /> term. This is the right-hand side. As required.
+        Collect like terms: <Katex tex="4x^2-x^2=3x^2" /> and <Katex tex="4x-4x=0" />. This is the right-hand side. As
+        required.
+      </>
+    ),
+    more: (
+      <>
+        The report notes some students did not fully expand the cubic. Write out the full six-term line before
+        collecting, so the marker sees every product.
       </>
     ),
   },
@@ -88,11 +98,15 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Use the factorised form for <Katex tex="x" />-intercepts: a product is zero only when one of its factors
-        is. Then check each solution against the domain. <Katex tex="x=1" /> is outside <Katex tex="[-3,0]" />, so
-        it is not an intercept of <Katex tex="f" /> and must not appear on your graph. The factor{' '}
-        <Katex tex="(x+2)" /> is squared, so <Katex tex="x=-2" /> is a repeated root: <Katex tex="(x+2)^2" /> never
-        changes sign, so the curve touches the axis there instead of crossing.
+        A product is zero only when a factor is. <Katex tex="x=1" /> is outside <Katex tex="[-3,0]" />, so it is not
+        on the graph. The squared factor means the curve touches the axis at <Katex tex="x=-2" />.
+      </>
+    ),
+    more: (
+      <>
+        Use the factorised form for <Katex tex="x" />-intercepts, then check each solution against the domain.{' '}
+        <Katex tex="x=-2" /> is a repeated root: <Katex tex="(x+2)^2" /> never changes sign, so <Katex tex="f" /> does
+        not change sign there either.
       </>
     ),
   },
@@ -100,8 +114,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="f(0)=0+0-4=-4" />,
     reason: (
       <>
-        For the <Katex tex="y" />-intercept, use the expanded form from part a: at <Katex tex="x=0" /> every{' '}
-        <Katex tex="x" /> term vanishes and only the constant <Katex tex="-4" /> is left.
+        For the <Katex tex="y" />-intercept, use the expanded form from part a: at <Katex tex="x=0" /> only the
+        constant <Katex tex="-4" /> is left.
       </>
     ),
   },
@@ -109,8 +123,8 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="f'(x) = 3x^2+6x = 3x(x+2)" />,
     reason: (
       <>
-        Stationary points are where the gradient is zero, so differentiate. The expanded form is the easy one to
-        differentiate (no product rule), and factorising the result sets up <Katex tex="f'(x)=0" />.
+        Stationary points are where <Katex tex="f'(x)=0" />. Differentiate the expanded form (no product rule
+        needed), then factorise.
       </>
     ),
   },
@@ -123,10 +137,15 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        Both are in the domain. <Katex tex="(-2,0)" /> is the <Katex tex="x" />-intercept as well, which agrees
-        with the repeated root. <Katex tex="(0,-4)" /> is the <Katex tex="y" />-intercept as well: <Katex tex="x=0" />{' '}
-        is the right endpoint, but <Katex tex="f'(0)=0" />, so the curve arrives there <b>flat</b>. This is the
-        stationary point the report says students commonly missed.
+        Both are in the domain, so label <Katex tex="(-2,0)" /> and <Katex tex="(0,-4)" /> as stationary points.{' '}
+        <Katex tex="x=0" /> is an endpoint, but <Katex tex="f'(0)=0" />, so the curve arrives there <b>flat</b>.
+      </>
+    ),
+    more: (
+      <>
+        Each stationary point is also an intercept: <Katex tex="(-2,0)" /> agrees with the repeated root, and{' '}
+        <Katex tex="(0,-4)" /> is the <Katex tex="y" />-intercept. The report says graphs that looked like an inverted
+        parabola came from not recognising this stationary point at the <Katex tex="y" />-intercept.
       </>
     ),
   },
@@ -134,21 +153,34 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="f(-3)=(-1)^2(-4)=-4" />,
     reason: (
       <>
-        The domain is closed, so find the left endpoint <Katex tex="(-3,-4)" /> and draw it as a closed dot. The
-        question only asks for intercepts and stationary points, but labelling the endpoint shows exactly where the
+        The domain <Katex tex="[-3,0]" /> is closed, so both endpoints get closed dots: <Katex tex="(-3,-4)" /> here
+        and <Katex tex="(0,-4)" />.
+      </>
+    ),
+    more: (
+      <>
+        The question only asks for intercepts and stationary points, but labelling the endpoint shows exactly where the
         graph stops.
       </>
     ),
   },
   {
-    working: <Katex display tex="f'(x)>0 \text{ on } (-3,-2),\quad f'(x)<0 \text{ on } (-2,0)" />,
+    working: (
+      <>
+        <Katex display tex="f'(x)>0 \text{ on } (-3,-2)" />
+        <Katex display tex="f'(x)<0 \text{ on } (-2,0)" />
+      </>
+    ),
     reason: (
       <>
-        Now the shape. In <Katex tex="3x(x+2)" />: on <Katex tex="(-3,-2)" /> both <Katex tex="x" /> and{' '}
-        <Katex tex="x+2" /> are negative, so <Katex tex="f'>0" /> and the curve rises; on <Katex tex="(-2,0)" />,{' '}
-        <Katex tex="x<0" /> and <Katex tex="x+2>0" />, so <Katex tex="f'<0" /> and it falls. So <Katex tex="(-2,0)" />{' '}
-        is a local maximum, and the curve falls from it to <Katex tex="(0,-4)" />, levelling off as it arrives. One
-        extra point helps you draw the bend on VCAA&apos;s grid: <Katex tex="f(-1)=(1)^2(-2)=-2" />.
+        Sign of <Katex tex="3x(x+2)" />: on <Katex tex="(-3,-2)" /> both factors are negative, so <Katex tex="f" />{' '}
+        rises; on <Katex tex="(-2,0)" /> only <Katex tex="x" /> is, so <Katex tex="f" /> falls. So{' '}
+        <Katex tex="(-2,0)" /> is a local maximum.
+      </>
+    ),
+    more: (
+      <>
+        One extra point helps you draw the bend on VCAA&apos;s grid: <Katex tex="f(-1)=(1)^2(-2)=-2" />.
       </>
     ),
   },
@@ -165,9 +197,13 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Closed dots at <Katex tex="(-3,-4)" /> and <Katex tex="(0,-4)" />, touching the axis at{' '}
-        <Katex tex="(-2,0)" />, and horizontal at <Katex tex="(0,-4)" />. The whole graph sits on or below the{' '}
-        <Katex tex="x" />-axis: on <Katex tex="[-3,0]" />, <Katex tex="(x+2)^2\ge 0" /> and <Katex tex="x-1<0" />, so{' '}
-        <Katex tex="f(x)\le 0" />.
+        <Katex tex="(-2,0)" />, and horizontal at <Katex tex="(0,-4)" />, with coordinates labelled.
+      </>
+    ),
+    more: (
+      <>
+        Check: the whole graph sits on or below the <Katex tex="x" />-axis, because on <Katex tex="[-3,0]" />,{' '}
+        <Katex tex="(x+2)^2\ge 0" /> and <Katex tex="x-1<0" />, so <Katex tex="f(x)\le 0" />.
       </>
     ),
   },
@@ -224,7 +260,9 @@ export default function MethodsQ3_2017Exam1() {
           <p>
             A cubic with a squared factor, <Katex tex="y=(x-a)^2(x-b)" />, touches the <Katex tex="x" />-axis at{' '}
             <Katex tex="x=a" /> (a turning point) and crosses it at <Katex tex="x=b" />. With a positive{' '}
-            <Katex tex="x^3" /> coefficient it rises to a local maximum, falls to a local minimum, then rises again. On
+            <Katex tex="x^3" /> coefficient it rises to a local maximum, falls to a local minimum, then rises again.
+            Here <Katex tex="a=-2" /> is less than <Katex tex="b=1" />, so the touch point <Katex tex="(-2,0)" /> is the
+            local maximum, and the local minimum comes between <Katex tex="-2" /> and <Katex tex="1" />. On
             a restricted domain you draw only the piece of that shape over the domain, with closed dots at the ends of a
             closed interval. Use whichever form suits the job: factorised for the <Katex tex="x" />-intercepts, expanded
             for the <Katex tex="y" />-intercept and the derivative.

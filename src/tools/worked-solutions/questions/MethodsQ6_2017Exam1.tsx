@@ -48,9 +48,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\tan(\theta)-1=0 \implies \tan(\theta)=1" />,
     reason: (
       <>
-        A product is zero when one of its factors is zero, so take the three factors one at a time. The question
-        asks for values of <Katex tex="\tan(\theta)" />, so the aim for every factor is a line of the form{' '}
-        <Katex tex="\tan(\theta)=\text{number}" />. The first factor is already there.
+        A product is zero when one of its factors is zero. Values of <Katex tex="\tan(\theta)" /> are wanted, so
+        turn each factor into <Katex tex="\tan(\theta)=\text{number}" />. The first is already there.
       </>
     ),
   },
@@ -58,9 +57,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned}\sin(\theta)-\sqrt3\cos(\theta)&=0\\ \sin(\theta)&=\sqrt3\cos(\theta)\end{aligned}" />,
     reason: (
       <>
-        Second factor zero; move the cosine term across. How would I know what to do next? Only{' '}
-        <Katex tex="\tan(\theta)" /> is wanted, and <Katex tex="\tfrac{\sin}{\cos}=\tan" />, so divide both sides
-        by <Katex tex="\cos(\theta)" />.
+        Second factor zero; move the cosine term across. Only <Katex tex="\tan(\theta)" /> is wanted, and{' '}
+        <Katex tex="\tfrac{\sin}{\cos}=\tan" />, so divide both sides by <Katex tex="\cos(\theta)" /> next.
       </>
     ),
   },
@@ -69,9 +67,7 @@ const ROWS_A: WorkingRow[] = [
     reason: (
       <>
         Dividing by <Katex tex="\cos(\theta)" /> loses nothing: where <Katex tex="\cos(\theta)=0" />,{' '}
-        <Katex tex="\sin(\theta)=\pm1" /> and this factor isn&apos;t zero. On the unit circle,{' '}
-        <Katex tex="\sin(\theta)=\sqrt3\cos(\theta)" /> says the point <Katex tex="(\cos\theta,\sin\theta)" /> is
-        on the line <Katex tex="y=\sqrt3x" />, whose gradient is <Katex tex="\sqrt3" />.
+        <Katex tex="\sin(\theta)=\pm1" />, so this factor isn&apos;t zero there.
       </>
     ),
   },
@@ -83,8 +79,13 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\tan(\theta)=-\sqrt3" />,
     reason: (
       <>
-        Divide by <Katex tex="\cos(\theta)" />. Sign check: <Katex tex="\sin(\theta)+\sqrt3\cos(\theta)" /> can
-        only be zero if <Katex tex="\sin(\theta)" /> and <Katex tex="\cos(\theta)" /> have opposite signs, so{' '}
+        Divide by <Katex tex="\cos(\theta)" /> as before; the minus sign stays.
+      </>
+    ),
+    more: (
+      <>
+        Sign check: <Katex tex="\sin(\theta)+\sqrt3\cos(\theta)" /> can only be zero if{' '}
+        <Katex tex="\sin(\theta)" /> and <Katex tex="\cos(\theta)" /> have opposite signs, so{' '}
         <Katex tex="\tan(\theta)" /> must be negative.
       </>
     ),
@@ -93,9 +94,8 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="\boxed{\tan(\theta)=1,\ \sqrt3,\ -\sqrt3}" />,
     reason: (
       <>
-        Three values, and stop there. Part (a) gives no domain for <Katex tex="\theta" />, so there are
-        infinitely many angles, but only three values of <Katex tex="\tan(\theta)" />: that is why the question
-        asks for <Katex tex="\tan(\theta)" />.
+        Three values, and stop there: the question asks for values of <Katex tex="\tan(\theta)" />, not of{' '}
+        <Katex tex="\theta" />.
       </>
     ),
   },
@@ -111,10 +111,9 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        &ldquo;Hence&rdquo; says use part (a), so put the two equations side by side. The factor{' '}
-        <Katex tex="\tan(\theta)-1" /> is the same; the only difference is <Katex tex="\sin^2(\theta)-3\cos^2(\theta)" />{' '}
-        in place of part (a)&apos;s last two brackets. Writing <Katex tex="3" /> as <Katex tex="(\sqrt3)^2" /> makes
-        it a difference of two squares.
+        &ldquo;Hence&rdquo; says reuse part (a): <Katex tex="\tan(\theta)-1" /> is unchanged, so look at the other
+        bracket. Part (a)&apos;s brackets contain <Katex tex="\sqrt3\cos(\theta)" />, so write <Katex tex="3" /> as{' '}
+        <Katex tex="(\sqrt3)^2" />: a difference of two squares.
       </>
     ),
   },
@@ -131,9 +130,13 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\therefore\ \tan(\theta)=1,\ \sqrt3,\ -\sqrt3" />,
     reason: (
       <>
-        Straight from part (a). Only the angles are left. <Katex tex="\tan" /> repeats every <Katex tex="\pi" />,
-        so on <Katex tex="0\le\theta\le\pi" /> each non-zero value of <Katex tex="\tan(\theta)" /> occurs exactly
-        once: expect exactly three solutions.
+        Straight from part (a). Now find the angle in <Katex tex="0\le\theta\le\pi" /> for each value.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="\tan" /> repeats every <Katex tex="\pi" />, so on <Katex tex="0\le\theta\le\pi" /> each non-zero
+        value of <Katex tex="\tan(\theta)" /> occurs exactly once: expect exactly three solutions.
       </>
     ),
   },
@@ -150,9 +153,9 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="\tan(\theta)=\sqrt3 \implies \theta=\frac{\pi}{3}" />,
     reason: (
       <>
-        The exact value from the <Katex tex="30" />–<Katex tex="60" />–<Katex tex="90" /> triangle with sides{' '}
-        <Katex tex="1,\ \sqrt3,\ 2" />: at the <Katex tex="60^\circ" /> angle, opposite ÷ adjacent{' '}
-        <Katex tex="=\tfrac{\sqrt3}{1}" />.
+        Exact value: <Katex tex="\tan 60^\circ=\tfrac{\sqrt3}{1}" /> from the triangle with sides{' '}
+        <Katex tex="1,\ \sqrt3,\ 2" />, and <Katex tex="60^\circ=\tfrac{\pi}{3}" />. The other angle in a full
+        turn, <Katex tex="\tfrac{4\pi}{3}" />, is outside the domain.
       </>
     ),
   },
@@ -162,9 +165,9 @@ const ROWS_B: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="\tan" /> is negative, and the only part of <Katex tex="[0,\pi]" /> where that happens is the
-        second quadrant. The reference angle is still <Katex tex="\tfrac{\pi}{3}" /> (because{' '}
-        <Katex tex="\tan\tfrac{\pi}{3}=\sqrt3" />), so <Katex tex="\theta=\pi-\tfrac{\pi}{3}" />.
+        In <Katex tex="[0,\pi]" />, <Katex tex="\tan" /> is negative only in the second quadrant. The reference
+        angle is <Katex tex="\tfrac{\pi}{3}" /> (as <Katex tex="\tan\tfrac{\pi}{3}=\sqrt3" />), so{' '}
+        <Katex tex="\theta=\pi-\tfrac{\pi}{3}" />.
       </>
     ),
   },
@@ -173,6 +176,10 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         Three solutions in <Katex tex="0\le\theta\le\pi" />, one for each value of <Katex tex="\tan(\theta)" />.
+      </>
+    ),
+    more: (
+      <>
         Note <Katex tex="\theta=\tfrac{\pi}{2}" /> can never be a solution: <Katex tex="\tan" /> is undefined
         there, so the left side has no value.
       </>
@@ -211,19 +218,14 @@ export default function MethodsQ6_2017Exam1() {
             <Katex tex="a\tan(\theta)+b=0" />, so <Katex tex="\tan(\theta)=-\tfrac{b}{a}" />.
           </p>
           <p>
-            (Dividing by <Katex tex="\cos(\theta)" /> is safe here: if{' '}
-            <Katex tex="\cos(\theta)" /> were zero then <Katex tex="\sin(\theta)=\pm1" /> and
-            the factor could not be zero anyway.)
-          </p>
-          <p>
             The picture behind it: on the unit circle the point for <Katex tex="\theta" /> is{' '}
             <Katex tex="(\cos\theta,\sin\theta)" />, so the radius to it rises <Katex tex="\sin\theta" /> over a run
             of <Katex tex="\cos\theta" />. Its gradient is <Katex tex="\tfrac{\sin\theta}{\cos\theta}=\tan\theta" />.
             An equation like <Katex tex="\sin(\theta)=\sqrt3\cos(\theta)" /> just fixes that gradient.
           </p>
           <p>
-            That one move turns the last two factors into <Katex tex="\tan(\theta)=\sqrt3" />{' '}
-            and <Katex tex="\tan(\theta)=-\sqrt3" /> in a line each. Three-quarters of students
+            That one move turns each of the last two factors into a <Katex tex="\tan" /> equation in a single
+            line. Three-quarters of students
             scored zero here; the report says students struggled to go beyond{' '}
             <Katex tex="\tan(\theta)=1" />.
           </p>
@@ -270,14 +272,9 @@ export default function MethodsQ6_2017Exam1() {
       >
         <Background title="What “Hence” is pointing at">
           <p>
-            &ldquo;Hence&rdquo; means the previous part does most of the work. Compare the two equations: part (b)
-            keeps <Katex tex="\tan(\theta)-1" /> and replaces part (a)&apos;s other two brackets with{' '}
-            <Katex tex="\sin^2(\theta)-3\cos^2(\theta)" />. Multiply those two brackets out and they give exactly
-            that, so the two equations are the same equation.
-          </p>
-          <p>
-            Once you know the values of <Katex tex="\tan(\theta)" />, each one gives exactly one angle in{' '}
-            <Katex tex="0\le\theta\le\pi" />, because <Katex tex="\tan" /> repeats every <Katex tex="\pi" />.
+            &ldquo;Hence&rdquo; means the previous part does most of the work: look for a way to turn this equation
+            into one you have already solved, and reuse that result. Starting from scratch costs time and is where
+            solutions tend to go missing.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />

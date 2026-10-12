@@ -54,10 +54,15 @@ const ROWS_A: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="f" /> is one function divided by another, so reach for the quotient rule
-        (it&apos;s on the formula sheet). Name the top <Katex tex="u" /> and the bottom{' '}
-        <Katex tex="v" />, and write their derivatives down <em>before</em> substituting —
-        that keeps the next line mechanical.
+        <Katex tex="f" /> is one function divided by another, so use the quotient rule (on the
+        formula sheet). Name the top <Katex tex="u" />, the bottom <Katex tex="v" />, and their
+        derivatives.
+      </>
+    ),
+    more: (
+      <>
+        Writing <Katex tex="u'" /> and <Katex tex="v'" /> down <em>before</em> substituting keeps
+        the next line mechanical.
       </>
     ),
   },
@@ -74,16 +79,28 @@ const ROWS_A: WorkingRow[] = [
     working: <Katex display tex="= \frac{x+2-x}{(x+2)^2}" />,
     reason: (
       <>
-        Simplify the numerator first. The <Katex tex="x+2" /> on top is only one <em>term</em>{' '}
-        (the other is <Katex tex="-x" />), so it can&apos;t cancel with the denominator — the
-        slip the report calls the most common. Leave <Katex tex="(x+2)^2" /> factorised:
-        expanding it is extra work and a second chance to slip.
+        Expand the numerator first. The <Katex tex="x+2" /> on top is only one term of it, not a
+        factor, so nothing cancels yet. Leave <Katex tex="(x+2)^2" /> factorised.
+      </>
+    ),
+    more: (
+      <>
+        Cancelling that <Katex tex="x+2" /> with the denominator is the slip the report calls the
+        most common: the numerator is <Katex tex="(x+2)\times 1-x\times 1" />, two terms, and
+        only a factor of the <em>whole</em> numerator could cancel. Expanding <Katex tex="(x+2)^2" /> is extra
+        work and a second chance to slip; the report notes students who expanded it did so
+        incorrectly.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \frac{2}{(x+2)^2}}" />,
     reason: (
+      <>
+        The <Katex tex="x" /> terms cancel, leaving <Katex tex="2" /> on top.
+      </>
+    ),
+    more: (
       <>
         A check: <Katex tex="f(x)=1-\tfrac{2}{x+2}=1-2(x+2)^{-1}" />, whose derivative is{' '}
         <Katex tex="2(x+2)^{-2}" /> — the same. It is positive everywhere on{' '}
@@ -99,12 +116,16 @@ const ROWS_B: WorkingRow[] = [
     working: <Katex display tex="g'(x) = 3(2-x^3)^2 \times (-3x^2)" />,
     reason: (
       <>
-        <Katex tex="g" /> is a bracket cubed, so it&apos;s a chain rule: with{' '}
-        <Katex tex="u=2-x^3" />, <Katex tex="g=u^3" /> and{' '}
-        <Katex tex="\tfrac{dg}{dx}=\tfrac{dg}{du}\times\tfrac{du}{dx}=3u^2\times(-3x^2)" />. The
-        derivative of <Katex tex="2-x^3" /> is <Katex tex="0-3x^2" /> — keep that minus, it is
-        where marks were lost. Expanding <Katex tex="(2-x^3)^3" /> first also works, but it is
-        the longer route the report warns about.
+        A bracket cubed, so chain rule: with <Katex tex="u=2-x^3" />,{' '}
+        <Katex tex="g'=3u^2\times\tfrac{du}{dx}" />. The inside derivative is{' '}
+        <Katex tex="-3x^2" /> — keep the minus.
+      </>
+    ),
+    more: (
+      <>
+        The report says students erred here &lsquo;especially with negatives&rsquo;. Expanding{' '}
+        <Katex tex="(2-x^3)^3" /> first also works, but it is the longer route the report warns
+        about, and was often done incorrectly.
       </>
     ),
   },
@@ -117,19 +138,25 @@ const ROWS_B: WorkingRow[] = [
     reason: (
       <>
         The question asks for a number, <Katex tex="g'(1)" />, not the rule{' '}
-        <Katex tex="g'(x)" />, so substitute <Katex tex="x=1" />. The report notes students who
-        differentiated correctly and then stopped here.
+        <Katex tex="g'(x)" />, so substitute <Katex tex="x=1" />.
       </>
     ),
+    more: <>The report notes some students forgot this step and stopped at <Katex tex="g'(x)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{g'(1) = -9}" />,
     reason: (
       <>
-        Sense check: near <Katex tex="x=1" /> the inside <Katex tex="2-x^3" /> is decreasing
-        (rate <Katex tex="-3" />), and cubing keeps the order (rate{' '}
-        <Katex tex="3u^2=3" /> at <Katex tex="u=1" />), so <Katex tex="g" /> decreases, at{' '}
-        <Katex tex="3\times 3=9" /> times the rate of <Katex tex="x" />.
+        Negative, as expected: as <Katex tex="x" /> increases past <Katex tex="1" />,{' '}
+        <Katex tex="2-x^3" /> shrinks, so its cube shrinks too.
+      </>
+    ),
+    more: (
+      <>
+        Sense check on size too: near <Katex tex="x=1" /> the inside <Katex tex="2-x^3" /> changes
+        at rate <Katex tex="-3" />, and cubing multiplies that by <Katex tex="3u^2=3" /> at{' '}
+        <Katex tex="u=1" />, so <Katex tex="g" /> changes at <Katex tex="3\times(-3)=-9" /> times
+        the rate of <Katex tex="x" />.
       </>
     ),
   },
@@ -161,11 +188,9 @@ export default function MethodsQ1_2017Exam1() {
             the negative index is where slips creep in. The report says as much — students who
             used the quotient rule fared better.
           </p>
-          <p>
-            <Katex tex="\dfrac{d}{dx}\!\left(\dfrac{u}{v}\right)=\dfrac{v\,u'-u\,v'}{v^2}" />{' '}
-            — note the order in the numerator. Getting it backwards flips the sign of the whole
-            answer.
-          </p>
+          <div>
+            <Katex display tex="\dfrac{d}{dx}\!\left(\dfrac{u}{v}\right)=\dfrac{v\,u'-u\,v'}{v^2}" />
+          </div>
         </Background>
         <WorkingTable rows={ROWS_A} />
         <Explore title="A correct derivative gives a line that just touches the curve, at every point">
@@ -177,8 +202,8 @@ export default function MethodsQ1_2017Exam1() {
           working={<Katex display tex="\frac{(x+2)\times 1-x\times 1}{(x+2)^2}\;\to\;\frac{1-x}{x+2}" />}
         >
           Cancelling needs a common <em>factor</em> of the whole numerator and the whole
-          denominator. Here <Katex tex="x+2" /> is only one term of the numerator, so nothing
-          cancels until the numerator is simplified to <Katex tex="2" />. To catch it, test a
+          denominator, so nothing cancels until the numerator is simplified to{' '}
+          <Katex tex="2" />. To catch it, test a
           point: at <Katex tex="x=2" /> this answer gives <Katex tex="-\tfrac14" />, a negative
           slope, yet <Katex tex="f" /> is increasing there (the true slope is{' '}
           <Katex tex="\tfrac18" />). Test more than one point — at <Katex tex="x=0" /> both
@@ -218,10 +243,9 @@ export default function MethodsQ1_2017Exam1() {
           working={<Katex display tex="g'(1)=3(2-1)^2\times 3(1)^2=9" />}
         >
           The <Katex tex="2" /> differentiates to <Katex tex="0" /> and <Katex tex="-x^3" /> to{' '}
-          <Katex tex="-3x^2" />; the minus belongs to the <Katex tex="x^3" /> and stays. Catch it
-          with the sense check: as <Katex tex="x" /> increases through <Katex tex="1" />, the
-          inside <Katex tex="2-x^3" /> gets smaller, so its cube gets smaller too — the answer
-          must be negative.
+          <Katex tex="-3x^2" />; the minus belongs to the <Katex tex="x^3" /> and stays. A{' '}
+          positive answer also fails the sign check in the last row: <Katex tex="g" /> is
+          decreasing at <Katex tex="x=1" />, so <Katex tex="g'(1)" /> must be negative.
         </WrongMethod>
       </PartCard>
     </div>
