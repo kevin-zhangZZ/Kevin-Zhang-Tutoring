@@ -69,65 +69,72 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="h'(t) = -\frac{3000}{(t+1)^2}" />,
-    reason: <>The rate of decline. "Decreases at half the rate" is a statement about <Katex tex="h'" />, so start there.</>,
+    reason: <>"Decreases at half the rate" is a statement about the rate of change <Katex tex="h'" />, so differentiate first.</>,
+    more: <>Write <Katex tex="h(t)=3000(t+1)^{-1}" /> and use the power rule (or the chain rule) to get this. It is negative because the population is falling.</>,
   },
   {
-    working: <Katex display tex="h_1'(t) = \tfrac12h'(t) = -\frac{1500}{(t+1)^2} \implies h_1(t) = \frac{1500}{t+1}+c" />,
-    reason: <>Antidifferentiating. Halving the derivative halves the numerator and leaves an unknown constant.</>,
+    working: <Katex display tex="\begin{aligned} h_1'(t) &= \tfrac12h'(t) \\ &= -\frac{1500}{(t+1)^2} \\ \implies h_1(t) &= \frac{1500}{t+1}+c \end{aligned}" />,
+    reason: <>Half the rate at every time means <Katex tex="h_1'=\tfrac12h'" />. Antidifferentiate, keeping the constant <Katex tex="c" />.</>,
+    more: <>Reverse the power rule: <Katex tex="-1500(t+1)^{-2}" /> comes from differentiating <Katex tex="1500(t+1)^{-1}" /> (bring down the <Katex tex="-1" />, lower the power to <Katex tex="-2" />). The constant is the whole point of the question. Halving the derivative tells you the shape of <Katex tex="h_1" /> but not its height, and the tempting answer <Katex tex="h_1=\tfrac12h" /> (a dilation alone) starts at <Katex tex="1500" /> people instead of <Katex tex="3000" /> — it breaks the condition <Katex tex="h_1(0)=h(0)" />.</>,
   },
   {
-    working: <Katex display tex="h_1(0) = h(0) = 3000 \implies 1500+c = 3000 \implies c = 1500" />,
-    reason: <>The second condition fixes the constant.</>,
+    working: <Katex display tex="\begin{aligned} h_1(0) = h(0) &= 3000 \\ \implies 1500+c &= 3000 \\ \implies c &= 1500 \end{aligned}" />,
+    reason: <><Katex tex="h(0)=\tfrac{3000}{0+1}=3000" />, and <Katex tex="h_1(0)=\tfrac{1500}{1}+c" />. The two must be equal, which fixes <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="h_1(t) = \tfrac12h(t)+1500" />,
-    reason: <>Now read the transformations off the rule.</>,
+    reason: <>Rewrite <Katex tex="h_1" /> in terms of <Katex tex="h" />: multiplying the output by <Katex tex="\tfrac12" /> is a dilation from the <Katex tex="t" />-axis; adding <Katex tex="1500" /> is a translation up.</>,
+    more: <>Check: <Katex tex="h_1'(t)=\tfrac12h'(t)" /> (the <Katex tex="+1500" /> differentiates to zero) and <Katex tex="h_1(0)=1500+1500=3000" /> ✓. Both changes act on the <Katex tex="h" />-values (outside the function); nothing happens to <Katex tex="t" />. A change to <Katex tex="t" /> such as <Katex tex="h\!\left(\tfrac t2\right)" /> (a dilation by factor 2 from the <Katex tex="h" />-axis) does slow the decline, but not by exactly half at every time — its derivative is <Katex tex="\tfrac{2(t+1)^2}{(t+2)^2}" /> times <Katex tex="h'(t)" />, which is not constant.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Dilation by factor } \tfrac12 \text{ from the } t\text{-axis, then translation } 1500 \text{ units in the positive } h \text{ direction.}}" />,
-    reason: <>Name the axis precisely: a dilation by <Katex tex="\tfrac12" /> <em>from</em> the <Katex tex="t" />-axis is the same as one <em>parallel to</em> the <Katex tex="h" />-axis — both wordings are accepted, but "from the <Katex tex="h" />-axis" is not. Reversing the order also works if the translation is <Katex tex="3000" /> instead: <Katex tex="\tfrac12\bigl(h(t)+3000\bigr)" />.</>,
+    working: <Katex display tex="\boxed{\begin{aligned} &\text{Dilation by factor } \tfrac12 \\ &\text{from the } t\text{-axis,} \\ &\text{then translation of } 1500 \\ &\text{units in the positive} \\ &h \text{ direction.} \end{aligned}}" />,
+    reason: <>Dilate first, then translate — that order gives <Katex tex="\tfrac12h(t)+1500" />. Say which axis and which direction.</>,
+    more: <>A dilation by <Katex tex="\tfrac12" /> <em>from</em> the <Katex tex="t" />-axis is the same as one <em>parallel to</em> (or in the direction of) the <Katex tex="h" />-axis, and the report accepts any of these wordings; "from the <Katex tex="h" />-axis" describes a different transformation. Order matters: translating up <Katex tex="1500" /> and then dilating would give <Katex tex="\tfrac12h(t)+750" />. The report's alternative is to translate up <Katex tex="3000" /> first, then dilate: <Katex tex="\tfrac12\bigl(h(t)+3000\bigr)=\tfrac12h(t)+1500" />. Mapping notation such as <Katex tex="(t,h)\to\left(t,\tfrac h2+1500\right)" /> is also accepted.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = \frac{60}{100} = \frac35" />,
-    reason: <>The sample proportion.</>,
+    reason: <>The sample proportion: 60 unhappy out of <Katex tex="n=100" /> surveyed.</>,
   },
   {
     working: <Katex display tex="\hat p\pm z\sqrt{\frac{\hat p(1-\hat p)}{n}} = \frac35\pm2\sqrt{\frac{\tfrac35\cdot\tfrac25}{100}}" />,
-    reason: <>Using <Katex tex="z=2" /> as the question directs.</>,
+    reason: <>The approximate confidence interval for <Katex tex="p" />: <Katex tex="\hat p" /> plus or minus <Katex tex="z" /> standard deviations, with <Katex tex="z=2" /> as the question directs.</>,
   },
   {
     working: <Katex display tex="\frac35\cdot\frac25 = \frac{6}{25} \implies \sqrt{\frac{6}{2500}} = \frac{\sqrt6}{50}" />,
-    reason: <><Katex tex="\sqrt{2500}=50" />, which is why the numbers were chosen this way.</>,
+    reason: <>Keep fractions: <Katex tex="\tfrac{6}{25}\div100=\tfrac{6}{2500}" />, and <Katex tex="\sqrt{2500}=50" />. This is the standard deviation of <Katex tex="\hat P" />.</>,
+    more: <>The report notes that some students had trouble simplifying surd expressions involving decimals and/or fractions. In decimals this is <Katex tex="\sqrt{\tfrac{0.6\times0.4}{100}}=\sqrt{0.0024}" />, which is hard to simplify by hand; with fractions the denominator is a perfect square and the surd falls out at once.</>,
   },
   {
     working: <Katex display tex="2\cdot\frac{\sqrt6}{50} = \frac{\sqrt6}{25}" />,
-    reason: <>The margin of error.</>,
+    reason: <>The margin of error: <Katex tex="z" /> times the standard deviation.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(\frac35-\frac{\sqrt6}{25},\ \frac35+\frac{\sqrt6}{25}\right)}" />,
-    reason: <>About <Katex tex="(0.502,\ 0.698)" />. The brackets are part of the answer — the report notes some students incorrectly omitted them.</>,
+    reason: <>Write the interval with brackets — the report notes some students incorrectly omitted them.</>,
+    more: <>The report says no particular format was required, so <Katex tex="\left(\tfrac{15-\sqrt6}{25},\ \tfrac{15+\sqrt6}{25}\right)" /> is equally good. As a sense check, <Katex tex="\sqrt6\approx2.449" />, so the interval is about <Katex tex="(0.502,\ 0.698)" />, centred on <Katex tex="0.6" />.</>,
   },
 ]
 
 const ROWS_CII: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{sd}\!\left(\hat P\right) = \sqrt{\frac{\hat p(1-\hat p)}{n}} = \sqrt{\frac{6/25}{n}}" />,
-    reason: <>The same <Katex tex="\hat p=\tfrac35" />, since the new sample has the same proportion.</>,
+    reason: <>The same <Katex tex="\hat p=\tfrac35" />, so <Katex tex="\hat p(1-\hat p)=\tfrac{6}{25}" /> again; only <Katex tex="n" /> is unknown.</>,
   },
   {
     working: <Katex display tex="\sqrt{\frac{6}{25n}} = \frac{\sqrt2}{50}" />,
-    reason: <>Setting it to the required value.</>,
+    reason: <>Set the standard deviation (not the margin of error, so no factor of <Katex tex="z" />) equal to the required value.</>,
   },
   {
     working: <Katex display tex="\frac{6}{25n} = \frac{2}{2500} \implies 25n\cdot2 = 6\cdot2500" />,
-    reason: <>Squaring both sides and cross-multiplying.</>,
+    reason: <>Square both sides to remove the surds, then cross-multiply.</>,
   },
   {
     working: <Katex display tex="\boxed{n = \frac{15\,000}{50} = 300}" />,
-    reason: <>Three times the original sample, and the standard deviation shrinks by <Katex tex="\sqrt3" /> — check: <Katex tex="\tfrac{\sqrt6}{50}\div\sqrt3=\tfrac{\sqrt2}{50}" /> ✓.</>,
+    reason: <>Larger samples give smaller standard deviations, so 300 is the smallest sample that brings it down to <Katex tex="\tfrac{\sqrt2}{50}" />.</>,
+    more: <>Check: tripling the sample from 100 to 300 divides the standard deviation by <Katex tex="\sqrt3" />, and <Katex tex="\tfrac{\sqrt6}{50}\div\sqrt3=\tfrac{\sqrt2}{50}" /> ✓.</>,
   },
 ]
 
@@ -150,14 +157,8 @@ export default function MethodsQ5_2024Exam1() {
               Part b. is a transformation question hiding a calculus question. "Decreases at
               half the rate" is a condition on <Katex tex="h'" />, so differentiate, halve,
               antidifferentiate, and then use <Katex tex="h_1(0)=h(0)" /> to pin the constant.
-              Only then are the transformations visible — and a halved derivative does{' '}
-              <em>not</em> mean a halved function, because the constant has to come back.
-            </p>
-            <p>
-              The wording matters as much as the mathematics. VCAA accepts "dilation by factor{' '}
-              <Katex tex="\tfrac12" /> from the <Katex tex="t" />-axis" or "parallel to the{' '}
-              <Katex tex="h" />-axis" — the two describe the same thing. The report notes the
-              incorrect axis or direction was frequently specified.
+              Only then, with <Katex tex="h_1" /> written in terms of <Katex tex="h" />, are the
+              transformations visible.
             </p>
           </Background>
         </div>

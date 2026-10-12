@@ -28,7 +28,7 @@ function TrapeziaOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[420px]">
-        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's graph of y = x sin(x) with the three trapezia drawn over it: their tops are chords joining the curve at 0, π/3, 2π/3 and π, lying just under the curve" className="w-full block" />
+        <img loading="lazy" decoding="async" src={graphSrc} alt="VCAA's graph of y = x sin(x) with the three trapezia drawn over it: their tops are chords joining the curve at 0, π/3, 2π/3 and π, the first chord just above the curve, the other two just under it" className="w-full block" />
         <svg viewBox="0 0 1164 931" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <polygon points={`${ax(0)},${ay(0)} ${pts} ${ax(Math.PI)},${ay(0)}`} fill={ORANGE} fillOpacity={0.22} stroke={ORANGE} strokeWidth={5} />
           {TRAP_X.slice(1, 3).map((x) => (
@@ -157,47 +157,51 @@ const EXAM_C: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="h = \frac\pi3 \implies \text{three strips across } [0,\pi] \text{ at } 0,\ \tfrac\pi3,\ \tfrac{2\pi}{3},\ \pi" />,
+    working: <Katex display tex="\begin{aligned} h &= \frac\pi3 \implies \text{three strips across } [0,\pi] \\ x &= 0,\ \tfrac\pi3,\ \tfrac{2\pi}{3},\ \pi \end{aligned}" />,
     reason: <>Step size π/3 over an interval of width π gives exactly three trapezia and four ordinates.</>,
   },
   {
     working: <Katex display tex="f(0) = 0\cdot\sin(0) = 0; \qquad f(\pi) = \pi\sin(\pi) = 0" />,
-    reason: <>Both end ordinates vanish.</>,
+    reason: <>Both end ordinates are zero, since <Katex tex="\sin(0)=\sin(\pi)=0" />.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac\pi3\right) = \frac\pi3\cdot\frac{\sqrt3}{2} = \frac{\pi\sqrt3}{6}" />,
     reason: <><Katex tex="\sin\!\left(\tfrac\pi3\right)=\tfrac{\sqrt3}{2}" />, and the <Katex tex="x" /> out the front must be multiplied in.</>,
+    more: <>The report notes that many students who found the exact sine values did not multiply them by <Katex tex="\tfrac\pi3" /> and <Katex tex="\tfrac{2\pi}{3}" />. The function is <Katex tex="x\sin(x)" />, not <Katex tex="\sin(x)" />: every ordinate is the <Katex tex="x" />-value times its sine.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{2\pi}{3}\right) = \frac{2\pi}{3}\cdot\frac{\sqrt3}{2} = \frac{\pi\sqrt3}{3}" />,
-    reason: <><Katex tex="\sin\!\left(\tfrac{2\pi}{3}\right)=+\tfrac{\sqrt3}{2}" /> — second quadrant, so positive. The report notes some students evaluated it as <Katex tex="-\tfrac{\sqrt3}{2}" />.</>,
+    reason: <><Katex tex="\sin\!\left(\tfrac{2\pi}{3}\right)=\sin\!\left(\pi-\tfrac\pi3\right)=+\tfrac{\sqrt3}{2}" /> — second quadrant, where sine is positive.</>,
+    more: <>The report notes some students evaluated it as <Katex tex="-\tfrac{\sqrt3}{2}" />. A quick check: the printed graph is above the <Katex tex="x" />-axis for every <Katex tex="x" /> in <Katex tex="(0,\pi)" />, so no ordinate here can be negative.</>,
   },
   {
     working: <Katex display tex="A \approx \frac h2\Bigl(f(0)+2f\!\left(\tfrac\pi3\right)+2f\!\left(\tfrac{2\pi}{3}\right)+f(\pi)\Bigr)" />,
-    reason: <>The trapezium rule: the two interior ordinates are each shared by two trapezia, hence the coefficient 2 — the report notes some students left it out.</>,
+    reason: <>The trapezium rule (on the formula sheet): each interior ordinate is a side of two trapezia, so it is counted twice.</>,
+    more: <>Each trapezium has area <Katex tex="\tfrac h2(\text{left height}+\text{right height})" />. Adding the three, <Katex tex="f\!\left(\tfrac\pi3\right)" /> and <Katex tex="f\!\left(\tfrac{2\pi}{3}\right)" /> each appear twice and the end ordinates once. The report notes some students left out the coefficient 2 on the middle two terms, and that using integral calculus instead was not acceptable: the question asks for the trapezium-rule approximation.</>,
   },
   {
     working: <TrapeziaOverlay />,
-    reason: <>The three trapezia on the printed graph. Their tops are chords, which sit under the curve almost everywhere.</>,
+    reason: <>The three trapezia on the printed graph. Their slanted tops are chords joining the four points on the curve.</>,
   },
   {
     working: <Katex display tex="= \frac{\pi}{6}\left(0+\frac{\pi\sqrt3}{3}+\frac{2\pi\sqrt3}{3}+0\right) = \frac{\pi}{6}\cdot\pi\sqrt3" />,
-    reason: <><Katex tex="2\times\tfrac{\pi\sqrt3}{6}=\tfrac{\pi\sqrt3}{3}" /> and <Katex tex="2\times\tfrac{\pi\sqrt3}{3}=\tfrac{2\pi\sqrt3}{3}" />; the two add to <Katex tex="\pi\sqrt3" />.</>,
+    reason: <><Katex tex="\tfrac h2=\tfrac\pi6" />. Then <Katex tex="2\times\tfrac{\pi\sqrt3}{6}=\tfrac{\pi\sqrt3}{3}" /> and <Katex tex="2\times\tfrac{\pi\sqrt3}{3}=\tfrac{2\pi\sqrt3}{3}" />, which add to <Katex tex="\tfrac{3\pi\sqrt3}{3}=\pi\sqrt3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{\sqrt3\,\pi^2}{6}}" />,
-    reason: <>About <Katex tex="2.849" />. The exact integral is <Katex tex="\pi\approx3.142" />, so the trapezia underestimate — as they must for a curve that is concave down across most of the interval.</>,
+    reason: <>Multiply out and give a single exact term; this is about <Katex tex="2.85" />.</>,
+    more: <>The report notes some students left the answer as the sum of two or three separate areas instead of combining them into a single term. As a check, the exact area is <Katex tex="\int_0^\pi x\sin(x)\,dx=\pi\approx3.14" />, so the approximation is a little low. The first chord (from <Katex tex="0" /> to <Katex tex="\tfrac\pi3" />) lies slightly above the curve, where the graph is concave up, but the other two lie below it, where the graph is concave down, and those two strips dominate.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x\sin(x)" />,
-    reason: <>A product.</>,
+    reason: <>A product of <Katex tex="x" /> and <Katex tex="\sin(x)" />, so use the product rule.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \sin(x)+x\cos(x)}" />,
-    reason: <>Product rule. Name it <Katex tex="f'(x)" />, as the question does.</>,
+    reason: <><Katex tex="1\cdot\sin(x)+x\cdot\cos(x)" />. Write the answer as <Katex tex="f'(x)=\dots" />, with brackets, as the report asks.</>,
   },
 ]
 
@@ -212,57 +216,64 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f''(x) = 2\cos(x)-x\sin(x) < 0 \ \text{ on } \left[\tfrac\pi2,\tfrac{2\pi}{3}\right]" />,
-    reason: <>There <Katex tex="\cos x\le0" /> and <Katex tex="\sin x>0" />, so <Katex tex="f'" /> is strictly decreasing and the endpoints give the extremes.</>,
+    reason: <>Differentiate <Katex tex="f'" /> again (product rule on <Katex tex="x\cos x" />). On this interval <Katex tex="\cos x\le0" /> and <Katex tex="x\sin x>0" />, so <Katex tex="f''<0" />: <Katex tex="f'" /> is strictly decreasing, so its range runs between its endpoint values.</>,
+    more: <>Why check this at all? If <Katex tex="f'" /> turned around inside the interval, its largest or smallest value could be at that turning point rather than at an endpoint. Here <Katex tex="f''(x)" /> is the derivative of <Katex tex="\sin(x)+x\cos(x)" />, which is <Katex tex="\cos(x)+\cos(x)-x\sin(x)" /> by the product rule again. The report also encourages using the printed graph as a guide: <Katex tex="f" /> is still rising at <Katex tex="x=\tfrac\pi2" /> and has started falling by <Katex tex="x=\tfrac{2\pi}{3}" /> (its peak is near <Katex tex="x=2" />), so the gradient goes from positive to negative.</>,
   },
   {
     working: <Katex display tex="\boxed{\left[\frac{\sqrt3}{2}-\frac\pi3,\ 1\right]}" />,
-    reason: <>A <em>range</em>, so square brackets and smaller value first. The report notes <Katex tex="[0,1]" /> was a common incorrect answer — it misses that <Katex tex="f'" /> goes below zero.</>,
+    reason: <>Square brackets, since both endpoint values are attained, and the smaller (negative) value first.</>,
+    more: <>The report notes some students omitted the brackets, used round brackets or reversed the order, and that <Katex tex="[0,1]" /> was a common incorrect answer. That misses that <Katex tex="f'\!\left(\tfrac{2\pi}{3}\right)" /> is negative (second row).</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="f'\!\left(\frac\pi2\right) = 1 > 0" />,
-    reason: <>One specific value, quoted from part b.ii. — not a general remark about tendencies.</>,
+    reason: <>"Hence": quote the endpoint values found in part b.ii. The first is positive.</>,
   },
   {
     working: <Katex display tex="f'\!\left(\frac{2\pi}{3}\right) = \frac{\sqrt3}{2}-\frac\pi3 \approx -0.18 < 0" />,
-    reason: <>The other. The report notes a common error was not recognising this is negative: <Katex tex="\tfrac{\sqrt3}{2}\approx0.87" /> while <Katex tex="\tfrac\pi3\approx1.05" />.</>,
+    reason: <>The second is negative, because <Katex tex="\tfrac{\sqrt3}{2}\approx0.87" /> is less than <Katex tex="\tfrac\pi3\approx1.05" />.</>,
+    more: <>The report notes a common error was not recognising that <Katex tex="\tfrac{\sqrt3}{2}-\tfrac\pi3<0" />. Without that, there is no sign change and nothing to verify.</>,
   },
   {
     working: <Katex display tex="f' \text{ is continuous on } \left[\tfrac\pi2,\tfrac{2\pi}{3}\right] \text{ and changes sign}" />,
-    reason: <>Continuity plus a sign change forces a zero somewhere in between.</>,
+    reason: <><Katex tex="f'" /> is built from <Katex tex="\sin" /> and <Katex tex="\cos" />, so its graph has no breaks. Going from positive to negative, it must cross zero in between.</>,
   },
   {
-    working: <Katex display tex="\boxed{\therefore f'(c) = 0 \text{ for some } c\in\left(\tfrac\pi2,\tfrac{2\pi}{3}\right), \text{ so } f \text{ has a stationary point there.}}" />,
-    reason: <>"Hence, verify" means use part b.ii., not solve <Katex tex="f'(x)=0" />. (For interest, <Katex tex="c\approx2.029" />.) As required.</>,
+    working: <Katex display tex="\boxed{\begin{aligned} &\therefore f'(c) = 0 \text{ for some } c\in\left(\tfrac\pi2,\tfrac{2\pi}{3}\right), \\ &\text{so } f \text{ has a stationary point there.} \end{aligned}}" />,
+    reason: <>A stationary point is where <Katex tex="f'(x)=0" />. As required.</>,
+    more: <>"Hence, verify" means use the values from part b.ii; the report says it was not appropriate to attempt a calculus technique (for example, solving <Katex tex="f'(x)=0" />). "Verify" means show the check with specific values, so a general remark that <Katex tex="f'" /> is positive then negative is not enough. (For interest, the stationary point is at <Katex tex="c\approx2.029" />.)</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f'(-\pi) = \sin(-\pi)+(-\pi)\cos(-\pi) = 0+\pi = \pi" />,
-    reason: <>The left endpoint is <Katex tex="(-\pi,\pi)" /> — high above the axis, not on it.</>,
+    reason: <>The domain is <Katex tex="[-\pi,\pi]" />, so the sketch has endpoints. The left one is <Katex tex="(-\pi,\pi)" />, high above the axis.</>,
   },
   {
     working: <Katex display tex="f'(\pi) = \sin(\pi)+\pi\cos(\pi) = 0-\pi = -\pi" />,
-    reason: <>And the right endpoint is <Katex tex="(\pi,-\pi)" />. Both must be plotted and labelled.</>,
+    reason: <>The right endpoint is <Katex tex="(\pi,-\pi)" />. Both must be plotted and labelled with their coordinates.</>,
+    more: <>The report notes many students calculated these correctly but then positioned them incorrectly, some did not label them, and some put the endpoints on the <Katex tex="x" />-axis (copying <Katex tex="f" />'s endpoints <Katex tex="(\pm\pi,0)" />). With <Katex tex="\pi\approx3.14" />, they sit just beyond the printed scale, at heights of about <Katex tex="\pm3.14" />.</>,
   },
   {
     working: <Katex display tex="f' = 0 \text{ where } f \text{ is stationary: } x = 0 \text{ and } x \approx \pm2" />,
-    reason: <>Read off the printed graph of <Katex tex="f" />: it turns near <Katex tex="x=\pm2" /> and has a minimum at the origin. These become the <Katex tex="x" />-intercepts of <Katex tex="f'" />.</>,
+    reason: <>Read off the printed graph of <Katex tex="f" />: it peaks near <Katex tex="x=\pm2" /> and has a minimum at the origin. Zero gradient there gives <Katex tex="f'" />'s <Katex tex="x" />-intercepts.</>,
+    more: <>The sign of <Katex tex="f'" /> follows the slope of <Katex tex="f" />: <Katex tex="f" /> rises on <Katex tex="(-\pi,-2)" /> and <Katex tex="(0,2)" />, so <Katex tex="f'>0" /> there; it falls on <Katex tex="(-2,0)" /> and <Katex tex="(2,\pi)" />, so <Katex tex="f'<0" /> there. That matches the endpoint values: positive at <Katex tex="x=-\pi" />, negative at <Katex tex="x=\pi" />.</>,
   },
   {
-    working: <Katex display tex="f'(-x) = \sin(-x)+(-x)\cos(-x) = -f'(x) \implies \text{odd}" />,
-    reason: <>The derivative of an even function is odd, so the sketch has rotational symmetry about the origin — a free accuracy check.</>,
+    working: <Katex display tex="\begin{aligned} f'(-x) &= \sin(-x)+(-x)\cos(-x) \\ &= -\sin(x)-x\cos(x) = -f'(x) \end{aligned}" />,
+    reason: <>Using <Katex tex="\sin(-x)=-\sin(x)" /> and <Katex tex="\cos(-x)=\cos(x)" />: <Katex tex="f'" /> is odd, so the sketch has rotational symmetry about the origin — a free accuracy check.</>,
   },
   {
-    working: <Katex display tex="\text{Local min } (-1.1,-1.4), \quad \text{local max } (1.1,1.4) \ \text{(given)}" />,
-    reason: <>Position these correctly relative to the intercepts — the report stresses they needed to be positioned and represented correctly.</>,
+    working: <Katex display tex="\begin{aligned} &\text{Local min } (-1.1,-1.4) \\ &\text{local max } (1.1,1.4) \quad \text{(given)} \end{aligned}" />,
+    reason: <>Plot these as smooth turning points: the minimum between <Katex tex="x=-2" /> and <Katex tex="0" />, the maximum between <Katex tex="0" /> and <Katex tex="2" />.</>,
   },
   {
     working: <DerivativeOverlay />,
-    reason: <>Drawn on the printed axes across the whole domain, with both endpoints labelled — the report notes some students put them on the <Katex tex="x" />-axis.</>,
+    reason: <>Join the points smoothly across the whole domain <Katex tex="[-\pi,\pi]" />, and label both endpoints.</>,
+    more: <>Reading left to right: start at <Katex tex="(-\pi,\pi)" />, fall through <Katex tex="(-2,0)" /> to the minimum, rise through the origin to the maximum, then fall through <Katex tex="(2,0)" /> to <Katex tex="(\pi,-\pi)" />. Rotating the sketch half a turn about the origin should give the same curve, since <Katex tex="f'" /> is odd. The report notes the graph needed to extend across the domain as specified.</>,
   },
 ]
 
@@ -292,11 +303,6 @@ export default function MethodsQ7_2024Exam1() {
               multiplied — which is why the printed graph is symmetric about the{' '}
               <Katex tex="y" />-axis. Its derivative is therefore odd, and that single fact
               settles most of the shape in part c.
-            </p>
-            <p>
-              Part b.iii. says "hence, verify". That rules out solving{' '}
-              <Katex tex="f'(x)=0" />: the marks are for quoting the two <em>specific</em>{' '}
-              values from part b.ii., noting they have opposite signs, and invoking continuity.
             </p>
           </Background>
         </div>

@@ -44,27 +44,30 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = \frac{1}{(x+3)^2}-2" />,
-    reason: <>A <em>truncus</em>: <Katex tex="y=\tfrac{1}{x^2}" /> translated 3 left and 2 down. Squaring the denominator makes both branches positive before the shift, so the curve is symmetric about its vertical asymptote — unlike a hyperbola, which the report notes some students mistakenly sketched.</>,
+    reason: <>A <em>truncus</em>: <Katex tex="y=\tfrac{1}{x^2}" /> translated 3 left and 2 down. Both branches sit above <Katex tex="y=-2" />, mirror images about <Katex tex="x=-3" />.</>,
+    more: <>The report notes some students mistakenly sketched a hyperbola. Quick check: <Katex tex="g(-4)=1-2=-1" /> and <Katex tex="g(-2)=1-2=-1" /> — the same height either side of <Katex tex="x=-3" />, which rules out a hyperbola.</>,
   },
   {
     working: <Katex display tex="x+3 = 0 \implies x = -3 \ \text{(vertical asymptote)}" />,
-    reason: <>Label it with an equation starting <Katex tex="x=" />.</>,
+    reason: <>The denominator is zero at <Katex tex="x=-3" /> (excluded from the domain). Label the asymptote as an equation, <Katex tex="x=-3" />, not just <Katex tex="-3" />.</>,
+    more: <>The report lists not labelling the asymptotes with <Katex tex="x=" /> or <Katex tex="y=" /> as a common error — an easy mark to throw away.</>,
   },
   {
-    working: <Katex display tex="\frac{1}{(x+3)^2}\to0 \implies y = -2 \ \text{(horizontal asymptote)}" />,
-    reason: <>Approached from <em>above</em> on both sides, since <Katex tex="\tfrac{1}{(x+3)^2}>0" /> always.</>,
+    working: <Katex display tex="\begin{gathered}\text{As } x\to\pm\infty,\ \frac{1}{(x+3)^2}\to0 \\ \implies y = -2 \ \text{(horizontal asymptote)}\end{gathered}" />,
+    reason: <>Far from <Katex tex="x=-3" /> the fraction vanishes, leaving <Katex tex="-2" />. Approached from <em>above</em> on both sides, since <Katex tex="\tfrac{1}{(x+3)^2}>0" /> always.</>,
   },
   {
     working: <Katex display tex="g(x) = 0 \implies (x+3)^2 = \frac12 \implies x+3 = \pm\frac{1}{\sqrt2}" />,
-    reason: <>Two x-intercepts, one either side of the asymptote — the symmetry made visible.</>,
+    reason: <>Add 2 and take reciprocals to get <Katex tex="(x+3)^2=\tfrac12" />; the square root needs <Katex tex="\pm" />, giving two <Katex tex="x" />-intercepts.</>,
+    more: <>Incorrect <Katex tex="x" />-intercepts were a common error in the report — usually from dropping the <Katex tex="\pm" /> (losing the left intercept) or slipping when simplifying <Katex tex="\tfrac{1}{\sqrt2}" />. The two intercepts sit the same distance either side of <Katex tex="x=-3" />: the symmetry made visible.</>,
   },
   {
-    working: <Katex display tex="x = -3\pm\frac{\sqrt2}{2}" />,
-    reason: <>Rationalising: about <Katex tex="-3.71" /> and <Katex tex="-2.29" />.</>,
+    working: <Katex display tex="x = -3\pm\frac{\sqrt2}{2} \implies \left(-3\pm\frac{\sqrt2}{2},\,0\right)" />,
+    reason: <>Rationalising <Katex tex="\tfrac{1}{\sqrt2}=\tfrac{\sqrt2}{2}" />. Written as coordinates, as the question asks; about <Katex tex="-3.71" /> and <Katex tex="-2.29" />.</>,
   },
   {
-    working: <Katex display tex="g(0) = \frac19-2 = -\frac{17}{9}" />,
-    reason: <>The <Katex tex="y" />-intercept, just above the horizontal asymptote.</>,
+    working: <Katex display tex="g(0) = \frac19-2 = -\frac{17}{9} \implies \left(0,\,-\frac{17}{9}\right)" />,
+    reason: <>The <Katex tex="y" />-intercept; <Katex tex="-\tfrac{17}{9}\approx-1.89" /> is just above the horizontal asymptote <Katex tex="y=-2" />.</>,
   },
   {
     working: (
@@ -76,34 +79,39 @@ const ROWS_A: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Both asymptotes labelled with equations and all three intercepts with coordinates; the symmetry about <Katex tex="x=-3" /> visible.</>,
+    reason: <>Both asymptotes dashed and labelled with equations, all three intercepts with coordinates, and the branches drawn as mirror images about <Katex tex="x=-3" />.</>,
+    more: <>The report names not indicating the symmetry as a common error. To draw it, mirror the <Katex tex="y" />-intercept: <Katex tex="g(-6)=\tfrac19-2=-\tfrac{17}{9}" /> too, so the left branch passes through <Katex tex="\left(-6,-\tfrac{17}{9}\right)" /> at the same height.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{Region: } -2\le x\le0 \text{ (between } x=-2 \text{ and the } y\text{-axis)}" />,
-    reason: <>The four boundaries named in the question are <Katex tex="x=-2" />, the <Katex tex="x" />-axis, the <Katex tex="y" />-axis and the curve. The terminals are <Katex tex="-2" /> and <Katex tex="0" /> — not an <Katex tex="x" />-intercept, which the report notes some students used.</>,
+    working: <Katex display tex="\text{Region: } -2\le x\le0" />,
+    reason: <>The vertical boundaries, <Katex tex="x=-2" /> and the <Katex tex="y" />-axis (<Katex tex="x=0" />), give the terminals; the <Katex tex="x" />-axis (top) and the curve (bottom) close the region.</>,
+    more: <>The report notes some students used an <Katex tex="x" />-intercept as a terminal. The nearer intercept, <Katex tex="-3+\tfrac{\sqrt2}{2}\approx-2.29" />, lies left of <Katex tex="x=-2" />, outside the strip, so the curve never meets the axis here and no intercept bounds the region.</>,
   },
   {
     working: <Katex display tex="g(-2) = 1-2 = -1, \qquad g(0) = -\frac{17}{9}" />,
-    reason: <>Both negative, so the curve lies entirely below the axis across this strip.</>,
+    reason: <>For <Katex tex="x>-3" />, <Katex tex="\tfrac{1}{(x+3)^2}" /> shrinks as <Katex tex="x" /> grows, so <Katex tex="g" /> decreases from <Katex tex="-1" />: the curve is below the axis on the whole strip.</>,
   },
   {
     working: <Katex display tex="A = \int_{-2}^{0}\bigl|g(x)\bigr|\,dx = \int_{-2}^{0}\left(2-\frac{1}{(x+3)^2}\right)dx" />,
-    reason: <>Flipping the integrand up front is cleaner than integrating and apologising for a negative afterwards.</>,
+    reason: <>Below the axis, area <Katex tex="=\int|g|\,dx=\int(-g)\,dx" />.</>,
+    more: <>Writing the absolute value first is the reasoning step that makes the answer come out positive, so there is no negative to fix at the end.</>,
   },
   {
     working: <Katex display tex="= \left[2x+\frac{1}{x+3}\right]_{-2}^{0}" />,
     reason: <><Katex tex="\int(x+3)^{-2}dx=-(x+3)^{-1}" />, so subtracting it gives <Katex tex="+\tfrac{1}{x+3}" />.</>,
+    more: <>Check by differentiating: <Katex tex="\tfrac{d}{dx}\left(2x+(x+3)^{-1}\right)=2-(x+3)^{-2}" />, the integrand. The report lists incorrect integration as a common error.</>,
   },
   {
     working: <Katex display tex="= \left(0+\frac13\right)-\left(-4+1\right) = \frac13+3" />,
-    reason: <>At <Katex tex="x=-2" />: <Katex tex="2(-2)=-4" /> and <Katex tex="\tfrac{1}{1}=1" />.</>,
+    reason: <>Upper terminal minus lower terminal. At <Katex tex="x=0" />: <Katex tex="0+\tfrac13" />. At <Katex tex="x=-2" />: <Katex tex="2(-2)=-4" /> and <Katex tex="\tfrac{1}{-2+3}=1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{10}{3} \ \text{square units}}" />,
-    reason: <>About <Katex tex="3.33" />. If you integrate <Katex tex="g" /> as it stands you get <Katex tex="-\tfrac{10}{3}" />; say <em>why</em> you are taking the positive value, rather than writing <Katex tex="-\tfrac{10}{3}=\tfrac{10}{3}" /> — which is false, and which the report notes many students wrote.</>,
+    reason: <>Positive, as an area must be (about <Katex tex="3.33" />).</>,
+    more: <>If you integrate <Katex tex="g" /> as it stands you get <Katex tex="-\tfrac{10}{3}" />. That is fine, but then say <em>why</em> you take the positive value — write <Katex tex="A=\left|-\tfrac{10}{3}\right|=\tfrac{10}{3}" /> or state that area must be positive. The report notes many students simply wrote <Katex tex="-\tfrac{10}{3}=\tfrac{10}{3}" /> — a false statement, not a reasoning step.</>,
   },
 ]
 
@@ -126,10 +134,6 @@ export default function MethodsQ3_2024Exam1() {
               <Katex tex="\tfrac{1}{(x+3)^2}>0" />, so both branches sit <em>above</em> the
               horizontal asymptote and the curve is symmetric about <Katex tex="x=-3" />. A
               hyperbola would have one branch above and one below.
-            </p>
-            <p>
-              That symmetry also explains why part a. has two <Katex tex="x" />-intercepts
-              rather than one, and why they come out as <Katex tex="-3\pm\tfrac{\sqrt2}{2}" />.
             </p>
           </Background>
         </div>

@@ -36,34 +36,40 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}\!\left(4,\ \tfrac{9}{10}\right) \implies n = 4, \ p = \tfrac{9}{10}, \ 1-p = \tfrac{1}{10}" />,
-    reason: <>Read off the two parameters.</>,
+    reason: <>In <Katex tex="\mathrm{Bi}(n,p)" /> the first number is the number of trials and the second is the probability of success on each trial.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = np(1-p) = 4\cdot\frac{9}{10}\cdot\frac{1}{10} = \frac{36}{100}" />,
-    reason: <>The binomial variance, from the formula sheet.</>,
+    reason: <>The binomial variance <Katex tex="np(1-p)" /> is on the formula sheet. Multiply the fractions: numerators <Katex tex="4\cdot9\cdot1=36" />, denominators <Katex tex="10\cdot10=100" />.</>,
+    more: <>The report notes some students made arithmetic errors in calculating the product of the decimals, <Katex tex="4\times0.9\times0.1" />. Keeping fractions avoids miscounting decimal places; as a check, <Katex tex="0.9\times0.1=0.09" /> (two decimal places) and <Katex tex="4\times0.09=0.36" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{sd}(X) = \sqrt{\frac{36}{100}} = \frac{6}{10} = \frac35}" />,
-    reason: <>The square root is the last step — the report notes some students gave the variance, <Katex tex="0.36" />, instead.</>,
+    reason: <>Standard deviation is the square root of the variance. Both 36 and 100 are perfect squares, so the root is exact.</>,
+    more: <>The report notes some students found the variance instead of the standard deviation, i.e. stopped at <Katex tex="0.36" />. Sanity check: almost every trial succeeds, so <Katex tex="X" /> is nearly always 3 or 4 — a small spread like <Katex tex="0.6" /> fits.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X<2) = \Pr(X=0)+\Pr(X=1)" />,
-    reason: <>Strictly less than 2, so <Katex tex="X=0" /> and <Katex tex="X=1" /> — two terms, not one.</>,
+    reason: <>A binomial variable takes only whole-number values, and strictly less than 2 means <Katex tex="X=0" /> or <Katex tex="X=1" /> — two terms, not one.</>,
+    more: <>The report notes some students only gave the <Katex tex="\Pr(X=1)" />. The inequality excludes 2 itself but includes 0, so the values are <Katex tex="\{0,1\}" />. Compare <Katex tex="\Pr(X\le 2)" />, which would need three terms, <Katex tex="\{0,1,2\}" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X=0) = \binom40\left(\frac{9}{10}\right)^0\left(\frac{1}{10}\right)^4 = \frac{1}{10\,000}" />,
-    reason: <>Four failures in a row. <Katex tex="\left(\tfrac{1}{10}\right)^4=\tfrac{1}{10\,000}" /> — count the zeros.</>,
+    reason: <>Formula sheet <Katex tex="\Pr(X=x)=\binom nx p^x(1-p)^{n-x}" /> with <Katex tex="x=0" />: all four trials fail. <Katex tex="\binom40" /> and <Katex tex="\left(\tfrac{9}{10}\right)^0" /> are both 1, leaving <Katex tex="\left(\tfrac{1}{10}\right)^4=\tfrac{1}{10\,000}" />.</>,
+    more: <>The report notes some students added an extra zero or missed one when expanding <Katex tex="\left(\tfrac{1}{10}\right)^3" /> and <Katex tex="\left(\tfrac{1}{10}\right)^4" />. The power is the number of zeros: <Katex tex="10^3=1000" /> (needed for <Katex tex="\Pr(X=1)" /> next) and <Katex tex="10^4=10\,000" />; as decimals, <Katex tex="0.001" /> and <Katex tex="0.0001" /> (three and four decimal places).</>,
   },
   {
-    working: <Katex display tex="\Pr(X=1) = \binom41\left(\frac{9}{10}\right)^1\left(\frac{1}{10}\right)^3 = 4\cdot\frac{9}{10}\cdot\frac{1}{1000} = \frac{36}{10\,000}" />,
-    reason: <>The <Katex tex="\binom41=4" /> counts which of the four trials was the success.</>,
+    working: <Katex display tex="\begin{aligned} \Pr(X=1) &= \binom41\left(\frac{9}{10}\right)^1\left(\frac{1}{10}\right)^3 \\ &= 4\cdot\frac{9}{10}\cdot\frac{1}{1000} = \frac{36}{10\,000} \end{aligned}" />,
+    reason: <>Now <Katex tex="x=1" />: one success, three failures. <Katex tex="\binom41=4" /> counts which of the four trials was the success.</>,
+    more: <>Write it over <Katex tex="10\,000" /> so it can be added to <Katex tex="\Pr(X=0)" />: <Katex tex="\tfrac{9}{10}\cdot\tfrac{1}{1000}=\tfrac{9}{10\,000}" />, then <Katex tex="4\cdot\tfrac{9}{10\,000}=\tfrac{36}{10\,000}" />. As a decimal, <Katex tex="0.0036" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X<2) = \frac{1+36}{10\,000} = \frac{37}{10\,000} = 0.0037}" />,
-    reason: <>Tiny, as it should be: with <Katex tex="p=0.9" />, getting fewer than two successes out of four is very unlikely.</>,
+    reason: <>Same denominator, so add the numerators.</>,
+    more: <>Decimal check: <Katex tex="0.0001+0.0036=0.0037" />. Both forms are exact, so either is a full answer. Tiny, as it should be: with <Katex tex="p=0.9" />, fewer than two successes out of four is very unlikely.</>,
   },
 ]
 
@@ -82,9 +88,10 @@ export default function MethodsQ4_2024Exam1() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Two formula-sheet facts, both done by hand:{' '}
-              <Katex tex="\mathrm{sd}=\sqrt{np(1-p)}" /> and{' '}
-              <Katex tex="\Pr(X=k)=\binom nk p^k(1-p)^{n-k}" />. The numbers are chosen so that
+              Two formula-sheet facts, both used by hand: the variance{' '}
+              <Katex tex="\mathrm{Var}(X)=np(1-p)" /> (so{' '}
+              <Katex tex="\mathrm{sd}(X)=\sqrt{np(1-p)}" />) and{' '}
+              <Katex tex="\Pr(X=x)=\binom nx p^x(1-p)^{n-x}" />. The numbers are chosen so that
               the variance is a perfect square and every probability is a whole number of
               ten-thousandths — so an answer that is not tidy is a signal to check the
               arithmetic.
