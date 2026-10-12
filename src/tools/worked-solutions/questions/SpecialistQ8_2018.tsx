@@ -5,7 +5,7 @@
 // both equal √3/27 ≈ 0.0642; A = 2√3/45 ≈ 0.0770, D = π³/648 ≈ 0.0478. itute and the NBEASTK
 // walkthrough agree (E). Distractors verified: A (14%) is tan²(x)sec²(x) rewritten in u,
 // u²(1 + u²) = u⁴ + u², with dx simply renamed du; B keeps A's integrand with the terminals
-// sec(0) = 1 and sec(π/6) = 2/√3; D (4%) leaves the x-terminal π/6. No clean slip found for C.
+// sec(0) = 1 and sec(π/6) = 2/√3; D (4%) leaves the x-terminal π/6; C (4%) is the u-form of tan(x)sec²(x).
 // Widget: spec-2018-mcq8-strips (six strips before and after u = tan(x), same areas; buttons
 // swap in options A and D). WrongMethod: option A. Solution is original.
 
@@ -28,11 +28,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="u = \tan(x) \implies \frac{du}{dx} = \sec^2(x)" />,
     reason: (
       <>
-        How do you know which substitution? Look for a function sitting next to its own derivative.{' '}
-        <Katex tex="\sec^2(x)" /> is exactly <Katex tex="\tfrac{d}{dx}\tan(x)" />, so let{' '}
-        <Katex tex="u=\tan(x)" /> and the <Katex tex="\sec^2(x)" /> will be used up by the{' '}
-        <Katex tex="du" />. The options, all in <Katex tex="u" /> with terminals involving{' '}
-        <Katex tex="\tfrac{1}{\sqrt3}=\tan\left(\tfrac{\pi}{6}\right)" />, confirm it.
+        <Katex tex="\sec^2(x)" /> is the derivative of <Katex tex="\tan(x)" /> and sits right beside it, so
+        let <Katex tex="u=\tan(x)" />.
+      </>
+    ),
+    more: (
+      <>
+        The options confirm it: all are in <Katex tex="u" />, with terminals involving{' '}
+        <Katex tex="\tfrac{1}{\sqrt3}=\tan\left(\tfrac{\pi}{6}\right)" />.
       </>
     ),
   },
@@ -40,9 +43,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="du = \sec^2(x)\,dx" />,
     reason: (
       <>
-        This is the line that decides the question. A small step <Katex tex="dx" /> in <Katex tex="x" /> is
-        a step <Katex tex="\sec^2(x)\,dx" /> in <Katex tex="u" />, so <Katex tex="dx" /> and{' '}
-        <Katex tex="du" /> are <em>not</em> the same size and can&apos;t just be swapped.
+        This line decides the question: <Katex tex="du" /> is <Katex tex="\sec^2(x)\,dx" />, not{' '}
+        <Katex tex="dx" />, so <Katex tex="dx" /> can&apos;t just be renamed <Katex tex="du" />.
       </>
     ),
   },
@@ -50,9 +52,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\tan^2(x)\,\underbrace{\sec^2(x)\,dx}_{du} = u^2\,du" />,
     reason: (
       <>
-        The <Katex tex="\tan^2(x)" /> becomes <Katex tex="u^2" />, and the whole of{' '}
-        <Katex tex="\sec^2(x)\,dx" /> becomes <Katex tex="du" />. Nothing is left over in <Katex tex="x" />,
-        which is how you know the substitution worked.
+        <Katex tex="\tan^2(x)" /> becomes <Katex tex="u^2" />, and the whole of{' '}
+        <Katex tex="\sec^2(x)\,dx" /> becomes <Katex tex="du" />. Nothing is left in <Katex tex="x" />, so the
+        substitution worked.
       </>
     ),
   },
@@ -69,8 +71,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x=\frac{\pi}{6} \implies u=\tan\left(\frac{\pi}{6}\right)=\frac{1}{\sqrt3}" />,
     reason: (
       <>
-        The exact value. Leaving the terminal as <Katex tex="\tfrac{\pi}{6}" /> gives option <b>D</b>, which
-        mixes an <Katex tex="x" />-terminal with a <Katex tex="u" />-integrand.
+        The exact value. The top terminal must be this <Katex tex="u" />-value, not{' '}
+        <Katex tex="\tfrac{\pi}{6}" />.
       </>
     ),
   },
@@ -78,12 +80,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\int_0^{1/\sqrt3} u^2\,du}" />,
     reason: (
       <>
-        Matches option <b>E</b>. Option <b>A</b>, chosen by <Katex tex="14\%" />, rewrites the whole
-        integrand in <Katex tex="u" /> (<Katex tex="\tan^2(x)\sec^2(x)=u^2(1+u^2)=u^4+u^2" />) and then just
-        renames <Katex tex="dx" /> as <Katex tex="du" />. Option <b>B</b> has the same integrand with the
-        terminals <Katex tex="\sec(0)=1" /> and <Katex tex="\sec\left(\tfrac{\pi}{6}\right)=\tfrac{2}{\sqrt3}" />,
-        the values of the wrong function. A quick check in Exam 2: the original integral and option E both
-        come to <Katex tex="\tfrac{\sqrt3}{27}\approx0.0642" />.
+        Matches option <b>E</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>A</b> rewrites the whole integrand in <Katex tex="u" /> but then just renames{' '}
+        <Katex tex="dx" /> as <Katex tex="du" /> (worked through below). Option <b>B</b> has the same integrand with the terminals{' '}
+        <Katex tex="\sec(0)=1" /> and <Katex tex="\sec\left(\tfrac{\pi}{6}\right)=\tfrac{2}{\sqrt3}" />, the
+        values of the wrong function. Option <b>C</b>&apos;s integrand <Katex tex="u" /> would come from{' '}
+        <Katex tex="\tan(x)\sec^2(x)" />, not <Katex tex="\tan^2(x)\sec^2(x)" />. Option <b>D</b> leaves the
+        top terminal as <Katex tex="\tfrac{\pi}{6}" />, mixing an <Katex tex="x" />-terminal with a{' '}
+        <Katex tex="u" />-integrand.
       </>
     ),
   },
@@ -148,7 +156,7 @@ export default function SpecialistQ8_2018() {
             <Katex tex="1+u^2" /> cancels, leaving <Katex tex="u^2\,du" />. Option A keeps the{' '}
             <Katex tex="\sec^2(x)" /> in the integrand <em>and</em> ignores what it does to the width, so
             its value is <Katex tex="\tfrac{2\sqrt3}{45}\approx0.077" /> instead of{' '}
-            <Katex tex="0.064" />. To catch it, never write <Katex tex="du" /> until you have replaced{' '}
+            <Katex tex="\tfrac{\sqrt3}{27}\approx0.064" />. To catch it, never write <Katex tex="du" /> until you have replaced{' '}
             <Katex tex="dx" /> using <Katex tex="\tfrac{du}{dx}" />. In Exam 2 you can also compare each
             option with the original integral:
             <div className="mt-1">

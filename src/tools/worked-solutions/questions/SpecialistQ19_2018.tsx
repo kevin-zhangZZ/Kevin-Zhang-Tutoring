@@ -27,11 +27,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim N(\mu, \sigma^2), \qquad \mu=66, \ \sigma^2=\frac{16}{9}" />,
-    reason: <>The gestation period of a single cat. The question gives the <em>variance</em>, so the standard deviation is <Katex tex="\sigma=\sqrt{\tfrac{16}{9}}=\tfrac43" />; the CAS wants the standard deviation, never the variance.</>,
+    reason: <>One cat&rsquo;s gestation period. The question gives the <em>variance</em>, but the CAS needs the standard deviation: <Katex tex="\sigma=\sqrt{\tfrac{16}{9}}=\tfrac43" />.</>,
   },
   {
     working: <Katex display tex="\bar X \sim N\!\left(\mu, \frac{\sigma^2}{n}\right), \qquad n=5" />,
-    reason: <>How would I know this is the distribution to use? The question asks about the <em>average</em> of a sample of five cats, not one cat. The average of five independent cats is still centred on <Katex tex="66" />, but it is less spread, because long and short gestations in the same sample cancel.</>,
+    reason: <>The question asks about the <em>average</em> of five cats, not one cat, so use the distribution of the sample mean <Katex tex="\bar X" />: same centre, less spread.</>,
+    more: <>The average of five independent cats is still centred on <Katex tex="66" />, but long and short gestations in the same sample cancel, so it strays less from <Katex tex="66" /> than one cat does.</>,
   },
   {
     working: (
@@ -53,7 +54,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>-1.677) \approx 0.9532}" />,
-    reason: <>Matches option <b>E</b>. Option <b>C</b> <Katex tex="(0.7734)" /> is <Katex tex="\Pr(X>65)" /> for a single cat: the standard deviation <Katex tex="\tfrac43" /> never divided by <Katex tex="\sqrt5" />. Options <b>B</b> <Katex tex="(0.7131)" /> and <b>D</b> <Katex tex="(0.8958)" /> use the variance <Katex tex="\tfrac{16}{9}" /> as if it were the standard deviation, without and with the <Katex tex="\div\sqrt5" />. Sense check: the average of five cats sticks closer to <Katex tex="66" /> than one cat does, so its probability of being above <Katex tex="65" /> must be <em>bigger</em> than one cat's <Katex tex="0.7734" />.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Option <b>C</b> <Katex tex="(0.7734)" />, the most common wrong answer, is <Katex tex="\Pr(X>65)" /> for a single cat: the standard deviation <Katex tex="\tfrac43" /> never divided by <Katex tex="\sqrt5" />. Options <b>B</b> <Katex tex="(0.7131)" /> and <b>D</b> <Katex tex="(0.8958)" /> use the variance <Katex tex="\tfrac{16}{9}" /> as if it were the standard deviation, without and with the <Katex tex="\div\sqrt5" />. Option <b>A</b> <Katex tex="(0.5000)" /> would need <Katex tex="65" /> to be the mean, but the mean is <Katex tex="66" />. Sense check: the average of five cats sticks closer to <Katex tex="66" /> than one cat does, so its probability of being above <Katex tex="65" /> must be <em>bigger</em> than one cat's <Katex tex="0.7734" />.</>,
   },
 ]
 
@@ -90,10 +92,6 @@ export default function SpecialistQ19_2018() {
             <Katex tex="5^2" />:
           </p>
           <Katex display tex="\mathrm{Var}(\bar X) = \frac{5\sigma^2}{25} = \frac{\sigma^2}{5}, \qquad \mathrm{sd}(\bar X) = \frac{\sigma}{\sqrt5}" />
-          <p>
-            So whenever a question says <em>sample</em>, <em>average</em> or <em>mean of n</em>, switch to{' '}
-            <Katex tex="\bar X" /> and divide the standard deviation by <Katex tex="\sqrt n" /> before doing anything else.
-          </p>
         </Background>
       }
       extras={

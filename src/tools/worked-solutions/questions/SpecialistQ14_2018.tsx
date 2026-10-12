@@ -28,19 +28,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\hat{\underset{\sim}{b}} = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{b}\right|}" />,
-    reason: <>The scalar resolute of <Katex tex="\underset{\sim}{a}" /> in the direction of <Katex tex="\underset{\sim}{b}" /> is how far <Katex tex="\underset{\sim}{a}" /> reaches along <Katex tex="\underset{\sim}{b}" />: the signed length of its shadow. The vector after &ldquo;in the direction of&rdquo; is the ruler, so it is the one turned into a unit vector.</>,
+    reason: <>The scalar resolute is how far <Katex tex="\underset{\sim}{a}" /> reaches along <Katex tex="\underset{\sim}{b}" />. The vector after &ldquo;in the direction of&rdquo; is the one made a unit vector.</>,
+    more: <>Here <Katex tex="\underset{\sim}{b}" /> only supplies the direction: its length must not affect the answer, which is why the dot product is divided by <Katex tex="\left|\underset{\sim}{b}\right|" />.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a} = 3\underset{\sim}{i} + 0\underset{\sim}{j} - 2\underset{\sim}{k}" />,
-    reason: <><Katex tex="\underset{\sim}{a}" /> has no <Katex tex="\underset{\sim}{j}" /> term. Writing the <Katex tex="0" /> in lines the components up, so the <Katex tex="-2" /> is multiplied by <Katex tex="\underset{\sim}{b}" />&apos;s <Katex tex="\underset{\sim}{k}" /> component and not its <Katex tex="\underset{\sim}{j}" /> one.</>,
+    reason: <><Katex tex="\underset{\sim}{a}" /> has no <Katex tex="\underset{\sim}{j}" /> term. Writing the <Katex tex="0" /> in keeps the <Katex tex="-2" /> lined up with <Katex tex="\underset{\sim}{b}" />&apos;s <Katex tex="\underset{\sim}{k}" /> component, not its <Katex tex="\underset{\sim}{j}" /> one.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = (3)(-1)+(0)(2)+(-2)(3) = -9" />,
-    reason: <>Multiply matching components and add. The result is negative, so the angle between the vectors is obtuse: <Katex tex="\underset{\sim}{a}" />&apos;s shadow falls <em>behind</em> <Katex tex="\underset{\sim}{b}" /> and the resolute will be negative.</>,
+    reason: <>Multiply matching components and add. A negative dot product means the angle between the vectors is obtuse, so the resolute will be negative.</>,
+    more: <>Geometrically, <Katex tex="\underset{\sim}{a}" />&apos;s shadow falls <em>behind</em> <Katex tex="\underset{\sim}{b}" />, pointing the opposite way along its line. All five options carry a minus sign, so the sign alone doesn&apos;t pick the answer here.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{b}\right| = \sqrt{(-1)^2+2^2+3^2} = \sqrt{14}" />,
-    reason: <>The length of the ruler <Katex tex="\underset{\sim}{b}" />, not of <Katex tex="\underset{\sim}{a}" />.</>,
+    reason: <>The length of <Katex tex="\underset{\sim}{b}" />, the direction we resolve onto, not of <Katex tex="\underset{\sim}{a}" />.</>,
   },
   {
     working: <Katex display tex="\frac{-9}{\sqrt{14}} = -\frac{9\sqrt{14}}{14}" />,
@@ -48,7 +50,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{-\frac{9\sqrt{14}}{14}}" />,
-    reason: <>Matches option <b>C</b>. Option <b>B</b>, chosen by <Katex tex="11\%" />, is the <em>vector</em> resolute, and option <b>E</b> (<Katex tex="7\%" />) comes from reading the <Katex tex="-2" /> as a <Katex tex="\underset{\sim}{j}" /> component (both below). Option <b>A</b> divides by <Katex tex="\sqrt{13}=\left|\underset{\sim}{a}\right|" />, resolving <Katex tex="\underset{\sim}{b}" /> onto <Katex tex="\underset{\sim}{a}" /> instead, and option <b>D</b> is the vector version of that.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Option <b>B</b>, chosen by <Katex tex="11\%" />, is the <em>vector</em> resolute, and option <b>E</b> (<Katex tex="7\%" />) comes from reading the <Katex tex="-2" /> as a <Katex tex="\underset{\sim}{j}" /> component (both in the Common Mistake boxes below). Option <b>A</b> divides by <Katex tex="\sqrt{13}=\left|\underset{\sim}{a}\right|" />, resolving <Katex tex="\underset{\sim}{b}" /> onto <Katex tex="\underset{\sim}{a}" /> instead, and option <b>D</b> is the vector version of that.</>,
   },
 ]
 
@@ -94,9 +97,8 @@ export default function SpecialistQ14_2018() {
             — the shadow itself, an arrow along the line of <Katex tex="\underset{\sim}{b}" />.
           </p>
           <p>
-            Both start from the same dot product and the options include both, so reading
-            &ldquo;scalar&rdquo; and noting <em>which</em> vector follows &ldquo;in the direction
-            of&rdquo; decide the mark.
+            Both start from the same dot product and the options include both, so read
+            &ldquo;scalar&rdquo; carefully.
           </p>
         </Background>
       }

@@ -26,10 +26,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="-\frac{\pi}{2} < \tan^{-1}(x) < \frac{\pi}{2} \ \text{ for all } x\in R" />,
     reason: (
       <>
-        Start from the parent function. As <Katex tex="x\to\infty" />, <Katex tex="\tan^{-1}(x)" /> climbs towards{' '}
-        <Katex tex="\tfrac{\pi}{2}" /> but never gets there (it would need <Katex tex="\tan" /> to be infinite), and as{' '}
-        <Katex tex="x\to-\infty" /> it falls towards <Katex tex="-\tfrac{\pi}{2}" />. Heights a curve approaches forever
-        without reaching are exactly its horizontal asymptotes.
+        Start from the parent function: <Katex tex="\tan^{-1}(x)" /> approaches <Katex tex="\pm\tfrac{\pi}{2}" /> as{' '}
+        <Katex tex="x\to\pm\infty" /> but never reaches them, so those are its horizontal asymptotes.
+      </>
+    ),
+    more: (
+      <>
+        It can never get there: <Katex tex="\tan^{-1}(x)=\tfrac{\pi}{2}" /> would need{' '}
+        <Katex tex="x=\tan\left(\tfrac{\pi}{2}\right)" />, which is undefined.
       </>
     ),
   },
@@ -37,20 +41,28 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="y = \frac12\tan^{-1}(x) \implies -\frac{\pi}{4} < y < \frac{\pi}{4}" />,
     reason: (
       <>
-        The <Katex tex="\tfrac12" /> multiplies the <em>output</em>, so it is a dilation by factor <Katex tex="\tfrac12" />{' '}
-        from the <Katex tex="x" />-axis: every height halves, including the height the curve is heading for. Multiply the
-        whole inequality by <Katex tex="\tfrac12" />.
+        The <Katex tex="\tfrac12" /> multiplies the output (a dilation by factor <Katex tex="\tfrac12" /> from the{' '}
+        <Katex tex="x" />-axis), so every height halves, including the heights the curve is heading for.
+      </>
+    ),
+    more: (
+      <>
+        In symbols: multiply the whole inequality by <Katex tex="\tfrac12" />. It is positive, so the inequality signs
+        stay the same way round.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{y = \pm\frac{\pi}{4}}" />,
-    reason: (
+    reason: <>Matches option <b>E</b>.</>,
+    more: (
       <>
-        Matches option <b>E</b>. Don&rsquo;t try to measure this off the diagram — it has no scale, and VCAA&rsquo;s
-        diagrams are not drawn to scale — the rule decides it. Option <b>D</b>{' '}
-        <Katex tex="\left(\pm\tfrac{\pi}{2}\right)" /> forgets the dilation and quotes the asymptotes of{' '}
-        <Katex tex="\tan^{-1}(x)" /> itself.
+        Don&rsquo;t try to measure this off the diagram: it has no scale, and VCAA&rsquo;s diagrams are not drawn to
+        scale, so the rule decides it. Option <b>D</b> <Katex tex="\left(\pm\tfrac{\pi}{2}\right)" /> forgets the
+        dilation and quotes the asymptotes of <Katex tex="\tan^{-1}(x)" /> itself. Options <b>A</b> and <b>B</b> are
+        heights below <Katex tex="\tfrac{\pi}{4}\approx0.785" />, which the curve passes straight through (at{' '}
+        <Katex tex="x=\tan(1)\approx1.6" /> and <Katex tex="x=\tan(1.5)\approx14.1" />); option <b>C</b> is above it, a
+        height the curve never comes close to.
       </>
     ),
   },
@@ -99,9 +111,8 @@ export default function SpecialistQ1_2018() {
             source="7% chose D"
             working={<Katex display tex="y=\pm\frac{\pi}{2}" />}
           >
-            Those belong to <Katex tex="y=\tan^{-1}(x)" />. The <Katex tex="\tfrac12" /> in front halves every{' '}
-            <Katex tex="y" />-value, and the asymptote is just the height the curve is heading for, so it halves too. Whenever
-            a function is multiplied by a constant, ask what that does to its range before quoting a known asymptote.
+            Those belong to <Katex tex="y=\tan^{-1}(x)" /> itself. Whenever a function is multiplied by a constant, ask
+            what that does to its range before quoting a known asymptote.
           </WrongMethod>
         </>
       }

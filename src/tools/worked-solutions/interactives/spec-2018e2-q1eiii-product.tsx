@@ -45,7 +45,7 @@ export default function GIsNotFPrime() {
     notice = (
       <Notice tone="warn">
         At <M>{'x=\\pm\\sqrt2'}</M> the root is <M>0</M> and <M>f'</M> is undefined, so <M>g</M> is undefined too:
-        open circles at <M>{'(\\pm\\sqrt2,\\pm4)'}</M>. <M>g</M> runs flat right up to the circle — it never
+        open circles at <M>{'(\\sqrt2,4)'}</M> and <M>{'(-\\sqrt2,-4)'}</M>. <M>g</M> runs flat right up to the circle — it never
         heads for an asymptote.
       </Notice>
     )

@@ -33,9 +33,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="2x^2+3x+1 = (2x+1)(x+1)" />,
     reason: (
       <>
-        How would I know to start here? The partial-fraction form is read off the denominator, so first make sure the
-        denominator is as simple as it can be: factorise the top and bottom completely and look for anything they
-        share. This numerator factorises, and <Katex tex="(2x+1)" /> is already sitting in the denominator.
+        The form is read off the <em>simplified</em> denominator, so factorise the numerator first. Here{' '}
+        <Katex tex="(2x+1)" /> is also in the denominator.
+      </>
+    ),
+    more: (
+      <>
+        How would I know to start here? Whenever a partial-fraction question has a numerator that might factorise,
+        check it before choosing a form: a factor shared with the denominator changes which terms appear.
       </>
     ),
   },
@@ -43,8 +48,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="x^2-1 = (x-1)(x+1)" />,
     reason: (
       <>
-        A difference of two squares, so <Katex tex="x^2-1" /> is <em>not</em> an irreducible quadratic — it is two linear
-        factors, and one of them, <Katex tex="(x+1)" />, is also on top.
+        A difference of two squares, so <Katex tex="x^2-1" /> is two linear factors, not an irreducible quadratic (one
+        that won&rsquo;t factorise, the only kind that gets a <Katex tex="Bx+C" /> numerator). And{' '}
+        <Katex tex="(x+1)" /> is also on top.
       </>
     ),
   },
@@ -58,9 +64,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Cancel <Katex tex="(2x+1)" /> and <Katex tex="(x+1)" />. The cube drops to a square, and{' '}
-        <Katex tex="(x+1)" /> disappears — on the graph it leaves only a hole at <Katex tex="x=-1" />, not an asymptote, so
-        it gets no fraction of its own.
+        Cancel <Katex tex="(2x+1)" /> and <Katex tex="(x+1)" />: the cube drops to a square, and{' '}
+        <Katex tex="(x+1)" /> disappears completely.
+      </>
+    ),
+    more: (
+      <>
+        On the graph, the cancelled <Katex tex="(x+1)" /> leaves only a hole at{' '}
+        <Katex tex="\left(-1,-\tfrac12\right)" />, not an asymptote, so it gets no fraction of its own.
       </>
     ),
   },
@@ -73,18 +84,26 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Now one term for each power of each factor in the <em>simplified</em> denominator: the repeated linear factor{' '}
-        <Katex tex="(2x+1)^2" /> needs both <Katex tex="\tfrac{A}{2x+1}" /> and <Katex tex="\tfrac{B}{(2x+1)^2}" />, and{' '}
-        <Katex tex="(x-1)" /> needs <Katex tex="\tfrac{C}{x-1}" />. Linear factors always take constant numerators.
+        One term per power of each factor left: <Katex tex="(2x+1)^2" /> needs <Katex tex="\tfrac{A}{2x+1}" /> and{' '}
+        <Katex tex="\tfrac{B}{(2x+1)^2}" />, and <Katex tex="(x-1)" /> needs <Katex tex="\tfrac{C}{x-1}" />. Linear
+        factors take constant numerators.
+      </>
+    ),
+    more: (
+      <>
+        Check: solving gives <Katex tex="A=-\tfrac29,\ B=-\tfrac23,\ C=\tfrac19" />, all non-zero, as the question
+        requires.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\frac{A}{2x+1} + \frac{B}{(2x+1)^2} + \frac{C}{x-1}}" />,
-    reason: (
+    reason: <>Matches option <b>D</b>.</>,
+    more: (
       <>
-        Matches option <b>D</b>. Option <b>B</b> partial-fractions the expression as printed, without cancelling; option{' '}
-        <b>E</b> puts <Katex tex="Bx+C" /> over <Katex tex="(2x+1)^2" />, a shape reserved for irreducible quadratics.
+        Option <b>B</b> (31%) skips the cancelling and gives <Katex tex="x^2-1" /> an <Katex tex="x" /> term on top;
+        option <b>E</b> (15%) treats <Katex tex="(2x+1)^2" /> as if it were an irreducible quadratic. Options <b>A</b> and <b>C</b> still contain the cancelled <Katex tex="(x+1)" />{' '}
+        (C through <Katex tex="x^2-1" />) and have no <Katex tex="(2x+1)^2" /> term.
       </>
     ),
   },

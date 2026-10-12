@@ -83,7 +83,7 @@ export default function Segment() {
       <Notice tone="good">
         <b>Sector minus triangle.</b> The triangle has base <M>{'2\\sqrt3'}</M> (the chord) and height <M>1</M>, so
         its area is <M>{'\\sqrt3'}</M>, the same as <M>{'\\tfrac12 r^2\\sin\\theta'}</M>. The sliver is{' '}
-        <M>{'\\tfrac{4\\pi}{3}-\\sqrt3\\approx 2.46'}</M>, about a fifth of the circle, which matches the picture.
+        <M>{'\\tfrac{4\\pi}{3}-\\sqrt3\\approx 2.46'}</M>: the shaded region.
       </Notice>
     )
   }

@@ -33,10 +33,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Don&apos;t try to recognise the whole picture. Test a few points where the arithmetic is trivial and
-        cross out options that disagree. Points on an axis are quickest, because one variable is zero and each
-        option collapses to a single number. Just right of <Katex tex="O" /> the marks slope down, so any
-        option giving a positive gradient there is wrong.
+        Test points on an axis: one variable is zero, so each option collapses to a single number. Just right
+        of <Katex tex="O" /> the marks slope down, so a positive gradient there is out.
       </>
     ),
   },
@@ -50,8 +48,8 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Now just above <Katex tex="O" />, where the marks lean the other way. Only the three survivors need
-        checking. <b>A</b> and <b>E</b> both pass, so signs alone can&apos;t finish the job.
+        Just above <Katex tex="O" /> the marks slope up. Only the three survivors need checking. <b>A</b> and{' '}
+        <b>E</b> both pass, so signs alone can&apos;t finish the job.
       </>
     ),
   },
@@ -65,25 +63,28 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Look for a feature on which <b>A</b> and <b>E</b> disagree. Where a denominator is zero the gradient is
-        undefined, so the marks stand vertical. In the diagram they stand up through <Katex tex="(2,4)" /> and{' '}
-        <Katex tex="(4,8)" />, on the line <Katex tex="y=2x" />, which is exactly where <b>A</b>&apos;s denominator{' '}
-        <Katex tex="y-2x" /> vanishes. <b>E</b>&apos;s denominator vanishes on <Katex tex="y=\tfrac{x}{2}" />{' '}
-        instead, through <Katex tex="(4,2)" />, where the diagram&apos;s marks slope down rather than stand up.
+        Marks stand vertical where the gradient is undefined, i.e. where the denominator is zero. In the diagram
+        that is along <Katex tex="y=2x" />, through <Katex tex="(2,4)" /> and <Katex tex="(4,8)" />: <b>A</b>&apos;s
+        denominator, not <b>E</b>&apos;s.
+      </>
+    ),
+    more: (
+      <>
+        <b>E</b>&apos;s denominator <Katex tex="2y-x" /> vanishes on <Katex tex="y=\tfrac{x}{2}" /> instead, through{' '}
+        <Katex tex="(4,2)" />, where the diagram&apos;s marks slope down steeply rather than stand up.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = \frac{2x+y}{y-2x}}" />,
-    reason: (
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
       <>
-        Matches option <b>A</b>. As a final check, <b>A</b>&apos;s numerator <Katex tex="2x+y" /> is zero on{' '}
-        <Katex tex="y=-2x" />, and the diagram&apos;s marks are flat through <Katex tex="(-2,4)" /> and{' '}
-        <Katex tex="(-4,8)" />. Option <b>E</b>, chosen by <Katex tex="12\%" />, gets the signs on both axes
-        right but puts its vertical marks on the wrong line.
+        As a final check, <b>A</b>&apos;s numerator <Katex tex="2x+y" /> is zero on <Katex tex="y=-2x" />, and the
+        diagram&apos;s marks are flat through <Katex tex="(-2,4)" /> and <Katex tex="(-4,8)" />. <b>E</b>, chosen
+        by <Katex tex="12\%" />, is the trap: it survives both sign tests, and only the vertical line rules it out.
       </>
     ),
-    more: <>See below.</>,
   },
 ]
 
@@ -138,12 +139,11 @@ export default function SpecialistQ10_2018() {
               </>
             }
           >
-            Both sign checks are passed by <b>A</b> and <b>E</b>, so they can&apos;t decide between them. Check
-            a size or a special line instead. Along the positive <Katex tex="x" />-axis the diagram&apos;s marks
-            sit at about <Katex tex="45^\circ" /> (gradient <Katex tex="-1" />), whereas <b>E</b> predicts{' '}
-            <Katex tex="-2" />, twice as steep. And <b>E</b>&apos;s marks would stand vertical along{' '}
-            <Katex tex="y=\tfrac{x}{2}" />, not along <Katex tex="y=2x" /> where the diagram has them. Pick{' '}
-            <b>E</b> in the widget above to see its vertical line land in the wrong place.
+            Passing the sign checks doesn&apos;t make <b>E</b> right. The size of the gradient also gives it away: along the positive{' '}
+            <Katex tex="x" />-axis the diagram&apos;s marks sit at about <Katex tex="45^\circ" /> (gradient{' '}
+            <Katex tex="-1" />), whereas <b>E</b> predicts <Katex tex="-2" />, twice as steep. Pick <b>E</b> in the
+            widget above to see its vertical line land on <Katex tex="y=\tfrac{x}{2}" />, away from the
+            diagram&apos;s.
           </WrongMethod>
         </>
       }

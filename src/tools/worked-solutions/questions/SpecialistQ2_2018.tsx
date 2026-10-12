@@ -23,10 +23,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="f(x) = \frac{1}{\sqrt{\sin^{-1}(cx+d)}}" />,
     reason: (
       <>
-        How do I know what to check? Read <Katex tex="f" /> from the inside out and ask what each layer needs:{' '}
-        <Katex tex="\sin^{-1}" /> needs an input it accepts, the square root needs something non-negative, and the
-        fraction needs a non-zero denominator. An <Katex tex="x" /> is in the domain only if it survives <em>all</em>{' '}
-        three.
+        Work from the inside out: <Katex tex="\sin^{-1}" />, the square root and the fraction each restrict{' '}
+        <Katex tex="x" />, and <Katex tex="x" /> must survive all three.
       </>
     ),
   },
@@ -38,9 +36,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\sin^{-1}(cx+d) > 0" />,
     reason: (
       <>
-        Layers 2 and 3 together: the square root needs <Katex tex="\sin^{-1}(cx+d)\ge0" />, and because it sits in a
-        denominator it cannot be <Katex tex="0" /> either. &ldquo;<Katex tex="\ge0" /> and <Katex tex="\ne0" />&rdquo; is{' '}
-        <Katex tex="{}>0" />, strictly.
+        Layers 2 and 3: the square root needs <Katex tex="\sin^{-1}(cx+d)\ge0" />, and as a denominator it cannot be{' '}
+        <Katex tex="0" />. Together that is strictly <Katex tex="{}>0" />.
       </>
     ),
   },
@@ -48,9 +45,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\sin^{-1}(u) > 0 \iff 0 < u \le 1" />,
     reason: (
       <>
-        Picture the graph of <Katex tex="\sin^{-1}" />: increasing, through the origin, so it is below the axis for{' '}
-        <Katex tex="u<0" /> and above it for <Katex tex="u>0" />. Positive outputs come exactly from positive inputs —
-        and inputs can still go no higher than <Katex tex="1" />.
+        Write <Katex tex="u=cx+d" />. <Katex tex="\sin^{-1}" /> is increasing through the origin, so its output is
+        positive exactly when its input <Katex tex="u" /> is positive, and <Katex tex="u" /> still cannot exceed <Katex tex="1" />.
+      </>
+    ),
+    more: (
+      <>
+        Picture the graph of <Katex tex="y=\sin^{-1}(u)" /> on <Katex tex="[-1,1]" />: below the axis for{' '}
+        <Katex tex="u<0" />, through <Katex tex="(0,0)" />, above the axis for <Katex tex="u>0" />, up to{' '}
+        <Katex tex="\left(1,\tfrac{\pi}{2}\right)" />.
       </>
     ),
   },
@@ -59,8 +62,13 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Combining the layers: <Katex tex="u>0" /> replaces the lower bound <Katex tex="-1" />, and the upper bound{' '}
-        <Katex tex="1" /> survives. The lower end is open (the denominator would be <Katex tex="0" />); the upper end is
-        closed, since <Katex tex="f=\tfrac{1}{\sqrt{\pi/2}}" /> there is perfectly fine.
+        <Katex tex="1" /> survives. Open at <Katex tex="0" /> (zero denominator), closed at <Katex tex="1" />.
+      </>
+    ),
+    more: (
+      <>
+        The upper end is included because at <Katex tex="cx+d=1" />, <Katex tex="\sin^{-1}(1)=\tfrac{\pi}{2}" /> and{' '}
+        <Katex tex="f=\tfrac{1}{\sqrt{\pi/2}}\approx0.80" />, which is perfectly defined.
       </>
     ),
   },
@@ -69,17 +77,17 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Subtract <Katex tex="d" />, then divide by <Katex tex="c" />. The inequality signs keep their direction because{' '}
-        <Katex tex="c>0" /> — that condition is in the question for exactly this reason.
+        <Katex tex="c>0" />, which is why the question states it.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{-\frac{d}{c} < x \le \frac{1-d}{c}}" />,
-    reason: (
+    reason: <>Matches option <b>B</b>.</>,
+    more: (
       <>
-        Matches option <b>B</b>. Option <b>C</b> keeps only layer 1, the domain of <Katex tex="\sin^{-1}" />; option{' '}
-        <b>A</b> keeps only the <Katex tex="{}>0" /> condition and forgets that <Katex tex="\sin^{-1}" /> stops at an
-        input of <Katex tex="1" />.
+        Option <b>C</b> (23%) is layer 1 alone; option <b>A</b> (10%) has no ceiling <Katex tex="cx+d\le1" />. Option <b>D</b> removes just the
+        one point where the denominator is zero, and <b>E</b> ignores every restriction.
       </>
     ),
   },
@@ -108,15 +116,14 @@ export default function SpecialistQ2_2018() {
       background={
         <Background title="Stack the restrictions">
           <p>
-            Composite functions like this one restrict the domain in layers, and every layer
-            counts. Work from the inside out: what does <Katex tex="\sin^{-1}" /> need, then
-            what does the square root need, then what does the fraction need.
+            The maximal (implied) domain of a rule is every <Katex tex="x" /> for which the whole
+            rule gives a real number. For a composite rule each layer brings its own requirement,
+            and all of them apply at once: drop any one and the domain comes out too big.
           </p>
           <p>
-            The last two combine into one strict inequality. A square root wants{' '}
-            <Katex tex="\ge0" />, a denominator wants <Katex tex="\ne0" />, so together they
-            want <Katex tex="{}>0" />. Imposing only the <Katex tex="\sin^{-1}" /> condition
-            gives option C — the choice of almost a quarter of the state.
+            The usual requirements: <Katex tex="\sin^{-1}" /> and <Katex tex="\cos^{-1}" /> need
+            inputs in <Katex tex="[-1,1]" />, a square root needs a non-negative input, a
+            logarithm needs a positive input, and a denominator must not be zero.
           </p>
         </Background>
       }

@@ -101,56 +101,64 @@ const EXAM_G: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="H_0: \mu = 150" />,
-    reason: <>The null hypothesis is the claim being tested, written about the <em>population</em> mean <Katex tex="\mu" />. It is never about <Katex tex="\overline{X}" /> or the sample&apos;s <Katex tex="145" />, and never a bare number: the report names <Katex tex="H_0=150" /> as poor notation.</>,
+    reason: <>The null hypothesis is the claim being tested, written about the <em>population</em> mean <Katex tex="\mu" />.</>,
+    more: <>It is never about <Katex tex="\overline{X}" /> or the sample&apos;s <Katex tex="145" />, and never a bare number: the report names <Katex tex="H_0=150" /> as poor notation.</>,
   },
   {
     working: <Katex display tex="\boxed{H_0: \mu = 150 \qquad H_1: \mu < 150}" />,
-    reason: <>How do I know which way <Katex tex="H_1" /> points? The question says <em>one-tailed</em>, so <Katex tex="H_1" /> uses <Katex tex="<" /> or <Katex tex=">" />, not <Katex tex="\ne" />. The rangers&apos; sample came out <em>below</em> the claim (<Katex tex="145<150" />), so the suspicion being tested is that the true mean is lower. The report notes answers such as <Katex tex="H_1:\mu\ne150" />, which is two-tailed.</>,
+    reason: <>The question says <em>one-tailed</em>, so <Katex tex="H_1" /> uses <Katex tex="<" />, not <Katex tex="\ne" />. It points down because the sample came out below the claim (<Katex tex="145<150" />).</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\operatorname{sd}\!\left(\overline{X}\right) = \frac{\sigma}{\sqrt n} = \frac{15}{\sqrt{50}}" />,
-    reason: <>The question asks about <Katex tex="\overline{X}" />, the <em>average</em> of <Katex tex="50" /> heights, not one buffalo&apos;s height. In an average, tall and short animals partly cancel, so it varies less than a single height: <Katex tex="\operatorname{Var}(\overline{X})=\frac{\sigma^2}{n}" />, so <Katex tex="\operatorname{sd}(\overline{X})=\frac{\sigma}{\sqrt n}" /> (formula sheet).</>,
+    reason: <><Katex tex="\overline{X}" /> is the <em>average</em> of <Katex tex="50" /> heights, so it varies less than one height: <Katex tex="\operatorname{sd}(\overline{X})=\frac{\sigma}{\sqrt n}" /> (formula sheet).</>,
+    more: <>In an average, tall and short animals partly cancel: <Katex tex="\operatorname{Var}(\overline{X})=\frac{\sigma^2}{n}" />, so the standard deviation is <Katex tex="\frac{\sigma}{\sqrt n}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{15}{\sqrt{50}} = \frac{3}{\sqrt2} = \frac{3\sqrt2}{2} \approx 2.1213}" />,
-    reason: <>Any of these exact forms is accepted. Much smaller than the population&apos;s <Katex tex="15" /> cm, which is why a <Katex tex="5" /> cm gap turns out to be significant.</>,
-    more: <>The interactive in part c. shows this.</>,
+    reason: <>Any of these exact forms is accepted.</>,
+    more: <>This is much smaller than the population&apos;s <Katex tex="15" /> cm, which is why a <Katex tex="5" /> cm gap turns out to be significant. The interactive in part c. shows this.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="p = \Pr\!\left(\overline{X} \le 145 \mid \mu = 150\right)" />,
-    reason: <>The <Katex tex="p" /> value is the probability of a result at least this extreme <em>assuming <Katex tex="H_0" /> is true</em>. &ldquo;At least this extreme&rdquo; means in the direction of <Katex tex="H_1" />, so here: <Katex tex="145" /> or lower. One tail only, because <Katex tex="H_1" /> is one-sided, so no doubling. Write this expression down, with <Katex tex="\overline{X}" /> rather than <Katex tex="X" />: the report notes calculator syntax offered in its place, and <Katex tex="\Pr(X<145\mid\mu=150)" /> written by mistake.</>,
+    reason: <>The <Katex tex="p" /> value is the chance of a result at least this extreme, assuming <Katex tex="H_0" />. With <Katex tex="H_1:\mu<150" />, that means <Katex tex="145" /> or lower.</>,
+    more: <>One tail only, because <Katex tex="H_1" /> is one-sided, so no doubling. Write this expression down, with <Katex tex="\overline{X}" /> rather than <Katex tex="X" />: the report notes calculator syntax offered in its place, and <Katex tex="\Pr(X<145\mid\mu=150)" /> written by mistake.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(-∞, 145, 150, 15/√50)</Cas>,
-    reason: <>The last argument is the standard deviation of the <em>sample mean</em> from part b., not the population&apos;s <Katex tex="15" />. If your working for c. never uses part b., ask why part b. was there.</>,
+    reason: <>The last argument is the standard deviation of the <em>sample mean</em> from part b., not the population&apos;s <Katex tex="15" />.</>,
+    more: <>If your working for c. never uses part b., ask why part b. was there.</>,
   },
   {
     working: <Katex display tex="\boxed{p \approx 0.0092}" />,
-    reason: <>Four decimal places, as asked. (<Katex tex="145" /> sits about <Katex tex="2.36" /> standard deviations of <Katex tex="\overline{X}" /> below <Katex tex="150" />, so a <Katex tex="p" /> just under <Katex tex="1\%" /> is the right size.)</>,
+    reason: <>Four decimal places, as asked.</>,
+    more: <>A size check: <Katex tex="145" /> sits <Katex tex="\tfrac{150-145}{15/\sqrt{50}}\approx2.36" /> standard deviations of <Katex tex="\overline{X}" /> below <Katex tex="150" />, so a <Katex tex="p" /> just under <Katex tex="1\%" /> is the right size.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="p \approx 0.0092 < 0.05" />,
-    reason: <>Compare the <Katex tex="p" /> value with the significance level. The comparison <em>is</em> the reason: the report says some students did not supply one, and some wrote <Katex tex="0.0092>0.05" />.</>,
+    reason: <>Compare the <Katex tex="p" /> value with the significance level. This comparison <em>is</em> the reason the question asks for.</>,
+    more: <>The report says some students did not supply a reason, and some wrote <Katex tex="0.0092>0.05" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{Reject } H_0 \text{ at the } 5\% \text{ level}}" />,
-    reason: <>In context: there is evidence that the mean height of mature water buffaloes is less than the claimed <Katex tex="150" /> cm. If the mean really were <Katex tex="150" />, a sample mean this low would happen less than once in a hundred samples.</>,
+    reason: <>In context: there is evidence that the mean height of mature water buffaloes is less than the claimed <Katex tex="150" /> cm.</>,
+    more: <>If the mean really were <Katex tex="150" />, a sample mean this low would happen in less than one sample in a hundred.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="H_0 \text{ not rejected} \iff p \ge 0.05" />,
-    reason: <>How would I know what to calculate? &ldquo;Smallest sample mean for <Katex tex="H_0" /> not to be rejected&rdquo; asks for the edge of the rejection region. Low sample means are the extreme ones here (<Katex tex="H_1:\mu<150" />), so <Katex tex="p" /> grows as <Katex tex="\overline{x}" /> grows, and the verdict flips where <Katex tex="p = 0.05" /> exactly.</>,
+    reason: <>This asks for the edge of the rejection region. With <Katex tex="H_1:\mu<150" />, <Katex tex="p" /> grows as <Katex tex="\overline{x}" /> grows, so the verdict flips where <Katex tex="p=0.05" />.</>,
+    more: <>Low sample means are the extreme ones here: any <Katex tex="\overline{x}" /> below the edge is rejected and any above it is kept, so the smallest value not rejected sits right at the edge.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(\overline{X} < c \mid \mu=150\right) = 0.05" />,
@@ -158,45 +166,48 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Cas fn="invNorm">invNorm(0.05, 150, 15/√50)</Cas>,
-    reason: <>Running the distribution backwards: given the area (<Katex tex="0.05" />), find where it ends. This gives <Katex tex="c = 146.5107\ldots" />, i.e. <Katex tex="150-1.6449\times\tfrac{15}{\sqrt{50}}" />: about <Katex tex="1.645" /> standard deviations of <Katex tex="\overline{X}" /> below <Katex tex="150" />.</>,
+    reason: <>invNorm gives the value with area <Katex tex="0.05" /> to its left: <Katex tex="c = 146.5107\ldots" />.</>,
+    more: <>That is <Katex tex="150-1.6449\times\tfrac{15}{\sqrt{50}}" />: about <Katex tex="1.645" /> standard deviations of <Katex tex="\overline{X}" /> below <Katex tex="150" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\overline{x} \approx 146.51 \text{ cm}}" />,
-    reason: <>Two decimal places. A subtlety: a sample mean of exactly <Katex tex="146.51" /> is a hair below <Katex tex="c" /> (its <Katex tex="p" /> is <Katex tex="0.04996" />), so the smallest two-decimal value that is <em>not</em> rejected is really <Katex tex="146.52" />; the report accepted both. Consistent with part d.: the observed <Katex tex="145" /> is below the boundary, which is exactly why <Katex tex="H_0" /> was rejected.</>,
+    reason: <><Katex tex="c" /> rounded to two decimal places. Strictly <Katex tex="146.51" /> sits a hair below <Katex tex="c" /> (still rejected), so <Katex tex="146.52" /> is also accepted.</>,
+    more: <>A sample mean of exactly <Katex tex="146.51" /> has <Katex tex="p\approx0.04996" />, just under <Katex tex="0.05" />, so the smallest two-decimal value that is <em>not</em> rejected is really <Katex tex="146.52" /> (<Katex tex="p\approx0.0505" />); the report accepted both. Consistent with part d.: the observed <Katex tex="145" /> is below the boundary, which is exactly why <Katex tex="H_0" /> was rejected.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\text{True } \mu = 145 \implies \overline{X} \sim N\!\left(145,\ \left(\tfrac{15}{\sqrt{50}}\right)^2\right)" />,
-    reason: <>The distribution of the sample mean is re-centred on the <em>true</em> mean. The spread is unchanged, since it depends only on <Katex tex="\sigma" /> and <Katex tex="n" />.</>,
+    reason: <>The sample mean is now centred on the <em>true</em> mean <Katex tex="145" />. Its spread is unchanged: it depends only on <Katex tex="\sigma" /> and <Katex tex="n" />.</>,
   },
   {
     working: <Katex display tex="\begin{aligned}&\Pr\!\left(H_0 \text{ accepted}\right)\\ &= \Pr\!\left(\overline{X} > 146.51 \mid \mu = 145\right)\end{aligned}" />,
-    reason: <>The decision rule from part e. does not change: <Katex tex="H_0" /> survives whenever the sample mean lands above <Katex tex="146.51" />. What changes is where sample means actually fall, so the probability is worked out with the true <Katex tex="\mu=145" />. Accepting a false <Katex tex="H_0" /> like this is a Type II error.</>,
+    reason: <>The decision rule from part e. is fixed: <Katex tex="H_0" /> is kept when the sample mean is above <Katex tex="146.51" />. Keeping a false <Katex tex="H_0" /> is a Type II error.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(146.51, ∞, 145, 15/√50)</Cas>,
-    reason: <>The mean is now <Katex tex="145" />, not <Katex tex="150" />: that swap is the whole question. The cut-off <Katex tex="146.51" /> still comes from the <Katex tex="\mu=150" /> curve.</>,
+    reason: <>Mean <Katex tex="145" /> (the true value), not <Katex tex="150" />; the cut-off stays at <Katex tex="146.51" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.24}" />,
-    reason: <>Two decimal places (the unrounded <Katex tex="146.5107\ldots" />, or <Katex tex="146.52" />, gives <Katex tex="0.24" /> too). So even when the true mean really is <Katex tex="145" />, this test misses it about a quarter of the time. Only <Katex tex="11\%" /> of students scored this mark, and the report says only a small number attempted it.</>,
+    reason: <>Two decimal places (the cut-off <Katex tex="146.5107\ldots" /> or <Katex tex="146.52" /> also gives <Katex tex="0.24" />). Even when the true mean is <Katex tex="145" />, this test misses it about a quarter of the time.</>,
+    more: <>The unrounded boundary <Katex tex="146.5107\ldots" /> gives <Katex tex="0.2382" />, and <Katex tex="146.52" /> gives <Katex tex="0.2368" />: both <Katex tex="0.24" /> too. Only <Katex tex="11\%" /> of students scored this mark, and the report says only a small number attempted it.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\text{CI} = \overline{x} \pm z\,\frac{\sigma}{\sqrt n}" />,
-    reason: <>The population standard deviation <Katex tex="\sigma=15" /> is known, so this is the formula-sheet interval, centred on the observed sample mean <Katex tex="145" />. The spread inside is still the sample mean&apos;s, <Katex tex="\tfrac{15}{\sqrt{50}}" /> from part b.</>,
+    reason: <><Katex tex="\sigma=15" /> is known, so use the formula-sheet interval, centred on the observed <Katex tex="\overline{x}=145" />, with spread <Katex tex="\tfrac{15}{\sqrt{50}}" /> from part b.</>,
   },
   {
     working: <Cas fn="invNorm">invNorm(0.995, 0, 1)</Cas>,
-    reason: <>A <Katex tex="99\%" /> interval keeps the middle <Katex tex="99\%" />, leaving <Katex tex="0.5\%" /> in each tail, so the upper <Katex tex="z" /> has <Katex tex="99.5\%" /> of the standard normal below it.</>,
+    reason: <>A <Katex tex="99\%" /> interval leaves <Katex tex="0.5\%" /> in each tail, so <Katex tex="z" /> has <Katex tex="99.5\%" /> of the standard normal below it.</>,
   },
   {
     working: <Katex display tex="z \approx 2.5758" />,
-    reason: <>Not <Katex tex="1.96" />, which is the <Katex tex="95\%" /> value. The report notes students appearing to use a <Katex tex="95\%" /> interval.</>,
+    reason: <>Not <Katex tex="1.96" />, which is the <Katex tex="95\%" /> value.</>,
   },
   {
     working: <Katex display tex="145 \pm 2.5758\times\frac{15}{\sqrt{50}} = 145 \pm 5.4642" />,
@@ -204,7 +215,8 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(139.5,\ 150.5)}" />,
-    reason: <>One decimal place. Worth noticing: at <Katex tex="99\%" /> confidence the interval <em>does</em> contain <Katex tex="150" />, even though the test rejected <Katex tex="\mu=150" /> at the <Katex tex="5\%" /> level. There is no contradiction: a <Katex tex="99\%" /> interval corresponds to a <Katex tex="1\%" /> two-tailed test, a stricter standard than the one-tailed <Katex tex="5\%" /> test used earlier.</>,
+    reason: <><Katex tex="139.536\ldots" /> and <Katex tex="150.464\ldots" />, each to one decimal place.</>,
+    more: <>Worth noticing: at <Katex tex="99\%" /> confidence the interval <em>does</em> contain <Katex tex="150" />, even though the test rejected <Katex tex="\mu=150" /> at the <Katex tex="5\%" /> level. There is no contradiction: a <Katex tex="99\%" /> interval corresponds to a <Katex tex="1\%" /> two-tailed test, a stricter standard than the one-tailed <Katex tex="5\%" /> test used earlier.</>,
   },
 ]
 
@@ -278,8 +290,7 @@ export default function SpecialistQ6_2018Exam2() {
           title="Split the 5% between the two tails"
           working={<Katex tex="\operatorname{invNorm}(0.025,\,150,\,\tfrac{15}{\sqrt{50}})\approx145.84" />}
         >
-          That is the lower boundary of a <em>two</em>-tailed test. With <Katex tex="H_1:\mu<150" /> only low sample
-          means count as evidence against <Katex tex="H_0" />, so the whole <Katex tex="5\%" /> sits in the lower tail.
+          That is the lower boundary of a <em>two</em>-tailed test, not this one-tailed test.
           Catch it: whenever <Katex tex="H_1" /> has <Katex tex="<" /> or <Katex tex=">" />, the area you give invNorm is
           the significance level itself.
         </WrongMethod>
@@ -294,10 +305,9 @@ export default function SpecialistQ6_2018Exam2() {
             <Katex tex="145" /> instead.
           </p>
           <p>
-            What does <em>not</em> change is the decision rule: the test still rejects{' '}
-            <Katex tex="H_0" /> below the boundary found in part e., because that boundary
-            was fixed in advance. So the answer is the area above that boundary under the new
-            distribution: the probability of a Type II error.
+            What does <em>not</em> change is the decision rule, which was fixed in advance. So
+            the answer is the area above the part e. boundary under the new distribution: the
+            probability of a Type II error.
           </p>
         </Background>
         <WorkingTable rows={ROWS_F} />

@@ -29,7 +29,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Width} = 67.31 - 58.42 = 8.89" />,
-    reason: <>How do I get at <Katex tex="\sigma" /> from an interval? Remember how the interval was built: <Katex tex="\bar x \pm 1.96\,\tfrac{\sigma}{\sqrt n}" />, a centre plus or minus a margin. The ends of the interval therefore tell us the margin, and the margin contains <Katex tex="\sigma" />.</>,
+    reason: <>The interval was built using <Katex tex="\sigma" />, so work backwards: its ends give the width, the width gives the margin of error, and the margin contains <Katex tex="\sigma" />.</>,
   },
   {
     working: <Katex display tex="\text{Margin of error} = \frac{8.89}{2} = 4.445" />,
@@ -37,7 +37,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Margin of error} = z\,\frac{\sigma}{\sqrt n} = 1.96\times\frac{\sigma}{\sqrt{36}}" />,
-    reason: <>For <Katex tex="95\%" />, <Katex tex="z=1.96" /> because <Katex tex="\Pr(-1.96<Z<1.96)=0.95" /> (on CAS, <Cas fn="invNorm">invNorm(0.975)</Cas> <Katex tex="\approx1.96" />). The <Katex tex="\sqrt{36}" /> is there because the interval is about the <em>average</em> of <Katex tex="36" /> dogs, and an average of <Katex tex="36" /> varies only <Katex tex="\tfrac{1}{\sqrt{36}}" /> as much as one dog does.</>,
+    reason: <>For <Katex tex="95\%" />, <Katex tex="z=1.96" />. Divide <Katex tex="\sigma" /> by <Katex tex="\sqrt{36}" /> because the interval is for the <em>mean</em> of <Katex tex="36" /> dogs.</>,
+    more: <><Katex tex="z=1.96" /> because <Katex tex="\Pr(-1.96<Z<1.96)=0.95" /> (on CAS, <Cas fn="invNorm">invNorm(0.975)</Cas> <Katex tex="\approx1.96" />). An average of <Katex tex="36" /> dogs varies only <Katex tex="\tfrac{1}{\sqrt{36}}" /> as much as one dog does, so the sample mean has standard deviation <Katex tex="\tfrac{\sigma}{\sqrt{36}}" />.</>,
   },
   {
     working: <Katex display tex="4.445 = \frac{1.96\,\sigma}{6}" />,
@@ -45,11 +46,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sigma = \frac{4.445\times6}{1.96} = \frac{26.67}{1.96} = 13.6071\ldots" />,
-    reason: <>Solve for <Katex tex="\sigma" />. Keep every decimal until the last step: two of the options differ only in the second decimal place.</>,
+    reason: <>Solve for <Katex tex="\sigma" />. Keep every decimal until the last step: options C and D (and A and B) differ only in the second decimal place.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 13.61}" />,
-    reason: <>Matches option <b>D</b>. Option <b>C</b> <Katex tex="(13.60)" /> is <Katex tex="13.607\ldots" /> cut off at two decimals instead of rounded. Option <b>B</b> <Katex tex="(2.27)" /> is <Katex tex="\tfrac{4.445}{1.96}=2.2679\ldots" />: the <Katex tex="\sqrt{36}" /> is left out, so it is <Katex tex="\tfrac{\sigma}{\sqrt n}" />, the standard deviation of the <em>sample mean</em>, not of the dogs; option <b>A</b> <Katex tex="(2.26)" /> is that cut off. Option <b>E</b> <Katex tex="(62.87)" /> is the centre of the interval, <Katex tex="\bar x" />.</>,
+    reason: <>Matches option <b>D</b>.</>,
+    more: <>Option <b>C</b> <Katex tex="(13.60)" />, the most common wrong answer, is <Katex tex="13.607\ldots" /> cut off at two decimals instead of rounded. Option <b>B</b> <Katex tex="(2.27)" /> is <Katex tex="\tfrac{4.445}{1.96}=2.2679\ldots" />: the <Katex tex="\sqrt{36}" /> is left out, so it is <Katex tex="\tfrac{\sigma}{\sqrt n}" />, the standard deviation of the <em>sample mean</em>, not of the dogs; option <b>A</b> <Katex tex="(2.26)" /> is that cut off. Option <b>E</b> <Katex tex="(62.87)" /> is the centre of the interval, <Katex tex="\bar x" />.</>,
   },
 ]
 
@@ -77,16 +79,12 @@ export default function SpecialistQ18_2018() {
         <Background title="Running a confidence interval backwards">
           <p>
             The usual direction is sample <Katex tex="\to" /> interval. Here you are given the
-            interval and asked for one of the inputs, so read the construction in reverse:
-            half the width is the margin of error, and the margin of error is{' '}
-            <Katex tex="1.96\,\tfrac{\sigma}{\sqrt n}" />.
+            interval and asked for one of the inputs, so the working runs the construction in reverse.
           </p>
           <p>
-            Two of the five options sit <Katex tex="0.01" /> apart, so this is also a rounding
-            question — carry the full value of <Katex tex="\tfrac{26.67}{1.96}" /> before
-            rounding at the last step. And note the question asks for the{' '}
-            <em>population</em> standard deviation <Katex tex="\sigma" />, not the standard
-            deviation of the sample mean; the small options are the latter.
+            Note the question asks for the <em>population</em> standard deviation{' '}
+            <Katex tex="\sigma" /> of the dogs&rsquo; heights, not the standard deviation{' '}
+            <Katex tex="\tfrac{\sigma}{\sqrt n}" /> of the sample mean.
           </p>
         </Background>
       }

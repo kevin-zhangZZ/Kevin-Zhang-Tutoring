@@ -25,9 +25,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="|iz| = |i||z| = |z|" />,
     reason: (
       <>
-        Every option is in terms of <Katex tex="|z|" /> alone, so the area can&apos;t depend on which way <Katex tex="z" /> points.
-        That says: think about what multiplying by <Katex tex="i" /> does geometrically. First, it doesn&apos;t change the modulus,
-        so <Katex tex="z" /> and <Katex tex="iz" /> are the same distance from the origin.
+        Think about what multiplying by <Katex tex="i" /> does. Since <Katex tex="|i| = 1" />, it keeps the modulus:{' '}
+        <Katex tex="z" /> and <Katex tex="iz" /> are the same distance from the origin.
+      </>
+    ),
+    more: (
+      <>
+        The clue to think geometrically: every option is in terms of <Katex tex="|z|" /> alone, so the area can&apos;t depend on
+        which way <Katex tex="z" /> points.
       </>
     ),
   },
@@ -66,10 +71,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\text{Area} = \frac{|z|^2}{2}}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option <b>D</b>, <Katex tex="|z|^2" />, is the whole square: the halving is left out. Option{' '}
-        <b>E</b> (<Katex tex="18\%" />) is the area an <em>equilateral</em> triangle would have if every side were{' '}
-        <Katex tex="|z - iz| = \sqrt2|z|" />: <Katex tex="\tfrac{\sqrt3}{4}\left(\sqrt2|z|\right)^2 = \tfrac{\sqrt3|z|^2}{2}" />. But
-        only that one side is <Katex tex="\sqrt2|z|" />; the other two are <Katex tex="|z|" />.
+        Matches option <b>C</b>. Check with <Katex tex="z = 1" />: the triangle <Katex tex="1,\ i,\ 1+i" /> has legs 1 and area{' '}
+        <Katex tex="\tfrac12" />.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>D</b>, <Katex tex="|z|^2" />, is the whole square: the halving is left out. Option <b>E</b> (<Katex tex="18\%" />)
+        treats the triangle as equilateral (see the Common Mistake box below). Options <b>A</b> and <b>B</b> can&apos;t be areas:{' '}
+        <Katex tex="|z|" /> is a length, and <Katex tex="|z| + |z|^2" /> adds a length to an area.
       </>
     ),
   },
@@ -100,15 +110,12 @@ export default function SpecialistQ6_2018() {
           <p>
             Multiplying a complex number by <Katex tex="i" /> is a rotation of{' '}
             <Katex tex="90^\circ" /> anticlockwise about the origin, and nothing else — the
-            length is unchanged. So <Katex tex="z" /> and <Katex tex="iz" /> are always two
-            perpendicular arrows of the same length.
+            length is unchanged.
           </p>
           <p>
-            That makes the answer independent of which <Katex tex="z" /> you pick, which is
-            why the options are in terms of <Katex tex="|z|" /> alone. If it helps, test{' '}
-            <Katex tex="z=1" />: the vertices are <Katex tex="1" />, <Katex tex="i" /> and{' '}
-            <Katex tex="1+i" />, a right-angled triangle with legs of length <Katex tex="1" />{' '}
-            and area <Katex tex="\tfrac12" /> ✓
+            So the triangle has the same shape whichever <Katex tex="z" /> you pick (only its
+            size and orientation change), which is why testing a simple value such as{' '}
+            <Katex tex="z=1" /> is a fair check.
           </p>
         </Background>
       }
@@ -131,8 +138,8 @@ export default function SpecialistQ6_2018() {
             <p>
               Only one side, from <Katex tex="z" /> to <Katex tex="iz" />, has length <Katex tex="\sqrt2|z|" />. The other two sides
               are copies of <Katex tex="iz" /> and <Katex tex="z" /> slid into place, so they have length <Katex tex="|z|" /> and meet
-              at a right angle at <Katex tex="z+iz" />. Test <Katex tex="z = 1" /> to catch it: the triangle <Katex tex="1,\ i,\ 1+i" />{' '}
-              is plainly right-angled, with area <Katex tex="\tfrac12" />, not <Katex tex="\tfrac{\sqrt3}{2}" />.
+              at a right angle at <Katex tex="z+iz" />. The final row&apos;s <Katex tex="z = 1" /> check catches it: area{' '}
+              <Katex tex="\tfrac12" />, not <Katex tex="\tfrac{\sqrt3}{2}" />.
             </p>
           </WrongMethod>
         </>

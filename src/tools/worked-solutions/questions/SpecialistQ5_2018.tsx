@@ -26,10 +26,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} \frac{1}{z} &= \frac{1}{a+bi} \\ &= \frac{a-bi}{a^2+b^2} \end{aligned}" />,
     reason: (
       <>
-        To tell whether something is real, write it as (real part) <Katex tex="+" /> (imaginary part)<Katex tex="\,i" /> and look at
-        the imaginary part. <Katex tex="z" /> is already in that form but <Katex tex="\frac1z" /> isn&apos;t, so multiply top and
-        bottom by the conjugate <Katex tex="a-bi" />: the denominator becomes <Katex tex="(a+bi)(a-bi) = a^2+b^2" />, a real
-        number.
+        We need the imaginary part, so put <Katex tex="\frac1z" /> in <Katex tex="x + yi" /> form: multiply top and bottom by the
+        conjugate <Katex tex="a-bi" /> to make the denominator real.
+      </>
+    ),
+    more: (
+      <>
+        The denominator is <Katex tex="(a+bi)(a-bi) = a^2 - b^2i^2 = a^2+b^2" />. Once it is real, the numerator{' '}
+        <Katex tex="a - bi" /> splits into the real part <Katex tex="\frac{a}{a^2+b^2}" /> and the imaginary part{' '}
+        <Katex tex="-\frac{b}{a^2+b^2}" />.
       </>
     ),
   },
@@ -74,12 +79,18 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{|z| = \sqrt{a^2+b^2} = 1}" />,
     reason: (
       <>
-        Matches option <b>D</b>. &ldquo;Must be true&rdquo; means true for <em>every</em> <Katex tex="z" /> that makes{' '}
-        <Katex tex="z+\frac1z" /> real, so one such <Katex tex="z" /> that breaks an option rules it out.{' '}
-        <Katex tex="z = \tfrac12 + \tfrac{\sqrt3}{2}i" /> has <Katex tex="|z| = 1" /> and <Katex tex="z + \tfrac1z = 1" />, yet{' '}
-        <Katex tex="\operatorname{Arg}(z) = \tfrac{\pi}{3}" /> (not <b>A</b>), <Katex tex="a \ne \pm b" /> (not <b>B</b> or <b>C</b>)
-        and <Katex tex="z^2 \ne 1" /> (not <b>E</b>). In fact <b>E</b> never holds here: <Katex tex="z^2 = 1" /> means{' '}
-        <Katex tex="z = \pm 1" />, which has <Katex tex="b = 0" />.
+        Matches option <b>D</b>: every <Katex tex="z" /> that makes <Katex tex="z+\frac1z" /> real has <Katex tex="|z| = 1" />, so
+        it <em>must</em> be true.
+      </>
+    ),
+    more: (
+      <>
+        &ldquo;Must be true&rdquo; means true for <em>every</em> allowed <Katex tex="z" />, so one such <Katex tex="z" /> that breaks
+        an option rules it out. <Katex tex="z = \tfrac12 + \tfrac{\sqrt3}{2}i" /> has <Katex tex="|z| = 1" /> and{' '}
+        <Katex tex="z + \tfrac1z = 1" />, yet <Katex tex="\operatorname{Arg}(z) = \tfrac{\pi}{3}" /> (not <b>A</b>, chosen by{' '}
+        <Katex tex="13\%" />), <Katex tex="a \ne \pm b" /> (not <b>B</b> or <b>C</b>) and <Katex tex="z^2 \ne 1" /> (not <b>E</b>,{' '}
+        <Katex tex="15\%" />). In fact <b>E</b> is never true for an allowed <Katex tex="z" />: see the second Common Mistake box
+        below.
       </>
     ),
   },
@@ -110,8 +121,8 @@ export default function SpecialistQ5_2018() {
       background={
         <Background title="The picture behind 1/z">
           <p>
-            Multiplying top and bottom by <Katex tex="\bar z" /> gives <Katex tex="\frac1z = \frac{\bar z}{z\bar z} = \frac{\bar z}{|z|^2}" />.
-            So <Katex tex="\frac1z" /> is <Katex tex="\bar z" /> (the mirror image of <Katex tex="z" /> in the real axis) rescaled to
+            In conjugate form, row 1&apos;s result reads <Katex tex="\frac1z = \frac{\bar z}{|z|^2}" />, since{' '}
+            <Katex tex="z\bar z = a^2+b^2 = |z|^2" />. So <Katex tex="\frac1z" /> is <Katex tex="\bar z" /> (the mirror image of <Katex tex="z" /> in the real axis) rescaled to
             length <Katex tex="\frac{1}{|z|}" />. Its imaginary part points the opposite way to <Katex tex="z" />&apos;s, but has a
             different size unless <Katex tex="|z| = 1" />.
           </p>
@@ -142,8 +153,7 @@ export default function SpecialistQ5_2018() {
               The example is valid, but it only shows that A <em>can</em> be true, not that it <em>must</em> be. This same{' '}
               <Katex tex="z" /> also has <Katex tex="a = b" /> (C) and <Katex tex="|z| = 1" /> (D), so a symmetric example like this
               can&apos;t separate the options. To rule one out, find a <Katex tex="z" /> that makes <Katex tex="z+\frac1z" /> real
-              but breaks it: <Katex tex="z = \tfrac12 + \tfrac{\sqrt3}{2}i" /> gives <Katex tex="z + \frac1z = 1" /> with{' '}
-              <Katex tex="\operatorname{Arg}(z) = \tfrac{\pi}{3}" />.
+              but breaks it, as the final working row does with <Katex tex="z = \tfrac12 + \tfrac{\sqrt3}{2}i" />.
             </p>
           </WrongMethod>
           <WrongMethod

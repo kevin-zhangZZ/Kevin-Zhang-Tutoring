@@ -30,21 +30,22 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         &ldquo;Length of the curve&rdquo; with <Katex tex="x" /> and <Katex tex="y" /> both given in terms
-        of <Katex tex="t" /> means the parametric arc-length formula. It is Pythagoras on a tiny scale: in a
-        short time <Katex tex="\Delta t" /> the point moves <Katex tex="\Delta x" /> across and{' '}
-        <Katex tex="\Delta y" /> up, so it travels <Katex tex="\sqrt{\Delta x^2+\Delta y^2}" />, and adding
-        up those little hypotenuses is the integral.
+        of <Katex tex="t" />: use the parametric arc-length formula.
       </>
     ),
-    more: <>See the interactive below.</>,
+    more: (
+      <>
+        The interactive below adds up the chords one by one: as they get shorter, their total climbs to
+        this integral.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{dx}{dt} = 2\cos(2t), \qquad \frac{dy}{dt} = -2\sin(t)" />,
     reason: (
       <>
-        The chain rule on <Katex tex="\sin(2t)" /> brings out a <Katex tex="2" />, and{' '}
-        <Katex tex="2\cos(t)" /> differentiates to <Katex tex="-2\sin(t)" />. That first <Katex tex="2" /> is
-        the easy one to drop, and dropping it changes the answer to option <b>B</b>.
+        The chain rule on <Katex tex="\sin(2t)" /> brings out a <Katex tex="2" /> (the easy one to drop), and{' '}
+        <Katex tex="2\cos(t)" /> differentiates to <Katex tex="-2\sin(t)" />.
       </>
     ),
   },
@@ -52,9 +53,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="L = \int_0^{2\pi}\sqrt{4\cos^2(2t)+4\sin^2(t)}\,dt" />,
     reason: (
       <>
-        Substitute into the formula. Nothing under the root simplifies to a perfect square, so there is no
-        antiderivative to find by hand. That is what &ldquo;closest to&rdquo; is telling you: evaluate it
-        numerically.
+        Substitute into the formula, with the terminals <Katex tex="0" /> and <Katex tex="2\pi" /> from the
+        question. Nothing under the root simplifies, so evaluate it numerically, as &ldquo;closest
+        to&rdquo; suggests.
+      </>
+    ),
+    more: (
+      <>
+        <Katex tex="4\cos^2(2t)+4\sin^2(t)" /> is not a perfect square, so there is no antiderivative to find by
+        hand. Over <Katex tex="[0,2\pi]" /> the point traces the figure-eight exactly once: apart from returning
+        to its start <Katex tex="(0,2)" /> at <Katex tex="t=2\pi" />, the only point it passes through twice is
+        the crossing <Katex tex="(0,0)" />, so no piece of the curve is counted twice.
       </>
     ),
   },
@@ -62,9 +71,8 @@ const ROWS: WorkingRow[] = [
     working: <Cas fn="nInt">nInt(√(4cos(2t)^2+4sin(t)^2), t, 0, 2π)</Cas>,
     reason: (
       <>
-        Check the calculator is in <b>radian</b> mode first. The derivatives above are only true with{' '}
-        <Katex tex="t" /> in radians, and degree mode gives option <b>D</b>. Use the full interval{' '}
-        <Katex tex="[0,2\pi]" /> from the question, which traces the figure-eight exactly once.
+        Check the calculator is in <b>radian</b> mode first: the derivatives above are only true with{' '}
+        <Katex tex="t" /> in radians.
       </>
     ),
   },
@@ -72,12 +80,14 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{L \approx 12.1944 \approx 12.2}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option <b>D</b> <Katex tex="(12.5)" />, chosen by <Katex tex="12\%" />, is
-        the same integral with the calculator in degree mode (<Katex tex="12.49" />). Option <b>B</b>{' '}
-        <Katex tex="(9.5)" /> uses <Katex tex="\tfrac{dx}{dt}=\cos(2t)" />, forgetting the chain-rule{' '}
-        <Katex tex="2" /> (<Katex tex="9.51" />). Option <b>A</b> <Katex tex="(9.2)" /> puts{' '}
-        <Katex tex="x" /> and <Katex tex="y" /> under the root instead of their derivatives (
-        <Katex tex="9.18" />).
+        Matches option <b>C</b>.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>D</b> is the degree-mode slip and option <b>B</b> the missing chain-rule{' '}
+        <Katex tex="2" />; both are worked through below. Option <b>A</b> <Katex tex="(9.2)" /> puts <Katex tex="x" /> and{' '}
+        <Katex tex="y" /> under the root instead of their derivatives (<Katex tex="9.18" />).
       </>
     ),
   },
@@ -120,7 +130,8 @@ export default function SpecialistQ7_2018() {
             the study design.
           </p>
           <p>
-            Two of the options sit only <Katex tex="0.3" /> apart, so this question is about setting the
+            The options come in pairs only <Katex tex="0.3" /> apart (<Katex tex="9.2" /> and{' '}
+            <Katex tex="9.5" />, <Katex tex="12.2" /> and <Katex tex="12.5" />), so this question is about setting the
             integral up exactly right and then letting technology evaluate it, not about estimating. Keep
             the square root, keep the given terminals, and work in radians.
           </p>

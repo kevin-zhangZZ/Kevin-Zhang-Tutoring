@@ -31,7 +31,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(M>S) = \Pr(M-S>0)" />,
-    reason: <>How would I know to do this? Both scores are random, so there is no fixed number to compare either one with. Turn the comparison into a statement about <em>one</em> random variable, <Katex tex="D=M-S" />: "Maths higher" is the same as "<Katex tex="D" /> positive".</>,
+    reason: <>Both scores are random, so turn the comparison into a statement about <em>one</em> random variable, <Katex tex="D=M-S" />: &ldquo;Maths higher&rdquo; means <Katex tex="D>0" />.</>,
   },
   {
     working: (
@@ -40,7 +40,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\begin{aligned} \mathrm{Var}(D) &= 1^2\times10^2+(-1)^2\times7^2 \\ &= 149 \end{aligned}" />
       </>
     ),
-    reason: <>For independent variables, <Katex tex="\mathrm{Var}(aM+bS)=a^2\,\mathrm{Var}(M)+b^2\,\mathrm{Var}(S)" />. Here <Katex tex="b=-1" />, and <Katex tex="(-1)^2=1" />: the minus sign changes the mean, but the variance of a <em>difference</em> still <em>adds</em>.</>,
+    reason: <>Means subtract. For independent variables, <Katex tex="\mathrm{Var}(aM+bS)=a^2\,\mathrm{Var}(M)+b^2\,\mathrm{Var}(S)" />; here <Katex tex="b=-1" /> and <Katex tex="(-1)^2=1" />, so the variances <em>add</em>.</>,
   },
   {
     working: <Katex display tex="D \sim N(-4,\,149), \qquad \mathrm{sd}(D)=\sqrt{149}\approx12.207" />,
@@ -52,7 +52,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>0.3277) \approx 0.3716}" />,
-    reason: <>Matches option <b>B</b>. Option <b>A</b> <Katex tex="(0.2877)" /> subtracts the variances (<Katex tex="100-49=51" />), and option <b>C</b> <Katex tex="(0.4070)" /> adds the standard deviations (<Katex tex="10+7=17" />). Option <b>D</b> <Katex tex="(0.7123)" /> is <Katex tex="1-0.2877" />: variances subtracted <em>and</em> the wrong tail, <Katex tex="\Pr(D<0)" />. Option <b>E</b> <Katex tex="(0.9088)" /> subtracts the standard deviations (<Katex tex="10-7=3" />) and takes the wrong tail. Sense check: the Maths mean is <Katex tex="4" /> lower, so Maths beats Statistics less than half the time. That rules out D and E at once.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>A</b> <Katex tex="(0.2877)" /> subtracts the variances (<Katex tex="100-49=51" />), and option <b>C</b> <Katex tex="(0.4070)" />, the most common wrong answer, adds the standard deviations (<Katex tex="10+7=17" />). Option <b>D</b> <Katex tex="(0.7123)" /> is <Katex tex="1-0.2877" />: variances subtracted <em>and</em> the wrong tail, <Katex tex="\Pr(D<0)" />. Option <b>E</b> <Katex tex="(0.9088)" /> subtracts the standard deviations (<Katex tex="10-7=3" />) and takes the wrong tail. Sense check: the Maths mean is <Katex tex="4" /> lower, so Maths beats Statistics less than half the time. That rules out D and E at once.</>,
   },
 ]
 
@@ -87,11 +88,7 @@ export default function SpecialistQ20_2018() {
         <Background title="Why variances add, even for a difference">
           <p>
             For independent <Katex tex="X" /> and <Katex tex="Y" />,{' '}
-            <Katex tex="\mathrm{Var}(aX+bY)=a^2\,\mathrm{Var}(X)+b^2\,\mathrm{Var}(Y)" />. The coefficients are squared,
-            so <Katex tex="\mathrm{Var}(X-Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)" />.
-          </p>
-          <p>
-            In words: <Katex tex="-Y" /> is exactly as spread out as <Katex tex="Y" />, just flipped. Each score brings
+            <Katex tex="\mathrm{Var}(X-Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)" />. In words: <Katex tex="-Y" /> is exactly as spread out as <Katex tex="Y" />, just flipped. Each score brings
             its own uncertainty, and combining two uncertain things, by adding or subtracting, can only make the result{' '}
             <em>more</em> uncertain. A high Maths score paired with a low Statistics score makes a large positive
             difference; the reverse makes a large negative one. It is the variances that add, not the standard

@@ -9,6 +9,7 @@
 // Widget (extras): spec-2018-mcq12-flatten — b placed head-to-tail after a; |a + b| falls short
 // of |a| + |b| until the triangle flattens at θ = 0, with a checklist of which options hold.
 // WrongMethods: C (21%) is one case, not every case; E (16%) is the Pythagoras condition.
+// Distractors B and D are argued in the final row's `more`; C and E in the WrongMethod boxes.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -37,18 +38,22 @@ const ROWS: WorkingRow[] = [
       <>
         <Katex display tex="\underset{\sim}{a}=(2,0), \ \underset{\sim}{b}=(3,0):" />
         <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|=5=|\underset{\sim}{a}|+|\underset{\sim}{b}|" />
+        <Katex display tex="|\underset{\sim}{a}|\ne|\underset{\sim}{b}|, \ \underset{\sim}{a}\ne\pm\underset{\sim}{b}" />
+        <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=6\ne0" />
       </>
     ),
     reason: (
       <>
-        &ldquo;Necessarily true&rdquo; means true in <em>every</em> case where the given equation holds, so one
-        case where the equation holds but an option fails rules that option out. To find a case, think of the
-        vectors as two walks: you end up <Katex tex="|\underset{\sim}{a}|+|\underset{\sim}{b}|" /> from the start
-        only if you never change direction. So try two vectors pointing the same way, with different lengths.
-        Here <Katex tex="|\underset{\sim}{a}|\ne|\underset{\sim}{b}|" />,{' '}
-        <Katex tex="\underset{\sim}{a}\ne\underset{\sim}{b}" />,{' '}
-        <Katex tex="\underset{\sim}{a}\ne-\underset{\sim}{b}" /> and they are not perpendicular, which rules out{' '}
-        <b>B</b>, <b>C</b>, <b>D</b> and <b>E</b>.
+        &ldquo;Necessarily true&rdquo; means true in <em>every</em> case where the equation holds, so one
+        counterexample rules an option out. Two vectors pointing the same way, with different lengths, satisfy the
+        equation but break <b>B</b>, <b>C</b>, <b>D</b> and <b>E</b>.
+      </>
+    ),
+    more: (
+      <>
+        Why try vectors pointing the same way? As the Background shows, equality needs{' '}
+        <Katex tex="\underset{\sim}{b}" /> to carry straight on in <Katex tex="\underset{\sim}{a}" />&apos;s
+        direction. Making the lengths different then breaks <b>B</b> and <b>C</b> in one go.
       </>
     ),
   },
@@ -56,10 +61,15 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="|\underset{\sim}{a}+\underset{\sim}{b}|^2 = |\underset{\sim}{a}|^2+2\,\underset{\sim}{a}\!\cdot\!\underset{\sim}{b}+|\underset{\sim}{b}|^2" />,
     reason: (
       <>
-        Now confirm that <b>A</b> really must hold. Magnitudes are hard to work with directly, but a magnitude
-        squared is a dot product, <Katex tex="|\underset{\sim}{v}|^2=\underset{\sim}{v}\cdot\underset{\sim}{v}" />,
-        and dot products expand like brackets. So square both sides of the given equation, starting with the
-        left.
+        Now show <b>A</b> must hold. Square both sides of the given equation, using{' '}
+        <Katex tex="|\underset{\sim}{v}|^2=\underset{\sim}{v}\cdot\underset{\sim}{v}" />; start with the left.
+      </>
+    ),
+    more: (
+      <>
+        Magnitudes are hard to work with directly, but a magnitude squared is a dot product, and dot products
+        expand like brackets:{' '}
+        <Katex tex="(\underset{\sim}{a}+\underset{\sim}{b})\cdot(\underset{\sim}{a}+\underset{\sim}{b})=\underset{\sim}{a}\cdot\underset{\sim}{a}+2\,\underset{\sim}{a}\cdot\underset{\sim}{b}+\underset{\sim}{b}\cdot\underset{\sim}{b}" />.
       </>
     ),
   },
@@ -76,9 +86,9 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Equate the two expansions (squaring is safe because both sides are non-negative). The{' '}
-        <Katex tex="|\underset{\sim}{a}|^2" /> and <Katex tex="|\underset{\sim}{b}|^2" /> terms cancel, and so do
-        the 2s, leaving only the middle terms.
+        Equate the two expansions (squaring is safe as both sides are non-negative). The{' '}
+        <Katex tex="|\underset{\sim}{a}|^2" /> and <Katex tex="|\underset{\sim}{b}|^2" /> terms cancel; then
+        halve.
       </>
     ),
   },
@@ -92,10 +102,15 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Compare with the dot product formula. Since <Katex tex="\underset{\sim}{a},\underset{\sim}{b}\ne\underset{\sim}{0}" />,
-        dividing by <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|" /> is valid, and the angle between the
-        vectors must be exactly <Katex tex="0" />. This is why the question says the vectors are non-zero: a zero
-        vector has no direction.
+        Compare with the dot product formula and divide by <Katex tex="|\underset{\sim}{a}||\underset{\sim}{b}|" />,
+        which is non-zero because <Katex tex="\underset{\sim}{a},\underset{\sim}{b}\ne\underset{\sim}{0}" />.
+        The angle between vectors lies in <Katex tex="[0,\pi]" />, so <Katex tex="\theta=0" />.
+      </>
+    ),
+    more: (
+      <>
+        The question says the vectors are non-zero because a zero vector has no direction, so
+        &ldquo;the angle between them&rdquo; would mean nothing.
       </>
     ),
   },
@@ -109,23 +124,33 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        This is stronger than option <b>A</b>&apos;s &ldquo;parallel&rdquo;, which also covers vectors pointing in
-        opposite directions. But same direction always <em>implies</em> parallel, so &ldquo;parallel&rdquo; must be
-        true. It doesn&apos;t work the other way: parallel but opposite vectors fail the equation. The question
-        only asks what must follow from it.
+        Vectors pointing the same direction are always parallel, so <b>A</b> must be true.
+      </>
+    ),
+    more: (
+      <>
+        &ldquo;Same direction&rdquo; is actually stronger than option <b>A</b>&apos;s &ldquo;parallel&rdquo;,
+        which also covers vectors pointing in opposite directions. Those fail the equation (for example{' '}
+        <Katex tex="(2,0)" /> and <Katex tex="(-3,0)" /> give <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|=1" />,
+        not <Katex tex="5" />), so &ldquo;parallel&rdquo; does not guarantee the equation. That doesn&apos;t
+        matter: the question only asks what must follow <em>from</em> the equation.
       </>
     ),
   },
   {
     working: <Katex display tex="\boxed{\underset{\sim}{a} \text{ is parallel to } \underset{\sim}{b}}" />,
-    reason: (
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
       <>
-        Matches option <b>A</b>. Option <b>C</b>, chosen by <Katex tex="21\%" />, is one case in which the
-        equation holds, not something every case must satisfy; option <b>E</b>, chosen by{' '}
-        <Katex tex="16\%" />, never satisfies it.
+        <b>B</b> (<Katex tex="18\%" />): equal lengths are not forced, since the first row satisfies the equation
+        with lengths <Katex tex="2" /> and <Katex tex="3" />. <b>D</b> (<Katex tex="9\%" />):{' '}
+        <Katex tex="\underset{\sim}{a}=-\underset{\sim}{b}" /> gives{' '}
+        <Katex tex="|\underset{\sim}{a}+\underset{\sim}{b}|=0" />, but{' '}
+        <Katex tex="|\underset{\sim}{a}|+|\underset{\sim}{b}|>0" />, so it never satisfies the equation.{' '}
+        <b>C</b> (<Katex tex="21\%" />) and <b>E</b> (<Katex tex="16\%" />) each have a Common Mistake box
+        below.
       </>
     ),
-    more: <>See below.</>,
   },
 ]
 
@@ -161,9 +186,8 @@ export default function SpecialistQ12_2018() {
             direction.
           </p>
           <p>
-            &ldquo;Which is necessarily true?&rdquo; asks what <em>follows from</em> the given statement: an option
-            that is true in some cases where the equation holds, but not all of them, is wrong. The quickest test
-            is a single counterexample that satisfies the equation and breaks the option.
+            &ldquo;Which is necessarily true?&rdquo; asks what the equation <em>forces</em>, not what would make it
+            true. So an option can make the equation hold (as <b>C</b> does) and still be the wrong answer.
           </p>
         </Background>
       }

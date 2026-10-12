@@ -28,10 +28,9 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = m(1)+1(m) = 2m" />,
     reason: (
       <>
-        An angle between two vectors is the cue for the dot product,{' '}
-        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />:
-        it is the one formula that links the components to the angle. First the dot product itself: multiply
-        matching components and add.
+        An angle between vectors calls for{' '}
+        <Katex tex="\underset{\sim}{a}\cdot\underset{\sim}{b}=|\underset{\sim}{a}||\underset{\sim}{b}|\cos\theta" />.
+        First the dot product: multiply matching components and add.
       </>
     ),
   },
@@ -39,12 +38,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\left|\underset{\sim}{a}\right| = \left|\underset{\sim}{b}\right| = \sqrt{m^2+1}" />,
     reason: (
       <>
-        Same two components in swapped order, so the same length. (Swapping the components reflects a vector
-        in the line <Katex tex="y=x" />, so <Katex tex="\underset{\sim}{b}" /> is the mirror image of{' '}
-        <Katex tex="\underset{\sim}{a}" />.)
+        Same two components in swapped order, so the same length.
       </>
     ),
-    more: <>The widget below uses this.</>,
+    more: (
+      <>
+        Swapping the components reflects a vector in the line <Katex tex="y=x" />, so{' '}
+        <Katex tex="\underset{\sim}{b}" /> is the mirror image of <Katex tex="\underset{\sim}{a}" />. The
+        interactive below is built on this.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\cos(30^\circ) = \frac{\underset{\sim}{a}\cdot\underset{\sim}{b}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{b}\right|} = \frac{2m}{m^2+1}" />,
@@ -59,14 +62,22 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\frac{\sqrt3}{2} = \frac{2m}{m^2+1} \implies \sqrt3\left(m^2+1\right) = 4m" />,
     reason: (
       <>
-        Cross-multiplying. Before solving, note what to expect: an acute angle has a positive cosine, so{' '}
-        <Katex tex="2m" /> must be positive and any valid <Katex tex="m" /> is positive.
+        Using <Katex tex="\cos(30^\circ)=\tfrac{\sqrt3}{2}" />, then cross-multiplying. An acute angle has a
+        positive cosine, so <Katex tex="2m>0" />: any valid <Katex tex="m" /> is positive.
+      </>
+    ),
+    more: (
+      <>
+        A negative <Katex tex="m" /> such as <Katex tex="-\sqrt3" /> makes <Katex tex="\cos\theta=-\tfrac{\sqrt3}{2}" />,
+        so the vectors are <Katex tex="150^\circ" /> apart. Even if you read the question as the acute angle between
+        the lines (which would also allow <Katex tex="-\sqrt3" /> and <Katex tex="-\tfrac{1}{\sqrt3}" />), no option
+        lists negative values, so the answer is unchanged.
       </>
     ),
   },
   {
     working: <Katex display tex="\sqrt3 m^2 - 4m + \sqrt3 = 0" />,
-    reason: <>A quadratic in <Katex tex="m" /> with surd coefficients — awkward-looking but perfectly ordinary.</>,
+    reason: <>Bring everything to one side: a quadratic in <Katex tex="m" />. The surd coefficients are just numbers.</>,
   },
   {
     working: <Katex display tex="m = \frac{4\pm\sqrt{16-12}}{2\sqrt3} = \frac{4\pm2}{2\sqrt3}" />,
@@ -86,8 +97,12 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Both are positive, so both give an acute angle, and both count. They are reciprocals, which makes
-        sense: replacing <Katex tex="m" /> by <Katex tex="\tfrac1m" /> turns{' '}
+        Both are positive, so both give the acute angle <Katex tex="30^\circ" />, and both count.
+      </>
+    ),
+    more: (
+      <>
+        They are reciprocals, which makes sense: replacing <Katex tex="m" /> by <Katex tex="\tfrac1m" /> turns{' '}
         <Katex tex="\underset{\sim}{a}" /> into a multiple of the old <Katex tex="\underset{\sim}{b}" /> and
         vice versa, so the angle between them is unchanged.
       </>
@@ -97,12 +112,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{m = \sqrt3 \ \text{ or } \ m = \frac{1}{\sqrt3}}" />,
     reason: (
       <>
-        Matches option <b>C</b>. Option <b>B</b>, chosen by <Katex tex="10\%" />, is what setting the ratio
-        equal to <Katex tex="\sin(30^\circ)=\tfrac12" /> gives. Option <b>A</b>&apos;s values make
-        the ratio <Katex tex="\tfrac{1}{\sqrt2}" />, an angle of <Katex tex="45^\circ" />.
+        Matches option <b>C</b>.
       </>
     ),
-    more: <>See the Common Mistake below.</>,
+    more: (
+      <>
+        Option <b>B</b>, chosen by <Katex tex="10\%" />, makes the ratio <Katex tex="\tfrac12" />, an angle of{' '}
+        <Katex tex="60^\circ" /> (see the Common Mistake below). Option <b>A</b>&apos;s values make the ratio{' '}
+        <Katex tex="\tfrac{1}{\sqrt2}" />, an angle of <Katex tex="45^\circ" />. Options <b>D</b> and <b>E</b> are
+        single values, giving angles of about <Katex tex="15^\circ" /> and <Katex tex="39^\circ" />.
+      </>
+    ),
   },
 ]
 

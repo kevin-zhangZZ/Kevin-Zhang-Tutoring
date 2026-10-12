@@ -60,7 +60,7 @@ export default function TangentDomain() {
     notice = (
       <Notice>
         One tangent with a finite slope, so <M>{`x = ${num(x0)}`}</M> is in the domain of <M>f'</M>. The slope&rsquo;s
-        sign is the sign of <M>x</M> (<M>{'\\tfrac{4x}{|x|}=\\pm4'}</M>): falling on the left, rising on the right.
+        sign is the sign of <M>x</M> (its numerator is <M>{'\\tfrac{4x}{|x|}=\\pm4'}</M>): falling on the left, rising on the right.
         {wrong
           ? <> The red strip is the wrong answer dom <M>f'</M> = dom <M>f</M>. Press the buttons to test its two
             suspicious points.</>

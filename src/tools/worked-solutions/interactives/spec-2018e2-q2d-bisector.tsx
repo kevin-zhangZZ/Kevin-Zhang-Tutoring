@@ -55,8 +55,8 @@ export default function Bisector() {
     notice = (
       <Notice tone="warn">
         <b>Not equal:</b> <M>z</M> is closer to <M>{z[0] < 2 ? '1' : '3'}</M> because it is on that side of{' '}
-        <M>{'x=2'}</M>. Notice in the algebra readout that moving <M>z</M> up or down changes nothing: <M>y</M>{' '}
-        cancels, so only <M>x</M> decides. Drag <M>z</M> sideways until it clicks onto the line.
+        <M>{'x=2'}</M>. Moving <M>z</M> up or down never fixes this; only its{' '}
+        <M>x</M>-coordinate decides. Drag <M>z</M> sideways until it clicks onto the line.
       </Notice>
     )
   }

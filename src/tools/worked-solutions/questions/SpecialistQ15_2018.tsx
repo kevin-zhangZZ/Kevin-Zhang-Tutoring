@@ -48,11 +48,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="P = ma = 8 \times 12.8" />,
-    reason: <>The force is what produces the acceleration, and the heavier the particle, the more force the same acceleration takes: force equals mass times acceleration. <Katex tex="P" /> is the only force mentioned, so it is the whole of <Katex tex="ma" />.</>,
+    reason: <>Force equals mass times acceleration. <Katex tex="P" /> is the only force mentioned, so it is the whole of <Katex tex="ma" />.</>,
+    more: <>The force is what produces the acceleration, and the heavier the particle, the more force the same acceleration takes. That is why the mass, <Katex tex="8" /> kg, multiplies in.</>,
   },
   {
     working: <Katex display tex="\boxed{P = 102.4}" />,
-    reason: <>Matches option <b>E</b>. Option <b>C</b> <Katex tex="(12.8)" />, chosen by <Katex tex="17\%" />, is the acceleration: the answer to a question that was not asked.</>,
+    reason: <>Matches option <b>E</b>; option <b>C</b> is the acceleration, not the force.</>,
   },
 ]
 
@@ -79,19 +80,16 @@ export default function SpecialistQ15_2018() {
       background={
         <Background title="Two steps, and the options punish stopping after one">
           <p>
-            Speeds and a distance, with no time mentioned, point straight at{' '}
-            <Katex tex="v^2=u^2+2as" />. That gives the acceleration.
-          </p>
-          <p>
-            Where that formula comes from: with constant acceleration the velocity–time graph
+            Where <Katex tex="v^2=u^2+2as" /> comes from: with constant acceleration the velocity–time graph
             is a straight line, and the distance is the area under it, a trapezium{' '}
             <Katex tex="s=\tfrac12(u+v)t" />. Its time is <Katex tex="t=\tfrac{v-u}{a}" />, so{' '}
             <Katex tex="s=\tfrac{(v+u)(v-u)}{2a}=\tfrac{v^2-u^2}{2a}" />.
           </p>
           <p>
             The question asks for a <em>force</em>, though, so one more step is needed:{' '}
-            <Katex tex="P=ma" />. The acceleration itself appears as option C, so finishing
-            the second step is the whole difference between the two.
+            <Katex tex="P=ma" />. Newton's second law is no longer on the study design, but
+            this question needs it only as that single substitution, after ordinary
+            constant-acceleration work.
           </p>
         </Background>
       }

@@ -30,9 +30,14 @@ const ROWS: WorkingRow[] = [
     ),
     reason: (
       <>
-        Options A and B (and C and D) differ only by a sign, so settle the signs first. Cosine is negative in quadrants 2 and 3.{' '}
-        <Katex tex="\cot(x) = \frac{\cos(x)}{\sin(x)}" /> is positive only when <Katex tex="\sin(x)" /> has the same sign as{' '}
-        <Katex tex="\cos(x)" />, so <Katex tex="\sin(x)" /> is negative too: quadrant 3.
+        Cosine is negative in quadrants 2 and 3. <Katex tex="\cot(x) = \frac{\cos(x)}{\sin(x)}" /> is positive, so{' '}
+        <Katex tex="\sin(x)" /> has the same sign as <Katex tex="\cos(x)" />: negative, quadrant 3.
+      </>
+    ),
+    more: (
+      <>
+        Why start with signs? Options A and B (and C and D) differ only by a sign, so getting the sign right is most of this
+        question.
       </>
     ),
   },
@@ -40,9 +45,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\begin{aligned} \sin(x) &= \frac{\cos(x)}{\cot(x)} \\ &= -\frac{a}{b} \end{aligned}" />,
     reason: (
       <>
-        We want cosec, which is <Katex tex="\frac{1}{\sin}" />, but we are given cos and cot. The definition{' '}
-        <Katex tex="\cot = \frac{\cos}{\sin}" /> links all three, so rearrange it for <Katex tex="\sin(x)" />. It is negative, as the
-        quadrant said it must be.
+        Cosec is <Katex tex="\frac{1}{\sin}" />, but we are given cos and cot. <Katex tex="\cot = \frac{\cos}{\sin}" /> links all
+        three, so rearrange it for <Katex tex="\sin(x)" />. It is negative, as quadrant 3 requires.
       </>
     ),
   },
@@ -54,14 +58,13 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\mathrm{cosec}(-x) = \frac{1}{\sin(-x)} = -\mathrm{cosec}(x)" />,
     reason: (
       <>
-        On the unit circle, <Katex tex="-x" /> is <Katex tex="x" /> reflected in the horizontal axis, so the height{' '}
-        <Katex tex="\sin" /> changes sign: <Katex tex="\sin(-x) = -\sin(x)" />. Its reciprocal changes sign with it, so cosec is
-        odd.
+        Sine is odd: <Katex tex="\sin(-x) = -\sin(x)" />. Its reciprocal changes sign with it, so cosec is odd too.
       </>
     ),
     more: (
       <>
-        Drag <Katex tex="P" /> in the diagram below to see the reflection.
+        Why sine is odd is in the Background above (reflecting <Katex tex="P" /> in the horizontal axis). Drag{' '}
+        <Katex tex="P" /> in the diagram below to see the reflection.
       </>
     ),
   },
@@ -69,10 +72,16 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\mathrm{cosec}(-x) = -\left(-\frac{b}{a}\right) = \frac{b}{a}}" />,
     reason: (
       <>
-        Matches option <b>A</b>. Sign check: <Katex tex="-x" /> is in quadrant 2, where sine and cosec are positive, and{' '}
-        <Katex tex="\tfrac{b}{a} > 0" />. Option <b>B</b> (<Katex tex="22\%" />), <Katex tex="-\tfrac{b}{a}" />, is{' '}
-        <Katex tex="\mathrm{cosec}(x)" />: it misses the sign change for <Katex tex="-x" />. Options <b>C</b> and <b>D</b> are{' '}
-        <Katex tex="\sin(x)" /> and <Katex tex="\sin(-x)" />: the reciprocal was never taken.
+        Matches option <b>A</b>. Sign check: <Katex tex="-x" /> is in quadrant 2, where cosec is positive, and{' '}
+        <Katex tex="\tfrac{b}{a} > 0" />.
+      </>
+    ),
+    more: (
+      <>
+        Option <b>B</b> (<Katex tex="22\%" />), <Katex tex="-\tfrac{b}{a}" />, is <Katex tex="\mathrm{cosec}(x)" />: it stops one
+        step early (see the Common Mistake box below). Options <b>C</b> and <b>D</b> are <Katex tex="\sin(x)" /> and{' '}
+        <Katex tex="\sin(-x)" />: the reciprocal was never taken. Option <b>E</b>, <Katex tex="-ab" />, is{' '}
+        <Katex tex="\cos(x)\cot(x)" />: multiplying where you should divide.
       </>
     ),
   },
@@ -128,9 +137,8 @@ export default function SpecialistQ4_2018() {
           >
             <p>
               Everything up to here is right, but it answers a different question: it is <Katex tex="\mathrm{cosec}(x)" />, and the
-              question asks for <Katex tex="\mathrm{cosec}(-x)" />. Cosec is odd, so one more sign change is needed. A ten-second
-              sign check catches it: <Katex tex="x" /> is in quadrant 3, so <Katex tex="-x" /> is in quadrant 2, where cosec is
-              positive. A negative answer can&apos;t be right.
+              question asks for <Katex tex="\mathrm{cosec}(-x)" />. Cosec is odd, so one more sign change is needed. The final
+              row&apos;s ten-second sign check catches it: cosec is positive in quadrant 2, so a negative answer can&apos;t be right.
             </p>
           </WrongMethod>
         </>

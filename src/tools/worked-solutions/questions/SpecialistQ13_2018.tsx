@@ -26,19 +26,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}(t) = 3\cos(t)\underset{\sim}{i} + 4\sin(t)\underset{\sim}{j}" />,
-    reason: <>An ellipse with semi-axes <Katex tex="3" /> (across) and <Katex tex="4" /> (up). The question is about <em>speed</em>, which is about how fast the position changes, so the first move is always to differentiate.</>,
+    reason: <>An ellipse with semi-axes <Katex tex="3" /> (across) and <Katex tex="4" /> (up). Speed comes from the velocity, so differentiate first.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{v}(t) = -3\sin(t)\underset{\sim}{i} + 4\cos(t)\underset{\sim}{j}" />,
-    reason: <>Differentiate each component separately. This is a <em>vector</em>: an arrow with a direction as well as a length.</>,
+    reason: <>Differentiate each component separately.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{v}\right|^2 = 9\sin^2(t) + 16\cos^2(t)" />,
-    reason: <>Speed is the <b>length</b> of that arrow, <Katex tex="\sqrt{(-3\sin t)^2+(4\cos t)^2}" />. Work with its square instead: the square root only grows as its input grows, so both are smallest at the same <Katex tex="t" />, and there is no root to carry around.</>,
+    reason: <>Speed is the <b>length</b> of the velocity, <Katex tex="\sqrt{(-3\sin t)^2+(4\cos t)^2}" />. Minimise its square instead: same <Katex tex="t" />, no square root.</>,
+    more: <>The square root only grows as its input grows, so <Katex tex="\left|\underset{\sim}{v}\right|" /> and <Katex tex="\left|\underset{\sim}{v}\right|^2" /> are smallest at the same <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="= 9\left(\sin^2 t+\cos^2 t\right) + 7\cos^2(t)" />,
-    reason: <>How would I know to do this? Two trig terms pulling in opposite directions are hard to minimise, but a <Katex tex="\sin^2" /> next to a <Katex tex="\cos^2" /> is a signal for <Katex tex="\sin^2 t+\cos^2 t=1" />. Split <Katex tex="16\cos^2 t" /> into <Katex tex="9\cos^2 t+7\cos^2 t" /> so the identity can absorb the <Katex tex="9" />s.</>,
+    reason: <>A <Katex tex="\sin^2" /> next to a <Katex tex="\cos^2" /> signals <Katex tex="\sin^2 t+\cos^2 t=1" />. Split <Katex tex="16\cos^2 t" /> into <Katex tex="9\cos^2 t+7\cos^2 t" /> so the identity absorbs the <Katex tex="9" />s.</>,
+    more: <>How would I know to do this? Two trig terms pulling in opposite directions (one grows as the other shrinks) are hard to minimise by eye. Combining them with the identity leaves a single term that varies.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{v}\right|^2 = 9 + 7\cos^2(t)" />,
@@ -46,15 +48,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{least when } \cos^2(t)=0" />,
-    reason: <><Katex tex="\cos^2(t)" /> is never negative, so the smallest it can be is <Katex tex="0" />. The minimum speed is then <Katex tex="\sqrt{9}=3" />. (The largest is <Katex tex="\sqrt{16}=4" />, when <Katex tex="\cos^2(t)=1" />.)</>,
+    reason: <><Katex tex="\cos^2(t)" /> is never negative, so its smallest value is <Katex tex="0" />. The minimum speed is then <Katex tex="\sqrt{9}=3" />.</>,
+    more: <>The largest speed is <Katex tex="\sqrt{16}=4" />, when <Katex tex="\cos^2(t)=1" />. Options <b>A</b> <Katex tex="(3)" /> and <b>E</b> <Katex tex="(9)" /> are the minimum speed and its square: values, not times.</>,
   },
   {
     working: <Katex display tex="\cos(t)=0 \implies t = \frac{\pi}{2},\ \frac{3\pi}{2},\ \dots" />,
-    reason: <>The motion repeats every <Katex tex="2\pi" />, so the minimum happens over and over. The question asks for the <b>first</b> with <Katex tex="t\ge0" />, the smallest of these.</>,
+    reason: <>The minimum recurs every time <Katex tex="\cos t=0" />. The question asks for the <b>first</b> time with <Katex tex="t\ge0" />, the smallest of these.</>,
   },
   {
     working: <Katex display tex="\boxed{t = \frac{\pi}{2}}" />,
-    reason: <>Matches option <b>B</b>. Option <b>D</b> <Katex tex="\left(\tfrac{3\pi}{2}\right)" />, chosen by <Katex tex="14\%" />, is the <em>second</em> such time. Options <b>A</b> <Katex tex="(3)" /> and <b>E</b> <Katex tex="(9)" /> are the minimum speed and its square: values, not times. Sensible: at <Katex tex="t=\tfrac{\pi}{2}" /> the particle is at <Katex tex="(0,4)" />, an end of the <em>long</em> axis, which is where this ellipse is traced most slowly.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Option <b>D</b> <Katex tex="\left(\tfrac{3\pi}{2}\right)" />, chosen by <Katex tex="14\%" />, is the <em>second</em> such time; the options include a later minimum to catch anyone who does not check which solution comes first. A sense check: at <Katex tex="t=\tfrac{\pi}{2}" /> the particle is at <Katex tex="(0,4)" />, an end of the <em>long</em> axis, which is where this ellipse is traced most slowly.</>,
   },
 ]
 
@@ -84,15 +88,7 @@ export default function SpecialistQ13_2018() {
             Velocity <Katex tex="\underset{\sim}{v}=\dot{\underset{\sim}{r}}" /> is a vector: at
             each moment it is an arrow pointing the way the particle is heading. Speed is the
             length of that arrow, <Katex tex="\left|\underset{\sim}{v}\right|" />, a single
-            non-negative number. Minimising{' '}
-            <Katex tex="\left|\underset{\sim}{v}\right|^2" /> instead gives the same{' '}
-            <Katex tex="t" /> and avoids differentiating a square root; here the square simplifies
-            so far that no differentiation is needed at all.
-          </p>
-          <p>
-            Note the word <em>first</em>. Periodic motion produces the minimum repeatedly,
-            and the options include a later one to catch anyone who solves without checking
-            which solution is smallest.
+            non-negative number.
           </p>
         </Background>
       }

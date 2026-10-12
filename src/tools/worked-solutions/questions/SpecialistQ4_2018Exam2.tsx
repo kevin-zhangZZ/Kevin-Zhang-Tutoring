@@ -78,7 +78,7 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="A: \ x = t+1 \implies t = x-1" />,
-    reason: <>A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> directly, so the parameter <Katex tex="t" /> has to be eliminated. Look for the component where <Katex tex="t" /> is easiest to make the subject: here <Katex tex="x=t+1" /> is linear.</>,
+    reason: <>A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> directly, so eliminate <Katex tex="t" />. The <Katex tex="i" />-component is linear, so make <Katex tex="t" /> the subject there.</>,
   },
   {
     working: <Katex display tex="y = t^2+2t = (x-1)^2+2(x-1) = x^2-1" />,
@@ -86,7 +86,7 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A: \ y = x^2-1, \ x\ge1}" />,
-    reason: <>Since <Katex tex="t\ge0" />, <Katex tex="x=t+1\ge1" />: yacht A only sails the part of the parabola that starts at <Katex tex="(1,\ 0)" />. The restriction is what part c. depends on.</>,
+    reason: <>Since <Katex tex="t\ge0" />, <Katex tex="x=t+1\ge1" />: yacht A only sails the part of the parabola starting at <Katex tex="(1,\ 0)" />.</>,
   },
   {
     working: <Katex display tex="B: \ x = t^2, \quad y = t^2+3 \implies y = x+3" />,
@@ -94,18 +94,20 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{B: \ y = x+3, \ x\ge0}" />,
-    reason: <>A straight line, but <Katex tex="x=t^2" /> is never negative, so B only sails the half-line starting at <Katex tex="(0,\ 3)" />. (The report&apos;s answer gives just the two equations.)</>,
+    reason: <>A straight line, but <Katex tex="x=t^2" /> is never negative, so B only sails the half-line starting at <Katex tex="(0,\ 3)" />.</>,
+    more: <>The report accepts just the two equations, but keep the restrictions: part c. uses them to reject a root.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Collision} \iff \underset{\sim}{r}_A(t) = \underset{\sim}{r}_B(t) \ \text{ for the same } t" />,
-    reason: <>This is the whole point: a collision needs both yachts at the same place <em>at the same time</em>. Paths crossing is not enough. So keep <Katex tex="t" /> in the working; the cartesian equations from part a. have thrown it away.</>,
+    reason: <>A collision needs both yachts at the same place <em>at the same time</em>, so keep <Katex tex="t" />: the cartesian equations from part a. have thrown it away.</>,
   },
   {
     working: <Katex display tex="\begin{aligned} j\text{-components: } t^2+2t &= t^2+3 \\ 2t &= 3 \implies t = \frac32 \end{aligned}" />,
-    reason: <>Two vectors are equal only if <em>both</em> components agree. Start with the easier equation: the <Katex tex="t^2" /> terms cancel, leaving a single candidate time. (Either component works; the report starts with the <Katex tex="i" />-components.)</>,
+    reason: <>Two vectors are equal only if <em>both</em> components agree. Start with the easier one: the <Katex tex="t^2" /> terms cancel, leaving a single candidate time.</>,
+    more: <>Either component works. The report starts with the <Katex tex="i" />-components instead; that version is under the conclusion below.</>,
   },
   {
     working: <Katex display tex="i\text{-components at } t=\tfrac32: \quad t+1 = \frac52, \qquad t^2 = \frac94" />,
@@ -113,18 +115,21 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac52 = \frac{10}{4} \ne \frac94" />,
-    reason: <>The <Katex tex="i" />-components disagree at the only time the <Katex tex="j" />-components agree. At <Katex tex="t=\tfrac32" /> the yachts are level north–south but <Katex tex="\tfrac14" /> km apart east–west.</>,
+    reason: <>The <Katex tex="i" />-components disagree at the only time the <Katex tex="j" />-components agree.</>,
+    more: <>At <Katex tex="t=\tfrac32" /> both yachts are <Katex tex="5.25" /> km north of the buoy, but A is at <Katex tex="x=2.5" /> and B at <Katex tex="x=2.25" />: level north–south, <Katex tex="\tfrac14" /> km apart east–west.</>,
   },
   {
     working: <Katex display tex="\boxed{\begin{gathered}\text{No } t\ge0 \text{ satisfies both, so} \\ \text{the yachts do not collide}\end{gathered}}" />,
-    reason: <>State the conclusion. (Equivalently, solving the <Katex tex="i" />-components gives <Katex tex="t^2-t-1=0" />, i.e. <Katex tex="t=\tfrac{1\pm\sqrt5}{2}" />, neither of which is <Katex tex="\tfrac32" />.)</>,
+    reason: <>No single <Katex tex="t" /> makes both components agree, so there is no collision. As required.</>,
+    more: <>The report&apos;s order works just as well: the <Katex tex="i" />-components give <Katex tex="t+1=t^2" />, i.e. <Katex tex="t^2-t-1=0" />, so <Katex tex="t=\tfrac{1\pm\sqrt5}{2}" />. Neither value is <Katex tex="\tfrac32" />, so the two components never agree at the same time.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x^2-1 = x+3 \implies x^2-x-4 = 0" />,
-    reason: <>Where the two <em>paths</em> meet, so time doesn&apos;t matter here: use the cartesian equations from part a. and set the <Katex tex="y" />&apos;s equal. Part b. has already shown the yachts are not there together.</>,
+    reason: <>This asks where the <em>paths</em> meet, so time doesn&apos;t matter: set the <Katex tex="y" />&apos;s from the cartesian equations in part a. equal.</>,
+    more: <>Part b. has already shown the yachts are not at this point together; here we only want the point both paths pass through.</>,
   },
   {
     working: <Katex display tex="x = \frac{1\pm\sqrt{17}}{2}" />,
@@ -132,7 +137,7 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{1-\sqrt{17}}{2} \approx -1.562 \ \text{ rejected}" />,
-    reason: <>Check each root against the paths&apos; domains. B&apos;s path needs <Katex tex="x=t^2\ge0" /> and A&apos;s needs <Katex tex="x=t+1\ge1" />; <Katex tex="x\approx-1.562" /> fails both, so it is on neither path. The report says missing <Katex tex="t\ge0" /> led to two points being given.</>,
+    reason: <>Check each root against the domains from part a.: A needs <Katex tex="x\ge1" />, B needs <Katex tex="x\ge0" />. This root fails both, so it is on neither path.</>,
   },
   {
     working: <Katex display tex="x = \frac{1+\sqrt{17}}{2} \approx 2.5616" />,
@@ -140,11 +145,11 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = x+3 = \frac{7+\sqrt{17}}{2} \approx 5.5616" />,
-    reason: <>Substitute into the simpler of the two equations.</>,
+    reason: <>Substitute into the simpler equation, <Katex tex="y=x+3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{(2.562,\ 5.562)}" />,
-    reason: <>Three decimal places, as prescribed. The report notes many otherwise correct responses were not expressed in this form.</>,
+    reason: <>Coordinates correct to three decimal places, as the question asks.</>,
   },
 ]
 
@@ -155,15 +160,17 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{v}_B = 2t\,\underset{\sim}{i} + 2t\,\underset{\sim}{j}" />,
-    reason: <>Speed is the <em>magnitude</em> of velocity. The report notes students comparing the velocity vectors themselves; two vectors pointing in different directions can&apos;t be compared with <Katex tex=">" />, but their lengths can.</>,
+    reason: <>Speed is the <em>magnitude</em> of velocity, so it is the lengths of these two vectors that get compared.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{v}_A\right|^2 = 1+(2t+2)^2 = 4t^2+8t+5" />,
-    reason: <>Comparing squared speeds avoids two square roots. That is legitimate because speeds are never negative, so <Katex tex="\left|\underset{\sim}{v}_A\right|>\left|\underset{\sim}{v}_B\right| \iff \left|\underset{\sim}{v}_A\right|^2>\left|\underset{\sim}{v}_B\right|^2" />.</>,
+    reason: <>Compare squared speeds to avoid two square roots. That is safe because speeds are never negative.</>,
+    more: <>For non-negative numbers, squaring keeps the order: <Katex tex="\left|\underset{\sim}{v}_A\right|>\left|\underset{\sim}{v}_B\right| \iff \left|\underset{\sim}{v}_A\right|^2>\left|\underset{\sim}{v}_B\right|^2" />.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{v}_B\right|^2 = (2t)^2+(2t)^2 = 8t^2" />,
-    reason: <>B starts from rest (speed <Katex tex="0" /> at <Katex tex="t=0" />) and its speed <Katex tex="\sqrt8\,t" /> grows steadily, while A starts at <Katex tex="\sqrt5" />. So A is ahead at first; the question is when B catches up.</>,
+    reason: <>The same for B.</>,
+    more: <>B starts from rest (speed <Katex tex="0" /> at <Katex tex="t=0" />) and its speed <Katex tex="\sqrt8\,t" /> grows steadily, while A starts at <Katex tex="\sqrt5" />. So A is faster at first; the question is when B catches up.</>,
   },
   {
     working: <Katex display tex="4t^2+8t+5 > 8t^2 \implies 4t^2-8t-5 < 0" />,
@@ -175,14 +182,15 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0 \le t < \frac52}" />,
-    reason: <>Intersect with the stated <Katex tex="t\ge0" />: the root <Katex tex="-\tfrac12" /> is before the race. The report notes some students ignored the domain of <Katex tex="t" /> and included negative values. So A is faster for the first two and a half hours, then B, which started from rest but keeps accelerating, overtakes it in speed.</>,
+    reason: <>Intersect with the given domain <Katex tex="t\ge0" />: the root <Katex tex="-\tfrac12" /> is before the race starts.</>,
+    more: <>A is faster for the first two and a half hours; after that B, which started from rest but keeps speeding up, is faster.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}_B-\underset{\sim}{r}_A = \left(t^2-t-1\right)\underset{\sim}{i} + \left(3-2t\right)\underset{\sim}{j}" />,
-    reason: <>Subtract component by component: this is the vector from A to B at time <Katex tex="t" />. It is the magnitude of this <em>difference</em> that measures how far apart they are. The report&apos;s common misconception was <Katex tex="\left|\underset{\sim}{r}_B\right|-\left|\underset{\sim}{r}_A\right|" />, the difference of their distances from the buoy.</>,
+    reason: <>Subtract component by component: this is the vector from A to B at time <Katex tex="t" />, and its length is the distance between the yachts.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{r}_B-\underset{\sim}{r}_A\right|^2 = \left(t^2-t-1\right)^2+(3-2t)^2" />,
@@ -194,19 +202,21 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Cas fn="solve">solve((t^2-t-1)^2+(3-2t)^2 &lt; 0.2^2, t)</Cas>,
-    reason: <>The distance falls to a minimum and rises again, so it is below <Katex tex="0.2" /> on one interval. CAS returns its two ends.</>,
+    reason: <>Solve the inequality on CAS. It returns a single interval, whose two ends are the times the gap crosses <Katex tex="0.2" /> km.</>,
   },
   {
     working: <Katex display tex="1.5288 < t < 1.5973" />,
-    reason: <>Between these times the distance dips to a minimum of about <Katex tex="0.174" /> km at <Katex tex="t\approx1.563" />. All of this is before <Katex tex="t=\tfrac52" />, so A is the faster yacht (part d.) and would take the penalty, which is why the question asks about A not altering course.</>,
+    reason: <>The times (in hours) when the yachts are within <Katex tex="0.2" /> km. Keep four decimal places so rounding doesn&apos;t affect the final answer.</>,
+    more: <>The closest approach is about <Katex tex="0.174" /> km, at <Katex tex="t\approx1.563" />. The whole window is before <Katex tex="t=\tfrac52" />, so by part d. A is the faster yacht and would take the time penalty.</>,
   },
   {
     working: <Katex display tex="(1.5973-1.5288)\times60 \approx 4.11" />,
-    reason: <>The question wants the <em>length</em> of that period, in minutes: multiply the duration in hours by <Katex tex="60" />. (The window itself runs from about <Katex tex="91.7" /> to <Katex tex="95.8" /> minutes after <Katex tex="t=0" />.) The report notes a number of answers were left in hours.</>,
+    reason: <>The question wants the <em>length</em> of that period in minutes: multiply the duration in hours by <Katex tex="60" />.</>,
+    more: <>The window itself runs from about <Katex tex="91.7" /> to <Katex tex="95.8" /> minutes after <Katex tex="t=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 4.1 \text{ minutes}}" />,
-    reason: <>One decimal place. Only <Katex tex="28\%" /> of students scored both marks, and the report says many did not attempt it.</>,
+    reason: <>Correct to one decimal place, as the question asks.</>,
   },
 ]
 
@@ -237,9 +247,10 @@ export default function SpecialistQ4_2018Exam2() {
       <PartCard letter="b" topic="Collision" marks={2} statement={<>Show that the two yachts will not collide if they follow these paths.</>} examinerReport={EXAM_B}>
         <Background>
           <p>
-            Crossing paths and colliding are different things. Two yachts collide only if
-            they are at the same point at the <em>same time</em>, so the test is whether one
-            value of <Katex tex="t" /> satisfies both component equations at once.
+            A cartesian equation describes a yacht&apos;s path: every point it ever visits, with
+            the times erased. Two paths crossing only means each yacht passes that point at{' '}
+            <em>some</em> time. A collision needs one value of <Katex tex="t" /> at which both
+            component equations hold at once.
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
@@ -322,9 +333,7 @@ export default function SpecialistQ4_2018Exam2() {
       <PartCard letter="e" topic="Time Within Distance" marks={2} statement={<>If yacht <Katex tex="A" /> does not alter its course, for what period of time will yacht <Katex tex="A" /> be within <Katex tex="0.2" /> km of yacht <Katex tex="B" />? Give your answer in <b>minutes</b>, correct to one decimal place.</>} examinerReport={EXAM_E}>
         <Background>
           <p>
-            The distance between two moving objects at time <Katex tex="t" /> is the length of the
-            vector joining them, <Katex tex="\left|\underset{\sim}{r}_B(t)-\underset{\sim}{r}_A(t)\right|" />:
-            subtract the position vectors first, then take the magnitude. That distance is a function
+            The distance between the yachts changes as they sail: it is a function
             of <Katex tex="t" />, and &ldquo;within <Katex tex="0.2" /> km&rdquo; picks out the times
             when it is less than <Katex tex="0.2" />. The &ldquo;period of time&rdquo; is the length of
             that interval.
@@ -339,8 +348,8 @@ export default function SpecialistQ4_2018Exam2() {
           source="Examiner's report"
           working={
             <>
-              <Katex display tex="\sqrt{t^4+\left(t^2+3\right)^2}-\sqrt{(t+1)^2+\left(t^2+2t\right)^2} < 0.2" />
-              <Katex display tex="\implies 1.233 < t < 3.900, \ \text{ i.e. } \approx 160 \text{ minutes}" />
+              <Katex display tex="\begin{aligned}&\sqrt{t^4+\left(t^2+3\right)^2}\\&\quad-\sqrt{(t+1)^2+\left(t^2+2t\right)^2} < 0.2\end{aligned}" />
+              <Katex display tex="\begin{aligned}&\implies 1.233 < t < 3.900,\\&\quad\text{ i.e. } \approx 160 \text{ minutes}\end{aligned}" />
             </>
           }
         >

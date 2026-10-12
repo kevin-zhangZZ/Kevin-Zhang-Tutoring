@@ -28,10 +28,8 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\sin(x+y) = \sin(x)\cos(y)+\cos(x)\sin(y)" />,
     reason: (
       <>
-        Why expand? As written, <Katex tex="x" /> and <Katex tex="y" /> are tangled inside the same sine, so
-        nothing can be separated. Every option is a separated equation, which tells you the denominator
-        must break into (function of <Katex tex="x" />) × (function of <Katex tex="y" />). The compound angle
-        formulas on the formula sheet are the tool that untangles them.
+        Every option is separated, so the denominator must split into (function of <Katex tex="x" />) ×
+        (function of <Katex tex="y" />). Expand with the compound angle formula to untangle it.
       </>
     ),
   },
@@ -44,24 +42,26 @@ const ROWS: WorkingRow[] = [
     reason: (
       <>
         Subtract: the <Katex tex="\sin(x)\cos(y)" /> terms cancel and the <Katex tex="\cos(x)\sin(y)" />{' '}
-        terms add. The mixed-up denominator is really a product, one factor in <Katex tex="x" /> and one in{' '}
-        <Katex tex="y" />. Take care with the sign here: a <Katex tex="+" /> between the two sines would give{' '}
+        terms add, leaving a product of an <Katex tex="x" />-factor and a <Katex tex="y" />-factor.
+      </>
+    ),
+    more: (
+      <>
+        Take care with the sign here: a <Katex tex="+" /> between the two sines would give{' '}
         <Katex tex="2\sin(x)\cos(y)" /> instead, which leads to option <b>B</b>.
       </>
     ),
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = \frac{2}{2\cos(x)\sin(y)} = \frac{1}{\cos(x)\sin(y)}" />,
-    reason: <>The <Katex tex="2" />s cancel.</>,
+    reason: <>Substitute this denominator into the differential equation; the <Katex tex="2" />s cancel.</>,
   },
   {
     working: <Katex display tex="\sin(y)\,\frac{dy}{dx} = \frac{1}{\cos(x)} = \sec(x)" />,
     reason: (
       <>
-        Separate: multiply both sides by <Katex tex="\sin(y)" /> so every <Katex tex="y" /> is on the left
-        with <Katex tex="\tfrac{dy}{dx}" />, and every <Katex tex="x" /> is on the right. Then integrate both
-        sides with respect to <Katex tex="x" />; the <Katex tex="\tfrac{dy}{dx}\,dx" /> on the left becomes{' '}
-        <Katex tex="dy" />.
+        Separate: multiply both sides by <Katex tex="\sin(y)" />, putting every <Katex tex="y" /> on the left
+        with <Katex tex="\tfrac{dy}{dx}" /> and every <Katex tex="x" /> on the right.
       </>
     ),
   },
@@ -69,12 +69,17 @@ const ROWS: WorkingRow[] = [
     working: <Katex display tex="\boxed{\int\sec(x)\,dx = \int\sin(y)\,dy}" />,
     reason: (
       <>
-        Matches option <b>D</b>. To test any option, read it backwards:{' '}
-        <Katex tex="\int f(x)\,dx=\int g(y)\,dy" /> means <Katex tex="\tfrac{dy}{dx}=\tfrac{f(x)}{g(y)}" />.
-        Option <b>C</b>, chosen by <Katex tex="12\%" />, gives <Katex tex="\cos(x)\sin(y)" />, the reciprocal
-        of the true rate. Option <b>E</b> gives <Katex tex="\tfrac{\sin(y)}{\cos(x)}" />, with{' '}
-        <Katex tex="\sin(y)" /> on top instead of underneath. Option <b>B</b> gives{' '}
-        <Katex tex="\tfrac{1}{\sin(x)\cos(y)}" />, from the sign slip above.
+        Integrate both sides with respect to <Katex tex="x" /> (the <Katex tex="\tfrac{dy}{dx}\,dx" /> becomes{' '}
+        <Katex tex="dy" />). Matches option <b>D</b>.
+      </>
+    ),
+    more: (
+      <>
+        Reading each option backwards (the Background rule in reverse) gives the <Katex tex="\tfrac{dy}{dx}" />{' '}
+        it solves. Option <b>C</b> gives <Katex tex="\cos(x)\sin(y)" /> (worked through below). Option <b>E</b> gives{' '}
+        <Katex tex="\tfrac{\sin(y)}{\cos(x)}" />, with <Katex tex="\sin(y)" /> on top instead of underneath.
+        Option <b>B</b> gives <Katex tex="\tfrac{1}{\sin(x)\cos(y)}" />, from the sign slip above. Option{' '}
+        <b>A</b> gives <Katex tex="\tfrac{1}{2\sin(y)}" />, which has lost the <Katex tex="\cos(x)" /> altogether.
       </>
     ),
   },
@@ -138,9 +143,9 @@ export default function SpecialistQ9_2018() {
             <Katex tex="\cos(x)\sin(y)" /> has ended up on top of <Katex tex="\tfrac{dy}{dx}" /> instead of
             underneath. It is exactly what you get by separating{' '}
             <Katex tex="\tfrac{dx}{dy}=\tfrac{1}{\cos(x)\sin(y)}" />, with <Katex tex="dx" /> and{' '}
-            <Katex tex="dy" /> swapped. Catch it by reading your answer backwards: from{' '}
-            <Katex tex="\int f(x)\,dx=\int g(y)\,dy" />, differentiating gives{' '}
-            <Katex tex="g(y)\tfrac{dy}{dx}=f(x)" />, and that must match the original equation. The
+            <Katex tex="dy" /> swapped. Catch it by differentiating your separated form: it must give back{' '}
+            <Katex tex="\sin(y)\tfrac{dy}{dx}=\sec(x)" />, and C gives{' '}
+            <Katex tex="\operatorname{cosec}(y)\tfrac{dy}{dx}=\cos(x)" />. The
             interactive draws C&apos;s curve cutting across the slope field.
           </WrongMethod>
         </>
