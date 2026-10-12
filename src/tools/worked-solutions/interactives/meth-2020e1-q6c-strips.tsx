@@ -59,9 +59,8 @@ export default function Strips() {
     notice = (
       <Notice tone="warn">
         In a single <M>{'\\int_0^1 \\left(f(x) - f^{-1}(x)\\right)dx'}</M>, every strip to the right of{' '}
-        <M>x = \tfrac12</M> has height <M>{'f - f^{-1} < 0'}</M>, so it is <b>subtracted</b>. Those strips don&apos;t
-        add area; they eat away the left-hand region. Sweep to <M>x = 1</M>: the single integral ends near{' '}
-        <M>-0.195</M>, a negative &ldquo;area&rdquo;, while the true total is about <M>0.362</M>.
+        <M>x = \tfrac12</M> is <b>subtracted</b> (red). Sweep to <M>x = 1</M>: the running total ends near{' '}
+        <M>-0.195</M> instead of <M>0.362</M>.
       </Notice>
     )
   }

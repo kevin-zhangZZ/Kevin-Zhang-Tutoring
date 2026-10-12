@@ -16,6 +16,8 @@
 // here is the airtight one: continuity on [−1, 1] keeps ax + b on one branch, and at x = 0 the
 // angle is b ∈ (0, 1), inside (−π/2, π/2). sympy confirms every other pair of solutions breaks a
 // condition — including −5π/4 with 4π/3 (a = 31π/24, b = π/24), which only continuity rules out.
+// Rebalanced 12 Oct 2026 (Concise/Detailed): reasons trimmed to what a student needs to follow each
+// line; report commentary, picture checks and pointers to the Common Mistake boxes moved to `more`.
 // The report's sample working has two slips — "Using (1, 1)" for (−1, −1), and "√3 = a + b" for
 // √3 = tan(a + b) — but its final a = 7π/24, b = π/24 agrees; the sample working isn't copied.
 
@@ -44,11 +46,13 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="(-1,-1): \quad \tan(-a+b) = -1" />,
-    reason: <>Two unknowns need two equations, and the graph gives exactly two labelled points. Substitute each into <Katex tex="y=\tan(ax+b)" />, starting with <Katex tex="x=-1" />, <Katex tex="y=-1" />. The report notes most students got this far but many did not proceed further: the next step is to undo the tan.</>,
+    reason: <>Two unknowns need two equations, so substitute each labelled point into <Katex tex="y=\tan(ax+b)" />, starting with <Katex tex="x=-1" />, <Katex tex="y=-1" />.</>,
+    more: <>The report notes that most students got this far but many did not proceed further. Next, undo the tan.</>,
   },
   {
     working: <Katex display tex="-a+b = -\tfrac\pi4" />,
-    reason: <><Katex tex="\tan u=-1" /> has a solution on every branch (<Katex tex="\ldots,-\tfrac{5\pi}4,-\tfrac\pi4,\tfrac{3\pi}4,\ldots" />), so which one is <Katex tex="-a+b" />? The graph is continuous on <Katex tex="[-1,1]" />, so as <Katex tex="x" /> runs from <Katex tex="-1" /> to <Katex tex="1" /> the angle <Katex tex="ax+b" /> never reaches an asymptote: it stays on one branch. At <Katex tex="x=0" /> that angle is <Katex tex="b" />, and <Katex tex="0<b<1<\tfrac\pi2" />, so the branch is the one through the origin, <Katex tex="-\tfrac\pi2<ax+b<\tfrac\pi2" />. On it, <Katex tex="\tan u=-1" /> only at <Katex tex="-\tfrac\pi4" />. Using <Katex tex="\tfrac{3\pi}4" /> here is the report&apos;s common error (the diagrams below show why it fails).</>,
+    reason: <>The graph is unbroken on <Katex tex="[-1,1]" />, so <Katex tex="ax+b" /> stays on one branch of tan. At <Katex tex="x=0" /> it equals <Katex tex="b" />, and <Katex tex="0<b<1<\tfrac\pi2" />, so it is the branch between <Katex tex="-\tfrac\pi2" /> and <Katex tex="\tfrac\pi2" />, where tan equals <Katex tex="-1" /> only at <Katex tex="-\tfrac\pi4" />.</>,
+    more: <><Katex tex="\tan u=-1" /> has a solution on every branch (<Katex tex="\ldots,-\tfrac{5\pi}4,-\tfrac\pi4,\tfrac{3\pi}4,\ldots" />), so the question is which one <Katex tex="-a+b" /> is. If <Katex tex="ax+b" /> crossed from one branch to the next between <Katex tex="x=-1" /> and <Katex tex="x=1" />, it would pass an asymptote and the graph would break, which the question rules out. Using <Katex tex="\tfrac{3\pi}4" /> here is the report&apos;s common error: the first Common Mistake box below follows it through, and the first interactive shows the angle staying on one branch as <Katex tex="x" /> runs from <Katex tex="-1" /> to <Katex tex="1" />.</>,
   },
   {
     working: <Katex display tex="\left(1,\sqrt3\right): \quad \tan(a+b) = \sqrt3" />,
@@ -56,7 +60,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a+b = \tfrac\pi3" />,
-    reason: <>Same branch, so the principal value again: <Katex tex="\tan\tfrac\pi3=\sqrt3" /> (in the half-equilateral triangle with sides <Katex tex="1" />, <Katex tex="\sqrt3" />, <Katex tex="2" />, the side <Katex tex="\sqrt3" /> is opposite the <Katex tex="\tfrac\pi3" /> angle). Using <Katex tex="\tfrac\pi6" /> here is the report&apos;s other common error, since <Katex tex="\tan\tfrac\pi6=\tfrac1{\sqrt3}" />. Quick check: <Katex tex="\sqrt3>1=\tan\tfrac\pi4" />, and tan increases along a branch, so the angle must be bigger than <Katex tex="\tfrac\pi4" />.</>,
+    reason: <>Same branch, so again the solution between <Katex tex="-\tfrac\pi2" /> and <Katex tex="\tfrac\pi2" />: <Katex tex="\tan\tfrac\pi3=\sqrt3" /> (not <Katex tex="\tfrac\pi6" />, since <Katex tex="\tan\tfrac\pi6=\tfrac1{\sqrt3}" />).</>,
+    more: <>Using <Katex tex="\tfrac\pi6" /> here is the report&apos;s other common error. The second Common Mistake box below shows how to remember which is which, and two quick checks that catch the slip.</>,
   },
   {
     working: <Katex display tex="\text{adding: } 2b = \tfrac\pi3-\tfrac\pi4 = \tfrac{4\pi-3\pi}{12}" />,
@@ -64,7 +69,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{b = \tfrac\pi{24}}" />,
-    reason: <><Katex tex="\tfrac\pi{24}\approx0.13" />, so <Katex tex="0<b<1" /> ✓. It matches the picture too: the <Katex tex="y" />-intercept is <Katex tex="\tan\tfrac\pi{24}\approx0.13" />, and the printed curve crosses the <Katex tex="y" />-axis just above <Katex tex="O" />.</>,
+    reason: <><Katex tex="\tfrac\pi{24}\approx0.13" />, so <Katex tex="0<b<1" /> ✓.</>,
+    more: <>It matches the picture too: the <Katex tex="y" />-intercept is <Katex tex="\tan\tfrac\pi{24}\approx0.13" />, and the printed curve crosses the <Katex tex="y" />-axis just above <Katex tex="O" />.</>,
   },
   {
     working: <Katex display tex="a = b+\tfrac\pi4 = \tfrac\pi{24}+\tfrac{6\pi}{24}" />,
@@ -72,7 +78,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = \tfrac{7\pi}{24}}" />,
-    reason: <>Positive ✓. Check against the picture: the asymptotes are where the angle reaches <Katex tex="\pm\tfrac\pi2" />, <Katex tex="\tfrac{7\pi}{24}x+\tfrac\pi{24}=\pm\tfrac\pi2" />, at <Katex tex="x=\tfrac{11}7\approx1.57" /> and <Katex tex="x=-\tfrac{13}7\approx-1.86" />. Both are outside <Katex tex="[-1,1]" />, so the graph is continuous there ✓, and the left asymptote is further from <Katex tex="O" /> than the right, as printed. Substituting back: <Katex tex="\tan\left(-\tfrac{7\pi}{24}+\tfrac\pi{24}\right)=\tan\left(-\tfrac\pi4\right)=-1" /> ✓ and <Katex tex="\tan\tfrac{8\pi}{24}=\tan\tfrac\pi3=\sqrt3" /> ✓.</>,
+    reason: <>Positive, so <Katex tex="a>0" /> ✓.</>,
+    more: <>Substituting back: <Katex tex="\tan\left(-\tfrac{7\pi}{24}+\tfrac\pi{24}\right)=\tan\left(-\tfrac\pi4\right)=-1" /> ✓ and <Katex tex="\tan\tfrac{8\pi}{24}=\tan\tfrac\pi3=\sqrt3" /> ✓. Check against the picture: the asymptotes are where the angle reaches <Katex tex="\pm\tfrac\pi2" />, <Katex tex="\tfrac{7\pi}{24}x+\tfrac\pi{24}=\pm\tfrac\pi2" />, at <Katex tex="x=\tfrac{11}7\approx1.57" /> and <Katex tex="x=-\tfrac{13}7\approx-1.86" />. Both are outside <Katex tex="[-1,1]" />, so the graph is continuous there ✓, and the left asymptote is further from <Katex tex="O" /> than the right, as printed.</>,
   },
 ]
 

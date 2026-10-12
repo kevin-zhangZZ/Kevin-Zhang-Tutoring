@@ -6,6 +6,8 @@
 // The part d.ii working uses the gap g(x) − x, whose stationary point is the report's "gradient of
 // g equals the gradient of y = x"; itute does the same via g′(x) = 1. The stem box before d.i now
 // carries the paper's "d." label (Sept 2026 review).
+// Oct 2026 Concise/Detailed rebalance: reasons trimmed to the step itself; checks, report commentary
+// and diagram pointers moved to each row's `more`. All answers re-verified with sympy.
 //
 // Interactive diagrams (§15): part a. drags a point along f to watch the tangent's gradient
 // log_e(x) + 1 go through 0 at Q, with a toggle for the multiply-the-derivatives slip
@@ -88,43 +90,48 @@ const EXAM_DII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 1\cdot\log_e(x)+x\cdot\frac1x" />,
-    reason: <><Katex tex="f(x)=x\log_e(x)" /> is a product of two functions of <Katex tex="x" />, so use the product rule <Katex tex="(uv)'=u'v+uv'" /> with <Katex tex="u=x" /> and <Katex tex="v=\log_e(x)" />. Each factor is differentiated in turn while the other is left alone; the two derivatives are never simply multiplied.</>,
-    more: <>Drag P in the diagram below to see why.</>,
+    reason: <><Katex tex="f(x)=x\log_e(x)" /> is a product, so use the product rule <Katex tex="(uv)'=u'v+uv'" /> with <Katex tex="u=x" /> and <Katex tex="v=\log_e(x)" />.</>,
+    more: <>Each factor is differentiated in turn while the other is left alone, and the two products are added. The report names incorrect differentiation of <Katex tex="f" /> as one of the most common errors. Drag P in the diagram below to watch the tangent's gradient <Katex tex="\log_e(x)+1" /> pass through 0 at Q.</>,
   },
   {
     working: <Katex display tex="f'(x) = \log_e(x)+1 = 0" />,
-    reason: <>Q is a turning point, so its tangent is horizontal: gradient 0. The question already tells you Q is a minimum, so there is no need to test its nature.</>,
+    reason: <>Q is a turning point, so its gradient is 0. The question already says Q is a minimum, so there is no need to test its nature.</>,
   },
   {
     working: <Katex display tex="\log_e(x) = -1 \implies x = e^{-1} = \tfrac1e" />,
-    reason: <>Rewrite in exponential form: <Katex tex="\log_e(x)=c \iff x=e^c" />. Don't be put off by the <Katex tex="-1" />: a log <em>can</em> be negative; it is the input <Katex tex="x" /> that must be positive, and <Katex tex="e^{-1}>0" />. So <Katex tex="a=\tfrac1e" />.</>,
+    reason: <>Rewrite in exponential form: <Katex tex="\log_e(x)=c \iff x=e^c" />. So <Katex tex="a=\tfrac1e" />.</>,
+    more: <>Don't be put off by the <Katex tex="-1" />: a log <em>can</em> be negative; it is the input <Katex tex="x" /> that must be positive, and <Katex tex="e^{-1}>0" />.</>,
   },
   {
     working: <Katex display tex="f\!\left(\tfrac1e\right) = \tfrac1e\log_e\!\left(e^{-1}\right) = \tfrac1e\times(-1)" />,
-    reason: <>The <Katex tex="y" />-coordinate. A log undoes an exponential, <Katex tex="\log_e\!\left(e^{c}\right)=c" />, so <Katex tex="\log_e\!\left(e^{-1}\right)=-1" />. This is the evaluation the report names as one of the most common errors.</>,
+    reason: <>Substitute back for the <Katex tex="y" />-coordinate. A log undoes an exponential: <Katex tex="\log_e\!\left(e^{c}\right)=c" />, so <Katex tex="\log_e\!\left(e^{-1}\right)=-1" />.</>,
+    more: <>This is the evaluation the report names as the other most common error.</>,
   },
   {
     working: <Katex display tex="\boxed{Q = \left(\tfrac1e,\,-\tfrac1e\right)}" />,
-    reason: <>Check against the printed graph: <Katex tex="x\approx0.37" /> is just right of <Katex tex="O" /> and <Katex tex="y\approx-0.37" /> is below the axis, where Q is drawn.</>,
+    reason: <>Both coordinates of Q.</>,
+    more: <>Check against the printed graph: <Katex tex="x\approx0.37" /> is just right of <Katex tex="O" /> and <Katex tex="y\approx-0.37" /> is below the axis, where Q is drawn.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{d}{dx}\!\left(x^2\log_e(x)\right) = 2x\log_e(x)+x" />,
-    reason: <>The given result. The question says <em>using</em> it, so the mark is for turning this derivative fact into an integral fact.</>,
+    reason: <>The given result. The question says to use it, so the mark is for turning this derivative fact into an integral fact.</>,
   },
   {
     working: <Katex display tex="\int\bigl(2x\log_e(x)+x\bigr)dx = x^2\log_e(x)+c" />,
-    reason: <>Read the derivative backwards: if <Katex tex="\tfrac{d}{dx}(A)=B" />, then <Katex tex="\int B\,dx=A+c" />. This is integration by recognition, and it is always the first move in a question like this.</>,
+    reason: <>Read the derivative backwards: if <Katex tex="\tfrac{d}{dx}(A)=B" />, then <Katex tex="\int B\,dx=A+c" /> (integration by recognition).</>,
+    more: <>This is always the first move when a question hands you a derivative and asks for an antiderivative.</>,
   },
   {
     working: <Katex display tex="2\int x\log_e(x)\,dx + \int x\,dx = x^2\log_e(x)+c" />,
-    reason: <>Split the integral. The one we want, <Katex tex="\int x\log_e(x)\,dx" />, is sitting inside the left-hand side, doubled, next to an easy one.</>,
+    reason: <>Split the integral. The one we want, <Katex tex="\int x\log_e(x)\,dx" />, appears doubled, next to an easy one.</>,
   },
   {
     working: <Katex display tex="2\int x\log_e(x)\,dx = x^2\log_e(x)-\frac{x^2}{2}+c" />,
-    reason: <>Move the easy integral across: <Katex tex="\int x\,dx=\tfrac{x^2}2" /> (its constant is absorbed into <Katex tex="c" />). This step is where the <Katex tex="-\tfrac{x^2}{4}" /> in the answer comes from.</>,
+    reason: <>Move the easy integral across: <Katex tex="\int x\,dx=\tfrac{x^2}2" /> (its constant is absorbed into <Katex tex="c" />).</>,
+    more: <>This step is where the <Katex tex="-\tfrac{x^2}{4}" /> in the answer comes from.</>,
   },
   {
     working: <Katex display tex="\int x\log_e(x)\,dx = \frac{x^2\log_e(x)}{2}-\frac{x^2}{4}+\frac c2" />,
@@ -132,26 +139,30 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\int x\log_e(x)\,dx = \frac{x^2\log_e(x)}{2}-\frac{x^2}{4}}" />,
-    reason: <>The question asks for <em>an</em> antiderivative, so any value of the constant will do: take <Katex tex="c=0" />. (Differentiating the given answer and showing it returns <Katex tex="x\log_e(x)" /> is the report's alternative. Either way every line has to follow from the one before: the report notes many students made up their working because the answer was given.) As required.</>,
+    reason: <>The question asks for <em>an</em> antiderivative, so any constant will do: take <Katex tex="c=0" />. As required.</>,
+    more: <>The report's alternative is to differentiate the given answer and show it returns <Katex tex="x\log_e(x)" />. Either way every line has to follow from the one before: the report notes many students made up their working because the answer was given.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="x\log_e(x) = 0 \implies x = 1, \text{ so } b = 1" />,
-    reason: <><Katex tex="b" /> is where the curve meets the axis, so solve <Katex tex="f(x)=0" />. A product is 0 when one factor is: <Katex tex="x=0" /> is not in the domain <Katex tex="(0,\infty)" /> (the open circle at <Katex tex="O" />), so <Katex tex="\log_e(x)=0" />, giving <Katex tex="x=e^0=1" />.</>,
+    reason: <><Katex tex="b" /> is where <Katex tex="f(x)=0" />, so <Katex tex="x=0" /> or <Katex tex="\log_e(x)=0" />. But <Katex tex="x=0" /> is not in the domain <Katex tex="(0,\infty)" />, so <Katex tex="x=e^0=1" />.</>,
+    more: <>A product is 0 when one of its factors is 0. The open circle at <Katex tex="O" /> on the graph shows that <Katex tex="x=0" /> is excluded.</>,
   },
   {
     working: <Katex display tex="\tfrac1e \le x \le 1 \implies f(x) \le 0" />,
-    reason: <>Between Q and <Katex tex="b" /> the curve is below the axis (<Katex tex="x>0" /> but <Katex tex="\log_e(x)\le0" />). Every strip of the region has a negative height <Katex tex="f(x)" />, so the integral will come out negative, and the area is its negative. The report calls forgetting this a common oversight.</>,
+    reason: <>Here <Katex tex="x>0" /> but <Katex tex="\log_e(x)\le0" />, so the region is below the axis: the integral is negative, and the area is its negative.</>,
+    more: <>The report calls forgetting that the region is below the axis a common oversight.</>,
   },
   {
     working: <Katex display tex="A = -\int_{1/e}^{1}x\log_e(x)\,dx" />,
-    reason: <>The terminals are actual numbers: <Katex tex="a=\tfrac1e" /> from part a. and <Katex tex="b=1" /> from the line above. The report notes many students used a generic <Katex tex="a" /> and <Katex tex="b" />, which can't be evaluated.</>,
+    reason: <>The terminals are actual numbers: <Katex tex="a=\tfrac1e" /> from part a and <Katex tex="b=1" /> from the first line.</>,
+    more: <>The report notes many students used a generic <Katex tex="a" /> and <Katex tex="b" />, which can't be evaluated.</>,
   },
   {
     working: <Katex display tex="= -\left[\frac{x^2\log_e(x)}{2}-\frac{x^2}{4}\right]_{1/e}^{1}" />,
-    reason: <>Using the antiderivative from part b. (that is what part b. was for).</>,
+    reason: <>Using the antiderivative from part b (that is what part b was for).</>,
   },
   {
     working: <Katex display tex="x=1: \quad 0-\tfrac14 = -\tfrac14" />,
@@ -167,18 +178,21 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{A = \frac{e^2-3}{4e^2}}" />,
-    reason: <>Over a common denominator <Katex tex="4e^2" />, as VCAA writes it. About <Katex tex="0.148" /> (positive, as an area must be), plausible for a sliver <Katex tex="1-\tfrac1e\approx0.63" /> wide and at most <Katex tex="\tfrac1e\approx0.37" /> deep.</>,
+    reason: <>Over a common denominator <Katex tex="4e^2" />, as VCAA writes it. About <Katex tex="0.148" />: positive, as an area must be.</>,
+    more: <>That size is plausible for a sliver <Katex tex="1-\tfrac1e\approx0.63" /> wide and at most <Katex tex="\tfrac1e\approx0.37" /> deep.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = x\log_e(x)+k \implies g'(x) = \log_e(x)+1" />,
-    reason: <><Katex tex="g" /> is <Katex tex="f" /> moved up <Katex tex="k" /> units. Moving a graph up doesn't change how steep it is anywhere, so <Katex tex="g'=f'" />, found in part a. (the <Katex tex="k" /> differentiates to 0).</>,
+    reason: <><Katex tex="g" /> is <Katex tex="f" /> moved up <Katex tex="k" /> units; the <Katex tex="k" /> differentiates to 0, so <Katex tex="g'=f'" /> from part a.</>,
+    more: <>Moving a graph up doesn't change how steep it is anywhere.</>,
   },
   {
     working: <Katex display tex="g'(x) = 2 \implies \log_e(x) = 1 \implies x = e" />,
-    reason: <>A tangent has the same gradient as the curve where it touches. <Katex tex="y=2x" /> has gradient 2, so the point of contact is where <Katex tex="g'(x)=2" />. This finds <em>where</em> the line touches, but not <Katex tex="k" />, which vanished when we differentiated. The report notes students often stopped here and gave <Katex tex="x=e" />.</>,
+    reason: <>A tangent has the curve's gradient where it touches, and <Katex tex="y=2x" /> has gradient 2. This finds <em>where</em> it touches, not <Katex tex="k" />.</>,
+    more: <>The report notes students often stopped here and gave <Katex tex="x=e" />.</>,
   },
   {
     working: <Katex display tex="g(e) = e\log_e(e)+k = e+k" />,
@@ -190,35 +204,40 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="e+k = 2e \implies \boxed{k = e}" />,
-    reason: <>The curve and the line meet at <Katex tex="x=e" />. Check: the tangent at <Katex tex="(e,2e)" /> is <Katex tex="y-2e=2(x-e)" />, which is <Katex tex="y=2x" />. Here <Katex tex="k" /> and the <Katex tex="x" />-value happen to both be <Katex tex="e" />, but they answer different questions; the question asks for <Katex tex="k" />.</>,
+    reason: <>Equal heights at <Katex tex="x=e" />. The question asks for <Katex tex="k" />, not the <Katex tex="x" />-value (both happen to be <Katex tex="e" />).</>,
+    more: <>Check: <Katex tex="x=e" /> is in the domain <Katex tex="\left(\tfrac1e,\infty\right)" />, and the tangent at <Katex tex="(e,2e)" /> is <Katex tex="y-2e=2(x-e)" />, which is <Katex tex="y=2x" />.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="g'(x) = \log_e(x)+1 > 0 \text{ for } x > \tfrac1e" />,
-    reason: <>The domain <Katex tex="(a,\infty)" /> starts at the minimum, so <Katex tex="g" /> is increasing on all of it. That makes <Katex tex="g" /> one-to-one, which is why <Katex tex="g^{-1}" /> exists at all.</>,
+    reason: <>The domain <Katex tex="(a,\infty)" /> starts at the minimum, so <Katex tex="g" /> is increasing on all of it (hence one-to-one, so <Katex tex="g^{-1}" /> exists).</>,
   },
   {
-    working: <Katex display tex="g \text{ increasing} \implies g \text{ and } g^{-1} \text{ can only meet on } y = x" />,
-    reason: <>So there is no need for the rule of <Katex tex="g^{-1}" /> (which can't be written down with Methods functions anyway): compare <Katex tex="g" /> with the line <Katex tex="y=x" /> instead.</>,
-    more: <>See the Background above for why.</>,
+    working: <Katex display tex="\begin{aligned}&g \text{ increasing} \implies \\ &g \text{ and } g^{-1} \text{ can only meet on } y = x\end{aligned}" />,
+    reason: <><Katex tex="g^{-1}" /> is <Katex tex="g" /> reflected in <Katex tex="y=x" />, and an increasing function meets its inverse only on that line. So compare <Katex tex="g" /> with <Katex tex="y=x" />.</>,
+    more: <>The Background above proves the &ldquo;only on <Katex tex="y=x" />&rdquo; fact. This avoids needing the rule of <Katex tex="g^{-1}" />.</>,
   },
   {
     working: <Katex display tex="\text{Let } d(x) = g(x)-x = x\log_e(x)-x+k" />,
-    reason: <>The vertical gap between the curve and the line. No intersection means <Katex tex="d(x)" /> is never 0. Far to the right <Katex tex="d(x)=x\bigl(\log_e(x)-1\bigr)+k" /> is large and positive, so &ldquo;never 0&rdquo; means &ldquo;positive everywhere&rdquo;: we need the smallest gap to be positive.</>,
+    reason: <>The gap between curve and line. It is large and positive far to the right, so no intersection means its smallest value is positive.</>,
+    more: <>No intersection means <Katex tex="d(x)" /> is never 0. For large <Katex tex="x" />, <Katex tex="d(x)=x\bigl(\log_e(x)-1\bigr)+k" /> is large and positive, so &ldquo;never 0&rdquo; means &ldquo;positive everywhere&rdquo;.</>,
   },
   {
-    working: <Katex display tex="d'(x) = \log_e(x)+1-1 = \log_e(x) = 0 \implies x = 1" />,
-    reason: <><Katex tex="d'(x)=g'(x)-1" />, so the gap is stationary where <Katex tex="g'(x)=1" />: where the curve runs parallel to <Katex tex="y=x" />. This is the report's &ldquo;point where the gradient of <Katex tex="g(x)" /> was equal to the gradient of <Katex tex="y=x" />&rdquo;.</>,
+    working: <Katex display tex="\begin{aligned}d'(x) &= \log_e(x)+1-1 = \log_e(x) \\ d'(x) &= 0 \implies x = 1\end{aligned}" />,
+    reason: <><Katex tex="d'(x)=g'(x)-1" />, so the gap is stationary where <Katex tex="g'(x)=1" />: where the curve runs parallel to <Katex tex="y=x" />.</>,
+    more: <>This is the report's &ldquo;point where the gradient of <Katex tex="g(x)" /> was equal to the gradient of <Katex tex="y=x" />&rdquo;.</>,
   },
   {
     working: <Katex display tex="d(1) = 1\cdot0-1+k = k-1, \quad\text{a minimum}" />,
-    reason: <><Katex tex="d'(x)=\log_e(x)" /> is negative for <Katex tex="x<1" /> and positive for <Katex tex="x>1" />, so the gap shrinks and then grows: <Katex tex="k-1" /> is the smallest gap anywhere. (The lifted curve passes through <Katex tex="(1,k)" />.)</>,
+    reason: <><Katex tex="d'(x)=\log_e(x)" /> is negative for <Katex tex="x<1" /> and positive for <Katex tex="x>1" />, so <Katex tex="k-1" /> is the smallest gap anywhere.</>,
+    more: <>The gap shrinks and then grows, so this is a minimum of <Katex tex="d" />. (The lifted curve passes through <Katex tex="(1,k)" />.)</>,
   },
   {
     working: <Katex display tex="k-1 > 0 \implies \boxed{k > 1}" />,
-    reason: <>Strictly greater: at <Katex tex="k=1" /> the smallest gap is 0 and the curves touch at <Katex tex="(1,1)" />, which is still an intersection. Another way to see it: <Katex tex="g(x)=x \iff k=x-x\log_e(x)" />, and the right-hand side has maximum value 1 (at <Katex tex="x=1" />), so there is no solution exactly when <Katex tex="k>1" />. Only 3% of students scored both marks.</>,
+    reason: <>Strictly greater: at <Katex tex="k=1" /> the curves touch at <Katex tex="(1,1)" />, which is still an intersection.</>,
+    more: <>Another way to see it: <Katex tex="g(x)=x \iff k=x-x\log_e(x)" />, and the right-hand side has maximum value 1 (at <Katex tex="x=1" />), so there is no solution exactly when <Katex tex="k>1" />. Only 3% of students scored both marks.</>,
   },
 ]
 

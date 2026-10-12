@@ -65,15 +65,15 @@ function RegionsOverlay() {
   return (
     <div className="bg-white border border-gray-200 dark:border-gray-800 rounded-xl p-3 w-fit">
       <div className="relative w-full max-w-[380px]">
-        <img loading="lazy" decoding="async" src={axesSrc} alt="VCAA's axes with f and f⁻¹: region A shaded between the curves from x = 0 to x = 1/2, and region B shaded between them from x = 1/2 to the dashed line x = 1" className="w-full block" />
+        <img loading="lazy" decoding="async" src={axesSrc} alt="VCAA's axes with f and f⁻¹: region A₁ shaded between the curves from x = 0 to x = 1/2, and region A₂ shaded between them from x = 1/2 to the dashed line x = 1" className="w-full block" />
         <svg viewBox="0 0 1110 1060" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <path d={between(0, 0.5, f, fInv)} fill="#0ea5e9" fillOpacity={0.3} />
           <path d={between(0.5, 1, fInv, f)} fill={ORANGE} fillOpacity={0.3} />
           <path d={functionToPath(fInv, 0, 1, toX, toY)} fill="none" stroke={ORANGE} strokeWidth={6} />
           <line x1={toX(1)} y1={toY(-0.45)} x2={toX(1)} y2={toY(2.45)} stroke="#334155" strokeWidth={5} strokeDasharray="18 12" />
           <text x={toX(1) + 18} y={toY(1.5)} fontSize={44} fill="#334155" stroke="white" strokeWidth={10} paintOrder="stroke">x = 1</text>
-          <text x={toX(0.26)} y={toY(0.16)} fontSize={44} fontWeight={700} fill="#0369a1" textAnchor="middle">A</text>
-          <text x={toX(0.8)} y={toY(0.95)} fontSize={48} fontWeight={700} fill="#c2410c" textAnchor="middle">B</text>
+          <text x={toX(0.26)} y={toY(0.16)} fontSize={44} fontWeight={700} fill="#0369a1" textAnchor="middle">A<tspan dy={12} fontSize={30}>1</tspan></text>
+          <text x={toX(0.8)} y={toY(0.95)} fontSize={48} fontWeight={700} fill="#c2410c" textAnchor="middle">A<tspan dy={12} fontSize={32}>2</tspan></text>
         </svg>
       </div>
     </div>
@@ -133,10 +133,12 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="y = 2x^2" />,
     reason: <>Squaring both sides.</>,
+    more: <>Squaring is safe here: both sides are non-negative, because the new <Katex tex="x" /> is an output of <Katex tex="f" />, so <Katex tex="x\ge0" />. That is also why the inverse is only the right-hand half of the parabola <Katex tex="y=2x^2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = 2x^2}" />,
-    reason: <>Write it as <Katex tex="f^{-1}(x)=\ldots" /> — the report notes many students left their answer as <Katex tex="y=2x^2" />, which says <Katex tex="f(x)" /> was the same as <Katex tex="f^{-1}(x)" />.</>,
+    reason: <>Name the answer <Katex tex="f^{-1}(x)=\ldots" />, not <Katex tex="y=\ldots" />.</>,
+    more: <>Throughout the working <Katex tex="y" /> stood for <Katex tex="f(x)" />, so leaving the answer as <Katex tex="y=2x^2" /> says <Katex tex="f(x)=2x^2" /> — the report notes many students did this, in contradiction to their prior working.</>,
   },
   {
     working: <Katex display tex="f(0) = 0, \qquad f(2) = \frac{\sqrt2}{\sqrt2} = 1" />,
@@ -144,7 +146,8 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{domain } f^{-1} = \text{range } f = [0,1]}" />,
-    reason: <>The question asks for the domain as well as the rule — the report notes some students did not state it, or expressed it incorrectly.</>,
+    reason: <>An inverse swaps inputs and outputs, so its domain is the range of <Katex tex="f" />.</>,
+    more: <>The report notes some students did not state the domain, or expressed it incorrectly. <Katex tex="[0,1]" /> is closed at both ends because <Katex tex="f" />'s domain <Katex tex="[0,2]" /> includes both endpoints. Writing <Katex tex="f^{-1}:[0,1]\to R,\ f^{-1}(x)=2x^2" /> gives domain and rule together.</>,
   },
 ]
 
@@ -159,23 +162,24 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(x) = f^{-1}(x) \iff f(x) = x \implies \frac{\sqrt x}{\sqrt2} = x" />,
-    reason: <>A point where the two graphs meet is on both a curve and its own mirror image. For an <em>increasing</em> function like this one, that can only happen on the mirror line <Katex tex="y=x" /> itself, so solve <Katex tex="f(x)=x" /> — a quadratic after squaring — rather than <Katex tex="\tfrac{\sqrt x}{\sqrt2}=2x^2" />. Careful: a <em>decreasing</em> function can meet its inverse off the line, e.g. <Katex tex="y=-x^3" /> meets its inverse at <Katex tex="(1,-1)" />.</>,
-    more: <>Drag the point in the diagram below to see why an increasing function can only meet its inverse on <Katex tex="y=x" />.</>,
+    reason: <>For an <em>increasing</em> function, <Katex tex="f" /> and <Katex tex="f^{-1}" /> can only meet on the mirror line <Katex tex="y=x" />, so solve the easier equation <Katex tex="f(x)=x" />.</>,
+    more: <>Why: a meeting point lies on a curve <em>and</em> on its mirror image in <Katex tex="y=x" />. For an increasing function that only happens on the mirror line itself. Solving <Katex tex="f(x)=x" /> gives a quadratic after squaring; solving <Katex tex="\tfrac{\sqrt x}{\sqrt2}=2x^2" /> directly gives a quartic. Careful: a <em>decreasing</em> function can meet its inverse off the line, e.g. <Katex tex="y=-x^3" /> meets its inverse at <Katex tex="(1,-1)" />. Drag the point in the diagram below to see the reflection happen.</>,
   },
   {
     working: <Katex display tex="\frac{x}{2} = x^2 \implies x\left(x-\tfrac12\right) = 0 \implies x = 0,\ \tfrac12" />,
-    reason: <>Squaring, then factorising.</>,
+    reason: <>Squaring, then factorising. Both roots satisfy <Katex tex="\tfrac{\sqrt x}{\sqrt2}=x" />, and the points lie on <Katex tex="y=x" />, so they are <Katex tex="(0,0)" /> and <Katex tex="\left(\tfrac12,\tfrac12\right)" />.</>,
   },
   {
     working: <InverseOverlay />,
-    reason: <>The answer drawn on VCAA's axes, with the endpoint and intersections labelled: the endpoint <Katex tex="(1,2)" /> and the intersections <Katex tex="(0,0)" /> and <Katex tex="\left(\tfrac12,\tfrac12\right)" />. (<Katex tex="(0,0)" /> is already labelled on the printed axes). The curve must stay curved right up to <Katex tex="(1,2)" /> and stop there — the report notes some graphs became vertical as <Katex tex="x" /> approached <Katex tex="1" />, or continued beyond the end point.</>,
+    reason: <>Label the endpoint <Katex tex="(1,2)" /> and the intersections <Katex tex="(0,0)" /> and <Katex tex="\left(\tfrac12,\tfrac12\right)" />. The curve stays curved up to <Katex tex="(1,2)" /> and stops there.</>,
+    more: <>(<Katex tex="(0,0)" /> is already labelled on the printed axes.) The report notes some graphs continued beyond the end point, and some lacked curvature and became vertical as <Katex tex="x" /> approached 1. <Katex tex="f^{-1}(x)=2x^2" /> is a parabola: its gradient at <Katex tex="x=1" /> is <Katex tex="4" />, steep but not vertical, and it leaves the origin flat (horizontal), mirroring <Katex tex="f" />'s vertical start. The report also notes the intersection was often plotted in the wrong position: <Katex tex="\left(\tfrac12,\tfrac12\right)" /> sits exactly on the first gridline crossing along <Katex tex="y=x" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <RegionsOverlay />,
-    reason: <>The curves swap over at <Katex tex="x=\tfrac12" />, so the two regions need separate integrals — and in each one the upper curve is different.</>,
+    reason: <>The curves swap over at <Katex tex="x=\tfrac12" />, so the two regions need separate integrals — and in each one the upper curve is different. Call their areas <Katex tex="A_1" /> (left) and <Katex tex="A_2" /> (right).</>,
   },
   {
     working: <Katex display tex="A_1 = \int_0^{1/2}\left(\frac{\sqrt x}{\sqrt2}-2x^2\right)dx" />,
@@ -186,8 +190,8 @@ const ROWS_C: WorkingRow[] = [
     reason: <>Right of it they swap, and the region closes at the line <Katex tex="x=1" />.</>,
   },
   {
-    working: <Katex display tex="\int\frac{x^{1/2}}{\sqrt2}\,dx = \frac{2x^{3/2}}{3\sqrt2} = \frac{\sqrt2\,x^{3/2}}{3}, \qquad \int2x^2\,dx = \frac{2x^3}{3}" />,
-    reason: <>The two antiderivatives, each used twice.</>,
+    working: <Katex display tex="\begin{aligned} \int\frac{x^{1/2}}{\sqrt2}\,dx &= \frac{2x^{3/2}}{3\sqrt2} = \frac{\sqrt2\,x^{3/2}}{3} \\ \int2x^2\,dx &= \frac{2x^3}{3} \end{aligned}" />,
+    reason: <>The two antiderivatives, each used twice: raise the power by 1 and divide by the new power, then <Katex tex="\tfrac{2}{3\sqrt2}=\tfrac{\sqrt2}{3}" />.</>,
   },
   {
     working: <Katex display tex="A_1 = \left[\frac{\sqrt2\,x^{3/2}}{3}-\frac{2x^3}{3}\right]_0^{1/2} = \frac{\sqrt2}{3}\cdot\frac{1}{2\sqrt2}-\frac{2}{3}\cdot\frac18" />,
@@ -198,8 +202,8 @@ const ROWS_C: WorkingRow[] = [
     reason: <>Evaluating.</>,
   },
   {
-    working: <Katex display tex="A_2 = \left[\frac{2x^3}{3}-\frac{\sqrt2\,x^{3/2}}{3}\right]_{1/2}^{1} = \left(\tfrac23-\tfrac{\sqrt2}3\right)-\left(\tfrac1{12}-\tfrac16\right)" />,
-    reason: <>Same antiderivatives, opposite order.</>,
+    working: <Katex display tex="\begin{aligned} A_2 &= \left[\frac{2x^3}{3}-\frac{\sqrt2\,x^{3/2}}{3}\right]_{1/2}^{1} \\ &= \left(\tfrac23-\tfrac{\sqrt2}3\right)-\left(\tfrac1{12}-\tfrac16\right) \end{aligned}" />,
+    reason: <>Same antiderivatives, opposite order, so the bracket at <Katex tex="\tfrac12" /> is <Katex tex="A_1" />'s bracket at <Katex tex="\tfrac12" /> with its sign flipped.</>,
   },
   {
     working: <Katex display tex="A_2 = \tfrac23-\tfrac{\sqrt2}3+\tfrac1{12} = \tfrac34-\tfrac{\sqrt2}{3}" />,
@@ -211,7 +215,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{5-2\sqrt2}{6}}" />,
-    reason: <>The required form <Katex tex="\tfrac{a-b\sqrt b}{6}" /> with <Katex tex="a=5" />, <Katex tex="b=2" />. Numerically <Katex tex="0.362" />, which matches the two small shaded pieces. The report notes errors in evaluating the definite integrals and in answering in the specified format were common.</>,
+    reason: <>Over a common denominator, <Katex tex="\tfrac56-\tfrac{2\sqrt2}{6}" />: the required form <Katex tex="\tfrac{a-b\sqrt b}{6}" /> with <Katex tex="a=5" />, <Katex tex="b=2" /> (since <Katex tex="2\sqrt2" /> is <Katex tex="b\sqrt b" /> when <Katex tex="b=2" />).</>,
+    more: <>Check: numerically <Katex tex="A_1\approx0.083" /> and <Katex tex="A_2\approx0.279" />, total <Katex tex="0.362" />, which fits the two small shaded pieces. The report notes errors in evaluating the definite integrals and in answering in the specified format were common, and that students who set out their working carefully, without doing several steps in one line, generally scored well — hence one step per row here.</>,
   },
 ]
 
@@ -299,7 +304,7 @@ export default function MethodsQ6_2020Exam1() {
         >
           The answer is negative, which no area can be — that is the giveaway. Right of{' '}
           <Katex tex="x=\tfrac12" /> the curve <Katex tex="f^{-1}" /> is on top, so there{' '}
-          <Katex tex="f-f^{-1}<0" /> and the integral <em>subtracts</em> region B instead of adding it:
+          <Katex tex="f-f^{-1}<0" /> and the integral <em>subtracts</em> region <Katex tex="A_2" /> instead of adding it:
           you get <Katex tex="A_1-A_2" />, not <Katex tex="A_1+A_2" />. Whenever the curves cross inside the
           interval, split at the crossing and take top minus bottom in each piece.
         </WrongMethod>

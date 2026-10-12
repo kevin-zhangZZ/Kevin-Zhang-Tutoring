@@ -36,9 +36,7 @@ export default function Mirror() {
     notice = (
       <Notice tone="good">
         <b>P and P′ are the same point.</b> Here <M>f(a) = a</M>, so P sits on the line <M>y = x</M> and is its own
-        reflection: it is on <M>f</M> and on <M>f^{'{-1}'}</M> at once. For an increasing function that is the only way the
-        two curves can meet. So to find where they cross, solve <M>f(x) = x</M> (a quadratic once you square) rather than{' '}
-        <M>f(x) = f^{'{-1}'}(x)</M> (a quartic).
+        reflection: it is on <M>f</M> and on <M>f^{'{-1}'}</M> at once. This is where the two curves meet.
       </Notice>
     )
   } else if (atEnd) {

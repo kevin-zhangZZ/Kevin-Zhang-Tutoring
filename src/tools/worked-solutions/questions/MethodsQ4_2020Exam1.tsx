@@ -35,20 +35,21 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="2\log_2(x+5)-\log_2(x+9) = 1" />,
-    reason: <>The plan: use the log laws to squeeze the left side into a <em>single</em> logarithm, undo that logarithm, and solve the equation that's left. Before any algebra, though, write down where the equation makes sense.</>,
+    reason: <>Plan: use the log laws to combine the left side into a <em>single</em> logarithm, undo it, then solve. First, write down where the equation is defined.</>,
   },
   {
     working: <Katex display tex="x+5>0 \text{ and } x+9>0 \implies x>-5" />,
-    reason: <>Every log needs a positive input: <Katex tex="\log_2 A" /> asks &ldquo;what power of 2 gives <Katex tex="A" />?&rdquo;, and every power of 2 is positive, so <Katex tex="A\le0" /> has no answer. Both arguments must be positive at once, and any <Katex tex="x" /> bigger than <Katex tex="-5" /> is automatically bigger than <Katex tex="-9" />. Writing this down first is what lets you reject a solution later.</>,
+    reason: <>A log only exists for a positive input, since every power of 2 is positive. Any <Katex tex="x>-5" /> is also above <Katex tex="-9" />, so both conditions hold.</>,
+    more: <>Writing the domain down first is what lets you reject a solution at the end, with a reason.</>,
   },
   {
     working: <Katex display tex="\log_2\!\left((x+5)^2\right)-\log_2(x+9) = 1" />,
-    reason: <>Power law, <Katex tex="n\log_2 a=\log_2 a^n" />: the 2 in front becomes a power of the whole bracket. It is the product law in disguise, <Katex tex="\log_2(x+5)+\log_2(x+5)=\log_2\!\left((x+5)(x+5)\right)" />. The fine print: the law needs <Katex tex="{x+5>0}" />. This new line also makes sense when <Katex tex="x+5" /> is <em>negative</em>, because squaring makes it positive, and that is exactly where a false solution will sneak in.</>,
-    more: <>See the diagram below.</>,
+    reason: <>Power law, <Katex tex="n\log_2 a=\log_2 a^n" />: the 2 in front becomes a power of the whole bracket.</>,
+    more: <>It is the product law in disguise, <Katex tex="\log_2(x+5)+\log_2(x+5)=\log_2\!\left((x+5)(x+5)\right)" />. The fine print: the law needs <Katex tex="{x+5>0}" />, but this new line also has values for <Katex tex="-9<x<-5" />, where <Katex tex="x+5" /> is <em>negative</em> and squaring makes it positive. That is exactly where a false solution will sneak in; the interactive diagram below shows the extra branch.</>,
   },
   {
     working: <Katex display tex="\log_2\!\left(\frac{(x+5)^2}{x+9}\right) = 1" />,
-    reason: <>Quotient law, <Katex tex="\log_2 a-\log_2 b=\log_2\tfrac ab" />: subtracting logs divides the insides. Now the whole left side is one logarithm, which is what you need before you can undo it.</>,
+    reason: <>Quotient law, <Katex tex="\log_2 a-\log_2 b=\log_2\tfrac ab" />: subtracting logs divides the insides. Now the left side is one logarithm, ready to undo.</>,
   },
   {
     working: <Katex display tex="\frac{(x+5)^2}{x+9} = 2^1 = 2" />,
@@ -60,7 +61,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2+10x+25 = 2x+18" />,
-    reason: <>Expanding: <Katex tex="(x+5)^2=x^2+10x+25" />, not <Katex tex="x^2+25" /> (the middle term <Katex tex="2\times5x" /> is the one that goes missing). The report's general comments observe that students who did several manipulations in one line often confused themselves or made arithmetic errors, and that this was particularly evident in this question: one step per line.</>,
+    reason: <>Expanding: <Katex tex="(x+5)^2=x^2+10x+25" />, not <Katex tex="x^2+25" />.</>,
+    more: <>The middle term <Katex tex="2\times5x" /> is the one that goes missing. The report's advice to students observes that students who did several manipulations in one line often confused themselves or made arithmetic errors, and that this was particularly evident in this question: one step per line.</>,
   },
   {
     working: <Katex display tex="x^2+8x+7 = 0 \implies (x+7)(x+1) = 0" />,
@@ -68,7 +70,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = -7 \quad\text{or}\quad x = -1" />,
-    reason: <>Two candidates. The quadratic came from the rearranged equation, which makes sense for more values of <Katex tex="x" /> than the one in the question, so test each against <Katex tex="{x>-5}" />.</>,
+    reason: <>Two candidates. The quadratic came from the rearranged equation, not the printed one, so test each against the domain <Katex tex="{x>-5}" />.</>,
   },
   {
     working: (
@@ -77,7 +79,8 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\log_2(-7+5)=\log_2(-2) \text{ is undefined}" />
       </>
     ),
-    reason: <><Katex tex="-7" /> is not greater than <Katex tex="-5" />: the printed equation would need <Katex tex="\log_2(-2)" />, and no power of 2 is negative. Careful: <Katex tex="x=-7" /> <em>does</em> satisfy the rearranged lines, <Katex tex="\tfrac{(-7+5)^2}{-7+9}=\tfrac42=2" />, because squaring hid the negative. So check in the equation as printed, and write the reason when you reject. The report notes that those who solved the quadratic correctly did not always check the validity of their answers, and so failed to reject <Katex tex="x=-7" />.</>,
+    reason: <><Katex tex="-7" /> is not greater than <Katex tex="-5" />: the printed equation would need <Katex tex="\log_2(-2)" />, which has no value. Write this reason when you reject.</>,
+    more: <><Katex tex="x=-7" /> <em>does</em> satisfy the rearranged lines; the first Common Mistake box below shows how it slips through. The report notes that those who solved the quadratic correctly did not always check the validity of their answers, and so failed to reject <Katex tex="x=-7" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x = -1}" />,
@@ -130,8 +133,7 @@ export default function MethodsQ4_2020Exam1() {
         <Katex tex="x=-7" />, but the printed equation doesn&apos;t: its first term is{' '}
         <Katex tex="\log_2(-2)" />. A negative inside a log isn&apos;t rescued by a square that only
         appears later. In the diagram above, <Katex tex="x=-7" /> is on the extra orange branch the
-        power law created. Test every root against the domain <Katex tex="{x>-5}" />, written down
-        before you start.
+        power law created. Test every root against the domain <Katex tex="{x>-5}" />.
       </WrongMethod>
       <WrongMethod
         title={<>Subtract the insides: log₂a − log₂b = <span className="whitespace-nowrap">log₂(a − b)</span></>}

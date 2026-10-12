@@ -55,16 +55,18 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{Bi}\!\left(4,\tfrac35\right)" />,
-    reason: <><Katex tex="X" /> is the number of the four people with the gene. It is binomial because there is a fixed number of trials (four people), each one either has the gene or doesn&apos;t, the probability is <Katex tex="\tfrac35" /> every time, and the question tells you the people are independent. Define it even in a technology-free exam: the report notes most students clearly specified the distribution with <Katex tex="n=4" /> and <Katex tex="p=\tfrac35" />.</>,
+    reason: <><Katex tex="X" /> counts how many of the four people have the gene: four independent trials, each with the same probability <Katex tex="\tfrac35" />, so <Katex tex="X" /> is binomial.</>,
+    more: <>Each person either has the gene or doesn&apos;t, and the question itself says the people are independent, so all the binomial conditions hold. Define the distribution even in a technology-free exam: the report notes most students clearly specified it with <Katex tex="n=4" /> and <Katex tex="p=\tfrac35" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = \Pr(X=3)+\Pr(X=4)" />,
-    reason: <>With only four people, &ldquo;three or more&rdquo; can only mean 3 or 4. Writing the values down first is what stops you finding <Katex tex="\Pr(X=3)" /> only, which the report lists as a common error. (Two terms is also less work than <Katex tex="1-\Pr(X\le2)" />, which needs three.)</>,
+    reason: <>With only four people, &ldquo;three or more&rdquo; can only mean <Katex tex="X=3" /> or <Katex tex="X=4" />.</>,
+    more: <>Two terms is less work than <Katex tex="1-\Pr(X\le2)" />, which needs three.</>,
   },
   {
     working: <Katex display tex="\Pr(X=3) = \binom43\left(\tfrac35\right)^3\left(\tfrac25\right)^1" />,
-    reason: <>One order, say the first three with the gene and the fourth without, has probability <Katex tex="\left(\tfrac35\right)^3\left(\tfrac25\right)" /> because the people are independent. The person without the gene can be any of the four, so there are <Katex tex="\binom43=4" /> orders, all with that same probability.</>,
-    more: <>They are the four orange paths in the tree below.</>,
+    reason: <>The binomial formula from the formula sheet. Each order of three with and one without has probability <Katex tex="\left(\tfrac35\right)^3\left(\tfrac25\right)" />, and <Katex tex="\binom43=4" /> counts the orders.</>,
+    more: <>For example, the first three with the gene and the fourth without has probability <Katex tex="\tfrac35\times\tfrac35\times\tfrac35\times\tfrac25" />, multiplying because the people are independent. The four orders are the four orange paths in the tree below.</>,
   },
   {
     working: <Katex display tex="= 4\times\tfrac{27}{125}\times\tfrac25 = \tfrac{216}{625}" />,
@@ -72,31 +74,36 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X=4) = \binom44\left(\tfrac35\right)^4\left(\tfrac25\right)^0 = \tfrac{81}{625}" />,
-    reason: <>Only one way for all four to have it: <Katex tex="\binom44=1" /> and <Katex tex="\left(\tfrac25\right)^0=1" />. The report lists arithmetic errors in evaluation among the common errors, so work each term out on its own line.</>,
+    reason: <>Only one way for all four to have it: <Katex tex="\binom44=1" /> and <Katex tex="\left(\tfrac25\right)^0=1" />, leaving <Katex tex="\tfrac{3^4}{5^4}" />.</>,
+    more: <>The report lists arithmetic errors in evaluation among the common errors, so work each term out on its own line before adding.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X\ge3) = \tfrac{216}{625}+\tfrac{81}{625} = \tfrac{297}{625}}" />,
-    reason: <><Katex tex="216+81=297" />, and <Katex tex="297=3^3\times11" /> shares no factor with <Katex tex="625=5^4" />, so it doesn&apos;t simplify. Check: <Katex tex="\tfrac{297}{625}\approx0.475" />. On average <Katex tex="4\times\tfrac35=2.4" /> of the four have the gene, so three or more happening a little under half the time is plausible.</>,
+    reason: <><Katex tex="297=3^3\times11" /> shares no factor with <Katex tex="625=5^4" />, so this doesn&apos;t simplify.</>,
+    more: <>Check: <Katex tex="\tfrac{297}{625}\approx0.475" />. On average <Katex tex="4\times\tfrac35=2.4" /> of the four have the gene, so three or more happening a little under half the time is plausible.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X=2\mid X\ge1) = \frac{\Pr(X=2\cap X\ge1)}{\Pr(X\ge1)}" />,
-    reason: <>&ldquo;Given that at least one has the gene&rdquo; means you are told <Katex tex="X\ge1" /> happened, so this is a conditional probability: <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />, from the formula sheet. Quoting it is not enough: the report says you need to give evaluations of <Katex tex="\Pr(X=2)" /> and <Katex tex="\Pr(X\ge1)" />.</>,
+    reason: <>&ldquo;Given that at least one has the gene&rdquo; makes this conditional: <Katex tex="\Pr(A\mid B)=\tfrac{\Pr(A\cap B)}{\Pr(B)}" />, from the formula sheet.</>,
+    more: <>Quoting the formula is not enough: the report says you need to give evaluations of <Katex tex="\Pr(X=2)" /> and <Katex tex="\Pr(X\ge1)" />, which the next rows do.</>,
   },
   {
     working: <Katex display tex="\begin{gathered}X=2 \implies X\ge1\\ \therefore\ \Pr(X=2\cap X\ge1) = \Pr(X=2)\end{gathered}" />,
-    reason: <>&ldquo;Both&rdquo; means exactly two have the gene <em>and</em> at least one has it. If exactly two have it, then certainly at least one does, so the intersection is just <Katex tex="X=2" />: the event sits inside the condition.</>,
+    reason: <>If exactly two have the gene, then certainly at least one does, so the intersection is just <Katex tex="X=2" />.</>,
+    more: <>The intersection means exactly two have the gene <em>and</em> at least one has it. The event &ldquo;exactly two&rdquo; sits entirely inside the condition, so the &ldquo;and&rdquo; adds nothing.</>,
   },
   {
     working: <Katex display tex="\Pr(X=2) = \binom42\left(\tfrac35\right)^2\left(\tfrac25\right)^2 = \frac{6\times3^2\times2^2}{5^4}" />,
-    reason: <>Look at the required form before calculating. <Katex tex="\tfrac{a^3}{b^4-c^4}" /> is built from powers, so keep <Katex tex="3^2" />, <Katex tex="2^2" /> and <Katex tex="5^4" /> as powers instead of multiplying out (that road leads to <Katex tex="\tfrac{72}{203}" />). <Katex tex="\binom42=6" />: the number of ways to choose which two of the four have the gene.</>,
-    more: <>See the Common Mistake below.</>,
+    reason: <>The binomial formula; <Katex tex="\binom42=6" /> chooses which two have the gene. Keep <Katex tex="3^2" />, <Katex tex="2^2" /> and <Katex tex="5^4" /> as powers, because the required form <Katex tex="\tfrac{a^3}{b^4-c^4}" /> is built from powers.</>,
+    more: <>Look at the required form before calculating anything: multiplying out hides the powers (see the Common Mistake below).</>,
   },
   {
-    working: <Katex display tex="\Pr(X\ge1) = 1-\Pr(X=0) = 1-\left(\tfrac25\right)^4 = \frac{5^4-2^4}{5^4}" />,
-    reason: <>&ldquo;At least one&rdquo; is <Katex tex="X=1,2,3" /> or <Katex tex="4" />: four terms. Its complement, &ldquo;nobody has the gene&rdquo;, is one term. Writing <Katex tex="1" /> as <Katex tex="\tfrac{5^4}{5^4}" /> for the common denominator produces <Katex tex="5^4-2^4" />, which is already the <Katex tex="b^4-c^4" /> of the required form.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(X\ge1) &= 1-\Pr(X=0) = 1-\left(\tfrac25\right)^4\\ &= \frac{5^4-2^4}{5^4}\end{aligned}" />,
+    reason: <>Use the complement, &ldquo;nobody has the gene&rdquo;. Writing <Katex tex="1" /> as <Katex tex="\tfrac{5^4}{5^4}" /> gives <Katex tex="5^4-2^4" />, the <Katex tex="b^4-c^4" /> of the required form.</>,
+    more: <>&ldquo;At least one&rdquo; is <Katex tex="X=1,2,3" /> or <Katex tex="4" />: four binomial terms. Its complement, <Katex tex="X=0" />, is a single term, <Katex tex="\left(\tfrac25\right)^4" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X=2\mid X\ge1) = \frac{6\times3^2\times2^2}{5^4}\div\frac{5^4-2^4}{5^4}" />,
@@ -108,12 +115,12 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="3^2\times2^2 = (3\times2)^2 = 6^2, \qquad 6\times6^2 = 6^3" />,
-    reason: <>The numerator has to become a single cube. Powers with the same index multiply into one power, so <Katex tex="3^2\times2^2=6^2" />, and the lone <Katex tex="6" /> from <Katex tex="\binom42" /> makes it <Katex tex="6^3" />.</>,
+    reason: <>The numerator has to become a single cube. Powers with the same index multiply into one power, so <Katex tex="3^2\times2^2=6^2" />, and the <Katex tex="6" /> from <Katex tex="\binom42" /> makes it <Katex tex="6^3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X=2\mid X\ge1) = \frac{6^3}{5^4-2^4}}" />,
-    reason: <>The required form, with <Katex tex="a=6" />, <Katex tex="b=5" />, <Katex tex="c=2" /> (the question asks for the form, so there is no need to list <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> separately). The report notes many students did not present their answer in the required form. Check: <Katex tex="\tfrac{216}{609}\approx0.355" />, a little more than <Katex tex="\Pr(X=2)=\tfrac{216}{625}\approx0.346" />. That makes sense: being told at least one has the gene rules out only the unlikely &ldquo;nobody&rdquo; case (<Katex tex="\tfrac{16}{625}\approx0.026" />), so it nudges the answer up slightly.</>,
-    more: <>The diagram below shows why.</>,
+    reason: <>The required form, with <Katex tex="a=6" />, <Katex tex="b=5" />, <Katex tex="c=2" />. The question asks for the form, so there is no need to list <Katex tex="a" />, <Katex tex="b" /> and <Katex tex="c" /> separately.</>,
+    more: <>Check: <Katex tex="\tfrac{216}{609}\approx0.355" />, a little more than <Katex tex="\Pr(X=2)=\tfrac{216}{625}\approx0.346" />. That makes sense: being told at least one has the gene rules out only the unlikely &ldquo;nobody&rdquo; case (<Katex tex="\tfrac{16}{625}\approx0.026" />), so it nudges the answer up slightly. The diagram below shows why.</>,
   },
 ]
 

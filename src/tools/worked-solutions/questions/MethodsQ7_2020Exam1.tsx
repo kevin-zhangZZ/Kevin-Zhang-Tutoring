@@ -99,53 +99,59 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f(1) = 1^2+3(1)+5 = 9" />,
-    reason: <>If <Katex tex="P(1,0)" /> were on the graph, the curve's height at <Katex tex="x=1" /> would be <Katex tex="0" />, the <Katex tex="y" />-coordinate of <Katex tex="P" />. So substitute <Katex tex="P" />'s <Katex tex="x" />-coordinate and compare.</>,
+    reason: <>If <Katex tex="P(1,0)" /> were on the graph, the curve's height at <Katex tex="x=1" /> would be <Katex tex="0" />, <Katex tex="P" />'s <Katex tex="y" />-coordinate. So substitute <Katex tex="x=1" /> and compare.</>,
   },
   {
     working: <Katex display tex="f(1) = 9 \ne 0" />,
-    reason: <>At <Katex tex="x=1" /> the curve is <Katex tex="9" /> units up, but <Katex tex="P" /> is on the <Katex tex="x" />-axis. This comparison is the argument: the report notes that students who simply stated <Katex tex="f(1)=9" /> without explaining the relevance of this were not awarded the mark.</>,
+    reason: <>At <Katex tex="x=1" /> the curve is <Katex tex="9" /> units up, but <Katex tex="P" /> is on the <Katex tex="x" />-axis. Write this comparison: stating <Katex tex="f(1)=9" /> alone did not earn the mark.</>,
+    more: <>This is a &lsquo;show that&rsquo; question, so the mark is for the argument, not the number. The report notes that students who simply stated <Katex tex="f(1)=9" /> without explaining the relevance of this were not awarded the mark.</>,
   },
   {
     working: <Katex display tex="\boxed{P(1,0) \text{ is not on the graph of } y=f(x)}" />,
-    reason: <>Another valid route: the discriminant is <Katex tex="3^2-4(1)(5)=-11<0" />, so the parabola never meets the <Katex tex="x" />-axis, and <Katex tex="P" /> is on the <Katex tex="x" />-axis. That route also needs its last sentence: the report notes some students found the discriminant to be negative but did not relate this to the question. As required.</>,
+    reason: <>As required.</>,
+    more: <>Another valid route: the discriminant is <Katex tex="3^2-4(1)(5)=-11<0" />, so the parabola never meets the <Katex tex="x" />-axis, and <Katex tex="P" /> is on the <Katex tex="x" />-axis. That route also needs its last sentence: the report notes some students found the discriminant to be negative but did not relate this to the question.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="P(1,0), \qquad Q\bigl(a,f(a)\bigr) = \left(a,\,a^2+3a+5\right)" />,
-    reason: <>The two points the line joins. Writing <Katex tex="f(a)" /> out as <Katex tex="a^2+3a+5" /> is what makes the answer &ldquo;in terms of <Katex tex="a" />&rdquo;; the report notes many students wrote down an expression for gradient but went no further.</>,
+    reason: <>The two points the line joins. Write <Katex tex="f(a)" /> out as <Katex tex="a^2+3a+5" />: that is what makes the answer &ldquo;in terms of <Katex tex="a" />&rdquo;.</>,
+    more: <>The report notes many students wrote down an expression for gradient but went no further.</>,
   },
   {
     working: <Katex display tex="m_{PQ} = \frac{f(a)-0}{a-1}" />,
-    reason: <>Rise over run, <Katex tex="\tfrac{y_2-y_1}{x_2-x_1}" />. Whichever point you subtract on top, subtract the same point underneath: <Katex tex="\tfrac{0-f(a)}{1-a}" /> is the same fraction, but mixing the orders flips the sign.</>,
+    reason: <>Rise over run, <Katex tex="\tfrac{y_2-y_1}{x_2-x_1}" />, subtracting <Katex tex="P" />'s coordinates from <Katex tex="Q" />'s on top and underneath.</>,
+    more: <>Whichever point you subtract on top, subtract the same point underneath: <Katex tex="\tfrac{0-f(a)}{1-a}" /> is the same fraction, but mixing the orders flips the sign.</>,
   },
   {
     working: <Katex display tex="\boxed{m_{PQ} = \frac{a^2+3a+5}{a-1}}" />,
-    reason: <>Stop here: nothing cancels. You can only cancel a factor of the <em>whole</em> numerator and the <em>whole</em> denominator, and <Katex tex="a-1" /> is not a factor of <Katex tex="a^2+3a+5" />: substituting <Katex tex="a=1" /> gives <Katex tex="9" />, not <Katex tex="0" /> (that is part a. again). The report notes some students cancelled <Katex tex="a" />, or made errors with negative coefficients.</>,
+    reason: <>Stop here: nothing cancels, because <Katex tex="a-1" /> is not a factor of <Katex tex="a^2+3a+5" /> (at <Katex tex="a=1" /> it is <Katex tex="9" />, not <Katex tex="0" />).</>,
+    more: <>You can only cancel a factor of the <em>whole</em> numerator and the <em>whole</em> denominator; checking <Katex tex="a=1" /> is part a. again. The report notes some students cancelled <Katex tex="a" />, or made errors with negative coefficients.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2+3x+5 \implies f'(x) = 2x+3" />,
-    reason: <>The slope of the tangent at a point is the gradient of the curve there, which is exactly what the derivative gives. Differentiate term by term.</>,
+    reason: <>The slope of the tangent at a point is the derivative there. Differentiate term by term.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(a) = 2a+3}" />,
-    reason: <>Substitute <Katex tex="x=a" />, since <Katex tex="Q" /> is at <Katex tex="x=a" />. The question asks only for the slope; the report notes some students incorrectly assumed it required the equation of the tangent at <Katex tex="x=a" />. This is a different line from b.i.: the tangent only touches the curve at <Katex tex="Q" />, while <Katex tex="PQ" /> runs from <Katex tex="Q" /> down to <Katex tex="P" />. Usually the two gradients differ; part b.iii. asks when they don't.</>,
+    reason: <>Substitute <Katex tex="x=a" />, since <Katex tex="Q" /> is at <Katex tex="x=a" />. Only the slope is asked for, not the tangent's equation.</>,
+    more: <>The report notes some students incorrectly assumed the question required the equation of the tangent at <Katex tex="x=a" />. This is a different line from b.i.: the tangent only touches the curve at <Katex tex="Q" />, while <Katex tex="PQ" /> runs from <Katex tex="Q" /> down to <Katex tex="P" />. Usually the two gradients differ; part b.iii. asks when they don't.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{a^2+3a+5}{a-1} = 2a+3" />,
-    reason: <>How would you know to do this? Parts b.i. and b.ii. set it up. If the tangent at <Katex tex="Q" /> passes through <Katex tex="P" />, it goes through both <Katex tex="P" /> and <Katex tex="Q" />, and only one line does that: the line <Katex tex="PQ" />. So the tangent <em>is</em> the line <Katex tex="PQ" />, and the gradients from b.i. and b.ii. must be equal. The report notes students who equated gradients tended to score more highly; the alternative, writing the tangent at <Katex tex="x=a" /> and substituting <Katex tex="(1,0)" />, gives <Katex tex="0=(2a+3)(1-a)+a^2+3a+5" />, the same quadratic, but many who used it could not form the correct quadratic equation.</>,
-    more: <>Slide <Katex tex="Q" /> in the diagram below to watch the two lines merge.</>,
+    reason: <>A tangent at <Katex tex="Q" /> that passes through <Katex tex="P" /> <em>is</em> the line <Katex tex="PQ" />, so the gradients from b.i. and b.ii. must be equal.</>,
+    more: <>How would you know to do this? Parts b.i. and b.ii. set it up: only one line passes through both <Katex tex="P" /> and <Katex tex="Q" />, so if the tangent at <Katex tex="Q" /> goes through <Katex tex="P" />, it must be that line. The report notes students who equated gradients tended to score more highly. The alternative, writing the tangent at <Katex tex="x=a" /> and substituting <Katex tex="(1,0)" />, gives <Katex tex="0=(2a+3)(1-a)+a^2+3a+5" />, which simplifies to the same quadratic, but many who used it could not form the correct quadratic equation. Slide <Katex tex="Q" /> in the diagram below to watch the two lines merge.</>,
   },
   {
     working: <Katex display tex="a^2+3a+5 = (2a+3)(a-1)" />,
-    reason: <>Multiplying both sides by <Katex tex="a-1" />. That is safe because <Katex tex="a\ne1" />: at <Katex tex="a=1" />, <Katex tex="Q" /> would be <Katex tex="(1,9)" />, directly above <Katex tex="P" />, and the vertical line <Katex tex="PQ" /> is no tangent.</>,
+    reason: <>Multiply both sides by <Katex tex="a-1" />. Safe, since <Katex tex="a\ne1" />: at <Katex tex="a=1" />, <Katex tex="Q(1,9)" /> is directly above <Katex tex="P" /> and <Katex tex="PQ" /> is vertical, not a tangent.</>,
   },
   {
     working: <Katex display tex="a^2+3a+5 = 2a^2+a-3" />,
@@ -153,46 +159,52 @@ const ROWS_BIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a^2-2a-8 = 0 \implies (a-4)(a+2) = 0" />,
-    reason: <>Collecting everything on the right, so that <Katex tex="a^2" /> stays positive, then factorising: two numbers with product <Katex tex="-8" /> and sum <Katex tex="-2" />.</>,
+    reason: <>Collect everything on the right so <Katex tex="a^2" /> stays positive, then factorise: two numbers with product <Katex tex="-8" /> and sum <Katex tex="-2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = 4 \quad\text{or}\quad a = -2}" />,
-    reason: <>Keep both: nothing restricts <Katex tex="a" />, and the question asks for the <em>values</em>. From a point below a parabola that opens upwards you can draw two tangents, one touching each side. Check in b.i.: <Katex tex="a=4" /> gives <Katex tex="\tfrac{33}{3}=11=2(4)+3" /> ✓, and <Katex tex="a=-2" /> gives <Katex tex="\tfrac{3}{-3}=-1=2(-2)+3" /> ✓.</>,
+    reason: <>Keep both: nothing restricts <Katex tex="a" />, and the question asks for the <em>values</em>. From a point below the parabola, two tangents can be drawn, one on each side.</>,
+    more: <>Check in b.i.: <Katex tex="a=4" /> gives <Katex tex="\tfrac{33}{3}=11=2(4)+3" /> ✓, and <Katex tex="a=-2" /> gives <Katex tex="\tfrac{3}{-3}=-1=2(-2)+3" /> ✓.</>,
   },
 ]
 
 const ROWS_BIV: WorkingRow[] = [
   {
     working: <Katex display tex="a = -2: \quad f'(-2) = 2(-2)+3 = -1" />,
-    reason: <>Take either value of <Katex tex="a" /> from b.iii. A line needs a gradient and a point. The gradient is <Katex tex="f'(a)" /> from b.ii., not <Katex tex="a" />: <Katex tex="a" /> is the <Katex tex="x" />-coordinate of the point where the tangent touches, not a slope. The report's most common error was assuming the value of <Katex tex="a" /> was the gradient.</>,
+    reason: <>Take either value of <Katex tex="a" /> from b.iii. The gradient is <Katex tex="f'(a)" />, not <Katex tex="a" />: <Katex tex="a" /> is where the tangent touches, not its slope.</>,
+    more: <>A line needs a gradient and a point. The report's most common error was using the value of <Katex tex="a" /> itself as the gradient instead of substituting into <Katex tex="f'(a)" />.</>,
   },
   {
     working: <Katex display tex="y-0 = -1(x-1)" />,
-    reason: <>Point–gradient form. The line passes through both <Katex tex="P(1,0)" /> and <Katex tex="Q(-2,3)" />, so either point works; <Katex tex="P" /> is quicker because its <Katex tex="y" />-coordinate is <Katex tex="0" />.</>,
+    reason: <>Point–gradient form, through <Katex tex="P(1,0)" />, which is on the tangent.</>,
+    more: <>The line passes through both <Katex tex="P(1,0)" /> and <Katex tex="Q(-2,3)" />, so either point works; <Katex tex="P" /> is quicker because its <Katex tex="y" />-coordinate is <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 1-x}" />,
-    reason: <>Check: it passes through <Katex tex="P" /> (<Katex tex="1-1=0" /> ✓), and it touches the parabola only once: <Katex tex="1-x=x^2+3x+5" /> gives <Katex tex="x^2+4x+4=(x+2)^2=0" />, a double root at <Katex tex="x=-2" />, which is <Katex tex="Q" />. The other tangent, from <Katex tex="a=4" />, has gradient <Katex tex="f'(4)=11" />, giving <Katex tex="y=11x-11" />; either line answers the question.</>,
+    reason: <>Either tangent answers the question; the other, from <Katex tex="a=4" />, is <Katex tex="y=11x-11" /> (gradient <Katex tex="f'(4)=11" />).</>,
+    more: <>Check: the line passes through <Katex tex="P" /> (<Katex tex="1-1=0" /> ✓), and it touches the parabola only once: <Katex tex="1-x=x^2+3x+5" /> gives <Katex tex="x^2+4x+4=(x+2)^2=0" />, a double root at <Katex tex="x=-2" />, which is <Katex tex="Q" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = 2x+3 = 0 \implies x = -\tfrac32" />,
-    reason: <>Start with the picture: where is the lowest point of the graph? The turning point is where <Katex tex="f'(x)=0" /> (the derivative from b.ii.), and it is a minimum because the parabola opens upwards.</>,
+    reason: <><Katex tex="P" /> is on the <Katex tex="x" />-axis, below the whole graph, so think geometrically: start from the graph's lowest point, where <Katex tex="f'(x)=0" /> (a minimum, as the parabola opens upwards).</>,
   },
   {
     working: <Katex display tex="f\!\left(-\tfrac32\right) = \tfrac94-\tfrac92+5 = \tfrac{11}4" />,
-    reason: <>Its height. (Completing the square, <Katex tex="f(x)=\left(x+\tfrac32\right)^2+\tfrac{11}4" />, gives the turning point <Katex tex="\left(-\tfrac32,\tfrac{11}4\right)" /> in one step.) So every point of the graph is at least <Katex tex="\tfrac{11}4" /> above the <Katex tex="x" />-axis.</>,
+    reason: <>Its height. So every point of the graph is at least <Katex tex="\tfrac{11}4" /> above the <Katex tex="x" />-axis.</>,
+    more: <>Completing the square, <Katex tex="f(x)=\left(x+\tfrac32\right)^2+\tfrac{11}4" />, gives the turning point <Katex tex="\left(-\tfrac32,\tfrac{11}4\right)" /> in one step.</>,
   },
   {
     working: <Katex display tex="y=f(x-k)\text{: turning point } \left(-\tfrac32+k,\ \tfrac{11}4\right)" />,
-    reason: <>Replacing <Katex tex="x" /> by <Katex tex="x-k" /> translates the graph <Katex tex="k" /> units in the positive <Katex tex="x" /> direction (to the right when <Katex tex="k>0" />): the new graph reaches each height <Katex tex="k" /> units further right than <Katex tex="f" /> did. Only the left–right position changes; the shape and the lowest height <Katex tex="\tfrac{11}4" /> stay the same.</>,
+    reason: <>Replacing <Katex tex="x" /> by <Katex tex="x-k" /> translates the graph <Katex tex="k" /> units in the positive <Katex tex="x" /> direction. The shape and lowest height <Katex tex="\tfrac{11}4" /> are unchanged.</>,
+    more: <>That is, to the right when <Katex tex="k>0" />: the new graph reaches each height <Katex tex="k" /> units further right than <Katex tex="f" /> did. Only the left–right position changes.</>,
   },
   {
     working: <Katex display tex="\begin{gathered} \text{least distance when the turning} \\ \text{point is directly above } P \end{gathered}" />,
-    reason: <>Why? <Katex tex="P" /> is on the <Katex tex="x" />-axis, and every point of the translated graph has <Katex tex="y\ge\tfrac{11}4" />, so every point is at least <Katex tex="\tfrac{11}4" /> from <Katex tex="P" />: its height alone is that much. A distance of exactly <Katex tex="\tfrac{11}4" /> needs a point that is at height <Katex tex="\tfrac{11}4" /> (only the turning point) <em>and</em> straight above <Katex tex="P" />. So slide the graph until its turning point is over <Katex tex="P" />. The report notes students who used a geometric approach tended to score more highly.</>,
-    more: <>Try it in the diagram below.</>,
+    reason: <><Katex tex="P" /> is on the <Katex tex="x" />-axis and every point of the graph is at height <Katex tex="\ge\tfrac{11}4" />, so at least <Katex tex="\tfrac{11}4" /> from <Katex tex="P" />. Only the turning point, straight above <Katex tex="P" />, achieves exactly that.</>,
+    more: <>So translate the graph until its turning point is over <Katex tex="P" />. For any other <Katex tex="k" />, the closest point is <em>not</em> the turning point: at <Katex tex="k=0" /> it is near <Katex tex="x\approx-1.13" />, about <Katex tex="3.59" /> from <Katex tex="P" />, more than <Katex tex="\tfrac{11}4" />. The report notes students who used a geometric approach tended to score more highly. Try it in the diagram below.</>,
   },
   {
     working: <Katex display tex="-\tfrac32+k = 1" />,
@@ -200,7 +212,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{k = \tfrac52}" />,
-    reason: <>Sign check: the turning point starts to the left of <Katex tex="P" />, so the graph has to move right, and <Katex tex="k>0" /> ✓. The shortest distance is then <Katex tex="\tfrac{11}4" />, straight up from <Katex tex="P" /> (not asked for). Only 10% of students scored both marks.</>,
+    reason: <>Sign check: the turning point starts left of <Katex tex="P" />, so the graph moves right and <Katex tex="k>0" /> ✓.</>,
+    more: <>The shortest distance is then <Katex tex="\tfrac{11}4" />, straight up from <Katex tex="P" /> (not asked for).</>,
   },
 ]
 
@@ -309,7 +322,7 @@ export default function MethodsQ7_2020Exam1() {
         <WrongMethod
           title="Use the value of a as the gradient"
           source="Examiner's report"
-          working={<Katex display tex="a=4: \quad y-0 = 4(x-1) \implies y = 4x-4" />}
+          working={<Katex display tex="\begin{aligned} a=4: \quad y-0 &= 4(x-1) \\ y &= 4x-4 \end{aligned}" />}
         >
           <p>
             <Katex tex="a=4" /> says <em>where</em> the tangent touches (at <Katex tex="x=4" />), not how steep it
