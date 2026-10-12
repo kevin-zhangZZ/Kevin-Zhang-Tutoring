@@ -31,24 +31,27 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f:[0,5]\to R,\quad f' \text{ continuous},\quad f'(2)<0,\quad f'(4)>0" />,
-    reason: <>Given information.</>,
+    working: <Katex display tex="\begin{gathered} f:[0,5]\to R,\quad f' \text{ continuous} \\ f'(2)<0,\qquad f'(4)>0 \end{gathered}" />,
+    reason: <>The sign of <Katex tex="f'" /> tells us the direction of <Katex tex="f" />: decreasing at <Katex tex="x=2" />, increasing at <Katex tex="x=4" />. Nothing else is given.</>,
+    more: <>Because <Katex tex="f'" /> is continuous, its sign cannot flip instantly: <Katex tex="f'<0" /> on a small interval around <Katex tex="x=2" /> and <Katex tex="f'>0" /> on a small interval around <Katex tex="x=4" />. So <Katex tex="f" /> is strictly decreasing just after <Katex tex="x=2" /> and strictly increasing just before <Katex tex="x=4" />. That is all the information we have: two gradients, at two points, and no values of <Katex tex="f" /> at all.</>,
   },
   {
-    working: <>By the Intermediate Value Theorem, since <Katex tex="f'" /> is continuous and changes sign between <Katex tex="x=2" /> and <Katex tex="x=4" />, there is some point <Katex tex="c\in(2,4)" /> with <Katex tex="f'(c)=0" />, where <Katex tex="f'" /> switches from negative to positive.</>,
-    reason: <>This is the <i>only</i> thing guaranteed — not exactly <b>where</b> in <Katex tex="(2,4)" /> it happens.</>,
-  },
-  {
-    working: <>So <Katex tex="f" /> decreases up to <Katex tex="c" />, then increases after <Katex tex="c" /> — somewhere inside <Katex tex="[2,4]" />, but not necessarily at <Katex tex="x=3" /> specifically, and nothing is known about <Katex tex="f" /> outside <Katex tex="[2,4]" /> at all.</>,
-    reason: <>Rules out A (only one point in <Katex tex="[0,2]" /> is pinned down, not the whole interval), C (no information about the function's <i>values</i>, only its gradient) and D (the minimum could be anywhere strictly between 2 and 4, not necessarily at <Katex tex="x=3" />).</>,
-  },
-  {
-    working: <>Since <Katex tex="f" /> genuinely decreases then increases somewhere in <Katex tex="[2,4]\subset[0,5]" />, it takes at least one output value twice.</>,
-    reason: <>A function that decreases and then increases takes some value twice, so it cannot be one-to-one.</>,
+    working: <Katex display tex="\begin{gathered} f \text{ lowest on } [2,4] \text{ at some } m\in(2,4) \\ \Rightarrow f(x_1)=f(x_2) \text{ for some } x_1\neq x_2 \\ \Rightarrow f \text{ many-to-one on } [2,4] \end{gathered}" />,
+    reason: <><Katex tex="f" /> falls just after <Katex tex="x=2" /> and rises just before <Katex tex="x=4" />, so its lowest value on <Katex tex="[2,4]" /> is inside. A horizontal line just above it meets the graph twice.</>,
+    more: <>More carefully: let <Katex tex="m" /> be where <Katex tex="f" /> is lowest on <Katex tex="[2,4]" />. By row 1, <Katex tex="m" /> is not an endpoint, so <Katex tex="f(2)>f(m)" /> and <Katex tex="f(4)>f(m)" />. Pick any height <Katex tex="k" /> between <Katex tex="f(m)" /> and the smaller of <Katex tex="f(2)" /> and <Katex tex="f(4)" />. The graph is unbroken, so it crosses <Katex tex="y=k" /> once on its way down from <Katex tex="x=2" /> to <Katex tex="m" /> and again on its way up from <Katex tex="m" /> to <Katex tex="x=4" />: two <Katex tex="x" />-values with the same <Katex tex="y" />-value. Notice we never needed to know <i>where</i> <Katex tex="m" /> is, or how many times <Katex tex="f'" /> changes sign in between.</>,
   },
   {
     working: <Katex display tex="\boxed{f \text{ has no inverse function}}" />,
-    reason: <>This <i>must</i> be true regardless of exactly where the turning point falls. Matches option <b>B</b>.</>,
+    reason: <>Only a one-to-one function has an inverse. Matches option <b>B</b>.</>,
+    more: <>
+      The other options each claim more than two gradients can tell you. A single example satisfying the question, such as <Katex tex="f(x)=(x-2.5)^2-10" /> (with <Katex tex="f'(2)=-1" />, <Katex tex="f'(4)=3" />), or <Katex tex="f(x)=(x-1)(x-3)^2" /> (with <Katex tex="f'(2)=-1" />, <Katex tex="f'(4)=7" />), is enough to rule one out.
+      <br />
+      <b>A</b> (26%, the most common wrong answer): <Katex tex="f'(2)<0" /> describes the gradient at one point, not on all of <Katex tex="[0,2]" />. For <Katex tex="f(x)=(x-1)(x-3)^2" />, <Katex tex="f'(0)=15>0" />, so <Katex tex="f" /> is increasing near <Katex tex="x=0" /> (it has a local maximum at <Katex tex="x=\tfrac53" />, like the report's graph).
+      <br />
+      <b>C</b>: the information is about gradients only. Shifting a graph down does not change <Katex tex="f'" />, and <Katex tex="f(x)=(x-2.5)^2-10" /> gives <Katex tex="f(4)=-\tfrac{31}{4}" />, negative.
+      <br />
+      <b>D</b>: <Katex tex="f'" /> must be 0 somewhere in <Katex tex="(2,4)" /> (it is continuous and goes from negative to positive), but nothing says where. <Katex tex="f(x)=(x-2.5)^2-10" /> has its minimum at <Katex tex="x=2.5" />, not <Katex tex="x=3" />.
+    </>,
   },
 ]
 

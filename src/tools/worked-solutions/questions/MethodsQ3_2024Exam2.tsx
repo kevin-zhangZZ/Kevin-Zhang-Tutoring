@@ -115,8 +115,8 @@ const EXAM_BIV: SAExaminerStats = {
 
 const ROWS_AI: WorkingRow[] = [
   {
-    working: <Katex display tex="p(t) = at^3+bt^2+ct+d, \qquad p'(t) = 3at^2+2bt+c" />,
-    reason: <>Four unknowns, so four independent conditions are needed.</>,
+    working: <Katex display tex="\begin{aligned}p(t) &= at^3+bt^2+ct+d\\ p'(t) &= 3at^2+2bt+c\end{aligned}" />,
+    reason: <>Four unknowns, so four independent conditions are needed. Each turning point gives two: the point is on the curve, and the gradient there is 0.</>,
   },
   {
     working: <Katex display tex="p(2) = 2500: \quad 8a+4b+2c+d = 2500" />,
@@ -124,7 +124,8 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="p'(2) = 0: \quad 12a+4b+c = 0" />,
-    reason: <>… and is stationary there: <Katex tex="p'(2)=0" /> — not <Katex tex="p'(2)=2500" />, which the report notes some students wrote.</>,
+    reason: <>… and is stationary there, so the derivative at <Katex tex="t=2" /> is 0.</>,
+    more: <>The report notes some students wrote <Katex tex="p'(2)=2500" /> and <Katex tex="p'(11)=4400" />, and its general comments say some did not set the derivative equal to zero at the turning points. 2500 is the <em>height</em> of the turning point; its <em>gradient</em> is 0, because the curve is momentarily flat there.</>,
   },
   {
     working: <Katex display tex="p(11) = 4400: \quad 1331a+121b+11c+d = 4400" />,
@@ -137,40 +138,47 @@ const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="\text{solve the system for } a,b,c,d" />,
     reason: <>Four linear equations in four unknowns — <Cas fn="solve" /> handles it in one line.</>,
+    more: <>Define <Katex tex="p(t)" /> first, then solve the four equations together for <Katex tex="a,b,c,d" />. Write the four equations down before the answers: this part is worth 3 marks, and the report notes some students only wrote the answers without adequate working, and others had only two correct equations.</>,
   },
   {
-    working: <Katex display tex="\boxed{a = -5.21,\ b = 101.65,\ c = -344.03,\ d = 2823.18}" />,
-    reason: <>Exactly, <Katex tex="a=-\tfrac{3800}{729}" />, <Katex tex="b=\tfrac{24700}{243}" />, <Katex tex="c=-\tfrac{83600}{243}" />, <Katex tex="d=\tfrac{2058100}{729}" />. Two decimal places were asked for, so <Katex tex="b=101.65" />, not <Katex tex="101.64" />.</>,
+    working: <Katex display tex="\boxed{\begin{aligned}a &= -5.21, & b &= 101.65,\\ c &= -344.03, & d &= 2823.18\end{aligned}}" />,
+    reason: <>Rounded to two decimal places as asked: <Katex tex="b=101.646\ldots" /> rounds up to <Katex tex="101.65" />. All four values are required, including <Katex tex="d" />.</>,
+    more: <>The exact values are <Katex tex="a=-\tfrac{3800}{729}" />, <Katex tex="b=\tfrac{24700}{243}" />, <Katex tex="c=-\tfrac{83600}{243}" /> and <Katex tex="d=\tfrac{2058100}{729}" />. The report notes some students rounded <Katex tex="101.646\ldots" /> down to <Katex tex="101.64" />, and that <Katex tex="d" /> was sometimes missing. A quick check: the turning points are at <Katex tex="t=2" /> and <Katex tex="t=11" />, so <Katex tex="p'(t)=3a(t-2)(t-11)=3at^2-39at+66a" />. Matching coefficients, <Katex tex="b=-19.5a\approx101.65" /> and <Katex tex="c=66a\approx-344.03" />, agreeing with the CAS.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="q(t) = p(t-h)+k" />,
-    reason: <>A translation of <Katex tex="h" /> right and <Katex tex="k" /> up, so every feature of p moves by the same amounts.</>,
+    reason: <>Replacing <Katex tex="t" /> by <Katex tex="t-h" /> moves the graph <Katex tex="h" /> right, and <Katex tex="+k" /> moves it <Katex tex="k" /> up. Every point of p moves by these amounts.</>,
+    more: <>The report notes <Katex tex="h=-12,\ k=350" /> was sometimes seen: that would move the maximum left to <Katex tex="t=11-12=-1" />, nowhere near 23.</>,
   },
   {
     working: <Katex display tex="p \text{ has its local maximum at } (11,4400)" />,
-    reason: <>Given in the stem — there is no need to touch the cubic from part a.i. at all.</>,
+    reason: <>A translation moves a local maximum to a local maximum, so track the maximum given in the stem. The cubic from part a.i. is not needed.</>,
+    more: <>The report notes many students did not realise they only needed to translate the point <Katex tex="(11,4400)" /> to <Katex tex="(23,4750)" />.</>,
   },
   {
     working: <Katex display tex="(11+h,\ 4400+k) = (23,\ 4750)" />,
-    reason: <>The image of that maximum must be the required point.</>,
+    reason: <>The maximum moves to <Katex tex="(11+h,\ 4400+k)" />, and this must be the required point. Equate the coordinates.</>,
   },
   {
     working: <Katex display tex="\boxed{h = 12, \qquad k = 350}" />,
-    reason: <>Sensible: <Katex tex="h=12" /> is a shift of one whole year, which is exactly what modelling 2022 instead of 2021 should require. Translating the local <em>minimum</em> instead gives the wrong pair <Katex tex="h=21,\ k=2250" />.</>,
+    reason: <>Sensible: <Katex tex="h=12" /> is a shift of one whole year, matching a model of 2022 instead of 2021.</>,
+    more: <>It also fits the domain: shifting <Katex tex="(0,12]" /> right by 12 gives <Katex tex="(12,24]" />, the domain of q, and <Katex tex="t=23" /> lies in it. The report notes some solutions were outside the domain, and others translated the local <em>minimum</em>, giving <Katex tex="h=21,\ k=2250" />. A minimum moves to a minimum, so it can never become the required local maximum.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="f(t) = 3000+30t+700\cos\!\left(\tfrac{\pi t}{6}\right)+400\cos\!\left(\tfrac{\pi t}{3}\right)" />,
-    reason: <>Two cosines of period 12 and 6 riding on the line <Katex tex="y=3000+30t" />, so the pattern of the first 12 months repeats, lifted 360 higher each year.</>,
+    reason: <>The cosines have periods 12 and 6, so both repeat every 12 months. Each year copies the previous year's shape, lifted by <Katex tex="30\times12=360" />.</>,
+    more: <>The periods are <Katex tex="\tfrac{2\pi}{\pi/6}=12" /> and <Katex tex="\tfrac{2\pi}{\pi/3}=6" />. So over any 12 months only the line <Katex tex="y=3000+30t" /> changes. Part b.ii. shows this algebraically.</>,
   },
   {
     working: <Katex display tex="f(24) = 3000+720+700+400 = 4820" />,
-    reason: <>At every multiple of 12 both cosines equal 1, so the curve must join the printed graph smoothly at <Katex tex="t=24" /> — the sketch has to be continuous there.</>,
+    reason: <>The printed curve ends here, so the new piece must start at <Katex tex="(24,4820)" />, with no gap or jump.</>,
+    more: <>At every multiple of 12 both cosines equal 1 (here <Katex tex="\cos(4\pi)=\cos(8\pi)=1" />), which is why the value is easy to find by hand. The report notes some students made the graph discontinuous at <Katex tex="t=24" />.</>,
   },
   {
     working: <Katex display tex="f(36) = 3000+1080+700+400 = 5180" />,
@@ -178,15 +186,17 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{shape on } (24,36] = \text{shape on } (12,24] \text{ lifted } 360" />,
-    reason: <>So the two turning points and the shoulder in between all sit in the same months as the year before, 360 higher.</>,
+    reason: <>So the turning points fall in the same months as the year before, each 360 higher: a dip near <Katex tex="t=28" />, a small rise near 30, a second dip near 32, then the climb to the endpoint.</>,
+    more: <>To place them accurately, graph <Katex tex="f" /> on the CAS over <Katex tex="24\le t\le36" />, or use <Cas fn="fMin" /> and <Cas fn="fMax" /> on each section. Correct to the nearest unit: a local minimum near <Katex tex="(27.8,\ 3282)" />, a local maximum near <Katex tex="(30.1,\ 3602)" /> and a local minimum near <Katex tex="(32.0,\ 3410)" />. These are the 2022 turning points <Katex tex="(15.8,\ 2922)" />, <Katex tex="(18.1,\ 3242)" />, <Katex tex="(20.0,\ 3050)" /> moved 12 right and 360 up. The curve also rises very slightly just after <Katex tex="t=24" /> (to about 4821 at <Katex tex="t\approx24.05" />) before falling, just as it does after <Katex tex="t=12" />. The report says the turning points and endpoint needed to be in the correct positions.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{endpoint } (36,\,5180)}" />,
-    reason: <>Round brackets around the coordinates were required, and the endpoint had to be labelled.</>,
+    reason: <>Label the endpoint with both coordinates in round brackets, as the question asks.</>,
+    more: <>The report notes some students labelled the endpoint incorrectly, and its general comments note that <Katex tex="(36,\ 5180" /> (with no closing bracket) was often seen.</>,
   },
   {
     working: <CompletionOverlay />,
-    reason: <>Drawn on the printed axes, continuing smoothly from <Katex tex="t=24" /> — the report notes some graphs were discontinuous there.</>,
+    reason: <>Drawn on the printed axes: starting from <Katex tex="(24,4820)" />, with the three visible turning points in place and the labelled endpoint <Katex tex="(36,5180)" />.</>,
   },
 ]
 
@@ -201,45 +211,51 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos\!\left(\tfrac{\pi(t+12)}{3}\right) = \cos\!\left(\tfrac{\pi t}{3}+4\pi\right) = \cos\!\left(\tfrac{\pi t}{3}\right)" />,
-    reason: <>The second has period 6, and 12 is two whole periods. Both oscillations cancel, which is why the increase is the same every year.</>,
+    reason: <>The second has period 6, and 12 is two whole periods. Both cosine terms cancel in the difference.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 30(t+12)-30t = 360}" />,
-    reason: <>Only the linear term survives. The report notes 30 was a common incorrect answer — that is <Katex tex="f'(12)" />, an instantaneous rate, not the increase over twelve months.</>,
+    reason: <>Only the linear term survives, and it is the same for every <Katex tex="t" />.</>,
+    more: <>The report notes 30 was a common incorrect answer, found by calculating <Katex tex="f'(12)" />. That is the instantaneous rate of change at one moment (million dollars per month), not the increase over twelve months. A check: <Katex tex="f(12)=4460" /> and <Katex tex="f(24)=4820" />, a rise of 360.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
-    working: <Katex display tex="\frac{d}{dt}\left[700\cos\!\left(\tfrac{\pi t}{6}\right)\right] = -700\cdot\tfrac{\pi}{6}\sin\!\left(\tfrac{\pi t}{6}\right) = -\tfrac{350\pi}{3}\sin\!\left(\tfrac{\pi t}{6}\right)" />,
-    reason: <>Chain rule: the inner derivative π/6 comes down in front.</>,
+    working: <Katex display tex="\begin{aligned}&\frac{d}{dt}\left[700\cos\!\left(\tfrac{\pi t}{6}\right)\right]\\ &= -700\cdot\tfrac{\pi}{6}\sin\!\left(\tfrac{\pi t}{6}\right)\\ &= -\tfrac{350\pi}{3}\sin\!\left(\tfrac{\pi t}{6}\right)\end{aligned}" />,
+    reason: <>Chain rule: the derivative of <Katex tex="\cos(kt)" /> is <Katex tex="-k\sin(kt)" />, so the inner derivative π/6 comes down in front.</>,
   },
   {
-    working: <Katex display tex="\frac{d}{dt}\left[400\cos\!\left(\tfrac{\pi t}{3}\right)\right] = -400\cdot\tfrac{\pi}{3}\sin\!\left(\tfrac{\pi t}{3}\right) = -\tfrac{400\pi}{3}\sin\!\left(\tfrac{\pi t}{3}\right)" />,
+    working: <Katex display tex="\begin{aligned}&\frac{d}{dt}\left[400\cos\!\left(\tfrac{\pi t}{3}\right)\right]\\ &= -400\cdot\tfrac{\pi}{3}\sin\!\left(\tfrac{\pi t}{3}\right)\\ &= -\tfrac{400\pi}{3}\sin\!\left(\tfrac{\pi t}{3}\right)\end{aligned}" />,
     reason: <>Same again with π/3.</>,
   },
   {
-    working: <Katex display tex="\boxed{f'(t) = 30-\frac{350\pi}{3}\sin\!\left(\frac{\pi t}{6}\right)-\frac{400\pi}{3}\sin\!\left(\frac{\pi t}{3}\right)}" />,
-    reason: <>The constant 3000 vanishes and <Katex tex="30t" /> leaves 30. The report notes <Katex tex="\pi" /> was often omitted from the coefficients.</>,
+    working: <Katex display tex="\boxed{f'(t) = 30-\frac{350\pi}{3}\sin\!\left(\frac{\pi t}{6}\right)-\frac{400\pi}{3}\sin\!\left(\frac{\pi t}{3}\right)} " />,
+    reason: <>The constant 3000 vanishes and <Katex tex="30t" /> leaves 30.</>,
+    more: <>The report notes transcription errors: <Katex tex="\pi" /> was often omitted and brackets were not used well. If you copy this from the CAS, keep the <Katex tex="\pi" /> in each coefficient and put brackets around each sine's argument.</>,
   },
 ]
 
 const ROWS_BIV: WorkingRow[] = [
   {
     working: <Katex display tex="\text{maximise } f'(t) \text{ on } (0,36]" />,
-    reason: <>"Hence" means use the derivative from b.iii — the maximum <em>rate</em>, not the maximum of <Katex tex="f" />.</>,
+    reason: <>"Hence" means use the derivative from b.iii. The instantaneous rate of change is <Katex tex="f'(t)" />, so we want the maximum of <Katex tex="f'" />, not of <Katex tex="f" />.</>,
+    more: <>The report's general comments note some students found the maximum value of <Katex tex="f" /> instead, and the report notes others found the <em>minimum</em> rate of change (about <Katex tex="-665" />, the steepest fall).</>,
   },
   {
     working: <Katex display tex="\text{max}\left(f'\right) = 725.395\ldots" />,
-    reason: <>From <Cas fn="fMax" /> applied to <Katex tex="f'(t)" /> over the domain, or by graphing <Katex tex="y=f'(t)" /> and reading the peaks.</>,
+    reason: <><Cas fn="fMax" /> on <Katex tex="f'(t)" /> over <Katex tex="0<t\le36" /> gives where the maximum occurs, <Katex tex="t=10.24\ldots" />; substitute it into <Katex tex="f'(t)" /> for the maximum rate. (Or use the highest point of the graph of <Katex tex="y=f'(t)" />.)</>,
+    more: <>Solving <Katex tex="f''(t)=0" /> by hand is not practical here, so let the CAS find the maximum. The graph of <Katex tex="y=f'(t)" /> has two local maxima each year: a low one near <Katex tex="t=4.9" /> (about 213) and the highest one near <Katex tex="t=10.2" />. Only the highest is the maximum rate.</>,
   },
   {
-    working: <Katex display tex="f' \text{ has period } 12 \implies \text{three equal peaks in } (0,36]" />,
-    reason: <>Both sine terms repeat every 12 months, so whatever happens once happens three times. The report notes many students gave extra <Katex tex="t" /> values or only one.</>,
+    working: <Katex display tex="\begin{aligned}&f' \text{ has period } 12\\ &\implies \text{three equal peaks in } (0,36]\end{aligned}" />,
+    reason: <>Both sine terms repeat every 12 months, so the peak at <Katex tex="t=10.24\ldots" /> recurs 12 and 24 months later, all inside <Katex tex="(0,36]" />.</>,
+    more: <>The report notes many students gave extra <Katex tex="t" /> values or only one. One value misses the repeats at 22.2 and 34.2. Extra values are likely to come from also including the lower local maxima near 4.9, 16.9 and 28.9, or every solution of <Katex tex="f''(t)=0" />, which includes the minima.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{maximum rate } 725 \text{ million dollars per month at } t = 10.2,\ 22.2,\ 34.2}" />,
-    reason: <>The rate to the nearest million and the times to one decimal place, as asked. Both halves of the answer were required.</>,
+    working: <Katex display tex="\boxed{\begin{aligned}&\text{maximum rate } 725 \text{ million dollars per month}\\&\text{at } t = 10.2,\ 22.2,\ 34.2\end{aligned}}" />,
+    reason: <>The rate to the nearest million and the times to one decimal place, as asked. Both halves of the answer are required.</>,
+    more: <>The report notes some students did not give the maximum instantaneous rate of change itself.</>,
   },
 ]
 
@@ -271,15 +287,11 @@ export default function MethodsQ3_2024Exam2() {
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-5 sm:p-6">
           <Background>
             <p>
-              Part a. is a four-condition fit. A turning point given as a coordinate pair is
-              always <em>two</em> pieces of information — the point is on the curve{' '}
-              <em>and</em> the derivative is zero there — so two stated turning points supply
-              exactly the four equations a cubic needs.
+              Part a. fits a cubic to two stated turning points.
             </p>
             <p>
-              Part b. turns on periods. The two cosines have periods 12 and 6 months, so both
-              repeat exactly over any 12-month step: the model is a straight line with an
-              annual pattern bolted on. That single fact answers b.i. (the next year is last
+              Part b. turns on periods: the model is a straight line with an annual pattern
+              bolted on. That single fact answers b.i. (the next year is last
               year lifted), b.ii. (only the linear term survives a 12-month difference) and
               b.iv. (three identical peaks, not one).
             </p>
@@ -344,7 +356,7 @@ export default function MethodsQ3_2024Exam2() {
         <div className="py-1">
           <Katex
             display
-            tex="f:(0,36]\to R,\ f(t)=3000+30t+700\cos\!\left(\frac{\pi t}{6}\right)+400\cos\!\left(\frac{\pi t}{3}\right)"
+            tex="\begin{aligned}&f:(0,36]\to R,\\ &f(t)=3000+30t+700\cos\!\left(\frac{\pi t}{6}\right)\\ &\qquad\qquad+400\cos\!\left(\frac{\pi t}{3}\right)\end{aligned}"
           />
         </div>
         <p>Part of the graph of <Katex tex="f" /> is shown on the axes below.</p>

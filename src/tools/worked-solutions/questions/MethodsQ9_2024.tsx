@@ -15,11 +15,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(L\cap P) = 0.45\times0.30 = 0.135" />,
-    reason: <>Limousine, then photo — the product along that branch of the tree.</>,
+    reason: <>Let <Katex tex="L" /> = limousine, <Katex tex="D" /> = driven by a parent, <Katex tex="P" /> = photo taken. Multiply along the limousine-then-photo branch of the tree.</>,
+    more: <>The 30% is a conditional probability, <Katex tex="\Pr(P\mid L)=0.30" />, because it is a percentage <em>of the limousine students</em>. Multiplying by <Katex tex="\Pr(L)=0.45" /> turns it into the fraction of <em>all</em> students who came by limousine and were photographed.</>,
   },
   {
     working: <Katex display tex="\Pr(D\cap P) = 0.55\times0.60 = 0.33" />,
-    reason: <>Driven by a parent, then photo.</>,
+    reason: <>Same again along the parent-then-photo branch: <Katex tex="\Pr(D)\times\Pr(P\mid D)" />.</>,
   },
   {
     working: <Katex display tex="\Pr(P) = 0.135+0.33 = 0.465" />,
@@ -27,11 +28,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(L\mid P) = \frac{\Pr(L\cap P)}{\Pr(P)} = \frac{0.135}{0.465}" />,
-    reason: <>The conditional probability formula — the question reverses the conditioning, which is what makes it a Bayes problem.</>,
+    reason: <>"Given that a student had a photo" means condition on <Katex tex="P" />: of all photographed students, what fraction came by limousine?</>,
+    more: <>The question gives <Katex tex="\Pr(P\mid L)" /> but asks for <Katex tex="\Pr(L\mid P)" /> — the conditioning is reversed, which is what makes this a Bayes problem. You can't read the answer off the tree; you need the joint probability (top) over the total probability of the condition (bottom).</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{135}{465} = \frac{9}{31}}" />,
-    reason: <>Matches option <b>C</b>; about <Katex tex="0.29" />. Option <b>B</b>, <Katex tex="\tfrac{27}{200}=0.135" />, is the joint probability, not the conditional one. Sensible: limousine riders are both fewer and less likely to be photographed, so among photographed students they are well under half.</>,
+    reason: <>Matches option <b>C</b>; about <Katex tex="0.29" />.</>,
+    more: <>The most common wrong answer, <b>B</b>, is <Katex tex="\tfrac{27}{200}=0.135=\Pr(L\cap P)" />: the joint probability from the first line, without dividing by <Katex tex="\Pr(P)" />. Option <b>D</b>, <Katex tex="\tfrac{22}{31}=\tfrac{0.33}{0.465}" />, is <Katex tex="\Pr(D\mid P)" />: the right method but the wrong branch on top. Sense check: limousine riders are both fewer and less likely to be photographed, so among photographed students they should be well under half.</>,
   },
 ]
 

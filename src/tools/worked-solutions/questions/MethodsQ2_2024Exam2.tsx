@@ -116,6 +116,18 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{at } t=\tfrac13: \quad \text{left gradient } 30 \ne 0 \ \text{right gradient}" />,
     reason: <>The graph has a corner there, so <Katex tex="f'\!\left(\tfrac13\right)" /> does not exist and <Katex tex="t=\tfrac13" /> must be left out of both branches.</>,
+    more: (
+      <>
+        A derivative at a point needs the gradient approaching from the left to equal the gradient
+        approaching from the right. Here <Katex tex="f" /> is continuous at{' '}
+        <Katex tex="t=\tfrac13" /> (both rules give 22), but the gradient jumps from 30 to 0, so
+        there is no single tangent. That is why <Katex tex="\le" /> in the stem's first branch
+        becomes a strict <Katex tex="<" /> in the answer — keeping <Katex tex="\tfrac13" /> in
+        either branch was the mistake the report names. The left endpoint{' '}
+        <Katex tex="t=0" /> is different: it is the start of the domain, not a join between two
+        rules, which is why both versions in the next row were accepted.
+      </>
+    ),
   },
   {
     working: (
@@ -132,6 +144,15 @@ const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average rate of change} = \frac{f\!\left(\tfrac12\right)-f(0)}{\tfrac12-0}" />,
     reason: <>The gradient of the chord — not the average value, and not the derivative at a point.</>,
+    more: (
+      <>
+        "Average rate of change" is change in temperature over change in time, so its units are
+        °C per hour, as the question asks. The <em>average value</em>,{' '}
+        <Katex tex="\frac{1}{\frac12-0}\int_0^{\frac12}f(t)\,dt\approx18.7" />, is an average
+        temperature in °C — the other mistake the report mentions. The units in the question are
+        the quickest way to tell which one is wanted.
+      </>
+    ),
   },
   {
     working: <Katex display tex="f(0) = 12, \qquad f\!\left(\tfrac12\right) = 22" />,
@@ -139,7 +160,15 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{22-12}{\tfrac12} = 20\ ^\circ\text{C/h}}" />,
-    reason: <>Using <Katex tex="12+30\left(\tfrac12\right)=27" /> by mistake gives the popular wrong answer of 30 °C/h.</>,
+    reason: <>The temperature rose 10 °C in half an hour.</>,
+    more: (
+      <>
+        Using <Katex tex="12+30\left(\tfrac12\right)=27" /> by mistake gives the popular wrong
+        answer of 30 °C/h — that is just the gradient of the first branch. Since the room stops
+        heating at <Katex tex="t=\tfrac13" />, the average over the longer interval must be less
+        than 30.
+      </>
+    ),
   },
 ]
 
@@ -173,7 +202,14 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t = 0.299}" />,
-    reason: <>Three decimal places, as asked. Truncating rather than rounding gives 0.298.</>,
+    reason: <>Three decimal places, as asked, so the exact value alone is not the answer.</>,
+    more: (
+      <>
+        The report notes some students stopped at the exact answer, and others wrote 0.298 or
+        0.300. The fourth decimal place of 0.29862… is 6, so the third rounds up from 8 to 9:
+        0.298 is truncation, and 0.300 has lost the 9.
+      </>
+    ),
   },
 ]
 
@@ -189,6 +225,14 @@ const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\text{solve} \implies t = 0 \ \text{ or } \ t = 0.265604\ldots" />,
     reason: <><Cas fn="nSolve" /> or <Cas fn="solve" />. Both models start at 12 °C, so <Katex tex="t=0" /> is always a root — and the question restricts <Katex tex="t\in(0,1)" />, so it is rejected.</>,
+    more: (
+      <>
+        If you use <Cas fn="nSolve" />, add the domain restriction (for example{' '}
+        <Katex tex="\mid 0.1\le t\le\tfrac13" />): with no bounds it may return the root at{' '}
+        <Katex tex="t=0" />. The round brackets in <Katex tex="(0,1)" /> mean 0 itself is
+        excluded — the report notes some students still included it.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{t = 0.27}" />,
@@ -198,20 +242,50 @@ const ROWS_D: WorkingRow[] = [
 
 const ROWS_E: WorkingRow[] = [
   {
-    working: <Katex display tex="d(t) = \left|f(t)-g(t)\right| = \left|30t-10+10e^{-6t}\right| \ \text{ on } 0<t\le\tfrac13" />,
-    reason: <>On the second branch <Katex tex="f-g = 10e^{-6t}" />, which only decreases, so the greatest gap is on the first branch.</>,
+    working: <Katex display tex="\begin{aligned} d(t) &= \left|f(t)-g(t)\right| \\ &= \left|30t-10+10e^{-6t}\right| , \quad 0<t\le\tfrac13 \end{aligned}" />,
+    reason: <>"Difference" means the size of the gap, |f − g|. On <Katex tex="t>\tfrac13" />, <Katex tex="f-g = 10e^{-6t}" /> only shrinks, so look on the first branch.</>,
+    more: (
+      <>
+        On the first branch, <Katex tex="f-g = (12+30t)-(22-10e^{-6t}) = 30t-10+10e^{-6t}" />.
+        Its sign changes at the crossing from part d.: for{' '}
+        <Katex tex="0<t<0.2656" /> the exponential model is ahead, so <Katex tex="f-g" /> is{' '}
+        <em>negative</em>; after the crossing the linear model is ahead and{' '}
+        <Katex tex="f-g" /> is positive, reaching <Katex tex="10e^{-2}\approx1.353" /> at{' '}
+        <Katex tex="t=\tfrac13" />. So there are two candidates for the biggest gap: the lowest
+        point of <Katex tex="f-g" /> while it is negative, and its highest point while it is
+        positive.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\frac{d}{dt}\left(f-g\right) = 30-60e^{-6t} = 0 \implies e^{-6t}=\tfrac12" />,
-    reason: <>A stationary point of the signed difference.</>,
+    reason: <>Set the derivative of the difference to zero to find its turning point on the first branch.</>,
   },
   {
     working: <Katex display tex="t = \frac{\log_e(2)}{6} = 0.115524\ldots" />,
-    reason: <>Here <Katex tex="f-g = -1.534" />, so this is a <em>minimum</em> of <Katex tex="f-g" /> — which is exactly a maximum of the gap.</>,
+    reason: <>Here <Katex tex="f-g" /> turns from decreasing to increasing (second derivative <Katex tex="360e^{-6t}>0" />), a minimum. Its value, <Katex tex="-1.534" />, is negative, so the gap peaks here.</>,
+    more: (
+      <>
+        Substituting: <Katex tex="30\left(\tfrac{\log_e 2}{6}\right)-10+10\left(\tfrac12\right) = 5\log_e 2-5 \approx -1.534" />.
+        On CAS you can skip the calculus: <Cas fn="fMin" /> on <Katex tex="f(t)-g(t)" /> with{' '}
+        <Katex tex="\mid 0<t<1" />, or <Cas fn="fMax" /> on <Katex tex="\left|f(t)-g(t)\right|" />,
+        both give 0.1155…
+      </>
+    ),
   },
   {
     working: <Katex display tex="\left|f-g\right| = 1.534 \ \text{ here, versus } 1.353 \ \text{ at } t=\tfrac13" />,
-    reason: <>Comparing against the other candidate. The report notes <Katex tex="\tfrac13" /> was a common incorrect answer — it maximises <Katex tex="f-g" />, not <Katex tex="\left|f-g\right|" />.</>,
+    reason: <>After the part d. crossing, <Katex tex="f-g" /> is positive and increasing up to <Katex tex="t=\tfrac13" />, so that is the other candidate. The gap is bigger at 0.1155.</>,
+    more: (
+      <>
+        The report's common incorrect answer, <Katex tex="\tfrac13" />, is where{' '}
+        <Katex tex="f-g" /> is greatest — that only finds the biggest gap when the linear model is
+        ahead. Taking fMax of <Katex tex="f-g" /> without the absolute value lands there. The other
+        ends are no competition: the gap is 0 at <Katex tex="t=0" />, and after{' '}
+        <Katex tex="\tfrac13" /> it shrinks towards <Katex tex="10e^{-6}\approx0.02" /> at{' '}
+        <Katex tex="t=1" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{t = 0.12}" />,
@@ -221,7 +295,7 @@ const ROWS_E: WorkingRow[] = [
 
 const ROWS_FI: WorkingRow[] = [
   {
-    working: <Katex display tex="p \text{ continuous at } t=0.4 \implies \lim_{t\to0.4^-}p(t) = \lim_{t\to0.4^+}p(t)" />,
+    working: <Katex display tex="\begin{aligned} &p \text{ continuous at } t=0.4 \\ &\implies \lim_{t\to0.4^-}p(t)  = \lim_{t\to0.4^+}p(t) \end{aligned}" />,
     reason: <>Continuity is the only condition available, and 0.4 is the only place the rule changes.</>,
   },
   {
@@ -231,10 +305,24 @@ const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="Ae^{-4} = 1.2" />,
     reason: <>Subtracting 0.3. Each of these lines earns its place in a "show that".</>,
+    more: (
+      <>
+        The report's working has four lines — substitute 0.4, simplify the power to{' '}
+        <Katex tex="e^{-4}" />, subtract 0.3, then divide — and says students must show adequate
+        working. Writing only the first line and then <Katex tex="A=1.2e^{4}" /> skips the steps
+        that actually show it.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{A = 1.2e^{4}}" />,
-    reason: <>As required. Numerically <Katex tex="A\approx65.5" />, which is why the curve drops so sharply after <Katex tex="t=0.4" />.</>,
+    reason: <>Dividing by <Katex tex="e^{-4}" /> (multiplying by <Katex tex="e^{4}" />). As required.</>,
+    more: (
+      <>
+        Numerically <Katex tex="A\approx65.5" />, which is why the curve drops so sharply after{' '}
+        <Katex tex="t=0.4" />.
+      </>
+    ),
   },
 ]
 
@@ -242,6 +330,12 @@ const ROWS_FII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{energy} = \int_0^{T}p(t)\,dt" />,
     reason: <>Energy in kilowatt hours is the area under the power curve, as the stem states.</>,
+    more: (
+      <>
+        Power (kW) is how fast energy is being used; energy (kWh) is the total used so far. "Has
+        used 0.5 kilowatt hours" is about the total, so it is an area — not a height on the graph.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\int_0^{0.4}1.5\,dt = 1.5\times0.4 = 0.6 > 0.5" />,
@@ -253,7 +347,15 @@ const ROWS_FII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{T = \tfrac13 \text{ hour}}" />,
-    reason: <>An exact value was required, so <Katex tex="0.33" /> would not do. Solving <Katex tex="p(t)=0.5" /> answers a different question entirely.</>,
+    reason: <>No rounding was asked for, so give the exact value — <Katex tex="0.33" /> would not do.</>,
+    more: (
+      <>
+        The report's other wrong answers used the height instead of the area: solving{' '}
+        <Katex tex="p(t)=0.5" /> finds when the heater is drawing 0.5 kW (about{' '}
+        <Katex tex="t\approx0.58" />), and <Katex tex="p(0.5)\approx0.74" /> is the power at
+        half an hour — neither is an amount of energy.
+      </>
+    ),
   },
 ]
 
@@ -265,14 +367,34 @@ const ROWS_FIII: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{0.4}^{a}\left(0.3+1.2e^{4}e^{-10t}\right)dt = 0.4" />,
     reason: <>Setting up the remaining area, with A from part f.i.</>,
+    more: (
+      <>
+        Use the exact <Katex tex="A=1.2e^{4}" />, copied carefully — the report notes some students
+        transcribed <Katex tex="A" /> incorrectly. This equation is the working the 2 marks need:
+        the report says some students just gave the answer, and others solved{' '}
+        <Katex tex="p(t)=1" /> or found <Katex tex="p(1)" />, which (as in f.ii.) are powers, not
+        energies.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\left[0.3t-0.12e^{4}e^{-10t}\right]_{0.4}^{a} = 0.3a-0.12e^{4-10a}-\left(0.12-0.12\right)" />,
+    working: <Katex display tex="\begin{aligned} &\left[0.3t-0.12e^{4}e^{-10t}\right]_{0.4}^{a} \\ &= 0.3a-0.12e^{4-10a} -\left(0.12-0.12\right) \end{aligned}" />,
     reason: <>The antiderivative of <Katex tex="1.2e^{4}e^{-10t}" /> is <Katex tex="-0.12e^{4}e^{-10t}" />; at <Katex tex="t=0.4" /> this is exactly <Katex tex="-0.12" />, which cancels the <Katex tex="0.3(0.4)" />.</>,
   },
   {
     working: <Katex display tex="0.3a - 0.12e^{4-10a} = 0.4" />,
-    reason: <>Solve with <Cas fn="nSolve" />. By this point the exponential term is around <Katex tex="10^{-5}" />, so the answer is very close to <Katex tex="\tfrac{0.4}{0.3}" />.</>,
+    reason: <>Solve with <Cas fn="nSolve" />.</>,
+    more: (
+      <>
+        You can also skip the antidifferentiating and use <Cas fn="solve" /> on the integral
+        equation from the second row directly.{' '}
+        A check: the whole exponential part of the area, from 0.4 to infinity, is only 0.12 kWh,
+        and it is almost all used up within the first half hour after the join. So roughly{' '}
+        <Katex tex="0.12+0.3(a-0.4)=0.4" />, giving <Katex tex="a\approx1.33" />. At that point{' '}
+        <Katex tex="0.12e^{4-10a}" /> is about <Katex tex="10^{-5}" />, far too small to change
+        the second decimal place.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{a = 1.33 \text{ hours}}" />,
@@ -310,9 +432,6 @@ export default function MethodsQ2_2024Exam2() {
             <p>
               Parts d. and e. sound similar and are not. Part d. is{' '}
               <Katex tex="f(t)=g(t)" />; part e. maximises <Katex tex="\left|f(t)-g(t)\right|" />.
-              Because <Katex tex="f-g" /> is negative before they cross, the maximum <em>gap</em>{' '}
-              occurs at a <em>minimum</em> of the signed difference — the sign trap behind the
-              report's common incorrect answer to part e.
             </p>
           </Background>
         </div>

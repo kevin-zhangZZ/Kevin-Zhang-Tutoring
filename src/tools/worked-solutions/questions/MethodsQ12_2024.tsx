@@ -36,23 +36,28 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(2x+1) = f\!\left(2\left(x+\tfrac12\right)\right)" />,
-    reason: <>Factorise the 2 out of the argument. Without this step the order and size of the two transformations cannot be read off.</>,
+    reason: <>Factorise the 2 out of the argument, so both transformations can be read off in the usual order: dilation first, then translation.</>,
+    more: <>The common slip is to dilate first and then shift 1 unit left: once <Katex tex="x" /> has been doubled, the <Katex tex="+1" /> moves the graph only <Katex tex="\tfrac12" /> a unit. (Translating 1 unit left first and then dilating by factor <Katex tex="\tfrac12" /> is also correct; it lands in the same place.)</>,
   },
   {
-    working: <Katex display tex="\text{dilation factor } \tfrac12 \text{ from the } y\text{-axis, then } \tfrac12 \text{ unit left}" />,
-    reason: <>Reading <Katex tex="2(x+\tfrac12)" /> from the inside out. The graph is squashed horizontally, not stretched, and moved <em>left</em>, not right.</>,
+    working: <Katex display tex="\begin{gathered}\text{dilation by factor } \tfrac12 \text{ from the } y\text{-axis,}\\ \text{then translation } \tfrac12 \text{ unit left}\end{gathered}" />,
+    reason: <>Replacing <Katex tex="x" /> with <Katex tex="2x" /> squashes the graph horizontally by factor <Katex tex="\tfrac12" />; then <Katex tex="x+\tfrac12" /> in place of <Katex tex="x" /> moves it <Katex tex="\tfrac12" /> left.</>,
+    more: <>Changes inside the function act on <Katex tex="x" /> the opposite way to how they look: multiplying <Katex tex="x" /> by 2 halves the horizontal distances, and adding <Katex tex="\tfrac12" /> to <Katex tex="x" /> shifts the graph in the negative direction.</>,
   },
   {
     working: <Katex display tex="(x,y) \mapsto \left(\tfrac{x}{2}-\tfrac12,\ y\right)" />,
-    reason: <>Every <Katex tex="y" />-value is unchanged, so the heights 1, <Katex tex="\approx2.7" /> and the shape all stay put — only the horizontal scale changes. Options <b>C</b> and <b>D</b> stretch the graph instead of squashing it.</>,
+    reason: <>Halve each <Katex tex="x" />-coordinate, then subtract <Katex tex="\tfrac12" />. Every <Katex tex="y" />-value is unchanged, so the heights (1 and about 2.7) stay put.</>,
+    more: <>As a check, a point <Katex tex="(x',y)" /> is on the new graph when <Katex tex="2x'+1=x" /> for a point <Katex tex="(x,y)" /> on the old one, so <Katex tex="x'=\tfrac{x-1}{2}=\tfrac{x}{2}-\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\text{local min } (2,1) \mapsto (1,1) \mapsto \left(\tfrac12,\,1\right)" />,
-    reason: <>Track one identifiable point through both steps. This is the quickest way to separate the two squashed options.</>,
+    reason: <>Track one easy-to-read point through both steps: the local minimum at <Katex tex="(2,1)" /> is clearest on the graph.</>,
+    more: <>A quicker way to find where the minimum lands: the new graph has its minimum where the argument <Katex tex="2x+1" /> equals the old <Katex tex="x" />-value 2, so <Katex tex="2x+1=2" />, giving <Katex tex="x=\tfrac12" />. The flat point at <Katex tex="(-1,1)" /> stays at <Katex tex="(-1,1)" />, since <Katex tex="2x+1=-1" /> gives <Katex tex="x=-1" /> — a handy second check against option <b>B</b>, whose flat point is at <Katex tex="x=-1.5" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{A}}" />,
-    reason: <>Matches option <b>A</b>, whose local minimum sits at <Katex tex="x=\tfrac12" />. Option <b>B</b>, chosen by 28%, has the same dilation but its minimum at <Katex tex="x=0" /> — a translation of 1 unit left instead of <Katex tex="\tfrac12" />.</>,
+    reason: <>Matches option <b>A</b>, whose local minimum sits at <Katex tex="x=\tfrac12" />.</>,
+    more: <>Option <b>B</b> (chosen by 28%) has the right squash but its minimum at <Katex tex="x=0" />: that is the graph of <Katex tex="f(2x+2)" />, a 1-unit shift left after the dilation, which comes from not factorising. Option <b>C</b> (minimum at <Katex tex="x=3" />) dilates by factor 2 and then shifts 1 left, and option <b>D</b> (minimum at <Katex tex="x=2" />) dilates by factor 2 and then shifts 2 left — both treat the 2 as a stretch.</>,
   },
 ]
 

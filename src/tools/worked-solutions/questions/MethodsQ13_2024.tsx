@@ -33,19 +33,20 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \frac{x}{2}+\frac{2}{x},\quad x>0" />,
-    reason: <>Given function.</>,
+    reason: <>A dilation and a translation carry a local minimum of <Katex tex="f" /> to a local minimum of <Katex tex="g" />, so find <Katex tex="f" />'s minimum and track that point.</>,
+    more: <>This saves finding <Katex tex="g" />'s rule and differentiating again. Neither transformation flips the graph (no reflection, and the dilation factor is positive), so a minimum stays a minimum. The report's method of finding <Katex tex="g(x)=\tfrac{x}{6}+\tfrac{6}{x}-1" /> first gives the same point: <Katex tex="g'(x)=\tfrac16-\tfrac{6}{x^2}=0" /> at <Katex tex="x=6" />, and <Katex tex="g(6)=1+1-1=1" />.</>,
   },
   {
-    working: <Katex display tex="f'(x) = \frac12-\frac{2}{x^2} = 0 \;\implies\; x^2=4 \;\implies\; x=2\ (x>0)" />,
-    reason: <>Find <Katex tex="f" />'s own local minimum first.</>,
+    working: <Katex display tex="\begin{aligned}f'(x) = \frac12-\frac{2}{x^2} &= 0\\ x^2&=4\\ x&=2\quad (x>0)\end{aligned}" />,
+    reason: <>Stationary point of <Katex tex="f" />; reject <Katex tex="x=-2" /> as it is outside the domain. <Katex tex="f'(1)<0" /> and <Katex tex="f'(3)>0" />, so it is a minimum.</>,
   },
   {
     working: <Katex display tex="f(2) = 1+1 = 2 \;\implies\; \text{local min at } (2,2)" />,
-    reason: <>Evaluate f there.</>,
+    reason: <>Substitute <Katex tex="x=2" /> into <Katex tex="f" />.</>,
   },
   {
     working: <Katex display tex="\text{Dilation by 3 from the } y\text{-axis: } (x,y)\to(3x,y)" />,
-    reason: <>Scales <Katex tex="x" />-coordinates by 3, leaves <Katex tex="y" /> unchanged.</>,
+    reason: <>"From the <Katex tex="y" />-axis" means horizontal: each <Katex tex="x" />-coordinate is multiplied by 3, and <Katex tex="y" /> is unchanged.</>,
   },
   {
     working: <Katex display tex="(2,2) \;\to\; (6,2)" />,
@@ -53,11 +54,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Translation 1 unit down: } (x,y)\to(x,y-1)" />,
-    reason: <>Apply the second transformation.</>,
+    reason: <>The negative direction of the <Katex tex="y" />-axis is down, so subtract 1 from each <Katex tex="y" />-coordinate.</>,
   },
   {
     working: <Katex display tex="\boxed{(6,2) \;\to\; (6,1)}" />,
-    reason: <>Matches option <b>A</b>; option <b>B</b>'s <Katex tex="\tfrac23" /> comes from dividing the <Katex tex="x" />-coordinate by 3 instead of multiplying. (Since dilations and translations preserve the "local minimum" nature of a point, there's no need to re-derive <Katex tex="g" />'s formula and re-differentiate — just track the point through each transformation.)</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option <b>B</b>, <Katex tex="\left(\tfrac23,1\right)" /> (chosen by 24%), divides the <Katex tex="x" />-coordinate by 3 instead of multiplying. Options <b>C</b>, <Katex tex="(2,5)" />, and <b>D</b>, <Katex tex="\left(2,-\tfrac13\right)" />, treat it as a dilation from the <Katex tex="x" />-axis: they multiply or divide the <Katex tex="y" />-coordinate 2 by 3 and then subtract 1, leaving <Katex tex="x=2" />.</>,
   },
 ]
 

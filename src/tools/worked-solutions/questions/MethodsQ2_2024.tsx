@@ -14,19 +14,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="g(2)-g(0) = \int_0^2 g'(x)\,dx" />,
-    reason: <>The fundamental theorem of calculus — no need to find g itself.</>,
+    reason: <>The change in <Katex tex="g" /> from <Katex tex="x=0" /> to <Katex tex="x=2" /> is the definite integral of <Katex tex="g'" /> (fundamental theorem of calculus), so <Katex tex="g" /> itself isn't needed.</>,
+    more: <>The longer way gives the same result: antidifferentiate to <Katex tex="g(x)=\tfrac{x^4}{4}-\tfrac{x^2}{2}+c" />, use <Katex tex="g(0)=5" /> to get <Katex tex="c=5" />, then substitute <Katex tex="x=2" />: <Katex tex="g(2)=4-2+5=7" />.</>,
   },
   {
     working: <Katex display tex="\int_0^2\left(x^3-x\right)dx = \left[\frac{x^4}{4}-\frac{x^2}{2}\right]_0^2" />,
-    reason: <>Antidifferentiating term by term.</>,
+    reason: <>Antidifferentiate term by term: raise each power by 1 and divide by the new power.</>,
   },
   {
-    working: <Katex display tex="= \left(4-2\right)-0 = 2" />,
-    reason: <><Katex tex="\tfrac{16}{4}=4" /> and <Katex tex="\tfrac42=2" />.</>,
+    working: <Katex display tex="= \left(\frac{2^4}{4}-\frac{2^2}{2}\right)-0 = 4-2 = 2" />,
+    reason: <>Substitute the upper terminal, then subtract the value at the lower terminal, which is 0 because both terms vanish at <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{g(2) = g(0)+2 = 5+2 = 7}" />,
-    reason: <>Matches option <b>D</b>. The alternative — antidifferentiate to <Katex tex="g(x)=\tfrac{x^4}{4}-\tfrac{x^2}{2}+c" />, use <Katex tex="g(0)=5" /> to get <Katex tex="c=5" />, then substitute — gives the same thing.</>,
+    reason: <>Matches option <b>D</b>. The integral is only the change in <Katex tex="g" />, so add it to the starting value <Katex tex="g(0)=5" />.</>,
+    more: <>Option <b>A</b>, 2, the most common wrong answer, is the integral alone: the change in <Katex tex="g" />, not its value. Option <b>B</b>, <Katex tex="3=5-2" />, subtracts the change instead of adding it. Option <b>C</b>, 5, is <Katex tex="g(0)" /> unchanged, which is what you get by assuming the integral of <Katex tex="x^3-x" /> is 0 because it is an odd function (its graph has rotational symmetry about the origin, so areas either side of 0 cancel); that shortcut works only on an interval symmetric about 0, such as <Katex tex="[-2,2]" />.</>,
   },
 ]
 

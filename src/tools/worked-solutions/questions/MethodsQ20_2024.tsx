@@ -25,27 +25,39 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)=f(x+2) \text{ for all } x\in R" />,
-    reason: <><Katex tex="f" /> is periodic with period 2.</>,
+    reason: <><Katex tex="f" /> is periodic with period 2: its graph repeats every 2 units.</>,
   },
   {
-    working: <Katex display tex="\text{Average value on } [0,2] = \frac{1}{2-0}\int_0^2 f(x)\,dx = k" />,
-    reason: <>Definition of average value.</>,
+    working: <Katex display tex="\frac{1}{2-0}\int_0^2 f(x)\,dx = k" />,
+    reason: <>The average value of <Katex tex="f" /> on <Katex tex="[a,b]" /> is <Katex tex="\frac{1}{b-a}\int_a^b f(x)\,dx" />; here it equals <Katex tex="k" />.</>,
+    more: <>The trap is treating <Katex tex="k" /> as the area itself. The average value is the area divided by the interval's width, so the area over one period is <Katex tex="2k" />, not <Katex tex="k" />. Making this slip gives <Katex tex="k+k=2k" /> over the two periods, option <b>A</b>.</>,
   },
   {
     working: <Katex display tex="\int_0^2 f(x)\,dx = 2k" />,
-    reason: <>Rearrange.</>,
+    reason: <>Multiply both sides by 2.</>,
   },
   {
-    working: <Katex display tex="\int_2^4 f(x)\,dx = \int_0^2 f(x)\,dx = 2k \qquad \int_4^6 f(x)\,dx = \int_0^2 f(x)\,dx = 2k" />,
+    working: <Katex display tex="\begin{aligned} \int_2^4 f(x)\,dx &= \int_0^2 f(x)\,dx = 2k \\ \int_4^6 f(x)\,dx &= \int_0^2 f(x)\,dx = 2k \end{aligned}" />,
     reason: <>Because <Katex tex="f" /> repeats every 2 units, the integral over <i>any</i> length-2 interval equals the integral over <Katex tex="[0,2]" />.</>,
+    more: <>The graph on <Katex tex="[2,4]" /> is the graph on <Katex tex="[0,2]" /> shifted 2 units right (and likewise for <Katex tex="[4,6]" />), so the signed areas are identical.</>,
   },
   {
-    working: <Katex display tex="\int_2^6 f(x)\,dx = \int_2^4 f(x)\,dx + \int_4^6 f(x)\,dx = 2k+2k" />,
-    reason: <>Split <Katex tex="[2,6]" /> into two length-2 pieces.</>,
+    working: <Katex display tex="\begin{aligned} \int_2^6 f(x)\,dx &= \int_2^4 f(x)\,dx + \int_4^6 f(x)\,dx \\ &= 2k+2k \\ &= 4k \end{aligned}" />,
+    reason: <>Split <Katex tex="[2,6]" /> into two length-2 pieces, one period each.</>,
   },
   {
     working: <Katex display tex="\boxed{4k}" />,
-    reason: <>Matches option <b>C</b>. Option <b>A</b>, <Katex tex="2k" />, is the integral over a single period.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: (
+      <>
+        Check: the average value over every whole period is <Katex tex="k" />, so over{' '}
+        <Katex tex="[2,6]" /> (width 4) the integral is average × width <Katex tex="=4k" />.{' '}
+        <b>A</b>, <Katex tex="2k" />, is the integral over a single period only, or two periods at <Katex tex="k" /> each (the slip above). <b>D</b>,{' '}
+        <Katex tex="6k" />, is the integral over three periods, i.e. over <Katex tex="[0,6]" /> rather
+        than <Katex tex="[2,6]" />. <b>B</b>, <Katex tex="3k" />, cannot be right: <Katex tex="[2,6]" /> is a whole number
+        of periods, each contributing <Katex tex="2k" />, so the answer must be a multiple of <Katex tex="2k" />. One way to reach it is to combine both slips: three periods (<Katex tex="0" /> to <Katex tex="6" />) at <Katex tex="k" /> each.
+      </>
+    ),
   },
 ]
 

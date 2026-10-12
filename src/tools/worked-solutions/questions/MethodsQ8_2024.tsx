@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = 0 \iff f(x) = g(x)" />,
-    reason: <>An x-intercept of the difference is a point where the two functions are equal.</>,
+    reason: <>An <Katex tex="x" />-intercept is where <Katex tex="h(x)=0" />, i.e. where <Katex tex="f" /> and <Katex tex="g" /> are equal. So test each tabulated <Katex tex="x" />.</>,
   },
   {
     working: <Katex display tex="h(1) = 0-3 = -3" />,
@@ -22,15 +22,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="h(2) = 4-4 = 0" />,
-    reason: <>The only row where <Katex tex="f" /> and <Katex tex="g" /> match.</>,
+    reason: <>At <Katex tex="x=2" />, <Katex tex="f" /> and <Katex tex="g" /> are equal — the only column of the table where they match.</>,
   },
   {
     working: <Katex display tex="h(3) = 5-(-5) = 10" />,
     reason: <>Not zero — and watch the double negative.</>,
+    more: <>Option <b>B</b>, <Katex tex="(3,0)" />, is what you get from <Katex tex="f(3)+g(3)=5+(-5)=0" />: adding the functions instead of subtracting them.</>,
   },
   {
     working: <Katex display tex="\boxed{(2,\,0)}" />,
-    reason: <>Matches option <b>A</b>. The word "must" matters: <Katex tex="h" /> may well have other intercepts between the tabulated values, but this is the only one the table <em>forces</em>. Options <b>C</b> and <b>D</b> take function values (4 and 5) as <Katex tex="x" />-coordinates.</>,
+    reason: <>Matches option <b>A</b>: the only <Katex tex="x" />-value in the table where <Katex tex="h" /> is definitely zero.</>,
+    more: <>The word "must" matters: <Katex tex="h" /> may well have other intercepts between or beyond the tabulated values, but the table only <em>forces</em> this one. Options <b>C</b> and <b>D</b> take function values as <Katex tex="x" />-coordinates: 4 is the common value <Katex tex="f(2)=g(2)" />, and 5 is the size of <Katex tex="f(3)" /> and <Katex tex="g(3)" />. An intercept's coordinates are <Katex tex="(x,0)" />, and only <Katex tex="x=1,2,3" /> appear in the table.</>,
   },
 ]
 

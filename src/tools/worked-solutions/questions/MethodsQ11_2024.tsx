@@ -21,11 +21,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="12 \text{ students total: } 7 \text{ in row 1},\ 5 \text{ in row 2}" />,
-    reason: <>Given information.</>,
+    reason: <>Three <em>different</em> students are chosen, so this is selection without replacement: count groups of 3 with combinations, not a binomial.</>,
+    more: <>The trap: option <b>D</b>, chosen by 37%, comes from a binomial distribution with <Katex tex="p=\tfrac{7}{12}" />. A binomial needs the probability of "row 1" to stay <Katex tex="\tfrac{7}{12}" /> on every pick, which is only true if the same student could be picked again. Once a row-1 student is chosen, only 6 of the remaining 11 are in row 1, so the picks are not independent.</>,
   },
   {
     working: <Katex display tex="\binom{7}{2}\binom{5}{1}" />,
-    reason: <>Choose 2 of the 3 students from row 1, and the remaining 1 from row 2.</>,
+    reason: <>Favourable groups: choose 2 of the 7 row-1 students, and the third student from the 5 in row 2.</>,
   },
   {
     working: <Katex display tex="\binom{7}{2}=21,\qquad \binom{5}{1}=5" />,
@@ -37,11 +38,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr = \frac{21\times5}{220} = \frac{105}{220}" />,
-    reason: <>Favourable outcomes over total outcomes.</>,
+    reason: <>Every group of 3 is equally likely, so probability is favourable groups over total groups.</>,
+    more: <>Check by picking one at a time: the row-1, row-1, row-2 order has probability <Katex tex="\tfrac{7}{12}\times\tfrac{6}{11}\times\tfrac{5}{10}=\tfrac{7}{44}" />, and the row-2 student can come 1st, 2nd or 3rd, so the answer is <Katex tex="3\times\tfrac{7}{44}=\tfrac{21}{44}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{105}{220} = \frac{21}{44}}" />,
-    reason: <>Simplify (divide by 5). Matches option <b>B</b>. Option <b>D</b>, <Katex tex="\tfrac{245}{576}" />, treats the three choices as independent (a binomial, as if with replacement); option <b>A</b>, <Katex tex="\tfrac{7}{44}" />, is the probability that all three are in the first row.</>,
+    reason: <>Simplify (divide by 5). Matches option <b>B</b>.</>,
+    more: <>Option <b>D</b>, <Katex tex="\tfrac{245}{576}=3\left(\tfrac{7}{12}\right)^2\tfrac{5}{12}" />, is the binomial calculation warned about in the first step. Option <b>A</b>, <Katex tex="\tfrac{7}{44}" />, is what you get by forgetting the factor of 3 for the position of the row-2 student in the one-at-a-time method (it also happens to equal the probability that all three are in row 1, <Katex tex="\tfrac{35}{220}" />). Option <b>C</b>, <Katex tex="\tfrac{5}{22}=\tfrac{50}{220}" />, matches none of the four possible splits: 0, 1, 2 or 3 students from row 1 account for 10, 70, 105 and 35 of the 220 groups.</>,
   },
 ]
 

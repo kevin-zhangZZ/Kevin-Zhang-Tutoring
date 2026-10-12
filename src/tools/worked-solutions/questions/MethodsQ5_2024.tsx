@@ -14,23 +14,26 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = x^2-4x = (x-2)^2-4 \ \text{ on } (1,\infty)" />,
-    reason: <>Complete the square to locate the vertex at (2, −4).</>,
+    reason: <>The outputs of <Katex tex="f" /> are the inputs of <Katex tex="g" />, so find <Katex tex="\text{ran}(f)" /> first. Completing the square puts the vertex at <Katex tex="(2,-4)" />.</>,
   },
   {
     working: <Katex display tex="\text{ran}(f) = [-4,\infty)" />,
-    reason: <>The vertex <Katex tex="x=2" /> lies inside <Katex tex="(1,\infty)" />, so the minimum <Katex tex="-4" /> is attained. (At the open end <Katex tex="x=1" />, <Katex tex="f=-3" />, which is above it anyway.)</>,
+    reason: <>The vertex <Katex tex="x=2" /> lies inside <Katex tex="(1,\infty)" />, so the minimum <Katex tex="-4" /> is attained: closed bracket.</>,
+    more: <>Don't just evaluate <Katex tex="f" /> at the end of the domain. At the open end <Katex tex="x=1" />, <Katex tex="f(1)=-3" />, but the parabola keeps going down until <Katex tex="x=2" />, so <Katex tex="-3" /> is not the lowest value. Leaving out <Katex tex="x=1" /> costs nothing either: <Katex tex="f(3)=-3" />, so <Katex tex="-3" /> (and every value down to <Katex tex="-4" />) is still reached to the right of the vertex.</>,
   },
   {
     working: <Katex display tex="g(u) = e^{-u} \ \text{ on } u\in[-4,\infty)" />,
-    reason: <>Now feed that range through the outer function.</>,
+    reason: <>Now feed that range through the outer function, calling its input <Katex tex="u" />.</>,
   },
   {
-    working: <Katex display tex="e^{-u} \text{ is decreasing}: \ u=-4 \mapsto e^{4}; \quad u\to\infty \mapsto 0^+" />,
-    reason: <>So the largest value <Katex tex="e^4" /> is attained and 0 is approached but never reached.</>,
+    working: <Katex display tex="\begin{aligned} &e^{-u} \text{ is decreasing:} \\ &u=-4 \mapsto e^{4}; \quad u\to\infty \mapsto 0^+ \end{aligned}" />,
+    reason: <>Larger <Katex tex="u" /> gives smaller <Katex tex="e^{-u}" />, so the smallest input gives the largest output <Katex tex="e^4" />, attained; 0 is approached but never reached.</>,
+    more: <>Because <Katex tex="g" /> is decreasing, the order flips: the bottom of the inner range (<Katex tex="u=-4" />) becomes the top of the final range, and the top (<Katex tex="u\to\infty" />) becomes the bottom. The brackets carry across with their ends: <Katex tex="-4" /> was included, so <Katex tex="e^{4}" /> is included; <Katex tex="\infty" /> is never reached, so 0 is never reached (an exponential is always positive).</>,
   },
   {
     working: <Katex display tex="\boxed{\left(0,\ e^4\right]}" />,
-    reason: <>Matches option <b>D</b>. Both details matter: the bracket at <Katex tex="e^4" /> is closed because the vertex is in the domain, and the exponent is 4 (not 3, which is what using <Katex tex="f(1)=-3" /> as the minimum would give).</>,
+    reason: <>Matches option <b>D</b>: exponent 4 from the vertex, closed at <Katex tex="e^4" /> because the vertex is in the domain.</>,
+    more: <>Each wrong option misses one of those two details. Options <b>A</b> and <b>B</b> (<Katex tex="e^3" />) use <Katex tex="f(1)=-3" /> as the minimum of <Katex tex="f" />, ignoring the vertex. Option <b>C</b>, <Katex tex="\left(0,e^4\right)" />, the most common wrong answer, has the right value but an open bracket, as if <Katex tex="e^4" /> were only approached; it is reached, at <Katex tex="x=2" />.</>,
   },
 ]
 

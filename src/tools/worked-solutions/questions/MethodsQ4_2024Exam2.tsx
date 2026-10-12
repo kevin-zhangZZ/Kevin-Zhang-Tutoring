@@ -122,33 +122,37 @@ const EXAM_EII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{heavy} \iff X>23" />,
-    reason: <>Reading the definition from the stem.</>,
+    reason: <>"Heavy" means the mass exceeds 23 kg, so the probability wanted is <Katex tex="\Pr(X>23)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(X>23) = \int_{23}^{30}\frac{1}{67500}x^2(30-x)\,dx}" />,
-    reason: <>The upper terminal is 30, not <Katex tex="\infty" /> — the density is zero beyond 30, so integrating further adds nothing but is not what was asked for. Its value, <Katex tex="0.2339\ldots" />, is the 0.234 used later.</>,
+    reason: <>Integrate the density from 23 up to 30, the end of the interval where the rule <Katex tex="\tfrac{1}{67500}x^2(30-x)" /> applies.</>,
+    more: <>Writing <Katex tex="\int_{23}^{30}f(x)\,dx" /> is just as good, and safer: the report notes transcription errors when students wrote the rule out in full. Of the report's common incorrect answers, <Katex tex="\int_0^{30}f(x)\,dx" /> is the total probability (it equals 1) and <Katex tex="\int_0^{23}f(x)\,dx" /> is the probability a bag is <em>not</em> heavy. Keep the upper terminal at 30 rather than <Katex tex="\infty" />: beyond 30 the rule <Katex tex="x^2(30-x)" /> goes negative, so only the piecewise <Katex tex="f" /> is zero there. The integral's value, <Katex tex="0.2339\ldots" />, is the 0.234 used from part c on.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
-    working: <Katex display tex="E(X) = \int_0^{30}x\,f(x)\,dx = \frac{1}{67500}\int_0^{30}\left(30x^3-x^4\right)dx" />,
-    reason: <>The definition of the mean of a continuous random variable.</>,
+    working: <Katex display tex="\begin{aligned}E(X) &= \int_0^{30}x\,f(x)\,dx \\ &= \frac{1}{67500}\int_0^{30}\left(30x^3-x^4\right)dx\end{aligned}" />,
+    reason: <>The mean of a continuous random variable is <Katex tex="\int x\,f(x)\,dx" /> over its domain. Here <Katex tex="x\cdot x^2(30-x)=30x^3-x^4" />.</>,
   },
   {
-    working: <Katex display tex="= \frac{1}{67500}\left[\frac{30x^4}{4}-\frac{x^5}{5}\right]_0^{30} = \frac{1}{67500}\left(6\,075\,000-4\,860\,000\right)" />,
-    reason: <>Or straight to the calculator.</>,
+    working: <Katex display tex="\begin{aligned}&= \frac{1}{67500}\left[\frac{30x^4}{4}-\frac{x^5}{5}\right]_0^{30} \\ &= \frac{1}{67500}\left(6\,075\,000-4\,860\,000\right)\end{aligned}" />,
+    reason: <>Antidifferentiate term by term; the lower terminal 0 contributes nothing.</>,
+    more: <>On Exam 2 you can skip the hand work: <Cas fn="nInt" /> (or the template integral) of <Katex tex="x\,f(x)" /> from 0 to 30 gives 18 directly. By hand, <Katex tex="\tfrac{30\times30^4}{4}=6\,075\,000" /> and <Katex tex="\tfrac{30^5}{5}=4\,860\,000" />.</>,
   },
   {
     working: <Katex display tex="\boxed{E(X) = \frac{1\,215\,000}{67\,500} = 18 \text{ kg}}" />,
-    reason: <>Comfortably above the midpoint 15, which fits a density skewed towards the heavy end.</>,
+    reason: <>The mean mass of a piece of luggage.</>,
+    more: <>A quick sense check: 18 is above the midpoint 15 of <Katex tex="[0,30]" />, which fits a density whose peak is at <Katex tex="x=20" />, towards the heavy end.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Var}(X) = \int_0^{30}x^2f(x)\,dx - \left[E(X)\right]^2" />,
-    reason: <>Or equivalently ∫(x − 18)²f(x) dx. Either way the mean must be squared.</>,
+    reason: <>The variance formula <Katex tex="\text{Var}(X)=E(X^2)-[E(X)]^2" />, with <Katex tex="E(X^2)=\int x^2f(x)\,dx" />. The mean must be squared.</>,
+    more: <>The report notes some students did not square the mean in this method: <Katex tex="360-18=342" /> is not the variance. The other form, <Katex tex="\text{Var}(X)=\int_0^{30}(x-18)^2f(x)\,dx" />, gives 36 too.</>,
   },
   {
     working: <Katex display tex="\int_0^{30}x^2f(x)\,dx = 360" />,
@@ -156,45 +160,50 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{Var}(X) = 360-18^2 = 360-324 = 36" />,
-    reason: <>This is the variance, not the answer — the question asked for the standard deviation.</>,
+    reason: <>Subtract the square of the mean from b.i. This is the variance, not yet the answer.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{sd}(X) = \sqrt{36} = 6 \text{ kg}}" />,
-    reason: <>The report notes some students gave the variance, 36, as their answer.</>,
+    reason: <>The standard deviation is the square root of the variance.</>,
+    more: <>The report notes some students worked out the variance and stopped there, and that some did not show any working: this part is worth 2 marks, so write the variance line as well as the answer.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
-    working: <Katex display tex="\Pr(X>23\mid X>18) = \frac{\Pr(X>23 \cap X>18)}{\Pr(X>18)} = \frac{\Pr(X>23)}{\Pr(X>18)}" />,
-    reason: <>Every bag over 23 kg is also over 18 kg, so the intersection is just <Katex tex="\{X>23\}" />. Getting the fraction upside down gives 2.243, which cannot be a probability.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(X>23\mid X>18) &= \frac{\Pr(X>23 \cap X>18)}{\Pr(X>18)} \\ &= \frac{\Pr(X>23)}{\Pr(X>18)}\end{aligned}" />,
+    reason: <>"More than the mean" is the given condition, <Katex tex="X>18" />. Every bag over 23 kg is also over 18 kg, so the intersection is just <Katex tex="X>23" />.</>,
+    more: <>The given event always goes in the denominator. The report notes some students evaluated the fraction upside down, <Katex tex="\tfrac{\Pr(X>18)}{\Pr(X>23)}=2.243" />; a probability greater than 1 is the signal that something is wrong.</>,
   },
   {
     working: <Katex display tex="\Pr(X>23) = \int_{23}^{30}f(x)\,dx = 0.23392\ldots" />,
-    reason: <>From part a.</>,
+    reason: <>The integral from part a, evaluated with <Cas fn="nInt" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X>18) = \int_{18}^{30}f(x)\,dx = 0.52480" />,
-    reason: <>Not 0.5 — the mean of a skewed distribution is not its median, and the report notes some students incorrectly used 0.5. (Its printed example, "Pr(X &gt; 18)/0.5 = 0.468", should read Pr(X &gt; 23)/0.5: <Katex tex="\tfrac{0.2339}{0.5}=0.468" />.)</>,
+    reason: <>Integrate from the mean to 30. It is not 0.5: the mean of a skewed distribution is not its median. (The report's 0.468 is <Katex tex="\Pr(X>23)/0.5" />.)</>,
+    more: <>The report notes some students incorrectly used 0.5 in the denominator. Its printed example has a slip: the numerator should be <Katex tex="\Pr(X>23)" />, since <Katex tex="\tfrac{0.2339}{0.5}=0.468" /> while <Katex tex="\tfrac{0.5248}{0.5}=1.050" />. It also notes some tried to use the normal distribution: <Katex tex="X" /> is not normal — its density is given, so every probability comes from integrating <Katex tex="f" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{0.23392\ldots}{0.52480} = 0.446}" />,
-    reason: <>Three decimal places, as asked.</>,
+    reason: <>Correct to three decimal places, as asked.</>,
   },
 ]
 
 const ROWS_CI: WorkingRow[] = [
   {
-    working: <Katex display tex="W=2 \implies \text{the traveller checked in two pieces, and both are heavy}" />,
+    working: <Katex display tex="\begin{aligned}W=2 \implies &\text{the traveller checked in two} \\ &\text{pieces, and both are heavy}\end{aligned}" />,
     reason: <>Two heavy pieces are impossible for the 10% and 40% groups, so only the two-piece group contributes.</>,
+    more: <>Picture a two-stage tree diagram. The first branches are the number of pieces checked in (0, 1 or 2, with probabilities 0.1, 0.4 and 0.5); then each piece branches into heavy (0.234) or not heavy (0.766). <Katex tex="W=2" /> is the single path "two pieces, heavy, heavy". The same tree gives every entry in c.ii.</>,
   },
   {
     working: <Katex display tex="\Pr(W=2) = 0.5\times0.234\times0.234" />,
-    reason: <>The masses are independent of each other and of the number checked in, as the stem states.</>,
+    reason: <>Multiply along that path: 0.5 for two pieces, then 0.234 for each heavy piece. The stem says the masses are independent of the number checked in.</>,
   },
   {
     working: <Katex display tex="= 0.5\times0.054756 = 0.027378" />,
-    reason: <>Every line of this counts in a "show that" — the report notes adequate working needed to be shown.</>,
+    reason: <>Since <Katex tex="0.234^2=0.054756" />. Show this unrounded value: the answer itself was given.</>,
+    more: <>The report notes this was a "show that" question and adequate working needed to be shown. Writing only 0.027 earns nothing, because 0.027 is printed in the question; the marker needs to see where it comes from.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(W=2) = 0.027 \ \text{(3 d.p.)}}" />,
@@ -204,16 +213,18 @@ const ROWS_CI: WorkingRow[] = [
 
 const ROWS_CII: WorkingRow[] = [
   {
-    working: <Katex display tex="\Pr(W=0) = 0.1\times1 + 0.4\times0.766 + 0.5\times0.766^2" />,
-    reason: <>Three ways to check in no heavy bags: bring none, bring one that is light, or bring two that are both light. Here <Katex tex="1-0.234=0.766" />.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(W=0) = {}&0.1\times1 + 0.4\times0.766 \\ &+ 0.5\times0.766^2\end{aligned}" />,
+    reason: <>Three ways to check in no heavy bags: bring none, bring one that is not heavy, or bring two that are both not heavy. Here <Katex tex="1-0.234=0.766" />.</>,
+    more: <>These are the paths of the c.i tree that end with no heavy pieces. The 10% who bring no luggage are easy to forget, but they certainly have <Katex tex="W=0" />, so their branch contributes <Katex tex="0.1\times1" />. The report notes some students attempted a tree diagram but were unable to get the correct values, and others left the question blank.</>,
   },
   {
     working: <Katex display tex="= 0.1+0.3064+0.293378 = 0.699778" />,
     reason: <>Adding the three branches.</>,
   },
   {
-    working: <Katex display tex="\Pr(W=1) = 0.4\times0.234 + 0.5\times2\times0.234\times0.766" />,
-    reason: <>One heavy bag either is the only bag, or is one of two — and the <Katex tex="2" /> counts which of the two it is.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(W=1) = {}&0.4\times0.234 \\ &+ 0.5\times2\times0.234\times0.766\end{aligned}" />,
+    reason: <>Exactly one heavy bag: either the only bag is heavy, or one of two bags is. The <Katex tex="2" /> counts the two orders, heavy–light and light–heavy.</>,
+    more: <>Leaving out the 2 gives <Katex tex="0.0936+0.089622=0.183222" />, and then the three probabilities add to only 0.910, a sign that a path is missing.</>,
   },
   {
     working: <Katex display tex="= 0.0936+0.179244 = 0.272844" />,
@@ -221,53 +232,59 @@ const ROWS_CII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(W=0) = 0.700, \qquad \Pr(W=1) = 0.273}" />,
-    reason: <>Check: <Katex tex="0.699778+0.272844+0.027378 = 1" /> exactly, which is a complete verification of all three entries.</>,
+    reason: <>Rounded to three decimal places, these fill the two blank cells of the table.</>,
+    more: <>Check: <Katex tex="0.699778+0.272844+0.027378 = 1" /> exactly (and <Katex tex="0.700+0.273+0.027=1" />), so no path has been missed or counted twice.</>,
   },
 ]
 
 const ROWS_DI: WorkingRow[] = [
   {
     working: <Katex display tex="Y \sim \text{Bi}(35,\,0.234), \quad \hat{P} = \frac{Y}{35}" />,
-    reason: <>The number of heavy bags in the sample. A sample proportion question is a binomial question in disguise, and the stem says not to approximate.</>,
+    reason: <>Let <Katex tex="Y" /> be the number of heavy pieces in the sample. Each of the 35 pieces is independently heavy with probability 0.234, so <Katex tex="Y" /> is binomial.</>,
+    more: <>A sample proportion question is a binomial question in disguise: turn the condition on <Katex tex="\hat{P}" /> into a condition on the count <Katex tex="Y" />, then use the exact binomial distribution. The report notes some students attempted to use the normal distribution; that is only an approximation here and gives about 0.683, not the exact answer.</>,
   },
   {
     working: <Katex display tex="\hat{P}>0.2 \iff Y > 7 \iff Y \ge 8" />,
-    reason: <><Katex tex="0.2\times35 = 7" /> exactly, so <Katex tex="Y=7" /> gives <Katex tex="\hat{P}=0.2" />, which is <em>not</em> greater than 0.2 and must be excluded. Including it gives <Katex tex="\Pr(Y\ge7)=0.743" />, which the report notes was a common incorrect answer.</>,
+    reason: <><Katex tex="0.2\times35 = 7" /> exactly, and <Katex tex="Y=7" /> gives <Katex tex="\hat{P}=0.2" />, which is <em>not</em> greater than 0.2. So <Katex tex="Y" /> starts at 8.</>,
+    more: <>Including <Katex tex="Y=7" /> gives <Katex tex="\Pr(Y\ge7)=0.743" />, which the report notes was a common incorrect answer.</>,
   },
   {
-    working: <Katex display tex="\Pr(Y\ge8) = 1-\Pr(Y\le7) = 1-\text{binomCdf}(35,\,0.234,\,0,\,7)" />,
+    working: <Katex display tex="\begin{aligned}\Pr(Y\ge8) &= 1-\Pr(Y\le7) \\ &= 1-\text{binomCdf}(35,\,0.234,\,0,\,7)\end{aligned}" />,
     reason: <>By <Cas fn="binomCdf" />.</>,
   },
   {
     working: <Katex display tex="\boxed{0.595}" />,
-    reason: <>Three decimal places.</>,
+    reason: <>Correct to three decimal places.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="E\!\left(\hat{P}\right) = p = 0.234" />,
-    reason: <>The sample proportion is unbiased.</>,
+    reason: <>The mean of a sample proportion is the population proportion <Katex tex="p" />.</>,
   },
   {
-    working: <Katex display tex="\text{sd}\!\left(\hat{P}\right) = \sqrt{\frac{p(1-p)}{n}} = \sqrt{\frac{0.234\times0.766}{35}} = 0.071563" />,
-    reason: <>The standard deviation of the sample proportion.</>,
+    working: <Katex display tex="\begin{aligned}\text{sd}\!\left(\hat{P}\right) &= \sqrt{\frac{p(1-p)}{n}} \\ &= \sqrt{\frac{0.234\times0.766}{35}} = 0.071563\end{aligned}" />,
+    reason: <>The standard deviation of the sample proportion (formula sheet), with <Katex tex="n=35" />.</>,
   },
   {
-    working: <Katex display tex="0.234\pm0.071563 \implies 0.162437 < \hat{P} < 0.305563" />,
-    reason: <>Within one standard deviation of the mean.</>,
+    working: <Katex display tex="\begin{aligned}&0.234\pm0.071563 \\ &\implies 0.162437 < \hat{P} < 0.305563\end{aligned}" />,
+    reason: <>One standard deviation either side of the mean. Keep the unrounded values.</>,
   },
   {
     working: <Katex display tex="\times 35: \quad 5.685 < Y < 10.695 \iff 6 \le Y \le 10" />,
-    reason: <>Converting back to counts. This is the crux: <Katex tex="Y" /> is a whole number, so the interval rounds <em>inwards</em> to 6 through 10.</>,
+    reason: <>Multiply by 35 to get counts. <Katex tex="Y" /> is a whole number, so the values inside are 6 through 10.</>,
+    more: <>This is the crux. The strict inequalities belong to the real-number interval; once it is turned into whole numbers, both 6 and 10 lie inside it, so both are included. The report's second method reaches the same interval directly from <Katex tex="E(Y)=35\times0.234=8.19" /> and <Katex tex="\text{sd}(Y)=\sqrt{35\times0.234\times0.766}\approx2.505" />.</>,
   },
   {
     working: <Katex display tex="\Pr(6\le Y\le10) = \text{binomCdf}(35,\,0.234,\,6,\,10)" />,
-    reason: <>Both endpoints included. The report notes some students evaluated <Katex tex="\Pr(6<Y<10)" /> instead.</>,
+    reason: <>By <Cas fn="binomCdf" />, which includes both bounds, so the bounds are 6 and 10.</>,
+    more: <>The report notes some students found the standard deviation but then evaluated <Katex tex="\Pr(6<Y<10)" />, which leaves out 6 and 10 and gives 0.452.</>,
   },
   {
     working: <Katex display tex="\boxed{0.684}" />,
-    reason: <>Reassuringly near the 0.68 a normal distribution would give — but the question explicitly forbade that route.</>,
+    reason: <>Correct to three decimal places, from the binomial distribution as instructed.</>,
+    more: <>The report notes others used the normal approximation, which the question forbids. It gives about 0.683 (the familiar "68%" within one standard deviation) — close, but not the exact binomial answer.</>,
   },
 ]
 
@@ -278,38 +295,43 @@ const ROWS_EI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="z = \text{invNorm}(0.95,0,1) = 1.6449" />,
-    reason: <>For 90% confidence, 5% sits in each tail. Using <Katex tex="1.96" /> would give a 95% interval.</>,
+    reason: <>For 90% confidence, 5% sits in each tail, so <Katex tex="z" /> has 95% of the standard normal below it. By <Cas fn="invNorm" />.</>,
+    more: <>Using <Katex tex="1.96" /> would give a 95% interval instead.</>,
   },
   {
-    working: <Katex display tex="0.2 \pm 1.6449\sqrt{\frac{0.2\times0.8}{50}} = 0.2\pm1.6449\times0.056569" />,
-    reason: <>Or use the calculator's one-proportion <Katex tex="z" />-interval directly.</>,
+    working: <Katex display tex="\begin{aligned}&0.2 \pm 1.6449\sqrt{\frac{0.2\times0.8}{50}} \\ &= 0.2\pm1.6449\times0.056569\end{aligned}" />,
+    reason: <>The approximate interval <Katex tex="\hat{p}\pm z\sqrt{\tfrac{\hat{p}(1-\hat{p})}{n}}" /> (formula sheet).</>,
+    more: <>The margin is <Katex tex="1.6449\times0.056569=0.09305" />. Quicker and safer is the calculator's one-proportion <Katex tex="z" /> interval, with 10 successes, 50 trials and confidence level 0.9; the report notes some students attempted it by hand and were unsuccessful.</>,
   },
   {
     working: <Katex display tex="\boxed{(0.107,\ 0.293)}" />,
-    reason: <>Three decimal places.</>,
+    reason: <>Correct to three decimal places.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="\text{width} = 2z\sqrt{\frac{\hat{p}(1-\hat{p})}{50}}" />,
-    reason: <>Only <Katex tex="\hat{p}" /> changes between the two samples, so the comparison is entirely about <Katex tex="\hat{p}(1-\hat{p})" />.</>,
+    reason: <>Both samples have <Katex tex="n=50" /> and 90% confidence, so <Katex tex="z" /> and 50 are fixed. The width depends only on <Katex tex="\hat{p}(1-\hat{p})" />.</>,
   },
   {
     working: <Katex display tex="\hat{p}(1-\hat{p}) > 0.2\times0.8 = 0.16" />,
-    reason: <>Wider means a bigger product under the root.</>,
+    reason: <>Wider than the first interval means a bigger product under the root than the first sample's.</>,
   },
   {
-    working: <Katex display tex="\hat{p}(1-\hat{p}) \text{ is a parabola peaking at } \hat{p}=0.5 \implies 0.2<\hat{p}<0.8" />,
-    reason: <>The product equals 0.16 at both <Katex tex="0.2" /> and <Katex tex="0.8" />, and exceeds it strictly between — the symmetry that supplies the upper limit, which the report notes many students missed.</>,
+    working: <Katex display tex="\begin{aligned}&\hat{p}(1-\hat{p}) \text{ is a parabola peaking at } \hat{p}=0.5 \\ &\implies 0.2<\hat{p}<0.8\end{aligned}" />,
+    reason: <>The parabola is symmetric about 0.5: it equals 0.16 at both 0.2 and 0.8, and is bigger strictly between them.</>,
+    more: <>That symmetry supplies the upper limit, which the report notes many students missed. A sample with many heavy pieces (say 39 of 50) gives as uncertain an estimate as one with few; only samples near <Katex tex="\hat{p}=0" /> or <Katex tex="\hat{p}=1" /> give narrow intervals. Solving <Katex tex="\hat{p}(1-\hat{p})>0.16" /> on the calculator confirms <Katex tex="0.2<\hat{p}<0.8" />.</>,
   },
   {
     working: <Katex display tex="0.2<\frac{k}{50}<0.8 \implies 10<k<40" />,
-    reason: <>Where <Katex tex="k" /> is the number of heavy pieces. Both ends are strict, since equality reproduces the same width.</>,
+    reason: <>Let <Katex tex="k" /> be the number of heavy pieces, so <Katex tex="\hat{p}=\tfrac{k}{50}" />. Both ends are strict: <Katex tex="k=10" /> or 40 gives the same width, not a wider one.</>,
+    more: <>The report notes others had 10 as the minimum and 40 as the maximum; those samples reproduce exactly the width from e.i.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{minimum } 11, \qquad \text{maximum } 39}" />,
-    reason: <>Answering 50 for the maximum gives <Katex tex="\hat{p}=1" /> and a width of zero — the narrowest interval possible, not the widest. The report notes 50 was a common incorrect answer.</>,
+    reason: <>The whole numbers strictly between 10 and 40.</>,
+    more: <>The report notes 50 was a common incorrect answer for the maximum. With <Katex tex="k=50" />, <Katex tex="\hat{p}=1" /> and the width is zero — the narrowest interval possible, not a wider one.</>,
   },
 ]
 
@@ -344,13 +366,6 @@ export default function MethodsQ4_2024Exam2() {
               (discrete, and not binomial, because how many bags they bring is itself random);{' '}
               <Katex tex="\hat{P}" /> is the proportion of heavy bags in a <em>sample</em>{' '}
               (binomial, scaled). Deciding which one a part is about is most of the work.
-            </p>
-            <p>
-              Two boundary details carry marks. In d.i., <Katex tex="0.2\times35=7" /> exactly,
-              so <Katex tex="\hat{P}>0.2" /> means <Katex tex="Y\ge8" />, not{' '}
-              <Katex tex="Y\ge7" />. In d.ii., the interval of <Katex tex="\hat{P}" /> values
-              converts to <Katex tex="5.685<Y<10.695" />, which for a whole number means{' '}
-              <Katex tex="6\le Y\le10" /> — rounding inwards, not outwards.
             </p>
           </Background>
         </div>

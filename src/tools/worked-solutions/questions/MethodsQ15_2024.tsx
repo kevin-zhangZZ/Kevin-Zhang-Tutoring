@@ -14,24 +14,24 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="y = \tan(\theta) \text{ has a point of inflection wherever } \theta = k\pi,\ k\in Z" />,
-    reason: <>The centre of each branch — the one place a tangent curve stops curving one way and starts curving the other. No calculus needed if you know the shape.</>,
-  },
-  {
-    working: <Katex display tex="\pi\left(x-\frac14\right) = k\pi" />,
-    reason: <>Setting the argument to a multiple of π.</>,
+    working: <Katex display tex="\pi\left(x-\frac14\right) = k\pi,\ k\in Z" />,
+    reason: <><Katex tex="y=\tan(\theta)" /> has a point of inflection at the centre of each branch, <Katex tex="\theta=k\pi" />, so set the argument of tan equal to <Katex tex="k\pi" />.</>,
+    more: <>At <Katex tex="\theta=k\pi" /> the tan graph changes from concave down to concave up (its gradient is smallest there, 1, and grows on both sides). Calculus confirms it: <Katex tex="\tfrac{d^2}{d\theta^2}\tan(\theta)=2\sec^2(\theta)\tan(\theta)" /> changes sign only where <Katex tex="\tan(\theta)" /> does, at <Katex tex="\theta=k\pi" />. The transformations in <Katex tex="y=2-\tan(\ldots)" /> — a reflection in the <Katex tex="x" />-axis and a translation up 2 — flip and lift the graph but keep each inflection at the centre of its branch.</>,
   },
   {
     working: <Katex display tex="x-\frac14 = k \implies x = k+\frac14" />,
-    reason: <>Dividing by <Katex tex="\pi" />. Equivalently, the period is <Katex tex="\tfrac{\pi}{\pi}=1" />, so the inflections sit one unit apart starting from <Katex tex="x=\tfrac14" />.</>,
+    reason: <>Dividing by <Katex tex="\pi" />.</>,
+    more: <>Equivalently: the period is <Katex tex="\tfrac{\pi}{\pi}=1" /> and the graph is translated <Katex tex="\tfrac14" /> right, so the inflections sit one unit apart starting from <Katex tex="x=\tfrac14" />.</>,
   },
   {
     working: <Katex display tex="y = 2-\tan(k\pi) = 2-0 = 2" />,
-    reason: <>At every inflection the tangent term vanishes, so the height is the same each time. So options <b>C</b> and <b>D</b>, at height <Katex tex="-2" />, are out.</>,
+    reason: <>Substitute back: <Katex tex="\tan(k\pi)=0" />, so every inflection is at height 2. That rules out options <b>C</b> and <b>D</b>.</>,
+    more: <>The height is the vertical translation, <Katex tex="+2" />; the minus sign belongs to the tan term only, so it reflects the curve but does not make the 2 negative. Note that option <b>D</b>'s <Katex tex="x" />-values, <Katex tex="k-\tfrac34=(k-1)+\tfrac14" />, are the same set as option A's — D is wrong only in its height.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(k+\tfrac14,\ 2\right),\ k\in Z}" />,
-    reason: <>Matches option <b>A</b>. Option <b>B</b>'s <Katex tex="x" />-values, <Katex tex="k-\tfrac14=(k-1)+\tfrac34" />, are exactly where the <em>asymptotes</em> are, <Katex tex="x=k+\tfrac34" />.</>,
+    reason: <>Matches option <b>A</b>; option <b>B</b>'s <Katex tex="x" />-values are the asymptotes.</>,
+    more: <>The asymptotes are where <Katex tex="\pi\left(x-\tfrac14\right)=\tfrac{\pi}{2}+k\pi" />, giving <Katex tex="x=k+\tfrac34" />. Option <b>B</b>'s <Katex tex="x" />-values, <Katex tex="k-\tfrac14=(k-1)+\tfrac34" />, are the same set, and the graph has no points at all there.</>,
   },
 ]
 

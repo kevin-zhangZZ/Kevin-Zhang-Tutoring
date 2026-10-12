@@ -15,27 +15,31 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{-3}^{0}\left(\frac{x}{6}+k\right)dx+\int_{0}^{1}\left(-\frac{x}{2}+k\right)dx = 1" />,
-    reason: <>Total area under any density is 1 — this is what fixes k.</>,
+    reason: <>The total area under any density is 1, and <Katex tex="k" /> is the only unknown — so find it first, integrating each branch over its own interval.</>,
   },
   {
-    working: <Katex display tex="\left[\frac{x^2}{12}+kx\right]_{-3}^{0}+\left[-\frac{x^2}{4}+kx\right]_{0}^{1} = \left(-\frac34+3k\right)+\left(-\frac14+k\right)" />,
-    reason: <>Two straight-line pieces, so this is just two trapezium areas if you prefer to do it geometrically.</>,
+    working: <Katex display tex="\begin{aligned}&\left[\frac{x^2}{12}+kx\right]_{-3}^{0}\\ &\quad+\left[-\frac{x^2}{4}+kx\right]_{0}^{1}\\ &= \left(-\frac34+3k\right)+\left(-\frac14+k\right)\end{aligned}" />,
+    reason: <>Antidifferentiate each branch and substitute the limits; the first bracket is <Katex tex="0-\left(\tfrac{9}{12}-3k\right)" />.</>,
+    more: <>Both branches are straight lines, so each integral is also a trapezium area if you prefer geometry. On CAS, define the piecewise function and solve the total-area equation for <Katex tex="k" /> directly.</>,
   },
   {
     working: <Katex display tex="4k-1 = 1 \implies k = \frac12" />,
-    reason: <>Positive, as required.</>,
+    reason: <>Positive, as the question requires.</>,
+    more: <>With <Katex tex="k=\tfrac12" /> the density is <Katex tex="0" /> at <Katex tex="x=-3" />, rises to <Katex tex="\tfrac12" /> at <Katex tex="x=0" /> and falls back to <Katex tex="0" /> at <Katex tex="x=1" />: its graph is a single triangle of base 4 and height <Katex tex="\tfrac12" />, area 1. Sketching it makes the next step obvious.</>,
   },
   {
-    working: <Katex display tex="\Pr(X<0.5) = \int_{-3}^{0}\left(\frac{x}{6}+\frac12\right)dx+\int_{0}^{0.5}\left(-\frac{x}{2}+\frac12\right)dx" />,
-    reason: <>Both branches contribute — <Katex tex="0.5" /> is in the <em>second</em> branch, so the whole of the first is included.</>,
+    working: <Katex display tex="\begin{aligned}&\Pr(X<0.5)\\ &= \int_{-3}^{0}\left(\frac{x}{6}+\frac12\right)dx\\ &\quad+\int_{0}^{0.5}\left(-\frac{x}{2}+\frac12\right)dx\end{aligned}" />,
+    reason: <><Katex tex="X<0.5" /> covers all of the first branch, <Katex tex="[-3,0)" />, plus the second branch from <Katex tex="0" /> to <Katex tex="0.5" /> — so both integrals are needed, each with its own rule.</>,
+    more: <>The two common slips are dropping one branch, or using one rule across the whole interval. Integrating the first rule all the way from <Katex tex="-3" /> to <Katex tex="0.5" /> gives <Katex tex="\tfrac{49}{48}" />, option <b>D</b> — more than 1, so it cannot be a probability. The rule <Katex tex="\tfrac{x}{6}+k" /> only applies for <Katex tex="x<0" />.</>,
   },
   {
     working: <Katex display tex="= \left(-\frac34+\frac32\right)+\left(-\frac{1}{16}+\frac14\right) = \frac34+\frac{3}{16}" />,
-    reason: <>Stopping after the second piece gives <Katex tex="\tfrac{3}{16}" /> — option <b>C</b>, chosen by 30%.</>,
+    reason: <>Evaluating each integral with <Katex tex="k=\tfrac12" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{12}{16}+\frac{3}{16} = \frac{15}{16}}" />,
-    reason: <>Matches option <b>B</b>. A sanity check: the interval <Katex tex="[-3,0)" /> is six times as wide as <Katex tex="[0,0.5)" />, so a probability well above <Katex tex="\tfrac12" /> is exactly what to expect.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Check with the complement: <Katex tex="\Pr(X\ge0.5)" /> is the small triangle from <Katex tex="0.5" /> to <Katex tex="1" />, base <Katex tex="\tfrac12" /> and height <Katex tex="h(0.5)=\tfrac14" />, so area <Katex tex="\tfrac12\times\tfrac12\times\tfrac14=\tfrac{1}{16}" />, and <Katex tex="1-\tfrac{1}{16}=\tfrac{15}{16}" />. Option <b>A</b>, <Katex tex="\tfrac12" />, is too small: <Katex tex="\Pr(X<0)=\tfrac34" /> already. Option <b>C</b>, <Katex tex="\tfrac{3}{16}" />, is the second piece alone — it forgets the first branch. Option <b>D</b> is the single-rule slip described above.</>,
   },
 ]
 
