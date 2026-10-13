@@ -15,14 +15,14 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{n} \text{ where } n=\frac{\pi}{2}" />,
-    reason: <>The coefficient of <Katex tex="x" /> inside the cosine.</>,
+    reason: <>For <Katex tex="a\cos(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />, where <Katex tex="n" /> is the coefficient of <Katex tex="x" /> inside the cosine.</>,
   },
   {
     working: <Katex display tex="= \frac{2\pi}{\frac{\pi}{2}} = 4" />,
-    reason: <>The <Katex tex="\pi" />s cancel, so the period is a plain number, not a multiple of <Katex tex="\pi" />. Options D and E keep the <Katex tex="\pi" /> by mistake.</>,
+    reason: <>The <Katex tex="\pi" />s cancel, so the period is a plain number, not a multiple of <Katex tex="\pi" />.</>,
   },
   {
-    working: <Katex display tex="-1\le\cos\!\left(\frac{\pi x}{2}\right)\le1 \implies -2\le-2\cos\!\left(\frac{\pi x}{2}\right)\le2" />,
+    working: <Katex display tex="\begin{aligned}&-1\le\cos\!\left(\tfrac{\pi x}{2}\right)\le1\\ \implies\ &-2\le-2\cos\!\left(\tfrac{\pi x}{2}\right)\le2\end{aligned}" />,
     reason: <>Multiplying by <Katex tex="-2" /> reverses the inequality, but the band is symmetric so it looks unchanged.</>,
   },
   {
@@ -31,7 +31,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{4 \text{ and } [-1,3]}" />,
-    reason: <>Matches option <b>B</b>. Options A and E forget the shift of <Katex tex="1" /> up. Check: the midpoint of the range, <Katex tex="1" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Check: the midpoint of the range, <Katex tex="1" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude. Options D and E keep a <Katex tex="\pi" /> in the period — dividing <Katex tex="2\pi" /> by <Katex tex="\tfrac{\pi}{2}" /> cancels it. Option C has the right range but a period of <Katex tex="1" />, from misapplying the rule — the period is always <Katex tex="2\pi\div(\text{coefficient of }x)" />. Options A and E give <Katex tex="[-2,2]" />, the range of <Katex tex="-2\cos\!\left(\tfrac{\pi x}{2}\right)" /> alone — they forget the shift of <Katex tex="1" /> up.</>,
   },
 ]
 

@@ -4,11 +4,15 @@
 // which is off the current study design; the mathematics is a horizontal translation and a
 // vertical dilation, so it is included with a note (the skip guide lists it as doable). Question text
 // transcribed from the original paper (no diagram given). Answers verified with sympy.
-// Solution is original.
+// Solution is original. Interactive (Detailed only): part e (10% full marks), sliders for a and b
+// show the dilation halves the midline before b moves it. Parts a-d and f do not qualify.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const DilateThenTranslate = lazyWidget(() => import('../interactives/meth-2016e2-q1e-dilate-then-translate'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [10, 33, 57],
@@ -87,22 +91,29 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{\frac12} = 4\pi" />,
-    reason: <>The coefficient of <Katex tex="x" /> inside the cosine is <Katex tex="\tfrac12" />, so the graph is stretched horizontally by a factor of <Katex tex="2" />. The domain <Katex tex="[0,8\pi]" /> holds exactly two full cycles.</>,
+    reason: <>For <Katex tex="\cos(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />; here <Katex tex="n=\tfrac12" />.</>,
+    more: <>The domain <Katex tex="[0,8\pi]" /> is exactly two periods long, which matters in parts d. and f.: each solution repeats in the second period.</>,
   },
   {
     working: <Katex display tex="-1\le\cos\!\left(\frac{x}{2}\right)\le1 \implies -2\le 2\cos\!\left(\frac{x}{2}\right)\le2" />,
-    reason: <>Amplitude <Katex tex="2" />.</>,
+    reason: <>Cosine runs from <Katex tex="-1" /> to <Katex tex="1" />; the <Katex tex="2" /> out front (the amplitude) doubles that.</>,
+  },
+  {
+    working: <Katex display tex="\pi-2\le 2\cos\!\left(\frac{x}{2}\right)+\pi\le\pi+2" />,
+    reason: <>Adding <Katex tex="\pi" /> shifts the whole range up. The minimum <Katex tex="\pi-2" /> is reached at <Katex tex="x=2\pi" /> and the maximum <Katex tex="\pi+2" /> at <Katex tex="x=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{period } 4\pi, \quad \text{range } [\pi-2,\ \pi+2]}" />,
-    reason: <>Exact values, and square brackets at both ends since both extremes are actually reached on this domain. The report notes marks lost for round brackets and for writing the endpoints the wrong way round.</>,
+    reason: <>Exact values, smaller end first, square brackets because both ends are reached.</>,
+    more: <>The report mentions all three slips: round brackets, the endpoints written the wrong way round (<Katex tex="[2+\pi,-2+\pi]" />), and approximate answers instead of exact ones.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{f'(x) = -\sin\!\left(\frac{x}{2}\right)}" />,
-    reason: <>Chain rule: the derivative of <Katex tex="\cos(u)" /> is <Katex tex="-\sin(u)" />, times <Katex tex="\tfrac12" /> from the inside, and the <Katex tex="2" /> out front cancels it. Write it as an equation, including "<Katex tex="f'(x)=" />" — the report says some students lost the mark for giving only the expression.</>,
+    reason: <>Chain rule: <Katex tex="\cos(u)" /> differentiates to <Katex tex="-\sin(u)" />, times <Katex tex="\tfrac12" /> from the inside, which cancels the <Katex tex="2" /> out front.</>,
+    more: <>The question asks for the <em>rule</em>, so write the equation "<Katex tex="f'(x)=\ldots" />". The report says some students left only the expression <Katex tex="-\sin\!\left(\tfrac{x}{2}\right)" />, and some had their technology in degree mode, which gives a wrong derivative. Check radian mode before any calculus with trig.</>,
   },
 ]
 
@@ -113,92 +124,118 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f'(\pi) = -\sin\!\left(\frac{\pi}{2}\right) = -1" />,
-    reason: <>The gradient.</>,
+    reason: <>The gradient, from the rule in part b.</>,
   },
   {
     working: <Katex display tex="y-\pi = -1(x-\pi)" />,
-    reason: <>Point–gradient form.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -x+2\pi}" />,
-    reason: <>Give the equation, not just the expression <Katex tex="-x+2\pi" />. A gradient of exactly <Katex tex="-1" /> is no accident: <Katex tex="x=\pi" /> is a quarter-cycle from the start, where the curve is falling fastest.</>,
+    reason: <>Give the equation "<Katex tex="y=\ldots" />", not just the expression.</>,
+    more: <>The report notes some students left the answer as <Katex tex="-x+2\pi" />, and that no working was required: CAS gives the line directly. A gradient of exactly <Katex tex="-1" /> is no accident: <Katex tex="x=\pi" /> is a quarter-period from the start, on the midline, where the curve falls fastest.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="-\sin\!\left(\frac{x}{2}\right) = 1 \implies \sin\!\left(\frac{x}{2}\right) = -1" />,
-    reason: <>Setting the derivative equal to the required gradient.</>,
+    reason: <>A tangent with gradient <Katex tex="1" /> touches where <Katex tex="f'(x)=1" />.</>,
   },
   {
-    working: <Katex display tex="\frac{x}{2} = \frac{3\pi}{2}+2k\pi \implies x = 3\pi+4k\pi" />,
-    reason: <>Sine hits <Katex tex="-1" /> once per cycle.</>,
+    working: <Katex display tex="0\le x\le 8\pi \implies 0\le\frac{x}{2}\le4\pi" />,
+    reason: <>Convert the domain for the angle <Katex tex="\tfrac{x}{2}" /> before solving, so no solution is missed.</>,
   },
   {
-    working: <Katex display tex="x = 3\pi \text{ and } x = 7\pi \text{ in } [0,8\pi]" />,
-    reason: <>Two solutions, because the domain holds two full periods. The report says many students found only one — the question asks for the tangent<em>s</em>, plural.</>,
+    working: <Katex display tex="\frac{x}{2} = \frac{3\pi}{2},\ \frac{7\pi}{2} \implies x = 3\pi,\ 7\pi" />,
+    reason: <>Sine is <Katex tex="-1" /> only at the bottom of the unit circle, <Katex tex="\tfrac{3\pi}{2}" />, once per revolution; <Katex tex="[0,4\pi]" /> is two revolutions.</>,
+    more: <>The report notes that once students had <Katex tex="x=3\pi" /> or <Katex tex="x=7\pi" />, the rest could be completed using technology. Finding these values is the key step. Some students gave only one tangent: the question asks for the tangent<em>s</em>, plural, a hint that there is more than one.</>,
   },
   {
-    working: <Katex display tex="f(3\pi) = 2\cos\!\left(\frac{3\pi}{2}\right)+\pi = \pi, \qquad f(7\pi) = \pi" />,
-    reason: <>Both points of contact are at height <Katex tex="\pi" /> — the midline, which is exactly where a sinusoid has its steepest gradient.</>,
+    working: <Katex display tex="\begin{gathered}f(3\pi) = 2\cos\!\left(\frac{3\pi}{2}\right)+\pi = \pi \\ f(7\pi) = 2\cos\!\left(\frac{7\pi}{2}\right)+\pi = \pi\end{gathered}" />,
+    reason: <>The points of contact are <Katex tex="(3\pi,\pi)" /> and <Katex tex="(7\pi,\pi)" />.</>,
+    more: <>Both are on the midline <Katex tex="y=\pi" />, where a sinusoid is steepest, so the gradient <Katex tex="1" /> (the largest value <Katex tex="f'" /> reaches) happens there.</>,
+  },
+  {
+    working: <Katex display tex="y-\pi = x-3\pi, \qquad y-\pi = x-7\pi" />,
+    reason: <>Point–gradient form at each point, with gradient <Katex tex="1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{y = x-2\pi \quad\text{and}\quad y = x-6\pi}" />,
-    reason: <>Point–gradient form at each point with gradient <Katex tex="1" />.</>,
+    reason: <>Both tangents.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="x' = x-\pi, \qquad y' = ay+b" />,
-    reason: <>Reading the transformation: a horizontal translation of <Katex tex="\pi" /> to the left, and a vertical dilation by <Katex tex="a" /> followed by a translation of <Katex tex="b" />.</>,
+    reason: <>Read the matrices row by row (each row times <Katex tex="x" /> and <Katex tex="y" />, plus that row's last entry): <Katex tex="x'=1x+0y-\pi" />, <Katex tex="y'=0x+ay+b" />.</>,
+    more: <>In words: each point moves <Katex tex="\pi" /> left; its height is dilated by factor <Katex tex="a" />, then moved up <Katex tex="b" />. The report says many students were able to take the equations out of the matrices and rearrange them. The difficulty is what comes next: substituting into <Katex tex="y=f(x)" /> and matching the result to <Katex tex="f'" />.</>,
   },
   {
     working: <Katex display tex="x = x'+\pi, \qquad y = \frac{y'-b}{a}" />,
-    reason: <>Invert, so the old variables are in terms of the new ones.</>,
+    reason: <>Make the original <Katex tex="x" /> and <Katex tex="y" /> the subjects, ready to substitute into <Katex tex="y=f(x)" />.</>,
   },
   {
     working: <Katex display tex="\frac{y'-b}{a} = 2\cos\!\left(\frac{x'+\pi}{2}\right)+\pi" />,
-    reason: <>Substituting into <Katex tex="y=f(x)" />.</>,
+    reason: <>Substituting into <Katex tex="y=f(x)" /> gives the rule of the image.</>,
   },
   {
     working: <Katex display tex="y' = 2a\cos\!\left(\frac{x'}{2}+\frac{\pi}{2}\right)+a\pi+b" />,
-    reason: <>Expanding the bracket and multiplying out.</>,
+    reason: <>Multiply both sides by <Katex tex="a" />, add <Katex tex="b" />, and split the fraction inside the cosine.</>,
   },
   {
-    working: <Katex display tex="\cos\!\left(\theta+\frac{\pi}{2}\right) = -\sin(\theta) \implies y' = -2a\sin\!\left(\frac{x'}{2}\right)+a\pi+b" />,
-    reason: <>The identity that turns the cosine into a sine — and it is why the translation had to be <Katex tex="\pi" /> to the left.</>,
+    working: <Katex display tex="\cos\!\left(\theta+\frac{\pi}{2}\right) = -\sin(\theta)" />,
+    reason: <>Shifting cosine <Katex tex="\tfrac{\pi}{2}" /> left gives negative sine, which is what <Katex tex="f'" /> is made of.</>,
+    more: <>To check the identity, try <Katex tex="\theta=0" />: <Katex tex="\cos\tfrac{\pi}{2}=0=-\sin 0" />; and <Katex tex="\theta=\tfrac{\pi}{2}" />: <Katex tex="\cos\pi=-1=-\sin\tfrac{\pi}{2}" />. Or sketch <Katex tex="y=\cos\theta" /> moved <Katex tex="\tfrac{\pi}{2}" /> left: it starts at <Katex tex="0" /> and goes down, like <Katex tex="-\sin\theta" />. This is why the translation is <Katex tex="\pi" /> left: inside <Katex tex="\tfrac{x}{2}" />, a shift of <Katex tex="\pi" /> in <Katex tex="x" /> is a shift of <Katex tex="\tfrac{\pi}{2}" /> in the angle.</>,
+  },
+  {
+    working: <Katex display tex="y' = -2a\sin\!\left(\frac{x'}{2}\right)+a\pi+b" />,
+    reason: <>Applying the identity with <Katex tex="\theta=\tfrac{x'}{2}" />.</>,
   },
   {
     working: <Katex display tex="-2a = -1 \implies a = \frac12" />,
-    reason: <>Matching against <Katex tex="f'(x')=-\sin\!\left(\tfrac{x'}{2}\right)" />: the coefficient of the sine.</>,
+    reason: <>This must be <Katex tex="f'(x')=-\sin\!\left(\tfrac{x'}{2}\right)" />, so match the coefficients of the sine.</>,
   },
   {
-    working: <Katex display tex="a\pi+b = 0 \implies \boxed{a=\tfrac12,\ b=-\tfrac{\pi}{2}}" />,
-    reason: <><Katex tex="f'" /> has no constant term, so the leftover must vanish.</>,
+    working: <Katex display tex="a\pi+b = 0 \implies \frac{\pi}{2}+b=0" />,
+    reason: <><Katex tex="f'" /> has no constant term, so the constant <Katex tex="a\pi+b" /> must be zero.</>,
+    more: <>The tempting wrong answer is <Katex tex="b=-\pi" />, from thinking "the midline must move from <Katex tex="\pi" /> to <Katex tex="0" />". But <Katex tex="y'=ay+b" /> dilates first: the dilation by <Katex tex="\tfrac12" /> already brings the midline down to <Katex tex="\tfrac{\pi}{2}" />, so <Katex tex="b" /> only moves it <Katex tex="\tfrac{\pi}{2}" /> more. The report notes some students drew the graphs but were unable to describe the transformations; the algebra above does not need a graph.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{a=\frac12,\quad b=-\frac{\pi}{2}}" />,
+    reason: <>Both values, exact.</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
-    working: <Katex display tex="2\cos\!\left(\frac{x}{2}\right)+\pi = -2\sin\!\left(\frac{x}{2}\right)+\pi" />,
-    reason: <>Substituting both rules. The <Katex tex="\pi" /> on each side cancels immediately.</>,
+    working: <Katex display tex="\begin{gathered}2\cos\!\left(\frac{x}{2}\right)+\pi = -2\sin\!\left(\frac{x}{2}\right)+\pi \\ 2\cos\!\left(\frac{x}{2}\right) = -2\sin\!\left(\frac{x}{2}\right)\end{gathered}" />,
+    reason: <>Substituting <Katex tex="f(x)" />, and <Katex tex="f'(x)" /> from part b. The <Katex tex="\pi" /> on each side cancels.</>,
+    more: <>The report notes some students solved <Katex tex="2f'(x)+\pi=0" /> instead. That equation has no solutions at all (it needs <Katex tex="\sin\!\left(\tfrac{x}{2}\right)=\tfrac{\pi}{2}" />, which is more than <Katex tex="1" />), so read the equation carefully: <Katex tex="f(x)" /> is on the left.</>,
   },
   {
     working: <Katex display tex="\frac{\sin\!\left(\frac{x}{2}\right)}{\cos\!\left(\frac{x}{2}\right)} = -1 \implies \tan\!\left(\frac{x}{2}\right) = -1" />,
-    reason: <>Dividing by <Katex tex="\cos\!\left(\tfrac{x}{2}\right)" />, which is safe: if it were zero the sine would be <Katex tex="\pm1" /> and the equation could not hold.</>,
+    reason: <>Divide both sides by <Katex tex="-2\cos\!\left(\tfrac{x}{2}\right)" /> to turn sine and cosine into one tangent.</>,
+    more: <>Dividing is safe: if <Katex tex="\cos\!\left(\tfrac{x}{2}\right)" /> were zero, the sine would be <Katex tex="\pm1" /> and the equation could not hold.</>,
+  },
+  {
+    working: <Katex display tex="0\le x\le8\pi \implies 0\le\frac{x}{2}\le4\pi" />,
+    reason: <>Convert the domain for the angle <Katex tex="\tfrac{x}{2}" /> first: it covers two revolutions.</>,
   },
   {
     working: <Katex display tex="\frac{x}{2} = \frac{3\pi}{4},\ \frac{7\pi}{4},\ \frac{11\pi}{4},\ \frac{15\pi}{4}" />,
-    reason: <>The domain <Katex tex="0\le x\le8\pi" /> becomes <Katex tex="0\le\tfrac{x}{2}\le4\pi" />, which holds four solutions of <Katex tex="\tan\theta=-1" />. Halving the domain first is the step that stops you stopping at one or two.</>,
+    reason: <>Tangent is negative in quadrants 2 and 4, with reference angle <Katex tex="\tfrac{\pi}{4}" />; then add <Katex tex="2\pi" /> to each.</>,
   },
   {
     working: <Cas fn="solve">solve(2cos(x/2) + π = -2sin(x/2) + π, x) | 0≤x≤8π</Cas>,
-    reason: <>On CAS, restrict the domain in the same command; without the restriction it returns a general solution with an arbitrary integer.</>,
+    reason: <>On CAS, put the domain restriction in the same command.</>,
+    more: <>Without the restriction, CAS returns a general solution with an arbitrary integer, which you would then have to sort through.</>,
   },
   {
     working: <Katex display tex="\boxed{x = \frac{3\pi}{2},\ \frac{7\pi}{2},\ \frac{11\pi}{2},\ \frac{15\pi}{2}}" />,
-    reason: <>The report's common wrong answer <Katex tex="\tfrac{\pi}{2},\tfrac{5\pi}{2},\ldots" /> comes from <Katex tex="\tan\left(\tfrac{x}{2}\right)=+1" /> — a dropped minus sign.</>,
+    reason: <>Doubling each angle gives the four values of <Katex tex="x" />.</>,
+    more: <>The wrong answer in the report, <Katex tex="\tfrac{\pi}{2},\tfrac{5\pi}{2},\tfrac{9\pi}{2},\tfrac{13\pi}{2}" />, is exactly what <Katex tex="\tan\!\left(\tfrac{x}{2}\right)=+1" /> gives: a dropped minus sign. Check one answer: at <Katex tex="x=\tfrac{3\pi}{2}" />, <Katex tex="\cos\tfrac{3\pi}{4}=-\tfrac{\sqrt2}{2}" /> and <Katex tex="-\sin\tfrac{3\pi}{4}=-\tfrac{\sqrt2}{2}" />, equal as required.</>,
   },
 ]
 
@@ -283,6 +320,9 @@ export default function MethodsQ1_2016Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_E} />
+        <Explore title="Dilate first: by the time b acts, the midline is already at π/2">
+          <DilateThenTranslate />
+        </Explore>
       </PartCard>
 
       <PartCard

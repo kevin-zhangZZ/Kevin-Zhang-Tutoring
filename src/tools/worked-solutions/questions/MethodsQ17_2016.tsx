@@ -17,11 +17,13 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\hat P = \frac{X}{16}, \qquad X\sim\mathrm{Bi}(16,\,0.2)" />,
-    reason: <>A sample proportion is just a count divided by the sample size. Because the container holds a million blocks, removing 16 barely changes the proportion, so the draws are effectively independent.</>,
+    reason: <>A sample proportion is the count of reds divided by <Katex tex="16" />; with a million blocks, the draws are effectively independent.</>,
+    more: <>Why independent: the container holds a million blocks, so removing 16 barely changes the proportion of red ones. Each draw is then red with probability <Katex tex="0.2" />, whatever the earlier draws were, which makes the count binomial.</>,
   },
   {
     working: <Katex display tex="\hat P \ge \frac{3}{16} \iff X \ge 3" />,
-    reason: <>Multiply both sides by <Katex tex="16" />. Turning the proportion back into a count is the whole trick — and the reason the question says not to use a normal approximation.</>,
+    reason: <>Multiply both sides by <Katex tex="16" />. As a count, it is an exact binomial — which is what "do not use a normal approximation" asks for.</>,
+    more: <>Keep the "or equal to": <Katex tex="X\ge3" /> includes <Katex tex="X=3" />, so the binomial sum starts at <Katex tex="3" />, not <Katex tex="4" />. (<Katex tex="\Pr(X\ge4)\approx0.4019" /> is not an option.) A normal approximation, <Katex tex="\hat P\approx\mathrm{N}\!\left(0.2,\,0.1^2\right)" /> with <Katex tex="\sqrt{0.2\times0.8/16}=0.1" />, would give about <Katex tex="0.5497" /> — far from the exact value with a sample this small, which is why the question rules it out.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(16, 0.2, 3, 16)</Cas>,
@@ -29,11 +31,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(X\ge3) = 1-\Pr(X\le2) = 1-0.3518" />,
-    reason: <>Or via the complement, adding <Katex tex="\Pr(X=0)+\Pr(X=1)+\Pr(X=2)" />.</>,
+    reason: <>The same value as a check, via the complement: <Cas fn="binomCdf">binomCdf(16, 0.2, 0, 2)</Cas> <Katex tex="=0.3518" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.6482}" />,
-    reason: <>Matches option <b>A</b>. Option B (13%), <Katex tex="0.8593" />, is <Katex tex="\Pr(X\ge2)" /> — an off-by-one on the count. Sensible: the expected count is <Katex tex="16\times0.2=3.2" />, so "at least 3" should be a bit over half — and it is.</>,
+    reason: <>Matches option <b>A</b> — a bit over half, as expected since the mean count is <Katex tex="16\times0.2=3.2" />.</>,
+    more: <>B (13%), <Katex tex="0.8593" />, is <Katex tex="\Pr(X\ge2)" /> — an off-by-one on the count, e.g. typing a lower bound of <Katex tex="2" /> or computing <Katex tex="1-\Pr(X\le1)" />. D (13%), <Katex tex="0.6542" />, sits very close to A, so read the CAS output digit by digit. C and E don't come from any natural slip with this binomial.</>,
   },
 ]
 

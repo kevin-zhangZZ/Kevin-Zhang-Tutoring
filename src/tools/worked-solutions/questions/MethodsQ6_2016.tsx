@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f\!\left(\frac{\pi}{4}\right) = \sin\!\left(\frac{\pi}{2}\right) = 1" />,
-    reason: <>Double the input inside the sine. This is the top of the first hump.</>,
+    reason: <>Substitute into <Katex tex="f(x)=\sin(2x)" />: double the input first. This is the top of the first hump.</>,
   },
   {
     working: <Katex display tex="f\!\left(\frac{3\pi}{4}\right) = \sin\!\left(\frac{3\pi}{2}\right) = -1" />,
@@ -23,15 +23,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Delta x = \frac{3\pi}{4}-\frac{\pi}{4} = \frac{\pi}{2}, \qquad \Delta y = -1-1 = -2" />,
-    reason: <>The horizontal and vertical separations.</>,
+    reason: <>The segment joins <Katex tex="\left(\frac{\pi}{4},1\right)" /> and <Katex tex="\left(\frac{3\pi}{4},-1\right)" />; these are its horizontal and vertical separations.</>,
   },
   {
     working: <Katex display tex="\text{length}^2 = \left(\frac{\pi}{2}\right)^2+(-2)^2 = \frac{\pi^2}{4}+4" />,
-    reason: <>Pythagoras. The question asks for the <em>square</em> of the length, so there is no final square root — option C is what you get if you drop the horizontal part entirely.</>,
+    reason: <>Pythagoras: <Katex tex="\text{length}^2=(\Delta x)^2+(\Delta y)^2" />. The question asks for the <em>square</em> of the length, so no final square root.</>,
+    more: <>Square <Katex tex="\frac{\pi}{2}" /> properly: <Katex tex="\left(\frac{\pi}{2}\right)^2=\frac{\pi^2}{4}" />, not <Katex tex="\pi" /> (that slip gives option B, <Katex tex="\pi+4" />). Option E, <Katex tex="\frac{10\pi^2}{16}" />, squares each <Katex tex="x" />-value, <Katex tex="\left(\frac{\pi}{4}\right)^2+\left(\frac{3\pi}{4}\right)^2" />, instead of their difference. Option C, <Katex tex="4" />, is what you get if you drop the horizontal part entirely and use only the vertical drop of 2.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{\pi^2+16}{4}}" />,
-    reason: <>Matches option <b>A</b>, about <Katex tex="6.47" />. A quick check: the two points are <Katex tex="1.57" /> apart horizontally and <Katex tex="2" /> vertically, so a length near <Katex tex="2.5" /> and a square near <Katex tex="6.5" />.</>,
+    reason: <>Write over a common denominator, <Katex tex="4=\frac{16}{4}" />. Matches option <b>A</b>, about <Katex tex="6.47" />.</>,
+    more: <>A quick check: the two points are <Katex tex="1.57" /> apart horizontally and <Katex tex="2" /> vertically, so a length near <Katex tex="2.5" /> and a square near <Katex tex="6.5" />. On CAS, evaluating each option as a decimal and comparing with <Katex tex="6.47" /> also settles it.</>,
   },
 ]
 

@@ -7,10 +7,21 @@
 // Note on part (h): VCAA's own report concedes that the given f is not quite a probability
 // density function — the integral over [0, 210] is 0.99968, not 1. Answers to the nearest
 // integer were accepted for the median. That is recorded in the working below.
+//
+// Interactives (qualifying parts, under 40% full marks): (b) Bi(22, 0.1) bars showing how "given
+// at least one" removes the X = 0 bar, with the report's wrong numerators as toggles; (d) the
+// Bi(100, 0.0478) bars behind P-hat against the normal approximation students used; (e) a sigma
+// slider widening N(180, sigma^2) until the tail past 190 is 0.12. Skipped: (f), whose whole
+// insight is a one-line symmetry fact (Pr below the mean is 1/2) that a picture would not add to.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const GivenBars = lazyWidget(() => import('../interactives/meth-2016e2-q3b-given-bars'))
+const BinomialVsNormal = lazyWidget(() => import('../interactives/meth-2016e2-q3d-binomial-vs-normal'))
+const FindSigma = lazyWidget(() => import('../interactives/meth-2016e2-q3e-find-sigma'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [16, 8, 76],
@@ -107,11 +118,12 @@ const EXAM_HII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X\sim\mathrm{Bi}(22,\,0.1)" />,
-    reason: <><Katex tex="22" /> students, each independently failing to plug in with probability <Katex tex="0.1" />.</>,
+    reason: <>Let <Katex tex="X" /> count the laptops not plugged in: <Katex tex="22" /> independent students, each failing with probability <Katex tex="0.1" />.</>,
   },
   {
     working: <Katex display tex="\Pr(X\ge1) = 1-\Pr(X=0) = 1-0.9^{22}" />,
-    reason: <>"At least one" via the complement.</>,
+    reason: <>"At least one" is everything except "none", so use the complement.</>,
+    more: <>"At least one" means <Katex tex="X\ge1" />, which includes <Katex tex="X=1" />. The report notes some students used <Katex tex="\Pr(X>1)" />, which leaves out exactly one laptop and gives <Katex tex="0.6608" /> instead.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.9015}" />,
@@ -122,15 +134,17 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X<5\mid X\ge1) = \frac{\Pr(1\le X\le4)}{\Pr(X\ge1)}" />,
-    reason: <>The intersection of "fewer than 5" and "at least 1" is <Katex tex="1\le X\le4" />. "Fewer than five" excludes <Katex tex="5" /> — including it gives the report's <Katex tex="0.9798" />.</>,
+    reason: <>"Given" means conditional: <Katex tex="\Pr(A\mid B)=\frac{\Pr(A\cap B)}{\Pr(B)}" />. Both "fewer than five" and "at least one" hold when <Katex tex="1\le X\le4" />.</>,
+    more: <>The given event <Katex tex="X\ge1" /> becomes the whole world: the denominator is its probability, and the numerator keeps only the part of "fewer than five" that lies inside it, so <Katex tex="X=0" /> drops out of the top. "Fewer than five" stops at <Katex tex="4" />; the report notes some students included <Katex tex="5" />, which gives <Katex tex="0.9798" />. Putting <Katex tex="\Pr(X\le4)" /> on top is another wrong numerator: it still contains <Katex tex="X=0" />, which the teacher has ruled out.</>,
   },
   {
     working: <Cas fn="binomCdf">binomCdf(22, 0.1, 1, 4)</Cas>,
-    reason: <>The numerator directly.</>,
+    reason: <>The numerator: the probability that <Katex tex="X" /> is from <Katex tex="1" /> to <Katex tex="4" /> inclusive.</>,
   },
   {
     working: <Katex display tex="= \frac{0.83938\ldots}{0.90152\ldots}" />,
-    reason: <>The denominator is part (a). Keep full precision — the report says rounding here produced <Katex tex="0.9312" />.</>,
+    reason: <>The denominator is part (a). Divide the unrounded values.</>,
+    more: <>The report notes some students rounded too soon and gave <Katex tex="0.9312" />. For example, rounding both to three decimal places first gives <Katex tex="\tfrac{0.839}{0.901}=0.9312" />. Store the values on the calculator and divide those.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.9311}" />,
@@ -141,53 +155,62 @@ const ROWS_B: WorkingRow[] = [
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="Y\sim N\!\left(190,\,6^2\right) \text{ minutes}" />,
-    reason: <>Convert everything to minutes first: three hours ten minutes is <Katex tex="190" />, not <Katex tex="3.1" />. That conversion slip is the report's first complaint.</>,
+    reason: <>Work in minutes, the unit the standard deviation is given in: three hours ten minutes is <Katex tex="190" /> minutes, and <Katex tex="\sigma=6" />.</>,
+    more: <>The report also notes some students took the standard deviation as <Katex tex="10" /> minutes. The <Katex tex="10" /> is the gap between the mean and three hours, not the spread; the question gives the spread directly as six minutes. It also lists two unit slips: three hours and ten minutes is not <Katex tex="3.1" /> hours, and six minutes is <Katex tex="0.1" /> hours, not <Katex tex="0.6" />. Working in minutes throughout avoids both.</>,
   },
   {
-    working: <Katex display tex="\Pr(Y<180) = \Pr\!\left(Z<\frac{180-190}{6}\right) = \Pr(Z<-1.6\overline{6})" />,
-    reason: <>Three hours is <Katex tex="180" /> minutes.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(Y<180) &= \Pr\!\left(Z<\frac{180-190}{6}\right)\\ &=\Pr(Z<-1.6\overline{6})\end{aligned}" />,
+    reason: <>A laptop stops by the end of three hours (<Katex tex="180" /> minutes) exactly when its battery life is less than <Katex tex="180" />.</>,
+    more: <>The report notes <Katex tex="\Pr(Y>180)=0.9522" /> was a common incorrect response. That is the probability the laptop is <em>still working</em> after three hours, the opposite event. A quick check: <Katex tex="180" /> is below the mean of <Katex tex="190" />, so the answer must be less than <Katex tex="0.5" />.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(-∞, 180, 190, 6)</Cas>,
-    reason: <>Or standardise and use the standard normal.</>,
+    reason: <>Write this line (or the standardised one above) as working: this part is worth two marks.</>,
+    more: <>The report notes some students gave the answer without showing any working, and reminds students that some working must be shown for questions worth more than one mark.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.0478}" />,
-    reason: <>About one laptop in twenty-one. Keep the unrounded value <Katex tex="0.047790\ldots" /> — part (d) needs it.</>,
+    reason: <>About one laptop in twenty-one. Keep the unrounded value <Katex tex="0.047790\ldots" />: part (d) needs it.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="X_2\sim\mathrm{Bi}(100,\,0.047790\ldots)" />,
-    reason: <>Each of the <Katex tex="100" /> laptops independently has probability <Katex tex="0.04779" /> — part (c) — of lasting under three hours. The instruction "do not use a normal approximation" is what forces the binomial here.</>,
+    reason: <>Let <Katex tex="X_2" /> count the sampled laptops lasting under three hours. Each does so independently with probability <Katex tex="0.04779" />, from part (c).</>,
+    more: <>The question says "do not use a normal approximation", and the report notes most students tried to use the normal distribution anyway. The exact distribution of <Katex tex="\hat P" /> comes from the binomial. With <Katex tex="np\approx4.8" /> the binomial is skewed and lumpy, so the normal approximation gives about <Katex tex="0.618" />, well away from the exact <Katex tex="0.658" />.</>,
   },
   {
-    working: <Katex display tex="\hat P\ge0.06 \iff X_2\ge6, \qquad \hat P\ge0.05 \iff X_2\ge5" />,
-    reason: <>Multiply each proportion by <Katex tex="100" /> to turn it into a count.</>,
+    working: <Katex display tex="\begin{aligned}\hat P\ge0.06 &\iff X_2\ge6\\ \hat P\ge0.05 &\iff X_2\ge5\end{aligned}" />,
+    reason: <>Since <Katex tex="\hat P=\frac{X_2}{100}" />, multiply each proportion by <Katex tex="100" /> to turn it into a count.</>,
   },
   {
     working: <Katex display tex="\Pr\!\left(\hat P\ge0.06\mid \hat P\ge0.05\right) = \frac{\Pr(X_2\ge6)}{\Pr(X_2\ge5)}" />,
-    reason: <><Katex tex="\{X_2\ge6\}" /> sits entirely inside <Katex tex="\{X_2\ge5\}" />, so the intersection is the smaller event.</>,
+    reason: <>Conditional probability. <Katex tex="\{X_2\ge6\}" /> sits entirely inside <Katex tex="\{X_2\ge5\}" />, so their intersection is just <Katex tex="X_2\ge6" />.</>,
+  },
+  {
+    working: <Cas fn="binomCdf">binomCdf(100, p, 6, 100) ÷ binomCdf(100, p, 5, 100)</Cas>,
+    reason: <>Here <Katex tex="p" /> is the stored, unrounded answer to part (c); <Katex tex="100" /> is the upper bound.</>,
   },
   {
     working: <Katex display tex="= \frac{0.34433\ldots}{0.52340\ldots}" />,
-    reason: <>Both from <Katex tex="\texttt{binomCdf}" />.</>,
+    reason: <>The two binomial probabilities.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 0.658}" />,
-    reason: <>Three decimal places this time — read the instruction.</>,
+    reason: <>Three decimal places this time, as the question asks.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="Y_2\sim N\!\left(180,\,\sigma^2\right), \qquad \Pr(Y_2>190) = 0.12" />,
-    reason: <>The mean has dropped to three hours; <Katex tex="\sigma" /> is the unknown.</>,
+    reason: <>The mean is now three hours (<Katex tex="180" /> minutes), and <Katex tex="12\%" /> work for more than <Katex tex="190" /> minutes. <Katex tex="\sigma" /> is the unknown.</>,
   },
   {
     working: <Cas fn="invNorm">invNorm(0.88, 0, 1)</Cas>,
-    reason: <>Working with the standard normal, since <Katex tex="\sigma" /> is what we are solving for. <Katex tex="\Pr(Z>z)=0.12" /> means <Katex tex="\Pr(Z<z)=0.88" />.</>,
+    reason: <>With <Katex tex="\sigma" /> unknown, find the <Katex tex="z" />-value first. <Katex tex="\Pr(Z>z)=0.12" /> means <Katex tex="\Pr(Z<z)=0.88" />.</>,
+    more: <>Every normal distribution is the standard normal stretched by <Katex tex="\sigma" /> and shifted by <Katex tex="\mu" />. So <Katex tex="190" /> must sit the same number of standard deviations above the mean as the <Katex tex="z" /> that has <Katex tex="12\%" /> of the standard normal above it.</>,
   },
   {
     working: <Katex display tex="z = 1.17499\ldots" />,
@@ -195,7 +218,8 @@ const ROWS_E: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{190-180}{\sigma} = 1.17499\ldots \implies \sigma = \frac{10}{1.17499\ldots}" />,
-    reason: <>Rearranging the standardising formula.</>,
+    reason: <>The standardising formula <Katex tex="z=\frac{x-\mu}{\sigma}" />, rearranged for <Katex tex="\sigma" />.</>,
+    more: <>The report notes some rounding errors. Divide by the stored <Katex tex="z" />: using <Katex tex="z=1.17" /> gives <Katex tex="8.5470" />, and even <Katex tex="z=1.175" /> gives <Katex tex="8.5106" />, both wrong to four decimal places.</>,
   },
   {
     working: <Katex display tex="\boxed{\sigma \approx 8.5107 \text{ minutes}}" />,
@@ -206,26 +230,29 @@ const ROWS_E: WorkingRow[] = [
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(Y_2<180) = \tfrac12" />,
-    reason: <>The six-month mean <em>is</em> three hours, and the normal distribution is symmetric about its mean. No calculation needed — that is the whole question.</>,
+    reason: <>Part (f) follows the six-month information given before (e), so use those laptops: mean exactly three hours. A normal curve is symmetric, so half lie below. No <Katex tex="\sigma" /> needed.</>,
+    more: <>Only <Katex tex="21\%" /> of students scored this mark, and the report notes some did not attempt it. The whole question turns on noticing that "less than three hours" is "below the mean", which is exactly half of any normal distribution. The stem of (f) does not repeat "six months", but it comes after the six-month information, and VCAA's answer of <Katex tex="\tfrac18" /> confirms it. Using the new-laptop value <Katex tex="0.0478" /> from (c) instead would give <Katex tex="0.9522^2\times0.0478\approx0.0433" />.</>,
   },
   {
-    working: <Katex display tex="\Pr(\text{first success on the third}) = \left(\tfrac12\right)\left(\tfrac12\right)\left(\tfrac12\right)" />,
-    reason: <>Two failures then a success, in that order.</>,
+    working: <Katex display tex="\Pr(\text{first under 3 h is the third}) = \left(\tfrac12\right)\left(\tfrac12\right)\left(\tfrac12\right)" />,
+    reason: <>The first two tested last at least three hours, then the third does not. The laptops are independent, so multiply.</>,
+    more: <>This is not the binomial "exactly one in three": the order is fixed (not, not, under), so there is no <Katex tex="\binom{3}{1}" /> factor. Including one would give <Katex tex="\tfrac38" />, which also counts the short battery turning up first or second.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac18 = 0.125}" />,
-    reason: <>Only <Katex tex="21\%" /> of students scored this mark. The whole question turns on noticing that the probability is exactly a half.</>,
+    reason: <>Exact, and as a decimal.</>,
   },
 ]
 
 const ROWS_G: WorkingRow[] = [
   {
     working: <Katex display tex="\hat p = \frac{6}{100} = 0.06, \qquad n = 100" />,
-    reason: <>The sample proportion from this particular sample.</>,
+    reason: <>The proportion of interest is laptops lasting under three hours; this sample gives <Katex tex="\hat p=0.06" />.</>,
   },
   {
     working: <Katex display tex="\hat p \pm 1.96\sqrt{\frac{\hat p(1-\hat p)}{n}} = 0.06\pm1.96\sqrt{\frac{0.06\times0.94}{100}}" />,
-    reason: <>The <Katex tex="95\%" /> confidence-interval formula from the formula sheet, with <Katex tex="z=1.96" />.</>,
+    reason: <>The <Katex tex="95\%" /> confidence-interval formula from the formula sheet, with <Katex tex="z\approx1.96" />.</>,
+    more: <>The report notes students were not expected to write out the formula; the CAS one-proportion confidence-interval command (<Katex tex="x=6" />, <Katex tex="n=100" />, level <Katex tex="0.95" />) gives the endpoints directly.</>,
   },
   {
     working: <Katex display tex="= 0.06\pm0.04655" />,
@@ -233,41 +260,45 @@ const ROWS_G: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(0.01,\ 0.11)}" />,
-    reason: <>Two decimal places: <Katex tex="0.0134" /> and <Katex tex="0.1065" />. The report notes <Katex tex="(0.01,0.12)" /> as a common incorrect interval; round each end to the nearest hundredth.</>,
+    reason: <>The endpoints are <Katex tex="0.0135" /> and <Katex tex="0.1065" />, each rounded to two decimal places.</>,
+    more: <>The report notes some rounding errors, and <Katex tex="(0.01,0.12)" /> as a common incorrect interval. The upper end <Katex tex="0.1065" /> rounds to <Katex tex="0.11" />, not <Katex tex="0.12" />.</>,
   },
 ]
 
 const ROWS_HI: WorkingRow[] = [
   {
     working: <Katex display tex="\mathrm{E}(X) = \int_0^{210} x\,f(x)\,dx" />,
-    reason: <>The definition of the mean of a continuous random variable. The terminals are the support of <Katex tex="f" />, where it is non-zero.</>,
+    reason: <>The definition of the mean of a continuous random variable. The terminals are where <Katex tex="f" /> is non-zero.</>,
   },
   {
     working: <Cas fn="nInt">nInt(x·(210-x)·e^((x-210)/20)/400, x, 0, 210)</Cas>,
-    reason: <>No exact antiderivative is worth chasing here; this is the technology paper.</>,
+    reason: <>Evaluate numerically on the CAS; this is the technology paper.</>,
   },
   {
     working: <Katex display tex="\boxed{\approx 170.01 \text{ minutes}}" />,
-    reason: <>Two decimal places — a little under three hours, which is plausible for a battery whose density peaks around <Katex tex="190" /> minutes but has a long left tail.</>,
+    reason: <>Two decimal places: a little under three hours.</>,
+    more: <>Plausible: <Katex tex="f" /> peaks at <Katex tex="x=190" /> (where <Katex tex="f'(x)=0" />) and has a long tail to the left, which drags the mean below the peak.</>,
   },
 ]
 
 const ROWS_HII: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^{m} f(x)\,dx = \frac12" />,
-    reason: <>The median splits the area in half. Delete the <Katex tex="x" /> left over from part (h)(i) — the report says students who forgot got <Katex tex="75.58" />, which is nowhere near the mean and should have set off an alarm.</>,
+    reason: <>The median <Katex tex="m" /> has half the probability below it. Integrate <Katex tex="f(x)" /> alone, without the extra <Katex tex="x" /> from part (h)(i).</>,
+    more: <>The report notes some students left the <Katex tex="x" /> from the mean calculation on their technology, getting <Katex tex="75.58" />. A median of <Katex tex="75.58" /> next to a mean of <Katex tex="170.01" /> should have set off an alarm. The report also notes the <Katex tex="dx" /> was often missing from students' working.</>,
   },
   {
     working: <Cas fn="solve">solve(∫((210-x)·e^((x-210)/20)/400, x, 0, m) = 0.5, m) | 0&lt;m&lt;210</Cas>,
-    reason: <>Restrict to the support; without it the CAS returns a second root outside the domain.</>,
+    reason: <>Restrict <Katex tex="m" /> to the domain <Katex tex="[0,210]" />; without it the CAS also returns a second root, about <Katex tex="225.36" />.</>,
+    more: <>The report notes some students gave two solutions because they did not consider the domain. The CAS integrates the formula as if it applied beyond <Katex tex="210" />, where it goes negative, so the integral comes back down through <Katex tex="\tfrac12" /> at <Katex tex="m\approx225.36" />. But <Katex tex="f=0" /> there, so that root is meaningless.</>,
   },
   {
     working: <Katex display tex="\boxed{m \approx 176.45 \text{ minutes}}" />,
-    reason: <>About <Katex tex="176" /> minutes, or two hours and fifty-six — below the mean, which fits a left-skewed distribution.</>,
+    reason: <>Two decimal places. Above the mean of <Katex tex="170.01" />, as expected: <Katex tex="f" /> peaks at <Katex tex="190" /> with a long left tail, which drags the mean down.</>,
   },
   {
     working: <Katex display tex="\int_0^{210} f(x)\,dx = 0.99968\ldots \ne 1" />,
-    reason: <>Worth knowing: VCAA's own report concedes the given <Katex tex="f" /> is not quite a probability density function. Solving from the right instead, <Katex tex="\int_m^{210}f=\tfrac12" />, gives <Katex tex="176.43" /> — a different answer to two decimal places. VCAA accepted anything correct to the nearest integer, <Katex tex="176" />.</>,
+    reason: <>The given <Katex tex="f" /> is not quite a probability density function, so <Katex tex="\int_m^{210}f=\tfrac12" /> gives <Katex tex="176.43" /> instead. VCAA accepted any answer correct to the nearest integer, <Katex tex="176" />.</>,
   },
 ]
 
@@ -319,6 +350,9 @@ export default function MethodsQ3_2016Exam2() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Being told “at least one” removes the X = 0 bar">
+          <GivenBars />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -342,15 +376,6 @@ export default function MethodsQ3_2016Exam2() {
         }
         examinerReport={EXAM_C}
       >
-        <Background title="Work in minutes">
-          <p>
-            Three hours and ten minutes is <Katex tex="190" /> minutes, not{' '}
-            <Katex tex="3.1" /> hours. Six minutes is <Katex tex="0.1" /> hours, not{' '}
-            <Katex tex="0.6" />. Converting everything to one unit before starting — minutes
-            here, since the standard deviation is given in minutes — removes both of the
-            report's most common errors at a stroke.
-          </p>
-        </Background>
         <WorkingTable rows={ROWS_C} />
       </PartCard>
 
@@ -378,6 +403,9 @@ export default function MethodsQ3_2016Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The exact binomial and the normal approximation give different answers">
+          <BinomialVsNormal />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -403,6 +431,9 @@ export default function MethodsQ3_2016Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="Widen the curve until 12% lies beyond 190 minutes">
+          <FindSigma />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -488,12 +519,6 @@ export default function MethodsQ3_2016Exam2() {
             The function VCAA printed is not quite a probability density function: its
             integral over <Katex tex="[0,210]" /> is <Katex tex="0.99968" />, not{' '}
             <Katex tex="1" />.
-          </p>
-          <p>
-            That makes "the median" ambiguous to two decimal places — solving{' '}
-            <Katex tex="\int_0^m f=\tfrac12" /> gives <Katex tex="176.45" />, while solving{' '}
-            <Katex tex="\int_m^{210}f=\tfrac12" /> gives <Katex tex="176.43" />. VCAA's report
-            acknowledges this and accepted any answer correct to the nearest integer.
           </p>
           <p>
             Do not let the discrepancy throw you in an exam: pick either equation, write it

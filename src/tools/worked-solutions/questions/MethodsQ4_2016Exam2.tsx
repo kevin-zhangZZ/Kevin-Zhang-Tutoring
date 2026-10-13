@@ -4,15 +4,32 @@
 // bounded area function. Parts (d), (e)(iii) and (f)(ii) were among the least-answered
 // on the paper. Question text transcribed from the original paper; the figures are crops
 // of VCAA's own artwork. Answers verified with sympy. Solution is original.
+// Interactive diagrams (§15): part c. slides P along the branch with a circle centred at O, until
+// the circle just touches the curve, plus a toggle for the other CAS root on the other branch
+// (interactives/meth-2016e2-q4c-closest.tsx); part e.i. shows both roots of x² + 2kx + 1 = 0 either
+// side of the asymptote x = −k (interactives/meth-2016e2-q4ei-branch.tsx); part e.iii. slides k to
+// grow and shrink triangle XYZ until s(k) = 1 at k = 5/4 (interactives/meth-2016e2-q4eiii-triangle.tsx);
+// part f.i. slides k with fixed terminals ±1 and overlays f's fixed area (interactives/meth-2016e2-q4fi-area.tsx);
+// part f.ii. shows the region inside the triangle of area 2 for every k (interactives/meth-2016e2-q4fii-bound.tsx).
+// Skipped: part d. (a proof by algebra — a graph shows g rising but not why g(x₂) − g(x₁) > 0 for
+// every pair); part e.ii. (a one-line equation, and the e.iii. widget already shows X reaching
+// (−½, ½) at k = 5/4).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import biiSrc from './meth-2016e2-q4bii-shaded.png'
 import biiiSrc from './meth-2016e2-q4biii-shaded.png'
 import pointSrc from './meth-2016e2-q4c-point.png'
 import triangleSrc from './meth-2016e2-q4eiii-triangle.png'
 import regionSrc from './meth-2016e2-q4f-region.png'
+
+const ClosestWidget = lazyWidget(() => import('../interactives/meth-2016e2-q4c-closest'))
+const BranchWidget = lazyWidget(() => import('../interactives/meth-2016e2-q4ei-branch'))
+const TriangleWidget = lazyWidget(() => import('../interactives/meth-2016e2-q4eiii-triangle'))
+const AreaWidget = lazyWidget(() => import('../interactives/meth-2016e2-q4fi-area'))
+const BoundWidget = lazyWidget(() => import('../interactives/meth-2016e2-q4fii-bound'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [42, 6, 52],
@@ -137,261 +154,312 @@ const EXAM_FII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{2x+1}{x+2} = \frac{2(x+2)-3}{x+2}" />,
-    reason: <>Force the numerator to contain a copy of the denominator: <Katex tex="2(x+2)=2x+4" />, and <Katex tex="2x+1" /> is <Katex tex="3" /> less than that.</>,
+    reason: <>Make the numerator contain a copy of the denominator: <Katex tex="2(x+2)=2x+4" />, and <Katex tex="2x+1" /> is <Katex tex="3" /> less than that.</>,
   },
   {
-    working: <Katex display tex="\boxed{2+\frac{-3}{x+2}}" />,
-    reason: <>So <Katex tex="a=2" /> and <Katex tex="b=-3" />. This form is worth the two marks twice over: it makes the asymptotes <Katex tex="y=2" /> and <Katex tex="x=-2" /> visible, and it makes every integral in part (b) doable.</>,
+    working: <Katex display tex="= \frac{2(x+2)}{x+2}+\frac{-3}{x+2} = \boxed{2+\frac{-3}{x+2}}" />,
+    reason: <>Split the fraction and cancel <Katex tex="x+2" /> in the first part. So <Katex tex="a=2" /> and <Katex tex="b=-3" />.</>,
+    more: <>Check by recombining: <Katex tex="2+\tfrac{-3}{x+2}=\tfrac{2x+4-3}{x+2}=\tfrac{2x+1}{x+2}" /> ✓. The report notes some students left their answer as <Katex tex="2x+\tfrac{1}{x+2}" />, which is a different function: at <Katex tex="x=1" /> it gives <Katex tex="\tfrac73" />, while the original gives <Katex tex="1" />. It is also not in the form asked for, since <Katex tex="a" /> must be a number, not <Katex tex="2x" />.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="x = \frac{2y+1}{y+2}" />,
-    reason: <>Swap <Katex tex="x" /> and <Katex tex="y" />, then make <Katex tex="y" /> the subject.</>,
+    reason: <>For the inverse, swap <Katex tex="x" /> and <Katex tex="y" /> in <Katex tex="y=f(x)" />, then make <Katex tex="y" /> the subject.</>,
+    more: <>On CAS, <Cas fn="solve">solve(x = (2y+1)/(y+2), y)</Cas> does the next two lines at once. The report notes some students attempted to solve for <Katex tex="y" /> by hand and were unsuccessful, so on Exam 2 let the CAS do the algebra.</>,
   },
   {
     working: <Katex display tex="x(y+2) = 2y+1 \implies xy+2x = 2y+1" />,
     reason: <>Clearing the fraction.</>,
   },
   {
-    working: <Katex display tex="y(x-2) = 1-2x \implies y = \frac{1-2x}{x-2}" />,
-    reason: <>Collecting the <Katex tex="y" /> terms on one side.</>,
+    working: <Katex display tex="xy-2y = 1-2x \implies y = \frac{1-2x}{x-2}" />,
+    reason: <>Collect the <Katex tex="y" /> terms on one side, factor out <Katex tex="y" /> to get <Katex tex="y(x-2)" />, and divide.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}(x) = \frac{-3}{x-2}-2}" />,
-    reason: <>The same expression in part (a)'s form — check by expanding: <Katex tex="\tfrac{-3-2(x-2)}{x-2}=\tfrac{1-2x}{x-2}" /> ✓. Either form was accepted.</>,
+    reason: <>The same rule written in part a.'s form. Either form was accepted.</>,
+    more: <>Check by recombining: <Katex tex="\tfrac{-3-2(x-2)}{x-2}=\tfrac{1-2x}{x-2}" /> ✓. This form also shows the inverse's asymptotes <Katex tex="x=2" /> and <Katex tex="y=-2" />: those of <Katex tex="f" /> (<Katex tex="x=-2" />, <Katex tex="y=2" />) with <Katex tex="x" /> and <Katex tex="y" /> swapped.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{dom}(f^{-1}) = \text{ran}(f) = R\setminus\{2\}}" />,
-    reason: <>The horizontal asymptote of <Katex tex="f" /> is <Katex tex="y=2" />, so <Katex tex="2" /> is the one output <Katex tex="f" /> never produces. The report notes students who left the domain out.</>,
+    reason: <>The domain of an inverse is the range of the original. <Katex tex="f(x)=2-\tfrac{3}{x+2}" /> takes every value except its asymptote, <Katex tex="2" />.</>,
+    more: <>The question asks for the rule <em>and</em> the domain, and the report notes some students did not give the domain. The term <Katex tex="\tfrac{-3}{x+2}" /> takes every real value except <Katex tex="0" />, so <Katex tex="f(x)" /> takes every value except <Katex tex="2" />.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{2x+1}{x+2} = x \implies 2x+1 = x^2+2x" />,
-    reason: <>Finding where the curve meets <Katex tex="y=x" />.</>,
+    reason: <>The region's ends are where the curve meets <Katex tex="y=x" />.</>,
   },
   {
     working: <Katex display tex="x^2 = 1 \implies x = \pm1" />,
-    reason: <>The <Katex tex="2x" /> terms cancel, leaving something remarkably clean.</>,
+    reason: <>The <Katex tex="2x" /> terms cancel.</>,
   },
   {
     working: <Katex display tex="A = \int_{-1}^{1}\bigl(f(x)-x\bigr)dx" />,
-    reason: <>Between the intersections <Katex tex="f" /> is above <Katex tex="y=x" /> — check at <Katex tex="x=0" />: <Katex tex="f(0)=\tfrac12>0" />.</>,
+    reason: <>Area is the integral of top minus bottom. Between the intersections <Katex tex="f" /> is on top: at <Katex tex="x=0" />, <Katex tex="f(0)=\tfrac12>0" />.</>,
   },
   {
     working: <Katex display tex="= \int_{-1}^{1}\left(2-\frac{3}{x+2}-x\right)dx" />,
-    reason: <>Using part (a). Without that rewrite there is no antiderivative to write down.</>,
+    reason: <>Using part a., so each term has a standard antiderivative.</>,
+    more: <>On Exam 2 the CAS will evaluate <Katex tex="\int_{-1}^{1}\left(\tfrac{2x+1}{x+2}-x\right)dx" /> directly. By hand, the part a. form is what makes it possible: <Katex tex="\tfrac{3}{x+2}" /> integrates to <Katex tex="3\log_e(x+2)" />.</>,
   },
   {
     working: <Katex display tex="= \left[2x-3\log_e(x+2)-\frac{x^2}{2}\right]_{-1}^{1}" />,
-    reason: <>Note <Katex tex="x+2>0" /> throughout <Katex tex="[-1,1]" />, so no absolute values are needed.</>,
+    reason: <><Katex tex="x+2>0" /> throughout <Katex tex="[-1,1]" />, so no absolute value is needed in the log.</>,
   },
   {
-    working: <Katex display tex="= \left(2-3\log_e3-\tfrac12\right)-\left(-2-0-\tfrac12\right)" />,
-    reason: <><Katex tex="\log_e(1)=0" /> at the lower terminal.</>,
+    working: <Katex display tex="= \left(2-3\log_e3-\tfrac12\right)-\left(-2-3\log_e1-\tfrac12\right)" />,
+    reason: <>Upper terminal minus lower terminal; <Katex tex="\log_e1=0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{4-3\log_e(3)}" />,
-    reason: <>About <Katex tex="0.704" />. Exact was required, and the report notes the base going missing from students' logs.</>,
+    reason: <>An exact answer was required (about <Katex tex="0.704" /> square units). <Katex tex="4-\log_e(27)" /> is the same number.</>,
+    more: <>The report notes some students gave an approximate answer when an exact answer was required, and that the base was sometimes missing. Write <Katex tex="\log_e" />, not <Katex tex="\log" />.</>,
   },
 ]
 
 const ROWS_BIII: WorkingRow[] = [
   {
     working: <Katex display tex="f^{-1} \text{ is the reflection of } f \text{ in } y=x" />,
-    reason: <>So the region between <Katex tex="f" /> and <Katex tex="f^{-1}" /> is symmetric about that line, and each half is the region from part (b)(ii).</>,
+    reason: <>So the line <Katex tex="y=x" /> cuts the shaded region into two mirror-image halves, and one half is exactly the region from part b.ii.</>,
+    more: <>The two graphs meet at <Katex tex="(-1,-1)" /> and <Katex tex="(1,1)" />, the points where <Katex tex="f" /> meets <Katex tex="y=x" />: each lies on the mirror line, so the reflection leaves it in place and it is on both graphs. The region between <Katex tex="f" /> and <Katex tex="y=x" /> reflects onto the region between <Katex tex="y=x" /> and <Katex tex="f^{-1}" />, with the same area.</>,
   },
   {
-    working: <Katex display tex="A = 2\int_{-1}^{1}\bigl(f(x)-x\bigr)dx" />,
-    reason: <>Both curves pass through <Katex tex="(-1,-1)" /> and <Katex tex="(1,1)" />, which are the same two intersection points as before.</>,
+    working: <Katex display tex="A = 2\int_{-1}^{1}\bigl(f(x)-x\bigr)dx = 2\bigl(4-3\log_e(3)\bigr)" />,
+    reason: <>Twice the area from part b.ii.</>,
   },
   {
     working: <Katex display tex="\boxed{8-6\log_e(3)}" />,
-    reason: <>Exactly double part (b)(ii), about <Katex tex="1.408" /> — and no integration at all is needed once you spot the symmetry.</>,
+    reason: <>About <Katex tex="1.408" /> square units. No new integral is needed once you see the symmetry.</>,
+    more: <>The report notes some students realised the answer was double the previous result: that is the whole one-mark method. Integrating <Katex tex="f(x)-f^{-1}(x)" /> from <Katex tex="-1" /> to <Katex tex="1" /> on CAS gives the same value, but it relies on the correct inverse from b.i.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="D^2 = x^2+\left(\frac{2x+1}{x+2}\right)^2" />,
-    reason: <>Distance from <Katex tex="(x,f(x))" /> to the origin. Minimising <Katex tex="D^2" /> gives the same <Katex tex="x" /> as minimising <Katex tex="D" />, and avoids a square root throughout.</>,
+    reason: <>Squared distance from <Katex tex="(x,f(x))" /> to the origin. The <Katex tex="x" /> minimising <Katex tex="D^2" /> also minimises <Katex tex="D" />, and there is no square root to differentiate.</>,
   },
   {
-    working: <Cas fn="solve">solve(d/dx(x² + ((2x+1)/(x+2))²) = 0, x) | -2&lt;x&lt;∞</Cas>,
-    reason: <>The domain restriction matters: the CAS returns <Katex tex="x=-2-\sqrt3" /> as well, which is on the <em>other</em> branch of the hyperbola and is not the point in the figure. The report says ignoring the domain was the main error.</>,
+    working: <Cas fn="solve">solve(d/dx(x² + ((2x+1)/(x+2))²) = 0, x) | x&gt;-2</Cas>,
+    reason: <>A minimum is a stationary point. Restrict to <Katex tex="x>-2" />: <Katex tex="P" /> is on the branch shown, right of the asymptote <Katex tex="x=-2" />.</>,
+    more: <>Without the restriction the CAS also returns <Katex tex="x=-2-\sqrt3\approx-3.73" />. That gives the point <Katex tex="(-2-\sqrt3,\ 2+\sqrt3)" /> on the <em>other</em> branch of the hyperbola, about <Katex tex="5.28" /> from the origin: the closest point on that branch, not <Katex tex="P" />. The report notes some students did not consider the domain and gave two sets of values for <Katex tex="c" /> and <Katex tex="d" />, or chose the incorrect value for <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="\boxed{c = \sqrt3-2}" />,
-    reason: <>About <Katex tex="-0.268" />, which is where the figure puts <Katex tex="P" /> — just left of the <Katex tex="y" />-axis.</>,
+    reason: <>About <Katex tex="-0.268" />, just left of the <Katex tex="y" />-axis, where the figure puts <Katex tex="P" />. It is the only stationary point on this branch and <Katex tex="D" /> grows at both ends, so it is the minimum.</>,
+    more: <>Why this stationary point is a minimum: on the branch <Katex tex="x>-2" />, <Katex tex="D" /> grows without bound both as <Katex tex="x\to-2^{+}" /> (where <Katex tex="f(x)\to-\infty" />) and as <Katex tex="x\to\infty" />. A smooth function that is large at both ends, with only one stationary point in between, has its minimum there.</>,
   },
   {
     working: <Katex display tex="d = f(\sqrt3-2) = \frac{2\sqrt3-3}{\sqrt3} = 2-\sqrt3" />,
-    reason: <>The denominator is <Katex tex="(\sqrt3-2)+2=\sqrt3" />, which is why this comes out so neatly. So <Katex tex="d=-c" /> — the closest point lies on the line <Katex tex="y=-x" />, as it must, since the hyperbola is symmetric about that line here.</>,
+    reason: <>Substitute <Katex tex="c" />: numerator <Katex tex="2(\sqrt3-2)+1=2\sqrt3-3" />, denominator <Katex tex="(\sqrt3-2)+2=\sqrt3" />. Then divide each term by <Katex tex="\sqrt3" />.</>,
+    more: <>So <Katex tex="d=-c" />: <Katex tex="P" /> lies on the line <Katex tex="y=-x" />. That is no accident. A hyperbola like this is symmetric about the two lines of gradient <Katex tex="\pm1" /> through its centre <Katex tex="(-2,2)" />. One of them is <Katex tex="y=-x" />, which also passes through the origin, and reflecting in a line through the origin does not change distances from the origin.</>,
   },
   {
     working: <Katex display tex="D = \sqrt{c^2+d^2} = \sqrt{2\left(2-\sqrt3\right)^2} = \sqrt2\left(2-\sqrt3\right)" />,
-    reason: <>Using <Katex tex="d=-c" />, so <Katex tex="c^2+d^2=2d^2" />.</>,
+    reason: <>Since <Katex tex="d=-c" />, <Katex tex="c^2+d^2=2d^2" />, and <Katex tex="2-\sqrt3>0" /> comes out of the root.</>,
   },
   {
     working: <Katex display tex="\boxed{D = 2\sqrt2-\sqrt6}" />,
-    reason: <>About <Katex tex="0.379" />. The report notes students who found <Katex tex="c" /> and <Katex tex="d" /> and then stopped — the question asks for the distance too.</>,
+    reason: <>The minimum distance, exact (about <Katex tex="0.379" />). The question asks for <Katex tex="c" />, <Katex tex="d" /> <em>and</em> this distance.</>,
+    more: <>The report notes some students had the correct <Katex tex="c" /> and <Katex tex="d" /> but did not work out the minimum distance, and some did not give exact values.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
+    working: <Katex display tex="\text{Let } -k<x_1<x_2" />,
+    reason: <>The proof must work for <em>every</em> pair in the domain, so take a general pair and show <Katex tex="g(x_2)-g(x_1)>0" />.</>,
+    more: <>The report notes some students just substituted in specific values, which was not acceptable: checking a few pairs can never cover all of them.</>,
+  },
+  {
     working: <Katex display tex="g(x_2)-g(x_1) = \frac{kx_2+1}{x_2+k}-\frac{kx_1+1}{x_1+k}" />,
-    reason: <>Comparing two outputs directly. Substituting particular numbers proves nothing — the report is explicit that it earned no marks.</>,
+    reason: <>Write out the difference of the two outputs.</>,
   },
   {
     working: <Katex display tex="= \frac{(kx_2+1)(x_1+k)-(kx_1+1)(x_2+k)}{(x_1+k)(x_2+k)}" />,
     reason: <>Common denominator.</>,
   },
   {
-    working: <Katex display tex="\text{numerator} = k^2x_2+x_1-k^2x_1-x_2 = (x_2-x_1)(k^2-1)" />,
-    reason: <>The <Katex tex="kx_1x_2" /> and <Katex tex="k" /> terms cancel, leaving a clean factorisation. This is the step the whole proof turns on.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}\text{numerator} &= (kx_1x_2+k^2x_2+x_1+k)\\ &\quad-(kx_1x_2+k^2x_1+x_2+k)\\ &= k^2(x_2-x_1)-(x_2-x_1)\\ &= (x_2-x_1)(k^2-1)\end{aligned}"
+      />
+    ),
+    reason: <>Expand both products: the <Katex tex="kx_1x_2" /> and <Katex tex="k" /> terms cancel, and <Katex tex="x_2-x_1" /> factors out.</>,
   },
   {
     working: <Katex display tex="g(x_2)-g(x_1) = \frac{(x_2-x_1)(k^2-1)}{(x_1+k)(x_2+k)}" />,
-    reason: <>Now check the sign of each of the three factors.</>,
+    reason: <>Now show each of the four factors is positive.</>,
   },
   {
-    working: <Katex display tex="x_2>x_1 \implies x_2-x_1>0; \quad k>1 \implies k^2-1>0" />,
-    reason: <>Given in the question.</>,
+    working: <Katex display tex="x_2-x_1>0,\quad k^2-1>0" />,
+    reason: <>Both come from the question: <Katex tex="x_2>x_1" />, and <Katex tex="k>1" /> so <Katex tex="k^2>1" />.</>,
   },
   {
-    working: <Katex display tex="x_1,x_2\in(-k,\infty) \implies x_1+k>0 \text{ and } x_2+k>0" />,
-    reason: <>The domain was chosen precisely so the denominator is positive.</>,
+    working: <Katex display tex="x_1,x_2>-k \implies x_1+k>0 \text{ and } x_2+k>0" />,
+    reason: <>Both points are in the domain <Katex tex="(-k,\infty)" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{g(x_2)-g(x_1)>0 \implies g(x_1)<g(x_2)}" />,
-    reason: <>Positive over positive, so <Katex tex="x_1<x_2" /> implies <Katex tex="g(x_1)<g(x_2)" />, as required. Only <Katex tex="10\%" /> of students scored anything here, but the argument is four lines of algebra and three sign checks.</>,
+    working: <Katex display tex="g(x_2)-g(x_1)>0 \implies g(x_1)<g(x_2)" />,
+    reason: <>A positive over a positive is positive. So <Katex tex="x_1<x_2" /> implies <Katex tex="g(x_1)<g(x_2)" />, as required.</>,
+    more: <>The report notes many students did not attempt this question (90% scored 0), yet it is one subtraction, one expansion and four sign checks.</>,
   },
 ]
 
 const ROWS_EI: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{kx+1}{x+k} = -x" />,
-    reason: <>Setting the two rules equal.</>,
+    reason: <>At an intersection the two rules are equal.</>,
+    more: <>On CAS, <Cas fn="solve">solve((k·x+1)/(x+k) = -x, x) | x&gt;-k</Cas> gives the answer directly. Type <Katex tex="k\cdot x" /> with a multiplication sign: the report notes some students did not, and the CAS then reads <Katex tex="kx" /> as a single new variable.</>,
   },
   {
     working: <Katex display tex="kx+1 = -x^2-kx \implies x^2+2kx+1 = 0" />,
-    reason: <>Clearing the fraction and collecting.</>,
+    reason: <>Multiply both sides by <Katex tex="x+k" /> and collect everything on one side.</>,
   },
   {
     working: <Katex display tex="x = \frac{-2k\pm\sqrt{4k^2-4}}{2} = -k\pm\sqrt{k^2-1}" />,
-    reason: <>Quadratic formula. Real because <Katex tex="k>1" />.</>,
+    reason: <>Quadratic formula, then <Katex tex="\sqrt{4k^2-4}=2\sqrt{k^2-1}" />. Both roots are real because <Katex tex="k>1" />.</>,
   },
   {
     working: <Katex display tex="x>-k \implies x = -k+\sqrt{k^2-1}" />,
-    reason: <>The domain of <Katex tex="g" /> is <Katex tex="(-k,\infty)" />, which rules out the negative root. The report notes students who ignored the domain or gave both points.</>,
+    reason: <>The domain of <Katex tex="g" /> is <Katex tex="(-k,\infty)" />. Only the root with <Katex tex="+\sqrt{k^2-1}" /> is greater than <Katex tex="-k" />.</>,
+    more: <>The other root, <Katex tex="-k-\sqrt{k^2-1}" />, is left of the asymptote <Katex tex="x=-k" />. That is where <Katex tex="y=-x" /> meets the other branch of the hyperbola <Katex tex="y=\tfrac{kx+1}{x+k}" />, which is not part of <Katex tex="g" />. The report notes some students did not consider the domain and chose the incorrect value for <Katex tex="x" />; others gave two sets of coordinates.</>,
   },
   {
     working: <Katex display tex="\boxed{X = \left(-k+\sqrt{k^2-1},\ k-\sqrt{k^2-1}\right)}" />,
-    reason: <>The <Katex tex="y" />-coordinate is just <Katex tex="-x" />, since <Katex tex="X" /> lies on <Katex tex="y=-x" />.</>,
+    reason: <>The <Katex tex="y" />-coordinate is <Katex tex="-x" />, since <Katex tex="X" /> lies on <Katex tex="y=-x" />.</>,
   },
 ]
 
 const ROWS_EII: WorkingRow[] = [
   {
     working: <Katex display tex="-k+\sqrt{k^2-1} = -\frac12" />,
-    reason: <>Matching the <Katex tex="x" />-coordinate from part (e)(i).</>,
+    reason: <>Set the <Katex tex="x" />-coordinate from part e.i. equal to <Katex tex="-\tfrac12" />. The <Katex tex="y" />-coordinate then matches automatically.</>,
   },
   {
     working: <Katex display tex="\sqrt{k^2-1} = k-\frac12" />,
-    reason: <>Rearranging. The right-hand side is positive since <Katex tex="k>1" />, so squaring is safe.</>,
+    reason: <>Isolate the square root. The right side is positive since <Katex tex="k>1" />, so squaring adds no false solutions.</>,
   },
   {
     working: <Katex display tex="k^2-1 = k^2-k+\frac14" />,
-    reason: <>Squaring. The <Katex tex="k^2" /> terms cancel, which is why this is a linear equation in disguise.</>,
+    reason: <>Square both sides. The <Katex tex="k^2" /> terms cancel, leaving a linear equation.</>,
   },
   {
     working: <Katex display tex="\boxed{k = \frac54}" />,
-    reason: <>From <Katex tex="-1=-k+\tfrac14" />. Check: <Katex tex="g\!\left(-\tfrac12\right)=\tfrac{-5/8+1}{-1/2+5/4}=\tfrac{3/8}{3/4}=\tfrac12" /> ✓ — which is also the alternative route the report mentions.</>,
+    reason: <>From <Katex tex="-1=-k+\tfrac14" />. Check: with <Katex tex="k=\tfrac54" />, <Katex tex="g\!\left(-\tfrac12\right)=\tfrac12" /> ✓.</>,
+    more: <>The check in full: <Katex tex="g\!\left(-\tfrac12\right)=\tfrac{-5/8+1}{-1/2+5/4}=\tfrac{3/8}{3/4}=\tfrac12" />. Solving <Katex tex="g\!\left(-\tfrac12\right)=\tfrac12" /> for <Katex tex="k" /> is itself a valid method, and the report notes students who used it were successful: <Katex tex="\tfrac{-k/2+1}{k-1/2}=\tfrac12" /> gives <Katex tex="-k+2=k-\tfrac12" />, so <Katex tex="k=\tfrac54" />.</>,
   },
 ]
 
 const ROWS_EIII: WorkingRow[] = [
   {
     working: <Katex display tex="YZ = \sqrt{2^2+2^2} = 2\sqrt2" />,
-    reason: <>From <Katex tex="Z(-1,-1)" /> to <Katex tex="Y(1,1)" />. Take this as the base.</>,
+    reason: <>Take <Katex tex="YZ" />, from <Katex tex="Z(-1,-1)" /> to <Katex tex="Y(1,1)" />, as the base. It does not depend on <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="\text{height} = OX" />,
-    reason: <><Katex tex="X" /> lies on <Katex tex="y=-x" />, which is perpendicular to <Katex tex="y=x" /> and meets it at the origin — the midpoint of <Katex tex="YZ" />. So the perpendicular height from <Katex tex="X" /> to <Katex tex="YZ" /> is just the distance from <Katex tex="O" /> to <Katex tex="X" />.</>,
+    reason: <><Katex tex="YZ" /> lies on <Katex tex="y=x" />, and <Katex tex="X" /> lies on <Katex tex="y=-x" />, which is perpendicular to it through <Katex tex="O" />. So the height from <Katex tex="X" /> to <Katex tex="YZ" /> is <Katex tex="OX" />.</>,
   },
   {
-    working: <Katex display tex="OX = \sqrt{\left(-k+\sqrt{k^2-1}\right)^2+\left(k-\sqrt{k^2-1}\right)^2} = \sqrt2\left(k-\sqrt{k^2-1}\right)" />,
-    reason: <>The two coordinates from part e.i. have the same size, and <Katex tex="k>\sqrt{k^2-1}" /> for <Katex tex="k>1" />, so the root opens to a positive value.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}OX &= \sqrt{\left(-k+\sqrt{k^2-1}\right)^2+\left(k-\sqrt{k^2-1}\right)^2}\\ &= \sqrt2\left(k-\sqrt{k^2-1}\right)\end{aligned}"
+      />
+    ),
+    reason: <>Using <Katex tex="X" /> from part e.i. Both squares equal <Katex tex="\left(k-\sqrt{k^2-1}\right)^2" />, and <Katex tex="k-\sqrt{k^2-1}>0" />, so it comes out of the root.</>,
   },
   {
-    working: <Katex display tex="\text{Area} = \frac12\times2\sqrt2\times\sqrt2\left(k-\sqrt{k^2-1}\right) = 2\left(k-\sqrt{k^2-1}\right)" />,
-    reason: <>The two <Katex tex="\sqrt2" />s multiply to <Katex tex="2" />.</>,
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}\text{Area} &= \tfrac12\times2\sqrt2\times\sqrt2\left(k-\sqrt{k^2-1}\right)\\ &= 2\left(k-\sqrt{k^2-1}\right)\end{aligned}"
+      />
+    ),
+    reason: <><Katex tex="\tfrac12\times\text{base}\times\text{height}" />; the two <Katex tex="\sqrt2" />s multiply to <Katex tex="2" />.</>,
   },
   {
     working: <Katex display tex="s(k) = 4\left(k-\sqrt{k^2-1}\right)^2" />,
-    reason: <>Squaring the area, as the question defines it.</>,
+    reason: <>The question defines <Katex tex="s(k)" /> as the <em>square</em> of the area.</>,
   },
   {
     working: <Katex display tex="s(k)\ge1 \iff k-\sqrt{k^2-1}\ge\frac12" />,
-    reason: <>Taking square roots; both sides are positive.</>,
+    reason: <>The area <Katex tex="2\left(k-\sqrt{k^2-1}\right)" /> is positive, so its square is at least <Katex tex="1" /> exactly when the area is at least <Katex tex="1" />.</>,
+    more: <>On CAS, <Cas fn="solve">solve(4(k-√(k²-1))² ≥ 1, k) | k&gt;1</Cas> gives the answer directly. The algebra below shows where it comes from.</>,
   },
   {
-    working: <Katex display tex="\sqrt{k^2-1}\le k-\frac12 \implies k^2-1\le k^2-k+\frac14 \implies k\le\frac54" />,
-    reason: <>Squaring is safe because <Katex tex="k-\tfrac12>0" />. The same cancellation as part e.ii.</>,
+    working: <Katex display tex="\begin{aligned}\sqrt{k^2-1}&\le k-\tfrac12\\ k^2-1&\le k^2-k+\tfrac14\\ k&\le\tfrac54\end{aligned}" />,
+    reason: <>Rearrange to isolate the root. Both sides are positive, so squaring keeps the inequality. The <Katex tex="k^2" /> terms cancel, as in part e.ii.</>,
+    more: <>This fits part e.ii.: at <Katex tex="k=\tfrac54" />, <Katex tex="X=\left(-\tfrac12,\tfrac12\right)" />, <Katex tex="OX=\tfrac{\sqrt2}{2}" />, the area is <Katex tex="\tfrac12\times2\sqrt2\times\tfrac{\sqrt2}{2}=1" /> and <Katex tex="s=1" />. As <Katex tex="k" /> increases, <Katex tex="X" /> slides towards <Katex tex="O" /> and the triangle shrinks, so <Katex tex="s(k)\ge1" /> for the smaller values of <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="\boxed{1<k\le\frac54}" />,
-    reason: <>The left end is strict because <Katex tex="k>1" /> was given. The report notes students writing <Katex tex="1\le k" />, which would include <Katex tex="k=1" /> and collapse <Katex tex="X" /> onto <Katex tex="(-1,1)" />.</>,
+    reason: <>Combine with the given <Katex tex="k>1" />, so the left end is strict. The right end is included because <Katex tex="s\!\left(\tfrac54\right)=1" />.</>,
+    more: <>The report notes some students had <Katex tex="1\le k\le\tfrac54" />. But <Katex tex="k=1" /> is not allowed: the question gives <Katex tex="k>1" />, and at <Katex tex="k=1" />, <Katex tex="\tfrac{x+1}{x+1}" /> is just the constant <Katex tex="1" />, not a hyperbola.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{kx+1}{x+k} = x \implies x^2 = 1 \implies x = \pm1" />,
-    reason: <>The curve meets <Katex tex="y=x" /> at <Katex tex="(-1,-1)" /> and <Katex tex="(1,1)" /> — for <em>every</em> <Katex tex="k" />, since the <Katex tex="kx" /> terms cancel.</>,
+    reason: <>The region's ends: <Katex tex="kx+1=x^2+kx" />, and the <Katex tex="kx" /> terms cancel, so the ends are <Katex tex="x=\pm1" /> for <em>every</em> <Katex tex="k" />.</>,
   },
   {
     working: <Katex display tex="A(k) = \int_{-1}^{1}\bigl(g(x)-x\bigr)dx" />,
-    reason: <>Fixed terminals, and <Katex tex="g" /> above <Katex tex="y=x" /> in between (check <Katex tex="g(0)=\tfrac1k>0" />). Using <Katex tex="f" /> instead of <Katex tex="g" /> gives an answer with no <Katex tex="k" /> in it, which the report flags.</>,
+    reason: <>Top minus bottom between the intersections: <Katex tex="g" /> is above <Katex tex="y=x" /> there, since <Katex tex="g(0)=\tfrac1k>0" />.</>,
+    more: <>Use <Katex tex="g" />, not <Katex tex="f" />: the report notes <Katex tex="\int_{-1}^{1}\bigl(f(x)-x\bigr)dx" /> was sometimes given, and that is just the one number from part b.ii. (the case <Katex tex="k=2" />), with no <Katex tex="k" /> in it. The report also notes attempts at <Katex tex="\int_{1}^{\infty}" />: but the region runs from <Katex tex="x=-1" /> to <Katex tex="x=1" />, and beyond <Katex tex="x=1" /> the curve is below the line, so that integral is not this region at all.</>,
   },
   {
     working: <Katex display tex="g(x) = k+\frac{1-k^2}{x+k}" />,
-    reason: <>The same rewrite as part (a): <Katex tex="k(x+k)+1-k^2=kx+1" /> ✓.</>,
+    reason: <>The same rewrite as part a., so <Katex tex="g" /> can be antidifferentiated. Check: <Katex tex="k(x+k)+1-k^2=kx+1" /> ✓.</>,
   },
   {
-    working: <Katex display tex="\int\bigl(g(x)-x\bigr)dx = kx+\left(1-k^2\right)\log_e(x+k)-\frac{x^2}{2}" />,
-    reason: <><Katex tex="x+k>0" /> on <Katex tex="[-1,1]" /> because <Katex tex="k>1" />, so no absolute values.</>,
+    working: <Katex display tex="\begin{aligned}&\int\bigl(g(x)-x\bigr)dx\\ &= kx+\left(1-k^2\right)\log_e(x+k)-\frac{x^2}{2}\end{aligned}" />,
+    reason: <><Katex tex="x+k>0" /> on <Katex tex="[-1,1]" /> because <Katex tex="k>1" />, so no absolute value is needed.</>,
+  },
+  {
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned}A(k) &= \left(k+(1-k^2)\log_e(k+1)-\tfrac12\right)\\ &\quad-\left(-k+(1-k^2)\log_e(k-1)-\tfrac12\right)\end{aligned}"
+      />
+    ),
+    reason: <>Upper terminal <Katex tex="x=1" /> minus lower terminal <Katex tex="x=-1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A(k) = 2k+\left(k^2-1\right)\log_e\!\left(\frac{k-1}{k+1}\right)}" />,
-    reason: <>The <Katex tex="x^2/2" /> terms cancel and the two logs combine. Note <Katex tex="\tfrac{k-1}{k+1}<1" />, so the log is negative and pulls the answer below <Katex tex="2k" />.</>,
+    reason: <>The <Katex tex="\tfrac12" />s cancel, and <Katex tex="(1-k^2)\bigl(\log_e(k+1)-\log_e(k-1)\bigr)=(k^2-1)\log_e\tfrac{k-1}{k+1}" />.</>,
+    more: <>Check: <Katex tex="k=2" /> gives <Katex tex="4+3\log_e\tfrac13=4-3\log_e(3)" />, the area from part b.ii., because <Katex tex="g" /> with <Katex tex="k=2" /> is <Katex tex="f" />. The equivalent form <Katex tex="2k+(1-k^2)\log_e\!\left(\tfrac{k+1}{k-1}\right)" /> is also correct. The report notes some broke the area up into different sections and were successful, but this would have been time consuming.</>,
   },
 ]
 
 const ROWS_FII: WorkingRow[] = [
   {
-    working: <Katex display tex="g(x)>x \text{ on } (-1,1)" />,
-    reason: <>They meet only at <Katex tex="x=\pm1" />, and <Katex tex="g(0)=\tfrac1k>0" />, so <Katex tex="g" /> stays above the line in between. An integral of a strictly positive function over an interval of positive length is positive, so <Katex tex="A(k)>0" />.</>,
+    working: <Katex display tex="g(x)>x \text{ on } (-1,1) \implies A(k)>0" />,
+    reason: <>They meet only at <Katex tex="x=\pm1" />, and <Katex tex="g(0)=\tfrac1k>0" />, so <Katex tex="g" /> is above the line between them: the region has positive area.</>,
   },
   {
-    working: <Katex display tex="g \text{ increasing and } g(1)=1 \implies g(x)\le1 \text{ on } [-1,1]" />,
-    reason: <>From part (d). So the region never rises above the line <Katex tex="y=1" />.</>,
+    working: <Katex display tex="g(x)\le g(1)=1 \text{ on } [-1,1]" />,
+    reason: <>By part d., <Katex tex="g" /> is increasing, so <Katex tex="g(x)\le g(1)" /> for <Katex tex="x\le1" />. So the region never rises above the line <Katex tex="y=1" />.</>,
   },
   {
     working: <Katex display tex="\text{region} \subset \{\,x\ge-1,\ y\le1,\ y\ge x\,\}" />,
-    reason: <>Three straight boundaries, which enclose a triangle with vertices <Katex tex="(-1,-1)" />, <Katex tex="(1,1)" /> and <Katex tex="(-1,1)" />.</>,
+    reason: <>The region lies right of <Katex tex="x=-1" />, below <Katex tex="y=1" /> and above <Katex tex="y=x" />: inside the triangle with vertices <Katex tex="(-1,-1)" />, <Katex tex="(1,1)" />, <Katex tex="(-1,1)" />.</>,
   },
   {
     working: <Katex display tex="\text{area of triangle} = \frac12\times2\times2 = 2" />,
-    reason: <>Both legs have length <Katex tex="2" />.</>,
+    reason: <>A right-angled triangle: both legs (along <Katex tex="x=-1" /> and along <Katex tex="y=1" />) have length <Katex tex="2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{0<A(k)<2 \text{ for all } k>1}" />,
-    reason: <>As required. The inequality is strict at the top because the curve is strictly below <Katex tex="y=1" /> except at the single point <Katex tex="x=1" />. Only <Katex tex="6\%" /> of students scored anything here — and the argument needs no integration at all.</>,
+    reason: <>At <Katex tex="x=-1" /> the curve is at <Katex tex="y=-1" />, far below <Katex tex="y=1" />, so the corner of the triangle near <Katex tex="(-1,1)" /> is left empty: <Katex tex="A(k)<2" />. As required.</>,
+    more: <>This is the report's argument. Neither bound can be improved: as <Katex tex="k\to1^{+}" />, <Katex tex="g" /> flattens towards <Katex tex="y=1" /> and <Katex tex="A(k)\to2" />; as <Katex tex="k\to\infty" />, <Katex tex="g" /> hugs <Katex tex="y=x" /> and <Katex tex="A(k)\to0" />. The report notes many students did not attempt this question, yet no integration is needed.</>,
   },
 ]
 
@@ -435,8 +503,8 @@ export default function MethodsQ4_2016Exam2() {
             antiderivative is a logarithm.
           </p>
           <p>
-            Every integral in this question — parts (b)(ii), (b)(iii) and (f)(i) — goes
-            through this rewrite. It also hands you both asymptotes for free.
+            Every integral in this question (parts b.ii. and f.i.) goes through this
+            rewrite. It also hands you both asymptotes for free.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -522,6 +590,9 @@ export default function MethodsQ4_2016Exam2() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="The closest point is where a circle centred at O just touches the curve">
+          <ClosestWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -550,11 +621,6 @@ export default function MethodsQ4_2016Exam2() {
             outputs directly and show <Katex tex="g(x_2)-g(x_1)>0" />. The second is what
             the wording here points at, and it avoids the quotient rule entirely.
           </p>
-          <p>
-            Either way, the proof has to hold for <em>all</em> <Katex tex="x_1<x_2" /> in the
-            domain. Testing a few numbers is not a proof — the report says that earned
-            nothing.
-          </p>
         </Background>
         <WorkingTable rows={ROWS_D} />
       </PartCard>
@@ -573,6 +639,9 @@ export default function MethodsQ4_2016Exam2() {
         examinerReport={EXAM_EI}
       >
         <WorkingTable rows={ROWS_EI} />
+        <Explore title="The second root lies on the other branch, outside the domain of g">
+          <BranchWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -617,6 +686,9 @@ export default function MethodsQ4_2016Exam2() {
         examinerReport={EXAM_EIII}
       >
         <WorkingTable rows={ROWS_EIII} />
+        <Explore title="A larger k pulls X towards O and shrinks the triangle">
+          <TriangleWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -640,6 +712,9 @@ export default function MethodsQ4_2016Exam2() {
 
       <PartCard letter="f.i" topic="Area Function" marks={2} statement={<>Give the rule for <Katex tex="A(k)" />.</>} examinerReport={EXAM_FI}>
         <WorkingTable rows={ROWS_FI} />
+        <Explore title="The terminals stay at −1 and 1, but the area changes with k">
+          <AreaWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -667,6 +742,9 @@ export default function MethodsQ4_2016Exam2() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_FII} />
+        <Explore title="For every k, the region fits inside a triangle of area 2">
+          <BoundWidget />
+        </Explore>
       </PartCard>
     </div>
   )

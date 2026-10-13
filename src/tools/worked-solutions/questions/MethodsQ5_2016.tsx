@@ -19,11 +19,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2 = 2y-6 \implies y = \frac{x^2+6}{2}" />,
-    reason: <>Squaring, then rearranging.</>,
+    reason: <>Square both sides to remove the root, add 6, then halve.</>,
   },
   {
     working: <Katex display tex="\text{ran}(g) = [0,\infty)" />,
-    reason: <>On <Katex tex="[3,\infty)" /> the inside <Katex tex="2x-6" /> runs over <Katex tex="[0,\infty)" />, and so does its square root.</>,
+    reason: <>The inverse's domain is the range of <Katex tex="g" />. On <Katex tex="[3,\infty)" />, <Katex tex="2x-6" /> runs over <Katex tex="[0,\infty)" />, and so does its square root.</>,
+    more: <>Swapping <Katex tex="x" /> and <Katex tex="y" /> swaps the roles of domain and range, so <Katex tex="\text{dom}(g^{-1})=\text{ran}(g)" /> and <Katex tex="\text{ran}(g^{-1})=\text{dom}(g)=[3,\infty)" />. The rule <Katex tex="\frac{x^2+6}{2}" /> on its own would accept negative <Katex tex="x" />, but <Katex tex="g" /> never outputs a negative number (a square root is never negative), so those values can't be in the inverse's domain.</>,
   },
   {
     working: <Katex display tex="g^{-1}(0)=\frac{0+6}{2}=3 \ \checkmark" />,
@@ -31,7 +32,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{g^{-1}:[0,\infty)\to R,\ g^{-1}(x)=\frac{x^2+6}{2}}" />,
-    reason: <>Matches option <b>D</b>. The domain of the inverse is the range of the original — getting that right is what separates D from A (10%) and E (12%), which carry the same rule on the wrong domain.</>,
+    reason: <>Matches option <b>D</b>: the right rule on the domain <Katex tex="[0,\infty)" />.</>,
+    more: <>A (10%) and E (12%) carry the same rule on the wrong domain: A uses the domain of <Katex tex="g" />, <Katex tex="[3,\infty)" />, instead of its range, and E uses all of <Katex tex="R" />. B squares the expression under the root, <Katex tex="(2x-6)^2" />, instead of solving for <Katex tex="y" />. C halves and adds 6 in the wrong order and keeps a square root where it should square; it also fails the check above, since <Katex tex="\sqrt{0+6}=\sqrt6\neq3" />. The inverse undoes <Katex tex="g" />'s steps (double, subtract 6, square-root) in reverse: square, add 6, then halve.</>,
   },
 ]
 

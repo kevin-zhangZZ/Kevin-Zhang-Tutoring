@@ -1,6 +1,7 @@
 // 2016 Mathematical Methods — Exam 2, MCQ 18. VCAA examination report: 62% correct.
 // Solving Pr(X < a) for a cosine density supported on [3π, 5π]. Question text transcribed
-// from the original paper; answer verified with sympy. Solution is original.
+// from the original paper (13 Oct 2026: restored the commas in "random variable, X, has"
+// per the VCAA paper); answer and distractor values verified with sympy. Solution is original.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -31,19 +32,20 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\sin\!\left(\frac{a}{2}\right) = \frac{\sqrt3+2}{2}-1 = \frac{\sqrt3}{2}" />,
-    reason: <>Multiply by <Katex tex="2" /> and subtract <Katex tex="1" />. A recognisable exact value, which is the sign the algebra is on track.</>,
+    reason: <>Multiply by <Katex tex="2" /> and subtract <Katex tex="1" />.</>,
   },
   {
     working: <Katex display tex="3\pi\le a\le5\pi \implies \frac{3\pi}{2}\le\frac{a}{2}\le\frac{5\pi}{2}" />,
-    reason: <>Halving the domain gives the interval to search for <Katex tex="\tfrac{a}{2}" />. Skipping this is what puts the answer in the wrong revolution.</>,
+    reason: <>Halve the domain, so you only take solutions for <Katex tex="\tfrac{a}{2}" /> in this interval.</>,
   },
   {
     working: <Katex display tex="\frac{a}{2} = 2\pi+\frac{\pi}{3} = \frac{7\pi}{3}" />,
-    reason: <>The only solution of <Katex tex="\sin\theta=\tfrac{\sqrt3}{2}" /> in that interval: the companion <Katex tex="2\pi+\tfrac{2\pi}{3}" /> is just past <Katex tex="\tfrac{5\pi}{2}" />.</>,
+    reason: <>The only solution of <Katex tex="\sin\!\left(\tfrac{a}{2}\right)=\tfrac{\sqrt3}{2}" /> in that interval: the companion <Katex tex="2\pi+\tfrac{2\pi}{3}" /> is just past <Katex tex="\tfrac{5\pi}{2}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \frac{14\pi}{3}}" />,
-    reason: <>Matches option <b>B</b>. Check it lies in <Katex tex="[3\pi,5\pi]=[9.42,15.71]" />: <Katex tex="\tfrac{14\pi}{3}\approx14.66" /> ✓.</>,
+    reason: <>Matches option <b>B</b>; check it lies in <Katex tex="[3\pi,5\pi]\approx[9.42,\,15.71]" />: <Katex tex="\tfrac{14\pi}{3}\approx14.66" /> ✓.</>,
+    more: <>A sense check: <Katex tex="\tfrac{\sqrt3+2}{4}\approx0.933" /> is most of the probability, so <Katex tex="a" /> should be near the top of <Katex tex="[3\pi,5\pi]" />, and <Katex tex="\tfrac{14\pi}{3}" /> is. C (17%), <Katex tex="\tfrac{10\pi}{3}" />, gives <Katex tex="\Pr(X<a)=\tfrac{2-\sqrt3}{4}\approx0.067" /> — the complement: it is the value with <Katex tex="\Pr(X>a)=\tfrac{\sqrt3+2}{4}" />, since <Katex tex="\Pr(X>a)=\tfrac12-\tfrac12\sin\!\left(\tfrac{a}{2}\right)" /> leads to <Katex tex="\sin\!\left(\tfrac{a}{2}\right)=-\tfrac{\sqrt3}{2}" />. Integrate from the bottom of the domain up to <Katex tex="a" />. A, <Katex tex="\tfrac{19\pi}{6}" />, and D, <Katex tex="\tfrac{29\pi}{6}" />, give probabilities of about <Katex tex="0.017" /> and <Katex tex="0.983" />. E, <Katex tex="\tfrac{17\pi}{3}\approx17.8" />, is outside <Katex tex="[3\pi,5\pi]" />, so it can't be a value of <Katex tex="a" /> here.</>,
   },
 ]
 
@@ -53,7 +55,7 @@ export default function MethodsQ18_2016() {
       question={
         <>
           <p className="mb-2">
-            The continuous random variable <Katex tex="X" /> has a probability density
+            The continuous random variable, <Katex tex="X" />, has a probability density
             function given by
           </p>
           <div className="mb-2">

@@ -24,12 +24,13 @@ const ROWS: WorkingRow[] = [
     reason: <>Read straight off the two labelled points. These are the only places the gradient can change sign.</>,
   },
   {
-    working: <Katex display tex="(-2,-9) \text{ is a minimum}, \quad \left(\tfrac13,\tfrac{100}{27}\right) \text{ is a maximum}" />,
+    working: <Katex display tex="\begin{aligned}&(-2,-9) \text{ is a minimum}\\ &\left(\tfrac13,\tfrac{100}{27}\right) \text{ is a maximum}\end{aligned}" />,
     reason: <>From the shape: the curve falls into the first, rises to the second, then falls again.</>,
   },
   {
     working: <Katex display tex="\boxed{x\in(-\infty,-2)\cup\left(\tfrac13,\infty\right)}" />,
-    reason: <>Matches option <b>C</b> — downhill before the minimum and after the maximum. Option D (10%) is where the cubic is <em>increasing</em>; option B uses the <Katex tex="y" />-values of the turning points; option E uses the <Katex tex="x" />-intercept <Katex tex="1" /> in place of the maximum's <Katex tex="x=\tfrac13" />.</>,
+    reason: <>Matches option <b>C</b> — downhill before the minimum and after the maximum.</>,
+    more: <>The endpoints are open because <Katex tex="f'(-2)=f'(\tfrac13)=0" />, which is not negative. Option D (chosen by 10%) is where the cubic is <em>increasing</em>. Option B uses the <Katex tex="y" />-values of the turning points instead of their <Katex tex="x" />-values. Option E uses the <Katex tex="x" />-intercept <Katex tex="1" /> in place of the maximum's <Katex tex="x=\tfrac13" />, and wrongly includes <Katex tex="x=-2" />. Option A's first interval, <Katex tex="(-2,0)" />, is part of where the curve rises from the minimum.</>,
   },
 ]
 

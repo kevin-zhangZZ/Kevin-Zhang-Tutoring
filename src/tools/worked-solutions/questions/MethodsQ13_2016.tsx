@@ -16,24 +16,39 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{shaded region: from } x=0 \text{ to } x=d" />,
-    reason: <>Read the figure carefully. The dashed curve <Katex tex="y=f(x)" /> starts on the <Katex tex="y" />-axis above the origin and meets the <Katex tex="x" />-axis at <Katex tex="d" />; the shading runs all the way from the <Katex tex="y" />-axis to <Katex tex="d" />.</>,
+    working: <Katex display tex="\text{shaded: } x=0 \text{ to } x=d" />,
+    reason: <>The dashed curve <Katex tex="y=f(x)" /> starts on the <Katex tex="y" />-axis and meets the <Katex tex="x" />-axis at <Katex tex="d" />; the shading runs from the <Katex tex="y" />-axis all the way to <Katex tex="d" />.</>,
   },
   {
-    working: <Katex display tex="y=g(x) \text{ is above the } x\text{-axis only from } x=a \text{ to } x=c" />,
-    reason: <>The solid curve meets the <Katex tex="x" />-axis at <Katex tex="a" />, just to the <em>right</em> of the origin, and again at <Katex tex="c" />, just before <Katex tex="d" />. So the bottom edge of the region is the <Katex tex="x" />-axis on <Katex tex="[0,a]" /> and on <Katex tex="[c,d]" />, and <Katex tex="g" /> only on <Katex tex="[a,c]" />.</>,
+    working: <Katex display tex="\begin{aligned} [0,a]&: \text{ bottom edge is the } x\text{-axis} \\ [a,c]&: \text{ bottom edge is } y=g(x) \\ [c,d]&: \text{ bottom edge is the } x\text{-axis} \end{aligned}" />,
+    reason: <>The solid curve <Katex tex="y=g(x)" /> starts at <Katex tex="a" />, just right of the origin, and comes back to the <Katex tex="x" />-axis at <Katex tex="c" />, before <Katex tex="d" />.</>,
+    more: <>The point <Katex tex="b" /> is where the two curves touch. It is marked to tempt you into splitting there, but the bottom edge does not change at <Katex tex="b" /> — it is <Katex tex="g" /> on both sides — so <Katex tex="b" /> plays no part in the area.</>,
   },
   {
-    working: <Katex display tex="\text{area} = \int_0^{a}f(x)\,dx+\int_a^{c}\bigl(f(x)-g(x)\bigr)dx+\int_c^{d}f(x)\,dx" />,
-    reason: <>Split wherever the bottom edge changes.</>,
+    working: <Katex display tex="\begin{aligned} \text{area} &= \int_0^{a}f(x)\,dx \\ &\quad +\int_a^{c}\bigl(f(x)-g(x)\bigr)dx \\ &\quad +\int_c^{d}f(x)\,dx \end{aligned}" />,
+    reason: <>Area between curves is <Katex tex="\int(\text{top}-\text{bottom})\,dx" />, so split wherever the bottom edge changes: at <Katex tex="a" /> and at <Katex tex="c" />.</>,
   },
   {
     working: <Katex display tex="= \int_0^{d}f(x)\,dx-\int_a^{c}g(x)\,dx" />,
-    reason: <>The three <Katex tex="f" /> pieces join up into one integral from <Katex tex="0" /> to <Katex tex="d" />: everything under <Katex tex="f" />, minus the part under <Katex tex="g" />.</>,
+    reason: <>The three <Katex tex="f" /> pieces join into one integral from <Katex tex="0" /> to <Katex tex="d" />: everything under <Katex tex="f" />, minus the part under <Katex tex="g" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\int_0^{d}f(x)\,dx-\int_a^{c}g(x)\,dx}" />,
-    reason: <>Matches option <b>E</b>. Option D is the three-piece split with the last piece starting at <Katex tex="b" /> instead of <Katex tex="c" />; option B (15%) subtracts <Katex tex="g" /> on <Katex tex="[0,a]" /> and <Katex tex="[c,d]" />, where <Katex tex="g" /> is not the lower edge; option A misses the strip between the <Katex tex="y" />-axis and <Katex tex="a" />.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: (
+      <>
+        Why the others fail. <b>B</b> (15%, the most common wrong answer) and <b>A</b>{' '}
+        subtract <Katex tex="g" /> right out to <Katex tex="d" />, but on{' '}
+        <Katex tex="[c,d]" /> the bottom edge is the <Katex tex="x" />-axis, not{' '}
+        <Katex tex="g" />; B does the same on <Katex tex="[0,a]" />, and A also leaves out
+        the strip between the <Katex tex="y" />-axis and <Katex tex="a" />. <b>C</b> is just{' '}
+        <Katex tex="\int_0^{c}\bigl(f(x)-g(x)\bigr)dx" /> split pointlessly at{' '}
+        <Katex tex="b" />: it uses <Katex tex="g" /> on <Katex tex="[0,a]" /> and misses{' '}
+        <Katex tex="[c,d]" /> altogether. <b>D</b> is the correct three-piece split except
+        that its last piece starts at <Katex tex="b" /> instead of <Katex tex="c" />, so the
+        area under <Katex tex="f" /> on <Katex tex="[b,c]" /> is counted a second time.
+      </>
+    ),
   },
 ]
 
@@ -60,9 +75,7 @@ export default function MethodsQ13_2016() {
         <p>
           Two curves, but they do not bound the region over the same interval. Wherever the
           lower boundary of a region changes — from a curve to the axis, say — the integral
-          has to be split, or written as two separate areas subtracted. Here the region runs
-          from the <Katex tex="y" />-axis to <Katex tex="d" />, but <Katex tex="g" /> is the
-          lower edge only from <Katex tex="a" /> to <Katex tex="c" />.
+          has to be split, or written as two separate areas subtracted.
         </p>
       }
       options={[

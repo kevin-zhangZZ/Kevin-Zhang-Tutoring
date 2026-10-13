@@ -27,11 +27,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="[-4,5) \text{: } -4 \text{ included}, \ 5 \text{ excluded}" />,
-    reason: <>Brackets travel with their endpoint, not with their position. So <Katex tex="x=9" /> is included and <Katex tex="x=0" /> is excluded.</>,
+    reason: <><Katex tex="y=-4" /> is included and comes from <Katex tex="x=9" />, so <Katex tex="x=9" /> is included; <Katex tex="y=5" /> is excluded and comes from <Katex tex="x=0" />, so <Katex tex="x=0" /> is excluded.</>,
   },
   {
     working: <Katex display tex="\boxed{D = (0,9]}" />,
-    reason: <>Matches option <b>A</b>. Option D, <Katex tex="[-9,0)" />, comes from rearranging <Katex tex="y=5-x" /> as <Katex tex="x=y-5" /> (a sign slip), and option C, <Katex tex="[5,-4)" />, is not a valid interval at all.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option D, <Katex tex="[-9,0)" />, comes from rearranging <Katex tex="y=5-x" /> as <Katex tex="x=y-5" /> (a sign slip) and keeping the brackets in their original positions. Option C, <Katex tex="[5,-4)" />, just copies the range back to front, and is not a valid interval at all — the left endpoint of an interval must be the smaller number.</>,
   },
 ]
 

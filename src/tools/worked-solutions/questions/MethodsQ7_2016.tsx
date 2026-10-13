@@ -15,7 +15,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(\text{same}) = \sum_x \bigl(\Pr(X=x)\bigr)^2" />,
-    reason: <>"Both own <Katex tex="x" /> pets" has probability <Katex tex="\Pr(X=x)^2" /> because the two students are independent. The four cases are mutually exclusive, so add them.</>,
+    reason: <>"Same number" means both own 0, or both own 1, or both own 2, or both own 3. Each case is <Katex tex="\Pr(X=x)^2" /> (independent students); the cases can't overlap, so add them.</>,
+    more: <>Independence lets you multiply: <Katex tex="\Pr(\text{both own }x)=\Pr(X=x)\times\Pr(X=x)" />. Mutually exclusive means no pair of students can be in two of the cases at once, so the probabilities simply add.</>,
   },
   {
     working: <Katex display tex="= 0.5^2+0.25^2+0.2^2+0.05^2" />,
@@ -27,7 +28,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{0.355}" />,
-    reason: <>Matches option <b>C</b>. Sanity check: the "both own none" case alone contributes <Katex tex="0.25" />, and the other three cases add only a little more, so the answer should be a little above <Katex tex="0.25" /> — option E, <Katex tex="0.8" />, is far too big.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Sanity check: the "both own none" case alone contributes <Katex tex="0.25" />, and the other three cases add only a little more, so the answer should be a little above <Katex tex="0.25" /> — option E, <Katex tex="0.8" />, is far too big.</>,
   },
 ]
 

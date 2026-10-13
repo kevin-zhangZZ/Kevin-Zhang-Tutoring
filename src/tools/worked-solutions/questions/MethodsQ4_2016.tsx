@@ -15,7 +15,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average rate} = \frac{f(3)-f(0)}{3-0}" />,
-    reason: <>The gradient of the chord between the endpoints — no differentiation involved.</>,
+    reason: <>Average rate of change is the gradient of the straight line joining the two endpoints: rise over run. No differentiation involved.</>,
+    more: <>Don't confuse it with the <em>instantaneous</em> rate of change, <Katex tex="f'(x)" />, which is the gradient of a tangent at one point. "Average rate of change between <Katex tex="x=a" /> and <Katex tex="x=b" />" always means <Katex tex="\frac{f(b)-f(a)}{b-a}" />.</>,
   },
   {
     working: <Katex display tex="f(3) = 3(9)-2\sqrt{4} = 27-4 = 23" />,
@@ -27,11 +28,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{23-(-2)}{3} = \frac{25}{3}" />,
-    reason: <>Careful with the double negative in the numerator.</>,
+    reason: <>Subtracting a negative adds: <Katex tex="23-(-2)=25" />. Then divide by the run, <Katex tex="3-0=3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{25}{3}}" />,
-    reason: <>Matches option <b>D</b>, about <Katex tex="8.33" />. Option B, <Katex tex="25" />, is the rise without dividing by the run.</>,
+    reason: <>Matches option <b>D</b>, about <Katex tex="8.33" />.</>,
+    more: <>Option C, <Katex tex="\frac{53}{9}" />, is the average <em>value</em> of <Katex tex="f" />, <Katex tex="\frac{1}{3-0}\int_0^3 f(x)\,dx" />: a different quantity from the average <em>rate of change</em>. Option B, <Katex tex="25" />, is the rise without dividing by the run. On CAS, define <Katex tex="f" /> and enter <Katex tex="(f(3)-f(0))/3" /> to check.</>,
   },
 ]
 

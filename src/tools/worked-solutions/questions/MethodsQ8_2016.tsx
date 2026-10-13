@@ -16,7 +16,8 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{at } t=0,\ y=0 \text{ (a minimum)}" />,
-    reason: <>Read it off the graph. A curve that <em>starts at its minimum</em> is <Katex tex="-\cos" />, not <Katex tex="+\cos" />. That rules out options A and C (which start at their maximum, <Katex tex="10" />) and E (which starts at <Katex tex="5" />).</>,
+    reason: <>Read off the graph. <Katex tex="\cos" /> starts at its maximum, so a curve that <em>starts at its minimum</em> is <Katex tex="-\cos" />.</>,
+    more: <>Test each option at <Katex tex="t=0" />: A and C give <Katex tex="5+5\cos 0=10" /> (the maximum, not the minimum), and E gives <Katex tex="5+5\sin 0=5" />. Only B and D give <Katex tex="5-5=0" />, so the choice is between them.</>,
   },
   {
     working: <Katex display tex="\text{period} = 14" />,
@@ -24,15 +25,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{2\pi}{n} = 14 \implies n = \frac{\pi}{7}" />,
-    reason: <>So the inside of the cosine is <Katex tex="\tfrac{\pi t}{7}" />. Option D uses <Katex tex="\tfrac{\pi t}{14}" />, which has period <Katex tex="28" /> — twice too slow.</>,
+    reason: <>For <Katex tex="\cos(nt)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />, so the inside of the cosine is <Katex tex="\tfrac{\pi t}{7}" />.</>,
+    more: <>Option D uses <Katex tex="\tfrac{\pi t}{14}" />, which has period <Katex tex="\tfrac{2\pi}{\pi/14}=28" /> — twice too long. Its graph would only reach its peak at <Katex tex="t=14" />, whereas the graph peaks at <Katex tex="t=7" />.</>,
   },
   {
-    working: <Katex display tex="\text{max } 10, \text{ min } 0 \implies \text{amplitude } 5, \text{ midline } y=5" />,
+    working: <Katex display tex="\begin{aligned}&\text{max } 10,\ \text{min } 0\\ &\implies \text{amplitude } 5,\ \text{midline } y=5\end{aligned}" />,
     reason: <>Half the difference, and the average, of the two extremes.</>,
   },
   {
     working: <Katex display tex="\boxed{y = 5-5\cos\!\left(\frac{\pi t}{7}\right)}" />,
-    reason: <>Matches option <b>B</b>. Check at <Katex tex="t=7" />: <Katex tex="5-5\cos(\pi)=5+5=10" /> ✓, the peak — which the graph puts at <Katex tex="t=7" />, or 1 pm.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>Check at <Katex tex="t=7" />: <Katex tex="5-5\cos(\pi)=5+5=10" /> ✓, the peak — which the graph puts at <Katex tex="t=7" />, or 1 pm. And at <Katex tex="t=14" />: <Katex tex="5-5\cos(2\pi)=0" /> ✓.</>,
   },
 ]
 
