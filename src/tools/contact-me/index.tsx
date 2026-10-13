@@ -1,5 +1,6 @@
 import { useRef, useState, type ReactNode } from 'react'
 import wechatQr from './wechat-qr.png'
+import { stagger } from '../../components/motion/Reveal'
 
 const EMAIL = 'zhizhuo.kevin.zhang@gmail.com'
 const WECHAT_ID = 'zzzk617'
@@ -28,7 +29,7 @@ function WeChatIcon({ className = '' }: { className?: string }) {
 
 // A value in a field with its Copy button inside it, at the right. If the clipboard is blocked,
 // the text is selected instead so it can be copied by hand.
-function CopyField({ value, children }: { value: string; children: ReactNode }) {
+function CopyField({ value, children, big = false }: { value: string; children: ReactNode; big?: boolean }) {
   const [copied, setCopied] = useState(false)
   const textRef = useRef<HTMLSpanElement>(null)
 
@@ -53,19 +54,19 @@ function CopyField({ value, children }: { value: string; children: ReactNode }) 
   }
 
   return (
-    <div className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60 p-1 pl-3.5">
+    <div className="flex items-center gap-2 rounded-xl border p-1.5 pl-4 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60">
       <span
         ref={textRef}
-        className="flex-1 min-w-0 select-all [overflow-wrap:anywhere] font-medium text-[14px] text-gray-800 dark:text-gray-100"
+        className={`flex-1 min-w-0 select-all [overflow-wrap:anywhere] ${big ? 'font-display font-bold tracking-tight text-lg xl:text-xl py-1' : 'font-medium text-[15px]'} text-gray-800 dark:text-gray-100`}
       >
         {children}
       </span>
       <button
         onClick={copy}
         aria-label={copied ? 'Copied' : `Copy ${value}`}
-        className="flex-none min-w-[4.75rem] rounded-lg bg-blue-600 px-3.5 py-2 text-[13px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-blue-700 active:scale-[0.97] transition-[background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+        className="flex-none min-w-[5rem] rounded-lg bg-blue-600 px-4 py-2.5 text-[13px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-blue-700 active:scale-[0.97] transition-[background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
       >
-        {copied ? 'Copied ✓' : 'Copy'}
+        {copied ? <span key="done" className="pop inline-block">Copied ✓</span> : 'Copy'}
       </button>
     </div>
   )
@@ -73,10 +74,10 @@ function CopyField({ value, children }: { value: string; children: ReactNode }) 
 
 // Many school laptops and Chromebooks have no mail app set up, so a mailto: link alone can do
 // nothing. The address comes first, with the link as a smaller option.
-function EmailCopy() {
+function EmailCopy({ big = false }: { big?: boolean }) {
   return (
     <div className="flex flex-col gap-2.5 [@media(pointer:coarse)]:gap-3">
-      <CopyField value={EMAIL}>
+      <CopyField value={EMAIL} big={big}>
         {/* If it has to wrap on a narrow phone, it wraps after the @. */}
         {EMAIL.split('@')[0]}@<wbr />{EMAIL.split('@')[1]}
       </CopyField>
@@ -95,13 +96,13 @@ function WeChatIdCopy() {
   )
 }
 
-// The channel's icon in a soft tile (as on Home), then its name. WeChat keeps its own green as a
-// brand mark; everything clickable on the page is the site's blue.
+// The channel's icon in a tile, then its name. WeChat's icon keeps its own green as a brand mark;
+// everything clickable on the page is the site's blue.
 function ChannelHeading({ icon, tile, children }: { icon: ReactNode; tile: string; children: ReactNode }) {
   return (
     <div className="flex items-center gap-3">
-      <span className={`grid place-items-center shrink-0 size-10 rounded-xl ${tile}`}>{icon}</span>
-      <h2 className="font-display text-lg font-semibold text-gray-900 dark:text-white">{children}</h2>
+      <span className={`grid place-items-center shrink-0 size-11 rounded-xl ${tile}`}>{icon}</span>
+      <h2 className="font-display text-xl font-bold tracking-tight text-gray-900 dark:text-white">{children}</h2>
     </div>
   )
 }
@@ -113,44 +114,54 @@ const weChatHeading = (
   <ChannelHeading icon={<WeChatIcon />} tile="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">WeChat</ChannelHeading>
 )
 
+// Both channels share one card style.
+const PAPER = 'rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800'
+
 export default function ContactMe() {
   return (
-    <div className="max-w-4xl mx-auto px-5 sm:px-6 py-10 md:py-14">
-      <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-2 md:mb-3">
-        Contact Me
-      </h1>
-      <p className="text-[15px] md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8 md:mb-10 max-w-[52ch]">
-        Questions about tutoring or these tools? Send me an email or add me on WeChat.
-      </p>
-
-      {/* Desktop / tablet: one panel, email then WeChat (side by side once there's room). */}
-      <div className="hidden md:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
-        <div className="p-8 lg:p-10 flex flex-col gap-4">
-          {emailHeading}
-          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-[40ch]">
-            Best for detailed questions. I read every message and usually reply within a day.
+    <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 md:py-14 xl:py-16">
+      <div className="lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14 xl:gap-20 lg:items-start">
+        {/* The pitch: who's answering and how fast. */}
+        <div className="lg:sticky lg:top-16">
+          <p className="rise-in text-sm font-semibold text-blue-700 dark:text-blue-300 mb-3" style={stagger(0)}>Contact Me</p>
+          <h1 className="rise-in font-display text-[2.4rem] leading-[1.05] sm:text-5xl xl:text-[3.6rem] font-bold text-gray-900 dark:text-white tracking-[-0.035em] text-balance" style={stagger(1)}>
+            Ask me about tutoring.
+          </h1>
+          <p className="rise-in mt-5 text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-[38ch]" style={stagger(2)}>
+            Send me an email or add me on WeChat. I read every message and usually reply within a day.
           </p>
-          <EmailCopy />
         </div>
-        <div className="p-8 lg:p-10 flex flex-col gap-4 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950/40">
-          {weChatHeading}
-          <div className="flex items-center gap-5">
-            <img src={wechatQr} alt="WeChat QR code" className="w-32 h-32 lg:w-36 lg:h-36 flex-none rounded-xl border border-gray-200 dark:border-gray-700 bg-white" />
-            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Scan with WeChat to add me, or search for my ID.</p>
-          </div>
-          <WeChatIdCopy />
+
+        {/* Desktop / tablet: the two ways in, as two cards. */}
+        <div className="hidden md:flex flex-col gap-5 mt-10 lg:mt-0">
+          <section className={`rise-in ${PAPER} p-8 xl:p-10`} style={stagger(3)}>
+            {emailHeading}
+            <p className="mt-3 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Best for detailed questions.</p>
+            <div className="mt-6"><EmailCopy big /></div>
+          </section>
+
+          <section className={`rise-in ${PAPER} p-8 xl:p-10 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-8`} style={stagger(4)}>
+            <div className="rounded-2xl bg-white p-3 border border-gray-200 dark:border-gray-700">
+              <img src={wechatQr} alt="WeChat QR code" className="w-40 h-40 xl:w-44 xl:h-44" />
+            </div>
+            <div className="min-w-0">
+              {weChatHeading}
+              <p className="mt-3 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Scan the code with WeChat to add me, or search for my ID.</p>
+              <div className="mt-5"><WeChatIdCopy /></div>
+            </div>
+          </section>
         </div>
       </div>
 
       {/* Mobile: you can't scan a code on your own screen, so the WeChat ID comes first, and the
           QR is something to save and open from WeChat's scanner. */}
-      <div className="md:hidden flex flex-col gap-4">
-        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5">
+      <div className="md:hidden flex flex-col gap-4 mt-8">
+        <section className={`rise-in ${PAPER} p-5`} style={stagger(3)}>
           {weChatHeading}
           <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-3 mb-2">Search for my WeChat ID:</p>
           <WeChatIdCopy />
           <div className="flex gap-4 items-center mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-            <img src={wechatQr} alt="WeChat QR code. Press and hold to save it." className="w-24 h-24 flex-none rounded-xl border border-gray-200 dark:border-gray-700 bg-white" />
+            <img src={wechatQr} alt="WeChat QR code. Press and hold to save it." className="w-24 h-24 flex-none rounded-xl bg-white p-1.5 border border-gray-200 dark:border-gray-700" />
             <p className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed">
               Or save this code to your photos (press and hold it, or use the button). Then in WeChat, tap
               {' '}<b className="text-gray-800 dark:text-gray-100">+ → Scan</b> and choose it from your album.
@@ -159,17 +170,17 @@ export default function ContactMe() {
           <a
             href={wechatQr}
             download="kevin-zhang-wechat-qr.png"
-            className="mt-3 block text-center text-[13px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-950 rounded-xl py-2.5 active:scale-[0.98] transition-[background-color,transform]"
+            className="mt-4 block text-center text-[13px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-950 rounded-xl py-3 active:scale-[0.98] transition-[background-color,transform]"
           >
             Save QR code
           </a>
-        </div>
+        </section>
 
-        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5">
+        <section className={`rise-in ${PAPER} p-5`} style={stagger(4)}>
           {emailHeading}
           <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-3 mb-2">I usually reply within a day.</p>
           <EmailCopy />
-        </div>
+        </section>
       </div>
     </div>
   )
