@@ -255,7 +255,7 @@ export default function WrongExplanation({ angle, fn, angleTex, unit }: Props) {
   const all = steps(angle, fn, angleTex, negative, unit)
 
   return (
-    <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-lg border border-rose-100 dark:border-rose-900/60 p-3 text-left">
+    <div className="w-full max-w-sm bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 p-3 text-left">
       <div className="flex justify-center text-gray-700 dark:text-gray-300">
         <GeoDiagram a={angle} fn={fn} step={step} negative={negative} angleTex={angleTex} unit={unit} />
       </div>
@@ -271,7 +271,7 @@ export default function WrongExplanation({ angle, fn, angleTex, unit }: Props) {
         <div className="flex gap-2 mt-2.5">
           <button
             onClick={() => setStep(s => s + 1)}
-            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900"
+            className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-950 active:scale-[0.97] transition-[background-color,transform]"
           >
             Next step
           </button>

@@ -60,15 +60,16 @@ export default function MemorizationMode() {
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-      {/* Controls — beside the circle on laptops, above it on phones */}
-      <div className="w-full lg:w-72 lg:flex-none card p-5 flex flex-wrap lg:flex-col gap-5">
+      {/* Controls: a card beside the circle on laptops; above it on phones and tablets as a
+          compact row with no card, so the circle starts on the first screen. */}
+      <div className="w-full lg:w-72 lg:flex-none lg:card lg:p-5 flex flex-wrap lg:flex-col gap-x-5 gap-y-3 lg:gap-5">
         <div>
-          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">View</p>
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1.5 lg:mb-2">View</p>
           <SegmentedControl aria-label="View" value={view} onChange={v => set({ view: v })} options={[{ value: 'circle', label: 'Circle' }, { value: 'table', label: 'Table' }]} />
         </div>
 
         <div>
-          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">Angle Range</p>
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1.5 lg:mb-2">Angle Range</p>
           <SegmentedControl
             aria-label="Angle range"
             value={range}
@@ -82,7 +83,7 @@ export default function MemorizationMode() {
 
         {view === 'circle' && (
           <div>
-            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">Show Values</p>
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1.5 lg:mb-2">Show Values</p>
             <SegmentedControl
               aria-label="Show values"
               value={show}
@@ -97,7 +98,7 @@ export default function MemorizationMode() {
           </div>
         )}
 
-        <div className="self-end lg:self-auto">
+        <div className="self-end lg:self-auto pb-1 lg:pb-0">
           <Toggle appearance="switch" checked={deg} onChange={v => set({ deg: v })} label="Degrees" />
         </div>
       </div>

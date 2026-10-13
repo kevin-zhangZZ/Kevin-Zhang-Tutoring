@@ -25,7 +25,7 @@ export default function UnitCircle() {
       <div className="mb-5">
         <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-1">Unit Circle</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          16 key angles — exact sin, cos, and tan values.
+          The 16 key angles and their exact trig values.
         </p>
       </div>
 

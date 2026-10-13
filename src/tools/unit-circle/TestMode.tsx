@@ -153,7 +153,7 @@ export default function TestMode() {
 
   const rows = fnMode === 'specialist' ? [...METHODS_ROWS, ...SPECIALIST_EXTRA_ROWS] : METHODS_ROWS
   const allLabels = rows.flat()
-  const summary = `${fnMode === 'methods' ? 'Methods' : 'Specialist'} · ${unit === 'rad' ? 'rad' : 'deg'} · ${RANGE_LABEL[unit][range]}`
+  const summary = [fnMode === 'methods' ? 'Methods' : 'Specialist', unit === 'rad' ? 'rad' : 'deg', RANGE_LABEL[unit][range]]
 
   // Any restart (new settings, mode, or round) clears the feedback on screen.
   const clearFeedback = useCallback(() => {
@@ -228,7 +228,7 @@ export default function TestMode() {
       </div>
 
       {session.finished ? (
-        <div className="lg:col-start-1">
+        <div className="lg:col-span-2">
           <RoundResults
             correct={session.correct}
             total={session.total}
@@ -250,7 +250,8 @@ export default function TestMode() {
           {/* Question card */}
           <div className={`lg:col-start-1 min-w-0 flex flex-col items-center justify-center min-h-[96px] sm:min-h-[112px] rounded-xl border-2 transition-colors duration-200 px-5 py-4 sm:py-5 ${
             flash === 'correct' ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40'
-            : flash === 'wrong'  ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40'
+            // A wrong answer marks the card's edge only: the explanation inside needs a calm page.
+            : flash === 'wrong'  ? 'border-rose-300 dark:border-rose-800 bg-white dark:bg-gray-900'
             : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900'
           }`}>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">What is</p>
@@ -274,7 +275,7 @@ export default function TestMode() {
                   <button
                     onClick={next}
                     autoFocus
-                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg active:scale-[0.97] transition-[background-color,transform]"
                   >
                     Next →
                   </button>
@@ -300,7 +301,7 @@ export default function TestMode() {
 
                   let cls = 'flex-1 px-1 rounded-lg border text-sm font-medium transition-all duration-150 flex items-center justify-center min-h-[44px] sm:min-h-[56px] lg:min-h-[64px] '
                   if (!flash) {
-                    cls += 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 cursor-pointer'
+                    cls += 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/30 active:scale-[0.97] cursor-pointer'
                   } else if (isCorrect) {
                     cls += 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300'
                   } else if (isSelected) {

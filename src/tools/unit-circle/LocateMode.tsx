@@ -79,7 +79,7 @@ export default function LocateMode() {
   const bestId = `locate|${resetKey}`
   const session = useSession<LocateQuestion>({ mode, generate, angleOf, resetKey })
   const { question } = session
-  const summary = `${unit === 'rad' ? 'Radians' : 'Degrees'} · ${RANGE_LABEL[unit][domain]}`
+  const summary = [unit === 'rad' ? 'Radians' : 'Degrees', RANGE_LABEL[unit][domain]]
 
   const clearFeedback = useCallback(() => {
     if (advanceTimer.current) clearTimeout(advanceTimer.current)
@@ -144,7 +144,7 @@ export default function LocateMode() {
       </div>
 
       {session.finished ? (
-        <div className="lg:col-start-1">
+        <div className="lg:col-span-2">
           <RoundResults
             correct={session.correct}
             total={session.total}
@@ -166,7 +166,7 @@ export default function LocateMode() {
           {/* Question card */}
           <div className={`lg:col-start-1 flex flex-col items-center justify-center min-h-[104px] rounded-xl border-2 transition-colors duration-200 px-5 py-4 ${
             flash === 'correct' ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40'
-            : flash === 'wrong'  ? 'border-rose-400 bg-rose-50 dark:bg-rose-950/40'
+            : flash === 'wrong'  ? 'border-rose-300 dark:border-rose-800 bg-white dark:bg-gray-900'
             : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900'
           }`}>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-1.5">{verb} the angle</p>
@@ -184,7 +184,7 @@ export default function LocateMode() {
                   <button
                     onClick={next}
                     autoFocus
-                    className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                    className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg active:scale-[0.97] transition-[background-color,transform]"
                   >
                     Next →
                   </button>
