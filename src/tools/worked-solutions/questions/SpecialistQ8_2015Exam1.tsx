@@ -8,11 +8,19 @@
 // it is now an SVG overlay (tan(2x) and its asymptotes) on the cropped figure. VCAA's figure
 // is not to scale, so the overlay is calibrated to the printed asymptotes y = ±π/4 (118.5 px
 // either side of the x-axis at y = 359.5 px; origin at x = 564 px, measured from the image).
+// Review, Oct 2026 (2014–2016 standard): reasons tightened, report traps and checks moved into
+// `more`; b(i) report comment corrected against the PDF ("y = ±π/2 or y = ±π", not "y = ±π/2");
+// d. Background no longer says integration by parts is outside Specialist (it is in the current
+// design), and the IBP route is given as an alternative. Interactive: d. only (23% full marks),
+// interactives/spec-2015e1-q8d-rectangle.tsx — the rectangle minus the region beside the y-axis.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import graphSrc from './spec-2015e1-q8-graph.png'
 import areaSrc from './spec-2015e1-q8d-area.png'
+
+const RectangleWidget = lazyWidget(() => import('../interactives/spec-2015e1-q8d-rectangle'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [44, 9, 47],
@@ -40,7 +48,7 @@ const EXAM_BI: SAExaminerStats = {
   comment: (
     <>
       Most students answered this question correctly. Some gave{' '}
-      <Katex tex="y=\pm\tfrac\pi2" />. Others gave <Katex tex="\pm\tfrac\pi4" /> rather than
+      <Katex tex="y=\pm\tfrac\pi2" /> or <Katex tex="y=\pm\pi" />. Others gave <Katex tex="\pm\tfrac\pi4" /> rather than
       equations.
     </>
   ),
@@ -98,14 +106,16 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\int\tan(2x)\,dx = \int\frac{\sin(2x)}{\cos(2x)}\,dx" />,
     reason: <>Rewrite in terms of sine and cosine — the numerator is then almost the derivative of the denominator.</>,
+    more: <>Keep the <Katex tex="2x" /> together. The report notes that using the double-angle formula <Katex tex="\tan(2x)=\tfrac{2\tan(x)}{1-\tan^2(x)}" /> was rarely successful: it gives a harder rational function of <Katex tex="\tan(x)" />, with no derivative-of-the-denominator pattern to use.</>,
   },
   {
     working: <Katex display tex="u = \cos(2x) \implies \frac{du}{dx} = -2\sin(2x)" />,
-    reason: <>The substitution the report says students kept getting wrong. Take the <em>denominator</em>, because that is what makes the integral a <Katex tex="\tfrac{f'}{f}" /> form.</>,
+    reason: <>Let <Katex tex="u" /> be the <em>denominator</em>: its derivative <Katex tex="-2\sin(2x)" /> is a multiple of the numerator, so the integral becomes <Katex tex="\int\tfrac1u\,du" />.</>,
+    more: <>The report lists the substitutions that went wrong: <Katex tex="u=\sin(2x)" />, <Katex tex="u=\tan(2x)" />, <Katex tex="u=\sec(2x)" />, or double-angle formulas followed by <Katex tex="u=\cos(x)" />. None of these has its derivative sitting in the numerator, so the <Katex tex="x" />-terms never cancel cleanly. The test to apply before choosing <Katex tex="u" />: is <Katex tex="\tfrac{du}{dx}" /> a constant multiple of what is left over?</>,
   },
   {
     working: <Katex display tex="\sin(2x)\,dx = -\tfrac12\,du" />,
-    reason: <>Rearranging the differential.</>,
+    reason: <>Rearrange <Katex tex="\tfrac{du}{dx}=-2\sin(2x)" /> to replace the numerator <Katex tex="\sin(2x)\,dx" />.</>,
   },
   {
     working: <Katex display tex="\int\frac{\sin(2x)}{\cos(2x)}\,dx = -\frac12\int\frac{1}{u}\,du" />,
@@ -113,33 +123,36 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= -\tfrac12\log_e|u|+c = -\tfrac12\log_e\bigl|\cos(2x)\bigr|+c" />,
-    reason: <>The modulus is required — <Katex tex="\cos(2x)" /> changes sign.</>,
+    reason: <><Katex tex="\int\tfrac1u\,du=\log_e|u|" />; the modulus is needed here because <Katex tex="u=\cos(2x)" /> can be negative.</>,
+    more: <>The report notes sign errors at this step (the <Katex tex="-\tfrac12" /> must stay in front) and students who left out the modulus here, adding it only at the end. Write it the moment you integrate <Katex tex="\tfrac1u" />.</>,
   },
   {
     working: <Katex display tex="= \tfrac12\log_e\bigl|\cos(2x)\bigr|^{-1}+c = \tfrac12\log_e\bigl|\sec(2x)\bigr|+c" />,
-    reason: <>A negative coefficient in front of a logarithm is the logarithm of the reciprocal, and <Katex tex="\sec = \tfrac1{\cos}" />. That is the given form — as required. The marks are for the substitution and simplification above, not for restating the result.</>,
+    reason: <>Log law: <Katex tex="-\log_e(a)=\log_e\!\left(a^{-1}\right)" />, and <Katex tex="\tfrac1{\cos(2x)}=\sec(2x)" />. As required.</>,
+    more: <>In a &ldquo;show that&rdquo; the marks are for the substitution and each simplification, so show every step; the report mentions &ldquo;unconvincing arguments, often due to insufficient steps shown.&rdquo; A check (also a valid method): differentiate the right-hand side with the chain rule, <Katex tex="\tfrac{d}{dx}\,\tfrac12\log_e|\sec(2x)| = \tfrac12\cdot\tfrac{2\sec(2x)\tan(2x)}{\sec(2x)} = \tan(2x)" />. The report says few who tried this got the derivative right: the inner <Katex tex="2x" /> contributes the factor 2, and <Katex tex="\tfrac{d}{dx}\sec(x)=\sec(x)\tan(x)" />.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="-\tfrac\pi2 < \arctan(x) < \tfrac\pi2 \quad\text{for all } x\in R" />,
-    reason: <>The range of <Katex tex="\arctan" /> is the source of both asymptotes.</>,
+    reason: <>The range of <Katex tex="\arctan" />: its graph approaches <Katex tex="y=\pm\tfrac\pi2" /> but never reaches them.</>,
   },
   {
     working: <Katex display tex="f(x) = \tfrac12\arctan(x) \implies -\tfrac\pi4 < f(x) < \tfrac\pi4" />,
-    reason: <>Halving the whole range.</>,
+    reason: <>The <Katex tex="\tfrac12" /> halves every <Katex tex="y" />-value, including the limits of the range.</>,
   },
   {
     working: <Katex display tex="\boxed{y = \tfrac\pi4 \ \text{ and }\ y = -\tfrac\pi4}" />,
     reason: <>Write them as <em>equations</em> of horizontal lines; <Katex tex="\pm\tfrac\pi4" /> on its own does not answer the question.</>,
+    more: <>The report's wrong answers: <Katex tex="y=\pm\tfrac\pi2" /> is the asymptotes of <Katex tex="\arctan(x)" /> itself, forgetting the <Katex tex="\tfrac12" />; <Katex tex="y=\pm\pi" /> doubles instead of halving.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="y = \tfrac12\arctan(x) \implies x = \tan(2y)" />,
-    reason: <>Swapping <Katex tex="x" /> and <Katex tex="y" /> and making the new <Katex tex="y" /> the subject gives the inverse directly.</>,
+    reason: <>Make <Katex tex="x" /> the subject: double both sides, then take <Katex tex="\tan" /> of both sides. Renaming the variables (next line) gives <Katex tex="f^{-1}" />.</>,
   },
   {
     working: <Katex display tex="f^{-1}(x) = \tan(2x),\quad x\in\left(-\tfrac\pi4,\tfrac\pi4\right)" />,
@@ -147,11 +160,13 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{asymptotes: } x = \tfrac\pi4,\ x = -\tfrac\pi4" />,
-    reason: <>The horizontal asymptotes of <Katex tex="f" /> become vertical asymptotes of <Katex tex="f^{-1}" />. Labelling them <Katex tex="y=\pm\tfrac\pi4" /> is the report's example of incorrect labelling.</>,
+    reason: <>Reflecting in <Katex tex="y=x" /> turns the horizontal asymptotes of <Katex tex="f" /> into vertical ones, so they are labelled <Katex tex="x=\ldots" />.</>,
+    more: <>Labelling them <Katex tex="y=\pm\tfrac\pi4" /> is the report's example of incorrect labelling: a vertical line has an equation <Katex tex="x=" /> constant.</>,
   },
   {
     working: <InverseOverlay />,
-    reason: <>The reflection of the printed curve in <Katex tex="y=x" />, drawn in orange on VCAA's own axes, with its vertical asymptotes dashed at the reflections of the printed horizontal ones. It passes through the origin with gradient 2 and is increasing, so <Katex tex="-\tan(2x)" /> — a wrong shape the report names — is upside down. It must stay between its asymptotes and bend towards them, not away.</>,
+    reason: <>The reflection of the printed curve in <Katex tex="y=x" />: increasing through the origin with gradient 2 (the reciprocal of <Katex tex="f'(0)=\tfrac12" />), bending towards <Katex tex="x=\pm\tfrac\pi4" /> and never past them.</>,
+    more: <>The answer is drawn in orange on VCAA's own axes, with its vertical asymptotes dashed at the reflections of the printed horizontal ones. The gradient at the origin is <Katex tex="\tfrac{d}{dx}\tan(2x)\big|_{x=0}=2\sec^2(0)=2" />, the reciprocal of <Katex tex="f'(0)=\tfrac12" />. The report's errors: <Katex tex="y=-\tan(2x)" /> (decreasing, so upside down), the graph drawn beyond its domain <Katex tex="\left(-\tfrac\pi4,\tfrac\pi4\right)" />, and curves moving away from the asymptotes instead of approaching them.</>,
   },
 ]
 
@@ -181,7 +196,8 @@ const ROWS_D: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The region <Katex tex="A" /> asked for, inside the rectangle <Katex tex="\sqrt3\times\tfrac\pi6" /> fixed by part c. Region <Katex tex="B" /> above the curve is the one that part a. can integrate.</>,
+    reason: <>Sketch first. <Katex tex="\arctan(x)" /> has no antiderivative you can find without integration by parts, but its inverse <Katex tex="\tan(2y)" /> does (part a.). So use parts a.–c.: <Katex tex="A" /> (asked for) and <Katex tex="B" /> (above the curve) fill the rectangle <Katex tex="\sqrt3\times\tfrac\pi6" />, height from part c.</>,
+    more: <>The report: &ldquo;Using a diagram would have been helpful for many students.&rdquo; The sketch is what shows that the region part a. can integrate is <Katex tex="B" />, not <Katex tex="A" />. (Today's integration-by-parts route is in the last row.)</>,
   },
   {
     working: <Katex display tex="A + B = \sqrt3\times\tfrac\pi6 = \tfrac{\sqrt3\,\pi}6" />,
@@ -189,11 +205,13 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="B = \int_0^{\pi/6}f^{-1}(y)\,dy = \int_0^{\pi/6}\tan(2y)\,dy" />,
-    reason: <>Region <Katex tex="B" /> is bounded on the left by the <Katex tex="y" />-axis, so integrating <em>along the </em><Katex tex="y" /><em>-axis</em> turns it into the integral part a. handed you.</>,
+    reason: <>Slice <Katex tex="B" /> horizontally: each strip runs from the <Katex tex="y" />-axis to the curve, width <Katex tex="x=f^{-1}(y)=\tan(2y)" /> (part b.ii), for <Katex tex="y" /> from 0 to <Katex tex="\tfrac\pi6" />.</>,
+    more: <>The terminals are <Katex tex="y" />-values, because the integration is along the <Katex tex="y" />-axis: the bottom and top of the rectangle, 0 and <Katex tex="f(\sqrt3)=\tfrac\pi6" />. Using <Katex tex="0" /> to <Katex tex="\sqrt3" /> here is one of the &ldquo;incorrect terminals&rdquo; the report mentions.</>,
   },
   {
     working: <Katex display tex="B = \left[\tfrac12\log_e\bigl|\sec(2y)\bigr|\right]_0^{\pi/6}" />,
-    reason: <>Exactly the antiderivative shown in part a. — that is what part a. was for.</>,
+    reason: <>The antiderivative shown in part a., with <Katex tex="y" /> in place of <Katex tex="x" />. That is what part a. was for.</>,
+    more: <>The report notes students who tried to integrate <Katex tex="\tan(2y)" /> from scratch instead of using part a., usually unsuccessfully. In a multi-part question, a &ldquo;show that&rdquo; result is there to be used later.</>,
   },
   {
     working: <Katex display tex="= \tfrac12\log_e\!\left|\sec\!\left(\tfrac\pi3\right)\right| - \tfrac12\log_e\bigl|\sec(0)\bigr|" />,
@@ -201,11 +219,13 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \tfrac12\log_e(2) - \tfrac12\log_e(1) = \tfrac12\log_e(2)" />,
-    reason: <><Katex tex="\sec\!\left(\tfrac\pi3\right)=\tfrac1{\cos(\pi/3)}=2" /> and <Katex tex="\log_e(1)=0" />. This value alone is region <Katex tex="B" />, and handing it in was the report's common wrong answer.</>,
+    reason: <><Katex tex="\sec\!\left(\tfrac\pi3\right)=\tfrac1{\cos(\pi/3)}=2" /> and <Katex tex="\log_e(1)=0" />. This is <Katex tex="B" /> only, not the area asked for.</>,
+    more: <>The report says a number of students gave <Katex tex="\tfrac12\log_e(2)" /> as the area, and many wrote an area expression in terms of the inverse that omitted <Katex tex="\tfrac{\sqrt3\,\pi}6" />. Both are this value without the rectangle.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{\sqrt3\,\pi}{6} - \frac12\log_e(2)}" />,
-    reason: <>Numerically <Katex tex="0.907-0.347\approx0.56" />, which is plausible for a region roughly <Katex tex="1.7" /> wide and a little under <Katex tex="0.5" /> tall.</>,
+    reason: <><Katex tex="A" /> is the rectangle minus <Katex tex="B" />. Numerically <Katex tex="0.907-0.347\approx0.560" />.</>,
+    more: <>Check: <Katex tex="f" /> is concave for <Katex tex="x>0" />, so <Katex tex="A" /> lies between the triangle under the chord, <Katex tex="\tfrac12\times\sqrt3\times\tfrac\pi6\approx0.453" />, and the rectangle, <Katex tex="0.907" />. Alternative (integration by parts, in the current study design but not in 2015): <Katex tex="\int\arctan(x)\,dx = x\arctan(x)-\tfrac12\log_e(1+x^2)+c" />, so <Katex tex="A=\tfrac12\left[\sqrt3\cdot\tfrac\pi3-\tfrac12\log_e(4)\right]" />, the same answer. The report's &ldquo;supposed antiderivative was actually the derivative&rdquo; most likely means writing <Katex tex="\tfrac{1}{2(1+x^2)}" />, the derivative of <Katex tex="f" />, as if it were the antiderivative.</>,
   },
 ]
 
@@ -290,13 +310,15 @@ export default function SpecialistQ8_2015Exam1() {
           <p>
             The four parts are one chain: part a. supplies an antiderivative, part b. supplies
             the inverse function, part c. supplies a terminal, and part d. needs all three at
-            once. An antiderivative of <Katex tex="\arctan(x)" /> is not on the formula sheet,
-            and the technique that finds one (integration by parts) is not part of VCE
-            Specialist Mathematics — so the region is turned on its side and integrated in{' '}
-            <Katex tex="y" />.
+            once. In 2015 there was no way to antidifferentiate <Katex tex="\arctan(x)" />{' '}
+            (integration by parts was not in the course), so the area is found through the
+            inverse: integrate along the <Katex tex="y" />-axis and subtract from a rectangle.
           </p>
         </Background>
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The area under the curve is a rectangle minus the region beside the y-axis">
+          <RectangleWidget />
+        </Explore>
       </PartCard>
     </div>
   )

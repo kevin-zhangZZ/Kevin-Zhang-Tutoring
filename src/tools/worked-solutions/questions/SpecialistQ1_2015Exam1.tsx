@@ -39,7 +39,7 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\bigl|\overrightarrow{OA}\bigr| = \bigl|\overrightarrow{OC}\bigr|" />,
-    reason: <>All four sides of a rhombus have the same length — that is the only fact the question gives you, and it is enough.</>,
+    reason: <><Katex tex="OA" /> and <Katex tex="OC" /> are adjacent sides, and all four sides of a rhombus have the same length, so set their magnitudes equal.</>,
   },
   {
     working: <Katex display tex="\bigl|a\,\underset{\sim}{i}\bigr| = a \quad (a>0)" />,
@@ -47,18 +47,40 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\bigl|\underset{\sim}{i}+\underset{\sim}{j}+\underset{\sim}{k}\bigr| = \sqrt{1^2+1^2+1^2} = \sqrt3" />,
-    reason: <>Three unit components, so the magnitude is <Katex tex="\sqrt3" />, not <Katex tex="3" />.</>,
+    reason: <>Magnitude is the square root of the sum of the squared components: <Katex tex="\sqrt3" />, not <Katex tex="3" />.</>,
+    more: (
+      <>
+        Two of the report's wrong answers come from this line. <Katex tex="a=3" /> adds the components
+        and forgets the square root. <Katex tex="a=1" /> treats{' '}
+        <Katex tex="\underset{\sim}{i}+\underset{\sim}{j}+\underset{\sim}{k}" /> as if it were
+        a unit vector because each component is 1; it is not, since three perpendicular steps of
+        length 1 reach a point <Katex tex="\sqrt3" /> from the origin (the diagonal of a unit cube).
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{a = \sqrt3}" />,
-    reason: <>Rejecting <Katex tex="-\sqrt3" /> because <Katex tex="a" /> is a positive real constant.</>,
+    reason: <>Equate the two lengths. Only the positive value: <Katex tex="a" /> is given as positive, so <Katex tex="a=\pm\sqrt3" /> loses the mark.</>,
+    more: (
+      <>
+        The report also mentions <Katex tex="a=0" />. That cannot be right: <Katex tex="a" /> is
+        positive, and <Katex tex="a=0" /> would make <Katex tex="\overrightarrow{OA}" /> the zero
+        vector, so <Katex tex="OA" /> would not be a side of length <Katex tex="\sqrt3" /> at all.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\overrightarrow{OB} = \overrightarrow{OA}+\overrightarrow{AB} = \overrightarrow{OA}+\overrightarrow{OC}" />,
-    reason: <>In the rhombus <Katex tex="OABC" />, the side <Katex tex="AB" /> is parallel and equal to <Katex tex="OC" />, so it is the same vector.</>,
+    reason: <>Plan: the diagonals are <Katex tex="OB" /> and <Katex tex="CA" />; show their dot product is <Katex tex="0" />. Get <Katex tex="\overrightarrow{OB}" /> by the triangle rule; <Katex tex="\overrightarrow{AB}=\overrightarrow{OC}" /> (opposite sides of a rhombus).</>,
+    more: (
+      <>
+        Going round <Katex tex="OABC" />, side <Katex tex="AB" /> is opposite <Katex tex="OC" />:
+        parallel, the same length and pointing the same way, so it is the same vector.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\overrightarrow{OB} = (\sqrt3+1)\underset{\sim}{i}+\underset{\sim}{j}+\underset{\sim}{k}" />,
@@ -66,19 +88,44 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\overrightarrow{CA} = \overrightarrow{OA}-\overrightarrow{OC} = (\sqrt3-1)\underset{\sim}{i}-\underset{\sim}{j}-\underset{\sim}{k}" />,
-    reason: <>The other diagonal runs from <Katex tex="C" /> to <Katex tex="A" />, so subtract in that order. Getting the sign wrong here is the report's other common error.</>,
+    reason: <>The other diagonal joins <Katex tex="C" /> and <Katex tex="A" />. A vector from <Katex tex="C" /> to <Katex tex="A" /> is (position of <Katex tex="A" />) minus (position of <Katex tex="C" />).</>,
+    more: (
+      <>
+        Either direction, <Katex tex="\overrightarrow{CA}" /> or <Katex tex="\overrightarrow{AC}" />,
+        is fine: reversing a vector only changes the sign of the dot product, and zero stays
+        zero. What loses marks is the report's main error, a sign slip inside the subtraction,
+        such as writing <Katex tex="-\underset{\sim}{j}+\underset{\sim}{k}" />. Bracket the whole
+        of <Katex tex="\overrightarrow{OC}" /> when you subtract it, so every component changes sign.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\overrightarrow{OB}\cdot\overrightarrow{CA} = (\sqrt3+1)(\sqrt3-1)+(1)(-1)+(1)(-1)" />,
-    reason: <>The dot product. If it is zero, the diagonals are perpendicular.</>,
+    working: <Katex display tex="\begin{aligned}\overrightarrow{OB}\cdot\overrightarrow{CA} &= (\sqrt3+1)(\sqrt3-1) \\ &\quad+(1)(-1)+(1)(-1)\end{aligned}" />,
+    reason: <>Multiply matching components and add, keeping each negative inside brackets.</>,
   },
   {
     working: <Katex display tex="= (3-1)-1-1 = 0" />,
     reason: <>The difference of two squares does the work: <Katex tex="(\sqrt3+1)(\sqrt3-1)=3-1=2" />.</>,
   },
   {
-    working: <Katex display tex="\therefore\ \overrightarrow{OB}\perp\overrightarrow{CA} \quad \text{as required}" />,
-    reason: <>A zero dot product between two non-zero vectors means they are perpendicular — say so explicitly, since the question asks you to <em>show</em> the result. The report criticises arguments with too few steps.</>,
+    working: <Katex display tex="\begin{aligned}&\text{Non-zero vectors, zero dot product, so}\\ &\text{diagonals } OB \text{ and } CA \text{ are perpendicular.}\\ &\text{As required.}\end{aligned}" />,
+    reason: <>Zero dot product of non-zero vectors means perpendicular. A "show that" ends with this conclusion written in words.</>,
+    more: (
+      <>
+        Notation counts too (the report says it "was often poor"): mark every vector with a tilde
+        or an arrow, and put the dot between the two vectors in the dot product.{' '}
+        The report notes "unconvincing arguments, often due to insufficient steps shown", so
+        write the diagonal vectors, the dot product with each product of components visible,
+        the value <Katex tex="0" />, and the conclusion. The report also notes that some
+        students used <Katex tex="\overrightarrow{OM}" /> and <Katex tex="\overrightarrow{AM}" />,
+        where <Katex tex="M" /> is where the diagonals meet. That works, since those vectors are
+        halves of the diagonals, but it is extra work; the whole diagonals are enough. A general
+        proof (for any rhombus with sides <Katex tex="\underset{\sim}{u}" /> and{' '}
+        <Katex tex="\underset{\sim}{v}" />, <Katex tex="(\underset{\sim}{u}+\underset{\sim}{v})\cdot(\underset{\sim}{u}-\underset{\sim}{v})=|\underset{\sim}{u}|^2-|\underset{\sim}{v}|^2=0" />)
+        is also valid, and shows why part a matters: the equal side lengths are exactly what
+        make the dot product vanish.
+      </>
+    ),
   },
 ]
 
