@@ -5,6 +5,7 @@ import { Children, Fragment, cloneElement, createContext, isValidElement, useCon
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 import { useStudyMode } from './studyMode'
 import { Explore } from './Explore'
+import { SectionIcon, isSection } from './mcqSections'
 
 // VCAA examination-report stats for one part of a short-answer question: the percentage
 // of students who scored each mark (index = mark value, e.g. marks[0] = % who scored 0),
@@ -112,9 +113,10 @@ const Chevron = ({ up }: { up?: boolean }) => (
 // indent under the letter circle from `sm` up (`answer`); index.css shows the right one, and drops
 // the label on laptops, where the question list beside the solution does that job. The label is
 // for touch and pointer: keyboard and screen-reader users have the part headings and the list.
-function PartRail({ letter, host }: { letter: string; host: 'part' | 'answer' }) {
+export function PartRail({ letter, host }: { letter: string; host: 'part' | 'answer' }) {
   const nav = useContext(PartNavCtx)
   if (!nav || !letter) return null
+  const section = isSection(letter)
   const i = nav.parts.indexOf(letter)
   const prev = i > 0 ? nav.parts[i - 1] : null
   const next = i > -1 && i < nav.parts.length - 1 ? nav.parts[i + 1] : null
@@ -123,12 +125,15 @@ function PartRail({ letter, host }: { letter: string; host: 'part' | 'answer' })
       <span className="ws-rail" />
       <span className="ws-railcol">
         <span className="ws-ride">
-          <button type="button" tabIndex={-1} className="ws-ride-ar" onClick={() => (prev ? nav.jumpTo(prev) : nav.jumpTop())}>
-            <Chevron up />
-          </button>
+          {/* An MCQ's Question stop is already the top of the question: nothing above it. */}
+          {(prev || letter !== 'q') && (
+            <button type="button" tabIndex={-1} className="ws-ride-ar" onClick={() => (prev ? nav.jumpTo(prev) : nav.jumpTop())}>
+              <Chevron up />
+            </button>
+          )}
           <span className="ws-ride-mid" onPointerDown={e => nav.startSlide(e, letter)}>
-            <span className="ws-ride-q">{nav.code}</span>
-            <span>{letter}</span>
+            <span className="ws-ride-q">{section ? nav.code.replace(/^MCQ\s*/, 'Q') : nav.code}</span>
+            {section ? <SectionIcon id={letter} /> : <span>{letter}</span>}
           </span>
           {next && (
             <button type="button" tabIndex={-1} className="ws-ride-ar" onClick={() => nav.jumpTo(next)}>

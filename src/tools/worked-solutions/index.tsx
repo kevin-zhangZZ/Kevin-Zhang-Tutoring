@@ -6,6 +6,8 @@ import ComingSoon from './ComingSoon'
 import { examSourceFor } from './examSources'
 import { LightboxProvider } from './Lightbox'
 import { PartNavCtx, RevealScope, type PartNav } from './QuestionParts'
+import { SECTIONS, SectionIcon, isSection } from './mcqSections'
+import StemPeek from './StemPeek'
 import { AlwaysDetailed, StudyModeProvider, useStudyMode } from './studyMode'
 import { TOOL_PATH, parsePath, questionPath, subjectPath, yearPath } from './routes'
 import { SidebarPrefsProvider, useSidebarPrefs } from './sidebarPrefs'
@@ -116,10 +118,13 @@ function QuestionsPage({ rest }: { rest: string }) {
     selected ? `${selected.id}${detail.status === 'loading' ? ':loading' : ''}` : null,
   )
 
-  // The part rail (QuestionParts.tsx PartRail): for a question with lettered parts. Its letters
+  // The part rail (QuestionParts.tsx PartRail): for a question with lettered parts, or an MCQ's
+  // sections (mcqSections.tsx). Its letters
   // come from the solution on the page once it's there, and from partStats.ts until then, so the
   // phone margin it needs is set aside before the solution loads and nothing jumps.
-  const railLetters = (parts.length ? parts.map(p => p.letter) : selected ? partsOf(selected).map(p => p.l) : []).filter(Boolean)
+  const railLetters = (
+    parts.length ? parts.map(p => p.letter) : !selected ? [] : selected.type === 'mc' ? ['q', 'sol'] : partsOf(selected).map(p => p.l)
+  ).filter(Boolean)
   const hasRails = railLetters.length > 0
   const railRight = hasRails && prefs.labelSide === 'right'
   const [ladder, setLadder] = useState<LadderAnchor | null>(null)
@@ -333,7 +338,8 @@ function QuestionsPage({ rest }: { rest: string }) {
                   </div>
                 )}
                 <StickyQuestionBar
-                  hideBelowLg={hasRails}
+                  hideBelowLg={hasRails && !railLetters.every(isSection)}
+                  hideOnPhone={hasRails && railLetters.every(isSection)}
                   key={`bar-${selected.id}`}
                   label={`${selected.year} · ${selected.exam} · ${mainCode(selected.code)}`}
                   visible={headerGone}
@@ -404,6 +410,7 @@ function QuestionsPage({ rest }: { rest: string }) {
                   </RevealScope>
                 </PartNavCtx.Provider>
                 {prefs.pager === 'end' && <EndPager prev={prev} next={next} current={selected} />}
+                <StemPeek detailRef={detailRef} questionKey={`${selected.id}:${detail.status}`} code={mainCode(selected.code)} />
               </div>
             )}
           </div>
@@ -566,7 +573,8 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
     const main = detail?.closest('main')
     if (!detail || !header || !main) return
     const partEls = () => Array.from(detail.querySelectorAll<HTMLElement>('[data-part]'))
-    setParts(partEls().map(el => ({ letter: el.dataset.part!, topic: el.dataset.topic })))
+    const readParts = () => setParts(partEls().map(el => ({ letter: el.dataset.part!, topic: el.dataset.topic })))
+    readParts()
 
     // The part in focus also gets a data-active attribute, and a part that has scrolled into
     // view data-seen, which is all the part rails need (index.css) — so scrolling restyles them
@@ -629,10 +637,32 @@ function usePartTracking(detailRef: RefObject<HTMLDivElement>, headerRef: RefObj
     }
     main.addEventListener('scroll', schedule, { passive: true })
     window.addEventListener('resize', schedule)
+
+    // Parts can arrive after the question does: in "Hide answers" mode an MCQ's solution, video
+    // and report sections only appear once an option is picked. Re-read them when the set changes.
+    let ids = partEls().map(el => el.dataset.part).join(' ')
+    const changed =
+      typeof MutationObserver === 'function'
+        ? new MutationObserver(() => {
+            const els = partEls()
+            const now = els.map(el => el.dataset.part).join(' ')
+            if (now === ids) return
+            ids = now
+            readParts()
+            for (const el of els) {
+              if (el.hasAttribute('data-seen')) continue
+              if (seen) seen.observe(el)
+              else el.setAttribute('data-seen', '')
+            }
+            schedule()
+          })
+        : null
+    changed?.observe(detail, { childList: true, subtree: true })
     return () => {
       cancelAnimationFrame(frame)
       main.removeEventListener('scroll', schedule)
       window.removeEventListener('resize', schedule)
+      changed?.disconnect()
       seen?.disconnect()
       mark(null)
     }
@@ -698,7 +728,10 @@ function PartLadder({
   const hoverRef = useRef<number | null>(null)
   const dragging = useRef(true)
   const moved = useRef(false)
-  const items = [{ part: null as string | null, label: code, topic: 'Top of question' }, ...parts.map(p => ({ part: p.letter as string | null, label: p.letter, topic: p.topic }))]
+  const items = [
+    ...(parts[0]?.letter === 'q' ? [] : [{ part: null as string | null, label: code, topic: 'Top of question' }]),
+    ...parts.map(p => ({ part: p.letter as string | null, label: p.letter, topic: p.topic })),
+  ]
   const current = Math.max(0, items.findIndex(it => it.part === active))
   // The topic bubble opens towards the middle of the screen, away from the edge the rail is on.
   const tipLeft = anchor.x > window.innerWidth / 2
@@ -782,7 +815,7 @@ function PartLadder({
           <button
             key={it.label}
             type="button"
-            aria-label={it.part ? `Part ${it.part}${it.topic ? `: ${it.topic}` : ''}` : `${code}, top of question`}
+            aria-label={it.part ? (isSection(it.part) ? `${it.topic}` : `Part ${it.part}${it.topic ? `: ${it.topic}` : ''}`) : `${code}, top of question`}
             onClick={() => onPick(it.part)}
             className={`h-[30px] rounded-lg font-display font-bold transition-transform ${it.part ? 'text-[11.5px]' : 'text-[10.5px]'} ${
               i === current
@@ -794,7 +827,7 @@ function PartLadder({
                     : 'text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
             }`}
           >
-            {it.label}
+            {it.part && isSection(it.part) ? <SectionIcon id={it.part} /> : it.label.replace(/^MCQ\s*/, 'Q')}
           </button>
         ))}
       </div>
@@ -883,6 +916,7 @@ function LabelSideSheet({ onClose }: { onClose: () => void }) {
 // the detail card's full width by cancelling the card's padding.
 function StickyQuestionBar({
   hideBelowLg,
+  hideOnPhone,
   label,
   visible,
   parts,
@@ -891,6 +925,8 @@ function StickyQuestionBar({
 }: {
   /** Below laptop width a question with parts has the rail label instead. */
   hideBelowLg?: boolean
+  /** An MCQ: its section rail covers phones, the bar's section chips the larger screens. */
+  hideOnPhone?: boolean
   label: string
   visible: boolean
   parts: { letter: string; topic?: string }[]
@@ -898,7 +934,7 @@ function StickyQuestionBar({
   onJump: (part: string) => void
 }) {
   return (
-    <div className={`sticky top-0 z-20 h-0 -mx-4 sm:-mx-8 ${hideBelowLg ? 'hidden lg:block' : ''}`}>
+    <div className={`sticky top-0 z-20 h-0 -mx-4 sm:-mx-8 ${hideBelowLg ? 'hidden lg:block' : hideOnPhone ? 'hidden sm:block' : ''}`}>
       <div
         aria-hidden={!visible}
         className={`absolute inset-x-0 top-0 flex items-center gap-3 px-4 sm:px-8 py-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur border-b border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-200 ${
@@ -924,7 +960,7 @@ function StickyQuestionBar({
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
-                {letter}
+                {isSection(letter) ? SECTIONS[letter].chip : letter}
               </button>
             ))}
           </span>

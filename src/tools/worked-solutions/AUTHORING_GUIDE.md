@@ -615,6 +615,12 @@ the explanation is the product, not the number at the end.
   the question. Reuse the wording other years already use for the same idea. A question with no lettered parts uses
   the single-card layout (`WorkingTable` + `<ReportShelf stats maxMarks videoSrc?>` as the
   card's last child), not a `PartCard` with a fake letter.
+- **Hold-to-peek and the MCQ rail come for free.** A single-part question's stem must be the
+  box headed exactly "Question N (k marks)" (the grey stem box or `<Background title="Question N
+  (k marks)" always>`): that heading is how `StemPeek` finds what to show when the student holds
+  the corner button. MCQs need nothing: `MCQShell` marks its question, diagram and options
+  `data-stem`, and wraps the question, solution, video and report as rail sections
+  (`mcqSections.tsx`).
 - **No video yet → no video anything.** Leave `videoSrc` off; never add a "Video Walkthrough"
   heading or a "Coming soon" placeholder.
 - **MCQ**: `MCQShell` with the question, optional `diagram`, the options with the correct

@@ -9,10 +9,11 @@
 // choosing one marks it right or wrong, then reveals the bars, the working, the video and the report.
 
 import { useState, type ReactNode } from 'react'
-import { WorkingTable, ExaminerReport, Shelf, type WorkingRow, type MCQExaminerStats, type MCQLetter } from './QuestionParts'
+import { PartRail, WorkingTable, ExaminerReport, Shelf, type WorkingRow, type MCQExaminerStats, type MCQLetter } from './QuestionParts'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 import { DiagramScope } from './Lightbox'
 import { useStudyMode } from './studyMode'
+import { SECTIONS } from './mcqSections'
 
 export interface MCQOptionData {
   letter: string
@@ -90,17 +91,19 @@ export function MCQShell({
         </div>
       )}
 
-      <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 mb-6">
+      <Section id="q" plain>
+      <div data-stem className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4 mb-6">
         {question}
       </div>
 
       <div className={`flex gap-6 mb-6 flex-col ${diagram ? 'sm:flex-row' : ''}`}>
         {diagram && (
-          <div className="flex-none w-full sm:w-64 flex items-center justify-center bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3">
+          <div data-stem className="flex-none w-full sm:w-64 flex items-center justify-center bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl p-3">
             {diagram}
           </div>
         )}
         <div className="flex-1 flex flex-col gap-2">
+          <div data-stem className="flex flex-col gap-2">
           {options.map(opt => (
             <MCQOption
               key={opt.letter}
@@ -115,6 +118,7 @@ export function MCQShell({
               {opt.content}
             </MCQOption>
           ))}
+          </div>
           {hideAnswers && picked === null && (
             <p className="text-[12.5px] text-gray-500 dark:text-gray-400 mt-1">Choose an answer to check it.</p>
           )}
@@ -154,13 +158,17 @@ export function MCQShell({
           )}
         </div>
       </div>
+      </Section>
 
       {revealed && (
         <div className="flex flex-col gap-4">
+          <Section id="sol">
           {detailed && background}
           <WorkingTable rows={rows} alwaysShow />
           {detailed && extras}
+          </Section>
           {videoSrc && (
+            <Section id="vid">
             <div data-video className="mt-1">
               <p className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-violet-700 dark:text-violet-300 mb-2.5">
                 <svg viewBox="0 0 16 16" className="w-3 h-3 flex-none" fill="currentColor" aria-hidden="true">
@@ -176,15 +184,30 @@ export function MCQShell({
                 )}
               </div>
             </div>
+            </Section>
           )}
           {hasReport && examinerReport && (
+            <Section id="rep">
             <Shelf video={null} className="mt-2 rounded-2xl border border-gray-200 dark:border-gray-800 px-4 sm:px-5">
               <ExaminerReport stats={examinerReport} />
             </Shelf>
+            </Section>
           )}
         </div>
       )}
     </DiagramScope>
+  )
+}
+
+// One of the question's sections (mcqSections.tsx), tracked like a short-answer part: on phones
+// it carries the part rail, whose label shows the section's icon; the sticky bar lists them as
+// chips on larger screens. `plain` keeps the question's own spacing (no gap between children).
+function Section({ id, plain, children }: { id: string; plain?: boolean; children: ReactNode }) {
+  return (
+    <div data-part={id} data-topic={SECTIONS[id].full} className={`ws-part relative scroll-mt-16 ${plain ? '' : 'flex flex-col gap-4'}`}>
+      <PartRail letter={id} host="part" />
+      {children}
+    </div>
   )
 }
 
