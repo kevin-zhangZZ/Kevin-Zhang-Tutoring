@@ -49,11 +49,13 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="X\sim\mathrm{Bi}\!\left(4,\tfrac13\right)" />,
-    reason: <>The sheep is <em>returned to the paddock</em> each time, so the four selections are independent with a constant probability. That is what makes it binomial — the report says students who missed "four times each day" went wrong here.</>,
+    reason: <>The sheep is <em>returned to the paddock</em> each time, so the four selections are independent with constant probability: the number of tagged sheep in a day is binomial with <Katex tex="n=4" /> trials.</>,
+    more: <>The report says incorrect responses overlooked "four times each day" and so missed the binomial. The four selections are the trials; the day is one run of the experiment.</>,
   },
   {
     working: <Katex display tex="\Pr(X=0) = \left(\frac23\right)^4" />,
-    reason: <>All four selections must be untagged.</>,
+    reason: <>Zero tagged means all four selections are untagged, each with probability <Katex tex="\tfrac23" />.</>,
+    more: <>The report notes some students worked with untagged sheep instead. Keep <Katex tex="X" /> counting <em>tagged</em> sheep: <Katex tex="\Pr(X=0)=\binom40\left(\tfrac13\right)^0\left(\tfrac23\right)^4" />. Using <Katex tex="p=\tfrac23" /> by mistake gives <Katex tex="\left(\tfrac13\right)^4=\tfrac1{81}" />, the chance that all four are tagged.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{16}{81}}" />,
@@ -64,11 +66,12 @@ const ROWS_A: WorkingRow[] = [
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X\ge1) = 1-\Pr(X=0)" />,
-    reason: <>"At least one" is always the complement of "none" — much quicker than adding four separate terms, which the report notes some students did.</>,
+    reason: <>"At least one" is the complement of "none", which part (a) already gives.</>,
+    more: <>The report notes some students wasted time adding <Katex tex="\Pr(X=1)+\Pr(X=2)+\Pr(X=3)+\Pr(X=4)" />. That gives the same <Katex tex="\tfrac{32+24+8+1}{81}=\tfrac{65}{81}" />, but with four chances for an arithmetic slip.</>,
   },
   {
     working: <Katex display tex="= 1-\frac{16}{81}" />,
-    reason: <>Straight from part (a).</>,
+    reason: <>Substitute <Katex tex="\Pr(X=0)=\tfrac{16}{81}" /> from part (a).</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{65}{81}}" />,
@@ -83,15 +86,16 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\Pr(\text{zero on all six days}) = \left(\frac{16}{81}\right)^6" />,
-    reason: <>The days are independent, so multiply six copies. Writing <Katex tex="\left(\tfrac23\right)^6" /> is the report's common error — that would be six <em>selections</em>, not six days.</>,
+    reason: <>Each day is a separate run of the experiment, so the days are independent: multiply six copies of the one-day probability.</>,
+    more: <>The report's most common incorrect answer was <Katex tex="\left(\tfrac23\right)^6" />. That is the chance of six untagged <em>selections</em>, but six days contain <Katex tex="6\times4=24" /> selections. Equivalently, if <Katex tex="Y" /> counts the days with no tagged sheep, <Katex tex="Y\sim\mathrm{Bi}\!\left(6,\tfrac{16}{81}\right)" /> and the answer is <Katex tex="\Pr(Y=6)" />.</>,
   },
   {
     working: <Katex display tex="\left(\frac{16}{81}\right)^6 = \left(\left(\frac23\right)^4\right)^6" />,
-    reason: <>Rewriting with the underlying fraction so the answer fits the required form.</>,
+    reason: <><Katex tex="\left(\tfrac{16}{81}\right)^6" /> already has the required form; rewriting <Katex tex="\tfrac{16}{81}=\left(\tfrac23\right)^4" /> gives the simpler version.</>,
   },
   {
     working: <Katex display tex="\boxed{\left(\frac{2}{3}\right)^{24}}" />,
-    reason: <>So <Katex tex="a=2" />, <Katex tex="b=3" />, <Katex tex="c=24" />. Twenty-four independent selections in all, which is the plain reading of the situation. About <Katex tex="5.9\times10^{-5}" />.</>,
+    reason: <>Multiply the indices, <Katex tex="4\times6=24" />. So <Katex tex="a=2" />, <Katex tex="b=3" />, <Katex tex="c=24" /> (the report also gives <Katex tex="\left(\tfrac{16}{81}\right)^6" />). Twenty-four untagged selections in a row; about <Katex tex="5.9\times10^{-5}" />.</>,
   },
 ]
 
@@ -120,10 +124,7 @@ export default function MethodsQ4_2016Exam1() {
             <Katex tex="n=4" /> and <Katex tex="p=\tfrac13" />.
           </p>
           <p>
-            Across days: six independent repeats of that whole experiment. Part (c) is a
-            binomial built on top of a binomial — and the trap is to lose a layer and raise{' '}
-            <Katex tex="\tfrac23" /> to the power <Katex tex="6" /> instead of{' '}
-            <Katex tex="24" />.
+            Across days: six independent repeats of that whole experiment.
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />

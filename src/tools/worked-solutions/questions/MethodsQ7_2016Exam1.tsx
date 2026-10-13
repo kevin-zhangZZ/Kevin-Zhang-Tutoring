@@ -2,9 +2,14 @@
 // Two assembly lines with different fault rates: total probability, then the reverse
 // conditional. Question text transcribed from the original paper (no diagram given).
 // Answers checked against the VCAA examination report. Solution is original.
+// Interactive: part b. only (32% full marks) — the 90 motors, the 6 faulty ones, then the reduced
+// sample space. Part a. (46%) does not qualify.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const FaultyWidget = lazyWidget(() => import('../interactives/meth-2016e1-q7b-faulty'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [39, 15, 46],
@@ -32,42 +37,85 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(A) = \frac{40}{90} = \frac49, \qquad \Pr(B) = \frac{50}{90} = \frac59" />,
-    reason: <>The motor is chosen from all <Katex tex="90" /> produced, so the two lines are not equally likely. Treating them as <Katex tex="\tfrac12" /> each is the first thing to avoid.</>,
+    reason: <>The motor is chosen from all <Katex tex="90" /> produced, so each line&apos;s chance is its share of the <Katex tex="90" />, not <Katex tex="\tfrac12" /> each.</>,
   },
   {
     working: <Katex display tex="\Pr(F\mid A) = \frac{1}{20}, \qquad \Pr(F\mid B) = \frac{2}{25}" />,
-    reason: <><Katex tex="5\%" /> and <Katex tex="8\%" /> as fractions.</>,
+    reason: <><Katex tex="5\%" /> and <Katex tex="8\%" /> as fractions. Each is a fault rate <em>given</em> the line, so it is a conditional probability.</>,
   },
   {
     working: <Katex display tex="\Pr(F) = \Pr(A)\Pr(F\mid A)+\Pr(B)\Pr(F\mid B)" />,
-    reason: <>The law of total probability: every faulty motor came from one line or the other, and the two cases are mutually exclusive.</>,
+    reason: <>A faulty motor came from Line A or Line B, never both. Each case is <Katex tex="\Pr(\text{line})\Pr(F\mid\text{line})=\Pr(\text{line}\cap F)" />; add the two cases.</>,
+    more: (
+      <>
+        This is a tree diagram written as one line, which the report says may have helped students find the two cases. First branches: <Katex tex="A" /> with{' '}
+        <Katex tex="\tfrac49" />, <Katex tex="B" /> with <Katex tex="\tfrac59" />. From each, a branch to <Katex tex="F" />{' '}
+        (<Katex tex="\tfrac1{20}" /> or <Katex tex="\tfrac2{25}" />) and to <Katex tex="F'" />. Multiply along each path ending
+        in <Katex tex="F" />, then add the two paths.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="= \frac49\times\frac{1}{20}+\frac59\times\frac{2}{25} = \frac{1}{45}+\frac{2}{45}" />,
-    reason: <>Both simplify onto the same denominator, which is a hint that the answer is tidy.</>,
+    working: <Katex display tex="= \frac49\times\frac{1}{20}+\frac59\times\frac{2}{25}" />,
+    reason: <>Substitute the four values from the rows above.</>,
+  },
+  {
+    working: <Katex display tex="= \frac{1}{45}+\frac{2}{45}" />,
+    reason: <>Cancel before multiplying: <Katex tex="\tfrac{4}{9\times20}=\tfrac{1}{9\times5}" /> and <Katex tex="\tfrac{5\times2}{9\times25}=\tfrac{2}{9\times5}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(F) = \frac{3}{45} = \frac{1}{15}}" />,
-    reason: <>So <Katex tex="b=15" />. About <Katex tex="6.7\%" />, which sits between the two line rates of <Katex tex="5\%" /> and <Katex tex="8\%" /> — exactly where a weighted average should be, and a quick guard against the "probabilities greater than 1" the report mentions.</>,
+    reason: <>So <Katex tex="b=15" />. Simplify <Katex tex="\tfrac{3}{45}" /> fully to reach the form <Katex tex="\tfrac1b" />.</>,
+    more: (
+      <>
+        Check: <Katex tex="\tfrac1{15}\approx6.7\%" /> sits between the two line rates of <Katex tex="5\%" /> and{' '}
+        <Katex tex="8\%" />, as a weighted average of them must. The report says many students stated probabilities greater
+        than <Katex tex="1" />; any answer outside <Katex tex="[0,1]" /> — or here, outside <Katex tex="[5\%,8\%]" /> — shows
+        a slip before you move on. In counts: <Katex tex="5\%" /> of <Katex tex="40" /> is <Katex tex="2" /> and{' '}
+        <Katex tex="8\%" /> of <Katex tex="50" /> is <Katex tex="4" />, so on average <Katex tex="6" /> of the{' '}
+        <Katex tex="90" /> are faulty, and <Katex tex="\tfrac6{90}=\tfrac1{15}" />.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(A\mid F) = \frac{\Pr(A\cap F)}{\Pr(F)}" />,
-    reason: <>The question reverses the conditioning: we know the motor is faulty and want the line, not the other way round.</>,
+    reason: <>&ldquo;Found to be faulty&rdquo; is the condition: we know the motor is faulty and want the line, the reverse of the rates given.</>,
+    more: (
+      <>
+        So the answer is not <Katex tex="\Pr(F\mid A)=\tfrac1{20}" />: that is the chance a Line A motor is faulty, while
+        part (b) asks the chance a faulty motor is from Line A. The event after the bar is the one you know has happened.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\Pr(A\cap F) = \frac49\times\frac{1}{20} = \frac{1}{45}" />,
-    reason: <>The first of the two terms already computed in part (a) — no new work.</>,
+    reason: <>From Line A <em>and</em> faulty: <Katex tex="\Pr(A)\Pr(F\mid A)" />, the first term of part (a)&apos;s sum.</>,
   },
   {
     working: <Katex display tex="\Pr(A\mid F) = \frac{\frac{1}{45}}{\frac{1}{15}} = \frac{1}{45}\times\frac{15}{1}" />,
-    reason: <>Dividing by a fraction. The denominator is the <em>reduced</em> sample space — only the faulty motors — which the report says students often failed to use.</>,
+    reason: <>Divide by <Katex tex="\Pr(F)" />: given faulty, only the faulty motors are possible, so they are the new (reduced) sample space.</>,
+    more: (
+      <>
+        The report says the conditional probability was generally recognised but not the reduced sample space. Stopping at{' '}
+        <Katex tex="\tfrac1{45}" /> counts Line A&apos;s faulty motors out of <em>all</em> the motors. In counts: on average{' '}
+        <Katex tex="2" /> of the <Katex tex="6" /> faulty motors come from Line A, so the answer is{' '}
+        <Katex tex="\tfrac26" />; dividing <Katex tex="\tfrac2{90}" /> by <Katex tex="\tfrac6{90}" /> is exactly that.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\Pr(A\mid F) = \frac13}" />,
-    reason: <>So <Katex tex="c=3" />. Sensible: Line A makes <Katex tex="44\%" /> of the motors but has the lower fault rate, so it accounts for less than half of the faults.</>,
+    reason: <>So <Katex tex="c=3" />. The answer must be in the form <Katex tex="\tfrac1c" />, so cancel <Katex tex="\tfrac{15}{45}" /> fully.</>,
+    more: (
+      <>
+        The report notes the required form of the answer was often overlooked. Check: Line A makes{' '}
+        <Katex tex="\tfrac49\approx44\%" /> of the motors but has the lower fault rate, so it should account for less than
+        half of the faulty ones — and <Katex tex="\tfrac13" /> is.
+      </>
+    ),
   },
 ]
 
@@ -105,10 +153,7 @@ export default function MethodsQ7_2016Exam1() {
             Weight each branch by how many motors that line makes and add.
           </p>
           <p>
-            Part (b) runs it backwards: given a fault, what is the chance of the line? That
-            needs <Katex tex="\Pr(A\mid F)=\dfrac{\Pr(A\cap F)}{\Pr(F)}" />, and both pieces
-            were already computed in part (a) — the numerator is one of the two products, the
-            denominator is their sum.
+            Part (b) runs it backwards: given a fault, what is the chance of the line?
           </p>
         </Background>
         <WorkingTable rows={ROWS_A} />
@@ -128,6 +173,9 @@ export default function MethodsQ7_2016Exam1() {
         examinerReport={EXAM_B}
       >
         <WorkingTable rows={ROWS_B} />
+        <Explore title="Given faulty, only the 6 faulty motors count — and 2 of them are from Line A">
+          <FaultyWidget />
+        </Explore>
       </PartCard>
     </div>
   )

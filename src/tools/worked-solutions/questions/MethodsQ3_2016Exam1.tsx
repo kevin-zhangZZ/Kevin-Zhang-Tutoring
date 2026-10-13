@@ -40,42 +40,48 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x=1 \text{ and } y=2" />,
-    reason: <>The denominator vanishes at <Katex tex="x=1" />; as <Katex tex="x\to\pm\infty" /> the fraction dies away and <Katex tex="f\to2" />. Draw both dashed — the report says a dashed line is what shows the curve is distinct from its asymptote.</>,
+    reason: <>The denominator is zero at <Katex tex="x=1" />; as <Katex tex="x\to\pm\infty" /> the fraction <Katex tex="\tfrac{3}{x-1}\to0" />, so <Katex tex="f\to2" />. Draw both asymptotes dashed and label them.</>,
+    more: <>The report notes that a dashed line shows the curve is distinct from its asymptote, and praises graphs that showed the asymptotic behaviour with care. In practice: draw each branch bending in towards its asymptotes, getting ever closer without touching or crossing them.</>,
   },
   {
     working: <Katex display tex="f(0) = 2+\frac{3}{-1} = -1" />,
-    reason: <>The <Katex tex="y" />-intercept.</>,
+    reason: <>The <Katex tex="y" />-intercept: substitute <Katex tex="x=0" />, giving the point <Katex tex="(0,-1)" />.</>,
   },
   {
-    working: <Katex display tex="2+\frac{3}{x-1} = 0 \implies x-1 = -\frac32" />,
-    reason: <>Setting <Katex tex="f(x)=0" /> for the <Katex tex="x" />-intercept.</>,
+    working: <Katex display tex="\begin{aligned} 2+\frac{3}{x-1} &= 0 \\ \frac{3}{x-1} &= -2 \\ x-1 &= -\frac32 \\ x &= -\frac12 \end{aligned}" />,
+    reason: <>The <Katex tex="x" />-intercept: set <Katex tex="f(x)=0" />, subtract <Katex tex="2" />, then rearrange: <Katex tex="x-1=\tfrac{3}{-2}" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{intercepts }\left(-\tfrac12,\,0\right),\ (0,-1);\ \text{asymptotes } x=1,\ y=2}" />,
+    working: <Katex display tex="\boxed{\begin{aligned} &\text{intercepts }\left(-\tfrac12,\,0\right),\ (0,-1) \\ &\text{asymptotes } x=1,\ y=2 \end{aligned}}" />,
     reason: <>Both intercepts are on the left branch. The right branch (<Katex tex="x>1" />) has <Katex tex="\tfrac{3}{x-1}>0" />, so it stays above <Katex tex="y=2" /> and never meets either axis.</>,
+    more: <>A complete sketch shows everything the question asks for: both asymptotes with their equations, both intercepts with coordinates, and the correct shape of both branches. Reading left to right, the left branch starts just below <Katex tex="y=2" /> far to the left, falls through <Katex tex="\left(-\tfrac12,0\right)" /> and <Katex tex="(0,-1)" />, then plunges down beside <Katex tex="x=1" />; the right branch comes down from the top beside <Katex tex="x=1" /> and flattens towards <Katex tex="y=2" /> from above.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="f(x)>0 \text{ on } [2,4]" />,
-    reason: <>Both terms are positive there, so no absolute values or splitting is needed — the region is entirely above the axis.</>,
+    reason: <>On <Katex tex="[2,4]" />, <Katex tex="x-1>0" />, so both <Katex tex="2" /> and <Katex tex="\tfrac{3}{x-1}" /> are positive: the region is entirely above the axis, so no splitting is needed.</>,
   },
   {
     working: <Katex display tex="A = \int_2^4\left(2+\frac{3}{x-1}\right)dx" />,
     reason: <>Area between the curve and the <Katex tex="x" />-axis from <Katex tex="x=2" /> to <Katex tex="x=4" />.</>,
+    more: <>Write the <Katex tex="dx" /> — the report notes it was often omitted, and an integral without it is incomplete notation.</>,
   },
   {
     working: <Katex display tex="= \Bigl[2x+3\log_e(x-1)\Bigr]_2^4" />,
-    reason: <>The antiderivative of <Katex tex="\tfrac{1}{x-1}" /> is <Katex tex="\log_e(x-1)" /> — the report says many students did not recognise this.</>,
+    reason: <>The antiderivative of <Katex tex="\tfrac{1}{x-1}" /> is <Katex tex="\log_e(x-1)" />; no absolute value is needed because <Katex tex="x-1>0" /> here.</>,
+    more: <>The report says many students did not recognise that the antiderivative of the reciprocal of <Katex tex="(x-1)" /> involves a logarithm. The rule is <Katex tex="\displaystyle\int\frac{1}{ax+b}\,dx=\frac1a\log_e(ax+b)+c" />; here <Katex tex="a=1" />, so the constant <Katex tex="3" /> simply carries through.</>,
   },
   {
     working: <Katex display tex="= \bigl(8+3\log_e3\bigr)-\bigl(4+3\log_e1\bigr)" />,
-    reason: <><Katex tex="4-1=3" /> at the top, <Katex tex="2-1=1" /> at the bottom, and <Katex tex="\log_e1=0" />.</>,
+    reason: <>Substitute the top terminal, then subtract the bottom one: <Katex tex="4-1=3" /> and <Katex tex="2-1=1" />, and <Katex tex="\log_e1=0" />.</>,
+    more: <>The report says many students erred in evaluating the terminals. Bracket each substitution in full, as here, before simplifying; then the <Katex tex="2x" /> part gives <Katex tex="8-4=4" />.</>,
   },
   {
     working: <Katex display tex="\boxed{A = 4+3\log_e(3)}" />,
-    reason: <>Equivalently <Katex tex="4+\log_e(27)" />, since <Katex tex="3\log_e3=\log_e3^3" />. Writing <Katex tex="\log_e9" /> instead is the report's flagged log-law slip. About <Katex tex="7.3" />, which matches a strip of width <Katex tex="2" /> under a curve running from <Katex tex="5" /> down to <Katex tex="3" />.</>,
+    reason: <>Exact area, as Exam 1 expects. Equivalently <Katex tex="4+\log_e(27)" />, since <Katex tex="3\log_e3=\log_e3^3" />.</>,
+    more: <>The report's common wrong answer was <Katex tex="4+\log_e(9)" />, from a misapplied log law: the coefficient <Katex tex="3" /> became a power of <Katex tex="2" /> (<Katex tex="\log_e(3^2)" />), or <Katex tex="3\log_e3" /> was read as <Katex tex="\log_e(3\times3)" />. If unsure, just leave it as <Katex tex="3\log_e(3)" />. Check: the area is about <Katex tex="7.3" />, sensible for a strip of width <Katex tex="2" /> under a curve falling from <Katex tex="f(2)=5" /> to <Katex tex="f(4)=3" /> (between <Katex tex="2\times3=6" /> and <Katex tex="2\times5=10" />).</>,
   },
 ]
 

@@ -3,9 +3,18 @@
 // log identity, then the inverse of the same rule restricted to (−∞, 0]. Question text
 // transcribed from the original paper (no diagram given). Answers checked with sympy and
 // against the VCAA examination report. Solution is original.
+// Interactives (qualifying parts, under 40% full marks): a.ii range-through-the-chain, a.iv moving
+// tangent (sign of h', inflection points at x = ±1), b.i reflection in y = x choosing the root.
+// Skipped: a.iii (a "show that" lost on presentation and bracket notation; a picture does not
+// help); b.ii (the b.i reflection already shows k's domain becoming the inverse's range).
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const RangeChain = lazyWidget(() => import('../interactives/meth-2016e1-q5aii-range'))
+const Gradient = lazyWidget(() => import('../interactives/meth-2016e1-q5aiv-gradient'))
+const Reflect = lazyWidget(() => import('../interactives/meth-2016e1-q5bi-reflect'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [5, 95],
@@ -91,7 +100,8 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{h(x) = \log_e\!\left(x^2+1\right)}" />,
-    reason: <>The brackets are not optional — <Katex tex="\log_e x^2+1" /> means something else entirely, and the report flags exactly that.</>,
+    reason: <>Keep the brackets: written as <Katex tex="\log_e x^2+1" /> it reads as <Katex tex="\log_e(x^2)+1" />, a different function.</>,
+    more: <>That missing-bracket form is the notation error the report flags. Its general comments add that a logarithm needs its base, so write <Katex tex="\log_e" />, not just <Katex tex="\log" />.</>,
   },
 ]
 
@@ -102,68 +112,81 @@ const ROWS_AII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{dom}(h) = R}" />,
-    reason: <>Every real <Katex tex="x" /> survives, so the domain of <Katex tex="h" /> is the whole domain of <Katex tex="g" />.</>,
+    reason: <>No real <Katex tex="x" /> is excluded, so <Katex tex="h" /> has the whole domain of <Katex tex="g" />.</>,
   },
   {
     working: <Katex display tex="x^2+1 \ge 1 \implies \log_e(x^2+1) \ge \log_e(1) = 0" />,
-    reason: <><Katex tex="\log_e" /> is increasing, so the inequality carries through. The minimum <Katex tex="0" /> is attained at <Katex tex="x=0" />.</>,
+    reason: <>Range from the inside out: <Katex tex="\log_e" /> is increasing, so the smallest input <Katex tex="1" /> (at <Katex tex="x=0" />) gives the smallest output <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(h) = [0,\infty)}" />,
-    reason: <>Unbounded above, since <Katex tex="x^2+1\to\infty" />. Only <Katex tex="15\%" /> of students got both the domain and the range.</>,
+    reason: <>Square bracket at <Katex tex="0" />, because <Katex tex="0" /> is reached. No upper limit, since <Katex tex="x^2+1\to\infty" /> as <Katex tex="x\to\pm\infty" />.</>,
+    more: <>Two tempting wrong answers: <Katex tex="R" /> (the range of <Katex tex="\log_e" /> on its own, forgetting its inputs here are only <Katex tex="[1,\infty)" />) and <Katex tex="[1,\infty)" /> (the range of <Katex tex="g" />, forgetting to apply <Katex tex="\log_e" /> to it). The report&apos;s general comments name <Katex tex="(0,\infty)" /> in place of <Katex tex="[0,\infty)" /> as a common error in this part. The quick sketch the report recommends settles all three: a U-shaped curve, symmetric about the <Katex tex="y" />-axis, touching the origin and rising slowly on both sides.</>,
   },
 ]
 
 const ROWS_AIII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{LHS} = h(x)+h(-x) = \log_e\!\left(x^2+1\right)+\log_e\!\left((-x)^2+1\right)" />,
-    reason: <>Note <Katex tex="(-x)^2=x^2" />, not <Katex tex="-x^2" /> — the report singles this notation slip out.</>,
+    working: <Katex display tex="\begin{aligned}\text{LHS} &= h(x)+h(-x) \\ &= \log_e\!\left(x^2+1\right) \\ &\quad +\log_e\!\left((-x)^2+1\right)\end{aligned}" />,
+    reason: <>Substitute <Katex tex="-x" /> for <Katex tex="x" /> in brackets: <Katex tex="(-x)^2=x^2" />, not <Katex tex="-x^2" />.</>,
+    more: <>The report singles out this slip: <Katex tex="\log_e(-x^2+1)" /> is not <Katex tex="\log_e((-x)^2+1)" />. Without the brackets, the square applies only to <Katex tex="x" /> and the minus sign survives.</>,
   },
   {
     working: <Katex display tex="= 2\log_e\!\left(x^2+1\right)" />,
-    reason: <>The two logarithms are identical, because <Katex tex="h" /> is an even function.</>,
+    reason: <>Since <Katex tex="(-x)^2+1=x^2+1" />, the two logarithms are the same term, so add them.</>,
   },
   {
     working: <Katex display tex="\text{RHS} = f\!\left(\bigl(g(x)\bigr)^2\right) = \log_e\!\left(\left(x^2+1\right)^2\right)" />,
-    reason: <>Working the other side separately. Careful: it is <Katex tex="\bigl(g(x)\bigr)^2" />, the output squared — not <Katex tex="g(x^2)" />.</>,
+    reason: <>Now the other side, separately. <Katex tex="\bigl(g(x)\bigr)^2" /> is the output squared, not <Katex tex="g(x^2)" />.</>,
   },
   {
     working: <Katex display tex="= 2\log_e\!\left(x^2+1\right)" />,
     reason: <>By the power law <Katex tex="\log_e(a^n)=n\log_e a" />.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{LHS} = \text{RHS}}" />,
-    reason: <>Both sides reduce to the same expression, so <Katex tex="h(x)+h(-x)=f\!\left(\bigl(g(x)\bigr)^2\right)" />, as required. This is how the report's sample working is set out: each side simplified separately, then the conclusion stated.</>,
+    working: <Katex display tex="\therefore\ h(x)+h(-x)=f\!\left(\bigl(g(x)\bigr)^2\right)" />,
+    reason: <>Both sides reduce to the same expression. As required.</>,
+    more: <>This is how the report&apos;s sample working is set out: each side simplified on its own, then a concluding line. The report says many students were unsure how to present this. The safe pattern for any &ldquo;show that&rdquo;: never write the target equation as if it were already true, and finish by stating it.</>,
   },
 ]
 
 const ROWS_AIV: WorkingRow[] = [
   {
     working: <Katex display tex="h'(x) = \frac{2x}{x^2+1}" />,
-    reason: <>Chain rule: derivative of the inside over the inside.</>,
+    reason: <>Chain rule for <Katex tex="\log_e" />: derivative of the inside over the inside.</>,
   },
   {
     working: <Katex display tex="\frac{2x}{x^2+1} = 0 \implies 2x = 0 \implies x = 0" />,
-    reason: <>A fraction is zero exactly when its numerator is — and <Katex tex="x^2+1" /> is never zero, so nothing is lost. The report says many students stalled at this step.</>,
+    reason: <>A fraction is zero exactly when its numerator is zero; the denominator <Katex tex="x^2+1" /> is never zero.</>,
+    more: <>The report says many students stalled here, unable to solve this equation. There is nothing to expand or cross-multiply: set the numerator to zero.</>,
   },
   {
     working: <Katex display tex="h(0) = \log_e(1) = 0" />,
-    reason: <>So the stationary point is at the origin.</>,
+    reason: <>The <Katex tex="y" />-coordinate, so the stationary point is the origin.</>,
   },
   {
-    working: <Katex display tex="h(x)\ge0 = h(0) \text{ for all } x" />,
-    reason: <>From the range in part (a)(ii) — nothing on the curve is below the origin, so it must be the lowest point. A sign table on <Katex tex="h'" /> gives the same conclusion.</>,
+    working: <Katex display tex="h(x)\ge h(0) = 0 \text{ for all } x" />,
+    reason: <>By the range in part a.ii., no point of the curve is below the origin, so it is the lowest point: a minimum.</>,
+    more: (
+      <>
+        <p>A sign table on <Katex tex="h'" /> gives the same result, and works when no range is available. The denominator is always positive, so <Katex tex="h'" /> has the sign of <Katex tex="2x" />:</p>
+        <Katex display tex="\begin{array}{c|c|c|c} x & -1 & 0 & 1 \\ \hline h'(x) & -1 & 0 & 1 \end{array}" />
+        <p>Negative, then zero, then positive: down, flat, up, which is a minimum. The report also accepts symmetry of <Katex tex="x^2+1" /> with <Katex tex="\log_e" /> increasing, or a graph.</p>
+        <p>It is not a point of inflection. A stationary point of inflection needs <Katex tex="h'" /> to have the same sign on both sides. <Katex tex="h" /> does have inflection points, at <Katex tex="x=\pm1" /> where <Katex tex="h''(x)=\frac{2(1-x^2)}{(x^2+1)^2}=0" />, but their gradients are <Katex tex="\pm1" />, so they are not stationary.</p>
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{(0,0), \text{ a local minimum}}" />,
-    reason: <>Both parts of the question: the coordinates <em>and</em> the nature. The report notes students who gave one without the other, and others who called it a point of inflection.</>,
+    reason: <>Give both the coordinates <em>and</em> the nature.</>,
+    more: <>The report notes that some students who found the point overlooked the second part of the question (its nature), and some assumed it was a point of inflection.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="x = \log_e\!\left(y^2+1\right)" />,
-    reason: <>Swap <Katex tex="x" /> and <Katex tex="y" />, then make <Katex tex="y" /> the subject.</>,
+    reason: <>For the inverse, swap <Katex tex="x" /> and <Katex tex="y" /> in <Katex tex="y=\log_e(x^2+1)" />, then make <Katex tex="y" /> the subject.</>,
   },
   {
     working: <Katex display tex="e^{x} = y^2+1" />,
@@ -171,34 +194,36 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y^2 = e^{x}-1 \implies y = \pm\sqrt{e^{x}-1}" />,
-    reason: <>Two roots — and choosing between them is the second mark.</>,
+    reason: <>Two roots, and only one of them is the inverse of <Katex tex="k" />. Choosing the right one is where most students lost a mark.</>,
   },
   {
     working: <Katex display tex="\text{ran}(k^{-1}) = \text{dom}(k) = (-\infty,0]" />,
-    reason: <>The outputs of the inverse must be the inputs of the original, and those were all non-positive. So take the negative root.</>,
+    reason: <>The inverse&apos;s outputs are the original&apos;s inputs, which are all <Katex tex="\le0" />. So take the negative root.</>,
   },
   {
     working: <Katex display tex="\boxed{k^{-1}(x) = -\sqrt{e^{x}-1}}" />,
-    reason: <>The report says few students took care over this choice: leaving the <Katex tex="\pm" />, or taking the positive root, does not give the inverse of <Katex tex="k" />.</>,
+    reason: <>Negative root only: leaving <Katex tex="\pm" />, or taking the positive root, does not give the inverse of <Katex tex="k" />.</>,
+    more: <>The report says students handled the swap-and-rearrange well, but few took care to determine the range of the inverse and select the negative root. A quick check: <Katex tex="k(-1)=\log_e 2" />, and <Katex tex="-\sqrt{e^{\log_e 2}-1}=-\sqrt{1}=-1" />, back where we started. The positive root would give <Katex tex="+1" />, which is not in the domain of <Katex tex="k" />.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{ran}(k) = \text{ran of } \log_e(x^2+1) \text{ on } (-\infty,0]" />,
-    reason: <>On <Katex tex="(-\infty,0]" /> the inside <Katex tex="x^2+1" /> runs over <Katex tex="[1,\infty)" /> — the same set as on all of <Katex tex="R" />, because the left half of the parabola already covers it.</>,
+    working: <Katex display tex="x\le0 \implies x^2\ge0 \implies x^2+1\ge1" />,
+    reason: <>On the restricted domain, <Katex tex="x^2" /> still takes every value in <Katex tex="[0,\infty)" />, so the inside covers all of <Katex tex="[1,\infty)" />.</>,
   },
   {
     working: <Katex display tex="\text{ran}(k) = [0,\infty)" />,
-    reason: <>So restricting the domain lost no output values; it only made the function one-to-one, which is what allows an inverse to exist.</>,
+    reason: <>As in part a.ii.: <Katex tex="\log_e" /> maps <Katex tex="[1,\infty)" /> to <Katex tex="[0,\infty)" />. Restricting the domain lost no outputs; it only made <Katex tex="k" /> one-to-one.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{dom}(k^{-1}) = \text{ran}(k) = [0,\infty)}" />,
-    reason: <>The domain of an inverse is the range of the original. This is the half the report says students found harder.</>,
+    reason: <>The domain of an inverse is the range of the original.</>,
+    more: <>This is the half the report says students found harder. As a check, the rule <Katex tex="-\sqrt{e^x-1}" /> from part b.i. is defined exactly when <Katex tex="e^x\ge1" />, i.e. <Katex tex="x\ge0" />, which agrees. The report&apos;s general comments name <Katex tex="(0,\infty)" /> in place of <Katex tex="[0,\infty)" /> as a common error here: <Katex tex="k^{-1}(0)=0" />, so <Katex tex="0" /> belongs.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{ran}(k^{-1}) = \text{dom}(k) = (-\infty,0]}" />,
-    reason: <>And the range of an inverse is the domain of the original — which is also the fact that forced the negative root in part (b)(i).</>,
+    reason: <>The range of an inverse is the domain of the original, the same fact that forced the negative root in part b.i.</>,
   },
 ]
 
@@ -236,18 +261,15 @@ export default function MethodsQ5_2016Exam1() {
       >
         <Background title="The range of a composite comes from the inside out">
           <p>
-            Work through the chain, not the final formula. Here <Katex tex="x" /> ranges over{' '}
-            <Katex tex="R" />, so <Katex tex="x^2+1" /> ranges over{' '}
-            <Katex tex="[1,\infty)" />, so <Katex tex="\log_e" /> of that ranges over{' '}
-            <Katex tex="[0,\infty)" />.
-          </p>
-          <p>
-            The report says the range is where students struggled (only{' '}
-            <Katex tex="15\%" /> got full marks), and suggests a quick sketch over the given
-            domain.
+            Work through the chain, not the final formula: the allowed inputs give the inside
+            function&apos;s range; that range is the set of inputs to the outer function, and its
+            outputs on that set are the range of the composite.
           </p>
         </Background>
         <WorkingTable rows={ROWS_AII} />
+        <Explore title="Follow x through the chain: the inside never drops below 1, so h never drops below 0">
+          <RangeChain />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -277,6 +299,9 @@ export default function MethodsQ5_2016Exam1() {
         examinerReport={EXAM_AIV}
       >
         <WorkingTable rows={ROWS_AIV} />
+        <Explore title="The gradient goes from negative to positive at x = 0: a minimum, not an inflection">
+          <Gradient />
+        </Explore>
       </PartCard>
 
       <div className="text-[14.5px] leading-relaxed text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-800 rounded-2xl px-5 py-4">
@@ -295,17 +320,16 @@ export default function MethodsQ5_2016Exam1() {
       >
         <Background title="Why the domain was restricted">
           <p>
-            <Katex tex="h" /> on all of <Katex tex="R" /> is even, so it fails the
+            <Katex tex="h" /> on all of <Katex tex="R" /> is even (<Katex tex="h(-x)=h(x)" />, so <Katex tex="x" /> and{' '}
+            <Katex tex="-x" /> give the same output), so it fails the
             horizontal-line test and has no inverse. Cutting the domain down to{' '}
             <Katex tex="(-\infty,0]" /> keeps only the decreasing half, which is one-to-one.
           </p>
-          <p>
-            That restriction is what decides the sign at the end: the inverse must return
-            values in <Katex tex="(-\infty,0]" />, so the negative square root is the only
-            possible choice.
-          </p>
         </Background>
         <WorkingTable rows={ROWS_BI} />
+        <Explore title="Reflect k in y = x: only the negative root lands on the reflected points">
+          <Reflect />
+        </Explore>
       </PartCard>
 
       <PartCard
