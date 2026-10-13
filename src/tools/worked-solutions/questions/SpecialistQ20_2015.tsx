@@ -21,7 +21,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="u = 5, \qquad v = -11, \qquad t = 16" />,
-    reason: <>"In the opposite direction" is the whole question: the final velocity takes the opposite sign to the initial one.</>,
+    reason: <>Take the initial direction as positive. "In the opposite direction" then makes the final velocity negative.</>,
   },
   {
     working: <Katex display tex="v = u+at \implies -11 = 5+16a" />,
@@ -29,7 +29,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="16a = -16 \implies a = -1\ \text{ms}^{-2}" />,
-    reason: <>Taking <Katex tex="v=+11" /> here instead gives <Katex tex="a=0.375" /> and a displacement of 128 — option E.</>,
+    reason: <>The object slows by <Katex tex="1\ \text{ms}^{-1}" /> every second, stops, then speeds up the other way.</>,
+    more: <>Ignoring the change of direction and taking <Katex tex="v=+11" /> gives <Katex tex="a=\tfrac{6}{16}=0.375" /> and a displacement of <Katex tex="80+\tfrac12(0.375)(16)^2=128" />, which is option E (13%).</>,
   },
   {
     working: <Katex display tex="s = ut+\tfrac12at^2 = 5(16)+\tfrac12(-1)(16)^2" />,
@@ -37,11 +38,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="s = 80-128 = -48" />,
-    reason: <>Negative, meaning the object finishes on the far side of where it started.</>,
+    reason: <>Negative: the object ends 48 m from the start, on the opposite side to the way it first moved.</>,
   },
   {
     working: <Katex display tex="\boxed{48\ \text{metres}}" />,
-    reason: <>Matches option <b>B</b>. Distance <em>from the starting point</em> is the magnitude of the displacement. It is not the distance travelled: the object went forward <Katex tex="12.5" /> m before turning at <Katex tex="t=5" />, so the path length is <Katex tex="12.5+60.5=73" /> m — option C, the trap.</>,
+    reason: <>Matches option <b>B</b>: distance <em>from the starting point</em> is the magnitude of the displacement.</>,
+    more: (
+      <>
+        It is not the distance travelled. The velocity is <Katex tex="5-t" />, so the object stops at <Katex tex="t=5" />, having gone forward <Katex tex="5(5)-\tfrac12(5)^2=12.5" /> m. In the remaining 11 s it speeds up from rest to <Katex tex="11\ \text{ms}^{-1}" /> the other way, covering <Katex tex="\tfrac12(1)(11)^2=60.5" /> m. The path length is <Katex tex="12.5+60.5=73" /> m, option C (11%): the right answer to a different question. The net result, <Katex tex="12.5-60.5=-48" />, agrees with the displacement above.
+      </>
+    ),
   },
 ]
 

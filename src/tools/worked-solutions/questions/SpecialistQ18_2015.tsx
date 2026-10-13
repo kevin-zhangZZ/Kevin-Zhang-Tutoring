@@ -28,7 +28,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\underset{\sim}{i}:\quad 2+4(1)^2 = 6 \quad\text{and}\quad 6(1) = 6 \ \checkmark" />,
-    reason: <>The check that matters: the <Katex tex="\underset{\sim}{i}" /> components agree at that same <Katex tex="t" />, so the particles really do meet rather than merely crossing paths.</>,
+    reason: <>The check that matters: the <Katex tex="\underset{\sim}{i}" /> components also agree at <Katex tex="t=1" />, so the particles are in the same place at the same time.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r}_1(1) = 6\underset{\sim}{i}+5\underset{\sim}{j}" />,
@@ -36,7 +36,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{6\underset{\sim}{i}+5\underset{\sim}{j}}" />,
-    reason: <>Matches option <b>B</b>. Options A and C are the two particles' positions at <Katex tex="t=\tfrac12" />, when their <Katex tex="\underset{\sim}{i}" /> components agree but their <Katex tex="\underset{\sim}{j}" /> components do not — paths crossing without a collision. The question asks <em>where</em>, so the answer is the position vector, not <Katex tex="t=1" />.</>,
+    reason: <>Matches option <b>B</b>. The question asks <em>where</em>, so the answer is the position vector, not <Katex tex="t=1" />.</>,
+    more: (
+      <>
+        Solving the <Katex tex="\underset{\sim}{i}" /> equation alone, <Katex tex="2+4t^2=6t" />, gives <Katex tex="4t^2-6t+2=0" />, so <Katex tex="t=\tfrac12" /> or <Katex tex="t=1" />. Options A and C are the two particles' positions at <Katex tex="t=\tfrac12" />: <Katex tex="\underset{\sim}{r}_1\!\left(\tfrac12\right)=3\underset{\sim}{i}+3.5\underset{\sim}{j}" /> and <Katex tex="\underset{\sim}{r}_2\!\left(\tfrac12\right)=3\underset{\sim}{i}+4.5\underset{\sim}{j}" />. Their <Katex tex="\underset{\sim}{i}" /> components agree but their <Katex tex="\underset{\sim}{j}" /> components do not, so they are not in the same place then. That is why the report insists both components must equate. Option D (10%), <Katex tex="0.5\underset{\sim}{i}+\underset{\sim}{j}" />, looks like the two roots <Katex tex="t=\tfrac12" /> and <Katex tex="t=1" /> written as a vector: they are times, not a position.
+      </>
+    ),
   },
 ]
 

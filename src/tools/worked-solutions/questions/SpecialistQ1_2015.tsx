@@ -21,19 +21,32 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{(x-2)^2}{9}+\frac{(y-3)^2}{4}=1" />,
-    reason: <>Compare with <Katex tex="\cos^2(t)+\sin^2(t)=1" />, the identity every ellipse parametrisation is built on.</>,
+    reason: <>Aim to match <Katex tex="\cos^2(t)+\sin^2(t)=1" />, the identity every ellipse parametrisation is built on.</>,
   },
   {
     working: <Katex display tex="\left(\frac{x-2}{3}\right)^2+\left(\frac{y-3}{2}\right)^2=1" />,
-    reason: <>The denominators are <Katex tex="3^2" /> and <Katex tex="2^2" />, so the semi-axes are <Katex tex="3" /> and <Katex tex="2" /> — not 9 and 4, which is what option C assumes.</>,
+    reason: <>Write each denominator as a square: <Katex tex="9=3^2" /> and <Katex tex="4=2^2" />, so the semi-axes are <Katex tex="3" /> and <Katex tex="2" />, not 9 and 4.</>,
   },
   {
     working: <Katex display tex="\frac{x-2}{3}=\cos(t), \qquad \frac{y-3}{2}=\sin(t)" />,
-    reason: <>Matching the two squared terms to <Katex tex="\cos^2" /> and <Katex tex="\sin^2" />.</>,
+    reason: <>Set the first bracket equal to <Katex tex="\cos(t)" /> and the second to <Katex tex="\sin(t)" />; then the squares add to 1 for every <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="\boxed{x = 2+3\cos(t),\quad y = 3+2\sin(t)}" />,
-    reason: <>Matches option <b>E</b>. Option D has the centre and the axes swapped; option B parametrises a hyperbola, since <Katex tex="\sec^2-\tan^2=1" /> carries a minus sign.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: (
+      <>
+        Check by eliminating <Katex tex="t" />, as the report does:{' '}
+        <Katex tex="\left(\tfrac{x-2}{3}\right)^2+\left(\tfrac{y-3}{2}\right)^2=\cos^2(t)+\sin^2(t)=1" />.
+        The other options: <b>A</b> gives{' '}
+        <Katex tex="\left(\tfrac{y-3}{2}\right)^2-\left(\tfrac{x-2}{3}\right)^2=1" />, the upper
+        branch of a hyperbola; <b>B</b> is also a hyperbola, since{' '}
+        <Katex tex="\sec^2(t)-\tan^2(t)=1" /> carries a minus sign; <b>C</b> uses 9 and 4 as the
+        semi-axes instead of their square roots, giving an ellipse three times as wide and twice
+        as tall; <b>D</b> has the centre and the semi-axes swapped (centre{' '}
+        <Katex tex="(3,2)" />, semi-axis 2 across and 3 up).
+      </>
+    ),
   },
 ]
 

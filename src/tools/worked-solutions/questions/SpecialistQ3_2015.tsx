@@ -27,8 +27,13 @@ const ROWS: WorkingRow[] = [
     reason: <>When <Katex tex="a=\pm1" />, the <Katex tex="y^2" /> term vanishes entirely, leaving just an equation in <Katex tex="x" />.</>,
   },
   {
-    working: <Katex display tex="c\ne0 \;\implies\; x=c \text{ and } x=-c \text{ are two distinct lines}" />,
-    reason: <>Since <Katex tex="c" /> is given non-zero, <Katex tex="x=\pm c" /> is always a genuine <em>pair</em> of parallel lines, never a single repeated line — that would need <Katex tex="c=0" />.</>,
+    working: (
+      <>
+        <Katex display tex="c\ne0 \;\implies\; x=c \text{ and } x=-c" />
+        <Katex display tex="\text{are two distinct parallel lines}" />
+      </>
+    ),
+    reason: <>Since <Katex tex="c\ne0" />, the values <Katex tex="c" /> and <Katex tex="-c" /> differ, so this is always a <em>pair</em> of lines. A single line would need <Katex tex="c=0" />.</>,
   },
   {
     working: (
@@ -37,7 +42,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; x^2+y^2=2c^2 \ \text{(a circle)}" />
       </>
     ),
-    reason: <>The circle case rules out <b>A</b>: it can occur, at this one special value of <Katex tex="a" />.</>,
+    reason: <>A circle needs equal coefficients: <Katex tex="a^2=1-a^2" />, so <Katex tex="a^2=\tfrac12" />. A circle can occur, which rules out <b>A</b>.</>,
   },
   {
     working: (
@@ -60,11 +65,20 @@ const ROWS: WorkingRow[] = [
   {
     working: (
       <>
-        <Katex display tex="\text{Every value of } a \text{ gives a circle, ellipse, or hyperbola,}" />
-        <Katex display tex="\boxed{\text{or a } \textit{pair}\text{ of lines} - \text{never a single line}}" />
+        <Katex display tex="\text{Every value of } a \text{ gives a circle,}" />
+        <Katex display tex="\text{an ellipse, a hyperbola,}" />
+        <Katex display tex="\boxed{\text{or a } \textit{pair}\text{ of lines, never a single line}}" />
       </>
     ),
-    reason: <>Matches option <b>D</b>. Option E (19%) is the trap: a pair of lines <em>is</em> possible, at <Katex tex="a=\pm1" />. A single straight line is the one shape this relation can never produce, since <Katex tex="c\ne0" /> forces <Katex tex="x=\pm c" /> to stay two distinct lines whenever it degenerates at all.</>,
+    reason: <>Matches option <b>D</b>: these cases cover every non-zero <Katex tex="a" />, and none is a single line.</>,
+    more: (
+      <>
+        Option <b>E</b> (19%) was the most popular wrong answer, but a pair of lines <em>is</em>{' '}
+        possible, at <Katex tex="a=\pm1" />. Option <b>A</b> (15%) fails because the circle does
+        occur, but only at the special value <Katex tex="a^2=\tfrac12" />; it is easy to miss if
+        you only try values such as <Katex tex="a=1" /> or <Katex tex="a=2" />.
+      </>
+    ),
   },
 ]
 

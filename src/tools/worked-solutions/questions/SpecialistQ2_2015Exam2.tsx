@@ -8,10 +8,18 @@
 // (the modulus was missing). The answer diagram used to be a matplotlib figure on a cartesian
 // grid; VCAA printed a polar grid, so the answer now overlays the real one. Calibration measured
 // from the crop (916 × 906): origin (404.5, 484), 1 unit = 121.67 px from the ±1, ±2, ±3 ticks.
+// Oct 2026 review (2014–2016 to current standard): Concise reasons tightened; report traps, checks
+// and alternatives moved into rows' `more`. Interactives on the qualifying parts only: b.i (21%
+// full marks), roots on |z| = 2 vs the 2√2 error; b.ii (23%), Arg(z₁/z₂) = 2α reaching 5π/6.
+// a.i–a.iv do not qualify (44–69% full marks).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import blankSrc from './spec-2015e2-q2a-blank-argand.png'
+import { Explore, lazyWidget } from '../Explore'
+
+const RootsCircle = lazyWidget(() => import('../interactives/spec-2015e2-q2bi-roots-circle'))
+const ArgQuotient = lazyWidget(() => import('../interactives/spec-2015e2-q2bii-arg-quotient'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [7, 24, 69],
@@ -90,26 +98,30 @@ const ROWS_AI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\left|1+i\sqrt3\right| = \sqrt{1+3} = 2" />,
-    reason: <>Worth computing before plotting: the point sits exactly on the circle of radius 2, on the radial line at <Katex tex="60^\circ" /> (since <Katex tex="\tan^{-1}\sqrt3=\tfrac\pi3" />) — the report says many students placed it badly because they missed this. Both points are plotted in the diagram in part a(ii).</>,
+    reason: <>Its modulus 2 and argument <Katex tex="\tan^{-1}\!\left(\tfrac{\sqrt3}{1}\right)=\tfrac\pi3" /> put it on the grid&apos;s radius-2 circle, on the <Katex tex="\tfrac\pi3" /> radial line. Both points are plotted, labelled, in part a(ii)&apos;s diagram.</>,
+    more: <>The report says many students could not position <Katex tex="1+i\sqrt3" /> accurately because they did not realise it lay on the circle of radius 2, and that a number did not fully label both points: write <Katex tex="0+0i" /> and <Katex tex="1+i\sqrt3" /> beside the dots.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="\left|z-\left(1+i\sqrt3\right)\right| = |z-0|" />,
-    reason: <>Written this way the meaning is plain: the points equidistant from <Katex tex="1+i\sqrt3" /> and from <Katex tex="0" />.</>,
+    reason: <>Write <Katex tex="|z|" /> as <Katex tex="|z-0|" />: then it reads &ldquo;the points equidistant from <Katex tex="1+i\sqrt3" /> and from <Katex tex="0" />&rdquo;.</>,
   },
   {
     working: <Katex display tex="\text{the perpendicular bisector of } (0,0) \text{ and } \left(1,\sqrt3\right)" />,
-    reason: <>A full line, not a ray — the report notes students stopping it at <Katex tex="(2,0)" />.</>,
+    reason: <>Points equidistant from two fixed points form the perpendicular bisector of the interval joining them. It is a full line, not a ray.</>,
+    more: <>The report says few students seemed to realise the line was this perpendicular bisector, and that a number terminated their line at <Katex tex="(2,0)" />. Nothing in <Katex tex="\left|z-\left(1+i\sqrt3\right)\right|=|z|" /> stops at <Katex tex="2" />: every point on the bisector, however far out, is equidistant from the two points.</>,
   },
   {
     working: <Katex display tex="|z-2| = 1:\ \text{centre } (2,0), \text{ radius } 1" />,
-    reason: <>The standard circle form.</>,
+    reason: <><Katex tex="|z-a|=r" /> is the circle of radius <Katex tex="r" /> centred at <Katex tex="a" />: here centre <Katex tex="2" />, radius 1.</>,
+    more: <>The report says some circles were poorly drawn. Mark the four easy points first, <Katex tex="1" />, <Katex tex="3" />, <Katex tex="2+i" /> and <Katex tex="2-i" />, then draw the circle through them.</>,
   },
   {
     working: <ArgandOverlay />,
-    reason: <>Drawn on VCAA's own grid: the two points from part a(i) and the line in orange, the circle in blue. The line has <em>negative</em> gradient, because the segment it bisects rises steeply; it passes through <Katex tex="2" /> and is a full line, not a ray. The intersection points found in part a(iv) are the blue dots.</>,
+    reason: <>The line (orange) has <em>negative</em> gradient: it is perpendicular to an interval that rises. It passes through the midpoint <Katex tex="\left(\tfrac12,\tfrac{\sqrt3}2\right)" /> and through <Katex tex="2" />. Blue dots: the intersections found in part a(iv).</>,
+    more: <>Drawn on VCAA&apos;s own grid: the two points from part a(i) and the line in orange, the circle in blue. The line passes through <Katex tex="2" /> because <Katex tex="\left|2-\left(1+i\sqrt3\right)\right|=\left|1-i\sqrt3\right|=2=|2|" />; with the midpoint, that gives two points to rule through. The report says a common error was a line with a positive gradient.</>,
   },
 ]
 
@@ -120,11 +132,12 @@ const ROWS_AIII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="m_{\text{interval}} = \frac{\sqrt3-0}{1-0} = \sqrt3 \implies m_{\text{line}} = -\frac{1}{\sqrt3}" />,
-    reason: <>Perpendicular gradients multiply to <Katex tex="-1" />. Negative, as the report emphasises.</>,
+    reason: <>Perpendicular gradients multiply to <Katex tex="-1" />, so the line&apos;s gradient is negative.</>,
+    more: <>The report says the most common error was the gradient given as positive. A glance at the sketch in part a(ii) catches it: the line falls from left to right.</>,
   },
   {
     working: <Katex display tex="y-0 = -\tfrac1{\sqrt3}(x-2)" />,
-    reason: <>Using the hint: the line passes through <Katex tex="z=2" />, i.e. the point <Katex tex="(2,0)" />, which saves substituting the midpoint.</>,
+    reason: <>Point–gradient form through <Katex tex="z=2" />, the point <Katex tex="(2,0)" />, as the question suggests.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -\frac{x}{\sqrt3}+\frac{2}{\sqrt3}}" />,
@@ -155,22 +168,25 @@ const ROWS_AIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2-\frac{\sqrt3}{2}+\frac12 i \quad\text{and}\quad 2+\frac{\sqrt3}{2}-\frac12 i}" />,
-    reason: <>In the required form <Katex tex="a+ib" />, not as coordinate pairs. Check: each is exactly 1 from <Katex tex="2" />, since <Katex tex="\left(\tfrac{\sqrt3}2\right)^2+\left(\tfrac12\right)^2=1" /> ✓.</>,
+    reason: <>In the required form <Katex tex="a+ib" />, not as coordinate pairs. Check: each is 1 from <Katex tex="2" />, since <Katex tex="\tfrac34+\tfrac14=1" /> ✓.</>,
+    more: <>The report says common errors were answers in the wrong form and sign errors. Pairing the signs is the usual slip: the line falls, so the point to the right of <Katex tex="2" /> is below the real axis. A quicker route: the line passes through <Katex tex="2" />, the circle&apos;s centre, so the two points are 1 unit either side of <Katex tex="2" /> along the line. A unit step along a line of gradient <Katex tex="-\tfrac1{\sqrt3}" /> is <Katex tex="\tfrac{\sqrt3}2-\tfrac12 i" />, giving <Katex tex="2\pm\left(\tfrac{\sqrt3}2-\tfrac12 i\right)" />, the same two points.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="z = \frac{4\cos(\alpha)\pm\sqrt{16\cos^2(\alpha)-16}}{2}" />,
-    reason: <>The quadratic formula on <Katex tex="z^2-4\cos(\alpha)z+4=0" />.</>,
+    reason: <>The quadratic formula with <Katex tex="a=1" />, <Katex tex="b=-4\cos(\alpha)" />, <Katex tex="c=4" />.</>,
+    more: <>Completing the square works too: <Katex tex="\left(z-2\cos(\alpha)\right)^2=4\cos^2(\alpha)-4=-4\sin^2(\alpha)" />, so <Katex tex="z-2\cos(\alpha)=\pm2i\sin(\alpha)" />, the same roots.</>,
   },
   {
-    working: <Katex display tex="16\cos^2(\alpha)-16 = -16\bigl(1-\cos^2(\alpha)\bigr) = -16\sin^2(\alpha)" />,
-    reason: <>The discriminant is negative, which is where the report says students came unstuck. The Pythagorean identity turns it into a perfect square.</>,
+    working: <Katex display tex="16\cos^2(\alpha)-16 = -16\sin^2(\alpha)" />,
+    reason: <>Factor out <Katex tex="-16" />: <Katex tex="-16\left(1-\cos^2(\alpha)\right)" />, and <Katex tex="1-\cos^2(\alpha)=\sin^2(\alpha)" />. Negative, so the roots are complex.</>,
+    more: <>The report says dealing with the discriminant proved to be a problem for many. A negative discriminant is no dead end in Specialist: its square root is just imaginary, and writing it as <Katex tex="-16\sin^2(\alpha)" /> makes that root exact. It is negative for every allowed <Katex tex="\alpha" />, because <Katex tex="0<\cos(\alpha)<1" /> there.</>,
   },
   {
-    working: <Katex display tex="\sqrt{-16\sin^2(\alpha)} = 4i\sin(\alpha) \qquad \left(0<\alpha<\tfrac\pi2 \implies \sin(\alpha)>0\right)" />,
-    reason: <>The restriction on <Katex tex="\alpha" /> is what lets the modulus signs be dropped.</>,
+    working: <Katex display tex="\sqrt{-16\sin^2(\alpha)} = 4i\sin(\alpha)" />,
+    reason: <><Katex tex="\sqrt{-1}=i" /> and <Katex tex="\sqrt{16\sin^2(\alpha)}=|4\sin(\alpha)|" />, which is <Katex tex="4\sin(\alpha)" /> because <Katex tex="\sin(\alpha)>0" /> here.</>,
   },
   {
     working: <Katex display tex="z = \frac{4\cos(\alpha)\pm4i\sin(\alpha)}{2} = 2\cos(\alpha)\pm2i\sin(\alpha)" />,
@@ -178,7 +194,8 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{z_1 = 2\,\mathrm{cis}(\alpha), \qquad z_2 = 2\,\mathrm{cis}(-\alpha)}" />,
-    reason: <>Read straight off: <Katex tex="2\cos\alpha+2i\sin\alpha" /> is already <Katex tex="2\,\mathrm{cis}(\alpha)" />. The modulus is 2, not <Katex tex="2\sqrt2" /> — check with <Katex tex="\sqrt{4\cos^2\alpha+4\sin^2\alpha}=2" />.</>,
+    reason: <><Katex tex="2\cos(\alpha)+2i\sin(\alpha)=2\left(\cos(\alpha)+i\sin(\alpha)\right)" />; the other root uses <Katex tex="\cos(-\alpha)=\cos(\alpha)" />, <Katex tex="\sin(-\alpha)=-\sin(\alpha)" />.</>,
+    more: <>The modulus is 2, not <Katex tex="2\sqrt2" />: <Katex tex="\sqrt{(2\cos\alpha)^2+(2\sin\alpha)^2}=\sqrt{4}=2" />. The report says some students converted correct cartesian answers to <Katex tex="2\sqrt2\,\mathrm{cis}(\pm\alpha)" />; <Katex tex="2\sqrt2" /> is what you get from <Katex tex="\sqrt{2^2+2^2}" />, wrongly treating the 2s in front of <Katex tex="\cos" /> and <Katex tex="\sin" /> as the real and imaginary parts. The report also says a number left their answers in cartesian form: the question asks for polar form, so this last line is needed.</>,
   },
 ]
 
@@ -188,16 +205,18 @@ const ROWS_BII: WorkingRow[] = [
     reason: <>Dividing in polar form subtracts the arguments — no need to expand anything.</>,
   },
   {
-    working: <Katex display tex="\mathrm{Arg}\!\left(\frac{z_1}{z_2}\right) = 2\alpha \quad \text{(or } -2\alpha \text{ if the roots are labelled the other way)}" />,
-    reason: <>The modulus in the question is there because either root could be called <Katex tex="z_1" />; it makes the answer the same either way. And since <Katex tex="0<\alpha<\tfrac\pi2" />, <Katex tex="2\alpha\in(0,\pi)" />, which is inside the principal range — so no adjustment by <Katex tex="2\pi" /> is needed.</>,
+    working: <Katex display tex="\mathrm{Arg}\!\left(\frac{z_1}{z_2}\right) = 2\alpha" />,
+    reason: <>Since <Katex tex="0<\alpha<\tfrac\pi2" />, <Katex tex="2\alpha" /> lies in <Katex tex="(0,\pi)" />, already a principal argument, so no <Katex tex="2\pi" /> adjustment is needed.</>,
+    more: <>The modulus in the question is there because either root could be called <Katex tex="z_1" />: swapping them gives <Katex tex="-2\alpha" />, and <Katex tex="|\pm2\alpha|=2\alpha" /> either way. Had <Katex tex="2\alpha" /> exceeded <Katex tex="\pi" />, the principal argument would have been <Katex tex="2\alpha-2\pi" />.</>,
   },
   {
     working: <Katex display tex="|2\alpha| = 2\alpha = \tfrac{5\pi}6" />,
-    reason: <>Setting it equal to the given value.</>,
+    reason: <>Setting it equal to the given value; <Katex tex="2\alpha>0" />, so the modulus signs drop.</>,
   },
   {
     working: <Katex display tex="\boxed{\alpha = \tfrac{5\pi}{12}}" />,
-    reason: <>In range, since <Katex tex="\tfrac{5\pi}{12}<\tfrac{6\pi}{12}=\tfrac\pi2" /> ✓. Answering <Katex tex="\tfrac{5\pi}6" /> forgets to halve, and <Katex tex="-\tfrac{5\pi}{12}" /> is outside <Katex tex="0<\alpha<\tfrac\pi2" /> — both are errors the report lists.</>,
+    reason: <>Halve, then check it is in range: <Katex tex="\tfrac{5\pi}{12}<\tfrac{6\pi}{12}=\tfrac\pi2" /> ✓.</>,
+    more: <>The report lists unsimplified expressions involving <Katex tex="z" />, <Katex tex="-\tfrac{5\pi}{12}" /> and <Katex tex="\tfrac{5\pi}6" /> among the common errors. <Katex tex="\tfrac{5\pi}6" /> is <Katex tex="2\alpha" />, not <Katex tex="\alpha" /> (and is outside the allowed range anyway); <Katex tex="-\tfrac{5\pi}{12}" /> fails <Katex tex="0<\alpha<\tfrac\pi2" />. Working from the polar forms of part b(i) avoids any messy expression in <Katex tex="z" />.</>,
   },
 ]
 
@@ -302,6 +321,9 @@ export default function SpecialistQ2_2015Exam2() {
         examinerReport={EXAM_BI}
       >
         <WorkingTable rows={ROWS_BI} />
+        <Explore title={<>The roots always sit on the circle <Katex tex="|z|=2" />, at angles <Katex tex="\pm\alpha" /></>}>
+          <RootsCircle />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -317,6 +339,9 @@ export default function SpecialistQ2_2015Exam2() {
         examinerReport={EXAM_BII}
       >
         <WorkingTable rows={ROWS_BII} />
+        <Explore title={<>Dividing subtracts arguments, so <Katex tex="z_1/z_2" /> sits at angle <Katex tex="2\alpha" /></>}>
+          <ArgQuotient />
+        </Explore>
       </PartCard>
     </div>
   )

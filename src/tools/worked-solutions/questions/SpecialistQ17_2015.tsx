@@ -21,7 +21,7 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="= -\underset{\sim}{i}+2\underset{\sim}{j}-\underset{\sim}{k}" />
       </>
     ),
-    reason: <>The angle <Katex tex="\angle ABC" /> is the angle <em>at</em> <Katex tex="B" />, between the two rays <Katex tex="BA" /> and <Katex tex="BC" /> — so both vectors must start from <Katex tex="B" />.</>,
+    reason: <>The angle <Katex tex="\angle ABC" /> is the angle <em>at</em> <Katex tex="B" />, between the two rays <Katex tex="BA" /> and <Katex tex="BC" /> — so both vectors must start from <Katex tex="B" />. Each is end point minus start point.</>,
   },
   {
     working: (
@@ -48,7 +48,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\cos(\angle ABC) = \frac{-1}{\sqrt6\sqrt{13}}}" />,
-    reason: <>Matches option <b>C</b>. Negative, so the angle at <Katex tex="B" /> is just obtuse — about <Katex tex="96^\circ" />, since <Katex tex="\cos^{-1}\!\left(-\tfrac{1}{\sqrt{78}}\right)\approx96.5^\circ" />. Both vectors must start at <Katex tex="B" />; using <Katex tex="\overrightarrow{AB}" /> instead of <Katex tex="\overrightarrow{BA}" /> flips the sign.</>,
+    reason: <>Matches option <b>C</b>. The negative cosine means the angle at <Katex tex="B" /> is obtuse.</>,
+    more: (
+      <>
+        As a check, <Katex tex="\cos^{-1}\!\left(-\tfrac{1}{\sqrt{78}}\right)\approx96.5^\circ" />, just over a right angle. Both vectors must start at <Katex tex="B" />: pairing <Katex tex="\overrightarrow{AB}" /> with <Katex tex="\overrightarrow{BC}" /> flips the sign and gives the supplementary angle instead. The popular wrong answer, B (22%), has the right lengths but a dot product of 7. That is what a sign slip in the <Katex tex="\underset{\sim}{j}" /> component of <Katex tex="\overrightarrow{BC}" /> produces: writing <Katex tex="+2" /> instead of <Katex tex="-3-(-1)=-2" /> makes the dot product <Katex tex="3+4=7" />. Option D involves <Katex tex="\overrightarrow{AC}" />, whose length is <Katex tex="\sqrt{21}" />: <Katex tex="\overrightarrow{BA}\cdot\overrightarrow{AC}=-7" />, but those two vectors do not both start at <Katex tex="B" />.
+      </>
+    ),
   },
 ]
 

@@ -4,10 +4,17 @@
 // current-syllabus work. Question text transcribed from the original paper (the ramp diagram
 // belongs to the omitted parts). Answers checked with sympy and against the VCAA examination
 // report. Solution is original.
+//
+// Interactives (qualifying parts d.i 30% and d.iv 12% full marks): d.iv has one, the time as the
+// area under dt/dv between the speed limits 0 and 5. d.i skipped: its lost mark is an algebraic
+// split of v/(7-v), which a picture does not explain.
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const TimeArea = lazyWidget(() => import('../interactives/spec-2015e2-q5d4-time-area'))
 
 const EXAM_DI: SAExaminerStats = {
   marks: [42, 29, 30],
@@ -61,34 +68,39 @@ const ROWS_DI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="v\frac{dv}{dx} = 1.4(7-v)" />,
-    reason: <>The target involves <Katex tex="\tfrac{dx}{dv}" />, so choose the form of acceleration that relates <Katex tex="v" /> and <Katex tex="x" />.</>,
+    reason: <>The target links <Katex tex="x" /> and <Katex tex="v" /> only, so write the acceleration as <Katex tex="\tfrac{d^2x}{dt^2}=v\tfrac{dv}{dx}" />, the form with no <Katex tex="t" />.</>,
+    more: <>Acceleration has three useful forms: <Katex tex="\tfrac{dv}{dt}" />, <Katex tex="v\tfrac{dv}{dx}" /> and <Katex tex="\tfrac{d}{dx}\bigl(\tfrac12v^2\bigr)" />. Pick by which two variables the answer involves: here <Katex tex="x" /> and <Katex tex="v" />, so <Katex tex="v\tfrac{dv}{dx}" />. Part d(iv) asks for a time, and there the <Katex tex="\tfrac{dv}{dt}" /> form is the right one.</>,
   },
   {
     working: <Katex display tex="\frac{dx}{dv} = \frac{v}{1.4(7-v)} \implies 1.4\frac{dx}{dv} = \frac{v}{7-v}" />,
-    reason: <>Inverting both sides and multiplying by <Katex tex="1.4" />.</>,
+    reason: <>Divide by <Katex tex="v" /> to get <Katex tex="\tfrac{dv}{dx}" />, invert to get <Katex tex="\tfrac{dx}{dv}" />, then multiply by <Katex tex="1.4" />.</>,
   },
   {
     working: <Katex display tex="\frac{v}{7-v} = \frac{-(7-v)+7}{7-v}" />,
-    reason: <>The step the report says was most often skipped: rewrite the numerator so the fraction splits. (Long division of <Katex tex="v" /> by <Katex tex="7-v" /> gives the same thing.)</>,
+    reason: <>The target is a constant plus a fraction, so rewrite the numerator <Katex tex="v" /> as <Katex tex="-(7-v)+7" /> to make the fraction split.</>,
+    more: <>The report says many students omitted this step. It is what earns the second mark: stopping at <Katex tex="\tfrac{v}{7-v}" /> leaves the "show that" unfinished. Any valid method earns it, including long division of <Katex tex="v" /> by <Katex tex="-v+7" /> (quotient <Katex tex="-1" />, remainder <Katex tex="7" />). Check by recombining: <Katex tex="-1+\tfrac{7}{7-v}=\tfrac{-(7-v)+7}{7-v}=\tfrac{v}{7-v}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{1.4\frac{dx}{dv} = -1+\frac{7}{7-v}}" />,
-    reason: <>As required — and now the right-hand side is something that can actually be antidifferentiated.</>,
+    reason: <>Splitting the fraction. As required.</>,
+    more: <>The point of this form is that each term can now be antidifferentiated with respect to <Katex tex="v" />, which is exactly what part d(ii) does next.</>,
   },
 ]
 
 const ROWS_DII: WorkingRow[] = [
   {
     working: <Katex display tex="1.4x = \int\left(-1+\frac{7}{7-v}\right)dv" />,
-    reason: <>Integrating part d(i) with respect to <Katex tex="v" />.</>,
+    reason: <>Part d(i) gives <Katex tex="\tfrac{d}{dv}(1.4x)" /> as a function of <Katex tex="v" /> alone, so antidifferentiate it with respect to <Katex tex="v" />.</>,
   },
   {
     working: <Katex display tex="1.4x = -v-7\log_e|7-v|+c" />,
-    reason: <>The derivative of <Katex tex="7-v" /> is <Katex tex="-1" />, which is where the minus sign in front of the logarithm comes from.</>,
+    reason: <>Using <Katex tex="\int\tfrac{1}{7-v}\,dv=-\log_e|7-v|" />: the derivative of <Katex tex="7-v" /> is <Katex tex="-1" />, hence the minus sign. Keep the <Katex tex="+c" />.</>,
+    more: <>Check by differentiating: <Katex tex="\tfrac{d}{dv}\bigl(-7\log_e(7-v)\bigr)=-7\cdot\tfrac{-1}{7-v}=\tfrac{7}{7-v}" />. The report says many students did not include the constant of integration; without it the given answer, with its extra term <Katex tex="7\log_e(7)" />, cannot be reached honestly.</>,
   },
   {
     working: <Katex display tex="x=0,\ v=0:\quad 0 = 0-7\log_e(7)+c" />,
-    reason: <>The trailer "sinks vertically from rest", so it starts at zero depth with zero speed. The report says the marks were lost for skipping exactly this evaluation.</>,
+    reason: <>The trailer "sinks vertically from rest", with depth measured from where it starts: when <Katex tex="x=0" />, <Katex tex="v=0" />.</>,
+    more: <>In a 1-mark "show that", this evaluation is the mark. The report says many students did not show the evaluation of the constant; writing the given answer straight after an unexplained <Katex tex="+c" /> earns nothing.</>,
   },
   {
     working: <Katex display tex="c = 7\log_e(7)" />,
@@ -96,22 +108,25 @@ const ROWS_DII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{1.4x = -v-7\log_e(7-v)+7\log_e(7)}" />,
-    reason: <>The modulus can be dropped: the trailer never reaches <Katex tex="v=7" /> (that is the terminal velocity), so <Katex tex="7-v>0" /> throughout. This is the given equation, as required.</>,
+    reason: <>The modulus can go: the speed rises from 0 towards 7 but never reaches it (the acceleration <Katex tex="1.4(7-v)" /> falls to 0 as <Katex tex="v" /> nears 7), so <Katex tex="7-v>0" />. As required.</>,
+    more: <>So 7 m/s is the terminal velocity, approached but never reached. To see it explicitly, solving <Katex tex="\tfrac{dv}{dt}=1.4(7-v)" /> with <Katex tex="v(0)=0" /> gives <Katex tex="v=7\left(1-e^{-1.4t}\right)" />, which is always less than 7.</>,
   },
 ]
 
 const ROWS_DIII: WorkingRow[] = [
   {
     working: <Katex display tex="v = 5:\quad 1.4D = -5-7\log_e(2)+7\log_e(7)" />,
-    reason: <>Substituting the given descent rate. It is <Katex tex="+5" />, not <Katex tex="-5" /> — <Katex tex="v" /> was defined as <Katex tex="\tfrac{dx}{dt}" /> with <Katex tex="x" /> measured <em>downwards</em> as a depth.</>,
+    reason: <>Substitute <Katex tex="x=D" />, <Katex tex="v=5" /> into part d(ii). It is <Katex tex="+5" />: <Katex tex="x" /> is a depth, measured downwards, so sinking makes <Katex tex="v>0" />.</>,
+    more: <>The report says a few students incorrectly substituted <Katex tex="v=-5" />, treating "descending" as the negative direction. Here the positive direction is down: the depth <Katex tex="x" /> increases as the trailer sinks, so <Katex tex="v=\tfrac{dx}{dt}" /> is positive. The <Katex tex="\log_e(2)" /> comes from <Katex tex="7-5=2" />.</>,
   },
   {
     working: <Katex display tex="1.4D = -5+7\log_e\!\left(\tfrac72\right) = -5+8.769\ldots" />,
-    reason: <>Combining the logarithms.</>,
+    reason: <>Combining the logarithms: <Katex tex="7\log_e(7)-7\log_e(2)=7\log_e\!\left(\tfrac72\right)" />.</>,
   },
   {
     working: <Katex display tex="D = \frac{3.769\ldots}{1.4} = 2.692\ldots" />,
-    reason: <>Dividing.</>,
+    reason: <>Dividing by <Katex tex="1.4" />.</>,
+    more: <>On CAS, <Cas fn="solve">solve(1.4·x = −5 − 7·ln(7−5) + 7·ln(7), x)</Cas> gives the same <Katex tex="2.692\ldots" />. Exactly, <Katex tex="D=\tfrac{7\log_e(7/2)-5}{1.4}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{D \approx 2.7\ \text{metres}}" />,
@@ -122,11 +137,13 @@ const ROWS_DIII: WorkingRow[] = [
 const ROWS_DIV: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dv}{dt} = 1.4(7-v) \implies \frac{dt}{dv} = \frac{1}{1.4(7-v)}" />,
-    reason: <>For a time, go back to <Katex tex="\tfrac{dv}{dt}" /> rather than reusing the <Katex tex="x" />-<Katex tex="v" /> relation.</>,
+    reason: <>The question asks for a time, so use the acceleration form that contains <Katex tex="t" />, <Katex tex="\tfrac{dv}{dt}" />, and invert.</>,
+    more: <>The other route, <Katex tex="t=\int_0^D\tfrac{1}{v}\,dx" />, needs <Katex tex="v" /> as a function of <Katex tex="x" />, and the equation from part d(ii) cannot be rearranged for <Katex tex="v" />. Working in <Katex tex="v" /> avoids that: <Katex tex="\tfrac{dt}{dv}" /> depends on <Katex tex="v" /> alone.</>,
   },
   {
     working: <Katex display tex="t = \int_0^5\frac{1}{1.4(7-v)}\,dv" />,
-    reason: <>A <em>definite</em> integral in <Katex tex="v" />: the trailer reaches depth <Katex tex="D" /> exactly when its speed reaches <Katex tex="5" />, so the velocity terminals do the job — which is why part d(iii) came first.</>,
+    reason: <>The variable is <Katex tex="v" />, so the limits are speeds: from rest (<Katex tex="v=0" />) to <Katex tex="v=5" />, the speed at depth <Katex tex="D" /> (part d(iii)).</>,
+    more: <>This line is what "write down a definite integral" asks for, and it earns marks on its own. The report says some students attempted to find the time using direct integration instead of a definite integral, presumably finding <Katex tex="t" /> as a function of <Katex tex="v" /> with a constant and then substituting. That can reach 0.9, but it does not answer the question as set. A related slip is using <Katex tex="D\approx2.7" /> as the upper limit: <Katex tex="D" /> is a depth, not a speed, and that integral gives about 0.35 s, the time to reach a speed of 2.7 m/s.</>,
   },
   {
     working: <Cas fn="nInt">∫(1/(1.4(7-v)), v, 0, 5)</Cas>,
@@ -138,7 +155,8 @@ const ROWS_DIV: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{t \approx 0.9\ \text{seconds}}" />,
-    reason: <>To one decimal place. Only 12% of students scored full marks here.</>,
+    reason: <>To one decimal place.</>,
+    more: <>Sense check: 2.7 m in about 0.9 s is an average speed of about 3 m/s, between the starting speed 0 and the final speed 5.</>,
   },
 ]
 
@@ -232,6 +250,9 @@ export default function SpecialistQ5_2015Exam2() {
         examinerReport={EXAM_DIV}
       >
         <WorkingTable rows={ROWS_DIV} />
+        <Explore title="The time is the area under dt/dv between the starting and final speeds">
+          <TimeArea />
+        </Explore>
       </PartCard>
     </div>
   )

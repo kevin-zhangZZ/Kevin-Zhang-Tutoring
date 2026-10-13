@@ -5,6 +5,9 @@
 // Audit, Sept 2026: the examiner comment here previously claimed VCAA accepted both B and C;
 // the report shades only C and its comment is "Option C simplifies to r2 < 1". The working
 // also described z1z2 as being in the first quadrant — it is in the second.
+// Review, Oct 2026 (2014–2016 pass): distractor traps for B and E, the principal-argument
+// check, and the report-comment equivalence moved into `more`; Concise final row shortened.
+// Not a qualifying part (47% correct), so no interactive.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -35,15 +38,18 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="r_1r_2 < r_1 \;\implies\; r_2 < 1" />,
-    reason: <>Dividing by <Katex tex="r_1>0" />. This rules out A (<Katex tex="r_2>1" />). Nothing in the diagram fixes the size of <Katex tex="r_1" /> itself — there is no scale — so E is not necessarily true either.</>,
+    reason: <>Dividing by <Katex tex="r_1>0" />. So <Katex tex="z_2" /> shrinks <Katex tex="z_1" />, which rules out A (<Katex tex="r_2>1" />).</>,
+    more: <>E (<Katex tex="r_1>1" />, 16%) is tempting because <Katex tex="z_1" /> looks far from the origin, but the axes carry no scale — <Katex tex="r_1" /> could be 0.1 or 100 with the same picture. Only the <em>comparison</em> of the two distances is fixed by the diagram.</>,
   },
   {
     working: <Katex display tex="\mathrm{Arg}(z_1z_2) = \theta_1+\theta_2" />,
-    reason: <>Argument of a product adds. <Katex tex="z_1" /> is in the first quadrant and <Katex tex="z_1z_2" /> in the second, so <Katex tex="\tfrac\pi2<\theta_1+\theta_2<\pi" />.</>,
+    reason: <>Argument of a product adds. <Katex tex="z_1z_2" /> is in the second quadrant, so <Katex tex="\tfrac\pi2<\theta_1+\theta_2<\pi" />.</>,
+    more: <>The sum of two acute angles is between 0 and <Katex tex="\pi" />, so <Katex tex="\theta_1+\theta_2" /> is already the principal argument — no multiple of <Katex tex="2\pi" /> to adjust for.</>,
   },
   {
-    working: <Katex display tex="\theta_1=60^\circ,\ \theta_2=40^\circ \quad\text{or}\quad \theta_1=40^\circ,\ \theta_2=60^\circ" />,
-    reason: <>Both give a sum of <Katex tex="100^\circ" />, a second-quadrant product, so the diagram cannot decide which angle is larger: neither B (<Katex tex="\theta_1<\theta_2" />) nor D (<Katex tex="\theta_1=\theta_2" />) is <b>necessarily</b> true.</>,
+    working: <Katex display tex="\begin{aligned} &\theta_1=60^\circ,\ \theta_2=40^\circ \\ \text{or } &\theta_1=40^\circ,\ \theta_2=60^\circ \end{aligned}" />,
+    reason: <>Both put <Katex tex="z_1" /> in the first quadrant and <Katex tex="z_1z_2" /> in the second, as drawn. So the quadrants can't decide which angle is larger: B and D are not <b>necessarily</b> true.</>,
+    more: <>B (<Katex tex="\theta_1<\theta_2" />) was the most popular wrong answer (18%). Measuring the picture with a protractor gives roughly <Katex tex="\theta_1\approx59^\circ" /> and <Katex tex="\theta_1+\theta_2\approx124^\circ" />, which suggests <Katex tex="\theta_2\approx65^\circ" /> — but an exam diagram isn't a scale drawing, and "necessarily" asks what <em>must</em> hold. A gap of about <Katex tex="6^\circ" /> is within drawing error; the distance gap is not (<Katex tex="z_1z_2" /> is about half as far out as <Katex tex="z_1" />). All you can rely on is which quadrant each point is in and which point is closer to the origin. The pair <Katex tex="50^\circ,50^\circ" /> also fits, so D (<Katex tex="\theta_1=\theta_2" />) is possible but not forced.</>,
   },
   {
     working: <Katex display tex="\left|\frac{z_1}{z_2}\right| = \frac{r_1}{r_2}" />,
@@ -51,7 +57,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\frac{r_1}{r_2} > r_1 \iff r_2 < 1}" />,
-    reason: <>Matches option <b>C</b>: dividing a positive number by <Katex tex="r_2<1" /> makes it bigger. This is the report's one-line comment — option C simplifies to <Katex tex="r_2<1" />, which the diagram guarantees. Option B (18%) was the most popular wrong answer.</>,
+    reason: <>Matches option <b>C</b>: dividing by <Katex tex="r_2<1" /> makes <Katex tex="r_1" /> bigger, and the diagram guarantees <Katex tex="r_2<1" />.</>,
+    more: <>This is the report's one-line comment: option C simplifies to <Katex tex="r_2<1" />. To see the equivalence, divide both sides of <Katex tex="\tfrac{r_1}{r_2}>r_1" /> by <Katex tex="r_1>0" /> to get <Katex tex="\tfrac1{r_2}>1" />, i.e. <Katex tex="r_2<1" />.</>,
   },
 ]
 

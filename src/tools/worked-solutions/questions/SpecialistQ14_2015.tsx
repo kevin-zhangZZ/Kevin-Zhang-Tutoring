@@ -20,11 +20,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="y = x\sin(x)" />,
-    reason: <>Every option involves <Katex tex="\tfrac{d^2y}{dx^2}+y" />, so differentiate twice and form that combination once.</>,
+    reason: <>Four of the five options use <Katex tex="\tfrac{d^2y}{dx^2}+y" /> (B uses <Katex tex="x\tfrac{d^2y}{dx^2}+y" />), so find <Katex tex="\tfrac{d^2y}{dx^2}" /> and substitute.</>,
   },
   {
     working: <Katex display tex="\frac{dy}{dx} = \sin(x)+x\cos(x)" />,
-    reason: <>Product rule.</>,
+    reason: <>Product rule: <Katex tex="\tfrac{d}{dx}(uv)=u'v+uv'" /> with <Katex tex="u=x" />, <Katex tex="v=\sin(x)" />.</>,
   },
   {
     working: <Katex display tex="\frac{d^2y}{dx^2} = \cos(x)+\bigl(\cos(x)-x\sin(x)\bigr)" />,
@@ -36,11 +36,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{d^2y}{dx^2}+y = 2\cos(x)-x\sin(x)+x\sin(x)" />,
-    reason: <>Adding <Katex tex="y=x\sin(x)" /> back.</>,
+    reason: <>Adding <Katex tex="y=x\sin(x)" /> — the <Katex tex="x\sin(x)" /> terms cancel, leaving only the cosine term.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{d^2y}{dx^2}+y = 2\cos(x)}" />,
-    reason: <>Matches option <b>E</b>. Option A would need <Katex tex="y=\sin(x)" /> or <Katex tex="\cos(x)" /> without the <Katex tex="x" />; option D has the sign wrong.</>,
+    reason: <>Matches option <b>E</b>.</>,
+    more: <>Checking the others: A, <Katex tex="\tfrac{d^2y}{dx^2}+y=0" />, is satisfied by <Katex tex="\sin(x)" /> and <Katex tex="\cos(x)" />, but the extra factor of <Katex tex="x" /> leaves the <Katex tex="2\cos(x)" /> behind. B gives <Katex tex="x\bigl(2\cos(x)-x\sin(x)\bigr)+x\sin(x)" />, which is not zero. C and D have the wrong right-hand side; D, the most common wrong answer, has the right size but the wrong sign — the first <Katex tex="\cos(x)" /> comes from differentiating <Katex tex="\sin(x)" />, the second from <Katex tex="\tfrac{d}{dx}(x)\cdot\cos(x)" />; both are <Katex tex="+\cos(x)" />, so the total is <Katex tex="+2\cos(x)" />, not <Katex tex="-2\cos(x)" />.</>,
   },
 ]
 

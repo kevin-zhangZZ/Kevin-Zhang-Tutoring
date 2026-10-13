@@ -16,11 +16,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="1+i\sqrt3 = 2\,\mathrm{cis}\!\left(\tfrac\pi3\right)" />,
-    reason: <>Modulus <Katex tex="\sqrt{1+3}=2" />, argument <Katex tex="\arctan\!\left(\sqrt3\right)=\tfrac\pi3" /> (first quadrant).</>,
+    reason: <>A fifth power wants polar form. Modulus <Katex tex="\sqrt{1+3}=2" />, argument <Katex tex="\arctan\!\left(\sqrt3\right)=\tfrac\pi3" /> (first quadrant).</>,
   },
   {
     working: <Katex display tex="1+i = \sqrt2\,\mathrm{cis}\!\left(\tfrac\pi4\right)" />,
-    reason: <>Modulus <Katex tex="\sqrt2" />, argument <Katex tex="\tfrac\pi4" />.</>,
+    reason: <>Modulus <Katex tex="\sqrt{1+1}=\sqrt2" />, argument <Katex tex="\arctan(1)=\tfrac\pi4" />.</>,
   },
   {
     working: <Katex display tex="z = \frac{2\,\mathrm{cis}\!\left(\tfrac\pi3\right)}{\sqrt2\,\mathrm{cis}\!\left(\tfrac\pi4\right)} = \sqrt2\,\mathrm{cis}\!\left(\tfrac\pi3-\tfrac\pi4\right)" />,
@@ -31,12 +31,24 @@ const ROWS: WorkingRow[] = [
     reason: <>So <Katex tex="z=\sqrt2\,\mathrm{cis}\!\left(\tfrac\pi{12}\right)" />.</>,
   },
   {
-    working: <Katex display tex="z^5 = \left(\sqrt2\right)^5\mathrm{cis}\!\left(\tfrac{5\pi}{12}\right)" />,
+    working: (
+      <>
+        <Katex display tex="z^5 = \left(\sqrt2\right)^5\mathrm{cis}\!\left(5\times\tfrac{\pi}{12}\right)" />
+        <Katex display tex="\left(\sqrt2\right)^5 = \left(\sqrt2\right)^4\sqrt2 = 4\sqrt2" />
+      </>
+    ),
     reason: <>De Moivre: raise the modulus to the power, multiply the argument by it.</>,
   },
   {
     working: <Katex display tex="\boxed{\left|z^5\right| = 4\sqrt2,\quad \mathrm{Arg}\!\left(z^5\right) = \tfrac{5\pi}{12}}" />,
-    reason: <>Matches option <b>B</b>, since <Katex tex="\left(\sqrt2\right)^5=4\sqrt2" />. The argument <Katex tex="\tfrac{5\pi}{12}" /> is already in <Katex tex="(-\pi,\pi]" />, so no adjustment is needed.</>,
+    reason: <>Matches option <b>B</b>; <Katex tex="\tfrac{5\pi}{12}" /> is already in <Katex tex="(-\pi,\pi]" />, so no adjustment is needed.</>,
+    more: <>
+      <b>D</b> (7%) has the right argument but the wrong modulus: <Katex tex="2\sqrt2" /> is <Katex tex="\left(\sqrt2\right)^3" />, not <Katex tex="\left(\sqrt2\right)^5" />.{' '}
+      <b>C</b> (7%) and <b>E</b> (3%) have the right modulus but the wrong argument, and each takes two slips.{' '}
+      <Katex tex="\tfrac{7\pi}{12}=\tfrac\pi3+\tfrac\pi4" /> is the argument of <Katex tex="z" /> if you add the arguments when dividing;{' '}
+      <Katex tex="-\tfrac\pi{12}=\tfrac\pi4-\tfrac\pi3" /> is the argument of <Katex tex="z" /> with the subtraction the wrong way round. Both then also forget to multiply by <Katex tex="5" /> for <Katex tex="z^5" />.{' '}
+      <b>A</b> is wrong on both counts.
+    </>,
   },
 ]
 
@@ -51,8 +63,7 @@ export default function SpecialistQ5_2015() {
       }
       background={
         <p>
-          Anything raised to a power in this subject wants polar form. Convert numerator and
-          denominator separately, divide, and only then apply De Moivre — expanding{' '}
+          Convert numerator and denominator to polar form separately, divide, and only then apply De Moivre — expanding{' '}
           <Katex tex="(1+i\sqrt3)^5" /> in cartesian form is a much longer road to the same
           place.
         </p>

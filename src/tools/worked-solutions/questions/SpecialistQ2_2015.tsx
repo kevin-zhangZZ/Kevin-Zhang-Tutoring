@@ -4,7 +4,6 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
-import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -17,31 +16,63 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="-1 \le \tfrac x2-1 \le 1" />,
-    reason: <>Find the domain first — <Katex tex="\arcsin" /> only accepts inputs in <Katex tex="[-1,1]" />, and the domain is what the endpoints of the range come from.</>,
+    reason: <><Katex tex="\arcsin" /> only accepts inputs in <Katex tex="[-1,1]" />, so this inequality gives the implied domain.</>,
   },
   {
     working: <Katex display tex="0 \le x \le 4" />,
-    reason: <>Adding 1 and doubling. Option D, <Katex tex="[0,4]" />, is this domain offered back as a range.</>,
+    reason: <>Add 1 to each part, then multiply by 2.</>,
   },
   {
-    working: <Cas fn="fMin">fMin((2-x)·sin⁻¹(x/2 - 1), x) | 0≤x≤4</Cas>,
-    reason: <>Graphing the rule over <Katex tex="[0,4]" /> is the fastest route, as the report notes.</>,
+    working: (
+      <>
+        <Katex display tex="\text{Graph } y=(2-x)\arcsin\!\left(\tfrac x2-1\right),\ 0\le x\le4" />
+        <Katex display tex="\text{lowest at } x=0,\,4;\ \text{highest at } x=2" />
+      </>
+    ),
+    reason: <>As the report suggests, graph it on CAS: it rises from the left endpoint to a peak at <Katex tex="x=2" />, then falls back. The next rows find these values exactly.</>,
   },
   {
     working: <Katex display tex="f(0) = 2\arcsin(-1) = 2\times\left(-\tfrac\pi2\right) = -\pi" />,
-    reason: <>The left endpoint. Both factors are at their extremes here.</>,
+    reason: <>The left endpoint: <Katex tex="2-x" /> is at its largest and <Katex tex="\arcsin" /> at its most negative.</>,
   },
   {
     working: <Katex display tex="f(4) = (-2)\arcsin(1) = -2\times\tfrac\pi2 = -\pi" />,
-    reason: <>The right endpoint gives the same value — the graph is symmetric about <Katex tex="x=2" />.</>,
+    reason: <>The right endpoint: now <Katex tex="2-x" /> is at its most negative and <Katex tex="\arcsin" /> at its largest, so the product is <Katex tex="-\pi" /> again.</>,
+    more: (
+      <>
+        Both endpoints agree because the graph is symmetric about <Katex tex="x=2" />. Check, using <Katex tex="\arcsin(-u)=-\arcsin(u)" />:{' '}
+        <Katex tex="f(4-x)=(x-2)\arcsin\!\left(1-\tfrac x2\right)=(2-x)\arcsin\!\left(\tfrac x2-1\right)=f(x)" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="f(2) = 0\times\arcsin(0) = 0" />,
-    reason: <>And in between the two factors always have opposite signs — for <Katex tex="x<2" />, <Katex tex="2-x>0" /> while <Katex tex="\arcsin\left(\tfrac x2-1\right)<0" />, and vice versa — so <Katex tex="f(x)\le0" /> throughout, with <Katex tex="0" /> reached only at <Katex tex="x=2" />.</>,
+    reason: <>The maximum: the two factors always have opposite signs, so <Katex tex="f(x)\le0" />, with <Katex tex="0" /> reached only at <Katex tex="x=2" />.</>,
+    more: (
+      <>
+        For <Katex tex="x<2" />, <Katex tex="2-x>0" /> while{' '}
+        <Katex tex="\arcsin\left(\tfrac x2-1\right)<0" />; for <Katex tex="x>2" /> both signs
+        flip. To see that nothing goes below <Katex tex="-\pi" />, put{' '}
+        <Katex tex="u=\tfrac x2-1\in[-1,1]" />, so <Katex tex="2-x=-2u" /> and{' '}
+        <Katex tex="f=-2u\arcsin(u)=-2\,|u|\,|\arcsin(u)|\ge-2\times1\times\tfrac\pi2=-\pi" />.
+        Since <Katex tex="f" /> is continuous, it takes every value from <Katex tex="-\pi" /> to{' '}
+        <Katex tex="0" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{[-\pi,\ 0]}" />,
-    reason: <>Matches option <b>A</b>. Option B is the range of <Katex tex="\arcsin" /> on its own, and option C is not a set of numbers at all — its endpoints still contain <Katex tex="x" />.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: (
+      <>
+        Option <b>B</b> is the range of <Katex tex="\arcsin" /> on its own, ignoring the factor{' '}
+        <Katex tex="2-x" />. Option <b>C</b> (19%) multiplies that range by{' '}
+        <Katex tex="2-x" />, but its endpoints still contain <Katex tex="x" />, so it is not a
+        set of numbers at all. Option <b>D</b> is the domain <Katex tex="[0,4]" /> offered back
+        as a range. Option <b>E</b> has the right size but the wrong sign: <Katex tex="f" /> is
+        never positive.
+      </>
+    ),
   },
 ]
 

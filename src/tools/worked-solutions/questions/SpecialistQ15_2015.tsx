@@ -16,15 +16,16 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{resolute of }\underset{\sim}{F}\text{ along }\underset{\sim}{w} = \left(\underset{\sim}{F}\cdot\hat{\underset{\sim}{w}}\right)\hat{\underset{\sim}{w}}" />,
-    reason: <>The standard formula. The two copies of the <em>unit</em> vector are what most of the wrong options get wrong.</>,
+    reason: <>"Component in the direction of" asks for the vector resolute: the scalar resolute <Katex tex="\underset{\sim}{F}\cdot\hat{\underset{\sim}{w}}" /> times the unit vector <Katex tex="\hat{\underset{\sim}{w}}" />.</>,
+    more: <>The unit vector appears <em>twice</em> — once to find the length of the projection, once to give it a direction. That is the examiner's one-line comment. Dropping one copy gives E (the most common wrong answer), and dropping both gives D. Equivalently, the vector resolute is <Katex tex="\dfrac{\underset{\sim}{F}\cdot\underset{\sim}{w}}{\underset{\sim}{w}\cdot\underset{\sim}{w}}\,\underset{\sim}{w}" />, which here gives <Katex tex="\tfrac{a+b}{2}\,\underset{\sim}{w}" /> straight away.</>,
   },
   {
     working: <Katex display tex="\left|\underset{\sim}{w}\right| = \sqrt{1^2+1^2} = \sqrt2 \implies \hat{\underset{\sim}{w}} = \frac{\underset{\sim}{w}}{\sqrt2}" />,
-    reason: <>Normalising <Katex tex="\underset{\sim}{w}=\underset{\sim}{i}+\underset{\sim}{j}" />.</>,
+    reason: <>Divide <Katex tex="\underset{\sim}{w}=\underset{\sim}{i}+\underset{\sim}{j}" /> by its length to get the unit vector.</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{F}\cdot\hat{\underset{\sim}{w}} = \frac{(a)(1)+(b)(1)}{\sqrt2} = \frac{a+b}{\sqrt2}" />,
-    reason: <>The scalar resolute — a <em>number</em>, not yet a vector.</>,
+    reason: <>Dot product: multiply matching components and add. This scalar resolute is a <em>number</em>, not yet a vector.</>,
   },
   {
     working: <Katex display tex="\left(\underset{\sim}{F}\cdot\hat{\underset{\sim}{w}}\right)\hat{\underset{\sim}{w}} = \frac{a+b}{\sqrt2}\times\frac{\underset{\sim}{w}}{\sqrt2}" />,
@@ -32,7 +33,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left(\frac{a+b}{2}\right)\underset{\sim}{w}}" />,
-    reason: <>Matches option <b>A</b>, since <Katex tex="\sqrt2\times\sqrt2=2" />. Dividing by <Katex tex="\sqrt2" /> only once gives option E, which 29% of students chose.</>,
+    reason: <>Matches option <b>A</b>, since <Katex tex="\sqrt2\times\sqrt2=2" />.</>,
+    more: <>Where the others come from: E, chosen by 29% of students, multiplies the scalar resolute <Katex tex="\tfrac{a+b}{\sqrt2}" /> by <Katex tex="\underset{\sim}{w}" /> instead of by <Katex tex="\hat{\underset{\sim}{w}}" />, so it divides by <Katex tex="\sqrt2" /> only once. D, <Katex tex="(a+b)\,\underset{\sim}{w}" />, is <Katex tex="(\underset{\sim}{F}\cdot\underset{\sim}{w})\,\underset{\sim}{w}" />, with no unit vector at all. B and C are multiples of <Katex tex="\underset{\sim}{F}" />, so in general they point along <Katex tex="\underset{\sim}{F}" />, not along <Katex tex="\underset{\sim}{w}" />.</>,
   },
 ]
 

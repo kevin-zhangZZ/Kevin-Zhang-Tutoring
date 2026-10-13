@@ -3,9 +3,17 @@
 // velocity perpendicular to acceleration, speed, and a distance to a fixed point. Question
 // text transcribed from the original paper (no diagram given). Answers checked with sympy
 // and against the VCAA examination report. Solution is original.
+// Interactives (Detailed only) on the parts under 40% full marks: a.ii (plan and side views of the
+// elevation triangle, with the report's 'directly above take-off' error) and d (the squared i, j, k
+// pieces of the speed, with the 'leave out k' error).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats, DetailOnly } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+import { Cas } from '../CasRef'
+
+const ElevationWidget = lazyWidget(() => import('../interactives/spec-2015e2-q4aii-elevation'))
+const SpeedWidget = lazyWidget(() => import('../interactives/spec-2015e2-q4d-speed'))
 
 const EXAM_AI: SAExaminerStats = {
   marks: [13, 87],
@@ -96,34 +104,38 @@ const EXAM_E: SAExaminerStats = {
 const ROWS_AI: WorkingRow[] = [
   {
     working: <Katex display tex="\text{altitude} = \tfrac{2t}5" />,
-    reason: <>Altitude is the <Katex tex="\underset{\sim}{k} " /> component alone — <Katex tex="\underset{\sim}{k}" /> is the vertical unit vector.</>,
+    reason: <>Altitude is the <Katex tex="\underset{\sim}{k}" /> component alone — <Katex tex="\underset{\sim}{k}" /> is the vertical unit vector.</>,
   },
   {
     working: <Katex display tex="\tfrac{2t}5 = 60 \implies t = 150" />,
-    reason: <>Solving <Katex tex="\left|\underset{\sim}{r}(t)\right|=60" /> instead would answer a different question — the distance from the origin, not the height.</>,
+    reason: <>Set the height equal to 60 and solve.</>,
+    more: <>The report notes a number of students solved <Katex tex="\underset{\sim}{r}(t)=60" /> (in effect <Katex tex="\left|\underset{\sim}{r}(t)\right|=60" />). That answers a different question: when the helicopter is 60 m from the origin, not when it is 60 m above the ground.</>,
   },
 ]
 
 const ROWS_AII: WorkingRow[] = [
   {
     working: <Katex display tex="t=150:\quad \tfrac{\pi t}{30} = 5\pi" />,
-    reason: <>Evaluate the trigonometric argument first — <Katex tex="5\pi" /> is an odd multiple of <Katex tex="\pi" />, so the values are exact.</>,
+    reason: <>Altitude 60 m is reached at <Katex tex="t=150" /> (part a.i). Evaluate the angle <Katex tex="\tfrac{\pi t}{30}" /> first.</>,
   },
   {
     working: <Katex display tex="\cos(5\pi) = -1, \qquad \sin(5\pi) = 0" />,
-    reason: <>Radians.</>,
+    reason: <><Katex tex="5\pi" /> is the angle <Katex tex="\pi" /> plus two full turns, so these are exact (radians, not degrees).</>,
   },
   {
     working: <Katex display tex="\underset{\sim}{r}(150) = 25\underset{\sim}{i}+50\underset{\sim}{j}+60\underset{\sim}{k}" />,
-    reason: <><Katex tex="50+25(-1)=25" /> and <Katex tex="50+25(0)=50" />. The helicopter is <em>not</em> above where it started — that assumption is the report's headline error.</>,
+    reason: <><Katex tex="50+25(-1)=25" /> and <Katex tex="50+25(0)=50" />. The helicopter is over <Katex tex="(25,50)" />, <em>not</em> over its take-off point <Katex tex="\underset{\sim}{r}(0)" />: <Katex tex="(75,50)" />.</>,
+    more: <>The report's common error was to assume the helicopter, at 60 m, was directly above its initial location. It circles as it climbs: 150 seconds is two and a half circuits of 60 seconds (part b), so it is on the opposite side of the circle from <Katex tex="(75,50)" />. Assuming <Katex tex="(75,50)" /> gives a horizontal distance <Katex tex="\sqrt{75^2+50^2}\approx 90.14" /> and an angle of about <Katex tex="34^\circ" />.</>,
   },
   {
-    working: <Katex display tex="\text{horizontal distance} = \sqrt{25^2+50^2} = \sqrt{3125} = 55.90\ldots" />,
-    reason: <>The angle of elevation from <Katex tex="O" /> is measured in the vertical plane through <Katex tex="O" /> and the helicopter, so the adjacent side is the horizontal distance.</>,
+    working: <Katex display tex="\begin{aligned}\text{horizontal distance} &= \sqrt{25^2+50^2} \\ &= \sqrt{3125} = 55.90\ldots\end{aligned}" />,
+    reason: <>Elevation is measured from the horizontal, so we need the ground distance from <Katex tex="O" />: Pythagoras on the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components.</>,
+    more: <>Picture the vertical plane through <Katex tex="O" /> and the helicopter: a right-angled triangle with the ground line (55.90 m) along the bottom, the altitude (60 m) as the vertical side, and the elevation as the angle at <Katex tex="O" />. The report notes some students found angles made with the <Katex tex="\underset{\sim}{i}" /> or <Katex tex="\underset{\sim}{j}" /> directions, or used the velocity vector. Neither is the elevation: it depends only on <em>where</em> the helicopter is, measured up from the horizontal.</>,
   },
   {
-    working: <Katex display tex="\tan(\text{elevation}) = \frac{60}{55.90\ldots} \implies \text{elevation} = 47.02\ldots^\circ" />,
-    reason: <>Opposite over adjacent. Taking <Katex tex="\arctan" /> the other way up gives <Katex tex="43^\circ" />, the angle with the vertical.</>,
+    working: <Katex display tex="\begin{aligned}\tan(\text{elevation}) &= \frac{60}{55.90\ldots} \\ \implies \text{elevation} &= 47.02\ldots^\circ\end{aligned}" />,
+    reason: <>Opposite (the altitude) over adjacent (the horizontal distance).</>,
+    more: <>Check: the altitude 60 is a little more than the ground distance 55.90, so the angle should be a little more than <Katex tex="45^\circ" />. Taking <Katex tex="\tan^{-1}\!\left(\tfrac{55.90}{60}\right)" /> instead gives <Katex tex="43^\circ" />, the angle with the vertical: the complementary angle the report says a number of students found.</>,
   },
   {
     working: <Katex display tex="\boxed{47^\circ}" />,
@@ -133,58 +145,67 @@ const ROWS_AII: WorkingRow[] = [
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="\text{horizontal position} = \left(50+25\cos\!\left(\tfrac{\pi t}{30}\right),\ 50+25\sin\!\left(\tfrac{\pi t}{30}\right)\right)" />,
-    reason: <>A circle of radius 25 about <Katex tex="(50,50)" />, traced once per period. "Directly above the point of take-off" means the horizontal position has returned to where it began.</>,
+    working: <Katex display tex="\begin{aligned}x &= 50+25\cos\!\left(\tfrac{\pi t}{30}\right) \\ y &= 50+25\sin\!\left(\tfrac{\pi t}{30}\right)\end{aligned}" />,
+    reason: <>The horizontal position <Katex tex="(x,y)" /> is the <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components. "Directly above the point of take-off" means these are back at their <Katex tex="t=0" /> values, <Katex tex="(75,50)" />.</>,
+    more: <>Only the horizontal components matter: the <Katex tex="\underset{\sim}{k}" /> component keeps growing, so the helicopter is never back <em>at</em> the take-off point, only above it. In plan view it moves round a circle of radius 25 about <Katex tex="(50,50)" />, starting at <Katex tex="(75,50)" />.</>,
   },
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{\pi/30} = 60" />,
-    reason: <>Both components share the same period, so one full circuit brings the helicopter back over its launch point.</>,
+    reason: <><Katex tex="\cos(nt)" /> and <Katex tex="\sin(nt)" /> have period <Katex tex="\tfrac{2\pi}{n}" />; here <Katex tex="n=\tfrac{\pi}{30}" />. After one period both components are back where they started.</>,
+    more: <>The report notes most students didn't realise the period of the horizontal motion was required. Check: at <Katex tex="t=60" />, <Katex tex="\tfrac{\pi t}{30}=2\pi" />, so the position is <Katex tex="(50+25,\ 50+0)=(75,50)" />, and <Katex tex="\cos=1" /> with <Katex tex="\sin=0" /> happens nowhere earlier for <Katex tex="t>0" />.</>,
   },
   {
     working: <Katex display tex="\boxed{60\ \text{seconds}}" />,
-    reason: <>"First" — so one period, not two. Nothing longer is needed; the report notes many students wrote far more than this.</>,
+    reason: <>"First" — the earliest positive time, which is one period.</>,
+    more: <>The report notes many students gave lengthy answers, which was not necessary: for 1 mark, the period is enough.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}(t) = -\tfrac{5\pi}6\sin\!\left(\tfrac{\pi t}{30}\right)\underset{\sim}{i}+\tfrac{5\pi}6\cos\!\left(\tfrac{\pi t}{30}\right)\underset{\sim}{j}+\tfrac25\underset{\sim}{k}" />,
-    reason: <>Differentiating componentwise; the chain rule brings out <Katex tex="25\times\tfrac\pi{30}=\tfrac{5\pi}6" />. Keep the <Katex tex="\underset{\sim}{k}" /> component — dropping it is the report's common error.</>,
+    reason: <>Differentiate each component; the chain rule brings out <Katex tex="25\times\tfrac\pi{30}=\tfrac{5\pi}6" />. The <Katex tex="\underset{\sim}{k}" /> component <Katex tex="\tfrac{2t}5" /> gives <Katex tex="\tfrac25" />.</>,
+    more: <>The report notes a significant number omitted the <Katex tex="\underset{\sim}{k}" /> component from the velocity, and that <Katex tex="\underset{\sim}{i}" />, <Katex tex="\underset{\sim}{j}" /> or <Katex tex="\underset{\sim}{k}" /> were often dropped mid-working: write every component with its unit vector on every line. Keep <Katex tex="t" /> as the variable (some students switched to <Katex tex="x" />), and if you use CAS, check it is in radian mode: in degree mode it treats <Katex tex="\tfrac{\pi t}{30}" /> as degrees and the derivative picks up an extra factor <Katex tex="\tfrac{\pi}{180}" />. In radian mode, <Cas fn="derivative">d/dt(50+25·cos(π·t/30))</Cas> gives the <Katex tex="\underset{\sim}{i}" /> component above.</>,
   },
   {
     working: <Katex display tex="\ddot{\underset{\sim}{r}}(t) = -\tfrac{\pi^2}{36}\cos\!\left(\tfrac{\pi t}{30}\right)\underset{\sim}{i}-\tfrac{\pi^2}{36}\sin\!\left(\tfrac{\pi t}{30}\right)\underset{\sim}{j}" />,
-    reason: <>Differentiating again; <Katex tex="\tfrac{5\pi}6\times\tfrac\pi{30}=\tfrac{\pi^2}{36}" />. The constant vertical velocity differentiates to zero, so there is no <Katex tex="\underset{\sim}{k}" /> component.</>,
+    reason: <>Differentiate again; <Katex tex="\tfrac{5\pi}6\times\tfrac\pi{30}=\tfrac{\pi^2}{36}" />. The constant <Katex tex="\tfrac25" /> differentiates to zero, so there is no <Katex tex="\underset{\sim}{k}" /> component.</>,
   },
   {
-    working: <Katex display tex="\dot{\underset{\sim}{r}}\cdot\ddot{\underset{\sim}{r}} = \tfrac{5\pi^3}{216}\sin\!\left(\tfrac{\pi t}{30}\right)\cos\!\left(\tfrac{\pi t}{30}\right) - \tfrac{5\pi^3}{216}\cos\!\left(\tfrac{\pi t}{30}\right)\sin\!\left(\tfrac{\pi t}{30}\right)" />,
-    reason: <>Componentwise products. The <Katex tex="\underset{\sim}{k}" /> terms contribute nothing because the acceleration has none.</>,
+    working: <Katex display tex="\begin{aligned}\dot{\underset{\sim}{r}}\cdot\ddot{\underset{\sim}{r}} &= \tfrac{5\pi^3}{216}\sin\!\left(\tfrac{\pi t}{30}\right)\cos\!\left(\tfrac{\pi t}{30}\right) \\ &\quad - \tfrac{5\pi^3}{216}\cos\!\left(\tfrac{\pi t}{30}\right)\sin\!\left(\tfrac{\pi t}{30}\right) + \tfrac25(0)\end{aligned}" />,
+    reason: <>Multiply matching components and add. Each product has <Katex tex="\tfrac{5\pi}6\times\tfrac{\pi^2}{36}=\tfrac{5\pi^3}{216}" />; the <Katex tex="\underset{\sim}{k}" /> product is zero.</>,
+    more: <>The signs: the <Katex tex="\underset{\sim}{i}" /> product is <Katex tex="\left(-\tfrac{5\pi}6\sin\right)\left(-\tfrac{\pi^2}{36}\cos\right)" />, two negatives, so positive; the <Katex tex="\underset{\sim}{j}" /> product is <Katex tex="\left(\tfrac{5\pi}6\cos\right)\left(-\tfrac{\pi^2}{36}\sin\right)" />, so negative.</>,
   },
   {
     working: <Katex display tex="= 0" />,
-    reason: <>The two terms are identical and opposite in sign. Write the scalar product out in full — the report singles out students who simply asserted it was zero.</>,
+    reason: <>The two terms are equal and opposite, so they cancel for every <Katex tex="t" />.</>,
+    more: <>The report singles out students who simply asserted that the scalar product was zero, without setting it out. The line above is the setting out that earns the marks in a "show that".</>,
   },
   {
     working: <Katex display tex="\therefore\ \dot{\underset{\sim}{r}}\perp\ddot{\underset{\sim}{r}} \text{ for all } t" />,
-    reason: <>Neither vector is ever the zero vector, so a zero scalar product means the velocity is perpendicular to the acceleration, as required. (Geometrically: the speed is constant, so the acceleration can only turn the velocity, never lengthen it.)</>,
+    reason: <>Neither vector is ever zero (the velocity always has <Katex tex="\underset{\sim}{k}" /> component <Katex tex="\tfrac25" />; the acceleration has magnitude <Katex tex="\tfrac{\pi^2}{36}" />), so they are perpendicular. As required.</>,
+    more: <>Geometrically: the speed is constant (part d), so the acceleration can only turn the velocity, never lengthen it, and a push that only turns is at right angles to the motion.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="\left|\dot{\underset{\sim}{r}}(t)\right| = \sqrt{\left(\tfrac{5\pi}6\right)^2\sin^2\!\left(\tfrac{\pi t}{30}\right)+\left(\tfrac{5\pi}6\right)^2\cos^2\!\left(\tfrac{\pi t}{30}\right)+\left(\tfrac25\right)^2}" />,
-    reason: <>Speed is the magnitude of the velocity, all three components included.</>,
+    working: <Katex display tex="\begin{aligned}\left|\dot{\underset{\sim}{r}}(t)\right|^2 = {}&\left(\tfrac{5\pi}6\right)^2\sin^2\!\left(\tfrac{\pi t}{30}\right) \\ &+\left(\tfrac{5\pi}6\right)^2\cos^2\!\left(\tfrac{\pi t}{30}\right)+\left(\tfrac25\right)^2\end{aligned}" />,
+    reason: <>Speed is the magnitude of the velocity from part c: square all three components, <Katex tex="\underset{\sim}{k}" /> included, and add. Squaring removes the minus sign on the <Katex tex="\underset{\sim}{i}" /> component.</>,
   },
   {
-    working: <Katex display tex="= \sqrt{\left(\tfrac{5\pi}6\right)^2\left(\sin^2+\cos^2\right)+\tfrac4{25}} = \sqrt{\tfrac{25\pi^2}{36}+\tfrac4{25}}" />,
-    reason: <>The Pythagorean identity collapses the first two terms, and the <Katex tex="t" /> disappears — the speed is constant.</>,
+    working: <Katex display tex="\begin{aligned}\left|\dot{\underset{\sim}{r}}(t)\right| &= \sqrt{\left(\tfrac{5\pi}6\right)^2\left(\sin^2+\cos^2\right)+\tfrac4{25}} \\ &= \sqrt{\tfrac{25\pi^2}{36}+\tfrac4{25}}\end{aligned}" />,
+    reason: <>Factor out <Katex tex="\left(\tfrac{5\pi}6\right)^2" />; <Katex tex="\sin^2\theta+\cos^2\theta=1" /> removes <Katex tex="t" />, so the speed is constant. Then take the square root.</>,
+    more: <>The report notes some students could not simplify the first two terms using the Pythagorean identity. It applies to any angle, here <Katex tex="\theta=\tfrac{\pi t}{30}" />. A constant speed makes sense: the helicopter goes round its circle at a steady rate while climbing at a steady <Katex tex="\tfrac25" /> m/s.</>,
   },
   {
     working: <Katex display tex="= \sqrt{6.8538\ldots+0.16} = 2.6483\ldots" />,
-    reason: <>Evaluating.</>,
+    reason: <><Katex tex="\tfrac{25\pi^2}{36}=6.8538\ldots" /> and <Katex tex="\tfrac4{25}=0.16" />.</>,
   },
   {
     working: <Katex display tex="\boxed{2.65\ \text{ms}^{-1}}" />,
-    reason: <>To two decimal places. Omitting the <Katex tex="\underset{\sim}{k}" /> component gives <Katex tex="2.62" />.</>,
+    reason: <>To two decimal places.</>,
+    more: <>Leaving out the <Katex tex="\underset{\sim}{k}" /> component was the report's common error: it gives <Katex tex="\sqrt{\tfrac{25\pi^2}{36}}=\tfrac{5\pi}6\approx 2.62" />. The climb adds only 0.16 under the square root, but at two decimal places that is enough to change the answer.</>,
   },
 ]
 
@@ -196,22 +217,25 @@ const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{r}(45) = 50\underset{\sim}{i}+25\underset{\sim}{j}+18\underset{\sim}{k}" />,
     reason: <><Katex tex="50+25(0)=50" />, <Katex tex="50+25(-1)=25" />, and <Katex tex="\tfrac{2(45)}5=18" />.</>,
+    more: <>The report notes frequent errors in finding <Katex tex="\underset{\sim}{r}(45)" />. A geometric check: 45 seconds is three-quarters of the 60-second circuit, and the helicopter goes anticlockwise (east of the centre, then north, west, south), starting at <Katex tex="(75,50)" />, so it is now due south of the centre <Katex tex="(50,50)" />: at <Katex tex="(50,25)" />.</>,
   },
   {
-    working: <Katex display tex="\underset{\sim}{r}(45)-\underset{\sim}{r}_{\text{tree}} = (50-60)\underset{\sim}{i}+(25-40)\underset{\sim}{j}+(18-8)\underset{\sim}{k}" />,
-    reason: <>Subtract the <em>vectors</em>, then take the magnitude — not the difference of the two magnitudes, which is the report's common error.</>,
+    working: <Katex display tex="\begin{aligned}\underset{\sim}{r}(45)-\underset{\sim}{r}_{\text{tree}} = {}&(50-60)\underset{\sim}{i}+(25-40)\underset{\sim}{j} \\ &+(18-8)\underset{\sim}{k}\end{aligned}" />,
+    reason: <>The distance between two points is the magnitude of the <em>difference</em> of their position vectors.</>,
+    more: <>The report notes many students used <Katex tex="\left|\underset{\sim}{r}(45)\right|-\left|\underset{\sim}{r}_{\text{tree}}\right|" /> instead. That is the difference of their distances from <Katex tex="O" />, which is not the distance between them: here it is <Katex tex="\sqrt{3449}-\sqrt{5264}\approx 58.73-72.55" />, not even positive.</>,
   },
   {
     working: <Katex display tex="= -10\underset{\sim}{i}-15\underset{\sim}{j}+10\underset{\sim}{k}" />,
     reason: <>The displacement from the treetop to the helicopter.</>,
   },
   {
-    working: <Katex display tex="\left|\cdot\right| = \sqrt{100+225+100} = \sqrt{425} = 5\sqrt{17}" />,
-    reason: <>The exact distance.</>,
+    working: <Katex display tex="\begin{aligned}\text{distance} &= \sqrt{(-10)^2+(-15)^2+10^2} \\ &= \sqrt{425} = 5\sqrt{17}\end{aligned}" />,
+    reason: <>The magnitude of that displacement.</>,
   },
   {
-    working: <Katex display tex="\boxed{20.6\ \text{metres}}" />,
-    reason: <>The question asks for one decimal place, so the exact surd on its own does not answer it.</>,
+    working: <Katex display tex="5\sqrt{17} = 20.615\ldots \approx \boxed{20.6\ \text{metres}}" />,
+    reason: <>To one decimal place, as the question asks.</>,
+    more: <>The report notes the exact value <Katex tex="5\sqrt{17}" /> was occasionally given instead of an answer correct to one decimal place: the exact surd on its own does not answer the question.</>,
   },
 ]
 
@@ -228,7 +252,7 @@ export default function SpecialistQ4_2015Exam2() {
         <div>
           <Katex
             display
-            tex="\underset{\sim}{r}(t) = \left(50+25\cos\!\left(\tfrac{\pi t}{30}\right)\right)\underset{\sim}{i} + \left(50+25\sin\!\left(\tfrac{\pi t}{30}\right)\right)\underset{\sim}{j} + \tfrac{2t}{5}\underset{\sim}{k}"
+            tex="\begin{aligned}\underset{\sim}{r}(t) = {}&\left(50+25\cos\!\left(\tfrac{\pi t}{30}\right)\right)\underset{\sim}{i} \\ &+ \left(50+25\sin\!\left(\tfrac{\pi t}{30}\right)\right)\underset{\sim}{j} + \tfrac{2t}{5}\underset{\sim}{k}\end{aligned}"
           />
         </div>
         <p>
@@ -245,8 +269,8 @@ export default function SpecialistQ4_2015Exam2() {
             <p>
               The path is a helix: a circle of radius 25 about <Katex tex="(50,50)" /> in plan
               view, climbing steadily. Two facts do most of the work — the take-off point is{' '}
-              <Katex tex="(75,50,0)" />, not the origin, and the horizontal motion has period 60
-              seconds.
+              <Katex tex="\underset{\sim}{r}(0)=75\underset{\sim}{i}+50\underset{\sim}{j}" />, not the origin, and the helicopter circles as it climbs, so its
+              horizontal position keeps changing (the period is found in part b).
             </p>
           </Background>
         </div>
@@ -275,6 +299,9 @@ export default function SpecialistQ4_2015Exam2() {
         examinerReport={EXAM_AII}
       >
         <WorkingTable rows={ROWS_AII} />
+        <Explore title="At 60 m the helicopter is not above its take-off point">
+          <ElevationWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -310,6 +337,9 @@ export default function SpecialistQ4_2015Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The i and j pieces trade off, so the speed never changes">
+          <SpeedWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
