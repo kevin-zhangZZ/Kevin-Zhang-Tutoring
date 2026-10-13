@@ -206,11 +206,7 @@ function QuestionsPage({ rest }: { rest: string }) {
   useEffect(() => setSheetOpen(false), [selected?.id])
 
   function showVideo() {
-    window.dispatchEvent(new CustomEvent('ws:show-video'))
-    // Give an MCQ's tab switch a moment to render the player before scrolling to it.
-    window.setTimeout(() => {
-      detailRef.current?.querySelector('[data-video]')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }, 60)
+    detailRef.current?.querySelector('[data-video]')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
   const nav: SidebarNav | null = subject

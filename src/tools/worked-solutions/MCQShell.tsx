@@ -1,26 +1,24 @@
-// Shared shell for a standalone multiple-choice question: statement, optional diagram,
-// options, and a Worked Solution / Examiner's Report / Video Walkthrough tab set — the
-// single-question equivalent of PartCard, used by the various MCQ files under ./questions.
+// Shared shell for a standalone multiple-choice question: statement, optional diagram, options,
+// then the worked solution (and the video walkthrough, when there is one), with VCAA's
+// examiner's report on a grey shelf below — the single-question equivalent of PartCard, used by
+// the various MCQ files under ./questions.
 //
 // Once the answer is showing, each option carries a bar for the share of students who chose
 // it (from the VCAA report), so the popular wrong answer — usually the trap — reads at a
 // glance. In "Hide answers" mode (studyMode.tsx) the options start neutral and clickable;
-// choosing one marks it right or wrong, then reveals the bars, the working and the tabs.
+// choosing one marks it right or wrong, then reveals the bars, the working, the video and the report.
 
-import { useEffect, useId, useState, type ReactNode } from 'react'
-import { WorkingTable, ExaminerReport, type WorkingRow, type MCQExaminerStats, type MCQLetter } from './QuestionParts'
+import { useState, type ReactNode } from 'react'
+import { WorkingTable, ExaminerReport, Shelf, type WorkingRow, type MCQExaminerStats, type MCQLetter } from './QuestionParts'
 import VideoPlayer, { DropboxLink } from './VideoPlayer'
 import { DiagramScope } from './Lightbox'
 import { useStudyMode } from './studyMode'
-import SegmentedControl from '../../components/ui/SegmentedControl'
 
 export interface MCQOptionData {
   letter: string
   content: ReactNode
   isAnswer?: boolean
 }
-
-type Tab = 'solution' | 'report' | 'video'
 
 export function MCQShell({
   question,
@@ -40,13 +38,13 @@ export function MCQShell({
   rows: WorkingRow[]
   /**
    * Optional context to read before the working — the MCQ equivalent of a `<Background>`
-   * inside a PartCard. Renders at the top of the Worked Solution tab. Use it when the
+   * inside a PartCard. Renders at the top of the worked solution. Use it when the
    * question leans on an idea the reader may not have met, not to restate the question.
    * Detailed view only (studyMode.tsx).
    */
   background?: ReactNode
   /**
-   * Teaching material after the working, in the Worked Solution tab: an `<Explore>` interactive
+   * Teaching material after the working: an `<Explore>` interactive
    * diagram, `<WrongMethod>` boxes for the popular wrong answers (AUTHORING_GUIDE §15).
    * Detailed view only (studyMode.tsx).
    */
@@ -60,28 +58,16 @@ export function MCQShell({
    * or five, of the options as correct (or, rarely, withdraws the question entirely).
    * Pass an explanation here and it renders as an unmissable warning banner above the
    * question — before the reader even sees the options — rather than only inside the
-   * Examiner's Report tab. Mark every VCAA-accepted option with `isAnswer: true`.
+   * examiner's report. Mark every VCAA-accepted option with `isAnswer: true`.
    */
   flawed?: ReactNode
 }) {
   const { hideAnswers, detailed } = useStudyMode()
   const [picked, setPicked] = useState<string | null>(null)
-  const [tab, setTab] = useState<Tab>('solution')
   const revealed = !hideAnswers || picked !== null
-  const uid = useId()
-  const tabId = (t: Tab) => `${uid}-tab-${t}`
-  const panelId = `${uid}-panel`
-
-  const hasReportTab = !!(examinerReport && (examinerReport.comment || examinerReport.flawed))
-  const tabs: Tab[] = ['solution', ...(hasReportTab ? (['report'] as Tab[]) : []), ...(videoSrc ? (['video'] as Tab[]) : [])]
-
-  // The header's "Video" badge asks for the walkthrough; switch to its tab if there is one.
-  useEffect(() => {
-    if (!videoSrc) return
-    const onShowVideo = () => setTab('video')
-    window.addEventListener('ws:show-video', onShowVideo)
-    return () => window.removeEventListener('ws:show-video', onShowVideo)
-  }, [videoSrc])
+  // The shelf only carries VCAA's words; with no comment (or flagged-question caveat) there's
+  // nothing to put on it, since the option bars already show how students answered.
+  const hasReport = !!(examinerReport && (examinerReport.comment || examinerReport.flawed))
 
   const pct = (letter: string) => examinerReport?.percentages[letter as MCQLetter]
   const answers = options.filter(o => o.isAnswer)
@@ -170,50 +156,33 @@ export function MCQShell({
       </div>
 
       {revealed && (
-        <>
-          {tabs.length > 1 && (
-            <SegmentedControl
-              variant="tabs"
-              size="md"
-              fill
-              className="sm:inline-grid w-full sm:w-fit mb-5"
-              aria-label="Solution views"
-              value={tab}
-              onChange={setTab}
-              idFor={tabId}
-              controls={panelId}
-              options={tabs.map(t => ({
-                value: t,
-                label: TAB_LABEL[t],
-                toneClassName: t === 'video' ? 'text-violet-600 dark:text-violet-400' : undefined,
-              }))}
-            />
+        <div className="flex flex-col gap-4">
+          {detailed && background}
+          <WorkingTable rows={rows} alwaysShow />
+          {detailed && extras}
+          {videoSrc && (
+            <div data-video className="mt-1">
+              <p className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-violet-700 dark:text-violet-300 mb-2.5">
+                <svg viewBox="0 0 16 16" className="w-3 h-3 flex-none" fill="currentColor" aria-hidden="true">
+                  <path d="M5 3.2v9.6c0 .5.5.8.9.5l7-4.8a.6.6 0 000-1L5.9 2.7c-.4-.3-.9 0-.9.5z" />
+                </svg>
+                Video Walkthrough
+              </p>
+              <div className="max-w-3xl">
+                {videoIsExternal ? (
+                  <DropboxLink src={videoSrc} label="this question" />
+                ) : (
+                  <VideoPlayer src={videoSrc} label="this question" />
+                )}
+              </div>
+            </div>
           )}
-
-          <div
-            role={tabs.length > 1 ? 'tabpanel' : undefined}
-            id={tabs.length > 1 ? panelId : undefined}
-            aria-labelledby={tabs.length > 1 ? tabId(tab) : undefined}
-          >
-          {tab === 'solution' || tabs.length === 1 ? (
-            <div className="flex flex-col gap-4">
-              {detailed && background}
-              <WorkingTable rows={rows} alwaysShow hideLabel={tabs.length > 1} />
-              {detailed && extras}
-            </div>
-          ) : tab === 'report' && examinerReport ? (
-            <ExaminerReport stats={examinerReport} />
-          ) : tab === 'video' && videoSrc ? (
-            <div data-video>
-              {videoIsExternal ? (
-                <DropboxLink src={videoSrc} label="this question" />
-              ) : (
-                <VideoPlayer src={videoSrc} label="this question" />
-              )}
-            </div>
-          ) : null}
-          </div>
-        </>
+          {hasReport && examinerReport && (
+            <Shelf video={null} className="mt-2 rounded-2xl border border-gray-200 dark:border-gray-800 px-4 sm:px-5">
+              <ExaminerReport stats={examinerReport} />
+            </Shelf>
+          )}
+        </div>
       )}
     </DiagramScope>
   )
@@ -303,30 +272,4 @@ function MCQOption({
   ) : (
     <div className={base}>{inner}</div>
   )
-}
-
-// Short labels on phones, full ones from `sm`. The Video Walkthrough tab (only there when a
-// video is) gets a play icon and violet text in both states.
-const TAB_LABEL: Record<Tab, ReactNode> = {
-  solution: (
-    <>
-      <span className="sm:hidden">Solution</span>
-      <span className="hidden sm:inline">Worked Solution</span>
-    </>
-  ),
-  report: (
-    <>
-      <span className="sm:hidden">Report</span>
-      <span className="hidden sm:inline">Examiner's Report</span>
-    </>
-  ),
-  video: (
-    <>
-      <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 flex-none" aria-hidden="true">
-        <path d="M6.5 5.5v9l7-4.5-7-4.5z" />
-      </svg>
-      <span className="sm:hidden">Video</span>
-      <span className="hidden sm:inline">Video Walkthrough</span>
-    </>
-  ),
 }

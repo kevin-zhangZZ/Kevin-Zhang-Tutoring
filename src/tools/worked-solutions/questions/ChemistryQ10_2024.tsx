@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
       VCAA's report gives no reasoning for this one beyond: "As a result of psychometric
       analysis and review, all four options were accepted as correct." Unlike most flagged
       questions, VCAA didn't publish an explanation of what went wrong — the analysis in the
-      Worked Solution tab is this site's own attempt to reconstruct why both statements turned
+      worked solution is this site's own attempt to reconstruct why both statements turned
       out to be genuinely arguable, clearly marked as independent reasoning rather than VCAA's
       own words.
     </>
@@ -63,7 +63,7 @@ export default function ChemistryQ10_2024() {
           VCAA's report gives no explanation beyond "as a result of psychometric analysis and
           review, all four options were accepted as correct" — an unusually bare statement even
           among flagged questions. All four options are marked below since VCAA accepted every
-          one. The Worked Solution tab below is this site's own reconstruction of where the
+          one. The worked solution below is this site's own reconstruction of where the
           ambiguity likely came from, clearly separate from anything VCAA actually published.
         </p>
       }

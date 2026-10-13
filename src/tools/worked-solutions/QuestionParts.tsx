@@ -227,7 +227,7 @@ function Video({ src, external, label }: { src: string; external?: boolean; labe
 // separates the two without any labels needing to shout. Report on the left and video on the
 // right when the card is wide enough; stacked otherwise. `className` sets the negative margins
 // that take the shelf out to its card's edges.
-function Shelf({ video, className, children }: { video: ReactNode; className: string; children: ReactNode }) {
+export function Shelf({ video, className, children }: { video: ReactNode; className: string; children: ReactNode }) {
   return (
     <div className={`border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/40 py-4 sm:pb-5 ${className}`}>
       {/* The container query lives on this unpainted box: containment on the painted one above
@@ -412,12 +412,44 @@ const MARK_SHADES = [
 ]
 const markShade = (m: number, max: number) => MARK_SHADES[max === 0 ? 0 : Math.round((m / max) * (MARK_SHADES.length - 1))]
 
-// The MCQ's Examiner's Report tab. The %A–E distribution itself is drawn as bars on the
-// options (see MCQShell), so this carries what the bars can't: the flagged-question caveat,
-// the examiner's written comment and the no-answer rate.
+// The MCQ's examiner's report, on the grey shelf under the worked solution (MCQShell): one grey
+// bar split by option, sized by the share who chose each with the accepted answer(s) darkest (the
+// short-answer marks bar's style), then the flagged-question caveat and VCAA's comment.
 export function ExaminerReport({ stats }: { stats: MCQExaminerStats }) {
+  const accepted = new Set<string>(Array.isArray(stats.answer) ? stats.answer : [stats.answer])
+  const split: [string, number][] = Object.entries(stats.percentages).sort(([a], [b]) => a.localeCompare(b))
+  if (split.length > 0 && stats.noAnswer) split.push(['Blank', stats.noAnswer])
+  const last = split.length - 1
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2.5">
+      <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400">Examiner's Report</p>
+      {split.length > 0 && (
+        <div
+          className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex gap-px px-4 py-3"
+          role="img"
+          aria-label={split.map(([l, p]) => `${p}% ${l === 'Blank' ? 'left it blank' : `chose ${l}`}`).join(', ')}
+        >
+          {split.map(([l, p], i) => {
+            const right = accepted.has(l)
+            return (
+              // Sized by share, with a floor so a 2% section still has room for its label.
+              <div key={l} className="flex flex-col gap-1" style={{ flex: `${Math.max(p, 0.01)} 1 0`, minWidth: 34 }}>
+                <span className={`text-[11px] font-semibold text-center whitespace-nowrap ${right ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {l}
+                  {right ? ' ✓' : ''}
+                </span>
+                <span
+                  className={`h-5 flex items-center justify-center text-[10.5px] font-semibold tabular-nums whitespace-nowrap ${
+                    right ? 'bg-gray-600 text-white dark:bg-gray-300 dark:text-gray-900' : 'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
+                  } ${i === 0 ? 'rounded-l-md' : ''} ${i === last ? 'rounded-r-md' : ''}`}
+                >
+                  {p}%
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      )}
       {stats.flawed && (
         <div className="flex gap-2.5 items-start rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 text-[12.5px] leading-relaxed text-amber-900 dark:text-amber-200">
           <span className="flex-none text-base leading-none mt-0.5">⚠️</span>
@@ -428,17 +460,10 @@ export function ExaminerReport({ stats }: { stats: MCQExaminerStats }) {
         </div>
       )}
       {stats.comment && (
-        <div className="rounded-xl border border-gray-200 dark:border-gray-800 px-4 py-3 text-[12.5px] leading-relaxed text-gray-600 dark:text-gray-400">
+        <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-3 text-[12.5px] leading-relaxed text-gray-600 dark:text-gray-400">
           {stats.comment}
         </div>
       )}
-      <p className="text-[12px] text-gray-500 dark:text-gray-400">
-        {Object.keys(stats.percentages).length > 0 ? (
-          <>The bars on the options show how students answered. {stats.noAnswer ?? 0}% left it blank.</>
-        ) : (
-          <>VCAA&rsquo;s report gives no response percentages for this question.</>
-        )}
-      </p>
     </div>
   )
 }

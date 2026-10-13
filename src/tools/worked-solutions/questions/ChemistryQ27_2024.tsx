@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       VCAA's report gives no reasoning for this one beyond: "As a result of psychometric
       analysis and review, all four options were accepted as correct." The analysis in the
-      Worked Solution tab is this site's own attempt to identify what's questionable about each
+      worked solution is this site's own attempt to identify what's questionable about each
       of the four comparisons — clearly marked as independent reasoning rather than VCAA's own
       words.
     </>
@@ -61,7 +61,7 @@ export default function ChemistryQ27_2024() {
         <p>
           VCAA's report gives no explanation beyond "as a result of psychometric analysis and
           review, all four options were accepted as correct". All four options are marked below
-          since VCAA accepted every one. The Worked Solution tab is this site's own attempt to
+          since VCAA accepted every one. The worked solution is this site's own attempt to
           work out what's wrong with each comparison, clearly separate from anything VCAA
           actually published.
         </p>

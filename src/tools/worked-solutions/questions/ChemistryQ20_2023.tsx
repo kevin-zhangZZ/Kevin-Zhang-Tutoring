@@ -14,7 +14,7 @@ const EXAMINER: MCQExaminerStats = {
     <>
       VCAA's report states plainly: "There was no correct or best answer to this question and
       all students were awarded the mark." Every option turned out to have a genuine flaw once
-      examined closely — see the Worked Solution tab for why each one fails to be defensibly
+      examined closely — see the worked solution for why each one fails to be defensibly
       "always correct".
     </>
   ),

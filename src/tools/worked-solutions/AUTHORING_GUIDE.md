@@ -442,7 +442,7 @@ correct" for a question with no correct answer).
   students were awarded the mark", or an explanation of why a specific option's wording
   was ambiguous). `MCQShell`'s `flawed` prop renders as an **unmissable amber banner above
   the question itself** — this is the one that matters, since a reader shouldn't have to
-  switch to the Examiner's Report tab to learn the question has no real answer.
+  scroll down to the examiner's report to learn the question has no real answer.
 - Mark **every** VCAA-accepted option `isAnswer: true` in `options`.
 - **When VCAA gives no reasoning** (some reports say only "as a result of psychometric
   analysis and review, all four options were accepted as correct" with nothing further):
@@ -512,7 +512,7 @@ source PDF/DOCX already exists under `public/exams/{subject}/`.
 - **Browser spot-check** before committing a batch: open the worked-solutions tool
   (`#/worked-solutions`), select the subject/year, open the new question(s), and confirm:
   the question/options render correctly, `Chem`/`Katex` formulas display properly, the
-  Examiner's Report tab shows the right highlighted letter(s), and (for a flagged
+  examiner's report shelf shows the right ✓ letter(s) in its A–E bar, and (for a flagged
   question) the amber warning banner appears above the question.
 
 ## 11. Commit / push / deploy workflow
@@ -820,8 +820,9 @@ the explanation is the product, not the number at the end.
   `display` lines), `Background` boxes and tables lay out at the narrow pane width.
 - A scan for the JSX whitespace bug — a text line ending immediately before a line
   starting with `<em>`/`<b>`/`<Katex>` collapses the space ("findany").
-- **MCQ report comments sit behind the "Examiner's Report" tab** — a browser check must click
-  it before counting `.katex-error` elements, or broken maths in comments goes unseen.
+- **An MCQ's report shelf only appears once the answer shows, and only when the report has a
+  comment or a `flawed` caveat** (MCQShell) — in "Hide answers" mode a browser check must pick
+  an option before counting `.katex-error` elements, or broken maths in comments goes unseen.
 - After adding or changing a short-answer question, `npm run part-stats` (§9).
 - `percentCorrect` in `data.ts` equals `percentages[answer]` in the file (§12.7), and no
   image in `questions/` is unreferenced (§2).
