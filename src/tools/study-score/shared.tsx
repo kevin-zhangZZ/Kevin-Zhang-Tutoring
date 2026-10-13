@@ -41,7 +41,7 @@ export function KeepInMind({ subject, nearTop = false, oldCourse = false }: { su
   }
   const last = OLD_COURSE_UP_TO[subject]
   if (oldCourse && last !== null) {
-    lines.push(`Papers up to ${last} are from older courses. If you skipped questions that are no longer on the course, those papers read a few points low.`)
+    lines.push(`Papers up to ${last} include topics that are no longer on the course. If you skipped those questions, those papers read a few points low.`)
   }
   return (
     <section aria-labelledby={id} className="px-1">

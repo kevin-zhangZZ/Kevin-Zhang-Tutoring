@@ -5,7 +5,7 @@
 import type { Ref } from 'react'
 import { SUBJECTS, type Subject } from '../data.ts'
 import { aheadOf } from '../format.ts'
-import type { Projection } from '../model.ts'
+import { nearCeiling, type Projection } from '../model.ts'
 import { Announce, KeepInMind } from '../shared.tsx'
 import Headline from './Headline.tsx'
 import MarksNeeded from './MarksNeeded.tsx'
@@ -36,7 +36,7 @@ export default function CheckMarks({
   return (
     <div aria-busy={busy || undefined} className={`flex flex-col gap-5 transition-opacity motion-reduce:transition-none ${busy ? 'opacity-50' : ''}`}>
       <Headline rows={rows} typical={typical} />
-      <KeepInMind subject={subject} nearTop={rows.some(r => r.score >= 45)} />
+      <KeepInMind subject={subject} nearTop={nearCeiling(subject, marks, rows.map(r => r.score))} />
       <YearByYear subject={subject} marks={marks} rows={rows} />
       <MarksNeeded subject={subject} marks={marks} typical={typical} cardRef={endRef} />
       <Announce text={`${said}. Typical year ${typical}. In ${latest.year}: ${latest.score}, ${aheadOf(latest.pct)} of the state.`} />

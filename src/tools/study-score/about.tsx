@@ -1,7 +1,7 @@
 // How It Works: the method behind the projections and the VCAA sources, folded away at the foot
 // of the page in both modes (the two everyday caveats are in Keep in Mind, by the result).
 
-import { DISTRIBUTIONS, SUBJECTS, currentCourseFrom, type Subject } from './data.ts'
+import { CURRENT_DESIGN_FROM, DISTRIBUTIONS, SUBJECTS, type Subject } from './data.ts'
 import { MEAN, RHO, RHO_RANGE, SD } from './model.ts'
 
 const B = 'font-semibold text-gray-700 dark:text-gray-300'
@@ -11,7 +11,7 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
   const one = SUBJECTS[subject].exams.length === 1
   const first = rows[0].year
   const last = rows[rows.length - 1].year
-  const current = currentCourseFrom(subject)
+  const current = CURRENT_DESIGN_FROM[subject]
 
   return (
     <details className="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
@@ -31,8 +31,7 @@ export default function HowItWorks({ subject }: { subject: Subject }) {
           <p>
             <b className={B}>One exam.</b> {SUBJECTS[subject].name} has a single end-of-year exam, out of {SUBJECTS[subject].exams[0].rawMax}, so your rank on that
             exam is your projected rank.
-            {current !== null &&
-              ` The ${current === last ? `${last} paper is` : current === last - 1 ? `${current} and ${last} papers are` : `papers from ${current} on are`} on the current study design; earlier years are on older study designs, which covered some different content.`}
+            {` The ${current === last ? `${last} paper is` : current === last - 1 ? `${current} and ${last} papers are` : `papers from ${current} on are`} on the current study design; earlier years are on older study designs, which covered some different content.`}
           </p>
         ) : (
           <p>

@@ -6,7 +6,7 @@
 // which a fixed 10–50 axis squashes into a few pixels on a phone.
 
 import { useId, useMemo, useRef, useState } from 'react'
-import { OLD_COURSE_UP_TO, SUBJECTS, type Subject } from '../data.ts'
+import { OLD_COURSE_UP_TO, SUBJECTS, newerCourseLabel, type Subject } from '../data.ts'
 import { aheadOf } from '../format.ts'
 import { MEAN, type Projection } from '../model.ts'
 import { CARD, H2, SUB } from '../shared.tsx'
@@ -86,14 +86,16 @@ export default function YearByYear({ subject, marks, rows }: { subject: Subject;
   const at = (x: number) => `${((Math.min(span.hi, Math.max(span.lo, x)) - span.lo) / (span.hi - span.lo)) * 100}%`
   const meanShown = MEAN >= span.lo && MEAN <= span.hi
 
-  // Newest first; Specialist and Chemistry split at the change of study design.
+  // Newest first, split where the older-course papers start: Specialist and Chemistry at the change
+  // of study design ("Current Course" above it), Methods before 2016 (the newer years unlabelled,
+  // since they span two designs).
   const newestFirst = [...rows].reverse()
   const last = OLD_COURSE_UP_TO[subject]
   const groups: { label: string | null; rows: Projection[] }[] =
     last === null
       ? [{ label: null, rows: newestFirst }]
       : [
-          { label: 'Current Course', rows: newestFirst.filter(r => r.year > last) },
+          { label: newerCourseLabel(subject), rows: newestFirst.filter(r => r.year > last) },
           { label: 'Older Course', rows: newestFirst.filter(r => r.year <= last) },
         ].filter(g => g.rows.length > 0)
 

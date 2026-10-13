@@ -80,7 +80,7 @@ export default function MarksNeeded({
           {rows.flatMap((r, i) => {
             const bold = r.target === next
             const tone = bold ? 'font-bold text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
-            const range = r.lo === null || r.hi === null ? '—' : r.lo === r.hi ? `${r.lo}` : `${r.lo}–${r.hi}`
+            const range = (r.lo === null || r.hi === null ? '—' : r.lo === r.hi ? `${r.lo}` : `${r.lo}–${r.hi}`) + (r.lo !== null && r.years.includes(null) ? ' *' : '')
             const row = (
               <tr key={r.target} className={`align-top ${i === youAt ? '' : 'border-t border-gray-100 dark:border-gray-800'} ${tone}`}>
                 <th scope="row" className={`py-2 pr-2 text-left font-display text-base ${bold ? 'font-bold' : 'font-semibold'}`}>
@@ -110,6 +110,17 @@ export default function MarksNeeded({
       </table>
 
       <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">The low end is the most generous year, the high end the least generous.</p>
+      {/* A score no marks reach in some year (Chemistry's 2015 paper tops out at 44): say which. */}
+      {rows
+        .filter(r => r.lo !== null && r.years.includes(null))
+        .map(r => {
+          const out = years.filter((_, k) => r.years[k] === null).map(d => d.year)
+          return (
+            <p key={r.target} className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              * {r.target} is out of reach on the {out.join(' and ')} {out.length > 1 ? 'papers' : 'paper'}, even with full marks.
+            </p>
+          )
+        })}
     </section>
   )
 }

@@ -268,3 +268,9 @@ export function fullMarksRange(subject: Subject): { lo: number; hi: number } {
   const scores = rows.map(r => r.score)
   return { lo: Math.min(...scores), hi: Math.max(...scores) }
 }
+
+/** Whether marks are near the top, where this model reads low: some year scores 45 or more, or the
+ *  marks are 90% or more of the total (a paper like Chemistry 2015 tops out at 44 even then). */
+export function nearCeiling(subject: Subject, marks: number[], scores: number[]): boolean {
+  return scores.some(s => s >= 45) || marks.reduce((t, m) => t + m, 0) >= 0.9 * totalMax(subject)
+}

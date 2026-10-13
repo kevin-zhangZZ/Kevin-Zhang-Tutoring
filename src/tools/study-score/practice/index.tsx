@@ -12,6 +12,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { isOldCourse, type Subject } from '../data.ts'
 import { aheadOf } from '../format.ts'
+import { nearCeiling } from '../model.ts'
 import { Announce, CARD, CopyLink, H2, KeepInMind, SUB, scrollBehavior } from '../shared.tsx'
 import { fmtDate } from './dates.ts'
 import {
@@ -369,7 +370,7 @@ export default function PracticeMode({
           <PracticeHeadline scored={scored} goal={goal} />
           <KeepInMind
             subject={subject}
-            nearTop={scored.some(a => a.proj.score >= 45)}
+            nearTop={scored.some(a => nearCeiling(subject, a.marks, [a.proj.score]))}
             oldCourse={scored.some(a => isOldCourse(subject, a.paper))}
           />
           <ProgressChart subject={subject} scored={scored} goal={goal} onGoal={changeGoal} onAddPaper={jumpToForm} />

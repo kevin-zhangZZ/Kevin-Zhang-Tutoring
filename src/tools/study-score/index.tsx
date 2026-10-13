@@ -1,5 +1,5 @@
 // Study Score Projection: what study score would a student's exam marks earn, from VCAA's
-// published grade distributions for 2016–2025 (data.ts; the method is in model.ts). Two tabs:
+// published grade distributions for 2014–2025 (data.ts; the method is in model.ts). Two tabs:
 //   Check My Marks (single/): one set of marks (Exam 1 and Exam 2 for Methods and Specialist,
 //     the one exam for Chemistry) scored against every year, and the marks each score needs.
 //   Track My Papers (practice/): a log of the past papers a student has sat, each scored against

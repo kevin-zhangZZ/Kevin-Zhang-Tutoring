@@ -8,7 +8,7 @@
 
 import { useId, useMemo, useRef, type MutableRefObject, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { SUBJECTS, currentCourseFrom, isOldCourse, type Subject } from '../data.ts'
+import { SUBJECTS, currentCourseFrom, isOldCourse, newerCourseLabel, type Subject } from '../data.ts'
 import { aheadOf, parseMark } from '../format.ts'
 import { Announce } from '../shared.tsx'
 import { today } from './dates.ts'
@@ -158,9 +158,12 @@ export default function AttemptForm({
     target?.focus()
   }
 
-  // Paper: grouped by course where the Skip Guide matters (Specialist, Chemistry).
+  // Paper: the older-course papers (the ones with topics to skip) in their own group. The newer
+  // ones are "Current Course" where that's true (Specialist, Chemistry); Methods' 2016–2025 span
+  // two designs, so they're listed without a group.
   const years = [...yearsFor(subject)].reverse()
   const from = currentCourseFrom(subject)
+  const newerLabel = newerCourseLabel(subject)
   const options = (ys: number[]) =>
     ys.map(y => (
       <option key={y} value={y}>
@@ -209,8 +212,8 @@ export default function AttemptForm({
               options(years)
             ) : (
               <>
-                <optgroup label="Current Course">{options(years.filter(y => y >= from))}</optgroup>
-                {/* Not "Previous": Chemistry's 2016 paper is two study designs back. */}
+                {newerLabel ? <optgroup label={newerLabel}>{options(years.filter(y => y >= from))}</optgroup> : options(years.filter(y => y >= from))}
+                {/* Not "Previous": Chemistry's 2014–2016 papers are two study designs back. */}
                 <optgroup label="Older Course">{options(years.filter(y => y < from))}</optgroup>
               </>
             )}

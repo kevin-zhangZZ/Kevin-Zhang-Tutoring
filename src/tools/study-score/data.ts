@@ -1,8 +1,10 @@
-// VCAA grade distributions for the end-of-year exams, 2016–2025, from VCAA's statistics PDFs
+// VCAA grade distributions for the end-of-year exams, 2014–2025, from VCAA's statistics PDFs
 // (`source`). Methods and Specialist have two exams (Graded Assessments 2 and 3); Chemistry has
-// one (Graded Assessment 3). 2016 uses an older PDF layout and was assembled by hand from its
-// cumulative rows. Scores are on VCAA's GA scale, which is twice the raw marks: Exam 1 out of 80
-// (raw 40), Exam 2 out of 160 (raw 80), the Chemistry exam out of 240 (raw 120).
+// one (Graded Assessment 3). 2014–2016 use an older PDF layout: 2016 was assembled by hand from
+// its cumulative rows, and 2014–2015 were read from the PDFs by word position, a method that
+// reproduces the 2016 tables exactly. Methods was called Mathematical Methods (CAS) in 2014–2015,
+// with the same two exams. Scores are on VCAA's GA scale, which is twice the raw marks: Exam 1 out
+// of 80 (raw 40), Exam 2 out of 160 (raw 80), the Chemistry exam out of 240 (raw 120).
 // `bands` lists each grade UG, E, E+ … A+ as [lowest score, highest score, students].
 
 export type Subject = 'methods' | 'specialist' | 'chemistry'
@@ -48,13 +50,20 @@ export const SUBJECTS: Record<Subject, SubjectInfo> = {
 
 export const SUBJECT_IDS = Object.keys(SUBJECTS) as Subject[]
 
-/** The last paper set before the current study design, where it matters: Specialist (new design
- *  from 2023) and Chemistry (from 2024) dropped topics that the Skip Guide tells students to skip.
- *  Every paper up to it is on an older design, not always the one just before (Chemistry 2016 is
- *  on the 2013–2016 design, two back). Methods also changed in 2023, but the Skip Guide finds
- *  nothing to skip on its papers, so it isn't flagged. */
+/** The first paper on each subject's current study design. */
+export const CURRENT_DESIGN_FROM: Record<Subject, number> = {
+  methods: 2023,
+  specialist: 2023,
+  chemistry: 2024,
+}
+
+/** The last paper whose course had topics the Skip Guide tells students to skip. For Specialist
+ *  and Chemistry that is every paper before the current design; each is on an older design, not
+ *  always the one just before (Chemistry's 2014–2016 papers are on the 2013–2016 design, two back). Methods
+ *  also changed in 2023, but the Skip Guide finds nothing to skip on its 2016–2022 papers; only
+ *  the Mathematical Methods (CAS) papers of 2014–2015 (matrices, modulus graphs) are flagged. */
 export const OLD_COURSE_UP_TO: Record<Subject, number | null> = {
-  methods: null,
+  methods: 2015,
   specialist: 2022,
   chemistry: 2023,
 }
@@ -64,10 +73,17 @@ export function isOldCourse(subject: Subject, year: number): boolean {
   return last !== null && year <= last
 }
 
-/** The first paper on the current study design, or null when the subject isn't flagged. */
+/** The first paper after the flagged ones, or null when the subject isn't flagged. */
 export function currentCourseFrom(subject: Subject): number | null {
   const last = OLD_COURSE_UP_TO[subject]
   return last === null ? null : last + 1
+}
+
+/** What to call the papers after the flagged ones: "Current Course" only when they really are
+ *  the current study design (Specialist, Chemistry); for Methods, 2016–2025 span two designs, so
+ *  they go unlabelled and only the older papers get a label. */
+export function newerCourseLabel(subject: Subject): string | null {
+  return currentCourseFrom(subject) === CURRENT_DESIGN_FROM[subject] ? 'Current Course' : null
 }
 
 export interface ExamDist {
@@ -84,6 +100,22 @@ export interface YearDist {
 
 export const DISTRIBUTIONS: Record<Subject, YearDist[]> = {
   methods: [
+    {
+      year: 2014,
+      exams: [
+        { max: 80, bands: [[0, 1, 239], [2, 3, 180], [4, 7, 389], [8, 15, 834], [16, 24, 1288], [25, 35, 1973], [36, 45, 2299], [46, 55, 2657], [56, 64, 2371], [65, 72, 1982], [73, 80, 1400]] },
+        { max: 160, bands: [[0, 10, 95], [11, 18, 308], [19, 28, 728], [29, 37, 900], [38, 48, 1366], [49, 61, 1837], [62, 77, 2182], [78, 96, 2488], [97, 114, 2146], [115, 134, 1971], [135, 160, 1593]] },
+      ],
+      source: 'https://www.vcaa.vic.edu.au/sites/default/files/Documents/statistics/2014/section3/vce_mathematical_methods_cas_ga14.pdf',
+    },
+    {
+      year: 2015,
+      exams: [
+        { max: 80, bands: [[0, 1, 214], [2, 3, 247], [4, 7, 494], [8, 13, 830], [14, 21, 1315], [22, 31, 1943], [32, 42, 2342], [43, 54, 2685], [55, 64, 2344], [65, 73, 1860], [74, 80, 1427]] },
+        { max: 160, bands: [[0, 8, 80], [9, 14, 266], [15, 24, 733], [25, 34, 869], [35, 48, 1380], [49, 64, 1826], [65, 81, 2199], [82, 100, 2529], [101, 117, 2207], [118, 134, 1975], [135, 160, 1633]] },
+      ],
+      source: 'https://www.vcaa.vic.edu.au/sites/default/files/Documents/statistics/2015/section3/vce_mathematical_methods_cas_ga15.pdf',
+    },
     {
       year: 2016,
       exams: [
@@ -167,6 +199,22 @@ export const DISTRIBUTIONS: Record<Subject, YearDist[]> = {
   ],
   specialist: [
     {
+      year: 2014,
+      exams: [
+        { max: 80, bands: [[0, 3, 78], [4, 7, 98], [8, 12, 131], [13, 22, 294], [23, 32, 394], [33, 43, 557], [44, 54, 705], [55, 63, 651], [64, 69, 571], [70, 74, 560], [75, 80, 377]] },
+        { max: 160, bands: [[0, 15, 18], [16, 33, 99], [34, 51, 219], [52, 66, 295], [67, 84, 469], [85, 100, 564], [101, 115, 661], [116, 127, 633], [128, 137, 571], [138, 146, 497], [147, 160, 385]] },
+      ],
+      source: 'https://www.vcaa.vic.edu.au/sites/default/files/Documents/statistics/2014/section3/vce_specialist_mathematics_ga14.pdf',
+    },
+    {
+      year: 2015,
+      exams: [
+        { max: 80, bands: [[0, 4, 94], [5, 8, 107], [9, 14, 161], [15, 22, 259], [23, 32, 393], [33, 42, 568], [43, 52, 658], [53, 60, 641], [61, 67, 568], [68, 73, 508], [74, 80, 423]] },
+        { max: 160, bands: [[0, 11, 11], [12, 23, 87], [24, 39, 216], [40, 53, 309], [54, 69, 477], [70, 85, 583], [86, 101, 683], [102, 115, 631], [116, 127, 524], [128, 139, 484], [140, 160, 377]] },
+      ],
+      source: 'https://www.vcaa.vic.edu.au/sites/default/files/Documents/statistics/2015/section3/vce_specialist_mathematics_ga15.pdf',
+    },
+    {
       year: 2016,
       exams: [
         { max: 80, bands: [[0, 5, 64], [6, 9, 93], [10, 14, 145], [15, 22, 274], [23, 31, 379], [32, 41, 523], [42, 51, 703], [52, 59, 638], [60, 66, 604], [67, 73, 516], [74, 80, 401]] },
@@ -248,6 +296,20 @@ export const DISTRIBUTIONS: Record<Subject, YearDist[]> = {
     },
   ],
   chemistry: [
+    {
+      year: 2014,
+      exams: [
+        { max: 240, bands: [[0, 15, 18], [16, 27, 128], [28, 44, 443], [45, 62, 697], [63, 84, 1043], [85, 106, 1314], [107, 132, 1543], [133, 156, 1429], [157, 178, 1241], [179, 199, 1059], [200, 240, 858]] },
+      ],
+      source: 'https://www.vcaa.vic.edu.au/sites/default/files/Documents/statistics/2014/section3/vce_chemistry_ga14.pdf',
+    },
+    {
+      year: 2015,
+      exams: [
+        { max: 240, bands: [[0, 19, 31], [20, 34, 181], [35, 49, 403], [50, 68, 677], [69, 91, 1059], [92, 116, 1328], [117, 144, 1593], [145, 169, 1431], [170, 190, 1225], [191, 209, 1067], [210, 240, 853]] },
+      ],
+      source: 'https://www.vcaa.vic.edu.au/sites/default/files/Documents/statistics/2015/section3/vce_chemistry_ga15.pdf',
+    },
     {
       year: 2016,
       exams: [

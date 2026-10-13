@@ -6,7 +6,7 @@ import * as L from '../src/tools/study-score/practice/log.ts'
 import * as M from '../src/tools/study-score/model.ts'
 import { aheadOf, examShares, parseMark } from '../src/tools/study-score/format.ts'
 import { nth } from '../src/tools/study-score/practice/dates.ts'
-import { DISTRIBUTIONS, SUBJECT_IDS, isOldCourse } from '../src/tools/study-score/data.ts'
+import { DISTRIBUTIONS, SUBJECTS, SUBJECT_IDS, isOldCourse, newerCourseLabel } from '../src/tools/study-score/data.ts'
 
 let passed = 0, failed = 0
 const failures = []
@@ -94,7 +94,7 @@ check(L.rollingAverages(scored).length === 6 && L.rollingAverages(scored.slice(0
 const typ = (s, marks) => M.typicalOf(M.project(s, marks))
 check(typ('methods', [30, 60]) === 37, `Methods 30/60 typical 37 (${typ('methods', [30, 60])})`)
 check(typ('methods', [38, 76]) === 44, `Methods 38/76 typical 44 (${typ('methods', [38, 76])})`)
-check(typ('methods', [40, 80]) === 48, `Methods full marks typical 48 (${typ('methods', [40, 80])})`)
+check(typ('methods', [40, 80]) === 47, `Methods full marks typical 47 (${typ('methods', [40, 80])})`)
 for (const s of SUBJECT_IDS) {
   const max = M.totalMax(s)
   check(max === 120, `${s} totals 120`)
@@ -133,6 +133,28 @@ check(pm('30') === '{"mark":30,"error":null}' && pm(' 0 ') === '{"mark":0,"error
 check(pm('45') === '{"mark":null,"error":"Exam 1 is out of 40."}', 'too big says what it is out of')
 check(['27.5', '-3', '4e', 'abc', '1,0'].every(t => parseMark(t, 'Exam 1', 40).error === 'Exam 1 needs a whole number from 0 to 40.'), 'anything else asks for a whole number')
 check(isOldCourse('specialist', 2022) && !isOldCourse('specialist', 2023) && isOldCourse('chemistry', 2023) && !isOldCourse('methods', 2016), 'old course years')
+
+// ── Data: every subject has 2014–2025, and each table is whole ──
+for (const s of SUBJECT_IDS) {
+  const years = DISTRIBUTIONS[s].map(d => d.year)
+  check(same(years, [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]), `${s} years 2014–2025 in order (${years})`)
+  for (const d of DISTRIBUTIONS[s]) {
+    check(d.exams.length === SUBJECTS[s].exams.length, `${s} ${d.year}: one table per exam`)
+    d.exams.forEach((e, i) => {
+      const b = e.bands
+      check(e.max === SUBJECTS[s].exams[i].rawMax * 2, `${s} ${d.year} exam ${i + 1}: max is twice the raw marks`)
+      check(b.length === 11 && b[0][0] === 0 && b[10][1] === e.max && b.every((x, k) => k === 0 || x[0] === b[k - 1][1] + 1), `${s} ${d.year} exam ${i + 1}: 11 contiguous grade bands from 0 to max`)
+      const n = b.reduce((t, x) => t + x[2], 0)
+      check(n > 1000 && b.every(x => x[2] >= 0), `${s} ${d.year} exam ${i + 1}: plausible student counts (${n})`)
+    })
+    check(d.source.endsWith(`_ga${String(d.year).slice(2)}.pdf`), `${s} ${d.year}: source is that year's PDF`)
+  }
+}
+check(isOldCourse('methods', 2015) && isOldCourse('methods', 2014) && !isOldCourse('methods', 2016), 'Methods (CAS) 2014–2015 are older-course papers')
+check(newerCourseLabel('specialist') === 'Current Course' && newerCourseLabel('chemistry') === 'Current Course' && newerCourseLabel('methods') === null, 'only a true current design is labelled Current Course')
+
+check(M.nearCeiling('chemistry', [120], [44]) && M.nearCeiling('methods', [38, 76], [44]) && !M.nearCeiling('methods', [30, 60], [37]), 'near the top: 45+ in a year, or 90% of the marks')
+check(same(M.marksNeeded('chemistry', [45])[0].years.map((v, k) => (v === null ? DISTRIBUTIONS.chemistry[k].year : null)).filter(Boolean), [2015]), 'Chemistry 45 is out of reach only on the 2015 paper')
 
 console.log(`${passed} passed, ${failed} failed`)
 if (failed) {
