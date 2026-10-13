@@ -17,6 +17,7 @@ import SidebarSettings from './SidebarSettings'
 import { useBackToTop } from '../../components/Layout'
 import { useDialogFocus } from '../../lib/a11y'
 import SegmentedControl from '../../components/ui/SegmentedControl'
+import '../../components/motion/motion.css'
 
 // Below this width (Tailwind's `lg`) the list and the solution are separate screens: pick a
 // question from the list, read it with a ‹ previous · Questions · next › bar at the bottom.
@@ -416,6 +417,10 @@ function QuestionsPage({ rest }: { rest: string }) {
                 <StemPeek detailRef={detailRef} questionKey={`${selected.id}:${detail.status}`} code={mainCode(selected.code)} />
               </div>
             )}
+
+            {/* Laptops with no question open: a way in, instead of an empty column. (Phones show
+                the list as its own screen, so it isn't needed there.) */}
+            {!selected && <StartPanel subject={subject} year={openYear} />}
           </div>
         )}
       </div>
@@ -446,52 +451,182 @@ function QuestionsPage({ rest }: { rest: string }) {
   )
 }
 
-// First screen: the three subjects with how much each holds, plus a way straight back to the
-// last question this device opened.
+// ── Start panel: beside the list on laptops while no question is open ─────────────────────
+// No year yet: every year as a button, and the last question this device opened. A year open:
+// each paper's first question, and that year's three hardest multiple-choice questions (by
+// VCAA's % correct), as quick ways in.
+
+function StartPanel({ subject, year }: { subject: SubjectId; year: number | null }) {
+  const name = SUBJECT_NAME[subject]
+  const qs = QUESTIONS.filter(q => q.subject === subject)
+  const years = [...new Set(qs.map(q => q.year))].sort((a, b) => b - a)
+  const last = readLastQuestion()
+  const card = 'rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900'
+
+  if (year === null) {
+    return (
+      <div className="hidden lg:flex flex-1 min-w-0 flex-col gap-4 slide-up-in">
+        <div className={`${card} p-8`}>
+          <h2 className="font-display text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pick a paper</h2>
+          <p className="mt-1.5 text-[14px] text-gray-500 dark:text-gray-400">
+            Choose a {name} year to see its questions, here or in the list.
+          </p>
+          <div className="mt-6 grid grid-cols-4 xl:grid-cols-6 gap-2">
+            {years.map(y => (
+              <Link
+                key={y}
+                to={yearPath(subject, y)}
+                className="rounded-xl border border-gray-200 dark:border-gray-700 py-3 text-center font-display text-[17px] font-bold tabular-nums text-gray-900 dark:text-white hover:border-sky-400 dark:hover:border-sky-600 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:-translate-y-0.5 active:scale-[0.97] transition-[background-color,border-color,transform]"
+              >
+                {y}
+              </Link>
+            ))}
+          </div>
+        </div>
+        {last && (
+          <Link
+            to={questionPath(last)}
+            className={`${card} group flex items-center gap-3 px-6 py-4 hover:border-sky-300 dark:hover:border-sky-700 transition-colors`}
+          >
+            <span className="text-[13px] text-gray-500 dark:text-gray-400">Continue where you left off</span>
+            <span className="font-display text-[15px] font-bold text-sky-700 dark:text-sky-300">
+              {SUBJECT_NAME[last.subject]} {last.year} · {mainCode(last.code)}
+            </span>
+            <span className="ml-auto text-sky-700 dark:text-sky-300 transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+        )}
+      </div>
+    )
+  }
+
+  const inYear = listSequence({ subject, year, view: 'year', sort: 'exam', topic: null })
+  // Each paper's first question, in exam order.
+  const firsts = [...new Set(inYear.map(q => q.exam))].map(exam => inYear.find(q => q.exam === exam)!)
+  const hardest = inYear
+    .filter(q => q.type === 'mc' && q.percentCorrect !== undefined)
+    .sort((a, b) => a.percentCorrect! - b.percentCorrect!)
+    .slice(0, 3)
+  // Name the exam only when the list mixes papers (Specialist's MCQs are all in Exam 2).
+  const mixedExams = new Set(hardest.map(q => q.exam)).size > 1
+
+  return (
+    <div key={year} className="hidden lg:flex flex-1 min-w-0 flex-col gap-4 slide-up-in">
+      <div className={`${card} p-8`}>
+        <h2 className="font-display text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name} {year}</h2>
+        <p className="mt-1.5 text-[14px] text-gray-500 dark:text-gray-400">Pick any question in the list, or start a paper from the top.</p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          {firsts.map(q => (
+            <Link
+              key={q.exam}
+              to={questionPath(q)}
+              className="group inline-flex items-center gap-2.5 rounded-xl bg-sky-700 hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-500 px-5 py-3 text-[15px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.98] transition-[background-color,transform]"
+            >
+              {q.exam}
+              <span aria-hidden className="text-white/70 transition-transform group-hover:translate-x-0.5">→</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {hardest.length > 0 && (
+        <div className={`${card} p-6`}>
+          <h3 className="font-display text-[15px] font-bold text-gray-900 dark:text-white">Hardest multiple choice in {year}</h3>
+          <ul className="mt-3 flex flex-col gap-1.5">
+            {hardest.map(q => (
+              <li key={q.id}>
+                <Link
+                  to={questionPath(q)}
+                  className="group grid grid-cols-[4.75rem_minmax(0,1fr)_auto] items-baseline gap-3 rounded-xl px-3 py-2.5 -mx-3 hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors"
+                >
+                  <span className="font-display text-[14px] font-bold text-sky-700 dark:text-sky-400 whitespace-nowrap">
+                    {mixedExams ? `${examShortLabel(q.exam)} ` : ''}{mainCode(q.code)}
+                  </span>
+                  <span className="min-w-0 truncate text-[13.5px] text-gray-700 dark:text-gray-300">{topicOf(q)}</span>
+                  <span className="text-[13px] font-extrabold tabular-nums text-amber-700 dark:text-amber-400">{q.percentCorrect}% right</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  )
+}
+
+/** "Exam 2" → "E2", for the hardest-questions list. */
+const examShortLabel = (exam: string) => exam.replace(/^Exam\s*/, 'E')
+
+// First screen: the three subjects with how much each holds and every year as a way straight
+// in, plus a way back to the last question this device opened.
 function Landing() {
   const last = readLastQuestion()
   return (
-    <div className="flex flex-col gap-4 max-w-3xl">
+    <div className="flex flex-col gap-5">
+      <p className="rise-in text-[15px] sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
+        Every Methods and Specialist question from 2014 to 2025, and the hardest Chemistry questions, with full working and examiners’ comments.
+      </p>
+
       {last && (
         <Link
           to={questionPath(last)}
-          className="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-900 border border-sky-200 dark:border-sky-900 rounded-2xl px-5 py-4 hover:border-sky-300 dark:hover:border-sky-700 transition-colors"
+          className="rise-in group flex flex-wrap items-center gap-x-4 gap-y-2 bg-white dark:bg-gray-900 border border-sky-200 dark:border-sky-900 rounded-2xl px-6 py-5 hover:border-sky-300 dark:hover:border-sky-700 transition-colors"
+          style={{ animationDelay: '60ms' }}
         >
-          <span className="text-[13px] text-gray-500 dark:text-gray-400">Continue where you left off</span>
-          <span className="font-display text-[14px] font-bold text-sky-700 dark:text-sky-300">
-            {SUBJECT_NAME[last.subject]} {last.year} · {last.exam} · {mainCode(last.code)}
+          <span className="flex flex-col">
+            <span className="text-[13px] text-gray-500 dark:text-gray-400">Continue where you left off</span>
+            <span className="font-display text-lg font-bold text-gray-900 dark:text-white">
+              {SUBJECT_NAME[last.subject]} {last.year} · {last.exam} · {mainCode(last.code)}
+            </span>
           </span>
-          <span className="ml-auto text-sky-700 dark:text-sky-300">→</span>
+          <span className="ml-auto inline-flex items-center gap-2 rounded-xl bg-sky-700 group-hover:bg-sky-800 dark:bg-sky-600 dark:group-hover:bg-sky-500 px-5 py-2.5 text-[15px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] transition-colors">
+            Resume <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+          </span>
         </Link>
       )}
-      <div className="grid gap-3 sm:grid-cols-3">
-        {SUBJECTS.map(s => {
+
+      <div className="grid gap-4 lg:grid-cols-3">
+        {SUBJECTS.map((s, i) => {
           const qs = QUESTIONS.filter(q => q.subject === s.id)
-          const ys = qs.map(q => q.year)
+          const ys = [...new Set(qs.map(q => q.year))].sort((a, b) => b - a)
           const color = SUBJECT_COLOR[s.id]
           return (
-            <Link
+            <div
               key={s.id}
-              to={subjectPath(s.id)}
-              className="group flex flex-col gap-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 hover:border-gray-300 dark:hover:border-gray-700 transition-colors"
+              className="rise-in flex flex-col bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6"
+              style={{ animationDelay: `${120 + i * 70}ms` }}
             >
-              <span className={`w-fit font-display text-[11.5px] font-bold px-2 py-0.5 rounded-md ${color.bg} ${color.text}`}>
-                {Math.min(...ys)}–{Math.max(...ys)}
-              </span>
-              <span className="font-display text-[17px] font-bold text-gray-900 dark:text-white leading-snug">{SUBJECT_NAME[s.id]}</span>
-              <span className="text-[13px] text-gray-500 dark:text-gray-400">
-                {s.id === 'chemistry'
-                  ? `${qs.length} of the hardest multiple-choice questions`
-                  : `${qs.length} questions, every one worked through`}
-              </span>
-              <span className="mt-auto pt-1 text-[13px] font-semibold text-sky-700 dark:text-sky-400 group-hover:underline">Browse →</span>
-            </Link>
+              <Link to={subjectPath(s.id)} className="group flex flex-col gap-2">
+                <span className={`w-fit font-display text-[11.5px] font-bold px-2 py-0.5 rounded-md ${color.bg} ${color.text}`}>
+                  {Math.min(...ys)}–{Math.max(...ys)}
+                </span>
+                <span className="font-display text-2xl font-bold tracking-tight text-gray-900 dark:text-white leading-snug group-hover:text-sky-700 dark:group-hover:text-sky-300 transition-colors">
+                  {SUBJECT_NAME[s.id]}
+                </span>
+                <span className="text-[13.5px] text-gray-500 dark:text-gray-400">
+                  {s.id === 'chemistry'
+                    ? `${qs.length} of the hardest multiple-choice questions`
+                    : `${qs.length} questions, every one worked through`}
+                </span>
+              </Link>
+              {/* Every year, as a way straight in. */}
+              <div className="mt-5 grid grid-cols-4 2xl:grid-cols-6 gap-1.5" aria-label={`${SUBJECT_NAME[s.id]} years`}>
+                {ys.map(y => (
+                  <Link
+                    key={y}
+                    to={yearPath(s.id, y)}
+                    className="rounded-lg border border-gray-200 dark:border-gray-700 py-1.5 text-center font-display text-[13.5px] font-bold tabular-nums text-gray-700 dark:text-gray-200 hover:border-sky-400 dark:hover:border-sky-600 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:text-sky-800 dark:hover:text-sky-200 active:scale-[0.96] transition-[background-color,border-color,color,transform]"
+                  >
+                    {y}
+                  </Link>
+                ))}
+              </div>
+              <Link to={subjectPath(s.id)} className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-800 text-[13.5px] font-semibold text-sky-700 dark:text-sky-400 hover:underline underline-offset-2">
+                Browse by year or topic →
+              </Link>
+            </div>
           )
         })}
       </div>
-      <Link to={`${TOOL_PATH}/settings`} className="relative text-[13px] font-semibold text-sky-700 dark:text-sky-400 hover:underline w-fit after:absolute after:-inset-y-3 after:-inset-x-1">
-        Sidebar settings
-      </Link>
     </div>
   )
 }
