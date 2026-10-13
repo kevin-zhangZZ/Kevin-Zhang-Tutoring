@@ -1,0 +1,22 @@
+/* Exam Analysis motion: the marks bars grow in and then glide when the filters change; the
+   histogram's bars rise from the axis. All of it off for reduced motion. */
+
+@keyframes ea-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.ea-bar {
+  transform-origin: left center;
+  animation: ea-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+  transition: width 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ea-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.ea-col {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: ea-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 22ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ea-bar, .ea-col { animation: none; transition: none; }
+}

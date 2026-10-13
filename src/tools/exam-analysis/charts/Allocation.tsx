@@ -1,7 +1,7 @@
 // "Where the marks go": one bar per topic (or subtopic), ranked by the marks it's worth in the
 // selected papers, with the marks the archive leaves out as a grey row at the bottom.
 
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import { fmt, pct, topicLabel, type Group } from '../model'
 import { isPicked, missingTotal, yearCount, type ChartCtx } from '../view'
 import { TipBody, topicColor, useTip } from './common'
@@ -31,7 +31,7 @@ export function AllocationBars({ ctx }: { ctx: ChartCtx }) {
   const rows = [...ctx.groups].sort((a, b) => b.marks - a.marks)
   const max = Math.max(1, ...rows.map(r => r.marks), missing)
 
-  const row = (key: string, label: string, marks: number, color: string, opts: { picked?: boolean; onClick?: () => void; tipBody: ReactNode }) => (
+  const row = (key: string, label: string, marks: number, color: string, opts: { picked?: boolean; onClick?: () => void; tipBody: ReactNode; index: number }) => (
     <button
       key={key}
       type="button"
@@ -48,9 +48,10 @@ export function AllocationBars({ ctx }: { ctx: ChartCtx }) {
       </span>
       <span className="flex items-center gap-2 min-w-0">
         <span className="flex-1 min-w-0">
+          {/* Grows in on arrival, then glides to its new length when the filters change. */}
           <span
-            className="block h-3.5 rounded-r"
-            style={{ width: `${(marks / max) * 100}%`, minWidth: marks > 0 ? 2 : 0, background: color }}
+            className="ea-bar block h-4 rounded-r-md"
+            style={{ width: `${(marks / max) * 100}%`, minWidth: marks > 0 ? 2 : 0, background: color, '--i': opts.index } as CSSProperties}
           />
         </span>
         <span className="w-[5.5rem] sm:w-28 flex-none text-[12px] tabular-nums text-gray-500 dark:text-gray-400 whitespace-nowrap">
@@ -76,8 +77,9 @@ export function AllocationBars({ ctx }: { ctx: ChartCtx }) {
         {ctx.level === 'sub' ? 'subtopic to list its questions' : 'topic to see its subtopics'}.
       </p>
       <div className="flex flex-col">
-        {rows.map(g =>
+        {rows.map((g, index) =>
           row(g.id, g.label, g.marks, topicColor(ctx.subject, g.topic), {
+            index,
             picked: isPicked(ctx, g.id),
             onClick: () => ctx.onGroup(g.id),
             tipBody: groupTip(ctx, g, total),
@@ -85,6 +87,7 @@ export function AllocationBars({ ctx }: { ctx: ChartCtx }) {
         )}
         {missing > 0 &&
           row('missing', 'Not in archive', missing, 'var(--ea-missing)', {
+            index: rows.length,
             tipBody: (
               <TipBody
                 value={perYear(ctx, missing)}

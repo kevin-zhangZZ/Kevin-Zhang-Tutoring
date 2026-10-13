@@ -22,6 +22,8 @@ import { Heatmap, type TrendMeasure } from './charts/Trends'
 import { Histogram, binLabel, binOf, questionScores } from './charts/Spread'
 import { QuestionList } from './QuestionList'
 import { bandOf } from './charts/common'
+import { Reveal, stagger, useTween } from '../../components/motion/Reveal'
+import './ea-motion.css'
 
 const TOOL = '/exam-analysis'
 
@@ -150,11 +152,11 @@ export default function ExamAnalysis() {
 
   return (
     <div className="px-4 sm:px-6 pt-6 sm:pt-10 pb-16 max-w-6xl mx-auto">
-      <header className="mb-5">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">Exam Analysis</h1>
-        <p className="mt-2 max-w-3xl text-[15px] text-gray-600 dark:text-gray-300">
+      <header className="mb-6 rise-in" style={stagger(0)}>
+        <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white tracking-[-0.03em]">Exam Analysis</h1>
+        <p className="mt-2 max-w-3xl text-[15px] sm:text-base text-gray-600 dark:text-gray-300">
           How the {subject === 'methods' ? 'Mathematical Methods' : 'Specialist Mathematics'} exams split their marks across topics, which topics students find hard, and
-          what’s been changing — from every question in the VCAA Exam Explanations archive, 2014–{LAST_YEAR}.
+          what’s been changing. Built from every question in the VCAA Exam Explanations archive, 2014–{LAST_YEAR}.
         </p>
       </header>
 
@@ -201,16 +203,18 @@ export default function ExamAnalysis() {
 
 function Section({ title, blurb, options, children }: { title: string; blurb: ReactNode; options?: ReactNode; children: ReactNode }) {
   return (
-    <section className="@container rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-5">
+    <Reveal>
+    <section className="@container rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 sm:p-6">
       <div className="flex flex-col @3xl:flex-row @3xl:items-start @3xl:justify-between gap-2.5 @3xl:gap-4 mb-4">
         <div className="min-w-0">
-          <h2 className="font-display text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{title}</h2>
+          <h2 className="font-display text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h2>
           <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-0.5 max-w-2xl">{blurb}</p>
         </div>
         {options && <div className="@3xl:flex-none">{options}</div>}
       </div>
       {children}
     </section>
+    </Reveal>
   )
 }
 
@@ -286,28 +290,34 @@ function Kpis({ ctx }: { ctx: ChartCtx }) {
   const most = [...shown].sort((a, b) => b.marks - a.marks)[0]
   const minMarks = Math.max(3, st.marks * 0.02)
   const hardest = [...shown].filter(g => g.score !== null && g.marks >= minMarks).sort((a, b) => (a.score ?? 1) - (b.score ?? 1))[0]
-  const tile = (label: string, value: ReactNode, sub: ReactNode, onClick?: () => void) => {
-    const Tag = onClick ? 'button' : 'div'
+  // The two figures count up on arrival and glide when the filters change.
+  const marks = Math.round(useTween(st.marks, { fromZero: true }))
+  const score = useTween(st.score ?? 0, { fromZero: true })
+  const tile = (i: number, label: string, value: ReactNode, sub: ReactNode, opts: { ink?: boolean; onClick?: () => void } = {}) => {
+    const Tag = opts.onClick ? 'button' : 'div'
     return (
       <Tag
-        type={onClick ? 'button' : undefined}
-        onClick={onClick}
-        className={`text-left rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-3 min-w-0 ${onClick ? 'hover:border-gray-400 dark:hover:border-gray-600' : ''}`}
+        type={opts.onClick ? 'button' : undefined}
+        onClick={opts.onClick}
+        style={stagger(i + 1)}
+        className={`rise-in flex flex-col items-start justify-start text-left rounded-2xl px-5 py-4 min-w-0 transition-[transform,border-color] ${
+          opts.ink ? 'bg-gray-900 dark:bg-blue-950 text-white border border-gray-900 dark:border-blue-900' : 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800'
+        } ${opts.onClick ? 'hover:-translate-y-0.5 hover:border-gray-400 dark:hover:border-gray-600' : ''}`}
       >
-        <span className="block text-[12px] font-semibold text-gray-500 dark:text-gray-400">{label}</span>
-        <span className="block font-display text-lg sm:text-xl font-bold text-gray-900 dark:text-white leading-snug mt-0.5 line-clamp-2">{value}</span>
-        <span className="block text-[12px] text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2">{sub}</span>
+        <span className={`block text-[12px] font-semibold ${opts.ink ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}>{label}</span>
+        <span className={`block font-display font-bold tracking-tight leading-tight mt-1 line-clamp-2 tabular-nums ${opts.ink ? 'text-4xl text-white' : 'text-xl xl:text-[1.35rem] text-gray-900 dark:text-white'}`}>{value}</span>
+        <span className={`block text-[12px] mt-1 line-clamp-2 ${opts.ink ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}>{sub}</span>
       </Tag>
     )
   }
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      {tile('Marks in View', st.marks.toLocaleString(), `${st.items} items${n > 1 ? ` · ${fmt(st.marks / n)} a year` : ''}`)}
-      {tile('Average Score', pct(st.score), st.score === null ? '—' : `${bandOf(st.score) === 'hard' ? 'Hard' : bandOf(st.score) === 'medium' ? 'Middling' : 'Well done'} overall`)}
+      {tile(0, 'Marks in View', marks.toLocaleString(), `${st.items} items${n > 1 ? `, ${fmt(st.marks / n)} a year` : ''}`, { ink: true })}
+      {tile(1, 'Average Score', st.score === null ? '—' : pct(score), st.score === null ? 'Nothing scored in view' : `${bandOf(st.score) === 'hard' ? 'Hard' : bandOf(st.score) === 'medium' ? 'Middling' : 'Well done'} overall`)}
       {most
-        ? tile('Most Examined', most.label, `${fmt(most.marks / n)} marks${n > 1 ? ' a year' : ''} · ${pct(most.marks / Math.max(1, st.marks))}`, () => ctx.onGroup(most.id))
-        : tile('Most Examined', '—', 'Nothing in view')}
-      {hardest ? tile('Hardest', hardest.label, `${pct(hardest.score)} average · ${hardest.marks} marks`, () => ctx.onGroup(hardest.id)) : tile('Hardest', '—', 'Nothing scored in view')}
+        ? tile(2, 'Most Examined', most.label, `${fmt(most.marks / n)} marks${n > 1 ? ' a year' : ''}, ${pct(most.marks / Math.max(1, st.marks))}`, { onClick: () => ctx.onGroup(most.id) })
+        : tile(2, 'Most Examined', '—', 'Nothing in view')}
+      {hardest ? tile(3, 'Hardest', hardest.label, `${pct(hardest.score)} average, ${hardest.marks} marks`, { onClick: () => ctx.onGroup(hardest.id) }) : tile(3, 'Hardest', '—', 'Nothing scored in view')}
     </div>
   )
 }

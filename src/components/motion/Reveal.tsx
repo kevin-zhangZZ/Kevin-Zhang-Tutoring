@@ -51,3 +51,26 @@ export function useInView<T extends Element>() {
   }, [])
   return [ref, inView] as const
 }
+
+/** A number that glides to each new value (~0.6s, ease-out); jumps straight there for reduced motion.
+ *  Starts from 0 on first render when `fromZero` is set, so a figure counts up as it appears. */
+export function useTween(value: number, { fromZero = false, ms = 600 }: { fromZero?: boolean; ms?: number } = {}) {
+  const reduce = useReducedMotion()
+  const [shown, setShown] = useState(fromZero && !reduce ? 0 : value)
+  const from = useRef(shown)
+  useEffect(() => {
+    if (reduce) { setShown(value); from.current = value; return }
+    const start = from.current, t0 = performance.now()
+    let raf = 0
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / ms)
+      const v = start + (value - start) * (1 - Math.pow(1 - k, 3))
+      from.current = v
+      setShown(v)
+      if (k < 1) raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [value, reduce, ms])
+  return shown
+}

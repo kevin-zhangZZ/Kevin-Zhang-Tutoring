@@ -5,6 +5,7 @@
 // marks (just the parts in view, when a topic is picked). Parts alone would give a saw-tooth —
 // a 1-mark part's average comes in steps of 0.1, so it can only ever land in every other bin.
 
+import type { CSSProperties } from 'react'
 import type { Item } from '../model'
 import type { ChartCtx } from '../view'
 import { BAND_FILL, BandKey, TipBody, bandOf, niceTicks, useTip, useWidth, vBarPath } from './common'
@@ -96,8 +97,11 @@ export function Histogram({ ctx, items }: { ctx: ChartCtx; items: Item[] }) {
                     onBlur={tip.hide}
                   >
                     <rect x={x} y={m.t} width={bw} height={ih} fill="transparent" strokeWidth={2} className="stroke-transparent group-focus-visible:stroke-blue-500" />
+                    {/* Bars rise from the axis on arrival, left to right. */}
                     {h > 0 && (
                       <path
+                        className="ea-col"
+                        style={{ '--i': k } as CSSProperties}
                         d={vBarPath(x + 1, Y(c), Math.max(1, bw - 2), h)}
                         fill={BAND_FILL[bandOf((k * 5) / 100)]}
                         opacity={ctx.focus.bin !== null && !sel ? 0.35 : 1}
