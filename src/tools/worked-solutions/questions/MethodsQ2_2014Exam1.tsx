@@ -1,6 +1,7 @@
 // 2014 Mathematical Methods (CAS) — Exam 1, Question 2 (2 marks). A definite integral of
 // 2/(2x-1) written as a single logarithm. Question text transcribed from the original paper
 // (no diagram given). Answer checked with sympy and against the VCAA examination report.
+// Reviewed Oct 2026 (2014–2016 pass): review mode, no interactive (part does not qualify).
 // Solution is original. This question has no lettered parts, so it uses the plain card
 // layout rather than PartCard.
 
@@ -21,23 +22,25 @@ const EXAM: SAExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int\frac{2}{2x-1}\,dx = \log_e|2x-1|+c" />,
-    reason: <>The numerator is exactly the derivative of the denominator, so this is a straight <Katex tex="\tfrac{f'}{f}" /> integral — no <Katex tex="\tfrac12" /> is needed out the front.</>,
+    reason: <>Use <Katex tex="\int\frac{1}{ax+k}\,dx=\tfrac1a\log_e|ax+k|+c" /> with <Katex tex="a=2" />: the <Katex tex="2" /> on top cancels the <Katex tex="\tfrac12" />.</>,
+    more: <>Equivalently, the numerator <Katex tex="2" /> is exactly the derivative of the denominator <Katex tex="2x-1" />, which is why no fraction is left out the front. The easy slip is to write <Katex tex="\tfrac12\log_e|2x-1|" /> anyway — forgetting the <Katex tex="2" /> in the numerator. That gives <Katex tex="\tfrac12\log_e\!\left(\tfrac97\right)=\log_e\!\sqrt{\tfrac97}" />, so <Katex tex="b=\tfrac{3}{\sqrt7}" /> — wrong. Check any antiderivative by differentiating: <Katex tex="\tfrac{d}{dx}\log_e(2x-1)=\tfrac{2}{2x-1}" /> ✓.</>,
   },
   {
     working: <Katex display tex="\int_4^5\frac{2}{2x-1}\,dx = \Bigl[\log_e|2x-1|\Bigr]_4^5" />,
-    reason: <>On <Katex tex="[4,5]" /> the expression <Katex tex="2x-1" /> is positive, so the modulus can be dropped.</>,
+    reason: <>Put the antiderivative in square brackets with the terminals: upper <Katex tex="5" />, lower <Katex tex="4" />.</>,
   },
   {
     working: <Katex display tex="= \log_e(9)-\log_e(7)" />,
-    reason: <><Katex tex="2(5)-1=9" /> and <Katex tex="2(4)-1=7" />.</>,
+    reason: <><Katex tex="2(5)-1=9" /> and <Katex tex="2(4)-1=7" />; both are positive, so the modulus can be dropped.</>,
   },
   {
     working: <Katex display tex="= \log_e\!\left(\tfrac97\right)" />,
-    reason: <>The log law <Katex tex="\log a-\log b=\log\tfrac ab" /> — which is what puts the answer in the required form.</>,
+    reason: <>The log law <Katex tex="\log_e a-\log_e b=\log_e\tfrac ab" /> turns the difference into the single log the question asks for.</>,
   },
   {
     working: <Katex display tex="\boxed{b = \tfrac97}" />,
-    reason: <>The question asks for <Katex tex="b" />, not for the integral. Sanity check: on <Katex tex="[4,5]" /> the integrand runs from <Katex tex="\tfrac27" /> down to <Katex tex="\tfrac29" />, so the integral is roughly <Katex tex="\tfrac14" /> — and <Katex tex="\log_e\!\left(\tfrac97\right)\approx0.25" /> ✓.</>,
+    reason: <>Compare with <Katex tex="\log_e(b)" />: equal logs mean equal arguments. The question asks for <Katex tex="b" />, not the integral's value.</>,
+    more: <>Sanity check: on <Katex tex="[4,5]" /> the integrand runs from <Katex tex="\tfrac27" /> down to <Katex tex="\tfrac29" />, so the integral (an area over an interval of width <Katex tex="1" />) is about <Katex tex="\tfrac14" /> — and <Katex tex="\log_e\!\left(\tfrac97\right)\approx0.25" /> ✓. Leaving the answer as <Katex tex="\log_e(9)-\log_e(7)" /> does not answer the question: <Katex tex="b" /> must be a single number.</>,
   },
 ]
 
@@ -48,13 +51,6 @@ export default function MethodsQ2_2014Exam1() {
         <p>
           Let <Katex tex="\displaystyle\int_4^5\frac{2}{2x-1}\,dx = \log_e(b)" />. Find the
           value of <Katex tex="b" />.
-        </p>
-      </Background>
-      <Background>
-        <p>
-          The answer is already promised to be a single logarithm, so the last step is always
-          going to be combining two logs into one — and that means <Katex tex="b" /> will be a
-          fraction, not an integer.
         </p>
       </Background>
       <WorkingTable rows={ROWS} />

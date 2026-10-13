@@ -3,11 +3,16 @@
 // transcribed from the original paper; VCAA supplied blank axes for the sketch, so both
 // figures are this site's own matplotlib work. Answers checked with sympy and against the
 // VCAA examination report. Solution is original.
+// Interactive (Detailed only): part c (21% full marks) — sweep a strip from x = −1 to 2 to see
+// the line stays on top, so one integral suffices; toggle shows rectangle − area under curve.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import sketchSrc from './meth-2014e1-q5b-cubic.png'
 import areaSrc from './meth-2014e1-q5c-area.png'
+
+const OneIntegral = lazyWidget(() => import('../interactives/meth-2014e1-q5c-one-integral'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [14, 20, 66],
@@ -64,17 +69,26 @@ const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\boxed{(0,0) \text{ and } (2,4)}" />,
     reason: <>As <em>coordinates</em> — the question asks for the stationary points, and the report stresses that bare <Katex tex="x" /> values do not answer it.</>,
+    more: (
+      <>
+        The report also notes two other slips. Some students dropped <Katex tex="(0,0)" />: it is
+        still a stationary point even though it is also an <Katex tex="x" />-intercept. Others
+        solved <Katex tex="f(x)=0" /> instead of <Katex tex="f'(x)=0" />, which gives the{' '}
+        <Katex tex="x" />-intercepts <Katex tex="x=0" /> and <Katex tex="x=3" />, not the stationary
+        points.
+      </>
+    ),
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="f(-1) = 3(1)-(-1) = 4, \qquad f(3) = 27-27 = 0" />,
+    working: <Katex display tex="\begin{aligned} f(-1) &= 3(1)-(-1) = 4 \\ f(3) &= 27-27 = 0 \end{aligned}" />,
     reason: <>The endpoints, which the question asks to be labelled. Careful with <Katex tex="-x^3" /> at <Katex tex="x=-1" />: it is <Katex tex="+1" />.</>,
   },
   {
     working: <Katex display tex="(0,0) \text{ local minimum}, \qquad (2,4) \text{ local maximum}" />,
-    reason: <>From part a. Between them <Katex tex="f'>0" />, so the curve rises; outside, it falls.</>,
+    reason: <>From part a. Between them <Katex tex="f'(x)=3x(2-x)>0" />, so the curve rises; outside, it falls.</>,
   },
   {
     working: (
@@ -86,7 +100,16 @@ const ROWS_B: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>Smooth curves at both turning points, and all four labelled points marked. Note the endpoints happen to share their heights with the turning points — <Katex tex="4" /> and <Katex tex="0" />.</>,
+    reason: <>Rounded (smooth) at both turning points, not V shapes, with the endpoints <Katex tex="(-1,4)" /> and <Katex tex="(3,0)" /> labelled.</>,
+    more: (
+      <>
+        These are the two details the report says a correct graph needed. A turning point is
+        where the gradient is zero, so the curve flattens out there rather than coming to a
+        point. Note the endpoints happen
+        to share their heights with the turning points, <Katex tex="4" /> and <Katex tex="0" />,
+        so <Katex tex="(-1,4)" /> and <Katex tex="(2,4)" /> sit level — which part c uses.
+      </>
+    ),
   },
 ]
 
@@ -97,7 +120,15 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="(x+1)(x-2)^2 = 0 \implies x = -1 \text{ or } x = 2" />,
-    reason: <><Katex tex="x=-1" /> is a root by inspection; the repeated factor at <Katex tex="x=2" /> is the line touching the local maximum, which is why the region closes there.</>,
+    reason: <>Part b gave <Katex tex="f(-1)=4" />, so <Katex tex="x=-1" /> is a root; the maximum <Katex tex="(2,4)" /> touches <Katex tex="y=4" />, so <Katex tex="x=2" /> is a double root.</>,
+    more: (
+      <>
+        A line touching a turning point (rather than crossing the curve) always gives a repeated
+        factor. Check by expanding:{' '}
+        <Katex tex="(x+1)(x^2-4x+4) = x^3-3x^2+4" />. Without part b you would find{' '}
+        <Katex tex="x=-1" /> with the factor theorem and then divide by <Katex tex="x+1" />.
+      </>
+    ),
   },
   {
     working: (
@@ -109,7 +140,17 @@ const ROWS_C: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>The line is above the curve throughout <Katex tex="(-1,2)" />, so one integral does it — no need for the three or four the report says students often set up.</>,
+    reason: <>On <Katex tex="[-1,2]" /> the curve never rises above its maximum <Katex tex="4" />, so the line is on top throughout — one integral does it.</>,
+    more: (
+      <>
+        The report says some students &lsquo;overworked&rsquo; this with three or four integrals.
+        There is no need to split at <Katex tex="x=0" />: the curve touching the{' '}
+        <Katex tex="x" />-axis there doesn&apos;t matter, because the area is measured from the
+        curve up to <Katex tex="y=4" />, not down to the axis. Nothing to the right of{' '}
+        <Katex tex="x=2" /> is enclosed either: the graph ends at <Katex tex="(3,0)" /> without
+        meeting the line again.
+      </>
+    ),
   },
   {
     working: <Katex display tex="A = \int_{-1}^{2}\Bigl(4-\left(3x^2-x^3\right)\Bigr)dx" />,
@@ -121,11 +162,37 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= (8-8+4)-\left(-4+1+\tfrac14\right) = 4+\tfrac{11}4" />,
-    reason: <>The lower terminal is where the sign errors happen: <Katex tex="-(-1)^3=+1" /> and <Katex tex="\tfrac{(-1)^4}4=\tfrac14" />.</>,
+    reason: <>The lower terminal is where the sign errors happen: <Katex tex="-(-1)^3=+1" />, so the bracket is <Katex tex="-\tfrac{11}4" />, and subtracting it adds <Katex tex="\tfrac{11}4" />.</>,
+    more: (
+      <>
+        In full: <Katex tex="4(-1)-(-1)^3+\tfrac{(-1)^4}4 =-4+1+\tfrac14 = -\tfrac{11}4" />, and{' '}
+        <Katex tex="-\left(-\tfrac{11}4\right) = +\tfrac{11}4" />. A quick
+        check by a second route: the region is the <Katex tex="3\times4" /> rectangle under{' '}
+        <Katex tex="y=4" /> from <Katex tex="-1" /> to <Katex tex="2" />, minus the area under the
+        curve, <Katex tex="\int_{-1}^{2}(3x^2-x^3)\,dx = 4-\left(-1-\tfrac14\right) = \tfrac{21}4" />,
+        so <Katex tex="12-\tfrac{21}4=\tfrac{27}4" />.
+        <br />
+        <br />
+        The report also mentions a route using symmetry. This cubic is point-symmetric about its
+        inflection point <Katex tex="(1,2)" />, since <Katex tex="f(1+t)+f(1-t)=4" />. A half-turn
+        about <Katex tex="(1,2)" /> swaps the piece between the curve and <Katex tex="y=4" /> on{' '}
+        <Katex tex="[0,2]" /> with the piece under the curve on <Katex tex="[0,2]" />, so they are
+        equal and together fill the <Katex tex="2\times4" /> rectangle: each is <Katex tex="4" />.
+        Adding the piece on <Katex tex="[-1,0]" />,{' '}
+        <Katex tex="\int_{-1}^{0}\bigl(4-f(x)\bigr)dx=\tfrac{11}4" />, gives{' '}
+        <Katex tex="4+\tfrac{11}4=\tfrac{27}4" /> again.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{A = \tfrac{27}4 = 6.75}" />,
-    reason: <>A sanity check: the region sits inside a <Katex tex="3\times4" /> rectangle, and covers a bit over half of it.</>,
+    reason: <>Exact value, as Exam 1 expects; the decimal is optional.</>,
+    more: (
+      <>
+        Sanity check: the region sits inside the <Katex tex="3\times4" /> rectangle above, and
+        covers a bit over half of it.
+      </>
+    ),
   },
 ]
 
@@ -178,6 +245,9 @@ export default function MethodsQ5_2014Exam1() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="The line stays on top from −1 to 2, so one integral covers it">
+          <OneIntegral />
+        </Explore>
       </PartCard>
     </div>
   )
