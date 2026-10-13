@@ -63,8 +63,8 @@ const CELLS: Array<{ tool: Tool; preview: ReactNode; span: string; tone: Tone; r
 
 const TONE: Record<Tone, { box: string; name: string; text: string }> = {
   plain: { box: 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800', name: 'text-gray-900 dark:text-white', text: 'text-gray-500 dark:text-gray-400' },
-  tint:  { box: 'bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50', name: 'text-gray-900 dark:text-white', text: 'text-gray-600 dark:text-gray-400' },
-  ink:   { box: 'bg-gray-900 dark:bg-blue-950 border border-gray-900 dark:border-blue-900', name: 'text-white', text: 'text-gray-300 dark:text-blue-100/70' },
+  tint:  { box: 'bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/50', name: 'text-gray-900 dark:text-white', text: 'text-blue-950/70 dark:text-blue-100/60' },
+  ink:   { box: 'bg-gray-900 dark:bg-blue-950 border border-gray-900 dark:border-blue-900', name: 'text-white', text: 'text-white/70' },
 }
 
 function ToolCell({ tool, preview, tone, row }: { tool: Tool; preview: ReactNode; tone: Tone; row?: boolean }) {
