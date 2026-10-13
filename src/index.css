@@ -335,24 +335,21 @@
 }
 
 /* Exam analysis charts: ink greys carry the data and amber is the one accent, meaning "hard" or
-   "marks lost" everywhere on the page. --ea-seq-* are the ends of the grey marks scale and
-   --ea-heat-* the ends of the amber difficulty scale; the band fills match the worked-solutions
-   sidebar's difficulty bars. */
+   "marks lost" everywhere on the page. The difficulty bands use the worked-solutions sidebar's
+   cut-offs, drawn amber / mid grey / pale grey so that only "hard" stands out. */
 :root {
-  --ea-ink: #8a909a; --ea-lost: #d97706; --ea-ref: #6b7280;
-  --ea-seq-lo: #f3f4f6; --ea-seq-hi: #1f2937;
-  --ea-heat-lo: #f3f4f6; --ea-heat-hi: #b45309;
-  --ea-hard: #d97706; --ea-medium: #fcd34d; --ea-easy: #d1d5db;
-  --ea-missing: #e5e7eb;
+  --ea-ink: #1f2937; --ea-lost: #d97706; --ea-ref: #6b7280;
+  --ea-hair: #9ca3af;
+  --ea-hard: #d97706; --ea-medium: #6b7280; --ea-easy: #d1d5db;
+  --ea-missing: #d1d5db;
   --ea-grid: #eceef1; --ea-axis: #d1d5db;
   --ea-surface: #ffffff;
 }
 .dark {
-  --ea-ink: #6b7280; --ea-lost: #fbbf24; --ea-ref: #9ca3af;
-  --ea-seq-lo: #1f2937; --ea-seq-hi: #e5e7eb;
-  --ea-heat-lo: #1f2937; --ea-heat-hi: #fbbf24;
-  --ea-hard: #fbbf24; --ea-medium: #b45309; --ea-easy: #4b5563;
-  --ea-missing: #374151;
+  --ea-ink: #e5e7eb; --ea-lost: #fbbf24; --ea-ref: #9ca3af;
+  --ea-hair: #6b7280;
+  --ea-hard: #fbbf24; --ea-medium: #9ca3af; --ea-easy: #4b5563;
+  --ea-missing: #4b5563;
   --ea-grid: #1f2937; --ea-axis: #374151;
   --ea-surface: #111827;
 }

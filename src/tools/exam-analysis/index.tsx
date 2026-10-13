@@ -22,7 +22,7 @@ import { NO_FOCUS, type ChartCtx, type Focus } from './view'
 import { FilterBar, type FilterProps } from './Filters'
 import { AllocationBars, allocationHeadline } from './charts/Allocation'
 import { DotStrip, difficultyHeadline } from './charts/Difficulty'
-import { Heatmap, trendHeadline, type TrendMeasure } from './charts/Trends'
+import { Dumbbells, trendHeadline, type TrendMeasure } from './charts/Trends'
 import { Histogram, binLabel, binOf, questionScores, spreadHeadline } from './charts/Spread'
 import { QuestionList } from './QuestionList'
 import { bandOf } from './charts/common'
@@ -186,7 +186,7 @@ export default function ExamAnalysis() {
           options={<MeasureSwitch value={measure} onChange={setMeasure} />}
           source={source}
         >
-          <Heatmap ctx={ctx} measure={measure} />
+          <Dumbbells ctx={ctx} measure={measure} />
         </Section>
 
         <Section ask="How Hard Is a Typical Question?" title={spreadHeadline(pickedItems)} source={source}>
@@ -293,7 +293,7 @@ function FocusBar({ ctx, onClear }: { ctx: ChartCtx; onClear: (patch: Partial<Fo
       )}
       {f.year && chip(String(f.year), () => onClear({ year: null }))}
       {f.bin !== null && chip(`Average ${binLabel(f.bin)}`, () => onClear({ bin: null }))}
-      {!any && <span className="text-[12.5px] text-gray-500 dark:text-gray-400">Click any topic, year or bar to narrow the view.</span>}
+      {!any && <span className="text-[12.5px] text-gray-500 dark:text-gray-400">Click any topic, or a column of questions, to narrow the view.</span>}
     </div>
   )
 }
@@ -361,7 +361,7 @@ function AboutNumbers() {
       </p>
       <p>
         <b className="text-gray-700 dark:text-gray-300">Marks lost</b> are a topic’s marks minus the average student’s marks on them, from the same averages. The
-        study-design comparison sets the yearly average from {STUDY_DESIGN_YEAR} against the years before it in view.
+        change chart sets the average year from {STUDY_DESIGN_YEAR} against the years before it in view, or, when the years in view don’t cross {STUDY_DESIGN_YEAR}, their second half against their first.
       </p>
       <p>
         <b className="text-gray-700 dark:text-gray-300">Topics.</b> Each MCQ and each short-answer part is filed under one subtopic, from its description in the archive and

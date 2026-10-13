@@ -104,51 +104,20 @@ export const BAND_FILL: Record<Band, string> = {
   easy: 'var(--ea-easy)',
 }
 
-export const BAND_LABEL: Record<Band, string> = {
-  hard: `Under ${HARD_BELOW}%`,
-  medium: `${HARD_BELOW}–${EASY_FROM - 1}%`,
-  easy: `${EASY_FROM}% or more`,
+/** A stable pseudo-random 0–1 from a string, so ticks and dots keep their jitter between renders. */
+export function hash01(key: string): number {
+  let h = 2166136261
+  for (let k = 0; k < key.length; k++) h = Math.imul(h ^ key.charCodeAt(k), 16777619)
+  return ((h >>> 0) % 1000) / 1000
 }
 
-/** A point on a two-colour scale, t in 0–1. */
-export function mix(lo: string, hi: string, t: number): string {
-  const k = Math.round(Math.min(1, Math.max(0, t)) * 100)
-  return `color-mix(in oklab, ${hi} ${k}%, ${lo})`
-}
-
-/** Difficulty as a colour: 80%+ average is the light end, 20% or less the deep amber end. */
-export function heatColor(score: number): string {
-  return mix('var(--ea-heat-lo)', 'var(--ea-heat-hi)', (0.8 - score) / 0.6)
-}
-
-export function BandKey() {
-  return (
-    <span className="inline-flex flex-wrap items-center gap-x-3 gap-y-1">
-      {(['hard', 'medium', 'easy'] as Band[]).map(b => (
-        <span key={b} className="inline-flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-sm" style={{ background: BAND_FILL[b] }} aria-hidden />
-          {BAND_LABEL[b]}
-        </span>
-      ))}
-    </span>
-  )
-}
-
-/** Rounded-top column path: square at the baseline, 4px round at the top. */
-export function vBarPath(x: number, y: number, w: number, h: number, r = 4): string {
-  if (h <= 0) return ''
-  const rr = Math.min(r, h, w / 2)
-  return `M${x},${y + h}V${y + rr}Q${x},${y} ${x + rr},${y}H${x + w - rr}Q${x + w},${y} ${x + w},${y + rr}V${y + h}Z`
-}
-
-/** Clean tick values from 0 up to at least `max`. */
-export function niceTicks(max: number, count = 4): number[] {
-  if (max <= 0) return [0]
-  const raw = max / count
+/** Clean axis values from lo to hi, about `count` of them. */
+export function niceTicks(lo: number, hi: number, count = 5): number[] {
+  const span = Math.max(1e-9, hi - lo)
+  const raw = span / count
   const mag = 10 ** Math.floor(Math.log10(raw))
-  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) ?? raw
-  const ticks: number[] = []
-  for (let v = 0; v <= max + step * 0.001; v += step) ticks.push(+v.toFixed(6))
-  if (ticks[ticks.length - 1] < max) ticks.push(+(ticks[ticks.length - 1] + step).toFixed(6))
-  return ticks
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(st => st >= raw) ?? raw
+  const out: number[] = []
+  for (let v = Math.ceil(lo / step - 1e-9) * step; v <= hi + step * 1e-6; v += step) out.push(+v.toFixed(6))
+  return out
 }
