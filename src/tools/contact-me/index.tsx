@@ -26,9 +26,9 @@ function WeChatIcon({ className = '' }: { className?: string }) {
   )
 }
 
-// A value shown as selectable text with a Copy button. If the clipboard is blocked, the text is
-// selected instead so it can be copied by hand.
-function CopyField({ value, children, boxed, button, minText = '' }: { value: string; children: ReactNode; boxed: boolean; button: string; minText?: string }) {
+// A value in a field with its Copy button inside it, at the right. If the clipboard is blocked,
+// the text is selected instead so it can be copied by hand.
+function CopyField({ value, children }: { value: string; children: ReactNode }) {
   const [copied, setCopied] = useState(false)
   const textRef = useRef<HTMLSpanElement>(null)
 
@@ -53,32 +53,30 @@ function CopyField({ value, children, boxed, button, minText = '' }: { value: st
   }
 
   return (
-    // If the value can't sit beside the button at its full width, the button wraps below it.
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60 p-1 pl-3.5">
       <span
         ref={textRef}
-        className={`flex-1 ${minText || 'min-w-0'} select-all [overflow-wrap:anywhere] font-medium text-[14px] text-gray-800 dark:text-gray-100 ${
-          boxed ? 'px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60' : ''
-        }`}
+        className="flex-1 min-w-0 select-all [overflow-wrap:anywhere] font-medium text-[14px] text-gray-800 dark:text-gray-100"
       >
         {children}
       </span>
       <button
         onClick={copy}
-        className={`flex-none text-white text-[13px] font-semibold px-4 py-2 rounded-lg transition-colors ${button}`}
+        aria-label={copied ? 'Copied' : `Copy ${value}`}
+        className="flex-none min-w-[4.75rem] rounded-lg bg-blue-600 px-3.5 py-2 text-[13px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-blue-700 active:scale-[0.97] transition-[background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
       >
-        {copied ? 'Copied' : 'Copy'}
+        {copied ? 'Copied ✓' : 'Copy'}
       </button>
     </div>
   )
 }
 
 // Many school laptops and Chromebooks have no mail app set up, so a mailto: link alone can do
-// nothing — the address comes first, with the link as a smaller option.
-function EmailCopy({ boxed }: { boxed: boolean }) {
+// nothing. The address comes first, with the link as a smaller option.
+function EmailCopy() {
   return (
-    <div className="flex flex-col gap-2 [@media(pointer:coarse)]:gap-3">
-      <CopyField value={EMAIL} boxed={boxed} button="bg-blue-600 hover:bg-blue-700" minText={boxed ? 'min-w-[240px]' : 'min-w-0'}>
+    <div className="flex flex-col gap-2.5 [@media(pointer:coarse)]:gap-3">
+      <CopyField value={EMAIL}>
         {/* If it has to wrap on a narrow phone, it wraps after the @. */}
         {EMAIL.split('@')[0]}@<wbr />{EMAIL.split('@')[1]}
       </CopyField>
@@ -89,62 +87,70 @@ function EmailCopy({ boxed }: { boxed: boolean }) {
   )
 }
 
-function WeChatIdCopy({ boxed }: { boxed: boolean }) {
+function WeChatIdCopy() {
   return (
-    <CopyField value={WECHAT_ID} boxed={boxed} button="bg-emerald-700 hover:bg-emerald-800">
+    <CopyField value={WECHAT_ID}>
       <span className="font-mono">{WECHAT_ID}</span>
     </CopyField>
   )
 }
 
+// The channel's icon in a soft tile (as on Home), then its name. WeChat keeps its own green as a
+// brand mark; everything clickable on the page is the site's blue.
+function ChannelHeading({ icon, tile, children }: { icon: ReactNode; tile: string; children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className={`grid place-items-center shrink-0 size-10 rounded-xl ${tile}`}>{icon}</span>
+      <h2 className="font-display text-lg font-semibold text-gray-900 dark:text-white">{children}</h2>
+    </div>
+  )
+}
+
+const emailHeading = (
+  <ChannelHeading icon={<EmailIcon />} tile="bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300">Email</ChannelHeading>
+)
+const weChatHeading = (
+  <ChannelHeading icon={<WeChatIcon />} tile="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">WeChat</ChannelHeading>
+)
+
 export default function ContactMe() {
   return (
-    <div className="max-w-2xl mx-auto px-5 sm:px-6 py-10">
-      <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-2">
+    <div className="max-w-4xl mx-auto px-5 sm:px-6 py-10 md:py-14">
+      <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-2 md:mb-3">
         Contact Me
       </h1>
-      <p className="text-[15px] text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-        Reach out any time — happy to answer questions about tutoring or these tools.
+      <p className="text-[15px] md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8 md:mb-10 max-w-[52ch]">
+        Questions about tutoring or these tools? Send me an email or add me on WeChat.
       </p>
 
-      {/* Desktop / tablet: split panel (email left, WeChat right) */}
-      <div className="hidden md:flex rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
-        <div className="flex-1 p-8 flex flex-col justify-center gap-3.5">
-          <div className="flex items-center gap-2.5 text-gray-900 dark:text-white">
-            <EmailIcon className="text-blue-600 dark:text-blue-400" />
-            <span className="text-[15px] font-semibold">Email</span>
-          </div>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 leading-relaxed">
-            Best for detailed questions — I read every message and usually reply within a day.
+      {/* Desktop / tablet: one panel, email then WeChat (side by side once there's room). */}
+      <div className="hidden md:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
+        <div className="p-8 lg:p-10 flex flex-col gap-4">
+          {emailHeading}
+          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-[40ch]">
+            Best for detailed questions. I read every message and usually reply within a day.
           </p>
-          <EmailCopy boxed />
+          <EmailCopy />
         </div>
-        <div className="w-px bg-gray-200 dark:bg-gray-800" />
-        <div className="flex-1 p-8 flex flex-col items-center justify-center gap-3.5 bg-gray-50 dark:bg-gray-950/40">
-          <div className="flex items-center gap-2.5 text-gray-900 dark:text-white">
-            <WeChatIcon className="text-emerald-500" />
-            <span className="text-[15px] font-semibold">WeChat</span>
+        <div className="p-8 lg:p-10 flex flex-col gap-4 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-950/40">
+          {weChatHeading}
+          <div className="flex items-center gap-5">
+            <img src={wechatQr} alt="WeChat QR code" className="w-32 h-32 lg:w-36 lg:h-36 flex-none rounded-xl border border-gray-200 dark:border-gray-700 bg-white" />
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Scan with WeChat to add me, or search for my ID.</p>
           </div>
-          <img src={wechatQr} alt="WeChat QR code" className="w-36 h-36 rounded-lg border border-gray-200 dark:border-gray-700" />
-          <p className="text-xs text-gray-500 dark:text-gray-400">Scan with WeChat to add me, or search my ID:</p>
-          <div className="w-full max-w-[220px]">
-            <WeChatIdCopy boxed />
-          </div>
+          <WeChatIdCopy />
         </div>
       </div>
 
       {/* Mobile: you can't scan a code on your own screen, so the WeChat ID comes first, and the
-          QR is something to save and open from WeChat's scanner; email gets a Copy button. */}
+          QR is something to save and open from WeChat's scanner. */}
       <div className="md:hidden flex flex-col gap-4">
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5">
-          <div className="flex items-center gap-2 text-gray-900 dark:text-white">
-            <WeChatIcon className="text-emerald-500 w-[18px] h-[18px]" />
-            <span className="text-[15px] font-semibold">WeChat</span>
-          </div>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-1 mb-2">Search for my WeChat ID:</p>
-          <WeChatIdCopy boxed />
+          {weChatHeading}
+          <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-3 mb-2">Search for my WeChat ID:</p>
+          <WeChatIdCopy />
           <div className="flex gap-4 items-center mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-            <img src={wechatQr} alt="WeChat QR code — press and hold to save it" className="w-24 h-24 flex-none rounded-lg border border-gray-200 dark:border-gray-700" />
+            <img src={wechatQr} alt="WeChat QR code. Press and hold to save it." className="w-24 h-24 flex-none rounded-xl border border-gray-200 dark:border-gray-700 bg-white" />
             <p className="text-[13px] text-gray-600 dark:text-gray-300 leading-relaxed">
               Or save this code to your photos (press and hold it, or use the button). Then in WeChat, tap
               {' '}<b className="text-gray-800 dark:text-gray-100">+ → Scan</b> and choose it from your album.
@@ -153,19 +159,16 @@ export default function ContactMe() {
           <a
             href={wechatQr}
             download="kevin-zhang-wechat-qr.png"
-            className="mt-3 block text-center text-[13px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 hover:bg-emerald-100 dark:hover:bg-emerald-950/70 rounded-lg py-2.5 transition-colors"
+            className="mt-3 block text-center text-[13px] font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-950 rounded-xl py-2.5 active:scale-[0.98] transition-[background-color,transform]"
           >
             Save QR code
           </a>
         </div>
 
         <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5">
-          <div className="flex items-center gap-2 text-gray-900 dark:text-white">
-            <EmailIcon className="text-blue-600 dark:text-blue-400 w-[18px] h-[18px]" />
-            <span className="text-[15px] font-semibold">Email</span>
-          </div>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-1 mb-3">I usually reply within a day.</p>
-          <EmailCopy boxed={false} />
+          {emailHeading}
+          <p className="text-[13px] text-gray-500 dark:text-gray-400 mt-3 mb-2">I usually reply within a day.</p>
+          <EmailCopy />
         </div>
       </div>
     </div>
