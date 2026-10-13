@@ -27,7 +27,7 @@ export function StepBar({ view, visited, onGo }: { view: PPView; visited: Readon
                 className={`group flex-none flex items-center gap-2 min-h-[44px] min-w-[44px] justify-center md:justify-start rounded-full ${FOCUS}`}
               >
                 <span
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-[12.5px] font-semibold tabular-nums transition-colors motion-reduce:transition-none ${
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-bold tabular-nums transition-[background-color,color,transform] motion-reduce:transition-none ${cur ? 'scale-110 shadow-[0_6px_14px_-6px_rgba(37,99,235,0.8)]' : 'group-hover:scale-105'} ${
                     cur
                       ? 'bg-blue-600 text-white dark:bg-blue-500'
                       : done
@@ -38,7 +38,7 @@ export function StepBar({ view, visited, onGo }: { view: PPView; visited: Readon
                   {n}
                 </span>
                 <span
-                  className={`hidden ${cur ? 'md:inline' : ''} text-[12.5px] whitespace-nowrap ${
+                  className={`hidden ${cur ? 'md:inline' : ''} text-[13.5px] font-display whitespace-nowrap ${
                     cur ? 'font-semibold text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
                   }`}
                 >
