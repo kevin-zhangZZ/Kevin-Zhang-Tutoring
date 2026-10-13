@@ -1,6 +1,10 @@
 // 2015 Mathematical Methods (CAS) — Exam 2, MCQ 16. VCAA examination report: 22% correct.
 // f(x) = ax^m, g(x) = bx^n; f'(x) is an antiderivative of g(x) — what must be true?
 // Question text transcribed from the original paper; solution is original.
+// Checked in sympy: f''(x) = am(m−1)x^{m−2} = bx^n gives n = m − 2, b/a = m(m−1) (D), agreeing with
+// the report. Counterexamples (a = 1): m = 3 → b = 6, n = 1 (A and D hold); m = 5 → b = 20, n = 3 (A fails).
+// Interactive: none — qualifies (22%), but the trap is reading the sentence and the meaning of "must be
+// true"; there is no graph to manipulate, and the two counterexamples in the last row's `more` do the job.
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
@@ -30,16 +34,26 @@ const EXAMINER: MCQExaminerStats = {
 
 const ROWS: WorkingRow[] = [
   {
-    working: <Katex display tex="f''(x) = am(m-1)\,x^{m-2}" />,
+    working: <Katex display tex="f''(x) = g(x)" />,
     reason: (
       <>
-        "<Katex tex="f'(x)" /> is an antiderivative of <Katex tex="g(x)" />" means the derivative of{' '}
-        <Katex tex="f'(x)" /> gives back <Katex tex="g(x)" />, i.e. <Katex tex="f''(x)=g(x)" />.
+        "<Katex tex="f'(x)" /> is an antiderivative of <Katex tex="g(x)" />" means differentiating <Katex tex="f'(x)" /> gives{' '}
+        <Katex tex="g(x)" />.
+      </>
+    ),
+    more: (
+      <>
+        Read the sentence carefully: it is <Katex tex="f'" />, not <Katex tex="f" />, whose derivative is <Katex tex="g" />. Taking it
+        as <Katex tex="f'(x)=g(x)" /> gives <Katex tex="m-1=n" /> and <Katex tex="\tfrac ba=m" /> instead — still option D, but by
+        luck. The report goes the other way, integrating <Katex tex="g" />:{' '}
+        <Katex tex="f'(x)=\tfrac{b}{n+1}x^{n+1}+c" />. Since <Katex tex="f'(x)=amx^{m-1}" /> has no constant term,{' '}
+        <Katex tex="c=0" />, and matching gives the same results as below.
       </>
     ),
   },
   {
     working: <Katex display tex="am(m-1)\,x^{m-2} = bx^n" />,
+    reason: <>Differentiate <Katex tex="f(x)=ax^m" /> twice, using the power rule each time.</>,
   },
   {
     working: (
@@ -48,20 +62,30 @@ const ROWS: WorkingRow[] = [
         <Katex display tex="\implies\; m=n+2" />
       </>
     ),
-    reason: 'Match the powers of x on each side.',
+    reason: <>Both sides are a single power of <Katex tex="x" />, equal for every real <Katex tex="x" />, so the powers must match. As <Katex tex="n\ge1" />, <Katex tex="m\ge3" />.</>,
   },
   {
     working: <Katex display tex="b = am(m-1)" />,
-    reason: 'Match the coefficients.',
+    reason: 'With the powers equal, the coefficients must match too.',
   },
   {
     working: <Katex display tex="\boxed{\dfrac{b}{a} = m(m-1)}" />,
     reason: (
       <>
-        Matches option <b>D</b>: <Katex tex="m(m-1)" /> is a product of two positive integers (<Katex tex="m=n+2\ge3" />),
-        so <Katex tex="\tfrac ba" /> is always an integer. The others can fail — with <Katex tex="n=3" />,{' '}
-        <Katex tex="m=5" />: <Katex tex="\tfrac mn=\tfrac53" /> (A) and <Katex tex="\tfrac nm=\tfrac35" /> (B) are not
-        integers, <Katex tex="\tfrac ab=\tfrac1{20}" /> (C) is not, and <Katex tex="n-m=-2" />, not 2 (E).
+        Matches option <b>D</b>: <Katex tex="m(m-1)" /> is a product of positive integers, so <Katex tex="\tfrac ba" /> is always an
+        integer.
+      </>
+    ),
+    more: (
+      <>
+        Only 22% chose D. "Must be true" means true in <em>every</em> case, so one counterexample rules an option out. Try{' '}
+        <Katex tex="a=1" />, <Katex tex="m=3" />: <Katex tex="f''(x)=6x" />, so <Katex tex="b=6" />, <Katex tex="n=1" />. This kills B
+        (<Katex tex="\tfrac13" />), C (<Katex tex="\tfrac16" />) and E (<Katex tex="n-m=-2" />), but A (<Katex tex="\tfrac31=3" />) and
+        D (<Katex tex="6" />) survive. A second case, <Katex tex="a=1" />, <Katex tex="m=5" />: <Katex tex="b=20" />,{' '}
+        <Katex tex="n=3" />, and now <Katex tex="\tfrac mn=\tfrac53" />, so A (24%) is out — it only holds when{' '}
+        <Katex tex="n=1" /> or <Katex tex="n=2" />. C (26%), the most popular wrong answer, has the ratio upside down:{' '}
+        <Katex tex="\tfrac ab=\tfrac{1}{m(m-1)}" /> is never an integer, since <Katex tex="m(m-1)\ge6" />. B is never an integer
+        either (<Katex tex="\tfrac{n}{n+2}" /> is less than 1), and E has the sign wrong: it is <Katex tex="m-n" /> that equals 2.
       </>
     ),
   },

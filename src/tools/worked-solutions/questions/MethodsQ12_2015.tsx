@@ -15,19 +15,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(\text{at least one red}) = 1-\Pr(\text{no red})" />,
-    reason: <>"At least one" almost always means "one minus none" — here the alternative is adding three separate cases.</>,
+    reason: <>"At least one" is the complement of "none". One case to compute instead of adding exactly one, two and three reds.</>,
   },
   {
     working: <Katex display tex="\Pr(BBB) = \frac38\times\frac27\times\frac16" />,
-    reason: <>Three blues in a row, without replacement: the pool shrinks each time and so does the blue count.</>,
+    reason: <>No red means all three are blue. Without replacement, each draw has one fewer ball in the box and one fewer blue.</>,
   },
   {
     working: <Katex display tex="= \frac{6}{336} = \frac{1}{56}" />,
-    reason: <>Only one way to pick all three blues out of three.</>,
+    reason: <>Simplify.</>,
+    more: <>The same result by counting selections: there are <Katex tex="\binom83=56" /> equally likely groups of three balls, and only <Katex tex="\binom33=1" /> of them is all blue.</>,
   },
   {
     working: <Katex display tex="\boxed{1-\frac{1}{56} = \frac{55}{56}}" />,
-    reason: <>Matches option <b>E</b>. Option D, <Katex tex="\tfrac{15}{56}" />, is the probability of <em>exactly</em> one red. About <Katex tex="0.982" />. Sensible: with five of the eight balls red, drawing three and getting no red at all would be remarkable.</>,
+    reason: <>Matches option <b>E</b>, about <Katex tex="0.982" />.</>,
+    more: <>Sensible: with five of the eight balls red, drawing three and getting no red at all would be remarkable. Option D, <Katex tex="\tfrac{15}{56}" />, is the probability of <em>exactly</em> one red, <Katex tex="\tfrac{\binom51\binom32}{56}" />: "at least one" also includes two and three reds.</>,
   },
 ]
 

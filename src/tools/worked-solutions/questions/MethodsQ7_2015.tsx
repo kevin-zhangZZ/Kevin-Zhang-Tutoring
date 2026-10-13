@@ -18,7 +18,7 @@ const ROWS: WorkingRow[] = [
     reason: <>Completing the square gives the turning point immediately: a maximum at <Katex tex="(1,-2)" />, since the parabola opens downwards.</>,
   },
   {
-    working: <Katex display tex="x=1 \in (-1,2] \implies \text{maximum value } -2 \text{ is attained}" />,
+    working: <Katex display tex="\begin{aligned} &x=1 \in (-1,2] \\ &\implies \text{max value } -2 \text{ attained} \end{aligned}" />,
     reason: <>The vertex lies inside the domain, so <Katex tex="-2" /> really is in the range — and the bracket at that end is square.</>,
   },
   {
@@ -27,11 +27,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(2) = -4+4-3 = -3 \quad\text{(attained)}" />,
-    reason: <>The other endpoint is included — but <Katex tex="-3" /> is <em>not</em> the lowest value, since the curve dips lower on the left of the vertex.</>,
+    reason: <>The other endpoint is included — but <Katex tex="-3 > -6" />, so the left end is lower: <Katex tex="-6" />, not <Katex tex="-3" />, sets the bottom of the range.</>,
   },
   {
     working: <Katex display tex="\boxed{(-6,-2]}" />,
-    reason: <>Matches option <b>C</b>. Between <Katex tex="x=-1" /> and <Katex tex="x=1" /> the function sweeps continuously from just above <Katex tex="-6" /> up to <Katex tex="-2" />, which covers everything. Option B stops at <Katex tex="-3" /> — the right endpoint — and misses the top of the curve.</>,
+    reason: <>Matches option <b>C</b>: values run from just above <Katex tex="-6" /> (never reached) up to <Katex tex="-2" /> (reached at the vertex).</>,
+    more: <>Between <Katex tex="x=-1" /> and <Katex tex="x=1" /> the function rises continuously from just above <Katex tex="-6" /> to <Katex tex="-2" />, so every value in between is taken; the stretch from <Katex tex="x=1" /> to <Katex tex="x=2" /> only repeats values in <Katex tex="[-3,-2]" />. Option B (31%) uses only the two endpoint values, <Katex tex="-6" /> and <Katex tex="-3" />, and misses the top of the curve at the vertex. Options D and E close the bracket at <Katex tex="-6" />, but <Katex tex="x=-1" /> is not in the domain.</>,
   },
 ]
 

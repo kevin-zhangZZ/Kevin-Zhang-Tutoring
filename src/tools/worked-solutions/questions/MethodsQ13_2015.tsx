@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\int_0^1 ae^x\,dx = a\Bigl[e^x\Bigr]_0^1 = a(e-1)" />,
-    reason: <>The first branch.</>,
+    reason: <>The first branch: <Katex tex="e^x" /> is its own antiderivative. Don't drop the <Katex tex="e^0=1" /> at the lower terminal.</>,
   },
   {
     working: <Katex display tex="\int_1^2 ae\,dx = ae\times(2-1) = ae" />,
@@ -27,11 +27,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="a(e-1)+ae = a(2e-1) = 1" />,
-    reason: <>Adding the two pieces.</>,
+    reason: <>Adding the two pieces, setting the total area to <Katex tex="1" />, then factorising out <Katex tex="a" />.</>,
   },
   {
     working: <Katex display tex="\boxed{a = \frac{1}{2e-1}}" />,
-    reason: <>Matches option <b>E</b>, about <Katex tex="0.226" />. Option C, <Katex tex="\tfrac1e" />, is what the second branch alone gives; option D, <Katex tex="\tfrac1{2e}" />, forgets the <Katex tex="e^0=1" /> at the lower terminal of the first integral.</>,
+    reason: <>Matches option <b>E</b>, about <Katex tex="0.225" />.</>,
+    more: <>Check: with <Katex tex="a=\tfrac1{2e-1}" /> the two pieces are <Katex tex="\tfrac{e-1}{2e-1}+\tfrac{e}{2e-1}=1" /> ✓. Option C (14%), <Katex tex="\tfrac1e" />, is what the second branch alone gives (<Katex tex="ae=1" />), forgetting the first piece. Option D (11%), <Katex tex="\tfrac1{2e}" />, forgets the <Katex tex="e^0=1" /> at the lower terminal, so the first integral becomes <Katex tex="ae" /> and the total <Katex tex="2ae=1" />.</>,
   },
 ]
 

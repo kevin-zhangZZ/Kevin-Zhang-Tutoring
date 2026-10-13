@@ -19,11 +19,12 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="2\int_0^5 g(x)\,dx = 2\times20 = 40" />,
-    reason: <>Using the given value.</>,
+    reason: <>Using the given value <Katex tex="\int_0^5 g(x)\,dx=20" />.</>,
   },
   {
     working: <Katex display tex="\int_0^5 x\,dx = \left[\frac{x^2}{2}\right]_0^5 = \frac{25}{2}" />,
-    reason: <>Or read it as the area of a triangle with base and height <Katex tex="5" />.</>,
+    reason: <>Antidifferentiate <Katex tex="x" /> to <Katex tex="\tfrac{x^2}{2}" />; don't drop the <Katex tex="\tfrac12" />.</>,
+    more: <>Or read it as the area of a triangle with base <Katex tex="5" /> and height <Katex tex="5" />: <Katex tex="\tfrac12\times5\times5=\tfrac{25}{2}" />.</>,
   },
   {
     working: <Katex display tex="40+\frac{25a}{2} = 90 \implies \frac{25a}{2} = 50" />,
@@ -31,7 +32,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 4}" />,
-    reason: <>Matches option <b>B</b>. Option C (20%), <Katex tex="2" />, comes from antidifferentiating <Katex tex="x" /> as <Katex tex="x^2" /> — dropping the <Katex tex="\tfrac12" /> — which gives <Katex tex="40+25a=90" />. Check: <Katex tex="40+\tfrac{25\times4}{2}=90" /> ✓.</>,
+    reason: <>Multiplying both sides by <Katex tex="\tfrac{2}{25}" />. Matches option <b>B</b>.</>,
+    more: <>Check: <Katex tex="40+\tfrac{25\times4}{2}=90" /> ✓. Option C (20%), <Katex tex="2" />, comes from antidifferentiating <Katex tex="x" /> as <Katex tex="x^2" />, dropping the <Katex tex="\tfrac12" />, which gives <Katex tex="40+25a=90" />.</>,
   },
 ]
 

@@ -15,11 +15,12 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{period} = \frac{2\pi}{3}" />,
-    reason: <>The coefficient of <Katex tex="x" /> inside the sine is <Katex tex="3" />, so the graph is squeezed horizontally by a factor of <Katex tex="3" />.</>,
+    reason: <>For <Katex tex="\sin(nx)" /> the period is <Katex tex="\tfrac{2\pi}{n}" />; here <Katex tex="n=3" />. The <Katex tex="2" /> and <Katex tex="-3" /> don't affect the period.</>,
+    more: <>The <Katex tex="3" /> squeezes the graph horizontally by a factor of <Katex tex="3" />, so one full cycle, normally <Katex tex="2\pi" /> long, now takes <Katex tex="\tfrac{2\pi}{3}" />. The amplitude and vertical shift change only the range.</>,
   },
   {
     working: <Katex display tex="-1\le\sin(3x)\le1 \implies -2\le2\sin(3x)\le2" />,
-    reason: <>Amplitude <Katex tex="2" />.</>,
+    reason: <>Start from the range of sine, <Katex tex="[-1,1]" />, and apply each transformation in turn. Multiplying by <Katex tex="2" /> (the amplitude) doubles it.</>,
   },
   {
     working: <Katex display tex="-5\le2\sin(3x)-3\le-1" />,
@@ -27,7 +28,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{period } \frac{2\pi}{3}, \quad \text{range } [-5,-1]}" />,
-    reason: <>Matches option <b>A</b>. Option B forgets the vertical shift of <Katex tex="-3" />; options D and E multiply <Katex tex="\pi" /> by 3 instead of dividing <Katex tex="2\pi" /> by it. Check: the midpoint of the range, <Katex tex="-3" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Check: the midpoint of the range, <Katex tex="-3" />, is the vertical shift; the half-width, <Katex tex="2" />, is the amplitude. Option B forgets the vertical shift of <Katex tex="-3" />. Options C and D have range <Katex tex="[-1,5]" />, whose midpoint is <Katex tex="2" /> and half-width <Katex tex="3" />: the <Katex tex="2" /> and the <Katex tex="3" /> have swapped roles (amplitude <Katex tex="3" />, shift up <Katex tex="2" />). Option C also halves the period (<Katex tex="\tfrac{\pi}{n}" /> is the period rule for tan, not sine). Options D and E treat the <Katex tex="3" /> as a horizontal stretch (period <Katex tex="3\pi" />) instead of a squeeze by a factor of <Katex tex="3" />.</>,
   },
 ]
 

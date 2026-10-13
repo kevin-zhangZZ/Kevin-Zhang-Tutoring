@@ -9,12 +9,20 @@
 // Exam 1 Q4 is an unrelated 2-mark "solve 2^(3x-3)=8^(2-x)" question, confirmed against
 // that paper. This content matches 2015 Exam 2 Q4 exactly, confirmed against both the
 // source PDF and its examiner report, whose stats are now included below.)
+//
+// Interactives (Detailed only) on the parts under 40% full marks: a. (two regions, not one),
+// d.i (the ∫_0^{2π} signed-area trap), d.ii (q's half-waves cancel for even n, one is left over for odd n).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { functionToPath } from '../graphUtils'
 import shadedGraphSrc from './meth-2015e2-q4-shaded-region.png'
 import fAxesSrc from './meth-2015e2-q4b-f-axes.png'
+import { Explore, lazyWidget } from '../Explore'
+
+const TwoRegionsWidget = lazyWidget(() => import('../interactives/meth-2015e2-q4a-two-regions'))
+const FullIntervalWidget = lazyWidget(() => import('../interactives/meth-2015e2-q4di-full-interval'))
+const LobesWidget = lazyWidget(() => import('../interactives/meth-2015e2-q4dii-lobes'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [64, 36],
@@ -73,26 +81,58 @@ const rowsA: WorkingRow[] = [
     ),
     reason: (
       <>
-        Find where <Katex tex="f" /> and <Katex tex="g" /> meet. Since <Katex tex="\cos x \le 1 < 2" />, the
-        factor <Katex tex="(2-\cos x)" /> is never zero, so the only meeting points are{' '}
-        <Katex tex="\sin x = 0" />.
+        Find where <Katex tex="f" /> and <Katex tex="g" /> meet: use <Katex tex="\sin 2x=2\sin x\cos x" />, then
+        factorise. Since <Katex tex="\cos x \le 1 < 2" />, the factor <Katex tex="(2-\cos x)" /> is never zero.
       </>
     ),
   },
   {
-    working: <Katex display tex="x = 0, \pi, 2\pi \quad \text{on } [0,2\pi]" />,
+    working: <Katex display tex="\sin x=0 \implies x = 0, \pi, 2\pi \quad \text{on } [0,2\pi]" />,
+    reason: <>These are the ends of the two shaded regions.</>,
   },
   {
     working: (
-      <Katex
-        display
-        tex="\int_0^{\pi}\!\Bigl(2\sin x-\tfrac12\sin 2x\Bigr)dx = \Bigl[-2\cos x+\tfrac14\cos 2x\Bigr]_0^{\pi} = 4"
-      />
+      <>
+        <Katex display tex="\int_0^{\pi}\!\Bigl(2\sin x-\tfrac12\sin 2x\Bigr)dx" />
+        <Katex display tex="= \Bigl[-2\cos x+\tfrac14\cos 2x\Bigr]_0^{\pi}" />
+        <Katex display tex="= \bigl(2+\tfrac14\bigr)-\bigl(-2+\tfrac14\bigr) = 4" />
+      </>
     ),
-    reason: <><Katex tex="f\ge g" /> on <Katex tex="(0,\pi)" />, giving one shaded region of area 4; by symmetry the region on <Katex tex="(\pi,2\pi)" /> also has area 4.</>,
+    reason: (
+      <>
+        On <Katex tex="(0,\pi)" />, <Katex tex="f-g=\sin x(2-\cos x)>0" />, so <Katex tex="f" /> is on top: integrate top
+        minus bottom.
+      </>
+    ),
+    more: (
+      <>
+        The report's shortcut:{' '}
+        <Katex tex="\int_0^\pi \tfrac12\sin 2x\,dx=0" />, because <Katex tex="(0,\pi)" /> is exactly one full period of{' '}
+        <Katex tex="g" />, whose hump above the axis cancels its dip below. So the region's area is just{' '}
+        <Katex tex="\int_0^\pi 2\sin x\,dx=4" />, the area under <Katex tex="f" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\text{Total shaded area} = 4+4 = 8" />,
+    working: (
+      <>
+        <Katex display tex="\int_\pi^{2\pi}\!\Bigl(\tfrac12\sin 2x-2\sin x\Bigr)dx = 4" />
+        <Katex display tex="\text{Total shaded area} = 4+4 = 8" />
+      </>
+    ),
+    reason: (
+      <>
+        On <Katex tex="(\pi,2\pi)" />, <Katex tex="g" /> is on top. This region is the first turned half a turn about{' '}
+        <Katex tex="(\pi,0)" />, so it also has area 4.
+      </>
+    ),
+    more: (
+      <>
+        Both functions satisfy <Katex tex="y(2\pi-x)=-y(x)" />, which is exactly that half-turn symmetry. In the report's form,
+        the total is <Katex tex="2\int_0^\pi 2\sin x\,dx=\int_0^\pi 4\sin x\,dx" />, which shows <Katex tex="a=4" />{' '}
+        straight away.
+      </>
+    ),
   },
   {
     working: <Katex display tex="a\int_0^\pi \sin x\,dx = a[-\cos x]_0^\pi = 2a" />,
@@ -100,11 +140,44 @@ const rowsA: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2a=8 \implies a=4}" />,
-    reason: <>The common wrong answer <Katex tex="a=2" /> gives an area of 4 — only one of the two shaded regions. A sanity check on the size: each region sits inside a <Katex tex="\pi\times2" /> box of area about 6.3, and covers well over half of it.</>,
+    reason: <>Equate the two expressions for the total area.</>,
+    more: (
+      <>
+        The report's common wrong answer <Katex tex="a=2" /> gives an area of only <Katex tex="2(2)=4" />: one of the two
+        shaded regions. The question asks for the <em>total</em> area, so both count. A sanity check on the size: each
+        region sits inside a <Katex tex="\pi\times2" /> box of area about 6.3 and covers well over half of it, so 4 each
+        is about right.
+      </>
+    ),
   },
 ]
 
 const rowsB: WorkingRow[] = [
+  {
+    working: (
+      <Katex
+        display
+        tex="\begin{aligned} &\text{amplitude } \tfrac13,\quad \text{period } \tfrac{2\pi}{3} \\ &x\text{-int: } 0,\ \tfrac{\pi}{3},\ \tfrac{2\pi}{3},\ \pi,\ \tfrac{4\pi}{3},\ \tfrac{5\pi}{3},\ 2\pi \\ &\max \text{ at } \bigl(\tfrac{\pi}{6},\tfrac13\bigr),\ \bigl(\tfrac{5\pi}{6},\tfrac13\bigr),\ \bigl(\tfrac{3\pi}{2},\tfrac13\bigr) \\ &\min \text{ at } \bigl(\tfrac{\pi}{2},-\tfrac13\bigr),\ \bigl(\tfrac{7\pi}{6},-\tfrac13\bigr),\ \bigl(\tfrac{11\pi}{6},-\tfrac13\bigr) \end{aligned}"
+      />
+    ),
+    reason: (
+      <>
+        Read the amplitude and period off <Katex tex="h(x)=\tfrac13\sin(3x)" />. A half-period is{' '}
+        <Katex tex="\tfrac{\pi}{3}" />, so intercepts are <Katex tex="\tfrac{\pi}{3}" /> apart, with a turning point halfway
+        between each pair.
+      </>
+    ),
+    more: (
+      <>
+        Check the turning points with <Katex tex="h'(x)=\cos(3x)=0" />, giving{' '}
+        <Katex tex="3x=\tfrac{\pi}{2},\tfrac{3\pi}{2},\ldots" />, so <Katex tex="x=\tfrac{\pi}{6},\tfrac{\pi}{2},\ldots" />.
+        A useful landmark: <Katex tex="h" /> has a minimum at <Katex tex="x=\tfrac{\pi}{2}" />, right under{' '}
+        <Katex tex="f" />'s maximum, and a maximum at <Katex tex="x=\tfrac{3\pi}{2}" />, right above <Katex tex="f" />'s
+        minimum. The report notes some students put the <Katex tex="x" />-intercepts and turning points in the wrong
+        places, so mark them against the printed scale before drawing. Draw one smooth curve; no shading is asked for.
+      </>
+    ),
+  },
   {
     working: (
       <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-3 w-fit">
@@ -113,10 +186,8 @@ const rowsB: WorkingRow[] = [
     ),
     reason: (
       <>
-        <Katex tex="h(x)=\tfrac13\sin 3x" /> has amplitude <Katex tex="\tfrac13" /> and period{' '}
-        <Katex tex="\tfrac{2\pi}{3}" />, so it completes 3 full cycles over <Katex tex="[0,2\pi]" />, each
-        reaching only <Katex tex="\pm\tfrac13" /> — much flatter and faster than <Katex tex="f" /> (shown
-        in orange, on top of the real exam figure with <Katex tex="f" /> already drawn).
+        Sketch through those points (<Katex tex="h" /> in orange): three full cycles over <Katex tex="[0,2\pi]" />, much
+        flatter and faster than <Katex tex="f" />.
       </>
     ),
   },
@@ -139,41 +210,127 @@ const rowsC: WorkingRow[] = [
         <Katex tex="y" />-axis.
       </p>
     ),
+    reason: <>Name each dilation by its factor and the axis it is <em>from</em>.</>,
+    more: (
+      <>
+        The report notes many students did not use the correct wording. Write "dilation by a factor of ... from the
+        ...-axis" (or "parallel to" the other axis). Phrases like "compressed by 3" or "horizontal dilation by 3", or a
+        factor with no axis, do not describe the transformation precisely. Check: the mapping{' '}
+        <Katex tex="(x,y)\to\bigl(\tfrac{x}{3},\tfrac{y}{6}\bigr)" /> sends a point of <Katex tex="y=2\sin x" /> to{' '}
+        <Katex tex="(X,Y)" /> with <Katex tex="x=3X,\ y=6Y" />, so <Katex tex="6Y=2\sin(3X)" />, i.e.{' '}
+        <Katex tex="Y=\tfrac13\sin(3X)" />. Two dilations can be done in either order.
+      </>
+    ),
   },
 ]
 
 const rowsDi: WorkingRow[] = [
   {
     working: <Katex display tex="\text{Area} = 2\int_0^\pi \bigl(k(x)-q(x)\bigr)\,dx" />,
-    reason: <>Same meeting-point argument as part (a) applies for any positive integer <Katex tex="n" />: <Katex tex="k" /> and <Katex tex="q" /> only meet where <Katex tex="\sin x=0" />, i.e. at <Katex tex="x=0,\pi,2\pi" />, and the region on <Katex tex="(\pi,2\pi)" /> repeats the region on <Katex tex="(0,\pi)" />.</>,
+    reason: (
+      <>
+        As in part a. (graph <Katex tex="k" /> and <Katex tex="q" /> on CAS for a few <Katex tex="m,n" /> to see it), they
+        meet only at <Katex tex="x=0,\pi,2\pi" />, with <Katex tex="k" /> on top on <Katex tex="(0,\pi)" />; the region
+        on <Katex tex="(\pi,2\pi)" /> is a congruent copy.
+      </>
+    ),
+    more: (
+      <>
+        Why the graphs look like this: <Katex tex="k" /> rises with gradient <Katex tex="m\ge2" /> at the origin, while{' '}
+        <Katex tex="q" /> stays within <Katex tex="\pm\tfrac1n" /> and starts with gradient 1. (A full proof uses{' '}
+        <Katex tex="|\sin(nx)|\le n|\sin x|" />, which is beyond Methods.) Both functions satisfy{' '}
+        <Katex tex="y(2\pi-x)=-y(x)" />, so the region on <Katex tex="(\pi,2\pi)" /> is the first one turned half a turn
+        about <Katex tex="(\pi,0)" />. The report notes many students evaluated{' '}
+        <Katex tex="\int_0^{2\pi}k(x)-q(x)\,dx" />: on <Katex tex="(\pi,2\pi)" /> it is <Katex tex="q" /> that is on top,
+        so that half counts as negative and cancels the first, giving 0. Split the integral wherever the curves cross.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\int_0^\pi m\sin x\,dx = 2m, \qquad \int_0^\pi \tfrac1n\sin(nx)\,dx = \frac{1-\cos(n\pi)}{n^2}" />,
+    working: (
+      <>
+        <Katex display tex="\int_0^\pi m\sin x\,dx = \bigl[-m\cos x\bigr]_0^\pi = 2m" />
+        <Katex display tex="\int_0^\pi \tfrac1n\sin(nx)\,dx = \Bigl[-\tfrac{1}{n^2}\cos(nx)\Bigr]_0^\pi" />
+        <Katex display tex="= \frac{1-\cos(n\pi)}{n^2}" />
+      </>
+    ),
+    reason: (
+      <>
+        Integrate each function separately. An antiderivative of <Katex tex="\sin(nx)" /> is{' '}
+        <Katex tex="-\tfrac1n\cos(nx)" />, and <Katex tex="\cos 0=1" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="n \text{ even} \;\implies\; \cos(n\pi)=1 \;\implies\; \int_0^\pi q(x)\,dx = 0" />,
-    reason: 'For even n, q completes a whole number of full periods on (0,π), so its net signed area there is 0.',
+    working: (
+      <>
+        <Katex display tex="\text{Area} = 2\left(2m-\frac{1-\cos(n\pi)}{n^2}\right)" />
+        <Katex display tex="= 4m+\frac{2\cos(n\pi)-2}{n^2}" />
+      </>
+    ),
+    reason: (
+      <>
+        Double the top-minus-bottom integral (two congruent regions), then expand. Keep <Katex tex="\cos(n\pi)" /> until
+        you use whether <Katex tex="n" /> is even or odd.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\text{Area} = 2\bigl(2m - 0\bigr) = 4m" />,
+    working: <Katex display tex="n \text{ even} \;\implies\; \cos(n\pi)=1" />,
+    reason: (
+      <>
+        For even <Katex tex="n" />, <Katex tex="n\pi" /> is a whole number of full turns (
+        <Katex tex="2\pi, 4\pi,\ldots" />), so <Katex tex="\cos(n\pi)=1" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes many students did not realise this. On the graph: <Katex tex="q" /> has period{' '}
+        <Katex tex="\tfrac{2\pi}{n}" />, so <Katex tex="(0,\pi)" /> holds exactly <Katex tex="\tfrac n2" /> full periods,
+        and its parts above and below the axis cancel: <Katex tex="\int_0^\pi q(x)\,dx=0" />.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\boxed{\text{Area} = 4m + \dfrac{0}{n^2} \quad (b=0)}" />,
-    reason: <>Consistent with part (a): <Katex tex="m=2,\ n=2" /> (even) gives <Katex tex="4(2)=8" />. ✓</>,
+    working: <Katex display tex="\boxed{\text{Area} = 4m + \dfrac{2(1)-2}{n^2} = 4m + \dfrac{0}{n^2}}" />,
+    reason: <>In the required form <Katex tex="am+\tfrac{b}{n^2}" />, <Katex tex="a=4" /> and <Katex tex="b=0" />.</>,
+    more: <>Consistent with part a.: <Katex tex="m=2,\ n=2" /> (even) gives <Katex tex="4(2)=8" />. ✓</>,
   },
 ]
 
 const rowsDii: WorkingRow[] = [
   {
-    working: <Katex display tex="n \text{ odd} \;\implies\; \cos(n\pi)=-1 \;\implies\; \int_0^\pi q(x)\,dx = \frac{2}{n^2}" />,
-    reason: 'Reuse the general result from part (d)(i) with n odd instead.',
+    working: <Katex display tex="n \text{ odd} \;\implies\; \cos(n\pi)=-1" />,
+    reason: (
+      <>
+        For odd <Katex tex="n" />, <Katex tex="n\pi" /> is <Katex tex="\pi" /> plus whole turns, so{' '}
+        <Katex tex="\cos(n\pi)=\cos\pi=-1" />.
+      </>
+    ),
+    more: (
+      <>
+        The report notes many students did not realise this. On the graph: over <Katex tex="(0,\pi)" />,{' '}
+        <Katex tex="q" /> is <Katex tex="n" /> half-waves, each of area <Katex tex="\tfrac{2}{n^2}" />, alternately above
+        and below the axis. For odd <Katex tex="n" /> one half-wave above is left over, so{' '}
+        <Katex tex="\int_0^\pi q(x)\,dx=\tfrac{1-(-1)}{n^2}=\tfrac{2}{n^2}" />, and this is taken off each of the two
+        halves of the enclosed area.
+      </>
+    ),
   },
   {
-    working: <Katex display tex="\text{Area} = 2\left(2m-\frac{2}{n^2}\right) = 4m - \frac{4}{n^2}" />,
+    working: <Katex display tex="\text{Area} = 4m+\frac{2(-1)-2}{n^2}" />,
+    reason: <>Substitute into the general area from part d.i.</>,
   },
   {
-    working: <Katex display tex="\boxed{\text{Area} = 4m - \dfrac{4}{n^2} \quad (b=-4)}" />,
-    reason: <>Check with <Katex tex="m=2" />, <Katex tex="n=3" /> (the design from part b.): <Katex tex="8-\tfrac49\approx7.6" />, a little less than part a.'s 8 because <Katex tex="h" /> now bulges slightly into the region above the axis on <Katex tex="(0,\pi)" />.</>,
+    working: <Katex display tex="\boxed{\text{Area} = 4m - \dfrac{4}{n^2}}" />,
+    reason: <>In the same form, <Katex tex="a=4" /> and <Katex tex="b=-4" />.</>,
+    more: (
+      <>
+        Check with <Katex tex="m=2,\ n=3" /> (the design from part b.): <Katex tex="8-\tfrac49\approx7.56" />, a little
+        less than part a.'s 8, by the two left-over half-waves of <Katex tex="h" />, each of area{' '}
+        <Katex tex="\tfrac29" />.
+      </>
+    ),
   },
 ]
 
@@ -218,6 +375,9 @@ export default function MethodsQ4_2015Exam2() {
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={rowsA} />
+        <Explore title="The total is two regions, so a·∫sin x must cover 8, not 4">
+          <TwoRegionsWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
@@ -275,6 +435,9 @@ export default function MethodsQ4_2015Exam2() {
         examinerReport={EXAM_DI}
       >
         <WorkingTable rows={rowsDi} />
+        <Explore title="Integrating k − q straight across [0, 2π] always gives 0">
+          <FullIntervalWidget />
+        </Explore>
       </PartCard>
 
       <PartCard
@@ -291,6 +454,9 @@ export default function MethodsQ4_2015Exam2() {
         examinerReport={EXAM_DII}
       >
         <WorkingTable rows={rowsDii} />
+        <Explore title="Odd n leaves one half-wave of q uncancelled on (0, π)">
+          <LobesWidget />
+        </Explore>
       </PartCard>
     </div>
   )

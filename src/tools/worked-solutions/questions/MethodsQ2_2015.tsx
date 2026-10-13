@@ -19,19 +19,22 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x^2 = \frac{1}{y+2} \implies y+2 = \frac{1}{x^2}" />,
-    reason: <>Squaring, then taking reciprocals.</>,
+    reason: <>Square both sides, then take the reciprocal of both sides.</>,
+    more: <>Squaring can add extra solutions (a negative <Katex tex="x" /> gives the same <Katex tex="x^2" />), but here nothing extra comes in: in the inverse, <Katex tex="x" /> stands for an output of <Katex tex="f" />, which is always positive.</>,
   },
   {
     working: <Katex display tex="f^{-1}(x) = \frac{1}{x^2}-2" />,
-    reason: <>The rule. Three of the five options carry it — the domain is what decides.</>,
+    reason: <>Subtract <Katex tex="2" />. Options A and B both have this rule, so the domain decides between them.</>,
   },
   {
     working: <Katex display tex="x>-2 \implies \sqrt{x+2}>0 \implies \frac{1}{\sqrt{x+2}}>0" />,
-    reason: <>So <Katex tex="\text{ran}(f)=R^+" />: the outputs are strictly positive, never zero and never negative.</>,
+    reason: <>The domain of <Katex tex="f^{-1}" /> is the range of <Katex tex="f" />. Every output of <Katex tex="f" /> is positive, so <Katex tex="\text{ran}(f)=R^+" />.</>,
+    more: <>Every positive value is actually reached: as <Katex tex="x\to-2^+" />, <Katex tex="f(x)\to\infty" />, and as <Katex tex="x\to\infty" />, <Katex tex="f(x)\to0^+" />, with <Katex tex="f" /> continuous in between. So the range is all of <Katex tex="(0,\infty)" />, not just part of it.</>,
   },
   {
     working: <Katex display tex="\boxed{f^{-1}:R^+\to R,\ f^{-1}(x)=\frac{1}{x^2}-2}" />,
-    reason: <>Matches option <b>A</b>. Option B's <Katex tex="R\setminus\{0\}" /> — chosen by 42% — allows negative inputs, but <Katex tex="f" /> never produces a negative output, so those values are not in the domain of the inverse.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option B (chosen by 42%) has the right rule, but <Katex tex="R\setminus\{0\}" /> is just where the rule <Katex tex="\tfrac{1}{x^2}-2" /> is defined. It includes negative inputs, and <Katex tex="f" /> never produces a negative output, so those values cannot be in the domain of the inverse. Always take the inverse's domain from the range of <Katex tex="f" />, not from where its rule happens to work. Option C adds <Katex tex="2" /> instead of subtracting it; option D drops the reciprocal, adds <Katex tex="2" /> instead of subtracting it, and reuses <Katex tex="f" />'s domain; option E subtracts <Katex tex="2" /> before taking the reciprocal and has the wrong domain.</>,
   },
 ]
 
@@ -48,7 +51,7 @@ export default function MethodsQ2_2015() {
         <p>
           When several options share a rule, the question is really about the domain. The
           domain of an inverse is the <em>range</em> of the original — so work that out
-          first and the answer usually falls out without touching the algebra.
+          first: here it rules out B, D and E at once, leaving only the rule to check.
         </p>
       }
       options={[

@@ -15,11 +15,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = \int_0^x\sqrt{t^2+4}\,dt" />,
-    reason: <>An integral with a variable upper limit. There is no need to evaluate it — and no elementary way to.</>,
+    reason: <>An integral with a variable upper limit. There is no need to evaluate it — and no Methods technique could.</>,
   },
   {
     working: <Katex display tex="f'(x) = \sqrt{x^2+4}" />,
-    reason: <>The fundamental theorem of calculus: differentiating an integral with respect to its upper limit simply substitutes that limit into the integrand.</>,
+    reason: <>The fundamental theorem of calculus: differentiating an integral with a constant lower limit with respect to its upper limit substitutes that limit into the integrand.</>,
   },
   {
     working: <Katex display tex="f'(-2) = \sqrt{(-2)^2+4} = \sqrt8" />,
@@ -27,7 +27,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{2\sqrt2}" />,
-    reason: <>Matches option <b>C</b>, since <Katex tex="\sqrt8=\sqrt4\sqrt2" />. Option D has the sign wrong — the integrand <Katex tex="\sqrt{t^2+4}" /> is positive everywhere, so its value at any point must be too.</>,
+    reason: <>Matches option <b>C</b>, since <Katex tex="\sqrt8=\sqrt4\sqrt2=2\sqrt2" />.</>,
+    more: (
+      <>
+        Option D has the sign wrong. It is true that <Katex tex="f(-2)" /> itself is negative — the integral runs
+        backwards from <Katex tex="0" /> to <Katex tex="-2" /> — but the question asks for <Katex tex="f'(-2)" />, which
+        is just the integrand's value at <Katex tex="-2" />. <Katex tex="x^2+4" /> is always positive, so its square root is too: <Katex tex="f'(x)>0" />{' '}
+        for every <Katex tex="x" />. Options A and B (<Katex tex="\pm\sqrt2" />) come from substituting{' '}
+        <Katex tex="-2" /> without squaring it: <Katex tex="\sqrt{-2+4}=\sqrt2" />.
+      </>
+    ),
   },
 ]
 

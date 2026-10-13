@@ -70,23 +70,25 @@ const EXAM_D: SAExaminerStats = {
 
 const ROWS_A: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x)=\tfrac15(x-2)^2(5-x) = \tfrac15\bigl(-x^3+9x^2-24x+20\bigr)" />,
-    reason: <>Expanding first makes the differentiation a one-liner; the product rule on the factored form works just as well.</>,
+    working: <Katex display tex="\begin{aligned}f(x)&=\tfrac15(x-2)^2(5-x)\\&= \tfrac15\bigl(-x^3+9x^2-24x+20\bigr)\end{aligned}" />,
+    reason: <>Expand: <Katex tex="(x^2-4x+4)(5-x)=-x^3+9x^2-24x+20" />, so the derivative is term by term.</>,
+    more: <>On Exam 2 the quickest route is the CAS derivative template (menu → Calculus → Derivative), then factor the result. By hand, the product rule on the factored form works just as well.</>,
   },
   {
     working: <Katex display tex="f'(x) = \tfrac15\bigl(-3x^2+18x-24\bigr)" />,
-    reason: <>Term by term.</>,
+    reason: <>Term by term, using <Katex tex="\tfrac{d}{dx}(x^n)=nx^{n-1}" />; the constant 20 differentiates to 0.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(x) = -\tfrac35(x-2)(x-4)}" />,
-    reason: <>Factorising is worth the extra line — it hands you the stationary points at <Katex tex="x=2" /> and <Katex tex="x=4" /> free of charge, matching the graph's minimum on the <Katex tex="x" />-axis and maximum just beyond it. VCAA also accepted the unfactorised form.</>,
+    reason: <>Take out <Katex tex="-\tfrac35" /> and factorise <Katex tex="x^2-6x+8" />. The unfactorised form also earns the mark.</>,
+    more: <>Factorising is worth the extra line: it hands you the stationary points at <Katex tex="x=2" /> and <Katex tex="x=4" />, matching the graph's minimum on the <Katex tex="x" />-axis and the maximum just beyond it. The report's only complaint was transcription errors — copy <Katex tex="f(x)" /> into the CAS (or your working) carefully, and check the sign of <Katex tex="(5-x)" /> survives.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="f'(1) = -\tfrac35(1-2)(1-4) = -\tfrac35(-1)(-3) = -\tfrac95" />,
-    reason: <>The gradient of the tangent at <Katex tex="P" />. Two negatives multiply to a positive, so the <Katex tex="-\tfrac35" /> out the front survives.</>,
+    reason: <>The gradient of the tangent at <Katex tex="P" />. Substitute <Katex tex="x=1" /> into <Katex tex="f'(x)" />: <Katex tex="(-1)(-3)=3" />, so the result is <Katex tex="-\tfrac35\times3" />.</>,
   },
   {
     working: <Katex display tex="y - \tfrac45 = -\tfrac95(x-1)" />,
@@ -94,11 +96,12 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="y = -\tfrac95x + \tfrac95 + \tfrac45" />,
-    reason: <>Expanding.</>,
+    reason: <>Expanding the bracket and moving <Katex tex="\tfrac45" /> across.</>,
   },
   {
     working: <Katex display tex="\boxed{y = -\tfrac95x + \tfrac{13}5}" />,
-    reason: <>Write it as an equation, not just an expression — the report notes students who left it as <Katex tex="-\tfrac95x+\tfrac{13}5" />. Check: <Katex tex="-\tfrac95+\tfrac{13}5=\tfrac45" /> at <Katex tex="x=1" /> ✓.</>,
+    reason: <>Since <Katex tex="\tfrac95+\tfrac45=\tfrac{13}5" />. Write the answer as an equation, <Katex tex="y=\dots" />, not just an expression.</>,
+    more: <>The report notes students who lost the mark by leaving it as <Katex tex="-\tfrac95x+\tfrac{13}5" /> — a tangent is a line, and a line is an equation. Check: at <Katex tex="x=1" />, <Katex tex="-\tfrac95+\tfrac{13}5=\tfrac45" /> ✓, so the line does pass through <Katex tex="P" />.</>,
   },
 ]
 
@@ -117,26 +120,29 @@ const ROWS_BII: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{Q = \left(\tfrac{13}9,\ 0\right), \quad S = \left(0,\ \tfrac{13}5\right)}" />,
-    reason: <>As coordinates, and exact — <Katex tex="1.44" /> for <Katex tex="\tfrac{13}9" /> was marked wrong. Consistent with the diagram: <Katex tex="Q" /> just right of the origin, <Katex tex="S" /> a little below 4 on the <Katex tex="y" />-axis.</>,
+    reason: <>Give both as labelled coordinate pairs, and exact: <Katex tex="1.44" /> for <Katex tex="\tfrac{13}9" /> was marked wrong.</>,
+    more: <>The report also saw answers that weren't written as coordinates, or had the labels swapped. Keep it straight: <Katex tex="S" /> is on the <Katex tex="y" />-axis, so its <Katex tex="x" />-coordinate is 0; <Katex tex="Q" /> is on the <Katex tex="x" />-axis, so its <Katex tex="y" />-coordinate is 0. Check against VCAA's figure: <Katex tex="Q" /> sits just right of <Katex tex="P" /> (<Katex tex="\tfrac{13}9\approx1.44" />), and <Katex tex="S" /> is below the 4 marked on the <Katex tex="y" />-axis (<Katex tex="\tfrac{13}5=2.6" />).</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="P\left(1,\tfrac45\right),\quad S\left(0,\tfrac{13}5\right)" />,
-    reason: <>The two points the question names. Note it is <Katex tex="PS" />, not <Katex tex="QS" />.</>,
+    reason: <>The two points the question names — <Katex tex="P" /> (given) and <Katex tex="S" /> (from b.ii). It is <Katex tex="PS" />, not <Katex tex="QS" />.</>,
+    more: <>The report says many students found <Katex tex="QS" /> instead, giving <Katex tex="\sqrt{\left(\tfrac{13}9\right)^2+\left(\tfrac{13}5\right)^2}" />. Re-read which two letters the question names before substituting.</>,
   },
   {
     working: <Katex display tex="PS = \sqrt{(1-0)^2+\left(\tfrac45-\tfrac{13}5\right)^2}" />,
-    reason: <>The distance formula. Common denominators already, so the <Katex tex="y" />-difference is easy.</>,
+    reason: <>The distance formula, <Katex tex="d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}" />. The <Katex tex="y" />-values share denominator 5, so the difference is quick.</>,
   },
   {
     working: <Katex display tex="= \sqrt{1 + \left(-\tfrac95\right)^2} = \sqrt{1+\tfrac{81}{25}}" />,
-    reason: <>Squaring kills the sign.</>,
+    reason: <><Katex tex="\tfrac45-\tfrac{13}5=-\tfrac95" />; squaring removes the negative sign.</>,
   },
   {
     working: <Katex display tex="\boxed{PS = \sqrt{\tfrac{106}{25}} = \frac{\sqrt{106}}{5}}" />,
-    reason: <>So <Katex tex="b=106" /> and <Katex tex="c=5" />. Since <Katex tex="106=2\times53" /> has no square factor, the surd cannot be simplified further. About 2.06 — a bit longer than the unit horizontal step from <Katex tex="S" /> to <Katex tex="P" />, as it should be.</>,
+    reason: <><Katex tex="1+\tfrac{81}{25}=\tfrac{106}{25}" /> and <Katex tex="\sqrt{25}=5" />. So <Katex tex="b=106" />, <Katex tex="c=5" />; <Katex tex="106=2\times53" /> has no square factor to simplify.</>,
+    more: <>Sense check: from <Katex tex="S" /> to <Katex tex="P" /> is 1 across and <Katex tex="\tfrac95=1.8" /> down, so <Katex tex="PS" /> must be longer than 1.8 (the longer side) but shorter than <Katex tex="1+1.8=2.8" />. <Katex tex="\tfrac{\sqrt{106}}5\approx2.06" /> ✓.</>,
   },
 ]
 
@@ -147,19 +153,22 @@ const ROWS_D: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = 1 \quad\text{or}\quad x = 7" />,
-    reason: <><Katex tex="x=1" /> is the point of tangency <Katex tex="P" /> (a repeated root, which is what "tangent" means algebraically); <Katex tex="x=7" /> is where the line cuts back through the curve.</>,
+    reason: <><Katex tex="x=1" /> is the point of tangency <Katex tex="P" />; <Katex tex="x=7" /> is where the line cuts back through the curve.</>,
   },
   {
     working: <Katex display tex="A = \int_1^7\Bigl(f(x) - \left(-\tfrac95x+\tfrac{13}5\right)\Bigr)dx" />,
-    reason: <>Reading the diagram, the curve is the upper boundary and the tangent the lower one across the whole interval, so a single integral does it — no splitting required.</>,
+    reason: <>In the figure the curve is above the tangent across the whole region, so one integral of (upper − lower) does it — no splitting at the <Katex tex="x" />-axis.</>,
+    more: <>The report flags two presentation errors: a missing <Katex tex="dx" />, and poor bracketing. Without the bracket around the line, <Katex tex="f(x)-\tfrac{-9}{5}x+\tfrac{13}{5}" /> adds <Katex tex="\tfrac{13}5" /> instead of subtracting it. Many students also split the region at the <Katex tex="x" />-axis into separate areas — unnecessary, because the area between two graphs is <Katex tex="\int_a^b(\text{upper}-\text{lower})\,dx" /> wherever the <Katex tex="x" />-axis falls.</>,
   },
   {
     working: <Cas fn="nInt">∫((1/5)(x-2)^2(5-x) - (-9x/5+13/5), x, 1, 7)</Cas>,
-    reason: <>By hand the integrand factorises as <Katex tex="-\tfrac15(x-1)^2(x-7)" />, which is positive on <Katex tex="(1,7)" /> — confirming the curve really is above the line throughout.</>,
+    reason: <>Enter it with the integral template (menu → Calculus → Integral) so the CAS returns the exact value.</>,
+    more: <>Why the curve really is on top: the integrand simplifies to <Katex tex="-\tfrac15(x-1)^2(x-7)" />, and on <Katex tex="(1,7)" /> the factor <Katex tex="(x-1)^2" /> is positive and <Katex tex="(x-7)" /> is negative, so the whole thing is positive. The repeated factor <Katex tex="(x-1)^2" /> is also why <Katex tex="x=1" /> is a point of tangency.</>,
   },
   {
     working: <Katex display tex="\boxed{A = \frac{108}{5}}" />,
-    reason: <>An exact answer, as Section 2 requires unless a decimal is specified. By hand, with <Katex tex="u=x-1" />: <Katex tex="-\tfrac15\int_0^6u^2(u-6)\,du=-\tfrac15\left[\tfrac{u^4}4-2u^3\right]_0^6=-\tfrac15(324-432)=\tfrac{108}5" /> ✓.</>,
+    reason: <>Give the exact value, since no decimal was asked for (it equals 21.6 square units).</>,
+    more: <>The report notes some students did this by hand rather than with technology — on Exam 2 that costs time and invites slips. If you want a check anyway, expand: <Katex tex="-\tfrac15\int_1^7(x^3-9x^2+15x-7)\,dx" />{' '}<Katex tex="=-\tfrac15\left[\tfrac{x^4}4-3x^3+\tfrac{15x^2}2-7x\right]_1^7" />{' '}<Katex tex="=-\tfrac15\left(-\tfrac{441}4+\tfrac94\right)=\tfrac{108}5" /> ✓.</>,
   },
 ]
 

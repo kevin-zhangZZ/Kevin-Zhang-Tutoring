@@ -16,11 +16,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average value} = \frac{1}{p-(-2)}\int_{-2}^{p} f(x)\,dx = 0" />,
-    reason: <>The denominator is a positive number, so the whole thing is zero exactly when the integral is.</>,
+    reason: <>Average value is the integral divided by the interval's width. The width <Katex tex="p+2" /> is positive, so the average is zero exactly when the integral is.</>,
   },
   {
-    working: <Katex display tex="\int_{-2}^{p} f(x)\,dx = 0" />,
-    reason: <>Signed area: the part below the axis must cancel the part above it exactly.</>,
+    working: <Katex display tex="\int_{-2}^{0} f(x)\,dx + \int_{0}^{p} f(x)\,dx = 0" />,
+    reason: <>Split the integral at <Katex tex="x=0" />, where the graph changes from curve to line, so each piece can be found separately.</>,
   },
   {
     working: <Katex display tex="\int_{-2}^{0} f(x)\,dx = -\frac{25}{8}" />,
@@ -32,11 +32,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\frac{p^2}{2}-\frac{25}{8} = 0 \implies p^2 = \frac{25}{4}" />,
-    reason: <>Setting the total to zero.</>,
+    reason: <>The two pieces add to the whole integral, which is zero.</>,
+    more: <>Check: with <Katex tex="p=\tfrac52" /> the triangle has area <Katex tex="\tfrac12\times\tfrac52\times\tfrac52=\tfrac{25}{8}" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = \frac52}" />,
-    reason: <>Matches option <b>D</b>. Take the positive root: the figure puts <Katex tex="(p,p)" /> in the first quadrant. Option E, <Katex tex="\tfrac{25}{4}" />, is <Katex tex="p^2" /> left un-rooted.</>,
+    reason: <>Matches option <b>D</b>, taking the positive root since <Katex tex="p" /> lies to the right of <Katex tex="0" /> on the figure.</>,
+    more: <>Option E, <Katex tex="\tfrac{25}{4}" />, is <Katex tex="p^2" /> left un-rooted. Writing <Katex tex="+\tfrac{25}{8}" /> for the shaded part instead of <Katex tex="-\tfrac{25}{8}" /> gives <Katex tex="\tfrac{p^2}{2}+\tfrac{25}{8}=0" />, which has no real solution at all. The report doesn't say how options C and A arose. A, <Katex tex="2" />, may be a guess mirroring the <Katex tex="-2" /> on the left. C, <Katex tex="\tfrac54" />, is half the answer, and a triangle with <Katex tex="p=\tfrac54" /> has area only <Katex tex="\tfrac12\times\tfrac54\times\tfrac54=\tfrac{25}{32}" />, not <Katex tex="\tfrac{25}{8}" />.</>,
   },
 ]
 
@@ -65,10 +67,11 @@ export default function MethodsQ8_2015() {
       }
       background={
         <p>
-          "Average value is zero" is a statement about the <em>signed</em> area: the region
-          below the axis and the region above it have equal size. The given{' '}
-          <Katex tex="\tfrac{25}{8}" /> is an area, so it enters the integral as{' '}
-          <Katex tex="-\tfrac{25}{8}" />.
+          The average value of <Katex tex="f" /> over <Katex tex="[a,b]" /> is the height of the
+          rectangle on <Katex tex="[a,b]" /> with the same signed area as the graph:{' '}
+          <Katex tex="\tfrac{1}{b-a}\int_a^b f(x)\,dx" />. An average of zero therefore says
+          the graph's area above the axis and its area below the axis are the same size, so they
+          cancel in the integral.
         </p>
       }
       options={[

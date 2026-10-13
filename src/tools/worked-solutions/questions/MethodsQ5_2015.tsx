@@ -33,12 +33,14 @@ const ROWS: WorkingRow[] = [
     reason: <>Reflecting in <Katex tex="y=x" /> cannot change the direction of travel. That alone rules out A, B and D, which rise from left to right, and C, which is not even one-to-one.</>,
   },
   {
-    working: <Katex display tex="\text{gradient } m \;\longrightarrow\; \tfrac{1}{m}" />,
-    reason: <>A check on shape: <Katex tex="f" />'s straight right-hand piece (in the fourth quadrant) reflects to a straight piece in the second quadrant, and its curved left-hand piece, which meets the origin almost vertically, reflects to a curve that leaves the origin almost horizontally, in the fourth quadrant — exactly what E shows.</>,
+    working: <Katex display tex="(a,b) \;\longrightarrow\; (b,a)" />,
+    reason: <>A check on shape: swapping <Katex tex="x" /> and <Katex tex="y" /> sends <Katex tex="f" />'s fourth-quadrant line to the second quadrant and its second-quadrant curve to the fourth, as in E.</>,
+    more: <>A point on <Katex tex="f" /> with <Katex tex="x>0,\; y<0" /> lands at <Katex tex="x<0,\; y>0" />, and vice versa. Gradients become reciprocals, <Katex tex="m \to \tfrac{1}{m}" />: <Katex tex="f" />'s curve meets the origin almost vertically, so the inverse's curve leaves it almost horizontally, and a straight line stays straight. E shows all of this.</>,
   },
   {
     working: <Katex display tex="\boxed{\text{E}}" />,
-    reason: <>Matches option <b>E</b>, the only decreasing option. Option D (16%) is the reflection in the <Katex tex="x" />-axis rather than in <Katex tex="y=x" />.</>,
+    reason: <>Matches option <b>E</b>, the only decreasing option.</>,
+    more: <>Option D (16%) is <Katex tex="f" /> reflected in the <Katex tex="x" />-axis rather than in <Katex tex="y=x" />. A and B are E reflected in the <Katex tex="x" />-axis and the <Katex tex="y" />-axis respectively: the right shapes in the wrong quadrants.</>,
   },
 ]
 
@@ -65,10 +67,10 @@ export default function MethodsQ5_2015() {
       }
       background={
         <p>
-          Reflection in <Katex tex="y=x" /> preserves whether a curve is increasing or
-          decreasing, and turns a gradient of <Katex tex="m" /> into{' '}
-          <Katex tex="\tfrac1m" />. The first fact usually settles a pick-the-inverse
-          question on its own.
+          The graph of <Katex tex="f^{-1}" /> is the reflection of the graph of{' '}
+          <Katex tex="f" /> in the line <Katex tex="y=x" />. In a pick-the-inverse question,
+          checking direction (increasing or decreasing) usually settles it; quadrants and
+          steepness then confirm the choice.
         </p>
       }
       options={[

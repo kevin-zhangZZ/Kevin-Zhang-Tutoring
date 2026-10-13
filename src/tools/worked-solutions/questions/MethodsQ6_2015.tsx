@@ -23,7 +23,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{a = 1}" />,
-    reason: <>Matches option <b>C</b>. Check: <Katex tex="27-9-12+4=10" /> ✓. Option B comes from treating the <Katex tex="-ax^2" /> as <Katex tex="+ax^2" />.</>,
+    reason: <>Matches option <b>C</b>: <Katex tex="-9a=10-19=-9" />.</>,
+    more: <>Check: <Katex tex="P(3)=27-9-12+4=10" /> ✓. Option B comes from treating the <Katex tex="-ax^2" /> as <Katex tex="+ax^2" />: then <Katex tex="19+9a=10" /> gives <Katex tex="a=-1" />.</>,
   },
 ]
 

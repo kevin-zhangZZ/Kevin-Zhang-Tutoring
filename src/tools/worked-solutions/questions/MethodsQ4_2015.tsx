@@ -15,23 +15,24 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx} = 2x \implies m = 2(2) = 4" />,
-    reason: <>The gradient of the tangent at <Katex tex="x=2" />.</>,
+    reason: <>The tangent's gradient is the derivative at the point of contact, <Katex tex="x=2" />.</>,
   },
   {
     working: <Katex display tex="y-4 = 4(x-2)" />,
-    reason: <>Point–gradient form through <Katex tex="(2,4)" />.</>,
+    reason: <>Point–gradient form <Katex tex="y-y_1=m(x-x_1)" /> with <Katex tex="m=4" /> through <Katex tex="(2,4)" />.</>,
   },
   {
     working: <Katex display tex="y = 4x-4" />,
-    reason: <>Now test each option — one substitution apiece.</>,
+    reason: <>Expand and rearrange into <Katex tex="y=mx+c" />, which makes each option quick to test.</>,
   },
   {
     working: <Katex display tex="x=3: \quad y = 12-4 = 8 \ \checkmark" />,
-    reason: <>Option B, <Katex tex="(3,8)" />, is on the line.</>,
+    reason: <>Option B, <Katex tex="(3,8)" />, satisfies the equation, so it lies on the tangent.</>,
   },
   {
     working: <Katex display tex="\boxed{(3,8)}" />,
-    reason: <>Matches option <b>B</b>. The others fail: <Katex tex="(1,-4)" /> needs <Katex tex="y=0" />, <Katex tex="(-2,6)" /> needs <Katex tex="-12" />, <Katex tex="(1,8)" /> needs <Katex tex="0" />, and <Katex tex="(4,-4)" /> needs <Katex tex="12" />.</>,
+    reason: <>Matches option <b>B</b>.</>,
+    more: <>The others fail when substituted into <Katex tex="y=4x-4" />: at <Katex tex="x=1" /> the line gives <Katex tex="y=0" />, not <Katex tex="-4" /> (A) or <Katex tex="8" /> (D); at <Katex tex="x=-2" /> it gives <Katex tex="-12" />, not <Katex tex="6" /> (C); at <Katex tex="x=4" /> it gives <Katex tex="12" />, not <Katex tex="-4" /> (E). Make sure you test the points in the tangent, not in the curve <Katex tex="y=x^2" />.</>,
   },
 ]
 

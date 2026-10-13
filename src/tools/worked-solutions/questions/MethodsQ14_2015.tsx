@@ -23,15 +23,16 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\mathrm{E}(X) = 1(p)+2(2p)+3(3p)+4(4p)+5(5p)" />,
-    reason: <>Each value times its probability.</>,
+    reason: <>The mean is <Katex tex="\mathrm{E}(X)=\sum x\Pr(X=x)" />: each value times its probability, then add.</>,
   },
   {
     working: <Katex display tex="= p(1+4+9+16+25) = 55p" />,
-    reason: <>The sum of the first five squares.</>,
+    reason: <>Factor out <Katex tex="p" />; what is left is the sum of the first five squares.</>,
   },
   {
     working: <Katex display tex="\boxed{\frac{55}{15} = \frac{11}{3}}" />,
-    reason: <>Matches option <b>D</b>. About <Katex tex="3.67" /> — sensible: the larger values carry the larger probabilities, so the mean should sit above the middle value 3, which is option B (the mean if all five values were equally likely).</>,
+    reason: <>Substituting <Katex tex="p=\tfrac1{15}" />. Matches option <b>D</b>.</>,
+    more: <>About <Katex tex="3.67" />, which is sensible: the larger values carry the larger probabilities, so the mean should sit above the middle value <Katex tex="3" />. Option B (11%), <Katex tex="3" />, is the mean only if all five values were equally likely, ignoring the probabilities in the table.</>,
   },
 ]
 

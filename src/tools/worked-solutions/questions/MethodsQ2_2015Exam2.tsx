@@ -3,13 +3,21 @@
 // of the frame at its footing, the steepest descent of the road, the longest and shortest
 // vertical supporting columns, and the area of a banner between the two curves. Question text
 // transcribed from the original paper; both figures are crops of VCAA's own artwork. Solution
-// is original.
+// is original. Numbers checked with sympy against the VCAA examination report.
+// Interactives (parts under 40% full marks): a. chord AP swinging to the tangent at A (the
+// report's 56° error); c. sliding vertical column with the gap curve d(x) (M is on the road).
+// d. (21%) skipped: its errors were rounding and swapping MN/PQ, which the PQ < MN check in the
+// working covers; the part c. widget already shows the column at its maximum.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
 import bridgeSrc from './meth-2015e2-q2-bridge.png'
 import bannerSrc from './meth-2015e2-q2e-banner.png'
+
+const ChordWidget = lazyWidget(() => import('../interactives/meth-2015e2-q2a-chord-to-tangent'))
+const GapWidget = lazyWidget(() => import('../interactives/meth-2015e2-q2c-gap'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [54, 14, 33],
@@ -89,92 +97,109 @@ const EXAM_F: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="g(x) = 60-\tfrac3{80}x^2 \implies g'(x) = -\tfrac3{40}x" />,
-    reason: <>Name the parabola <Katex tex="g" /> so it can be told apart from the road later.</>,
+    reason: <>The tangent's gradient comes from the derivative. Name the parabola <Katex tex="g" /> to tell it apart from the road later.</>,
   },
   {
     working: <Katex display tex="g'(-40) = -\tfrac3{40}\times(-40) = 3" />,
-    reason: <>The gradient of the frame at the footing <Katex tex="A(-40,0)" />. It is positive because the frame climbs to the right from <Katex tex="A" />.</>,
+    reason: <>The gradient of the tangent at the footing <Katex tex="A(-40,0)" />. Positive, because the frame climbs to the right from <Katex tex="A" />.</>,
   },
   {
     working: <Katex display tex="\tan(\theta) = 3" />,
-    reason: <>The angle a line makes with the horizontal has tangent equal to its gradient — the report notes students who found <Katex tex="m=3" /> but could not turn it into an angle.</>,
+    reason: <>A line's gradient is the tangent of the angle it makes with the horizontal: <Katex tex="m=\tan(\theta)" />.</>,
+    more: <>The report notes students who found <Katex tex="m=3" /> but could not turn it into an angle. Picture a right-angled triangle under the tangent line: it rises <Katex tex="3" /> for every <Katex tex="1" /> across, so opposite over adjacent is <Katex tex="\tfrac31" />. Others used <Katex tex="\tan(\theta)=\tfrac{60}{40}" />, the line from <Katex tex="A" /> up to the top of the frame at <Katex tex="(0,60)" />. That line is a chord, not the tangent: it has gradient <Katex tex="1.5" /> and makes an angle of about <Katex tex="56^\circ" />. The parabola is steepest at its feet, so the tangent at <Katex tex="A" /> is steeper than any chord from <Katex tex="A" />.</>,
   },
   {
     working: <Katex display tex="\theta = \tan^{-1}(3) = 71.565\ldots^\circ" />,
-    reason: <>Make sure the CAS is in degree mode, or convert from <Katex tex="1.249" /> radians.</>,
+    reason: <>Make sure the CAS is in degree mode, or convert from <Katex tex="1.249" /> radians by multiplying by <Katex tex="\tfrac{180}{\pi}" />.</>,
+    more: <>The report notes students who did not convert their answer to degrees. The question asks for the angle to the nearest degree, so a radian value does not answer it.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta \approx 72^\circ}" />,
-    reason: <>To the nearest degree — <Katex tex="71^\circ" /> (truncating rather than rounding) was a common incorrect response. Sensible: the frame rises steeply from its footing, three units up for every one across.</>,
+    reason: <>To the nearest degree: <Katex tex="71.565\ldots" /> rounds <em>up</em>.</>,
+    more: <><Katex tex="71^\circ" /> was the report's common incorrect response, most likely from cutting off the decimals instead of rounding. Check: a gradient of <Katex tex="3" /> (three up for one across) is much steeper than <Katex tex="45^\circ" /> (gradient <Katex tex="1" />), so an angle in the seventies is sensible.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = \tfrac{x^3}{25600}-\tfrac3{16}x+35" />,
-    reason: <>The road. "Slope" means the gradient <Katex tex="h'(x)" />, so the question is asking for an extreme value of the <em>derivative</em>, not of <Katex tex="h" />.</>,
+    reason: <>"Slope" means the gradient <Katex tex="h'(x)" />, so we want the most negative value of the <em>derivative</em>, not of <Katex tex="h" />.</>,
   },
   {
     working: <Katex display tex="h'(x) = \tfrac{3x^2}{25600}-\tfrac3{16}" />,
-    reason: <>This is itself a parabola in <Katex tex="x" />, opening upwards.</>,
+    reason: <>This is itself a parabola in <Katex tex="x" />, opening upwards, so it has a minimum value.</>,
   },
   {
     working: <Katex display tex="h''(x) = \tfrac{6x}{25600} = 0 \implies x = 0" />,
-    reason: <>The steepest descent is where <Katex tex="h'" /> is smallest, so differentiate again. An upward parabola takes its minimum at its vertex, which here sits on the <Katex tex="y" />-axis.</>,
+    reason: <>The steepest descent is where <Katex tex="h'" /> is smallest: at the vertex of that parabola, where its own derivative <Katex tex="h''" /> is zero.</>,
   },
   {
     working: <Katex display tex="\boxed{h'(0) = -\tfrac3{16}}" />,
-    reason: <>So <Katex tex="m=3" /> and <Katex tex="n=16" />. Solving <Katex tex="h'(x)=0" /> instead finds where the road is flat — the two ends <Katex tex="X" /> and <Katex tex="Y" /> — which is not what was asked.</>,
+    reason: <>So <Katex tex="m=3" /> and <Katex tex="n=16" />: the road is steepest at <Katex tex="x=0" />, midway across.</>,
+    more: <>Check the ends: <Katex tex="h'(\pm40)=\tfrac{3\times1600}{25600}-\tfrac3{16}=0" />, the flat road at <Katex tex="X" /> and <Katex tex="Y" /> given in the question, so <Katex tex="-\tfrac3{16}" /> is the most negative slope anywhere on the road. The report names two errors. Solving <Katex tex="h'(x)=0" /> finds those flat ends, not the steepest point. The gradient of the straight line through <Katex tex="X" /> and <Katex tex="Y" />, <Katex tex="\tfrac{30-40}{80}=-\tfrac18" />, is the road's <em>average</em> slope; in the middle the road is steeper than that, since <Katex tex="\tfrac3{16}>\tfrac18" />.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="d(x) = g(x)-h(x)" />,
-    reason: <>The vertical gap between frame and road at <Katex tex="x" />. Because both columns are vertical, the gap is just a difference of <Katex tex="y" />-values — no distance formula needed.</>,
+    reason: <><Katex tex="MN" /> is where the vertical gap between the frame (top) and road (bottom) is greatest, so write the gap as a function: top minus bottom.</>,
+    more: <>This is the "distance formula" the report refers to. Because the columns are vertical, it is just a difference of <Katex tex="y" />-values at the same <Katex tex="x" />, not the distance between two points. Bracket all of <Katex tex="h" />: <Katex tex="60-\tfrac3{80}x^2-\bigl(\tfrac{x^3}{25600}-\tfrac3{16}x+35\bigr)" />. Leaving the brackets out flips the signs of the last two terms, an error the report names.</>,
   },
   {
     working: <Katex display tex="d(x) = 25 + \tfrac3{16}x - \tfrac3{80}x^2 - \tfrac{x^3}{25600}" />,
-    reason: <>Subtracting and collecting.</>,
+    reason: <>Expanding the bracket: <Katex tex="-\bigl(-\tfrac3{16}x\bigr)=+\tfrac3{16}x" /> and <Katex tex="60-35=25" />.</>,
   },
   {
-    working: <Cas fn="solve">solve(d/dx(d(x)) = 0, x) | 0 ≤ x ≤ 40</Cas>,
-    reason: <>The gap is greatest where <Katex tex="d'(x)=0" />; restricting to the bridge picks out <Katex tex="M" /> rather than the other root at <Katex tex="x\approx-642" />. By hand, <Katex tex="d'(x)=\tfrac3{16}-\tfrac{3}{40}x-\tfrac{3x^2}{25600}=0" /> becomes <Katex tex="x^2+640x-1600=0" />, so <Katex tex="x=-320\pm40\sqrt{65}" />.</>,
+    working: <Cas fn="solve">solve(d/dx(d(x)) = 0, x) | -40 ≤ x ≤ 40</Cas>,
+    reason: <>Define <Katex tex="d(x)" /> on CAS first. The gap is greatest where <Katex tex="d'(x)=0" />; restricting to the bridge discards the other root, near <Katex tex="x=-642" />.</>,
+    more: <>By hand: <Katex tex="d'(x)=\tfrac3{16}-\tfrac{3}{40}x-\tfrac{3x^2}{25600}=0" />; multiplying by <Katex tex="-\tfrac{25600}{3}" /> gives <Katex tex="x^2+640x-1600=0" />, so <Katex tex="x=-320\pm40\sqrt{65}" />. It is a maximum, not a minimum: <Katex tex="d''(x)=-\tfrac3{40}-\tfrac{6x}{25600}" /> is negative at <Katex tex="x\approx2.49" />. It also fits the picture: the gap is <Katex tex="0" /> at <Katex tex="E" /> and <Katex tex="F" /> and about <Katex tex="25" /> m here.</>,
   },
   {
     working: <Katex display tex="u = 40\sqrt{65}-320 = 2.4903\ldots \approx 2.49" />,
-    reason: <>The exact root, though two decimal places is all the question asks for.</>,
+    reason: <>The <Katex tex="x" />-coordinate of <Katex tex="M" />, to two decimal places. Keep the full value stored for the next line.</>,
   },
   {
     working: <Katex display tex="v = h(2.4903\ldots) = 34.5337\ldots \approx 34.53" />,
-    reason: <><Katex tex="M" /> sits on the <em>road</em>, so substitute into <Katex tex="h" />. Substituting into <Katex tex="g" /> gives <Katex tex="59.77" />, the height of <Katex tex="N" /> — an error the report names. It also lists <Katex tex="v=24.53" /> as a common incorrect response.</>,
+    reason: <><Katex tex="M" /> is the bottom of the column, on the <em>road</em>, so substitute into <Katex tex="h" />, not <Katex tex="g" />.</>,
+    more: <>Substituting into <Katex tex="g" /> gives <Katex tex="59.77" />, the height of <Katex tex="N" /> at the top of the column: an error the report names. The report also lists <Katex tex="v=24.53" /> as a common incorrect response. A quick check rules out answers like that: the road only falls from <Katex tex="X(-40,40)" /> to <Katex tex="Y(40,30)" /> (<Katex tex="h'(x)=\tfrac{3x^2}{25600}-\tfrac3{16}" /> is an upward parabola that is <Katex tex="0" /> at <Katex tex="x=\pm40" />, so <Katex tex="h'(x)\le0" /> between them), so every point on the road, <Katex tex="M" /> included, is between heights <Katex tex="30" /> and <Katex tex="40" />. Nor is <Katex tex="v" /> the gap <Katex tex="d(u)\approx25.23" />; that is the length of <Katex tex="MN" />, asked for in part d.</>,
   },
   {
     working: <Katex display tex="\boxed{M = (2.49,\ 34.53)}" />,
     reason: <>Both coordinates to two decimal places, as specified.</>,
+    more: <>The report notes students who worked to one decimal place or rounded incorrectly. Round only at the end: <Katex tex="2.4903\ldots" /> and <Katex tex="34.5337\ldots" /> both round down here.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
-    working: <Katex display tex="w = h(-u) = h(-2.4903\ldots) = 35.4663\ldots \approx 35.47" />,
+    working: <Katex display tex="\begin{aligned} w &= h(-u) = h(-2.4903\ldots) \\ &= 35.4663\ldots \approx 35.47 \end{aligned}" />,
     reason: <><Katex tex="P" /> is on the road at <Katex tex="x=-u" />. The road is falling here, so <Katex tex="P" /> sits higher than <Katex tex="M" />.</>,
   },
   {
     working: <Katex display tex="g(\pm u) = 59.7674\ldots" />,
-    reason: <><Katex tex="g" /> is even, so <Katex tex="Q" /> and <Katex tex="N" /> are at exactly the same height — the two columns differ only because the road is not symmetric.</>,
+    reason: <>The tops <Katex tex="N" /> and <Katex tex="Q" /> are on the frame. <Katex tex="g" /> is even, so they are at exactly the same height.</>,
   },
   {
     working: <Katex display tex="MN = g(u)-h(u) = 59.7674\ldots-34.5337\ldots" />,
-    reason: <><Katex tex="MN" /> is the column at <Katex tex="x=+u" />, the one placed where the gap is largest.</>,
+    reason: <>Column length is frame minus road. <Katex tex="MN" /> is the column at <Katex tex="x=+u" />, where the gap is largest.</>,
   },
   {
     working: <Katex display tex="MN = 25.2338\ldots \approx 25.23" />,
     reason: <>Two decimal places.</>,
   },
   {
-    working: <Katex display tex="\boxed{w \approx 35.47, \quad MN \approx 25.23, \quad PQ = 59.7674\ldots-35.4663\ldots \approx 24.30}" />,
-    reason: <>Shorter than <Katex tex="MN" />, which is the check worth making: <Katex tex="MN" /> was <em>defined</em> as the maximum gap, so swapping the two answers must be wrong.</>,
+    working: <Katex display tex="\begin{aligned} PQ &= g(-u)-h(-u) \\ &= 59.7674\ldots-35.4663\ldots \end{aligned}" />,
+    reason: <>The same subtraction at <Katex tex="x=-u" />, where the road is higher, so the column is shorter.</>,
+  },
+  {
+    working: <Katex display tex="PQ = 24.3011\ldots \approx 24.30" />,
+    reason: <>Two decimal places; the trailing zero shows the required accuracy.</>,
+  },
+  {
+    working: <Katex display tex="\boxed{w \approx 35.47,\ \ MN \approx 25.23,\ \ PQ \approx 24.30}" />,
+    reason: <><Katex tex="PQ" /> is shorter than <Katex tex="MN" />, as it must be: <Katex tex="MN" /> was <em>defined</em> as the longest gap.</>,
+    more: <>The report notes students who had <Katex tex="PQ=25.23" /> and <Katex tex="MN=24.30" />, the two lengths swapped. The check above catches it. It also notes students who did not work to the required number of decimal places or rounded incorrectly: keep <Katex tex="u" />, <Katex tex="h(\pm u)" /> and <Katex tex="g(u)" /> stored at full accuracy and round each final answer once.</>,
   },
 ]
 
@@ -182,33 +207,36 @@ const ROWS_E: WorkingRow[] = [
   {
     working: <Cas fn="solve">solve(60 - 3x^2/80 = x^3/25600 - 3x/16 + 35, x)</Cas>,
     reason: <><Katex tex="E" /> and <Katex tex="F" /> are where the road meets the frame, so set <Katex tex="g(x)=h(x)" />.</>,
+    more: <>Write this equation down: the report notes students who gave answers without showing any working, and this equation is the working.</>,
   },
   {
-    working: <Katex display tex="x = -23.7067\ldots,\quad x = 27.9962\ldots,\quad x = -964.289\ldots" />,
-    reason: <>A cubic equation, so three roots; the third lies far outside the <Katex tex="80" /> m span of the bridge and is discarded.</>,
+    working: <Katex display tex="\begin{aligned} x &= -23.7067\ldots,\quad x = 27.9962\ldots, \\ x &= -964.289\ldots \end{aligned}" />,
+    reason: <>A cubic equation, so up to three roots; the third lies far outside the bridge (<Katex tex="-40\le x\le40" />) and is discarded.</>,
   },
   {
     working: <Katex display tex="E:\ x \approx -23.71" />,
-    reason: <>The left crossing, reading <Katex tex="E" /> off the diagram as the one on the negative side.</>,
+    reason: <>The left crossing: <Katex tex="E" /> is the one on the negative side in the diagram.</>,
   },
   {
     working: <Katex display tex="\boxed{E:\ x \approx -23.71, \qquad F:\ x \approx 28.00}" />,
-    reason: <>Since <Katex tex="27.9962\ldots" /> rounds <em>up</em>, the two decimal places are both zeros — write <Katex tex="28.00" />, not <Katex tex="27.00" /> and not <Katex tex="28" />.</>,
+    reason: <><Katex tex="27.9962\ldots" /> rounds <em>up</em> to <Katex tex="28.00" />; write both zeros to show two decimal places.</>,
+    more: <>The report notes students who rounded to <Katex tex="27.00" /> instead of <Katex tex="28.00" />, and others who did not work to the required number of decimal places (writing just <Katex tex="28" /> is one way to lose that).</>,
   },
 ]
 
 const ROWS_F: WorkingRow[] = [
   {
     working: <Katex display tex="A = \int_{-23.7067\ldots}^{27.9962\ldots}\bigl(g(x)-h(x)\bigr)dx" />,
-    reason: <>Between <Katex tex="E" /> and <Katex tex="F" /> the frame is above the road, so the frame is the upper function. Use the unrounded terminals, not <Katex tex="-23.71" /> and <Katex tex="28.00" />.</>,
+    reason: <>Between <Katex tex="E" /> and <Katex tex="F" /> the frame is above the road, so integrate frame minus road between the part e. crossings.</>,
   },
   {
     working: <Cas fn="nInt">∫(60 - 3x^2/80 - (x^3/25600 - 3x/16 + 35), x, -23.7067…, 27.9962…)</Cas>,
-    reason: <>Storing the roots from part e. as variables and integrating between them avoids rounding error creeping into the final figure.</>,
+    reason: <>Store the roots from part e. as variables and integrate between them, so no rounding enters before the end.</>,
   },
   {
     working: <Katex display tex="\boxed{A = 869.619\ldots \approx 870\ \text{m}^2}" />,
-    reason: <>To the nearest square metre. Rounding the terminals first is what produced the common answer <Katex tex="869" />.</>,
+    reason: <>To the nearest square metre: <Katex tex="869.6\ldots" /> rounds <em>up</em>.</>,
+    more: <>The report notes students who rounded incorrectly to <Katex tex="869" />, which cuts off the decimals instead of rounding. (Even the rounded terminals <Katex tex="-23.71" /> and <Katex tex="28.00" /> give <Katex tex="869.62\ldots" />, still <Katex tex="870" />.) Some gave an exact form; the question asks for the nearest square metre, and the terminals have no neat exact form anyway (CAS gives them as decimals). Check: the banner is about <Katex tex="52" /> m wide and at most <Katex tex="25" /> m tall, and a parabola-like region covers about <Katex tex="\tfrac23" /> of its bounding box: <Katex tex="\tfrac23\times52\times25\approx867" />.</>,
   },
 ]
 
@@ -251,6 +279,9 @@ export default function MethodsQ2_2015Exam2() {
         examinerReport={EXAM_A}
       >
         <WorkingTable rows={ROWS_A} />
+        <Explore title="The tangent at A is steeper than any line from A to the frame">
+          <ChordWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
@@ -294,6 +325,9 @@ export default function MethodsQ2_2015Exam2() {
         examinerReport={EXAM_C}
       >
         <WorkingTable rows={ROWS_C} />
+        <Explore title="M is the bottom of the longest column, on the road">
+          <GapWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">

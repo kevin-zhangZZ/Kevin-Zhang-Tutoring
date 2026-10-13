@@ -19,7 +19,7 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="f(u) = (u+1)^2-2(u+1)+3" />,
-    reason: <>Replacing every <Katex tex="x" /> on the right-hand side.</>,
+    reason: <>Replacing every <Katex tex="x" /> on the right-hand side by <Katex tex="u+1" />.</>,
   },
   {
     working: <Katex display tex="= u^2+2u+1-2u-2+3" />,
@@ -31,7 +31,17 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{f(x) = x^2+2}" />,
-    reason: <>Matches option <b>B</b>. Option E substitutes <Katex tex="x-1" /> a second time — it is <Katex tex="f(x-2)" />, a shift the wrong way. Check: <Katex tex="f(x-1)=(x-1)^2+2=x^2-2x+3" /> ✓. A faster route: complete the square, <Katex tex="x^2-2x+3=(x-1)^2+2" />, so <Katex tex="f(\square)=\square^2+2" /> by inspection.</>,
+    reason: <>Matches option <b>B</b> — the input letter doesn't matter: <Katex tex="f" /> squares its input and adds 2.</>,
+    more: (
+      <>
+        Check: <Katex tex="f(x-1)=(x-1)^2+2=x^2-2x+3" /> ✓. A faster route: complete the square,{' '}
+        <Katex tex="x^2-2x+3=(x-1)^2+2" />, so <Katex tex="f(\square)=\square^2+2" /> by inspection. Option E
+        replaces <Katex tex="x" /> by <Katex tex="x-1" /> in the given rule — that gives <Katex tex="f(x-2)" />, a
+        shift the wrong way. To undo <Katex tex="x-1" />, replace <Katex tex="x" /> by <Katex tex="x+1" />. Options C and D keep the{' '}
+        <Katex tex="x^2-2x" /> part and just subtract or add 1 to the whole rule — but the change is to the input
+        (<Katex tex="x-1" /> becomes <Katex tex="x" />), not the output, so the rule can't simply move up or down.
+      </>
+    ),
   },
 ]
 
