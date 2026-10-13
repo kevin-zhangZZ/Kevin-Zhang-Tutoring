@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo, type ReactNode } from 'react'
 import SegmentedControl from '../../components/ui/SegmentedControl'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -41,7 +41,7 @@ interface GameResult {
   /** Seconds actually played (less than `duration` if the round was ended early). */
   elapsed:    number
   endedEarly: boolean
-  /** What was practised, e.g. "Times Tables · Hard". */
+  /** What was practised, e.g. "Times Tables, Hard". */
   label:      string
   /** Which best score this round counts towards. */
   bestKey:    string
@@ -134,10 +134,10 @@ function rangesOf(s: Setup): Ranges {
   return custom ? custom.ranges : FOCUS[s.focus].levels[s.level === 'custom' ? s.base : s.level]
 }
 
-/** e.g. "Hard", "Times Tables · Medium", "Easy (+ − ×)" when an operation was switched off. */
+/** e.g. "Hard", "Times Tables, Medium", "Easy (+ − ×)" when an operation was switched off. */
 function setupLabel(s: Setup) {
   const f = FOCUS[s.focus]
-  const name = s.focus === 'mixed' ? PICK_LABEL[s.level] : `${f.name} · ${PICK_LABEL[s.level]}`
+  const name = s.focus === 'mixed' ? PICK_LABEL[s.level] : `${f.name}, ${PICK_LABEL[s.level]}`
   return s.level !== 'custom' && !sameOps(s.ops, f.ops) ? `${name} (${glyphs(s.ops)})` : name
 }
 
@@ -274,6 +274,11 @@ function RangeField({ range, max, label, onChange }: {
   )
 }
 
+// Every settings block gets the same small Title Case heading above it.
+function SectionLabel({ children }: { children: ReactNode }) {
+  return <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2.5">{children}</p>
+}
+
 function SettingsScreen({
   initial,
   onStart,
@@ -343,7 +348,7 @@ function SettingsScreen({
 
       {/* What to practise */}
       <div>
-        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-3">What to Practise</p>
+        <SectionLabel>What to Practise</SectionLabel>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           {FOCUSES.map(f => {
             const on = s.focus === f
@@ -366,7 +371,9 @@ function SettingsScreen({
       </div>
 
       {/* Ranges: tap a symbol to switch that operation off, tap a number to change it */}
-      <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden">
+      <div>
+      <SectionLabel>Numbers</SectionLabel>
+      <div className="card overflow-hidden">
         {([['add', 'sub'], ['mul', 'div']] as const).map((pair, i) => (
           <div key={pair[0]} className={`flex items-center gap-5 px-5 py-3 ${i > 0 ? 'border-t border-gray-100 dark:border-gray-800' : ''}`}>
             <span className="flex gap-1.5 w-16 [@media(pointer:coarse)]:w-[94px] shrink-0">
@@ -395,8 +402,10 @@ function SettingsScreen({
               ) : (
                 <>
                   <RangeField range={ranges.mulA} max={MAX_FACTOR} label="First factor" onChange={mulA => editRange({ mulA })} />
-                  <span className="text-gray-400 dark:text-gray-500">×</span>
-                  <RangeField range={ranges.mulB} max={MAX_FACTOR} label="Second factor" onChange={mulB => editRange({ mulB })} />
+                  <span className="inline-flex items-center gap-2">
+                    <span className="text-gray-400 dark:text-gray-500">×</span>
+                    <RangeField range={ranges.mulB} max={MAX_FACTOR} label="Second factor" onChange={mulB => editRange({ mulB })} />
+                  </span>
                 </>
               )}
             </span>
@@ -406,10 +415,11 @@ function SettingsScreen({
           {blocked ? 'Keep at least one operation switched on.' : 'Tap a symbol to switch it off. Tap a number to change it.'}
         </p>
       </div>
+      </div>
 
       {/* Duration */}
-      <div className="card px-5 py-4">
-        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-3">Duration</p>
+      <div>
+        <SectionLabel>Duration</SectionLabel>
         <SegmentedControl
           size="md"
           fill
@@ -420,17 +430,17 @@ function SettingsScreen({
         />
       </div>
 
-      {/* Start */}
-      <div className="flex flex-col gap-2">
+      {/* Start: pinned to the bottom of the screen on phones, where the settings run past it. */}
+      <div className="sticky bottom-0 -mx-5 px-5 pt-3 pb-4 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur-sm sm:static sm:mx-0 sm:p-0 sm:bg-transparent sm:backdrop-blur-none flex flex-col gap-2">
         <button
           onClick={() => onStart(s)}
-          className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold rounded-xl transition-colors text-sm"
+          className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.99] transition-[background-color,transform] text-[15px]"
         >
           Start
         </button>
         {best !== undefined && (
           <p className="text-xs text-center text-gray-500 dark:text-gray-400">
-            Your best on {setupLabel(s)} · {durationLabel(s.duration)}: <b className="text-gray-700 dark:text-gray-300">{best}</b>
+            Your best on {setupLabel(s)} ({durationLabel(s.duration)}): <b className="text-gray-700 dark:text-gray-300">{best}</b>
           </p>
         )}
       </div>
@@ -534,7 +544,7 @@ function GameScreen({ cfg, label, bestKey, onDone }: {
 
   return (
     <div className="flex flex-col gap-4 sm:gap-6">
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-3.5">
+      <div className="card px-5 py-3.5">
         <div className="flex items-center justify-between mb-3">
           <span className="font-mono text-lg font-semibold text-gray-800 dark:text-gray-200 tabular-nums">{mm}:{ss}</span>
           <div className="flex items-center gap-4 text-sm font-semibold tabular-nums">
@@ -633,7 +643,7 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
   const total    = result.correct + result.wrong
   const accuracy = total === 0 ? 0 : Math.round(result.correct / total * 100)
   const ppm      = result.elapsed > 0 ? result.correct / result.elapsed * 60 : 0
-  const settingsLabel = `${result.label} · ${durationLabel(result.duration)}`
+  const settingsLabel = `${result.label}, ${durationLabel(result.duration)}`
 
   // Review: each question answered wrong (first wrong try), the slowest one, and the average per operation type.
   const firstWrongs = result.wrongs.filter((w, i, all) => all.findIndex(x => x.text === w.text) === i)
@@ -646,35 +656,35 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <div className="w-full bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-6 py-8 text-center">
-        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-1">
-          {result.endedEarly ? 'Round Ended' : 'Time’s Up'} · {settingsLabel}
+      <div className="w-full card px-6 py-8 text-center">
+        <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 tracking-wider mb-2">
+          {result.endedEarly ? 'Round Ended' : 'Time’s Up'}: {settingsLabel}
         </p>
-        <p className="text-6xl font-bold text-gray-900 dark:text-white mb-1">{result.correct}</p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">correct answers</p>
+        <p className="font-display text-7xl font-bold text-gray-900 dark:text-white leading-none tabular-nums">{result.correct}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">correct answers</p>
         {newBest ? (
           <p className="inline-block mt-3 text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 rounded-full px-3 py-1">New best!</p>
         ) : best !== undefined ? (
           <p className="inline-block mt-3 text-xs font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1">Your best on {settingsLabel}: {best}</p>
         ) : null}
         {result.endedEarly && <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Rounds ended early don’t count towards your best.</p>}
-      </div>
-
-      <div className="w-full grid grid-cols-3 gap-3">
-        {[
-          { label: 'Wrong',    value: result.wrong.toString(), color: 'text-rose-500 dark:text-rose-400' },
-          { label: 'Accuracy', value: `${accuracy}%`,          color: 'text-blue-600 dark:text-blue-400' },
-          { label: 'Per min',  value: ppm.toFixed(1),          color: 'text-violet-600 dark:text-violet-400' },
-        ].map(({ label, value, color }) => (
-          <div key={label} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-4 py-4 text-center">
-            <p className={`text-2xl font-bold ${color}`}>{value}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{label}</p>
-          </div>
-        ))}
+        <dl className="mt-6 pt-5 border-t border-gray-100 dark:border-gray-800 grid grid-cols-3">
+          {[
+            { label: 'Wrong',    value: result.wrong.toString(), color: result.wrong ? 'text-rose-600 dark:text-rose-400' : 'text-gray-900 dark:text-white' },
+            { label: 'Accuracy', value: `${accuracy}%`,          color: 'text-gray-900 dark:text-white' },
+            { label: 'Per min',  value: ppm.toFixed(1),          color: 'text-gray-900 dark:text-white' },
+          ].map(({ label, value, color }) => (
+            // Label first for screen readers; shown under the number.
+            <div key={label} className="flex flex-col-reverse">
+              <dt className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{label}</dt>
+              <dd className={`text-2xl font-bold tabular-nums ${color}`}>{value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
 
       {(firstWrongs.length > 0 || slowest) && (
-        <div className="w-full bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 px-5 py-4">
+        <div className="w-full card px-5 py-4">
           <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Review</p>
           <div className="flex flex-col gap-1.5 text-sm">
             {firstWrongs.map((w, i) => (
@@ -706,7 +716,7 @@ function ResultsScreen({ result, best, newBest, onReplay, onSettings }: {
       <div className="w-full flex gap-3">
         <button
           onClick={onReplay}
-          className="flex-1 py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold rounded-xl transition-colors text-sm"
+          className="flex-1 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] active:scale-[0.99] transition-[background-color,transform] text-sm"
         >
           Play again
         </button>
