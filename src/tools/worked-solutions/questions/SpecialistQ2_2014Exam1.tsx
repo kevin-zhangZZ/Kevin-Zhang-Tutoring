@@ -3,6 +3,8 @@
 // transcribed from the original paper; the axes VCAA supplied for part (b) were blank, so the
 // sketch is this site's own matplotlib figure. Answers checked with sympy and against the
 // VCAA examination report. Solution is original.
+// Oct 2026 review (2014-16 pass): no part qualifies for an interactive (all parts at least 40%
+// full marks); report traps and checks moved into rows' `more`.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -60,34 +62,36 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="x = t-2, \qquad y = t^2-4t+1" />,
-    reason: <>Read off the components, then eliminate <Katex tex="t" />.</>,
+    reason: <>Read off the components. A cartesian equation links <Katex tex="x" /> and <Katex tex="y" /> only, so eliminate <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="t = x+2" />,
-    reason: <>Rearranging the simpler of the two.</>,
+    reason: <>Make <Katex tex="t" /> the subject of the simpler (linear) equation.</>,
   },
   {
     working: <Katex display tex="y = (x+2)^2-4(x+2)+1" />,
-    reason: <>Substituting. Every <Katex tex="t" /> must be replaced.</>,
+    reason: <>Substitute into the <Katex tex="y" /> equation, replacing every <Katex tex="t" />.</>,
   },
   {
     working: <Katex display tex="= x^2+4x+4-4x-8+1" />,
-    reason: <>Expanding carefully — this line is what makes the argument convincing.</>,
+    reason: <>Expand each bracket, writing the line out in full.</>,
   },
   {
     working: <Katex display tex="y = x^2-3 \quad \text{as required}" />,
-    reason: <>A "show that" is marked on the steps above this line, not on restating the given equation — the report criticises arguments with too few steps.</>,
+    reason: <>The <Katex tex="x" /> terms cancel and <Katex tex="4-8+1=-3" />. As required.</>,
+    more: <>A "show that" is marked on the steps above this line, not on restating the given equation — the report criticises arguments with too few steps, and notes algebraic errors. A quick check: <Katex tex="t=0" /> gives the point <Katex tex="(-2,1)" />, and <Katex tex="(-2)^2-3=1" />.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="t \ge 0 \implies x = t-2 \ge -2" />,
-    reason: <>The domain is the trap: <Katex tex="t\ge0" /> does <em>not</em> mean <Katex tex="x\ge0" />. The path starts at <Katex tex="x=-2" /> and runs right.</>,
+    reason: <>The path is only part of the parabola: <Katex tex="t\ge0" /> does <em>not</em> mean <Katex tex="x\ge0" />. It starts at <Katex tex="x=-2" /> and runs right.</>,
+    more: <>The report says many sketches had the wrong domain — usually the whole parabola, or <Katex tex="x\ge0" /> (the trap above). Always push the restriction on <Katex tex="t" /> through <Katex tex="x=t-2" />: as <Katex tex="t" /> increases from 0, <Katex tex="x" /> increases from <Katex tex="-2" /> without bound, so there is a left endpoint and no right one.</>,
   },
   {
     working: <Katex display tex="t=0:\ \underset{\sim}{r}(0) = -2\underset{\sim}{i}+\underset{\sim}{j} \implies (-2,1)" />,
-    reason: <>The starting point, an endpoint of the sketch.</>,
+    reason: <>The starting point. <Katex tex="t=0" /> is allowed, so this endpoint is a closed dot.</>,
   },
   {
     working: <Katex display tex="y = 0 \implies x = \pm\sqrt3" />,
@@ -95,7 +99,7 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{vertex } (0,-3)" />,
-    reason: <>From <Katex tex="y=x^2-3" />, also on the path.</>,
+    reason: <>The turning point of <Katex tex="y=x^2-3" />. It is on the path since <Katex tex="0\ge-2" /> (reached at <Katex tex="t=2" />). It is also the <Katex tex="y" />-intercept.</>,
   },
   {
     working: (
@@ -107,7 +111,8 @@ const ROWS_B: WorkingRow[] = [
         />
       </div>
     ),
-    reason: <>A smooth curve with a closed endpoint at <Katex tex="(-2,1)" /> and all four features labelled. Scales on both axes matter — the report says an unscaled vertical axis distorted many sketches.</>,
+    reason: <>A smooth parabola from the closed endpoint <Katex tex="(-2,1)" /> rightwards, with the endpoint, both intercepts and the vertex labelled, and a number scale on both axes.</>,
+    more: <>The report marked down curves that were not smooth or not symmetrical, and sketches with no number scale (especially on the vertical axis), which distorted the shape. A useful check on symmetry: the point <Katex tex="(2,1)" /> (at <Katex tex="t=4" />) is the mirror image of the endpoint <Katex tex="(-2,1)" /> in the <Katex tex="y" />-axis, so the curve must pass through it at the same height.</>,
   },
 ]
 
@@ -118,19 +123,22 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}(t) = \underset{\sim}{i}+(2t-4)\underset{\sim}{j}" />,
-    reason: <>The derivative of <Katex tex="t-2" /> is 1, not <Katex tex="t" />. Brackets around <Katex tex="2t-4" /> are needed.</>,
+    reason: <>Differentiate each component: <Katex tex="t-2" /> gives 1 and <Katex tex="t^2-4t+1" /> gives <Katex tex="2t-4" /> (kept in brackets).</>,
+    more: <>The report lists two common wrong velocities: <Katex tex="t\,\underset{\sim}{i}+(2t-4)\,\underset{\sim}{j}" /> (the derivative of <Katex tex="t-2" /> taken as <Katex tex="t" /> instead of 1) and <Katex tex="-2\,\underset{\sim}{i}+(2t-4)\,\underset{\sim}{j}" /> (the derivative of <Katex tex="t-2" /> taken as the constant <Katex tex="-2" />). Without brackets, <Katex tex="2t-4\,\underset{\sim}{j}" /> means <Katex tex="2t" /> minus a vector, which is not the velocity. Keep <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> on every term.</>,
   },
   {
     working: <Katex display tex="\dot{\underset{\sim}{r}}(1) = \underset{\sim}{i}-2\underset{\sim}{j}" />,
-    reason: <>Substitute <Katex tex="t=1" /> <em>before</em> taking the magnitude — it keeps the arithmetic to one line.</>,
+    reason: <>Substitute <Katex tex="t=1" /> into the <em>velocity</em>: <Katex tex="2(1)-4=-2" />.</>,
+    more: <>Substituting <Katex tex="t=1" /> into <Katex tex="\underset{\sim}{r}(t)" /> instead gives the position <Katex tex="-\underset{\sim}{i}-2\underset{\sim}{j}" />, not the velocity — a common error the report mentions. By coincidence <Katex tex="\left|-\underset{\sim}{i}-2\underset{\sim}{j}\right|=\sqrt5" /> as well, so this wrong method happens to give the right number here but earns no marks for working; at <Katex tex="t=2" />, say, the speed is 1 but <Katex tex="\left|\underset{\sim}{r}(2)\right|=3" />. Substitute <em>before</em> taking the magnitude: the general <Katex tex="\sqrt{1+(2t-4)^2}" /> invites expansion errors inside the root, which the report also mentions.</>,
   },
   {
     working: <Katex display tex="\left|\dot{\underset{\sim}{r}}(1)\right| = \sqrt{1^2+(-2)^2}" />,
-    reason: <>Squaring a negative gives a positive: the report notes the common answer <Katex tex="\sqrt3" /> from getting this wrong.</>,
+    reason: <>Take the magnitude of the velocity. Squaring a negative gives a positive: <Katex tex="(-2)^2=4" />, so the number under the square root is <Katex tex="1+4" />.</>,
+    more: <>The report notes the common answer <Katex tex="\sqrt3" />, which most likely comes from treating <Katex tex="(-2)^2" /> as <Katex tex="-4" /> and then ignoring the sign of <Katex tex="1-4=-3" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\sqrt5}" />,
-    reason: <>A scalar — speed, not the velocity vector.</>,
+    reason: <>Speed is a scalar, so the answer is a number, not the velocity vector.</>,
   },
 ]
 

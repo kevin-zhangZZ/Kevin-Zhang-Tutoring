@@ -2,6 +2,7 @@
 // the x-axis, and a perpendicularity condition. Question text transcribed from the original
 // paper (no diagram given). Answers checked with sympy and against the VCAA examination
 // report. Solution is original.
+// Review 2014–16 pass (Oct 2026): mode 'review' — no part qualifies, so no interactives.
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
@@ -53,18 +54,38 @@ const ROWS_A: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \sqrt{3+1+2} = \sqrt6" />,
-    reason: <>A nice round <Katex tex="\sqrt6" /> — which is a sign the arithmetic is right.</>,
+    reason: <>Each squared component is <Katex tex="3" />, <Katex tex="1" /> and <Katex tex="2" />, which add to <Katex tex="6" />.</>,
+    more: <>Check this sum carefully: the report says some students got <Katex tex="\sqrt5" /> or <Katex tex="\sqrt7" /> through arithmetic slips (for example, leaving out the <Katex tex="(-1)^2" /> term gives <Katex tex="\sqrt5" />). Squaring makes every term positive, so check you have all three: <Katex tex="3+1+2" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\hat{\underset{\sim}{a}} = \frac{1}{\sqrt6}\left(\sqrt3\,\underset{\sim}{i}-\underset{\sim}{j}-\sqrt2\,\underset{\sim}{k}\right)}" />,
-    reason: <>Dividing the vector by its magnitude. Stopping at <Katex tex="\sqrt6" /> does not answer the question — a <em>unit vector</em> is wanted.</>,
+    reason: <>A unit vector is the vector divided by its own magnitude. Stopping at <Katex tex="\sqrt6" /> does not answer the question.</>,
+    more: <>
+      You can leave <Katex tex="\tfrac1{\sqrt6}" /> outside the bracket — rationalising is not required. If you do expand and
+      rationalise, each coefficient simplifies separately:{' '}
+      <Katex tex="\tfrac{\sqrt3}{\sqrt6}=\tfrac{\sqrt2}{2}" />, <Katex tex="\tfrac{1}{\sqrt6}=\tfrac{\sqrt6}{6}" />,{' '}
+      <Katex tex="\tfrac{\sqrt2}{\sqrt6}=\tfrac{\sqrt3}{3}" />, giving{' '}
+      <Katex tex="\tfrac{\sqrt2}{2}\underset{\sim}{i}-\tfrac{\sqrt6}{6}\underset{\sim}{j}-\tfrac{\sqrt3}{3}\underset{\sim}{k}" />.
+      Check: the squares <Katex tex="\tfrac12+\tfrac16+\tfrac13" /> add to <Katex tex="1" />, as a unit vector's must. The report
+      mentions incorrect rationalising of the denominators; leaving <Katex tex="\tfrac1{\sqrt6}" /> outside the bracket avoids that step entirely.
+    </>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\cos(\theta) = \frac{\underset{\sim}{a}\cdot\underset{\sim}{i}}{\left|\underset{\sim}{a}\right|\left|\underset{\sim}{i}\right|}" />,
-    reason: <>The angle between a vector and an axis comes from the dot product with that axis's unit vector — the direction cosine. A right-angled-triangle "tan" argument does not work in three dimensions.</>,
+    reason: <>The angle between two vectors comes from their dot product. The positive <Katex tex="x" />-axis has direction <Katex tex="\underset{\sim}{i}" />, so use <Katex tex="\underset{\sim}{a}" /> and <Katex tex="\underset{\sim}{i}" />.</>,
+    more: <>
+      A common wrong method in the report was a "tan" argument from a right-angled triangle, giving{' '}
+      <Katex tex="\pm\tfrac\pi6" /> or <Katex tex="\pm\tfrac\pi3" />. That comes from using only the{' '}
+      <Katex tex="\underset{\sim}{i}" /> and <Katex tex="\underset{\sim}{j}" /> components (<Katex tex="\tan\theta=\pm\tfrac{1}{\sqrt3}" /> or{' '}
+      <Katex tex="\pm\sqrt3" />, depending on which side is taken as opposite; the sign comes from the{' '}
+      <Katex tex="-\underset{\sim}{j}" />), which ignores the <Katex tex="-\sqrt2\,\underset{\sim}{k}" /> part — in three dimensions the vector
+      does not lie in the <Katex tex="xy" />-plane, so that triangle is the wrong one. The dot product uses all three components
+      automatically. (This ratio <Katex tex="\tfrac{a_x}{|\underset{\sim}{a}|}" /> is called the direction cosine of{' '}
+      <Katex tex="\underset{\sim}{a}" /> for the <Katex tex="x" />-axis.)
+    </>,
   },
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{i} = \sqrt3, \qquad \left|\underset{\sim}{i}\right| = 1" />,
@@ -72,22 +93,25 @@ const ROWS_B: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\cos(\theta) = \frac{\sqrt3}{\sqrt6} = \frac{1}{\sqrt2}" />,
-    reason: <><Katex tex="\tfrac{\sqrt3}{\sqrt6}=\sqrt{\tfrac36}=\tfrac1{\sqrt2}" /> — not <Katex tex="\tfrac12" />, the report's most common slip.</>,
+    reason: <>Using <Katex tex="\left|\underset{\sim}{a}\right|=\sqrt6" /> from part a. Then <Katex tex="\tfrac{\sqrt3}{\sqrt6}=\sqrt{\tfrac36}=\sqrt{\tfrac12}=\tfrac1{\sqrt2}" />.</>,
+    more: <>The report's most common surd error was <Katex tex="\tfrac{\sqrt3}{\sqrt6}=\tfrac12" />, which simplifies <Katex tex="\tfrac36=\tfrac12" /> but forgets the square root: <Katex tex="\tfrac{\sqrt3}{\sqrt6}=\sqrt{\tfrac12}" />, not <Katex tex="\tfrac12" />. Put the whole fraction under one root first, then simplify inside it.</>,
   },
   {
     working: <Katex display tex="\boxed{\theta = \frac\pi4}" />,
-    reason: <>Acute, as required. <Katex tex="45^\circ" /> is equally acceptable.</>,
+    reason: <>The exact value: <Katex tex="\cos\tfrac\pi4=\tfrac1{\sqrt2}" />. This angle is acute, as required; <Katex tex="45^\circ" /> is equally acceptable.</>,
+    more: <>The report also notes errors with exact trigonometric values. Keep the three apart: <Katex tex="\cos\tfrac\pi6=\tfrac{\sqrt3}2" />, <Katex tex="\cos\tfrac\pi4=\tfrac1{\sqrt2}" />, <Katex tex="\cos\tfrac\pi3=\tfrac12" />. Because the cosine is positive, the angle is already acute — no adjustment is needed.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\underset{\sim}{a}\cdot\underset{\sim}{b} = 0" />,
-    reason: <>Perpendicular vectors have a <em>zero</em> dot product — the report notes students setting it to <Katex tex="\pm1" />.</>,
+    reason: <>Perpendicular vectors have a <em>zero</em> dot product, because <Katex tex="\cos 90^\circ=0" />.</>,
+    more: <>The report notes many students set the dot product equal to <Katex tex="1" /> or <Katex tex="-1" />. A dot product of <Katex tex="\pm1" /> has no special meaning here (it would only mean parallel if both vectors were unit vectors) — perpendicular always means exactly <Katex tex="0" />.</>,
   },
   {
     working: <Katex display tex="\left(\sqrt3\right)\left(2\sqrt3\right)+(-1)(m)+\left(-\sqrt2\right)(-5) = 0" />,
-    reason: <>Componentwise. Two negatives in the last term make it positive.</>,
+    reason: <>Multiply matching components and add. In the last term, <Katex tex="(-\sqrt2)(-5)=+5\sqrt2" />.</>,
   },
   {
     working: <Katex display tex="6-m+5\sqrt2 = 0" />,
@@ -95,7 +119,8 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{m = 6+5\sqrt2}" />,
-    reason: <>Moving <Katex tex="m" /> across changes the sign of everything else — the report's other common error.</>,
+    reason: <>Add <Katex tex="m" /> to both sides, so the <Katex tex="m" /> term has a plus sign and the other terms keep their signs.</>,
+    more: <>The report says sign errors were common when rearranging. Adding <Katex tex="m" /> to both sides (rather than subtracting <Katex tex="6+5\sqrt2" />) avoids handling <Katex tex="-m" />. Check: <Katex tex="6-(6+5\sqrt2)+5\sqrt2=0" />.</>,
   },
 ]
 
