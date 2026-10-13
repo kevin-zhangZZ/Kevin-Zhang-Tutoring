@@ -4,6 +4,7 @@
 
 import Katex from '../../../components/Katex'
 import { MCQShell } from '../MCQShell'
+import { Cas } from '../CasRef'
 import type { WorkingRow, MCQExaminerStats } from '../QuestionParts'
 
 const EXAMINER: MCQExaminerStats = {
@@ -15,11 +16,11 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="Z = \frac{X-\mu}{\sigma} = \frac{X-12}{0.5}" />,
-    reason: <>The standardising formula. Dividing by <Katex tex="\sigma=0.5" /> is multiplying by 2, which is easy to get backwards.</>,
+    reason: <>The options are all about <Katex tex="Z" />, so standardise: subtract the mean, divide by the standard deviation.</>,
   },
   {
     working: <Katex display tex="X = 11.5 \implies Z = \frac{11.5-12}{0.5} = \frac{-0.5}{0.5} = -1" />,
-    reason: <><Katex tex="11.5" /> is one standard deviation below the mean — not half of one, which is option B.</>,
+    reason: <><Katex tex="11.5" /> is <Katex tex="0.5" /> below the mean, and one standard deviation is <Katex tex="0.5" />, so it is one standard deviation below.</>,
   },
   {
     working: <Katex display tex="\Pr(X<11.5) = \Pr(Z<-1)" />,
@@ -31,7 +32,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\Pr(Z>1)}" />,
-    reason: <>Matches option <b>C</b>. Option A, <Katex tex="\Pr(Z>-1)" />, is the complement — about <Katex tex="0.84" /> instead of <Katex tex="0.16" />.</>,
+    reason: <>Matches option <b>C</b>; <Katex tex="\Pr(X<11.5)" /> and <Katex tex="\Pr(Z>1)" /> both equal about <Katex tex="0.16" />.</>,
+    more: <>Check with the CAS: <Cas fn="normCdf">normCdf(−∞, 11.5, 12, 0.5)</Cas> and <Cas fn="normCdf">normCdf(1, ∞, 0, 1)</Cas> both give <Katex tex="0.1587" />. Option A, <Katex tex="\Pr(Z>-1)\approx0.84" />, flips the inequality without flipping the sign, so it is the complement. Option E, <Katex tex="\Pr(Z<1)" />, is the same <Katex tex="0.84" /> by symmetry. Options B and D, both about <Katex tex="0.31" />, come from <Katex tex="z=-0.5" /> (or <Katex tex="0.5" />): using the raw difference <Katex tex="11.5-12=-0.5" /> as the <Katex tex="z" />-value and forgetting to divide by <Katex tex="\sigma=0.5" />.</>,
   },
 ]
 

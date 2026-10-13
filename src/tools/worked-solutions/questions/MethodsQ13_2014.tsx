@@ -23,15 +23,16 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="u = \log_a(x) \implies h = \cos(u)" />,
-    reason: <>Since <Katex tex="a>1" />, the substitution <Katex tex="u=\log_a x" /> is itself one-to-one — so <Katex tex="h" /> is one-to-one exactly when <Katex tex="\cos" /> is one-to-one on the matching interval of <Katex tex="u" />.</>,
+    reason: <>Since <Katex tex="a>1" />, <Katex tex="\log_a" /> is increasing, so <Katex tex="h" /> is one-to-one exactly when <Katex tex="\cos" /> is one-to-one on the matching <Katex tex="u" />-interval.</>,
+    more: <>Different <Katex tex="x" />-values always give different <Katex tex="u" />-values, so the only way <Katex tex="h" /> can repeat a value is if <Katex tex="\cos" /> repeats one.</>,
   },
   {
     working: <Katex display tex="\cos \text{ is one-to-one on } [0,\pi] \text{ (and on } [-\pi,0])" />,
-    reason: <>It is strictly decreasing across <Katex tex="[0,\pi]" />. Any interval straddling <Katex tex="u=0" /> fails, because <Katex tex="\cos" /> is even.</>,
+    reason: <>It is strictly decreasing across <Katex tex="[0,\pi]" />. Any interval with <Katex tex="u=0" /> strictly inside fails, because <Katex tex="\cos(-u)=\cos(u)" />.</>,
   },
   {
     working: <Katex display tex="x = 1 \implies u = \log_a(1) = 0" />,
-    reason: <>Translating each option's endpoints into <Katex tex="u" />.</>,
+    reason: <>Only option C starts at <Katex tex="x=1" />, where <Katex tex="u=\log_a(1)=0" /> for every base. Convert its endpoints into <Katex tex="u" />-values.</>,
   },
   {
     working: <Katex display tex="x = a^{\pi/2} \implies u = \log_a\!\left(a^{\pi/2}\right) = \tfrac\pi2" />,
@@ -43,7 +44,21 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\left[1,\ a^{\pi/2}\right]}" />,
-    reason: <>Matches option <b>C</b>. Options A, D and E all give <Katex tex="u\in\left(-\tfrac\pi2,\tfrac\pi2\right)" /> or similar, which straddles 0 — and <Katex tex="\cos(-u)=\cos(u)" /> then repeats values. Option B uses <Katex tex="\pi" /> as an <Katex tex="x" />-value, which has nothing to do with the base <Katex tex="a" />.</>,
+    reason: <>Matches option <b>C</b>. Every other option includes <Katex tex="u" />-values on both sides of 0.</>,
+    more: (
+      <>
+        Options A, D and E convert to <Katex tex="u\in\left(-\tfrac\pi2,\tfrac\pi2\right)" />,{' '}
+        <Katex tex="\left[-\tfrac\pi2,\tfrac\pi2\right)" /> and{' '}
+        <Katex tex="\left[-\tfrac\pi2,\tfrac\pi2\right]" />. For example{' '}
+        <Katex tex="x=a^{-\pi/4}" /> and <Katex tex="x=a^{\pi/4}" /> are in all three, and both
+        give <Katex tex="h=\cos\!\left(\tfrac\pi4\right)=\tfrac{\sqrt2}{2}" />. D was the most
+        popular wrong answer: leaving one endpoint open does not help, because the repeated
+        values come from the two halves either side of <Katex tex="u=0" />. In B,{' '}
+        <Katex tex="x\in(0,\pi)" /> gives <Katex tex="u" /> from <Katex tex="-\infty" /> (as{' '}
+        <Katex tex="x\to0^+" />) up to <Katex tex="\log_a(\pi)" />, so <Katex tex="\cos" /> goes
+        through infinitely many cycles.
+      </>
+    ),
   },
 ]
 
@@ -63,10 +78,9 @@ export default function MethodsQ13_2014() {
       }
       background={
         <p>
-          The logarithm is only a relabelling here: because <Katex tex="a>1" /> it is
-          increasing and one-to-one, so all the difficulty sits in the cosine. Convert each
-          option's endpoints into values of <Katex tex="\log_a(x)" /> and ask whether the
-          cosine is monotonic across them.
+          Strategy: convert each option's endpoints into values of{' '}
+          <Katex tex="\log_a(x)" />, then ask whether the cosine is monotonic (only ever
+          decreasing, or only ever increasing) across that interval.
         </p>
       }
       options={[

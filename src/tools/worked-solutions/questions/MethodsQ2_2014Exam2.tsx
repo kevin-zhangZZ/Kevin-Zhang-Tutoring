@@ -3,10 +3,19 @@
 // problem. Question text transcribed from the original paper; the diagram is cropped from the
 // original VCAA exam PDF. Answers checked with sympy and against the VCAA examination report.
 // Solution is original.
+// Interactive diagrams (§15): part f. shows the skin of area 3πh² = dV/dh that melts off the top
+// and side, so dh/dt = −10 ÷ 3πh² (interactives/meth-2014e2-q2f-skin.tsx); part h. plots h(t) to
+// show h = 1 at t ≈ 21.29 (during 2031) comes before V = 0 at t = 21.6
+// (interactives/meth-2014e2-q2h-timeline.tsx).
 
 import Katex from '../../../components/Katex'
 import { PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Explore, lazyWidget } from '../Explore'
+import { Cas } from '../CasRef'
 import diagramSrc from './meth-2014e2-q2-ice-cylinder.png'
+
+const SkinWidget = lazyWidget(() => import('../interactives/meth-2014e2-q2f-skin'))
+const TimelineWidget = lazyWidget(() => import('../interactives/meth-2014e2-q2h-timeline'))
 
 const EXAMINER_A: SAExaminerStats = {
   marks: [15, 10, 75],
@@ -102,25 +111,29 @@ export default function MethodsQ2_2014Exam2() {
     {
       working: <Katex display tex="\begin{aligned} V &= \pi r^2 h \\ &= \pi\left(\frac{d}{2}\right)^2 h \\ &= 216 \end{aligned}" />,
       reason: <>Cylinder volume, with radius written as <Katex tex="\tfrac{d}{2}" /> since the diameter <Katex tex="d" /> is the given variable.</>,
+      more: <>The report notes some students used the cone formula <Katex tex="\tfrac13\pi r^2h" /> instead. Keep the brackets: <Katex tex="\left(\tfrac{d}{2}\right)^2=\tfrac{d^2}{4}" />, whereas <Katex tex="\tfrac{d^2}{2}" /> is a different number.</>,
     },
     {
       working: <Katex display tex="\boxed{h = \dfrac{864}{\pi d^2}}" />,
-      reason: <>Rearrange: <Katex tex="\tfrac{\pi d^2}{4}h=216 \implies h = \tfrac{864}{\pi d^2}" />.</>,
+      reason: <>Rearrange: <Katex tex="\tfrac{\pi d^2}{4}h=216 \implies h = \tfrac{864}{\pi d^2}" />, since <Katex tex="216\times4=864" />.</>,
+      more: <>The report accepted <Katex tex="h=\tfrac{216}{\pi(d/2)^2}" /> but prefers the simplified form, which is also the one part (b) needs.</>,
     },
   ]
 
   const rowsB: WorkingRow[] = [
     {
       working: <Katex display tex="\begin{aligned} S &= \pi d h + \pi\left(\frac{d}{2}\right)^2 \\ &= \pi dh + \frac{\pi d^2}{4} \end{aligned}" />,
-      reason: <>Excluding the base: lateral (curved) surface <Katex tex="\pi dh" /> plus the flat top, a circle of radius <Katex tex="\tfrac{d}{2}" />.</>,
+      reason: <>Excluding the base: curved surface <Katex tex="\pi dh" /> (circumference <Katex tex="\pi d" /> times height) plus the circular top, radius <Katex tex="\tfrac{d}{2}" />.</>,
+      more: <>The report notes the two common slips: adding the base as well (a second <Katex tex="\tfrac{\pi d^2}{4}" />), or leaving out the top and using only the curved surface.</>,
     },
     {
       working: <Katex display tex="\begin{aligned} S &= \pi d\left(\frac{864}{\pi d^2}\right) + \frac{\pi d^2}{4} \\ &= \frac{864}{d}+\frac{\pi d^2}{4} \end{aligned}" />,
-      reason: <>Substitute <Katex tex="h" /> from part (a) to write <Katex tex="S" /> in terms of <Katex tex="d" /> alone.</>,
+      reason: <>Substitute <Katex tex="h" /> from part (a) to write <Katex tex="S" /> in terms of <Katex tex="d" /> alone; <Katex tex="\pi" /> and one <Katex tex="d" /> cancel.</>,
     },
     {
-      working: <Katex display tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d} \quad \text{as required}" />,
-      reason: <>A "show that" earns its mark for the lines above it — the substitution of <Katex tex="h" /> and the simplification — not for restating the given rule. The report notes that including the base, or leaving out the top, were the common slips.</>,
+      working: <Katex display tex="S = \dfrac{\pi d^2}{4} + \dfrac{864}{d}" />,
+      reason: <>Reorder the terms to match the given rule. As required.</>,
+      more: <>In a &ldquo;show that&rdquo;, the mark is for the lines above (the area formula and the substitution of <Katex tex="h" />), not for restating the given rule.</>,
     },
   ]
 
@@ -128,6 +141,7 @@ export default function MethodsQ2_2014Exam2() {
     {
       working: <Katex display tex="\begin{aligned} \frac{dS}{dd} &= \frac{\pi d}{2} - \frac{864}{d^2} \\ &= 0 \end{aligned}" />,
       reason: <>A minimum of <Katex tex="S" /> on <Katex tex="d>0" /> occurs where its derivative is zero. (<Katex tex="\tfrac{864}{d}=864d^{-1}" /> differentiates to <Katex tex="-864d^{-2}" />.)</>,
+      more: <>On CAS, <Cas fn="solve">solve(d/dd(πd²/4 + 864/d) = 0, d) | d &gt; 0</Cas> gives the same exact value, as in the report's answer; the by-hand route below shows where it comes from.</>,
     },
     {
       working: (
@@ -142,17 +156,20 @@ export default function MethodsQ2_2014Exam2() {
       working: <Katex display tex="\boxed{d = \sqrt[3]{\dfrac{1728}{\pi}} = \dfrac{12}{\sqrt[3]{\pi}} \text{ m}}" />,
       reason: (
         <>
-          <Katex tex="1728=12^3" />, so the cube root comes out cleanly. <Katex tex="\dfrac{d^2S}{dd^2}=\dfrac{\pi}{2}+\dfrac{1728}{d^3}>0" /> for every <Katex tex="d>0" />, so this is a minimum. (<Katex tex="\approx8.19" /> m — but the report says exact answers were required, and <Katex tex="8.19\ldots" /> was a common way to lose the mark.)
+          <Katex tex="1728=12^3" />. It is a minimum since <Katex tex="\tfrac{d^2S}{dd^2}=\tfrac{\pi}{2}+\tfrac{1728}{d^3}>0" /> for <Katex tex="d>0" />. Give the exact value.
         </>
       ),
+      more: <>The report says exact answers were required: <Katex tex="d=8.19\ldots" /> was often given and lost the mark.</>,
     },
     {
-      working: <Katex display tex="\begin{aligned} S_{\min} &= \frac{864}{d}+\frac{864}{2d} \\ &= \frac{1296}{d} \end{aligned}" />,
-      reason: <>Using <Katex tex="\tfrac{\pi d^2}{4}=\tfrac{\pi d^3}{4d}=\tfrac{864}{2d}" /> (from <Katex tex="\tfrac{\pi d^3}{2}=864" />) to rewrite the first term of <Katex tex="S" /> without <Katex tex="\pi" />.</>,
+      working: <Katex display tex="\begin{aligned} \frac{\pi d^2}{4} &= \frac{\pi}{4}\cdot\frac{144}{\pi^{2/3}} = 36\sqrt[3]{\pi} \\ \frac{864}{d} &= \frac{864\sqrt[3]{\pi}}{12} = 72\sqrt[3]{\pi} \end{aligned}" />,
+      reason: <>Substitute <Katex tex="d=\tfrac{12}{\sqrt[3]\pi}" /> into each term of <Katex tex="S" />: <Katex tex="d^2=\tfrac{144}{\pi^{2/3}}" />, and <Katex tex="\pi\div\pi^{2/3}=\pi^{1/3}" />.</>,
+      more: <>A shortcut: at the minimum <Katex tex="\tfrac{\pi d^3}{2}=864" />, so <Katex tex="\tfrac{\pi d^2}{4}=\tfrac{\pi d^3}{4d}=\tfrac{864}{2d}" /> and <Katex tex="S_{\min}=\tfrac{864}{2d}+\tfrac{864}{d}=\tfrac{1296}{d}=1296\times\tfrac{\sqrt[3]\pi}{12}" />, with no fractional powers of <Katex tex="\pi" /> to handle.</>,
     },
     {
-      working: <Katex display tex="\boxed{S_{\min} = 1296\times\frac{\sqrt[3]{\pi}}{12} = 108\sqrt[3]{\pi} \text{ m}^2}" />,
-      reason: <>Substitute <Katex tex="\tfrac1d = \tfrac{\sqrt[3]\pi}{12}" />. Sanity check: <Katex tex="108\sqrt[3]\pi\approx158.2" /> m², and <Katex tex="S(8)=16\pi+108\approx158.3" />, just above it, as a minimum should be.</>,
+      working: <Katex display tex="\boxed{S_{\min} = 36\sqrt[3]{\pi}+72\sqrt[3]{\pi} = 108\sqrt[3]{\pi} \text{ m}^2}" />,
+      reason: <>Add the two terms. The question asks for both <Katex tex="d" /> and the minimum <Katex tex="S" />.</>,
+      more: <>The report notes some students found <Katex tex="d" /> and stopped, and that the decimal <Katex tex="158.17\ldots" /> was often given instead of the exact value. Sanity check: <Katex tex="108\sqrt[3]\pi\approx158.18" /> m², and <Katex tex="S(8)=16\pi+108\approx158.27" />, just above it, as a minimum should be.</>,
     },
   ]
 
@@ -160,19 +177,21 @@ export default function MethodsQ2_2014Exam2() {
     {
       working: (
         <>
-          <Katex display tex="\frac{\pi d^3}{2}=864" />
-          <Katex display tex="\implies\; d^3 = \frac{1728}{\pi}, \qquad h = \frac{864}{\pi d^2}" />
+          <Katex display tex="\text{(c): }\; \frac{\pi d^3}{2}=864" />
+          <Katex display tex="\text{(a): }\; h = \frac{864}{\pi d^2}" />
         </>
       ),
-      reason: 'Combine the optimal-d condition from part (c) with the h–d relation from part (a).',
+      reason: <>Combine the optimal-<Katex tex="d" /> condition from part (c) with the <Katex tex="h" />–<Katex tex="d" /> relation from part (a).</>,
     },
     {
       working: <Katex display tex="\begin{aligned} h &= \frac{864}{\pi d^2} \\ &= \frac{d^3/2}{d^2} \\ &= \frac{d}{2} \end{aligned}" />,
       reason: <>Since <Katex tex="864 = \tfrac{\pi d^3}{2}" />, substitute directly: <Katex tex="\tfrac{864}{\pi d^2} = \tfrac{\pi d^3/2}{\pi d^2}" />.</>,
+      more: <>So the cylinder with the least surface area has height exactly half its diameter, which is the <Katex tex="d=2h" /> the stem uses from part (e) on.</>,
     },
     {
       working: <Katex display tex="\boxed{h = \dfrac{d}{2} = \dfrac{6}{\sqrt[3]{\pi}} \text{ m}}" />,
-      reason: <>Halve the value of <Katex tex="d" /> found in part (c). Neatly, the minimising cylinder has height exactly half its diameter. Exact, as the report required — not a decimal such as 4.09. The report notes some students forgot to square <Katex tex="\tfrac{12}{\sqrt[3]\pi}" /> when substituting into <Katex tex="h=\tfrac{864}{\pi d^2}" />.</>,
+      reason: <>Halve the value of <Katex tex="d" /> found in part (c). Exact, not the decimal 4.09.</>,
+      more: <>Substituting <Katex tex="d=\tfrac{12}{\sqrt[3]\pi}" /> into <Katex tex="h=\tfrac{864}{\pi d^2}" /> also works, but the report notes some students forgot to square <Katex tex="\tfrac{12}{\sqrt[3]\pi}" /> and got <Katex tex="\tfrac{72}{\pi^{2/3}}" />. Others substituted into the formula for <Katex tex="S" />, which gives the surface area, not the height.</>,
     },
   ]
 
@@ -184,11 +203,12 @@ export default function MethodsQ2_2014Exam2() {
           <Katex display tex="\begin{aligned} \implies\; r &= \frac{d}{2} \\ &= h \end{aligned}" />
         </>
       ),
-      reason: <>The problem now assumes the ice keeps the <Katex tex="d=2h" /> proportions found in part (d) as it melts.</>,
+      reason: <>The stem says <Katex tex="d=2h" /> holds throughout the melting (the proportions found in part (d)), so the radius equals the height.</>,
     },
     {
       working: <Katex display tex="\begin{aligned} V &= \pi r^2 h \\ &= \pi h^2\cdot h \end{aligned}" />,
-      reason: <>The radius is <Katex tex="h" />, not the diameter <Katex tex="2h" /> — using <Katex tex="\pi(2h)^2h" /> is the report's first listed error.</>,
+      reason: <>The radius is <Katex tex="h" />, not the diameter <Katex tex="2h" />.</>,
+      more: <>The report lists two wrong formulas: <Katex tex="\pi(2h)^2h=4\pi h^3" />, which uses the diameter as the radius, and <Katex tex="2\pi rh=2\pi h^2" />, which is the curved surface area, not the volume.</>,
     },
     {
       working: <Katex display tex="\boxed{V = \pi h^3}" />,
@@ -198,16 +218,19 @@ export default function MethodsQ2_2014Exam2() {
 
   const rowsF: WorkingRow[] = [
     {
-      working: <Katex display tex="\frac{dV}{dt} = -10 \quad \text{(given, constant)}, \qquad \frac{dV}{dh} = 3\pi h^2" />,
-      reason: <>Differentiate <Katex tex="V=\pi h^3" /> from part (e) with respect to <Katex tex="h" />.</>,
+      working: <Katex display tex="\frac{dV}{dt} = -10, \qquad \frac{dV}{dh} = 3\pi h^2" />,
+      reason: <>The volume <em>decreases</em> by 10 m³ per year, so <Katex tex="\tfrac{dV}{dt}" /> is negative. Differentiate <Katex tex="V=\pi h^3" /> from part (e).</>,
+      more: <>The report notes many students used <Katex tex="\tfrac{dV}{dt}=10" />. A rate of change is negative whenever the quantity is going down, and that sign carries through to <Katex tex="\tfrac{dh}{dt}" />.</>,
     },
     {
-      working: <Katex display tex="\frac{dh}{dt} = \frac{dh}{dV}\times\frac{dV}{dt} = \frac{1}{3\pi h^2}\times(-10)" />,
-      reason: <>Chain rule (related rates). <Katex tex="\tfrac{dh}{dV}" /> is the reciprocal of <Katex tex="\tfrac{dV}{dh}" /> — the step the report says some students skipped. The rate is <Katex tex="-10" /> because the volume is decreasing.</>,
+      working: <Katex display tex="\begin{aligned} \frac{dh}{dt} &= \frac{dh}{dV}\times\frac{dV}{dt} \\ &= \frac{1}{3\pi h^2}\times(-10) \end{aligned}" />,
+      reason: <>Chain rule (related rates): <Katex tex="V" /> links <Katex tex="h" /> and <Katex tex="t" />. <Katex tex="\tfrac{dh}{dV}" /> is the reciprocal of <Katex tex="\tfrac{dV}{dh}" />.</>,
+      more: <>The report notes some students did not take the reciprocal and substituted <Katex tex="3\pi h^2" /> for <Katex tex="\tfrac{dh}{dV}" />. A picture of why you divide: with <Katex tex="r=h" />, melting removes a skin of equal thickness from the top (area <Katex tex="\pi h^2" />) and the side (area <Katex tex="2\pi h\cdot h" />), since <Katex tex="r=h" /> throughout means the radius and the height drop by the same amount, total area <Katex tex="3\pi h^2=\tfrac{dV}{dh}" />. Ten cubic metres a year spread over that area is a layer <Katex tex="\tfrac{10}{3\pi h^2}" /> m thick each year, so the height drops at that rate. The diagram below shows the skin.</>,
     },
     {
       working: <Katex display tex="\boxed{\dfrac{dh}{dt} = -\dfrac{10}{3\pi h^2} \text{ m/year}}" />,
       reason: <>Negative, as it must be for a melting cylinder.</>,
+      more: <>The rate depends on <Katex tex="h" />: as the cylinder shrinks, the same 10 m³ comes off a smaller surface, so the height falls faster.</>,
     },
   ]
 
@@ -215,23 +238,25 @@ export default function MethodsQ2_2014Exam2() {
     {
       working: (
         <>
-          <Katex display tex="\text{Statue height} = 1\text{ m, based at the centre of the ice's base}" />
+          <Katex display tex="\text{Statue height} = 1\text{ m}" />
           <Katex display tex="\implies\; h=1" />
         </>
       ),
-      reason: 'The top of the statue is "just exposed" exactly when the melting ice surface has dropped to the height of the statue.',
+      reason: <>The statue stands on the base of the ice, so its top is "just exposed" when the ice's height has dropped to 1 m.</>,
     },
     {
       working: <Katex display tex="\left.\frac{dh}{dt}\right|_{h=1} = \frac{-10}{3\pi(1)^2}" />,
-      reason: 'Substitute h = 1 into the result from part (f).',
+      reason: <>Substitute <Katex tex="h=1" /> into the result from part (f).</>,
     },
     {
       working: <Katex display tex="\frac{dh}{dt} = -\frac{10}{3\pi}" />,
-      reason: <>About <Katex tex="-1.06" /> m/year — but the report required the exact value.</>,
+      reason: <>Leave it exact (it is about <Katex tex="-1.06" /> m/year).</>,
+      more: <>The report says an exact answer was required, and notes that students who got part (f) right tended to get this right too.</>,
     },
     {
       working: <Katex display tex="\boxed{\text{decreasing at } \tfrac{10}{3\pi} \text{ m/year}}" />,
-      reason: <>The question asks for the rate of <em>decrease</em>, so state it as a positive rate "decreasing at", or equivalently give <Katex tex="\tfrac{dh}{dt}=-\tfrac{10}{3\pi}" /> m/year. Units matter — the report notes some students gave incorrect ones.</>,
+      reason: <>The question asks how fast the height is <em>decreasing</em>, so state a positive rate, with units m/year.</>,
+      more: <>Giving <Katex tex="\tfrac{dh}{dt}=-\tfrac{10}{3\pi}" /> m/year says the same thing, and the report's answer shows both forms. It notes some students gave incorrect units: height is in metres and time in years.</>,
     },
   ]
 
@@ -243,7 +268,8 @@ export default function MethodsQ2_2014Exam2() {
           <Katex display tex="\implies\; V(t) = 216-10t" />
         </>
       ),
-      reason: <>Since the volume decreases at a constant rate from its initial value <Katex tex="V(0)=216" /> — no need to integrate <Katex tex="\tfrac{dh}{dt}" /> separately.</>,
+      reason: <>The volume starts at 216 m³ on 1 January 2010 (<Katex tex="t=0" />) and falls by 10 m³ each year.</>,
+      more: <>Because <Katex tex="\tfrac{dV}{dt}" /> is constant, <Katex tex="V" /> is linear in <Katex tex="t" />, so there is nothing to integrate. The report's answer also shows a route from part (f): <Katex tex="\tfrac{dt}{dh}=-\tfrac{3\pi h^2}{10}" />, and it writes <Katex tex="t=\displaystyle\int_{1}^{6/\sqrt[3]\pi}\tfrac{3\pi h^2}{10}\,dh=21.2858\ldots" />. That equals <Katex tex="\displaystyle\int_{6/\sqrt[3]\pi}^{1}-\tfrac{3\pi h^2}{10}\,dh" />, which runs from the starting height (part d) down to 1; swapping the terminals flips the sign. It notes the slips on that route: wrong terminals, a missing constant of integration when integrating without terminals, and integrating <Katex tex="\tfrac{dh}{dt}" /> instead of <Katex tex="\tfrac{dt}{dh}" />.</>,
     },
     {
       working: (
@@ -252,7 +278,7 @@ export default function MethodsQ2_2014Exam2() {
           <Katex display tex="\implies\; h^3 = \frac{216-10t}{\pi}" />
         </>
       ),
-      reason: <>From part (e), valid throughout while <Katex tex="d=2h" /> holds.</>,
+      reason: <>Link volume to height with part (e), which holds throughout since <Katex tex="d=2h" /> is kept.</>,
     },
     {
       working: (
@@ -262,20 +288,21 @@ export default function MethodsQ2_2014Exam2() {
           <Katex display tex="\implies\; 216-10t=\pi" />
         </>
       ),
-      reason: 'Set h = 1, the condition from part (g).',
+      reason: <>Set <Katex tex="h=1" />, the statue's height, as in part (g).</>,
     },
     {
       working: <Katex display tex="t = \frac{216-\pi}{10} = 21.2858\ldots \text{ years}" />,
-      reason: <>Forgetting the <Katex tex="\pi" /> — using <Katex tex="t=\tfrac{216}{10}" /> — is one of the report's listed errors.</>,
+      reason: <>Solve for <Katex tex="t" />. At this moment <Katex tex="\pi" /> m³ of ice is still left, so <Katex tex="\pi" /> must not be dropped.</>,
+      more: <>The report notes some students used <Katex tex="t=\tfrac{216}{10}=21.6" />. That is when <Katex tex="V=0" />, the moment the whole cylinder has melted, about 4 months after the statue's top appears.</>,
     },
     {
-      working: <Katex display tex="\boxed{\text{Sometime during the year } 2031}" />,
-      reason: (
+      working: <Katex display tex="\boxed{\text{During the year } 2031}" />,
+      reason: <><Katex tex="t=21" /> is 1 January 2031 and <Katex tex="t=22" /> is 1 January 2032, so <Katex tex="t\approx21.29" /> falls during 2031.</>,
+      more: (
         <>
-          Counting from 1 Jan 2010: <Katex tex="t=21" /> years lands on 1 Jan 2031, and the remaining{' '}
-          <Katex tex="\approx 0.29" /> of a year (<Katex tex="\approx" /> 3.5 months) falls in 2031, before
-          1 Jan 2032. The report notes 2032 was a common wrong answer — <Katex tex="2010+21.29" /> is{' '}
-          <Katex tex="2031.29" />, which is <em>during</em> 2031.
+          The report notes 2032 was a common wrong answer, which comes from rounding up or counting one year too many. But{' '}
+          <Katex tex="2010+21.29=2031.29" />: about <Katex tex="0.29\times12\approx3.4" /> months into 2031, in mid-April 2031.
+          The diagram below plots the height against time with the year boundaries marked.
         </>
       ),
     },
@@ -337,6 +364,9 @@ export default function MethodsQ2_2014Exam2() {
 
       <PartCard letter="f" topic="Related Rates" marks={3} statement={<>Find <Katex tex="\dfrac{dh}{dt}" /> in terms of <Katex tex="h" />.</>} examinerReport={EXAMINER_F}>
         <WorkingTable rows={rowsF} />
+        <Explore title="The melting skin: why you divide by dV/dh">
+          <SkinWidget />
+        </Explore>
       </PartCard>
 
       <PartCard letter="g" topic="Related Rates" marks={1} statement="Find the rate at which the height of the cylinder will be decreasing when the top of the statue is just exposed." examinerReport={EXAMINER_G}>
@@ -345,6 +375,9 @@ export default function MethodsQ2_2014Exam2() {
 
       <PartCard letter="h" topic="Solve Equation" marks={2} statement="Find the year in which the top of the statue will just be exposed. (Assume that the melting started on 1 January 2010.)" examinerReport={EXAMINER_H}>
         <WorkingTable rows={rowsH} />
+        <Explore title="h = 1 comes before V = 0, and during 2031">
+          <TimelineWidget />
+        </Explore>
       </PartCard>
     </div>
   )

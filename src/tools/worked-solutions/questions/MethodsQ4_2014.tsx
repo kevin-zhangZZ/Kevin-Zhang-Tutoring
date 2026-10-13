@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f'(5) = 0" />,
-    reason: <>So <Katex tex="x=5" /> is a stationary point — options C and D are out immediately, since the gradient there is zero, not <Katex tex="\pm5" />.</>,
+    reason: <>The gradient at <Katex tex="x=5" /> is 0, so it is a stationary point and options C and D are out.</>,
   },
   {
     working: <Katex display tex="f'(x) < 0 \text{ for all } x \ne 5" />,
@@ -27,7 +27,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\text{stationary point of inflection}}" />,
-    reason: <>Matches option <b>E</b>: a flat spot on an otherwise decreasing curve. <Katex tex="f(x)=-(x-5)^3" /> is the standard example. Option B (20%) is the usual slip — a zero derivative is taken to mean a turning point without checking that <Katex tex="f'" /> changes sign.</>,
+    reason: <>Matches option <b>E</b>: a flat spot on an otherwise decreasing curve, so a stationary point that is not a turning point.</>,
+    more: <><Katex tex="f(x)=-(x-5)^3" /> is the standard example: <Katex tex="f'(x)=-3(x-5)^2" /> is zero at <Katex tex="x=5" /> and negative everywhere else. Option B (20%) is the usual slip: a zero derivative is taken to mean a turning point without checking that <Katex tex="f'" /> changes sign. Option A (9%) is the same slip, guessing a minimum instead; neither turning point can happen, because <Katex tex="f'" /> is negative on both sides. Options C and D mistake the <Katex tex="x" />-value 5 for the gradient.</>,
   },
 ]
 

@@ -15,7 +15,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="P(4,-3)" />,
-    reason: <>Apply the transformations in the stated order — the wording "and then" matters.</>,
+    reason: <>Track the single point through each transformation, in the stated order ("and then").</>,
   },
   {
     working: <Katex display tex="\text{up }4:\quad (4,-3) \to (4,\,-3+4) = (4,1)" />,
@@ -27,7 +27,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{(-4,1)}" />,
-    reason: <>Matches option <b>A</b>. Option E, <Katex tex="(-4,-1)" />, also reflects in the <Katex tex="x" />-axis; option B, <Katex tex="(-4,3)" />, reflects <Katex tex="P" /> in both axes and never translates it.</>,
+    reason: <>Matches option <b>A</b>.</>,
+    more: <>Option E, <Katex tex="(-4,-1)" />, also reflects in the <Katex tex="x" />-axis (it is <Katex tex="(4,1)" /> reflected in both axes); option B, <Katex tex="(-4,3)" />, reflects <Katex tex="P" /> in both axes and never translates it; option C, <Katex tex="(0,-3)" />, moves the 4 units horizontally instead of vertically; option D, <Katex tex="(4,-6)" />, keeps <Katex tex="x=4" />, so it was never reflected in the <Katex tex="y" />-axis. Here the order happens not to matter (reflecting first gives <Katex tex="(-4,-3)\to(-4,1)" /> too), because a vertical shift and a reflection in the <Katex tex="y" />-axis act on different coordinates.</>,
   },
 ]
 

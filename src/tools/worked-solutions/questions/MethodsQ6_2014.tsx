@@ -16,7 +16,7 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="f(x) = 2x^3-9x^2-168x" />,
-    reason: <>An inverse function exists exactly when <Katex tex="f" /> is one-to-one, and a cubic is one-to-one precisely on an interval containing no turning point in its interior.</>,
+    reason: <>An inverse function exists exactly when <Katex tex="f" /> is one-to-one. A cubic is one-to-one on any interval with no turning point inside it.</>,
   },
   {
     working: <Katex display tex="f'(x) = 6x^2-18x-168 = 6\left(x^2-3x-28\right)" />,
@@ -28,11 +28,13 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="x = -4 \text{ and } x = 7" />,
-    reason: <>Two turning points, so <Katex tex="f" /> is monotonic on <Katex tex="(-\infty,-4]" />, on <Katex tex="[-4,7]" /> and on <Katex tex="[7,\infty)" /> — and on no interval that straddles either value.</>,
+    reason: <>Two turning points, so <Katex tex="f" /> is strictly increasing or decreasing on <Katex tex="(-\infty,-4]" />, <Katex tex="[-4,7]" /> and <Katex tex="[7,\infty)" />, but not on any interval straddling <Katex tex="-4" /> or <Katex tex="7" />.</>,
+    more: <>On an interval containing a turning point inside it, <Katex tex="f" /> goes up then down (or down then up), so values just either side of the turning point are repeated: two <Katex tex="x" />-values give the same <Katex tex="y" />, and the inverse would not be a function.</>,
   },
   {
     working: <Katex display tex="\boxed{D = (7,\infty)}" />,
-    reason: <>Matches option <b>B</b>, the only choice contained in one of those three intervals. Option C contains <Katex tex="7" />, option D contains <Katex tex="-4" />, option E contains <Katex tex="7" />, and option A (20%) is all of <Katex tex="R" /> — a positive cubic with two turning points is not one-to-one.</>,
+    reason: <>Matches option <b>B</b>, the only option that lies inside one of those three intervals.</>,
+    more: <>Options C and E contain <Katex tex="x=7" /> and option D contains <Katex tex="x=-4" />, so each straddles a turning point. Option A (20%) is all of <Katex tex="R" />: a cubic with two turning points rises to <Katex tex="f(-4)=400" />, falls to <Katex tex="f(7)=-931" />, then rises again, so it takes some values three times. For example <Katex tex="f(x)=0" /> at <Katex tex="x=0" /> and at <Katex tex="x=\tfrac{9\pm5\sqrt{57}}{4}" />. Only a cubic with no turning points (like <Katex tex="x^3" />) has an inverse on all of <Katex tex="R" />.</>,
   },
 ]
 

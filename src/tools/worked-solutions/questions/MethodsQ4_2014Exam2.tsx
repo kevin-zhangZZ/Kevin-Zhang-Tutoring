@@ -5,10 +5,16 @@
 // which is no longer on the Mathematical Methods study design: its statement is shown, marked
 // as such, with no worked solution (KZ's decision, Sept 2026; the skip guide lists it). Answers
 // checked with sympy/scipy and against the VCAA examination report. Solution is original.
+// Interactives (Oct 2026; parts under 40% full marks): d. sine-quantile (area 0.15 under h, with a
+// same-mean-and-SD normal curve for comparison); e. at-least-one (q = 1 - 0.8^n against 0.95).
 
 import Katex from '../../../components/Katex'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Cas } from '../CasRef'
+import { Explore, lazyWidget } from '../Explore'
+
+const QuantileWidget = lazyWidget(() => import('../interactives/meth-2014e2-q4d-sine-quantile'))
+const AtLeastOneWidget = lazyWidget(() => import('../interactives/meth-2014e2-q4e-at-least-one'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [57, 43],
@@ -95,53 +101,58 @@ const EXAM_FII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="X \sim \mathrm{N}\!\left(14,\,4^2\right)" />,
-    reason: <>Heights in centimetres, mean 14, standard deviation 4.</>,
+    reason: <>Let <Katex tex="X" /> be a basil plant's height in centimetres: mean 14, standard deviation 4.</>,
   },
   {
     working: <Katex display tex="\Pr(X>x) = 0.1 \iff \Pr(X<x) = 0.9" />,
-    reason: <>"Tallest 10 per cent" is the upper tail, so the inverse-normal needs the 0.9 quantile — entering 0.1 instead is the report's error.</>,
+    reason: <>The tallest 10% lie <em>above</em> the cut-off <Katex tex="x" />, so 90% lie below it — the inverse normal works with the area to the left.</>,
+    more: <>The report notes that some students entered the incorrect probability into their technology. Entering 0.1 gives <Katex tex="8.87" /> cm, the cut-off for the <em>shortest</em> 10%. A quick sense check catches it: the tallest plants must be above the mean of 14 cm.</>,
   },
   {
     working: <Cas fn="invNorm">invNorm(0.9, 14, 4)</Cas>,
-    reason: <>The inverse normal.</>,
+    reason: <>The inverse normal finds the height with area 0.9 to its left.</>,
   },
   {
     working: <Katex display tex="x = 19.1262\ldots \text{ cm}" />,
-    reason: <>In centimetres, since that is the unit the distribution is given in.</>,
+    reason: <>In centimetres, the unit the distribution is given in. Keep the full value until the conversion.</>,
   },
   {
     working: <Katex display tex="\boxed{191\ \text{mm}}" />,
-    reason: <>To the nearest millimetre, so convert: <Katex tex="1\ \text{cm}=10\ \text{mm}" />, giving <Katex tex="191.26\ldots" /> mm. The report notes students using <Katex tex="1\ \text{cm}=100\ \text{mm}" /> and answering 1913.</>,
+    reason: <>The answer is wanted to the nearest millimetre, and <Katex tex="1\ \text{cm}=10\ \text{mm}" />: <Katex tex="19.126\ldots\times10=191.26\ldots" /> mm.</>,
+    more: <>The report's answer is 19.1 cm or 191 mm. It notes many students thought 100 mm = 1 cm and answered 1913 mm (almost 2 metres — far too tall for a basil plant), and others wrote 19.1 mm, the right number with the wrong unit.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(X<9)" />,
-    reason: <>"Less than 9 cm in height" — use 9 exactly, not 8.9 or 8.</>,
+    reason: <>The plants moved are those less than 9 cm tall. Use 9 exactly: height is continuous, so no adjustment is needed.</>,
+    more: <>The report notes some students used <Katex tex="\Pr(X<8.9)" /> or <Katex tex="\Pr(X<8)" />. Shifting the boundary like that only makes sense for whole-number (discrete) variables; for a continuous variable <Katex tex="\Pr(X<9)" /> and <Katex tex="\Pr(X\le9)" /> are the same.</>,
   },
   {
     working: <Cas fn="normCdf">normCdf(-∞, 9, 14, 4)</Cas>,
-    reason: <>Write the probability in mathematical notation in your working, not calculator syntax.</>,
+    reason: <>On the page, write the probability statement above, not this calculator syntax.</>,
+    more: <>The report says some students used technology syntax in their working and that correct mathematical notation was required. It also notes that students who used <Katex tex="z" /> values often went wrong; with CAS there is no need to standardise.</>,
   },
   {
     working: <Katex display tex="\Pr(X<9) = 0.105649\ldots" />,
-    reason: <>About 10.6% of the plants.</>,
+    reason: <>About 10.6% of the basil plants.</>,
   },
   {
     working: <Katex display tex="0.105649\ldots\times2000 = 211.29\ldots" />,
-    reason: <>There are 2000 basil plants in the nursery.</>,
+    reason: <>The number of plants is this proportion of the 2000. Write it as a new line, not chained onto the last one.</>,
+    more: <>The report shows the incorrect working <Katex tex="\Pr(X<9)=0.10565\ldots=0.10565\ldots\times2000=211" />. Each "=" claims the two sides are equal, but <Katex tex="0.10565\ldots" /> is not equal to <Katex tex="211" />. Start a new statement for the multiplication, as here.</>,
   },
   {
     working: <Katex display tex="\boxed{211 \text{ plants}}" />,
-    reason: <>To the nearest whole number — and a whole number is the only sensible answer for a count of plants.</>,
+    reason: <>Rounded to the nearest whole number, as asked: <Katex tex="211.29\ldots" /> rounds down to 211.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="h(x) = \tfrac{\pi}{100}\sin\!\left(\tfrac{\pi x}{50}\right), \quad 0<x<50" />,
-    reason: <>A single arch of a sine curve.</>,
+    reason: <>One arch of a sine curve: zero at <Katex tex="x=0" /> and <Katex tex="x=50" />, highest at <Katex tex="x=25" />.</>,
   },
   {
     working: <Katex display tex="h(50-x) = \tfrac\pi{100}\sin\!\left(\pi-\tfrac{\pi x}{50}\right) = h(x)" />,
@@ -149,99 +160,110 @@ const ROWS_C: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}(X) = 25\ \text{cm}}" />,
-    reason: <>A symmetric density has its mean at the centre of symmetry — no integration needed, though <Katex tex="\int_0^{50}x\,h(x)\,dx" /> confirms it.</>,
+    reason: <>A symmetric density has its mean at its centre of symmetry. "State" means no calculation is required.</>,
+    more: <>The report's working gives <Katex tex="\mathrm{E}(X)=\int_0^{50}x\,h(x)\,dx=25" />; on this exam you evaluate that integral with CAS, which confirms the answer. If you integrate, the calculator must be in radians: the report notes students who used degrees. It also notes students who used the median formula, <Katex tex="\int_0^m h(x)\,dx=0.5" />. That happens to give 25 here only because the density is symmetric; the mean is defined by <Katex tex="\int x\,h(x)\,dx" />.</>,
   },
 ]
 
 const ROWS_D: WorkingRow[] = [
   {
     working: <Katex display tex="\int_0^a h(x)\,dx = 0.15" />,
-    reason: <>The smallest 15% sit below some height <Katex tex="a" />. This is a <em>continuous</em> distribution given by <Katex tex="h" /> — the normal distribution has nothing to do with it.</>,
+    reason: <>The smallest 15% are below some height <Katex tex="a" />, so the area under <Katex tex="h" /> from 0 to <Katex tex="a" /> is 0.15.</>,
+    more: <>This is the same idea as part a. (the area to the left of a cut-off), but the distribution is now the one given by <Katex tex="h" />. The report notes some students used the normal distribution. Nothing says the coriander heights are normal: <Katex tex="h" /> is the only distribution given. Even a normal curve with the same mean (25) and standard deviation (<Katex tex="\sqrt{\mathrm{E}(X^2)-25^2}\approx 10.88" />, by CAS) gives a different cut-off, about 13.7 cm.</>,
   },
   {
     working: <Katex display tex="\int_0^a \tfrac\pi{100}\sin\!\left(\tfrac{\pi x}{50}\right)dx = \left[-\tfrac12\cos\!\left(\tfrac{\pi x}{50}\right)\right]_0^a" />,
-    reason: <>The chain rule brings out <Katex tex="\tfrac{50}\pi" />, and <Katex tex="\tfrac\pi{100}\times\tfrac{50}\pi=\tfrac12" />.</>,
+    reason: <>An antiderivative of <Katex tex="\sin(kx)" /> is <Katex tex="-\tfrac1k\cos(kx)" />. Here <Katex tex="\tfrac1k=\tfrac{50}\pi" />, and <Katex tex="\tfrac\pi{100}\times\tfrac{50}\pi=\tfrac12" />.</>,
+    more: <>On this calculator-allowed exam you can instead solve the first line for <Katex tex="a" /> directly with CAS, as the report does — restricting the solution to <Katex tex="0<a<50" />.</>,
   },
   {
     working: <Katex display tex="\tfrac12\left(1-\cos\!\left(\tfrac{\pi a}{50}\right)\right) = 0.15" />,
-    reason: <>Evaluating, with <Katex tex="\cos(0)=1" />.</>,
+    reason: <>Substituting the limits: <Katex tex="-\tfrac12\cos\!\left(\tfrac{\pi a}{50}\right)+\tfrac12\cos(0)" />, with <Katex tex="\cos(0)=1" />.</>,
   },
   {
     working: <Katex display tex="\cos\!\left(\tfrac{\pi a}{50}\right) = 0.7 \implies \tfrac{\pi a}{50} = 0.795398\ldots" />,
-    reason: <>Radians throughout.</>,
+    reason: <>Multiply by 2 and rearrange, then take <Katex tex="\cos^{-1}" /> in radians. As <Katex tex="0<\tfrac{\pi a}{50}<\pi" />, this is the only solution.</>,
   },
   {
     working: <Katex display tex="a = 12.6591\ldots \text{ cm}" />,
-    reason: <>Well below the mean of 25, as it should be for the bottom 15%.</>,
+    reason: <>Multiplying by <Katex tex="\tfrac{50}\pi" />. Well below the mean of 25, as it should be for the bottom 15%.</>,
   },
   {
     working: <Katex display tex="\boxed{127\ \text{mm}}" />,
-    reason: <>To the nearest millimetre.</>,
+    reason: <>To the nearest millimetre: <Katex tex="12.659\ldots\times10=126.59\ldots" /> mm, so the plants given the food are at most 127 mm tall.</>,
+    more: <>The report's answer is 12.7 cm or 127 mm, and it notes some students had incorrect units or conversions — the same trap as part a.: 1 cm is 10 mm.</>,
   },
 ]
 
 const ROWS_E: WorkingRow[] = [
   {
     working: <Katex display tex="Y \sim \mathrm{Bi}(n,\,0.2)" />,
-    reason: <>Each plant is independently tall with probability 0.2, and <Katex tex="n" /> are chosen — a binomial.</>,
+    reason: <>Let <Katex tex="Y" /> be the number of tall plants among Jack's <Katex tex="n" />. Each is tall with probability 0.2, independently: a binomial.</>,
+    more: <>The report notes many students did not know to use the binomial distribution. The signal is a fixed number of independent selections (<Katex tex="n" /> plants), each with two outcomes (tall or regular) and the same probability of "success" (0.2).</>,
   },
   {
     working: <Katex display tex="q = \Pr(Y\ge1) = 1-\Pr(Y=0)" />,
-    reason: <>"At least one" through the complement, as always.</>,
+    reason: <>"At least one" is everything except "none", so use the complement.</>,
   },
   {
     working: <Katex display tex="\Pr(Y=0) = 0.8^n" />,
-    reason: <>Every one of the <Katex tex="n" /> plants must be regular.</>,
+    reason: <>No tall plants means all <Katex tex="n" /> are regular, each with probability 0.8.</>,
   },
   {
     working: <Katex display tex="1-0.8^n > 0.95 \implies 0.8^n < 0.05" />,
-    reason: <>Rearranging — the inequality flips, which the report says students got wrong.</>,
+    reason: <>Subtract 1, then multiply by <Katex tex="-1" />: multiplying by a negative reverses the inequality.</>,
+    more: <>The report notes students used the inequality sign incorrectly. A sense check: <Katex tex="0.8^n" /> is the chance that <em>none</em> is tall, which must be <em>small</em> if "at least one" is to be likely.</>,
   },
   {
     working: <Katex display tex="n > \frac{\log_e(0.05)}{\log_e(0.8)} = 13.425\ldots" />,
-    reason: <>Dividing by <Katex tex="\log_e(0.8)" />, which is <em>negative</em>, reverses the inequality a second time.</>,
+    reason: <>Take <Katex tex="\log_e" /> of both sides: <Katex tex="n\log_e(0.8)<\log_e(0.05)" />. Dividing by <Katex tex="\log_e(0.8)" />, which is <em>negative</em>, reverses the inequality again.</>,
+    more: <>Alternatively, solve <Katex tex="0.8^n=0.05" /> with CAS and then decide which side you need: <Katex tex="1-0.8^n" /> increases with <Katex tex="n" />, so <Katex tex="q>0.95" /> for every <Katex tex="n" /> above 13.43. The report notes that trial and error was also used; that is fine if you show the values either side of 0.95, as in the next row.</>,
   },
   {
     working: <Katex display tex="\boxed{n = 14}" />,
-    reason: <>The smallest integer above <Katex tex="13.43" />. Check: <Katex tex="1-0.8^{13}=0.945" /> (not enough) and <Katex tex="1-0.8^{14}=0.956" /> ✓.</>,
+    reason: <><Katex tex="n" /> is a whole number, so round <em>up</em>. Check: <Katex tex="1-0.8^{13}=0.945" /> (not enough) and <Katex tex="1-0.8^{14}=0.956" /> ✓.</>,
   },
 ]
 
 const ROWS_FI: WorkingRow[] = [
   {
     working: <Katex display tex="\Pr(S_1) = 1, \qquad \Pr(S_2) = 0.7" />,
-    reason: <>The first pot each week is always smooth, so the second is smooth with probability <Katex tex="0.7" /> outright.</>,
+    reason: <><Katex tex="S_n" /> means "pot <Katex tex="n" /> is smooth", <Katex tex="R_n" /> "rough". Pot 1 is always smooth, so pot 2 is smooth with probability 0.7.</>,
   },
   {
-    working: <Katex display tex="\Pr(S_3) = \Pr(S_3\mid S_2)\Pr(S_2)+\Pr(S_3\mid R_2)\Pr(R_2)" />,
-    reason: <>Condition on the state of the second pot — the law of total probability, or equivalently a four-branch tree.</>,
+    working: <Katex display tex="\begin{aligned}\Pr(S_3) &= \Pr(S_3\mid S_2)\Pr(S_2)\\ &\quad+\Pr(S_3\mid R_2)\Pr(R_2)\end{aligned}" />,
+    reason: <>Each pot depends only on the one before, so split by what pot 2 was: smooth or rough (the two branches of a tree).</>,
+    more: <>The pots are <em>not</em> independent trials, so this is not a binomial: the chance pot 3 is smooth depends on pot 2.</>,
   },
   {
     working: <Katex display tex="\Pr(S_3) = (0.7)(0.7)+(1-p)(0.3)" />,
-    reason: <>If pot 2 is rough (probability <Katex tex="0.3" />), pot 3 is smooth with probability <Katex tex="1-p" />, since <Katex tex="p" /> is <Katex tex="\Pr(\text{rough}\mid\text{rough})" />. The brackets around <Katex tex="1-p" /> are essential.</>,
+    reason: <><Katex tex="\Pr(R_2)=0.3" />. Since <Katex tex="p=\Pr(\text{rough}\mid\text{rough})" />, a rough pot is followed by a smooth one with probability <Katex tex="1-p" />. Keep its brackets.</>,
+    more: <>Keep the brackets around <Katex tex="1-p" />: the report notes they were sometimes omitted, giving <Katex tex="0.7\times0.7+0.3\times1-p=0.79-p" />. The report also shows a transition-matrix method; transition matrices are no longer in the Methods study design, and the tree is all you need. Of the incorrect matrix formulations it lists, one raises the matrix to the power 3 (pot 3 is only two steps after pot 1) and the other has <Katex tex="p" /> and <Katex tex="1-p" /> in the wrong places.</>,
   },
   {
     working: <Katex display tex="= 0.49+0.3-0.3p" />,
-    reason: <>Expanding.</>,
+    reason: <>Expanding: <Katex tex="0.3(1-p)=0.3-0.3p" />.</>,
   },
   {
     working: <Katex display tex="\boxed{\Pr(S_3) = 0.79-0.3p}" />,
-    reason: <>Dropping the brackets gives <Katex tex="0.79-p" />, the report's common error.</>,
+    reason: <>Collecting the constants.</>,
+    more: <>A check: if <Katex tex="p=0.3" />, a rough pot is followed by a smooth one with probability 0.7, just as after a smooth pot, so every pot after the first is smooth with probability 0.7. Indeed <Katex tex="0.79-0.3(0.3)=0.7" />.</>,
   },
 ]
 
 const ROWS_FII: WorkingRow[] = [
   {
     working: <Katex display tex="0.79-0.3p = 0.61" />,
-    reason: <>Setting part f(i) equal to the given probability.</>,
+    reason: <>Setting the answer to part f.i. equal to the given probability.</>,
   },
   {
     working: <Katex display tex="0.3p = 0.18" />,
-    reason: <>Rearranging.</>,
+    reason: <>Subtract 0.79 from both sides, then multiply by <Katex tex="-1" />.</>,
   },
   {
     working: <Katex display tex="\boxed{p = 0.6}" />,
-    reason: <>In <Katex tex="(0,1)" /> ✓, as the stem requires.</>,
+    reason: <>Dividing by 0.3. It lies in <Katex tex="(0,1)" />, as the stem requires.</>,
+    more: <>Check: <Katex tex="0.79-0.3(0.6)=0.79-0.18=0.61" /> ✓. An error in part f.i. carries straight into this part, so check that expression first if your answer is outside <Katex tex="(0,1)" />.</>,
   },
 ]
 
@@ -340,6 +362,9 @@ export default function MethodsQ4_2014Exam2() {
         examinerReport={EXAM_D}
       >
         <WorkingTable rows={ROWS_D} />
+        <Explore title="The bottom 15% is an area of 0.15 under h, not under a normal curve">
+          <QuantileWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1">
@@ -362,6 +387,9 @@ export default function MethodsQ4_2014Exam2() {
         examinerReport={EXAM_E}
       >
         <WorkingTable rows={ROWS_E} />
+        <Explore title="q climbs past 0.95 between n = 13 and n = 14">
+          <AtLeastOneWidget />
+        </Explore>
       </PartCard>
 
       <div className="text-[13.5px] leading-relaxed text-gray-600 dark:text-gray-400 px-1 flex flex-col gap-2">
@@ -389,14 +417,6 @@ export default function MethodsQ4_2014Exam2() {
         }
         examinerReport={EXAM_FI}
       >
-        <Background>
-          <p>
-            In the working below, <Katex tex="S_n" /> denotes the event that the{' '}
-            <Katex tex="n" />th pot made in a week is smooth, and <Katex tex="R_n" /> that it is
-            rough. These trials are <em>not</em> independent, so nothing here is binomial — each
-            pot depends on the one before it.
-          </p>
-        </Background>
         <WorkingTable rows={ROWS_FI} />
       </PartCard>
 

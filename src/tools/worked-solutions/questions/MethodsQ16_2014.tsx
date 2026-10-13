@@ -23,19 +23,21 @@ const EXAMINER: MCQExaminerStats = {
 const ROWS: WorkingRow[] = [
   {
     working: <Katex display tex="\int_{-\infty}^{\infty}x^2p(x)\,dx = \mathrm{E}\!\left(X^2\right)" />,
-    reason: <>Recognising the integral: this is the definition of the expected value of <Katex tex="X^2" />, not of <Katex tex="X" />.</>,
+    reason: <>This integral is the definition of the expected value of <Katex tex="X^2" />. Since <Katex tex="p(x)" /> is never given, it can't be evaluated directly.</>,
+    more: <>In general <Katex tex="\mathrm{E}\big(g(X)\big)=\int_{-\infty}^{\infty}g(x)\,p(x)\,dx" />. With <Katex tex="g(x)=x" /> this is the mean, <Katex tex="\mathrm{E}(X)=2" />; with <Katex tex="g(x)=x^2" /> it is <Katex tex="\mathrm{E}\!\left(X^2\right)" />, which is <em>not</em> <Katex tex="\bigl(\mathrm{E}(X)\bigr)^2=4" />.</>,
   },
   {
     working: <Katex display tex="\mathrm{Var}(X) = \mathrm{E}\!\left(X^2\right)-\bigl(\mathrm{E}(X)\bigr)^2" />,
-    reason: <>The formula that connects the two given numbers to the one wanted.</>,
+    reason: <>The variance formula links <Katex tex="\mathrm{E}\!\left(X^2\right)" /> to the two numbers given, the mean and the variance.</>,
   },
   {
     working: <Katex display tex="5 = \mathrm{E}\!\left(X^2\right)-2^2" />,
-    reason: <>Substituting the mean 2 and the variance 5.</>,
+    reason: <>Substitute variance 5 and mean 2, then add 4 to both sides.</>,
   },
   {
     working: <Katex display tex="\boxed{\mathrm{E}\!\left(X^2\right) = 9}" />,
-    reason: <>Matches option <b>C</b>. Option A, 1, subtracts instead of adding; option E, 29, uses <Katex tex="5^2+4" />.</>,
+    reason: <>Matches option <b>C</b>.</>,
+    more: <>Check: <Katex tex="\mathrm{E}\!\left(X^2\right)=\mathrm{Var}(X)+\bigl(\mathrm{E}(X)\bigr)^2" /> can never be less than <Katex tex="\bigl(\mathrm{E}(X)\bigr)^2=4" />, since a variance is never negative. The distractors: A, 1, is <Katex tex="5-4" /> (subtracting instead of adding); B, 7, is <Katex tex="5+2" /> (forgetting to square the mean); E, 29, is <Katex tex="5^2+4" /> (treating 5 as the standard deviation and squaring it); D, 21, the most common wrong answer, is <Katex tex="5^2-4" />, which makes that slip <em>and</em> A's sign error.</>,
   },
 ]
 
@@ -53,13 +55,6 @@ export default function MethodsQ16_2014() {
             <Katex tex="\displaystyle\int_{-\infty}^{\infty}x^2p(x)\,dx" /> is
           </p>
         </>
-      }
-      background={
-        <p>
-          The integral in the question is not something to evaluate — <Katex tex="p" /> is
-          never given. It is <Katex tex="\mathrm{E}\!\left(X^2\right)" /> written out in full,
-          and the variance formula turns that into arithmetic.
-        </p>
       }
       options={[
         { letter: 'A', content: <Katex tex="1" /> },

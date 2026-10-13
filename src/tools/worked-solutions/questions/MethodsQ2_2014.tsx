@@ -19,11 +19,11 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\text{gradient} = -1 < 0" />,
-    reason: <>The function is <em>decreasing</em>, so the largest <Katex tex="y" /> comes from the smallest <Katex tex="x" /> — the endpoints swap over, brackets and all.</>,
+    reason: <>The function is <em>decreasing</em>, so the largest <Katex tex="y" /> comes from the smallest <Katex tex="x" /> — the endpoints swap over.</>,
   },
   {
     working: <Katex display tex="y = -2 \implies x = 6, \qquad y = 6 \implies x = -2" />,
-    reason: <>Substituting the two range endpoints.</>,
+    reason: <>Substitute the two range endpoints into <Katex tex="x=4-y" />.</>,
   },
   {
     working: <Katex display tex="y \in [-2,6) \implies x \in (-2,6]" />,
@@ -31,7 +31,8 @@ const ROWS: WorkingRow[] = [
   },
   {
     working: <Katex display tex="\boxed{D = (-2,6]}" />,
-    reason: <>Matches option <b>D</b>. Option A keeps the bracket types where they were, which is the trap for a decreasing function.</>,
+    reason: <>Matches option <b>D</b>: same endpoints as the range, but the brackets swap ends.</>,
+    more: <>Because <Katex tex="f(x)=4-x" /> happens to send <Katex tex="-2" /> and <Katex tex="6" /> to each other, the domain has the same endpoints as the range, so option A, which simply copies the range, looks right (10% chose it). Option C, <Katex tex="R" />, forgets that the domain must be restricted to give this range: on all of <Katex tex="R" /> a linear function has range <Katex tex="R" />. Option E, <Katex tex="[-6,2]" />, has the endpoints of <Katex tex="x=y-4" />, a sign slip when rearranging.</>,
   },
 ]
 
