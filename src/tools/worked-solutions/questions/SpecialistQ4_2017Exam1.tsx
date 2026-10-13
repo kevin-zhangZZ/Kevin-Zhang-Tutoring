@@ -11,7 +11,7 @@
 // in the report: sd 3 → 0.16; scaling the sd by n (3/4, or 12 for the total); z = +2 → 0.975.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, SAExaminerReport, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, ReportShelf, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const PacksWidget = lazyWidget(() => import('../interactives/spec-2017e1-q4-packs'))
@@ -243,11 +243,7 @@ export default function SpecialistQ4_2017Exam1() {
         sketch: a value below the mean has less than half the area to its left, so any answer above 0.5 is
         wrong.
       </WrongMethod>
-      <SAExaminerReport stats={EXAM} maxMarks={3} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={3} />
     </div>
   )
 }

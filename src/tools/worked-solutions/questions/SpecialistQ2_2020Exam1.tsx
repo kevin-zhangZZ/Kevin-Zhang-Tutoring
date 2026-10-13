@@ -13,7 +13,7 @@
 // notes "various errors with exponents").
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const FlipWidget = lazyWidget(() => import('../interactives/spec-2020e1-q2-flip'))
@@ -259,13 +259,7 @@ export default function SpecialistQ2_2020Exam1() {
             the diagram above), and <Katex tex="3\sqrt2-\tfrac32\approx2.74" /> does not.
           </p>
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={4} />
       </div>
     </div>
   )

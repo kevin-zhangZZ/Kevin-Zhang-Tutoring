@@ -9,7 +9,7 @@
 //   - each <PartCard letter="…" topic="…" marks={n} examinerReport={NAME} videoSrc={…}>, in
 //     order (videoSrc marks a part with a recorded video walkthrough; an <Explore> between it
 //     and its </PartCard> marks a part with an interactive diagram), or for a single-part
-//     question the <SAExaminerReport stats={NAME} maxMarks={n} /> instead;
+//     question the <ReportShelf stats={NAME} maxMarks={n} /> instead;
 //   - each `const NAME: SAExaminerStats = { marks: [...], average: x, ... }`.
 // It also lists every question — multiple choice included — whose file has an <Explore>, so
 // the sidebar can mark a question row that has no part rows of its own.
@@ -74,7 +74,7 @@ for (const id of saIds) {
     parts.push(part)
   }
   if (parts.length === 0) {
-    const single = src.match(/<SAExaminerReport stats=\{(\w+)\} maxMarks=\{(\d+)\}/)
+    const single = src.match(/<ReportShelf stats=\{(\w+)\} maxMarks=\{(\d+)\}/)
     if (single) {
       const part = { l: '', m: Number(single[2]) }
       if (averages[single[1]] !== undefined) part.a = averages[single[1]]

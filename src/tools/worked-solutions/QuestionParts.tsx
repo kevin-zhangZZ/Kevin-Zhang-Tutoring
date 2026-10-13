@@ -167,6 +167,13 @@ export function PartCard({
 }) {
   const { hideAnswers } = useStudyMode()
   const [done, setDone] = useState(false)
+  // The examiner's comment usually names the answer, so in "Hide answers" mode it waits until
+  // the working is fully revealed. A part with no video has no video section at all.
+  const report = examinerReport && (!hideAnswers || done) ? <SAExaminerReport stats={examinerReport} maxMarks={marks} /> : null
+  const video = videoSrc ? (
+    <Video src={videoSrc} external={videoIsExternal} label={`part (${letter})`} />
+  ) : null
+  const shelf = report || video
 
   return (
     <RevealCtx.Provider value={{ done, setDone }}>
@@ -176,7 +183,7 @@ export function PartCard({
         data-part={letter}
         data-topic={topic}
         id={`part-${letter}`}
-        className="ws-part relative scroll-mt-16 border-t pt-6 sm:pt-6 sm:border sm:rounded-2xl sm:p-6 border-gray-200 dark:border-gray-800"
+        className={`ws-part relative scroll-mt-16 border-t pt-6 sm:pt-6 sm:border sm:rounded-2xl sm:p-6 border-gray-200 dark:border-gray-800 ${shelf ? 'sm:pb-0' : ''}`}
       >
         <PartRail letter={letter} host="part" />
         <div className="flex items-start justify-between gap-3 mb-4">
@@ -195,27 +202,68 @@ export function PartCard({
           </span>
         </div>
 
-        <div className="relative sm:pl-10 flex flex-col gap-5">
+        {/* The shelf sits inside this indented column so the part rail runs on down through it,
+            stopping short of the card's foot (ws-rail-inset, index.css). */}
+        <div className={`relative sm:pl-10 flex flex-col gap-5 ${shelf ? 'ws-rail-inset' : ''}`}>
           <PartRail letter={letter} host="answer" />
           {gateChildren(children, !hideAnswers || done)}
-
-          {examinerReport && <SAExaminerReport stats={examinerReport} maxMarks={marks} />}
-
-          {videoSrc && (
-            <div data-video>
-              <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-                Video Walkthrough
-              </p>
-              {videoIsExternal ? (
-                <DropboxLink src={videoSrc} label={`part (${letter})`} />
-              ) : (
-                <VideoPlayer src={videoSrc} label={`part (${letter})`} />
-              )}
-            </div>
+          {shelf && (
+            <Shelf video={video} className="mt-1 rounded-xl sm:rounded-none sm:rounded-b-2xl px-4 sm:-ml-16 sm:-mr-6 sm:pl-16 sm:pr-6">
+              {report}
+            </Shelf>
           )}
         </div>
       </div>
     </RevealCtx.Provider>
+  )
+}
+
+function Video({ src, external, label }: { src: string; external?: boolean; label: string }) {
+  return external ? <DropboxLink src={src} label={label} /> : <VideoPlayer src={src} label={label} />
+}
+
+// Everything *about* a question rather than the working itself (VCAA's examiner's report and the
+// video walkthrough) sits on a grey shelf across the foot of its card, so the change of surface
+// separates the two without any labels needing to shout. Report on the left and video on the
+// right when the card is wide enough; stacked otherwise. `className` sets the negative margins
+// that take the shelf out to its card's edges.
+function Shelf({ video, className, children }: { video: ReactNode; className: string; children: ReactNode }) {
+  return (
+    <div className={`border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/40 py-4 sm:pb-5 ${className}`}>
+      {/* The container query lives on this unpainted box: containment on the painted one above
+          would lift its background over the part rail. */}
+      <div className="@container">
+        <div className={`grid gap-5 ${children && video ? '@3xl:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]' : ''}`}>
+          {children && <div className="min-w-0">{children}</div>}
+          {video && (
+            <div data-video className="min-w-0">
+              <p className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-violet-700 dark:text-violet-300 mb-2.5">
+                <svg viewBox="0 0 16 16" className="w-3 h-3 flex-none" fill="currentColor" aria-hidden="true">
+                  <path d="M5 3.2v9.6c0 .5.5.8.9.5l7-4.8a.6.6 0 000-1L5.9 2.7c-.4-.3-.9 0-.9.5z" />
+                </svg>
+                Video Walkthrough
+              </p>
+              {video}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// The shelf for a single-part question: the examiner's report (and a video, once there is one)
+// at the foot of the question's card, whose padding is p-5 / sm:p-6.
+export function ReportShelf({ stats, maxMarks, videoSrc, videoIsExternal }: { stats: SAExaminerStats; maxMarks: number; videoSrc?: string; videoIsExternal?: boolean }) {
+  const { hideAnswers } = useStudyMode()
+  const reveal = useContext(RevealCtx)
+  const report = hideAnswers && reveal && !reveal.done ? null : <SAExaminerReport stats={stats} maxMarks={maxMarks} />
+  const video = videoSrc ? <Video src={videoSrc} external={videoIsExternal} label="this question" /> : null
+  if (!report && !video) return null
+  return (
+    <Shelf video={video} className="-mx-5 -mb-5 sm:-mx-6 sm:-mb-6 rounded-b-2xl px-5 sm:px-6">
+      {report}
+    </Shelf>
   )
 }
 
@@ -306,69 +354,42 @@ export function DataBookNote({ children }: { children: ReactNode }) {
   )
 }
 
-// Marks-distribution table + comment for one part of a short-answer question, as published
-// in the VCAA examination report (e.g. "Marks 0 1 2 | % 7 15 78 | Average 1.7"). On phones the
-// table becomes a small bar chart, one column per mark, so no column (usually Average) gets
-// cut off. In "Hide answers" mode it waits until the working above it is fully revealed, since
-// the examiner's comment usually names the answer.
+// Marks distribution + comment for one part of a short-answer question, as published in the VCAA
+// examination report (e.g. "Marks 0 1 2 | % 7 15 78 | Average 1.7"), drawn as one grey bar split
+// by mark: 0 marks palest on the left to full marks darkest on the right, each section's mark
+// above it and its % inside. A part most students got right reads dark and one most got wrong
+// reads pale before any number is read, and the grey keeps it from competing with the working.
+// In "Hide answers" mode it waits until the working above it is fully revealed, since the
+// examiner's comment usually names the answer.
 export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; maxMarks: number }) {
   const { hideAnswers } = useStudyMode()
   const reveal = useContext(RevealCtx)
   if (hideAnswers && reveal && !reveal.done) return null
 
+  const last = stats.marks.length - 1
   return (
     <div>
-      <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-        Examiner's Report
-      </p>
-      <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
-        <div className="sm:hidden px-3 pt-3 pb-2.5">
-          <div className="grid gap-1.5 items-end" style={{ gridTemplateColumns: `repeat(${maxMarks + 1}, minmax(0, 1fr))` }}>
+      <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Examiner's Report</p>
+      <div className="rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900">
+        <div className="flex items-end gap-5 px-4 py-3">
+          <div className="flex-1 flex gap-px" role="img" aria-label={stats.marks.map((p, m) => `${p}% scored ${m}`).join(', ')}>
             {stats.marks.map((p, m) => (
-              <div key={m} className="flex flex-col items-center gap-1">
-                <span className="text-[11px] tabular-nums text-gray-500 dark:text-gray-400">{p}%</span>
-                <div
-                  className="w-full rounded-t bg-sky-200 dark:bg-sky-800/70"
-                  style={{ height: `${Math.max(3, Math.round(p * 0.56))}px` }}
-                />
-                <span className="text-[11.5px] font-semibold text-gray-700 dark:text-gray-300">{m}</span>
+              // Sized by share, with a floor so a 2% section still has room for its label.
+              <div key={m} className="flex flex-col gap-1" style={{ flex: `${Math.max(p, 0.01)} 1 0`, minWidth: 34 }}>
+                <span className="text-[11px] font-semibold tabular-nums text-center text-gray-600 dark:text-gray-300">{m}</span>
+                <span
+                  className={`h-5 flex items-center justify-center text-[10.5px] font-semibold tabular-nums whitespace-nowrap ${markShade(m, maxMarks)} ${
+                    m === 0 ? 'rounded-l-md' : ''
+                  } ${m === last ? 'rounded-r-md' : ''}`}
+                >
+                  {p}%
+                </span>
               </div>
             ))}
           </div>
-          <div className="flex justify-between items-baseline mt-2 text-[11px] text-gray-500 dark:text-gray-400">
-            <span className="font-bold tracking-wider">Marks</span>
-            <span>
-              Average <b className="text-[12.5px] text-sky-700 dark:text-sky-300">{formatAverage(stats.average)}</b> / {maxMarks}
-            </span>
-          </div>
-        </div>
-        <div className="hidden sm:block overflow-x-auto">
-          <table className="w-full text-center text-[12.5px] border-collapse min-w-[280px]">
-            <thead>
-              <tr className="bg-gray-50 dark:bg-gray-800/60">
-                <th className="px-3 py-2 text-left text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400 border-b border-r border-gray-200 dark:border-gray-800">
-                  Marks
-                </th>
-                {Array.from({ length: maxMarks + 1 }, (_, m) => (
-                  <th key={m} className="px-3 py-2 font-semibold text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-800">
-                    {m}
-                  </th>
-                ))}
-                <th className="px-3 py-2 font-bold text-gray-700 dark:text-gray-300 border-b border-l border-gray-200 dark:border-gray-800 whitespace-nowrap">
-                  Average
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="px-3 py-2 text-left text-[10px] font-bold tracking-wider text-gray-500 dark:text-gray-400 border-r border-gray-200 dark:border-gray-800">%</td>
-                {stats.marks.map((p, m) => (
-                  <td key={m} className="px-3 py-2 text-gray-800 dark:text-gray-100">{p}</td>
-                ))}
-                <td className="px-3 py-2 font-bold text-sky-700 dark:text-sky-300 border-l border-gray-200 dark:border-gray-800">{formatAverage(stats.average)}</td>
-              </tr>
-            </tbody>
-          </table>
+          <span className="pb-0.5 text-[12px] text-gray-500 dark:text-gray-400 whitespace-nowrap">
+            Average <b className="text-[13px] font-bold tabular-nums text-gray-800 dark:text-gray-100">{formatAverage(stats.average)}</b> / {maxMarks}
+          </span>
         </div>
         {stats.comment && (
           <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-800 text-[12.5px] leading-relaxed text-gray-600 dark:text-gray-400">
@@ -379,6 +400,17 @@ export function SAExaminerReport({ stats, maxMarks }: { stats: SAExaminerStats; 
     </div>
   )
 }
+
+// Grey for a mark out of maxMarks, with a text colour that reads on it: 0 marks palest, full
+// marks darkest, whatever the number of marks.
+const MARK_SHADES = [
+  'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200',
+  'bg-gray-300 text-gray-800 dark:bg-gray-600 dark:text-gray-100',
+  'bg-gray-400 text-white dark:bg-gray-500 dark:text-white',
+  'bg-gray-500 text-white dark:bg-gray-400 dark:text-gray-900',
+  'bg-gray-600 text-white dark:bg-gray-300 dark:text-gray-900',
+]
+const markShade = (m: number, max: number) => MARK_SHADES[max === 0 ? 0 : Math.round((m / max) * (MARK_SHADES.length - 1))]
 
 // The MCQ's Examiner's Report tab. The %A–E distribution itself is drawn as bars on the
 // options (see MCQShell), so this carries what the bars can't: the flagged-question caveat,

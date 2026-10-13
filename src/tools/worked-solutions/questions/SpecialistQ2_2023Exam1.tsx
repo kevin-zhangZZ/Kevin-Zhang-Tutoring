@@ -11,7 +11,7 @@
 // expanding method (ALT_ROWS) shows in Detailed only.
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import { useStudyMode } from '../studyMode'
 
@@ -115,13 +115,7 @@ export default function SpecialistQ2_2023Exam1() {
         <Explore title="Cubing triples the angle, so b − i must point at −π/6">
           <CubeAngleWidget />
         </Explore>
-        <SAExaminerReport stats={EXAM} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={3} />
       </div>
     </div>
   )

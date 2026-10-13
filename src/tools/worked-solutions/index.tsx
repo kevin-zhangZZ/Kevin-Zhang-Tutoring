@@ -298,16 +298,16 @@ function QuestionsPage({ rest }: { rest: string }) {
             {selected && selectedColor && (
               <div
                 ref={detailRef}
-                // On phones a question with parts gets a 40px margin on the label side for the
+                // On phones a question with parts gets a 52px margin on the label side for the
                 // part rail (index.css); from `sm` up the rail sits in each part's own indent.
                 className={`ws-detail ${hasRails ? 'ws-rails' : ''} ${railRight ? 'ws-side-right' : ''} flex-1 min-w-0 w-[calc(100%+2rem)] -mx-4 sm:mx-0 sm:w-full bg-white dark:bg-gray-900 border-b sm:border border-gray-200 dark:border-gray-800 sm:rounded-2xl ${
-                  !hasRails ? 'px-4' : railRight ? 'pl-4 pr-10' : 'pl-10 pr-4'
+                  !hasRails ? 'px-4' : railRight ? 'pl-4 pr-[52px]' : 'pl-[52px] pr-4'
                 } py-6 sm:p-8`}
               >
                 {prefs.backBar === 'on' && openYear !== null && (
                   <div
                     className={`lg:hidden ${
-                      !hasRails ? '-mx-4 px-4' : railRight ? '-ml-4 -mr-10 pl-4 pr-10' : '-ml-10 -mr-4 pl-10 pr-4'
+                      !hasRails ? '-mx-4 px-4' : railRight ? '-ml-4 -mr-[52px] pl-4 pr-[52px]' : '-ml-[52px] -mr-4 pl-[52px] pr-4'
                     } sm:-mx-8 -mt-6 sm:-mt-8 mb-5 sm:px-8 h-11 flex items-center justify-between gap-3 border-b border-gray-200 dark:border-gray-800 sm:rounded-t-2xl`}
                   >
                     <Link to={yearPath(selected.subject, openYear)} className="text-[13px] font-semibold text-sky-700 dark:text-sky-400 truncate">

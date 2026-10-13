@@ -17,7 +17,7 @@
 // correctly" without saying how; the terminal slip is our illustration, not attributed to it.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import regionSrc from './spec-2019e1-q8-region.png'
 
@@ -273,13 +273,7 @@ export default function SpecialistQ8_2019Exam1() {
             <Katex tex="\log_e\left(1+x^2\right)" /> straight down.
           </p>
         </WrongMethod>
-        <SAExaminerReport stats={EXAMINER} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAMINER} maxMarks={4} />
       </div>
     </div>
   )

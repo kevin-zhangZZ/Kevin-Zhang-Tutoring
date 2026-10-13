@@ -11,7 +11,7 @@
 // rationalising the denominator gives (√2π − 2√6)/(2(π + √3)), right value but not the required form.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const TangentWidget = lazyWidget(() => import('../interactives/spec-2019e1-q10-tangent'))
@@ -295,13 +295,7 @@ export default function SpecialistQ10_2019Exam1() {
           <Katex tex="a" /> and <Katex tex="b" /> can't be read off. Clear the{' '}
           <Katex tex="\sqrt\pi" />'s instead, and stop as soon as the shape matches.
         </WrongMethod>
-        <SAExaminerReport stats={EXAMINER} maxMarks={5} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAMINER} maxMarks={5} />
       </div>
     </div>
   )

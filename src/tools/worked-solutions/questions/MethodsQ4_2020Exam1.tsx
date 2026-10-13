@@ -14,7 +14,7 @@
 // survives the domain check (sympy-verified: 2log₂3 − log₂7 = log₂(9/7) ≈ 0.363 ≠ 1).
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const BranchWidget = lazyWidget(() => import('../interactives/meth-2020e1-q4-branch'))
@@ -155,11 +155,7 @@ export default function MethodsQ4_2020Exam1() {
         <Katex tex="{-2>-5}" />. Substituting into the printed equation catches it:{' '}
         <Katex tex="2\log_2 3-\log_2 7=\log_2\tfrac97" />, which is not 1.
       </WrongMethod>
-      <SAExaminerReport stats={EXAM} maxMarks={3} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={3} />
     </div>
   )
 }

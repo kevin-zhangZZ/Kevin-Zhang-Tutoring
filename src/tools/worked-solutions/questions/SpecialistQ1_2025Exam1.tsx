@@ -4,7 +4,7 @@
 // report. Solution is original.
 
 import Katex from '../../../components/Katex'
-import { SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { ReportShelf, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM: SAExaminerStats = {
   marks: [10, 3, 27, 12, 48],
@@ -76,13 +76,7 @@ export default function SpecialistQ1_2025Exam1() {
 
       <div className="border border-gray-200 dark:border-gray-800 rounded-2xl p-5 sm:p-6 flex flex-col gap-5">
         <WorkingTable rows={ROWS} />
-        <SAExaminerReport stats={EXAM} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={4} />
       </div>
     </div>
   )

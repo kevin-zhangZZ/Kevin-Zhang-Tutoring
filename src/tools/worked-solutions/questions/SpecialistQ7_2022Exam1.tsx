@@ -8,7 +8,7 @@
 // must be regrouped) and row-level `more` (product rule in full; the dy/dx-subject-first route).
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const EXAM: SAExaminerStats = {
   marks: [33, 18, 15, 34],
@@ -151,13 +151,7 @@ export default function SpecialistQ7_2022Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS} />
-        <SAExaminerReport stats={EXAM} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={3} />
       </div>
     </div>
   )

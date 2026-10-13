@@ -608,12 +608,15 @@ the explanation is the product, not the number at the end.
 
 - **Short-answer question**: grey stem box → optional "Before You Start" `Background` →
   one `PartCard` per lettered part (statement, marks, `Background` if needed,
-  `WorkingTable`, examiner's report, video slot). Give every `PartCard` a `topic`: a one-
+  `WorkingTable`; `examinerReport` and `videoSrc` props, which `PartCard` puts on the grey
+  shelf at the foot of the card). Give every `PartCard` a `topic`: a one-
   to three-word Title Case subtopic naming what the part is about ("Confidence Interval",
   "Chain Rule", "Area Between Curves", "Type II Error") — it's what the sidebar lists under
   the question. Reuse the wording other years already use for the same idea. A question with no lettered parts uses
-  the single-card layout (`WorkingTable` + `SAExaminerReport` + video slot), not a
-  `PartCard` with a fake letter.
+  the single-card layout (`WorkingTable` + `<ReportShelf stats maxMarks videoSrc?>` as the
+  card's last child), not a `PartCard` with a fake letter.
+- **No video yet → no video anything.** Leave `videoSrc` off; never add a "Video Walkthrough"
+  heading or a "Coming soon" placeholder.
 - **MCQ**: `MCQShell` with the question, optional `diagram`, the options with the correct
   one(s) flagged, a `WorkingTable`, and `MCQExaminerStats`. Options are A–E up to 2023 and
   **A–D from 2024 for Methods and Specialist**; Chemistry has always been A–D.

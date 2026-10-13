@@ -8,7 +8,7 @@
 // WrongMethod boxes: the missing ½ and stopping at c (both named in the report).
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const FamilyWidget = lazyWidget(() => import('../interactives/meth-2018e1-q2-family'))
@@ -125,13 +125,7 @@ export default function MethodsQ2_2018Exam1() {
           step on the way. Before moving on, reread the last line of the question and check your final line
           answers it: substitute <Katex tex="c" /> back and write out the whole rule.
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={3} />
       </div>
     </div>
   )

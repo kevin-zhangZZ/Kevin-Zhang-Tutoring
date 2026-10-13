@@ -12,7 +12,7 @@
 // each wrong quadratic was solved with sympy to confirm the surd answers quoted.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, SAExaminerReport, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, ReportShelf, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './spec-2019e1-q2-abs.png'
 
@@ -189,13 +189,7 @@ export default function SpecialistQ2_2019Exam1() {
           <Katex display tex="(x-22)(x+2)=0" />
           <p>These are the same two answers as the case method.</p>
         </WrongMethod>
-        <SAExaminerReport stats={EXAMINER} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAMINER} maxMarks={3} />
       </div>
     </div>
   )

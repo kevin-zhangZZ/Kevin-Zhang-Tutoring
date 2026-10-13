@@ -7,7 +7,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, WorkingTable, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const RootChoice = lazyWidget(() => import('../interactives/spec-2016e1-q10-root-choice'))
 
@@ -158,11 +158,7 @@ export default function SpecialistQ10_2016Exam1() {
       <Explore title="Both roots solve the equation: the starting point picks the sign">
         <RootChoice />
       </Explore>
-      <SAExaminerReport stats={EXAM} maxMarks={5} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={5} />
     </div>
   )
 }

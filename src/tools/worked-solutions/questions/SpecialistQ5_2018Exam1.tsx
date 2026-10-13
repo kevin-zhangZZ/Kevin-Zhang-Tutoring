@@ -11,7 +11,7 @@
 // spec-2018e1-q5-no-flat-spot (sum of two falling hyperbolas, so no stationary point of inflection).
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import sketchSrc from './spec-2018e1-q5-sketch.png'
 import blankAxesSrc from './spec-2018e1-q5-blank-axes.png'
@@ -243,13 +243,7 @@ export default function SpecialistQ5_2018Exam1() {
           below the axis on the left and one above it on the right. Two vertical asymptotes cut the
           graph into three pieces; check that your sketch has all three.
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={4} />
       </div>
     </div>
   )

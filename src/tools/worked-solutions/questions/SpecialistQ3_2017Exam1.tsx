@@ -22,7 +22,7 @@
 // traps (stalling at a = −4, factors vs solutions, polar form) moved into each row's `more`.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const ConjugatePairWidget = lazyWidget(() => import('../interactives/spec-2017e1-q3-conjugate-pair'))
@@ -235,11 +235,7 @@ export default function SpecialistQ3_2017Exam1() {
           <Katex tex="2+z_3 = 2z_3" /> and <Katex tex="z_3=2" />.
         </p>
       </Background>
-      <SAExaminerReport stats={EXAM} maxMarks={3} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={3} />
     </div>
   )
 }

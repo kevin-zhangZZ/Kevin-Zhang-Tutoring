@@ -33,7 +33,7 @@ for (const f of fs.readdirSync(dir).sort()) {
       const ks = kids(n)
       if (ks.some(k => k.t === 'PartCard' || k.t === 'WorkingTable')) {
         for (const k of ks) {
-          if (['PartCard', 'WorkingTable', 'SAExaminerReport', ...DETAIL].includes(k.t)) continue
+          if (['PartCard', 'WorkingTable', 'ReportShelf', ...DETAIL].includes(k.t)) continue
           const txt = k.n.getText().replace(/\s+/g, ' ')
           const line = src.getLineAndCharacterOfPosition(k.n.getStart()).line + 1
           if (/Video Walkthrough/.test(txt)) continue

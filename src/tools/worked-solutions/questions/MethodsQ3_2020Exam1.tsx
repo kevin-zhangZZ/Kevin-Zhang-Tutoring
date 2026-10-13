@@ -22,7 +22,7 @@
 // √3 = tan(a + b) — but its final a = 7π/24, b = π/24 agrees; the sample working isn't copied.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 import graphSrc from './meth-2020e1-q3-tan.png'
 
@@ -179,11 +179,7 @@ export default function MethodsQ3_2020Exam1() {
       <Explore title="Why −π/4 and π/3? Try the other solutions — each one breaks a condition the question set">
         <AnglesWidget />
       </Explore>
-      <SAExaminerReport stats={EXAM} maxMarks={3} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={3} />
     </div>
   )
 }

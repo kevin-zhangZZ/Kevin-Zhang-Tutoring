@@ -15,7 +15,7 @@
 
 import Katex from '../../../components/Katex'
 import { Explore, lazyWidget } from '../Explore'
-import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 
 const SameLine = lazyWidget(() => import('../interactives/meth-2022e1-q3-same-line'))
 
@@ -208,13 +208,7 @@ export default function MethodsQ3_2022Exam1() {
         <Explore title="Equal gradients only makes the lines parallel: k = −3 is the one value that makes them the same line">
           <SameLine />
         </Explore>
-        <SAExaminerReport stats={EXAM} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={3} />
       </div>
     </div>
   )

@@ -12,7 +12,7 @@
 //    report's wrong answer log_e(√(3/4)), a negative "area".
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const NumeratorWidget = lazyWidget(() => import('../interactives/spec-2017e1-q2-numerator'))
@@ -179,11 +179,7 @@ export default function SpecialistQ2_2017Exam1() {
         of a positive function, which is impossible. Check the sign of every definite integral against
         the integrand.
       </WrongMethod>
-      <SAExaminerReport stats={EXAM} maxMarks={4} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={4} />
     </div>
   )
 }

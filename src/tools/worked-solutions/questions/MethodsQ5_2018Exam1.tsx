@@ -12,7 +12,7 @@
 // − root, which is the inverse of the other branch; and copying f's domain.
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const PlusRootWidget = lazyWidget(() => import('../interactives/meth-2018e1-q5-plusroot'))
@@ -215,13 +215,7 @@ export default function MethodsQ5_2018Exam1() {
           <Katex tex="1" /> is not in <Katex tex="(2,\infty)" />. The inputs of <Katex tex="f^{-1}" /> are
           the outputs of <Katex tex="f" />, so find the <em>range</em> of <Katex tex="f" /> first.
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={3} />
       </div>
     </div>
   )

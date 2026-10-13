@@ -14,7 +14,7 @@
 // source is given. Scout note (NBEASTK video) suggested the time/a sliders.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const CollideWidget = lazyWidget(() => import('../interactives/spec-2019e1-q4-collide'))
@@ -174,13 +174,7 @@ export default function SpecialistQ4_2019Exam1() {
           <Katex tex="0\le t\le2" />, and <Katex tex="t=-1" /> is one unit of time before the particles started moving.
           Check every root of the time equation against the given domain before you use it.
         </WrongMethod>
-        <SAExaminerReport stats={EXAMINER} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAMINER} maxMarks={3} />
       </div>
     </div>
   )

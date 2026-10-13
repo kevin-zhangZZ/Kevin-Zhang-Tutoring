@@ -232,8 +232,9 @@
 .ws-ride-ar:hover {
   background: rgb(255 255 255 / 0.15);
 }
-/* Phones: the rail runs the whole part in the 40px margin set aside on the label side (the
-   label centred 16px from the screen edge), starting level with the part's question. The part's
+/* Phones: the rail runs the whole part in the 52px margin set aside on the label side (the
+   label centred 30px from the screen edge, clear of Android's edge-swipe "back" gesture),
+   starting level with the part's question. The part's
    letter is the rail's label, so its circle is kept for screen readers only; in focus, the label's
    ▴ reaches up into the gap above, keeping the letter level with the question's first line. */
 @media (max-width: 639px) {
@@ -242,12 +243,12 @@
   }
   .ws-railbox-part {
     top: 25.5px;
-    left: -40px;
+    left: -38px;
     width: 32px;
   }
   .ws-side-right .ws-railbox-part {
     left: auto;
-    right: -40px;
+    right: -38px;
   }
   .ws-rails .ws-part-circle {
     position: absolute;
@@ -272,6 +273,13 @@
   .ws-railbox-answer {
     left: 0;
     width: 28px;
+  }
+}
+/* A part with a report/video shelf (QuestionParts.tsx): the rail runs on down through the shelf but
+   stops short of the card's foot. */
+@media (min-width: 640px) {
+  .ws-rail-inset > .ws-railbox-answer {
+    bottom: 1.25rem;
   }
 }
 /* Laptops: rails only — the question list beside the solution shows and jumps to the parts. */

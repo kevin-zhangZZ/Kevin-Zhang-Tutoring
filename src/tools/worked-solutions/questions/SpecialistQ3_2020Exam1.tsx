@@ -22,7 +22,7 @@
 // principal range (−π, π] holds exactly k = −1, 0, 1 (k = 2 gives 5π/4, not a principal value).
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const TripleWidget = lazyWidget(() => import('../interactives/spec-2020e1-q3-triple'))
@@ -260,13 +260,7 @@ export default function SpecialistQ3_2020Exam1() {
           looks half right.
           But it is one number where the question asks for three, found by accident rather than by a method.
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={3} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={3} />
       </div>
     </div>
   )

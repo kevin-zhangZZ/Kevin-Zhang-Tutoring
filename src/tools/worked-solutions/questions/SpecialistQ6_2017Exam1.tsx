@@ -11,7 +11,7 @@
 // report's two most common wrong derivatives and its wrong set [−1, 1] \ {0}.
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const ReciprocalSlopeWidget = lazyWidget(() => import('../interactives/spec-2017e1-q6-reciprocal-slope'))
@@ -199,11 +199,7 @@ export default function SpecialistQ6_2017Exam1() {
         <Katex tex="\sqrt{1-1}=0" /> on the bottom, so <Katex tex="\pm1" /> must go too (step 3 of the
         diagram above shows the vertical tangent there).
       </WrongMethod>
-      <SAExaminerReport stats={EXAM} maxMarks={3} />
-      <div>
-        <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">Video Walkthrough</p>
-        <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-      </div>
+      <ReportShelf stats={EXAM} maxMarks={3} />
     </div>
   )
 }

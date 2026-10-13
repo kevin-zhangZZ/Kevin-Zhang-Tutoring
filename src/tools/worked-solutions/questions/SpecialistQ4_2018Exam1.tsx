@@ -13,7 +13,7 @@
 // variance rule (no source; verified to give the integers a = -12, b = 17, variance 1444).
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, WrongMethod, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const SquaresWidget = lazyWidget(() => import('../interactives/spec-2018e1-q4-squares'))
@@ -197,13 +197,7 @@ export default function SpecialistQ4_2018Exam1() {
           also give a negative &ldquo;variance&rdquo; <Katex tex="2a=-24" /> from the{' '}
           <Katex tex="aX" /> part, which is impossible.
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={4} />
       </div>
     </div>
   )

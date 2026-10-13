@@ -6,7 +6,7 @@
 // dependent, so the answer is the whole p-axis with two holes (Explore box after the working).
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const TwoHolesWidget = lazyWidget(() => import('../interactives/spec-2021e1-q6-two-holes'))
@@ -152,13 +152,7 @@ export default function SpecialistQ6_2021Exam1() {
         <Explore title={<>Only two values of <Katex tex="p" /> make the vectors dependent — the answer is everything else</>}>
           <TwoHolesWidget />
         </Explore>
-        <SAExaminerReport stats={EXAM} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={4} />
       </div>
     </div>
   )

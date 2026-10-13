@@ -10,7 +10,7 @@
 //    choose the sign.
 
 import Katex from '../../../components/Katex'
-import { Background, SAExaminerReport, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, ReportShelf, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const TwoHalvesWidget = lazyWidget(() => import('../interactives/spec-2022e1-q8-two-halves'))
@@ -132,13 +132,7 @@ export default function SpecialistQ8_2022Exam1() {
         <Explore title="v² = 4(1 − x²) holds both ways: this trip is the v < 0 half">
           <TwoHalvesWidget />
         </Explore>
-        <SAExaminerReport stats={EXAM} maxMarks={4} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={4} />
       </div>
     </div>
   )

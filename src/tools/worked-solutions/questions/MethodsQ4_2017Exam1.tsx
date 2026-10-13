@@ -12,7 +12,7 @@
 // the fractions without reversing the sign (n ≤ 1875).
 
 import Katex from '../../../components/Katex'
-import { Background, WorkingTable, WrongMethod, SAExaminerReport, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+import { Background, WorkingTable, WrongMethod, ReportShelf, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
 import { Explore, lazyWidget } from '../Explore'
 
 const ThresholdWidget = lazyWidget(() => import('../interactives/meth-2017e1-q4-threshold'))
@@ -213,13 +213,7 @@ export default function MethodsQ4_2017Exam1() {
           <Katex tex="\tfrac{16n}{3} \ge 10\,000" />. Sense check: <Katex tex="n \le 1875" /> would make the smallest{' '}
           <Katex tex="n" /> equal to 1, and the smallest samples have the <em>biggest</em> sd.
         </WrongMethod>
-        <SAExaminerReport stats={EXAM} maxMarks={2} />
-        <div>
-          <p className="text-[11px] font-bold tracking-wider text-gray-500 dark:text-gray-400 mb-2.5">
-            Video Walkthrough
-          </p>
-          <p className="text-[13px] text-gray-500 dark:text-gray-400 italic">Coming soon.</p>
-        </div>
+        <ReportShelf stats={EXAM} maxMarks={2} />
       </div>
     </div>
   )
