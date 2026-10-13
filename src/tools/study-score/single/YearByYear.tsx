@@ -233,7 +233,7 @@ function YearRow({
           {/* 2 px, like the legend's swatch: "thicker" holds in both themes, where "darker" doesn't. */}
           {meanShown && <span className="absolute inset-y-0 w-0.5 -translate-x-1/2 bg-gray-300 dark:bg-gray-600" style={{ left: at(MEAN) }} />}
           <span
-            className="absolute top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-600 dark:bg-sky-400 ring-2 ring-white dark:ring-gray-900 [@media(hover:hover)]:group-hover:scale-125 transition-transform motion-reduce:transition-none"
+            className="absolute top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-600 dark:bg-sky-400 ring-2 ring-white dark:ring-gray-900 [@media(hover:hover)]:group-hover:scale-125 transition-[left,transform] duration-500 ease-out motion-reduce:transition-none"
             style={{ left: at(r.exact) }}
           />
         </span>

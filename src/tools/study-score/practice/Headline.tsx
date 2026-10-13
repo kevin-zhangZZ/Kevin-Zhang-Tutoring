@@ -7,6 +7,7 @@ import { useId } from 'react'
 import { WINDOW, bestOf, changeSinceStart, recentAverage, type Scored } from './log.ts'
 import { fmtDate } from './dates.ts'
 import { CARD } from '../shared.tsx'
+import { useTween } from '../../../components/motion/Reveal'
 
 // ── Lines ──────────────────────────────────────────────────────────────────────────────────
 
@@ -54,6 +55,9 @@ export default function PracticeHeadline({ scored, goal }: { scored: Scored[]; g
   const id = useId()
   const n = scored.length
   const recent = recentAverage(scored)
+  // The big number counts up on arrival and glides when a paper is added (before the early return,
+  // so the hook always runs).
+  const counted = Math.round(useTween(recent === null ? 0 : Math.round(recent), { fromZero: true }))
   if (recent === null) return null
 
   const shown = Math.round(recent)
@@ -68,7 +72,7 @@ export default function PracticeHeadline({ scored, goal }: { scored: Scored[]; g
       <h2 id={id} className="text-xs font-semibold text-gray-500 dark:text-gray-400">
         Recent Average
       </h2>
-      <p className="font-display text-5xl font-bold leading-none tracking-tight tabular-nums mt-1.5 text-gray-900 dark:text-white">{shown}</p>
+      <p className="font-display text-8xl sm:text-[7.5rem] font-bold leading-[0.9] tracking-[-0.04em] tabular-nums mt-1.5 text-gray-900 dark:text-white" aria-label={String(shown)}>{counted}</p>
       {/* Phones stack the sub-line and the change; wider cards put them on one row. */}
       <p className="flex flex-col items-center @lg:flex-row @lg:flex-wrap @lg:justify-center @lg:items-baseline gap-x-2 gap-y-0.5 mt-1.5 text-[0.8125rem] text-gray-500 dark:text-gray-400">
         <span>Projected study score, {windowText(n)}</span>

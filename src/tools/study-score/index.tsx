@@ -14,6 +14,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams, useSearchParams, type To } from 'react-router-dom'
 import SegmentedControl from '../../components/ui/SegmentedControl'
+import { stagger } from '../../components/motion/Reveal'
 import { DISTRIBUTIONS, SUBJECTS, SUBJECT_IDS, type Subject } from './data.ts'
 import { project, typicalOf } from './model.ts'
 import { CARD_BOTTOM, CARD_TOP, CopyLink, FOCUS, SUB } from './shared.tsx'
@@ -265,9 +266,9 @@ export default function StudyScore() {
         <StickyMarkBar subject={subject} marks={marks} typical={typical} busy={busy} onMark={setMark} inputs={inputsRef} end={needRef} />
       )}
 
-      <header className="mb-5">
-        <h1 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">Study Score Projection</h1>
-        <p className="mt-2 max-w-3xl text-[0.9375rem] text-gray-600 dark:text-gray-300">
+      <header className="mb-6 sm:mb-8 rise-in" style={stagger(0)}>
+        <h1 className="font-display text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white tracking-[-0.03em]">Study Score Projection</h1>
+        <p className="mt-2 max-w-3xl text-[0.9375rem] sm:text-base text-gray-600 dark:text-gray-300">
           See what study score your exam marks would earn, based on VCAA’s results {span}.
         </p>
       </header>
