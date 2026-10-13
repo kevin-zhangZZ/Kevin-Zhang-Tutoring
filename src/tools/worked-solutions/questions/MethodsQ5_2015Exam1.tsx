@@ -34,38 +34,47 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="-1\le\sin\!\left(\frac{\pi t}{12}\right)\le1" />,
-    reason: <>No calculus needed — a sinusoid's extremes come straight from the amplitude.</>,
+    reason: <>Sine never goes below <Katex tex="-1" />, so the smallest value of <Katex tex="h" /> comes from <Katex tex="\sin = -1" />. No calculus needed.</>,
+    more: <>Differentiating also works, but the report says students who did so tended to make careless errors — the range of sine gets there in one line. Another error the report lists is evaluating <Katex tex="h(10)" />: that is just the depth at 4 pm (<Katex tex="18" /> m), not the smallest depth.</>,
   },
   {
-    working: <Katex display tex="h_{\min} = 14-8" />,
-    reason: <>The minimum is the midline minus the amplitude. Reading it as <Katex tex="8-14" /> gives a negative depth, which the report notes as an error a quick sanity check would catch.</>,
+    working: <Katex display tex="h_{\min} = 14+8\times(-1) = 6" />,
+    reason: <>Midline <Katex tex="14" /> minus amplitude <Katex tex="8" />. It is reached in the domain: <Katex tex="\tfrac{\pi t}{12}=\tfrac{3\pi}{2}" /> at <Katex tex="t=18" /> (midnight).</>,
+    more: <>Check the sign of your answer: the report lists <Katex tex="8-14" /> (a negative depth) as a common error, and its general comments point out that a negative height is not feasible here. A depth must come out positive.</>,
   },
   {
     working: <Katex display tex="\boxed{6 \text{ metres}}" />,
-    reason: <>And the maximum would be <Katex tex="22" /> m, for comparison.</>,
+    reason: <>The question asks for a depth, so give the units.</>,
+    more: <>The other error the report lists is giving the maximum, <Katex tex="14+8=22" /> m (at <Katex tex="t=6" />, noon), instead of the minimum.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="14+8\sin\!\left(\frac{\pi t}{12}\right) = 10" />,
-    reason: <>Setting the model equal to the required depth.</>,
+    reason: <>Set the model equal to the required depth.</>,
   },
   {
     working: <Katex display tex="\sin\!\left(\frac{\pi t}{12}\right) = -\frac12" />,
-    reason: <>Subtract <Katex tex="14" />, divide by <Katex tex="8" />.</>,
+    reason: <>Subtract <Katex tex="14" />, then divide by <Katex tex="8" />.</>,
   },
   {
     working: <Katex display tex="0\le t\le24 \implies 0\le\frac{\pi t}{12}\le2\pi" />,
-    reason: <>Transform the domain before solving — that is what tells you how many solutions to expect. Here exactly one full revolution, so two.</>,
+    reason: <>Transform the domain before solving — it tells you how many solutions to expect. One full revolution: sine takes each value between <Katex tex="-1" /> and <Katex tex="1" /> twice, so expect two.</>,
   },
   {
-    working: <Katex display tex="\frac{\pi t}{12} = \pi+\frac{\pi}{6} = \frac{7\pi}{6} \quad\text{or}\quad 2\pi-\frac{\pi}{6} = \frac{11\pi}{6}" />,
-    reason: <>Sine is negative in the third and fourth quadrants, with base angle <Katex tex="\tfrac{\pi}{6}" /> — the exact value the report says some students did not recognise.</>,
+    working: <Katex display tex="\frac{\pi t}{12} = \pi+\frac{\pi}{6} \;\text{ or }\; 2\pi-\frac{\pi}{6}" />,
+    reason: <>Since <Katex tex="\sin\tfrac{\pi}{6}=\tfrac12" />, the base angle is <Katex tex="\tfrac{\pi}{6}" />. Sine is negative in the third and fourth quadrants.</>,
+    more: <>The report notes that some students did not recognise the base angle of <Katex tex="\tfrac{\pi}{6}" /> — it comes from the exact-value triangle, ignoring the minus sign. The angle <Katex tex="-\tfrac{\pi}{6}" /> also has sine <Katex tex="-\tfrac12" />, but it lies outside <Katex tex="[0,\,2\pi]" />; <Katex tex="2\pi-\tfrac{\pi}{6}" /> is the same position one revolution on.</>,
+  },
+  {
+    working: <Katex display tex="\frac{\pi t}{12} = \frac{7\pi}{6} \;\text{ or }\; \frac{11\pi}{6}" />,
+    reason: <>Simplify each angle.</>,
   },
   {
     working: <Katex display tex="\boxed{t = 14 \text{ and } t = 22}" />,
-    reason: <>Multiplying each by <Katex tex="\tfrac{12}{\pi}" />. In context: 8 pm and 4 am, since <Katex tex="t" /> is measured from 6 am.</>,
+    reason: <>Multiply each by <Katex tex="\tfrac{12}{\pi}" />. Both lie in <Katex tex="[0,\,24]" />.</>,
+    more: <>Check: <Katex tex="h(14)=14+8\sin\tfrac{7\pi}{6}=14-4=10" />, and likewise <Katex tex="h(22)=14+8\sin\tfrac{11\pi}{6}=10" />. In context, <Katex tex="t" /> is measured from 6 am, so these are 8 pm and 4 am.</>,
   },
 ]
 

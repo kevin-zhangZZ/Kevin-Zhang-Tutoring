@@ -2,9 +2,14 @@
 // A logarithm equation, then an exponential equation that becomes a hidden quadratic.
 // Question text transcribed from the original paper (no diagram given). Answers checked
 // with sympy and against the VCAA examination report. Solution is original.
+// Interactive (Detailed only): Q7b (36% full marks) — the parabola 3a² − 5a − 8 in a = e^t,
+// with a t slider showing e^t only ever reaches the positive root. Q7a does not qualify.
 
 import Katex from '../../../components/Katex'
+import { Explore, lazyWidget } from '../Explore'
 import { Background, PartCard, WorkingTable, type WorkingRow, type SAExaminerStats } from '../QuestionParts'
+
+const HiddenQuadraticWidget = lazyWidget(() => import('../interactives/meth-2015e1-q7b-hidden-quadratic'))
 
 const EXAM_A: SAExaminerStats = {
   marks: [16, 19, 65],
@@ -28,46 +33,52 @@ const EXAM_B: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\log_2(6-x)-\log_2(4-x) = \log_2\!\left(\frac{6-x}{4-x}\right)" />,
-    reason: <>Subtracting logs of the same base means dividing. "Cancelling" the logs term by term — the report's flagged error — is not a law.</>,
+    reason: <>Log law: a difference of logs with the same base is the log of the quotient.</>,
+    more: <>The report notes that some students incorrectly cancelled the logarithms; cancelling here would mean writing <Katex tex="(6-x)-(4-x)=2" />. There is no such law: <Katex tex="\log_2A-\log_2B" /> is neither <Katex tex="\log_2(A-B)" /> nor <Katex tex="A-B" />. Combine the logs into one first, then undo that single log.</>,
   },
   {
     working: <Katex display tex="\log_2\!\left(\frac{6-x}{4-x}\right) = 2 \implies \frac{6-x}{4-x} = 2^2" />,
-    reason: <>The definition of a logarithm.</>,
+    reason: <>Definition of a logarithm: <Katex tex="\log_2X=2" /> means <Katex tex="X=2^2=4" />.</>,
   },
   {
     working: <Katex display tex="6-x = 4(4-x) = 16-4x" />,
-    reason: <>Multiplying through by <Katex tex="4-x" />, which is positive since <Katex tex="x<4" />.</>,
+    reason: <>Multiplying through by <Katex tex="4-x" />, which is non-zero since <Katex tex="x<4" />.</>,
   },
   {
     working: <Katex display tex="3x = 10 \implies \boxed{x = \frac{10}{3}}" />,
-    reason: <>And <Katex tex="\tfrac{10}{3}\approx3.33<4" />, so both logarithms are defined ✓.</>,
+    reason: <>Check: <Katex tex="\tfrac{10}{3}<4" />, so <Katex tex="6-x" /> and <Katex tex="4-x" /> are both positive and both logs are defined ✓.</>,
+    more: <>Substituting back: <Katex tex="6-\tfrac{10}{3}=\tfrac83" /> and <Katex tex="4-\tfrac{10}{3}=\tfrac23" />, whose quotient is 4, and <Katex tex="\log_24=2" /> ✓.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
     working: <Katex display tex="3e^t = 5+8e^{-t}" />,
-    reason: <>Two different powers of <Katex tex="e" /> — multiply through by <Katex tex="e^t" /> to get them all the same way up.</>,
+    reason: <>Both <Katex tex="e^t" /> and <Katex tex="e^{-t}" /> appear. Multiplying every term by <Katex tex="e^t" /> clears the negative power.</>,
   },
   {
     working: <Katex display tex="3e^{2t}-5e^t-8 = 0" />,
-    reason: <>Since <Katex tex="e^t\cdot e^{-t}=1" />. This is a quadratic in <Katex tex="e^t" />, which is the step the report says many students missed.</>,
+    reason: <>Term by term: <Katex tex="3e^t\cdot e^t=3e^{2t}" />, <Katex tex="5\cdot e^t=5e^t" /> and <Katex tex="8e^{-t}\cdot e^t=8" />; then move everything to one side.</>,
+    more: <>The report says many students were unable to create this quadratic. Common slips are multiplying only some of the terms by <Katex tex="e^t" />, or writing <Katex tex="e^t\cdot e^t=e^{t^2}" /> (it is <Katex tex="e^{2t}" />, because powers add). Multiplying by <Katex tex="e^t" /> is safe because it is never zero, so no solutions are gained or lost.</>,
   },
   {
     working: <Katex display tex="\text{let } a = e^t: \quad 3a^2-5a-8 = 0" />,
-    reason: <>A pronumeral makes the structure visible.</>,
+    reason: <>Since <Katex tex="e^{2t}=(e^t)^2" />, writing <Katex tex="a" /> for <Katex tex="e^t" /> gives an ordinary quadratic.</>,
   },
   {
     working: <Katex display tex="(a+1)(3a-8) = 0 \implies a = -1 \text{ or } a = \frac83" />,
-    reason: <>Factorising beats the quadratic formula here — the report notes students reaching for the formula unnecessarily.</>,
+    reason: <>Factorise: <Katex tex="3\times(-8)=-24" />, and <Katex tex="-8" /> and <Katex tex="3" /> multiply to <Katex tex="-24" /> and add to <Katex tex="-5" />, so split <Katex tex="-5a" /> as <Katex tex="-8a+3a" /> and group.</>,
+    more: <>Splitting the middle term: <Katex tex="3a^2-8a+3a-8=a(3a-8)+(3a-8)=(a+1)(3a-8)" />. The report notes many students used the quadratic formula rather than simpler factorising. The formula still works, <Katex tex="a=\frac{5\pm\sqrt{25+96}}{6}=\frac{5\pm11}{6}" />, giving the same <Katex tex="\tfrac83" /> and <Katex tex="-1" />, but it is slower and easier to slip in by hand.</>,
   },
   {
     working: <Katex display tex="e^t = -1 \text{ is impossible}" />,
-    reason: <>An exponential is always positive. That rejection is worth a mark.</>,
+    reason: <>Since <Katex tex="e^t>0" /> for every real <Katex tex="t" />, reject <Katex tex="a=-1" />, and say so in your answer.</>,
+    more: <>The report says the feasibility of only one answer was generally well handled. Write the rejection explicitly rather than silently dropping the root, so the marker can see why only one solution exists.</>,
   },
   {
-    working: <Katex display tex="\boxed{t = \log_e\!\left(\frac83\right)}" />,
-    reason: <>Check: <Katex tex="e^t=\tfrac83" /> and <Katex tex="e^{-t}=\tfrac38" />, so <Katex tex="3\times\tfrac83=8" /> and <Katex tex="5+8\times\tfrac38=8" /> ✓.</>,
+    working: <Katex display tex="e^t = \frac83 \implies \boxed{t = \log_e\!\left(\frac83\right)}" />,
+    reason: <>Take <Katex tex="\log_e" /> of both sides. This is Exam 1, so leave the answer exact.</>,
+    more: <>Check: <Katex tex="e^t=\tfrac83" /> and <Katex tex="e^{-t}=\tfrac38" />, so <Katex tex="3\times\tfrac83=8" /> and <Katex tex="5+8\times\tfrac38=8" /> ✓.</>,
   },
 ]
 
@@ -106,11 +117,11 @@ export default function MethodsQ7_2015Exam1() {
       >
         <Background title="Spotting a hidden quadratic">
           <p>
-            An equation with <Katex tex="e^{t}" /> and <Katex tex="e^{-t}" /> in it is
-            almost always a quadratic in disguise. Multiply through by{' '}
-            <Katex tex="e^{t}" /> — the negative power disappears, the constant becomes a
-            linear term, and you are left with{' '}
-            <Katex tex="3a^2-5a-8=0" /> where <Katex tex="a=e^{t}" />.
+            An equation containing <Katex tex="e^{t}" /> and <Katex tex="e^{-t}" /> (or{' '}
+            <Katex tex="e^{2t}" /> and <Katex tex="e^{t}" />) is usually a quadratic in
+            disguise: once every power is a whole-number power of <Katex tex="e^t" />, call{' '}
+            <Katex tex="e^t" /> a single letter and solve the quadratic. Any root that is zero
+            or negative must then be rejected, because <Katex tex="e^t" /> is always positive.
           </p>
           <p>
             The same move works for <Katex tex="4^x" /> and <Katex tex="2^x" />, for{' '}
@@ -119,6 +130,9 @@ export default function MethodsQ7_2015Exam1() {
           </p>
         </Background>
         <WorkingTable rows={ROWS_B} />
+        <Explore title={<>Two roots in <Katex tex="a" />, but <Katex tex="e^t" /> can only reach one</>}>
+          <HiddenQuadraticWidget />
+        </Explore>
       </PartCard>
     </div>
   )

@@ -39,18 +39,33 @@ const EXAM_BII: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="\frac{dy}{dx} = 7(5x+1)^6\times5" />,
-    reason: <>Chain rule: power down, power reduced by one, times the derivative of the inside.</>,
+    reason: <>Chain rule: bring the power down, reduce it by one, then multiply by the derivative of the inside, <Katex tex="5x+1" />.</>,
+    more: (
+      <>
+        The report says the common errors were arithmetical. The usual slips: forgetting the
+        factor of <Katex tex="5" /> from the inside, or dropping the power to <Katex tex="5" /> instead
+        of <Katex tex="6" />. Check: the power falls by exactly one, and the constant out the front
+        is <Katex tex="7\times5" />.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{\frac{dy}{dx} = 35(5x+1)^6}" />,
-    reason: <>Leave it factorised — expanding a sixth power gains nothing and loses time.</>,
+    reason: <><Katex tex="7\times5=35" />. Leave it factorised — expanding a sixth power gains nothing and loses time.</>,
   },
 ]
 
 const ROWS_BI: WorkingRow[] = [
   {
     working: <Katex display tex="u = \log_e(x), \quad v = x^2 \implies u' = \frac1x, \quad v' = 2x" />,
-    reason: <>Quotient rule. The product rule on <Katex tex="\log_e(x)\cdot x^{-2}" /> also works but leaves negative indices to tidy.</>,
+    reason: <><Katex tex="f" /> is one function divided by another, so use the quotient rule. Name the top <Katex tex="u" /> and the bottom <Katex tex="v" />, and differentiate each.</>,
+    more: (
+      <>
+        The product rule on <Katex tex="\log_e(x)\cdot x^{-2}" /> also works, giving{' '}
+        <Katex tex="\frac1x\cdot x^{-2} - 2x^{-3}\log_e(x)" />, the same answer, but it leaves negative
+        indices to tidy. The report calls the quotient rule the most direct method.
+      </>
+    ),
   },
   {
     working: <Katex display tex="f'(x) = \frac{x^2\cdot\frac1x-\log_e(x)\cdot2x}{x^4}" />,
@@ -58,22 +73,39 @@ const ROWS_BI: WorkingRow[] = [
   },
   {
     working: <Katex display tex="= \frac{x-2x\log_e(x)}{x^4} = \frac{x\bigl(1-2\log_e(x)\bigr)}{x^4}" />,
-    reason: <>Take out the common factor of <Katex tex="x" /> in the numerator. Without this, the answer stays a fraction inside a fraction — the report's main complaint.</>,
+    reason: <>Tidy the numerator first: <Katex tex="x^2\cdot\frac1x = x" />. Then both terms share a factor of <Katex tex="x" />, so take it out.</>,
+    more: (
+      <>
+        The report says some final answers were left as a fraction within a fraction. That happens when the
+        numerator still contains a <Katex tex="\frac1x" />, e.g. leaving{' '}
+        <Katex tex="x^2\cdot\frac1x" /> unsimplified on top of <Katex tex="x^4" />. Simplify the numerator to whole terms, factor, then
+        cancel — the final answer should be one fraction.
+      </>
+    ),
   },
   {
     working: <Katex display tex="\boxed{f'(x) = \frac{1-2\log_e(x)}{x^3}}" />,
-    reason: <>One factor of <Katex tex="x" /> cancels.</>,
+    reason: <>Cancel one factor of <Katex tex="x" /> from top and bottom: <Katex tex="\frac{x}{x^4}=\frac1{x^3}" />.</>,
   },
 ]
 
 const ROWS_BII: WorkingRow[] = [
   {
     working: <Katex display tex="f'(1) = \frac{1-2\log_e(1)}{1^3}" />,
-    reason: <>Substituting.</>,
+    reason: <>Substitute <Katex tex="x=1" /> into the simplified derivative from part b.i.</>,
   },
   {
     working: <Katex display tex="\boxed{f'(1) = 1}" />,
-    reason: <>Since <Katex tex="\log_e(1)=0" />. Positive, as expected: <Katex tex="\tfrac{\log_e x}{x^2}" /> is still rising at <Katex tex="x=1" />.</>,
+    reason: <><Katex tex="\log_e(1)=0" /> because <Katex tex="e^0=1" />, so the numerator is <Katex tex="1-0=1" />.</>,
+    more: (
+      <>
+        The report notes some students with the right derivative could not evaluate{' '}
+        <Katex tex="2\log_e(1)" />. Remember <Katex tex="\log_e(1)=0" /> (not <Katex tex="1" />, which
+        is <Katex tex="\log_e(e)" />). Sense check: <Katex tex="f(1)=0" />, and for <Katex tex="x" /> slightly
+        bigger than <Katex tex="1" />, <Katex tex="\log_e(x)>0" /> so <Katex tex="f(x)>0" />. The graph
+        is going up at <Katex tex="x=1" />, so a positive gradient makes sense.
+      </>
+    ),
   },
 ]
 

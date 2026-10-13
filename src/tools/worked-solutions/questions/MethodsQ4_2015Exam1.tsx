@@ -52,61 +52,69 @@ const EXAM_C: SAExaminerStats = {
 const ROWS_A: WorkingRow[] = [
   {
     working: <Katex display tex="f'(x) = \tfrac12\left(3x^2+6x\right) = \tfrac32x(x+2)" />,
-    reason: <>Differentiate the expanded form — much quicker than the product rule on the factorised one. Note the <Katex tex="\tfrac32" />, not <Katex tex="3" />, which the report flags.</>,
+    reason: <>Stationary points are where <Katex tex="f'(x)=0" />. Differentiate the expanded form term by term, keeping the <Katex tex="\tfrac12" /> in front.</>,
+    more: <>The constant <Katex tex="\tfrac12" /> multiplies every term, so the derivative is <Katex tex="\tfrac32x(x+2)" />, not <Katex tex="3x(x+2)" /> — the report notes students who dropped it. The <Katex tex="x" />-values happen to survive, but a wrong derivative in your working still loses marks, and it would matter wherever the gradient's size is used. Using the product rule on the factorised form <Katex tex="\tfrac12(x-1)(x+2)^2" /> also works, but is slower and easier to get wrong.</>,
   },
   {
     working: <Katex display tex="\tfrac32x(x+2) = 0 \implies x = 0 \text{ or } x = -2" />,
-    reason: <>Both lie inside the domain <Katex tex="[-3,2]" />.</>,
+    reason: <>Null factor law. Both lie inside the domain <Katex tex="[-3,2]" />, so both count.</>,
   },
   {
-    working: <Katex display tex="f(0) = \tfrac12(-4) = -2, \qquad f(-2) = \tfrac12(-8+12-4) = 0" />,
-    reason: <>Substituting back.</>,
+    working: <Katex display tex="\begin{aligned} f(0) &= \tfrac12(-4) = -2 \\ f(-2) &= \tfrac12(-8+12-4) = 0 \end{aligned}" />,
+    reason: <>Substitute into <Katex tex="f" /> (not <Katex tex="f'" />) to get the <Katex tex="y" />-coordinates.</>,
   },
   {
     working: <Katex display tex="\boxed{(0,-2) \text{ and } (-2,0)}" />,
-    reason: <>Coordinates, as asked. <Katex tex="(-2,0)" /> is a maximum and <Katex tex="(0,-2)" /> a minimum — the shape of a positive cubic.</>,
+    reason: <>Coordinates, as asked. The leading coefficient is positive, so the left one, <Katex tex="(-2,0)" />, is the local maximum and <Katex tex="(0,-2)" /> the local minimum.</>,
+    more: <>The nature was not asked for, but it is needed for the sketch in part (b). To confirm it: <Katex tex="f'(x)=\tfrac32x(x+2)" /> is positive for <Katex tex="x<-2" />, negative between <Katex tex="-2" /> and <Katex tex="0" />, and positive for <Katex tex="x>0" /> — rising, falling, rising.</>,
   },
 ]
 
 const ROWS_B: WorkingRow[] = [
   {
-    working: <Katex display tex="f(x) = \tfrac12(x-1)(x+2)^2 \implies x\text{-intercepts } 1 \text{ and } -2" />,
-    reason: <>The factorised form is handed to you in the question. <Katex tex="x=-2" /> is a repeated root, so the curve touches the axis there rather than crossing — which is the same point as the maximum from part (a).</>,
+    working: <Katex display tex="\begin{aligned} &f(x) = \tfrac12(x-1)(x+2)^2 \\ &\implies x\text{-intercepts } 1 \text{ and } -2 \end{aligned}" />,
+    reason: <>Use the factorised form given just before part (b). <Katex tex="x=-2" /> is a repeated root, so the curve touches the axis there rather than crossing.</>,
+    more: <>That touching point, <Katex tex="(-2,0)" />, is the same point as the local maximum from part (a) — a double (squared) root of a cubic is a turning point on the axis. (A triple root, as in <Katex tex="y=x^3" />, is instead a stationary point of inflection.)</>,
   },
   {
     working: <Katex display tex="f(0) = -2" />,
-    reason: <>The <Katex tex="y" />-intercept, and also the minimum.</>,
+    reason: <>The <Katex tex="y" />-intercept, which is also the local minimum <Katex tex="(0,-2)" /> from part (a).</>,
   },
   {
-    working: <Katex display tex="f(-3) = \tfrac12(-27+27-4) = -2, \qquad f(2) = \tfrac12(8+12-4) = 8" />,
-    reason: <>The endpoints. The report says these are where marks went — both the arithmetic and the placement on the printed grid.</>,
+    working: <Katex display tex="\begin{aligned} f(-3) &= \tfrac12(-27+27-4) = -2 \\ f(2) &= \tfrac12(8+12-4) = 8 \end{aligned}" />,
+    reason: <>The endpoints, from the original rule. Label them <Katex tex="(-3,-2)" /> and <Katex tex="(2,8)" />, as the question asks.</>,
+    more: <>The report says errors came from the calculation or the placement of the endpoints. Two things to notice: <Katex tex="(-3,-2)" /> is at the same height as the minimum <Katex tex="(0,-2)" />, so the curve starts level with its lowest turning point; and <Katex tex="(2,8)" /> sits at the very top of VCAA's grid, so the right-hand branch climbs steeply from <Katex tex="(1,0)" />.</>,
   },
   {
     working: <Katex display tex="\text{domain } [-3,2] \text{ only}" />,
-    reason: <>Stop the curve at the endpoints and mark them; do not continue the cubic beyond.</>,
+    reason: <>Stop the curve at the endpoints and mark them with closed dots (both are included); do not continue the cubic beyond.</>,
+    more: <>The report adds that labelling intercepts and turning points was not required for the marks, but the graph itself had to be correct: right shape, touching at <Katex tex="x=-2" />, crossing at <Katex tex="x=1" />, and ending at the right points.</>,
   },
 ]
 
 const ROWS_C: WorkingRow[] = [
   {
     working: <Katex display tex="\text{average value} = \frac{1}{b-a}\int_a^b f(x)\,dx" />,
-    reason: <>The mean <em>height</em> of the graph. Not the average rate of change, which would be a gradient — the report notes students who found one instead of the other.</>,
+    reason: <>The mean <em>height</em> of the graph over the interval. Not on the formula sheet, so it must be remembered.</>,
+    more: <>Don't confuse it with the average <em>rate of change</em>, <Katex tex="\dfrac{f(2)-f(0)}{2-0}" />, which is a gradient — the report notes students who found that instead.</>,
   },
   {
     working: <Katex display tex="= \frac{1}{2-0}\int_0^2 \tfrac12\left(x^3+3x^2-4\right)dx" />,
-    reason: <>Two halves now in play: one from the interval width, one from the rule itself. Mixing them up is the report's main error.</>,
+    reason: <>Here <Katex tex="a=0" />, <Katex tex="b=2" />. Two halves now: one from the interval width, one from the rule for <Katex tex="f" />.</>,
+    more: <>The report's main error was misplacing the <Katex tex="\tfrac12" /> in the integrand — write out the whole of <Katex tex="f(x)" />, including its own <Katex tex="\tfrac12" />, before simplifying. Splitting at the <Katex tex="x" />-intercept <Katex tex="x=1" />, as some students did, is unnecessary; if you do, keep <Katex tex="\int_0^1 f(x)\,dx=-\tfrac{11}{8}" /> negative — making it positive gives <Katex tex="\tfrac{19}{8}" /> instead of <Katex tex="1" />.</>,
   },
   {
     working: <Katex display tex="= \frac14\left[\frac{x^4}{4}+x^3-4x\right]_0^2" />,
-    reason: <>Combining <Katex tex="\tfrac12\times\tfrac12" /> and antidifferentiating.</>,
+    reason: <>Combine <Katex tex="\tfrac12\times\tfrac12=\tfrac14" /> and antidifferentiate term by term.</>,
   },
   {
     working: <Katex display tex="= \frac14\left(4+8-8\right)" />,
-    reason: <><Katex tex="\tfrac{16}{4}=4" />, <Katex tex="2^3=8" />, <Katex tex="4(2)=8" />; everything vanishes at the lower terminal.</>,
+    reason: <><Katex tex="\tfrac{2^4}{4}=4" />, <Katex tex="2^3=8" />, <Katex tex="4(2)=8" />; every term is <Katex tex="0" /> at the lower terminal.</>,
   },
   {
     working: <Katex display tex="\boxed{1}" />,
-    reason: <>Plausible from the sketch: on <Katex tex="[0,2]" /> the curve runs from <Katex tex="-2" /> up to <Katex tex="8" />, spending most of the interval low, so a mean height of <Katex tex="1" /> is about right.</>,
+    reason: <>The average value of <Katex tex="f" /> over <Katex tex="[0,2]" />.</>,
+    more: <>A sense check against the sketch: the curve is below the axis on <Katex tex="[0,1]" /> (never lower than <Katex tex="-2" />), then climbs to <Katex tex="8" /> on <Katex tex="[1,2]" />. The part above the axis clearly outweighs the part below, so a small positive mean like <Katex tex="1" /> is plausible.</>,
   },
 ]
 
@@ -170,12 +178,12 @@ export default function MethodsQ4_2015Exam1() {
         }
         examinerReport={EXAM_C}
       >
-        <Background title="Average value is not on the formula sheet">
+        <Background title="Average value: a rectangle of equal signed area">
           <p>
             <Katex tex="\overline{f}=\dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,dx" /> — the
             constant height a rectangle on the same base would need to enclose the same
-            area. The report notes it is not printed on the formula sheet, so it has to be
-            remembered.
+            area. Above the axis counts as positive and below as negative, so it can even be
+            zero.
           </p>
         </Background>
         <WorkingTable rows={ROWS_C} />
