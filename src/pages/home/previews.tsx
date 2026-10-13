@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { angles } from '../../tools/unit-circle/data'
 import { useInView, useReducedMotion } from '../../components/motion/Reveal'
 
@@ -137,25 +137,37 @@ export function AnalysisPreview() {
 // ── Study Score: two exam marks become one score on the distribution ──
 
 export function StudyScorePreview() {
-  const [wrap, tick] = useTicker(2200)
+  const [wrap, inView] = useInView<HTMLDivElement>()
   const reduce = useReducedMotion()
-  const spots = [0.62, 0.78, 0.45, 0.86]
-  const at = spots[(reduce ? 0 : tick) % spots.length]
   const W = 220, H = 80
   const y = (x: number) => H - 6 - (H - 16) * Math.exp(-Math.pow((x - 0.5) / 0.17, 2))
   const d = Array.from({ length: 41 }, (_, i) => i / 40).map((x, i) => `${i ? 'L' : 'M'} ${x * W} ${y(x)}`).join(' ')
+  // The marker glides back and forth along the curve: x eases between the tails, and the dot's
+  // height is the curve's at that x on every frame, so it rides the curve rather than cutting across.
+  const line = useRef<SVGLineElement>(null), dot = useRef<SVGCircleElement>(null)
+  useEffect(() => {
+    let raf = 0
+    const t0 = performance.now()
+    const place = (x: number) => {
+      const px = `${x * W}`
+      line.current?.setAttribute('x1', px); line.current?.setAttribute('x2', px)
+      dot.current?.setAttribute('cx', px); dot.current?.setAttribute('cy', `${y(x)}`)
+    }
+    const draw = (now: number) => {
+      place(0.52 + 0.33 * Math.sin((now - t0) / 1600 + 0.5))
+      if (inView && !reduce) raf = requestAnimationFrame(draw)
+    }
+    if (reduce) place(0.68)
+    else raf = requestAnimationFrame(draw)
+    return () => cancelAnimationFrame(raf)
+  }, [inView, reduce]) // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div ref={wrap} aria-hidden>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-20 text-gray-900 dark:text-gray-100 overflow-visible">
         <path d={`${d} L ${W} ${H} L 0 ${H} Z`} className="fill-blue-600/10 dark:fill-blue-400/15" />
         <path d={d} fill="none" stroke="currentColor" strokeOpacity="0.45" strokeWidth="1.5" />
-        {/* The marker slides along the curve: x by transform, the dot's height by the CSS `cy`
-            property (both transition, where an attribute change wouldn't). */}
-        <g style={{ transform: `translateX(${at * W}px)`, transition: 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-          <line x1={0} x2={0} y1={0} y2={H} className="stroke-blue-600/40 dark:stroke-blue-400/40" strokeWidth="1.5" strokeDasharray="3 3" />
-          <circle cx={0} r={5.5} className="fill-blue-600 dark:fill-blue-400 stroke-white dark:stroke-gray-950" strokeWidth="2"
-            style={{ cy: y(at), transition: 'cy 0.8s cubic-bezier(0.16, 1, 0.3, 1)' } as CSSProperties} />
-        </g>
+        <line ref={line} x1={0.68 * W} x2={0.68 * W} y1={0} y2={H} className="stroke-blue-600/40 dark:stroke-blue-400/40" strokeWidth="1.5" strokeDasharray="3 3" />
+        <circle ref={dot} cx={0.68 * W} cy={y(0.68)} r={5.5} className="fill-blue-600 dark:fill-blue-400 stroke-white dark:stroke-gray-950" strokeWidth="2" />
       </svg>
       <div className="flex justify-between text-[11px] text-gray-500 dark:text-gray-400 mt-1"><span>lower</span><span>higher</span></div>
     </div>
